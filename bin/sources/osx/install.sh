@@ -3,7 +3,9 @@
 # This is the DTC's tarball interactive install configuration script
 # made by Thomas Goirand <thomas [ at ] goirand.fr>
 
-UNIX_TYPE=generic
+UNIX_TYPE=osx
+
+VERBOSE_INSTALL="yes"
 
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
@@ -188,28 +190,10 @@ PATH_PHP_CGI="/usr/bin/php"
 
 # DTC's own path
 
-echo "### DTC PATH ###"
-echo ""
-echo "Where do you want DTC be installed ?"
-echo -n "DTC shared install folder [/usr/share/dtc]: "
-read PATH_DTC_SHARED
-if [ "$PATH_DTC_SHARED" = "" ];
-then
-	PATH_DTC_SHARED="/usr/share/dtc"
-fi
-
+PATH_DTC_SHARED="/usr/share/dtc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
-
-echo ""
-echo "Where do you want DTC to store it's generated configuration files ?"
-echo -n "DTC generated files [/usr/share/dtc/etc]: "
-read PATH_DTC_ETC
-if [ "$PATH_DTC_ETC" = "" ];
-then
-	PATH_DTC_ETC="/usr/share/dtc/etc"
-fi
-
+PATH_DTC_ETC="/usr/share/dtc/etc"
 
 echo ""
 echo ""
