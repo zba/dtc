@@ -8,10 +8,9 @@ RUN_DEPENDS=	php:${PHP_PORT} \
 		${LOCALBASE}/libexec/proftpd:${PORTSDIR}/ftp/proftpd-mysql \
 		${LOCALBASE}/libexec/apache/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2 \
 		${LOCALBASE}/bin/webalizer:${PORTSDIR}/www/webalizer \
-		${QMAIL_DIR}/bin/qmail-start:${PORTSDIR}/mail/qmail
+		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc
 
 PHP_PORT=${PORTSDIR}/lang/php4-dtc
-QMAIL_DIR?=	/var/qmail
 
 DTCROOT?=	www/dtc
 DTCDIR=		${PREFIX}/${DTCROOT}
