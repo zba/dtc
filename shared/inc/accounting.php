@@ -1,4 +1,3 @@
-
 <?
 
 function mysql_table_exists($dbname,$tableName){
@@ -25,6 +24,63 @@ function fetchFTPInfo($webname){
 	$total_ftp_amount = mysql_result($result,0,"transfer");
 
 	return $total_ftp_amount;
+}
+
+function sum_email($webname){
+	global $pro_mysql_acc_email_table;
+	global $pro_mysql_smtplogs_table;
+	global $pro_mysql_pop_table;
+
+	// Calculate current period
+	$current_year = date("Y",time());
+	$current_month = date("n",time());
+	$selected_month_start = mktime(0,0,0,$current_month,1,$current_year);
+	$selected_month_end = time();
+
+	// Get all smtp trafic of current month for given domain
+	$query = "SELECT SUM(bytes) AS amount FROM $pro_mysql_smtplogs_table
+	WHERE (sender_domain='$webname' OR delivery_domain='$webname') AND
+	time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end.";";
+	$result = mysql_query($query)or die("Cannot execute query: \"$query\" !".
+		mysql_error()." line ".__LINE__." file ".__FILE__);
+	$smtp_bytes = mysql_result($result,0,"amount");
+
+	// Erase all past smtp log records for this domain
+	$query = "DELETE FROM $pro_mysql_smtplogs_table WHERE (sender_domain='$webname' OR delivery_domain='$webname') AND
+	time_stamp<=".$selected_month_end.";";
+	$result = mysql_query($query)or die("Cannot execute query: \"$query\" !".
+		mysql_error()." line ".__LINE__." file ".__FILE__);
+
+	// Sum the pop trafic of all mailboxs of the domain
+	$query = "SELECT SUM(pop3_transfered_bytes) AS amount FROM $pro_mysql_pop_table
+	WHERE mbox_host='$webname';";
+	$result = mysql_query($query)or die("Cannot execute query: \"$query\" !".
+		mysql_error()." line ".__LINE__." file ".__FILE__);
+	$pop_bytes = mysql_result($result,0,"amount");
+
+	// Zero all pop trafic of the domain mailboxs
+	$query = "UPDATE $pro_mysql_pop_table SET pop3_transfered_bytes='0' WHERE mbox_host='$webname';";
+	$result = mysql_query($query)or die("Cannot execute query: \"$query\" !".
+		mysql_error()." line ".__LINE__." file ".__FILE__);
+
+//	$email_traffic = $pop_bytes + $smtp_bytes;
+
+	// Check if there is a record for current month
+	$query = "SELECT * FROM $pro_mysql_acc_email_table WHERE
+		month=".$current_month." AND year=".$current_year." AND domain_name='".$webname."'";
+	$result = mysql_query($query)or die("Cannot execute query: \"$query\" !".
+		mysql_error()." line ".__LINE__." file ".__FILE__);
+	if(mysql_num_rows($result)==1){
+		$query = "UPDATE $pro_mysql_acc_email_table set
+		smtp_trafic=smtp_trafic+$smtp_bytes,pop_trafic=pop_trafic+$pop_bytes
+		WHERE month=".$current_month." AND year=".$current_year." AND domain_name='".$webname."';";
+		mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
+	}else{
+		mysql_select_db($conf_mysql_db);
+		$query = "INSERT INTO $pro_mysql_acc_email_table (smtp_trafic,pop_trafic,month,year,domain_name)
+		VALUES ('$smtp_bytes','$pop_bytes','$current_month','$current_year','$webname')";
+		mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
+	}
 }
 
 function sum_http($webname){
@@ -134,20 +190,18 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 				mysql_select_db("apachelogs");
 
 				$dump_path = $admin_path."/".$domain."/subdomains/".$vhost."/logs/";
-				$dump_file_name = $dump_path.$db_select_name."_".$month."_".$year;
-				if(!file_exists($dump_file_name.".bz2") && ($year!=$current_year || $month!=$current_month))
-				{
-//					echo "File does not exists, trying to dump\n";
+				$dump_file_name = $dump_path.$db_select_name."_".$year."_".$month;
+				if(!file_exists($dump_file_name.".bz2") && ($year!=$current_year || $month!=$current_month)){
 					$selected_month_start = mktime(0,0,0,$month,1,$year);
 					$selected_month_end = (mktime(0,0,0,($month+1),1,$year))-1;
-					$query_dump = "SELECT * FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
-        			$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" !!! ".mysql_error());
-					if(mysql_num_rows($result_dump)>0)
-					{
+					$query_dump = "SELECT remote_host,time_stamp,request_line,status,bytes_sent,referer,agent FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+//					$query_dump = "SELECT * FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" !!! ".mysql_error());
+					$dump_num_rows = mysql_num_rows($result_dump);
+					if($dump_num_rows>0){
 						echo "\nDumping logs for ".$db_select_name."_".$month."_".$year."\n";
 						$handle = fopen ($dump_file_name, "w");
-						for($z=0;$z<mysql_num_rows($result_dump);$z++)
-						{
+						for($z=0;$z<$dump_num_rows;$z++){
 							$content = mysql_result($result_dump,$z,"remote_host").
 							" - - ".
 							date("[d/M/Y:H:i:s]",mysql_result($result_dump,$z,"time_stamp")).
@@ -155,7 +209,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 							" ".mysql_result($result_dump,$z,"status").
 							" ".mysql_result($result_dump,$z,"bytes_sent").
 							' "'.mysql_result($result_dump,$z,"referer").'"'.
-							" ".mysql_result($result_dump,$z,"agent")."'\n";
+							' "'.mysql_result($result_dump,$z,"agent").'"'."\n";
 /*							$content = "'".mysql_result($result_dump,$z,"id").
 							"','".mysql_result($result_dump,$z,"agent").
 							"','".mysql_result($result_dump,$z,"bytes_sent").
@@ -183,9 +237,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 							"'\n";*/
 
 							if (!fwrite($handle, $content))
-							{
-        						print "Cannot write to file ($filename)";
-						    }
+        						echo "WARNING: Cannot write logfile, maybe disk full...\n";
 						}
 						fclose($handle);
 						echo "Calculating webalizer stats for ".$month."_".$year."\n";

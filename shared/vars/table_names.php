@@ -15,8 +15,10 @@ $pro_mysql_nameservers_table = "nameservers";
 $pro_mysql_handle_table = "handle";
 $pro_mysql_product_table = "product";
 $pro_mysql_pay_table = "paiement";
+$pro_mysql_smtplogs_table = "smtp_logs";
 
 $pro_mysql_acc_http_table = "http_accounting";
 $pro_mysql_acc_ftp_table = "ftp_accounting";
+$pro_mysql_acc_email_table = "email_accounting";
 
 ?>
