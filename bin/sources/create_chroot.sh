@@ -133,7 +133,10 @@ fi
 #for j in \
 if [ $UNIX_TYPE"" = "freebsd"  ] ; then
 	cp -pf /usr/lib/libc.so* /usr/lib/libm.so* \
-	  /usr/lib/libstdc\+\+.so* /usr/lib/libz.so.2 usr/lib/
+	  /usr/lib/libstdc\+\+.so* usr/lib/
+	if [ -e /usr/compat/linux/usr/lib/libz.so.1 ] ; then
+		cp /usr/compat/linux/usr/lib/libz.so.1 usr/lib
+	fi
 else
 	if ! [ $UNIX_TYPE"" = "osx"  ] ; then
 		cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
