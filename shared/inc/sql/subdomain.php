@@ -36,10 +36,24 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 	if(!checkSubdomainFormat($_REQUEST["subdomain_name"])){
 		die("Incorrect subdomain name format...");
 	}
-	// Verify it's an valid IP
-	if(!isIP($newsubdomain_ip)){
+	// Verify it's an valid IP or CNAME value
+	if(!isIP($_REQUEST["newsubdomain_ip"]) && !isHostnameOrIP($_REQUEST["newsubdomain_ip"])){
 		$newsubdomain_ip = "default";
+	}else{
+		if(isIP($_REQUEST["newsubdomain_ip"])){
+			$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+		}else{
+			$server = $_REQUEST["newsubdomain_ip"];
+			// echo "Checking POP3<br>";
+			if(($server_ip = gethostbynameFalse($server)) == false){
+				echo "Cannot resolv your server: ".$_REQUEST["newsubdomain_ip"]."<br>";
+				$newsubdomain_ip = "default";
+			}else{
+				$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+			}
+		}
 	}
+
 // =yes&webalizer=yes&w3_alias=yes
 	if($_REQUEST["register_globals"] == "yes")	$reg_globs = ", register_globals='yes'";
 	else		$reg_globs = ", register_globals='no'";
