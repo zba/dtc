@@ -838,7 +838,16 @@ else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
 	fi
-	/usr/bin/htpasswd -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" $conf_adm_pass
+	if [ -e "/usr/local/bin/htpasswd" ] ;then
+		HTPASSWD="/usr/local/bin/htpasswd"
+	else
+		if [ -e "/usr/bin/htpasswd" ] ;then
+			HTPASSWD="/usr/bin/htpasswd"
+		else
+			HTPASSWD="htpasswd"
+		fi
+	fi
+	$HTPASSWD -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" $conf_adm_pass
 fi
 
 if [ -e $PATH_DTC_ADMIN/.htaccess ]; then
