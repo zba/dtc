@@ -295,6 +295,16 @@ LogSQLTransferLogFormat IAbhRrSsU
 	fi
 fi
 
+# copy the template directory from shared to etc, so we can edit it without worry of being purged on each install
+# only copy the directory, if it doesn't already exist in the etc path
+if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
+	if [ ! -e "$PATH_DTC_ETC/template" ]; then
+		cp -r $PATH_DTC_SHARED/shared/template $PATH_DTC_ETC
+		chown -R nobody:65534 $PATH_DTC_ETC/template
+		chmod -R 664 $PATH_DTC_ETC/template
+	fi
+fi
+
 PATH_PAMD_SMTP=/etc/pam.d/smtp
 if [ -e /etc/pam.d/ ]
 then
@@ -460,14 +470,14 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 
 			if [ -e /var/spool/postfix/etc ]; then
 				touch /var/spool/postfix/etc/sasldb2
-				chown postfix:nogroup /var/spool/postfix/etc/sasldb2
+				chown postfix:65534 /var/spool/postfix/etc/sasldb2
 				chmod 664 /var/spool/postfix/etc/sasldb2
 				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
 					cp /var/spool/postfix/etc/sasldb2 $PATH_DTC_ETC/sasldb2
 				fi
 			else 
 				touch /etc/sasldb2
-				chown postfix:nogroup
+				chown postfix:65534
 				chmod 664 /var/spool/postfix/etc/sasldb2
 				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
 					cp /etc/sasldb2 $PATH_DTC_ETC/sasldb2

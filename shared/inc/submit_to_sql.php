@@ -415,7 +415,7 @@ if($_REQUEST["newsubdomain"] == "Ok"){
 
         // Create the new site html front page
         if($conf_demo_version == "no"){
-                system ("cp -rf $conf_dtcshared_path/template/* $admin_path/$edit_domain/subdomains/".$_REQUEST["newsubdomain_name"]."/html");
+                system ("cp -rf $conf_generated_file_path/template/* $admin_path/$edit_domain/subdomains/".$_REQUEST["newsubdomain_name"]."/html");
         }
 
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");

@@ -65,10 +65,20 @@ FROM $pro_mysql_domain_table,$pro_mysql_admin_table
 WHERE $pro_mysql_domain_table.name='$conf_main_domain'
 AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"!");
-	echo mysql_num_rows($result2);
-	if(mysql_num_rows($result2) != 1)	die("Cannot find main domain admin path!!!");
-	$a = mysql_fetch_array($result2);
-	$path_404 = $a["path"]."/$conf_main_domain/subdomains/$conf_404_subdomain";
+	$enable404feature = true;
+	//echo "Query $query2 resulted in ".mysql_num_rows($result2)."\n";
+	if(mysql_num_rows($result2) != 1)
+	{
+		$enable404feature=false;
+	}
+	//don't die here... 	we will try and do things to work around this bug
+	//die("Cannot find main domain admin path!!!");
+
+	if ($enable404feature == true)
+	{
+		$a = mysql_fetch_array($result2);
+		$path_404 = $a["path"]."/$conf_main_domain/subdomains/$conf_404_subdomain";
+	}
 
 	if($conf_use_multiple_ip == "yes" && $conf_use_nated_vhost == "no"){
 		$all_site_addrs = explode("|",$conf_site_addrs);
@@ -79,6 +89,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			$num_rows2 = mysql_num_rows($result2);
 			if($num_rows2 > 0){
 				$vhost_file .= "NameVirtualHost ".$all_site_addrs[$i]."\n";
+				if ($enable404feature == true)
+				{
 				$vhost_file .= "<VirtualHost ".$all_site_addrs[$i].">
 	ServerName $conf_404_subdomain.$conf_main_domain
 	DocumentRoot $path_404/html
@@ -87,6 +99,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	LogSQLTransferLogTable ".str_replace(".","_",$conf_main_domain)."#".$conf_404_subdomain."#xfer
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>\n";
+				}
 			}
 		}
 	}else{
