@@ -14,5 +14,6 @@ CREATE TABLE IF NOT EXISTS domain (
   other_mx varchar(255) NOT NULL default 'default',
   whois enum('here','away','linked') NOT NULL default 'away',
   hosting enum('here','away') NOT NULL default 'here',
+  du_stat bigint(20) NOT NULL default '0',
   UNIQUE KEY name (name)
 ) TYPE=MyISAM

@@ -75,7 +75,8 @@ ALTER TABLE ftp_access
 
 ALTER TABLE domain
 	ADD whois enum('here','away','linked') NOT NULL default 'away',
-	ADD hosting enum('here','away') NOT NULL default 'here' ;
+	ADD hosting enum('here','away') NOT NULL default 'here',
+	ADD du_stat bigint(20) NOT NULL default '0' ;
 
 ALTER TABLE subdomain
 	ADD register_global enum('yes','no') NOT NULL default 'no',
