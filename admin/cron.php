@@ -51,19 +51,14 @@ function commitTriggerToRemote($a){
         while($retry < 3 && $flag == false){
 		$lines = file ($url);
 		$nline = sizeof($lines);
-		if(strstr($lines[0],"Successfuly recieved trigger!")){
-			for($j=1;$j<$nline-1;$j++){
-				$rcpthosts_file .= $lines[$j];
-			}
+		if(strstr($lines[0],"Successfuly recieved trigger!") != false){
 			$flag = true;
 		}
 		$retry ++;
 		if($flag == false)      sleep(3);
 	}
-	if($flag == false)      return false;
-	else            return $true;
+	return flag;
 }
-                
 
 $query = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes' AND status='pending';";
 $r = mysql_query($query)or die("Cannot query \"$query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -72,6 +67,8 @@ for($i=0;$i<$n;$i++){
 	$a = mysql_fetch_array($r);
 	echo "Triggering the change to the backup server ".$a["server_addr"]." with login ".$a["server_login"]."...";
 	if(commitTriggerToRemote($a)){
+		$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
+		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		echo "success!\n";
 	}else{
 		echo "failed!\n";
