@@ -128,6 +128,34 @@ else
 	echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >>/tmp/DTC_config_proftpd.conf
 	echo "SQLAuthTypes	Plaintext" >>/tmp/DTC_config_proftpd.conf
 	echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >>/tmp/DTC_config_proftpd.conf
+	echo "// Transfer Log to Proftpd
+	echo "SQLLog RETR,STOR transfer1
+	echo "SQLNamedQuery transfer1 INSERT "'%u', '%f', '%b', '%h', '%a', '%m', '%T',now(), 'c', NULL" ftp_logs
+
+	echo "// Count Logins per User" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLLog                PASS logincount" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLNamedQuery         logincount UPDATE "count=count+1 WHERE login='%u'" ftp_access" >>/tmp/DTC_config_proftpd.conf
+
+	echo "// Remember the last login time" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLLog                PASS lastlogin" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLNamedQuery         lastlogin UPDATE "last_login=now() WHERE login='%u'" ftp_access" >>/tmp/DTC_config_proftpd.conf
+
+	echo "// Count the downloaded bytes" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLLog RETR           dlbytescount" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLNamedQuery         dlbytescount UPDATE "dl_bytes=dl_bytes+%b WHERE login='%u'" ftp_access" >>/tmp/DTC_config_proftpd.conf
+
+	echo "// Count the downloaded files" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLLog RETR           dlcount" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLNamedQuery         dlcount UPDATE "dl_count=dl_count+1 WHERE login='%u'" ftp_access" >>/tmp/DTC_config_proftpd.conf
+
+	echo "// Count the uploaded bytes" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLLog STOR           ulbytescount" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLNamedQuery         ulbytescount UPDATE "ul_bytes=ul_bytes+%b WHERE login='%u'" ftp_access" >>/tmp/DTC_config_proftpd.conf
+	
+	echo "// Count the uploaded files" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLLog STOR           ulcount" >>/tmp/DTC_config_proftpd.conf
+	echo "SQLNamedQuery         ulcount UPDATE "ul_count=ul_count+1 WHERE login='%u'" ftp_access" >>/tmp/DTC_config_proftpd.conf
+	
 	echo "" >>/tmp/DTC_config_proftpd.conf
 	echo "# End of DTC configuration v0.10 : please don't touch this line !" >>/tmp/DTC_config_proftpd.conf
 	cat </tmp/DTC_config_proftpd.conf >>$PATH_PROFTPD_CONF
