@@ -13,7 +13,8 @@ function backup_by_ftp(){
 
 	$num_generated_vhosts=0;
 
-	$backup_net = "#!/bin/sh\n";
+	$backup_net = "#!/bin/sh
+date\n";
 
 	// Get the owner informations
 	$q = "SELECT adm_login,path FROM $pro_mysql_admin_table WHERE 1;";
@@ -23,7 +24,7 @@ function backup_by_ftp(){
 		$ra = mysql_fetch_array($r);
 		$owner = $ra["adm_login"];
 		$path = $ra["path"];
-		$backup_net .= "echo -n \"===> Backuping all files for user $owner:\"\n";
+		$backup_net .= "echo \"===> Backuping all files for user $owner:\"\n";
 		$backup_net .= "cd $path\n";
 		$q2 = "SELECT name FROM $pro_mysql_domain_table WHERE owner='$owner';";
 		$r2 = mysql_query ($q2)or die("Cannot execute query \"$q2\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
@@ -33,7 +34,7 @@ function backup_by_ftp(){
 			$webname = $ra2["name"];
 			$backup_net .= "echo -n \"$webname (\"\n";
 			$backup_net .= "echo -n \"mail\"\n";
-			$backup_net .= "tar -czf $owner.$webname.tar.gz $webname/Mailboxs\n";
+			$backup_net .= "tar -cf $owner.$webname.tar $webname/Mailboxs\n";
 			$q3 = "SELECT subdomain_name FROM $pro_mysql_subdomain_table WHERE domain_name='$webname';";
 			$r3 = mysql_query ($q3)or die("Cannot execute query \"$q3\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
 			$nr3 = mysql_num_rows($r3);
@@ -41,14 +42,19 @@ function backup_by_ftp(){
 				$ra3 = mysql_fetch_array($r3);
 				$subdom_name = $ra3["subdomain_name"];
 				$backup_net .= "echo -n \",$subdom_name\"\n";
-				$backup_net .= "tar -Azf $owner.$webname.tar.gz $webname/$subdom_name/html $webname/$subdom_name/cgi-bin\n";
-				$num_generated_vhosts++;
+				$backup_net .= "tar -rf $owner.$webname.tar $webname/subdomains/$subdom_name/html $webname/subdomains/$subdom_name/cgi-bin\n";
 			}
 			$backup_net .= "echo -n \")\"\n";
-			$backup_net .= "echo -n \"uploading\"\n";
-			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg /webserver/ftp/gplhost/ $owner.$webname.tar.gz\n";
+			$backup_net .= "echo -n \" compressing\"\n";
+			$backup_net .= "gzip -f $owner.$webname.tar\n";
+			$backup_net .= "echo \" uploading\"\n";
+			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E /webserver/ftp/gplhost/hostedfiles/ $owner.$webname.tar.gz\n";
+			$backup_net .= "echo \" deleting archive\"\n";
+			$backup_net .= "rm $owner.$webname.tar.gz\n";
+			$num_generated_vhosts++;
 		}
 	}
+	$backup_net .= "date\n";
 	$filep = fopen("$conf_generated_file_path/net_backup.sh", "w+");
 	if( $filep == NULL){
 		die("Cannot open file for writting");
@@ -56,8 +62,7 @@ function backup_by_ftp(){
 	fwrite($filep,$backup_net);
 	fclose($filep);
 	chmod("$conf_generated_file_path/$conf_backup_script_path",0750);
-	$console .= "Generated net-backup files for $num_generated_vhosts vhosts !<br>";
-
+	$console .= "Generated net-backup script for $num_generated_vhosts domains !<br>";
 }
 
 function backup_script_generate(){
