@@ -1,5 +1,6 @@
 <?php
 
+$panel_type = "none";
 require("/usr/share/dtc/shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
@@ -92,7 +93,7 @@ function drawClock($last_cronjob_epoch){
 	$seconds=date("s");
 	$minute=10-($minute%10);
 	$seconds=60-$seconds;
-	return javascriptClock($minutes,$seconds);
+	return javascriptClock($minute,$seconds);
 }
 
 function drawDeamonStates(){
@@ -113,7 +114,7 @@ function drawDeamonStates(){
 	$query = "SELECT UNIX_TIMESTAMP(last_cronjob) as epoch_time FROM $pro_mysql_cronjob_table";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 	$row = mysql_fetch_array($result);
-	$last_cronjob_epoch .= $row[0];
+	$last_cronjob_epoch = $row[0];
 
 	$clock = drawClock($last_cronjob_epoch);
 

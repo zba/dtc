@@ -5,7 +5,8 @@ $pro_mysql_product_table = "product";
 function DTCRMlistClients(){
 	global $lang;
 	global $txt_new_customer_link;
-	$id_client = $_REQUEST["id"];
+	if(isset($_REQUEST["id"]))
+		$id_client = $_REQUEST["id"];
 	global $pro_mysql_client_table;
 
 	$text = "<div style=\"white-space: nowrap\" nowrap>
@@ -17,11 +18,11 @@ function DTCRMlistClients(){
 	$num_rows = mysql_num_rows($result);
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result);
-		if($row["id"] != $_REQUEST["id"]){
+		if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
 			$text .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"]."\">";
 		}
 		$text .= $row["familyname"].", ".$row["christname"]."";
-		if($row["id"] != $_REQUEST["id"]){
+		if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
 			$text .= "</a>";
 		}
 		$text .= "<br>";
@@ -90,8 +91,11 @@ function DTCRMeditClients(){
 	global $txt_money_remaining;
 	global $txt_select_a_new;
 
-	$cid = $_REQUEST["id"];	// current customer id
-	if($cid == "")	return $txt_select_a_new[$lang];
+	if(isset($_REQUEST["id"])){
+		$cid = $_REQUEST["id"];	// current customer id
+	}else{
+		return $txt_select_a_new[$lang];
+	}
 
 	$iscomp_yes = "checked";
 	$iscomp_no = "";

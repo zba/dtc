@@ -36,11 +36,13 @@ cp -r doc $RPM_BUILD_ROOT/usr/share/dtc
 mkdir -p %{_datadir}/dtc/etc/zones
 chmod +x %{_datadir}/dtc/admin/dtc.rpm-install.sh
 chmod +x %{_datadir}/dtc/admin/dtc.rpm-uninstall.sh
+cp %{_datadir}/dtc/admin/dtc.rpm-uninstall.sh /usr/sbin
 chown -R root:root %{_datadir}/dtc
 echo To complete installation, please run %{_datadir}/dtc/admin/dtc.rpm-install.sh
 
 %postun
-echo To complete uninstallation, please run %{_datadir}/dtc/admin/dtc.rpm-uninstall.sh
+echo To complete uninstallation, please run /usr/sbin/dtc.rpm-uninstall.sh
+echo and remove the uninstall script.
 
 %files
 %{_datadir}/dtc/admin/*

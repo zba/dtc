@@ -278,12 +278,18 @@ else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "=> Adding DTC's directives to httpd.conf end"
 	fi
-	echo "# Configured by DTC v0.12 : please do not touch this line !
+
+	# It seems redhat has already the Listen directives...
+	if [ ""$UNIX_TYPE = "redhat" ] ;then
+		echo "# Configured by DTC v0.12 : please do not touch this line !
+Include $PATH_DTC_ETC/vhosts.conf" >>$PATH_HTTPD_CONF
+	else
+		echo "# Configured by DTC v0.12 : please do not touch this line !
 Include $PATH_DTC_ETC/vhosts.conf
 Listen 80
-Listen 443
-
-LogSQLLoginInfo localhost "$conf_mysql_login" "$conf_mysql_pass"
+Listen 443" >>$PATH_HTTPD_CONF
+	fi
+	echo "LogSQLLoginInfo localhost "$conf_mysql_login" "$conf_mysql_pass"
 LogSQLSocketFile /var/run/mysqld/mysqld.sock
 LogSQLDatabase apachelogs
 LogSQLCreateTables On
