@@ -2,4 +2,5 @@
 - Update all domains when handle updates
 - Add "change DNS at registration/transfer" support
 - Domain name renewal
+- Change all domains password when admin password changes
 - Internationalisation
