@@ -18,10 +18,12 @@ if($panel_type!="cronjob"){
 	session_register("lang");
 	// If something like phpbb that has $lang on the same domain, this should
 	// avoid problems. This is a lack in php (IMHO)
-	if(!is_string($_SESSION["lang"])){
+	if(isset($_SESSION["lang"]) && !is_string($_SESSION["lang"])){
 		unset($lang);
 	}
-	$lang = $_SESSION["lang"];
+	if(isset($_SESSION["lang"])){
+	  $lang = $_SESSION["lang"];
+        }
 	if(isset($_REQUEST["change_language"])){
 	        if($_REQUEST["change_language"] == "fr"){
 	                $lang = "fr";
