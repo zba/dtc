@@ -54,6 +54,7 @@ curdir=`pwd`
 
 echo "If not exists, create DTC's database name: "$conf_mysql_db
 mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
+echo "Creating apachelogs database: apachelogs"
 mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
 cd $create_tables
 echo -n "DTC is now creating table if not exists: "
