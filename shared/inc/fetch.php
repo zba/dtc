@@ -220,6 +220,8 @@ function fetchAdminData($adm_login,$adm_pass){
 			$subdomain["login"] = $row2["login"];
 			$subdomain["pass"] = $row2["pass"];
 			$subdomain["w3_alias"] = $row2["w3_alias"];
+			$subdomain["register_globals"] = $row2["register_globals"];
+			$subdomain["webalizer_generate"] = $row2["webalizer_generate"];
 			$subs[] = $subdomain;
 		}
 		$domain["subdomains"] = $subs;
@@ -250,6 +252,12 @@ function fetchAdminData($adm_login,$adm_pass){
 //                      ["ip_addr"]
 //                      ["subdomains"][0-n]["name"]
 //                                         ["path"]
+//                                         ["ip"]
+//                                         ["login"]
+//                                         ["pass"]
+//                                         ["w3_alias"]
+//                                         ["register_globals"]
+//                                         ["webalizer_generate"]
 
 // Now Can add emails to all thoses domains !
 		$query4 = "SELECT * FROM $pro_mysql_pop_table WHERE mbox_host='$name' ORDER BY id LIMIT 800;";
@@ -295,6 +303,12 @@ function fetchAdminData($adm_login,$adm_pass){
 //                      ["ip_addr"]
 //                      ["subdomains"][0-n]["name"]
 //                                         ["path"]
+//                                         ["ip"]
+//                                         ["login"]
+//                                         ["pass"]
+//                                         ["w3_alias"]
+//                                         ["register_globals"]
+//                                         ["webalizer_generate"]
 //                      ["emails"][0-n]["id"]
 //                                     ["home"]
 //                                     ["crypt"]

@@ -87,7 +87,9 @@ ALTER TABLE subdomain
 ALTER TABLE admin
 	ADD bandwidth_per_month_mb INT ( 11 ) NOT NULL default '100',
 	ADD expire DATE DEFAULT '0000-00-00' NOT NULL ;
-;
+
+ALTER TABLE cron_job
+	ADD lock_flag enum('finished','inprogress') NOT NULL default 'finished';
 
 UPDATE config SET dbversion='10001' WHERE 1;
 ");

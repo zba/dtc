@@ -200,4 +200,4 @@ then
 	fi
 	echo "conf done"
 fi
-exit
+

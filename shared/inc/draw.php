@@ -1,6 +1,61 @@
 <?php
 
 // require("$dtcshared_path/strings.php");
+// To maintainers: please remember the following structure is fetched from
+// database by the "fetch.php" source code using the function:
+// fetchAdmin($adm_login,$adm_pass). It's secured, because called with login AND password...
+// so it can be called from both admin and client pannel.
+// That is fetched at EACH call of the index page of the client interface,
+// and when an virtual admin is selected on the user management panel of the
+// dtc.yourdomain.com/dtcadmin/, so please do not fetch informations TWICE !
+//     $admin["info"]["adm_login"]
+//                   ["adm_pass"]
+//                   ["path"]
+//                   ["max_email"]
+//                   ["max_ftp"]
+//                   ["quota"];
+//                   ["bandwidth_per_month_mb"]
+//                   ["prod_id"]
+//                   ["expire"]
+//                   ["id_client"]
+//           [data][0-n]["default_subdomain"]
+//                      ["name"]
+//                      ["quota"]
+//                      ["max_email"]
+//                      ["max_ftp"]
+//                      ["max_subdomain"]
+//                      ["ip_addr"]
+//                      ["subdomains"][0-n]["name"]
+//                                         ["path"]
+//                                         ["ip"]
+//                                         ["login"]
+//                                         ["pass"]
+//                                         ["w3_alias"]
+//                                         ["register_globals"]
+//                                         ["webalizer_generate"]
+//                      ["emails"][0-n]["id"]
+//                                     ["home"]
+//                                     ["crypt"]
+//                                     ["passwd"]
+//                                     ["shell"]
+//                      ["ftps"]["login"]
+//                              ["passwd"]
+//                              ["path"]
+
+// The fetchAdminStats($admin) return the followin structure:
+// ["domains"][0-n]["name"]
+//                 ["du"]
+//                 ["ftp"]
+//                 ["http"]
+//                 ["total_transfer"]
+// ["total_http"]
+// ["total_ftp"]
+// ["total_transfer"]
+// ["total_du_domains"]
+// ["db"][0-n]["name"]
+//            ["du"]
+// ["total_db_du"]
+// ["total_du"]
 
 function drawAdminTools_MyAccount($admin){
 	global $PHP_SELF;
@@ -482,15 +537,23 @@ function drawAdminTools_Subdomain($domain){
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub = $subdomains[$i]["name"];
 		$ip = $subdomains[$i]["ip"];
+		if($i!=0){
+			$txt .= " - ";
+		}
 		if($sub == $_REQUEST["edit_a_subdomain"]){
 			$ip_domain_to_edit = $ip;
 			$login_to_edit = $subdomains[$i]["login"];
 			$pass_to_edit = $subdomains[$i]["pass"];
+			$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
+			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
+			$register_globals_to_edit = $subdomains[$i]["register_globals"];
+		}else{
+			$txt .= "<a href=\"http://$sub.$webname\" target=\"_blank\">";
 		}
-		if($i!=0){
-			$txt .= " - ";
+		$txt .= $sub;
+		if($sub != $_REQUEST["edit_a_subdomain"]){
+			$txt .= "</a>";
 		}
-		$txt .= "<a href=\"http://$sub.$webname\" target=\"_blank\">$sub</a>";
 	}
 	$txt .= "<br>";
 
@@ -557,6 +620,10 @@ function drawAdminTools_Subdomain($domain){
 		if($nbr_subdomain < $max_subdomain){
 			$txt .= "<tr><td align=\"right\">Subdomain name:".$txt_subdom_create_name[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_name\" value=\"\"></td><td></td></tr>";
 			$txt .= "<tr><td align=\"right\">IP du sous-domain (laissez vide sinon):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_ip\" value=\"\"></td>";
+			$txt .= "<tr><td colspan=\"3\">";
+			$txt .= "If need it, it's possible to set your subdomain IP remotly,
+for example if you have a home connection dynamic address and you want a
+subdomain to point to it. First, enter login and password here:</td></tr>";
 			$txt .= "<tr><td align=\"right\">Dynamic ip update login:</td><td><input type=\"text\" name=\"newsubdomain_dynlogin\" value=\"\"></td></tr>";
 			$txt .= "<tr><td align=\"right\">Dynamic ip update password:</td><td><input type=\"text\" name=\"newsubdomain_dynpass\" value=\"\"></td></tr>";
 			$txt .= "<td><input type=\"submit\" name=\"newsubdomain\" value=\"Ok\"></td></tr>";
@@ -567,7 +634,43 @@ function drawAdminTools_Subdomain($domain){
 		// Edition of existing subdomains
 		$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>Edit a subdomain:".$txt_subdom_edit[$lang]."</u></b></font></td></tr>";
 		$txt .= "<tr><td align=\"right\">Subdomain name:".$txt_subdom_create_name[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
-		$txt .= "<tr><td align=\"right\">IP du sous-domain (laissez vide sinon):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
+		if($register_globals_to_edit == "yes"){
+			$checked_yes = " checked";
+			$checked_no = "";
+		}else{
+			$checked_yes = "";
+			$checked_no = " checked";
+		}
+		$txt .= "<tr><td align=\"right\">Use register_globals=1:</td>";
+		$txt .= "<td>Yes<input type=\"radio\" name=\"register_globals\" value=\"yes\" $checked_yes>
+No<input type=\"radio\" name=\"register_globals\" value=\"yes\" $checked_no></td></tr>";
+		if($webalizer_to_edit == "yes"){
+			$checked_yes = " checked";
+			$checked_no = "";
+		}else{
+			$checked_yes = "";
+			$checked_no = " checked";
+		}
+		$txt .= "<tr><td align=\"right\">Generate webalizer stats each weeks:</td>";
+		$txt .= "<td>Yes<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_yes>
+No<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_no></td></tr>";
+		if($w3_alias_to_edit == "yes"){
+			$checked_yes = " checked";
+			$checked_no = "";
+		}else{
+			$checked_yes = "";
+			$checked_no = " checked";
+		}
+		$txt .= "<tr><td align=\"right\">Make a www.".$_REQUEST["edit_a_subdomain"]." alias:</td>";
+		$txt .= "<td>Yes<input type=\"radio\" name=\"w3_alias\" value=\"yes\" $checked_yes>
+No<input type=\"radio\" name=\"w3_alias\" value=\"yes\" $checked_no></td></tr>";
+//		$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
+//			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
+//			$register_globals_to_edit = $subdomains[$i]["register_globals"];
+//		$txt .= "<tr><td align=\"right\">Use register_global=1:".$txt_subdom_create_name[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
+//		$txt .= "<tr><td align=\"right\">Generate webalizer stats each week (not working yet):".$txt_subdom_create_name[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
+		$txt .= "<tr><td align=\"right\">Subdomain IP (leave blank to use default web
+hosting area):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
 		<input type=\"hidden\" name=\"edit_a_subdomain\" value=\"".$_REQUEST["edit_a_subdomain"]."\"><input type=\"text\" name=\"newsubdomain_ip\" value=\"$ip_domain_to_edit\"></td></tr>";
 		$txt .= "<tr><td colspan=\"3\">";
 		$txt .= "If need it, it's possible to set your subdomain IP remotly,
