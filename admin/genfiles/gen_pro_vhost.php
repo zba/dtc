@@ -158,8 +158,14 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 // --- Start of the conf of the panel subdomain ---
 // ------------------------------------------------
 			if($conf_administrative_site == "$web_subname.$web_name"){
+			// generate SSL and non SSL if we have enabled SSL
+			$gen_iterations = 1;
+			if ($conf_use_ssl == "yes"){
+				$gen_iterations = 2;
+			}
+			for ($k = 0; $k < $gen_iterations; $k++){
 				$log_tablename = str_replace(".","_",$web_name)."#".str_replace(".","_",$web_subname);
-				if($conf_use_ssl == "yes"){
+				if($conf_use_ssl == "yes" && $k == 0){
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
 				}else{
 					$vhost_file .= "<VirtualHost ".$ip_to_write.">\n";
@@ -222,6 +228,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 </VirtualHost>
 
 ";
+} // - end of for loop
 
 // ---------------------------------------------------
 // --- Start of the conf of server users subdomain ---
