@@ -745,7 +745,6 @@ function saveDTCConfigInMysql(){
                       '".$_REQUEST["server_login"]."',
                       '".$_REQUEST["server_pass"]."',
                       'trigger_changes');";
-                      echo $query;
                       break;
                 case "modify_mail_backup":
                       switch($_REQUEST["todo"]){
