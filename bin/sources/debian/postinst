@@ -41,6 +41,8 @@ db_get dtc/conf_mysqlpass
 conf_mysql_pass=$RET
 db_get dtc/conf_mysqldb
 conf_mysql_db=$RET
+db_get dtc/conf_mysql_change_root
+conf_mysql_change_root=$RET
 db_get dtc/main_domainname
 main_domain_name=$RET
 db_get dtc/dtc_adminsubdomain
@@ -57,7 +59,18 @@ db_get dtc/conf_admpass
 conf_adm_pass=$RET
 
 db_unregister dtc/conf_mysqlpass
+db_unregister dtc/conf_mysql_change_root
 db_unregister dtc/conf_admpass
 # db_purge
+
+# This part is debian specific because of (in my point of view) some
+# leak in distribution. Whis is that not made by default ?
+
+if [ $conf_mysql_change_root = true ]
+then
+	echo "===> Changing MySQL root password"
+	echo "If you didn't setup a root pass for mysqld, just hit ENTER."
+	mysql -uroot -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=('"$conf_mysqlpass"') WHERE User='root'; FLUSH PRIVILEGES;"
+fi
 
 # Upon this line, here is the standard DTC install script :

@@ -31,6 +31,23 @@ Description: Select your DTC database name.
  database automaticaly created. Please enter
  it's name.
 
+Template: dtc/conf_mysql_change_root
+Type: boolean
+Default: false
+Description: Change MySql root
+ When installing mysql-server package under
+ debian, the default installed root password
+ for database access is an empty password. DTC
+ can change that root password for you if you
+ didn't change it before. If you have setup a
+ root password for mysql before, or if you are
+ just upgrading DTC to a newer version, say no
+ to the above. If your root mysql password is
+ not set yet, then anser yes and DTC will
+ change it with the root password you just
+ entered. Please note that if DTC can't
+ connect with root, then install will fail.
+
 Template: dtc/main_domainname
 Type: string
 Default: example.com
