@@ -9,7 +9,8 @@ function mysql_table_exists($dbname,$tableName){
 
 function fetchHTTPInfo($webname){
 	global $pro_mysql_acc_http_table;
-	$query = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='".$webname."'";
+	$query = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='".$webname."'
+	AND month='".date("m")."' AND year='".date("Y")."';";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	$amount = mysql_result($result,0,"transfer");
@@ -19,11 +20,40 @@ function fetchHTTPInfo($webname){
 
 function fetchFTPInfo($webname){
 	global $pro_mysql_acc_ftp_table;
-	$query = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$webname."'";
+	$query = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$webname."'
+	AND month='".date("n")."' AND year='".date("Y")."';";
 	$result = mysql_query($query) or die("Cannot execute query \"$query\"");
 	$total_ftp_amount = mysql_result($result,0,"transfer");
 
 	return $total_ftp_amount;
+}
+
+function fetchSMTPInfo($webname){
+	global $pro_mysql_acc_email_table;
+	$q = "SELECT smtp_trafic AS transfer FROM $pro_mysql_acc_email_table WHERE domain_name='".$webname."'
+	AND month='".date("n")."' AND year='".date("Y")."';";
+	$r = mysql_query($q) or die("Cannot execute query \"$q\" !".
+	mysql_error()." line ".__LINE__." file ".__FILE__);
+	if(mysql_num_rows($r) < 1)
+		$total_smtp_amount = 0;
+	else
+		$total_smtp_amount = mysql_result($r,0,"transfer");
+
+	return $total_smtp_amount;
+}
+
+function fetchPOPInfo($webname){
+	global $pro_mysql_acc_email_table;
+	$q = "SELECT pop_trafic AS transfer FROM $pro_mysql_acc_email_table WHERE domain_name='".$webname."'
+	AND month='".date("n")."' AND year='".date("Y")."';";
+	$r = mysql_query($q) or die("Cannot execute query \"$q\" !".
+	mysql_error()." line ".__LINE__." file ".__FILE__);
+	if(mysql_num_rows($r) < 1)
+		$total_pop_amount = 0;
+	else
+		$total_pop_amount = mysql_result($r,0,"transfer");
+
+	return $total_pop_amount;
 }
 
 function sum_email($webname){
@@ -45,6 +75,8 @@ function sum_email($webname){
 		mysql_error()." line ".__LINE__." file ".__FILE__);
 	$smtp_bytes = mysql_result($result,0,"amount");
 
+	if($smtp_bytes == "" || $smtp_bytes == NULL)	$smtp_bytes = 0;
+
 	// Erase all past smtp log records for this domain
 	$query = "DELETE FROM $pro_mysql_smtplogs_table WHERE (sender_domain='$webname' OR delivery_domain='$webname') AND
 	time_stamp<=".$selected_month_end.";";
@@ -57,6 +89,8 @@ function sum_email($webname){
 	$result = mysql_query($query)or die("Cannot execute query: \"$query\" !".
 		mysql_error()." line ".__LINE__." file ".__FILE__);
 	$pop_bytes = mysql_result($result,0,"amount");
+
+	if($pop_bytes == "" || $pop_bytes == NULL)	$pop_bytes = 0;
 
 	// Zero all pop trafic of the domain mailboxs
 	$query = "UPDATE $pro_mysql_pop_table SET pop3_transfered_bytes='0' WHERE mbox_host='$webname';";
@@ -97,61 +131,56 @@ function sum_http($webname){
 	$num_rows = mysql_num_rows($result);
 	$selected_month_start = mktime(0,0,0,$current_month,1,$current_year);
 	$selected_month_end = mktime(0,0,0,($current_month+1),1,$current_year)-1;
-	for($i=0;$i<$num_rows;$i++)
-	{
+	for($i=0;$i<$num_rows;$i++){
 		$subdomain_name = mysql_result($result,$i,"subdomain_name");
 		$db_webname=strtr($webname,'.','_');
 		$db_select_name = $db_webname."#".$subdomain_name."#xfer";
 
-		if(mysql_table_exists("apachelogs",$db_select_name))
-		{
-		mysql_select_db("apachelogs");
+		if(mysql_table_exists("apachelogs",$db_select_name)){
+			mysql_select_db("apachelogs");
 
-		// Get bytes_sent
-		$q_bytes = "SELECT SUM( bytes_sent ) AS amount FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
-		$r_bytes = mysql_query($q_bytes) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
-		$bytes_sent = mysql_result($r_bytes,0,"amount");
-		//$bytes_sent = 0;
-		// Get visits
-		/*$q_visits = "SELECT DISTINCT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
-		$r_visits = mysql_query($q_visits) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
-		$visits = mysql_num_rows($r_visits);*/
-		$visits = 0;
+			// Get bytes_sent
+			$q_bytes = "SELECT SUM( bytes_sent ) AS amount FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+			$r_bytes = mysql_query($q_bytes) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
+			$bytes_sent = mysql_result($r_bytes,0,"amount");
+			//$bytes_sent = 0;
+			// Get visits
+			/*$q_visits = "SELECT DISTINCT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+			$r_visits = mysql_query($q_visits) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
+			$visits = mysql_num_rows($r_visits);*/
+			$visits = 0;
 
-		// Get hosts
-		$q_hosts = "SELECT remote_host FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end." GROUP BY remote_host";
-		$r_hosts = mysql_query($q_hosts) or die("Cannot execute query \"$q_hosts\" !!! ".mysql_error());
-		$hosts = mysql_num_rows($r_hosts);
+			// Get hosts
+			$q_hosts = "SELECT remote_host FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end." GROUP BY remote_host";
+			$r_hosts = mysql_query($q_hosts) or die("Cannot execute query \"$q_hosts\" !!! ".mysql_error());
+			$hosts = mysql_num_rows($r_hosts);
 
-		// Get impressions
-		$q_imp = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;;
-		$r_imp = mysql_query($q_imp) or die("Cannot execute query \"$q_imp\" !!! ".mysql_error());
-		$imp = mysql_num_rows($r_imp);
+			// Get impressions
+			$q_imp = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;;
+			$r_imp = mysql_query($q_imp) or die("Cannot execute query \"$q_imp\" !!! ".mysql_error());
+			$imp = mysql_num_rows($r_imp);
 
-		mysql_select_db($conf_mysql_db);
-
-		$query_dub = "SELECT * FROM $pro_mysql_acc_http_table WHERE
-		MONTH=".$current_month." AND year=".$current_year." AND vhost='".$subdomain_name."' AND domain='".$webname."'";
-
-		if(mysql_num_rows(mysql_query($query_dub))==1)
-		{
-			$query_insert_bytes = "UPDATE $pro_mysql_acc_http_table set
-			bytes_sent='".$bytes_sent."',
-			count_visits='".$visits."',
-			count_hosts='".$hosts."',
-			count_impressions='".$imp."'
-			WHERE MONTH=".$current_month." AND year=".$current_year." AND vhost='".$subdomain_name."' AND domain='".$webname."'";
-			mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
-		}
-		else
-		{
 			mysql_select_db($conf_mysql_db);
-			$query_insert_bytes = "INSERT INTO $pro_mysql_acc_http_table (vhost,bytes_sent,count_hosts,count_visits,count_impressions,domain,MONTH,year)
-			VALUES ('".$subdomain_name."','".$bytes_sent."','".$hosts."','".$visits."','".$imp."','".$webname."','".$current_month."','".$current_year."')";
-			mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
-			//dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
-		}
-		dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
+
+			$query_dub = "SELECT * FROM $pro_mysql_acc_http_table WHERE
+			MONTH=".$current_month." AND year=".$current_year." AND vhost='".$subdomain_name."' AND domain='".$webname."'";
+
+			if(mysql_num_rows(mysql_query($query_dub))==1){
+				$query_insert_bytes = "UPDATE $pro_mysql_acc_http_table set
+				bytes_sent='".$bytes_sent."',
+				count_visits='".$visits."',
+				count_hosts='".$hosts."',
+				count_impressions='".$imp."'
+				WHERE MONTH=".$current_month." AND year=".$current_year." AND vhost='".$subdomain_name."' AND domain='".$webname."'";
+				mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
+			}else{
+				mysql_select_db($conf_mysql_db);
+				$query_insert_bytes = "INSERT INTO $pro_mysql_acc_http_table (vhost,bytes_sent,count_hosts,count_visits,count_impressions,domain,MONTH,year)
+				VALUES ('".$subdomain_name."','".$bytes_sent."','".$hosts."','".$visits."','".$imp."','".$webname."','".$current_month."','".$current_year."')";
+				mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
+				//dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
+			}
+			dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
 		}
 	}
 	mysql_select_db($conf_mysql_db);

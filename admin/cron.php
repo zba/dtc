@@ -1,4 +1,3 @@
-
 <?php
 
 require("/usr/share/dtc/shared/autoSQLconfig.php"); // Our main configuration file
@@ -62,6 +61,8 @@ function updateAllDomainsStats(){
 			$domain_du = $du_state[0];
 			$q2 = "UPDATE $pro_mysql_domain_table SET du_stat='$domain_du' WHERE name='$domain_name';";
 			mysql_query($q2)or die("Cannot query \"$q2\" !!!".mysql_error()." in file ".__FILE__." line ".__LINE__);
+			echo "email...";
+			sum_email($domain_name);
 			echo "http...";
 			sum_http($domain_name);
 			echo "ftp...";

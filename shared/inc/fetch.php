@@ -67,6 +67,7 @@ function fetchAdminStats($admin){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_acc_http_table;
 	global $pro_mysql_acc_ftp_table;
+	global $pro_mysql_acc_email_table;
 
 	$adm_path = $admin["info"]["path"];
 	$query = "SELECT name,du_stat FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";

@@ -429,7 +429,9 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 
 	$total_http_transfer = fetchHTTPInfo($webname);
 	$total_ftp_transfer = fetchFTPInfo($webname);
-	$total_transfer = smartByte($total_http_transfer + $total_ftp_transfer);
+	$total_smtp_transfer = fetchPOPInfo($webname);
+	$total_pop_transfer = fetchSMTPInfo($webname);
+	$total_transfer = smartByte($total_http_transfer + $total_ftp_transfer + $total_smtp_transfer + $total_pop_transfer);
 
 	return "<b><u>".$txt_your_domain[$lang]."</u></b><br><br>
 	<font size=\"-1\">
@@ -971,9 +973,12 @@ function drawAdminTools_AdminStats($admin){
 //              ["du"]
 //              ["ftp"]
 //              ["http"]
+//              ["smtp"]
+//              ["pop"]
 //              ["total_transfer"]
 // ["total_http"]
 // ["total_ftp"]
+// ["total_email"]
 // ["total_transfer"]
 // ["total_du_domains"]
 // ["db"][]["name"]
@@ -985,6 +990,7 @@ function drawAdminTools_AdminStats($admin){
 	$out .= "<u><b>Total transfered bytes this month:</b></u>";
 	$out .= "<br>HTTP: ".smartByte($stats["total_http"]);
 	$out .= "<br>FTP: ".smartByte($stats["total_ftp"]);
+	$out .= "<br>Email: ".smartByte($stats["total_email"]);
 	$out .= "<br>Total: ". smartByte($stats["total_transfer"]);
 
 	if($id_client != 0){
@@ -1022,7 +1028,7 @@ function drawAdminTools_AdminStats($admin){
 
 	$out .= "<br><br><u><b>Domain name tranfic and disk usage:</b></u>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
-	$out .= "<tr><td><b>Domain Name</b></td><td$nowrap><b>Disk usage</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>Total trafic</b></td></tr>";
+	$out .= "<tr><td><b>Domain Name</b></td><td$nowrap><b>Disk usage</b></td><td><b>POP3</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>Total trafic</b></td></tr>";
 	for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
 		if($ad % 2){
 			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\"";
@@ -1032,6 +1038,8 @@ function drawAdminTools_AdminStats($admin){
 		$out .= "<tr>";
 		$out .= "<td$bgcolor>".$stats["domains"][$ad]["name"]."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["du"])."</td>";
+		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["pop3"])."</td>";
+		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["smtp"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["ftp"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["http"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["total_transfer"])."</td>";
@@ -1044,22 +1052,59 @@ function drawAdminTools_AdminStats($admin){
 function drawAdminTools_DomainStats($admin,$eddomain){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_acc_http_table;
-	global $pro_mysql_acc_ftp_table;	
-	sum_http($eddomain["name"]);
-	$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='".$eddomain["name"]."'";
+	global $pro_mysql_acc_ftp_table;
+	global $pro_mysql_acc_email_table;
+//	sum_http($eddomain["name"]);
+	$query_http = "SELECT bytes_sent FROM $pro_mysql_acc_http_table WHERE domain='".$eddomain["name"]."'
+	AND month='".date("n")."' AND year='".date("Y")."'";
     $result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
     $num_rows = mysql_num_rows($result_http);
-    $http_amount = $http_amount + mysql_result($result_http,0,"transfer");
-	sum_ftp($eddomain["name"]);
-    $query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$eddomain["name"]."'";
-    $result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
-    $num_rows = mysql_num_rows($result_ftp);
-    $ftp_amount = $ftp_amount + mysql_result($result_ftp,0,"transfer");
-	
-	$out .= "<u><b>Total transfered bytes this month:</b></u><br>
-HTTP: ".smartByte($http_amount);
+	if($num_rows > 0)
+	    $http_amount = $http_amount + mysql_result($result_http,0,"bytes_sent");
+	else
+		$http_amount = 0;
+
+//	sum_ftp($eddomain["name"]);
+    $q = "SELECT transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$eddomain["name"]."'
+	AND month='".date("m")."' AND year='".date("Y")."'";
+    $r = mysql_query($q) or die("Cannot execute query \"$q\" !".mysql_error().
+	" line ".__LINE__." file ".__FILE__);
+    $num_rows = mysql_num_rows($r);
+	if($num_rows > 0)
+		$ftp_amount = mysql_result($r,0,"transfer");
+	else
+		$ftp_amount = 0;
+
+	sum_email($eddomain["name"]);
+    $q = "SELECT smtp_trafic,pop_trafic FROM $pro_mysql_acc_email_table WHERE domain_name='".$eddomain["name"]."'
+	AND month='".date("m")."' AND year='".date("Y")."'";
+    $r = mysql_query($q) or die("Cannot execute query \"$q\" !".mysql_error().
+	" line ".__LINE__." file ".__FILE__);
+    $num_rows = mysql_num_rows($r);
+	if($num_rows > 0){
+	    $smtp_trafic = mysql_result($r,0,"smtp_trafic");
+	    $pop_trafic = mysql_result($r,0,"pop_trafic");
+	}else{
+		$smtp_trafic = 0;
+	    $pop_trafic = 0;
+	}
+	$out .= "<u><b>Total transfered bytes this month:</b></u>";
+	$out .= "<br>HTTP: ".smartByte($http_amount);
 	$out .= "<br>FTP:  ".smartByte($ftp_amount);
-	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount);
+	$out .= "<br>SMTP:  ".smartByte($smtp_trafic);
+	$out .= "<br>POP3:  ".smartByte($pop_trafic);
+	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount + $pop_trafic + $smtp_trafic);
+
+	$out .= "<br><br><b><u>Detailed webalizer HTTP statistics of your subdomains:</u></b><br>";
+	for($i=0;$i<sizeof($eddomain["subdomains"]);$i++){
+		if($i != 0)	$out .= " - ";
+		$out .= "<a target=\"_blank\" href=\"http://".
+		$eddomain["subdomains"][$i]["name"].".".$eddomain["name"]."/stats/\">";
+		$out .= $eddomain["subdomains"][$i]["name"];
+		$out .= "</a>";
+	}
+//	print_r($eddomain);
+
 	return $out;
 }
 
