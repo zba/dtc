@@ -37,7 +37,7 @@ fi
 # Include $PATH_DTC_ETC/vhosts.conf in $PATH_HTTPD_CONF
 #
 
-TMP_FILE=/tmp/DTC_install.httpd.conf
+TMP_FILE=`mktemp -t DTC_install.httpd.conf.XXXXXX` || exit 1
 
 echo "===> Modifying httpd.conf"
 # need to see if we can use the modules-config or apacheconfig tools
@@ -273,10 +273,14 @@ else
 	then
 		cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.backup
 	fi
-	echo "// Configured by DTC v0.10 : please don't touch this line !" >/tmp/DTC_install_named.conf
-	echo "include \"$PATH_DTC_ETC/named.conf\";" >>/tmp/DTC_install_named.conf
+	TMP_FILE=`mktemp -t DTC_install.named.conf.XXXXXX` || exit 1
+	echo "// Configured by DTC v0.10 : please don't touch this line !" > $TMP_FILE
+	echo "include \"$PATH_DTC_ETC/named.conf\";" >> $TMP_FILE
 	touch $PATH_DTC_ETC/named.conf
-	cat </tmp/DTC_install_named.conf >>$PATH_NAMED_CONF
+	cat < $TMP_FILE >>$PATH_NAMED_CONF
+	if [ -e $TMP_FILE ]; then
+		rm -f $TMP_FILE
+	fi
 fi
 
 # only try and do qmail stuff if we have qmail installed! (check the control directory)
@@ -344,7 +348,8 @@ then
 		echo "Postfix main.cf has been configured before, not adding virtual mailbox options"
 	else
 		echo "Inserting DTC configuration inside $PATH_POSTFIX_CONF"
-		echo "# Configured by DTC v0.12 : Please don't touch this line !" > /tmp/DTC_config_postfix_main.cf
+		TMP_FILE=`mktemp -t DTC_install.postfix_main.cf.XXXXXX` || exit 1
+		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
 		echo "
 # DTC virtual configuration
 virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
@@ -354,7 +359,7 @@ virtual_minimum_uid = 100
 virtual_uid_maps = static:65534
 virtual_gid_maps = static:65534
 virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
-virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> /tmp/DTC_config_postfix_main.cf
+virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 
 		echo " Attempting to determine if you have sasl2 installed..."
 		if [ "$PATH_SASL_PASSWD2" = "" ]; then
@@ -367,11 +372,12 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> /tmp/DTC_c
 			if [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf ]; then
 				cp $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup
 			fi
-
-			echo "# Configured by DTC v0.15 : Please don't touch this line !" > /tmp/DTC_config_postfix_sasl.conf
+			
+			SASLTMP_FILE=`mktemp -t DTC_install.postfix_sasl.XXXXXX` || exit 1
+			echo "# Configured by DTC v0.15 : Please don't touch this line !" > $SASLTMP_FILE
 			echo "pwcheck_method: auxprop
-mech_list: plain login digest-md5 cram-md5" >> /tmp/DTC_config_postfix_sasl.conf
-			echo "# End of DTC configuration v0.15 : please don't touch this line !" >> /tmp/DTC_config_postfix_sasl.conf
+mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
+			echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
 
 			echo "smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, check_relay_domains
 
@@ -380,19 +386,19 @@ smtpd_sasl_security_options = noanonymous
 smtpd_sasl_local_domain = $myhostname
 smtpd_sasl_auth_enable = yes
 smtpd_tls_auth_only = no
-" >> /tmp/DTC_config_postfix_main.cf
+" >> $TMP_FILE
 		else
 			echo "No saslpasswd2 found"
 		fi
-		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> /tmp/DTC_config_postfix_main.cf
+		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
 
 		# now to insert it at the end of the actual main.cf
-		cat </tmp/DTC_config_postfix_main.cf >>$PATH_POSTFIX_CONF
-		rm /tmp/DTC_config_postfix_main.cf
+		cat < $TMP_FILE >>$PATH_POSTFIX_CONF
+		rm $TMP_FILE
 		# append the configuration for SASL
-		if [ -e /tmp/DTC_config_postfix_sasl.conf ]; then
-			cat </tmp/DTC_config_postfix_sasl.conf >> $PATH_POSTFIX_ETC/sasl/smtpd.conf
-			rm /tmp/DTC_config_postfix_sasl.conf
+		if [ -e $SASLTMP_FILE ]; then
+			cat < $SASLTMP_FILE >> $PATH_POSTFIX_ETC/sasl/smtpd.conf
+			rm $SASLTMP_FILE
 		fi
 	fi
 
@@ -413,12 +419,13 @@ then
 		then
 			cp -f $PATH_COURIER_CONF_PATH/authdaemonrc $PATH_COURIER_CONF_PATH.DTC.backup
 		fi
-		echo "# Configured by DTC v0.12 : Please don't touch this line !" >/tmp/DTC_config_courier.conf
-		echo "authmodulelist=\"authmysql authpam\"" >>/tmp/DTC_config_courier.conf
-		echo "# End of DTC configuration v0.12 : please don't touch this line !" >>/tmp/DTC_config_courier.conf
+		TMP_FILE=`mktemp -t DTC_install.courier.conf.XXXXXX` || exit 1
+		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
+		echo "authmodulelist=\"authmysql authpam\"" >> $TMP_FILE
+		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
 		# now append this to the existing configuration file
-		cat </tmp/DTC_config_courier.conf >> $PATH_COURIER_CONF_PATH/authdaemonrc
-		rm /tmp/DTC_config_courier.conf
+		cat < $TMP_FILE >> $PATH_COURIER_CONF_PATH/authdaemonrc
+		rm $TMP_FILE
 		echo "
 # DB details for dtc mysql DB
 MYSQL_SERVER		$conf_mysql_host
@@ -456,13 +463,14 @@ then
 		then
 			cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
 		fi
-		echo "# Configured by DTC v0.12 : Please don't touch this line !" >/tmp/DTC_config_dovecot.conf
-		echo "auth_userdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >>/tmp/DTC_config_dovecot.conf
-		echo "auth_passdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >>/tmp/DTC_config_dovecot.conf
-		echo "# End of DTC configuration v0.12 : please don't touch this line !" >>/tmp/DTC_config_dovecot.conf
+		TMP_FILE=`mktemp -t DTC_install.dovecot.conf.XXXXXX` || exit 1
+		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
+		echo "auth_userdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >> $TMP_FILE
+		echo "auth_passdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >> $TMP_FILE
+		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE 
 		# now append this to the existing configuration file
-		cat </tmp/DTC_config_dovecot.conf >> $PATH_DOVECOT_CONF
-		rm /tmp/DTC_config_dovecot.conf
+		cat < $TMP_FILE >> $PATH_DOVECOT_CONF
+		rm  $TMP_FILE
 		echo "
 # DB details for dtc mysql DB
 db_host = $conf_mysql_host
@@ -495,15 +503,16 @@ else
 	then
 		cp -f $PATH_PROFTPD_CONF $PATH_PROFTPD_CONF.DTC.backup
 	fi
-	echo "# Configured by DTC v0.10 : Please don't touch this line !" >/tmp/DTC_config_proftpd.conf
+	TMP_FILE=`mktemp -t DTC_install.proftp.conf.XXXXXX` || exit 1
+	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 # This directive is not used anymore in newer version of proftpd
-#	echo "#UserReverseDNS	off" >>/tmp/DTC_config_proftpd.conf
-	echo "IdentLookups	off" >>/tmp/DTC_config_proftpd.conf
-	echo "DefaultRoot	~" >>/tmp/DTC_config_proftpd.conf
-	echo "SQLAuthenticate	on" >>/tmp/DTC_config_proftpd.conf
-	echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >>/tmp/DTC_config_proftpd.conf
-	echo "SQLAuthTypes	Plaintext" >>/tmp/DTC_config_proftpd.conf
-	echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >>/tmp/DTC_config_proftpd.conf
+#	echo "#UserReverseDNS	off" >> $TMP_FILE
+	echo "IdentLookups	off" >> $TMP_FILE
+	echo "DefaultRoot	~" >> $TMP_FILE
+	echo "SQLAuthenticate	on" >> $TMP_FILE
+	echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >> $TMP_FILE
+	echo "SQLAuthTypes	Plaintext" >> $TMP_FILE
+	echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >> $TMP_FILE
 	echo "# // Transfer Log to Proftpd
 SQLLog RETR,STOR transfer1
 SQLNamedQuery transfer1 INSERT \"'%u', '%f', '%b', '%h', '%a', '%m', '%T',now(), 'c', NULL\" ftp_logs
@@ -532,9 +541,9 @@ SQLNamedQuery         ulbytescount UPDATE \"ul_bytes=ul_bytes+%b WHERE login='%u
 SQLLog STOR           ulcount
 SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ftp_access
 
-# End of DTC configuration v0.10 : please don't touch this line !" >>/tmp/DTC_config_proftpd.conf
-	cat </tmp/DTC_config_proftpd.conf >>$PATH_PROFTPD_CONF
-	rm /tmp/DTC_config_proftpd.conf
+# End of DTC configuration v0.10 : please don't touch this line !" >> $TMP_FILE
+	cat < $TMP_FILE >>$PATH_PROFTPD_CONF
+	rm $TMP_FILE
 fi
 
 #
@@ -550,10 +559,11 @@ else
 	then
 		cp -f /etc/crontab /etc/crontab.DTC.backup
 	fi
-	echo "# Configured by DTC v0.10 : Please don't touch this line !" >/tmp/DTC_config_crontab
-	echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >>/tmp/DTC_config_crontab
-	cat </tmp/DTC_config_crontab >>/etc/crontab
-	rm /tmp/DTC_config_crontab
+	TMP_FILE=`mktemp -t DTC_install.crontab.XXXXXX` || exit 1
+	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
+	echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
+	cat < $TMP_FILE >>/etc/crontab
+	rm $TMP_FILE
 fi
 
 # This avoid hanging when (re)starting daemons under debian

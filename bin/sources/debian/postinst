@@ -131,16 +131,15 @@ echo "The DTC installer has detected PHP version "$PHPMAJOR" release $PHPMINOR"
 
 # now update the pear modules if you have the "pear" installed
 # since PHP >= 4.3.0 doesn't come with Crypt_CBC that OpenSRS needs
-if [ ""$TMP = "" ]; then
-	TMP=/tmp
-fi
+TMP_FILE=`mktemp -t DTC_pear.install.XXXXXX` || exit 1
 if [ $PHPMAJOR -ge 4 -a $PHPMINOR -ge 3 -a -e /usr/bin/pear ]
 then
 	echo "Checking pear installation for PHP > 4.3"
-	/usr/bin/pear upgrade Console_Getopt > $TMP/pear.install
-	/usr/bin/pear upgrade-all >> $TMP/pear.install
-	/usr/bin/pear install Crypt_CBC >> $TMP/pear.install
-	/usr/bin/pear install Auth_SASL >> $TMP/pear.install
+	/usr/bin/pear upgrade Console_Getopt > $TMP_FILE
+	/usr/bin/pear upgrade-all >> $TMP_FILE
+	/usr/bin/pear install Crypt_CBC >> $TMP_FILE
+	/usr/bin/pear install Auth_SASL >> $TMP_FILE
+	rm $TMP_FILE
 else
 	echo "This is a version of PHP that should have the modules included"
 fi
@@ -163,11 +162,12 @@ else
 	fi
 
 	echo "Adding nameserver 127.0.0.1 to /etc/resolv.conf"
-	grep "search" /etc/resolv.conf >/tmp/DTC_resolv.conf
-	echo "nameserver 127.0.0.1" >>/tmp/DTC_resolv.conf
-	grep "nameserver" /etc/resolv.conf >>/tmp/DTC_resolv.conf
-	cat </tmp/DTC_resolv.conf >/etc/resolv.conf
-	rm /tmp/DTC_resolv.conf
+	TMP_FILE=`mktemp -t DTC_resolv.conf.XXXXXX` || exit 1
+	grep "search" /etc/resolv.conf > $TMP_FILE
+	echo "nameserver 127.0.0.1" >> $TMP_FILE
+	grep "nameserver" /etc/resolv.conf >> $TMP_FILE
+	cat < $TMP_FILE >/etc/resolv.conf
+	rm $TMP_FILE
 fi
 
 # Upon this line, here is the standard DTC install script :
