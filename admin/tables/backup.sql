@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS backup (
   server_login varchar(128) NOT NULL default '',
   server_pass varchar(128) NOT NULL default '',
   type enum('grant_access','mail_backup','dns_backup','backup_ftp_to') NOT NULL default 'grant_access',
+  status enum('pending','done') NOT NULL default 'pending',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
 ) TYPE=MyISAM

@@ -1,5 +1,6 @@
 <?php
 
+require("genfiles/remote_mail_list.php");
 require("genfiles/gen_qmail_email_account.php");
 require("genfiles/gen_postfix_email_account.php");
 
