@@ -4,6 +4,8 @@
 
 UNIX_TYPE=redhat
 
+VERBOSE_INSTALL=yes
+
 echo "### DEAMON PATH CONFIGURATION ###"
 PATH_HTTPD_CONF=/etc/httpd/conf/httpd.conf
 PATH_NAMED_CONF="/etc/named.conf"
