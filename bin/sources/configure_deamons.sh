@@ -746,9 +746,11 @@ SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ft
 # End of DTC configuration v0.10 : please don't touch this line !" >> $TMP_FILE
 	cat < $TMP_FILE >>$PATH_PROFTPD_CONF
 	rm $TMP_FILE
+	# This restarts proftpd if under debian like system
+	# work has to be done under other OS to restart the ftp daemon
 	if [ -x "/etc/init.d/proftpd" ] ; then
 		if [ -x /usr/sbin/invoke-rc.d ]; then
-			/usr/sbin/invoke-rc.d courier-authdaemon restart
+			/usr/sbin/invoke-rc.d proftpd restart
 		else
 			/etc/init.d/proftpd restart
 		fi
