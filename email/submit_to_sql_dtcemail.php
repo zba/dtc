@@ -40,6 +40,11 @@ case "dtcemail_change_pass":
 case "dtcemail_set_deliver_local":
 	if(pass_check_email()==false)	die("User not found!");
 	// Fetch the path of the mailbox
+	$tbl = explode('@',$_REQUEST["adm_email_login"]);
+	$user = $tbl[0];
+	$host = $tbl[1];
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$box = mysql_fetch_array($res_mailbox);
 	$q = "SELECT $pro_mysql_admin_table.path
 FROM $pro_mysql_domain_table,$pro_mysql_admin_table
@@ -86,6 +91,11 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 case "dtcemail_edit_redirect":
 	if(pass_check_email()==false)	die("User not found!");
 	// Fetch the path of the mailbox
+	$tbl = explode('@',$_REQUEST["adm_email_login"]);
+	$user = $tbl[0];
+	$host = $tbl[1];
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$box = mysql_fetch_array($res_mailbox);
 	$q = "SELECT $pro_mysql_admin_table.path
 FROM $pro_mysql_domain_table,$pro_mysql_admin_table

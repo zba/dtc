@@ -10,7 +10,7 @@ function drawAdminTools_emailPanel($mailbox){
 <input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
 <input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">";
 
-	$change_pass_form = "<br><b><u>Change your password:</b></u>".
+	$change_pass_form = "<br><b><u>Change your password:</b></u><br><br>".
 $form_start."Type new password: <input type=\"hidden\" name=\"action\" value=\"dtcemail_change_pass\"><input type=\"password\" name=\"newpass1\" value=\"\"><br>
 Repeate: <input type=\"password\" name=\"newpass2\" value=\"\">
 <input type=\"submit\" name=\"submit\" value=\"Ok\"></form><br><br>";
@@ -25,7 +25,7 @@ Repeate: <input type=\"password\" name=\"newpass2\" value=\"\">
 Deliver mail localy: $deliverUrl".
 $form_start."Redirection 1: <input type=\"hidden\" name=\"action\" value=\"dtcemail_edit_redirect\"><input type=\"text\" name=\"redirect1\" value=\"".$mailbox["data"]["redirect1"]."\"><br>
 Redirection 2: <input type=\"text\" name=\"redirect2\" value=\"".$mailbox["data"]["redirect2"]."\">
-<input type=\"submit\" name=\"submit\" value=\"Ok\"></form>";
+<input type=\"submit\" name=\"submit\" value=\"Ok\"></form><br>";
 
 
 	$out = "<br><h4>Email panel: customise your mailbox!</h4>
