@@ -146,7 +146,7 @@ else
 fi
 
 # Changing root password of mysql
-if [ $conf_mysql_change_root == true ]
+if [ "$conf_mysql_change_root" = "true" ]
 then
 	echo "===> Changing MySQL root password"
 	echo "If you didn't setup a root pass for mysqld, just hit ENTER."
