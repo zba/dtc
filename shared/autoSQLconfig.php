@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+
 // AUTO SQL CONFIG
 // This file automates the use of a mysql database. It creates connection
 // to it, and fetch all software config from the config table
@@ -195,7 +197,7 @@ getConfig();
 if(!isset($conf_db_version)){
 	$conf_db_version = 0;
 }
-$nbr_sql_updates = sizeof($sql_updates);
+/*$nbr_sql_updates = sizeof($sql_updates);
 for($i=1;$i<$nbr_sql_updates;$i++){
 	if($sql_updates[$i]["dbvserion"] > $conf_db_version){
 		echo "Warning, upgrading to database from $conf_db_version
@@ -205,7 +207,7 @@ to update database !!! See /usr/share/dtc/shared/update_sql.php and to
 updates manualy. ".mysql_error());
 		getConfig();
 	}
-}
+}*/
 
 if($conf_demo_version == 'yes'){
 	session_register("demo_version_has_started");

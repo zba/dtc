@@ -1,8 +1,8 @@
 <?php
 
+$panel_type="admin";
 require_once("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
-$panel_type="admin";
 // Admin include files
 require_once("genfiles/genfiles.php");
 

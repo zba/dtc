@@ -168,7 +168,7 @@ function mail_account_generate_postfix(){
 	system("/usr/sbin/postmap $conf_postfix_virtual_uid_mapping_path");
 
 	//in case our relay_domains file hasn't been created correctly, we should touch it
-	system("/usr/bin/touch $conf_postfix_relay_domains_path");
+	system("touch $conf_postfix_relay_domains_path");
 }
 
 ?>

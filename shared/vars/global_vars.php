@@ -3,7 +3,7 @@
 // Those are supposed to be filled at eatch queries, therefore they
 // are global variables.
 
-if($_REQUEST["rub"] == "crm"){
+if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "crm"){
 	$id_client = $_REQUEST["id_client"];
 	if($id_client != "" && isset($id_client) && !ereg("^([0-9]+)\$",$id_client)){
 		die("The provided id_client does not seems to be in the correct format.
@@ -11,12 +11,11 @@ if($_REQUEST["rub"] == "crm"){
 	}
 }
 
-
-$adm_login = $_REQUEST["adm_login"];
-$adm_pass = $_REQUEST["adm_pass"];
-$adm_email_login = $_REQUEST["adm_email_login"];
-$adm_email_pass = $_REQUEST["adm_email_pass"];
-$addrlink = $_REQUEST["addrlink"];
+if(isset($_REQUEST["adm_login"]))	$adm_login = $_REQUEST["adm_login"];
+if(isset($_REQUEST["adm_pass"]))	$adm_pass = $_REQUEST["adm_pass"];
+if(isset($_REQUEST["adm_email_login"]))	$adm_email_login = $_REQUEST["adm_email_login"];
+if(isset($_REQUEST["adm_email_pass"]))	$adm_email_pass = $_REQUEST["adm_email_pass"];
+if(isset($_REQUEST["addrlink"]))	$addrlink = $_REQUEST["addrlink"];
 
 function isValidEmailLogin($email){
         $reg = "^([a-z0-9]+)([_.a-z0-9-]+)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$";
@@ -25,14 +24,14 @@ function isValidEmailLogin($email){
 }
 
 
-if(!ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)\$",$adm_login) && isset($adm_login) && $adm_login != ""){
+if(isset($adm_login) && !ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)\$",$adm_login) && $adm_login != ""){
 	die("DTCclient login error: Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
-if(!ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_pass) && isset($adm_pass) && $adm_pass != ""){
+if(isset($adm_pass) && !ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_pass) && $adm_pass != ""){
 	die("DTC client login error: Requested pass does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
 
-if($addrlink != "" && isset($addrlink)){
+if(isset($addrlink) && $addrlink != ""){
         $exploded = explode("/",$addrlink);
         if($addrlink != "help" && $addrlink != "database"){
                 $whatdoiedit = $exploded[1];
@@ -40,7 +39,7 @@ if($addrlink != "" && isset($addrlink)){
         }
 }
 
-if($whatdoiedit == "nickhandles"){
+if(isset($whatdoiedit) && $whatdoiedit == "nickhandles"){
 	$edit_id = $_REQUEST["edit_id"];
 }
 
