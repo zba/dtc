@@ -3,6 +3,7 @@
 $txt_mailbox_redirection_edition = array(
   "fr" => "Edition des redirections de votre boite :",
   "en" => "Edit your mailbox redirections:",
+  "hu" => "E-mail átirányítások:",
   "it" => "Edita i reindirizzamenti della tua mailbox:",
   "nl" => "TRANS Edit your mailbox redirections:",
   "ru" => "TRANS Edit your mailbox redirections:",
@@ -13,6 +14,7 @@ $txt_mailbox_redirection_edition = array(
 $txt_repeate_password = array(
   "fr" => "Répéter votre mot de passe :",
   "en" => "Repeate password:",
+  "hu" => "Ismételje meg a jelszót:",
   "it" => "Ripeti la password:",
   "nl" => "TRANS Repeate password:",
   "ru" => "TRANS Repeate password:",
@@ -23,6 +25,7 @@ $txt_repeate_password = array(
 $txt_change_your_password_title = array(
   "fr" => "Changer votre mot de passe :",
   "en" => "Change your password:",
+  "hu" => "Változtassa meg a jelszavát:",
   "it" => "Cambia la tua password:",
   "nl" => "TRANS Change your password:",
   "ru" => "TRANS Change your password:",
@@ -33,6 +36,7 @@ $txt_change_your_password_title = array(
 $txt_no_user_waiting = array(
   "fr" => "Pas d'utilisateur en attente !",
   "en" => "No user waiting!",
+  "hu" => "Nincs várakozó felhasználó:",
   "it" => "Nessun utente in attesa!",
   "nl" => "TRANS No user waiting!",
   "ru" => "TRANS No user waiting!",
@@ -43,6 +47,7 @@ $txt_no_user_waiting = array(
 $txt_no_domain_waiting = array(
   "fr" => "Pas de domaine en attente !",
   "en" => "No domain waiting!",
+  "hu" => "Nincs várakozó domain!:",
   "it" => "Nessun dominio in attesa!",
   "nl" => "TRANS No domain waiting!",
   "ru" => "TRANS No domain waiting!",
@@ -53,6 +58,7 @@ $txt_no_domain_waiting = array(
 $txt_userndomain_waiting_for_addition = array(
   "fr" => "Utilisateurs et domaines en attente : ",
   "en" => "User and domain waiting for addition: ",
+  "hu" => "A felhasználó és a domain várakozik:",
   "it" => "Utenti e domini in attesa: ",
   "nl" => "TRANS User and domain waiting for addition: ",
   "ru" => "TRANS User and domain waiting for addition: ",
@@ -63,6 +69,7 @@ $txt_userndomain_waiting_for_addition = array(
 $txt_add_a_new_user = array(
   "fr" => "Ajouter un nouvel utilisateur : ",
   "en" => "Add a new user: ",
+  "hu" => "Új felhasználó hozzásadása:",
   "it" => "Aggiungi un nuovo utente: ",
   "nl" => "TRANS Add a new user: ",
   "ru" => "TRANS Add a new user: ",
@@ -73,6 +80,7 @@ $txt_add_a_new_user = array(
 $txt_title_maillinglist_form = array(
 	"fr" => "Listes de diffusion du domaine : ",
         "en" => "Mailling-lists of the domain: ",
+	"hu" => "A domain levelezolistája:",
         "it" => "Mailling-lists del dominio: ",
         "nl" => "TRANS Mailling-lists of the domain: ",
         "ru" => "TRANS Mailling-lists of the domain: ",
@@ -84,6 +92,7 @@ $txt_title_maillinglist_form = array(
 $txt_pagetop_zesubtitle = array(
 	"fr" => "Prenez le controle de votre nom de domaine",
 	"en" => "Take the control of your domain name",
+	"hu" => "Vegye kézbe domainje irányítását:",
         "it" => "Prendi il controllo del tuo dominio",
 	"nl" => "TRANS Take the control of your domain name",
 	"ru" => "TRANS Take the control of your domain name",
@@ -95,6 +104,7 @@ $txt_pagetop_zesubtitle = array(
 $txt_root_adm_title = array(
 	"fr" => "Domain Technologie Control : console administrateur root",
 	"en" => "Domain Technologie Control : root admin console",
+	"hu" => "Domain Technologie Control : adminisztrátor-konzol",
         "it" => "Domain Technologie Control : console root admin",
 	"nl" => "TRANS Domain Technologie Control : root admin console",
 	"ru" => "TRANS Domain Technologie Control : root admin console",
@@ -106,6 +116,7 @@ $txt_root_adm_title = array(
 $txt_mainmenu_title_useradmin = array(
 	"fr" => "Gestion des utilisateurs",
 	"en" => "Users administration",
+	"hu" => "Felhasználó adminisztráció",
         "it" => "Amministrazione utenti",
 	"nl" => "Gebruikers administratie",
 	"ru" => "TRANSUsers administration",
@@ -117,6 +128,7 @@ $txt_mainmenu_title_useradmin = array(
 $txt_mainmenu_title_client_management = array(
 	"fr" => "Gestion relation client",
 	"en" => "Customer Relation Management",
+	"hu" => "Ügyfélkapcsolat-kezelés",
         "it" => "Amministrazione relazioni clienti",
 	"nl" => "Customer Relation Management",
 	"ru" => "TRANSClient relationship management",
@@ -127,6 +139,7 @@ $txt_mainmenu_title_client_management = array(
 $txt_client_list_title = array(
 	"fr" => "Liste des clients",
 	"en" => "Customers list",
+	"hu" => "Ügyféllista",
         "it" => "Lista clienti",
 	"nl" => "TRANS Customers list",
 	"ru" => "TRANS Customers list",
@@ -137,6 +150,7 @@ $txt_client_list_title = array(
 $txt_client_addr_title = array(
 	"fr" => "Adresse du client",
 	"en" => "Customer's address",
+	"hu" => "Ügyfél címe",
         "it" => "Indirizzo clienti",
 	"nl" => "TRANS Customers address",
 	"ru" => "TRANS Customers address",
@@ -147,6 +161,7 @@ $txt_client_addr_title = array(
 $txt_client_admins_title = array(
 	"fr" => "Administrateurs du client",
 	"en" => "Customer's administrators",
+	"hu" => "Ügyfél adminisztrátorai",
         "it" => "Amministratori del cliente",
 	"nl" => "TRANS Customer's administrators",
 	"ru" => "TRANS Customer's administrators",
@@ -157,6 +172,7 @@ $txt_client_admins_title = array(
 $txt_client_commands_title = array(
 	"fr" => "Commandes du client",
 	"en" => "Customer's orders",
+        "hu" => "Ügyfél megrendelései",
         "it" => "Ordini del cliente",
 	"nl" => "TRANS Customer's orders",
 	"ru" => "TRANS Customer's orders",
@@ -167,6 +183,7 @@ $txt_client_commands_title = array(
 $txt_new_customer_link = array(
 	"fr" => "Nouveau client",
 	"en" => "New customer",
+	"hu" => "Új ügyfél",
         "it" => "Nuovo cliente",
 	"nl" => "TRANS New customer",
 	"ru" => "TRANS New customer",
@@ -177,6 +194,7 @@ $txt_new_customer_link = array(
 $txt_select_a_new = array(
 	"fr" => "Selectionner un client.",
 	"en" => "Select a customer.",
+	"hu" => "Válasszon ügyfelet.",
         "it" => "Seleziona un cliente",
 	"nl" => "TRANS Select a customer.",
 	"ru" => "TRANS Select a customer.",
@@ -187,6 +205,7 @@ $txt_select_a_new = array(
 $txt_notes = array(
 	"fr" => "Notes :",
 	"en" => "Notes:",
+        "hu" => "Feljegyések:",
         "it" => "Note:",
 	"nl" => "TRANS Notes:",
 	"ru" => "TRANS Notes:",
@@ -197,9 +216,9 @@ $txt_notes = array(
 $txt_money_remaining = array(
 	"fr" => "Argent restant sur le compte :",
 	"en" => "Money remaining on account:",
+        "hu" => "A számlán lévõ pénzösszeg:",
         "it" => "Denaro rimasto nell'account:",
 	"nl" => "TRANS Money remaining on account:",
-	"ru" => "TRANS Money remaining on account:",
 	"de" => "Verbleibendes Guthaben:",
 	"zh" => "Ê£ÓàÕÊ»§×Ê½ð:",
 	"es" => "TRANS Money remaining on account:");
@@ -207,6 +226,7 @@ $txt_money_remaining = array(
 $txt_remove_admin_from_client = array(
 	"fr" => "Enlever un administrateur de ce client :",
 	"en" => "Remove an administrator for this customer:",
+        "hu" => "Eltávolít egy adminisztrátort ettõl az ügyféltõl:",
         "it" => "Rimuovi un amministratore per questo cliente:",
 	"nl" => "TRANS Remove an administrator for this customer:",
 	"ru" => "TRANS Remove an administrator for this customer:",
@@ -217,6 +237,7 @@ $txt_remove_admin_from_client = array(
 $txt_add_admin_to_client = array(
 	"fr" => "Ajouter un administrateur pour ce client :",
 	"en" => "Add an administrator to this customer:",
+        "hu" => "Hozzáad egy adminisztrátort ennek az ügyfélnek:",
         "it" => "Aggiungi un amministratore per questo cliente:",
 	"nl" => "TRANS Add an administrator to this customer:",
 	"ru" => "TRANS Add an administrator to this customer:",
@@ -228,6 +249,7 @@ $txt_add_admin_to_client = array(
 $txt_what = array(
 	"fr" => "Libelle",
 	"en" => "What",
+	"hu" => "Mi",
         "it" => "Quale",
 	"nl" => "TRANS What",
 	"ru" => "TRANS What",
@@ -238,6 +260,7 @@ $txt_what = array(
 $txt_price = array(
 	"fr" => "Prix",
 	"en" => "Price",
+	"hu" => "Ár",
         "it" => "Prezzo",
 	"nl" => "TRANS Price",
 	"ru" => "TRANS Price",
@@ -248,7 +271,8 @@ $txt_price = array(
 $txt_quantity = array(
 	"fr" => "Quantité",
 	"en" => "Quantity",
-    "it" => "Quantità",
+	"hu" => "Mennyiség",
+        "it" => "Quantità",
 	"nl" => "TRANS Quantity",
 	"ru" => "TRANS Quantity",
 	"de" => "Menge",
@@ -258,6 +282,7 @@ $txt_quantity = array(
 $txt_mainmenu_title_bandwidth_monitor = array(
 	"fr" => "Moniteur de bande passante",
 	"en" => "Bandwidth monitor",
+	"hu" => "Sávszélesség monitor",
         "it" => "Monitor della banda",
 	"nl" => "Bandbreedte monitor",
 	"ru" => "TRANSBandwidth monitor",
@@ -268,6 +293,7 @@ $txt_mainmenu_title_bandwidth_monitor = array(
 $txt_customer_bw_consumption = array(
 	"fr" => "Utilisation de la bande passante par client",
 	"en" => "Customer's bandwidth consumption",
+	"hu" => "Az ügyfél sávszélesség felhasználása",
         "it" => "Consumo della banda per cliente",
 	"nl" => "TRANS Customer's bandwidth consumption",
 	"ru" => "TRANS Customer's bandwidth consumption",
@@ -278,6 +304,7 @@ $txt_customer_bw_consumption = array(
 $txt_bw_quota = array(
 	"fr" => "Quota de BP",
 	"en" => "BW Quota",
+	"hu" => "Sávsz. kvóta",
         "it" => "Quota BW",
 	"nl" => "TRANS BW Quota",
 	"ru" => "TRANS BW Quota",
@@ -288,6 +315,7 @@ $txt_bw_quota = array(
 $txt_graf = array(
 	"fr" => "Graphique",
 	"en" => "Graphic",
+	"hu" => "Grafikus",
         "it" => "Grafica",
 	"nl" => "TRANS Graphic",
 	"ru" => "TRANS Graphic",
@@ -298,6 +326,7 @@ $txt_graf = array(
 $txt_server_total_bp = array(
 	"fr" => "Total des données transférées ce mois-ci sur le serveur : ",
 	"en" => "Server accounted transfers this month: ",
+        "hu" => "Szerverek havi naplózott forgalma: ",
         "it" => "Totale trasferimenti del server per account in questo mese : ",
 	"nl" => "TRANS Server total accounted transfers this month: ",
 	"ru" => "TRANS Server total accounted transfers this month: ",
@@ -308,6 +337,7 @@ $txt_server_total_bp = array(
 $txt_mainmenu_title_deamonfile_generation = array(
 	"fr" => "Génération des fichiers de configuration des demons",
 	"en" => "Daemons configuration files generation",
+	"hu" => "A démonok konfigurációs fájljainak generálása ",
         "it" => "Configurazione della generazione dei files di configurazione dei demoni",
 	"nl" => "Genereren van daemon configuratie files",
 	"ru" => "TRANSDaemons configuration files generation",
@@ -318,6 +348,7 @@ $txt_mainmenu_title_deamonfile_generation = array(
 $txt_mainmenu_title_dtc_config = array(
 	"fr" => "Configuration générale de DTC",
 	"en" => "DTC general configuration",
+	"hu" => "DTC általános konfigurálás",
         "it" => "Configurazione generale DTC",
 	"nl" => "DTC algemene configuratie",
 	"ru" => "DTC general configuration",
@@ -328,6 +359,7 @@ $txt_mainmenu_title_dtc_config = array(
 $txt_icon_all_files_and_scripts = array(
 	"fr" => "TOUS FICHIERS & SCRIPTS",
 	"en" => "ALL FILES AND SCRIPTS",
+	"hu" => "AZ ÖSSZES FÁJL ÉS SCRIPT",
         "it" => "TUTTI I FILES E GLI SCRIPTS",
 	"nl" => "Alle bestanden en scripts",
 	"ru" => "ALL FILES AND SCRIPTS",
@@ -338,6 +370,7 @@ $txt_icon_all_files_and_scripts = array(
 $txt_icon_apache_vhost = array(
 	"fr" => "VHOST APACHE",
 	"en" => "APACHE VHOST",
+	"hu" => "APACHE VHOST",
         "it" => "VHOST APACHE",
 	"nl" => "APACHE VHOST",
 	"ru" => "APACHE VHOST",
@@ -348,6 +381,7 @@ $txt_icon_apache_vhost = array(
 $txt_icon_mailbox_account = array(
 	"fr" => "COMPTES E-MAIL",
 	"en" => "E-MAIL ACCOUNTS",
+	"hu" => "E-MAIL HOZZÁFÉRÉSEK",
         "it" => "ACCOUNT E-MAIL",
 	"nl" => "E-MAIL ACCOUNT",
 	"ru" => "TRANSE-MAIL ACCOUNT",
@@ -358,6 +392,7 @@ $txt_icon_mailbox_account = array(
 $txt_icon_named_zones = array(
 	"fr" => "FICHIERS DE ZONES NAMED",
 	"en" => "NAMED ZONES FILES",
+	"hu" => "NAMED ZÓNA FÁJLOK",
         "it" => "FILES ZONE NAMED",
 	"nl" => "DNS ZONE BESTANDEN",
 	"ru" => "TRANSNAMED ZONES FILES",
@@ -368,6 +403,7 @@ $txt_icon_named_zones = array(
 $txt_icon_reinit_named_zones = array(
 	"fr" => "REINIT DES ZONES NAMED",
 	"en" => "REINIT NAMED ZONES",
+	"hu" => "ÚJRATÖLTI A NAMED ZÓNÁKAT",
         "it" => "REINIZIALIZZA ZONE NAMED",
 	"nl" => "HERLAAD DNS ZONES",
 	"ru" => "TRANSREINIT NAMED ZONES",
@@ -378,6 +414,7 @@ $txt_icon_reinit_named_zones = array(
 $txt_icon_backup_scripts = array(
 	"fr" => "SCRIPT DE BACKUPS",
 	"en" => "BACKUP SCRIPTS",
+	"hu" => "BACKUP SCRIPTEK",
         "it" => "SCRIPTS DI BACKUP",
 	"nl" => "BACKUP SCRIPTS",
 	"ru" => "BACKUP SCRIPTS",
@@ -388,6 +425,7 @@ $txt_icon_backup_scripts = array(
 $txt_icon_webalizer_script = array(
 	"fr" => "SCRIPTS WEBALIZER",
 	"en" => "WEBALIZER SCRIPTS",
+	"hu" => "WEBALIZER SCRIPTEK",
         "it" => "SCRIPTS WEBALIZER",
 	"nl" => "WEBALIZER SCRIPTS",
 	"ru" => "WEBALIZER SCRIPTS",
@@ -398,6 +436,7 @@ $txt_icon_webalizer_script = array(
 $txt_icon_mysite_at_mydomain = array(
 	"fr" => "VHOST DE ZONE FTP",
 	"en" => "FTP AREA VHOST",
+	"hu" => "FTP TERÜLET VHOST",
         "it" => "VHOST DELLE ZONE FTP",
 	"nl" => "FTP VHOST ZONE",
 	"ru" => "FTP AREA VHOST",
@@ -409,6 +448,7 @@ $txt_subdom_limit_reach = array(
 	"fr" => "Nombre maximum de sous-domaines atteint. Impossible d'ajouter de nouveaux
 	sous-domaines.",
 	"en" => "Maximum number of subdomains reached. cannot add a new subdomain",
+	"hu" => "Az aldomain-ok száma elérte a maximumot. Nem adhat hozzá újabb aldomain-t",
         "it" => "Raggiunto numero massimo sottodomini. Non puoi aggiungerne uno nuovo.",
 	"nl" => "Het maximum aantal subdomeinen is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of subdomains reach. cannot add a new subdomain",
@@ -419,6 +459,7 @@ $txt_subdom_limit_reach = array(
 $txt_number_of_active_subdomains = array(
 	"fr" => "Nombre de sous-domaines actifs :",
 	"en" => "Number of active subdomains:",
+	"hu" => "Az aktív aldomain-ek száma:",
         "it" => "Numero sottodomini attivi:",
 	"nl" => "Aantal active subdomeinen:",
 	"ru" => "Number of active subdomaines:",
@@ -429,6 +470,7 @@ $txt_number_of_active_subdomains = array(
 $txt_maxnumber_of_ftp_account_reached = array(
 	"fr" => "Nombre maximum de comptes ftp atteint. Impossible d'ajouter un nouveau compte.",
 	"en" => "Maximum number of ftp account reached. Cannot add a new account.",
+	"hu" => "Az ftp hozzáférések száma elérte a maximumot. Nem adhat hozzá újat.",
         "it" => "Raggiunto numero massimo di account FTP. Non puoi aggiungerne uno nuovo.",
 	"nl" => "Het maximum aantal ftp accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of ftp account reach. Cannot add a new account.",
@@ -439,6 +481,7 @@ $txt_maxnumber_of_ftp_account_reached = array(
 $txt_number_of_active_ftp = array(
 	"fr" => "Nombre de comptes ftp actifs :",
 	"en" => "Number of active ftp accounts:",
+	"hu" => "Az aktív ftp hozzáférések száma:",
         "it" => "Numero account FTP attivi:",
 	"nl" => "Aantal actieve ftp accounts:",
 	"ru" => "Number of active ftp accounts:",
@@ -449,6 +492,7 @@ $txt_number_of_active_ftp = array(
 $txt_number_of_active_mailbox = array(
 	"fr" => "Nombre de boites actives :",
 	"en" => "Number of active mailboxes:",
+	"hu" => "Az aktív levelesládák száma:",
         "it" => "Numero mailboxes attive:",
 	"nl" => "Aantal actieve e-mail accounts :",
 	"ru" => "Number of active mailboxs:",
@@ -459,6 +503,7 @@ $txt_number_of_active_mailbox = array(
 $txt_maximum_mailbox_reach = array(
 	"fr" => "Nombre maximum de boites email atteint. Impossible d'ajouter un nouveau compte.",
 	"en" => "Maximum number of mailboxes reached. Cannot add a new account.",
+	"hu" => "A levelesládák száma elérte a maximumot. Nem adhat hozzá újat.",
         "it" => "Raggiunto numero massimo mailboxes. Non puoi aggiungerne una nuova.",
 	"nl" => "Het maximum aantal e-mail accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of mailbox reach. Cannot add a new account.",
@@ -469,6 +514,7 @@ $txt_maximum_mailbox_reach = array(
 $txt_virtual_admin_list = array(
 	"fr" => "Liste des admins",
 	"en" => "Admins list",
+	"hu" => "Az adminisztrátorok listája",
         "it" => "Lista amministratori",
 	"nl" => "Beheerderslijst",
 	"ru" => "óÐÉÓÏË ÁÄÍÉÎÉÓÔÒÁÔÏÒÏ×",
@@ -479,6 +525,7 @@ $txt_virtual_admin_list = array(
 $txt_add_user_title = array(
 	"fr" => "Ajouter un administrateur virtuel",
 	"en" => "Add a virtual administrator",
+	"hu" => "Hozzáad egy virtuális adminisztrátort",
         "it" => "Aggiungi un amministratore virtuale.",
 	"nl" => "Voeg een beheerder toe",
 	"ru" => "äÏÂÁ×ÉÔØ ×ÉÒÔÕÁÌØÎÏÇÏ ÁÄÍÉÎÉÓÔÒÁÔÏÒÁ",
@@ -489,6 +536,7 @@ $txt_add_user_title = array(
 $txt_generate_buttons_title = array(
 	"fr" => "Lancement de la génération des fichiers de configuration",
 	"en" => "Launching the configuration files generation",
+	"hu" => "Elindítja a konfigurációs fájlok generálását",
         "it" => "Lanciando la generazione di files di configurazione",
 	"nl" => "De configuratiebestanden generator wordt gestart",
 	"ru" => "÷ÙÐÏÌÎÅÎÉÅ ÇÅÎÅÒÁÃÉÉ ËÏÎÆÉÇÕÒÁÃÉÏÎÎÙÊ ÆÁÊÌÏ×",
@@ -499,6 +547,7 @@ $txt_generate_buttons_title = array(
 $txt_general_virtual_admin_edition = array(
 	"fr" => "Edition de l'administrateur virtuel <i>\"$adm_login\"</i>",
 	"en" => "Configuration of the virtual administrator <i>\"$adm_login\"</i>",
+  	"hu" => "A következõ virtuális adminisztrátor konfigurációja <i>\"$adm_login\"</i>",
         "it" => "Configurazione dell'amministratore virtuale <i>\"$adm_login\"</i>",
 	"nl" => "Configuratie van de beheerder <i>\"$adm_login\"</i>",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ×ÉÒÔÕÁÌØÎÏÇÏ ÁÄÍÉÎÉÓÔÒÁÔÏÒÁ <i>\"$adm_login\"</i>",
@@ -509,6 +558,7 @@ $txt_general_virtual_admin_edition = array(
 $txt_domains_configuration_title = array(
 	"fr" => "Edition de la configuration des domaines de <i>\"$adm_login\"</i>",
 	"en" => "Configuration for each domains of <i>\"$adm_login\"</i>",
+	"hu" => "Az összes domain konfigurációja, ami a következõ felhasználó tulajdonában van <i>\"$adm_login\"</i>",
         "it" => "Configurazione per ogni dominio del <i>\"$adm_login\"</i>",
 	"nl" => "Configuratie van elk domein voor <i>\"$adm_login\"</i>",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ÄÌÑ ËÁÖÄÏÇÏ ÄÏÍÅÎÁ  <i>\"$adm_login\"</i>",
@@ -519,6 +569,7 @@ $txt_domains_configuration_title = array(
 $txt_admlist_sort_by_legend = array(
 	"fr" => "Afficher et trier par :",
 	"en" => "Display and sort by:",
+	"hu" => "Megjelenít és rendez a következõk szerint:",
         "it" => "Mostra e ordina per:",
 	"nl" => "Weergeven en sorteren op:",
 	"ru" => "÷Ù×ÏÄÉÔØ ÐÏ:",
@@ -529,6 +580,7 @@ $txt_admlist_sort_by_legend = array(
 $txt_admlist_new_admin = array(
 	"fr" => "Nouvel admin virtuel",
 	"en" => "New virtual admin",
+	"hu" => "Új virtuális admin",
         "it" => "Nuovo amministratore virtuale",
 	"nl" => "Nieuwe virtuele beheerder",
 	"ru" => "îÏ×ÙÊ ×ÉÒÔÕÁÌØÎÙÊ ÁÄÍÉÎÉÓÔÒÁÔÏÒ",
@@ -539,6 +591,7 @@ $txt_admlist_new_admin = array(
 $txt_path = array(
 	"fr" => "Chemin :",
 	"en" => "Path:",
+	"hu" => "Elérési út:",
         "it" => "Path:",
 	"nl" => "Pad :",
 	"ru" => "ðÕÔØ:",
@@ -549,6 +602,7 @@ $txt_path = array(
 $txt_use_text_menu = array(
 	"fr" => "Utiliser du texte pour le menu :",
 	"en" => "Use text menu:",
+	"hu" => "A szöveges menüt használja:",
         "it" => "Usa menu a testo:",
 	"nl" => "Gebruik tekst menu:",
 	"ru" => "TRANSUse text menu:",
@@ -559,6 +613,7 @@ $txt_use_text_menu = array(
 $txt_password = array(
 	"fr" => "Mot de passe :",
 	"en" => "Password:",
+	"hu" => "Jelszó:",
         "it" => "Password:",
 	"nl" => "Wachtwoord:",
 	"ru" => "ðÁÒÏÌØ:",
@@ -569,6 +624,7 @@ $txt_password = array(
 $txt_id_client = array(
 	"fr" => "Id client :",
 	"en" => "Client ID:",
+	"hu" => "Ügyfél azon.:",
         "it" => "ID cliente:",
 	"nl" => "Klant id :",
 	"ru" => "ID ËÌÉÅÎÔ?",
@@ -579,6 +635,7 @@ $txt_id_client = array(
 $txt_client = array(
 	"fr" => "Client",
 	"en" => "Client",
+	"hu" => "Ügyfél",
         "it" => "Cliente",
 	"nl" => "Klant",
 	"ru" => "ËÌÉÅÎÔ?",
@@ -589,6 +646,7 @@ $txt_client = array(
 $txt_del_user = array(
 	"fr" => "Effacer l'utilisateur",
 	"en" => "Delete the user",
+	"hu" => "Felhasználó törlése",
         "it" => "Cancella utente",
 	"nl" => "Wis de gebruiker",
 	"ru" => "õÄÁÌÉÔØ ÐÏÌØÚÏ×ÁÔÅÌÑ",
@@ -599,6 +657,7 @@ $txt_del_user = array(
 $txt_del_user_confirm = array(
 	"fr" => "Etes-vous sûr de vouloir effacer cet utilisateur ? Ceci effacera tous ses noms de domaines, ses fichiers et ses bases de données !!!",
 	"en" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
+	"hu" => "Biztos benne hogy törölni akarja ezt a felhasználót ? Ez a mûvelet törli a felhasználó összes domain nevét, fájljait és adatbázisait!!!",
         "it" => "Sei sicuro di voler cancellare questo utente? In questo modo cancellerai tutti i suoi domini, files e database !!!",
 	"nl" => "Weet je zeker dat je deze gebruiker wilt wissen? Als je hier op JA klikt, wis je DEFINITIEF alle domeinnamen, bestanden en databases gekoppeld aan deze gebruiker !!!",
 	"ru" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
@@ -609,6 +668,7 @@ $txt_del_user_confirm = array(
 $txt_del_user_domain = array(
 	"fr" => "Effacer un domaine de l'utilisateur :",
 	"en" => "Delete a user domain:",
+	"hu" => "Egy felhasználó domain-jének törlése:",
         "it" => "Cancella un dominio utente:",
 	"nl" => "Wis een gebruikersdomein :",
 	"ru" => "õÄÁÌÉÔØ ÄÏÍÅÎ ÐÏÌØÚÏ×ÁÔÅÌÑ:",
@@ -619,6 +679,7 @@ $txt_del_user_domain = array(
 $txt_del_user_domain_confirm = array(
 	"fr" => "Etes vous sure de vouloir effacer ce nom de domaine ? Ceci effacera tous les fichiers hébergés pour ce domaine !!!",
 	"en" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
+	"hu" => "Biztosan törli ezt a domain nevet ? Ez a mûvelet a domain-hez tartozó összes fájlt is törli !!!",
         "it" => "Sei sicuro di voler cancellare questo nome a dominio? In questo modo cancellerai tutti i files del dominio !!!",
 	"nl" => "Weet je zeker dat je dit domein wilt wissen? Deze actie zal het domein wissen INCLUSIEF alle bestanden op het filesysteem !!!",
 	"ru" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
@@ -629,6 +690,7 @@ $txt_del_user_domain_confirm = array(
 $txt_new_domain_for_user = array(
 	"fr" => "Ajouter un domaine pour l'utilisateur :",
 	"en" => "Add a domain for this user:",
+	"hu" => "Hozzáad egy domain-t ehhez a felhasználóhoz:",
         "it" => "Aggiungi un dominio per questo utente:",
 	"nl" => "Voeg een gebruiker toe aan dit domein:",
 	"ru" => "äÏÂÁ×ÉÔØ ÄÏÍÅÎ ÄÌÑ ÜÔÏÇÏ ÐÏÌØÚÏ×ÁÔÅÌÑ:",
@@ -639,6 +701,7 @@ $txt_new_domain_for_user = array(
 $txt_domain_tbl_config_dom_name = array(
 	"fr" => "Nom de domaine",
 	"en" => "Domain name",
+	"hu" => "Domain név:",
         "it" => "Nome a dominio",
 	"nl" => "Domein naam",
 	"ru" => "TRANS Domain name",
@@ -649,6 +712,7 @@ $txt_domain_tbl_config_dom_name = array(
 $txt_domain_tbl_config_quotaMB = array(
 	"fr" => "Quota disque (Mo) :",
 	"en" => "Disk quota (MB):",
+	"hu" => "Tárhely kvóta (MB):",
         "it" => "Quota disco (MB):",
 	"nl" => "Schijf quota (MB):",
 	"ru" => "äÉÓËÏ×ÁÑ Ë×ÏÔ (MB):",
@@ -660,6 +724,7 @@ $txt_domain_tbl_config_quotaMB = array(
 $txt_domain_tbl_config_quota = array(
 	"fr" => "Quota disque",
 	"en" => "Disk quota",
+	"hu" => "Tárhely kvóta",
         "it" => "Quota disco",
 	"nl" => "Schijf quota",
 	"ru" => "äÉÓËÏ×ÁÑ Ë×ÏÔ",
@@ -671,6 +736,7 @@ $txt_domain_tbl_config_quota = array(
 $txt_domain_tbl_config_max_ftp = array(
 	"fr" => "Ftp max",
 	"en" => "Max ftp",
+	"hu" => "Max ftp",
         "it" => "Max ftp",
 	"nl" => "Max ftp",
 	"ru" => "æôð ÍÁËÓ",
@@ -681,6 +747,7 @@ $txt_domain_tbl_config_max_ftp = array(
 $txt_domain_tbl_config_max_email = array(
 	"fr" => "Email max",
 	"en" => "Email max",
+	"hu" => "Max ftp",
         "it" => "Email max",
 	"nl" => "E-mail max",
 	"ru" => "ðÏÞÔÁ ÍÁËÓ",
@@ -691,6 +758,7 @@ $txt_domain_tbl_config_max_email = array(
 $txt_domain_tbl_config_max_subdomain = array(
 	"fr" => "Subdomain max",
 	"en" => "Subdomain max",
+	"hu" => "Aldomain max",
         "it" => "Sottodomini max",
 	"nl" => "Subdomeinen max",
 	"ru" => "óÕÂÄÏÍÅÎÙ ÍÁËÓ",
@@ -701,6 +769,7 @@ $txt_domain_tbl_config_max_subdomain = array(
 $txt_domain_tbl_config_ip = array(
 	"fr" => "Adresse IP",
 	"en" => "IP address",
+	"hu" => "IP cím",
         "it" => "Indirizzo IP",
 	"en" => "IP adres",
 	"ru" => "IP ÁÄÒÅÓÁ",
@@ -711,6 +780,7 @@ $txt_domain_tbl_config_ip = array(
 $txt_your_domain = array(
 	"fr" => "Votre domaine :",
 	"en" => "Your domain:",
+	"hu" => "Az ön domainje:",
         "it" => "Tuo dominio:",
 	"nl" => "Jouw domein:",
 	"ru" => "÷ÁÛ ÄÏÍÅÎ:",
@@ -721,6 +791,7 @@ $txt_your_domain = array(
 $txt_your_domain_email = array(
 	"fr" => "Boites emails :",
 	"en" => "Mailboxes:",
+	"hu" => "Levelesládák",
         "it" => "Mailboxes:",
 	"nl" => "E-mail accounts:",
 	"ru" => "ðÏÞÔÏ×ÙÅ ÑÝÉËÉ:",
@@ -731,6 +802,7 @@ $txt_your_domain_email = array(
 $txt_your_domain_ftp = array(
 	"fr" => "Comptes ftp :",
 	"en" => "Ftp accounts:",
+	"hu" => "Ftp hozzáférések:",
         "it" => "Accounts FTP:",
 	"nl" => "Ftp accounts:",
 	"ru" => "æôð ÁËËÁÕÎÔÙ:",
@@ -741,6 +813,7 @@ $txt_your_domain_ftp = array(
 $txt_your_domain_subdomain = array(
 	"fr" => "Sous-domaines :",
 	"en" => "Subdomains:",
+	"hu" => "Aldomain-ek:",
 	"it" => "Sottodomini:",
 	"nl" => "Subdomeinen:",
 	"ru" => "óÕÂÄÏÍÅÎÙ:",
@@ -751,6 +824,7 @@ $txt_your_domain_subdomain = array(
 $txt_confirurate_your_domain_name = array(
 	"fr" => "Configurer son domaine :",
 	"en" => "Configure your domain name:",
+	"hu" => "Állítsa be a domain nevét:",
 	"it" => "Configura il tuo nome a dominio:",
 	"nl" => "Configureer je domein naam:",
 	"ru" => "TRANSConfigurate your domain name:",
@@ -762,6 +836,7 @@ $txt_confirurate_your_domain_name = array(
 $txt_transfer_du = array(
 	"fr" => "Transfert et utilisation disque :",
 	"en" => "Transfer and disk usage:",
+	"hu" => "Forgalom és tárhely használat:",
 	"it" => "Trasferimento e uso disco:",
 	"nl" => "Bandbreedte en hardeschijf verbruik:",
 	"ru" => "TRANSTransfere and disk usage:",
@@ -772,6 +847,7 @@ $txt_transfer_du = array(
 $txt_transfer_this_month = array(
 	"fr" => "Transfert ce mois-ci :",
 	"en" => "Transfer this month:",
+	"hu" => "Ehavi forgalom:",
 	"it" => "Trasferimento per questo mese:",
 	"nl" => "Bandbreedte deze maand:",
 	"ru" => "TRANSTransfer this month:",
@@ -782,6 +858,7 @@ $txt_transfer_this_month = array(
 $txt_transfer = array(
 	"fr" => "Transfert",
 	"en" => "Transfer",
+	"hu" => "Forgalom",
 	"it" => "Trasferimento",
 	"nl" => "Bandbreedte",
 	"ru" => "TRANS Transfer",
@@ -792,6 +869,7 @@ $txt_transfer = array(
 $txt_total_disk_usage = array(
 	"fr" => "Total de l'utilisation disque :",
 	"en" => "Total disk usage:",
+	"hu" => "Összes felhasznált tárhely:",
 	"it" => "Totale uso disco",
 	"nl" => "Totale hardeschijf gebruik:",
 	"ru" => "TRANSTotal disk usage:",
@@ -802,6 +880,7 @@ $txt_total_disk_usage = array(
 $txt_your_hosting_account = array(
 	"fr" => "Votre contrat d'hébergement :",
 	"en" => "Your hosting account:",
+	"hu" => "Az ön hosting hozzáférése:",
 	"it" => "Tuo account hosting:",
 	"nl" => "Uw hosting account:",
 	"ru" => "TRANSYour hosting account:",
@@ -812,6 +891,7 @@ $txt_your_hosting_account = array(
 $txt_storage_space = array(
 	"fr" => "Espace disque",
 	"en" => "Storage space",
+	"hu" => "Tárhely",
 	"it" => "Spazio disco",
 	"nl" => "Opslagruimte",
 	"ru" => "TRANSStorage space",
@@ -822,6 +902,7 @@ $txt_storage_space = array(
 $txt_allowed_data_transfer = array(
 	"fr" => "Bande passante mensuelle autorisée",
 	"en" => "Allowed bandwidth per month",
+	"hu" => "Havi engedélyezett forgalom",
 	"it" => "Banda disponibile per mese",
 	"nl" => "Toegestane bandbreedte deze maand",
 	"ru" => "TRANSAllowed bandwidth per month",
@@ -833,6 +914,7 @@ $txt_allowed_data_transfer = array(
 $txt_allowed_data_transferMB = array(
 	"fr" => "Bande passante mensuelle autorisée (Mo) :",
 	"en" => "Allowed bandwidth per month (MB):",
+	"hu" => "Havi engedélyezett forgalom (MB):",
 	"it" => "Banda disponibile per mese (MB):",
 	"nl" => "Toegestane bandbreedte deze maand (MB):",
 	"ru" => "TRANSAllowed bandwidth per month (MB):",
@@ -844,6 +926,7 @@ $txt_allowed_data_transferMB = array(
 $txt_allowed_data_transferGB = array(
 	"fr" => "Bande passante mensuelle autorisée (Go) :",
 	"en" => "Allowed bandwidth per month (GB):",
+        "hu" => "Havi engedélyezett forgalom (GB):",
 	"it" => "Banda mensile rimasta (GB):",	
 	"nl" => "Toegestane bandbreedte deze maand (GB):",
 	"ru" => "TRANSAllowed bandwidth per month (GB):",
@@ -855,6 +938,7 @@ $txt_allowed_data_transferGB = array(
 $txt_expiration_date = array(
 	"fr" => "Date d'expiration",
 	"en" => "Expiration date",
+	"hu" => "Lejárat dátuma",
 	"it" => "Data scadenza",
 	"nl" => "Eind datum",
 	"ru" => "TRANSExpiration date",
@@ -865,6 +949,7 @@ $txt_expiration_date = array(
 $txt_date = array(
 	"fr" => "Date",
 	"en" => "Date",
+	"hu" => "Dátum",
 	"it" => "Data",
 	"nl" => "Datum",
 	"ru" => "TRANSdate",
@@ -875,6 +960,7 @@ $txt_date = array(
 $txt_action = array(
 	"fr" => "Action",
 	"en" => "Action",
+	"hu" => "Mûvelet",
 	"it" => "Azione",
 	"nl" => "TRANS Action",
 	"ru" => "TRANS Action",
@@ -885,6 +971,7 @@ $txt_action = array(
 $txt_upgrade_my_account_button = array(
 	"fr" => "Upgrader mon compte",
 	"en" => "Upgrade my account",
+	"hu" => "Frissítse a hozzáférésem",
 	"it" => "Aggiorna il mio account",
 	"nl" => "Mijn account opwaarderen",
 	"ru" => "TRANSUpgrade my account",
@@ -895,6 +982,7 @@ $txt_upgrade_my_account_button = array(
 $txt_renew_my_account_button = array(
 	"fr" => "Renouveller mon abonnement",
 	"en" => "Renew my account",
+	"hu" => "Újítsa meg a hozzáférésem",
 	"it" => "Rinnova il mio account",
 	"nl" => "Vernieuw mijn account",
 	"ru" => "TRANSRenew my account",
@@ -905,6 +993,7 @@ $txt_renew_my_account_button = array(
 $txt_remaining_money = array(
 	"fr" => "Argent restant sur mon compte :",
 	"en" => "Remaining money on my account:",
+	"hu" => "A számlámon lévõ pénz:",
 	"it" => "Denaro rimanente nel mio account:",
 	"nl" => "Beschikbare tegoeden op mijn account:",
 	"ru" => "TRANSRemaining money on my account:",
@@ -915,6 +1004,7 @@ $txt_remaining_money = array(
 $txt_refund_my_account = array(
 	"fr" => "Mettre de l'argent sur mon compte :",
 	"en" => "Refund my account:",
+	"hu" => "Adja vissza a hozzáférésemet:",
 	"it" => "Ricarica il mio account",
 	"nl" => "Mijn tegoeden terugstorten::",
 	"ru" => "TRANSRefund my account:",
@@ -925,6 +1015,7 @@ $txt_refund_my_account = array(
 $txt_please_tell_if_info_not_ok = array(
 	"fr" => "Merci de nous avertir si les informations ci-dessous n'étaient pas correctes :",
 	"en" => "Please tell us if the following is not correct:",
+	"hu" => "Kérem jelezze felénk, ha az alábbiak nem stimmelnek:",
 	"it" => "Per favore informaci se le informazioni seguenti non sono corrette:",
 	"nl" => "Laat ons weten of het volgende niet correct is:",
 	"ru" => "TRANSPlease tell us if the following is not correct:",
@@ -936,6 +1027,7 @@ $txt_please_tell_if_info_not_ok = array(
 $txt_my_account_global_stats_title = array(
 	"fr" => "Statistiques globales de mon compte",
 	"en" => "My account global statistics",
+	"hu" => "A hozzáférésem globális statisztikái",
 	"it" => "Statistiche globali del mio account",
 	"nl" => "Mijn globale account statistieken",
 	"ru" => "TRANSMy account global statistics",
@@ -946,6 +1038,7 @@ $txt_my_account_global_stats_title = array(
 $txt_total_transfered_bytes_this_month = array(
 	"fr" => "Total des données transférées ce mois-ci :",
 	"en" => "Total transfered bytes this month:",
+	"hu" => "Ehavi összes átvitel (byte):",
 	"it" => "Bytes trasferiti in totale questo mese:",
 	"nl" => "Totaal verbruikte bytes deze maand:",
 	"ru" => "TRANSTotal transfered bytes this month:",
@@ -956,6 +1049,7 @@ $txt_total_transfered_bytes_this_month = array(
 $txt_stats_http_subdom = array(
 	"fr" => "Statistiques HTTP webalizer de vos sous-domaines :",
 	"en" => "Detailed webalizer statistics (HTTP) of your subdomains:",
+	"hu" => "Részletes webalizer statisztika (HTTP) az aldomainekrõl:",
 	"it" => "Statistiche dettagliate webalizer (HTTP) dei tuoi sottodomini:",
 	"nl" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
 	"ru" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
@@ -967,7 +1061,8 @@ $txt_stats_http_subdom = array(
 $txt_are_disk_usage = array(
 	"fr" => "Votre espace disque :",
 	"en" => "Your area disk usage:",
-	"it" => "Tuo utilizzo disco:",
+	"hu" => "Az ön területének lemezterület használata:",
+        "it" => "Tuo utilizzo disco:",
 	"nl" => "Je hardeschijf gebruik:",
 	"ru" => "TRANSYour area disk usage:",
 	"de" => "Ihre Festplattennutzung:",
@@ -978,6 +1073,7 @@ $txt_are_disk_usage = array(
 $txt_domain_name_files = array(
 	"fr" => "Fichiers des noms de domaines :",
 	"en" => "Domain name files:",
+	"hu" => "Domain név fájlok:",
 	"it" => "Files nome a dominio:",
 	"nl" => "Domeinnaam bestanden:",
 	"ru" => "TRANSDomain name files:",
@@ -988,6 +1084,7 @@ $txt_domain_name_files = array(
 $txt_database_files = array(
 	"fr" => "Fichiers des bases de données :",
 	"en" => "Database files:",
+        "hu" => "Adatbázis fájlok:",
 	"it" => "Files database:",
 	"nl" => "Database bestanden:",
 	"ru" => "TRANSDomain name files:",
@@ -998,6 +1095,7 @@ $txt_database_files = array(
 $txt_total_disk_usage = array(
 	"fr" => "Total de l'utilisation disque :",
 	"en" => "Total disk usage:",
+	"hu" => "Összes lemezterület felhasználás:",
 	"it" => "Utilizzo disco totale:",
 	"nl" => "Totaal hardeschijf gebruik:",
 	"ru" => "TRANSTotal disk usage:",
@@ -1008,6 +1106,7 @@ $txt_total_disk_usage = array(
 $txt_databases_disk_usage = array(
 	"fr" => "Utilisation disque des bases de données :",
 	"en" => "Databases disk usage:",
+        "hu" => "Az adatbázisok lemezterület felhasználása:",
 	"it" => "Uso disco database:",
 	"nl" => "Hardeschijf verbruik databases:",
 	"ru" => "TRANSDatabases disk usage:",
@@ -1018,6 +1117,7 @@ $txt_databases_disk_usage = array(
 $txt_database_name = array(
 	"fr" => "Nom de la base de données",
 	"en" => "Database name",
+        "hu" => "Adatbázis név",
 	"it" => "Nome database",
 	"nl" => "Database naam",
 	"ru" => "TRANSDatabase name",
@@ -1028,6 +1128,7 @@ $txt_database_name = array(
 $txt_disk_usage = array(
 	"fr" => "Utilisation disque",
 	"en" => "Disk usage",
+        "hu" => "Lemezterület használat",
 	"it" => "Uso del disco",
 	"nl" => "Hardeschijf gebruik",
 	"ru" => "TRANSDisk usage",
@@ -1038,6 +1139,7 @@ $txt_disk_usage = array(
 $txt_domain_name_trafic_du = array(
 	"fr" => "Nom de domaine, traffic et utilisation disque :",
 	"en" => "Domain name trafic and disk usage:",
+	"hu" => "Domain név forgalom és lemezterület használat:",
 	"it" => "Traffico e utilizzo disco dominio:",
 	"nl" => "Domeinnaam verkeer en hardeschijf gebruik:",
 	"ru" => "TRANSDomain name trafic and disk usage:",
@@ -1048,6 +1150,7 @@ $txt_domain_name_trafic_du = array(
 $txt_domain_name = array(
 	"fr" => "Nom de domaine",
 	"en" => "Domain name",
+	"hu" => "Domain név",
 	"it" => "Nome a dominio",
 	"nl" => "Domein naam",
 	"ru" => "TRANSDomain name",
@@ -1058,6 +1161,7 @@ $txt_domain_name = array(
 $txt_disk_usage = array(
 	"fr" => "Utilisation disque",
 	"en" => "Disk usage",
+	"hu" => "Lemezterület használat",
 	"it" => "Uso disco",
 	"nl" => "Hardeschijf gebruik",
 	"ru" => "TRANSDisk usage",
@@ -1068,6 +1172,7 @@ $txt_disk_usage = array(
 $txt_total_trafic = array(
 	"fr" => "Traffic total",
 	"en" => "Total trafic",
+        "hu" => "Összes forgalom",
 	"it" => "Traffico totale",
 	"nl" => "Totaal verkeer",
 	"ru" => "TRANSTotal trafic",
@@ -1097,6 +1202,14 @@ The MX parameter tells the addresse of the mail server
 (the one that stores all your mail when somebody sends
 your a message). The value \"default\" means that
 you want to use the current server.",
+	"hu" => "Figyelem ! Hibás értékek megadása az alábbi mezõkben
+a szolgáltatások (web, levelezés) leállásához vezethet.<br>
+A \"default\" értéktõl eltérõ beállítás a DNS mezõkben
+azt jelenti, hogy az ön oldala máshol van elhelyezve.<br>
+Az MX paraméter megadja az e-mail szerver címét
+(az amelyik tárolja az összes levelet, ha valaki küld önnek egyet).
+A \"default\" beállítás azt jelenti, hogy az aktuális szervert szeretné erre a
+célra használni.",
 	"it" => "Attenzione ! Setting wrong value
 in the following fields can lead to the stop of
 your site services (web or mail).<br>
@@ -1147,6 +1260,7 @@ usar el servidor actual.");
 $txt_primari_dns_ip = array(
 	"fr" => "Addresse IP du serveur DNS primaire :",
 	"en" => "IP address of the primary DNS server:",
+	"hu" => "Az elsõdleges DNS szerver IP címe:",
 	"it" => "Indirizzo IP del server DNS primario:",
 	"nl" => "IP adres van de primaire DNS server:",
 	"ru" => "TRANSIP address of the primary DNS server:",
@@ -1157,6 +1271,7 @@ $txt_primari_dns_ip = array(
 $txt_other_dns_ip = array(
 	"fr" => "Autres serveurs DNS :",
 	"en" => "Other DNS servers:",
+	"hu" => "Más DNS szerverek:",
 	"it" => "Altri server DNS:",
 	"nl" => "Andere DNS servers:",
 	"ru" => "TRANSOther DNS servers:",
@@ -1167,6 +1282,7 @@ $txt_other_dns_ip = array(
 $txt_primary_mx_server = array(
 	"fr" => "Addresse du MX primaire :",
 	"en" => "Primary MX address:",
+	"hu" => "Elsõdleges MX cím:",
 	"it" => "Indirizzo MX primario:",
 	"nl" => "Primaire MX record:",
 	"ru" => "Primary MX address:",
@@ -1177,6 +1293,7 @@ $txt_primary_mx_server = array(
 $txt_other_mx_servers = array(
 	"fr" => "Autres serveurs MX (secondaire) :",
 	"en" => "Other MX (backup) servers:",
+	"hu" => "Más MX (backup) szerverek:",
 	"it" => "Altri server MX (secondari):",
 	"nl" => "Andere MX (backup) servers:",
 	"ru" => "TRANSOther MX (backup) servers:",
@@ -1186,7 +1303,8 @@ $txt_other_mx_servers = array(
  
 $txt_draw_tatabase_your_list = array(
 	"fr" => "Liste de vos bases de données :",
-	"en" => "List of your databasses:",
+	"en" => "List of your databases:",
+        "hu" => "Az adatbázisai listája:",
 	"it" => "Lista dei tuoi database:",
 	"nl" => "Lijst van jouw databases:",
 	"ru" => "óÐÉÓÏË ×ÁÛÉÈ âä:",
@@ -1197,6 +1315,7 @@ $txt_draw_tatabase_your_list = array(
 $txt_draw_database_chpass = array(
 	"fr" => "Changer mon mot de passe MySql :",
 	"en" => "Change your MySQL password:",
+	"hu" => "MySQL jelszóváltás:",
 	"it" => "Cambia la tua password MySql:",
 	"nl" => "TRANS Change your MySQL password:",
 	"ru" => "TRANS Change your MySQL password:",
@@ -1217,6 +1336,11 @@ DTC).",
 Click <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 for adding this user as a mysql account (same login / pass as for DTC).",
+        "en" => "Nincs ilyen nevû felhasználó a  mysql adatbázisban.
+Kattintson <a
+href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">ide</a>
+hogy hozzáadja ezt a felhasználót mint mysql felhasználót (hasonló login/jelszó párossal, mint a DTC-nek).",
+
 	"it" => "Non c'è alcun utente con questo nome nel database mysql.
 Clicca <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">qui</a>
@@ -1244,6 +1368,7 @@ para añadir este usuario como usuario mysql (la misma contraseña que para DTC)."
 $txt_mysqlmang_delete_a_db = array(
         "fr" => "Effacer l'une des bases de donnies pour cet utilisateur :",
         "en" => "Delete one of MySQL database for that user:",
+        "hu" => "Ennek a felhasználónak töröli egy MySQL adatbázisát:",
 	"it" => "Cancella uno dei database MySql di questo utente:",
         "nl" => "Wis een van de databases voor deze gebruiker:",
         "ru" => "Delete one of MySQL database for that user:",
@@ -1254,6 +1379,7 @@ $txt_mysqlmang_delete_a_db = array(
 $txt_mysqlmang_add_a_db = array(
         "fr" => "Ajouter une base de donnie a l'utilisateur :",
         "en" => "Add a database for that user:",
+        "hu" => "Hozzáad egy adatbázist ennek a felhasználónak:",
 	"it" => "Aggiungi un database per questo utente:",
         "nl" => "Voeg een database toe voor deze gebruiker:",
         "ru" => "Add a database for that user:",
@@ -1264,6 +1390,7 @@ $txt_mysqlmang_add_a_db = array(
 $txt_mysqlmang_db_name = array(
         "fr" => "Nom de la base de donnies :",
         "en" => "Database name:",
+        "hu" => "Adatbázis név:",
 	"it" => "Nome database:",
         "nl" => "Database naam:",  
         "ru" => "Database name:",
@@ -1278,6 +1405,8 @@ car celui-ci require le mot de passe root pour accider  la base de donnie.",
         "en" => "No mysql account manager in demo version (because I don't
 have root access to the MySQL
 database).",
+        "hu" => "Nincs  mysql számla menedzser a demo verzióban (azért mert
+nincs root hozzáférése a MySQL adatbázishoz).",
 	"it" => "Nella vesrione demo non c'è alcun MySql account manager (perchè non ho
 accesso root al database MySql).",
         "nl" => "Geen MySQL account beheerder in demo versie (Omdat ik 
@@ -1295,6 +1424,7 @@ tengo acceso de root a MySQL)."
 $txt_delete_this_mysql_user_and_db = array(
 	"fr" => "Effacer l'utilisateur mysql ainsi que toutes ses bases de données",
 	"en" => "Delete the mysql user and all his databases",
+	"hu" => "Törli a mysql felhasználót és annak az összes adatbázisát",
 	"it" => "Cancella l'utente mysql e tutti i suoi database",
 	"nl" => "Wis MySQL gebruiker en al bijbehorende databases",
 	"ru" => "Delete the mysql user and all his databases",
@@ -1306,6 +1436,7 @@ $txt_delete_this_mysql_user_and_db = array(
 $txt_draw_client_info_comp_name = array(
 	"fr" => "Société :",
 	"en" => "Company name:",
+	"hu" => "Cégnév:",
 	"it" => "Società:",
 	"nl" => "Bedrijfsnaam:",
 	"ru" => "îÁÚ×ÁÎÉÅ ËÏÍÐÁÎÉÉ:",
@@ -1317,6 +1448,7 @@ $txt_draw_client_info_comp_name = array(
 $txt_draw_client_info_firstname = array(
 	"fr" => "Prénom :",
 	"en" => "First name:",
+	"hu" => "Keresztnév:",
 	"it" => "Nome:",
 	"nl" => "TRANS First name:",
 	"ru" => "TRANS First name:",
@@ -1328,6 +1460,7 @@ $txt_draw_client_info_firstname = array(
 $txt_draw_client_info_familyname = array(
 	"fr" => "Nom de famille :",
 	"en" => "Family name:",
+	"hu" => "Vezetéknév:",
 	"it" => "Cognome:",
 	"nl" => "TRANSFamily name:",
 	"ru" => "TRANSFamily name:",
@@ -1339,6 +1472,7 @@ $txt_draw_client_info_familyname = array(
 $txt_draw_client_info_addr = array(
 	"fr" => "Adresse :",
 	"en" => "Address:",
+        "hu" => "Cím:",
 	"it" => "Indirizzo:",
 	"nl" => "Adres:",
 	"ru" => "áÄÒÅ?",
@@ -1350,6 +1484,7 @@ $txt_draw_client_info_addr = array(
 $txt_draw_client_info_zipcode = array(
 	"fr" => "Code postal :",
 	"en" => "Zipcode:",
+	"hu" => "Irányítószám:",
 	"it" => "CAP:",
 	"nl" => "Postcode:",
 	"ru" => "éÎÄÅËÓ:",
@@ -1361,6 +1496,7 @@ $txt_draw_client_info_zipcode = array(
 $txt_draw_client_info_country = array(
 	"fr" => "Pays :",
 	"en" => "Country:",
+	"hu" => "Ország:",
 	"it" => "Nazione:",
 	"nl" => "Land:",
 	"ru" => "óÔÒÁÎÁ",
@@ -1372,6 +1508,7 @@ $txt_draw_client_info_country = array(
 $txt_draw_client_info_city = array(
 	"fr" => "Ville :",
 	"en" => "City:",
+	"hu" => "Város:",
 	"it" => "Città:",
 	"nl" => "Woonplaats:",
 	"ru" => "çÏÒÏ:",
@@ -1383,6 +1520,7 @@ $txt_draw_client_info_city = array(
 $txt_draw_client_info_state = array(
 	"fr" => "Etat :",
 	"en" => "State:",
+	"hu" => "Megye:",
 	"it" => "Provincia:",
 	"nl" => "TRANS State:",
 	"ru" => "TRANS State:",
@@ -1394,6 +1532,7 @@ $txt_draw_client_info_state = array(
 $txt_draw_client_info_phone = array(
 	"fr" => "Téléphone :",
 	"en" => "Phone number:",
+	"hu" => "Telefonszám:",
 	"it" => "Tel:",
 	"nl" => "Telefoonnummer:",
 	"ru" => "îÏÍÅÒ ÔÅÌÅÆÏÎÁ:",
@@ -1405,7 +1544,8 @@ $txt_draw_client_info_phone = array(
 $txt_draw_client_info_fax = array(
 	"fr" => "Fax :",
 	"en" => "Fax:",
-	"it" => "Fax:",
+        "hu" => "Fax:",
+        "it" => "Fax:",
 	"nl" => "Faxnummer:",
 	"ru" => "æÁËÓ:",
 	"de" => "Fax:",
@@ -1416,6 +1556,7 @@ $txt_draw_client_info_fax = array(
 $txt_draw_client_info_email = array(
 	"fr" => "Email :",
 	"en" => "Email:",
+	"hu" => "E-mail:",
 	"it" => "E-mail:",
 	"nl" => "E-mail adres:",
 	"ru" => "ðÏÞÔÁ:",
@@ -1444,6 +1585,7 @@ $domain_conf_submenu =array(
 $txt_login_title = array(
 	"fr" => "Login",
 	"en" => "Login",
+	"hu" => "Belépés",
 	"it" => "Login",
 	"nl" => "Login",
 	"ru" => "éÍÑ",
@@ -1454,6 +1596,7 @@ $txt_login_title = array(
 $txt_login_login = array(
 	"fr" => "Login : ",
 	"en" => "Login: ",
+	"hu" => "Belépés: ",
 	"it" => "Login:",
 	"nl" => "Login: ",
 	"ru" => "éÍÑ:",
@@ -1464,6 +1607,7 @@ $txt_login_login = array(
 $txt_login_pass = array(
 	"fr" => "Mot de passe :",
 	"en" => "Password:",
+	"hu" => "Jelszó:",
 	"it" => "Password:",
 	"nl" => "Wachtwoord:",
 	"ru" => "ðÁÒÏÌØ:",
@@ -1474,7 +1618,8 @@ $txt_login_pass = array(
 $txt_login_path = array(
 	"fr" => "Chemin:",
 	"en" => "Path:",
-	"it" => "Path:",
+        "hu" => "Elérési út:",
+        "it" => "Path:",
 	"nl" => "Pad:",
 	"ru" => "ðÕÔØ:",
 	"de" => "Pfad:",
@@ -1485,6 +1630,7 @@ $txt_login_path = array(
 $txt_left_menu_title = array(
 	"fr" => "Vos domaines",
 	"en" => "Your domains",
+	"hu" => "Az ön domain-jei",
 	"it" => "Tuoi domini",
 	"nl" => "Jouw domeinen",
 	"ru" => "÷ÁÛÉ ÄÏÍÅÎÙ",
@@ -1496,6 +1642,7 @@ $txt_left_menu_title = array(
 $txt_title_geninfo_form = array(
 	"fr" => "Informations générales de ",
 	"en" => "General informations of ",
+	"hu" => "Általános információk ",
 	"it" => "Informazioni generali su ",
 	"nl" => "Algemene informatie over ",
 	"ru" => "ïÓÎÏ×ÎÁÑ ÉÎÆÏÒÍÁÃÉÑ ",
@@ -1510,7 +1657,8 @@ $txt_title_geninfo_form = array(
 $txt_title_subdomain_form = array(
 	"fr" => "Sous-domaines de ",
 	"en" => "Subdomains of ",
-	"it" => "Sottodomini di ",
+        "hu" => "Aldomainjei a(z) ",
+        "it" => "Sottodomini di ",
 	"nl" => "Subdomeinen van ",
 	"ru" => "óÕÂÄÏÍÅÎÙ",
 	"de" => "Subdomains von ",
@@ -1520,6 +1668,7 @@ $txt_title_subdomain_form = array(
 $txt_subdom_list = array(
 	"fr" => "Liste de vos sous-domaines : ",
 	"en" => "List of your subdomains: ",
+        "hu" => "Lista az aldomain-jeirõl: ",
 	"it" => "Lista dei tuoi sottodomini: ",
 	"nl" => "Lijst met jouw subdomeinen: ",
 	"ru" => "óÐÉÓÏË ×ÁÛÉÈ ÓÕÂÄÏÍÅÎÏ×:",
@@ -1531,6 +1680,7 @@ $txt_subdom_list = array(
 $txt_subdom_txtrec = array(
 	"fr" => "Champ TXT du sousdomaine : ",
 	"en" => "TXT field of the subdomain: ",
+	"hu" => "Az aldomain TXT field mezõje: ",
 	"it" => "TRANS TXT field of the subdomain: ",
 	"nl" => "TRANS TXT field of the subdomain: ",
 	"ru" => "TRANS TXT field of the subdomain: ",
@@ -1542,7 +1692,8 @@ $txt_subdom_txtrec = array(
 $txt_subdom_default_sub = array(
 	"fr" => "Sous-domaine par défaut : ",
 	"en" => "Default subdomain: ",
-	"it" => "Sottodominio di default: ",
+        "hu" => "Alapértelmezett aldomain: ",
+        "it" => "Sottodominio di default: ",
 	"nl" => "Standaard subdomein: ",
 	"ru" => "óÕÂÄÏÍÅÎ ÐÏ ÕÍÏÌÞÁÎÉÀ:",
 	"de" => "Standard Subdomain",
@@ -1552,6 +1703,7 @@ $txt_subdom_default_sub = array(
 $txt_subdom_errase = array(
 	"fr" => "Effacer un sous-domaine: ",
 	"en" => "Delete a subdomain: ",
+        "hu" => "Aldomain törlése: ",
 	"it" => "Cancella un sottodminio: ",
 	"nl" => "Wis een subdomein: ",
 	"ru" => "õÄÁÌÉÔØ ÓÕÂÄÏÍÅÎ:",
@@ -1563,6 +1715,7 @@ $txt_subdom_errase = array(
 $txt_subdom_create = array(
 	"fr" => "Créer un sous-domaine: ",
 	"en" => "Create a subdomain: ",
+	"hu" => "Aldomain létrehozása: ",
 	"it" => "Crea un sottodominio: ",
 	"nl" => "Creeer een subdomein: ",
 	"ru" => "óÏÚÄÁÔØ ÓÕÂÄÏÍÅÎ:",
@@ -1574,6 +1727,7 @@ $txt_subdom_create = array(
 $txt_subdom_newname = array(
 	"fr" => "Nom du sous-domaine : ",
 	"en" => "Subdomain name: ",
+	"hu" => "Aldomain neve: ",
 	"it" => "Nome sottodominio: ",
 	"nl" => "TRANSSubdomain name: ",
 	"ru" => "TRANSSubdomain name:",
@@ -1586,6 +1740,7 @@ $txt_subdom_ip = array(
 	"fr" => "IP du sous-domaine (laissez vide pour utiliser votre compte
 de hosting, rentrez l'IP du serveur sinon) : ",
 	"en" => "IP of the subdomain (leave blank otherwise): ",
+	"hu" => "Az aldomain IP címe (hagyja üresen egyébként): ",
 	"it" => "IP del sottodominio (lasciare vuote per usare l'hosting di default",
 	"nl" => "TRANS IP of the subdomain (leave blank to use default web
 hosting area, set server IP otherwise): ",
@@ -1605,6 +1760,11 @@ un couple login/mot de passe ci-dessous:",
 	"en" => "If need it, it's possible to set your subdomain IP remotely,
 for example if you have a home connection dynamic address and you want a
 subdomain to point to it. First, enter login and password here: ",
+	"hu" => "Ha szükséges, akkor lehetõség van az aldomain-ek IP címét távolról,
+például ha van otthoni internet hozzáférése dinamikus címmel és szeretné ha az aldomain
+erre mutasson. Elõször adja meg a login nevet és a jelszót itt: ",
+
+
 	"it" => "Se richiesto, è possibile settare l'IP del tuo sottodominio da remoto, 
 per esempio se hai una connessione casalinga con indirizzo dinamico e vuoi 
 che un sottodominio punti lì. Prima, inserisci login e passord qui: ",
@@ -1622,6 +1782,7 @@ subdominio apunte a esta. Primero, introduce aqui el usuario y la contraseña: "
 $txt_subdom_dynip_login = array(
 	"fr" => "Login IP dynamique :",
 	"en" => "Dynamic ip update login: ",
+	"hu" => "Dinamikus ip frissítés login neve: ",
 	"it" => "Login IP dinamico: ",
 	"nl" => "TRANS Dynamic ip update login: ",
 	"ru" => "TRANS Dynamic ip update login: ",
@@ -1633,7 +1794,8 @@ $txt_subdom_dynip_login = array(
 $txt_subdom_dynip_pass = array(
 	"fr" => "Mot de pass IP dynamique :",
 	"en" => "Dynamic ip update password: ",
-	"it" => "Modifica password IP dinamico: ",
+        "hu" => "Dinamikus ip frissítés jelszó: ",
+        "it" => "Modifica password IP dinamico: ",
 	"nl" => "TRANS Dynamic ip update password: ",
 	"ru" => "TRANS Dynamic ip update password: ",
 	"de" => "Dynamische IP Passwort: ",
@@ -1644,6 +1806,7 @@ $txt_subdom_dynip_pass = array(
 $txt_subdom_register_global = array(
 	"fr" => "Utiliser register_globals=1:",
 	"en" => "Use register_globals=1: ",
+	"hu" => "Állítsa a be a register_globals=1 -re: ",
 	"it" => "Utilizza register_globals=1: ",
 	"nl" => "TRANS Use register_globals=1:",
 	"ru" => "TRANS Use register_globals=1:",
@@ -1655,6 +1818,7 @@ $txt_subdom_register_global = array(
 $txt_subdom_edita = array(
 	"fr" => "Editer un sous-domaine :",
 	"en" => "Edit a subdomain: ",
+	"hu" => "Aldomain szerkesztése: ",
 	"it" => "Edita un sottodominio:",
 	"nl" => "TRANS Edit a subdomain:",
 	"ru" => "TRANS Edit a subdomain:",
@@ -1666,6 +1830,7 @@ $txt_subdom_edita = array(
 $txt_subdom_generate_webalizer = array(
 	"fr" => "Generer les stats webalizer tous les mois :",
 	"en" => "Generate webalizer stats each months:",
+	"hu" => "Legenerálja a webalizer havi statisztikákat:",
 	"it" => "Genera statistiche webalizer ogni mese:",
 	"nl" => "TRANS Generate webalizer stats each months:",
 	"ru" => "TRANS Generate webalizer stats each months:",
@@ -1677,6 +1842,7 @@ $txt_subdom_generate_webalizer = array(
 $txt_subdom_wwwalias = array(
 	"fr" => "Faire un alias ",
 	"en" => "Make an alias ",
+	"hu" => "Létrehoz egy álnevet ",
 	"it" => "Fai un alias ",
 	"nl" => "TRANS Make an alias ",
 	"ru" => "TRANS Make an alias ",
@@ -1698,6 +1864,13 @@ system crontab (lynx-ssl is needed). Recommanded time is between
 minutes, anyway DTC will not generate a domaine zone file more
 oftently than each 10 minutes (advice: setup you server with
 network clock and do it at 9,19,29,39,49 and 59 of each hours).",
+	"hu" => "Tehát egyszerûen adja hozzá a következõ scriptet a Unix
+rendszere crontab bejegyzéséhez (lynx-ssl -re szüksége lesz). A javasolt idõzítés
+30 perc és 2 óra között van. Kérem ne állítsa 10 percnél többre, mert enélkül a
+DTC nem generálja le a domain zóna fájlokat gyakrabban, mint 10 perc (javaslat:
+szinkronizálja a szerver óráját hálózaton keresztül és futtassa a scriptet
+minden óra 9,19,29,39,49 és 59 percében).",
+
 	"it" => "Aggiungi semplicemente il seguente script al crontab
 del tuo sistema Unix (lynx-ssl è richiesto). Il tempo raccomandato è fra
 i 30 minuti e le 2 ore. Per favore non farlo prima di 10 minuti,
@@ -1727,9 +1900,9 @@ mas que cada 10 minutos (advertencia: configure su servidor con un
 reloj en red y haga esto en 9,19,29,39,49 y 59 de cada hora)."
 );
 $txt_subdom_windowsusers = array(
-	"fr" => "Les utilisateurs de windows peuvent utiliser le planificateur
-de tache de windows pour effectuer la requête suivante :",
+	"fr" => "Les utilisateurs de windows peuvent utiliser le planificateurde tache de windows pour effectuer la requête suivante :",
 	"en" => "Windows user can easily schedule the query of the following URL:",
+	"hu" => "A Windows felhasználó könnyedén idõzítheti a következõ URL lekérését:",
 	"it" => "Gli utenti Windows possono automatizzare facilmente la query del seguente URL:",
 	"nl" => "TRANS Windows user can easily automate the query of the following URL:",
 	"ru" => "TRANS Windows user can easily automate the query of the following URL:",
@@ -1745,6 +1918,7 @@ siguiente:"
 $txt_title_mailbox_form = array(
 	"fr" => "Boites emails de ",
 	"en" => "Mailboxes of ",
+	"hu" => "Levelesládái a(z)",
 	"it" => "Mailboxes di ",
 	"nl" => "E-mail account van ",
 	"ru" => "ðÏÞÔÏ×ÙÅ ÑÝÉËÉ",
@@ -1755,6 +1929,7 @@ $txt_title_mailbox_form = array(
 $txt_mail_liste_of_your_box = array(
 	"fr" => "Liste de vos boites emails : ",
 	"en" => "List of your mailboxes: ",
+	"hu" => "A levelesládák listája: ",
 	"it" => "Lista delle tua mailboxes: ",
 	"nl" => "Lijst met jouw E-mail accounts:",
 	"ru" => "óÐÉÓÏË ×ÁÛÉÈ ÑÝÉËÏ×:",
@@ -1765,6 +1940,7 @@ $txt_mail_liste_of_your_box = array(
 $txt_mail_new_mailbox = array(
 	"fr" => "Nouvelle boite aux lettres : ",
 	"en" => "New mailbox: ",
+	"hu" => "Új levelesláda: ",
 	"it" => "Nuova mailbox: ",
 	"nl" => "Nieuw e-mail account: ",
 	"ru" => "îÏ×ÙÊ ÑÝÉË:",
@@ -1775,6 +1951,7 @@ $txt_mail_new_mailbox = array(
 $txt_mail_new_mailbox_link = array(
 	"fr" => "Nouvelle boite",
 	"en" => "New mailbox",
+	"hu" => "Új levelesláda",
 	"it" => "Nuova mailbox",
 	"nl" => "Nieuw e-mail account",
 	"ru" => "îÏ×ÙÊ ÑÝÉË",
@@ -1785,6 +1962,7 @@ $txt_mail_new_mailbox_link = array(
 $txt_mail_redirection1 = array(
 	"fr" => "Redirection 1: ",
 	"en" => "Redirection 1: ",
+	"hu" => "Átirányítás 1: ",
 	"it" => "Reindirizzamento 1: ",
 	"nl" => "Doorsturen naar 1:",
 	"ru" => "ðÅÒÅÎÁÚÎÁÞÅÎÉÅ 1:",
@@ -1795,6 +1973,7 @@ $txt_mail_redirection1 = array(
 $txt_mail_redirection2 = array(
 	"fr" => "Redirection 2: ",
 	"en" => "Redirection 2: ",
+	"hu" => "Átirányítás 2: ",
 	"it" => "Reindirizzamento 2: ",
 	"nl" => "Doorsturen naar 2:",
 	"ru" => "ðÅÒÅÎÁÚÎÁÞÅÎÉÅ 2:",
@@ -1806,6 +1985,7 @@ $txt_mail_redirection2 = array(
 $txt_mail_deliver_localy = array(
 	"fr" => "Délivrer les messages en local: ",
 	"en" => "Deliver messages localy: ",
+	"hu" => "Helyileg kézbesíti az üzeneteket: ",
 	"it" => "TRANS Deliver localmente: ",
 	"nl" => "TRANS Lokaal afleveren: ",
 	"ru" => "TRANS äÏÓÔÁ×ËÁ ÌÏËÁÌØÎÏ:",
@@ -1816,6 +1996,7 @@ $txt_mail_deliver_localy = array(
 $txt_mail_edit = array(
 	"fr" => "Edition d'une boite aux lettres: ",
 	"en" => "Mailbox configuration: ",
+	"hu" => "Levelesláda konfiguráció: ",
 	"it" => "Configurazione mailbox: ",
 	"nl" => "E-mail account configuratie:",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ÐÏÞÔÏ×ÏÇÏ ÑÝÉËÁ:",
@@ -1830,6 +2011,7 @@ $txt_mail_edit = array(
 $txt_title_ftp_form = array(
 	"fr" => "Comptes ftp de ",
 	"en" => "Ftp accounts of ",
+	"hu" => "Ftp hozzáférései a(z) ",
 	"it" => "Accounts FTP di ",
 	"nl" => "Ftp accounts van ",
 	"ru" => "õÞÅÔÎÙÅ ÚÁÐÉÓÉ æôð",
@@ -1840,6 +2022,7 @@ $txt_title_ftp_form = array(
 $txt_ftp_account_list = array(
 	"fr" => "Liste de vos comptes FTP: ",
 	"en" => "List of your FTP accounts: ",
+	"hu" => "Az ön FTP hozzáférései: ",
 	"it" => "Lista dei tuoi accounts FTP: ",
 	"nl" => "Lijst van jouw FTP accounts:",
 	"ru" => "óÐÉÓÏË ×ÁÛÉÈ æôð ÁËËÁÕÎÔÏ×:",
@@ -1850,6 +2033,7 @@ $txt_ftp_account_list = array(
 $txt_ftp_new_account = array(
 	"fr" => "Nouveau compte FTP : ",
 	"en" => "New FTP account: ",
+	"hu" => "Új FTP hozzáférés: ",
 	"it" => "Nuovo account FTP: ",
 	"nl" => "Nieuw FTP account: ",
 	"ru" => "îÏ×ÙÊ ÁËËÁÕÎÔ:",
@@ -1860,6 +2044,7 @@ $txt_ftp_new_account = array(
 $txt_ftp_account_edit = array(
 	"fr" => "Edition d'un compte FTP : ",
 	"en" => "FTP account configuration: ",
+	"hu" => "FTP hozzáférés konfigurálása: ",
 	"it" => "Configurazione account FTP: ",
 	"nl" => "FTP account configuratie : ",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ æôð-ÁËËÁÕÎÔÁ:",
@@ -1870,6 +2055,7 @@ $txt_ftp_account_edit = array(
 $txt_ftp_new_account_link = array(
 	"fr" => "Nouveau compte ftp",
 	"en" => "New ftp account",
+	"hu" => "Új FTP hozzáférés",
 	"it" => "Nuovo account FTP",
 	"nl" => "Nieuw ftp account",
 	"ru" => "îÏ×ÙÊ æôð ÁËËÁÕÎÔ",
@@ -1884,6 +2070,7 @@ $txt_ftp_new_account_link = array(
 $txt_new_password = array(
 	"fr" => "Nouveau compte ftp",
 	"en" => "New ftp account",
+	"hu" => "Új FTP hozzáférés",
 	"it" => "Nuovo account FTP",
 	"nl" => "Nieuw ftp account",
 	"ru" => "îÏ×ÙÊ æôð ÁËËÁÕÎÔ",
@@ -1894,6 +2081,7 @@ $txt_new_password = array(
 $txt_title_database_form = array(
 	"fr" => "Vos bases de données",
 	"en" => "Your databases",
+	"hu" => "Az ön adatbázisai",
 	"it" => "Tuoi databases",
 	"nl" => "Jouw databases",
 	"ru" => "÷ÁÛÉ ÂÁÚÙ ÄÁÎÎÙÈ",
@@ -1904,6 +2092,7 @@ $txt_title_database_form = array(
 $txt_title_help_form = array(
 	"fr" => "Aide en ligne de DTC",
 	"en" => "Online DTC help",
+	"hu" => "Online DTC súgó",
 	"it" => "Aiuto in linea DTC",
 	"nl" => "On-line DTC help",
 	"ru" => "ïÎÌÁÊÎ ÐÏÍÏÝØ DTC",
@@ -2274,7 +2463,161 @@ on our server is faster.<br><br><br>
 Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
 </font>
 ",
+"hu" => "
+<font face=\"Arial, Verdana\">
+<center><font size=\"+2\"><u><b>ONLINE DTC
+SÚGÓ</b></u></font></center><br><br>
+<div align=\"justify\">
+<font size=\"+1\"><u>1. Mi is a DTC ?</u></font><br><br>
+DTC egy eszköz amit direkt neked készítettünk. Segítségével kezedben tarthatod
+a domain adminisztráiót : menedzselheted az összes aldomaint, levelezéseket, ftp
+hozzáféréseket.<br><br>
+Ez az eszköz a <a
+href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence),
+licencelési formát használja, ami azt jelenti, hogy lehet neked belõle egy forráskód példányod
+módosíthatod, használhatod tetszés szerint ameddig ezeket a változtatásokat közzé teszed.
+. Mi (a GPLHost-nál) hisszünk a Szabad Szoftverbe fektetett erõfeszítésbe és reméljük
+hogy a mi közremûködésünk inspirál más fejlesztõket is.
+A mi elgondolásunk az, hogy mivel mi kizárólag szabad szoftvert használunk a webhosting szolgáltatásunk
+üzemeltetéséhez ezért értetõ, hogy közzétesszük a fejlesztéseinket.<br><br>
 
+<font size=\"+1\"><u>2. E-mail-ek</u></font><br>
+<u>2.1. Mit fog nekem ez csinálni ?</u><br><br>
+Hozzáadhat, törölhet, módosíthat vele levelesládákat.<br><br>
+
+<u>2.2. Átirányítás és helyi kézbesítés</u><br><br>
+Minden levelesládát átirányíthat egy vagy több címre, ami azt jelenti
+hogyha egy üzenete érkezik az továbbítódik egy vagy több címre.
+A \"helyileg kézbesítés\" jelölõnégyzet meghatározza
+,hogy az összes üzenet a mi szerverünk merevlemezén tárolódjék e,
+ahonnan majd egy levelezõkliens segítségével letöltheti azokat.
+Ne felejtse el letölteni a leveleit, mert a levelesládájának
+is van tárhely kvótája.<br><br>
+<u>2.3. Késleltetés hozzáférések hozzáadása / törlése közben</u><br><br>
+Ha hozzáad vagy töröl levelesládákat, akkor ne várja hogy azok rögtön mûködnek is:
+: elõször át kell vezetnünk a rendszerben a változásokat, ahhoz hogy az ön hozzáférésében
+bekövetkezett módosítások életbe lépjenek : meg kell mondanunk a Qmail-nek (a levelezõ szerverünk)
+hogy olvassa újra a felhasználói adatbázisát.<br><br>
+Legtöbbször ezt munkanapokon a nap végén tesszük meg, de ha rögtön szüksége van az érvényesítésre
+, akkor kattintson <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email hozzáférés
+érvényesítése\">ide</a>.<br><br>
+
+<font size=\"+1\"><u>3. Aldomain-ek</u></font><br>
+<u>3.1. Mit fog ez nekem csinálni ?</u><br><br>
+Ez a területe a programnak arra szolgál, hogy beállítsa a domain-jeihez kapcsolódó
+oldalakat, ami azt jelenti hogy létrehozhat oldalakat a következõ formában :
+<pre>
+http://barmi.amit.szeretne.domain.hu
+</pre>
+<u>3.2. Mi az alapértelmezett aldomain ?</u><br><br>
+Ha valaki szeretne csatlakozni az ön weboldalához egy olyan
+URL-el, ahol nincs megadva az aldomain, akkor a kérés át lesz irányítva arra az aldomain-re
+amit ön alapértelmezettek itt megad. Más szóval
+ha ön azt mondja, hogy a:
+<pre>
+www
+</pre>
+lesz az alapértelmezett aldomain, akkor ha valaki próbálkozik csatlakozni az
+ön weboldalához ilyen formában:
+<pre>
+http://mydomain.com
+</pre>
+az át lesz irányítva a:
+<pre>
+http://www.mydomain.com
+</pre>címre.
+Tulajdonképpen az URL maga nem változik és nem lesz átirányítás a html oldalban sem
+csak egyszerûen ugyanazokat a html vagy php oldalakat fogja tudni elérni
+és ugyanazokat a naplófájlokat használja majd.
+<br><br>
+
+<u>3.3. Tiltott aldomain-ek</u><br><br>
+Mivel ezeket az aldomain-eket a web-tõl eltérõ szolgáltatásokra
+használjuk, ezért a következõ aldomain neveket nem használhatók apache weboldalként:
+<ul><li>ftp</li>
+<li>pop</li>
+<li>smtp</li>
+</ul>
+
+<u>3.4. Aldomain-ek törlése</u><br><br>
+Önön múlik, hogy törli e azokat a fájlokat amiket az aldomain-je használ.
+Az összes fájlt törölheti egy egyszerû ftp kliensprogram segíségével.
+Azonban kérem, hogy figyeljen arra, hogy ne törölje anélkül az aldomain fájljait
+, hogy magát az aldomain-t törölné a DTC-n keresztül. Máskülönben az Apache web szerver
+panaszkodni fog arra, hogy a könyvtár nem létezik a weboldal mégis be van konfigurálva
+annak használatára és ez elég bosszantó lenne, amikor legközelebb újraindítjuk az
+apache-ot.<br><br>
+
+<u>3.5. Késleltetés aldomain-ek hozzáadása / törlése esetén</u><br><br>
+Újra kell indítanunk az Apache webszerverünket ahhoz hogy bekövetkezett módosítások
+életbe lépjenek.
+Legtöbbször ezt munkanapokon a nap végén tesszük meg, de ha rögtön szüksége van az újraindításra
+, akkor kattintson <a href=\"mailto:$webmaster_email_addr?subject=[DTC]aldomain létrehozás:
+kérem indítsák újra az apache-ot most ! \">ide</a>.<br><br>
+
+<u>3.6. Látogatói statisztikák az aldomain-ekhez</u><br><br>
+Mivel az összes forgalmat naplózzuk, ezért összesített 12 hónapos statisztikát generálunk
+a <a href=\"http://www.mrunix.net/webalizer/\">
+webalizer program segítségével</a>. A statisztikákat minden nap
+4 órakor készítjük (ez az az idõpont, amikor a legkisebb a forgalom). A statisztikák
+elérhetõk a \"/stats\" könyvtár alatt az összes aldomain-re lebontva.
+Ez azt jelenti, hogyha ön regisztrálta a következõ domain-t :
+<pre>
+http://www.mydomain.com
+</pre>
+akkor az összes statisztika a :
+<pre>
+http://www.mydomain.com/stats/
+</pre>
+alatt lesz elérhetõ.
+<font size=\"+1\"><u>4. FTP hozzáférések</u></font><br>
+<u>4.1. Mit fog ez nekem csinálni ?</u><br><br>
+Ahhoz hogy az oldalai mûködjenek önnek fel kell õket tölteni a szerverünkre.
+De mivel lehet, hogy nem ön az egyetlen aki az ön weboldalán dolgozik
+,ezért szüksége lehet arra hogy több  FTP hozzáférése legyen az weboldalához.
+A DTC az az eszköz amivel menedzselheti ezeket a hozzáféréseket és jelszavakat.
+<br><br>
+
+<u>4.2. Késleltetés FTP hozzáférés hozzáadása / törlése esetén</u><br><br>
+Mivel mi a ProFTP programot használjuk egy különleges modullal, ami lehetõvé teszi
+a hozzáférések tárolását a MySql adatbázisunkban, ezért az összes változtatás
+ami az FTP hozzáféréseket érinti azonnal végrehajtódik.<br><br>
+
+<u>4.3. Felhasználók korlátozása egy elérési úthoz</u><br><br>
+Jelenleg nem tudja korlátozni a felhasználókat úgy, hogy a weboldalának
+csak egy részéhez férjenek hozzá . De mi (az adminisztrátorok) meg tudjuk ezt tenni
+ha ön kéri egy <a
+href=\"mailto:$webmaster_email_addr?subject=[DTC]Felhasználó
+elérési út korlátoza az FTP hozzáférésben\">e-mail-ben</a>, amiben leírja hogy melyik az érintett
+felhasználó és melyik az elérési út amire szüksége van.<br><br>
+
+<u>4.4. Fájcserelésre ne használja és illegális tartalmat kérem NE tároljon az FTP szerverén !</u><br><br>
+Az hogy mi tárhelyet biztosítunk önnek az ftp szerverünkön az azért van, hogy
+fel tudja tölteni a HTML oldalait. Ez azt jelenti, hogy nincs joga olyan
+bináris fájlokat tárolni a szerveren, amik nem az ön tulajdonát képezik.
+Amennyiben erre utaló jelet észlelünk a hozzáférését minden elõzetes
+figyelmeztetés nélkül megszüntethetjük.<br><br>
+
+<font size=\"+1\"><u>5. Miért lassú az ftp vagy a pop hozzáférés néha ?</u></font><br><br>
+Ennek sok oka lehet. Az elsõ hogy nincs elég feltöltési sávszélességünk
+és tényleg nagyon sokan töltenek fel egyszerre.
+A másik hogy valaki a szervereink \"közelébõl\" tölt fel és elviszi az egész sávszélességet
+tehát egy felhasználó használja az egészet mások pedig emiatt nem jutnak elég
+sávszélességhezt. Sajnos ez nem rajtunk múlik és nem tudunk ellene semmit tenni.<br><br>
+A másik oka az lehet, hogy úgy döntöttünk, hogy limitáljuk a pop, smtp, és ftp
+által használható sávszélességet és így a  web böngészés gyorsabb lesz a szerverünkön.
+<br><br><br>
+</div>
+<center>For the GPLHost team,</center><br>
+<div align=\"right\"><i><a href=\"mailto:thomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |
+|___________\    |    |__________/|____|     /|___________\___________\GPL |
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
+</font>
+",
 	"it" => "
 <font face=\"Arial, Verdana\">
 <center><font size=\"+2\"><u><b>ONLINE DTC

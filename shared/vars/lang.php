@@ -5,6 +5,7 @@ $txt_default_lang = "en";
 $txt_langname = array(
 	"fr" => "iso-8859-15",
 	"en" => "iso-8859-15",
+	"hu" => "iso-8859-15",
 	"it" => "iso-8859-15",
 	"nl" => "iso-8859-15",
 	"ru" => "koi8-r",
@@ -26,6 +27,9 @@ if($panel_type!="cronjob"){
 	}
 	if($_REQUEST["change_language"] == "en"){
 		$lang = "en";
+	}
+	if($_REQUEST["change_language"] == "hu"){
+		$lang = "hu";
 	}
 	if($_REQUEST["change_language"] == "it"){
 		$lang = "it";
