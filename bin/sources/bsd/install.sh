@@ -161,6 +161,8 @@ echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI
 echo "generated files: "$PATH_DTC_ETC
 echo ""
+echo ""
+echo ""
 echo -n 'Confirm and install DTC ? [Ny]:'
 read valid_infos
 

@@ -16,7 +16,6 @@ RUN_DEPENDS=	${LOCALBASE}/sbin/httpd:${PORTSDIR}/www/apache13 \
 
 NO_BUILD=       yes
 USE_MYSQL=      yes
-NO_PACKAGE=     No binary package => Application is written and installed with PHP
 
 do-configure:
 	@${SED} -e 's,%%PREFIX%%,${PREFIX},;\
