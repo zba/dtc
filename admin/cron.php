@@ -5,6 +5,7 @@ require_once("$dtcshared_path/dtc_lib.php");
 
 require_once("genfiles/genfiles.php");
 
+echo date("Y m d / H:i:s T")." Starting DTC cron job\n";
 // Let's see if DTC's mysql_config.php is OK and lock back the shared folder
 // and mysql_config.php to root:root
 if($conf_mysql_conf_ok=="yes" && $conf_demo_version  == "no"){
@@ -24,12 +25,11 @@ if($cronjob_table_content["lock_flag"] != "finished"){
 If no cronjob is running, then please do \"UPDATE cronjob SET lock_flag='finished';\" !\n";
 	die("Exiting NOW!");
 }
+echo "Setting-up lock flag\n";
 $query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='inprogress' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
-echo date("Y m d / H:i:s T")." Starting DTC cron job\n";
 $start_stamps = mktime();
-$start_time = $start_stamps%(60*60*24);
 ////////////////////////////////////////////////////////////
 // First find if it's time for long statistic generation. //
 // Do it all the time, for (debuging) the moment... :)    //
@@ -118,6 +118,16 @@ if($cronjob_table_content["restart_qmail"] == "yes"){
 //	sleep(2);
 //	system("/etc/init.d/qmail start");
 }
+// Check if pop is running, restart qmail if not
+$fp = fsockopen ($conf_addr_mail_server, 110, $errno, $errstr, 30);
+if(!fp){
+	echo "$errno/$errstr: POP3 is not running ! Restarting qmail !!!\n";
+	system("/etc/init.d/qmail stop");
+	sleep(2);
+	system("/etc/init.d/qmail start");
+}else{
+	fclose ($fp);
+}
 
 if($cronjob_table_content["reload_named"] == "yes"){
 	echo "Reloading name-server\n";
@@ -141,6 +151,7 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	}
 }
 
+echo "Resetting all cron flags\n";
 $query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(),qmail_newu='no', restart_qmail='no', reload_named='no', restart_apache='no', gen_vhosts='no', gen_named='no', gen_qmail='no', gen_webalizer='no', gen_backup='no' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 

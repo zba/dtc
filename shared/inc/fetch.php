@@ -69,7 +69,7 @@ function fetchAdminStats($admin){
 	global $pro_mysql_acc_ftp_table;
 
 	$adm_path = $admin["info"]["path"];
-	$query = "SELECT name FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";
+	$query = "SELECT name,du_stat FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
 	$num_domains = mysql_num_rows($result);
 	for($ad=0;$ad<$num_domains;$ad++){
@@ -77,13 +77,19 @@ function fetchAdminStats($admin){
 		$ret["domains"][$ad]["name"] = $domain_name;
 
 		// Retrive disk usage
-		$du_string = exec("du -sb $adm_path/$domain_name --exclude=access.log",$retval);
-		$du_state = explode("\t",$du_string);
-		$ret["domains"][$ad]["du"] = $du_state[0];
-		$ret["total_du_domains"] += $du_state[0];
+// Use the following version if you want it to be calculated in real time
+//		$du_string = exec("du -sb $adm_path/$domain_name --exclude=access.log",$retval);
+//		$du_state = explode("\t",$du_string);
+//		$ret["domains"][$ad]["du"] = $du_state[0];
+//		$ret["total_du_domains"] += $du_state[0];
+// The following get value from table. du_stat is setup by cron script each time you have setup it (curently each hours)
+		$du_stat = mysql_result($result,$ad,"du_stat");
+		$ret["domains"][$ad]["du"] = $du_stat;
+		$ret["total_du_domains"] += $du_stat;
 
 		// HTTP transfer
-		sum_http($domain_name);
+// Uncomment this if you want it in realtime
+//		sum_http($domain_name);
 		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='$domain_name' AND month='".date("m",time())."' AND year='".date("Y",time())."'";
 		$result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
 		$num_rows = mysql_num_rows($result_http);
@@ -92,7 +98,8 @@ function fetchAdminStats($admin){
 		$ret["domains"][$ad]["http"] = $rez_http;
 
 		// And FTP transfer
-		sum_ftp($domain_name);
+// Uncomment this if you want it in realtime (currently done in cron)
+//		sum_ftp($domain_name);
 		$query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='$domain_name' AND month='".date("m",time())."' AND year='".date("Y",time())."'";
 		$result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
 		$num_rows = mysql_num_rows($result_ftp);
