@@ -1,0 +1,74 @@
+Mac OS X 10.3.6
+
+
+/private/etc/httpd/httpd.conf
+------------------------------------
+Décommenté:
+
+LoadModule php4_module        libexec/httpd/libphp4.so
+AddModule mod_php4.c
+
+/private/etc/named.conf
+Dans options ajouter:
+        forwarders {
+                10.0.0.254;
+        };
+
+Reconfigurer les zones "mal" configuré:
+------------------------------------------------------
+zone "localhost" IN {
+        type master;
+        file "/etc/localhost.zone";
+        allow-update { none; };
+};
+
+$TTL    604800
+@       IN      SOA     localhost. root.localhost. (
+                              1         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      localhost.
+@       IN      A       127.0.0.1
+
+zone "0.127.in-addr.arpa" IN {
+        type master;
+        file "/etc/named.local";
+        allow-update { none; };
+};
+
+$TTL    604800
+@       IN      SOA     localhost. root.localhost. (
+                              1         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      localhost.
+1.0.0   IN      PTR     localhost.
+
+/etc/hostconfig:
+--------------------
+DNSSERVER=-YES-
+
+http://dev.mysql.com/get/Downloads/MySQL-4.1/mysql-standard-4.1.10-apple-darwin6.8-powerpc.dmg/from/pick
+
+puis lancer le server avec la commande:
+
+/Library/StartupItems/MySQLCOM/MySQLCOM start
+
+installer Xcode tools 1.5 depuis http://connect.apple.com
+l: gplhost p: master
+
+
+
+export CVSROOT=:pserver:thomas@gplhost.com:/var/lib/cvs
+cvs login (password)
+cvs checkout dtc
+
+
+/usr/local/mysql/bin/mysql
+
