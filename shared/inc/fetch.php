@@ -192,7 +192,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 
 	global $conf_session_expir_minute;
 
-	global $adm_login;
+//	global $adm_login;
 	global $adm_realpass;
 	global $adm_pass;
 
