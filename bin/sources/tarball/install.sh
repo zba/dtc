@@ -16,14 +16,14 @@ echo "DTC needs to access to your mysql database"
 echo "Please give your mysql account information"
 echo -n 'MySQL hostname [localhost]: '
 read conf_mysql_host
-if [ $conf_mysql_host == "" ];
+if [ "$conf_mysql_host" = "" ];
 then
 	conf_mysql_host="localhost"
 fi
 
 echo -n 'MySQL root login [root]: '
 read conf_mysql_login
-if [ $conf_mysql_login == "" ];
+if [ "$conf_mysql_login" = "" ];
 then
 	conf_mysql_login="root"
 fi
@@ -33,7 +33,7 @@ read conf_mysql_pass
 
 echo -n 'Choose a DB name for DTC [dtc]: '
 read conf_mysql_db
-if [ $conf_mysql_db == "" ];
+if [ "$conf_mysql_db" = "" ];
 then
 	conf_mysql_db="dtc"
 fi
@@ -56,7 +56,7 @@ echo -n 'Subdomain for DTC admin panel [dtc]: '
 read dtc_admin_subdomain
 
 
-if [ $dtc_admin_subdomain == "" ];
+if [ "$dtc_admin_subdomain" = "" ];
 then
 	dtc_admin_subdomain="dtc"
 fi
@@ -66,7 +66,7 @@ echo "I need now you host information for apache !"
 echo -n "What is your IP addresse ? ["$cur_ip_addr"]: "
 read conf_ip_addr
 
-if [ $conf_ip_addr == "" ];
+if [ "$conf_ip_addr" = "" ];
 then
 	conf_ip_addr=$cur_ip_addr
 fi
@@ -75,7 +75,7 @@ echo ""
 echo "Where will you keep your files for hosting ?"
 echo -n "Hosting path [/var/www/sites]: "
 read conf_hosting_path
-if [ $conf_hosting_path == "" ];
+if [ "$conf_hosting_path" = "" ];
 then
 	conf_hosting_path="/var/www/sites"
 fi
@@ -84,7 +84,7 @@ echo ""
 echo "What admin login/pass you want for the administration of "$main_domain_name "?"
 echo -n "Login [dtc]: "
 read conf_adm_login
-if [ $conf_adm_login == "" ];
+if [ "$conf_adm_login" = "" ];
 then
 	conf_adm_login="dtc"
 fi
@@ -99,7 +99,7 @@ echo ""
 echo "Where is located you httpd.conf ?"
 echo -n "httpd.conf path [/usr/local/apache/httpd.conf]: "
 read PATH_HTTPD_CONF
-if [ $PATH_HTTPD_CONF == "" ];
+if [ "$PATH_HTTPD_CONF" = "" ];
 then
 	PATH_HTTPD_CONF="/usr/local/apache/httpd.conf"
 fi
@@ -108,7 +108,7 @@ echo ""
 echo "Where is located your named.conf ?"
 echo -n "named.conf path [/etc/named.conf]: "
 read PATH_NAMED_CONF
-if [ $PATH_NAMED_CONF == "" ];
+if [ "$PATH_NAMED_CONF" = "" ];
 then
 	PATH_NAMED_CONF="/etc/named.conf"
 fi
@@ -117,7 +117,7 @@ echo ""
 echo "Where is located your proftpd.conf ?"
 echo -n "Qmail control path [/etc/proftpd.conf]: "
 read PATH_PROFTPD_CONF
-if [ $PATH_PROFTPD_CONF == "" ];
+if [ "$PATH_PROFTPD_CONF" = "" ];
 then
 	PATH_PROFTPD_CONF="/etc/proftpd.conf"
 fi
@@ -126,7 +126,7 @@ echo ""
 echo "Where is located your qmail control directory ?"
 echo -n "Qmail control path [/var/qmail/control]: "
 read PATH_QMAIL_CTRL
-if [ $PATH_QMAIL_CTRL == "" ];
+if [ "$PATH_QMAIL_CTRL" = "" ];
 then
 	PATH_QMAIL_CTRL="/var/qmail/control"
 fi
@@ -135,7 +135,7 @@ echo ""
 echo "Where is located your php4 cgi parser ?"
 echo -n "php4 cgi path [/usr/local/bin/php4]: "
 read PATH_PHP_CGI
-if [ $PATH_PHP_CGI == "" ];
+if [ "$PATH_PHP_CGI" = "" ];
 then
 	PATH_PHP_CGI="/usr/local/bin/php4"
 fi
@@ -147,7 +147,7 @@ echo ""
 echo "Where do you want DTC be installed ?"
 echo -n "DTC shared install folder [/usr/share/dtc]: "
 read PATH_DTC_SHARED
-if [ $PATH_DTC_SHARED == "" ];
+if [ "$PATH_DTC_SHARED" = "" ];
 then
 	PATH_DTC_SHARED="/usr/share/dtc"
 fi
@@ -159,7 +159,7 @@ echo ""
 echo "Where do you want DTC to store it's generated configuration files ?"
 echo -n "DTC generated files [/usr/share/dtc/etc]: "
 read PATH_DTC_ETC
-if [ $PATH_DTC_ETC == "" ];
+if [ "$PATH_DTC_ETC" = "" ];
 then
 	PATH_DTC_ETC="/usr/share/dtc/etc"
 fi
@@ -194,7 +194,7 @@ echo ""
 echo -n 'Confirm and install DTC ? [Ny]:'
 read valid_infos
 
-if [ $valid_infos =  'y' ];
+if [ "$valid_infos" =  'y' ];
 then
 	echo "Installation has started..."
 else

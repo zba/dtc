@@ -28,14 +28,14 @@ echo "If you didn't setup a root password before,"
 echo "DTC can do it of you (later on this script)."
 echo -n 'MySQL hostname [localhost]: '
 read conf_mysql_host
-if [ $conf_mysql_host == ""];
+if [ "$conf_mysql_host" = "" ];
 then
 	conf_mysql_host="localhost"
 fi
 
 echo -n 'MySQL root login [root]: '
 read conf_mysql_login
-if [ $conf_mysql_login == ""];
+if [ "$conf_mysql_login" = "" ];
 then
 	conf_mysql_login="root"
 fi
@@ -48,7 +48,7 @@ echo "Do you want that DTC setup this password"
 echo "for you ? (eg: UPDATE user SET Password...)"
 echo -n 'Setup the mysql password [Ny]: '
 read conf_mysql_change_root
-if [ $conf_mysql_change_root == ""];
+if [ "$conf_mysql_change_root" = "" ];
 then
 	echo "Skinping MySQL password root change!"
 else
@@ -59,7 +59,7 @@ fi
 
 echo -n 'Choose a DB name for DTC [dtc]: '
 read conf_mysql_db
-if [ $conf_mysql_db == ""];
+if [ "$conf_mysql_db" = "" ];
 then
 	conf_mysql_db="dtc"
 fi
@@ -82,7 +82,7 @@ echo -n 'Subdomain for DTC admin panel [dtc]: '
 read dtc_admin_subdomain
 
 
-if [ $dtc_admin_subdomain == ""];
+if [ "$dtc_admin_subdomain" = "" ];
 then
 	dtc_admin_subdomain="dtc"
 fi
@@ -92,7 +92,7 @@ echo "I need now your host information for apache !"
 echo -n "What is your IP addresse ? [ 127.0.0.1 ]: "
 read conf_ip_addr
 
-if [ $conf_ip_addr == ""];
+if [ "$conf_ip_addr" = "" ];
 then
 	conf_ip_addr="127.0.0.1"
 fi
@@ -101,7 +101,7 @@ echo ""
 echo "Where will you keep your files for hosting ?"
 echo -n "Hosting path [/var/www/sites]: "
 read conf_hosting_path
-if [ $conf_hosting_path == ""];
+if [ "$conf_hosting_path" = "" ];
 then
 	conf_hosting_path="/var/www/sites"
 fi
@@ -110,7 +110,7 @@ echo ""
 echo "What admin login/pass do you want for the administration of "$main_domain_name "?"
 echo -n "Login [dtc]: "
 read conf_adm_login
-if [ $conf_adm_login == ""];
+if [ "$conf_adm_login" = "" ];
 then
 	conf_adm_login="dtc"
 fi
@@ -203,7 +203,7 @@ if [ $kernel = "OpenBSD" ];
 then
 	flag=`grep named_flags=\"-c /etc/rc.conf`	
 	echo "conf $flag"
-	if [ "$flag" == "" ];
+	if [ "$flag" = "" ];
 	then
 		echo "===> OpenBSD: Backing up /etc/rc.conf and insterting named_flags=\"-c /etc/named.conf\""
 		echo "/etc/rc.conf no named"
