@@ -250,6 +250,9 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 
 				$dump_path = $admin_path."/".$domain."/subdomains/".$vhost."/logs/";
 				$dump_file_name = $dump_path.$db_select_name."_".$year."_".$month;
+				if($year == $current_year && $month == $current_month){
+					
+				}
 				if(!file_exists($dump_file_name.".bz2") && ($year!=$current_year || $month!=$current_month)){
 					$selected_month_start = mktime(0,0,0,$month,1,$year);
 					$selected_month_end = (mktime(0,0,0,($month+1),1,$year))-1;
