@@ -1,6 +1,7 @@
 Here is the todo in unsorted order:
 
 - Add support for spamassassin & clamav
+- Add support for TXT record
 - Add resseller interface
 - Add SSL support for customers
 - Enable multiple user delegation in SQL account manager
