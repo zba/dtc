@@ -15,5 +15,6 @@ CREATE TABLE IF NOT EXISTS domain (
   whois enum('here','away','linked') NOT NULL default 'away',
   hosting enum('here','away') NOT NULL default 'here',
   du_stat bigint(20) NOT NULL default '0',
+  gen_unresolved_domain_alias enum('yes','no') NOT NULL default 'no';
   UNIQUE KEY name (name)
 ) TYPE=MyISAM
