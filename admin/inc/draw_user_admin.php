@@ -32,21 +32,22 @@ function drawNewAdminForm(){
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "No user waiting.";
+		$waiting_new_users .= "<b>No user waiting!</b>";
 	}
-	$waiting_new_users .= "<table>
-<tr><td>Name</td><td>Login</td><td>Domain name</td><td>Action</td></tr>";
-	for($i=0;$i<$n;$i++){
-		$a = mysql_fetch_array($r);
-		$waiting_new_users .= "<tr><td><u>".$a["comp_name"].":</u> ";
-		$waiting_new_users .= $a["family_name"].", ".$a["first_name"]."</td>";
-		$waiting_new_users .= "<td>".$a["reqadm_login"]."</td>";
-		$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
-		$waiting_new_users .= "<td><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">View details</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Add</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Del</a></td>";
-		$waiting_new_users .= "</tr>";
+	else{
+		$waiting_new_users .= "<table border=\"1\">
+	<tr><td>Name</td><td>Login</td><td>Domain name</td><td>Action</td></tr>";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$waiting_new_users .= "<tr><td><u>".$a["comp_name"].":</u> ";
+			$waiting_new_users .= $a["family_name"].", ".$a["first_name"]."</td>";
+			$waiting_new_users .= "<td>".$a["reqadm_login"]."</td>";
+			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
+			$waiting_new_users .= "<td><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">View details</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Add</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Del</a></td>";
+			$waiting_new_users .= "</tr>";
+		}
+		$waiting_new_users .= "</table>";
 	}
-	$waiting_new_users .= "</table>";
-
 	return "<table>
 <tr>
 	<td valign=\"top\">$add_a_user</td>

@@ -134,6 +134,21 @@ if($admlist_type == "Logins"){
 	}
 }else if($admlist_type == "Names"){
 	$admins .= "<br>";
+
+	// Display all admins wich has no login.
+	$query2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='0';";
+	$result2 = mysql_query($query2) or die("Cannot execute query : \"$query2\" ! ".mysql_error());
+	$num_rows2 = mysql_num_rows($result2);
+	if($num_rows2 > 0){
+		$admins .= "Nologins:<br>";
+		for($j=0;$j<$num_rows2;$j++){
+			$row2 = mysql_fetch_array($result2);
+			$linkadm_login = $row2["adm_login"];
+			$linkadm_pass = $row2["adm_pass"];
+			$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass\">$linkadm_login</a><br>";
+		}
+	}
+
 	$query7 = "SELECT * FROM $pro_mysql_client_table ORDER BY familyname,christname";
 	$result7 = mysql_query($query7) or die("Cannot execute query : \"$query7\" !");
 	$num_rows7 = mysql_num_rows($result7);
