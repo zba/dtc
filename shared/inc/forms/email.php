@@ -3,10 +3,15 @@
 function drawImportedMail($mailbox){
 	global $adm_email_login;
 	global $adm_email_pass;
+	global $errTxt;
 
 	global $pro_mysql_fetchmail_table;
 
 	$out = "";
+
+	if(isset($errTxt) && $errTxt != ""){
+		$out .= "<font color=\"red\">$errTxt</font><br>";
+	}
 
 	$url_start = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
 	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -18,21 +23,58 @@ function drawImportedMail($mailbox){
 	$r = mysql_query($q)or die("Cannot query $q ! line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	$out .= "<table border=\"1\">
-<tr><td>Address</td><td>Mailbox type</td><td>Server addr</td><td>Login</td><td>Pass</td><td>Use</td><td>Action</td></tr>";
+<tr><td>Address email</td><td>Mailbox type</td><td>Server addr</td><td>Login</td><td>Pass</td><td>Use</td><td>Action</td></tr>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
+		$pop3_selected = "";
+		$imap4_selected = "";
+		$msn_selected = "";
+		$hotmail_selected = "";
+		$yahoo_selected = "";
+		$gmail_selected = "";
+		switch($a["mailbox_type"]){
+		case "POP3":
+			$pop3_selected = " selected ";
+			break;
+		case "IMAP4":
+			$imap4_selected = " selected ";
+			break;
+		case "MSN":
+			$msn_selected = " selected ";
+			break;
+		case "HOTMAIL":
+			$hotmail_selected = " selected ";
+			break;
+		case "YAHOO":
+			$yahoo_selected = " selected ";
+			break;
+		case "GMAIL":
+			$yahoo_selected = " selected ";
+		default:
+			break;
+		}
+		$popup_boxtype = "<select name=\"mailbox_type\">
+			<option value=\"POP3\"$pop3_selected>POP3</option>
+			<option value=\"IMAP4\"$imap4_selected>IMAP4</option>
+			<option value=\"MSN\"$msn_selected>MSN</option>
+			<option value=\"HOTMAIL\"$hotmail_selected>HOTMAIL</option>
+			<option value=\"YAHOO\"$yahoo_selected>YAHOO</option>
+			<option value=\"GMAIL\"$yahoo_selected>GMAIL</option>";
+		if($a[""] == "yes"){
+			$useit = "";
+		}
 		$out .= "<tr>
-			<td>$form_start<input type=\"hidden\" name=\"action\" value=\"modify_fetchmail\">".$a["pop3_email"]."</td>
-			<td>Mailbox type</td>
-			<td>Server addr</td>
-			<td>Login</td>
-			<td>Pass</td>
+			<td>$form_start<input type=\"hidden\" name=\"action\" value=\"modify_fetchmail\"><input type=\"text\" name=\"email_addr\" value=\"".$a["pop3_email"]."\"></td>
+			<td>$popup_boxtype</td>
+			<td><input type=\"text\" name=\"server_addr\" value=\"".$a["pop3_server"]."\"></td>
+			<td><input type=\"text\" name=\"login\" value=\"".$a["pop3_login"]."\"></td>
+			<td><input type=\"text\" name=\"server_addr\" value=\"".$a["pop3_pass"]."\"></td>
 			<td>Use</td>
 			<td><input type=\"submit\" value=\"Save\"></form>$form_start<input type=\"hidden\" name=\"action\" value=\"modify_fetchmail\">
 			<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\"><input type=\"submit\" value=\"delete\"></form></td></tr>";
 	}
 	$out .= "<tr>
-		<td>$form_start<input type=\"hidden\" name=\"action\" value=\"add_fetchmail\"><input type=\"text\" name==\"email_addr\" value=\"\"></td>
+		<td>$form_start<input type=\"hidden\" name=\"action\" value=\"add_fetchmail\"><input type=\"text\" name=\"email_addr\" value=\"\"></td>
 		<td><select name=\"mailbox_type\">
 			<option value=\"POP3\">POP3</option>
 			<option value=\"IMAP4\">IMAP4</option>

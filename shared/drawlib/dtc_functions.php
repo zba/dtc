@@ -110,6 +110,14 @@ function isFtpLogin($mailbox){
 	else			return true;
 }
 
+// Check any mail password for another server
+function isMailPassword($login){
+//	$reg = '^([<>()\\\/\?_\[;,;:%\^@"!a-zA-Z0-9-]){4,16}$';
+	$reg = "^([_.a-zA-Z0-9-]){1,64}\$";
+        if(!ereg($reg,$pass))   return false;
+	else                    return true;
+}
+
 function isDTCPassword($pass){
 	$reg = "^([a-zA-Z0-9]){4,16}\$";
 	if(!ereg($reg,$pass))	return false;
@@ -245,7 +253,7 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 	if($conf_demo_version == "no"){
 		make_new_adm_domain_dir("$admin_path/$domain_name");
 		exec("cp -fulpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
-		system ("cp -rf $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
+		system ("cp -rfup $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
 	}
 
 	// Create domain in database

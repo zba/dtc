@@ -87,6 +87,22 @@ case "activate_antispam":
 	}
 	break;
 
+// ?adm_email_login=toto%40iglobalwall.com&adm_email_pass=toto&addrlink=fetchmail
+// &action=add_fetchmail&email_addr=zigo%40pplchat.com&mailbox_type=POP3&server_addr=pop.gplhost.com&login=zigo%40pplchat.com&pass=master&use=yes
+case "add_fetchmail":
+	if(pass_check_email()==false)	die("User not found!");
+	if(checkMailbox($user,$host,$_REQUEST["email_addr"],
+				$_REQUEST["mailbox_type"],$_REQUEST["server_addr"],
+				$_REQUEST["login"],$_REQUEST["pass"])){
+		$q = "INSERT INTO $pro_mysql_fetchmail_table (id,domain_user,domain_name,
+		pop3_email,mailbox_type,pop3_server,pop3_login,pop3_pass)
+		VALUES ('','$user','$host',
+		'".$_REQUEST["email_addr"]."','".$_REQUEST["mailbox_type"]."','".$_REQUEST["server_addr"]."','".$_REQUEST["login"]."','".$_REQUEST["pass"]."');";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}
+	break;
+//	$q = " WHERE id='$user' AND mbox_host='$host';";
+
 // action=dtcemail_change_pass&newpass1=&newpass2=&submit=Ok
 case "dtcemail_change_pass":
 	if(pass_check_email()==false)	die("User not found!");

@@ -389,7 +389,6 @@ else
 fi
 
 # only try and do qmail stuff if we have qmail installed! (check the control directory)
-echo "setupping qmail in" $PATH_QMAIL_CTRL
 if [ -e $PATH_QMAIL_CTRL ]
 then
 	#

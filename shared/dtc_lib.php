@@ -25,6 +25,9 @@ require("$dtcshared_path/drawlib/tree_menu.php");		// New version of menu workin
 require("$dtcshared_path/drawlib/skin.php");			// Contains curent usermenu building plus some layout functions and rollover/preloads of images
 require("$dtcshared_path/drawlib/skinLib.php");			// This is the new modular skin function using gfx/skin folder and skin code registration/css
 
+// Fetchmail functions to importe mail from remote accounts
+require("$dtcshared_path/inc/fetchmail.php");
+
 /////////////////////////////////////////
 // The secure paiement buttons and api //
 /////////////////////////////////////////
