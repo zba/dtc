@@ -65,7 +65,8 @@ function isHostnameOrIP($hostname){
 }
 
 function isHostname($hostname){
-	$reg = '^((([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$';
+//	$reg = '^((([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$';
+	$reg = "^([a-z0-9]+)([.a-z0-9-]+)\$";
 	if(!ereg($reg,$hostname))	return false;
 	else			return true;
 }
@@ -217,12 +218,19 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 }
 
 function drawPercentBar($value,$max){
-	$percent = $value * 200 / $max;
-	if($percent < 0)	$percent = 0;
-	if($percent > 200)	$percent = 200;
-	$percent_val = round($percent/2,2);
-	$percent_graf = round($percent);
-	$percent_graf2 = 200 - $percent_graf;
+	if($max != 0){
+		$percent = $value * 200 / $max;
+		if($percent < 0)	$percent = 0;
+		if($percent > 200)	$percent = 200;
+		$percent_val = round($percent/2,2);
+		$percent_graf = round($percent);
+		$percent_graf2 = 200 - $percent_graf;
+	}else{
+		$percent_val = 0;
+		$percent_graf = 0;
+		$percent_graf2 = 0;
+		$percent = 0;
+	}
 	for($i=0;$i<200;$i+=5){
 		if($i < $percent_graf){
 			$alts .= "*";

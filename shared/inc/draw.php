@@ -554,10 +554,10 @@ function drawAdminTools_Subdomain($domain){
 
 		// Allow creation of new sub-domains
 		if($nbr_subdomain < $max_subdomain){
-			$txt .= "<tr><td>Subdomain name:".$txt_subdom_create_name[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_name\" value=\"\"></td><td></td></tr>";
-			$txt .= "<tr><td>IP du sous-domain (laissez vide sinon):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_ip\" value=\"\"></td>";
-			$txt .= "<tr><td>Dynamic ip update login:</td><td><input type=\"text\" name=\"newsubdomain_dynlogin\" value=\"\"></td></tr>";
-			$txt .= "<tr><td>Dynamic ip update password:</td><td><input type=\"text\" name=\"newsubdomain_dynpass\" value=\"\"></td></tr>";
+			$txt .= "<tr><td align=\"right\">Subdomain name:".$txt_subdom_create_name[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_name\" value=\"\"></td><td></td></tr>";
+			$txt .= "<tr><td align=\"right\">IP du sous-domain (laissez vide sinon):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_ip\" value=\"\"></td>";
+			$txt .= "<tr><td align=\"right\">Dynamic ip update login:</td><td><input type=\"text\" name=\"newsubdomain_dynlogin\" value=\"\"></td></tr>";
+			$txt .= "<tr><td align=\"right\">Dynamic ip update password:</td><td><input type=\"text\" name=\"newsubdomain_dynpass\" value=\"\"></td></tr>";
 			$txt .= "<td><input type=\"submit\" name=\"newsubdomain\" value=\"Ok\"></td></tr>";
 		}else{
 			$txt .= "<td colspan=\"3\">".$txt_subdom_limit_reach[$lang]."</td>";
@@ -565,17 +565,17 @@ function drawAdminTools_Subdomain($domain){
 	}else{
 		// Edition of existing subdomains
 		$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>Edit a subdomain:".$txt_subdom_edit[$lang]."</u></b></font></td></tr>";
-		$txt .= "<tr><td>Subdomain name:".$txt_subdom_create_name[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
-		$txt .= "<tr><td>IP du sous-domain (laissez vide sinon):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
+		$txt .= "<tr><td align=\"right\">Subdomain name:".$txt_subdom_create_name[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
+		$txt .= "<tr><td align=\"right\">IP du sous-domain (laissez vide sinon):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
 		<input type=\"hidden\" name=\"edit_a_subdomain\" value=\"".$_REQUEST["edit_a_subdomain"]."\"><input type=\"text\" name=\"newsubdomain_ip\" value=\"$ip_domain_to_edit\"></td></tr>";
 		$txt .= "<tr><td colspan=\"3\">";
 		$txt .= "If need it, it's possible to set your subdomain IP remotly,
 for example if you have a home connection dynamic address and you want a
 subdomain to point to it. First, enter login and password here:</td></tr>";
 
-		$txt .= "<tr><td>Dynamic ip update login:</td><td><input type=\"text\" name=\"subdomain_dynlogin\" value=\"$login_to_edit\"></td></tr>";
-		$txt .= "<tr><td>Dynamic ip update password:</td><td><input type=\"text\" name=\"subdomain_dynpass\" value=\"$pass_to_edit\"></td></tr>";
-		$txt .= "<tr><td></td><td><input type=\"submit\" name=\"edit_one_subdomain\" value=\"Ok\"></td></tr>";
+		$txt .= "<tr><td align=\"right\">Dynamic ip update login:</td><td><input type=\"text\" name=\"subdomain_dynlogin\" value=\"$login_to_edit\"></td></tr>";
+		$txt .= "<tr><td align=\"right\">Dynamic ip update password:</td><td><input type=\"text\" name=\"subdomain_dynpass\" value=\"$pass_to_edit\"></td></tr>";
+		$txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"edit_one_subdomain\" value=\"Ok\"></td></tr>";
 		if($login_to_edit != "" && isset($login_to_edit)){
 			$txt .= "<tr><td colspan=\"3\">Then
 simply add the following script to your Unix system crontab (lynx-ssl is

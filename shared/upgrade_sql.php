@@ -79,7 +79,8 @@ ALTER TABLE domain
 
 ALTER TABLE subdomain
 	ADD login varchar(16) default NULL,
-	ADD pass varchar(64) default NULL ;
+	ADD pass varchar(64) default NULL,
+	ADD w3_alias enum('yes','no') NOT NULL default 'non' ;
 
 ALTER TABLE admin
 	ADD bandwidth_per_month_mb INT ( 11 ) NOT NULL default '100',

@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS subdomain (
   ip varchar(16) NOT NULL default 'default',
   login varchar(16) default NULL,
   pass varchar(64) default NULL,
+  w3_alias enum('yes','no') NOT NULL default 'non',
   PRIMARY KEY  (id),
   UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
 ) TYPE=MyISAM

@@ -212,6 +212,7 @@ function fetchAdminData($adm_login,$adm_pass){
 			$subdomain["ip"] = $row2["ip"];
 			$subdomain["login"] = $row2["login"];
 			$subdomain["pass"] = $row2["pass"];
+			$subdomain["w3_alias"] = $row2["w3_alias"];
 			$subs[] = $subdomain;
 		}
 		$domain["subdomains"] = $subs;
