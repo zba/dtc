@@ -417,10 +417,15 @@ then
 
 	if ! [ -e /var/qmail/users/assign.DTC.backup ]
 	then
-		cp -f /var/qmail/users/assign /var/qmail/users/assign.DTC.backup
+		if [ -e /var/qmail/users/assign ]; then
+			cp -f /var/qmail/users/assign /var/qmail/users/assign.DTC.backup
+		fi
 	fi
 	rm -f /var/qmail/users/assign
 	touch $PATH_DTC_ETC/assign
+	if ! [ -e /var/qmail/users ]; then
+		mkdir -p /var/qmail/users
+	fi
 	ln -s $PATH_DTC_ETC/assign /var/qmail/users/assign
 
 	# Complete mistake ! Please forgive me !
@@ -532,7 +537,7 @@ mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
 
 smtp_sasl_auth_enable = no
 smtpd_sasl_security_options = noanonymous
-smtpd_sasl_local_domain = \$myhostname
+smtpd_sasl_local_domain = /etc/mailname
 smtpd_sasl_auth_enable = yes
 smtpd_tls_auth_only = no
 " >> $TMP_FILE

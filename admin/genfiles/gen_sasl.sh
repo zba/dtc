@@ -3,8 +3,9 @@
 domain_full_name=$1
 id=$2
 passwdtemp=$3
+mailname=`/usr/bin/head -n 1 /etc/mailname`
 
-echo $passwdtemp | /usr/sbin/saslpasswd2 -c -p -f ../etc/sasldb2 -u $domain_full_name $id
+echo $passwdtemp | /usr/sbin/saslpasswd2 -c -p -f ../etc/sasldb2 -u $mailname $id\@$domain_full_name
 chmod 664 ../etc/sasldb2 
 if [ -e /var/spool/postfix/etc ]; then
 	echo "OK, in /var/spool" >> /tmp/sasl.tmp
