@@ -319,11 +319,11 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 
 	$total_http_transfer = fetchHTTPInfo($webname);
 	$total_ftp_transfer = fetchFTPInfo($webname);
+	$total_transfer = smartByte($total_http_transfer + $total_ftp_transfer);
 
 	return "<b><u>".$txt_your_domain[$lang]."</u></b><br><br>
 	<font size=\"-1\">
-	Total HTTP transfer: $total_http_transfer<br>
-	Total FTP transfer: $total_ftp_transfer<br>
+	Total transfer: $total_transfer<br>
 	Quota disque : $du / $quota Mo<br>
 	".$txt_your_domain_email[$lang]." $email_nbr / $max_email<br>
 	".$txt_your_domain_ftp[$lang]." $ftp_nbr / $max_ftp<br>
@@ -793,10 +793,10 @@ function drawAdminTools_AdminStats($admin){
 	}
 	
 	$out .= "<u><b>Total transfered bytes:</b></u><br>
-HTTP: $http_amount";
-	$out .= "<br>FTP:  $ftp_amount";
-	$out .= "<br>Total: ". ($http_amount + $ftp_amount);
-	$out .= "/ ".$admin["info"]["bandwidth_per_month_mb"];
+HTTP: ".smartByte($http_amount);
+	$out .= "<br>FTP: ".smartByte($ftp_amount);
+	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount);
+	$out .= " / ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024);
 	return $out;
 }
 
@@ -815,12 +815,11 @@ function drawAdminTools_DomainStats($admin,$eddomain){
     $num_rows = mysql_num_rows($result_ftp);
     $ftp_amount = $ftp_amount + mysql_result($result_ftp,0,"transfer");
 	
-	
 	$out .= "<u><b>Total transfered bytes:</b></u><br>
-HTTP: $http_amount";
-	$out .= "<br>FTP:  $ftp_amount";
-	$out .= "<br>Total: ". ($http_amount + $ftp_amount);
-	$out .= "/ ".$admin["info"]["bandwidth_per_month_mb"];
+HTTP: ".smartByte($http_amount);
+	$out .= "<br>FTP:  ".smartByte($ftp_amount);
+	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount);
+	$out .= " / ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024);
 	return $out;
 }
 
