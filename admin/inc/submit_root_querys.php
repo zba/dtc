@@ -212,7 +212,7 @@ disk_quota_mb,bw_quota_per_month_gb) VALUES ('','".$a["iscomp"]."',
 	// Send a mail to user with how to login and use interface.
 	$txt_userwaiting_account_activated_subject = "GPLHost:>_ Account ".$_REQUEST["reqadm_login"]." has been activated!";
 	$txt_userwaiting_account_activated_text_header = "DTC Account opened!";
-	$headers = "From: ".$webmaster_email_addr;
+	$headers = "From: ".$conf_webmaster_email_addr;
 	mail($a["email"],$txt_userwaiting_account_activated_subject,
 		$txt_userwaiting_account_activated_text_header,$headers);
 

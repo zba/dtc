@@ -30,10 +30,45 @@ case "dtcemail_change_pass":
 	break;
 // action=dtcemail_set_deliver_local&setval=no
 case "dtcemail_set_deliver_local":
+	// Fetch the path of the mailbox
+	$box = mysql_fetch_array($res_mailbox);
+	$q = "SELECT $pro_mysql_admin_table.path
+FROM $pro_mysql_domain_table,$pro_mysql_admin_table
+WHERE $pro_mysql_domain_table.name='$host'
+AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+        if($n != 1) die("Cannot find domain path in database ! line: ".__LINE__." file: ".__FILE__);
+	$a = mysql_fetch_array($r);
+
+	$boxpath = $a["path"]."/$host/Mailboxs/$user";
+
+	// Write .qmail file
+	$oldumask = umask(0);
+	if($conf_demo_version == "no"){
+		mk_Maildir($boxpath);
+	}
+	if($_REQUEST["setval"] == "yes"){
+                $qmail_file_content = "./Maildir/\n";
+        }
+
+	if($box["redirect1"] != "" && isset($box["redirect1"]) ){
+		$qmail_file_content .= '&'.$box["redirect1"]."\n";
+	}
+	if($box["redirect2"] != "" && isset($box["redirect2"]) ){
+		$qmail_file_content .= '&'.$box["redirect2"]."\n";
+	}
+	if($conf_demo_version == "no"){
+		$fp = fopen ( "$boxpath/.qmail", "w");
+		fwrite ($fp,$qmail_file_content);
+		fclose($fp);
+	}
+	umask($oldumask);
+
 	if($_REQUEST["setval"] == "no"){
-		$q = "UPDATE $pro_mysql_pop_table SET local_deliver='no' WHERE id='$user' AND mbox_host='$host';";
+		$q = "UPDATE $pro_mysql_pop_table SET localdeliver='no' WHERE id='$user' AND mbox_host='$host';";
 	}else{
-		$q = "UPDATE $pro_mysql_pop_table SET local_deliver='yes' WHERE id='$user' AND mbox_host='$host';";
+		$q = "UPDATE $pro_mysql_pop_table SET localdeliver='yes' WHERE id='$user' AND mbox_host='$host';";
 	}
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	break;
