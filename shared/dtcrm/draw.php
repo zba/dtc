@@ -9,23 +9,6 @@ require_once "$dtcshared_path/dtcrm/draw_handle.php";
 require_once "$dtcshared_path/dtcrm/draw_whois.php";
 require_once "$dtcshared_path/dtcrm/draw_nameservers.php";
 
-function getContactsArrayFromID($owner_id,$billing_id,$admin_id){
-	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$owner_id';";
-	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
-	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
-	$contacts["owner"] = mysql_fetch_array($result)or die("Cannot fetch array !");
-
-	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$billing_id';";
-	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
-	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
-	$contacts["billing"] = mysql_fetch_array($result)or die("Cannot fetch array !");
-
-	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$admin_id';";
-	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
-	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
-	$contacts["admin"] = mysql_fetch_array($result)or die("Cannot fetch array !");
-	return $contacts;
-}
 function drawAdminTools_AddDomain($admin){
 	global $lang;
 	global $PHP_SELF;
@@ -47,6 +30,7 @@ function drawAdminTools_AddDomain($admin){
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"add_domain_type\" value=\"".$_REQUEST["add_domain_type"]."\">
 <input type=\"hidden\" name=\"add_regORtrans\" value=\"register\">
+$form_enter_domain_name
 </form>
 ";
 

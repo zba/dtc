@@ -1,5 +1,23 @@
 <?php
 
+function getContactsArrayFromID($owner_id,$billing_id,$admin_id){
+	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$owner_id';";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
+	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
+	$contacts["owner"] = mysql_fetch_array($result)or die("Cannot fetch array !");
+
+	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$billing_id';";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
+	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
+	$contacts["billing"] = mysql_fetch_array($result)or die("Cannot fetch array !");
+
+	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$admin_id';";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
+	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
+	$contacts["admin"] = mysql_fetch_array($result)or die("Cannot fetch array !");
+	return $contacts;
+}
+
 function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admin=-1){
 	global $lang;
 	global $PHP_SELF; 

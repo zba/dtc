@@ -41,12 +41,13 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"dtcrm_action\" value=\"transfer_domain\">
+<input type=\"hidden\" name=\"add_regORtrans\" value=\"transfer\">
+<input type=\"hidden\" name=\"add_domain_type\" value=\"".$_REQUEST["add_domain_type"]."\">
 ";
 //	registry_check_transfer($domain)
 	$out .= "<b><u>Transfer ".$eddomain["name"]." from
 another registrar to GPLHost:</u></b><br>
-<i><u>Step1: check if domain is transferable</u></i>
-";
+<i><u>Step1: check if domain is transferable</u></i>";
 	if($given_fqdn != "none" && !isset($toreg_extention)){
 		$c = strrpos($given_fqdn,".");
 		$toreg_extention = substr($given_fqdn,$c);
@@ -75,6 +76,8 @@ another registrar to GPLHost:</u></b><br>
 		Server said: ".$regz["attributes"]["reason"]."<br><br>
 <i><u>Step2: select contacts for domain transfer</u></i><br>
 ";
+		$form_start .= "<input type=\"hidden\" name=\"toreg_domain\" value=\"".$_REQUEST["toreg_domain"]."\">
+<input type=\"hidden\" name=\"toreg_extention\" value=\"".$_REQUEST["toreg_extention"]."\">";
 		if(isset($_REQUEST["dtcrm_owner_hdl"]) && $_REQUEST["dtcrm_owner_hdl"] != "" &&
 			isset($_REQUEST["dtcrm_admin_hdl"]) && $_REQUEST["dtcrm_admin_hdl"] != "" &&
 			isset($_REQUEST["dtcrm_billing_hdl"]) && $_REQUEST["dtcrm_billing_hdl"] != "" &&
@@ -96,9 +99,8 @@ another registrar to GPLHost:</u></b><br>
 				return $out;
 			}
 
-			$out .= "<i><u>Step3: Proceed for transfer</u></i><br>
-$whois_forwareded_params";
-
+			$out .= "<i><u>Step3: Proceed for transfer</u></i><br>";
+			$form_start .= $whois_forwareded_params;
 			$out .= "
 Remaining on your account: \$" . $remaining . "<br>
 Total price: \$". $fqdn_price . "<br><br>";
@@ -107,22 +109,25 @@ Total price: \$". $fqdn_price . "<br><br>";
 				$out .= "
 You currently don't have enough funds on your account. You will be
 redirected to our paiement system.<br><br>
-<input type=\"submit\" value=\"Proceed to paiement\">
+$form_start<input type=\"submit\" value=\"Proceed to paiement\">
 </form>";
 				return $out;
 			}
-			$out .= "
+			$out .= "$form_start
 <input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
 <input type=\"submit\" value=\"Proceed transfer\">
 </form>
 ";
 			return $out;
 		}else{
-			$out .= whoisHandleSelection($admin);
+			$out .= $form_start.whoisHandleSelection($admin);
 			$out .= $form_enter_dns_infos;
 		}
 	}else{
-		$out .= "$form_start$form_enter_domain_name";
+		$out .= "$form_start<br>
+Please enter the domain name you wish to transfer:
+$form_enter_domain_name";
+		return $out;
 	}
 	$out .= "<input type=\"submit\" value=\"Ok\">
 </form>";
