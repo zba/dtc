@@ -5,6 +5,10 @@ function register_user(){
 // firstname=ano&compname=testsoc&email=toto@toto.com&phone=PARIS&
 // fax=state&address1=1&address2=2&address3=3&zipcode=75991&city=paris&
 // state=state&country=US&Login=Register
+
+	global $pro_mysql_admin_table;
+
+	// Check if all fields are blank, in wich case don't display error
 	if(($_REQUEST["reqadm_login"] == "" || !isset($_REQUEST["reqadm_login"]))
 	&& ($_REQUEST["reqadm_pass"] == "" || !isset($_REQUEST["reqadm_pass"]))
 	&& ($_REQUEST["reqadm_pass2"] == "" || !isset($_REQUEST["reqadm_pass2"]))
@@ -19,33 +23,40 @@ function register_user(){
 	&& ($_REQUEST["firstname"] == "" || !isset($_REQUEST["firstname"]))){
 		$ret["err"] = 1;
 		$ret["mesg"] = "Not registering";
+		return $ret;
 	}
-	if(!isFtpLogin($_REQUEST["adm_login"])){
+
+	// Do field format checking and escaping for all fields
+	if(!isFtpLogin($_REQUEST["reqadm_login"])){
 		$ret["err"] = 2;
 		$ret["mesg"] = "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.";
+		return $ret;
 	}
 	if(!isDTCPassword($_REQUEST["reqadm_pass"])){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.";
+		return $ret;
 	}
 	if($_REQUEST["reqadm_pass"] != $_REQUEST["reqadm_pass2"]){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Passwords 1 and 2 does not match!";
+		return $ret;
 	}
 	if(!isHostnameOrIP($_REQUEST["domain_name"])){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Domain name does not look like to be a correct hostname.";
+		return $ret;
 	}
 	if(!isValidEmail($_REQUEST["email"])){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Email does not look like to be a correct address format.";
+		return $ret;
 	}
-
-//	if($_REQUEST["
 
 	if(!isset($_REQUEST["familyname"]) || $_REQUEST["familyname"]==""){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Required field family name missing.";
+		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
 			$esc_familyname = addslashes($_REQUEST["familyname"]);
@@ -57,6 +68,7 @@ function register_user(){
 	if(!isset($_REQUEST["firstname"]) || $_REQUEST["firstname"]==""){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Required field first name missing.";
+		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
 			$esc_firstname = addslashes($_REQUEST["firstname"]);
@@ -68,6 +80,7 @@ function register_user(){
 	if(!isset($_REQUEST["phone"]) || $_REQUEST["phone"]==""){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Required field phone missing.";
+		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
 			$esc_phone = addslashes($_REQUEST["phone"]);
@@ -77,20 +90,21 @@ function register_user(){
 	}
 
 	if (!get_magic_quotes_gpc()){
-		$esc_compname = addslashes($_REQUEST["compname"]);
-	}else{
-		$esc_compname = $_REQUEST["compname"];
-	}
-
-	if (!get_magic_quotes_gpc()){
 		$esc_fax = addslashes($_REQUEST["fax"]);
 	}else{
 		$esc_fax = $_REQUEST["fax"];
 	}
 
+	if (!get_magic_quotes_gpc()){
+		$esc_compname = addslashes($_REQUEST["compname"]);
+	}else{
+		$esc_compname = $_REQUEST["compname"];
+	}
+
 	if(!isset($_REQUEST["address1"]) || $_REQUEST["address1"]==""){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Required field address missing.";
+		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
 			$esc_address1 = addslashes($_REQUEST["address1"]);
@@ -111,16 +125,28 @@ function register_user(){
 		$esc_address3 = $_REQUEST["address3"];
 	}
 
-	if (!get_magic_quotes_gpc()){
-		$esc_zipcode = addslashes($_REQUEST["zipcode"]);
+	if(!isset($_REQUEST["zipcode"]) || $_REQUEST["zipcode"]==""){
+		$ret["err"] = 2;
+		$ret["mesg"] = "Required field zipcode missing.";
+		return $ret;
 	}else{
-		$esc_zipcode = $_REQUEST["zipcode"];
+		if (!get_magic_quotes_gpc()){
+			$esc_zipcode = addslashes($_REQUEST["zipcode"]);
+		}else{
+			$esc_zipcode = $_REQUEST["zipcode"];
+		}
 	}
 
-	if (!get_magic_quotes_gpc()){
-		$esc_city = addslashes($_REQUEST["city"]);
+	if(!isset($_REQUEST["city"]) || $_REQUEST["city"]==""){
+		$ret["err"] = 2;
+		$ret["mesg"] = "Required field city missing.";
+		return $ret;
 	}else{
-		$esc_city = $_REQUEST["city"];
+		if (!get_magic_quotes_gpc()){
+			$esc_city = addslashes($_REQUEST["city"]);
+		}else{
+			$esc_city = $_REQUEST["city"];
+		}
 	}
 
 	if (!get_magic_quotes_gpc()){
@@ -132,6 +158,7 @@ function register_user(){
 	if(!ereg("^([A-Z])([A-Z])\$",$_REQUEST["country"])){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Country code seems incorrect.";
+		return $ret;
 	}
 
 	if($_REQUEST["iscomp"] == "yes"){
@@ -141,7 +168,43 @@ function register_user(){
 	}else{
 		$ret["err"] = 2;
 		$ret["mesg"] = "Is company radio button is wrong!";
+		return $ret;
 	}
+
+	$q = "SELECT adm_login FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["reqadm_login"]."';";
+	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		$ret["err"] = 3;
+		$ret["mesg"] = "Username already taken! Try again.";
+		return $ret;
+	}
+// adm_login=aaa&reqadm_pass=&reqadm_pass2=&domain_name=toto&familyname=nymous&
+// firstname=ano&compname=testsoc&email=toto@toto.com&phone=PARIS&
+// fax=state&address1=1&address2=2&address3=3&zipcode=75991&city=paris&
+// state=state&country=US&Login=Register
+	$q = "INSERT INTO $pro_mysql_new_admin_table
+()
+VALUES('".$_REQUEST["reqadm_login"]."',
+'".$_REQUEST["reqadm_pass"]."',
+'".$_REQUEST["domain_name"]."',
+'$esc_familyname',
+'$esc_firstname',
+'$esc_compname',
+'$esc_comp',
+'".$_REQUEST["email"]."',
+'$esc_phone',
+'$esc_fax',
+'$esc_address1',
+'$esc_address2',
+'$esc_address3',
+'$esc_zipcode',
+'$esc_city',
+'$esc_state',
+'".$_REQUEST["country"]."')";
+	$ret["err"] = 0;
+	$ret["mesg"] = "$q";
+	return $ret;
 }
 
 function registration_form(){
@@ -239,6 +302,7 @@ function registration_form(){
 
 	$HTML_admin_edit_data = "<a href=\"/dtc\">Go to login</a>
 <form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+<input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>
 <tr>
 	<td>Login info:$login_skined</td>

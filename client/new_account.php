@@ -15,7 +15,19 @@ $anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 $anotherLanguageSelection = anotherLanguageSelection();
 $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
-$login_skined = skin($conf_skin,registration_form(),"New account registration:");
+$reguser = register_user();
+if($reguser["err"] == 0){
+	$form = $reguser["mesg"]."<br><h4>Registration successfull!</h4>
+Registration done! Please wait until a confirmation
+email message arrives at the mailbox you provided.<br><br>";
+}else if($reguser["err"] == 1){
+	$form = registration_form();
+}else{
+	$form = "<font color=\"red\">".$reguser["mesg"]."</font><br>"
+	.registration_form();
+}
+
+$login_skined = skin($conf_skin,$form,"New account registration:");
 $mypage = layout_login_and_languages($login_skined,$lang_sel);
 // Output the result !
 
