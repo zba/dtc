@@ -24,10 +24,18 @@ ns1,ns2". $ns_field .")VALUES('$domain_name','$owner_id','$billing_id','$admin_i
 	$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 }
 
-function drawNameTransfer($given_fqdn="none"){
+function drawNameTransfer($admin,$given_fqdn="none"){
+	global $adm_login;
+	global $adm_pass;
+	global $addrlink;
+
 	global $form_enter_domain_name;
+	global $form_enter_dns_infos;
+	global $whois_forwareded_params;
+
 	$toreg_domain = $_REQUEST["toreg_domain"];
 	$toreg_extention = $_REQUEST["toreg_extention"];
+
 	$form_start = "<form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -36,27 +44,89 @@ function drawNameTransfer($given_fqdn="none"){
 ";
 //	registry_check_transfer($domain)
 	$out .= "<b><u>Transfer ".$eddomain["name"]." from
-another registrar to GPLHost:</u></b><br><br>
+another registrar to GPLHost:</u></b><br>
 <i><u>Step1: check if domain is transferable</u></i>
 ";
 	if($given_fqdn != "none" && !isset($toreg_extention)){
-		$c = strrpos($given_fqdn);
+		$c = strrpos($given_fqdn,".");
 		$toreg_extention = substr($given_fqdn,$c);
-		$toreg_domain = substr($given_fqdn,1,strlen($given_fqdn)-$c);
+		$toreg_domain = substr($given_fqdn,0,$c);
 	}
-	if(isset($domain_extention) && $domain_extention != "" &&
-	isset($domain_name) && $domain_name != ""){
-		if($domain_extention != ".com" || $domain_extention != ".net" ||
-		$domain_extention != ".org" || $domain_extention != ".biz" ||
-		$domain_extention != ".name" || $domain_extention != ".info")
-			die("Domain extention registraion not open for $domain_extention");
+	if(isset($toreg_extention) && $toreg_extention != "" &&
+	isset($toreg_domain) && $toreg_domain != ""){
+		if($toreg_extention != ".com" && $toreg_extention != ".net" &&
+		$toreg_extention != ".org" && $toreg_extention != ".biz" &&
+		$toreg_extention != ".name" && $toreg_extention != ".info")
+			die("Domain extention registraion not open for $toreg_extention");
 		$out .= $form_start;
-		$out .= whoisHandleSelection($admin);
+		$regz = registry_check_transfer($toreg_domain.$toreg_extention);
+		if($regz["is_success"] != 1){
+			die("<font color=\"red\">TRANSFER CHECK FAILED</font>");
+		}
+		$regz["attributes"]["transferrable"] = 1;
+		if($regz["attributes"]["transferrable"] != 1){
+			$out .= "<font color=\"red\">TRANSFER CHECK FAILED</font><br>
+			Server said: ".$regz["attributes"]["reason"]."<br>
+			$form_start
+<input type=\"submit\" value=\"Go back\"></form>";
+			return $out;
+		}
+		$out .= "<font color=\"green\">TRANSFER CHECK SUCCESSFULL</font><br>
+		Server said: ".$regz["attributes"]["reason"]."<br><br>
+<i><u>Step2: select contacts for domain transfer</u></i><br>
+";
+		if(isset($_REQUEST["dtcrm_owner_hdl"]) && $_REQUEST["dtcrm_owner_hdl"] != "" &&
+			isset($_REQUEST["dtcrm_admin_hdl"]) && $_REQUEST["dtcrm_admin_hdl"] != "" &&
+			isset($_REQUEST["dtcrm_billing_hdl"]) && $_REQUEST["dtcrm_billing_hdl"] != "" &&
+			isset($_REQUEST["toreg_dns1"]) && $_REQUEST["toreg_dns1"] != "" &&
+			isset($_REQUEST["toreg_dns2"]) && $_REQUEST["toreg_dns2"] != ""){
+			$out .= "DNS1: ".$_REQUEST["toreg_dns1"]."<br>";
+			$out .= "DNS2: ".$_REQUEST["toreg_dns2"]."<br><br>";
+
+			$fqdn = $toreg_domain . $toreg_extention;
+			$price = registry_get_domain_price($fqdn,$_REQUEST["toreg_period"]);
+			$fqdn_price = $price["attributes"]["price"];
+			$fqdn_price += $_REQUEST["toreg_period"] * 2;
+
+			if($admin["info"]["id_client"] != 0){
+				$remaining = $admin["client"]["dollar"];
+			}else{
+				$out .= "You don't have a client ID. Please contact us.<br>";
+				$remaining = 0;
+				return $out;
+			}
+
+			$out .= "<i><u>Step3: Proceed for transfer</u></i><br>
+$whois_forwareded_params";
+
+			$out .= "
+Remaining on your account: \$" . $remaining . "<br>
+Total price: \$". $fqdn_price . "<br><br>";
+
+			if($fqdn_price > $remaining){
+				$out .= "
+You currently don't have enough funds on your account. You will be
+redirected to our paiement system.<br><br>
+<input type=\"submit\" value=\"Proceed to paiement\">
+</form>";
+				return $out;
+			}
+			$out .= "
+<input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
+<input type=\"submit\" value=\"Proceed transfer\">
+</form>
+";
+			return $out;
+		}else{
+			$out .= whoisHandleSelection($admin);
+			$out .= $form_enter_dns_infos;
+		}
 	}else{
 		$out .= "$form_start$form_enter_domain_name";
 	}
 	$out .= "<input type=\"submit\" value=\"Ok\">
 </form>";
+	return $out;
 }
 
 function drawAdminTools_Whois($admin,$eddomain){
@@ -72,10 +142,12 @@ function drawAdminTools_Whois($admin,$eddomain){
 	global $conf_addr_primary_dns;
 	global $conf_addr_secondary_dns;
 
+	$domain_name = $eddomain["name"];
+
 	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
 	if($eddomain["whois"] == "away"){
 		if($_REQUEST["dtcrm_action"] == "transfer_domain"){
-			$out .= drawNameTransfer();
+			$out .= drawNameTransfer($admin,$domain_name);
 		}else{
 			$out .= "Your domain name has been registred elsewhere (eg
 not on this site). To order for it's transfer and management, please click
@@ -107,7 +179,6 @@ Secondary DNS: <b>$conf_addr_secondary_dns</b>
 		        if(mysql_num_rows($result) != 1)        die("Handle ID not found !");
 		        $contacts["admin"] = mysql_fetch_array($result)or die("Cannot fetch array !");
 
-			$domain_name = $eddomain["name"];
 			$regz = registry_update_whois_infoz($adm_login,$adm_pass,$domain_name,$contacts);
 
 			if($regz["is_success"] != 1){

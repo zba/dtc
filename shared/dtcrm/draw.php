@@ -2,9 +2,6 @@
 
 require_once "$dtcshared_path/dtcrm/registry_calls.php";
 
-require_once "$dtcshared_path/dtcrm/draw_handle.php";
-require_once "$dtcshared_path/dtcrm/draw_whois.php";
-
 $registration_added_price = 1.5;
 
 $form_enter_domain_name = "<input type=\"hidden\" name=\"action\" value=\"dtcrm_add_domain\">
@@ -19,6 +16,63 @@ www.<input type=\"text\" name=\"toreg_domain\" value=\"\">
 </select><input type=\"submit\" value=\"Ok\">
 ";
 
+$form_enter_dns_infos = "Please enter now the DNS server ip or hostname. If you want to configurate your domain here,
+leave it with value \"default\".<br>
+DNS1 host:<input size=\"16\" type=\"text\" name=\"toreg_dns1\" value=\"default\">
+ip:<input size=\"14\" type=\"text\" name=\"toreg_dns1_ip\" value=\"\"><br>
+DNS2 host:<input size=\"16\" type=\"text\" name=\"toreg_dns2\" value=\"default\">
+ip:<input size=\"14\" type=\"text\" name=\"toreg_dns2_ip\" value=\"\"><br>
+<i>Optional:</i><br>
+DNS3 host:<input size=\"16\" type=\"text\" name=\"toreg_dns3\" value=\"\">
+ip:<input size=\"14\" type=\"text\" name=\"toreg_dns3_ip\" value=\"\"><br>
+DNS4 host:<input size=\"16\" type=\"text\" name=\"toreg_dns4\" value=\"\">
+ip:<input size=\"14\" type=\"text\" name=\"toreg_dns4_ip\" value=\"\"><br>
+DNS5 host:<input size=\"16\" type=\"text\" name=\"toreg_dns5\" value=\"\">
+ip:<input size=\"14\" type=\"text\" name=\"toreg_dns5_ip\" value=\"\"><br>
+DNS6 host:<input size=\"16\" type=\"text\" name=\"toreg_dns6\" value=\"\">
+ip:<input size=\"14\" type=\"text\" name=\"toreg_dns6_ip\" value=\"\">";
+
+$whois_forwareded_params = "
+<input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"".$_REQUEST["dtcrm_owner_hdl"]."\">
+<input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"".$_REQUEST["dtcrm_admin_hdl"]."\">
+<input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"".$_REQUEST["dtcrm_billing_hdl"]."\">
+<input type=\"hidden\" name=\"toreg_dns1\" value=\"".$_REQUEST["toreg_dns1"]."\">
+<input type=\"hidden\" name=\"toreg_dns2\" value=\"".$_REQUEST["toreg_dns2"]."\">
+<input type=\"hidden\" name=\"toreg_dns3\" value=\"".$_REQUEST["toreg_dns3"]."\">
+<input type=\"hidden\" name=\"toreg_dns4\" value=\"".$_REQUEST["toreg_dns4"]."\">
+<input type=\"hidden\" name=\"toreg_dns5\" value=\"".$_REQUEST["togeg_dns5"]."\">
+<input type=\"hidden\" name=\"toreg_dns6\" value=\"".$_REQUEST["toreg_dns6"]."\">
+
+<input type=\"hidden\" name=\"toreg_dns1_ip\" value=\"".$_REQUEST["toreg_dns1_ip"]."\">
+<input type=\"hidden\" name=\"toreg_dns2_ip\" value=\"".$_REQUEST["toreg_dns2_ip"]."\">
+<input type=\"hidden\" name=\"toreg_dns3_ip\" value=\"".$_REQUEST["toreg_dns3_ip"]."\">
+<input type=\"hidden\" name=\"toreg_dns4_ip\" value=\"".$_REQUEST["toreg_dns4_ip"]."\">
+<input type=\"hidden\" name=\"toreg_dns5_ip\" value=\"".$_REQUEST["togeg_dns5_ip"]."\">
+<input type=\"hidden\" name=\"toreg_dns6_ip\" value=\"".$_REQUEST["toreg_dns6_ip"]."\">
+";
+
+
+require_once "$dtcshared_path/dtcrm/draw_handle.php";
+require_once "$dtcshared_path/dtcrm/draw_whois.php";
+require_once "$dtcshared_path/dtcrm/draw_nameservers.php";
+
+function getContactsArrayFromID($owner_id,$billing_id,$admin_id){
+	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$owner_id';";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
+	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
+	$contacts["owner"] = mysql_fetch_array($result)or die("Cannot fetch array !");
+
+	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$billing_id';";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
+	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
+	$contacts["billing"] = mysql_fetch_array($result)or die("Cannot fetch array !");
+
+	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$admin_id';";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
+	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
+	$contacts["admin"] = mysql_fetch_array($result)or die("Cannot fetch array !");
+	return $contacts;
+}
 function drawAdminTools_AddDomain($admin){
 	global $lang;
 	global $PHP_SELF;
@@ -26,7 +80,9 @@ function drawAdminTools_AddDomain($admin){
 	global $adm_pass;
 	global $addrlink;
 
+	global $form_enter_dns_infos;
 	global $form_enter_domain_name;
+	global $whois_forwareded_params;
 
 	global $pro_mysql_handle_table;
 
@@ -89,9 +145,6 @@ Domain name <b>$fqdn</b> is available for registration.<br><br>
 						$out .= "Registration for <b>" . $_REQUEST["toreg_period"] . " years</b><br>";
 						$out .= "DNS1: " . $_REQUEST["toreg_dns1"] . "<br>";
 						$out .= "DNS2: " . $_REQUEST["toreg_dns2"] . "<br><br>";
-						$price = registry_get_domain_price($fqdn,$_REQUEST["toreg_period"]);
-						$fqdn_price = $price["attributes"]["price"];
-						$fqdn_price += $_REQUEST["toreg_period"] * 2;
 						$out .= "<i><u>Step 3: Proceed to registration</u></i>
 <form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">   
@@ -102,28 +155,16 @@ Domain name <b>$fqdn</b> is available for registration.<br><br>
 <input type=\"hidden\" name=\"toreg_domain\" value=\"".$_REQUEST["toreg_domain"]."\">
 <input type=\"hidden\" name=\"toreg_extention\" value=\"".$_REQUEST["toreg_extention"]."\">
 <input type=\"hidden\" name=\"add_domain_type\" value=\"".$_REQUEST["add_domain_type"]."\">
-<input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"".$_REQUEST["dtcrm_owner_hdl"]."\">
-<input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"".$_REQUEST["dtcrm_admin_hdl"]."\">
-<input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"".$_REQUEST["dtcrm_billing_hdl"]."\">
-<input type=\"hidden\" name=\"toreg_dns1\" value=\"".$_REQUEST["toreg_dns1"]."\">
-<input type=\"hidden\" name=\"toreg_dns2\" value=\"".$_REQUEST["toreg_dns2"]."\">
-<input type=\"hidden\" name=\"toreg_dns3\" value=\"".$_REQUEST["toreg_dns3"]."\">
-<input type=\"hidden\" name=\"toreg_dns4\" value=\"".$_REQUEST["toreg_dns4"]."\">
-<input type=\"hidden\" name=\"toreg_dns5\" value=\"".$_REQUEST["togeg_dns5"]."\">
-<input type=\"hidden\" name=\"toreg_dns6\" value=\"".$_REQUEST["toreg_dns6"]."\">
-
-<input type=\"hidden\" name=\"toreg_dns1_ip\" value=\"".$_REQUEST["toreg_dns1_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns2_ip\" value=\"".$_REQUEST["toreg_dns2_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns3_ip\" value=\"".$_REQUEST["toreg_dns3_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns4_ip\" value=\"".$_REQUEST["toreg_dns4_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns5_ip\" value=\"".$_REQUEST["togeg_dns5_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns6_ip\" value=\"".$_REQUEST["toreg_dns6_ip"]."\">
+$whois_forwareded_params
 <input type=\"hidden\" name=\"toreg_period\" value=\"".$_REQUEST["toreg_period"]."\">
 ";
 
+						$price = registry_get_domain_price($fqdn,$_REQUEST["toreg_period"]);
+						$fqdn_price = $price["attributes"]["price"];
+						$fqdn_price += $_REQUEST["toreg_period"] * 2;
+
 						if($admin["info"]["id_client"] != 0){
-							//print_r($admin["client"]);
-							$remaining = $admin["client"]["dolar"];
+							$remaining = $admin["client"]["dollar"];
 						}else{
 							$out .= "You don't have a client ID. Please contact us.<br>";
 							$remaining = 0;
@@ -145,22 +186,7 @@ redirected to our paiement system.<br><br>
 	$owner_id = $_REQUEST["dtcrm_owner_hdl"];
 	$billing_id = $_REQUEST["dtcrm_billing_hdl"];
 	$admin_id = $_REQUEST["dtcrm_admin_hdl"];
-
-	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$owner_id';";
-	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
-	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
-	$contacts["owner"] = mysql_fetch_array($result)or die("Cannot fetch array !");
-
-	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$billing_id';";
-	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
-	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
-	$contacts["billing"] = mysql_fetch_array($result)or die("Cannot fetch array !");
-
-	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$admin_id';";
-	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
-	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");
-	$contacts["admin"] = mysql_fetch_array($result)or die("Cannot fetch array !");
-
+	getContactsArrayFromID($owner_id,$billing_id,$admin_id);
 	$regz = registry_register_domain($adm_login,$adm_pass,$fqdn,$period,$contacts,$dns_servers);
 
 	if($regz["is_success"] == 0){
@@ -222,21 +248,7 @@ domain name.<br><br>
 						$out .= whoisHandleSelection($admin);
 						$out .= "
 <br>
-Please enter now the DNS server ip or hostname. If you want to configurate your domain here,
-leave it with value \"default\".<br>
-DNS1 host:<input size=\"16\" type=\"text\" name=\"toreg_dns1\" value=\"default\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns1_ip\" value=\"\"><br>
-DNS2 host:<input size=\"16\" type=\"text\" name=\"toreg_dns2\" value=\"default\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns2_ip\" value=\"\"><br>
-<i>Optional:</i><br>
-DNS3 host:<input size=\"16\" type=\"text\" name=\"toreg_dns3\" value=\"\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns3_ip\" value=\"\"><br>
-DNS4 host:<input size=\"16\" type=\"text\" name=\"toreg_dns4\" value=\"\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns4_ip\" value=\"\"><br>
-DNS5 host:<input size=\"16\" type=\"text\" name=\"toreg_dns5\" value=\"\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns5_ip\" value=\"\"><br>
-DNS6 host:<input size=\"16\" type=\"text\" name=\"toreg_dns6\" value=\"\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns6_ip\" value=\"\"><br><br>
+$form_enter_dns_infos<br><br>
 Select how long you want to register this domain name:<br>
 $period_popup<br>
 <input type=\"submit\" value=\"Ok\">
@@ -254,6 +266,7 @@ $form_check_domain";
 				}
 			}
 		}else if($_REQUEST["add_regORtrans"] == "transfer"){
+			return drawNameTransfer($admin);
 		}else{
 			$out .= "<b><u>Do you want to transfer an existing domain or register a new domain?</u></b><br>
 <form action=\"$PHP_SELF\">
@@ -275,8 +288,8 @@ $form_check_domain";
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-<input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>Hosting + free registration/transfer<br>
-<input type=\"radio\" name=\"add_domain_type\" value=\"domreg\">Domain registration<br>
+<input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>Hosting + name registration/transfer<br>
+<input type=\"radio\" name=\"add_domain_type\" value=\"domreg\">Name registration/transfer<br>
 <input type=\"radio\" name=\"add_domain_type\" value=\"hosting\">Hosting only<br>
 <input type=\"submit\" value=\"Ok\">
 </form>
@@ -284,8 +297,6 @@ $form_check_domain";
 	}
 	return $out;
 }
-
-
 
 function drawAdminTools_MyAccount($admin){
 	global $PHP_SELF;
@@ -336,157 +347,6 @@ is no money in your account.";
 	}
 	return $out;
 
-}
-
-function drawAdminTools_NameServers($admin){
-	global $PHP_SELF;
-	global $adm_login;
-	global $adm_pass;
-	global $addrlink;
-
-	global $pro_mysql_subdomain_table;
-	global $pro_mysql_nameservers_table;
-	global $pro_mysql_domain_table;
-
-
-	$subdomain = $_REQUEST["subdomain"];
-	$domain_name = $_REQUEST["domain_name"];
-	$ip = $_REQUEST["ip"];
-
-	if($_REQUEST["action"] == "new_nameserver"){
-		checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name);
-		$regz = registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip);
-		if($regz["is_success"] == 1){
-			$out .= "<font color=\"green\"><b>Registration of your name server succesfull</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>";
-			$query = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_name' AND subdomain_name='$subdomain';";
-			$result = mysql_query($query)or die("Cannot query \"query\" !!!".mysql_error());
-			$num_rows = mysql_num_rows($result);
-			if($num_rows == 0){
-				$query = "INSERT INTO $pro_mysql_subdomain_table (id,
-domain_name,subdomain_name,webalizer_generate,ip)VALUES('','$domain_name','$subdomain','no','$ip');";
-			}else if($num_rows == 1){
-				$query = "UPDATE $pro_mysql_subdomain_table SET ip='$ip'
-					WHERE domain_name='$domain_name' AND subdomain_name='$subdomain' LIMIT 1;";
-			}else{
-				die("Subdomain table problem: twice the same subdomain !");
-			}
-			mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
-			$query = "INSERT INTO $pro_mysql_nameservers_table(id,
-owner,domain_name,subdomain,ip)VALUES(
-'','$adm_login','$domain_name','$subdomain','$ip');";
-			mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
-		}else{
-			$out .= "<font color=\"red\"><b>Registration of your name server failed</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>";
-		}
-	}
-	if($_REQUEST["action"] == "edit_nameserver"){
-		checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name);
-		$regz = registry_modify_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip);
-		if($regz["is_success"] == 1){
-			 $out .= "<font color=\"green\"><b>Edition of name server succesfull</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>";
-			$query = "UPDATE $pro_mysql_subdomain_table SET ip='$ip'
-				WHERE domain_name='$domain_name' AND subdomain_name='$subdomain' LIMIT 1;";
-			mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
-			$query = "UPDATE $pro_mysql_nameservers_table SET ip='$ip'
-				WHERE domain_name='$domain_name' AND subdomain='$subdomain' LIMIT 1;";
-			mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
-		}else{
-			$out .= "<font color=\"red\"><b>Edition name server failed</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>";
-		}
-	}
- 
-	if($_REQUEST["action"] == "delete_nameserver"){
-		checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name);
-		$regz = registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name);
-		if($regz["is_success"] == 1){
-			$out .= "<font color=\"green\"><b>Deletion of name server succesfull</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>";
-			$query="DELETE FROM $pro_mysql_nameservers_table
-				WHERE domain_name='$domain_name' AND subdomain='$subdomain' LIMIT 1";
-			mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
-		}else{
-			$out .= "<font color=\"red\"><b>Deletion name server failed</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>";
-		}
-	}
-
-
-
-	$out .= "<b><u>List of your registred name-servers:</u></b><br>";
-
-	$query = "SELECT * FROM $pro_mysql_nameservers_table WHERE owner='$adm_login';";
-	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-        $num_rows = mysql_num_rows($result);
-        for($i=0;$i<$num_rows;$i++){
-		$row = mysql_fetch_array($result);
-		if($i > 0){
-			$out .= " - ";
-		}
-		$out .= "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_id=" .
-			$row["id"] ."\">" . $row["subdomain"] . "." . $row["domain_name"] . "</a>";
-	}
-
-	if($_REQUEST["edit_id"] != "" && isset($_REQUEST["edit_id"])){
-		$query = "SELECT * FROM $pro_mysql_nameservers_table WHERE id='". $_REQUEST["edit_id"] ."' AND owner='$adm_login';";
-		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-		if(mysql_num_rows($result) != 1) die("Nameserver not found !!!");
-		$row = mysql_fetch_array($result);
-		$out .= "<br><br><a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">New name server</a><br>
-<b><u>Edit name server:</u></b><br>
-<form action=\"$PHP_SELF\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\"> 
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">   
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">   
-<input type=\"hidden\" name=\"action\" value=\"edit_nameserver\">
-<input type=\"hidden\" name=\"domain_name\" value=\"". $row["domain_name"] ."\">
-<input type=\"hidden\" name=\"subdomain\" value=\"". $row["subdomain"] ."\">
-Name server hostname: ". $row["subdomain"] .".". $row["domain_name"] ."<br>
-<input type=\"hidden\" name=\"edit_id\" value=\"". $_REQUEST["edit_id"] ."\">
-Name server IP:<input type=\"text\" name=\"ip\" value=\"". $row["ip"] ."\">
-<input type=\"submit\" value=\"Ok\">
-</form>
-<form action=\"$PHP_SELF\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\"> 
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">    
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">    
-<input type=\"hidden\" name=\"action\" value=\"delete_nameserver\">
-<input type=\"hidden\" name=\"domain_name\" value=\"". $row["domain_name"] ."\">
-<input type=\"hidden\" name=\"subdomain\" value=\"". $row["subdomain"] ."\">
-<input type=\"hidden\" name=\"delete_id\" value=\"". $_REQUEST["edit_id"] ."\">
-<input type=\"submit\" value=\"Delete name server\">
-</form>
-";
-	}else{
-		$out .= "<br><br><b><u>Register new name server:</u></b><br>
-		What subzone do you want to use (exemple: \"ns1\"):
-<form action=\"$PHP_SELF\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">   
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">   
-<input type=\"hidden\" name=\"action\" value=\"new_nameserver\">
-<input type=\"text\" name=\"subdomain\" value=\"\"><br>";
-		$query = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
-		$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
-		$num_rows = mysql_num_rows($result);
-		$out .= "Select one your domain-name for adding a name server to the registries:<br>
-		<select name=\"domain_name\">";
-		for($i=0;$i<$num_rows;$i++){
-			$row = mysql_fetch_array($result);
-			$out .= "<option value=\"" . $row["name"] . "\">" . $row["name"] . "</option>";
-		}
-		$out .= "</select><br>
-			IP address of that name server:
-			<input type=\"text\" name=\"ip\" value=\"\"><br>";
-		$out .= "<input type=\"submit\" value=\"Ok\">
-</form>
-<br>";
-	}
-
-	return $out;
 }
 
 ?>

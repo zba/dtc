@@ -1,0 +1,5 @@
+- Forbit deletion of handle if used for a domain name
+- Update all domains when handle updates
+- Add "change DNS at registration/transfer" support
+- Domain name renewal
+- Internationalisation
