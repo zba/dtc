@@ -22,7 +22,6 @@ $dtc_database = array(
 			),
 		"keys" => array(
 			"PRIMARY" => "(adm_login)",
-			"id_clientindex" => "(id_client)",
 			"adm_login" => "(adm_login)",
 			"path" => "(path)",
 			"adm_login_2" => "(adm_login)"
