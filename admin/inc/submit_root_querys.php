@@ -139,6 +139,12 @@ if($_REQUEST["newadminuser"]=="Ok"){
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
 
+// action=delete_waiting_user&reqadm_login=tom
+if($_REQUEST["action"]=="delete_waiting_user"){
+	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
+	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+}
+
 // action=valid_waiting_user&reqadm_login=tom
 if($_REQUEST["action"]=="valid_waiting_user"){
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["reqadm_login"]."';";
@@ -179,6 +185,9 @@ disk_quota_mb,bw_quota_per_month_gb) VALUES ('','".$a["iscomp"]."',
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	addDomainToUser($_REQUEST["reqadm_login"],$a["reqadm_pass"],$a["domain_name"]);
+
+	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
+	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
 
 if($_REQUEST["delete_admin_user"] != "" && isset($_REQUEST["delete_admin_user"])){
