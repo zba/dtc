@@ -15,15 +15,13 @@ echo "DTC needs to access to your mysql database"
 echo "Please give your mysql account information"
 echo -n 'MySQL hostname [localhost]: '
 read conf_mysql_host
-if [ $conf_mysql_host == ""];
-then
+if [ ""$conf_mysql_host = "" ] ; then
 	conf_mysql_host="localhost"
 fi
 
 echo -n 'MySQL root login [root]: '
 read conf_mysql_login
-if [ $conf_mysql_login == ""];
-then
+if [ ""$conf_mysql_login = "" ] ; then
 	conf_mysql_login="root"
 fi
 
@@ -32,8 +30,7 @@ read conf_mysql_pass
 
 echo -n 'Choose a DB name for DTC [dtc]: '
 read conf_mysql_db
-if [ $conf_mysql_db == ""];
-then
+if [ ""$conf_mysql_db = "" ] ; then
 	conf_mysql_db="dtc"
 fi
 
@@ -44,7 +41,7 @@ echo "you wish to use with DTC ? Type q for qmail"
 echo "or type p for postfix."
 echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
 read conf_mta_type
-if [ "$conf_mta_type" = "p" ];
+if [ ""$conf_mta_type = "p" ];
 then
 	conf_mta_type=postfix
 	echo "Postfix will be used"
@@ -71,8 +68,7 @@ echo -n 'Subdomain for DTC admin panel [dtc]: '
 read dtc_admin_subdomain
 
 
-if [ $dtc_admin_subdomain == ""];
-then
+if [ ""$dtc_admin_subdomain = "" ] ; then
 	dtc_admin_subdomain="dtc"
 fi
 
@@ -81,7 +77,7 @@ echo "I need now you host information for apache !"
 echo -n "What is your IP addresse ? ["$cur_ip_addr"]: "
 read conf_ip_addr
 
-if [ $conf_ip_addr == ""];
+if [ ""$conf_ip_addr = "" ];
 then
 	conf_ip_addr=$cur_ip_addr
 fi
@@ -90,8 +86,7 @@ echo ""
 echo "Where will you keep your files for hosting ?"
 echo -n "Hosting path [/var/www/sites]: "
 read conf_hosting_path
-if [ $conf_hosting_path == ""];
-then
+if [ ""$conf_hosting_path = "" ] ; then
 	conf_hosting_path="/var/www/sites"
 fi
 
@@ -104,8 +99,7 @@ echo "the same logical device as the path for hosted"
 echo "domains files."
 echo -n "Chroot path [/var/www/chroot]: "
 read conf_chroot_path
-if [ "$conf_chroot_path" = "" ];
-then
+if [ ""$conf_chroot_path = "" ] ; then
 	conf_chroot_path="/var/www/chroot"
 fi
 
@@ -113,8 +107,7 @@ echo ""
 echo "What admin login/pass you want for the administration of "$main_domain_name "?"
 echo -n "Login [dtc]: "
 read conf_adm_login
-if [ $conf_adm_login == ""];
-then
+if [ ""$conf_adm_login = "" ] ; then
 	conf_adm_login="dtc"
 fi
 echo -n "Password: "
@@ -170,8 +163,7 @@ echo ""
 echo -n 'Confirm and install DTC ? [Ny]:'
 read valid_infos
 
-if [ $valid_infos ==  'y' ];
-then
+if [ ""$valid_infos = "y" ] ; then
 	echo "Installation has started..."
 else
 	echo "Configuration not validated : exiting !"
