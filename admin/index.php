@@ -178,7 +178,7 @@ switch($_REQUEST["rub"])
 	break;
 	
 	case config: // Global Config
-		if($install_new_config_values == "Ok"){
+		if($_REQUEST["install_new_config_values"] == "Ok"){
 			saveDTCConfigInMysql();
 			getConfig();
 		}
