@@ -64,7 +64,7 @@ echo "# Ports collection makefile for:        dtc
 # Date created:                 1 December 2003
 # Whom:                         Frederic Cambus & Thomas Goirand
 #
-# $FreeBSD$
+# \$FreeBSD\$
 #
 
 PORTNAME=	dtc
@@ -75,10 +75,12 @@ cat sources/bsd/Makefile >>dtc/Makefile
 cp sources/bsd/install.sh dtc/pkg-install
 cat sources/setup_mysql_db.sh >>dtc/pkg-install
 cat sources/configure_deamons.sh >>dtc/pkg-install
+chmod 622 dtc/pkg-install
 
 # Create package uninstall script
 cp sources/bsd/uninstall.sh dtc/pkg-deinstall
 cat sources/uninstall_deamons.sh >>"dtc/pkg-deinstall"
+chmod 622 dtc/pkg-deinstall
 
 # Make the md5 sum file in this distinfo
 BSDSUM=`md5sum "dtc-"$VERSION".tar.gz" | cut -f1 -d" "`
@@ -88,6 +90,7 @@ echo "MD5 (dtc-"$VERSION".tar.gz) = "$BSDSUM >>dtc/distinfo
 find share -type f >dtc/pkg-plist.tmp
 echo "share/dtc/admin/gfx
 share/dtc/admin/imgcache
+share/dtc/share/mysql_config.php
 share/dtc/client/gfx
 share/dtc/client/imgcache" >>dtc/pkg-plist.tmp
 find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>dtc/pkg-plist.tmp
@@ -97,5 +100,5 @@ rm dtc/pkg-plist.tmp
 
 # Make the file archive
 tar -czf "dtcBSDport-"$VERSION".tar.gz" dtc
-rm -rf dtc
+mv dtc dtcPORT
 uuencode "dtcBSDport-"$VERSION".tar.gz" dtc.tgz >"dtcBSDport-"$VERSION".uue"

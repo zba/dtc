@@ -61,20 +61,20 @@ fi
 #
 
 echo "===> Uninstalling from qmail"
-if ! [ -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ] ; then
-	rm -f $PATH_QMAIL_CTRL/rcpthosts
-	mv -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup $PATH_QMAIL_CTRL/rcpthosts
-fi
+#if ! [ -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ] ; then
+#	rm -f $PATH_QMAIL_CTRL/rcpthosts
+#	mv -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup $PATH_QMAIL_CTRL/rcpthosts
+#fi
 
 if ! [ -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup ] ; then
 	rm -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup
 	mv -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup $PATH_QMAIL_CTRL/virtualdomains
 fi
 
-if ! [ -f $PATH_QMAIL_CTRL/users/assign.DTC.backup ] ; then
-	rm -f $PATH_QMAIL_CTRL/users/assign.DTC.backup
-	mv -f $PATH_QMAIL_CTRL/users/assign.DTC.backup $PATH_QMAIL_CTRL/users/assign
-fi
+#if ! [ -f $PATH_QMAIL_CTRL/users/assign.DTC.backup ] ; then
+#	rm -f $PATH_QMAIL_CTRL/users/assign.DTC.backup
+#	mv -f $PATH_QMAIL_CTRL/users/assign.DTC.backup $PATH_QMAIL_CTRL/users/assign
+#fi
 
 if ! [ -f /etc/poppasswd.DTC.backup ] ; then
 	rm -f /etc/poppasswd.DTC.backup
