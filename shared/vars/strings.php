@@ -650,7 +650,7 @@ $txt_primari_dns_ip = array(
 	"de" => "IP Addresse des primären DNS Servers:",
 	"es" => "Direccmon IP del servidor primario de DNS:");
 
-$txt_other_dns_ip = arrey(
+$txt_other_dns_ip = array(
 	"fr" => "Autres serveurs DNS :",
 	"en" => "Other DNS servers:",
 	"nl" => "Other DNS servers:",
