@@ -299,8 +299,7 @@ $dtc_database = array(
 			"domain" => "varchar(50) NOT NULL "
 			),
 		"keys" => array(
-			"PRIMARY" => "(id)",
-			"month" => "(month,year,vhost)"
+			"PRIMARY" => "(id)"
 			)
 		),
 	"nameservers" => array(
