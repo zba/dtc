@@ -131,7 +131,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_cmd_to_client"){
 	$d = 60*60*24;
 	$m = $d*365/12;
 	$y = $d*365;
-	$exp_date = date("Y-m-d",time() + $y*$exp[0] + $m*$exp[1] + $d*$exp[3] );
+	$exp_date = date("Y-m-d",time() + $y*$exp[0] + $m*$exp[1] + $d*$exp[2] );
 	$q = "INSERT INTO $pro_mysql_command_table (id,
 id_client,domain_name,quantity,price_devise,price,paiement_method,date,expir,product_id
 )VALUES('','".$_REQUEST["id"]."','".$_REQUEST["add_newcmd_domain_name"]."','1','USD','".$a["price_dollar"]."','free','".date("Y-m-d")."','$exp_date','".$_REQUEST["add_new_command"]."');";
