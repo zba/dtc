@@ -17,7 +17,15 @@ function productManager(){
 		if($i<$n){
 			$a = mysql_fetch_array($r);
 		}else{
-			unset($a);
+			$a["id"] = "";
+			$a["name"] = "";
+			$a["price_dollar"] = "";
+			$a["price_euro"] = "";
+			$a["quota_disk"] = "";
+			$a["bandwidth"] = "";
+			$a["nbr_email"] = "";
+			$a["nbr_database"] = "";
+			$a["period"] = "";
 		}
 		if($i%2){
 			$bg_color="bgcolor=\"#000000\"";

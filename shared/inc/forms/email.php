@@ -369,9 +369,11 @@ function drawAdminTools_Emails($domain){
 	$max_email = $domain["max_email"];
 	if($nbr_email >= $max_email){
 		$max_color = "color=\"#440000\"";
+	}else{
+		$max_color = "";
 	}
 	$nbrtxt = $txt_number_of_active_mailbox[$lang];
-	$txt .= "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_email ."</font> / <font size=\"-1\">" . $max_email . "</font><br><br>";
+	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_email ."</font> / <font size=\"-1\">" . $max_email . "</font><br><br>";
 
 	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>".$txt_mail_liste_of_your_box[$lang]."</u><br>";
 	$emails = $domain["emails"];
@@ -379,14 +381,14 @@ function drawAdminTools_Emails($domain){
 	for($i=0;$i<$nbr_boites;$i++){
 		$email = $emails[$i];
 		$id = $email["id"];
-		if($id == $_REQUEST["edit_mailbox"]){
+		if(isset($_REQUEST["edit_mailbox"]) && $id == $_REQUEST["edit_mailbox"]){
 			$mailbox_name = $id;
 			$home = $email["home"];
 			$passwd = $email["passwd"];
 			$redir1 = $email["redirect1"];
 			$redir2 = $email["redirect2"];
 			$localdeliver = $email["localdeliver"];
-			if($localdeliver == yes){
+			if($localdeliver == "yes"){
 				$checkbox_state = " checked";
 			}else{
 				$checkbox_state = "";
@@ -398,7 +400,7 @@ function drawAdminTools_Emails($domain){
 		$txt .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$id\">$id</a>";
 	}
 
-	if($_REQUEST["edit_mailbox"] != "" && isset($_REQUEST["edit_mailbox"])){
+	if(isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
 		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">".$txt_mail_new_mailbox_link[$lang]."</a> ";
 		$txt .= "<br><br><u>".$txt_mail_edit[$lang]."</u><br><br>";
 
@@ -436,6 +438,8 @@ $txt .= "
 		$txt .= "<br><br><u>".$txt_mail_new_mailbox[$lang]."</u><br>";
 
 		if($nbr_email < $max_email){
+			if(isset($mailbox_name))	$mn = $mailbox_name;
+			else	$mn = "";
 			$txt .= "
 <form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 <table border=\"1\"><tr><td align=\"right\">
@@ -444,15 +448,16 @@ $txt .= "
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
-	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newmail_login\" value=\"$mailbox_name\">
+	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newmail_login\" value=\"$mn\">
 </td><td align=\"right\">
 	".$txt_mail_redirection1[$lang]."</td><td><input type=\"text\" name=\"newmail_redirect1\" value=\"\">
 </td></tr><tr><td align=\"right\">";
-	if ($conf_hide_password == "yes")
-	{
-		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"newmail_pass\" value=\"$passwd\">";
-	} else {
-		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newmail_pass\" value=\"$passwd\">";
+	if(isset($passwd)) $pd = $passwd;
+	else $pd = "";
+	if ($conf_hide_password == "yes"){
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"newmail_pass\" value=\"$pd\">";
+	}else{
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newmail_pass\" value=\"$pd\">";
 	}
 $txt .= "
 </td><td align=\"right\">

@@ -1,31 +1,31 @@
 <?php
 
-if($_REQUEST["gen_named_files"]==1){
+if(isset($_REQUEST["gen_named_files"]) && $_REQUEST["gen_named_files"]==1){
 	named_generate();
 	$console .= "Named conf files generated !";
 }
 
 // Executes the command liste bellow
-if($_REQUEST["gen_perso_vhost"]==1){
+if(isset($_REQUEST["gen_perso_vhost"]) && $_REQUEST["gen_perso_vhost"]==1){
 	perso_vhost_generate();
 	$console .= "Apache vhost file for personal account generated !";
 }
-if($_REQUEST["gen_pro_vhost"]==1){
+if(isset($_REQUEST["gen_pro_vhost"]) && $_REQUEST["gen_pro_vhost"]==1){
 	pro_vhost_generate();
 	$console .= "Apache vhost file generated !";
 }
 
-if($_REQUEST["gen_email_account"] == 1){
+if(isset($_REQUEST["gen_email_account"]) && $_REQUEST["gen_email_account"] == 1){
 	mail_account_generate();
 	$console .= "Qmail user and domain files generated !";
 }
 
-if($_REQUEST["gen_backup_script"] == 1){
+if(isset($_REQUEST["gen_backup_script"]) && $_REQUEST["gen_backup_script"] == 1){
 	backup_script_generate();
 	$console .= "Backup script generated !";
 }
 
-if($_REQUEST["gen_stat_script"] == 1){
+if(isset($_REQUEST["gen_stat_script"]) && $_REQUEST["gen_stat_script"] == 1){
 	stat_script_generate();
 	$console .= "Stat script generated !";
 }
@@ -33,10 +33,12 @@ if($_REQUEST["gen_stat_script"] == 1){
 if($conf_demo_version == "true"){
 	$browse_files_button = "
 <a href=\"../etc\">Browse all generated files</a>";
+}else{
+	$browse_files_button = "";
 }
 
 // Links to the command executed on top
-$top_commands .= "
+$top_commands = "
 <br><b><font size=\"-2\">
 
 <table border=\"0\" width=\"100%\" height=\"1\">
@@ -90,7 +92,7 @@ if($panel_type!="cronjob")
 {
 	// Find the current display type
 	session_register("cur_admlist_type");
-	if($_REQUEST["admlist_type"] != "" && isset($_REQUEST["admlist_type"])){
+	if(isset($_REQUEST["admlist_type"]) && $_REQUEST["admlist_type"] != ""){
 		$_SESSION["cur_admlist_type"] = $_REQUEST["admlist_type"];
 		$admlist_type = $_REQUEST["admlist_type"];
 	}else{
@@ -103,6 +105,9 @@ if($panel_type!="cronjob")
 	}
 }
 
+$selectedlist_logins = "";
+$selectedlist_name = "";
+$selectedlist_domain = "";
 if($admlist_type == "Logins"){
 	$selectedlist_logins = " selected";
 }else if($admlist_type == "Names"){
@@ -113,7 +118,7 @@ if($admlist_type == "Logins"){
 
 
 $txt_sort_by = $txt_admlist_sort_by_legend[$lang];
-$admins .= "<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">$txt_sort_by<br>
+$admins = "<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">$txt_sort_by<br>
 <select name=\"admlist_type\">
 <option value=\"Logins\"$selectedlist_logins>Logins
 <option value=\"Names\"$selectedlist_name>Names

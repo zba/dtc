@@ -52,6 +52,8 @@ function drawAdminTools($admin){
 
 	global $conf_skin;
 
+        $doms_txt = "";
+
 	$admin_data = $admin["data"];
 	$admin_info = $admin["info"];
 
@@ -154,20 +156,22 @@ function drawAdminTools($admin){
 
 	$add_array = explode("/",$addrlink);
 
+	$web_editor = "";
+
 	if($addrlink != "" && isset($addrlink)){
 		$num_domain = AdminTool_findDomainNum($edit_domain,$admin_data);
-		$eddomain = $admin_data[$num_domain];
+		$eddomain = @$admin_data[$num_domain];
 
-		if($add_array[1] == "mailboxs"){
+		if(@$add_array[1] == "mailboxs"){
 			$web_editor .= drawAdminTools_Emails($eddomain);
 			$title = $txt_title_mailbox_form[$lang].$edit_domain;
-		}else if($add_array[1] == "mailing-lists"){
+		}else if(@$add_array[1] == "mailing-lists"){
 			$web_editor .= drawAdminTools_MailingLists($eddomain);
 			$title = $txt_title_maillinglist_form[$lang].$edit_domain;
-		}else if($add_array[1] == "dns"){
+		}else if(@$add_array[1] == "dns"){
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
 			$title = "DNS config of: ".$edit_domain;
-		}else if($add_array[1] == "stats"){
+		}else if(@$add_array[1] == "stats"){
 			if($add_array[0] == "myaccount"){
 				$web_editor .= drawAdminTools_AdminStats($admin);
 				$title = $txt_my_account_global_stats_title[$lang];
@@ -175,29 +179,29 @@ function drawAdminTools($admin){
 				$web_editor .= drawAdminTools_DomainStats($admin,$eddomain);
 				$title = "Statistics of domain: ".$edit_domain;
 			}
-		}else if($add_array[1] == "whois"){
+		}else if(@$add_array[1] == "whois"){
 			$web_editor .= drawAdminTools_Whois($admin,$eddomain);
 			$title = "Whois editor of: ".$edit_domain;
-		}else if($add_array[1] == "subdomains"){
+		}else if(@$add_array[1] == "subdomains"){
 			$web_editor .= drawAdminTools_Subdomain($eddomain);
 			$title = $txt_title_subdomain_form[$lang].$edit_domain;
-		}else if($add_array[1] == "ftp-accounts"){
+		}else if(@$add_array[1] == "ftp-accounts"){
 			$web_editor .= drawAdminTools_Ftp($eddomain,$adm_path);
 			$title = $txt_title_ftp_form[$lang].$edit_domain;
-		}else if($add_array[1] == "nickhandles"){
+		}else if(@$add_array[1] == "nickhandles"){
 			$web_editor .= drawAdminTools_NickHandles($admin);
 			$title = "Internet Whois Nick-Handles management";
-		}else if($add_array[1] == "adddomain"){
+		}else if(@$add_array[1] == "adddomain"){
 			$web_editor .= drawAdminTools_AddDomain($admin);
 			$title = "Add a domain name to my account";
-		}else if($add_array[1] == "nameservers"){
+		}else if(@$add_array[1] == "nameservers"){
 			$web_editor .= drawAdminTools_NameServers($admin);
 			$title = "Manage my name servers";
 		}else if($add_array[0] == "myaccount"){   
 			$web_editor .= drawAdminTools_MyAccount($admin);
 			$title = "My Account informations";
 		}else if($add_array[0] == "database"){
-			$web_editor .= drawDataBase($database);
+			$web_editor .= drawDataBase("");
 			$title = $txt_title_database_form[$lang];
 		}else if($add_array[0] == "help"){
 			$web_editor .= $txt_draw_help_content[$lang];
@@ -207,13 +211,15 @@ function drawAdminTools($admin){
 			$title = $txt_title_geninfo_form[$lang].$edit_domain;
 		}
 		$edition = skin($conf_skin,$web_editor,$title);
+	}else{
+	  $edition = "";
 	}
 
-	$mymenu .= "<div align=\"center\"><a href=\"$PHP_SELF?\">Logout</a>";
+	$mymenu .= "<div align=\"center\"><a href=\"".$_SERVER["PHP_SELF"]."?\">Logout</a>";
 	if($dtc_use_text_menu == "no"){
-		$mymenu .= " - <a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">Use text</a>";
+		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">Use text</a>";
 	}else{
-		$mymenu .= " - <a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=no\">Use images</a>";
+		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=no\">Use images</a>";
 	}
 	$mymenu .= "</div>";
 

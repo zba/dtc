@@ -38,35 +38,55 @@ DNS4 host:<input size=\"16\" type=\"text\" name=\"toreg_dns4\" value=\"\"><br>
 DNS5 host:<input size=\"16\" type=\"text\" name=\"toreg_dns5\" value=\"\"><br>
 DNS6 host:<input size=\"16\" type=\"text\" name=\"toreg_dns6\" value=\"\">";
 
-$whois_forwareded_params_ip = "
-<input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"".$_REQUEST["dtcrm_owner_hdl"]."\">
-<input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"".$_REQUEST["dtcrm_admin_hdl"]."\">
-<input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"".$_REQUEST["dtcrm_billing_hdl"]."\">
-<input type=\"hidden\" name=\"toreg_dns1\" value=\"".$_REQUEST["toreg_dns1"]."\">
-<input type=\"hidden\" name=\"toreg_dns2\" value=\"".$_REQUEST["toreg_dns2"]."\">
-<input type=\"hidden\" name=\"toreg_dns3\" value=\"".$_REQUEST["toreg_dns3"]."\">
-<input type=\"hidden\" name=\"toreg_dns4\" value=\"".$_REQUEST["toreg_dns4"]."\">
-<input type=\"hidden\" name=\"toreg_dns5\" value=\"".$_REQUEST["togeg_dns5"]."\">
-<input type=\"hidden\" name=\"toreg_dns6\" value=\"".$_REQUEST["toreg_dns6"]."\">
+if(isset($_REQUEST["dtcrm_owner_hdl"])) $dtcrm_owner_hdl=$_REQUEST["dtcrm_owner_hdl"];
+else	$dtcrm_owner_hdl="";
+if(isset($_REQUEST["dtcrm_admin_hdl"])) $dtcrm_admin_hdl=$_REQUEST["dtcrm_admin_hdl"];
+else	$dtcrm_admin_hdl="";
+if(isset($_REQUEST["dtcrm_billing_hdl"])) $dtcrm_billing_hdl=$_REQUEST["dtcrm_billing_hdl"];
+else	$dtcrm_billing_hdl="";
+if(isset($_REQUEST["toreg_dns1"])) $toreg_dns1=$_REQUEST["toreg_dns1"];else	$toreg_dns1="";
+if(isset($_REQUEST["toreg_dns2"])) $toreg_dns2=$_REQUEST["toreg_dns2"];else	$toreg_dns2="";
+if(isset($_REQUEST["toreg_dns3"])) $toreg_dns3=$_REQUEST["toreg_dns3"];else	$toreg_dns3="";
+if(isset($_REQUEST["toreg_dns4"])) $toreg_dns4=$_REQUEST["toreg_dns4"];else	$toreg_dns4="";
+if(isset($_REQUEST["toreg_dns5"])) $toreg_dns5=$_REQUEST["toreg_dns5"];else	$toreg_dns5="";
+if(isset($_REQUEST["toreg_dns6"])) $toreg_dns6=$_REQUEST["toreg_dns6"];else	$toreg_dns6="";
 
-<input type=\"hidden\" name=\"toreg_dns1_ip\" value=\"".$_REQUEST["toreg_dns1_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns2_ip\" value=\"".$_REQUEST["toreg_dns2_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns3_ip\" value=\"".$_REQUEST["toreg_dns3_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns4_ip\" value=\"".$_REQUEST["toreg_dns4_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns5_ip\" value=\"".$_REQUEST["togeg_dns5_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns6_ip\" value=\"".$_REQUEST["toreg_dns6_ip"]."\">
+if(isset($_REQUEST["toreg_dns1_ip"])) $toreg_dns1_ip=$_REQUEST["toreg_dns1_ip"];else	$toreg_dns1_ip="";
+if(isset($_REQUEST["toreg_dns2_ip"])) $toreg_dns2_ip=$_REQUEST["toreg_dns2_ip"];else	$toreg_dns2_ip="";
+if(isset($_REQUEST["toreg_dns3_ip"])) $toreg_dns3_ip=$_REQUEST["toreg_dns3_ip"];else	$toreg_dns3_ip="";
+if(isset($_REQUEST["toreg_dns4_ip"])) $toreg_dns4_ip=$_REQUEST["toreg_dns4_ip"];else	$toreg_dns4_ip="";
+if(isset($_REQUEST["toreg_dns5_ip"])) $toreg_dns5_ip=$_REQUEST["toreg_dns5_ip"];else	$toreg_dns5_ip="";
+if(isset($_REQUEST["toreg_dns6_ip"])) $toreg_dns6_ip=$_REQUEST["toreg_dns6_ip"];else	$toreg_dns6_ip="";
+
+$whois_forwareded_params_ip = "
+<input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"$dtcrm_owner_hdl\">
+<input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"$dtcrm_admin_hdl\">
+<input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"$dtcrm_billing_hdl\">
+<input type=\"hidden\" name=\"toreg_dns1\" value=\"$toreg_dns1\">
+<input type=\"hidden\" name=\"toreg_dns2\" value=\"$toreg_dns2\">
+<input type=\"hidden\" name=\"toreg_dns3\" value=\"$toreg_dns3\">
+<input type=\"hidden\" name=\"toreg_dns4\" value=\"$toreg_dns4\">
+<input type=\"hidden\" name=\"toreg_dns5\" value=\"$toreg_dns5\">
+<input type=\"hidden\" name=\"toreg_dns6\" value=\"$toreg_dns6\">
+
+<input type=\"hidden\" name=\"toreg_dns1_ip\" value=\"$toreg_dns1_ip\">
+<input type=\"hidden\" name=\"toreg_dns2_ip\" value=\"$toreg_dns2_ip\">
+<input type=\"hidden\" name=\"toreg_dns3_ip\" value=\"$toreg_dns3_ip\">
+<input type=\"hidden\" name=\"toreg_dns4_ip\" value=\"$toreg_dns4_ip\">
+<input type=\"hidden\" name=\"toreg_dns5_ip\" value=\"$toreg_dns5_ip\">
+<input type=\"hidden\" name=\"toreg_dns6_ip\" value=\"$toreg_dns6_ip\">
 ";
 
 $whois_forwareded_params = "
-<input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"".$_REQUEST["dtcrm_owner_hdl"]."\">
-<input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"".$_REQUEST["dtcrm_admin_hdl"]."\">
-<input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"".$_REQUEST["dtcrm_billing_hdl"]."\">
-<input type=\"hidden\" name=\"toreg_dns1\" value=\"".$_REQUEST["toreg_dns1"]."\">
-<input type=\"hidden\" name=\"toreg_dns2\" value=\"".$_REQUEST["toreg_dns2"]."\">
-<input type=\"hidden\" name=\"toreg_dns3\" value=\"".$_REQUEST["toreg_dns3"]."\">
-<input type=\"hidden\" name=\"toreg_dns4\" value=\"".$_REQUEST["toreg_dns4"]."\">
-<input type=\"hidden\" name=\"toreg_dns5\" value=\"".$_REQUEST["togeg_dns5"]."\">
-<input type=\"hidden\" name=\"toreg_dns6\" value=\"".$_REQUEST["toreg_dns6"]."\">
+<input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"$dtcrm_owner_hdl\">
+<input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"$dtcrm_admin_hdl\">
+<input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"$dtcrm_billing_hdl\">
+<input type=\"hidden\" name=\"toreg_dns1\" value=\"$toreg_dns1\">
+<input type=\"hidden\" name=\"toreg_dns2\" value=\"$toreg_dns2\">
+<input type=\"hidden\" name=\"toreg_dns3\" value=\"$toreg_dns3\">
+<input type=\"hidden\" name=\"toreg_dns4\" value=\"$toreg_dns4\">
+<input type=\"hidden\" name=\"toreg_dns5\" value=\"$toreg_dns5\">
+<input type=\"hidden\" name=\"toreg_dns6\" value=\"$toreg_dns6\">
 ";
 
 $period_popup = "<select name=\"toreg_period\">

@@ -179,10 +179,36 @@ function drawAdminTools_NickHandles($admin){
 		<b><u>Edit existing nick-handle ".$hdl["name"].":</u></b><br>";
 		$hidden_inputs = "<input type=\"hidden\" name=\"action\" value=\"update_nickhandle\">";
 		$name_of_hdl = "<input type=\"hidden\" name=\"name\" value=\"".$hdl["name"]."\">".$hdl["name"];
+		$hdlcompany = $hdl["company"];
+		$hdlfirstname = $hdl["firstname"];
+		$hdllastname = $hdl["lastname"];
+		$hdladdr1 = $hdl["addr1"];
+		$hdladdr2 = $hdl["addr2"];
+		$hdladdr3 = $hdl["addr3"];
+		$hdlstate = $hdl["state"];
+		$hdlcity = $hdl["city"];
+		$hdlzipcode = $hdl["zipcode"];
+		$hdlcountry = $hdl["country"];
+		$hdlphone = $hdl["phone_num"];
+		$hdlfax = $hdl["fax_num"];
+		$hdlemail = $hdl["email"];
 	}else{
 		$out .= "<br><br><b><u>Create a new nick-handle:</u></b><br>";
 		$hidden_inputs = "<input type=\"hidden\" name=\"action\" value=\"create_nickhandle\">";
-		$name_of_hdl = "<input type=\"text\" name=\"name\" value=\"".$hdl["name"]."\">";
+		$name_of_hdl = "<input type=\"text\" name=\"name\" value=\"\">";
+		$hdlcompany = "";
+		$hdlfirstname = "";
+		$hdllastname = "";
+		$hdladdr1 = "";
+		$hdladdr2 = "";
+		$hdladdr3 = "";
+		$hdlstate = "";
+		$hdlcity = "";
+		$hdlzipcode = "";
+		$hdlcountry = "";
+		$hdlphone = "";
+		$hdlfax = "";
+		$hdlemail = "";
 	}
 	$rf = "<font color=\"red\">*</font>";	// Required field
 	$out .= "<form action=\"$PHP_SELF\">
@@ -195,43 +221,43 @@ function drawAdminTools_NickHandles($admin){
 	<td>$name_of_hdl</td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Company:</td>
-	<td><input type=\"text\" name=\"company\" value=\"".$hdl["company"]."\"></td>
+	<td><input type=\"text\" name=\"company\" value=\"".$hdlcompany."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Firstname$rf:</td>
-	<td><input type=\"text\" name=\"firstname\" value=\"".$hdl["firstname"]."\"></td>
+	<td><input type=\"text\" name=\"firstname\" value=\"".$hdlfirstname."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Lastname$rf:</td>
-	<td><input type=\"text\" name=\"lastname\" value=\"".$hdl["lastname"]."\"></td>
+	<td><input type=\"text\" name=\"lastname\" value=\"".$hdllastname."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Street address$rf:</td>
-	<td><input type=\"text\" name=\"addr1\" value=\"".$hdl["addr1"]."\">
+	<td><input type=\"text\" name=\"addr1\" value=\"".$hdladdr1."\">
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Street address 2:<br><i>Optionnal</i></td>
-	<td><input type=\"text\" name=\"addr2\" value=\"".$hdl["addr2"]."\"></td>
+	<td><input type=\"text\" name=\"addr2\" value=\"".$hdladdr2."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Street address 3:<br><i>Optionnal</i></td>
-	<td><input type=\"text\" name=\"addr3\" value=\"".$hdl["addr3"]."\"></td>
+	<td><input type=\"text\" name=\"addr3\" value=\"".$hdladdr3."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>State:<br><i>If applicable</i></td>
-	<td><input type=\"text\" name=\"state\" value=\"".$hdl["state"]."\"></td>
+	<td><input type=\"text\" name=\"state\" value=\"".$hdlstate."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>City:</td>
-	<td><input type=\"text\" name=\"city\" value=\"".$hdl["city"]."\"></td>
+	<td><input type=\"text\" name=\"city\" value=\"".$hdlcity."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Zipcode$rf:</td>
-	<td><input type=\"text\" name=\"zipcode\" value=\"".$hdl["zipcode"]."\"></td>
+	<td><input type=\"text\" name=\"zipcode\" value=\"".$hdlzipcode."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Country$rf:</td>
-	<td><select name=\"country\">".cc_code_popup($hdl["country"])."</select></td>
+	<td><select name=\"country\">".cc_code_popup($hdlcountry)."</select></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Phone number$rf:</td>
-	<td><input type=\"text\" name=\"phone_num\" value=\"".$hdl["phone_num"]."\"></td>
+	<td><input type=\"text\" name=\"phone_num\" value=\"".$hdlphone."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Fax number:<br><i>Optional</i></td>
-	<td><input type=\"text\" name=\"fax_num\" value=\"".$hdl["fax_num"]."\"></td>
+	<td><input type=\"text\" name=\"fax_num\" value=\"".$hdlfax."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>email$rf:<br><i>MUST be a valid email</i></td>
-	<td><input type=\"text\" name=\"email\" value=\"".$hdl["email"]."\"></td>
+	<td><input type=\"text\" name=\"email\" value=\"".$hdlemail."\"></td>
 </tr><tr>
 	<td></td><td><input type=\"submit\" value=\"Ok\"></td>
 </tr></table>

@@ -4,7 +4,7 @@
 // Email account submition to mysql database //
 ///////////////////////////////////////////////
 //$edit_domain $newmail_login $newmail_redirect1 $newmail_pass $newmail_redirect2 $newmail_deliver_localy
-if($_REQUEST["addnewmailtodomain"] == "Ok"){
+if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == "Ok"){
 	// Check if mail exists...
 	$test_query = "SELECT * FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["newmail_login"]."' AND mbox_host='$edit_domain'";
 	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
@@ -54,7 +54,7 @@ VALUES ('".$_REQUEST["newmail_login"]."','$mailbox_path','$edit_domain','$crypte
 /////////////////////////////////////////////////////////
 // $edit_domain $edit_mailbox $editmail_pass $editmail_redirect1 $editmail_redirect2 $editmail_deliver_localy
 /////////////////////////////////////////////////////////
-if($_REQUEST["modifymailboxdata"] == "Ok"){
+if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	if(!isMailbox($_REQUEST["edit_mailbox"])){
@@ -103,7 +103,7 @@ if($_REQUEST["modifymailboxdata"] == "Ok"){
 //////////////////////////////////
 // $edit_domain $editmail_login
 //////////////////////////////////
-if($_REQUEST["delemailaccount"] == "Del"){
+if(isset($_REQUEST["delemailaccount"]) && $_REQUEST["delemailaccount"] == "Del"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	// Verify strings given

@@ -43,9 +43,9 @@ function drawAdminTools_Whois($admin,$eddomain){
 
 	$domain_name = $eddomain["name"];
 
-	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
+	$out = "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
 	if($eddomain["whois"] == "away"){
-		if($_REQUEST["dtcrm_action"] == "transfer_domain"){
+		if(isset($_REQUEST["dtcrm_action"]) && $_REQUEST["dtcrm_action"] == "transfer_domain"){
 			$out .= drawNameTransfer($admin,$domain_name);
 		}else{
 			$out .= "Your domain name has been registred elsewhere (eg

@@ -28,9 +28,11 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	$max_ftp = $domain["max_ftp"];
 	if($nbr_ftp >= $max_ftp){
 		$max_color = "color=\"#440000\"";
+	}else{
+		$max_color = "";
 	}
 	$nbrtxt = $txt_number_of_active_ftp[$lang];
-	$txt .= "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_ftp ."</font> / <font size=\"-1\">" . $max_ftp . "</font><br><br>";
+	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_ftp ."</font> / <font size=\"-1\">" . $max_ftp . "</font><br><br>";
 
 	$txt .= "<font face=\"Verdana, Arial\"><font size=\"-1\"><b><u>".$txt_ftp_account_list[$lang]."</u><br>";
 	$ftps = $domain["ftps"];
@@ -38,7 +40,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	for($i=0;$i<$nbr_account;$i++){
 		$ftp = $ftps[$i];
 		$login = $ftp["login"];
-		if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $login == $_REQUEST["edftp_account"]){
+		if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && $login == $_REQUEST["edftp_account"]){
 			$pass = $ftp["passwd"];
 			$ftpath = $ftp["path"];
 		}
@@ -48,13 +50,13 @@ function drawAdminTools_Ftp($domain,$adm_path){
 		$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps&edftp_account=$login\">$login</a>";
 	}
 
-	if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $ftpath == "$adm_path"){
+	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && $ftpath == "$adm_path"){
 		$is_selected = " selected";
 	}else{
 		$is_selected ="";
 	}
-	$path_popup .= "<option value=\"$adm_path\"$is_selected>/</option>";
-	if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $ftpath == "$adm_path/$edit_domain"){
+	$path_popup = "<option value=\"$adm_path\"$is_selected>/</option>";
+	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && $ftpath == "$adm_path/$edit_domain"){
 		$is_selected = " selected";
 	}else{
 		$is_selected ="";
@@ -63,7 +65,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	$nbr_subdomains = sizeof($domain["subdomains"]);
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub_name = $domain["subdomains"][$i]["name"];
-		if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $ftpath == "$adm_path/$edit_domain/subdomains/$sub_name"){
+		if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && $ftpath == "$adm_path/$edit_domain/subdomains/$sub_name"){
 			$is_selected = " selected";
 		}else{
 			$is_selected ="";
@@ -71,7 +73,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 		$path_popup .= "<option value=\"$adm_path/$edit_domain/subdomains/$sub_name\"$is_selected>/$edit_domain/subdomains/$sub_name/</option>";
 	}
 
-	if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $_REQUEST["deleteftpaccount"] != "Delete"){
+	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && $_REQUEST["deleteftpaccount"] != "Delete"){
 		$txt .= "<br><br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps\">".$txt_ftp_new_account_link[$lang]."</A><br>";
 		$txt .= "
 <br><u>".$txt_ftp_account_edit[$lang]."</u>
@@ -85,10 +87,9 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"ftps\">
 	<input type=\"hidden\" name=\"edftp_account\" value=\"".$_REQUEST["edftp_account"]."\">";
-	if ($conf_hide_password == "yes")
-	{
+	if ($conf_hide_password == "yes"){
 		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"edftp_pass\" value=\"$pass\">";
-	} else {
+	}else{
 		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"edftp_pass\" value=\"$pass\">";
 	}
 $txt .= "
@@ -105,6 +106,11 @@ $txt .= "
 		$txt .= "
 <br><br><u>".$txt_ftp_new_account[$lang]."</u>";
 		if($nbr_ftp < $max_ftp){
+			if(isset($_REQUEST["edftp_account"])){
+				$edftp_account = $_REQUEST["edftp_account"];
+			}else{
+				$edftp_account = "";
+			}
 			$txt .= "
 <table><tr><td align=\"right\">
 <form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
@@ -113,7 +119,7 @@ $txt .= "
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"ftps\">
-	<input type=\"hidden\" name=\"edftp_account\" value=\"".$_REQUEST["edftp_account"]."\">
+	<input type=\"hidden\" name=\"edftp_account\" value=\"".$edftp_account."\">
 	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newftp_login\" value=\"\">
 </td></tr><tr><td align=\"right\">
 	".$txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newftp_pass\" value=\"\">
@@ -128,10 +134,13 @@ $txt .= "
 			$txt .= "<br>".$txt_maxnumber_of_ftp_account_reached[$lang];
 		}
 	}
-	$txt .= "<br>$interface</b></font>";
+	if(isset($interface)){
+		$txt .= "<br>$interface</b></font>";
+	}else{
+		$txt .= "<br></b></font>";
+	}
 
 	return $txt;
 }
-
 
 ?>

@@ -17,7 +17,7 @@ function drawDataBase($database){
 
 	global $conf_demo_version;
 
-	$txt .= "<br><b><u>".$txt_draw_tatabase_your_list[$lang]."</u></b><br>";
+	$txt = "<br><b><u>".$txt_draw_tatabase_your_list[$lang]."</u></b><br>";
 
 	if($conf_demo_version == "no"){
 		mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");

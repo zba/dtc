@@ -46,9 +46,11 @@ function drawAdminTools_Subdomain($domain){
 	$max_subdomain = $domain["max_subdomain"];
 	if($nbr_subdomain >= $max_subdomain){
 		$max_color = "color=\"#440000\"";
+	}else{
+		$max_color = "";
 	}
 	$nbrtxt = $txt_number_of_active_subdomains[$lang];
-	$txt .= "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_subdomain ."</font> / <font size=\"-1\">" . $max_subdomain . "</font><br><br>";
+	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_subdomain ."</font> / <font size=\"-1\">" . $max_subdomain . "</font><br><br>";
 
 
 	$default_subdomain = $domain["default_subdomain"];
@@ -64,7 +66,7 @@ function drawAdminTools_Subdomain($domain){
 		if($i!=0){
 			$txt .= " - ";
 		}
-		if($sub == $_REQUEST["edit_a_subdomain"]){
+		if(isset($_REQUEST["edit_a_subdomain"]) && $sub == $_REQUEST["edit_a_subdomain"]){
 			$ip_domain_to_edit = $ip;
 			$login_to_edit = $subdomains[$i]["login"];
 			$pass_to_edit = $subdomains[$i]["pass"];
@@ -133,13 +135,13 @@ function drawAdminTools_Subdomain($domain){
 		if($i!=0){
 			$txt .= " - ";
 		}
-		if($sub != $_REQUEST["edit_a_subdomain"]){
+		if(!isset($_REQUEST["edit_a_subdomain"]) || $sub != $_REQUEST["edit_a_subdomain"]){
 			$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&edit_a_subdomain=$sub&edit_domain=$webname&addrlink=$addrlink\">";
 		}else{
 			$in_new = false;
 		}
 		$txt .= $sub;
-		if($sub != $_REQUEST["edit_a_subdomain"]){
+		if(!isset($_REQUEST["edit_a_subdomain"]) || $sub != $_REQUEST["edit_a_subdomain"]){
 			$txt .= "</a>";
 		}
 	}

@@ -10,22 +10,24 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	global $txt_stats_http_subdom;
 	global $lang;
 
+	$out = "";
+
 //	sum_http($eddomain["name"]);
 	$query_http = "SELECT bytes_sent FROM $pro_mysql_acc_http_table WHERE domain='".$eddomain["name"]."'
 	AND month='".date("n")."' AND year='".date("Y")."'";
-    $result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
-    $num_rows = mysql_num_rows($result_http);
+	$result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
+	$num_rows = mysql_num_rows($result_http);
 	if($num_rows > 0)
-	    $http_amount = $http_amount + mysql_result($result_http,0,"bytes_sent");
+		$http_amount = mysql_result($result_http,0,"bytes_sent");
 	else
 		$http_amount = 0;
 
 //	sum_ftp($eddomain["name"]);
-    $q = "SELECT transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$eddomain["name"]."'
+	$q = "SELECT transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$eddomain["name"]."'
 	AND month='".date("m")."' AND year='".date("Y")."'";
-    $r = mysql_query($q) or die("Cannot execute query \"$q\" !".mysql_error().
+	$r = mysql_query($q) or die("Cannot execute query \"$q\" !".mysql_error().
 	" line ".__LINE__." file ".__FILE__);
-    $num_rows = mysql_num_rows($r);
+	$num_rows = mysql_num_rows($r);
 	if($num_rows > 0)
 		$ftp_amount = mysql_result($r,0,"transfer");
 	else

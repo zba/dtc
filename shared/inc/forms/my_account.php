@@ -31,6 +31,7 @@ function drawAdminTools_MyAccount($admin){
 	global $txt_draw_client_info_zipcode;
 	global $txt_draw_client_info_country;
 	global $txt_draw_client_info_city;
+	global $txt_draw_client_info_state;
 	global $txt_draw_client_info_phone;
 	global $txt_draw_client_info_fax;
 	global $txt_draw_client_info_email;
@@ -41,17 +42,17 @@ function drawAdminTools_MyAccount($admin){
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 ";
 
-	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
+	$out = "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
 
 	$id_client = $admin["info"]["id_client"];
 
 	$stats = fetchAdminStats($admin);
 
-	if($id_client != 0 && $_REQUEST["action"] == "upgrade_myaccount"){
+	if(isset($_REQUEST["action"]) && $id_client != 0 && $_REQUEST["action"] == "upgrade_myaccount"){
 		return draw_UpgradeAccount($admin);
 	}
 
-	if($id_client != 0 && $_REQUEST["action"] == "refund_myaccount"){
+	if(isset($_REQUEST["action"]) && $id_client != 0 && $_REQUEST["action"] == "refund_myaccount"){
 		$q = "INSERT INTO $pro_mysql_pay_table (id,id_client,id_command,label,currency,refund_amount,date,time)VALUES('','$id_client','0','Refund my account','USD','".$_REQUEST["refund_amount"]."','".date("Y-m-j")."','".date("H:i:s")."');";
 		$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error()." in file ".__FILE__." line ".__LINE__);
 		$payid = mysql_insert_id();
@@ -66,7 +67,7 @@ when paiement is done, click the refresh button.";
 
 	$out .= "<b><u>".$txt_transfer_du[$lang]."</u></b>";
 	// Draw overall this month usage
-	$overall .= "<br>".$txt_transfer_this_month[$lang].smartByte($stats["total_transfer"]);
+	$overall = "<br>".$txt_transfer_this_month[$lang].smartByte($stats["total_transfer"]);
 	if($id_client != 0){
 		$bw_quota = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;
 		$overall .= " / ".smartByte($bw_quota)."<br>";

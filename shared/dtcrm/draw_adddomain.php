@@ -19,7 +19,7 @@ function drawAdminTools_AddDomain($admin){
 	global $pro_mysql_domain_table;
 
 	global $pro_mysql_handle_table;
-	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
+	$out = "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
 
 $form_start = "
 <form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -30,9 +30,9 @@ $form_start = "
 ";
 
 	// Registration, hosting, or both ?
-	if($_REQUEST["add_domain_type"] != "domregandhosting" &&
+	if(!isset($_REQUEST["add_domain_type"]) || ($_REQUEST["add_domain_type"] != "domregandhosting" &&
 		$_REQUEST["add_domain_type"] != "domreg" &&
-		$_REQUEST["add_domain_type"] != "hosting"){
+		$_REQUEST["add_domain_type"] != "hosting")){
 		$out .= "<b><u>What do you want to do:</u></b><br>
 $form_start
 <input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>Hosting + name registration/transfer<br>

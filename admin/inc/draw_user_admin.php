@@ -19,7 +19,7 @@ function drawNewAdminForm(){
 	global $txt_domain_tbl_config_dom_name;
 
 	// Draw the form for making a new admin
-	$add_a_user .= "<h4>".$txt_add_a_new_user[$lang]."</h4>
+	$add_a_user = "<h4>".$txt_add_a_new_user[$lang]."</h4>
 <form action=\"?\" methode=\"post\">
 <table>
 <tr><td align=\"right\">
@@ -111,6 +111,8 @@ function drawMySqlAccountManger(){
 	global $txt_mysqlmang_not_in_demo;
 	global $txt_delete_this_mysql_user_and_db;
 
+	$out = "";
+
 	// Retrive the infos from the database "mysql" that contains all the rights
 	if($conf_demo_version == "no"){
 		mysql_select_db("mysql")or die("Cannot select db mysql for account management  !!! Does your MySQL user/pass has the rights to it ?");
@@ -165,10 +167,10 @@ function userEditForms($adm_login,$adm_pass){
 		}
 
 		// Draw the html forms
-		$HTML_admin_edit_info .= drawEditAdmin($admin);
-		$HTML_admin_mysql_config .= drawMySqlAccountManger();
-		$HTML_admin_domain_config .= drawDomainConfig($admin);
-		$HTML_admin_edit_data .= drawAdminTools($admin);
+		$HTML_admin_edit_info = drawEditAdmin($admin);
+		$HTML_admin_mysql_config = drawMySqlAccountManger();
+		$HTML_admin_domain_config = drawDomainConfig($admin);
+		$HTML_admin_edit_data = drawAdminTools($admin);
 
 		// Output and skin the result !
 		$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);

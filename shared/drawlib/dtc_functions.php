@@ -277,6 +277,8 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 }
 
 function drawPercentBar($value,$max,$double="yes"){
+	$alts = "";
+	$altn = "";
 	if($double == "yes")	$dbl = 2;
 	else	$dbl = 1;
 	if($max != 0){

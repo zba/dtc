@@ -22,6 +22,8 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	global $dtcshared_path;
 	global $conf_administrative_site;
 
+	$out = "";
+
 	// TODO : fetch the expiration in the database
 //	$webname = $eddomain["name"];
 //	$query = "SELECT * FROM $pro_mysql_command_table WHERE nom_domaine='$webname'";
@@ -73,7 +75,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 		$radio_yes = "";
 	}
 
-	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">".$txt_password[$lang]."<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">

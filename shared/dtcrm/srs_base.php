@@ -12,7 +12,7 @@ class openSRS extends openSRS_base {
 }
 
 // Return an SRS cookie value
-$SRScookie_errno;
+$SRScookie_errno=0;
 function SRSget_cookie($adm_login,$adm_pass,$domain_name){
 	global $SRScookie_errno;
 	// Get the SRS cookie for domain update

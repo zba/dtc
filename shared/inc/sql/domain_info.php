@@ -1,7 +1,7 @@
 <?php
 
 // http://dtc.iglobalwall.com/dtc/index.php?adm_login=dtc&addrlink=test.net&adm_pass=root99&domain_gen_unresolv_alias=yes&
-if($_REQUEST["change_unresolv_alias"] == "Ok"){
+if(isset($_REQUEST["change_unresolv_alias"]) && $_REQUEST["change_unresolv_alias"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	if($_REQUEST["domain_gen_unresolv_alias"] == "yes"){

@@ -4,7 +4,7 @@
 // Submit a new DNS and MX config for a domain to database //
 /////////////////////////////////////////////////////////////
 // adm_login=test&adm_pass=test&edit_domain=toto.com&addrlink=test.com&new_dns_1=default&new_dns_2=t0x.aegis-corp.org&new_dns_3=ns1.namebay.com&new_dns_4=ns2.namebay.com&new_dns_5=&new_mx_1=default&new_mx_2=mx1.anotherlight.com&new_mx_3=mx1.namebay.com&new_mx_4=mx2.namebay.com&new_mx_5=&new_dns_and_mx_config=Ok
-if($_REQUEST["new_dns_and_mx_config"] == "Ok"){
+if(isset($_REQUEST["new_dns_and_mx_config"]) && $_REQUEST["new_dns_and_mx_config"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	$new_dns_1 = $_REQUEST["new_dns_1"];

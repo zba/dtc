@@ -37,9 +37,9 @@ function drawEditAdmin($admin){
 	$expire = $info["expire"];
 	$allow_add_domain = $info["allow_add_domain"];
 
-	if($allow_add_domain == "yes")	$adyes = "selected";
-	if($allow_add_domain == "check")$adcheck = "selected";
-	if($allow_add_domain == "no")	$adno = "selected";
+	if($allow_add_domain == "yes")	$adyes = "selected";	else $adyes = "";
+	if($allow_add_domain == "check")$adcheck = "selected";	else $adcheck = "";
+	if($allow_add_domain == "no")	$adno = "selected";	else $adno = "";
 	$aldom_popup = "<select name=\"allow_add_domain\">
 <option name=\"yes\" $adyes>Yes</option>
 <option name=\"check\" $adcheck>Check</option>
@@ -48,7 +48,7 @@ function drawEditAdmin($admin){
 ";
 
 	// Generate the user configuration form
-	$user_data .= "
+	$user_data = "
 <form action=\"?\" methode=\"post\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -101,7 +101,7 @@ function drawEditAdmin($admin){
 	<input type=\"submit\" name=\"newdomain\" value=\"Ok\">
 	</form>";
 
-	$conf_user .= "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/cadre04/trait06.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
+	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/cadre04/trait06.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
 	$conf_user .= "</b></font> ";
 
 	return $conf_user;

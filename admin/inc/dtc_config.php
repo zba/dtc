@@ -6,9 +6,11 @@ function drawDTCConfigMenu(){
 	global $txt_cfg_payconf_title;
 	global $lang;
 
-	$sousrub = $_REQUEST["sousrub"];
-	if(!isset($sousrub) || $sousrub == "")
+	if(!isset($_REQUEST["sousrub"])){
 		$sousrub = "general";
+        }else{
+          $sousrub = $_REQUEST["sousrub"];
+        }
 
 	$out = "<br><table><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "general")
@@ -80,6 +82,7 @@ function drawGeneralConfig(){
 	$dir = $dtcshared_path."/gfx/skin/";
 
 	// Open a known directory, and proceed to read its contents
+	$skin_choose = "";
 	if (is_dir($dir)) {
 		if ($dh = opendir($dir)) {
 			while (($file = readdir($dh)) !== false) {
@@ -227,7 +230,7 @@ function drawNetworkConfig(){
 		$conf_use_nated_vhost_no = " checked";
 	}
 
-	$out .= "<h3>".$txt_cfg_main_software_config[$lang]."</h3>
+	$out = "<h3>".$txt_cfg_main_software_config[$lang]."</h3>
 <table with=\"100%\" height=\"1\">
 <tr>
 	<td align=\"right\" nowrap>
@@ -268,7 +271,8 @@ function drawNamedConfig(){
 	global $txt_cfg_primary_dns_server_addr;
 	global $txt_cfg_secondary_dns_server_addr;
 	global $txt_cfg_slave_dns_ip;
-	$out .= "<h3>".$txt_cfg_name_zonefileconf_title[$lang]."</h3>
+
+	$out = "<h3>".$txt_cfg_name_zonefileconf_title[$lang]."</h3>
 <table with=\"100%\" height=\"1\">
 <tr><td align=\"right\" nowrap>
 	".$txt_cfg_main_mx_addr[$lang]."</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_addr_mail_server\" name=\"new_addr_mail_server\"><br>
@@ -295,7 +299,7 @@ function drawBackupConfig(){
         global $txt_cfg_act_as_backup_dns_server;
         global $lang;
 
-	$out .= "<h3>".$txt_cfg_allow_following_servers_to_list[$lang]."</h3>";
+	$out = "<h3>".$txt_cfg_allow_following_servers_to_list[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='grant_access';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -434,6 +438,8 @@ function drawDTCpayConfig(){
 
 	global $pro_mysql_secpayconf_table;
 
+	$out = "";
+
 	$q = "SELECT * FROM $pro_mysql_secpayconf_table";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" ! line: ".__LINE__." file: ".__file__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -465,13 +471,13 @@ function drawDTCpayConfig(){
 	".$txt_cfg_paypal_autovalid[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"autovalid_paypal\"$auto_paypal_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"autovalid_paypal\"$auto_paypal_check_no> No</td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_email[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"".$a[paypal_email]."\" name=\"paypal_email\"></td>
+  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"".$a["paypal_email"]."\" name=\"paypal_email\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_ratefee[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a[paypal_rate]."\" name=\"paypal_rate\"></td>
+  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a["paypal_rate"]."\" name=\"paypal_rate\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_flatfee[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a[paypal_flat]."\" name=\"paypal_flat\"></td>
+  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a["paypal_flat"]."\" name=\"paypal_flat\"></td>
 </tr>
 </table>
 ";
@@ -511,6 +517,8 @@ function drawDTCpathConfig(){
 	global $txt_cfg_new_account_defaultpath;
 	global $txt_cfg_generated_file_path;
 	global $txt_cfg_new_chroot_path_path;
+
+	$out = "";
 
 	$qmailPath = "<h3><img src=\"gfx/dtc/generate_mail.gif\"> Qmail path</h3>
 <table with=\"100%\" height=\"1\">
@@ -597,9 +605,10 @@ function drawDTCConfigForm(){
 
 	global $lang;
 
-	$sousrub = $_REQUEST["sousrub"];
-	if(!isset($sousrub) || $sousrub == "")
+	if(!isset($_REQUEST["sousrub"]))
 		$sousrub = "general";
+        else
+	  $sousrub = $_REQUEST["sousrub"];
 
 	switch($sousrub){
 	case "general":

@@ -15,7 +15,7 @@ function checkLoginPass(){
 // Account manager //
 /////////////////////
 // https://dtc.gplhost.com/dtc/?adm_login=dianflon&adm_pass=dec0lease&addrlink=myaccount&action=refund&refund_amount=12
-if($_REQUEST["action"] == "refund"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "refund"){
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
@@ -43,7 +43,7 @@ if($_REQUEST["action"] == "refund"){
 // adm_login=zigo&adm_pass=XXX&action=create_nickhandle
 // &hdl_id=&addrlink=nickhandles&
 // name=a&company=aa&firstname=b&lastname=c&addr1=d&addr2=e&addr3=f&state=g&country=h&zipcode=i&phone_num=j&fax_num=k&email=l
-if($_REQUEST["action"] == "create_nickhandle"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "create_nickhandle"){
 	checkLoginPass();
 		
 	if($_REQUEST["name"] == "" ||
@@ -81,7 +81,7 @@ phone_num,fax_num,email) VALUES (
 	//echo $query;
 	mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 }
-if($_REQUEST["action"] == "update_nickhandle"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "update_nickhandle"){
 	checkLoginPass();
 		
 	if($_REQUEST["name"] == "" ||

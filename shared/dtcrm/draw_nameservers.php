@@ -10,12 +10,13 @@ function drawAdminTools_NameServers($admin){
 	global $pro_mysql_nameservers_table;
 	global $pro_mysql_domain_table;
 
+	$out = "";
 
-	$subdomain = $_REQUEST["subdomain"];
-	$domain_name = $_REQUEST["domain_name"];
-	$ip = $_REQUEST["ip"];
+	if(isset($_REQUEST["subdomain"]))	$subdomain = $_REQUEST["subdomain"];
+	if(isset($_REQUEST["domain_name"]))	$domain_name = $_REQUEST["domain_name"];
+	if(isset($_REQUEST["ip"]))		$ip = $_REQUEST["ip"];
 
-	if($_REQUEST["action"] == "new_nameserver"){
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_nameserver"){
 		checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name);
 		$regz = registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip);
 		if($regz["is_success"] == 1){
@@ -43,7 +44,7 @@ owner,domain_name,subdomain,ip)VALUES(
 Server said: <i>" . $regz["response_text"] . "</i><br>";
 		}
 	}
-	if($_REQUEST["action"] == "edit_nameserver"){
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_nameserver"){
 		checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name);
 		$regz = registry_modify_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip);
 		if($regz["is_success"] == 1){
@@ -61,7 +62,7 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 		}
 	}
  
-	if($_REQUEST["action"] == "delete_nameserver"){
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_nameserver"){
 		checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name);
 		$regz = registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name);
 		if($regz["is_success"] == 1){
@@ -92,7 +93,7 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 			$row["id"] ."\">" . $row["subdomain"] . "." . $row["domain_name"] . "</a>";
 	}
 
-	if($_REQUEST["edit_id"] != "" && isset($_REQUEST["edit_id"])){
+	if(isset($_REQUEST["edit_id"]) && $_REQUEST["edit_id"] != ""){
 		$query = "SELECT * FROM $pro_mysql_nameservers_table WHERE id='". $_REQUEST["edit_id"] ."' AND owner='$adm_login';";
 		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 		if(mysql_num_rows($result) != 1) die("Nameserver not found !!!");

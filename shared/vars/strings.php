@@ -2149,7 +2149,7 @@ recharger sa liste d'utilisateurs.<br><br>
 La plus part du temps, nous validons les changements a la fin
 de chaque jour ouvrable, mais si vous avez d'une validation
 immédiate, veuillez cliquer <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
 validation\">ici</a>.<br><br>
 
 <u><2.4 Pas de spam !</u><br><br>
@@ -2222,7 +2222,7 @@ nous devons valider vos changement.
 La plus part du temps, nous validons les changements a la fin
 de chaques jour ouvrable, mais si vous avez d'une validation
 immédiate, veuillez cliquer <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache and named now !\">ici</a>.<br><br>
 
 <u>3.6. Statistiques de votre site</u><br><br>
@@ -2265,7 +2265,7 @@ pris en comptes immédiatement en temps réel.<br><br>
 Pour le moment, vous ne pouvez pas le faire (mais c'est prévu).
 Par contre, nous pouvons le faire sur demande motivée, si vous
 nous écrivez en cliquant <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
 user path change in FTP\">ici</a>, en précisant le nom d'utilisateur le son
 chemin.<br><br>
 
@@ -2339,7 +2339,7 @@ take effect : we have to tell Qmail (our mail server) to
 reload it's user database.<br><br>
 Most of the time, we validate all changes at the end of
 each working days, but if you need an immediate validation,
-click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
+click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
 validation\">here</a>.<br><br>
 
 <font size=\"+1\"><u>3. Subdomains</u></font><br>
@@ -2397,7 +2397,7 @@ We will have to restart our Apache web server in order
 to have your changes taking effect. Most of the time, we validate all
 changes at the end of
 each working days, but if you need an immediate validation,
-click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache now !\">here</a>.<br><br>
 
 <u>3.6. Trafic statistics for your subdomains</u><br><br>
@@ -2432,7 +2432,7 @@ in realtime.<br><br>
 For the moment you cannont limit one user to access to only
 a part of your web site. But we (the administrators) can
 do it if you ask sending an <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
 user path change in FTP\">email</a>, telling what user
 and what path you need.<br><br>
 
@@ -2499,7 +2499,7 @@ Ha hozzáad vagy töröl levelesládákat, akkor ne várja hogy azok rögtön mûködnek i
 bekövetkezett módosítások életbe lépjenek : meg kell mondanunk a Qmail-nek (a levelezõ szerverünk)
 hogy olvassa újra a felhasználói adatbázisát.<br><br>
 Legtöbbször ezt munkanapokon a nap végén tesszük meg, de ha rögtön szüksége van az érvényesítésre
-, akkor kattintson <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email hozzáférés
+, akkor kattintson <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email hozzáférés
 érvényesítése\">ide</a>.<br><br>
 
 <font size=\"+1\"><u>3. Aldomain-ek</u></font><br>
@@ -2552,7 +2552,7 @@ apache-ot.<br><br>
 Újra kell indítanunk az Apache webszerverünket ahhoz hogy bekövetkezett módosítások
 életbe lépjenek.
 Legtöbbször ezt munkanapokon a nap végén tesszük meg, de ha rögtön szüksége van az újraindításra
-, akkor kattintson <a href=\"mailto:$webmaster_email_addr?subject=[DTC]aldomain létrehozás:
+, akkor kattintson <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]aldomain létrehozás:
 kérem indítsák újra az apache-ot most ! \">ide</a>.<br><br>
 
 <u>3.6. Látogatói statisztikák az aldomain-ekhez</u><br><br>
@@ -2587,7 +2587,7 @@ ami az FTP hozzáféréseket érinti azonnal végrehajtódik.<br><br>
 Jelenleg nem tudja korlátozni a felhasználókat úgy, hogy a weboldalának
 csak egy részéhez férjenek hozzá . De mi (az adminisztrátorok) meg tudjuk ezt tenni
 ha ön kéri egy <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]Felhasználó
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Felhasználó
 elérési út korlátoza az FTP hozzáférésben\">e-mail-ben</a>, amiben leírja hogy melyik az érintett
 felhasználó és melyik az elérési út amire szüksége van.<br><br>
 
@@ -2659,7 +2659,7 @@ take effect : we have to tell Qmail (our mail server) to
 reload it's user database.<br><br>
 Most of the time, we validate all changes at the end of
 each working days, but if you need an immediate validation,
-click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
+click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
 validation\">here</a>.<br><br>
 
 <font size=\"+1\"><u>3. Subdomains</u></font><br>
@@ -2717,7 +2717,7 @@ We will have to restart our Apache web server in order
 to have your changes taking effect. Most of the time, we validate all
 changes at the end of
 each working days, but if you need an immediate validation,
-click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache now !\">here</a>.<br><br>
 
 <u>3.6. Trafic statistics for your subdomains</u><br><br>
@@ -2752,7 +2752,7 @@ in realtime.<br><br>
 For the moment you cannont limit one user to access to only
 a part of your web site. But we (the administrators) can
 do it if you ask sending an <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
 user path change in FTP\">email</a>, telling what user
 and what path you need.<br><br>
 
@@ -2829,7 +2829,7 @@ niet direct doorgevoerd. Dit kan ook niet omdat we bij elke verandering het
 programma Qmail (onze mailserver) moeten herstarten om de veranderingen op te nemen.
 Daarom word de server bijna altijd aan het eind van elke werkdag even herladen.
 Indien het echt noodzakelijk is dat de accountverandering DIRECT word doorgevoerd dan 
-kun je even een e-mail sturen naar de beheerder door <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email account
+kun je even een e-mail sturen naar de beheerder door <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account
 validation\">hier</a> te klikken.<br><br>
 
 <font size=\"+1\"><u>3. Subdomeinen</u></font><br>
@@ -2902,7 +2902,7 @@ het einde van de dag te doen. Door dit eens per dag te doen ondervind
 niet iedereen last van een webserver die telkens moet herstarten.
 Mocht het echt noodzakelijk zijn om de webserver per direct 
 te herstarten dan kun je een e-mail sturen naar
-<a href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+<a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache now !\">de beheerder</a>.<br><br>
 
 <u>3.6. Statistieken voor jouw websites en subdomeinen</u><br><br>
@@ -2946,7 +2946,7 @@ ook bij de e-mailgegevens.
 Indien het ECHT NOODZAKELIJK is dat iemand zich alleen binnen
 een bepaald gedeelte van het webdomein zich mag bewegen, dan kun je 
 een e-mail sturen naar <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
 user path change in FTP\">de beheerders</a>. Vergeet
 er niet bij te vermelden om welke FTP gebruiker het gaat en bij welk
 domein de gebruiker mag.
@@ -3029,7 +3029,7 @@ href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence),
 <br><br>
 ó ÔÅŞÅÎÉÅÍ ×ÒÅÍÅÎÉ ÍÙ ĞÒÏ×ÅÒÑÅÍ ×ÓÅ ÉÚÍÅÎÅÎÉÑ × ËÏÎÃÅ ËÁÖÄÙÈ ÒÁÂÏŞÉÈ ÄÎÅÊ,
 ÎÏ ÅÓÌÉ ×Ù ÎÕÖÄÁÅÔÅÓØ × ÎÅÍÅÄÌÅÎÎÏÊ ĞÒÏ×ÅÒËÅ, ÎÁÖÍÉÔÅ <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
 validation\">here</a>.<br><br>
 
 <font size=\"+1\"><u>3. óÕÂÄÏÍÅÎÙ</u></font><br>
@@ -3087,7 +3087,7 @@ http://www.mydomain.com
 óÏ ×ÒÅÍÅÎÅÍ, ÍÙ ĞÒÏ×ÅÒÑÅÍ ×ÓÅ ÉÚÍÅÎÅÎÉÑ × ËÏÎÃÅ ËÁÖÄÏÇÏ ÒÁÂÏŞÅÇÏ ÄÎÑ, ÎÏ
 ÅÓÌÉ ×ÁÍ ÔÒÅÂÕÅÔÓÑ
 ÎÅÍÅÄÌÅÎÎÁÑ ĞÒÏ×ÅÒËÁ, ÎÁÖÍÉÔÅ <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache now !\">ÚÄÅÓØ</a>.<br><br>
 
 <u>3.6. óÔÁÔÉÓÔÉËÁ ÔÒÁÆÉËÁ ÄÌÑ ×ÁÛÉÈ ÓÕÂÄÏÍÅÎÏ×</u><br><br>
@@ -3121,7 +3121,7 @@ DTC ÜÔÏ ÕÔÉÌÉÔÁ ÄÌÑ ÁÄÍÉÎÉÓÔÒÉÒÏ×ÁÎÉÑ ÜÔÉÈ ĞÏÌØÚÏ×ÁÔÅÌÅÊ É ĞÁÒÏÌÅÊ.<br><br>
 ÷ ÄÁÎÎÙÍ ÍÏÍÅÎÔ ×Ù ÎÅ ÍÏÖÅÔÅ ÏÇÒÁÎÉŞÉÔØ ÏĞÒÅÄÅÌÅÎÎÏÍÕ ĞÏÌØÚÏ×ÁÔÅÌÀ 
 ÄÏÓÔÕĞ Ë ŞÁÓÔÉ ×ÁÛÅÇÏ ÓÁÊÔÁ. îÏ ÍÙ (ÁÄÍÉÎÉÓÔÒÁÔÏÒÙ) ÍÏÖÅÍ ÓÄÅÌÁÔØ ÜÔÏ, 
 ÅÓÌÉ ×Ù ĞÒÉÛÌÅÔÅ ÎÁÍ <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
 user path change in FTP\">ĞÉÓØÍÏ</a>, ĞÏÑÓÎÑÀİÅÅ ËÁËÏÍÕ ĞÏÌØÚÏ×ÁÔÅÌÀ É ŞÔÏ
 ÎÁÄÏ 
 ÏÇÒÁÎÉŞÉÔØ :)<br><br>
@@ -3191,7 +3191,7 @@ take effect : we have to tell Qmail (our mail server) to
 reload it's user database.<br><br>
 Most of the time, we validate all changes at the end of
 each working days, but if you need an immediate validation,
-click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
+click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
 validation\">here</a>.<br><br>
 
 <font size=\"+1\"><u>3. Subdomains</u></font><br>
@@ -3249,7 +3249,7 @@ We will have to restart our Apache web server in order
 to have your changes taking effect. Most of the time, we validate all
 changes at the end of
 each working days, but if you need an immediate validation,
-click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache now !\">here</a>.<br><br>
 
 <u>3.6. Trafic statistics for your subdomains</u><br><br>
@@ -3284,7 +3284,7 @@ in realtime.<br><br>
 For the moment you cannont limit one user to access to only
 a part of your web site. But we (the administrators) can
 do it if you ask sending an <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
 user path change in FTP\">email</a>, telling what user
 and what path you need.<br><br>
 
@@ -3357,7 +3357,7 @@ take effect : we have to tell Qmail (our mail server) to
 reload it's user database.<br><br>
 Most of the time, we validate all changes at the end of
 each working days, but if you need an immediate validation,
-click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
+click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
 validation\">here</a>.<br><br>
 
 <font size=\"+1\"><u>3. Subdomains</u></font><br>
@@ -3415,7 +3415,7 @@ We will have to restart our Apache web server in order
 to have your changes taking effect. Most of the time, we validate all
 changes at the end of
 each working days, but if you need an immediate validation,
-click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache now !\">here</a>.<br><br>
 
 <u>3.6. Trafic statistics for your subdomains</u><br><br>
@@ -3450,7 +3450,7 @@ in realtime.<br><br>
 For the moment you cannont limit one user to access to only
 a part of your web site. But we (the administrators) can
 do it if you ask sending an <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
 user path change in FTP\">email</a>, telling what user
 and what path you need.<br><br>
 
@@ -3524,7 +3524,7 @@ cuentas de correo : Tenemos que indicarle a Qmail (El servidor de correo)
 Que reinicie su base de datos de usuarios.<br><br>
 La mayoria de las veces, los cambios son realizamos al final
 del dia de trabajo, pero si necesitas una validacion inmediata,
-pulse <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
+pulse <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
 validation\">aqui</a>.<br><br>
 
 <font size=\"+1\"><u>3. Subdominios</u></font><br>
@@ -3582,7 +3582,7 @@ Tendremos que reiniciar nuestro servidor web Apache para que
 nuestros cambios tengan efecto.  La mayoría de las veces, 
 todos los cambios se validan al final de cada dia laboral, 
 pero si se necesita una validacion inmediata,
-pulse <a href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+pulse <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache now !\">aqui</a>.<br><br>
 
 <u>3.6. Estadísticas de tráfico de tus subdominios</u><br><br>
@@ -3619,7 +3619,7 @@ nuestras cuentas de FTP tomaran efecto en tiempo real.<br><br>
 Por ahora no es posible que un usuario cree un acceso limitado 
 solo a una parte de tu pagina web. Pero nosotros (los administradores)
 podemos hacer esto, si lo consultas mandando un <a
-href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
 user path change in FTP\">email</a>, especificando que usuario y 
 que directorio necesitas.<br><br>
 

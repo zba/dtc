@@ -255,6 +255,9 @@ $cc_code_array = array(
 
 function cc_code_popup($default="US"){
 	global $cc_code_array;
+
+	$out = "";
+
 	$ar_keys = array_keys($cc_code_array);
 	$nbr_cc_code = sizeof($ar_keys);
 	for($i=0;$i<$nbr_cc_code;$i++){

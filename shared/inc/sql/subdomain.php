@@ -3,7 +3,7 @@
 ////////////////////////////
 // Sub-domains management //
 ////////////////////////////
-if($_REQUEST["delsubdomain"] == "Ok"){
+if(isset($_REQUEST["delsubdomain"]) && $_REQUEST["delsubdomain"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	// Update the flag so we regenerate the serial for bind
@@ -20,7 +20,7 @@ if($_REQUEST["delsubdomain"] == "Ok"){
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
 }
 ///////////////////////////////////////////////////////////
-if($_REQUEST["subdomaindefault"] == "Ok"){
+if(isset($_REQUEST["subdomaindefault"]) && $_REQUEST["subdomaindefault"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	if(!checkSubdomainFormat($_REQUEST["subdomaindefault_name"])){
 		die("Incorrect subdomain name format...");
@@ -31,7 +31,7 @@ if($_REQUEST["subdomaindefault"] == "Ok"){
 }
 //////////////////////////////////////////////////////////
 // addrlink=example.com%2Fsubdomains&edit_domain=example.com&whatdoiedit=subdomains&subdomaindefault_name=www&delsubdomain_name=dtc&
-if($_REQUEST["edit_one_subdomain"] == "Ok"){
+if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	if(!checkSubdomainFormat($_REQUEST["subdomain_name"])){
 		die("Incorrect subdomain name format...");
@@ -64,7 +64,7 @@ if($_REQUEST["edit_one_subdomain"] == "Ok"){
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named='yes'");
 }
 /////////////////////////////////////////////////////
-if($_REQUEST["newsubdomain"] == "Ok"){
+if(isset($_REQUEST["newsubdomain"]) && $_REQUEST["newsubdomain"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	// This can be added : it's a mater of the admin's choice...

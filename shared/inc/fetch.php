@@ -97,7 +97,8 @@ function fetchAdminStats($admin){
 // The following get value from table. du_stat is setup by cron script each time you have setup it (curently each hours)
 		$du_stat = mysql_result($result,$ad,"du_stat");
 		$ret["domains"][$ad]["du"] = $du_stat;
-		$ret["total_du_domains"] += $du_stat;
+		if(!isset($ret["total_du_domains"]))	$ret["total_du_domains"] = $du_stat;
+		else	$ret["total_du_domains"] += $du_stat;
 
 		// HTTP transfer
 // Uncomment this if you want it in realtime
@@ -110,7 +111,8 @@ function fetchAdminStats($admin){
 			$ret["total_http"] += 0;
 			$ret["domains"][$ad]["http"] = 0;
 		}else{
-			$ret["total_http"] += $rez_http;
+			if(!isset($ret["total_http"]))	$ret["total_http"] = $rez_http;
+			else	$ret["total_http"] += $rez_http;
 			$ret["domains"][$ad]["http"] = $rez_http;
 		}
 
@@ -125,7 +127,8 @@ function fetchAdminStats($admin){
 			$ret["total_ftp"] += 0;
 			$ret["domains"][$ad]["ftp"] = 0;
 		}else{
-			$ret["total_ftp"] += $rez_ftp;
+			if(!isset($ret["total_ftp"]))	$ret["total_ftp"] = $rez_ftp;
+			else	$ret["total_ftp"] += $rez_ftp;
 			$ret["domains"][$ad]["ftp"] = $rez_ftp;
 		}
 
@@ -144,13 +147,21 @@ function fetchAdminStats($admin){
 			$imap_bytes = 0;
 		}
 		$email_bytes = $smtp_bytes + $pop_bytes + $imap_bytes;
-		$ret["total_email"] += $email_bytes;
+		if(!isset($ret["total_email"]))	$ret["total_email"] = $email_bytes;
+		else	$ret["total_email"] += $email_bytes;
 		$ret["domains"][$ad]["smtp"] = $smtp_bytes;
 		$ret["domains"][$ad]["pop"] = $pop_bytes;
 		$ret["domains"][$ad]["imap"] = $imap_bytes;
 
-		$ret["domains"][$ad]["total_transfer"] += $rez_http + $rez_ftp + $email_bytes;
-		$ret["total_transfer"] += $rez_http + $rez_ftp + $email_bytes;
+		if(!isset($ret["domains"][$ad]["total_transfer"]))
+			$ret["domains"][$ad]["total_transfer"] = $rez_http + $rez_ftp + $email_bytes;
+		else
+			$ret["domains"][$ad]["total_transfer"] += $rez_http + $rez_ftp + $email_bytes;
+
+		if(!isset($ret["total_transfer"]))
+			$ret["total_transfer"] = $rez_http + $rez_ftp + $email_bytes;
+		else
+			$ret["total_transfer"] += $rez_http + $rez_ftp + $email_bytes;
 	}
 
 	$dbdu_amount = 0;
@@ -158,6 +169,7 @@ function fetchAdminStats($admin){
 	$q = "SELECT Db FROM db WHERE User='".$admin["info"]["adm_login"]."'";
 	$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
 	$db_nbr = mysql_num_rows($r);
+	$ret["total_du_db"] = 0;
 	for($i=0;$i<$db_nbr;$i++){
 		$db_name = mysql_result($r,$i,"Db");
 
@@ -232,7 +244,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	// This stuff is rotating passwords helping NOT to save passwords on users browsers.
 	$rand = getRandomValue();
 	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-	if($DONOT_USE_ROTATING_PASS != yes){
+	if($DONOT_USE_ROTATING_PASS != "yes"){
 		$q = "UPDATE $pro_mysql_admin_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE adm_login='$adm_login'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
 
@@ -290,8 +302,10 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$subdomain["name"] = $row2["subdomain_name"];
 			$subdomain["path"] = $row2["path"];
 			$subdomain["ip"] = $row2["ip"];
-			$subdomain["login"] = $row2["login"];
-			$subdomain["pass"] = $row2["pass"];
+			if(isset($row2["login"])){
+				$subdomain["login"] = $row2["login"];
+				$subdomain["pass"] = $row2["pass"];
+			}
 			$subdomain["w3_alias"] = $row2["w3_alias"];
 			$subdomain["register_globals"] = $row2["register_globals"];
 			$subdomain["webalizer_generate"] = $row2["webalizer_generate"];
@@ -364,7 +378,6 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$row4 = mysql_fetch_array($result4) or die ("Cannot fetch ftp account");
 			$ftp["login"] = $row4["login"];
 			$ftp["passwd"] = $row4["password"];
-			$ftp["crypt"] = $row4["crypt"];
 			$ftp["path"] = $row4["homedir"];
 			$ftps[] = $ftp;
 		}

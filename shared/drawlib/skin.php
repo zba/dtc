@@ -10,7 +10,7 @@ function makeVerticalFrame($cells){
 	global $globspace;
 	global $globpadd;
 	$num_cells = sizeof($cells);
-	$ret .= "
+	$ret = "
 <table boder=\"0\" cellspacing=\"$globspace\" cellpadding=\"$globpadd\" width=\"100%\" height=\"100%\">
 ";
 	for($i=0;$i<$num_cells;$i++){
@@ -245,6 +245,9 @@ $alt_signs = "";
 // tree cells to draw. Exemple of ret values : none/vline/endtree/hline
 function makeTreeGfxUrl($array,$nbr){
 	global $alt_signs;
+
+	$ret = "";
+
 	$alt_signs = "";
 	for($i=0;$i<=$nbr;$i++){
 		if($i > 0){
@@ -276,6 +279,8 @@ function calculateCurEntryAddr($entry){
 	global $ietype_menu_recurs_level;
 	global $treeAddrsArray;
 
+	$ret = "";
+
 	$entrylink = $entry["link"];
 	$treeAddrsArray[$ietype_menu_recurs_level] = $entrylink;
 	for($i=0;$i<=$ietype_menu_recurs_level;$i++){
@@ -304,6 +309,8 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 
 	global $alt_signs;
 	global $dtc_use_text_menu;
+
+	$ret = "";
 
 	// Get an array out of the current selected addresse
 	$selected = explode("/",$curent_addr);
@@ -376,7 +383,7 @@ onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$im
 				$treesign_array[$ietype_menu_recurs_level] = "none";
 			}
 			$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
-			if($entry["text"] == $selected[$ietype_menu_recurs_level]){
+			if($entry["text"] == @$selected[$ietype_menu_recurs_level]){
 				$image_source = getCacheImageURL($text,1,$arbo);
 				if($dtc_use_text_menu == "no"){
 					$ret .= "$alink<img width=\"220\" height=\"20\" border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
@@ -411,6 +418,8 @@ function makeTreeMenu($menu,$selected,$self_link,$link_name){
 	global $treeAddrsArray;
 
 	global $dtc_use_text_menu;
+
+	$ret = "";
 
 	$ietype_menu_img_nbr=0;
 	$ietype_menu_recurs_level=0;

@@ -8,8 +8,8 @@ function DTCRMlistClients(){
 	$id_client = $_REQUEST["id"];
 	global $pro_mysql_client_table;
 
-	$text .= "<div style=\"white-space: nowrap\" nowrap>
-<a href=\"$PHP_SELF?rub=crm&id=0\">".$txt_new_customer_link[$lang]."</a>
+	$text = "<div style=\"white-space: nowrap\" nowrap>
+<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=0\">".$txt_new_customer_link[$lang]."</a>
 </a><br><br>";
 
 	$query = "SELECT * FROM $pro_mysql_client_table ORDER BY familyname";
@@ -18,7 +18,7 @@ function DTCRMlistClients(){
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result);
 		if($row["id"] != $_REQUEST["id"]){
-			$text .= "<a href=\"$PHP_SELF?rub=crm&id=".$row["id"]."\">";
+			$text .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"]."\">";
 		}
 		$text .= $row["familyname"].", ".$row["christname"]."";
 		if($row["id"] != $_REQUEST["id"]){
@@ -41,12 +41,12 @@ function DTCRMclientAdmins(){
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$_REQUEST["id"]."'";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
         $n = mysql_num_rows($r);
-	$text .= "<br><b><u>".$txt_remove_admin_from_client[$lang]."</u></b><br>";
+	$text = "<br><b><u>".$txt_remove_admin_from_client[$lang]."</u></b><br>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		if($i > 0)
 			$text .= " - ";
-		$text .= "<a href=\"$PHP_SELF?rub=crm&id=".$_REQUEST["id"]."&action=remove_admin_from_client&adm_name=".$a["adm_login"]."\">".$a["adm_login"]."</a>";
+		$text .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=".$_REQUEST["id"]."&action=remove_admin_from_client&adm_name=".$a["adm_login"]."\">".$a["adm_login"]."</a>";
 	}
 
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='0'";
@@ -111,8 +111,25 @@ function DTCRMeditClients(){
 	}else{
 		$hidden_inputs = "<input type=\"hidden\" name=\"action\" value=\"new_client\">";
 		unset($row);
+		$row["familyname"] = "";
+		$row["christname"] = "";
+		$row["company_name"] = "";
+		$row["addr1"] = "";
+		$row["addr2"] = "";
+		$row["addr3"] = "";
+		$row["city"] = "";
+		$row["zipcode"] = "";
+		$row["state"] = "";
+		$row["country"] = "us";
+		$row["phone"] = "+";
+		$row["fax"] = "";
+		$row["email"] = "";
+		$row["special_note"] = "";
+		$row["dollar"] = "";
+		$row["disk_quota_mb"] = "80";
+		$row["bw_quota_per_month_gb"] = "1";
 	}
-	$text = "<form action=\"$PHP_SELF\">
+	$text = "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <table cellspacin=\"0\" cellpadding=\"0\">
 <input type=\"hidden\" name=\"rub\" value=\"crm\">
 <input type=\"hidden\" name=\"id\" value=\"$cid\">$hidden_inputs
@@ -160,7 +177,7 @@ function DTCRMshowClientCommands($cid){
 	$query = "SELECT * FROM $pro_mysql_command_table WHERE id_client='$cid'";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error);
 	$num_rows = mysql_num_rows($result);
-	$text .= "<br><table border=\"1\"><tr>
+	$text = "<br><table border=\"1\"><tr>
 <td>".$txt_what[$lang]."</td>
 <td>".$txt_domain_tbl_config_dom_name[$lang]."</td>
 <td>".$txt_price[$lang]."</td>
@@ -191,7 +208,7 @@ function DTCRMshowClientCommands($cid){
 	}
 	$text .= "</table>";
 
-	$text .= "<br><br><form action=\"$PHP_SELF\">
+	$text .= "<br><br><form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"rub\" value=\"crm\">
 <input type=\"hidden\" name=\"id\" value=\"$cid\">
 <input type=\"hidden\" name=\"action\" value=\"add_cmd_to_client\">

@@ -6,7 +6,7 @@
 // &price_dollar=11.50&price_euro=10.50
 // &quota_disk=1&bandwidth=20&nbr_email=1&nbr_database=0
 // &allow_add_domain=yes&period=0001-00-00&submit=save
-if($_REQUEST["action"] == "edit_product"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_product"){
 	if($_REQUEST["allow_add_domain"] == "yes"){
 		$yesval = "yes";
 	}else{
@@ -41,11 +41,11 @@ bandwidth,period,allow_add_domain) VALUES('','".$_REQUEST["price_dollar"]."','".
 
 
 
-if($_REQUEST["rub"] == "crm"){
+if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "crm"){
 //////////////////////////////////
 // Client (new/edit) management //
 //////////////////////////////////
-if($_REQUEST["action"] == "modify_client_cmd"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_client_cmd"){
 	if($_REQUEST["ed_command"] == "Save"){
 // cmd_id=1&id=1&rub=crm&price=25&quantity=1&action=modify_client_cmd&
 // cmd_date=2004-06-10&cmd_expir=2005-06-10&ed_command=Save
@@ -57,18 +57,18 @@ if($_REQUEST["action"] == "modify_client_cmd"){
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	}
 }
-if($_REQUEST["action"] == "add_admin_to_client"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_admin_to_client"){
 	$q = "UPDATE $pro_mysql_admin_table SET id_client='".$_REQUEST["id"]."' WHERE adm_login='".$_REQUEST["adm_name"]."';";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 }
-if($_REQUEST["action"] == "remove_admin_from_client"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "remove_admin_from_client"){
 	$q = "UPDATE $pro_mysql_admin_table SET id_client='0' WHERE adm_login='".$_REQUEST["adm_name"]."';";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 }
 //id=0&action=new_client&ed_familyname=&ed_christname=&ed_is_copany=yes&ed_company_name=&ed_addr1=&ed_addr2=&ed_addr3=
 //&ed_city=&ed_zipcode=&ed_state=&ed_country=AF&ed_phone=&ed_fax=&ed_email=&ed_special_note=&ed_dollar=&
 //ed_disk_quota_mb=&ed_gw_quota_per_month_gb=
-if($_REQUEST["action"] == "new_client"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_client"){
 	$q = "INSERT INTO $pro_mysql_client_table(
 id,is_company,company_name,
 familyname,christname,
@@ -91,7 +91,7 @@ disk_quota_mb,bw_quota_per_month_gb
 //id=0&action=new_client&ed_familyname=&ed_christname=&ed_is_copany=yes&ed_company_name=&ed_addr1=&ed_addr2=&ed_addr3=
 //&ed_city=&ed_zipcode=&ed_state=&ed_country=AF&ed_phone=&ed_fax=&ed_email=&ed_special_note=&ed_dollar=&
 //ed_disk_quota_mb=&ed_gw_quota_per_month_gb=
-if($_REQUEST["action"] == "edit_client"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_client"){
 	if($_REQUEST["del"] == "Del"){
 		$q = "DELETE FROM $pro_mysql_client_table WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
@@ -121,7 +121,7 @@ WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	}
 }
-if($_REQUEST["action"] == "add_cmd_to_client"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_cmd_to_client"){
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["add_new_command"]."';";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);

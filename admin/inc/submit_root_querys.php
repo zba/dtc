@@ -3,13 +3,13 @@
 ///////////////////////////////////////////////////////////////
 // Mark all named zone file for generation and serial update //
 ///////////////////////////////////////////////////////////////
-if($_REQUEST["reinit_named_zones"] == "1"){
+if(isset($_REQUEST["reinit_named_zones"]) && $_REQUEST["reinit_named_zones"] == "1"){
 	$adm_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE 1;";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 }
 
 // Edit one domain attribute
-if($_REQUEST["modify_domain_config"]=="Ok"){
+if(isset($_REQUEST["modify_domain_config"]) && $_REQUEST["modify_domain_config"]=="Ok"){
 /*	if(!$_REQUEST["new_quota"] || !$_REQUEST["new_max_email"] || !$_REQUEST["new_max_ftp"] || !$_REQUEST["max_subdomain"] || !$_REQUEST["new_ip_addr"]){
 		die("Incorrect script parameters");
 	}*/
@@ -27,11 +27,11 @@ if($_REQUEST["modify_domain_config"]=="Ok"){
 /////////////////////////////////////
 // Domain name database management //
 /////////////////////////////////////
-if($_REQUEST["newdomain"] == "Ok"){
+if(isset($_REQUEST["newdomain"]) && $_REQUEST["newdomain"] == "Ok"){
 	addDomainToUser($adm_login,$adm_pass,$_REQUEST["newdomain_name"]);
 	triggerDomainListUpdate();
 }
-if($_REQUEST["action"] == "valid_waiting_domain_to_user"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "valid_waiting_domain_to_user"){
 	$q = "SELECT * FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
 	echo $q;
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -51,7 +51,7 @@ if($_REQUEST["action"] == "valid_waiting_domain_to_user"){
 	$q = "DELETE FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
-if($_REQUEST["action"] == "delete_waiting_domain_to_user"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_waiting_domain_to_user"){
 	$q = "DELETE FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
@@ -125,7 +125,7 @@ function deleteMysqlUserAndDB($mysql_user){
 }
 
 
-if($_REQUEST["deluserdomain"] != "" && isset($_REQUEST["deluserdomain"])){
+if(isset($_REQUEST["deluserdomain"]) && $_REQUEST["deluserdomain"] != ""){
 	deleteUserDomain($adm_login,$adm_pass,$_REQUEST["deluserdomain"],true);
 
 	// Tell the cron job to activate the changes
@@ -138,7 +138,7 @@ if($_REQUEST["deluserdomain"] != "" && isset($_REQUEST["deluserdomain"])){
 ////////////////////////////////////////////////
 // Management of new users (eg virtual admins //
 ////////////////////////////////////////////////
-if($_REQUEST["updateuserinfo"] == "Ok"){
+if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 	$adm_query = "UPDATE $pro_mysql_admin_table SET id_client='".$_REQUEST["changed_id_client"]."',
 		adm_pass='".$_REQUEST["changed_pass"]."',path='".$_REQUEST["changed_path"]."',
 		quota='".$_REQUEST["adm_quota"]."', bandwidth_per_month_mb='".$_REQUEST["bandwidth_per_month"]."',
@@ -148,7 +148,7 @@ if($_REQUEST["updateuserinfo"] == "Ok"){
 }
 
 // $newadmin_login $newadmin_pass $newadmin_path $newadmin_maxemail $newadmin_maxftp $newadmin_quota
-if($_REQUEST["newadminuser"]=="Ok"){
+if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 	// Check for admin existance
 	// Create admin directorys
 	$newadmin_path = $_REQUEST["newadmin_path"]."/".$_REQUEST["newadmin_login"];
@@ -169,18 +169,18 @@ if($_REQUEST["newadminuser"]=="Ok"){
 }
 
 // action=delete_waiting_user&reqadm_login=tom
-if($_REQUEST["action"]=="delete_waiting_user"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="delete_waiting_user"){
 	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
 
 // action=valid_waiting_user&reqadm_login=tom
-if($_REQUEST["action"]=="valid_waiting_user"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="valid_waiting_user"){
 	validateWaitingUser($_REQUEST["reqadm_login"]);
 	triggerDomainListUpdate();
 }
 
-if($_REQUEST["delete_admin_user"] != "" && isset($_REQUEST["delete_admin_user"])){
+if(isset($_REQUEST["delete_admin_user"]) && $_REQUEST["delete_admin_user"] != ""){
 	$adm_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["delete_admin_user"]."'";
 	$result = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 	$num_rows = mysql_num_rows($result);
@@ -237,7 +237,7 @@ if($_REQUEST["delete_admin_user"] != "" && isset($_REQUEST["delete_admin_user"])
 	triggerDomainListUpdate();
 }
 
-if($_REQUEST["action"] == "switch_generate_flag"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "switch_generate_flag"){
 	$query = "UPDATE $pro_mysql_domain_table SET generate_flag='".$_REQUEST["switch_to"]."' WHERE name='".$_REQUEST["domain"]."';";
 	mysql_query($query);
 }
@@ -245,12 +245,12 @@ if($_REQUEST["action"] == "switch_generate_flag"){
 //////////////////////////////
 // MySQL account management //
 //////////////////////////////
-if($_REQUEST["action"] == "delete_mysql_user"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_mysql_user"){
 	deleteMysqlUserAndDB($adm_login);
 }
 
 // ?adm_login=test&adm_pass=test&action=create_mysql_account
-if($_REQUEST["action"] == "create_mysql_account"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "create_mysql_account"){
 	mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
 	$query = "INSERT INTO `user` (`Host`, `User`, `Password`, `Select_priv`, `Insert_priv`,
 	`Update_priv`, `Delete_priv`, `Create_priv`, `Drop_priv`, `Reload_priv`, `Shutdown_priv`,
@@ -262,7 +262,7 @@ if($_REQUEST["action"] == "create_mysql_account"){
 }
 
 // adm_login=test&adm_pass=test&new_mysql_database_name=test2&new_mysql_database=Ok
-if($_REQUEST["new_mysql_database"] == "Ok"){
+if(isset($_REQUEST["new_mysql_database"]) && $_REQUEST["new_mysql_database"] == "Ok"){
 	mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
 	$query = "CREATE DATABASE ".$_REQUEST["new_mysql_database_name"].";";
 	mysql_query($query)or die("Cannot execute query \"$query\" !!!");
@@ -277,7 +277,7 @@ if($_REQUEST["new_mysql_database"] == "Ok"){
 	mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\"	!!!".mysql_error());
 }
 // ?adm_login=test&adm_pass=test&action=delete_one_db&db_name=azerty2
-if($_REQUEST["action"] == "delete_one_db"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_one_db"){
 	mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
 
 	$query = "DELETE FROM db WHERE User='$adm_login' AND Db='".$_REQUEST["db_name"]."';";

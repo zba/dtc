@@ -4,18 +4,25 @@
 // are global variables.
 
 if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "crm"){
-	$id_client = $_REQUEST["id_client"];
-	if($id_client != "" && isset($id_client) && !ereg("^([0-9]+)\$",$id_client)){
-		die("The provided id_client does not seems to be in the correct format.
-						It should be a single number.");
+	if(isset( $_REQUEST["id_client"] )){
+		$id_client = $_REQUEST["id_client"];
+		if($id_client != "" && isset($id_client) && !ereg("^([0-9]+)\$",$id_client)){
+			die("The provided id_client does not seems to be in the correct format.
+							It should be a single number.");
+		}
 	}
 }
 
 if(isset($_REQUEST["adm_login"]))	$adm_login = $_REQUEST["adm_login"];
+else	$adm_login = "";
 if(isset($_REQUEST["adm_pass"]))	$adm_pass = $_REQUEST["adm_pass"];
+else	$adm_pass = "";
 if(isset($_REQUEST["adm_email_login"]))	$adm_email_login = $_REQUEST["adm_email_login"];
+else	$adm_email_login = "";
 if(isset($_REQUEST["adm_email_pass"]))	$adm_email_pass = $_REQUEST["adm_email_pass"];
+else	$adm_email_pass = "";
 if(isset($_REQUEST["addrlink"]))	$addrlink = $_REQUEST["addrlink"];
+else	$addrlink = "";
 
 function isValidEmailLogin($email){
         $reg = "^([a-z0-9]+)([_.a-z0-9-]+)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$";
@@ -34,16 +41,16 @@ if(isset($adm_pass) && !ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$a
 if(isset($addrlink) && $addrlink != ""){
         $exploded = explode("/",$addrlink);
         if($addrlink != "help" && $addrlink != "database"){
-                $whatdoiedit = $exploded[1];
+        	if(sizeof($exploded) > 1)	$whatdoiedit = $exploded[1];
                 $edit_domain = $exploded[0];
         }
 }
 
-if(isset($whatdoiedit) && $whatdoiedit == "nickhandles"){
+if(isset($whatdoiedit) && $whatdoiedit == "nickhandles" && isset($_REQUEST["edit_id"])){
 	$edit_id = $_REQUEST["edit_id"];
 }
 
-if($panel_type != "email" && !ereg("^([a-z0-9]+)([.a-z0-9-]+)([a-z0-9])\$",$edit_domain) && isset($edit_domain) && $edit_domain != ""){
+if($panel_type != "email" && isset($edit_domain) && !ereg("^([a-z0-9]+)([.a-z0-9-]+)([a-z0-9])\$",$edit_domain) && $edit_domain != ""){
 	die("The domain provided does not look like a correct domain name...");
 }
 
@@ -55,10 +62,10 @@ if($panel_type!="cronjob"){
 		unset($dtc_use_text_menu);
 	}
 	$dtc_use_text_menu = $_SESSION["dtc_use_text_menu"];
-	if($_REQUEST["use_text_menu"] == "yes"){
+	if(isset($_REQUEST["use_text_menu"]) && $_REQUEST["use_text_menu"] == "yes"){
 		$dtc_use_text_menu = "yes";
 	}
-	if($_REQUEST["use_text_menu"] == "no"){
+	if(isset($_REQUEST["use_text_menu"]) && $_REQUEST["use_text_menu"] == "no"){
 		$dtc_use_text_menu = "no";
 	}
 	if(!is_string($dtc_use_text_menu)){

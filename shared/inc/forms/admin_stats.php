@@ -23,6 +23,7 @@ function drawAdminTools_AdminStats($admin){
 	global $txt_are_disk_usage;
 	global $txt_total_transfered_bytes_this_month;
 
+	$out = "";
 	$nowrap = " style=\"white-space:nowrap\" nowrap";
 
 	$stats = fetchAdminStats($admin);
@@ -55,10 +56,13 @@ function drawAdminTools_AdminStats($admin){
 		$out .= " / ".smartByte($bw_quota)."<br>";
 		$out .= drawPercentBar($stats["total_transfer"],$bw_quota);
 	}
-	$total_du = $du_amount + $dbdu_amount;
 	$out .= "<br><u>".$txt_are_disk_usage[$lang]."<b></b></u>";
 	$out .= "<br>".$txt_domain_name_files[$lang]." ".smartByte($stats["total_du_domains"]);
-	$out .= "<br>".$txt_database_files[$lang]." ".smartByte($stats["total_db_du"]);
+	if(isset($stats["total_db_du"])){
+		$out .= "<br>".$txt_database_files[$lang]." ".smartByte($stats["total_db_du"]);
+	}else{
+		$out .= "<br>".$txt_database_files[$lang]." ".smartByte(0);
+	}
 	$out .= "<br>".$txt_total_disk_usage[$lang]." ".smartByte($stats["total_du"]);
 
 	if($id_client != 0){

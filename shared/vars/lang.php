@@ -22,32 +22,34 @@ if($panel_type!="cronjob"){
 		unset($lang);
 	}
 	$lang = $_SESSION["lang"];
-	if($_REQUEST["change_language"] == "fr"){
-		$lang = "fr";
-	}
-	if($_REQUEST["change_language"] == "en"){
-		$lang = "en";
-	}
-	if($_REQUEST["change_language"] == "hu"){
-		$lang = "hu";
-	}
-	if($_REQUEST["change_language"] == "it"){
-		$lang = "it";
-	}
-	if($_REQUEST["change_language"] == "nl"){
-		$lang = "nl";
-	}
-	if($_REQUEST["change_language"] == "ru"){
-	$lang = "ru";
-	}
-	if($_REQUEST["change_language"] == "de"){
-		$lang = "de";
-	}
-	if($_REQUEST["change_language"] == "zh"){
-	$lang = "zh";
-	}
-	if($_REQUEST["change_language"] == "es"){
-		$lang = "es";
+	if(isset($_REQUEST["change_language"])){
+	        if($_REQUEST["change_language"] == "fr"){
+	                $lang = "fr";
+	        }
+	        if($_REQUEST["change_language"] == "en"){
+                  $lang = "en";
+                }
+                if($_REQUEST["change_language"] == "hu"){
+		  $lang = "hu";
+                }
+                if($_REQUEST["change_language"] == "it"){
+		  $lang = "it";
+                }
+                if($_REQUEST["change_language"] == "nl"){
+		  $lang = "nl";
+                }
+                if($_REQUEST["change_language"] == "ru"){
+                  $lang = "ru";
+                }
+                if($_REQUEST["change_language"] == "de"){
+		  $lang = "de";
+		}
+		if($_REQUEST["change_language"] == "zh"){
+		  $lang = "zh";
+		}
+		if($_REQUEST["change_language"] == "es"){
+		  $lang = "es";
+		}
 	}
 	$_SESSION["lang"] = $lang;
 } else {
@@ -65,9 +67,9 @@ if (!$lang){
 		for ($i = 0; $i < sizeof($langaccept); $i++) { 
 			$tmplang = trim($langaccept[$i]);
 			$tmplang2 = substr($tmplang,0,2);
-			if ($txt_langname[$tmplang] && !$lang) {   // if the whole string matchs ("de-CH", or "en", etc)
+			if (!isset($lang) && $txt_langname[$tmplang]) {   // if the whole string matchs ("de-CH", or "en", etc)
 				$lang = $tmplang;
-			} elseif ($txt_langname[$tmplang2] && !$lang) { // then try only the 2 first chars ("de", "fr"...)
+			}elseif ($txt_langname[$tmplang2] && !$lang) { // then try only the 2 first chars ("de", "fr"...)
 				$lang = $tmplang2; 
 			}
 		}

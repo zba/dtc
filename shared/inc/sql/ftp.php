@@ -3,7 +3,7 @@
 /////////////////////////////
 // Ftp accounts management //
 /////////////////////////////
-if($_REQUEST["newftpaccount"] == "Ok"){
+if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	$adm_path = getAdminPath($adm_login);
 
@@ -42,14 +42,14 @@ if($_REQUEST["newftpaccount"] == "Ok"){
 }
 
 // $edftp_account $edit_domain
-if($_REQUEST["deleteftpaccount"] == "Delete"){
+if(isset($_REQUEST["deleteftpaccount"]) && $_REQUEST["deleteftpaccount"] == "Delete"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	$adm_query = "DELETE FROM $pro_mysql_ftp_table WHERE hostname='$edit_domain' AND login='".$_REQUEST["edftp_account"]."' LIMIT 1;";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 }
 
 // $edftp_account $edit_domain $edftp_pass
-if($_REQUEST["update_ftp_account"] == "Ok"){
+if(isset($_REQUEST["update_ftp_account"]) && $_REQUEST["update_ftp_account"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	$adm_path = getAdminPath($adm_login);
 

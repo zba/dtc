@@ -18,25 +18,27 @@ if(file_exists("dtcrm")){
 	include("dtcrm/product_manager.php");
 }
 
-$DONOT_USE_ROTATING_PASS=yes;
+$DONOT_USE_ROTATING_PASS="yes";
+
+$out = "";
 
 ////////////////////////////////////
 // Create the top banner and menu //
 ////////////////////////////////////
 $anotherTopBanner = anotherTopBanner("DTC","yes");
-$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
+//$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 
 ///////////////////////
 // Make All the page //
 ///////////////////////
-
+$menu = "";
 // User management icon
-if($_REQUEST["rub"] != "" && isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "user"){
+if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "" && $_REQUEST["rub"] != "user"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=user\">";
 }
 $menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/admins.png\"><br>".
 	$txt_mainmenu_title_useradmin[$lang];
-if($_REQUEST["rub"] == "" || !isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "user"){
+if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "" && $_REQUEST["rub"] != "user"){
 	$menu .= "</a>";
 }
 $html_array[] = $menu;
@@ -46,40 +48,42 @@ $menu = "";
 // this helps simplification if user does not need it.
 if(file_exists("dtcrm")){
 	// CRM Button
-	if($_REQUEST["rub"] != "crm"){
+	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "crm"){
 		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
 		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 		if(mysql_num_rows($result) == 1){
 			$row = mysql_fetch_array($result);
 			$url_addon = "&id=".$row["id_client"];
+		}else{
+			$url_addon = "";
 		}
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&admlist_type=Names".$url_addon."\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/crm.png\"><br>".
 		$txt_mainmenu_title_client_management[$lang];
-	if($_REQUEST["rub"] != "crm"){
+	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "crm"){
 		$menu .= "</a>";
 	}
 	$html_array[] = $menu;
 	$menu = "";
 	// Monitor button
-	if($_REQUEST["rub"] != "monitor"){
+	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "monitor"){
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=monitor\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
 		$txt_mainmenu_title_bandwidth_monitor[$lang];
-	if($_REQUEST["rub"] != "monitor"){
+	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "monitor"){
 		$menu .= "</a>";
 	}
 	$html_array[] = $menu;
 	$menu = "";
 	// Product manager
-	if($_REQUEST["rub"] != "product"){
+	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "product"){
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=product\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/product_manager.png\"><br>
 		Product manager";
-	if($_REQUEST["rub"] != "product"){
+	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "product"){
 		$menu .= "</a>";
 	}
 	$html_array[] = $menu;
@@ -87,32 +91,32 @@ if(file_exists("dtcrm")){
 }
 
 // Generate daemon files icon
-if($_REQUEST["rub"] != "generate"){
+if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "generate"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate\">";
 }
 $menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/daemons.png\"><br>".
 	$txt_mainmenu_title_deamonfile_generation[$lang];
-if($_REQUEST["rub"] != "generate"){
+if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "generate"){
 	$menu .= "</a>";
 }
 $html_array[] = $menu;
 $menu = "";
 
 // Main config panel icon
-if($_REQUEST["rub"] != "config"){
+if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "config"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
 }
 $menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/config_panel.png\"><br>".
 	$txt_mainmenu_title_dtc_config[$lang];
-if($_REQUEST["rub"] != "config"){
+if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "config"){
 	$menu .= "</a>";
 }
 $html_array[] = $menu;
 $dtc_main_menu = make_table($html_array,sizeof($html_array));
 $the_page[] = skin($conf_skin,$dtc_main_menu,$txt_root_adm_title[$lang]);
 
-switch($_REQUEST["rub"]){
-case crm: // CRM TOOL
+switch($rub){
+case "crm": // CRM TOOL
 	$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(),$txt_client_addr_title[$lang]);
 	if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
 		$rightFrameCells[] = skin($conf_skin,DTCRMclientAdmins(),$txt_client_admins_title[$lang]);
@@ -124,7 +128,7 @@ case crm: // CRM TOOL
 	$the_page[] = anotherLeftFrame($leftFrame,$rightFrame);
 	break;
 
-case monitor: // Monitor button
+case "monitor": // Monitor button
 
 	// For each clients
 	$q = "SELECT * FROM $pro_mysql_client_table WHERE 1 ORDER BY familyname,christname";
@@ -171,7 +175,7 @@ case monitor: // Monitor button
 	$the_page[] = $module;
 	break;
 	
-case generate: // Gen Config Files
+case "generate": // Gen Config Files
 	$the_page[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
 	$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
 	$the_page[] = skin($conf_skin,$the_iframe,"Deamons states");
@@ -179,8 +183,8 @@ case generate: // Gen Config Files
 	$the_page[] = skinConsole();
 	break;
 	
-case config: // Global Config
-	if($_REQUEST["install_new_config_values"] == "Ok"){
+case "config": // Global Config
+	if(isset($_REQUEST["install_new_config_values"]) && $_REQUEST["install_new_config_values"] == "Ok"){
 		saveDTCConfigInMysql();
 		getConfig();
 	}
@@ -196,11 +200,11 @@ case config: // Global Config
 //	$the_page[] = skin($conf_skin,$configForm,"DTC configuration");
 	break;
 
-case product:
+case "product":
 	$bla = productManager();
 	$the_page[] = skin($conf_skin,$bla,"Product manager");
 	break;
-case user: // User Config
+case "user": // User Config
 default: // No rub selected
 	// Our list of admins
 	$leftFrameCells[] = skin($conf_skin,"<br>$admins",$txt_virtual_admin_list[$lang]);
@@ -219,6 +223,9 @@ default: // No rub selected
 $pageContent = makeVerticalFrame($the_page);
 $anotherFooter = anotherFooter("Footer content<br><br>");
 
-echo anotherPage("admin:".$txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$pageContent,$anotherFooter);
+if(!isset($anotherHilight))	$anotherHilight = "";
+if(!isset($anotherMenu))	$anotherMenu = "";
+
+echo anotherPage("admin:","",$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$pageContent,$anotherFooter);
 
 ?>
