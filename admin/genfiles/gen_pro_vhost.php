@@ -131,9 +131,11 @@ function pro_vhost_generate(){
 	Alias /dtc $conf_dtcclient_path
 	Alias /dtcadmin $conf_dtcadmin_path
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
+	Alias /pipermail/ /var/lib/mailman/archives/public/
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
 	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
+	ScriptAlias /mailman/ /usr/lib/mailman/cgi-bin/
 #	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename#xfer
