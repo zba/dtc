@@ -209,6 +209,7 @@ function drawEditAdmin($admin){
 	$adm_max_email = $info["max_email"];
 	$adm_max_ftp = $info["max_ftp"];
 	$adm_quota = $info["quota"];
+	$bandwidth_per_month_mb = $info["bandwidth_per_month_mb"];
 	$adm_id_client = $info["id_client"];
 
 	// Generate the user configuration form
@@ -223,6 +224,10 @@ function drawEditAdmin($admin){
 	<td><input type=\"text\" name=\"changed_path\" value=\"$adm_path\"></td></tr>
 	<tr><td align=\"right\">".$txt_id_client[$lang]."</td>
 	<td><input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"></td></tr>
+	<tr><td align=\"right\">Quota disk (MB):</td>
+	<td><input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\"></td></tr>
+	<tr><td align=\"right\">Transfer per month (MB):</td>
+	<td><input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\"></td></tr>
 	<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
 </td></tr></table></form>";
 

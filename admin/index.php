@@ -100,8 +100,9 @@ $the_page[] = skin("simple/green2",$dtc_main_menu,"Menu");
 switch($_REQUEST["rub"]){
 case crm: // CRM TOOL
 	$rightFrameCells[] = skin("simple/green",DTCRMeditClients(),"Client address");
-	if(isset($id_client) && $id_client != "")
+	if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
 		$rightFrameCells[] = skin("simple/green",DTCRMshowClientCommands($id_client),"Client commands");
+	}
 	$rightFrame = makeVerticalFrame($rightFrameCells);
 	$leftFrameCells[] = skin("simple/green",DTCRMlistClients(),"Client listing");
 	$leftFrame = makeVerticalFrame($leftFrameCells);
