@@ -168,10 +168,13 @@ $more_mx_server
 				$is_pop_subdomain_set = yes;
 			}
 			if($newsubdomain_name == "smtp"){
-				$is_pop_subdomain_set = yes;
+				$is_smtp_subdomain_set = yes;
 			}
 			if($newsubdomain_name == "ftp"){
-				$is_pop_subdomain_set = yes;
+				$is_ftp_subdomain_set = yes;
+			}
+			if($newsubdomain_name == "list"){
+				$is_list_subdomain_set = yes;
 			}
 			$this_site_file .= "$web_subname	IN	A	$the_ip_writed\n";
 		}
@@ -183,6 +186,9 @@ $more_mx_server
 		}
 		if( $is_ftp_subdomain_set != yes){
 			$this_site_file .= "ftp	IN	A	$ip_to_write\n";
+		}
+		if( $is_list_subdomain_set != yes){
+			$this_site_file .= "list	IN	A	$ip_to_write\n";
 		}
 
 		if($web_serial_flag=="yes"){
