@@ -5,4 +5,18 @@ id=$2
 passwdtemp=$3
 
 echo $passwdtemp | /usr/sbin/saslpasswd2 -c -p -f ../etc/sasldb2 -u $domain_full_name $id
-chmod 644 ../dtc/etc/sasldb2 
+chmod 664 ../etc/sasldb2 
+if [ -e /var/spool/postfix/etc ]; then
+	echo "OK, in /var/spool" >> /tmp/sasl.tmp
+	cat ../etc/sasldb2 > /var/spool/postfix/etc/sasldb2
+	chmod 664 /var/spool/postfix/etc/sasldb2
+	chown postfix:nogroup /var/spool/postfix/etc/sasldb2
+else 
+	echo "OK, in /etc/" >> /tmp/sasl.tmp
+	cat ../etc/sasldb2 > /etc/sasldb2
+	chmod 664 /etc/sasldb2
+	chown postfix:nogroup /etc/sasldb2
+fi
+
+ls ../etc/sasldb2 >> /tmp/sasl.tmp
+

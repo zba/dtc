@@ -121,7 +121,7 @@ if($cronjob_table_content["gen_backup"] == "yes"){
 }
 if($cronjob_table_content["gen_webalizer"] == "yes"){
 	echo "Generating Webalizer stats script\n";
-	mail_account_generate();
+	stat_script_generate();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
