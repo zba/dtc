@@ -94,7 +94,7 @@ Server said: <i>" . $regz["response_text"] . "</i>");
 // MySQL password change //
 ///////////////////////////
 if($_REQUEST["change_mysql_password"] == "Ok"){
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1)	die("User or password is incorrect !");
