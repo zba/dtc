@@ -212,6 +212,7 @@ function drawEditAdmin($admin){
 	global $txt_allowed_data_transferMB;
 	global $txt_domain_tbl_config_quotaMB;
 	global $txt_allowed_data_transferMB;
+	global $txt_expiration_date;
 
 	global $adm_login;
 	global $adm_pass;

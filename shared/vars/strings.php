@@ -85,7 +85,7 @@ $txt_new_customer_link = array(
 	"es" => "TRANS New customer");
 
 $txt_select_a_new = array(
-	"fr" => "Selectionnew un client.",
+	"fr" => "Selectionnez un client.",
 	"en" => "Select a customer.",
 	"nl" => "TRANS Select a customer.",
 	"ru" => "TRANS Select a customer.",
@@ -1106,7 +1106,7 @@ $txt_delete_this_mysql_user_and_db = array(
 );
 
 $txt_draw_client_info_comp_name = array(
-	"fr" => "SociИt?",
+	"fr" => "SociИtИ :",
 	"en" => "Company name:",
 	"nl" => "Bedrijfsnaam:",
 	"ru" => "Название компании:",

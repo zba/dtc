@@ -117,7 +117,7 @@ case monitor: // Monitor button
 	$r = mysql_query($q)or die("Cannot query: \"$q\" !".mysql_error()." line ".__LINE__." in file ".__FILE__);
 	$nr = mysql_num_rows($r);
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="1" cellspacing="1">';
-	$out .= "<tr><td><b>User</b></td><td><b>Transfer</b></td><td><b>BW Quota</b></td><td><b>Graph</b></td><td><b>Disk usage</b></td><td><b>Disk quota</b></td><td><b>Usage</b></td></tr>";
+	$out .= "<tr><td><b>User</b></td><td><b>".$txt_transfer[$lang]."</b></td><td><b>".$txt_bw_quota[$lang]."</b></td><td><b>".$txt_graf[$lang]."</b></td><td><b>".$txt_disk_usage[$lang]."</b></td><td><b>".$txt_domain_tbl_config_quota[$lang]."</b></td><td><b>".$txt_graf[$lang]."</b></td></tr>";
 	$total_box_transfer = 0;
 	for($i=0;$i<$nr;$i++){
 		$ar = mysql_fetch_array($r);
@@ -150,7 +150,7 @@ case monitor: // Monitor button
 	}
 	$out .= "</table>";
 	$out .= "Server total accounted transfers this month: ".smartByte($total_box_transfer);
-	$module = skin($conf_skin,$out,"Client bandwidth consumption.");
+	$module = skin($conf_skin,$out,$txt_customer_bw_consumption[$lang]);
 	$the_page[] = $module;
 	break;
 	
