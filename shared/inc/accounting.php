@@ -235,7 +235,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 							$content = $rezar["remote_host"]." - - ".
 							date("[d/M/Y:H:i:s]",$rezar["time_stamp"]).
 							' "'.$rezar["request_line"].'" '.$rezar["status"].
-							" ".$rezar["bytes_sent"}.
+							" ".$rezar["bytes_sent"].
 							' "'.$rezar["referer"].'" "'.$rezar["agent"].'"'."\n";
 /*							
 							$content = mysql_result($result_dump,$z,"remote_host").

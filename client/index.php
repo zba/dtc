@@ -35,7 +35,7 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 </td></tr><tr><td align=\"right\">
 	".$txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"adm_pass\" value=\"\">
 </td></tr><tr><td align=\"right\">
-	Use text menu</td><td><input type=\"checkbox\" name=\"use_text_menu\" value=\"yes\">
+	$txt_use_text_menu[$lant]</td><td><input type=\"checkbox\" name=\"use_text_menu\" value=\"yes\">
 </td></tr><tr><td>
 	</td><td><input type=\"submit\" name=\"Login\" value=\"login\">
 </tr></td></table>

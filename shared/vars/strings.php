@@ -179,6 +179,13 @@ $txt_path = array(
 	"ru" => "ðÕÔØ:",
 	"de" => "Pfad:");
 
+$txt_use_text_menu = array(
+	"fr" => "Utiliser du texte pour le menu :",
+	"en" => "Use text menu:",
+	"nl" => "TRANSUse text menu:",
+	"ru" => "TRANSUse text menu:",
+	"de" => "TRANSUse text menu:");
+	
 $txt_password = array(
 	"fr" => "Mot de passe :",
 	"en" => "Password:",
@@ -301,9 +308,194 @@ $txt_your_domain_subdomain = array(
 $txt_confirurate_your_domain_name = array(
 	"fr" => "Configurer son domaine :",
 	"en" => "Configurate your domain name:",
-	"nl" => "Configurate your domain name:",
-	"ru" => "Configurate your domain name:",
+	"nl" => "TRANSConfigurate your domain name:",
+	"ru" => "TRANSConfigurate your domain name:",
 	"de" => "Konfiguration des Domain Namens:");
+
+// MY ACCOUNT STRINGS
+$txt_transfer_du = array(
+	"fr" => "Transfère et utilisation disque :",
+	"en" => "Transfer and disk usage:",
+	"nl" => "TRANSTransfere and disk usage:",
+	"ru" => "TRANSTransfere and disk usage:",
+	"de" => "TRANSTransfere and disk usage:");
+
+$txt_transfer_this_month = array(
+	"fr" => "Transfère ce mois-ci :",
+	"en" => "Transfer this month:",
+	"nl" => "TRANSTransfer this month:",
+	"ru" => "TRANSTransfer this month:",
+	"de" => "TRANSTransfer this month:");
+
+$txt_total_disk_usage = array(
+	"fr" => "Total de l'utilisation disque :",
+	"en" => "Total disk usage:",
+	"nl" => "TRANSTotal disk usage:",
+	"ru" => "TRANSTotal disk usage:",
+	"de" => "TRANSTotal disk usage:");
+
+$txt_your_hosting_account = array(
+	"fr" => "Votre contract d'hébergement :",
+	"en" => "Your hosting account:",
+	"nl" => "TRANSYour hosting account:",
+	"ru" => "TRANSYour hosting account:",
+	"de" => "TRANSYour hosting account:");
+
+$txt_storage_space = array(
+	"fr" => "Espace disque",
+	"en" => "Storage space",
+	"nl" => "TRANSStorage space",
+	"ru" => "TRANSStorage space",
+	"de" => "TRANSStorage space");
+
+$txt_allowed_data_transfer = array(
+	"fr" => "Bande passante mensuelle autorisée",
+	"en" => "Allowed bandwidth per month",
+	"nl" => "TRANSAllowed bandwidth per month",
+	"ru" => "TRANSAllowed bandwidth per month",
+	"de" => "TRANSAllowed bandwidth per month");
+
+$txt_expiration_date = array(
+	"fr" => "Date d'expiration",
+	"en" => "Expiration date",
+	"nl" => "TRANSExpiration date",
+	"ru" => "TRANSExpiration date",
+	"de" => "TRANSExpiration date");
+
+$txt_upgrade_my_account_button = array(
+	"fr" => "Upgrader mon compte",
+	"en" => "Upgrade my account",
+	"nl" => "TRANSUpgrade my account",
+	"ru" => "TRANSUpgrade my account",
+	"de" => "TRANSUpgrade my account");
+
+$txt_renew_my_account_button = array(
+	"fr" => "Renouveler mon abbonement",
+	"en" => "Renew my account",
+	"nl" => "TRANSRenew my account",
+	"ru" => "TRANSRenew my account",
+	"de" => "TRANSRenew my account");
+
+$txt_remaining_money = array(
+	"fr" => "Argent restant sur mon compte :",
+	"en" => "Remaining money on my account:",
+	"nl" => "TRANSRemaining money on my account:",
+	"ru" => "TRANSRemaining money on my account:",
+	"de" => "TRANSRemaining money on my account:");
+
+$txt_refund_my_account = array(
+	"fr" => "Mettre de l'argent sur mon compte :",
+	"en" => "Refund my account:",
+	"nl" => "TRANSRefund my account:",
+	"ru" => "TRANSRefund my account:",
+	"de" => "TRANSRefund my account:");
+
+$txt_please_tell_if_info_not_ok = array(
+	"fr" => "Merci de nous avertir ci les informations ce-dessous n'étaient pas correct :",
+	"en" => "Please tell us if the following is not correct:",
+	"nl" => "TRANSPlease tell us if the following is not correct:",
+	"ru" => "TRANSPlease tell us if the following is not correct:",
+	"de" => "TRANSPlease tell us if the following is not correct:");
+
+// Myaccount/stats strings
+$txt_my_account_global_stats_title = array(
+	"fr" => "Statistiques globales de mon compte",
+	"en" => "My account global statistics",
+	"nl" => "TRANSMy account global statistics",
+	"ru" => "TRANSMy account global statistics",
+	"de" => "TRANSMy account global statistics");
+
+$txt_total_transfered_bytes_this_month = array(
+	"fr" => "Total des données transférées ce mois-ci :",
+	"en" => "Total transfered bytes this month:",
+	"nl" => "TRANSTotal transfered bytes this month:",
+	"ru" => "TRANSTotal transfered bytes this month:",
+	"de" => "TRANSTotal transfered bytes this month:");
+
+$txt_are_disk_usage = array(
+	"fr" => "Votre espace disque :",
+	"en" => "Your area disk usage:",
+	"nl" => "TRANSYour area disk usage:",
+	"ru" => "TRANSYour area disk usage:",
+	"de" => "TRANSYour area disk usage:");
+
+$txt_domain_name_files = array(
+	"fr" => "Fichiers des noms de domaines :",
+	"en" => "Domain name files:",
+	"nl" => "TRANSDomain name files:",
+	"ru" => "TRANSDomain name files:",
+	"de" => "TRANSDomain name files:");
+
+$txt_database_files = array(
+	"fr" => "Fichiers des bases de données :",
+	"en" => "Database files:",
+	"nl" => "TRANSDomain name files:",
+	"ru" => "TRANSDomain name files:",
+	"de" => "TRANSDomain name files:");
+
+$txt_total_disk_usage = array(
+	"fr" => "Total de l'utilisation disque :",
+	"en" => "Total disk usage:",
+	"nl" => "TRANSTotal disk usage:",
+	"ru" => "TRANSTotal disk usage:",
+	"de" => "TRANSTotal disk usage:");
+
+$txt_databases_disk_usage = array(
+	"fr" => "Utilisation disque des bases de données :",
+	"en" => "Databases disk usage:",
+	"nl" => "TRANSDatabases disk usage:",
+	"ru" => "TRANSDatabases disk usage:",
+	"de" => "TRANSDatabases disk usage:");
+
+$txt_database_name = array(
+	"fr" => "Nom de la base de données",
+	"en" => "Database name",
+	"nl" => "TRANSDatabase name",
+	"ru" => "TRANSDatabase name",
+	"de" => "TRANSDatabase name");
+
+$txt_disk_usage = array(
+	"fr" => "Utilisation disque",
+	"en" => "Disk usage",
+	"nl" => "TRANSDisk usage",
+	"ru" => "TRANSDisk usage",
+	"de" => "TRANSDisk usage");
+
+$txt_domain_name_trafic_du = array(
+	"fr" => "Nom de domaine, trafic et utilisation disque :",
+	"en" => "Domain name trafic and disk usage:",
+	"nl" => "TRANSDomain name trafic and disk usage:",
+	"ru" => "TRANSDomain name trafic and disk usage:",
+	"de" => "TRANSDomain name trafic and disk usage:");
+
+$txt_domain_name = array(
+	"fr" => "Nom de domaine",
+	"en" => "Domain name",
+	"nl" => "TRANSDomain name",
+	"ru" => "TRANSDomain name",
+	"de" => "TRANSDomain name");
+
+$txt_disk_usage = array(
+	"fr" => "Utilisation disque",
+	"en" => "Disk usage",
+	"nl" => "TRANSDisk usage",
+	"ru" => "TRANSDisk usage",
+	"de" => "TRANSDisk usage");
+
+$txt_total_trafic = array(
+	"fr" => "Trafic total",
+	"en" => "Total trafic",
+	"nl" => "TRANSTotal trafic",
+	"ru" => "TRANSTotal trafic",
+	"de" => "TRANSTotal trafic");
+
+
+//
+
+
+
+
+
 
 $txt_comment_confirurate_your_domain_name = array(
 	"fr" => "Attention ! Si vous rentrez de
@@ -327,7 +519,7 @@ The MX parameter tells the addresse of the mail server
 (the one that store all your mail when somebody sends
 your a message). The value \"default\" means that
 you want to use the current server.",
-	"nl" => "Take care ! Setting wrong value
+	"nl" => "TRANSTake care ! Setting wrong value
 in the following fields can lead to the stop of
 your site services (web or mail).<br>
 Put something else than \"default\" in the DNS

@@ -70,6 +70,21 @@ function drawAdminTools_MyAccount($admin){
 
 	global $cc_code_array;
 
+	global $lang;
+
+	global $txt_please_tell_if_info_not_ok;
+	global $txt_refund_my_account;
+	global $txt_remaining_money;
+	global $txt_renew_my_account_button;
+	global $txt_upgrade_my_account_button;
+	global $txt_expiration_date;
+	global $txt_allowed_data_transfer;
+	global $txt_storage_space;
+	global $txt_your_hosting_account;
+	global $txt_total_disk_usage;
+	global $txt_transfer_this_month;
+	global $txt_transfer_du;
+
 	$frm_start = "<form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -99,14 +114,14 @@ when paiement is done, click the refresh button.";
 		return $out;
 	}
 
-	$out .= "<b><u>Transfère and disk usage:</u></b>";
-	$out .= "<br>Transfer this month: ". smartByte($stats["total_transfer"]);
+	$out .= "<b><u>".$txt_transfer_du[$lang]."</u></b>";
+	$out .= "<br>".$txt_transfer_this_month[$lang].smartByte($stats["total_transfer"]);
 	if($id_client != 0){
 		$bw_quota = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;
 		$out .= " / ".smartByte($bw_quota)."<br>";
 		$out .= drawPercentBar($stats["total_transfer"],$bw_quota);
 	}
-	$out .= "Total disk usage: ".smartByte($stats["total_du"]);
+	$out .= $txt_total_disk_usage[$lang].smartByte($stats["total_du"]);
 	if($id_client != 0){
 		$du_quota = $admin["info"]["quota"]*1024*1024;
 		$out .= " / ".smartByte($du_quota)."<br>";
@@ -114,10 +129,10 @@ when paiement is done, click the refresh button.";
 
 		$client = $admin["client"];
 
-		$out .= "<br><b><u>Your hosting account:</u></b>";
+		$out .= "<br><b><u>".$txt_your_hosting_account[$lang]."</u></b>";
 		$out .= "<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"1\">
 <tr>
-	<td><b>Storage space</b></td><td><b>Allowed bandwidth per month</b></td><td><b>Expiration date</b></td>
+	<td><b>".$txt_storage_space[$lang]."</b></td><td><b>".$txt_allowed_data_transfer[$lang]."</b></td><td><b>".$txt_expiration_date[$lang]."</b></td>
 </tr>
 <tr>
 	<td>".smartByte($du_quota)."</td><td>".smartByte($bw_quota)."</td><td>".$admin["info"]["expire"]."</td>
@@ -125,18 +140,18 @@ when paiement is done, click the refresh button.";
 </table>";
 		if(file_exists($dtcshared_path."/dtcrm")){
 			$out .= "<br><center>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
-<input type=\"submit\" value=\"Upgrade my account\">
+<input type=\"submit\" value=\"".$txt_upgrade_my_account_button[$lang]."\">
 </form>";
 			$out .= "$frm_start<input type=\"hidden\" name=\"action\" value=\"renew_myaccount\">
-<input type=\"submit\" value=\"Renew my account\">
+<input type=\"submit\" value=\"".$txt_renew_my_account_button[$lang]."\">
 </form></center><br>";
 		}
 
-		$out .=  "<b><u>Remaining money on my account:</u></b><br>
+		$out .=  "<b><u>".$txt_remaining_money[$lang]."</u></b><br>
 <table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"0\">
 <tr>
 	<td><font size=\"+1\">\$".$client["dollar"]."</font></td>
-	<td><font size=\"-1\">Refund my account:</font><br>
+	<td><font size=\"-1\">".$txt_refund_my_account[$lang]."</font><br>
 $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 \$<input size=\"8\" type=\"text\" name=\"refund_amount\" value=\"\">
 <input type=\"submit\" value=\"Ok\">
@@ -145,7 +160,7 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 <hr width=\"90%\">
 ";
 
-		$out .= "<center><b>Please tell us if the following is not correct:</b></center>";
+		$out .= "<center><b>".$txt_please_tell_if_info_not_ok[$lang]."</b></center>";
 
 		if($client["is_company"] == "yes"){
 			$out .= "Company: ".$client["company_name"]."<br>";
@@ -980,6 +995,22 @@ function drawAdminTools_AdminStats($admin){
 	global $pro_mysql_acc_http_table;
 	global $pro_mysql_acc_ftp_table;
 
+	global $lang;
+
+	global $txt_total_transfered_bytes_this_month;
+	global $txt_total_trafic;
+	global $txt_disk_usage;
+	global $txt_domain_name;
+	global $txt_domain_name_trafic_du;
+	global $txt_disk_usage;
+	global $txt_database_name;
+	global $txt_databases_disk_usage;
+	global $txt_total_disk_usage;
+	global $txt_database_files;
+	global $txt_domain_name_files;
+	global $txt_are_disk_usage;
+	global $txt_total_transfered_bytes_this_month;
+
 	$nowrap = " style=\"white-space:nowrap\" nowrap";
 
 	$stats = fetchAdminStats($admin);
@@ -1001,7 +1032,7 @@ function drawAdminTools_AdminStats($admin){
 // ["total_du"]
 	$id_client = $admin["info"]["id_client"];
 
-	$out .= "<u><b>Total transfered bytes this month:</b></u>";
+	$out .= "<u><b>".$txt_total_transfered_bytes_this_month[$lang]."</b></u>";
 	$out .= "<br>HTTP: ".smartByte($stats["total_http"]);
 	$out .= "<br>FTP: ".smartByte($stats["total_ftp"]);
 	$out .= "<br>Email: ".smartByte($stats["total_email"]);
@@ -1013,10 +1044,10 @@ function drawAdminTools_AdminStats($admin){
 		$out .= drawPercentBar($stats["total_transfer"],$bw_quota);
 	}
 	$total_du = $du_amount + $dbdu_amount;
-	$out .= "<br><u><b>Your area disk usage:</b></u>";
-	$out .= "<br>Domain-name files: ".smartByte($stats["total_du_domains"]);
-	$out .= "<br>Database files: ".smartByte($stats["total_db_du"]);
-	$out .= "<br>Total disk usage: ".smartByte($stats["total_du"]);
+	$out .= "<br><u>".$txt_are_disk_usage[$lang]."<b></b></u>";
+	$out .= "<br>".$txt_domain_name_files[$lang]." ".smartByte($stats["total_du_domains"]);
+	$out .= "<br>".$txt_database_files[$lang]." ".smartByte($stats["total_db_du"]);
+	$out .= "<br>".$txt_total_disk_usage[$lang]." ".smartByte($stats["total_du"]);
 
 	if($id_client != 0){
 		$du_quota = $admin["info"]["quota"]*1024*1024;
@@ -1024,9 +1055,9 @@ function drawAdminTools_AdminStats($admin){
 		$out .= drawPercentBar($stats["total_du"],$du_quota);
 	}
 
-	$out .= "<br><br><u><b>Databases disk usage:</b></u>";
+	$out .= "<br><br><u><b>".$txt_databases_disk_usage[$lang]."</b></u>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
-	$out .= "<tr><td$nowrap><b>Database name</b></td><td$nowrap><b>Disk usage</b></tr>";
+	$out .= "<tr><td$nowrap><b>".$txt_database_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></tr>";
 	for($i=0;$i<sizeof($stats["db"]);$i++){
 		if($i % 2){
 			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\"";
@@ -1040,9 +1071,9 @@ function drawAdminTools_AdminStats($admin){
 	}
 	$out .= '</table>';
 
-	$out .= "<br><br><u><b>Domain name tranfic and disk usage:</b></u>";
+	$out .= "<br><br><u><b>".$txt_domain_name_trafic_du[$lang]."</b></u>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
-	$out .= "<tr><td><b>Domain Name</b></td><td$nowrap><b>Disk usage</b></td><td><b>POP3</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>Total trafic</b></td></tr>";
+	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td><td><b>POP3</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>".$txt_total_trafic[$lang]."</b></td></tr>";
 	for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
 		if($ad % 2){
 			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\"";
@@ -1068,6 +1099,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	global $pro_mysql_acc_http_table;
 	global $pro_mysql_acc_ftp_table;
 	global $pro_mysql_acc_email_table;
+
 //	sum_http($eddomain["name"]);
 	$query_http = "SELECT bytes_sent FROM $pro_mysql_acc_http_table WHERE domain='".$eddomain["name"]."'
 	AND month='".date("n")."' AND year='".date("Y")."'";
@@ -1089,7 +1121,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	else
 		$ftp_amount = 0;
 
-	sum_email($eddomain["name"]);
+//	sum_email($eddomain["name"]);
     $q = "SELECT smtp_trafic,pop_trafic FROM $pro_mysql_acc_email_table WHERE domain_name='".$eddomain["name"]."'
 	AND month='".date("m")."' AND year='".date("Y")."'";
     $r = mysql_query($q) or die("Cannot execute query \"$q\" !".mysql_error().
@@ -1117,7 +1149,6 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 		$out .= $eddomain["subdomains"][$i]["name"];
 		$out .= "</a>";
 	}
-//	print_r($eddomain);
 
 	return $out;
 }
@@ -1151,6 +1182,7 @@ function drawAdminTools($admin){
 	global $txt_title_database_form;
 	global $txt_title_help_form;
 	global $txt_title_geninfo_form;
+	global $txt_my_account_global_stats_title;
 
 	global $dtcshared_path;
 
@@ -1265,7 +1297,7 @@ function drawAdminTools($admin){
 		}else if($add_array[1] == "stats"){
 			if($add_array[0] == "myaccount"){
 				$web_editor .= drawAdminTools_AdminStats($admin);
-				$title = "My global statistics";
+				$title = $txt_my_account_global_stats_title[$lang];
 			}else{
 				$web_editor .= drawAdminTools_DomainStats($admin,$eddomain);
 				$title = "Statistics of domain: ".$edit_domain;
