@@ -101,6 +101,7 @@ switch($_REQUEST["rub"]){
 case crm: // CRM TOOL
 	$rightFrameCells[] = skin("simple/green",DTCRMeditClients(),"Client address");
 	if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
+		$rightFrameCells[] = skin("simple/green",DTCRMclientAdmins(),"Client admins");
 		$rightFrameCells[] = skin("simple/green",DTCRMshowClientCommands($id_client),"Client commands");
 	}
 	$rightFrame = makeVerticalFrame($rightFrameCells);

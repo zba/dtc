@@ -444,8 +444,8 @@ if($_REQUEST["update_ftp_account"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	$adm_path = getAdminPath($adm_login);
 
-	if(!ereg("^$adm_path",$_REQUEST["edftp_path"]) || !strstr($_REQUEST["edftp_path"],'..')){
-		die("Your path is restricted to $adm_path");
+	if(0 != strncmp($adm_path,$_REQUEST["edftp_path"],strlen($adm_path)-1) || strstr($_REQUEST["edftp_path"],'..') || strstr($_REQUEST["edftp_path"],"'") || strstr($_REQUEST["edftp_path"],"\\")){
+		die("Your path is restricted to &quot;$adm_path&quot;");
 	}
 
 	if(!isFtpLogin($_REQUEST["edftp_account"])){

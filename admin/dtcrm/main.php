@@ -28,6 +28,41 @@ function DTCRMlistClients(){
 	return $text;
 }
 
+function DTCRMclientAdmins(){
+	global $pro_mysql_client_table;
+	global $pro_mysql_admin_table;
+
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$_REQUEST["id"]."'";
+	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+        $n = mysql_num_rows($r);
+	$text .= "<br><b><u>Delete an administrator account for this customer:</u></b><br>";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if($i > 0)
+			$text .= " - ";
+		$text .= "<a href=\"$PHP_SELF?rub=crm&id=".$_REQUEST["id"]."&action=remove_admin_from_client&adm_name=".$a["adm_login"]."\">".$a["adm_login"]."</a>";
+	}
+
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='0'";
+	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+        $n = mysql_num_rows($r);
+	$text .= "<br><br><b><u>Add an existing administrator account for this customer:</u></b><br>";
+	$text .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+<input type=\"hidden\" name=\"id\" value=\"".$_REQUEST["id"]."\">
+<input type=\"hidden\" name=\"action\" value=\"add_admin_to_client\">
+<select name=\"adm_name\">";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if($i > 0)
+			$text .= " - ";
+		$text .= "<option value=\"".$a["adm_login"]."\">".$a["adm_login"]."</option>";
+	}
+	$text .= "</select><input type=\"submit\" value=\"Ok\"></form>";
+
+	return $text;
+}
+
 function DTCRMeditClients(){
 	global $pro_mysql_client_table;
 	$cid = $_REQUEST["id"];	// current customer id
