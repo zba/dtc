@@ -12,39 +12,44 @@ $txt_langname = array(
 	"zh" => "GB2312",
 	"es" => "iso-8859-15");
 
-session_register("lang");
-// If something like phpbb that has $lang on the same domain, this should
-// avoid problems. This is a lack in php (IMHO)
-if(!is_string($_SESSION["lang"])){
-	unset($lang);
-}
-$lang = $_SESSION["lang"];
-if($_REQUEST["change_language"] == "fr"){
-	$lang = "fr";
-}
-if($_REQUEST["change_language"] == "en"){
+//check to see if we are running in the shell or web
+if($panel_type!="cronjob"){
+	session_register("lang");
+	// If something like phpbb that has $lang on the same domain, this should
+	// avoid problems. This is a lack in php (IMHO)
+	if(!is_string($_SESSION["lang"])){
+		unset($lang);
+	}
+	$lang = $_SESSION["lang"];
+	if($_REQUEST["change_language"] == "fr"){
+		$lang = "fr";
+	}
+	if($_REQUEST["change_language"] == "en"){
+		$lang = "en";
+	}
+	if($_REQUEST["change_language"] == "it"){
+		$lang = "it";
+	}
+	if($_REQUEST["change_language"] == "nl"){
+		$lang = "nl";
+	}
+	if($_REQUEST["change_language"] == "ru"){
+	$lang = "ru";
+	}
+	if($_REQUEST["change_language"] == "de"){
+		$lang = "de";
+	}
+	if($_REQUEST["change_language"] == "zh"){
+	$lang = "zh";
+	}
+	if($_REQUEST["change_language"] == "es"){
+		$lang = "es";
+	}
+	$_SESSION["lang"] = $lang;
+} else {
+	//for cron, we will just use english
 	$lang = "en";
 }
-if($_REQUEST["change_language"] == "it"){
-	$lang = "it";
-}
-if($_REQUEST["change_language"] == "nl"){
-	$lang = "nl";
-}
-if($_REQUEST["change_language"] == "ru"){
-	$lang = "ru";
-}
-if($_REQUEST["change_language"] == "de"){
-	$lang = "de";
-}
-if($_REQUEST["change_language"] == "zh"){
-	$lang = "zh";
-}
-if($_REQUEST["change_language"] == "es"){
-	$lang = "es";
-}
-
-$_SESSION["lang"] = $lang;
 
 // Get the default language variable. Multilanguage example taken from OMail.
 if (!$lang){

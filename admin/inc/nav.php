@@ -86,17 +86,20 @@ $top_commands .= "
 </table>
 $browse_files_button</font></b>";
 
-// Find the current display type
-session_register("cur_admlist_type");
-if($_REQUEST["admlist_type"] != "" && isset($_REQUEST["admlist_type"])){
-	$_SESSION["cur_admlist_type"] = $_REQUEST["admlist_type"];
-	$admlist_type = $_REQUEST["admlist_type"];
-}else{
-	if($_SESSION["cur_admlist_type"] != "" && isset($_SESSION["cur_admlist_type"])){
-		$admlist_type = $_SESSION["cur_admlist_type"];
+if($panel_type!="cronjob") 
+{
+	// Find the current display type
+	session_register("cur_admlist_type");
+	if($_REQUEST["admlist_type"] != "" && isset($_REQUEST["admlist_type"])){
+		$_SESSION["cur_admlist_type"] = $_REQUEST["admlist_type"];
+		$admlist_type = $_REQUEST["admlist_type"];
 	}else{
-		$admlist_type = "Logins";
-		$_SESSION["cur_admlist_type"] = "Logins";
+		if($_SESSION["cur_admlist_type"] != "" && isset($_SESSION["cur_admlist_type"])){
+			$admlist_type = $_SESSION["cur_admlist_type"];
+		}else{
+			$admlist_type = "Logins";
+			$_SESSION["cur_admlist_type"] = "Logins";
+		}
 	}
 }
 
