@@ -112,7 +112,7 @@ for($i=0;$i<$nbr_tables;$i++){
 	for($j=0;$j<$numvars;$j++){
 		if(!findFieldInTable($tblnames[$i],$varnames[$j])){
 			$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." ;";
-			echo "$q\n";
+//			echo "$q\n";
 			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 		}
 	}
@@ -131,8 +131,6 @@ for($i=0;$i<$nbr_tables;$i++){
 			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 		}
 	}
-
-
 }
 echo "\n";
 
