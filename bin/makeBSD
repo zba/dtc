@@ -106,9 +106,9 @@ rm dtc/pkg-plist.tmp
 mkdir sysutils
 mv dtc sysutils
 mkdir -p lang/php4-dtc
-cp sources/bsd/php4-dtc-slave lang/php4-dtc
+cp sources/bsd/php4-dtc-slave lang/php4-dtc/Makefile
 mkdir -p ftp/proftpd-dtc
-cp sources/bsd/proftpd-dtc-slave ftp/proftpd-dtc
+cp sources/bsd/proftpd-dtc-slave ftp/proftpd-dtc/Makefile
 
 echo "===> Creating .uue archive file"
 # Make the file archive
