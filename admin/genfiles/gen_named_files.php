@@ -28,27 +28,14 @@ function named_generate(){
 
 	$todays_serial = date("YmdH");
 
+	$djb_file = "";
 	$named_file = "";
 
-/*	$query = "SELECT * FROM $pro_mysql_domain_table WHERE primary_dns!='default' ORDER BY name;";
-	$result = mysql_query ($query)or die("Cannot execute query \"$query\"");
-	$num_rows = mysql_num_rows($result);
-	for($i=0;$i<$num_rows;$i++){
-		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
-		$web_name = $row["name"];
-		$named_file = "\nzone \"$web_name\" {
-			file = \"$conf_generated_file_path/$conf_named_zonefiles_path/$web_name\";
-			masters {
-			}
-		}\n";
-	}
-*/
 	$query = "SELECT * FROM $pro_mysql_domain_table WHERE primary_dns='default' ORDER BY name;";
 	$result = mysql_query ($query)or die("Cannot execute query \"$query\"");
 	$num_rows = mysql_num_rows($result);
 
-	if($num_rows < 1){
-//		die("No account to generate");
+	if($num_rows < 1){//		die("No account to generate");
 	}
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");

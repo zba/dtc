@@ -25,5 +25,4 @@ function get_secpay_conf(){
 		$$toto = $row["$field_name"];
         }
 }
-
 ?>

@@ -7,6 +7,8 @@ $panel_type="client";
 require_once("$dtcshared_path/dtc_lib.php");
 require_once("new_account_form.php");
 
+get_secpay_conf();
+
 ////////////////////////////////////
 // Create the top banner and menu //
 ////////////////////////////////////

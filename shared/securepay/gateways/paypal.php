@@ -55,12 +55,15 @@ function paypalNotifyPostbackScript(){
 function paypalButton($product_id,$amount,$item_name,$return_url){
 	global $paypal_account;
 	global $conf_administrative_site;
+
+	global $secpayconf_use_paypal;
+	global $secpayconf_paypal_email;
 	// https://www.paypal.com/xclick/business=thomas%40goirand.fr&item_name=Domain+name+registration+.com&
 	// item_number=1&amount=11.50&no_note=1&currency_code=USD
 
 	$out = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="'.$paypal_account.'">
+<input type="hidden" name="business" value="'.$secpayconf_paypal_email.'">
 <input type="hidden" name="item_name" value="'.$item_name.'">
 <input type="hidden" name="item_number" value="'.$product_id.'">
 <input type="hidden" name="amount" value="'.$amount.'">
