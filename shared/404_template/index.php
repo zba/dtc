@@ -3,10 +3,14 @@
 <center>
 <table width="90%" height="100%">
 <tr><td width="100%" height="100%">
-<center><h1><u>Error: domain not found!</u></h1></center><br><br>
+<center><h1><u>Error: domain not found!</u></h1>
+
+<b><font face="Arial"><?php
+echo $_SERVER["HTTP_HOST"];
+?></font> is not a web site!</b></center><br><br><br>
 
 <font face="Arial">You have reach this page because the full qualified domain
-name you requested point to this server. There is currently
+name you requested points to this server, but there is currently
 no web content associated with this address. You can try to
 reach the web site you wanted by going one level up, removing
 the subdomain from the URL.</font><br><br><br></td></tr>
