@@ -1,0 +1,5 @@
+#!/bin/sh
+chown -R root:root debian/usr/share/dtc
+chown nobody:nogroup debian/usr/share/dtc/shared debian/usr/share/dtc/client/imgcache debian/usr/share/dtc/admin/imgcache debian/usr/share/dtc/shared/imgcache
+chown nobody:nogroup debian/usr/share/dtc/client/gfx debian/usr/share/dtc/admin/gfx debian/usr/share/dtc/shared/gfx
+dpkg-deb --build debian
