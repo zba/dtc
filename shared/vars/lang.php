@@ -8,6 +8,7 @@ $txt_langname = array(
 	"nl" => "iso-8859-15",
 	"ru" => "koi8-r",
 	"de" => "iso-8859-15",
+	"zh" => "GB2312",
 	"es" => "iso-8859-15");
 
 session_register("lang");
@@ -31,6 +32,9 @@ if($_REQUEST["change_language"] == "ru"){
 }
 if($_REQUEST["change_language"] == "de"){
 	$lang = "de";
+}
+if($_REQUEST["change_language"] == "zh"){
+	$lang = "zh";
 }
 if($_REQUEST["change_language"] == "es"){
 	$lang = "es";
