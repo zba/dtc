@@ -263,11 +263,19 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 						for($z=0;$z<$dump_num_rows;$z++){
 							$rezar = mysql_fetch_array($result_dump);
 							if(strstr($rezar["referer"],$domain))	$rezar["referer"] == "self";
-							$content = $rezar["remote_host"]." - - ".
-							date("[d/M/Y:H:i:s] ",$rezar["time_stamp"]).
-							'"'.$rezar["request_uri"].'" '.$rezar["status"].
-							" ".$rezar["bytes_sent"].
-							' "'.$rezar["referer"].'" "'.$rezar["agent"].'"'."\n";
+//							$content = $rezar["remote_host"]." - - ".
+//							date("[d/M/Y:H:i:s] ",$rezar["time_stamp"]).
+//							'"'.$rezar["request_uri"].'" '.$rezar["status"].
+//							" ".$rezar["bytes_sent"].
+//							' "'.$rezar["referer"].'" "'.$rezar["agent"].'"'."\n";
+// obso (luke) patch
+$content = $rezar["remote_host"]." - - ".
+date("[d/M/Y:H:i:s O] ",$rezar["time_stamp"]).
+'"'.$rezar["request_method"]." ".$rezar["request_uri"]."
+".$rezar["request_protocol"].'" '.
+$rezar["status"]." ".$rezar["bytes_sent"].
+' "'.$rezar["referer"].'" "'.$rezar["agent"].'"'."\n";
+
 /*							
 							$content = mysql_result($result_dump,$z,"remote_host").
 							" - - ".
