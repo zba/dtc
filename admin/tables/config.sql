@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS config (
-db_version int(11) NOT NULL default '10000',
+db_version int(11) NOT NULL default '10001',
 unicrow int(11) NOT NULL default '1',
 demo_version enum('yes','no') NOT NULL default 'no',
 main_site_ip varchar(16) NOT NULL default '127.0.0.1',
