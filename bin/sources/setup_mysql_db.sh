@@ -48,14 +48,21 @@ mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dt
 chown -R nobody:nogroup $conf_hosting_path
 
 echo "==> DTC is now creating it's database:"
+if [ $conf_mysql_pass == ""];
+then
+        MYSQL="mysql"
+else
+	MYSQL="mysql -p${conf_mysql_pass}"
+fi
+
 
 create_tables=$PATH_DTC_SHARED"/admin/tables"
 curdir=`pwd`
 
 echo "If not exists, create DTC's database name: "$conf_mysql_db
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
 echo "Creating apachelogs database: apachelogs"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
 cd $create_tables
 echo -n "DTC is now creating table if not exists: "
 for i in $( ls *.sql );
@@ -63,21 +70,21 @@ do
 	table_name=`echo $i | cut -f1 -d"."`
 	echo -n $table_name" "
 	table_create=`cat $i`
-#	mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="DROP TABLE IF EXISTS "$table_name
-	mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db <$i
+#	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="DROP TABLE IF EXISTS "$table_name
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db <$i
 done
 echo "done."
 
 echo "Inserting values in mysql for hosting "$main_domain_name
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO groups (members) VALUES ('zigo')"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO admin (adm_login,adm_pass,path) VALUES ('"$conf_adm_login"','"$conf_adm_pass"','"$conf_hosting_path"/"$conf_adm_login"')"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO domain (name,owner,default_subdomain,generate_flag,ip_addr) VALUES ('"$main_domain_name"','"$conf_adm_login"','www','yes','"$conf_ip_addr"')"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','www','www')"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','ns1','$conf_ip_addr')"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','mx','$conf_ip_addr')"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','"$dtc_admin_subdomain"','www')"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO config (unicrow,demo_version,main_site_ip,site_addrs,addr_mail_server,webmaster_email_addr,addr_primary_dns,administrative_site,site_root_host_path,generated_file_path,dtcshared_path,dtcadmin_path,dtcclient_path) VALUES('1','no','"$conf_ip_addr"','"$conf_ip_addr"','mx."$main_domain_name"','webmaster@"$main_domain_name"','ns1."$main_domain_name"','"$dtc_admin_subdomain"."$main_domain_name"','"$conf_hosting_path"','"$PATH_DTC_ETC"','"$PATH_DTC_SHARED"','"$PATH_DTC_ADMIN"','"$PATH_DTC_CLIENT"')"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO cron_job (unicrow,reload_named,restart_apache,gen_vhosts,gen_named) VALUES ('1','yes','yes','yes','yes')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO groups (members) VALUES ('zigo')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO admin (adm_login,adm_pass,path) VALUES ('"$conf_adm_login"','"$conf_adm_pass"','"$conf_hosting_path"/"$conf_adm_login"')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO domain (name,owner,default_subdomain,generate_flag,ip_addr) VALUES ('"$main_domain_name"','"$conf_adm_login"','www','yes','"$conf_ip_addr"')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','www','www')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','ns1','$conf_ip_addr')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','mx','$conf_ip_addr')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','"$dtc_admin_subdomain"','www')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO config (unicrow,demo_version,main_site_ip,site_addrs,addr_mail_server,webmaster_email_addr,addr_primary_dns,administrative_site,site_root_host_path,generated_file_path,dtcshared_path,dtcadmin_path,dtcclient_path) VALUES('1','no','"$conf_ip_addr"','"$conf_ip_addr"','mx."$main_domain_name"','webmaster@"$main_domain_name"','ns1."$main_domain_name"','"$dtc_admin_subdomain"."$main_domain_name"','"$conf_hosting_path"','"$PATH_DTC_ETC"','"$PATH_DTC_SHARED"','"$PATH_DTC_ADMIN"','"$PATH_DTC_CLIENT"')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO cron_job (unicrow,reload_named,restart_apache,gen_vhosts,gen_named) VALUES ('1','yes','yes','yes','yes')"
 
 echo "<?php" > $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_host=\""$conf_mysql_host"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
