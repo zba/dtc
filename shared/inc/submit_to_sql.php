@@ -373,7 +373,7 @@ if($_REQUEST["newsubdomain"] == "Ok"){
 			mkdir("$newsubdomain_dirpath/cgi-bin", 0750);
 		if(!file_exists("$newsubdomain_dirpath/logs"))
 			mkdir("$newsubdomain_dirpath/logs", 0750);
-		exec("cp -dlpRv $conf_chroot_path/* $newsubdomain_dirpath");
+		exec("cp -fulpRv $conf_chroot_path/* $newsubdomain_dirpath");
 	}
 	// Update the flag so we regenerate the serial for bind
 	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
