@@ -1,11 +1,9 @@
 Todo :
 
-- Document out what's to be changed in httpd.conf
-- Explain in the documentation how the pending flag for dns zone works
-- Explain how works the cronjob stuff
-- Find a way to restrict perl and cgi scripts with only selected path
-accessible (like with php's open_basedir stuff)
+- Integrate SBOX
+- Integrate a mailling list manager
+- Integrate smtp AUTH
+- Enable the possibility to use different mysql server for the users
 - Find a SMART way to handle disk quotas
-- Make a commercial manager for domain-name expiration, payement, etc... (on
-the way to be released)
+- Make a commercial manager for domain-name expiration, payement, etc...
 - Make img.php work with both GD2 and GD1

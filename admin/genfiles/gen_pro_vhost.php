@@ -155,9 +155,11 @@ function pro_vhost_generate(){
 	Alias /pipermail/ /var/lib/mailman/archives/public/
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
-	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
-	ScriptAlias /mailman/ /usr/lib/mailman/cgi-bin/
-#	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
+# This is old fashion no protection CGI
+#	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
+# This is new style using SBOX engine
+	RewriteEngine on
+	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename#xfer
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
