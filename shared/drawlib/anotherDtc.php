@@ -85,8 +85,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 
 	$inside = "
 <table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\">
-<tr><td $nowrap>
-	<center><img alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"><br>
+<tr><td $nowrap><center><a href=\"http://www.gplhost.com/?rub=software&sousrub=dtc\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
 	<font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release</font></center>
 </td><td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
 	<font size=\"-1\"><i>Take the control of your domain name</i></font></center></td>
