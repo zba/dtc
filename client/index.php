@@ -1,6 +1,7 @@
 <?php
 
 require_once("../shared/autoSQLconfig.php");
+$panel_type="client";
 // All shared files between DTCadmin and DTCclient
 require_once("$dtcshared_path/dtc_lib.php");
 require_once("login.php");
@@ -22,7 +23,7 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 		$login_txt = "<font color=\"red\" Wrong login or password !</font><br>";
 		$login_txt .= "Error $error fetching admin : $mesg";
 		$login_txt .= login_form();
-		$login_skined = skin($conf_skin,$login_txt,$txt_login_title[$lang]);
+		$login_skined = skin($conf_skin,$login_txt,"Client panel: ".$txt_login_title[$lang]);
 		$mypage = layout_login_and_languages($login_skined,$lang_sel);
 	}else{
 		// Draw the html forms
@@ -32,7 +33,7 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 	}
 }else{
 	$login_txt = login_form();
-	$login_skined = skin($conf_skin,$login_txt,$txt_login_title[$lang]);
+	$login_skined = skin($conf_skin,$login_txt,"Client panel: ".$txt_login_title[$lang]);
 	$mypage = layout_login_and_languages($login_skined,$lang_sel);
 }
 // Output the result !

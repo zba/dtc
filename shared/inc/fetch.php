@@ -26,6 +26,7 @@ function fetchMailboxInfos($adm_email_login,$adm_email_pass){
 		return $ret;
 	}
 	$ret["data"] = mysql_fetch_array($r);
+	return $ret;
 }
 
 function fetchCommands($id_client){

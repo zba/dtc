@@ -1,5 +1,45 @@
 <?php
 
+function drawAdminTools_emailPanel($mailbox){
+
+	global $adm_email_login;
+	global $adm_email_pass;
+
+//	print_r($mailbox);
+	$url_start = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass";
+	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
+<input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">";
+
+	$change_pass_form = "<br><b><u>Change your password:</b></u>".
+$form_start."Type new password: <input type=\"hidden\" name=\"action\" value=\"dtcemail_change_pass\"><input type=\"password\" name=\"newpass1\" value=\"\"><br>
+Repeate: <input type=\"password\" name=\"newpass2\" value=\"\">
+<input type=\"submit\" name=\"submit\" value=\"Ok\"></form><br><br>";
+
+	if($mailbox["data"]["localdeliver"] == "yes"){
+		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=no\"><font color=\"green\">yes</font></a>";
+	}else{
+		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=yes\"><font color=\"red\">no</font></a>";
+	}
+
+	$redirect_form = "<br><b><u>Edit your mailbox redirections:</b></u><br><br>
+Deliver mail localy: $deliverUrl".
+$form_start."Redirection 1: <input type=\"hidden\" name=\"action\" value=\"dtcemail_edit_redirect\"><input type=\"text\" name=\"redirect1\" value=\"".$mailbox["data"]["redirect1"]."\"><br>
+Redirection 2: <input type=\"text\" name=\"redirect2\" value=\"".$mailbox["data"]["redirect2"]."\">
+<input type=\"submit\" name=\"submit\" value=\"Ok\"></form>";
+
+
+	$out = "<br><h4>Email panel: customise your mailbox!</h4>
+<table width=\"100%\" heigh=\"1\">
+<tr>
+	<td>".skin("frame",$change_pass_form,"")."</td>
+	<td>".skin("frame",$redirect_form,"")."</td>
+</tr></table>
+<br>
+<a href=\"".$_SERVER["PHP_SELF"]."?action=logout\">Logout</a>";
+	return $out;
+}
+
 /////////////////////////////////////////
 // One domain email collection edition //
 /////////////////////////////////////////

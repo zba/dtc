@@ -1,14 +1,16 @@
 <?php
 
-require("$dtcshared_path/inc/forms/my_account");
-require("$dtcshared_path/inc/forms/root_admin.php");
-require("$dtcshared_path/inc/forms/root_dns.php");
-require("$dtcshared_path/inc/forms/domain_info.php");
-require("$dtcshared_path/inc/forms/database.php");
+if($panel_type !="email"){
+	require("$dtcshared_path/inc/forms/my_account.php");
+	require("$dtcshared_path/inc/forms/root_admin.php");
+	// require("$dtcshared_path/inc/forms/root_dns.php");
+	require("$dtcshared_path/inc/forms/domain_info.php");
+	require("$dtcshared_path/inc/forms/database.php");
+	require("$dtcshared_path/inc/forms/ftp.php");
+	require("$dtcshared_path/inc/forms/admin_stats.php");
+	require("$dtcshared_path/inc/forms/domain_stats.php");
+}
 require("$dtcshared_path/inc/forms/email.php");
-require("$dtcshared_path/inc/forms/ftp.php");
-require("$dtcshared_path/inc/forms/admin_stats.php");
-require("$dtcshared_path/inc/forms/domain_stats.php");
 
 function AdminTool_findDomainNum($name,$domains){
 	$num_domains = sizeof($domains);

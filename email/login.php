@@ -10,7 +10,8 @@ function login_emailpanel_form(){
 
 	global $lang;
 
-	$HTML_admin_edit_data = "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+	$HTML_admin_edit_data = "<a href=\"/dtc\">Go to client panel</a>
+<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <table>
 <tr>
 	<td align=\"right\">".$txt_login_login[$lang]."</td>
@@ -18,9 +19,6 @@ function login_emailpanel_form(){
 </tr><tr>
 	<td align=\"right\">".$txt_login_pass[$lang]."</td>
 	<td><input type=\"password\" name=\"adm_email_pass\" value=\"\"></td>
-</tr><tr>
-	<td align=\"right\">$txt_use_text_menu[$lang]</td>
-	<td><input type=\"checkbox\" name=\"use_text_menu\" value=\"yes\"></td>
 </tr><tr>
 	<td></td><td><input type=\"submit\" name=\"Login\" value=\"login\">
 </td></tr>

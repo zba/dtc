@@ -2,6 +2,7 @@
 
 require_once("../shared/autoSQLconfig.php");
 // All shared files between DTCadmin and DTCclient
+$panel_type="email";
 require_once("$dtcshared_path/dtc_lib.php");
 require_once("login.php");
 
@@ -22,42 +23,21 @@ if($adm_email_login != "" && isset($adm_email_login) && $adm_email_pass != "" &&
 		$login_txt = "<font color=\"red\" Wrong login or password !</font><br>";
 		$login_txt .= "Error $error fetching admin : $mesg";
 		$login_txt .= login_emailpanel_form();
-		$login_skined = skin($conf_skin,$login_txt,$txt_login_title[$lang]);
+		$login_skined = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
 		$mypage = layout_login_and_languages($login_skined,$lang_sel);
 	}else{
 		// Draw the html forms
-
-
-
-		$content = "<h2>A nice email-panel content!</h2><br><br>
-
-<a href=\"".$_SERVER["PHP_SELF"]."?action=logout\">Logout</a><br>
-<a href=\"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&action=newaction\">A link inside interface</a>
-<br>
-
-<form action=\"".$_SERVER["PHP_SELF"]."\">
-<input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
-<input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">
-<input type=\"hidden\" name=\"action\" value=\"anotheraction\">
-<input type=\"submit\" name=\"action\" value=\"Ok\">
-</form>
-";
-
-
-
-
-
-
-		$mypage = skin($conf_skin,$content,$txt_login_title[$lang]);
+		$content = drawAdminTools_emailPanel($admin);
+		$mypage = skin($conf_skin,$content,$adm_email_login);
 	}
 }else{
 	$login_txt = login_emailpanel_form();
-	$login_skined = skin($conf_skin,$login_txt,$txt_login_title[$lang]);
+	$login_skined = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
 	$mypage = layout_login_and_languages($login_skined,$lang_sel);
 }
 // Output the result !
 
 //echo anotherPage($txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
-echo anotherPage("Client:".$txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$mypage,anotherFooter(""));
+echo anotherPage("Email:".$txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$mypage,anotherFooter(""));
 
 ?>
