@@ -152,6 +152,113 @@ function drawDeamonStates(){
 	return $out;
 }
 
+function checkSMTP(){
+	global $errTxt;
+
+	$server = "localhost";
+	// echo "Checking POP3<br>";
+	if(($server_ip = gethostbynameFalse($server)) == false){
+		$errTxt = "Cannot resolv your $server SMTP server.";
+		return false;
+	}
+
+	$soc = fsockopen($server_ip,25,$erno,$errstring,10);
+	if($soc == false){
+		$errTxt = "Could not connect to SMTP server (timed out): $server";
+		return false;
+	}
+	// echo "Checking ok after connect<br>";
+	$popline = fgets($soc,1024);
+	if(!strstr($popline,"220")){
+		$errTxt = "Server did not send OK after connect, maybe wrong server or server is down: $popline";
+		return false;
+	}
+	// echo "Sending login<br>";
+	if(!fwrite($soc,"HELO dtc-check@gplhost.com\n")){
+		$errTxt = "Could not write HELLO to server";
+		return false;
+	}
+	// echo "Checking ok after login<br>";
+	$popline = fgets($soc,1024);
+	if(!strstr($popline,"250")){
+		$errTxt = "Server did not send OK after HELO: $popline";
+		return false;
+	}
+	//echo "Closing socket<br>";
+	fclose($soc);
+
+	return true;
+}
+
+function checkFTP(){
+	global $errTxt;
+	$errTxt = "";
+	return true;
+}
+
+function checkDNS(){
+	global $errTxt;
+	$errTxt = "";
+	return true;
+}
+
+function checkPOP3(){
+	global $pro_mysql_pop_table;
+
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE 1 LIMIT 1";
+	$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said ".mysql_error());
+	$a = mysql_fetch_array($r);
+
+	if(checkMailbox($a["id"],$a["mbox_host"],$a["id"].'@'.$a["mbox_host"],
+                                "POP3","localhost",$a["id"].'@'.$a["mbox_host"],$a["passwd"])){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function drawServerStatus(){
+	global $errTxt;
+
+	if(checkPOP3()){
+		$pop3_status = '<font color="#00FF00">OK</font>';
+	}else{
+		$pop3_status = '<font color="#FF0000">ERROR!</font>';
+	}
+
+	if(checkSMTP()){
+		$smtp_status = '<font color="#00FF00">OK</font>';
+	}else{
+		$smtp_status = '<font color="#FF0000">ERROR!</font>';
+	}
+
+	if(checkDNS()){
+		$dns_status = '<font color="#00FF00">DEV TO BE DONE</font>';
+	}else{
+		$dns_status = '<font color="#FF0000">ERROR!</font>';
+	}
+
+	if(checkFTP()){
+		$ftp_status = '<font color="#00FF00">DEV TO BE DONE</font>';
+	}else{
+		$ftp_status = '<font color="#FF0000">ERROR!</font>';
+	}
+
+	$out = "<br><table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" height=\"1\">
+<tr>
+	<td align=\"center\">SMTP</td>
+	<td align=\"center\">POP3</td>
+	<td align=\"center\">DNS</td>
+	<td align=\"center\">FTP</td>
+</tr><tr>
+	<td align=\"center\">$smtp_status</td>
+	<td align=\"center\">$pop3_status</td>
+	<td align=\"center\">$dns_status</td>
+	<td align=\"center\">$ftp_status</td>
+</tr></table>";
+	return $out;
+}
+
 echo "<html><head>
 <META HTTP-EQUIV=\"Refresh\" CONTENT=\"15;URL=".$_SERVER["PHP_SELF"]."\">".'<SCRIPT language="JavaScript">
 <!--
@@ -173,9 +280,9 @@ function JSClock() {
 }
 //-->
 </SCRIPT>'."
-<body bgcolor=\"#000000\" onLoad=\"JSClock();\">
+<body bgcolor=\"#000000\" onLoad=\"JSClock();\" text=\"#FFFFFF\">
 <link rel=\"stylesheet\" href=\"gfx/dtc.css\" type=\"text/css\">
 <link rel=\"stylesheet\" href=\"gfx/skin/".$conf_skin."/skin.css\" type=\"text/css\">
-".drawDeamonStates()."</body></html>";
+".drawDeamonStates().drawServerStatus().$errTxt."</body></html>";
 
 ?>
