@@ -25,7 +25,9 @@ function drawEditAdmin($admin){
 	global $conf_hide_password;
 
 	$info = $admin["info"];
-	$data = $admin["data"];
+	if(isset($admin["data"])){
+		$data = $admin["data"];
+	}
 
 	$adm_cur_pass = $info["adm_pass"];
 	$adm_path = $info["path"];
@@ -79,19 +81,20 @@ function drawEditAdmin($admin){
 	$url = "".$_SERVER["PHP_SELF"]."?delete_admin_user=$adm_login";
 	$confirmed_url = dtcJavascriptConfirmLink($txt_del_user_confirm[$lang],$url);
 	$domain_conf = "<a href=\"$confirmed_url\"><b>".$txt_del_user[$lang]."</b></a><br><br>";
-	$domain_conf .= "<b><u>".$txt_del_user_domain[$lang]."</u><br>";
-	$nbr_domain = sizeof($data);
-	for($i=0;$i<$nbr_domain;$i++){
-		$dom = $data[$i]["name"];
-		if($i != 0){
-			$domain_conf .= " - ";
+	if(isset($data){
+		$domain_conf .= "<b><u>".$txt_del_user_domain[$lang]."</u><br>";
+		$nbr_domain = sizeof($data);
+		for($i=0;$i<$nbr_domain;$i++){
+			$dom = $data[$i]["name"];
+			if($i != 0){
+				$domain_conf .= " - ";
+			}
+			$url = "?adm_login=$adm_login&adm_pass=$adm_pass&deluserdomain=$dom";
+			$js_url = dtcJavascriptConfirmLink($txt_del_user_domain_confirm[$lang],$url);
+			$domain_conf .= "<a href=\"$js_url\">$dom</a>";
 		}
-		$url = "?adm_login=$adm_login&adm_pass=$adm_pass&deluserdomain=$dom";
-		$js_url = dtcJavascriptConfirmLink($txt_del_user_domain_confirm[$lang],$url);
-		$domain_conf .= "<a href=\"$js_url\">$dom</a>";
+		$domain_conf .= "</b><br><br>";
 	}
-	$domain_conf .= "</b><br><br>";
-
 	// Creation of domains :
 	$domain_conf .= "<b><u>".$txt_new_domain_for_user[$lang]."</u>";
 
@@ -124,9 +127,12 @@ function drawDomainConfig($admin){
 	global $adm_login;
 	global $adm_pass;
 
-	$domains = $admin["data"];
-
-	$nbr_domain = sizeof($domains);
+	if(isset($admin["data"])){
+		$domains = $admin["data"];
+		$nbr_domain = sizeof($domains);
+	}else{
+		$nbr_domain = 0;
+	}
 
 	$ret = "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\">
 			<tr><td>".$txt_domain_tbl_config_dom_name[$lang]."</td><td>".$txt_domain_tbl_config_quota[$lang]."</td><td>".$txt_domain_tbl_config_max_email[$lang]."</td>
