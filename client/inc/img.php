@@ -225,9 +225,50 @@ for($i=0;$i<sizeof($array_of_sign);$i++){
 		makeVline($i);
 	}
 }
-// $icon_im = imagecreatefrompng("tst_icon.png");
-// $icon_x = $gfx_start_pos+$txt_x_pos - 19;
-// imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+$icon_x = $gfx_start_pos+$txt_x_pos - 19;
+if($_REQUEST["text"] == "myaccount"){
+	$icon_im = imagecreatefrompng("tool.png");
+	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "stats"){
+	$icon_im = imagecreatefrompng("tst_icon.png");
+//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "dts"){
+	$icon_im = imagecreatefrompng("tst_icon.png");
+	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "subdomains"){
+	$icon_im = imagecreatefrompng("tst_icon.png");
+//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "ftp-accounts"){
+	$icon_im = imagecreatefrompng("floppy.png");
+	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "adddomain"){
+	$icon_im = imagecreatefrompng("tool.png");
+//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "nickhandles"){
+	$icon_im = imagecreatefrompng("man.png");
+	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "whois"){
+	$icon_im = imagecreatefrompng("man.png");
+//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "nameservers"){
+	$icon_im = imagecreatefrompng("tool.png");
+//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "mailboxs"){
+	$icon_im = imagecreatefrompng("mail.png");
+	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "dns"){
+	$icon_im = imagecreatefrompng("tst_icon.png");
+//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "database"){
+	$icon_im = imagecreatefrompng("tst_icon.png");
+//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else if($_REQUEST["text"] == "help"){
+	$icon_im = imagecreatefrompng("tst_icon.png");
+//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}else{
+	$icon_im = imagecreatefrompng("domain.png");
+	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+}
 
 // Save file if not found
 if(!file_exists($file_cache_path) && $use_img_cache== "yes"){
