@@ -119,19 +119,19 @@ fi
 echo "===> Uninstalling from qmail"
 if [ -e /var/qmail ]
 then
-	if ! [ -f /var/qmail/control/rcpthosts.DTC.backup ] ; then
+	if [ -e /var/qmail/control/rcpthosts.DTC.backup ] ; then
 		cp -f /var/qmail/control/rcpthosts.DTC.backup /var/qmail/control/rcpthosts
 	fi
 
-	if ! [ -f /var/qmail/control/virtualdomains.DTC.backup ] ; then
+	if [ -e /var/qmail/control/virtualdomains.DTC.backup ] ; then
 		cp -f /var/qmail/control/virtualdomains.DTC.backup /var/qmail/control/virtualdomains
 	fi
 
-	if ! [ -f /var/qmail/control/users/assign.DTC.backup ] ; then
+	if [ -e /var/qmail/control/users/assign.DTC.backup ] ; then
 		cp -f /var/qmail/control/users/assign.DTC.backup /var/qmail/control/users/assign
 	fi
 
-	if ! [ -f /etc/poppasswd.DTC.backup ] ; then
+	if [ -e /etc/poppasswd.DTC.backup ] ; then
 		cp -f /etc/poppasswd.DTC.backup /etc/poppasswd
 	fi
 fi
