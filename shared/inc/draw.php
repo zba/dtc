@@ -1099,7 +1099,7 @@ function drawAdminTools_AdminStats($admin){
 	$out .= "<tr><td$nowrap><b>".$txt_database_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></tr>";
 	for($i=0;$i<sizeof($stats["db"]);$i++){
 		if($i % 2){
-			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\"";
+			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\" style=\"color:#FFFFFF\" ";
 		}else{
 			$bgcolor = $nowrap;
 		}
@@ -1115,7 +1115,7 @@ function drawAdminTools_AdminStats($admin){
 	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td><td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>".$txt_total_trafic[$lang]."</b></td></tr>";
 	for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
 		if($ad % 2){
-			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\"";
+			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\" style=\"color:#FFFFFF\" ";
 		}else{
 			$bgcolor = $nowrap;
 		}
