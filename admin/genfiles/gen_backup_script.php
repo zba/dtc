@@ -53,6 +53,8 @@ date\n";
 			$backup_net .= "rm $owner.$webname.tar.gz\n";
 			$num_generated_vhosts++;
 		}
+		$backup_net .= "echo \" Dumping SQL datas...\"\n";
+//		$backup_net .= "mysqldump -c --add-drop-table -databases db1 db2 >user.dbs";
 	}
 	$backup_net .= "date\n";
 	$filep = fopen("$conf_generated_file_path/net_backup.sh", "w+");
