@@ -28,6 +28,7 @@ function pro_vhost_generate(){
 	global $conf_dtcadmin_path;
 	global $conf_dtcclient_path;
 	global $conf_dtcdoc_path;
+	global $conf_dtcemail_path;
 	global $conf_main_site_ip;
 	global $conf_use_multiple_ip;
 	global $conf_site_addrs;
@@ -202,7 +203,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$vhost_file .= "	Alias /phpmyadmin /usr/share/phpmyadmin
 	Alias /dtc $conf_dtcclient_path
 	Alias /dtcdoc $conf_dtcdoc_path/html/en
-	Alias /dtcemail $conf_dtcshared_path/email
+	Alias /dtcemail $conf_dtcemail_path
 	Alias /dtcadmin $conf_dtcadmin_path
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	Alias /pipermail/ /var/lib/mailman/archives/public/
