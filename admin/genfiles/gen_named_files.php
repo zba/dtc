@@ -1,5 +1,68 @@
 <?php
 
+function get_remote_ns($a){
+	$flag = false;
+	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"];
+	while($retry < 3 && $flag == false){
+		$lines = file ($url);
+		$nline = sizeof($lines);
+
+		if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
+			strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
+			for($j=1;$j<$nline-1;$j++){
+				$named_file .= $lines[$j];
+			}
+			$flag = true;
+		}
+		$retry ++;
+		if($flag == false)	sleep(5);
+	}
+	if($flag == false)	return false;
+	else		return $named_file;
+}
+
+function get_remote_ns_domains(){
+	global $pro_mysql_backup_table;
+	global $conf_generated_file_path;
+	global $console;
+
+	// Get all domains from the servers for wich we act as backup MX
+	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
+	$r = mysql_query($q)or die("Cannot query $q ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$retry = 0;
+		$flag = false;
+		$a = mysql_fetch_array($r);
+		$u = remove_url_protocol($a["server_addr"]);
+		if($u == false)	return false;
+		$f = $conf_generated_file_path."/dns_domains.".$u;
+		if($a["status"] == "pending" || !file_exists($f)){
+			$console = "Getting dns domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk...";
+			$remote_file = get_remote_ns($a);
+			if($remote_file != false){
+				$fp = fopen($f,"w+");
+				fwrite($fp,$remote_file);
+				fclose($fp);
+				$domain_list .= $remote_file;
+				$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
+				$r2 = mysql_query($q2)or die("Cannot query $q2 ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
+				$console = "ok!<br>";
+			}else{
+				$console = "failed!<br>";
+			}
+		}else{
+			$console = "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
+			$fp = fopen($f,"r");
+			fseek($fp,0,SEEK_END);
+			$size = ftell($fp);
+			fseek($fp,0,SEEK_START);
+			$domain_list .= fread($fp,$size);
+			fclose($fp);
+		}
+	return $domain_list;
+}
+
 function named_generate(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
@@ -192,7 +255,7 @@ $more_mx_server
 		}
 	}
 
-	// Get all domains for wich we will act as backup NS
+/*	// Get all domains for wich we will act as backup NS
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -214,6 +277,7 @@ $more_mx_server
 			if($flag == false)	sleep(5);
 		}
 	}
+*/	$named_file .= get_remote_ns_domains();
 
 	// Write of the master zone file
 	$filep = fopen("$conf_generated_file_path/$conf_named_path", "w+");

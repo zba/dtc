@@ -1,18 +1,9 @@
 <?php
 
-function remove_url_protocol($url){
-	if(strstr($url,"http://")){
-		return substr($url,7);
-	}else if(strstr($url,"https://")){
-		return substr($url,8);
-	}else
-		echo "ERROR: no protocol in distant mail server addr!";
-	return false;
-}
-
 // db: add field dtc.backup: status enum('pending','done') default 'pending';
 
 function get_remote_mail($a){
+	$flag = false;
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"];
 	while($retry < 3 && $flag == false){
 		$lines = file ($url);
@@ -27,7 +18,8 @@ function get_remote_mail($a){
 		$retry ++;
 		if($flag == false)	sleep(5);
 	}
-	return $rcpthosts_file;
+	if($flag == false)	return false;
+	else		return $rcpthosts_file;
 }
 
 function get_remote_mail_domains(){
@@ -47,12 +39,19 @@ function get_remote_mail_domains(){
 		if($u == false)	return false;
 		$f = $conf_generated_file_path."/mail_domains.".$u;
 		if($a["status"] == "pending" || !file_exists($f)){
-			$console = "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk...<br>";
+			$console = "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk...";
 			$remote_file = get_remote_mail($a);
-			$fp = fopen($f,"w+");
-			fwrite($fp,$remote_file);
-			fclose($fp);
-			$domain_list .= $remote_file;
+			if($remote_file != false){
+				$fp = fopen($f,"w+");
+				fwrite($fp,$remote_file);
+				fclose($fp);
+				$domain_list .= $remote_file;
+				$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
+				$r2 = mysql_query($q2)or die("Cannot query $q2 ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
+				$console = "ok!<br>";
+			}else{
+				$console = "failed!<br>";
+			}
 		}else{
 			$console = "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
 			$fp = fopen($f,"r");

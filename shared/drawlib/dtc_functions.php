@@ -1,5 +1,15 @@
 <?php
 
+function remove_url_protocol($url){
+	if(strstr($url,"http://")){
+		return substr($url,7);
+	}else if(strstr($url,"https://")){
+		return substr($url,8);
+	}else
+		echo "ERROR: no protocol in distant mail server addr!";
+	return false;
+}
+
 function getRandomValue(){
 	// seed with microseconds
 	list($usec, $sec) = explode(' ', microtime());
