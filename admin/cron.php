@@ -165,10 +165,11 @@ if($conf_mta_type == "qmail" && $CHECK_QMAIL_POP3D == "yes"){
 		fclose ($fp);
 	}
 
-	if($cronjob_table_content["reload_named"] == "yes"){
-		echo "Reloading name-server\n";
-		system("killall -HUP named");
-	}
+}
+
+if($cronjob_table_content["reload_named"] == "yes"){
+	echo "Reloading name-server\n";
+	system("killall -HUP named");
 }
 
 if($cronjob_table_content["restart_apache"] == "yes"){
