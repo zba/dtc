@@ -43,9 +43,11 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	$du = $du_state[0];
 
 	// Retrive number of mailbox
-	$email_nbr = sizeof($eddomain["emails"]);
+	if(isset($eddomain["emails"]))	$email_nbr = sizeof($eddomain["emails"]);
+	else	$email_nbr = 0;
 	// Retrive number of ftp account
-	$ftp_nbr = sizeof($eddomain["ftps"]);
+	if(isset($eddomain["ftps"]))	$ftp_nbr = sizeof($eddomain["ftps"]);
+	else	$ftp_nbr = 0;
 	// Retrive number of ftp account
 	$subdomain_nbr = sizeof($eddomain["subdomains"]);
 

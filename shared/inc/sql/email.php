@@ -41,6 +41,7 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 		$dolocal_deliver = "no";
 	}
 	$crypted_pass = crypt($_REQUEST["newmail_pass"]);
+	$mailbox_path = get_mailbox_complete_path($_REQUEST["newmail_login"],$edit_domain);
 	$adm_query = "INSERT INTO $pro_mysql_pop_table(
         id,              home,           mbox_host,     crypt,        passwd,         redirect1,            redirect2            ,localdeliver)
 VALUES ('".$_REQUEST["newmail_login"]."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver');";

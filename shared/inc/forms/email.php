@@ -364,8 +364,12 @@ function drawAdminTools_Emails($domain){
 
 	global $conf_hide_password;
 
+	if(isset($domain["emails"])){
+		$nbr_email = sizeof($domain["emails"]);
+		$emails = $domain["emails"];
+	}
+	else	$nbr_email = 0;
 
-	$nbr_email = sizeof($domain["emails"]);
 	$max_email = $domain["max_email"];
 	if($nbr_email >= $max_email){
 		$max_color = "color=\"#440000\"";
@@ -376,9 +380,7 @@ function drawAdminTools_Emails($domain){
 	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_email ."</font> / <font size=\"-1\">" . $max_email . "</font><br><br>";
 
 	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>".$txt_mail_liste_of_your_box[$lang]."</u><br>";
-	$emails = $domain["emails"];
-	$nbr_boites = sizeof($emails);
-	for($i=0;$i<$nbr_boites;$i++){
+	for($i=0;$i<$nbr_email;$i++){
 		$email = $emails[$i];
 		$id = $email["id"];
 		if(isset($_REQUEST["edit_mailbox"]) && $id == $_REQUEST["edit_mailbox"]){
