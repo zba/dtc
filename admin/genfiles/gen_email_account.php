@@ -3,10 +3,18 @@
 require("genfiles/gen_qmail_email_account.php");
 require("genfiles/gen_postfix_email_account.php");
 
-function mail_account_generate()
-{
-	mail_account_generate_postfix();
-	mail_account_generate_qmail();
+function mail_account_generate(){
+	global $conf_mta_type;
+
+	switch($conf_mta_type){
+	case "postfix":
+		mail_account_generate_postfix();
+		break;
+	default:
+	case "qmail":
+		mail_account_generate_qmail();
+		break;
+	}
 }
 
 ?>

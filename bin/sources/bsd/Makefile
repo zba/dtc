@@ -2,7 +2,7 @@ CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.gplhost.com/pub/dtc/bsd/
 
 MAINTAINER=	thomas@goirand.fr
-COMMENT=	A hosting web GUI for admin and accounting apache/named/proftpd/qmail
+COMMENT=	A hosting web GUI for admin and accounting all hosting services
 RUN_DEPENDS=	php:${PHP_PORT} \
 		${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
 		${LOCALBASE}/libexec/proftpd:${PORTSDIR}/ftp/proftpd-mysql \

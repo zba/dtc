@@ -13,7 +13,7 @@ $APACHECTL = "/usr/sbin/apachectl";
 // Set to yes if you want to check for qmail pop3d availability and relaunch
 // it if needed. Note that you can have to customise that cron script part
 // for your qmail installation. This is done for debian standard start script.
-$CHECK_QMAIL_POP3D = "no";
+$CHECK_QMAIL_POP3D = "yes";
 
 echo date("Y m d / H:i:s T",$script_start_time)." Starting DTC cron job\n";
 // Let's see if DTC's mysql_config.php is OK and lock back the shared folder
@@ -29,6 +29,7 @@ $num_rows = mysql_num_rows($result);
 if($num_rows != 1)	die("No data in the cronjob table !!!");
 $cronjob_table_content = mysql_fetch_array($result);
 
+
 // Lock the cron flag, in case the cron script takes more than 10 minutes
 if($cronjob_table_content["lock_flag"] != "finished"){
 	echo "DB flag says that last cron job is not finished: exiting.\n
@@ -39,6 +40,8 @@ mysql -uroot -Ddtc -p --execute=\"UPDATE $pro_mysql_cronjob_table SET lock_flag=
 echo "Setting-up lock flag\n";
 $query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='inprogress' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+
+
 
 $start_stamps = mktime();
 ////////////////////////////////////////////////////////////
@@ -81,10 +84,11 @@ function updateAllDomainsStats(){
 	}
 }
 
+
 // This will set each day at 0:00
-// if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
+if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
 // This one is each hours
-if(($start_stamps%(60*60))< 60*10)	updateAllDomainsStats();
+// if(($start_stamps%(60*60))< 60*10)	updateAllDomainsStats();
 // This is each time the script is launched (all 10 minutes)
 // updateAllDomainsStats();
 
@@ -95,6 +99,8 @@ $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error())
 $num_rows = mysql_num_rows($result);
 if($num_rows != 1)	die("No data in the cronjob table !!!");
 $cronjob_table_content = mysql_fetch_array($result);
+
+
 
 ///////////////////////////////////////////////////////
 // First, see if we have to regenerate deamons files //
@@ -132,14 +138,21 @@ if($cronjob_table_content["qmail_newu"] == "yes"){
 }
 
 if($cronjob_table_content["restart_qmail"] == "yes"){
-	echo "Sending qmail-send a HUP\n";
-	system("killall -HUP qmail-send");
-	echo "Reloading postfix\n";
-	system("/etc/init.d/postfix reload");
-	echo "Restarting qmail\n";
-	system("/etc/init.d/qmail stop");
-	sleep(2);
-	system("/etc/init.d/qmail start");
+	switch($conf_mta_type){
+	case "postfix":
+		echo "Reloading postfix\n";
+		system("/etc/init.d/postfix reload");
+		break;
+	case "qmail":
+	default:
+		echo "Sending qmail-send a HUP\n";	// This runs well on stock debian woody qmail-src package. Anyone had trouble with it ?
+		system("killall -HUP qmail-send");
+//		echo "Restarting qmail\n";		// I've read somewhere it cannot reload correcly to do qmail-send a HUP, but I've tested and it does ! :)
+//		system("/etc/init.d/qmail stop");
+//		sleep(2);
+//		system("/etc/init.d/qmail start");
+		break;
+	}
 }
 
 // Check if pop is running, restart qmail if not
@@ -160,6 +173,7 @@ if($CHECK_QMAIL_POP3D == "yes"){
 	}
 }
 
+
 if($cronjob_table_content["restart_apache"] == "yes"){
 	$plop = array();
 	echo ("Testing and creating directories for vhosts...\n");
@@ -168,12 +182,12 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	echo "Testing apache conf\n";
 	exec ("$APACHECTL configtest", $plop, $return_var);
 	if($return_var == false){
-		//echo "Config is OK : restarting Apache\n";
-		//system("$APACHECTL stop");
-		//sleep(4);
-		//system("$APACHECTL start");
+		echo "Config is OK : restarting Apache\n";
+		system("$APACHECTL stop");
+		sleep(4);
+		system("$APACHECTL start");
 		// change to graceful apache restart, rather than a hard stop and start
-		system("$APACHECTL graceful");
+		//system("$APACHECTL graceful");
 	}else{
 		echo "Config not OK : I can't reload apache !!!\n";
 	}
@@ -191,5 +205,6 @@ if($exec_time > 60){
 	$ex_min = 0;
 }
 echo date("Y m d / H:i:s T")." DTC cron job finished (exec time=".$ex_min.":".$ex_sec.")\n\n";
+exit(0);
 
 ?>
