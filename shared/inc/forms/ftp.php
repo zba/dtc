@@ -1,0 +1,137 @@
+<?php
+
+////////////////////////////////////////////////////
+// One domain name ftp account collection edition //
+////////////////////////////////////////////////////
+function drawAdminTools_Ftp($domain,$adm_path){
+	global $adm_login;
+	global $adm_pass;
+	global $edit_domain;
+
+	global $edftp_account;
+	global $addrlink;
+
+	global $lang;
+	global $txt_ftp_account_list;
+	global $txt_ftp_new_account;
+	global $txt_ftp_account_edit;
+	global $txt_ftp_new_account_link;
+	global $txt_login_login;
+	global $txt_login_pass;
+	global $txt_path;
+	global $conf_hide_password;
+
+	global $txt_number_of_active_ftp;
+	global $txt_maxnumber_of_ftp_account_reached;
+
+	$nbr_ftp = sizeof($domain["ftps"]);
+	$max_ftp = $domain["max_ftp"];
+	if($nbr_ftp >= $max_ftp){
+		$max_color = "color=\"#440000\"";
+	}
+	$nbrtxt = $txt_number_of_active_ftp[$lang];
+	$txt .= "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_ftp ."</font> / <font size=\"-1\">" . $max_ftp . "</font><br><br>";
+
+	$txt .= "<font face=\"Verdana, Arial\"><font size=\"-1\"><b><u>".$txt_ftp_account_list[$lang]."</u><br>";
+	$ftps = $domain["ftps"];
+	$nbr_account = sizeof($ftps);
+	for($i=0;$i<$nbr_account;$i++){
+		$ftp = $ftps[$i];
+		$login = $ftp["login"];
+		if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $login == $_REQUEST["edftp_account"]){
+			$pass = $ftp["passwd"];
+			$ftpath = $ftp["path"];
+		}
+		if($i != 0){
+			$txt .= " - ";
+		}
+		$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps&edftp_account=$login\">$login</a>";
+	}
+
+	if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $ftpath == "$adm_path"){
+		$is_selected = " selected";
+	}else{
+		$is_selected ="";
+	}
+	$path_popup .= "<option value=\"$adm_path\"$is_selected>/</option>";
+	if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $ftpath == "$adm_path/$edit_domain"){
+		$is_selected = " selected";
+	}else{
+		$is_selected ="";
+	}
+	$path_popup .= "<option value=\"$adm_path/$edit_domain\"$is_selected>/$edit_domain/</option>";
+	$nbr_subdomains = sizeof($domain["subdomains"]);
+	for($i=0;$i<$nbr_subdomains;$i++){
+		$sub_name = $domain["subdomains"][$i]["name"];
+		if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $ftpath == "$adm_path/$edit_domain/subdomains/$sub_name"){
+			$is_selected = " selected";
+		}else{
+			$is_selected ="";
+		}
+		$path_popup .= "<option value=\"$adm_path/$edit_domain/subdomains/$sub_name\"$is_selected>/$edit_domain/subdomains/$sub_name/</option>";
+	}
+
+	if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $_REQUEST["deleteftpaccount"] != "Delete"){
+		$txt .= "<br><br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps\">".$txt_ftp_new_account_link[$lang]."</A><br>";
+		$txt .= "
+<br><u>".$txt_ftp_account_edit[$lang]."</u>
+<table>
+<tr><td align=\"right\">".$txt_login_login[$lang]."</td><td>".$_REQUEST["edftp_account"]."</td></tr>
+<tr><td align=\"right\">
+<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
+	<input type=\"hidden\" name=\"whatdoiedit\" value=\"ftps\">
+	<input type=\"hidden\" name=\"edftp_account\" value=\"".$_REQUEST["edftp_account"]."\">";
+	if ($conf_hide_password == "yes")
+	{
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"edftp_pass\" value=\"$pass\">";
+	} else {
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"edftp_pass\" value=\"$pass\">";
+	}
+$txt .= "
+</td></tr><tr><td align=\"right\">
+	".$txt_path[$lang]."</td><td><select name=\"edftp_path\">$path_popup</select>
+</td></tr><tr><td align=\"right\">
+	<input type=\"submit\" name=\"deleteftpaccount\" value=\"Delete\"></td><td><input type=\"submit\" name=\"update_ftp_account\" value=\"Ok\">
+</td></tr>
+</table>
+</form>
+<br>
+";
+	}else{
+		$txt .= "
+<br><br><u>".$txt_ftp_new_account[$lang]."</u>";
+		if($nbr_ftp < $max_ftp){
+			$txt .= "
+<table><tr><td align=\"right\">
+<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
+	<input type=\"hidden\" name=\"whatdoiedit\" value=\"ftps\">
+	<input type=\"hidden\" name=\"edftp_account\" value=\"".$_REQUEST["edftp_account"]."\">
+	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newftp_login\" value=\"\">
+</td></tr><tr><td align=\"right\">
+	".$txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newftp_pass\" value=\"\">
+</td></tr><tr><td align=\"right\">
+	".$txt_path[$lang]."</td><td><select name=\"newftp_path\">$path_popup</select>
+</td></tr><tr><td align=\"right\">
+	</td><td><input type=\"submit\" name=\"newftpaccount\" value=\"Ok\">
+</td></tr>
+</table>
+";
+		}else{
+			$txt .= "<br>".$txt_maxnumber_of_ftp_account_reached[$lang];
+		}
+	}
+	$txt .= "<br>$interface</b></font>";
+
+	return $txt;
+}
+
+
+?>
