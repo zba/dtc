@@ -1,0 +1,634 @@
+<?php
+
+$globpadd = 0;
+$globspace = 0;
+
+///////////////////////////////////////
+// Old function for making the skins //
+///////////////////////////////////////
+function skin_it($title,$content,$skin_path,$table_width,$title_width){
+	$left = ($table_width-(13*3)-$title_width)/3;
+	$center = $table_width-(13*3)-$title_width-$left;
+	$content_size = $table_width - 26;
+
+	return "
+<table cellspacing=\"0\" cellpadding=\"0\">
+	<tr>
+	    skin path = $skin_path<br><br>
+		<td background=\"$skin_path/coin01.gif\" width=\"13\" height=\"25\"></td>
+		<td background=\"$skin_path/trait01.gif\" width=\"$left\"></td>
+		<td background=\"$skin_path/trait01.gif\" width=\"13\"></td>
+		<td background=\"$skin_path/trait01.gif\" width=\"$center\"></td>
+		<td background=\"$skin_path/inter01.gif\" width=\"13\"></td>
+		<td background=\"$skin_path/trait02.gif\" width=\"$title_width\" align=\"center\" valign=\"middle\">$title</td>
+
+		<td background=\"$skin_path/coin02.gif\" width=\"13\" height=\"25\">&nbsp;</td>
+
+	</tr>
+
+	<tr>
+		<td background=\"$skin_path/trait06.gif\" width=\"13\"></td>
+		<td background=\"$skin_path/fond.gif\" colspan=\"5\" width=\"$content_size\">
+		$content
+		</td>
+		<td background=\"$skin_path/trait03.gif\" width=\"13\"></td>
+	</tr>
+
+	<tr>
+		<td background=\"$skin_path/coin04.gif\" width=\"13\" height=\"16\"></td>
+		<td background=\"$skin_path/trait05.gif\" width=\"$left\"></td>
+		<td background=\"$skin_path/inter02.gif\" width=\"13\"></td>
+		<td background=\"$skin_path/trait04.gif\" width=\"$center\"></td>
+		<td background=\"$skin_path/trait04.gif\" width=\"13\"></td>
+		<td background=\"$skin_path/trait04.gif\" width=\"$title_width\"></td>
+		<td background=\"$skin_path/coin03.gif\" width=\"13\"></td>
+	</tr>
+</table>";
+
+}
+
+////////////////////////////////////////////////////////////////
+// Layout elements of the input parameter in a vertical table //
+////////////////////////////////////////////////////////////////
+function makeVerticalFrame($cells){
+	global $globspace;
+	global $globpadd;
+	$num_cells = sizeof($cells);
+	$ret .= "
+<table boder=\"0\" cellspacing=\"$globspace\" cellpadding=\"$globpadd\" width=\"100%\" height=\"100%\">
+";
+	for($i=0;$i<$num_cells;$i++){
+		$oneCell = $cells[$i];
+		$ret .= "<tr><td height=\"1\">$oneCell</td></tr>";
+	}
+	$ret .= "<tr><td height=\"100%\">&nbsp;</td></tr></table>";
+	return $ret;
+}
+
+function make_table($html_array,$num_colone){
+	global $globspace;
+	global $globpadd;
+	$num_ligne = sizeof($html_array) / $num_colone;
+	$width = 100 / $num_colone;
+	$height = 100 / $num_ligne;
+	$out = "
+<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"$globpadd\">
+";
+	for($i=0;$i<$num_ligne;$i++){
+		$out .= "
+	<tr>";
+		for($j=0;$j<$num_colone;$j++){
+			$in = $html_array[$i*$num_colone+$j];
+			$out.= "<td width=\"$width%\" height=\"$height%\">
+	$in</td>
+";
+		}
+		$out .= "
+	</tr>";
+	}
+	$out .= "
+</table>
+";
+	return $out;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+// Layout a image and a html content with a link (optional, could be equal to "") //
+////////////////////////////////////////////////////////////////////////////////////
+// image_position have to be : "left", "right", "top", or "bottom"
+function make_inside($image,$text,$img_pos,$link){
+	global $globspace;
+	global $globpadd;
+	if($link != ""){
+		$ref1 = "<a href=\"$link\">";
+		$ref2 = "</a>";
+	}else{
+		$ref1 = "";
+		$ref2 = "";
+	}
+
+	$out = "
+<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"$globspace\" cellpadding=\"$globpadd\">
+	<tr>
+";
+
+	if($img_pos == "left"){
+		$out .= "
+		<tr><td>
+			$ref1<img border=\"0\" $image>$ref2
+		</td><td width=\"100%\">
+			<div align=\"justify\">$text</div>
+		</td></tr>
+";	}else if($img_pos == "right"){
+		$out .= "
+		<tr><td width=\"100%\">
+			<div align=\"justify\">$text</div>
+		</td><td>
+			$ref1<img border=\"0\" $image>$ref2
+		</td></tr>
+";	}else if($img_pos == "top"){
+		$out .= "
+		<tr><td>
+			<center>
+			$ref1<img border=\"0\" $image>$ref2
+			</center>
+		</td></tr><tr><td height=\"100%\">
+			<div align=\"justify\">$text</div>
+		</td></tr>
+";	}else if($img_pos == "bottom"){
+		$out .= "
+		<tr><td height=\"100%\">
+			<div align=\"justify\">$text</div>
+		</td></tr><tr><td>
+			<center>
+			$ref1<img border=\"0\" $image>$ref2
+			</center>
+		</td></tr>
+";	}
+
+	$out .= "
+	</tr>
+</table>
+";
+	return $out;
+}
+/////////////////////////////////
+// Function to skin an element //
+/////////////////////////////////
+function skin_box($skin_name,$skin_type,$width,$height,$title,$inside){
+	global $HTTP_USER_AGENT;
+
+	$path = "gfx/cadre";
+
+	if($skin_type == 4){
+		$trait_height = 23;
+		$skin_type = 2;
+		$txt_color_s = "<font color=\"#000000\">";
+		$txt_color_e = "</font>";
+		$write_title = $title;
+	}else{
+		$trait_height = 19;
+	}
+
+	if($skin_type == 3){
+		$bgbox = "background=\"$path/$skin_name/boxbg.gif\" ";
+		$skin_type = 2;
+	}
+
+	// Opera table handling is better !
+	$ret = stristr ( $HTTP_USER_AGENT, "opera");
+	if($ret != false){
+		if($skin_type == 2){
+			return "
+		<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"$width\" height=\"$height\">
+		<tr>
+			<td width=\"1\">
+				<img src=\"$path/$skin_name/coin01.gif\">
+			</td>
+			<td background=\"$path/$skin_name/trait01.gif\" width=\"100%\">
+				&nbsp;<font size=\"-2\"></font>
+			</td>	
+			<td width=\"1\">
+				<img src=\"$path/$skin_name/coin02.gif\">
+			</td>
+		</tr>
+		<tr>
+			<td background=\"$path/$skin_name/trait04.gif\">
+				<font size=\"-2\">&nbsp;</font>
+			</td>
+			<td background=\"$path/$skin_name/fond01.gif\">
+				<font size=\"-2\">$inside</font>
+			</td>	
+			<td background=\"$path/$skin_name/trait02.gif\">
+				<font size=\"-2\">&nbsp;</font>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img src=\"$path/$skin_name/coin04.gif\">
+			</td>
+			<td background=\"$path/$skin_name/trait03.gif\">
+				&nbsp;
+			</td>	
+			<td>
+				<img src=\"$path/$skin_name/coin03.gif\">
+			</td>
+		</tr>
+		</table>
+		";
+		}else{
+			return "
+		<table border=\"1\" cellspacing=\"0\" cellpadding=\"0\" width=\"$width\" height=\"$height\">
+		<tr>
+
+			<td width=\"1\">
+				<img src=\"$path/$skin_name/coin01.gif\">
+			</td>
+			
+
+			<td background=\"$path/$skin_name/trait01.gif\" width=\"50%\">
+				&nbsp;
+			</td>
+
+			
+			<td>
+				<img src=\"$path/$skin_name/inter01.gif\">
+			</td>	
+
+			
+			<td background=\"$path/$skin_name/trait02.gif\" width=\"50%\">
+				<div align=\"center\">$title</div>
+			</td>
+
+			
+			<td width=\"1\">
+				<img src=\"$path/$skin_name/coin02.gif\">
+			</td>
+
+		</tr>
+		<tr>
+			<td background=\"$path/$skin_name/trait06.gif\">
+				<font size=\"-2\">&nbsp;</font>
+			</td>
+			<td background=\"$path/$skin_name/fond01.gif\" colspan=\"3\">
+				<font size=\"-2\">$inside</font>
+			</td>	
+			<td background=\"$path/$skin_name/trait03.gif\">
+				<font size=\"-2\">&nbsp;</font>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img src=\"$path/$skin_name/coin04.gif\">
+			</td>
+			<td background=\"$path/$skin_name/trait05.gif\">
+				&nbsp;
+			</td>	
+			<td>
+				<img src=\"$path/$skin_name/inter02.gif\">
+			</td>	
+			<td background=\"$path/$skin_name/trait04.gif\">
+				&nbsp;
+			</td>	
+			<td>
+				<img src=\"$path/$skin_name/coin03.gif\">
+			</td>
+		</tr>
+		</table>
+		";
+		}
+	}
+
+	$left = "
+<table $bgbox height=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>
+		<td $bgbox><img src=\"$path/$skin_name/coin01.gif\"></td></tr>
+		<tr height=\"100%\"><td background=\"$path/$skin_name/trait0";
+	if($skin_type == 1){
+		$left .= "6";
+	}else{
+		$left .= "4";
+	}
+	$left .= ".gif\">&nbsp;</td></tr>
+		<tr><td $bgbox><img src=\"$path/$skin_name/coin04.gif\"></td>
+		</tr>
+   </table>";
+
+	$center = "<table $bgbox width=\"100%\" height=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">";
+	if($skin_type == 1){
+$center .= "		<tr><td height=\"25\">
+			<table width=\"100%\" height=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
+				<tr><td width=\"50%\" background=\"$path/$skin_name/trait01.gif\">&nbsp;</td>
+				<td><img src=\"$path/$skin_name/inter01.gif\"></td>
+				<td width=\"50%\" background=\"$path/$skin_name/trait02.gif\"><center>$title</center></td></tr>
+			</table></td></tr>";
+}else{
+$center .= "		<tr><td height=\"$trait_height\"background=\"$path/$skin_name/trait01.gif\">$write_title</td></tr>";
+}
+$center .= "		<tr><td height=\"100%\" background=\"$path/$skin_name/fond01.gif\" valign=\"top\">$inside</td></tr>";
+if($skin_type == 1){
+$center .= "		<tr><td height=\"20\">
+			<table width=\"100%\" height=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
+				<tr><td width=\"33%\" background=\"$path/$skin_name/trait05.gif\">&nbsp;</td>
+				<td><img src=\"$path/$skin_name/inter02.gif\"></td>
+				<td width=\"100%\" background=\"$path/$skin_name/trait04.gif\">&nbsp;</td></tr>
+			</table>";
+}else{
+$center .= "		<tr><td height=\"19\" background=\"$path/$skin_name/trait03.gif\">";
+}
+$center .= "		</td></tr>
+		</table>";
+
+
+	$right = "<table $bgbox height=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>
+		<td $bgbox><img src=\"$path/$skin_name/coin02.gif\"></td></tr>
+		<tr height=\"100%\"><td background=\"$path/$skin_name/trait0";
+	if($skin_type == 1){
+		$right .= "3";
+	}else{
+		$right .= "2";
+	}
+	$right .= ".gif\">&nbsp;</td></tr>
+		<tr><td $bgbox><img src=\"$path/$skin_name/coin03.gif\"></td>
+		</tr>
+   </table>";
+
+
+	$out_txt = "<table width=\"$width%\" height=\"$height\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
+ <tr>
+  <td>
+   $left
+  </td>
+  <td width=\"100%\">
+   $center
+  </td>
+  <td>
+   $right
+  </td>
+ </tr>
+</table>";
+	return $out_txt;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// Add a "preload image" in the header javascripts, and return the name of the created image //
+// for adding the onmouseover() and onmouseout() javascript stuff                            //
+///////////////////////////////////////////////////////////////////////////////////////////////
+$preloads = array();
+$nbrPreloadedImage = 0;
+$imagePrefix = "rolloverImg";
+function addImageToPreloads($imagePath){
+	global $preloads;
+	global $nbrPreloadedImage;
+	global $imagePrefix;
+
+	$preloads[] = $imagePath;
+	$nbrPreloadedImage++;
+	return "$imagePrefix$nbrPreloadedImage";
+}
+//////////////////////////////////////////////
+// Make the javascript for preloaded images //
+//////////////////////////////////////////////
+function makePreloads(){
+	global $preloads;
+	global $nbrPreloadedImage;
+	global $imagePrefix;
+	$java_script = "<SCRIPT LANGUAGE=\"JavaScript\">
+<!-- Begin\n";
+	for($i=0;$i<$nbrPreloadedImage;$i++){
+		$imgNum = $i+1;
+		$src = $preloads[$i];
+		$java_script .= "
+$imagePrefix$imgNum = new Image();
+$imagePrefix$imgNum.src = \"$src\";
+";
+	}
+	$java_script .= "\n// End --></script>\n";
+	return $java_script;
+}
+/////////////////////////////////////////////////////////////////////////////
+// Make a rollover image out of two path and add it to rollover collection //
+/////////////////////////////////////////////////////////////////////////////
+function makeImgRollover($normal,$rollover,$alt){
+	if($rollover != ""){
+		$imgName = addImageToPreloads($rollover);
+		$rolloverScript = " name=\"$imgName\" onmouseover=\"$imgName.src='$rollover'\" onmouseout=\"$imgName.src='$normal'\" ";
+	}
+	return "<img src=\"$normal\" $rolloverScript border=\"0\" alt=\"$alt\">";
+}
+/////////////////////////////
+// Make an horizontal menu //
+/////////////////////////////
+function makeHoriMenu($entrys,$num_selected){
+	$ret = "
+<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" background=\"/gfx/menu/body/fond.gif\" width=\"100%\">
+<tr>
+";
+	$num_entrys = sizeof($entrys);
+	for($i=0;$i<$num_entrys;$i++){
+		if($i>0){
+			$ret .= "<td><div align=\"center\">
+						<img src=\"/gfx/menu/body/inter.gif\">
+					</div></td>";
+		}
+		$curEntry = $entrys[$i];
+		$link = $curEntry["link"];
+		$img = $curEntry["image"];
+		$alt = $curEntry["alt"];
+		$rollover = $curEntry["rollover"];
+		$type = $curEntry["type"];
+		if($i == $num_selected){
+			$ret .= "<td><div align=\"center\">
+					<a href=\"$link\">
+					<img    src=\"$rollover\"
+	                		border=\"0\" alt=\"$alt\"></a>
+				</div></td>\n";
+		}else{
+			$rolledImg = makeImgRollover($img,$rollover,$alt);
+			$ret .= "<td><div align=\"center\">
+					<a href=\"$link\">
+					$rolledImg
+				</div></td>\n";
+		}
+	}
+$ret .= "</tr>
+</table>";
+	return $ret;
+}
+///////////////////////////////////
+// Make a standard vertical menu //
+///////////////////////////////////
+function makeVertiMenu($entrys_array,$gfx_path){
+	global $PHP_SELF;
+	global $lang;
+	$nbr_entrys = sizeof($entrys_array);
+	$out = "
+<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
+";
+	for($i=0;$i<$nbr_entrys;$i++){
+		$menu_entry = $entrys_array[$i];
+		$image = $menu_entry["image"];
+		if($menu_entry["type"] == "title"){
+			$out .= "<tr><td>
+					<img src=\"$gfx_path/$image\" width=\"134\" height=\"22\">
+				</td></tr>";
+		}else if($menu_entry["type"] == "link"){
+			$rollover = $menu_entry["rollover"];
+			$link = $menu_entry["link"];
+			$alt = $menu_entry["alt"];
+			if(false == strstr($PHP_SELF,$link)){
+				$rolledImg = makeImgRollover("$gfx_path/$image","$gfx_path/$rollover",$alt);
+				$imgToDraw = "<a href=\"$link\">$rolledImg</a>";
+			}else{
+				$imgToDraw =  "<img border=\"0\" src=\"$gfx_path/$rollover\" width=\"134\" height=\"22\">";
+			}
+			$out .= "<tr><td>
+				$imgToDraw
+				</td></tr>";
+		}else if($menu_entry["type"] == "space"){
+			$out .= "<tr><td>&nbsp;</td></tr>";
+		}
+	}
+	$out .= "</table>";
+	return $out;
+}
+//////////////////////////////////////////////////
+// DROP DOWN WITH IE STYLE TREE MENU GENERATION //
+//////////////////////////////////////////////////
+$ietype_menu_img_nbr=0;
+$ietype_menu_recurs_level=0;
+$treesign_array=array();
+$treeAddrsArray = array();
+
+// Calculate a string reprensentative of the
+// tree cells to draw. Exemple of ret values : none/vline/endtree/hline
+function makeTreeGfxUrl($array,$nbr){
+	for($i=0;$i<=$nbr;$i++){
+		if($i > 0){
+			$ret .= "/";
+		}
+		$plop = $array[$i];
+		$ret .= $plop;
+	}
+	return $ret;
+}
+
+// Calculate current entry full adresse
+function calculateCurEntryAddr($entry){
+	global $ietype_menu_recurs_level;
+	global $treeAddrsArray;
+
+	$entrylink = $entry["link"];
+	$treeAddrsArray[$ietype_menu_recurs_level] = $entrylink;
+	for($i=0;$i<=$ietype_menu_recurs_level;$i++){
+		if($i>0){
+			$ret .= "/";
+		}
+		$ret .= $treeAddrsArray[$i];
+	}
+	return $ret;
+}
+
+function getCacheImageURL($text,$color,$arbo){
+	$cache = str_replace("/","_",$text.$color.$arbo) . ".png";
+	if(file_exists("/usr/share/dtc/shared/imgcache/$cache")){
+		return "imgcache/$cache";
+	}else{
+		return "inc/img.php?text=$text&color=$color&link=$arbo";
+	}
+}
+
+function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
+	global $ietype_menu_img_nbr;
+	global $ietype_menu_recurs_level;
+	global $link;
+	global $treesign_array;
+
+	// Get an array out of the current selected addresse
+	$selected = explode("/",$curent_addr);
+
+	// For each item of current level of the tree
+	$nbr_menu_entry = sizeof($menu);
+	for($i=0;$i<$nbr_menu_entry;$i++){
+		$entry = $menu[$i];
+		$text = $entry["text"];
+
+		// Calculate current addresse
+		$entrylink = calculateCurEntryAddr($entry);
+
+		// Calculate the href link that the menu entry point to
+		$alink = "<a href=\"$self_link&$link_name=$entrylink\">";
+
+		// Is it a drop down entry with plus/minus lign ?
+		if($entry["type"] == "menu"){
+			if($entry["text"] == $selected[$ietype_menu_recurs_level]){
+				$treesign_array[$ietype_menu_recurs_level] = "minus";
+				$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
+
+				$image_source = getCacheImageURL($text,1,$arbo);
+//				$image_source = "inc/img.php?text=$text&color=1&sign=minus&link=$arbo";
+				$ret .= "
+$alink<img border=\"0\" alt=\"".$entry["text"]."\" src=\"$image_source\"></a><br>";
+
+				$treesign_array[$ietype_menu_recurs_level] = "tree";
+
+				// Recurse inside the menu because it is selected
+
+				$ietype_menu_recurs_level += 1;
+				$ret .= makeIetypeMenu($entry["sub"],$curent_addr,$self_link,$link_name);
+				$ietype_menu_recurs_level -= 1;
+			}else{
+				// Menu is not selected, so just draw it normaly
+				$treesign_array[$ietype_menu_recurs_level] = "plus";
+				$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
+
+				$image_source = getCacheImageURL($text,0,$arbo);
+				$image_rolover = getCacheImageURL($text,1,$arbo);
+				$rolovered = addImageToPreloads($image_rolover);
+				$ret .= "
+$alink<img border=\"0\" name=\"$rolovered\"
+src=\"$image_source\" alt=\"".$entry["text"]."\" 
+onmouseover=\"$rolovered.src='$image_rolover'\"
+onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
+			}
+		}else if($entry["type"] == "link"){
+			// Calculate the sign to put at the left of the entry (plus, minus, or none)
+			if($ietype_menu_recurs_level > 0){
+				if($i == $nbr_menu_entry-1){
+					$mysign="endtree";
+				}else{
+					$mysign="tree";
+				}
+			}else if($entry["type"] == "link"){
+				$mysign="";
+			}
+			if($ietype_menu_recurs_level > 0){
+				$treesign_array[$ietype_menu_recurs_level] = "hline";
+				$treesign_array[$ietype_menu_recurs_level-1] = "$mysign";
+				if($ietype_menu_recurs_level > 1){
+					$treesign_array[$ietype_menu_recurs_level-2] = "vline";
+				}
+			}else{
+				$treesign_array[$ietype_menu_recurs_level] = "none";
+			}
+			$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
+			if($entry["text"] == $selected[$ietype_menu_recurs_level]){
+				$image_source = getCacheImageURL($text,1,$arbo);
+//				$image_source = "inc/img.php?text=$text&color=1&link=$arbo";
+				$ret .= "
+$alink<img border=\"0\" alt=\"".$entry["text"]."\" src=\"$image_source\"></a><br>";
+			}else{
+				$image_source = getCacheImageURL($text,0,$arbo);
+				$image_rolover = getCacheImageURL($text,1,$arbo);
+//				$image_source = "inc/img.php?text=$text&color=0&link=$arbo";
+//				$image_rolover = "inc/img.php?text=$text&color=1&link=$arbo";
+				$rolovered = addImageToPreloads($image_rolover);
+				$ret .= "
+$alink<img border=\"0\" name=\"$rolovered\"
+src=\"$image_source\" alt=\"".$entry["text"]."\" 
+onmouseover=\"$rolovered.src='$image_rolover'\"
+onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
+			}
+			if($mysign=="endtree"){
+				$treesign_array[$ietype_menu_recurs_level] = "none";
+			}
+		}
+	}
+	return $ret;
+}
+
+function makeTreeMenu($menu,$selected,$self_link,$link_name){
+	global $ietype_menu_img_nbr;
+	global $ietype_menu_recurs_level;
+	global $treesign_array;
+	global $treeAddrsArray;
+
+	$ietype_menu_img_nbr=0;
+	$ietype_menu_recurs_level=0;
+	$treesign_array=array();
+	$treeAddrsArray = array();
+
+	return makeIetypeMenu($menu,$selected,$self_link,$link_name);
+}
+
+
+?>

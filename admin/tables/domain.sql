@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS domain (
+name varchar(64) NOT NULL default '',
+owner varchar(64) NOT NULL default '',
+default_subdomain varchar(64) default 'www',
+generate_flag varchar(10) NOT NULL default 'yes',
+quota bigint(20) NOT NULL default '50',
+max_email int(11) NOT NULL default '9',
+max_ftp int(11) NOT NULL default '3',
+max_subdomain int(11) NOT NULL default '5',
+ip_addr varchar(16) NOT NULL default '213.215.47.212',
+primary_dns varchar(255) NOT NULL default 'default',
+other_dns varchar(255) NOT NULL default 'default',
+primary_mx varchar(255) NOT NULL default 'default',
+other_mx varchar(255) NOT NULL default 'default',
+UNIQUE KEY name (name)) TYPE=MyISAM

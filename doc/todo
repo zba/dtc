@@ -1,0 +1,9 @@
+Todo :
+
+- Document out what's to be changed in httpd.conf
+- Explain in the documentation how the pending flag for dns zone works
+- Find a way to restrict perl and cgi scripts with only selected path
+accessible (like with php's open_basedir stuff)
+- Find a SMART way to handle disk quotas
+- Make a commercial manager for domain-name expiration, payement, etc...
+- Make img.php work with both GD2 and GD1

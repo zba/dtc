@@ -1,0 +1,385 @@
+Many things have changed since the introduction of the
+DB version field. I will soon have to release script...
+
+Label was not correct in the domain configuration table.
+It was not "Webalizer", but "Name zone file generate". It's
+now corrected.
+
+There is now the possibility to have a dynamic IP (given
+for example by your ISP using DHCP for your home connection)
+updated to any domain name.
+
+1/11/2003 (v0.11.1-27):
+A script that check for apache directories (and create them
+if needed) is now genearted at the same time as apache vhosts.
+It's launched before apache restart in the cronjob.
+
+BSD package now configurate automaticaly the named.conf and the
+/etc/rc.conf so named is started at boot time, with correct
+inclusion (thanks to Cybile).
+
+When DNS configuration is modified (eg, primary server is not default)
+DTC now removes completly FTP, MX, Apache and Subdomains configuration
+interface because that means the user is leaving the hosting service.
+
+Removed a "/" at the end ScriptAlias under the generation of Apache
+VHOST file.
+
+Added whois config display for DTCRM module. Modified a lot of the
+drawings to use the new "dtcrm" module for commercial care of your
+customer (this module will be SOLD, as long as it's for doing
+business: I wont give my work for free so someone else has my customers,
+I'm not THAT mad...).
+ALTER TABLE config ADD whois enum('here','away','linked') NOT NULL default 'away';
+
+Added caching of generated image files for the tree menu. Now
+take the advantage of your browser's cache and save bandwith and
+server CPU ! :)
+
+All files in bin (for makeDTC pakage) have been touch this time.
+In one night, I've build a BSD package with a friend. I'm realy
+happy of it !
+Now a single "makeDTC" do packaging for both:
+- RedHat (.rpm)
+- Debian (.deb)
+- FreeBSD (.tar.gz)
+- Generic all Unix install (.tar.gz)
+- CVS_SNAPSHOT (including all files to rebuild packages) (.taz.gz)
+
+client/inc/img.php
+img.php now has good colors even when
+register_globals is set to Off (wasn't
+fetching the $color param). Now you can see back
+again when a link is selected or not.
+
+admin/inc/gen_named_files.php
+Corrected a bug in gen_named_files.php that were
+not generating default ftp/pop/smtp zones when not
+added manualy.
+
+shared/strings.php
+Corrected a bug in MySql account manager in french
+version (the link for adding a new mysql user was
+broken.
+
+24-09-2003 by Thomas GOIRAND <thomas@goirand.fr>
+------------------------------------------------
+Lot's of updates in this release. Leaving beta
+stage, and becoming version 1.0 very soon, when
+RPM works.
+
+admin/inc/submit_root_queries:
+New dommain are now added with the $conf_site_main_ip
+instead of the default IP value in MySQL db, wich
+is better because understandable for final user.
+The final option should be to have a popup near
+the "add domain to admin" so it would be possible
+to select IP addr during domain creation.
+
+admin/inc/draw_user_admin.php:
+New user admin form is now a password
+
+admin/index.php & shared/anotherDtc.php:
+Removed the language selection form the top
+banner of the client interface : language has
+to be choosen before login, by the way...
+
+admin/inc/dtc_config.php:
+Now any modification in this panel make all deamon update
+run in next cronjob. Could be better checking what changes,
+but too complicate and long to do.
+
+admin/inc/dtc_config.php & admin/inc/gen_pro_vhost.php:
+Finished the "nated vhost" in the configuration panel
+(now operational for generation vhost for apache).
+If you have a apache server binded to local area
+network, you need vhost to correspond to that IP,
+even if the name server gives the external IP.
+This is the reason of that option (thanks to Thorin
+for beta testing my software and giving me the
+correct environement for testing).
+WARNING !!! table structure of config table has changed.
+Issue the following SQL query to upgrade :
+ALTER TABLE config ADD db_version int(11) NOT NULL default '10000';
+ALTER TABLE config ADD use_nated_vhost enum('yes','no') NOT NULL default 'no';
+ALTER TABLE config ADD nated_vhost_ip varchar(16) NOT NULL default '192.168.0.2';
+
+17-09-2003
+shared/inc/submit_to_sql.php & admin/inc/gen_named_files.php:
+It is now possible to change the ip of ftp/smtp/pop. If it's
+not set by the adminuser, then it will be default. Otherwise
+it will have the setuped IP addresse (or once again default
+if used as a web subdomain leaving IP umpty). Very conveinient.
+
+dtc/admin/cron.php:
+Now does not do a "/etc/init.d/qmail stop/start", and a mutch
+better "kill -HUP `pidof qmail-send`" for reloading qmail's
+files in /var/qmail/control
+
+dtc/admin/inc/dtc_config.php & dtc/admin/inc/dtc_config_string.php:
+Added configuration for using ssl & javascript in the configuration
+panel. Added SSL generation for the dtc vhost so you can use
+https://dtc.maindomain.com if ssl is enabled (not enabled by
+default). DTC is using the following cert files :
+new.cert.cert  new.cert.csr  new.cert.key  privkey.pem
+all located in /etc/apache/ssl. You can issue the following
+shell commands to generate ssl key files using openssl :
+
+mkdir -p /etc/apache/ssl; cd /etc/apache/ssl
+[quoting apache-ssl.org]
+Step 1 - create the key and request:
+  openssl req -new > new.cert.csr
+Step 2 - remove the passphrase from the key (optional):
+  openssl rsa -in privkey.pem -out new.cert.key
+Step 3 - convert request into signed cert:
+   openssl x509 -in new.cert.csr -out new.cert.cert -req -signkey new.cert.key -days 365
+[/quoting apache-ssl.org]
+
+bin/sources/uninstall_deamons.sh:
+Corrected uninstall of named.conf install that wasnot
+removing the include directive (this ending to double include
+if dtc was reinstalled).
+Uninstall of proftpd remains buggy, but install of
+UserReverseDNS has been removed (not supported in
+newer versions of profptd).
+
+The install script was simlinking /var/qmail/control/locals to
+/usr/share/dtc/etc/rcpthosts wich is completly wrong. Forgive
+me for that mistake.
+
+bin/sources/setup_mysql_db.sh & admin/tables/cron_job.sql :
+The install script does not longer can install a double
+cron_job row thanks to a unic key. Table structure of
+cron_job & config tables has changed : WARNING !!!
+Please verify that cron_job & config tables have each only
+one row, and issue the following mysql command before
+upgrading to a newer DTC version:
+ALTER TABLE cron_job ADD unicrow INT DEFAULT '1' NOT NULL;
+ALTER TABLE cron_job ADD UNIQUE (unicrow);
+ALTER TABLE config ADD use_ssl ENUM('yes','no') DEFAULT 'no' NOT NULL;
+ALTER TABLE config ADD unicrow INT DEFAULT '1' NOT NULL;
+ALTER TABLE config ADD UNIQUE (unicrow);
+
+bin/sources/setup_mydql_db.sh :
+added insertion of the subdomains ns1 and mx for the main 
+hosting domain.
+
+admin/inc/gen_pro_vhost.php :
+Removed a nasty bug that made the NameVirtualHost generation
+take only the last IP adresse. (= instead of .= in the sources).
+Now it check for each IP if it is used, so the directive is
+inserted only if needed thus avoiding the warning
+NameVirtualHost IP.A.D.R:80 has no VirtualHosts
+26-02-2003 by Jelle kalf
+
+ -- Jelle Kalf <jelle@kalf.org> 2003-02-26
+ 
+- Fixed all dutch languages
+- Fixed a nightly CVS-build in tar.gz and tar.bz2
+
+
+- The domain table have now 3 new fields.
+
+dtc (0.10.7-1)
+
+  * First attempt to a debian package
+
+ -- Thomas GOIRAND <thomas@goirand.fr> 2003-02-20
+
+19-02-2003 by Thomas GOIRAND
+
+- Mysql account manager done. DTC has to have access to the privilege
+database (called "mysql" database under mysql) to be able to commit changes
+it the MySQL rights tables.
+- A cron job now exists. Install it on your root crontab (/etc/crontab) with
+the following parameters (here started each 10 minutes):
+00,10,20,30,40,50 * * * * root /usr/bin/php4 /usr/share/dtc/admin/cron.php
+It does the following task, whenever needed :
+	o Generate config files for vhosts named qmail webalizer and backups
+	o Launch /var/qmail/bin/qmail-newu
+	o restart qmail when a domain is added/removed
+	o reload_named when a domain name changes
+	o restart_apache when a domain name changes
+- Removed some specific Anotherlight stuff in the tables
+
+
+17-02-2003 by Thomas GOIRAND
+
+- DTC is now in /usr/share/dtc with 4 directories: admin, client, shared and
+etc (the last one is where dtc files are stored now).
+- New skin library for easyer graphics customisation.
+- Qmail & apache sub-domains are now handled with the saved admin's path.
+- New autoSQLconfig.php script for setuping DTC at first launch (mysql
+connection and table creation). All the internal config.inc.php stuff is now
+handled in database under the "config" table. All fields in this table are
+processed and a $conf_FIELD_NAME global variable is created.
+- No mysql_connect() call in file-generation scripts anymore. Connection is
+supposed to be done before in autoSQLconfig.php.
+- Some unused globals have been removed from gen_* and fetch.php scripts.
+- delete all mailbox, ftp accounts and subdomain when deletting a domain name
+- delete all mailbox, ftp accounts subdomain and domain names when deletting
+a user
+- delete files (rm -r) when deleting most objects (at now : domain names and
+virtual admins files are deleted when deleting a domain name or a virtual
+admin : Mailbox files and subdomain files are NOT deleted, because it's up
+to the virtual admin to do it, and they can be newbies...)
+- when a user is created, it's username is happened to the "main_site_root",
+so there is no risks anymore that a user share the same path as another one.
+Less risks also to "rm -r" all hosted files on the box when deleting a user,
+because that user directory wont be in the hosting directory root.
+
+Changes to D.T.C. by J.R. Kalf (jan 2003)
+
+1. Split D.T.C. into 3 parts
+  - DTCclient
+    - /usr/local/dtcclient
+	- Alias /dtc  /usr/local/dtcclient
+  - DTCshared
+    - /usr/local/dtcshared
+	  - no alias thingy needed in apache.
+  - DTCadmin
+    - $admin_site/dtcadmin/
+
+  - DTCclient
+	- changed the include config.inc.php into a REQUIRED.
+	  All references to the DTC shared stuff <which is needed for both the client 
+	  and the admin dtc> is done in config.inc.php with the $dtcshared_path 
+	  variable. All that needs to be done by the user is change this path to 
+	  config.inc.php in the login.php file for DTCclient.
+	- The img.php is included in inc/img.php in both the DTCadmin and DTCclient. 
+	  This is because it's needed in both, but it's called upon via URL, so I 
+	  couldn't use a absolute filesystempath to the file and I didn't want to
+	  make an alias for apache to the dtcshared directory. Clients have no use
+	  for that directory and I don't want them to be able to view the 
+	  config.inc.php with the username and password to the database in any way.
+	  I included it in both DTCadmin/inc and DTCclient/inc to make sure I 
+	  wouldn't reference the DTCclient in anyway to the location where the
+	  administrator is configuring everything for the server.
+  
+  - DTCadmin
+	- changed the include config.inc.php into a REQUIRED.
+	  All references to the DTC shared stuff <which is needed for both the client
+	  and the admin dtc> is done in config.inc.php with the $dtcshared_path 
+	  variable. All that needs to be done by the user is change this path to 
+	  config.inc.php in the index.php file for DTCadmin.
+	- Organised the require and include lines in the top of index.php to easily show
+	  if a included or required file is part of the shared or admin only directory.
+	  
+  - DTCshared
+	- changed skin.php
+	  - had to fix the reference to img.php as described above.
+	- changed anotherDtc.php
+	  - fixed location of all graphics to "gfx/" instead of "/gfx/"
+	    This does mean that both DTCadmin and DTCclient have to have a gfx
+		directory, but this will prevent another alias to have to be made in Apache.
+			And I find it easier to know that if I change my clients point of view
+		I keep my trusty look for administrating things.. My look doesn't have 
+		to change, it just has to be functional.
+	- Changed skin.php again.
+	  - line 161
+	  - was: 	$path = "/gfx/cadre";
+	  - is: 	$path = "gfx/cadre";
+
+2. Translating D.T.C. to Nederlands <dutch>
+   - Translated the strings.php and added an entry in the lang.php.
+     I couldn't fix the pictures, maybe you could add a picture called with 
+	 the name "Nederlands" er in.
+   - added: iso-8859-15 as default font. Why -15 instead of -1, because -15 is the
+     new fontset including euro signs and other new stuff.
+
+3. Fixed an error in anotherDtc.php
+   - line 9: function anotherLanguageSelection
+     - on line 10 it stated: global $PHP_SLEF;
+	   I fixed it to: global $PHP_SELF;
+	   Think this was a little typing error?!
+
+
+4. PHP lockdown in apache
+   I've shown you how to do it already, so I'll skip them basics. I've changed
+   config.inc.php and gen_pro_vhost.php.
+   
+   config.inc.php
+     - added 2 variables in the vhost section.
+	   - php_library_path = "/usr/lib/php/";
+	     pointing to the library section of you php installation.
+	   - php_additional_library_path = "/location/to/my/php/libraries/:/tmp/";
+	     Pay attention here. Every path has to end with a / and between paths
+		 you need to put a : .
+		 
+	   Incase you're using something like a shared webmail client 
+	   <I use horde/imp> and shared phpmyadmin installation you need to add 
+	   their paths into the paths as well because this lockdown closes down ALL
+	   .php files outside your php paths.
+
+  gen_pro_vhost.php
+    - added some globals:
+	  global $php_library_path;
+	  global $php_additional_library_path;
+	  global $data_path;
+	  global $administrative_site;
+
+Removed the entire part where all subdomains were written to the Vhosts file 
+and created a new IF statement that will seperate the administrative 
+site/subdomain from the rest of all webdomains/subdomains.
+I've started deleting the code just after the FOR statement that which
+was fetching the subdomain from the database and started writing the
+vhost file. Starting at that FOR statement:
+------------ CODE ------------
+		for($j=0;$j<$num_rows2;$j++){
+			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
+			$web_subname = $subdomain["subdomain_name"];
+-=>         if($administrative_site == "$web_subname.$web_name"){
+			  $vhost_file .= "<VirtualHost $ip_to_write>
+	ServerName $web_subname.$web_name
+	Alias /phpmyadmin /usr/share/phpmyadmin
+	Alias /dtc /usr/local/dtcclient
+	Alias /webmail /usr/local/horde/imp
+	Alias /horde /usr/local/horde
+	Alias /cms /usr/local/cms
+	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
+	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html/
+	ScriptAlias /cgi $web_path/$web_name/subdomains/$web_subname/cgi-bin/
+	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
+	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
+	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
+</VirtualHost>
+
+";
+		} else {
+			  $vhost_file .= "<VirtualHost $ip_to_write>
+	ServerName $web_subname.$web_name
+	Alias /phpmyadmin /usr/share/phpmyadmin
+	Alias /dtc /usr/local/dtcclient
+	Alias /webmail /usr/local/horde/imp
+	Alias /horde /usr/local/horde
+	Alias /cms /usr/local/cms
+	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
+	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html/
+	<Location />
+		php_admin_value open_basedir \"$web_path/$web_name/subdomains/$web_subname/:$php_library_path:$php_additional_library_path:\"
+	</Location>
+	ScriptAlias /cgi $web_path/$web_name/subdomains/$web_subname/cgi-bin/
+	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
+	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
+	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
+</VirtualHost>
+
+";
+		}
+------------ /CODE ------------
+
+	I've included in this lockdown the subdomain of every site so it can be 
+	viewed for files like password files <example, I use .htaccess files and I 
+	do not keep them htpasswd and htgroup files inside my html directory, but 
+	in a differently named directory 1 level upwards.> 
+	So it's locked down in the directory above "html".
+    
+	!!! note, currently the Administrative site does NOT have a lockdown. 
+	I don't think it will be necessary in the future, but just so you know.
+	Also a good point for people to know is that the administrative_site is narrowed down
+	to 1 single subdomain!!!
+
+  - Changed the Directory index to take more different kind of files :P
+    I got a bugzilla running and it required to have .cgi and .pl running also.
+	Also a LOAD of people are using windows style of index files so I added .htm
+	as well.

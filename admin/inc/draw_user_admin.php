@@ -1,0 +1,143 @@
+<?php
+
+function drawNewAdminForm(){
+	global $txt_login_login;
+	global $txt_login_pass;
+	global $txt_login_path;
+	global $conf_site_root_host_path;
+	global $lang;
+	$add_a_user .= "
+<br>
+
+<br><form action=\"?\" methode=\"post\">
+<table>
+<tr><td align=\"right\">
+	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newadmin_login\" value=\"\"><br>
+</td></tr><tr><td align=\"right\">
+	".$txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"newadmin_pass\" value=\"\"><br>
+</td></tr><tr><td align=\"right\">
+	".$txt_login_path[$lang]."</td><td><input type=\"text\" name=\"newadmin_path\" value=\"$conf_site_root_host_path\"><br>
+</td></tr><tr><td align=\"right\">
+	&nbsp;</td><td><input type=\"submit\" name=\"newadminuser\" value=\"Ok\">
+</td></tr>
+</form>
+</table>
+";
+
+	return $add_a_user;
+}
+
+function drawMySqlAccountManger(){
+	global $lang;
+	global $adm_login;
+	global $adm_pass;
+	global $conf_mysql_db;
+	global $PHP_SELF;
+	global $conf_demo_version;
+	global $txt_mysqlmang_nouser_by_that_name;
+	global $txt_mysqlmang_delete_a_db;
+	global $txt_mysqlmang_add_a_db;
+	global $txt_mysqlmang_db_name;
+	global $txt_mysqlmang_not_in_demo;
+	global $txt_delete_this_mysql_user_and_db;
+
+	// Retrive the infos from the database "mysql" that contains all the rights
+	if($conf_demo_version == "no"){
+		mysql_select_db("mysql")or die("Cannot select db mysql for account management  !!! Does your MySQL user/pass has the rights to it ?");
+		$query = "SELECT * FROM user WHERE User='$adm_login';";
+		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+		$num_rows = mysql_num_rows($result);
+		if($num_rows < 1){
+			mysql_select_db($conf_mysql_db)or die("Cannot select DB $conf_mysql_db !!!");
+			return $txt_mysqlmang_nouser_by_that_name[$lang];
+		}else{
+			$query = "SELECT Db FROM db WHERE User='$adm_login';";
+			$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+			$num_rows = mysql_num_rows($result);
+			for($i=0;$i<$num_rows;$i++){
+				$row = mysql_fetch_array($result);
+				$dblist[] = $row["Db"];
+			}
+			mysql_select_db($conf_mysql_db)or die("Cannot select DB $conf_mysql_db !!!");
+			$out .= "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=delete_mysql_user\">".$txt_delete_this_mysql_user_and_db[$lang]."</a><br>
+<b><u>".$txt_mysqlmang_delete_a_db[$lang]."</u></b><br>";
+			for($i=0;$i<$num_rows;$i++){
+				if($i != 0){
+					$out .= " - ";
+				}
+				$out .= "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=delete_one_db&db_name=".$dblist[$i]."\">".$dblist[$i]."</a>";
+			}
+			$out .= "<br><br><b><u>".$txt_mysqlmang_add_a_db[$lang]."</u></b>
+		<form action=\"$PHP_SELF\">
+		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+		".$txt_mysqlmang_db_name[$lang]."<input type=\"text\" name=\"new_mysql_database_name\" value=\"\">
+		<input type=\"submit\" name=\"new_mysql_database\" value=\"Ok\">
+		</form>";
+			return $out;
+		}
+	}else{
+		return $txt_mysqlmang_not_in_demo[$lang];
+	}
+}
+
+function userEditForms($adm_login,$adm_pass){
+	global $txt_general_virtual_admin_edition;
+	global $txt_domains_configuration_title;
+	global $txt_add_user_title;
+	global $lang;
+	if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass)){
+		// Fetch all the selected user informations, Print a nice error message if failure.
+		$admin = fetchAdmin($adm_login,$adm_pass);
+		if(($error = $admin["err"]) != 0){
+			die("Error fetching admin : $error");
+		}
+
+		// Draw the html forms
+		$HTML_admin_edit_info .= drawEditAdmin($admin);
+		$HTML_admin_domain_config .= drawDomainConfig($admin);
+		$HTML_admin_domain_config .= drawMySqlAccountManger();
+		$HTML_admin_edit_data .= drawAdminTools($admin);
+
+		// Output and skin the result !
+		$user_config = skin("simple/green",$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
+		$user_domain_config = skin("simple/green",$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
+		$user_tools = skin("notitle/darkblue",$HTML_admin_edit_data,"Domains for $adm_login");
+
+		// All thoses tools in a simple table
+		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"4\">
+	<tr>
+		<tr><td width=\"100%\">$user_config
+		</td></tr><tr><td width=\"100%\">$user_domain_config
+		</td></tr><tr><td width=\"100%\">$user_tools
+		</td></tr><tr><td height=\"100%\">&nbsp;
+		</td></tr>
+	</tr>
+</table>
+";
+	}else{
+		// If no user is in edition, draw a tool for adding an admin
+		$add_a_user = drawNewAdminForm();
+		return skin("simple/green",$add_a_user,$txt_add_user_title[$lang]);
+	}
+}
+
+function skinConsole(){
+	global $HTTP_HOST;
+	global $console;
+	return "<table bgcolor=\"#000000\" cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"100%\">
+<tr>
+<td>
+	Console output
+</td>
+</tr>
+<tr>
+<td><pre>
+".$_SERVER["HTTP_HOST"].":&gt;<br>$console</pre>
+</td>
+</tr>
+</table>
+";
+}
+
+?>

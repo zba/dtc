@@ -1,0 +1,61 @@
+#!/bin/sh
+
+set -e
+if [ "$1" = "configure" ]
+	then
+        if [ -d /usr/doc -a ! -e /usr/doc/dtc -a -d /usr/share/doc/dtc ]
+	then
+                ln -sf ../share/doc/dtc /usr/doc/dtc
+        fi
+fi
+
+
+# Debian install bash script for DTC
+# Written by Thomas GOIRAND <thomas@goirand.fr>
+# under LGPL Licence
+
+# exit 0
+
+PATH_HTTPD_CONF=/etc/apache/httpd.conf
+PATH_NAMED_CONF=/etc/bind/named.conf
+PATH_QMAIL_CTRL=/etc/qmail
+PATH_PHP_CGI="/usr/bin/php4"
+PATH_PROFTPD_CONF=/etc/proftpd.conf
+
+PATH_DTC_ETC=/usr/share/dtc/etc
+PATH_DTC_ADMIN=/usr/share/dtc/admin
+
+# Source debconf library -- we have a Depends line
+# to make sure it is there...
+. /usr/share/debconf/confmodule
+db_version 2.0
+
+# Simply fetch all values stored in debconf
+db_get dtc/conf_mysqlhost
+conf_mysql_host=$RET
+db_get dtc/conf_mysqllogin
+conf_mysql_login=$RET
+db_get dtc/conf_mysqlpass
+conf_mysql_pass=$RET
+db_get dtc/conf_mysqldb
+conf_mysql_db=$RET
+db_get dtc/main_domainname
+main_domain_name=$RET
+db_get dtc/dtc_adminsubdomain
+dtc_admin_subdomain=$RET
+db_get dtc/conf_ipaddr
+conf_ip_addr=$RET
+db_get dtc/conf_hostingpath
+conf_hosting_path=$RET
+db_get dtc/conf_hostingpath
+conf_hosting_path=$RET
+db_get dtc/conf_admlogin
+conf_adm_login=$RET
+db_get dtc/conf_admpass
+conf_adm_pass=$RET
+
+db_unregister dtc/conf_mysqlpass
+db_unregister dtc/conf_admpass
+# db_purge
+
+# Upon this line, here is the standard DTC install script :

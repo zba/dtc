@@ -1,0 +1,84 @@
+Template: dtc/conf_mysqlhost
+Type: string
+Default: localhost
+Description: MySql hostname.
+ What hostname or ip do you want to use
+ to connect to your mysql server ? If the
+ mysql server runs localy, then you can
+ safely leave the default to localhost.
+
+Template: dtc/conf_mysqllogin
+Type: string
+Default: root
+Description: MySql Login.
+ What is your mysql root login ? DTC needs
+ it to access to your mysql table in order
+ to grant privileges to it's users.
+
+Template: dtc/conf_mysqlpass
+Type: string
+Description: MySql Password.
+ Please enter your mysql root password.
+
+Template: dtc/conf_mysqldb
+Type: string
+Default: dtc
+Description: Select your DTC database name.
+ DTC save all it's hosting information in a
+ database automaticaly created. Please enter
+ then name you want for it.
+
+Template: dtc/main_domainname
+Type: string
+Default: example.com
+Description: Enter a domain name.
+ Enter a the first domain name you want DTC
+ to administrate. This domain name will be
+ used for installing the root admin web
+ control panel of DTC (on one of this domain
+ subdomains).
+
+Template: dtc/dtc_adminsubdomain
+Type: string
+Default: dtc
+Description: DTC root panel subdomain.
+ Please enter the subdomain you want DTC to install
+ it's root control panel.
+
+Template: dtc/conf_ipaddr
+Type: string
+Default: 192.168.0.1
+Description: Primary IP addresse.
+ What is your primary IP addresse ? This IP will
+ be used for the domain name you just provided,
+ and will be used as default for most DTC variables
+ (easy change of theses values will be available
+ in the root admin web control panel).
+
+Template: dtc/conf_hostingpath
+Type: string
+Default: /var/www/sites
+Description: Path for hosted domains.
+ Where do you want DTC to store all hosted domains
+ files ? (easy change of this value will be available     
+ in the root admin web control panel, but this is
+ also where the main domain name will be installed).
+ .
+ Please note that apache's standard installation setup
+ /var/www as the apache web area. Remove this manualy
+ if you choose /var/www/sites as DTC's hosting area.
+
+Template: dtc/conf_admlogin
+Type: string
+Default: dtc
+Description: Main domain admin name.
+ DTC has to configurate an admin for each domains.
+ Please enter the admin name for the domain name
+ just entered.
+
+Template: dtc/conf_admpass
+Type: string
+Default: 
+Description: Main domain admin password.
+ Please give the main domain's administrator a
+ password.

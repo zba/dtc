@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS clients (
+  id int(4) NOT NULL auto_increment,
+  is_company enum('yes','no') NOT NULL default 'no',
+  company_name varchar(255) default NULL,
+  familyname varchar(255) NOT NULL default '',
+  christname varchar(255) NOT NULL default '',
+  addr1 varchar(255) NOT NULL default '',
+  addr2 varchar(255) default NULL,
+  city varchar(255) NOT NULL default '',
+  zipcode varchar(64) NOT NULL default '0',
+  state varchar(255) default NULL,
+  country varchar(255) NOT NULL default '',
+  phone varchar(63) NOT NULL default '0',
+  fax varchar(63) default NULL,
+  email varchar(255) NOT NULL default '',
+  special_note blob,
+PRIMARY KEY  (id)) TYPE=MyISAM

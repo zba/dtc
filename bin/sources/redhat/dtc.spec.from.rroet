@@ -1,0 +1,93 @@
+Summary: Domain Technologie Control.
+Name: dtc
+Version: beta
+Release: 10.99a
+Copyright: GPL
+Group: System/Configuration
+Source0: dtc.tar.gz
+BuildRoot: %{_tmppath}/%{name}-root
+
+%description
+A complete webhosting package for machines. This requires qmail apache en php to be installed. Although it's not taken up in the dependencies you'll need these packages to get it running.
+
+%prep
+%setup -q -n %{name}
+
+%install
+mkdir -p ${RPM_BUILD_ROOT}/usr/share/dtc/etc/zone
+cp -R admin ${RPM_BUILD_ROOT}/usr/share/dtc
+cp -R client ${RPM_BUILD_ROOT}/usr/share/dtc
+cp -R shared ${RPM_BUILD_ROOT}/usr/share/dtc
+cp -R docs ${RPM_BUILD_ROOT}/usr/share/dtc/doc
+
+%post
+touch /usr/share/dtc/shared/mysql_config.php
+chown nobody.nobody /usr/share/dtc/shared/mysql_config.php
+ln -sf /usr/share/dtc/shared/gfx /usr/share/dtc/admin/gfx
+ln -sf /usr/share/dtc/shared/gfx /usr/share/dtc/client/gfx
+
+%files
+%defattr(-,root,root)
+%attr(0755,nobody,nobody) /usr/share/dtc/etc
+%dir /usr/share/dtc/admin
+%attr(0644,root,root) /usr/share/dtc/admin/*php
+%dir /usr/share/dtc/admin/inc
+%attr(0644,root,root) /usr/share/dtc/admin/inc/*
+%dir /usr/share/dtc/admin/tables
+%attr(0644,root,root) /usr/share/dtc/admin/tables/*
+%dir /usr/share/dtc/client
+%attr(0644,root,root) /usr/share/dtc/client/*php
+%dir /usr/share/dtc/client/inc
+%attr(0644,root,root) /usr/share/dtc/client/inc/*
+%dir /usr/share/dtc/shared
+%attr(0644,root,root) /usr/share/dtc/shared/*php
+%dir /usr/share/dtc/shared/inc
+%attr(0644,root,root) /usr/share/dtc/shared/inc/*
+%dir /usr/share/dtc/shared/template
+%attr(0644,root,root) /usr/share/dtc/shared/template/*
+%dir /usr/share/dtc/shared/gfx
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/*css
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/*gif
+%dir /usr/share/dtc/shared/gfx/dtc
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/dtc/*gif
+%dir /usr/share/dtc/shared/gfx/language
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/language/*gif
+%dir /usr/share/dtc/shared/gfx/language/en
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/language/en/*gif
+%dir /usr/share/dtc/shared/gfx/language/en/pub
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/language/en/pub/*gif
+%dir /usr/share/dtc/shared/gfx/language/fr
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/language/fr/*gif
+%dir /usr/share/dtc/shared/gfx/language/fr/pub
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/language/fr/pub/*gif
+%dir /usr/share/dtc/shared/gfx/language/nl
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/language/nl/*gif
+%dir /usr/share/dtc/shared/gfx/language/nl/pub
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/language/nl/pub/*gif
+%dir /usr/share/dtc/shared/gfx/language/ru
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/language/ru/*gif
+%dir /usr/share/dtc/shared/gfx/language/ru/pub
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/language/ru/pub/*gif
+%dir /usr/share/dtc/shared/gfx/menu
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/menu/*
+%dir /usr/share/dtc/shared/gfx/skin
+%dir /usr/share/dtc/shared/gfx/skin/notitle/darkblue
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/skin/notitle/darkblue/*
+%dir /usr/share/dtc/shared/gfx/skin/simple/green
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/skin/simple/green/*
+%dir /usr/share/dtc/shared/gfx/skin/simple/green2
+%attr(0644,root,root) /usr/share/dtc/shared/gfx/skin/simple/green2/*
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%changelog
+* Mon Mar 10 2003 18:30 Jelle Kalf <jelle@kalf.org>
+- Discovered a problem with filerights.
+
+* Mon Mar 10 2003 18:16 Jelle Kalf <jelle@kalf.org>
+- Finally, about 20 releases later I finally have the rpm debugged
+  and it's actually working.
+  
+* Mon Mar 10 2003 15:38 Jelle Kalf <jelle@kalf.org>
+- Initial release

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+VERS=`cat version`
+RELS=`cat release`
+VERSION=$VERS"-"$RELS
+
+FTP_ROOT_LOCATION=/home/ftp
+FTP_PUB_LOCATION=$FTP_ROOT_LOCATION"/pub/dtc"
+
+echo "--- Making all packages ---"
+mkdir -p $FTP_PUB_LOCATION
+mkdir -p $FTP_ROOT_LOCATION"/debian/dists/stable/main/binary-i386/"
+
+./clean
+./makeCVSsnap
+./makeDebian
+./makeTarball
+./makeBSD
+./makeRedhat
+
+echo "--- Copying files to repository ---"
+cp -fv "dtc_"$VERSION"_all.deb" $FTP_ROOT_LOCATION"/debian/dists/stable/main/binary-i386/"
+cp -fv "dtc_"$VERSION"_all.deb" $FTP_PUB_LOCATION"/debian"
+cp -fv "dtc-"$VERSION".tar.gz" $FTP_PUB_LOCATION"/bsd/dtc-"$VERSION".tar.gz"
+cp -fv "dtc_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/generic"
+cp -fv "/root/rpmbuild/RPMS/noarch/dtc-"$VERS"-"$RELS".noarch.rpm" $FTP_PUB_LOCATION"/RPMS"
+cp -fv "CVS_dtc_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/cvs"
+
+echo "--- Updating Debian Repository ---"
+curdir=`pwd`
+cd $FTP_ROOT_LOCATION"/debian"
+dpkg-scanpackages dists/stable/main/binary-i386 /dev/null | gzip -9 >dists/stable/main/binary-i386/Packages.gz
+cd $curdir

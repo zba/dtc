@@ -1,0 +1,71 @@
+#!/bin/bash
+#
+# Welcome to the DTC install maker !
+# This will produce the tarball package
+# Maintainer: Thomas GOIRAND <thomas@goirand.fr>
+# please do not ship with you packages
+# this is only a small coder tool...
+#
+
+VERSION=`cat version`
+RELEASE=`cat release`
+
+echo " --- Making DTC Redhat Manager Pachage (RPM) package ---"
+
+# This block should be common to most unix packages :
+echo "--- Bulding dtc directory tree out of sources ---"
+rm -rf dtc usr
+mkdir -p dtc/etc/zones
+cp -rf ../admin ../client ../shared ../doc dtc/
+echo `find dtc/ -iname 'CVS' -exec rm -rf {} \;` >/dev/null >>/dev/null
+if ! [ -e dtc/admin/gfx ]
+then
+	ln -s ../shared/gfx dtc/admin/gfx
+fi
+if ! [ -e dtc/client/gfx ]
+then
+	ln -s ../shared/gfx dtc/client/gfx
+fi
+if ! [ -e dtc/admin/imgcache ]
+then
+        ln -s ../shared/imgcache dtc/admin/imgcache
+fi
+if ! [ -e dtc/client/imgcache ]
+then
+        ln -s ../shared/imgcache dtc/client/imgcache
+fi
+chown -R root:root dtc
+chown -R nobody:nogroup dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx
+
+cat sources/redhat/install.sh >dtc/admin/dtc.rpm-install.sh
+cat sources/setup_mysql_db.sh >>dtc/admin/dtc.rpm-install.sh
+cat sources/configure_deamons.sh >>dtc/admin/dtc.rpm-install.sh
+
+cat sources/redhat/uninstall.sh >dtc/admin/dtc.rpm-uninstall.sh
+cat sources/uninstall_deamons.sh >>dtc/admin/dtc.rpm-uninstall.sh
+
+# Specific RPM package actions :
+echo "Building tar.gz for RPM source"
+tar -czf dtc.tar.gz dtc
+mv dtc.tar.gz /root/rpmbuild/SOURCES/
+
+echo "--- Building specfile ---"
+echo "Summary: Domain Technologie Control: a web admin interface for hosting virtual domain-names.
+Name: dtc
+Version: "$VERSION"
+Release: "$RELEASE"
+" >dtc.spec
+cat sources/redhat/specfile_1 >>dtc.spec
+
+echo "%changelog
+* Mon Sep 23 2003 Thomas GOIRAND
+
+1st redhat attempt
+" >>dtc.spec
+
+#cat ../doc/changelog >>dtc.spec
+
+#mv -f dtc.tar.gz /root/redhat/dtc/
+echo "--- Building dtc-"$VERSION"-"$RELEASE".noarch.rpm ---"
+rpmbuild -bb --target=noarch dtc.spec
+echo " -- Made dtc-"$VERSION"-"$RELEASE".noarch.rpm ---"

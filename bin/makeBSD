@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+# Welcome to the DTC install maker !
+# This will produce the tarball package
+# Maintainer: Thomas GOIRAND <thomas@goirand.fr>
+# please do not ship with you packages
+# this is only a small coder tool...
+#
+
+VERS=`cat version`
+RELS=`cat release`
+VERSION=$VERS"-"$RELS
+
+echo " --- Making DTC BSD tarball package ---"
+
+# This block should be common to most unix packages :
+mkdir -p dtc/etc/zones
+cp -rf ../admin ../client ../shared ../doc dtc/
+echo `find dtc/ -iname 'CVS' -exec rm -rf {} \;` >/dev/null >>/dev/null
+if ! [ -e dtc/admin/gfx ]
+then
+	ln -s ../shared/gfx dtc/admin/gfx
+fi
+if ! [ -e dtc/client/gfx ]
+then
+	ln -s ../shared/gfx dtc/client/gfx
+fi
+if ! [ -e dtc/admin/imgcache ]
+then
+        ln -s ../shared/imgcache dtc/admin/imgcache
+fi
+if ! [ -e dtc/client/imgcache ]
+then
+        ln -s ../shared/imgcache dtc/client/imgcache
+fi
+
+chown -R 0:0 dtc
+chown -R 65534:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx
+
+# Specific BSD package actions :
+mkdir "dtc-"$VERSION
+mv dtc "dtc-"$VERSION
+echo "all:" >"dtc-"$VERSION"/Makefile"
+cp sources/bsd/install.sh "dtc-"$VERSION"/install.sh"
+cat sources/setup_mysql_db.sh >>"dtc-"$VERSION"/install.sh"
+cat sources/configure_deamons.sh >>"dtc-"$VERSION"/install.sh"
+
+cp sources/bsd/uninstall.sh "dtc-"$VERSION
+cat sources/uninstall_deamons.sh >>"dtc-"$VERSION"/uninstall.sh"
+
+tar -czf "dtc-"$VERSION".tar.gz" "dtc-"$VERSION
+
+echo " -- Succesfully made BSD dtc-"$VERSION".tar.gz ---"

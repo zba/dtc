@@ -1,0 +1,117 @@
+#!/bin/bash
+#
+# /etc/init.d/qmail : start or stop the qmail mail subsystem.
+#
+# Written by Christian Hudon <chrish@debian.org>
+# Currently maintained by Jon Marler <jmarler@debian.org>
+#
+# Configuration
+#
+
+
+# set default delivery method
+
+alias_empty="|/usr/sbin/qmail-procmail"  # procmail delivery to /var/spool/mail
+#alias_empty="./Maildir/"       # This uses qmail prefered ~/Maildir/ directory
+				# You may want to maildirmake /etc/skel/Maildir
+#alias_empty="./Mailbox"        # This uses Mailbox file in users $HOME
+
+logger="splogger qmail"
+#logger="|accustamp >>/var/log/qmail.log"   # If you have accustamp installed.
+#logger=">>/var/log/qmail.log"              # Does not give timing info.
+
+# If you uncommented one of the lines that appends to /var/log/qmail.log, you
+# need to uncomment the following two lines.
+#touch /var/log/qmail.log
+#chown qmaill /var/log/qmail.log
+
+#
+# End of configuration
+#
+
+test -x /usr/sbin/qmail-start || exit 0
+test -x /usr/sbin/qmail-send || exit 0
+
+case "$1" in
+    start)
+	echo -n "Starting mail-transfer agent: qmail"
+	sh -c "start-stop-daemon --start --quiet --user qmails \
+		 --exec /usr/sbin/qmail-send \
+		 --startas /usr/sbin/qmail-start -- \"$alias_empty\" $logger &"
+	# prevent denial-of-service attacks, with ulimit
+	ulimit -v 8192
+        sh -c "start-stop-daemon --start --quiet --user qmaild \
+            --exec /usr/bin/tcpserver -- -R -H \
+            -u `id -u qmaild` -g `id -g nobody` -x /etc/tcp.smtp.cdb 0 smtp \
+            /usr/sbin/qmail-smtpd 2>&1 | $logger -t qmail -p mail.notice &"
+
+	# Uncomment the following lines to automatically start the pop3 server
+# DTC notes:
+# See that I've uncommented out the pop3. See also that I've put
+# checklocalpwd instead of checkpasswd, and that I'm using
+# relay-ctrl-allow for pop before smtp auth. Exept from that,
+# this is the standard debian start file... :)
+# Thomas GOIRAND <thomas@goirand.fr>
+	sh -c "start-stop-daemon --start --quiet --user root \
+	    --exec /usr/bin/tcpserver -- \
+	    0 pop-3 /usr/sbin/qmail-popup `hostname` \
+	    /bin/checklocalpwd relay-ctrl-allow /usr/sbin/qmail-pop3d Maildir &"
+#	sh -c "start-stop-daemon --start --quiet --user root \
+#	    --exec /usr/bin/tcpserver -- \
+#	    0 pop-3 /usr/sbin/qmail-popup `hostname`.`dnsdomainname` \
+#	    /bin/checklocalpwd relay-ctrl-allow /usr/sbin/qmail-pop3d Maildir &"
+	#    /usr/bin/checkpassword /usr/sbin/qmail-pop3d Maildir &"
+	echo "."
+	;;
+    stop)
+	echo -n "Stopping mail-transfer agent: qmail"
+	if [ "`pidof /usr/sbin/qmail-send`" ] ; then
+	    start-stop-daemon --user qmails --stop --quiet --oknodo --exec /usr/sbin/qmail-send
+	    start-stop-daemon --user qmaild --stop --quiet --oknodo --exec /usr/bin/tcpserver
+	    # Uncomment the following line if you have enabled the pop3 server
+	    start-stop-daemon --user root --stop --quiet --oknodo --exec /usr/bin/tcpserver
+
+	    # Wait until the timeout for qmail processes to die.
+	    count=10
+	    numdots=0
+	    while ([ $count != 0 ]) do
+		let count=$count-1
+		if [ "`pidof /usr/sbin/qmail-send`" ] ; then
+		    echo -n .
+		    let numdots=$numdots+1
+		    sleep 1
+		else
+		    count=0
+		fi
+	    done
+
+	    # If it's not dead yet, kill it.
+	    if [ "`pidof /usr/sbin/qmail-send`" ] ; then
+		echo -n " TIMEOUT!"
+		kill -KILL `pidof /usr/sbin/qmail-send`
+	    else
+		case $numdots in
+		  0) echo "." ;;
+		  1) echo ;;
+		  *) echo " done." ;;
+		esac
+	    fi
+	else
+	    echo " not running.";
+	fi
+
+	;;
+    restart)
+	$0 stop
+	$0 start
+	;;
+    reload|force-reload)
+	echo "Reloading 'locals' and 'virtualdomains' control files."
+	start-stop-daemon --stop --quiet --oknodo --signal HUP --exec /usr/sbin/qmail-send
+	;;
+    *)
+	echo 'Usage: /etc/init.d/qmail {start|stop|restart|reload}'
+	exit 1
+esac
+
+exit 0

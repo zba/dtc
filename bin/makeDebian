@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+# Welcome to the DTC install maker !
+# Maintainer: Thomas GOIRAND <thomas@goirand.fr>
+# please do not ship with you packages
+# this is only a small coder tool...
+#
+
+VERS=`cat version`
+RELS=`cat release`
+VERSION=$VERS"-"$RELS
+
+echo " --- Making DTC debian package --- "
+
+# Make the directories
+mkdir -p debian/usr/share/dtc/etc/zones
+mkdir -p debian/DEBIAN
+
+# Copy DTC's files in the good directories
+cp -rf ../admin ../client ../shared debian/usr/share/dtc
+rm -rf debian/usr/share/dtc/shared/mysql_config.php
+mkdir -p debian/usr/share/doc/dtc
+cp -rf ../doc/* debian/usr/share/doc/dtc
+gzip -9 debian/usr/share/doc/dtc/changelog
+
+# Store DTC's package name and version in the control file
+echo "Package: dtc
+Version: "$VERSION >debian/DEBIAN/control
+cat sources/debian/control >>debian/DEBIAN/control
+
+# Make the config file directory and script using standard
+# plus debian specific scripts
+cp -f sources/debian/prerm sources/debian/config sources/debian/postinst sources/debian/templates debian/DEBIAN
+cat sources/setup_mysql_db.sh >>debian/DEBIAN/postinst
+cat sources/configure_deamons.sh >>debian/DEBIAN/postinst
+cat sources/uninstall_deamons.sh >>debian/DEBIAN/prerm
+
+if ! [ -e debian/usr/share/dtc/admin/gfx ]
+then
+	ln -s ../shared/gfx debian/usr/share/dtc/admin/gfx
+fi
+if ! [ -e debian/usr/share/dtc/client/gfx ]
+then
+	ln -s ../shared/gfx debian/usr/share/dtc/client/gfx
+fi
+if ! [ -e debian/usr/share/dtc/admin/imgcache ]
+then
+        ln -s ../shared/imgcache debian/usr/share/dtc/admin/imgcache
+fi
+if ! [ -e debian/usr/share/dtc/client/imgcache ]
+then
+        ln -s ../shared/imgcache debian/usr/share/dtc/client/imgcache
+fi
+find ./debian -type d | xargs chmod 755
+echo `find debian/ -iname 'CVS' -exec rm -rf {} \;` >/dev/null >>/dev/null
+chown -R root:root debian/usr/share/dtc
+chown nobody:nogroup debian/usr/share/dtc/shared debian/usr/share/dtc/client/imgcache debian/usr/share/dtc/admin/imgcache debian/usr/share/dtc/shared/imgcache
+chown nobody:nogroup debian/usr/share/dtc/client/gfx debian/usr/share/dtc/admin/gfx debian/usr/share/dtc/shared/gfx
+dpkg-deb --build debian
+
+mv debian.deb "dtc_"$VERSION"_all.deb"
+
+echo " -- Succesfully made dtc_"$VERSION"_all.deb ---"
+
+# cp "dtc_"$VERSION"_all.deb" /home/ftp/debian/dists/stable/main/binary-i386/
+# curdir=`pwd`
+# cd /home/ftp/debian
+# dpkg-scanpackages dists/stable/main/binary-i386 /dev/null | gzip -9 >dists/stable/main/binary-i386/Packages.gz
+# cd $curdir

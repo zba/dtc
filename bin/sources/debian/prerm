@@ -1,0 +1,50 @@
+#!/bin/sh
+
+set -e
+# Automatically added by dh_installdocs
+if [ \( "$1" = "upgrade" -o "$1" = "remove" \) -a -L /usr/doc/dtc ]; then
+        rm -f /usr/doc/dtc
+fi
+
+# Debian uninstall bash script for DTC
+# Written by Thomas GOIRAND <thomas@goirand.fr>
+# under LGPL Licence
+
+. /usr/share/debconf/confmodule
+db_version 2.0
+
+# exit 0
+
+PATH_HTTPD_CONF=/etc/apache/httpd.conf
+PATH_NAMED_CONF=/etc/bind/named.conf
+PATH_QMAIL_CTRL=/etc/qmail
+PATH_PHP_CGI="/usr/bin/php4"
+PATH_PROFTPD_CONF=/etc/proftpd.conf
+
+PATH_DTC_ETC=/usr/share/dtc/etc
+PATH_DTC_ADMIN=/usr/share/dtc/admin
+
+# Get stored values in debconf
+
+#db_get dtc/conf_mysqlhost
+#conf_mysql_host=$RET
+#db_get dtc/conf_mysqllogin
+#conf_mysql_login=$RET
+#db_get dtc/conf_mysqlpass 
+#conf_mysql_pass=$RET 
+#db_get dtc/conf_mysqldb  
+#conf_mysql_db=$RET  
+#db_get dtc/main_domainname
+#main_domain_name=$RET
+#db_get dtc/dtc_adminsubdomain
+#dtc_admin_subdomain=$RET
+#db_get dtc/conf_ipaddr
+#conf_ip_addr=$RET
+#db_get dtc/conf_hostingpath
+#conf_hosting_path=$RET
+#db_get dtc/conf_hostingpath
+#conf_hosting_path=$RET
+#db_get dtc/conf_admlogin
+#conf_adm_login=$RET
+
+# Upon this line, here is the standard DTC uninstall script :

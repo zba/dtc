@@ -1,0 +1,4 @@
+AuthName "Apache root check"
+AuthType Basic
+AuthUserFile /var/www/.htpasswd
+require valid-user

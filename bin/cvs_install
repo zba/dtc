@@ -1,0 +1,6 @@
+#!/bin/bash
+
+chown nobody:nogroup ../shared
+cp -rf ../shared/gfx ../admin
+cp -rf ../shared/gfx ../client
+
