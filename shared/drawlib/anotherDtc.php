@@ -89,8 +89,8 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	<center><img alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"><br>
 	<font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release</font></center>
 </td><td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
-	<font size=\"-1\"><i>Take the control of your domain name</i></font><center>
-</td><td width=\"100%\"></td>".$zeLanguage."</tr>
+	<font size=\"-1\"><i>Take the control of your domain name</i></font></center></td>
+<td width=\"100%\" align=\"right\">".$zeLanguage."</td></tr>
 </table>
 ";
 	return $inside;
