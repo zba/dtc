@@ -4,54 +4,7 @@ require_once "$dtcshared_path/dtcrm/registry_calls.php";
 
 $registration_added_price = 1.5;
 
-$form_enter_domain_name = "<input type=\"hidden\" name=\"action\" value=\"dtcrm_add_domain\">
-www.<input type=\"text\" name=\"toreg_domain\" value=\"\">
-<select name=\"toreg_extention\">
-<option value=\".com\" selected>.com</option>
-<option value=\".net\">.net</option>
-<option value=\".org\">.org</option>
-<option value=\".biz\">.biz</option>
-<option value=\".info\">.info</option>
-<option value=\".name\">.name</option>
-</select><input type=\"submit\" value=\"Ok\">
-";
-
-$form_enter_dns_infos = "Please enter now the DNS server ip or hostname. If you want to configurate your domain here,
-leave it with value \"default\".<br>
-DNS1 host:<input size=\"16\" type=\"text\" name=\"toreg_dns1\" value=\"default\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns1_ip\" value=\"\"><br>
-DNS2 host:<input size=\"16\" type=\"text\" name=\"toreg_dns2\" value=\"default\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns2_ip\" value=\"\"><br>
-<i>Optional:</i><br>
-DNS3 host:<input size=\"16\" type=\"text\" name=\"toreg_dns3\" value=\"\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns3_ip\" value=\"\"><br>
-DNS4 host:<input size=\"16\" type=\"text\" name=\"toreg_dns4\" value=\"\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns4_ip\" value=\"\"><br>
-DNS5 host:<input size=\"16\" type=\"text\" name=\"toreg_dns5\" value=\"\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns5_ip\" value=\"\"><br>
-DNS6 host:<input size=\"16\" type=\"text\" name=\"toreg_dns6\" value=\"\">
-ip:<input size=\"14\" type=\"text\" name=\"toreg_dns6_ip\" value=\"\">";
-
-$whois_forwareded_params = "
-<input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"".$_REQUEST["dtcrm_owner_hdl"]."\">
-<input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"".$_REQUEST["dtcrm_admin_hdl"]."\">
-<input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"".$_REQUEST["dtcrm_billing_hdl"]."\">
-<input type=\"hidden\" name=\"toreg_dns1\" value=\"".$_REQUEST["toreg_dns1"]."\">
-<input type=\"hidden\" name=\"toreg_dns2\" value=\"".$_REQUEST["toreg_dns2"]."\">
-<input type=\"hidden\" name=\"toreg_dns3\" value=\"".$_REQUEST["toreg_dns3"]."\">
-<input type=\"hidden\" name=\"toreg_dns4\" value=\"".$_REQUEST["toreg_dns4"]."\">
-<input type=\"hidden\" name=\"toreg_dns5\" value=\"".$_REQUEST["togeg_dns5"]."\">
-<input type=\"hidden\" name=\"toreg_dns6\" value=\"".$_REQUEST["toreg_dns6"]."\">
-
-<input type=\"hidden\" name=\"toreg_dns1_ip\" value=\"".$_REQUEST["toreg_dns1_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns2_ip\" value=\"".$_REQUEST["toreg_dns2_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns3_ip\" value=\"".$_REQUEST["toreg_dns3_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns4_ip\" value=\"".$_REQUEST["toreg_dns4_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns5_ip\" value=\"".$_REQUEST["togeg_dns5_ip"]."\">
-<input type=\"hidden\" name=\"toreg_dns6_ip\" value=\"".$_REQUEST["toreg_dns6_ip"]."\">
-";
-
-
+require_once "$dtcshared_path/dtcrm/draw_register_forms.php";
 require_once "$dtcshared_path/dtcrm/draw_handle.php";
 require_once "$dtcshared_path/dtcrm/draw_whois.php";
 require_once "$dtcshared_path/dtcrm/draw_nameservers.php";
@@ -83,6 +36,7 @@ function drawAdminTools_AddDomain($admin){
 	global $form_enter_dns_infos;
 	global $form_enter_domain_name;
 	global $whois_forwareded_params;
+	global $form_period_popup;
 
 	global $pro_mysql_handle_table;
 
@@ -95,19 +49,6 @@ function drawAdminTools_AddDomain($admin){
 <input type=\"hidden\" name=\"add_regORtrans\" value=\"register\">
 </form>
 ";
-
-	$period_popup = "<select name=\"toreg_period\">
-<option value=\"1\">1 years</value>
-<option value=\"2\">2 years</value>
-<option value=\"3\">3 years</value>
-<option value=\"4\">4 years</value>
-<option value=\"5\">5 years</value>
-<option value=\"6\">6 years</value>
-<option value=\"7\">7 years</value>
-<option value=\"8\">8 years</value>
-<option value=\"9\">9 years</value>
-<option value=\"10\">10 years</value>
-</select>";
 
 	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
 
@@ -249,7 +190,7 @@ domain name.<br><br>
 <br>
 $form_enter_dns_infos<br><br>
 Select how long you want to register this domain name:<br>
-$period_popup<br>
+$form_period_popup<br>
 <input type=\"submit\" value=\"Ok\">
 </form>
 ";
@@ -297,55 +238,5 @@ $form_check_domain";
 	return $out;
 }
 
-function drawAdminTools_MyAccount($admin){
-	global $PHP_SELF;
-	global $adm_login;
-	global $adm_pass;
-	global $addrlink;
-
-	global $cc_code_array;
-
-	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
-
-	$id_client = $admin["info"]["id_client"];
-
-	if($id_client != 0){
-		$client = $admin["client"];
-		$out .=  "<b><u>Remaining money on my account:</u></b><br>
-<font size=\"+2\">\$".$client["dollar"]."</font><br><br>
-Refund my account with the following ammount:<br>
-<form action=\"$PHP_SELF\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-<input type=\"hidden\" name=\"action\" value=\"refund\">
-<input type=\"text\" name=\"refund_amount\" value=\"\">
-<input type=\"submit\" value=\"Ok\">
-</form>
-<hr width=\"90%\">
-";
-
-		$out .= "<center><b>Please tell us if the following is not correct:</b></center>";
-
-		if($client["is_company"] == "yes"){
-			$out .= "Company: ".$client["company_name"]."<br>";
-		}
-		$out .= "Firstname: " .$client["christname"]."<br>";
-		$out .= "Familyname: " .$client["familyname"]."<br>";
-		$out .= "Addresse 1: " .$client["addr1"]."<br>";
-		$out .= "Addresse 2: " .$client["addr2"]."<br>";
-		$out .= "Zipcode: " .$client["zipcode"]."<br>";
-		$out .= "Sate: " .$client["state"]."<br>";
-		$out .= "Country: " . $cc_code_array[ $client["country"] ] ."<br>";
-		$out .= "Phone: " .$client["phone"]."<br>";
-		$out .= "Fax: " .$client["fax"]."<br>";
-		$out .= "Email: " .$client["email"]."<br>";
-	}else{
-		$out .= "You do not have a client account, so there
-is no money in your account.";
-	}
-	return $out;
-
-}
 
 ?>
