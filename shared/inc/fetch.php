@@ -235,6 +235,7 @@ function fetchAdminData($adm_login,$adm_pass){
 		$domain["other_mx"] = $row["other_mx"];
 		$domain["whois"] = $row["whois"];
 		$domain["hosting"] = $row["hosting"];
+		$domain["gen_unresolved_domain_alias"] = $row["gen_unresolved_domain_alias"];
 
 		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$name';";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");

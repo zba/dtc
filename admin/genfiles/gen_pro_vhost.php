@@ -120,7 +120,8 @@ function pro_vhost_generate(){
 				}
 				// Added by Luke
 				// Needed to create an Alias in httpd.conf for non-resolvable domains
-				$alias_domain_query = "SELECT * FROM $pro_mysql_domain_table WHERE 1 ORDER BY name;";
+				// TG: added a flag to say yes/no to that alias for each domains
+				$alias_domain_query = "SELECT * FROM $pro_mysql_domain_table WHERE gen_unresolved_domain_alias='yes' ORDER BY name;";
 				$result_alias = mysql_query ($alias_domain_query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 				$num_rows_alias = mysql_num_rows($result_alias);
 				for($x=0;$x<$num_rows_alias;$x++) {
