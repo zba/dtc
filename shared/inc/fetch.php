@@ -141,8 +141,8 @@ function fetchAdminStats($admin){
 
 	$dbdu_amount = 0;
 	mysql_select_db("mysql");
-	$q = "SELECT Db FROM db WHERE User='$adm_login'";
-	$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
+	$q = "SELECT Db FROM db WHERE User='".$admin["info"]["adm_login"]."'";
+	$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
 	$db_nbr = mysql_num_rows($r);
 	for($i=0;$i<$db_nbr;$i++){
 		$db_name = mysql_result($r,$i,"Db");
