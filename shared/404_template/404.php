@@ -19,7 +19,7 @@ an open-source control panel<br>
 <i>Most of code done by:
 <a target="_blank" href="mailto:thomas@goirand.fr">Thomas GOIRAND</a>, under
 <a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit <a
-target="_blank" href="http://gplhost.com">GPLHost</a> and <a
+target="_blank" href="http://gplhost.com">GPLHost:>_</a> and <a
 target="_blank" href="http://gplhost.com/?rub=softwares&sousrub=dtc">DTC
 home</a> for more infos.</i></font>
 </center></td></tr></table>

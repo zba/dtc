@@ -34,13 +34,27 @@ function drawNewAdminForm(){
 		$waiting_new_users .= "<b>No user waiting!</b>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
-	<tr><td>Name</td><td>Login</td><td>Domain name</td><td>Action</td></tr>";
+	<tr><td>Name</td><td>Login</td><td>Domain name</td><td>Bank</td><td>Action</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td><u>".$a["comp_name"].":</u> ";
 			$waiting_new_users .= $a["family_name"].", ".$a["first_name"]."</td>";
 			$waiting_new_users .= "<td>".$a["reqadm_login"]."</td>";
 			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
+			if($a["paiement_id"] == 0){
+				$waiting_new_users .= "<td>No pay ID!</td>";
+			}else{
+				$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$a["paiement_id"]."';";
+				$r = mysql_query($q)or die("Cannot select $q line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$n = mysql_num_rows($r);
+				if($n != 1)	die("Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__);
+				$a = mysql_fetch_array($r);
+				if($a["valid"] == "yes"){
+					$waiting_new_users .= "<td><font color=\"green\">YES</font></td>";
+				}else{
+					$waiting_new_users .= "<td><font color=\"red\">NO</font></td>";
+				}
+			}
 			$waiting_new_users .= "<td><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">View details</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Add</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Del</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
