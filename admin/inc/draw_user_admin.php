@@ -9,10 +9,8 @@ function drawNewAdminForm(){
 
 	global $pro_mysql_new_admin_table;
 
-	$add_a_user .= "
-<br>
-
-<br><form action=\"?\" methode=\"post\">
+	$add_a_user .= "<h4>Add a new user:</h4>
+<form action=\"?\" methode=\"post\">
 <table>
 <tr><td align=\"right\">
 	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newadmin_login\" value=\"\"><br>
