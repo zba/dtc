@@ -150,6 +150,9 @@ then
 	PATH_DTC_SHARED="/usr/share/dtc"
 fi
 
+PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
+PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
+
 echo ""
 echo "Where do you want DTC to store it's generated configuration files ?"
 echo -n "DTC generated files [/usr/share/dtc/etc]: "
@@ -158,6 +161,7 @@ if [ $PATH_DTC_ETC == ""];
 then
 	PATH_DTC_ETC="/usr/share/dtc/etc"
 fi
+
 
 echo ""
 echo ""

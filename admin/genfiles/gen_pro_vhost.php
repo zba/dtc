@@ -22,6 +22,8 @@ function pro_vhost_generate(){
 	global $conf_apache_vhost_path;
 	global $conf_generated_file_path;
 	global $conf_dtcshared_path;
+	global $conf_dtcadmin_path;
+	global $conf_dtcclient_path;
 
 	global $conf_main_site_ip;
 	global $conf_use_multiple_ip;
@@ -126,8 +128,8 @@ function pro_vhost_generate(){
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
 				$vhost_file .= "	Alias /phpmyadmin /usr/share/phpmyadmin
-	Alias /dtc /usr/share/dtc/client
-	Alias /dtcadmin /usr/share/dtc/admin
+	Alias /dtc $conf_dtcclient_path
+	Alias /dtcadmin $conf_dtcadmin_path
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html

@@ -99,6 +99,8 @@ PATH_QMAIL_CTRL=/var/qmail/control
 PATH_PHP_CGI=/usr/bin/php
 PATH_DTC_ETC=/usr/share/dtc/etc
 PATH_DTC_SHARED=/usr/share/dtc
+PATH_DTC_ADMIN=/usr/share/dtc/admin
+PATH_DTC_CLIENT=/usr/share/dtc/client
 
 echo ""
 echo ""

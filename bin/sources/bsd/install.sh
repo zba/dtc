@@ -106,8 +106,11 @@ fi
 PATH_PROFTPD_CONF="${PREFIX}/etc/proftpd.conf"
 PATH_QMAIL_CTRL="/var/qmail/control"
 PATH_PHP_CGI="${PREFIX}/bin/php"
-PATH_DTC_ETC="${PREFIX}/share/dtc/etc"
 PATH_DTC_SHARED="${PREFIX}/share/dtc"
+
+PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
+PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
+PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 
 echo ""
 echo ""

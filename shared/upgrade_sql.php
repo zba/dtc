@@ -100,11 +100,21 @@ UPDATE config SET dbversion='10001' WHERE 1;
 
 ");
 
+$sql_updates[] = array(
+        "dbversion" => "10002",
+        "sql" => "
+UPDATE config SET dbversion='10002' WHERE 1;
+ALTER TABLE config
+	ADD dtcadmin_path varchar(255) NOT NULL default '/usr/share/dtc/admin',
+	ADD dtcclient_path varchar(255) NOT NULL default '/usr/share/dtc/client
+	ADD dtcdoc_path varchar(255) NOT NULL default '/usr/share/dtc/doc';
+");
+
 /*
 $sql_updates[] = array(
-	"dbversion" => "10002",
+	"dbversion" => "10003",
 	"sql" => "
-UPDATE config SET dbversion='10002' WHERE 1;
+UPDATE config SET dbversion='10003' WHERE 1;
 ");
 */
 

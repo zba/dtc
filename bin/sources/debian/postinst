@@ -23,8 +23,9 @@ PATH_PHP_CGI="/usr/bin/php4"
 PATH_PROFTPD_CONF=/etc/proftpd.conf
 PATH_DTC_SHARED=/usr/share/dtc
 
-PATH_DTC_ETC=/usr/share/dtc/etc
-PATH_DTC_ADMIN=/usr/share/dtc/admin
+PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
+PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
+PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 
 # Source debconf library -- we have a Depends line
 # to make sure it is there...
