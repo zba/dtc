@@ -5,7 +5,6 @@ function drawAdminTools_emailPanel($mailbox){
 	global $adm_email_login;
 	global $adm_email_pass;
 
-//	print_r($mailbox);
 	$url_start = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass";
 	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
@@ -83,7 +82,6 @@ function drawAdminTools_Emails($domain){
 		$id = $email["id"];
 		if($id == $_REQUEST["edit_mailbox"]){
 			$mailbox_name = $id;
-			//print_r($email);
 			$home = $email["home"];
 			$passwd = $email["passwd"];
 			$redir1 = $email["redirect1"];

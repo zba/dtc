@@ -136,7 +136,6 @@ if($_REQUEST["action"] == "add_cmd_to_client"){
 id_client,domain_name,quantity,price_devise,price,paiement_method,date,expir,product_id
 )VALUES('','".$_REQUEST["id"]."','".$_REQUEST["add_newcmd_domain_name"]."','1','USD','".$a["price_dollar"]."','free','".date("Y-m-d")."','$exp_date','".$_REQUEST["add_new_command"]."');";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
-//	print_r($q);
 }
 
 }

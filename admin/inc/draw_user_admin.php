@@ -8,6 +8,7 @@ function drawNewAdminForm(){
 	global $lang;
 
 	global $pro_mysql_new_admin_table;
+	global $pro_mysql_pending_queries_table;
 
 	$add_a_user .= "<h4>Add a new user:</h4>
 <form action=\"?\" methode=\"post\">
@@ -25,14 +26,13 @@ function drawNewAdminForm(){
 </table>
 ";
 
-	$waiting_new_users = "<h4>User waiting for addition:</h4>";
+	$waiting_new_users = "<h4>User and domain waiting for addition:</h4>";
 	$q = "SELECT * FROM $pro_mysql_new_admin_table";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
 		$waiting_new_users .= "<b>No user waiting!</b>";
-	}
-	else{
+	}else{
 		$waiting_new_users .= "<table border=\"1\">
 	<tr><td>Name</td><td>Login</td><td>Domain name</td><td>Action</td></tr>";
 		for($i=0;$i<$n;$i++){
@@ -43,6 +43,22 @@ function drawNewAdminForm(){
 			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
 			$waiting_new_users .= "<td><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">View details</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Add</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Del</a></td>";
 			$waiting_new_users .= "</tr>";
+		}
+		$waiting_new_users .= "</table>";
+	}
+	$q = "SELECT * FROM $pro_mysql_pending_queries_table";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n < 1){
+		$waiting_new_users .= "<br><b>No domain waiting!</b><br>";
+	}else{
+		$waiting_new_users .= "<table border=\"1\">
+	<tr><td>Login</td><td>Domain name</td><td>Action</td></tr>";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$waiting_new_users .= "<td>".$a["adm_login"]."</td>";
+			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
+			$waiting_new_users .= "<td>BLA</td></tr>";
 		}
 		$waiting_new_users .= "</table>";
 	}
@@ -123,12 +139,13 @@ function userEditForms($adm_login,$adm_pass){
 
 		// Draw the html forms
 		$HTML_admin_edit_info .= drawEditAdmin($admin);
+		$HTML_admin_mysql_config .= drawMySqlAccountManger();
 		$HTML_admin_domain_config .= drawDomainConfig($admin);
-		$HTML_admin_domain_config .= drawMySqlAccountManger();
 		$HTML_admin_edit_data .= drawAdminTools($admin);
 
 		// Output and skin the result !
 		$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
+		$user_mysql_config = skin($conf_skin,$HTML_admin_mysql_config,"MySQL");
 		$user_domain_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
 		$user_tools = skin($conf_skin,$HTML_admin_edit_data,"Domains for $adm_login");
 
@@ -136,6 +153,7 @@ function userEditForms($adm_login,$adm_pass){
 		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"4\">
 	<tr>
 		<tr><td width=\"100%\">$user_config
+		</td></tr><tr><td width=\"100%\">$user_mysql_config
 		</td></tr><tr><td width=\"100%\">$user_domain_config
 		</td></tr><tr><td width=\"100%\">$user_tools
 		</td></tr><tr><td height=\"100%\">&nbsp;

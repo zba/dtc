@@ -115,7 +115,6 @@ function SRSregistry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns){
 		);
 	$O = new openSRS('test','XCP');
 	$srs_result = $O->send_cmd($cmd);
-	print_r($srs_result);
 	SRSdelete_cookie($cookie);
 	return $srs_result;
 }

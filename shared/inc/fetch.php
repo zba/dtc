@@ -68,16 +68,7 @@ function fetchAdminInfo($adm_login){
 		return $ret;
 	}
 	$row = mysql_fetch_array($result) or die ("Cannot fetch user");
-	$ret["data"]["adm_login"] = $row["adm_login"];
-	$ret["data"]["adm_pass"] = $row["adm_pass"];
-	$ret["data"]["path"] = $row["path"];
-	$ret["data"]["max_email"] = $row["max_email"];
-	$ret["data"]["max_ftp"] = $row["max_ftp"];
-	$ret["data"]["quota"] = $row["quota"];
-	$ret["data"]["bandwidth_per_month_mb"] = $row["bandwidth_per_month_mb"];
-	$ret["data"]["prod_id"] = $row["prod_id"];
-	$ret["data"]["expire"] = $row["expire"];
-	$ret["data"]["id_client"] = $row["id_client"];
+	$ret["data"] = $row;
 	return $ret;
 }
 
@@ -240,9 +231,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 
 	// This stuff is rotating passwords helping NOT to save passwords on users browsers.
 	$rand = getRandomValue();
-
 	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-
 	if($DONOT_USE_ROTATING_PASS != yes){
 		$q = "UPDATE $pro_mysql_admin_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE adm_login='$adm_login'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" !");

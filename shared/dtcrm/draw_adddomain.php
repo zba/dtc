@@ -14,12 +14,13 @@ function drawAdminTools_AddDomain($admin){
 	global $form_enter_domain_name;
 	global $whois_forwareded_params;
 	global $form_period_popup;
+	global $conf_webmaster_email_addr;
 
 	global $pro_mysql_handle_table;
 	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
 
 $form_start = "
-<form action=\"$PHP_SELF\">
+<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -44,8 +45,41 @@ $form_start
 	if($_REQUEST["add_domain_type"] == "hosting"){
 		// The don't want name registration or transfer,
 		// Simply add the domain.
-		return "To have a new domain name to host without domain
-name registration, please write to: <a href=\"info@gplhost.com?subject=More domains\">info@gplhost.com</a>";
+		if($admin["info"]["allow_add_domain"] == "no"){
+			return "You curently don't have enough privilege to
+add domain names. If you often add domain names, you can ask the
+administrator to do so. To have a new domain name to host without domain
+name registration, please write to:<br>
+<a href=\"$conf_webmaster_email_addr?subject=[DTC] More domains\">$conf_webmaster_email_addr</a>.";
+		}
+		if(!isset($_REQUEST["domain_name"]) || $_REQUEST["domain_name"] == ""){
+			return "<br><b><u>Please enter the domain name you wish to add:</u></b><br>
+$form_start<input type=\"text\" name=\"domain_name\" value=\"\">
+<input type=\"submit\" value=\"ok\"></form>";
+		}
+		if($admin["info"]["allow_add_domain"] == "check"){
+			return "<br><u><b>Your domain name will be soon:</b></u><br>
+Soon an administrator will have a look to your request and validate the
+addition of this domain name to your account. You curently don't have enough
+privilege to add domain names.<br>
+If you often add domain names, you can ask the
+administrator to do so. To have a new domain name to host without domain
+name registration, please write to:<br>
+<a href=\"$conf_webmaster_email_addr?subject=[DTC] More domains\">$conf_webmaster_email_addr</a>.<br>
+<br>
+Or you can add another domain name:
+$form_start<input type=\"text\" name=\"domain_name\" value=\"\">
+<input type=\"submit\" value=\"ok\"></form>
+";
+		}
+		return "<br><u><b>Your domain name is now ready:</b></u><br>
+Now you can go to check it's configuration by cliking here:<br>
+<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=".$_REQUEST["domain_name"]."\">".$_REQUEST["domain_name"]."</a><br>
+<br>
+Or you can add another domain name:
+$form_start<input type=\"text\" name=\"domain_name\" value=\"\">
+<input type=\"submit\" value=\"ok\"></form>
+";
 	}
 
 	// Registration or domain transfer ?
@@ -220,7 +254,6 @@ to hosting database</b></font><br>";
 to refresh the menu or add another domain name.
 ";
 
-//	print_r($regz);
 // END OF DOMAIN NAME REGISTRATION //
 /////////////////////////////////////
 	return $out;

@@ -27,7 +27,6 @@ function SRSregistry_get_domain_price($domain_name,$period){
 			)
 		);
 	$srs_result = $O->send_cmd($cmd);
-//	print_r($srs_result);
 	return $srs_result;
 }
 

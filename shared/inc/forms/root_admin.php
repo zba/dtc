@@ -35,6 +35,17 @@ function drawEditAdmin($admin){
 	$bandwidth_per_month_mb = $info["bandwidth_per_month_mb"];
 	$adm_id_client = $info["id_client"];
 	$expire = $info["expire"];
+	$allow_add_domain = $info["allow_add_domain"];
+
+	if($allow_add_domain == "yes")	$adyes = "selected";
+	if($allow_add_domain == "check")$adcheck = "selected";
+	if($allow_add_domain == "no")	$adno = "selected";
+	$aldom_popup = "<select name=\"allow_add_domain\">
+<option name=\"yes\" $adyes>Yes</option>
+<option name=\"check\" $adcheck>Check</option>
+<option name=\"no\" $adno>No</option>
+</select>
+";
 
 	// Generate the user configuration form
 	$user_data .= "
@@ -58,6 +69,8 @@ function drawEditAdmin($admin){
 	<td><input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\"></td></tr>
 	<tr><td align=\"right\">".$txt_expiration_date[$lang]."</td>
 	<td><input type=\"text\" name=\"expire\" value=\"$expire\"></td></tr>
+	<tr><td align=\"right\">Allow to add domains:</td>
+	<td>$aldom_popup</td></tr>
 	<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
 </td></tr></table></form>";
 
