@@ -37,8 +37,8 @@ do-configure:
 do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-install ${PREFIX}/sbin/dtc-install
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-deinstall ${PREFIX}/sbin/dtc-deinstall
-	@${MKDIR} ${DATADIR}
-	@cd ${WRKSRC}/dtc ; ${TAR} cfp - . | ${TAR} xfp - -C ${DATADIR}
+	@${MKDIR} ${DTCDIR}
+	@cd ${WRKSRC}/dtc ; ${TAR} cfp - . | ${TAR} xfp - -C ${DTCDIR}
 	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
