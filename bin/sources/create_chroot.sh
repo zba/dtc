@@ -19,7 +19,11 @@
 # assign our variables
 CHROOT_DIR=$conf_chroot_path
 WEB_USER=nobody
-WEB_GROUP=nogroup
+if [ $UNIX_TYPE"" = "freebsd" ] ; then
+	WEB_GROUP=nogroup
+else
+	WEB_GROUP=nogroup
+fi
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Creating chroot tree in "$CHROOT_DIR
@@ -47,67 +51,74 @@ then
 	fi
 fi
 
-if [ $UNIX_TYPE"" = "freebsd" ]
-then
-	if [ $kernel = "OpenBSD" ];
-	then
-		if ! [ -e dev/urandom ]
-		then
+if [ $UNIX_TYPE"" = "freebsd" ] ; then
+	if [ $kernel"" = "OpenBSD" ] ; then
+		if ! [ -e dev/urandom ] ; then
 			mknod dev/urandom c 45 2   # OpenBSD ?
 		fi
 	else
-		if ! [ -e dev/random ]
-		then
+		if ! [ -e dev/random ] ; then
 			mknod dev/random  c  2 3   # FreeBSD
 		fi
-		if ! [ -e dev/urandom ]
-		then
-			ln -s dev/random dev/urandom # FreeBSD
+		if ! [ -e dev/urandom ] ; then
+			mknod dev/urandom  c  2 3
 		fi
 	fi
 else
-	if ! [ -e dev/random ]
-	then
+	if ! [ -e dev/random ] ; then
 		mknod dev/random  c  1 8   # Linux
 	fi
-	if ! [ -e dev/urandom ]
-	then
+	if ! [ -e dev/urandom ] ; then
 		mknod dev/urandom c  1 9   # Linux
 	fi
 fi
 
 # some external programs may need these:
 
-if [ $UNIX_TYPE"" = "freebsd" ]
-then
-	if ! [ -e dev/stdin ]
-	then
+if [ $UNIX_TYPE"" = "freebsd" ] ; then
+	if ! [ -e dev/stdin ] ; then
 		mknod dev/stdin   c 22 0   # FreeBSD, OpenBSD
 	fi
-	if ! [ -e dev/stdout ]
-	then
+	if ! [ -e dev/stdout ] ; then
 		mknod dev/stdout  c 22 1   # FreeBSD, OpenBSD
 	fi
-	if ! [ -e dev/stderr ]
-	then
+	if ! [ -e dev/stderr ] ; then
 		mknod dev/stderr  c 22 2   # FreeBSD, OpenBSD
 	fi
 fi
 
-# copy required binaries to $CHROOT_DIR/usr/bin
-cp -pf /usr/bin/file /usr/bin/bzip2 /bin/cpio usr/bin/
+# copy required binaries to $CHROOT_DIR/usr/bin and $CHROOT_DIR/bin
+cp -pf /usr/bin/file /usr/bin/bzip2 usr/bin/
+
+if [ $UNIX_TYPE"" = "freebsd" ] ; then
+	cp -pf /usr/bin/cpio usr/bin
+	cp -pf /usr/bin/gunzip /usr/bin/false /usr/bin/su bin/
+else
+	cp -pf /bin/gunzip /bin/zip /bin/false /bin/su bin/
+	cp -pf /bin/cpio usr/bin
+fi
 
 # copy required binaries to $CHROOT_DIR/bin
-cp -pf /bin/bash /bin/sh /bin/echo /bin/false /bin/gzip \
-  /bin/gunzip /bin/ls /bin/pwd /bin/cat /bin/su bin/
+cp -pf /bin/sh /bin/echo /bin/ls /bin/pwd /bin/cat bin/
 
 # copy ldconfig from sbin to $CHROOT_DIR/sbin
 cp -pf /sbin/ldconfig sbin/
 
 # copy needed /etc files to $CHROOT_DIR/etc
 cp -pf /etc/protocols /etc/services /etc/hosts \
-  /etc/group /etc/passwd /etc/resolv.conf /etc/localtime \
-  /etc/nsswitch.conf /etc/host.conf etc/
+  /etc/group /etc/passwd /etc/resolv.conf etc/
+
+if [ -e /etc/host.conf ] ; then
+	cp -pf /etc/host.conf etc/
+fi
+
+if [ -e /etc/nsswitch.conf ] ; then
+	cp -pf /etc/nsswitch.conf etc/
+fi
+
+if ! [ $UNIX_TYPE"" = "freebsd" ] ; then
+	cp -pf /etc/localtime etc/
+fi
 
 # copy shared libraries to $CHROOT_DIR/lib
 #   (check:  ldd /usr/bin/perl (or other binary) to see which ones are needed)
@@ -116,10 +127,9 @@ cp -pf /etc/protocols /etc/services /etc/hosts \
 #for j in \
 if [ $UNIX_TYPE"" = "freebsd" ] 
 then
-	cp -pf /usr/lib/libc.so.5 /usr/lib/libm.so.2 /usr/lib/libstdc++.so.4 \
-	  /usr/lib/libz.so.2 /usr/local/lib/libsavi.so.3 \
-	  /usr/local/lib/libclamav.so* usr/lib/
-	cp -pf /usr/libexec/ld-elf.so.1 usr/libexec/
+	cp -pf /usr/lib/libc.so* /usr/lib/libm.so* \
+	  /usr/lib/libstdc\+\+.so* /usr/lib/libz.so.2 usr/lib/
+	cp -pf /usr/libexec/ld-elf.so* usr/libexec/
 else
 	#Linux:
 	cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
