@@ -1,3 +1,16 @@
+18-08-04: DTC now handles SBOX wich is a cgi-wrapper: it does chroot,
+suexec, and some memory and processor limitation.
+
+Dovecot configuration now uses PLAIN instead of CRYPT because it seemed
+to have some problems.
+
+The installer will now systematicaly regenerate files for named and apache
+and the installer has precedence over the mysql inserted values (an update
+is done durring install before launching the cron job). That means that
+you will have to do a dpkg-reconfigure to change mta type BEFORE upgrading
+to a newer version of DTC in the case you have switched to a new mail
+system.
+
 2004-08-10: The latest add of a db_stop was breaking installation under
 Debian Sarge or Sid (testing or unstable) when using modules-config. Version
 0.12.0-R2 correct this: the db_stop is now done just before the launch of

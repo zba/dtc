@@ -374,7 +374,6 @@ if($_REQUEST["newsubdomain"] == "Ok"){
 		if(!file_exists("$newsubdomain_dirpath/logs"))
 			mkdir("$newsubdomain_dirpath/logs", 0750);
 		exec("cp -dpRv $conf_chroot_path/* $newsubdomain_dirpath");
-		}
 	}
 	// Update the flag so we regenerate the serial for bind
 	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
