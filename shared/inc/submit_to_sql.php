@@ -99,12 +99,12 @@ if($_REQUEST["change_mysql_password"] == "Ok"){
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1)	die("User or password is incorrect !");
 
-	if(!ereg("^([a-zA-Z0-9]){6,16}\$",$_REQUEST["change_mysql_password"])){
+	if(!isDTCPassword($_REQUEST["new_mysql_password"])){
 		die("Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.");
 	}
 
 	mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
-	$query = "UPDATE user SET Password=PASSWORD('".$_REQUEST["change_mysql_password"]."') WHERE User='$adm_login';";
+	$query = "UPDATE user SET Password=PASSWORD('".$_REQUEST["new_mysql_password"]."') WHERE User='$adm_login';";
 	mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	mysql_query("FLUSH PRIVILEGES");
 	mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\" !!!");

@@ -510,7 +510,8 @@ function drawDataBase($database){
 
 		$txt .= "<br><br><b><u>Change your MySQL password:</u></b><br>
 		<form action=\"".$_SERVER["PHP_SELF"]."\">New password:<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+		<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
+		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		<input type=\"text\" name=\"new_mysql_password\" value=\"\">
 		<input type=\"submit\" name=\"change_mysql_password\" value=\"Ok\"></form>";
 		return $txt;
