@@ -211,6 +211,7 @@ function drawEditAdmin($admin){
 	$adm_quota = $info["quota"];
 	$bandwidth_per_month_mb = $info["bandwidth_per_month_mb"];
 	$adm_id_client = $info["id_client"];
+	$expire = $info["expire"];
 
 	// Generate the user configuration form
 	$user_data .= "
@@ -228,6 +229,8 @@ function drawEditAdmin($admin){
 	<td><input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\"></td></tr>
 	<tr><td align=\"right\">Transfer per month (MB):</td>
 	<td><input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\"></td></tr>
+	<tr><td align=\"right\">Expiration date:</td>
+	<td><input type=\"text\" name=\"expire\" value=\"$expire\"></td></tr>
 	<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
 </td></tr></table></form>";
 
