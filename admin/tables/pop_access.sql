@@ -23,5 +23,10 @@ CREATE TABLE IF NOT EXISTS pop_access (
   imap_login_count int(9) NOT NULL default '0',
   imap_transfered_bytes int(14) NOT NULL default '0',
   last_login int(14) NOT NULL default '0',
+  bounce_msg text NOT NULL,
+  spf_protect enum('yes','no') NOT NULL default 'no',
+  clamav_protect enum('yes','no') NOT NULL default 'no',
+  pass_next_req varchar(128) NOT NULL default '',
+  pass_expire int(12) NOT NULL default '0',
   PRIMARY KEY  (id,mbox_host)
 ) TYPE=MyISAM

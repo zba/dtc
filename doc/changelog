@@ -1,11 +1,12 @@
 V0.17.0-R2
-DTC now restarts proftpd, so it's up and working without worry
-after a fresh install.
+DTC now restarts proftpd and courier-authdaemon + courier-imap,
+so it's up and working without worry after a fresh install. (thomas)
 
 The installer now removes one temp install file that was not removed.
+(thomas)
 
 DTC now has support for TXT records. 2 root records
-and one record per subdomains.
+and one record per subdomains. (thomas)
 
 The backup MX/NS is now capable of using cache file when
 generating domain lists even when the remote is down and
