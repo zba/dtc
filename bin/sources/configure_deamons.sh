@@ -98,104 +98,117 @@ else
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
-	echo "=> Checking apache modules"
-	echo -n "Checking for php4..."
-
-	# first of all, may as well try to use the provided modules-config or apacheconfig provided by debian...
-	# else use the normal method to be cross platform compatible
-
-	if [ "$HTTPD_MODULES_CONFIG" = "" ]
+	if [ "$UNIX_TYPE" = "debian" ]
 	then
-		# need to support modules.conf version of apache debian package
-		# default to normal HTTPD_CONF
-		PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_CONF
-		if [ -f $PATH_HTTPD_MODULES_CONF ]
+		echo "=> Checking apache modules"
+		echo -n "Checking for php4..."
+
+		# first of all, may as well try to use the provided modules-config or apacheconfig provided by debian...
+		# else use the normal method to be cross platform compatible
+
+		if [ "$HTTPD_MODULES_CONFIG" = "" ]
 		then
-			PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_MODULES_CONF
-		fi
-		if grep -i "# LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-		then
-			echo "found commented: activating php4 module!"
-			sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
-			cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
-		else
-			if grep -i "LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+			# need to support modules.conf version of apache debian package
+			# default to normal HTTPD_CONF
+			PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_CONF
+			if [ -f $PATH_HTTPD_MODULES_CONF ]
 			then
-				echo " ok!"
-			else
-				echo "php4 missing! please install it or run apacheconfig!!!"
-				exit 1
+				PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_MODULES_CONF
 			fi
-		fi
-	else
-		echo $HTTPD_MODULES_CONFIG enable php4_module
-		$HTTPD_MODULES_CONFIG enable php4_module
-		echo $HTTPD_MODULES_CONFIG enable mod_php4
-		$HTTPD_MODULES_CONFIG enable mod_php4
-		echo " enabled by $HTTPD_MODULES_CONFIG"
-	fi
-
-	echo -n "Checking for ssl..."
-	if [ "$HTTPD_MODULES_CONFIG" = "" ]
-	then
-		if grep -i "# LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-		then
-			echo "found commented: activating ssl module!"
-			sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
-			cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
-		else
-			if grep -i "LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+			if grep -i "# LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 			then
-				echo " ok!"
+				echo "found commented: activating php4 module!"
+				sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
 			else
-				echo "!!! Warning: ssl_module for apache not present !!!"
-			fi
-		fi
-	else
-		echo $HTTPD_MODULES_CONFIG enable ssl_module
-		$HTTPD_MODULES_CONFIG enable ssl_module
-		echo " enabled by $HTTPD_MODULES_CONFIG"
-	fi
-
-	echo -n "Checking for sql_log..."
-	if [ "$HTTPD_MODULES_CONFIG" = "" ]
-	then
-		if grep -i "# LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-		then
-			echo "found commented: ativating sql_log module!"
-			sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
-			cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
-		else
-			if grep -i "LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-			then
-				echo " ok!"
-			else
-				if grep -i "# LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+				if grep -i "LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 				then
-					echo "found commented: ativating sql_log module!"
-					sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
-					cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
+					echo " ok!"
 				else
-					if grep -i "LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+					echo "php4 missing! please install it or run apacheconfig!!!"
+					exit 1
+				fi
+			fi
+		else
+			echo $HTTPD_MODULES_CONFIG enable php4_module
+			$HTTPD_MODULES_CONFIG enable php4_module
+			echo $HTTPD_MODULES_CONFIG enable mod_php4
+			$HTTPD_MODULES_CONFIG enable mod_php4
+			echo " enabled by $HTTPD_MODULES_CONFIG"
+		fi
+
+		echo -n "Checking for ssl..."
+		if [ "$HTTPD_MODULES_CONFIG" = "" ]
+		then
+			if grep -i "# LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+			then
+				echo "found commented: activating ssl module!"
+				sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
+			else
+				if grep -i "LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+				then
+					echo " ok!"
+				else
+					echo "!!! Warning: ssl_module for apache not present !!!"
+				fi
+			fi
+		else
+			echo $HTTPD_MODULES_CONFIG enable ssl_module
+			$HTTPD_MODULES_CONFIG enable ssl_module
+			echo " enabled by $HTTPD_MODULES_CONFIG"
+		fi
+
+		echo -n "Checking for sql_log..."
+		if [ "$HTTPD_MODULES_CONFIG" = "" ]
+		then
+			if grep -i "# LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+			then
+				echo "found commented: ativating sql_log module!"
+				sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
+			else
+				if grep -i "LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+				then
+					echo " ok!"
+				else
+					if grep -i "# LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 					then
-						echo " ok!"
+						echo "found commented: ativating sql_log module!"
+						sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+						cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
 					else
-						echo "!!! sql_log_module for apache not present !!!"
-						echo "please install it or run apacheconfig"
-						echo "or add the following type directive"
-						echo "(matching your path) to httpd.conf:"
-						echo "LoadModule sql_log_module /usr/lib/apache/1.3/mod_log_sql.so (debian)"
-						echo "LoadModule log_sql_module /usr/local/libexec/apache/mod_log_sql.so (bsd)"
-						exit 1
+						if grep -i "LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+						then
+							echo " ok!"
+						else
+							echo "!!! sql_log_module for apache not present !!!"
+							echo "please install it or run apacheconfig"
+							echo "or add the following type directive"
+							echo "(matching your path) to httpd.conf:"
+							echo "LoadModule sql_log_module /usr/lib/apache/1.3/mod_log_sql.so (debian)"
+							echo "LoadModule log_sql_module /usr/local/libexec/apache/mod_log_sql.so (bsd)"
+							exit 1
+						fi
 					fi
 				fi
 			fi
+		else
+			echo $HTTPD_MODULES_CONFIG enable sql_log_module
+			$HTTPD_MODULES_CONFIG enable sql_log_module
+			echo " enabled by $HTTPD_MODULES_CONFIG"
 		fi
 	else
-		echo $HTTPD_MODULES_CONFIG enable sql_log_module
-		$HTTPD_MODULES_CONFIG enable sql_log_module
-		echo " enabled by $HTTPD_MODULES_CONFIG"
-
+		echo ""
+		echo "!!! WARNING !!! Tests for the folling apache modules"
+		echo "has NOT been executed because this could crash"
+		echo "the installer. Please verify you have the following"
+		echo "apache modules configured and working:"
+		echo "php4, ssl, rewrite, and sql_log"
+		echo "Note also that current DTC wroks with SBOX and that it"
+		echo "should be compiled and installed on your server to"
+		echo "enable cgi-bin protected and chrooted environment."
+		echo ""
 	fi
 
 	echo -n "Checking for AllowOverride..."
