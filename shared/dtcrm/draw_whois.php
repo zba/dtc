@@ -22,6 +22,9 @@ ns1,ns2". $ns_field .")VALUES('$domain_name','$owner_id','$billing_id','$admin_i
 '$now','$now','$expir','tucows',
 '".$ns_ar[1]."','".$ns_ar[2]."'". $ns_values .");";
 	$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
+
+	$query = "UPDATE $pro_mysql_domain_table SET whois='here' WHERE name='$domain_name';";
+	$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 }
 
 function drawNameTransfer($admin,$given_fqdn="none"){

@@ -4,8 +4,7 @@ require_once "$dtcshared_path/dtcrm/opensrs.php";
 
 function registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
 	global $SRScookie_errno;
-	if(($cookie = SRSget_cookie($adm_login,$adm_pass,$domain_name)) == -1)	return $SRScookie_errno;
-
+	if(($cookie = SRSget_cookie($adm_login,$adm_pass,$domain_name)) == -1) return $SRScookie_errno;
 	$fqdn = $subdomain. "." .$domain_name;
 
 	$srs_result = SRSregistry_create_nameserver($cookie,$fqdn,$ip);
@@ -15,7 +14,6 @@ function registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$i
 	}
 
 	$srs_result = SRSregistry_add_nameserver($fqdn);
-
 	SRSdelete_cookie($cookie);
 	return $srs_result;
 }
@@ -73,6 +71,57 @@ function SRSregistry_update_whois_infoz($adm_login,$adm_pass,$domain_name,$conta
 
 function registry_update_whois_infoz($adm_login,$adm_pass,$domain_name,$contacts){
 	return SRSregistry_update_whois_infoz($adm_login,$adm_pass,$domain_name,$contacts);
+}
+
+function SRScreate_dns_array_from_piped_list($dns){
+	global $conf_addr_primary_dns;
+	global $conf_addr_secondary_dns;
+
+	$dns_array = explode("|",$dns);
+	$nbr_other_dns = sizeof($dns_array);
+
+	if($dns_array[0] == "default"){
+		$dns_array[0] = $conf_addr_primary_dns;
+	}
+	if($dns_array[1] == "default"){
+		$dns_array[1] = $conf_addr_secondary_dns;
+	}
+	for($z=0;$z<sizeof($dns_array);$z++){
+		$nameserver_list[$z] = array(
+			"sortorder" => $z,
+			"action" => "update",
+			"name" => $dns_array[$z]);
+	}
+	return $nameserver_list;
+}
+
+function SRSregistry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns){
+	global $SRScookie_errno;
+	if(($cookie = SRSget_cookie($adm_login,$adm_pass,$domain_name)) == -1) return $SRScookie_errno;
+
+	$dns_array = SRScreate_dns_array_from_piped_list($dns);
+	// Make the DNS array
+	$cmd = array(
+		'protocol' => "XCP",
+		'action' => "modify",
+		'cookie' => $cookie,
+		'object' => "domain",
+		'attributes' => array(
+			'data' => "nameserver_list",
+			'org_name' => "GPLHost",
+			'affect_domains' => 0,
+			'nameserver_list' => $dns_array
+			)
+		);
+	$O = new openSRS('test','XCP');
+	$srs_result = $O->send_cmd($cmd);
+	print_r($srs_result);
+	SRSdelete_cookie($cookie);
+	return $srs_result;
+}
+
+function registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns){
+	return SRSregistry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns);
 }
 
 function SRSregistry_check_transfer($domain){

@@ -32,7 +32,6 @@ function SRSregistry_get_domain_price($domain_name,$period){
 }
 
 function SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers){
-
 	$owner = SRScreate_contact_array($contacts["owner"]);
 	$billing = SRScreate_contact_array($contacts["billing"]);
 	$admin = SRScreate_contact_array($contacts["admin"]);
@@ -43,18 +42,16 @@ function SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$
 		'admin' => $admin);
 
 	$nameservers = array();
-	if($dns_servers[0]["name"] != default && $dns_servers[1]["name"] != default &&
+
+	if($dns_servers[0]["name"] != "default" && $dns_servers[1]["name"] != "default" &&
 		isHostname($dns_servers[0]["name"]) && isHostname($dns_servers[1]["name"])){
 		$nameservers[] = array(
-			'sortorder' => 1,
-			'name' => 'ns1.domaindirect.com');
+			"sortorder" => 1,
+			"name" => 'ns1.domaindirect.com');
 		$nameservers[] = array(
-			'sortorder' => '2',
-			'name' => 'ns2.domaindirect.com');
-	}else{
-		$nameservers = array();
+			"sortorder" => 2,
+			"name" => 'ns2.domaindirect.com');
 	}
-
 	$cmd = array(
 		'protocol' => 'XCP',
 		'action' => 'SW_REGISTER',
@@ -78,6 +75,7 @@ function SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$
 	$O = new openSRS('test','XCP');
 	$srs_result = $O->send_cmd($cmd);
 	return $srs_result;
+
 }
 
 ?>

@@ -191,14 +191,17 @@ $form_start
 	$owner_id = $_REQUEST["dtcrm_owner_hdl"];
 	$billing_id = $_REQUEST["dtcrm_billing_hdl"];
 	$admin_id = $_REQUEST["dtcrm_admin_hdl"];
-	getContactsArrayFromID($owner_id,$billing_id,$admin_id);
-	$regz = registry_register_domain($adm_login,$adm_pass,$fqdn,$period,$contacts,$dns_servers);
+	$contacts = getContactsArrayFromID($owner_id,$billing_id,$admin_id);
+	$regz = registry_register_domain($adm_login,$adm_pass,$fqdn,$_REQUEST["toreg_period"],$contacts,$dns_servers);
 
 	if($regz["is_success"] != 1){
 		$out .= "<font color=\"red\"><b>Registration failed</b></font><br>
 Server said: <i>" . $regz["response_text"] . "</i>";
 		return $out;
 	}
+	$out .= "<font color=\"green\"><b>Registration succesfull</b></font><br>
+Server said: <i>" . $regz["response_text"] . "</i><br>";
+
 	addDomainToUser($adm_login,$adm_pass,$fqdn);
 	unset($ns_ar);
 	$ns_ar[] = $_REQUEST["toreg_dns1"];
@@ -213,10 +216,10 @@ Server said: <i>" . $regz["response_text"] . "</i>";
 		$ns_ar[] = $_REQUEST["toreg_dns6"];
 	newWhois($fqdn,$owner_id,$billing_id,$admin_id,$period,$ns_ar);
 
-	$out .= "<font color=\"green\"><b>Registration succesfull</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>
+	$out .= "<font color=\"green\"><b>Succesfull added your domain name
+to hosting database</b></font><br>";
 
-Click <a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">here</a>
+	$out .= "Click <a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">here</a>
 to refresh the menu or add another domain name.
 ";
 

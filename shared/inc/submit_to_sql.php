@@ -22,19 +22,19 @@ if($_REQUEST["new_dns_and_mx_config"] == "Ok"){
 	$new_mx_6 = $_REQUEST["new_mx_6"];
 
 	// Verify input validity
-	if(!isIP($new_dns_1))	$new_dns_1 = "default";
-	if(!isIP($new_dns_2))	$new_dns_2 = "default";
-	if(!isIP($new_dns_3))	$new_dns_3 = "";
-	if(!isIP($new_dns_4))	$new_dns_4 = "";
-	if(!isIP($new_dns_5))	$new_dns_5 = "";
-	if(!isIP($new_dns_6))	$new_dns_6 = "";
+	if(!isHostnameOrIP($new_dns_1))	$new_dns_1 = "default";
+	if(!isHostnameOrIP($new_dns_2))	$new_dns_2 = "default";
+	if(!isHostnameOrIP($new_dns_3))	$new_dns_3 = "";
+	if(!isHostnameOrIP($new_dns_4))	$new_dns_4 = "";
+	if(!isHostnameOrIP($new_dns_5))	$new_dns_5 = "";
+	if(!isHostnameOrIP($new_dns_6))	$new_dns_6 = "";
 
-	if(!isIP($new_mx_1))	$new_mx_1 = "default";
-	if(!isIP($new_mx_2))	$new_mx_2 = "";
-	if(!isIP($new_mx_3))	$new_mx_3 = "";
-	if(!isIP($new_mx_4))	$new_mx_4 = "";
-	if(!isIP($new_mx_5))	$new_mx_5 = "";
-	if(!isIP($new_mx_6))	$new_mx_6 = "";
+	if(!isHostnameOrIP($new_mx_1))	$new_mx_1 = "default";
+	if(!isHostnameOrIP($new_mx_2))	$new_mx_2 = "";
+	if(!isHostnameOrIP($new_mx_3))	$new_mx_3 = "";
+	if(!isHostnameOrIP($new_mx_4))	$new_mx_4 = "";
+	if(!isHostnameOrIP($new_mx_5))	$new_mx_5 = "";
+	if(!isHostnameOrIP($new_mx_6))	$new_mx_6 = "";
 
 	if($new_dns_2 != "default" && isset($new_dns_2) && $new_dns_2 != ""){
 		if(isset($new_dns_3) && $new_dns_3 != ""){
@@ -67,6 +67,19 @@ if($_REQUEST["new_dns_and_mx_config"] == "Ok"){
 	if($new_mx_1 == "")	$new_mx_1 = "default";
 	if($new_mx_2 == "")	$new_mx_2 = "default";
 
+	// If domain whois is hosted here, change the whois value using a registry call.
+	if(file_exists($dtcshared_path."/dtcrm")){
+		$query = "SELECT * FROM $pro_mysql_domain_table WHERE name='$edit_domain';";
+		$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
+		$row = mysql_fetch_array($result);
+		if($row["whois"] == "here"){
+			$regz = registry_update_whois_dns($adm_login,$adm_pass,$edit_domain,"$new_dns_1|$new_dns_2");
+			if($regz["is_success"] != 1){
+				die("<font color=\"red\"><b>Whois update failed</b></font><br>
+Server said: <i>" . $regz["response_text"] . "</i>");
+			}
+		}
+	}
 
 	$query = "UPDATE $pro_mysql_domain_table SET primary_dns='$new_dns_1',other_dns='$new_dns_2',primary_mx='$new_mx_1',other_mx='$new_mx_2' WHERE owner='$adm_login' AND name='$edit_domain';";
 	mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
