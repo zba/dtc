@@ -60,7 +60,7 @@ if (!$fp) {
 			if($_POST["payment_amount"] < $a["refund_amount"]){
 				die("Incorrect amount!");
 			}
-			
+			validatePaiement($item_number,$_POST["payment_amount"],"online","paypal",$txn_id);
 		}
 		else if (strcmp ($res, "INVALID") == 0) {
 			// log for manual investigation
