@@ -373,21 +373,24 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 				cp $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup
 			fi
 
-			# now check for postfix chroot, so we can place our sasldb2 file there
+			# prepare some sasldb2 files, so that our script latter can fix them
+
 			if [ -e /var/spool/postfix/etc ]; then
-				if [ ! -f /var/spool/postfix/etc/sasldb2 ]; then
-					ln -s $PATH_DTC_ETC/sasldb2 /var/spool/postfix/etc/sasldb2
-				else
-					echo "!!!!! WARNING, sasldb2 file exists at /var/spool/postfix/etc/sasldb2, please remove this so that sasldb2 generation can be done by DTC !!!!!"
+				touch /var/spool/postfix/etc/sasldb2
+				chown postfix:nogroup /var/spool/postfix/etc/sasldb2
+				chmod 664 /var/spool/postfix/etc/sasldb2
+				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
+					cp /var/spool/postfix/etc/sasldb2 $PATH_DTC_ETC/sasldb2
 				fi
-			else
-				if [ ! -f /etc/sasldb2 ]; then
-					ln -s $PATH_DTC_ETC/sasldb2 /etc/sasldb2
-				else
-					echo "!!!!! WARNING, sasldb2 file exists at /etc/sasldb2, please remove this so that sasldb2 generation can be done by DTC !!!!!"
+			else 
+				touch /etc/sasldb2
+				chown postfix:nogroup
+				chmod 664 /var/spool/postfix/etc/sasldb2
+				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
+					cp /etc/sasldb2 $PATH_DTC_ETC/sasldb2
 				fi
 			fi
-			
+
 			SASLTMP_FILE=`mktemp -t DTC_install.postfix_sasl.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.15 : Please don't touch this line !" > $SASLTMP_FILE
 			echo "pwcheck_method: auxprop
@@ -398,7 +401,7 @@ mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
 
 smtp_sasl_auth_enable = no
 smtpd_sasl_security_options = noanonymous
-smtpd_sasl_local_domain = $myhostname
+smtpd_sasl_local_domain = \$myhostname
 smtpd_sasl_auth_enable = yes
 smtpd_tls_auth_only = no
 " >> $TMP_FILE
