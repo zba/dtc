@@ -1,9 +1,32 @@
-01-10-04: Postfix now has SASL SMTP AUTH support, and the sasldb file is generated along with the rest of the postfix generation.  Also, a few tidy ups in regards to tmp file usage, and also other bashisms removed
+04-10-04:
+Checked SASL and patched for whenever a box has no support
+for it (Damien: how to install that in woody? How does it
+works for the final customer? Just add "secure auth" in
+outlook and that's it?).
 
+Added a flag in installer for verbosivity, it was NOT
+possitble to continue like that! :)0
+
+01-10-04:
+Damien:
+Postfix now has SASL SMTP AUTH support, and the sasldb file is
+generated along with the rest of the postfix generation.
+
+Also, a few tidy ups in regards to tmp file usage, and also
+other bashisms removed.
+
+Thomas & damien:
 Resolved pear install under Debian by a stupidly long php version
-checking. Added 2 new nice skins, debuged access log dump so webalizer
-statistics are ok. Added an option to have domain preview if unresolved.
-This was incompatible with reselling subdomains...
+checking.
+
+Thomas:
+Added 2 new nice skins, debuged access log dump so webalizer
+statistics are ok. Added an option to have domain preview if
+unresolved. This was incompatible with reselling subdomains...
+Also this could enable cross-site scripting if enable,
+because of running under the same domain. Happily, DTC does
+not have a lot of stuff in session (who said sessions are
+secured?)! :)
 
 31-08-04: V0.15.0-R2 improved the way DTC handles non-resolveable
 domains aliasing: now it uses open_basedir like for normal vhosts,
