@@ -846,8 +846,8 @@ function drawAdminTools($admin){
 			$title = "DNS config of: ".$edit_domain;
 		}else if($add_array[1] == "whois"){
                         $web_editor .= drawAdminTools_Whois($admin,$eddomain);
-                        $title = "DNS config of: ".$edit_domain;M
-                }else if($add_array[1] == "subdomains"){
+                        $title = "DNS config of: ".$edit_domain;
+		}else if($add_array[1] == "subdomains"){
                         $web_editor .= drawAdminTools_Subdomain($eddomain);
                         $title = $txt_title_subdomain_form[$lang].$edit_domain;
                 }else if($add_array[1] == "ftp-accounts"){
