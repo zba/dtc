@@ -41,8 +41,6 @@ echo "Setting-up lock flag\n";
 $query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='inprogress' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
-
-
 $start_stamps = mktime();
 ////////////////////////////////////////////////////////////
 // First find if it's time for long statistic generation. //
@@ -156,7 +154,7 @@ if($cronjob_table_content["restart_qmail"] == "yes"){
 }
 
 // Check if pop is running, restart qmail if not
-if($CHECK_QMAIL_POP3D == "yes"){
+if($conf_mta_type == "qmail" && $CHECK_QMAIL_POP3D == "yes"){
 	$fp = fsockopen ($conf_addr_mail_server, 110, $errno, $errstr, 30);
 	if(!fp){
 		echo "$errno/$errstr: POP3 is not running ! Restarting qmail !!!\n";
@@ -172,7 +170,6 @@ if($CHECK_QMAIL_POP3D == "yes"){
 		system("killall -HUP named");
 	}
 }
-
 
 if($cronjob_table_content["restart_apache"] == "yes"){
 	$plop = array();
