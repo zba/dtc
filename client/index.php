@@ -1,29 +1,9 @@
 <?php
 
-require("/usr/share/dtc/shared/autoSQLconfig.php");
+require_once("/usr/share/dtc/shared/autoSQLconfig.php");
 // All shared files between DTCadmin and DTCclient
-require("$dtcshared_path/global_vars.php");
+require_once("$dtcshared_path/dtc_lib.php");
 
-require("$dtcshared_path/lang.php");			// Setup the $lang global variable (to en, en-us, fr, etc... : whatever is translated !)
-require("$dtcshared_path/strings.php");			// Contain all the translated string
-require("$dtcshared_path/table_names.php");
-require("$dtcshared_path/dtc_functions.php");
-require("$dtcshared_path/inc/accounting.php");
-//require("top_menu_strings.php");
-include("$dtcshared_path/anotherDtc.php");	// Contain all anotherXXX() functions
-include("$dtcshared_path/tree_menu.php");
-include("$dtcshared_path/skin.php");
-include("$dtcshared_path/skinLib.php");
-include("$dtcshared_path/inc/fetch.php");
-if(file_exists($dtcshared_path."/dtcrm")){
-	include("$dtcshared_path/dtcrm/draw.php");
-}
-include("$dtcshared_path/inc/draw.php");
-include("$dtcshared_path/inc/submit_to_sql.php");
-if(file_exists($dtcshared_path."/dtcrm")){
-	include("$dtcshared_path/dtcrm/submit_to_sql.php");
-}
-//include("$dtcshared_path/inc/nav.php");
 
 ////////////////////////////////////
 // Create the top banner and menu //
