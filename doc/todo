@@ -8,7 +8,6 @@ Here is the todo in unsorted order:
 - Integrate a mailling list manager
 - Integrate smtp AUTH
 - Find a SMART way to handle disk quotas
-- Finish paypal API integration
 - Finish tucows API integration
 - Integrate all new changes with FreeBSD &
 RedHat (to do at when all of the top is finished)

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+openssl req -new > $1.cert.csr
+openssl rsa -in $1.privkey.pem -out $1.cert.key
+openssl x509 -in $1.cert.csr -out $1.cert.cert -req -signkey $1.cert.key -days 365
