@@ -197,14 +197,21 @@ $more_mx_server
 	$r = mysql_query($q)or die("Cannot query $q ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
+		$flag = false;
+		$retry = 0;
 		$a = mysql_fetch_array($r);
-		$lines = file ($a["server_addr"].'/dtc/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"]);
-		$nline = sizeof($lines);
-		if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
-			strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
-			for($j=0;$j<$nline;$j++){
-				$named_file .= $lines[$j];
+		while($retry < 3 && $flag == false){
+			$lines = file ($a["server_addr"].'/dtc/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"]);
+			$nline = sizeof($lines);
+			if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
+				strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
+				for($j=0;$j<$nline;$j++){
+					$named_file .= $lines[$j];
+				}
+				$flag = true;
 			}
+			$retry++;
+			if($flag == false)	sleep(5);
 		}
 	}
 
