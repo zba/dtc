@@ -288,6 +288,7 @@ LogSQLSocketFile /var/run/mysqld/mysqld.sock
 LogSQLDatabase apachelogs
 LogSQLCreateTables On
 LogSQLTransferLogFormat IAbhRrSsU
+ErrorDocument 404 http://www.$main_domain_name"/404.php"
 # End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF
 	if [ -f $TMP_FILE ]
 	then
@@ -303,6 +304,18 @@ if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
 		chown -R nobody:65534 $PATH_DTC_ETC/template
 		chmod -R 664 $PATH_DTC_ETC/template
 	fi
+fi
+
+# copy the 404 index.php file if none is found.
+if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.php" ]; then
+	if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.html" ]; then
+		cp $PATH_DTC_SHARED/shared/404_template/index.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
+	fi
+fi
+
+# copy the Error 404 document
+if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/404.php" ]; then
+	cp $PATH_DTC_SHARED/shared/404_template/404.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/"
 fi
 
 PATH_PAMD_SMTP=/etc/pam.d/smtp
