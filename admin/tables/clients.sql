@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS cients (
+CREATE TABLE IF NOT EXISTS clients (
   id int(9) NOT NULL auto_increment,
   is_company enum('yes','no') NOT NULL default 'no',
   company_name varchar(64) default NULL,
