@@ -151,14 +151,16 @@ function sum_http($webname){
 			$visits = 0;
 
 			// Get hosts
-			$q_hosts = "SELECT remote_host FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end." GROUP BY remote_host";
+/*			$q_hosts = "SELECT remote_host FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end." GROUP BY remote_host";
 			$r_hosts = mysql_query($q_hosts) or die("Cannot execute query \"$q_hosts\" !!! ".mysql_error());
-			$hosts = mysql_num_rows($r_hosts);
+			$hosts = mysql_num_rows($r_hosts);*/
+			$hosts = 0;
 
 			// Get impressions
-			$q_imp = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;;
+/*			$q_imp = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;;
 			$r_imp = mysql_query($q_imp) or die("Cannot execute query \"$q_imp\" !!! ".mysql_error());
-			$imp = mysql_num_rows($r_imp);
+			$imp = mysql_num_rows($r_imp);*/
+			$imp = 0;
 
 			mysql_select_db($conf_mysql_db);
 
