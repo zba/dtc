@@ -227,14 +227,18 @@ LogSQLTransferLogFormat IAbhRrSsU
 fi
 
 PATH_PAMD_SMTP=/etc/pam.d/smtp
-if [ -f /etc/pam.d/ ]
+if [ -e /etc/pam.d/ ]
 then
 	echo "===> Adding configuration inside "$PATH_PAMD_SMTP
-	if ! [ -f $PATH_PAMD_SMTP.DTC.backup ]
+	if [ -f $PATH_PAMD_SMTP ]
 	then
-		cp -f $PATH_PAMD_SMTP $PATH_PAMD_SMTP.DTC.backup
+		if ! [ -f $PATH_PAMD_SMTP.DTC.backup ]
+		then
+			cp -f $PATH_PAMD_SMTP $PATH_PAMD_SMTP.DTC.backup
+		fi
 	fi
-	echo "auth required pam_mysql.so user="$conf_mysql_login" passwd="$conf_mysql_pass" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >/etc/pam.d/smtp
+	touch $PATH_PAMD_SMTP
+	echo "auth required pam_mysql.so user="$conf_mysql_login" passwd="$conf_mysql_pass" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
 #	if grep "Configured by DTC" $PATH_PAMD_SMTP
 #		echo $PATH_PAMD_SMTP" has been configured before: skiping include insertion!"
 #	else
