@@ -130,6 +130,8 @@ else
 	else
 		echo $HTTPD_MODULES_CONFIG enable php4_module
 		$HTTPD_MODULES_CONFIG enable php4_module
+		echo $HTTPD_MODULES_CONFIG enable mod_php4
+		$HTTPD_MODULES_CONFIG enable mod_php4
 		echo " enabled by $HTTPD_MODULES_CONFIG"
 	fi
 
@@ -501,6 +503,12 @@ else
 	echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >>/tmp/DTC_config_crontab
 	cat </tmp/DTC_config_crontab >>/etc/crontab
 	rm /tmp/DTC_config_crontab
+fi
+
+# This avoid hanging when (re)starting daemons under debian
+if [ "$UNIX_TYPE" = "debian" ]
+then
+	db_stop
 fi
 
 cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php

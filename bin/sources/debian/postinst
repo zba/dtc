@@ -146,7 +146,4 @@ else
 	rm /tmp/DTC_resolv.conf
 fi
 
-# This avoid hangs when starting/restarting daemons from install script
-db_stop
-
 # Upon this line, here is the standard DTC install script :
