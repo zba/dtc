@@ -25,7 +25,7 @@
 
 if ! [ -f $PATH_DTC_SHARED/securepay/paiement_config.php ]
 then
-	cp -v $PATH_DTC_SHARED/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/securepay/paiement_config.php
+	cp -v $PATH_DTC_SHARED/shared/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/securepay/paiement_config.php
 fi
 
 #
