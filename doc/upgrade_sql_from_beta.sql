@@ -41,3 +41,6 @@ ADD hosting enum('here','away') NOT NULL default 'here' ;
 ALTER TABLE subdomain
 ADD login varchar(16) default NULL,
 ADD pass varchar(64) default NULL ;
+
+ALTER TABLE admin
+ADD bandwidth_per_month_mb INT ( 11 ) NOT NULL ;
