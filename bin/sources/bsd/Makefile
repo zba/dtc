@@ -11,6 +11,7 @@ RUN_DEPENDS=	php:${PHP_PORT} \
 		${QMAIL_DIR}/bin/qmail-start:${PORTSDIR}/mail/qmail
 
 PHP_PORT=${PORTSDIR}/lang/php4-dtc
+QMAIL_DIR?=	/var/qmail
 
 NO_BUILD=	yes
 USE_MYSQL=	yes
