@@ -10,12 +10,15 @@ foreach ($_POST as $key => $value) {
 	$value = urlencode(stripslashes($value));
 	$req .= "&$key=$value";
 }
+// $paypal_server_hostname = "www.paypal.com";
+$paypal_server_hostname = "www.eliteweaver.co.uk";
+$paypal_server_script = "/cgi-bin/webscr";
 
 // post back to PayPal system to validate
-$header .= "POST /cgi-bin/webscr HTTP/1.0\r\n";
+$header .= "POST $paypal_server_script HTTP/1.0\r\n";
 $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 $header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
-$fp = fsockopen ('www.paypal.com', 80, $errno, $errstr, 30);
+$fp = fsockopen ($paypal_server_hostname, 80, $errno, $errstr, 30);
 
 // assign posted variables to local variables
 $item_name = $_POST['item_name'];
