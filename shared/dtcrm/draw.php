@@ -149,7 +149,7 @@ $form_start
 
 	// Check billing to know if user has enough money on his account
 	$price = registry_get_domain_price($fqdn,$_REQUEST["toreg_period"]);
-	$fqdn_price = $price["attributes"]["price"];
+	$fqdn_price = $price["attributes"]["price"] + 2;
 	$fqdn_price += $_REQUEST["toreg_period"] * 2;
 
 	if($admin["info"]["id_client"] != 0){
@@ -201,6 +201,9 @@ Server said: <i>" . $regz["response_text"] . "</i>";
 	}
 	$out .= "<font color=\"green\"><b>Registration succesfull</b></font><br>
 Server said: <i>" . $regz["response_text"] . "</i><br>";
+
+	$query = "UPDATE $pro_mysql_client_table SET dollar='".$remaining-$fqdn_price."' WHERE id='".$admin["info"]["id_client"]."';";
+	mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
 	addDomainToUser($adm_login,$adm_pass,$fqdn);
 	unset($ns_ar);

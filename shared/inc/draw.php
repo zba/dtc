@@ -4,7 +4,6 @@
 require("$dtcshared_path/strings.php");
 require_once "$dtcshared_path/inc/paiement.php";
 
-
 function drawAdminTools_MyAccount($admin){
 	global $PHP_SELF;
 	global $adm_login;
@@ -47,22 +46,24 @@ when paiement is done, click the refresh button.";
 		$du_quota = $admin["info"]["quota"]*1024*1024;
 		$out .= " / ".smartByte($du_quota)."<br>";
 		$out .= drawPercentBar($stats["total_du"],$du_quota);
-		$out .= "<br>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
-<input type=\"submit\" value=\"Upgrade my account\">
-</form><br>";
-	}
 
-	if($id_client != 0){
-		if($_REQUEST["action"] == "refund_myaccount"){
-			$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
-			$out .=" Please click on the button bellow to refund your account. Then,
-when paiement is done, click the refresh button.";
-			$out .= "<center><font size=\"+1\">\$".$_REQUEST["refund_amount"]."</font><br>".
-			paynowButton(0,$_REQUEST["refund_amount"]);
-			$out .= "<br><br>$frm_start<input type=\"submit\" value=\"Refresh and see my account\"></form></center>";
-			return $out;
-		}
 		$client = $admin["client"];
+
+		$out .= "<br><b><u>Your hosting account:</u></b>";
+		$out .= "<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"1\">
+<tr>
+	<td><b>Storage space</b></td><td><b>Allowed bandwidth per month</b></td><td><b>Expiration date</b></td>
+</tr>
+<tr>
+	<td>".smartByte($du_quota)."</td><td>".smartByte($bw_quota)."</td><td>".$client["expir"]."</td>
+</tr>
+</table>";
+		$out .= "<br><center>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
+<input type=\"submit\" value=\"Upgrade my account\">
+</form>";
+		$out .= "$frm_start<input type=\"hidden\" name=\"action\" value=\"renew_myaccount\">
+<input type=\"submit\" value=\"Renew my account\">
+</form></center><br>";
 
 		$out .=  "<b><u>Remaining money on my account:</u></b><br>
 <table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"0\">

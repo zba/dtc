@@ -55,6 +55,7 @@ function fetchAdminInfo($adm_login){
 	$ret["data"]["max_ftp"] = $row["max_ftp"];
 	$ret["data"]["quota"] = $row["quota"];
 	$ret["data"]["bandwidth_per_month_mb"] = $row["bandwidth_per_month_mb"];
+	$ret["data"]["expir"] = $row["expir"];
 	$ret["data"]["id_client"] = $row["id_client"];
 	return $ret;
 }

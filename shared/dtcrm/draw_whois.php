@@ -2,6 +2,7 @@
 
 function newWhois($domain_name,$owner_id,$billing_id,$admin_id,$period,$ns_ar){
 	global $pro_mysql_whois_table;
+	global $pro_mysql_domain_table;
 
 	$y = date("Y");
 	$m = date("m");
