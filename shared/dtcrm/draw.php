@@ -637,7 +637,7 @@ function drawAdminTools_MyAccount($admin){
 	if($id_client != 0){
 		$client = $admin["client"];
 		$out .=  "<b><u>Remaining money on my account:</u></b><br>
-<font size=\"+2\">\$".$client["dolar"]."</font><br><br>
+<font size=\"+2\">\$".$client["dollar"]."</font><br><br>
 Refund my account with the following ammount:<br>
 <form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
@@ -665,6 +665,9 @@ Refund my account with the following ammount:<br>
 		$out .= "Phone: " .$client["phone"]."<br>";
 		$out .= "Fax: " .$client["fax"]."<br>";
 		$out .= "Email: " .$client["email"]."<br>";
+	}else{
+		$out .= "You do not have a client account, so there
+is no money in your account.";
 	}
 	return $out;
 

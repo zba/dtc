@@ -6,15 +6,9 @@ function DTCRMlistClients(){
 	$id_client = $_REQUEST["id"];
 	global $pro_mysql_client_table;
 
-	$text .= "<div style=\"white-space: nowrap\" nowrap>";
-	if($id_client == 0 && $id_client == "" || !isset($id_client)){
-		$text .= "<a href=\"$PHP_SELF?rub=crm&id=0\">";
-	}
-	$text .= "New customer";
-	if($id_client != 0 && $id_client != "" && isset($id_client)){
-		$text .= "</a>";
-	}
-	$text .= "<br><br>";
+	$text .= "<div style=\"white-space: nowrap\" nowrap>
+<a href=\"$PHP_SELF?rub=crm&id=0\">New customer</a>
+</a><br><br>";
 
 	$query = "SELECT * FROM $pro_mysql_client_table ORDER BY familyname";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
@@ -65,8 +59,8 @@ function DTCRMeditClients(){
 <tr><td align=\"right\">Family name:</td><td><input size=\"40\" type=\"text\" name=\"ed_familyname\"value=\"".$row["familyname"]."\"></td></tr>
 <tr><td align=\"right\">First name:</td><td><input size=\"40\" type=\"text\" name=\"ed_christname\" value=\"".$row["christname"]."\"></td></tr>
 <tr><td align=\"right\">Is company:</td><td>
-yes<input type=\"radio\" name=\"ed_is_copany\" value=\"yes\" $iscomp_yes >
-no<input type=\"radio\" name=\"ed_is_copany\" value=\"no\" $iscomp_no >
+yes<input type=\"radio\" name=\"ed_is_company\" value=\"yes\" $iscomp_yes >
+no<input type=\"radio\" name=\"ed_is_company\" value=\"no\" $iscomp_no >
 <tr><td align=\"right\">Company name:</td><td><input size=\"40\" type=\"text\" name=\"ed_company_name\" value=\"".$row["company_name"]."\"></td></tr>
 <tr><td align=\"right\">Addr1:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr1\" value=\"".$row["addr1"]."\"></td></tr>
 <tr><td align=\"right\">Addr2:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr2\" value=\"".$row["addr2"]."\"></td></tr>
@@ -74,15 +68,15 @@ no<input type=\"radio\" name=\"ed_is_copany\" value=\"no\" $iscomp_no >
 <tr><td align=\"right\">City:</td><td><input size=\"40\" type=\"text\" name=\"ed_city\" value=\"".$row["city"]."\"></td></tr>
 <tr><td align=\"right\">Zicode:</td><td><input size=\"40\" type=\"text\" name=\"ed_zipcode\" value=\"".$row["zipcode"]."\"></td></tr>
 <tr><td align=\"right\">State:</td><td><input size=\"40\" type=\"text\" name=\"ed_state\" value=\"".$row["state"]."\"></td></tr>
-<tr><td align=\"right\">Country:</td><td><select name=\"country\">".
-cc_code_popup($row["country"])
-."</select><input size=\"40\" type=\"text\" name=\"ed_country\" value=\"".$row["country"]."\"></td></tr>
+<tr><td align=\"right\">Country:</td><td><select name=\"ed_country\">".
+cc_code_popup($row["country"])."</select></td></tr>
 <tr><td align=\"right\">Phone:</td><td><input size=\"40\" type=\"text\" name=\"ed_phone\" value=\"".$row["phone"]."\"></td></tr>
 <tr><td align=\"right\">Fax:</td><td><input size=\"40\" type=\"text\" name=\"ed_fax\" value=\"".$row["fax"]."\"></td></tr>
 <tr><td align=\"right\">Email:</td><td><input size=\"40\" type=\"text\" name=\"ed_email\" value=\"".$row["email"]."\"></td></tr>
 <tr><td align=\"right\">Notes:</td><td><textarea cols=\"40\" rows=\"5\" name=\"ed_special_note\">".$row["special_note"]."</textarea></td></tr>
 <tr><td align=\"right\">Dollar:</td><td><input size=\"40\" type=\"text\" name=\"ed_dollar\" value=\"".$row["dollar"]."\"></td></tr>
-
+<tr><td align=\"right\" style=\"white-space: nowrap\" nowrap>Disk quota (in MB):</td><td><input size=\"40\" type=\"text\" name=\"ed_disk_quota_mb\" value=\"".$row["disk_quota_mb"]."\"></td></tr>
+<tr><td align=\"right\" style=\"white-space: nowrap\" nowrap>Allowed transfer per month (in GB):</td><td><input size=\"40\" type=\"text\" name=\"ed_bw_quota_per_month_gb\" value=\"".$row["bw_quota_per_month_gb"]."\"></td></tr>
 <tr><td align=\"right\"></td><td><input type=\"submit\" value=\"Save\"></td></tr>
 </table>
 </form>";
