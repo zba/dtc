@@ -76,7 +76,7 @@ for($j=0;$j<$num;$j++){
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 //		echo $a['Field'].": ".$a['Type']."\n";
-		$out .= "\t\t\t\"".$a['Field']." => \"".$a['Type'];
+		$out .= "\t\t\t\"".$a['Field']."\" => \"".$a['Type'];
 		if($a['Null'] == 'YES')
 			$out .= " NULL";
 		else
@@ -114,7 +114,7 @@ for($j=0;$j<$num;$j++){
 	if(sizeof($keys) > 0 && sizeof($primaries) > 0)
 		$out .= ")\",\n";
 	else if(sizeof($primaries) > 0)
-		$out .= ")\"\n";
+		$out .= ")\"\n\t\t\t)\n";
 
 	if(sizeof($keys>0)){
 		$kkeys = @array_keys($keys);
@@ -128,7 +128,7 @@ for($j=0;$j<$num;$j++){
 			if($i<sizeof($kkeys)-1)
 				$out .= ")\",\n";
 			else
-				$out .= ")\"\n";
+				$out .= ")\"\n\t\t\t)\n";
 		}
 	}
 
