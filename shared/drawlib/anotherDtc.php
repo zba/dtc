@@ -85,6 +85,9 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	global $conf_dtc_version;
 	global $conf_dtc_release;
 
+	global $txt_pagetop_zesubtitle;
+	global $lang;
+
 	$nowrap = " style=\"white-space:nowrap\" valign=\"top\"";
 	if($drawLanguageSelect=="yes"){
 		$zeLanguage = "<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
@@ -95,7 +98,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 <tr><td $nowrap><center><a href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
 	<font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release</font></center>
 </td><td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
-	<font size=\"-1\"><i>Take the control of your domain name</i></font></center></td>
+	<font size=\"-1\"><i>".$txt_pagetop_zesubtitle[$lang]."</i></font></center></td>
 <td width=\"100%\" align=\"right\">".$zeLanguage."</td></tr>
 </table>
 ";

@@ -84,6 +84,16 @@ function drawAdminTools_MyAccount($admin){
 	global $txt_total_disk_usage;
 	global $txt_transfer_this_month;
 	global $txt_transfer_du;
+	global $txt_draw_client_info_familyname;
+	global $txt_draw_client_info_firstname;
+	global $txt_draw_client_info_comp_name;
+	global $txt_draw_client_info_addr;
+	global $txt_draw_client_info_zipcode;
+	global $txt_draw_client_info_country;
+	global $txt_draw_client_info_city;
+	global $txt_draw_client_info_phone;
+	global $txt_draw_client_info_fax;
+	global $txt_draw_client_info_email;
 
 	$frm_start = "<form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
@@ -163,18 +173,20 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 		$out .= "<center><b>".$txt_please_tell_if_info_not_ok[$lang]."</b></center>";
 
 		if($client["is_company"] == "yes"){
-			$out .= "Company: ".$client["company_name"]."<br>";
+			$out .= $txt_draw_client_info_comp_name[$lang].$client["company_name"]."<br>";
 		}
-		$out .= "Firstname: " .$client["christname"]."<br>";
-		$out .= "Familyname: " .$client["familyname"]."<br>";
-		$out .= "Addresse 1: " .$client["addr1"]."<br>";
-		$out .= "Addresse 2: " .$client["addr2"]."<br>";
-		$out .= "Zipcode: " .$client["zipcode"]."<br>";
-		$out .= "Sate: " .$client["state"]."<br>";
-		$out .= "Country: " . $cc_code_array[ $client["country"] ] ."<br>";
-		$out .= "Phone: " .$client["phone"]."<br>";
-		$out .= "Fax: " .$client["fax"]."<br>";
-		$out .= "Email: " .$client["email"]."<br>";
+
+		$out .= $txt_draw_client_info_firstname[$lang].$client["christname"]."<br>";
+		$out .= $txt_draw_client_info_familyname[$lang].$client["familyname"]."<br>";
+		$out .= $txt_draw_client_info_addr[$lang].$client["addr1"]."<br>";
+		$out .= $client["addr2"]."<br>";
+		$out .= $txt_draw_client_info_zipcode[$lang].$client["zipcode"]."<br>";
+		$out .= $txt_draw_client_info_city[$lang].$client["city"]."<br>";
+		$out .= $txt_draw_client_info_state[$lang].$client["state"]."<br>";
+		$out .= $txt_draw_client_info_country[$lang].$cc_code_array[ $client["country"] ] ."<br>";
+		$out .= $txt_draw_client_info_phone[$lang].$client["phone"]."<br>";
+		$out .= $txt_draw_client_info_fax[$lang].$client["fax"]."<br>";
+		$out .= $txt_draw_client_info_email[$lang].$client["email"]."<br>";
 	}else{
 		$out .= "You do not have a client account, so there
 is no money in your account.";
@@ -197,6 +209,9 @@ function drawEditAdmin($admin){
 	global $txt_del_user_domain;
 	global $txt_del_user_domain_confirm;
 	global $txt_new_domain_for_user;
+	global $txt_allowed_data_transferMB;
+	global $txt_domain_tbl_config_quotaMB;
+	global $txt_allowed_data_transferMB;
 
 	global $adm_login;
 	global $adm_pass;
@@ -225,11 +240,11 @@ function drawEditAdmin($admin){
 	<td><input type=\"text\" name=\"changed_path\" value=\"$adm_path\"></td></tr>
 	<tr><td align=\"right\">".$txt_id_client[$lang]."</td>
 	<td><input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"></td></tr>
-	<tr><td align=\"right\">Quota disk (MB):</td>
+	<tr><td align=\"right\">".$txt_domain_tbl_config_quotaMB[$lang]."</td>
 	<td><input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\"></td></tr>
-	<tr><td align=\"right\">Transfer per month (MB):</td>
+	<tr><td align=\"right\">".$txt_allowed_data_transferMB[$lang]."</td>
 	<td><input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\"></td></tr>
-	<tr><td align=\"right\">Expiration date:</td>
+	<tr><td align=\"right\">".$txt_expiration_date[$lang]."</td>
 	<td><input type=\"text\" name=\"expire\" value=\"$expire\"></td></tr>
 	<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
 </td></tr></table></form>";
@@ -421,8 +436,8 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	global $txt_primari_dns_ip;
 	global $txt_comment_confirurate_your_domain_name;
 	global $txt_confirurate_your_domain_name;
-
-
+	global $txt_total_transfered_bytes_this_month;
+	global $txt_are_disk_usage;
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
@@ -461,8 +476,8 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 
 	return "<b><u>".$txt_your_domain[$lang]."</u></b><br><br>
 	<font size=\"-1\">
-	Total transfer: $total_transfer<br>
-	Quota disque : $du / $quota Mo<br>
+	".$txt_total_transfered_bytes_this_month[$lang]." $total_transfer<br>
+	".$txt_are_disk_usage[$lang]." $du / $quota MBytes<br>
 	".$txt_your_domain_email[$lang]." $email_nbr / $max_email<br>
 	".$txt_your_domain_ftp[$lang]." $ftp_nbr / $max_ftp<br>
 	".$txt_your_domain_subdomain[$lang]." $subdomain_nbr /
@@ -537,10 +552,24 @@ function drawAdminTools_Subdomain($domain){
 	global $txt_subdom_errase;
 	global $txt_subdom_create;
 
+	global $txt_subdom_newname;
+	global $txt_subdom_ip;
+
 	global $conf_administrative_site;
 
 	global $txt_number_of_active_subdomains;
 	global $txt_subdom_limit_reach;
+
+	global $txt_subdom_newname;
+	global $txt_subdom_dynip_logpass;
+	global $txt_subdom_dynip_logpass;
+	global $txt_subdom_dynip_login;
+	global $txt_subdom_dynip_pass;
+	global $txt_subdom_register_global;
+	global $txt_subdom_edita;
+	global $txt_subdom_scriptadvice;
+	global $txt_subdom_windowsusers;
+	global $txt_subdom_wwwalias;
 
 	global $edit_a_subdomain;
 
@@ -658,22 +687,20 @@ function drawAdminTools_Subdomain($domain){
 
 		// Allow creation of new sub-domains
 		if($nbr_subdomain < $max_subdomain){
-			$txt .= "<tr><td align=\"right\">Subdomain name:".$txt_subdom_create_name[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_name\" value=\"\"></td><td></td></tr>";
-			$txt .= "<tr><td align=\"right\">IP du sous-domain (laissez vide sinon):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_ip\" value=\"\"></td>";
+			$txt .= "<tr><td align=\"right\">".$txt_subdom_newname[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_name\" value=\"\"></td><td></td></tr>";
+			$txt .= "<tr><td align=\"right\">".$txt_subdom_ip[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_ip\" value=\"\"></td>";
 			$txt .= "<tr><td colspan=\"3\">";
-			$txt .= "If need it, it's possible to set your subdomain IP remotly,
-for example if you have a home connection dynamic address and you want a
-subdomain to point to it. First, enter login and password here:</td></tr>";
-			$txt .= "<tr><td align=\"right\">Dynamic ip update login:</td><td><input type=\"text\" name=\"newsubdomain_dynlogin\" value=\"\"></td></tr>";
-			$txt .= "<tr><td align=\"right\">Dynamic ip update password:</td><td><input type=\"text\" name=\"newsubdomain_dynpass\" value=\"\"></td></tr>";
+			$txt .= $txt_subdom_dynip_logpass[$lang]."</td></tr>";
+			$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_login[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_dynlogin\" value=\"\"></td></tr>";
+			$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_pass[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_dynpass\" value=\"\"></td></tr>";
 			$txt .= "<td><input type=\"submit\" name=\"newsubdomain\" value=\"Ok\"></td></tr>";
 		}else{
 			$txt .= "<td colspan=\"3\">".$txt_subdom_limit_reach[$lang]."</td>";
 		}
 	}else{
 		// Edition of existing subdomains
-		$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>Edit a subdomain:".$txt_subdom_edit[$lang]."</u></b></font></td></tr>";
-		$txt .= "<tr><td align=\"right\">Subdomain name:".$txt_subdom_create_name[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
+		$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>".$txt_subdom_edita[$lang]."</u></b></font></td></tr>";
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_newname[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
 		if($register_globals_to_edit == "yes"){
 			$checked_yes = " checked";
 			$checked_no = "";
@@ -681,7 +708,7 @@ subdomain to point to it. First, enter login and password here:</td></tr>";
 			$checked_yes = "";
 			$checked_no = " checked";
 		}
-		$txt .= "<tr><td align=\"right\">Use register_globals=1:</td>";
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_register_global[$lang]."</td>";
 		$txt .= "<td>Yes<input type=\"radio\" name=\"register_globals\" value=\"yes\" $checked_yes>
 No<input type=\"radio\" name=\"register_globals\" value=\"no\" $checked_no></td></tr>";
 		if($webalizer_to_edit == "yes"){
@@ -691,7 +718,7 @@ No<input type=\"radio\" name=\"register_globals\" value=\"no\" $checked_no></td>
 			$checked_yes = "";
 			$checked_no = " checked";
 		}
-		$txt .= "<tr><td align=\"right\">Generate webalizer stats each months:</td>";
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_generate_webalizer[$lang]."</td>";
 		$txt .= "<td>Yes<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_yes>
 No<input type=\"radio\" name=\"webalizer\" value=\"no\" $checked_no></td></tr>";
 		if($w3_alias_to_edit == "yes"){
@@ -701,31 +728,19 @@ No<input type=\"radio\" name=\"webalizer\" value=\"no\" $checked_no></td></tr>";
 			$checked_yes = "";
 			$checked_no = " checked";
 		}
-		$txt .= "<tr><td align=\"right\">Make a www.".$_REQUEST["edit_a_subdomain"]." alias:</td>";
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_wwwalias[$lang].$_REQUEST["edit_a_subdomain"]." alias:</td>";
 		$txt .= "<td>Yes<input type=\"radio\" name=\"w3_alias\" value=\"yes\" $checked_yes>
 No<input type=\"radio\" name=\"w3_alias\" value=\"no\" $checked_no></td></tr>";
-//		$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
-//			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
-//			$register_globals_to_edit = $subdomains[$i]["register_globals"];
-//		$txt .= "<tr><td align=\"right\">Use register_global=1:".$txt_subdom_create_name[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
-//		$txt .= "<tr><td align=\"right\">Generate webalizer stats each week (not working yet):".$txt_subdom_create_name[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
-		$txt .= "<tr><td align=\"right\">Subdomain IP (leave blank to use default web
-hosting area):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_ip[$lang]."</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
 		<input type=\"hidden\" name=\"edit_a_subdomain\" value=\"".$_REQUEST["edit_a_subdomain"]."\"><input type=\"text\" name=\"newsubdomain_ip\" value=\"$ip_domain_to_edit\"></td></tr>";
 		$txt .= "<tr><td colspan=\"3\">";
-		$txt .= "If need it, it's possible to set your subdomain IP remotly,
-for example if you have a home connection dynamic address and you want a
-subdomain to point to it. First, enter login and password here:</td></tr>";
+		$txt .= $txt_subdom_dynip_logpass[$lang]."</td></tr>";
 
-		$txt .= "<tr><td align=\"right\">Dynamic ip update login:</td><td><input type=\"text\" name=\"subdomain_dynlogin\" value=\"$login_to_edit\"></td></tr>";
-		$txt .= "<tr><td align=\"right\">Dynamic ip update password:</td><td><input type=\"text\" name=\"subdomain_dynpass\" value=\"$pass_to_edit\"></td></tr>";
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_login[$lang]."</td><td><input type=\"text\" name=\"subdomain_dynlogin\" value=\"$login_to_edit\"></td></tr>";
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_pass[$lang]."</td><td><input type=\"text\" name=\"subdomain_dynpass\" value=\"$pass_to_edit\"></td></tr>";
 		$txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"edit_one_subdomain\" value=\"Ok\"></td></tr>";
 		if($login_to_edit != "" && isset($login_to_edit)){
-			$txt .= "<tr><td colspan=\"3\">Then
-simply add the following script to your Unix system crontab (lynx-ssl is
-needed). Recomanded time is between 30 minutes and 2 hours. Please don't
-do it more than each 10 minutes,anyway DTC will not generate a domaine
-zone file more oftently than each 10 minutes.<br>
+			$txt .= "<tr><td colspan=\"3\">".$txt_subdom_scriptadvice[$lang]."<br>
 <pre>
 #!/bin/sh
 
@@ -737,7 +752,7 @@ SCRIPT_URL=\"https://$conf_administrative_site/dtc/\"
 
 \$LYNX -source \$SCRIPT_URL\"dynip.php?login=\"\$LOGIN\"&pass=\"\$PASS\"&domain=\"\$DOMAIN
 </pre><br>
-Windows user can easily automate the query of the following URL:<br>
+".$txt_subdom_windowsusers[$lang]."<br>
 https://$conf_administrative_site/dtc/dynip.php?login=$login_to_edit&pass=$pass_to_edit&domain=$edit_domain
 </td></tr>
 ";
@@ -1109,6 +1124,10 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	global $pro_mysql_acc_ftp_table;
 	global $pro_mysql_acc_email_table;
 
+	global $txt_total_transfered_bytes_this_month;
+	global $txt_stats_http_subdom;
+	global $lang;
+
 //	sum_http($eddomain["name"]);
 	$query_http = "SELECT bytes_sent FROM $pro_mysql_acc_http_table WHERE domain='".$eddomain["name"]."'
 	AND month='".date("n")."' AND year='".date("Y")."'";
@@ -1143,14 +1162,14 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 		$smtp_trafic = 0;
 	    $pop_trafic = 0;
 	}
-	$out .= "<u><b>Total transfered bytes this month:</b></u>";
+	$out .= "<u><b>".$txt_total_transfered_bytes_this_month[$lang]."</b></u>";
 	$out .= "<br>HTTP: ".smartByte($http_amount);
 	$out .= "<br>FTP:  ".smartByte($ftp_amount);
 	$out .= "<br>SMTP:  ".smartByte($smtp_trafic);
 	$out .= "<br>POP3:  ".smartByte($pop_trafic);
 	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount + $pop_trafic + $smtp_trafic);
 
-	$out .= "<br><br><b><u>Detailed webalizer HTTP statistics of your subdomains:</u></b><br>";
+	$out .= "<br><br><b><u>".$txt_stats_http_subdom[$lang]."</u></b><br>";
 	for($i=0;$i<sizeof($eddomain["subdomains"]);$i++){
 		if($i != 0)	$out .= " - ";
 		$out .= "<a target=\"_blank\" href=\"http://".

@@ -1,3 +1,15 @@
+12/06/2004:
+- Added some stuff in the CRM manager (root admin console) so there is
+not need to do some hacks in phpmyadmin any more.
+- Added chinese translation. Did some more internationalisation (only
+remaining todo tucows api need to be translated).
+- Changed some stuff for the BSD OS. Now DTC is integrated in the
+FreeBSD port collection.
+- Change mysql password fully working.
+- Change of FTP path re-works.
+- DTC now has a popup for changing skins. Now comes with 5 different
+skin to choose from.
+
 12/4/2004:
 Added lot's of stuff to the install process, because I was bored to do
 it manualy. /etc/resolv.conf and httpd.conf are now edited automaticaly.

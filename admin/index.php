@@ -95,17 +95,17 @@ if($_REQUEST["rub"] != "config"){
 }
 $html_array[] = $menu;
 $dtc_main_menu = make_table($html_array,sizeof($html_array));
-$the_page[] = skin($conf_skin,$dtc_main_menu,"Domain Technologie Control root admin interface");
+$the_page[] = skin($conf_skin,$dtc_main_menu,$txt_root_adm_title[$lang]);
 
 switch($_REQUEST["rub"]){
 case crm: // CRM TOOL
-	$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(),"Client address");
+	$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(),$txt_client_addr_title[$lang]);
 	if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
-		$rightFrameCells[] = skin($conf_skin,DTCRMclientAdmins(),"Client admins");
-		$rightFrameCells[] = skin($conf_skin,DTCRMshowClientCommands($id_client),"Client commands");
+		$rightFrameCells[] = skin($conf_skin,DTCRMclientAdmins(),$txt_client_admins_title[$lang]);
+		$rightFrameCells[] = skin($conf_skin,DTCRMshowClientCommands($id_client),$txt_client_commands_title[$lang]);
 	}
 	$rightFrame = makeVerticalFrame($rightFrameCells);
-	$leftFrameCells[] = skin($conf_skin,DTCRMlistClients(),"Client listing");
+	$leftFrameCells[] = skin($conf_skin,DTCRMlistClients(),$txt_client_list_title[$lang]);
 	$leftFrame = makeVerticalFrame($leftFrameCells);
 	$the_page[] = anotherLeftFrame($leftFrame,$rightFrame);
 	break;
