@@ -27,8 +27,17 @@ then
 fi
 
 echo ""
+echo "Where is located your postfix/main.cf ?"
+echo -n "postfix control path [/etc/postfix/main.cf]: "
+read PATH_POSTFIX_CONF
+if [ "$PATH_POSTFIX_CONF" = "" ];
+then
+	PATH_POSTFIX_CONF="/etc/postfix/main.cf"
+fi
+
+echo ""
 echo "Where is located your proftpd.conf ?"
-echo -n "Qmail control path [/etc/proftpd.conf]: "
+echo -n "proftpd control path [/etc/proftpd.conf]: "
 read PATH_PROFTPD_CONF
 if [ "$PATH_PROFTPD_CONF" = "" ];
 then

@@ -107,7 +107,8 @@ $dtc_database = array(
 			"use_ssl" => "enum('yes','no') NOT NULL default 'no' ",
 			"use_nated_vhost" => "enum('yes','no') NOT NULL default 'no' ",
 			"nated_vhost_ip" => "varchar(16) NOT NULL default '192.168.0.2' ",
-			"skin" => "varchar(128) NOT NULL default 'green' "
+			"skin" => "varchar(128) NOT NULL default 'green' ",
+			"mta_type" => "enum('qmail','postfix') NOT NULL default 'qmail' "
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

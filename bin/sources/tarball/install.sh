@@ -38,6 +38,22 @@ then
 	conf_mysql_db="dtc"
 fi
 
+echo ""
+echo "What MTA (Mail Tranport Agent, the one that"
+echo "will route and deliver your incoming mail) do"
+echo "you wish to use with DTC ? Type q for qmail"
+echo "or type p for postfix."
+echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
+read conf_mta_type
+if [ "$conf_mta_type" = "p" ];
+then
+	conf_mta_type=postfix
+	echo "Postfix will be used"
+else
+	conf_mta_type=qmail
+	echo "Qmail will be used"
+fi
+
 # Host configuration
 cur_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
 echo "### YOUR SERVER CONFIGURATION ###"
@@ -114,8 +130,17 @@ then
 fi
 
 echo ""
+echo "Where is located your postfix/main.cf ?"
+echo -n "postfix control path [/etc/postfix/main.cf]: "
+read PATH_POSTFIX_CONF
+if [ "$PATH_POSTFIX_CONF" = "" ];
+then
+	PATH_POSTFIX_CONF="/etc/postfix/main.cf"
+fi
+
+echo ""
 echo "Where is located your proftpd.conf ?"
-echo -n "Qmail control path [/etc/proftpd.conf]: "
+echo -n "Proftpd control path [/etc/proftpd.conf]: "
 read PATH_PROFTPD_CONF
 if [ "$PATH_PROFTPD_CONF" = "" ];
 then
@@ -186,6 +211,7 @@ echo "DTC pass: "$conf_adm_pass
 echo "httpd.conf: "$PATH_HTTPD_CONF
 echo "named.conf: "$PATH_NAMED_CONF
 echo "proftpd.conf: "$PATH_PROFTPD_CONF
+echo "postfix/main.cf: "$PATH_POSTFIX_CONF
 echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI
 echo "DTC shared folder:"$PATH_DTC_SHARED

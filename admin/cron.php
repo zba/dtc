@@ -134,11 +134,14 @@ if($cronjob_table_content["qmail_newu"] == "yes"){
 if($cronjob_table_content["restart_qmail"] == "yes"){
 	echo "Sending qmail-send a HUP\n";
 	system("killall -HUP qmail-send");
+	echo "Reloading postfix\n";
+	system("/etc/init.d/postfix reload");
 //	echo "Restarting qmail\n";
 //	system("/etc/init.d/qmail stop");
 //	sleep(2);
 //	system("/etc/init.d/qmail start");
 }
+
 // Check if pop is running, restart qmail if not
 if($CHECK_QMAIL_POP3D == "yes"){
 	$fp = fsockopen ($conf_addr_mail_server, 110, $errno, $errstr, 30);
@@ -165,10 +168,12 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	echo "Testing apache conf\n";
 	exec ("$APACHECTL configtest", $plop, $return_var);
 	if($return_var == false){
-		echo "Config is OK : restarting Apache\n";
-		system("$APACHECTL stop");
-		sleep(4);
-		system("$APACHECTL start");
+		//echo "Config is OK : restarting Apache\n";
+		//system("$APACHECTL stop");
+		//sleep(4);
+		//system("$APACHECTL start");
+		// change to graceful apache restart, rather than a hard stop and start
+		system("$APACHECTL graceful");
 	}else{
 		echo "Config not OK : I can't reload apache !!!\n";
 	}

@@ -298,6 +298,8 @@ function fetchAdminData($adm_login,$adm_pass){
 			$row4 = mysql_fetch_array($result4) or die ("Cannot fetch mailbox");
 			unset($email);
 			$email["id"] = $row4["id"];
+			$email["uid"] = $row4["uid"];
+			$email["gid"] = $row4["gid"];
 			$email["home"] = $row4["home"];
 			$email["crypt"] = $row4["crypt"];
 			$email["passwd"] = $row4["passwd"];
@@ -340,6 +342,8 @@ function fetchAdminData($adm_login,$adm_pass){
 //                                         ["register_globals"]
 //                                         ["webalizer_generate"]
 //                      ["emails"][0-n]["id"]
+//                                     ["uid"]
+//                                     ["gid"]
 //                                     ["home"]
 //                                     ["crypt"]
 //                                     ["passwd"]

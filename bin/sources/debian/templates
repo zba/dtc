@@ -105,3 +105,13 @@ Default:
 Description: Main domain admin password.
  Please give the main domain's administrator a
  password.
+
+Template: dtc/conf_mta_type
+Type: select
+Choices: qmail, postfix
+Description: Mail Transfer Agent Type.
+ What type of MTA did you plan to use with DTC?
+ Please not that this software must be installed
+ prior to install DTC otherwise some of the install
+ script parts could be skiped and so your configuration
+ will not be fully done.

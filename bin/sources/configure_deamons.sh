@@ -35,6 +35,34 @@ fi
 TMP_FILE=/tmp/DTC_install.httpd.conf
 
 echo "===> Modifying httpd.conf"
+
+# need to see if we can use the modules-config or apacheconfig tools
+# HTTPD_MODULES_CONFIG=`which apacheconfig`
+
+# check if modules-config exists
+# HTTPD_MODULES_CONFIG=`which modules-config`
+
+# check to see if our apacheconfig has been obseleted
+if [ "$HTTPD_MODULES_CONFIG" = "" ]
+then
+	echo "Not using modules-config tool"
+else
+	if $HTTPD_MODULES_CONFIG | grep deprecated
+	then
+		if [ -f $HTTPD_MODULES_CONFIG ]
+		then
+			HTTPD_MODULES_CONFIG=`which modules-config`
+			echo "Using $HTTPD_MODULES_CONFIG to configure apache modules"
+			HTTPD_MODULES_CONFIG="$HTTPD_MODULES_CONFIG apache"
+		else
+			HTTPD_MODULES_CONFIG=""
+		fi
+	else
+		HTTPD_MODULES_CONFIG=""
+	fi
+fi
+
+
 if grep "Configured by DTC" $PATH_HTTPD_CONF
 then
 	echo "httpd.conf has been configured before : skiping include inssertion !"
@@ -44,7 +72,9 @@ else
 		echo "===> Backuping "$PATH_HTTPD_CONF
 		cp -f "$PATH_HTTPD_CONF" "$PATH_HTTPD_CONF.DTC.backup"
 	fi
+
 	echo "=> Verifying User and Group directive"
+	# Those 2 are for debian
 	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "User www-data -> User nobody"
@@ -58,6 +88,7 @@ else
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
+	# Those 2 are for BSD
 	if grep "User www" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "User www -> User nobody"
@@ -73,67 +104,98 @@ else
 
 	echo "=> Checking apache modules"
 	echo -n "Checking for php4..."
-	if grep -i "# LoadModule php4_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+
+	# first of all, may as well try to use the provided modules-config or apacheconfig provided by debian...
+	# else use the normal method to be cross platform compatible
+
+	if [ "$HTTPD_MODULES_CONFIG" = "" ]
 	then
-		echo "found commented: activating php4 module!"
-		sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF >$TMP_FILE
-		cat <$TMP_FILE >$PATH_HTTPD_CONF
-	else
-		if grep -i "LoadModule php4_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+		# need to support modules.conf version of apache debian package
+		# default to normal HTTPD_CONF
+		PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_CONF
+		if [ -f $PATH_HTTPD_MODULES_CONF ]
 		then
-			echo " ok!"
-		else
-			echo "php4 missing! please install it or run apacheconfig!!!"
-			exit 1
+			PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_MODULES_CONF
 		fi
+		if grep -i "# LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+		then
+			echo "found commented: activating php4 module!"
+			sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+			cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
+		else
+			if grep -i "LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+			then
+				echo " ok!"
+			else
+				echo "php4 missing! please install it or run apacheconfig!!!"
+				exit 1
+			fi
+		fi
+	else
+		echo $HTTPD_MODULES_CONFIG enable php4_module
+		$HTTPD_MODULES_CONFIG enable php4_module
+		echo " enabled by $HTTPD_MODULES_CONFIG"
 	fi
 
 	echo -n "Checking for ssl..."
-	if grep -i "# LoadModule ssl_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+	if [ "$HTTPD_MODULES_CONFIG" = "" ]
 	then
-		echo "found commented: activating ssl module!"
-		sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF >$TMP_FILE
-		cat <$TMP_FILE >$PATH_HTTPD_CONF
-	else
-		if grep -i "LoadModule ssl_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+		if grep -i "# LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 		then
-			echo " ok!"
+			echo "found commented: activating ssl module!"
+			sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+			cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
 		else
-			echo "!!! Warning: ssl_module for apache not present !!!"
+			if grep -i "LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+			then
+				echo " ok!"
+			else
+				echo "!!! Warning: ssl_module for apache not present !!!"
+			fi
 		fi
+	else
+		$HTTPD_MODULES_CONFIG enable ssl_module
+		echo " enabled by $HTTPD_MODULES_CONFIG"
 	fi
 
 	echo -n "Checking for sql_log..."
-	if grep -i "# LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+	if [ "$HTTPD_MODULES_CONFIG" = "" ]
 	then
-		echo "found commented: ativating sql_log module!"
-		sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF >$TMP_FILE
-		cat <$TMP_FILE >$PATH_HTTPD_CONF
-	else
-		if grep -i "LoadModule log_sql_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+		if grep -i "# LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 		then
-			echo " ok!"
+			echo "found commented: ativating sql_log module!"
+			sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+			cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
 		else
-			if grep -i "# LoadModule log_sql_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+			if grep -i "LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 			then
-				echo "found commented: ativating sql_log module!"
-				sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF >$TMP_FILE
-				cat <$TMP_FILE >$PATH_HTTPD_CONF
+				echo " ok!"
 			else
-				if grep -i "LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+				if grep -i "# LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 				then
-					echo " ok!"
+					echo "found commented: ativating sql_log module!"
+					sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+					cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
 				else
-					echo "!!! sql_log_module for apache not present !!!"
-					echo "please install it or run apacheconfig"
-					echo "or add the following type directive"
-					echo "(matching your path) to httpd.conf:"
-					echo "LoadModule sql_log_module /usr/lib/apache/1.3/mod_log_sql.so (debian)"
-					echo "LoadModule log_sql_module /usr/local/libexec/apache/mod_log_sql.so (bsd)"
-					exit 1
+					if grep -i "LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+					then
+						echo " ok!"
+					else
+						echo "!!! sql_log_module for apache not present !!!"
+						echo "please install it or run apacheconfig"
+						echo "or add the following type directive"
+						echo "(matching your path) to httpd.conf:"
+						echo "LoadModule sql_log_module /usr/lib/apache/1.3/mod_log_sql.so (debian)"
+						echo "LoadModule log_sql_module /usr/local/libexec/apache/mod_log_sql.so (bsd)"
+						exit 1
+					fi
 				fi
 			fi
 		fi
+	else
+		$HTTPD_MODULES_CONFIG enable sql_log_module
+		echo " enabled by $HTTPD_MODULES_CONFIG"
+
 	fi
 
 	echo -n "Checking for AllowOverride..."
@@ -183,54 +245,91 @@ else
 	cat </tmp/DTC_install_named.conf >>$PATH_NAMED_CONF
 fi
 
+# only try and do qmail stuff if we have qmail installed! (check the control directory)
+if [ -f $PATH_QMAIL_CTRL ]
+then
+	#
+	# Install the qmail links in the /etc/qmail
+	#
+	echo "===> Linking qmail control files to DTC generated files"
+	if ! [ -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ]
+	then
+		cp -f $PATH_QMAIL_CTRL/rcpthosts $PATH_QMAIL_CTRL/rcpthosts.DTC.backup
+	fi
+	rm -f $PATH_QMAIL_CTRL/rcpthosts
+	touch $PATH_DTC_ETC/rcpthosts
+	ln -s $PATH_DTC_ETC/rcpthosts $PATH_QMAIL_CTRL/rcpthosts
+
+	touch $PATH_QMAIL_CTRL/virtualdomains
+	if ! [ -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup ]
+	then
+		cp -f $PATH_QMAIL_CTRL/virtualdomains $PATH_QMAIL_CTRL/virtualdomains.DTC.backup
+	fi
+	rm -f $PATH_QMAIL_CTRL/virtualdomains
+	touch $PATH_DTC_ETC/virtualdomains
+	ln -s $PATH_DTC_ETC/virtualdomains $PATH_QMAIL_CTRL/virtualdomains
+
+	if ! [ -f /var/qmail/users/assign.DTC.backup ]
+	then
+		cp -f /var/qmail/users/assign /var/qmail/users/assign.DTC.backup
+	fi
+	rm -f /var/qmail/users/assign
+	touch $PATH_DTC_ETC/assign
+	ln -s $PATH_DTC_ETC/assign /var/qmail/users/assign
+
+	# Complete mistake ! Please forgive me !
+	#
+	#if ! [ -f $PATH_QMAIL_CTRL/locals.DTC.backup ]
+	#then
+	#	touch $PATH_QMAIL_CTRL/locals
+	#        cp -f $PATH_QMAIL_CTRL/locals $PATH_QMAIL_CTRL/locals.DTC.backup
+	#fi
+	#rm -f $PATH_QMAIL_CTRL/locals
+	#touch $PATH_DTC_ETC/rcpthosts
+	#ln -s $PATH_DTC_ETC/rcpthosts $PATH_QMAIL_CTRL/locals
+
+	touch /etc/poppasswd
+	if ! [ -f /etc/poppasswd.DTC.backup ]
+	then
+		cp -f /etc/poppasswd /etc/poppasswd.DTC.backup
+	fi
+	rm -f /etc/poppasswd
+	touch $PATH_DTC_ETC/poppasswd
+	ln -s $PATH_DTC_ETC/poppasswd /etc/poppasswd
+fi
+
+# 
+# Modify the postfix main.cf to include virtual delivery options
 #
-# Install the qmail links in the /etc/qmail
-#
-echo "===> Linking qmail control files to DTC generated files"
-if ! [ -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ]
-then
-	cp -f $PATH_QMAIL_CTRL/rcpthosts $PATH_QMAIL_CTRL/rcpthosts.DTC.backup
-fi
-rm -f $PATH_QMAIL_CTRL/rcpthosts
-touch $PATH_DTC_ETC/rcpthosts
-ln -s $PATH_DTC_ETC/rcpthosts $PATH_QMAIL_CTRL/rcpthosts
 
-touch $PATH_QMAIL_CTRL/virtualdomains
-if ! [ -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup ]
+if [ -f $PATH_POSTFIX_CONF ]
 then
-	cp -f $PATH_QMAIL_CTRL/virtualdomains $PATH_QMAIL_CTRL/virtualdomains.DTC.backup
-fi
-rm -f $PATH_QMAIL_CTRL/virtualdomains
-touch $PATH_DTC_ETC/virtualdomains
-ln -s $PATH_DTC_ETC/virtualdomains $PATH_QMAIL_CTRL/virtualdomains
+	echo "===> Linking postfix control files to DTC generated files"
+	if grep "Configured by DTC" "$PATH_POSTFIX_CONF"
+	then
+		echo "Postfix main.cf has been configured before, not adding virtual mailbox options"
+	else
+		echo "Inserting DTC configuration inside $PATH_POSTFIX_CONF"
+		echo "# Configured by DTC v0.12 : Please don't touch this line !" > /tmp/DTC_config_postfix_main.cf
+		echo "
+# DTC virtual configuration
+virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
+virtual_mailbox_base = /
+virtual_mailbox_maps = hash:$PATH_DTC_ETC/postfix_vmailbox
+virtual_minimum_uid = 100
+virtual_uid_maps = static:65534
+virtual_gid_maps = static:65534
+virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
+virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> /tmp/DTC_config_postfix_main.cf
+		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> /tmp/DTC_config_postfix_main.cf
 
-if ! [ -f /var/qmail/users/assign.DTC.backup ]
-then
-	cp -f /var/qmail/users/assign /var/qmail/users/assign.DTC.backup
-fi
-rm -f /var/qmail/users/assign
-touch $PATH_DTC_ETC/assign
-ln -s $PATH_DTC_ETC/assign /var/qmail/users/assign
+		# now to insert it at the end of the actual main.cf
+		cat </tmp/DTC_config_postfix_main.cf >>$PATH_POSTFIX_CONF
+		rm /tmp/DTC_config_postfix_main.cf
+	fi
 
-# Complete mistake ! Please forgive me !
-#
-#if ! [ -f $PATH_QMAIL_CTRL/locals.DTC.backup ]
-#then
-#	touch $PATH_QMAIL_CTRL/locals
-#        cp -f $PATH_QMAIL_CTRL/locals $PATH_QMAIL_CTRL/locals.DTC.backup
-#fi
-#rm -f $PATH_QMAIL_CTRL/locals
-#touch $PATH_DTC_ETC/rcpthosts
-#ln -s $PATH_DTC_ETC/rcpthosts $PATH_QMAIL_CTRL/locals
-
-touch /etc/poppasswd
-if ! [ -f /etc/poppasswd.DTC.backup ]
-then
-	cp -f /etc/poppasswd /etc/poppasswd.DTC.backup
 fi
-rm -f /etc/poppasswd
-touch $PATH_DTC_ETC/poppasswd
-ln -s $PATH_DTC_ETC/poppasswd /etc/poppasswd
+
 
 #
 # Install proftpd.conf to access to the database

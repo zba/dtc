@@ -57,6 +57,22 @@ else
 	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pass"') WHERE User='root'; FLUSH PRIVILEGES;";
 fi
 
+echo ""
+echo "What MTA (Mail Tranport Agent, the one that"
+echo "will route and deliver your incoming mail) do"
+echo "you wish to use with DTC ? Type q for qmail"
+echo "or type p for postfix."
+echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
+read conf_mta_type
+if [ "$conf_mta_type" = "p" ];
+then
+	conf_mta_type=postfix
+	echo "Postfix will be used"
+else
+	conf_mta_type=qmail
+	echo "Qmail will be used"
+fi
+
 echo -n 'Choose a DB name for DTC [dtc]: '
 read conf_mysql_db
 if [ "$conf_mysql_db" = "" ];
@@ -128,6 +144,7 @@ then
 	cp ${LOCALBASE}/etc/proftpd.conf.default ${LOCALBASE}/etc/proftpd.conf
 fi
 PATH_PROFTPD_CONF="${LOCALBASE}/etc/proftpd.conf"
+PATH_POSTFIX_CONF="${LOCALBASE}/etc/postfix/main.cf"
 PATH_QMAIL_CTRL="${QMAIL_DIR}/control"
 PATH_PHP_CGI="${LOCALBASE}/bin/php"
 PATH_DTC_SHARED="${PREFIX}/www/dtc"
@@ -157,6 +174,7 @@ echo "DTC pass: "$conf_adm_pass
 echo "httpd.conf: "$PATH_HTTPD_CONF
 echo "named.conf: "$PATH_NAMED_CONF
 echo "proftpd.conf: "$PATH_PROFTPD_CONF
+echo "postfix/main.cf: "$PATH_POSTFIX_CONF
 echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI
 echo "generated files: "$PATH_DTC_ETC

@@ -19,10 +19,12 @@ fi
 UNIX_TYPE=debian
 
 PATH_HTTPD_CONF=/etc/apache/httpd.conf
+PATH_HTTPD_MODULES_CONF=/etc/apache/modules.conf
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
 PATH_PHP_CGI="/usr/bin/php4"
 PATH_PROFTPD_CONF=/etc/proftpd.conf
+PATH_POSTFIX_CONF=/etc/postfix/main.cf
 PATH_DTC_SHARED=/usr/share/dtc
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
@@ -45,6 +47,8 @@ db_get dtc/conf_mysqldb
 conf_mysql_db=$RET
 db_get dtc/conf_mysql_change_root
 conf_mysql_change_root=$RET
+db_get dtc/conf_mta_type
+conf_mta_type=$RET
 db_get dtc/main_domainname
 main_domain_name=$RET
 db_get dtc/dtc_adminsubdomain
@@ -69,6 +73,7 @@ db_unregister dtc/conf_admpass
 # leak in distribution. Whis is that not made by default ?
 
 # Adding support for mysql for php4-cgi
+echo "Checking mysql.so in php.ini"
 if grep mysql.so /etc/php4/cgi/php.ini | grep extension=
 then
 	echo "Skiping mysql.so insertion in php.ini"
@@ -77,13 +82,41 @@ else
 	echo "extension=mysql.so" >>/etc/php4/cgi/php.ini
 fi
 
-# Setup a minimum include path with . and /usr/share/pear !!!
-if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/pear
+# Setup a minimum include path with . and /usr/share/pear (or /usr/share/php for debian testing) !!!
+if [ -f /usr/share/pear/PEAR.php ]
 then
-	echo "Skiping include_path insertion in php.ini"
-else
-	echo "Your php.ini doesn't has pear in it's inc path: changin!"
-	echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cgi/php.ini
+	echo "Checking include_path=/usr/share/pear in php.ini"
+	if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/pear
+	then
+		echo "Skiping include_path insertion in php.ini"
+	else
+		echo "Your php.ini doesn't has pear in it's inc path: changin!"
+		echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cgi/php.ini
+	fi
+fi
+
+if [ -f /usr/share/php/PEAR.php ]
+then
+	echo "Checking include_path=/usr/share/pear in php.ini"
+	if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/php
+	then
+		echo "Skiping include_path insertion in php.ini"
+	else
+		echo "Your php.ini doesn't has pear in it's inc path: changin!"
+		echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cgi/php.ini
+	fi
+
+fi
+
+# now update the pear modules if you have the "pear" installed
+# since PHP >= 4.3.0 doesn't come with Crypt_CBC that OpenSRS needs
+if [ -e /usr/bin/pear ]
+then
+	echo "Checking pear installation"
+	pear upgrade Console_Getopt
+	pear upgrade-all
+	pear install Crypt_CBC
+	pear install Auth_SASL
 fi
 
 # Changing root password of mysql

@@ -67,6 +67,22 @@ then
 fi
 
 #
+# uninstall postfix/main.cf
+#
+
+echo "===> Uninstalling inclusion from proftpd.conf"
+if grep "Configured by DTC" $PATH_POSTFIX_CONF
+then
+	start_line=`grep -n "Configured by DTC" $PATH_POSTFIX_CONF | cut -d":" -f1`
+	end_line=`grep -n "End of DTC configuration" $PATH_POSTFIX_CONF| cut -d":" -f1`
+	nbr_line=`cat $PATH_POSTFIX_CONF | wc -l`
+	cat $PATH_POSTFIX_CONF | head -n $(($start_line - 1 )) >/tmp/DTC_uninstall.postfix.conf
+	cat $PATH_POSTFIX_CONF | tail -n $(($nbr_line - $end_line )) >>/tmp/DTC_uninstall.postfix.conf
+	cp -f $PATH_POSTFIX_CONF $PATH_POSTFIX_CONF.DTC.removed
+	mv /tmp/DTC_uninstall.postfix.conf $PATH_POSTFIX_CONF
+fi
+
+#
 # Uninstall qmail
 #
 
