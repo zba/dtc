@@ -1,6 +1,6 @@
 <?php
 // Automatic database array generation for DTC
-// Generation date: 2004-12(Dec)-19 Sunday 17:31
+// Generation date: 2005-01(Jan)-18 Tuesday 03:36
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
@@ -31,7 +31,8 @@ $dtc_database = array(
 			"server_addr" => "varchar(128) NOT NULL ",
 			"server_login" => "varchar(128) NOT NULL ",
 			"server_pass" => "varchar(128) NOT NULL ",
-			"type" => "enum('grant_access','mail_backup','dns_backup','backup_ftp_to') NOT NULL default 'grant_access' "
+			"type" => "enum('grant_access','mail_backup','dns_backup','trigger_changes','backup_ftp_to') NOT NULL default 'grant_access' ",
+			"status" => "enum('pending','done') NOT NULL default 'pending' "
 			),
 		"keys" => array(
 			"PRIMARY" => "(id)",
@@ -444,6 +445,14 @@ $dtc_database = array(
 		"keys" => array(
 			"PRIMARY" => "(id)",
 			"id" => "(id)"
+			)
+		),
+	"scheduled_updates" => array(
+		"vars" => array(
+			"backup_id" => "int(9) NOT NULL default '0' ",
+			"timestamp" => "int(12) NOT NULL default '0' "
+			),
+		"keys" => array(
 			)
 		),
 	"secpayconf" => array(
