@@ -1,5 +1,15 @@
 <?php
 
+$txt_title_maillinglist_form = array(
+	"fr" => "Listes de diffusion du domain : ",
+        "en" => "Mailling-lists of the domain: ",
+        "nl" => "TRANS Mailling-lists of the domain: ",
+        "ru" => "TRANS Mailling-lists of the domain: ",
+        "de" => "TRANS Mailling-lists of the domain: ",
+        "zh" => "TRANS Mailling-lists of the domain: ",
+        "es" => "TRANS Mailling-lists of the domain: "
+);
+
 $txt_pagetop_zesubtitle = array(
 	"fr" => "Prennez le controle de votre nom de domaine",
 	"en" => "Take the control of your domain name",

@@ -1297,6 +1297,12 @@ function drawAdminTools($admin){
 					"type" => "link",
 					"link" => "mailboxs");
 			}
+			if($admin_data[$i]["primary_mx"] == "default"){
+				$domain_conf_submenu[] = array(
+					"text" => "mailing-lists",
+					"type" => "link",
+					"link" => "mailing-lists");
+			}
 			$domain_conf_submenu[] = array(
 				"text" => "ftp-accounts",
 				"type" => "link",
@@ -1331,6 +1337,9 @@ function drawAdminTools($admin){
 		if($add_array[1] == "mailboxs"){
 			$web_editor .= drawAdminTools_Emails($eddomain);
 			$title = $txt_title_mailbox_form[$lang].$edit_domain;
+		}else if($add_array[1] == "mailing-lists"){
+			$web_editor .= drawAdminTools_MaillingLists($eddomain);
+			$title = $txt_title_maillinglist_form[$lang].$edit_domain;
 		}else if($add_array[1] == "dns"){
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
 			$title = "DNS config of: ".$edit_domain;
