@@ -47,7 +47,7 @@ $dtc_main_menu .= "<br><center>
 <table width=\"66%\">
 <tr><td width=\"33%\" align=\"center\">";
 if($_REQUEST["rub"] != "" && isset($_REQUEST["rub"])){
-	$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?\">";
+	$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=user\">";
 }
 $dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/users.gif\">";
 if($_REQUEST["rub"] == "" || !isset($_REQUEST["rub"])){
@@ -139,15 +139,71 @@ if($_REQUEST["rub"] != "config"){
 	$dtc_main_menu .= "</a>";
 }
 $dtc_main_menu .= "</td>";
-
-
-
-
 $dtc_main_menu .= "</table>
 </center>";
 
 $the_page[] = skin("simple/green2",$dtc_main_menu,"Menu");
 
+switch($_REQUEST["rub"])
+{
+	case user: // User Config
+		// Our list of admins
+		$leftFrameCells[] = skin("simple/green","<br>$admins",$txt_virtual_admin_list[$lang]);
+
+		// Make the frame
+		$leftFrame = makeVerticalFrame($leftFrameCells);
+
+		// A virtual admin edition
+		$rightFrameCells[] = userEditForms($adm_login,$adm_pass);
+		$rightFrameCells[] = skinConsole();
+
+		$rightFrame = makeVerticalFrame($rightFrameCells);
+		$the_page[] = anotherLeftFrame($leftFrame,$rightFrame);
+	break;
+	
+	case generate: // Gen Config Files
+		$the_page[] = skin("simple/green",$top_commands,$txt_generate_buttons_title[$lang]);
+		$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"95\"></iframe>";
+		$the_page[] = skin("simple/green",$the_iframe,"Deamons states");
+		// The console
+		$the_page[] = skinConsole();
+	break;
+	
+	case config: // Global Config
+		if($install_new_config_values == "Ok"){
+			saveDTCConfigInMysql();
+			getConfig();
+		}
+
+		$configForm = drawDTCConfigForm();
+		$the_page[] = skin("simple/green",$configForm,"DTC configuration");
+	break;
+	
+	case crm: // CRM TOOL
+		$rightFrameCells[] = skin("simple/green",DTCRMeditClients(),"Client address");
+		if(isset($id_client) && $id_client != "")
+			$rightFrameCells[] = skin("simple/green",DTCRMshowClientCommands($id_client),"Client commands");
+		$rightFrame = makeVerticalFrame($rightFrameCells);
+		$leftFrameCells[] = skin("simple/green",DTCRMlistClients(),"Client listing");
+		$leftFrame = makeVerticalFrame($leftFrameCells);
+		$the_page[] = anotherLeftFrame($leftFrame,$rightFrame);
+	break;
+	
+	default: // No rub selected
+		// Our list of admins
+		$leftFrameCells[] = skin("simple/green","<br>$admins",$txt_virtual_admin_list[$lang]);
+
+		// Make the frame
+		$leftFrame = makeVerticalFrame($leftFrameCells);
+
+		// A virtual admin edition
+		$rightFrameCells[] = userEditForms($adm_login,$adm_pass);
+		$rightFrameCells[] = skinConsole();
+
+		$rightFrame = makeVerticalFrame($rightFrameCells);
+		$the_page[] = anotherLeftFrame($leftFrame,$rightFrame);
+}
+/*
 if($_REQUEST["rub"] == "generate"){
 	$the_page[] = skin("simple/green",$top_commands,$txt_generate_buttons_title[$lang]);
 	$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"95\">
@@ -184,7 +240,7 @@ if($_REQUEST["rub"] == "generate"){
 
 	$rightFrame = makeVerticalFrame($rightFrameCells);
 	$the_page[] = anotherLeftFrame($leftFrame,$rightFrame);
-}
+}*/
 $pageContent = makeVerticalFrame($the_page);
 $anotherFooter = anotherFooter("Footer content<br><br>");
 
