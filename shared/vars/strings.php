@@ -4,8 +4,9 @@ $txt_mainmenu_title_useradmin = array(
 	"fr" => "Gestion des utilisateurs",
 	"en" => "Users administration",
 	"nl" => "Gebruikers administratie",
-	"ru" => "Users administration",
+	"ru" => "TRANSUsers administration",
 	"de" => "Benutzer Administration",
+	"zh" => "сц╩╖╧эюМ",
 	"es" => "Administracion de usuarios");
 
 $txt_mainmenu_title_client_management = array(
@@ -14,6 +15,7 @@ $txt_mainmenu_title_client_management = array(
 	"nl" => "Customer Relation Management",
 	"ru" => "TRANSClient relationship management",
 	"de" => "TRANSClient relationship management",
+	"zh" => "╧к©м╧ьо╣╧эюМ",
 	"es" => "Relacion de clientes para gestionar");
 
 $txt_mainmenu_title_bandwidth_monitor = array(
@@ -22,14 +24,16 @@ $txt_mainmenu_title_bandwidth_monitor = array(
 	"nl" => "Bandbreedte monitor",
 	"ru" => "TRANSBandwidth monitor",
 	"de" => "TRANSBandwidth monitor",
+	"zh" => "пео╒╢╚йД╪Ю©ь",
 	"es" => "Monitorizacion del Ancho de Banda");
 
 $txt_mainmenu_title_deamonfile_generation = array(
 	"fr" => "GИnИration des fichiers de configuration des deamons",
 	"en" => "Daemons configuration files generation",
 	"nl" => "Genereren van daemon configuratie files",
-	"ru" => "Daemons configuration files generation",
+	"ru" => "TRANSDaemons configuration files generation",
 	"de" => "Erzeuge Konfiguationsdatein fЭr Daemons",
+	"zh" => "еДжц╢Ф╣╣",
 	"es" => "Generacion de los ficheros de configuracion de los demonios");
 
 $txt_mainmenu_title_dtc_config = array(
@@ -38,6 +42,7 @@ $txt_mainmenu_title_dtc_config = array(
 	"nl" => "DTC algemene configuratie",
 	"ru" => "DTC general configuration",
 	"de" => "Allgemeine DTC Konfiguration",
+	"zh" => "DTC ©ьжфцФ╟Е",
 	"es" => "Configuracion general de DTC");
 
 $txt_icon_all_files_and_scripts = array(
@@ -46,6 +51,7 @@ $txt_icon_all_files_and_scripts = array(
 	"nl" => "Alle bestanden en scripts",
 	"ru" => "ALL FILES AND SCRIPTS",
 	"de" => "Alle Dateien und Scripte",
+	"zh" => "кЫспнд╪Ч",
 	"es" => "Todos los ficheros y Scripts");
 
 $txt_icon_apache_vhost = array(
@@ -54,30 +60,34 @@ $txt_icon_apache_vhost = array(
 	"nl" => "APACHE VHOST",
 	"ru" => "APACHE VHOST",
 	"de" => "Apache VHOST",
+	"zh" => "Apache VHOST",
 	"es" => "Apache VHOST");
 
 $txt_icon_mailbox_account = array(
 	"fr" => "COMPTES E-MAIL",
 	"en" => "E-MAIL ACCOUNT",
 	"nl" => "E-MAIL ACCOUNT",
-	"ru" => "E-MAIL ACCOUNT",
+	"ru" => "TRANSE-MAIL ACCOUNT",
 	"de" => "E-Mail Account",
+	"zh" => "╣Гвссй╪Ч",
 	"es" => "CUENTAS DE CORREO");
 
 $txt_icon_named_zones = array(
 	"fr" => "FICHIERS DE ZONES NAMED",
 	"en" => "NAMED ZONES FILES",
 	"nl" => "DNS ZONE BESTANDEN",
-	"ru" => "NAMED ZONES FILES",
+	"ru" => "TRANSNAMED ZONES FILES",
 	"de" => "Bind Zonen Datein",
+	"zh" => "сРцШ╥жеДнд╣╣",
 	"es" => "Ficheros de zonas de DNS");
 
 $txt_icon_reinit_named_zones = array(
 	"fr" => "REINIT DES ZONES NAMED",
 	"en" => "REINIT NAMED ZONES",
 	"nl" => "HERLAAD DNS ZONES",
-	"ru" => "REINIT NAMED ZONES",
+	"ru" => "TRANSREINIT NAMED ZONES",
 	"de" => "Neueinlesen der BIND Zonen",
+	"zh" => "сРцШжьжц",
 	"es" => "Reiniciar Servidor DNS");
 
 $txt_icon_backup_scripts = array(
@@ -86,6 +96,7 @@ $txt_icon_backup_scripts = array(
 	"nl" => "BACKUP SCRIPTS",
 	"ru" => "BACKUP SCRIPTS",
 	"de" => "Sicherung",
+	"zh" => "╠╦╥щнд╪Ч",
 	"es" => "SCRIPTS DE BACKUPS");
 
 $txt_icon_webalizer_script = array(
@@ -94,6 +105,7 @@ $txt_icon_webalizer_script = array(
 	"nl" => "WEBALIZER SCRIPTS",
 	"ru" => "WEBALIZER SCRIPTS",
 	"de" => "Webalizer Dateien",
+	"zh" => "WEBALIZER нд╪Ч",
 	"es" => "SCRIPTS WEBALIZER");
 		
 $txt_icon_mysite_at_mydomain = array(
@@ -102,6 +114,7 @@ $txt_icon_mysite_at_mydomain = array(
 	"nl" => "FTP VHOST ZONE",
 	"ru" => "FTP AREA VHOST",
 	"de" => "Virtuelle FTP Hosts",
+	"zh" => "Virtuelle FTP Hosts",
 	"es" => "VHOST DE ZONA FTP");
 
 $txt_subdom_limit_reach = array(
@@ -111,6 +124,7 @@ $txt_subdom_limit_reach = array(
 	"nl" => "Het maximum aantal subdomeinen is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of subdomains reach. cannot add a new subdomain",
 	"de" => "Maximale Anzahl von Subdomains erreicht. Es kann keine weitere mehr angelegt werden.",
+	"zh" => "очжф╦╠сРцШйЩ╤Н",
 	"es" => "Numero maximo de subdominios alcanzados. No es posible aЯadir un nuevo subdominio.");
 
 $txt_number_of_active_subdomains = array(
@@ -119,6 +133,7 @@ $txt_number_of_active_subdomains = array(
 	"nl" => "Aantal active subdomeinen:",
 	"ru" => "Number of active subdomaines:",
 	"de" => "Anzahl aktiver Subdomains:",
+	"zh" => "ожсп╦╠сРцШйЩ╤Н",
 	"es" => "Numero de subdominios activos:");
 
 $txt_maxnumber_of_ftp_account_reached = array(
@@ -127,6 +142,7 @@ $txt_maxnumber_of_ftp_account_reached = array(
 	"nl" => "Het maximum aantal ftp accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of ftp account reach. Cannot add a new account.",
 	"de" => "Maximale Anzahl von FTP Accounts erreicht. Es kann kein weiterer mehr angelegt werden.",
+	"zh" => "очжфftpуй╩╖йЩ╤Н",
 	"es" => "Numero maximo de ftps alcanzados. No es posible aЯadir una cuenta nueva.");
 
 $txt_number_of_active_ftp = array(
@@ -135,6 +151,7 @@ $txt_number_of_active_ftp = array(
 	"nl" => "Aantal actieve ftp accounts:",
 	"ru" => "Number of active ftp accounts:",
 	"de" => "Aktive FTP-Accounts:",
+	"zh" => "ожспftpуй╩╖",
 	"es" => "Numero de ftps activos:");
 
 $txt_number_of_active_mailbox = array(
@@ -143,6 +160,7 @@ $txt_number_of_active_mailbox = array(
 	"nl" => "Aantal actieve e-mail accounts :",
 	"ru" => "Number of active mailboxs:",
 	"de" => "Anzahl aktiver Mailboxen:",
+	"zh" => "ожсп╣ГвссйоДйЩ╤Н",
 	"es" => "Numero de cuentas de correo activas:");
 
 $txt_maximum_mailbox_reach = array(
@@ -151,6 +169,7 @@ $txt_maximum_mailbox_reach = array(
 	"nl" => "Het maximum aantal e-mail accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of mailbox reach. Cannot add a new account.",
 	"de" => "Maximale Anzahl von Mailbox Accounts erreicht. Es kann kein weiterer mehr angelegt werden.",
+	"zh" => "очжф╣ГвссйоДйЩ╤Н",
 	"es" => "Numero maximo de cuentas de correo alcanzado. No es posible aЯadir una cuenta nueva.");
 
 $txt_virtual_admin_list = array(
@@ -159,6 +178,7 @@ $txt_virtual_admin_list = array(
 	"nl" => "Beheerderslijst",
 	"ru" => "Список администраторов",
 	"de" => "Administratoren Liste",
+	"zh" => "╧эюМхкт╠д©б╪",
 	"es" => "Lista de Administradores");
 
 $txt_add_user_title = array(
@@ -167,6 +187,7 @@ $txt_add_user_title = array(
 	"nl" => "Voeg een beheerder toe",
 	"ru" => "Добавить виртуального администратора",
 	"de" => "Weiteren Administrator hinzufЭgen",
+	"zh" => "лМ╪спИдБ╧эюМхкт╠",
 	"es" => "AЯadir un administrador");
 
 $txt_generate_buttons_title = array(
@@ -175,15 +196,16 @@ $txt_generate_buttons_title = array(
 	"nl" => "De configuratiebestanden generator wordt gestart",
 	"ru" => "Выполнение генерации конфигурационный файлов",
 	"de" => "Erzeuge Konfigurationsdateien.",
+	"zh" => "еДжцнд╪Ч╣дфТ╤╞",
 	"es" => "Lanzando generacion de ficheros de configuracion.");
 
 $txt_general_virtual_admin_edition = array(
 	"fr" => "Edition de l'administrateur virtuel <i>\"$adm_login\"</i>",
 	"en" => "Configuration of the virtual administrator <i>\"$adm_login\"</i>",
 	"nl" => "Configuratie van de beheerder <i>\"$adm_login\"</i>",
-	"ru" => "Конфигурация виртуального администратора 
-<i>\"$adm_login\"</i>",
+	"ru" => "Конфигурация виртуального администратора <i>\"$adm_login\"</i>",
 	"de" => "Administrator bearbeiten <i>\"$adm_login\"</i> ",
+	"zh" => "TRANSConfiguration of the virtual administrator <i>\"$adm_login\"</i>",
 	"es" => "Configuracion del administrador <i>\"$adm_login\"</i>");
 
 $txt_domains_configuration_title = array(
@@ -192,6 +214,7 @@ $txt_domains_configuration_title = array(
 	"nl" => "Configuratie van elk domein voor <i>\"$adm_login\"</i>",
 	"ru" => "Конфигурация для каждого домена  <i>\"$adm_login\"</i>",
 	"de" => "Konfiguration der Domains von  <i>\"$adm_login\"</i>",
+	"zh" => "TRANSConfiguration for each domains of <i>\"$adm_login\"</i>",
 	"es" => "Configuracion para cada dominio de <i>\"$adm_login\"</i>");
 
 $txt_admlist_sort_by_legend = array(
@@ -200,15 +223,16 @@ $txt_admlist_sort_by_legend = array(
 	"nl" => "Weergeven en sorteren op:",
 	"ru" => "Выводить по:",
 	"de" => "Zeige und sortiere nach:",
+	"zh" => "TRANSDisplay and sort by:",
 	"es" => "Mostrar ordenador por:");
 	
-
 $txt_admlist_new_admin = array(
 	"fr" => "Nouvel admin virtuel",
 	"en" => "New virtual admin",
 	"nl" => "Nieuwe virtuele beheerder",
 	"ru" => "Новый виртуальный администратор",
 	"de" => "Neuer Administrator",
+	"zh" => "TRANSNew virtual admin",
 	"es" => "Nuevo administrador");
 
 
@@ -218,6 +242,7 @@ $txt_path = array(
 	"nl" => "Pad :",
 	"ru" => "Путь:",
 	"de" => "Pfad:",
+	"zh" => "TRANSPath:",
 	"es" => "Directorio:");
 
 $txt_use_text_menu = array(
@@ -226,6 +251,7 @@ $txt_use_text_menu = array(
 	"nl" => "Gebruik tekst menu:",
 	"ru" => "TRANSUse text menu:",
 	"de" => "TRANSUse text menu:",
+	"zh" => "TRANSUse text menu:",
 	"es" => "Usar menu de texto:");
 
 	
@@ -235,14 +261,16 @@ $txt_password = array(
 	"nl" => "Wachtwoord:",
 	"ru" => "Пароль:",
 	"de" => "Passwort",
+	"zh" => "TRANSPassword:",
 	"es" => "ContraseЯa:");
-	
+
 $txt_id_client = array(
 	"fr" => "Id client :",
 	"en" => "Client ID:",
 	"nl" => "Klant id :",
 	"ru" => "ID клиента:",
 	"de" => "Client ID",
+	"zh" => "TRANSClient ID:",
 	"es" => "ID de cliente");
 
 $txt_del_user = array(
@@ -251,6 +279,7 @@ $txt_del_user = array(
 	"nl" => "Wis de gebruiker",
 	"ru" => "Удалить пользователя",
 	"de" => "Benutzer lЖschen",
+	"zh" => "TRANSDelete the user",
 	"es" => "Borrar usuario");
 
 $txt_del_user_confirm = array(
@@ -259,8 +288,8 @@ $txt_del_user_confirm = array(
 	"nl" => "Weet je zeker dat je deze gebruiker wilt wissen? Als je hier op JA klikt, wis je DEFINITIEF alle domeinnamen, bestanden en databases gekoppeld aan deze gebruiker !!!",
 	"ru" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
 	"de" => "Sicher das Sie diesen Benutzer lЖschen wollen? Alle Domains, Dateien und Datenbanken werden gelЖscht",
+	"zh" => "TRANSAre your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
 	"es" => "©Estas seguro de querer eliminar este usuario? Esto borrara todos sus dominios, ficheros y bases de datos !!!");
-
 
 $txt_del_user_domain = array(
 	"fr" => "Effacer un domaines de l'utilisateur :",
@@ -268,6 +297,7 @@ $txt_del_user_domain = array(
 	"nl" => "Wis een gebruikersdomein :",
 	"ru" => "Удалить домен пользователя:",
 	"de" => "LЖschen einer Benutzerdomain",
+	"zh" => "TRANSDelete a user domain:",
 	"es" => "Borrar dominio de usuario");
 
 $txt_del_user_domain_confirm = array(
@@ -276,6 +306,7 @@ $txt_del_user_domain_confirm = array(
 	"nl" => "Weet je zeker dat je dit domein wilt wissen? Deze actie zal het domein wissen INCLUSIEF alle bestanden op het filesysteem !!!",
 	"ru" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
 	"de" => "Sicher das Sie diese Domain lЖschen wollen? Alle Datein fЭr diese Domain werden gelЖscht",
+	"zh" => "TRANSAre you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
 	"es" => "©Estas seguro de querer eliminar este nombre de dominio? Esto borrara todos los ficheros de dicho dominio !!!");
 
 $txt_new_domain_for_user = array(
@@ -284,8 +315,8 @@ $txt_new_domain_for_user = array(
 	"nl" => "Voeg een gebruiker toe aan dit domein:",
 	"ru" => "Добавить домен для этого пользователя:",
 	"de" => "Anlegen einer Domain:",
+	"zh" => "TRANSAdd a domain for this user:",
 	"es" => "AЯadir un dominio para este usuario:");
-
 
 $txt_domain_tbl_config_dom_name = array(
 	"fr" => "Nom de domaine",
@@ -293,6 +324,7 @@ $txt_domain_tbl_config_dom_name = array(
 	"nl" => "Domein naam",
 	"ru" => "Имя домена",
 	"de" => "Domainname",
+	"zh" => "TRANSDomain name",
 	"es" => "Nombre de dominio");
 
 $txt_domain_tbl_config_quota = array(
@@ -301,6 +333,7 @@ $txt_domain_tbl_config_quota = array(
 	"nl" => "Schijf quota",
 	"ru" => "Дисковая квота",
 	"de" => "Disk quota",
+	"zh" => "TRANSDisk quota",
 	"es" => "Quota de disco");
 
 $txt_domain_tbl_config_max_ftp = array(
@@ -309,6 +342,7 @@ $txt_domain_tbl_config_max_ftp = array(
 	"nl" => "Max ftp",
 	"ru" => "ФТП макс",
 	"de" => "Max. ftp",
+	"zh" => "TRANSMax ftp",
 	"es" => "Max ftp");
 
 $txt_domain_tbl_config_max_email = array(
@@ -317,8 +351,8 @@ $txt_domain_tbl_config_max_email = array(
 	"nl" => "E-mail max",
 	"ru" => "Почта макс",
 	"de" => "Max. Emails",
+	"zh" => "TRANSEmail max",
 	"es" => "Max Emails");
-
 
 $txt_domain_tbl_config_max_subdomain = array(
 	"fr" => "Subdomain max",
@@ -326,8 +360,8 @@ $txt_domain_tbl_config_max_subdomain = array(
 	"nl" => "Subdomeinen max",
 	"ru" => "Субдомены макс",
 	"de" => "Max. Subdomains",
+	"zh" => "TRANSSubdomain max",
 	"es" => "Max Subdomainios");
-
 
 $txt_domain_tbl_config_ip = array(
 	"fr" => "Adresse IP",
@@ -335,6 +369,7 @@ $txt_domain_tbl_config_ip = array(
 	"en" => "IP adres",
 	"ru" => "IP адреса",
 	"de" => "IP Adresse",
+	"zh" => "TRANSIP address",
 	"es" => "Direccion IP");
 
 $txt_your_domain = array(
@@ -343,16 +378,17 @@ $txt_your_domain = array(
 	"nl" => "Jouw domein:",
 	"ru" => "Ваш домен:",
 	"de" => "Ihre Domain:",
+	"zh" => "TRANSYour domain:",
 	"es" => "Tu dominio:");
-	
+
 $txt_your_domain_email = array(
 	"fr" => "Boites emails:",
 	"en" => "Mailboxs:",
 	"nl" => "E-mail accounts:",
 	"ru" => "Почтовые ящики:",
 	"de" => "Mailboxen:",
+	"zh" => "TRANSMailboxs:",
 	"es" => "Cuentas de correo:");
-
 
 $txt_your_domain_ftp = array(
 	"fr" => "Comptes ftp :",
@@ -360,6 +396,7 @@ $txt_your_domain_ftp = array(
 	"nl" => "Ftp accounts:",
 	"ru" => "ФТП аккаунты:",
 	"de" => "FTP Acounts:",
+	"zh" => "TRANSFtp accounts:",
 	"es" => "Cuentas de ftp:");
 
 $txt_your_domain_subdomain = array(
@@ -368,8 +405,8 @@ $txt_your_domain_subdomain = array(
 	"nl" => "Subdomeinen:",
 	"ru" => "Субдомены:",
 	"de" => "Subdomains:",
+	"zh" => "TRANSSubdomains:",
 	"es" => "Subdominios:");
-
 
 $txt_confirurate_your_domain_name = array(
 	"fr" => "Configurer son domaine :",
@@ -377,6 +414,7 @@ $txt_confirurate_your_domain_name = array(
 	"nl" => "Configureer je domein naam:",
 	"ru" => "TRANSConfigurate your domain name:",
 	"de" => "Konfiguration des Domain Namens:",
+	"zh" => "TRANSConfigurate your domain name:",
 	"es" => "Configurar tus nombres de dominio");
 
 // MY ACCOUNT STRINGS
@@ -386,6 +424,7 @@ $txt_transfer_du = array(
 	"nl" => "Bandbreedte en hardeschijf verbruik:",
 	"ru" => "TRANSTransfere and disk usage:",
 	"de" => "TRANSTransfere and disk usage:",
+	"zh" => "TRANSTransfer and disk usage:",
 	"es" => "Transferencia y uso de disco:");
 
 $txt_transfer_this_month = array(
@@ -394,6 +433,7 @@ $txt_transfer_this_month = array(
 	"nl" => "Bandbreedte deze maand:",
 	"ru" => "TRANSTransfer this month:",
 	"de" => "TRANSTransfer this month:",
+	"zh" => "TRANSTransfer this month:",
 	"es" => "Transferencia este mes:");
 
 $txt_total_disk_usage = array(
@@ -402,6 +442,7 @@ $txt_total_disk_usage = array(
 	"nl" => "Totale hardeschijf gebruik:",
 	"ru" => "TRANSTotal disk usage:",
 	"de" => "TRANSTotal disk usage:",
+	"zh" => "TRANSTotal disk usage:",
 	"es" => "Uso Total de disco:");
 
 $txt_your_hosting_account = array(
@@ -410,6 +451,7 @@ $txt_your_hosting_account = array(
 	"nl" => "Uw hosting account:",
 	"ru" => "TRANSYour hosting account:",
 	"de" => "TRANSYour hosting account:",
+	"zh" => "TRANSYour hosting account:",
 	"es" => "Tu cuenta de hosts:");
 
 $txt_storage_space = array(
@@ -418,6 +460,7 @@ $txt_storage_space = array(
 	"nl" => "Opslagruimte",
 	"ru" => "TRANSStorage space",
 	"de" => "TRANSStorage space",
+	"zh" => "TRANSStorage space",
 	"es" => "Espacio de disco");
 
 $txt_allowed_data_transfer = array(
@@ -426,6 +469,7 @@ $txt_allowed_data_transfer = array(
 	"nl" => "Toegestane bandbreedte deze maand",
 	"ru" => "TRANSAllowed bandwidth per month",
 	"de" => "TRANSAllowed bandwidth per month",
+	"zh" => "TRANSAllowed bandwidth per month",
 	"es" => "Ancho de Banda permitido por mes");
 
 $txt_expiration_date = array(
@@ -434,6 +478,7 @@ $txt_expiration_date = array(
 	"nl" => "Eind datum",
 	"ru" => "TRANSExpiration date",
 	"de" => "TRANSExpiration date",
+	"zh" => "TRANSExpiration date",
 	"es" => "Fecha de caducidad");
 
 $txt_upgrade_my_account_button = array(
@@ -442,6 +487,7 @@ $txt_upgrade_my_account_button = array(
 	"nl" => "Mijn account opwaarderen",
 	"ru" => "TRANSUpgrade my account",
 	"de" => "TRANSUpgrade my account",
+	"zh" => "TRANSUpgrade my account",
 	"es" => "Actualizar mi cuenta");
 
 $txt_renew_my_account_button = array(
@@ -450,6 +496,7 @@ $txt_renew_my_account_button = array(
 	"nl" => "Vernieuw mijn account",
 	"ru" => "TRANSRenew my account",
 	"de" => "TRANSRenew my account",
+	"zh" => "TRANSRenew my account",
 	"es" => "Renovar mi cuenta");
 
 $txt_remaining_money = array(
@@ -458,6 +505,7 @@ $txt_remaining_money = array(
 	"nl" => "Beschikbare tegoeden op mijn account:",
 	"ru" => "TRANSRemaining money on my account:",
 	"de" => "TRANSRemaining money on my account:",
+	"zh" => "TRANSRemaining money on my account:",
 	"es" => "Dinero restante en mi cuenta:");
 
 $txt_refund_my_account = array(
@@ -466,6 +514,7 @@ $txt_refund_my_account = array(
 	"nl" => "Mijn tegoeden terugstorten::",
 	"ru" => "TRANSRefund my account:",
 	"de" => "TRANSRefund my account:",
+	"zh" => "TRANSRefund my account:",
 	"es" => "Reembolsar mi cuenta:");
 
 $txt_please_tell_if_info_not_ok = array(
@@ -474,6 +523,7 @@ $txt_please_tell_if_info_not_ok = array(
 	"nl" => "Laat ons weten of het volgende niet correct is:",
 	"ru" => "TRANSPlease tell us if the following is not correct:",
 	"de" => "TRANSPlease tell us if the following is not correct:",
+	"zh" => "TRANSPlease tell us if the following is not correct:",
 	"es" => "Por favor, informenos si la informacion siguiente no es correcta:");
 
 // Myaccount/stats strings
@@ -483,6 +533,7 @@ $txt_my_account_global_stats_title = array(
 	"nl" => "Mijn globale account statistieken",
 	"ru" => "TRANSMy account global statistics",
 	"de" => "TRANSMy account global statistics",
+	"zh" => "TRANSMy account global statistics",
 	"es" => "Estadisticas globales de mi cuenta");
 
 $txt_total_transfered_bytes_this_month = array(
@@ -491,6 +542,7 @@ $txt_total_transfered_bytes_this_month = array(
 	"nl" => "Totaal verbruikte bytes deze maand:",
 	"ru" => "TRANSTotal transfered bytes this month:",
 	"de" => "TRANSTotal transfered bytes this month:",
+	"zh" => "TRANSTotal transfered bytes this month:",
 	"es" => "Transferencia total de bytes este mes:");
 
 $txt_are_disk_usage = array(
@@ -499,6 +551,7 @@ $txt_are_disk_usage = array(
 	"nl" => "Je hardeschijf gebruik:",
 	"ru" => "TRANSYour area disk usage:",
 	"de" => "TRANSYour area disk usage:",
+	"zh" => "TRANSYour area disk usage:",
 	"es" => "Espacio de disco:");
 
 $txt_domain_name_files = array(
@@ -507,6 +560,7 @@ $txt_domain_name_files = array(
 	"nl" => "Domeinnaam bestanden:",
 	"ru" => "TRANSDomain name files:",
 	"de" => "TRANSDomain name files:",
+	"zh" => "TRANSDomain name files:",
 	"es" => "Ficheros de nombres de dominio:");
 
 $txt_database_files = array(
@@ -515,6 +569,7 @@ $txt_database_files = array(
 	"nl" => "Database bestanden:",
 	"ru" => "TRANSDomain name files:",
 	"de" => "TRANSDomain name files:",
+	"zh" => "TRANSDatabase files:",
 	"es" => "Ficheros de bases de datos:");
 
 $txt_total_disk_usage = array(
@@ -523,6 +578,7 @@ $txt_total_disk_usage = array(
 	"nl" => "Totaal hardeschijf gebruik:",
 	"ru" => "TRANSTotal disk usage:",
 	"de" => "TRANSTotal disk usage:",
+	"zh" => "TRANSTotal disk usage:",
 	"es" => "Uso total de disco:");
 
 $txt_databases_disk_usage = array(
@@ -531,6 +587,7 @@ $txt_databases_disk_usage = array(
 	"nl" => "Hardeschijf verbruik databases:",
 	"ru" => "TRANSDatabases disk usage:",
 	"de" => "TRANSDatabases disk usage:",
+	"zh" => "TRANSDatabases disk usage:",
 	"es" => "Uso de disco de las bases de datos:");
 
 $txt_database_name = array(
@@ -539,6 +596,7 @@ $txt_database_name = array(
 	"nl" => "Database naam",
 	"ru" => "TRANSDatabase name",
 	"de" => "TRANSDatabase name",
+	"zh" => "TRANSDatabase name",
 	"es" => "Nombre de la base de datos");
 
 $txt_disk_usage = array(
@@ -547,6 +605,7 @@ $txt_disk_usage = array(
 	"nl" => "Hardeschijf gebruik",
 	"ru" => "TRANSDisk usage",
 	"de" => "TRANSDisk usage",
+	"zh" => "TRANSDisk usage",
 	"es" => "Uso de disco");
 
 $txt_domain_name_trafic_du = array(
@@ -555,6 +614,7 @@ $txt_domain_name_trafic_du = array(
 	"nl" => "Domeinnaam verkeer en hardeschijf gebruik:",
 	"ru" => "TRANSDomain name trafic and disk usage:",
 	"de" => "TRANSDomain name trafic and disk usage:",
+	"zh" => "TRANSDomain name trafic and disk usage:",
 	"es" => "Nombre de dominio, Trafico y uso de disco:");
 
 $txt_domain_name = array(
@@ -563,6 +623,7 @@ $txt_domain_name = array(
 	"nl" => "Domein naam",
 	"ru" => "TRANSDomain name",
 	"de" => "TRANSDomain name",
+	"zh" => "TRANSDomain name",
 	"es" => "Nombre de dominio");
 
 $txt_disk_usage = array(
@@ -571,6 +632,7 @@ $txt_disk_usage = array(
 	"nl" => "Hardeschijf gebruik",
 	"ru" => "TRANSDisk usage",
 	"de" => "TRANSDisk usage",
+	"zh" => "TRANSDisk usage",
 	"es" => "Uso de disco");
 
 $txt_total_trafic = array(
@@ -579,15 +641,8 @@ $txt_total_trafic = array(
 	"nl" => "Totaal verkeer",
 	"ru" => "TRANSTotal trafic",
 	"de" => "TRANSTotal trafic",
+	"zh" => "TRANSTotal trafic",
 	"es" => "Trafico total");
-
-
-//
-
-
-
-
-
 
 $txt_comment_confirurate_your_domain_name = array(
 	"fr" => "Attention ! Si vous rentrez de
@@ -619,7 +674,27 @@ betekent dat u de website of email ergens anders wilt hosten.<br>
 Het MX parameter geeft het ipadres van de mailserver weer.
 Als u hier iets anders dan \"default\" instelt, dan komt de e-mail
 niet meer op deze server aan, maar op het punt dat u aangeeft.",
-	"ru" => "Take care ! Setting wrong value
+	"ru" => "TRANSTake care ! Setting wrong value
+in the following fields can lead to the stop of
+your site services (web or mail).<br>
+Put something else than \"default\" in the DNS
+fields means that you want your site to be
+hosted elsewhere.<br>
+The MX parameter tells the addresse of the mail server
+(the one that store all your mail when somebody sends
+your a message). The value \"default\" means that
+you want to use the current server.",
+	"de" => "TRANSTake care ! Setting wrong value
+in the following fields can lead to the stop of
+your site services (web or mail).<br>
+Put something else than \"default\" in the DNS
+fields means that you want your site to be
+hosted elsewhere.<br>
+The MX parameter tells the addresse of the mail server
+(the one that store all your mail when somebody sends
+your a message). The value \"default\" means that
+you want to use the current server.",
+	"zh" => "TRANSTake care ! Setting wrong value
 in the following fields can lead to the stop of
 your site services (web or mail).<br>
 Put something else than \"default\" in the DNS
@@ -644,16 +719,18 @@ $txt_primari_dns_ip = array(
 	"fr" => "Addresse IP du serveur DNS primaire :",
 	"en" => "IP address of the primary DNS server:",
 	"nl" => "IP adres van de primaire DNS server:",
-	"ru" => "IP address of the primary DNS server:",
+	"ru" => "TRANSIP address of the primary DNS server:",
 	"de" => "IP Addresse des primДren DNS Servers:",
+	"zh" => "TRANSIP address of the primary DNS server:",
 	"es" => "Direccmon IP del servidor primario de DNS:");
 
 $txt_other_dns_ip = array(
 	"fr" => "Autres serveurs DNS :",
 	"en" => "Other DNS servers:",
 	"nl" => "Andere DNS servers:",
-	"ru" => "Other DNS servers:",
+	"ru" => "TRANSOther DNS servers:",
 	"de" => "Weitere DNS Server:",
+	"zh" => "TRANSOther DNS servers:",
 	"es" => "Otro servidor de DNS:");
 
 $txt_primary_mx_server = array(
@@ -662,13 +739,16 @@ $txt_primary_mx_server = array(
 	"nl" => "Primaire MX record:",
 	"ru" => "Primary MX address:",
 	"de" => "PrimДrer MX Adresse",
+	"zh" => "TRANSPrimary MX address:",
 	"es" => "Direccion primaria de MX:");
 
 $txt_other_mx_servers = array(
 	"fr" => "Autres serveurs MX (secondaire) :",
 	"en" => "Other MX (backup) servers:",
 	"nl" => "Andere MX (backup) servers:",
-	"ru" => "Other MX (backup) servers:",
+	"ru" => "TRANSOther MX (backup) servers:",
+	"de" => "TRANSOther MX (backup) servers:",
+	"zh" => "TRANSOther MX (backup) servers:",
 	"es" => "Otro servidor MX (backup):");
  
 $txt_draw_tatabase_your_list = array(
@@ -774,6 +854,8 @@ $txt_draw_client_info_addr = array(
 	"en" => "Address:",
 	"nl" => "Adres:",
 	"ru" => "Адрес:",
+	"de" => "TRANSAddress:",
+	"zh" => "TRANSAddress:",
 	"es" => "Direccion:"
 );
 
@@ -782,6 +864,8 @@ $txt_draw_client_info_zipcode = array(
 	"en" => "Zipcode:",
 	"nl" => "Postcode:",
 	"ru" => "Индекс:",
+	"de" => "TRANSZipcode:",
+	"zh" => "TRANSZipcode:",
 	"es" => "Codigo postal:"
 );
 
@@ -790,6 +874,8 @@ $txt_draw_client_info_country = array(
 	"en" => "Country:",
 	"nl" => "Land:",
 	"ru" => "Страна",
+	"de" => "TRANSCountry:",
+	"zh" => "TRANSCountry:",
 	"es" => "Pais:"
 );
 
@@ -798,6 +884,8 @@ $txt_draw_client_info_city = array(
 	"en" => "City:",
 	"nl" => "Woonplaats:",
 	"ru" => "Город",
+	"de" => "TRANSCity:",
+	"zh" => "TRANSCity:",
 	"es" => "Ciudad:"
 );
 
@@ -806,6 +894,8 @@ $txt_draw_client_info_phone = array(
 	"en" => "Phone number:",
 	"nl" => "Telefoonnummer:",
 	"ru" => "Номер телефона:",
+	"de" => "TRANSPhone number:",
+	"zh" => "TRANSPhone number:",
 	"es" => "Numero de telefono:"
 );
 
@@ -814,6 +904,8 @@ $txt_draw_client_info_fax = array(
 	"en" => "Fax:",
 	"nl" => "Faxnummer:",
 	"ru" => "Факс:",
+	"de" => "TRANSFax:",
+	"zh" => "TRANSFax:",
 	"es" => "Fax:"
 );
 
@@ -822,6 +914,8 @@ $txt_draw_client_info_email = array(
 	"en" => "Email:",
 	"nl" => "E-mail adres:",
 	"ru" => "Почта:",
+	"de" => "TRANSEmail:",
+	"zh" => "TRANSEmail:",
 	"es" => "Correo electronico:"
 );
 
@@ -848,6 +942,7 @@ $txt_login_title = array(
 	"nl" => "Login",
 	"ru" => "Имя",
 	"de" => "Login",
+	"zh" => "TRANSLogin",
 	"es" => "Login"
 );
 $txt_login_login = array(
@@ -856,6 +951,7 @@ $txt_login_login = array(
 	"nl" => "Login: ",
 	"ru" => "Имя:",
 	"de" => "Login:",
+	"zh" => "TRANSLogin:",
 	"es" => "Login:"
 );
 $txt_login_pass = array(
@@ -864,6 +960,7 @@ $txt_login_pass = array(
 	"nl" => "Wachtwoord:",
 	"ru" => "Пароль:",
 	"de" => "Passwort:",
+	"zh" => "TRANSPassword:",
 	"es" => "ContraseЯa:"
 );
 $txt_login_path = array(
@@ -872,6 +969,7 @@ $txt_login_path = array(
 	"nl" => "Pad:",
 	"ru" => "Путь:",
 	"de" => "Pfad:",
+	"zh" => "TRANSPath:",
 	"es" => "Directorio:"
 );
 
@@ -881,6 +979,7 @@ $txt_left_menu_title = array(
 	"nl" => "Jouw domeinen",
 	"ru" => "Ваши домены",
 	"de" => "Ihre Domains",
+	"zh" => "TRANSYour domains",
 	"es" => "Tus dominios"
 );
 	
@@ -890,6 +989,7 @@ $txt_title_geninfo_form = array(
 	"nl" => "Algemene informatie over ",
 	"ru" => "Основная информация ",
 	"de" => "Allgemeine Informationen",
+	"zg" => "TRANSGeneral informations of ",
 	"es" => "Informacion general de "
 );
 
@@ -902,6 +1002,7 @@ $txt_title_subdomain_form = array(
 	"nl" => "Subdomeinen van ",
 	"ru" => "Субдомены",
 	"de" => "Subdomains von ",
+	"zh" => "TRANSSubdomains of ",
 	"es" => "Subdominios de "
 );
 $txt_subdom_list = array(
@@ -910,6 +1011,7 @@ $txt_subdom_list = array(
 	"nl" => "Lijst met jouw subdomeinen: ",
 	"ru" => "Список ваших субдоменов:",
 	"de" => "Liste der Subdomains: ",
+	"zh" => "TRANSList of your subdomains: ",
 	"es" => "Lista de subdominios: "
 );
 $txt_subdom_default_sub = array(
@@ -918,6 +1020,7 @@ $txt_subdom_default_sub = array(
 	"nl" => "Standaard subdomein: ",
 	"ru" => "Субдомен по умолчанию:",
 	"de" => "Standard Subdomain",
+	"zh" => "TRANSDefault subdomain: ",
 	"es" => "Subdominio por defecto"
 );
 $txt_subdom_errase = array(
@@ -926,6 +1029,7 @@ $txt_subdom_errase = array(
 	"nl" => "Wis een subdomein: ",
 	"ru" => "Удалить субдомен:",
 	"de" => "LЖschen einer Subdomain",
+	"zh" => "TRANSDelete a subdomain: ",
 	"es" => "Eliminar un subdominio"
 );
 	
@@ -935,6 +1039,7 @@ $txt_subdom_create = array(
 	"nl" => "Creeer een subdomein: ",
 	"ru" => "Создать субдомен:",
 	"de" => "Anlegen einer Subdomain",
+	"zh" => "TRANSCreate a subdomain: ",
 	"es" => "Crear un subdominio"
 );
 
@@ -947,6 +1052,7 @@ $txt_title_mailbox_form = array(
 	"nl" => "E-mail account van ",
 	"ru" => "Почтовые ящики",
 	"de" => "Mailboxen von ",
+	"zh" => "TRANSMailboxs of ",
 	"es" => "Cuentas de correo de "
 );
 $txt_mail_liste_of_your_box = array(
@@ -955,6 +1061,7 @@ $txt_mail_liste_of_your_box = array(
 	"nl" => "Lijst met jouw E-mail accounts:",
 	"ru" => "Список ваших ящиков:",
 	"de" => "Liste Ihrer Mailboxen",
+	"zh" => "TRANSList of your mailboxs: ",
 	"es" => "Listo de tus cuentas de correo"
 );
 $txt_mail_new_mailbox = array(
@@ -963,6 +1070,7 @@ $txt_mail_new_mailbox = array(
 	"nl" => "Nieuw e-mail account: ",
 	"ru" => "Новый ящик:",
 	"de" => "Neue Mailbox: ",
+	"zh" => "TRANSNew mailbox: ",
 	"es" => "Nueva cuenta de correo: "
 );
 $txt_mail_new_mailbox_link = array(
@@ -971,6 +1079,7 @@ $txt_mail_new_mailbox_link = array(
 	"nl" => "Nieuw e-mail account",
 	"ru" => "Новый ящик:",
 	"de" => "Neue Mailbox",
+	"zh" => "TRANSNew mailbox",
 	"es" => "Nueva cuenta de correo"
 );
 $txt_mail_redirection1 = array(
@@ -979,6 +1088,7 @@ $txt_mail_redirection1 = array(
 	"nl" => "Doorsturen naar 1:",
 	"ru" => "Переназначение 1:",
 	"de" => "Umleitung 1:",
+	"zh" => "TRANSRedirection 1: ",
 	"es" => "Redireccion 1: "
 );
 $txt_mail_redirection2 = array(
@@ -987,6 +1097,7 @@ $txt_mail_redirection2 = array(
 	"nl" => "Doorsturen naar 2:",
 	"ru" => "Переназначение 2:",
 	"de" => "Umleitung 2:",
+	"zh" => "TRANSRedirection 2: ",
 	"es" => "Redireccion 2: "
 );
 $txt_mail_deliver_localy = array(
@@ -995,6 +1106,7 @@ $txt_mail_deliver_localy = array(
 	"nl" => "Lokaal afleveren: ",
 	"ru" => "Доставка локально:",
 	"de" => "Lokal zustellen: ",
+	"zh" => "TRANSDeliver localy: ",
 	"es" => "Enviar localmente: "
 );
 $txt_mail_edit = array(
@@ -1003,6 +1115,7 @@ $txt_mail_edit = array(
 	"nl" => "E-mail account configuratie:",
 	"ru" => "Конфигурация почтового ящика:",
 	"de" => "Mailbox Konfiguration",
+	"zh" => "TRANSMailbox configuration: ",
 	"es" => "Configuracion de la cuenta de correo"
 );
 
@@ -1015,6 +1128,7 @@ $txt_title_ftp_form = array(
 	"nl" => "Ftp accounts van ",
 	"ru" => "Учетные записи ФТП",
 	"de" => "FTP Accounts von ",
+	"zh" => "TRANSFtp accounts of ",
 	"es" => "Cuentas de ftp "
 );
 $txt_ftp_account_list = array(
@@ -1023,6 +1137,7 @@ $txt_ftp_account_list = array(
 	"nl" => "Lijst van jouw FTP accounts:",
 	"ru" => "Список ваших ФТП аккаунтов:",
 	"de" => "Liste Ihrer FTP Accounts:",
+	"zh" => "TRANSList of your FTP accounts: ",
 	"es" => "Lista de cuentas de ftp:"
 );
 $txt_ftp_new_account = array(
@@ -1031,6 +1146,7 @@ $txt_ftp_new_account = array(
 	"nl" => "Nieuw FTP account: ",
 	"ru" => "Новый аккаунт:",
 	"de" => "Neuer FTP Account",
+	"zh" => "TRANSNew FTP account: ",
 	"es" => "Nueva cuenta de ftp"
 );
 $txt_ftp_account_edit = array(
@@ -1039,6 +1155,7 @@ $txt_ftp_account_edit = array(
 	"nl" => "FTP account configuratie : ",
 	"ru" => "Конфигурация ФТП-аккаунта:",
 	"de" => "Konfiguration des FTP Accounts",
+	"zh" => "TRANSFTP account configuration: ",
 	"es" => "Configuracion de las cuentas de ftp"
 );
 $txt_ftp_new_account_link = array(
@@ -1047,6 +1164,7 @@ $txt_ftp_new_account_link = array(
 	"nl" => "Nieuw ftp account",
 	"ru" => "Новый ФТП аккаунт",
 	"de" => "Neuer FTP Account",
+	"zh" => "TRANSNew ftp account",
 	"es" => "Nueva cuenta de ftp"
 );
 
@@ -1058,6 +1176,7 @@ $txt_new_password = array(
 	"en" => "New ftp account",
 	"nl" => "Nieuw ftp account",
 	"ru" => "Новый ФТП аккаунт",
+	"zh" => "TRANSNew ftp account",
 	"es" => "Nueva cuenta de ftp"
 );
 $txt_title_database_form = array(
@@ -1066,6 +1185,7 @@ $txt_title_database_form = array(
 	"nl" => "Jouw databases",
 	"ru" => "Ваши базы данных",
 	"de" => "Ihre Datenbanken",
+	"zh" => "TRANSYour databases",
 	"es" => "Tus bases de datos"
 );
 $txt_title_help_form = array(
@@ -1073,6 +1193,8 @@ $txt_title_help_form = array(
 	"en" => "Online DTC help",
 	"nl" => "On-line DTC help",
 	"ru" => "Онлайн помощь DTC",
+	"de" => "TRANSOnline DTC help",
+	"zh" => "TRANSOnline DTC help",
 	"es" => "Ayuda en linea para DTC"
 );
 
@@ -1789,6 +1911,169 @@ GOIRAND</a></i></div><br>
 
 
 ",
+
+	"zh" => "
+TRANS<font face=\"Arial, Verdana\">
+<center><font size=\"+2\"><u><b>ONLINE DTC
+HELP</b></u></font></center><br><br>
+<div align=\"justify\">
+<font size=\"+1\"><u>1. What is DTC</u></font><br><br>
+DTC is a tool we made especialy for you. With it, you can take the
+control of your domain administration : you can
+manage all your subdomains, emails, and ftp accounts.<br><br>
+All this tool had been release under the <a
+href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence),
+which means that you can have a copy of this interface source
+code, modify it and use it as you wish, as long as you redistribute
+all thoses changes. We (at GPLHost) beleave in the Free
+Software effort, and we hope this participation will encourage
+other developpements. We consider that because we use only
+open-source software for our hosting service, it is normal
+to redistribute our developpements.<br><br>
+
+<font size=\"+1\"><u>2. Emails</u></font><br>
+<u>2.1. What will it do ?</u><br><br>
+You can add, delete or modify a mailbox with this tool.<br><br>
+
+<u>2.2. Redirection and local delivery</u><br><br>
+Each mailbox can be redirected to one or more email addresse, which
+means that when a message is recieved, it is forwared to one
+or tow email adresse(s). The \"deliver localy\" checkbox
+tells wether or not all message for this mailbox will be
+written on our hard disk, so thenafter you will be able to
+read your message using a mail client, connecting to
+our server. Don't forget to checkup your mails often if
+you have trafic, because the mailbox are included in the
+quota<br><br>
+<u>2.3. Delay when adding / deleting accounts</u><br><br>
+When you add or delete a mail account, don't expect it to
+work immediatly : we will have to validate the changes in
+the system in order to have your new accounts changes to
+take effect : we have to tell Qmail (our mail server) to
+reload it's user database.<br><br>
+Most of the time, we validate all changes at the end of
+each working days, but if you need an immediate validation,
+click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
+validation\">here</a>.<br><br>
+
+<font size=\"+1\"><u>3. Subdomains</u></font><br>
+<u>3.1. What will it do ?</u><br><br>
+This part of the interface is for configurating your
+somain's sites, which means that you will be able
+to populate your web site with url of the form :
+<pre>
+http://anything.u.want.mydomain.com
+</pre>
+<u>3.2. What is the default subdomain ?</u><br><br>
+Whe someone trys to contact your web site with an
+URL without a subdomain, he is redirected to the
+subdomain you said it was the default. In other
+words, if you tell that:
+<pre>
+www
+</pre>
+is the default subdomain, someone that trys to
+connect using an url starting with:
+<pre>
+http://mydomain.com
+</pre>
+will be redirected to:
+<pre>
+http://www.mydomain.com
+</pre>
+In fact, the URL is kept, and no URL redirection
+in a HTML page has been created, but simply, a
+website with that URL has been configurated to
+the same location of the \"www\" subdomain, so
+it accesses the same html (or php) files, and
+shares the same log file.<br><br>
+
+<u>3.3. Forbidden subdomains</u><br><br>
+Because we have configurated those subdomains for
+other services than web, you cannot use the following
+subdomains for apache web sites :
+<ul><li>ftp</li>
+<li>pop</li>
+<li>smtp</li>
+</ul>
+
+<u>3.4. Deleting subdomains</u><br><br>
+It is up to you to delete the files used by your subdomain.
+You can delete all the files using a standard ftp client.
+But PLEASE take realy care not to delete a subdomain files
+without deleting it using DTC. Indeed, the Apache web server
+will complain if the directory does not exist but a web site
+is configurated for it, and this will be anoying when restarting
+apache.<br><br>
+
+<u>3.5. Delay when adding / deleting subdomain</u><br><br>
+We will have to restart our Apache web server in order
+to have your changes taking effect. Most of the time, we validate all
+changes at the end of
+each working days, but if you need an immediate validation,
+click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+: please restart apache now !\">here</a>.<br><br>
+
+<u>3.6. Trafic statistics for your subdomains</u><br><br>
+Because all your trafic is loged, we calculate the overall
+last 12 month statistics using <a href=\"http://www.mrunix.net/webalizer/\">
+webalizer</a>. The statistics are calculated each days at
+4 in the morning (this is when there is less trafic), and
+can be reach under the \"/stats\" directory on each
+subdomains. That means that if you have registerd :
+<pre>
+http://www.mydomain.com
+</pre>
+all statistics will be generated under :
+<pre>
+http://www.mydomain.com/stats/
+</pre>
+
+<font size=\"+1\"><u>4. FTP accounts</u></font><br>
+<u>4.1. What will it do ?</u><br><br>
+To have your page working and running, you have to upload
+them. But because you may not be only one to work on your
+web site, you may want to have more that one FTP account
+for accessing your web site. DTC will be the tool for
+managing thoses accounts and passwords.<br><br>
+
+<u>4.2. Delay when adding / deleting FTP accounts</u><br><br>
+Because we use ProFTP with a special module for handling accounts in
+our MySql database, all changes to your FTP accounts take effect
+in realtime.<br><br>
+
+<u>4.3. Limiting user to specified path</u><br><br>
+For the moment you cannont limit one user to access to only
+a part of your web site. But we (the administrators) can
+do it if you ask sending an <a
+href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+user path change in FTP\">email</a>, telling what user
+and what path you need.<br><br>
+
+<u>4.4. No piracy or file exchange on our servers please !</u><br><br>
+If we provide a user space on our ftp servers, this is
+for you to upload HTML content. This means no binary
+files you don't own the rights ! Take care if you abuse,
+we could close your accounts without notification.<br><br>
+
+<font size=\"+1\"><u>5. Why ftp or pop is slow, sometimes ?</u></font><br><br>
+There are many reasons for that. The first one is because
+we don't have many band with for uploading, and sometimes,
+there are realy a lot of people uploading. The one that
+are closer to our servers take most of the time all that
+band width, so one user has most of it, and some have
+not. There is nothing we can do about that...<br><br>
+Another reason is because we have decided to limit the
+band width for pop, smtp, and ftp, so that web browsing
+on our server is faster.<br><br><br>
+</div>
+<center>For the GPLHost team,</center><br>
+<div align=\"right\"><i><a href=\"mailto:thomas@gplhost.com\">Thomas
+GOIRAND</a></i></div><br>
+</font>
+",
+
+
 	"es" => "
 <font face=\"Arial, Verdana\">
 <center><font size=\"+2\"><u><b>ONLINE DTC
