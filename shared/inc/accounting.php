@@ -1,4 +1,3 @@
-
 <?
 
 function mysql_table_exists($dbname,$tableName){
@@ -370,7 +369,7 @@ function sum_ftp($webname){
 	$query = "UPDATE $pro_mysql_ftp_table set ul_bytes=0, dl_bytes=0 WHERE hostname='".$webname."'";
 	mysql_query($query) or die("Cannot execute query \"$query\"".mysql_error());
 
-	$q = "SELECT last_run,transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$webname."'";
+	$q = "SELECT last_run,transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$webname."' AND month='".date("m",time())."' AND year='".date("Y",time())."'";
 	$result_l = mysql_query($q) or die("Cannot execute query \"$q\"");
 	$numrow_acctable = mysql_num_rows($result_l);
 	if($numrow_acctable < 1){
