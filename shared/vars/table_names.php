@@ -14,7 +14,9 @@ $pro_mysql_whois_table = "whois";
 $pro_mysql_nameservers_table = "nameservers";
 $pro_mysql_handle_table = "handle";
 $pro_mysql_product_table = "product";
+$pro_mysql_pay_table = "paiement";
 
 $pro_mysql_acc_http_table = "http_accounting";
 $pro_mysql_acc_ftp_table = "ftp_accounting";
+
 ?>

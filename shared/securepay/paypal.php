@@ -1,6 +1,5 @@
 <?php
 
-$paypal_account = "paypal@gplhost.com";
 
 function paypalNotifyPostbackScript(){
 	// Create an URL to post to it.
@@ -69,8 +68,8 @@ function paypalButton($product_id,$amout,$item_name){
 	return $out;
 }
 
-function paynowButton($product_id,$amount=-1){
-	return paypalButton($product_id,$amout,"Test product, do not buy !");
-}
+
+
+
 
 ?>
