@@ -1,6 +1,5 @@
 <?php
 
-
 function paypalNotifyPostbackScript(){
 	// Create an URL to post to it.
 
@@ -53,7 +52,6 @@ function paypalNotifyPostbackScript(){
 	}
 }
 
-
 function paypalButton($product_id,$amount,$item_name,$return_url){
 	global $paypal_account;
 	global $conf_administrative_site;
@@ -66,7 +64,6 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 <input type="hidden" name="item_name" value="'.$item_name.'">
 <input type="hidden" name="item_number" value="'.$product_id.'">
 <input type="hidden" name="amount" value="'.$amount.'">
-<input type="hidden" name="no_note" value="'.$product_id.'">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="return" value=".$return_url.">
 <input type="hidden" name="notify_url" value="http://'.$conf_administrative_site.'/dtc/gateways/paypal.php">
@@ -74,7 +71,6 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!">
 </form>';
 	return $out;
-
 
 	$paypal_scripturl = "https://www.paypal.com/xclick/";
 	$paypal_url = $paypal_scripturl.
@@ -85,9 +81,5 @@ name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!">
 	$out = "<a  target=\"blank\" name=\"submit\" href=\"$paypal_url\"><img border=\"0\" src=\"$img_src\" alt=\"$img_alt\"></a>";
 	return $out;
 }
-
-
-
-
 
 ?>

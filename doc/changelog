@@ -17,6 +17,8 @@ updated.
 Template for new sites was not copied because of a global
 not set.
 
+Using new icons taken from the exelent art.gnome.org
+
 Bugfixes:
 Apache conf generation died if domain has no subdomains,
 wich can happen in some configuration of a domain name.
