@@ -530,24 +530,26 @@ then
 fi
 
 # add the default password to .htpasswd if it doesn't exist already
-conf_hosting_path
 if [ -e $conf_hosting_path/.htpasswd ]; then 
-	echo "OK, you have your "$conf_hosting_path"/.htpasswd setup already, good."
+	echo "OK, you have your "$conf_hosting_path"/.htpasswd setup already!"
 else 
 	echo "Creating "$conf_hosting_path"/.htpasswd with username 'admin' and password '$conf_adm_pass'"
 	/usr/bin/htpasswd -cb "$conf_hosting_path"/.htpasswd admin $conf_adm_pass
 fi
 
 if [ -e $PATH_DTC_ADMIN/.htaccess ]; then
-	echo ".htaccess ok!"
+	echo "OK, you have your "$PATH_DTC_ADMIN"/.htaccess setup already!"
 else
-	echo "configuring .htaccess"
+	echo "Creating "$PATH_DTC_ADMIN"/.htaccess file."
 	echo "AuthName \"DTC root control panel login!\"
 AuthType Basic
 AuthUserFile "$conf_hosting_path"/.htpasswd
 require valid-user" >$PATH_DTC_ADMIN/.htaccess
 fi
-echo "Please wait while DTC configures all the daemons..."
+
+echo "***********************************************************"
+echo "*** Please wait while DTC configures all the daemons... ***"
+echo "***********************************************************"
 cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php
 
 echo "--- --- --- INSTALLATION FINISHED --- --- ---"
