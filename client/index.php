@@ -8,6 +8,7 @@ require("$dtcshared_path/lang.php");			// Setup the $lang global variable (to en
 require("$dtcshared_path/strings.php");			// Contain all the translated string
 require("$dtcshared_path/table_names.php");
 require("$dtcshared_path/dtc_functions.php");
+require("$dtcshared_path/inc/accounting.php");
 //require("top_menu_strings.php");
 include("$dtcshared_path/anotherDtc.php");	// Contain all anotherXXX() functions
 include("$dtcshared_path/tree_menu.php");

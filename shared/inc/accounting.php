@@ -2,7 +2,10 @@
 function fetchHTTPInfo($webname)
 {
         global $pro_mysql_subdomain_table;
-        $query = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='".$webname."' AND subdomain_name!='ns1' AND subdomain_name!='mx'";
+	global $conf_mysql_db;
+// Was wrong. Correct way to check if apache vhost is generated is:
+// ip!='default' (thomas notes)
+        $query = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='".$webname."' AND subdomain_name!='default'";
         $result = mysql_query($query)or die("Cannot execute query \"$query\"");
         $num_rows = mysql_num_rows($result);
         $db_webname = trim(strtr($webname,".","_"));
@@ -12,8 +15,9 @@ function fetchHTTPInfo($webname)
                 $db_select_name = "access_".$subdomain_name."_".$db_webname;
                 $q = "SELECT  SUM( bytes_sent ) AS amount FROM `".$db_select_name."` WHERE 1";
                 mysql_select_db("apachelogs");
-                $r_access = mysql_query($q) or die("Cannot execute query \"$access\"");
+                $r_access = mysql_query($q) or die("Cannot execute query \"$q\" !!! ".mysql_error());
                 $amount = $amount + mysql_result($r_access,0,"amount");
+		mysql_select_db($conf_mysql_db);
         }
         
 	if($amount>1073741824)
