@@ -19,7 +19,7 @@ function drawAdminTools_MyAccount($admin){
 	if($id_client != 0){
 		$client = $admin["client"];
 		$out .=  "<b><u>Remaining money on my account:</u></b><br>
-<font size=\"+2\">\$".$client["dollar"]."</font><br><br>
+<font size=\"+1\">\$".$client["dollar"]."</font><br><br>
 Refund my account with the following ammount:<br>
 <form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
@@ -774,7 +774,8 @@ function drawAdminTools_Ftp($domain,$adm_path){
 function drawAdminTools_AdminStats($admin){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_acc_http_table;
-	global $pro_mysql_acc_ftp_table;	
+	global $pro_mysql_acc_ftp_table;
+
 	$query = "SELECT name FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
 	$num_domains = mysql_num_rows($result);
@@ -799,14 +800,18 @@ function drawAdminTools_AdminStats($admin){
 		$ar[$ad]["ftp"] = smartByte($rez_ftp);
 		$ar[$ad]["total"] = smartByte($rez_http + $rez_ftp);
 	}
-	
+
+	$total_all = $http_amount + $ftp_amount;
+
+	$admin_bw = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;
 	$out .= "<u><b>Total transfered bytes:</b></u><br>
 HTTP: ".smartByte($http_amount);
 	$out .= "<br>FTP: ".smartByte($ftp_amount);
-	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount);
-	$out .= " / ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024);
+	$out .= "<br>Total: ". smartByte($total_all);
+	$out .= " / ".smartByte($admin_bw)."<br>";
+	$out .= drawPercentBar($total_all,$admin_bw);
 
-	$out .= '<br><br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
+	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
 	$out .= "<tr><td><b>Domain Name</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td><b>Total</b></td></tr>";
 	for($ad=0;$ad<$num_domains;$ad++){
 		if($ad % 2){
@@ -822,7 +827,6 @@ HTTP: ".smartByte($http_amount);
 		$out .= "</tr>";
 	}
 	$out .= '</table>';
-
 	return $out;
 }
 

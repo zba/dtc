@@ -216,6 +216,24 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 	mysql_query($adm_query);
 }
 
+function drawPercentBar($value,$max){
+	$percent = $value * 200 / $max;
+	if($percent < 0)	$percent = 0;
+	if($percent > 200)	$percent = 200;
+	$percent_val = round($percent/2,2);
+	$percent_graf = round($percent);
+	$percent_graf2 = 200 - $percent_graf;
+	$table = "<table cellpadding=\"0\" cellspacing=\"0\" height=\"1\">
+<tr>
+	<td width=\"4\" height=\"16\"><img height=\"16\" src=\"gfx/bar/start.png\"></td>
+	<td width=\"$percent_graf\" height=\"16\" background=\"gfx/bar/middle_s.png\"></td>
+	<td width=\"$percent_graf2\" height=\"16\" background=\"gfx/bar/middle_n.png\"></td>
+	<td width=\"4\" height=\"16\"><img height=\"16\" src=\"gfx/bar/end.png\"></td>
+	<td>".$percent_val."%</td></tr>
+</table>";
+	return $table;
+}
+
 function smartByte($bytes){
 	if($bytes>1024*1024*1024)	return round(($bytes / 1073741824),3) ." GBytes";
 	if($bytes>1024*1024)		return round(($bytes / 1048567),3) ." MBytes";
