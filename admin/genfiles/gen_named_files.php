@@ -257,7 +257,7 @@ $more_mx_server
 				$is_list_subdomain_set = "yes";
 			}
 			$this_site_file .= "$web_subname	IN	$the_ip_writed\n";
-			if($subdomain["associated_txt_record"] != ""){
+			if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
 				$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
 			}
 		}
