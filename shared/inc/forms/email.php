@@ -402,7 +402,7 @@ function drawAdminTools_Emails($domain){
 		$txt .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$id\">$id</a>";
 	}
 
-	if(isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
+	if(!isset($_REQUEST["delemailaccount"]) && isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
 		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">".$txt_mail_new_mailbox_link[$lang]."</a> ";
 		$txt .= "<br><br><u>".$txt_mail_edit[$lang]."</u><br><br>";
 
@@ -419,13 +419,12 @@ function drawAdminTools_Emails($domain){
 </td><td align=\"right\">
 	".$txt_mail_redirection1[$lang]."</td><td><input type=\"text\" name=\"editmail_redirect1\" value=\"$redir1\">
 </td></tr><tr><td align=\"right\">";
-	if ($conf_hide_password == "yes")
-	{
-	$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"editmail_pass\" value=\"$passwd\">";
-	} else {
-	$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"editmail_pass\" value=\"$passwd\">";
-	}
-$txt .= "
+		if ($conf_hide_password == "yes"){
+			$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"editmail_pass\" value=\"$passwd\">";
+		} else {
+			$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"editmail_pass\" value=\"$passwd\">";
+		}
+		$txt .= "
 </td><td align=\"right\">
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"editmail_redirect2\" value=\"$redir2\">
 </td></tr><tr><td align=\"right\">
