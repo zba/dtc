@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS pop_access (
   id varchar(32) NOT NULL default '',
   uid int(11) NOT NULL default '65534',
@@ -17,5 +18,8 @@ CREATE TABLE IF NOT EXISTS pop_access (
   redirect1 varchar(255) default NULL,
   redirect2 varchar(255) default NULL,
   localdeliver varchar(10) NOT NULL default 'yes',
+  pop3_login_count int(9) NOT NULL default '0',
+  pop3_transfered_bytes int(14) NOT NULL default '0',
+  last_login int(14) NOT NULL default '0',
   PRIMARY KEY  (id,mbox_host)
 ) TYPE=MyISAM

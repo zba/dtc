@@ -91,7 +91,13 @@ ALTER TABLE admin
 ALTER TABLE cron_job
 	ADD lock_flag enum('finished','inprogress') NOT NULL default 'finished';
 
+ALTER TABLE pop_access
+	ADD pop3_login_count int(9) NOT NULL default '0',
+	ADD pop3_transfered_bytes int(14) NOT NULL default '0',
+	ADD last_login int(14) NOT NULL default '0';
+
 UPDATE config SET dbversion='10001' WHERE 1;
+
 ");
 
 /*
