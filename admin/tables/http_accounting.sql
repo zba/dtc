@@ -2,7 +2,7 @@
 # Table structure for table `http_accounting`
 #
 
-CREATE TABLE `http_accounting` (
+CREATE TABLE IF NOT EXISTS `http_accounting` (
   `id` int(14) NOT NULL auto_increment,
   `vhost` varchar(50) NOT NULL default '',
   `bytes_sent` int(14) NOT NULL default '0',
