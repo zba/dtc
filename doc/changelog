@@ -1,3 +1,7 @@
+Resolved pear install under Debian by a stupidly long php version
+checking. Added 2 new nice skins, debuged access log dump so webalizer
+statistics are ok.
+
 31-08-04: V0.15.0-R2 improved the way DTC handles non-resolveable
 domains aliasing: now it uses open_basedir like for normal vhosts,
 so users can't screw up other's users files.
