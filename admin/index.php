@@ -118,7 +118,7 @@ case monitor: // Monitor button
 		$ar = mysql_fetch_array($r);
 		$out .= "User: ".$ar["christname"].", ".$ar["familyname"]."<br>";
 		$transfer = 0;
-
+		$du = 0;
 		// For each of it's admins
 		$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$ar["id"]."';";
 		$r2 = mysql_query($q2)or die("Cannot query: \"$q2\" !".mysql_error()." line ".__LINE__." in file ".__FILE__);
@@ -126,7 +126,7 @@ case monitor: // Monitor button
 		for($j=0;$j<$nr2;$j++){
 			$ar2 = mysql_fetch_array($r2);
 
-			// For each of it's domains
+/*			// For each of it's domains
 			$q3 = "SELECT name FROM $pro_mysql_domain_table WHERE owner='".$ar2["adm_login"]."';";
 			$r3 = mysql_query($q3)or die("Cannot query: \"$q3\" !".mysql_error()." line ".__LINE__." in file ".__FILE__);
 			$nr3 = mysql_num_rows($r3);
@@ -164,10 +164,14 @@ case monitor: // Monitor button
 					$sum += $ar4["smtp_trafic"] + $ar4["pop_trafic"];
 				}
 				$transfer += $sum;
-			}
+			}*/
+			$admin = fetchAdmin($ar2["adm_login"],$ar2["adm_pass"]);
+			$admin_stats = fetchAdminStats($adminn);
+			$transfer += $admin_stats["total_transfer"];
+			$du += $admin_stats["total_du"];
 		}
-		$out .= "User: ".$ar["christname"].", ".$ar["familyname"]."<br>";
-		$out .= "Transfer: ".smartByte($transfer)."<br>";
+		$out .= "User: ".$ar["christname"].", ".$ar["familyname"];
+		$out .= "Transfer: ".smartByte($transfer)." / ".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1042)."<br>";
 //fetchAdminStats($admin)
 	}
 	$module = skin("simple/green",$out,"Client address");
