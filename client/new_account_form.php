@@ -172,6 +172,8 @@ function register_user(){
 		return $ret;
 	}
 
+	$esc_product_id = addslashes($_REQUEST["product_id"]);
+
 	$q = "SELECT adm_login FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["reqadm_login"]."';";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -205,7 +207,8 @@ addr3,
 zipcode,
 city,
 state,
-country
+country,
+product_id
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
@@ -223,10 +226,13 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 '$esc_zipcode',
 '$esc_city',
 '$esc_state',
-'".$_REQUEST["country"]."')";
+'".$_REQUEST["country"]."',
+'$esc_product_id')";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
+	$id = mysql_insert_id();
 	$ret["err"] = 0;
 	$ret["mesg"] = "Query ok!";
+	$ret["id"] = $id;
 	return $ret;
 }
 

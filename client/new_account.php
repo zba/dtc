@@ -17,9 +17,30 @@ $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$la
 
 $reguser = register_user();
 if($reguser["err"] == 0){
-	$form = $reguser["mesg"]."<br><h4>Registration successfull!</h4>
+	$form .= "Your registration has been recorded in our database.<br>";
+	print_r($reguser);
+	$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='".$reguser["id"]."';";
+	echo $q;
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$form .= "Cannot reselect user: registration failed!";
+	}else{
+		$newadmin = mysql_fetch_array($r);
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$newadmin["product_id"]."';";
+		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$form = "Cannot reselect product: registration failed!";
+		}
+		$product = mysql_fetch_array($r);
+		$paybutton = paynowButton("00".$reguser["id"],$product["price_dollar"]);
+		// paypalButton("00".$reguser["id"],$product["price_dollar"],$product["name"]);
+		$form = $reguser["mesg"]."<br><h4>Registration successfull!</h4>
 Please now click on the following button to go for paiment:<br>
-<br>";
+<br>$paybutton";
+//.paypalButton($product_id,$amount,$item_name);
+	}
 }else if($reguser["err"] == 1){
 	$form = registration_form();
 }else{
