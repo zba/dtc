@@ -13,16 +13,15 @@ version=$2
 db_version 2.0
 db_input medium dtc/conf_mysqlhost
 db_input medium dtc/conf_mysqllogin
-db_input medium dtc/conf_mysqlpass
+db_input high dtc/conf_mysqlpass
 db_input medium dtc/conf_mysqldb
-db_input medium dtc/conf_mysql_change_root
+db_input high dtc/conf_mysql_change_root
 db_input medium dtc/main_domainname
 db_input medium dtc/dtc_adminsubdomain
-db_input medium dtc/conf_ipaddr
-db_input medium dtc/conf_hostingpath
+db_input high dtc/conf_ipaddr
 db_input medium dtc/conf_hostingpath
 db_input medium dtc/conf_admlogin
-db_input medium dtc/conf_admpass
+db_input high dtc/conf_admpass
 db_go
 
 exit 0;
