@@ -1,1 +1,21 @@
-CREATE TABLE IF NOT EXISTS pop_access (id varchar(32) NOT NULL default '',uid int(11) NOT NULL default '65534',gid int(11) NOT NULL default '65534',home varchar(255) NOT NULL default '',shell varchar(255) NOT NULL default '',mbox_host varchar(120) NOT NULL default '',crypt varchar(20) NOT NULL default '',passwd varchar(20) NOT NULL default '',active int(11) NOT NULL default '1',start_date date NOT NULL default '0000-00-00',expire_date date NOT NULL default '0000-00-00',quota_size int(11) NOT NULL default '0',type varchar(20) NOT NULL default 'default',memo text,du bigint(20) NOT NULL default '0',another_perso varchar(5) NOT NULL default 'no',redirect1 varchar(255) default NULL,redirect2 varchar(255) default NULL,localdeliver varchar(10) NOT NULL default 'yes',PRIMARY KEY  (id,mbox_host)) TYPE=MyISAM
+CREATE TABLE IF NOT EXISTS pop_access (
+  id varchar(32) NOT NULL default '',
+  uid int(11) NOT NULL default '65534',
+  gid int(11) NOT NULL default '65534',
+  home varchar(255) NOT NULL default '',
+  shell varchar(255) NOT NULL default '',
+  mbox_host varchar(120) NOT NULL default '',
+  crypt varchar(20) NOT NULL default '',
+  passwd varchar(20) NOT NULL default '',
+  active int(11) NOT NULL default '1',
+  start_date date NOT NULL default '0000-00-00',
+  expire_date date NOT NULL default '0000-00-00',
+  quota_size int(11) NOT NULL default '0',
+  type varchar(20) NOT NULL default 'default',
+  memo text,du bigint(20) NOT NULL default '0',
+  another_perso varchar(5) NOT NULL default 'no',
+  redirect1 varchar(255) default NULL,
+  redirect2 varchar(255) default NULL,
+  localdeliver varchar(10) NOT NULL default 'yes',
+  PRIMARY KEY  (id,mbox_host)
+) TYPE=MyISAM

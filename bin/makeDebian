@@ -23,6 +23,7 @@ echo "<?php
 ?>" > debian/usr/share/dtc/shared/dtc_version.php
 rm -rf debian/usr/share/dtc/shared/mysql_config.php
 mkdir -p debian/usr/share/doc/dtc
+mkdir -p debian/usr/share/dtc/shared/imgcache
 cp -rf ../doc/* debian/usr/share/doc/dtc
 gzip -9 debian/usr/share/doc/dtc/changelog
 

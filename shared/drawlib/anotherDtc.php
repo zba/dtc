@@ -15,7 +15,7 @@ function anotherLanguageSelection(){
 	$out = "
 <div align=\"right\">
 <br>
-<table cellpadding=\"4\" cellspacing=\"0\">
+<table cellpadding=\"1\" cellspacing=\"0\">
 <tr><td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=fr&rub=".$_REQUEST["rub"]."\">Francais
 	<img alt=\"*\" border=\"0\" src=\"gfx/language/fr.gif\"></a>
@@ -78,16 +78,18 @@ function anotherFooter($content){
 function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	global $conf_dtc_version;
 	global $conf_dtc_release;
+
+	$nowrap = " style=\"white-space:nowrap\"";
 	if($drawLanguageSelect=="yes"){
 		$zeLanguage = "<td>".anotherLanguageSelection()."</td>";
 	}
 
 	$inside = "
-<table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"100%\">
-<tr><td>
-	<center><img alt=\"Domain Teck Control\" src=\"gfx/dtc_logo.gif\"><br>
+<table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"1\" height=\"1\">
+<tr><td $nowrap>
+	<center><img alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"><br>
 	<font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release</font></center>
-</td><td><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
+</td><td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
 	<font size=\"-1\"><i>Take the control of your domain name</i></font><center>
 </td>".$zeLanguage."</tr>
 </table>

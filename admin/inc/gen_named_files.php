@@ -12,7 +12,7 @@ function named_generate(){
 
 	global $conf_use_multiple_ip;
 	global $conf_webmaster_email_addr;
-	$bind_formated_webmaster_email_addr = str_replace("@",".",$conf_webmaster_email_addr).".";
+	$bind_formated_webmaster_email_addr = str_replace('@',".",$conf_webmaster_email_addr).".";
 	global $conf_addr_primary_dns;
 	global $conf_addr_secondary_dns;
 	global $conf_addr_mail_server;
@@ -27,14 +27,28 @@ function named_generate(){
 
 	$todays_serial = date("YmdH");
 
-	$query = "SELECT * FROM $pro_mysql_domain_table WHERE 1 ORDER BY name;";
+	$named_file = "";
+
+/*	$query = "SELECT * FROM $pro_mysql_domain_table WHERE primary_dns!='default' ORDER BY name;";
+	$result = mysql_query ($query)or die("Cannot execute query \"$query\"");
+	$num_rows = mysql_num_rows($result);
+	for($i=0;$i<$num_rows;$i++){
+		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
+		$web_name = $row["name"];
+		$named_file = "\nzone \"$web_name\" {
+			file = \"$conf_generated_file_path/$conf_named_zonefiles_path/$web_name\";
+			masters {
+			}
+		}\n";
+	}
+*/
+	$query = "SELECT * FROM $pro_mysql_domain_table WHERE primary_dns='default' ORDER BY name;";
 	$result = mysql_query ($query)or die("Cannot execute query \"$query\"");
 	$num_rows = mysql_num_rows($result);
 
 	if($num_rows < 1){
-		die("No account to generate");
+//		die("No account to generate");
 	}
-	$named_file = "";
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
 		$web_name = $row["name"];
