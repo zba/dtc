@@ -177,10 +177,3 @@ else
 	echo "Configuration not validated : exiting !"
 	exit
 fi
-
-echo "Copying DTC's php scripts to /usr/share..."
-
-cp -rf dtc /usr/share
-
-
-
