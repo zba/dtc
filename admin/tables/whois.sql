@@ -1,4 +1,4 @@
-CREATE TABLE whois (
+CREATE TABLE IF NOT EXISTS whois (
   domain_name varchar(128) NOT NULL default '',
   owner_id int(16) NOT NULL default '0',
   admin_id int(16) NOT NULL default '0',
