@@ -7,7 +7,7 @@ $pro_mysql_host="localhost";
 $pro_mysql_login="root";
 $pro_mysql_db="dtc";
 
-$usages = "Usage: php4 backup.php [ options ] db_password
+$usages = "Usage: php4 restor_db.php [ options ] db_password
 
 Options are:
   -h host (default to localhost)
@@ -19,35 +19,35 @@ if($argc !=2 && $argc !=4 && $argc !=6 && $argc !=8)    die($usages);
 $pro_mysql_pass = $argv[$argc-1];
 if($argc > 2){
         switch($argv[1]){
-        case "-h":      $pro_mysql_host = $argv[3];
+        case "-h":      $pro_mysql_host = $argv[2];
                         break;
-        case "-u":      $pro_mysql_login = $argv[3];
+        case "-u":      $pro_mysql_login = $argv[2];
                         break;
-        case "-d":      $pro_mysql_db = $argv[3];
+        case "-d":      $pro_mysql_db = $argv[2];
                         break;
-        default:        die($usages);
+        default:        die("Incorrect param1: ".$usages);
         }
 }
 if($argc > 4){
-        switch($argv[4]){
-        case "-h":      $pro_mysql_host = $argv[5];
+        switch($argv[3]){
+        case "-h":      $pro_mysql_host = $argv[4];
                         break;
-        case "-u":      $pro_mysql_login = $argv[5];
+        case "-u":      $pro_mysql_login = $argv[4];
                         break;
-        case "-d":      $pro_mysql_db = $argv[5];
+        case "-d":      $pro_mysql_db = $argv[4];
                         break;
-        default:        die($usages);
+        default:        die("Incorrect param3: ".$usages);
         }
 }
 if($argc > 6){
-        switch($argv[6]){
-        case "-h":      $pro_mysql_host = $argv[7];
+        switch($argv[5]){
+        case "-h":      $pro_mysql_host = $argv[6];
                         break;
-        case "-u":      $pro_mysql_login = $argv[7];
+        case "-u":      $pro_mysql_login = $argv[6];
                         break;
-        case "-d":      $pro_mysql_db = $argv[7];
+        case "-d":      $pro_mysql_db = $argv[6];
                         break;
-        default:        die($usages);
+        default:        die("Incorrect param5: ".$usages);
         }
 }
 

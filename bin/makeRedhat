@@ -38,6 +38,19 @@ if ! [ -e dtc/client/imgcache ]
 then
         ln -s ../shared/imgcache dtc/client/imgcache
 fi
+# Copy the table dump in the admin directory
+if ! [ -f sources/dtc_db.php ]
+then
+        curdir=`pwd`
+	cd sources
+        echo "Dumping your DTC SQL structures."
+        echo -n "Please enter your mysql password: "
+        read conf_dbpass
+        php4 backup_db.php $conf_dbpass
+        cd $curdir
+fi
+cp sources/dtc_db.php sources/restor_db.php debian/usr/share/dtc/admin
+
 chown -R root:root dtc
 chown -R nobody:nogroup dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx
 

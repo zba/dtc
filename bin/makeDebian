@@ -26,7 +26,20 @@ mkdir -p debian/usr/share/doc/dtc
 mkdir -p debian/usr/share/dtc/shared/imgcache
 cp -rf ../doc/* debian/usr/share/doc/dtc
 rm debian/usr/share/doc/dtc/LICENSE debian/usr/share/doc/dtc/INSTALL
-gzip -9 debian/usr/share/doc/dtc/changelog
+gzip -f -9 debian/usr/share/doc/dtc/changelog
+
+# Copy the table dump in the admin directory
+if ! [ -f sources/dtc_db.php ]
+then
+	curdir=`pwd`
+	cd sources
+	echo "Dumping your DTC SQL structures."
+	echo -n "Please enter your mysql password: "
+	read conf_dbpass
+	php4 backup_db.php $conf_dbpass
+	cd $curdir
+fi
+cp sources/dtc_db.php sources/restor_db.php debian/usr/share/dtc/admin
 
 # Store DTC's package name and version in the control file
 echo "Package: dtc
