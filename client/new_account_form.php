@@ -19,6 +19,7 @@ function registration_form(){
 	global $txt_draw_client_info_zipcode;
 	global $txt_draw_client_info_city;
 	global $txt_draw_client_info_state;
+	global $txt_draw_client_info_country;
 
 	$login_info = "<table>
 <tr>
@@ -81,11 +82,11 @@ function registration_form(){
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_state[$lang]."</td>
 	<td><input type=\"text\" name=\"fax\" value=\"\"></td>
+</tr><tr>
+	<td align=\"right\">".$txt_draw_client_info_country[$lang]."</td>
+	<td><select name=\"country\">".cc_code_popup()."</select></td>
 </tr></table>";
 	$addr_skined = skin("frame",$client_addr,"");
-
-
-
 
 	$HTML_admin_edit_data = "<a href=\"/dtc\">Go to login</a>
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">

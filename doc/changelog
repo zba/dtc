@@ -1,3 +1,9 @@
+17-09-04:
+Start of a new_account script.
+
+Genvhosts script was diing if no subdomains found to generate
+but this could happend. Corrected.
+
 09-10-04: V0.15.0-R8
 Thomas:
 Added a link to documentation inside root admin interface.
