@@ -49,7 +49,7 @@ $dtc_main_menu .= "<br><center>
 if($_REQUEST["rub"] != "" && isset($_REQUEST["rub"])){
 	$dtc_main_menu .= "<a href=\"$PHP_SELF?\">";
 }
-$dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/users.gif\"><br>".$txt_mainmenu_title_useradmin[$lang];
+$dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/users.gif\">";
 if($_REQUEST["rub"] == "" || !isset($_REQUEST["rub"])){
 	$dtc_main_menu .= "</a>";
 }
@@ -66,7 +66,7 @@ if(file_exists("dtcrm")){
 		}
 		$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=crm&admlist_type=Names".$url_addon."\">";
 	}
-	$dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/recycle.gif\"><br>".$txt_mainmenu_title_crm[$lang];
+	$dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/recycle.gif\">";
 	if($_REQUEST["rub"] != "crm"){
 		$dtc_main_menu .= "</a>";
 	}
@@ -76,7 +76,7 @@ $dtc_main_menu .= "</td>
 if($_REQUEST["rub"] != "generate"){
 	$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=generate\">";
 }
-$dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/recycle.gif\"><br>".$txt_mainmenu_title_deamonfile_generation[$lang];
+$dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/recycle.gif\">";
 if($_REQUEST["rub"] != "generate"){
 	$dtc_main_menu .= "</a>";
 }
@@ -85,12 +85,65 @@ $dtc_main_menu .= "</td>
 if($_REQUEST["rub"] != "config"){
 	$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=config\">";
 }
-$dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/config.gif\"><br>".$txt_mainmenu_title_dtc_config[$lang];
+$dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/config.gif\">";
 if($_REQUEST["rub"] != "config"){
 	$dtc_main_menu .= "</a>";
 }
+$dtc_main_menu .= "</td></tr>";
+
+$dtc_main_menu .=
+"<tr>
+	<td align=\"center\" valign=\"top\">";
+
+if($_REQUEST["rub"] != "" && isset($_REQUEST["rub"])){
+	$dtc_main_menu .= "<a href=\"$PHP_SELF?\">";
+}
+$dtc_main_menu .= $txt_mainmenu_title_useradmin[$lang];
+if($_REQUEST["rub"] == "" || !isset($_REQUEST["rub"])){
+	$dtc_main_menu .= "</a>";
+}
+// CRM icon only if folder present.
+if(file_exists("dtcrm")){
+	$dtc_main_menu .= "</td>
+	<td width=\"33%\" align=\"center\" valign=\"top\">";
+	if($_REQUEST["rub"] != "crm"){
+		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
+		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+		if(mysql_num_rows($result) == 1){
+			$row = mysql_fetch_array($result);
+			$url_addon = "&id=".$row["id_client"];
+		}
+		$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=crm&admlist_type=Names".$url_addon."\">";
+	}
+	$dtc_main_menu .= $txt_mainmenu_title_crm[$lang];
+	if($_REQUEST["rub"] != "crm"){
+		$dtc_main_menu .= "</a>";
+	}
+}
 $dtc_main_menu .= "</td>
-</table>
+<td width=\"33%\" align=\"center\" valign=\"top\">";
+if($_REQUEST["rub"] != "generate"){
+	$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=generate\">";
+}
+$dtc_main_menu .= "$txt_mainmenu_title_deamonfile_generation[$lang]";
+if($_REQUEST["rub"] != "generate"){
+	$dtc_main_menu .= "</a>";
+}
+$dtc_main_menu .= "</td>
+<td width=\"33%\" align=\"center\" valign=\"top\">";
+if($_REQUEST["rub"] != "config"){
+	$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=config\">";
+}
+$dtc_main_menu .= $txt_mainmenu_title_dtc_config[$lang];
+if($_REQUEST["rub"] != "config"){
+	$dtc_main_menu .= "</a>";
+}
+$dtc_main_menu .= "</td>";
+
+
+
+
+$dtc_main_menu .= "</table>
 </center>";
 
 $the_page[] = skin("simple/green2",$dtc_main_menu,"Menu");
