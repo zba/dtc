@@ -212,6 +212,7 @@ is no money in your account.";
 function drawEditAdmin($admin){
 	global $lang;
 	global $txt_password;
+
 	global $txt_path;
 	global $txt_id_client;
 	global $txt_del_user;
@@ -226,6 +227,8 @@ function drawEditAdmin($admin){
 
 	global $adm_login;
 	global $adm_pass;
+
+	global $conf_hide_password;
 
 	$info = $admin["info"];
 	$data = $admin["data"];
@@ -245,9 +248,13 @@ function drawEditAdmin($admin){
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <table>
-	<tr><td align=\"right\">".$txt_password[$lang]."</td>
-	<td><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\"></td></tr>
-	<tr><td align=\"right\">".$txt_path[$lang]."</td>
+	<tr><td align=\"right\">".$txt_password[$lang]."</td>";
+	if ($conf_hide_password == "yes"){
+	$user_data .= "<td><input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\"></td></tr>";
+	} else {
+	$user_data .= "<td><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\"></td></tr>";
+	}
+	$user_data .= "<tr><td align=\"right\">".$txt_path[$lang]."</td>
 	<td><input type=\"text\" name=\"changed_path\" value=\"$adm_path\"></td></tr>
 	<tr><td align=\"right\">".$txt_id_client[$lang]."</td>
 	<td><input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"></td></tr>
@@ -591,6 +598,7 @@ function drawAdminTools_Subdomain($domain){
 	global $txt_subdom_ip;
 
 	global $conf_administrative_site;
+	global $conf_hide_password;
 
 	global $txt_number_of_active_subdomains;
 	global $txt_subdom_limit_reach;
@@ -773,7 +781,12 @@ No<input type=\"radio\" name=\"w3_alias\" value=\"no\" $checked_no></td></tr>";
 		$txt .= $txt_subdom_dynip_logpass[$lang]."</td></tr>";
 
 		$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_login[$lang]."</td><td><input type=\"text\" name=\"subdomain_dynlogin\" value=\"$login_to_edit\"></td></tr>";
-		$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_pass[$lang]."</td><td><input type=\"text\" name=\"subdomain_dynpass\" value=\"$pass_to_edit\"></td></tr>";
+		if ($conf_hide_password)
+		{	
+			$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_pass[$lang]."</td><td><input type=\"password\" name=\"subdomain_dynpass\" value=\"$pass_to_edit\"></td></tr>";
+		} else {
+			$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_pass[$lang]."</td><td><input type=\"text\" name=\"subdomain_dynpass\" value=\"$pass_to_edit\"></td></tr>";
+		}
 		$txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"edit_one_subdomain\" value=\"Ok\"></td></tr>";
 		if($login_to_edit != "" && isset($login_to_edit)){
 			$txt .= "<tr><td colspan=\"3\">".$txt_subdom_scriptadvice[$lang]."<br>
@@ -823,6 +836,8 @@ function drawAdminTools_Emails($domain){
 	global $txt_mail_new_mailbox_link;
 	global $txt_number_of_active_mailbox;
 	global $txt_maximum_mailbox_reach;
+
+	global $conf_hide_password;
 
 
 	$nbr_email = sizeof($domain["emails"]);
@@ -875,8 +890,14 @@ function drawAdminTools_Emails($domain){
 	".$txt_login_login[$lang]."</td><td><b>$mailbox_name</b>@$edit_domain
 </td><td align=\"right\">
 	".$txt_mail_redirection1[$lang]."</td><td><input type=\"text\" name=\"editmail_redirect1\" value=\"$redir1\">
-</td></tr><tr><td align=\"right\">
-	".$txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"editmail_pass\" value=\"$passwd\">
+</td></tr><tr><td align=\"right\">";
+	if ($conf_hide_password == "yes")
+	{
+	$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"editmail_pass\" value=\"$passwd\">";
+	} else {
+	$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"editmail_pass\" value=\"$passwd\">";
+	}
+$txt .= "
 </td><td align=\"right\">
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"editmail_redirect2\" value=\"$redir2\">
 </td></tr><tr><td align=\"right\">
@@ -902,8 +923,14 @@ function drawAdminTools_Emails($domain){
 	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newmail_login\" value=\"$mailbox_name\">
 </td><td align=\"right\">
 	".$txt_mail_redirection1[$lang]."</td><td><input type=\"text\" name=\"newmail_redirect1\" value=\"\">
-</td></tr><tr><td align=\"right\">
-	".$txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newmail_pass\" value=\"$passwd\">
+</td></tr><tr><td align=\"right\">";
+	if ($conf_hide_password == "yes")
+	{
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"newmail_pass\" value=\"$passwd\">";
+	} else {
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newmail_pass\" value=\"$passwd\">";
+	}
+$txt .= "
 </td><td align=\"right\">
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"newmail_redirect2\" value=\"\">
 </td></tr><tr><td align=\"right\">
@@ -941,6 +968,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	global $txt_login_login;
 	global $txt_login_pass;
 	global $txt_path;
+	global $conf_hide_password;
 
 	global $txt_number_of_active_ftp;
 	global $txt_maxnumber_of_ftp_account_reached;
@@ -1005,8 +1033,14 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"ftps\">
-	<input type=\"hidden\" name=\"edftp_account\" value=\"".$_REQUEST["edftp_account"]."\">
-	".$txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"edftp_pass\" value=\"$pass\">
+	<input type=\"hidden\" name=\"edftp_account\" value=\"".$_REQUEST["edftp_account"]."\">";
+	if ($conf_hide_password == "yes")
+	{
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"edftp_pass\" value=\"$pass\">";
+	} else {
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"edftp_pass\" value=\"$pass\">";
+	}
+$txt .= "
 </td></tr><tr><td align=\"right\">
 	".$txt_path[$lang]."</td><td><select name=\"edftp_path\">$path_popup</select>
 </td></tr><tr><td align=\"right\">

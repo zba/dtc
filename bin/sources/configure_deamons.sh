@@ -309,13 +309,17 @@ fi
 # copy the 404 index.php file if none is found.
 if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.php" ]; then
 	if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.html" ]; then
-		cp $PATH_DTC_SHARED/shared/404_template/index.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
+		if [ -e $PATH_DTC_SHARED/shared/404_template/index.php ]; then
+			cp $PATH_DTC_SHARED/shared/404_template/index.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
+		fi
 	fi
 fi
 
 # copy the Error 404 document
 if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/404.php" ]; then
-	cp $PATH_DTC_SHARED/shared/404_template/404.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/"
+	if [ -e $PATH_DTC_SHARED/shared/404_template/404.php ]; then 
+		cp $PATH_DTC_SHARED/shared/404_template/404.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/"
+	fi
 fi
 
 PATH_PAMD_SMTP=/etc/pam.d/smtp

@@ -39,5 +39,6 @@ use_nated_vhost enum('yes','no') NOT NULL default 'no',
 nated_vhost_ip varchar(16) NOT NULL default '192.168.0.2',
 mta_type enum('qmail','postfix') NOT NULL default 'qmail',
 chroot_path varchar(255) NOT NULL default '/var/www/chroot',
+hide_password enum('yes','no') NOT NULL default 'no',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM

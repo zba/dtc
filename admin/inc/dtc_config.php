@@ -49,6 +49,11 @@ function drawGeneralConfig(){
 
 	global $txt_cfg_use_domain_based_ftp_logins;
 	global $conf_domain_based_ftp_logins;
+
+	//additions for hide_password support (for ftp logins etc)
+	global $txt_cfg_hide_password;
+	global $conf_hide_password;
+
 	global $conf_mta_type;
 
 	global $lang;
@@ -105,6 +110,14 @@ function drawGeneralConfig(){
 		$conf_domftplog_no = " checked";
 	}
 
+	if($conf_hide_password == "yes"){
+		$conf_hdpasswd_yes = " checked";
+		$conf_hdpasswd_no = "";
+	}else{
+		$conf_hdpasswd_yes = "";
+		$conf_hdpasswd_no = " checked";
+	}
+
 	if($conf_mta_type == "qmail"){
 		$conf_mtatype_qmail = " checked";
 		$conf_mtatype_postfix = "";
@@ -137,6 +150,10 @@ function drawGeneralConfig(){
 	<td align=\"right\" nowrap>".$txt_cfg_use_domain_based_ftp_logins[$lang]."</td>
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_yes>Yes
 	<input type=\"radio\" value=\"no\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_no>No</td>
+</tr><tr>
+	<td align=\"right\" nowrap>".$txt_cfg_hide_password[$lang]."</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_hide_password\"$conf_hdpasswd_yes>Yes
+	<input type=\"radio\" value=\"no\" name=\"new_hidepasswd\"$conf_hdpasswd_no>No</td>
 </tr><tr>
 	<td colspan=\"2\"><h3>Daemon</h3></td>
 </tr><tr>
@@ -445,6 +462,7 @@ function saveDTCConfigInMysql(){
 	use_ssl='".$_REQUEST["new_use_ssl"]."',
 	mta_type='".$_REQUEST["new_mta_type"]."',
 	domain_based_ftp_logins='".$_REQUEST["new_domain_based_ftp_logins"]."',
+	hide_password='".$_REQUEST["new_hide_password"]."',
 	skin='".$_REQUEST["skin_type"]."'
 	WHERE 1 LIMIT 1";
 		break;

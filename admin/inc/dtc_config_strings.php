@@ -90,6 +90,16 @@ $txt_cfg_use_ssl = array(
 	"zh" => "Ê¹ÓÃSSL:",
 	"es" => "Usar SSL:");
 
+$txt_cfg_hide_password = array(
+	"fr" => "Mots de passe de peau dans DTC:",
+	"en" => "Hide passwords within DTC:",
+	"it" => "Parole d'accesso del pellame all'interno di DTC:",
+	"nl" => "De wachtwoorden van de huid binnen DTC:",
+	"ru" => "TRANS Hide passwords within DTC:",
+	"de" => "Fellkennworter innerhalb DTC:",
+	"zh" => "TRANS Hide passwords within DTC:",
+	"es" => "Palabras de paso de la piel dentro de DTC:");
+
 $txt_cfg_use_domain_based_ftp_logins = array(
 	"fr" => "Utiliser des logins ftp @domain.com :",
 	"en" => "Use @domain.com ftp logins:",
