@@ -55,7 +55,7 @@ then
 	echo "===> Changing MySQL Root password"
 #	echo "If you didn't setup a root pass for mysqld, just hit ENTER."
 #	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pass"') WHERE User='root'; FLUSH PRIVILEGES;";
-	mysqladmin -u$conf_mysql_login -h$conf_mysql_host password "'"$conf_mysql_pass"'"
+	mysqladmin -u$conf_mysql_login -h$conf_mysql_host password $conf_mysql_pass
 else
 	echo "Skinping MySQL password root change!"
 fi
