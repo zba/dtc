@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS domain (
   name varchar(64) NOT NULL default '',
   owner varchar(64) NOT NULL default '',
   default_subdomain varchar(64) default 'www',
-  generate_flag varchar(10) NOT NULL default 'yes',
+  generate_flag enum('yes','no') NOT NULL default 'yes',
   quota bigint(20) NOT NULL default '50',
   max_email int(11) NOT NULL default '9',
   max_ftp int(11) NOT NULL default '3',

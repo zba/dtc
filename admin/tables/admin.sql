@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS admin (
   max_email int(12) NOT NULL default '3',
   max_ftp int(12) NOT NULL default '3',
   quota int(11) NOT NULL default '50',
-  bandwidth_per_month_mb INT ( 11 ) NOT NULL,
-  id_client int(4) NOT NULL default '0',
+  bandwidth_per_month_mb INT ( 11 ) NOT NULL default '100',
+  id_client int(9) NOT NULL default '0',
   PRIMARY KEY  (adm_login),
   UNIQUE KEY adm_login (adm_login),
   UNIQUE KEY path (path)

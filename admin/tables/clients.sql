@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS clients (
   christname varchar(64) NOT NULL default '',
   addr1 varchar(100) NOT NULL default '',
   addr2 varchar(100) default NULL,
-  addr3 varchar(64) default NULL,
+  addr3 varchar(100) default NULL,
   city varchar(64) NOT NULL default '',
   zipcode varchar(32) NOT NULL default '0',
   state varchar(32) default NULL,

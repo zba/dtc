@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS commande (
 
 ALTER TABLE ftp_access
 	ADD login_count INT( 11 ) NOT NULL ,
-	ADD ast_login DATETIME NOT NULL ,
+	ADD last_login DATETIME NOT NULL ,
 	ADD dl_bytes INT( 14 ) NOT NULL ,
 	ADD ul_bytes INT( 14 ) NOT NULL ,
 	ADD dl_count INT( 14 ) NOT NULL ,
@@ -81,7 +81,7 @@ ALTER TABLE subdomain
 	ADD pass varchar(64) default NULL ;
 
 ALTER TABLE admin
-	ADD bandwidth_per_month_mb INT ( 11 ) NOT NULL ;
+	ADD bandwidth_per_month_mb INT ( 11 ) NOT NULL default '100';
 
 UPDATE config SET dbversion='10001' WHERE 1;
 ");
