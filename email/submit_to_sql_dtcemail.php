@@ -2,7 +2,7 @@
 
 // Do basic field checking before execution of SQL on the password
 // adm_email_login=toto%40iglobalwall.com&adm_email_pass=titi&
-function pass_check(){
+function pass_check_email(){
 	global $pro_mysql_pop_table;
 	global $user;
 	global $host;
@@ -25,7 +25,7 @@ switch($_REQUEST["action"]){
 
 // action=dtcemail_change_pass&newpass1=&newpass2=&submit=Ok
 case "dtcemail_change_pass":
-	pass_check();
+	pass_check_email();
 	if(!isDTCPassword($_REQUEST["newpass1"]))	die("Incorrect password format!");
 	if(!isDTCPassword($_REQUEST["newpass2"]))	die("Incorrect password format!");
 	if($_REQUEST["newpass1"] != $_REQUEST["newpass2"])	die("Password 1 does not match password 2!");
@@ -37,7 +37,7 @@ case "dtcemail_change_pass":
 	break;
 // action=dtcemail_set_deliver_local&setval=no
 case "dtcemail_set_deliver_local":
-	pass_check();
+	pass_check_email();
 	// Fetch the path of the mailbox
 	$box = mysql_fetch_array($res_mailbox);
 	$q = "SELECT $pro_mysql_admin_table.path
@@ -83,7 +83,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 
 // action=dtcemail_edit_redirect&redirect1=&redirect2=&submit=Ok
 case "dtcemail_edit_redirect":
-	pass_check();
+	pass_check_email();
 	// Fetch the path of the mailbox
 	$box = mysql_fetch_array($res_mailbox);
 	$q = "SELECT $pro_mysql_admin_table.path
