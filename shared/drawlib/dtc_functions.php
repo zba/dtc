@@ -1,5 +1,12 @@
 <?php
 
+function logPay($txt){
+	$fp = fopen("/tmp/paylog.txt","a");
+	fwrite($fp,$txt."\n");
+	fclose($fp);
+	echo $txt."<br>";
+}
+
 function remove_url_protocol($url){
 	if(strstr($url,"http://")){
 		return substr($url,7);

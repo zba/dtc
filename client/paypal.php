@@ -5,13 +5,6 @@ $panel_type="client";
 require_once("$dtcshared_path/dtc_lib.php");
 get_secpay_conf();
 
-function logPay($txt){
-	$fp = fopen("/tmp/paylog.txt","a");
-	fwrite($fp,$txt."\n");
-	fclose($fp);
-	echo $txt."<br>";
-}
-
 logPay("Script reached !");
 
 // read the post from PayPal system and add 'cmd'
@@ -56,15 +49,19 @@ if (!$fp) {
 			// check that payment_amount/payment_currency are correct
 			// process payment
 			if($_POST["business"] != $secpayconf_paypal_email){
+				logPay("Business paypal email do not match !");
 				die("This is not our business paypal email!");
 			}
 			if($_POST["payment_status"] != "Completed"){
+				logPay("Status is not completed !");
 				die("Status not completed...");
 			}
-			if($_POST["payment_currency"] != "USD"){
+			if($_POST["mc_currency"] != "USD"){
+				logPay("Currency is not USD !");
 				die("Incorrect currency!");
 			}
-			validatePaiement($item_number,$_POST["payment_amount"],"online","paypal",$txn_id);
+			logPay("Calling validate()");
+			validatePaiement($item_number,$_POST["payment_gross"]-$_POST["payment_fee"],"online","paypal",$txn_id);
 		}
 		else if (strcmp ($res, "INVALID") == 0) {
 			// log for manual investigation

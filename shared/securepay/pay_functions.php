@@ -7,10 +7,12 @@ function paynowButton($pay_id,$amount,$item_name,$return_url){
 	global $secpayconf_paypal_rate;
 	global $secpayconf_paypal_flat;
 
+	echo $secpayconf_paypal_rate;
+	echo $secpayconf_paypal_flat;
 	$out .= "<table width=\"100%\" height=\"1\">";
 	$out .= "<tr><td>Paiement system</td><td>Amount</td><td>Gateway cost</td><td>Total</td><td>Instant account</td></tr>\n";
 	if($secpayconf_use_paypal == "yes"){
-		$total = round($amount * (1 + $secpayconf_paypal_rate/100) + $secpayconf_paypal_flat + 0.1 ,2);
+		$total = round((($amount+$secpayconf_paypal_flat) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
 		$cost = $total - $amount;
 		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url)."</td>";
 		$out .= "<td>\$$amount</td><td>\$$cost</td><td>\$$total</td><td>No</td></tr>\n";
@@ -40,18 +42,21 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	global $pro_mysql_pay_table;
 
 	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$pay_id';";
-	$r = mysql_query($q)or die("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__);
+	logPay("Querying: $q");
+	$r = mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
 	$n = mysql_num_rows($r);
-	if($n != 1)die("Pay id $pay_id not found in file ".__FILE__." line ".__LINE__);
+	if($n != 1)die(logPay("Pay id $pay_id not found in file ".__FILE__." line ".__LINE__));
 	$ar = mysql_fetch_array($r);
-	if($ar["valid"] != "no")die("Paiement already validated in file ".__FILE__." line ".__LINE__);
-	if($amount_paid < $ar["refund_amount"])die("Amount paid on gateway lower than refund ammount file ".__FILE__." line ".__LINE__);
+	if($ar["valid"] != "no")die(logPay("Paiement already validated in file ".__FILE__." line ".__LINE__));
+	logPay("Ammount paid: $amount_paid");
+	if($amount_paid < $ar["refund_amount"])die(logPay("Amount paid on gateway lower than refund ammount file ".__FILE__." line ".__LINE__));
 	$cost = $amount_paid - $ar["refund_amount"];
 	$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$paiement_type',
 		secpay_site='$secpay_site',paiement_cost='$cost',paiement_total='$amount_paid',
 		valid_date='".date("Y-m-j")."', valid_time='".date("H:i:s")."',
-		secpay_custom_id='$secpay_custom_id' WHERE id='$pay_id';";
-	mysql_query($q)or die("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__);
+		secpay_custom_id='$secpay_custom_id',valid='yes' WHERE id='$pay_id';";
+	logPay($q);
+	mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
 }
 
 ?>
