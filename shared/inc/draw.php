@@ -3,6 +3,59 @@
 //require("/usr/share/dtc/shared/strings.php");
 require("$dtcshared_path/strings.php");
 
+
+function drawAdminTools_MyAccount($admin){
+	global $PHP_SELF;
+	global $adm_login;
+	global $adm_pass;
+	global $addrlink;
+
+	global $cc_code_array;
+
+	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
+
+	$id_client = $admin["info"]["id_client"];
+
+	if($id_client != 0){
+		$client = $admin["client"];
+		$out .=  "<b><u>Remaining money on my account:</u></b><br>
+<font size=\"+2\">\$".$client["dollar"]."</font><br><br>
+Refund my account with the following ammount:<br>
+<form action=\"$PHP_SELF\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+<input type=\"hidden\" name=\"action\" value=\"refund\">
+<input type=\"text\" name=\"refund_amount\" value=\"\">
+<input type=\"submit\" value=\"Ok\">
+</form>
+<hr width=\"90%\">
+";
+
+		$out .= "<center><b>Please tell us if the following is not correct:</b></center>";
+
+		if($client["is_company"] == "yes"){
+			$out .= "Company: ".$client["company_name"]."<br>";
+		}
+		$out .= "Firstname: " .$client["christname"]."<br>";
+		$out .= "Familyname: " .$client["familyname"]."<br>";
+		$out .= "Addresse 1: " .$client["addr1"]."<br>";
+		$out .= "Addresse 2: " .$client["addr2"]."<br>";
+		$out .= "Zipcode: " .$client["zipcode"]."<br>";
+		$out .= "Sate: " .$client["state"]."<br>";
+		$out .= "Country: " . $cc_code_array[ $client["country"] ] ."<br>";
+		$out .= "Phone: " .$client["phone"]."<br>";
+		$out .= "Fax: " .$client["fax"]."<br>";
+		$out .= "Email: " .$client["email"]."<br>";
+	}else{
+		$out .= "You do not have a client account, so there
+is no money in your account.";
+	}
+	return $out;
+
+}
+
+
 ////////////////////////////////////////////////////////////////////////////
 // Draw the form for configuring global admin account info (path, etc...) //
 ////////////////////////////////////////////////////////////////////////////
