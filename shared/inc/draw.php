@@ -54,7 +54,12 @@ function drawAdminTools($admin){
 
         $doms_txt = "";
 
-	$admin_data = $admin["data"];
+	if(isset($admin["data"])){
+		$admin_data = $admin["data"];
+		$nbr_domain = sizeof($admin_data);
+	}else{
+		$nbr_domain = 0;
+	}
 	$admin_info = $admin["info"];
 
 	$adm_cur_pass 	= $admin_info["adm_pass"];
@@ -86,7 +91,6 @@ function drawAdminTools($admin){
 		"sub" => $user_ZEmenu);
 
 	// Generate the admin tools
-	$nbr_domain = sizeof($admin_data);
 	$doms_txt .= "<b>";
 	for($i=0;$i<$nbr_domain;$i++){
 
