@@ -539,9 +539,6 @@ $dtc_database = array(
 		"keys" => array(
 			"PRIMARY" => "(id)",
 			"unic_subdomain" => "(domain_name,subdomain_name)",
-<<<<<<< dtc_db.php
-			"login" => "(login)"
-=======
 			"login" => "(login)"
 			)
 		),
@@ -558,7 +555,6 @@ $dtc_database = array(
 			"PRIMARY" => "(id)",
 			"unicbox" => "(pop_user,mail_from_user,mail_from_domain,mbox_host)",
 			"pop_user" => "(pop_user,mbox_host,mail_to)"
->>>>>>> 1.26
 			)
 		),
 	"whois" => array(
