@@ -19,7 +19,7 @@ them.
 
 This is because all distribs are responsable for setting
 thoses vars according to there specificities. So in the
-sources/ folder, there is a folder for each unix OS that is
+"sources/" folder, there is a folder for each unix OS that is
 supported by the current DTC release.
 
 RPM suxs:
