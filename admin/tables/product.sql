@@ -1,4 +1,4 @@
-CREATE TABLE product (
+CREATE TABLE IF NOT EXISTS product (
   id int(11) NOT NULL auto_increment,
   price_dolar varchar(9) NOT NULL default '',
   price_euro varchar(9) NOT NULL default '',
