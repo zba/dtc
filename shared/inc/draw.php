@@ -506,6 +506,9 @@ function drawDataBase($database){
 	global $adm_login;
 	global $adm_pass;
 
+	global $txt_draw_database_chpass;
+	global $txt_password;
+
 	global $conf_demo_version;
 
 	$txt .= "<br><b><u>".$txt_draw_tatabase_your_list[$lang]."</u></b><br>";
@@ -524,8 +527,8 @@ function drawDataBase($database){
 		}
 		mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\"	!!!");	
 
-		$txt .= "<br><br><b><u>Change your MySQL password:</u></b><br>
-		<form action=\"".$_SERVER["PHP_SELF"]."\">New password:<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+		$txt .= "<br><br><b><u>".$txt_draw_database_chpass[$lang]."</u></b><br>
+		<form action=\"".$_SERVER["PHP_SELF"]."\">".$txt_password[$lang]."<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		<input type=\"text\" name=\"new_mysql_password\" value=\"\">
