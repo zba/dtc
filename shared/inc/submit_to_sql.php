@@ -389,7 +389,7 @@ if($_REQUEST["newftpaccount"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	$adm_path = getAdminPath($adm_login);
 
-	if(!ereg("^$adm_path",$_REQUEST["newftp_path"]) || !strstr($_REQUEST["newftp_path"],'..')){
+	if(!ereg("^$adm_path",$_REQUEST["newftp_path"]) || strstr($_REQUEST["newftp_path"],'..')){
 		die("Your path is restricted to $adm_path");
 	}
 
