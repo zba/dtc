@@ -125,7 +125,7 @@ if($_REQUEST["newadminuser"]=="Ok"){
 	$newadmin_path = $_REQUEST["newadmin_path"]."/".$_REQUEST["newadmin_login"];
 	if($conf_demo_version == "no"){
 		$oldumask = umask(0);
-		if(!file_exists($newadmin_path) && $conf_demo_version == "no"){
+		if(!file_exists($newadmin_path)){
 			mkdir("$newadmin_path", 0750);
 			$console .= "mkdir $newadmin_path;<br>";
 		}
@@ -133,10 +133,52 @@ if($_REQUEST["newadminuser"]=="Ok"){
 	}
 
 	// Add user in database
-	$adm_query = " INSERT INTO $pro_mysql_admin_table
+	$adm_query = "INSERT INTO $pro_mysql_admin_table
 (adm_login        ,adm_pass         ,path            )VALUES
 ('".$_REQUEST["newadmin_login"]."', '".$_REQUEST["newadmin_pass"]."','$newadmin_path') ";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+}
+
+// action=valid_waiting_user&reqadm_login=tom
+if($_REQUEST["action"]=="valid_waiting_user"){
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["reqadm_login"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 0)die("There is already a user with that name in database!");
+
+	$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1)die("No user waiting by that name!");
+	$a = mysql_fetch_array($q);
+
+	$newadmin_path = $conf_site_root_host_path."/".$_REQUEST["reqadm_login"];
+	if($conf_demo_version == "no"){
+		$oldumask = umask(0);
+		if(!file_exists($newadmin_path)){
+			mkdir("$newadmin_path", 0750);
+			$console .= "mkdir $newadmin_path;<br>";
+		}
+	}
+
+	$adm_query = "INSERT INTO $pro_mysql_client_table
+(id,is_company,company_name,familyname,christname,addr1,addr2,addr3,
+city,zipcode,state,country,phone,fax,email,
+disk_quota_mb,bw_quota_per_month_gb) VALUES ('','".$a["iscomp"]."',
+'".$a["comp_name"]."','".$a["family_name"]."','".$a["first_name"]."',
+'".$a["addr1"]."','".$a["addr2"]."','".$a["addr3"]."','".$a["city"]."',
+'".$a["zipcode"]."','".$a["state"]."','".$a["country"]."','".$a["phone"]."',
+'".$a["fax"]."','".$a["email"]."','80','1024');";
+	$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$cid = mysql_insert_id();
+
+	// Add user in database
+	$adm_query = "INSERT INTO $pro_mysql_admin_table
+(adm_login        ,adm_pass         ,path            ,id_client)VALUES
+('".$_REQUEST["reqadm_login"]."','".$a["reqadm_pass"]."','$newadmin_path','$cid') ";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+
+	addDomainToUser($_REQUEST["reqadm_login"],$a["reqadm_pass"],$a["domain_name"]);
 }
 
 if($_REQUEST["delete_admin_user"] != "" && isset($_REQUEST["delete_admin_user"])){

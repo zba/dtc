@@ -14,29 +14,29 @@ function anotherLanguageSelection(){
 	// Language selection box
 	$out = "
 <div align=\"right\">
-<table cellpadding=\"1\" cellspacing=\"0\">
+<table cellpadding=\"0\" cellspacing=\"4\">
 <tr><td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=fr&rub=".$_REQUEST["rub"]."\">FRANCAIS
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/fr.gif\"></a> 
-</td><td valign=\"center\">
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/fr.gif\"></a></td>
+<td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=en&rub=".$_REQUEST["rub"]."\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/en.gif\">&nbsp;ENGLISH</a></td>
-</tr><tr><td align=\"right\" valign=\"center\" nowrap>
+<td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=nl&rub=".$_REQUEST["rub"]."\">DUTCH
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/nl.gif\"></a> 
-</td><td valign=\"center\" nowrap>
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/nl.gif\"></a></td>
+<td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=ru&rub=".$_REQUEST["rub"]."\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/ru.gif\">&nbsp;RUSSIAN</a></td>
 </tr><tr><td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=es&rub=".$_REQUEST["rub"]."\">ESPANOL
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/es.gif\"></a> 
-</td><td valign=\"center\" nowrap>
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/es.gif\"></a></td>
+<td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=de&rub=".$_REQUEST["rub"]."\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/de.gif\">&nbsp;DEUTSCH</a></td>
-</tr><tr><td align=\"right\" valign=\"center\" nowrap>
+<td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=it&rub=".$_REQUEST["rub"]."\">ITALIANO
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/it.gif\"></a> 
-</td><td valign=\"center\" nowrap>
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/it.gif\"></a></td>
+<td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=zh&rub=".$_REQUEST["rub"]."\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/zh.gif\">&nbsp;CHINESE</a></td>
 </tr></table>
@@ -93,7 +93,8 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	$nowrap = " style=\"white-space:nowrap\" valign=\"top\"";
 	if($drawLanguageSelect=="yes"){
 		$zeLanguage = "
-	<td><a target=\"_blank\" href=\"/dtcdoc/\">Documentation</a><br><br><br><br></td>
+	<td valign=\"top\"><font size=\"-2\" face=\"Arial\"><a target=\"_blank\" href=\"/dtcdoc/\">Documentation</a><br>
+<a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a></font></td>
 	<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
 	}
 

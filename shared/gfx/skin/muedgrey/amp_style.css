@@ -82,16 +82,16 @@ pre{
 }
 */
 /*-----------------------------------------------------------------------*/
-/*img {  margin: 0px; }
-a:link		{ color: #6d6d6d; }
-a:visited	{ color: #6d6d6d; }
-a:active	{ color: #6d6d6d; }
-a:hover		{ color: #111111! important; }
-center		{ color: #212121; vertical-align: top; }
+a:link		{ color: #6d6d6d; font-size: 8pt;}
+a:visited	{ color: #6d6d6d; font-size: 8pt;}
+a:active	{ color: #6d6d6d; font-size: 8pt;}
+a:hover		{ color: #111111! important; font-size: 8pt;}
+/*center		{ color: #212121; vertical-align: top; }
 td.head 	{ color: #e0e0e0; background-color: #212121; }
 td.corps 	{ color: #212121; background-color: #e0e0e0; }
 *.dashed 	{ border-bottom: 1px dashed #212121; }
 span, h1, h2, h3, h4 { color: #212121; }
+img {  margin: 0px; }
 */
 hr		{ color: #212121; background-color: #212121; }
 select, input, optgroup, textarea { font-family : Arial, Helvetica,

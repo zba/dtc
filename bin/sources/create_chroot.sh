@@ -94,7 +94,7 @@ if [ $UNIX_TYPE"" = "freebsd" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
 	cp -pf /usr/bin/gunzip /usr/bin/false /usr/bin/su bin/
 else
-	cp -pf /bin/gunzip /bin/zip /bin/false /bin/su bin/
+	cp -pf /bin/gunzip /usr/bin/zip /bin/false /bin/su bin/
 	cp -pf /bin/cpio usr/bin
 fi
 

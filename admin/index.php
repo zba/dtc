@@ -15,6 +15,7 @@ include("inc/draw_user_admin.php");
 if(file_exists("dtcrm")){
 	include("dtcrm/submit_to_sql.php");
 	include("dtcrm/main.php");
+	include("dtcrm/product_manager.php");
 }
 
 $DONOT_USE_ROTATING_PASS=yes;
@@ -68,6 +69,17 @@ if(file_exists("dtcrm")){
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
 		$txt_mainmenu_title_bandwidth_monitor[$lang];
 	if($_REQUEST["rub"] != "monitor"){
+		$menu .= "</a>";
+	}
+	$html_array[] = $menu;
+	$menu = "";
+	// Product manager
+	if($_REQUEST["rub"] != "product"){
+		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=product\">";
+	}
+	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/product_manager.png\"><br>
+		Product manager";
+	if($_REQUEST["rub"] != "product"){
 		$menu .= "</a>";
 	}
 	$html_array[] = $menu;
@@ -183,7 +195,11 @@ case config: // Global Config
 	$the_page[] = anotherLeftFrame($leftFrame,$rightFrame);
 //	$the_page[] = skin($conf_skin,$configForm,"DTC configuration");
 	break;
-	
+
+case product:
+	$bla = productManager();
+	$the_page[] = skin($conf_skin,$bla,"Product manager");
+	break;
 case user: // User Config
 default: // No rub selected
 	// Our list of admins

@@ -16,5 +16,5 @@ CREATE TABLE IF NOT EXISTS new_admin (
   city varchar(64) NOT NULL default '',
   state varchar(32) NOT NULL default '',
   country char(2) NOT NULL default '',
-  UNIQUE KEY reqadm_login (reqadm_login),
+  UNIQUE KEY reqadm_login (reqadm_login)
 ) TYPE=MyISAM
