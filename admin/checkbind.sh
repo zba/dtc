@@ -1,6 +1,6 @@
 #!/bin/sh
 conf_generated_file_path=$1
-bindgroup=`cat /etc/group | cut -f 1 -d: | grep bind`
+bindgroup=`cat /etc/group | cut -f 1 -d: | grep named`
 
 if [ ""$bindgroup = "" ] ; then
 	bindgroup=`cat /etc/group | cut -f 1 -d: | grep bind`
