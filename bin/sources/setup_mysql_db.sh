@@ -136,6 +136,12 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE cron_job SET qmail_newu='yes',restart_qmail='yes',gen_qmail='yes',reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes' WHERE 1"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET php_library_path='/usr/lib/php:/tmp:/usr/share/pear:$PATH_DTC_ETC/dtc404' WHERE 1"
 
+# Here are some DB maintainance for old DTC versions
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE subdomain CHANGE ip ip VARCHAR(255) DEFAULT 'default' NOT NULL"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE ftp_access CHANGE homedir homedir VARCHAR(255) DEFAULT '' NOT NULL"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE crypt crypt VARCHAR(255) DEFAULT '' NOT NULL"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE passwd passwd VARCHAR(255) DEFAULT '' NOT NULL"
+
 echo "<?php" > $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_host=\""$conf_mysql_host"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_login=\""$conf_mysql_login"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
