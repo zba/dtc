@@ -1,4 +1,5 @@
 24/06/2004:
+- Network (ftp) backup now includes database backup
 - Reviewed and updated MX generation in zonefiles. Now it's possible
 to setup some backup MX servers for DTC thanks to the new generated
 morercpthosts file.

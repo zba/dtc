@@ -63,18 +63,39 @@ date\n";
 		for($k=0;$k<$n3;$k++){
 			$a3 = mysql_fetch_array($r3)or die("Cannot fetch array line".__LINE__." file ".__FILE__);
 			$dbfilename = $owner.".userdb.".$a3["Db"].".sql";
-			$backup_net .= "echo -n \" Database ".$a3["Db"].": \"";
+			$backup_net .= "echo -n \" Database ".$a3["Db"].": \"\n";
 			$backup_net .= "echo -n \" dumping...\"\n";
 			$backup_net .= "mysqldump -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases ".$a3["Db"]." >".$dbfilename."\n";
 			$backup_net .= "echo -n \" compressing...\"\n";
 			$backup_net .= "gzip $dbfilename\n";
-			$backup_net .= "echo -n \" Done! Starting upload!\"\n";
+			$backup_net .= "echo \" Done! Starting upload!\"\n";
 			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E /webserver/ftp/gplhost/hostedfiles/ ".$dbfilename.".gz\n";
 			$backup_net .= "echo \" deleting archive\"\n";
 			$backup_net .= "rm -f ".$dbfilename.".gz\n";
 		}
-//		$backup_net .= "mysqldump -c --add-drop-table -databases db1 db2 >user.dbs";
 	}
+	$backup_net .= "echo -n \"===> Backuping database dtc: \"\n";
+	$dbfilename = "dtcdb.sql";
+	$backup_net .= "echo -n \" dumping...\"\n";
+	$backup_net .= "mysqldump -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases dtc >".$dbfilename."\n";
+	$backup_net .= "echo -n \" compressing...\"\n";
+	$backup_net .= "gzip $dbfilename\n";
+	$backup_net .= "echo \" Done! Starting upload!\"\n";
+	$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E /webserver/ftp/gplhost/hostedfiles/ ".$dbfilename.".gz\n";
+	$backup_net .= "echo \" deleting archive\"\n";
+	$backup_net .= "rm -f ".$dbfilename.".gz\n";
+
+	$backup_net .= "echo -n \"===> Backuping database mysql: \"\n";
+	$dbfilename = "mysqldb.sql";
+	$backup_net .= "echo -n \" dumping...\"\n";
+	$backup_net .= "mysqldump -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases mysql >".$dbfilename."\n";
+	$backup_net .= "echo -n \" compressing...\"\n";
+	$backup_net .= "gzip $dbfilename\n";
+	$backup_net .= "echo \" Done! Starting upload!\"\n";
+	$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E /webserver/ftp/gplhost/hostedfiles/ ".$dbfilename.".gz\n";
+	$backup_net .= "echo \" deleting archive\"\n";
+	$backup_net .= "rm -f ".$dbfilename.".gz\n";
+
 	$backup_net .= "date\n";
 	$filep = fopen("$conf_generated_file_path/net_backup.sh", "w+");
 	if( $filep == NULL){
