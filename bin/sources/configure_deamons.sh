@@ -39,11 +39,12 @@ if grep "Configured by DTC" $PATH_HTTPD_CONF
 then
 	echo "httpd.conf has been configured before : skiping include inssertion !"
 else
-	echo "Including DTC's vhosts.conf in $PATH_HTTPD_CONF"
 	if ! [ -f $PATH_HTTPD_CONF.DTC.backup ]
 	then
+		echo "===> Backuping "$PATH_HTTPD_CONF
 		cp -f "$PATH_HTTPD_CONF" "$PATH_HTTPD_CONF.DTC.backup"
 	fi
+	echo "===> Verifying User and Group directive"
 	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "User www-data -> User nobody"
@@ -70,12 +71,19 @@ else
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
-	echo "Checking for php4"
+	echo -n "Checking for php4..."
 	if grep "# LoadModule php4_module" $PATH_HTTPD_CONF
 	then
-		echo "Activating php4 module "$TMP_FILE" "$PATH_HTTPD_CONF
+		echo "activating php4 module "$TMP_FILE" "$PATH_HTTPD_CONF
 		sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	else
+		if grep "LoadModule php4_module" $PATH_HTTPD_CONF
+		then
+			echo " ok!"
+		else
+			echo "!!! php4 not present, please install it or run apacheconfig !!!"
+		fi
 	fi
 
 	echo "Checking for ssl"
@@ -84,6 +92,13 @@ else
 		echo "Activating ssl module"
 		sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	else
+		if grep "LoadModule ssl_module" $PATH_HTTPD_CONF
+		then
+			echo " ok!"
+		else
+			echo "!!! Warning: ssl_module for apache not present !!!"
+		fi
 	fi
 
 	echo "Checking for sql_log module"
@@ -92,6 +107,14 @@ else
 		echo "Activating log_sql module"
 		sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	else
+		if grep "LoadModule sql_log_module" $PATH_HTTPD_CONF
+		then
+			echo " ok!"
+		else
+			echo "!!! sql_log_module for apache not present, please install it or run apacheconfig !!!"
+			exit 1
+		fi
 	fi
 
 	echo "Checking for AllowOverride"
@@ -102,6 +125,7 @@ else
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
+	echo "===> Including DTC's vhosts.conf and directives in $PATH_HTTPD_CONF"
 	echo "# Configured by DTC v0.12 : please do not touch this line !
 Include $PATH_DTC_ETC/vhosts.conf
 Listen 80
@@ -117,7 +141,6 @@ LogSQLTransferLogFormat IAbhRrSsU
 	then
 		rm -f $TMP_FILE
 	fi
-
 fi
 
 #
