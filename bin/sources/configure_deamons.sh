@@ -15,7 +15,7 @@
 # because it's up to you to write it ! :)
 # Do a "cat configure_deamons.sh >>your_os_setup_script"
 
-# This script modify named, profptd, apache and qmail configuration
+# This script modify all your daemons configuration
 # files so that it uses the DTC genated files.
 
 #
@@ -25,8 +25,11 @@
 
 # VERBOSE_INSTALL=yes
 
-if ! [ -f $PATH_DTC_SHARED/shared/securepay/paiement_config.php ]
-then
+if [ ""$MKTEMP = "" ] ; then
+	MKTEMP="mktemp -t"
+fi
+
+if ! [ -f $PATH_DTC_SHARED/shared/securepay/paiement_config.php ] ; then
 	cp -v $PATH_DTC_SHARED/shared/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/shared/securepay/paiement_config.php
 fi
 
@@ -34,7 +37,7 @@ fi
 # Include $PATH_DTC_ETC/vhosts.conf in $PATH_HTTPD_CONF
 #
 
-TMP_FILE=`mktemp -t DTC_install.httpd.conf.XXXXXX` || exit 1
+TMP_FILE=`${MKTEMP} DTC_install.httpd.conf.XXXXXX` || exit 1
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Modifying httpd.conf"
@@ -399,7 +402,7 @@ else
 	then
 		cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.backup
 	fi
-	TMP_FILE=`mktemp -t DTC_install.named.conf.XXXXXX` || exit 1
+	TMP_FILE=`${MKTEMP} DTC_install.named.conf.XXXXXX` || exit 1
 	echo "// Configured by DTC v0.10 : please don't touch this line !" > $TMP_FILE
 	echo "include \"$PATH_DTC_ETC/named.conf\";" >> $TMP_FILE
 	touch $PATH_DTC_ETC/named.conf
@@ -495,7 +498,7 @@ then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "Inserting DTC configuration inside $PATH_POSTFIX_CONF"
 		fi
-		TMP_FILE=`mktemp -t DTC_install.postfix_main.cf.XXXXXX` || exit 1
+		TMP_FILE=`${MKTEMP} DTC_install.postfix_main.cf.XXXXXX` || exit 1
 		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
 		echo "
 # DTC virtual configuration
@@ -547,7 +550,7 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 				fi
 			fi
 
-			SASLTMP_FILE=`mktemp -t DTC_install.postfix_sasl.XXXXXX` || exit 1
+			SASLTMP_FILE=`${MKTEMP} DTC_install.postfix_sasl.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
 			echo "pwcheck_method: auxprop
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
@@ -606,7 +609,7 @@ then
 		then
 			cp -f $PATH_COURIER_CONF_PATH/authdaemonrc $PATH_COURIER_CONF_PATH.DTC.backup
 		fi
-		TMP_FILE=`mktemp -t DTC_install.courier.conf.XXXXXX` || exit 1
+		TMP_FILE=`${MKTEMP} DTC_install.courier.conf.XXXXXX` || exit 1
 		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
 		echo "authmodulelist=\"authmysql authpam\"" >> $TMP_FILE
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
@@ -659,7 +662,7 @@ if [ ""$conf_gen_ssl_cert = "true" ]; then
 	if [ ! -e "./"new.cert.csr ]; then
 		if [ ! -e "./"new.cert.cert ]; then
 			if [ ! -e "./"new.cert.key ]; then
-			CERTPASS_TMP_FILE=`mktemp -t certfilepass.XXXXXX` || exit 1
+			CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
 			echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
 			( echo $conf_cert_countrycode;
 			echo "the state";
@@ -700,7 +703,7 @@ then
 		then
 			cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
 		fi
-		TMP_FILE=`mktemp -t DTC_install.dovecot.conf.XXXXXX` || exit 1
+		TMP_FILE=`${MKTEMP} DTC_install.dovecot.conf.XXXXXX` || exit 1
 		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
 		echo "auth_userdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >> $TMP_FILE
 		echo "auth_passdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >> $TMP_FILE
@@ -745,7 +748,7 @@ else
 	then
 		cp -f $PATH_PROFTPD_CONF $PATH_PROFTPD_CONF.DTC.backup
 	fi
-	TMP_FILE=`mktemp -t DTC_install.proftp.conf.XXXXXX` || exit 1
+	TMP_FILE=`${MKTEMP} DTC_install.proftp.conf.XXXXXX` || exit 1
 	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 # This directive is not used anymore in newer version of proftpd
 #	echo "#UserReverseDNS	off" >> $TMP_FILE
@@ -816,7 +819,7 @@ else
 	then
 		cp -f /etc/crontab /etc/crontab.DTC.backup
 	fi
-	TMP_FILE=`mktemp -t DTC_install.crontab.XXXXXX` || exit 1
+	TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 	echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
 	cat < $TMP_FILE >>/etc/crontab

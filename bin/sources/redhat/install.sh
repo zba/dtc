@@ -173,3 +173,5 @@ fi
 if [ -e /var/lib/php/session ] ; then
 	chgrp -R nobody /var/lib/php/session
 fi
+
+MKTEMP="mktemp -p /tmp"
