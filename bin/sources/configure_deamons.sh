@@ -23,6 +23,11 @@
 # so it works automaticaly even without Tucows API
 #
 
+echo "!!! WARNING !!!  Qmail or Postfix (or any supported mail daemons)"
+echo "MUST be installed before in order to enable configuration by the"
+echo "DTC installer !!!"
+echo ""
+
 if ! [ -f $PATH_DTC_SHARED/securepay/paiement_config.php ]
 then
 	cp -v $PATH_DTC_SHARED/shared/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/shared/securepay/paiement_config.php
@@ -221,13 +226,39 @@ LogSQLTransferLogFormat IAbhRrSsU
 	fi
 fi
 
+PATH_PAMD_SMTP=/etc/pam.d/smtp
+if [ -f /etc/pam.d/ ]
+then
+	echo "===> Adding configuration inside "$PATH_PAMD_SMTP
+	if ! [ -f $PATH_PAMD_SMTP.DTC.backup ]
+	then
+		cp -f $PATH_PAMD_SMTP $PATH_PAMD_SMTP.DTC.backup
+	fi
+	echo "auth required pam_mysql.so user="$conf_mysql_login" passwd="$conf_mysql_pass" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >/etc/pam.d/smtp
+#	if grep "Configured by DTC" $PATH_PAMD_SMTP
+#		echo $PATH_PAMD_SMTP" has been configured before: skiping include insertion!"
+#	else
+#		echo "Including configuration in "$PATH_PAMD_SMTP
+#	fi
+fi
+
+db_get dtc/conf_mysqlhost
+conf_mysql_host=$RET
+db_get dtc/conf_mysqllogin
+conf_mysql_login=$RET
+db_get dtc/conf_mysqlpass
+conf_mysql_pass=$RET
+db_get dtc/conf_mysqldb
+conf_mysql_db=$RET
+
+
 #
 # include $PATH_DTC_ETC/named.zones in $PATH_NAMED_CONF
 #
 echo "===> Adding inclusion to named.conf"
 if grep "Configured by DTC" $PATH_NAMED_CONF
 then
-	echo "named.conf has been configured before : skiping include inssertion !"
+	echo "named.conf has been configured before : skiping include insertion !"
 else
 	echo "Including named.conf in $PATH_NAMED_CONF"
 	if ! [ -f $PATH_NAMED_CONF.DTC.backup ]
