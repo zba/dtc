@@ -79,10 +79,10 @@ function sum_http($webname){
 		if(mysql_num_rows(mysql_query($query_dub))==1)
 		{
 			$query_insert_bytes = "UPDATE $pro_mysql_acc_http_table set
-			bytes_sent=".$bytes_sent.",
-			count_visits=".$visits.",
-			count_hosts=".$hosts.",
-			count_impressions=".$imp."
+			bytes_sent='".$bytes_sent."',
+			count_visits='".$visits."',
+			count_hosts='".$hosts."',
+			count_impressions='".$imp."'
 			WHERE MONTH=".$current_month." AND year=".$current_year." AND vhost='".$subdomain_name."' AND domain='".$webname."'";
 			mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
 		}

@@ -124,12 +124,12 @@ function worldPayCallBack(){
 		// No command id
 		return;
 	}
-	$q = "SELECT * FROM $pro_mysql_command_table WHERE id='".$_REQUEST["cartId"]."';";
+	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$_REQUEST["cartId"]."';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
 	$n = mysql_num_rows($r);
-	if($n != 1)die("Command id not found in db !!!");
+	if($n != 1)die("Paiement id not found in db !!!");
 	$cmd = mysql_fetch_array($ar);
-	echo "Command found in db = ok<br>";
+	echo "Paiement found in db = ok<br>";
 
 	// Check the callbackPW
 	if($wp_callback_pass != ""){
@@ -157,14 +157,16 @@ function worldPayCallBack(){
 	echo "IP check = ok<br>";
 
 	$amnt = explode('n',$_REQUEST["ConvertedAmount"]);
-	$transaction_price = $amnt[1];
-	$transaction_currency = $amnt[0];
-	if($cmd["price"] != $transaction_price || $cmd["price_devise"] != $_REQUEST["currency"]){
+	$transaction_price = $_REQUEST["authAmount"];
+	$transaction_currency = $_REQUEST["authCurrency"];
+	if($cmd["refund_amount"] < $transaction_price || $cmd["currency"] != $_REQUEST["currency"]){
 		// Price or currency does not match !!
 		return;
 	}
 	echo "Price and curency = ok<br>";
 
+	echo "Validating paiement = ";
+	validatePaiement($_REQUEST["cartId"],$amount_paid,$paiement_type,$secpay_site="none",$secpay_custom_id="0");
 	$out .= "<WPDISPLAY ITEM=banner>";
 /*	Autorised transfaction example :
 	instId=38290

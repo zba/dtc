@@ -13,6 +13,8 @@ $wp_accId1 = "";
 $wp_callback_url = "/dtc/secpaycallback_worldpay.php";
 $wt_md5_secret = "ILoveMD5Seccrets";
 
+require("$dtcshared_path/securepay/pay_functions.php");
+
 if($conf_use_worldpay == "yes"){
 	include("$dtcshared_path/securepay/worldpay.php");
 }

@@ -62,7 +62,7 @@ when paiement is done, click the refresh button.";
 	<td><b>Storage space</b></td><td><b>Allowed bandwidth per month</b></td><td><b>Expiration date</b></td>
 </tr>
 <tr>
-	<td>".smartByte($du_quota)."</td><td>".smartByte($bw_quota)."</td><td>".$client["expire"]."</td>
+	<td>".smartByte($du_quota)."</td><td>".smartByte($bw_quota)."</td><td>".$admin["info"]["expire"]."</td>
 </tr>
 </table>";
 		if(file_exists($dtcshared_path."/dtcrm")){
