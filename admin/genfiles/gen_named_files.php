@@ -233,14 +233,20 @@ $more_mx_server
 		for($j=0;$j<$num_rows2;$j++){
 			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
-			if($subdomain["ip"] == "default"){
-				$the_ip_writed = $ip_to_write;
+			// Check if it's an IP or not, to know if it's a CNAME record or a A record
+			if(isIP($subdomain["ip"]) || $subdomain["ip"] == "default"){
+				if($subdomain["ip"] == "default"){
+					$the_ip_writed = "A\t".$ip_to_write;
+				}else{
+					$the_ip_writed = "A\t".$subdomain["ip"];
+				}
 			}else{
-				$the_ip_writed = $subdomain["ip"];
+				$the_ip_writed = "CNAME\t".$subdomain["ip"].".";
 			}
+
 			if($web_subname == "pop"){
 				$is_pop_subdomain_set = "yes";
-			}else
+			}
 			if($web_subname == "smtp"){
 				$is_smtp_subdomain_set = "yes";
 			}
@@ -250,7 +256,7 @@ $more_mx_server
 			if($web_subname == "list"){
 				$is_list_subdomain_set = "yes";
 			}
-			$this_site_file .= "$web_subname	IN	A	$the_ip_writed\n";
+			$this_site_file .= "$web_subname	IN	$the_ip_writed\n";
 			if($subdomain["associated_txt_record"] != ""){
 				$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
 			}

@@ -105,10 +105,21 @@ if(isset($_REQUEST["newsubdomain"]) && $_REQUEST["newsubdomain"] == "Ok"){
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
 
 	// Verify it's an valid IP
-	if(!isIP($_REQUEST["newsubdomain_ip"])){
+	if(!isIP($_REQUEST["newsubdomain_ip"]) && !isHostnameOrIP($_REQUEST["newsubdomain_ip"])){
 		$newsubdomain_ip = "default";
 	}else{
-		$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+		if(isIP($_REQUEST["newsubdomain_ip"])){
+			$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+		}else{
+			$server = $_REQUEST["newsubdomain_ip"];
+			// echo "Checking POP3<br>";
+			if(($server_ip = gethostbynameFalse($server)) == false){
+				echo "Cannot resolv your server: ".$_REQUEST["newsubdomain_ip"]."<br>";
+				$newsubdomain_ip = "default";
+			}else{
+				$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+			}
+		}
 	}
 
 	if(isFtpLogin($_REQUEST["newsubdomain_dynlogin"]) && isDTCPassword($_REQUEST["newsubdomain_dynpass"])){

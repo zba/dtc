@@ -36,6 +36,7 @@ function drawAdminTools_Subdomain($domain){
 	global $txt_subdom_scriptadvice;
 	global $txt_subdom_windowsusers;
 	global $txt_subdom_wwwalias;
+	global $txt_subdom_generate_webalizer;
 
 	global $edit_a_subdomain;
 
@@ -68,8 +69,13 @@ function drawAdminTools_Subdomain($domain){
 		}
 		if(isset($_REQUEST["edit_a_subdomain"]) && $sub == $_REQUEST["edit_a_subdomain"]){
 			$ip_domain_to_edit = $ip;
-			$login_to_edit = $subdomains[$i]["login"];
-			$pass_to_edit = $subdomains[$i]["pass"];
+			if(isset($subdomains[$i]["login"])){
+				$login_to_edit = $subdomains[$i]["login"];
+				$pass_to_edit = $subdomains[$i]["pass"];
+			}else{
+				$login_to_edit = "";
+				$pass_to_edit = "";
+			}
 			$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
 			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
 			$register_globals_to_edit = $subdomains[$i]["register_globals"];
@@ -160,7 +166,7 @@ function drawAdminTools_Subdomain($domain){
 			$txt .= "<tr><td align=\"right\">".$txt_subdom_newname[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_name\" value=\"\"></td><td></td></tr>";
 			$txt .= "<tr><td colspan=\"3\">";
 			$txt .= $txt_subdom_ip[$lang]."</td></tr>";
-			$txt .= "<tr><td align=\"right\">IP:</td><td><input type=\"text\" name=\"newsubdomain_ip\" value=\"\"></td>";
+			$txt .= "<tr><td align=\"right\">IP/CNAME:</td><td><input type=\"text\" name=\"newsubdomain_ip\" value=\"\"></td>";
 			$txt .= "<tr><td align=\"right\">".$txt_subdom_txtrec[$lang]."</td><td><input type=\"text\" name=\"associated_txt_record\" value=\"\">";
 			$txt .= "<tr><td colspan=\"3\">";
 			$txt .= $txt_subdom_dynip_logpass[$lang]."</td></tr>";
@@ -207,7 +213,7 @@ No<input type=\"radio\" name=\"w3_alias\" value=\"no\" $checked_no></td></tr>";
 		$txt .= "<tr><td colspan=\"3\">";
 		$txt .= $txt_subdom_ip[$lang]."</td></tr>";
 		
-		$txt .= "<tr><td align=\"right\">IP:</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
+		$txt .= "<tr><td align=\"right\">IP/CNAME:</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
 		<input type=\"hidden\" name=\"edit_a_subdomain\" value=\"".$_REQUEST["edit_a_subdomain"]."\"><input type=\"text\" name=\"newsubdomain_ip\" value=\"$ip_domain_to_edit\"></td></tr>";
 		$txt .= "<tr><td align=\"right\">".$txt_subdom_txtrec[$lang]."</td><td><input type=\"text\" name=\"associated_txt_record\" value=\"$txt_rec\">";
 		$txt .= "<tr><td colspan=\"3\">";

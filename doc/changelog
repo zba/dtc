@@ -1,4 +1,16 @@
-V0.17.0-R2
+V0.17.0-R3
+Changed size of ip of subdomain to 255, now you can use it
+as a CNAME value. The entered value is checked for resolvability
+before entering the database.
+
+A lot lot lot of debugs and cleanup. Swiched error_reporting
+to E_ALL, and find some little bugs. I can't count the nomber
+of little fixes made here. It should also improove a lot the
+way the panel installs for BSD.
+
+Now installer works for newer RedHat. DB setup is working
+well again.
+
 Installer now regenerate the main domain on each install so
 dpkg-reconfigure works better. Thanks to the users in the
 dtc forum for reporting! (thomas)
@@ -28,6 +40,11 @@ NS and MX if php < 4.3. (thomas)
 
 Corrected a bug in the subdomain defaut handler wich caused
 smtp, ftp, pop and list customisation not possible. (thomas)
+
+2005-03-03 V0.17.0-R2
+Some corrections in the database so the panel installs properly.
+It was broken due to some bad UNIC key inserting and users
+complained about it.
 
 2005-02-03 V0.17.0-R1
 This release does some major bugfix in the isntaller: the field name
