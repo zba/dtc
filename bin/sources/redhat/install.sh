@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is the DTC's RPM interactive install configuration script
-# made by Thomas Goirand <thomas@goirand.fr>
+# made by Thomas Goirand <thomas [ at ] goirand.fr>
 
 UNIX_TYPE=redhat
 

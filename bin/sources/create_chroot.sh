@@ -7,7 +7,7 @@
 # Added support for Debian stable and integrate it in install
 # script for all OS (path needs to be checked for BSD and RedHat...
 # so this script is for the moment UNTESTED)
-# Thomas GOIRAND <thomas@goirand.fr>
+# Thomas GOIRAND <thomas [ at ] goirand.fr>
 
 # first check to see if we have the correct command line settings
 #if [ "$1" = "" ]

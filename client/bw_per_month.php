@@ -65,7 +65,7 @@ for($m=0;$m<12;$m++){
 
 	$q = "SELECT sum(bytes_sent) as sent
 FROM admin,domain,subdomain,http_accounting
-WHERE admin.id_client='".$_REQUEST["cid"]."'
+WHERE admin.adm_login='".$_REQUEST["adm_login"]."'
 AND domain.owner=admin.adm_login
 AND subdomain.domain_name=domain.name
 AND http_accounting.vhost=subdomain.subdomain_name

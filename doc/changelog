@@ -295,7 +295,7 @@ Corrected a bug in MySql account manager in french
 version (the link for adding a new mysql user was
 broken.
 
-24-09-2003 by Thomas GOIRAND <thomas@goirand.fr>
+24-09-2003 by Thomas GOIRAND <thomas [ at ] goirand.fr>
 ------------------------------------------------
 Lot's of updates in this release. Leaving beta
 stage, and becoming version 1.0 very soon, when
@@ -417,7 +417,7 @@ dtc (0.10.7-1)
 
   * First attempt to a debian package
 
- -- Thomas GOIRAND <thomas@goirand.fr> 2003-02-20
+ -- Thomas GOIRAND <thomas [ at ] goirand.fr> 2003-02-20
 
 19-02-2003 by Thomas GOIRAND
 

@@ -6,7 +6,7 @@
 // This done like that so when you upgrade to newer version
 // of DTC, this file doen't overight your working config file.
 //
-// Thomas GOIRAND <thomas@goirand.fr>
+// Thomas GOIRAND <thomas [ at ] goirand.fr>
 
 class openSRS extends openSRS_base {
         var $USERNAME         = 'YOUR_USER_NAME_HERE';            # your OpenSRS username

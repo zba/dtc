@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # This is the DTC's tarball interactive install configuration script
-# made by Thomas Goirand <thomas@goirand.fr>
+# made by Thomas Goirand <thomas [ at ] goirand.fr>
 
 UNIX_TYPE=generic
 

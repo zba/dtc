@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Tarball uninstall sh script for DTC
-# Written by Thomas GOIRAND <thomas@goirand.fr>
+# Written by Thomas GOIRAND <thomas [ at ] goirand.fr>
 # under LGPL Licence
 
 UNIX_TYPE=generic

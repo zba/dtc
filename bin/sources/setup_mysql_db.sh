@@ -1,6 +1,6 @@
 
 # Multi OS (Unix system) DATABASE setup sh script for DTC
-# Written by Thomas GOIRAND <thomas@goirand.fr>
+# Written by Thomas GOIRAND <thomas [ at ] goirand.fr>
 # under LGPL Licence
 
 # The configuration for all thoses variables must be written BEFORE this
