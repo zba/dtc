@@ -1,22 +1,21 @@
-<h3><a name="4"></a>4. Utilisation en tant qu\'administrateur</h3>
+<h3><a name="4"></a>4. Using the DTC root panel</h3>
 
 <CENTER><IMG src="dtc.png"></CENTER><br>
 
-L\'interface administrateur de DTC est divisée en 3 parties, nous avons déja traité la configuration générale de DTC,
-nous allons maintenant nous intéresser aux 2 autres parties : \'gestion des utilisateurs\' et \'génération des fichiers
-de configuration deamons\'.<br><br>
+The administrator interfacce is divided in 3 parts. We have already talked
+about the general configuration. Let's talk about the 2 other parts: user management
+and config file generation.<br><br>
 
-<h4><a name="4.1"></a>4.1 Description générale</h4>
+<h4><a name="4.1"></a>4.1 Generale description</h4>
 
-<h5><a name="4.1.1"></a>4.1.1 Principe de fonctionnement</h5>
+<h5><a name="4.1.1"></a>4.1.1 How it works</h5>
 
-Le but de DTC est de générer les fichiers de configurations pour tous les
-daemons supportés. Tout ce que vous faites dans l'interface d'administration
-controle la facon dont seront généré ses fichiers.<br><br>
-Un script en cron lancé toutes les 10 minutes valide les changements en
-réécrivant ses fichiers de config et en rechargeant les services concernées.
+DTC aims to generate config files for all supported daemons. All you
+will do here will control the way those files will be generated.<br><br>
+A cron script is launched each 10 minutes validating the changes by wrinting
+config files and reloading specified services.<br><br>
 
-<h5><a name="4.1.2"></a>4.1.2 L\'interface web</h5>
+<h5><a name="4.1.2"></a>4.1.2 The web interface</h5>
 
 DTC is splited in 3 main directories. The admin console (normally in
 /usr/share/dtc/admin, but that may vary upon systems, like bsd likes to
@@ -52,49 +51,39 @@ generate the config files, and relaunch the deamons (named, qmail-send,
 and apache) manualy. You can of cource rely on the
 /usr/share/dtc/admin/cron.php script, so everything is all automatic.
 
-<h4><a name="4.2"></a>4.2 Gestion des utilisateurs</h4>
+<h4><a name="4.2"></a>4.2 User management</h4>
 
-<h5><a name="4.2.1"></a>4.1.1 Ajout d\'un administrateur virtuel</h5>
+<h5><a name="4.2.1"></a>4.1.1 Adding a virtual admin</h5>
 
 <CENTER><IMG src="newadmin.png"></CENTER><br>
 
-Ce formulaire permet d\'ajouter des administrateurs virtuels (clients)
-qui pourront gérer leurs propres domaines (attibués par
-l\'administrateur ou enregistré via l'interface client).<br><br>
+This form is for adding a virtual administrator (client), that will
+be allowed to change properties of his domain(s).<br><br>
 
-Pour créer un nouveau compte, il suffit de rentrer le nom du login et
-le mot de passe du futur compte dans ce formulaire
-ainsi que spécifier un chemin où seront stockés tous les fichiers
-relatifs aux domaines du client.<br><br>
+The path tells where domain files will be stored (mail and http files).<br><br>
 
-<b>Attention</b>! Le login est concaténé à la fin du chemin spécifié
-sous forme d\'un sous répertoire additionel (par exemple si
-vous avez configuré le chemin /var/www/sites et que vous ajoutiez
-le client toto alors son chemin sera /var/www/sites/toto).<br><br>
+<b>Take care</b>! The login will be happened to the path specified. So if you have
+set /var/www/sites as the path, and that you add the user named foo, then
+his path will be /var/www/sites/foo.<br><br>
 
-<h5><a name="4.2.2"></a>4.2.2 Gestion des domaines d\'un administrateur virtuel</h5>
+<h5><a name="4.2.2"></a>4.2.2 Managing you client domains</h5>
 
 <CENTER><IMG src="clientconfig.png"></CENTER><br>
 
-<b>- Edition de l\'administrateur virtuel :</b><br><br>
+<b>- Editing the virtual admin:</b><br><br>
 
-Ce formulaire permet l\'ajout et la suppression de domaines pour un client mais églament le changement de son mot de passe et
-de son chemin.<br><br>
-<b>Attention</b>! Si vous changez le chemin d\'un compte, il vous faudra également déplacer physiquement les fichiers se trouvant
-encore dans l\'ancien répertoire.<br><br>
+This form make you add and delete domains for a client and change his path. If you
+change his path here, you have to move the files manualy.<br><br>
 
-<b>- Edition de la configuration des domaines :</b><br><br>
+<b>- Configuration of each domains:</b><br><br>
 
-Ce formulaire permet d\'imposer des limites sur l\'utilisation du domaine (nombre de comptes email,ftp,etc..).<br><br>
-La selectbox de droite permet de sélectioner une IP parmi celles spécifiées dans la configuration générale de DTC.<br><br>
-Lorsque vous voulez permettre à un client d\'utiliser une base mysql, il est ajouté avec le même login/mot de passe que dans DTC.<br><br>
-La inputbox du bas permet d\'ajouter une nouvelle base de données au client.<br><br>
+This form allow limitation to each domains (number of subzone, email account, or
+ftp account...). The right most popup tells what will be the IP for apache vhosts
+of this domain.<br><br>
 
-<h4><a name="4.3"></a>4.3 Génération des fichiers de configuration des daemons</h4>
+<h4><a name="4.3"></a>4.3 Generate daemon config files</h4>
 
 <CENTER><IMG src="conffilegen.png"></CENTER><br>
 
-Cet interface permet de générer individuellement les fichiers de configuration sans attendre que le script d\'event soit lancé par crond et
-permet également de voir en temps réel quelles actions seront effectuées au prochain event.<br><br>
-L\'icône \'reinit des zones named\' permet si vous le désirez régénérer toutes les zonefiles de bind (par exemple si vous avez changé la
-configuration générale).<br><br>
+This pannel allow to generate config file for each daemon individualy. It helps when
+debuggin a server and check that everythings work fine.<br><br>

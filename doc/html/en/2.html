@@ -175,7 +175,7 @@ debian and /etc/namedb under FreeBSD) file using the following syntax :
 include "/etc/dtc/data/named.zones";
 </pre>
 
-* vhosts.prosites<br>
+* vhosts.conf<br>
 
 Include this in your /etc/apache/httpd.conf :
 
@@ -229,25 +229,28 @@ browse, click, and enjoy dtc.<br><br>
 
 <h4><a name="2.7"></a>2.7 Post-Installation (protection via .htaccess)</h4>
 
-Par défaut le fichier .htaccess suivant protège le repertoire (par défaut dans /usr/share/dtc/admin) de l\'interface administrateur :<br>
+By default, a .htaccess file is protecting your admin directory (it should be
+located in /usr/share/dtc/admin). This file contains something like this:
+
 <pre>AuthName "A funny message prompted to user !"
 AuthType Basic
 AuthUserFile /var/www/.htpasswd
 require valid-user</pre>
 
-Vous devez créer le fichier .htpasswd en spécifiant l\'utilisateur pouvant accéder à ce répertoire :<br>
-<pre>htpasswd -c /var/www/.htpasswd nom_utilisateur</pre>
-(l\'option -c permet de créer le fichier, si elle n\'est pas spécifiée l\'utilisateur sera ajouté au fichier).<br>
-A la suite de cette commande, il vous sera demandé d\'entrer un mot de passe.<br><br>
+That means you have to create a .htpasswrd in /var/www. Issue the following
+command to create it (a prompt will ask for password):
+<pre>htpasswd -c /var/www/.htpasswd user_name</pre>
+The -c option create the file. If it's not specified, then the user will be added
+to that auth file.<br><br>
 
-N\'oubliez pas que la directive apache AllowOverride restreint l\'utilisation des fichiers .htaccess, il y a 
-donc de fortes chances que vous deviez configurer le fichier httpd.conf pour autoriser l\'utilisation de la
-restriction d\'accès, sans quoi ce répertoire ne sera pas protégé. (voir la documentation d\'apache).<br><br>
+Don't forget that the apache directive AllowOverride tells if you can or not use
+.htaccess file. Please set it to correct value or your admin panel wont be protected
+and everybody will have access to it (see apache documentation...).<br><br>
 
-Pour que bind (named) fonctionne il faut que vous éditiez la partie \'forwarders\' de
-votre named.conf. N\'oubliez pas de configurer /etc/resolv.conf comme il suit :
-
+In order to have bind (named) working, you have to edit the 'forwarders' part of
+the main 'option' derective of named.conf. Fill it with the IP address of an accessible
+name server (the one of your ISP). Don't forget to set your /etc/resolv.conf with
+the following value:
 <pre>nameserver 127.0.0.1
 </pre>
-
-Sans quoi votre serveur ne pourra pas résolver correctement.
+Or your server will not resolv correctly.
