@@ -96,7 +96,7 @@ if($panel_type!="cronjob")
 		$_SESSION["cur_admlist_type"] = $_REQUEST["admlist_type"];
 		$admlist_type = $_REQUEST["admlist_type"];
 	}else{
-		if($_SESSION["cur_admlist_type"] != "" && isset($_SESSION["cur_admlist_type"])){
+		if(isset($_SESSION["cur_admlist_type"]) && $_SESSION["cur_admlist_type"] != ""){
 			$admlist_type = $_SESSION["cur_admlist_type"];
 		}else{
 			$admlist_type = "Logins";
