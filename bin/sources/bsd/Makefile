@@ -19,7 +19,6 @@ USE_MYSQL=      yes
 NO_PACKAGE=     No binary package => Application is written and installed with PHP
 
 do-install:
-#		@${CP} -Rf ${WRKSRC}/dtc ${PREFIX}/share
 		@${SH} ${PKGINSTALL} ${PREFIX} ${WRKSRC}
 
 .include <bsd.port.mk>
