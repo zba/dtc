@@ -216,14 +216,16 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 	mysql_query($adm_query);
 }
 
-function drawPercentBar($value,$max){
+function drawPercentBar($value,$max,$double="yes"){
+	if($double == "yes")	$dbl = 2;
+	else	$dbl = 1;
 	if($max != 0){
-		$percent = $value * 200 / $max;
+		$percent = $value * $dbl * 100 / $max;
 		if($percent < 0)	$percent = 0;
-		if($percent > 200)	$percent = 200;
-		$percent_val = round($percent/2,2);
+		if($percent > $dbl * 100)	$percent = 100 * $dbl;
+		$percent_val = round($percent/$dbl,2);
 		$percent_graf = round($percent);
-		$percent_graf2 = 200 - $percent_graf;
+		$percent_graf2 = ($dbl * 100) - $percent_graf;
 	}else{
 		$percent_val = 0;
 		$percent_graf = 0;
@@ -239,10 +241,10 @@ function drawPercentBar($value,$max){
 	}
 	$table = "<table cellpadding=\"0\" cellspacing=\"0\" height=\"1\">
 <tr>
-	<td width=\"4\" height=\"16\"><img height=\"16\" src=\"gfx/bar/start.png\"></td>
-	<td width=\"$percent_graf\" height=\"16\" background=\"gfx/bar/middle_s.png\"><img alt=\"$alts\" height=\"16\" src=\"gfx/bar/middle_s.png\"></td>
-	<td width=\"$percent_graf2\" height=\"16\" background=\"gfx/bar/middle_n.png\"><img alt=\"$altn\" height=\"16\" src=\"gfx/bar/middle_n.png\"></td>
-	<td width=\"4\" height=\"16\"><img height=\"16\" src=\"gfx/bar/end.png\"></td>
+	<td width=\"4\" height=\"16\"><img width=\"4\" height=\"16\" src=\"gfx/bar/start.png\"></td>
+	<td width=\"$percent_graf\" height=\"16\" background=\"gfx/bar/middle_s.png\"><img width=\"$percent_graf\" alt=\"$alts\" height=\"16\" src=\"gfx/bar/middle_s.png\"></td>
+	<td width=\"$percent_graf2\" height=\"16\" background=\"gfx/bar/middle_n.png\"><img width=\"$percent_graf2\" alt=\"$altn\" height=\"16\" src=\"gfx/bar/middle_n.png\"></td>
+	<td width=\"4\" height=\"16\"><img width=\"4\" height=\"16\" src=\"gfx/bar/end.png\"></td>
 	<td>".$percent_val."%</td></tr>
 </table>";
 	return $table;
