@@ -43,6 +43,17 @@ function SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$
 		'admin' => $admin);
 
 	$nameservers = array();
+	if($dns_servers[0]["name"] != default && $dns_servers[1]["name"] != default &&
+		isHostname($dns_servers[0]["name"]) && isHostname($dns_servers[1]["name"])){
+		$nameservers[] = array(
+			'sortorder' => 1,
+			'name' => 'ns1.domaindirect.com');
+		$nameservers[] = array(
+			'sortorder' => '2',
+			'name' => 'ns2.domaindirect.com');
+	}else{
+		$nameservers = array();
+	}
 
 	$cmd = array(
 		'protocol' => 'XCP',

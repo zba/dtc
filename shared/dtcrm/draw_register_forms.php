@@ -12,7 +12,7 @@ www.<input type=\"text\" name=\"toreg_domain\" value=\"\">
 </select><input type=\"submit\" value=\"Ok\">
 ";
 
-$form_enter_dns_infos = "Please enter now the DNS server ip or hostname. If you want to configurate your domain here,
+$form_enter_dns_infos_ip = "Please enter now the DNS server ip or hostname. If you want to configurate your domain here,
 leave it with value \"default\".<br>
 DNS1 host:<input size=\"16\" type=\"text\" name=\"toreg_dns1\" value=\"default\">
 ip:<input size=\"14\" type=\"text\" name=\"toreg_dns1_ip\" value=\"\"><br>
@@ -28,7 +28,17 @@ ip:<input size=\"14\" type=\"text\" name=\"toreg_dns5_ip\" value=\"\"><br>
 DNS6 host:<input size=\"16\" type=\"text\" name=\"toreg_dns6\" value=\"\">
 ip:<input size=\"14\" type=\"text\" name=\"toreg_dns6_ip\" value=\"\">";
 
-$whois_forwareded_params = "
+$form_enter_dns_infos = "Please enter now the DNS server ip or hostname. If you want to configurate your domain here,
+leave it with value \"default\".<br>
+DNS1 host:<input size=\"16\" type=\"text\" name=\"toreg_dns1\" value=\"default\"><br>
+DNS2 host:<input size=\"16\" type=\"text\" name=\"toreg_dns2\" value=\"default\"><br>
+<i>Optional:</i><br>
+DNS3 host:<input size=\"16\" type=\"text\" name=\"toreg_dns3\" value=\"\"><br>
+DNS4 host:<input size=\"16\" type=\"text\" name=\"toreg_dns4\" value=\"\"><br>
+DNS5 host:<input size=\"16\" type=\"text\" name=\"toreg_dns5\" value=\"\"><br>
+DNS6 host:<input size=\"16\" type=\"text\" name=\"toreg_dns6\" value=\"\">";
+
+$whois_forwareded_params_ip = "
 <input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"".$_REQUEST["dtcrm_owner_hdl"]."\">
 <input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"".$_REQUEST["dtcrm_admin_hdl"]."\">
 <input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"".$_REQUEST["dtcrm_billing_hdl"]."\">
@@ -45,6 +55,18 @@ $whois_forwareded_params = "
 <input type=\"hidden\" name=\"toreg_dns4_ip\" value=\"".$_REQUEST["toreg_dns4_ip"]."\">
 <input type=\"hidden\" name=\"toreg_dns5_ip\" value=\"".$_REQUEST["togeg_dns5_ip"]."\">
 <input type=\"hidden\" name=\"toreg_dns6_ip\" value=\"".$_REQUEST["toreg_dns6_ip"]."\">
+";
+
+$whois_forwareded_params = "
+<input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"".$_REQUEST["dtcrm_owner_hdl"]."\">
+<input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"".$_REQUEST["dtcrm_admin_hdl"]."\">
+<input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"".$_REQUEST["dtcrm_billing_hdl"]."\">
+<input type=\"hidden\" name=\"toreg_dns1\" value=\"".$_REQUEST["toreg_dns1"]."\">
+<input type=\"hidden\" name=\"toreg_dns2\" value=\"".$_REQUEST["toreg_dns2"]."\">
+<input type=\"hidden\" name=\"toreg_dns3\" value=\"".$_REQUEST["toreg_dns3"]."\">
+<input type=\"hidden\" name=\"toreg_dns4\" value=\"".$_REQUEST["toreg_dns4"]."\">
+<input type=\"hidden\" name=\"toreg_dns5\" value=\"".$_REQUEST["togeg_dns5"]."\">
+<input type=\"hidden\" name=\"toreg_dns6\" value=\"".$_REQUEST["toreg_dns6"]."\">
 ";
 
 $period_popup = "<select name=\"toreg_period\">
