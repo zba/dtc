@@ -102,7 +102,7 @@ fi
 PATH_PROFTPD_CONF="/usr/local/etc/proftpd.conf"
 PATH_QMAIL_CTRL="/var/qmail/control"
 PATH_PHP_CGI="/usr/local/bin/php"
-PATH_DTC_ETC="/usr/share/dtc/etc"
+PATH_DTC_ETC="/usr/local/share/dtc/etc"
 PATH_DTC_SHARED="/usr/local/share/dtc"
 
 echo ""
@@ -141,9 +141,9 @@ else
 	exit
 fi
 
-echo "Copying DTC's php scripts to /usr/share..."
+echo "Copying DTC's php scripts to /usr/local/share..."
 
-cp -Rf dtc /usr/share
+cp -Rf dtc /usr/local/share
 
 echo "===> Checking BSD type"
 kernel=`uname -a | awk '{print $1}'`;
