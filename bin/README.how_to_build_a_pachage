@@ -22,7 +22,7 @@ thoses vars according to there specificities. So in the
 "sources/" folder, there is a folder for each unix OS that is
 supported by the current DTC release.
 
-RPM suxs:
+RPM building system suxs:
 Normaly, it's possible to build all packages on all unix.
 But for RPM, you have to setup an area for building it.
 See the specific script (in source/redhat) for creating
