@@ -100,10 +100,10 @@ function sum_http($webname){
 	mysql_select_db($conf_mysql_db);
 }
 
-function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_year)
-{
+function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_year){
 	global $conf_mysql_db;
 	global $pro_mysql_domain_table;
+	global $dtcshared_path;
 	mysql_select_db("apachelogs");
 	$query = "SELECT MAX(time_stamp) AS end FROM `".$db_select_name."`";
 	$result = mysql_query($query) or die("Cannot execute query \"$query\" !!! ".mysql_error());
@@ -117,10 +117,11 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 	{
 		$year_start = date("Y",$start);
 		$year_end = date("Y",$end);
+		$start_month = date("m",$start);
 
 		for($year=$year_start;$year<=$year_end;$year++)
 		{
-			for($month=1;$month<=12;$month++)
+			for($month=$start_month;$month<=12;$month++)
 			{
 				mysql_select_db($conf_mysql_db);
 				$query_admin = "SELECT * FROM $pro_mysql_domain_table WHERE name='$domain'";
@@ -131,34 +132,78 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 
 				mysql_select_db("apachelogs");
 
-				$dump_file_name = $admin_path."/".$domain."/subdomains/".$vhost."/logs/".$db_select_name."_".$month."_".$year;
-				if(!file_exists($dump_file_name.".tar.gz") && ($month!=$current_month && $year!=$current_year))
+				$dump_path = $admin_path."/".$domain."/subdomains/".$vhost."/logs/";
+				$dump_file_name = $dump_path.$db_select_name."_".$month."_".$year;
+				if(!file_exists($dump_file_name.".bz2") && ($year!=$current_year || $month!=$current_month))
 				{
+//					echo "File does not exists, trying to dump\n";
 					$selected_month_start = mktime(0,0,0,$month,1,$year);
 					$selected_month_end = (mktime(0,0,0,($month+1),1,$year))-1;
 					$query_dump = "SELECT * FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
         			$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" !!! ".mysql_error());
 					if(mysql_num_rows($result_dump)>0)
 					{
+						echo "\nDumping logs for ".$db_select_name."_".$month."_".$year."\n";
 						$handle = fopen ($dump_file_name, "w");
 						for($z=0;$z<mysql_num_rows($result_dump);$z++)
 						{
-							$content = "'".mysql_result($result_dump,$z,"id")."','".mysql_result($result_dump,$z,"agent")."','".mysql_result($result_dump,$z,"bytes_sent")."','".mysql_result($result_dump,$z,"child_pid")."','".mysql_result($result_dump,$z,"cookie")."','".mysql_result($result_dump,$z,"request_file")."','".mysql_result($result_dump,$z,"referer")."','".mysql_result($result_dump,$z,"remote_host")."','".mysql_result($result_dump,$z,"remote_logname")."','".mysql_result($result_dump,$z,"remote_user")."','".mysql_result($result_dump,$z,"request_duration")."','".mysql_result($result_dump,$z,"request_line")."','".mysql_result($result_dump,$z,"request_method")."','".mysql_result($result_dump,$z,"request_protocol")."','".mysql_result($result_dump,$z,"request_time")."','".mysql_result($result_dump,$z,"request_uri")."','".mysql_result($result_dump,$z,"request_args")."','".mysql_result($result_dump,$z,"request_args")."','".mysql_result($result_dump,$z,"ssl_cipher")."','".mysql_result($result_dump,$z,"ssl_keysize")."','".mysql_result($result_dump,$z,"ssl_maxkeysize")."','".mysql_result($result_dump,$z,"status")."','".mysql_result($result_dump,$z,"time_stamp")."','".mysql_result($result_dump,$z,"virtual_host")."'\n";
+							$content = mysql_result($result_dump,$z,"remote_host").
+							" - - ".
+							date("[d/M/Y:H:i:s]",mysql_result($result_dump,$z,"time_stamp")).
+							' "'.mysql_result($result_dump,$z,"request_line").'"'.
+							" ".mysql_result($result_dump,$z,"status").
+							" ".mysql_result($result_dump,$z,"bytes_sent").
+							' "'.mysql_result($result_dump,$z,"referer").'"'.
+							" ".mysql_result($result_dump,$z,"agent")."'\n";
+/*							$content = "'".mysql_result($result_dump,$z,"id").
+							"','".mysql_result($result_dump,$z,"agent").
+							"','".mysql_result($result_dump,$z,"bytes_sent").
+							"','".mysql_result($result_dump,$z,"child_pid").
+							"','".mysql_result($result_dump,$z,"cookie").
+							"','".mysql_result($result_dump,$z,"request_file").
+							"','".mysql_result($result_dump,$z,"referer").
+							"','".mysql_result($result_dump,$z,"remote_host").
+							"','".mysql_result($result_dump,$z,"remote_logname").
+							"','".mysql_result($result_dump,$z,"remote_user").
+							"','".mysql_result($result_dump,$z,"request_duration").
+							"','".mysql_result($result_dump,$z,"request_line").
+							"','".mysql_result($result_dump,$z,"request_method").
+							"','".mysql_result($result_dump,$z,"request_protocol").
+							"','".mysql_result($result_dump,$z,"request_time").
+							"','".mysql_result($result_dump,$z,"request_uri").
+							"','".mysql_result($result_dump,$z,"request_args").
+							"','".mysql_result($result_dump,$z,"request_args").
+							"','".mysql_result($result_dump,$z,"ssl_cipher").
+							"','".mysql_result($result_dump,$z,"ssl_keysize").
+							"','".mysql_result($result_dump,$z,"ssl_maxkeysize").
+							"','".mysql_result($result_dump,$z,"status").
+							"','".mysql_result($result_dump,$z,"time_stamp").
+							"','".mysql_result($result_dump,$z,"virtual_host").
+							"'\n";*/
+
 							if (!fwrite($handle, $content))
 							{
         						print "Cannot write to file ($filename)";
 						    }
 						}
 						fclose($handle);
-						exec ("tar cfj ".$dump_file_name.".tar.bz2 " .$dump_file_name."");
-						unlink($dump_file_name);
+						echo "Calculating webalizer stats for ".$month."_".$year."\n";
+						$webalizer_cmd = "webalizer -n $vhost.$domain -o $dump_path";
+						echo "$webalizer_cmd\n";
+						exec ($webalizer_cmd);
+						$tar_cmd = "bzip2 ".$dump_file_name;
+						echo $tar_cmd."\n";
+						exec ($tar_cmd);
+//						unlink($dump_file_name);
 						check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
 					}
 					//check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
 					$query_del = "DELETE FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+					mysql_select_db("apachelogs");
 					//mysql_query($query_del) or die("Cannot execute query \"$query_del\" !!! ".mysql_error());
 				}
 			}
+			$start_month = 1;
 		}
 	}
 	mysql_select_db($conf_mysql_db);

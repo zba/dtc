@@ -3,9 +3,6 @@
 require("/usr/share/dtc/shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
-// If under BSD, please change this to: /usr/local/sbin/apachectl
-$path_apachectl = "/usr/sbin/apachectl";
-
 require_once("genfiles/genfiles.php");
 
 echo date("Y m d / H:i:s T")." Starting DTC cron job\n";
@@ -47,6 +44,7 @@ function updateAllDomainsStats(){
 	for($i=0;$i<$num_rows;$i++){
 		$admin = mysql_fetch_array($result);
 		$adm_login = $admin["adm_login"];
+		echo "===> Updating statistic for user $adm_login\n";
 		$adm_path = $admin["path"];
 		$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" !!!".mysql_error()." in file ".__FILE__." line ".__LINE__);
@@ -75,9 +73,9 @@ function updateAllDomainsStats(){
 // This will set each day at 0:00
 // if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
 // This one is each hours
-if(($start_stamps%(60*60))< 60*10)	updateAllDomainsStats();
+// if(($start_stamps%(60*60))< 60*10)	updateAllDomainsStats();
 // This is each time the script is launched (all 10 minutes)
-// updateAllDomainsStats();
+updateAllDomainsStats();
 
 ///////////////////////////////////////////////////////
 // First, see if we have to regenerate deamons files //
@@ -143,12 +141,12 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	system("chmod +x \"$conf_generated_file_path/vhost_check_dir\"");
 	system("$conf_generated_file_path/vhost_check_dir");
 	echo "Testing apache conf\n";
-	exec ("$path_apachectl configtest", $plop, $return_var);
+	exec ("/usr/sbin/apachectl configtest", $plop, $return_var);
 	if($return_var == false){
 		echo "Config is OK : restarting Apache\n";
-		system("$path_apachectl stop");
+		system("/usr/sbin/apachectl stop");
 		sleep(5);
-		system("$path_apachectl start");
+		system("/usr/sbin/apachectl start");
 	}else{
 		echo "Config not OK : I can't reload apache !!!\n";
 	}
