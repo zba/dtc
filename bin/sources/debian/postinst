@@ -28,6 +28,11 @@ PATH_QMAIL_CTRL=/etc/qmail
 PATH_PHP_CGI="/usr/bin/php4"
 PATH_PROFTPD_CONF=/etc/proftpd.conf
 PATH_DOVECOT_CONF=/etc/dovecot.conf
+# in case our dovecot conf has moved...
+if [ -f /etc/dovecot/dovecot.conf ]; 
+then
+PATH_DOVECOT_CONF=/etc/dovecot/dovecot.conf
+fi
 PATH_COURIER_CONF_PATH=/etc/courier
 PATH_POSTFIX_CONF=/etc/postfix/main.cf
 PATH_POSTFIX_ETC=/etc/postfix
