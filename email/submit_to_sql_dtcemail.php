@@ -102,8 +102,27 @@ case "add_fetchmail":
 	}
 	break;
 //	$q = " WHERE id='$user' AND mbox_host='$host';";
-
+// action=modify_fetchmail&boxid=5&email_addr=zigo%40pplchat.com&mailbox_type=POP3&server_addr=gplhost.com&login=zigo%40pplchat.com&server_addr=master
 // action=dtcemail_change_pass&newpass1=&newpass2=&submit=Ok
+case "modify_fetchmail":
+	if(pass_check_email()==false)	die("User not found!");
+	if(!isRandomNum($_REQUEST["boxid"]))	die("Box id is not a number!");
+	if(checkMailbox($user,$host,$_REQUEST["email_addr"],
+		$_REQUEST["mailbox_type"],$_REQUEST["server_addr"],
+		$_REQUEST["login"],$_REQUEST["pass"])){
+		$q = "UPDATE $pro_mysql_fetchmail_table SET pop3_email='".$_REQUEST["email_addr"]."',
+		pop3_server='".$_REQUEST["server_addr"]."',pop3_login='".$_REQUEST["login"]."',pop3_pass='".$_REQUEST["pass"]."' WHERE domain_user='$user' AND domain_name='$host' AND id='".$_REQUEST["boxid"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}
+	break;
+
+case "del_fetchmail":
+	if(pass_check_email()==false)	die("User not found!");
+	if(!isRandomNum($_REQUEST["boxid"]))	die("Box id is not a number!");
+	$q = "DELETE FROM $pro_mysql_fetchmail_table WHERE domain_user='$user' AND domain_name='$host' AND id='".$_REQUEST["boxid"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	break;
+
 case "dtcemail_change_pass":
 	if(pass_check_email()==false)	die("User not found!");
 	if(!isDTCPassword($_REQUEST["newpass1"]))	die("Incorrect password format!");

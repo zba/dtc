@@ -124,6 +124,13 @@ function isDTCPassword($pass){
 	else			return true;
 }
 
+// Check if it's only numbers
+function isRandomNum($mailbox){
+	$reg = "^([0-9]+)\$";
+	if(!ereg($reg,$mailbox))        return false;
+	else                    return true;
+}
+
 /////////////////////////////////////////////////
 // Create mailbox direcotry if does not exists //
 /////////////////////////////////////////////////

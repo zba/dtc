@@ -59,19 +59,20 @@ function drawImportedMail($mailbox){
 			<option value=\"MSN\"$msn_selected>MSN</option>
 			<option value=\"HOTMAIL\"$hotmail_selected>HOTMAIL</option>
 			<option value=\"YAHOO\"$yahoo_selected>YAHOO</option>
-			<option value=\"GMAIL\"$yahoo_selected>GMAIL</option>";
+			<option value=\"GMAIL\"$yahoo_selected>GMAIL</option></select>";
 		if($a[""] == "yes"){
 			$useit = "";
 		}
+		$popup_boxtype = $a["mailbox_type"]."<input type=\"hidden\" name=\"mailbox_type\" value=\"".$a["mailbox_type"]."\">";
 		$out .= "<tr>
-			<td>$form_start<input type=\"hidden\" name=\"action\" value=\"modify_fetchmail\"><input type=\"text\" name=\"email_addr\" value=\"".$a["pop3_email"]."\"></td>
+			<td>$form_start<input type=\"hidden\" name=\"action\" value=\"modify_fetchmail\"><input type=\"hidden\" name=\"boxid\" value=\"".$a["id"]."\"><input type=\"text\" name=\"email_addr\" value=\"".$a["pop3_email"]."\"></td>
 			<td>$popup_boxtype</td>
 			<td><input type=\"text\" name=\"server_addr\" value=\"".$a["pop3_server"]."\"></td>
 			<td><input type=\"text\" name=\"login\" value=\"".$a["pop3_login"]."\"></td>
-			<td><input type=\"text\" name=\"server_addr\" value=\"".$a["pop3_pass"]."\"></td>
+			<td><input type=\"text\" name=\"pass\" value=\"".$a["pop3_pass"]."\"></td>
 			<td>Use</td>
-			<td><input type=\"submit\" value=\"Save\"></form>$form_start<input type=\"hidden\" name=\"action\" value=\"modify_fetchmail\">
-			<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\"><input type=\"submit\" value=\"delete\"></form></td></tr>";
+			<td><input type=\"submit\" value=\"Save\"></form>$form_start<input type=\"hidden\" name=\"action\" value=\"del_fetchmail\">
+			<input type=\"hidden\" name=\"boxid\" value=\"".$a["id"]."\"><input type=\"submit\" value=\"delete\"></form></td></tr>";
 	}
 	$out .= "<tr>
 		<td>$form_start<input type=\"hidden\" name=\"action\" value=\"add_fetchmail\"><input type=\"text\" name=\"email_addr\" value=\"\"></td>
