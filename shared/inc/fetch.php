@@ -101,7 +101,7 @@ function fetchAdminStats($admin){
 // Uncomment this if you want it in realtime (currently done in cron)
 //		sum_ftp($domain_name);
 		$query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='$domain_name' AND month='".date("m",time())."' AND year='".date("Y",time())."'";
-		$result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
+		$result_ftp = mysql_query($query_ftp)or die("Cannot execute query \"$query\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
 		$num_rows = mysql_num_rows($result_ftp);
 		$rez_ftp = mysql_result($result_ftp,0,"transfer");
 		$ret["total_ftp"] += $rez_ftp;
@@ -109,7 +109,21 @@ function fetchAdminStats($admin){
 
 		$ret["domains"][$ad]["total_transfer"] += $rez_http + $rez_ftp;
 		$ret["total_transfer"] += $rez_http + $rez_ftp;
+
 		// Todo: email accounting
+		$q = "SELECT smtp_trafic,pop_trafic FROM $pro_mysql_acc_email_table
+		WHERE domain_name='$domain_name' AND month='".date("m")."' AND year='".date("Y")."'";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
+		$num_rows = mysql_num_rows($r);
+		if($num_rows == 1){
+			$smtp_bytes = mysql_result($r,0,"smtp_trafic");
+			$pop_bytes = mysql_result($r,0,"pop_trafic");
+			$email_bytes = $smtp_bytes + $pop_bytes;
+			$ret["total_email"] += $email_bytes;
+			$ret["domains"][$ad]["smtp"] = $smtp_bytes;
+			$ret["domains"][$ad]["pop"] = $pop_bytes;
+			$ret["total_transfer"] += $email_bytes;
+		}
 	}
 
 	$dbdu_amount = 0;
@@ -138,9 +152,12 @@ function fetchAdminStats($admin){
 //              ["du"]
 //              ["ftp"]
 //              ["http"]
+//              ["smtp"]
+//              ["pop"]
 //              ["total_transfer"]
 // ["total_http"]
 // ["total_ftp"]
+// ["total_email"]
 // ["total_transfer"]
 // ["total_du_domains"]
 // ["db"][]["name"]
