@@ -95,8 +95,13 @@ function fetchAdminStats($admin){
 		$result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
 		$num_rows = mysql_num_rows($result_http);
 		$rez_http = mysql_result($result_http,0,"transfer");
-		$ret["total_http"] += $rez_http;
-		$ret["domains"][$ad]["http"] = $rez_http;
+		if($rez_http == NULL){
+			$ret["total_http"] += 0;
+			$ret["domains"][$ad]["http"] = 0;
+		}else{
+			$ret["total_http"] += $rez_http;
+			$ret["domains"][$ad]["http"] = $rez_http;
+		}
 
 		// And FTP transfer
 // Uncomment this if you want it in realtime (currently done in cron)
@@ -105,8 +110,13 @@ function fetchAdminStats($admin){
 		$result_ftp = mysql_query($query_ftp)or die("Cannot execute query \"$query\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
 		$num_rows = mysql_num_rows($result_ftp);
 		$rez_ftp = mysql_result($result_ftp,0,"transfer");
-		$ret["total_ftp"] += $rez_ftp;
-		$ret["domains"][$ad]["ftp"] = $rez_ftp;
+		if($rez_ftp == NULL){
+			$ret["total_ftp"] += 0;
+			$ret["domains"][$ad]["ftp"] = 0;
+		}else{
+			$ret["total_ftp"] += $rez_ftp;
+			$ret["domains"][$ad]["ftp"] = $rez_ftp;
+		}
 
 		// Email accounting
 		$q = "SELECT smtp_trafic,pop_trafic FROM $pro_mysql_acc_email_table
