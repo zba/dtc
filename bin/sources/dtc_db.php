@@ -1,6 +1,6 @@
 <?php
 // Automatic database array generation for DTC
-// Generation date: 2004-11(Nov)-05 Friday 01:29
+// Generation date: 2004-12(Dec)-19 Sunday 17:31
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
@@ -23,6 +23,20 @@ $dtc_database = array(
 			"PRIMARY" => "(adm_login)",
 			"path" => "(path)",
 			"adm_login" => "(adm_login)"
+			)
+		),
+	"backup" => array(
+		"vars" => array(
+			"id" => "int(9) NOT NULL auto_increment",
+			"server_addr" => "varchar(128) NOT NULL ",
+			"server_login" => "varchar(128) NOT NULL ",
+			"server_pass" => "varchar(128) NOT NULL ",
+			"type" => "enum('grant_access','mail_backup','dns_backup','backup_ftp_to') NOT NULL default 'grant_access' "
+			),
+		"keys" => array(
+			"PRIMARY" => "(id)",
+			"id" => "(id)",
+			"id_2" => "(id)"
 			)
 		),
 	"clients" => array(
@@ -101,8 +115,9 @@ $dtc_database = array(
 			"qmail_assign_path" => "varchar(255) NOT NULL default 'assign' ",
 			"qmail_poppasswd_path" => "varchar(255) NOT NULL default 'poppasswd' ",
 			"apache_vhost_path" => "varchar(255) NOT NULL default 'vhosts.conf' ",
-			"php_additional_library_path" => "varchar(255) NOT NULL default '/usr/local/lib/php/phplib/:/usr/share/dtc/shared/:/usr/share/dtc/etc/' ",
+			"php_additional_library_path" => "varchar(255) NOT NULL default '/usr/local/lib/php/phplib/:/usr/share/dtc/shared/' ",
 			"php_library_path" => "varchar(255) NOT NULL default '/usr/lib/php/:/tmp/' ",
+			"dns_type" => "enum('bind','djb') NOT NULL default 'bind' ",
 			"named_path" => "varchar(255) NOT NULL default 'named.conf' ",
 			"named_slavefile_path" => "varchar(255) NOT NULL default 'named.slavezones.conf' ",
 			"named_slavezonefiles_path" => "varchar(255) NOT NULL default 'slave_zones' ",
@@ -361,6 +376,8 @@ $dtc_database = array(
 			"shopper_ip" => "varchar(16) NOT NULL default '0.0.0.0' ",
 			"date" => "date NOT NULL default '0000-00-00' ",
 			"time" => "time NOT NULL default '00:00:00' ",
+			"valid_date" => "varchar(10) NOT NULL default '0000-00-00' ",
+			"valid_time" => "varchar(8) NOT NULL default '00:00:00' ",
 			"valid" => "enum('yes','no') NOT NULL default 'no' ",
 			"new_account" => "enum('yes','no') NOT NULL default 'yes' "
 			),
@@ -427,6 +444,19 @@ $dtc_database = array(
 		"keys" => array(
 			"PRIMARY" => "(id)",
 			"id" => "(id)"
+			)
+		),
+	"secpayconf" => array(
+		"vars" => array(
+			"unicrow" => "int(2) NOT NULL default '0' ",
+			"use_paypal" => "enum('yes','no') NOT NULL default 'no' ",
+			"paypal_rate" => "float(6,2) NOT NULL default '0.00' ",
+			"paypal_flat" => "float(6,2) NOT NULL default '0.00' ",
+			"paypal_autovalidate" => "enum('yes','no') NOT NULL default 'yes' ",
+			"paypal_email" => "varchar(128) NOT NULL default 'palpay@gplhost.com' "
+			),
+		"keys" => array(
+			"unicrow" => "(unicrow)"
 			)
 		),
 	"smtp_logs" => array(
