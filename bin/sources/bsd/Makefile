@@ -22,6 +22,15 @@ IGNORE=		Untested
 
 NO_BUILD=	yes
 USE_MYSQL=	yes
+USE_BZIP2=	yes
+USE_PHP=        mysql pcre
+
+OPTIONS=        BZ2      "bzip2 library support" on \
+                GD       "GD library support" on \
+                MYSQL   "MySQL support" on \
+                OPENSSL  "OpenSSL support" on \
+                ZLIB     "ZLIB support" on \
+                MCRYPT   "MCrypt library support" on
 
 do-configure:
 	@${SED} -e 's,%%PREFIX%%,${PREFIX},;\
