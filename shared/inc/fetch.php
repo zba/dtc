@@ -473,7 +473,9 @@ function fetchAdmin($adm_login,$adm_pass){
 		$ret["client"] = "NULL";
 	}
 	$ret["info"] = $info["data"];
-	$ret["data"] = $data["data"];
+	if(isset($data["data"])){
+		$ret["data"] = $data["data"];
+	}
 	return $ret;
 }
 

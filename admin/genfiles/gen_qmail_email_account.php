@@ -64,18 +64,20 @@ function mail_account_generate_qmail(){
 			$virtualdomains_file .= "$domain_full_name:$domain_qmail_name\n";
 			$more_rcpt .= "$domain_full_name\n";
 
-			$emails = $domain["emails"];
-			$nbr_boites = sizeof($emails);
-			for($k=0;$k<$nbr_boites;$k++){
-				$email = $emails[$k];
-				$id = $email["id"];
-				$qmail_id = strtr($id,".",":");
-				$home = $email["home"];
-				$passwdtemp = $email["passwd"];
-				$passwd = crypt($passwdtemp);
-				$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
-				$assign_file .= "=$domain_qmail_name-$id:nobody:65534:65534:$home:::\n";
-				//$console .= "=$domain_qmail_name-$id:nobody:65534:65534:$home:::\n";
+			if(isset($domain["emails"])){
+				$emails = $domain["emails"];
+				$nbr_boites = sizeof($emails);
+				for($k=0;$k<$nbr_boites;$k++){
+					$email = $emails[$k];
+					$id = $email["id"];
+					$qmail_id = strtr($id,".",":");
+					$home = $email["home"];
+					$passwdtemp = $email["passwd"];
+					$passwd = crypt($passwdtemp);
+					$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
+					$assign_file .= "=$domain_qmail_name-$id:nobody:65534:65534:$home:::\n";
+					//$console .= "=$domain_qmail_name-$id:nobody:65534:65534:$home:::\n";
+				}
 			}
 		}
 	}
