@@ -646,7 +646,7 @@ function drawAdminTools_Subdomain($domain){
 		$txt .= $sub;
 		$txt .= "</a>";
 	}
-	$txt .= "<br>";
+	$txt .= "<hr width=\"90%\">";
 
 	// Let's start a form !
 	$txt .= "<form action=\"?\" methode=\"post\">";
@@ -690,6 +690,7 @@ function drawAdminTools_Subdomain($domain){
 		}
 	}
 	$txt .= "</select></td><td><input type=\"submit\" name=\"delsubdomain\" value=\"Ok\"></td></tr>";
+	$txt .= "<tr><td colspan=\"3\"><hr width=\"90%\"></td></tr>";
 
 	$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>Edit one of your subdomains:</u></b></font></td></tr>";
 	$txt .= "<tr><td collspan=\"3\">";
