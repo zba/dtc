@@ -49,7 +49,7 @@ case "list_mx":
 	$out .= "</dtc_backup_mx_domain_list>\n";
 	break;
 case "update_request":
-	$q = "UPDATE $pro_mysql_cronjob_table SET gen_qmail='yes',restart_qmail='yes',gen_name='yes',restart_named='yes' WHERE 1;";
+	$q = "UPDATE $pro_mysql_cronjob_table SET gen_qmail='yes',restart_qmail='yes',gen_named='yes',restart_named='yes' WHERE 1;";
 	$r = mysql_query($q)or die("Cannot query $q ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	$q = "UPDATE $pro_mysql_backup_table SET status='pending' WHERE type='mail_backup' OR type='dns_backup';";

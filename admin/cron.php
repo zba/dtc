@@ -47,7 +47,7 @@ $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error())
 // some change in his domain list
 function commitTriggerToRemote($a){
 	$flag = false;
-        $url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"];
+        $url = $a["server_addr"].'/dtc/list_domains.php?action=update_request&login='.$a["server_login"].'&pass='.$a["server_pass"];
         while($retry < 3 && $flag == false){
 		$lines = file ($url);
 		$nline = sizeof($lines);
@@ -58,7 +58,7 @@ function commitTriggerToRemote($a){
 			$flag = true;
 		}
 		$retry ++;
-		if($flag == false)      sleep(5);
+		if($flag == false)      sleep(3);
 	}
 	if($flag == false)      return false;
 	else            return $true;
