@@ -27,6 +27,9 @@ function anotherLanguageSelection(){
 <td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=ru&rub=".$_REQUEST["rub"]."\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/ru.gif\">&nbsp;RUSSIAN</a></td>
+<td valign=\"center\" nowrap>
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=hu&rub=".$_REQUEST["rub"]."\">
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/hu.gif\">&nbsp;HUGARIAN</a></td>
 </tr><tr><td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=es&rub=".$_REQUEST["rub"]."\">ESPANOL
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/es.gif\"></a></td>
@@ -39,6 +42,8 @@ function anotherLanguageSelection(){
 <td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=zh&rub=".$_REQUEST["rub"]."\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/zh.gif\">&nbsp;CHINESE</a></td>
+<td valign=\"center\" nowrap>
+	&nbsp;</td>
 </tr></table>
 </div>
 ";
