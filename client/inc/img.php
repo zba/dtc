@@ -1,4 +1,3 @@
-
 <?php
 
 header ("Content-type: image/png");
@@ -229,7 +228,7 @@ for($i=0;$i<sizeof($array_of_sign);$i++){
 $icon_x = $gfx_start_pos+$txt_x_pos - 19;
 if($_REQUEST["text"] == "myaccount")		$png = "home";
 else if($_REQUEST["text"] == "stats")		$png = "stat";
-else if($_REQUEST["text"] == "subdomains")	$png = "tst_icon.png";
+else if($_REQUEST["text"] == "subdomains")	$png = "folder";
 else if($_REQUEST["text"] == "ftp-accounts")$png = "floppy";
 else if($_REQUEST["text"] == "adddomain")	$png = "tool";
 else if($_REQUEST["text"] == "nickhandles")	$png = "man";
@@ -237,7 +236,7 @@ else if($_REQUEST["text"] == "whois")		$png = "man";
 else if($_REQUEST["text"] == "nameservers")	$png = "dns";
 else if($_REQUEST["text"] == "mailboxs")	$png = "mail";
 else if($_REQUEST["text"] == "dns")			$png = "dns";
-else if($_REQUEST["text"] == "database")	$png = "tst_icon.png";
+else if($_REQUEST["text"] == "database")	$png = "database";
 else if($_REQUEST["text"] == "help")		$png = "help";
 else	$png = "domain";
 $icon_im = imagecreatefrompng($png.".png");
