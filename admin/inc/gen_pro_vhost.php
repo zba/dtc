@@ -109,6 +109,7 @@ function pro_vhost_generate(){
 			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
 			if($conf_administrative_site == "$web_subname.$web_name"){
+				$log_tablename = str_replace(".","_",$web_name)."#".str_replace(".","_",$web_subname);
 				if($conf_use_ssl == "yes"){
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
 				}else{
@@ -132,6 +133,10 @@ function pro_vhost_generate(){
 	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
 	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
+	LogSQLTransferLogTable $log_tablename#xfer
+	LogSQLNotesLogTable $log_tablename#notes
+	LogSQLHeadersOutLogTable $log_tablename#headin
+	LogSQLHeadersInLogTable $log_tablename#headout
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
@@ -140,6 +145,7 @@ function pro_vhost_generate(){
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
+				$log_tablename = str_replace(".","_",$web_name)."#".str_replace(".","_",$web_subname);
 				$vhost_file .= "<VirtualHost $ip_to_write>
 	ServerName $web_subname.$web_name
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
@@ -152,6 +158,10 @@ function pro_vhost_generate(){
 	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
 	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
+	LogSQLTransferLogTable $log_tablename#xfer
+	LogSQLNotesLogTable $log_tablename#notes
+	LogSQLHeadersOutLogTable $log_tablename#headin
+	LogSQLHeadersInLogTable $log_tablename#headout
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
@@ -163,6 +173,7 @@ function pro_vhost_generate(){
 			vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_default_subdomain/html");
 			vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_default_subdomain/logs");
 			vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_default_subdomain/cgi-bin");
+			$log_tablename = str_replace(".","_",$web_name)."#".str_replace(".","_",$web_subname);
 			$vhost_file .= "<VirtualHost $ip_to_write>
 	ServerName $web_name
 	Alias /phpmyadmin /usr/share/phpmyadmin
@@ -175,6 +186,10 @@ function pro_vhost_generate(){
 	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_default_subdomain/cgi-bin
 	CustomLog $web_path/$web_name/subdomains/$web_default_subdomain/logs/access.log combined
 	ErrorLog $web_path/$web_name/subdomains/$web_default_subdomain/logs/error.log
+	LogSQLTransferLogTable $log_tablename#xfer
+	LogSQLNotesLogTable $log_tablename#notes
+	LogSQLHeadersOutLogTable $log_tablename#headin
+	LogSQLHeadersInLogTable $log_tablename#headout
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
