@@ -92,16 +92,20 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 
 	$nowrap = " style=\"white-space:nowrap\" valign=\"top\"";
 	if($drawLanguageSelect=="yes"){
-		$zeLanguage = "<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
+		$zeLanguage = "
+	<td><a target=\"_blank\" href=\"/dtcdoc/\">Documentation</a><br><br><br><br></td>
+	<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
 	}
 
 	$inside = "
 <table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\">
-<tr><td $nowrap><center><a href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
-	<font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release - $conf_unix_type</font></center>
-</td><td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
-	<font size=\"-1\"><i>".$txt_pagetop_zesubtitle[$lang]."</i></font></center></td>
-<td width=\"100%\" align=\"right\">".$zeLanguage."</td></tr>
+<tr>
+	<td $nowrap><center><a href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
+<font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release - $conf_unix_type</font></center></td>
+	<td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
+<font size=\"-1\"><i>".$txt_pagetop_zesubtitle[$lang]."</i></font></center></td>
+	<td $nowrap width=\"100%\">&nbsp;</td>".$zeLanguage."
+</tr>
 </table>
 ";
 	return $inside;
