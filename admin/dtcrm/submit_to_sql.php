@@ -6,11 +6,14 @@ if($_REQUEST["rub"] == "crm"){
 //////////////////////////////////
 if($_REQUEST["action"] == "modify_client_cmd"){
 	if($_REQUEST["ed_command"] == "Save"){
-// cmd_id=1&id=1&rub=crm&action=modify_client_cmd&
+// cmd_id=1&id=1&rub=crm&price=25&quantity=1&action=modify_client_cmd&
 // cmd_date=2004-06-10&cmd_expir=2005-06-10&ed_command=Save
-		$q = "UPDATE $pro_mysql_command_table SET WHERE id_client='".."';";
+		$q = "UPDATE $pro_mysql_command_table SET quantity='".$_REQUEST["quantity"]."',price='".$_REQUEST["price"]."',date='".$_REQUEST["cmd_date"]."',expir='".$_REQUEST["cmd_expir"]."' WHERE id='".$_REQUEST["cmd_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	}
-	if($_REQUEST["del_commad"] == "Del"){
+	if($_REQUEST["del_command"] == "Del"){
+		$q = "DELETE FROM $pro_mysql_command_table WHERE id='".$_REQUEST["cmd_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	}
 }
 if($_REQUEST["action"] == "add_admin_to_client"){
