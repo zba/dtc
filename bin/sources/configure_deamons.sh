@@ -37,21 +37,12 @@ TMP_FILE=/tmp/DTC_install.httpd.conf
 echo "===> Modifying httpd.conf"
 
 # need to see if we can use the modules-config or apacheconfig tools
-HTTPD_MODULES_CONFIG=`which apacheconfig`
-#echo "Using $HTTPD_MODULES_CONFIG"
+HTTPD_MODULES_CONFIG=`which modules-config`
 
-# if apacheconfig is a symlink (deprecated), then use modules-config instead
-if [ -L $HTTPD_MODULES_CONFIG ] || ! [ -f $HTTPD_MODULES_CONFIG ]
+# if apacheconfig is a symlink (deprecated), then use modules-config
+if [ -f $HTTPD_MODULES_CONFIG ]
 then
-	# check if modules-config exists
-	HTTPD_MODULES_CONFIG=`which modules-config`
-	#echo "Using $HTTPD_MODULES_CONFIG"
-	if [ -f $HTTPD_MODULES_CONFIG ]
-	then
-		HTTPD_MODULES_CONFIG="$HTTPD_MODULES_CONFIG apache"
-	else
-		HTTPD_MODULES_CONFIG=""
-	fi
+	HTTPD_MODULES_CONFIG="$HTTPD_MODULES_CONFIG apache"
 else
 	HTTPD_MODULES_CONFIG=""
 fi
@@ -134,7 +125,7 @@ else
 			fi
 		fi
 	else
-		#echo $HTTPD_MODULES_CONFIG enable php4_module
+		echo $HTTPD_MODULES_CONFIG enable php4_module
 		$HTTPD_MODULES_CONFIG enable php4_module
 		echo " enabled by $HTTPD_MODULES_CONFIG"
 	fi
@@ -156,6 +147,7 @@ else
 			fi
 		fi
 	else
+		echo $HTTPD_MODULES_CONFIG enable ssl_module
 		$HTTPD_MODULES_CONFIG enable ssl_module
 		echo " enabled by $HTTPD_MODULES_CONFIG"
 	fi
@@ -195,6 +187,7 @@ else
 			fi
 		fi
 	else
+		echo $HTTPD_MODULES_CONFIG enable sql_log_module
 		$HTTPD_MODULES_CONFIG enable sql_log_module
 		echo " enabled by $HTTPD_MODULES_CONFIG"
 
