@@ -416,7 +416,9 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 //                              ["path"]
 		$user_domains[] = $domain;
 	}
-	$ret["data"] = $user_domains;
+	if(isset($user_domains)){
+		$ret["data"] = $user_domains;
+	}
 	return $ret;
 }
 
