@@ -73,6 +73,7 @@ function mail_account_generate_postfix(){
 			$emails = $domain["emails"];
 			$nbr_boites = sizeof($emails);
 			// go through each of these emails and build the vmailbox file
+			//also create our sasldb2 if we have a saslpasswd2 exe
 			for($k=0;$k<$nbr_boites;$k++){
 				$email = $emails[$k];
 				$id = $email["id"];
@@ -85,6 +86,8 @@ function mail_account_generate_postfix(){
 				$passwdtemp = $email["passwd"];
 				$passwd = crypt($passwdtemp);
 				$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
+				# first try and see if we have postfix in a chroot, else just put it in it's default location
+				system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp");
 				//$assign_file .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
 				//$console .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
 				if ($localdeliver == yes)

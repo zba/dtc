@@ -100,7 +100,7 @@ fi
 # uninstall postfix/main.cf
 #
 
-echo "===> Uninstalling inclusion from proftpd.conf"
+echo "===> Uninstalling inclusion from postfix/main.cf"
 if grep "Configured by DTC" $PATH_POSTFIX_CONF
 then
 	start_line=`grep -n "Configured by DTC" $PATH_POSTFIX_CONF | cut -d":" -f1`
@@ -110,6 +110,22 @@ then
 	cat $PATH_POSTFIX_CONF | tail -n $(($nbr_line - $end_line )) >>/tmp/DTC_uninstall.postfix.conf
 	cp -f $PATH_POSTFIX_CONF $PATH_POSTFIX_CONF.DTC.removed
 	mv /tmp/DTC_uninstall.postfix.conf $PATH_POSTFIX_CONF
+fi
+
+#
+# uninstall postfix/sasl/smtpd.conf
+#
+
+echo "===> Uninstalling inclusion from postfix/sasl/smtpd.conf"
+if grep "Configured by DTC" $PATH_POSTFIX_ETC/sasl/smtpd.conf
+then
+	start_line=`grep -n "Configured by DTC" $PATH_POSTFIX_ETC/sasl/smtpd.conf | cut -d":" -f1`
+	end_line=`grep -n "End of DTC configuration" $PATH_POSTFIX_ETC/sasl/smtpd.conf | cut -d":" -f1`
+	nbr_line=`cat $PATH_POSTFIX_ETC/sasl/smtpd.conf | wc -l`
+	cat $PATH_POSTFIX_ETC/sasl/smtpd.conf | head -n $(($start_line - 1 )) >/tmp/DTC_uninstall.postfix.conf
+	cat $PATH_POSTFIX_ETC/sasl/smtpd.conf | tail -n $(($nbr_line - $end_line )) >>/tmp/DTC_uninstall.postfix.conf
+	cp -f $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_CONF.DTC.removed
+	mv /tmp/DTC_uninstall.postfix.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf
 fi
 
 #

@@ -145,25 +145,34 @@ then
 fi
 
 echo ""
+echo "Where is located your postfix etc dir ?"
+echo -n "postfix etc path [/etc/postfix]: "
+read PATH_POSTFIX_ETC
+if [ "$PATH_POSTFIX_ETC" = "" ];
+then
+	PATH_POSTFIX_ETC="/etc/postfix"
+fi
+
+echo ""
 echo "Where is located your postfix/main.cf ?"
-echo -n "postfix control path [/etc/postfix/main.cf]: "
+echo -n "postfix control path [${PATH_POSTFIX_ETC}/main.cf]: "
 read PATH_POSTFIX_CONF
 if [ "$PATH_POSTFIX_CONF" = "" ];
 then
-	PATH_POSTFIX_CONF="/etc/postfix/main.cf"
+	PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"
+fi
+
+echo ""
+echo "Where is saslpasswd2 located ?"
+echo -n "saslpasswd2 location []: "
+read PATH_SASL_PASSWD2
+if [ "$PATH_SASL_PASSWD2" = "" ];
+then
+	PATH_SASL_PASSWD2=""
 fi
 
 echo ""
 echo "Where is located your courier config path (ie /etc/courier) ?"
-echo -n "courier config path [/etc/courier]: "
-read PATH_COURIER_CONF_PATH
-if [ "$PATH_COURIER_CONF_PATH" = "" ];
-then
-	PATH_COURIER_CONF_PATH="/etc/courier"
-fi
-
-echo ""
-echo "Where is located your courier config path ?"
 echo -n "courier config path [/etc/courier]: "
 read PATH_COURIER_CONF_PATH
 if [ "$PATH_COURIER_CONF_PATH" = "" ];

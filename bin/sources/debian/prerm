@@ -23,6 +23,8 @@ PATH_PROFTPD_CONF=/etc/proftpd.conf
 PATH_DOVECOT_CONF=/etc/dovecot.conf
 PATH_COURIER_CONF_PATH=/etc/courier
 PATH_POSTFIX_CONF=/etc/postfix/main.cf
+PATH_POSTFIX_ETC=/etc/postfix
+PATH_SASL_PASSWD2=/usr/sbin/saslpasswd2
 
 PATH_DTC_ETC=/usr/share/dtc/etc
 PATH_DTC_ADMIN=/usr/share/dtc/admin

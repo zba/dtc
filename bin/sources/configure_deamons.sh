@@ -355,15 +355,48 @@ virtual_uid_maps = static:65534
 virtual_gid_maps = static:65534
 virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
 virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> /tmp/DTC_config_postfix_main.cf
+
+		echo " Attempting to determine if you have sasl2 installed..."
+		if [ "$PATH_SASL_PASSWD2" = "" ]; then
+			echo "No saslpasswd2 installed";
+		elif [ -f $PATH_SASL_PASSWD2 ]; then
+			echo "Found sasl2passwd at $PATH_SASL_PASSWD2"
+
+			mkdir -p $PATH_POSTFIX_ETC/sasl
+			
+			if [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf ]; then
+				cp $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup
+			fi
+
+			echo "# Configured by DTC v0.15 : Please don't touch this line !" > /tmp/DTC_config_postfix_sasl.conf
+			echo "pwcheck_method: auxprop
+mech_list: plain login digest-md5 cram-md5" >> /tmp/DTC_config_postfix_sasl.conf
+			echo "# End of DTC configuration v0.15 : please don't touch this line !" >> /tmp/DTC_config_postfix_sasl.conf
+
+			echo "smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, check_relay_domains
+
+smtp_sasl_auth_enable = no
+smtpd_sasl_security_options = noanonymous
+smtpd_sasl_local_domain = $myhostname
+smtpd_sasl_auth_enable = yes
+smtpd_tls_auth_only = no
+" >> /tmp/DTC_config_postfix_main.cf
+		else
+			echo "No saslpasswd2 found"
+		fi
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> /tmp/DTC_config_postfix_main.cf
 
 		# now to insert it at the end of the actual main.cf
 		cat </tmp/DTC_config_postfix_main.cf >>$PATH_POSTFIX_CONF
 		rm /tmp/DTC_config_postfix_main.cf
+		# append the configuration for SASL
+		if [ -e /tmp/DTC_config_postfix_sasl.conf ]; then
+			cat </tmp/DTC_config_postfix_sasl.conf >> $PATH_POSTFIX_ETC/sasl/smtpd.conf
+			rm /tmp/DTC_config_postfix_sasl.conf
+		fi
 	fi
 
 fi
-
 
 #
 # Install courier mysql authenticaion
