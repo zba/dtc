@@ -3,7 +3,7 @@ Hi folks !
 1. What is that file talkingabout.
 This small documentation is for developers or package maintainer only.
 It's for helping packaging DTC for new OS. (quickly written,
-did re-read... :).
+did not re-read... :).
 
 I personaly use debian, but I've tried to build for other OS.
 Each individual OS has a makeXXX sh script for building. sh is
