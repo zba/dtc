@@ -143,6 +143,7 @@ function pro_vhost_generate(){
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
 				$log_tablename = str_replace(".","_",$web_name)."#".str_replace(".","_",$web_subname);
+				$vhost_more_conf = "";
 				if($subdomain["register_globals"] == "yes"){
 					$vhost_more_conf .= "	php_admin_value register_globals 1\n";
 				}
