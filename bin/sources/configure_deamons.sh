@@ -42,7 +42,7 @@ fi
 #
 # include $PATH_DTC_ETC/named.zones in $PATH_NAMED_CONF
 #
-echo "===> Adding inclusing to named.conf"
+echo "===> Adding inclusion to named.conf"
 if grep "Configured by DTC" $PATH_NAMED_CONF
 then
 	echo "named.conf has been configured before : skiping include inssertion !"
@@ -153,6 +153,7 @@ else
 	rm /tmp/DTC_config_crontab
 fi
 
+echo "--- --- --- INSTALLATION FINISHED --- --- ---"
 echo "DTC has finished to install. Under normal circonstances, the DTC"
 echo "cronjob will enable an administrator panel in less than 10 minutes"
 echo "(you can watch /var/log/dtc.log and /var/log/syslog to see if it"

@@ -31,7 +31,7 @@
 # "DTC pass: "$conf_adm_pass
 # "Hosting path: "$conf_hosting_path
 
-echo "Creating directory for hosting "$main_domain_name
+echo "==> Creating directory for hosting "$main_domain_name
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/html"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/logs"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/cgi-bin"
@@ -46,15 +46,15 @@ mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dt
 
 chown -R nobody:nogroup $conf_hosting_path
 
-echo "DTC is now creating it's database:"
+echo "==> DTC is now creating it's database:"
 
 create_tables=/usr/share/dtc/admin/tables
 curdir=`pwd`
 
-echo "Creating DTC's database and tables..."
+echo "If not exists, create DTC's database name: "$conf_mysql_db
 mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
 cd $create_tables
-echo -n "DTC is now creating table: "
+echo -n "DTC is now creating table if not exists: "
 for i in $( ls *.sql );
 do
 	table_name=`echo $i | cut -f1 -d"."`
