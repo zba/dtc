@@ -64,16 +64,16 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT 
 echo "Creating apachelogs database: apachelogs"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
 
-#cd $create_tables
-#echo -n "DTC is now creating table if not exists: "
-#for i in $( ls *.sql );
-#do
-#	table_name=`echo $i | cut -f1 -d"."`
-#	echo -n $table_name" "
-#	table_create=`cat $i`
-#	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db <$i
-#done
-#echo "done."
+cd $create_tables
+echo -n "DTC is now creating table if not exists: "
+for i in $( ls *.sql );
+do
+	table_name=`echo $i | cut -f1 -d"."`
+	echo -n $table_name" "
+	table_create=`cat $i`
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db <$i
+done
+echo "done."
 #echo $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db $conf_mysql_pass
 cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db $conf_mysql_pass
 
