@@ -137,11 +137,11 @@ case monitor: // Monitor button
 			$du += $admin_stats["total_du"];
 		}
 		if($i % 2){
-			$back = " bgcolor=\"#000000\" style=\"white-space:nowrap;\" nowrap";
+			$back = " bgcolor=\"#000000\" style=\"white-space:nowrap;color:#FFFFFF\" nowrap";
 		}else{
 			$back = " style=\"white-space:nowrap;\" nowrap";
 		}
-		$out .= "<tr><td$back>".$ar["christname"].", ".$ar["familyname"]."</td>";
+		$out .= "<tr><td$back><u>".$ar["company_name"].":</u> ".$ar["familyname"].", ".$ar["christname"]."</td>";
 		$out .= "<td$back>".smartByte($transfer)."</td><td$back>".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)."</td><td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024,"no")."</td>";
 		$out .= "<td$back><img width=\"120\" height=\"48\" src=\"bw_per_month.php?cid=".$ar["id"]."\"></td>";
 		$out .= "<td$back>".smartByte($du)."</td>";
