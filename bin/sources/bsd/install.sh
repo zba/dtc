@@ -11,6 +11,8 @@ QMAIL_DIR=%%QMAIL_DIR%%
 
 UNIX_TYPE=freebsd
 
+VERBOSE_INSTALL=yes
+
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
 echo "###############################################################"
