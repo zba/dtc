@@ -3,14 +3,9 @@
 require_once("/usr/share/dtc/shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
-
 // Admin include files
-include("inc/gen_perso_vhost.php");
-include("inc/gen_pro_vhost.php");
-include("inc/gen_email_account.php");
-include("inc/gen_named_files.php");
-include("inc/gen_backup_script.php");
-include("inc/gen_webalizer_stat.php");
+require_once("genfiles/genfiles.php");
+
 include("inc/submit_root_querys.php");
 include("inc/nav.php");
 include("inc/dtc_config_strings.php");

@@ -1,14 +1,9 @@
 <?php
 
 require("/usr/share/dtc/shared/autoSQLconfig.php");
-// Our main configuration file
+require_once("$dtcshared_path/dtc_lib.php");
 
-// All shared files between DTCadmin and DTCclientM
-require("$dtcshared_path/global_vars.php");
-
-require("$dtcshared_path/lang.php");                    // Setup the $lang global variable (to en, en-us, fr, etc... : whatever is
 require("deamons_state_strings.php");                 // Contain all the translated string
-require("$dtcshared_path/table_names.php");
 
 Function DateDiff ($interval, $date1,$date2) {
 
@@ -105,13 +100,18 @@ function JSClock() {
 }
 
 function drawClock($last_cronjob_epoch){
-	$next_cron = DateAdd("n",10,$last_cronjob_epoch);
+/*	$next_cron = DateAdd("n",10,$last_cronjob_epoch);
 	$curdate = time();
 	$seconds = DateDiff ("s", $curdate, $next_cron);
 	$minutes = DateDiff ("n", $curdate, $next_cron);
 	$seconds = $seconds - $minutes*60;
 	if($minutes < 0) $minutes = 0;
 	if($seconds <= 0)$seconds = 1;
+*/
+	$minute=date("i");
+	$seconds=date("s");
+	$minute=10-($minute%10);
+	$seconds=60-$seconds;
 	return javascriptClock($minutes,$seconds);
 }
 

@@ -1,25 +1,9 @@
 <?php
 
 require("/usr/share/dtc/shared/autoSQLconfig.php"); // Our main configuration file
+require_once("$dtcshared_path/dtc_lib.php");
 
-// All shared files between DTCadmin and DTCclient
-// require("$dtcshared_path/lang.php");			// Setup the $lang global variable (to en, en-us, fr, etc... : whatever is translated !)
-require("$dtcshared_path/strings.php");			// Contain all the translated string
-require("$dtcshared_path/table_names.php");
-require("$dtcshared_path/dtc_functions.php");
-include("$dtcshared_path/anotherDtc.php");	// Contain all anotherXXX() functions
-include("$dtcshared_path/skin.php");
-include("$dtcshared_path/skinLib.php");			// Contain all other disposition and skin layout functions
-include("$dtcshared_path/inc/submit_to_sql.php");
-include("$dtcshared_path/inc/fetch.php");
-include("$dtcshared_path/inc/draw.php");
-
-include("inc/gen_perso_vhost.php");
-include("inc/gen_pro_vhost.php");
-include("inc/gen_email_account.php");
-include("inc/gen_named_files.php");
-include("inc/gen_backup_script.php");
-include("inc/gen_webalizer_stat.php");
+require_once("genfiles/genfiles.php");
 
 // Let's see if DTC's mysql_config.php is OK and lock back the shared folder
 // and mysql_config.php to root:root
@@ -34,7 +18,64 @@ $num_rows = mysql_num_rows($result);
 if($num_rows != 1)	die("No data in the cronjob table !!!");
 $cronjob_table_content = mysql_fetch_array($result);
 
+// Lock the cron flag, in case the cron script takes more than 10 minutes
+if($cronjob_table_content["lock_flag"] != "finished"){
+	echo "DB flag says that last cron job is not finished: exiting.\n
+If no cronjob is running, then please do \"UPDATE cronjob SET lock_flag='finished';\" !\n";
+	die("Exiting NOW!");
+}
+$query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='inprogress' WHERE 1;";
+$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+
 echo date("Y m d / H:i:s T")." Starting DTC cron job\n";
+$start_stamps = mktime();
+$start_time = $start_stamps%(60*60*24);
+////////////////////////////////////////////////////////////
+// First find if it's time for long statistic generation. //
+// Do it all the time, for (debuging) the moment... :)    //
+////////////////////////////////////////////////////////////
+function updateAllDomainsStats(){
+	global $pro_mysql_admin_table;
+	global $pro_mysql_domain_table;
+
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE 1;";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error()." in file ".__FILE__." line ".__LINE__);
+	$num_rows = mysql_num_rows($result);
+	for($i=0;$i<$num_rows;$i++){
+		$admin = mysql_fetch_array($result);
+		$adm_login = $admin["adm_login"];
+		$adm_path = $admin["path"];
+		$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
+		$r = mysql_query($q)or die("Cannot query \"$q\" !!!".mysql_error()." in file ".__FILE__." line ".__LINE__);
+		$n = mysql_num_rows($r);
+		for($j=0;$j<$n;$j++){
+			$ar = mysql_fetch_array($r);
+			$domain_name = $ar["name"];
+			echo "Calculating usage of $domain_name:";
+			sum_ftp($domain_name);
+			sum_http($domain_name);
+			echo " disk...";
+			$du_string = exec("du -sb $adm_path/$domain_name --exclude=access.log",$retval);
+			$du_state = explode("\t",$du_string);
+			$domain_du = $du_state[0];
+			$q2 = "UPDATE $pro_mysql_domain_table SET du_stat='$domain_du' WHERE name='$domain_name';";
+			mysql_query($q2)or die("Cannot query \"$q2\" !!!".mysql_error()." in file ".__FILE__." line ".__LINE__);
+			echo "http...";
+			sum_http($domain_name);
+			echo "ftp...";
+			sum_ftp($domain_name);
+			echo "done!\n";
+		}
+	}
+}
+
+// This will set each day at 0:00
+// if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
+// This one is each hours
+if(($start_stamps%(60*60))< 60*10)	updateAllDomainsStats();
+// This is each time the script is launched (all 10 minutes)
+//updateAllDomainsStats();
+
 ///////////////////////////////////////////////////////
 // First, see if we have to regenerate deamons files //
 ///////////////////////////////////////////////////////
@@ -100,7 +141,7 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	}
 }
 
-$query = "UPDATE cron_job SET last_cronjob=NOW(),qmail_newu= 'no', restart_qmail='no', reload_named='no', restart_apache='no', gen_vhosts='no', gen_named='no', gen_qmail='no', gen_webalizer='no', gen_backup='no' WHERE 1";
+$query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(),qmail_newu='no', restart_qmail='no', reload_named='no', restart_apache='no', gen_vhosts='no', gen_named='no', gen_qmail='no', gen_webalizer='no', gen_backup='no' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
 ?>

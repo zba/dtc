@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS subdomain (
   path varchar(64) NOT NULL default '',
   webalizer_generate varchar(8) NOT NULL default 'no',
   ip varchar(16) NOT NULL default 'default',
+  register_globals enum('yes','no') NOT NULL default 'no',
   login varchar(16) default NULL,
   pass varchar(64) default NULL,
   w3_alias enum('yes','no') NOT NULL default 'no',

@@ -131,12 +131,9 @@ function pro_vhost_generate(){
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
 	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
-	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
+#	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename#xfer
-	LogSQLNotesLogTable $log_tablename#notes
-	LogSQLHeadersOutLogTable $log_tablename#headin
-	LogSQLHeadersInLogTable $log_tablename#headout
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
@@ -146,22 +143,25 @@ function pro_vhost_generate(){
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
 				$log_tablename = str_replace(".","_",$web_name)."#".str_replace(".","_",$web_subname);
+				if($subdomain["register_globals"] == "yes"){
+					$vhost_more_conf .= "	php_admin_value register_globals 1\n";
+				}
+				if($web_subname == "$web_default_subdomain"){
+					$vhost_more_conf .= "	ServerAlias $web_name\n";
+				}
 				$vhost_file .= "<VirtualHost $ip_to_write>
 	ServerName $web_subname.$web_name
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html/
-	php_admin_value safe_mode 1
+$vhost_more_conf	php_admin_value safe_mode 1
 	php_admin_value sendmail_from webmaster@$web_name
 	<Location />
 		php_admin_value open_basedir \"$web_path/$web_name/:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>
 	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
-	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
+#	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename#xfer
-	LogSQLNotesLogTable $log_tablename#notes
-	LogSQLHeadersOutLogTable $log_tablename#headin
-	LogSQLHeadersInLogTable $log_tablename#headout
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
@@ -169,33 +169,6 @@ function pro_vhost_generate(){
 			}
         }
 		$num_generated_vhosts += $num_rows2;
-		if($web_default_subdomain != ""){
-			vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_default_subdomain/html");
-			vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_default_subdomain/logs");
-			vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_default_subdomain/cgi-bin");
-			$log_tablename = str_replace(".","_",$web_name)."#".str_replace(".","_",$web_subname);
-			$vhost_file .= "<VirtualHost $ip_to_write>
-	ServerName $web_name
-	Alias /phpmyadmin /usr/share/phpmyadmin
-	DocumentRoot $web_path/$web_name/subdomains/$web_default_subdomain/html/
-	php_admin_value safe_mode 1
-	php_admin_value sendmail_from webmaster@$web_name
-	<Location />
-		php_admin_value open_basedir \"$web_path/$web_name/:$conf_php_library_path:$conf_php_additional_library_path:\"
-	</Location>
-	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_default_subdomain/cgi-bin
-	CustomLog $web_path/$web_name/subdomains/$web_default_subdomain/logs/access.log combined
-	ErrorLog $web_path/$web_name/subdomains/$web_default_subdomain/logs/error.log
-	LogSQLTransferLogTable $log_tablename#xfer
-	LogSQLNotesLogTable $log_tablename#notes
-	LogSQLHeadersOutLogTable $log_tablename#headin
-	LogSQLHeadersInLogTable $log_tablename#headout
-	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
-</VirtualHost>
-
-";
-			$num_generated_vhosts += 1;
-		}
 	}
 
 	// Ecriture du fichier

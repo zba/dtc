@@ -78,6 +78,7 @@ ALTER TABLE domain
 	ADD hosting enum('here','away') NOT NULL default 'here' ;
 
 ALTER TABLE subdomain
+	ADD register_global enum('yes','no') NOT NULL default 'no',
 	ADD login varchar(16) default NULL,
 	ADD pass varchar(64) default NULL,
 	ADD w3_alias enum('yes','no') NOT NULL default 'non' ;

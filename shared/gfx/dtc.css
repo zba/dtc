@@ -22,7 +22,7 @@ A:hover{
 	text-align: justify;
 }
 
-BODY{
+BODY,TD{
 	scrollbar-face-color: #9090A8;
 	scrollbar-shadow-color: #000000;
 	scrollbar-highlight-color: #FFFFFF;
@@ -30,6 +30,8 @@ BODY{
 	scrollbar-darkshadow-color: #000000;
 	scrollbar-track-color: #74748A;
 	scrollbar-arrow-color: #ffffff;
+	font-size: 10px;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 }
 
 INPUT,SELECT {

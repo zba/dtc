@@ -16,7 +16,7 @@ function fetchHTTPInfo($webname){
 
 	return $amount;
 }
-                                                                                                                                                    
+
 function fetchFTPInfo($webname){
 	global $pro_mysql_acc_ftp_table;
 	$query = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$webname."'";

@@ -14,25 +14,24 @@ function anotherLanguageSelection(){
 	// Language selection box
 	$out = "
 <div align=\"right\">
-<br>
 <table cellpadding=\"1\" cellspacing=\"0\">
 <tr><td align=\"right\" valign=\"center\" nowrap>
-	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=fr&rub=".$_REQUEST["rub"]."\">Francais
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=fr&rub=".$_REQUEST["rub"]."\">FRANCAIS
 	<img alt=\"*\" border=\"0\" src=\"gfx/language/fr.gif\"></a>
 </td><td valign=\"center\">
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=en&rub=".$_REQUEST["rub"]."\">
-	<img alt=\"*\" border=\"0\" src=\"gfx/language/en.gif\">English</a></td>
+	<img alt=\"*\" border=\"0\" src=\"gfx/language/en.gif\">&nbsp;ENGLISH</a></td>
 </tr><tr><td align=\"right\" valign=\"center\" nowrap>
-	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=nl&rub=".$_REQUEST["rub"]."\">Dutch
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=nl&rub=".$_REQUEST["rub"]."\">DUTCH
 	<img alt=\"*\" border=\"0\" src=\"gfx/language/nl.gif\"></a>
 </td><td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=ru&rub=".$_REQUEST["rub"]."\">
-	<img alt=\"*\" border=\"0\" src=\"gfx/language/ru.gif\">Russian</a></td>
+	<img alt=\"*\" border=\"0\" src=\"gfx/language/ru.gif\">&nbsp;RUSSIAN</a></td>
 </tr><tr><td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=nl&rub=".$_REQUEST["rub"]."\">-</a>
 </td><td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=de&rub=".$_REQUEST["rub"]."\">
-	<img alt=\"*\" border=\"0\" src=\"gfx/language/de.gif\">Deutsch</a></td>
+	<img alt=\"*\" border=\"0\" src=\"gfx/language/de.gif\">&nbsp;DEUTSCH</a></td>
 </tr></table>
 </div>
 ";
@@ -79,19 +78,19 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	global $conf_dtc_version;
 	global $conf_dtc_release;
 
-	$nowrap = " style=\"white-space:nowrap\"";
+	$nowrap = " style=\"white-space:nowrap\" valign=\"top\"";
 	if($drawLanguageSelect=="yes"){
-		$zeLanguage = "<td>".anotherLanguageSelection()."</td>";
+		$zeLanguage = "<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
 	}
 
 	$inside = "
-<table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"1\" height=\"1\">
+<table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\">
 <tr><td $nowrap>
 	<center><img alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"><br>
 	<font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release</font></center>
 </td><td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
 	<font size=\"-1\"><i>Take the control of your domain name</i></font><center>
-</td>".$zeLanguage."</tr>
+</td><td width=\"100%\"></td>".$zeLanguage."</tr>
 </table>
 ";
 	return $inside;
