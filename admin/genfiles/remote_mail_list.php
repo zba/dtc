@@ -6,6 +6,7 @@ function get_remote_mail($a){
 	global $conf_use_ssl;
 	global $console;
 	$flag = false;
+	$retry = 0;
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"];
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
@@ -61,7 +62,7 @@ function get_remote_mail_domains(){
 		if($u == false)	return false;
 		$f = $conf_generated_file_path."/mail_domains.".$u;
 		if($a["status"] == "pending" || !file_exists($f)){
-			$console = "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk...";
+			$console .= "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk...";
 			$remote_file = get_remote_mail($a);
 			if($remote_file != false){
 				$fp = fopen($f,"w+");
@@ -77,13 +78,19 @@ function get_remote_mail_domains(){
 			}
 		}
 		if($flag == false){
-			$console = "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
+			if (file_exists($f))
+                        {
+			$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
 			$fp = fopen($f,"r");
 			fseek($fp,0,"SEEK_END");
 			$size = ftell($fp);
 			fseek($fp,0,"SEEK_START");
 			$domain_list .= fread($fp,$size);
 			fclose($fp);
+			} else {
+                                $console .= "Cache file not present, probably fa
+iled to read from remote host";
+			}
 		}
 	}
 	return $domain_list;

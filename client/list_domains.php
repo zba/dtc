@@ -14,6 +14,8 @@ $r = mysql_query($q)or die("Cannot query $q ! line: ".__LINE__." file: ".__FILE_
 $n = mysql_num_rows($r);
 if($n != 1)	die("Access not granted!\n");
 
+$out = ""; //init $out variable
+
 switch($_REQUEST["action"]){
 case "list_dns":
 	$out .= "// Start of DTC generated slave zone file for backuping $conf_administrative_site\n";
