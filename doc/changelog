@@ -1,18 +1,21 @@
 17-09-04: V0.15.0-R9
-New registration form for new users done, mued greyskin updated.
+New features:
+There is now a product manager on where you can build
+your hosting plans.
+Start of a new_account script in the client interface.
 
-A \n was missing in Postfix email generation when redirection
-was used.
+Cosmetic enhancements:
+Updated standard skin title color to some darker stuff.
+New registration form for new users done, mued greyskin updated.
 
 Template for new sites was not copied because of a global not set.
 
+Bugfixes:
 Apache conf generation died if domain has no subdomains, wich can happen
-in some configuration of a domain name.
+in some configuration of a domain name. Corrected.
 
-Start of a new_account script.
-
-Genvhosts script was diing if no subdomains found to generate
-but this could happend. Corrected.
+A \n was missing in Postfix email generation when redirection
+was used.
 
 09-10-04: V0.15.0-R8
 Thomas:

@@ -1,6 +1,6 @@
 <?php
 // Automatic database array generation for DTC
-// Generation date: 2004-10(Oct)-15 Friday 00:44
+// Generation date: 2004-11(Nov)-05 Friday 01:29
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
@@ -16,12 +16,13 @@ $dtc_database = array(
 			"expire" => "date NOT NULL default '0000-00-00' ",
 			"id_client" => "int(9) NOT NULL default '0' ",
 			"pass_next_req" => "varchar(128) NOT NULL default '0' ",
-			"pass_expire" => "int(12) NOT NULL default '0' "
+			"pass_expire" => "int(12) NOT NULL default '0' ",
+			"allow_add_domain" => "enum('yes','no','check') NOT NULL default 'check' "
 			),
 		"keys" => array(
 			"PRIMARY" => "(adm_login)",
-			"adm_login" => "(adm_login)",
-			"path" => "(path)"
+			"path" => "(path)",
+			"adm_login" => "(adm_login)"
 			)
 		),
 	"clients" => array(
@@ -317,6 +318,33 @@ $dtc_database = array(
 			"domain_name" => "(domain_name,subdomain)"
 			)
 		),
+	"new_admin" => array(
+		"vars" => array(
+			"id" => "int(9) NOT NULL auto_increment",
+			"reqadm_login" => "varchar(64) NOT NULL ",
+			"reqadm_pass" => "varchar(16) NOT NULL ",
+			"domain_name" => "varchar(64) NOT NULL ",
+			"family_name" => "varchar(64) NOT NULL ",
+			"first_name" => "varchar(64) NOT NULL ",
+			"comp_name" => "varchar(64) NOT NULL ",
+			"iscomp" => "enum('yes','no') NOT NULL default 'yes' ",
+			"email" => "varchar(255) NOT NULL ",
+			"phone" => "varchar(20) NOT NULL ",
+			"fax" => "varchar(20) NOT NULL ",
+			"addr1" => "varchar(100) NOT NULL ",
+			"addr2" => "varchar(100) NOT NULL ",
+			"addr3" => "varchar(100) NOT NULL ",
+			"zipcode" => "varchar(32) NOT NULL ",
+			"city" => "varchar(64) NOT NULL ",
+			"state" => "varchar(32) NOT NULL ",
+			"country" => "char(2) NOT NULL ",
+			"paiement_id" => "int(9) NOT NULL default '0' ",
+			"product_id" => "int(9) NOT NULL default '0' "
+			),
+		"keys" => array(
+			"PRIMARY" => "(id)"
+			)
+		),
 	"paiement" => array(
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
@@ -333,11 +361,23 @@ $dtc_database = array(
 			"shopper_ip" => "varchar(16) NOT NULL default '0.0.0.0' ",
 			"date" => "date NOT NULL default '0000-00-00' ",
 			"time" => "time NOT NULL default '00:00:00' ",
-			"valid" => "enum('yes','no') NOT NULL default 'no' "
+			"valid" => "enum('yes','no') NOT NULL default 'no' ",
+			"new_account" => "enum('yes','no') NOT NULL default 'yes' "
 			),
 		"keys" => array(
 			"PRIMARY" => "(id)",
 			"id" => "(id)"
+			)
+		),
+	"pending_queries" => array(
+		"vars" => array(
+			"id" => "int(9) NOT NULL auto_increment",
+			"adm_login" => "varchar(64) NOT NULL ",
+			"domain_name" => "varchar(128) NOT NULL ",
+			"date" => "varchar(16) NOT NULL default '0000-00-00 00:00' "
+			),
+		"keys" => array(
+			"PRIMARY" => "(id)"
 			)
 		),
 	"pop_access" => array(
@@ -374,14 +414,15 @@ $dtc_database = array(
 	"product" => array(
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
-			"price_dollar" => "varchar(9) NOT NULL ",
-			"price_euro" => "varchar(9) NOT NULL ",
+			"price_dollar" => "float(9,2) NOT NULL default '0.00' ",
+			"price_euro" => "float(9,2) NOT NULL default '0.00' ",
 			"name" => "varchar(255) NOT NULL ",
 			"quota_disk" => "int(9) NOT NULL default '0' ",
 			"nbr_email" => "int(9) NOT NULL default '0' ",
 			"nbr_database" => "int(9) NOT NULL default '0' ",
 			"bandwidth" => "int(9) NOT NULL default '0' ",
-			"period" => "date NOT NULL default '0001-00-00' "
+			"period" => "date NOT NULL default '0001-00-00' ",
+			"allow_add_domain" => "enum('yes','no') NOT NULL default 'no' "
 			),
 		"keys" => array(
 			"PRIMARY" => "(id)",

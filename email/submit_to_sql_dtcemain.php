@@ -2,23 +2,30 @@
 
 // Do basic field checking before execution of SQL on the password
 // adm_email_login=toto%40iglobalwall.com&adm_email_pass=titi&
-if(!isValidEmail($_REQUEST["adm_email_login"]))
-	die("Check: Incorrect email format!");
-if(!isDTCPassword($_REQUEST["adm_email_pass"]))
-	die("Check: Incorrect password format!");
+function pass_check(){
+	global $pro_mysql_pop_table;
+	global $user;
+	global $host;
+	if(!isValidEmail($_REQUEST["adm_email_login"]))
+		die("Check: Incorrect email format!");
+	if(!isDTCPassword($_REQUEST["adm_email_pass"]))
+		die("Check: Incorrect password format!");
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE ";
 
-$tbl = explode('@',$_REQUEST["adm_email_login"]);
-$user = $tbl[0];
-$host = $tbl[1];
-$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host';";
-$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-$n = mysql_num_rows($res_mailbox);
-if($n != 1)	die("User not found!");
+	$tbl = explode('@',$_REQUEST["adm_email_login"]);
+	$user = $tbl[0];
+	$host = $tbl[1];
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host';";
+	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($res_mailbox);
+	if($n != 1)	die("User not found!");
+}
 
 switch($_REQUEST["action"]){
 
 // action=dtcemail_change_pass&newpass1=&newpass2=&submit=Ok
 case "dtcemail_change_pass":
+	pass_check();
 	if(!isDTCPassword($_REQUEST["newpass1"]))	die("Incorrect password format!");
 	if(!isDTCPassword($_REQUEST["newpass2"]))	die("Incorrect password format!");
 	if($_REQUEST["newpass1"] != $_REQUEST["newpass2"])	die("Password 1 does not match password 2!");
@@ -30,6 +37,7 @@ case "dtcemail_change_pass":
 	break;
 // action=dtcemail_set_deliver_local&setval=no
 case "dtcemail_set_deliver_local":
+	pass_check();
 	// Fetch the path of the mailbox
 	$box = mysql_fetch_array($res_mailbox);
 	$q = "SELECT $pro_mysql_admin_table.path
@@ -75,6 +83,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 
 // action=dtcemail_edit_redirect&redirect1=&redirect2=&submit=Ok
 case "dtcemail_edit_redirect":
+	pass_check();
 	// Fetch the path of the mailbox
 	$box = mysql_fetch_array($res_mailbox);
 	$q = "SELECT $pro_mysql_admin_table.path

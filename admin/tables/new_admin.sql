@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS new_admin (
+  id int(9) NOT NULL auto_increment,
   reqadm_login varchar(64) NOT NULL default '',
   reqadm_pass varchar(16) NOT NULL default '',
   domain_name varchar(64) NOT NULL default '',
@@ -16,5 +17,7 @@ CREATE TABLE IF NOT EXISTS new_admin (
   city varchar(64) NOT NULL default '',
   state varchar(32) NOT NULL default '',
   country char(2) NOT NULL default '',
-  UNIQUE KEY reqadm_login (reqadm_login)
-) TYPE=MyISAM
+  paiement_id int(9) NOT NULL default '0',
+  product_id int(9) NOT NULL default '0',
+  PRIMARY KEY  (id)
+) TYPE=MyISAM;

@@ -54,14 +54,32 @@ function paypalNotifyPostbackScript(){
 }
 
 
-function paypalButton($product_id,$amount,$item_name){
+function paypalButton($product_id,$amount,$item_name,$return_url){
 	global $paypal_account;
+	global $conf_administrative_site;
 	// https://www.paypal.com/xclick/business=thomas%40goirand.fr&item_name=Domain+name+registration+.com&
 	// item_number=1&amount=11.50&no_note=1&currency_code=USD
+
+	$out = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="'.$paypal_account.'">
+<input type="hidden" name="item_name" value="'.$item_name.'">
+<input type="hidden" name="item_number" value="'.$product_id.'">
+<input type="hidden" name="amount" value="'.$amount.'">
+<input type="hidden" name="no_note" value="'.$product_id.'">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="return" value=".$return_url.">
+<input type="hidden" name="notify_url" value="http://'.$conf_administrative_site.'/dtc/gateways/paypal.php">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but01.gif" border="0"
+name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!">
+</form>';
+	return $out;
+
+
 	$paypal_scripturl = "https://www.paypal.com/xclick/";
 	$paypal_url = $paypal_scripturl.
 		"business=$paypal_account&item_name=$item_name&item_number=$product_id".
-		"&amount=$amount&no_note=1&currency_code=USD";
+		"&amount=$amount&no_note=1&currency_code=USD&return=$return_url";
 	$img_src = "https://www.paypal.com/en_US/i/btn/x-click-but01.gif";
 	$img_alt = "Make payments with PayPal - it's fast, free and secure!";
 	$out = "<a  target=\"blank\" name=\"submit\" href=\"$paypal_url\"><img border=\"0\" src=\"$img_src\" alt=\"$img_alt\"></a>";

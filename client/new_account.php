@@ -32,12 +32,12 @@ if($reguser["err"] == 0){
 			$form = "Cannot reselect product: registration failed!";
 		}
 		$product = mysql_fetch_array($r);
-		$paybutton = paynowButton("00".$reguser["id"],$product["price_dollar"]);
+		$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=".$reguser["id"];
+		$paybutton =paynowButton("00".$reguser["id"],$product["price_dollar"],$product["name"],$return_url);
 		// paypalButton("00".$reguser["id"],$product["price_dollar"],$product["name"]);
 		$form = $reguser["mesg"]."<br><h4>Registration successfull!</h4>
 Please now click on the following button to go for paiment:<br>
 <br>$paybutton";
-//.paypalButton($product_id,$amount,$item_name);
 	}
 }else if($reguser["err"] == 1){
 	$form = registration_form();
