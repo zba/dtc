@@ -9,6 +9,8 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/ftp.php");
 	require("$dtcshared_path/inc/forms/admin_stats.php");
 	require("$dtcshared_path/inc/forms/domain_stats.php");
+	require("$dtcshared_path/inc/forms/dns.php");
+	require("$dtcshared_path/inc/forms/subdomain.php");
 }
 require("$dtcshared_path/inc/forms/email.php");
 
