@@ -1,4 +1,11 @@
 V0.17.0-R2
+Installer now regenerate the main domain on each install so
+dpkg-reconfigure works better. Thanks to the users in the
+dtc forum for reporting! (thomas)
+
+Added support for macOsx in the build tree. More on this soon
+with maybe a total graphical install and Mac OS X integration. (thomas)
+
 DTC now restarts proftpd and courier-authdaemon + courier-imap,
 so it's up and working without worry after a fresh install. (thomas)
 
