@@ -84,7 +84,7 @@ function fetchAdminStats($admin){
 
 		// HTTP transfer
 		sum_http($domain_name);
-		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='$domain_name'";
+		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='$domain_name' AND month='".date("m",time())."' AND year='".date("Y",time())."'";
 		$result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
 		$num_rows = mysql_num_rows($result_http);
 		$rez_http = mysql_result($result_http,0,"transfer");
@@ -93,7 +93,7 @@ function fetchAdminStats($admin){
 
 		// And FTP transfer
 		sum_ftp($domain_name);
-		$query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='$domain_name'";
+		$query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='$domain_name' AND month='".date("m",time())."' AND year='".date("Y",time())."'";
 		$result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
 		$num_rows = mysql_num_rows($result_ftp);
 		$rez_ftp = mysql_result($result_ftp,0,"transfer");

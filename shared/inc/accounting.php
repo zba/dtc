@@ -214,7 +214,7 @@ function sum_ftp($webname){
 	global $pro_mysql_ftp_table;
 	global $conf_mysql_db;
 	global $pro_mysql_acc_ftp_table;
-	mysql_select_db($conf_mysql_db);
+//	mysql_select_db($conf_mysql_db);
 ////////////////////////////////////////////////////////////////////////////////////
 // Sirhexalo: when you see this text, please erase it !!! and commit the file !!! //
 // Zigo partly rewriten (or cleaned-up, as you like :), because it was
@@ -232,9 +232,7 @@ function sum_ftp($webname){
 	$query = "SELECT SUM(dl_bytes) AS dl_amount, SUM(ul_bytes) AS ul_amount FROM $pro_mysql_ftp_table WHERE hostname='".$webname."'";
 	$result = mysql_query($query) or die("Cannot execute query \"$query\" !".mysql_error());
 	$num_rows = mysql_num_rows($result);
-	if($num_rows > 1){
-		$total_ftp_amount = mysql_result($result,0,"dl_amount") + mysql_result($result,0,"ul_amount");
-	}
+	$total_ftp_amount = mysql_result($result,0,"dl_amount") + mysql_result($result,0,"ul_amount");
 	$query = "UPDATE $pro_mysql_ftp_table set ul_bytes=0, dl_bytes=0 WHERE hostname='".$webname."'";
 	mysql_query($query) or die("Cannot execute query \"$query\"".mysql_error());
 
