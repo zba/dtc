@@ -506,7 +506,8 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 			echo "pwcheck_method: auxprop
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
 			echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
-			echo "smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, check_relay_domains
+			echo "smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
+
 
 smtp_sasl_auth_enable = no
 smtpd_sasl_security_options = noanonymous
