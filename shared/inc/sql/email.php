@@ -15,10 +15,6 @@ if($_REQUEST["addnewmailtodomain"] == "Ok"){
 
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
-	// We have now to get the user directory and use it ! :)
-	$admin_path = getAdminPath($adm_login);
-	$mailbox_path = "$admin_path/$edit_domain/Mailboxs/".$_REQUEST["newmail_login"];
-
 	// Check for strings validity ($newmail_deliver_localy does not need to be tested because of lately test...)
 	//allow * for catch-all redirects
 	if(!isMailbox($_REQUEST["newmail_login"]) && $_REQUEST["newmail_login"] != "*"){
@@ -38,34 +34,6 @@ if($_REQUEST["addnewmailtodomain"] == "Ok"){
 			die("Incorect redirection 2");
 		}
 	}
-
-	// Create mail directory
-	//$oldumask = umask(1777);
-	if($conf_demo_version == "no"){
-		if(!file_exists("$mailbox_path") && $conf_demo_version == "no"){
-			mkdir("$mailbox_path", 0775);
-		}
-	}
-
-	// Write the .qmail file
-	if($_REQUEST["newmail_deliver_localy"] == "yes" && $conf_demo_version == "no"){
-		// Create mailbox direcotry if does not exists
-		mk_Maildir($mailbox_path);
-		$qmail_file_content = "./Maildir/\n";
-	}
-	if($_REQUEST["newmail_redirect1"] != "" && isset($_REQUEST["newmail_redirect1"]) ){
-		$qmail_file_content .= '&'.$_REQUEST["newmail_redirect1"]."\n";
-	}
-	if($_REQUEST["newmail_redirect2"] != "" && isset($_REQUEST["newmail_redirect2"]) ){
-		$qmail_file_content .= '&'.$_REQUEST["newmail_redirect2"]."\n";
-	}
-	if($conf_demo_version == "no"){
-		$fp = fopen ( "$mailbox_path/.qmail", "w");
-		fwrite ($fp,$qmail_file_content);
-		fclose($fp);
-	}
-	//umask($oldumask);
-
 	// Submit to the sql dtabase
 	if($_REQUEST["newmail_deliver_localy"] == "yes"){
 		$dolocal_deliver = "yes";
@@ -77,6 +45,8 @@ if($_REQUEST["addnewmailtodomain"] == "Ok"){
         id,              home,           mbox_host,     crypt,        passwd,         redirect1,            redirect2            ,localdeliver)
 VALUES ('".$_REQUEST["newmail_login"]."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+
+	writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);
 
 	updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
 }
@@ -92,14 +62,12 @@ if($_REQUEST["modifymailboxdata"] == "Ok"){
 	}
 
 	// Fetch the path of the mailbox
-	$test_query = "SELECT * FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain'";
+	$test_query = "SELECT id FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain'";
 	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
 	$testnum_rows = mysql_num_rows($test_result);
 	if($testnum_rows != 1){
 		die("Mailbox does not exist in database !");
 	}
-	$mysqlmailbox = mysql_fetch_array($test_result) or die ("Cannot fetch user-admin");
-	$editmail_boxpath = $mysqlmailbox["home"];
 
 	// Check for strings validity
 	if(!isDTCPassword($_REQUEST["editmail_pass"])){
@@ -116,27 +84,6 @@ if($_REQUEST["modifymailboxdata"] == "Ok"){
 		}
 	}
 
-	// Write .qmail file
-	$oldumask = umask(0);
-	if($_REQUEST["editmail_deliver_localy"] == "yes" && $conf_demo_version == "no"){
-		// Create mailbox direcotry if does not exist
-		mk_Maildir($editmail_boxpath);
-		$qmail_file_content = "./Maildir/\n";
-	}
-	if($_REQUEST["editmail_redirect1"] != "" && isset($_REQUEST["editmail_redirect1"]) ){
-		$qmail_file_content .= '&'.$_REQUEST["editmail_redirect1"]."\n";
-	}
-	if($_REQUEST["newmail_redirect2"] != "" && isset($_REQUEST["editmail_redirect2"]) ){
-		$qmail_file_content .= '&'.$_REQUEST["editmail_redirect2"]."\n";
-	}
-
-	if($conf_demo_version == "no"){
-		$fp = fopen ( "$editmail_boxpath/.qmail", "w");
-		fwrite ($fp,$qmail_file_content);
-		fclose($fp);
-	}
-	umask($oldumask);
-
 	// Submit to sql database
 	if($_REQUEST["editmail_deliver_localy"] == "yes"){
 		$dolocal_deliver = "yes";
@@ -148,6 +95,8 @@ if($_REQUEST["modifymailboxdata"] == "Ok"){
 	crypt='$crypted_pass',passwd='".$_REQUEST["editmail_pass"]."',redirect1='".$_REQUEST["editmail_redirect1"]."',redirect2='".$_REQUEST["editmail_redirect2"]."',localdeliver='$dolocal_deliver' WHERE
 	id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain' LIMIT 1;";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+
+	writeDotQmailFile($_REQUEST["edit_mailbox"],$edit_domain);
 
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 }

@@ -182,12 +182,12 @@ then
 	/usr/bin/pear upgrade-all >> $TMP_FILE
 	/usr/bin/pear install Crypt_CBC >> $TMP_FILE
 	/usr/bin/pear install Auth_SASL >> $TMP_FILE
-	rm $TMP_FILE
 else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "This is a version of PHP that should have the modules included"
 	fi
 fi
+rm $TMP_FILE
 
 # Changing root password of mysql
 if [ "$conf_mysql_change_root" = "true" ]

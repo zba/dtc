@@ -351,6 +351,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$email["redirect1"] = $row4["redirect1"];
 			$email["redirect2"] = $row4["redirect2"];
 			$email["localdeliver"] = $row4["localdeliver"];
+			$email["bounce_msg"] = $row4["bounce_msg"];
 			$emails[] = $email;
 		}	
 		$domain["emails"] = $emails;

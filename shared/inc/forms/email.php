@@ -92,6 +92,26 @@ function drawImportedMail($mailbox){
 function drawAntispamRules($mailbox){
 	global $adm_email_login;
 	global $adm_email_pass;
+	global $pro_mysql_whitelist_table;
+	global $pro_mysql_whitelist_table;
+
+	$bnc_msg = "Hello,
+You have tried to write an email to me, and because of the big amount
+of spam I recieved, I use an antispam software that require a message
+confirmation. This is very easy, and you will have to do it only once.
+Just click on the following link, copy the number you see on the
+screen and I will recieve the message you sent me. If you do not
+click, then your message will be considered as advertising and I will
+NOT recieve it.
+
+***URL***
+
+Thank you for your understanding.
+
+Antispam software:
+Grey listing+SPF, only available with Domain Technologie Control
+http://www.gplhost.com/?rub=softwares&sousrub=dtc
+";
 
 	$out = "";
 
@@ -106,10 +126,60 @@ function drawAntispamRules($mailbox){
 	<input type=\"submit\" value=\"Ok\"></form>";
 
 	if($mailbox["data"]["iwall_protect"] == "yes"){
-		$out .= "<br><h3>Your white list:</h3>";
+		$frm_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"adm_email_login\" value=\"".$_REQUEST["adm_email_login"]."\">
+<input type=\"hidden\" name=\"adm_email_pass\" value=\"".$_REQUEST["adm_email_pass"]."\">
+<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
+
+		if(strlen($mailbox["data"]["bounce_msg"]) < 9 || false == strstr($mailbox["data"]["bounce_msg"],"***URL***")){
+			$zebounce = $bnc_msg;
+		}else{
+			$zebounce = $mailbox["data"]["bounce_msg"];
+		}
+
+		$out .= "<br><h3>Your bounce message:</h3>
+		
+		$frm_start<input type=\"hidden\" name=\"action\" value=\"edit_bounce_msg\">
+		<textarea cols=\"80\" rows=\"16\" name=\"bounce_msg\">$zebounce</textarea><br><br>
+		<input type=\"submit\" value=\"Save\"></form>";
+
+		$out .= "<h3>Your white list:</h3>";
+
+		$q = "SELECT * FROM $pro_mysql_whitelist_table";
+		$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$n = mysql_num_rows($r);
+		$out .= "<table cellpadding=\"0\" cellspacing=\"0\" border=\"1\">
+<tr><td>Mail user from</td><td>&nbsp;</td><td>Mail user domain</td><td>Mail user to (mailling list)</td><td>Action</td></tr>";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$out .= "<tr>$frm_start
+			<input type=\"hidden\" name=\"action\" value=\"edit_whitelist_rule\">
+			<input type=\"hidden\" name=\"ruleid\" value=\"".$a["id"]."\">";
+			$out .= "<td><input type=\"text\" name=\"mail_from_user\" value=\"".$a["mail_from_user"]."\"></td>";
+			$out .= "<td>@</td>";
+			$out .= "<td><input type=\"text\" name=\"mail_from_domain\" value=\"".$a["mail_from_domain"]."\"></td>";
+			$out .= "<td><input type=\"text\" size=\"30\" name=\"mail_to\" value=\"".$a["mail_to"]."\"></td>";
+			$out .= "<td><input type=\"submit\"  value=\"Save\"></form>
+			$frm_start<input type=\"hidden\" name=\"ruleid\" value=\"".$a["id"]."\">
+			<input type=\"hidden\" name=\"action\" value=\"delete_whitelist_rule\">
+			<input type=\"submit\" value=\"Delete\"></form></td></tr>";
+		}
+		$out .= "<tr>$frm_start
+			<input type=\"hidden\" name=\"action\" value=\"add_whitelist_rule\">
+			<td><input type=\"text\" name=\"mail_from_user\" value=\"".$a["mail_from_user"]."\"></td>";
+		$out .= "<td>@</td>";
+		$out .= "<td><input type=\"text\" name=\"mail_from_domain\" value=\"".$a["mail_from_domain"]."\"></td>";
+		$out .= "<td><input type=\"text\" size=\"30\" name=\"mail_to\" value=\"".$a["mail_to"]."\"></td>";
+		$out .= "<td><input type=\"submit\" value=\"Save\"></form></td></tr>";
+		$out .= "</table>";
 	}
+	if($mailbox["data"]["spf_protect"] == "yes")	$checked = " checked "; else $checked = "";
+	$out .= $form_start."<input type=\"hidden\" name=\"action\" value=\"activate_spf\"><input type=\"checkbox\" name=\"spf_on\" value=\"yes\"$checked>Activate Sender Policy Framework protection (SPF)
+	<input type=\"submit\" value=\"Ok\"></form>";
 
-
+	if($mailbox["data"]["clamav_protect"] == "yes")	$checked = " checked "; else $checked = "";
+	$out .= $form_start."<input type=\"hidden\" name=\"action\" value=\"activate_clamav\"><input type=\"checkbox\" name=\"clamav_on\" value=\"yes\"$checked>Activate Clamav antivirus
+	<input type=\"submit\" value=\"Ok\"></form>";
 	return $out;
 }
 

@@ -22,58 +22,6 @@ function pass_check_email(){
 	else		return false;
 }
 
-// Get the path of a mailbox. pass_check_email() MUST have been called prior to call this function !!!
-// Sets "box" with the box infos;
-function get_mailbox_complete_path($user,$host){
-	global $pro_mysql_pop_table;
-	global $pro_mysql_domain_table;
-	global $pro_mysql_admin_table;
-
-	$q = "SELECT $pro_mysql_admin_table.path
-FROM $pro_mysql_domain_table,$pro_mysql_admin_table
-WHERE $pro_mysql_domain_table.name='$host'
-AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
-	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-        if($n != 1) die("Cannot find domain path in database ! line: ".__LINE__." file: ".__FILE__);
-	$a = mysql_fetch_array($r);
-
-	$boxpath = $a["path"]."/$host/Mailboxs/$user";
-	return $boxpath;
-}
-
-function writeDotQmailFile($user,$host){
-	global $pro_mysql_pop_table;
-
-	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host';";
-	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$box = mysql_fetch_array($res_mailbox);
-
-	// Fetch the path of the mailbox
-	$boxpath = get_mailbox_complete_path($user,$host);
-
-	// Write .qmail file
-	$oldumask = umask(0);
-	if($conf_demo_version == "no"){
-		mk_Maildir($boxpath);
-	}
-	if($box["localdeliver"] == "yes"){
-                $qmail_file_content = "./Maildir/\n";
-        }
-	if($box["redirect1"] != "" && isset($box["redirect1"]) ){
-		$qmail_file_content .= '&'.$box["redirect1"]."\n";
-	}
-	if($box["redirect2"] != "" && isset($box["redirect2"]) ){
-		$qmail_file_content .= '&'.$box["redirect2"]."\n";
-	}
-	if($conf_demo_version == "no"){
-		$fp = fopen ( "$boxpath/.qmail", "w");
-		fwrite ($fp,$qmail_file_content);
-		fclose($fp);
-	}
-	umask($oldumask);
-}
-
 switch($_REQUEST["action"]){
 
 case "activate_antispam":
@@ -83,6 +31,40 @@ case "activate_antispam":
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}else{
 		$q = "UPDATE $pro_mysql_pop_table SET iwall_protect='no' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}
+	break;
+
+case "edit_bounce_msg":
+//&action=edit_bounce_msg&bounce_msg=Hello%2C%0D%0AYou+have+tried+to+write+an+email+to+me%2C+and+because+of+the+big+amount%0D%0Aof+spam+I+recieved%2C+I+use+an+antispam+software+that+require+a+message%0D%0Aconfirmation.+This+is+very+easy%2C+and+you+will+have+to+do+it+only+once.%0D%0AJust+click+on+the+following+link%2C+copy+the+number+you+see+on+the%0D%0Ascreen+and+I+will+recieve+the+message+you+sent+me.+If+you+do+not%0D%0Aclick%2C+then+your+message+will+be+considered+as+advertising+and+I+will%0D%0ANOT+recieve+it.%0D%0A%0D%0A***URL***%0D%0A%0D%0AThank+you+for+your+understanding.%0D%0A
+	if(pass_check_email()==false)	die("User not found!");
+	if(strstr($_REQUEST["bounce_msg"],"***URL***")){
+		$q = "UPDATE $pro_mysql_pop_table SET bounce_msg='".addslashes($_REQUEST["bounce_msg"])."' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}else{
+		echo "Bounce message MUST contain ***URL***";
+	}
+	break;
+
+// addrlink=antispam&action=activate_spf&spf_on=yes
+case "activate_spf":
+	if(pass_check_email()==false)	die("User not found!");
+	if($_REQUEST["spf_on"] == "yes"){
+		$q = "UPDATE $pro_mysql_pop_table SET spf_protect='yes' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}else{
+		$q = "UPDATE $pro_mysql_pop_table SET spf_protect='no' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}
+	break;
+
+case "activate_clamav":
+	if(pass_check_email()==false)	die("User not found!");
+	if($_REQUEST["clamav_on"] == "yes"){
+		$q = "UPDATE $pro_mysql_pop_table SET clamav_protect='yes' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}else{
+		$q = "UPDATE $pro_mysql_pop_table SET clamav_protect='no' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}
 	break;

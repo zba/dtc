@@ -96,7 +96,61 @@ http://www.gplhost.com
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
 
+// Get the path of a mailbox. pass_check_email() MUST have been called prior to call this function !!!
+// Sets "box" with the box infos;
+function get_mailbox_complete_path($user,$host){
+	global $pro_mysql_pop_table;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_admin_table;
 
+	$q = "SELECT $pro_mysql_admin_table.path
+FROM $pro_mysql_domain_table,$pro_mysql_admin_table
+WHERE $pro_mysql_domain_table.name='$host'
+AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1) die("Cannot find domain path in database ! line: ".__LINE__." file: ".__FILE__);
+	$a = mysql_fetch_array($r);
+
+	$boxpath = $a["path"]."/$host/Mailboxs/$user";
+	return $boxpath;
+}
+
+function writeDotQmailFile($user,$host){
+	global $pro_mysql_pop_table;
+	global $conf_unix_type;
+
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host';";
+	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$box = mysql_fetch_array($res_mailbox);
+
+	// Fetch the path of the mailbox
+	$boxpath = get_mailbox_complete_path($user,$host);
+
+	// Write .qmail file
+	$oldumask = umask(0);
+	if($conf_demo_version == "no"){
+		if(!file_exists($boxpath)){
+			mkdir($boxpath, 0775);
+		}
+		mk_Maildir($boxpath);
+	}
+	if($box["localdeliver"] == "yes"){
+		$qmail_file_content = "./Maildir/\n";
+	}
+	if($box["redirect1"] != "" && isset($box["redirect1"]) ){
+		$qmail_file_content .= '&'.$box["redirect1"]."\n";
+	}
+	if($box["redirect2"] != "" && isset($box["redirect2"]) ){
+		$qmail_file_content .= '&'.$box["redirect2"]."\n";
+	}
+	if($conf_demo_version == "no"){
+		$fp = fopen ( "$boxpath/.qmail", "w");
+		fwrite ($fp,$qmail_file_content);
+		fclose($fp);
+	}
+	umask($oldumask);
+}
 
 if($panel_type!="email"){
 	require("$dtcshared_path/inc/sql/dns.php");

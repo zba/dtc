@@ -21,6 +21,7 @@ $pro_mysql_pending_queries_table = "pending_queries";
 $pro_mysql_secpayconf_table = "secpayconf";
 $pro_mysql_backup_table = "backup";
 $pro_mysql_fetchmail_table = "fetchmail";
+$pro_mysql_whitelist_table = "whitelist";
 
 $pro_mysql_acc_http_table = "http_accounting";
 $pro_mysql_acc_ftp_table = "ftp_accounting";
