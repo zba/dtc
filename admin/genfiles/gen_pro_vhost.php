@@ -21,6 +21,7 @@ function pro_vhost_generate(){
 
 	global $conf_apache_vhost_path;
 	global $conf_generated_file_path;
+	global $conf_dtcshared_path;
 
 	global $conf_main_site_ip;
 	global $conf_use_multiple_ip;

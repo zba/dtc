@@ -30,6 +30,7 @@
 # "DTC login: "$conf_adm_login
 # "DTC pass: "$conf_adm_pass
 # "Hosting path: "$conf_hosting_path
+# $PATH_DTC_ETC & $PATH_DTC_SHARED
 
 echo "==> Creating directory for hosting "$main_domain_name
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/html"
@@ -73,7 +74,7 @@ mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db
 mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','ns1','$conf_ip_addr')"
 mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','mx','$conf_ip_addr')"
 mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','"$dtc_admin_subdomain"','www')"
-mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO config (unicrow,demo_version,main_site_ip,site_addrs,addr_mail_server,webmaster_email_addr,addr_primary_dns,administrative_site,site_root_host_path) VALUES('1','no','"$conf_ip_addr"','"$conf_ip_addr"','mx."$main_domain_name"','webmaster@"$main_domain_name"','ns1."$main_domain_name"','"$dtc_admin_subdomain"."$main_domain_name"','"$conf_hosting_path"')"
+mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO config (unicrow,demo_version,main_site_ip,site_addrs,addr_mail_server,webmaster_email_addr,addr_primary_dns,administrative_site,site_root_host_path,generated_file_path,dtcshared_path) VALUES('1','no','"$conf_ip_addr"','"$conf_ip_addr"','mx."$main_domain_name"','webmaster@"$main_domain_name"','ns1."$main_domain_name"','"$dtc_admin_subdomain"."$main_domain_name"','"$conf_hosting_path"','"$PATH_DTC_ETC"','"$PATH_DTC_SHARED"')"
 mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO cron_job (unicrow,reload_named,restart_apache,gen_vhosts,gen_named) VALUES ('1','yes','yes','yes','yes')"
 
 echo "<?php" > $PATH_DTC_SHARED"/shared/mysql_config.php"

@@ -6,6 +6,15 @@ require_once("$dtcshared_path/dtc_lib.php");
 
 require_once("genfiles/genfiles.php");
 
+// Set here your apachectl path if you need it fully (like for example
+// /usr/sbin/apachectl for debian, or /usr/local/sbin/apachectl for FreeBSD)
+$APACHECTL = "/usr/sbin/apachectl";
+
+// Set to yes if you want to check for qmail pop3d availability and relaunch
+// it if needed. Note that you can have to customise that cron script part
+// for your qmail installation. This is done for debian standard start script.
+$CHECK_QMAIL_POP3D = "yes";
+
 echo date("Y m d / H:i:s T",$script_start_time)." Starting DTC cron job\n";
 // Let's see if DTC's mysql_config.php is OK and lock back the shared folder
 // and mysql_config.php to root:root
@@ -112,8 +121,9 @@ if($cronjob_table_content["gen_webalizer"] == "yes"){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // This script should be launched as root, so we have to chown the generated files ! //
+// (otherwise, the web interface wont be able to write them)                         //
 ///////////////////////////////////////////////////////////////////////////////////////
-system("chown -R nobody:nogroup $conf_generated_file_path");
+system("chown -R nobody:65534 $conf_generated_file_path");
 
 if($cronjob_table_content["qmail_newu"] == "yes"){
 	echo "Starting qmail-newu\n";
@@ -129,19 +139,21 @@ if($cronjob_table_content["restart_qmail"] == "yes"){
 //	system("/etc/init.d/qmail start");
 }
 // Check if pop is running, restart qmail if not
-$fp = fsockopen ($conf_addr_mail_server, 110, $errno, $errstr, 30);
-if(!fp){
-	echo "$errno/$errstr: POP3 is not running ! Restarting qmail !!!\n";
-	system("/etc/init.d/qmail stop");
-	sleep(2);
-	system("/etc/init.d/qmail start");
-}else{
-	fclose ($fp);
-}
+if($CHECK_QMAIL_POP3D == "yes"){
+	$fp = fsockopen ($conf_addr_mail_server, 110, $errno, $errstr, 30);
+	if(!fp){
+		echo "$errno/$errstr: POP3 is not running ! Restarting qmail !!!\n";
+		system("/etc/init.d/qmail stop");
+		sleep(2);
+		system("/etc/init.d/qmail start");
+	}else{
+		fclose ($fp);
+	}
 
-if($cronjob_table_content["reload_named"] == "yes"){
-	echo "Reloading name-server\n";
-	system("killall -HUP named");
+	if($cronjob_table_content["reload_named"] == "yes"){
+		echo "Reloading name-server\n";
+		system("killall -HUP named");
+	}
 }
 
 if($cronjob_table_content["restart_apache"] == "yes"){
@@ -150,21 +162,28 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	system("chmod +x \"$conf_generated_file_path/vhost_check_dir\"");
 	system("$conf_generated_file_path/vhost_check_dir");
 	echo "Testing apache conf\n";
-	exec ("/usr/sbin/apachectl configtest", $plop, $return_var);
+	exec ("$APACHECTL configtest", $plop, $return_var);
 	if($return_var == false){
 		echo "Config is OK : restarting Apache\n";
-		system("/usr/sbin/apachectl stop");
-		sleep(5);
-		system("/usr/sbin/apachectl start");
+		system("$APACHECTL stop");
+		sleep(4);
+		system("$APACHECTL start");
 	}else{
 		echo "Config not OK : I can't reload apache !!!\n";
 	}
 }
 
-$exec_time = $script_start_time - time();
+$exec_time = time() - $script_start_time;
 echo "Resetting all cron flags\n";
 $query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(),qmail_newu='no', restart_qmail='no', reload_named='no', restart_apache='no', gen_vhosts='no', gen_named='no', gen_qmail='no', gen_webalizer='no', gen_backup='no' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-echo date("Y m d / H:i:s T")." DTC cron job finished ($exec_time seconds)\n\n";
+if($exec_time > 60){
+	$ex_sec = $exec_time % 60;
+	$ex_min = $exec_time / 60;
+}else{
+	$ex_sec = $exec_time;
+	$ex_min = 0;
+}
+echo date("Y m d / H:i:s T")." DTC cron job finished (exec time=".$ex_min.":".$ex_sec.")\n\n";
 
 ?>

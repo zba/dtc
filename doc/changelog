@@ -1,3 +1,28 @@
+7/1/2004:
+Added some changes needed for BSD:
+
+Added custom path for generated config files and dtc shared directory
+during install: this depends on the OS type and where BSD installed
+and must be set accordingly (mainly for FreeBSD and for demo version
+for example).
+
+The cronscript is now configurable, so you can setup apachectl path
+for restarting apache. You can tell also if you need to check if
+qmail-pop3d is running (small debian watchdog). Please disable that
+feature with, or rewrite another script with it's specificities.
+
+29/12/2003:
+This release 0.12.0-1 comes with a BSD port totaly
+integrated with DTC package maker. So BSD port install script
+is totaly scynchronised to other BSD release. It has been tested
+and declared working. Some minor bugs of the BSD installer has been
+found since: checkout before in this text file.
+
+DTC now comes with complete bandwidth monitoring tool for all supported
+service: apache using mod_log_sql, proftpd using it's sql features, and
+qmail using mysqmail tar.gz qmail trafic monitoring package (see in
+ftp://gplhost.com/pub for mysqmail latest release).
+
 Many things have changed since the introduction of the
 DB version field. I will soon have to release script...
 
