@@ -35,6 +35,43 @@ case "activate_antispam":
 	}
 	break;
 
+// action=add_whitelist_rule&mail_from_user=toto&mail_from_domain=toto.com&mail_to=
+case "add_whitelist_rule":
+	if(pass_check_email()==false)	die("User not found!");
+	if((isValidEmail($_REQUEST["mail_from_user"].'@'.$_REQUEST["mail_from_domain"]) && $_REQUEST["mail_to"] == "")||
+		((isHostnameOrIP($_REQUEST["mail_from_domain"]) && $_REQUEST["mail_from_user"] == "") && $_REQUEST["mail_to"] == "") ||
+		(isHostnameOrIP($_REQUEST["mail_to"]) && $_REQUEST["mail_from_user"] == "" && $_REQUEST["mail_from_domain"] == "")){
+		$q = "INSERT INTO $pro_mysql_whitelist_table (id,pop_user,mbox_host,mail_from_user,mail_from_domain,mail_to) VALUES('','$user','$host',
+			'".$_REQUEST["mail_from_user"]."','".$_REQUEST["mail_from_domain"]."','".$_REQUEST["mail_to"]."');";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}else{
+		echo "<font color=\"red\">This is not a valid rule!</font>";
+	}
+	break;
+
+// ruleid=1&action=delete_whitelist_rule
+case "delete_whitelist_rule":
+	if(pass_check_email()==false)   die("User not found!");
+	$q = "DELETE FROM $pro_mysql_whitelist_table WHERE id='".$_REQUEST["ruleid"]."' AND pop_user='$user' AND mbox_host='$host'";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	break;
+
+// action=edit_whitelist_rule&ruleid=1&mail_from_user=toto&mail_from_domain=toto.com&mail_to=
+case "edit_whitelist_rule":
+	if(pass_check_email()==false)	die("User not found!");
+	if((isValidEmail($_REQUEST["mail_from_user"].'@'.$_REQUEST["mail_from_domain"]) && $_REQUEST["mail_to"] == "")||
+		((isHostnameOrIP($_REQUEST["mail_from_domain"]) && $_REQUEST["mail_from_user"] == "") && $_REQUEST["mail_to"] == "") ||
+		(isHostnameOrIP($_REQUEST["mail_to"]) && $_REQUEST["mail_from_user"] == "" && $_REQUEST["mail_from_domain"] == "")){
+		$q = "UPDATE $pro_mysql_whitelist_table
+			SET  mail_from_user='".$_REQUEST["mail_from_user"]."',
+			mail_from_domain='".$_REQUEST["mail_from_domain"]."',mail_to='".$_REQUEST["mail_to"]."'
+			WHERE id='".$_REQUEST["ruleid"]."' AND pop_user='$user' AND mbox_host='$host';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}else{
+		echo "<font color=\"red\">This is not a valid rule!</font>";
+	}
+	break;
+
 case "edit_bounce_msg":
 //&action=edit_bounce_msg&bounce_msg=Hello%2C%0D%0AYou+have+tried+to+write+an+email+to+me%2C+and+because+of+the+big+amount%0D%0Aof+spam+I+recieved%2C+I+use+an+antispam+software+that+require+a+message%0D%0Aconfirmation.+This+is+very+easy%2C+and+you+will+have+to+do+it+only+once.%0D%0AJust+click+on+the+following+link%2C+copy+the+number+you+see+on+the%0D%0Ascreen+and+I+will+recieve+the+message+you+sent+me.+If+you+do+not%0D%0Aclick%2C+then+your+message+will+be+considered+as+advertising+and+I+will%0D%0ANOT+recieve+it.%0D%0A%0D%0A***URL***%0D%0A%0D%0AThank+you+for+your+understanding.%0D%0A
 	if(pass_check_email()==false)	die("User not found!");

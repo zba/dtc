@@ -74,8 +74,8 @@ function anotherFooter($content){
 <i>Most of code done by:
 <a target=\"_blank\" href=\"mailto:thomas [ at ] goirand.fr\">Thomas GOIRAND</a>, under
 <a target=\"_blank\" href=\"http://www.gnu.org/copyleft/lesser.txt\">LGPL</a>. Please visit <a
-target=\"_blank\" href=\"http://gplhost.com\">GPLHost</a> and <a
-target=\"_blank\" href=\"http://gplhost.com/?rub=softwares&sousrub=dtc\">DTC home</a> for more infos.</i></font>
+target=\"_blank\" href=\"http://www.gplhost.com\">GPLHost</a> and <a
+target=\"_blank\" href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\">DTC home</a> for more infos.</i></font>
 </center>
 ";
 

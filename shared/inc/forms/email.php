@@ -166,17 +166,13 @@ http://www.gplhost.com/?rub=softwares&sousrub=dtc
 		}
 		$out .= "<tr>$frm_start
 			<input type=\"hidden\" name=\"action\" value=\"add_whitelist_rule\">
-			<td><input type=\"text\" name=\"mail_from_user\" value=\"".$a["mail_from_user"]."\"></td>";
+			<td><input type=\"text\" name=\"mail_from_user\" value=\"\"></td>";
 		$out .= "<td>@</td>";
-		$out .= "<td><input type=\"text\" name=\"mail_from_domain\" value=\"".$a["mail_from_domain"]."\"></td>";
-		$out .= "<td><input type=\"text\" size=\"30\" name=\"mail_to\" value=\"".$a["mail_to"]."\"></td>";
+		$out .= "<td><input type=\"text\" name=\"mail_from_domain\" value=\"\"></td>";
+		$out .= "<td><input type=\"text\" size=\"30\" name=\"mail_to\" value=\"\"></td>";
 		$out .= "<td><input type=\"submit\" value=\"Save\"></form></td></tr>";
 		$out .= "</table>";
 	}
-	if($mailbox["data"]["spf_protect"] == "yes")	$checked = " checked "; else $checked = "";
-	$out .= $form_start."<input type=\"hidden\" name=\"action\" value=\"activate_spf\"><input type=\"checkbox\" name=\"spf_on\" value=\"yes\"$checked>Activate Sender Policy Framework protection (SPF)
-	<input type=\"submit\" value=\"Ok\"></form>";
-
 	if($mailbox["data"]["clamav_protect"] == "yes")	$checked = " checked "; else $checked = "";
 	$out .= $form_start."<input type=\"hidden\" name=\"action\" value=\"activate_clamav\"><input type=\"checkbox\" name=\"clamav_on\" value=\"yes\"$checked>Activate Clamav antivirus
 	<input type=\"submit\" value=\"Ok\"></form>";
