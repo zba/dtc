@@ -745,6 +745,7 @@ function saveDTCConfigInMysql(){
                       '".$_REQUEST["server_login"]."',
                       '".$_REQUEST["server_pass"]."',
                       'trigger_changes');";
+                      echo $query;
                       break;
                 case "modify_mail_backup":
                       switch($_REQUEST["todo"]){
@@ -833,8 +834,6 @@ function saveDTCConfigInMysql(){
 	// Tell the cron job to activate the changes
         $adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes', restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes' WHERE 1;";
         mysql_query($adm_query);
-
-
 }
 
 ?>
