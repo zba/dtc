@@ -26,11 +26,11 @@ if(!isHostname($domain)){
 	die("Requested domain name does not looklike to be correct. Please check !");
 }
 
-$query = "SELECT * FROM $pro_mysql_subdomain_table WHERE login='$login' AND pass='$pass';";
+$query = "SELECT * FROM $pro_mysql_subdomain_table WHERE login='$login' AND pass='$pass' AND domain_name='$domain';";
 $result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 $num_rows = mysql_num_rows($result);
 if($num_rows != 1){
-	die("Incorrect login/pass !");
+	die("Incorrect login, pass or domain name !");
 }else{
 	if(!isset($ip) || $ip == ""){
 		$ip = $_SERVER["REMOTE_ADDR"];
