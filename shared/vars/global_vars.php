@@ -58,7 +58,7 @@ if($panel_type != "email" && isset($edit_domain) && !ereg("^([a-z0-9]+)([.a-z0-9
 if($panel_type!="cronjob"){
 	// Save menu style preference in session
 	session_register("dtc_use_text_menu");
-	if(!is_string($_SESSION["dtc_use_text_menu"])){
+	if(isset($_SESSION["dtc_use_text_menu"]) && !is_string($_SESSION["dtc_use_text_menu"])){
 		unset($dtc_use_text_menu);
 	}
 	$dtc_use_text_menu = $_SESSION["dtc_use_text_menu"];
