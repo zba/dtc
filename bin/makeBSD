@@ -105,7 +105,8 @@ NBR_LINE=`cat dtc/pkg-plist.tmp | wc -l`
 cat dtc/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >dtc/pkg-plist.tmp2
 sed "s/share\/dtc/%%DTCROOT%%/" dtc/pkg-plist.tmp2 | grep -v "mysql_config.php" >dtc/pkg-plist
 echo "@dirrm %%DTCROOT%%/etc/zones
-@dirrm %%DTCROOT%%/etc" >>dtc/pkg-plist
+@dirrm %%DTCROOT%%/etc
+@dtrrm %%DTCROOT%%" >>dtc/pkg-plist
 rm dtc/pkg-plist.tmp dtc/pkg-plist.tmp2
 
 mkdir sysutils
