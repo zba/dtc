@@ -137,7 +137,7 @@ cc_code_popup($row["country"])."</select></td></tr>
 <tr><td align=\"right\">".$txt_money_remaining[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_dollar\" value=\"".$row["dollar"]."\"></td></tr>
 <tr><td align=\"right\" style=\"white-space: nowrap\" nowrap>".$txt_domain_tbl_config_quotaMB[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_disk_quota_mb\" value=\"".$row["disk_quota_mb"]."\"></td></tr>
 <tr><td align=\"right\" style=\"white-space: nowrap\" nowrap>".$txt_allowed_data_transferGB[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_bw_quota_per_month_gb\" value=\"".$row["bw_quota_per_month_gb"]."\"></td></tr>
-<tr><td align=\"right\"></td><td><input type=\"submit\" value=\"Save\"></td></tr>
+<tr><td align=\"right\"></td><td><input type=\"submit\" value=\"Save\"><input type=\"submit\" name=\"del\" value=\"Del\"></td></tr>
 </table>
 </form>";
 	return $text;

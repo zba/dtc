@@ -51,7 +51,11 @@ disk_quota_mb,bw_quota_per_month_gb
 //&ed_city=&ed_zipcode=&ed_state=&ed_country=AF&ed_phone=&ed_fax=&ed_email=&ed_special_note=&ed_dollar=&
 //ed_disk_quota_mb=&ed_gw_quota_per_month_gb=
 if($_REQUEST["action"] == "edit_client"){
-	$q = "UPDATE $pro_mysql_client_table SET
+	if($_REQUEST["del"] == "Del"){
+		$q = "DELETE FROM $pro_mysql_client_table WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+	}else{
+		$q = "UPDATE $pro_mysql_client_table SET
 is_company='".$_REQUEST["ed_is_company"]."',
 company_name='".$_REQUEST["ed_company_name"]."',
 familyname='".$_REQUEST["ed_familyname"]."',
@@ -71,7 +75,8 @@ dollar='".$_REQUEST["ed_dollar"]."',
 disk_quota_mb='".$_REQUEST["ed_disk_quota_mb"]."',
 bw_quota_per_month_gb='".$_REQUEST["ed_bw_quota_per_month_gb"]."'
 WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
-	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+	}
 }
 if($_REQUEST["action"] == "add_cmd_to_client"){
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["add_new_command"]."';";
