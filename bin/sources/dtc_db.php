@@ -189,7 +189,6 @@ $dtc_database = array(
 			"txt_root_entry2" => "varchar(128) NOT NULL default 'This domain is hosted using Domain Technologie Control http://www.gplhost.com/?rub=softwares&sousrub=dtc' "
 			),
 		"keys" => array(
-			"owner_index" => "(owner)",
 			"name" => "(name)"
 			)
 		),
