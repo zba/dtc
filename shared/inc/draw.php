@@ -126,20 +126,29 @@ when paiement is done, click the refresh button.";
 	}
 
 	$out .= "<b><u>".$txt_transfer_du[$lang]."</u></b>";
-	$out .= "<br>".$txt_transfer_this_month[$lang].smartByte($stats["total_transfer"]);
+	// Draw overall this month usage
+	$overall .= "<br>".$txt_transfer_this_month[$lang].smartByte($stats["total_transfer"]);
 	if($id_client != 0){
 		$bw_quota = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;
-		$out .= " / ".smartByte($bw_quota)."<br>";
-		$out .= drawPercentBar($stats["total_transfer"],$bw_quota);
+		$overall .= " / ".smartByte($bw_quota)."<br>";
+		$overall .= drawPercentBar($stats["total_transfer"],$bw_quota);
 	}
-	$out .= $txt_total_disk_usage[$lang].smartByte($stats["total_du"]);
+	$overall .= $txt_total_disk_usage[$lang].smartByte($stats["total_du"]);
 	if($id_client != 0){
 		$du_quota = $admin["info"]["quota"]*1024*1024;
-		$out .= " / ".smartByte($du_quota)."<br>";
-		$out .= drawPercentBar($stats["total_du"],$du_quota);
+		$overall .= " / ".smartByte($du_quota)."<br>";
+		$overall .= drawPercentBar($stats["total_du"],$du_quota);
 
 		$client = $admin["client"];
+	}
 
+	if($id_client != 0){
+		$out .= '<table><td>'.$overall.'</td><td><img src="bw_per_month.php?cid='.$id_client.'"></td></tr></table>';
+	}else{
+		$out .= $overall;
+	}
+
+	if($id_client != 0){
 		$out .= "<br><b><u>".$txt_your_hosting_account[$lang]."</u></b>";
 		$out .= "<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"1\">
 <tr>
