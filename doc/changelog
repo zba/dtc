@@ -3,7 +3,9 @@ Thomas Goirand:
 Added automatic SSL certificate generation durring
 install.
 
-Added NS and MX backup between dtc panels.
+Added NS and MX backup between dtc panels. A DTC
+panel query another one to list his domains to
+backup, and the resulting is cached in a file.
 
 17-09-04: V0.16.0-R0
 New features:

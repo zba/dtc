@@ -1,9 +1,21 @@
-Todo :
+Here is the todo in unsorted order:
 
-- Integrate SBOX
+- Add support for spamassassin & clamav
+- Add resseller interface
+- Add SSL support for customers
+- Enable multiple user delegation in SQL account manager
 - Integrate a mailling list manager
 - Integrate smtp AUTH
-- Enable the possibility to use different mysql server for the users
 - Find a SMART way to handle disk quotas
-- Make a commercial manager for domain-name expiration, payement, etc...
-- Make img.php work with both GD2 and GD1
+- Finish paypal API integration
+- Finish tucows API integration
+- Integrate all new changes with FreeBSD &
+RedHat (to do at when all of the top is finished)
+- Verify that installer runs ok with different
+configurations (Woody / Testing / Qmail / Postfix...)
+it's currently well tested for Woody + Qmail
+- Make a windows port for cygwin using NDIS
+scriptable installer.
+
+If you think you can help in one of those,
+please contact thomas [ at ] goirand . fr
