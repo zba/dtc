@@ -253,7 +253,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 				if(!file_exists($dump_file_name.".bz2") && ($year!=$current_year || $month!=$current_month)){
 					$selected_month_start = mktime(0,0,0,$month,1,$year);
 					$selected_month_end = (mktime(0,0,0,($month+1),1,$year))-1;
-//					$query_dump = "SELECT remote_host,time_stamp,request_uri,status,bytes_sent,referer,agent FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+//					$query_dump = "SELECT remote_host,time_stamp,request_uri,status,bytes_sent,referer,agent,request_method,request_protocol FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 					$query_dump = "SELECT * FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
 					$dump_num_rows = mysql_num_rows($result_dump);
@@ -264,8 +264,8 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 							$rezar = mysql_fetch_array($result_dump);
 							if(strstr($rezar["referer"],$vhost.".".$domain))	$rezar["referer"] == "self";
 							$content = $rezar["remote_host"]." - - ".
-							date("[d/M/Y:H:i:s] ",$rezar["time_stamp"]).
-							'"'.$rezar["request_uri"].'" '.$rezar["status"].
+							date("[d/M/Y:H:i:s +0000] ",$rezar["time_stamp"]).
+							'"'.$rezar["request_method"].' '.$rezar["request_uri"].' '.$rezar["request_protocol"].'" '.$rezar["status"].
 							" ".$rezar["bytes_sent"].
 							' "'.$rezar["referer"].'" "'.$rezar["agent"].'"'."\n";
 /*							
