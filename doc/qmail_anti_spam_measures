@@ -27,6 +27,7 @@ You have to add it into debian like this:
                         -rrelays.ordb.org \
                         -rlist.dsbl.org \
                         -rdnsbl.njabl.org \
+						-rsbl.spamhaus.org \
             /usr/sbin/qmail-smtpd 2>&1 | $logger -t qmail -p mail.notice &"
 
 See how I've added in rblsmtpd. rblsmtpd accepts the -r switch to query the
