@@ -11,12 +11,12 @@ if [ -e /var/spool/postfix/etc ]; then
 	echo "OK, in /var/spool" >> /tmp/sasl.tmp
 	cat ../etc/sasldb2 > /var/spool/postfix/etc/sasldb2
 	chmod 664 /var/spool/postfix/etc/sasldb2
-	chown postfix:nogroup /var/spool/postfix/etc/sasldb2
+	chown postfix:65534 /var/spool/postfix/etc/sasldb2
 else 
 	echo "OK, in /etc/" >> /tmp/sasl.tmp
 	cat ../etc/sasldb2 > /etc/sasldb2
 	chmod 664 /etc/sasldb2
-	chown postfix:nogroup /etc/sasldb2
+	chown postfix:65534 /etc/sasldb2
 fi
 
 ls ../etc/sasldb2 >> /tmp/sasl.tmp
