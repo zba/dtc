@@ -3,8 +3,8 @@
 $doc_ind1 ='<h3><a
 href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1">1 What is DTC?</a></h3>
 <h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.1">1.1 What does DTC do?</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.2">1.2 Good points of DTC</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.3">1.3 Les points forts de DTC ?</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.2">1.2 Who should read this document?</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.3">1.3 What are DTC good features?</a></h4>
 <h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.4">1.4 Technologies used by DTC</a></h4>
 <h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.5">1.5 DTC\'s possibilities</a></h4>
 <h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.6">1.6 How does it works</a></h4>
@@ -41,10 +41,18 @@ $doc_ind5 = '<h3><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub=
 <h4><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'"#5.3>5.3 Greets</a></h4>
 <h4><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#5.4">5.4 Contact</a></h4>
 ';
-$doc_index= $doc_ind1.$doc_ind2.$doc_in3.$doc_ind4.$doc_ind5;
-echo '<link rel="STYLESHEET" type="text/css" href="doc.css">';
-include("page_top.html");
+$doc_index= $doc_ind1.$doc_ind2.$doc_ind3.$doc_ind4.$doc_ind5;
+$out .= '<link rel="STYLESHEET" type="text/css" href="rubs/softwares/dtc/doc.css">';
+include("page_top.php");
 $chap = $_REQUEST["chap"];
+
+function read_content_file($fname){
+	$fp = fopen($fname,"r");
+	$out = fread($fp,filesize($fname));
+	fclose($fp);
+	return $out;
+}
+
 if($chap == "1" || $chap == "2" || $chap == "3" || $chap == "4" || $chap == "5"){
 	$nav .= '<table width="100%" height="1"><tr>';
 	$prev = $chap - 1;
@@ -61,21 +69,22 @@ if($chap == "1" || $chap == "2" || $chap == "3" || $chap == "4" || $chap == "5")
 		.'&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'">Next</a>';
 	$nav .=  '</div></td></tr></table>';
 
-	echo $nav;
+	$out .= $nav;
 	$ze_ind = "doc_ind".$chap;
-	echo $$ze_ind;
-	include($chap.".html");
-	echo $nav;
+	$out .= $$ze_ind;
+
+	$fname = "rubs/softwares/dtc/".$chap.".html";
+	$out .= read_content_file($fname);
 }else if($chap == "all"){
-	echo $doc_index;
-	include("1.html");
-	include("2.html");
-	include("3.html");
-	include("4.html");
-	include("5.html");
+	$out .= $doc_index;
+	$out .= read_content_file("rubs/softwares/dtc/1.html");
+	$out .= read_content_file("rubs/softwares/dtc/2.html");
+	$out .= read_content_file("rubs/softwares/dtc/3.html");
+	$out .= read_content_file("rubs/softwares/dtc/4.html");
+	$out .= read_content_file("rubs/softwares/dtc/5.html");
 }else{
-	echo  '<a href="'.$PHP_SELF.'?chap=all&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'">Tout sur une seul page</a><br>';
-	echo $doc_index;
+	$out .= '<a href="'.$PHP_SELF.'?chap=all&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'">All this doc in one unic big html page</a><br>';
+	$out .= $doc_index;
 }
 
 ?>

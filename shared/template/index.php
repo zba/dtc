@@ -3,12 +3,11 @@
 </head>
 <body>
 <center>
-This is the default web page installed by creating a domain with DTC.<br><br>
-Feel free to customise the /usr/share/dtc/shared/template folder
-with any file you like, it will be copied as default content when
-creating a domain name.
+<a href="http://www.gplhost.com"><img src="http://www.gplhost.com/ban.gif" border="0"></a><br><br>
+This site, currently hosted at gplhost services: content will be ready soon.<br>
+Please be back later to check this web site.<br><br>
+<font face="Arial" size="-2">Get a hosting account @ <a href="http://www.gplhost.com">GPLHost</a></font>
 </center>
-<br><br><br>
-<a href="http://thomas.goirand.fr/index.php?rub=gpl&sousrub=dtc">DTC home</a>
+<br><br>
 </body>
 </html>
