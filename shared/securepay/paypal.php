@@ -54,7 +54,7 @@ function paypalNotifyPostbackScript(){
 }
 
 
-function paypalButton($product_id,$amout,$item_name){
+function paypalButton($product_id,$amount,$item_name){
 	global $paypal_account;
 	// https://www.paypal.com/xclick/business=thomas%40goirand.fr&item_name=Domain+name+registration+.com&
 	// item_number=1&amount=11.50&no_note=1&currency_code=USD

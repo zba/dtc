@@ -7,7 +7,7 @@ function drawAdminTools_MyAccount($admin){
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
-
+	global $pro_mysql_pay_table;
 	global $dtcshared_path;
 
 	global $cc_code_array;
@@ -29,11 +29,14 @@ function drawAdminTools_MyAccount($admin){
 	}
 
 	if($id_client != 0 && $_REQUEST["action"] == "refund_myaccount"){
+		$q = "INSERT INTO $pro_mysql_pay_table (id,id_client,id_command,label,currency,refund_amount,date,time)VALUES('','$id_client','0','Refund my account','USD','".$_REQUEST["refund_amount"]."','".date("Y-m-j")."','".date("H:i:s")."');";
+		$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error()." in file ".__FILE__." line ".__LINE__);
+		$payid = mysql_insert_id();
 		$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
 		$out .=" Please click on the button bellow to refund your account. Then,
 when paiement is done, click the refresh button.";
 		$out .= "<center><font size=\"+1\">\$".$_REQUEST["refund_amount"]."</font><br>".
-		paynowButton(0,$_REQUEST["refund_amount"]);
+		paynowButton($payid,$_REQUEST["refund_amount"]);
 		$out .= "<br><br>$frm_start<input type=\"submit\" value=\"Refresh and see my account\"></form></center>";
 		return $out;
 	}
