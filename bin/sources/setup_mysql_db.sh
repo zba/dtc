@@ -122,6 +122,7 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT
 # This one is in case of reinstalltion, so the installer has prority to old values
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET main_site_ip='"$conf_ip_addr"',administrative_site='"$dtc_admin_subdomain"."$main_domain_name"',site_root_host_path='"$conf_hosting_path"',generated_file_path='"$PATH_DTC_ETC"',mta_type='"$conf_mta_type"',main_domain='"$main_domain_name"',404_subdomain='404' WHERE 1"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE cron_job SET reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes' WHERE 1"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET php_library_path='/usr/lib/php:/tmp:$PATH_DTC_ETC/dtc404' WHERE 1"
 
 echo "<?php" > $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_host=\""$conf_mysql_host"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"

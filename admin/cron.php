@@ -190,7 +190,15 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	if($return_var == false){
 		echo "Config is OK : restarting Apache\n";
 		system("$APACHECTL stop");
-		sleep(4);
+		echo "Waiting 4... ";
+		sleep(1);
+		echo "3... ";
+		sleep(1);
+		echo "2... ";
+		sleep(1);
+		echo "1... ";
+		sleep(1);
+		echo "0\n";
 		system("$APACHECTL start");
 		// change to graceful apache restart, rather than a hard stop and start
 		//system("$APACHECTL graceful");

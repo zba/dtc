@@ -2,6 +2,7 @@
 
 require_once("../shared/autoSQLconfig.php");
 $panel_type="client";
+require_once("$dtcshared_path/dtc_lib.php");
 get_secpay_conf();
 
 // read the post from PayPal system and add 'cmd'
@@ -30,6 +31,7 @@ $payer_email = $_POST['payer_email'];
 
 if (!$fp) {
 	// HTTP ERROR
+	die("HTTP error!");
 } else {
 	fputs ($fp, $header . $req);
 	while (!feof($fp)) {
@@ -53,6 +55,7 @@ if (!$fp) {
 		}
 		else if (strcmp ($res, "INVALID") == 0) {
 			// log for manual investigation
+			die("Invalid!");
 		}
 	}
 	fclose ($fp);
