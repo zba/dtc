@@ -10,7 +10,7 @@ logPay("Script reached !");
 // read the post from PayPal system and add 'cmd'
 $req = 'cmd=_notify-validate';
 
-foreach ($_POST as $key => $value) {
+foreach ($_REQUEST as $key => $value) {
 	$value = urlencode(stripslashes($value));
 	$req .= "&$key=$value";
 }
@@ -26,11 +26,11 @@ $header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 $fp = fsockopen ($paypal_server_hostname, 80, $errno, $errstr, 30);
 
 // assign posted variables to local variables
-$item_name = $_POST['item_name'];
-$item_number = $_POST['item_number'];
-$payment_amount = $_POST['mc_gross'];
-$payment_currency = $_POST['mc_currency'];
-$payer_email = $_POST['payer_email'];
+$item_name = $_REQUEST['item_name'];
+$item_number = $_REQUEST['item_number'];
+$payment_amount = $_REQUEST['mc_gross'];
+$payment_currency = $_REQUEST['mc_currency'];
+$payer_email = $_REQUEST['payer_email'];
 
 if (!$fp) {
 	// HTTP ERROR
@@ -48,20 +48,21 @@ if (!$fp) {
 			// check that receiver_email is your Primary PayPal email
 			// check that payment_amount/payment_currency are correct
 			// process payment
-			if($_POST["business"] != $secpayconf_paypal_email){
+			if($_REQUEST["business"] != $secpayconf_paypal_email){
+				logPay("db:".$secpayconf_paypal_email."/request:".$_REQUEST["business"]);
 				logPay("Business paypal email do not match !");
 				die("This is not our business paypal email!");
 			}
-			if($_POST["payment_status"] != "Completed"){
+			if($_REQUEST["payment_status"] != "Completed"){
 				logPay("Status is not completed !");
 				die("Status not completed...");
 			}
-			if($_POST["mc_currency"] != "USD"){
+			if($_REQUEST["mc_currency"] != "USD"){
 				logPay("Currency is not USD !");
 				die("Incorrect currency!");
 			}
 			logPay("Calling validate()");
-			validatePaiement($item_number,$_POST["payment_gross"]-$_POST["payment_fee"],"online","paypal",$txn_id,$_POST["payment_gross"]);
+			validatePaiement($item_number,$_REQUEST["mc_gross"]-$_REQUEST["mc_fee"],"online","paypal",$txn_id,$_POST["payment_gross"]);
 		}
 		else if (strcmp ($res, "INVALID") == 0) {
 			// log for manual investigation

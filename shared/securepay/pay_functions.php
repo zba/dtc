@@ -45,6 +45,7 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	$n = mysql_num_rows($r);
 	if($n != 1)die(logPay("Pay id $pay_id not found in file ".__FILE__." line ".__LINE__));
 	$ar = mysql_fetch_array($r);
+
 	if($ar["valid"] != "no")die(logPay("Paiement already validated in file ".__FILE__." line ".__LINE__));
 	logPay("Ammount paid: $amount_paid");
 	if($amount_paid < $ar["refund_amount"])die(logPay("Amount paid on gateway lower than refund ammount file ".__FILE__." line ".__LINE__));

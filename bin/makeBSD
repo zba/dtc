@@ -138,14 +138,16 @@ rm dtc/pkg-plist.tmp dtc/pkg-plist.tmp2
 
 mkdir sysutils
 mv dtc sysutils
-mkdir -p lang/php4-dtc
-cp sources/bsd/php4-dtc-slave lang/php4-dtc/Makefile
-mkdir -p ftp/proftpd-mysql
-cp sources/bsd/proftpd-dtc-slave ftp/proftpd-mysql/Makefile
+# Those are slave ports, and is to be activatd in case of changes inside DTC's needs
+
+#mkdir -p lang/php4-dtc
+#cp sources/bsd/php4-dtc-slave lang/php4-dtc/Makefile
+#mkdir -p ftp/proftpd-mysql
+#cp sources/bsd/proftpd-dtc-slave ftp/proftpd-mysql/Makefile
 
 echo "===> Creating .uue archive file"
 # Make the file archive
-tar -czf "dtcBSDport-"$VERSION".tar.gz" lang sysutils ftp
+tar -czf "dtcBSDport-"$VERSION".tar.gz" sysutils
 uuencode "dtcBSDport-"$VERSION".tar.gz" dtc.tgz >"dtcBSDport-"$VERSION".uue"
 
 echo "===> Creating send-pr file"

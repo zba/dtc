@@ -129,7 +129,9 @@ if [ $UNIX_TYPE"" = "freebsd" ]
 then
 	cp -pf /usr/lib/libc.so* /usr/lib/libm.so* \
 	  /usr/lib/libstdc\+\+.so* /usr/lib/libz.so.2 usr/lib/
-	cp -pf /usr/libexec/ld-elf.so* usr/libexec/
+#	echo test1
+#	cp -pf /usr/libexec/ld-elf.so* usr/libexec/
+#	echo test2
 else
 	#Linux:
 	cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
