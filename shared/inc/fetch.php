@@ -368,7 +368,9 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$email["bounce_msg"] = $row4["bounce_msg"];
 			$emails[] = $email;
 		}	
-		$domain["emails"] = $emails;
+		if(isset($emails)){
+			$domain["emails"] = $emails;
+		}
 
 		$query4 = "SELECT * FROM $pro_mysql_ftp_table WHERE hostname='$name' ORDER BY login LIMIT 800";
 		$result4 = mysql_query($query4)or die("Cannot execute query \"$query4\"");
@@ -381,7 +383,9 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$ftp["path"] = $row4["homedir"];
 			$ftps[] = $ftp;
 		}
-		$domain["ftps"] = $ftps;
+		if(isset($ftps)){
+			$domain["ftps"] = $ftps;
+		}
 
 // Now we have :
 // $user_domains = [0-n]["default_subdomain"]
