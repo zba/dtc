@@ -243,10 +243,10 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 
 	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
 
-	$q = "UPDATE $pro_mysql_admin_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE adm_login='$adm_login'";
-	$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
-
 	if($DONOT_USE_ROTATING_PASS != yes){
+		$q = "UPDATE $pro_mysql_admin_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE adm_login='$adm_login'";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
+
 		$adm_pass = $rand;
 	}
 	$adm_realpass = $row["adm_pass"];
