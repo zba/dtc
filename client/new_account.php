@@ -38,8 +38,8 @@ if($_REQUEST["action"] == "return_from_pay"){
 			if($n != 1){
 				$form = "Cannot reselect product: registration failed!";
 			}
-			$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"],"yes");
 			$product = mysql_fetch_array($r);
+			$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"],"yes");
 			$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=".$reguser["id"];
 			$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"],$return_url);
 			// paypalButton("00".$reguser["id"],$product["price_dollar"],$product["name"]);
