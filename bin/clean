@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -rf sendpr.data dtcPORT dtcBSD* share dtc-* dtc.tar.gz debian usr dtc_*_all.deb dtc_*_all.tar.gz dtc_*_all CVS_dtc_*_all CVS_dtc_*_all.tar.gz *~ *.spec dtc;
+rm -rf lan sysutils ftp sendpr.data dtcPORT dtcBSD* share dtc-* dtc.tar.gz debian usr dtc_*_all.deb dtc_*_all.tar.gz dtc_*_all CVS_dtc_*_all CVS_dtc_*_all.tar.gz *~ *.spec dtc;
