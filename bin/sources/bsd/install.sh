@@ -42,18 +42,23 @@ then
 	conf_mysql_login="root"
 fi
 
+echo "This is the password you want to be used after"
+echo "this script is finished (not the old pass)."
 echo -n 'MySQL root password []: '
 read conf_mysql_pass
 
 echo ""
 echo "Do you want that DTC setup this password"
-echo "for you ? (eg: UPDATE user SET Password...)"
+echo "for you ? (eg: UPDATE user SET Password=PASSWORD('XXX')...)"
 echo -n 'Setup the mysql password [Ny]: '
 read conf_mysql_change_root
 if [ ""$conf_mysql_change_root = "y" ];
 then
 	echo "===> Changing MySQL Root password"
-	echo "If you didn't setup a root pass for mysqld, just hit ENTER."
+	echo "MySQL will now prompt your for the password to connect to"
+	echo "the database. This is the OLD password that was there before"
+	echo "you launched this script. If you didn't setup a root pass for"
+	echo "mysqld, just hit ENTER to use empty pass."
 	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pass"') WHERE User='root'; FLUSH PRIVILEGES;";
 else
 	echo "Skinping MySQL password root change!"
