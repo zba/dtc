@@ -640,6 +640,7 @@ function drawDTCConfigForm(){
 }
 
 function saveDTCConfigInMysql(){
+	global $pro_mysql_cronjob_table;
         global $pro_mysql_backup_table;
         global $pro_mysql_secpayconf_table;
 
