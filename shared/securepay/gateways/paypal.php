@@ -90,7 +90,7 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="no_shipping" value="1">
 <input type="hidden" name="return" value="'.$goback_start.$conf_administrative_site.$return_url.'">
-<input type="hidden" name="notify_url" value="http://'.$conf_administrative_site.'/dtc/paypal.php">
+<input type="hidden" name="notify_url" value="'.$goback_start.$conf_administrative_site.'/dtc/paypal.php">
 <input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but01.gif" border="0"
 name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!">
 </form>';
