@@ -264,8 +264,14 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	// Retrive number of ftp account
 	$subdomain_nbr = sizeof($eddomain["subdomains"]);
 
+	$total_http_transfer = fetchHTTPInfo($webname);
+	$total_ftp_transfer = fetchFTPInfo($webname);
+
 	return "<b><u>".$txt_your_domain[$lang]."</u></b><br><br>
-	<font size=\"-1\">Quota disque : $du / $quota Mo<br>
+	<font size=\"-1\">
+	Total HTTP transfer: $total_http_transfer<br>
+	Total FTP transfer: $total_ftp_transfer<br>
+	Quota disque : $du / $quota Mo<br>
 	".$txt_your_domain_email[$lang]." $email_nbr / $max_email<br>
 	".$txt_your_domain_ftp[$lang]." $ftp_nbr / $max_ftp<br>
 	".$txt_your_domain_subdomain[$lang]." $subdomain_nbr /
