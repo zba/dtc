@@ -2,103 +2,103 @@
 
 $txt_cfg_allow_following_servers_to_list = array(
 	"fr" => "Autoriser les servers suivant a lister les domaines pour les backuper : ",
-	"en" => "Allow the following servers to list this server domain names for doing backup: ",
-	"it" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
+	"en" => "Allow those servers to list this server domain names for doing backup:¡¡",
+	"it" => "Autorizza i seguenti servers i nomi a dominio di questo server per effettuare backup: ",
 	"nl" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
 	"ru" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
-	"de" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
-	"zh" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
-	"es" => "TRANS Allow the following servers to list this server domain names for doing backup: ");
+	"de" => "Folgende Server autorisieren, den Server Domain Name bei Backups einzuschliessen: ",
+	"zh" => "ÔÊÐíÏÂÁÐ·þÎñÆ÷Á¬½ÓºÍÅÅÁÐÓòÃû±í£º",
+	"es" => "Autorizar a los siguientes servidores a añádir este servidor de dominios para realizar copias de seguridad: ");
 
 $txt_cfg_make_request_to_server_for_update = array(
 	"fr" => "Prévenir les serveurs suivant quand un domaine est ajouté ou supprimer : ",
 	"en" => "Tell the following servers when a domain is added or removed : ",
-	"it" => "TRANS Tell the following servers when a domain is added or removed : ",
+	"it" => "Informa i seguenti servers quando un dominio viene aggiunto o rimosso : ",
 	"nl" => "TRANS Tell the following servers when a domain is added or removed : ",
 	"ru" => "TRANS Tell the following servers when a domain is added or removed : ",
-	"de" => "TRANS Tell the following servers when a domain is added or removed : ",
-	"zh" => "TRANS Tell the following servers when a domain is added or removed : ",
-	"es" => "TRANS Tell the following servers when a domain is added or removed : ");
+	"de" => "Folgende Server informieren, wenn eine Domaine hinzugefügt oder gelöscht wird: ",
+	"zh" => "µ±ÓòÃûÌí¼Ó»òÉ¾³ýÊ±Í¨ÖªÏÂÁÐ·þÎñÆ÷£º",
+	"es" => "Avisar a los siguientes servidores cuando un dominio es añadido o eliminado : ");
 
 $txt_cfg_act_as_backup_mail_server = array(
 	"fr" => "Ce server sera serveur de backup mail pour les serveurs suivants : ",
 	"en" => "Act as backup mail server for the following servers: ",
-	"it" => "TRANS Act as backup mail server for the following servers: ",
+	"it" => "Usa come backup mail server per i seguenti servers: ",
 	"nl" => "TRANS Act as backup mail server for the following servers: ",
 	"ru" => "TRANS Act as backup mail server for the following servers: ",
-	"de" => "TRANS Act as backup mail server for the following servers: ",
-	"zh" => "TRANS Act as backup mail server for the following servers: ",
-	"es" => "TRANS Act as backup mail server for the following servers: ");
+	"de" => "Als Backup Mail Server für folgende Server verwenden: ",
+	"zh" => "¶ÔÏÂÁÐ·þÎñÆ÷×÷Îª±¸·ÝÓÊ¼þ·þÎñÆ÷: ",
+	"es" => "Actuar como servidor de correo de respaldo para los siguientes servidores: ");
 
 $txt_cfg_act_as_backup_dns_server = array(
 	"fr" => "Ce server sera serveur de backup DNS pour les serveurs suivants : ",
 	"en" => "Act as backup DNS server for the following servers: ",
-	"it" => "TRANS Act as backup DNS server for the following servers: ",
+	"it" => "Usa come backup DNS server per i seguenti servers: ",
 	"nl" => "TRANS Act as backup DNS server for the following servers: ",
 	"ru" => "TRANS Act as backup DNS server for the following servers: ",
-	"de" => "TRANS Act as backup DNS server for the following servers: ",
-	"zh" => "TRANS Act as backup DNS server for the following servers: ",
-	"es" => "TRANS Act as backup DNS server for the following servers: ");
+	"de" => "Als Backup DNS Server für folgende Server verwenden: ",
+	"zh" => "¶ÔÏÂÁÐ·þÎñÆ÷×÷Îª±¸·ÝDNS·þÎñÆ÷: ",
+	"es" => "Actuar como servidor de DNS de respaldo para los siguientes servidores: ");
 
 $txt_cfg_use_paypal = array(
 	"fr" => "Utiliser paypal : ",
 	"en" => "Use paypal: ",
-	"it" => "TRANS Use paypal: ",
+	"it" => "Usa paypal: ",
 	"nl" => "TRANS Use paypal: ",
 	"ru" => "TRANS Use paypal: ",
-	"de" => "TRANS Use paypal: ",
-	"zh" => "TRANS Use paypal: ",
-	"es" => "TRANS Use paypal: ");
+	"de" => "Paypal verwenden: ",
+	"zh" => "Ê¹ÓÃ paypal: ",
+	"es" => "Utilizar Paypal: ");
 
 $txt_cfg_paypal_autovalid = array(
 	"fr" => "Valider les nouveaux compte si payé : ",
 	"en" => "Validate new account if payed: ",
-	"it" => "TRANS Validate new account if payed: ",
+	"it" => "Autorizza il nuovo account se ha pagato: ",
 	"nl" => "TRANS Validate new account if payed: ",
 	"ru" => "TRANS Validate new account if payed: ",
-	"de" => "TRANS Validate new account if payed: ",
-	"zh" => "TRANS Validate new account if payed: ",
-	"es" => "TRANS Validate new account if payed: ");
+	"de" => "Neue Konten validieren, wenn Zahlung erfolgt: ",
+	"zh" => "Èç¹ûÒÑ¸¶¿îÐÂÕÊ»§ÉúÐ§: ",
+	"es" => "Validar nueva cuenta si ha sido pagada: ");
 
 $txt_cfg_paytitle = array(
 	"fr" => "Configuration du paiement sécurisé",
-	"en" => "Secure paiment configuration",
-	"it" => "TRANS Secure paiment configuration: ",
+	"en" => "Secure payment configuration",
+	"it" => "Configurazione del pagamento sicuro: ",
 	"nl" => "TRANS Secure paiment configuration: ",
 	"ru" => "TRANS Secure paiment configuration: ",
-	"de" => "TRANS Secure paiment configuration: ",
-	"zh" => "TRANS Secure paiment configuration: ",
-	"es" => "TRANS Secure paiment configuration: ");
+	"de" => "Secure payment Konfiguration: ",
+	"zh" => "°²È«¸¶¿îÅäÖÃ: ",
+	"es" => "Configuración del pago seguro: ");
 
 $txt_cfg_paypal_email = array(
 	"fr" => "Email du compte business PayPal : ",
 	"en" => "PayPal business account email: ",
-	"it" => "TRANS PayPal business account email: ",
+	"it" => "Email dell'account business PayPal: ",
 	"nl" => "TRANS PayPal business account email: ",
 	"ru" => "TRANS PayPal business account email: ",
-	"de" => "TRANS PayPal business account email: ",
-	"zh" => "TRANS PayPal business account email: ",
-	"es" => "TRANS PayPal business account email: ");
+	"de" => "E-mail Paypal Geschäftskonto: ",
+	"zh" => "PayPal ÉÌÎñÕÊ»§ÎÄ¼þ: ",
+	"es" => "Email de la cuenta de negocio de Paypal: ");
 
 $txt_cfg_paypal_ratefee = array(
 	"fr" => "Pourcentage commissionaire PayPal : ",
 	"en" => "PayPal fee rate: ",
-	"it" => "TRANS PayPal fee rate: ",
+	"it" => "Percentuale commissione PayPal: ",
 	"nl" => "TRANS PayPal fee rate: ",
 	"ru" => "TRANS PayPal fee rate: ",
-	"de" => "TRANS PayPal fee rate: ",
-	"zh" => "TRANS PayPal fee rate: ",
-	"es" => "TRANS PayPal fee rate: ");
+	"de" => "PayPal Kommissionen: ",
+	"zh" => "TRANS PayPal ´¿·ÑÓÃ£¥: ",
+	"es" => "Porcentaje de comisión de Paypal: ");
 
 $txt_cfg_paypal_flatfee = array(
 	"fr" => "Commission fixe PayPal : ",
 	"en" => "PayPal flat rate: ",
-	"it" => "TRANS PayPal flat rate: ",
+	"it" => "Commissione fissa PayPal: ",
 	"nl" => "TRANS PayPal flat rate: ",
 	"ru" => "TRANS PayPal flat rate: ",
-	"de" => "TRANS PayPal flat rate: ",
-	"zh" => "TRANS PayPal flat rate: ",
-	"es" => "TRANS PayPal flat rate: ");
+	"de" => "PayPal Festpreis: ",
+	"zh" => "TRANS PayPal ×Ü·ÑÓÃ£¥: ",
+	"es" => "Comisión fija de Paypal: ");
 
 $txt_cfg_new_chroot_path_path = array(
 	"fr" => "Chemin du disque cgi-wrapper (chroot pour SBOX) : ",
@@ -106,9 +106,9 @@ $txt_cfg_new_chroot_path_path = array(
 	"it" => "Path del disco cgi-wrapper (chroot for SBOX): ",
 	"nl" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ",
 	"ru" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ",
-	"de" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ",
-	"zh" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ",
-	"es" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ");
+	"de" => "Path für CGI-Wrapper Laufwerk (Chroot für SBOX): ",
+	"zh" => "Â·¾¶ (chroot for SBOX): ",
+	"es" => "Ruta del cgi-wrapper (chroot para SBOX): ");
 
 $txt_cfg_main_software_config =array(
 	"fr" => "Configuration principale de DTC",
@@ -118,7 +118,7 @@ $txt_cfg_main_software_config =array(
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ÃÅÎÔÒÁÌØÎÏÊ ÓÉÓÔÅÍÙ",
 	"de" => "Allgemeine Konfiguration",
 	"zh" => "Ö÷ÒªÅäÖÃDTC",
-	"es" => "Configuracion principal");
+	"es" => "Configuración principal");
 
 $txt_cfg_general =array(
 	"fr" => "General",
@@ -138,17 +138,17 @@ $txt_cfg_demo_version =array(
 	"ru" => "äÅÍÏ-×ÅÒÓÉÑ",
 	"de" => "Demo Version",
 	"zh" => "ÊÔÓÃ°æ±¾",
-	"es" => "Version de Demostracion");
+	"es" => "Versión de Demostración");
 
 $txt_cfg_session_expir_time = array(
 	"fr" => "Expiration des sessions utilisateur (mn):",
 	"en" => "User session expire time (mn):",
-	"it" => "TRANS User session expire time (mn):",
+	"it" => "Tempo scadenza della sessione utente (mn):",
 	"nl" => "TRANS User session expire time (mn):",
 	"ru" => "TRANS User session expire time (mn):",
-	"de" => "TRANS User session expire time (mn):",
-	"zh" => "TRANS User session expire time (mn):",
-	"es" => "TRANS User session expire time (mn):");
+	"de" => "Expire Time für User Sitzung (min):",
+	"zh" => "³¬Ê±²Ù×÷£¨·ÖÖÓ£©",
+	"es" => "Caducidad de la sesión de usuario (min):");
 
 $txt_cfg_use_multiple_ip =array(
 	"fr" => "Utiliser plusieurs adresses IP :",
@@ -156,7 +156,7 @@ $txt_cfg_use_multiple_ip =array(
 	"it" => "Usa IP multipli:",
 	"nl" => "!TRANSLATE Use multiple IP",
 	"ru" => "éÓÐÏÌØÚÏ×ÁÔØ ÎÅÓËÏÌØËÏ IP",	
-	"de" => "Benutze mehrere IP Adressen:",
+	"de" => "Mehrere IP Adressen verwenden:",
 	"zh" => "Ê¹ÓÃ¶àÖÖIP:",
 	"es" => "Usar multiples IPs");
 
@@ -164,9 +164,9 @@ $txt_cfg_use_nated_vhost = array(
 	"fr" => "Generer toutes les vhost apache sur l'ip du reseau local (NAT)",
 	"en" => "Generate all apache vhosts on local network ip (NAT)",
 	"it" => "Genera tutti i vhosts apache nell'ip network locale (NAT)",
-	"nl" => "!TRANSLATEGenerate all apache vhosts on local network ip (NAT)",
-	"ru" => "!TRANSLATEGenerate all apache vhosts on local network ip (NAT)",
-	"de" => "Generiere all Apache vhots innerhalb der lokalen Netzwerkes (NAT)",
+	"nl" => "TRANS Generate all apache vhosts on local network ip (NAT)",
+	"ru" => "TRANS Generate all apache vhosts on local network ip (NAT)",
+	"de" => "Alle Apache Vhosts mit IP des lokales Netzwerkes generieren (NAT)",
 	"zh" => "ÔÚ¾ÖÓòÍøÖ·Ð´ÏÂËùÓÐapache vhosts (NAT)",
 	"es" => "Generar todos los vhosts de apache en una ip de red local (NAT)");
 
@@ -174,19 +174,19 @@ $txt_cfg_nated_vhost_ip = array(
 	"fr" => "Addrese ip dans le reseau local des vhost utilisant le NAT",
 	"en" => "Local network area ip adress of the vhost using NAT",
 	"it" => "Indirizzi IP area di rete locale del vhost usando NAT",
-	"nl" => "!TRANSLATELocal network area ip adress of the vhost using NAT",
-	"ru" => "!TRANSLATELocal network area ip adress of the vhost using NAT",
-	"de" => "Locale IP Adresse die für den VHost verwendet werden soll(NAT)",
+	"nl" => "TRANS Local network area ip adress of the vhost using NAT",
+	"ru" => "TRANS Local network area ip adress of the vhost using NAT",
+	"de" => "IP Adresse von Vhost mit NAT im lokalen Netzwerk",
 	"zh" => "vhostÕýÔÚÊ¹ÓÃµÄ¾ÖÓòÍøÖ·NAT",
-	"es" => "Direccion ip de red local del vhost que usa NAT");
+	"es" => "Dirección ip de red local del vhost que usa NAT");
 
 $txt_cfg_use_javascript = array(
 	"fr" => "Utiliser le javascript :",
 	"en" => "Use javascript:",
 	"it" => "Usa javascript:",
-	"nl" => "TRANSLATE!NL Use javascript:",
-	"ru" => "TRANSLATE!RU Use javascript:",
-	"de" => "Benutze JavaScript:",
+	"nl" => "TRANS Use javascript:",
+	"ru" => "TRANS Use javascript:",
+	"de" => "JavaScript verwenden:",
 	"zh" => "Ê¹ÓÃjavascript:",
 	"es" => "Usar javascript:");
 
@@ -196,7 +196,7 @@ $txt_cfg_use_ssl = array(
 	"it" => "Usa SSL:",
 	"nl" => "TRANS Use SSL",
 	"ru" => "TRANS Use SSL",
-	"de" => "Benutze SSl",
+	"de" => "SSl verwenden",
 	"zh" => "Ê¹ÓÃSSL:",
 	"es" => "Usar SSL:");
 
@@ -206,9 +206,9 @@ $txt_cfg_hide_password = array(
 	"it" => "Parole d'accesso del pellame all'interno di DTC:",
 	"nl" => "De wachtwoorden van de huid binnen DTC:",
 	"ru" => "TRANS Hide passwords within DTC:",
-	"de" => "Fellkennworter innerhalb DTC:",
-	"zh" => "TRANS Hide passwords within DTC:",
-	"es" => "Palabras de paso de la piel dentro de DTC:");
+	"de" => "Passwörter im DTC verstecken:",
+	"zh" => "ÓÃDTCÒþ²ØÃÜÂë£º",
+	"es" => "Ocultar contraseñas dentro de DTC:");
 
 $txt_cfg_use_domain_based_ftp_logins = array(
 	"fr" => "Utiliser des logins ftp @domain.com :",
@@ -216,19 +216,19 @@ $txt_cfg_use_domain_based_ftp_logins = array(
 	"it" => "Usa logins ftp @domain.com:",
 	"nl" => "TRANS Use @domain.com ftp logins:",
 	"ru" => "TRANS Use @domain.com ftp logins:",
-	"de" => "TRANS Use @domain.com ftp logins:",
-	"zh" => "TRANS Use @domain.com ftp logins:",
-	"es" => "TRANS Use @domain.com ftp logins:");
+	"de" => "@domain.com ftp Login verwenden:",
+	"zh" => "Ê¹ÓÃ@domain.com ftpµÇÈë",
+	"es" => "Usar @dominio.com para acceso aftp:");
 
 $txt_cfg_select_type_of_skin = array(
 	"fr" => "Selectionner le type d'abillage :",
 	"en" => "Select the type of skin:",
-	"it" => "TRANS Select the type of skin:",
+	"it" => "Scegli il tipo di tema:",
 	"nl" => "TRANS Select the type of skin:",
 	"ru" => "TRANS Select the type of skin:",
-	"de" => "TRANS Select the type of skin:",
-	"zh" => "TRANS Select the type of skin:",
-	"es" => "TRANS Select the type of skin:");
+	"de" => "Skin wählen:",
+	"zh" => "Ñ¡ÔñÆ¤·ôÀàÐÍ£º",
+	"es" => "Selecciona el tipo de skin:");
 
 $txt_cfg_full_hostname = array(
 	"fr" => "Hostname de l'administrateur DTC :",
@@ -236,9 +236,9 @@ $txt_cfg_full_hostname = array(
 	"it" => "Hostname completo del pannello admin di DTC:",
 	"nl" => "Volledige Hostnaam van de DTC admin panel:",
 	"ru" => "ðÏÌÎÏÅ ÉÍÑ ÈÏÓÔÁ Ó ÁÄÍÉÎÉÓÔÒÁÔÉ×ÎÏÊ ÐÁÎÅÌØÀ DTC",
-	"de" => "Vollständiger Rechnername des DTC",
+	"de" => "Hostname des DTC Administrators",
 	"zh" => "DTC¹ÜÀíÃæ°åµÄÍøÕ¾È«Ãû",
-	"es" => "Nombre completo del hostname del panel de adminitracion de
+	"es" => "Nombre completo del hostname del panel de adminitración de
 DTC:");
 
 $txt_cfg_main_site_ip =array(
@@ -255,9 +255,9 @@ $txt_cfg_site_addrs =array(
 	"fr" => "Adresses IP de votre machine (séparé par des \"|\") :",
 	"en" => "Host IP addresses (separated by \"|\"):",
 	"it" => "Indirizzi IP dell'host (separati da \"|\"):",
-	"nl" => "TRANSHost IP addresses (separated by \"|\"):",
+	"nl" => "TRANS¡¡Host IP addresses (separated by \"|\"):",
 	"ru" => "IP ÁÄÒÅÓÁ ÈÏÓÔÁ (ÒÁÚÄÅÌÅÎÎÙÅ \"|\"):",
-	"de" => "Rechner IP Adressen (Separator \"|\"):",
+	"de" => "IP Adressen des PC (getrennt durch \"|\"):",
 	"zh" => "ËùÓÐµÄIPµØÖ·µÄ·þÎñÆ÷(±» \"|\"Çø·Ö):",
 	"es" => "Direcciones IP del Host (separado por \"|\"):");
 
@@ -267,7 +267,7 @@ $txt_cfg_name_zonefileconf_title =array(
 	"it" => "Zonefiles Named",
 	"nl" => "Named zone-files",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ÚÏÎ äîó",
-	"de" => "Bind Zonendateien",
+	"de" => "Bind Zonendatei",
 	"zh" => "Named zonefilesÅäÖÃ",
 	"es" => "Zonas de Named");
 
@@ -277,9 +277,9 @@ $txt_cfg_main_mx_addr =array(
 	"it" => "Indirizzo del tuo MX server primario :",
 	"nl" => "Hostname van je primaire MX record",
 	"ru" => "áÄÒÅÓ ÷ÁÛÅÇÏ ÏÓÎÏ×ÎÏÇÏ MX-ÓÅÒ×ÅÒÁ",
-	"de" => "Adresse des Haupt Mailservers:",
+	"de" => "Adresse des MX Hauptservers:",
 	"zh" => "ÄúµÄÖ÷ÒªMX·þÎñÆ÷µÄµØÖ·",
-	"es" => "Direccion ip tu tu servidor MX principal :");
+	"es" => "Dirección ip de tu servidor MX principal :");
 
 $txt_cfg_mail_addr_webmaster =array(
 	"fr" => "Adresse email du webmaster :",
@@ -287,9 +287,9 @@ $txt_cfg_mail_addr_webmaster =array(
 	"it" => "Indirizzo Email of tuo webmaster:",
 	"nl" => "Email adres van de webmaster",
 	"ru" => "ðÏÞÔÏ×ÙÊ ÁÄÒÅÓ ÷ÁÛÅÇÏ ×ÅÂÍÁÓÔÅÒÁ:",
-	"de" => "E-Mailadresse des webmasters",
+	"de" => "E-Mailadresse des Webmasters",
 	"zh" => "ÄúµÄÍø¹ÜµÄµç×ÓÓÊÏäµØÖ·",
-	"es" => "Direccion de Correo del webmaster:");
+	"es" => "Dirección de Correo del webmaster:");
 
 $txt_cfg_primary_dns_server_addr =array(
 	"fr" => "Adresse du serveur DNS primaire :",
@@ -297,9 +297,9 @@ $txt_cfg_primary_dns_server_addr =array(
 	"it" => "Indirizzo server DNS primario:",
 	"nl" => "Het primaire DNS serveradres:",
 	"ru" => "ðÅÒ×ÉÞÎÙÊ ÁÄÒÅÓ äîó :",
-	"de" => "Adresse des primären DNS:",
+	"de" => "Adresse des primären DNS Servers:",
 	"zh" => "µÚÒ»¸öÓòÃû·þÎñÆ÷µØÖ·",
-	"es" => "Direccion del servidor Primario de dns:");
+	"es" => "Dirección del servidor Primario de dns:");
 
 $txt_cfg_secondary_dns_server_addr =array(
 	"fr" => "Adresse du serveur DNS secondaire :",
@@ -307,9 +307,9 @@ $txt_cfg_secondary_dns_server_addr =array(
 	"it" => "Indirizzo server DNS secondario:",
 	"nl" => "Secundaire DNS serveradres:",
 	"ru" => "÷ÔÏÒÉÞÎÙÊ ÁÄÒÅÓ äîó :",
-	"de" => "Adresse des sekundären DNS:",
+	"de" => "Adresse des sekundären DNS Servers:",
 	"zh" => "µÚ¶þ¸öÓòÃû·þÎñÆ÷µØÖ·",
-	"es" => "Direccion del servidor Secundario de dns:");
+	"es" => "Dirección del servidor Secundario de dns:");
 
 $txt_cfg_slave_dns_ip =array(
 	"fr" => "Adresse IP du serveur DNS esclave :",
@@ -319,17 +319,17 @@ $txt_cfg_slave_dns_ip =array(
 	"ru" => "áÄÒÅÓ ÐÏÄÞÉÎÅÎÎÏÇÏ äîó-ÓÅÒ×ÅÒÁ:",
 	"de" => "IP Adresse des Slave DNS Servers:",
 	"zh" => "±¸ÓÃÓòÃû·þÎñÆ÷µØÖ·",
-	"es" => "Direccion ip del servidor esclavo de DNS:");
+	"es" => "Dirección ip del servidor esclavo de DNS:");
 
 $txt_cfg_payconf_title = array (
 	"fr" => "Portail de paiment",
 	"en" => "Pay gateway",
-	"it" => "TRANS: Pay gateway",
+	"it" => "Gateway per pagamento",
 	"nl" => "TRANS: Pay gateway",
 	"ru" => "TRANS: Pay gateway",
-	"de" => "TRANS: Pay gateway",
-	"zh" => "TRANS: Pay gateway",
-	"es" => "TRANS: Pay gateway");
+	"de" => "Zahlungsgateway",
+	"zh" => "¸¶¿î·½Ê½",
+	"es" => "Pasarela de pago");
 
 $txt_cfg_path_conf_title =array(
 	"fr" => "Chemins",
@@ -357,7 +357,7 @@ $txt_cfg_dtc_shared_folder =array(
 	"it" => "Filepath della tua directory DTC \"condivisa\":",
 	"nl" => "bestandenpad naar jouw DTC \"shared\" directory:",
 	"ru" => "æÁÊÌÏ×ÙÊ ÐÕÔØ Ë ×ÁÛÅÊ DTC \"ÏÂÝÅÊ\" ÄÉÒÅËÔÏÒÉÉ:",
-	"de" => "Pfad des DTC \"shared\" Verzeichnisses:",
+	"de" => "Pfad des Ordners\"shared\" DTC:",
 	"zh" => "ÄúµÄDTCµÄÂ·¾¶\"shared\"Ä¿Â¼:",
 	"es" => "Directorio de ficheros \"shared\" de DTC:");
 
@@ -367,7 +367,7 @@ $txt_cfg_new_account_defaultpath =array(
 	"it" => "Directory nuovo account di default:",
 	"nl" => "Hoofdpad waaronder je nieuwe accounts worden aangemaakt:",
 	"ru" => "äÉÒÅËÔÏÒÉÑ ÎÏ×ÏÊ ÕÞÅÔÎÏÊ ÚÁÐÉÓÉ ÐÏ ÕÍÏÌÞÁÎÉÀ:",
-	"de" => "Standard Verzeichnis für neue Accounts:",
+	"de" => "Standardpfad für neue Accounts:",
 	"zh" => "ÄúµÄÔ¤ÉèÐÂÕÊ»§Ä¿Â¼",
 	"es" => "Directorio por defecto de tu nueva cuenta:");
 
@@ -388,12 +388,11 @@ van z'n configuratie bestanden voor de daemons.",
 	"ru" => "ðÕÔØ ÇÄÅ DTC ÐÏÚ×ÏÌÉÔ ÇÅÎÅÒÉÒÏ×ÁÔØ ÜÔÉ ËÏÎÆÉÇÕÒÁÃÉÏÎÎÙÅ
 ÆÁÊÌÙ ÄÌÑ ÄÅÍÏÎÏ×. ëÁÖÄÙÊ ÉÚ ÓÌÅÄÕÀÝÉÈ (qmail, apache and named) ÐÕÔÅÊ ÂÕÄÅÔ ÓÏÐÏÓÔÁ×ÉÍ Ó
 ÜÔÉÍ:",
-	"de" => "Pfad wo DTC seine Konfigurationsdatein für alle Daemons
-ablegen soll.",
+	"de" => "Eingeschränkter Pfad zur Speicherung aller Daemon Konfigurationsdateien durch DTC",
 	"zh" => "ÉèÖÃDTC½«Ð´ÏÂÆäÎÄ¼þ(qmail, apache and named)",
-	"es" => "Directorio donde DTC podra generar los ficheros de
-configuracion para los demonios.
-Cada uno de los diretorios (qmail, apache y named) seran enlazados a
+	"es" => "Directorio donde DTC podrá generar los ficheros de
+configuración para los demonios.
+Cada uno de los directorios (qmail, apache y named) serán enlazados a
 este:");
 
 $txt_cfg_apache_file_names =array(
@@ -404,7 +403,7 @@ $txt_cfg_apache_file_names =array(
 	"ru" => "éÍÅÎÁ ÆÁÊÌÏ× Apache",
 	"de" => "Apache Dateinamen",
 	"zh" => "ApacheÎÄ¼þÃû×Ö",
-	"es" => "Configuracion de Apache");
+	"es" => "Configuración de Apache");
 
 $txt_cfg_vhost_file_path =array(
 	"fr" => "Fichier de configuration des Virtual-Host :",
@@ -412,9 +411,9 @@ $txt_cfg_vhost_file_path =array(
 	"it" => "File di configurazione del Virtual host:",
 	"nl" => "Virtual hosting config-file:",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ×ÉÒÔÕÁÌØÎÏÇÏ ÈÏÓÔÁ:",
-	"de" => "Virtual Hosts Konfigurationsdatei:",
+	"de" => "Virtual Host Konfigurationsdatei:",
 	"zh" => "VhostÅäÖÃÎÄ¼þ",
-	"es" => "Fichero de configuracion de los Virtual host:");
+	"es" => "Fichero de configuración de los Virtual host:");
 
 $txt_cfg_phplib_path =array(
 	"fr" => "Librairies PHP (séparés par des \":\") :",
@@ -422,7 +421,7 @@ $txt_cfg_phplib_path =array(
 	"it" => "Librerie PHP (separate da \":\"):",
 	"nl" => "Php libraries (gescheiden met een \":\"):",
 	"ru" => "Php ÂÉÂÌÉÏÔÅËÉ (ÒÁÚÄÅÌÅÎÎÙÅ \":\"):",
-	"de" => "PHP Bibliotheken (Seperator \":\"):",
+	"de" => "PHP Bibliotheken (getrennt durch \":\"):",
 	"zh" => "PhpµÄÎÄ¼þ¼Ð(±»\":\"Çø·Ö):",
 	"es" => "Librerias de Php(separadas por \":\"):");
 
@@ -444,7 +443,7 @@ $txt_cfg_named_filenames_title =array(
 	"ru" => "éÍÅÎÁ ÆÁÊÌÏ× äîó",
 	"de" => "Bind Konfigutationsdateien",
 	"zh" => "NamedÎÄ¼þÃû×Ö",
-	"es" => "Configuracion de Named");
+	"es" => "Configuración de Named");
 
 $txt_cfg_named_main_file =array(
 	"fr" => "Fichier principale :",
@@ -452,7 +451,7 @@ $txt_cfg_named_main_file =array(
 	"it" => "File principale Named:",
 	"nl" => "named hoofdbestand",
 	"ru" => "ãÅÎÔÒÁÌØÎÙÊ ÆÁÊÌ äîó:",
-	"de" => "Master Binddatei:",
+	"de" => "Bind Masterdatei:",
 	"zh" => "NamedÖ÷ÒªÎÄ¼þ:",
 	"es" => "Fichero principal:");
 
@@ -462,7 +461,7 @@ $txt_cfg_named_slave_file =array(
 	"it" => "File slave Named:",
 	"nl" => "Names slave bestanden",
 	"ru" => "ðÏÄÞÉÎÅÎÎÙÊ ÆÁÊÌ äîó:",
-	"de" => "Slave Binddatei:",
+	"de" => "Bind Slavedatei:",
 	"zh" => "Named±¸ÓÃ·þÎñÆ÷ÎÄ¼þ:",
 	"es" => "Fichero de zonas esclavas:");
 
@@ -502,7 +501,7 @@ $txt_cfg_backup_script_filename =array(
 	"it" => "File bash-script Backup:",
 	"nl" => "Backup sh-script file:",
 	"ru" => "óËÒÉÐÔ ÒÅÚÅÒ×ÎÏÇÏ ËÏÐÉÒÏ×ÁÎÉÑ (Bash):",
-	"de" => "Sicherungs-script:",
+	"de" => "Sicherungs-Script:",
 	"zh" => "±¸ÓÃºÍbash³ÌÐòÎÄ¼þÃû×Ö:",
 	"es" => "Nombre del fichero de Backup:");
 
@@ -512,7 +511,7 @@ $txt_cfg_backup_destination_folder =array(
 	"it" => "Directory destinazione Backup:",
 	"nl" => "Standaard backupdirectory:",
 	"ru" => "äÉÒÅËÔÏÒÉÑ ÓÏÚÄÁÎÉÑ ÒÅÚÅÒ×ÎÙÈ ËÏÐÉÊ:",
-	"de" => "Backupverzeichnis",
+	"de" => "Backupzielverzeichnis",
 	"zh" => "±¸ÓÃÄ¿µÄµØÄ¿Â¼:",
 	"es" => "Directorio de destino del Backup:");
 
