@@ -56,4 +56,4 @@ cat sources/uninstall_deamons.sh >>"dtc-"$VERSION"/uninstall.sh"
 echo "===> Packaging files"
 tar -czf "dtc-"$VERSION".tar.gz" "dtc-"$VERSION
 
-echo " -- Succesfully made BSD dtc-"$VERSION".tar.gz ---"
+echo " --- Succesfully made BSD dtc-"$VERSION".tar.gz ---"

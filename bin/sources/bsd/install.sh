@@ -141,9 +141,9 @@ else
 	exit
 fi
 
-echo "Copying DTC's php scripts to /usr/local/share..."
+#echo "Copying DTC's php scripts to /usr/local/share..."
 
-cp -Rf dtc /usr/local/share
+#cp -Rf dtc /usr/local/share
 
 echo "===> Checking BSD type"
 kernel=`uname -a | awk '{print $1}'`;
