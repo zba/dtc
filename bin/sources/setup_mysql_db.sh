@@ -64,14 +64,18 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "==> DTC is now creating it's database:"
 fi
 # Added for MacOS X support with mysql not in the path...
-if [ "$conf_mysql_cli_path" = "" ] ;then
-	conf_mysql_cli_path = "mysql";
+if [ ""$conf_mysql_cli_path = "" ] ;then
+	echo "mysql_cli_path is not set"
+	conf_mysql_cli_path="mysql";
 fi
 if [ "$conf_mysql_pass" = "" ];
 then
-        MYSQL="mysql"
+	echo "Setting up mysql cli "$conf_mysql_cli_path" without password"
+        MYSQL=""$conf_mysql_cli_path
 else
-	MYSQL="mysql -p${conf_mysql_pass}"
+	echo "Setting up mysql cli with password"
+#	MYSQL=""$conf_mysql_cli_path "-p"$conf_mysql_pass
+	MYSQL=$conf_mysql_cli_path" -p${conf_mysql_pass}"
 fi
 
 

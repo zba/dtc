@@ -63,21 +63,22 @@ then
         php4 backup_db.php $conf_dbpass
         cd $curdir
 fi
-cp sources/dtc_db.php sources/restor_db.php debian/usr/share/dtc/admin
+cp sources/dtc_db.php sources/restor_db.php dtc/admin
 
-chown -R root:root dtc
+chown -R root:0 dtc
 chown nobody:nogroup dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx dtc/email/gfx
 
 # Specific Mac OS X package actions :
-mkdir "dtc_"$VERSION"_all"
 mv dtc $FOLDER
 cp sources/osx/install.sh $FOLDER
 cat sources/create_chroot.sh >>$FOLDER"/install.sh"
 cat sources/setup_mysql_db.sh >>$FOLDER"/install.sh"
 cat sources/configure_deamons.sh >>$FOLDER"/install.sh"
+chmod +x $FOLDER"/install.sh"
 
 cp sources/osx/uninstall.sh $FOLDER
 cat sources/uninstall_deamons.sh >>$FOLDER"/uninstall.sh"
+chmod +x $FOLDER"/uninstall.sh"
 echo "===> Packaging"
 tar -czf $ARCHIVE $FOLDER
 

@@ -91,11 +91,11 @@ fi
 
 echo ""
 echo "Where will you keep your files for hosting ?"
-echo -n "Hosting path [/var/www/sites]: "
+echo -n "Hosting path [/Library/WebServer/Documents]: "
 read conf_hosting_path
 if [ "$conf_hosting_path" = "" ];
 then
-	conf_hosting_path="/var/www/sites"
+	conf_hosting_path="/Library/WebServer/Documents"
 fi
 
 echo ""
@@ -105,11 +105,11 @@ echo "environment? Please note that DTC will do hardlinks"
 echo "to that directory, so the chroot path should be in"
 echo "the same logical device as the path for hosted"
 echo "domains files."
-echo -n "Chroot path [/var/www/chroot]: "
+echo -n "Chroot path [/Library/WebServer/chroot]: "
 read conf_chroot_path
 if [ "$conf_chroot_path" = "" ];
 then
-	conf_chroot_path="/var/www/chroot"
+	conf_chroot_path="/Library/WebServer/chroot"
 fi
 
 
@@ -237,9 +237,10 @@ fi
 
 echo "Copying DTC's php scripts to /usr/share..."
 
-cp -rf dtc /usr/share
-
+mkdir -p /usr/share/dtc
+cp -rf admin doc etc shared client email /usr/share/dtc
+cp -f install.sh /usr/sbin/dtc-install.sh
+cp -f uninstall.sh /usr/sbin/dtc-uninstall.sh
+chmod +x /usr/sbin/dtc-install.sh /usr/sbin/dtc-uninstall.sh
 
 conf_mysql_cli_path=/usr/local/mysql/bin/mysql
-
-

@@ -19,8 +19,13 @@
 # assign our variables
 CHROOT_DIR=$conf_chroot_path
 WEB_USER=nobody
+
+if [ $CHROOT_DIR"" = "" ] ; then
+	CHROOT_DIR=/var/www/chroot
+fi
+
 if [ $UNIX_TYPE"" = "freebsd" ] ; then
-	WEB_GROUP=nogroup
+	WEB_GROUP=nobody
 else
 	WEB_GROUP=nogroup
 fi
@@ -43,7 +48,7 @@ mkdir -p usr/bin usr/lib usr/libexec usr/share usr/lib/zoneinfo
 # make devices - adjust MAJOR/MINOR as appropriate ( see ls -l /dev/* )
 if ! [ -e dev/null ]
 then
-	if [ $UNIX_TYPE"" = "freebsd" ];
+	if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ];
 	then
 		mknod dev/null    c  2 2   # FreeBSD?
 	else
@@ -51,7 +56,7 @@ then
 	fi
 fi
 
-if [ $UNIX_TYPE"" = "freebsd" ] ; then
+if [ $UNIX_TYPE"" = "freebsd"  -o $UNIX_TYPE"" = "osx" ] ; then
 	if [ $kernel"" = "OpenBSD" ] ; then
 		if ! [ -e dev/urandom ] ; then
 			mknod dev/urandom c 45 2   # OpenBSD ?
@@ -74,8 +79,7 @@ else
 fi
 
 # some external programs may need these:
-
-if [ $UNIX_TYPE"" = "freebsd" ] ; then
+if [ $UNIX_TYPE"" = "freebsd"  -o $UNIX_TYPE"" = "osx" ] ; then
 	if ! [ -e dev/stdin ] ; then
 		mknod dev/stdin   c 22 0   # FreeBSD, OpenBSD
 	fi
@@ -90,7 +94,7 @@ fi
 # copy required binaries to $CHROOT_DIR/usr/bin and $CHROOT_DIR/bin
 cp -pf /usr/bin/file /usr/bin/bzip2 usr/bin/
 
-if [ $UNIX_TYPE"" = "freebsd" ] ; then
+if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
 	cp -pf /usr/bin/gunzip /usr/bin/false /usr/bin/su bin/
 else
@@ -102,7 +106,9 @@ fi
 cp -pf /bin/sh /bin/echo /bin/ls /bin/pwd /bin/cat bin/
 
 # copy ldconfig from sbin to $CHROOT_DIR/sbin
-cp -pf /sbin/ldconfig sbin/
+if ! [ $UNIX_TYPE"" = "osx" ] ; then
+	cp -pf /sbin/ldconfig sbin/
+fi
 
 # copy needed /etc files to $CHROOT_DIR/etc
 cp -pf /etc/protocols /etc/services /etc/hosts \
@@ -116,7 +122,7 @@ if [ -e /etc/nsswitch.conf ] ; then
 	cp -pf /etc/nsswitch.conf etc/
 fi
 
-if ! [ $UNIX_TYPE"" = "freebsd" ] ; then
+if [ -e /etc/localtime ] ; then
 	cp -pf /etc/localtime etc/
 fi
 
@@ -125,25 +131,27 @@ fi
 #
 #FreeBSD: 
 #for j in \
-if [ $UNIX_TYPE"" = "freebsd" ] 
-then
+if [ $UNIX_TYPE"" = "freebsd"  ] ; then
 	cp -pf /usr/lib/libc.so* /usr/lib/libm.so* \
 	  /usr/lib/libstdc\+\+.so* /usr/lib/libz.so.2 usr/lib/
-#	echo test1
-#	cp -pf /usr/libexec/ld-elf.so* usr/libexec/
-#	echo test2
 else
-	#Linux:
-	cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
-	  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
-	  /lib/libncurses.so.5 /usr/lib/libz.so.1 \
-	  /lib/librt.so.1 \
-	  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
-	if [ -e /usr/lib/libmagic.so.1 ]
-	then
-		cp -pf /usr/lib/libmagic.so.1 lib/
+	if ! [ $UNIX_TYPE"" = "osx"  ] ; then
+		cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
+		  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
+		  /lib/libncurses.so.5 /usr/lib/libz.so.1 \
+		  /lib/librt.so.1 \
+		  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+		if [ -e /usr/lib/libmagic.so.1 ]
+		then
+			cp -pf /usr/lib/libmagic.so.1 lib/
+		fi
+	else
+		cp -pf /usr/lib/libdl.dylib /usr/lib/libpam.dylib \
+		  /usr/lib/libz.dylib /usr/lib/libncurses.dylib \
+		  /usr/lib/libcrypto.dylib /usr/lib/libc.dylib \
+		  /usr/lib/libpthread.dylib /usr/lib/libm.dylib \
+		  /usr/lib/libpam_misc.dylib usr/lib
 	fi
-	#ln lib/ld-2.3.2.so lib/ld-linux.so.2
 fi
 
 # magic files needed by file(1). Different versions and installations
@@ -166,7 +174,9 @@ chmod 644 dev/*random
 #now need to copy over the perl binary and some modules
 cp -pf /usr/bin/perl usr/bin/
 
-# now create our ld.so cache
-chroot $CHROOT_DIR ./sbin/ldconfig 
-# just in case we have wiped our /etc/ld.so.cache (run locally)
-/sbin/ldconfig
+if ! [ $UNIX_TYPE"" = "osx" ] ;then
+	# now create our ld.so cache
+	chroot $CHROOT_DIR ./sbin/ldconfig 
+	# just in case we have wiped our /etc/ld.so.cache (run locally)
+	/sbin/ldconfig
+fi
