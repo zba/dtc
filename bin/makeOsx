@@ -72,6 +72,8 @@ chown nobody:nogroup dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/clien
 # Specific Mac OS X package actions :
 mkdir -p $FOLDER/usr/share
 mv dtc $FOLDER/usr/share
+mkdir -p $FOLDER/Crypt
+cp sources/osx/Crypt/CBC.php sources/osx/Crypt/HCEMD5.php $FOLDER/Crypt
 cp sources/osx/install.sh $FOLDER
 cat sources/create_chroot.sh >>$FOLDER"/install.sh"
 cat sources/setup_mysql_db.sh >>$FOLDER"/install.sh"

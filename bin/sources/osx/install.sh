@@ -215,6 +215,16 @@ cp -rf usr /
 cp -f install.sh /usr/sbin/dtc-install.sh
 cp -f uninstall.sh /usr/sbin/dtc-uninstall.sh
 chmod +x /usr/sbin/dtc-install.sh /usr/sbin/dtc-uninstall.sh
+
+# Mac OS X does not have php4 Crypt CBC as default, like other >= 4.3 php distributions
+if ! [ -e /usr/lib/php/Crypt ] ; then
+	cp -r Crypt /usr/lib/php;
+fi
+
 echo "done!"
 
+# This might help if you want to use the mysql4 provided by fink
+# Since standard Mac OS X 10.0.3.7 server that I have here uses mysql 3 within
+# php and that mysql comes as default on Mac OS X Server, I leave the standard one
+# otherwise you will have to recompile php with mysql4 support.
 #conf_mysql_cli_path=/usr/local/mysql/bin/mysql
