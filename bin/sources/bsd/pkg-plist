@@ -1,0 +1,298 @@
+share/dtc/admin/tables/smtp_logs.sql
+share/dtc/admin/tables/clients.sql
+share/dtc/admin/tables/commande.sql
+share/dtc/admin/tables/config.sql
+share/dtc/admin/tables/cron_job.sql
+share/dtc/admin/tables/domain.sql
+share/dtc/admin/tables/ftp_access.sql
+share/dtc/admin/tables/groups.sql
+share/dtc/admin/tables/pop_access.sql
+share/dtc/admin/tables/subdomain.sql
+share/dtc/admin/tables/ftp_logs.sql
+share/dtc/admin/tables/handle.sql
+share/dtc/admin/tables/nameservers.sql
+share/dtc/admin/tables/product.sql
+share/dtc/admin/tables/whois.sql
+share/dtc/admin/tables/ftp_accounting.sql
+share/dtc/admin/tables/http_accounting.sql
+share/dtc/admin/tables/paiement.sql
+share/dtc/admin/tables/email_accouting.sql
+share/dtc/admin/tables/admin.sql
+share/dtc/admin/dtcrm/main.php
+share/dtc/admin/dtcrm/submit_to_sql.php
+share/dtc/admin/genfiles/gen_perso_vhost.php
+share/dtc/admin/genfiles/gen_email_account.php
+share/dtc/admin/genfiles/gen_named_files.php
+share/dtc/admin/genfiles/gen_backup_script.php
+share/dtc/admin/genfiles/gen_pro_vhost.php
+share/dtc/admin/genfiles/gen_webalizer_stat.php
+share/dtc/admin/genfiles/genfiles.php
+share/dtc/admin/inc/submit_root_querys.php
+share/dtc/admin/inc/dns.png
+share/dtc/admin/inc/draw_user_admin.php
+share/dtc/admin/inc/dtc_config.php
+share/dtc/admin/inc/dtc_config_strings.php
+share/dtc/admin/inc/domain.png
+share/dtc/admin/inc/floppy.png
+share/dtc/admin/inc/folder.png
+share/dtc/admin/inc/help.png
+share/dtc/admin/inc/home.png
+share/dtc/admin/inc/mail.png
+share/dtc/admin/inc/man.png
+share/dtc/admin/inc/stat.png
+share/dtc/admin/inc/tool.png
+share/dtc/admin/inc/tst_icon.png
+share/dtc/admin/inc/img.php
+share/dtc/admin/inc/nav.php
+share/dtc/admin/inc/database.png
+share/dtc/admin/deamons_state.php
+share/dtc/admin/deamons_state_strings.php
+share/dtc/admin/index.php
+share/dtc/admin/imgcache
+share/dtc/admin/gfx
+share/dtc/admin/favicon.ico
+share/dtc/admin/.htaccess
+share/dtc/admin/404.php
+share/dtc/admin/cron.php
+share/dtc/client/inc/tst_icon.png
+share/dtc/client/inc/img.php
+share/dtc/client/inc/domain.png
+share/dtc/client/inc/dns.png
+share/dtc/client/inc/floppy.png
+share/dtc/client/inc/folder.png
+share/dtc/client/inc/help.png
+share/dtc/client/inc/home.png
+share/dtc/client/inc/mail.png
+share/dtc/client/inc/man.png
+share/dtc/client/inc/stat.png
+share/dtc/client/inc/tool.png
+share/dtc/client/inc/database.png
+share/dtc/client/dynip.php
+share/dtc/client/img2.php
+share/dtc/client/imgcache
+share/dtc/client/index.php
+share/dtc/client/secpaycallback_worldpay.php
+share/dtc/client/favicon.ico
+share/dtc/shared/gfx/bar/middle_n.png
+share/dtc/shared/gfx/bar/end.png
+share/dtc/shared/gfx/bar/middle_s.png
+share/dtc/shared/gfx/bar/start.png
+share/dtc/shared/gfx/dtc/reinit_named.gif
+share/dtc/shared/gfx/dtc/generate_backup.gif
+share/dtc/shared/gfx/dtc/generate_mail.gif
+share/dtc/shared/gfx/dtc/generate_named.gif
+share/dtc/shared/gfx/dtc/generate_stats.gif
+share/dtc/shared/gfx/dtc/generate_web.gif
+share/dtc/shared/gfx/dtc/generate_web2.gif
+share/dtc/shared/gfx/dtc/all_scripts.gif
+share/dtc/shared/gfx/language/en/pub/banner_alight.gif
+share/dtc/shared/gfx/language/en/button_en.gif
+share/dtc/shared/gfx/language/fr/pub/banner_alight.gif
+share/dtc/shared/gfx/language/fr/button_fr.gif
+share/dtc/shared/gfx/language/nl/pub/banner_alight.gif
+share/dtc/shared/gfx/language/nl/button_en.gif
+share/dtc/shared/gfx/language/ru/pub/banner_alight.gif
+share/dtc/shared/gfx/language/ru/button_en.gif
+share/dtc/shared/gfx/language/ru.gif
+share/dtc/shared/gfx/language/de.gif
+share/dtc/shared/gfx/language/dtc.gif
+share/dtc/shared/gfx/language/en.gif
+share/dtc/shared/gfx/language/fr.gif
+share/dtc/shared/gfx/language/nl.gif
+share/dtc/shared/gfx/menu/config.gif
+share/dtc/shared/gfx/menu/recycle.gif
+share/dtc/shared/gfx/menu/users.gif
+share/dtc/shared/gfx/skin/notitle/darkblue/skin.php
+share/dtc/shared/gfx/skin/notitle/darkblue/border_1.gif
+share/dtc/shared/gfx/skin/notitle/darkblue/border_2.gif
+share/dtc/shared/gfx/skin/notitle/darkblue/border_3.gif
+share/dtc/shared/gfx/skin/notitle/darkblue/border_4.gif
+share/dtc/shared/gfx/skin/notitle/darkblue/corner_1.gif
+share/dtc/shared/gfx/skin/notitle/darkblue/corner_2.gif
+share/dtc/shared/gfx/skin/notitle/darkblue/corner_3.gif
+share/dtc/shared/gfx/skin/notitle/darkblue/corner_4.gif
+share/dtc/shared/gfx/skin/notitle/darkblue/skin.css
+share/dtc/shared/gfx/skin/notitle/darkblue/background.gif
+share/dtc/shared/gfx/skin/simple/green/skin.php
+share/dtc/shared/gfx/skin/simple/green/border_1.gif
+share/dtc/shared/gfx/skin/simple/green/border_2.gif
+share/dtc/shared/gfx/skin/simple/green/border_3.gif
+share/dtc/shared/gfx/skin/simple/green/border_4.gif
+share/dtc/shared/gfx/skin/simple/green/corner_1.gif
+share/dtc/shared/gfx/skin/simple/green/corner_2.gif
+share/dtc/shared/gfx/skin/simple/green/corner_3.gif
+share/dtc/shared/gfx/skin/simple/green/corner_4.gif
+share/dtc/shared/gfx/skin/simple/green/skin.css
+share/dtc/shared/gfx/skin/simple/green/background.gif
+share/dtc/shared/gfx/skin/simple/green2/skin.php
+share/dtc/shared/gfx/skin/simple/green2/border_1.gif
+share/dtc/shared/gfx/skin/simple/green2/border_2.gif
+share/dtc/shared/gfx/skin/simple/green2/border_3.gif
+share/dtc/shared/gfx/skin/simple/green2/border_4.gif
+share/dtc/shared/gfx/skin/simple/green2/corner_1.gif
+share/dtc/shared/gfx/skin/simple/green2/corner_2.gif
+share/dtc/shared/gfx/skin/simple/green2/corner_3.gif
+share/dtc/shared/gfx/skin/simple/green2/corner_4.gif
+share/dtc/shared/gfx/skin/simple/green2/skin.css
+share/dtc/shared/gfx/skin/simple/green2/background.gif
+share/dtc/shared/gfx/securepay/poweredByWorldPay.gif
+share/dtc/shared/gfx/dtc.css
+share/dtc/shared/gfx/dtc_logo_small.gif
+share/dtc/shared/gfx/dtc_logo.gif
+share/dtc/shared/inc/dbconect.php
+share/dtc/shared/inc/draw.php
+share/dtc/shared/inc/fetch.php
+share/dtc/shared/inc/submit_to_sql.php
+share/dtc/shared/inc/accounting.php
+share/dtc/shared/dtcrm/srs/openSRS.php
+share/dtc/shared/dtcrm/srs/OPS.php
+share/dtc/shared/dtcrm/srs/country_codes.php
+share/dtc/shared/dtcrm/srs/openSRS_base.php
+share/dtc/shared/dtcrm/srs/ops.dtd
+share/dtc/shared/dtcrm/srs/readme
+share/dtc/shared/dtcrm/srs/test.php
+share/dtc/shared/dtcrm/srs/test.xml
+share/dtc/shared/dtcrm/srs/todo
+share/dtc/shared/dtcrm/srs/CHANGELOG
+share/dtc/shared/dtcrm/submit_to_sql.php
+share/dtc/shared/dtcrm/registry_calls.php
+share/dtc/shared/dtcrm/srs_base.php
+share/dtc/shared/dtcrm/srs_nameserver.php
+share/dtc/shared/dtcrm/srs_registernames.php
+share/dtc/shared/dtcrm/opensrs.php
+share/dtc/shared/dtcrm/todo
+share/dtc/shared/dtcrm/draw_handle.php
+share/dtc/shared/dtcrm/RENAME_ME_srs_config.php
+share/dtc/shared/dtcrm/draw_nameservers.php
+share/dtc/shared/dtcrm/draw_register_forms.php
+share/dtc/shared/dtcrm/draw_whois.php
+share/dtc/shared/dtcrm/draw_adddomain.php
+share/dtc/shared/dtcrm/draw.php
+share/dtc/shared/dtcrm/draw_transferdomain.php
+share/dtc/shared/drawlib/anotherDtc.php
+share/dtc/shared/drawlib/cc_code_popup.php
+share/dtc/shared/drawlib/dtc_functions.php
+share/dtc/shared/drawlib/skin.php
+share/dtc/shared/drawlib/skinLib.php
+share/dtc/shared/drawlib/tree_menu.php
+share/dtc/shared/template/index.php
+share/dtc/shared/vars/global_vars.php
+share/dtc/shared/vars/lang.php
+share/dtc/shared/vars/strings.php
+share/dtc/shared/vars/table_names.php
+share/dtc/shared/securepay/paiement.php
+share/dtc/shared/securepay/paypal.php
+share/dtc/shared/securepay/worldpay.php
+share/dtc/shared/securepay/pay_functions.php
+share/dtc/shared/securepay/RENAME_ME_paiement_config.php
+share/dtc/shared/dtc_lib.php
+share/dtc/shared/autoSQLconfig.php
+share/dtc/shared/.htaccess
+share/dtc/shared/upgrade_sql.php
+share/dtc/shared/dtc_version.php
+share/dtc/shared/mysql_config.php
+share/dtc/doc/html/en/page_top.html
+share/dtc/doc/html/en/1.html
+share/dtc/doc/html/en/2.html
+share/dtc/doc/html/en/3.html
+share/dtc/doc/html/en/4.html
+share/dtc/doc/html/en/5.html
+share/dtc/doc/html/en/clientconfig.png
+share/dtc/doc/html/en/conffilegen.png
+share/dtc/doc/html/en/confprinc.png
+share/dtc/doc/html/en/confzone.png
+share/dtc/doc/html/en/doc.css
+share/dtc/doc/html/en/domainconf.png
+share/dtc/doc/html/en/dtc.png
+share/dtc/doc/html/en/dtc_logo.gif
+share/dtc/doc/html/en/ftps.png
+share/dtc/doc/html/en/index.html
+share/dtc/doc/html/en/index.php
+share/dtc/doc/html/en/mailboxs.png
+share/dtc/doc/html/en/menudtc.png
+share/dtc/doc/html/en/newadmin.png
+share/dtc/doc/html/en/addzone.png
+share/dtc/doc/html/fr/page_top.html
+share/dtc/doc/html/fr/1.html
+share/dtc/doc/html/fr/2.html
+share/dtc/doc/html/fr/3.html
+share/dtc/doc/html/fr/4.html
+share/dtc/doc/html/fr/5.html
+share/dtc/doc/html/fr/clientconfig.png
+share/dtc/doc/html/fr/conffilegen.png
+share/dtc/doc/html/fr/confprinc.png
+share/dtc/doc/html/fr/confzone.png
+share/dtc/doc/html/fr/doc.css
+share/dtc/doc/html/fr/domainconf.png
+share/dtc/doc/html/fr/dtc.png
+share/dtc/doc/html/fr/dtc_logo.gif
+share/dtc/doc/html/fr/ftps.png
+share/dtc/doc/html/fr/index.html
+share/dtc/doc/html/fr/index.php
+share/dtc/doc/html/fr/mailboxs.png
+share/dtc/doc/html/fr/menudtc.png
+share/dtc/doc/html/fr/newadmin.png
+share/dtc/doc/html/fr/addzone.png
+share/dtc/doc/bind_conf/etc/bind/db.1.2.3.4
+share/dtc/doc/bind_conf/etc/bind/db.0
+share/dtc/doc/bind_conf/etc/bind/db.local
+share/dtc/doc/bind_conf/etc/bind/db.127
+share/dtc/doc/bind_conf/etc/bind/db.255
+share/dtc/doc/bind_conf/etc/bind/db.root
+share/dtc/doc/bind_conf/etc/named.conf
+share/dtc/doc/bind_conf/db.root
+share/dtc/doc/daemonconf_howto/ftp_http_logging_to_mysql
+share/dtc/doc/daemonconf_howto/my_init.d_qmail.startup.script
+share/dtc/doc/daemonconf_howto/qmail_anti_spam_measures
+share/dtc/doc/changelog.Debian
+share/dtc/doc/copyright
+share/dtc/doc/todo
+share/dtc/doc/changelog
+share/dtc/doc/upgrade_sql_from_beta.sql
+share/dtc/doc/INSTALL
+share/dtc/doc/LICENSE
+@dirrm share/dtc/admin/genfiles
+@dirrm share/dtc/admin/inc
+@dirrm share/dtc/admin/tables
+@dirrm share/dtc/admin/dtcrm
+@dirrm share/dtc/admin
+@dirrm share/dtc/client/inc
+@dirrm share/dtc/client/gfx
+@dirrm share/dtc/client
+@dirrm share/dtc/shared/drawlib
+@dirrm share/dtc/shared/vars
+@dirrm share/dtc/shared/template
+@dirrm share/dtc/shared/securepay
+@dirrm share/dtc/shared/inc
+@dirrm share/dtc/shared/dtcrm/srs
+@dirrm share/dtc/shared/dtcrm
+@dirrm share/dtc/shared/gfx/menu
+@dirrm share/dtc/shared/gfx/skin/notitle/darkblue
+@dirrm share/dtc/shared/gfx/skin/notitle
+@dirrm share/dtc/shared/gfx/skin/simple/green
+@dirrm share/dtc/shared/gfx/skin/simple/green2
+@dirrm share/dtc/shared/gfx/skin/simple
+@dirrm share/dtc/shared/gfx/skin
+@dirrm share/dtc/shared/gfx/bar
+@dirrm share/dtc/shared/gfx/dtc
+@dirrm share/dtc/shared/gfx/securepay
+@dirrm share/dtc/shared/gfx/language/en/pub
+@dirrm share/dtc/shared/gfx/language/en
+@dirrm share/dtc/shared/gfx/language/nl/pub
+@dirrm share/dtc/shared/gfx/language/nl
+@dirrm share/dtc/shared/gfx/language/fr/pub
+@dirrm share/dtc/shared/gfx/language/fr
+@dirrm share/dtc/shared/gfx/language/ru/pub
+@dirrm share/dtc/shared/gfx/language/ru
+@dirrm share/dtc/shared/gfx/usermenu
+@dirrm share/dtc/shared/gfx/language
+@dirrm share/dtc/shared/gfx
+@dirrm share/dtc/shared
+@dirrm share/dtc/doc/bind_conf/etc/bind
+@dirrm share/dtc/doc/bind_conf/etc
+@dirrm share/dtc/doc/bind_conf
+@dirrm share/dtc/doc/daemonconf_howto
+@dirrm share/dtc/doc/html/en
+@dirrm share/dtc/doc/html/fr
+@dirrm share/dtc/doc/html 
+@dirrm share/dtc/doc
