@@ -310,9 +310,9 @@ fi
 if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
 	if [ ! -e "$PATH_DTC_ETC/template" ]; then
 		cp -r $PATH_DTC_SHARED/shared/template $PATH_DTC_ETC
-		chown -R nobody:65534 $PATH_DTC_ETC/template
-		chmod -R 664 $PATH_DTC_ETC/template
 	fi
+	chown -R nobody:65534 $PATH_DTC_ETC/template
+	chmod -R 775 $PATH_DTC_ETC/template
 fi
 
 # copy the 404 index.php file if none is found.

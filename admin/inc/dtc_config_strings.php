@@ -87,7 +87,7 @@ $txt_cfg_paypal_ratefee = array(
 	"nl" => "TRANS PayPal fee rate: ",
 	"ru" => "TRANS PayPal fee rate: ",
 	"de" => "PayPal Kommissionen: ",
-	"zh" => "TRANS PayPal 纯费用％: ",
+	"zh" => "PayPal 纯费用％: ",
 	"es" => "Porcentaje de comisi髇 de Paypal: ");
 
 $txt_cfg_paypal_flatfee = array(
@@ -97,7 +97,7 @@ $txt_cfg_paypal_flatfee = array(
 	"nl" => "TRANS PayPal flat rate: ",
 	"ru" => "TRANS PayPal flat rate: ",
 	"de" => "PayPal Festpreis: ",
-	"zh" => "TRANS PayPal 总费用％: ",
+	"zh" => "PayPal 总费用％: ",
 	"es" => "Comisi髇 fija de Paypal: ");
 
 $txt_cfg_new_chroot_path_path = array(
