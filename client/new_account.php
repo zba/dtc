@@ -40,9 +40,10 @@ if($_REQUEST["action"] == "return_from_pay"){
 			}
 			$product = mysql_fetch_array($r);
 			$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"],"yes");
+			$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='".$reguser["id"]."';";
+			$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=".$reguser["id"];
 			$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"],$return_url);
-			// paypalButton("00".$reguser["id"],$product["price_dollar"],$product["name"]);
 			$form = $reguser["mesg"]."<br><h4>Registration successfull!</h4>
 Please now click on the following button to go for paiment:<br>
 <br>$paybutton";
