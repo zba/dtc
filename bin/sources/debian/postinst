@@ -94,30 +94,4 @@ then
 	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=('"$conf_mysqlpass"') WHERE User='root'; FLUSH PRIVILEGES;"
 fi
 
-# Configurating apache
-if grep "User nobody" /etc/apache/httpd.conf
-then
-	echo "Skiping httpd.conf configuration"
-else
-	echo "===> Configurating httpd.conf"
-	grep -v "User www-user" /etc/apache/httpd.conf >/tmp/httpd.conf_DTC
-	grep -v "Group www-group" /tmp/httpd.conf_DTC >/tmp/httpd.conf_DTC2
-	cat </tmp/httpd.conf_DTC2 >/etc/apache/httpd.conf
-	rm /tmp/httpd.conf_DTC /tmp/httpd.conf_DTC2
-	echo "# DTC HTTPD Config start
-User nobody
-Group nogroup
-Listen 80
-Listen 443
-LoadModule php4_module /usr/lib/apache/1.3/libphp4.so
-LoadModule ssl_module /usr/lib/apache/1.3/mod_ssl.so
-
-LogSQLLoginInfo localhost "$conf_mysql_login" "$conf_mysql_pass"
-LogSQLSocketFile /var/run/mysqld/mysqld.sock
-LogSQLDatabase apachelogs
-LogSQLCreateTables On
-LogSQLTransferLogFormat IAbhRrSsU
-# DTC HTTPD Config end" >>/etc/apache/httpd.conf
-fi
-
 # Upon this line, here is the standard DTC install script :

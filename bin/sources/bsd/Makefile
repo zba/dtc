@@ -7,7 +7,7 @@ RUN_DEPENDS=	${LOCALBASE}/sbin/httpd:${PORTSDIR}/www/apache13 \
 		${LOCALBASE}/bin/php:${PORTSDIR}/lang/php4:WITH_GD=yes  \
 		${LOCALBASE}/bin/php:${PORTSDIR}/lang/php4:install \
                 ${LOCALBASE}/share/pear/System.php:${PORTSDIR}/devel/pear-PEAR \
-		${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql323-server \
+		${LOCALBASE}/libexec/mysqld:${MYSQL_SERVER} \
 		${LOCALBASE}/libexec/proftpd:${PORTSDIR}/ftp/proftpd:WITH_MYSQL=yes \
 		${LOCALBASE}/libexec/proftpd:${PORTSDIR}/ftp/proftpd:install \
 		${LOCALBASE}/libexec/apache/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql \
