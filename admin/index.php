@@ -33,7 +33,7 @@ $anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 if($_REQUEST["rub"] != "" && isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "user"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=user\">";
 }
-$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/users.gif\"><br>".
+$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/admins.png\"><br>".
 	$txt_mainmenu_title_useradmin[$lang];
 if($_REQUEST["rub"] == "" || !isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "user"){
 	$menu .= "</a>";
@@ -78,7 +78,7 @@ if(file_exists("dtcrm")){
 if($_REQUEST["rub"] != "generate"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate\">";
 }
-$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/recycle.gif\"><br>".
+$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/daemons.png\"><br>".
 	$txt_mainmenu_title_deamonfile_generation[$lang];
 if($_REQUEST["rub"] != "generate"){
 	$menu .= "</a>";
@@ -90,7 +90,7 @@ $menu = "";
 if($_REQUEST["rub"] != "config"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
 }
-$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/config.gif\"><br>".
+$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/config_panel.png\"><br>".
 	$txt_mainmenu_title_dtc_config[$lang];
 if($_REQUEST["rub"] != "config"){
 	$menu .= "</a>";
