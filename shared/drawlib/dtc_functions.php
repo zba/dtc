@@ -1,5 +1,16 @@
 <?php
 
+function getRandomValue(){
+	// seed with microseconds
+	list($usec, $sec) = explode(' ', microtime());
+	$seed = (float) $sec + ((float) $usec * 100000);
+	// Randomise
+	mt_srand($seed);
+	// And get a value
+	$rand = mt_rand(0,999999999);
+	return $rand;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 // Verify that someone is not trying to modify another account (nasty hacker !!!) //
 // Fetch the admin real path stored in the database
@@ -9,9 +20,10 @@ function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_domain_table;
 
+	if(strlen($adm_pass) > 16){
+	}
 
-
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1)      die("User or password is incorrect !");

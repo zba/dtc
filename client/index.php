@@ -3,7 +3,7 @@
 require_once("../shared/autoSQLconfig.php");
 // All shared files between DTCadmin and DTCclient
 require_once("$dtcshared_path/dtc_lib.php");
-
+require_once("login.php");
 
 ////////////////////////////////////
 // Create the top banner and menu //
@@ -12,53 +12,28 @@ $anotherTopBanner = anotherTopBanner("DTC");
 $anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 
 $anotherLanguageSelection = anotherLanguageSelection();
-$language_selection_skined = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
+$lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
 if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass)){
 	// Fetch all the user informations, Print a nice error message if failure.
 	$admin = fetchAdmin($adm_login,$adm_pass);
 	if(($error = $admin["err"]) != 0){
 		$mesg = $admin["mesg"];
-		echo "<font color=\"red\" Wrong login or password !</font><br>";
-		die("Error $error fetching admin : $mesg <a href=\"?\">try again</a>");
+		$login_txt = "<font color=\"red\" Wrong login or password !</font><br>";
+		$login_txt .= "Error $error fetching admin : $mesg";
+		$login_txt .= login_form();
+		$login_skined = skin($conf_skin,$login_txt,$txt_login_title[$lang]);
+		$mypage = layout_login_and_languages($login_skined,$lang_sel);
+	}else{
+		// Draw the html forms
+		$HTML_admin_edit_data .= drawAdminTools($admin);
+
+		$mypage = $HTML_admin_edit_data;
 	}
-
-	// Draw the html forms
-	$HTML_admin_edit_data .= drawAdminTools($admin);
-
-	$mypage = $HTML_admin_edit_data;
-
 }else{
-	$HTML_admin_edit_data = "<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
-<table><tr><td align=\"right\">
-	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"adm_login\" value=\"\">
-</td></tr><tr><td align=\"right\">
-	".$txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"adm_pass\" value=\"\">
-</td></tr><tr><td align=\"right\">
-	$txt_use_text_menu[$lang]</td><td><input type=\"checkbox\" name=\"use_text_menu\" value=\"yes\">
-</td></tr><tr><td>
-	</td><td><input type=\"submit\" name=\"Login\" value=\"login\">
-</tr></td></table>
-	</form>";
-
-$login_skined = skin($conf_skin,$HTML_admin_edit_data,$txt_login_title[$lang]);
-
-$mypage = "
-<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" height=\"100%\">
-<tr>
-<td width=\"1\" height=\"1\">
-$language_selection_skined
-</td>
-<td width=\"100%\">
-</td>
-</tr>
-<tr>
-<td colspan=\"2\">
-$login_skined
-</td>
-</tr>
-</table>";
-
+	$login_txt = login_form();
+	$login_skined = skin($conf_skin,$login_txt,$txt_login_title[$lang]);
+	$mypage = layout_login_and_languages($login_skined,$lang_sel);
 }
 // Output the result !
 

@@ -17,6 +17,8 @@ if(file_exists("dtcrm")){
 	include("dtcrm/main.php");
 }
 
+$DONOT_USE_ROTATING_PASS=yes;
+
 ////////////////////////////////////
 // Create the top banner and menu //
 ////////////////////////////////////

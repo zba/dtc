@@ -183,26 +183,56 @@ function fetchAdminStats($admin){
 	return $ret;
 }
 
-function fetchAdminData($adm_login,$adm_pass){
+function fetchAdminData($adm_login,$adm_input_pass){
         global $pro_mysql_domain_table;
         global $pro_mysql_admin_table;
         global $pro_mysql_pop_table;
-		global $pro_mysql_ftp_table;
+	global $pro_mysql_ftp_table;
         global $pro_mysql_subdomain_table;
+
+	global $conf_session_expir_minute;
+
+	global $adm_login;
+	global $adm_realpass;
+	global $adm_pass;
+
+	// This one is used by the root GUI so that you can browse your user
+	// account at the same time as him without destroying his session.
+	global $DONOT_USE_ROTATING_PASS;
 
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
-        $query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
-        $result = mysql_query ($query)or die("Cannot execute query \"$query\"");
-        $num_rows = mysql_num_rows($result);
+	$query = "SELECT * FROM $pro_mysql_admin_table
+WHERE adm_login='$adm_login'
+AND (adm_pass='$adm_input_pass'
+OR (pass_next_req='$adm_pass'
+AND pass_expire > '".mktime()."'));";
 
- 	if($num_rows != 1){
+	$result = mysql_query ($query)or die("Cannot execute query \"$query\"");
+	$num_rows = mysql_num_rows($result);
+
+	if($num_rows != 1){
 		$ret["mesg"] = "Wrong user or password.";
 		$ret["err"] = -1;
 		return $ret;
 	}
+
 	$row = mysql_fetch_array($result) or die ("Cannot fetch user");
+
+	// This stuff is rotating passwords helping NOT to save passwords on users browsers.
+	$rand = getRandomValue();
+
+	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
+
+	$q = "UPDATE $pro_mysql_admin_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE adm_login='$adm_login'";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
+
+	if($DONOT_USE_ROTATING_PASS != yes){
+		$adm_pass = $rand;
+	}
+	$adm_realpass = $row["adm_pass"];
+
 	$adm_path = $row["path"];
 	$adm_max_ftp = $row["max_ftp"];
 	$adm_max_email = $row["max_email"];
@@ -385,6 +415,13 @@ function fetchAdmin($adm_login,$adm_pass){
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
+	$data = fetchAdminData($adm_login,$adm_pass);
+	if($data["err"] != 0){
+		$ret["err"] = $data["err"];
+		$ret["mesg"] = $data["mesg"];
+		return $ret;
+	}
+
 	$info = fetchAdminInfo($adm_login);
 	if($info["err"] != 0){
 		$ret["err"] = $info["err"];
@@ -392,12 +429,6 @@ function fetchAdmin($adm_login,$adm_pass){
 		return $ret;
 	}
 
-	$data = fetchAdminData($adm_login,$adm_pass);
-	if($data["err"] != 0){
-		$ret["err"] = $data["err"];
-		$ret["mesg"] = $data["mesg"];
-		return $ret;
-	}
 	$id_client = $info["data"]["id_client"];
 	if($id_client != 0){
 		$client = fetchClientData($id_client);
