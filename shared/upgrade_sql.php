@@ -86,4 +86,12 @@ ALTER TABLE admin
 UPDATE config SET dbversion='10001' WHERE 1;
 ");
 
+/*
+$sql_updates[] = array(
+	"dbversion" => "10002",
+	"sql" => "
+UPDATE config SET dbversion='10002' WHERE 1;
+");
+*/
+
 ?>
