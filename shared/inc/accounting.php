@@ -231,6 +231,13 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 						echo "\nDumping logs for ".$db_select_name."_".$month."_".$year."\n";
 						$handle = fopen ($dump_file_name, "w");
 						for($z=0;$z<$dump_num_rows;$z++){
+							$rezar = mysql_fetch_array($result_dump);
+							$content = $rezar["remote_host"]." - - ".
+							date("[d/M/Y:H:i:s]",$rezar["time_stamp"]).
+							' "'.$rezar["request_line"].'" '.$rezar["status"].
+							" ".$rezar["bytes_sent"}.
+							' "'.$rezar["referer"].'" "'.$rezar["agent"].'"'."\n";
+/*							
 							$content = mysql_result($result_dump,$z,"remote_host").
 							" - - ".
 							date("[d/M/Y:H:i:s]",mysql_result($result_dump,$z,"time_stamp")).
