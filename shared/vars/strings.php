@@ -1737,18 +1737,18 @@ $txt_subdom_newname = array(
 );
 
 $txt_subdom_ip = array(
-	"fr" => "IP du sous-domaine (laissez vide pour utiliser votre compte
+	"fr" => "IP ou CNAME du sous-domaine (laissez vide pour utiliser votre compte
 de hosting, rentrez l'IP du serveur sinon) : ",
-	"en" => "IP of the subdomain (leave blank otherwise): ",
-	"hu" => "Az aldomain IP c韒e (hagyja 黵esen egy閎k閚t): ",
-	"it" => "IP del sottodominio (lasciare vuote per usare l'hosting di default",
-	"nl" => "TRANS IP of the subdomain (leave blank to use default web
+	"en" => "IP or CNAME of the subdomain (leave blank otherwise): ",
+	"hu" => "Az aldomain IP/CNAME c韒e (hagyja 黵esen egy閎k閚t): ",
+	"it" => "IP/CNAME del sottodominio (lasciare vuote per usare l'hosting di default",
+	"nl" => "TRANS IP/CNAME of the subdomain (leave blank to use default web
 hosting area, set server IP otherwise): ",
-	"ru" => "TRANS IP of the subdomain (leave blank to use default web
+	"ru" => "TRANS IP/CNAME of the subdomain (leave blank to use default web
 hosting area, set server IP otherwise): ",
-	"de" => "IP der Subdomaine (bitte freilassen zur Nutzung der Standard Web Hosting area, ansonsten geben Sie die IP des Servers an): ",
-	"zh" => "副域名的IP (使用预设网页管理区域,否则设置服务器IP): ",
-	"es" => "IP del subdominio (dejar en blanco para usar el host web
+	"de" => "IP/CNAME der Subdomaine (bitte freilassen zur Nutzung der Standard Web Hosting area, ansonsten geben Sie die IP des Servers an): ",
+	"zh" => "副域名的IP/CNAME (使用预设网页管理区域,否则设置服务器IP): ",
+	"es" => "IP/CNAME del subdominio (dejar en blanco para usar el host web
 por defecto, indicar la IP de otro servidor en cualquier otro caso): "
 );
 
