@@ -307,14 +307,17 @@ Include $PATH_DTC_ETC/vhosts.conf
 Listen 80
 Listen 443" >>$PATH_HTTPD_CONF
 	fi
-	echo "LogSQLLoginInfo localhost "$conf_mysql_login" "$conf_mysql_pass"
-LogSQLSocketFile /var/run/mysqld/mysqld.sock
-LogSQLDatabase apachelogs
+	echo "LogSQLLoginInfo localhost "$conf_mysql_login" "$conf_mysql_pass >>$PATH_HTTPD_CONF
+	if [ ""$UNIX_TYPE = "freebsd" ] ;then
+		echo "LogSQLSocketFile /tmp/mysqld.sock" >>$PATH_HTTPD_CONF
+	else
+		echo "LogSQLSocketFile /var/run/mysqld/mysqld.sock" >>$PATH_HTTPD_CONF
+	fi
+	echo "LogSQLDatabase apachelogs
 LogSQLCreateTables On
 LogSQLTransferLogFormat IAbhRrSsU
 Alias /dtc404/	$PATH_DTC_ETC/dtc404/
 ErrorDocument 404 /dtc404/404.php
-# ErrorDocument 404 http://www.$main_domain_name"/404.php"
 # End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF
 	if [ -f $TMP_FILE ]
 	then
