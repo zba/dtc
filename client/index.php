@@ -19,8 +19,8 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 	$admin = fetchAdmin($adm_login,$adm_pass);
 	if(($error = $admin["err"]) != 0){
 		$mesg = $admin["mesg"];
-		if($error == -1)	echo "<font color=\"red\" Wrong login or password !</font><br>";
-		die("Error $error fetching admin : $mesg");
+		echo "<font color=\"red\" Wrong login or password !</font><br>";
+		die("Error $error fetching admin : $mesg <a href=\"$PHP_SELF\">try again</a>");
 	}
 
 	// Draw the html forms
