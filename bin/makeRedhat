@@ -65,7 +65,8 @@ fi
 cp sources/dtc_db.php sources/restor_db.php dtc/admin
 
 chown -R root:root dtc
-chown -R nobody:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx dtc/email/gfx dtc/shared/imgcache
+chown nobody:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/shared/imgcache dtc/email/imgcache
+chown nobody:65534 dtc/client/gfx dtc/admin/gfx dtc/shared/gfx dtc/email/gfx
 
 cat sources/redhat/install.sh >dtc/admin/dtc.rpm-install.sh
 cat sources/setup_mysql_db.sh >>dtc/admin/dtc.rpm-install.sh
