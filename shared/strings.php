@@ -385,24 +385,24 @@ $txt_draw_tatabase_your_list = array(
 $txt_mysqlmang_nouser_by_that_name = array(
         "fr" => "Il n'y a pas d'utilisateur ayant ce nom dans
 la table User de la base de donnie mysql. Cliquez <a
-href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_a
+href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_a
 pour ajouter cet utilisateur comme compte mysql (mjme mot de passe que pour
 DTC).",
         "en" => "There is no user by that name in the mysql database.
 Click <a
-href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
+href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 for adding this user as a mysql account (same login / pass as for DTC).",
         "nl" => "There is no user by that name in the mysql database.
 Click <a
-href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
+href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 for adding this user as a mysql account (same login / pass as for DTC).",
         "ru" => "There is no user by that name in the mysql database.
 Click <a
-href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
+href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 for adding this user as a mysql account (same login / pass as for DTC).",
  	"de" => "Es gibt keinen Benutzer in der Datenbank mit diesem Namen.
 klick <a
-href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
+href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 um einen Benutzer für MySQL anzulegen  (same login / pass as for DTC)."
 );
 

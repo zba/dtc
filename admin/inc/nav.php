@@ -42,49 +42,49 @@ $top_commands .= "
 <table border=\"0\" width=\"100%\" height=\"1\">
 <tr><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"$PHP_SELF?rub=generate&gen_pro_vhost=1&gen_stat_script=1&gen_named_files=1&gen_backup_script=1&gen_email_account=1\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_pro_vhost=1&gen_stat_script=1&gen_named_files=1&gen_backup_script=1&gen_email_account=1\">
 	<img border=\"0\" src=\"gfx/dtc/all_scripts.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">".$txt_icon_all_files_and_scripts[$lang]."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"$PHP_SELF?rub=generate&gen_pro_vhost=1\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_pro_vhost=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_web.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">".$txt_icon_apache_vhost[$lang]."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"$PHP_SELF?rub=generate&gen_email_account=1\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_email_account=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_mail.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">".$txt_icon_mailbox_account[$lang]."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"$PHP_SELF?rub=generate&gen_named_files=1\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_named_files=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_named.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">".$txt_icon_named_zones[$lang]."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"$PHP_SELF?rub=generate&reinit_named_zones=1\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&reinit_named_zones=1\">
 	<img border=\"0\" src=\"gfx/dtc/reinit_named.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">".$txt_icon_reinit_named_zones[$lang]."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"$PHP_SELF?rub=generate&gen_backup_script=1\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_backup_script=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_backup.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">".$txt_icon_backup_scripts[$lang]."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"$PHP_SELF?rub=generate&gen_stat_script=1\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_stat_script=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_stats.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">".$txt_icon_webalizer_script[$lang]."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"$PHP_SELF?rub=generate&gen_perso_vhost=1\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_perso_vhost=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_web.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">".$txt_icon_mysite_at_mydomain[$lang]."</font></a>
 </div>
@@ -116,7 +116,7 @@ if($admlist_type == "Logins"){
 
 
 $txt_sort_by = $txt_admlist_sort_by_legend[$lang];
-$admins .= "<div style=\"white-space: nowrap\" nowrap><form action=\"$PHP_SELF\"><font size=\"-2\">$txt_sort_by<br>
+$admins .= "<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">$txt_sort_by<br>
 <select name=\"admlist_type\">
 <option value=\"Logins\"$selectedlist_logins>Logins
 <option value=\"Names\"$selectedlist_name>Names
@@ -125,7 +125,7 @@ $admins .= "<div style=\"white-space: nowrap\" nowrap><form action=\"$PHP_SELF\"
 ";
 
 $txt_new_admin = $txt_admlist_new_admin[$lang];
-$admins .= "<a href=\"$PHP_SELF?\">$txt_new_admin</a><br>";
+$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?\">$txt_new_admin</a><br>";
 if($admlist_type == "Logins"){
 	// Fetch a list of all name admins
 	$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login";
@@ -136,7 +136,7 @@ if($admlist_type == "Logins"){
 		$admin = mysql_fetch_array($result) or die ("Cannot fetch user");
 		$admin_login = $admin["adm_login"];
 		$admin_pass = $admin["adm_pass"];
-		$admins .= "<br><a href=\"$PHP_SELF?adm_login=$admin_login&adm_pass=$admin_pass\">$admin_login</a>";
+		$admins .= "<br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$admin_login&adm_pass=$admin_pass\">$admin_login</a>";
 	}
 }else if($admlist_type == "Names"){
 	$admins .= "<br>";
@@ -160,7 +160,7 @@ if($admlist_type == "Logins"){
 				$row2 = mysql_fetch_array($result2);
 				$linkadm_login = $row2["adm_login"];
 				$linkadm_pass = $row2["adm_pass"];
-				$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"$PHP_SELF?adm_login=$linkadm_login&adm_pass=$linkadm_pass\">$linkadm_login</a><br>";
+				$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass\">$linkadm_login</a><br>";
 			}
 		}
 	}
@@ -183,7 +183,7 @@ if($admlist_type == "Logins"){
 			$row2 = mysql_fetch_array($result2);
 			$linkadm_login = $row2["adm_login"];
 			$linkadm_pass = $row2["adm_pass"];
-			$admins .= "<a href=\"$PHP_SELF?adm_login=$linkadm_login&adm_pass=$linkadm_pass\">$domain_name</a><br>";
+			$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass\">$domain_name</a><br>";
 		}
 	}
 }
