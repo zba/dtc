@@ -1,11 +1,15 @@
 <?php
 
 function drawDTCConfigMenu(){
+	global $txt_cfg_path_conf_title;
+	global $txt_cfg_name_zonefileconf_title;
+	global $lang;
+
 	$sousrub = $_REQUEST["sousrub"];
 	if(!isset($sousrub) || $sousrub == "")
 		$sousrub = "general";
 
-	$out = "<table><tr><td style=\"white-space:nowrap\" nowrap>";
+	$out = "<br><table><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "general")
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=general\">";
 	$out .= "General";
@@ -20,13 +24,13 @@ function drawDTCConfigMenu(){
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "zonefile")
 		$out .= " <a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=zonefile\">";
-	$out .= "Named zonefile generation";
+	$out .= $txt_cfg_name_zonefileconf_title[$lang];
 	if($sousrub != "zonefile")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "path")
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=path\">";
-	$out .= "Paths";
+	$out .= $txt_cfg_path_conf_title[$lang];
 	if($sousrub != "path")
 		$out .= "</a>";
 	$out .= "</td></tr></table>";
@@ -298,6 +302,8 @@ function drawDTCpathConfig(){
 </td></tr><tr><td align=\"right\" nowrap>
 	".$txt_cfg_webalizer_script_filename[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_webalizer_stats_script_path\" name=\"new_webalizer_stats_script_path\">
 </td></tr></table>";
+
+
 	$out .= "<h2>".$txt_cfg_path_conf_title[$lang]."</h2>
 <h3>".$txt_cfg_mainpath_conf_title[$lang]."</h3>
 <table with=\"100%\" height=\"1\">
@@ -439,41 +445,6 @@ function saveDTCConfigInMysql(){
 		break;
 	}
 
-
-	$query = "UPDATE config SET 
-	demo_version='".$_REQUEST["new_demo_version"]."',
-	main_site_ip='".$_REQUEST["new_main_site_ip"]."',
-	site_addrs='".$_REQUEST["new_site_addrs"]."',
-	use_multiple_ip='".$_REQUEST["new_use_multiple_ip"]."',
-	use_javascript='".$_REQUEST["new_use_javascript"]."',
-	use_ssl='".$_REQUEST["new_use_ssl"]."',
-	addr_mail_server='".$_REQUEST["new_addr_mail_server"]."',
-	webmaster_email_addr='".$_REQUEST["new_webmaster_email_addr"]."',
-	addr_primary_dns='".$_REQUEST["new_addr_primary_dns"]."',
-	addr_secondary_dns='".$_REQUEST["new_addr_secondary_dns"]."',
-	ip_slavezone_dns_server='".$_REQUEST["new_ip_slavezone_dns_server"]."',
-	administrative_site='".$_REQUEST["new_administrative_site"]."',
-	site_root_host_path='".$_REQUEST["new_site_root_host_path"]."',
-	generated_file_path='".$_REQUEST["new_generated_file_path"]."',
-	dtcshared_path='".$_REQUEST["new_dtcshared_path"]."',
-	qmail_rcpthost_path='".$_REQUEST["new_qmail_rcpthost_path"]."',
-	qmail_virtualdomains_path='".$_REQUEST["new_qmail_virtualdomains_path"]."',
-	qmail_assign_path='".$_REQUEST["new_qmail_assign_path"]."',
-	qmail_poppasswd_path='".$_REQUEST["new_qmail_poppasswd_path"]."',
-	apache_vhost_path='".$_REQUEST["new_apache_vhost_path"]."',
-	php_additional_library_path='".$_REQUEST["new_php_additional_library_path"]."',
-	php_library_path='".$_REQUEST["new_php_library_path"]."',
-	named_path='".$_REQUEST["new_named_path"]."',
-	named_slavefile_path='".$_REQUEST["new_named_slavefile_path"]."',
-	named_slavezonefiles_path='".$_REQUEST["new_named_slavezonefiles_path"]."',
-	named_zonefiles_path='".$_REQUEST["new_named_zonefiles_path"]."',
-	backup_script_path='".$_REQUEST["new_backup_script_path"]."',
-	bakcup_path='".$_REQUEST["new_bakcup_path"]."',
-	nated_vhost_ip='".$_REQUEST["new_nated_vhost_ip"]."',
-	use_nated_vhost='".$_REQUEST["new_use_nated_vhost"]."',
-	webalizer_stats_script_path='".$_REQUEST["new_webalizer_stats_script_path"]."',
-	skin='".$_REQUEST["skin_type"]."'
-	WHERE 1 LIMIT 1";
 	mysql_query($query)or die("Cannot query : \"$query\" !!!".mysql_error());
 
 	// Tell the cron job to activate the changes
