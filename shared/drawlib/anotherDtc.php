@@ -93,9 +93,11 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	$nowrap = " style=\"white-space:nowrap\" valign=\"top\"";
 	if($drawLanguageSelect=="yes"){
 		$zeLanguage = "
-	<td valign=\"top\"><font size=\"-2\" face=\"Arial\"><a target=\"_blank\" href=\"/dtcdoc/\">Documentation</a><br>
-<a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a></font></td>
+	<td valign=\"top\">&nbsp;</td>
 	<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
+		$links = "<br>
+<font size=\"-2\" face=\"Arial\"><a target=\"_blank\" href=\"/dtcdoc/\">Documentation</a>
+<a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a></font>";
 	}
 
 	$inside = "
@@ -104,7 +106,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	<td $nowrap><center><a href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
 <font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release - $conf_unix_type</font></center></td>
 	<td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
-<font size=\"-1\"><i>".$txt_pagetop_zesubtitle[$lang]."</i></font></center></td>
+<font size=\"-1\"><i>".$txt_pagetop_zesubtitle[$lang]."</i></font>$links</center></td>
 	<td $nowrap width=\"100%\">&nbsp;</td>".$zeLanguage."
 </tr>
 </table>

@@ -1,6 +1,47 @@
 <?php
-if($_REQUEST["rub"] == "crm"){
 
+// action=edit_product&rub=product
+// &prodname=Domain+name+registration
+// &id=1
+// &price_dollar=11.50&price_euro=10.50
+// &quota_disk=1&bandwidth=20&nbr_email=1&nbr_database=0
+// &allow_add_domain=yes&period=0001-00-00&submit=save
+if($_REQUEST["action"] == "edit_product"){
+	if($_REQUEST["allow_add_domain"] == "yes"){
+		$yesval = "yes";
+	}else{
+		$yesval = "no";
+	}
+	if($_REQUEST["submit"] == "save"){
+		$q = "UPDATE $pro_mysql_product_table
+SET price_dollar='".$_REQUEST["price_dollar"]."',
+price_euro='".$_REQUEST["price_euro"]."',
+name='".$_REQUEST["prodname"]."',
+quota_disk='".$_REQUEST["quota_disk"]."',
+nbr_email='".$_REQUEST["nbr_email"]."',
+nbr_database='".$_REQUEST["nbr_database"]."',
+bandwidth='".$_REQUEST["bandwidth"]."',
+period='".$_REQUEST["period"]."',
+allow_add_domain='$yesval'
+WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+		
+	}else if($_REQUEST["submit"] == "del"){
+		$q = "DELETE FROM $pro_mysql_product_table WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+	}else if($_REQUEST["submit"] == "create"){
+		$q = "INSERT INTO $pro_mysql_product_table
+(id,price_dollar,price_euro,name,quota_disk,nbr_email,nbr_database,
+bandwidth,period,allow_add_domain) VALUES('','".$_REQUEST["price_dollar"]."','".$_REQUEST["price_euro"]."','".$_REQUEST["prodname"]."',
+'".$_REQUEST["quota_disk"]."','".$_REQUEST["nbr_email"]."','".$_REQUEST["nbr_database"]."',
+'".$_REQUEST["bandwidth"]."','".$_REQUEST["period"]."','$yesval');";
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+	}
+}
+
+
+
+if($_REQUEST["rub"] == "crm"){
 //////////////////////////////////
 // Client (new/edit) management //
 //////////////////////////////////
