@@ -7,7 +7,8 @@ $txt_langname = array(
 	"en" => "iso-8859-15",
 	"nl" => "iso-8859-15",
 	"ru" => "koi8-r",
-	"de" => "iso-8859-15");
+	"de" => "iso-8859-15",
+	"es" => "iso-8859-15");
 
 session_register("lang");
 // If something like phpbb that has $lang on the same domain, this should
@@ -30,6 +31,9 @@ if($_REQUEST["change_language"] == "ru"){
 }
 if($_REQUEST["change_language"] == "de"){
 	$lang = "de";
+}
+if($_REQUEST["change_language"] == "es"){
+	$lang = "es";
 }
 
 $_SESSION["lang"] = $lang;
