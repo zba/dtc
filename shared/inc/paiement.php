@@ -1,6 +1,6 @@
 <?php
 
-$paypal_account = "thomas@goirand.fr";
+$paypal_account = "paypal@gplhost.com";
 
 function paypalButton($product_id,$amout,$item_name){
 	global $paypal_account;

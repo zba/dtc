@@ -17,6 +17,9 @@ echo "--- Bulding dtc directory tree out of sources ---"
 rm -rf dtc usr
 mkdir -p dtc/etc/zones
 cp -rf ../admin ../client ../shared ../doc dtc/
+echo "<?php
+\$conf_dtc_version= \""$VERS"\"; \$conf_dtc_release= \""$RELS"\";
+?>" > dtc/shared/dtc_version.php
 echo `find dtc/ -iname 'CVS' -exec rm -rf {} \;` >/dev/null >>/dev/null
 if ! [ -e dtc/admin/gfx ]
 then

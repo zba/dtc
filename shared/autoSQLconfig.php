@@ -1,12 +1,24 @@
 <?php
+
+// AUTO SQL CONFIG
+// This file automates the use of a mysql database. It creates connection
+// to it, and fetch all software config from the config table
+// If an "upgrade_sql.php" file is present, then this file will
+// be used to upgrade the database to the software version,
+// will then reload the config fields (just in cases some value
+// have been added or modified)
+
 $dtcshared_path = "/usr/share/dtc/shared";
 $autoconf_configfile = "mysql_config.php";
+
+require("$dtcshared_path/dtc_version.php");
 
 $conf_mysql_host="localhost";
 $conf_mysql_login="ENTER YOUR LOGIN";
 $conf_mysql_pass="ENTER YOUR PASSWORD";
 $conf_mysql_db="dtc";
 
+// Save the config file containing database access values for connecting to db
 function saveConfigFile(){
 	global $conf_mysql_host;
 	global $conf_mysql_login;
@@ -112,6 +124,9 @@ function createTableIfNotExists(){
 	}
 }
 
+// This function get all field from unic row "config" and convert them to
+// global variables using the name of that field. Like if a field name is foo,
+// then a global variable called $conf_foo will be created.
 function getConfig(){
 	global $conf_mysql_db;
 	$query = "SELECT * FROM config WHERE 1 LIMIT 1;";
@@ -173,7 +188,22 @@ Edit it if you need to change your mysql password in the futur.<br>";
 		die("Cannot connect to database !!!");
 	}
 }
+
 getConfig();
+
+// Do all the updates according to upgrade_sql.php
+if(!isset($conf_db_version)){
+	$conf_db_version = 0;
+}
+$nbr_sql_updates = sizeof($sql_updates);
+for($i=1;$i<$nbr_sql_updates;$i++){
+	if($sql_updates[$i]["dbvserion"] > $conf_db_version){
+		mysql_query($sql_updates[$i]["sql"])or die("Cannot query: \"".$sql_updates[$i]["sql"]."\" while trying
+to update database !!! See /usr/share/dtc/shared/update_sql.php and to
+updates manualy. ".mysql_error());
+		getConfig();
+	}
+}
 
 if($conf_demo_version == 'yes'){
 	session_register("demo_version_has_started");

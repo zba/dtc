@@ -24,6 +24,17 @@ function drawAdminTools_MyAccount($admin){
 	$id_client = $admin["info"]["id_client"];
 
 	$stats = fetchAdminStats($admin);
+
+	if($id_client != 0 && $_REQUEST["action"] == "refund_myaccount"){
+		$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
+		$out .=" Please click on the button bellow to refund your account. Then,
+when paiement is done, click the refresh button.";
+		$out .= "<center><font size=\"+1\">\$".$_REQUEST["refund_amount"]."</font><br>".
+		paynowButton(0,$_REQUEST["refund_amount"]);
+		$out .= "<br><br>$frm_start<input type=\"submit\" value=\"Refresh and see my account\"></form></center>";
+		return $out;
+	}
+
 	$out .= "<b><u>Transfère and disk usage:</u></b>";
 	$out .= "<br>Transfer this month: ". smartByte($stats["total_transfer"]);
 	if($id_client != 0){

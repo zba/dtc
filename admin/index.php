@@ -5,6 +5,7 @@ require("/usr/share/dtc/shared/autoSQLconfig.php");
 
 // All shared files between DTCadmin and DTCclient
 require("$dtcshared_path/global_vars.php");
+
 require("$dtcshared_path/lang.php");			// Setup the $lang global variable (to en, en-us, fr, etc... : whatever is translated !)
 require("$dtcshared_path/strings.php");			// Contain all the translated string
 require("$dtcshared_path/table_names.php");

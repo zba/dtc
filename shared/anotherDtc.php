@@ -108,7 +108,8 @@ $sponsors_inside
 }
 
 function anotherTopBanner($inside,$drawLanguageSelect="no"){
-
+	global $conf_dtc_version;
+	global $conf_dtc_release;
 	if($drawLanguageSelect=="yes"){
 		$zeLanguage = "<td>".anotherLanguageSelection()."</td>";
 	}
@@ -116,7 +117,8 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	$inside = "
 <table cellpadding=\"8\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"100%\"
 <tr><td>
-	<img src=\"gfx/dtc_logo.gif\">
+	<center><img src=\"gfx/dtc_logo.gif\"><br>
+	<font size=\"-2\" face=\"Arial\">Vers:$conf_dtc_version Release:$conf_dtc_release</font></center>
 </td><td>
 	<h1><b><font face=\"Verdana\">Domain Technologie Control</font></b></h1>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

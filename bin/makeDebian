@@ -18,6 +18,9 @@ mkdir -p debian/DEBIAN
 
 # Copy DTC's files in the good directories
 cp -rf ../admin ../client ../shared debian/usr/share/dtc
+echo "<?php
+\$conf_dtc_version= \""$VERS"\"; \$conf_dtc_release= \""$RELS"\";
+?>" > debian/usr/share/dtc/shared/dtc_version.php
 rm -rf debian/usr/share/dtc/shared/mysql_config.php
 mkdir -p debian/usr/share/doc/dtc
 cp -rf ../doc/* debian/usr/share/doc/dtc
