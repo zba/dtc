@@ -100,6 +100,16 @@ $txt_cfg_demo_version =array(
 	"zh" => "ÊÔÓÃ°æ±¾",
 	"es" => "Version de Demostracion");
 
+$txt_cfg_session_expir_time = array(
+	"fr" => "Expiration des sessions utilisateur (mn):",
+	"en" => "User session expire time (mn):",
+	"it" => "TRANS User session expire time (mn):",
+	"nl" => "TRANS User session expire time (mn):",
+	"ru" => "TRANS User session expire time (mn):",
+	"de" => "TRANS User session expire time (mn):",
+	"zh" => "TRANS User session expire time (mn):",
+	"es" => "TRANS User session expire time (mn):");
+
 $txt_cfg_use_multiple_ip =array(
 	"fr" => "Utiliser plusieurs adresses IP :",
 	"en" => "Use multiple IP:",
@@ -151,7 +161,7 @@ $txt_cfg_use_ssl = array(
 	"es" => "Usar SSL:");
 
 $txt_cfg_hide_password = array(
-	"fr" => "Mots de passe de peau dans DTC:",
+	"fr" => "Cacher les mots de passe dans DTC:",
 	"en" => "Hide passwords within DTC:",
 	"it" => "Parole d'accesso del pellame all'interno di DTC:",
 	"nl" => "De wachtwoorden van de huid binnen DTC:",
@@ -169,6 +179,16 @@ $txt_cfg_use_domain_based_ftp_logins = array(
 	"de" => "TRANS Use @domain.com ftp logins:",
 	"zh" => "TRANS Use @domain.com ftp logins:",
 	"es" => "TRANS Use @domain.com ftp logins:");
+
+$txt_cfg_select_type_of_skin = array(
+	"fr" => "Selectionner le type d'abillage :",
+	"en" => "Select the type of skin:",
+	"it" => "TRANS Select the type of skin:",
+	"nl" => "TRANS Select the type of skin:",
+	"ru" => "TRANS Select the type of skin:",
+	"de" => "TRANS Select the type of skin:",
+	"zh" => "TRANS Select the type of skin:",
+	"es" => "TRANS Select the type of skin:");
 
 $txt_cfg_full_hostname = array(
 	"fr" => "Hostname de l'administrateur DTC :",

@@ -61,6 +61,10 @@ function drawGeneralConfig(){
 	global $txt_cfg_use_ssl;
 
 	global $txt_cfg_use_domain_based_ftp_logins;
+	global $txt_cfg_session_expir_time;
+	global $txt_cfg_select_type_of_skin;
+
+	global $conf_session_expir_minute;
 	global $conf_domain_based_ftp_logins;
 
 	//additions for hide_password support (for ftp logins etc)
@@ -164,6 +168,9 @@ function drawGeneralConfig(){
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_yes>Yes
 	<input type=\"radio\" value=\"no\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_no>No</td>
 </tr><tr>
+	<td align=\"right\" nowrap>".$txt_cfg_session_expir_time[$lang]."</td>
+	<td nowrap><input type=\"text\" size=\"4\" value=\"$conf_session_expir_minute\" name=\"new_session_expir_minute\"></td>
+</tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_hide_password[$lang]."</td>
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_hide_password\"$conf_hdpasswd_yes>Yes
 	<input type=\"radio\" value=\"no\" name=\"new_hidepasswd\"$conf_hdpasswd_no>No</td>
@@ -176,7 +183,7 @@ function drawGeneralConfig(){
 </tr><tr>
 	<td colspan=\"2\"><h3>DTC Skin chooser</h3></td>
 </tr><tr>
-	<td align=\"right\" nowrap>Select the type of skin:</td>
+	<td align=\"right\" nowrap>".$txt_cfg_select_type_of_skin[$lang]."</td>
 	<td nowrap><select name=\"skin_type\">$skin_choose</select></td>
 </tr>
 </table>
@@ -670,6 +677,7 @@ function saveDTCConfigInMysql(){
 	use_ssl='".$_REQUEST["new_use_ssl"]."',
 	mta_type='".$_REQUEST["new_mta_type"]."',
 	domain_based_ftp_logins='".$_REQUEST["new_domain_based_ftp_logins"]."',
+	session_expir_minute='".$_REQUEST["new_session_expir_minute"]."',
 	hide_password='".$_REQUEST["new_hide_password"]."',
 	skin='".$_REQUEST["skin_type"]."'
 	WHERE 1 LIMIT 1";
