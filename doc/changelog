@@ -1,4 +1,8 @@
 04-10-04:
+Damien:
+Added a flag in config to show/hide passwords in the
+interface.
+
 Thomas & damien:
 Now using installer to create .htpasswd and .htaccess of
 the root consol.
@@ -19,6 +23,10 @@ generated along with the rest of the postfix generation.
 Also, a few tidy ups in regards to tmp file usage, it's now
 using mktemp, and also other bashisms removed.
 
+1-10-04: V0.15.0-R6
+Added italian translation thanks to lupin3rd@gmx.it, .htaccess
+and .htpasswd are now created if not exists under install.
+R3 4 and 5:
 Thomas & damien:
 Resolved pear install under Debian by a stupidly long php version
 checking.
