@@ -49,6 +49,8 @@ if($argc > 6){
         }
 }
 
+require("dtc_db.php");
+
 mysql_connect("$pro_mysql_host", "$pro_mysql_login", "$pro_mysql_pass")or die ("Cannot connect to $pro_mysql_host");
 mysql_select_db("$pro_mysql_db")or die ("Cannot select db: $pro_mysql_db");
 
@@ -88,9 +90,9 @@ function findKeyInTable($table,$key){
 	return false;
 }
 
-$nbr_tables = sizeof($dtc_database);
+$nbr_tables = sizeof($dtc_database["tables"]);
 echo "$nbr_tables tables:";
-$tblnames = array_keys($dtc_database);
+$tblnames = array_keys($dtc_database["tables"]);
 for($i=0;$i<$nbr_tables;$i++){
 	echo " ".$tblnames[$i];
 	if( !mysql_table_exists($tblnames[$i]) ){
@@ -100,7 +102,7 @@ for($i=0;$i<$nbr_tables;$i++){
 		echo $q;
 	}
 
-	$allvars = $dtc_database[$tblnames[$i]]["vars"];
+	$allvars = $dtc_database["tables"][$tblnames[$i]]["vars"];
 	$varnames = array_keys($allvars);
 	$numvars = sizeof($allvars);
 	for($j=0;$j<$numvars;$j++){
@@ -110,7 +112,7 @@ for($i=0;$i<$nbr_tables;$i++){
 		}
 	}
 
-	$allvars = $dtc_database[$tblnames[$i]]["keys"];
+	$allvars = $dtc_database["tables"][$tblnames[$i]]["keys"];
 	$varnames = array_keys($allvars);
 	$numvars = sizeof($allvars);
 	for($j=0;$j<$numvars;$j++){
