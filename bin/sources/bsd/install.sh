@@ -2,7 +2,7 @@
 
 # This is the DTC's BSD interactive install configuration script
 # called by the make install
-# made by Thomas Goirand <thomas@goirand.fr>
+# made by Thomas Goirand <thomas@goirand.fr> and Frederic Cambus
 
 PREFIX=$1
 WRKSRC=$2

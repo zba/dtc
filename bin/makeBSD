@@ -46,16 +46,11 @@ chown -R 65534:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/clien
 mkdir "dtc-"$VERSION
 mv dtc "dtc-"$VERSION
 echo "all:" >"dtc-"$VERSION"/Makefile"
-cp sources/bsd/install.sh "dtc-"$VERSION"/install.sh"
-cat sources/setup_mysql_db.sh >>"dtc-"$VERSION"/install.sh"
-cat sources/configure_deamons.sh >>"dtc-"$VERSION"/install.sh"
-
-
 echo "===> Packaging files"
 tar -czf "dtc-"$VERSION".tar.gz" "dtc-"$VERSION
 
 echo " --- Succesfully made BSD dtc-"$VERSION".tar.gz ---"
-echo "===> Makeing BSD port for version "$VERSION" ---"
+echo " --- Makeing BSD port for version "$VERSION" ---"
 
 # Move bsd version as if it was in ${PREFIX} so we can do lookups in it
 mkdir share
@@ -67,7 +62,7 @@ cp sources/bsd/pkg-descr sources/bsd/README.html dtc
 # Create Makefile with correct port version
 echo "# Ports collection makefile for:        dtc
 # Date created:                 1 December 2003
-# Whom:                         Frederic Cambus
+# Whom:                         Frederic Cambus & Thomas Goirand
 #
 # $FreeBSD$
 #
@@ -75,6 +70,11 @@ echo "# Ports collection makefile for:        dtc
 PORTNAME=	dtc
 PORTVERSION=	"$VERSION >dtc/Makefile
 cat sources/bsd/Makefile >>dtc/Makefile
+
+# Create package install script
+cp sources/bsd/install.sh dtc/pkg-install
+cat sources/setup_mysql_db.sh >>dtc/pkg-install
+cat sources/configure_deamons.sh >>dtc/pkg-install
 
 # Create package uninstall script
 cp sources/bsd/uninstall.sh dtc/pkg-deinstall
