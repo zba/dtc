@@ -164,7 +164,7 @@ if($cronjob_table_content["gen_webalizer"] == "yes"){
 ///////////////////////////////////////////////////////////////////////////////////////
 system("chown -R nobody:65534 $conf_generated_file_path");
 system("chown -R nobody:bind $conf_generated_file_path/zones");
-system("chmod -R 660 $conf_generated_file_path/zones");
+system("chmod -R 770 $conf_generated_file_path/zones");
 
 if($cronjob_table_content["qmail_newu"] == "yes"){
 	echo "Starting qmail-newu\n";

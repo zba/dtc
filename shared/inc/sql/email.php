@@ -20,10 +20,11 @@ if($_REQUEST["addnewmailtodomain"] == "Ok"){
 	$mailbox_path = "$admin_path/$edit_domain/Mailboxs/".$_REQUEST["newmail_login"];
 
 	// Check for strings validity ($newmail_deliver_localy does not need to be tested because of lately test...)
-	if(!isMailbox($_REQUEST["newmail_login"])){
+	//allow * for catch-all redirects
+	if(!isMailbox($_REQUEST["newmail_login"]) && $_REQUEST["newmail_login"] != "*"){
 		die("Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.");
 	}
-	if(!isDTCPassword($_REQUEST["newmail_pass"])){
+	if(!isDTCPassword($_REQUEST["newmail_pass"]) && $newmail_deliver_localy == "no"){
 		die("Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.");
 	}
 	// if there is redirection, check for it's format

@@ -123,7 +123,12 @@ function mail_account_generate_postfix(){
 							$extra_redirects .= " $redirect2 ";
 						}
 					}
-					$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
+					if ($id == "*")
+					{
+						$domains_postmasters_file .= "@$domain_full_name	$extra_redirects\n";
+					} else {
+						$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
+					}
 				}
 			}
 		}
