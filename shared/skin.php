@@ -499,7 +499,7 @@ function makeTreeGfxUrl($array,$nbr){
 		}else if($plop == "tree"){
 			$alt_signs .= "|";
 		}else if($plop == "endtree"){
-			$alt_signs .= "L";
+			$alt_signs .= "`";
 		}else if($plop == "hline"){
 			$alt_signs .= "-";
 		}else if($plop == "minus"){

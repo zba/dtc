@@ -31,6 +31,7 @@ function draw_UpgradeAccount($admin){
 	$client = $admin["client"];
 	$out .= "<b><u>Upgrade my account:</u></b><br>";
 	if($admin["info"]["prod_id"] != 0){
+		$out .= "<i><u>Past account refundal</u></i><br>";
 		$out .= "Your last command expire on the: ".$admin["info"]["expire"].".<br>";
 		$out .= "Today is the: ".date("Y-m-d")."<br>";
 		$today = mktime (0,0,0,date("m"),date("d"),date("Y"));
@@ -51,6 +52,9 @@ function draw_UpgradeAccount($admin){
 
 		$out .= "Your past account was: \$".$prod["price_dollar"]." for ".smartDate($prod["period"])."<br>";
 		$out .= "Refundal ($days_remaining days) for upgrading will be: \$$refundal<br><br>";
+	}else{
+		$out .= "You currently don't have a validated account. Please contact customer support.";
+		return $out;
 	}
 	$out .= "<i><u>Step 1: choose your upgrade</u></i><br>";
 	if($_REQUEST["prod_id"] == "" || !isset($_REQUEST["prod_id"])){
