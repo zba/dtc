@@ -1,4 +1,12 @@
 <?
+function mysql_table_exists($dbname,$tableName)
+{
+$tables = array();
+$tablesResult = mysql_list_tables($dbname);
+while ($row = mysql_fetch_row($tablesResult)) $tables[] = $row[0];
+return(in_array($tableName, $tables));
+}
+
 function fetchHTTPInfo($webname)
 {
         global $pro_mysql_subdomain_table;
@@ -13,10 +21,13 @@ function fetchHTTPInfo($webname)
         {
                 $subdomain_name = mysql_result($result,$i,"subdomain_name");
                 $db_select_name = "access_".$subdomain_name."_".$db_webname;
-                $q = "SELECT  SUM( bytes_sent ) AS amount FROM `".$db_select_name."` WHERE 1";
-                mysql_select_db("apachelogs");
-                $r_access = mysql_query($q) or die("Cannot execute query \"$q\" !!! ".mysql_error());
-                $amount = $amount + mysql_result($r_access,0,"amount");
+				if(mysql_table_exists("apachelogs",$db_select_name))
+				{
+					$q = "SELECT  SUM( bytes_sent ) AS amount FROM `".$db_select_name."` WHERE 1";
+					mysql_select_db("apachelogs");
+                	$r_access = mysql_query($q) or die("Cannot execute query \"$q\" !!! ".mysql_error());
+				    $amount = $amount + mysql_result($r_access,0,"amount");
+				}
 		mysql_select_db($conf_mysql_db);
         }
         
