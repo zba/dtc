@@ -14,27 +14,14 @@
 body{	
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 200;
-	font-size: 8pt; 	
-	margin: 4px 1px 0px 1px;
+	font-size: 8pt;
 }
 
-/* 	Links highlights	*/
-a:hover { text-decoration: underline! important;cursor: context-menu ; }
-a:link  { text-decoration: none; }
-a:visited { text-decoration: none; }
-a:active { text-decoration: none; }
 /* default unphpsized colors */
-a:hover { color: #C1C1C4 ! important; }
+a:hover { color: #C1C1C4; }
 a:link  { color: #A1A1A4; }
 a:visited { color: #A1A1A4;  }
 a:active { color: #A1A1A4; }
-
-a.code:link       { color: #A1A1A4; text-decoration: none; }
-a.code:visited    { color: #A1A1A4; text-decoration: none; }
-a.code:active     { color: #A1A1A4; text-decoration: none;  }
-a.head:link       { color: #A1A1A4; text-decoration: none; }
-a.head:visited    { color: #A1A1A4; text-decoration: none; }
-a.head:active     { color: #A1A1A4; text-decoration: none; }
 
 .textbox { 
 	color: #000000; 
@@ -49,70 +36,17 @@ a.head:active     { color: #A1A1A4; text-decoration: none; }
 	scrollbar-arrow-color: #000000 
 }
 
-.boite, .boite_popup, .boite_titre {  
-	font-family: Arial, Helvetica, sans-serif; 
-	font-size: 8pt;
-    padding-right: 0px;
-	padding-left: 0px;
-	/*      text-transform: lowercase;	*/
-}
-
-.boite_titre {
-	font_weight: 600;
-	font-size: 10pt;
-}
-
-/* Tables enlightening */
-td.head, td.corps { 
-    font-family:  Arial, Helvetica, sans-serif;
-    font-size: 10pt;  
-    font-weight: bold;
-    vertical-align: center;
-    margin:   0px 0px 0px 0px;
-    padding:  3px 3px 3px 3px;
-    border:   0;
-}
-
-td.corps {
-    font-size: 9pt;
-    font-weight: normal;
-    padding:0;
-    padding-left: 5;
-}
-
-/* UL { list-style: url("http://png.com/ellipse.png") disc } */
-
-*.titre {
-      font-family: Arial, Helvetica, sans-serif; 
-      font-size: 10pt;
-      vertical-align: center;
-      font-weight: bold;
-}
-
-hr, hr.boite { 
-    border: 0px solid; 
-}
-
 input[type="text"], 
 input[type="password"],
 input[type="submit"],
 input[type="checkbox"],
 input[type="file"]
 {
-    border: 1px solid;
+	border: 1px solid;
 	padding: 1 3 1 3!important; 
-	font-family : Arial, Helvetica, sans-serif; 
-	/* text-decoration: bold; */
+	font-family : Arial, Helvetica, sans-serif;
 	font-size : 8pt;
 }
-
-#centering { text-align: center!important; }
-#forum { text-align: justify!important; }
-#bold { font-weight: bold!important;  }
-#italic { font-style: italic!important; }
-#left { text-align: left!important; }
-#right { text-align: right!important; }
-#underline { text-decoration: underline!important; }
 
 textarea,select, option, optgroup { 
     font-family : Arial, Helvetica, sans-serif;
@@ -122,25 +56,19 @@ textarea,select, option, optgroup {
 
 input[type="submit"] { cursor: context-menu; }
 
-input[type="image"]	{
-	border: none!important;
-	user-focus: none!important;
-}
-
 /* Set default paddings/margins/borders                       */
-
+/*
 h1,h2,h3,H4 {
-		font-family:  arial, helvetica, sans-serif; 
-		color: #B1B1B4;
+	font-family:  arial, helvetica, sans-serif; 
+	color: #B1B1B4;
 }
-
 h2,h3{
-    margin-left:  2% 
+	margin-left:  2% 
 }
 	
 h1{
-    text-align:   center;
-    text-transform: capitalize;
+	text-align:   center;
+	text-transform: capitalize;
 }
 
 td {
@@ -152,9 +80,9 @@ pre{
 	font-family:  terminal, sans-serif;
 	font-size: 8pt;
 }
-
+*/
 /*-----------------------------------------------------------------------*/
-img {  margin: 0px; }
+/*img {  margin: 0px; }
 a:link		{ color: #6d6d6d; }
 a:visited	{ color: #6d6d6d; }
 a:active	{ color: #6d6d6d; }
@@ -164,13 +92,14 @@ td.head 	{ color: #e0e0e0; background-color: #212121; }
 td.corps 	{ color: #212121; background-color: #e0e0e0; }
 *.dashed 	{ border-bottom: 1px dashed #212121; }
 span, h1, h2, h3, h4 { color: #212121; }
-hr, hr.boite	{ color: #212121; background-color: #212121; }
+*/
+hr		{ color: #212121; background-color: #212121; }
 select, input, optgroup, textarea { font-family : Arial, Helvetica,
-sans-serif; color: #212121; border-color : #212121; background-color: #e0e0e0; }
-select, textarea { border: 1px solid #212121; } 
-td.cardValue	{ background-color: #e0e0e0; border-color: #000000; }
+sans-serif; color: #212121; border-color : #212121; background-color: #eaeaea; }
+select, textarea { border: 1px solid #212121; }
 
 /** IE does not recognize this CSS standardization... Crimosoft suxxx */
-input[type="text"], input[type="submit"], input[type="file"],
+/*input[type="text"], input[type="submit"], input[type="file"],
 input[type="password"] { border: 1px solid #212121!important; }
 body {  color: #000000; background: #F5F5F5; background-image: url('./gfx/skin/muedgrey/degrade.jpg'); }
+*/
