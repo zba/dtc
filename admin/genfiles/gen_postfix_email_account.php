@@ -51,6 +51,7 @@ function mail_account_generate_postfix(){
 	$vmailboxes_file = "";
 	$uid_mappings_file = "";
 	$relay_domains_file = "";
+	$poppasswd_file = "";
 
 	// go through each admin login and find the domains associated 
 	$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login;";
@@ -86,57 +87,55 @@ function mail_account_generate_postfix(){
 				$relay_domains_file .= "$domain_full_name\n";
 			}
 			$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
-			$emails = $domain["emails"];
-			$nbr_boites = sizeof($emails);
-			// go through each of these emails and build the vmailbox file
-			//also create our sasldb2 if we have a saslpasswd2 exe
 			$store_catch_all = "";
-			for($k=0;$k<$nbr_boites;$k++){
-				$email = $emails[$k];
-				$id = $email["id"];
-				$uid = $email["uid"];
-				$localdeliver = $email["localdeliver"];
-				$redirect1 = $email["redirect1"];
-				$redirect2 = $email["redirect2"];
-				$_id = strtr($id,".",":");
-				$home = $email["home"];
-				$passwdtemp = $email["passwd"];
-				$passwd = crypt($passwdtemp);
-				$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
-				# first try and see if we have postfix in a chroot, else just put it in it's default location
-				system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
-				//$assign_file .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
-				//$console .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
-				if ($localdeliver == yes)
-				{
-					$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
-					$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
-				} else {
-					$extra_redirects = "";
-					if ($redirect1 != "" && isset($redirect1))
-					{
-						$extra_redirects .= " $redirect1 ";
-					}
-					if ($redirect2 != "" && isset($redirect2))
-					{
-						if ($extra_redirects != ""){
-							$extra_redirects .= " , $redirect2";
-						} else {
-							$extra_redirects .= " $redirect2 ";
-						}
-					}
-					if ($id == "*")
-					{
-						$store_catch_all .= "@$domain_full_name        $extra_redirects\n";
+			if(isset($domain["emails"])){
+				$emails = $domain["emails"];
+				$nbr_boites = sizeof($emails);
+				// go through each of these emails and build the vmailbox file
+				//also create our sasldb2 if we have a saslpasswd2 exe
+				for($k=0;$k<$nbr_boites;$k++){
+					$email = $emails[$k];
+					$id = $email["id"];
+					$uid = $email["uid"];
+					$localdeliver = $email["localdeliver"];
+					$redirect1 = $email["redirect1"];
+					$redirect2 = $email["redirect2"];
+					$_id = strtr($id,".",":");
+					$home = $email["home"];
+					$passwdtemp = $email["passwd"];
+					$passwd = crypt($passwdtemp);
+					$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
+					# first try and see if we have postfix in a chroot, else just put it in it's default location
+					system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
+					//$assign_file .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
+					//$console .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
+					if ($localdeliver == "yes"){
+						$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
+						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
 					} else {
-						$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
+						$extra_redirects = "";
+						if ($redirect1 != "" && isset($redirect1)){
+							$extra_redirects .= " $redirect1 ";
+						}if ($redirect2 != "" && isset($redirect2)){
+							if ($extra_redirects != ""){
+								$extra_redirects .= " , $redirect2";
+							} else {
+								$extra_redirects .= " $redirect2 ";
+							}
+						}
+						if ($id == "*"){
+							$store_catch_all .= "@$domain_full_name        $extra_redirects\n";
+						} else {
+							$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
+						}
 					}
 				}
 			}
-			$domains_postmasters_file .= $store_catch_all;
+			if(isset($store_catch_all) && $store_catch_all != ""){
+				$domains_postmasters_file .= $store_catch_all;
+			}
 		}
 	}
-	$assign_file .= ".\n";
 
 	$relay_domains_file .= get_remote_mail_domains();
 
