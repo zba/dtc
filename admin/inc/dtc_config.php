@@ -94,6 +94,9 @@ function drawDTCConfigForm(){
 	global $txt_cfg_use_nated_vhost;
 	global $txt_cfg_nated_vhost_ip;
 
+	global $dtcshared_path;
+	global $conf_skin;
+
 	$general = "<h3>".$txt_cfg_general[$lang]."</h3>
 <table with=\"100%\" height=\"1\">";
 	if($conf_demo_version == "yes"){
@@ -108,21 +111,21 @@ function drawDTCConfigForm(){
 	$general .= "
 <tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_javascript[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_javascript\"$conf_use_javascript_yes>Yes<input type=\"radio\" value=\"no\" name=\"new_use_javascript\"$conf_use_javascript_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_javascript\"$conf_use_javascript_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_javascript\"$conf_use_javascript_no>No</td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_ssl[$lang]."</td>
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_ssl\"$conf_use_ssl_yes>Yes
 	<input type=\"radio\" value=\"no\" name=\"new_use_ssl\"$conf_use_ssl_no>No</td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_nated_vhost[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_yes>Yes<input type=\"radio\" value=\"no\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_no>No</td>
 </tr><tr>
 	<td align=\"right\" nowrap>
 ".$txt_cfg_nated_vhost_ip[$lang]."</td>
 	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_nated_vhost_ip\" name=\"new_nated_vhost_ip\"></td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_multiple_ip[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_yes>Yes<input type=\"radio\" value=\"no\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_no>No</td>
 </tr><tr>
 	<td align=\"right\" nowrap>
 ".$txt_cfg_main_site_ip[$lang]."</td>
@@ -135,6 +138,28 @@ function drawDTCConfigForm(){
 	".$txt_cfg_full_hostname[$lang]."</td><td nowrap><input type=\"text\" size =\"40\" value=\"$conf_administrative_site\" name=\"new_administrative_site\"></td>
 </tr>
 </table>";
+
+	$dir = $dtcshared_path."/gfx/skin/";
+
+	// Open a known directory, and proceed to read its contents
+	if (is_dir($dir)) {
+		if ($dh = opendir($dir)) {
+			while (($file = readdir($dh)) !== false) {
+				if(is_dir($dtcshared_path."/gfx/skin/".$file) && $file != "." && $file != ".."){
+					if($file == $conf_skin){
+						$skin_choose .= "<option name=\"".$file."\" selected>".$file."</option>";
+					}else{
+						$skin_choose .= "<option name=\"".$file."\">".$file."</option>";
+					}
+				}
+			}
+			closedir($dh);
+		}
+	}
+
+
+
+
 
 	global $txt_cfg_name_zonefileconf_title;
 	global $txt_cfg_main_mx_addr;
@@ -154,7 +179,10 @@ function drawDTCConfigForm(){
 	".$txt_cfg_secondary_dns_server_addr[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_addr_secondary_dns\" name=\"new_addr_secondary_dns\"><br>
 </td></tr><tr><td align=\"right\">
 	".$txt_cfg_slave_dns_ip[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_ip_slavezone_dns_server\" name=\"new_ip_slavezone_dns_server\"><br>
-</td></tr></table>";
+</td></tr></table>
+<h3>DTC Skin chooser</h3>
+Select the type of skin:<select name=\"skin_type\">$skin_choose</select>
+";
 
 	$qmailPath = "<h3><img src=\"gfx/dtc/generate_mail.gif\"> Qmail path</h3>
 <table with=\"100%\" height=\"1\">
@@ -315,7 +343,8 @@ function saveDTCConfigInMysql(){
 	bakcup_path='".$_REQUEST["new_bakcup_path"]."',
 	nated_vhost_ip='".$_REQUEST["new_nated_vhost_ip"]."',
 	use_nated_vhost='".$_REQUEST["new_use_nated_vhost"]."',
-	webalizer_stats_script_path='".$_REQUEST["new_webalizer_stats_script_path"]."'
+	webalizer_stats_script_path='".$_REQUEST["new_webalizer_stats_script_path"]."',
+	skin='".$_REQUEST["skin_type"]."'
 	WHERE 1 LIMIT 1";
 	mysql_query($query)or die("Cannot query : \"$query\" !!!".mysql_error());
 

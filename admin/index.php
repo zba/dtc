@@ -95,17 +95,17 @@ if($_REQUEST["rub"] != "config"){
 }
 $html_array[] = $menu;
 $dtc_main_menu = make_table($html_array,sizeof($html_array));
-$the_page[] = skin("simple/green2",$dtc_main_menu,"Menu");
+$the_page[] = skin($conf_skin,$dtc_main_menu,"Domain Technologie Control root admin interface");
 
 switch($_REQUEST["rub"]){
 case crm: // CRM TOOL
-	$rightFrameCells[] = skin("simple/green",DTCRMeditClients(),"Client address");
+	$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(),"Client address");
 	if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
-		$rightFrameCells[] = skin("simple/green",DTCRMclientAdmins(),"Client admins");
-		$rightFrameCells[] = skin("simple/green",DTCRMshowClientCommands($id_client),"Client commands");
+		$rightFrameCells[] = skin($conf_skin,DTCRMclientAdmins(),"Client admins");
+		$rightFrameCells[] = skin($conf_skin,DTCRMshowClientCommands($id_client),"Client commands");
 	}
 	$rightFrame = makeVerticalFrame($rightFrameCells);
-	$leftFrameCells[] = skin("simple/green",DTCRMlistClients(),"Client listing");
+	$leftFrameCells[] = skin($conf_skin,DTCRMlistClients(),"Client listing");
 	$leftFrame = makeVerticalFrame($leftFrameCells);
 	$the_page[] = anotherLeftFrame($leftFrame,$rightFrame);
 	break;
@@ -150,14 +150,14 @@ case monitor: // Monitor button
 	}
 	$out .= "</table>";
 	$out .= "Server total accounted transfers this month: ".smartByte($total_box_transfer);
-	$module = skin("simple/green",$out,"Client bandwidth consumption.");
+	$module = skin($conf_skin,$out,"Client bandwidth consumption.");
 	$the_page[] = $module;
 	break;
 	
 case generate: // Gen Config Files
-	$the_page[] = skin("simple/green",$top_commands,$txt_generate_buttons_title[$lang]);
+	$the_page[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
 	$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"95\"></iframe>";
-	$the_page[] = skin("simple/green",$the_iframe,"Deamons states");
+	$the_page[] = skin($conf_skin,$the_iframe,"Deamons states");
 	// The console
 	$the_page[] = skinConsole();
 	break;
@@ -169,13 +169,13 @@ case config: // Global Config
 	}
 
 	$configForm = drawDTCConfigForm();
-	$the_page[] = skin("simple/green",$configForm,"DTC configuration");
+	$the_page[] = skin($conf_skin,$configForm,"DTC configuration");
 	break;
 	
 case user: // User Config
 default: // No rub selected
 	// Our list of admins
-	$leftFrameCells[] = skin("simple/green","<br>$admins",$txt_virtual_admin_list[$lang]);
+	$leftFrameCells[] = skin($conf_skin,"<br>$admins",$txt_virtual_admin_list[$lang]);
 	// Make the frame
 	$leftFrame = makeVerticalFrame($leftFrameCells);
 

@@ -1196,6 +1196,8 @@ function drawAdminTools($admin){
 
 	global $dtc_use_text_menu;
 
+	global $conf_skin;
+
 	$admin_data = $admin["data"];
 	$admin_info = $admin["info"];
 
@@ -1341,7 +1343,7 @@ function drawAdminTools($admin){
 			$web_editor .= drawAdminTools_DomainInfo($admin,$eddomain);
 			$title = $txt_title_geninfo_form[$lang].$edit_domain;
 		}
-		$edition = skin("simple/green",$web_editor,$title);
+		$edition = skin($conf_skin,$web_editor,$title);
 	}
 
 	$mymenu .= "<div align=\"center\"><a href=\"$PHP_SELF?\">Logout</a>";
@@ -1352,7 +1354,7 @@ function drawAdminTools($admin){
 	}
 	$mymenu .= "</div>";
 
-	$domain_list = skin("simple/green","<br>$mymenu",$txt_left_menu_title[$lang]);
+	$domain_list = skin($conf_skin,"<br>$mymenu",$txt_left_menu_title[$lang]);
 
 	$out = "
 <table width=\"100%\" height=\"100%\">

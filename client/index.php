@@ -12,7 +12,7 @@ $anotherTopBanner = anotherTopBanner("DTC");
 $anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 
 $anotherLanguageSelection = anotherLanguageSelection();
-$language_selection_skined = skin("simple/green",$anotherLanguageSelection,$txt_select_lang_title[$lang]);
+$language_selection_skined = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
 if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass)){
 	// Fetch all the user informations, Print a nice error message if failure.
@@ -41,7 +41,7 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 </tr></td></table>
 	</form>";
 
-$login_skined = skin("simple/green",$HTML_admin_edit_data,$txt_login_title[$lang]);
+$login_skined = skin($conf_skin,$HTML_admin_edit_data,$txt_login_title[$lang]);
 
 $mypage = "
 <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" height=\"100%\">

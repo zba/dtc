@@ -44,7 +44,6 @@ function anotherLanguageSelection(){
 </div>
 ";
 	return $out;
-//	return skin("simple/green2",$out,"");
 }
 
 $confirm_javascript="
@@ -105,9 +104,20 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 
 function anotherPage($title,$meta,$java_script,$onloads,$banner,$menu,$content,$footer){
 	global $page_metacontent;
+	global $conf_skin;
+	global $dtcshared_path;
 
 	global $skinCssString;
 	global $confirm_javascript;
+
+	if(file_exists($dtcshared_path.'/gfx/skin/'.$conf_skin.'/bgcolor.php')){
+		include($dtcshared_path.'/gfx/skin/'.$conf_skin.'/bgcolor.php');
+	}else{
+		$body_tag = "<link rel=\"stylesheet\" href=\"gfx/dtc.css\" type=\"text/css\">
+<body bgcolor=\"#74748A\" text=\"#FFFFFF\" leftmargin=\"0\"
+topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">";
+	}
+
 return "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
 <html>
 <head>
@@ -120,8 +130,9 @@ $onloads
 $confirm_javascript
 $java_script
 $skinCssString
-<link rel=\"stylesheet\" href=\"gfx/dtc.css\" type=\"text/css\">
-<body bgcolor=\"#74748A\" text=\"#FFFFFF\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">
+
+$body_tag
+
 <table width=\"100%\" height=\"100%\" cellpadding=\"0\" cellspacing=\"0\">
 <tr><td width=\"100%\" height=\"1\">$banner</td></tr>
 <tr><td width=\"100%\" height=\"1\">$menu</td></tr>
