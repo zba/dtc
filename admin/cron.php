@@ -157,5 +157,6 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 echo "Resetting all cron flags\n";
 $query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(),qmail_newu='no', restart_qmail='no', reload_named='no', restart_apache='no', gen_vhosts='no', gen_named='no', gen_qmail='no', gen_webalizer='no', gen_backup='no' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+echo date("Y m d / H:i:s T")." DTC cron job finished\n\n";
 
 ?>

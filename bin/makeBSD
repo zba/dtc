@@ -9,7 +9,7 @@
 
 VERS=`cat version`
 RELS=`cat release`
-VERSION=$VERS"-"$RELS
+VERSION=$VERS"."$RELS
 
 echo " --- Making DTC BSD tarball package ---"
 
