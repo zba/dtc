@@ -654,7 +654,7 @@ $txt_other_dns_ip = array(
 	"fr" => "Autres serveurs DNS :",
 	"en" => "Other DNS servers:",
 	"nl" => "Other DNS servers:",
-	"ru" =>`"Other DNS servers:",
+	"ru" => "Other DNS servers:",
 	"de" => "Weitere DNS Server:",
 	"es" => "Otro servidor de DNS:");
 
