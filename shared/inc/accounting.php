@@ -320,6 +320,8 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 					$query_del = "DELETE FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 					mysql_select_db("apachelogs");
 					mysql_query($query_del) or die("Cannot execute query \"$query_del\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
+					$opt_table = "OPTIMIZE TABLE `".$db_select_name.";";
+					mysql_query($opt_table) or die("Cannot execute query \"$opt_table\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 				}
 			}
 			$start_month = 1;
