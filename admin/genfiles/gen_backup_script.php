@@ -9,6 +9,9 @@ function backup_by_ftp(){
 	global $conf_backup_script_path;
 	global $conf_bakcup_path;
 
+	global $conf_mysql_login;
+	global $conf_mysql_pass;
+
 	global $console;
 
 	$num_generated_vhosts=0;
@@ -50,10 +53,26 @@ date\n";
 			$backup_net .= "echo \" uploading\"\n";
 			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E /webserver/ftp/gplhost/hostedfiles/ $owner.$webname.tar.gz\n";
 			$backup_net .= "echo \" deleting archive\"\n";
-			$backup_net .= "rm $owner.$webname.tar.gz\n";
+			$backup_net .= "rm -f $owner.$webname.tar.gz\n";
 			$num_generated_vhosts++;
 		}
-		$backup_net .= "echo \" Dumping SQL datas...\"\n";
+		$backup_net .= "echo \"===> Backuping all dabatases for user $owner:\"\n";
+		$q3 = "SELECT * FROM mysql.db WHERE User='$owner'";
+		$r3 = mysql_query($q3)or die("Cannot query \"$q3\" ! Line:".__LINE__." File:".__FILE__);
+		$n3 = mysql_num_rows($r3);
+		for($k=0;$k<$n3;$k++){
+			$a3 = mysql_fetch_array($r3)or die("Cannot fetch array line".__LINE__." file ".__FILE__);
+			$dbfilename = $owner.".userdb.".$a3["Db"].".sql";
+			$backup_net .= "echo -n \" Database ".$a3["Db"].": \"";
+			$backup_net .= "echo -n \" dumping...\"\n";
+			$backup_net .= "mysqldump -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases ".$a3["Db"]." >".$dbfilename."\n";
+			$backup_net .= "echo -n \" compressing...\"\n";
+			$backup_net .= "gzip $dbfilename\n";
+			$backup_net .= "echo -n \" Done! Starting upload!\"\n";
+			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E /webserver/ftp/gplhost/hostedfiles/ ".$dbfilename.".gz\n";
+			$backup_net .= "echo \" deleting archive\"\n";
+			$backup_net .= "rm -f ".$dbfilename.".gz\n";
+		}
 //		$backup_net .= "mysqldump -c --add-drop-table -databases db1 db2 >user.dbs";
 	}
 	$backup_net .= "date\n";

@@ -1,3 +1,8 @@
+24/06/2004:
+- Reviewed and updated MX generation in zonefiles. Now it's possible
+to setup some backup MX servers for DTC thanks to the new generated
+morercpthosts file.
+
 21/06/2004:
 - Install script now uses a backup/restor script so it's easyer to add
 some fields in previous tables (automatic addon to sql is done when
