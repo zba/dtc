@@ -50,7 +50,7 @@ function drawNewAdminForm(){
 				$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$a["paiement_id"]."';";
 				$r2 = mysql_query($q)or die("Cannot select $q line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 				$n2 = mysql_num_rows($r2);
-				if($n2 != 1)	die("Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__);
+				if($n2 != 1)	echo "Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__." : problems with sql tables !";
 				$a2 = mysql_fetch_array($r2);
 				if($a2["valid"] == "yes"){
 					$waiting_new_users .= "<td><font color=\"green\">YES</font></td>";
