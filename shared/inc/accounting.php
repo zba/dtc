@@ -56,7 +56,7 @@ function sum_http($webname)
     {
        $subdomain_name = mysql_result($result,$i,"subdomain_name");
        $db_select_name = "access_".$subdomain_name."_".$db_webname;
-	   $last_run = "SELECT MAX(last_run) AS last FROM $pro_mysql_acc_http_table WHERE vhost='".$subdomain_name."'";
+	   $last_run = "SELECT MAX(last_run) AS last FROM $pro_mysql_acc_http_table WHERE vhost='".$subdomain_name."' AND domain='".$webname."'";
 	   $result_l = mysql_query($last_run) or die("Cannot execute query \"$last_run\"");
 	   for($l=0;$l<mysql_num_rows($result_l);$l++)
 	   {
