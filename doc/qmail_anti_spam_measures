@@ -18,11 +18,15 @@ You have to add it into debian like this:
 		sh -c "start-stop-daemon --start --quiet --user qmaild \
             --exec /usr/bin/tcpserver -- -v -R -H \
             -u `id -u qmaild` -g `id -g nobody` -x /etc/tcp.smtp.cdb 0 smtp \
-            /usr/bin/rblsmtpd \
-                        -r bl.spamcop.net \
-                        -r relays.ordb.org \
-                        -r blackholes.wirehub.net \
-                        -r list.dsbl.org \
+            /usr/bin/rblsmtpd -b \
+                        -rblackholes.easynet.nl \
+                        -rproxies.blackholes.easynet.nl \
+                        -rdynablock.easynet.nl \
+                        -rbl.spamcop.net \
+                        -rcbl.abuseat.org \
+                        -rrelays.ordb.org \
+                        -rlist.dsbl.org \
+                        -rdnsbl.njabl.org \
             /usr/sbin/qmail-smtpd 2>&1 | $logger -t qmail -p mail.notice &"
 
 See how I've added in rblsmtpd. rblsmtpd accepts the -r switch to query the
@@ -32,3 +36,8 @@ relays.ordb.org , blackholes.wirehub.net and list.dsbl.org .
 Monitor this file in the future because I might change the lists and
 take off the dnsbl lists that are broken and put in new ones because they
 give back a higher result.
+-----
+
+blackholes information @ easynet.nl:
+- http://abuse.easynet.nl/blackholes.html
+- http://abuse.easynet.nl/proxies.html
