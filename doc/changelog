@@ -1,6 +1,7 @@
 Resolved pear install under Debian by a stupidly long php version
 checking. Added 2 new nice skins, debuged access log dump so webalizer
-statistics are ok.
+statistics are ok. Added an option to have domain preview if unresolved.
+This was incompatible with reselling subdomains...
 
 31-08-04: V0.15.0-R2 improved the way DTC handles non-resolveable
 domains aliasing: now it uses open_basedir like for normal vhosts,
