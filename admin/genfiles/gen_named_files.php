@@ -1,10 +1,18 @@
 <?php
 
 function get_remote_ns($a){
+	global $console;
 	$flag = false;
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"];
 	while($retry < 3 && $flag == false){
-		$lines = file ($url);
+		$a_vers = explode(".",phpversion());
+		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
+			$console .= "<br>Using lynx -source on ".$a["server_addr"]." with login ".$a["server_login"]."...";
+			$result = exec("lynx -source \"$url\"",$lines,$return_val);
+		}else{
+			$console .= "<br>Using php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"]."...";
+			$lines = file ($url);
+		}
 		$nline = sizeof($lines);
 
 		if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
