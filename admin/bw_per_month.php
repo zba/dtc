@@ -52,63 +52,71 @@ if($n != 1)die("Client not found!");
 $c = mysql_fetch_array($r);
 $bpquota = $c["bw_quota_per_month_gb"] * 1024 * 1024 * 1024;
 
-$q = "SELECT adm_login FROM $pro_mysql_admin_table WHERE id_client='".$_REQUEST["cid"]."';";
-$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__);
+$q = "SELECT subdomain.subdomain_name,subdomain.domain_name
+FROM admin,domain,subdomain
+WHERE admin.id_client='".$_REQUEST["cid"]."'
+AND domain.owner=admin.adm_login
+AND subdomain.domain_name=domain.name";
+$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." SQL said: ".mysql_error());
 $n = mysql_num_rows($r);
 for($i=0;$i<$n;$i++){
 	$a = mysql_fetch_array($r);
-	$q2 = "SELECT name FROM $pro_mysql_domain_table WHERE owner='".$a["adm_login"]."';";
-	$r2 = mysql_query($q2)or die("Cannot query $q2 in ".__FILE__." line ".__LINE__);
-	$n2 = mysql_num_rows($r2);
-	for($j=0;$j<$n2;$j++){
-		$a2 = mysql_fetch_array($r2);
-		$q3 = "SELECT subdomain_name FROM $pro_mysql_subdomain_table WHERE domain_name='".$a2["name"]."';";
-		$r3 = mysql_query($q3)or die("Cannot query $q3 in ".__FILE__." line ".__LINE__);
-		$n3 = mysql_num_rows($r3);
-		for($k=0;$k<$n3;$k++){
-			$a3 = mysql_fetch_array($r3);
-			$cur_month = date("m");
-			$cur_year = date("Y");
-			for($m=0;$m<12;$m++){
-				$month = $cur_month+$m+1;
-				if($month > 12){
-					$month -= 12;
-					$year = $cur_year;
-				}else{
-					$year = $cur_year-1;
-				}
-				$q4 = "SELECT bytes_sent FROM $pro_mysql_acc_http_table
-WHERE vhost='".$a3["subdomain_name"]."' AND domain='".$a2["name"]."'
-AND year='$year' AND month='$month';";
-				$r4 = mysql_query($q4)or die("Cannot query $q4 in ".__FILE__." line ".__LINE__);
-				$n4 = mysql_num_rows($r4);
-				if($n4 == 1){
-					$a4 = mysql_fetch_array($r4);
-					$tr_tbl[$m] += $a4["bytes_sent"];
-				}
+	$cur_month = date("m");
+	$cur_year = date("Y");
+	for($m=0;$m<12;$m++){
+		$month = $cur_month+$m+1;
+		if($month > 12){
+			$month -= 12;
+			$year = $cur_year;
+		}else{
+			$year = $cur_year-1;
+		}
+		$q4 = "SELECT bytes_sent FROM $pro_mysql_acc_http_table
+WHERE vhost='".$a["subdomain_name"]."' AND domain='".$a["name"]."' AND year='$year' AND month='$month';";
+		$r4 = mysql_query($q4)or die("Cannot query $q4 in ".__FILE__." line ".__LINE__);
+		$n4 = mysql_num_rows($r4);
+		if($n4 == 1){
+			$a4 = mysql_fetch_array($r4);
+			$tr_tbl[$m] += $a4["bytes_sent"];
+		}
+	}
+}
 
-				$q4 = "SELECT transfer FROM $pro_mysql_acc_ftp_table
-WHERE sub_domain='".$a2["name"]."'
-AND year='$year' AND month='$month';";
-				$r4 = mysql_query($q4)or die("Cannot query $q4 in ".__FILE__." line ".__LINE__);
-				$n4 = mysql_num_rows($r4);
-				if($n4 == 1){
-					$a4 = mysql_fetch_array($r4);
-					$tr_tbl[$m] += $a4["transfer"];
-				}
+$q = "SELECT domain.name FROM admin,domain
+WHERE admin.id_client='".$_REQUEST["cid"]."' AND domain.owner=admin.adm_login";
+$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." SQL said: ".mysql_error());
+$n = mysql_num_rows($r);
+for($i=0;$i<$n;$i++){
+	$a = mysql_fetch_array($r);
+	$cur_month = date("m");
+	$cur_year = date("Y");
+	for($m=0;$m<12;$m++){
+		$month = $cur_month+$m+1;
+		if($month > 12){
+			$month -= 12;
+			$year = $cur_year;
+		}else{
+			$year = $cur_year-1;
+		}
 
-				$q4 = "SELECT smtp_trafic,pop_trafic,imap_trafic FROM $pro_mysql_acc_email_table
-WHERE domain_name='".$a2["name"]."'
-AND year='$year' AND month='$month';";
-				$r4 = mysql_query($q4)or die("Cannot query $q4 in ".__FILE__." line ".__LINE__);
-				$n4 = mysql_num_rows($r4);
-				if($n4 == 1){
-					$a4 = mysql_fetch_array($r4);
-					$tr_tbl[$m] += $a4["smtp_trafic"];
-					$tr_tbl[$m] += $a4["pop_trafic"];
-					$tr_tbl[$m] += $a4["imap_trafic"];
-				}
-			}
+		$q4 = "SELECT transfer FROM $pro_mysql_acc_ftp_table
+WHERE sub_domain='".$a["name"]."' AND year='$year' AND month='$month';";
+		$r4 = mysql_query($q4)or die("Cannot query $q4 in ".__FILE__." line ".__LINE__." SQL said: ".mysql_error());
+		$n4 = mysql_num_rows($r4);
+		if($n4 == 1){
+			$a4 = mysql_fetch_array($r4);
+			$tr_tbl[$m] += $a4["transfer"];
+		}
+
+		$q4 = "SELECT smtp_trafic,pop_trafic,imap_trafic FROM $pro_mysql_acc_email_table
+WHERE domain_name='".$a["name"]."' AND year='$year' AND month='$month';";
+		$r4 = mysql_query($q4)or die("Cannot query $q4 in ".__FILE__." line ".__LINE__." SQL said: ".mysql_error());
+		$n4 = mysql_num_rows($r4);
+		if($n4 == 1){
+			$a4 = mysql_fetch_array($r4);
+			$tr_tbl[$m] += $a4["smtp_trafic"];
+			$tr_tbl[$m] += $a4["pop_trafic"];
+			$tr_tbl[$m] += $a4["imap_trafic"];
 		}
 	}
 }
