@@ -2,6 +2,8 @@
 
 error_reporting(E_ALL);
 
+$console = "";
+
 // AUTO SQL CONFIG
 // This file automates the use of a mysql database. It creates connection
 // to it, and fetch all software config from the config table
@@ -166,7 +168,7 @@ if($conf_mysql_conf_ok != "yes"){
 and fill 'groups' and 'config' tables with it's default values.<br>";
 
 	// If we changed the values in the form, save the config file with new values
-	if($_REQUEST["update_conf"] == "Ok"){
+	if(isset($_REQUEST["update_conf"]) && $_REQUEST["update_conf"] == "Ok"){
 		$conf_mysql_host = $_REQUEST["conf_host"];
 		$conf_mysql_login = $_REQUEST["conf_login"];
 		$conf_mysql_pass = $_REQUEST["conf_pass"];

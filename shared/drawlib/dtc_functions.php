@@ -265,7 +265,7 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 
 	// Create domain in database
 	$domupdate_query = "INSERT INTO $pro_mysql_domain_table (name,owner,default_subdomain,ip_addr) VALUES ('".$domain_name."','$adm_login','www','".$conf_main_site_ip."');";
-	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
+	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"! line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	// Create default domain www
 	$adm_query = "INSERT INTO $pro_mysql_subdomain_table (id,domain_name,subdomain_name,path) VALUES ('','".$domain_name."','www','www');";
