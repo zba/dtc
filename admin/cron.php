@@ -1,6 +1,6 @@
 <?php
 
-require("/usr/share/dtc/shared/autoSQLconfig.php"); // Our main configuration file
+require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
 require_once("genfiles/genfiles.php");

@@ -8,7 +8,7 @@
 // will then reload the config fields (just in cases some value
 // have been added or modified)
 
-$dtcshared_path = "/usr/share/dtc/shared";
+$dtcshared_path = "../shared";
 $autoconf_configfile = "mysql_config.php";
 
 require("$dtcshared_path/dtc_version.php");

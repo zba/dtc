@@ -1,6 +1,6 @@
 <?
 
-require("/usr/share/dtc/shared/autoSQLconfig.php");
+require("../shared/autoSQLconfig.php");
 require("$dtcshared_path/vars/table_names.php");
 require("$dtcshared_path/drawlib/dtc_functions.php");
 
