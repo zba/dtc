@@ -63,6 +63,10 @@ chown -R nobody:nogroup $conf_hosting_path
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "==> DTC is now creating it's database:"
 fi
+# Added for MacOS X support with mysql not in the path...
+if [ "$conf_mysql_cli_path" = "" ] ;then
+	conf_mysql_cli_path = "mysql";
+fi
 if [ "$conf_mysql_pass" = "" ];
 then
         MYSQL="mysql"
