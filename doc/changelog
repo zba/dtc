@@ -32,7 +32,13 @@ random in the forms and URL of the customer's GUI... Those
 are then compared to the stored value in SQL with an expiration
 timestamp.
 
-04-10-04: V0.15.0-R7
+06-10-04: Released version 0.15.0-R7.
+Thomas: Added 404 domain for whenever a FQDN points
+to the server but no Vhost is associated (previously
+it was using the first Vhost in alphabetical order),
+wich I called 404 subdomain. Also a standard
+ErrorDocument 404 is installed automaticaly.
+
 Damien:
 Added a flag in config to show/hide passwords in the
 interface.

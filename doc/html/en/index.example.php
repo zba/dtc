@@ -87,4 +87,6 @@ if($chap == "1" || $chap == "2" || $chap == "3" || $chap == "4" || $chap == "5")
 	$out .= $doc_index;
 }
 
+echo $out;
+
 ?>
