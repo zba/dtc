@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS product (
   nbr_database int(9) NOT NULL default '0',
   bandwidth int(9) NOT NULL default '0',
   period date NOT NULL default '0001-00-00',
+  allow_add_domain enum('yes','no','check') default 'no',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
 ) TYPE=MyISAM
