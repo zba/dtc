@@ -78,8 +78,8 @@ function isFtpLogin($mailbox){
 }
 
 function isDTCPassword($pass){
-	$reg = "^([a-zA-Z0-9]){6,16}\$";
-	if(!ereg($reg,$hostname))	return false;
+	$reg = "^([a-zA-Z0-9]){4,16}\$";
+	if(!ereg($reg,$pass))	return false;
 	else			return true;
 }
 

@@ -12,5 +12,6 @@ $pro_mysql_config_table = "config";
 $pro_mysql_cronjob_table = "cron_job";
 $pro_mysql_whois_table = "whois";
 $pro_mysql_nameservers_table = "nameservers";
+$pro_mysql_handle_table = "handle";
 
 ?>
