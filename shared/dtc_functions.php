@@ -217,7 +217,7 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 }
 
 function smartByte($bytes){
-	if($bytes>1024*1024*1024)	return round(($bytes / 1073741824),3) ."GBytes";
+	if($bytes>1024*1024*1024)	return round(($bytes / 1073741824),3) ." GBytes";
 	if($bytes>1024*1024)		return round(($bytes / 1048567),3) ." MBytes";
 	if($bytes>1024)			return round(($bytes / 1024),3) ." kBytes";
 	return $bytes." Bytes";

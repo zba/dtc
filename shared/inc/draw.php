@@ -775,21 +775,29 @@ function drawAdminTools_AdminStats($admin){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_acc_http_table;
 	global $pro_mysql_acc_ftp_table;	
-	$query = "SELECT name FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."'";
+	$query = "SELECT name FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
-	for($ad=0;$ad<mysql_num_rows($result);$ad++)
-	{
-		sum_http(mysql_result($result,$ad,"name"));
-		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='".mysql_result($result,$ad,"name")."'";
+	$num_domains = mysql_num_rows($result);
+	for($ad=0;$ad<$num_domains;$ad++){
+		$domain_name = mysql_result($result,$ad,"name");
+		$ar[$ad]["name"] = $domain_name;
+
+		sum_http($domain_name);
+		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='$domain_name'";
         $result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
         $num_rows = mysql_num_rows($result_http);
-       	$http_amount = $http_amount + mysql_result($result_http,0,"transfer");
-		
-		sum_ftp(mysql_result($result,$ad,"name"));
-        $query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".mysql_result($result,$ad,"name")."'";
+		$rez_http = mysql_result($result_http,0,"transfer");
+       	$http_amount = $http_amount + $rez_http;
+		$ar[$ad]["http"] = smartByte($rez_http);
+
+		sum_ftp($domain_name);
+        $query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='$domain_name'";
         $result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
         $num_rows = mysql_num_rows($result_ftp);
-        $ftp_amount = $ftp_amount + mysql_result($result_ftp,0,"transfer");
+		$rez_ftp = mysql_result($result_ftp,0,"transfer");
+        $ftp_amount = $ftp_amount + $rez_ftp;
+		$ar[$ad]["ftp"] = smartByte($rez_ftp);
+		$ar[$ad]["total"] = smartByte($rez_http + $rez_ftp);
 	}
 	
 	$out .= "<u><b>Total transfered bytes:</b></u><br>
@@ -797,6 +805,24 @@ HTTP: ".smartByte($http_amount);
 	$out .= "<br>FTP: ".smartByte($ftp_amount);
 	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount);
 	$out .= " / ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024);
+
+	$out .= '<br><br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
+	$out .= "<tr><td><b>Domain Name</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td><b>Total</b></td></tr>";
+	for($ad=0;$ad<$num_domains;$ad++){
+		if($ad % 2){
+			$bgcolor = " style=\"white-space:nowrap\" nowrap bgcolor=\"#000000\"";
+		}else{
+			$bgcolor = " style=\"white-space:nowrap\" nowrap";
+		}
+		$out .= "<tr>";
+		$out .= "<td$bgcolor>".$ar[$ad]["name"]."</td>";
+		$out .= "<td$bgcolor>".$ar[$ad]["ftp"]."</td>";
+		$out .= "<td$bgcolor>".$ar[$ad]["http"]."</td>";
+		$out .= "<td$bgcolor>".$ar[$ad]["total"]."</td>";
+		$out .= "</tr>";
+	}
+	$out .= '</table>';
+
 	return $out;
 }
 
@@ -819,7 +845,6 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 HTTP: ".smartByte($http_amount);
 	$out .= "<br>FTP:  ".smartByte($ftp_amount);
 	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount);
-	$out .= " / ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024);
 	return $out;
 }
 
