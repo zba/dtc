@@ -40,21 +40,7 @@ then
 	conf_mysql_db="dtc"
 fi
 
-echo ""
-echo "What MTA (Mail Tranport Agent, the one that"
-echo "will route and deliver your incoming mail) do"
-echo "you wish to use with DTC ? Type q for qmail"
-echo "or type p for postfix."
-echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
-read conf_mta_type
-if [ "$conf_mta_type" = "p" ];
-then
-	conf_mta_type=postfix
-	echo "Postfix will be used"
-else
-	conf_mta_type=qmail
-	echo "Qmail will be used"
-fi
+conf_mta_type=postfix
 
 # Host configuration
 cur_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
@@ -131,23 +117,9 @@ echo "### DEAMON PATH CONFIGURATION ###"
 PATH_HTTPD_CONF="/etc/httpd/httpd.conf"
 PATH_NAMED_CONF="/etc/named.conf"
 
-echo ""
-echo "Where is located your postfix etc dir ?"
-echo -n "postfix etc path [/etc/postfix]: "
-read PATH_POSTFIX_ETC
-if [ "$PATH_POSTFIX_ETC" = "" ];
-then
-	PATH_POSTFIX_ETC="/etc/postfix"
-fi
+PATH_POSTFIX_ETC="/etc/postfix"
 
-echo ""
-echo "Where is located your postfix/main.cf ?"
-echo -n "postfix control path [${PATH_POSTFIX_ETC}/main.cf]: "
-read PATH_POSTFIX_CONF
-if [ "$PATH_POSTFIX_CONF" = "" ];
-then
-	PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"
-fi
+PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"
 
 echo ""
 echo "Where is saslpasswd2 located ?"
@@ -160,6 +132,7 @@ fi
 
 echo ""
 echo "Where is located your courier config path (ie /etc/courier) ?"
+echo "If Courier is not installed, just hit enter."
 echo -n "courier config path [/etc/courier]: "
 read PATH_COURIER_CONF_PATH
 if [ "$PATH_COURIER_CONF_PATH" = "" ];
@@ -169,6 +142,7 @@ fi
 
 echo ""
 echo "Where is located your dovecot.conf ?"
+echo "If Dovecot is not installed, just hit enter."
 echo -n "Dovecot control path [/etc/dovecot.conf]: "
 read PATH_DOVECOT_CONF
 if [ "$PATH_DOVECOT_CONF" = "" ];
