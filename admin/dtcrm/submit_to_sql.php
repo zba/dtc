@@ -54,6 +54,8 @@ if($_REQUEST["action"] == "edit_client"){
 	if($_REQUEST["del"] == "Del"){
 		$q = "DELETE FROM $pro_mysql_client_table WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+		$q = "UPDATE $pro_mysql_admin_table SET id_client='0' WHERE id_client='".$_REQUEST["id"]."' LIMIT 1;";
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	}else{
 		$q = "UPDATE $pro_mysql_client_table SET
 is_company='".$_REQUEST["ed_is_company"]."',
