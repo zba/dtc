@@ -103,7 +103,11 @@ for($i=0;$i<$nbr_tables;$i++){
 	$varnames = array_keys($allvars);
 	$numvars = sizeof($allvars);
 	if( !mysql_table_exists($tblnames[$i]) ){
-		$q = "CREATE TABLE ".$tblnames[$i]."(
+		if(strstr($allvars[$varnames[0]],"auto_increment") != NULL)
+			$q = "CREATE TABLE IF NOT EXISTS ".$tblnames[$i]."(
+".$varnames[0]." ".$allvars[$varnames[0]].",PRIMARY KEY (".$varnames[0]."));";
+		else
+			$q = "CREATE TABLE IF NOT EXISTS ".$tblnames[$i]."(
 ".$varnames[0]." ".$allvars[$varnames[0]].");";
 		echo $q;
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());

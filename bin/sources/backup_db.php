@@ -83,7 +83,7 @@ for($j=0;$j<$num;$j++){
 			$out .= " NOT NULL";
 		if($a['Default'] != NULL)
 			$out .= " default '".$a['Default']."'";
-		$out .= $a['Extra']."\"";
+		$out .= " ".$a['Extra']."\"";
 		if($i < $n-1)
 			$out .= ",\n";
 		else
