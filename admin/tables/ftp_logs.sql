@@ -1,4 +1,8 @@
-CREATE TABLE `xfer_stat` (
+#
+# Table structure for table `ftp_logs`
+#
+
+CREATE TABLE `ftp_logs` (
   `username` tinytext,
   `filename` text,
   `size` bigint(20) default NULL,
