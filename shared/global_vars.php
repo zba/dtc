@@ -38,4 +38,22 @@ if(!ereg("^([a-z0-9]+)([.a-z0-9-]+)([a-z0-9])\$",$edit_domain) && isset($edit_do
 	die("The domain provided does not look like a correct domain name...");
 }
 
+// Save menu style preference in session
+session_register("dtc_use_text_menu");
+if(!is_string($_SESSION["dtc_use_text_menu"])){
+	unset($dtc_use_text_menu);
+}
+$dtc_use_text_menu = $_SESSION["dtc_use_text_menu"];
+if($_REQUEST["use_text_menu"] == "yes"){
+	$dtc_use_text_menu = "yes";
+}
+if($_REQUEST["use_text_menu"] == "no"){
+	$dtc_use_text_menu = "no";
+}
+if(!is_string($dtc_use_text_menu)){
+	$dtc_use_text_menu = "no";
+}
+$_SESSION["dtc_use_text_menu"] = $dtc_use_text_menu;
+
+
 ?>

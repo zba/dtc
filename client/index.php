@@ -50,10 +50,12 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 
 }else{
 	$HTML_admin_edit_data = "<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
-<table><tr><td>
+<table><tr><td align=\"right\">
 	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"adm_login\" value=\"\">
-</td></tr><tr><td>
+</td></tr><tr><td align=\"right\">
 	".$txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"adm_pass\" value=\"\">
+</td></tr><tr><td align=\"right\">
+	Use text menu</td><td><input type=\"checkbox\" name=\"use_text_menu\" value=\"yes\">
 </td></tr><tr><td>
 	</td><td><input type=\"submit\" name=\"Login\" value=\"login\">
 </tr></td></table>

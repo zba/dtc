@@ -543,9 +543,11 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 	global $treesign_array;
 
 	global $alt_signs;
+	global $dtc_use_text_menu;
 
 	// Get an array out of the current selected addresse
 	$selected = explode("/",$curent_addr);
+
 
 	// For each item of current level of the tree
 	$nbr_menu_entry = sizeof($menu);
@@ -564,11 +566,12 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 			if($entry["text"] == $selected[$ietype_menu_recurs_level]){
 				$treesign_array[$ietype_menu_recurs_level] = "minus";
 				$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
-
 				$image_source = getCacheImageURL($text,1,$arbo);
-//				$image_source = "inc/img.php?text=$text&color=1&sign=minus&link=$arbo";
-				$ret .= "
-$alink<img border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><br>";
+				if($dtc_use_text_menu == "no"){
+					$ret .= "$alink<img border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><br>";
+				}else{
+					$ret .= $alink." -".$entry["text"]."</a><br>";
+				}
 
 				$treesign_array[$ietype_menu_recurs_level] = "tree";
 
@@ -581,15 +584,16 @@ $alink<img border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><b
 				// Menu is not selected, so just draw it normaly
 				$treesign_array[$ietype_menu_recurs_level] = "plus";
 				$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
-
 				$image_source = getCacheImageURL($text,0,$arbo);
 				$image_rolover = getCacheImageURL($text,1,$arbo);
 				$rolovered = addImageToPreloads($image_rolover);
-				$ret .= "
-$alink<img border=\"0\" name=\"$rolovered\"
+				if($dtc_use_text_menu == "no"){
+					$ret .= "$alink<img border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
-onmouseover=\"$rolovered.src='$image_rolover'\"
-onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
+onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
+				}else{
+					$ret .= "$alink".$alt_signs.$entry["text"]."</a><br>";
+				}
 			}
 		}else if($entry["type"] == "link"){
 			// Calculate the sign to put at the left of the entry (plus, minus, or none)
@@ -614,26 +618,29 @@ onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
 			$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
 			if($entry["text"] == $selected[$ietype_menu_recurs_level]){
 				$image_source = getCacheImageURL($text,1,$arbo);
-//				$image_source = "inc/img.php?text=$text&color=1&link=$arbo";
-				$ret .= "
-$alink<img border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
+				if($dtc_use_text_menu == "no"){
+					$ret .= "$alink<img border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
+				}else{
+					$ret .= "$alink".$alt_signs.$entry["text"]."</a><br>";
+				}
 			}else{
 				$image_source = getCacheImageURL($text,0,$arbo);
 				$image_rolover = getCacheImageURL($text,1,$arbo);
-//				$image_source = "inc/img.php?text=$text&color=0&link=$arbo";
-//				$image_rolover = "inc/img.php?text=$text&color=1&link=$arbo";
 				$rolovered = addImageToPreloads($image_rolover);
-				$ret .= "
-$alink<img border=\"0\" name=\"$rolovered\"
+				if($dtc_use_text_menu == "no"){
+					$ret .= "$alink<img border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
-onmouseover=\"$rolovered.src='$image_rolover'\"
-onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
+onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
+				}else{
+					$ret .= "$alink".$alt_signs.$entry["text"]."</a><br>";
+				}
 			}
 			if($mysign=="endtree"){
 				$treesign_array[$ietype_menu_recurs_level] = "none";
 			}
 		}
 	}
+
 	return $ret;
 }
 
@@ -643,12 +650,21 @@ function makeTreeMenu($menu,$selected,$self_link,$link_name){
 	global $treesign_array;
 	global $treeAddrsArray;
 
+	global $dtc_use_text_menu;
+
 	$ietype_menu_img_nbr=0;
 	$ietype_menu_recurs_level=0;
 	$treesign_array=array();
 	$treeAddrsArray = array();
 
-	return makeIetypeMenu($menu,$selected,$self_link,$link_name);
+	if($dtc_use_text_menu == "yes"){
+		$ret .= "<pre><b><font size=\"+1\">";
+	}
+	$ret .= makeIetypeMenu($menu,$selected,$self_link,$link_name);
+	if($dtc_use_text_menu == "yes"){
+		$ret .= "</font></b></pre>";
+	}
+	return $ret;
 }
 
 
