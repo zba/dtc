@@ -19,6 +19,16 @@
 # files so that it uses the DTC genated files.
 
 #
+# First, copy our RENAME_ME_paiement_config.php to paiement_config.php
+# so it works automaticaly even without Tucows API
+#
+
+if ! [ -f $PATH_DTC_SHARED/securepay/paiement_config.php ]
+then
+	cp -v $PATH_DTC_SHARED/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/securepay/paiement_config.php
+fi
+
+#
 # Include $PATH_DTC_ETC/vhosts.conf in $PATH_HTTPD_CONF
 #
 
