@@ -3,6 +3,9 @@
 require("/usr/share/dtc/shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
+// If under BSD, please change this to: /usr/local/sbin/apachectl
+$path_apachectl = "/usr/sbin/apachectl";
+
 require_once("genfiles/genfiles.php");
 
 echo date("Y m d / H:i:s T")." Starting DTC cron job\n";
@@ -140,12 +143,12 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	system("chmod +x \"$conf_generated_file_path/vhost_check_dir\"");
 	system("$conf_generated_file_path/vhost_check_dir");
 	echo "Testing apache conf\n";
-	exec ("/usr/sbin/apachectl configtest", $plop, $return_var);
+	exec ("$path_apachectl configtest", $plop, $return_var);
 	if($return_var == false){
 		echo "Config is OK : restarting Apache\n";
-		system("/usr/sbin/apachectl stop");
+		system("$path_apachectl stop");
 		sleep(5);
-		system("/usr/sbin/apachectl start");
+		system("$path_apachectl start");
 	}else{
 		echo "Config not OK : I can't reload apache !!!\n";
 	}
