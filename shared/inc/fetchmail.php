@@ -90,7 +90,7 @@ function checkMailbox($user,$host,$email,$mailbox_type,$server,$login,$password)
 		//echo "Checking ok after pass<br>";
 		$popline = fgets($soc,1024);
 		if(!strstr($popline,"+OK")){
-			$errTxt = "Server didn't accept your login/pass";
+			$errTxt = "Server didn't accept your login/pass: $popline";
 			return false;
 		}
 		//echo "Closing socket<br>";
