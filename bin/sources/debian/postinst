@@ -117,10 +117,10 @@ fi
 if [ -e /usr/bin/pear ]
 then
 	echo "Checking pear installation"
-	pear upgrade Console_Getopt 2>&1 | echo
-	pear upgrade-all 2>&1 | echo
-	pear install Crypt_CBC | echo
-	pear install Auth_SASL | echo
+	/usr/bin/pear upgrade Console_Getopt 2>&1 | echo
+	/usr/bin/pear upgrade-all 2>&1 | echo
+	/usr/bin/pear install Crypt_CBC | echo
+	/usr/bin/pear install Auth_SASL | echo
 fi
 
 # Changing root password of mysql
