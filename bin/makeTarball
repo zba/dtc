@@ -10,6 +10,7 @@
 VERS=`cat version`
 RELS=`cat release`
 VERSION=$VERS"-"$RELS
+UNIX_TYPE=generic
 
 echo " --- Making DTC tarball package ---"
 
@@ -19,7 +20,9 @@ rm -rf dtc
 mkdir -p dtc/etc/zones
 cp -rf ../admin ../client ../shared ../doc dtc/
 echo "<?php
-\$conf_dtc_version= \""$VERS"\"; \$conf_dtc_release= \""$RELS"\";
+\$conf_dtc_version= \""$VERS"\";
+\$conf_dtc_release= \""$RELS"\";
+\$conf_unix_type= \""$UNIX_TYPE"\";
 ?>" > dtc/shared/dtc_version.php
 find dtc/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
 find dtc/ -iname '*~' -exec rm -rf {} \; &>/dev/null

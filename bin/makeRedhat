@@ -9,6 +9,7 @@
 
 VERSION=`cat version`
 RELEASE=`cat release`
+UNIX_TYPE=redhat
 
 echo " --- Making DTC Redhat Manager Pachage (RPM) package ---"
 
@@ -18,7 +19,10 @@ rm -rf dtc usr
 mkdir -p dtc/etc/zones
 cp -rf ../admin ../client ../shared ../doc dtc/
 echo "<?php
-\$conf_dtc_version= \""$VERS"\"; \$conf_dtc_release= \""$RELS"\";
+\$conf_dtc_version= \""$VERS"\";
+\$conf_dtc_release= \""$RELS"\";
+\$conf_unix_type= \""$UNIX_TYPE"\";
+
 ?>" > dtc/shared/dtc_version.php
 find dtc/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
 find dtc/ -iname '*~' -exec rm -rf {} \; &>/dev/null

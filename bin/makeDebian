@@ -9,6 +9,7 @@
 VERS=`cat version`
 RELS=`cat release`
 VERSION=$VERS"-"$RELS
+UNIX_TYPE=debian
 
 echo " --- Making DTC debian package --- "
 
@@ -19,7 +20,9 @@ mkdir -p debian/DEBIAN
 # Copy DTC's files in the good directories
 cp -rf ../admin ../client ../shared debian/usr/share/dtc
 echo "<?php
-\$conf_dtc_version= \""$VERS"\"; \$conf_dtc_release= \""$RELS"\";
+\$conf_dtc_version= \""$VERS"\";
+\$conf_dtc_release= \""$RELS"\";
+\$conf_unix_type= \""$UNIX_TYPE"\";
 ?>" > debian/usr/share/dtc/shared/dtc_version.php
 rm -rf debian/usr/share/dtc/shared/mysql_config.php
 mkdir -p debian/usr/share/doc/dtc

@@ -10,6 +10,7 @@
 VERS=`cat version`
 RELS=`cat release`
 VERSION=$VERS"."$RELS
+UNIX_TYPE=bsd
 
 echo " --- Making DTC BSD tarball package ---"
 
@@ -31,8 +32,13 @@ then
 fi
 cp sources/dtc_db.php sources/restor_db.php dtc/admin
 
+kernel=`uname -a | awk '{print $1}'`;
+
 echo "<?php
-\$conf_dtc_version= \""$VERS"\"; \$conf_dtc_release= \""$RELS"\";
+\$conf_dtc_version= \""$VERS"\";
+\$conf_dtc_release= \""$RELS"\";
+\$conf_unix_type= \""$UNIX_TYPE"\";
+\$conf_kernel_type= \""$kernel"\";
 ?>" > dtc/shared/dtc_version.php
 find dtc/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
 find dtc/ -iname '*~' -exec rm -rf {} \; &>/dev/null
