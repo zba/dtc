@@ -1,7 +1,7 @@
 Here is the todo in unsorted order:
 
+- Add support for wildcard DNS entries
 - Add support for spamassassin & clamav
-- Add support for TXT record
 - Add resseller interface
 - Add SSL support for customers
 - Enable multiple user delegation in SQL account manager
@@ -11,9 +11,7 @@ Here is the todo in unsorted order:
 - Finish tucows API integration
 - Integrate all new changes with FreeBSD &
 RedHat (to do at when all of the top is finished)
-- Verify that installer runs ok with different
-configurations (Woody / Testing / Qmail / Postfix...)
-it's currently well tested for Woody + Qmail
+- Make a Mac OS X graphical package
 - Make a windows port for cygwin using NDIS
 scriptable installer.
 
