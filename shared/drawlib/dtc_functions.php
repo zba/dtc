@@ -315,7 +315,7 @@ function drawPercentBar($value,$max,$double="yes"){
 	<td width=\"2\" height=\"13\"><img width=\"2\" height=\"13\" src=\"gfx/bar/start.gif\"></td>
 	<td width=\"$percent_graf\" height=\"13\" background=\"gfx/bar/middle_$color.gif\"><img width=\"$percent_graf\" alt=\"$alts\" height=\"13\" src=\"gfx/bar/middle_$color.gif\"></td>
 	<td width=\"$percent_graf2\" height=\"13\" background=\"gfx/bar/middle_umpty.gif\"><img width=\"$percent_graf2\" alt=\"$altn\" height=\"13\" src=\"gfx/bar/middle_umpty.gif\"></td>
-	<td width=\"2\" height=\"16\"><img width=\"2\" height=\"13\" src=\"gfx/bar/end.gif\"></td>
+	<td width=\"2\" height=\"13\"><img width=\"2\" height=\"13\" src=\"gfx/bar/end.gif\"></td>
 	<td>".$percent_val."%</td></tr>
 </table>";
 	return $table;
