@@ -1,6 +1,6 @@
 <?php
 // Automatic database array generation for DTC
-// Generation date: 2005-01(Jan)-18 Tuesday 03:36
+// Generation date: 2005-01(Jan)-24 Monday 17:13
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
@@ -406,8 +406,8 @@ $dtc_database = array(
 			"home" => "varchar(255) NOT NULL ",
 			"shell" => "varchar(255) NOT NULL ",
 			"mbox_host" => "varchar(120) NOT NULL ",
-			"crypt" => "varchar(50) NOT NULL ",
-			"passwd" => "varchar(50) NOT NULL ",
+			"crypt" => "varchar(20) NOT NULL ",
+			"passwd" => "varchar(20) NOT NULL ",
 			"active" => "int(11) NOT NULL default '1' ",
 			"start_date" => "date NOT NULL default '0000-00-00' ",
 			"expire_date" => "date NOT NULL default '0000-00-00' ",
