@@ -1,5 +1,14 @@
 <?php
 
+$txt_cfg_new_chroot_path_path = array(
+	"fr" => "Chemin du disque cgi-wrapper (chroot pour SBOX) : ",
+	"en" => "Path of the cgi-wrapper disk (chroot for SBOX): ",
+	"nl" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ",
+	"ru" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ",
+	"de" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ",
+	"zh" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ",
+	"es" => "TRANS Path of the cgi-wrapper disk (chroot for SBOX): ");
+
 $txt_cfg_main_software_config =array(
 	"fr" => "Configuration principale de DTC",
 	"en" => "Main software configuration",

@@ -274,6 +274,8 @@ function drawDTCpathConfig(){
 	global $conf_bakcup_path;
 	global $conf_webalizer_stats_script_path;
 
+	global $conf_chroot_path;
+
 	global $lang;
 
 	global $txt_cfg_path_conf_title;
@@ -281,6 +283,7 @@ function drawDTCpathConfig(){
 	global $txt_cfg_dtc_shared_folder;
 	global $txt_cfg_new_account_defaultpath;
 	global $txt_cfg_generated_file_path;
+	global $txt_cfg_new_chroot_path_path;
 
 	$qmailPath = "<h3><img src=\"gfx/dtc/generate_mail.gif\"> Qmail path</h3>
 <table with=\"100%\" height=\"1\">
@@ -349,6 +352,9 @@ function drawDTCpathConfig(){
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_new_account_defaultpath[$lang]."</td>
 	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_site_root_host_path\" name=\"new_site_root_host_path\"></td>
+</tr><tr>
+	<td align=\"right\" nowrap>".$txt_cfg_new_chroot_path_path[$lang]."</td>
+	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_chroot_path\" name=\"new_chroot_path\"></td>
 </tr></table>
 ".$txt_cfg_generated_file_path[$lang]."<br>
 <input type=\"text\" size =\"60\" value=\"$conf_generated_file_path\" name=\"new_generated_file_path\"><br><br>
@@ -467,6 +473,7 @@ function saveDTCConfigInMysql(){
 	site_root_host_path='".$_REQUEST["new_site_root_host_path"]."',
 	generated_file_path='".$_REQUEST["new_generated_file_path"]."',
 	dtcshared_path='".$_REQUEST["new_dtcshared_path"]."',
+	chroot_path='".$_REQUEST["new_chroot_path"]."',
 	qmail_rcpthost_path='".$_REQUEST["new_qmail_rcpthost_path"]."',
 	qmail_virtualdomains_path='".$_REQUEST["new_qmail_virtualdomains_path"]."',
 	qmail_assign_path='".$_REQUEST["new_qmail_assign_path"]."',
