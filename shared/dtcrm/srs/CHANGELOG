@@ -1,0 +1,142 @@
+CHANGELOG
+---------
+
+Version x.x.x
+xx-xxx-xxxx
+
+
+Version 2.7.3
+15-Aug-2003
+	- Updated README to reflect HRS functionality
+	- exposed HRS_port in the config file, since that port number
+      is different for each HRS customer (Jason Slaughter)
+
+
+Version 2.7.2
+18-Jun-2003
+	- add new environment 'HRS' and related class properties for
+	  people using the OpenHRS system
+	- added ability to define protocol in class constructor
+	- added more info to logging to show chosen environment, chosen
+	  protocol, and server/port connected to
+
+
+Version 2.7.1
+16-Jun-2003
+	- bug fix in OPS->readData(), where it sometimes did not read 
+	  all of the available data (Pat Ekman)
+
+
+Version 2.7
+29-Apr-2003
+	- change logging in base class to handle binary data better
+	- change license to LGPL
+
+
+Version 2.6.2
+09-Jan-2003
+	- add setProtocol() method to make using TPP easier
+
+
+Version 2.6.1
+03-Jan-2003
+	- patch to set private key when environment is explicitly 
+      set (Jim Cottrell)
+	- fix bug that was causing read errors in PHP 4.3.0, due to
+	  change in behaviour of fgets()
+
+
+Version 2.6
+08-Aug-2002
+	- updated XML version passed during handshaking to be compatible
+	  with recent Perl clients
+	- another rewrite of XML-to-PHP code, removing pass-by-reference
+	  reliance (which is getting written out of PHP) ... side effect
+	  is faster XML processing  :)
+
+
+Version 2.5
+04-Feb-2002
+	- fix UTF-8 encoding/decoding ... fixes a bug with handling
+	  data with accents (e.g. contact names, addresses, etc.)
+
+
+Version 2.4
+05-Jan-2002
+	- fixed explicit declaration of path to PEAR classes
+
+
+Version 2.4-beta
+17-Dec-2001
+	- remove all DOMXML code and replace with an expat parser
+      (removes reliance on DOMXML extension, which is still 
+	  pretty buggy in PHP)
+    - most functionality is now in OPS.php
+    - XML_Codec.php is no longer needed
+	- move towards PEAR-style coding and documentation
+
+
+Version 2.3
+10-Jun-2001
+	- re-rewrite of DOMXML code to be compatible with all current 
+	  and future versions of PHP (hopefully)
+	- rewrite to move towards PEAR-style coding
+	- remove CBC class, replace with PEAR's Crypt::CBC
+	- remove valid command name checking
+
+
+(CVS changes)
+04-Apr-2001
+	- rewrite of DOMXML code to be compatible with PHP 4.0.5
+
+
+Version 2.2.1
+06-Nov-2000
+	- new version scheme to bring it inline with the official
+	  OpenSRS numbering scheme
+	- added showXMLLog() method to OPS class
+	- further corrections to timeout problems in OPS.inc
+
+
+Version 0.9.2
+18-Oct-2000
+	- correct logic problem in OPS.inc that was causing timeouts
+
+
+Version 0.9.1
+11-Oct-2000
+	- change openSRS_base.inc to handle .CA domain stuff
+
+
+Version 0.9
+06-Sep-2000
+	- change entire class to work with new OpenSRS XML API
+	- class now more closely resembles the Perl library, in
+	  terms of variables, methods, etc.
+
+
+Version 0.8.1
+31-Jul-2000
+	- change to CBC code to handle NULL bytes better
+
+
+Version 0.8
+25-Jul-2000
+	- first version that actually works (!)
+	- fixed connection script since the server was expecting a binary
+	  version of the MD5-ed challenge (as Perl does, but PHP doesn't)
+
+
+Version 0.2
+21-Jul-2000
+	- incorporated CBC hack into the script
+
+
+Version 0.1
+20-Jul-2000
+	- first release, non-functional
+
+
+
+/* vim: set expandtab tabstop=4 shiftwidth=4: */
+/* $Id: CHANGELOG,v 1.1 2003/11/09 17:14:41 thomas Exp $  */

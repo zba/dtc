@@ -1,0 +1,130 @@
+<?php
+
+$pro_mysql_product_table = "product";
+
+function DTCRMlistClients(){
+	$id_client = $_REQUEST["id"];
+	global $pro_mysql_client_table;
+
+	$text .= "<div style=\"white-space: nowrap\" nowrap>";
+	if($id_client != 0 && $id_client != "" && isset($id_client)){
+		$text .= "<a href=\"$PHP_SELF?rub=crm&id=0\">";
+	}
+	$text .= "New customer";
+	if($id_client != 0 && $id_client != "" && isset($id_client)){
+		$text .= "</a>";
+	}
+	$text .= "<br><br>";
+
+	$query = "SELECT * FROM $pro_mysql_client_table ORDER BY familyname";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+	$num_rows = mysql_num_rows($result);
+	for($i=0;$i<$num_rows;$i++){
+		$row = mysql_fetch_array($result);
+		if($row["id"] != $_REQUEST["id"]){
+			$text .= "<a href=\"$PHP_SELF?rub=crm&id=".$row["id"]."\">";
+		}
+		$text .= $row["familyname"].", ".$row["christname"]."";
+		if($row["id"] != $_REQUEST["id"]){
+			$text .= "</a>";
+		}
+		$text .= "<br>";
+	}
+	$text .= "</div>";
+	return $text;
+}
+
+function DTCRMeditClients(){
+	global $pro_mysql_client_table;
+	$cid = $_REQUEST["id"];	// current customer id
+	if($cid == "")	return "Select a customer.";
+
+	if($cid != 0 && isset($cid) && $cid != ""){
+		$query = "SELECT * FROM $pro_mysql_client_table WHERE id='".$_REQUEST["id"]."';";
+	        $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+	        $num_rows = mysql_num_rows($result);
+		if($num_rows != 1){
+			return "<font color=\"red\">Error : no row by that client ID (".$_REQUEST["id"].") !!!</font>";
+		}
+		$row = mysql_fetch_array($result);
+		$idden_inputs = "<input type=\"hidden\" name=\"action\" value=\"edit_client\">";
+	}else{
+		$idden_inputs = "<input type=\"hidden\" name=\"action\" value=\"new_client\">";
+		unset($row);
+	}
+	$text = "<form action=\"$PHP_SELF\">
+<table cellspacin=\"0\" cellpadding=\"0\">
+<input type=\"hidden\" name=\"rub\" value=\"crm\">
+<input type=\"hidden\" name=\"id\" value=\"$cid\">
+<tr><td align=\"right\">Family name:</td><td><input size=\"40\" type=\"text\" name=\"ed_familyname\"value=\"".$row["familyname"]."\"></td></tr>
+<tr><td align=\"right\">First name:</td><td><input size=\"40\" type=\"text\" name=\"ed_christname\" value=\"".$row["christname"]."\"></td></tr>
+<tr><td align=\"right\">Company name:</td><td><input size=\"40\" type=\"text\" name=\"ed_company_name\" value=\"".$row["company_name"]."\"></td></tr>
+<tr><td align=\"right\">Addr1:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr1\" value=\"".$row["addr1"]."\"></td></tr>
+<tr><td align=\"right\">Addr2:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr2\" value=\"".$row["addr2"]."\"></td></tr>
+<tr><td align=\"right\">City:</td><td><input size=\"40\" type=\"text\" name=\"ed_city\" value=\"".$row["city"]."\"></td></tr>
+<tr><td align=\"right\">Zicode:</td><td><input size=\"40\" type=\"text\" name=\"ed_zipcode\" value=\"".$row["zipcode"]."\"></td></tr>
+<tr><td align=\"right\">State:</td><td><input size=\"40\" type=\"text\" name=\"ed_state\" value=\"".$row["state"]."\"></td></tr>
+<tr><td align=\"right\">Country:</td><td><input size=\"40\" type=\"text\" name=\"ed_country\" value=\"".$row["country"]."\"></td></tr>
+<tr><td align=\"right\">Phone:</td><td><input size=\"40\" type=\"text\" name=\"ed_phone\" value=\"".$row["phone"]."\"></td></tr>
+<tr><td align=\"right\">Fax:</td><td><input size=\"40\" type=\"text\" name=\"ed_fax\" value=\"".$row["fax"]."\"></td></tr>
+<tr><td align=\"right\">Email:</td><td><input size=\"40\" type=\"text\" name=\"ed_email\" value=\"".$row["email"]."\"></td></tr>
+<tr><td align=\"right\"></td><td><input type=\"submit\" value=\"Save\"></td></tr>
+</table>
+</form>";
+	return $text;
+}
+
+function DTCRMshowClientCommands($cid){
+	global $pro_mysql_client_table;
+	global $pro_mysql_product_table;
+	global $pro_mysql_command_table;
+
+	$query = "SELECT * FROM $pro_mysql_command_table WHERE id_client='$cid'";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error);
+	$num_rows = mysql_num_rows($result);
+	$text .= "<br><table border=\"1\"><tr>
+<td>What</td>
+<td>Domain</td>
+<td>Price</td>
+<td>Quantity</td>
+<td>Date</td>
+<td>Expiration</td>
+<td>Action</td></tr>";
+	for($i=0;$i<$num_rows;$i++){
+		$row = mysql_fetch_array($result);
+		$query2 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$row["product_id"]."';";
+		$result2 = mysql_query($query2)or die("Cannot query \"$query2\" !!!".mysql_error);
+		$row2 = mysql_fetch_array($result2);
+		if(($i % 2) == 0) $color = " bgcolor=\"#000000\" "; else $color = "";
+		$text .= "<tr>
+<td $color>".$row2["name"]."</td>
+<td $color>".$row["domain_name"]."</td>
+<td $color>".$row["price"]."</td>
+<td $color>".$row["quantity"]."</td>
+<td $color><input type=\"text\" size=\"10\" name=\"cmd_date\" value=\"".$row["date"]."\"></td>
+<td $color><input type=\"text\" size=\"10\" name=\"cmd_expir\" value=\"".$row["expir"]."\"></td>
+<td><input type=\"submit\" name=\"ed_command\" value=\"Save\"><input type=\"submit\" name=\"del_command\" value=\"Del\"></td>
+	</tr>";
+	}
+	$text .= "</table>";
+
+	$text .= "<br><br><form action=\"$PHP_SELF\">
+<input type=\"hidden\" name=\"rub\" value=\"crm\">
+<input type=\"hidden\" name=\"id\" value=\"$cid\">
+<select name=\"add_new_command\">";
+	$query = "SELECT * FROM $pro_mysql_product_table ORDER BY name";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error);
+	$num_rows = mysql_num_rows($result);
+	for($i=0;$i<$num_rows;$i++){
+		$row = mysql_fetch_array($result);
+		$text .= "<option value=\"".$row["id"]."\">".$row["name"]."</option>";
+	}
+
+	$text .= "</select><br>
+Domain name:<input type=\"text\" name=\"add_newcmd_domain_name\" value=\"\"><input type=\"submit\" value=\"Add\">
+</form>";
+
+	return $text;
+}
+
+?>

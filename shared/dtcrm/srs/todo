@@ -1,0 +1,12 @@
+TODO LIST
+
+- clean out cruft (domain validation, CA entity types, etc), 
+  and make this just a streamlined connection class
+- ACE encoding (although I doubt this gets much use)
+- complete PEAR-ification and PHPDoc documentation
+- test
+
+
+/* vim: set expandtab tabstop=4 shiftwidth=4: */
+/* $Id: todo,v 1.1 2003/11/09 17:14:41 thomas Exp $  */
+
