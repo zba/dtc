@@ -65,21 +65,6 @@ function dtcJavascriptConfirmLink($text,$url){
 function anotherFooter($content){
 	global $lang;
 
-	$txt_footer_topline = array(
-		"fr" => "Societe Anotherlight Multimedia services d'hebergement professionnel. ╘ 2002-2003",
-		"ru" => "Anotherlight Multimedia : система профессионального веб-хостинга. ╘ 2002-2003",
-		"en" => "Anotherlight Multimedia : professional web hosting service. ╘ 2002-2003");
-
-	$txt_footer_bottomline = array(
-		"fr" => "Solutions - Hebergement de sites web - Hebergement de serveurs dediИ -
-HИbergement streaming - Connexion LS - Connexion Turbodsl",
-		"ru" => "Решения - Веб-хостинг - Размещение выделенных серверов - Хостинг широковещательных сервисов -
-LS соединения - Соединения Turbodsl",
-		"nl" => "Solutions - Web sites hosting - Dedicated server hosting - Streaming services hosting -
-LS connection - TurboDSL connection",
-		"en" => "Solutions - Web sites hosting - Dedicated server hosting - Streaming services hosting -
-LS connection - TurboDSL connection");
-
 	$sponsors_inside = "<center><font face=\"Arial\" size=\"-2\">
 <i>Programmation :
 <a target=\"_blank\" href=\"http://thomas.goirand.fr/?rub=gpl\">Thomas GOIRAND</a>, under
@@ -88,23 +73,6 @@ LS connection - TurboDSL connection");
 ";
 
 	return $sponsors_inside;
-
-	return "
-<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\"
-height=\"1\" width=\"100%\">
-<tr><td height=\"24\" background=\"gfx/menu/body/fond.gif\" align=\"center\"><font face=\"Verdana, Arial, Helvetica, sans-serif\" size=\"-2\" color=\"#FFCC00\">
-	<b>".$txt_footer_topline[$lang]."</b></font></td></tr>
-<tr><td align=\"center\">
-$sponsors_inside
-</td></tr>
-
-<tr><td height=\"24\" background=\"gfx/menu/body/fond.gif\" align=\"center\"><font face=\"Verdana, Arial, Helvetica, sans-serif\" size=\"-2\" color=\"#FFCC00\">
-	<b>".$txt_footer_bottomline[$lang]."</b></font></td></tr>
-<tr><td>
-&nbsp;
-</td></tr>
-</table>
-";
 }
 
 function anotherTopBanner($inside,$drawLanguageSelect="no"){
@@ -115,15 +83,12 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	}
 
 	$inside = "
-<table cellpadding=\"8\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"100%\">
+<table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"100%\">
 <tr><td>
 	<center><img alt=\"Domain Teck Control\" src=\"gfx/dtc_logo.gif\"><br>
-	<font size=\"-2\" face=\"Arial\">Vers:$conf_dtc_version Release:$conf_dtc_release</font></center>
-</td><td>
-	<h1><b><font face=\"Verdana\">Domain Technologie Control</font></b></h1>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<i>Take the control of your domain name</i>
+	<font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release</font></center>
+</td><td><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
+	<font size=\"-1\"><i>Take the control of your domain name</i></font><center>
 </td>".$zeLanguage."</tr>
 </table>
 ";
