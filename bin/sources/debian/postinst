@@ -193,7 +193,10 @@ rm $TMP_FILE
 if [ "$conf_mysql_change_root" = "true" ]
 then
 	echo "===> Changing MySQL root password"
-	echo "If you didn't setup a root pass for mysqld, just hit ENTER."
+        echo "MySQL will now prompt your for the password to connect to"
+        echo "the database. This is the OLD password that was there before"
+        echo "you launched this script. If you didn't setup a root pass for"
+        echo "mysqld, just hit ENTER to use empty pass."
 	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pass"') WHERE User='root'; FLUSH PRIVILEGES;"
 fi
 
