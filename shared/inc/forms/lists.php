@@ -1,0 +1,11 @@
+<?php
+
+////////////////////////////////////////////////////
+// One domain name ftp account collection edition //
+////////////////////////////////////////////////////
+function drawAdminTools_MailingLists($domain,$adm_path){
+	return "Will come soon!";
+}
+
+
+?>

@@ -11,6 +11,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/domain_stats.php");
 	require("$dtcshared_path/inc/forms/dns.php");
 	require("$dtcshared_path/inc/forms/subdomain.php");
+	require("$dtcshared_path/inc/forms/lists.php");
 }
 require("$dtcshared_path/inc/forms/email.php");
 
@@ -161,7 +162,7 @@ function drawAdminTools($admin){
 			$web_editor .= drawAdminTools_Emails($eddomain);
 			$title = $txt_title_mailbox_form[$lang].$edit_domain;
 		}else if($add_array[1] == "mailing-lists"){
-			$web_editor .= drawAdminTools_MaillingLists($eddomain);
+			$web_editor .= drawAdminTools_MailingLists($eddomain);
 			$title = $txt_title_maillinglist_form[$lang].$edit_domain;
 		}else if($add_array[1] == "dns"){
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
