@@ -719,20 +719,54 @@ function drawAdminTools_Ftp($domain,$adm_path){
 }
 
 function drawAdminTools_AdminStats($admin){
+	global $pro_mysql_domain_table;
+	global $pro_mysql_acc_http_table;
+	global $pro_mysql_acc_ftp_table;	
+	$query = "SELECT name FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."'";
+	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
+	for($ad=0;$ad<mysql_num_rows($result);$ad++)
+	{
+		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='".mysql_result($result,$ad,"name")."'";
+        $result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
+        $num_rows = mysql_num_rows($result_http);
+       	$http_amount = $http_amount + mysql_result($result_http,0,"transfer");
+		
+
+        $query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".mysql_result($result,$ad,"name")."'";
+        $result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
+        $num_rows = mysql_num_rows($result_ftp);
+        $ftp_amount = $ftp_amount + mysql_result($result_ftp,0,"transfer");
+	}
+	
 	$out .= "<u><b>Total transfered bytes:</b></u><br>
-HTTP: ";
-	$out .= "<br>FTP:";
-	$out .= "<br>Total:";
-	$out .= " / ".$admin["info"]["bandwidth_per_month_mb"];
+HTTP: $http_amount";
+	$out .= "<br>FTP:  $ftp_amount";
+	$out .= "<br>Total: ". ($http_amount + $ftp_amount);
+	$out .= "/ ".$admin["info"]["bandwidth_per_month_mb"];
 	return $out;
 }
 
 function drawAdminTools_DomainStats($admin,$eddomain){
+	global $pro_mysql_domain_table;
+	global $pro_mysql_acc_http_table;
+	global $pro_mysql_acc_ftp_table;	
+	
+	$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='".$eddomain["name"]."'";
+    $result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
+    $num_rows = mysql_num_rows($result_http);
+    $http_amount = $http_amount + mysql_result($result_http,0,"transfer");
+		
+    $query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$eddomain["name"]."'";
+    $result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
+    $num_rows = mysql_num_rows($result_ftp);
+    $ftp_amount = $ftp_amount + mysql_result($result_ftp,0,"transfer");
+	
+	
 	$out .= "<u><b>Total transfered bytes:</b></u><br>
-HTTP: ";
-	$out .= "<br>FTP:";
-	$out .= "<br>Total:";
-//	print_r($eddomain);
+HTTP: $http_amount";
+	$out .= "<br>FTP:  $ftp_amount";
+	$out .= "<br>Total: ". ($http_amount + $ftp_amount);
+	$out .= "/ ".$admin["info"]["bandwidth_per_month_mb"];
 	return $out;
 }
 
