@@ -204,6 +204,8 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 	global $pro_mysql_cronjob_table;
 	global $conf_main_site_ip;
 	global $conf_chroot_path;
+	global $conf_generated_file_path;
+
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
 	$result = mysql_query($query)or die("Cannot query : \"$query\" !");
 	$numrows = mysql_num_rows($result);
