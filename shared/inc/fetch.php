@@ -51,6 +51,10 @@ function fetchAdminInfo($adm_login){
 	$ret["data"]["adm_login"] = $row["adm_login"];
 	$ret["data"]["adm_pass"] = $row["adm_pass"];
 	$ret["data"]["path"] = $row["path"];
+	$ret["data"]["max_email"] = $row["max_email"];
+	$ret["data"]["max_ftp"] = $row["max_ftp"];
+	$ret["data"]["quota"] = $row["quota"];
+	$ret["data"]["bandwidth_per_month_mb"] = $row["bandwidth_per_month_mb"];
 	$ret["data"]["id_client"] = $row["id_client"];
 	return $ret;
 }

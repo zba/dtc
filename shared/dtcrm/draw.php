@@ -217,8 +217,7 @@ to refresh the menu or add another domain name.
 // END OF DOMAIN NAME REGISTRATION //
 /////////////////////////////////////
 
-								$out .= "
-";
+								$out .= "";
 							}else{
 								$out .= "
 You have enough funds on your account to proceed registration. Press
