@@ -61,8 +61,8 @@ if($panel_type!="cronjob"){
 if (!$lang){
 	// if no language defined yet (cookie or session):
 	// try to findout users language by checking it's HTTP_ACCEPT_LANGUAGE variable
-	if ($HTTP_ACCEPT_LANGUAGE) {
-		$all_languages = strtok("$HTTP_ACCEPT_LANGUAGE",";");
+	if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]) && $_SERVER["HTTP_ACCEPT_LANGUAGE"]) {
+		$all_languages = strtok($_SERVER["HTTP_ACCEPT_LANGUAGE"],";");
 		$langaccept = explode(",", $all_languages);
 		for ($i = 0; $i < sizeof($langaccept); $i++) { 
 			$tmplang = trim($langaccept[$i]);

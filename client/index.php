@@ -10,7 +10,7 @@ require_once("login.php");
 // Create the top banner and menu //
 ////////////////////////////////////
 $anotherTopBanner = anotherTopBanner("DTC");
-$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
+//$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 
 $anotherLanguageSelection = anotherLanguageSelection();
 $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
@@ -27,7 +27,7 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 		$mypage = layout_login_and_languages($login_skined,$lang_sel);
 	}else{
 		// Draw the html forms
-		$HTML_admin_edit_data .= drawAdminTools($admin);
+		$HTML_admin_edit_data = drawAdminTools($admin);
 		$mypage = $HTML_admin_edit_data;
 	}
 }else{
@@ -36,8 +36,9 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 	$mypage = layout_login_and_languages($login_skined,$lang_sel);
 }
 // Output the result !
+if(!isset($anotherHilight)) $anotherHilight = "";
 
 //echo anotherPage($txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
-echo anotherPage("Client:".$txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$mypage,anotherFooter(""));
+echo anotherPage("Client:","",$anotherHilight,makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
 
 ?>

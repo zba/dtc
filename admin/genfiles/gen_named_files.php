@@ -34,6 +34,8 @@ function get_remote_ns_domains(){
 	global $conf_generated_file_path;
 	global $console;
 
+	$domain_list = "";
+
 	// Get all domains from the servers for wich we act as backup MX
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
@@ -64,9 +66,9 @@ function get_remote_ns_domains(){
 		if($flag == false){
 			$console = "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
 			$fp = fopen($f,"r");
-			fseek($fp,0,SEEK_END);
+			fseek($fp,0,"SEEK_END");
 			$size = ftell($fp);
-			fseek($fp,0,SEEK_START);
+			fseek($fp,0,"SEEK_START");
 			$domain_list .= fread($fp,$size);
 			fclose($fp);
 		}
@@ -101,6 +103,7 @@ function named_generate(){
 	global $conf_named_slavefile_path;
 	global $conf_named_slavezonefiles_path;
 
+	$slave_file = "";
 	$todays_serial = date("YmdH");
 
 	$djb_file = "";
@@ -223,6 +226,10 @@ $more_mx_server
 	IN	A	$ip_to_write
 ";
 		// Add all subdomains to it !
+		$is_pop_subdomain_set = "no";
+		$is_smtp_subdomain_set = "no";
+		$is_ftp_subdomain_set = "no";
+		$is_list_subdomain_set = "no";
 		for($j=0;$j<$num_rows2;$j++){
 			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
@@ -232,32 +239,32 @@ $more_mx_server
 				$the_ip_writed = $subdomain["ip"];
 			}
 			if($web_subname == "pop"){
-				$is_pop_subdomain_set = yes;
-			}
+				$is_pop_subdomain_set = "yes";
+			}else
 			if($web_subname == "smtp"){
-				$is_smtp_subdomain_set = yes;
+				$is_smtp_subdomain_set = "yes";
 			}
 			if($web_subname == "ftp"){
-				$is_ftp_subdomain_set = yes;
+				$is_ftp_subdomain_set = "yes";
 			}
 			if($web_subname == "list"){
-				$is_list_subdomain_set = yes;
+				$is_list_subdomain_set = "yes";
 			}
 			$this_site_file .= "$web_subname	IN	A	$the_ip_writed\n";
 			if($subdomain["associated_txt_record"] != ""){
 				$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
 			}
 		}
-		if( $is_pop_subdomain_set != yes){
+		if( $is_pop_subdomain_set != "yes"){
 			$this_site_file .= "pop	IN	A	$ip_to_write\n";
 		}
-		if( $is_smtp_subdomain_set != yes){
+		if( $is_smtp_subdomain_set != "yes"){
 			$this_site_file .= "smtp	IN	A	$ip_to_write\n";
 		}
-		if( $is_ftp_subdomain_set != yes){
+		if( $is_ftp_subdomain_set != "yes"){
 			$this_site_file .= "ftp	IN	A	$ip_to_write\n";
 		}
-		if( $is_list_subdomain_set != yes){
+		if( $is_list_subdomain_set != "yes"){
 			$this_site_file .= "list	IN	A	$ip_to_write\n";
 		}
 

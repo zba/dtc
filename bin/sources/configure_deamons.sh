@@ -79,6 +79,7 @@ else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "=> Verifying User and Group directive"
 	fi
+
 	# Those 2 are for debian
 	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
@@ -114,7 +115,7 @@ else
 		sed "s/User apache/User nobody/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
-	if grep "Group apache -> Group nobody" >/dev/null 2>&1
+	if grep "Group apache" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "Group apache -> Group nobody"
 		sed "s/Group apache/Group nobody/" $PATH_HTTPD_CONF >$TMP_FILE

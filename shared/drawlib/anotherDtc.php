@@ -103,6 +103,9 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$links = "<br>
 <font size=\"-2\" face=\"Arial\"><a target=\"_blank\" href=\"/dtcdoc/\">Documentation</a>
 <a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a></font>";
+	}else{
+		$links = "";
+		$zeLanguage = "";
 	}
 
 	$inside = "

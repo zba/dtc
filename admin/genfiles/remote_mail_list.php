@@ -47,6 +47,8 @@ function get_remote_mail_domains(){
 	global $conf_generated_file_path;
 	global $console;
 
+	$domain_list = "";
+
 	// Get all domains from the servers for wich we act as backup MX
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='mail_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
@@ -77,9 +79,9 @@ function get_remote_mail_domains(){
 		if($flag == false){
 			$console = "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
 			$fp = fopen($f,"r");
-			fseek($fp,0,SEEK_END);
+			fseek($fp,0,"SEEK_END");
 			$size = ftell($fp);
-			fseek($fp,0,SEEK_START);
+			fseek($fp,0,"SEEK_START");
 			$domain_list .= fread($fp,$size);
 			fclose($fp);
 		}
