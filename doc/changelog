@@ -1,18 +1,25 @@
 17-09-04: V0.16.0-R0
 New features:
 There is now a product manager on where you can build
-your hosting plans.
-Start of a new_account script in the client interface.
+your hosting plans. Once hosting plans build, new user
+can register an account on the client interface, and
+checkout the order with paypal.
+
+Each pop user have now access to a special mini email
+panel with option for mailbox. In the future this panel
+will be improoved a lot to allow autoresponder and spam
+filtering.
 
 Cosmetic enhancements:
 Updated standard skin title color to some darker stuff.
-New registration form for new users done, mued greyskin updated.
-
-Template for new sites was not copied because of a global not set.
+New registration form for new users done, mued greyskin
+updated.
+Template for new sites was not copied because of a global
+not set.
 
 Bugfixes:
-Apache conf generation died if domain has no subdomains, wich can happen
-in some configuration of a domain name. Corrected.
+Apache conf generation died if domain has no subdomains,
+wich can happen in some configuration of a domain name.
 
 A \n was missing in Postfix email generation when redirection
 was used.
