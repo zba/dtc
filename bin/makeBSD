@@ -106,3 +106,7 @@ echo "===> Creating .uue archive file"
 tar -czf "dtcBSDport-"$VERSION".tar.gz" dtc
 mv dtc dtcPORT
 uuencode "dtcBSDport-"$VERSION".tar.gz" dtc.tgz >"dtcBSDport-"$VERSION".uue"
+
+echo "===> Creating send-pr file"
+cp sources/bsd/sendpr.template sendpr.data
+cat "dtcBSDport-"$VERSION".uue" >>sendpr.data

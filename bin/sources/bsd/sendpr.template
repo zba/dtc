@@ -5,20 +5,14 @@ Cc:
 X-send-pr-version: 3.113
 X-GNATS-Notify: 
 
->Submitter-Id:  current-users
 Originator:    Thomas GOIRAND
 Organization:  GPLHost
 Confidential:  no
->Synopsis:      <synopsis of the problem (one line)>
->Severity:      <[ non-critical | serious | critical ] (one line)>
->Priority:      <[ low | medium | high ] (one line)>
 Category:      port
 Class:         change-request
->Release:       FreeBSD 5.1-RELEASE i386
->Environment:
 
-        <machine, os, target, libraries (multiple lines)>
-Description:
+Descrption:
+New port:
         A hosting web GUI for admin and accounting
         apache/named/proftpd/qmail Domain Technologie Control
         (DTC) is a set of PHP scripts and a web interface that
@@ -31,6 +25,8 @@ Description:
         they own, and monitor bandwidth per user and service.
 
         WWW: http://www.gplhost.com/?rub=software&sousrub=dtc
+
+        See also ftp://gplhost.com/pub/dtc/bsd
 
         - Thomas GOIRAND
         thomas@goirand.fr
