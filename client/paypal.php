@@ -1,6 +1,6 @@
 <?php
 
-require_once("../../shared/autoSQLconfig.php");
+require_once("../shared/autoSQLconfig.php");
 $panel_type="client";
 
 // read the post from PayPal system and add 'cmd'
