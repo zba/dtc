@@ -114,10 +114,14 @@ function fetchAdminStats($admin){
 
 		$query = "SHOW TABLE STATUS FROM $db_name;";
 		$result = mysql_query($query)or die("Cannot query \"$q\" !".mysql_error());
-		$db_du = 1024 * mysql_result($result,0,"Data_length");
-		$ret["db"][$i]["du"] = $db_du;
+		$num_tbl = mysql_num_rows($result);
+		$ret["db"][$i]["du"] = 0;
+		for($j=0;$j<$num_tbl;$j++){
+			$db_du = 1024 * mysql_result($result,$j,"Data_length");
+			$ret["db"][$i]["du"] += $db_du;
+			$ret["total_du_db"] += $db_du;
+		}
 		$ret["db"][$i]["name"] = $db_name;
-		$ret["total_du_db"] += $db_du;
 	}
 	mysql_select_db($conf_mysql_db);
 
