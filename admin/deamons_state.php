@@ -1,7 +1,7 @@
 <?php
 
 $panel_type = "none";
-require("/usr/share/dtc/shared/autoSQLconfig.php");
+require("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
 require("deamons_state_strings.php");                 // Contain all the translated string
