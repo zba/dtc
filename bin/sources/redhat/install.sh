@@ -4,6 +4,8 @@
 
 UNIX_TYPE=redhat
 
+VERBOSE_INSTALL=yes
+
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
 echo "###############################################################"
