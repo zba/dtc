@@ -52,6 +52,8 @@ then
 	else
 		HTTPD_MODULES_CONFIG=""
 	fi
+else
+	HTTPD_MODULES_CONFIG=""
 fi
 
 # check to see if our apacheconfig has been obseleted
