@@ -118,7 +118,28 @@ function pro_vhost_generate(){
 				}else{
 					$vhost_file .= "<VirtualHost ".$ip_to_write.">\n";
 				}
-			  	$vhost_file .= "	ServerName $web_subname.$web_name\n";
+				// Added by Luke
+				// Needed to create an Alias in httpd.conf for non-resolvable domains
+				$alias_domain_query = "SELECT * FROM $pro_mysql_domain_table WHERE 1 ORDER BY name;";
+				$result_alias = mysql_query ($alias_domain_query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+				$num_rows_alias = mysql_num_rows($result_alias);
+				for($x=0;$x<$num_rows_alias;$x++) {
+					$row = mysql_fetch_array($result_alias) or die ("Cannot fetch domain for Alias");
+					$web_name = $row["name"];
+					$web_owner = $row["owner"];
+					$ip_addr = $row["ip_addr"];
+					$alias_user_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$web_owner';";
+					$alias_user_result = mysql_query($alias_user_query) or die("Cannot fetch user for Alias");
+					$num_rows_alias_user = mysql_num_rows($alias_user_result);
+					if ($num_rows_alias_user != 1) {
+						die("No user of that name!");
+					}
+					$alias_path = mysql_fetch_array($alias_user_result) or die ("Cannot fetch user");
+					$web_path = $alias_path["path"];
+					$vhost_file .= "Alias /$web_name $web_path/$web_name/subdomains/www/html\n";
+				}
+				// End of Luke's patch
+				$vhost_file .= "	ServerName $web_subname.$web_name\n";
 				if($conf_use_ssl == "yes"){
 					$vhost_file .= "	SSLEngine on
 	SSLCertificateFile /etc/apache/ssl/new.cert.cert
