@@ -38,6 +38,7 @@ function createCreditCardPaiementID($amount_paid,$client_id,$label,$new_account=
 
 function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none",$secpay_custom_id="0",$total_payed=-1){
 	global $pro_mysql_pay_table;
+	global $conf_webmaster_email_addr;
 
 	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$pay_id';";
 	logPay("Querying: $q");
@@ -62,6 +63,22 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 		secpay_custom_id='$secpay_custom_id',valid='yes' WHERE id='$pay_id';";
 	logPay($q);
 	mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
+
+	$txt_userwaiting_account_activated_subject = "GPLHost:>_ \$".$amount_paid." payment";
+	$txt_mail = "DTC hosting account opened!
+
+Hello,
+
+This is Domain Technologie Control panel robot.
+A \$".$amount_paid." payment has just been occured.
+
+Payid: ".$pay_id."
+
+GPLHost:>_ Open-source hosting worldwide.
+http://www.gplhost.com
+";
+	$headers = "From: ".$conf_webmaster_email_addr;
+	mail($conf_webmaster_email_addr,$txt_userwaiting_account_activated_subject,$txt_mail,$headers);
 }
 
 ?>
