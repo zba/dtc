@@ -91,7 +91,7 @@ if [ $conf_mysql_change_root == true ]
 then
 	echo "===> Changing MySQL root password"
 	echo "If you didn't setup a root pass for mysqld, just hit ENTER."
-	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=('"$conf_mysqlpass"') WHERE User='root'; FLUSH PRIVILEGES;"
+	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pass"') WHERE User='root'; FLUSH PRIVILEGES;"
 fi
 
 if grep "nameserver 127.0.0.1" /etc/resolv.conf
