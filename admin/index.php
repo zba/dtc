@@ -52,7 +52,7 @@ if(file_exists("dtcrm")){
 		}
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&admlist_type=Names".$url_addon."\">";
 	}
-	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/recycle.gif\"><br>".
+	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/crm.png\"><br>".
 		$txt_mainmenu_title_client_management[$lang];
 	if($_REQUEST["rub"] != "crm"){
 		$menu .= "</a>";
@@ -63,7 +63,7 @@ if(file_exists("dtcrm")){
 	if($_REQUEST["rub"] != "monitor"){
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=monitor\">";
 	}
-	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/recycle.gif\"><br>".
+	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
 		$txt_mainmenu_title_bandwidth_monitor[$lang];
 	if($_REQUEST["rub"] != "monitor"){
 		$menu .= "</a>";
@@ -149,7 +149,7 @@ case monitor: // Monitor button
 //fetchAdminStats($admin)
 	}
 	$out .= "</table>";
-	$out .= "Server total accounted transfers this month: ".smartByte($total_box_transfer);
+	$out .= $txt_server_total_bp[$lang].smartByte($total_box_transfer);
 	$module = skin($conf_skin,$out,$txt_customer_bw_consumption[$lang]);
 	$the_page[] = $module;
 	break;
