@@ -1,6 +1,6 @@
 <?php
 // Automatic database array generation for DTC
-// Generation date: 2004-07(Jul)-08 Thursday 23:56
+// Generation date: 2004-07(Jul)-17 Saturday 01:01
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
@@ -18,8 +18,8 @@ $dtc_database = array(
 			),
 		"keys" => array(
 			"PRIMARY" => "(adm_login)",
-			"path" => "(path)",
-			"adm_login" => "(adm_login)"
+			"adm_login" => "(adm_login)",
+			"path" => "(path)"
 			)
 		),
 	"clients" => array(
@@ -78,7 +78,6 @@ $dtc_database = array(
 			"site_addrs" => "varchar(255) NOT NULL default '127.0.0.1|192.168.0.1' ",
 			"use_multiple_ip" => "enum('yes','no') NOT NULL default 'yes' ",
 			"addr_mail_server" => "varchar(255) NOT NULL default 'mx.example.com' ",
-			"addr_backup_mail_server" => "varchar(255) NOT NULL ",
 			"webmaster_email_addr" => "varchar(255) NOT NULL default 'postmaster@example.com' ",
 			"addr_primary_dns" => "varchar(255) NOT NULL default 'ns1.example.com' ",
 			"addr_secondary_dns" => "varchar(255) NOT NULL default 'ns2.example.com' ",
@@ -108,6 +107,7 @@ $dtc_database = array(
 			"use_ssl" => "enum('yes','no') NOT NULL default 'no' ",
 			"use_nated_vhost" => "enum('yes','no') NOT NULL default 'no' ",
 			"nated_vhost_ip" => "varchar(16) NOT NULL default '192.168.0.2' ",
+			"addr_backup_mail_server" => "varchar(255) NOT NULL ",
 			"skin" => "varchar(128) NOT NULL default 'green' ",
 			"mta_type" => "enum('qmail','postfix') NOT NULL default 'qmail' ",
 			"domain_based_ftp_logins" => "enum('yes','no') NOT NULL default 'yes' "
@@ -164,13 +164,13 @@ $dtc_database = array(
 			"domain_name" => "varchar(128) NOT NULL ",
 			"smtp_trafic" => "int(14) unsigned NOT NULL default '0' ",
 			"pop_trafic" => "int(14) unsigned NOT NULL default '0' ",
-			"imap_trafic" => "int(14) unsigned NOT NULL default '0' ",
 			"month" => "int(2) NOT NULL default '0' ",
-			"year" => "int(4) NOT NULL default '0' "
+			"year" => "int(4) NOT NULL default '0' ",
+			"imap_trafic" => "int(14) unsigned NOT NULL default '0' "
 			),
 		"keys" => array(
-			"id" => "(id)",
-			"domain_name" => "(domain_name,month,year)"
+			"domain_name" => "(domain_name,month,year)",
+			"id" => "(id)"
 			)
 		),
 	"ftp_access" => array(
@@ -178,7 +178,7 @@ $dtc_database = array(
 			"login" => "varchar(50) NOT NULL ",
 			"uid" => "int(5) NOT NULL default '65534' ",
 			"gid" => "int(5) NOT NULL default '65534' ",
-			"password" => "varchar(50) NOT NULL default 'passwd' ",
+			"PASSWORD" => "varchar(50) NOT NULL default 'passwd' ",
 			"homedir" => "varchar(70) NOT NULL ",
 			"count" => "int(11) NULL default '0' ",
 			"fhost" => "varchar(50) NULL ",
@@ -190,7 +190,7 @@ $dtc_database = array(
 			"bstor" => "int(11) NULL default '0' ",
 			"bretr" => "int(11) NULL default '0' ",
 			"creation" => "datetime NULL ",
-			"ts" => "timestamp(14) NULL ",
+			"ts" => "timestamp(14) NULL default '00000000000000' ",
 			"frate" => "int(11) NULL default '5' ",
 			"fcred" => "int(2) NULL default '15' ",
 			"brate" => "int(11) NULL default '5' ",
@@ -339,7 +339,7 @@ $dtc_database = array(
 			"home" => "varchar(255) NOT NULL ",
 			"shell" => "varchar(255) NOT NULL ",
 			"mbox_host" => "varchar(120) NOT NULL ",
-			"crypt" => "varchar(20) NOT NULL ",
+			"crypt" => "varchar(50) NOT NULL ",
 			"passwd" => "varchar(20) NOT NULL ",
 			"active" => "int(11) NOT NULL default '1' ",
 			"start_date" => "date NOT NULL default '0000-00-00' ",
@@ -354,9 +354,9 @@ $dtc_database = array(
 			"localdeliver" => "varchar(10) NOT NULL default 'yes' ",
 			"pop3_login_count" => "int(9) NOT NULL default '0' ",
 			"pop3_transfered_bytes" => "int(14) NOT NULL default '0' ",
+			"last_login" => "int(14) NOT NULL default '0' ",
 			"imap_login_count" => "int(9) NOT NULL default '0' ",
-			"imap_transfered_bytes" => "int(14) NOT NULL default '0' ",
-			"last_login" => "int(14) NOT NULL default '0' "
+			"imap_transfered_bytes" => "int(14) NOT NULL default '0' "
 			),
 		"keys" => array(
 			"PRIMARY" => "(id,mbox_host)"
@@ -391,14 +391,18 @@ $dtc_database = array(
 			"delivery_user" => "varchar(128) NOT NULL ",
 			"delivery_domain" => "varchar(128) NOT NULL ",
 			"delivery_success" => "enum('yes','no') NOT NULL default 'no' ",
-			"time_stamp" => "int(14) NOT NULL default '0' "
+			"time_stamp" => "int(14) NOT NULL default '0' ",
+			"msg_id_text" => "varchar(128) NOT NULL ",
+			"delivery_id_text" => "varchar(128) NOT NULL "
 			),
 		"keys" => array(
 			"PRIMARY" => "(id)",
-			"newmsg_id" => "(newmsg_id)",
+			"delivery_id_text_2" => "(delivery_id_text)",
 			"bounce_qp" => "(bounce_qp)",
+			"newmsg_id" => "(newmsg_id)",
 			"sender_domain" => "(sender_domain)",
-			"delivery_domain" => "(delivery_domain)"
+			"delivery_domain" => "(delivery_domain)",
+			"delivery_id_text" => "(delivery_id_text)"
 			)
 		),
 	"subdomain" => array(
