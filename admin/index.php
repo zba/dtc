@@ -48,7 +48,7 @@ $menu = "";
 // this helps simplification if user does not need it.
 if(file_exists("dtcrm")){
 	// CRM Button
-	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "crm"){
+	if(!isset($rub) || $rub != "crm"){
 		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
 		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 		if(mysql_num_rows($result) == 1){
@@ -67,7 +67,7 @@ if(file_exists("dtcrm")){
 	$html_array[] = $menu;
 	$menu = "";
 	// Monitor button
-	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "monitor"){
+	if(!isset($rub) || $rub != "monitor"){
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=monitor\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".

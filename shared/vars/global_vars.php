@@ -4,6 +4,7 @@
 // are global variables.
 
 if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "crm"){
+	$rub = $_REQUEST["rub"];
 	if(isset( $_REQUEST["id_client"] )){
 		$id_client = $_REQUEST["id_client"];
 		if($id_client != "" && isset($id_client) && !ereg("^([0-9]+)\$",$id_client)){
@@ -61,14 +62,14 @@ if($panel_type!="cronjob"){
 	if(isset($_SESSION["dtc_use_text_menu"]) && !is_string($_SESSION["dtc_use_text_menu"])){
 		unset($dtc_use_text_menu);
 	}
-	$dtc_use_text_menu = $_SESSION["dtc_use_text_menu"];
+	//$dtc_use_text_menu = $_SESSION["dtc_use_text_menu"];
 	if(isset($_REQUEST["use_text_menu"]) && $_REQUEST["use_text_menu"] == "yes"){
 		$dtc_use_text_menu = "yes";
 	}
 	if(isset($_REQUEST["use_text_menu"]) && $_REQUEST["use_text_menu"] == "no"){
 		$dtc_use_text_menu = "no";
 	}
-	if(!is_string($dtc_use_text_menu)){
+	if(!isset($dtc_use_text_menu) || !is_string($dtc_use_text_menu)){
 		$dtc_use_text_menu = "no";
 	}
 	$_SESSION["dtc_use_text_menu"] = $dtc_use_text_menu;
