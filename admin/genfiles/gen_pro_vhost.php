@@ -136,7 +136,11 @@ function pro_vhost_generate(){
 					}
 					$alias_path = mysql_fetch_array($alias_user_result) or die ("Cannot fetch user");
 					$web_pathX = $alias_path["path"];
-					$vhost_file .= "\tAlias /$web_nameX $web_pathX/$web_nameX/subdomains/www/html\n";
+					// TG: Added open_basedir restriction (for obvious security reasons)
+					$vhost_file .= "\tAlias /$web_nameX $web_pathX/$web_nameX/subdomains/www/html
+	<Location /$web_nameX>
+		php_admin_value open_basedir \"$web_pathX/$web_nameX/:$conf_php_library_path:$conf_php_additional_library_path:\"
+	</Location>\n";
 				}
 				// End of Luke's patch
 				$vhost_file .= "	ServerName $web_subname.$web_name\n";
