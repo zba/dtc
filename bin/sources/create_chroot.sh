@@ -17,7 +17,7 @@
 #fi
 
 # assign our variables
-CHROOT_DIR=conf_chroot_path
+CHROOT_DIR=$conf_chroot_path
 WEB_USER=nobody
 WEB_GROUP=nogroup
 
@@ -32,19 +32,33 @@ mkdir -p etc dev bin lib tmp var/tmp var/run sbin
 mkdir -p usr/bin usr/lib usr/libexec usr/share usr/lib/zoneinfo
 
 # make devices - adjust MAJOR/MINOR as appropriate ( see ls -l /dev/* )
-# mknod dev/null    c  2 2   # FreeBSD?
-mknod dev/null    c  1 3   # Linux
+if [ $UNIXTYPE = "freebsd" ]
+then
+	mknod dev/null    c  2 2   # FreeBSD?
+else
+	mknod dev/null    c  1 3   # Linux
+fi
 
-mknod dev/random  c  1 8   # Linux
-mknod dev/urandom c  1 9   # Linux
-#mknod dev/urandom c 45 2   # OpenBSD ?
-#mknod dev/random  c  2 3   # FreeBSD
-#ln -s dev/random dev/urandom # FreeBSD
+if [ $UNIXTYPE = "freebsd" ]
+then
+	if [ $kernel = "OpenBSD" ];
+	then
+		mknod dev/urandom c 45 2   # OpenBSD ?
+	else
+		mknod dev/random  c  2 3   # FreeBSD
+		ln -s dev/random dev/urandom # FreeBSD
+	fi
+else
+	mknod dev/random  c  1 8   # Linux
+	mknod dev/urandom c  1 9   # Linux
+fi
 
 # some external programs may need these:
-#mknod dev/stdin   c 22 0   # FreeBSD, OpenBSD
-#mknod dev/stdout  c 22 1   # FreeBSD, OpenBSD
-#mknod dev/stderr  c 22 2   # FreeBSD, OpenBSD
+if [ $UNIXTYPE = "freebsd" ]
+	mknod dev/stdin   c 22 0   # FreeBSD, OpenBSD
+	mknod dev/stdout  c 22 1   # FreeBSD, OpenBSD
+	mknod dev/stderr  c 22 2   # FreeBSD, OpenBSD
+fi
 
 # copy required binaries to $CHROOT_DIR/usr/bin
 cp -pv /usr/bin/file /usr/bin/bzip2 /bin/cpio usr/bin/
@@ -66,20 +80,22 @@ cp -pv /etc/protocols /etc/services /etc/hosts \
 #
 #FreeBSD: 
 #for j in \
-#  /usr/lib/libc.so.5 /usr/lib/libm.so.2 /usr/lib/libstdc++.so.4 \
-#  /usr/lib/libz.so.2 \
-#  /usr/local/lib/libsavi.so.3 /usr/local/lib/libclamav.so*
-#do cp -p $j usr/lib/; done
-#cp -p /usr/libexec/ld-elf.so.1 usr/libexec/
-
-#Linux:
-# /usr/lib/libmagic.so.1 
-cp -pv /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
-  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
-  /lib/libncurses.so.5 /usr/lib/libmagic.so.1 /usr/lib/libz.so.1 \
-  /lib/librt.so.1 /lib/libacl.so.1 /lib/libpthread.so.0 \
-  /lib/libattr.so.1 /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
-#ln lib/ld-2.3.2.so lib/ld-linux.so.2
+if [ $UNIXTYPE = "freebsd" ] 
+then
+	cp -p /usr/lib/libc.so.5 /usr/lib/libm.so.2 /usr/lib/libstdc++.so.4 \
+	  /usr/lib/libz.so.2 /usr/local/lib/libsavi.so.3 \
+	  /usr/local/lib/libclamav.so* usr/lib/
+	cp -p /usr/libexec/ld-elf.so.1 usr/libexec/
+else
+	#Linux:
+	# /usr/lib/libmagic.so.1 
+	cp -pv /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
+	  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
+	  /lib/libncurses.so.5 /usr/lib/libmagic.so.1 /usr/lib/libz.so.1 \
+	  /lib/librt.so.1 /lib/libacl.so.1 /lib/libpthread.so.0 \
+	  /lib/libattr.so.1 /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+	#ln lib/ld-2.3.2.so lib/ld-linux.so.2
+fi
 
 # magic files needed by file(1). Different versions and installations
 # expect magic files in different locations. Check the documentation.
