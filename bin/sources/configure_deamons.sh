@@ -34,7 +34,7 @@ fi
 
 TMP_FILE=/tmp/DTC_install.httpd.conf
 
-echo "===> Adding inclusion in httpd.conf"
+echo "===> Modifying httpd.conf"
 if grep "Configured by DTC" $PATH_HTTPD_CONF
 then
 	echo "httpd.conf has been configured before : skiping include inssertion !"
@@ -44,7 +44,7 @@ else
 		echo "===> Backuping "$PATH_HTTPD_CONF
 		cp -f "$PATH_HTTPD_CONF" "$PATH_HTTPD_CONF.DTC.backup"
 	fi
-	echo "===> Verifying User and Group directive"
+	echo "=> Verifying User and Group directive"
 	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "User www-data -> User nobody"
@@ -71,29 +71,31 @@ else
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
+	echo "=> Checking apache modules"
 	echo -n "Checking for php4..."
-	if grep "# LoadModule php4_module" $PATH_HTTPD_CONF
+	if grep "# LoadModule php4_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "activating php4 module "$TMP_FILE" "$PATH_HTTPD_CONF
+		echo "found commented: activating php4 module!"
 		sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	else
-		if grep "LoadModule php4_module" $PATH_HTTPD_CONF
+		if grep "LoadModule php4_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 		then
 			echo " ok!"
 		else
-			echo "!!! php4 not present, please install it or run apacheconfig !!!"
+			echo "php4 missing! please install it or run apacheconfig!!!"
+			exit 1
 		fi
 	fi
 
-	echo "Checking for ssl"
-	if grep "# LoadModule ssl_module" $PATH_HTTPD_CONF
+	echo -n "Checking for ssl..."
+	if grep "# LoadModule ssl_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "Activating ssl module"
+		echo "found commented: activating ssl module!"
 		sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	else
-		if grep "LoadModule ssl_module" $PATH_HTTPD_CONF
+		if grep "LoadModule ssl_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 		then
 			echo " ok!"
 		else
@@ -101,14 +103,14 @@ else
 		fi
 	fi
 
-	echo "Checking for sql_log module"
-	if grep "# LoadModule sql_log_module" $PATH_HTTPD_CONF
+	echo -n "Checking for sql_log..."
+	if grep "# LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "Activating log_sql module"
+		echo "found commented: cctivating sql_log module!"
 		sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	else
-		if grep "LoadModule sql_log_module" $PATH_HTTPD_CONF
+		if grep "LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 		then
 			echo " ok!"
 		else
@@ -117,15 +119,17 @@ else
 		fi
 	fi
 
-	echo "Checking for AllowOverride"
+	echo -n "Checking for AllowOverride..."
 	if grep "AllowOverride None" $PATH_HTTPD_CONF
 	then
 		echo "AllowOverride None -> AllowOverride AuthConfig FileInfo Limit Indexes"
 		sed "s/AllowOverride None/AllowOverride AuthConfig FileInfo Limit Indexes/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	else
+		echo "ok!"
 	fi
 
-	echo "===> Including DTC's vhosts.conf and directives in $PATH_HTTPD_CONF"
+	echo "=> Adding DTC's directives to httpd.conf end"
 	echo "# Configured by DTC v0.12 : please do not touch this line !
 Include $PATH_DTC_ETC/vhosts.conf
 Listen 80
@@ -284,14 +288,13 @@ else
 	rm /tmp/DTC_config_crontab
 fi
 
+cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php
+
 echo "--- --- --- INSTALLATION FINISHED --- --- ---"
-echo "DTC has finished to install. Under normal circonstances, the DTC"
-echo "cronjob will enable an administrator panel in less than 10 minutes"
-echo "(you can watch /var/log/dtc.log and /var/log/syslog to see if it"
-echo "works). Type \"cd "$PATH_DTC_SHARED"/admin ; php4 cron.php\" to do it"
-echo "manualy. When configuration is done, you can point your favorite"
+echo "DTC has finished to install. You can point your favorite"
 echo "browser to: http(s)://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/"
-echo "Dont forget that /etc/resolv.conf must be set to nameserver 127.0.0.1"
-echo "and that your named.conf forwarders option should be ok too."
-echo "Please leave feedback in the dtc open support forum:"
-echo "http://thomas.goirand.fr/d.t.c/phpBB2/"
+echo "Dont forget to edit the forwarders part of your bind"
+echo "configuration is not done already !"
+echo ""
+echo "Please visit the DTC homepage:"
+echo "http://www.gplhost.com/?rub=softwares&sousrub=dtc"
