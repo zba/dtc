@@ -175,7 +175,7 @@ function JSClock() {
 </SCRIPT>'."
 <body bgcolor=\"#000000\" onLoad=\"JSClock();\">
 <link rel=\"stylesheet\" href=\"gfx/dtc.css\" type=\"text/css\">
-<link rel=\"stylesheet\" href=\"gfx/skin/simple/green2/skin.css\" type=\"text/css\">
+<link rel=\"stylesheet\" href=\"gfx/skin/".$conf_skin."/skin.css\" type=\"text/css\">
 ".drawDeamonStates()."</body></html>";
 
 ?>
