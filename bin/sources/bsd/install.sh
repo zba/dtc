@@ -188,8 +188,7 @@ echo ""
 echo -n 'Confirm and install DTC ? [Ny]:'
 read valid_infos
 
-read valid_infos1
-if [ "$valid_infos1" =  "y" ];
+if [ "$valid_infos" =  "y" ];
 then
 	echo "Installation has started..."
 else
