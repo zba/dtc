@@ -746,6 +746,13 @@ SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ft
 # End of DTC configuration v0.10 : please don't touch this line !" >> $TMP_FILE
 	cat < $TMP_FILE >>$PATH_PROFTPD_CONF
 	rm $TMP_FILE
+	if [ -x "/etc/init.d/proftpd" ] ; then
+		if [ -x /usr/sbin/invoke-rc.d ]; then
+			/usr/sbin/invoke-rc.d courier-authdaemon restart
+		else
+			/etc/init.d/proftpd restart
+		fi
+	fi
 fi
 
 #

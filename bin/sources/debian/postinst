@@ -17,7 +17,7 @@ fi
 # exit 0
 
 # Enable this to debug!
-# VERBOSE_INSTALL=yes
+VERBOSE_INSTALL=yes
 
 UNIX_TYPE=debian
 
