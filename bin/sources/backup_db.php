@@ -1,4 +1,3 @@
-#!/usr/bin/php4
 <?php
 
 $pro_mysql_host="localhost";
