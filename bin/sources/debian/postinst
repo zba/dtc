@@ -66,6 +66,25 @@ db_unregister dtc/conf_admpass
 # This part is debian specific because of (in my point of view) some
 # leak in distribution. Whis is that not made by default ?
 
+# Adding support for mysql for php4-cgi
+if grep mysql.so /etc/php4/cgi/php.ini | grep extention=
+then
+	echo "Skiping mysql.so insertion in php.ini"
+else
+	echo "Your php.ini doesn't has mysql extention: DTC will add it !"
+	echo "extention=mysql.so" >>/etc/php4/cgi/php.ini
+fi
+
+# Setup a minimum include path with . and /usr/share/pear !!!
+if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/pear
+then
+	echo "Skiping include_path insertion in php.ini"
+else
+	echo "Your php.ini doesn't has pear in it's inc path: changin!"
+	echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cgi/php.ini
+fi
+
+# Changing root password of mysql
 if [ $conf_mysql_change_root = true ]
 then
 	echo "===> Changing MySQL root password"
