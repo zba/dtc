@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS ftp_access (
   uid int(5) NOT NULL default '65534',
   gid int(5) NOT NULL default '65534',
   password varchar(50) NOT NULL default 'passwd',
-  homedir varchar(70) NOT NULL default '',
+  homedir varchar(250) NOT NULL default '',
   count int(11) default '0',
   fhost varchar(50) default NULL,
   faddr varchar(15) default NULL,
