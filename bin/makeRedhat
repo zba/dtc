@@ -68,6 +68,9 @@ then
 fi
 cp sources/dtc_db.php sources/restor_db.php dtc/admin
 
+find ./dtc -type d | xargs chmod 755
+find debian/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
+find debian/ -iname '*~' -exec rm -rf {} \; &>/dev/null
 chown -R root:root dtc
 chown nobody:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/shared/imgcache dtc/email/imgcache
 chown nobody:65534 dtc/client/gfx dtc/admin/gfx dtc/shared/gfx dtc/email/gfx
