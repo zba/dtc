@@ -1,13 +1,16 @@
 Hi folks !
 
+1. What is that file talkingabout.
 This small documentation is for developers or package maintainer only.
-It's for helping packaging DTC for new OS.
+It's for helping packaging DTC for new OS. (quickly written,
+did re-read... :).
 
 I personaly use debian, but I've tried to build for other OS.
 Each individual OS has a makeXXX sh script for building. sh is
 the most reliable shell (eg it's always located in /bin/sh on
 all unix).
 
+2. How does building package work ?
 At source/ folder toplevel (relative to this help file) 
 you will find the scripts files that are used on ALL cases
 (eg on all unix system). But as you see in it, it's using
@@ -19,16 +22,22 @@ thoses vars according to there specificities. So in the
 sources/ folder, there is a folder for each unix OS that is
 supported by the current DTC release.
 
+RPM suxs:
 Normaly, it's possible to build all packages on all unix.
 But for RPM, you have to setup an area for building it.
 See the specific script (in source/redhat) for creating
 that RPMBUILD in your home directory.
 
+3. Automatic repository script
 The "makeDTC" sh script will launch all "makeXXX" script
 and copy all in /home/ftp (all done in one action).
+It will also build a debian repository for woody in
+"deb ftp://localhost/debian stable main" so you can
+have quick tests of the install for debian users...
 If you want to use CVS (and participate to DTC effort)
 please do a ./clean beffore doing a "cvs commit".
 
+4. Starting to build a port for an other OS
 If you want to start to build a new package for a new unix
 system (remaining to do: gentoo, bsd "make install" port,
 OS X (mac), windows+cygwin, mint, solaris, aix... :)
@@ -38,5 +47,7 @@ it's not doing very mutch... :).
 Then, try to edit all the "read" values in the "sh"
 script by something for your OS (anything your want
 that is a smarter GUI is perfect).
+
+Have fun with my sources.
 
 Thomas GOIRAND <thomas@goirand.fr>
