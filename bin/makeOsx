@@ -20,6 +20,7 @@ echo " --- Making DTC Mac OS X package ---"
 echo "===> Copying files"
 rm -rf dtc
 mkdir -p dtc/etc/zones
+mkdir -p dtc/shared/imgcache
 cp -rf ../admin ../client ../shared ../email ../doc dtc/
 echo "<?php
 \$conf_dtc_version= \""$VERS"\";
@@ -69,7 +70,8 @@ chown -R root:0 dtc
 chown nobody:nogroup dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx dtc/email/gfx
 
 # Specific Mac OS X package actions :
-mv dtc $FOLDER
+mkdir -p $FOLDER/usr/share
+mv dtc $FOLDER/usr/share
 cp sources/osx/install.sh $FOLDER
 cat sources/create_chroot.sh >>$FOLDER"/install.sh"
 cat sources/setup_mysql_db.sh >>$FOLDER"/install.sh"

@@ -209,12 +209,12 @@ else
 	exit 1
 fi
 
-echo "Copying DTC's php scripts to /usr/share..."
-
+echo -n "Copying DTC's php scripts to /usr/share..."
 mkdir -p /usr/share/dtc
-cp -rf admin doc etc shared client email /usr/share/dtc
+cp -rf usr /
 cp -f install.sh /usr/sbin/dtc-install.sh
 cp -f uninstall.sh /usr/sbin/dtc-uninstall.sh
 chmod +x /usr/sbin/dtc-install.sh /usr/sbin/dtc-uninstall.sh
+echo "done!"
 
-conf_mysql_cli_path=/usr/local/mysql/bin/mysql
+#conf_mysql_cli_path=/usr/local/mysql/bin/mysql
