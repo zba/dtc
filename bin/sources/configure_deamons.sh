@@ -538,12 +538,15 @@ else
 	/usr/bin/htpasswd -cb "$conf_hosting_path"/.htpasswd admin $conf_adm_pass
 fi
 
-
-echo "AuthName \"DTC root control panel login!\"
+if [ -e $PATH_DTC_ADMIN/.htaccess ]; then
+	echo ".htaccess ok!"
+else
+	echo "configuring .htaccess"
+	echo "AuthName \"DTC root control panel login!\"
 AuthType Basic
 AuthUserFile "$conf_hosting_path"/.htpasswd
 require valid-user" >$PATH_DTC_ADMIN/.htaccess
-
+fi
 echo "Please wait while DTC configures all the daemons..."
 cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php
 
