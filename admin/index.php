@@ -115,7 +115,7 @@ case monitor: // Monitor button
 	$r = mysql_query($q)or die("Cannot query: \"$q\" !".mysql_error()." line ".__LINE__." in file ".__FILE__);
 	$nr = mysql_num_rows($r);
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="1" cellspacing="1">';
-	$out .= "<tr><td><b>User</b></td><td><b>Transfer</b></td><td><b>BW Quota</b></td><td><b>Graph</b></td></tr>";
+	$out .= "<tr><td><b>User</b></td><td><b>Transfer</b></td><td><b>BW Quota</b></td><td><b>Graph</b></td><td><b>Disk usage</b></td><td><b>Disk quota</b></td></tr>";
 	$total_box_transfer = 0;
 	for($i=0;$i<$nr;$i++){
 		$ar = mysql_fetch_array($r);
@@ -139,7 +139,9 @@ case monitor: // Monitor button
 			$back = "";
 		}
 		$out .= "<tr><td$back>".$ar["christname"].", ".$ar["familyname"]."</td>";
-		$out .= "<td$back>".smartByte($transfer)."</td><td$back>".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)."</td><td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024)."</td></tr>";
+		$out .= "<td$back>".smartByte($transfer)."</td><td$back>".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)."</td><td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024)."</td>";
+		$out .= "<td$back>".smartByte($du)."</td>";
+		$out .= "<td$back>".smartByte($ar["disk_quota_mb"]*1024*1024)."</td></tr>";
 		$total_box_transfer += $transfer;
 //fetchAdminStats($admin)
 	}
