@@ -845,32 +845,32 @@ function drawAdminTools($admin){
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
 			$title = "DNS config of: ".$edit_domain;
 		}else if($add_array[1] == "whois"){
-			$web_editor .= drawAdminTools_Whois($admin,$eddomain);
-			$title = "DNS config of: ".$edit_domain;
-		}else if($add_array[1] == "subdomains"){
-			$web_editor .= drawAdminTools_Subdomain($eddomain);
-			$title = $txt_title_subdomain_form[$lang].$edit_domain;
-		}else if($add_array[1] == "ftp-accounts"){
-			$web_editor .= drawAdminTools_Ftp($eddomain,$adm_path);
-			$title = $txt_title_ftp_form[$lang].$edit_domain;
-		}else if($add_array[1] == "nickhandles"){
-			$web_editor .= drawAdminTools_NickHandles($admin);
-			$title = "Internet Whois Nick-Handles management";
-		}else if($add_array[1] == "adddomain"){
-			$web_editor .= drawAdminTools_AddDomain($admin);
-			$title = "Add a domain name to my account";
-		}else if($add_array[1] == "nameservers"){
-			$web_editor .= drawAdminTools_NameServers($admin);
-			$title = "Manage my name servers";
-		}else if($add_array[0] == "myaccount"){
-			$web_editor .= drawAdminTools_MyAccount($admin);
-			$title = "My Account informations";
-		}else if($add_array[0] == "database"){
-			$web_editor .= drawDataBase($database);
-			$title = $txt_title_database_form[$lang];
-		}else if($add_array[0] == "help"){
-			$web_editor .= $txt_draw_help_content[$lang];
-			$title = $txt_title_help_form[$lang];
+                        $web_editor .= drawAdminTools_Whois($admin,$eddomain);
+                        $title = "DNS config of: ".$edit_domain;M
+                }else if($add_array[1] == "subdomains"){
+                        $web_editor .= drawAdminTools_Subdomain($eddomain);
+                        $title = $txt_title_subdomain_form[$lang].$edit_domain;
+                }else if($add_array[1] == "ftp-accounts"){
+                        $web_editor .= drawAdminTools_Ftp($eddomain,$adm_path);
+                        $title = $txt_title_ftp_form[$lang].$edit_domain;
+                }else if($add_array[1] == "nickhandles"){
+                        $web_editor .= drawAdminTools_NickHandles($admin);
+                        $title = "Internet Whois Nick-Handles management";
+                }else if($add_array[1] == "adddomain"){
+                        $web_editor .= drawAdminTools_AddDomain($admin);
+                        $title = "Add a domain name to my account";
+                }else if($add_array[1] == "nameservers"){
+                        $web_editor .= drawAdminTools_NameServers($admin);
+                        $title = "Manage my name servers";
+                }else if($add_array[0] == "myaccount"){   
+                        $web_editor .= drawAdminTools_MyAccount($admin);
+                        $title = "My Account informations";
+                }else if($add_array[0] == "database"){
+                        $web_editor .= drawDataBase($database);
+                        $title = $txt_title_database_form[$lang];
+                }else if($add_array[0] == "help"){
+                        $web_editor .= $txt_draw_help_content[$lang];
+                        $title = $txt_title_help_form[$lang];
 		}else{
 			$web_editor .= drawAdminTools_DomainInfo($admin,$eddomain);
 			$title = $txt_title_geninfo_form[$lang].$edit_domain;
