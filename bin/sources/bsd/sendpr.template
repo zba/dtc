@@ -6,9 +6,9 @@ X-send-pr-version: 3.113
 X-GNATS-Notify: 
 
 >Submitter-Id:  current-users
->Originator:    User &
->Organization:  <organization of PR author (multiple lines)>
->Confidential:  no <FreeBSD PRs are public data>
+Originator:    Thomas GOIRAND
+Organization:  GPLHost
+Confidential:  no
 >Synopsis:      <synopsis of the problem (one line)>
 >Severity:      <[ non-critical | serious | critical ] (one line)>
 >Priority:      <[ low | medium | high ] (one line)>
