@@ -9,7 +9,9 @@ function drawNewAdminForm(){
 
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_pending_queries_table;
+	global $pro_mysql_pay_table;
 
+	// Draw the form for making a new admin
 	$add_a_user .= "<h4>Add a new user:</h4>
 <form action=\"?\" methode=\"post\">
 <table>
@@ -26,6 +28,7 @@ function drawNewAdminForm(){
 </table>
 ";
 
+	// Draw the list of users awaiting for an account
 	$waiting_new_users = "<h4>User and domain waiting for addition:</h4>";
 	$q = "SELECT * FROM $pro_mysql_new_admin_table";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
@@ -45,11 +48,11 @@ function drawNewAdminForm(){
 				$waiting_new_users .= "<td>No pay ID!</td>";
 			}else{
 				$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$a["paiement_id"]."';";
-				$r = mysql_query($q)or die("Cannot select $q line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-				$n = mysql_num_rows($r);
+				$r2 = mysql_query($q)or die("Cannot select $q line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$n = mysql_num_rows($r2);
 				if($n != 1)	die("Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__);
-				$a = mysql_fetch_array($r);
-				if($a["valid"] == "yes"){
+				$a2 = mysql_fetch_array($r2);
+				if($a2["valid"] == "yes"){
 					$waiting_new_users .= "<td><font color=\"green\">YES</font></td>";
 				}else{
 					$waiting_new_users .= "<td><font color=\"red\">NO</font></td>";
@@ -60,6 +63,8 @@ function drawNewAdminForm(){
 		}
 		$waiting_new_users .= "</table>";
 	}
+
+	// Draw the list of domains awaiting to be add to users
 	$q = "SELECT * FROM $pro_mysql_pending_queries_table";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -72,7 +77,8 @@ function drawNewAdminForm(){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<td>".$a["adm_login"]."</td>";
 			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
-			$waiting_new_users .= "<td><a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_domain_to_user&reqid=".$a["id"]."\">Add</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_domain_to_user&reqid=".$a["id"]."\">Del</a></td></tr>";
+			$waiting_new_users .= "<td><a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_domain_to_user&reqid=".$a["id"]."\">Add</a>
+- <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_domain_to_user&reqid=".$a["id"]."\">Del</a></td></tr>";
 		}
 		$waiting_new_users .= "</table>";
 	}

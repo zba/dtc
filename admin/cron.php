@@ -219,6 +219,6 @@ if($exec_time > 60){
 	$ex_min = 0;
 }
 echo date("Y m d / H:i:s T")." DTC cron job finished (exec time=".$ex_min.":".$ex_sec.")\n\n";
-exit(0);
+exit();
 
 ?>
