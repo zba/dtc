@@ -28,5 +28,5 @@ function paynowButton($pay_id,$amount){
 	$out .= "</table>";
 	return $out;
 }
- 
+
 ?>
