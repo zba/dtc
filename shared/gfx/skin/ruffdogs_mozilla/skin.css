@@ -1,0 +1,24 @@
+#skinRuffDogsMozilla,#skinRuffDogsMozilla TD{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+}
+
+#skinRuffDogsMozillaContent,#skinRuffDogsMozillaContent TD{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #333399;
+}
+
+#skinRuffDogsMozillaContent A:link,#skinRuffDogsMozillaContent A:visited{
+	color: #333399;
+	font-family: Geneva,Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+#skinRuffDogsMozillaContent A:hover,#skinRuffDogsMozillaContent A:active{
+	color: blue;
+	text-decoration: underline;
+}
