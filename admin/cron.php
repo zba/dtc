@@ -53,8 +53,6 @@ function updateAllDomainsStats(){
 			$ar = mysql_fetch_array($r);
 			$domain_name = $ar["name"];
 			echo "Calculating usage of $domain_name:";
-			sum_ftp($domain_name);
-			sum_http($domain_name);
 			echo " disk...";
 			$du_string = exec("du -sb $adm_path/$domain_name --exclude=access.log",$retval);
 			$du_state = explode("\t",$du_string);
