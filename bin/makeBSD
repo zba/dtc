@@ -99,7 +99,9 @@ echo "share/dtc/admin/gfx
 share/dtc/admin/imgcache
 share/dtc/shared/mysql_config.php
 share/dtc/client/gfx
-share/dtc/client/imgcache" >>dtc/pkg-plist.tmp
+share/dtc/client/imgcache
+sbin/dtc-install
+sbin/dtc-deinstall" >>dtc/pkg-plist.tmp
 find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>dtc/pkg-plist.tmp
 NBR_LINE=`cat dtc/pkg-plist.tmp | wc -l`
 cat dtc/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >dtc/pkg-plist.tmp2
