@@ -50,8 +50,10 @@ function drawNewAdminForm(){
 	}
 	return "<table>
 <tr>
-	<td valign=\"top\">$add_a_user</td>
-	<td valign=\"top\">$waiting_new_users</td>
+	<td valign=\"top\">".
+skin("frame",$add_a_user,"")."</td>
+	<td valign=\"top\">".
+skin("frame",$waiting_new_users,"")."</td>
 </tr></table>";
 }
 
