@@ -1,6 +1,8 @@
 #!/usr/bin/php4
 <?php
 
+echo "==> Restor DB script for DTC\n";
+
 $pro_mysql_host="localhost";
 $pro_mysql_login="root";
 $pro_mysql_db="dtc";
@@ -66,7 +68,7 @@ function findFieldInTable($table,$field){
 	$res = mysql_query($q) or die("Could not query $q!");;
 	$num_fields = mysql_num_fields($res);
 	for($i=0;$i<$num_fields;$i++){
-		if(mysql_field_name($res,$i) == $field){
+		if( strtolower(mysql_field_name($res,$i)) == strtolower($field)){
 			mysql_free_result($res);
 			return true;
 		}
@@ -81,7 +83,7 @@ function findKeyInTable($table,$key){
 	$num_keys = mysql_num_rows($res);
 	for($i=0;$i<$num_keys;$i++){
 		$a = mysql_fetch_array($res);
-		if($a["Key_name"] == $key){
+		if(strtolower($a["Key_name"]) == strtolower($key)){
 			mysql_free_result($res);
 			return true;
 		}
@@ -90,39 +92,43 @@ function findKeyInTable($table,$key){
 	return false;
 }
 
-$nbr_tables = sizeof($dtc_database["tables"]);
-echo "$nbr_tables tables:";
-$tblnames = array_keys($dtc_database["tables"]);
+
+$tables = $dtc_database["tables"];
+$nbr_tables = sizeof($tables);
+echo "Checking and updating $nbr_tables table structures:";
+$tblnames = array_keys($tables);
 for($i=0;$i<$nbr_tables;$i++){
 	echo " ".$tblnames[$i];
-	if( !mysql_table_exists($tblnames[$i]) ){
-		$q = "CREATE TABLE ".$tblnames[$i]."(
-  ".$varnames[0]." ".$allvars[$varnames[0]]."
-);\n";
-		echo $q;
-	}
-
-	$allvars = $dtc_database["tables"][$tblnames[$i]]["vars"];
+	$allvars = $tables[$tblnames[$i]]["vars"];
 	$varnames = array_keys($allvars);
 	$numvars = sizeof($allvars);
+	if( !mysql_table_exists($tblnames[$i]) ){
+		$q = "CREATE TABLE ".$tblnames[$i]."(
+".$varnames[0]." ".$allvars[$varnames[0]].");";
+		echo $q;
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+	}
+
 	for($j=0;$j<$numvars;$j++){
 		if(!findFieldInTable($tblnames[$i],$varnames[$j])){
 			$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." ;";
 			echo "$q\n";
+			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 		}
 	}
 
-	$allvars = $dtc_database["tables"][$tblnames[$i]]["keys"];
-	$varnames = array_keys($allvars);
+	$allvars = $tables[$tblnames[$i]]["keys"];
 	$numvars = sizeof($allvars);
+	$varnames = array_keys($allvars);
 	for($j=0;$j<$numvars;$j++){
 		if(!findKeyInTable($tblnames[$i],$varnames[$j])){
 			if($varnames[$j] == "PRIMARY")
 				$var_2_add = "PRIMARY KEY";
 			else
 				$var_2_add = "UNIQUE KEY ".$varnames[$j];
-			$q = "ALTER INGNORE TABLE ".$tblnames[$i]." ADD $var_2_add ".$allvars[$varnames[$j]].";";
-			echo "$q\n";
+			$q = "ALTER TABLE ".$tblnames[$i]." ADD $var_2_add ".$allvars[$varnames[$j]].";";
+//			echo "$q\n";
+			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 		}
 	}
 
