@@ -22,7 +22,6 @@ IGNORE=		Untested
 
 NO_BUILD=	yes
 USE_MYSQL=	yes
-USE_BZIP2=	yes
 USE_PHP=        mysql pcre
 
 OPTIONS=        BZ2      "bzip2 library support" on \
