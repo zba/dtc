@@ -6,7 +6,7 @@ COMMENT=	A hosting web GUI for admin and accounting all hosting services
 RUN_DEPENDS=	php:${PHP_PORT} \
 		${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
 		${LOCALBASE}/libexec/proftpd:${PORTSDIR}/ftp/proftpd-mysql \
-		${LOCALBASE}/libexec/apache/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2 \
+		${LOCALBASE}/libexec/apache/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql \
 		${LOCALBASE}/bin/webalizer:${PORTSDIR}/www/webalizer \
 		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc
 
