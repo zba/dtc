@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS clients (
   PRIMARY KEY (id),
   UNIQUE KEY id (id)
 ) TYPE=MyISAM;
+
 DROP TABLE commande;
 
 CREATE TABLE IF NOT EXISTS commande (
@@ -81,7 +82,9 @@ ALTER TABLE subdomain
 	ADD pass varchar(64) default NULL ;
 
 ALTER TABLE admin
-	ADD bandwidth_per_month_mb INT ( 11 ) NOT NULL default '100';
+	ADD bandwidth_per_month_mb INT ( 11 ) NOT NULL default '100',
+	ADD expire DATE DEFAULT '0000-00-00' NOT NULL ;
+;
 
 UPDATE config SET dbversion='10001' WHERE 1;
 ");
