@@ -157,8 +157,8 @@ function sum_http($webname){
 //			$hosts = 0;
 
 			// Get impressions
-			$q_imp = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;;
-			$r_imp = mysql_query($q_imp) or die("Cannot execute query \"$q_imp\" !!! ".mysql_error());
+			$q = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end.";";
+			$r_imp = mysql_query($q) or die("Cannot execute query \"$q\" !!! ".mysql_error());
 			$imp = mysql_num_rows($r_imp);
 //			$imp = 0;
 
@@ -194,11 +194,11 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 	global $dtcshared_path;
 	mysql_select_db("apachelogs");
 	$query = "SELECT MAX(time_stamp) AS end FROM `".$db_select_name."`";
-	$result = mysql_query($query) or die("Cannot execute query \"$query\" !!! ".mysql_error());
+	$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 	$end = mysql_result($result,0,"end");
 
 	$query = "SELECT MIN(time_stamp) AS start FROM `".$db_select_name."`";
-	$result = mysql_query($query) or die("Cannot execute query \"$query\" !!! ".mysql_error());
+	$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 	$start = mysql_result($result,0,"start");
 
 	if($start!=0 && $end!=0)
@@ -213,7 +213,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 			{
 				mysql_select_db($conf_mysql_db);
 				$query_admin = "SELECT * FROM $pro_mysql_domain_table WHERE name='$domain'";
-				$result_admin = mysql_query($query_admin) or die("Cannot execute query \"$query_admin\" !!! ".mysql_error());
+				$result_admin = mysql_query($query_admin) or die("Cannot execute query \"$query_admin\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 				$adm_login = mysql_result($result_admin,0,"owner");
 
 				$admin_path = getAdminPath($adm_login);
@@ -225,9 +225,9 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 				if(!file_exists($dump_file_name.".bz2") && ($year!=$current_year || $month!=$current_month)){
 					$selected_month_start = mktime(0,0,0,$month,1,$year);
 					$selected_month_end = (mktime(0,0,0,($month+1),1,$year))-1;
-					$query_dump = "SELECT remote_host,time_stamp,request_uri,status,bytes_sent,referer,agent FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
-//					$query_dump = "SELECT * FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
-					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" !!! ".mysql_error());
+//					$query_dump = "SELECT remote_host,time_stamp,request_uri,status,bytes_sent,referer,agent FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+					$query_dump = "SELECT * FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
 					$dump_num_rows = mysql_num_rows($result_dump);
 					if($dump_num_rows>0){
 						echo "\nDumping logs for ".$db_select_name."_".$month."_".$year."\n";
@@ -289,9 +289,9 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 						check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
 					}
 					//check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
-//					$query_del = "DELETE FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+					$query_del = "DELETE FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 					mysql_select_db("apachelogs");
-					mysql_query($query_del) or die("Cannot execute query \"$query_del\" !!! ".mysql_error());
+//					mysql_query($query_del) or die("Cannot execute query \"$query_del\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 				}
 			}
 			$start_month = 1;
@@ -311,7 +311,7 @@ function check_sum($db_select_name,$selected_month_start,$selected_month_end,$we
 
 	// Get bytes_sent
 	$q_bytes = "SELECT SUM( bytes_sent ) AS amount FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
-	$r_bytes = mysql_query($q_bytes) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
+	$r_bytes = mysql_query($q_bytes) or die("Cannot execute query \"$q_visits\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 	$bytes_sent = mysql_result($r_bytes,0,"amount");
 	$visits = 0;
 
