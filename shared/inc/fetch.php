@@ -125,7 +125,7 @@ function fetchAdminStats($admin){
 		$ret["domains"][$ad]["smtp"] = $smtp_bytes;
 		$ret["domains"][$ad]["pop"] = $pop_bytes;
 
-		$ret["domains"][$ad]["total_transfer"] += $rez_http + $rez_ftp;
+		$ret["domains"][$ad]["total_transfer"] += $rez_http + $rez_ftp + $email_bytes;
 		$ret["total_transfer"] += $rez_http + $rez_ftp + $email_bytes;
 	}
 
