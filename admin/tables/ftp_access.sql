@@ -29,5 +29,6 @@ CREATE TABLE IF NOT EXISTS ftp_access (
   ul_bytes int(14) NOT NULL default '0',
   dl_count int(14) NOT NULL default '0',
   ul_count int(14) NOT NULL default '0',
-  UNIQUE KEY login (login)
+  UNIQUE KEY login (login),
+  KEY hostname (hostname)
 ) TYPE=MyISAM;

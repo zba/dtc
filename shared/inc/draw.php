@@ -47,9 +47,12 @@
 //                 ["du"]
 //                 ["ftp"]
 //                 ["http"]
+//                 ["smtp"]
+//                 ["pop"]
 //                 ["total_transfer"]
 // ["total_http"]
 // ["total_ftp"]
+// ["total_email"]
 // ["total_transfer"]
 // ["total_du_domains"]
 // ["db"][0-n]["name"]
@@ -1049,7 +1052,7 @@ function drawAdminTools_AdminStats($admin){
 		$out .= "<tr>";
 		$out .= "<td$bgcolor>".$stats["domains"][$ad]["name"]."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["du"])."</td>";
-		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["pop3"])."</td>";
+		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["pop"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["smtp"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["ftp"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["http"])."</td>";

@@ -108,10 +108,7 @@ function fetchAdminStats($admin){
 		$ret["total_ftp"] += $rez_ftp;
 		$ret["domains"][$ad]["ftp"] = $rez_ftp;
 
-		$ret["domains"][$ad]["total_transfer"] += $rez_http + $rez_ftp;
-		$ret["total_transfer"] += $rez_http + $rez_ftp;
-
-		// Todo: email accounting
+		// Email accounting
 		$q = "SELECT smtp_trafic,pop_trafic FROM $pro_mysql_acc_email_table
 		WHERE domain_name='$domain_name' AND month='".date("m")."' AND year='".date("Y")."'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
@@ -119,12 +116,17 @@ function fetchAdminStats($admin){
 		if($num_rows == 1){
 			$smtp_bytes = mysql_result($r,0,"smtp_trafic");
 			$pop_bytes = mysql_result($r,0,"pop_trafic");
-			$email_bytes = $smtp_bytes + $pop_bytes;
-			$ret["total_email"] += $email_bytes;
-			$ret["domains"][$ad]["smtp"] = $smtp_bytes;
-			$ret["domains"][$ad]["pop"] = $pop_bytes;
-			$ret["total_transfer"] += $email_bytes;
+		}else{
+			$smtp_bytes = 0;
+			$pop_bytes = 0;
 		}
+		$email_bytes = $smtp_bytes + $pop_bytes;
+		$ret["total_email"] += $email_bytes;
+		$ret["domains"][$ad]["smtp"] = $smtp_bytes;
+		$ret["domains"][$ad]["pop"] = $pop_bytes;
+
+		$ret["domains"][$ad]["total_transfer"] += $rez_http + $rez_ftp;
+		$ret["total_transfer"] += $rez_http + $rez_ftp + $email_bytes;
 	}
 
 	$dbdu_amount = 0;
@@ -149,20 +151,20 @@ function fetchAdminStats($admin){
 	mysql_select_db($conf_mysql_db);
 
 	$ret["total_du"] = $ret["total_du_db"] + $ret["total_du_domains"];
-// ["domains"][]["name"]
-//              ["du"]
-//              ["ftp"]
-//              ["http"]
-//              ["smtp"]
-//              ["pop"]
-//              ["total_transfer"]
+// ["domains"][0-n]["name"]
+//                 ["du"]
+//                 ["ftp"]
+//                 ["http"]
+//                 ["smtp"]
+//                 ["pop"]
+//                 ["total_transfer"]
 // ["total_http"]
 // ["total_ftp"]
 // ["total_email"]
 // ["total_transfer"]
 // ["total_du_domains"]
-// ["db"][]["name"]
-//         ["du"]
+// ["db"][0-n]["name"]
+//            ["du"]
 // ["total_db_du"]
 // ["total_du"]
 	return $ret;

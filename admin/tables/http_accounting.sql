@@ -14,8 +14,6 @@ CREATE TABLE IF NOT EXISTS http_accounting (
   month int(4) NOT NULL default '0',
   year int(4) NOT NULL default '0',
   domain varchar(50) NOT NULL default '',
-  PRIMARY KEY  (id)
+  PRIMARY KEY (id),
+  KEY month (month,year,vhost)
 ) TYPE=MyISAM;
-
-#
-

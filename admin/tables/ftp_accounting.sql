@@ -9,5 +9,6 @@ CREATE TABLE IF NOT EXISTS `ftp_accounting` (
   `last_run` int(14) NOT NULL default '0',
   `month` int(4) NOT NULL default '0',
   `year` int(4) NOT NULL default '0',
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY sub_domain (sub_domain,month,year)
 ) TYPE=MyISAM
