@@ -2,7 +2,7 @@
 # Table structure for table `ftp_accounting`
 #
 
-CREATE TABLE `ftp_accounting` (
+CREATE TABLE IF NOT EXISTS `ftp_accounting` (
   `id` int(14) NOT NULL auto_increment,
   `sub_domain` varchar(50) NOT NULL default '',
   `transfer` int(14) unsigned NOT NULL default '0',
