@@ -11,6 +11,55 @@ require_once "$dtcshared_path/dtcrm/draw_nameservers.php";
 require_once "$dtcshared_path/dtcrm/draw_transferdomain.php";
 require_once "$dtcshared_path/dtcrm/draw_adddomain.php";
 
+function draw_UpgradeAccount($admin){
+	global $adm_pass;
+	global $adm_login;
+	global $addrlink;
 
+	global $pro_mysql_admin_table;
+	global $pro_mysql_client_table;
+	global $pro_mysql_product_table;
+
+	$nowrap = 'style="white-space:nowrap"';
+
+	$frm_start = "<form action=\"$PHP_SELF\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
+";
+	$client = $admin["client"];
+	$out .=  "<b><u>Upgrade my account:</u></b><br>";
+	$out .=  "<i><u>Step 1: select your contact</u></i><br>";
+	if($_REQUEST["prod_id"] == "" || !is_int($_REQUEST["prod_id"])){
+		$out .= "Your current account is ".smartByte($admin["info"]["quota"]*1024*1024)." disk storage
+and ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024)." of data transfer each month.<br>
+To what capacity would you like to upgrade to?<br>";
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE quota_disk > '".$admin["info"]["quota"]."' OR bandwidth > '".$admin["info"]["bandwidth_per_month_mb"]."';";
+		$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
+		$n = mysql_num_rows($r);
+		$out .= "$frm_start";
+		$out .= "<table border=\"1\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" height=\"1\">";
+		$out .= "<tr><td></td><td>Product</td><td>Storage</td><td>Bandwidth/month</td>
+			<td>Price</td><td>Periode</td></tr>";
+		for($i=0;$i<$n;$i++){
+			$ro = mysql_fetch_array($r);
+			if($i % 2){
+				$color = " bgcolor=\"#000000\" ";
+			}else{
+				$color = "";
+			}
+			$out .= '<tr><td><input type="radio" name="prod_id" value="'.$ro["id"].'"></td>';
+			$out .= "<td $color $nowrap >".$ro["name"].'</td>';
+			$out .= "<td $color $nowrap >".smartByte($ro["quota_disk"]*1024*1024).'</td>';
+			$out .= "<td $color $nowrap >".smartByte($ro["bandwidth"]*1024*1024).'</td>';
+			$out .= "<td $color $nowrap >".$ro["price_dollar"].'</td>';
+
+			$out .= "<td $color $nowrap >".smartDate($ro["period"]).'</td></tr>';
+		}
+		$out .= '</table><center><input type="submit" value="Calculate price"></center></form>';
+		return $out;
+	}
+}
 
 ?>

@@ -24,6 +24,10 @@ function drawAdminTools_MyAccount($admin){
 
 	$stats = fetchAdminStats($admin);
 
+	if($id_client != 0 && $_REQUEST["action"] == "upgrade_myaccount"){
+		return draw_UpgradeAccount($admin);
+	}
+
 	if($id_client != 0 && $_REQUEST["action"] == "refund_myaccount"){
 		$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
 		$out .=" Please click on the button bellow to refund your account. Then,
@@ -58,12 +62,14 @@ when paiement is done, click the refresh button.";
 	<td>".smartByte($du_quota)."</td><td>".smartByte($bw_quota)."</td><td>".$client["expire"]."</td>
 </tr>
 </table>";
-		$out .= "<br><center>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
+		if(file_exists($dtcshared_path."/dtcrm")){
+			$out .= "<br><center>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
 <input type=\"submit\" value=\"Upgrade my account\">
 </form>";
-		$out .= "$frm_start<input type=\"hidden\" name=\"action\" value=\"renew_myaccount\">
+			$out .= "$frm_start<input type=\"hidden\" name=\"action\" value=\"renew_myaccount\">
 <input type=\"submit\" value=\"Renew my account\">
 </form></center><br>";
+		}
 
 		$out .=  "<b><u>Remaining money on my account:</u></b><br>
 <table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"0\">

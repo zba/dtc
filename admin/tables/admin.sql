@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS admin (
   max_ftp int(12) NOT NULL default '3',
   quota int(11) NOT NULL default '50',
   bandwidth_per_month_mb INT ( 11 ) NOT NULL default '100',
-  expire DATE DEFAULT '0000-00-00' NOT NULL ;
+  expire date NOT NULL default '0000-00-00',
   id_client int(9) NOT NULL default '0',
   PRIMARY KEY  (adm_login),
   UNIQUE KEY adm_login (adm_login),

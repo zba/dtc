@@ -21,6 +21,7 @@
 
 if grep "Configured by DTC" $PATH_NAMED_CONF
 then
+	echo "===> Uninstalling inclusion from named.conf"
 	grep -v "Configured by DTC" $PATH_NAMED_CONF >/tmp/dtc_uninstall.named.conf
 	grep -v "include \"$PATH_DTC_ETC/named.conf\"" /tmp/dtc_uninstall.named.conf >/tmp/dtc_uninstall2.named.conf
 	cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.removed
@@ -33,6 +34,7 @@ fi
 #
 if grep "Configured by DTC" $PATH_HTTPD_CONF
 then
+	echo "===> Uninstalling inclusion from httpd.conf"
 	grep -v "Configured by DTC" $PATH_HTTPD_CONF | grep -v "Include $PATH_DTC_ETC/vhosts.conf" >/tmp/dtc_uninstall.httpd.conf
 	cp -f $PATH_HTTPD_CONF $PATH_HTTPD_CONF.DTC.removed
 	mv /tmp/dtc_uninstall.httpd.conf $PATH_HTTPD_CONF
@@ -42,6 +44,7 @@ fi
 # uninstall proftpd.conf
 #
 
+echo "===> FIX ME !!! SCRIPT TO BE FINISHED AND TESTED: Uninstalling from proftpd.conf"
 #if grep "Configured by DTC" $PATH_PROFTPD_CONF
 #then
 #	start_line=$(grep -n "Configured by DTC" $PATH_PROFTPD_CONF | cut -d":" -f1)
@@ -57,6 +60,7 @@ fi
 # Uninstall qmail
 #
 
+echo "===> FIX ME !!! SCRIPT TO BE FINISHED AND TESTED: Uninstalling from qmail"
 #if ! [ -f $PATH_QMAIL_CTRL/locals.DTC.backup ] then
 #	rm -f $PATH_QMAIL_CTRL/locals
 #	mv $PATH_QMAIL_CTRL/locals.DTC.backup $PATH_QMAIL_CTRL/locals

@@ -241,10 +241,29 @@ function drawPercentBar($value,$max){
 	return $table;
 }
 
+function smartDate($date){
+	$ar = explode("-",$date);
+	if($ar[0] > 0 ){
+		$plop = $ar[0] +1;
+		$plop -= 1;
+		$out .= $plop." year";
+		if($ar[0] > 1)	$out .= "s";
+	}
+	if($ar[1] > 0 ){
+		$out .= $ar[1]." month";
+		if($ar[1] > 1)	$out .= "s";
+	}
+	if($ar[2] > 0 ){
+		$out .= $ar[2]." day";
+		if($ar[2] > 1)	$out .= "s";
+	}
+	return $out;
+}
+
 function smartByte($bytes){
-	if($bytes>1024*1024*1024)	return round(($bytes / 1073741824),3) ." GBytes";
-	if($bytes>1024*1024)		return round(($bytes / 1048567),3) ." MBytes";
-	if($bytes>1024)			return round(($bytes / 1024),3) ." kBytes";
+	if($bytes>1024*1024*1024)	return round(($bytes / (1024*1024*1024)),3) ." GBytes";
+	if($bytes>1024*1024)		return round(($bytes / (1024*1024)),3) ." MBytes";
+	if($bytes>1024)				return round(($bytes / 1024),3) ." kBytes";
 	return $bytes." Bytes";
 }
 
