@@ -69,7 +69,7 @@ $txt_userndomain_waiting_for_addition = array(
 $txt_add_a_new_user = array(
   "fr" => "Ajouter un nouvel utilisateur : ",
   "en" => "Add a new user: ",
-  "hu" => "Új felhasználó hozzásadása:",
+  "hu" => "Új felhasználó hozzáadása:",
   "it" => "Aggiungi un nuovo utente: ",
   "nl" => "TRANS Add a new user: ",
   "ru" => "TRANS Add a new user: ",
@@ -1336,7 +1336,7 @@ DTC).",
 Click <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 for adding this user as a mysql account (same login / pass as for DTC).",
-        "hu" => "Nincs ilyen nevû felhasználó a  mysql adatbázisban.
+        "en" => "Nincs ilyen nevû felhasználó a  mysql adatbázisban.
 Kattintson <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">ide</a>
 hogy hozzáadja ezt a felhasználót mint mysql felhasználót (hasonló login/jelszó párossal, mint a DTC-nek).",
@@ -1680,7 +1680,7 @@ $txt_subdom_list = array(
 $txt_subdom_txtrec = array(
 	"fr" => "Champ TXT du sousdomaine : ",
 	"en" => "TXT field of the subdomain: ",
-	"hu" => "Az aldomain TXT field mezõje: ",
+	"hu" => "Az aldomain TXT mezõje: ",
 	"it" => "TRANS TXT field of the subdomain: ",
 	"nl" => "TRANS TXT field of the subdomain: ",
 	"ru" => "TRANS TXT field of the subdomain: ",
@@ -1737,18 +1737,18 @@ $txt_subdom_newname = array(
 );
 
 $txt_subdom_ip = array(
-	"fr" => "IP ou CNAME du sous-domaine (laissez vide pour utiliser votre compte
+	"fr" => "IP du sous-domaine (laissez vide pour utiliser votre compte
 de hosting, rentrez l'IP du serveur sinon) : ",
-	"en" => "IP or CNAME of the subdomain (leave blank otherwise): ",
-	"hu" => "Az aldomain IP/CNAME címe (hagyja üresen egyébként): ",
-	"it" => "IP/CNAME del sottodominio (lasciare vuote per usare l'hosting di default",
-	"nl" => "TRANS IP/CNAME of the subdomain (leave blank to use default web
+	"en" => "IP of the subdomain (leave blank otherwise): ",
+	"hu" => "Az aldomain IP címe (hagyja üresen egyébként): ",
+	"it" => "IP del sottodominio (lasciare vuote per usare l'hosting di default",
+	"nl" => "TRANS IP of the subdomain (leave blank to use default web
 hosting area, set server IP otherwise): ",
-	"ru" => "TRANS IP/CNAME of the subdomain (leave blank to use default web
+	"ru" => "TRANS IP of the subdomain (leave blank to use default web
 hosting area, set server IP otherwise): ",
-	"de" => "IP/CNAME der Subdomaine (bitte freilassen zur Nutzung der Standard Web Hosting area, ansonsten geben Sie die IP des Servers an): ",
-	"zh" => "¸±ÓòÃûµÄIP/CNAME (Ê¹ÓÃÔ¤ÉèÍøÒ³¹ÜÀíÇøÓò,·ñÔòÉèÖÃ·þÎñÆ÷IP): ",
-	"es" => "IP/CNAME del subdominio (dejar en blanco para usar el host web
+	"de" => "IP der Subdomaine (bitte freilassen zur Nutzung der Standard Web Hosting area, ansonsten geben Sie die IP des Servers an): ",
+	"zh" => "¸±ÓòÃûµÄIP (Ê¹ÓÃÔ¤ÉèÍøÒ³¹ÜÀíÇøÓò,·ñÔòÉèÖÃ·þÎñÆ÷IP): ",
+	"es" => "IP del subdominio (dejar en blanco para usar el host web
 por defecto, indicar la IP de otro servidor en cualquier otro caso): "
 );
 
@@ -1760,8 +1760,8 @@ un couple login/mot de passe ci-dessous:",
 	"en" => "If need it, it's possible to set your subdomain IP remotely,
 for example if you have a home connection dynamic address and you want a
 subdomain to point to it. First, enter login and password here: ",
-	"hu" => "Ha szükséges, akkor lehetõség van az aldomain-ek IP címét távolról,
-például ha van otthoni internet hozzáférése dinamikus címmel és szeretné ha az aldomain
+	"hu" => "Ha szükséges, akkor lehetõség van az aldomain-je IP címét távolról beállítani.
+Például akkor, ha van otthoni internet hozzáférése dinamikus címmel és szeretné ha az aldomain
 erre mutasson. Elõször adja meg a login nevet és a jelszót itt: ",
 
 

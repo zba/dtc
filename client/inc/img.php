@@ -4,7 +4,7 @@ header ("Content-type: image/png");
 
 $use_img_cache = "yes";
 function MENU_TREE_calc_cache_path(){
-	$conf_img_cache_path = "../../shared/imgcache";
+	$conf_img_cache_path = "../imgcache";
 
 	$cacheimg_filename = $_REQUEST["text"] . $_REQUEST["color"] . $_REQUEST["link"] . ".png";
 	$cacheimg_filename = str_replace("/","_",$cacheimg_filename);

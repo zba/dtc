@@ -7,6 +7,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/domain_info.php");
 	require("$dtcshared_path/inc/forms/database.php");
 	require("$dtcshared_path/inc/forms/ftp.php");
+        require("$dtcshared_path/inc/forms/packager.php");
 	require("$dtcshared_path/inc/forms/admin_stats.php");
 	require("$dtcshared_path/inc/forms/domain_stats.php");
 	require("$dtcshared_path/inc/forms/dns.php");
@@ -138,9 +139,9 @@ function drawAdminTools($admin){
 				"type" => "link",
 				"link" => "ftp-accounts");
 			$domain_conf_submenu[] = array(
-				"text" => "package installer",
+				"text" => "package-installer",
 				"type" => "link",
-				"link" => "package installer");
+				"link" => "package-installer");
 		}
 
 		$user_menu[] = array(
@@ -196,6 +197,9 @@ function drawAdminTools($admin){
 		}else if(@$add_array[1] == "ftp-accounts"){
 			$web_editor .= drawAdminTools_Ftp($eddomain,$adm_path);
 			$title = $txt_title_ftp_form[$lang].$edit_domain;
+		}else if(@$add_array[1] == "package-installer"){
+			$web_editor .= drawAdminTools_PackageInstaller($eddomain,$adm_path);
+			$title = "Package: ".$edit_domain;
 		}else if(@$add_array[1] == "nickhandles"){
 			$web_editor .= drawAdminTools_NickHandles($admin);
 			$title = "Internet Whois Nick-Handles management";

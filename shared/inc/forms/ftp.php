@@ -24,7 +24,14 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	global $txt_number_of_active_ftp;
 	global $txt_maxnumber_of_ftp_account_reached;
 
-	$nbr_ftp = sizeof($domain["ftps"]);
+	if(isset($domain["ftps"])){
+		$nbr_ftp = sizeof($domain["ftps"]);
+		$ftps = $domain["ftps"];
+		$nbr_account = $nbr_ftp;
+	}else{
+		$nbr_ftp = 0;
+		$nbr_account = 0;
+	}
 	$max_ftp = $domain["max_ftp"];
 	if($nbr_ftp >= $max_ftp){
 		$max_color = "color=\"#440000\"";
@@ -35,8 +42,6 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_ftp ."</font> / <font size=\"-1\">" . $max_ftp . "</font><br><br>";
 
 	$txt .= "<font face=\"Verdana, Arial\"><font size=\"-1\"><b><u>".$txt_ftp_account_list[$lang]."</u><br>";
-	$ftps = $domain["ftps"];
-	$nbr_account = sizeof($ftps);
 	for($i=0;$i<$nbr_account;$i++){
 		$ftp = $ftps[$i];
 		$login = $ftp["login"];
