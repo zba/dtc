@@ -9,7 +9,7 @@ CREATE TABLE  IF NOT EXISTS smtp_logs (
   delivery_user varchar(128) NOT NULL default '',
   delivery_domain varchar(128) NOT NULL default '',
   delivery_success enum('yes','no') NOT NULL default 'no',
-  time_stamp timestamp(14) NOT NULL,
+  time_stamp int(14) NOT NULL,
   PRIMARY KEY  (id),
   UNIQUE KEY bounce_qp (bounce_qp),
   UNIQUE KEY newmsg_id (newmsg_id),
