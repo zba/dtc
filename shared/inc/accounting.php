@@ -262,7 +262,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 						$handle = fopen ($dump_file_name, "w");
 						for($z=0;$z<$dump_num_rows;$z++){
 							$rezar = mysql_fetch_array($result_dump);
-							if(strstr($rezar["referer"],$vhost.".".$domain))	$rezar["referer"] == "self";
+							if(strstr($rezar["referer"],$domain))	$rezar["referer"] == "self";
 							$content = $rezar["remote_host"]." - - ".
 							date("[d/M/Y:H:i:s] ",$rezar["time_stamp"]).
 							'"'.$rezar["request_uri"].'" '.$rezar["status"].
