@@ -258,11 +258,14 @@ Or your server will not resolv correctly.
 <h4><a name="2.8"></a>2.8 Running DTC under a clustered environement</h4>
 
 Many people asked me if one day DTC could handle a cluster. The answer is
-that it already does it. This chapter will tell you how to do it. What we
+that it was primary written to held all the services in one server only,
+but it already supports it. This chapter will tell you how to do it. What we
 will do here is slowly add new servers to a "normal" DTC server,
 so first of all, setup a box with DTC like you already did. For the
 purpose of this example, we will say that main server is called smain,
 with IP address 192.168.1.10.<br><br>
+
+<img src="dtc_cluster.png"><br><br>
 
 MySQL<br>
 There is no need here that I explain how to use MySQL in a cluster. Please
