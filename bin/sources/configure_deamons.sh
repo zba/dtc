@@ -315,3 +315,5 @@ echo "configuration if not done already !"
 echo ""
 echo "Please visit DTC home:"
 echo "http://www.gplhost.com/?rub=softwares&sousrub=dtc"
+
+exit 0
