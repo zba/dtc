@@ -84,6 +84,7 @@ function userEditForms($adm_login,$adm_pass){
 	global $txt_general_virtual_admin_edition;
 	global $txt_domains_configuration_title;
 	global $txt_add_user_title;
+	global $conf_skin;
 	global $lang;
 	if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass)){
 		// Fetch all the selected user informations, Print a nice error message if failure.
@@ -99,9 +100,9 @@ function userEditForms($adm_login,$adm_pass){
 		$HTML_admin_edit_data .= drawAdminTools($admin);
 
 		// Output and skin the result !
-		$user_config = skin("green",$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
-		$user_domain_config = skin("green",$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
-		$user_tools = skin("notitle/darkblue",$HTML_admin_edit_data,"Domains for $adm_login");
+		$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
+		$user_domain_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
+		$user_tools = skin($conf_skin,$HTML_admin_edit_data,"Domains for $adm_login");
 
 		// All thoses tools in a simple table
 		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"4\">
@@ -117,7 +118,7 @@ function userEditForms($adm_login,$adm_pass){
 	}else{
 		// If no user is in edition, draw a tool for adding an admin
 		$add_a_user = drawNewAdminForm();
-		return skin("green",$add_a_user,$txt_add_user_title[$lang]);
+		return skin($conf_skin,$add_a_user,$txt_add_user_title[$lang]);
 	}
 }
 
@@ -127,12 +128,12 @@ function skinConsole(){
 	return "<table bgcolor=\"#000000\" cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"100%\">
 <tr>
 <td>
-	Console output
+	<font color=\"#FFFFFF\">Console output</font>
 </td>
 </tr>
 <tr>
 <td><pre>
-".$_SERVER["HTTP_HOST"].":&gt;<br>$console</pre>
+<font color=\"#FFFFFF\">".$_SERVER["HTTP_HOST"].":&gt;<br>$console</font></pre>
 </td>
 </tr>
 </table>
