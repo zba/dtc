@@ -1,7 +1,7 @@
 <?php
 
 require_once "$dtcshared_path/dtcrm/registry_calls.php";
-require_once "$dtcshared_path/dtcrm/cc_code_popup.php";
+// require_once "$dtcshared_path/dtcrm/cc_code_popup.php";
 
 $registration_added_price = 1;
 

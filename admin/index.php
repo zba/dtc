@@ -13,8 +13,14 @@ include("$dtcshared_path/anotherDtc.php");	// Contain all anotherXXX() functions
 include("$dtcshared_path/skin.php");
 include("$dtcshared_path/skinLib.php");			// Contain all other disposition and skin layout functions
 include("$dtcshared_path/inc/submit_to_sql.php");
+if(file_exists($dtcshared_path."/dtcrm")){
+	include("$dtcshared_path/dtcrm/submit_to_sql.php");
+}
 include("$dtcshared_path/inc/fetch.php");
 include("$dtcshared_path/inc/accounting.php");
+if(file_exists($dtcshared_path."/dtcrm")){
+	include("$dtcshared_path/dtcrm/draw.php");
+}
 include("$dtcshared_path/inc/draw.php");
 
 // Admin include files
@@ -31,6 +37,7 @@ include("inc/dtc_config.php");
 include("inc/draw_user_admin.php");
 
 if(file_exists("dtcrm")){
+	include("dtcrm/submit_to_sql.php");
 	include("dtcrm/main.php");
 }
 

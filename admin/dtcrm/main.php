@@ -7,7 +7,7 @@ function DTCRMlistClients(){
 	global $pro_mysql_client_table;
 
 	$text .= "<div style=\"white-space: nowrap\" nowrap>";
-	if($id_client != 0 && $id_client != "" && isset($id_client)){
+	if($id_client == 0 && $id_client == "" || !isset($id_client)){
 		$text .= "<a href=\"$PHP_SELF?rub=crm&id=0\">";
 	}
 	$text .= "New customer";
@@ -39,6 +39,8 @@ function DTCRMeditClients(){
 	$cid = $_REQUEST["id"];	// current customer id
 	if($cid == "")	return "Select a customer.";
 
+	$iscomp_yes = "checked";
+	$iscomp_no = "";
 	if($cid != 0 && isset($cid) && $cid != ""){
 		$query = "SELECT * FROM $pro_mysql_client_table WHERE id='".$_REQUEST["id"]."';";
 	        $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
@@ -47,27 +49,40 @@ function DTCRMeditClients(){
 			return "<font color=\"red\">Error : no row by that client ID (".$_REQUEST["id"].") !!!</font>";
 		}
 		$row = mysql_fetch_array($result);
-		$idden_inputs = "<input type=\"hidden\" name=\"action\" value=\"edit_client\">";
+		$hidden_inputs = "<input type=\"hidden\" name=\"action\" value=\"edit_client\">";
+		if($row["is_company"] == "no"){
+			$iscomp_yes = "";
+			$iscomp_no = "checked";
+		}
 	}else{
-		$idden_inputs = "<input type=\"hidden\" name=\"action\" value=\"new_client\">";
+		$hidden_inputs = "<input type=\"hidden\" name=\"action\" value=\"new_client\">";
 		unset($row);
 	}
 	$text = "<form action=\"$PHP_SELF\">
 <table cellspacin=\"0\" cellpadding=\"0\">
 <input type=\"hidden\" name=\"rub\" value=\"crm\">
-<input type=\"hidden\" name=\"id\" value=\"$cid\">
+<input type=\"hidden\" name=\"id\" value=\"$cid\">$hidden_inputs
 <tr><td align=\"right\">Family name:</td><td><input size=\"40\" type=\"text\" name=\"ed_familyname\"value=\"".$row["familyname"]."\"></td></tr>
 <tr><td align=\"right\">First name:</td><td><input size=\"40\" type=\"text\" name=\"ed_christname\" value=\"".$row["christname"]."\"></td></tr>
+<tr><td align=\"right\">Is company:</td><td>
+yes<input type=\"radio\" name=\"ed_is_copany\" value=\"yes\" $iscomp_yes >
+no<input type=\"radio\" name=\"ed_is_copany\" value=\"no\" $iscomp_no >
 <tr><td align=\"right\">Company name:</td><td><input size=\"40\" type=\"text\" name=\"ed_company_name\" value=\"".$row["company_name"]."\"></td></tr>
 <tr><td align=\"right\">Addr1:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr1\" value=\"".$row["addr1"]."\"></td></tr>
 <tr><td align=\"right\">Addr2:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr2\" value=\"".$row["addr2"]."\"></td></tr>
+<tr><td align=\"right\">Addr3:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr3\" value=\"".$row["addr3"]."\"></td></tr>
 <tr><td align=\"right\">City:</td><td><input size=\"40\" type=\"text\" name=\"ed_city\" value=\"".$row["city"]."\"></td></tr>
 <tr><td align=\"right\">Zicode:</td><td><input size=\"40\" type=\"text\" name=\"ed_zipcode\" value=\"".$row["zipcode"]."\"></td></tr>
 <tr><td align=\"right\">State:</td><td><input size=\"40\" type=\"text\" name=\"ed_state\" value=\"".$row["state"]."\"></td></tr>
-<tr><td align=\"right\">Country:</td><td><input size=\"40\" type=\"text\" name=\"ed_country\" value=\"".$row["country"]."\"></td></tr>
+<tr><td align=\"right\">Country:</td><td><select name=\"country\">".
+cc_code_popup($row["country"])
+."</select><input size=\"40\" type=\"text\" name=\"ed_country\" value=\"".$row["country"]."\"></td></tr>
 <tr><td align=\"right\">Phone:</td><td><input size=\"40\" type=\"text\" name=\"ed_phone\" value=\"".$row["phone"]."\"></td></tr>
 <tr><td align=\"right\">Fax:</td><td><input size=\"40\" type=\"text\" name=\"ed_fax\" value=\"".$row["fax"]."\"></td></tr>
 <tr><td align=\"right\">Email:</td><td><input size=\"40\" type=\"text\" name=\"ed_email\" value=\"".$row["email"]."\"></td></tr>
+<tr><td align=\"right\">Notes:</td><td><textarea cols=\"40\" rows=\"5\" name=\"ed_special_note\">".$row["special_note"]."</textarea></td></tr>
+<tr><td align=\"right\">Dollar:</td><td><input size=\"40\" type=\"text\" name=\"ed_dollar\" value=\"".$row["dollar"]."\"></td></tr>
+
 <tr><td align=\"right\"></td><td><input type=\"submit\" value=\"Save\"></td></tr>
 </table>
 </form>";

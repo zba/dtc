@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS clients (
   fax varchar(20) default NULL,
   email varchar(255) NOT NULL default '',
   special_note blob,
-  dolar decimal(9,2) NOT NULL default '0.00',
+  dollar decimal(9,2) NOT NULL default '0.00',
   disk_quota_mb int(9) NOT NULL default '0',
   bw_quota_per_month_gb int(9) NOT NULL default '0',
   PRIMARY KEY (id),
