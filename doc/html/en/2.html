@@ -2,19 +2,25 @@
 
 <h4><a name="2.1"></a>2.1 Before installing</h4>
 
-Before installing DTC, apache must be already installed/installable, as
-well as php4 (and it's cgi command line version (php4-cgi under debian / php-cgi under BSD)
+Before installing DTC, apache MUST be already installed/installable, as
+well as php4 (and it's cgi command line version (php4-cgi under debian / php-cli under BSD)
 and the mod_php4 module for apache) and mysql.<br><br>
 
-Installer bind (or any compatible nameserver), qmail et and proftpd with mod_sql
-activated and running. Be ready to have one domain name to use (it can be fake,
-but beware then that you will have to use tricks to resolve it).<br><br>
+Then, you MUST install any mail server PRIOR to install DTC. If you need
+to install mail daemons after DTC is installed, you will then need to
+relaunch install script (in /var/lib/dpkg/info/dtc.postinst for Debian
+users and dtc-install.sh under BSD). Install bind (or any compatible
+nameserver), make it up and running (be able to resolv and have your
+/etc/resolv.conf point to 127.0.0.1). Have qmail et and proftpd with mod_sql
+activated and running. Be ready to have one domain name to use and have
+it's name server IP points to the server (it can be fake, but beware then
+that you will have to use tricks to resolve it).<br><br>
 
 Under BSD or under Debian systems, the dependancy does the stuff to install
-qmail, apache, mysql and php4 with all necessary modules and options. But
-the mysql root password has to be set before so you can give it to DTC installer.
-So on all system, you have to install MySQL, and setup a root password on it
-PRIOR to install DTC.<br><br>
+apache, mysql proftpd, and php4 with all necessary modules and options. But
+because you can choose what type of MTA you will use (namely QMail/Postfix
+and Courier/Dovecot/QMail), you will setup them, and then DTC will detect
+them durring install and modify it's config files.<br><br>
 
 <h4><a name="2.2"></a>2.2 Configurating daemons before installing</h4>
 
@@ -27,7 +33,8 @@ Be ready to answer to the following:<br><br>
 - A domain name you will use to bind DTC's interface<br>
 - The public IP address of the server<br>
 - The path were files will be saved for the domains (mail,html) when creating a new account.<br>
-- The root admin login/pass you will use with DTC<br><br>
+- The root admin login/pass you will use with DTC<br>
+- etc...<br><br>
 
 <h5><a name="2.2.1"></a>2.2.1 Mysql</h5>
 
@@ -46,25 +53,23 @@ option.
 <h5><a name="2.2.2"></a>2.2.2 Apache</h5>
 
 You'll have to get your hands dirty editing apache httpd.conf file. Only
-3 directives must be set: User, Group and NameServer.<br><br>
+1 directives must be set: NameServer. Other directives are happily setup
+automaticaly by DTC using the Unix tool sed. We consider it's up to
+distribution's to do that job.<br><br>
 
 You have to setup a default server name for apache, using the same as what you
 have setup in /etc/hostname.
 
 <pre>NameServer www.example.com</pre>
 
-Setup apache to use nobody:nogroup for web account,
-as long as qmail and proftpd uses same uid/gid also.
-
-<pre>User nobody
-Group nogroup</pre>
-
 On latest versions, DTC modify itself the httpd.conf. Under debian woody and
 FreeBSD, you normaly have nothing to do with it.
 
 <h4><a name="2.3"></a>2.3 Installation under Debian</h4>
 
-DTC is not yet in Debian's oficial tree. Before it can once be in it, use the
+DTC is not yet in Debian's oficial tree. But it should still work for
+both Woody, Sarge and Sid flavor of Debian, the installer have been designed
+to take advantage of them. Before it can once be in it, use the
 following alternative source in your /etc/apt/source.list:<br>
 
 <pre>deb ftp://gplhost.com/debian stable main</pre>
@@ -77,21 +82,19 @@ On that repository you will also find the alternative password check from jedi
 in a debian package (packaging done by the autor of DTC), and the mysqmail package
 that contains a pached version of qmail-pop3d for easy log of pop trafic, a logger,
 and another checkpassword for smtp, all the above using MySQL backend. You will
-also find usefull debian package like libapache-mod-log-sql<br><br>
+also find usefull debian package like libapache-mod-log-sql (warning for
+Sarge and Sid: use special package for unstable linked against the good
+glibc), the sbox-dtc package (this one works on both 3 debian  flavor).<br><br>
 
 Once this repository added, install DTC like other debian packages:<br>
 
-<pre>apt-get install dtc</pre><br>
-
-BEWARE ! On some case, it can happen that php4-cgi is missconfigured.
-In some case mysql.so or some other modules are not activated in
-/etc/php4/cgi/php.ini. If it's the case, do it manualy.
-Have reegister_globales=0, and safe_mode=1 in your /etc/php4/apache/php.ini.<br><br>
+<pre>apt-get install dtc</pre><br><br>
 
 <h4><a name="2.4"></a>2.4 Installation under RedHat</h4>
 
 The actual version of the RPM package for DTC has been done for a 7.3 redhat, but
-because it is php scripts it should run on all other superior versions.<br><br>
+because it is php scripts it should run on all other superior versions. It
+has been successfully tested under Fedora Core 2.<br><br>
 
 The RPM package can be downloaded there:<br><br>
 
@@ -105,7 +108,7 @@ Because it's not possible to ask questions to user before installing a package
 under RedHat, there is a post-installation script that will be installed in
 /usr/share/dtc/admin/dtc.rpm-install.sh. Simply launch it.<br><br>
 
-Please not that becaue I've had no return at all from redhat team, I didn't
+Please not that because I've had no return at all from redhat team, I didn't
 test a lot that package. Please send me feedback if you can.<br><br>
 
 <h4><a name="2.5"></a>2.5 Installation under FreeBSD</h4>
@@ -347,4 +350,3 @@ Http, ftp, pop3 and smtp serivces all need access to it. What I suggest
 here is that you mount the same big area in all the servers using same
 mountpoint for example using nfs. All the servers need is access in
 read/write with user nobody:nogroup.<br><br>
-
