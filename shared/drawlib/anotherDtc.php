@@ -34,7 +34,8 @@ function anotherLanguageSelection(){
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=de&rub=".$_REQUEST["rub"]."\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/de.gif\">&nbsp;DEUTSCH</a></td>
 </tr><tr><td align=\"right\" valign=\"center\" nowrap>
-	&nbsp; 
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=it&rub=".$_REQUEST["rub"]."\">ITALIANO
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/it.gif\"></a> 
 </td><td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=zh&rub=".$_REQUEST["rub"]."\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/zh.gif\">&nbsp;CHINESE</a></td>

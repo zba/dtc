@@ -533,8 +533,8 @@ fi
 if [ -e $conf_hosting_path/.htpasswd ]; then 
 	echo "OK, you have your "$conf_hosting_path"/.htpasswd setup already!"
 else 
-	echo "Creating "$conf_hosting_path"/.htpasswd with username 'admin' and password '$conf_adm_pass'"
-	/usr/bin/htpasswd -cb "$conf_hosting_path"/.htpasswd admin $conf_adm_pass
+	echo "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
+	/usr/bin/htpasswd -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" $conf_adm_pass
 fi
 
 if [ -e $PATH_DTC_ADMIN/.htaccess ]; then
