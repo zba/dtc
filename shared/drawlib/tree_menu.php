@@ -58,7 +58,7 @@ onMouseOver=\"$rolovered.src='$image_rolover'\"
 onMouseOut=\"$rolovered.src='$image_source'\"";
 	}
 
-	return "$alink<img alt=\"$alt\" $img_source border=\"0\"></a><br>";
+	return "$alink<img width=\"220\" height=\"20\" alt=\"$alt\" $img_source border=\"0\"></a><br>";
 }
 
 function MTMRecursiv($menu){
