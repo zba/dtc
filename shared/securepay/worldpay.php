@@ -49,9 +49,9 @@ function worldPayButton($pay_id,$amount){
 <input type="hidden" name="noLanguageMenu" value="yes">
 ';
 	if($wp_accId1 != ""){
-		$out .= '<input type=hidden name="accId1" value="'.$wp_accId1.'">';
+		$out .= '<input type="hidden" name="accId1" value="'.$wp_accId1.'">';
 	}
-	$out .= '<input type=submit value="WorldPay"> </form>';
+	$out .= '<input type="image" src="gfx/securepay/poweredByWorldPay.gif" value="WorldPay"> </form>';
 	return $out;
 
 }
