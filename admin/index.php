@@ -15,6 +15,7 @@ include("$dtcshared_path/skin.php");
 include("$dtcshared_path/skinLib.php");			// Contain all other disposition and skin layout functions
 include("$dtcshared_path/inc/submit_to_sql.php");
 include("$dtcshared_path/inc/fetch.php");
+include("$dtcshared_path/inc/accounting.php");
 include("$dtcshared_path/inc/draw.php");
 
 // Admin include files
