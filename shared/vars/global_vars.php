@@ -49,8 +49,7 @@ if(!ereg("^([a-z0-9]+)([.a-z0-9-]+)([a-z0-9])\$",$edit_domain) && isset($edit_do
 }
 
 //don't save things into the session for cronjobs
-if($panel_type!="cronjob") 
-{
+if($panel_type!="cronjob"){
 	// Save menu style preference in session
 	session_register("dtc_use_text_menu");
 	if(!is_string($_SESSION["dtc_use_text_menu"])){

@@ -10,12 +10,12 @@ function paynowButton($pay_id,$amount,$item_name,$return_url){
 	global $conf_use_paypal;
 	global $conf_use_worldpay;
 	$out .= "<table width=\"100%\" height=\"1\">";
-	$out .= "<tr><td>Paiement system</td><td>Cost</td><td>Total</td><td>Instant account</td></tr>\n";
+	$out .= "<tr><td>Paiement system</td><td>Amount</td><td>Gateway cost</td><td>Total</td><td>Instant account</td></tr>\n";
 	if($conf_use_paypal == "yes"){
-		$total = round($amount * 1.034 + 0.30);
+		$total = $amount * 1.034 + 0.30;
 		$cost = $total - $amount;
 		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url)."</td>";
-		$out .= "<td>\$$cost</td><td>\$$total</td><td>No</td></tr>\n";
+		$out .= "<td>$amount</td><td>\$$cost</td><td>\$$total</td><td>No</td></tr>\n";
 	}
 	if($conf_use_worldpay == "yes"){
 		$total = $amount * 1.0475+ 0.017;
