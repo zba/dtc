@@ -251,6 +251,6 @@ if($_REQUEST["rub"] == "generate"){
 $pageContent = makeVerticalFrame($the_page);
 $anotherFooter = anotherFooter("Footer content<br><br>");
 
-echo anotherPage($txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$pageContent,$anotherFooter);
+echo anotherPage("admin:".$txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$pageContent,$anotherFooter);
 
 ?>

@@ -128,31 +128,31 @@ else
 	echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >>/tmp/DTC_config_proftpd.conf
 	echo "SQLAuthTypes	Plaintext" >>/tmp/DTC_config_proftpd.conf
 	echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >>/tmp/DTC_config_proftpd.conf
-	echo "// Transfer Log to Proftpd
+	echo "# // Transfer Log to Proftpd
 SQLLog RETR,STOR transfer1
 SQLNamedQuery transfer1 INSERT \"'%u', '%f', '%b', '%h', '%a', '%m', '%T',now(), 'c', NULL\" ftp_logs
 
-// Count Logins per User
+# // Count Logins per User
 SQLLog                PASS logincount
 SQLNamedQuery         logincount UPDATE \"count=count+1 WHERE login='%u'\" ftp_access
 
-// Remember the last login time
+# // Remember the last login time
 SQLLog                PASS lastlogin
 SQLNamedQuery         lastlogin UPDATE \"last_login=now() WHERE login='%u'\" ftp_access
 
-// Count the downloaded bytes
+# // Count the downloaded bytes
 SQLLog RETR           dlbytescount
 SQLNamedQuery         dlbytescount UPDATE \"dl_bytes=dl_bytes+%b WHERE login='%u'\" ftp_access
 
-// Count the downloaded files
+# // Count the downloaded files
 SQLLog RETR           dlcount
 SQLNamedQuery         dlcount UPDATE \"dl_count=dl_count+1 WHERE login='%u'\" ftp_access
 
-// Count the uploaded bytes
+# // Count the uploaded bytes
 SQLLog STOR           ulbytescount
 SQLNamedQuery         ulbytescount UPDATE \"ul_bytes=ul_bytes+%b WHERE login='%u'\" ftp_access
 
-// Count the uploaded files
+# // Count the uploaded files
 SQLLog STOR           ulcount
 SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ftp_access
 

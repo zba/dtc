@@ -159,7 +159,7 @@ function anotherPage($title,$meta,$java_script,$onloads,$banner,$menu,$content,$
 return "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
 <html>
 <head>
-<title>$title</title>
+<title>DTC: $title ".$_SERVER['SERVER_NAME']."</title>
 $page_metacontent
 $meta
 </head>
