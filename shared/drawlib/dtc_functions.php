@@ -1,7 +1,5 @@
 <?php
 
-require_once "$dtcshared_path/cc_code_popup.php";
-
 ////////////////////////////////////////////////////////////////////////////////////
 // Verify that someone is not trying to modify another account (nasty hacker !!!) //
 // Fetch the admin real path stored in the database
