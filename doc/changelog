@@ -1,3 +1,10 @@
+31-08-04: V0.15.0-R2 improved the way DTC handles non-resolveable
+domains aliasing: now it uses open_basedir like for normal vhosts,
+so users can't screw up other's users files.
+The installer now checks if runnin under debian. If not, it does
+NOT check for apache modules !!! It will be up to the Unix you are
+using to do the job (you have been warned).
+
 18-08-04: DTC now handles SBOX wich is a cgi-wrapper: it does chroot,
 suexec, and some memory and processor limitation.
 
