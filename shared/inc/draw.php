@@ -550,12 +550,10 @@ function drawAdminTools_Subdomain($domain){
 			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
 			$register_globals_to_edit = $subdomains[$i]["register_globals"];
 		}else{
-			$txt .= "<a href=\"http://$sub.$webname\" target=\"_blank\">";
 		}
+		$txt .= "<a href=\"http://$sub.$webname\" target=\"_blank\">";
 		$txt .= $sub;
-		if($sub != $_REQUEST["edit_a_subdomain"]){
-			$txt .= "</a>";
-		}
+		$txt .= "</a>";
 	}
 	$txt .= "<br>";
 
@@ -566,10 +564,10 @@ function drawAdminTools_Subdomain($domain){
 	$txt .= "<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
 	$txt .= "<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">";
 	$txt .= "<input type=\"hidden\" name=\"whatdoiedit\" value=\"subdomains\">";
-	$txt .= "<table><tr><td align=\"right\">";
 
 	// Popup for choosing default subdomain.
-	$txt .= $txt_subdom_default_sub[$lang]."</td><td><select name=\"subdomaindefault_name\" tabindex=\"3\">";
+	$txt .= "<table><tr><td align=\"right\">";
+	$txt .= $txt_subdom_default_sub[$lang]."</td><td><select name=\"subdomaindefault_name\">";
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub = $subdomains[$i]["name"];
 		if($domain["default_subdomain"] == "$sub"){
@@ -581,7 +579,7 @@ function drawAdminTools_Subdomain($domain){
 	$txt .= "</select></td><td><input type=\"submit\" name=\"subdomaindefault\" value=\"Ok\"></td></tr>";
 
 	// Print list of subdomains, allow creation of new ones, and destruction of existings.
-	$txt .= "<tr><td align=\"right\">".$txt_subdom_errase[$lang]."</td><td><select name=\"delsubdomain_name\" tabindex=\"3\">";
+	$txt .= "<tr><td align=\"right\">".$txt_subdom_errase[$lang]."</td><td><select name=\"delsubdomain_name\">";
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub = $subdomains[$i]["name"];
 		if($domain["default_subdomain"] == "$sub"){
@@ -604,15 +602,28 @@ function drawAdminTools_Subdomain($domain){
 
 	$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>Edit one of your subdomains:</u></b></font></td></tr>";
 	$txt .= "<tr><td collspan=\"3\">";
+	$in_new = true;
 	// List of subdomains to edit
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub = $subdomains[$i]["name"];
 		if($i!=0){
 			$txt .= " - ";
 		}
-		$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&edit_a_subdomain=$sub&edit_domain=$webname&addrlink=$addrlink\">$sub</a>";
+		if($sub != $_REQUEST["edit_a_subdomain"]){
+			$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&edit_a_subdomain=$sub&edit_domain=$webname&addrlink=$addrlink\">";
+		}else{
+			$in_new = false;
+		}
+		$txt .= $sub;
+		if($sub != $_REQUEST["edit_a_subdomain"]){
+			$txt .= "</a>";
+		}
 	}
-	$txt .= "<br><br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&edit_domain=$webname&addrlink=$addrlink\">new subdomain</a>";
+	if($in_new == false){
+		$txt .= "<br><br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&edit_domain=$webname&addrlink=$addrlink\">new subdomain</a>";
+	}else{
+		$txt .= "<br><br>new subdomain";
+	}
 	$txt .= "</td></tr>";
 
 	if(!isset($_REQUEST["edit_a_subdomain"]) || $_REQUEST["edit_a_subdomain"] == ""){
@@ -653,7 +664,7 @@ No<input type=\"radio\" name=\"register_globals\" value=\"no\" $checked_no></td>
 			$checked_yes = "";
 			$checked_no = " checked";
 		}
-		$txt .= "<tr><td align=\"right\">Generate webalizer stats each weeks:</td>";
+		$txt .= "<tr><td align=\"right\">Generate webalizer stats each months:</td>";
 		$txt .= "<td>Yes<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_yes>
 No<input type=\"radio\" name=\"webalizer\" value=\"no\" $checked_no></td></tr>";
 		if($w3_alias_to_edit == "yes"){
