@@ -115,18 +115,22 @@ fi
 # Do a test to check php version. Those fucking PHP guys had
 # made things so simple that this test is not very short... :(
 CNT=`/usr/bin/php4 -v | wc -l`
-if [ $CNT -ge 2 ] ; then
-	PHPVER=`/usr/bin/php4 -v | head -n 1 | cut -f2 -d" "`
+echo "TEST2"
+if [ $CNT -ge 2 ]
+then
+	PHPVE=`/usr/bin/php4 -v | head -n 1 | cut -f2 -d" "`
 else
-	PHPVER=`/usr/bin/php4 -v`
+	PHPVE=`/usr/bin/php4 -v || true`
 fi
-PHPMAJOR=`echo $PHPVER | cut -f1 -d"."`
-PHPMINOR=`echo $PHPVER | cut -f2 -d"."`
 
-echo "The installer has detected PHP version "$PHPMAJOR" release $PHPMINOR"
+PHPMAJOR=`echo $PHPVE | cut -f1 -d"."`
+PHPMINOR=`echo $PHPVE | cut -f2 -d"."`
+
+echo "The DTC installer has detected PHP version "$PHPMAJOR" release $PHPMINOR"
 
 # now update the pear modules if you have the "pear" installed
 # since PHP >= 4.3.0 doesn't come with Crypt_CBC that OpenSRS needs
+echo "TEST4"
 if [ ""$TMP = "" ]; then
 	TMP=/tmp
 fi
