@@ -115,6 +115,8 @@ for($j=0;$j<$num;$j++){
 		$out .= ")\",\n";
 	else if(sizeof($primaries) > 0)
 		$out .= ")\"\n\t\t\t)\n";
+	else if(sizeof($keys) == 0 && sizeof($primaries) == 0)
+		$out .= "\t\t\t)\n";
 
 	if(sizeof($keys>0)){
 		$kkeys = @array_keys($keys);
