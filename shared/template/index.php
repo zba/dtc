@@ -1,13 +1,30 @@
 <html>
-<head>
-</head>
 <body>
 <center>
-<a href="http://www.gplhost.com"><img src="http://www.gplhost.com/ban.gif" border="0"></a><br><br>
-This site, currently hosted at gplhost services: content will be ready soon.<br>
+<table width="90%" height="100%">
+<tr><td width="100%" height="100%">
+<center>
+
+<b><font face="Arial"><center>
+<a href="http://www.gplhost.com/?rub=softwares&sousrub=dtc">
+<img src="dtc_logo.gif"
+border="0"></a><br><br>
+<h1><u>Welcome to <?php echo $_SERVER["HTTP_HOST"]; ?>!</u></h1>
+This site content will be ready
+soon.<br>
 Please be back later to check this web site.<br><br>
-<font face="Arial" size="-2">Get a hosting account @ <a href="http://www.gplhost.com">GPLHost</a></font>
+</center></font><br><br><br></td></tr>
+
+<tr><td width="100%" height="1"><center><font face="Arial" size="-2">
+This website server is powered by Domain Technologie Control (DTC),
+an open-source control panel<br>
+<i>Most of code done by:
+<a target="_blank" href="mailto:thomas@goirand.fr">Thomas GOIRAND</a>, under
+<a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit <a
+target="_blank" href="http://gplhost.com">GPLHost</a> and <a
+target="_blank" href="http://gplhost.com/?rub=softwares&sousrub=dtc">DTC
+home</a> for more infos.</i></font>
+</center></td></tr></table>
 </center>
-<br><br>
 </body>
 </html>

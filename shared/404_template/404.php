@@ -1,4 +1,5 @@
 <html>
+<title>Error 404: file not found!</title>
 <body>
 <center>
 <table width="90%" height="100%">
