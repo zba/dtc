@@ -13,10 +13,13 @@ Default: root
 Description: MySql Login.
  What is your mysql root login ? DTC needs
  it to access to your mysql table in order
- to grant privileges to it's users.
+ to grant privileges to it's users. It's
+ sugested that you add a user specialy
+ for dtc that has the rights for modifying
+ grant tables, but root il also ok.
 
 Template: dtc/conf_mysqlpass
-Type: string
+Type: password
 Description: MySql Password.
  Please enter your mysql root password.
 
@@ -26,7 +29,7 @@ Default: dtc
 Description: Select your DTC database name.
  DTC save all it's hosting information in a
  database automaticaly created. Please enter
- then name you want for it.
+ it's name.
 
 Template: dtc/main_domainname
 Type: string
@@ -34,16 +37,16 @@ Default: example.com
 Description: Enter a domain name.
  Enter a the first domain name you want DTC
  to administrate. This domain name will be
- used for installing the root admin web
- control panel of DTC (on one of this domain
+ used for installing the root admin and customer
+ web control panel of DTC (on one of this domain
  subdomains).
 
 Template: dtc/dtc_adminsubdomain
 Type: string
 Default: dtc
 Description: DTC root panel subdomain.
- Please enter the subdomain you want DTC to install
- it's root control panel.
+ Enter the subdomain you want DTC to install
+ it's control panel.
 
 Template: dtc/conf_ipaddr
 Type: string
@@ -52,21 +55,24 @@ Description: Primary IP addresse.
  What is your primary IP addresse ? This IP will
  be used for the domain name you just provided,
  and will be used as default for most DTC variables
- (easy change of theses values will be available
- in the root admin web control panel).
+ (easy change of theses values is available after
+ instalation is done under the root-admin web
+ control panel).
 
 Template: dtc/conf_hostingpath
 Type: string
 Default: /var/www/sites
 Description: Path for hosted domains.
  Where do you want DTC to store all hosted domains
- files ? (easy change of this value will be available     
+ files (mail and web files) ?
+ (easy change of this value available     
  in the root admin web control panel, but this is
  also where the main domain name will be installed).
  .
  Please note that apache's standard installation setup
  /var/www as the apache web area. Remove this manualy
- if you choose /var/www/sites as DTC's hosting area.
+ in your /etc/apache/httpd.conf if you choose
+ /var/www/sites as DTC's hosting area.
 
 Template: dtc/conf_admlogin
 Type: string
@@ -77,7 +83,7 @@ Description: Main domain admin name.
  just entered.
 
 Template: dtc/conf_admpass
-Type: string
+Type: password
 Default: 
 Description: Main domain admin password.
  Please give the main domain's administrator a
