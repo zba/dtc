@@ -55,7 +55,7 @@ then
         ln -s ../shared/imgcache debian/usr/share/dtc/client/imgcache
 fi
 find ./debian -type d | xargs chmod 755
-echo `find debian/ -iname 'CVS' -exec rm -rf {} \;` >/dev/null >>/dev/null
+find debian/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
 chown -R root:root debian/usr/share/dtc
 chown nobody:nogroup debian/usr/share/dtc/shared debian/usr/share/dtc/client/imgcache debian/usr/share/dtc/admin/imgcache debian/usr/share/dtc/shared/imgcache
 chown nobody:nogroup debian/usr/share/dtc/client/gfx debian/usr/share/dtc/admin/gfx debian/usr/share/dtc/shared/gfx

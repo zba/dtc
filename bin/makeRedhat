@@ -13,14 +13,14 @@ RELEASE=`cat release`
 echo " --- Making DTC Redhat Manager Pachage (RPM) package ---"
 
 # This block should be common to most unix packages :
-echo "--- Bulding dtc directory tree out of sources ---"
+echo "===> Copying files"
 rm -rf dtc usr
 mkdir -p dtc/etc/zones
 cp -rf ../admin ../client ../shared ../doc dtc/
 echo "<?php
 \$conf_dtc_version= \""$VERS"\"; \$conf_dtc_release= \""$RELS"\";
 ?>" > dtc/shared/dtc_version.php
-echo `find dtc/ -iname 'CVS' -exec rm -rf {} \;` >/dev/null >>/dev/null
+find dtc/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
 if ! [ -e dtc/admin/gfx ]
 then
 	ln -s ../shared/gfx dtc/admin/gfx
@@ -48,11 +48,16 @@ cat sources/redhat/uninstall.sh >dtc/admin/dtc.rpm-uninstall.sh
 cat sources/uninstall_deamons.sh >>dtc/admin/dtc.rpm-uninstall.sh
 
 # Specific RPM package actions :
-echo "Building tar.gz for RPM source"
-tar -czf dtc.tar.gz dtc
+echo -n "===> Creating tar file and move it to build tree: "
+echo -n "tar..."
+tar -cf dtc.tar.gz dtc
+echo -n "mv..."
 mv dtc.tar.gz /root/rpmbuild/SOURCES/
+echo -n "rm..."
+rm -rf dtc
+echo "done!"
 
-echo "--- Building specfile ---"
+echo "===> Building specfile"
 echo "Summary: Domain Technologie Control: a web admin interface for hosting virtual domain-names.
 Name: dtc
 Version: "$VERSION"
@@ -66,9 +71,6 @@ echo "%changelog
 1st redhat attempt
 " >>dtc.spec
 
-#cat ../doc/changelog >>dtc.spec
-
-#mv -f dtc.tar.gz /root/redhat/dtc/
-echo "--- Building dtc-"$VERSION"-"$RELEASE".noarch.rpm ---"
+echo "===> Building dtc-"$VERSION"-"$RELEASE".noarch.rpm"
 rpmbuild -bb --target=noarch dtc.spec
 echo " -- Made dtc-"$VERSION"-"$RELEASE".noarch.rpm ---"

@@ -19,7 +19,8 @@ require("$dtcshared_path/drawlib/cc_code_popup.php");	// The country code popup 
 require("$dtcshared_path/drawlib/dtc_functions.php");	// Some usefull functions
 require("$dtcshared_path/drawlib/anotherDtc.php");		// Contain all anotherXXX() functions plus user menu, pagetop, some layout, etc...
 // If you have time, please fix bugs in user menu rewritting skin.php by
-// reading working code in tree_menu.php so that it can be realy recusive
+// reading working code in tree_menu.php so that it can be realy recusive,
+// and internationalisation is possible.
 require("$dtcshared_path/drawlib/tree_menu.php");		// New version of menu working fully, but not yet integrated. Should replace the function in skin.php
 require("$dtcshared_path/drawlib/skin.php");			// Contains curent usermenu building plus some layout functions and rollover/preloads of images
 require("$dtcshared_path/drawlib/skinLib.php");			// This is the new modular skin function using gfx/skin folder and skin code registration/css
