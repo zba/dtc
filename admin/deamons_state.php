@@ -75,27 +75,7 @@ function DateAdd ($interval,  $number, $date) {
 }
 
 function javascriptClock($minutes,$seconds){
-	$out = '<SCRIPT language="JavaScript">
-<!--
-var left_minutes='.$minutes.';
-var left_seconds='.$seconds.';
-function JSClock() {
-	left_seconds--;
-	document.reloadForm.reloadField.value = left_minutes +":"+ left_seconds;
-	if(left_seconds == 0){
-		if(left_minutes == 0){
-			document.reloadForm.reloadField.value = "NOW";
-			return;
-		}else{
-			left_seconds=60;
-			left_minutes--;
-		}
-	}
-	id = setTimeout("JSClock()",1000);
-}
-//-->
-</SCRIPT>
-<FORM NAME="reloadForm"><INPUT TYPE="text" NAME="reloadField" SIZE="5" VALUE=""></FORM>';
+	$out = '<FORM NAME="reloadForm"><INPUT TYPE="text" NAME="reloadField" SIZE="5" VALUE=""></FORM>';
 	return $out;
 }
 
@@ -154,12 +134,12 @@ function drawDeamonStates(){
  
 	$out = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"1\" id=\"skinSimpleGreen2Content\">
 <tr>
-	<td align=\"center\" width=\"16%\">Qmail restart</td>
-	<td align=\"center\" width=\"16%\">Qmail-newu</td>
-	<td align=\"center\" width=\"16%\">Qmail gen files</td>
-	<td align=\"center\" width=\"16%\">Apache restart</td>
-	<td align=\"center\" width=\"16%\">Bind reload</td>
-	<td align=\"center\" width=\"17%\">Next cronjob</td>
+	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Qmail restart</font></td>
+	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Qmail-newu</font></td>
+	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Qmail gen files</font></td>
+	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Apache restart</font></td>
+	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Bind reload</font></td>
+	<td align=\"center\" width=\"17%\"><font color=\"#FFFFFF\">Next cronjob</font></td>
 </tr><tr>
 	<td align=\"center\">$state_qm_restart</td>
 	<td align=\"center\">$state_qm_newu</td>
@@ -173,7 +153,26 @@ function drawDeamonStates(){
 }
 
 echo "<html><head>
-<META HTTP-EQUIV=\"Refresh\" CONTENT=\"15;URL=".$_SERVER["PHP_SELF"]."\">
+<META HTTP-EQUIV=\"Refresh\" CONTENT=\"15;URL=".$_SERVER["PHP_SELF"]."\">".'<SCRIPT language="JavaScript">
+<!--
+var left_minutes='.(9-(date("i") % 10)).';
+var left_seconds='.(60-date("s")).';
+function JSClock() {
+	left_seconds--;
+	document.reloadForm.reloadField.value = left_minutes +":"+ left_seconds;
+	if(left_seconds == 0){
+		if(left_minutes == 0){
+			document.reloadForm.reloadField.value = "NOW";
+			return;
+		}else{
+			left_seconds=60;
+			left_minutes--;
+		}
+	}
+	id = setTimeout("JSClock()",1000);
+}
+//-->
+</SCRIPT>'."
 <body bgcolor=\"#000000\" onLoad=\"JSClock();\">
 <link rel=\"stylesheet\" href=\"gfx/dtc.css\" type=\"text/css\">
 <link rel=\"stylesheet\" href=\"gfx/skin/simple/green2/skin.css\" type=\"text/css\">

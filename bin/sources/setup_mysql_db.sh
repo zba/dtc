@@ -48,7 +48,7 @@ mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dt
 chown -R nobody:nogroup $conf_hosting_path
 
 echo "==> DTC is now creating it's database:"
-if [ $conf_mysql_pass == ""];
+if [ $conf_mysql_pass == "" ];
 then
         MYSQL="mysql"
 else

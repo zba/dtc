@@ -1,13 +1,23 @@
 <?php
 
+$txt_pagetop_zesubtitle = array(
+	"fr" => "Prennez le controle de votre nom de domaine",
+	"en" => "Take the control of your domain name",
+	"nl" => "TRANS Take the control of your domain name",
+	"ru" => "TRANS Take the control of your domain name",
+	"de" => "TRANS Take the control of your domain name",
+	"zh" => "<b>ÇáËÉ¿ØÖÆÄúµÄÓòÃû</b>",
+	"es" => "TRANS Take the control of your domain name"
+);
+
 $txt_root_adm_title = array(
 	"fr" => "Domain Technologie Control : console administrateur root",
 	"en" => "Domain Technologie Control : root admin console",
 	"nl" => "TRANS Domain Technologie Control : root admin console",
 	"ru" => "TRANS Domain Technologie Control : root admin console",
 	"de" => "TRANS Domain Technologie Control : root admin console",
-	"zh" => "TRANS Domain Technologie Control : root admin console",
-	"es" => "TRANS Domain Technologie Control : root admin console"
+	"zh" => "Domain Technologie Control : ¹ÜÀíÃæ°å",
+	"es" => "Domain Technologie Control : consola de administracion para root"
 );
 
 $txt_mainmenu_title_useradmin = array(
@@ -29,6 +39,124 @@ $txt_mainmenu_title_client_management = array(
 	"zh" => "¹Ë¿Í¹ØÏµ¹ÜÀí",
 	"es" => "Relacion de clientes para gestionar");
 
+$txt_client_list_title = array(
+	"fr" => "Liste des clients",
+	"en" => "Customers list",
+	"nl" => "TRANS Customers list",
+	"ru" => "TRANS Customers list",
+	"de" => "TRANS Customers list",
+	"zh" => "¹Ë¿ÍÁĞ±í",
+	"es" => "TRANS Customers list");
+
+$txt_client_addr_title = array(
+	"fr" => "Clients address",
+	"en" => "Customers address",
+	"nl" => "TRANS Customers address",
+	"ru" => "TRANS Customers address",
+	"de" => "TRANS Customers address",
+	"zh" => "¹Ë¿ÍµØÖ·",
+	"es" => "TRANS Customers address");
+
+$txt_client_admins_title = array(
+	"fr" => "Administrateurs du client",
+	"en" => "Customer's administrators",
+	"nl" => "TRANS Customer's administrators",
+	"ru" => "TRANS Customer's administrators",
+	"de" => "TRANS Customer's administrators",
+	"zh" => "¹Ë¿ÍµÄ¹ÜÀíÔ±",
+	"es" => "TRANS Customer's administrators");
+
+$txt_client_commands_title = array(
+	"fr" => "Commandes du client",
+	"en" => "Customer's orders",
+	"nl" => "TRANS Customer's orders",
+	"ru" => "TRANS Customer's orders",
+	"de" => "TRANS Customer's orders",
+	"zh" => "¹Ë¿ÍµÄ¶©µ¥",
+	"es" => "TRANS Customer's orders");
+
+$txt_new_customer_link = array(
+	"fr" => "Nouveau client",
+	"en" => "New customer",
+	"nl" => "TRANS New customer",
+	"ru" => "TRANS New customer",
+	"de" => "TRANS New customer",
+	"zh" => "ĞÂ¹Ë¿Í",
+	"es" => "TRANS New customer");
+
+$txt_select_a_new = array(
+	"fr" => "Selectionnew un client.",
+	"en" => "Select a customer.",
+	"nl" => "TRANS Select a customer.",
+	"ru" => "TRANS Select a customer.",
+	"de" => "TRANS Select a customer.",
+	"zh" => "Ñ¡ÔñÒ»¸ö¹Ë¿Í",
+	"es" => "TRANS Select a customer.");
+
+$txt_notes = array(
+	"fr" => "Notes :",
+	"en" => "Notes:",
+	"nl" => "TRANS Notes:",
+	"ru" => "TRANS Notes:",
+	"de" => "TRANS Notes:",
+	"zh" => "¼ÇÊÂ±¾:",
+	"es" => "TRANS Notes:");
+
+$txt_money_remaining = array(
+	"fr" => "Argent restant sur le compte:",
+	"en" => "Money remaining on account:",
+	"nl" => "TRANS Money remaining on account:",
+	"ru" => "TRANS Money remaining on account:",
+	"de" => "TRANS Money remaining on account:",
+	"zh" => "Ê£ÓàÕÊ»§×Ê½ğ:",
+	"es" => "TRANS Money remaining on account:");
+
+$txt_remove_admin_from_client = array(
+	"fr" => "Enlever un administrateur de ce client:",
+	"en" => "Remove an administrator for this customer:",
+	"nl" => "TRANS Remove an administrator for this customer:",
+	"ru" => "TRANS Remove an administrator for this customer:",
+	"de" => "TRANS Remove an administrator for this customer:",
+	"zh" => "¶ÔÕâ¸ö¹Ë¿ÍÈ¡Ïû¹ÜÀíÔ±:",
+	"es" => "TRANS Remove an administrator for this customer:");
+
+$txt_add_admin_to_client = array(
+	"fr" => "Ajouter un administrateur pour ce client:",
+	"en" => "Add an administrator to this customer:",
+	"nl" => "TRANS Add an administrator to this customer:",
+	"ru" => "TRANS Add an administrator to this customer:",
+	"de" => "TRANS Add an administrator to this customer:",
+	"zh" => "¶ÔÕâ¸ö¹Ë¿ÍÌí¼Ó¹ÜÀíÔ±:",
+	"es" => "TRANS Add an administrator to this customer:
+");
+
+$txt_what = array(
+	"fr" => "Libelle",
+	"en" => "What",
+	"nl" => "TRANS What",
+	"ru" => "TRANS What",
+	"de" => "TRANS What",
+	"zh" => "Ê²Ã´",
+	"es" => "TRANS What");
+
+$txt_price = array(
+	"fr" => "Prix",
+	"en" => "Price",
+	"nl" => "TRANS Price",
+	"ru" => "TRANS Price",
+	"de" => "TRANS Price",
+	"zh" => "¼ÛÇ®",
+	"es" => "TRANS Price");
+
+$txt_quantity = array(
+	"fr" => "Quantite",
+	"en" => "Quantity",
+	"nl" => "TRANS Quantity",
+	"ru" => "TRANS Quantity",
+	"de" => "TRANS Quantity",
+	"zh" => "ÊıÁ¿",
+	"es" => "TRANS Quantity");
+
 $txt_mainmenu_title_bandwidth_monitor = array(
 	"fr" => "Moniteur de bande passante",
 	"en" => "Bandwidth monitor",
@@ -37,6 +165,42 @@ $txt_mainmenu_title_bandwidth_monitor = array(
 	"de" => "TRANSBandwidth monitor",
 	"zh" => "ĞÅÏ¢´«Êä¼à¿Ø",
 	"es" => "Monitorizacion del Ancho de Banda");
+
+$txt_customer_bw_consumption = array(
+	"fr" => "Utilisation de la bande passante par clients",
+	"en" => "Customer's bandwidth consumption",
+	"nl" => "TRANS Customer's bandwidth consumption",
+	"ru" => "TRANS Customer's bandwidth consumption",
+	"de" => "TRANS Customer's bandwidth consumption",
+	"zh" => "¹Ë¿ÍµÄ´ø¿íÑ¡Ôñ",
+	"es" => "TRANS Customer's bandwidth consumption");
+
+$txt_bw_quota = array(
+	"fr" => "Quota de BP",
+	"en" => "BW Quota",
+	"nl" => "TRANS BW Quota",
+	"ru" => "TRANS BW Quota",
+	"de" => "TRANS BW Quota",
+	"zh" => "´ø¿íÏŞ¶î",
+	"es" => "TRANS BW Quota");
+
+$txt_graf = array(
+	"fr" => "Graphique",
+	"en" => "Graphic",
+	"nl" => "TRANS Graphic",
+	"ru" => "TRANS Graphic",
+	"de" => "TRANS Graphic",
+	"zh" => "°Ù·Ö±È",
+	"es" => "TRANS Graphic");
+
+$txt_server_total_bp = array(
+	"fr" => "Total des donnees transferes ce moi-ci sur le serveur : ",
+	"en" => "Server total accounted transfers this month: ",
+	"nl" => "TRANS Server total accounted transfers this month: ",
+	"ru" => "TRANS Server total accounted transfers this month: ",
+	"de" => "TRANS Server total accounted transfers this month: ",
+	"zh" => "±¾ÔÂ·şÎñÆ÷ÒÑ¼ÇÂ¼µÄ×Ü´«Êä: ",
+	"es" => "TRANS Server total accounted transfers this month: ");
 
 $txt_mainmenu_title_deamonfile_generation = array(
 	"fr" => "Génération des fichiers de configuration des deamons",
@@ -246,7 +410,6 @@ $txt_admlist_new_admin = array(
 	"zh" => "ĞÂµÄĞéÄâ¹ÜÀíÈËÔ±",
 	"es" => "Nuevo administrador");
 
-
 $txt_path = array(
 	"fr" => "Chemin :",
 	"en" => "Path:",
@@ -265,7 +428,6 @@ $txt_use_text_menu = array(
 	"zh" => "Ê¹ÓÃÎÄ±¾²Ëµ¥:",
 	"es" => "Usar menu de texto:");
 
-	
 $txt_password = array(
 	"fr" => "Mot de passe :",
 	"en" => "Password:",
@@ -279,10 +441,19 @@ $txt_id_client = array(
 	"fr" => "Id client :",
 	"en" => "Client ID:",
 	"nl" => "Klant id :",
-	"ru" => "ID ËÌÉÅÎÔÁ:",
+	"ru" => "ID ËÌÉÅÎÔ?",
 	"de" => "Client ID",
 	"zh" => "¹Ë¿ÍÉí·Ö:",
 	"es" => "ID de cliente");
+
+$txt_client = array(
+	"fr" => "Client",
+	"en" => "Client",
+	"nl" => "Klant",
+	"ru" => "ËÌÉÅÎÔ?",
+	"de" => "Client",
+	"zh" => "¹Ë¿Í:",
+	"es" => "Cliente");
 
 $txt_del_user = array(
 	"fr" => "Effacer l'utilisateur",
@@ -458,6 +629,15 @@ $txt_transfer_this_month = array(
 	"zh" => "±¾ÔÂ´«Êä:",
 	"es" => "Transferencia este mes:");
 
+$txt_transfer = array(
+	"fr" => "Transfère",
+	"en" => "Transfer",
+	"nl" => "Bandbreedte",
+	"ru" => "TRANS Transfer",
+	"de" => "TRANS Transfer",
+	"zh" => "´«Êä:",
+	"es" => "Transferencia");
+
 $txt_total_disk_usage = array(
 	"fr" => "Total de l'utilisation disque :",
 	"en" => "Total disk usage:",
@@ -505,6 +685,16 @@ $txt_allowed_data_transferMB = array(
 	"es" => "Ancho de Banda permitido por mes (MB):"
 );
 
+$txt_allowed_data_transferGB = array(
+	"fr" => "Bande passante mensuelle autorisée (Go) :",
+	"en" => "Allowed bandwidth per month (GB):",
+	"nl" => "Toegestane bandbreedte deze maand (GB):",
+	"ru" => "TRANSAllowed bandwidth per month (GB):",
+	"de" => "TRANSAllowed bandwidth per month (GB):",
+	"zh" => "Ã¿ÔÂÔÊĞí´«ÊäÊı¾İÁ¿ (GB):",
+	"es" => "Ancho de Banda permitido por mes (GB):"
+);
+
 $txt_expiration_date = array(
 	"fr" => "Date d'expiration",
 	"en" => "Expiration date",
@@ -513,6 +703,24 @@ $txt_expiration_date = array(
 	"de" => "TRANSExpiration date",
 	"zh" => "Ğ­ÒéÖÕÖ¹ÈÕÆÚ",
 	"es" => "Fecha de caducidad");
+
+$txt_date = array(
+	"fr" => "Date",
+	"en" => "Date",
+	"nl" => "Datum",
+	"ru" => "TRANSdate",
+	"de" => "TRANSdate",
+	"zh" => "ÈÕÆÚ",
+	"es" => "Fecha");
+
+$txt_action = array(
+	"fr" => "Action",
+	"en" => "Action",
+	"nl" => "TRANS Action",
+	"ru" => "TRANS Action",
+	"de" => "TRANS Action",
+	"zh" => "³Ê½»",
+	"es" => "TRANS Action");
 
 $txt_upgrade_my_account_button = array(
 	"fr" => "Upgrader mon compte",
@@ -538,7 +746,7 @@ $txt_remaining_money = array(
 	"nl" => "Beschikbare tegoeden op mijn account:",
 	"ru" => "TRANSRemaining money on my account:",
 	"de" => "TRANSRemaining money on my account:",
-	"zh" => "ÎÒµÄÕÊ»§×Ê½ğ:",
+	"zh" => "ÎÒµÄÊ£ÓàÕÊ»§×Ê½ğ:",
 	"es" => "Dinero restante en mi cuenta:");
 
 $txt_refund_my_account = array(
@@ -580,12 +788,12 @@ $txt_total_transfered_bytes_this_month = array(
 
 $txt_stats_http_subdom = array(
 	"fr" => "Statistiques HTTP webalizer de vos sous-domaines :",
-	"en" => "Detailed webalizer HTTP statistics of your subdomains:",
+	"en" => "Detailed webalizer statistics (HTTP) of your subdomains:",
 	"nl" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
 	"ru" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
 	"de" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
-	"zh" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
-	"es" => "TRANS Detailed webalizer HTTP statistics of your subdomains:"
+	"zh" => "¸±ÓòÃûµÄwebalizerÍ³¼ÆÏ¸½Ú:",
+	"es" => "Estadisticas detalladas de webalizer HTTP sobre sus subdominios:"
 );
 
 $txt_are_disk_usage = array(
@@ -805,7 +1013,7 @@ $txt_draw_database_chpass = array(
 	"ru" => "TRANS Change your MySQL password:",
 	"de" => "TRANS Change your MySQL password:",
 	"zh" => "TRANS Change your MySQL password:",
-	"es" => "TRANS Change your MySQL password:");
+	"es" => "Cambiar la contraseña de MySQL:");
 
 $txt_mysqlmang_nouser_by_that_name = array(
         "fr" => "Il n'y a pas d'utilisateur ayant ce nom dans
@@ -913,8 +1121,8 @@ $txt_draw_client_info_firstname = array(
 	"nl" => "TRANS First name:",
 	"ru" => "TRANS First name:",
 	"de" => "TRANS First name:",
-	"zh" => "TRANS First name:",
-	"es" => "TRANS First name:"
+	"zh" => "Ãû:",
+	"es" => "Nombre:"
 );
 
 $txt_draw_client_info_familyname = array(
@@ -923,8 +1131,8 @@ $txt_draw_client_info_familyname = array(
 	"nl" => "TRANSFamily name:",
 	"ru" => "TRANSFamily name:",
 	"de" => "TRANSFamily name:",
-	"zh" => "TRANSFamily name:",
-	"es" => "TRANSFamily name:"
+	"zh" => "ĞÕ:",
+	"es" => "Apellidos:"
 );
 
 $txt_draw_client_info_addr = array(
@@ -973,8 +1181,8 @@ $txt_draw_client_info_state = array(
 	"nl" => "TRANS State:",
 	"ru" => "TRANS State:",
 	"de" => "TRANS State:",
-	"zh" => "TRANS State:",
-	"es" => "TRANS State:"
+	"zh" => "Ê¡·Ö:",
+	"es" => "Provincia:"
 );
 
 $txt_draw_client_info_phone = array(
@@ -1138,7 +1346,7 @@ $txt_subdom_newname = array(
 	"ru" => "TRANSSubdomain name:",
 	"de" => "TRANSSubdomain name:",
 	"zh" => "TRANSSubdomain name:",
-	"es" => "TRANSSubdomain name:"
+	"es" => "Nombre del subdominio:"
 );
 
 $txt_subdom_ip = array(
@@ -1151,10 +1359,9 @@ hosting area, set server IP otherwise): ",
 hosting area, set server IP otherwise): ",
 	"de" => "TRANS IP of the subdomain (leave blank to use default web
 hosting area, set server IP otherwise): ",
-	"zh" => "TRANS IP of the subdomain (leave blank to use default web
-hosting area, set server IP otherwise): ",
-	"es" => "TRANS IP of the subdomain (leave blank to use default web
-hosting area, set server IP otherwise): "
+	"zh" => "¸±ÓòÃûµÄIP (Ê¹ÓÃÔ¤ÉèÍøÒ³¹ÜÀíÇøÓò,·ñÔòÉèÖÃ·şÎñÆ÷IP): ",
+	"es" => "IP del subdominio (dejar en blanco para usar el host web
+por defecto, indicar la IP de otro servidor en cualquier otro caso): "
 );
 
 $txt_subdom_dynip_logpass = array(
@@ -1177,9 +1384,8 @@ subdomain to point to it. First, enter login and password here: ",
 	"zh" => "TRANS If need it, it's possible to set your subdomain IP remotly,
 for example if you have a home connection dynamic address and you want a
 subdomain to point to it. First, enter login and password here: ",
-	"es" => "TRANS If need it, it's possible to set your subdomain IP remotly,
-for example if you have a home connection dynamic address and you want a
-subdomain to point to it. First, enter login and password here: "
+	"es" => "Si es necesario, es posible es posible indicar la IP de tu subdominio remotamente, por ejemplo, si tienes una conexion con IP dinamica y quieres que un
+subdominio apunte a esta. Primero, introduce aqui el usuario y la contraseña: "
 );
 $txt_subdom_dynip_login = array(
 	"fr" => "Login IP dynamique:",
@@ -1188,7 +1394,7 @@ $txt_subdom_dynip_login = array(
 	"ru" => "TRANS Dynamic ip update login: ",
 	"de" => "TRANS Dynamic ip update login: ",
 	"zh" => "TRANS Dynamic ip update login: ",
-	"es" => "TRANS Dynamic ip update login: "
+	"es" => "Login IP dinamica: "
 );
 
 $txt_subdom_dynip_pass = array(
@@ -1198,7 +1404,7 @@ $txt_subdom_dynip_pass = array(
 	"ru" => "TRANS Dynamic ip update password: ",
 	"de" => "TRANS Dynamic ip update password: ",
 	"zh" => "TRANS Dynamic ip update password: ",
-	"es" => "TRANS Dynamic ip update password: "
+	"es" => "Contraseña IP dinamica: "
 );
 
 $txt_subdom_register_global = array(
@@ -1208,7 +1414,7 @@ $txt_subdom_register_global = array(
 	"ru" => "TRANS Use register_globals=1:",
 	"de" => "TRANS Use register_globals=1:",
 	"zh" => "TRANS Use register_globals=1:",
-	"es" => "TRANS Use register_globals=1:"
+	"es" => "Usar register_globals=1:"
 );
 
 $txt_subdom_edita = array(
@@ -1218,17 +1424,17 @@ $txt_subdom_edita = array(
 	"ru" => "TRANS Edit a subdomain:",
 	"de" => "TRANS Edit a subdomain:",
 	"zh" => "TRANS Edit a subdomain:",
-	"es" => "TRANS Edit a subdomain:"
+	"es" => "Editar un subdominio:"
 );
 
 $txt_subdom_generate_webalizer = array(
 	"fr" => "Generer les stats webalizer tous les mois:",
 	"en" => "Generate webalizer stats each months:",
-	"nl" => "TRANS Edit a subdomain:",
-	"ru" => "TRANS Edit a subdomain:",
-	"de" => "TRANS Edit a subdomain:",
-	"zh" => "TRANS Edit a subdomain:",
-	"es" => "TRANS Edit a subdomain:"
+	"nl" => "TRANS Generate webalizer stats each months:",
+	"ru" => "TRANS Generate webalizer stats each months:",
+	"de" => "TRANS Generate webalizer stats each months:",
+	"zh" => "TRANS Generate webalizer stats each months:",
+	"es" => "TRANS Generate webalizer stats each months:"
 );
 
 $txt_subdom_wwwalias = array(
@@ -1238,7 +1444,7 @@ $txt_subdom_wwwalias = array(
 	"ru" => "TRANS Make an alias ",
 	"de" => "TRANS Make an alias ",
 	"zh" => "TRANS Make an alias ",
-	"es" => "TRANS Make an alias "
+	"es" => "Crear un alias "
 );
 $txt_subdom_scriptadvice = array(
 	"fr" => "Ensuite, ajouter simplement le script suivant a
@@ -1278,12 +1484,12 @@ system crontab (lynx-ssl is needed). Recomanded time is between
 minutes, anyway DTC will not generate a domaine zone file more
 oftently than each 10 minutes (advice: setup you server with
 network clock and do it at 9,19,29,39,49 and 59 of each hours).",
-	"es" => "TRANS Then simply add the following script to your Unix
-system crontab (lynx-ssl is needed). Recomanded time is between
-30 minutes and 2 hours. Please don't do it more than each 10
-minutes, anyway DTC will not generate a domaine zone file more
-oftently than each 10 minutes (advice: setup you server with
-network clock and do it at 9,19,29,39,49 and 59 of each hours)."
+	"es" => "Luego, simplemente añade el script siguiente al crontab
+de tu sitema Unix (lynx-ssl es necesario). El tiempo recomendado esta entre
+30 minutos y 2 horas. Por favor, no haga esto mas que cada 10
+minutos, sino DTC no podra generar un fichero de zona de dominios
+mas que cada 10 minutos (advertencia: configure su servidor con un
+reloj en red y haga esto en 9,19,29,39,49 y 59 de cada hora)."
 );
 $txt_subdom_windowsusers = array(
 	"fr" => "Les utilisateurs de windows peuvent utiliser le planificateur
@@ -1293,7 +1499,8 @@ de tache de windows pour effectuer la requette suivante:",
 	"ru" => "TRANS Windows user can easily automate the query of the following URL:",
 	"de" => "TRANS Windows user can easily automate the query of the following URL:",
 	"zh" => "TRANS Windows user can easily automate the query of the following URL:",
-	"es" => "TRANS Windows user can easily automate the query of the following URL:"
+	"es" => "La ventana de  usuario puede automatizar fácilmente la pregunta del URL
+siguiente:"
 );
 
 /////////////
