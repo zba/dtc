@@ -73,7 +73,7 @@ function isValidEmail($email){
 
 function isHostnameOrIP($hostname){
 	$reg = '^((([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$';
-	if(!ereg($reg,$hostname))	return false;
+	if(!ereg($reg,$hostname) && !isIP($hostname))	return false;
 	else			return true;
 }
 
