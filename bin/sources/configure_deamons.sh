@@ -40,9 +40,8 @@ fi
 TMP_FILE=/tmp/DTC_install.httpd.conf
 
 echo "===> Modifying httpd.conf"
-
 # need to see if we can use the modules-config or apacheconfig tools
-HTTPD_MODULES_CONFIG=`which modules-config`
+HTTPD_MODULES_CONFIG=/usr/sbin/modules-config
 
 # if apacheconfig is a symlink (deprecated), then use modules-config
 if [ -f $HTTPD_MODULES_CONFIG ]
@@ -59,7 +58,6 @@ then
 else
 	echo "Using $HTTPD_MODULES_CONFIG to configure apache modules"
 fi
-
 
 if grep "Configured by DTC" $PATH_HTTPD_CONF
 then
@@ -241,16 +239,6 @@ then
 #		echo "Including configuration in "$PATH_PAMD_SMTP
 #	fi
 fi
-
-db_get dtc/conf_mysqlhost
-conf_mysql_host=$RET
-db_get dtc/conf_mysqllogin
-conf_mysql_login=$RET
-db_get dtc/conf_mysqlpass
-conf_mysql_pass=$RET
-db_get dtc/conf_mysqldb
-conf_mysql_db=$RET
-
 
 #
 # include $PATH_DTC_ETC/named.zones in $PATH_NAMED_CONF
