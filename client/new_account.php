@@ -1,5 +1,6 @@
 <?php
 
+
 require_once("../shared/autoSQLconfig.php");
 $panel_type="client";
 // All shared files between DTCadmin and DTCclient
