@@ -107,7 +107,7 @@ else
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
-	if [ "$UNIX_TYPE" = "debian" || "$UNIX_TYPE" = "osx" ]
+	if [ "$UNIX_TYPE" = "debian" -o "$UNIX_TYPE" = "osx" ]
 	then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "=> Checking apache modules"
