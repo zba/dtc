@@ -1,6 +1,6 @@
 <?php
 // Automatic database array generation for DTC
-// Generation date: 2004-09(Sep)-24 Friday 15:20
+// Generation date: 2004-10(Oct)-04 Monday 16:48
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
@@ -83,6 +83,8 @@ $dtc_database = array(
 			"addr_primary_dns" => "varchar(255) NOT NULL default 'ns1.example.com' ",
 			"addr_secondary_dns" => "varchar(255) NOT NULL default 'ns2.example.com' ",
 			"ip_slavezone_dns_server" => "varchar(16) NOT NULL default '192.168.0.3' ",
+			"main_domain" => "varchar(128) NOT NULL default 'gplhost.com' ",
+			"404_subdomain" => "varchar(128) NOT NULL default '404' ",
 			"administrative_site" => "varchar(255) NOT NULL default 'dtc.example.com' ",
 			"site_root_host_path" => "varchar(255) NOT NULL default '/var/www' ",
 			"generated_file_path" => "varchar(255) NOT NULL default '/usr/share/dtc/etc' ",
