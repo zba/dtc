@@ -114,7 +114,12 @@ else
 		then
 			echo " ok!"
 		else
-			echo "!!! sql_log_module for apache not present, please install it or run apacheconfig !!!"
+			echo "!!! sql_log_module for apache not present !!!"
+			echo "please install it or run apacheconfig"
+			echo "or add the following type directive"
+			echo "(matching your path) to httpd.conf:"
+			echo "LoadModule sql_log_module /usr/lib/apache/1.3/mod_log_sql.so"
+			echo "LoadModule sql_log_module /usr/local/libexec/apache/mod_log_sql.so"
 			exit 1
 		fi
 	fi
