@@ -120,13 +120,18 @@ else
 				sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF >$TMP_FILE
 				cat <$TMP_FILE >$PATH_HTTPD_CONF
 			else
-				echo "!!! sql_log_module for apache not present !!!"
-				echo "please install it or run apacheconfig"
-				echo "or add the following type directive"
-				echo "(matching your path) to httpd.conf:"
-				echo "LoadModule sql_log_module /usr/lib/apache/1.3/mod_log_sql.so"
-				echo "LoadModule sql_log_module /usr/local/libexec/apache/mod_log_sql.so"
-				exit 1
+				if grep "LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+				then
+					echo " ok!"
+				else
+					echo "!!! sql_log_module for apache not present !!!"
+					echo "please install it or run apacheconfig"
+					echo "or add the following type directive"
+					echo "(matching your path) to httpd.conf:"
+					echo "LoadModule sql_log_module /usr/lib/apache/1.3/mod_log_sql.so (debian)"
+					echo "LoadModule log_sql_module /usr/local/libexec/apache/mod_log_sql.so (bsd)"
+					exit 1
+				fi
 			fi
 		fi
 	fi
