@@ -54,14 +54,16 @@ curdir=`pwd`
 echo "Creating DTC's database and tables..."
 mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
 cd $create_tables
+echo -n "DTC is now creating table: "
 for i in $( ls *.sql );
 do
 	table_name=`echo $i | cut -f1 -d"."`
-	echo "DTC is now creating table \""$table_name"\""
+	echo -n $table_name" "
 	table_create=`cat $i`
 #	mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="DROP TABLE IF EXISTS "$table_name
 	mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db <$i
 done
+echo "done."
 
 echo "Inserting values in mysql for hosting "$main_domain_name
 mysql -u$conf_mysql_login -p$conf_mysql_pass -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO groups (members) VALUES ('zigo')"

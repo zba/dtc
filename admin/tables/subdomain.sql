@@ -1,1 +1,12 @@
-CREATE TABLE IF NOT EXISTS subdomain (id int(12) NOT NULL auto_increment,domain_name varchar(64) NOT NULL default '',subdomain_name varchar(64) NOT NULL default '',path varchar(64) NOT NULL default '',webalizer_generate varchar(8) NOT NULL default 'no',ip varchar(16) NOT NULL default 'default',PRIMARY KEY  (id),UNIQUE KEY unic_subdomain (domain_name,subdomain_name)) TYPE=MyISAM
+CREATE TABLE IF NOT EXISTS subdomain (
+  id int(12) NOT NULL auto_increment,
+  domain_name varchar(64) NOT NULL default '',
+  subdomain_name varchar(64) NOT NULL default '',
+  path varchar(64) NOT NULL default '',
+  webalizer_generate varchar(8) NOT NULL default 'no',
+  ip varchar(16) NOT NULL default 'default',
+  login varchar(16) default NULL,
+  pass varchar(64) default NULL
+  PRIMARY KEY  (id),
+  UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
+) TYPE=MyISAM
