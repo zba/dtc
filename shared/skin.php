@@ -586,8 +586,8 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 				$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
 				$image_source = getCacheImageURL($text,0,$arbo);
 				$image_rolover = getCacheImageURL($text,1,$arbo);
-				$rolovered = addImageToPreloads($image_rolover);
 				if($dtc_use_text_menu == "no"){
+					$rolovered = addImageToPreloads($image_rolover);
 					$ret .= "$alink<img border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
@@ -626,8 +626,8 @@ onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$im
 			}else{
 				$image_source = getCacheImageURL($text,0,$arbo);
 				$image_rolover = getCacheImageURL($text,1,$arbo);
-				$rolovered = addImageToPreloads($image_rolover);
 				if($dtc_use_text_menu == "no"){
+					$rolovered = addImageToPreloads($image_rolover);
 					$ret .= "$alink<img border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
