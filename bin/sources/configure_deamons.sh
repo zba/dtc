@@ -22,6 +22,8 @@
 # Include $PATH_DTC_ETC/vhosts.conf in $PATH_HTTPD_CONF
 #
 
+TMP_FILE=/tmp/DTC_install.httpd.conf
+
 echo "===> Adding inclusion in httpd.conf"
 if grep "Configured by DTC" $PATH_HTTPD_CONF
 then
@@ -58,19 +60,31 @@ else
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
-	if grep "# LoadModule php4_module /usr/lib/apache/1.3/libphp4.so" $PATH_HTTPD_CONF >/dev/null 2>&1
+	echo "Checking for php4"
+	if grep "# LoadModule php4_module" $PATH_HTTPD_CONF
 	then
-		echo "Activating php4 module"
-		sed "s/# LoadModule php4_module \/usr\/lib\/apache\/1.3\/libphp4.so/LoadModule php4_module \/usr\/lib\/apache\/1.3\/libphp4.so/"
-	fi
-
-	if grep "# LoadModule ssl_module /usr/lib/apache/1.3/mod_ssl.so" $HTTPD_CONF >/dev/null 2>&1
-	then
-		echo "Activating ssl module"
-		sed "s/# LoadModule ssl_module \/usr\/lib\/apache\/1.3\/mod_ssl.so/LoadModule ssl_module \/usr\/lib\/apache\/1.3\/mod_ssl.so/" $PATH_HTTPD_CONF >$TMP_FILE
+		echo "Activating php4 module "$TMP_FILE" "$PATH_HTTPD_CONF
+		sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
+	echo "Checking for ssl"
+	if grep "# LoadModule ssl_module" $PATH_HTTPD_CONF
+	then
+		echo "Activating ssl module"
+		sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+
+	echo "Checking for log_sql module"
+	if grep "# LoadModule log_sql_module" $PATH_HTTPD_CONF
+	then
+		echo "Activating log_sql module"
+		sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+
+	echo "Checking for AllowOverride"
 	if grep "AllowOverride None" $PATH_HTTPD_CONF
 	then
 		echo "AllowOverride None -> AllowOverride AuthConfig FileInfo Limit Indexes"

@@ -126,14 +126,15 @@ then
 else
 	if grep "// forwarders" /etc/bind/named.conf
 	then
-		echo "Edit your named forwarders conf in /etc/bind/named.conf NOW !!!"
+		echo "!!! WARNING !!! Edit your named forwarders conf in /etc/bind/named.conf NOW !!!"
 	fi
 
 	echo "Adding nameserver 127.0.0.1 to /etc/resolv.conf"
-	grep "search" /etc/bind/named.conf >/tmp/DTC_resolv.conf
+	grep "search" /etc/resolv.conf >/tmp/DTC_resolv.conf
 	echo "nameserver 127.0.0.1" >>/tmp/DTC_resolv.conf
-	grep "nameserver" >/tmp/DTC_resolv.conf
-	cat </tmp/DTC_resolv.conf >/etc/bind/named.conf
+	grep "nameserver" /etc/resolv.conf >>/tmp/DTC_resolv.conf
+	cat </tmp/DTC_resolv.conf >/etc/resolv.conf
+	rm /tmp/DTC_resolv.conf
 fi
 
 # Upon this line, here is the standard DTC install script :
