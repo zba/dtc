@@ -1,5 +1,6 @@
 <?php
 // Automatic database array generation for DTC
+// Generation date: 2004-07(Jul)-08 Thursday 23:56
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
@@ -108,7 +109,8 @@ $dtc_database = array(
 			"use_nated_vhost" => "enum('yes','no') NOT NULL default 'no' ",
 			"nated_vhost_ip" => "varchar(16) NOT NULL default '192.168.0.2' ",
 			"skin" => "varchar(128) NOT NULL default 'green' ",
-			"mta_type" => "enum('qmail','postfix') NOT NULL default 'qmail' "
+			"mta_type" => "enum('qmail','postfix') NOT NULL default 'qmail' ",
+			"domain_based_ftp_logins" => "enum('yes','no') NOT NULL default 'yes' "
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

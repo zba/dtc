@@ -62,6 +62,7 @@ if (!$result) {
 
 $out .= "<?php
 // Automatic database array generation for DTC
+// Generation date: ".date("Y-m(M)-d l H:i")."
 \$dtc_database = array(
 \"version\" => \"1.0.0\",
 \"tables\" => array(\n";

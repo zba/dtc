@@ -72,7 +72,16 @@ $txt_cfg_use_ssl = array(
 	"zh" => "Ê¹ÓÃSSL:",
 	"es" => "Usar SSL:");
 
-$txt_cfg_full_hostname =array(
+$txt_cfg_use_domain_based_ftp_logins = array(
+	"fr" => "Utiliser des logins ftp @domain.com :",
+	"en" => "Use @domain.com ftp logins:",
+	"nl" => "TRANS Use @domain.com ftp logins:",
+	"ru" => "TRANS Use @domain.com ftp logins:",
+	"de" => "TRANS Use @domain.com ftp logins:",
+	"zh" => "TRANS Use @domain.com ftp logins:",
+	"es" => "TRANS Use @domain.com ftp logins:");
+
+$txt_cfg_full_hostname = array(
 	"fr" => "Hostname de l'administrateur DTC :",
 	"en" => "Full hostname of DTC admin panel:",
 	"nl" => "Volledige Hostnaam van de DTC admin panel:",

@@ -78,14 +78,20 @@ function deleteMysqlUserAndDB($mysql_user){
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result);
 		$db = $row["Db"];
-		$query2 = "DROP DATABASE $db";
-		mysql_query($query2)or die("Cannot execute query \"$query\" !!!");
+		// Prevent system db from deletion
+		if($db != $conf_mysql_db && $db != "mysql"){
+			$query2 = "DROP DATABASE $db";
+			mysql_query($query2)or die("Cannot execute query \"$query\" !!!");
+		}
 	}
 
-	$query = "DELETE FROM db WHERE User='$mysql_user';";
-	mysql_query($query)or die("Cannot execute query \"$query\" !!!");
-	$query = "DELETE FROM user WHERE User='$mysql_user';";
-	mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+	// Prevent system user from deletion
+	if($mysql_user != "mysql" && $mysql_user != "root"){
+		$query = "DELETE FROM db WHERE User='$mysql_user';";
+		mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+		$query = "DELETE FROM user WHERE User='$mysql_user';";
+		mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+	}
 	$query = "FLUSH PRIVILEGES";
 	mysql_query($query)or die("Cannot execute query \"$query\" !!!");
 	mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\" in deleteMysqlUserAndDB() !!!");

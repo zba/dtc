@@ -47,6 +47,10 @@ function drawGeneralConfig(){
 	global $txt_cfg_use_javascript;
 	global $txt_cfg_use_ssl;
 
+	global $txt_cfg_use_domain_based_ftp_logins;
+	global $conf_domain_based_ftp_logins;
+	global $conf_mta_type;
+
 	global $lang;
 
 	global $conf_skin;
@@ -93,6 +97,22 @@ function drawGeneralConfig(){
 		$conf_use_ssl_no = " checked";
 	}
 
+	if($conf_domain_based_ftp_logins == "yes"){
+		$conf_domftplog_yes = " checked";
+		$conf_domftplog_no = "";
+	}else{
+		$conf_domftplog_yes = "";
+		$conf_domftplog_no = " checked";
+	}
+
+	if($conf_mta_type == "qmail"){
+		$conf_mtatype_qmail = " checked";
+		$conf_mtatype_postfix = "";
+	}else{
+		$conf_mtatype_qmail = "";
+		$conf_mtatype_postfix = " checked";
+	}
+
 	$out = "<h3>".$txt_cfg_general[$lang]."</h3>
 <table with=\"100%\" height=\"1\">";
 	if($conf_demo_version == "yes"){
@@ -113,10 +133,23 @@ function drawGeneralConfig(){
 	<td align=\"right\" nowrap>".$txt_cfg_use_ssl[$lang]."</td>
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_ssl\"$conf_use_ssl_yes>Yes
 	<input type=\"radio\" value=\"no\" name=\"new_use_ssl\"$conf_use_ssl_no>No</td>
+</tr><tr>
+	<td align=\"right\" nowrap>".$txt_cfg_use_domain_based_ftp_logins[$lang]."</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_yes>Yes
+	<input type=\"radio\" value=\"no\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_no>No</td>
+</tr><tr>
+	<td colspan=\"2\"><h3>Daemon</h3></td>
+</tr><tr>
+	<td align=\"right\" nowrap>MTA (Mail Transport Agent):</td>
+	<td nowrap><input type=\"radio\" value=\"qmail\" name=\"new_mta_type\"$conf_mtatype_qmail>Qmail
+	<input type=\"radio\" value=\"postfix\" name=\"new_mta_type\"$conf_mtatype_postfix>Postfix</td>
+</tr><tr>
+	<td colspan=\"2\"><h3>DTC Skin chooser</h3></td>
+</tr><tr>
+	<td align=\"right\" nowrap>Select the type of skin:</td>
+	<td nowrap><select name=\"skin_type\">$skin_choose</select></td>
 </tr>
 </table>
-<h3>DTC Skin chooser</h3>
-Select the type of skin:<select name=\"skin_type\">$skin_choose</select>
 ";
 	return $out;
 }
@@ -404,6 +437,8 @@ function saveDTCConfigInMysql(){
 	demo_version='".$_REQUEST["new_demo_version"]."',
 	use_javascript='".$_REQUEST["new_use_javascript"]."',
 	use_ssl='".$_REQUEST["new_use_ssl"]."',
+	mta_type='".$_REQUEST["new_mta_type"]."',
+	domain_based_ftp_logins='".$_REQUEST["new_domain_based_ftp_logins"]."',
 	skin='".$_REQUEST["skin_type"]."'
 	WHERE 1 LIMIT 1";
 		break;
