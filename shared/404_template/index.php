@@ -1,0 +1,26 @@
+<html>
+<body>
+<center>
+<table width="90%" height="100%">
+<tr><td width="100%" height="100%">
+<center><h1><u>Error: domain not found!</u></h1></center><br><br>
+
+<font face="Arial">You have reach this page because the full qualified domain
+name you requested point to this server. There is currently
+no web content associated with this address. You can try to
+reach the web site you wanted by going one level up, removing
+the subdomain from the URL.</font><br><br><br></td></tr>
+
+<tr><td width="100%" height="1"><center><font face="Arial" size="-2">
+This website server is powered by Domain Technologie Control (DTC),
+an open-source control panel<br>
+<i>Most of code done by:
+<a target="_blank" href="mailto:thomas@goirand.fr">Thomas GOIRAND</a>, under
+<a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit <a
+target="_blank" href="http://gplhost.com">GPLHost</a> and <a
+target="_blank" href="http://gplhost.com/?rub=softwares&sousrub=dtc">DTC
+home</a> for more infos.</i></font>
+</center></td></tr></table>
+</center>
+</body>
+</html>
