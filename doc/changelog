@@ -1,9 +1,13 @@
 01-04: V0.16.0-R1
+Email panel is now fully working.
+
+Added some internationnalisations.
+
 Added stuff for configuring DTC client session expire time.
 
 Added automatic PayPal payment with IPN (Instant payment
 notification) which makes DTC having IAA (Instant Account
-Activation).
+Activation), and (of course) new user registration.
 
 17-12-04:
 Thomas Goirand:
