@@ -20,7 +20,6 @@ $file_cache_path = MENU_TREE_calc_cache_path();
 // $sign -> The current sign to use for drawing (minus, tree, endtree, vline, hline, plus or none)
 //          Example value can be: tree/hline
 
-
 $selected = explode("/",$_REQUEST["link"]);
 $color=$_REQUEST["color"];
 $nbr_recursion = sizeof($selected)-1;
@@ -226,6 +225,9 @@ for($i=0;$i<sizeof($array_of_sign);$i++){
 		makeVline($i);
 	}
 }
+// $icon_im = imagecreatefrompng("tst_icon.png");
+// $icon_x = $gfx_start_pos+$txt_x_pos - 19;
+// imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
 
 // Save file if not found
 if(!file_exists($file_cache_path) && $use_img_cache== "yes"){
