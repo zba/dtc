@@ -177,3 +177,7 @@ else
 	echo "Configuration not validated : exiting !"
 	exit
 fi
+
+if [ -e /var/lib/php/session ] ; then
+	chrgp -R nobody /var/lib/php/session
+fi
