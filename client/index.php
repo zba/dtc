@@ -28,7 +28,6 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 	}else{
 		// Draw the html forms
 		$HTML_admin_edit_data .= drawAdminTools($admin);
-
 		$mypage = $HTML_admin_edit_data;
 	}
 }else{

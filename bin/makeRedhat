@@ -46,6 +46,10 @@ if ! [ -e dtc/client/imgcache ]
 then
         ln -s ../shared/imgcache dtc/client/imgcache
 fi
+if ! [ -e dtc/email/imgcache ]
+then
+        ln -s ../shared/imgcache dtc/email/imgcache
+fi
 # Copy the table dump in the admin directory
 if ! [ -f sources/dtc_db.php ]
 then

@@ -22,7 +22,70 @@ function pass_check_email(){
 	else		return false;
 }
 
+// Get the path of a mailbox. pass_check_email() MUST have been called prior to call this function !!!
+// Sets "box" with the box infos;
+function get_mailbox_complete_path($user,$host){
+	global $pro_mysql_pop_table;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_admin_table;
+
+	$q = "SELECT $pro_mysql_admin_table.path
+FROM $pro_mysql_domain_table,$pro_mysql_admin_table
+WHERE $pro_mysql_domain_table.name='$host'
+AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+        if($n != 1) die("Cannot find domain path in database ! line: ".__LINE__." file: ".__FILE__);
+	$a = mysql_fetch_array($r);
+
+	$boxpath = $a["path"]."/$host/Mailboxs/$user";
+	return $boxpath;
+}
+
+function writeDotQmailFile($user,$host){
+	global $pro_mysql_pop_table;
+
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host';";
+	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$box = mysql_fetch_array($res_mailbox);
+
+	// Fetch the path of the mailbox
+	$boxpath = get_mailbox_complete_path($user,$host);
+
+	// Write .qmail file
+	$oldumask = umask(0);
+	if($conf_demo_version == "no"){
+		mk_Maildir($boxpath);
+	}
+	if($box["localdeliver"] == "yes"){
+                $qmail_file_content = "./Maildir/\n";
+        }
+	if($box["redirect1"] != "" && isset($box["redirect1"]) ){
+		$qmail_file_content .= '&'.$box["redirect1"]."\n";
+	}
+	if($box["redirect2"] != "" && isset($box["redirect2"]) ){
+		$qmail_file_content .= '&'.$box["redirect2"]."\n";
+	}
+	if($conf_demo_version == "no"){
+		$fp = fopen ( "$boxpath/.qmail", "w");
+		fwrite ($fp,$qmail_file_content);
+		fclose($fp);
+	}
+	umask($oldumask);
+}
+
 switch($_REQUEST["action"]){
+
+case "activate_antispam":
+	if(pass_check_email()==false)	die("User not found!");
+	if($_REQUEST["iwall_on"] == "yes"){
+		$q = "UPDATE $pro_mysql_pop_table SET iwall_protect='yes' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}else{
+		$q = "UPDATE $pro_mysql_pop_table SET iwall_protect='no' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}
+	break;
 
 // action=dtcemail_change_pass&newpass1=&newpass2=&submit=Ok
 case "dtcemail_change_pass":
@@ -36,48 +99,10 @@ case "dtcemail_change_pass":
 	$adm_email_pass = $_REQUEST["newpass1"];
 	$_REQUEST["adm_email_pass"] = $_REQUEST["newpass1"];
 	break;
+
 // action=dtcemail_set_deliver_local&setval=no
 case "dtcemail_set_deliver_local":
 	if(pass_check_email()==false)	die("User not found!");
-	// Fetch the path of the mailbox
-	$tbl = explode('@',$_REQUEST["adm_email_login"]);
-	$user = $tbl[0];
-	$host = $tbl[1];
-	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
-	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$box = mysql_fetch_array($res_mailbox);
-	$q = "SELECT $pro_mysql_admin_table.path
-FROM $pro_mysql_domain_table,$pro_mysql_admin_table
-WHERE $pro_mysql_domain_table.name='$host'
-AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
-	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-        if($n != 1) die("Cannot find domain path in database ! line: ".__LINE__." file: ".__FILE__);
-	$a = mysql_fetch_array($r);
-
-	$boxpath = $a["path"]."/$host/Mailboxs/$user";
-
-	// Write .qmail file
-	$oldumask = umask(0);
-	if($conf_demo_version == "no"){
-		mk_Maildir($boxpath);
-	}
-	if($_REQUEST["setval"] == "yes"){
-                $qmail_file_content = "./Maildir/\n";
-        }
-
-	if($box["redirect1"] != "" && isset($box["redirect1"]) ){
-		$qmail_file_content .= '&'.$box["redirect1"]."\n";
-	}
-	if($box["redirect2"] != "" && isset($box["redirect2"]) ){
-		$qmail_file_content .= '&'.$box["redirect2"]."\n";
-	}
-	if($conf_demo_version == "no"){
-		$fp = fopen ( "$boxpath/.qmail", "w");
-		fwrite ($fp,$qmail_file_content);
-		fclose($fp);
-	}
-	umask($oldumask);
 
 	if($_REQUEST["setval"] == "no"){
 		$q = "UPDATE $pro_mysql_pop_table SET localdeliver='no' WHERE id='$user' AND mbox_host='$host';";
@@ -85,63 +110,19 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$q = "UPDATE $pro_mysql_pop_table SET localdeliver='yes' WHERE id='$user' AND mbox_host='$host';";
 	}
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	writeDotQmailFile($user,$host);
 	break;
 
 // action=dtcemail_edit_redirect&redirect1=&redirect2=&submit=Ok
 case "dtcemail_edit_redirect":
 	if(pass_check_email()==false)	die("User not found!");
-	// Fetch the path of the mailbox
-	$tbl = explode('@',$_REQUEST["adm_email_login"]);
-	$user = $tbl[0];
-	$host = $tbl[1];
-	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
-	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$box = mysql_fetch_array($res_mailbox);
-	$q = "SELECT $pro_mysql_admin_table.path
-FROM $pro_mysql_domain_table,$pro_mysql_admin_table
-WHERE $pro_mysql_domain_table.name='$host'
-AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
+	if(isValidEmail($_REQUEST["redirect1"]))	$redir1 = $_REQUEST["redirect1"];	else	$redir1 = "";
+	if(isValidEmail($_REQUEST["redirect2"]))	$redir1 = $_REQUEST["redirect2"];	else	$redir2 = "";
+
+	$q = "UPDATE $pro_mysql_pop_table SET redirect1='$redir1',redirect2='$redir2' WHERE id='$user' AND mbox_host='$host' LIMIT 1;";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-        if($n != 1) die("Cannot find domain path in database ! line: ".__LINE__." file: ".__FILE__);
-	$a = mysql_fetch_array($r);
+	writeDotQmailFile($user,$host);
 
-	$boxpath = $a["path"]."/$host/Mailboxs/$user";
-
-	if($_REQUEST["redirect1"] != ""){
-		if(!isValidEmail($_REQUEST["redirect1"])){
-			die("Incorect redirection 1");
-		}
-	}
-	if($_REQUEST["redirect2"] != ""){
-		if(!isValidEmail($_REQUEST["redirect2"])){
-			die("Incorect redirection 2");
-		}
-	}
-	// Write .qmail file
-	$oldumask = umask(0);
-	if($conf_demo_version == "no"){
-		mk_Maildir($boxpath);
-	}
-	if($box["localdeliver"] == "yes"){
-                $qmail_file_content = "./Maildir/\n";
-        }
-
-	if($_REQUEST["redirect1"] != "" && isset($_REQUEST["redirect1"]) ){
-		$qmail_file_content .= '&'.$_REQUEST["redirect1"]."\n";
-	}
-	if($_REQUEST["redirect2"] != "" && isset($_REQUEST["redirect2"]) ){
-		$qmail_file_content .= '&'.$_REQUEST["redirect2"]."\n";
-	}
-	if($conf_demo_version == "no"){
-		$fp = fopen ( "$boxpath/.qmail", "w");
-		fwrite ($fp,$qmail_file_content);
-		fclose($fp);
-	}
-	umask($oldumask);
-
-	$q = "UPDATE $pro_mysql_pop_table SET redirect1='".$_REQUEST["redirect1"]."',redirect2='".$_REQUEST["redirect2"]."' WHERE id='$user' AND mbox_host='$host' LIMIT 1;";
-	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	break;
 default:
 	break;

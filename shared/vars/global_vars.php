@@ -44,7 +44,7 @@ if($whatdoiedit == "nickhandles"){
 	$edit_id = $_REQUEST["edit_id"];
 }
 
-if(!ereg("^([a-z0-9]+)([.a-z0-9-]+)([a-z0-9])\$",$edit_domain) && isset($edit_domain) && $edit_domain != ""){
+if($panel_type != "email" && !ereg("^([a-z0-9]+)([.a-z0-9-]+)([a-z0-9])\$",$edit_domain) && isset($edit_domain) && $edit_domain != ""){
 	die("The domain provided does not look like a correct domain name...");
 }
 

@@ -9,7 +9,11 @@ require_once("genfiles/genfiles.php");
 
 // Set here your apachectl path if you need it fully (like for example
 // /usr/sbin/apachectl for debian, or /usr/local/sbin/apachectl for FreeBSD)
-$APACHECTL = "/usr/sbin/apachectl";
+if($conf_unix_type == "debian" || $conf_unix_type == "redhat"){
+	$APACHECTL = "/usr/sbin/apachectl";
+}else{
+	$APACHECTL = "/usr/local/sbin/apachectl";
+}
 
 // Set to yes if you want to check for qmail pop3d availability and relaunch
 // it if needed. Note that you can have to customise that cron script part

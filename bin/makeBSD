@@ -62,9 +62,12 @@ if ! [ -e dtc/client/imgcache ]
 then
         ln -s ../shared/imgcache dtc/client/imgcache
 fi
-
+if ! [ -e dtc/email/imgcache ]
+then
+        ln -s ../shared/imgcache dtc/email/imgcache
+fi
 chown -R 0:0 dtc
-chown -R 65534:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx dtc/email/gfx
+chown -R 65534:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx dtc/email/gfx dtc/email/imgcache
 
 # Specific BSD package actions :
 mkdir "dtc-"$VERSION

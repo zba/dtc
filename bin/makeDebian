@@ -75,6 +75,10 @@ if ! [ -e debian/usr/share/dtc/client/imgcache ]
 then
         ln -s ../shared/imgcache debian/usr/share/dtc/client/imgcache
 fi
+if ! [ -e debian/usr/share/dtc/email/imgcache ]
+then
+        ln -s ../shared/imgcache debian/usr/share/dtc/email/imgcache
+fi
 if ! [ -e debian/usr/share/dtc/doc ]
 then
 	ln -s /usr/share/doc/dtc debian/usr/share/dtc/doc
