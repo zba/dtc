@@ -13,14 +13,15 @@ $txt_mainmenu_title_deamonfile_generation = array(
 	"nl" => "Genereren van daemon configuratie files",
 	"ru" => "Daemons configuration files generation",
 	"de" => "Erzeuge Konfiguationsdatein für Daemons");
-
+
+
 $txt_mainmenu_title_dtc_config = array(
 	"fr" => "Configuratoin générale de DTC",
 	"en" => "DTC general configuration",
 	"nl" => "DTC algemene configuratie",
 	"ru" => "DTC general configuration",
 	"de" => "Allgemeine DTC Konfiguration");
-	
+
 $txt_icon_all_files_and_scripts = array(
 	"fr" => "TOUS FICHIERS & SCRIPTS",
 	"en" => "ALL FILES AND SCRIPTS",
@@ -67,7 +68,7 @@ $txt_icon_webalizer_script = array(
 	"nl" => "WEBALIZER SCRIPTS",
 	"ru" => "WEBALIZER SCRIPTS",
 	"de" => "Webalizer Dateien");
-		
+
 $txt_icon_mysite_at_mydomain = array(
 	"fr" => "VHOST DE ZONE FTP",
 	"en" => "FTP AREA VHOST",
@@ -143,7 +144,7 @@ $txt_general_virtual_admin_edition = array(
 	"fr" => "Edition de l'administrateur virtuel <i>\"$adm_login\"</i>",
 	"en" => "Configuration of the virtual administrator <i>\"$adm_login\"</i>",
 	"nl" => "Configuratie van de beheerder <i>\"$adm_login\"</i>",
-	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ×ÉÒÔÕÁÌØÎÏÇÏ ÁÄÍÉÎÉÓÔÒÁÔÏÒÁ 
+	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ×ÉÒÔÕÁÌØÎÏÇÏ ÁÄÍÉÎÉÓÔÒÁÔÏÒÁ
 <i>\"$adm_login\"</i>",
 	"de" => "Administrator bearbeiten <i>\"$adm_login\"</i> ");
 
@@ -160,7 +161,7 @@ $txt_admlist_sort_by_legend = array(
 	"nl" => "Weergeven en sorteren op:",
 	"ru" => "÷Ù×ÏÄÉÔØ ĞÏ:",
 	"de" => "Zeige und sortiere nach:");
-	
+
 
 $txt_admlist_new_admin = array(
 	"fr" => "Nouvel admin virtuel",
@@ -182,7 +183,7 @@ $txt_password = array(
 	"nl" => "Wachtwoord:",
 	"ru" => "ğÁÒÏÌØ:",
 	"de" => "Passwort");
-	
+
 $txt_id_client = array(
 	"fr" => "Id client :",
 	"en" => "Client ID:",
@@ -200,7 +201,7 @@ $txt_del_user = array(
 $txt_del_user_confirm = array(
 	"fr" => "Etes vous sure de voileur effacer cet utilisateur ? Ceci effacera tous ses noms de domaines, ses fichiers et ses bases de données !!!",
 	"en" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
-	"nl" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
+	"nl" => "Weet u zeker dat u deze gebruiker wilt wissen? Dit wist gelijk alle gehoste domeinnamen, file en alle databases!!!",
 	"ru" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
 	"de" => "Sicher das Sie diesen Benutzer löschen wollen? Alle Domains, Dateien und Datenbanken werden gelöscht");
 
@@ -214,7 +215,8 @@ $txt_del_user_domain = array(
 $txt_del_user_domain_confirm = array(
 	"fr" => "Etes vous sure de voileur effacer ce nom de domaine ? Ceci effacera tous les fichiers hébergés pour ce domaine !!!",
 	"en" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
-	"nl" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
+	"nl" => "Weet uw zeker dat u dit domein wilt wissen? Dit wist tevens ook gelijk alle
+	files op het systeem voor dit domein!!!",
 	"ru" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
 	"de" => "Sicher das Sie diese Domain löschen wollen? Alle Datein für diese Domain werden gelöscht");
 
@@ -230,7 +232,7 @@ $txt_domain_tbl_config_dom_name = array(
 	"en" => "Domain name",
 	"nl" => "Domein naam",
 	"ru" => "éÍÑ ÄÏÍÅÎÁ",
-	"de" => "Damain Name");	
+	"de" => "Damain Name");
 
 $txt_domain_tbl_config_quota = array(
 	"fr" => "Quota disque",
@@ -272,7 +274,7 @@ $txt_your_domain = array(
 	"en" => "Your domain:",
 	"nl" => "Jouw domein:",
         "ru" => "÷ÁÛ ÄÏÍÅÎ:");
-	
+
 $txt_your_domain_email = array(
 	"fr" => "Boites emails:",
 	"en" => "Mailboxs:",
@@ -297,7 +299,7 @@ $txt_your_domain_subdomain = array(
 $txt_confirurate_your_domain_name = array(
 	"fr" => "Configurer son domaine :",
 	"en" => "Configurate your domain name:",
-	"nl" => "Configurate your domain name:",
+	"nl" => "Configureer je domain name:",
 	"ru" => "Configurate your domain name:",
 	"de" => "Konfiguration des Domain Namens:");
 
@@ -323,16 +325,15 @@ The MX parameter tells the addresse of the mail server
 (the one that store all your mail when somebody sends
 your a message). The value \"default\" means that
 you want to use the current server.",
-	"nl" => "Take care ! Setting wrong value
-in the following fields can lead to the stop of
-your site services (web or mail).<br>
-Put something else than \"default\" in the DNS
-fields means that you want your site to be
-hosted elsewhere.<br>
-The MX parameter tells the addresse of the mail server
-(the one that store all your mail when somebody sends
-your a message). The value \"default\" means that
-you want to use the current server.",
+	"nl" => "Pas op! Het verkeer wijzigen van
+instellingen in de volgende velden kan leiden tot
+het niet werken van jouw services, web of mail<br>
+zodra je iets anders dan \"default\" in the DNS
+velden invult, betekend dat dat je DNS ergens anders
+gehosted wordt.<br>
+De MX parameters geven het adres aan van je mailserver.
+De waarde \"default\| betekend dat je deze server
+wilt gebruiken voor het ontvangen van je mail.",
 	"ru" => "Take care ! Setting wrong value
 in the following fields can lead to the stop of
 your site services (web or mail).<br>
@@ -347,30 +348,30 @@ you want to use the current server.");
 $txt_primari_dns_ip = array(
 	"fr" => "Addresse IP du serveur DNS primaire :",
 	"en" => "IP address of the primary DNS server:",
-	"nl" => "IP address of the primary DNS server:",
+	"nl" => "IP adres van andere primaire DNS server:",
 	"ru" => "IP address of the primary DNS server:",
 	"de" => "IP Addresse des primären DNS Servers:");
 
 $txt_other_dns_ip = array(
 	"fr" => "Autres serveurs DNS :",
 	"en" => "Other DNS servers:",
-	"nl" => "Other DNS servers:",
+	"nl" => "Andere DNS servers:",
 	"ru" => "Other DNS servers:",
 	"de" => "Weitere DNS Server:");
 
 $txt_primary_mx_server = array(
 	"fr" => "Addresse du MX primaire :",
 	"en" => "Primary MX address:",
-	"nl" => "Primary MX address:",
+	"nl" => "Primaire MX adres:",
 	"ru" => "Primary MX address:",
 	"de" => "Primärer MX Adresse");
 
 $txt_other_mx_servers = array(
 	"fr" => "Autres serveurs MX (secondaire) :",
 	"en" => "Other MX (backup) servers:",
-	"nl" => "Other MX (backup) servers:",
+	"nl" => "Andere MX (back-up) servers:",
 	"ru" => "Other MX (backup) servers:");
- 
+
 $txt_draw_tatabase_your_list = array(
 	"fr" => "Liste de vos bases de donnée:",
 	"en" => "List of your databasse:",
@@ -388,10 +389,10 @@ DTC).",
 Click <a
 href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 for adding this user as a mysql account (same login / pass as for DTC).",
-        "nl" => "There is no user by that name in the mysql database.
-Click <a
-href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
-for adding this user as a mysql account (same login / pass as for DTC).",
+        "nl" => "Er bestaat geen mysql gebruiker voor dit acount in de MySQL database.
+klik <a
+href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">hier</a>
+voor het toevoegen van deze gebruiker als mysql account (zelfde login / wachtwoord als voor DTC).",
         "ru" => "There is no user by that name in the mysql database.
 Click <a
 href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
@@ -406,20 +407,20 @@ $txt_mysqlmang_delete_a_db = array(
         "fr" => "Effacer l'une des bases de donnies pour cet utilisateur :",
         "en" => "Delete one of MySQL database for that user:",
         "nl" => "Delete one of MySQL database for that user:",
-        "ru" => "Delete one of MySQL database for that user:",
+        "ru" => "Wis een MySQL database voor deze gebruiker:",
         "de" => "Löschen einer Datenbank für diesen Benutzer"
 );
 $txt_mysqlmang_add_a_db = array(
         "fr" => "Ajouter une base de donnie a l'utilisateur :",
         "en" => "Add a database for that user:",
-        "nl" => "Add a database for that user:",
+        "nl" => "voeg een database toe voor deze gebruiker:",
         "ru" => "Add a database for that user:",
         "de" => "Anlegen einer Datenbank für diesen Benutzer"
 );
 $txt_mysqlmang_db_name = array(
         "fr" => "Nom de la base de donnies :",
         "en" => "Database name:",
-        "nl" => "Database name:",  
+        "nl" => "Database naam:",
         "ru" => "Database name:",
         "de" => "Datenbank name:"
 );
@@ -430,9 +431,8 @@ car celui-ci require le mot de passe root pour accider  la base de donnie.",
         "en" => "No mysql account manager in demo version (because I don't
 have root access to the MySQL
 database).",
-        "nl" => "No mysql account manager in demo version (because I don't
-have root access to the MySQL
-database).",
+        "nl" => "Geen Mysql accountbeheerder in demoversie (omdat ik geen mysql
+root togang heb).",
         "ru" => "No mysql account manager in demo version (because I don't
 have root access to the MySQL
 database).");
@@ -440,7 +440,7 @@ database).");
 $txt_delete_this_mysql_user_and_db = array(
 	"fr" => "Effacer l'utilisateur mysql ainsi que toutes ses bases de données",
 	"en" => "Delete the mysql user and all his databases",
-	"nl" => "Delete the mysql user and all his databases",
+	"nl" => "Wis de mysql gebruiker en al zijn databases",
 	"ru" => "Delete the mysql user and all his databases",
 	"de" => "Löschen des MySQL Benutzers und all seiner Datenbanken.");
 
@@ -667,7 +667,7 @@ $txt_ftp_account_edit = array(
 $txt_ftp_new_account_link = array(
 	"fr" => "Nouveau compte ftp",
 	"en" => "New ftp account",
-	"nl" => "New ftp account",
+	"nl" => "Nieuw ftp account",
 	"ru" => "îÏ×ÙÊ æôğ ÁËËÁÕÎÔ",
 	"de" => "Neuer FTP Account");
 
@@ -677,7 +677,7 @@ $txt_ftp_new_account_link = array(
 $txt_new_password = array(
 	"fr" => "Nouveau compte ftp",
 	"en" => "New ftp account",
-	"nl" => "New ftp account",
+	"nl" => "Nieuw ftp account",
 	"ru" => "îÏ×ÙÊ æôğ ÁËËÁÕÎÔ");
 
 $txt_title_database_form = array(
@@ -689,7 +689,7 @@ $txt_title_database_form = array(
 $txt_title_help_form = array(
 	"fr" => "Aide en ligne de DTC",
 	"en" => "Online DTC help",
-	"nl" => "Online DTC help",
+	"nl" => "On-line DTC help",
 	"ru" => "ïÎÌÁÊÎ ĞÏÍÏİØ DTC");
 
 $txt_draw_help_content = array(
