@@ -120,7 +120,7 @@ case monitor: // Monitor button
 	$nr = mysql_num_rows($r);
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="1" cellspacing="1">';
 	$out .=
-"<tr><td><b>User</b></td><td><b>".$txt_transfer[$lang]."</b></td><td><b>".$txt_bw_quota[$lang]."</b></td><td><b>".$txt_graf[$lang]."</b></td><td><b>Transfer per month</b></td><td><b>".$txt_disk_usage[$lang]."</b></td><td><b>".$txt_domain_tbl_config_quota[$lang]."</b></td><td><b>".$txt_graf[$lang]."</b></td></tr>";
+"<tr><td><b>User</b></td><td><b>".$txt_transfer[$lang]." / ".$txt_bw_quota[$lang]."</b></td><td><b>Transfer per month</b></td><td><b>".$txt_disk_usage[$lang]." / ".$txt_domain_tbl_config_quota[$lang]."</b></td></tr>";
 	$total_box_transfer = 0;
 	for($i=0;$i<$nr;$i++){
 		$ar = mysql_fetch_array($r);
@@ -143,12 +143,13 @@ case monitor: // Monitor button
 		}else{
 			$back = " style=\"white-space:nowrap;\" nowrap";
 		}
-		$out .= "<tr><td$back><u>".$ar["company_name"].":</u> ".$ar["familyname"].", ".$ar["christname"]."</td>";
-		$out .= "<td$back>".smartByte($transfer)."</td><td$back>".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)."</td><td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024,"no")."</td>";
+		$out .= "<tr><td$back><u>".$ar["company_name"].":</u><br>
+".$ar["familyname"].", ".$ar["christname"]."</td>";
+		$out .= "<td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024,"no")."<br>
+".smartByte($transfer)." / ".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)."</td>";
 		$out .= "<td$back><img width=\"120\" height=\"48\" src=\"bw_per_month.php?cid=".$ar["id"]."\"></td>";
-		$out .= "<td$back>".smartByte($du)."</td>";
-		$out .= "<td$back>".smartByte($ar["disk_quota_mb"]*1024*1024)."</td>";
-		$out .= "<td$back>".drawPercentBar($du,$ar["disk_quota_mb"]*1024*1024,"no")."</td></tr>";
+		$out .= "<td$back>".drawPercentBar($du,$ar["disk_quota_mb"]*1024*1024,"no")."<br>
+".smartByte($du)." / ".smartByte($ar["disk_quota_mb"]*1024*1024)."</td>";
 		$total_box_transfer += $transfer;
 //fetchAdminStats($admin)
 	}

@@ -12,7 +12,6 @@
  */
 
 body{	
-/*	height: 8.5in */
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 200;
 	font-size: 8pt; 	
@@ -63,18 +62,6 @@ a.head:active     { color: #A1A1A4; text-decoration: none; }
 	font-size: 10pt;
 }
 
-
-/* paragraphs styles */
-p {
-	font-family:  Arial, Helvetica, sans-serif;
-	font-size: 8pt;
-	margin: 0;
-	padding:0;
-	border: 0;
-	margin-top: 0.1em;
-}
-
-
 /* Tables enlightening */
 td.head, td.corps { 
     font-family:  Arial, Helvetica, sans-serif;
@@ -93,26 +80,6 @@ td.corps {
     padding-left: 5;
 }
 
-/* used to enhance date display in plan */
-span.plan {
-    font-size: 10pt;
-    font-weight: normal;
-    border: 1px solid;
-    border-color: #999999 #999999 #999999 #999999;
-    color: #999999;
-    padding: 5px;
-    margin-left: -10px;
-}
-
-/*
-P:first-letter {
-	font-size: 200%;
-	font-style: italic;
-	font-weight: bold;
-	float: left;
-}
-*/
-
 /* UL { list-style: url("http://png.com/ellipse.png") disc } */
 
 *.titre {
@@ -120,57 +87,6 @@ P:first-letter {
       font-size: 10pt;
       vertical-align: center;
       font-weight: bold;
-}
-
-table {
-/*  table-layout: fixed; */
-    font-size: 8pt;
-    border: 0px;
-    margin: 0px 2px 0px 2px;
-    padding:0;
-}
-
-pre.boite, span.boite,ul.boite,li.boite {
-    font-family:  Arial, Helvetica, sans-serif;
-    font-size: 8pt;
-    text-indent:  0.5em;
-}
-
-#forumTitre {
-    font-size: 12pt;
-    vertical-align: center;
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    color: #FFFFFF;
-    background-color: #999999;
-    padding-top: 3px!important;
-    /*  margin: 5px!important; */
-}
-
-/** Used for Card Viewing */
-td.cardKey, td.cardValue {
-	font-size: 10pt;
-	vertical-align: top;
-    border: 1px solid;
-    padding: 1px 5px 1px 5px;
-}
-
-td.cardKey {
-    background-color: #c2c4ed;
-    border-color: #000000; 
-    font-weight: 400;
-}
-
-td.cardValue {
-    font-weight: 900;
-    padding-right: 40px;
-}
-
-/* */
-
-li.boite {
-	font-size: 8pt;
-    list-style-type: none;
 }
 
 hr, hr.boite { 
@@ -184,7 +100,7 @@ input[type="checkbox"],
 input[type="file"]
 {
     border: 1px solid;
-	padding: 1 5 1 5!important; 
+	padding: 1 3 1 3!important; 
 	font-family : Arial, Helvetica, sans-serif; 
 	/* text-decoration: bold; */
 	font-size : 8pt;
@@ -213,28 +129,18 @@ input[type="image"]	{
 
 /* Set default paddings/margins/borders                       */
 
-h1,h2,h3,H4, 
-center, center.tablecontent, 
-select.tablecontent, 
-input.tablecontent, 
-h1.tablecontent,h2.tablecontent,h3.tablecontent, H4 .tablecontent    { 
+h1,h2,h3,H4 {
 		font-family:  arial, helvetica, sans-serif; 
 		color: #B1B1B4;
 }
 
-h2,h3,h2.tablecontent, h3.tablecontent {
+h2,h3{
     margin-left:  2% 
 }
 	
-h1, h1.tablecontent           {
+h1{
     text-align:   center;
     text-transform: capitalize;
-}
-
-div.abstract { 
-    margin-left:  20%; 
-    margin-right: 20%;
-    font-size:    smaller
 }
 
 td {
@@ -242,40 +148,29 @@ td {
 	font-size: 8pt;
 }
 
-pre, pre.tablecontent	{
+pre{
 	font-family:  terminal, sans-serif;
-	font-size: 8pt;
-}
-
-pre.plan {
-	font-family:  Arial, Helvetica, sans-serif;
 	font-size: 8pt;
 }
 
 /*-----------------------------------------------------------------------*/
 img {  margin: 0px; }
-    .boite { color: #212121; background-color: #e0e0e0; }
-    .boite_popup { color: #212121; background-color: #e0e0e0; }
-    a:link		{ color: #6d6d6d; }
-    a:visited	{ color: #6d6d6d; }
-    a:active	{ color: #6d6d6d; }
-    a:hover		{ color: #111111! important; }
-    b.boite, center, td.boite, center.boite { color: #212121;
-vertical-align: top; }
-    td.head { color: #e0e0e0; background-color: #212121; }
-    td.corps { color: #212121; background-color: #e0e0e0; }
-    *.dashed { border-bottom: 1px dashed #212121; }
-    span, h1, h2, h3, h4 { color: #212121; }
-    hr, hr.boite { color: #212121; background-color: #212121; }
-    pre.screen { backgound-color: #212121; }
-    select, input, optgroup, textarea { font-family : Arial, Helvetica,
-sans-serif; color: #212121; border-color : #212121; background-color:
-#e0e0e0; }
-    select, textarea { border: 1px solid #212121; } 
-    td.cardValue { background-color: #e0e0e0; border-color: #000000; }
+a:link		{ color: #6d6d6d; }
+a:visited	{ color: #6d6d6d; }
+a:active	{ color: #6d6d6d; }
+a:hover		{ color: #111111! important; }
+center		{ color: #212121; vertical-align: top; }
+td.head 	{ color: #e0e0e0; background-color: #212121; }
+td.corps 	{ color: #212121; background-color: #e0e0e0; }
+*.dashed 	{ border-bottom: 1px dashed #212121; }
+span, h1, h2, h3, h4 { color: #212121; }
+hr, hr.boite	{ color: #212121; background-color: #212121; }
+select, input, optgroup, textarea { font-family : Arial, Helvetica,
+sans-serif; color: #212121; border-color : #212121; background-color: #e0e0e0; }
+select, textarea { border: 1px solid #212121; } 
+td.cardValue	{ background-color: #e0e0e0; border-color: #000000; }
 
-    /** IE does not recognize this CSS standardization... Crimosoft suxxx */
-    input[type="text"], input[type="submit"], input[type="file"],
+/** IE does not recognize this CSS standardization... Crimosoft suxxx */
+input[type="text"], input[type="submit"], input[type="file"],
 input[type="password"] { border: 1px solid #212121!important; }
-	body {  color: #000000; background: #F5F5F5; background-image: url('./gfx/skin/muedgrey/degrade.jpg'); }
-	.boite_popup { color: #000000; background-color: #e0e0e0; }
+body {  color: #000000; background: #F5F5F5; background-image: url('./gfx/skin/muedgrey/degrade.jpg'); }
