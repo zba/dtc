@@ -59,6 +59,84 @@ function fetchAdminInfo($adm_login){
 	return $ret;
 }
 
+function fetchAdminStats($admin){
+	global $adm_login;
+	global $conf_mysql_db;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_acc_http_table;
+	global $pro_mysql_acc_ftp_table;
+
+	$adm_path = $admin["info"]["path"];
+	$query = "SELECT name FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";
+	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
+	$num_domains = mysql_num_rows($result);
+	for($ad=0;$ad<$num_domains;$ad++){
+		$domain_name = mysql_result($result,$ad,"name");
+		$ret["domains"][$ad]["name"] = $domain_name;
+
+		// Retrive disk usage
+		$du_string = exec("du -sb $adm_path/$domain_name --exclude=access.log",$retval);
+		$du_state = explode("\t",$du_string);
+		$ret["domains"][$ad]["du"] = $du_state[0];
+		$ret["total_du_domains"] += $du_state[0];
+
+		// HTTP transfer
+		sum_http($domain_name);
+		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='$domain_name'";
+        $result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
+        $num_rows = mysql_num_rows($result_http);
+		$rez_http = mysql_result($result_http,0,"transfer");
+		$ret["total_http"] += $rez_http;
+		$ret["domains"][$ad]["http"] = $rez_http;
+
+		// And FTP transfer
+		sum_ftp($domain_name);
+        $query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='$domain_name'";
+        $result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
+        $num_rows = mysql_num_rows($result_ftp);
+		$rez_ftp = mysql_result($result_ftp,0,"transfer");
+		$ret["total_ftp"] += $rez_ftp;
+		$ret["domains"][$ad]["ftp"] = $rez_ftp;
+
+		$ret["domains"][$ad]["total_transfer"] += $rez_http + $rez_ftp;
+		$ret["total_transfer"] += $rez_http + $rez_ftp;
+		// Todo: email accounting
+	}
+
+	$dbdu_amount = 0;
+	mysql_select_db("mysql");
+	$q = "SELECT Db FROM db WHERE User='$adm_login'";
+	$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
+	$db_nbr = mysql_num_rows($r);
+	for($i=0;$i<$db_nbr;$i++){
+		$db_name = mysql_result($r,$i,"Db");
+
+		$query = "SHOW TABLE STATUS FROM $db_name;";
+		$result = mysql_query($query)or die("Cannot query \"$q\" !".mysql_error());
+		$db_du = 1024 * mysql_result($result,0,"Data_length");
+		$ret["db"][$i]["du"] = $db_du;
+		$ret["db"][$i]["name"] = $db_name;
+		$ret["total_du_db"] += $db_du;
+	}
+	mysql_select_db($conf_mysql_db);
+
+	$ret["total_du"] = $ret["total_du_db"] + $ret["total_du_domains"];
+// ["domains"][]["name"]
+//              ["du"]
+//              ["ftp"]
+//              ["http"]
+//              ["total_transfer"]
+// ["total_http"]
+// ["total_ftp"]
+// ["total_transfer"]
+// ["total_du_domains"]
+// ["db"][]["name"]
+//         ["du"]
+// ["total_db_du"]
+// ["total_du"]
+	return $ret;
+}
+
 function fetchAdminData($adm_login,$adm_pass){
         global $pro_mysql_domain_table;
         global $pro_mysql_admin_table;

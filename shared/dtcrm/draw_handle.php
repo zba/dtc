@@ -1,6 +1,7 @@
 <?php
 
 function getContactsArrayFromID($owner_id,$billing_id,$admin_id){
+	global $pro_mysql_handle_table;
 	$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$owner_id';";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
 	if(mysql_num_rows($result) != 1)	die("Handle ID not found !");

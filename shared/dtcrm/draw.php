@@ -194,7 +194,7 @@ $form_start
 	getContactsArrayFromID($owner_id,$billing_id,$admin_id);
 	$regz = registry_register_domain($adm_login,$adm_pass,$fqdn,$period,$contacts,$dns_servers);
 
-	if($regz["is_success"] == 0){
+	if($regz["is_success"] != 1){
 		$out .= "<font color=\"red\"><b>Registration failed</b></font><br>
 Server said: <i>" . $regz["response_text"] . "</i>";
 		return $out;

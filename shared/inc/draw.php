@@ -23,6 +23,24 @@ function drawAdminTools_MyAccount($admin){
 
 	$id_client = $admin["info"]["id_client"];
 
+	$stats = fetchAdminStats($admin);
+	$out .= "<b><u>Transfère and disk usage:</u></b>";
+	$out .= "<br>Transfer this month: ". smartByte($stats["total_transfer"]);
+	if($id_client != 0){
+		$bw_quota = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;
+		$out .= " / ".smartByte($bw_quota)."<br>";
+		$out .= drawPercentBar($stats["total_transfer"],$bw_quota);
+	}
+	$out .= "Total disk usage: ".smartByte($stats["total_du"]);
+	if($id_client != 0){
+		$du_quota = $admin["info"]["quota"]*1024*1024;
+		$out .= " / ".smartByte($du_quota)."<br>";
+		$out .= drawPercentBar($stats["total_du"],$du_quota);
+		$out .= "<br>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
+<input type=\"submit\" value=\"Upgrade my account\">
+</form><br>";
+	}
+
 	if($id_client != 0){
 		if($_REQUEST["action"] == "refund_myaccount"){
 			$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
@@ -34,13 +52,17 @@ when paiement is done, click the refresh button.";
 			return $out;
 		}
 		$client = $admin["client"];
+
 		$out .=  "<b><u>Remaining money on my account:</u></b><br>
-<font size=\"+1\">\$".$client["dollar"]."</font><br><br>
-Refund my account with the following ammount:<br>
+<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"0\">
+<tr>
+	<td><font size=\"+1\">\$".$client["dollar"]."</font></td>
+	<td><font size=\"-1\">Refund my account:</font><br>
 $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
-<input type=\"text\" name=\"refund_amount\" value=\"\">
+\$<input size=\"8\" type=\"text\" name=\"refund_amount\" value=\"\">
 <input type=\"submit\" value=\"Ok\">
-</form>
+</form></td></tr>
+</table>
 <hr width=\"90%\">
 ";
 
@@ -789,102 +811,59 @@ function drawAdminTools_AdminStats($admin){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_acc_http_table;
 	global $pro_mysql_acc_ftp_table;
+
 	$nowrap = " style=\"white-space:nowrap\" nowrap";
 
-	$adm_path = $admin["info"]["path"];
-	$query = "SELECT name FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";
-	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
-	$num_domains = mysql_num_rows($result);
-	for($ad=0;$ad<$num_domains;$ad++){
-		$domain_name = mysql_result($result,$ad,"name");
-		$ar[$ad]["name"] = $domain_name;
-
-		// Retrive disk usage
-		$du_string = exec("du -sb $adm_path/$domain_name --exclude=access.log",$retval);
-		$du_state = explode("\t",$du_string);
-		$ar[$ad]["du"] = smartByte($du_state[0]);
-		$du_amount += $du_state[0];
-
-		// HTTP transfer
-		sum_http($domain_name);
-		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='$domain_name'";
-        $result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
-        $num_rows = mysql_num_rows($result_http);
-		$rez_http = mysql_result($result_http,0,"transfer");
-       	$http_amount = $http_amount + $rez_http;
-		$ar[$ad]["http"] = smartByte($rez_http);
-
-		// And FTP transfer
-		sum_ftp($domain_name);
-        $query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='$domain_name'";
-        $result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
-        $num_rows = mysql_num_rows($result_ftp);
-		$rez_ftp = mysql_result($result_ftp,0,"transfer");
-        $ftp_amount = $ftp_amount + $rez_ftp;
-		$ar[$ad]["ftp"] = smartByte($rez_ftp);
-		$ar[$ad]["total"] = smartByte($rez_http + $rez_ftp);
-
-		// Todo: email accounting
-	}
-
-	$dbdu_amount = 0;
-	mysql_select_db("mysql");
-	$q = "SELECT Db FROM db WHERE User='$adm_login'";
-	$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
-	$db_nbr = mysql_num_rows($r);
-	for($i=0;$i<$db_nbr;$i++){
-		$db_name = mysql_result($r,$i,"Db");
-
-		$query = "SHOW TABLE STATUS FROM $db_name;";
-		$result = mysql_query($query)or die("Cannot query \"$q\" !".mysql_error());
-		$db_du = 1024 * mysql_result($result,0,"Data_length");
-		$ar_db[$i]["du"] = smartByte($db_du);
-		$dbdu_amount += $db_du;
-/*		$du_string = exec("du -sb /var/lib/mysql/$db_name",$retval);
-		echo "du -sb /var/lib/mysql/$db_name";
-		$du_state = explode("\t",$du_string);
-		$ar_db[$i]["du"] = smartByte($du_state[0]);
-		$dbdu_amount += $du_state[0];
-*/		$ar_db[$i]["name"] = $db_name;
-	}
-	mysql_select_db($conf_mysql_db);
-
-
-	$total_all = $http_amount + $ftp_amount;
+	$stats = fetchAdminStats($admin);
+// ["domains"][]["name"]
+//              ["du"]
+//              ["ftp"]
+//              ["http"]
+//              ["total_transfer"]
+// ["total_http"]
+// ["total_ftp"]
+// ["total_transfer"]
+// ["total_du_domains"]
+// ["db"][]["name"]
+//         ["du"]
+// ["total_db_du"]
+// ["total_du"]
 	$id_client = $admin["info"]["id_client"];
-	$out .= "<u><b>Total transfered bytes:</b></u><br>
-HTTP: ".smartByte($http_amount);
-	$out .= "<br>FTP: ".smartByte($ftp_amount);
-	$out .= "<br>Total: ". smartByte($total_all);
+
+	$out .= "<u><b>Total transfered bytes this month:</b></u>";
+	$out .= "<br>HTTP: ".smartByte($stats["total_http"]);
+	$out .= "<br>FTP: ".smartByte($stats["total_ftp"]);
+	$out .= "<br>Total: ". smartByte($stats["total_transfer"]);
+
 	if($id_client != 0){
 		$bw_quota = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;
 		$out .= " / ".smartByte($bw_quota)."<br>";
-		$out .= drawPercentBar($total_all,$bw_quota);
+		$out .= drawPercentBar($stats["total_transfer"],$bw_quota);
 	}
 	$total_du = $du_amount + $dbdu_amount;
-	$out .= "<br><u><b>Your area disk usage:</b></u><br>
-Domain-name files: ".smartByte($du_amount)."<br>
-Database files: ".smartByte($dbdu_amount)."<br>
-Total disk usage: ".smartByte($du_amount + $dbdu_amount);
+	$out .= "<br><u><b>Your area disk usage:</b></u>";
+	$out .= "<br>Domain-name files: ".smartByte($stats["total_du_domains"]);
+	$out .= "<br>Database files: ".smartByte($stats["total_db_du"]);
+	$out .= "<br>Total disk usage: ".smartByte($stats["total_du"]);
 
 	if($id_client != 0){
 		$du_quota = $admin["info"]["quota"]*1024*1024;
 		$out .= " / ".smartByte($du_quota)."<br>";
-		$out .= drawPercentBar($total_du,$du_quota);
+		$out .= drawPercentBar($stats["total_du"],$du_quota);
 	}
 
 	$out .= "<br><br><u><b>Databases disk usage:</b></u>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
 	$out .= "<tr><td$nowrap><b>Database name</b></td><td$nowrap><b>Disk usage</b></tr>";
-	for($i=0;$i<$db_nbr;$i++){
+	for($i=0;$i<sizeof($stats["db"]);$i++){
 		if($i % 2){
 			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\"";
 		}else{
 			$bgcolor = $nowrap;
 		}
 		$out .= "<tr>";
-		$out .= "<td$bgcolor>".$ar_db[$i]["name"]."</td>";
-		$out .= "<td$bgcolor>".$ar_db[$i]["du"]."</td>";
+		$out .= "<td$bgcolor>".$stats["db"][$i]["name"]."</td>";
+		$out .= "<td$bgcolor>".smartByte($stats["db"][$i]["du"])."</td>";
 		$out .= "</tr>";
 	}
 	$out .= '</table>';
@@ -892,18 +871,18 @@ Total disk usage: ".smartByte($du_amount + $dbdu_amount);
 	$out .= "<br><br><u><b>Domain name tranfic and disk usage:</b></u>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
 	$out .= "<tr><td><b>Domain Name</b></td><td$nowrap><b>Disk usage</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>Total trafic</b></td></tr>";
-	for($ad=0;$ad<$num_domains;$ad++){
+	for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
 		if($ad % 2){
 			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\"";
 		}else{
 			$bgcolor = $nowrap;
 		}
 		$out .= "<tr>";
-		$out .= "<td$bgcolor>".$ar[$ad]["name"]."</td>";
-		$out .= "<td$bgcolor>".$ar[$ad]["du"]."</td>";
-		$out .= "<td$bgcolor>".$ar[$ad]["ftp"]."</td>";
-		$out .= "<td$bgcolor>".$ar[$ad]["http"]."</td>";
-		$out .= "<td$bgcolor>".$ar[$ad]["total"]."</td>";
+		$out .= "<td$bgcolor>".$stats["domains"][$ad]["name"]."</td>";
+		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["du"])."</td>";
+		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["ftp"])."</td>";
+		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["http"])."</td>";
+		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["total_transfer"])."</td>";
 		$out .= "</tr>";
 	}
 	$out .= '</table>';
@@ -925,7 +904,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
     $num_rows = mysql_num_rows($result_ftp);
     $ftp_amount = $ftp_amount + mysql_result($result_ftp,0,"transfer");
 	
-	$out .= "<u><b>Total transfered bytes:</b></u><br>
+	$out .= "<u><b>Total transfered bytes this month:</b></u><br>
 HTTP: ".smartByte($http_amount);
 	$out .= "<br>FTP:  ".smartByte($ftp_amount);
 	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount);
