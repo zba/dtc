@@ -85,17 +85,17 @@ function fetchAdminStats($admin){
 		// HTTP transfer
 		sum_http($domain_name);
 		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='$domain_name'";
-        $result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
-        $num_rows = mysql_num_rows($result_http);
+		$result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
+		$num_rows = mysql_num_rows($result_http);
 		$rez_http = mysql_result($result_http,0,"transfer");
 		$ret["total_http"] += $rez_http;
 		$ret["domains"][$ad]["http"] = $rez_http;
 
 		// And FTP transfer
 		sum_ftp($domain_name);
-        $query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='$domain_name'";
-        $result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
-        $num_rows = mysql_num_rows($result_ftp);
+		$query_ftp = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='$domain_name'";
+		$result_ftp = mysql_query($query_ftp) or die("Cannot execute query \"$query\"");
+		$num_rows = mysql_num_rows($result_ftp);
 		$rez_ftp = mysql_result($result_ftp,0,"transfer");
 		$ret["total_ftp"] += $rez_ftp;
 		$ret["domains"][$ad]["ftp"] = $rez_ftp;

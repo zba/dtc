@@ -1,4 +1,5 @@
 <?
+
 function mysql_table_exists($dbname,$tableName){
 	$tables = array();
 	$tablesResult = mysql_list_tables($dbname);
@@ -51,23 +52,23 @@ function sum_http($webname){
 
 		// Get bytes_sent
 		$q_bytes = "SELECT SUM( bytes_sent ) AS amount FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
-        $r_bytes = mysql_query($q_bytes) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
+		$r_bytes = mysql_query($q_bytes) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
 		$bytes_sent = mysql_result($r_bytes,0,"amount");
 		//$bytes_sent = 0;
 		// Get visits
 		/*$q_visits = "SELECT DISTINCT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
-        $r_visits = mysql_query($q_visits) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
+		$r_visits = mysql_query($q_visits) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
 		$visits = mysql_num_rows($r_visits);*/
 		$visits = 0;
 
 		// Get hosts
 		$q_hosts = "SELECT remote_host FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end." GROUP BY remote_host";
-        $r_hosts = mysql_query($q_hosts) or die("Cannot execute query \"$q_hosts\" !!! ".mysql_error());
+		$r_hosts = mysql_query($q_hosts) or die("Cannot execute query \"$q_hosts\" !!! ".mysql_error());
 		$hosts = mysql_num_rows($r_hosts);
 
 		// Get impressions
 		$q_imp = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;;
-        $r_imp = mysql_query($q_imp) or die("Cannot execute query \"$q_imp\" !!! ".mysql_error());
+		$r_imp = mysql_query($q_imp) or die("Cannot execute query \"$q_imp\" !!! ".mysql_error());
 		$imp = mysql_num_rows($r_imp);
 
 		mysql_select_db($conf_mysql_db);
