@@ -59,6 +59,9 @@ as long as qmail and proftpd uses same uid/gid also.
 <pre>User nobody
 Group nogroup</pre>
 
+On latest versions, DTC modify itself the httpd.conf. Under debian woody and
+FreeBSD, you normaly have nothing to do with it.
+
 <h4><a name="2.3"></a>2.3 Installation under Debian</h4>
 
 DTC is not yet in Debian's oficial tree. Before it can once be in it, use the
@@ -69,10 +72,12 @@ following alternative source in your /etc/apt/source.list:<br>
 This repository also contains compiled versions of qmail-src and ucspi-tcp-src
 that are given only on source versions on official repositories (for licence
 problems). It's borring not conveinient, so sorry for not complying to licence...<br>
+
 On that repository you will also find the alternative password check from jedi
 in a debian package (packaging done by the autor of DTC), and the mysqmail package
 that contains a pached version of qmail-pop3d for easy log of pop trafic, a logger,
-and another checkpassword for smtp, all the above using MySQL backend.<br><br>
+and another checkpassword for smtp, all the above using MySQL backend. You will
+also find usefull debian package like libapache-mod-log-sql<br><br>
 
 Once this repository added, install DTC like other debian packages:<br>
 
@@ -100,14 +105,22 @@ Because it's not possible to ask questions to user before installing a package
 under RedHat, there is a post-installation script that will be installed in
 /usr/share/dtc/admin/dtc.rpm-install.sh. Simply launch it.<br><br>
 
-<h4><a name="2.5"></a>2.5 Installation under BSD/GENTOO</h4>
+Please not that becaue I've had no return at all from redhat team, I didn't
+test a lot that package. Please send me feedback if you can.<br><br>
 
-A port is being developped. Please standby and use tarball for BSD:
+<h4><a name="2.5"></a>2.5 Installation under FreeBSD</h4>
 
+DTC is now integrated in FreeBSD ports collection. FreeBSD users can go in
+/usr/ports/sysutils/dtc and issue a "make install". After preinstallation is
+done, you have to manualy launch the setup script (this is the way FreeB works,
+not my fault) by typing dtc-install (it should be located in /usr/sbin).<br><br>
+
+Because submitting takes time, the port may be a bit old. You can still
+fetch latest version in:
 <a href="ftp://ftp.gplhost.com/pub/dtc/bsd">ftp://ftp.gplhost.com/pub/dtc/bsd</a><br><br>
 
-Install script for BSD has been successfully tested, but dependancy are on the way to be
-resolved.<br><br>
+Note that DTC depends on all the ports needed, and even PHP has a special slave
+port for DTC.<br><br>
 
 <h4><a name="2.6"></a>2.6 Manual installation</h4>
 
@@ -267,13 +280,13 @@ with IP address 192.168.1.10.<br><br>
 
 <img src="dtc_cluster.png"><br><br>
 
-MySQL<br>
+<b><u>MySQL</u></b><br>
 There is no need here that I explain how to use MySQL in a cluster. Please
 se <a href="http://www.mysql.org">mysql.org</a> web site to know more about
 it. Remember that nearly ALL the services needs that MySQL server, and that
 this one is realy as critical as the file server itself.<br><br>
 
-The DNS server<br>
+<b><u>The DNS server</u></b><br>
 DTC generates automaticaly slave files for slave DNS servers. What you have
 to do is to setup the IP of the main server. Login into the root DTC panel
 on smain, and enter smain's IP in the &quot;Slave dns server ip address&quot;
@@ -291,7 +304,7 @@ should still work so normaly no mail is lost. This is one of the reasons I like
 a lot more to use that technique over an SQL pluggin for Bind. Here, even if
 smain is crashed, DNS works and mail is routed.<br><br>
 
-SMTP and POP3<br>
+<b><u>SMTP and POP3</u></b><br>
 For SMTP, all is done via generated files in /var/qmail. If you only need
 to use only one SMTP server, then you can only import DTC's main crontab from
 smain to the slave SMTP (cron.php). Remove all the stuff that are for other
@@ -311,9 +324,9 @@ so if you need to do it, then you are good enought to setup the replication
 of /var/qmail/ and reload qmail concequently by yourself!<br>
 For the pop3 it's a lot more easy as long as it does not uses flatfiles
 but only a SQL connection for auth and traffic loggin (if you use Mysqmail).
-Because of that, no file replication or daemon reload is needed.<br>
+Because of that, no file replication or daemon reload is needed.<br><br>
 
-Apache and squid<br>
+<b><u>Apache and squid</u></b><br>
 As you may know, Squid is designed to work in both 2 directions, so it
 can act as a caching server. The main advantage is that your critical
 servers are not accessible from the internet, but only in the DMZ, but
@@ -326,9 +339,9 @@ easy to do it with only one HTTP server, it might be a bit more
 complicated on a cluster (you have to inform via network all the HTTP
 servers to reload). Once this configuration achieve, the caching server
 squid can do the load balancing between all you servers (read squid
-documentation to know how).<br>
+documentation to know how).<br><br>
 
-The file server<br>
+<b><u>The file server</u></b><br>
 All your customer services will need access to file server exept DNS.
 Http, ftp, pop3 and smtp serivces all need access to it. What I suggest
 here is that you mount the same big area in all the servers using same
