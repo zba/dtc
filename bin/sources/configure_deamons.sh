@@ -62,7 +62,7 @@ else
 	fi
 fi
 
-if grep "Configured by DTC" $PATH_HTTPD_CONF >/dev/nul
+if grep "Configured by DTC" $PATH_HTTPD_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "httpd.conf has been configured before : skiping include inssertion !"
