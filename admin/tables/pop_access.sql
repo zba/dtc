@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS pop_access (
   shell varchar(255) NOT NULL default '',
   mbox_host varchar(120) NOT NULL default '',
   crypt varchar(20) NOT NULL default '',
-  passwd varchar(20) NOT NULL default '',
+  passwd varchar(50) NOT NULL default '',
   active int(11) NOT NULL default '1',
   start_date date NOT NULL default '0000-00-00',
   expire_date date NOT NULL default '0000-00-00',

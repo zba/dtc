@@ -414,6 +414,18 @@ if($_REQUEST["newftpaccount"] == "Ok"){
 		die("Your path is restricted to $adm_path");
 	}
 
+	// If no @ in the login, append the domain name
+	// if not, check that it's owner's domain name at end of login
+	if($conf_domain_based_ftp_logins == "yes"){
+		$pos = strpos($_REQUEST["newftp_login"],"@");
+		if($pos === false){
+			$_REQUEST["newftp_login"] .= "@".$edit_domain;
+		}else{
+			if(!ereg($edit_domain."\$",$_REQUEST["newftp_login"])){
+				die("Your login must be in the form login@domain.com");
+			}
+		}
+	}
 	if(!isFtpLogin($_REQUEST["newftp_login"])){
 		die("Incorrect FTP login");
 	}
