@@ -91,9 +91,9 @@ function sum_http($webname){
 			$query_insert_bytes = "INSERT INTO $pro_mysql_acc_http_table (vhost,bytes_sent,count_hosts,count_visits,count_impressions,domain,MONTH,year)
 			VALUES ('".$subdomain_name."','".$bytes_sent."','".$hosts."','".$visits."','".$imp."','".$webname."','".$current_month."','".$current_year."')";
 			mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
-			dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
+			//dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
 		}
-
+		dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
 		}
 	}
 	mysql_select_db($conf_mysql_db);
@@ -153,7 +153,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 						unlink($dump_file_name);
 						check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
 					}
-
+					//check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
 					$query_del = "DELETE FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 					//mysql_query($query_del) or die("Cannot execute query \"$query_del\" !!! ".mysql_error());
 				}
