@@ -87,12 +87,13 @@ function sum_http($webname){
 		}
 		else
 		{
-
+			mysql_select_db($conf_mysql_db);
 			$query_insert_bytes = "INSERT INTO $pro_mysql_acc_http_table (vhost,bytes_sent,count_hosts,count_visits,count_impressions,domain,MONTH,year)
 			VALUES ('".$subdomain_name."','".$bytes_sent."','".$hosts."','".$visits."','".$imp."','".$webname."','".$current_month."','".$current_year."')";
 			mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
+			dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
 		}
-		//dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
+
 		}
 	}
 	mysql_select_db($conf_mysql_db);
@@ -100,6 +101,8 @@ function sum_http($webname){
 
 function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_year)
 {
+	global $conf_mysql_db;
+	global $pro_mysql_domain_table;
 	mysql_select_db("apachelogs");
 	$query = "SELECT MAX(time_stamp) AS end FROM `".$db_select_name."`";
     $result = mysql_query($query) or die("Cannot execute query \"$query\" !!! ".mysql_error());
@@ -118,10 +121,17 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 		{
 			for($month=1;$month<=12;$month++)
 			{
-				$dump_file_name = "/var/www/sites/dtc/".$domain."/subdomains/".$vhost."/logs/".$db_select_name."_".$month."_".$year;
-				if(!file_exists($dump_file_name.".tar.gz")
-				)
-				// && $month!=$current_month && $year!=$current_year
+				mysql_select_db($conf_mysql_db);
+				$query_admin = "SELECT * FROM $pro_mysql_domain_table WHERE name='$domain'";
+				$result_admin = mysql_query($query_admin) or die("Cannot execute query \"$query_admin\" !!! ".mysql_error());
+				$adm_login = mysql_result($result_admin,0,"owner");
+
+				$admin_path = getAdminPath($adm_login);
+
+				mysql_select_db("apachelogs");
+
+				$dump_file_name = $admin_path."/".$domain."/subdomains/".$vhost."/logs/".$db_select_name."_".$month."_".$year;
+				if(!file_exists($dump_file_name.".tar.gz") && ($month!=$current_month && $year!=$current_year))
 				{
 					$selected_month_start = mktime(0,0,0,$month,1,$year);
 					$selected_month_end = (mktime(0,0,0,($month+1),1,$year))-1;
@@ -140,19 +150,69 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 						}
 						fclose($handle);
 						exec ("tar cfj ".$dump_file_name.".tar.bz2 " .$dump_file_name."");
-						//echo "tar cfj ".$dump_file_name.".tar.bz2 " .$dump_file_name;
-						//echo "tar cfj ".$dump_file_name." ".$dump_file_name.".tar.bz2 ";
 						unlink($dump_file_name);
-						//echo "creating dump for ".$db_select_name."_".$month."_".$year. "<br>";
+						check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
 					}
+
+					$query_del = "DELETE FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+					//mysql_query($query_del) or die("Cannot execute query \"$query_del\" !!! ".mysql_error());
 				}
 			}
 		}
 	}
-
-
-
+	mysql_select_db($conf_mysql_db);
 }
+
+function check_sum($db_select_name,$selected_month_start,$selected_month_end,$webname,$subdomain_name)
+{
+		global $pro_mysql_subdomain_table;
+		global $pro_mysql_acc_http_table;
+		global $conf_mysql_db;
+		mysql_select_db("apachelogs");
+
+		$current_month = date("n",$selected_month_start);
+		$current_year = date("Y",$selected_month_start);
+
+		// Get bytes_sent
+		$q_bytes = "SELECT SUM( bytes_sent ) AS amount FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+        $r_bytes = mysql_query($q_bytes) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
+		$bytes_sent = mysql_result($r_bytes,0,"amount");
+		$visits = 0;
+
+		// Get hosts
+		$q_hosts = "SELECT remote_host FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end." GROUP BY remote_host";
+        $r_hosts = mysql_query($q_hosts) or die("Cannot execute query \"$q_hosts\" !!! ".mysql_error());
+		$hosts = mysql_num_rows($r_hosts);
+
+		// Get impressions
+		$q_imp = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;;
+        $r_imp = mysql_query($q_imp) or die("Cannot execute query \"$q_imp\" !!! ".mysql_error());
+		$imp = mysql_num_rows($r_imp);
+
+		mysql_select_db($conf_mysql_db);
+
+		$query_dub = "SELECT * FROM $pro_mysql_acc_http_table WHERE
+		MONTH=".$current_month." AND year=".$current_year." AND vhost='".$subdomain_name."' AND domain='".$webname."'";
+
+		if(mysql_num_rows(mysql_query($query_dub))==1)
+		{
+			$query_insert_bytes = "UPDATE $pro_mysql_acc_http_table set
+			bytes_sent=bytes_sent+".$bytes_sent."+0,
+			count_visits=count_visits+".$visits."+0,
+			count_hosts=count_hosts+".$hosts."+0,
+			count_impressions=count_impressions+".$imp."+0
+			WHERE MONTH=".$current_month." AND year=".$current_year." AND vhost='".$subdomain_name."' AND domain='".$webname."'";
+			mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
+		}
+		else
+		{
+			mysql_select_db($conf_mysql_db);
+			$query_insert_bytes = "INSERT INTO $pro_mysql_acc_http_table (vhost,bytes_sent,count_hosts,count_visits,count_impressions,domain,MONTH,year)
+			VALUES ('".$subdomain_name."','".$bytes_sent."','".$hosts."','".$visits."','".$imp."','".$webname."','".$current_month."','".$current_year."')";
+			mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
+		}
+}
+
 
 function sum_ftp($webname)
 {
@@ -165,14 +225,14 @@ function sum_ftp($webname)
  	$last_run_st = mysql_result($result_l,0,"last");
 	if($last_run_st==NULL || $last_run_st==0)
 	{
-		echo "Create first entry for ".$webname."<br />";
+		//echo "Create first entry for ".$webname."<br />";
 		$query_insert = "INSERT INTO $pro_mysql_acc_ftp_table (sub_domain,last_run,month,year) VALUES ('".$webname."','".$last_run_st."', ".date("m",time()).",".date("Y",time()).")";
 		mysql_query($query_insert)or die("Cannot execute query \"$query_insert\"");
 		$last_run_st=0;
 	}
 		elseif(strcmp(date("m.Y",$last_run_st),date("m.Y",time())))
 	{
-		echo "Create first entry for this month for ".$webname."<br />";
+		//echo "Create first entry for this month for ".$webname."<br />";
 		$query_insert = "INSERT INTO $pro_mysql_acc_ftp_table (sub_domain,last_run,month,year) VALUES ('".$webname."','".time()."',".date("m",time()).",".date("Y",time()).")";
 		mysql_query($query_insert)or die("Cannot execute query \"$query_insert\"");
 	}
