@@ -2,6 +2,7 @@
 
 //require("/usr/share/dtc/shared/strings.php");
 require("$dtcshared_path/strings.php");
+require_once "$dtcshared_path/inc/paiement.php";
 
 
 function drawAdminTools_MyAccount($admin){
@@ -12,20 +13,31 @@ function drawAdminTools_MyAccount($admin){
 
 	global $cc_code_array;
 
+	$frm_start = "<form action=\"$PHP_SELF\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+";
+
 	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
 
 	$id_client = $admin["info"]["id_client"];
 
 	if($id_client != 0){
+		if($_REQUEST["action"] == "refund_myaccount"){
+			$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
+			$out .=" Please click on the button bellow to refund your account. Then,
+when paiement is done, click the refresh button.";
+			$out .= "<center><font size=\"+1\">\$".$_REQUEST["refund_amount"]."</font><br>".
+			paynowButton(0,$_REQUEST["refund_amount"]);
+			$out .= "<br><br>$frm_start<input type=\"submit\" value=\"Refresh and see my account\"></form></center>";
+			return $out;
+		}
 		$client = $admin["client"];
 		$out .=  "<b><u>Remaining money on my account:</u></b><br>
 <font size=\"+1\">\$".$client["dollar"]."</font><br><br>
 Refund my account with the following ammount:<br>
-<form action=\"$PHP_SELF\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-<input type=\"hidden\" name=\"action\" value=\"refund\">
+$frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 <input type=\"text\" name=\"refund_amount\" value=\"\">
 <input type=\"submit\" value=\"Ok\">
 </form>

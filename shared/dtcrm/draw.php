@@ -162,11 +162,15 @@ $form_start
 	$out .= "Remaining on your account: \$" . $remaining . "<br>
 Total price: \$". $fqdn_price . "<br><br>";
 	if($fqdn_price > $remaining){
+		$to_pay = $fqdn_price - $remaining;
 
+		$payButton = paynowButton($product_id,$amount);
 
 		$out .= "You currently don't have enough funds on your account. You will be
-redirected to our paiement system.<br><br>
-$form_start<input type=\"submit\" value=\"Proceed to paiement\">
+redirected to our paiement system. Please click on the button bellow
+to pay, and then click refresh button.<br><br>
+<br><br>
+$form_start<input type=\"submit\" value=\"Paiement done, let met checkout\">
 </form>";
 		return $out;
 	}
