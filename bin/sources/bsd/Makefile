@@ -6,12 +6,20 @@ COMMENT=	A hosting web GUI for admin and accounting apache/named/proftpd/qmail
 RUN_DEPENDS=	php:${PHP_PORT} \
 		${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
 		${LOCALBASE}/libexec/proftpd:${PORTSDIR}/ftp/proftpd-mysql \
-		${LOCALBASE}/libexec/apache/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql \
+		${LOCALBASE}/libexec/apache/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2 \
 		${LOCALBASE}/bin/webalizer:${PORTSDIR}/www/webalizer \
 		${QMAIL_DIR}/bin/qmail-start:${PORTSDIR}/mail/qmail
 
 PHP_PORT=${PORTSDIR}/lang/php4-dtc
 QMAIL_DIR?=	/var/qmail
+
+DTCROOT?=	www/dtc
+DTCDIR=		${PREFIX}/${DTCROOT}
+PLIST_SUB+=	DTCROOT="${DTCROOT}"
+
+.if defined(WITH_APACHE2)
+IGNORE=		Untested
+.endif
 
 NO_BUILD=	yes
 USE_MYSQL=	yes

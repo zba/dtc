@@ -88,7 +88,7 @@ cp sources/bsd/pkg-message dtc
 echo "===> Calculating package MD5 sum"
 # Make the md5 sum file in this distinfo
 BSDSUM=`md5sum "dtc-"$VERSION".tar.gz" | cut -f1 -d" "`
-SIZE=`du -b "dtc-"$VERSION".tar.gz" | cut -f1`
+SIZE=`ls -ALln "dtc-"$VERSION".tar.gz" | awk '{print $5}'`
 echo "MD5 (dtc-"$VERSION".tar.gz) = "$BSDSUM"
 SIZE (dtc-"$VERSION".tar.gz) = "$SIZE >>dtc/distinfo
 
