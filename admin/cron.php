@@ -1,16 +1,17 @@
 <?php
 
+$script_start_time = time();
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
 require_once("genfiles/genfiles.php");
 
-echo date("Y m d / H:i:s T")." Starting DTC cron job\n";
+echo date("Y m d / H:i:s T",$script_start_time)." Starting DTC cron job\n";
 // Let's see if DTC's mysql_config.php is OK and lock back the shared folder
 // and mysql_config.php to root:root
 if($conf_mysql_conf_ok=="yes" && $conf_demo_version  == "no"){
 	exec("chown root:65534 $dtcshared_path");
-        exec("chown root:65534 $dtcshared_path/mysql_config.php");
+	exec("chown root:65534 $dtcshared_path/mysql_config.php");
 }
 
 $query = "SELECT * FROM $pro_mysql_cronjob_table WHERE 1 LIMIT 1;";
@@ -76,6 +77,14 @@ function updateAllDomainsStats(){
 if(($start_stamps%(60*60))< 60*10)	updateAllDomainsStats();
 // This is each time the script is launched (all 10 minutes)
 // updateAllDomainsStats();
+
+// Re-read cronjob values as long as they could have change
+// during this long job calculation !
+$query = "SELECT * FROM $pro_mysql_cronjob_table WHERE 1 LIMIT 1;";
+$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+$num_rows = mysql_num_rows($result);
+if($num_rows != 1)	die("No data in the cronjob table !!!");
+$cronjob_table_content = mysql_fetch_array($result);
 
 ///////////////////////////////////////////////////////
 // First, see if we have to regenerate deamons files //
@@ -152,9 +161,10 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	}
 }
 
+$exec_time = $script_start_time - time();
 echo "Resetting all cron flags\n";
 $query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(),qmail_newu='no', restart_qmail='no', reload_named='no', restart_apache='no', gen_vhosts='no', gen_named='no', gen_qmail='no', gen_webalizer='no', gen_backup='no' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-echo date("Y m d / H:i:s T")." DTC cron job finished\n\n";
+echo date("Y m d / H:i:s T")." DTC cron job finished ($exec_time seconds)\n\n";
 
 ?>

@@ -7,6 +7,20 @@ $txt_mainmenu_title_useradmin = array(
 	"ru" => "Users administration",
 	"de" => "Benutzer Administration"); 
 
+$txt_mainmenu_title_client_management = array(
+	"fr" => "Gestion relation client",
+	"en" => "Client relationship management",
+	"nl" => "TRANSClient relationship management",
+	"ru" => "TRANSClient relationship management",
+	"de" => "TRANSClient relationship management"); 
+
+$txt_mainmenu_title_bandwidth_monitor = array(
+	"fr" => "Moniteur de bande passante",
+	"en" => "Bandwidth monitor",
+	"nl" => "TRANSBandwidth monitor",
+	"ru" => "TRANSBandwidth monitor",
+	"de" => "TRANSBandwidth monitor");
+
 $txt_mainmenu_title_deamonfile_generation = array(
 	"fr" => "Génération des fichiers de configuration des deamons",
 	"en" => "Daemons configuration files generation",
