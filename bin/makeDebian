@@ -50,6 +50,7 @@ cat sources/debian/control >>debian/DEBIAN/control
 # plus debian specific scripts
 cp -f sources/debian/prerm sources/debian/config sources/debian/postinst sources/debian/templates debian/DEBIAN
 cat sources/setup_mysql_db.sh >>debian/DEBIAN/postinst
+cat sources/create_chroot.sh >>debian/DEBIAN/postinst
 cat sources/configure_deamons.sh >>debian/DEBIAN/postinst
 cat sources/uninstall_deamons.sh >>debian/DEBIAN/prerm
 

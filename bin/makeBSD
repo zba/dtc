@@ -89,6 +89,7 @@ cat sources/bsd/Makefile >>dtc/Makefile
 # Create package install script
 cp sources/bsd/install.sh dtc/files/dtc-install.in
 cat sources/setup_mysql_db.sh >>dtc/files/dtc-install.in
+cat sources/create_chroot.sh >>dtc/files/dtc-install.in
 cat sources/configure_deamons.sh >>dtc/files/dtc-install.in
 chmod 644 dtc/files/dtc-install.in
 

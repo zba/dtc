@@ -59,6 +59,7 @@ chown nobody:nogroup dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/clien
 mkdir "dtc_"$VERSION"_all"
 mv dtc "dtc_"$VERSION"_all"
 cp sources/tarball/install.sh "dtc_"$VERSION"_all"
+cat sources/create_chroot.sh >>"dtc_"$VERSION"_all/install.sh"
 cat sources/setup_mysql_db.sh >>"dtc_"$VERSION"_all/install.sh"
 cat sources/configure_deamons.sh >>"dtc_"$VERSION"_all/install.sh"
 
