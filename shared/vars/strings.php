@@ -10,8 +10,8 @@ $txt_mainmenu_title_useradmin = array(
 
 $txt_mainmenu_title_client_management = array(
 	"fr" => "Gestion relation client",
-	"en" => "Client relationship management",
-	"nl" => "TRANSClient relationship management",
+	"en" => "Customer Relation Management",
+	"nl" => "Customer Relation Management",
 	"ru" => "TRANSClient relationship management",
 	"de" => "TRANSClient relationship management",
 	"es" => "Relacion de clientes para gestionar");
@@ -19,7 +19,7 @@ $txt_mainmenu_title_client_management = array(
 $txt_mainmenu_title_bandwidth_monitor = array(
 	"fr" => "Moniteur de bande passante",
 	"en" => "Bandwidth monitor",
-	"nl" => "TRANSBandwidth monitor",
+	"nl" => "Bandbreedte monitor",
 	"ru" => "TRANSBandwidth monitor",
 	"de" => "TRANSBandwidth monitor",
 	"es" => "Monitorizacion del Ancho de Banda");
@@ -223,7 +223,7 @@ $txt_path = array(
 $txt_use_text_menu = array(
 	"fr" => "Utiliser du texte pour le menu :",
 	"en" => "Use text menu:",
-	"nl" => "TRANSUse text menu:",
+	"nl" => "Gebruik tekst menu:",
 	"ru" => "TRANSUse text menu:",
 	"de" => "TRANSUse text menu:",
 	"es" => "Usar menu de texto:");
@@ -256,7 +256,7 @@ $txt_del_user = array(
 $txt_del_user_confirm = array(
 	"fr" => "Etes vous sure de voileur effacer cet utilisateur ? Ceci effacera tous ses noms de domaines, ses fichiers et ses bases de données !!!",
 	"en" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
-	"nl" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
+	"nl" => "Weet je zeker dat je deze gebruiker wilt wissen? Als je hier op JA klikt, wis je DEFINITIEF alle domeinnamen, bestanden en databases gekoppeld aan deze gebruiker !!!",
 	"ru" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
 	"de" => "Sicher das Sie diesen Benutzer löschen wollen? Alle Domains, Dateien und Datenbanken werden gelöscht",
 	"es" => "¿Estas seguro de querer eliminar este usuario? Esto borrara todos sus dominios, ficheros y bases de datos !!!");
@@ -273,7 +273,7 @@ $txt_del_user_domain = array(
 $txt_del_user_domain_confirm = array(
 	"fr" => "Etes vous sure de voileur effacer ce nom de domaine ? Ceci effacera tous les fichiers hébergés pour ce domaine !!!",
 	"en" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
-	"nl" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
+	"nl" => "Weet je zeker dat je dit domein wilt wissen? Deze actie zal het domein wissen INCLUSIEF alle bestanden op het filesysteem !!!",
 	"ru" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
 	"de" => "Sicher das Sie diese Domain löschen wollen? Alle Datein für diese Domain werden gelöscht",
 	"es" => "¿Estas seguro de querer eliminar este nombre de dominio? Esto borrara todos los ficheros de dicho dominio !!!");
@@ -374,7 +374,7 @@ $txt_your_domain_subdomain = array(
 $txt_confirurate_your_domain_name = array(
 	"fr" => "Configurer son domaine :",
 	"en" => "Configurate your domain name:",
-	"nl" => "TRANSConfigurate your domain name:",
+	"nl" => "Configureer je domein naam:",
 	"ru" => "TRANSConfigurate your domain name:",
 	"de" => "Konfiguration des Domain Namens:",
 	"es" => "Configurar tus nombres de dominio");
@@ -383,7 +383,7 @@ $txt_confirurate_your_domain_name = array(
 $txt_transfer_du = array(
 	"fr" => "Transfère et utilisation disque :",
 	"en" => "Transfer and disk usage:",
-	"nl" => "TRANSTransfere and disk usage:",
+	"nl" => "Bandbreedte en hardeschijf verbruik:",
 	"ru" => "TRANSTransfere and disk usage:",
 	"de" => "TRANSTransfere and disk usage:",
 	"es" => "Transferencia y uso de disco:");
@@ -391,7 +391,7 @@ $txt_transfer_du = array(
 $txt_transfer_this_month = array(
 	"fr" => "Transfère ce mois-ci :",
 	"en" => "Transfer this month:",
-	"nl" => "TRANSTransfer this month:",
+	"nl" => "Bandbreedte deze maand:",
 	"ru" => "TRANSTransfer this month:",
 	"de" => "TRANSTransfer this month:",
 	"es" => "Transferencia este mes:");
@@ -399,7 +399,7 @@ $txt_transfer_this_month = array(
 $txt_total_disk_usage = array(
 	"fr" => "Total de l'utilisation disque :",
 	"en" => "Total disk usage:",
-	"nl" => "TRANSTotal disk usage:",
+	"nl" => "Totale hardeschijf gebruik:",
 	"ru" => "TRANSTotal disk usage:",
 	"de" => "TRANSTotal disk usage:",
 	"es" => "Uso Total de disco:");
@@ -407,7 +407,7 @@ $txt_total_disk_usage = array(
 $txt_your_hosting_account = array(
 	"fr" => "Votre contract d'hébergement :",
 	"en" => "Your hosting account:",
-	"nl" => "TRANSYour hosting account:",
+	"nl" => "Uw hosting account:",
 	"ru" => "TRANSYour hosting account:",
 	"de" => "TRANSYour hosting account:",
 	"es" => "Tu cuenta de hosts:");
@@ -415,7 +415,7 @@ $txt_your_hosting_account = array(
 $txt_storage_space = array(
 	"fr" => "Espace disque",
 	"en" => "Storage space",
-	"nl" => "TRANSStorage space",
+	"nl" => "Opslagruimte",
 	"ru" => "TRANSStorage space",
 	"de" => "TRANSStorage space",
 	"es" => "Espacio de disco");
@@ -423,7 +423,7 @@ $txt_storage_space = array(
 $txt_allowed_data_transfer = array(
 	"fr" => "Bande passante mensuelle autorisée",
 	"en" => "Allowed bandwidth per month",
-	"nl" => "TRANSAllowed bandwidth per month",
+	"nl" => "Toegestane bandbreedte deze maand",
 	"ru" => "TRANSAllowed bandwidth per month",
 	"de" => "TRANSAllowed bandwidth per month",
 	"es" => "Ancho de Banda permitido por mes");
@@ -431,7 +431,7 @@ $txt_allowed_data_transfer = array(
 $txt_expiration_date = array(
 	"fr" => "Date d'expiration",
 	"en" => "Expiration date",
-	"nl" => "TRANSExpiration date",
+	"nl" => "Eind datum",
 	"ru" => "TRANSExpiration date",
 	"de" => "TRANSExpiration date",
 	"es" => "Fecha de caducidad");
@@ -439,7 +439,7 @@ $txt_expiration_date = array(
 $txt_upgrade_my_account_button = array(
 	"fr" => "Upgrader mon compte",
 	"en" => "Upgrade my account",
-	"nl" => "TRANSUpgrade my account",
+	"nl" => "Mijn account opwaarderen",
 	"ru" => "TRANSUpgrade my account",
 	"de" => "TRANSUpgrade my account",
 	"es" => "Actualizar mi cuenta");
@@ -447,7 +447,7 @@ $txt_upgrade_my_account_button = array(
 $txt_renew_my_account_button = array(
 	"fr" => "Renouveler mon abbonement",
 	"en" => "Renew my account",
-	"nl" => "TRANSRenew my account",
+	"nl" => "Vernieuw mijn account",
 	"ru" => "TRANSRenew my account",
 	"de" => "TRANSRenew my account",
 	"es" => "Renovar mi cuenta");
@@ -455,7 +455,7 @@ $txt_renew_my_account_button = array(
 $txt_remaining_money = array(
 	"fr" => "Argent restant sur mon compte :",
 	"en" => "Remaining money on my account:",
-	"nl" => "TRANSRemaining money on my account:",
+	"nl" => "Beschikbare tegoeden op mijn account:",
 	"ru" => "TRANSRemaining money on my account:",
 	"de" => "TRANSRemaining money on my account:",
 	"es" => "Dinero restante en mi cuenta:");
@@ -463,7 +463,7 @@ $txt_remaining_money = array(
 $txt_refund_my_account = array(
 	"fr" => "Mettre de l'argent sur mon compte :",
 	"en" => "Refund my account:",
-	"nl" => "TRANSRefund my account:",
+	"nl" => "Mijn tegoeden terugstorten::",
 	"ru" => "TRANSRefund my account:",
 	"de" => "TRANSRefund my account:",
 	"es" => "Reembolsar mi cuenta:");
@@ -471,7 +471,7 @@ $txt_refund_my_account = array(
 $txt_please_tell_if_info_not_ok = array(
 	"fr" => "Merci de nous avertir ci les informations ce-dessous n'étaient pas correct :",
 	"en" => "Please tell us if the following is not correct:",
-	"nl" => "TRANSPlease tell us if the following is not correct:",
+	"nl" => "Laat ons weten of het volgende niet correct is:",
 	"ru" => "TRANSPlease tell us if the following is not correct:",
 	"de" => "TRANSPlease tell us if the following is not correct:",
 	"es" => "Por favor, informenos si la informacion siguiente no es correcta:");
@@ -480,7 +480,7 @@ $txt_please_tell_if_info_not_ok = array(
 $txt_my_account_global_stats_title = array(
 	"fr" => "Statistiques globales de mon compte",
 	"en" => "My account global statistics",
-	"nl" => "TRANSMy account global statistics",
+	"nl" => "Mijn globale account statistieken",
 	"ru" => "TRANSMy account global statistics",
 	"de" => "TRANSMy account global statistics",
 	"es" => "Estadisticas globales de mi cuenta");
@@ -488,7 +488,7 @@ $txt_my_account_global_stats_title = array(
 $txt_total_transfered_bytes_this_month = array(
 	"fr" => "Total des données transférées ce mois-ci :",
 	"en" => "Total transfered bytes this month:",
-	"nl" => "TRANSTotal transfered bytes this month:",
+	"nl" => "Totaal verbruikte bytes deze maand:",
 	"ru" => "TRANSTotal transfered bytes this month:",
 	"de" => "TRANSTotal transfered bytes this month:",
 	"es" => "Transferencia total de bytes este mes:");
@@ -496,7 +496,7 @@ $txt_total_transfered_bytes_this_month = array(
 $txt_are_disk_usage = array(
 	"fr" => "Votre espace disque :",
 	"en" => "Your area disk usage:",
-	"nl" => "TRANSYour area disk usage:",
+	"nl" => "Je hardeschijf gebruik:",
 	"ru" => "TRANSYour area disk usage:",
 	"de" => "TRANSYour area disk usage:",
 	"es" => "Espacio de disco:");
@@ -504,7 +504,7 @@ $txt_are_disk_usage = array(
 $txt_domain_name_files = array(
 	"fr" => "Fichiers des noms de domaines :",
 	"en" => "Domain name files:",
-	"nl" => "TRANSDomain name files:",
+	"nl" => "Domeinnaam bestanden:",
 	"ru" => "TRANSDomain name files:",
 	"de" => "TRANSDomain name files:",
 	"es" => "Ficheros de nombres de dominio:");
@@ -512,7 +512,7 @@ $txt_domain_name_files = array(
 $txt_database_files = array(
 	"fr" => "Fichiers des bases de données :",
 	"en" => "Database files:",
-	"nl" => "TRANSDomain name files:",
+	"nl" => "Database bestanden:",
 	"ru" => "TRANSDomain name files:",
 	"de" => "TRANSDomain name files:",
 	"es" => "Ficheros de bases de datos:");
@@ -520,7 +520,7 @@ $txt_database_files = array(
 $txt_total_disk_usage = array(
 	"fr" => "Total de l'utilisation disque :",
 	"en" => "Total disk usage:",
-	"nl" => "TRANSTotal disk usage:",
+	"nl" => "Totaal hardeschijf gebruik:",
 	"ru" => "TRANSTotal disk usage:",
 	"de" => "TRANSTotal disk usage:",
 	"es" => "Uso total de disco:");
@@ -528,7 +528,7 @@ $txt_total_disk_usage = array(
 $txt_databases_disk_usage = array(
 	"fr" => "Utilisation disque des bases de données :",
 	"en" => "Databases disk usage:",
-	"nl" => "TRANSDatabases disk usage:",
+	"nl" => "Hardeschijf verbruik databases:",
 	"ru" => "TRANSDatabases disk usage:",
 	"de" => "TRANSDatabases disk usage:",
 	"es" => "Uso de disco de las bases de datos:");
@@ -536,7 +536,7 @@ $txt_databases_disk_usage = array(
 $txt_database_name = array(
 	"fr" => "Nom de la base de données",
 	"en" => "Database name",
-	"nl" => "TRANSDatabase name",
+	"nl" => "Database naam",
 	"ru" => "TRANSDatabase name",
 	"de" => "TRANSDatabase name",
 	"es" => "Nombre de la base de datos");
@@ -544,7 +544,7 @@ $txt_database_name = array(
 $txt_disk_usage = array(
 	"fr" => "Utilisation disque",
 	"en" => "Disk usage",
-	"nl" => "TRANSDisk usage",
+	"nl" => "Hardeschijf gebruik",
 	"ru" => "TRANSDisk usage",
 	"de" => "TRANSDisk usage",
 	"es" => "Uso de disco");
@@ -552,7 +552,7 @@ $txt_disk_usage = array(
 $txt_domain_name_trafic_du = array(
 	"fr" => "Nom de domaine, trafic et utilisation disque :",
 	"en" => "Domain name trafic and disk usage:",
-	"nl" => "TRANSDomain name trafic and disk usage:",
+	"nl" => "Domeinnaam verkeer en hardeschijf gebruik:",
 	"ru" => "TRANSDomain name trafic and disk usage:",
 	"de" => "TRANSDomain name trafic and disk usage:",
 	"es" => "Nombre de dominio, Trafico y uso de disco:");
@@ -560,7 +560,7 @@ $txt_domain_name_trafic_du = array(
 $txt_domain_name = array(
 	"fr" => "Nom de domaine",
 	"en" => "Domain name",
-	"nl" => "TRANSDomain name",
+	"nl" => "Domein naam",
 	"ru" => "TRANSDomain name",
 	"de" => "TRANSDomain name",
 	"es" => "Nombre de dominio");
@@ -568,7 +568,7 @@ $txt_domain_name = array(
 $txt_disk_usage = array(
 	"fr" => "Utilisation disque",
 	"en" => "Disk usage",
-	"nl" => "TRANSDisk usage",
+	"nl" => "Hardeschijf gebruik",
 	"ru" => "TRANSDisk usage",
 	"de" => "TRANSDisk usage",
 	"es" => "Uso de disco");
@@ -576,7 +576,7 @@ $txt_disk_usage = array(
 $txt_total_trafic = array(
 	"fr" => "Trafic total",
 	"en" => "Total trafic",
-	"nl" => "TRANSTotal trafic",
+	"nl" => "Totaal verkeer",
 	"ru" => "TRANSTotal trafic",
 	"de" => "TRANSTotal trafic",
 	"es" => "Trafico total");
@@ -611,16 +611,14 @@ The MX parameter tells the addresse of the mail server
 (the one that store all your mail when somebody sends
 your a message). The value \"default\" means that
 you want to use the current server.",
-	"nl" => "TRANSTake care ! Setting wrong value
-in the following fields can lead to the stop of
-your site services (web or mail).<br>
-Put something else than \"default\" in the DNS
-fields means that you want your site to be
-hosted elsewhere.<br>
-The MX parameter tells the addresse of the mail server
-(the one that store all your mail when somebody sends
-your a message). The value \"default\" means that
-you want to use the current server.",
+	"nl" => "PAS OP ! Verkeerd instellen van de volgende
+gegevens kan leiden tot het niet meer functioneren van uw domein diensten
+(web of e-mail).<br>
+Indien u iets anders instelt dan \"default\" in de domeinnaam velden
+betekent dat u de website of email ergens anders wilt hosten.<br>
+Het MX parameter geeft het ipadres van de mailserver weer.
+Als u hier iets anders dan \"default\" instelt, dan komt de e-mail
+niet meer op deze server aan, maar op het punt dat u aangeeft.",
 	"ru" => "Take care ! Setting wrong value
 in the following fields can lead to the stop of
 your site services (web or mail).<br>
@@ -645,7 +643,7 @@ usar el servidor actual.");
 $txt_primari_dns_ip = array(
 	"fr" => "Addresse IP du serveur DNS primaire :",
 	"en" => "IP address of the primary DNS server:",
-	"nl" => "IP address of the primary DNS server:",
+	"nl" => "IP adres van de primaire DNS server:",
 	"ru" => "IP address of the primary DNS server:",
 	"de" => "IP Addresse des primären DNS Servers:",
 	"es" => "Direccmon IP del servidor primario de DNS:");
@@ -653,7 +651,7 @@ $txt_primari_dns_ip = array(
 $txt_other_dns_ip = array(
 	"fr" => "Autres serveurs DNS :",
 	"en" => "Other DNS servers:",
-	"nl" => "Other DNS servers:",
+	"nl" => "Andere DNS servers:",
 	"ru" => "Other DNS servers:",
 	"de" => "Weitere DNS Server:",
 	"es" => "Otro servidor de DNS:");
@@ -661,7 +659,7 @@ $txt_other_dns_ip = array(
 $txt_primary_mx_server = array(
 	"fr" => "Addresse du MX primaire :",
 	"en" => "Primary MX address:",
-	"nl" => "Primary MX address:",
+	"nl" => "Primaire MX record:",
 	"ru" => "Primary MX address:",
 	"de" => "Primärer MX Adresse",
 	"es" => "Direccion primaria de MX:");
@@ -669,7 +667,7 @@ $txt_primary_mx_server = array(
 $txt_other_mx_servers = array(
 	"fr" => "Autres serveurs MX (secondaire) :",
 	"en" => "Other MX (backup) servers:",
-	"nl" => "Other MX (backup) servers:",
+	"nl" => "Andere MX (backup) servers:",
 	"ru" => "Other MX (backup) servers:",
 	"es" => "Otro servidor MX (backup):");
  
@@ -694,10 +692,10 @@ DTC).",
 Click <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 for adding this user as a mysql account (same login / pass as for DTC).",
-        "nl" => "There is no user by that name in the mysql database.
-Click <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
-for adding this user as a mysql account (same login / pass as for DTC).",
+        "nl" => "Er is geen gebruiker met die naam in de mysql database.
+Klik <a
+href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">hier</a>
+om de gebruiker toe te voegen als mysql account. (Zelfde naam / wachtwoord als voor DTC).",
         "ru" => "There is no user by that name in the mysql database.
 Click <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
@@ -715,7 +713,7 @@ para añadir este usuario como usuario mysql (la misma contraseña que para DTC)."
 $txt_mysqlmang_delete_a_db = array(
         "fr" => "Effacer l'une des bases de donnies pour cet utilisateur :",
         "en" => "Delete one of MySQL database for that user:",
-        "nl" => "Delete one of MySQL database for that user:",
+        "nl" => "Wis een van de databases voor deze gebruiker:",
         "ru" => "Delete one of MySQL database for that user:",
         "de" => "Löschen einer Datenbank für diesen Benutzer",
         "es" => "Eliminar una de las bases de datos del usuario:"
@@ -723,7 +721,7 @@ $txt_mysqlmang_delete_a_db = array(
 $txt_mysqlmang_add_a_db = array(
         "fr" => "Ajouter une base de donnie a l'utilisateur :",
         "en" => "Add a database for that user:",
-        "nl" => "Add a database for that user:",
+        "nl" => "Voeg een database toe voor deze gebruiker:",
         "ru" => "Add a database for that user:",
         "de" => "Anlegen einer Datenbank für diesen Benutzer",
         "es" => "Añadir una base de datos al usuario:"
@@ -731,7 +729,7 @@ $txt_mysqlmang_add_a_db = array(
 $txt_mysqlmang_db_name = array(
         "fr" => "Nom de la base de donnies :",
         "en" => "Database name:",
-        "nl" => "Database name:",  
+        "nl" => "Database naam:",  
         "ru" => "Database name:",
         "de" => "Datenbank name:",
         "es" => "Nombre de la base de datos:"
@@ -743,9 +741,8 @@ car celui-ci require le mot de passe root pour accider  la base de donnie.",
         "en" => "No mysql account manager in demo version (because I don't
 have root access to the MySQL
 database).",
-        "nl" => "No mysql account manager in demo version (because I don't
-have root access to the MySQL
-database).",
+        "nl" => "Geen MySQL account beheerder in demo versie (Omdat ik 
+in demo mode geen root toegang heb tot de mysql database).",
         "ru" => "No mysql account manager in demo version (because I don't
 have root access to the MySQL
 database).",
@@ -756,7 +753,7 @@ tengo acceso de root a MySQL)."
 $txt_delete_this_mysql_user_and_db = array(
 	"fr" => "Effacer l'utilisateur mysql ainsi que toutes ses bases de données",
 	"en" => "Delete the mysql user and all his databases",
-	"nl" => "Delete the mysql user and all his databases",
+	"nl" => "Wis MySQL gebruiker en al bijbehorende databases",
 	"ru" => "Delete the mysql user and all his databases",
 	"de" => "Löschen des MySQL Benutzers und all seiner Datenbanken.",
 	"es" => "Eliminar usuario mysql y todas sus bases de datos"
@@ -1047,7 +1044,7 @@ $txt_ftp_account_edit = array(
 $txt_ftp_new_account_link = array(
 	"fr" => "Nouveau compte ftp",
 	"en" => "New ftp account",
-	"nl" => "New ftp account",
+	"nl" => "Nieuw ftp account",
 	"ru" => "îÏ×ÙÊ æôð ÁËËÁÕÎÔ",
 	"de" => "Neuer FTP Account",
 	"es" => "Nueva cuenta de ftp"
@@ -1059,7 +1056,7 @@ $txt_ftp_new_account_link = array(
 $txt_new_password = array(
 	"fr" => "Nouveau compte ftp",
 	"en" => "New ftp account",
-	"nl" => "New ftp account",
+	"nl" => "Nieuw ftp account",
 	"ru" => "îÏ×ÙÊ æôð ÁËËÁÕÎÔ",
 	"es" => "Nueva cuenta de ftp"
 );
@@ -1074,7 +1071,7 @@ $txt_title_database_form = array(
 $txt_title_help_form = array(
 	"fr" => "Aide en ligne de DTC",
 	"en" => "Online DTC help",
-	"nl" => "Online DTC help",
+	"nl" => "On-line DTC help",
 	"ru" => "ïÎÌÁÊÎ ÐÏÍÏÝØ DTC",
 	"es" => "Ayuda en linea para DTC"
 );
