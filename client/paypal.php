@@ -24,11 +24,8 @@ $fp = fsockopen ($paypal_server_hostname, 80, $errno, $errstr, 30);
 // assign posted variables to local variables
 $item_name = $_POST['item_name'];
 $item_number = $_POST['item_number'];
-$payment_status = $_POST['payment_status'];
 $payment_amount = $_POST['mc_gross'];
 $payment_currency = $_POST['mc_currency'];
-$txn_id = $_POST['txn_id'];
-$receiver_email = $_POST['receiver_email'];
 $payer_email = $_POST['payer_email'];
 
 if (!$fp) {
@@ -51,14 +48,6 @@ if (!$fp) {
 			}
 			if($_POST["payment_currency"] != "USD"){
 				die("Incorrect currency!");
-			}
-			$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$item_number';";
-			$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-			$n = mysql_num_rows($r);
-			if($n != 1)	die("Cannot reselect payid!");
-			$a = mysql_fetch_array($r);
-			if($_POST["payment_amount"] < $a["refund_amount"]){
-				die("Incorrect amount!");
 			}
 			validatePaiement($item_number,$_POST["payment_amount"],"online","paypal",$txn_id);
 		}
