@@ -139,6 +139,33 @@ then
 fi
 
 echo ""
+echo "Where is located your courier config path (ie /etc/courier) ?"
+echo -n "courier config path [/etc/courier]: "
+read PATH_COURIER_CONF_PATH
+if [ "$PATH_COURIER_CONF_PATH" = "" ];
+then
+	PATH_COURIER_CONF_PATH="/etc/courier"
+fi
+
+echo ""
+echo "Where is located your courier config path ?"
+echo -n "courier config path [/etc/courier]: "
+read PATH_COURIER_CONF_PATH
+if [ "$PATH_COURIER_CONF_PATH" = "" ];
+then
+	PATH_COURIER_CONF_PATH="/etc/courier"
+fi
+
+echo ""
+echo "Where is located your dovecot.conf ?"
+echo -n "Dovecot control path [/etc/dovecot.conf]: "
+read PATH_DOVECOT_CONF
+if [ "$PATH_DOVECOT_CONF" = "" ];
+then
+	PATH_DOVECOT_CONF="/etc/dovecot.conf"
+fi
+
+echo ""
 echo "Where is located your proftpd.conf ?"
 echo -n "Proftpd control path [/etc/proftpd.conf]: "
 read PATH_PROFTPD_CONF
@@ -211,6 +238,8 @@ echo "DTC pass: "$conf_adm_pass
 echo "httpd.conf: "$PATH_HTTPD_CONF
 echo "named.conf: "$PATH_NAMED_CONF
 echo "proftpd.conf: "$PATH_PROFTPD_CONF
+echo "dovecot.conf: "$PATH_DOVECOT_CONF
+echo "Courier config path: "$PATH_COURIER_CONF_PATH
 echo "postfix/main.cf: "$PATH_POSTFIX_CONF
 echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI

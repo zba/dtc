@@ -136,10 +136,10 @@ if($cronjob_table_content["restart_qmail"] == "yes"){
 	system("killall -HUP qmail-send");
 	echo "Reloading postfix\n";
 	system("/etc/init.d/postfix reload");
-//	echo "Restarting qmail\n";
-//	system("/etc/init.d/qmail stop");
-//	sleep(2);
-//	system("/etc/init.d/qmail start");
+	echo "Restarting qmail\n";
+	system("/etc/init.d/qmail stop");
+	sleep(2);
+	system("/etc/init.d/qmail start");
 }
 
 // Check if pop is running, restart qmail if not

@@ -51,6 +51,36 @@ then
 fi
 
 #
+# uninstall courier config details
+#
+
+echo "===> Uninstalling inclusion from courier authdaemonrc"
+if grep "Configured by DTC" $PATH_COURIER_CONF_PATH/authdaemonrc
+then
+	start_line=`grep -n "Configured by DTC" $PATH_COURIER_CONF_PATH/authdaemonrc | cut -d":" -f1`
+	end_line=`grep -n "End of DTC configuration" $PATH_COURIER_CONF_PATH/authdaemonrc| cut -d":" -f1`
+	nbr_line=`cat $PATH_COURIER_CONF_PATH/authdaemonrc | wc -l`
+	cat $PATH_COURIER_CONF_PATH/authdaemonrc | head -n $(($start_line - 1 )) >/tmp/DTC_uninstall.courier.conf
+	cat $PATH_COURIER_CONF_PATH/authdaemonrc | tail -n $(($nbr_line - $end_line )) >>/tmp/DTC_uninstall.courier.conf
+	cp -f $PATH_COURIER_CONF_PATH/authdaemonrc $PATH_COURIER_CONF_PATH/authdaemonrc.DTC.removed
+	mv /tmp/DTC_uninstall.courier.conf $PATH_COURIER_CONF_PATH/authdaemonrc
+fi
+#
+# uninstall dovecot.conf
+#
+
+echo "===> Uninstalling inclusion from dovecot.conf"
+if grep "Configured by DTC" $PATH_DOVECOT_CONF
+then
+	start_line=`grep -n "Configured by DTC" $PATH_DOVECOT_CONF | cut -d":" -f1`
+	end_line=`grep -n "End of DTC configuration" $PATH_DOVECOT_CONF| cut -d":" -f1`
+	nbr_line=`cat $PATH_DOVECOT_CONF | wc -l`
+	cat $PATH_DOVECOT_CONF | head -n $(($start_line - 1 )) >/tmp/DTC_uninstall.dovecot.conf
+	cat $PATH_DOVECOT_CONF | tail -n $(($nbr_line - $end_line )) >>/tmp/DTC_uninstall.dovecot.conf
+	cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.removed
+	mv /tmp/DTC_uninstall.dovecot.conf $PATH_DOVECOT_CONF
+fi
+#
 # uninstall proftpd.conf
 #
 

@@ -113,6 +113,8 @@ echo "### DEAMON PATH CONFIGURATION ###"
 PATH_HTTPD_CONF=/etc/httpd/conf/httpd.conf
 PATH_NAMED_CONF=/etc/named.conf
 PATH_PROFTPD_CONF=/etc/proftpd.conf
+PATH_DOVECOT_CONF=/etc/dovecot.conf
+PATH_COURIER_CONF_PATH=/etc/courier
 PATH_POSTFIX_CONF=/etc/postfix/main.cf
 PATH_QMAIL_CTRL=/var/qmail/control
 PATH_PHP_CGI=/usr/bin/php
@@ -142,6 +144,8 @@ echo "DTC pass: "$conf_adm_pass
 echo "httpd.conf: "$PATH_HTTPD_CONF
 echo "named.conf: "$PATH_NAMED_CONF
 echo "proftpd.conf: "$PATH_PROFTPD_CONF
+echo "dovecot.conf: "$PATH_DOVECOT_CONF
+echo "Courier config path: "$PATH_COURIER_CONF_PATH
 echo "postfix/main.cf: "$PATH_POSTFIX_CONF
 echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI

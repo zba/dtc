@@ -49,6 +49,7 @@
 //                 ["http"]
 //                 ["smtp"]
 //                 ["pop"]
+//                 ["imap"]
 //                 ["total_transfer"]
 // ["total_http"]
 // ["total_ftp"]
@@ -471,9 +472,10 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 
 	$total_http_transfer = fetchHTTPInfo($webname);
 	$total_ftp_transfer = fetchFTPInfo($webname);
-	$total_smtp_transfer = fetchPOPInfo($webname);
-	$total_pop_transfer = fetchSMTPInfo($webname);
-	$total_transfer = smartByte($total_http_transfer + $total_ftp_transfer + $total_smtp_transfer + $total_pop_transfer);
+	$total_pop_transfer = fetchPOPInfo($webname);
+	$total_imap_transfer = fetchIMAPInfo($webname);
+	$total_smtp_transfer = fetchSMTPInfo($webname);
+	$total_transfer = smartByte($total_http_transfer + $total_ftp_transfer + $total_smtp_transfer + $total_pop_transfer + $total_imap_transfer);
 
 	return "<b><u>".$txt_your_domain[$lang]."</u></b><br><br>
 	<font size=\"-1\">
@@ -1101,7 +1103,7 @@ function drawAdminTools_AdminStats($admin){
 
 	$out .= "<br><br><u><b>".$txt_domain_name_trafic_du[$lang]."</b></u>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
-	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td><td><b>POP3</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>".$txt_total_trafic[$lang]."</b></td></tr>";
+	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td><td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>".$txt_total_trafic[$lang]."</b></td></tr>";
 	for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
 		if($ad % 2){
 			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\"";
@@ -1112,6 +1114,7 @@ function drawAdminTools_AdminStats($admin){
 		$out .= "<td$bgcolor>".$stats["domains"][$ad]["name"]."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["du"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["pop"])."</td>";
+		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["imap"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["smtp"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["ftp"])."</td>";
 		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["http"])."</td>";
@@ -1154,7 +1157,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 		$ftp_amount = 0;
 
 //	sum_email($eddomain["name"]);
-    $q = "SELECT smtp_trafic,pop_trafic FROM $pro_mysql_acc_email_table WHERE domain_name='".$eddomain["name"]."'
+    $q = "SELECT smtp_trafic,pop_trafic,imap_trafic FROM $pro_mysql_acc_email_table WHERE domain_name='".$eddomain["name"]."'
 	AND month='".date("m")."' AND year='".date("Y")."'";
     $r = mysql_query($q) or die("Cannot execute query \"$q\" !".mysql_error().
 	" line ".__LINE__." file ".__FILE__);
@@ -1162,16 +1165,19 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	if($num_rows > 0){
 	    $smtp_trafic = mysql_result($r,0,"smtp_trafic");
 	    $pop_trafic = mysql_result($r,0,"pop_trafic");
+	    $imap_trafic = mysql_result($r,0,"imap_trafic");
 	}else{
 		$smtp_trafic = 0;
-	    $pop_trafic = 0;
+		$pop_trafic = 0;
+		$imap_trafic = 0;
 	}
 	$out .= "<u><b>".$txt_total_transfered_bytes_this_month[$lang]."</b></u>";
 	$out .= "<br>HTTP: ".smartByte($http_amount);
 	$out .= "<br>FTP:  ".smartByte($ftp_amount);
 	$out .= "<br>SMTP:  ".smartByte($smtp_trafic);
 	$out .= "<br>POP3:  ".smartByte($pop_trafic);
-	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount + $pop_trafic + $smtp_trafic);
+	$out .= "<br>IMAP:  ".smartByte($imap_trafic);
+	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount + $pop_trafic + $smtp_trafic + $imap_trafic);
 
 	$out .= "<br><br><b><u>".$txt_stats_http_subdom[$lang]."</u></b><br>";
 	for($i=0;$i<sizeof($eddomain["subdomains"]);$i++){

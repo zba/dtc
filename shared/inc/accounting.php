@@ -42,6 +42,20 @@ function fetchSMTPInfo($webname){
 	return $total_smtp_amount;
 }
 
+function fetchIMAPInfo($webname){
+	global $pro_mysql_acc_email_table;
+	$q = "SELECT imap_trafic AS transfer FROM $pro_mysql_acc_email_table WHERE domain_name='".$webname."'
+	AND month='".date("n")."' AND year='".date("Y")."';";
+	$r = mysql_query($q) or die("Cannot execute query \"$q\" !".
+	mysql_error()." line ".__LINE__." file ".__FILE__);
+	if(mysql_num_rows($r) < 1)
+		$total_imap_amount = 0;
+	else
+		$total_imap_amount = mysql_result($r,0,"transfer");
+
+	return $total_imap_amount;
+}
+
 function fetchPOPInfo($webname){
 	global $pro_mysql_acc_email_table;
 	$q = "SELECT pop_trafic AS transfer FROM $pro_mysql_acc_email_table WHERE domain_name='".$webname."'
@@ -92,12 +106,26 @@ function sum_email($webname){
 
 	if($pop_bytes == "" || $pop_bytes == NULL)	$pop_bytes = 0;
 
+	// Sum the imap trafic of all mailboxs of the domain
+	$query = "SELECT SUM(imap_transfered_bytes) AS amount FROM $pro_mysql_pop_table
+	WHERE mbox_host='$webname';";
+	$result = mysql_query($query)or die("Cannot execute query: \"$query\" !".
+		mysql_error()." line ".__LINE__." file ".__FILE__);
+	$imap_bytes = mysql_result($result,0,"amount");
+
+	if($imap_bytes == "" || $imap_bytes == NULL)	$imap_bytes = 0;
+
 	// Zero all pop trafic of the domain mailboxs
 	$query = "UPDATE $pro_mysql_pop_table SET pop3_transfered_bytes='0' WHERE mbox_host='$webname';";
 	$result = mysql_query($query)or die("Cannot execute query: \"$query\" !".
 		mysql_error()." line ".__LINE__." file ".__FILE__);
 
-//	$email_traffic = $pop_bytes + $smtp_bytes;
+	// Zero all imap trafic of the domain mailboxs
+	$query = "UPDATE $pro_mysql_pop_table SET imap_transfered_bytes='0' WHERE mbox_host='$webname';";
+	$result = mysql_query($query)or die("Cannot execute query: \"$query\" !".
+		mysql_error()." line ".__LINE__." file ".__FILE__);
+
+//	$email_traffic = $pop_bytes + $smtp_bytes + $imap_bytes;
 
 	// Check if there is a record for current month
 	$query = "SELECT * FROM $pro_mysql_acc_email_table WHERE
@@ -106,13 +134,13 @@ function sum_email($webname){
 		mysql_error()." line ".__LINE__." file ".__FILE__);
 	if(mysql_num_rows($result)==1){
 		$query = "UPDATE $pro_mysql_acc_email_table set
-		smtp_trafic=smtp_trafic+$smtp_bytes,pop_trafic=pop_trafic+$pop_bytes
+		smtp_trafic=smtp_trafic+$smtp_bytes,pop_trafic=pop_trafic+$pop_bytes,imap_trafic=imap_trafic+$imap_bytes
 		WHERE month=".$current_month." AND year=".$current_year." AND domain_name='".$webname."';";
 		mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
 	}else{
 		mysql_select_db($conf_mysql_db);
-		$query = "INSERT INTO $pro_mysql_acc_email_table (smtp_trafic,pop_trafic,month,year,domain_name)
-		VALUES ('$smtp_bytes','$pop_bytes','$current_month','$current_year','$webname')";
+		$query = "INSERT INTO $pro_mysql_acc_email_table (smtp_trafic,pop_trafic,imap_trafic,month,year,domain_name)
+		VALUES ('$smtp_bytes','$pop_bytes','$imap_bytes','$current_month','$current_year','$webname')";
 		mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
 	}
 }

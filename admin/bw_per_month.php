@@ -96,7 +96,7 @@ AND year='$year' AND month='$month';";
 					$tr_tbl[$m] += $a4["transfer"];
 				}
 
-				$q4 = "SELECT smtp_trafic,pop_trafic FROM $pro_mysql_acc_email_table
+				$q4 = "SELECT smtp_trafic,pop_trafic,imap_trafic FROM $pro_mysql_acc_email_table
 WHERE domain_name='".$a2["name"]."'
 AND year='$year' AND month='$month';";
 				$r4 = mysql_query($q4)or die("Cannot query $q4 in ".__FILE__." line ".__LINE__);
@@ -105,6 +105,7 @@ AND year='$year' AND month='$month';";
 					$a4 = mysql_fetch_array($r4);
 					$tr_tbl[$m] += $a4["smtp_trafic"];
 					$tr_tbl[$m] += $a4["pop_trafic"];
+					$tr_tbl[$m] += $a4["imap_trafic"];
 				}
 			}
 		}

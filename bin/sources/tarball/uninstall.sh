@@ -45,6 +45,24 @@ then
 fi
 
 echo ""
+echo "Where is located your courier config ?"
+echo -n "courier config path [/etc/courier]: "
+read PATH_COURIER_CONF_PATH
+if [ "$PATH_COURIER_CONF_PATH" = "" ];
+then
+	PATH_COURIER_CONF_PATH="/etc/courier"
+fi
+
+echo ""
+echo "Where is located your dovecot.conf ?"
+echo -n "dovecot control path [/etc/dovecot.conf]: "
+read PATH_DOVECOT_CONF
+if [ "$PATH_DOVECOT_CONF" = "" ];
+then
+	PATH_DOVECOT_CONF="/etc/dovecot.conf"
+fi
+
+echo ""
 echo "Where is located your qmail control directory ?"
 echo -n "Qmail control path [/var/qmail/control]: "
 read PATH_QMAIL_CTRL

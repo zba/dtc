@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS pop_access (
   localdeliver varchar(10) NOT NULL default 'yes',
   pop3_login_count int(9) NOT NULL default '0',
   pop3_transfered_bytes int(14) NOT NULL default '0',
+  imap_login_count int(9) NOT NULL default '0',
+  imap_transfered_bytes int(14) NOT NULL default '0',
   last_login int(14) NOT NULL default '0',
   PRIMARY KEY  (id,mbox_host)
 ) TYPE=MyISAM

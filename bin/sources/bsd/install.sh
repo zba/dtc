@@ -144,6 +144,8 @@ then
 	cp ${LOCALBASE}/etc/proftpd.conf.default ${LOCALBASE}/etc/proftpd.conf
 fi
 PATH_PROFTPD_CONF="${LOCALBASE}/etc/proftpd.conf"
+PATH_DOVECOT_CONF="${LOCALBASE}/etc/dovecot.conf"
+PATH_COURIER_CONF_PATH="${LOCALBASE}/etc/courier"
 PATH_POSTFIX_CONF="${LOCALBASE}/etc/postfix/main.cf"
 PATH_QMAIL_CTRL="${QMAIL_DIR}/control"
 PATH_PHP_CGI="${LOCALBASE}/bin/php"
@@ -174,6 +176,8 @@ echo "DTC pass: "$conf_adm_pass
 echo "httpd.conf: "$PATH_HTTPD_CONF
 echo "named.conf: "$PATH_NAMED_CONF
 echo "proftpd.conf: "$PATH_PROFTPD_CONF
+echo "dovecot.conf: "$PATH_DOVECOT_CONF
+echo "Courier authdaemonrc: "$PATH_COURIER_CONF_PATH
 echo "postfix/main.cf: "$PATH_POSTFIX_CONF
 echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI

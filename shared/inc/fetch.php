@@ -119,21 +119,24 @@ function fetchAdminStats($admin){
 		}
 
 		// Email accounting
-		$q = "SELECT smtp_trafic,pop_trafic FROM $pro_mysql_acc_email_table
+		$q = "SELECT smtp_trafic,pop_trafic,imap_trafic FROM $pro_mysql_acc_email_table
 		WHERE domain_name='$domain_name' AND month='".date("m")."' AND year='".date("Y")."'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
 		$num_rows = mysql_num_rows($r);
 		if($num_rows == 1){
 			$smtp_bytes = mysql_result($r,0,"smtp_trafic");
 			$pop_bytes = mysql_result($r,0,"pop_trafic");
+			$imap_bytes = mysql_result($r,0,"imap_trafic");
 		}else{
 			$smtp_bytes = 0;
 			$pop_bytes = 0;
+			$imap_bytes = 0;
 		}
-		$email_bytes = $smtp_bytes + $pop_bytes;
+		$email_bytes = $smtp_bytes + $pop_bytes + $imap_bytes;
 		$ret["total_email"] += $email_bytes;
 		$ret["domains"][$ad]["smtp"] = $smtp_bytes;
 		$ret["domains"][$ad]["pop"] = $pop_bytes;
+		$ret["domains"][$ad]["imap"] = $imap_bytes;
 
 		$ret["domains"][$ad]["total_transfer"] += $rez_http + $rez_ftp + $email_bytes;
 		$ret["total_transfer"] += $rez_http + $rez_ftp + $email_bytes;

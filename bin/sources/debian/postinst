@@ -24,6 +24,8 @@ PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
 PATH_PHP_CGI="/usr/bin/php4"
 PATH_PROFTPD_CONF=/etc/proftpd.conf
+PATH_DOVECOT_CONF=/etc/dovecot.conf
+PATH_COURIER_CONF_PATH=/etc/courier
 PATH_POSTFIX_CONF=/etc/postfix/main.cf
 PATH_DTC_SHARED=/usr/share/dtc
 
@@ -113,10 +115,10 @@ fi
 if [ -e /usr/bin/pear ]
 then
 	echo "Checking pear installation"
-	pear upgrade Console_Getopt
-	pear upgrade-all
-	pear install Crypt_CBC
-	pear install Auth_SASL
+	pear upgrade Console_Getopt | echo
+	pear upgrade-all | echo
+	pear install Crypt_CBC | echo
+	pear install Auth_SASL | echo
 fi
 
 # Changing root password of mysql

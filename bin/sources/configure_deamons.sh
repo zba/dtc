@@ -37,29 +37,29 @@ TMP_FILE=/tmp/DTC_install.httpd.conf
 echo "===> Modifying httpd.conf"
 
 # need to see if we can use the modules-config or apacheconfig tools
-# HTTPD_MODULES_CONFIG=`which apacheconfig`
+HTTPD_MODULES_CONFIG=`which apacheconfig`
+#echo "Using $HTTPD_MODULES_CONFIG"
 
-# check if modules-config exists
-# HTTPD_MODULES_CONFIG=`which modules-config`
+# if apacheconfig is a symlink (deprecated), then use modules-config instead
+if [ -L $HTTPD_MODULES_CONFIG ] || ! [ -f $HTTPD_MODULES_CONFIG ]
+then
+	# check if modules-config exists
+	HTTPD_MODULES_CONFIG=`which modules-config`
+	#echo "Using $HTTPD_MODULES_CONFIG"
+	if [ -f $HTTPD_MODULES_CONFIG ]
+	then
+		HTTPD_MODULES_CONFIG="$HTTPD_MODULES_CONFIG apache"
+	else
+		HTTPD_MODULES_CONFIG=""
+	fi
+fi
 
 # check to see if our apacheconfig has been obseleted
 if [ "$HTTPD_MODULES_CONFIG" = "" ]
 then
 	echo "Not using modules-config tool"
 else
-	if $HTTPD_MODULES_CONFIG | grep deprecated
-	then
-		if [ -f $HTTPD_MODULES_CONFIG ]
-		then
-			HTTPD_MODULES_CONFIG=`which modules-config`
-			echo "Using $HTTPD_MODULES_CONFIG to configure apache modules"
-			HTTPD_MODULES_CONFIG="$HTTPD_MODULES_CONFIG apache"
-		else
-			HTTPD_MODULES_CONFIG=""
-		fi
-	else
-		HTTPD_MODULES_CONFIG=""
-	fi
+	echo "Using $HTTPD_MODULES_CONFIG to configure apache modules"
 fi
 
 
@@ -132,7 +132,7 @@ else
 			fi
 		fi
 	else
-		echo $HTTPD_MODULES_CONFIG enable php4_module
+		#echo $HTTPD_MODULES_CONFIG enable php4_module
 		$HTTPD_MODULES_CONFIG enable php4_module
 		echo " enabled by $HTTPD_MODULES_CONFIG"
 	fi
@@ -332,6 +332,90 @@ fi
 
 
 #
+# Install courier mysql authenticaion
+#
+if [ -f $PATH_COURIER_CONF_PATH/authdaemonrc ]
+then
+	echo "===> Adding directives to Courier authdaemonrc"
+	if grep "Configured by DTC" $PATH_COURIER_CONF_PATH/authdaemonrc
+	then
+		echo "authdaemonrc has been configure before: skipping include insertion !"
+	else
+		echo "Inserting DTC configuration inside "$PATH_COURIER_CONF_PATH/authdaemonrc
+		if ! [ -f $PATH_COURIER_CONF_PATH.DTC.backup ]
+		then
+			cp -f $PATH_COURIER_CONF_PATH/authdaemonrc $PATH_COURIER_CONF_PATH.DTC.backup
+		fi
+		echo "# Configured by DTC v0.12 : Please don't touch this line !" >/tmp/DTC_config_courier.conf
+		echo "authmodulelist=\"authmysql authpam\"" >>/tmp/DTC_config_courier.conf
+		echo "# End of DTC configuration v0.12 : please don't touch this line !" >>/tmp/DTC_config_courier.conf
+		# now append this to the existing configuration file
+		cat </tmp/DTC_config_courier.conf >> $PATH_COURIER_CONF_PATH/authdaemonrc
+		rm /tmp/DTC_config_courier.conf
+		echo "
+# DB details for dtc mysql DB
+MYSQL_SERVER		$conf_mysql_host
+MYSQL_PORT		3306
+MYSQL_DATABASE		$conf_mysql_db
+MYSQL_USERNAME		$conf_mysql_login
+MYSQL_PASSWORD		$conf_mysql_pass
+MYSQL_USER_TABLE        pop_access
+MYSQL_LOGIN_FIELD       id
+MYSQL_CRYPT_PWFIELD     crypt
+MYSQL_HOME_FIELD        home
+MYSQL_UID_FIELD         uid
+MYSQL_GID_FIELD         gid
+MYSQL_DEFAULT_DOMAIN    new.tusker.net
+
+# use the experimental query
+MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt,  uid, gid, passwd, home, '', quota_size, ''  FROM pop_access  WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
+
+" > $PATH_COURIER_CONF_PATH/authmysqlrc
+	fi	
+fi
+
+#
+# Install dovecot mysql authenticaion
+#
+if [ -f $PATH_DOVECOT_CONF ]
+then
+	echo "===> Adding directives to dovecot.conf"
+	if grep "Configured by DTC" $PATH_DOVECOT_CONF
+	then
+		echo "dovecot.conf has been configure before: skipping include insertion !"
+	else
+		echo "Inserting DTC configuration inside "$PATH_DOVECOT_CONF
+		if ! [ -f $PATH_DOVECOT_CONF.DTC.backup ]
+		then
+			cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
+		fi
+		echo "# Configured by DTC v0.12 : Please don't touch this line !" >/tmp/DTC_config_dovecot.conf
+		echo "auth_userdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >>/tmp/DTC_config_dovecot.conf
+		echo "auth_passdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >>/tmp/DTC_config_dovecot.conf
+		echo "# End of DTC configuration v0.12 : please don't touch this line !" >>/tmp/DTC_config_dovecot.conf
+		# now append this to the existing configuration file
+		cat </tmp/DTC_config_dovecot.conf >> $PATH_DOVECOT_CONF
+		rm /tmp/DTC_config_dovecot.conf
+		echo "
+# DB details for dtc mysql DB
+db_host = $conf_mysql_host
+db_port = 3306
+db_unix_socket = /var/run/mysqld/mysqld.sock
+db = $conf_mysql_db
+db_user = $conf_mysql_login
+db_passwd = $conf_mysql_pass
+db_client_flags = 0
+
+default_pass_scheme = CRYPT
+password_query = SELECT crypt FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
+user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
+" > $PATH_DTC_ETC/dovecot-mysql.conf
+	fi	
+fi
+
+
+
+#
 # Install proftpd.conf to access to the database
 #
 echo "===> Adding directives to proftpd.conf"
@@ -348,6 +432,7 @@ else
 # This directive is not used anymore in newer version of proftpd
 #	echo "#UserReverseDNS	off" >>/tmp/DTC_config_proftpd.conf
 	echo "IdentLookups	off" >>/tmp/DTC_config_proftpd.conf
+	echo "DefaultRoot	~" >>/tmp/DTC_config_proftpd.conf
 	echo "SQLAuthenticate	on" >>/tmp/DTC_config_proftpd.conf
 	echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >>/tmp/DTC_config_proftpd.conf
 	echo "SQLAuthTypes	Plaintext" >>/tmp/DTC_config_proftpd.conf

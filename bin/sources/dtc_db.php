@@ -164,6 +164,7 @@ $dtc_database = array(
 			"domain_name" => "varchar(128) NOT NULL ",
 			"smtp_trafic" => "int(14) unsigned NOT NULL default '0' ",
 			"pop_trafic" => "int(14) unsigned NOT NULL default '0' ",
+			"imap_trafic" => "int(14) unsigned NOT NULL default '0' ",
 			"month" => "int(2) NOT NULL default '0' ",
 			"year" => "int(4) NOT NULL default '0' "
 			),
@@ -353,6 +354,8 @@ $dtc_database = array(
 			"localdeliver" => "varchar(10) NOT NULL default 'yes' ",
 			"pop3_login_count" => "int(9) NOT NULL default '0' ",
 			"pop3_transfered_bytes" => "int(14) NOT NULL default '0' ",
+			"imap_login_count" => "int(9) NOT NULL default '0' ",
+			"imap_transfered_bytes" => "int(14) NOT NULL default '0' ",
 			"last_login" => "int(14) NOT NULL default '0' "
 			),
 		"keys" => array(
