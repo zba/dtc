@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Welcome to the DTC install maker !
 # This will produce the tarball package
