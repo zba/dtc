@@ -143,11 +143,16 @@ function DTCRMshowClientCommands($cid){
 		$text .= "<tr>
 <td $color>".$row2["name"]."</td>
 <td $color>".$row["domain_name"]."</td>
-<td $color>".$row["price"]."</td>
-<td $color>".$row["quantity"]."</td>
-<td $color><input type=\"text\" size=\"10\" name=\"cmd_date\" value=\"".$row["date"]."\"></td>
+<td $color><form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"cmd_id\" value=\"".$row["id"]."\">
+<input type=\"hidden\" name=\"id\" value=\"".$_REQUEST["id"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+<input type=\"text\" size=\"5\" name=\"price\" value=\"".$row["price"]."\"></td>
+<td $color><input type=\"text\" size=\"5\" name=\"quantity\" value=\"".$row["quantity"]."\"></td>
+<td $color><input type=\"hidden\" name=\"action\" value=\"modify_client_cmd\">
+<input type=\"text\" size=\"10\" name=\"cmd_date\" value=\"".$row["date"]."\"></td>
 <td $color><input type=\"text\" size=\"10\" name=\"cmd_expir\" value=\"".$row["expir"]."\"></td>
-<td><input type=\"submit\" name=\"ed_command\" value=\"Save\"><input type=\"submit\" name=\"del_command\" value=\"Del\"></td>
+<td $color><input type=\"submit\" name=\"ed_command\" value=\"Save\"><input type=\"submit\" name=\"del_command\" value=\"Del\"></td></form>
 	</tr>";
 	}
 	$text .= "</table>";
@@ -155,6 +160,7 @@ function DTCRMshowClientCommands($cid){
 	$text .= "<br><br><form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"rub\" value=\"crm\">
 <input type=\"hidden\" name=\"id\" value=\"$cid\">
+<input type=\"hidden\" name=\"action\" value=\"add_cmd_to_client\">
 <select name=\"add_new_command\">";
 	$query = "SELECT * FROM $pro_mysql_product_table ORDER BY name";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error);
@@ -163,7 +169,6 @@ function DTCRMshowClientCommands($cid){
 		$row = mysql_fetch_array($result);
 		$text .= "<option value=\"".$row["id"]."\">".$row["name"]."</option>";
 	}
-
 	$text .= "</select><br>
 Domain name:<input type=\"text\" name=\"add_newcmd_domain_name\" value=\"\"><input type=\"submit\" value=\"Add\">
 </form>";

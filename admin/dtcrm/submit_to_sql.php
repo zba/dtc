@@ -4,6 +4,23 @@ if($_REQUEST["rub"] == "crm"){
 //////////////////////////////////
 // Client (new/edit) management //
 //////////////////////////////////
+if($_REQUEST["action"] == "modify_client_cmd"){
+	if($_REQUEST["ed_command"] == "Save"){
+// cmd_id=1&id=1&rub=crm&action=modify_client_cmd&
+// cmd_date=2004-06-10&cmd_expir=2005-06-10&ed_command=Save
+		$q = "UPDATE $pro_mysql_command_table SET WHERE id_client='".."';";
+	}
+	if($_REQUEST["del_commad"] == "Del"){
+	}
+}
+if($_REQUEST["action"] == "add_admin_to_client"){
+	$q = "UPDATE $pro_mysql_admin_table SET id_client='".$_REQUEST["id"]."' WHERE adm_login='".$_REQUEST["adm_name"]."';";
+	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+}
+if($_REQUEST["action"] == "remove_admin_from_client"){
+	$q = "UPDATE $pro_mysql_admin_table SET id_client='0' WHERE adm_login='".$_REQUEST["adm_name"]."';";
+	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+}
 //id=0&action=new_client&ed_familyname=&ed_christname=&ed_is_copany=yes&ed_company_name=&ed_addr1=&ed_addr2=&ed_addr3=
 //&ed_city=&ed_zipcode=&ed_state=&ed_country=AF&ed_phone=&ed_fax=&ed_email=&ed_special_note=&ed_dollar=&
 //ed_disk_quota_mb=&ed_gw_quota_per_month_gb=
@@ -24,7 +41,7 @@ disk_quota_mb,bw_quota_per_month_gb
 '".$_REQUEST["ed_country"]."','".$_REQUEST["ed_phone"]."','".$_REQUEST["ed_fax"]."',
 '".$_REQUEST["ed_email"]."','".$_REQUEST["ed_special_note"]."','".$_REQUEST["ed_dollar"]."',
 '".$_REQUEST["ed_disk_quota_mb"]."','".$_REQUEST["ed_bw_quota_per_month_gb"]."');";
-	$r = mysql_query($q)or die("Cannot query: \"$q\" !!!".mysql_error());
+	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 }
 
 //id=0&action=new_client&ed_familyname=&ed_christname=&ed_is_copany=yes&ed_company_name=&ed_addr1=&ed_addr2=&ed_addr3=
@@ -51,7 +68,24 @@ dollar='".$_REQUEST["ed_dollar"]."',
 disk_quota_mb='".$_REQUEST["ed_disk_quota_mb"]."',
 bw_quota_per_month_gb='".$_REQUEST["ed_bw_quota_per_month_gb"]."'
 WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
-	$r = mysql_query($q)or die("Cannot query: \"$q\" !!!".mysql_error());
+	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+}
+if($_REQUEST["action"] == "add_cmd_to_client"){
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["add_new_command"]."';";
+	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1)	die("Product ID not found!!!");
+	$a = mysql_fetch_array($r);
+	$exp = explode("-",$a["period"]);
+	$d = 60*60*24;
+	$m = $d*365/12;
+	$y = $d*365;
+	$exp_date = date("Y-m-d",time() + $y*$exp[0] + $m*$exp[1] + $d*$exp[3] );
+	$q = "INSERT INTO $pro_mysql_command_table (id,
+id_client,domain_name,quantity,price_devise,price,paiement_method,date,expir,product_id
+)VALUES('','".$_REQUEST["id"]."','".$_REQUEST["add_newcmd_domain_name"]."','1','USD','".$a["price_dollar"]."','free','".date("Y-m-d")."','$exp_date','".$_REQUEST["add_new_command"]."');";
+	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+//	print_r($q);
 }
 
 }
