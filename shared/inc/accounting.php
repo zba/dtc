@@ -1,3 +1,4 @@
+
 <?
 
 function mysql_table_exists($dbname,$tableName){
@@ -188,13 +189,12 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 						}
 						fclose($handle);
 						echo "Calculating webalizer stats for ".$month."_".$year."\n";
-						$webalizer_cmd = "webalizer -n $vhost.$domain -o $dump_path";
+						$webalizer_cmd = "webalizer -n $vhost.$domain -o $dump_path $dump_file_name";
 						echo "$webalizer_cmd\n";
 						exec ($webalizer_cmd);
 						$tar_cmd = "bzip2 ".$dump_file_name;
 						echo $tar_cmd."\n";
 						exec ($tar_cmd);
-//						unlink($dump_file_name);
 						check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
 					}
 					//check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
