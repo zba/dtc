@@ -25,6 +25,7 @@ rm -rf debian/usr/share/dtc/shared/mysql_config.php
 mkdir -p debian/usr/share/doc/dtc
 mkdir -p debian/usr/share/dtc/shared/imgcache
 cp -rf ../doc/* debian/usr/share/doc/dtc
+rm debian/usr/share/doc/dtc/LICENSE debian/usr/share/doc/dtc/INSTALL
 gzip -9 debian/usr/share/doc/dtc/changelog
 
 # Store DTC's package name and version in the control file

@@ -37,7 +37,7 @@ then
 fi
 
 # Host configuration
-cur_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
+# cur_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
 echo "### YOUR SERVER CONFIGURATION ###"
 echo ""
 echo "Please enter the main domain name you will use."
@@ -61,12 +61,12 @@ fi
 
 echo ""
 echo "I need now your host information for apache !"
-echo -n "What is your IP addresse ? ["$cur_ip_addr"]: "
+echo -n "What is your IP addresse ? [ 127.0.0.1 ]: "
 read conf_ip_addr
 
 if [ $conf_ip_addr == ""];
 then
-	conf_ip_addr=$cur_ip_addr
+	conf_ip_addr="127.0.0.1"
 fi
 
 echo ""
