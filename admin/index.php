@@ -173,7 +173,7 @@ case monitor: // Monitor button
 	
 case generate: // Gen Config Files
 	$the_page[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
-	$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"95\"></iframe>";
+	$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
 	$the_page[] = skin($conf_skin,$the_iframe,"Deamons states");
 	// The console
 	$the_page[] = skinConsole();

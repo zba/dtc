@@ -61,6 +61,9 @@ function drawAdminTools_DomainDNS($admin,$eddomain){
 			$domain_dns_mx_conf_form .= "<tr><td></td><td><input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".$other_mx[$z]."\"></td></tr>";
 		}
 //	}
+
+	$domain_dns_mx_conf_form .= "<tr><td>Domain root TXT record:</td><td><input type=\"text\" name=\"txt_root_entry\" value=\"".$eddomain["txt_root_entry"]."\"></td></tr>";
+	$domain_dns_mx_conf_form .= "<tr><td>Domain root TXT record2:</td><td><input type=\"text\" name=\"txt_root_entry2\" value=\"".$eddomain["txt_root_entry2"]."\"></td></tr>";
 	$domain_dns_mx_conf_form .= "<tr><td></td><td><input type=\"submit\" name=\"new_dns_and_mx_config\" value=\"Ok\"></form></td></tr></table>";
 
 	return "<b><u>".$txt_confirurate_your_domain_name[$lang]."</b></u><br><br>

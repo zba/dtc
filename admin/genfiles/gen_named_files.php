@@ -56,10 +56,12 @@ function get_remote_ns_domains(){
 				$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
 				$r2 = mysql_query($q2)or die("Cannot query $q2 ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
 				$console .= "ok!<br>";
+				$flag = true;
 			}else{
 				$console .= "failed!<br>";
 			}
-		}else{
+		}
+		if($flag == false){
 			$console = "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
 			$fp = fopen($f,"r");
 			fseek($fp,0,SEEK_END);
@@ -161,6 +163,9 @@ function named_generate(){
 				$MX_number += 5;
 			}
 		}
+		
+		$root_txt_record = $row["txt_root_entry"];
+		$root_txt_record2 = $row["txt_root_entry2"];
 
 		$web_extention = substr($web_name,-strpos(strrev($web_name),'.'));
 
@@ -213,6 +218,8 @@ function named_generate(){
 $more_dns_server
 @	IN	MX	5	$thisdomain_mx1.
 $more_mx_server
+@	IN	TXT	\"$root_txt_record\"
+@	IN	TXT	\"$root_txt_record2\"
 	IN	A	$ip_to_write
 ";
 		// Add all subdomains to it !
@@ -237,6 +244,9 @@ $more_mx_server
 				$is_list_subdomain_set = yes;
 			}
 			$this_site_file .= "$web_subname	IN	A	$the_ip_writed\n";
+			if($subdomain["associated_txt_record"] != ""){
+				$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
+			}
 		}
 		if( $is_pop_subdomain_set != yes){
 			$this_site_file .= "pop	IN	A	$ip_to_write\n";
@@ -264,29 +274,7 @@ $more_mx_server
 		}
 	}
 
-/*	// Get all domains for wich we will act as backup NS
-	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
-	$r = mysql_query($q)or die("Cannot query $q ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
-	$n = mysql_num_rows($r);
-	for($i=0;$i<$n;$i++){
-		$flag = false;
-		$retry = 0;
-		$a = mysql_fetch_array($r);
-		while($retry < 3 && $flag == false){
-			$lines = file ($a["server_addr"].'/dtc/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"]);
-			$nline = sizeof($lines);
-			if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
-				strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
-				for($j=0;$j<$nline;$j++){
-					$named_file .= $lines[$j];
-				}
-				$flag = true;
-			}
-			$retry++;
-			if($flag == false)	sleep(5);
-		}
-	}
-*/	$named_file .= get_remote_ns_domains();
+	$named_file .= get_remote_ns_domains();
 
 	// Write of the master zone file
 	$filep = fopen("$conf_generated_file_path/$conf_named_path", "w+");

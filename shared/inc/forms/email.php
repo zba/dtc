@@ -45,9 +45,6 @@ function drawImportedMail($mailbox){
 		case "HOTMAIL":
 			$hotmail_selected = " selected ";
 			break;
-		case "YAHOO":
-			$yahoo_selected = " selected ";
-			break;
 		case "GMAIL":
 			$yahoo_selected = " selected ";
 		default:
@@ -58,7 +55,6 @@ function drawImportedMail($mailbox){
 			<option value=\"IMAP4\"$imap4_selected>IMAP4</option>
 			<option value=\"MSN\"$msn_selected>MSN</option>
 			<option value=\"HOTMAIL\"$hotmail_selected>HOTMAIL</option>
-			<option value=\"YAHOO\"$yahoo_selected>YAHOO</option>
 			<option value=\"GMAIL\"$yahoo_selected>GMAIL</option></select>";
 		if($a[""] == "yes"){
 			$useit = "";
@@ -81,7 +77,6 @@ function drawImportedMail($mailbox){
 			<option value=\"IMAP4\">IMAP4</option>
 			<option value=\"MSN\">MSN</option>
 			<option value=\"HOTMAIL\">HOTMAIL</option>
-			<option value=\"YAHOO\">YAHOO</option>
 			<option value=\"GMAIL\">GMAIL</option>
 		</select></td>
 		<td><input type=\"text\" name=\"server_addr\" value=\"\"></td>

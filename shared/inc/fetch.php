@@ -273,6 +273,8 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 		$domain["whois"] = $row["whois"];
 		$domain["hosting"] = $row["hosting"];
 		$domain["gen_unresolved_domain_alias"] = $row["gen_unresolved_domain_alias"];
+		$domain["txt_root_entry"] = $row["txt_root_entry"];
+		$domain["txt_root_entry2"] = $row["txt_root_entry2"];
 
 		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$name';";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
@@ -293,6 +295,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$subdomain["w3_alias"] = $row2["w3_alias"];
 			$subdomain["register_globals"] = $row2["register_globals"];
 			$subdomain["webalizer_generate"] = $row2["webalizer_generate"];
+			$subdomain["associated_txt_record"] = $row2["associated_txt_record"];
 			$subs[] = $subdomain;
 		}
 		$domain["subdomains"] = $subs;
@@ -329,7 +332,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 //                                         ["w3_alias"]
 //                                         ["register_globals"]
 //                                         ["webalizer_generate"]
-
+//                                         ["associated_txt_record"]
 // Now Can add emails to all thoses domains !
 		$query4 = "SELECT * FROM $pro_mysql_pop_table WHERE mbox_host='$name' ORDER BY id LIMIT 800;";
 		$result4 = mysql_query ($query4)or die("Cannot execute query \"$query4\"");
@@ -382,6 +385,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 //                                         ["w3_alias"]
 //                                         ["register_globals"]
 //                                         ["webalizer_generate"]
+//                                         ["associated_txt_record"]
 //                      ["emails"][0-n]["id"]
 //                                     ["uid"]
 //                                     ["gid"]

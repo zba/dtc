@@ -1527,6 +1527,18 @@ $txt_subdom_list = array(
 	"zh" => "ÇøÓòÃûµ¥: ",
 	"es" => "Lista de subdominios: "
 );
+
+$txt_subdom_txtrec = array(
+	"fr" => "Champ TXT du sousdomaine : ",
+	"en" => "TXT field of the subdomain: ",
+	"it" => "TRANS TXT field of the subdomain: ",
+	"nl" => "TRANS TXT field of the subdomain: ",
+	"ru" => "TRANS TXT field of the subdomain: ",
+	"de" => "TRANS TXT field of the subdomain: ",
+	"zh" => "TRANS TXT field of the subdomain: ",
+	"es" => "TRANS TXT field of the subdomain: "
+);
+
 $txt_subdom_default_sub = array(
 	"fr" => "Sous-domaine par défaut : ",
 	"en" => "Default subdomain: ",

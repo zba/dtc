@@ -1,4 +1,12 @@
 V0.17.0-R2
+DTC now has support for TXT records. 2 root records
+and one record per subdomains.
+
+The backup MX/NS is now capable of using cache file when
+generating domain lists even when the remote is down and
+there is a domain listing update pending (little bug in
+behavior found). (thomas)
+
 The installer does not happend some new lines to the config
 files anymore (Damien)
 

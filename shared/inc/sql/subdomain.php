@@ -57,14 +57,14 @@ if($_REQUEST["edit_one_subdomain"] == "Ok"){
 	}else{
 		$add_vals .= ", login=NULL, pass=NULL ";
 	}
-	$domupdate_query = "UPDATE $pro_mysql_subdomain_table SET ip='".$_REQUEST["newsubdomain_ip"]."'$add_vals WHERE domain_name='$edit_domain' AND subdomain_name='".$_REQUEST["subdomain_name"]."' LIMIT 1;";
-	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
+	$domupdate_query = "UPDATE $pro_mysql_subdomain_table SET ip='".$_REQUEST["newsubdomain_ip"]."'$add_vals,
+	associated_txt_record='".addslashes($_REQUEST["associated_txt_record"])."' WHERE domain_name='$edit_domain' AND subdomain_name='".$_REQUEST["subdomain_name"]."' LIMIT 1;";
+	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named='yes'");
 }
 /////////////////////////////////////////////////////
 if($_REQUEST["newsubdomain"] == "Ok"){
-
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	// This can be added : it's a mater of the admin's choice...
@@ -118,7 +118,7 @@ if($_REQUEST["newsubdomain"] == "Ok"){
 		$add_field = "";
 		$add_values = "";
 	}
-	$adm_query = "INSERT INTO $pro_mysql_subdomain_table (id,domain_name,subdomain_name,ip".$add_field.") VALUES ('','$edit_domain','".$_REQUEST["newsubdomain_name"]."','$newsubdomain_ip'".$add_values.");";
+	$adm_query = "INSERT INTO $pro_mysql_subdomain_table (id,domain_name,subdomain_name,associated_txt_record,ip".$add_field.") VALUES ('','$edit_domain','".$_REQUEST["newsubdomain_name"]."','".addslashes($_REQUEST["associated_txt_record"])."','$newsubdomain_ip'".$add_values.");";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
         // Create the new site html front page

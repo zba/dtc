@@ -26,6 +26,7 @@ function drawAdminTools_Subdomain($domain){
 	global $txt_subdom_limit_reach;
 
 	global $txt_subdom_newname;
+	global $txt_subdom_txtrec;
 	global $txt_subdom_dynip_logpass;
 	global $txt_subdom_dynip_logpass;
 	global $txt_subdom_dynip_login;
@@ -70,6 +71,7 @@ function drawAdminTools_Subdomain($domain){
 			$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
 			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
 			$register_globals_to_edit = $subdomains[$i]["register_globals"];
+			$txt_rec = $subdomains[$i]["associated_txt_record"];
 		}else{
 		}
 		$txt .= "<a href=\"http://$sub.$webname\" target=\"_blank\">";
@@ -154,7 +156,10 @@ function drawAdminTools_Subdomain($domain){
 		// Allow creation of new sub-domains
 		if($nbr_subdomain < $max_subdomain){
 			$txt .= "<tr><td align=\"right\">".$txt_subdom_newname[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_name\" value=\"\"></td><td></td></tr>";
-			$txt .= "<tr><td align=\"right\">".$txt_subdom_ip[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_ip\" value=\"\"></td>";
+			$txt .= "<tr><td colspan=\"3\">";
+			$txt .= $txt_subdom_ip[$lang]."</td></tr>";
+			$txt .= "<tr><td align=\"right\">IP:</td><td><input type=\"text\" name=\"newsubdomain_ip\" value=\"\"></td>";
+			$txt .= "<tr><td align=\"right\">".$txt_subdom_txtrec[$lang]."</td><td><input type=\"text\" name=\"associated_txt_record\" value=\"\">";
 			$txt .= "<tr><td colspan=\"3\">";
 			$txt .= $txt_subdom_dynip_logpass[$lang]."</td></tr>";
 			$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_login[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_dynlogin\" value=\"\"></td></tr>";
@@ -197,8 +202,12 @@ No<input type=\"radio\" name=\"webalizer\" value=\"no\" $checked_no></td></tr>";
 		$txt .= "<tr><td align=\"right\">".$txt_subdom_wwwalias[$lang].$_REQUEST["edit_a_subdomain"]." alias:</td>";
 		$txt .= "<td>Yes<input type=\"radio\" name=\"w3_alias\" value=\"yes\" $checked_yes>
 No<input type=\"radio\" name=\"w3_alias\" value=\"no\" $checked_no></td></tr>";
-		$txt .= "<tr><td align=\"right\">".$txt_subdom_ip[$lang]."</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
+		$txt .= "<tr><td colspan=\"3\">";
+		$txt .= $txt_subdom_ip[$lang]."</td></tr>";
+		
+		$txt .= "<tr><td align=\"right\">IP:</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
 		<input type=\"hidden\" name=\"edit_a_subdomain\" value=\"".$_REQUEST["edit_a_subdomain"]."\"><input type=\"text\" name=\"newsubdomain_ip\" value=\"$ip_domain_to_edit\"></td></tr>";
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_txtrec[$lang]."</td><td><input type=\"text\" name=\"associated_txt_record\" value=\"$txt_rec\">";
 		$txt .= "<tr><td colspan=\"3\">";
 		$txt .= $txt_subdom_dynip_logpass[$lang]."</td></tr>";
 

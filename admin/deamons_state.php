@@ -134,19 +134,19 @@ function drawDeamonStates(){
  
 	$out = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"1\" id=\"skinSimpleGreen2Content\">
 <tr>
-	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Qmail restart</font></td>
+	<td align=\"center\" height=\"1\" width=\"16%\"><font color=\"#FFFFFF\">Qmail restart</font></td>
 	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Qmail-newu</font></td>
 	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Qmail gen files</font></td>
 	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Apache restart</font></td>
 	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Bind reload</font></td>
 	<td align=\"center\" width=\"17%\"><font color=\"#FFFFFF\">Next cronjob</font></td>
 </tr><tr>
-	<td align=\"center\">$state_qm_restart</td>
+	<td height=\"1\" align=\"center\">$state_qm_restart</td>
 	<td align=\"center\">$state_qm_newu</td>
 	<td align=\"center\">$state_qm_genfile</td>
 	<td align=\"center\">$state_apa_restart</td>
 	<td align=\"center\">$state_bind_reload</td>
-	<td align=\"center\">$clock</td>
+	<td align=\"center\" style\"white-space:nowrap\" nowrap>$clock</td>
 </tr></table>";
 
 	return $out;
@@ -193,6 +193,56 @@ function checkSMTP(){
 function checkFTP(){
 	global $errTxt;
 	$errTxt = "";
+
+	global $pro_mysql_ftp_table;
+
+	$q = "SELECT * FROM $pro_mysql_ftp_table WHERE 1 LIMIT 1";
+	$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said ".mysql_error());
+	$a = mysql_fetch_array($r);
+
+	$server = "localhost";
+	// echo "Checking POP3<br>";
+	if(($server_ip = gethostbynameFalse($server)) == false){
+		$errTxt = "Cannot resolv your $server SMTP server.";
+		return false;
+	}
+
+	$soc = fsockopen($server_ip,21,$erno,$errstring,10);
+	if($soc == false){
+		$errTxt = "Could not connect to SMTP server (timed out): $server";
+		return false;
+	}
+	// echo "Checking ok after connect<br>";
+	$popline = fgets($soc,1024);
+	if(!strstr($popline,"220")){
+		$errTxt = "Server did not send 220 after connect, maybe wrong server or server is down: $popline";
+		return false;
+	}
+	// echo "Sending login<br>";
+	if(!fwrite($soc,"USER ".$a["login"]."\n")){
+		$errTxt = "Could not write USER to server";
+		return false;
+	}
+	// echo "Checking ok after login<br>";
+	$popline = fgets($soc,1024);
+	if(!strstr($popline,"331")){
+		$errTxt = "Server did not send 331 after USER: $popline";
+		return false;
+	}
+	// echo "Sending pass<br>";
+	if(!fwrite($soc,"PASS ".$a["password"]."\n")){
+		$errTxt = "Could not write PASS to server";
+		return false;
+	}
+	// echo "Checking ok after login<br>";
+	$popline = fgets($soc,1024);
+	if(!strstr($popline,"230")){
+		$errTxt = "Server did not send 230 after PASS: $popline. If no ftp user, please make one!";
+		return false;
+	}
+	//echo "Closing socket<br>";
+	fclose($soc);
+
 	return true;
 }
 
@@ -239,17 +289,17 @@ function drawServerStatus(){
 	}
 
 	if(checkFTP()){
-		$ftp_status = '<font color="#00FF00">DEV TO BE DONE</font>';
+		$ftp_status = '<font color="#00FF00">OK</font>';
 	}else{
 		$ftp_status = '<font color="#FF0000">ERROR!</font>';
 	}
 
 	$out = "<br><table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" height=\"1\">
 <tr>
-	<td align=\"center\">SMTP</td>
-	<td align=\"center\">POP3</td>
-	<td align=\"center\">DNS</td>
-	<td align=\"center\">FTP</td>
+	<td width=\"25%\" align=\"center\">SMTP</td>
+	<td width=\"25%\" align=\"center\">POP3</td>
+	<td width=\"25%\" align=\"center\">DNS</td>
+	<td width=\"25%\" align=\"center\">FTP</td>
 </tr><tr>
 	<td align=\"center\">$smtp_status</td>
 	<td align=\"center\">$pop3_status</td>
