@@ -4,6 +4,8 @@
 # Written by Thomas GOIRAND <thomas@goirand.fr>
 # under LGPL Licence
 
+UNIX_TYPE=generic
+
 echo "### DEAMON PATH CONFIGURATION ###"
 
 echo ""

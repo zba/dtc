@@ -7,6 +7,8 @@
 PREFIX=$1
 WRKSRC=$2
 
+UNIX_TYPE=freebsd
+
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
 echo "###############################################################"

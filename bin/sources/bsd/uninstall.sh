@@ -4,6 +4,8 @@
 # Written by Thomas GOIRAND <thomas@goirand.fr>
 # under LGPL Licence
 
+UNIX_TYPE=freebsd
+
 echo "### DEAMON PATH CONFIGURATION ###"
 PATH_HTTPD_CONF="${PKG_PREFIX}/etc/apache/httpd.conf"
 PATH_NAMED_CONF="/etc/namedb/named.conf"

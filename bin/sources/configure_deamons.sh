@@ -32,11 +32,72 @@ else
 	then
 		cp -f "$PATH_HTTPD_CONF" "$PATH_HTTPD_CONF.DTC.backup"
 	fi
-	echo "# Configured by DTC v0.10 : please do not touch this line !" >/tmp/dtc_Temp_httpd
-	echo "Include $PATH_DTC_ETC/vhosts.conf" >>/tmp/dtc_Temp_httpd
-	touch $PATH_DTC_ETC/vhosts.conf
-	cat </tmp/dtc_Temp_httpd >>"$PATH_HTTPD_CONF"
-	rm /tmp/dtc_Temp_httpd
+	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
+	then
+		echo "User www-data -> User nobody"
+		sed "s/User www-data/User nobody/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+	if grep "Group www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
+	then
+		echo "Group www-data -> Group nogroup"
+		sed "s/Group www-data/Group nogroup/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+
+	if grep "User www" $PATH_HTTPD_CONF >/dev/null 2>&1
+	then
+		echo "User www -> User nobody"
+		sed "s/User www/User nobody/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+	if grep "Group www" $PATH_HTTPD_CONF >/dev/null 2>&1
+	then
+		echo "Group www -> Group nobody"
+		sed "s/Group www/Group nobody/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+
+	if grep "# LoadModule php4_module /usr/lib/apache/1.3/libphp4.so" $PATH_HTTPD_CONF >/dev/null 2>&1
+	then
+		echo "Activating php4 module"
+		sed "s/# LoadModule php4_module \/usr\/lib\/apache\/1.3\/libphp4.so/LoadModule php4_module \/usr\/lib\/apache\/1.3\/libphp4.so/"
+	fi
+
+	if grep "# LoadModule ssl_module /usr/lib/apache/1.3/mod_ssl.so" $HTTPD_CONF >/dev/null 2>&1
+	then
+		echo "Activating ssl module"
+		sed "s/# LoadModule ssl_module \/usr\/lib\/apache\/1.3\/mod_ssl.so/LoadModule ssl_module \/usr\/lib\/apache\/1.3\/mod_ssl.so/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+
+	if grep "AllowOverride None" $PATH_HTTPD_CONF
+	then
+		echo "AllowOverride None -> AllowOverride AuthConfig FileInfo Limit Indexes"
+		sed "s/AllowOverride None/AllowOverride AuthConfig FileInfo Limit Indexes/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+
+	echo "# Configured by DTC v0.12 : please do not touch this line !
+Include $PATH_DTC_ETC/vhosts.conf
+User nobody
+Group nogroup
+Listen 80
+Listen 443
+
+LogSQLLoginInfo localhost "$conf_mysql_login" "$conf_mysql_pass"
+LogSQLSocketFile /var/run/mysqld/mysqld.sock
+LogSQLDatabase apachelogs
+LogSQLCreateTables On
+LogSQLTransferLogFormat IAbhRrSsU
+# DTC HTTPD Config end
+# End of DTC configuration v0.12 : please don't touch this line !"
+>>$PATH_HTTPD_CONF
+	if [ -f $TMP_FILE ]
+	then
+		rm -f $TMP_FILE
+	fi
+
 fi
 
 #

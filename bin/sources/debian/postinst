@@ -16,6 +16,8 @@ fi
 
 # exit 0
 
+UNIX_TYPE=debian
+
 PATH_HTTPD_CONF=/etc/apache/httpd.conf
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail

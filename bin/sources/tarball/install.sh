@@ -3,6 +3,8 @@
 # This is the DTC's tarball interactive install configuration script
 # made by Thomas Goirand <thomas@goirand.fr>
 
+UNIX_TYPE=generic
+
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
 echo "###############################################################"

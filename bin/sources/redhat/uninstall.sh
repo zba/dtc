@@ -2,6 +2,8 @@
 # Written by Thomas GOIRAND <thomas@goirand.fr>
 # under LGPL Licence
 
+UNIX_TYPE=redhat
+
 echo "### DEAMON PATH CONFIGURATION ###"
 
 PATH_HTTPD_CONF="/usr/local/apache/httpd.conf"

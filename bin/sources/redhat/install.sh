@@ -2,6 +2,8 @@
 # This is the DTC's RPM interactive install configuration script
 # made by Thomas Goirand <thomas@goirand.fr>
 
+UNIX_TYPE=redhat
+
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
 echo "###############################################################"
