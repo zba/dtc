@@ -3,72 +3,72 @@
 $txt_mailbox_redirection_edition = array(
   "fr" => "Edition des redirections de votre boite :",
   "en" => "Edit your mailbox redirections:",
-        "it" => "TRANS Edit your mailbox redirections:",
-        "nl" => "TRANS Edit your mailbox redirections:",
-        "ru" => "TRANS Edit your mailbox redirections:",
-        "de" => "TRANS Edit your mailbox redirections:",
-        "zh" => "TRANS Edit your mailbox redirections:",
-        "es" => "TRANS Edit your mailbox redirections:");
+  "it" => "Edita i reindirizzamenti della tua mailbox:",
+  "nl" => "TRANS Edit your mailbox redirections:",
+  "ru" => "TRANS Edit your mailbox redirections:",
+  "de" => "Weiterleitung zu Ihrer Mailbox einrichten:",
+  "zh" => "TRANS±à¼­²¢×ª·¢ÄúµÄÓÊ¼ş£º",
+  "es" => "Edita las redirecciones de tu e-mail:");
 
 $txt_repeate_password = array(
   "fr" => "Répéter votre mot de passe :",
   "en" => "Repeate password:",
-        "it" => "TRANS Repeate password:",
-        "nl" => "TRANS Repeate password:",
-        "ru" => "TRANS Repeate password:",
-        "de" => "TRANS Repeate password:",
-        "zh" => "TRANS Repeate password:",
-        "es" => "TRANS Repeate password:");
+  "it" => "Ripeti la password:",
+  "nl" => "TRANS Repeate password:",
+  "ru" => "TRANS Repeate password:",
+  "de" => "Passwort wiederholen:",
+  "zh" => "ÖØ¸´ÃÜÂë£º",
+  "es" => "Repite la contraseña:");
 
 $txt_change_your_password_title = array(
   "fr" => "Changer votre mot de passe :",
   "en" => "Change your password:",
-        "it" => "TRANS Change your password:",
-        "nl" => "TRANS Change your password:",
-        "ru" => "TRANS Change your password:",
-        "de" => "TRANS Change your password:",
-        "zh" => "TRANS Change your password:",
-        "es" => "TRANS Change your password:");
+  "it" => "Cambia la tua password:",
+  "nl" => "TRANS Change your password:",
+  "ru" => "TRANS Change your password:",
+  "de" => "Passwort ändern:",
+  "zh" => "¸Ä±äÃÜÂë£º",
+  "es" => "Cambia tu contraseña");
 
 $txt_no_user_waiting = array(
   "fr" => "Pas d'utilisateur en attente !",
   "en" => "No user waiting!",
-        "it" => "TRANS No user waiting!",
-        "nl" => "TRANS No user waiting!",
-        "ru" => "TRANS No user waiting!",
-        "de" => "TRANS No user waiting!",
-        "zh" => "TRANS No user waiting!",
-        "es" => "TRANS No user waiting!");
+  "it" => "Nessun utente in attesa!",
+  "nl" => "TRANS No user waiting!",
+  "ru" => "TRANS No user waiting!",
+  "de" => "Kein Benutzer in Warteschleife",
+  "zh" => "ÎŞÓÃ»§µÈ´ı£¡",
+  "es" => "¿Ningun usuario a la espera!");
 
 $txt_no_domain_waiting = array(
   "fr" => "Pas de domaine en attente !",
   "en" => "No domain waiting!",
-        "it" => "TRANS No domain waiting!",
-        "nl" => "TRANS No domain waiting!",
-        "ru" => "TRANS No domain waiting!",
-        "de" => "TRANS No domain waiting!",
-        "zh" => "TRANS No domain waiting!",
-        "es" => "TRANS No domain waiting!");
+  "it" => "Nessun dominio in attesa!",
+  "nl" => "TRANS No domain waiting!",
+  "ru" => "TRANS No domain waiting!",
+  "de" => "Keine Domaine in Warteschleife!",
+  "zh" => "ÎŞÓòÃûµÈ´ı£¡",
+  "es" => "¡Ningun dominio esperando!");
 
 $txt_userndomain_waiting_for_addition = array(
   "fr" => "Utilisateurs et domaines en attente : ",
   "en" => "User and domain waiting for addition: ",
-        "it" => "TRANS User and domain waiting for addition: ",
-        "nl" => "TRANS User and domain waiting for addition: ",
-        "ru" => "TRANS User and domain waiting for addition: ",
-        "de" => "TRANS User and domain waiting for addition: ",
-        "zh" => "TRANS User and domain waiting for addition: ",
-        "es" => "TRANS User and domain waiting for addition: ");
+  "it" => "Utenti e domini in attesa: ",
+  "nl" => "TRANS User and domain waiting for addition: ",
+  "ru" => "TRANS User and domain waiting for addition: ",
+  "de" => "Benutzer und Domaine inn Warteschleife: ",
+  "zh" => "ÓÃ»§ºÍÓòÃûµÈ´ı£º",
+  "es" => "TRANS User and domain waiting for addition: ");
 
 $txt_add_a_new_user = array(
   "fr" => "Ajouter un nouvel utilisateur : ",
   "en" => "Add a new user: ",
-        "it" => "TRANS Add a new user: ",
-        "nl" => "TRANS Add a new user: ",
-        "ru" => "TRANS Add a new user: ",
-        "de" => "TRANS Add a new user: ",
-        "zh" => "TRANS Add a new user: ",
-        "es" => "TRANS Add a new user: ");
+  "it" => "Aggiungi un nuovo utente: ",
+  "nl" => "TRANS Add a new user: ",
+  "ru" => "TRANS Add a new user: ",
+  "de" => "Neuen Benuter hinzufügen: ",
+  "zh" => "Ìí¼ÓĞÂÓÃ»§£º",
+  "es" => "TRANS Add a new user: ");
 
 $txt_title_maillinglist_form = array(
 	"fr" => "Listes de diffusion du domaine : ",
@@ -76,7 +76,7 @@ $txt_title_maillinglist_form = array(
         "it" => "Mailling-lists del dominio: ",
         "nl" => "TRANS Mailling-lists of the domain: ",
         "ru" => "TRANS Mailling-lists of the domain: ",
-        "de" => "TRANS Mailling-lists of the domain: ",
+        "de" => "Domaine Mailing Listen: ",
         "zh" => "ÓòÃûµÄÓÊ¼şµØÖ·²¾: ",
         "es" => "TRANS Mailling-lists of the domain: "
 );
@@ -87,7 +87,7 @@ $txt_pagetop_zesubtitle = array(
         "it" => "Prendi il controllo del tuo dominio",
 	"nl" => "TRANS Take the control of your domain name",
 	"ru" => "TRANS Take the control of your domain name",
-	"de" => "TRANS Take the control of your domain name",
+	"de" => "Kontrollieren Sie Ihren Domain Name selbst",
 	"zh" => "<b>ÇáËÉ¿ØÖÆÄúµÄÓòÃû</b>",
 	"es" => "TRANS Take the control of your domain name"
 );
@@ -98,7 +98,7 @@ $txt_root_adm_title = array(
         "it" => "Domain Technologie Control : console root admin",
 	"nl" => "TRANS Domain Technologie Control : root admin console",
 	"ru" => "TRANS Domain Technologie Control : root admin console",
-	"de" => "TRANS Domain Technologie Control : root admin console",
+	"de" => "Domain Technologie Control: Root Admin Konsole",
 	"zh" => "Domain Technologie Control : ¹ÜÀíÃæ°å",
 	"es" => "Domain Technologie Control : consola de administracion para root"
 );
@@ -120,7 +120,7 @@ $txt_mainmenu_title_client_management = array(
         "it" => "Amministrazione relazioni clienti",
 	"nl" => "Customer Relation Management",
 	"ru" => "TRANSClient relationship management",
-	"de" => "TRANSClient relationship management",
+	"de" => "Client Relationship Management",
 	"zh" => "¹Ë¿Í¹ØÏµ¹ÜÀí",
 	"es" => "Relacion de clientes para gestionar");
 
@@ -130,7 +130,7 @@ $txt_client_list_title = array(
         "it" => "Lista clienti",
 	"nl" => "TRANS Customers list",
 	"ru" => "TRANS Customers list",
-	"de" => "TRANS Customers list",
+	"de" => "Kundenliste",
 	"zh" => "¹Ë¿ÍÁĞ±í",
 	"es" => "TRANS Customers list");
 
@@ -140,7 +140,7 @@ $txt_client_addr_title = array(
         "it" => "Indirizzo clienti",
 	"nl" => "TRANS Customers address",
 	"ru" => "TRANS Customers address",
-	"de" => "TRANS Customers address",
+	"de" => "Kundenadresse",
 	"zh" => "¹Ë¿ÍµØÖ·",
 	"es" => "TRANS Customers address");
 
@@ -150,7 +150,7 @@ $txt_client_admins_title = array(
         "it" => "Amministratori del cliente",
 	"nl" => "TRANS Customer's administrators",
 	"ru" => "TRANS Customer's administrators",
-	"de" => "TRANS Customer's administrators",
+	"de" => "Kunden-Administratoren",
 	"zh" => "¹Ë¿ÍµÄ¹ÜÀíÔ±",
 	"es" => "TRANS Customer's administrators");
 
@@ -160,7 +160,7 @@ $txt_client_commands_title = array(
         "it" => "Ordini del cliente",
 	"nl" => "TRANS Customer's orders",
 	"ru" => "TRANS Customer's orders",
-	"de" => "TRANS Customer's orders",
+	"de" => "Kundenbestellung",
 	"zh" => "¹Ë¿ÍµÄ¶©µ¥",
 	"es" => "TRANS Customer's orders");
 
@@ -170,7 +170,7 @@ $txt_new_customer_link = array(
         "it" => "Nuovo cliente",
 	"nl" => "TRANS New customer",
 	"ru" => "TRANS New customer",
-	"de" => "TRANS New customer",
+	"de" => "Neuer Kunde",
 	"zh" => "ĞÂ¹Ë¿Í",
 	"es" => "TRANS New customer");
 
@@ -180,7 +180,7 @@ $txt_select_a_new = array(
         "it" => "Seleziona un cliente",
 	"nl" => "TRANS Select a customer.",
 	"ru" => "TRANS Select a customer.",
-	"de" => "TRANS Select a customer.",
+	"de" => "Kunden auswählen",
 	"zh" => "Ñ¡ÔñÒ»¸ö¹Ë¿Í",
 	"es" => "TRANS Select a customer.");
 
@@ -190,7 +190,7 @@ $txt_notes = array(
         "it" => "Note:",
 	"nl" => "TRANS Notes:",
 	"ru" => "TRANS Notes:",
-	"de" => "TRANS Notes:",
+	"de" => "Bemerkungen:",
 	"zh" => "¼ÇÊÂ±¾:",
 	"es" => "TRANS Notes:");
 
@@ -200,7 +200,7 @@ $txt_money_remaining = array(
         "it" => "Denaro rimasto nell'account:",
 	"nl" => "TRANS Money remaining on account:",
 	"ru" => "TRANS Money remaining on account:",
-	"de" => "TRANS Money remaining on account:",
+	"de" => "Verbleibendes Guthaben:",
 	"zh" => "Ê£ÓàÕÊ»§×Ê½ğ:",
 	"es" => "TRANS Money remaining on account:");
 
@@ -210,7 +210,7 @@ $txt_remove_admin_from_client = array(
         "it" => "Rimuovi un amministratore per questo cliente:",
 	"nl" => "TRANS Remove an administrator for this customer:",
 	"ru" => "TRANS Remove an administrator for this customer:",
-	"de" => "TRANS Remove an administrator for this customer:",
+	"de" => "Administrator für diesen Kunden entfernen:",
 	"zh" => "¶ÔÕâ¸ö¹Ë¿ÍÈ¡Ïû¹ÜÀíÔ±:",
 	"es" => "TRANS Remove an administrator for this customer:");
 
@@ -220,7 +220,7 @@ $txt_add_admin_to_client = array(
         "it" => "Aggiungi un amministratore per questo cliente:",
 	"nl" => "TRANS Add an administrator to this customer:",
 	"ru" => "TRANS Add an administrator to this customer:",
-	"de" => "TRANS Add an administrator to this customer:",
+	"de" => "Administrator für diesen Kunden hinzufügen:",
 	"zh" => "¶ÔÕâ¸ö¹Ë¿ÍÌí¼Ó¹ÜÀíÔ±:",
 	"es" => "TRANS Add an administrator to this customer:
 ");
@@ -231,7 +231,7 @@ $txt_what = array(
         "it" => "Quale",
 	"nl" => "TRANS What",
 	"ru" => "TRANS What",
-	"de" => "TRANS What",
+	"de" => "Bezeichnung",
 	"zh" => "Ê²Ã´",
 	"es" => "TRANS What");
 
@@ -241,17 +241,17 @@ $txt_price = array(
         "it" => "Prezzo",
 	"nl" => "TRANS Price",
 	"ru" => "TRANS Price",
-	"de" => "TRANS Price",
-	"zh" => "¼ÛÇ®",
+	"de" => "Preis",
+	"zh" => "¼Û¸ñ",
 	"es" => "TRANS Price");
 
 $txt_quantity = array(
 	"fr" => "Quantité",
 	"en" => "Quantity",
-        "it" => "Quantità",
+    "it" => "Quantità",
 	"nl" => "TRANS Quantity",
 	"ru" => "TRANS Quantity",
-	"de" => "TRANS Quantity",
+	"de" => "Menge",
 	"zh" => "ÊıÁ¿",
 	"es" => "TRANS Quantity");
 
@@ -261,7 +261,7 @@ $txt_mainmenu_title_bandwidth_monitor = array(
         "it" => "Monitor della banda",
 	"nl" => "Bandbreedte monitor",
 	"ru" => "TRANSBandwidth monitor",
-	"de" => "TRANSBandwidth monitor",
+	"de" => "Bandbreitenmonitor",
 	"zh" => "ĞÅÏ¢´«Êä¼à¿Ø",
 	"es" => "Monitorizacion del Ancho de Banda");
 
@@ -271,7 +271,7 @@ $txt_customer_bw_consumption = array(
         "it" => "Consumo della banda per cliente",
 	"nl" => "TRANS Customer's bandwidth consumption",
 	"ru" => "TRANS Customer's bandwidth consumption",
-	"de" => "TRANS Customer's bandwidth consumption",
+	"de" => "Bandbreitenverbrauch",
 	"zh" => "¹Ë¿ÍµÄ´ø¿íÑ¡Ôñ",
 	"es" => "TRANS Customer's bandwidth consumption");
 
@@ -281,7 +281,7 @@ $txt_bw_quota = array(
         "it" => "Quota BW",
 	"nl" => "TRANS BW Quota",
 	"ru" => "TRANS BW Quota",
-	"de" => "TRANS BW Quota",
+	"de" => "Bandbreitenquote",
 	"zh" => "´ø¿íÏŞ¶î",
 	"es" => "TRANS BW Quota");
 
@@ -291,7 +291,7 @@ $txt_graf = array(
         "it" => "Grafica",
 	"nl" => "TRANS Graphic",
 	"ru" => "TRANS Graphic",
-	"de" => "TRANS Graphic",
+	"de" => "Graphik",
 	"zh" => "°Ù·Ö±È",
 	"es" => "TRANS Graphic");
 
@@ -301,7 +301,7 @@ $txt_server_total_bp = array(
         "it" => "Totale trasferimenti del server per account in questo mese : ",
 	"nl" => "TRANS Server total accounted transfers this month: ",
 	"ru" => "TRANS Server total accounted transfers this month: ",
-	"de" => "TRANS Server total accounted transfers this month: ",
+	"de" => "Gesamtmenge der diesen Monat auf den Server übertrangenen Daten: ",
 	"zh" => "±¾ÔÂ·şÎñÆ÷ÒÑ¼ÇÂ¼µÄ×Ü´«Êä: ",
 	"es" => "TRANS Server total accounted transfers this month: ");
 
@@ -311,7 +311,7 @@ $txt_mainmenu_title_deamonfile_generation = array(
         "it" => "Configurazione della generazione dei files di configurazione dei demoni",
 	"nl" => "Genereren van daemon configuratie files",
 	"ru" => "TRANSDaemons configuration files generation",
-	"de" => "Erzeuge Konfiguationsdatein für Daemons",
+	"de" => "Konfiguationsdateien für Daemons erstellen",
 	"zh" => "ÅäÖÃ´æµµ",
 	"es" => "Generacion de los ficheros de configuracion de los demonios");
 
@@ -331,7 +331,7 @@ $txt_icon_all_files_and_scripts = array(
         "it" => "TUTTI I FILES E GLI SCRIPTS",
 	"nl" => "Alle bestanden en scripts",
 	"ru" => "ALL FILES AND SCRIPTS",
-	"de" => "Alle Dateien und Scripte",
+	"de" => "Alle Dateien und Scripts",
 	"zh" => "ËùÓĞÎÄ¼ş",
 	"es" => "Todos los ficheros y Scripts");
 
@@ -412,7 +412,7 @@ $txt_subdom_limit_reach = array(
         "it" => "Raggiunto numero massimo sottodomini. Non puoi aggiungerne uno nuovo.",
 	"nl" => "Het maximum aantal subdomeinen is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of subdomains reach. cannot add a new subdomain",
-	"de" => "Maximale Anzahl von Subdomains erreicht. Es kann keine weitere mehr angelegt werden.",
+	"de" => "Maximale Anzahl von Subdomains erreicht. Es können keine weiteren mehr angelegt werden.",
 	"zh" => "ÏŞÖÆ¸±ÓòÃûÊı¶î",
 	"es" => "Numero maximo de subdominios alcanzados. No es posible añadir un nuevo subdominio.");
 
@@ -432,7 +432,7 @@ $txt_maxnumber_of_ftp_account_reached = array(
         "it" => "Raggiunto numero massimo di account FTP. Non puoi aggiungerne uno nuovo.",
 	"nl" => "Het maximum aantal ftp accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of ftp account reach. Cannot add a new account.",
-	"de" => "Maximale Anzahl von FTP Accounts erreicht. Es kann kein weiterer mehr angelegt werden.",
+	"de" => "Maximale Anzahl von FTP Accounts erreicht. Es können keine weiteren mehr angelegt werden.",
 	"zh" => "ÏŞÖÆftpÕÊ»§Êı¶î",
 	"es" => "Numero maximo de ftps alcanzados. No es posible añadir una cuenta nueva.");
 
@@ -462,7 +462,7 @@ $txt_maximum_mailbox_reach = array(
         "it" => "Raggiunto numero massimo mailboxes. Non puoi aggiungerne una nuova.",
 	"nl" => "Het maximum aantal e-mail accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of mailbox reach. Cannot add a new account.",
-	"de" => "Maximale Anzahl von Mailbox Accounts erreicht. Es kann kein weiterer mehr angelegt werden.",
+	"de" => "Maximale Anzahl von Mailbox Accounts erreicht. Es können keine weiteren mehr angelegt werden.",
 	"zh" => "ÏŞÖÆµç×ÓÓÊÏäÊı¶î",
 	"es" => "Numero maximo de cuentas de correo alcanzado. No es posible añadir una cuenta nueva.");
 
@@ -482,7 +482,7 @@ $txt_add_user_title = array(
         "it" => "Aggiungi un amministratore virtuale.",
 	"nl" => "Voeg een beheerder toe",
 	"ru" => "äÏÂÁ×ÉÔØ ×ÉÒÔÕÁÌØÎÏÇÏ ÁÄÍÉÎÉÓÔÒÁÔÏÒÁ",
-	"de" => "Weiteren Administrator hinzufügen",
+	"de" => "Virtuellen Administrator hinzufügen",
 	"zh" => "Ìí¼ÓĞéÄâ¹ÜÀíÈËÔ±",
 	"es" => "Añadir un administrador");
 
@@ -492,7 +492,7 @@ $txt_generate_buttons_title = array(
         "it" => "Lanciando la generazione di files di configurazione",
 	"nl" => "De configuratiebestanden generator wordt gestart",
 	"ru" => "÷ÙĞÏÌÎÅÎÉÅ ÇÅÎÅÒÁÃÉÉ ËÏÎÆÉÇÕÒÁÃÉÏÎÎÙÊ ÆÁÊÌÏ×",
-	"de" => "Erzeuge Konfigurationsdateien.",
+	"de" => "Konfigurationsdateien erstellen",
 	"zh" => "ÅäÖÃÎÄ¼şµÄÆô¶¯",
 	"es" => "Lanzando generacion de ficheros de configuracion.");
 
@@ -502,7 +502,7 @@ $txt_general_virtual_admin_edition = array(
         "it" => "Configurazione dell'amministratore virtuale <i>\"$adm_login\"</i>",
 	"nl" => "Configuratie van de beheerder <i>\"$adm_login\"</i>",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ×ÉÒÔÕÁÌØÎÏÇÏ ÁÄÍÉÎÉÓÔÒÁÔÏÒÁ <i>\"$adm_login\"</i>",
-	"de" => "Administrator bearbeiten <i>\"$adm_login\"</i> ",
+	"de" => "Virtuellen Administrator konfigurieren<i>\"$adm_login\"</i> ",
 	"zh" => "ĞéÄâ¹ÜÀíÈËÔ±ÅäÖÃ <i>\"$adm_login\"</i>",
 	"es" => "Configuracion del administrador <i>\"$adm_login\"</i>");
 
@@ -552,7 +552,7 @@ $txt_use_text_menu = array(
         "it" => "Usa menu a testo:",
 	"nl" => "Gebruik tekst menu:",
 	"ru" => "TRANSUse text menu:",
-	"de" => "TRANSUse text menu:",
+	"de" => "Textmenü verwenden:",
 	"zh" => "Ê¹ÓÃÎÄ±¾²Ëµ¥:",
 	"es" => "Usar menu de texto:");
 
@@ -602,7 +602,7 @@ $txt_del_user_confirm = array(
         "it" => "Sei sicuro di voler cancellare questo utente? In questo modo cancellerai tutti i suoi domini, files e database !!!",
 	"nl" => "Weet je zeker dat je deze gebruiker wilt wissen? Als je hier op JA klikt, wis je DEFINITIEF alle domeinnamen, bestanden en databases gekoppeld aan deze gebruiker !!!",
 	"ru" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
-	"de" => "Sicher das Sie diesen Benutzer löschen wollen? Alle Domains, Dateien und Datenbanken werden gelöscht",
+	"de" => "Sind Sie sicher, dass Sie diesen Benutzer löschen wollen? Alle Domains, Dateien und Datenbanken werden gelöscht",
 	"zh" => "ÄãÈ·ĞÅÒªÉ¾³ıÕâ¸öÓÃ»§? ÕâÏî²Ù×÷½«ÒªÉ¾³ıËùÓĞËûµÄÓòÃû£¬ÎÄ¼ş£¬ºÍÊı¾İ¿â!!!",
 	"es" => "¿Estas seguro de querer eliminar este usuario? Esto borrara todos sus dominios, ficheros y bases de datos !!!");
 
@@ -622,7 +622,7 @@ $txt_del_user_domain_confirm = array(
         "it" => "Sei sicuro di voler cancellare questo nome a dominio? In questo modo cancellerai tutti i files del dominio !!!",
 	"nl" => "Weet je zeker dat je dit domein wilt wissen? Deze actie zal het domein wissen INCLUSIEF alle bestanden op het filesysteem !!!",
 	"ru" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
-	"de" => "Sicher das Sie diese Domain löschen wollen? Alle Datein für diese Domain werden gelöscht",
+	"de" => "Sind Sie sicher, dass Sie diese Domain löschen wollen? Alle Datein für diese Domain werden gelöscht",
 	"zh" => "ÄãÈ·ĞÅÒªÉ¾³ıÕâ¸öÓòÃû? ÕâÏî²Ù×÷½«ÒªÉ¾³ıËùÓĞÎÄ¼ş!!!",
 	"es" => "¿Estas seguro de querer eliminar este nombre de dominio? Esto borrara todos los ficheros de dicho dominio !!!");
 
@@ -632,7 +632,7 @@ $txt_new_domain_for_user = array(
         "it" => "Aggiungi un dominio per questo utente:",
 	"nl" => "Voeg een gebruiker toe aan dit domein:",
 	"ru" => "äÏÂÁ×ÉÔØ ÄÏÍÅÎ ÄÌÑ ÜÔÏÇÏ ĞÏÌØÚÏ×ÁÔÅÌÑ:",
-	"de" => "Anlegen einer Domain:",
+	"de" => "Domain für diesen Benutzer hinzufügen:",
 	"zh" => "¶ÔÕâ¸öÓÃ»§Ìí¼ÓÒ»¸öÓòÃû:",
 	"es" => "Añadir un dominio para este usuario:");
 
@@ -696,7 +696,7 @@ $txt_domain_tbl_config_max_subdomain = array(
 	"ru" => "óÕÂÄÏÍÅÎÙ ÍÁËÓ",
 	"de" => "Max. Subdomains",
 	"zh" => "×î´ó¸±ÓòÃû",
-	"es" => "Max Subdomainios");
+	"es" => "Max Subdominios");
 
 $txt_domain_tbl_config_ip = array(
 	"fr" => "Adresse IP",
@@ -765,7 +765,7 @@ $txt_transfer_du = array(
 	"it" => "Trasferimento e uso disco:",
 	"nl" => "Bandbreedte en hardeschijf verbruik:",
 	"ru" => "TRANSTransfere and disk usage:",
-	"de" => "TRANSTransfere and disk usage:",
+	"de" => "Transfer und Disk Usage:",
 	"zh" => "´«ÊäÓë´ÅÅÌÊ¹ÓÃÁ¿:",
 	"es" => "Transferencia y uso de disco:");
 
@@ -775,7 +775,7 @@ $txt_transfer_this_month = array(
 	"it" => "Trasferimento per questo mese:",
 	"nl" => "Bandbreedte deze maand:",
 	"ru" => "TRANSTransfer this month:",
-	"de" => "TRANSTransfer this month:",
+	"de" => "Transfer diesen Monat:",
 	"zh" => "±¾ÔÂ´«Êä:",
 	"es" => "Transferencia este mes:");
 
@@ -785,7 +785,7 @@ $txt_transfer = array(
 	"it" => "Trasferimento",
 	"nl" => "Bandbreedte",
 	"ru" => "TRANS Transfer",
-	"de" => "TRANS Transfer",
+	"de" => "Transfer",
 	"zh" => "´«Êä:",
 	"es" => "Transferencia");
 
@@ -795,7 +795,7 @@ $txt_total_disk_usage = array(
 	"it" => "Totale uso disco",
 	"nl" => "Totale hardeschijf gebruik:",
 	"ru" => "TRANSTotal disk usage:",
-	"de" => "TRANSTotal disk usage:",
+	"de" => "Disk Usage gesamt:",
 	"zh" => "×Ü¿ÉÓÃ¿Õ¼ä:",
 	"es" => "Uso Total de disco:");
 
@@ -805,7 +805,7 @@ $txt_your_hosting_account = array(
 	"it" => "Tuo account hosting:",
 	"nl" => "Uw hosting account:",
 	"ru" => "TRANSYour hosting account:",
-	"de" => "TRANSYour hosting account:",
+	"de" => "Ihr Hosting Account:",
 	"zh" => "³ÖÓĞÕÊ»§:",
 	"es" => "Tu cuenta de hosts:");
 
@@ -815,7 +815,7 @@ $txt_storage_space = array(
 	"it" => "Spazio disco",
 	"nl" => "Opslagruimte",
 	"ru" => "TRANSStorage space",
-	"de" => "TRANSStorage space",
+	"de" => "Speicherplatz",
 	"zh" => "×Ü´ÅÅÌ¿Õ¼ä",
 	"es" => "Espacio de disco");
 
@@ -825,7 +825,7 @@ $txt_allowed_data_transfer = array(
 	"it" => "Banda disponibile per mese",
 	"nl" => "Toegestane bandbreedte deze maand",
 	"ru" => "TRANSAllowed bandwidth per month",
-	"de" => "TRANSAllowed bandwidth per month",
+	"de" => "Zulässige Bandbreite pro Monat",
 	"zh" => "Ã¿ÔÂÔÊĞí´«ÊäÊı¾İÁ¿",
 	"es" => "Ancho de Banda permitido por mes"
 );
@@ -836,7 +836,7 @@ $txt_allowed_data_transferMB = array(
 	"it" => "Banda disponibile per mese (MB):",
 	"nl" => "Toegestane bandbreedte deze maand (MB):",
 	"ru" => "TRANSAllowed bandwidth per month (MB):",
-	"de" => "TRANSAllowed bandwidth per month (MB):",
+	"de" => "Zulässige Bandbreite pro Monat (MB):",
 	"zh" => "Ã¿ÔÂÔÊĞí´«ÊäÊı¾İÁ¿ (MB):",
 	"es" => "Ancho de Banda permitido por mes (MB):"
 );
@@ -847,7 +847,7 @@ $txt_allowed_data_transferGB = array(
 	"it" => "Banda mensile rimasta (GB):",	
 	"nl" => "Toegestane bandbreedte deze maand (GB):",
 	"ru" => "TRANSAllowed bandwidth per month (GB):",
-	"de" => "TRANSAllowed bandwidth per month (GB):",
+	"de" => "Zulässige Bandbreite pro Monat (GB):",
 	"zh" => "Ã¿ÔÂÔÊĞí´«ÊäÊı¾İÁ¿ (GB):",
 	"es" => "Ancho de Banda permitido por mes (GB):"
 );
@@ -858,7 +858,7 @@ $txt_expiration_date = array(
 	"it" => "Data scadenza",
 	"nl" => "Eind datum",
 	"ru" => "TRANSExpiration date",
-	"de" => "TRANSExpiration date",
+	"de" => "Ablaufdatum",
 	"zh" => "Ğ­ÒéÖÕÖ¹ÈÕÆÚ",
 	"es" => "Fecha de caducidad");
 
@@ -868,7 +868,7 @@ $txt_date = array(
 	"it" => "Data",
 	"nl" => "Datum",
 	"ru" => "TRANSdate",
-	"de" => "TRANSdate",
+	"de" => "Datum",
 	"zh" => "ÈÕÆÚ",
 	"es" => "Fecha");
 
@@ -878,9 +878,9 @@ $txt_action = array(
 	"it" => "Azione",
 	"nl" => "TRANS Action",
 	"ru" => "TRANS Action",
-	"de" => "TRANS Action",
+	"de" => "Aktion",
 	"zh" => "³Ê½»",
-	"es" => "TRANS Action");
+	"es" => "Acción");
 
 $txt_upgrade_my_account_button = array(
 	"fr" => "Upgrader mon compte",
@@ -888,7 +888,7 @@ $txt_upgrade_my_account_button = array(
 	"it" => "Aggiorna il mio account",
 	"nl" => "Mijn account opwaarderen",
 	"ru" => "TRANSUpgrade my account",
-	"de" => "TRANSUpgrade my account",
+	"de" => "Mein Account upgraden",
 	"zh" => "¸üĞÂÔ¤¶¨",
 	"es" => "Actualizar mi cuenta");
 
@@ -898,7 +898,7 @@ $txt_renew_my_account_button = array(
 	"it" => "Rinnova il mio account",
 	"nl" => "Vernieuw mijn account",
 	"ru" => "TRANSRenew my account",
-	"de" => "TRANSRenew my account",
+	"de" => "Mein Account erneuern",
 	"zh" => "´ÓĞÂ¸ü»»Ô¤¶¨",
 	"es" => "Renovar mi cuenta");
 
@@ -908,7 +908,7 @@ $txt_remaining_money = array(
 	"it" => "Denaro rimanente nel mio account:",
 	"nl" => "Beschikbare tegoeden op mijn account:",
 	"ru" => "TRANSRemaining money on my account:",
-	"de" => "TRANSRemaining money on my account:",
+	"de" => "Verbleibendes Guthaben auf meinem Account:",
 	"zh" => "ÎÒµÄÊ£ÓàÕÊ»§×Ê½ğ:",
 	"es" => "Dinero restante en mi cuenta:");
 
@@ -918,7 +918,7 @@ $txt_refund_my_account = array(
 	"it" => "Ricarica il mio account",
 	"nl" => "Mijn tegoeden terugstorten::",
 	"ru" => "TRANSRefund my account:",
-	"de" => "TRANSRefund my account:",
+	"de" => "Guthaben auf mein Account übertragen:",
 	"zh" => "°ÑÇ®´æÔÚÎÒµÄÕÊ»§:",
 	"es" => "Reembolsar mi cuenta:");
 
@@ -928,7 +928,7 @@ $txt_please_tell_if_info_not_ok = array(
 	"it" => "Per favore informaci se le informazioni seguenti non sono corrette:",
 	"nl" => "Laat ons weten of het volgende niet correct is:",
 	"ru" => "TRANSPlease tell us if the following is not correct:",
-	"de" => "TRANSPlease tell us if the following is not correct:",
+	"de" => "Bitte informieren Sie uns, wenn die folgenden Angaben nicht korrekt sind:",
 	"zh" => "ÓÃ»§ÁªÏµµØÖ·Óë·½Ê½:",
 	"es" => "Por favor, informenos si la informacion siguiente no es correcta:");
 
@@ -939,9 +939,9 @@ $txt_my_account_global_stats_title = array(
 	"it" => "Statistiche globali del mio account",
 	"nl" => "Mijn globale account statistieken",
 	"ru" => "TRANSMy account global statistics",
-	"de" => "TRANSMy account global statistics",
+	"de" => "Gesamtübersicht über mein Account",
 	"zh" => "ÕÊ»§Í³¼Æ",
-	"es" => "Estadisticas globales de mi cuenta");
+	"es" => "Estadísticas globales de mi cuenta");
 
 $txt_total_transfered_bytes_this_month = array(
 	"fr" => "Total des données transférées ce mois-ci :",
@@ -949,7 +949,7 @@ $txt_total_transfered_bytes_this_month = array(
 	"it" => "Bytes trasferiti in totale questo mese:",
 	"nl" => "Totaal verbruikte bytes deze maand:",
 	"ru" => "TRANSTotal transfered bytes this month:",
-	"de" => "TRANSTotal transfered bytes this month:",
+	"de" => "Gesamttransfer Bytes diesen Monat:",
 	"zh" => "ÒÑ´«ÊäÊı¾İ:",
 	"es" => "Transferencia total de bytes este mes:");
 
@@ -959,9 +959,9 @@ $txt_stats_http_subdom = array(
 	"it" => "Statistiche dettagliate webalizer (HTTP) dei tuoi sottodomini:",
 	"nl" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
 	"ru" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
-	"de" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
+	"de" => "Detaillierte Webalizer Statistiken (HTTP) Ihrer Subdomaines:",
 	"zh" => "¸±ÓòÃûµÄwebalizerÍ³¼ÆÏ¸½Ú:",
-	"es" => "Estadisticas detalladas de webalizer HTTP sobre sus subdominios:"
+	"es" => "Estadísticas detalladas de webalizer HTTP sobre sus subdominios:"
 );
 
 $txt_are_disk_usage = array(
@@ -970,7 +970,7 @@ $txt_are_disk_usage = array(
 	"it" => "Tuo utilizzo disco:",
 	"nl" => "Je hardeschijf gebruik:",
 	"ru" => "TRANSYour area disk usage:",
-	"de" => "TRANSYour area disk usage:",
+	"de" => "Ihre Festplattennutzung:",
 	"zh" => "ÄúµÄ´ÅÅÌ´¢´æ¿Õ¼ä:",
 	"es" => "Espacio de disco:"
 );
@@ -981,7 +981,7 @@ $txt_domain_name_files = array(
 	"it" => "Files nome a dominio:",
 	"nl" => "Domeinnaam bestanden:",
 	"ru" => "TRANSDomain name files:",
-	"de" => "TRANSDomain name files:",
+	"de" => "Domain Name Dateien: ",
 	"zh" => "ÇøÓòÍøÖ·ÎÄ¼ş:",
 	"es" => "Ficheros de nombres de dominio:");
 
@@ -991,7 +991,7 @@ $txt_database_files = array(
 	"it" => "Files database:",
 	"nl" => "Database bestanden:",
 	"ru" => "TRANSDomain name files:",
-	"de" => "TRANSDomain name files:",
+	"de" => "Datenbanken Dateien:",
 	"zh" => "Êı¾İ¿âÎÄ¼ş:",
 	"es" => "Ficheros de bases de datos:");
 
@@ -1001,7 +1001,7 @@ $txt_total_disk_usage = array(
 	"it" => "Utilizzo disco totale:",
 	"nl" => "Totaal hardeschijf gebruik:",
 	"ru" => "TRANSTotal disk usage:",
-	"de" => "TRANSTotal disk usage:",
+	"de" => "Gesamtnutzung Festplatte:",
 	"zh" => "´ÅÅÌÔËÓÃÁ¿:",
 	"es" => "Uso total de disco:");
 
@@ -1011,7 +1011,7 @@ $txt_databases_disk_usage = array(
 	"it" => "Uso disco database:",
 	"nl" => "Hardeschijf verbruik databases:",
 	"ru" => "TRANSDatabases disk usage:",
-	"de" => "TRANSDatabases disk usage:",
+	"de" => "Datenbank Disk Usage:",
 	"zh" => "´ÅÅÌÊı¾İ¿âµÄÊ¹ÓÃ:",
 	"es" => "Uso de disco de las bases de datos:");
 
@@ -1021,7 +1021,7 @@ $txt_database_name = array(
 	"it" => "Nome database",
 	"nl" => "Database naam",
 	"ru" => "TRANSDatabase name",
-	"de" => "TRANSDatabase name",
+	"de" => "Name Datenbank",
 	"zh" => "Êı¾İ¿âµÄÃû³Æ",
 	"es" => "Nombre de la base de datos");
 
@@ -1031,7 +1031,7 @@ $txt_disk_usage = array(
 	"it" => "Uso del disco",
 	"nl" => "Hardeschijf gebruik",
 	"ru" => "TRANSDisk usage",
-	"de" => "TRANSDisk usage",
+	"de" => "Disk usage",
 	"zh" => "´ÅÅÌÎÄ¼şÔËÓÃºÍÒ»¸öÊı¾İ¿âµÄÈİÁ¿",
 	"es" => "Uso de disco");
 
@@ -1041,9 +1041,9 @@ $txt_domain_name_trafic_du = array(
 	"it" => "Traffico e utilizzo disco dominio:",
 	"nl" => "Domeinnaam verkeer en hardeschijf gebruik:",
 	"ru" => "TRANSDomain name trafic and disk usage:",
-	"de" => "TRANSDomain name trafic and disk usage:",
+	"de" => "Domain Name, Traffic und Disk Usage:",
 	"zh" => "ÇøÓòÃû£¬´«ÊäÁ¿£¬´ÅÅÌÔËÓÃ:",
-	"es" => "Nombre de dominio, Trafico y uso de disco:");
+	"es" => "Nombre de dominio, tráfico y uso de disco:");
 
 $txt_domain_name = array(
 	"fr" => "Nom de domaine",
@@ -1051,7 +1051,7 @@ $txt_domain_name = array(
 	"it" => "Nome a dominio",
 	"nl" => "Domein naam",
 	"ru" => "TRANSDomain name",
-	"de" => "TRANSDomain name",
+	"de" => "Domain Name",
 	"zh" => "ÇøÓòÃû",
 	"es" => "Nombre de dominio");
 
@@ -1061,7 +1061,7 @@ $txt_disk_usage = array(
 	"it" => "Uso disco",
 	"nl" => "Hardeschijf gebruik",
 	"ru" => "TRANSDisk usage",
-	"de" => "TRANSDisk usage",
+	"de" => "Disk Usage",
 	"zh" => "´ÅÅÌÔËÓÃ",
 	"es" => "Uso de disco");
 
@@ -1071,9 +1071,9 @@ $txt_total_trafic = array(
 	"it" => "Traffico totale",
 	"nl" => "Totaal verkeer",
 	"ru" => "TRANSTotal trafic",
-	"de" => "TRANSTotal trafic",
+	"de" => "Gesamtübertragung",
 	"zh" => "×Ü´«ÊäÁ¿",
-	"es" => "Trafico total");
+	"es" => "Tráfico total");
 
 $txt_comment_confirurate_your_domain_name = array(
 	"fr" => "Attention ! Si vous rentrez de
@@ -1125,17 +1125,11 @@ The MX parameter tells the addresse of the mail server
 (the one that stores all your mail when somebody sends
 your a message). The value \"default\" means that
 you want to use the current server.",
-	"de" => "TRANSTake care ! Setting wrong value
-in the following fields can lead to the stop of
-your site services (web or mail).<br>
-Put something else than \"default\" in the DNS
-fields means that you want your site to be
-hosted elsewhere.<br>
-The MX parameter tells the addresse of the mail server
-(the one that stores all your mail when somebody sends
-your a message). The value \"default\" means that
-you want to use the current server.",
-	"zh" => "TRANS×¢Òâ! Èç¹ûÄú°ÑÒ»Ğ©´íÎóµÄÊı¾İÊäÈë¿Õ¸ñ£¬ÄÇÃ´£¬ÄúµÄÃüÁî½«²»ÄÜÖ´ĞĞ(ÀıÈç:ÍøÖ·ºÍÊäÈëĞÅÏ¢)<br>
+	"de" => "Achtung! Wenn Sie in den folgenden Feldern falsche Angaben machen, kann dies dazu führen, dass Ihre Seite (Weg oder Mail) gestoppt wird.<br>
+Eine andere Angabe als \"default\" im DNS Feld bedeutet, dass Ihre Seite anderswo gehostet wird
+Die MX Parameter geben die Adresse des Mail SErvers an (auf dem Ihre Mails gespeichert werden, wenn Ihnen jemand eine Nachricht schickt).
+Die Angabe \"default\" bedeutet, dass Sie den aktuellen Server nutzen wollen.",
+	"zh" => "×¢Òâ! Èç¹ûÄú°ÑÒ»Ğ©´íÎóµÄÊı¾İÊäÈë¿Õ¸ñ£¬ÄÇÃ´£¬ÄúµÄÃüÁî½«²»ÄÜÖ´ĞĞ(ÀıÈç:ÍøÖ·ºÍÊäÈëĞÅÏ¢)<br>
 ÔÚDNSÖĞÊäÈëÆäËûµÄ\"default\"ÒâÎ¶×ÅÄúÏ£ÍûÄúµÄÍøÕ¾±»ÆäËûÈËÍĞ¹Ü<br>
 MX Â·¾¶¸æËßÄúÓÊ¼ş·şÎñÆ÷µÄµØÖ·£¨µ±ÓĞÈË¸øÄú·¢ËÍÓÊ¼şÊ±×Ü·şÎñÆ÷µØÖ·½«´¢´æËùÓĞÄúµÄÓÊ¼ş£©<br>
 ÔÚ¿ÕÀ¸ÖĞ±£Áô\"default\"ÒâÎ¶×ÅÄúÏ£ÍûÊ¹ÓÃµ±Ç°·şÎñÆ÷",
@@ -1143,7 +1137,7 @@ MX Â·¾¶¸æËßÄúÓÊ¼ş·şÎñÆ÷µÄµØÖ·£¨µ±ÓĞÈË¸øÄú·¢ËÍÓÊ¼şÊ±×Ü·şÎñÆ÷µØÖ·½«´¢´æËùÓĞÄúµÄÓÊ¼
 de las siguientes opciones puede hacer parar 
 sus servicios (web or mail).<br>
 Poniendo algo distinto a \"default\" en las opciones de
-DNS indica que la pagina estara alojada en otro 
+DNS indica que la página estara alojada en otro 
 sitio.<br>
 El parametro MX nos indica la direccion del servidor de 
 correp (almacena todos los correos cuando alguien envia
@@ -1158,7 +1152,7 @@ $txt_primari_dns_ip = array(
 	"ru" => "TRANSIP address of the primary DNS server:",
 	"de" => "IP Addresse des primären DNS Servers:",
 	"zh" => "µÚÒ»¸öDNS·şÎñÆ÷µÄIPµØÖ·:",
-	"es" => "Direccmon IP del servidor primario de DNS:");
+	"es" => "Dirección IP del servidor primario de DNS:");
 
 $txt_other_dns_ip = array(
 	"fr" => "Autres serveurs DNS :",
@@ -1176,9 +1170,9 @@ $txt_primary_mx_server = array(
 	"it" => "Indirizzo MX primario:",
 	"nl" => "Primaire MX record:",
 	"ru" => "Primary MX address:",
-	"de" => "Primärer MX Adresse",
+	"de" => "Primäre MX Adresse",
 	"zh" => "µÚÒ»¸öMXµØÖ·:",
-	"es" => "Direccion primaria de MX:");
+	"es" => "Dirección primaria de MX:");
 
 $txt_other_mx_servers = array(
 	"fr" => "Autres serveurs MX (secondaire) :",
@@ -1186,7 +1180,7 @@ $txt_other_mx_servers = array(
 	"it" => "Altri server MX (secondari):",
 	"nl" => "Andere MX (backup) servers:",
 	"ru" => "TRANSOther MX (backup) servers:",
-	"de" => "TRANSOther MX (backup) servers:",
+	"de" => "Weitere MX (Backup) Server:",
 	"zh" => "ÆäËûMX£¨±¸ÓÃ£©·şÎñÆ÷:",
 	"es" => "Otro servidor MX (backup):");
  
@@ -1206,8 +1200,8 @@ $txt_draw_database_chpass = array(
 	"it" => "Cambia la tua password MySql:",
 	"nl" => "TRANS Change your MySQL password:",
 	"ru" => "TRANS Change your MySQL password:",
-	"de" => "TRANS Change your MySQL password:",
-	"zh" => "TRANS Change your MySQL password:",
+	"de" => "MySQL Passwort ändern:",
+	"zh" => "¸Ä±äMySQLÃÜÂë£º",
 	"es" => "Cambiar la contraseña de MySQL:");
 
 $txt_mysqlmang_nouser_by_that_name = array(
@@ -1235,7 +1229,7 @@ om de gebruiker toe te voegen als mysql account. (Zelfde naam / wachtwoord als v
 Click <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 for adding this user as a mysql account (same login / pass as for DTC).",
- 	"de" => "Es gibt keinen Benutzer in der Datenbank mit diesem Namen.
+ 	"de" => "Es gibt keinen Benutzer mit diesem Namen in der Datenbank.
 klick <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 um einen Benutzer für MySQL anzulegen  (same login / pass as for DTC).",
@@ -1253,7 +1247,7 @@ $txt_mysqlmang_delete_a_db = array(
 	"it" => "Cancella uno dei database MySql di questo utente:",
         "nl" => "Wis een van de databases voor deze gebruiker:",
         "ru" => "Delete one of MySQL database for that user:",
-        "de" => "Löschen einer Datenbank für diesen Benutzer",
+        "de" => "Löschen einer MySQL Datenbank für diesen Benutzer",
         "zh" => "É¾³ıÆäÖĞÒ»¸öÓÃ»§¼°ÆäÊı¾İ¿â",
         "es" => "Eliminar una de las bases de datos del usuario:"
 );
@@ -1273,7 +1267,7 @@ $txt_mysqlmang_db_name = array(
 	"it" => "Nome database:",
         "nl" => "Database naam:",  
         "ru" => "Database name:",
-        "de" => "Datenbank name:",
+        "de" => "Datenbank Name:",
         "zh" => "Êı¾İ¿âÃû×Ö:",
         "es" => "Nombre de la base de datos:"
 );
@@ -1291,9 +1285,8 @@ in demo mode geen root toegang heb tot de mysql database).",
         "ru" => "TRANSNo mysql account manager in demo version (because I don't
 have root access to the MySQL
 database).",
-        "de" => "TRANSNo mysql account manager in demo version (because I don't
-have root access to the MySQL
-database).",
+        "de" => "Kein MySQL Account Manager in der Demo Version (da ich keinen Root Access zur MySQL
+Datenbank habe).",
         "zh" => "Ã»ÓĞmysqlÕÊ»§¹ÜÀíÊÔÓÃ°æ±¾£¨ÒòÎªÎÒÃ»ÓĞMySQLÊı¾İ¿âµÄroot³ÌĞò£©.",
         "es" => "Cuentas mysql no creadas en la version de demostracion (porque no
 tengo acceso de root a MySQL)."
@@ -1327,7 +1320,7 @@ $txt_draw_client_info_firstname = array(
 	"it" => "Nome:",
 	"nl" => "TRANS First name:",
 	"ru" => "TRANS First name:",
-	"de" => "TRANS First name:",
+	"de" => "Vorname:",
 	"zh" => "Ãû:",
 	"es" => "Nombre:"
 );
@@ -1338,7 +1331,7 @@ $txt_draw_client_info_familyname = array(
 	"it" => "Cognome:",
 	"nl" => "TRANSFamily name:",
 	"ru" => "TRANSFamily name:",
-	"de" => "TRANSFamily name:",
+	"de" => "Nachname:",
 	"zh" => "ĞÕ:",
 	"es" => "Apellidos:"
 );
@@ -1349,9 +1342,9 @@ $txt_draw_client_info_addr = array(
 	"it" => "Indirizzo:",
 	"nl" => "Adres:",
 	"ru" => "áÄÒÅ?",
-	"de" => "TRANSAddress:",
+	"de" => "Adresse:",
 	"zh" => "µØÖ·:",
-	"es" => "Direccion:"
+	"es" => "Dirección:"
 );
 
 $txt_draw_client_info_zipcode = array(
@@ -1360,9 +1353,9 @@ $txt_draw_client_info_zipcode = array(
 	"it" => "CAP:",
 	"nl" => "Postcode:",
 	"ru" => "éÎÄÅËÓ:",
-	"de" => "TRANSZipcode:",
+	"de" => "PLZ:",
 	"zh" => "ÓÊ±à:",
-	"es" => "Codigo postal:"
+	"es" => "Código postal:"
 );
 
 $txt_draw_client_info_country = array(
@@ -1371,7 +1364,7 @@ $txt_draw_client_info_country = array(
 	"it" => "Nazione:",
 	"nl" => "Land:",
 	"ru" => "óÔÒÁÎÁ",
-	"de" => "TRANSCountry:",
+	"de" => "Land:",
 	"zh" => "¹ú¼Ò:",
 	"es" => "Pais:"
 );
@@ -1382,7 +1375,7 @@ $txt_draw_client_info_city = array(
 	"it" => "Città:",
 	"nl" => "Woonplaats:",
 	"ru" => "çÏÒÏ:",
-	"de" => "TRANSCity:",
+	"de" => "Stadt:",
 	"zh" => "³ÇÊĞ:",
 	"es" => "Ciudad:"
 );
@@ -1393,7 +1386,7 @@ $txt_draw_client_info_state = array(
 	"it" => "Provincia:",
 	"nl" => "TRANS State:",
 	"ru" => "TRANS State:",
-	"de" => "TRANS State:",
+	"de" => "Bundesland:",
 	"zh" => "Ê¡·Ö:",
 	"es" => "Provincia:"
 );
@@ -1404,9 +1397,9 @@ $txt_draw_client_info_phone = array(
 	"it" => "Tel:",
 	"nl" => "Telefoonnummer:",
 	"ru" => "îÏÍÅÒ ÔÅÌÅÆÏÎÁ:",
-	"de" => "TRANSPhone number:",
+	"de" => "Telefon:",
 	"zh" => "µç»°ºÅÂë:",
-	"es" => "Numero de telefono:"
+	"es" => "Número de telefono:"
 );
 
 $txt_draw_client_info_fax = array(
@@ -1415,7 +1408,7 @@ $txt_draw_client_info_fax = array(
 	"it" => "Fax:",
 	"nl" => "Faxnummer:",
 	"ru" => "æÁËÓ:",
-	"de" => "TRANSFax:",
+	"de" => "Fax:",
 	"zh" => "´«Õæ:",
 	"es" => "Fax:"
 );
@@ -1426,9 +1419,9 @@ $txt_draw_client_info_email = array(
 	"it" => "E-mail:",
 	"nl" => "E-mail adres:",
 	"ru" => "ğÏŞÔÁ:",
-	"de" => "TRANSEmail:",
+	"de" => "Email:",
 	"zh" => "µç×ÓÓÊ¼ş:",
-	"es" => "Correo electronico:"
+	"es" => "Correo electrónico:"
 );
 
 $domain_conf_submenu =array(
@@ -1508,7 +1501,7 @@ $txt_title_geninfo_form = array(
 	"ru" => "ïÓÎÏ×ÎÁÑ ÉÎÆÏÒÍÁÃÉÑ ",
 	"de" => "Allgemeine Informationen",
 	"zg" => "ÖØÒªĞÅÏ¢ ",
-	"es" => "Informacion general de "
+	"es" => "Información general de "
 );
 
 ///////////////
@@ -1572,7 +1565,7 @@ $txt_subdom_newname = array(
 	"it" => "Nome sottodominio: ",
 	"nl" => "TRANSSubdomain name: ",
 	"ru" => "TRANSSubdomain name:",
-	"de" => "TRANSSubdomain name:",
+	"de" => "Subdomain Name:",
 	"zh" => "¸±ÓòÃû:",
 	"es" => "Nombre del subdominio:"
 );
@@ -1586,8 +1579,7 @@ de hosting, rentrez l'IP du serveur sinon) : ",
 hosting area, set server IP otherwise): ",
 	"ru" => "TRANS IP of the subdomain (leave blank to use default web
 hosting area, set server IP otherwise): ",
-	"de" => "TRANS IP of the subdomain (leave blank to use default web
-hosting area, set server IP otherwise): ",
+	"de" => "IP der Subdomaine (bitte freilassen zur Nutzung der Standard Web Hosting area, ansonsten geben Sie die IP des Servers an): ",
 	"zh" => "¸±ÓòÃûµÄIP (Ê¹ÓÃÔ¤ÉèÍøÒ³¹ÜÀíÇøÓò,·ñÔòÉèÖÃ·şÎñÆ÷IP): ",
 	"es" => "IP del subdominio (dejar en blanco para usar el host web
 por defecto, indicar la IP de otro servidor en cualquier otro caso): "
@@ -1610,11 +1602,9 @@ subdomain to point to it. First, enter login and password here: ",
 	"ru" => "TRANS If need it, it's possible to set your subdomain IP remotly,
 for example if you have a home connection dynamic address and you want a
 subdomain to point to it. First, enter login and password here: ",
-	"de" => "TRANS If need it, it's possible to set your subdomain IP remotly,
-for example if you have a home connection dynamic address and you want a
-subdomain to point to it. First, enter login and password here: ",
+	"de" => " Wenn benötigt kann die Suddomain IP von aussen festgelegt werden, z. B. wenn Sie eine dynamische IP haben und möchten, dass die Subdomain darauf zugreift. Dazu geben Sie Login und Passwort an: ",
 	"zh" => "¸ù¾İÄúµÄĞèÒª£¬¿ÉÒÔÒ£¿ØÉèÖÃÄúµÄ¸±ÓòÃû¡£¾Ù¸öÀı×ÓÀ´½²£¬Èç¹ûÄúÓĞÒ»¸ö¼ÒÍ¥Á¬½Ó¸Ä±äµØÖ·²¢ÇÒÏ£Íû¸±ÓòÃûÖ¸ÏòËü¡£Ê×ÏÈ£¬ÔÚÕâÀïÌîÈëµÇÂ¼ºÍÃÜÂë: ",
-	"es" => "Si es necesario, es posible es posible indicar la IP de tu subdominio remotamente, por ejemplo, si tienes una conexion con IP dinamica y quieres que un
+	"es" => "Si es necesario, es posible indicar la IP de tu subdominio remotamente, por ejemplo, si tienes una conexión con IP dinámica y quieres que un
 subdominio apunte a esta. Primero, introduce aqui el usuario y la contraseña: "
 );
 $txt_subdom_dynip_login = array(
@@ -1623,9 +1613,9 @@ $txt_subdom_dynip_login = array(
 	"it" => "Login IP dinamico: ",
 	"nl" => "TRANS Dynamic ip update login: ",
 	"ru" => "TRANS Dynamic ip update login: ",
-	"de" => "TRANS Dynamic ip update login: ",
+	"de" => "Dynamische IP Login: ",
 	"zh" => "¸Ä±äIPÉı¼¶µÇÂ¼: ",
-	"es" => "Login IP dinamica: "
+	"es" => "Login IP dinámica: "
 );
 
 $txt_subdom_dynip_pass = array(
@@ -1634,9 +1624,9 @@ $txt_subdom_dynip_pass = array(
 	"it" => "Modifica password IP dinamico: ",
 	"nl" => "TRANS Dynamic ip update password: ",
 	"ru" => "TRANS Dynamic ip update password: ",
-	"de" => "TRANS Dynamic ip update password: ",
+	"de" => "Dynamische IP Passwort: ",
 	"zh" => ":¸Ä±äIPÉı¼¶ÃÜÂë",
-	"es" => "Contraseña IP dinamica: "
+	"es" => "Contraseña IP dinámica: "
 );
 
 $txt_subdom_register_global = array(
@@ -1645,7 +1635,7 @@ $txt_subdom_register_global = array(
 	"it" => "Utilizza register_globals=1: ",
 	"nl" => "TRANS Use register_globals=1:",
 	"ru" => "TRANS Use register_globals=1:",
-	"de" => "TRANS Use register_globals=1:",
+	"de" => "Benutzerverzeichnis_globals=1:",
 	"zh" => "ÓÃ»§×¢²á_globals=1:",
 	"es" => "Usar register_globals=1:"
 );
@@ -1656,7 +1646,7 @@ $txt_subdom_edita = array(
 	"it" => "Edita un sottodominio:",
 	"nl" => "TRANS Edit a subdomain:",
 	"ru" => "TRANS Edit a subdomain:",
-	"de" => "TRANS Edit a subdomain:",
+	"de" => "Subdomain erstellen:",
 	"zh" => "±à¼­¸±ÓòÃû:",
 	"es" => "Editar un subdominio:"
 );
@@ -1667,9 +1657,9 @@ $txt_subdom_generate_webalizer = array(
 	"it" => "Genera statistiche webalizer ogni mese:",
 	"nl" => "TRANS Generate webalizer stats each months:",
 	"ru" => "TRANS Generate webalizer stats each months:",
-	"de" => "TRANS Generate webalizer stats each months:",
-	"zh" => "TRANS Generate webalizer stats each months:",
-	"es" => "TRANS Generate webalizer stats each months:"
+	"de" => "Webalizer Statistiken monatlich erstellen:",
+	"zh" => "Ã¿ÔÂ¹ÜÀíwebalizer×´Ì¬£º",
+	"es" => "Generar estadísticas webalizer mensualmente:"
 );
 
 $txt_subdom_wwwalias = array(
@@ -1678,8 +1668,8 @@ $txt_subdom_wwwalias = array(
 	"it" => "Fai un alias ",
 	"nl" => "TRANS Make an alias ",
 	"ru" => "TRANS Make an alias ",
-	"de" => "TRANS Make an alias ",
-	"zh" => "TRANS Make an alias ",
+	"de" => "Alias erstellen ",
+	"zh" => "TRANS Make an alias",
 	"es" => "Crear un alias "
 );
 $txt_subdom_scriptadvice = array(
@@ -1714,18 +1704,9 @@ system crontab (lynx-ssl is needed). Recomanded time is between
 minutes, anyway DTC will not generate a domaine zone file more
 oftently than each 10 minutes (advice: setup you server with
 network clock and do it at 9,19,29,39,49 and 59 of each hours).",
-	"de" => "TRANS Then simply add the following script to your Unix
-system crontab (lynx-ssl is needed). Recomanded time is between
-30 minutes and 2 hours. Please don't do it more than each 10
-minutes, anyway DTC will not generate a domaine zone file more
-oftently than each 10 minutes (advice: setup you server with
-network clock and do it at 9,19,29,39,49 and 59 of each hours).",
-	"zh" => "TRANS Then simply add the following script to your Unix
-system crontab (lynx-ssl is needed). Recomanded time is between
-30 minutes and 2 hours. Please don't do it more than each 10
-minutes, anyway DTC will not generate a domaine zone file more
-oftently than each 10 minutes (advice: setup you server with
-network clock and do it at 9,19,29,39,49 and 59 of each hours).",
+	"de" => "Fügen Sie einfach folgendes Script zu Ihrem Unix Crontab hinzu (lynx-ssl ist erforderlich). Die empfohlene Zeit liegt zwischen 30 Minuten und 2 Stunden. Bitte führen Sie dies nicht öfter als alle 10 Minuten durch, DTC erzeugt grundsätzlich Domain Zonendateien nur alle 10 Minuten (Tipp:synchronisieren Sie Ihren Server mit der Netzwerk-Uhrzeit und führen Sie den Vorgang jeweils um 9,19,29,39,49 und 59 jeder Stunde durch).",
+	"zh" => "È»ºóÔÚÄãµÄUnix¡¡system crontab (lynx-ssl ÊÇĞèÒªµÄ)Àï¼òµ¥µÄ¼ÓÈëÏÂÁĞ
+³ÌĞò¡£ÍÆ¼öµÄÊ±¼äÊÇ½éÓÚ£³£°·ÖÖÓµ½£²Ğ¡Ê±¡£Çë²»Òª¶àÓÚÃ¿Ê®·ÖÖÓ³¢ÊÔÒ»´Î£¬DTC½«²»Óè¹ÜÀíÓòÃûÇøÓòÎÄ¼şÈç¹û³¢ÊÔ¹ıÓÚÆµ·±£¨½¨Òé£ºÔÚÄúµÄ·şÎñÆ÷ÉÏ½¨Á¢ÍøÂçÄÖÖÓ²¢ÇÒÔÚÃ¿Ğ¡Ê±µÄ9,19,29,39,49 ºÍ 59·ÖÖÓ³¢ÊÔ¡£",
 	"es" => "Luego, simplemente añade el script siguiente al crontab
 de tu sitema Unix (lynx-ssl es necesario). El tiempo recomendado esta entre
 30 minutos y 2 horas. Por favor, no haga esto mas que cada 10
@@ -1736,12 +1717,12 @@ reloj en red y haga esto en 9,19,29,39,49 y 59 de cada hora)."
 $txt_subdom_windowsusers = array(
 	"fr" => "Les utilisateurs de windows peuvent utiliser le planificateur
 de tache de windows pour effectuer la requête suivante :",
-	"en" => "Windows user can easily automate the query of the following URL:",
+	"en" => "Windows user can easily schedule the query of the following URL:",
 	"it" => "Gli utenti Windows possono automatizzare facilmente la query del seguente URL:",
 	"nl" => "TRANS Windows user can easily automate the query of the following URL:",
 	"ru" => "TRANS Windows user can easily automate the query of the following URL:",
-	"de" => "TRANS Windows user can easily automate the query of the following URL:",
-	"zh" => "TRANS Windows user can easily automate the query of the following URL:",
+	"de" => "Windows Benutzer können eine Anfrage an der folgenden URL durchführen:",
+	"zh" => "Î¢Èí´°¿ÚÊ¹ÓÃÕß¿ÉÒÔÊ¹ÓÃÏÂÁĞURL£º",
 	"es" => "La ventana de  usuario puede automatizar fácilmente la pregunta del URL
 siguiente:"
 );
@@ -1767,7 +1748,7 @@ $txt_mail_liste_of_your_box = array(
 	"ru" => "óĞÉÓÏË ×ÁÛÉÈ ÑİÉËÏ×:",
 	"de" => "Liste Ihrer Mailboxen",
 	"zh" => "µç×ÓĞÅÏäÃûµ¥: ",
-	"es" => "Listo de tus cuentas de correo"
+	"es" => "Listado de tus cuentas de correo"
 );
 $txt_mail_new_mailbox = array(
 	"fr" => "Nouvelle boite aux lettres : ",
@@ -1816,9 +1797,9 @@ $txt_mail_deliver_localy = array(
 	"it" => "TRANS Deliver localmente: ",
 	"nl" => "TRANS Lokaal afleveren: ",
 	"ru" => "TRANS äÏÓÔÁ×ËÁ ÌÏËÁÌØÎÏ:",
-	"de" => "TRANS Lokal zustellen: ",
-	"zh" => "TRANS ±¾µØ´¢´æ: ",
-	"es" => "TRANS Enviar localmente: "
+	"de" => "Nachrichten lokal zustellen: ",
+	"zh" => "±¾µØ´¢´æ: ",
+	"es" => "Enviar mensajes localmente: "
 );
 $txt_mail_edit = array(
 	"fr" => "Edition d'une boite aux lettres: ",
@@ -1828,7 +1809,7 @@ $txt_mail_edit = array(
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ĞÏŞÔÏ×ÏÇÏ ÑİÉËÁ:",
 	"de" => "Mailbox Konfiguration",
 	"zh" => "ÓÊÏäÅäÖÃ: ",
-	"es" => "Configuracion de la cuenta de correo"
+	"es" => "Configuracion de la cuenta de correo:"
 );
 
 //////////////////
@@ -1852,7 +1833,7 @@ $txt_ftp_account_list = array(
 	"ru" => "óĞÉÓÏË ×ÁÛÉÈ æôğ ÁËËÁÕÎÔÏ×:",
 	"de" => "Liste Ihrer FTP Accounts:",
 	"zh" => "ÄúµÄFTPÕÊ»§ÁĞ±í: ",
-	"es" => "Lista de cuentas de ftp:"
+	"es" => "Listado de cuentas de ftp:"
 );
 $txt_ftp_new_account = array(
 	"fr" => "Nouveau compte FTP : ",
@@ -1894,7 +1875,7 @@ $txt_new_password = array(
 	"it" => "Nuovo account FTP",
 	"nl" => "Nieuw ftp account",
 	"ru" => "îÏ×ÙÊ æôğ ÁËËÁÕÎÔ",
-	"de" => "TRANSNew ftp account",
+	"de" => "Neuer FTP Account",
 	"zh" => "ĞÂµÄFTPÕÊ»§",
 	"es" => "Nueva cuenta de ftp"
 );
@@ -1914,15 +1895,14 @@ $txt_title_help_form = array(
 	"it" => "Aiuto in linea DTC",
 	"nl" => "On-line DTC help",
 	"ru" => "ïÎÌÁÊÎ ĞÏÍÏİØ DTC",
-	"de" => "TRANSOnline DTC help",
+	"de" => "DTC Online Hilfe",
 	"zh" => "ÔÚÏß DTC°ïÖú",
 	"es" => "Ayuda en linea para DTC"
 );
 
 $txt_draw_help_content = array(
 	"fr" => "<font face=\"Arial, Verdana\">
-<center><font size=\"+2\"><u><b>AIDE EN LIGNE DEE
-DTC</b></u></font></center><br><br>
+<center><font size=\"+2\"><u><b>AIDE EN LIGNE DE DTC</b></u></font></center><br><br>
 <div align=\"justify\">
 <font size=\"+1\"><u>1. Qu'est-ce que DTC</u></font><br><br>
 DTC est un outil fait spécialement pour vous. Avec DTC, vous
@@ -2109,8 +2089,13 @@ avons favorisé l'envois en http pour que vos pages soient affichées plus
 vite.<br><br><br>
 </div>
 <center>Pour l'équipe de GPLHost,</center><br>
-<div align=\"right\"><i><a href=\"mailto:thomas@gplhost.com\">Thomas
-GOIRAND</a></i></div><br>
+<div align=\"right\"><i><a href=\"mailto:thomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
+|___________\    |    |__________/|____|     /|___________\___________\GPL |   
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
 </font>",
 	"en" => "
 <font face=\"Arial, Verdana\">
@@ -2268,8 +2253,13 @@ band width for pop, smtp, and ftp, so that web browsing
 on our server is faster.<br><br><br>
 </div>
 <center>For the GPLHost team,</center><br>
-<div align=\"right\"><i><a href=\"mailto:thomas@gplhost.com\">Thomas
-GOIRAND</a></i></div><br>
+<div align=\"right\"><i><a href=\"mailto:thomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
+|___________\    |    |__________/|____|     /|___________\___________\GPL |   
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
 </font>
 ",
 
@@ -2429,8 +2419,13 @@ band width for pop, smtp, and ftp, so that web browsing
 on our server is faster.<br><br><br>
 </div>
 <center>For the GPLHost team,</center><br>
-<div align=\"right\"><i><a href=\"mailto:thomas@gplhost.com\">Thomas
-GOIRAND</a></i></div><br>
+<div align=\"right\"><i><a href=\"mailto:NOSPAMthomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
+|___________\    |    |__________/|____|     /|___________\___________\GPL |   
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
 </font>
 ",
 
@@ -2620,8 +2615,13 @@ uw webpagina's sneller geserveerd.
 <br><br><br>
 </div>
 <center>Voor het GPLHost team,</center><br>
-<div align=\"right\"><i><a href=\"mailto:thomas@gplhost.com\">Thomas
-GOIRAND</a></i></div><br>
+<div align=\"right\"><i><a href=\"mailto:NOSPAMthomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
+|___________\    |    |__________/|____|     /|___________\___________\GPL |   
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
 </font>
 ",
 
@@ -2787,11 +2787,178 @@ user path change in FTP\">ĞÉÓØÍÏ</a>, ĞÏÑÓÎÑÀİÅÅ ËÁËÏÍÕ ĞÏÌØÚÏ×ÁÔÅÌÀ É ŞÔÏ
 éÎÏÇÄÁ ÂÙ×ÁÅÔ ÍÙ ÍÏÖÅÍ ÏÇÒÁÎÉŞÉÔØ ÔÒÁÆÉË.<br><br><br>
 </div>
 <center>äÌÑ GPLHost team,</center><br>
-<div align=\"right\"><i><a href=\"mailto:thomas@gplhost.com\">Thomas
-GOIRAND</a></i></div><br>
+<div align=\"right\"><i><a href=\"mailto:NOSPAMthomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
+|___________\    |    |__________/|____|     /|___________\___________\GPL |   
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
+</font>",
+
+	"de" => "
+<font face=\"Arial, Verdana\">
+<center><font size=\"+2\"><u><b>ONLINE DTC HELP</b></u></font></center><br><br>
+<div align=\"justify\">
+<font size=\"+1\"><u>1. What is DTC</u></font><br><br>
+DTC is a tool we made especialy for you. With it, you can take the
+control of your domain administration : you can
+manage all your subdomains, emails, and ftp accounts.<br><br>
+All this tool had been release under the <a
+href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence),
+which means that you can have a copy of this interface source
+code, modify it and use it as you wish, as long as you redistribute
+all thoses changes. We (at GPLHost) believe in the Free
+Software effort, and we hope this participation will encourage
+other developpements. We consider that because we use only
+open-source software for our hosting service, it is normal
+to redistribute our developpements.<br><br>
+
+<font size=\"+1\"><u>2. Emails</u></font><br>
+<u>2.1. What will it do ?</u><br><br>
+You can add, delete or modify a mailbox with this tool.<br><br>
+
+<u>2.2. Redirection and local delivery</u><br><br>
+Each mailbox can be redirected to one or more email addresse, which
+means that when a message is recieved, it is forwared to one
+or tow email adresse(s). The \"deliver localy\" checkbox
+tells wether or not all message for this mailbox will be
+written on our hard disk, so thenafter you will be able to
+read your message using a mail client, connecting to
+our server. Don't forget to checkup your mails often if
+you have trafic, because the mailbox are included in the
+quota<br><br>
+<u>2.3. Delay when adding / deleting accounts</u><br><br>
+When you add or delete a mail account, don't expect it to
+work immediatly : we will have to validate the changes in
+the system in order to have your new accounts changes to
+take effect : we have to tell Qmail (our mail server) to
+reload it's user database.<br><br>
+Most of the time, we validate all changes at the end of
+each working days, but if you need an immediate validation,
+click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
+validation\">here</a>.<br><br>
+
+<font size=\"+1\"><u>3. Subdomains</u></font><br>
+<u>3.1. What will it do ?</u><br><br>
+This part of the interface is for configurating your
+somain's sites, which means that you will be able
+to populate your web site with url of the form :
+<pre>
+http://anything.u.want.mydomain.com
+</pre>
+<u>3.2. What is the default subdomain ?</u><br><br>
+Whe someone trys to contact your web site with an
+URL without a subdomain, he is redirected to the
+subdomain you said it was the default. In other
+words, if you tell that:
+<pre>
+www
+</pre>
+is the default subdomain, someone that trys to
+connect using an url starting with:
+<pre>
+http://mydomain.com
+</pre>
+will be redirected to:
+<pre>
+http://www.mydomain.com
+</pre>
+In fact, the URL is kept, and no URL redirection
+in a HTML page has been created, but simply, a
+website with that URL has been configurated to
+the same location of the \"www\" subdomain, so
+it accesses the same html (or php) files, and
+shares the same log file.<br><br>
+
+<u>3.3. Forbidden subdomains</u><br><br>
+Because we have configurated those subdomains for
+other services than web, you cannot use the following
+subdomains for apache web sites :
+<ul><li>ftp</li>
+<li>pop</li>
+<li>smtp</li>
+</ul>
+
+<u>3.4. Deleting subdomains</u><br><br>
+It is up to you to delete the files used by your subdomain.
+You can delete all the files using a standard ftp client.
+But PLEASE take realy care not to delete a subdomain files
+without deleting it using DTC. Indeed, the Apache web server
+will complain if the directory does not exist but a web site
+is configurated for it, and this will be anoying when restarting
+apache.<br><br>
+
+<u>3.5. Delay when adding / deleting subdomain</u><br><br>
+We will have to restart our Apache web server in order
+to have your changes taking effect. Most of the time, we validate all
+changes at the end of
+each working days, but if you need an immediate validation,
+click <a href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
+: please restart apache now !\">here</a>.<br><br>
+
+<u>3.6. Trafic statistics for your subdomains</u><br><br>
+Because all your trafic is loged, we calculate the overall
+last 12 month statistics using <a href=\"http://www.mrunix.net/webalizer/\">
+webalizer</a>. The statistics are calculated each days at
+4 in the morning (this is when there is less trafic), and
+can be reach under the \"/stats\" directory on each
+subdomains. That means that if you have registerd :
+<pre>
+http://www.mydomain.com
+</pre>
+all statistics will be generated under :
+<pre>
+http://www.mydomain.com/stats/
+</pre>
+
+<font size=\"+1\"><u>4. FTP accounts</u></font><br>
+<u>4.1. What will it do ?</u><br><br>
+To have your page working and running, you have to upload
+them. But because you may not be only one to work on your
+web site, you may want to have more that one FTP account
+for accessing your web site. DTC will be the tool for
+managing thoses accounts and passwords.<br><br>
+
+<u>4.2. Delay when adding / deleting FTP accounts</u><br><br>
+Because we use ProFTP with a special module for handling accounts in
+our MySql database, all changes to your FTP accounts take effect
+in realtime.<br><br>
+
+<u>4.3. Limiting user to specified path</u><br><br>
+For the moment you cannont limit one user to access to only
+a part of your web site. But we (the administrators) can
+do it if you ask sending an <a
+href=\"mailto:$webmaster_email_addr?subject=[DTC]Ask for a
+user path change in FTP\">email</a>, telling what user
+and what path you need.<br><br>
+
+<u>4.4. No piracy or file exchange on our servers please !</u><br><br>
+If we provide a user space on our ftp servers, this is
+for you to upload HTML content. This means no binary
+files you don't own the rights ! Take care if you abuse,
+we could close your accounts without notification.<br><br>
+
+<font size=\"+1\"><u>5. Why ftp or pop is slow, sometimes ?</u></font><br><br>
+There are many reasons for that. The first one is because
+we don't have many band with for uploading, and sometimes,
+there are realy a lot of people uploading. The one that
+are closer to our servers take most of the time all that
+band width, so one user has most of it, and some have
+not. There is nothing we can do about that...<br><br>
+Another reason is because we have decided to limit the
+band width for pop, smtp, and ftp, so that web browsing
+on our server is faster.<br><br><br>
+</div>
+<center>For the GPLHost team,</center><br>
+<div align=\"right\"><i><a href=\"mailto:thomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
+|___________\    |    |__________/|____|     /|___________\___________\GPL |   
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
 </font>
-
-
 ",
 
 	"zh" => "
@@ -2950,8 +3117,13 @@ band width for pop, smtp, and ftp, so that web browsing
 on our server is faster.<br><br><br>
 </div>
 <center>For the GPLHost team,</center><br>
-<div align=\"right\"><i><a href=\"mailto:thomas@gplhost.com\">Thomas
-GOIRAND</a></i></div><br>
+<div align=\"right\"><i><a href=\"mailto:thomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
+|___________\    |    |__________/|____|     /|___________\___________\GPL |   
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
 </font>
 ",
 
@@ -2961,13 +3133,13 @@ GOIRAND</a></i></div><br>
 <center><font size=\"+2\"><u><b>ONLINE DTC
 HELP</b></u></font></center><br><br>
 <div align=\"justify\">
-<font size=\"+1\"><u>1. Que esDTC</u></font><br><br>
+<font size=\"+1\"><u>1. Qué es DTC</u></font><br><br>
 DTC es una herramienta hecha especialmente para usted.  
 Con ella, usted puede tomar el control de su administración de dominios: 
 usted puede manejar todos sus subdominios, cuentas de correo, y cuentas del ftp.<br><br>
 Toda esta herramienta ha sido creada bajo GPL <a
 href=\"http://www.gnu.org/\">GPL</a> (licencia pública de Gnu),  
-significa que usted puede tener una copia del codigo fuente del interfaz, modificarla
+significa que usted puede tener una cópia del código fuente del interfaz, modificarla
  y utilizarla como usted desee, siempre que usted redistribuya todos los cambia que haga. 
 Nosotros creemos en el esfuerzo del software libre, y esperamos que esta participación 
 anime a otros desarrolladores.  Consideramos que porque utilizamos solamente software libre 
@@ -2979,16 +3151,16 @@ para nuestro servicio de alojamiento, es normal redistribuir nuestros desarrollo
 Puedes añadir, borrar o modificar tus cuentas de correo electronico con 
 esta herramienta.<br><br>
 
-<u>2.2. Redireccion y envio de correo local</u><br><br>
-Cada cuenta de correo se puede redirigir a uno o más cuentas 
-de correo electronico, esto significa que cuando un mensaje es 
+<u>2.2. Redirección y envio de correo local</u><br><br>
+Cada cuenta de correo se puede redirigir a una o más cuentas 
+de correo electrónico, esto significa que cuando un mensaje es 
 recibido, es enviado a una o dos direcciones de correo. 
 El \"envio local\" indica si 
-todos los mensajes para esta cuenta de correo seran guardados 
+todos los mensajes para esta cuenta de correo serán guardados 
 en nuestro disco duro, asi usted podra leer su mensaje usando 
 un cliente de correo, conectando con nuestro servidor.  
 No se olvide comprobar sus correos a menudo si usted tiene 
-trafico, porque esta se incluye en la quota de disco.<br><br>
+tráfico, porque esta se incluye en la quota de disco.<br><br>
 <u>2.3. Retraso al añadir o borrar cuentas de correo</u><br><br>
 Cuando se añade o borra una cuenta de correo, no espere que
 funcione inmediatamente : Nosotros tendremos que validar los
@@ -3001,13 +3173,13 @@ pulse <a href=\"mailto:$webmaster_email_addr?subject=[DTC]email account
 validation\">aqui</a>.<br><br>
 
 <font size=\"+1\"><u>3. Subdominios</u></font><br>
-<u>3.1. ¿ Que puedo hacer ?</u><br><br>
+<u>3.1. ¿ Qué puedo hacer ?</u><br><br>
 Esta parte del interfaz es para configurar tus dominios, 
 esto significa que podra poblar su sitio con url de la forma:
 <pre>
 http://algo.que.quiera.midominio.com
 </pre>
-<u>3.2. ¿ Que es el dominio por defecto ?</u><br><br>
+<u>3.2. ¿ Qué es el dominio por defecto ?</u><br><br>
 Si alguien intenta entrar a un subdominio que no existe,
 este lo redirige al subdominio que se indica por defecto.
 En otras
@@ -3026,8 +3198,8 @@ http://www.midominio.com
 </pre>
 En realidad, se mantiene el URL, y no 
 se ha creado ninguna redireccion del URL a 
-una pagina HTML, simplemente, una pagina con este 
-URL a sido configurado a la misma localizacion del 
+una pagina HTML, simplemente, una página con este 
+URL ha sido configurado a la misma localización del 
 subdominio \"www\", por lo que este accede a los mismos 
 ficheros html (o php), y comparte el mismo fichero de 
 log.<br><br>
@@ -3045,7 +3217,7 @@ subdominios siguientes para los sitios de web de apache:
 <u>3.4. Eliminacion de subdominios</u><br><br>
 Esto es para suprimir los archivos usados por su subdominio. 
 Usted puede suprimir todos los archivos usando un cliente estándar 
-de ftp. Pero POR FAVOR tenga el cuidado de no suprimir archivos de 
+de ftp. Pero POR FAVOR tenga cuidado de no suprimir archivos de 
 un subdominio sin eliminarlo usando DTC.  De hecho, el servidor web 
 de Apache se quejará si no existe el directorio pero esta configurado 
 para él.<br><br>
@@ -3058,12 +3230,12 @@ pero si se necesita una validacion inmediata,
 pulse <a href=\"mailto:$webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache now !\">aqui</a>.<br><br>
 
-<u>3.6. Estadisticas de trafico de tus subdominios</u><br><br>
-Dado que todo el trafico es registrado, se calcula la media 
+<u>3.6. Estadísticas de tráfico de tus subdominios</u><br><br>
+Dado que todo el tráfico es registrado, se calcula la media 
 total de los ultimos doce meses usando 
 <a href=\"http://www.mrunix.net/webalizer/\">
 webalizer</a>. Las estadisticas son calculadas cada dia
-a las 4 de la mañana (este es el momento en que hay menor trafico), y 
+a las 4 de la mañana (este es el momento en que hay menor tráfico), y 
 puede ser visto en el directorio \"/stats\" de cada subdominio. 
 Esto quiere decir que si has registrado :
 <pre>
@@ -3079,7 +3251,7 @@ http://www.midominio.com/stats/
 Para tener su pagina funcionando y andando, usted tiene 
 que subir sus ficheros.  Pero como no tiene porque ser ser 
 solamente uno el que trabajar en su pagina web, usted puede 
-querer tener más de una cuenta ftp para tener acceso a su pagina 
+querer tener más de una cuenta ftp para tener acceso a su página 
 web.  DTC será la herramienta para manejar cuentas y sus 
 contraseñas.<br><br>
 
@@ -3117,8 +3289,13 @@ banda para pop, smtp, y ftp, para que la navegacion por las
 paginas web de nuestro servidor sea mas rapida.<br><br><br>
 </div>
 <center>El equipo GPLHost,</center><br>
-<div align=\"right\"><i><a href=\"mailto:thomas@gplhost.com\">Thomas
-GOIRAND</a></i></div><br>
+<div align=\"right\"><i><a href=\"mailto:NOSPAMthomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
+|___________\    |    |__________/|____|     /|___________\___________\GPL |   
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
 </font>
 ");
 
