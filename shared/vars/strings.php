@@ -1336,7 +1336,7 @@ DTC).",
 Click <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
 for adding this user as a mysql account (same login / pass as for DTC).",
-        "en" => "Nincs ilyen nevû felhasználó a  mysql adatbázisban.
+        "hu" => "Nincs ilyen nevû felhasználó a  mysql adatbázisban.
 Kattintson <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">ide</a>
 hogy hozzáadja ezt a felhasználót mint mysql felhasználót (hasonló login/jelszó párossal, mint a DTC-nek).",
