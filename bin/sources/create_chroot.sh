@@ -144,6 +144,16 @@ else
 		  /lib/libncurses.so.5 /usr/lib/libz.so.1 \
 		  /lib/librt.so.1 \
 		  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+		cp /usr/lib/dyld /usr/lib/libSystem.B.dylib \
+		  /usr/lib/libc.dylib /usr/lib/libdl.dylib \
+		  /usr/lib/libncurses.5.dylib /usr/lib/libpam.dylib \
+		  /usr/lib/libpthread.dylib usr/lib/
+		cp /usr/lib/dylib1.o /usr/lib/libSystem.dylib \
+		  /usr/lib/libcrypto.dylib /usr/lib/libm.dylib \
+		  /usr/lib/libncurses.dylib /usr/lib/libpam_misc.dylib \
+		  /usr/lib/libz.dylib usr/lib
+		mkdir usr/lib/system
+		cp /usr/lib/system/libmathCommon.A.dylib usr/lib/system
 		if [ -e /usr/lib/libmagic.so.1 ]
 		then
 			cp -pf /usr/lib/libmagic.so.1 lib/
@@ -183,3 +193,4 @@ if ! [ $UNIX_TYPE"" = "osx" ] ;then
 	# just in case we have wiped our /etc/ld.so.cache (run locally)
 	/sbin/ldconfig
 fi
+
