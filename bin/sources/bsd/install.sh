@@ -1,7 +1,11 @@
 #!/bin/sh
 
-# This is the DTC's tarball interactive install configuration script
+# This is the DTC's BSD interactive install configuration script
+# called by the make install
 # made by Thomas Goirand <thomas@goirand.fr>
+
+PREFIX=$1
+WRKSRC=$2
 
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
@@ -92,18 +96,18 @@ read conf_adm_pass
 # Deamon path configuration
 
 echo "### DEAMON PATH CONFIGURATION ###"
-PATH_HTTPD_CONF="/usr/local/etc/apache/httpd.conf"
+PATH_HTTPD_CONF="${PREFIX}/usr/local/etc/apache/httpd.conf"
 PATH_NAMED_CONF="/etc/namedb/named.conf"
 # Copy default conf if no conf exists (BSD specific)
-if [ ! -f /usr/local/etc/proftpd.conf ];
+if [ ! -f ${PREFIX}/etc/proftpd.conf ];
 then
-	cp /usr/local/etc/proftpd.conf.default /usr/local/etc/proftpd.conf
+	cp ${PREFIX}/etc/proftpd.conf.default ${PREFIX}/etc/proftpd.conf
 fi
-PATH_PROFTPD_CONF="/usr/local/etc/proftpd.conf"
+PATH_PROFTPD_CONF="${PREFIX}/etc/proftpd.conf"
 PATH_QMAIL_CTRL="/var/qmail/control"
-PATH_PHP_CGI="/usr/local/bin/php"
-PATH_DTC_ETC="/usr/local/share/dtc/etc"
-PATH_DTC_SHARED="/usr/local/share/dtc"
+PATH_PHP_CGI="${PREFIX}/bin/php"
+PATH_DTC_ETC="${PREFIX}/share/dtc/etc"
+PATH_DTC_SHARED="${PREFIX}/share/dtc"
 
 echo ""
 echo ""
@@ -141,9 +145,9 @@ else
 	exit
 fi
 
-#echo "Copying DTC's php scripts to /usr/local/share..."
+echo "Copying DTC's php scripts to ${PREFIX}/share..."
 
-#cp -Rf dtc /usr/local/share
+cp -Rf dtc ${PREFIX}/share
 
 echo "===> Checking BSD type"
 kernel=`uname -a | awk '{print $1}'`;
