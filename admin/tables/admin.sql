@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS admin (
   expire date NOT NULL default '0000-00-00',
   id_client int(9) NOT NULL default '0',
   PRIMARY KEY  (adm_login),
+  pass_next_req varchar(128) NOT NULL default '0',
+  pass_expire int(12) NOT NULL default '0',
   UNIQUE KEY adm_login (adm_login),
   UNIQUE KEY path (path)
 )TYPE=MyISAM
