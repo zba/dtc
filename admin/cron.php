@@ -190,7 +190,11 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	if($return_var == false){
 		echo "Config is OK : restarting Apache\n";
 		system("$APACHECTL stop");
-		echo "Waiting 4... ";
+		echo "Waiting 6... ";	// With 1000 domains on a celeron 800 and fast hard drives, 5 seconds is just the right value...
+		sleep(1);
+		echo "5... ";
+		sleep(1);
+		echo "4... ";
 		sleep(1);
 		echo "3... ";
 		sleep(1);

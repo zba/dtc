@@ -35,7 +35,7 @@ function make_table($html_array,$num_colone){
 	<tr>";
 		for($j=0;$j<$num_colone;$j++){
 			$in = $html_array[$i*$num_colone+$j];
-			$out.= "<td width=\"$width%\" height=\"$height%\" valign=\"top\">
+			$out.= "<td width=\"$width%\" height=\"$height%\" valign=\"bottom\">
 	<center>$in</center></td>
 ";
 		}
@@ -328,7 +328,7 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 				$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
 				$image_source = getCacheImageURL($text,1,$arbo);
 				if($dtc_use_text_menu == "no"){
-					$ret .= "$alink<img border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><br>";
+					$ret .= "$alink<img width=\"220\" height=\"20\" border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><br>";
 				}else{
 					$ret .= $alink." -".$entry["text"]."</a><br>";
 				}
@@ -348,7 +348,7 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 				$image_rolover = getCacheImageURL($text,1,$arbo);
 				if($dtc_use_text_menu == "no"){
 					$rolovered = addImageToPreloads($image_rolover);
-					$ret .= "$alink<img border=\"0\" name=\"$rolovered\"
+					$ret .= "$alink<img width=\"220\" height=\"20\" border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
 				}else{
@@ -379,7 +379,7 @@ onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$im
 			if($entry["text"] == $selected[$ietype_menu_recurs_level]){
 				$image_source = getCacheImageURL($text,1,$arbo);
 				if($dtc_use_text_menu == "no"){
-					$ret .= "$alink<img border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
+					$ret .= "$alink<img width=\"220\" height=\"20\" border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
 				}else{
 					$ret .= "$alink".$alt_signs.$entry["text"]."</a><br>";
 				}
@@ -388,7 +388,7 @@ onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$im
 				$image_rolover = getCacheImageURL($text,1,$arbo);
 				if($dtc_use_text_menu == "no"){
 					$rolovered = addImageToPreloads($image_rolover);
-					$ret .= "$alink<img border=\"0\" name=\"$rolovered\"
+					$ret .= "$alink<img width=\"220\" height=\"20\" border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
 				}else{
