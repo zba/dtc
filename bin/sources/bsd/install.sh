@@ -167,7 +167,7 @@ then
 	echo "Installation has started..."
 else
 	echo "Configuration not validated : exiting !"
-	exit
+	exit 1
 fi
 
 echo "Copying DTC's php scripts to ${PREFIX}/share..."
