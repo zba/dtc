@@ -1,0 +1,100 @@
+<h3><a name="4"></a>4. Utilisation en tant qu'administrateur</h3>
+
+<CENTER><IMG src="dtc.png"></CENTER><br>
+
+L'interface administrateur de DTC est divisée en 3 parties, nous avons déja traité la configuration générale de DTC,
+nous allons maintenant nous intéresser aux 2 autres parties : 'gestion des utilisateurs' et 'génération des fichiers
+de configuration deamons'.<br><br>
+
+<h4><a name="4.1"></a>4.1 Description générale</h4>
+
+<h5><a name="4.1.1"></a>4.1.1 Principe de fonctionnement</h5>
+
+Le but de DTC est de générer les fichiers de configurations pour tous les
+daemons supportés. Tout ce que vous faites dans l'interface d'administration
+controle la facon dont seront généré ses fichiers.<br><br>
+Un script en cron lancé toutes les 10 minutes valide les changements en
+réécrivant ses fichiers de config et en rechargeant les services concernées.
+
+<h5><a name="4.1.2"></a>4.1.2 L'interface web</h5>
+
+DTC is splited in 3 main directories. The admin console (normally in
+/usr/share/dtc/admin, but that may vary upon systems, like bsd likes to
+find it in /usr/local/share...) is your main root web interface. This is
+where you control all the domain hosted on your machine.<br><bbr>
+
+The "client" folder (normally in /usr/share/dtc/client) is for all your
+virual administrator to enter their domain name configuration module.
+You don't need it if you don't use the delegation of privilege
+(virtual administrators), because all user modules are show on the root
+console allso.<br><br>
+
+In standard distribution, dtc will install the root console to
+http[s]://dtc.yourdomain-name.com/dtcadmin/, and a client panel to all
+domain names under http[s]://dtc.yourdomain-name.com/dtc/. Don't bare to
+customise the generation scripts under /usr/shared/dtc/admin/inc/gen_*.php,
+add SSL, remove or add aliases, etc...<br><br>
+
+When all this will be setup, you will add a virtual administrator to your
+computer. Then, you will add a domain name to that virtual administrator.
+With the virtual administrator console (client console), it's possible
+to enter all informations for mailbox and/or ftp accounts, and you can
+create subdomains like "http://my.example.com" if "example.com"
+was his domain name.<br><br>
+
+A good idear is to create "mx.your-domain-name.com" on your main domain
+name, and to enter "mx.your-domain-name.com" as the default mx server for
+the hosted domains (in the configuration panel). You can add an IP to that
+subdomain, so it won't have an apache vhost associated.<br><br>
+
+You can then either call the php script files from the root console to
+generate the config files, and relaunch the deamons (named, qmail-send,
+and apache) manualy. You can of cource rely on the
+/usr/share/dtc/admin/cron.php script, so everything is all automatic.
+
+<h4><a name="4.2"></a>4.2 Gestion des utilisateurs</h4>
+
+<h5><a name="4.2.1"></a>4.1.1 Ajout d'un administrateur virtuel</h5>
+
+<CENTER><IMG src="newadmin.png"></CENTER><br>
+
+Ce formulaire permet d'ajouter des administrateurs virtuels (clients)
+qui pourront gérer leurs propres domaines (attibués par
+l'administrateur ou enregistré via l'interface client).<br><br>
+
+Pour créer un nouveau compte, il suffit de rentrer le nom du login et
+le mot de passe du futur compte dans ce formulaire
+ainsi que spécifier un chemin où seront stockés tous les fichiers
+relatifs aux domaines du client.<br><br>
+
+<b>Attention</b>! Le login est concaténé à la fin du chemin spécifié
+sous forme d'un sous répertoire additionel (par exemple si
+vous avez configuré le chemin /var/www/sites et que vous ajoutiez
+le client toto alors son chemin sera /var/www/sites/toto).<br><br>
+
+<h5><a name="4.2.2"></a>4.2.2 Gestion des domaines d'un administrateur virtuel</h5>
+
+<CENTER><IMG src="clientconfig.png"></CENTER><br>
+
+<b>- Edition de l'administrateur virtuel :</b><br><br>
+
+Ce formulaire permet l'ajout et la suppression de domaines pour un client mais églament le changement de son mot de passe et
+de son chemin.<br><br>
+<b>Attention</b>! Si vous changez le chemin d'un compte, il vous faudra également déplacer physiquement les fichiers se trouvant
+encore dans l'ancien répertoire.<br><br>
+
+<b>- Edition de la configuration des domaines :</b><br><br>
+
+Ce formulaire permet d'imposer des limites sur l'utilisation du domaine (nombre de comptes email,ftp,etc..).<br><br>
+La selectbox de droite permet de sélectioner une IP parmi celles spécifiées dans la configuration générale de DTC.<br><br>
+Lorsque vous voulez permettre à un client d'utiliser une base mysql, il est ajouté avec le même login/mot de passe que dans DTC.<br><br>
+La inputbox du bas permet d'ajouter une nouvelle base de données au client.<br><br>
+
+<h4><a name="4.3"></a>4.3 Génération des fichiers de configuration des daemons</h4>
+
+<CENTER><IMG src="conffilegen.png"></CENTER><br>
+
+Cet interface permet de générer individuellement les fichiers de configuration sans attendre que le script d'event soit lancé par crond et
+permet également de voir en temps réel quelles actions seront effectuées au prochain event.<br><br>
+L'icône 'reinit des zones named' permet si vous le désirez régénérer toutes les zonefiles de bind (par exemple si vous avez changé la
+configuration générale).<br><br>

@@ -3,16 +3,3 @@ Notes :
 - Beware ! On my current debian system, the php.ini for php4 launched as
 cgi (in the cron for example) was not including some .so modules (so
 for example mysql connection is not possible).
-
-- client site can share the same autoSQLconfig.php script as the admin site,
-because if oneday, connection is not possible, login & password to the DTC
-tables will not apear in a clear form thanks to the $conf_mysql_conf_ok="yes"
-that locks the parameters. The mysql_config.php is changed to root:root once
-configured by the DTC admin panel, (as well as the dtc's "shared/"
-directory) by the cron.php script. If you don't want to enable the crontab script,
-remember to chown this folder manualy.
-Version prior to 0.10.7-3 didn't do the chown. It's up to the sysadmin to do
-it.
-
-- please don't spread any mysql_config.php : this is YOUR config file with
-YOUR mysql root password in clear text in it !!!
