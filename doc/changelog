@@ -1,7 +1,29 @@
+V0.17.0-R2
+The installer does not happend some new lines to the config
+files anymore (Damien)
+
+Patched to allow the use of lynx -s like for getting backup
+NS and MX if php < 4.3. (thomas)
+
+Corrected a bug in the subdomain defaut handler wich caused
+smtp, ftp, pop and list customisation not possible. (thomas)
+
+2005-02-03 V0.17.0-R1
+This release does some major bugfix in the isntaller: the field name
+PASSWORD (upper case) in the ftp_access table is now back to normal password
+(lower case) when creating the tables. Please switch it back to lower case
+if you have some troubles. The template directory from wich is copied the
+html files of new vhosts has now the good unix rights so the copy works
+(upgrading will add the x flag to the directory). The mail accounts are now
+generated and the qmail control files are now linked correctly on each
+install/upgrade of the panel. Note that no trouble should have hapened to
+any production server upgrading DTC, this corrects only some problems to
+first installations. (thomas & damien)
+
 31-01-03: V0.17.0-R0
 After many tests and debug, I'm proud of this milestone
 which should be a lot better. Work to be done for BSD
-mainly...
+mainly... (thomas)
 
 01-04: V0.16.0-R1
 Email panel is now fully working.
