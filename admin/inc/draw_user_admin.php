@@ -99,8 +99,8 @@ function userEditForms($adm_login,$adm_pass){
 		$HTML_admin_edit_data .= drawAdminTools($admin);
 
 		// Output and skin the result !
-		$user_config = skin("simple/green",$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
-		$user_domain_config = skin("simple/green",$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
+		$user_config = skin("green",$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
+		$user_domain_config = skin("green",$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
 		$user_tools = skin("notitle/darkblue",$HTML_admin_edit_data,"Domains for $adm_login");
 
 		// All thoses tools in a simple table
@@ -117,7 +117,7 @@ function userEditForms($adm_login,$adm_pass){
 	}else{
 		// If no user is in edition, draw a tool for adding an admin
 		$add_a_user = drawNewAdminForm();
-		return skin("simple/green",$add_a_user,$txt_add_user_title[$lang]);
+		return skin("green",$add_a_user,$txt_add_user_title[$lang]);
 	}
 }
 
