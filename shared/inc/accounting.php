@@ -27,8 +27,9 @@ function fetchHTTPInfo($webname)
 					mysql_select_db("apachelogs");
                 	$r_access = mysql_query($q) or die("Cannot execute query \"$q\" !!! ".mysql_error());
 				    $amount = $amount + mysql_result($r_access,0,"amount");
+					mysql_select_db($conf_mysql_db);
 				}
-		mysql_select_db($conf_mysql_db);
+
         }
         
 	if($amount>1073741824)
