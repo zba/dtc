@@ -30,7 +30,7 @@ function drawDTCConfigMenu(){
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "backup")
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=backup\">";
-	$out .= "Backup";
+	$out .= "Backup MX and NS";
 	if($sousrub != "backup")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
@@ -305,6 +305,38 @@ function drawBackupConfig(){
         $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
         $out .= "</table>";
 
+	$out .= "<h3>Make request to the following servers so they can update the domain list when some change occurs:</h3>";
+	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes';";
+	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+        $out .= "<table><tr><td>Server address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+	for($i=0;$i<$n;$i++){
+	        $a = mysql_fetch_array($r);
+	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+	        <input type=\"hidden\" name=\"action\" value=\"modify_trigger_backup\">
+                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
+	        <tr><td><input type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
+	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
+        }
+        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+        <input type=\"hidden\" name=\"action\" value=\"add_trigger_backup\">
+        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+        <tr><td><input type=\"text\" name=\"server_addr\" value=\"http://dtc.\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
+        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
+        $out .= "</table>";
+
+        $this_srv_backup = $out;
+        $out = "";
+
 	$out .= "<h3>Act as backup mail server for the following servers:</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='mail_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -338,7 +370,7 @@ function drawBackupConfig(){
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>IP address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+        $out .= "<table><tr><td>Server address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
 	for($i=0;$i<$n;$i++){
 	        $a = mysql_fetch_array($r);
 	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -363,7 +395,11 @@ function drawBackupConfig(){
         $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
         $out .= "</table>";
 
-	$out .= "<h3>Backup all files to this ftp server each weeks:</h3>";
+        $other_server_backup = $out;
+        $out = skin("frame",$this_srv_backup,"This server backup");
+        $out .= skin("frame",$other_server_backup,"This server backup");
+
+//	$out .= "<h3>Backup all files to this ftp server each weeks:</h3>";
         return $out;
 }
 
@@ -501,7 +537,9 @@ function drawDTCConfigForm(){
 		$global_conf = drawNamedConfig();
 		break;
         case "backup":
-                $global_conf = drawBackupConfig();
+                return "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"config\">
+<input type=\"hidden\" name=\"sousrub\" value=\"$sousrub\">".drawBackupConfig()."</form>";
+		$global_conf = drawBackupConfig();
                 break;
 	case "path":
 		$global_conf = drawDTCpathConfig();
@@ -512,7 +550,6 @@ function drawDTCConfigForm(){
 <input type=\"hidden\" name=\"sousrub\" value=\"$sousrub\">$global_conf
 	<center><input type=\"submit\" name=\"install_new_config_values\" value=\"Ok\"></center>
 	</form>";
-
 }
 
 function saveDTCConfigInMysql(){
@@ -613,6 +650,26 @@ function saveDTCConfigInMysql(){
                       '".$_REQUEST["server_login"]."',
                       '".$_REQUEST["server_pass"]."',
                       'grant_access');";
+                      break;
+                case "modify_trigger_backup":
+                      switch($_REQUEST["todo"]){
+                      case "del":
+                        $query = "DELETE FROM $pro_mysql_backup_table WHERE id='".$_REQUEST["id"]."';";
+                        break;
+                      case "save":
+                        $query = "UPDATE $pro_mysql_backup_table SET
+                        server_addr='".$_REQUEST["server_addr"]."',
+                        server_login='".$_REQUEST["server_login"]."',
+                        server_pass='".$_REQUEST["server_pass"]."' WHERE id='".$_REQUEST["id"]."';";
+                        break;
+                      }
+                      break;
+                case "add_trigger_backup":
+                      $query = "INSERT INTO $pro_mysql_backup_table (server_addr,server_login,server_pass,type)
+                      VALUES('".$_REQUEST["server_addr"]."',
+                      '".$_REQUEST["server_login"]."',
+                      '".$_REQUEST["server_pass"]."',
+                      'trigger_changes');";
                       break;
                 case "modify_mail_backup":
                       switch($_REQUEST["todo"]){
