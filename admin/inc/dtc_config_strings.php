@@ -69,9 +69,9 @@ $txt_cfg_full_hostname =array(
 	"en" => "Full hostname of DTC admin panel:",
 	"nl" => "Volledige Hostnaam van de DTC admin panel:",
 	"ru" => "ðÏÌÎÏÅ ÉÍÑ ÈÏÓÔÁ Ó ÁÄÍÉÎÉÓÔÒÁÔÉ×ÎÏÊ ÐÁÎÅÌØÀ DTC",
-	"de" => "Vollständiger Rechnername des DTC");
+	"de" => "Vollständiger Rechnername des DTC",
 	"es" => "Nombre completo del hostname del panel de adminitracion de
-DTC:",
+DTC:");
 
 $txt_cfg_main_site_ip =array(
 	"fr" => "IP principale du site :",
