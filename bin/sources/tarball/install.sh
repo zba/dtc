@@ -101,7 +101,7 @@ echo "Path where to build the chroot environment."
 echo "Where do you want DTC to build the cgi-bin chroot"
 echo "environment? Please note that DTC will do hardlinks"
 echo "to that directory, so the chroot path should be in"
-echo "the same physical device as the path for hosted"
+echo "the same logical device as the path for hosted"
 echo "domains files."
 echo -n "Chroot path [/var/www/chroot]: "
 read conf_chroot_path

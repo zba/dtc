@@ -21,6 +21,8 @@ CHROOT_DIR=$conf_chroot_path
 WEB_USER=nobody
 WEB_GROUP=nogroup
 
+echo "===> Creating chroot tree in "$CHROOT_DIR
+
 # set our umask so things are created with the correct group perms
 umask 022
 
@@ -88,8 +90,7 @@ then
 	cp -p /usr/libexec/ld-elf.so.1 usr/libexec/
 else
 	#Linux:
-	# /usr/lib/libmagic.so.1 
-	cp -pv /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
+	cp -pfv /usr/lib/libmagic.so.1 /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
 	  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
 	  /lib/libncurses.so.5 /usr/lib/libmagic.so.1 /usr/lib/libz.so.1 \
 	  /lib/librt.so.1 /lib/libacl.so.1 /lib/libpthread.so.0 \
@@ -100,10 +101,13 @@ fi
 # magic files needed by file(1). Different versions and installations
 # expect magic files in different locations. Check the documentation.
 # Some usual locations are:
-#cp -p /usr/local/share/file/*  usr/local/share/file/
-mkdir -p usr/share/misc/file
-cp -p /usr/share/misc/file/magic*   usr/share/misc/file
-#cp -p /usr/share/magic         usr/share/
+if [ -e /usr/share/misc/file ]
+then
+	#cp -p /usr/local/share/file/*  usr/local/share/file/
+	mkdir -p usr/share/misc/file
+	cp -p /usr/share/misc/file/magic*   usr/share/misc/file
+	#cp -p /usr/share/magic         usr/share/
+fi
 
 # set protections
 chmod 1770 tmp
