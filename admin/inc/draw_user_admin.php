@@ -36,11 +36,11 @@ function drawNewAdminForm(){
 	if($n < 1){
 		$waiting_new_users .= "<b>No user waiting!</b>";
 	}else{
-		$waiting_new_users .= "<table border=\"1\">
+		$waiting_new_users .= "<table width=\"100%\"border=\"1\">
 	<tr><td>Name</td><td>Login</td><td>Domain name</td><td>Bank</td><td>Action</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
-			$waiting_new_users .= "<tr><td><u>".$a["comp_name"].":</u> ";
+			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".$a["comp_name"].":</u><br>";
 			$waiting_new_users .= $a["family_name"].", ".$a["first_name"]."</td>";
 			$waiting_new_users .= "<td>".$a["reqadm_login"]."</td>";
 			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
@@ -49,8 +49,8 @@ function drawNewAdminForm(){
 			}else{
 				$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$a["paiement_id"]."';";
 				$r2 = mysql_query($q)or die("Cannot select $q line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-				$n = mysql_num_rows($r2);
-				if($n != 1)	die("Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__);
+				$n2 = mysql_num_rows($r2);
+				if($n2 != 1)	die("Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__);
 				$a2 = mysql_fetch_array($r2);
 				if($a2["valid"] == "yes"){
 					$waiting_new_users .= "<td><font color=\"green\">YES</font></td>";
@@ -58,7 +58,7 @@ function drawNewAdminForm(){
 					$waiting_new_users .= "<td><font color=\"red\">NO</font></td>";
 				}
 			}
-			$waiting_new_users .= "<td><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">View details</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Add</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Del</a></td>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">View details</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Add</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Del</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";

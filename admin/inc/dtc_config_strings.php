@@ -1,5 +1,65 @@
 <?php
 
+$txt_cfg_use_paypal = array(
+	"fr" => "Utiliser paypal : ",
+	"en" => "Use paypal: ",
+	"it" => "TRANS Use paypal: ",
+	"nl" => "TRANS Use paypal: ",
+	"ru" => "TRANS Use paypal: ",
+	"de" => "TRANS Use paypal: ",
+	"zh" => "TRANS Use paypal: ",
+	"es" => "TRANS Use paypal: ");
+
+$txt_cfg_paypal_autovalid = array(
+	"fr" => "Valider les nouveaux compte si payé : ",
+	"en" => "Validate new account if payed: ",
+	"it" => "TRANS Validate new account if payed: ",
+	"nl" => "TRANS Validate new account if payed: ",
+	"ru" => "TRANS Validate new account if payed: ",
+	"de" => "TRANS Validate new account if payed: ",
+	"zh" => "TRANS Validate new account if payed: ",
+	"es" => "TRANS Validate new account if payed: ");
+
+$txt_cfg_paytitle = array(
+	"fr" => "Configuration du paiement sécurisé",
+	"en" => "Secure paiment configuration",
+	"it" => "TRANS Secure paiment configuration: ",
+	"nl" => "TRANS Secure paiment configuration: ",
+	"ru" => "TRANS Secure paiment configuration: ",
+	"de" => "TRANS Secure paiment configuration: ",
+	"zh" => "TRANS Secure paiment configuration: ",
+	"es" => "TRANS Secure paiment configuration: ");
+
+$txt_cfg_paypal_email = array(
+	"fr" => "Email du compte business PayPal : ",
+	"en" => "PayPal business account email: ",
+	"it" => "TRANS PayPal business account email: ",
+	"nl" => "TRANS PayPal business account email: ",
+	"ru" => "TRANS PayPal business account email: ",
+	"de" => "TRANS PayPal business account email: ",
+	"zh" => "TRANS PayPal business account email: ",
+	"es" => "TRANS PayPal business account email: ");
+
+$txt_cfg_paypal_ratefee = array(
+	"fr" => "Pourcentage commissionaire PayPal : ",
+	"en" => "PayPal fee rate: ",
+	"it" => "TRANS PayPal fee rate: ",
+	"nl" => "TRANS PayPal fee rate: ",
+	"ru" => "TRANS PayPal fee rate: ",
+	"de" => "TRANS PayPal fee rate: ",
+	"zh" => "TRANS PayPal fee rate: ",
+	"es" => "TRANS PayPal fee rate: ");
+
+$txt_cfg_paypal_flatfee = array(
+	"fr" => "Commission fixe PayPal : ",
+	"en" => "PayPal flat rate: ",
+	"it" => "TRANS PayPal flat rate: ",
+	"nl" => "TRANS PayPal flat rate: ",
+	"ru" => "TRANS PayPal flat rate: ",
+	"de" => "TRANS PayPal flat rate: ",
+	"zh" => "TRANS PayPal flat rate: ",
+	"es" => "TRANS PayPal flat rate: ");
+
 $txt_cfg_new_chroot_path_path = array(
 	"fr" => "Chemin du disque cgi-wrapper (chroot pour SBOX) : ",
 	"en" => "Path of the cgi-wrapper disk (chroot for SBOX): ",
@@ -142,14 +202,14 @@ $txt_cfg_site_addrs =array(
 	"es" => "Direcciones IP del Host (separado por \"|\"):");
 
 $txt_cfg_name_zonefileconf_title =array(
-	"fr" => "Configuration des zonefiles named",
-	"en" => "Named zonefiles configuration",
-	"it" => "Configurazione zonefiles Named",
-	"nl" => "Named zone-files configuratie",
+	"fr" => "Zonefiles named",
+	"en" => "Named zonefiles",
+	"it" => "Zonefiles Named",
+	"nl" => "Named zone-files",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ÚÏÎ äîó",
-	"de" => "Bind Zonendateien Konfiguration",
+	"de" => "Bind Zonendateien",
 	"zh" => "Named zonefilesÅäÖÃ",
-	"es" => "Configuracion de las zonas de Named");
+	"es" => "Zonas de Named");
 
 $txt_cfg_main_mx_addr =array(
 	"fr" => "Adresse de votre serveur MX principal:",
@@ -201,15 +261,25 @@ $txt_cfg_slave_dns_ip =array(
 	"zh" => "±¸ÓÃÓòÃû·þÎñÆ÷µØÖ·",
 	"es" => "Direccion ip del servidor esclavo de DNS:");
 
+$txt_cfg_payconf_title = array (
+	"fr" => "Portail de paiment",
+	"en" => "Pay gateway",
+	"it" => "TRANS: Pay gateway",
+	"nl" => "TRANS: Pay gateway",
+	"ru" => "TRANS: Pay gateway",
+	"de" => "TRANS: Pay gateway",
+	"zh" => "TRANS: Pay gateway",
+	"es" => "TRANS: Pay gateway");
+
 $txt_cfg_path_conf_title =array(
-	"fr" => "Configuration des chemins",
-	"en" => "Paths configuration",
-	"it" => "Configurazione paths",
-	"nl" => "Configuratie van de paden",
+	"fr" => "Chemins",
+	"en" => "Paths",
+	"it" => "Paths",
+	"nl" => "Paden",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÏÎÎÙÅ ÐÕÔÉ",
-	"de" => "Dateipfad Konfiguration",
+	"de" => "Dateipfad",
 	"zh" => "Â·¾¶ÅäÖÃ",
-	"es" => "Configuracion de directorios");
+	"es" => "Directorios");
 
 $txt_cfg_mainpath_conf_title =array(
 	"fr" => "Chemins principaux",

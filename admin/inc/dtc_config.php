@@ -3,6 +3,7 @@
 function drawDTCConfigMenu(){
 	global $txt_cfg_path_conf_title;
 	global $txt_cfg_name_zonefileconf_title;
+	global $txt_cfg_payconf_title;
 	global $lang;
 
 	$sousrub = $_REQUEST["sousrub"];
@@ -32,6 +33,12 @@ function drawDTCConfigMenu(){
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=backup\">";
 	$out .= "Backup MX and NS";
 	if($sousrub != "backup")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "payconf")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=payconf\">";
+	$out .=  $txt_cfg_payconf_title[$lang];
+	if($sousrub != "payconf")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "path")
@@ -403,6 +410,62 @@ function drawBackupConfig(){
         return $out;
 }
 
+function drawDTCpayConfig(){
+	global $lang;
+	
+	global $txt_cfg_use_paypal;
+	global $txt_cfg_paytitle;
+	global $txt_cfg_paypal_email;
+	global $txt_cfg_paypal_ratefee;
+	global $txt_cfg_paypal_flatfee;
+	global $txt_cfg_paypal_autovalid;
+
+	global $pro_mysql_secpayconf_table;
+
+	$q = "SELECT * FROM $pro_mysql_secpayconf_table";
+	$r = mysql_query($q)or die("Cannot query : \"$q\" ! line: ".__LINE__." file: ".__file__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+        if($n != 1)	die("Error line: ".__LINE__." file: ".__file__." secpayconf table should have one and only one line!");
+        $a = mysql_fetch_array($r);
+
+        if($a["use_paypal"] == "yes"){
+          $use_paypal_check_yes = " checked";
+          $use_paypal_check_no = "";
+        }else{
+          $use_paypal_check_yes = "";
+          $use_paypal_check_no = " checked";
+        }
+
+        if($a["paypal_autovalidate"] == "yes"){
+          $auto_paypal_check_yes = " checked";
+          $auto_paypal_check_no = "";
+        }else{
+          $auto_paypal_check_yes = "";
+          $auto_paypal_check_no = " checked";
+        }
+
+	$out .= "<h2><u>".$txt_cfg_paytitle[$lang]."</u></h2>
+	<h3>PayPal:</h3>";
+	$out .="<table with=\"100%\" height=\"1\">
+<tr><td align=\"right\" nowrap>
+	".$txt_cfg_use_paypal[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_paypal\"$use_paypal_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"use_paypal\"$use_paypal_check_no> No</td>
+</tr><tr><td align=\"right\" nowrap>
+	".$txt_cfg_paypal_autovalid[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"autovalid_paypal\"$auto_paypal_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"autovalid_paypal\"$auto_paypal_check_no> No</td>
+</tr><tr>
+  <td align=\"right\" nowrap>".$txt_cfg_paypal_email[$lang]."</td>
+  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"".$a[paypal_email]."\" name=\"paypal_email\"></td>
+</tr><tr>
+  <td align=\"right\" nowrap>".$txt_cfg_paypal_ratefee[$lang]."</td>
+  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a[paypal_rate]."\" name=\"paypal_rate\"></td>
+</tr><tr>
+  <td align=\"right\" nowrap>".$txt_cfg_paypal_flatfee[$lang]."</td>
+  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a[paypal_flat]."\" name=\"paypal_flat\"></td>
+</tr>
+</table>
+";
+	return $out;
+}
+
 function drawDTCpathConfig(){
 	global $conf_dtcshared_path;
 	global $conf_site_root_host_path;
@@ -541,6 +604,9 @@ function drawDTCConfigForm(){
 <input type=\"hidden\" name=\"sousrub\" value=\"$sousrub\">".drawBackupConfig()."</form>";
 		$global_conf = drawBackupConfig();
                 break;
+        case "payconf":
+                $global_conf = drawDTCpayConfig();
+                break;
 	case "path":
 		$global_conf = drawDTCpathConfig();
 		break;
@@ -554,6 +620,7 @@ function drawDTCConfigForm(){
 
 function saveDTCConfigInMysql(){
         global $pro_mysql_backup_table;
+        global $pro_mysql_secpayconf_table;
 
 	global $new_demo_version;
 	global $new_main_site_ip;
@@ -719,6 +786,16 @@ function saveDTCConfigInMysql(){
                       break;
                 }
                 break;
+
+	case "payconf":
+		$query = "UPDATE $pro_mysql_secpayconf_table SET
+         use_paypal='".$_REQUEST["use_paypal"]."',
+  	 paypal_rate='".$_REQUEST["paypal_rate"]."',
+  	 paypal_flat='".$_REQUEST["paypal_flat"]."',
+  	 paypal_autovalidate='".$_REQUEST["autovalid_paypal"]."',
+  	 paypal_email='".$_REQUEST["paypal_email"]."'
+         WHERE 1 LIMIT 1;";
+                break;
 	case "path":
 		$query = "UPDATE config SET 
 	site_root_host_path='".$_REQUEST["new_site_root_host_path"]."',
@@ -743,7 +820,7 @@ function saveDTCConfigInMysql(){
 		break;
 	}
 
-	mysql_query($query)or die("Cannot query : \"$query\" !!!".mysql_error());
+	mysql_query($query)or die("Cannot query : \"$query\" ! line: ".__LINE__." file: ".__file__." sql said: ".mysql_error());
 
 	// Tell the cron job to activate the changes
         $adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes', restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes' WHERE 1;";

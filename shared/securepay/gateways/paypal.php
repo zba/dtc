@@ -1,8 +1,18 @@
 <?php
 
-function paypalNotifyPostbackScript(){
-	// Create an URL to post to it.
+// This is production website
+//$paypal_host = "www.paypal.com";
+//$paypal_cgi = "/cgi-bin/webscr";
 
+// This is test sandbox site
+$paypal_host = "www.sandbox.paypal.com";
+$paypal_cgi = "/us/cgi-bin/webscr";
+
+function paypalNotifyPostbackScript(){
+	global $paypal_host;
+	global $paypal_cgi;
+
+	// Create an URL to post to it.
 	// read the post from PayPal system and add 'cmd' to the url posted var
 	$req = 'cmd=_notify-validate';
 	foreach ($_POST as $key => $value) {
@@ -11,10 +21,10 @@ function paypalNotifyPostbackScript(){
 	}
 
 	// post back to PayPal system to validate
-	$header .= "POST /cgi-bin/webscr HTTP/1.0\r\n";
+	$header .= "POST $paypal_cgi HTTP/1.0\r\n";
 	$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 	$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
-	$fp = fsockopen ('www.paypal.com', 80, $errno, $errstr, 30);
+	$fp = fsockopen ($paypal_host, 80, $errno, $errstr, 30);
 
 	// assign posted variables to local variables
 	$item_name = $_POST['item_name'];
@@ -53,6 +63,9 @@ function paypalNotifyPostbackScript(){
 }
 
 function paypalButton($product_id,$amount,$item_name,$return_url){
+	global $paypal_host;
+	global $paypal_cgi;
+
 	global $paypal_account;
 	global $conf_administrative_site;
 
@@ -61,7 +74,7 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 	// https://www.paypal.com/xclick/business=thomas%40goirand.fr&item_name=Domain+name+registration+.com&
 	// item_number=1&amount=11.50&no_note=1&currency_code=USD
 
-	$out = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	$out = '<form action="https://'.$paypal_host.$paypal_cgi.'" method="post">
 <input type="hidden" name="cmd" value="_xclick">
 <input type="hidden" name="business" value="'.$secpayconf_paypal_email.'">
 <input type="hidden" name="item_name" value="'.$item_name.'">
