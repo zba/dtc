@@ -40,7 +40,7 @@ $doc_ind5 = '<h3><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub=
 <h4><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'"#5.3>5.3 Greets</a></h4>
 <h4><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#5.4">5.4 Contact</a></h4>
 ';
-$doc_index= $doc_ind1.$doc_ind2.$doc_in3.$doc_ind4.$doc_in5;
+$doc_index= $doc_ind1.$doc_ind2.$doc_in3.$doc_ind4.$doc_ind5;
 echo '<link rel="STYLESHEET" type="text/css" href="doc.css">';
 include("page_top.html");
 $chap = $_REQUEST["chap"];

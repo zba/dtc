@@ -16,7 +16,7 @@ the mysql root password has to be set before so you can give it to DTC installer
 So on all system, you have to install MySQL, and setup a root password on it
 PRIOR to install DTC.<br><br>
 
-<h4><a name="2.2"></a>2.2 Configuration des daemons avant installation</h4>
+<h4><a name="2.2"></a>2.2 Configurating daemons before installing</h4>
 
 On all systems, DTC install script will asks some vital questions.
 Be ready to answer to the following:<br><br>
@@ -59,7 +59,7 @@ as long as qmail and proftpd uses same uid/gid also.
 <pre>User nobody
 Group nogroup</pre>
 
-<h4><a name="2.3"></a>2.3 Installation under debian</h4>
+<h4><a name="2.3"></a>2.3 Installation under Debian</h4>
 
 DTC is not yet in Debian's oficial tree. Before it can once be in it, use the
 following alternative source in your /etc/apt/source.list:<br>
@@ -83,7 +83,7 @@ In some case mysql.so or some other modules are not activated in
 /etc/php4/cgi/php.ini. If it's the case, do it manualy.
 Have reegister_globales=0, and safe_mode=1 in your /etc/php4/apache/php.ini.<br><br>
 
-<h4><a name="2.4"></a>2.4 Installation avec la distribution redhat</h4>
+<h4><a name="2.4"></a>2.4 Installation under RedHat</h4>
 
 The actual version of the RPM package for DTC has been done for a 7.3 redhat, but
 because it is php scripts it should run on all other superior versions.<br><br>

@@ -1,38 +1,39 @@
 <?php
 
-$doc_ind1 ='<h3><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1">1 Qu\'est-ce que DTC</a></h3>
-<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.1">1.1 A quoi sert DTC ?</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.2">1.2 A qui s\'adresse cette documentation ?</a></h4>
+$doc_ind1 ='<h3><a
+href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1">1 What is DTC?</a></h3>
+<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.1">1.1 What does DTC do?</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.2">1.2 Good points of DTC</a></h4>
 <h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.3">1.3 Les points forts de DTC ?</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.4">1.4 Technologies utilisées par DTC</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.5">1.5 Les possibilitées de DTC</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.6">1.6 Principe de fonctionnement</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.4">1.4 Technologies used by DTC</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.5">1.5 DTC\'s possibilities</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=1&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#1.6">1.6 How does it works</a></h4>
 ';
 $doc_ind2 = '<h3><a href="'.$PHP_SELF.'#2?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2">2. Installation</a></h3>
-<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.1">2.1 Pré-requis</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.2">2.2 Configuration des daemons avant installation</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.1">2.1 Before installing</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.2">2.2 Configurating daemons before installing</a></h4>
 <h5><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.2.1">2.2.1 Mysql</a></h5>
 <h5><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.2.2">2.2.2 Apache</a></h5>
-<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.3">2.3 Installation avec la distribution debian</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.4">2.4 Installation avec la distribution redhat</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.5">2.5 Installation avec une distribution BSD/GENTOO</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.6">2.6 Installation manuelle</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.3">2.3 Installation under debian</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.4">2.4 Installation under redhat</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.5">2.5 Installation under BSD/GENTOO</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.6">2.6 Manuelle installation</a></h4>
 <h4><a href="'.$PHP_SELF.'?chap=2&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#2.7">2.7 Post-Installation (protection via .htaccess)</a></h4>
 ';
-$doc_ind3 = '<h3><a href="'.$PHP_SELF.'#3?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3">3. Configuration de DTC</a></h3>
-<h4><a href="'.$PHP_SELF.'?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3.1">3.1 Accès à la configuration</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3.2">3.2 configuration générale</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3.3">3.3 configuration des zones bind</a></h4>
-<h4><a href="'.$PHP_SELF.'?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3.4">3.4 configuration des chemins</a></h4>
+$doc_ind3 = '<h3><a href="'.$PHP_SELF.'#3?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3">3. Configuration of DTC</a></h3>
+<h4><a href="'.$PHP_SELF.'?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3.1">3.1 Access to configuration panel</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3.2">3.2 General configuration</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3.3">3.3 Configuration of the bind zone files</a></h4>
+<h4><a href="'.$PHP_SELF.'?chap=3&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#3.4">3.4 Configuration of paths</a></h4>
 ';
-$doc_ind4 = '<h3><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4">4. Utilisation en tant qu\'administrateur</a></h3>
-<h4><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.1">4.1 Description générale</a></h4>
-<h5><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.1.1">4.1.1 Principe de fonctionnement</a></h5>
-<h5><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.1.2">4.1.2 L\'interface web</a></h5>
-<h4><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.2">4.2 Gestion des utilisateurs</a></h4>
-<h5><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.2.1">4.1.1 Ajout d\'un administrateur virtuel</a></h5>
-<h5><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.2.2">4.2.2 Gestion des domaines d\'un administrateur virtuel</a></h5>
-<h4><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.3">4.3 Génération des fichiers de configuration des daemons</a></h4>
+$doc_ind4 = '<h3><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4">4. Using the DTC root panel</a></h3>
+<h4><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.1">4.1 General description</a></h4>
+<h5><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.1.1">4.1.1 How it works</a></h5>
+<h5><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.1.2">4.1.2 The web interface</a></h5>
+<h4><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.2">4.2 User management</a></h4>
+<h5><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.2.1">4.1.1 Adding a virtual admin</a></h5>
+<h5><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.2.2">4.2.2 Managing you client domains</a></h5>
+<h4><a href="'.$PHP_SELF.'?chap=4&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#4.3">4.3 Generating daemon files</a></h4>
 ';
 $doc_ind5 = '<h3><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#5">5 Credit and Licence</a></h3>
 <h4><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#5.1">5.1 Licence</a></h4>
@@ -40,7 +41,7 @@ $doc_ind5 = '<h3><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub=
 <h4><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'"#5.3>5.3 Greets</a></h4>
 <h4><a href="'.$PHP_SELF.'?chap=5&rub='.$_REQUEST["rub"].'&sousrub='.$_REQUEST["sousrub"].'#5.4">5.4 Contact</a></h4>
 ';
-$doc_index= $doc_ind1.$doc_ind2.$doc_in3.$doc_ind4.$doc_in5;
+$doc_index= $doc_ind1.$doc_ind2.$doc_in3.$doc_ind4.$doc_ind5;
 echo '<link rel="STYLESHEET" type="text/css" href="doc.css">';
 include("page_top.html");
 $chap = $_REQUEST["chap"];

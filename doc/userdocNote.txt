@@ -1,5 +1,0 @@
-Notes :
-
-- Beware ! On my current debian system, the php.ini for php4 launched as
-cgi (in the cron for example) was not including some .so modules (so
-for example mysql connection is not possible).
