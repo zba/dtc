@@ -23,7 +23,7 @@ function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 	if(strlen($adm_pass) > 16){
 	}
 
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1)      die("User or password is incorrect !");
