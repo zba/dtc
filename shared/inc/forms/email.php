@@ -1,6 +1,15 @@
 <?php
 
 function drawAdminTools_emailPanel($mailbox){
+	global $txt_change_your_password_title;
+	global $txt_repeate_password;
+	global $txt_mail_deliver_localy;
+	global $txt_mail_redirection1;
+	global $txt_mail_redirection2;
+	global $txt_password;
+	global $txt_mail_edit;
+	global $txt_mailbox_redirection_edition;
+	global $lang;
 
 	global $adm_email_login;
 	global $adm_email_pass;
@@ -10,10 +19,16 @@ function drawAdminTools_emailPanel($mailbox){
 <input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
 <input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">";
 
-	$change_pass_form = "<br><b><u>Change your password:</b></u><br><br>".
-$form_start."Type new password: <input type=\"hidden\" name=\"action\" value=\"dtcemail_change_pass\"><input type=\"password\" name=\"newpass1\" value=\"\"><br>
-Repeate: <input type=\"password\" name=\"newpass2\" value=\"\">
-<input type=\"submit\" name=\"submit\" value=\"Ok\"></form><br><br>";
+	$change_pass_form = "<br><b><u>".$txt_change_your_password_title[$lang]."</b></u><br><br><br>
+<table cellpadding=\"0\" cellspacing=\"0\">
+<tr>
+	<td align=\"right\">".$form_start.$txt_password[$lang]."</td>
+	<td><input type=\"hidden\" name=\"action\" value=\"dtcemail_change_pass\"><input type=\"password\" name=\"newpass1\" value=\"\"></td>
+</tr><tr>
+	<td align=\"right\">".$txt_repeate_password[$lang]."</td>
+	<td><input type=\"password\" name=\"newpass2\" value=\"\"> <input type=\"submit\" name=\"submit\" value=\"Ok\"></form></td>
+</tr></table>
+<br><br>";
 
 	if($mailbox["data"]["localdeliver"] == "yes"){
 		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=no\"><font color=\"green\">yes</font></a>";
@@ -21,17 +36,22 @@ Repeate: <input type=\"password\" name=\"newpass2\" value=\"\">
 		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=yes\"><font color=\"red\">no</font></a>";
 	}
 
-	$redirect_form = "<br><b><u>Edit your mailbox redirections:</b></u><br><br>
-Deliver mail localy: $deliverUrl".
-$form_start."Redirection 1: <input type=\"hidden\" name=\"action\" value=\"dtcemail_edit_redirect\"><input type=\"text\" name=\"redirect1\" value=\"".$mailbox["data"]["redirect1"]."\"><br>
-Redirection 2: <input type=\"text\" name=\"redirect2\" value=\"".$mailbox["data"]["redirect2"]."\">
-<input type=\"submit\" name=\"submit\" value=\"Ok\"></form><br>";
+	$redirect_form = "<br><b><u>".$txt_mailbox_redirection_edition[$lang]."</b></u><br><br>
+".$txt_mail_deliver_localy[$lang]." $deliverUrl
+<table cellpadding=\"0\" cellspacing=\"0\">
+<tr>
+	<td align=\"right\">".$form_start.$txt_mail_redirection1[$lang]."</td>
+	<td><input type=\"hidden\" name=\"action\" value=\"dtcemail_edit_redirect\"><input type=\"text\" name=\"redirect1\" value=\"".$mailbox["data"]["redirect1"]."\"></td>
+</tr><tr>
+	<td>".$txt_mail_redirection2[$lang]."</td>
+	<td><input type=\"text\" name=\"redirect2\" value=\"".$mailbox["data"]["redirect2"]."\"><input type=\"submit\" name=\"submit\" value=\"Ok\"></form></td>
+</tr></table><br><br>";
 
 
-	$out = "<br><h4>Email panel: customise your mailbox!</h4>
+	$out = "<br><h4>".$txt_mail_edit[$lang]."</h4>
 <table width=\"100%\" heigh=\"1\">
 <tr>
-	<td>".skin("frame",$change_pass_form,"")."</td>
+	<td width=\"50%\">".skin("frame",$change_pass_form,"")."</td>
 	<td>".skin("frame",$redirect_form,"")."</td>
 </tr></table>
 <br>

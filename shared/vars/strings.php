@@ -1,5 +1,35 @@
 <?php
 
+$txt_mailbox_redirection_edition = array(
+  "fr" => "Edition des redirections de votre boite :",
+  "en" => "Edit your mailbox redirections:",
+        "it" => "TRANS Edit your mailbox redirections:",
+        "nl" => "TRANS Edit your mailbox redirections:",
+        "ru" => "TRANS Edit your mailbox redirections:",
+        "de" => "TRANS Edit your mailbox redirections:",
+        "zh" => "TRANS Edit your mailbox redirections:",
+        "es" => "TRANS Edit your mailbox redirections:");
+
+$txt_repeate_password = array(
+  "fr" => "Répéter votre mot de passe :",
+  "en" => "Repeate password:",
+        "it" => "TRANS Repeate password:",
+        "nl" => "TRANS Repeate password:",
+        "ru" => "TRANS Repeate password:",
+        "de" => "TRANS Repeate password:",
+        "zh" => "TRANS Repeate password:",
+        "es" => "TRANS Repeate password:");
+
+$txt_change_your_password_title = array(
+  "fr" => "Changer votre mot de passe :",
+  "en" => "Change your password:",
+        "it" => "TRANS Change your password:",
+        "nl" => "TRANS Change your password:",
+        "ru" => "TRANS Change your password:",
+        "de" => "TRANS Change your password:",
+        "zh" => "TRANS Change your password:",
+        "es" => "TRANS Change your password:");
+
 $txt_no_user_waiting = array(
   "fr" => "Pas d'utilisateur en attente !",
   "en" => "No user waiting!",
@@ -1779,15 +1809,16 @@ $txt_mail_redirection2 = array(
 	"zh" => "×ªËÍ2: ",
 	"es" => "Redireccion 2: "
 );
+
 $txt_mail_deliver_localy = array(
-	"fr" => "Délivrer en local: ",
-	"en" => "Deliver localy: ",
-	"it" => "Deliver localmente: ",
-	"nl" => "Lokaal afleveren: ",
-	"ru" => "äÏÓÔÁ×ËÁ ÌÏËÁÌØÎÏ:",
-	"de" => "Lokal zustellen: ",
-	"zh" => "±¾µØ´¢´æ: ",
-	"es" => "Enviar localmente: "
+	"fr" => "Délivrer les messages en local: ",
+	"en" => "Deliver messages localy: ",
+	"it" => "TRANS Deliver localmente: ",
+	"nl" => "TRANS Lokaal afleveren: ",
+	"ru" => "TRANS äÏÓÔÁ×ËÁ ÌÏËÁÌØÎÏ:",
+	"de" => "TRANS Lokal zustellen: ",
+	"zh" => "TRANS ±¾µØ´¢´æ: ",
+	"es" => "TRANS Enviar localmente: "
 );
 $txt_mail_edit = array(
 	"fr" => "Edition d'une boite aux lettres: ",
