@@ -32,7 +32,7 @@ then
 	grep -v "include \"$PATH_DTC_ETC/named.conf\"" $TMP_FILE > $TMP_FILE2
 	cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.removed
 	# don't purge the original file, just empty it
-	echo > $PATH_NAMED_CONF
+	echo -n > $PATH_NAMED_CONF
 	cat < $TMP_FILE2 >> $PATH_NAMED_CONF
 	rm -f $TMP_FILE
 	rm -f $TMP_FILE2
@@ -51,7 +51,7 @@ then
 		TMP_FILE=`mktemp -t DTC_uninstall.httpd.conf.XXXXXX` || exit 1
 		grep -v "Configured by DTC" $PATH_HTTPD_CONF | grep -v "Include $PATH_DTC_ETC/vhosts.conf" > $TMP_FILE
 		cp -f $PATH_HTTPD_CONF $PATH_HTTPD_CONF.DTC.removed
-		echo > $PATH_HTTPD_CONF
+		echo -n > $PATH_HTTPD_CONF
 		cat <$TMP_FILE >> $PATH_HTTPD_CONF
 		rm $TMP_FILE
 	else
@@ -81,7 +81,7 @@ then
 	cat $PATH_COURIER_CONF_PATH/authdaemonrc | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_COURIER_CONF_PATH/authdaemonrc | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_COURIER_CONF_PATH/authdaemonrc $PATH_COURIER_CONF_PATH/authdaemonrc.DTC.removed
-	echo > $PATH_COURIER_CONF_PATH/authdaemonrc
+	echo -n > $PATH_COURIER_CONF_PATH/authdaemonrc
 	cat < $TMP_FILE >> $PATH_COURIER_CONF_PATH/authdaemonrc
 	rm $TMP_FILE
 fi
@@ -101,7 +101,7 @@ then
 	cat $PATH_DOVECOT_CONF | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_DOVECOT_CONF | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.removed
-	echo > $PATH_DOVECOT_CONF
+	echo -n > $PATH_DOVECOT_CONF
 	cat < $TMP_FILE >> $PATH_DOVECOT_CONF
         rm $TMP_FILE
 fi
@@ -121,7 +121,7 @@ then
 	cat $PATH_PROFTPD_CONF | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_PROFTPD_CONF | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_PROFTPD_CONF $PATH_PROFTPD_CONF.DTC.removed
-	echo > $PATH_PROFTPD_CONF
+	echo -n > $PATH_PROFTPD_CONF
 	cat < $TMP_FILE >> $PATH_PROFTPD_CONF
         rm $TMP_FILE
 fi
@@ -142,7 +142,7 @@ then
 	cat $PATH_POSTFIX_CONF | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_POSTFIX_CONF | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_POSTFIX_CONF $PATH_POSTFIX_CONF.DTC.removed
-	echo > $PATH_POSTFIX_CONF
+	echo -n > $PATH_POSTFIX_CONF
 	cat < $TMP_FILE >> $PATH_POSTFIX_CONF
         rm $TMP_FILE
 fi
@@ -163,7 +163,7 @@ then
 	cat $PATH_POSTFIX_ETC/sasl/smtpd.conf | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_POSTFIX_ETC/sasl/smtpd.conf | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_CONF.DTC.removed
-	echo > $PATH_POSTFIX_ETC/sasl/smtpd.conf
+	echo -n > $PATH_POSTFIX_ETC/sasl/smtpd.conf
 	cat < $TMP_FILE >> $PATH_POSTFIX_ETC/sasl/smtpd.conf
         rm $TMP_FILE
 fi
