@@ -4,6 +4,7 @@ function get_remote_ns($a){
 	global $console;
 	$retry = 0;
 	$flag = false;
+	$named_file = ""; //init $named_file var
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"];
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
@@ -69,13 +70,22 @@ function get_remote_ns_domains(){
 			{
 				$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
 				$fp = fopen($f,"r");
-				fseek($fp,0,"SEEK_END");
+				$test = fseek($fp,0,SEEK_END);
+				if ($test == -1)
+				{
+					$console .= "Failed to seek to end of $f\n";
+				}
 				$size = ftell($fp);
-				fseek($fp,0,"SEEK_START");
-				$domain_list .= fread($fp,$size);
+				if ($size > 0)
+				{
+					fseek($fp,0);
+					$domain_list .= fread($fp,$size);
+				} else {
+					$console .= "File [" . $f . "] is empty\n";
+				}
 				fclose($fp);
 			} else {
-				$console .= "Cache file not present, probably failed to read from remote host";
+				$console .= "Cache file not present, probably failed to read from remote host\n";
 			}
 		}
 	}

@@ -7,6 +7,7 @@ function get_remote_mail($a){
 	global $console;
 	$flag = false;
 	$retry = 0;
+	$rcpthosts_file = ""; //init variable here
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"];
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
@@ -82,10 +83,15 @@ function get_remote_mail_domains(){
                         {
 			$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
 			$fp = fopen($f,"r");
-			fseek($fp,0,"SEEK_END");
+			fseek($fp,0,SEEK_END);
 			$size = ftell($fp);
-			fseek($fp,0,"SEEK_START");
-			$domain_list .= fread($fp,$size);
+			if ($size > 0)
+			{
+				fseek($fp,0);
+				$domain_list .= fread($fp,$size);
+			} else {
+				$console .= "File [" . $f . "] is empty\n";
+			}
 			fclose($fp);
 			} else {
                                 $console .= "Cache file not present, probably fa

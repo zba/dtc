@@ -53,6 +53,8 @@ function mail_account_generate_postfix(){
 	$relay_domains_file = "";
 	$poppasswd_file = "";
 
+	$date = ""; // init var for use later on
+
 	// go through each admin login and find the domains associated 
 	$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login;";
 	$result = mysql_query ($query)or die("Cannot execute query : \"$query\"");
