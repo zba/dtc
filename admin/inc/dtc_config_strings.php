@@ -87,7 +87,7 @@ $txt_cfg_site_addrs =array(
 	"nl" => "",
 	"ru" => "IP адреса хоста (разделенные \"|\"):",
 	"de" => "Rechner IP Adressen (Separator \"|\"):",
-	"es" => "Direcciones IP del Host (separado por \"|\"):",
+	"es" => "Direcciones IP del Host (separado por \"|\"):");
 
 $txt_cfg_name_zonefileconf_title =array(
 	"fr" => "Configuration des zonefiles named",
