@@ -198,7 +198,7 @@ $more_mx_server
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$lines = file ('http://'.$a["server_addr"].'/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"]);
+		$lines = file ($a["server_addr"].'/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"]);
 		$nline = sizeof($lines);
 		if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
 			strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){

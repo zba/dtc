@@ -328,7 +328,7 @@ function drawBackupConfig(){
         <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
         <input type=\"hidden\" name=\"action\" value=\"add_mail_backup\">
         <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-        <tr><td><input type=\"text\" name=\"server_addr\" value=\"dtc.\"></td>";
+        <tr><td><input type=\"text\" name=\"server_addr\" value=\"http://dtc.\"></td>";
         $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
         $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
         $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
@@ -357,7 +357,7 @@ function drawBackupConfig(){
         <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
         <input type=\"hidden\" name=\"action\" value=\"add_dns_backup\">
         <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-        <tr><td><input type=\"text\" name=\"server_addr\" value=\"dtc.\"></td>";
+        <tr><td><input type=\"text\" name=\"server_addr\" value=\"http://dtc.\"></td>";
         $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
         $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
         $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
