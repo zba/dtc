@@ -4,7 +4,7 @@ require_once("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
 session_name("wallid");
-//header ("Content-type: image/png");
+header ("Content-type: image/png");
 
 // Date in the past
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
@@ -78,7 +78,7 @@ AND year='$year' AND month='$month'";
 		$tr_tbl[$m] += $a["sent"];
 	}
 
-	$q = "SELECT transfer FROM admin,domain,$pro_mysql_acc_ftp_table
+	$q = "SELECT sum(transfer) as sent FROM admin,domain,$pro_mysql_acc_ftp_table
 WHERE admin.id_client='".$_REQUEST["cid"]."'
 AND domain.owner=admin.adm_login
 AND $pro_mysql_acc_ftp_table.sub_domain=domain.name
@@ -86,11 +86,11 @@ AND year='$year' AND month='$month';";
 	$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." SQL said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n == 1){
-		$a = mysql_fetch_array($r4);
-		$tr_tbl[$m] += $a["transfer"];
+		$a = mysql_fetch_array($r);
+		$tr_tbl[$m] += $a["sent"];
 	}
 
-	$q = "SELECT sum(smtp_trafic+pop_trafic+imap_trafic
+	$q = "SELECT sum(smtp_trafic+pop_trafic+imap_trafic) as sent
 FROM admin,domain,$pro_mysql_acc_email_table
 WHERE admin.id_client='".$_REQUEST["cid"]."'
 AND domain.owner=admin.adm_login
@@ -100,9 +100,10 @@ AND $pro_mysql_acc_email_table.year='$year' AND $pro_mysql_acc_email_table.month
 	$n = mysql_num_rows($r);
 	if($n == 1){
 		$a = mysql_fetch_array($r);
-		$tr_tbl[$m] += $a["smtp_trafic"];
-		$tr_tbl[$m] += $a["pop_trafic"];
-		$tr_tbl[$m] += $a["imap_trafic"];
+		$tr_tbl[$m] += $a["sent"];
+//		$tr_tbl[$m] += $a["smtp_trafic"];
+//		$tr_tbl[$m] += $a["pop_trafic"];
+//		$tr_tbl[$m] += $a["imap_trafic"];
 	}
 
 }
@@ -110,18 +111,20 @@ AND $pro_mysql_acc_email_table.year='$year' AND $pro_mysql_acc_email_table.month
 //$bpquota = 1024 * 1024 * 1024;
 //$tr_tbl[11] = 512 * 1024 * 1024;
 
-if($bpquota == 0){
-	$max = 100;
-	for($m=0;$m<12;$m++){
-		if($tr_tbl[$m] > $max){
-			$max = $tr_tbl[$m];
-		}
+$foundmax=0;
+for($m=0;$m<12;$m++){
+	if($tr_tbl[$m] > $foundmax){
+		$foundmax = $tr_tbl[$m];
 	}
-}else{
-	$max = $bpquota;
 }
-$max *= 1.15;
 
+$max = $bpquota;
+if($foundmax > $bpquota)
+	$max = $foundmax;
+$max *= 1.05;
+
+$quotaY = $height - (($bpquota * $height ) / ($max));
+imageline ( $im, 0, $quotaY, $width, $quotaY, $red);
 for($m=0;$m<12;$m++){
 //	echo $m.":".$tr_tbl[$m]."<br>";
 	$x1 = $m*10;
