@@ -17,6 +17,11 @@ body{
 	font-size: 8pt;
 }
 
+b {
+	color: #A10000;
+	font-weight: 500;
+}
+
 /* default unphpsized colors */
 a:hover { color: #C1C1C4; }
 a:link  { color: #A1A1A4; }
@@ -86,20 +91,13 @@ a:link		{ color: #6d6d6d; font-size: 8pt;}
 a:visited	{ color: #6d6d6d; font-size: 8pt;}
 a:active	{ color: #6d6d6d; font-size: 8pt;}
 a:hover		{ color: #111111! important; font-size: 8pt;}
-/*center		{ color: #212121; vertical-align: top; }
-td.head 	{ color: #e0e0e0; background-color: #212121; }
-td.corps 	{ color: #212121; background-color: #e0e0e0; }
-*.dashed 	{ border-bottom: 1px dashed #212121; }
-span, h1, h2, h3, h4 { color: #212121; }
-img {  margin: 0px; }
-*/
 hr		{ color: #212121; background-color: #212121; }
-select, input, optgroup, textarea { font-family : Arial, Helvetica,
-sans-serif; color: #212121; border-color : #212121; background-color: #eaeaea; }
+select, input, optgroup, textarea { 
+	font-family : Arial, Helvetica, sans-serif;
+	color: #212121; border-color : #212121;
+	background-color: #eaeaea;
+}
 select, textarea { border: 1px solid #212121; }
 
 /** IE does not recognize this CSS standardization... Crimosoft suxxx */
-/*input[type="text"], input[type="submit"], input[type="file"],
 input[type="password"] { border: 1px solid #212121!important; }
-body {  color: #000000; background: #F5F5F5; background-image: url('./gfx/skin/muedgrey/degrade.jpg'); }
-*/

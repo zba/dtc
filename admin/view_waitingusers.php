@@ -33,17 +33,18 @@ if($n != 1){
 	$newu_infos = "$q: User not found!!!";
 }else{
 	$a = $a = mysql_fetch_array($r);
-	$newu_infos .= "<u>".$a["comp_name"].":</u> ";
-	$newu_infos .= $a["family_name"].", ".$a["first_name"]."<br>";
-	$newu_infos .= "Login: ".$a["reqadm_login"]."<br>";
-	$newu_infos .= "Domain name: ".$a["domain_name"]."<br>";
-	$newu_infos .= "Email: ".$a["email"]."<br>";
-	$newu_infos .= "Phone: ".$a["phone"]."<br>";
-	$newu_infos .= "Fax: ".$a["fax"]."<br>";
-	$newu_infos .= "Address: ".$a["addr1"]." ".$a["addr2"]." ".$a["addr3"]."<br>";
-	$newu_infos .= "Zipcode: ".$a["zipcode"]."<br>";
-	$newu_infos .= "State: ".$a["state"]."<br>";
-	$newu_infos .= "Country: ".$cc_code_array[$a["country"]]."<br>";
+	$newu_infos .= "<h4><u>".$a["comp_name"].":</u> ";
+	$newu_infos .= $a["family_name"].", ".$a["first_name"]."</h4>";
+	$newu_infos .= "<b>Login:</b> ".$a["reqadm_login"]."<br>";
+	$newu_infos .= "<b>Domain name:</b> ".$a["domain_name"]."<br>";
+	$newu_infos .= "<b>Email:</b> ".$a["email"]."<br>";
+	$newu_infos .= "<b>Phone:</b> ".$a["phone"]."<br>";
+	$newu_infos .= "<b>Fax:</b> ".$a["fax"]."<br>";
+	$newu_infos .= "<b>Address:</b> ".$a["addr1"]." ".$a["addr2"]." ".$a["addr3"]."<br>";
+	$newu_infos .= "<b>Zipcode:</b> ".$a["zipcode"]."<br>";
+	$newu_infos .= "<b>State:</b> ".$a["state"]."<br>";
+	$newu_infos .= "<b>City:</b> ".$a["city"]."<br>";
+	$newu_infos .= "<b>Country:</b> ".$cc_code_array[$a["country"]]."<br>";
 	$newu_infos .= "";
 }
 

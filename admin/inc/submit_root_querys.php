@@ -169,11 +169,11 @@ if($_REQUEST["action"]=="valid_waiting_user"){
 
 	$adm_query = "INSERT INTO $pro_mysql_client_table
 (id,is_company,company_name,familyname,christname,addr1,addr2,addr3,
-city,zipcode,state,country,phone,fax,email,
+city,zipcode,state,city,country,phone,fax,email,
 disk_quota_mb,bw_quota_per_month_gb) VALUES ('','".$a["iscomp"]."',
 '".$a["comp_name"]."','".$a["family_name"]."','".$a["first_name"]."',
 '".$a["addr1"]."','".$a["addr2"]."','".$a["addr3"]."','".$a["city"]."',
-'".$a["zipcode"]."','".$a["state"]."','".$a["country"]."','".$a["phone"]."',
+'".$a["zipcode"]."','".$a["state"]."','".$a["city"]."','".$a["country"]."','".$a["phone"]."',
 '".$a["fax"]."','".$a["email"]."','80','1024');";
 	$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$cid = mysql_insert_id();
@@ -185,6 +185,13 @@ disk_quota_mb,bw_quota_per_month_gb) VALUES ('','".$a["iscomp"]."',
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	addDomainToUser($_REQUEST["reqadm_login"],$a["reqadm_pass"],$a["domain_name"]);
+
+	// Send a mail to user with how to login and use interface.
+	$txt_userwaiting_account_activated_subject = "GPLHost:>_ Account ".$_REQUEST["reqadm_login"]." has been activated!";
+	$txt_userwaiting_account_activated_text_header = "DTC Account opened!";
+	$header = "From: ".$webmaster_email_addr;
+	mail($a["email"],$txt_userwaiting_account_activated_subject,
+		$txt_userwaiting_account_activated_text_header);
 
 	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
