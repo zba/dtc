@@ -1,4 +1,7 @@
 17-09-04:
+Apache conf generation died if domain has no subdomains, wich can happen
+in some configuration of a domain name.
+
 Start of a new_account script.
 
 Genvhosts script was diing if no subdomains found to generate

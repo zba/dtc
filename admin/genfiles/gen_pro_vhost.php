@@ -145,9 +145,11 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default' ORDER BY subdomain_name;";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
-		if($num_rows2 < 1){
-			die("No subdomain for domain $web_name !");
-		}
+// This is a bad idea to die in this case
+// because it actualy happen if you redirect www ip to something else.
+//		if($num_rows2 < 1){
+//			die("No subdomain for domain $web_name !");
+//		}
 		for($j=0;$j<$num_rows2;$j++){
 			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
