@@ -1,3 +1,7 @@
+12/4/2004:
+Added lot's of stuff to the install process, because I was bored to do
+it manualy. /etc/resolv.conf and httpd.conf are now edited automaticaly.
+
 7/1/2004:
 Added some changes needed for BSD:
 
