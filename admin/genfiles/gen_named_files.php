@@ -224,16 +224,16 @@ $more_mx_server
 			}else{
 				$the_ip_writed = $subdomain["ip"];
 			}
-			if($newsubdomain_name == "pop"){
+			if($web_subname == "pop"){
 				$is_pop_subdomain_set = yes;
 			}
-			if($newsubdomain_name == "smtp"){
+			if($web_subname == "smtp"){
 				$is_smtp_subdomain_set = yes;
 			}
-			if($newsubdomain_name == "ftp"){
+			if($web_subname == "ftp"){
 				$is_ftp_subdomain_set = yes;
 			}
-			if($newsubdomain_name == "list"){
+			if($web_subname == "list"){
 				$is_list_subdomain_set = yes;
 			}
 			$this_site_file .= "$web_subname	IN	A	$the_ip_writed\n";
