@@ -15,5 +15,4 @@ Description: A GPL web control panel for admin and accounting hosting services
  plugin (when service is non-critical). It can also generates backup scripts,
  calculation scripts, and config files using a single system UID/GID, and
  monitor all trafic accounting per user and per service. Since version 0.12,
- DTC is fully skinable and translated in 7 language (Chinese, English,
- Spanish, French, Deuch, German, Italian and Russian).
+ DTC is fully skinable and translated in several languages.
