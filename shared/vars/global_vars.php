@@ -16,7 +16,7 @@ $adm_login = $_REQUEST["adm_login"];
 $adm_pass = $_REQUEST["adm_pass"];
 $addrlink = $_REQUEST["addrlink"];
 
-if(!ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_login) && isset($adm_login) && $adm_login != ""){
+if(!ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)\$",$adm_login) && isset($adm_login) && $adm_login != ""){
 	die("Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" sign.");
 }
 if(!ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_pass) && isset($adm_pass) && $adm_pass != ""){
