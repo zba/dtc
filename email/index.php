@@ -16,17 +16,18 @@ $anotherLanguageSelection = anotherLanguageSelection();
 $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
 if($adm_email_login != "" && isset($adm_email_login) && $adm_email_pass != "" && isset($adm_email_pass)){
+	$error = pass_check_email();
 	// Fetch all the user informations, Print a nice error message if failure.
-	$admin = fetchMailboxInfos($adm_email_login,$adm_email_pass);
-	if(($error = $admin["err"]) != 0){
+	if($error == false){
 		$mesg = $admin["mesg"];
-		$login_txt = "<font color=\"red\" Wrong login or password !</font><br>";
-		$login_txt .= "Error $error fetching admin : $mesg";
+		$login_txt = "<font color=\"red\">Wrong login or password !</font><br>";
+//		$login_txt .= "Error $error fetching admin : $mesg";
 		$login_txt .= login_emailpanel_form();
 		$login_skined = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
 		$mypage = layout_login_and_languages($login_skined,$lang_sel);
 	}else{
 		// Draw the html forms
+		$admin = fetchMailboxInfos($adm_email_login,$adm_email_pass);
 		$content = drawAdminTools_emailPanel($admin);
 		$mypage = skin($conf_skin,$content,$adm_email_login);
 	}
