@@ -227,13 +227,10 @@ for($i=0;$i<sizeof($array_of_sign);$i++){
 }
 $icon_x = $gfx_start_pos+$txt_x_pos - 19;
 if($_REQUEST["text"] == "myaccount"){
-	$icon_im = imagecreatefrompng("tool.png");
+	$icon_im = imagecreatefrompng("home.png");
 	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
 }else if($_REQUEST["text"] == "stats"){
-	$icon_im = imagecreatefrompng("tst_icon.png");
-//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
-}else if($_REQUEST["text"] == "dts"){
-	$icon_im = imagecreatefrompng("tst_icon.png");
+	$icon_im = imagecreatefrompng("stat.png");
 	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
 }else if($_REQUEST["text"] == "subdomains"){
 	$icon_im = imagecreatefrompng("tst_icon.png");
@@ -243,7 +240,7 @@ if($_REQUEST["text"] == "myaccount"){
 	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
 }else if($_REQUEST["text"] == "adddomain"){
 	$icon_im = imagecreatefrompng("tool.png");
-//	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
 }else if($_REQUEST["text"] == "nickhandles"){
 	$icon_im = imagecreatefrompng("man.png");
 	imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
