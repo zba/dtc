@@ -73,13 +73,13 @@ else
 
 	echo "=> Checking apache modules"
 	echo -n "Checking for php4..."
-	if grep "# LoadModule php4_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+	if grep -i "# LoadModule php4_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "found commented: activating php4 module!"
 		sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	else
-		if grep "LoadModule php4_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+		if grep -i "LoadModule php4_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 		then
 			echo " ok!"
 		else
@@ -89,13 +89,13 @@ else
 	fi
 
 	echo -n "Checking for ssl..."
-	if grep "# LoadModule ssl_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+	if grep -i "# LoadModule ssl_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "found commented: activating ssl module!"
 		sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	else
-		if grep "LoadModule ssl_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+		if grep -i "LoadModule ssl_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 		then
 			echo " ok!"
 		else
@@ -104,23 +104,23 @@ else
 	fi
 
 	echo -n "Checking for sql_log..."
-	if grep "# LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+	if grep -i "# LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "found commented: ativating sql_log module!"
 		sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	else
-		if grep "LoadModule log_sql_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+		if grep -i "LoadModule log_sql_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 		then
 			echo " ok!"
 		else
-			if grep "# LoadModule log_sql_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+			if grep -i "# LoadModule log_sql_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 			then
 				echo "found commented: ativating sql_log module!"
 				sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF >$TMP_FILE
 				cat <$TMP_FILE >$PATH_HTTPD_CONF
 			else
-				if grep "LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+				if grep -i "LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 				then
 					echo " ok!"
 				else

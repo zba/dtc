@@ -58,7 +58,7 @@ mv "dtc-"$VERSION"/dtc" share
 
 echo "===> Creating port files"
 # Make  dtc port dir and copy static files in it
-mkdir dtc
+mkdir -p dtc/files
 cp sources/bsd/pkg-descr dtc
 # Create Makefile with correct port version
 echo "# Ports collection makefile for:        dtc
@@ -73,15 +73,15 @@ PORTVERSION=	"$VERSION >dtc/Makefile
 cat sources/bsd/Makefile >>dtc/Makefile
 
 # Create package install script
-cp sources/bsd/install.sh dtc/pkg-install
-cat sources/setup_mysql_db.sh >>dtc/pkg-install
-cat sources/configure_deamons.sh >>dtc/pkg-install
-chmod 622 dtc/pkg-install
+cp sources/bsd/install.sh dtc/files/dtc-install.in
+cat sources/setup_mysql_db.sh >>dtc/files/dtc-install.in
+cat sources/configure_deamons.sh >>dtc/files/dtc-install.in
+chmod 644 dtc/files/dtc-install.in
 
 # Create package uninstall script
-cp sources/bsd/uninstall.sh dtc/pkg-deinstall
-cat sources/uninstall_deamons.sh >>"dtc/pkg-deinstall"
-chmod 622 dtc/pkg-deinstall
+cp sources/bsd/uninstall.sh dtc/files/dtc-deinstall.in
+cat sources/uninstall_deamons.sh >>"dtc/files/dtc-deinstall.in"
+chmod 644 dtc/files/dtc-deinstall.in
 
 echo "===> Calculating package MD5 sum"
 # Make the md5 sum file in this distinfo
