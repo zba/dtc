@@ -1,8 +1,6 @@
 <?php
 
-//require("/usr/share/dtc/shared/strings.php");
-require("$dtcshared_path/strings.php");
-require_once "$dtcshared_path/inc/paiement.php";
+// require("$dtcshared_path/strings.php");
 
 function drawAdminTools_MyAccount($admin){
 	global $PHP_SELF;
