@@ -2,7 +2,7 @@ Copyright: LGPL
 Group: System/Configuration
 Source: dtc.tar.gz
 BuildRoot: %{_tmppath}/%{name}-root
-Requires: php >= 4.1, php-mysql >= 4.1, apache >= 1.3, mysql
+Requires: php >= 4.1, php-mysql >= 4.1, mysql, webalizer
 
 %description
 A GPL web control panel for admin and accounting hosting services

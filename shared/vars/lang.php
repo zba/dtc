@@ -67,7 +67,7 @@ if (!$lang){
 		for ($i = 0; $i < sizeof($langaccept); $i++) { 
 			$tmplang = trim($langaccept[$i]);
 			$tmplang2 = substr($tmplang,0,2);
-			if (!isset($lang) && $txt_langname[$tmplang]) {   // if the whole string matchs ("de-CH", or "en", etc)
+			if (!isset($lang) && isset($txt_langname[$tmplang]) && $txt_langname[$tmplang]) {   // if the whole string matchs ("de-CH", or "en", etc)
 				$lang = $tmplang;
 			}elseif ($txt_langname[$tmplang2] && !$lang) { // then try only the 2 first chars ("de", "fr"...)
 				$lang = $tmplang2; 
