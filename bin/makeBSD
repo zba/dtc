@@ -100,14 +100,15 @@ share/dtc/client/gfx
 share/dtc/client/imgcache" >>dtc/pkg-plist.tmp
 find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>dtc/pkg-plist.tmp
 NBR_LINE=`cat dtc/pkg-plist.tmp | wc -l`
-cat dtc/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >dtc/pkg-plist
-rm dtc/pkg-plist.tmp
+cat dtc/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >dtc/pkg-plist.tmp2
+sed "s/share\/dtc/%%DTCROOT%%/" dtc/pkg-plist.tmp2 | grep -v "mysql_config.php" >dtc/pkg-plist
+rm dtc/pkg-plist.tmp dtc/pkg-plist.tmp2
 
 mkdir sysutils
 mv dtc sysutils
 mkdir -p lang/php4-dtc
 cp sources/bsd/php4-dtc-slave lang/php4-dtc/Makefile
-mkdir -p ftp/proftpd-dtc
+mkdir -p ftp/proftpd-mysql
 cp sources/bsd/proftpd-dtc-slave ftp/proftpd-mysql/Makefile
 
 echo "===> Creating .uue archive file"
