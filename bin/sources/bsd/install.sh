@@ -4,8 +4,10 @@
 # called by the make install
 # made by Thomas Goirand <thomas@goirand.fr> and Frederic Cambus
 
-PREFIX=$1
-WRKSRC=$2
+
+PREFIX=%%PREFIX%%
+LOCALBASE=%%LOCALBASE%%
+QMAIL_DIR=%%QMAIL_DIR%%
 
 UNIX_TYPE=freebsd
 
@@ -118,17 +120,17 @@ read conf_adm_pass
 # Deamon path configuration
 
 echo "### DEAMON PATH CONFIGURATION ###"
-PATH_HTTPD_CONF="${PREFIX}/etc/apache/httpd.conf"
+PATH_HTTPD_CONF="${LOCALBASE}/etc/apache/httpd.conf"
 PATH_NAMED_CONF="/etc/namedb/named.conf"
 # Copy default conf if no conf exists (BSD specific)
-if [ ! -f ${PREFIX}/etc/proftpd.conf ];
+if [ ! -f ${LOCALBASE}/etc/proftpd.conf ];
 then
-	cp ${PREFIX}/etc/proftpd.conf.default ${PREFIX}/etc/proftpd.conf
+	cp ${LOCALBASE}/etc/proftpd.conf.default ${LOCALBASE}/etc/proftpd.conf
 fi
-PATH_PROFTPD_CONF="${PREFIX}/etc/proftpd.conf"
-PATH_QMAIL_CTRL="/var/qmail/control"
-PATH_PHP_CGI="${PREFIX}/bin/php"
-PATH_DTC_SHARED="${PREFIX}/share/dtc"
+PATH_PROFTPD_CONF="${LOCALBASE}/etc/proftpd.conf"
+PATH_QMAIL_CTRL="${QMAIL_DIR}/control"
+PATH_PHP_CGI="${LOCALBASE}/bin/php"
+PATH_DTC_SHARED="${PREFIX}/www/dtc"
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
@@ -162,17 +164,14 @@ echo ""
 echo -n 'Confirm and install DTC ? [Ny]:'
 read valid_infos
 
-if [ $valid_infos =  "y" ];
+read valid_infos1
+if [ "$valid_infos1" =  "y" ];
 then
 	echo "Installation has started..."
 else
 	echo "Configuration not validated : exiting !"
 	exit 1
 fi
-
-echo "Copying DTC's php scripts to ${PREFIX}/share..."
-
-cp -Rf ${WRKSRC}/dtc ${PREFIX}/share
 
 echo "===> Checking BSD type"
 kernel=`uname -a | awk '{print $1}'`;

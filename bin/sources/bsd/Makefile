@@ -18,7 +18,21 @@ NO_BUILD=       yes
 USE_MYSQL=      yes
 NO_PACKAGE=     No binary package => Application is written and installed with PHP
 
+do-configure:
+	@${SED} -e 's,%%PREFIX%%,${PREFIX},;\
+		s,%%LOCALBASE%%,${LOCALBASE},;\
+		s,%%QMAIL_DIR%%,${QMAIL_DIR},' \
+		${FILESDIR}/dtc-install.in > ${WRKDIR}/dtc-install
+        @${SED} -e 's,%%PREFIX%%,${PREFIX},;\
+		s,%%LOCALBASE%%,${LOCALBASE},;\
+		s,%%QMAIL_DIR%%,${QMAIL_DIR},' \
+		${FILESDIR}/dtc-deinstall.in > ${WRKDIR}/dtc-deinstall
+
 do-install:
-		@${SH} ${PKGINSTALL} ${PREFIX} ${WRKSRC}
+	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-install ${PREFIX}/sbin/dtc-install
+	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-deinstall ${PREFIX}/sbin/dtc-deinstall
+	@${MKDIR} ${DATADIR}
+	@cd ${WRKSRC}/dtc ; ${TAR} cfp - . | ${TAR} xfp - -C ${DATADIR}
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>

@@ -83,6 +83,8 @@ cp sources/bsd/uninstall.sh dtc/files/dtc-deinstall.in
 cat sources/uninstall_deamons.sh >>"dtc/files/dtc-deinstall.in"
 chmod 644 dtc/files/dtc-deinstall.in
 
+cp sources/bsd/pkg-message dtc
+
 echo "===> Calculating package MD5 sum"
 # Make the md5 sum file in this distinfo
 BSDSUM=`md5sum "dtc-"$VERSION".tar.gz" | cut -f1 -d" "`
