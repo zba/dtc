@@ -179,5 +179,5 @@ else
 fi
 
 if [ -e /var/lib/php/session ] ; then
-	chrgp -R nobody /var/lib/php/session
+	chgrp -R nobody /var/lib/php/session
 fi
