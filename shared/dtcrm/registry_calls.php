@@ -1,4 +1,4 @@
-<?
+<?php
 
 require_once "$dtcshared_path/dtcrm/opensrs.php";
 

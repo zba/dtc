@@ -24,17 +24,38 @@ ns1,ns2". $ns_field .")VALUES('$domain_name','$owner_id','$billing_id','$admin_i
 	$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 }
 
-function drawNamedTransfer($domain_name){
-			$out .= "<b><u>Transfer ".$eddomain["name"]." from
-another registrar to GPLHost:</u></b><br><br>
-
-<form action=\"$PHP_SELF\">
+function drawNameTransfer($given_fqdn="none"){
+	global $form_enter_domain_name;
+	$toreg_domain = $_REQUEST["toreg_domain"];
+	$toreg_extention = $_REQUEST["toreg_extention"];
+	$form_start = "<form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-<input type=\"hidden\" name=\"dtcrm_action\" value=\"transfer_domain_2\">";
-			$out .= whoisHandleSelection($admin);
-			$out .= "<input type=\"submit\" value=\"Ok\">
+<input type=\"hidden\" name=\"dtcrm_action\" value=\"transfer_domain\">
+";
+//	registry_check_transfer($domain)
+	$out .= "<b><u>Transfer ".$eddomain["name"]." from
+another registrar to GPLHost:</u></b><br><br>
+<i><u>Step1: check if domain is transferable</u></i>
+";
+	if($given_fqdn != "none" && !isset($toreg_extention)){
+		$c = strrpos($given_fqdn);
+		$toreg_extention = substr($given_fqdn,$c);
+		$toreg_domain = substr($given_fqdn,1,strlen($given_fqdn)-$c);
+	}
+	if(isset($domain_extention) && $domain_extention != "" &&
+	isset($domain_name) && $domain_name != ""){
+		if($domain_extention != ".com" || $domain_extention != ".net" ||
+		$domain_extention != ".org" || $domain_extention != ".biz" ||
+		$domain_extention != ".name" || $domain_extention != ".info")
+			die("Domain extention registraion not open for $domain_extention");
+		$out .= $form_start;
+		$out .= whoisHandleSelection($admin);
+	}else{
+		$out .= "$form_start$form_enter_domain_name";
+	}
+	$out .= "<input type=\"submit\" value=\"Ok\">
 </form>";
 }
 
@@ -53,11 +74,12 @@ function drawAdminTools_Whois($admin,$eddomain){
 
 	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
 	if($eddomain["whois"] == "away"){
-		if($_REQUEST["action"] == "transfer_domain"){
+		if($_REQUEST["dtcrm_action"] == "transfer_domain"){
+			$out .= drawNameTransfer();
 		}else{
 			$out .= "Your domain name has been registred elsewhere (eg
 not on this site). To order for it's transfer and management, please click
-<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=transfer_domain\">here</a>.<br><br>
+<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&dtcrm_action=transfer_domain\">here</a>.<br><br>
 If you want to keep your current registrar, you have to make the whois point
 to thoses DNS:<br><br>
 Primary DNS: <b>$conf_addr_primary_dns</b><br>

@@ -5,8 +5,19 @@ require_once "$dtcshared_path/dtcrm/registry_calls.php";
 require_once "$dtcshared_path/dtcrm/draw_handle.php";
 require_once "$dtcshared_path/dtcrm/draw_whois.php";
 
-$registration_added_price = 1;
+$registration_added_price = 1.5;
 
+$form_enter_domain_name = "<input type=\"hidden\" name=\"action\" value=\"dtcrm_add_domain\">
+www.<input type=\"text\" name=\"toreg_domain\" value=\"\">
+<select name=\"toreg_extention\">
+<option value=\".com\" selected>.com</option>
+<option value=\".net\">.net</option>
+<option value=\".org\">.org</option>
+<option value=\".biz\">.biz</option>
+<option value=\".info\">.info</option>
+<option value=\".name\">.name</option>
+</select><input type=\"submit\" value=\"Ok\">
+";
 
 function drawAdminTools_AddDomain($admin){
 	global $lang;
@@ -14,6 +25,8 @@ function drawAdminTools_AddDomain($admin){
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
+
+	global $form_enter_domain_name;
 
 	global $pro_mysql_handle_table;
 
@@ -24,16 +37,6 @@ function drawAdminTools_AddDomain($admin){
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"add_domain_type\" value=\"".$_REQUEST["add_domain_type"]."\">
 <input type=\"hidden\" name=\"add_regORtrans\" value=\"register\">
-<input type=\"hidden\" name=\"action\" value=\"dtcrm_add_domain\">
-www.<input type=\"text\" name=\"toreg_domain\" value=\"\">
-<select name=\"toreg_extention\">
-<option value=\".com\" selected>.com</option>
-<option value=\".net\">.net</option>
-<option value=\".org\">.org</option>
-<option value=\".biz\">.biz</option>
-<option value=\".info\">.info</option>
-<option value=\".name\">.name</option>
-</select><input type=\"submit\" value=\"Ok\">
 </form>
 ";
 
