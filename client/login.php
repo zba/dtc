@@ -10,7 +10,7 @@ function login_form(){
 
 	global $lang;
 
-	$HTML_admin_edit_data = "<a href=\"/dtcemail\">Go to email panel</a>
+	$HTML_admin_edit_data = "<a href=\"/dtcemail\">Go to email panel</a> - <a href=\"new_account.php\">Register account</a>
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <table>
 <tr>
