@@ -98,6 +98,7 @@ PATH_PROFTPD_CONF=/etc/proftpd.conf
 PATH_QMAIL_CTRL=/var/qmail/control
 PATH_PHP_CGI=/usr/bin/php
 PATH_DTC_ETC=/usr/share/dtc/etc
+PATH_DTC_SHARED=/usr/share/dtc
 
 echo ""
 echo ""

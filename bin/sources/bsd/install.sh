@@ -60,7 +60,7 @@ then
 fi
 
 echo ""
-echo "I need now you host information for apache !"
+echo "I need now your host information for apache !"
 echo -n "What is your IP addresse ? ["$cur_ip_addr"]: "
 read conf_ip_addr
 
@@ -79,7 +79,7 @@ then
 fi
 
 echo ""
-echo "What admin login/pass you want for the administration of "$main_domain_name "?"
+echo "What admin login/pass do you want for the administration of "$main_domain_name "?"
 echo -n "Login [dtc]: "
 read conf_adm_login
 if [ $conf_adm_login == ""];
@@ -103,6 +103,7 @@ PATH_PROFTPD_CONF="/usr/local/etc/proftpd.conf"
 PATH_QMAIL_CTRL="/var/qmail/control"
 PATH_PHP_CGI="/usr/local/bin/php"
 PATH_DTC_ETC="/usr/share/dtc/etc"
+PATH_DTC_SHARED="/usr/local/share/dtc"
 
 echo ""
 echo ""

@@ -142,6 +142,15 @@ fi
 
 echo "### DTC PATH ###"
 echo ""
+echo "Where do you want DTC be installed ?"
+echo -n "DTC shared install folder [/usr/share/dtc]: "
+read PATH_DTC_SHARED
+if [ $PATH_DTC_SHARED == ""];
+then
+	PATH_DTC_SHARED="/usr/share/dtc"
+fi
+
+echo ""
 echo "Where do you want DTC to store it's generated configuration files ?"
 echo -n "DTC generated files [/usr/share/dtc/etc]: "
 read PATH_DTC_ETC
@@ -173,6 +182,7 @@ echo "named.conf: "$PATH_NAMED_CONF
 echo "proftpd.conf: "$PATH_PROFTPD_CONF
 echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI
+echo "DTC shared folder:"$PATH_DTC_SHARED
 echo "generated files: "$PATH_DTC_ETC
 echo ""
 echo -n 'Confirm and install DTC ? [Ny]:'
