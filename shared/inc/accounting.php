@@ -145,22 +145,22 @@ function sum_http($webname){
 			$bytes_sent = mysql_result($r_bytes,0,"amount");
 			//$bytes_sent = 0;
 			// Get visits
-			/*$q_visits = "SELECT DISTINCT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+			$q_visits = "SELECT DISTINCT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 			$r_visits = mysql_query($q_visits) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
-			$visits = mysql_num_rows($r_visits);*/
-			$visits = 0;
+			$visits = mysql_num_rows($r_visits);
+//			$visits = 0;
 
 			// Get hosts
-/*			$q_hosts = "SELECT remote_host FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end." GROUP BY remote_host";
+			$q_hosts = "SELECT remote_host FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end." GROUP BY remote_host";
 			$r_hosts = mysql_query($q_hosts) or die("Cannot execute query \"$q_hosts\" !!! ".mysql_error());
-			$hosts = mysql_num_rows($r_hosts);*/
-			$hosts = 0;
+			$hosts = mysql_num_rows($r_hosts);
+//			$hosts = 0;
 
 			// Get impressions
-/*			$q_imp = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;;
+			$q_imp = "SELECT id FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;;
 			$r_imp = mysql_query($q_imp) or die("Cannot execute query \"$q_imp\" !!! ".mysql_error());
-			$imp = mysql_num_rows($r_imp);*/
-			$imp = 0;
+			$imp = mysql_num_rows($r_imp);
+//			$imp = 0;
 
 			mysql_select_db($conf_mysql_db);
 
@@ -225,7 +225,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 				if(!file_exists($dump_file_name.".bz2") && ($year!=$current_year || $month!=$current_month)){
 					$selected_month_start = mktime(0,0,0,$month,1,$year);
 					$selected_month_end = (mktime(0,0,0,($month+1),1,$year))-1;
-					$query_dump = "SELECT remote_host,time_stamp,request_line,status,bytes_sent,referer,agent FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+					$query_dump = "SELECT remote_host,time_stamp,request_uri,status,bytes_sent,referer,agent FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 //					$query_dump = "SELECT * FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" !!! ".mysql_error());
 					$dump_num_rows = mysql_num_rows($result_dump);
@@ -234,9 +234,10 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 						$handle = fopen ($dump_file_name, "w");
 						for($z=0;$z<$dump_num_rows;$z++){
 							$rezar = mysql_fetch_array($result_dump);
+							if(strstr($rezar["referer"],$vhost.".".$domain))	$rezar["referer"] == "self";
 							$content = $rezar["remote_host"]." - - ".
 							date("[d/M/Y:H:i:s]",$rezar["time_stamp"]).
-							' "'.$rezar["request_line"].'" '.$rezar["status"].
+							'"'.$rezar["request_uri"].'" '.$rezar["status"].
 							" ".$rezar["bytes_sent"].
 							' "'.$rezar["referer"].'" "'.$rezar["agent"].'"'."\n";
 /*							
@@ -248,7 +249,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 							" ".mysql_result($result_dump,$z,"bytes_sent").
 							' "'.mysql_result($result_dump,$z,"referer").'"'.
 							' "'.mysql_result($result_dump,$z,"agent").'"'."\n";
-/*							$content = "'".mysql_result($result_dump,$z,"id").
+							$content = "'".mysql_result($result_dump,$z,"id").
 							"','".mysql_result($result_dump,$z,"agent").
 							"','".mysql_result($result_dump,$z,"bytes_sent").
 							"','".mysql_result($result_dump,$z,"child_pid").
@@ -288,7 +289,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 						check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
 					}
 					//check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
-					$query_del = "DELETE FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
+//					$query_del = "DELETE FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 					mysql_select_db("apachelogs");
 					mysql_query($query_del) or die("Cannot execute query \"$query_del\" !!! ".mysql_error());
 				}
