@@ -530,12 +530,12 @@ then
 fi
 
 # add the default password to .htpasswd if it doesn't exist already
-
-if [ -e /var/www/.htpasswd ]; then 
-	echo "OK, you have your /var/www/.htpasswd setup already, good."
+conf_hosting_path
+if [ -e $conf_hosting_path/.htpasswd ]; then 
+	echo "OK, you have your "$conf_hosting_path"/.htpasswd setup already, good."
 else 
-	echo "Creating /var/www/.htpasswd with username 'admin' and password '$conf_adm_pass'"
-	/usr/bin/htpasswd -cb /var/www/.htpasswd admin $conf_adm_pass
+	echo "Creating "$conf_hosting_path"/.htpasswd with username 'admin' and password '$conf_adm_pass'"
+	/usr/bin/htpasswd -cb "$conf_hosting_path"/.htpasswd admin $conf_adm_pass
 fi
 
 cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php
