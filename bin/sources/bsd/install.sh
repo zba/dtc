@@ -96,7 +96,7 @@ read conf_adm_pass
 # Deamon path configuration
 
 echo "### DEAMON PATH CONFIGURATION ###"
-PATH_HTTPD_CONF="${PREFIX}/usr/local/etc/apache/httpd.conf"
+PATH_HTTPD_CONF="${PREFIX}/etc/apache/httpd.conf"
 PATH_NAMED_CONF="/etc/namedb/named.conf"
 # Copy default conf if no conf exists (BSD specific)
 if [ ! -f ${PREFIX}/etc/proftpd.conf ];
@@ -147,7 +147,7 @@ fi
 
 echo "Copying DTC's php scripts to ${PREFIX}/share..."
 
-cp -Rf dtc ${PREFIX}/share
+cp -Rf ${WRKSRC}/dtc ${PREFIX}/share
 
 echo "===> Checking BSD type"
 kernel=`uname -a | awk '{print $1}'`;
