@@ -86,7 +86,7 @@ function mail_account_generate_qmail(){
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$lines = file ($a["server_addr"].'/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"]);
+		$lines = file ($a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"]);
 		$nline = sizeof($lines);
 		if(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
 			strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>")){
