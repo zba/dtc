@@ -4,7 +4,8 @@ $txt_select_lang_title = array(
 	"fr" => "Langue",
 	"en" => "Language",
 	"nl" => "Taal",
-	"ru" => "Language");
+	"ru" => "Language",
+	"de" => "Language");
 
 function anotherLanguageSelection(){
 	global $PHP_SELF;
@@ -14,26 +15,30 @@ function anotherLanguageSelection(){
 	// Language selection box
 	$out = "
 <div align=\"right\">
-<br><table cellpadding=\"4\" cellspacing=\"0\"><tr><td align=\"right\" valign=\"center\" nowrap>
-<a href=\"$PHP_SELF?change_language=fr&rub=".$_REQUEST["rub"]."\">Francais</a></td><td>
-<a href=\"$PHP_SELF?change_language=fr&rub=".$_REQUEST["rub"]."\"><img alt=\"*\" border=\"0\" src=\"gfx/language/fr.gif\"></a><br>
-
-</td><td>
-<a href=\"$PHP_SELF?change_language=en&rub=".$_REQUEST["rub"]."\"><img alt=\"*\" border=\"0\" src=\"gfx/language/en.gif\"></a></td><td valign=\"center\" nowrap>
-<a href=\"$PHP_SELF?change_language=en&rub=".$_REQUEST["rub"]."\">English</a><br>
-
-</td></tr><tr><td align=\"right\" valign=\"center\" nowrap>
-<a href=\"$PHP_SELF?change_language=nl&rub=".$_REQUEST["rub"]."\">Dutch</a></td><td>
-<a href=\"$PHP_SELF?change_language=nl&rub=".$_REQUEST["rub"]."\"><img alt=\"*\" border=\"0\" src=\"gfx/language/nl.gif\"></a><br>
-
+<br>
+<table cellpadding=\"4\" cellspacing=\"0\">
+<tr><td align=\"right\" valign=\"center\" nowrap>
+	<a href=\"$PHP_SELF?change_language=fr&rub=".$_REQUEST["rub"]."\">Francais
+	<img alt=\"*\" border=\"0\" src=\"gfx/language/fr.gif\"></a>
+</td><td valign=\"center\">
+	<a href=\"$PHP_SELF?change_language=en&rub=".$_REQUEST["rub"]."\">
+	<img alt=\"*\" border=\"0\" src=\"gfx/language/en.gif\">English</a></td>
+</tr><tr><td align=\"right\" valign=\"center\" nowrap>
+	<a href=\"$PHP_SELF?change_language=nl&rub=".$_REQUEST["rub"]."\">Dutch
+	<img alt=\"*\" border=\"0\" src=\"gfx/language/nl.gif\"></a>
 </td><td valign=\"center\" nowrap>
-<a href=\"$PHP_SELF?change_language=ru&rub=".$_REQUEST["rub"]."\"><img alt=\"*\" border=\"0\" src=\"gfx/language/ru.gif\"></a>
+	<a href=\"$PHP_SELF?change_language=ru&rub=".$_REQUEST["rub"]."\">
+	<img alt=\"*\" border=\"0\" src=\"gfx/language/ru.gif\">Russian</a></td>
+</tr><tr><td align=\"right\" valign=\"center\" nowrap>
+	<a href=\"$PHP_SELF?change_language=nl&rub=".$_REQUEST["rub"]."\">-</a>
 </td><td valign=\"center\" nowrap>
-<a href=\"$PHP_SELF?change_language=ru&rub=".$_REQUEST["rub"]."\">Russian</a>
-</td></tr></table>
+	<a href=\"$PHP_SELF?change_language=de&rub=".$_REQUEST["rub"]."\">
+	<img alt=\"*\" border=\"0\" src=\"gfx/language/de.gif\">Deutsch</a></td>
+</tr></table>
 </div>
 ";
-	return skin("simple/green2",$out,"");
+	return $out;
+//	return skin("simple/green2",$out,"");
 }
 
 $confirm_javascript="
