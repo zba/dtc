@@ -70,7 +70,7 @@ $r = mysql_query($query)or die("Cannot query \"$query\" ! line: ".__LINE__." fil
 $n = mysql_num_rows($r);
 for($i=0;$i<$n;$i++){
 	$a = mysql_fetch_array($r);
-	echo "Triggering the change to backup servers ".$a["server_addr"]." with login ".$a["server_login"]."...";
+	echo "Triggering the change to the backup server ".$a["server_addr"]." with login ".$a["server_login"]."...";
 	if(commitTriggerToRemote($a)){
 		echo "success!\n";
 	}else{
