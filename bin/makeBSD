@@ -64,7 +64,7 @@ echo "# Ports collection makefile for:        dtc
 # Date created:                 1 December 2003
 # Whom:                         Frederic Cambus & Thomas Goirand
 #
-# $
+# $FreeBSD$
 #
 
 PORTNAME=	dtc
@@ -97,5 +97,5 @@ rm dtc/pkg-plist.tmp
 
 # Make the file archive
 tar -czf "dtcBSDport-"$VERSION".tar.gz" dtc
-#rm -rf dtc
+rm -rf dtc
 uuencode "dtcBSDport-"$VERSION".tar.gz" dtc.tgz >"dtcBSDport-"$VERSION".uue"
