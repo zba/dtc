@@ -53,14 +53,17 @@ if($panel_type!="cronjob"){
 		  $lang = "es";
 		}
 	}
-	$_SESSION["lang"] = $lang;
+	if(isset($lang)){
+	  $_SESSION["lang"] = $lang;
+        }
 } else {
 	//for cron, we will just use english
 	$lang = "en";
 }
 
+
 // Get the default language variable. Multilanguage example taken from OMail.
-if (!$lang){
+if (!isset($lang)){
 	// if no language defined yet (cookie or session):
 	// try to findout users language by checking it's HTTP_ACCEPT_LANGUAGE variable
 	if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]) && $_SERVER["HTTP_ACCEPT_LANGUAGE"]) {
@@ -76,10 +79,11 @@ if (!$lang){
 			}
 		}
 	}
-	if (!$lang) {
+	if (!isset($lang)) {
 		// didn't catch any valid lang : we use the default settings
 		$lang = $txt_default_lang; 
-    }
+        }
+        $_SESSION["lang"] = $lang;
 }
 
 $charset = $txt_langname[$lang];
