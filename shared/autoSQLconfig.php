@@ -198,6 +198,8 @@ if(!isset($conf_db_version)){
 $nbr_sql_updates = sizeof($sql_updates);
 for($i=1;$i<$nbr_sql_updates;$i++){
 	if($sql_updates[$i]["dbvserion"] > $conf_db_version){
+		echo "Warning, upgrading to database from $conf_db_version
+to ".$sql_updates[$i]["dbvserion"]." !!!<br>";
 		mysql_query($sql_updates[$i]["sql"])or die("Cannot query: \"".$sql_updates[$i]["sql"]."\" while trying
 to update database !!! See /usr/share/dtc/shared/update_sql.php and to
 updates manualy. ".mysql_error());
