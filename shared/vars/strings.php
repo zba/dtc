@@ -6,7 +6,7 @@ $txt_title_maillinglist_form = array(
         "nl" => "TRANS Mailling-lists of the domain: ",
         "ru" => "TRANS Mailling-lists of the domain: ",
         "de" => "TRANS Mailling-lists of the domain: ",
-        "zh" => "TRANS Mailling-lists of the domain: ",
+        "zh" => "域名的邮件地址簿: ",
         "es" => "TRANS Mailling-lists of the domain: "
 );
 
@@ -1355,7 +1355,7 @@ $txt_subdom_newname = array(
 	"nl" => "TRANSSubdomain name: ",
 	"ru" => "TRANSSubdomain name:",
 	"de" => "TRANSSubdomain name:",
-	"zh" => "TRANSSubdomain name:",
+	"zh" => "副域名:",
 	"es" => "Nombre del subdominio:"
 );
 
@@ -1391,9 +1391,7 @@ subdomain to point to it. First, enter login and password here: ",
 	"de" => "TRANS If need it, it's possible to set your subdomain IP remotly,
 for example if you have a home connection dynamic address and you want a
 subdomain to point to it. First, enter login and password here: ",
-	"zh" => "TRANS If need it, it's possible to set your subdomain IP remotly,
-for example if you have a home connection dynamic address and you want a
-subdomain to point to it. First, enter login and password here: ",
+	"zh" => "根据您的需要，可以遥控设置您的副域名。举个例子来讲，如果您有一个家庭连接改变地址并且希望副域名指向它。首先，在这里填入登录和密码: ",
 	"es" => "Si es necesario, es posible es posible indicar la IP de tu subdominio remotamente, por ejemplo, si tienes una conexion con IP dinamica y quieres que un
 subdominio apunte a esta. Primero, introduce aqui el usuario y la contrase馻: "
 );
@@ -1403,7 +1401,7 @@ $txt_subdom_dynip_login = array(
 	"nl" => "TRANS Dynamic ip update login: ",
 	"ru" => "TRANS Dynamic ip update login: ",
 	"de" => "TRANS Dynamic ip update login: ",
-	"zh" => "TRANS Dynamic ip update login: ",
+	"zh" => "改变IP升级登录: ",
 	"es" => "Login IP dinamica: "
 );
 
@@ -1413,7 +1411,7 @@ $txt_subdom_dynip_pass = array(
 	"nl" => "TRANS Dynamic ip update password: ",
 	"ru" => "TRANS Dynamic ip update password: ",
 	"de" => "TRANS Dynamic ip update password: ",
-	"zh" => "TRANS Dynamic ip update password: ",
+	"zh" => ":改变IP升级密码",
 	"es" => "Contrase馻 IP dinamica: "
 );
 
@@ -1423,7 +1421,7 @@ $txt_subdom_register_global = array(
 	"nl" => "TRANS Use register_globals=1:",
 	"ru" => "TRANS Use register_globals=1:",
 	"de" => "TRANS Use register_globals=1:",
-	"zh" => "TRANS Use register_globals=1:",
+	"zh" => "用户注册_globals=1:",
 	"es" => "Usar register_globals=1:"
 );
 
@@ -1433,7 +1431,7 @@ $txt_subdom_edita = array(
 	"nl" => "TRANS Edit a subdomain:",
 	"ru" => "TRANS Edit a subdomain:",
 	"de" => "TRANS Edit a subdomain:",
-	"zh" => "TRANS Edit a subdomain:",
+	"zh" => "编辑副域名:",
 	"es" => "Editar un subdominio:"
 );
 
