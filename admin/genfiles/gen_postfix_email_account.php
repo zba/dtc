@@ -73,10 +73,13 @@ function mail_account_generate_postfix(){
 			die("Error fetching admin : $error");
 		}
 		$info = $admin["info"];
-		$data = $admin["data"];
+		$nbr_domain = 0;
+		if (isset($admin["data"]))
+                {
+                        $data = $admin["data"];
+                        $nbr_domain = sizeof($data);
+                }
 
-
-		$nbr_domain = sizeof($data);
 		for($j=0;$j<$nbr_domain;$j++){
 			$domain = $data[$j];
 			$domain_full_name = $domain["name"];
