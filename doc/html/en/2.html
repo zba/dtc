@@ -254,3 +254,81 @@ the following value:
 <pre>nameserver 127.0.0.1
 </pre>
 Or your server will not resolv correctly.
+
+<h4><a name="2.8"></a>2.8 Running DTC under a clustered environement</h4>
+
+Many people asked me if one day DTC could handle a cluster. The answer is
+that it already does it. This chapter will tell you how to do it. What we
+will do here is slowly add new servers to a "normal" DTC server,
+so first of all, setup a box with DTC like you already did. For the
+purpose of this example, we will say that main server is called smain,
+with IP address 192.168.1.10.<br><br>
+
+MySQL<br>
+There is no need here that I explain how to use MySQL in a cluster. Please
+se <a href="http://www.mysql.org">mysql.org</a> web site to know more about
+it. Remember that nearly ALL the services needs that MySQL server, and that
+this one is realy as critical as the file server itself.<br><br>
+
+The DNS server<br>
+DTC generates automaticaly slave files for slave DNS servers. What you have
+to do is to setup the IP of the main server. Login into the root DTC panel
+on smain, and enter smain's IP in the &quot;Slave dns server ip address&quot;
+wich is 192.168.1.10 for this example. When done, you can ask DTC to generate
+the named zones. The next step is to regularity (a good choice would be at
+1,11,21,31,41,51 of each ours because DTC will generate it's file at
+0,10,20,30,40,50) upload the generated file. Do it from smain (the file is
+called "named.slavezones.conf") to all the slave DNS servers you have. I have
+a special good feeling with ncftpput wich is rother simple for FTP upload, but
+you can use whatever technique you want including scp. When this is done,
+you can schedule the reload of bind each 10 minutes for example at
+2,12,22,32,42,52 of each hours. If the MySQL server crashes, then
+POP3 and apache wont work anymore, but SMTP (without SQL loggin) and DNS
+should still work so normaly no mail is lost. This is one of the reasons I like
+a lot more to use that technique over an SQL pluggin for Bind. Here, even if
+smain is crashed, DNS works and mail is routed.<br><br>
+
+SMTP and POP3<br>
+For SMTP, all is done via generated files in /var/qmail. If you only need
+to use only one SMTP server, then you can only import DTC's main crontab from
+smain to the slave SMTP (cron.php). Remove all the stuff that are for other
+services than mail and keep only the /var/qmail config file generation stuff.
+Don't forget that because DTC uses a lock flag in the database, the slave
+SMTP server wont be able to run it's cronjob at the same time as other servers,
+so twicking the cron time correctly and setuping network clock is not a
+bad idea.<br>
+If you need to have more than one SMTP server, the it will be a bit more
+complicated as long as DTC is not done for it. The main problem is that
+once a mail server has finished it's cronjob, it will reset the value of
+the cronjob table to &quot;not neede to regenerate users&quot;. You have
+to do something that reloads both servers. One good idea is to modify the
+SMTP's cronjob so that the first server will tell the second to update
+the same way he did. Anyway, Qmail can handle really a lot of messages,
+so if you need to do it, then you are good enought to setup the replication
+of /var/qmail/ and reload qmail concequently by yourself!<br>
+For the pop3 it's a lot more easy as long as it does not uses flatfiles
+but only a SQL connection for auth and traffic loggin (if you use Mysqmail).
+Because of that, no file replication or daemon reload is needed.<br>
+
+Apache and squid<br>
+As you may know, Squid is designed to work in both 2 directions, so it
+can act as a caching server. The main advantage is that your critical
+servers are not accessible from the internet, but only in the DMZ, but
+it also reduce a lot the load on your HTTP servers. The second stage is
+to have more than one Apache server. To do that, the only thing you have
+to do is to populate all your servers with the vhosts.conf file and
+reload using apachectl stop/start when the cronjob asks for it. You can
+use the same technique as for the SMTP server, and once again, if it's
+easy to do it with only one HTTP server, it might be a bit more
+complicated on a cluster (you have to inform via network all the HTTP
+servers to reload). Once this configuration achieve, the caching server
+squid can do the load balancing between all you servers (read squid
+documentation to know how).<br>
+
+The file server<br>
+All your customer services will need access to file server exept DNS.
+Http, ftp, pop3 and smtp serivces all need access to it. What I suggest
+here is that you mount the same big area in all the servers using same
+mountpoint for example using nfs. All the servers need is access in
+read/write with user nobody:nogroup.<br><br>
+
