@@ -35,5 +35,6 @@ use_javascript enum('yes','no') NOT NULL default 'yes',
 use_ssl enum('yes','no') NOT NULL default 'no',
 use_nated_vhost enum('yes','no') NOT NULL default 'no',
 nated_vhost_ip varchar(16) NOT NULL default '192.168.0.2',
+mta_type enum('qmail','postfix') NOT NULL default 'qmail',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
