@@ -558,6 +558,12 @@ smtpd_tls_auth_only = no
 	fi
 fi
 
+# This avoid hanging when (re)starting daemons under debian
+if [ "$UNIX_TYPE" = "debian" ]
+then
+	db_stop
+fi
+
 #
 # Install courier mysql authenticaion
 #
@@ -699,7 +705,6 @@ user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host
 fi
 
 
-
 #
 # Install proftpd.conf to access to the database
 #
@@ -795,12 +800,6 @@ else
 	echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
 	cat < $TMP_FILE >>/etc/crontab
 	rm $TMP_FILE
-fi
-
-# This avoid hanging when (re)starting daemons under debian
-if [ "$UNIX_TYPE" = "debian" ]
-then
-	db_stop
 fi
 
 # add the default password to .htpasswd if it doesn't exist already
