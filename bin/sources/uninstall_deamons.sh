@@ -21,13 +21,18 @@
 
 # VERBOSE_INSTALL=yes
 
+if [ ""$MKTEMP = "" ] ; then
+	MKTEMP="mktemp -t"
+fi
+
+
 if grep "Configured by DTC" $PATH_NAMED_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Uninstalling inclusion from named.conf"
 	fi
-	TMP_FILE=`mktemp -t DTC_uninstall.named.conf.XXXXXX` || exit 1
-	TMP_FILE2=`mktemp -t DTC_uninstall.named.conf.XXXXXX` || exit 1
+	TMP_FILE=`${MKTEMP} DTC_uninstall.named.conf.XXXXXX` || exit 1
+	TMP_FILE2=`${MKTEMP} DTC_uninstall.named.conf.XXXXXX` || exit 1
 	grep -v "Configured by DTC" $PATH_NAMED_CONF > $TMP_FILE
 	grep -v "include \"$PATH_DTC_ETC/named.conf\"" $TMP_FILE > $TMP_FILE2
 	cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.removed
@@ -48,7 +53,7 @@ then
 	fi
 	if grep "Configured by DTC v0.10" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		TMP_FILE=`mktemp -t DTC_uninstall.httpd.conf.XXXXXX` || exit 1
+		TMP_FILE=` DTC_uninstall.httpd.conf.XXXXXX` || exit 1
 		grep -v "Configured by DTC" $PATH_HTTPD_CONF | grep -v "Include $PATH_DTC_ETC/vhosts.conf" > $TMP_FILE
 		cp -f $PATH_HTTPD_CONF $PATH_HTTPD_CONF.DTC.removed
 		echo -n > $PATH_HTTPD_CONF
@@ -77,7 +82,7 @@ then
 	start_line=`grep -n "Configured by DTC" $PATH_COURIER_CONF_PATH/authdaemonrc | cut -d":" -f1`
 	end_line=`grep -n "End of DTC configuration" $PATH_COURIER_CONF_PATH/authdaemonrc| cut -d":" -f1`
 	nbr_line=`cat $PATH_COURIER_CONF_PATH/authdaemonrc | wc -l`
-	TMP_FILE=`mktemp -t DTC_uninstall.courier.conf.XXXXXX` || exit 1
+	TMP_FILE=`${MKTEMP} DTC_uninstall.courier.conf.XXXXXX` || exit 1
 	cat $PATH_COURIER_CONF_PATH/authdaemonrc | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_COURIER_CONF_PATH/authdaemonrc | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_COURIER_CONF_PATH/authdaemonrc $PATH_COURIER_CONF_PATH/authdaemonrc.DTC.removed
@@ -97,7 +102,7 @@ then
 	start_line=`grep -n "Configured by DTC" $PATH_DOVECOT_CONF | cut -d":" -f1`
 	end_line=`grep -n "End of DTC configuration" $PATH_DOVECOT_CONF| cut -d":" -f1`
 	nbr_line=`cat $PATH_DOVECOT_CONF | wc -l`
-	TMP_FILE=`mktemp -t DTC_uninstall.dovecot.conf.XXXXXX` || exit 1
+	TMP_FILE=`${MKTEMP} DTC_uninstall.dovecot.conf.XXXXXX` || exit 1
 	cat $PATH_DOVECOT_CONF | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_DOVECOT_CONF | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.removed
@@ -117,7 +122,7 @@ then
 	start_line=`grep -n "Configured by DTC" $PATH_PROFTPD_CONF | cut -d":" -f1`
 	end_line=`grep -n "End of DTC configuration" $PATH_PROFTPD_CONF| cut -d":" -f1`
 	nbr_line=`cat $PATH_PROFTPD_CONF | wc -l`
-	TMP_FILE=`mktemp -t DTC_uninstall.proftpd.conf.XXXXXX` || exit 1
+	TMP_FILE=`${MKTEMP} DTC_uninstall.proftpd.conf.XXXXXX` || exit 1
 	cat $PATH_PROFTPD_CONF | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_PROFTPD_CONF | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_PROFTPD_CONF $PATH_PROFTPD_CONF.DTC.removed
@@ -138,7 +143,7 @@ then
 	start_line=`grep -n "Configured by DTC" $PATH_POSTFIX_CONF | cut -d":" -f1`
 	end_line=`grep -n "End of DTC configuration" $PATH_POSTFIX_CONF| cut -d":" -f1`
 	nbr_line=`cat $PATH_POSTFIX_CONF | wc -l`
-	TMP_FILE=`mktemp -t DTC_uninstall.postfix.conf.XXXXXX` || exit 1
+	TMP_FILE=`${MKTEMP} DTC_uninstall.postfix.conf.XXXXXX` || exit 1
 	cat $PATH_POSTFIX_CONF | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_POSTFIX_CONF | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_POSTFIX_CONF $PATH_POSTFIX_CONF.DTC.removed
@@ -159,7 +164,7 @@ then
 	start_line=`grep -n "Configured by DTC" $PATH_POSTFIX_ETC/sasl/smtpd.conf | cut -d":" -f1`
 	end_line=`grep -n "End of DTC configuration" $PATH_POSTFIX_ETC/sasl/smtpd.conf | cut -d":" -f1`
 	nbr_line=`cat $PATH_POSTFIX_ETC/sasl/smtpd.conf | wc -l`
-	TMP_FILE=`mktemp -t DTC_uninstall.postfix.sasl.XXXXXX` || exit 1
+	TMP_FILE=`${MKTEMP} DTC_uninstall.postfix.sasl.XXXXXX` || exit 1
 	cat $PATH_POSTFIX_ETC/sasl/smtpd.conf | head -n $(($start_line - 1 )) > $TMP_FILE
 	cat $PATH_POSTFIX_ETC/sasl/smtpd.conf | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
 	cp -f $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_CONF.DTC.removed

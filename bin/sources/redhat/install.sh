@@ -175,3 +175,4 @@ if [ -e /var/lib/php/session ] ; then
 fi
 
 MKTEMP="mktemp -p /tmp"
+
