@@ -133,6 +133,11 @@ function DTCRMeditClients(){
 		$row["disk_quota_mb"] = "80";
 		$row["bw_quota_per_month_gb"] = "1";
 	}
+	if(isset($row["special_note"])){
+		$specnot = $row["special_note"];
+	}else{
+		$specnot = "";
+	}
 	$text = "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <table cellspacin=\"0\" cellpadding=\"0\">
 <input type=\"hidden\" name=\"rub\" value=\"crm\">
@@ -154,7 +159,7 @@ cc_code_popup($row["country"])."</select></td></tr>
 <tr><td align=\"right\">".$txt_draw_client_info_phone[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_phone\" value=\"".$row["phone"]."\"></td></tr>
 <tr><td align=\"right\">".$txt_draw_client_info_fax[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_fax\" value=\"".$row["fax"]."\"></td></tr>
 <tr><td align=\"right\">".$txt_draw_client_info_email[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_email\" value=\"".$row["email"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_notes[$lang]."</td><td><textarea cols=\"40\" rows=\"5\" name=\"ed_special_note\">".$row["special_note"]."</textarea></td></tr>
+<tr><td align=\"right\">".$txt_notes[$lang]."</td><td><textarea cols=\"40\" rows=\"5\" name=\"ed_special_note\">".$specnot."</textarea></td></tr>
 <tr><td align=\"right\">".$txt_money_remaining[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_dollar\" value=\"".$row["dollar"]."\"></td></tr>
 <tr><td align=\"right\" style=\"white-space: nowrap\" nowrap>".$txt_domain_tbl_config_quotaMB[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_disk_quota_mb\" value=\"".$row["disk_quota_mb"]."\"></td></tr>
 <tr><td align=\"right\" style=\"white-space: nowrap\" nowrap>".$txt_allowed_data_transferGB[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_bw_quota_per_month_gb\" value=\"".$row["bw_quota_per_month_gb"]."\"></td></tr>
