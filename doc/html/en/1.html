@@ -66,18 +66,18 @@ a logger is available for postfix to log SMTP traffic in MySQL.<br><br>
 
 It is then possible to bind the following daemons directly connected to the
 MySQL database. You will select them depending:<br>
-- <b>MySQMail<b> A slightly modified version of the qmail-pop3d and
+- <b>MySQMail</b> A slightly modified version of the qmail-pop3d and
 checkpassword that enable pop3 traffic accounting and auth directly
 in MySQL, plus a logger that writes all SMTP exchanges in MySQL.<br>
 (<a href="http://www.gplhost.com/?rub=software&sousrub=dtc">http://www.gplhost.com/?rub=software&sousrub=dtc</a>)<br>
-- <b>Standard Qmail + checklocalpwd<b> You can use the standard qmail from source or
+- <b>Standard Qmail + checklocalpwd</b> You can use the standard qmail from source or
 from Debian's source packages using jedi's alternative checklocalpwd
 program, if you don't want MySQL connection and don't care about traffic
 logging.<br>
-- <b>Dovecot POP3 and iMAP daemons<b> those are fast and secure daemons
+- <b>Dovecot POP3 and iMAP daemons</b> those are fast and secure daemons
 directly plugged to MySQL. We don't have support for accounting yet with
 it, feel free to write to us if you wrote one.<br>
-- <b>Courier POP3 and iMAP daemons<b> Those daemons have internal support
+- <b>Courier POP3 and iMAP daemons</b> Those daemons have internal support
 for MySQL, but are known to be slow.<br><br>
 
 To be able to use fully DTC, you can install the followings:<br>
