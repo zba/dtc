@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS subdomain (
   webalizer_generate varchar(8) NOT NULL default 'no',
   ip varchar(16) NOT NULL default 'default',
   login varchar(16) default NULL,
-  pass varchar(64) default NULL
+  pass varchar(64) default NULL,
   PRIMARY KEY  (id),
   UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
 ) TYPE=MyISAM
