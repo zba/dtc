@@ -1,6 +1,6 @@
 <?php
 // Automatic database array generation for DTC
-// Generation date: 2004-10(Oct)-12 Tuesday 20:02
+// Generation date: 2004-10(Oct)-15 Friday 00:44
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
@@ -94,6 +94,7 @@ $dtc_database = array(
 			"dtcadmin_path" => "varchar(255) NOT NULL default '/usr/share/dtc/admin' ",
 			"dtcclient_path" => "varchar(255) NOT NULL default '/usr/share/dtc/client' ",
 			"dtcdoc_path" => "varchar(255) NOT NULL default '/usr/share/dtc/doc' ",
+			"dtcemail_path" => "varchar(128) NOT NULL default '/usr/share/dtc/email' ",
 			"qmail_rcpthost_path" => "varchar(255) NOT NULL default 'rcpthosts' ",
 			"qmail_virtualdomains_path" => "varchar(255) NOT NULL default 'virtualdomains' ",
 			"qmail_assign_path" => "varchar(255) NOT NULL default 'assign' ",
@@ -299,7 +300,8 @@ $dtc_database = array(
 			"domain" => "varchar(50) NOT NULL "
 			),
 		"keys" => array(
-			"PRIMARY" => "(id)"
+			"PRIMARY" => "(id)",
+			"month" => "(month,year,vhost)"
 			)
 		),
 	"nameservers" => array(
