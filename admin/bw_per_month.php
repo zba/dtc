@@ -28,6 +28,7 @@ $im = ImageCreate ($width, $height) or die ("Cannot Initialize new GD image stre
 $lightblue_color = ImageColorAllocate ($im, 190, 190, 212);
 $black = ImageColorAllocate ($im, 0, 0, 0);
 $white = ImageColorAllocate ($im, 255, 255, 255);
+$red = ImageColorAllocate ($im, 255, 0, 0);
 
 for($m=0;$m<12;$m++){
 	$tr_tbl[$m] = 0;
@@ -113,14 +114,30 @@ AND year='$year' AND month='$month';";
 }
 //$bpquota = 1024 * 1024 * 1024;
 //$tr_tbl[11] = 512 * 1024 * 1024;
+
+if($bpquota == 0){
+	$max = 100;
+	for($m=0;$m<12;$m++){
+		if($tr_tbl[$m] > $max){
+			$max = $tr_tbl[$m];
+		}
+	}
+}else{
+	$max = $bpquota;
+}
+$max *= 1.15;
+
 for($m=0;$m<12;$m++){
 //	echo $m.":".$tr_tbl[$m]."<br>";
 	$x1 = $m*10;
-	$y1 = 1*($height-( ($tr_tbl[$m] * $height ) / ($bpquota) ));
+	$y1 = 1*($height-( ($tr_tbl[$m] * $height ) / ($max) ));
 	$x2 = $m*10+9;
 	$y2 = $height;
-	imagefilledrectangle ( $im, $x1, $y1, $x2, $y2, $black);
-
+	if($tr_tbl[$m] > $bpquota){
+		imagefilledrectangle ( $im, $x1, $y1, $x2, $y2, $red);
+	}else{
+		imagefilledrectangle ( $im, $x1, $y1, $x2, $y2, $black);
+	}
 	$month = $cur_month+$m+1;
 	if($month > 12){
 		$month -= 12;

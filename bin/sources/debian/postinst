@@ -115,8 +115,8 @@ fi
 if [ -e /usr/bin/pear ]
 then
 	echo "Checking pear installation"
-	pear upgrade Console_Getopt | echo
-	pear upgrade-all | echo
+	pear upgrade Console_Getopt 2>&1 | echo
+	pear upgrade-all 2>&1 | echo
 	pear install Crypt_CBC | echo
 	pear install Auth_SASL | echo
 fi
