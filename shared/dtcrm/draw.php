@@ -29,11 +29,33 @@ function draw_UpgradeAccount($admin){
 <input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
 ";
 	$client = $admin["client"];
-	$out .=  "<b><u>Upgrade my account:</u></b><br>";
-	$out .=  "<i><u>Step 1: choose your upgrade</u></i><br>";
+	$out .= "<b><u>Upgrade my account:</u></b><br>";
+	if($admin["info"]["prod_id"] != 0){
+		$out .= "Your last command expire on the: ".$admin["info"]["expire"].".<br>";
+		$out .= "Today is the: ".date("Y-m-d")."<br>";
+		$today = mktime (0,0,0,date("m"),date("d"),date("Y"));
+		$ar = explode("-",$admin["info"]["expire"]);
+		$expire = mktime (0,0,0,$ar[1],0,$ar[0]);
+		$remaining_seconds = $expire - $today;
+		$days_remaining = $remaining_seconds / (60*60*24);
+
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$admin["info"]["prod_id"]."';";
+		$r = mysql_query($q)or die("Cannot querry: \"$q\" !!!".mysql_error()." line ".__LINE__." in file ".__FILE__);
+		$prod = mysql_fetch_array($r);
+		$ar = explode("-",$prod["period"]);
+		$prod_period = mktime (0,0,0,$ar[1],0,1970+$ar[0]);
+		$prod_days =  $prod_period / (60*60*24);
+		$price_per_days = $prod["price_dollar"] / $prod_days;
+
+		$refundal = floor($days_remaining * $price_per_days);
+
+		$out .= "Your past account was: \$".$prod["price_dollar"]." for ".smartDate($prod["period"])."<br>";
+		$out .= "Refundal ($days_remaining days) for upgrading will be: \$$refundal<br><br>";
+	}
+	$out .= "<i><u>Step 1: choose your upgrade</u></i><br>";
 	if($_REQUEST["prod_id"] == "" || !isset($_REQUEST["prod_id"])){
 		$out .= "Your current account is ".smartByte($admin["info"]["quota"]*1024*1024)." disk storage
-and ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024)." of data transfer each month.<br>
+and ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024)." of data transfer each month.<br><br>
 To what capacity would you like to upgrade to?<br>";
 		$q = "SELECT * FROM $pro_mysql_product_table WHERE quota_disk > '".$admin["info"]["quota"]."' OR bandwidth > '".$admin["info"]["bandwidth_per_month_mb"]."';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
@@ -76,17 +98,18 @@ To what capacity would you like to upgrade to?<br>";
 	$remaining = $admin["client"]["dollar"];
 
 	$ze_price = $ro["price_dollar"];
-//	$heber_price
+	$heber_price = $ze_price - $refundal;
 
 	$out .= "Remaining on your account: \$" . $remaining . "<br>
-Past account refundal: \$". $heber_price . "<br>
-Total price: \$". $heber_price . "<br><br>";
+New account price: \$". $ze_price . "<br>
+Past account refundal: \$". $refundal . "<br>
+Total price: \$". $heber_price . "<br>";
 	if($heber_price > $remaining){
 		$to_pay = $heber_price - $remaining;
 
 		$payButton = paynowButton($product_id,$to_pay);
 
-		$out .= "You currently don't have enough funds on your account. You will be
+		$out .= "<br>You currently don't have enough funds on your account. You will be
 redirected to our paiement system. Please click on the button bellow
 to pay, and then click refresh button.<br><br>
 <br><br>
@@ -94,6 +117,9 @@ $form_start<input type=\"submit\" value=\"Paiement done, let met checkout\">
 </form>";
 		return $out;
 	}
+
+	$after_upgrade_remaining = $remaining - $heber_price;
+	$out .= "After upgrade, you will have: \$$after_upgrade_remaining<br><br>";
 
 	// Check for confirmation
 	if($_REQUEST["toreg_confirm_register"] != "yes"){
