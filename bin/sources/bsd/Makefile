@@ -1,13 +1,4 @@
-# Ports collection makefile for:	dtc
-# Date created:			1 December 2003
-# Whom:				Frederic Cambus
-#
-# $FreeBSD$
-#
-
-PORTNAME=	dtc
-PORTVERSION=	0.12.0.0
-CATEGORIES=	www
+CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.gplhost.com/pub/dtc/bsd/
 
 MAINTAINER=     thomas@goirand.fr

@@ -50,10 +50,47 @@ cp sources/bsd/install.sh "dtc-"$VERSION"/install.sh"
 cat sources/setup_mysql_db.sh >>"dtc-"$VERSION"/install.sh"
 cat sources/configure_deamons.sh >>"dtc-"$VERSION"/install.sh"
 
-cp sources/bsd/uninstall.sh "dtc-"$VERSION
-cat sources/uninstall_deamons.sh >>"dtc-"$VERSION"/uninstall.sh"
 
 echo "===> Packaging files"
 tar -czf "dtc-"$VERSION".tar.gz" "dtc-"$VERSION
 
 echo " --- Succesfully made BSD dtc-"$VERSION".tar.gz ---"
+echo "===> Makeing BSD port for version "$VERSION" ---"
+
+# Move bsd version as if it was in ${PREFIX} so we can do lookups in it
+mkdir share
+mv "dtc-"$VERSION"/dtc" share
+
+# Make  dtc port dir and copy static files in it
+mkdir dtc
+cp sources/bsd/pkg-descr sources/bsd/README.html dtc
+# Create Makefile with correct port version
+echo "# Ports collection makefile for:        dtc
+# Date created:                 1 December 2003
+# Whom:                         Frederic Cambus
+#
+# $FreeBSD$
+#
+
+PORTNAME=	dtc
+PORTVERSION=	"$VERSION >dtc/Makefile
+cat sources/bsd/Makefile >>dtc/Makefile
+
+# Create package uninstall script
+cp sources/bsd/uninstall.sh dtc/pkg-deinstall
+cat sources/uninstall_deamons.sh >>"dtc/pkg-deinstall"
+
+# Make the md5 sum file in this distinfo
+BSDSUM=`md5sum "dtc-"$VERSION".tar.gz" | cut -f1 -d" "`
+echo -n "MD5 (dtc-"$VERSION".tar.gz) = "$BSDSUM >>dtc/distinfo
+
+# Make the pkg-plist file
+find share -type f >dtc/pkg-plist.tmp
+find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>dtc/pkg-plist.tmp
+NBR_LINE=`cat dtc/pkg-plist.tmp | wc -l`
+cat dtc/pkg-plist.tmp | head -n $(($NBR_LINE - 1 )) >pkg-plist
+
+# Make the file archive
+tar -czf "dtcBSDport-"$VERSION".tar.gz" dtc
+#rm -rf dtc
+uuencode "dtcBSDport-"$VERSION".tar.gz" dtc.tgz >"dtcBSDport-"$VERSION".uue"
