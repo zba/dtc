@@ -1,3 +1,10 @@
+17-12-04: V0.16.0-R1
+Thomas Goirand:
+Added automatic SSL certificate generation durring
+install.
+
+Added NS and MX backup between dtc panels.
+
 17-09-04: V0.16.0-R0
 New features:
 There is now a product manager on where you can build

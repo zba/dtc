@@ -298,6 +298,13 @@ ErrorDocument 404 /dtc404/404.php
 	fi
 fi
 
+# Create the ssl certificate if it does not exists (for distribs with /etc/apache only for the moment)
+if [ -e "/etc/apache" ]; then
+	if [ -e "/etc/apache/ssl" ]; then
+		mkdir -p /etc/apache/ssl
+	fi
+fi
+
 # copy the template directory from shared to etc, so we can edit it without worry of being purged on each install
 # only copy the directory, if it doesn't already exist in the etc path
 if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
@@ -589,6 +596,36 @@ MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt,  uid, gid, pas
 
 " > $PATH_COURIER_CONF_PATH/authmysqlrc
 	fi	
+fi
+
+# Generate the OpenSSL test certificate if it does not exists
+if [ ""$conf_gen_ssl_cert = "true" ]; then
+	if [ ! -e $PATH_DTC_ETC"/ssl" ]; then
+		mkdir -p $PATH_DTC_ETC"/ssl"
+	fi
+	cwd=`pwd`
+	cd $PATH_DTC_ETC"/ssl"
+	if [ ! -e "./"new.cert.csr ]; then
+		if [ ! -e "./"new.cert.cert ]; then
+			if [ ! -e "./"new.cert.key ]; then
+			CERTPASS_TMP_FILE=`mktemp -t certfilepass.XXXXXX` || exit 1
+			echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
+			( echo $conf_cert_countrycode;
+			echo "the state";
+			echo $conf_cert_locality;
+			echo $conf_cert_organization;
+			echo $conf_cert_unit;
+			echo $dtc_admin_subdomain"."$main_domain_name;
+			echo $conf_cert_email;
+			echo $conf_cert_challenge_pass;
+			echo $conf_cert_organization; ) | openssl req -passout file:$CERTPASS_TMP_FILE -new > new.cert.csr
+			openssl rsa -passin file:$CERTPASS_TMP_FILE -in privkey.pem -out new.cert.key
+			openssl x509 -in new.cert.csr -out new.cert.cert -req -signkey new.cert.key -days 3650
+			rm $CERTPASS_TMP_FILE
+			fi
+		fi
+	fi
+	cd $cwd
 fi
 
 #

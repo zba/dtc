@@ -5,6 +5,7 @@ function named_generate(){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_subdomain_table;
 	global $pro_apache_vhost_path;
+	global $pro_mysql_backup_table;
 
 	global $console;
 
@@ -200,8 +201,8 @@ $more_mx_server
 		$lines = file ('http://'.$a["server_addr"].'/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"]);
 		$nline = sizeof($lines);
 		if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
-			strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping"){
-			for($j=1;$j<$nline-1;$j++){
+			strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
+			for($j=0;$j<$nline;$j++){
 				$rcpthosts_file .= $lines[$j];
 			}
 		}

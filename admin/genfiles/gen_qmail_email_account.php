@@ -89,7 +89,7 @@ function mail_account_generate_qmail(){
 		$lines = file ('http://'.$a["server_addr"].'/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"]);
 		$nline = sizeof($lines);
 		if(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
-			strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>"){
+			strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>")){
 			for($j=1;$j<$nline-1;$j++){
 				$rcpthosts_file .= $lines[$j];
 			}

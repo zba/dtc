@@ -24,6 +24,14 @@ db_input medium dtc/conf_hostingpath
 db_input medium dtc/conf_chroot_path
 db_input medium dtc/conf_admlogin
 db_input high dtc/conf_admpass
+db_input high dtc/conf_gen_ssl_cert
+db_input high dtc/conf_cert_passphrase
+db_input medium dtc/conf_cert_countrycode
+db_input medium dtc/conf_cert_locality
+db_input high dtc/conf_cert_organization
+db_input medium dtc/conf_cert_unit
+db_input high dtc/conf_cert_email
+db_input high dtc/conf_cert_challenge_pass
 db_go
 
 exit 0;

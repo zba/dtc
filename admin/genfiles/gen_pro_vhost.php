@@ -196,8 +196,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$vhost_file .= "	ServerName $web_subname.$web_name\n";
 				if($conf_use_ssl == "yes"){
 					$vhost_file .= "	SSLEngine on
-	SSLCertificateFile /etc/apache/ssl/new.cert.cert
-	SSLCertificateKeyFile /etc/apache/ssl/new.cert.key\n";
+	SSLCertificateFile ".$conf_generated_file_path."/ssl/new.cert.cert
+	SSLCertificateKeyFile ".$conf_generated_file_path."/ssl/new.cert.key\n";
 				}
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
