@@ -399,7 +399,7 @@ MYSQL_CRYPT_PWFIELD     crypt
 MYSQL_HOME_FIELD        home
 MYSQL_UID_FIELD         uid
 MYSQL_GID_FIELD         gid
-MYSQL_DEFAULT_DOMAIN    new.tusker.net
+MYSQL_DEFAULT_DOMAIN    $main_domain_name
 
 # use the experimental query
 MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt,  uid, gid, passwd, home, '', quota_size, ''  FROM pop_access  WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
