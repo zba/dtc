@@ -80,8 +80,8 @@ echo "<?php" >$PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_host=\""$conf_mysql_host"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_login=\""$conf_mysql_login"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_pass=\""$conf_mysql_pass"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
-echo "\$conf_mysql_db=\""$conf_mysql_db"\";" >>$PATH_DTC_SHARED"/usr/share/dtc/shared/mysql_config.php"
-echo "\$conf_mysql_conf_ok=\"yes\";" >>$PATH_DTC_SHARED"/usr/share/dtc/shared/mysql_config.php"
-echo "?>" >>$PATH_DTC_SHARED/shared/mysql_config.php"
+echo "\$conf_mysql_db=\""$conf_mysql_db"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
+echo "\$conf_mysql_conf_ok=\"yes\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
+echo "?>" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
 
 cd $curdir
