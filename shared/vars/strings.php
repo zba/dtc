@@ -38,11 +38,10 @@ $txt_add_a_new_user = array(
         "ru" => "TRANS Add a new user: ",
         "de" => "TRANS Add a new user: ",
         "zh" => "TRANS Add a new user: ",
-        "es" => "TRANS Add a new user: "
-);
+        "es" => "TRANS Add a new user: ");
 
 $txt_title_maillinglist_form = array(
-	"fr" => "Listes de diffusion du domain : ",
+	"fr" => "Listes de diffusion du domaine : ",
         "en" => "Mailling-lists of the domain: ",
         "it" => "Mailling-lists del dominio: ",
         "nl" => "TRANS Mailling-lists of the domain: ",
@@ -53,7 +52,7 @@ $txt_title_maillinglist_form = array(
 );
 
 $txt_pagetop_zesubtitle = array(
-	"fr" => "Prennez le controle de votre nom de domaine",
+	"fr" => "Prenez le controle de votre nom de domaine",
 	"en" => "Take the control of your domain name",
         "it" => "Prendi il controllo del tuo dominio",
 	"nl" => "TRANS Take the control of your domain name",
@@ -106,8 +105,8 @@ $txt_client_list_title = array(
 	"es" => "TRANS Customers list");
 
 $txt_client_addr_title = array(
-	"fr" => "Clients address",
-	"en" => "Customers address",
+	"fr" => "Adresse du client",
+	"en" => "Customer's address",
         "it" => "Indirizzo clienti",
 	"nl" => "TRANS Customers address",
 	"ru" => "TRANS Customers address",
@@ -146,7 +145,7 @@ $txt_new_customer_link = array(
 	"es" => "TRANS New customer");
 
 $txt_select_a_new = array(
-	"fr" => "Selectionnez un client.",
+	"fr" => "Selectionner un client.",
 	"en" => "Select a customer.",
         "it" => "Seleziona un cliente",
 	"nl" => "TRANS Select a customer.",
@@ -166,7 +165,7 @@ $txt_notes = array(
 	"es" => "TRANS Notes:");
 
 $txt_money_remaining = array(
-	"fr" => "Argent restant sur le compte:",
+	"fr" => "Argent restant sur le compte :",
 	"en" => "Money remaining on account:",
         "it" => "Denaro rimasto nell'account:",
 	"nl" => "TRANS Money remaining on account:",
@@ -176,7 +175,7 @@ $txt_money_remaining = array(
 	"es" => "TRANS Money remaining on account:");
 
 $txt_remove_admin_from_client = array(
-	"fr" => "Enlever un administrateur de ce client:",
+	"fr" => "Enlever un administrateur de ce client :",
 	"en" => "Remove an administrator for this customer:",
         "it" => "Rimuovi un amministratore per questo cliente:",
 	"nl" => "TRANS Remove an administrator for this customer:",
@@ -186,7 +185,7 @@ $txt_remove_admin_from_client = array(
 	"es" => "TRANS Remove an administrator for this customer:");
 
 $txt_add_admin_to_client = array(
-	"fr" => "Ajouter un administrateur pour ce client:",
+	"fr" => "Ajouter un administrateur pour ce client :",
 	"en" => "Add an administrator to this customer:",
         "it" => "Aggiungi un amministratore per questo cliente:",
 	"nl" => "TRANS Add an administrator to this customer:",
@@ -217,7 +216,7 @@ $txt_price = array(
 	"es" => "TRANS Price");
 
 $txt_quantity = array(
-	"fr" => "Quantite",
+	"fr" => "Quantité",
 	"en" => "Quantity",
         "it" => "Quantità",
 	"nl" => "TRANS Quantity",
@@ -237,7 +236,7 @@ $txt_mainmenu_title_bandwidth_monitor = array(
 	"es" => "Monitorizacion del Ancho de Banda");
 
 $txt_customer_bw_consumption = array(
-	"fr" => "Utilisation de la bande passante par clients",
+	"fr" => "Utilisation de la bande passante par client",
 	"en" => "Customer's bandwidth consumption",
         "it" => "Consumo della banda per cliente",
 	"nl" => "TRANS Customer's bandwidth consumption",
@@ -267,8 +266,8 @@ $txt_graf = array(
 	"es" => "TRANS Graphic");
 
 $txt_server_total_bp = array(
-	"fr" => "Total des donnees transferes ce moi-ci sur le serveur : ",
-	"en" => "Server total accounted transfers this month: ",
+	"fr" => "Total des données transférées ce mois-ci sur le serveur : ",
+	"en" => "Server accounted transfers this month: ",
         "it" => "Totale trasferimenti del server per account in questo mese : ",
 	"nl" => "TRANS Server total accounted transfers this month: ",
 	"ru" => "TRANS Server total accounted transfers this month: ",
@@ -277,7 +276,7 @@ $txt_server_total_bp = array(
 	"es" => "TRANS Server total accounted transfers this month: ");
 
 $txt_mainmenu_title_deamonfile_generation = array(
-	"fr" => "Génération des fichiers de configuration des deamons",
+	"fr" => "Génération des fichiers de configuration des demons",
 	"en" => "Daemons configuration files generation",
         "it" => "Configurazione della generazione dei files di configurazione dei demoni",
 	"nl" => "Genereren van daemon configuratie files",
@@ -287,7 +286,7 @@ $txt_mainmenu_title_deamonfile_generation = array(
 	"es" => "Generacion de los ficheros de configuracion de los demonios");
 
 $txt_mainmenu_title_dtc_config = array(
-	"fr" => "Configuratoin générale de DTC",
+	"fr" => "Configuration générale de DTC",
 	"en" => "DTC general configuration",
         "it" => "Configurazione generale DTC",
 	"nl" => "DTC algemene configuratie",
@@ -318,11 +317,11 @@ $txt_icon_apache_vhost = array(
 
 $txt_icon_mailbox_account = array(
 	"fr" => "COMPTES E-MAIL",
-	"en" => "E-MAIL ACCOUNT",
+	"en" => "E-MAIL ACCOUNTS",
         "it" => "ACCOUNT E-MAIL",
 	"nl" => "E-MAIL ACCOUNT",
 	"ru" => "TRANSE-MAIL ACCOUNT",
-	"de" => "E-Mail Account",
+	"de" => "E-MAIL ACCOUNTS",
 	"zh" => "µç×ÓÓÊ¼þ",
 	"es" => "CUENTAS DE CORREO");
 
@@ -377,9 +376,9 @@ $txt_icon_mysite_at_mydomain = array(
 	"es" => "VHOST DE ZONA FTP");
 
 $txt_subdom_limit_reach = array(
-	"fr" => "Nombre maximum de sous-domaine atteint. Impossible d'ajouter de nouveau
+	"fr" => "Nombre maximum de sous-domaines atteint. Impossible d'ajouter de nouveaux
 	sous-domaines.",
-	"en" => "Maximum number of subdomains reach. cannot add a new subdomain",
+	"en" => "Maximum number of subdomains reached. cannot add a new subdomain",
         "it" => "Raggiunto numero massimo sottodomini. Non puoi aggiungerne uno nuovo.",
 	"nl" => "Het maximum aantal subdomeinen is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of subdomains reach. cannot add a new subdomain",
@@ -388,8 +387,8 @@ $txt_subdom_limit_reach = array(
 	"es" => "Numero maximo de subdominios alcanzados. No es posible añadir un nuevo subdominio.");
 
 $txt_number_of_active_subdomains = array(
-	"fr" => "Nombre de sous-domaines actifs:",
-	"en" => "Number of active subdomaines:",
+	"fr" => "Nombre de sous-domaines actifs :",
+	"en" => "Number of active subdomains:",
         "it" => "Numero sottodomini attivi:",
 	"nl" => "Aantal active subdomeinen:",
 	"ru" => "Number of active subdomaines:",
@@ -398,8 +397,8 @@ $txt_number_of_active_subdomains = array(
 	"es" => "Numero de subdominios activos:");
 
 $txt_maxnumber_of_ftp_account_reached = array(
-	"fr" => "Nombre maximum de compte ftp atteint. Impossible d'ajouter un nouveau compte.",
-	"en" => "Maximum number of ftp account reach. Cannot add a new account.",
+	"fr" => "Nombre maximum de comptes ftp atteint. Impossible d'ajouter un nouveau compte.",
+	"en" => "Maximum number of ftp account reached. Cannot add a new account.",
         "it" => "Raggiunto numero massimo di account FTP. Non puoi aggiungerne uno nuovo.",
 	"nl" => "Het maximum aantal ftp accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of ftp account reach. Cannot add a new account.",
@@ -408,7 +407,7 @@ $txt_maxnumber_of_ftp_account_reached = array(
 	"es" => "Numero maximo de ftps alcanzados. No es posible añadir una cuenta nueva.");
 
 $txt_number_of_active_ftp = array(
-	"fr" => "Nombre de comptes ftp actifs:",
+	"fr" => "Nombre de comptes ftp actifs :",
 	"en" => "Number of active ftp accounts:",
         "it" => "Numero account FTP attivi:",
 	"nl" => "Aantal actieve ftp accounts:",
@@ -419,7 +418,7 @@ $txt_number_of_active_ftp = array(
 
 $txt_number_of_active_mailbox = array(
 	"fr" => "Nombre de boites actives :",
-	"en" => "Number of active mailboxs:",
+	"en" => "Number of active mailboxes:",
         "it" => "Numero mailboxes attive:",
 	"nl" => "Aantal actieve e-mail accounts :",
 	"ru" => "Number of active mailboxs:",
@@ -428,8 +427,8 @@ $txt_number_of_active_mailbox = array(
 	"es" => "Numero de cuentas de correo activas:");
 
 $txt_maximum_mailbox_reach = array(
-	"fr" => "Nombre maximum de boite email atteint. Impossible d'ajouter un nouveau compte.",
-	"en" => "Maximum number of mailbox reach. Cannot add a new account.",
+	"fr" => "Nombre maximum de boites email atteint. Impossible d'ajouter un nouveau compte.",
+	"en" => "Maximum number of mailboxes reached. Cannot add a new account.",
         "it" => "Raggiunto numero massimo mailboxes. Non puoi aggiungerne una nuova.",
 	"nl" => "Het maximum aantal e-mail accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of mailbox reach. Cannot add a new account.",
@@ -458,7 +457,7 @@ $txt_add_user_title = array(
 	"es" => "Añadir un administrador");
 
 $txt_generate_buttons_title = array(
-	"fr" => "Lancement de la génération des fichiers de configurations",
+	"fr" => "Lancement de la génération des fichiers de configuration",
 	"en" => "Launching the configuration files generation",
         "it" => "Lanciando la generazione di files di configurazione",
 	"nl" => "De configuratiebestanden generator wordt gestart",
@@ -488,7 +487,7 @@ $txt_domains_configuration_title = array(
 	"es" => "Configuracion para cada dominio de <i>\"$adm_login\"</i>");
 
 $txt_admlist_sort_by_legend = array(
-	"fr" => "Afficher et trier par:",
+	"fr" => "Afficher et trier par :",
 	"en" => "Display and sort by:",
         "it" => "Mostra e ordina per:",
 	"nl" => "Weergeven en sorteren op:",
@@ -568,7 +567,7 @@ $txt_del_user = array(
 	"es" => "Borrar usuario");
 
 $txt_del_user_confirm = array(
-	"fr" => "Etes vous sure de voileur effacer cet utilisateur ? Ceci effacera tous ses noms de domaines, ses fichiers et ses bases de données !!!",
+	"fr" => "Etes-vous sûr de vouloir effacer cet utilisateur ? Ceci effacera tous ses noms de domaines, ses fichiers et ses bases de données !!!",
 	"en" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
         "it" => "Sei sicuro di voler cancellare questo utente? In questo modo cancellerai tutti i suoi domini, files e database !!!",
 	"nl" => "Weet je zeker dat je deze gebruiker wilt wissen? Als je hier op JA klikt, wis je DEFINITIEF alle domeinnamen, bestanden en databases gekoppeld aan deze gebruiker !!!",
@@ -578,7 +577,7 @@ $txt_del_user_confirm = array(
 	"es" => "¿Estas seguro de querer eliminar este usuario? Esto borrara todos sus dominios, ficheros y bases de datos !!!");
 
 $txt_del_user_domain = array(
-	"fr" => "Effacer un domaines de l'utilisateur :",
+	"fr" => "Effacer un domaine de l'utilisateur :",
 	"en" => "Delete a user domain:",
         "it" => "Cancella un dominio utente:",
 	"nl" => "Wis een gebruikersdomein :",
@@ -588,7 +587,7 @@ $txt_del_user_domain = array(
 	"es" => "Borrar dominio de usuario");
 
 $txt_del_user_domain_confirm = array(
-	"fr" => "Etes vous sure de voileur effacer ce nom de domaine ? Ceci effacera tous les fichiers hébergés pour ce domaine !!!",
+	"fr" => "Etes vous sure de vouloir effacer ce nom de domaine ? Ceci effacera tous les fichiers hébergés pour ce domaine !!!",
 	"en" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
         "it" => "Sei sicuro di voler cancellare questo nome a dominio? In questo modo cancellerai tutti i files del dominio !!!",
 	"nl" => "Weet je zeker dat je dit domein wilt wissen? Deze actie zal het domein wissen INCLUSIEF alle bestanden op het filesysteem !!!",
@@ -598,7 +597,7 @@ $txt_del_user_domain_confirm = array(
 	"es" => "¿Estas seguro de querer eliminar este nombre de dominio? Esto borrara todos los ficheros de dicho dominio !!!");
 
 $txt_new_domain_for_user = array(
-	"fr" => "Ajouter un domaine pour l'utilisateur:",
+	"fr" => "Ajouter un domaine pour l'utilisateur :",
 	"en" => "Add a domain for this user:",
         "it" => "Aggiungi un dominio per questo utente:",
 	"nl" => "Voeg een gebruiker toe aan dit domein:",
@@ -690,8 +689,8 @@ $txt_your_domain = array(
 	"es" => "Tu dominio:");
 
 $txt_your_domain_email = array(
-	"fr" => "Boites emails:",
-	"en" => "Mailboxs:",
+	"fr" => "Boites emails :",
+	"en" => "Mailboxes:",
         "it" => "Mailboxes:",
 	"nl" => "E-mail accounts:",
 	"ru" => "ðÏÞÔÏ×ÙÅ ÑÝÉËÉ:",
@@ -710,7 +709,7 @@ $txt_your_domain_ftp = array(
 	"es" => "Cuentas de ftp:");
 
 $txt_your_domain_subdomain = array(
-	"fr" => "Sous-domaines:",
+	"fr" => "Sous-domaines :",
 	"en" => "Subdomains:",
 	"it" => "Sottodomini:",
 	"nl" => "Subdomeinen:",
@@ -721,7 +720,7 @@ $txt_your_domain_subdomain = array(
 
 $txt_confirurate_your_domain_name = array(
 	"fr" => "Configurer son domaine :",
-	"en" => "Configurate your domain name:",
+	"en" => "Configure your domain name:",
 	"it" => "Configura il tuo nome a dominio:",
 	"nl" => "Configureer je domein naam:",
 	"ru" => "TRANSConfigurate your domain name:",
@@ -731,7 +730,7 @@ $txt_confirurate_your_domain_name = array(
 
 // MY ACCOUNT STRINGS
 $txt_transfer_du = array(
-	"fr" => "Transfère et utilisation disque :",
+	"fr" => "Transfert et utilisation disque :",
 	"en" => "Transfer and disk usage:",
 	"it" => "Trasferimento e uso disco:",
 	"nl" => "Bandbreedte en hardeschijf verbruik:",
@@ -741,7 +740,7 @@ $txt_transfer_du = array(
 	"es" => "Transferencia y uso de disco:");
 
 $txt_transfer_this_month = array(
-	"fr" => "Transfère ce mois-ci :",
+	"fr" => "Transfert ce mois-ci :",
 	"en" => "Transfer this month:",
 	"it" => "Trasferimento per questo mese:",
 	"nl" => "Bandbreedte deze maand:",
@@ -751,7 +750,7 @@ $txt_transfer_this_month = array(
 	"es" => "Transferencia este mes:");
 
 $txt_transfer = array(
-	"fr" => "Transfère",
+	"fr" => "Transfert",
 	"en" => "Transfer",
 	"it" => "Trasferimento",
 	"nl" => "Bandbreedte",
@@ -771,7 +770,7 @@ $txt_total_disk_usage = array(
 	"es" => "Uso Total de disco:");
 
 $txt_your_hosting_account = array(
-	"fr" => "Votre contract d'hébergement :",
+	"fr" => "Votre contrat d'hébergement :",
 	"en" => "Your hosting account:",
 	"it" => "Tuo account hosting:",
 	"nl" => "Uw hosting account:",
@@ -864,7 +863,7 @@ $txt_upgrade_my_account_button = array(
 	"es" => "Actualizar mi cuenta");
 
 $txt_renew_my_account_button = array(
-	"fr" => "Renouveler mon abbonement",
+	"fr" => "Renouveller mon abonnement",
 	"en" => "Renew my account",
 	"it" => "Rinnova il mio account",
 	"nl" => "Vernieuw mijn account",
@@ -894,7 +893,7 @@ $txt_refund_my_account = array(
 	"es" => "Reembolsar mi cuenta:");
 
 $txt_please_tell_if_info_not_ok = array(
-	"fr" => "Merci de nous avertir ci les informations ce-dessous n'étaient pas correct :",
+	"fr" => "Merci de nous avertir si les informations ci-dessous n'étaient pas correctes :",
 	"en" => "Please tell us if the following is not correct:",
 	"it" => "Per favore informaci se le informazioni seguenti non sono corrette:",
 	"nl" => "Laat ons weten of het volgende niet correct is:",
@@ -1007,7 +1006,7 @@ $txt_disk_usage = array(
 	"es" => "Uso de disco");
 
 $txt_domain_name_trafic_du = array(
-	"fr" => "Nom de domaine, trafic et utilisation disque :",
+	"fr" => "Nom de domaine, traffic et utilisation disque :",
 	"en" => "Domain name trafic and disk usage:",
 	"it" => "Traffico e utilizzo disco dominio:",
 	"nl" => "Domeinnaam verkeer en hardeschijf gebruik:",
@@ -1037,7 +1036,7 @@ $txt_disk_usage = array(
 	"es" => "Uso de disco");
 
 $txt_total_trafic = array(
-	"fr" => "Trafic total",
+	"fr" => "Traffic total",
 	"en" => "Total trafic",
 	"it" => "Traffico totale",
 	"nl" => "Totaal verkeer",
@@ -1056,7 +1055,7 @@ que serveur DNS signifie que vous voulez que le
 domaine soit hébergé ailleurs.<br>
 Le paramêtre MX dit ou se trouve le serveur de
 courrier (celui qui récupère et stocke tous vos
-courrier). La valeur \"default\" signifie que vous
+courriers). La valeur \"default\" signifie que vous
 désirez utiliser le serveur actuel.",
 	"en" => "Take care ! Setting wrong value
 in the following fields can lead to the stop of
@@ -1162,7 +1161,7 @@ $txt_other_mx_servers = array(
 	"es" => "Otro servidor MX (backup):");
  
 $txt_draw_tatabase_your_list = array(
-	"fr" => "Liste de vos bases de données:",
+	"fr" => "Liste de vos bases de données :",
 	"en" => "List of your databasses:",
 	"it" => "Lista dei tuoi database:",
 	"nl" => "Lijst van jouw databases:",
@@ -1172,7 +1171,7 @@ $txt_draw_tatabase_your_list = array(
 	"es" => "Lista de tus bases de datos:");
 
 $txt_draw_database_chpass = array(
-	"fr" => "Changer mon mot de passe MySql:",
+	"fr" => "Changer mon mot de passe MySql :",
 	"en" => "Change your MySQL password:",
 	"it" => "Cambia la tua password MySql:",
 	"nl" => "TRANS Change your MySQL password:",
@@ -1188,7 +1187,7 @@ href=\"".
 $_SERVER["PHP_SELF"].
 "?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">
 ici</a>
-pour ajouter cet utilisateur comme compte mysql (mjme mot de passe que pour
+pour ajouter cet utilisateur comme compte mysql (même mot de passe que pour
 DTC).",
         "en" => "There is no user by that name in the mysql database.
 Click <a
@@ -1250,7 +1249,7 @@ $txt_mysqlmang_db_name = array(
 );
 
 $txt_mysqlmang_not_in_demo = array(
-        "fr" => "Il n'y a pas de mysql-manager dans la vesion de dimo,
+        "fr" => "Il n'y a pas de mysql-manager dans la version de dimo,
 car celui-ci require le mot de passe root pour accider  la base de donnie.",
         "en" => "No mysql account manager in demo version (because I don't
 have root access to the MySQL
@@ -1293,7 +1292,7 @@ $txt_draw_client_info_comp_name = array(
 );
 
 $txt_draw_client_info_firstname = array(
-	"fr" => "Prenom:",
+	"fr" => "Prénom :",
 	"en" => "First name:",
 	"it" => "Nome:",
 	"nl" => "TRANS First name:",
@@ -1304,7 +1303,7 @@ $txt_draw_client_info_firstname = array(
 );
 
 $txt_draw_client_info_familyname = array(
-	"fr" => "Nom de famille:",
+	"fr" => "Nom de famille :",
 	"en" => "Family name:",
 	"it" => "Cognome:",
 	"nl" => "TRANSFamily name:",
@@ -1315,7 +1314,7 @@ $txt_draw_client_info_familyname = array(
 );
 
 $txt_draw_client_info_addr = array(
-	"fr" => "Adresse:",
+	"fr" => "Adresse :",
 	"en" => "Address:",
 	"it" => "Indirizzo:",
 	"nl" => "Adres:",
@@ -1326,7 +1325,7 @@ $txt_draw_client_info_addr = array(
 );
 
 $txt_draw_client_info_zipcode = array(
-	"fr" => "Code postal:",
+	"fr" => "Code postal :",
 	"en" => "Zipcode:",
 	"it" => "CAP:",
 	"nl" => "Postcode:",
@@ -1337,7 +1336,7 @@ $txt_draw_client_info_zipcode = array(
 );
 
 $txt_draw_client_info_country = array(
-	"fr" => "Pays:",
+	"fr" => "Pays :",
 	"en" => "Country:",
 	"it" => "Nazione:",
 	"nl" => "Land:",
@@ -1348,7 +1347,7 @@ $txt_draw_client_info_country = array(
 );
 
 $txt_draw_client_info_city = array(
-	"fr" => "Ville:",
+	"fr" => "Ville :",
 	"en" => "City:",
 	"it" => "Città:",
 	"nl" => "Woonplaats:",
@@ -1359,7 +1358,7 @@ $txt_draw_client_info_city = array(
 );
 
 $txt_draw_client_info_state = array(
-	"fr" => "Etat:",
+	"fr" => "Etat :",
 	"en" => "State:",
 	"it" => "Provincia:",
 	"nl" => "TRANS State:",
@@ -1370,7 +1369,7 @@ $txt_draw_client_info_state = array(
 );
 
 $txt_draw_client_info_phone = array(
-	"fr" => "Téléphone:",
+	"fr" => "Téléphone :",
 	"en" => "Phone number:",
 	"it" => "Tel:",
 	"nl" => "Telefoonnummer:",
@@ -1381,7 +1380,7 @@ $txt_draw_client_info_phone = array(
 );
 
 $txt_draw_client_info_fax = array(
-	"fr" => "Fax:",
+	"fr" => "Fax :",
 	"en" => "Fax:",
 	"it" => "Fax:",
 	"nl" => "Faxnummer:",
@@ -1409,9 +1408,9 @@ $domain_conf_submenu =array(
 		"link" => "subdomains"
 	),
 	array(
-		"text" => "mailboxs",
+		"text" => "mailboxes",
 		"type" => "link",
-		"link" => "mailboxs"
+		"link" => "mailboxes"
 	),
 	array(
 		"text" => "ftp-accounts",
@@ -1430,7 +1429,7 @@ $txt_login_title = array(
 	"es" => "Login"
 );
 $txt_login_login = array(
-	"fr" => "Login: ",
+	"fr" => "Login : ",
 	"en" => "Login: ",
 	"it" => "Login:",
 	"nl" => "Login: ",
@@ -1440,7 +1439,7 @@ $txt_login_login = array(
 	"es" => "Login:"
 );
 $txt_login_pass = array(
-	"fr" => "Mot de passe:",
+	"fr" => "Mot de passe :",
 	"en" => "Password:",
 	"it" => "Password:",
 	"nl" => "Wachtwoord:",
@@ -1496,7 +1495,7 @@ $txt_title_subdomain_form = array(
 	"es" => "Subdominios de "
 );
 $txt_subdom_list = array(
-	"fr" => "Liste de vos sous-domaines: ",
+	"fr" => "Liste de vos sous-domaines : ",
 	"en" => "List of your subdomains: ",
 	"it" => "Lista dei tuoi sottodomini: ",
 	"nl" => "Lijst met jouw subdomeinen: ",
@@ -1506,7 +1505,7 @@ $txt_subdom_list = array(
 	"es" => "Lista de subdominios: "
 );
 $txt_subdom_default_sub = array(
-	"fr" => "Sous-domaine par défaut: ",
+	"fr" => "Sous-domaine par défaut : ",
 	"en" => "Default subdomain: ",
 	"it" => "Sottodominio di default: ",
 	"nl" => "Standaard subdomein: ",
@@ -1549,7 +1548,7 @@ $txt_subdom_newname = array(
 );
 
 $txt_subdom_ip = array(
-	"fr" => "IP du sous-domain (laissez vide pour utiliser votre compte
+	"fr" => "IP du sous-domaine (laissez vide pour utiliser votre compte
 de hosting, rentrez l'IP du serveur sinon) : ",
 	"en" => "IP of the subdomain (leave blank otherwise): ",
 	"it" => "IP del sottodominio (lasciare vuote per usare l'hosting di default",
@@ -1565,11 +1564,11 @@ por defecto, indicar la IP de otro servidor en cualquier otro caso): "
 );
 
 $txt_subdom_dynip_logpass = array(
-	"fr" => "Si vous en avez besoin, il est possible de definir l'adresse
-IP a distance, par expemple si vous dispose d'une IP dynamyque et que vous
+	"fr" => "Si vous en avez besoin, il est possible de définir l'adresse
+IP a distance, par exemple si vous dispose d'une IP dynamyque et que vous
 voulez que le sous-domaine pointe dessus. Dans ce cas, veuillez rentrer
 un couple login/mot de passe ci-dessous:",
-	"en" => "If need it, it's possible to set your subdomain IP remotly,
+	"en" => "If need it, it's possible to set your subdomain IP remotely,
 for example if you have a home connection dynamic address and you want a
 subdomain to point to it. First, enter login and password here: ",
 	"it" => "Se richiesto, è possibile settare l'IP del tuo sottodominio da remoto, 
@@ -1589,7 +1588,7 @@ subdomain to point to it. First, enter login and password here: ",
 subdominio apunte a esta. Primero, introduce aqui el usuario y la contraseña: "
 );
 $txt_subdom_dynip_login = array(
-	"fr" => "Login IP dynamique:",
+	"fr" => "Login IP dynamique :",
 	"en" => "Dynamic ip update login: ",
 	"it" => "Login IP dinamico: ",
 	"nl" => "TRANS Dynamic ip update login: ",
@@ -1600,7 +1599,7 @@ $txt_subdom_dynip_login = array(
 );
 
 $txt_subdom_dynip_pass = array(
-	"fr" => "Mot de pass IP dynamique:",
+	"fr" => "Mot de pass IP dynamique :",
 	"en" => "Dynamic ip update password: ",
 	"it" => "Modifica password IP dinamico: ",
 	"nl" => "TRANS Dynamic ip update password: ",
@@ -1622,7 +1621,7 @@ $txt_subdom_register_global = array(
 );
 
 $txt_subdom_edita = array(
-	"fr" => "Editer un sous-domaine:",
+	"fr" => "Editer un sous-domaine :",
 	"en" => "Edit a subdomain: ",
 	"it" => "Edita un sottodominio:",
 	"nl" => "TRANS Edit a subdomain:",
@@ -1633,7 +1632,7 @@ $txt_subdom_edita = array(
 );
 
 $txt_subdom_generate_webalizer = array(
-	"fr" => "Generer les stats webalizer tous les mois:",
+	"fr" => "Generer les stats webalizer tous les mois :",
 	"en" => "Generate webalizer stats each months:",
 	"it" => "Genera statistiche webalizer ogni mese:",
 	"nl" => "TRANS Generate webalizer stats each months:",
@@ -1656,13 +1655,13 @@ $txt_subdom_wwwalias = array(
 $txt_subdom_scriptadvice = array(
 	"fr" => "Ensuite, ajouter simplement le script suivant a
 votre crontab Unix (vous avez besoin de lynx-ssl). Nous recommandons
-un laps de temps entre 30 minutes et 2 heures. S'il vous plais,
-ne mettez pas en place une mise a jour plus frequement que 10 minutes,
-de toutes facons DTC ne mettras pas a jours plus rapidement (conseil:
+un laps de temps entre 30 minutes et 2 heures. S'il vous plaît,
+ne mettez pas en place une mise a jour plus fréquement que 10 minutes,
+de toutes facons DTC ne mettra pas a jour plus rapidement (conseil:
 si vous avez ntpdate qui regle votre horloge systeme, vous pouvez
 faire les updates toutes les heures a 9, 19, 29, 39, 49 et 59 minutes.",
 	"en" => "Then simply add the following script to your Unix
-system crontab (lynx-ssl is needed). Recomanded time is between
+system crontab (lynx-ssl is needed). Recommanded time is between
 30 minutes and 2 hours. Please don't do it more than each 10
 minutes, anyway DTC will not generate a domaine zone file more
 oftently than each 10 minutes (advice: setup you server with
@@ -1706,7 +1705,7 @@ reloj en red y haga esto en 9,19,29,39,49 y 59 de cada hora)."
 );
 $txt_subdom_windowsusers = array(
 	"fr" => "Les utilisateurs de windows peuvent utiliser le planificateur
-de tache de windows pour effectuer la requette suivante:",
+de tache de windows pour effectuer la requête suivante :",
 	"en" => "Windows user can easily automate the query of the following URL:",
 	"it" => "Gli utenti Windows possono automatizzare facilmente la query del seguente URL:",
 	"nl" => "TRANS Windows user can easily automate the query of the following URL:",
@@ -1722,7 +1721,7 @@ siguiente:"
 /////////////
 $txt_title_mailbox_form = array(
 	"fr" => "Boites emails de ",
-	"en" => "Mailboxs of ",
+	"en" => "Mailboxes of ",
 	"it" => "Mailboxes di ",
 	"nl" => "E-mail account van ",
 	"ru" => "ðÏÞÔÏ×ÙÅ ÑÝÉËÉ",
@@ -1731,8 +1730,8 @@ $txt_title_mailbox_form = array(
 	"es" => "Cuentas de correo de "
 );
 $txt_mail_liste_of_your_box = array(
-	"fr" => "Liste de vos boites emails: ",
-	"en" => "List of your mailboxs: ",
+	"fr" => "Liste de vos boites emails : ",
+	"en" => "List of your mailboxes: ",
 	"it" => "Lista delle tua mailboxes: ",
 	"nl" => "Lijst met jouw E-mail accounts:",
 	"ru" => "óÐÉÓÏË ×ÁÛÉÈ ÑÝÉËÏ×:",
@@ -1741,7 +1740,7 @@ $txt_mail_liste_of_your_box = array(
 	"es" => "Listo de tus cuentas de correo"
 );
 $txt_mail_new_mailbox = array(
-	"fr" => "Nouvelle boite au lettre: ",
+	"fr" => "Nouvelle boite aux lettres : ",
 	"en" => "New mailbox: ",
 	"it" => "Nuova mailbox: ",
 	"nl" => "Nieuw e-mail account: ",
@@ -1781,7 +1780,7 @@ $txt_mail_redirection2 = array(
 	"es" => "Redireccion 2: "
 );
 $txt_mail_deliver_localy = array(
-	"fr" => "Delivrer en local: ",
+	"fr" => "Délivrer en local: ",
 	"en" => "Deliver localy: ",
 	"it" => "Deliver localmente: ",
 	"nl" => "Lokaal afleveren: ",
@@ -1825,7 +1824,7 @@ $txt_ftp_account_list = array(
 	"es" => "Lista de cuentas de ftp:"
 );
 $txt_ftp_new_account = array(
-	"fr" => "Nouveau compte FTP: ",
+	"fr" => "Nouveau compte FTP : ",
 	"en" => "New FTP account: ",
 	"it" => "Nuovo account FTP: ",
 	"nl" => "Nieuw FTP account: ",
@@ -1896,71 +1895,71 @@ DTC</b></u></font></center><br><br>
 <div align=\"justify\">
 <font size=\"+1\"><u>1. Qu'est-ce que DTC</u></font><br><br>
 DTC est un outil fait spécialement pour vous. Avec DTC, vous
-pourez prendre le controle de l'administration de votre domaine :
-vous pouvez configurer vos sousdomaines, vos boites emails et vos
+pouvez prendre le contrôle de l'administration de votre domaine :
+vous pouvez configurer vos sous-domaines, vos boites emails et vos
 comptes ftp.<br><br>
 
 Ce logiciel a été distribué sous licence L<a
 href=\"http://www.gnu.org/\">GPL</a>
-(Gnu Public Licence), ce qui signifi que vous pouvez optenir
+(Gnu Public Licence), ce qui signifie que vous pouvez optenir
 une copie des sources de l'interface et les utiliser, les modifier,
 et faire ce que vous voulez avec aussi longtemps que vous fassiez
-profiter des éventuelles ajouts, et que vous ne tiriez pas de profit
+profiter des éventuels ajouts, et que vous ne tiriez pas de profit
 de cet outil. Nous (chez GPLHost) croyons en l'effort pour le
-logiciel libre, et nous espérons que notre contribution vas encourager
-le developpement d'autre logiciel. Nous avons aussi considéré le fait
+logiciel libre, et nous espérons que notre contribution va encourager
+le developpement d'autres logiciels. Nous avons aussi considéré le fait
 que nous n'utilisons que du logiciel libre pour notre service
 d'hébergement, il est donc moralement normal de redistribuer nos
-effort de developpement a la communauté.<br><br>
+efforts de développement à la communauté.<br><br>
 
 <font size=\"+1\"><u>2. Emails</u></font><br>
 <u>2.1. A quoi ca sert ?</u><br><br>
-Vous pouvez ajouter, supprimer, ou modifier des boites électronique
+Vous pouvez ajouter, supprimer, ou modifier des boites électroniques
 avec cet outil.<br><br>
 
 <u>2.2. Redirection et livraison en local</u><br><br>
-Chaque boite email peut être redirigé vers au moins une adresse email,
-ce que signifit que lorsqu'un message sera recu, celui-ci sera retransmit
-ver une ou deux adresse()s de courrier électronique. La case a coché
-\"Déliver en local\" indique si oui on non les message pour cette boite
+Chaque boite email peut être redirigée vers au moins une adresse email,
+ce qui signifie que lorsqu'un message sera reçu, celui-ci sera retransmit
+vers une ou deux adresse(s) de courrier électronique. La case a cocher
+\"Déliver en local\" indique si oui on non les messages pour cette boite
 seront écrit sur nos disques durs, pour que vous puissier ensuite
 lire vos message sur nos server en utilisant un client mail. Ce
 client se connectera ensuite sur nos serveurs pour lire le courrier.
 N'oubliez pas de lire vos courriers souvent si vous avez du
-trafic, puisque les boites sont inclus dans votre quota disque.<Br><br>
+traffic, puisque les boites sont inclus dans votre quota disque.<Br><br>
 
 <u>2.3. Delai pour l'ajout / l'effacement de comptes</u><br><br>
 Lorsque vous ajoutez, on effacez des boites mails, ne vous attendez
-pas a voire cela fonctionner immédiatement : nous devons valider
-les changement dans le systeme pour que vos changements soit
-actif. Nous devons dire a Qmail (notre serveur de messagerie) de
+pas à voir cela fonctionner immédiatement : nous devons valider
+les changements dans le système pour que vos changements soient
+actifs. Nous devons dire a Qmail (notre serveur de messagerie) de
 recharger sa liste d'utilisateurs.<br><br>
 La plus part du temps, nous validons les changements a la fin
-de chaques jour ouvrable, mais si vous avez d'une validation
+de chaque jour ouvrable, mais si vous avez d'une validation
 immédiate, veuillez cliquer <a
 href=\"mailto:$webmaster_email_addr?subject=[DTC]email account 
 validation\">ici</a>.<br><br>
 
 <u><2.4 Pas de spam !</u><br><br>
 Attention, si vous utilisez notre serveur de messagerie de manière
-abusive (envois de spam, de carte postal, de liste de difusion,
-revente d'email gratuit, etc... (liste non exaustive)), les
-sanctions pouraient être immédiates. Rappelez vous que nous
+abusive (envois de spam, de carte postales, de liste de diffusion,
+revente d'email gratuit, etc... (liste non exhaustive)), les
+sanctions pourraient être immédiates. Rappelez vous que nous
 ne désirons pas que notre serveur de mail soit sur les listes
 noires !!!<br><br>
 Nous réfléchissons a l'ajout de fonction de mailling list avec
-un deamon spécialisé (sympa, marjodomo, etc...).<br><br>
+un demon spécialisé (sympa, marjodomo, etc...).<br><br>
 
 <font size=\"+1\"><u>3. Sous-domaines</u></font><br>
 <u>3.1. A quoi ca sert ?</u><br><br>
 Cette partie de l'interface permet la configuration des
-sous-domaines de votre site web, ce qui signifi que
-vous pourez créer des adresses de la forme :
+sous-domaines de votre site web, ce qui signifie que
+vous pourrez créer des adresses de la forme :
 <pre>
-http://ceque.vous.voullez.votre-nom-de-domaine.com
+http://ce.que.vous.voulez.votre-nom-de-domaine.com
 </pre>
 <u>3.2. Qu'est-ce que le sous-domaine par défaut ?</u><br><br>
-Lorsque quelqu'un essai de contacter votre site web avec
+Lorsque quelqu'un essaye de contacter votre site web avec
 une URL sans sous-domaine, celui-ci sera rédirigé vers
 le sous-domaine que vous aurez configuré comme étant
 celui par défaut. En d'autre termes, si vous
@@ -1984,7 +1983,7 @@ répertoires de votre sous-domaine par défaut à
 html (ou php) et utilise les memes fichiers de
 log.<br><br>
 
-<u>3.3. Sous-domaine interdits</u><br><br>
+<u>3.3. Sous-domaines interdits</u><br><br>
 Puisque nous avont déjà configuré ces sous-domaines
 pour d'autres services que le web, vous ne pouvez
 pas utiliser ces sous-domaines pour des sites apache :
@@ -1994,10 +1993,10 @@ pas utiliser ces sous-domaines pour des sites apache :
 </ul>
 
 <u>3.4. Effacement des sous-domaines</u><br><br>
-C'est a vous d'effacer les fichiers utilisez par les
+C'est a vous d'effacer les fichiers utilisés par les
 sous-domaines que vous voulez effacer. Vous pouvez
 effacer ces fichiers avec un clients FTP. Mais s'il
-vous plais, faite TRES attention a ne pas effacer les
+vous plaît, faites TRES attention a ne pas effacer les
 fichiers d'un sous-domaine que vous n'avez pas effacé
 dans DTC. En effet, le serveur web Apache n'est pas
 content lorsqu'un dossier n'existe pas tout en étant

@@ -79,7 +79,8 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"radio\" name=\"domain_gen_unresolv_alias\" value=\"yes\"$radio_yes>Yes
 <input type=\"radio\" name=\"domain_gen_unresolv_alias\" value=\"no\"$radio_no>No
-<input type=\"submit\" name=\"change_unresolv_alias\" value=\"Ok\"></form>";
+<input type=\"hidden\" name=\"change_unresolv_alias\" value=\"Ok\">
+<input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
 
 /*	if(file_exists($dtcshared_path."/dtcrm")){
 		$out .= "<b><u>Domain registration info:</u></b><br><br>";
