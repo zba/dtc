@@ -89,6 +89,7 @@ function mail_account_generate_postfix(){
 			$nbr_boites = sizeof($emails);
 			// go through each of these emails and build the vmailbox file
 			//also create our sasldb2 if we have a saslpasswd2 exe
+			$store_catch_all = "";
 			for($k=0;$k<$nbr_boites;$k++){
 				$email = $emails[$k];
 				$id = $email["id"];
@@ -125,12 +126,13 @@ function mail_account_generate_postfix(){
 					}
 					if ($id == "*")
 					{
-						$domains_postmasters_file .= "@$domain_full_name	$extra_redirects\n";
+						$store_catch_all .= "@$domain_full_name        $extra_redirects\n";
 					} else {
 						$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
 					}
 				}
 			}
+			$domains_postmasters_file .= $store_catch_all;
 		}
 	}
 	$assign_file .= ".\n";
