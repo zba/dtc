@@ -27,6 +27,7 @@ echo "===> Creating chroot tree in "$CHROOT_DIR
 umask 022
 
 # now onto the creation
+mkdir -p $CHROOT_DIR
 cd $CHROOT_DIR
 
 # create directory structure
@@ -34,46 +35,75 @@ mkdir -p etc dev bin lib tmp var/tmp var/run sbin
 mkdir -p usr/bin usr/lib usr/libexec usr/share usr/lib/zoneinfo
 
 # make devices - adjust MAJOR/MINOR as appropriate ( see ls -l /dev/* )
-if [ $UNIXTYPE = "freebsd" ]
+if ! [ -e dev/null ]
 then
-	mknod dev/null    c  2 2   # FreeBSD?
-else
-	mknod dev/null    c  1 3   # Linux
+	if [ $UNIX_TYPE"" = "freebsd" ];
+	then
+		mknod dev/null    c  2 2   # FreeBSD?
+	else
+		mknod dev/null    c  1 3   # Linux
+	fi
 fi
 
-if [ $UNIXTYPE = "freebsd" ]
+if [ $UNIX_TYPE"" = "freebsd" ]
 then
 	if [ $kernel = "OpenBSD" ];
 	then
-		mknod dev/urandom c 45 2   # OpenBSD ?
+		if ! [ -e dev/urandom ]
+		then
+			mknod dev/urandom c 45 2   # OpenBSD ?
+		fi
 	else
-		mknod dev/random  c  2 3   # FreeBSD
-		ln -s dev/random dev/urandom # FreeBSD
+		if ! [ -e dev/random ]
+		then
+			mknod dev/random  c  2 3   # FreeBSD
+		fi
+		if ! [ -e dev/urandom ]
+		then
+			ln -s dev/random dev/urandom # FreeBSD
+		fi
 	fi
 else
-	mknod dev/random  c  1 8   # Linux
-	mknod dev/urandom c  1 9   # Linux
+	if ! [ -e dev/random ]
+	then
+		mknod dev/random  c  1 8   # Linux
+	fi
+	if ! [ -e dev/urandom ]
+	then
+		mknod dev/urandom c  1 9   # Linux
+	fi
 fi
 
 # some external programs may need these:
-if [ $UNIXTYPE = "freebsd" ]
-	mknod dev/stdin   c 22 0   # FreeBSD, OpenBSD
-	mknod dev/stdout  c 22 1   # FreeBSD, OpenBSD
-	mknod dev/stderr  c 22 2   # FreeBSD, OpenBSD
+
+if [ $UNIX_TYPE"" = "freebsd" ]
+then
+	if ! [ -e dev/stdin ]
+	then
+		mknod dev/stdin   c 22 0   # FreeBSD, OpenBSD
+	fi
+	if ! [ -e dev/stdout ]
+	then
+		mknod dev/stdout  c 22 1   # FreeBSD, OpenBSD
+	fi
+	if ! [ -e dev/stderr ]
+	then
+		mknod dev/stderr  c 22 2   # FreeBSD, OpenBSD
+	fi
 fi
 
 # copy required binaries to $CHROOT_DIR/usr/bin
-cp -pv /usr/bin/file /usr/bin/bzip2 /bin/cpio usr/bin/
+cp -p /usr/bin/file /usr/bin/bzip2 /bin/cpio usr/bin/
 
 # copy required binaries to $CHROOT_DIR/bin
-cp -pv /bin/bash /bin/sh /bin/echo /bin/false /bin/gzip \
+cp -p /bin/bash /bin/sh /bin/echo /bin/false /bin/gzip \
   /bin/gunzip /bin/ls /bin/pwd /bin/cat /bin/su bin/
 
 # copy ldconfig from sbin to $CHROOT_DIR/sbin
-cp -pv /sbin/ldconfig sbin/
+cp -p /sbin/ldconfig sbin/
 
 # copy needed /etc files to $CHROOT_DIR/etc
-cp -pv /etc/protocols /etc/services /etc/hosts \
+cp -p /etc/protocols /etc/services /etc/hosts \
   /etc/group /etc/passwd /etc/resolv.conf /etc/localtime \
   /etc/nsswitch.conf /etc/host.conf etc/
 
@@ -82,7 +112,7 @@ cp -pv /etc/protocols /etc/services /etc/hosts \
 #
 #FreeBSD: 
 #for j in \
-if [ $UNIXTYPE = "freebsd" ] 
+if [ $UNIX_TYPE"" = "freebsd" ] 
 then
 	cp -p /usr/lib/libc.so.5 /usr/lib/libm.so.2 /usr/lib/libstdc++.so.4 \
 	  /usr/lib/libz.so.2 /usr/local/lib/libsavi.so.3 \
@@ -90,11 +120,15 @@ then
 	cp -p /usr/libexec/ld-elf.so.1 usr/libexec/
 else
 	#Linux:
-	cp -pfv /usr/lib/libmagic.so.1 /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
+	cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
 	  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
-	  /lib/libncurses.so.5 /usr/lib/libmagic.so.1 /usr/lib/libz.so.1 \
+	  /lib/libncurses.so.5 /usr/lib/libz.so.1 \
 	  /lib/librt.so.1 /lib/libacl.so.1 /lib/libpthread.so.0 \
 	  /lib/libattr.so.1 /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+	if [ -e /usr/lib/libmagic.so.1 ]
+	then
+		cp -pf /usr/lib/libmagic.so.1 lib/
+	fi
 	#ln lib/ld-2.3.2.so lib/ld-linux.so.2
 fi
 
@@ -116,7 +150,7 @@ chmod 666 dev/null
 chmod 644 dev/*random
 
 #now need to copy over the perl binary and some modules
-cp -p /usr/bin/perl usr/bin/
+cp -pf /usr/bin/perl usr/bin/
 
 # now create our ld.so cache
 chroot $CHROOT_DIR ./sbin/ldconfig 

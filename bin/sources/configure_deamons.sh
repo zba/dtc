@@ -426,8 +426,8 @@ db_user = $conf_mysql_login
 db_passwd = $conf_mysql_pass
 db_client_flags = 0
 
-default_pass_scheme = CRYPT
-password_query = SELECT crypt FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
+default_pass_scheme = PLAIN
+password_query = SELECT passwd FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
 user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
 " > $PATH_DTC_ETC/dovecot-mysql.conf
 	fi	

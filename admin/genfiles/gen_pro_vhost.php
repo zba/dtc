@@ -156,10 +156,10 @@ function pro_vhost_generate(){
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
 # This is old fashion no protection CGI
-#	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
+	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
 # This is new style using SBOX engine
-	RewriteEngine on
-	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]
+#	RewriteEngine on
+#	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename#xfer
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
@@ -187,7 +187,12 @@ $vhost_more_conf	php_admin_value safe_mode 1
 	<Location />
 		php_admin_value open_basedir \"$web_path/$web_name/:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>
-	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
+# This is old fashion no protection CGI
+#	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
+# This is new style using SBOX engine
+	RewriteEngine on
+	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]
+
 #	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename#xfer
