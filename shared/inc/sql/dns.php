@@ -7,34 +7,67 @@
 if(isset($_REQUEST["new_dns_and_mx_config"]) && $_REQUEST["new_dns_and_mx_config"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
-	$new_dns_1 = $_REQUEST["new_dns_1"];
-	$new_dns_2 = $_REQUEST["new_dns_2"];
-	$new_dns_3 = $_REQUEST["new_dns_3"];
-	$new_dns_4 = $_REQUEST["new_dns_4"];
-	$new_dns_5 = $_REQUEST["new_dns_5"];
-	$new_dns_6 = $_REQUEST["new_dns_6"];
+	if(isset($_REQUEST["new_dns_1"]) && isHostnameOrIP($_REQUEST["new_dns_1"])){
+		$new_dns_1 = $_REQUEST["new_dns_1"];
+	}else{
+		$new_dns_1 = "default";
+	}
+	if(isset($_REQUEST["new_dns_2"]) && isHostnameOrIP($_REQUEST["new_dns_2"])){
+		$new_dns_2 = $_REQUEST["new_dns_2"];
+	}else{
+		$new_dns_2 = $new_dns_2 = "default";
+	}
+	if(isset($_REQUEST["new_dns_3"]) && isHostnameOrIP($_REQUEST["new_dns_3"])){
+		$new_dns_3 = $_REQUEST["new_dns_3"];
+	}else{
+		$new_dns_3 = $new_dns_3 = "";
+	}
+	if(isset($_REQUEST["new_dns_4"]) && isHostnameOrIP($_REQUEST["new_dns_4"])){
+		$new_dns_4 = $_REQUEST["new_dns_4"];
+	}else{
+		$new_dns_4 = $new_dns_4 = "";
+	}
+	if(isset($_REQUEST["new_dns_5"]) && isHostnameOrIP($_REQUEST["new_dns_5"])){
+		$new_dns_5 = $_REQUEST["new_dns_5"];
+	}else{
+		$new_dns_5 = $new_dns_5 = "";
+	}
+	if(isset($_REQUEST["new_dns_6"]) && isHostnameOrIP($_REQUEST["new_dns_6"])){
+		$new_dns_6 = $_REQUEST["new_dns_6"];
+	}else{
+		$new_dns_6 = $new_dns_6 = "";
+	}
 
-	$new_mx_1 = $_REQUEST["new_mx_1"];
-	$new_mx_2 = $_REQUEST["new_mx_2"];
-	$new_mx_3 = $_REQUEST["new_mx_3"];
-	$new_mx_4 = $_REQUEST["new_mx_4"];
-	$new_mx_5 = $_REQUEST["new_mx_5"];
-	$new_mx_6 = $_REQUEST["new_mx_6"];
-
-	// Verify input validity
-	if(!isHostnameOrIP($new_dns_1))	$new_dns_1 = "default";
-	if(!isHostnameOrIP($new_dns_2))	$new_dns_2 = "default";
-	if(!isHostnameOrIP($new_dns_3))	$new_dns_3 = "";
-	if(!isHostnameOrIP($new_dns_4))	$new_dns_4 = "";
-	if(!isHostnameOrIP($new_dns_5))	$new_dns_5 = "";
-	if(!isHostnameOrIP($new_dns_6))	$new_dns_6 = "";
-
-	if(!isHostnameOrIP($new_mx_1))	$new_mx_1 = "default";
-	if(!isHostnameOrIP($new_mx_2))	$new_mx_2 = "";
-	if(!isHostnameOrIP($new_mx_3))	$new_mx_3 = "";
-	if(!isHostnameOrIP($new_mx_4))	$new_mx_4 = "";
-	if(!isHostnameOrIP($new_mx_5))	$new_mx_5 = "";
-	if(!isHostnameOrIP($new_mx_6))	$new_mx_6 = "";
+	if(isset($_REQUEST["new_mx_1"]) && isHostnameOrIP($_REQUEST["new_mx_1"])){
+		$new_mx_1 = $_REQUEST["new_mx_1"];
+	}else{
+		$new_mx_1 = "default";
+	}
+	if(isset($_REQUEST["new_mx_2"]) && isHostnameOrIP($_REQUEST["new_mx_2"])){
+		$new_mx_2 = $_REQUEST["new_mx_2"];
+	}else{
+		$new_mx_2 = "";
+	}
+	if(isset($_REQUEST["new_mx_3"]) && isHostnameOrIP($_REQUEST["new_mx_3"])){
+		$new_mx_3 = $_REQUEST["new_mx_3"];
+	}else{
+		$new_mx_3 = "";
+	}
+	if(isset($_REQUEST["new_mx_4"]) && isHostnameOrIP($_REQUEST["new_mx_4"])){
+		$new_mx_4 = $_REQUEST["new_mx_4"];
+	}else{
+		$new_mx_4 = "";
+	}
+	if(isset($_REQUEST["new_mx_5"]) && isHostnameOrIP($_REQUEST["new_mx_5"])){
+		$new_mx_5 = $_REQUEST["new_mx_5"];
+	}else{
+		$new_mx_5 = "";
+	}
+	if(isset($_REQUEST["new_mx_6"]) && isHostnameOrIP($_REQUEST["new_mx_6"])){
+		$new_mx_6 = $_REQUEST["new_mx_6"];
+	}else{
+		$new_mx_6 = "";
+	}
 
 	if($new_dns_2 != "default" && isset($new_dns_2) && $new_dns_2 != ""){
 		if(isset($new_dns_3) && $new_dns_3 != ""){
@@ -64,8 +97,6 @@ if(isset($_REQUEST["new_dns_and_mx_config"]) && $_REQUEST["new_dns_and_mx_config
 			$new_mx_2 .= "|".$new_mx_6;
 		}
 	}
-	if($new_mx_1 == "")	$new_mx_1 = "default";
-	if($new_mx_2 == "")	$new_mx_2 = "default";
 
 	// If domain whois is hosted here, change the whois value using a registry call.
 	if(file_exists($dtcshared_path."/dtcrm")){
