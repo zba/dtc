@@ -44,44 +44,44 @@ fi
 # uninstall proftpd.conf
 #
 
-echo "===> FIX ME !!! SCRIPT TO BE FINISHED AND TESTED: Uninstalling from proftpd.conf"
-#if grep "Configured by DTC" $PATH_PROFTPD_CONF
-#then
-#	start_line=$(grep -n "Configured by DTC" $PATH_PROFTPD_CONF | cut -d":" -f1)
-#	end_line=$(grep -n "End of DTC configuration" $PATH_PROFTPD_CONF| cut -d":" -f1)
-#	nbr_line=$(cat $PATH_PROFTPD_CONF | wc -l)
-#	cat $PATH_PROFTPD_CONF | head -n $(($start_line - 1 )) >/tmp/DTC_uninstall.profptd.conf
-#	cat $PATH_PROFTPD_CONF | tail -n $(($nbr_line - $end_line + 1 )) >>/tmp/DTC_uninstall.profptd.conf
-#	cp -f $PATH_PROFTPD_CONF $PATH_PROFTPD_CONF.DTC.removed
-#	mv /tmp/DTC_uninstall.profptd.conf $PATH_PROFTPD_CONF
-#fi
+echo "===> Uninstalling inclusion from proftpd.conf"
+if grep "Configured by DTC" $PATH_PROFTPD_CONF
+then
+	start_line=`grep -n "Configured by DTC" $PATH_PROFTPD_CONF | cut -d":" -f1`
+	end_line=`grep -n "End of DTC configuration" $PATH_PROFTPD_CONF| cut -d":" -f1`
+	nbr_line=`cat $PATH_PROFTPD_CONF | wc -l`
+	cat $PATH_PROFTPD_CONF | head -n $(($start_line - 1 )) >/tmp/DTC_uninstall.profptd.conf
+	cat $PATH_PROFTPD_CONF | tail -n $(($nbr_line - $end_line )) >>/tmp/DTC_uninstall.profptd.conf
+	cp -f $PATH_PROFTPD_CONF $PATH_PROFTPD_CONF.DTC.removed
+	mv /tmp/DTC_uninstall.profptd.conf $PATH_PROFTPD_CONF
+fi
 
 #
 # Uninstall qmail
 #
 
-echo "===> FIX ME !!! SCRIPT TO BE FINISHED AND TESTED: Uninstalling from qmail"
-#if ! [ -f $PATH_QMAIL_CTRL/locals.DTC.backup ] then
-#	rm -f $PATH_QMAIL_CTRL/locals
-#	mv $PATH_QMAIL_CTRL/locals.DTC.backup $PATH_QMAIL_CTRL/locals
-#fi
-#
-#if ! [ -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ] then
-#	rm -f $PATH_QMAIL_CTRL/rcpthosts
-#	mv $PATH_QMAIL_CTRL/rcpthosts.DTC.backup $PATH_QMAIL_CTRL/rcpthosts
-#fi
-#
-#if ! [ -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup ] then
-#	rm -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup
-#	mv $PATH_QMAIL_CTRL/virtualdomains.DTC.backup $PATH_QMAIL_CTRL/virtualdomains
-#fi
-#
-#if ! [ -f $PATH_QMAIL_CTRL/users/assign.DTC.backup ] then
-#	rm -f $PATH_QMAIL_CTRL/users/assign.DTC.backup
-#	mv $PATH_QMAIL_CTRL/users/assign.DTC.backup $PATH_QMAIL_CTRL/users/assign
-#fi
-#
-#if ! [ -f /etc/poppasswd.DTC.backup ] then
-#	rm -f /etc/poppasswd.DTC.backup
-#	mv /etc/poppasswd.DTC.backup /etc/poppasswd
-#fi
+echo "===> Uninstalling from qmail"
+if ! [ -f $PATH_QMAIL_CTRL/locals.DTC.backup ] then
+	rm -f $PATH_QMAIL_CTRL/locals
+	mv -f $PATH_QMAIL_CTRL/locals.DTC.backup $PATH_QMAIL_CTRL/locals
+fi
+
+if ! [ -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ] then
+	rm -f $PATH_QMAIL_CTRL/rcpthosts
+	mv -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup $PATH_QMAIL_CTRL/rcpthosts
+fi
+
+if ! [ -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup ] then
+	rm -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup
+	mv -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup $PATH_QMAIL_CTRL/virtualdomains
+fi
+
+if ! [ -f $PATH_QMAIL_CTRL/users/assign.DTC.backup ] then
+	rm -f $PATH_QMAIL_CTRL/users/assign.DTC.backup
+	mv -f $PATH_QMAIL_CTRL/users/assign.DTC.backup $PATH_QMAIL_CTRL/users/assign
+fi
+
+if ! [ -f /etc/poppasswd.DTC.backup ] then
+	rm -f /etc/poppasswd.DTC.backup
+	mv -f/etc/poppasswd.DTC.backup /etc/poppasswd
+fi
