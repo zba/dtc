@@ -271,3 +271,28 @@ then
 	echo "conf done"
 fi
 
+# Copy dist file if no php.ini is there yet...
+if [ -e /usr/local/etc/php.ini-dist ] ; then
+	if ! [ -e /usr/local/etc/php.ini ] ; then
+		cp /usr/local/etc/php.ini-dist /usr/local/etc/php.ini
+	fi
+fi
+# Check for pear in include path
+if [ -f /usr/local/share/pear/PEAR.php ] ;then
+	if [ -e /usr/local/etc/php.ini ] ; then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Checking include_path=/usr/local/share/pear in php.ini"
+		fi
+		if grep include_path /usr/local/etc/php.ini | grep /usr/local/share/pear > /dev/null
+		then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Seems ok: skiping include_path insertion in php.ini"
+			fi
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Your php.ini doesn't has pear in it's inc path: changin!"
+			fi
+			echo "include_path = \".:/usr/local/share/pear\"" >>/usr/local/etc/php.ini
+		fi
+	fi
+fi
