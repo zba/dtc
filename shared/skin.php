@@ -479,15 +479,34 @@ $ietype_menu_recurs_level=0;
 $treesign_array=array();
 $treeAddrsArray = array();
 
+$alt_signs = "";
+
 // Calculate a string reprensentative of the
 // tree cells to draw. Exemple of ret values : none/vline/endtree/hline
 function makeTreeGfxUrl($array,$nbr){
+	global $alt_signs;
+	$alt_signs = "";
 	for($i=0;$i<=$nbr;$i++){
 		if($i > 0){
 			$ret .= "/";
 		}
 		$plop = $array[$i];
 		$ret .= $plop;
+		if($plop == "none"){
+			$alt_signs .= "";
+		}else if($plop == "vline"){
+			$alt_signs .= "-";
+		}else if($plop == "tree"){
+			$alt_signs .= "|";
+		}else if($plop == "endtree"){
+			$alt_signs .= "L";
+		}else if($plop == "hline"){
+			$alt_signs .= "-";
+		}else if($plop == "minus"){
+			$alt_signs .= "-";
+		}else if($plop == "plus"){
+			$alt_signs .= "+";
+		}
 	}
 	return $ret;
 }
@@ -523,6 +542,8 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 	global $link;
 	global $treesign_array;
 
+	global $alt_signs;
+
 	// Get an array out of the current selected addresse
 	$selected = explode("/",$curent_addr);
 
@@ -547,7 +568,7 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 				$image_source = getCacheImageURL($text,1,$arbo);
 //				$image_source = "inc/img.php?text=$text&color=1&sign=minus&link=$arbo";
 				$ret .= "
-$alink<img border=\"0\" alt=\"".$entry["text"]."\" src=\"$image_source\"></a><br>";
+$alink<img border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><br>";
 
 				$treesign_array[$ietype_menu_recurs_level] = "tree";
 
@@ -566,7 +587,7 @@ $alink<img border=\"0\" alt=\"".$entry["text"]."\" src=\"$image_source\"></a><br
 				$rolovered = addImageToPreloads($image_rolover);
 				$ret .= "
 $alink<img border=\"0\" name=\"$rolovered\"
-src=\"$image_source\" alt=\"".$entry["text"]."\" 
+src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\"
 onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
 			}
@@ -595,7 +616,7 @@ onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
 				$image_source = getCacheImageURL($text,1,$arbo);
 //				$image_source = "inc/img.php?text=$text&color=1&link=$arbo";
 				$ret .= "
-$alink<img border=\"0\" alt=\"".$entry["text"]."\" src=\"$image_source\"></a><br>";
+$alink<img border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
 			}else{
 				$image_source = getCacheImageURL($text,0,$arbo);
 				$image_rolover = getCacheImageURL($text,1,$arbo);
@@ -604,7 +625,7 @@ $alink<img border=\"0\" alt=\"".$entry["text"]."\" src=\"$image_source\"></a><br
 				$rolovered = addImageToPreloads($image_rolover);
 				$ret .= "
 $alink<img border=\"0\" name=\"$rolovered\"
-src=\"$image_source\" alt=\"".$entry["text"]."\" 
+src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\"
 onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
 			}

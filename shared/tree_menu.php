@@ -25,11 +25,23 @@ function MTMimageLink($alink,$txt,$isSelected){
 	global $MTM_recur_lvl;
 	global $MTM_items;
 
+	$alt = "";
 	for($i=0;$i<=$MTM_recur_lvl;$i++){
 		if($i>0){
 			$signs .= "/";
 		}
 		$signs .= $MTM_items[$i];
+		if($MTM_items[$i] == "hline"){
+			$alt .= "|";
+		}else if($MTM_items[$i] == "vline"){
+			$alt .= "-";
+		}else if($MTM_items[$i] == "endtree"){
+			$alt .= "L";
+		}else if($MTM_items[$i] == "tree"){
+			$alt .= "+";
+		}else if($MTM_items[$i] == "minus"){
+			$alt .= "-";
+		}
 	}
 
 	$img_src = "img2.php?link=$signs&text=$txt";
@@ -46,7 +58,7 @@ onMouseOver=\"$rolovered.src='$image_rolover'\"
 onMouseOut=\"$rolovered.src='$image_source'\"";
 	}
 
-	return "$alink<img $img_source border=\"0\"></a><br>";
+	return "$alink<img alt=\"$alt\" $img_source border=\"0\"></a><br>";
 }
 
 function MTMRecursiv($menu){

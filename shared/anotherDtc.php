@@ -115,9 +115,9 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	}
 
 	$inside = "
-<table cellpadding=\"8\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"100%\"
+<table cellpadding=\"8\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"100%\">
 <tr><td>
-	<center><img src=\"gfx/dtc_logo.gif\"><br>
+	<center><img alt=\"Domain Teck Control\" src=\"gfx/dtc_logo.gif\"><br>
 	<font size=\"-2\" face=\"Arial\">Vers:$conf_dtc_version Release:$conf_dtc_release</font></center>
 </td><td>
 	<h1><b><font face=\"Verdana\">Domain Technologie Control</font></b></h1>
@@ -128,29 +128,6 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 </table>
 ";
 	return $inside;
-
-/*	return"
-
-<table boder=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" height=\"1\" bgcolor=\"#000066\">
-<tr><td width=\"1\">
-	<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\"
-			codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0\"
-			width=\"103\" height=\"64\">
-		<param name=movie value=\"gfx/flash/114.swf\">
-		<param name=quality value=high>
-		<param name=\"BGCOLOR\" value=\"#000066\">
-		<embed	src=\"gfx/flash/114.swf\" quality=high
-				pluginspage=\"http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash\"
-		  		type=\"application/x-shockwave-flash\" width=\"103\" height=\"64\" bgcolor=\"#000066\">
-          </embed> 
-        </object>
-</td><td width=\"100%\"><div align=\"center\">
-	$inside
-</div></td><td width=\"1\">
-	<img src=\"gfx/motif02.gif\">
-</td></tr>
-</table>
-";*/
 }
 
 function anotherPage($title,$meta,$java_script,$onloads,$banner,$menu,$content,$footer){

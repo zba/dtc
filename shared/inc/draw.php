@@ -443,6 +443,8 @@ function drawAdminTools_Subdomain($domain){
 	global $txt_subdom_errase;
 	global $txt_subdom_create;
 
+	global $conf_administrative_site;
+
 	global $txt_number_of_active_subdomains;
 	global $txt_subdom_limit_reach;
 
@@ -556,15 +558,41 @@ function drawAdminTools_Subdomain($domain){
 		$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>Edit a subdomain:".$txt_subdom_edit[$lang]."</u></b></font></td></tr>";
 		$txt .= "<tr><td>Subdomain name:".$txt_subdom_create_name[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
 		$txt .= "<tr><td>IP du sous-domain (laissez vide sinon):".$txt_subdom_create_ip[$lang]."</td><td><input type=\"hidden\" name=\"subdomain_name\" value=\"".$_REQUEST["edit_a_subdomain"]."\">
-		<input type=\"hidden\" name=\"edit_a_subdomain\" value=\"".$_REQUEST["edit_a_subdomain"]."\"><input type=\"text\" name=\"newsubdomain_ip\" value=\"$ip_domain_to_edit\"></td>";
+		<input type=\"hidden\" name=\"edit_a_subdomain\" value=\"".$_REQUEST["edit_a_subdomain"]."\"><input type=\"text\" name=\"newsubdomain_ip\" value=\"$ip_domain_to_edit\"></td></tr>";
+		$txt .= "<tr><td colspan=\"3\">";
+		$txt .= "If need it, it's possible to set your subdomain IP remotly,
+for example if you have a home connection dynamic address and you want a
+subdomain to point to it. First, enter login and password here:</td></tr>";
+
 		$txt .= "<tr><td>Dynamic ip update login:</td><td><input type=\"text\" name=\"subdomain_dynlogin\" value=\"$login_to_edit\"></td></tr>";
 		$txt .= "<tr><td>Dynamic ip update password:</td><td><input type=\"text\" name=\"subdomain_dynpass\" value=\"$pass_to_edit\"></td></tr>";
 		$txt .= "<tr><td></td><td><input type=\"submit\" name=\"edit_one_subdomain\" value=\"Ok\"></td></tr>";
+		if($login_to_edit != "" && isset($login_to_edit)){
+			$txt .= "<tr><td colspan=\"3\">Then
+simply add the following script to your Unix system crontab (lynx-ssl is
+needed). Recomanded time is between 30 minutes and 2 hours. Please don't
+do it more than each 10 minutes,anyway DTC will not generate a domaine
+zone file more oftently than each 10 minutes.<br>
+<pre>
+#!/bin/sh
+
+LYNX=/usr/bin/lynx
+DOMAIN=$edit_domain
+LOGIN=$login_to_edit
+PASS=$pass_to_edit
+SCRIPT_URL=\"https://$conf_administrative_site/dtc/\"
+
+\$LYNX -source \$SCRIPT_URL\"dynip.php?login=\"\$LOGIN\"&pass=\"\$PASS\"&domain=\"\$DOMAIN
+</pre><br>
+Windows user can easily automate the query of the following URL:<br>
+https://$conf_administrative_site/dtc/dynip.php?login=$login_to_edit&pass=$pass_to_edit&domain=$edit_domain
+</td></tr>
+";
+		}
 	}
 	$txt .= "</table></form>";
 
 	$txt .= "</b></font></font>";
-	// Print the list of mail box, allow creation of new ones, editing of an account, and destruction of existings.
 	return $txt;
 }
 

@@ -2,6 +2,7 @@
 
 require("/usr/share/dtc/shared/autoSQLconfig.php");
 require("$dtcshared_path/table_names.php");
+require("$dtcshared_path/dtc_functions.php");
 
 // $pro_mysql_domain_table
 // $pro_mysql_subdomain_table
@@ -14,13 +15,15 @@ $ip = $_REQUEST["ip"];
 if(!isset($login) || $login == "" || !isset($pass) || $pass == ""){
 	die("Incorrect params");
 }
-if(!ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$login)){
+if(!isFtpLogin($login)){
         die("Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" sign.");
 }
-if(!ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$pass)){
+if(!isDTCPassword($pass)){
         die("Requested pass does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" sign.");
 }
-
+if(!isHostname($domain)){
+	die("Requested domain name does not looklike to be correct. Please check !");
+}
 
 $query = "SELECT * FROM $pro_mysql_subdomain_table WHERE login='$login' AND pass='$pass';";
 $result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
@@ -31,7 +34,7 @@ if($num_rows != 1){
 	if(!isset($ip) || $ip == ""){
 		$ip = $_SERVER["REMOTE_ADDR"];
 	}else{
-		if(!ereg("^([0-9]){1,3}\.([0-9]){1,3}\.([0-9]){1,3}\.([0-9]){1,3}\$",$ip)){
+		if(!isIP($ip)){
 			die("Incorrect IP format !");
 		}
 	}
