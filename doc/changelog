@@ -1,3 +1,10 @@
+21/06/2004:
+- Install script now uses a backup/restor script so it's easyer to add
+some fields in previous tables (automatic addon to sql is done when
+installing, you don't have to worry anymore about your database
+upgrades !!!).
+- Added some spanish and chinese translations.
+
 12/06/2004:
 - Added some stuff in the CRM manager (root admin console) so there is
 not need to do some hacks in phpmyadmin any more.

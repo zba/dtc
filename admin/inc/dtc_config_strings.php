@@ -6,6 +6,7 @@ $txt_cfg_main_software_config =array(
 	"nl" => "Belangrijke software  configuratie",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ÃÅÎÔÒÁÌØÎÏÊ ÓÉÓÔÅÍÙ",
 	"de" => "Allgemeine Konfiguration",
+	"zh" => "Ö÷ÒªÅäÖÃDTC",
 	"es" => "Configuracion principal");
 
 $txt_cfg_general =array(
@@ -14,6 +15,7 @@ $txt_cfg_general =array(
 	"nl" => "Algemeen",
 	"ru" => "ïÓÎÏ×ÎÙÅ",
 	"de" => "Allgemein",
+	"zh" => "Ö÷Òª",
 	"es" => "General");
 
 $txt_cfg_demo_version =array(
@@ -22,6 +24,7 @@ $txt_cfg_demo_version =array(
 	"nl" => "Demo versie",
 	"ru" => "äÅÍÏ-×ÅÒÓÉÑ",
 	"de" => "Demo Version",
+	"zh" => "ÊÔÓÃ°æ±¾",
 	"es" => "Version de Demostracion");
 
 $txt_cfg_use_multiple_ip =array(
@@ -30,6 +33,7 @@ $txt_cfg_use_multiple_ip =array(
 	"nl" => "!TRANSLATE Use multiple IP",
 	"ru" => "éÓÐÏÌØÚÏ×ÁÔØ ÎÅÓËÏÌØËÏ IP",	
 	"de" => "Benutze mehrere IP Adressen:",
+	"zh" => "Ê¹ÓÃ¶àÖÖIP:",
 	"es" => "Usar multiples IPs");
 
 $txt_cfg_use_nated_vhost = array(
@@ -38,6 +42,7 @@ $txt_cfg_use_nated_vhost = array(
 	"nl" => "!TRANSLATEGenerate all apache vhosts on local network ip (NAT)",
 	"ru" => "!TRANSLATEGenerate all apache vhosts on local network ip (NAT)",
 	"de" => "Generiere all Apache vhots innerhalb der lokalen Netzwerkes (NAT)",
+	"zh" => "ÔÚ¾ÖÓòÍøÖ·Ð´ÏÂËùÓÐapache vhosts (NAT)",
 	"es" => "Generar todos los vhosts de apache en una ip de red local (NAT)");
 
 $txt_cfg_nated_vhost_ip = array(
@@ -46,22 +51,25 @@ $txt_cfg_nated_vhost_ip = array(
 	"nl" => "!TRANSLATELocal network area ip adress of the vhost using NAT",
 	"ru" => "!TRANSLATELocal network area ip adress of the vhost using NAT",
 	"de" => "Locale IP Adresse die für den VHost verwendet werden soll(NAT)",
+	"zh" => "vhostÕýÔÚÊ¹ÓÃµÄ¾ÖÓòÍøÖ·NAT",
 	"es" => "Direccion ip de red local del vhost que usa NAT");
 
 $txt_cfg_use_javascript = array(
 	"fr" => "Utiliser le javascript :",
 	"en" => "Use javascript:",
-	"nl" => "TRANSLATE!NL Use javascript",
-	"ru" => "TRANSLATE!RU Use javascript",
-	"de" => "Benutze JavaScript",
+	"nl" => "TRANSLATE!NL Use javascript:",
+	"ru" => "TRANSLATE!RU Use javascript:",
+	"de" => "Benutze JavaScript:",
+	"zh" => "Ê¹ÓÃjavascript:",
 	"es" => "Usar javascript:");
 
 $txt_cfg_use_ssl = array(
 	"fr" => "Utiliser le SSL :",
 	"en" => "Use SSL:",
-	"nl" => "TRANSLATE!NL Use SSL",
-	"ru" => "TRANSLATE!RU Use SSL",
+	"nl" => "TRANS Use SSL",
+	"ru" => "TRANS Use SSL",
 	"de" => "Benutze SSl",
+	"zh" => "Ê¹ÓÃSSL:",
 	"es" => "Usar SSL:");
 
 $txt_cfg_full_hostname =array(
@@ -70,23 +78,26 @@ $txt_cfg_full_hostname =array(
 	"nl" => "Volledige Hostnaam van de DTC admin panel:",
 	"ru" => "ðÏÌÎÏÅ ÉÍÑ ÈÏÓÔÁ Ó ÁÄÍÉÎÉÓÔÒÁÔÉ×ÎÏÊ ÐÁÎÅÌØÀ DTC",
 	"de" => "Vollständiger Rechnername des DTC",
+	"zh" => "DTC¹ÜÀíÃæ°åµÄÍøÕ¾È«Ãû",
 	"es" => "Nombre completo del hostname del panel de adminitracion de
 DTC:");
 
 $txt_cfg_main_site_ip =array(
-	"fr" => "IP principale du site :",
-	"en" => "Main site ip:",
+	"fr" => "IP principale du serveur :",
+	"en" => "Main ip address of the server:",
 	"nl" => "Primaire ip-adres van de server",
 	"ru" => "ïÓÎÏ×ÎÏÊ ÁÄÒÅÓ ÓÁÊÔÁ",
 	"de" => "Haupt IP Adresse:",
+	"zh" => "Ö÷ÒªipµØÖ·µÄ·þÎñÆ÷",
 	"es" => "IP principal del sitio:");
 
 $txt_cfg_site_addrs =array(
-	"fr" => "Adresse IP de votre machine (séparé par des \"|\") :",
+	"fr" => "Adresses IP de votre machine (séparé par des \"|\") :",
 	"en" => "Host IP addresses (separated by \"|\"):",
-	"nl" => "",
+	"nl" => "TRANSHost IP addresses (separated by \"|\"):",
 	"ru" => "IP ÁÄÒÅÓÁ ÈÏÓÔÁ (ÒÁÚÄÅÌÅÎÎÙÅ \"|\"):",
 	"de" => "Rechner IP Adressen (Separator \"|\"):",
+	"zh" => "ËùÓÐµÄIPµØÖ·µÄ·þÎñÆ÷(±» \"|\"Çø·Ö):",
 	"es" => "Direcciones IP del Host (separado por \"|\"):");
 
 $txt_cfg_name_zonefileconf_title =array(
@@ -95,6 +106,7 @@ $txt_cfg_name_zonefileconf_title =array(
 	"nl" => "Named zone-files configuratie",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ÚÏÎ äîó",
 	"de" => "Bind Zonendateien Konfiguration",
+	"zh" => "Named zonefilesÅäÖÃ",
 	"es" => "Configuracion de las zonas de Named");
 
 $txt_cfg_main_mx_addr =array(
@@ -103,14 +115,16 @@ $txt_cfg_main_mx_addr =array(
 	"nl" => "Hostname van je primaire MX record",
 	"ru" => "áÄÒÅÓ ÷ÁÛÅÇÏ ÏÓÎÏ×ÎÏÇÏ MX-ÓÅÒ×ÅÒÁ",
 	"de" => "Adresse des Haupt Mailservers:",
+	"zh" => "ÄúµÄÖ÷ÒªMX·þÎñÆ÷µÄµØÖ·",
 	"es" => "Direccion ip tu tu servidor MX principal :");
 
 $txt_cfg_mail_addr_webmaster =array(
-	"fr" => "Adresse mail du webmaster :",
-	"en" => "Mail address of your webmaster:",
-	"nl" => "Mail adres van de webmaster",
+	"fr" => "Adresse email du webmaster :",
+	"en" => "Email address of your webmaster:",
+	"nl" => "Email adres van de webmaster",
 	"ru" => "ðÏÞÔÏ×ÙÊ ÁÄÒÅÓ ÷ÁÛÅÇÏ ×ÅÂÍÁÓÔÅÒÁ:",
 	"de" => "E-Mailadresse des webmasters",
+	"zh" => "ÄúµÄÍø¹ÜµÄµç×ÓÓÊÏäµØÖ·",
 	"es" => "Direccion de Correo del webmaster:");
 
 $txt_cfg_primary_dns_server_addr =array(
@@ -119,6 +133,7 @@ $txt_cfg_primary_dns_server_addr =array(
 	"nl" => "Het primaire DNS serveradres:",
 	"ru" => "ðÅÒ×ÉÞÎÙÊ ÁÄÒÅÓ äîó :",
 	"de" => "Adresse des primären DNS:",
+	"zh" => "µÚÒ»¸öÓòÃû·þÎñÆ÷µØÖ·",
 	"es" => "Direccion del servidor Primario de dns:");
 
 $txt_cfg_secondary_dns_server_addr =array(
@@ -127,6 +142,7 @@ $txt_cfg_secondary_dns_server_addr =array(
 	"nl" => "Secundaire DNS serveradres:",
 	"ru" => "÷ÔÏÒÉÞÎÙÊ ÁÄÒÅÓ äîó :",
 	"de" => "Adresse des sekundären DNS:",
+	"zh" => "µÚ¶þ¸öÓòÃû·þÎñÆ÷µØÖ·",
 	"es" => "Direccion del servidor Secundario de dns:");
 
 $txt_cfg_slave_dns_ip =array(
@@ -135,6 +151,7 @@ $txt_cfg_slave_dns_ip =array(
 	"nl" => "Tertiaire dns server ip adres:",
 	"ru" => "áÄÒÅÓ ÐÏÄÞÉÎÅÎÎÏÇÏ äîó-ÓÅÒ×ÅÒÁ:",
 	"de" => "IP Adresse des Slave DNS Servers:",
+	"zh" => "±¸ÓÃÓòÃû·þÎñÆ÷µØÖ·",
 	"es" => "Direccion ip del servidor esclavo de DNS:");
 
 $txt_cfg_path_conf_title =array(
@@ -143,6 +160,7 @@ $txt_cfg_path_conf_title =array(
 	"nl" => "Configuratie van de paden",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÏÎÎÙÅ ÐÕÔÉ",
 	"de" => "Dateipfad Konfiguration",
+	"zh" => "Â·¾¶ÅäÖÃ",
 	"es" => "Configuracion de directorios");
 
 $txt_cfg_mainpath_conf_title =array(
@@ -151,6 +169,7 @@ $txt_cfg_mainpath_conf_title =array(
 	"nl" => "Belangrijke directorypaden ",
 	"ru" => "ïÓÎÏ×ÎÙÅ ÐÕÔÉ",
 	"de" => "Hauptpfad",
+	"zh" => "Ö÷ÒªÂ·¾¶",
 	"es" => "Directorio Principal");
 
 $txt_cfg_dtc_shared_folder =array(
@@ -159,6 +178,7 @@ $txt_cfg_dtc_shared_folder =array(
 	"nl" => "bestandenpad naar jouw DTC \"shared\" directory:",
 	"ru" => "æÁÊÌÏ×ÙÊ ÐÕÔØ Ë ×ÁÛÅÊ DTC \"ÏÂÝÅÊ\" ÄÉÒÅËÔÏÒÉÉ:",
 	"de" => "Pfad des DTC \"shared\" Verzeichnisses:",
+	"zh" => "ÄúµÄDTCµÄÂ·¾¶\"shared\"Ä¿Â¼:",
 	"es" => "Directorio de ficheros \"shared\" de DTC:");
 
 $txt_cfg_new_account_defaultpath =array(
@@ -167,6 +187,7 @@ $txt_cfg_new_account_defaultpath =array(
 	"nl" => "Hoofdpad waaronder je nieuwe accounts worden aangemaakt:",
 	"ru" => "äÉÒÅËÔÏÒÉÑ ÎÏ×ÏÊ ÕÞÅÔÎÏÊ ÚÁÐÉÓÉ ÐÏ ÕÍÏÌÞÁÎÉÀ:",
 	"de" => "Standard Verzeichnis für neue Accounts:",
+	"zh" => "ÄúµÄÔ¤ÉèÐÂÕÊ»§Ä¿Â¼",
 	"es" => "Directorio por defecto de tu nueva cuenta:");
 
 $txt_cfg_generated_file_path =array(
@@ -185,17 +206,19 @@ van z'n configuratie bestanden voor de daemons.",
 ÜÔÉÍ:",
 	"de" => "Pfad wo DTC seine Konfigurationsdatein für alle Daemons
 ablegen soll.",
+	"zh" => "ÉèÖÃDTC½«Ð´ÏÂÆäÎÄ¼þ(qmail, apache and named)",
 	"es" => "Directorio donde DTC podra generar los ficheros de
 configuracion para los demonios.
 Cada uno de los diretorios (qmail, apache y named) seran enlazados a
 este:");
 
 $txt_cfg_apache_file_names =array(
-	"fr" => "Chemin Apache",
+	"fr" => "Nom des fichier pour Apache",
 	"en" => "Apache file names",
 	"nl" => "Apache bestandsnamen",
 	"ru" => "éÍÅÎÁ ÆÁÊÌÏ× Apache",
 	"de" => "Apache Dateinamen",
+	"zh" => "ApacheÎÄ¼þÃû×Ö",
 	"es" => "Configuracion de Apache");
 
 $txt_cfg_vhost_file_path =array(
@@ -204,6 +227,7 @@ $txt_cfg_vhost_file_path =array(
 	"nl" => "Virtual hosting config-file:",
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ×ÉÒÔÕÁÌØÎÏÇÏ ÈÏÓÔÁ:",
 	"de" => "Virtual Hosts Konfigurationsdatei:",
+	"zh" => "VhostÅäÖÃÎÄ¼þ",
 	"es" => "Fichero de configuracion de los Virtual host:");
 
 $txt_cfg_phplib_path =array(
@@ -212,14 +236,16 @@ $txt_cfg_phplib_path =array(
 	"nl" => "Php libraries (gescheiden met een \":\"):",
 	"ru" => "Php ÂÉÂÌÉÏÔÅËÉ (ÒÁÚÄÅÌÅÎÎÙÅ \":\"):",
 	"de" => "PHP Bibliotheken (Seperator \":\"):",
+	"zh" => "PhpµÄÎÄ¼þ¼Ð(±»\":\"Çø·Ö):",
 	"es" => "Librerias de Php(separadas por \":\"):");
 
 $txt_cfg_phplib2_path =array(
 	"fr" => "Librairies PHP additionnelles :",
 	"en" => "Php additional libraries path:",
-	"nl" => "Additionele php library paden",
+	"nl" => "Additionele php library paden:",
 	"ru" => "ðÕÔØ Ë ÄÏÐÏÌÎÉÔÅÌØÎÙÍ ÂÉÂÌÉÏÔÅËÁÍ PHP:",
 	"de" => "Zusätzliche PHP Bibliotheken:",
+	"zh" => "PhpµÄ¸½¼ÓÎÄ¼þ¼ÐÂ·¾¶:",
 	"es" => "Librerias adicionales de Php:");
 
 $txt_cfg_named_filenames_title =array(
@@ -228,6 +254,7 @@ $txt_cfg_named_filenames_title =array(
 	"nl" => "Named bestandsnamen",
 	"ru" => "éÍÅÎÁ ÆÁÊÌÏ× äîó",
 	"de" => "Bind Konfigutationsdateien",
+	"zh" => "NamedÎÄ¼þÃû×Ö",
 	"es" => "Configuracion de Named");
 
 $txt_cfg_named_main_file =array(
@@ -236,6 +263,7 @@ $txt_cfg_named_main_file =array(
 	"nl" => "named hoofdbestand",
 	"ru" => "ãÅÎÔÒÁÌØÎÙÊ ÆÁÊÌ äîó:",
 	"de" => "Master Binddatei:",
+	"zh" => "NamedÖ÷ÒªÎÄ¼þ:",
 	"es" => "Fichero principal:");
 
 $txt_cfg_named_slave_file =array(
@@ -244,6 +272,7 @@ $txt_cfg_named_slave_file =array(
 	"nl" => "Names slave bestanden",
 	"ru" => "ðÏÄÞÉÎÅÎÎÙÊ ÆÁÊÌ äîó:",
 	"de" => "Slave Binddatei:",
+	"zh" => "Named±¸ÓÃ·þÎñÆ÷ÎÄ¼þ:",
 	"es" => "Fichero de zonas esclavas:");
 
 $txt_cfg_named_main_zonefile =array(
@@ -252,6 +281,7 @@ $txt_cfg_named_main_zonefile =array(
 	"nl" => "Names zonefiles directory:",
 	"ru" => "ðÁÐËÁ ÆÁÊÌÏ× ÃÅÎÔÒÁÌØÎÙÈ ÚÏÎ ÄÌÑ ÓÅÒ×ÅÒÁ äîó:",
 	"de" => "Bind Masterzonen Verzeichnis",
+	"zh" => "NamedÖ÷ÒªzonefilesÎÄ¼þ¼Ð:",
 	"es" => "Directorio principal de los zonefiles:");
 
 $txt_cfg_named_cache_slave_zonefile =array(
@@ -260,6 +290,7 @@ $txt_cfg_named_cache_slave_zonefile =array(
 	"nl" => "Directory van de named slave zonebestanden:",
 	"ru" => "ðÁÐËÁ ÄÌÑ ËÜÛÉÒÏ×ÁÎÉÑ ÆÁÊÌÏ× ÚÏÎ:",
 	"de" => "Bind Slavezonen Verzeichnis",
+	"zh" => "Named±¸ÓÃ(¸´ÖÆ)zonefilesÎÄ¼þ¼Ð:",
 	"es" => "Directorio zonefile esclavo (cache):");
 
 $txt_cfg_backup_webalizer_title =array(
@@ -268,6 +299,7 @@ $txt_cfg_backup_webalizer_title =array(
 	"nl" => "Backup en Webalizer bestandsnamen",
 	"ru" => "òÅÚÅÒ×ÎÙÅ É ÁÎÁÌÉÚÉÒÕÀÝÉÅ ÉÍÅÎÁ ÆÁÊÌÏ×",
 	"de" => "Sicherungs und Webalizer Dateinamen",
+	"zh" => "±¸ÓÃºÍWebalizerÎÄ¼þÃû×Ö",
 	"es" => "Nombre de ficheros de los Backups y Webalizer");
 
 $txt_cfg_backup_script_filename =array(
@@ -276,6 +308,7 @@ $txt_cfg_backup_script_filename =array(
 	"nl" => "Backup sh-script file:",
 	"ru" => "óËÒÉÐÔ ÒÅÚÅÒ×ÎÏÇÏ ËÏÐÉÒÏ×ÁÎÉÑ (Bash):",
 	"de" => "Sicherungs-script:",
+	"zh" => "±¸ÓÃºÍbash³ÌÐòÎÄ¼þÃû×Ö:",
 	"es" => "Nombre del fichero de Backup:");
 
 $txt_cfg_backup_destination_folder =array(
@@ -284,14 +317,16 @@ $txt_cfg_backup_destination_folder =array(
 	"nl" => "Standaard backupdirectory:",
 	"ru" => "äÉÒÅËÔÏÒÉÑ ÓÏÚÄÁÎÉÑ ÒÅÚÅÒ×ÎÙÈ ËÏÐÉÊ:",
 	"de" => "Backupverzeichnis",
+	"zh" => "±¸ÓÃÄ¿µÄµØÄ¿Â¼:",
 	"es" => "Directorio de destino del Backup:");
 
 $txt_cfg_webalizer_script_filename =array(
 	"fr" => "Nom du script Webalizer :",
-	"en" => "Webalizer bash-script:",
+	"en" => "Webalizer bash-script name:",
 	"nl" => "Webalizer sh-script:",
 	"ru" => "óËÒÉÐÔÙ(Bash) Webalizer",
 	"de" => "Webalizer bash-script:",
+	"zh" => "Webalizer bash³ÌÐòÃû×Ö:",
 	"es" => "Nombre del script de Webalizer:");
 
 ?>

@@ -168,8 +168,15 @@ case config: // Global Config
 		getConfig();
 	}
 
-	$configForm = drawDTCConfigForm();
-	$the_page[] = skin($conf_skin,$configForm,"DTC configuration");
+	$chooser_menu = drawDTCConfigMenu();
+	$leftFrameCells[] = skin($conf_skin,$chooser_menu,"Menu");
+	$leftFrame = makeVerticalFrame($leftFrameCells);
+
+	$rightFrameCells[] = skin($conf_skin,drawDTCConfigForm(),"DTC configuration");
+	$rightFrame = makeVerticalFrame($rightFrameCells);
+
+	$the_page[] = anotherLeftFrame($leftFrame,$rightFrame);
+//	$the_page[] = skin($conf_skin,$configForm,"DTC configuration");
 	break;
 	
 case user: // User Config
