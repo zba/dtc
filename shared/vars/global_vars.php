@@ -14,14 +14,24 @@ if($_REQUEST["rub"] == "crm"){
 
 $adm_login = $_REQUEST["adm_login"];
 $adm_pass = $_REQUEST["adm_pass"];
+$adm_email_login = $_REQUEST["adm_email_login"];
+$adm_email_pass = $_REQUEST["adm_email_pass"];
 $addrlink = $_REQUEST["addrlink"];
 
+function isValidEmailLogin($email){
+        $reg = "^([a-z0-9]+)([_.a-z0-9-]+)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$";
+        if(!ereg($reg,$email))  return false;
+        else                    return true;
+}
+
+
 if(!ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)\$",$adm_login) && isset($adm_login) && $adm_login != ""){
-	die("Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" sign.");
+	die("DTCclient login error: Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
 if(!ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_pass) && isset($adm_pass) && $adm_pass != ""){
-	die("Requested pass does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" sign.");
+	die("DTC client login error: Requested pass does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
+
 if($addrlink != "" && isset($addrlink)){
         $exploded = explode("/",$addrlink);
         if($addrlink != "help" && $addrlink != "database"){

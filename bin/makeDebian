@@ -18,7 +18,7 @@ mkdir -p debian/usr/share/dtc/etc/zones
 mkdir -p debian/DEBIAN
 
 # Copy DTC's files in the good directories
-cp -rf ../admin ../client ../shared debian/usr/share/dtc
+cp -rf ../admin ../client ../shared ../email debian/usr/share/dtc
 echo "<?php
 \$conf_dtc_version= \""$VERS"\"; \$conf_dtc_release= \""$RELS"\"; \$conf_unix_type= \""$UNIX_TYPE"\";
 ?>" > debian/usr/share/dtc/shared/dtc_version.php
@@ -58,6 +58,10 @@ cat sources/uninstall_deamons.sh >>debian/DEBIAN/prerm
 if ! [ -e debian/usr/share/dtc/admin/gfx ]
 then
 	ln -s ../shared/gfx debian/usr/share/dtc/admin/gfx
+fi
+if ! [ -e debian/usr/share/dtc/email/gfx ]
+then
+	ln -s ../shared/gfx debian/usr/share/dtc/email/gfx
 fi
 if ! [ -e debian/usr/share/dtc/client/gfx ]
 then

@@ -1,6 +1,6 @@
 <?php
 // Automatic database array generation for DTC
-// Generation date: 2004-10(Oct)-09 Saturday 12:28
+// Generation date: 2004-10(Oct)-12 Tuesday 20:02
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(

@@ -17,7 +17,7 @@ echo " --- Making DTC BSD tarball package ---"
 # This block should be common to most unix packages :
 echo "===> Copying files"
 mkdir -p dtc/etc/zones
-cp -rf ../admin ../client ../shared ../doc dtc/
+cp -rf ../admin ../client ../shared ../email ../doc dtc/
 
 # Copy the table dump in the admin directory
 if ! [ -f sources/dtc_db.php ]
@@ -46,6 +46,10 @@ if ! [ -e dtc/admin/gfx ]
 then
 	ln -s ../shared/gfx dtc/admin/gfx
 fi
+if ! [ -e dtc/email/gfx ]
+then
+	ln -s ../shared/gfx dtc/email/gfx
+fi
 if ! [ -e dtc/client/gfx ]
 then
 	ln -s ../shared/gfx dtc/client/gfx
@@ -60,7 +64,7 @@ then
 fi
 
 chown -R 0:0 dtc
-chown -R 65534:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx
+chown -R 65534:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx dtc/email/gfx
 
 # Specific BSD package actions :
 mkdir "dtc-"$VERSION

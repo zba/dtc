@@ -9,6 +9,25 @@ function fetchTable($query){
 	return $table;
 }
 
+function fetchMailboxInfos($adm_email_login,$adm_email_pass){
+	global $pro_mysql_pop_table;
+
+	$ret["err"] = 0;
+	$ret["mesg"] = "No error";
+
+	$a = explode('@',$adm_email_login);
+	$mailbox = $a[0];
+	$domain = $a[1];
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$mailbox' AND mbox_host='$domain';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
+	if(mysql_num_rows($r) != 1){
+		$ret["mesg"] = "Wrong user or password, or timeout expired.";
+		$ret["err"] = -1;
+		return $ret;
+	}
+	$ret["data"] = mysql_fetch_array($r);
+}
+
 function fetchCommands($id_client){
 	global $pro_mysql_command_table;
 
