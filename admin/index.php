@@ -28,12 +28,12 @@ $anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 ///////////////////////
 
 // User management icon
-if($_REQUEST["rub"] != "" && isset($_REQUEST["rub"])){
+if($_REQUEST["rub"] != "" && isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "user"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=user\">";
 }
 $menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/users.gif\"><br>".
 	$txt_mainmenu_title_useradmin[$lang];
-if($_REQUEST["rub"] == "" || !isset($_REQUEST["rub"])){
+if($_REQUEST["rub"] == "" || !isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "user"){
 	$menu .= "</a>";
 }
 $html_array[] = $menu;

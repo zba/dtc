@@ -35,8 +35,8 @@ function make_table($html_array,$num_colone){
 	<tr>";
 		for($j=0;$j<$num_colone;$j++){
 			$in = $html_array[$i*$num_colone+$j];
-			$out.= "<td width=\"$width%\" height=\"$height%\">
-	$in</td>
+			$out.= "<td width=\"$width%\" height=\"$height%\" valign=\"bottom\">
+	<center>$in</center></td>
 ";
 		}
 		$out .= "

@@ -205,7 +205,7 @@ $txt_general_virtual_admin_edition = array(
 	"nl" => "Configuratie van de beheerder <i>\"$adm_login\"</i>",
 	"ru" => "Конфигурация виртуального администратора <i>\"$adm_login\"</i>",
 	"de" => "Administrator bearbeiten <i>\"$adm_login\"</i> ",
-	"zh" => "TRANSConfiguration of the virtual administrator <i>\"$adm_login\"</i>",
+	"zh" => "пИдБ╧эюМхкт╠еДжц <i>\"$adm_login\"</i>",
 	"es" => "Configuracion del administrador <i>\"$adm_login\"</i>");
 
 $txt_domains_configuration_title = array(
@@ -214,7 +214,7 @@ $txt_domains_configuration_title = array(
 	"nl" => "Configuratie van elk domein voor <i>\"$adm_login\"</i>",
 	"ru" => "Конфигурация для каждого домена  <i>\"$adm_login\"</i>",
 	"de" => "Konfiguration der Domains von  <i>\"$adm_login\"</i>",
-	"zh" => "TRANSConfiguration for each domains of <i>\"$adm_login\"</i>",
+	"zh" => "╤тц©р╩╦Ж <i>\"$adm_login\"</i>║║гЬсР╣деДжц",
 	"es" => "Configuracion para cada dominio de <i>\"$adm_login\"</i>");
 
 $txt_admlist_sort_by_legend = array(
@@ -223,7 +223,7 @@ $txt_admlist_sort_by_legend = array(
 	"nl" => "Weergeven en sorteren op:",
 	"ru" => "Выводить по:",
 	"de" => "Zeige und sortiere nach:",
-	"zh" => "TRANSDisplay and sort by:",
+	"zh" => "у╧й╬сз╥жюЮ:",
 	"es" => "Mostrar ordenador por:");
 	
 $txt_admlist_new_admin = array(
@@ -232,7 +232,7 @@ $txt_admlist_new_admin = array(
 	"nl" => "Nieuwe virtuele beheerder",
 	"ru" => "Новый виртуальный администратор",
 	"de" => "Neuer Administrator",
-	"zh" => "TRANSNew virtual admin",
+	"zh" => "пб╣дпИдБ╧эюМхкт╠",
 	"es" => "Nuevo administrador");
 
 
@@ -242,7 +242,7 @@ $txt_path = array(
 	"nl" => "Pad :",
 	"ru" => "Путь:",
 	"de" => "Pfad:",
-	"zh" => "TRANSPath:",
+	"zh" => "б╥╬╤:",
 	"es" => "Directorio:");
 
 $txt_use_text_menu = array(
@@ -251,7 +251,7 @@ $txt_use_text_menu = array(
 	"nl" => "Gebruik tekst menu:",
 	"ru" => "TRANSUse text menu:",
 	"de" => "TRANSUse text menu:",
-	"zh" => "TRANSUse text menu:",
+	"zh" => "й╧сцнд╠╬╡к╣╔:",
 	"es" => "Usar menu de texto:");
 
 	
@@ -261,7 +261,7 @@ $txt_password = array(
 	"nl" => "Wachtwoord:",
 	"ru" => "Пароль:",
 	"de" => "Passwort",
-	"zh" => "TRANSPassword:",
+	"zh" => "цэбК:",
 	"es" => "ContraseЯa:");
 
 $txt_id_client = array(
@@ -270,7 +270,7 @@ $txt_id_client = array(
 	"nl" => "Klant id :",
 	"ru" => "ID клиента:",
 	"de" => "Client ID",
-	"zh" => "TRANSClient ID:",
+	"zh" => "╧к©миМ╥ж:",
 	"es" => "ID de cliente");
 
 $txt_del_user = array(
@@ -279,7 +279,7 @@ $txt_del_user = array(
 	"nl" => "Wis de gebruiker",
 	"ru" => "Удалить пользователя",
 	"de" => "Benutzer lЖschen",
-	"zh" => "TRANSDelete the user",
+	"zh" => "и╬ЁЩсц╩╖",
 	"es" => "Borrar usuario");
 
 $txt_del_user_confirm = array(
@@ -288,7 +288,7 @@ $txt_del_user_confirm = array(
 	"nl" => "Weet je zeker dat je deze gebruiker wilt wissen? Als je hier op JA klikt, wis je DEFINITIEF alle domeinnamen, bestanden en databases gekoppeld aan deze gebruiker !!!",
 	"ru" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
 	"de" => "Sicher das Sie diesen Benutzer lЖschen wollen? Alle Domains, Dateien und Datenbanken werden gelЖscht",
-	"zh" => "TRANSAre your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
+	"zh" => "дЦх╥пер╙и╬ЁЩуБ╦Жсц╩╖? уБоН╡ывВ╫╚р╙и╬ЁЩкЫспкШ╣дсРцШё╛нд╪Чё╛╨мйЩ╬щ©Б!!!",
 	"es" => "©Estas seguro de querer eliminar este usuario? Esto borrara todos sus dominios, ficheros y bases de datos !!!");
 
 $txt_del_user_domain = array(
@@ -297,7 +297,7 @@ $txt_del_user_domain = array(
 	"nl" => "Wis een gebruikersdomein :",
 	"ru" => "Удалить домен пользователя:",
 	"de" => "LЖschen einer Benutzerdomain",
-	"zh" => "TRANSDelete a user domain:",
+	"zh" => "и╬ЁЩр╩╦Жсц╩╖сРцШ:",
 	"es" => "Borrar dominio de usuario");
 
 $txt_del_user_domain_confirm = array(
@@ -306,7 +306,7 @@ $txt_del_user_domain_confirm = array(
 	"nl" => "Weet je zeker dat je dit domein wilt wissen? Deze actie zal het domein wissen INCLUSIEF alle bestanden op het filesysteem !!!",
 	"ru" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
 	"de" => "Sicher das Sie diese Domain lЖschen wollen? Alle Datein fЭr diese Domain werden gelЖscht",
-	"zh" => "TRANSAre you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
+	"zh" => "дЦх╥пер╙и╬ЁЩуБ╦ЖсРцШ? уБоН╡ывВ╫╚р╙и╬ЁЩкЫспнд╪Ч!!!",
 	"es" => "©Estas seguro de querer eliminar este nombre de dominio? Esto borrara todos los ficheros de dicho dominio !!!");
 
 $txt_new_domain_for_user = array(
@@ -315,7 +315,7 @@ $txt_new_domain_for_user = array(
 	"nl" => "Voeg een gebruiker toe aan dit domein:",
 	"ru" => "Добавить домен для этого пользователя:",
 	"de" => "Anlegen einer Domain:",
-	"zh" => "TRANSAdd a domain for this user:",
+	"zh" => "╤туБ╦Жсц╩╖лМ╪ср╩╦ЖсРцШ:",
 	"es" => "AЯadir un dominio para este usuario:");
 
 $txt_domain_tbl_config_dom_name = array(
@@ -324,7 +324,7 @@ $txt_domain_tbl_config_dom_name = array(
 	"nl" => "Domein naam",
 	"ru" => "Имя домена",
 	"de" => "Domainname",
-	"zh" => "TRANSDomain name",
+	"zh" => "сРцШ",
 	"es" => "Nombre de dominio");
 
 $txt_domain_tbl_config_quota = array(
@@ -333,7 +333,7 @@ $txt_domain_tbl_config_quota = array(
 	"nl" => "Schijf quota",
 	"ru" => "Дисковая квота",
 	"de" => "Disk quota",
-	"zh" => "TRANSDisk quota",
+	"zh" => "╢еел╥жеД",
 	"es" => "Quota de disco");
 
 $txt_domain_tbl_config_max_ftp = array(
@@ -342,7 +342,7 @@ $txt_domain_tbl_config_max_ftp = array(
 	"nl" => "Max ftp",
 	"ru" => "ФТП макс",
 	"de" => "Max. ftp",
-	"zh" => "TRANSMax ftp",
+	"zh" => "Max ftp",
 	"es" => "Max ftp");
 
 $txt_domain_tbl_config_max_email = array(

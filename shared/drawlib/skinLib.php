@@ -28,6 +28,8 @@ function skin($skinpath,$content,$title){
 	global $skinGeneralPath;
 	global $skinCssString;
 
+	if($skinpath == "")	$skinpath = "green";
+
 	// If skin function not allready in memory
 	$skinIndex = getSkinIndex($skinpath);
 	if($skinIndex == -1){
