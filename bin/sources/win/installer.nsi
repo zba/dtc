@@ -48,7 +48,7 @@ Page custom CustomMysqlInfo
 ; MUI end ------
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "Setup.exe"
+OutFile "dtc_win.exe"
 InstallDir "$PROGRAMFILES\DTC"
 ShowInstDetails show
 ShowUnInstDetails show
