@@ -671,8 +671,7 @@ $txt_other_mx_servers = array(
 	"en" => "Other MX (backup) servers:",
 	"nl" => "Other MX (backup) servers:",
 	"ru" => "Other MX (backup) servers:",
-	"es" => "Otro servidor MX (backup):",
-
+	"es" => "Otro servidor MX (backup):");
  
 $txt_draw_tatabase_your_list = array(
 	"fr" => "Liste de vos bases de donnée:",
