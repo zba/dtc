@@ -106,7 +106,7 @@ for($j=0;$j<$num;$j++){
 		}
         }
 	if(sizeof($primaries) > 0)
-		$out .= "\t\t\t\"PRIMARY KEY\" => \"(".$primaries[0];
+		$out .= "\t\t\t\"PRIMARY\" => \"(".$primaries[0];
 	for($i=1;$i<sizeof($primaries);$i++){
 		$out .= ",".$primaries[$i];
 	}
@@ -120,7 +120,7 @@ for($j=0;$j<$num;$j++){
 		$kkeys = @array_keys($keys);
 		for($i=0;$i<sizeof($kkeys);$i++){
 			$cur = $keys[ $kkeys[$i] ];
-			$out .= "\t\t\t\"UNIQUE KEY\" => \"".$kkeys[$i]." (";
+			$out .= "\t\t\t\"".$kkeys[$i]."\" => \"(";
 			for($k=0;$k<sizeof($cur);$k++){
 				if($k>0)	$out .= ",";
 				$out .= $cur[$k];

@@ -73,8 +73,18 @@ function findFieldInTable($table,$field){
 	return false;
 }
 
-function findKeyInTable($table,$field){
-	$q = "";
+function findKeyInTable($table,$key){
+	$q = "SHOW INDEX FROM $table";
+	$res = mysql_query($q) or die("Could not query $q!");;
+	$num_keys = mysql_num_rows($res);
+	for($i=0;$i<$num_keys;$i++){
+		$a = mysql_fetch_array($res);
+		if($a["Key_name"] == $key){
+			mysql_free_result($res);
+			return true;
+		}
+	}
+	mysql_free_result($res);
 	return false;
 }
 
@@ -83,29 +93,38 @@ echo "$nbr_tables tables:";
 $tblnames = array_keys($dtc_database);
 for($i=0;$i<$nbr_tables;$i++){
 	echo " ".$tblnames[$i];
-	$allvars = $dtc_database[$tblnames[$i]];
-	$varnames = array_keys($allvars);
 	if( !mysql_table_exists($tblnames[$i]) ){
 		$q = "CREATE TABLE ".$tblnames[$i]."(
   ".$varnames[0]." ".$allvars[$varnames[0]]."
 );\n";
 		echo $q;
 	}
+
+	$allvars = $dtc_database[$tblnames[$i]]["vars"];
+	$varnames = array_keys($allvars);
 	$numvars = sizeof($allvars);
 	for($j=0;$j<$numvars;$j++){
-		if(	$varnames[$j] == "PRIMARY" ||
-			$varnames[$j] == "UNIQUE" ||
-			$varnames[$j] == "KEY"){
-
-			$q = "ALTER INGNORE TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." ;";
+		if(!findFieldInTable($tblnames[$i],$varnames[$j])){
+			$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." ;";
 			echo "$q\n";
-		}else{
-			if(!findFieldInTable($tblnames[$i],$varnames[$j])){
-				$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." ;";
-				echo "$q\n";
-			}
 		}
 	}
+
+	$allvars = $dtc_database[$tblnames[$i]]["keys"];
+	$varnames = array_keys($allvars);
+	$numvars = sizeof($allvars);
+	for($j=0;$j<$numvars;$j++){
+		if(!findKeyInTable($tblnames[$i],$varnames[$j])){
+			if($varnames[$j] == "PRIMARY")
+				$var_2_add = "PRIMARY KEY";
+			else
+				$var_2_add = "UNIQUE KEY ".$varnames[$j];
+			$q = "ALTER INGNORE TABLE ".$tblnames[$i]." ADD $var_2_add ".$allvars[$varnames[$j]].";";
+			echo "$q\n";
+		}
+	}
+
+
 }
 echo "\n";
 
