@@ -104,8 +104,6 @@ else
 
 	echo "# Configured by DTC v0.12 : please do not touch this line !
 Include $PATH_DTC_ETC/vhosts.conf
-User nobody
-Group nogroup
 Listen 80
 Listen 443
 
@@ -114,9 +112,7 @@ LogSQLSocketFile /var/run/mysqld/mysqld.sock
 LogSQLDatabase apachelogs
 LogSQLCreateTables On
 LogSQLTransferLogFormat IAbhRrSsU
-# DTC HTTPD Config end
-# End of DTC configuration v0.12 : please don't touch this line !"
->>$PATH_HTTPD_CONF
+# End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF
 	if [ -f $TMP_FILE ]
 	then
 		rm -f $TMP_FILE
