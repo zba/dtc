@@ -3,8 +3,10 @@
 // Those are supposed to be filled at eatch queries, therefore they
 // are global variables.
 
-if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "crm"){
+if(isset($_REQUEST["rub"]))
 	$rub = $_REQUEST["rub"];
+
+if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "crm"){
 	if(isset( $_REQUEST["id_client"] )){
 		$id_client = $_REQUEST["id_client"];
 		if($id_client != "" && isset($id_client) && !ereg("^([0-9]+)\$",$id_client)){
