@@ -1,5 +1,7 @@
-Mac OS X 10.3.6
-
+DTC on Mac OS X 10.3.8 Server Howto
+-----------------------------------
+1/ Go in the Server Admin, edit your web server
+property and add php4 and ssl support.
 
 /private/etc/httpd/httpd.conf
 ------------------------------------

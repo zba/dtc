@@ -223,8 +223,14 @@ fi
 
 echo "done!"
 
+# This adds the mod_log_sql module if needed
+if ! [ -e /usr/libexec/httpd/mod_log_sql.so ] ; then
+	cp mod_log_sql.so /usr/libexec/httpd/
+fi
+
 # This might help if you want to use the mysql4 provided by fink
 # Since standard Mac OS X 10.0.3.7 server that I have here uses mysql 3 within
 # php and that mysql comes as default on Mac OS X Server, I leave the standard one
 # otherwise you will have to recompile php with mysql4 support.
 #conf_mysql_cli_path=/usr/local/mysql/bin/mysql
+

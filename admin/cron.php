@@ -9,7 +9,7 @@ require_once("genfiles/genfiles.php");
 
 // Set here your apachectl path if you need it fully (like for example
 // /usr/sbin/apachectl for debian, or /usr/local/sbin/apachectl for FreeBSD)
-if($conf_unix_type == "debian" || $conf_unix_type == "redhat"){
+if($conf_unix_type == "debian" || $conf_unix_type == "redhat" || $conf_unix_type == "osx"){
 	$APACHECTL = "/usr/sbin/apachectl";
 }else{
 	$APACHECTL = "/usr/local/sbin/apachectl";

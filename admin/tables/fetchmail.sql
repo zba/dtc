@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS fetchmail (
-  id int(9) NOT NULL auto_increment",
+  id int(9) NOT NULL auto_increment,
   domain_user varchar(64) NOT NULL default '',
   domain_name varchar(128) NOT NULL default '',
   pop3_email varchar(64) NOT NULL default '',
