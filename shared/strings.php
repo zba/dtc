@@ -4,20 +4,23 @@ $txt_mainmenu_title_useradmin = array(
 	"fr" => "Gestion des utilisateurs",
 	"en" => "Users administration",
 	"nl" => "Gebruikers administratie",
-	"ru" => "Users administration");
+	"ru" => "Users administration",
+	"de" => "Benutzer Administration"); 
 
 $txt_mainmenu_title_deamonfile_generation = array(
 	"fr" => "GИnИration des fichiers de configuration des deamons",
 	"en" => "Daemons configuration files generation",
 	"nl" => "Genereren van daemon configuratie files",
-	"ru" => "Daemons configuration files generation");
-
+	"ru" => "Daemons configuration files generation",
+	"de" => "Erzeuge Konfiguationsdatein fЭr Daemons");
+
 $txt_mainmenu_title_dtc_config = array(
 	"fr" => "Configuratoin gИnИrale de DTC",
 	"en" => "DTC general configuration",
 	"nl" => "DTC algemene configuratie",
-	"ru" => "DTC general configuration");
-
+	"ru" => "DTC general configuration",
+	"de" => "Allgemeine DTC Konfiguration");
+	
 $txt_icon_all_files_and_scripts = array(
 	"fr" => "TOUS FICHIERS & SCRIPTS",
 	"en" => "ALL FILES AND SCRIPTS",
@@ -34,201 +37,235 @@ $txt_icon_mailbox_account = array(
 	"fr" => "COMPTES E-MAIL",
 	"en" => "E-MAIL ACCOUNT",
 	"nl" => "E-MAIL ACCOUNT",
-	"ru" => "E-MAIL ACCOUNT");
+	"ru" => "E-MAIL ACCOUNT",
+	"de" => "E-Mail Account");
 
 $txt_icon_named_zones = array(
 	"fr" => "FICHIERS DE ZONES NAMED",
 	"en" => "NAMED ZONES FILES",
 	"nl" => "DNS ZONE BESTANDEN",
-	"ru" => "NAMED ZONES FILES");
+	"ru" => "NAMED ZONES FILES",
+	"de" => "Bind Zonen Datein");
 
 $txt_icon_reinit_named_zones = array(
 	"fr" => "REINIT DES ZONES NAMED",
 	"en" => "REINIT NAMED ZONES",
 	"nl" => "HERLAAD DNS ZONES",
-	"ru" => "REINIT NAMED ZONES");
+	"ru" => "REINIT NAMED ZONES",
+	"de" => "Neueinlesen der BIND Zonen");
 
 $txt_icon_backup_scripts = array(
 	"fr" => "SCRIPT DE BACKUPS",
 	"en" => "BACKUP SCRIPTS",
 	"nl" => "BACKUP SCRIPTS",
-	"ru" => "BACKUP SCRIPTS");
+	"ru" => "BACKUP SCRIPTS",
+	"de" => "Sicherung");
 
 $txt_icon_webalizer_script = array(
 	"fr" => "SCRIPTS WEBALIZER",
 	"en" => "WEBALIZER SCRIPTS",
 	"nl" => "WEBALIZER SCRIPTS",
-	"ru" => "WEBALIZER SCRIPTS");
-
+	"ru" => "WEBALIZER SCRIPTS",
+	"de" => "Webalizer Dateien");
+		
 $txt_icon_mysite_at_mydomain = array(
 	"fr" => "VHOST DE ZONE FTP",
 	"en" => "FTP AREA VHOST",
 	"nl" => "FTP VHOST ZONE",
-	"ru" => "FTP AREA VHOST");
+	"ru" => "FTP AREA VHOST",
+	"de" => "Virtuelle FTP Hosts");
 
 $txt_subdom_limit_reach = array(
 	"fr" => "Nombre maximum de sous-domaine attent. Impossible d'ajouter de nouveau
 	sous-domaines.",
 	"en" => "Maximum number of subdomains reach. cannot add a new subdomain",
 	"nl" => "Het maximum aantal subdomeinen is bereikt. Je kan geen nieuwe meer toevoegen.",
-	"ru" => "Maximum number of subdomains reach. cannot add a new subdomain");
+	"ru" => "Maximum number of subdomains reach. cannot add a new subdomain",
+	"de" => "Maximale Anzahl von Subdomains erreicht. Es kann keine weitere mehr angelegt werden.");
 
 $txt_number_of_active_subdomains = array(
 	"fr" => "Nombre de sous-domaines actifs:",
 	"en" => "Number of active subdomaines:",
 	"nl" => "Aantal active subdomeinen:",
-	"ru" => "Number of active subdomaines:");
+	"ru" => "Number of active subdomaines:",
+	"de" => "Anzahl akitver Subdomains:");
 
 $txt_maxnumber_of_ftp_account_reached = array(
 	"fr" => "Nombre maximum de compte ftp atteint. Impossible d'ajouter un nouveau compte.",
 	"en" => "Maximum number of ftp account reach. Cannot add a new account.",
 	"nl" => "Het maximum aantal ftp accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
-	"ru" => "Maximum number of ftp account reach. Cannot add a new account.");
+	"ru" => "Maximum number of ftp account reach. Cannot add a new account.",
+	"de" => "Maximale Anzahl von FTP Accounts erreicht. Es kann kein weiterer mehr angelegt werden.");
 
 $txt_number_of_active_ftp = array(
 	"fr" => "Nombre de comptes ftp actifs:",
 	"en" => "Number of active ftp accounts:",
 	"nl" => "Aantal actieve ftp accounts:",
-	"ru" => "Number of active ftp accounts:");
+	"ru" => "Number of active ftp accounts:",
+	"de" => "Aktive FTP-Accounts:");
 
 $txt_number_of_active_mailbox = array(
 	"fr" => "Nombre de boites actives :",
 	"en" => "Number of active mailboxs:",
 	"nl" => "Aantal actieve e-mail accounts :",
-	"ru" => "Number of active mailboxs:");
+	"ru" => "Number of active mailboxs:",
+	"de" => "Anzahl akitver Mailboxen:");
 
 $txt_maximum_mailbox_reach = array(
 	"fr" => "Nombre maximum de boite email atteint. Impossible d'ajouter un nouveau compte.",
 	"en" => "Maximum number of mailbox reach. Cannot add a new account.",
 	"nl" => "Het maximum aantal e-mail accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
-	"ru" => "Maximum number of mailbox reach. Cannot add a new account.");
+	"ru" => "Maximum number of mailbox reach. Cannot add a new account.",
+	"de" => "Maximale Anzahl von Mailbox Accounts erreicht. Es kann kein weiterer mehr angelegt werden.");
 
 $txt_virtual_admin_list = array(
 	"fr" => "Liste des admins",
 	"en" => "Admins list",
 	"nl" => "Beheerderslijst",
-	"ru" => "Список администраторов");
+	"ru" => "Список администраторов",
+	"de" => "Administratoren Liste");
 
 $txt_add_user_title = array(
 	"fr" => "Ajouter un administrateur virtuel",
 	"en" => "Add a virtual administrator",
 	"nl" => "Voeg een beheerder toe",
-	"ru" => "Добавить виртуального администратора");
+	"ru" => "Добавить виртуального администратора",
+	"de" => "Weiteren Administrator hinzufЭgen");
 
 $txt_generate_buttons_title = array(
 	"fr" => "Lancement de la gИnИration des fichiers de configurations",
 	"en" => "Launching the configuration files generation",
 	"nl" => "De configuratiebestanden generator wordt gestart",
-	"ru" => "Выполнение генерации конфигурационный файлов");
+	"ru" => "Выполнение генерации конфигурационный файлов",
+	"de" => "Erzeuge Konfigurationsdateien.");
 
 $txt_general_virtual_admin_edition = array(
 	"fr" => "Edition de l'administrateur virtuel <i>\"$adm_login\"</i>",
 	"en" => "Configuration of the virtual administrator <i>\"$adm_login\"</i>",
 	"nl" => "Configuratie van de beheerder <i>\"$adm_login\"</i>",
 	"ru" => "Конфигурация виртуального администратора 
-<i>\"$adm_login\"</i>");
+<i>\"$adm_login\"</i>",
+	"de" => "Administrator bearbeiten <i>\"$adm_login\"</i> ");
 
 $txt_domains_configuration_title = array(
 	"fr" => "Edition de la configuration des domaines de <i>\"$adm_login\"</i>",
 	"en" => "Configuration for each domains of <i>\"$adm_login\"</i>",
 	"nl" => "Configuratie van elk domein voor <i>\"$adm_login\"</i>",
-	"ru" => "Конфигурация для каждого домена  <i>\"$adm_login\"</i>");
+	"ru" => "Конфигурация для каждого домена  <i>\"$adm_login\"</i>",
+	"de" => "Konfiguration der Domains von  <i>\"$adm_login\"</i>");
 
 $txt_admlist_sort_by_legend = array(
 	"fr" => "Afficher et trier par:",
 	"en" => "Display and sort by:",
 	"nl" => "Weergeven en sorteren op:",
-	"ru" => "Выводить по:");
+	"ru" => "Выводить по:",
+	"de" => "Zeige und sortiere nach:");
+	
 
 $txt_admlist_new_admin = array(
 	"fr" => "Nouvel admin virtuel",
 	"en" => "New virtual admin",
 	"nl" => "Nieuwe virtuele beheerder",
-	"ru" => "Новый виртуальный администратор");
+	"ru" => "Новый виртуальный администратор",
+	"de" => "Neuer Administrator");
 
 $txt_path = array(
 	"fr" => "Chemin :",
 	"en" => "Path:",
 	"nl" => "Pad :",
-	"ru" => "Путь:");
+	"ru" => "Путь:",
+	"de" => "Pfad:");
 
 $txt_password = array(
 	"fr" => "Mot de passe :",
 	"en" => "Password:",
 	"nl" => "Wachtwoord:",
-	"ru" => "Пароль:");
+	"ru" => "Пароль:",
+	"de" => "Passwort");
 	
 $txt_id_client = array(
 	"fr" => "Id client :",
 	"en" => "Client ID:",
 	"nl" => "Klant id :",
-	"ru" => "ID клиента:");
+	"ru" => "ID клиента:",
+	"de" => "Client ID");
 
 $txt_del_user = array(
 	"fr" => "Effacer l'utilisateur",
 	"en" => "Delete the user",
 	"nl" => "Wis de gebruiker",
-	"ru" => "Удалить пользователя");
+	"ru" => "Удалить пользователя",
+	"de" => "Benutzer lЖschen");
 
 $txt_del_user_confirm = array(
 	"fr" => "Etes vous sure de voileur effacer cet utilisateur ? Ceci effacera tous ses noms de domaines, ses fichiers et ses bases de donnИes !!!",
 	"en" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
 	"nl" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
-	"ru" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!");
+	"ru" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
+	"de" => "Sicher das Sie diesen Benutzer lЖschen wollen? Alle Domains, Dateien und Datenbanken werden gelЖscht");
 
 $txt_del_user_domain = array(
 	"fr" => "Effacer un domaines de l'utilisateur :",
 	"en" => "Delete a user domain:",
 	"nl" => "Wis een gebruikersdomein :",
-	"ru" => "Удалить домен пользователя:");
+	"ru" => "Удалить домен пользователя:",
+	"de" => "LЖschen einer Benutzer Domain");
 
 $txt_del_user_domain_confirm = array(
 	"fr" => "Etes vous sure de voileur effacer ce nom de domaine ? Ceci effacera tous les fichiers hИbergИs pour ce domaine !!!",
 	"en" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
 	"nl" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
-	"ru" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!");
+	"ru" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
+	"de" => "Sicher das Sie diese Domain lЖschen wollen? Alle Datein fЭr diese Domain werden gelЖscht");
 
 $txt_new_domain_for_user = array(
 	"fr" => "Ajouter un domaine pour l'utilisateur:",
 	"en" => "Add a domain for this user:",
 	"nl" => "Voeg een gebruiker toe aan dit domein:",
-	"ru" => "Добавить домен для этого пользователя:");
+	"ru" => "Добавить домен для этого пользователя:",
+	"de" => "Anlegen einer Domain:");
 
 $txt_domain_tbl_config_dom_name = array(
 	"fr" => "Nom de domaine",
 	"en" => "Domain name",
 	"nl" => "Domein naam",
-	"ru" => "Имя домена");
+	"ru" => "Имя домена",
+	"de" => "Damain Name");	
 
 $txt_domain_tbl_config_quota = array(
 	"fr" => "Quota disque",
 	"en" => "Disk quota",
 	"nl" => "Schijf quota",
-	"ru" => "Дисковая квота");
+	"ru" => "Дисковая квота",
+	"de" => "Disk quota");
 
 $txt_domain_tbl_config_max_ftp = array(
 	"fr" => "Ftp max",
 	"en" => "Max ftp",
 	"nl" => "Max ftp",
-	"ru" => "ФТП макс");
+	"ru" => "ФТП макс",
+	"de" => "Max ftp");
 
 $txt_domain_tbl_config_max_email = array(
 	"fr" => "Email max",
 	"en" => "Email max",
 	"nl" => "E-mail max",
-	"ru" => "Почта макс");
+	"ru" => "Почта макс",
+	"de" => "Max. Emails");
 
 $txt_domain_tbl_config_max_subdomain = array(
 	"fr" => "Subdomain max",
 	"en" => "Subdomain max",
 	"nl" => "Subdomeinen max",
-	"ru" => "Субдомены макс");
+	"ru" => "Субдомены макс",
+	"de" => "Max. Subdomains");
 
 $txt_domain_tbl_config_ip = array(
 	"fr" => "Adresse IP",
 	"en" => "IP address",
 	"en" => "IP adres",
-	"ru" => "IP адреса");
+	"ru" => "IP адреса",
+	"de" => "IP Adresse");
 
 $txt_your_domain = array(
 	"fr" => "Votre domaine :",
@@ -240,26 +277,29 @@ $txt_your_domain_email = array(
 	"fr" => "Boites emails:",
 	"en" => "Mailboxs:",
 	"nl" => "E-mail accounts:",
-	"ru" => "Почтовые ящики:");
+	"ru" => "Почтовые ящики:",
+	"de" => "Mailboxen:");
 
 $txt_your_domain_ftp = array(
 	"fr" => "Comptes ftp :",
 	"en" => "Ftp accounts:",
 	"nl" => "Ftp accounts:",
-	"ru" => "ФТП аккаунты:");
+	"ru" => "ФТП аккаунты:",
+	"de" => "FTP Acounts:");
 
 $txt_your_domain_subdomain = array(
 	"fr" => "Sous-domaines:",
 	"en" => "Subdomains:",
 	"nl" => "Subdomeinen:",
-	"ru" => "Субдомены:");
+	"ru" => "Субдомены:",
+	"de" => "Subdomains:");
 
 $txt_confirurate_your_domain_name = array(
 	"fr" => "Configurer son domaine :",
 	"en" => "Configurate your domain name:",
 	"nl" => "Configurate your domain name:",
-	"ru" => "Configurate your domain name:"
-);
+	"ru" => "Configurate your domain name:",
+	"de" => "Konfiguration des Domain Namens:");
 
 $txt_comment_confirurate_your_domain_name = array(
 	"fr" => "Attention ! Si vous rentrez de
@@ -308,19 +348,22 @@ $txt_primari_dns_ip = array(
 	"fr" => "Addresse IP du serveur DNS primaire :",
 	"en" => "IP address of the primary DNS server:",
 	"nl" => "IP address of the primary DNS server:",
-	"ru" => "IP address of the primary DNS server:");
+	"ru" => "IP address of the primary DNS server:",
+	"de" => "IP Addresse des primДren DNS Servers:");
 
 $txt_other_dns_ip = array(
 	"fr" => "Autres serveurs DNS :",
 	"en" => "Other DNS servers:",
 	"nl" => "Other DNS servers:",
-	"ru" => "Other DNS servers:");
+	"ru" => "Other DNS servers:",
+	"de" => "Weitere DNS Server:");
 
 $txt_primary_mx_server = array(
 	"fr" => "Addresse du MX primaire :",
 	"en" => "Primary MX address:",
 	"nl" => "Primary MX address:",
-	"ru" => "Primary MX address:");
+	"ru" => "Primary MX address:",
+	"de" => "PrimДrer MX Adresse");
 
 $txt_other_mx_servers = array(
 	"fr" => "Autres serveurs MX (secondaire) :",
@@ -332,12 +375,13 @@ $txt_draw_tatabase_your_list = array(
 	"fr" => "Liste de vos bases de donnИe:",
 	"en" => "List of your databasse:",
 	"nl" => "Lijst van jouw databases:",
-	"ru" => "Список ваших БД:");
+	"ru" => "Список ваших БД:",
+	"de" => "Liste der Datenbanken");
 
 $txt_mysqlmang_nouser_by_that_name = array(
         "fr" => "Il n'y a pas d'utilisateur ayant ce nom dans
 la table User de la base de donnie mysql. Cliquez <a
-href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">ici</a>
+href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_a
 pour ajouter cet utilisateur comme compte mysql (mjme mot de passe que pour
 DTC).",
         "en" => "There is no user by that name in the mysql database.
@@ -351,26 +395,33 @@ for adding this user as a mysql account (same login / pass as for DTC).",
         "ru" => "There is no user by that name in the mysql database.
 Click <a
 href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
-for adding this user as a mysql account (same login / pass as for DTC)."
+for adding this user as a mysql account (same login / pass as for DTC).",
+ 	"de" => "Es gibt keinen Benutzer in der Datenbank mit diesem Namen.
+klick <a
+href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
+um einen Benutzer fЭr MySQL anzulegen  (same login / pass as for DTC)."
 );
 
 $txt_mysqlmang_delete_a_db = array(
         "fr" => "Effacer l'une des bases de donnies pour cet utilisateur :",
         "en" => "Delete one of MySQL database for that user:",
         "nl" => "Delete one of MySQL database for that user:",
-        "ru" => "Delete one of MySQL database for that user:"
+        "ru" => "Delete one of MySQL database for that user:",
+        "de" => "LЖschen einer Datenbank fЭr diesen Benutzer"
 );
 $txt_mysqlmang_add_a_db = array(
         "fr" => "Ajouter une base de donnie a l'utilisateur :",
         "en" => "Add a database for that user:",
         "nl" => "Add a database for that user:",
-        "ru" => "Add a database for that user:"
+        "ru" => "Add a database for that user:",
+        "de" => "Anlegen einer Datenbank fЭr diesen Benutzer"
 );
 $txt_mysqlmang_db_name = array(
         "fr" => "Nom de la base de donnies :",
         "en" => "Database name:",
         "nl" => "Database name:",  
-        "ru" => "Database name:"
+        "ru" => "Database name:",
+        "de" => "Datenbank name:"
 );
 
 $txt_mysqlmang_not_in_demo = array(
@@ -390,13 +441,15 @@ $txt_delete_this_mysql_user_and_db = array(
 	"fr" => "Effacer l'utilisateur mysql ainsi que toutes ses bases de donnИes",
 	"en" => "Delete the mysql user and all his databases",
 	"nl" => "Delete the mysql user and all his databases",
-	"ru" => "Delete the mysql user and all his databases");
+	"ru" => "Delete the mysql user and all his databases",
+	"de" => "LЖschen des MySQL Benutzers und all seiner Datenbanken.");
 
 $txt_draw_client_info_comp_name = array(
 	"fr" => "SociИtИ:",
 	"en" => "Company name:",
 	"nl" => "Bedrijfsnaam:",
-	"ru" => "Название компании:");
+	"ru" => "Название компании:",
+	"de" => "Firmenname:");
 
 
 $txt_draw_client_info_addr = array(
@@ -443,11 +496,6 @@ $txt_draw_client_info_email = array(
 
 $domain_conf_submenu =array(
 	array(
-		"text" => "dns",
-		"type" => "link",
-		"link" => "dns"
-	),
-	array(
 		"text" => "subdomains",
 		"type" => "link",
 		"link" => "subdomains"
@@ -467,34 +515,40 @@ $txt_login_title = array(
 	"fr" => "Login",
 	"en" => "Login",
 	"nl" => "Login",
-	"ru" => "Имя");
+	"ru" => "Имя",
+	"de" => "Login");
 $txt_login_login = array(
 	"fr" => "Login: ",
 	"en" => "Login: ",
 	"nl" => "Login: ",
-	"ru" => "Имя:");
+	"ru" => "Имя:",
+	"de" => "Login:");
 $txt_login_pass = array(
 	"fr" => "Mot de passe:",
 	"en" => "Password:",
 	"nl" => "Wachtwoord:",
-	"ru" => "Пароль:");
+	"ru" => "Пароль:",
+	"de" => "Passwort:");
 $txt_login_path = array(
 	"fr" => "Chemin:",
 	"en" => "Path:",
 	"nl" => "Pad:",
-	"ru" => "Путь:");
+	"ru" => "Путь:",
+	"de" => "Pfad:");
 
 $txt_left_menu_title = array(
 	"fr" => "Vos domaines",
 	"en" => "Your domains",
 	"nl" => "Jouw domeinen",
-	"ru" => "Ваши домены");
+	"ru" => "Ваши домены",
+	"de" => "Ihre Domains");
 	
 $txt_title_geninfo_form = array(
 	"fr" => "Informations gИnИrales de ",
 	"en" => "General informations of ",
 	"nl" => "Algemene informatie over ",
-	"ru" => "Основная информация ");
+	"ru" => "Основная информация ",
+	"de" => "Allgemeine Informationen");
 
 ///////////////
 // SUBDOMAIN //
@@ -503,27 +557,33 @@ $txt_title_subdomain_form = array(
 	"fr" => "Sous-domaines de ",
 	"en" => "Subdomains of ",
 	"nl" => "Subdomeinen van ",
-	"ru" => "Субдомены");
+	"ru" => "Субдомены",
+	"de" => "Subdomains von ");
 $txt_subdom_list = array(
 	"fr" => "Liste de vos sous-domaines: ",
 	"en" => "List of your subdomains: ",
 	"nl" => "Lijst met jouw subdomeinen: ",
-	"ru" => "Список ваших субдоменов:");
+	"ru" => "Список ваших субдоменов:",
+	"de" => "Liste der Subdomains: ");
 $txt_subdom_default_sub = array(
 	"fr" => "Sous-domaine par dИfaut: ",
 	"en" => "Default subdomain: ",
 	"nl" => "Standaard subdomein: ",
-	"ru" => "Субдомен по умолчанию:");
+	"ru" => "Субдомен по умолчанию:",
+	"de" => "Standard Subdomain");
 $txt_subdom_errase = array(
 	"fr" => "Effacer un sous-domaine: ",
 	"en" => "Delete a subdomain: ",
 	"nl" => "Wis een subdomein: ",
-	"ru" => "Удалить субдомен:");
+	"ru" => "Удалить субдомен:",
+	"de" => "LЖschen einer Subdomain");
+	
 $txt_subdom_create = array(
 	"fr" => "CrИer un sous-domaine: ",
 	"en" => "Create a subdomain: ",
 	"nl" => "Creeer een subdomein: ",
-	"ru" => "Создать субдомен:");
+	"ru" => "Создать субдомен:",
+	"de" => "Anlegen einer Subdomain");
 
 /////////////
 // MAILBOX //
@@ -532,42 +592,50 @@ $txt_title_mailbox_form = array(
 	"fr" => "Boites emails de ",
 	"en" => "Mailboxs of ",
 	"nl" => "E-mail account van ",
-	"ru" => "Почтовые ящики");
+	"ru" => "Почтовые ящики",
+	"de" => "Mailboxen von ");
 $txt_mail_liste_of_your_box = array(
 	"fr" => "Liste de vos boites emails: ",
 	"en" => "List of your mailboxs: ",
 	"nl" => "Lijst met jouw E-mail accounts:",
-	"ru" => "Список ваших ящиков:");
+	"ru" => "Список ваших ящиков:",
+	"de" => "Liste Ihrer Mailboxen");
 $txt_mail_new_mailbox = array(
 	"fr" => "Nouvelle boite au lettre: ",
 	"en" => "New mailbox: ",
 	"nl" => "Nieuw e-mail account: ",
-	"ru" => "Новый ящик:");
+	"ru" => "Новый ящик:",
+	"de" => "Neue Mailbox: ");
 $txt_mail_new_mailbox_link = array(
 	"fr" => "Nouvelle boite",
 	"en" => "New mailbox",
 	"nl" => "Nieuw e-mail account",
-	"ru" => "Новый ящик:");
+	"ru" => "Новый ящик:",
+	"de" => "Neue Mailbox");
 $txt_mail_redirection1 = array(
 	"fr" => "Redirection 1: ",
 	"en" => "Redirection 1: ",
 	"nl" => "Doorsturen naar 1:",
-	"ru" => "Переназначение 1:");
+	"ru" => "Переназначение 1:",
+	"de" => "Umleitung 1:" );
 $txt_mail_redirection2 = array(
 	"fr" => "Redirection 2 : ",
 	"en" => "Redirection 2: ",
 	"nl" => "Doorsturen naar 2:",
-	"ru" => "Переназначение 2:");
+	"ru" => "Переназначение 2:",
+	"de" => "Umleitung 2:" );
 $txt_mail_deliver_localy = array(
 	"fr" => "Delivrer en local: ",
 	"en" => "Deliver localy: ",
 	"nl" => "Lokaal afleveren: ",
-	"ru" => "Доставка локально:");
+	"ru" => "Доставка локально:",
+	"de" => "Lokal zustellen: ");
 $txt_mail_edit = array(
 	"fr" => "Edition d'une boite aux lettres: ",
 	"en" => "Mailbox configuration: ",
 	"nl" => "E-mail account configuratie:",
-	"ru" => "Конфигурация почтового ящика:");
+	"ru" => "Конфигурация почтового ящика:",
+	"de" => "Mailbox Konfiguration");
 
 //////////////////
 // FTP accounts //
@@ -576,27 +644,32 @@ $txt_title_ftp_form = array(
 	"fr" => "Comptes ftp de ",
 	"en" => "Ftp accounts of ",
 	"nl" => "Ftp accounts van ",
-	"ru" => "Учетные записи ФТП");
+	"ru" => "Учетные записи ФТП",
+	"de" => "FTP Accounts von ");
 $txt_ftp_account_list = array(
 	"fr" => "Liste de vos comptes FTP: ",
 	"en" => "List of your FTP accounts: ",
 	"nl" => "Lijst van jouw FTP accounts:",
-	"ru" => "Список ваших ФТП аккаунтов:");
+	"ru" => "Список ваших ФТП аккаунтов:",
+	"de" => "Liste Ihrer FTP Accounts:");
 $txt_ftp_new_account = array(
 	"fr" => "Nouveau compte FTP: ",
 	"en" => "New FTP account: ",
 	"nl" => "Nieuw FTP account: ",
-	"ru" => "Новый аккаунт:");
+	"ru" => "Новый аккаунт:",
+	"de" => "Neuer FTP Account");
 $txt_ftp_account_edit = array(
 	"fr" => "Edition d'un compte FTP : ",
 	"en" => "FTP account configuration: ",
 	"nl" => "FTP account configuratie : ",
-	"ru" => "Конфигурация ФТП-аккаунта:");
+	"ru" => "Конфигурация ФТП-аккаунта:",
+	"de" => "Konfiguration des FTP Accounts");
 $txt_ftp_new_account_link = array(
 	"fr" => "Nouveau compte ftp",
 	"en" => "New ftp account",
 	"nl" => "New ftp account",
-	"ru" => "Новый ФТП аккаунт");
+	"ru" => "Новый ФТП аккаунт",
+	"de" => "Neuer FTP Account");
 
 ///////////////
 // DATABASES //
@@ -607,12 +680,12 @@ $txt_new_password = array(
 	"nl" => "New ftp account",
 	"ru" => "Новый ФТП аккаунт");
 
-
 $txt_title_database_form = array(
 	"fr" => "Vos bases de donnИes",
 	"en" => "Your databases",
 	"nl" => "Jouw databases",
-	"ru" => "Ваши базы данных");
+	"ru" => "Ваши базы данных",
+	"de" => "Ihre Datenbanken");
 $txt_title_help_form = array(
 	"fr" => "Aide en ligne de DTC",
 	"en" => "Online DTC help",
