@@ -288,7 +288,9 @@ LogSQLSocketFile /var/run/mysqld/mysqld.sock
 LogSQLDatabase apachelogs
 LogSQLCreateTables On
 LogSQLTransferLogFormat IAbhRrSsU
-ErrorDocument 404 http://www.$main_domain_name"/404.php"
+Alias /404.php	"$conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/404.php
+ErrorDocument 404 /404.php
+# ErrorDocument 404 http://www.$main_domain_name"/404.php"
 # End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF
 	if [ -f $TMP_FILE ]
 	then
