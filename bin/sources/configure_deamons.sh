@@ -196,6 +196,7 @@ else
 		else
 			echo $HTTPD_MODULES_CONFIG enable sql_log_module
 			$HTTPD_MODULES_CONFIG enable sql_log_module
+			$HTTPD_MODULES_CONFIG enable mod_log_sql # just in case
 			echo " enabled by $HTTPD_MODULES_CONFIG"
 		fi
 	else
