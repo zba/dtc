@@ -10,7 +10,7 @@ RUN_DEPENDS=	php:${PHP_PORT} \
 		${LOCALBASE}/bin/webalizer:${PORTSDIR}/www/webalizer \
 		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc
 
-PHP_PORT=${PORTSDIR}/lang/php4
+PHP_PORT=${PORTSDIR}/www/php4-session
 
 DTCROOT?=	www/dtc
 DTCDIR=		${PREFIX}/${DTCROOT}
