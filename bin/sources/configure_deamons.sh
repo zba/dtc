@@ -389,7 +389,8 @@ else
 fi
 
 # only try and do qmail stuff if we have qmail installed! (check the control directory)
-if [ -f $PATH_QMAIL_CTRL ]
+echo "setupping qmail in" $PATH_QMAIL_CTRL
+if [ -e $PATH_QMAIL_CTRL ]
 then
 	#
 	# Install the qmail links in the /etc/qmail
@@ -397,7 +398,7 @@ then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Linking qmail control files to DTC generated files"
 	fi
-	if ! [ -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ]
+	if ! [ -e $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ]
 	then
 		cp -f $PATH_QMAIL_CTRL/rcpthosts $PATH_QMAIL_CTRL/rcpthosts.DTC.backup
 	fi
@@ -406,7 +407,7 @@ then
 	ln -s $PATH_DTC_ETC/rcpthosts $PATH_QMAIL_CTRL/rcpthosts
 
 	touch $PATH_QMAIL_CTRL/virtualdomains
-	if ! [ -f $PATH_QMAIL_CTRL/virtualdomains.DTC.backup ]
+	if ! [ -e $PATH_QMAIL_CTRL/virtualdomains.DTC.backup ]
 	then
 		cp -f $PATH_QMAIL_CTRL/virtualdomains $PATH_QMAIL_CTRL/virtualdomains.DTC.backup
 	fi
@@ -414,7 +415,7 @@ then
 	touch $PATH_DTC_ETC/virtualdomains
 	ln -s $PATH_DTC_ETC/virtualdomains $PATH_QMAIL_CTRL/virtualdomains
 
-	if ! [ -f /var/qmail/users/assign.DTC.backup ]
+	if ! [ -e /var/qmail/users/assign.DTC.backup ]
 	then
 		cp -f /var/qmail/users/assign /var/qmail/users/assign.DTC.backup
 	fi
@@ -434,13 +435,17 @@ then
 	#ln -s $PATH_DTC_ETC/rcpthosts $PATH_QMAIL_CTRL/locals
 
 	touch /etc/poppasswd
-	if ! [ -f /etc/poppasswd.DTC.backup ]
+	if ! [ -e /etc/poppasswd.DTC.backup ]
 	then
 		cp -f /etc/poppasswd /etc/poppasswd.DTC.backup
 	fi
 	rm -f /etc/poppasswd
 	touch $PATH_DTC_ETC/poppasswd
 	ln -s $PATH_DTC_ETC/poppasswd /etc/poppasswd
+else
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Could not found qmail directory: skipping"
+	fi
 fi
 
 # 
