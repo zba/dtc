@@ -11,6 +11,11 @@
 
 # set default delivery method
 
+# DTC notes:
+# If you are using DTC, the following stuff is not usefull, because
+# qmail will use /var/qmail/users/assign, see it's mailbox dir,
+# and check for "./Maildir" stuff in it... So just leave it as-is.
+
 alias_empty="|/usr/sbin/qmail-procmail"  # procmail delivery to /var/spool/mail
 #alias_empty="./Maildir/"       # This uses qmail prefered ~/Maildir/ directory
 				# You may want to maildirmake /etc/skel/Maildir
@@ -34,33 +39,58 @@ test -x /usr/sbin/qmail-send || exit 0
 
 case "$1" in
     start)
+# DTC notes:
+# See that I use mysqmail-logger as qmail-send logger.
+# I've put mysqmail-logger ouput to a log file. It's only
+# logging stuff that are not in the database (like status:,
+# alert:, or other non-delivery messages).
+# Note that mysqmail-logger is used only for qmail-send,
+# as long as I've never seen any log produced by qmail-smtpd.
 	echo -n "Starting mail-transfer agent: qmail"
 	sh -c "start-stop-daemon --start --quiet --user qmails \
 		 --exec /usr/sbin/qmail-send \
-		 --startas /usr/sbin/qmail-start -- \"$alias_empty\" $logger &"
+		 --startas /usr/sbin/qmail-start -- \"$alias_empty\" /usr/sbin/mysqmail-logger >>/var/log/mysqmail.log &"
 	# prevent denial-of-service attacks, with ulimit
+# DTC notes:
+# ulimit prevent that qmail uses too mutch memory and fuckup your system
+# see that you can use "rblsmtpd" in front of qmail-smtpd, so that it avoid
+# that your box is spammed too mutch. Some other sources are available,
+# search on google for that...
+# Thomas GOIRAND <thomas@goirand.fr>
 	ulimit -v 8192
         sh -c "start-stop-daemon --start --quiet --user qmaild \
             --exec /usr/bin/tcpserver -- -R -H \
             -u `id -u qmaild` -g `id -g nobody` -x /etc/tcp.smtp.cdb 0 smtp \
+            /usr/bin/rblsmtpd -b \
+                        -r blackholes.easynet.nl \
             /usr/sbin/qmail-smtpd 2>&1 | $logger -t qmail -p mail.notice &"
+#                        -r proxies.blackholes.easynet.nl \
+#                        -r dynablock.easynet.nl \
+#                        -r bl.spamcop.net \
+#                        -r cbl.abuseat.org \
+#                        -r relays.ordb.org \
+#                        -r list.dsbl.org \
+#                        -r dnsbl.njabl.org \
+#                        -r sbl.spamhaus.org \
 
 	# Uncomment the following lines to automatically start the pop3 server
 # DTC notes:
 # See that I've uncommented out the pop3. See also that I've put
-# checklocalpwd instead of checkpasswd, and that I'm using
-# relay-ctrl-allow for pop before smtp auth. Exept from that,
-# this is the standard debian start file... :)
+# mysqmail-checkpwd instead of standard checkpasswd, and that I'm using
+# relay-ctrl-allow for pop before smtp auth. I'm using another name for
+# my patched qmail-pop3d (mysqmail-pop3d). Exept from that,
+# this is the standard debian start file...
 # Thomas GOIRAND <thomas@goirand.fr>
 	sh -c "start-stop-daemon --start --quiet --user root \
 	    --exec /usr/bin/tcpserver -- \
 	    0 pop-3 /usr/sbin/qmail-popup `hostname` \
-	    /bin/checklocalpwd relay-ctrl-allow /usr/sbin/qmail-pop3d Maildir &"
+	    /usr/sbin/mysqmail-checkpwd relay-ctrl-allow /usr/sbin/mysqmail-pop3d Maildir &"
+#	    /bin/checklocalpwd relay-ctrl-allow /usr/sbin/qmail-pop3d Maildir &"
+# This was the standard:
 #	sh -c "start-stop-daemon --start --quiet --user root \
 #	    --exec /usr/bin/tcpserver -- \
 #	    0 pop-3 /usr/sbin/qmail-popup `hostname`.`dnsdomainname` \
-#	    /bin/checklocalpwd relay-ctrl-allow /usr/sbin/qmail-pop3d Maildir &"
-	#    /usr/bin/checkpassword /usr/sbin/qmail-pop3d Maildir &"
+#    	    /usr/bin/checkpassword /usr/sbin/qmail-pop3d Maildir &"
 	echo "."
 	;;
     stop)

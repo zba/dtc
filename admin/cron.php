@@ -9,8 +9,8 @@ echo date("Y m d / H:i:s T")." Starting DTC cron job\n";
 // Let's see if DTC's mysql_config.php is OK and lock back the shared folder
 // and mysql_config.php to root:root
 if($conf_mysql_conf_ok=="yes" && $conf_demo_version  == "no"){
-	exec("chown root:0 $dtcshared_path");
-        exec("chown root:0 $dtcshared_path/mysql_config.php");
+	exec("chown root:65534 $dtcshared_path");
+        exec("chown root:65534 $dtcshared_path/mysql_config.php");
 }
 
 $query = "SELECT * FROM $pro_mysql_cronjob_table WHERE 1 LIMIT 1;";
