@@ -1,5 +1,5 @@
 #!/bin/sh
-# generate sasldb stuff, gen_sasl.sh <domain> <user> <password>
+# generate sasldb stuff, gen_sasl.sh <domain> <user> <password> <mailname>
 domain_full_name=$1
 id=$2
 passwdtemp=$3
