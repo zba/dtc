@@ -372,6 +372,21 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 			if [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf ]; then
 				cp $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup
 			fi
+
+			# now check for postfix chroot, so we can place our sasldb2 file there
+			if [ -e /var/spool/postfix/etc ]; then
+				if [ ! -f /var/spool/postfix/etc/sasldb2 ]; then
+					ln -s $PATH_DTC_ETC/sasldb2 /var/spool/postfix/etc/sasldb2
+				else
+					echo "!!!!! WARNING, sasldb2 file exists at /var/spool/postfix/etc/sasldb2, please remove this so that sasldb2 generation can be done by DTC !!!!!"
+				fi
+			else
+				if [ ! -f /etc/sasldb2 ]; then
+					ln -s $PATH_DTC_ETC/sasldb2 /etc/sasldb2
+				else
+					echo "!!!!! WARNING, sasldb2 file exists at /etc/sasldb2, please remove this so that sasldb2 generation can be done by DTC !!!!!"
+				fi
+			fi
 			
 			SASLTMP_FILE=`mktemp -t DTC_install.postfix_sasl.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.15 : Please don't touch this line !" > $SASLTMP_FILE
