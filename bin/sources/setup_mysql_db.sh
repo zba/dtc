@@ -32,7 +32,17 @@
 # "Hosting path: "$conf_hosting_path
 # $PATH_DTC_ETC & $PATH_DTC_SHARED
 
-echo "==> Creating directory for hosting "$main_domain_name
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "DTC is configuring your services: please wait..."
+	echo "DTC installer is in VERBOSE mode"
+else
+	echo -n "DTC is configuring your services: please wait..."
+fi
+
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "==> Creating directory for hosting "$main_domain_name
+fi
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/html"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/logs"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/cgi-bin"
@@ -47,7 +57,9 @@ mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dt
 
 chown -R nobody:nogroup $conf_hosting_path
 
-echo "==> DTC is now creating it's database:"
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "==> DTC is now creating it's database:"
+fi
 if [ "$conf_mysql_pass" = "" ];
 then
         MYSQL="mysql"
@@ -59,29 +71,45 @@ fi
 create_tables=$PATH_DTC_SHARED"/admin/tables"
 curdir=`pwd`
 
-echo "If not exists, create DTC's database name: "$conf_mysql_db
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "If not exists, create DTC's database name: "$conf_mysql_db
+fi
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
-echo "Creating apachelogs database: apachelogs"
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "Creating apachelogs database: apachelogs"
+fi
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
 
 cd $create_tables
-echo -n "DTC is now creating table if not exists: "
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo -n "DTC is now creating table if not exists: "
+fi
 for i in $( ls *.sql );
 do
 	table_name=`echo $i | cut -f1 -d"."`
-	echo -n $table_name" "
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo -n $table_name" "
+	fi
 	table_create=`cat $i`
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db <$i
 done
-echo "done."
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "done."
+fi
 #echo $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db $conf_mysql_pass
-cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass"
-
-echo "Inserting values in mysql for hosting "$main_domain_name
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass"
+else
+	cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass" >/dev/null
+fi
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "Inserting values in mysql for hosting "$main_domain_name
+fi
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO groups (members) VALUES ('zigo')"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO admin (adm_login,adm_pass,path) VALUES ('"$conf_adm_login"','"$conf_adm_pass"','"$conf_hosting_path"/"$conf_adm_login"')"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO domain (name,owner,default_subdomain,generate_flag,ip_addr) VALUES ('"$main_domain_name"','"$conf_adm_login"','www','yes','"$conf_ip_addr"')"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','www','www')"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','404','404')"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','ns1','$conf_ip_addr')"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','mx','$conf_ip_addr')"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','"$dtc_admin_subdomain"','www')"

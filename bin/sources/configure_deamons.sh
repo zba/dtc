@@ -23,12 +23,9 @@
 # so it works automaticaly even without Tucows API
 #
 
-echo "!!! WARNING !!!  Qmail or Postfix (or any supported mail daemons)"
-echo "MUST be installed before in order to enable configuration by the"
-echo "DTC installer !!!"
-echo ""
+# VERBOSE_INSTALL=yes
 
-if ! [ -f $PATH_DTC_SHARED/securepay/paiement_config.php ]
+if ! [ -f $PATH_DTC_SHARED/shared/securepay/paiement_config.php ]
 then
 	cp -v $PATH_DTC_SHARED/shared/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/shared/securepay/paiement_config.php
 fi
@@ -39,7 +36,9 @@ fi
 
 TMP_FILE=`mktemp -t DTC_install.httpd.conf.XXXXXX` || exit 1
 
-echo "===> Modifying httpd.conf"
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Modifying httpd.conf"
+fi
 # need to see if we can use the modules-config or apacheconfig tools
 HTTPD_MODULES_CONFIG=/usr/sbin/apache-modconf
 
@@ -54,22 +53,32 @@ fi
 # check to see if our apacheconfig has been obseleted
 if [ "$HTTPD_MODULES_CONFIG" = "" ]
 then
-	echo "Not using modules-config tool"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Not using modules-config tool"
+	fi
 else
-	echo "Using $HTTPD_MODULES_CONFIG to configure apache modules"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Using $HTTPD_MODULES_CONFIG to configure apache modules"
+	fi
 fi
 
-if grep "Configured by DTC" $PATH_HTTPD_CONF
+if grep "Configured by DTC" $PATH_HTTPD_CONF >/dev/nul
 then
-	echo "httpd.conf has been configured before : skiping include inssertion !"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "httpd.conf has been configured before : skiping include inssertion !"
+	fi
 else
 	if ! [ -f $PATH_HTTPD_CONF.DTC.backup ]
 	then
-		echo "===> Backuping "$PATH_HTTPD_CONF
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "===> Backuping "$PATH_HTTPD_CONF
+		fi
 		cp -f "$PATH_HTTPD_CONF" "$PATH_HTTPD_CONF.DTC.backup"
 	fi
 
-	echo "=> Verifying User and Group directive"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "=> Verifying User and Group directive"
+	fi
 	# Those 2 are for debian
 	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
@@ -100,9 +109,10 @@ else
 
 	if [ "$UNIX_TYPE" = "debian" ]
 	then
-		echo "=> Checking apache modules"
-		echo -n "Checking for php4..."
-
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "=> Checking apache modules"
+			echo -n "Checking for php4..."
+		fi
 		# first of all, may as well try to use the provided modules-config or apacheconfig provided by debian...
 		# else use the normal method to be cross platform compatible
 
@@ -117,70 +127,104 @@ else
 			fi
 			if grep -i "# LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 			then
-				echo "found commented: activating php4 module!"
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "found commented: activating php4 module!"
+				fi
 				sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
 				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
 			else
 				if grep -i "LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 				then
-					echo " ok!"
+					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+						echo " ok!"
+					fi
 				else
-					echo "php4 missing! please install it or run apacheconfig!!!"
+					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+						echo "php4 missing! please install it or run apacheconfig!!!"
+					fi
 					exit 1
 				fi
 			fi
 		else
-			echo $HTTPD_MODULES_CONFIG enable php4_module
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo $HTTPD_MODULES_CONFIG enable php4_module
+			fi
 			$HTTPD_MODULES_CONFIG enable php4_module
-			echo $HTTPD_MODULES_CONFIG enable mod_php4
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo $HTTPD_MODULES_CONFIG enable mod_php4
+			fi
 			$HTTPD_MODULES_CONFIG enable mod_php4
-			echo " enabled by $HTTPD_MODULES_CONFIG"
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo " enabled by $HTTPD_MODULES_CONFIG"
+			fi
 		fi
 
-		echo -n "Checking for ssl..."
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo -n "Checking for ssl..."
+		fi
 		if [ "$HTTPD_MODULES_CONFIG" = "" ]
 		then
 			if grep -i "# LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 			then
-				echo "found commented: activating ssl module!"
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "found commented: activating ssl module!"
+				fi
 				sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
 				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
 			else
 				if grep -i "LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 				then
-					echo " ok!"
+					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+						echo " ok!"
+					fi
 				else
-					echo "!!! Warning: ssl_module for apache not present !!!"
+					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+						echo "!!! Warning: ssl_module for apache not present !!!"
+					fi
 				fi
 			fi
 		else
-			echo $HTTPD_MODULES_CONFIG enable ssl_module
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo $HTTPD_MODULES_CONFIG enable ssl_module
+			fi
 			$HTTPD_MODULES_CONFIG enable ssl_module
-			echo " enabled by $HTTPD_MODULES_CONFIG"
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo " enabled by $HTTPD_MODULES_CONFIG"
+			fi
 		fi
 
-		echo -n "Checking for sql_log..."
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo -n "Checking for sql_log..."
+		fi
 		if [ "$HTTPD_MODULES_CONFIG" = "" ]
 		then
 			if grep -i "# LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 			then
-				echo "found commented: ativating sql_log module!"
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "found commented: ativating sql_log module!"
+				fi
 				sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
 				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
 			else
 				if grep -i "LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 				then
-					echo " ok!"
+					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+						echo " ok!"
+					fi
 				else
 					if grep -i "# LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 					then
-						echo "found commented: ativating sql_log module!"
+						if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+							echo "found commented: ativating sql_log module!"
+						fi
 						sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
 						cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
 					else
 						if grep -i "LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
 						then
-							echo " ok!"
+							if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+								echo " ok!"
+							fi
 						else
 							echo "!!! sql_log_module for apache not present !!!"
 							echo "please install it or run apacheconfig"
@@ -194,10 +238,14 @@ else
 				fi
 			fi
 		else
-			echo $HTTPD_MODULES_CONFIG enable sql_log_module
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo $HTTPD_MODULES_CONFIG enable sql_log_module
+			fi
 			$HTTPD_MODULES_CONFIG enable sql_log_module
 			$HTTPD_MODULES_CONFIG enable mod_log_sql # just in case
-			echo " enabled by $HTTPD_MODULES_CONFIG"
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo " enabled by $HTTPD_MODULES_CONFIG"
+			fi
 		fi
 	else
 		echo ""
@@ -212,17 +260,24 @@ else
 		echo ""
 	fi
 
-	echo -n "Checking for AllowOverride..."
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo -n "Checking for AllowOverride..."
+	fi
 	if grep "AllowOverride None" $PATH_HTTPD_CONF
 	then
-		echo "AllowOverride None -> AllowOverride AuthConfig FileInfo Limit Indexes"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "AllowOverride None -> AllowOverride AuthConfig FileInfo Limit Indexes"
+		fi
 		sed "s/AllowOverride None/AllowOverride AuthConfig FileInfo Limit Indexes/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	else
-		echo "ok!"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "ok!"
+		fi
 	fi
-
-	echo "=> Adding DTC's directives to httpd.conf end"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "=> Adding DTC's directives to httpd.conf end"
+	fi
 	echo "# Configured by DTC v0.12 : please do not touch this line !
 Include $PATH_DTC_ETC/vhosts.conf
 Listen 80
@@ -243,7 +298,9 @@ fi
 PATH_PAMD_SMTP=/etc/pam.d/smtp
 if [ -e /etc/pam.d/ ]
 then
-	echo "===> Adding configuration inside "$PATH_PAMD_SMTP
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> Adding configuration inside "$PATH_PAMD_SMTP
+	fi
 	if [ -f $PATH_PAMD_SMTP ]
 	then
 		if ! [ -f $PATH_PAMD_SMTP.DTC.backup ]
@@ -263,12 +320,18 @@ fi
 #
 # include $PATH_DTC_ETC/named.zones in $PATH_NAMED_CONF
 #
-echo "===> Adding inclusion to named.conf"
-if grep "Configured by DTC" $PATH_NAMED_CONF
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Adding inclusion to named.conf"
+fi
+if grep "Configured by DTC" $PATH_NAMED_CONF >/dev/null
 then
-	echo "named.conf has been configured before : skiping include insertion !"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "named.conf has been configured before : skiping include insertion !"
+	fi
 else
-	echo "Including named.conf in $PATH_NAMED_CONF"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Including named.conf in $PATH_NAMED_CONF"
+	fi
 	if ! [ -f $PATH_NAMED_CONF.DTC.backup ]
 	then
 		cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.backup
@@ -289,7 +352,9 @@ then
 	#
 	# Install the qmail links in the /etc/qmail
 	#
-	echo "===> Linking qmail control files to DTC generated files"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> Linking qmail control files to DTC generated files"
+	fi
 	if ! [ -f $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ]
 	then
 		cp -f $PATH_QMAIL_CTRL/rcpthosts $PATH_QMAIL_CTRL/rcpthosts.DTC.backup
@@ -340,14 +405,24 @@ fi
 # Modify the postfix main.cf to include virtual delivery options
 #
 
+# Declare this makes the test when appenning the configuration for SASL
+# works if you don't have SASL
+
+SASLTMP_FILE="/thisfiledoesnotexists"
 if [ -f $PATH_POSTFIX_CONF ]
 then
-	echo "===> Linking postfix control files to DTC generated files"
-	if grep "Configured by DTC" "$PATH_POSTFIX_CONF"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> Linking postfix control files to DTC generated files"
+	fi
+	if grep "Configured by DTC" "$PATH_POSTFIX_CONF" >/dev/null
 	then
-		echo "Postfix main.cf has been configured before, not adding virtual mailbox options"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Postfix main.cf has been configured before, not adding virtual mailbox options"
+		fi
 	else
-		echo "Inserting DTC configuration inside $PATH_POSTFIX_CONF"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Inserting DTC configuration inside $PATH_POSTFIX_CONF"
+		fi
 		TMP_FILE=`mktemp -t DTC_install.postfix_main.cf.XXXXXX` || exit 1
 		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
 		echo "
@@ -361,16 +436,24 @@ virtual_gid_maps = static:65534
 virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
 virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 
-		echo " Attempting to determine if you have sasl2 installed..."
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo " Attempting to determine if you have sasl2 installed..."
+		fi
 		if [ "$PATH_SASL_PASSWD2" = "" ]; then
-			echo "No saslpasswd2 installed";
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "No saslpasswd2 installed";
+			fi
 		elif [ -f $PATH_SASL_PASSWD2 ]; then
-			echo "Found sasl2passwd at $PATH_SASL_PASSWD2"
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Found sasl2passwd at $PATH_SASL_PASSWD2"
+			fi
 
 			mkdir -p $PATH_POSTFIX_ETC/sasl
 			
 			if [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf ]; then
-				cp $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup
+				if ! [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup ]; then 
+					cp $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup
+				fi
 			fi
 
 			# prepare some sasldb2 files, so that our script latter can fix them
@@ -392,11 +475,10 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 			fi
 
 			SASLTMP_FILE=`mktemp -t DTC_install.postfix_sasl.XXXXXX` || exit 1
-			echo "# Configured by DTC v0.15 : Please don't touch this line !" > $SASLTMP_FILE
+			echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
 			echo "pwcheck_method: auxprop
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
 			echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
-
 			echo "smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, check_relay_domains
 
 smtp_sasl_auth_enable = no
@@ -406,7 +488,9 @@ smtpd_sasl_auth_enable = yes
 smtpd_tls_auth_only = no
 " >> $TMP_FILE
 		else
-			echo "No saslpasswd2 found"
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "No saslpasswd2 found"
+			fi
 		fi
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
 
@@ -419,7 +503,6 @@ smtpd_tls_auth_only = no
 			rm $SASLTMP_FILE
 		fi
 	fi
-
 fi
 
 #
@@ -427,12 +510,18 @@ fi
 #
 if [ -f $PATH_COURIER_CONF_PATH/authdaemonrc ]
 then
-	echo "===> Adding directives to Courier authdaemonrc"
-	if grep "Configured by DTC" $PATH_COURIER_CONF_PATH/authdaemonrc
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> Adding directives to Courier authdaemonrc"
+	fi
+	if grep "Configured by DTC" $PATH_COURIER_CONF_PATH/authdaemonrc >/dev/null
 	then
-		echo "authdaemonrc has been configure before: skipping include insertion !"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "authdaemonrc has been configure before: skipping include insertion !"
+		fi
 	else
-		echo "Inserting DTC configuration inside "$PATH_COURIER_CONF_PATH/authdaemonrc
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Inserting DTC configuration inside "$PATH_COURIER_CONF_PATH/authdaemonrc
+		fi
 		if ! [ -f $PATH_COURIER_CONF_PATH.DTC.backup ]
 		then
 			cp -f $PATH_COURIER_CONF_PATH/authdaemonrc $PATH_COURIER_CONF_PATH.DTC.backup
@@ -471,12 +560,18 @@ fi
 #
 if [ -f $PATH_DOVECOT_CONF ]
 then
-	echo "===> Adding directives to dovecot.conf"
-	if grep "Configured by DTC" $PATH_DOVECOT_CONF
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> Adding directives to dovecot.conf"
+	fi
+	if grep "Configured by DTC" $PATH_DOVECOT_CONF >/dev/null
 	then
-		echo "dovecot.conf has been configure before: skipping include insertion !"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "dovecot.conf has been configure before: skipping include insertion !"
+		fi
 	else
-		echo "Inserting DTC configuration inside "$PATH_DOVECOT_CONF
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Inserting DTC configuration inside "$PATH_DOVECOT_CONF
+		fi
 		if ! [ -f $PATH_DOVECOT_CONF.DTC.backup ]
 		then
 			cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
@@ -511,12 +606,18 @@ fi
 #
 # Install proftpd.conf to access to the database
 #
-echo "===> Adding directives to proftpd.conf"
-if grep "Configured by DTC" $PATH_PROFTPD_CONF
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Adding directives to proftpd.conf"
+fi
+if grep "Configured by DTC" $PATH_PROFTPD_CONF >/dev/null
 then
-	echo "proftpd.conf has been configured before : skiping include inssertion !"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "proftpd.conf has been configured before : skiping include inssertion !"
+	fi
 else
-	echo "Inserting DTC configuration inside "$PATH_PROFTPD_CONF
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Inserting DTC configuration inside "$PATH_PROFTPD_CONF
+	fi
 	if ! [ -f $PATH_PROFTPD_CONF.DTC.backup ]
 	then
 		cp -f $PATH_PROFTPD_CONF $PATH_PROFTPD_CONF.DTC.backup
@@ -567,12 +668,18 @@ fi
 #
 # Install the cron php4 script in the /etc/crontab
 #
-echo "===> Installing cron script in /etc/crontab"
-if grep "Configured by DTC" /etc/crontab
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Installing cron script in /etc/crontab"
+fi
+if grep "Configured by DTC" /etc/crontab >/dev/null
 then
-	echo "/etc/crontab has been configured before : skinping include inssertion"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "/etc/crontab has been configured before : skinping include inssertion"
+	fi
 else
-	echo "Inserting DTC cronjob in /etc/crontab"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Inserting DTC cronjob in /etc/crontab"
+	fi
 	if ! [ -f /etc/crontab.DTC.backup ]
 	then
 		cp -f /etc/crontab /etc/crontab.DTC.backup
@@ -592,37 +699,51 @@ fi
 
 # add the default password to .htpasswd if it doesn't exist already
 if [ -e $conf_hosting_path/.htpasswd ]; then 
-	echo "OK, you have your "$conf_hosting_path"/.htpasswd setup already!"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "OK, you have your "$conf_hosting_path"/.htpasswd setup already!"
+	fi
 else 
-	echo "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
+	fi
 	/usr/bin/htpasswd -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" $conf_adm_pass
 fi
 
 if [ -e $PATH_DTC_ADMIN/.htaccess ]; then
-	echo "OK, you have your "$PATH_DTC_ADMIN"/.htaccess setup already!"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "OK, you have your "$PATH_DTC_ADMIN"/.htaccess setup already!"
+	fi
 else
-	echo "Creating "$PATH_DTC_ADMIN"/.htaccess file."
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Creating "$PATH_DTC_ADMIN"/.htaccess file."
+	fi
 	echo "AuthName \"DTC root control panel login!\"
 AuthType Basic
 AuthUserFile "$conf_hosting_path"/.htpasswd
 require valid-user" >$PATH_DTC_ADMIN/.htaccess
 fi
 
-echo "***********************************************************"
-echo "*** Please wait while DTC configures all the daemons... ***"
-echo "***********************************************************"
-cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "***********************************************************"
+	echo "*** Please wait while DTC configures all the daemons... ***"
+	echo "***********************************************************"
+	cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php
+	echo "--- --- --- INSTALLATION FINISHED --- --- ---"
+else
+	cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >/dev/null 2>&1
+	echo "done!"
+fi
 
-echo "--- --- --- INSTALLATION FINISHED --- --- ---"
-echo "DTC has finished to install. You can point your favorite"
-echo "browser to: http(s)://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/"
-echo "Note that if you install some other mail servers, whatever"
-echo "it is (qmail, postfix, courier, dovecot, etc...), you have"
-echo "to re-run DTC's installer script so it can configurate it."
-echo "Dont forget to edit the forwarders part of your bind"
-echo "configuration if not done already !"
 echo ""
-echo "Please visit DTC home:"
+echo "Browse to: \"http(s)://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/\""
+echo "with login/pass of the main domain admin."
+echo "Remember to relaunch this installer if you"
+echo "install some other mail servers, whatever"
+echo "it is (qmail, postfix, courier, etc...)."
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo ""
+	echo "Visit DTC Home page"
+fi
 echo "http://www.gplhost.com/?rub=softwares&sousrub=dtc"
 
 exit 0

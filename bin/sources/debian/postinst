@@ -16,6 +16,9 @@ fi
 
 # exit 0
 
+# Enable this to debug!
+# VERBOSE_INSTALL=yes
+
 UNIX_TYPE=debian
 
 PATH_HTTPD_CONF=/etc/apache/httpd.conf
@@ -63,8 +66,6 @@ db_get dtc/conf_hostingpath
 conf_hosting_path=$RET
 db_get dtc/conf_chroot_path
 conf_chroot_path=$RET
-db_get dtc/conf_hostingpath
-conf_hosting_path=$RET
 db_get dtc/conf_admlogin
 conf_adm_login=$RET
 db_get dtc/conf_admpass
@@ -79,36 +80,54 @@ db_unregister dtc/conf_admpass
 # leak in distribution. Whis is that not made by default ?
 
 # Adding support for mysql for php4-cgi
-echo "Checking mysql.so in php.ini"
-if grep mysql.so /etc/php4/cgi/php.ini | grep extension=
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "Checking mysql.so in php.ini"
+fi
+if grep mysql.so /etc/php4/cgi/php.ini | grep extension= >/dev/null
 then
-	echo "Skiping mysql.so insertion in php.ini"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Skiping mysql.so insertion in php.ini"
+	fi
 else
-	echo "Your php.ini doesn't has mysql extension: DTC will add it !"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Your php.ini doesn't has mysql extension: DTC will add it !"
+	fi
 	echo "extension=mysql.so" >>/etc/php4/cgi/php.ini
 fi
 
 # Setup a minimum include path with . and /usr/share/pear (or /usr/share/php for debian testing) !!!
 if [ -f /usr/share/pear/PEAR.php ]
 then
-	echo "Checking include_path=/usr/share/pear in php.ini"
-	if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/pear
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Checking include_path=/usr/share/pear in php.ini"
+	fi
+	if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/pear >/dev/null
 	then
-		echo "Skiping include_path insertion in php.ini"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Skiping include_path insertion in php.ini"
+		fi
 	else
-		echo "Your php.ini doesn't has pear in it's inc path: changin!"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Your php.ini doesn't has pear in it's inc path: changin!"
+		fi
 		echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cgi/php.ini
 	fi
 fi
 
 if [ -f /usr/share/php/PEAR.php ]
 then
-	echo "Checking include_path=/usr/share/pear in php.ini"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Checking include_path=/usr/share/pear in php.ini"
+	fi
 	if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/php
 	then
-		echo "Skiping include_path insertion in php.ini"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Skiping include_path insertion in php.ini"
+		fi
 	else
-		echo "Your php.ini doesn't has pear in it's inc path: changin!"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Your php.ini doesn't has pear in it's inc path: changin!"
+		fi
 		echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cgi/php.ini
 	fi
 
@@ -127,21 +146,27 @@ fi
 PHPMAJOR=`echo $PHPVE | cut -f1 -d"."`
 PHPMINOR=`echo $PHPVE | cut -f2 -d"."`
 
-echo "The DTC installer has detected PHP version "$PHPMAJOR" release $PHPMINOR"
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "The DTC installer has detected PHP version "$PHPMAJOR" release $PHPMINOR"
+fi
 
 # now update the pear modules if you have the "pear" installed
 # since PHP >= 4.3.0 doesn't come with Crypt_CBC that OpenSRS needs
 TMP_FILE=`mktemp -t DTC_pear.install.XXXXXX` || exit 1
 if [ $PHPMAJOR -ge 4 -a $PHPMINOR -ge 3 -a -e /usr/bin/pear ]
 then
-	echo "Checking pear installation for PHP > 4.3"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Checking pear installation for PHP > 4.3"
+	fi
 	/usr/bin/pear upgrade Console_Getopt > $TMP_FILE
 	/usr/bin/pear upgrade-all >> $TMP_FILE
 	/usr/bin/pear install Crypt_CBC >> $TMP_FILE
 	/usr/bin/pear install Auth_SASL >> $TMP_FILE
 	rm $TMP_FILE
 else
-	echo "This is a version of PHP that should have the modules included"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "This is a version of PHP that should have the modules included"
+	fi
 fi
 
 # Changing root password of mysql
@@ -152,20 +177,30 @@ then
 	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pass"') WHERE User='root'; FLUSH PRIVILEGES;"
 fi
 
-if grep "nameserver 127.0.0.1" /etc/resolv.conf
+if grep "nameserver 127.0.0.1" /etc/resolv.conf >/dev/null
 then
-	echo "/etc/resolv.conf seems to be OK !"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "/etc/resolv.conf seems to be OK !"
+	fi
 else
 	if grep "// forwarders" /etc/bind/named.conf
 	then
-		echo "!!! WARNING !!! Edit your named forwarders conf in /etc/bind/named.conf NOW !!!"
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "!!! WARNING !!! Edit your named forwarders conf in /etc/bind/named.conf NOW !!!"
+		fi
 	fi
 
-	echo "Adding nameserver 127.0.0.1 to /etc/resolv.conf"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Adding nameserver 127.0.0.1 to /etc/resolv.conf"
+	fi
 	TMP_FILE=`mktemp -t DTC_resolv.conf.XXXXXX` || exit 1
-	grep "search" /etc/resolv.conf > $TMP_FILE
+	if grep "search" /etc/resolv.conf >/dev/null ; then
+		grep "search" /etc/resolv.conf > $TMP_FILE
+	fi
 	echo "nameserver 127.0.0.1" >> $TMP_FILE
-	grep "nameserver" /etc/resolv.conf >> $TMP_FILE
+	if grep "nameserver" /etc/resolv.conf ; then
+		grep "nameserver" /etc/resolv.conf >> $TMP_FILE
+	fi
 	cat < $TMP_FILE >/etc/resolv.conf
 	rm $TMP_FILE
 fi

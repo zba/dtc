@@ -21,7 +21,9 @@ CHROOT_DIR=$conf_chroot_path
 WEB_USER=nobody
 WEB_GROUP=nogroup
 
-echo "===> Creating chroot tree in "$CHROOT_DIR
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Creating chroot tree in "$CHROOT_DIR
+fi
 
 # set our umask so things are created with the correct group perms
 umask 022
