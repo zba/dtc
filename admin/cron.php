@@ -22,7 +22,7 @@ $cronjob_table_content = mysql_fetch_array($result);
 // Lock the cron flag, in case the cron script takes more than 10 minutes
 if($cronjob_table_content["lock_flag"] != "finished"){
 	echo "DB flag says that last cron job is not finished: exiting.\n
-If no cronjob is running, then please do \"UPDATE cronjob SET lock_flag='finished';\" !\n";
+If no cronjob is running, then please do \"UPDATE $pro_mysql_cronjob_table SET lock_flag='finished';\" !\n";
 	die("Exiting NOW!");
 }
 echo "Setting-up lock flag\n";
