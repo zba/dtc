@@ -1,3 +1,5 @@
+01-10-04: Postfix now has SASL SMTP AUTH support, and the sasldb file is generated along with the rest of the postfix generation.  Also, a few tidy ups in regards to tmp file usage, and also other bashisms removed
+
 Resolved pear install under Debian by a stupidly long php version
 checking. Added 2 new nice skins, debuged access log dump so webalizer
 statistics are ok. Added an option to have domain preview if unresolved.
