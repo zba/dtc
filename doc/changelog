@@ -1,5 +1,7 @@
 09-10-04: V0.15.0-R8
 Thomas:
+Added a link to documentation inside root admin interface.
+
 Added rotating passwords. Because some browsers can store
 the login/passwords sent in DTC urls, now a random pass with
 expiration replace customer's pass. It is still possible to
