@@ -48,9 +48,9 @@ function get_remote_mail_domains(){
 				$domain_list .= $remote_file;
 				$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
 				$r2 = mysql_query($q2)or die("Cannot query $q2 ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
-				$console = "ok!<br>";
+				$console .= "ok!<br>";
 			}else{
-				$console = "failed!<br>";
+				$console .= "failed!<br>";
 			}
 		}else{
 			$console = "Using mail domain list from cache of ".$a["server_addr"]."...<br>";

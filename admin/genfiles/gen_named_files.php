@@ -9,7 +9,7 @@ function get_remote_ns($a){
 
 		if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
 			strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
-			for($j=1;$j<$nline-1;$j++){
+			for($j=0;$j<$nline;$j++){
 				$named_file .= $lines[$j];
 			}
 			$flag = true;
@@ -47,9 +47,9 @@ function get_remote_ns_domains(){
 				$domain_list .= $remote_file;
 				$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
 				$r2 = mysql_query($q2)or die("Cannot query $q2 ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
-				$console = "ok!<br>";
+				$console .= "ok!<br>";
 			}else{
-				$console = "failed!<br>";
+				$console .= "failed!<br>";
 			}
 		}else{
 			$console = "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
@@ -60,6 +60,7 @@ function get_remote_ns_domains(){
 			$domain_list .= fread($fp,$size);
 			fclose($fp);
 		}
+	}
 	return $domain_list;
 }
 
