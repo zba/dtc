@@ -260,7 +260,7 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 	if($conf_demo_version == "no"){
 		make_new_adm_domain_dir("$admin_path/$domain_name");
 		exec("cp -fulpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
-		system ("cp -rfup $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
+		system ("cp -rup $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
 	}
 
 	// Create domain in database
