@@ -3,7 +3,7 @@
 domain_full_name=$1
 id=$2
 passwdtemp=$3
-mailname=`/usr/bin/head -n 1 /etc/mailname`
+mailname=$4
 
 echo $passwdtemp | /usr/sbin/saslpasswd2 -c -p -f ../etc/sasldb2 -u $mailname $id\@$domain_full_name
 chmod 664 ../etc/sasldb2 

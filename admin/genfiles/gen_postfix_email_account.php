@@ -29,6 +29,7 @@ function mail_account_generate_postfix(){
 	global $console;
 
 	global $conf_generated_file_path;
+	global $conf_addr_mail_server;
 	//global $conf_postfix_virtual_mailbox_domains_path;
 	//global $conf_postfix_virtual_path;
 	//global $conf_postfix_vmailbox_path;
@@ -103,7 +104,7 @@ function mail_account_generate_postfix(){
 				$passwd = crypt($passwdtemp);
 				$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
 				# first try and see if we have postfix in a chroot, else just put it in it's default location
-				system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp");
+				system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
 				//$assign_file .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
 				//$console .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
 				if ($localdeliver == yes)
