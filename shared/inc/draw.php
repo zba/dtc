@@ -1948,4 +1948,4 @@ function drawAdminTools($admin){
 }
 
 ?>
->>>>>>> 1.7
+
