@@ -93,17 +93,17 @@ then
 fi
 
 # copy required binaries to $CHROOT_DIR/usr/bin
-cp -p /usr/bin/file /usr/bin/bzip2 /bin/cpio usr/bin/
+cp -pf /usr/bin/file /usr/bin/bzip2 /bin/cpio usr/bin/
 
 # copy required binaries to $CHROOT_DIR/bin
-cp -p /bin/bash /bin/sh /bin/echo /bin/false /bin/gzip \
+cp -pf /bin/bash /bin/sh /bin/echo /bin/false /bin/gzip \
   /bin/gunzip /bin/ls /bin/pwd /bin/cat /bin/su bin/
 
 # copy ldconfig from sbin to $CHROOT_DIR/sbin
-cp -p /sbin/ldconfig sbin/
+cp -pf /sbin/ldconfig sbin/
 
 # copy needed /etc files to $CHROOT_DIR/etc
-cp -p /etc/protocols /etc/services /etc/hosts \
+cp -pf /etc/protocols /etc/services /etc/hosts \
   /etc/group /etc/passwd /etc/resolv.conf /etc/localtime \
   /etc/nsswitch.conf /etc/host.conf etc/
 
@@ -114,16 +114,16 @@ cp -p /etc/protocols /etc/services /etc/hosts \
 #for j in \
 if [ $UNIX_TYPE"" = "freebsd" ] 
 then
-	cp -p /usr/lib/libc.so.5 /usr/lib/libm.so.2 /usr/lib/libstdc++.so.4 \
+	cp -pf /usr/lib/libc.so.5 /usr/lib/libm.so.2 /usr/lib/libstdc++.so.4 \
 	  /usr/lib/libz.so.2 /usr/local/lib/libsavi.so.3 \
 	  /usr/local/lib/libclamav.so* usr/lib/
-	cp -p /usr/libexec/ld-elf.so.1 usr/libexec/
+	cp -pf /usr/libexec/ld-elf.so.1 usr/libexec/
 else
 	#Linux:
 	cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
 	  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
 	  /lib/libncurses.so.5 /usr/lib/libz.so.1 \
-	  /lib/librt.so.1 /lib/libacl.so.1 /lib/libpthread.so.0 \
+	  /lib/librt.so.1 /lib/libpthread.so.0 \
 	  /lib/libattr.so.1 /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
 	if [ -e /usr/lib/libmagic.so.1 ]
 	then
@@ -137,10 +137,10 @@ fi
 # Some usual locations are:
 if [ -e /usr/share/misc/file ]
 then
-	#cp -p /usr/local/share/file/*  usr/local/share/file/
+	#cp -pf /usr/local/share/file/*  usr/local/share/file/
 	mkdir -p usr/share/misc/file
-	cp -p /usr/share/misc/file/magic*   usr/share/misc/file
-	#cp -p /usr/share/magic         usr/share/
+	cp -pf /usr/share/misc/file/magic*   usr/share/misc/file
+	#cp -pf /usr/share/magic         usr/share/
 fi
 
 # set protections

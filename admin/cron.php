@@ -13,7 +13,7 @@ $APACHECTL = "/usr/sbin/apachectl";
 // Set to yes if you want to check for qmail pop3d availability and relaunch
 // it if needed. Note that you can have to customise that cron script part
 // for your qmail installation. This is done for debian standard start script.
-$CHECK_QMAIL_POP3D = "yes";
+$CHECK_QMAIL_POP3D = "no";
 
 echo date("Y m d / H:i:s T",$script_start_time)." Starting DTC cron job\n";
 // Let's see if DTC's mysql_config.php is OK and lock back the shared folder
