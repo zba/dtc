@@ -38,7 +38,7 @@ function get_remote_ns_domains(){
 		if($u == false)	return false;
 		$f = $conf_generated_file_path."/dns_domains.".$u;
 		if($a["status"] == "pending" || !file_exists($f)){
-			$console = "Getting dns domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk...";
+			$console = "Getting dns domain list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk...";
 			$remote_file = get_remote_ns($a);
 			if($remote_file != false){
 				$fp = fopen($f,"w+");
