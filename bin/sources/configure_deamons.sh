@@ -41,7 +41,7 @@ TMP_FILE=/tmp/DTC_install.httpd.conf
 
 echo "===> Modifying httpd.conf"
 # need to see if we can use the modules-config or apacheconfig tools
-HTTPD_MODULES_CONFIG=/usr/sbin/modules-config
+HTTPD_MODULES_CONFIG=/usr/sbin/apache-modconf
 
 # if apacheconfig is a symlink (deprecated), then use modules-config
 if [ -f $HTTPD_MODULES_CONFIG ]
