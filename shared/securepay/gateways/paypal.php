@@ -1,12 +1,12 @@
 <?php
 
 // This is production website
-//$paypal_host = "www.paypal.com";
-//$paypal_cgi = "/cgi-bin/webscr";
+$paypal_host = "www.paypal.com";
+$paypal_cgi = "/cgi-bin/webscr";
 
 // This is test sandbox site
-$paypal_host = "www.sandbox.paypal.com";
-$paypal_cgi = "/us/cgi-bin/webscr";
+//$paypal_host = "www.sandbox.paypal.com";
+//$paypal_cgi = "/us/cgi-bin/webscr";
 
 function paypalNotifyPostbackScript(){
 	global $paypal_host;

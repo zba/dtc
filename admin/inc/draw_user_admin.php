@@ -11,8 +11,15 @@ function drawNewAdminForm(){
 	global $pro_mysql_pending_queries_table;
 	global $pro_mysql_pay_table;
 
+	global $txt_add_a_new_user;
+	global $txt_userndomain_waiting_for_addition;
+	global $txt_no_user_waiting;
+	global $txt_no_domain_waiting;
+	global $txt_login_title;
+	global $txt_domain_tbl_config_dom_name;
+
 	// Draw the form for making a new admin
-	$add_a_user .= "<h4>Add a new user:</h4>
+	$add_a_user .= "<h4>".$txt_add_a_new_user[$lang]."</h4>
 <form action=\"?\" methode=\"post\">
 <table>
 <tr><td align=\"right\">
@@ -29,15 +36,15 @@ function drawNewAdminForm(){
 ";
 
 	// Draw the list of users awaiting for an account
-	$waiting_new_users = "<h4>User and domain waiting for addition:</h4>";
+	$waiting_new_users = "<h4>".$txt_userndomain_waiting_for_addition[$lang]."</h4>";
 	$q = "SELECT * FROM $pro_mysql_new_admin_table";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<b>No user waiting!</b>";
+		$waiting_new_users .= "<b>".$txt_no_user_waiting[$lang]."</b>";
 	}else{
 		$waiting_new_users .= "<table width=\"100%\"border=\"1\">
-	<tr><td>Name</td><td>Login</td><td>Domain name</td><td>Bank</td><td>Action</td></tr>";
+	<tr><td>Name</td><td>".$txt_login_title[$lang]."</td><td>Domain name</td><td>Bank</td><td>Action</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".$a["comp_name"].":</u><br>";
@@ -69,10 +76,10 @@ function drawNewAdminForm(){
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<br><b>No domain waiting!</b><br>";
+		$waiting_new_users .= "<br><b>".$txt_no_domain_waiting[$lang]."</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
-	<tr><td>Login</td><td>Domain name</td><td>Action</td></tr>";
+	<tr><td>".$txt_login_title[$lang]."</td><td>".$txt_domain_tbl_config_dom_name[$lang]."</td><td>Action</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<td>".$a["adm_login"]."</td>";

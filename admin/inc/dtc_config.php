@@ -289,8 +289,13 @@ by &quot;|&quot;<br>(leave blank if you don't have backup MX server):</td><td wi
 
 function drawBackupConfig(){
         global $pro_mysql_backup_table;
+        global $txt_cfg_allow_following_servers_to_list;
+        global $txt_cfg_make_request_to_server_for_update;
+        global $txt_cfg_act_as_backup_mail_server;
+        global $txt_cfg_act_as_backup_dns_server;
+        global $lang;
 
-	$out .= "<h3>Allow the following servers to list this server domain names for doing backup:</h3>";
+	$out .= "<h3>".$txt_cfg_allow_following_servers_to_list[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='grant_access';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -303,7 +308,7 @@ function drawBackupConfig(){
 	        <input type=\"hidden\" name=\"action\" value=\"modify_grant_backup\">
                 <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
                 <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	        <tr><td><input type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
+	        <tr><td><input size=\"20\" type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
 	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
 	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
 	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
@@ -319,7 +324,7 @@ function drawBackupConfig(){
         $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
         $out .= "</table>";
 
-	$out .= "<h3>Make request to the following servers so they can update the domain list when some change occurs:</h3>";
+	$out .= "<h3>".$txt_cfg_make_request_to_server_for_update[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -351,7 +356,7 @@ function drawBackupConfig(){
         $this_srv_backup = $out;
         $out = "";
 
-	$out .= "<h3>Act as backup mail server for the following servers:</h3>";
+	$out .= "<h3>".$txt_cfg_act_as_backup_mail_server[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='mail_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -380,7 +385,7 @@ function drawBackupConfig(){
         $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
         $out .= "</table>";
 
-	$out .= "<h3>Act as backup DNS server for the following servers:</h3>";
+	$out .= "<h3>".$txt_cfg_act_as_backup_dns_server[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);

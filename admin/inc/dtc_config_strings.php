@@ -1,5 +1,45 @@
 <?php
 
+$txt_cfg_allow_following_servers_to_list = array(
+	"fr" => "Autoriser les servers suivant a lister les domaines pour les backuper : ",
+	"en" => "Allow the following servers to list this server domain names for doing backup: ",
+	"it" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
+	"nl" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
+	"ru" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
+	"de" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
+	"zh" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
+	"es" => "TRANS Allow the following servers to list this server domain names for doing backup: ");
+
+$txt_cfg_make_request_to_server_for_update = array(
+	"fr" => "Prévenir les serveurs suivant quand un domaine est ajouté ou supprimer : ",
+	"en" => "Tell the following servers when a domain is added or removed : ",
+	"it" => "TRANS Tell the following servers when a domain is added or removed : ",
+	"nl" => "TRANS Tell the following servers when a domain is added or removed : ",
+	"ru" => "TRANS Tell the following servers when a domain is added or removed : ",
+	"de" => "TRANS Tell the following servers when a domain is added or removed : ",
+	"zh" => "TRANS Tell the following servers when a domain is added or removed : ",
+	"es" => "TRANS Tell the following servers when a domain is added or removed : ");
+
+$txt_cfg_act_as_backup_mail_server = array(
+	"fr" => "Ce server sera serveur de backup mail pour les serveurs suivants : ",
+	"en" => "Act as backup mail server for the following servers: ",
+	"it" => "TRANS Act as backup mail server for the following servers: ",
+	"nl" => "TRANS Act as backup mail server for the following servers: ",
+	"ru" => "TRANS Act as backup mail server for the following servers: ",
+	"de" => "TRANS Act as backup mail server for the following servers: ",
+	"zh" => "TRANS Act as backup mail server for the following servers: ",
+	"es" => "TRANS Act as backup mail server for the following servers: ");
+
+$txt_cfg_act_as_backup_dns_server = array(
+	"fr" => "Ce server sera serveur de backup DNS pour les serveurs suivants : ",
+	"en" => "Act as backup DNS server for the following servers: ",
+	"it" => "TRANS Act as backup DNS server for the following servers: ",
+	"nl" => "TRANS Act as backup DNS server for the following servers: ",
+	"ru" => "TRANS Act as backup DNS server for the following servers: ",
+	"de" => "TRANS Act as backup DNS server for the following servers: ",
+	"zh" => "TRANS Act as backup DNS server for the following servers: ",
+	"es" => "TRANS Act as backup DNS server for the following servers: ");
+
 $txt_cfg_use_paypal = array(
 	"fr" => "Utiliser paypal : ",
 	"en" => "Use paypal: ",

@@ -1,5 +1,46 @@
 <?php
 
+$txt_no_user_waiting = array(
+  "fr" => "Pas d'utilisateur en attente !",
+  "en" => "No user waiting!",
+        "it" => "TRANS No user waiting!",
+        "nl" => "TRANS No user waiting!",
+        "ru" => "TRANS No user waiting!",
+        "de" => "TRANS No user waiting!",
+        "zh" => "TRANS No user waiting!",
+        "es" => "TRANS No user waiting!");
+
+$txt_no_domain_waiting = array(
+  "fr" => "Pas de domaine en attente !",
+  "en" => "No domain waiting!",
+        "it" => "TRANS No domain waiting!",
+        "nl" => "TRANS No domain waiting!",
+        "ru" => "TRANS No domain waiting!",
+        "de" => "TRANS No domain waiting!",
+        "zh" => "TRANS No domain waiting!",
+        "es" => "TRANS No domain waiting!");
+
+$txt_userndomain_waiting_for_addition = array(
+  "fr" => "Utilisateurs et domaines en attente : ",
+  "en" => "User and domain waiting for addition: ",
+        "it" => "TRANS User and domain waiting for addition: ",
+        "nl" => "TRANS User and domain waiting for addition: ",
+        "ru" => "TRANS User and domain waiting for addition: ",
+        "de" => "TRANS User and domain waiting for addition: ",
+        "zh" => "TRANS User and domain waiting for addition: ",
+        "es" => "TRANS User and domain waiting for addition: ");
+
+$txt_add_a_new_user = array(
+  "fr" => "Ajouter un nouvel utilisateur : ",
+  "en" => "Add a new user: ",
+        "it" => "TRANS Add a new user: ",
+        "nl" => "TRANS Add a new user: ",
+        "ru" => "TRANS Add a new user: ",
+        "de" => "TRANS Add a new user: ",
+        "zh" => "TRANS Add a new user: ",
+        "es" => "TRANS Add a new user: "
+);
+
 $txt_title_maillinglist_form = array(
 	"fr" => "Listes de diffusion du domain : ",
         "en" => "Mailling-lists of the domain: ",

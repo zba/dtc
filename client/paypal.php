@@ -15,8 +15,8 @@ foreach ($_POST as $key => $value) {
 	$req .= "&$key=$value";
 }
 logPay("Resending query to paypal: ".$req);
-// $paypal_server_hostname = "www.paypal.com";
-$paypal_server_hostname = "www.sandbox.paypal.com";
+$paypal_server_hostname = "www.paypal.com";
+// $paypal_server_hostname = "www.sandbox.paypal.com";
 $paypal_server_script = "/cgi-bin/webscr";
 
 // post back to PayPal system to validate
