@@ -1,8 +1,7 @@
 #
 # Table structure for table `http_accounting`
 #
-IF NOT EXITS
-CREATE TABLE http_accounting (
+CREATE TABLE IF NOT EXITS http_accounting (
   id int(14) NOT NULL auto_increment,
   vhost varchar(50) NOT NULL default '',
   bytes_sent int(14) NOT NULL default '0',
