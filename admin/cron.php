@@ -133,7 +133,14 @@ system("chown -R nobody:65534 $conf_generated_file_path");
 
 if($cronjob_table_content["qmail_newu"] == "yes"){
 	echo "Starting qmail-newu\n";
-	system("/var/qmail/bin/qmail-newu");
+	switch($conf_mta_type){
+	case "qmail":
+		system("/var/qmail/bin/qmail-newu");
+		break;
+	case "postfix":
+		//not sure what newu equiv in postfix
+		break;
+	}
 }
 
 if($cronjob_table_content["restart_qmail"] == "yes"){
