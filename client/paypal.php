@@ -61,7 +61,7 @@ if (!$fp) {
 				die("Incorrect currency!");
 			}
 			logPay("Calling validate()");
-			validatePaiement($item_number,$_POST["payment_gross"]-$_POST["payment_fee"],"online","paypal",$txn_id);
+			validatePaiement($item_number,$_POST["payment_gross"]-$_POST["payment_fee"],"online","paypal",$txn_id,$_POST["payment_gross"]);
 		}
 		else if (strcmp ($res, "INVALID") == 0) {
 			// log for manual investigation

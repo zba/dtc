@@ -48,7 +48,34 @@ if($_REQUEST["action"] == "return_from_pay"){
 	// [mc_gross] => 26.21
 	// [custom] =>
 	// [notify_version] => 1.6
-	$form = "Return from paiment API";
+	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id_client='".$_REQUEST["regid"]."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$form .= "Cannot reselect transaction: registration failed!";
+	}else{
+		$a = mysql_fetch_array($r);
+		$form .= "<h3>Your transaction status is now:</h3>";
+		if($a["valid"] != "yes"){
+			$form .= "<font color=\"red\">NOT VALIDATED</font><br>
+			That might need that your payment has been canceled or that it is still being proceed.
+			If you have confirmed the payment then check a bit later here. If the payment status
+			was to stay like that, please contact customer support.";
+		}else{
+			$q2 = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='".$_REQUEST["regid"]."';";
+			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+			$n2 = mysql_num_rows($r2);
+			if($n2 != 1){
+				$form .= "Cannot reselect user: registration failed!";
+			}else{
+				$a2 = mysql_fetch_array($r2);
+				
+				$form .= "<font color=\"green\">TRASNACTION FINISHED AND APPROVED</font><br>
+				Your account has just been created. Please login <a href=\"/dtc\">here</a> to
+				start using your account.";
+			}
+		}
+	}
 }else{
 	$reguser = register_user();
 	if($reguser["err"] == 0){
