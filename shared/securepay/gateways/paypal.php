@@ -71,8 +71,15 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 
 	global $secpayconf_use_paypal;
 	global $secpayconf_paypal_email;
+	global $conf_use_ssl;
 	// https://www.paypal.com/xclick/business=thomas%40goirand.fr&item_name=Domain+name+registration+.com&
 	// item_number=1&amount=11.50&no_note=1&currency_code=USD
+
+	if($conf_use_ssl == yes){
+		$goback_start = "https://";
+	}else{
+		$goback_start = "http://";
+	}
 
 	$out = '<form action="https://'.$paypal_host.$paypal_cgi.'" method="post">
 <input type="hidden" name="cmd" value="_xclick">
@@ -82,7 +89,7 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 <input type="hidden" name="amount" value="'.$amount.'">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="no_shipping" value="1">
-<input type="hidden" name="return" value="'.$conf_administrative_site.$return_url.'">
+<input type="hidden" name="return" value="'.$goback_start.$conf_administrative_site.$return_url.'">
 <input type="hidden" name="notify_url" value="http://'.$conf_administrative_site.'/dtc/paypal.php">
 <input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but01.gif" border="0"
 name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!">
