@@ -153,7 +153,7 @@ function register_user(){
 	if (!get_magic_quotes_gpc()){
 		$esc_state = addslashes($_REQUEST["state"]);
 	}else{
-		$esc_state = $_REQUEST["city"];
+		$esc_state = $_REQUEST["state"];
 	}
 
 	if(!ereg("^([A-Z])([A-Z])\$",$_REQUEST["country"])){
