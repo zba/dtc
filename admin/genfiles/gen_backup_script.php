@@ -46,7 +46,7 @@ function backup_by_ftp(){
 			}
 			$backup_net .= "echo -n \")\"\n";
 			$backup_net .= "echo -n \"uploading\"\n";
-			$backup_net .= "ncftpput -f /root/.ncftpput_login.cfg /webserver/ftp/gplhost/ $owner.$webname.tar.gz\n";
+			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg /webserver/ftp/gplhost/ $owner.$webname.tar.gz\n";
 		}
 	}
 	$filep = fopen("$conf_generated_file_path/net_backup.sh", "w+");
