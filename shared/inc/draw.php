@@ -1141,13 +1141,13 @@ function drawAdminTools($admin){
 		$edition = skin("simple/green",$web_editor,$title);
 	}
 
-	$mymenu .= "<center><a href=\"$PHP_SELF?\">Logout</a>";
+	$mymenu .= "<div align=\"center\"><a href=\"$PHP_SELF?\">Logout</a>";
 	if($dtc_use_text_menu == "no"){
 		$mymenu .= " - <a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">Use text</a>";
 	}else{
 		$mymenu .= " - <a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=no\">Use images</a>";
 	}
-	$mymenu .= "</center>";
+	$mymenu .= "</div>";
 
 	$domain_list = skin("simple/green","<br>$mymenu",$txt_left_menu_title[$lang]);
 
