@@ -1,8 +1,8 @@
 <?
 
 require("/usr/share/dtc/shared/autoSQLconfig.php");
-require("$dtcshared_path/table_names.php");
-require("$dtcshared_path/dtc_functions.php");
+require("$dtcshared_path/vars/table_names.php");
+require("$dtcshared_path/drawlib/dtc_functions.php");
 
 // $pro_mysql_domain_table
 // $pro_mysql_subdomain_table
@@ -11,6 +11,7 @@ require("$dtcshared_path/dtc_functions.php");
 $login = $_REQUEST["login"];
 $pass = $_REQUEST["pass"];
 $ip = $_REQUEST["ip"];
+$domain = $_REQUEST["domain"];
 
 if(!isset($login) || $login == "" || !isset($pass) || $pass == ""){
 	die("Incorrect params");
