@@ -39,5 +39,5 @@ ADD whois enum('here','away','linked') NOT NULL default 'away',
 ADD hosting enum('here','away') NOT NULL default 'here' ;
 
 ALTER TABLE subdomain
-login varchar(16) default NULL,
-pass varchar(64) default NULL ;
+ADD login varchar(16) default NULL,
+ADD pass varchar(64) default NULL ;
