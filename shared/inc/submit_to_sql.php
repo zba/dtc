@@ -6,7 +6,9 @@ if($panel_type!="email"){
 	require("$dtcshared_path/inc/sql/domain_info.php");
 	require("$dtcshared_path/inc/sql/subdomain.php");
 	require("$dtcshared_path/inc/sql/ftp.php");
+	require("$dtcshared_path/inc/sql/email.php");
+}else{
+	require("submit_to_sql_dtcemain.php");
 }
-require("$dtcshared_path/inc/sql/email.php");
 
 ?>
