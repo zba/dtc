@@ -7,6 +7,7 @@ function register_user(){
 // state=state&country=US&Login=Register
 
 	global $pro_mysql_admin_table;
+	global $pro_mysql_new_admin_table;
 
 	// Check if all fields are blank, in wich case don't display error
 	if(($_REQUEST["reqadm_login"] == "" || !isset($_REQUEST["reqadm_login"]))
@@ -179,12 +180,33 @@ function register_user(){
 		$ret["mesg"] = "Username already taken! Try again.";
 		return $ret;
 	}
-// adm_login=aaa&reqadm_pass=&reqadm_pass2=&domain_name=toto&familyname=nymous&
-// firstname=ano&compname=testsoc&email=toto@toto.com&phone=PARIS&
-// fax=state&address1=1&address2=2&address3=3&zipcode=75991&city=paris&
-// state=state&country=US&Login=Register
+	$q = "SELECT reqadm_login FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
+	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		$ret["err"] = 3;
+		$ret["mesg"] = "Username already tried to be taken! Try again.";
+		return $ret;
+	}
 	$q = "INSERT INTO $pro_mysql_new_admin_table
-()
+(reqadm_login,
+reqadm_pass,
+domain_name,
+family_name,
+first_name,
+comp_name,
+iscomp,
+email,
+phone,
+fax,
+addr1,
+addr2,
+addr3,
+zipcode,
+city,
+state,
+country
+)
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
 '".$_REQUEST["domain_name"]."',
@@ -202,8 +224,9 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 '$esc_city',
 '$esc_state',
 '".$_REQUEST["country"]."')";
+	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$ret["err"] = 0;
-	$ret["mesg"] = "$q";
+	$ret["mesg"] = "Query ok!";
 	return $ret;
 }
 

@@ -1,4 +1,11 @@
-17-09-04:
+17-09-04: V0.15.0-R9
+New registration form for new users done, mued greyskin updated.
+
+A \n was missing in Postfix email generation when redirection
+was used.
+
+Template for new sites was not copied because of a global not set.
+
 Apache conf generation died if domain has no subdomains, wich can happen
 in some configuration of a domain name.
 
