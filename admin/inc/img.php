@@ -238,6 +238,7 @@ else if($_REQUEST["text"] == "mailboxs")	$png = "mail";
 else if($_REQUEST["text"] == "dns")			$png = "dns";
 else if($_REQUEST["text"] == "database")	$png = "database";
 else if($_REQUEST["text"] == "help")		$png = "help";
+else if($_REQUEST["text"] == "package installer") $png = "package-installer";
 else	$png = "domain";
 $icon_im = imagecreatefrompng($png.".png");
 imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);

@@ -137,6 +137,10 @@ function drawAdminTools($admin){
 				"text" => "ftp-accounts",
 				"type" => "link",
 				"link" => "ftp-accounts");
+			$domain_conf_submenu[] = array(
+				"text" => "package installer",
+				"type" => "link",
+				"link" => "package installer");
 		}
 
 		$user_menu[] = array(
