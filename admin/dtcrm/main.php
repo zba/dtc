@@ -21,7 +21,16 @@ function DTCRMlistClients(){
 		if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
 			$text .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"]."\">";
 		}
-		$text .= $row["familyname"].", ".$row["christname"]."";
+		if($row["is_company"] == "yes"){
+			if(strlen($row["company_name"]) > 15){
+				$company = substr($row["company_name"],0,14)."...: ";
+			}else{
+				$company = $row["company_name"].": ";
+			}
+		}else{
+			$company = "";
+		}
+		$text .= $company.$row["familyname"].", ".$row["christname"]."";
 		if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
 			$text .= "</a>";
 		}
