@@ -248,7 +248,23 @@ function checkFTP(){
 
 function checkDNS(){
 	global $errTxt;
-	$errTxt = "";
+
+	global $pro_mysql_domain_table;
+
+	$q = "SELECT * FROM $pro_mysql_domain_table WHERE 1 LIMIT 1";
+	$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said ".mysql_error());
+	$a = mysql_fetch_array($r);
+
+	$server = "localhost";
+	// echo "Checking POP3<br>";
+	if(($server_ip = gethostbynameFalse($a["name"])) == false){
+		$errTxt = "Cannot resolv ".$a["name"];
+		return false;
+	}
+	if($a["ip_addr"] != $server_ip){
+		$errTxt = "IP Resolved is not same as the one I have in the database!";
+		return false;
+	}
 	return true;
 }
 
@@ -271,25 +287,25 @@ function drawServerStatus(){
 	global $errTxt;
 
 	if(checkPOP3()){
-		$pop3_status = '<font color="#00FF00">OK</font>';
+		$pop3_status = '<font color="#00FF00">Running ok</font>';
 	}else{
 		$pop3_status = '<font color="#FF0000">ERROR!</font>';
 	}
 
 	if(checkSMTP()){
-		$smtp_status = '<font color="#00FF00">OK</font>';
+		$smtp_status = '<font color="#00FF00">Running ok</font>';
 	}else{
 		$smtp_status = '<font color="#FF0000">ERROR!</font>';
 	}
 
 	if(checkDNS()){
-		$dns_status = '<font color="#00FF00">DEV TO BE DONE</font>';
+		$dns_status = '<font color="#00FF00">Running ok</font>';
 	}else{
 		$dns_status = '<font color="#FF0000">ERROR!</font>';
 	}
 
 	if(checkFTP()){
-		$ftp_status = '<font color="#00FF00">OK</font>';
+		$ftp_status = '<font color="#00FF00">Running ok</font>';
 	}else{
 		$ftp_status = '<font color="#FF0000">ERROR!</font>';
 	}
