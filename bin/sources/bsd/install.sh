@@ -42,11 +42,11 @@ echo "Do you want that DTC setup this password"
 echo "for you ? (eg: UPDATE user SET Password...)"
 echo -n 'Setup the mysql password [Ny]: '
 read conf_mysql_change_root
-if [ $conf_mysql_change_root == "y" ];
+if [ ""$conf_mysql_change_root == "y" ];
 then
 	echo "===> Changing MySQL Root password"
 	echo "If you didn't setup a root pass for mysqld, just hit ENTER."
-	mysql -u$conf_mysql_login -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pass"') WHERE User='root'; FLUSH PRIVILEGES;";
+	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pass"') WHERE User='root'; FLUSH PRIVILEGES;";
 fi
 
 echo -n 'Choose a DB name for DTC [dtc]: '
