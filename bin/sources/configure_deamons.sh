@@ -86,11 +86,11 @@ else
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
-	echo "Checking for log_sql module"
-	if grep "# LoadModule log_sql_module" $PATH_HTTPD_CONF
+	echo "Checking for sql_log module"
+	if grep "# LoadModule sql_log_module" $PATH_HTTPD_CONF
 	then
 		echo "Activating log_sql module"
-		sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF >$TMP_FILE
+		sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
