@@ -47,7 +47,7 @@ function drawEditAdmin($admin){
 
 	// Generate the admin tool configuration module
 	// Deletion of domains :
-	$url = "$PHP_SELF?delete_admin_user=$adm_login";
+	$url = "".$_SERVER["PHP_SELF"]."?delete_admin_user=$adm_login";
 	$confirmed_url = dtcJavascriptConfirmLink($txt_del_user_confirm[$lang],$url);
 	$domain_conf = "<a href=\"$confirmed_url\"><b>".$txt_del_user[$lang]."</b></a><br><br>";
 	$domain_conf .= "<b><u>".$txt_del_user_domain[$lang]."</u><br>";
@@ -91,7 +91,7 @@ function drawDomainConfig($admin){
 
 	global $conf_site_addrs;
 	$site_addrs = explode("|",$conf_site_addrs);
-	global $PHP_SELF;
+
 	global $adm_login;
 	global $adm_pass;
 
@@ -117,7 +117,7 @@ function drawDomainConfig($admin){
 			$webalizer_gen_flag_txt = "<font color=\"#FF0000\">NO</font>";
 			$what_to_switch = "yes";
 		}
-		$ret .= "<form action=\"$PHP_SELF\">
+		$ret .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 				<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 				<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 				<input type=\"hidden\" name=\"user_domain_to_modify\" value=\"$webname\"><tr>";
@@ -139,7 +139,7 @@ function drawDomainConfig($admin){
 				<td><input type=\"text\" name=\"new_max_email\" value=\"$max_email\" size=\"5\"></td>
 				<td><input type=\"text\" name=\"new_max_ftp\" value=\"$max_ftp\" size=\"5\"></td>
 				<td><input type=\"text\" name=\"new_max_subdomain\" value=\"$max_subdomain\" size=\"5\"></td>
-				<td><a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_generate_flag&domain=$webname&switch_to=$what_to_switch\">$webalizer_gen_flag_txt</a></td>
+				<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_generate_flag&domain=$webname&switch_to=$what_to_switch\">$webalizer_gen_flag_txt</a></td>
 				<td>$popup_txt</td>
 				";
 
@@ -160,13 +160,13 @@ function drawAdminTools_DomainDNS($admin,$eddomain){
 	global $txt_comment_confirurate_your_domain_name;
 	global $txt_confirurate_your_domain_name;
 
-	global $PHP_SELF;
+
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
 
 	// The domain DNS configuration
-	$domain_dns_mx_conf_form = "<table><tr><td align=\"right\" nowrap><form action=\"$PHP_SELF\">
+	$domain_dns_mx_conf_form = "<table><tr><td align=\"right\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$eddomain["name"]."\">
@@ -233,7 +233,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	global $txt_comment_confirurate_your_domain_name;
 	global $txt_confirurate_your_domain_name;
 
-	global $PHP_SELF;
+
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
@@ -298,7 +298,7 @@ function drawDataBase($database){
 	global $conf_mysql_db;
 	global $adm_login;
 	global $adm_pass;
-	global $PHP_SELF;
+
 	global $conf_demo_version;
 
 	$txt .= "<br><b><u>".$txt_draw_tatabase_your_list[$lang]."</u></b><br>";
@@ -318,7 +318,7 @@ function drawDataBase($database){
 		mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\"	!!!");	
 
 		$txt .= "<br><br><b><u>Change your MySQL password:</u></b><br>
-		<form action=\"$PHP_SELF\">New password:<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+		<form action=\"".$_SERVER["PHP_SELF"]."\">New password:<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"text\" name=\"new_mysql_password\" value=\"\">
 		<input type=\"submit\" name=\"change_mysql_password\" value=\"Ok\"></form>";
@@ -347,7 +347,7 @@ function drawAdminTools_Subdomain($domain){
 
 	global $txt_number_of_active_subdomains;
 	global $txt_subdom_limit_reach;
-	global $PHP_SELF;
+
 	global $edit_a_subdomain;
 
 	global $dtcshared_path;
@@ -435,9 +435,9 @@ function drawAdminTools_Subdomain($domain){
 		if($i!=0){
 			$txt .= " - ";
 		}
-		$txt .= "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&edit_a_subdomain=$sub&edit_domain=$webname&addrlink=$addrlink\">$sub</a>";
+		$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&edit_a_subdomain=$sub&edit_domain=$webname&addrlink=$addrlink\">$sub</a>";
 	}
-	$txt .= "<br><br><a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&edit_domain=$webname&addrlink=$addrlink\">new subdomain</a>";
+	$txt .= "<br><br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&edit_domain=$webname&addrlink=$addrlink\">new subdomain</a>";
 	$txt .= "</td></tr>";
 
 	if(!isset($_REQUEST["edit_a_subdomain"]) || $_REQUEST["edit_a_subdomain"] == ""){
@@ -562,7 +562,7 @@ function drawAdminTools_Emails($domain){
 
 		if($nbr_email < $max_email){
 			$txt .= "
-<form action=\"$PHP_SELF\" methode=\"post\">
+<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 <table border=\"1\"><tr><td align=\"right\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -599,7 +599,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	global $adm_login;
 	global $adm_pass;
 	global $edit_domain;
-	global $PHP_SELF;
+
 	global $edftp_account;
 	global $addrlink;
 
@@ -636,7 +636,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 		if($i != 0){
 			$txt .= " - ";
 		}
-		$txt .= "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps&edftp_account=$login\">$login</a>";
+		$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps&edftp_account=$login\">$login</a>";
 	}
 
 	if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $ftpath == "$adm_path"){
@@ -663,13 +663,13 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	}
 
 	if($_REQUEST["edftp_account"] != "" && isset($_REQUEST["edftp_account"]) && $_REQUEST["deleteftpaccount"] != "Delete"){
-		$txt .= "<br><br><a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps\">".$txt_ftp_new_account_link[$lang]."</A><br>";
+		$txt .= "<br><br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps\">".$txt_ftp_new_account_link[$lang]."</A><br>";
 		$txt .= "
 <br><u>".$txt_ftp_account_edit[$lang]."</u>
 <table>
 <tr><td align=\"right\">".$txt_login_login[$lang]."</td><td>".$_REQUEST["edftp_account"]."</td></tr>
 <tr><td align=\"right\">
-<form action=\"$PHP_SELF\" methode=\"post\">
+<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -692,7 +692,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 		if($nbr_ftp < $max_ftp){
 			$txt .= "
 <table><tr><td align=\"right\">
-<form action=\"$PHP_SELF\" methode=\"post\">
+<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -734,7 +734,7 @@ function drawAdminTools($admin){
 	global $edit_domain;
 	global $whatdoiedit;
 	global $domain_conf_submenu;
-	global $PHP_SELF;
+	
 	global $addrlink;
 	global $lang;
 
@@ -828,7 +828,7 @@ function drawAdminTools($admin){
 		"type" => "link",
 		"link" => "help");
 
-	$mymenu = makeTreeMenu($user_menu,$addrlink,"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass","addrlink");
+	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass","addrlink");
 //	$mymenu = makeTreeMenu2($user_menu);
 
 

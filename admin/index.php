@@ -5,7 +5,6 @@ require("/usr/share/dtc/shared/autoSQLconfig.php");
 
 // All shared files between DTCadmin and DTCclient
 require("$dtcshared_path/global_vars.php");
-
 require("$dtcshared_path/lang.php");			// Setup the $lang global variable (to en, en-us, fr, etc... : whatever is translated !)
 require("$dtcshared_path/strings.php");			// Contain all the translated string
 require("$dtcshared_path/table_names.php");
@@ -48,7 +47,7 @@ $dtc_main_menu .= "<br><center>
 <table width=\"66%\">
 <tr><td width=\"33%\" align=\"center\">";
 if($_REQUEST["rub"] != "" && isset($_REQUEST["rub"])){
-	$dtc_main_menu .= "<a href=\"$PHP_SELF?\">";
+	$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?\">";
 }
 $dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/users.gif\">";
 if($_REQUEST["rub"] == "" || !isset($_REQUEST["rub"])){
@@ -65,7 +64,7 @@ if(file_exists("dtcrm")){
 			$row = mysql_fetch_array($result);
 			$url_addon = "&id=".$row["id_client"];
 		}
-		$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=crm&admlist_type=Names".$url_addon."\">";
+		$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&admlist_type=Names".$url_addon."\">";
 	}
 	$dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/recycle.gif\">";
 	if($_REQUEST["rub"] != "crm"){
@@ -75,7 +74,7 @@ if(file_exists("dtcrm")){
 $dtc_main_menu .= "</td>
 <td width=\"33%\" align=\"center\">";
 if($_REQUEST["rub"] != "generate"){
-	$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=generate\">";
+	$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate\">";
 }
 $dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/recycle.gif\">";
 if($_REQUEST["rub"] != "generate"){
@@ -84,7 +83,7 @@ if($_REQUEST["rub"] != "generate"){
 $dtc_main_menu .= "</td>
 <td width=\"33%\" align=\"center\">";
 if($_REQUEST["rub"] != "config"){
-	$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=config\">";
+	$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
 }
 $dtc_main_menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/config.gif\">";
 if($_REQUEST["rub"] != "config"){
@@ -97,7 +96,7 @@ $dtc_main_menu .=
 	<td align=\"center\" valign=\"top\">";
 
 if($_REQUEST["rub"] != "" && isset($_REQUEST["rub"])){
-	$dtc_main_menu .= "<a href=\"$PHP_SELF?\">";
+	$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?\">";
 }
 $dtc_main_menu .= $txt_mainmenu_title_useradmin[$lang];
 if($_REQUEST["rub"] == "" || !isset($_REQUEST["rub"])){
@@ -114,7 +113,7 @@ if(file_exists("dtcrm")){
 			$row = mysql_fetch_array($result);
 			$url_addon = "&id=".$row["id_client"];
 		}
-		$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=crm&admlist_type=Names".$url_addon."\">";
+		$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&admlist_type=Names".$url_addon."\">";
 	}
 	$dtc_main_menu .= $txt_mainmenu_title_crm[$lang];
 	if($_REQUEST["rub"] != "crm"){
@@ -124,7 +123,7 @@ if(file_exists("dtcrm")){
 $dtc_main_menu .= "</td>
 <td width=\"33%\" align=\"center\" valign=\"top\">";
 if($_REQUEST["rub"] != "generate"){
-	$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=generate\">";
+	$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate\">";
 }
 $dtc_main_menu .= "$txt_mainmenu_title_deamonfile_generation[$lang]";
 if($_REQUEST["rub"] != "generate"){
@@ -133,7 +132,7 @@ if($_REQUEST["rub"] != "generate"){
 $dtc_main_menu .= "</td>
 <td width=\"33%\" align=\"center\" valign=\"top\">";
 if($_REQUEST["rub"] != "config"){
-	$dtc_main_menu .= "<a href=\"$PHP_SELF?rub=config\">";
+	$dtc_main_menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
 }
 $dtc_main_menu .= $txt_mainmenu_title_dtc_config[$lang];
 if($_REQUEST["rub"] != "config"){

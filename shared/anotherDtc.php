@@ -8,7 +8,6 @@ $txt_select_lang_title = array(
 	"de" => "Language");
 
 function anotherLanguageSelection(){
-	global $PHP_SELF;
 	global $lang;
 	global $rub;
 
@@ -18,21 +17,21 @@ function anotherLanguageSelection(){
 <br>
 <table cellpadding=\"4\" cellspacing=\"0\">
 <tr><td align=\"right\" valign=\"center\" nowrap>
-	<a href=\"$PHP_SELF?change_language=fr&rub=".$_REQUEST["rub"]."\">Francais
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=fr&rub=".$_REQUEST["rub"]."\">Francais
 	<img alt=\"*\" border=\"0\" src=\"gfx/language/fr.gif\"></a>
 </td><td valign=\"center\">
-	<a href=\"$PHP_SELF?change_language=en&rub=".$_REQUEST["rub"]."\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=en&rub=".$_REQUEST["rub"]."\">
 	<img alt=\"*\" border=\"0\" src=\"gfx/language/en.gif\">English</a></td>
 </tr><tr><td align=\"right\" valign=\"center\" nowrap>
-	<a href=\"$PHP_SELF?change_language=nl&rub=".$_REQUEST["rub"]."\">Dutch
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=nl&rub=".$_REQUEST["rub"]."\">Dutch
 	<img alt=\"*\" border=\"0\" src=\"gfx/language/nl.gif\"></a>
 </td><td valign=\"center\" nowrap>
-	<a href=\"$PHP_SELF?change_language=ru&rub=".$_REQUEST["rub"]."\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=ru&rub=".$_REQUEST["rub"]."\">
 	<img alt=\"*\" border=\"0\" src=\"gfx/language/ru.gif\">Russian</a></td>
 </tr><tr><td align=\"right\" valign=\"center\" nowrap>
-	<a href=\"$PHP_SELF?change_language=nl&rub=".$_REQUEST["rub"]."\">-</a>
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=nl&rub=".$_REQUEST["rub"]."\">-</a>
 </td><td valign=\"center\" nowrap>
-	<a href=\"$PHP_SELF?change_language=de&rub=".$_REQUEST["rub"]."\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=de&rub=".$_REQUEST["rub"]."\">
 	<img alt=\"*\" border=\"0\" src=\"gfx/language/de.gif\">Deutsch</a></td>
 </tr></table>
 </div>
@@ -153,7 +152,8 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 }
 
 function anotherPage($title,$meta,$java_script,$onloads,$banner,$menu,$content,$footer){
-	global $page_metacontent;
+	global $page_metacontent;
+
 	global $skinCssString;
 	global $confirm_javascript;
 return "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">

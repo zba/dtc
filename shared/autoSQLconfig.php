@@ -34,9 +34,9 @@ function drawMysqlDBConfigForm(){
 	global $conf_mysql_login;
 	global $conf_mysql_pass;
 	global $conf_mysql_db;
-	global $PHP_SELF;
 
-	$out = "<form action=\"$PHP_SELF\"><h1>Cannot connect to database.</h1>
+
+	$out = "<form action=\"".$_SERVER["PHP_SELF"]."\"><h1>Cannot connect to database.</h1>
 	<i>Please a correct enter your login information for connecting to mysql.</i><br>
 	<table><tr>
 	<td align=\"right\">Hostname:</td>		<td><input size=\"30\" type=\"text\" name=\"conf_host\" value=\"$conf_mysql_host\"></td></tr>
@@ -196,7 +196,7 @@ if($conf_demo_version == 'yes'){
 
 		die("Welcom to DTC demo version. In demo version, all tables are erased at
 		launch time.<br><br>
-		<a href=\"$PHP_SELF\">Ok, let's try !</a>
+		<a href=\"".$_SERVER["PHP_SELF"]."\">Ok, let's try !</a>
 		");
 	}
 }

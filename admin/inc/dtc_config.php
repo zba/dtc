@@ -117,13 +117,15 @@ function drawDTCConfigForm(){
 	<td align=\"right\" nowrap>".$txt_cfg_use_nated_vhost[$lang]."</td>
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_yes>Yes<input type=\"radio\" value=\"no\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_no>No</td>
 </tr><tr>
-	<td align=\"right\" nowrap>".$txt_cfg_nated_vhost_ip[$lang]."</td>
+	<td align=\"right\" nowrap>
+".$txt_cfg_nated_vhost_ip[$lang]."</td>
 	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_nated_vhost_ip\" name=\"new_nated_vhost_ip\"></td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_multiple_ip[$lang]."</td>
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_yes>Yes<input type=\"radio\" value=\"no\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_no>No</td>
 </tr><tr>
-	<td align=\"right\" nowrap>".$txt_cfg_main_site_ip[$lang]."</td>
+	<td align=\"right\" nowrap>
+".$txt_cfg_main_site_ip[$lang]."</td>
 	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_main_site_ip\" name=\"new_main_site_ip\"></td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_site_addrs[$lang]."</td>
@@ -239,7 +241,7 @@ function drawDTCConfigForm(){
 </td><td>$webalizerAndBackupPath</td></tr></table>
 ";
 
-	return "<form action=\"$PHP_SELF\"><input type=\"hidden\" name=\"rub\" value=\"config\">$server_global_conf
+	return "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"config\">$server_global_conf
 	<center><input type=\"submit\" name=\"install_new_config_values\" value=\"Ok\"></center>
 	</form>";
 

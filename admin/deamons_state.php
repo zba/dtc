@@ -173,7 +173,7 @@ function drawDeamonStates(){
 }
 
 echo "<html><head>
-<META HTTP-EQUIV=\"Refresh\" CONTENT=\"15;URL=$PHP_SELF\">
+<META HTTP-EQUIV=\"Refresh\" CONTENT=\"15;URL=".$_SERVER["PHP_SELF"]."\">
 <body bgcolor=\"#000000\" onLoad=\"JSClock();\">
 <link rel=\"stylesheet\" href=\"gfx/dtc.css\" type=\"text/css\">
 <link rel=\"stylesheet\" href=\"gfx/skin/simple/green2/skin.css\" type=\"text/css\">

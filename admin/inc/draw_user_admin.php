@@ -32,7 +32,6 @@ function drawMySqlAccountManger(){
 	global $adm_login;
 	global $adm_pass;
 	global $conf_mysql_db;
-	global $PHP_SELF;
 	global $conf_demo_version;
 	global $txt_mysqlmang_nouser_by_that_name;
 	global $txt_mysqlmang_delete_a_db;
@@ -59,16 +58,16 @@ function drawMySqlAccountManger(){
 				$dblist[] = $row["Db"];
 			}
 			mysql_select_db($conf_mysql_db)or die("Cannot select DB $conf_mysql_db !!!");
-			$out .= "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=delete_mysql_user\">".$txt_delete_this_mysql_user_and_db[$lang]."</a><br>
+			$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=delete_mysql_user\">".$txt_delete_this_mysql_user_and_db[$lang]."</a><br>
 <b><u>".$txt_mysqlmang_delete_a_db[$lang]."</u></b><br>";
 			for($i=0;$i<$num_rows;$i++){
 				if($i != 0){
 					$out .= " - ";
 				}
-				$out .= "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&action=delete_one_db&db_name=".$dblist[$i]."\">".$dblist[$i]."</a>";
+				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=delete_one_db&db_name=".$dblist[$i]."\">".$dblist[$i]."</a>";
 			}
 			$out .= "<br><br><b><u>".$txt_mysqlmang_add_a_db[$lang]."</u></b>
-		<form action=\"$PHP_SELF\">
+		<form action=\"".$_SERVER["PHP_SELF"]."\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		".$txt_mysqlmang_db_name[$lang]."<input type=\"text\" name=\"new_mysql_database_name\" value=\"\">

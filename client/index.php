@@ -48,7 +48,7 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 	$mypage = $HTML_admin_edit_data;
 
 }else{
-	$HTML_admin_edit_data = "<form action=\"$PHP_SELF\" methode=\"post\">
+	$HTML_admin_edit_data = "<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 <table><tr><td>
 	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"adm_login\" value=\"\">
 </td></tr><tr><td>

@@ -8,11 +8,10 @@ function MTMcalculateLinkTo($entry){
 	global $MTM_curadrTbl;
 	global $MTM_recur_lvl;
 
-	global $PHP_SELF;
 
 	$MTM_curadrTbl[$MTM_recur_lvl] = $entry["arbo"];
 	$entrylink = $entry["link"];
-	$ret .= "$PHP_SELF?mtm_addr=";
+	$ret .= $_SERVER["PHP_SELF"]."?mtm_addr=";
 	for($i=0;$i<=$MTM_recur_lvl;$i++){
 		if($i>0){
 			$ret .= "/";
@@ -126,7 +125,7 @@ function MTMRecursiv($menu){
 
 
 function makeTreeMenu2($menu){
-	global $PHP_SELF;
+	
 	global $MTM_items;
 	global $mtm_addr;
 

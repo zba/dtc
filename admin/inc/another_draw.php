@@ -4,7 +4,6 @@
 // (admin, or user, call it whatever...) //
 ///////////////////////////////////////////
 function drawClientInfo($admin){
-	global $PHP_SELF;
 	global $adm_pass;
 	global $adm_login;
 	global $lang;
@@ -116,7 +115,7 @@ function drawClientInfo($admin){
 			$cmds_txt .= "</table>";
 		}
 
-		$notes_client_txt = "<form action=\"$PHP_SELF\">
+		$notes_client_txt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"id_client\" value=\"$id_client\">
