@@ -25,8 +25,9 @@ $width = 120;
 $height = 48;
 
 $im = ImageCreate ($width, $height) or die ("Cannot Initialize new GD image stream");
-$lightblue_color = ImageColorAllocate ($im, 210, 210, 235);
+$lightblue_color = ImageColorAllocate ($im, 190, 190, 212);
 $black = ImageColorAllocate ($im, 0, 0, 0);
+$white = ImageColorAllocate ($im, 255, 255, 255);
 
 for($m=0;$m<12;$m++){
 	$tr_tbl[$m] = 0;
@@ -41,6 +42,14 @@ if($n!=1)die("Client not found!");
 $c = mysql_fetch_array($r);
 $bpquota = $c["bw_quota_per_month_gb"];
 */
+
+$q = "SELECT * FROM $pro_mysql_client_table WHERE id='".$_REQUEST["cid"]."';";
+//echo $q;
+$r = mysql_query($q)or die("Cannot query $q !");
+$n = mysql_num_rows($r);
+if($n != 1)die("Client not found!");
+$c = mysql_fetch_array($r);
+$bpquota = $c["bw_quota_per_month_gb"] * 1024 * 1024 * 1024;
 
 $q = "SELECT adm_login FROM $pro_mysql_admin_table WHERE id_client='".$_REQUEST["cid"]."';";
 $r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__);
@@ -76,11 +85,32 @@ AND year='$year' AND month='$month';";
 					$a4 = mysql_fetch_array($r4);
 					$tr_tbl[$m] += $a4["bytes_sent"];
 				}
+
+				$q4 = "SELECT transfer FROM $pro_mysql_acc_ftp_table
+WHERE sub_domain='".$a2["name"]."'
+AND year='$year' AND month='$month';";
+				$r4 = mysql_query($q4)or die("Cannot query $q4 in ".__FILE__." line ".__LINE__);
+				$n4 = mysql_num_rows($r4);
+				if($n4 == 1){
+					$a4 = mysql_fetch_array($r4);
+					$tr_tbl[$m] += $a4["transfer"];
+				}
+
+				$q4 = "SELECT smtp_trafic,pop_trafic FROM $pro_mysql_acc_email_table
+WHERE domain_name='".$a2["name"]."'
+AND year='$year' AND month='$month';";
+				$r4 = mysql_query($q4)or die("Cannot query $q4 in ".__FILE__." line ".__LINE__);
+				$n4 = mysql_num_rows($r4);
+				if($n4 == 1){
+					$a4 = mysql_fetch_array($r4);
+					$tr_tbl[$m] += $a4["smtp_trafic"];
+					$tr_tbl[$m] += $a4["pop_trafic"];
+				}
 			}
 		}
 	}
 }
-$bpquota = 1024 * 1024 * 1024;
+//$bpquota = 1024 * 1024 * 1024;
 //$tr_tbl[11] = 512 * 1024 * 1024;
 for($m=0;$m<12;$m++){
 //	echo $m.":".$tr_tbl[$m]."<br>";
@@ -89,6 +119,19 @@ for($m=0;$m<12;$m++){
 	$x2 = $m*10+9;
 	$y2 = $height;
 	imagefilledrectangle ( $im, $x1, $y1, $x2, $y2, $black);
+
+	$month = $cur_month+$m+1;
+	if($month > 12){
+		$month -= 12;
+		$year = $cur_year;
+	}else{
+		$year = $cur_year-1;
+	}
+
+	$month_txt = date("M-Y",mktime(1, 1, 1, $month, 1, $year));
+	imagestringup ( $im, 1, $m*10, $height-6, $month_txt, $white);
+//	imageline ( $im, $x1, 0, $x1, $height, $black);
+	imageline ( $im, $x2, 0, $x2, $height, $white);
 }
 
 
