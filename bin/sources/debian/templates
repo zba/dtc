@@ -91,6 +91,16 @@ Description: Path for hosted domains.
  in your /etc/apache/httpd.conf if you choose
  /var/www/sites as DTC's hosting area.
 
+Template: dtc/conf_chroot_path
+Type: string
+Default: /var/www/chroot
+Description: Path where to build the chroot environment.
+ Where do you want DTC to build the cgi-bin chroot
+ environment? Please note that DTC will do hardlinks
+ to that directory, so the chroot path should be in
+ the same physical device as the path for hosted
+ domains files.
+
 Template: dtc/conf_admlogin
 Type: string
 Default: dtc

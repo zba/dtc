@@ -59,6 +59,8 @@ db_get dtc/conf_ipaddr
 conf_ip_addr=$RET
 db_get dtc/conf_hostingpath
 conf_hosting_path=$RET
+db_get dtc/conf_chroot_path
+conf_chroot_path=$RET
 db_get dtc/conf_hostingpath
 conf_hosting_path=$RET
 db_get dtc/conf_admlogin
