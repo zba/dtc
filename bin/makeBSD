@@ -82,15 +82,16 @@ cat sources/uninstall_deamons.sh >>"dtc/pkg-deinstall"
 
 # Make the md5 sum file in this distinfo
 BSDSUM=`md5sum "dtc-"$VERSION".tar.gz" | cut -f1 -d" "`
-echo -n "MD5 (dtc-"$VERSION".tar.gz) = "$BSDSUM >>dtc/distinfo
+echo "MD5 (dtc-"$VERSION".tar.gz) = "$BSDSUM >>dtc/distinfo
 
 # Make the pkg-plist file
 find share -type f >dtc/pkg-plist.tmp
 find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>dtc/pkg-plist.tmp
 NBR_LINE=`cat dtc/pkg-plist.tmp | wc -l`
 cat dtc/pkg-plist.tmp | head -n $(($NBR_LINE - 1 )) >pkg-plist
+rm dtc/pkg-plist.tmp
 
 # Make the file archive
 tar -czf "dtcBSDport-"$VERSION".tar.gz" dtc
-#rm -rf dtc
+rm -rf dtc
 uuencode "dtcBSDport-"$VERSION".tar.gz" dtc.tgz >"dtcBSDport-"$VERSION".uue"
