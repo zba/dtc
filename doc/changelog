@@ -1,3 +1,5 @@
+2004-08-04: Added some basic start for mailling list manager.
+
 2004-08-03: Version 0.14.0-R1 correct some minor bugs of 0.14.0-R0:
 access.log is now correctly dumped from sql so webalizer stats are now
 working again (was broken only in 0.14.0-R0), in the bandwidth monitor, in
