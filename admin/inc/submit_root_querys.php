@@ -29,6 +29,7 @@ if($_REQUEST["modify_domain_config"]=="Ok"){
 /////////////////////////////////////
 if($_REQUEST["newdomain"] == "Ok"){
 	addDomainToUser($adm_login,$adm_pass,$_REQUEST["newdomain_name"]);
+	triggerDomainListUpdate();
 }
 if($_REQUEST["action"] == "valid_waiting_domain_to_user"){
 	$q = "SELECT * FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
@@ -45,6 +46,7 @@ if($_REQUEST["action"] == "valid_waiting_domain_to_user"){
 	$a = mysql_fetch_array($r);
 
 	addDomainToUser($a["adm_login"],$a["adm_pass"],$pending["domain_name"]);
+	triggerDomainListUpdate();
 
 	$q = "DELETE FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -88,7 +90,10 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	if($delete_directories == true && $conf_demo_version == "no"){
 		system("rm -rf $the_admin_path/$deluserdomain");
 	}
+	triggerDomainListUpdate();
 }
+
+///////////////////////////////////////////////////////////////
 
 function deleteMysqlUserAndDB($mysql_user){
 	global $conf_mysql_db;
@@ -127,6 +132,7 @@ if($_REQUEST["deluserdomain"] != "" && isset($_REQUEST["deluserdomain"])){
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
 	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes' WHERE 1;";
 	mysql_query($adm_query);
+	triggerDomainListUpdate();
 }
 
 ////////////////////////////////////////////////
@@ -171,6 +177,7 @@ if($_REQUEST["action"]=="delete_waiting_user"){
 // action=valid_waiting_user&reqadm_login=tom
 if($_REQUEST["action"]=="valid_waiting_user"){
 	validateWaitingUser($_REQUEST["reqadm_login"]);
+	triggerDomainListUpdate();
 }
 
 if($_REQUEST["delete_admin_user"] != "" && isset($_REQUEST["delete_admin_user"])){
@@ -227,6 +234,7 @@ if($_REQUEST["delete_admin_user"] != "" && isset($_REQUEST["delete_admin_user"])
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
 	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes' WHERE 1;";
 	mysql_query($adm_query);
+	triggerDomainListUpdate();
 }
 
 if($_REQUEST["action"] == "switch_generate_flag"){

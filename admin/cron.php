@@ -42,6 +42,42 @@ echo "Setting-up lock flag\n";
 $query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='inprogress' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
+
+// This function call the apropriate server to tell that this server may have
+// some change in his domain list
+function commitTriggerToRemote($a){
+	$flag = false;
+        $url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"];
+        while($retry < 3 && $flag == false){
+		$lines = file ($url);
+		$nline = sizeof($lines);
+		if(strstr($lines[0],"Successfuly recieved trigger!")){
+			for($j=1;$j<$nline-1;$j++){
+				$rcpthosts_file .= $lines[$j];
+			}
+			$flag = true;
+		}
+		$retry ++;
+		if($flag == false)      sleep(5);
+	}
+	if($flag == false)      return false;
+	else            return $true;
+}
+                
+
+$query = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes' AND status='pending';";
+$r = mysql_query($query)or die("Cannot query \"$query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+$n = mysql_num_rows($r);
+for($i=0;$i<$n;$i++){
+	$a = mysql_fetch_array($r);
+	echo "Triggering the change to backup servers ".$a["server_addr"]." with login ".$a["server_login"]."...";
+	if(commitTriggerToRemote($a)){
+		echo "success!\n";
+	}else{
+		echo "failed!\n";
+	}
+}
+
 $start_stamps = mktime();
 ////////////////////////////////////////////////////////////
 // First find if it's time for long statistic generation. //

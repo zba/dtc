@@ -1,4 +1,11 @@
-17-12-04: V0.16.0-R1
+01-04: V0.16.0-R1
+Added stuff for configuring DTC client session expire time.
+
+Added automatic PayPal payment with IPN (Instant payment
+notification) which makes DTC having IAA (Instant Account
+Activation).
+
+17-12-04:
 Thomas Goirand:
 Added automatic SSL certificate generation durring
 install.

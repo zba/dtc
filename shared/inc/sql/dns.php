@@ -7,8 +7,6 @@
 if($_REQUEST["new_dns_and_mx_config"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
-echo "test";
-
 	$new_dns_1 = $_REQUEST["new_dns_1"];
 	$new_dns_2 = $_REQUEST["new_dns_2"];
 	$new_dns_3 = $_REQUEST["new_dns_3"];
@@ -90,6 +88,7 @@ Server said: <i>" . $regz["response_text"] . "</i>");
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
 
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
+	triggerDomainListUpdate();
 }
 
 ?>
