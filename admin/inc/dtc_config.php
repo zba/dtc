@@ -28,6 +28,12 @@ function drawDTCConfigMenu(){
 	if($sousrub != "zonefile")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "backup")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=backup\">";
+	$out .= "Backup";
+	if($sousrub != "backup")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "path")
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=path\">";
 	$out .= $txt_cfg_path_conf_title[$lang];
@@ -264,8 +270,101 @@ by &quot;|&quot;<br>(leave blank if you don't have backup MX server):</td><td wi
 	".$txt_cfg_slave_dns_ip[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_ip_slavezone_dns_server\" name=\"new_ip_slavezone_dns_server\"><br>
 </td></tr></table>
 ";
-
 	return $out;
+}
+
+function drawBackupConfig(){
+        global $pro_mysql_backup_table;
+
+	$out .= "<h3>Allow the following servers to list this server domain names for doing backup:</h3>";
+	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='grant_access';";
+	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+        $out .= "<table><tr><td>IP address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+	for($i=0;$i<$n;$i++){
+	        $a = mysql_fetch_array($r);
+	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+	        <input type=\"hidden\" name=\"action\" value=\"modify_grant_backup\">
+                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
+	        <tr><td><input type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
+	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
+        }
+        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+        <input type=\"hidden\" name=\"action\" value=\"add_grant_backup\">
+        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+        <tr><td><input type=\"text\" name=\"server_addr\" value=\"\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
+        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
+        $out .= "</table>";
+
+	$out .= "<h3>Act as backup mail server for the following servers:</h3>";
+	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='mail_backup';";
+	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+        $out .= "<table><tr><td>IP address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+	for($i=0;$i<$n;$i++){
+	        $a = mysql_fetch_array($r);
+	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+	        <input type=\"hidden\" name=\"action\" value=\"modify_mail_backup\">
+                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
+	        <tr><td><input type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
+	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
+        }
+        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+        <input type=\"hidden\" name=\"action\" value=\"add_mail_backup\">
+        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+        <tr><td><input type=\"text\" name=\"server_addr\" value=\"\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
+        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
+        $out .= "</table>";
+
+	$out .= "<h3>Act as backup DNS server for the following servers:</h3>";
+	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
+	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+        $out .= "<table><tr><td>IP address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+	for($i=0;$i<$n;$i++){
+	        $a = mysql_fetch_array($r);
+	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+	        <input type=\"hidden\" name=\"action\" value=\"modify_dns_backup\">
+                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
+	        <tr><td><input type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
+	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
+        }
+        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+        <input type=\"hidden\" name=\"action\" value=\"add_dns_backup\">
+        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+        <tr><td><input type=\"text\" name=\"server_addr\" value=\"\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
+        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
+        $out .= "</table>";
+
+	$out .= "<h3>Backup all files to this ftp server each weeks:</h3>";
+        return $out;
 }
 
 function drawDTCpathConfig(){
@@ -401,6 +500,9 @@ function drawDTCConfigForm(){
 	case "zonefile":
 		$global_conf = drawNamedConfig();
 		break;
+        case "backup":
+                $global_conf = drawBackupConfig();
+                break;
 	case "path":
 		$global_conf = drawDTCpathConfig();
 		break;
@@ -414,6 +516,8 @@ function drawDTCConfigForm(){
 }
 
 function saveDTCConfigInMysql(){
+        global $pro_mysql_backup_table;
+
 	global $new_demo_version;
 	global $new_main_site_ip;
 	global $new_site_addrs;
@@ -486,6 +590,78 @@ function saveDTCConfigInMysql(){
 	webmaster_email_addr='".$_REQUEST["new_webmaster_email_addr"]."'
 	WHERE 1 LIMIT 1";
 		break;
+        case "backup":
+                switch($_REQUEST["action"]){
+                case "modify_grant_backup":
+                      switch($_REQUEST["todo"]){
+                      case "del":
+                              $query = "DELETE FROM $pro_mysql_backup_table WHERE id='".$_REQUEST["id"]."';";
+                              break;
+                      case "save":
+                              $query = "UPDATE $pro_mysql_backup_table SET
+                              server_addr='".$_REQUEST["server_addr"]."',
+                              server_login='".$_REQUEST["server_login"]."',
+                              server_pass='".$_REQUEST["server_pass"]."' WHERE id='".$_REQUEST["id"]."';";
+                              break;
+                      default:
+                              break;
+                      }
+                      break;
+                case "add_grant_backup":
+                      $query = "INSERT INTO $pro_mysql_backup_table (server_addr,server_login,server_pass,type)
+                      VALUES('".$_REQUEST["server_addr"]."',
+                      '".$_REQUEST["server_login"]."',
+                      '".$_REQUEST["server_pass"]."',
+                      'grant_access');";
+                      break;
+                case "modify_mail_backup":
+                      switch($_REQUEST["todo"]){
+                      case "del":
+                              $query = "DELETE FROM $pro_mysql_backup_table WHERE id='".$_REQUEST["id"]."';";
+                              break;
+                      case "save":
+                              $query = "UPDATE $pro_mysql_backup_table SET
+                              server_addr='".$_REQUEST["server_addr"]."',
+                              server_login='".$_REQUEST["server_login"]."',
+                              server_pass='".$_REQUEST["server_pass"]."' WHERE id='".$_REQUEST["id"]."';";
+                              break;
+                      default:
+                              break;
+                      }
+                      break;
+                case "add_mail_backup":
+                      $query = "INSERT INTO $pro_mysql_backup_table (server_addr,server_login,server_pass,type)
+                      VALUES('".$_REQUEST["server_addr"]."',
+                      '".$_REQUEST["server_login"]."',
+                      '".$_REQUEST["server_pass"]."',
+                      'mail_backup');";
+                      break;
+                case "modify_dns_backup":
+                      switch($_REQUEST["todo"]){
+                      case "del":
+                              $query = "DELETE FROM $pro_mysql_backup_table WHERE id='".$_REQUEST["id"]."';";
+                              break;
+                      case "save":
+                              $query = "UPDATE $pro_mysql_backup_table SET
+                              server_addr='".$_REQUEST["server_addr"]."',
+                              server_login='".$_REQUEST["server_login"]."',
+                              server_pass='".$_REQUEST["server_pass"]."' WHERE id='".$_REQUEST["id"]."';";
+                              break;
+                      default:
+                              break;
+                      }
+                      break;
+                case "add_dns_backup":
+                      $query = "INSERT INTO $pro_mysql_backup_table (server_addr,server_login,server_pass,type)
+                      VALUES('".$_REQUEST["server_addr"]."',
+                      '".$_REQUEST["server_login"]."',
+                      '".$_REQUEST["server_pass"]."',
+                      'dns_backup');";
+                      break;
+                default:
+                      break;
+                }
+                break;
 	case "path":
 		$query = "UPDATE config SET 
 	site_root_host_path='".$_REQUEST["new_site_root_host_path"]."',
