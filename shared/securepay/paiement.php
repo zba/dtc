@@ -28,13 +28,13 @@ function paynowButton($pay_id,$amount){
 	$out .= "<table width=\"100%\" height=\"1\">";
 	$out .= "<tr><td>Paiement system</td><td>Cost</td><td>Total</td><td>Instant account</td></tr>\n";
 	if($conf_use_paypal == "yes"){
-		$cost = 2;
+		$cost = $amount * 1.04;
 		$total = $cost + $amount;
 		$out .= "<tr><td>".paypalButton($pay_id,$amount,$button_text)."</td>";
 		$out .= "<td>\$$cost</td><td>\$$total</td><td>No</td></tr>\n";
 	}
 	if($conf_use_worldpay == "yes"){
-		$cost = ceil($amount * 4.5 / 100);
+		$cost = $amount * 1.0475 * 1.17;
 		$total = $cost + $amount;
 		$out .= "<tr><td>".worldPayButton($pay_id,$total,$button_text,$button_text)."</td>";
 		$out .= "<td>\$$cost</td><td>\$$total</td><td>No</td></tr>\n";
