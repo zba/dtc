@@ -77,6 +77,7 @@ $dtc_database = array(
 			"site_addrs" => "varchar(255) NOT NULL default '127.0.0.1|192.168.0.1' ",
 			"use_multiple_ip" => "enum('yes','no') NOT NULL default 'yes' ",
 			"addr_mail_server" => "varchar(255) NOT NULL default 'mx.example.com' ",
+			"addr_backup_mail_server" => "varchar(255) NOT NULL ",
 			"webmaster_email_addr" => "varchar(255) NOT NULL default 'postmaster@example.com' ",
 			"addr_primary_dns" => "varchar(255) NOT NULL default 'ns1.example.com' ",
 			"addr_secondary_dns" => "varchar(255) NOT NULL default 'ns2.example.com' ",

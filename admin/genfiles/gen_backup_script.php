@@ -63,7 +63,7 @@ date\n";
 	}
 	fwrite($filep,$backup_net);
 	fclose($filep);
-	chmod("$conf_generated_file_path/$conf_backup_script_path",0750);
+	chmod("$conf_generated_file_path/net_backup.sh",0750);
 	$console .= "Generated net-backup script for $num_generated_vhosts domains !<br>";
 }
 

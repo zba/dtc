@@ -184,6 +184,7 @@ function drawNetworkConfig(){
 
 function drawNamedConfig(){
 	global $conf_addr_mail_server;
+	global $conf_addr_backup_mail_server;
 	global $conf_webmaster_email_addr;
 	global $conf_addr_primary_dns;
 	global $conf_addr_secondary_dns;
@@ -201,6 +202,8 @@ function drawNamedConfig(){
 <table with=\"100%\" height=\"1\">
 <tr><td align=\"right\" nowrap>
 	".$txt_cfg_main_mx_addr[$lang]."</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_addr_mail_server\" name=\"new_addr_mail_server\"><br>
+<tr><td align=\"right\" nowrap>List here your backup MX servers separated
+by &quot;|&quot;<br>(leave blank if you don't have backup MX server):</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_addr_backup_mail_server\" name=\"new_addr_backup_mail_server\"><br>
 </td></tr><tr><td align=\"right\">
 	".$txt_cfg_mail_addr_webmaster[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_webmaster_email_addr\" name=\"new_webmaster_email_addr\"><br>
 </td></tr><tr><td align=\"right\">
@@ -347,7 +350,8 @@ function drawDTCConfigForm(){
 		break;
 	}
 
-	return "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"config\">$global_conf
+	return "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"config\">
+<input type=\"hidden\" name=\"sousrub\" value=\"$sousrub\">$global_conf
 	<center><input type=\"submit\" name=\"install_new_config_values\" value=\"Ok\"></center>
 	</form>";
 
@@ -410,16 +414,17 @@ function saveDTCConfigInMysql(){
 	use_multiple_ip='".$_REQUEST["new_use_multiple_ip"]."',
 	use_nated_vhost='".$_REQUEST["new_use_nated_vhost"]."',
 	nated_vhost_ip='".$_REQUEST["new_nated_vhost_ip"]."',
-	administrative_site='".$_REQUEST["new_administrative_site"]."',
+	administrative_site='".$_REQUEST["new_administrative_site"]."'
 	WHERE 1 LIMIT 1";
 		break;
 	case "zonefile":
 		$query = "UPDATE config SET 
 	addr_mail_server='".$_REQUEST["new_addr_mail_server"]."',
+	addr_backup_mail_server='".$_REQUEST["new_addr_backup_mail_server"]."',
 	addr_primary_dns='".$_REQUEST["new_addr_primary_dns"]."',
 	addr_secondary_dns='".$_REQUEST["new_addr_secondary_dns"]."',
 	ip_slavezone_dns_server='".$_REQUEST["new_ip_slavezone_dns_server"]."',
-	webmaster_email_addr='".$_REQUEST["new_webmaster_email_addr"]."',
+	webmaster_email_addr='".$_REQUEST["new_webmaster_email_addr"]."'
 	WHERE 1 LIMIT 1";
 		break;
 	case "path":
@@ -440,7 +445,7 @@ function saveDTCConfigInMysql(){
 	named_zonefiles_path='".$_REQUEST["new_named_zonefiles_path"]."',
 	backup_script_path='".$_REQUEST["new_backup_script_path"]."',
 	bakcup_path='".$_REQUEST["new_bakcup_path"]."',
-	webalizer_stats_script_path='".$_REQUEST["new_webalizer_stats_script_path"]."',
+	webalizer_stats_script_path='".$_REQUEST["new_webalizer_stats_script_path"]."'
 	WHERE 1 LIMIT 1";
 		break;
 	}

@@ -16,6 +16,7 @@ function named_generate(){
 	global $conf_addr_primary_dns;
 	global $conf_addr_secondary_dns;
 	global $conf_addr_mail_server;
+	global $conf_addr_backup_mail_server;
 	global $conf_ip_slavezone_dns_server;
 
 	global $conf_generated_file_path;
@@ -82,6 +83,15 @@ function named_generate(){
 
 		$more_mx_server = "";
 		if($row["other_mx"] == "default"){
+			if($conf_addr_backup_mail_server != ""){
+				$all_mx = explode("|",$conf_addr_backup_mail_server);
+				$nbr_other_mx = sizeof($all_mx);
+				$MX_number = 10;
+				for($z=0;$z<$nbr_other_mx;$z++){
+					$more_mx_server .= "@	IN	MX	".$MX_number."	".$all_mx[$z].".\n";
+					$MX_number += 5;
+				}
+			}
 		}else{
 			$all_mx = explode("|",$row["other_mx"]);
 			$nbr_other_mx = sizeof($all_mx);

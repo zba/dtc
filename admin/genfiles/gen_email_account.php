@@ -32,6 +32,7 @@ function mail_account_generate(){
 	$virtualdomains_file = "";
 	$poppasswd_file = "";
 	$assign_file = "";
+	$more_rcpt = "";
 
 	$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login;";
 	$result = mysql_query ($query)or die("Cannot execute query : \"$query\"");
@@ -60,6 +61,7 @@ function mail_account_generate(){
 			$domain_qmail_name = strtr($domain_full_name, ".", "-");
 			$rcpthosts_file .= "$domain_full_name\n";
 			$virtualdomains_file .= "$domain_full_name:$domain_qmail_name\n";
+			$more_rcpt .= "$domain_full_name\n";
 
 			$emails = $domain["emails"];
 			$nbr_boites = sizeof($emails);
@@ -91,6 +93,10 @@ function mail_account_generate(){
 
 	$fp = fopen ( "$conf_generated_file_path/$conf_qmail_assign_path", "w");
 	fwrite ($fp,$assign_file);
+	fclose($fp);
+
+	$fp = fopen ( "$conf_generated_file_path/morercpthosts", "w");
+	fwrite ($fp,$more_rcpt);
 	fclose($fp);
 }
 
