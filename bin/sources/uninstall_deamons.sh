@@ -35,7 +35,7 @@ fi
 if grep "Configured by DTC" $PATH_HTTPD_CONF
 then
 	echo "===> Uninstalling inclusion from httpd.conf"
-	if grep "Configured by DTC v0.10"  >/dev/null 2>&1
+	if grep "Configured by DTC v0.10" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		grep -v "Configured by DTC" $PATH_HTTPD_CONF | grep -v "Include $PATH_DTC_ETC/vhosts.conf" >/tmp/dtc_uninstall.httpd.conf
 		cp -f $PATH_HTTPD_CONF $PATH_HTTPD_CONF.DTC.removed
