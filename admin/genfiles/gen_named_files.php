@@ -191,6 +191,22 @@ $more_mx_server
 		}
 	}
 
+	// Get all domains for wich we will act as backup NS
+	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
+	$r = mysql_query($q)or die("Cannot query $q ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$lines = file ('http://'.$a["server_addr"].'/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"]);
+		$nline = sizeof($lines);
+		if(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
+			strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>"){
+			for($j=1;$j<$nline-1;$j++){
+				$rcpthosts_file .= $lines[$j];
+			}
+		}
+	}
+
 	// Write of the master zone file
 	$filep = fopen("$conf_generated_file_path/$conf_named_path", "w+");
 	if( $filep == NULL){

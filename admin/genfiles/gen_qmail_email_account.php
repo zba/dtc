@@ -19,6 +19,7 @@ function mail_account_generate_qmail(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
 	global $pro_mysql_subdomain_table;
+	global $pro_mysql_backup_table;
 
 	global $console;
 
@@ -78,6 +79,23 @@ function mail_account_generate_qmail(){
 			}
 		}
 	}
+
+	// Get all domains from the servers for wich we act as backup MX
+	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='mail_backup';";
+	$r = mysql_query($q)or die("Cannot query $q ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$lines = file ('http://'.$a["server_addr"].'/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"]);
+		$nline = sizeof($lines);
+		if(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
+			strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>"){
+			for($j=1;$j<$nline-1;$j++){
+				$rcpthosts_file .= $lines[$j];
+			}
+		}
+	}
+
 	$assign_file .= ".\n";
 	$fp = fopen ( "$conf_generated_file_path/$conf_qmail_rcpthost_path", "w");
 	fwrite ($fp,$rcpthosts_file);
