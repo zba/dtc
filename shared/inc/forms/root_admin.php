@@ -81,7 +81,7 @@ function drawEditAdmin($admin){
 	$url = "".$_SERVER["PHP_SELF"]."?delete_admin_user=$adm_login";
 	$confirmed_url = dtcJavascriptConfirmLink($txt_del_user_confirm[$lang],$url);
 	$domain_conf = "<a href=\"$confirmed_url\"><b>".$txt_del_user[$lang]."</b></a><br><br>";
-	if(isset($data){
+	if(isset($data)){
 		$domain_conf .= "<b><u>".$txt_del_user_domain[$lang]."</u><br>";
 		$nbr_domain = sizeof($data);
 		for($i=0;$i<$nbr_domain;$i++){
