@@ -1,4 +1,3 @@
-#!/usr/bin/php4
 <?php
 
 echo "==> Restor DB script for DTC\n";
