@@ -110,7 +110,7 @@ else
 		sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	else
-		if grep "LoadModule sql_log_module" $PATH_HTTPD_CONF >/dev/null 2>&1
+		if grep "LoadModule log_sql_module" $PATH_HTTPD_CONF >/dev/null 2>&1
 		then
 			echo " ok!"
 		else
@@ -120,7 +120,6 @@ else
 				sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF >$TMP_FILE
 				cat <$TMP_FILE >$PATH_HTTPD_CONF
 			else
-				echo "!!! sql_log_module for apache not present, please install it or run apacheconfig !!!"
 				echo "!!! sql_log_module for apache not present !!!"
 				echo "please install it or run apacheconfig"
 				echo "or add the following type directive"

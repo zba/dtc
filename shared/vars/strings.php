@@ -684,7 +684,10 @@ $txt_draw_tatabase_your_list = array(
 $txt_mysqlmang_nouser_by_that_name = array(
         "fr" => "Il n'y a pas d'utilisateur ayant ce nom dans
 la table User de la base de donnie mysql. Cliquez <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">ici</a>
+href=\"".
+$_SERVER["PHP_SELF"].
+"?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">
+ici</a>
 pour ajouter cet utilisateur comme compte mysql (mjme mot de passe que pour
 DTC).",
         "en" => "There is no user by that name in the mysql database.
