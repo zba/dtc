@@ -1,4 +1,8 @@
 V0.17.0-R3
+The panel can now install (almost) smoothly under newest FreeBSD
+5.3, thanks to users reporting in dtc forums. I've commited the
+port and it's waiting for addition.
+
 Changed size of ip of subdomain to 255, now you can use it
 as a CNAME value. The entered value is checked for resolvability
 before entering the database.
