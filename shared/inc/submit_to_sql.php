@@ -305,7 +305,7 @@ if($_REQUEST["subdomaindefault"] == "Ok"){
 
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes'");
 }
-// adm_login=test&adm_pass=test&addrlink=test.com%2Fsubdomains&edit_domain=test.com&whatdoiedit=subdomains&subdomaindefault_name=www&delsubdomain_name=blah&subdomain_name=www&edit_a_subdomain=www&newsubdomain_ip=123
+// addrlink=example.com%2Fsubdomains&edit_domain=example.com&whatdoiedit=subdomains&subdomaindefault_name=www&delsubdomain_name=dtc&
 if($_REQUEST["edit_one_subdomain"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	if(!checkSubdomainFormat($_REQUEST["subdomain_name"])){
@@ -315,14 +315,22 @@ if($_REQUEST["edit_one_subdomain"] == "Ok"){
 	if(!isIP($newsubdomain_ip)){
 		$newsubdomain_ip = "default";
 	}
+// =yes&webalizer=yes&w3_alias=yes
+	if($_REQUEST["register_globals"] == "yes")	$reg_globs = ", register_globals='yes'";
+	else		$reg_globs = ", register_globals='no'";
+	if($_REQUEST["webalizer"] == "yes")	$webalizer = ", webalizer_generate='yes'";
+	else		$webalizer = ", webalizer_generate='no'";
+	if($_REQUEST["w3_alias"] == "yes")	$w3alias = ", w3_alias='yes'";
+	else		$w3alias = ", w3_alias='no'";
+	$add_vals .= $reg_globs.$webalizer.$w3alias;
 	// Update the flag so we regenerate the serial for bind
 	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
 
 	if(isFtpLogin($_REQUEST["subdomain_dynlogin"]) && isDTCPassword($_REQUEST["subdomain_dynpass"])){
-		$add_vals = ", login='".$_REQUEST["subdomain_dynlogin"]."', pass='".$_REQUEST["subdomain_dynpass"]."'";
+		$add_vals .= ", login='".$_REQUEST["subdomain_dynlogin"]."', pass='".$_REQUEST["subdomain_dynpass"]."'";
 	}else{
-		$add_vals = ", login=NULL, pass=NULL ";
+		$add_vals .= ", login=NULL, pass=NULL ";
 	}
 	$domupdate_query = "UPDATE $pro_mysql_subdomain_table SET ip='".$_REQUEST["newsubdomain_ip"]."'$add_vals WHERE domain_name='$edit_domain' AND subdomain_name='".$_REQUEST["subdomain_name"]."' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");

@@ -643,7 +643,7 @@ subdomain to point to it. First, enter login and password here:</td></tr>";
 		}
 		$txt .= "<tr><td align=\"right\">Use register_globals=1:</td>";
 		$txt .= "<td>Yes<input type=\"radio\" name=\"register_globals\" value=\"yes\" $checked_yes>
-No<input type=\"radio\" name=\"register_globals\" value=\"yes\" $checked_no></td></tr>";
+No<input type=\"radio\" name=\"register_globals\" value=\"no\" $checked_no></td></tr>";
 		if($webalizer_to_edit == "yes"){
 			$checked_yes = " checked";
 			$checked_no = "";
@@ -653,7 +653,7 @@ No<input type=\"radio\" name=\"register_globals\" value=\"yes\" $checked_no></td
 		}
 		$txt .= "<tr><td align=\"right\">Generate webalizer stats each weeks:</td>";
 		$txt .= "<td>Yes<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_yes>
-No<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_no></td></tr>";
+No<input type=\"radio\" name=\"webalizer\" value=\"no\" $checked_no></td></tr>";
 		if($w3_alias_to_edit == "yes"){
 			$checked_yes = " checked";
 			$checked_no = "";
@@ -663,7 +663,7 @@ No<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_no></td></tr>"
 		}
 		$txt .= "<tr><td align=\"right\">Make a www.".$_REQUEST["edit_a_subdomain"]." alias:</td>";
 		$txt .= "<td>Yes<input type=\"radio\" name=\"w3_alias\" value=\"yes\" $checked_yes>
-No<input type=\"radio\" name=\"w3_alias\" value=\"yes\" $checked_no></td></tr>";
+No<input type=\"radio\" name=\"w3_alias\" value=\"no\" $checked_no></td></tr>";
 //		$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
 //			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
 //			$register_globals_to_edit = $subdomains[$i]["register_globals"];
