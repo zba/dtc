@@ -299,12 +299,23 @@ function drawPercentBar($value,$max,$double="yes"){
 			$altn .= "-";
 		}
 	}
+
+	if($percent_graf < (60*$dbl)){
+		$color = "green";
+	}else if($percent_graf < (75*$dbl)){
+		$color = "yellow";
+	}else if($percent_graf < (90*$dbl)){
+		$color = "orange";
+	}else{
+		$color = "red";
+	}
+
 	$table = "<table cellpadding=\"0\" cellspacing=\"0\" height=\"1\">
 <tr>
-	<td width=\"4\" height=\"16\"><img width=\"4\" height=\"16\" src=\"gfx/bar/start.png\"></td>
-	<td width=\"$percent_graf\" height=\"16\" background=\"gfx/bar/middle_s.png\"><img width=\"$percent_graf\" alt=\"$alts\" height=\"16\" src=\"gfx/bar/middle_s.png\"></td>
-	<td width=\"$percent_graf2\" height=\"16\" background=\"gfx/bar/middle_n.png\"><img width=\"$percent_graf2\" alt=\"$altn\" height=\"16\" src=\"gfx/bar/middle_n.png\"></td>
-	<td width=\"4\" height=\"16\"><img width=\"4\" height=\"16\" src=\"gfx/bar/end.png\"></td>
+	<td width=\"2\" height=\"13\"><img width=\"2\" height=\"13\" src=\"gfx/bar/start.gif\"></td>
+	<td width=\"$percent_graf\" height=\"13\" background=\"gfx/bar/middle_$color.gif\"><img width=\"$percent_graf\" alt=\"$alts\" height=\"13\" src=\"gfx/bar/middle_$color.gif\"></td>
+	<td width=\"$percent_graf2\" height=\"13\" background=\"gfx/bar/middle_umpty.gif\"><img width=\"$percent_graf2\" alt=\"$altn\" height=\"13\" src=\"gfx/bar/middle_umpty.gif\"></td>
+	<td width=\"2\" height=\"16\"><img width=\"2\" height=\"13\" src=\"gfx/bar/end.gif\"></td>
 	<td>".$percent_val."%</td></tr>
 </table>";
 	return $table;
