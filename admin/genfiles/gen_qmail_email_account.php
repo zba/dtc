@@ -52,10 +52,14 @@ function mail_account_generate_qmail(){
 			die("Error fetching admin : $error");
 		}
 		$info = $admin["info"];
-		$data = $admin["data"];
 
+		if(isset($admin["data"])){
+			$data = $admin["data"];
+			$nbr_domain = sizeof($data);
+		}else{
+			$nbr_domain = 0;
+		}
 
-		$nbr_domain = sizeof($data);
 		for($j=0;$j<$nbr_domain;$j++){
 			$domain = $data[$j];
 			$domain_full_name = $domain["name"];
