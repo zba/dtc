@@ -1,4 +1,36 @@
-04-10-04:
+09-10-04: V0.15.0-R8
+Thomas:
+Added rotating passwords. Because some browsers can store
+the login/passwords sent in DTC urls, now a random pass with
+expiration replace customer's pass. It is still possible to
+call any URL of the customer interface using BOTH two kind
+of pass, so customers can continue to script the client side
+using the following type of code:
+
+<?
+function DTCnewEmail($email,$pass,$domain){
+	$url = "https://dtc.gplhost.com/dtc/index.php?".
+		"adm_login=dtc".
+		"&adm_pass=YourAdminPass".
+		"&addrlink=".$domain."%2Fmailboxs".
+		"&edit_domain=$domain".
+		"&whatdoiedit=mails".
+		"&newmail_login=$email".
+		"&newmail_redirect1=".
+		"&newmail_pass=$pass".
+		"&newmail_redirect2=".
+		"&newmail_deliver_localy=yes".
+		"&addnewmailtodomain=Ok";
+	file($url);
+}
+?>
+
+but the new code just replace the adm_pass with something
+random in the forms and URL of the customer's GUI... Those
+are then compared to the stored value in SQL with an expiration
+timestamp.
+
+04-10-04: V0.15.0-R7
 Damien:
 Added a flag in config to show/hide passwords in the
 interface.
