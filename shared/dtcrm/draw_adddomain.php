@@ -15,6 +15,8 @@ function drawAdminTools_AddDomain($admin){
 	global $whois_forwareded_params;
 	global $form_period_popup;
 	global $conf_webmaster_email_addr;
+	global $pro_mysql_pending_queries_table;
+	global $pro_mysql_domain_table;
 
 	global $pro_mysql_handle_table;
 	$out .= "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
@@ -57,7 +59,18 @@ name registration, please write to:<br>
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 <input type=\"submit\" value=\"ok\"></form>";
 		}
+		if(!isHostname($_REQUEST["domain_name"])){
+			return "Domain name is not in correct format, please select another name.";
+		}
+		$q = "SELECT * FROM $pro_mysql_domain_table WHERE name='".$_REQUEST["domain_name"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n > 0){
+			return "Domain name already hosted here, please select another name.";
+		}
 		if($admin["info"]["allow_add_domain"] == "check"){
+			$q = "INSERT INTO $pro_mysql_pending_queries_table (adm_login,domain_name,date) VALUES ('$adm_login','".$_REQUEST["domain_name"]."','".date("Y-m-d H:i")."');";
+			$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			return "<br><u><b>Your domain name will be soon:</b></u><br>
 Soon an administrator will have a look to your request and validate the
 addition of this domain name to your account. You curently don't have enough
@@ -72,6 +85,7 @@ $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 <input type=\"submit\" value=\"ok\"></form>
 ";
 		}
+		addDomainToUser($adm_login,$adm_pass,$_REQUEST["domain_name"]);
 		return "<br><u><b>Your domain name is now ready:</b></u><br>
 Now you can go to check it's configuration by cliking here:<br>
 <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=".$_REQUEST["domain_name"]."\">".$_REQUEST["domain_name"]."</a><br>

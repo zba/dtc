@@ -251,6 +251,20 @@ function registration_form(){
 	global $txt_draw_client_info_state;
 	global $txt_draw_client_info_country;
 
+	global $pro_mysql_product_table;
+
+	$q = "SELECT * FROM $pro_mysql_product_table";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if($a["id"] == $_REQUEST["product_id"]){
+			$prod_popup .= "<option value=\"".$a["id"]."\" selected>".$a["name"]." / ".$a["price_dollar"]."\$</option>\n";
+		}else{
+			$prod_popup .= "<option value=\"".$a["id"]."\">".$a["name"]." / ".$a["price_dollar"]."\$</option>\n";
+		}
+	}
+
 	$login_info = "<table>
 <tr>
 	<td align=\"right\">".$txt_login_login[$lang]."</td>
@@ -328,7 +342,8 @@ function registration_form(){
 <input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>
 <tr>
-	<td>Login info:$login_skined</td>
+	<td>Product:<select name=\"product_id\">$prod_popup</select><br>
+Login info:$login_skined</td>
 	<td>Client info:$client_skined</td>
 	<td>Client info:$addr_skined</td>
 </tr></table>

@@ -18,8 +18,8 @@ $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$la
 $reguser = register_user();
 if($reguser["err"] == 0){
 	$form = $reguser["mesg"]."<br><h4>Registration successfull!</h4>
-Registration done! Please wait until a confirmation
-email message arrives at the mailbox you provided.<br><br>";
+Please now click on the following button to go for paiment:<br>
+<br>";
 }else if($reguser["err"] == 1){
 	$form = registration_form();
 }else{

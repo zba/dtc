@@ -30,7 +30,29 @@ if($_REQUEST["modify_domain_config"]=="Ok"){
 if($_REQUEST["newdomain"] == "Ok"){
 	addDomainToUser($adm_login,$adm_pass,$_REQUEST["newdomain_name"]);
 }
+if($_REQUEST["action"] == "valid_waiting_domain_to_user"){
+	$q = "SELECT * FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
+	echo $q;
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1)	die("ID of pending domain not found!");
+	$pending = mysql_fetch_array($r);
 
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$pending["adm_login"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1)	die("adm_login of pending domain not found!");
+	$a = mysql_fetch_array($r);
+
+	addDomainToUser($a["adm_login"],$a["adm_pass"],$pending["domain_name"]);
+
+	$q = "DELETE FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+}
+if($_REQUEST["action"] == "delete_waiting_domain_to_user"){
+	$q = "DELETE FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+}
 function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directories = false){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_pop_table;
