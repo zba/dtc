@@ -1,6 +1,6 @@
 <?php
 // Automatic database array generation for DTC
-// Generation date: 2004-09(Sep)-23 Thursday 20:09
+// Generation date: 2004-09(Sep)-24 Friday 15:20
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
@@ -153,7 +153,8 @@ $dtc_database = array(
 			"other_mx" => "varchar(255) NOT NULL default 'default' ",
 			"whois" => "enum('here','away','linked') NOT NULL default 'away' ",
 			"hosting" => "enum('here','away') NOT NULL default 'here' ",
-			"du_stat" => "bigint(20) NOT NULL default '0' "
+			"du_stat" => "bigint(20) NOT NULL default '0' ",
+			"gen_unresolved_domain_alias" => "enum('yes','no') NOT NULL default 'no' "
 			),
 		"keys" => array(
 			"name" => "(name)"
