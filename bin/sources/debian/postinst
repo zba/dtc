@@ -114,13 +114,16 @@ fi
 
 # now update the pear modules if you have the "pear" installed
 # since PHP >= 4.3.0 doesn't come with Crypt_CBC that OpenSRS needs
+if [ ""$TMP = "" ]; then
+	TMP=/tmp
+fi
 if [ -e /usr/bin/pear ]
 then
 	echo "Checking pear installation"
-	/usr/bin/pear upgrade Console_Getopt 2>&1 | echo
-	/usr/bin/pear upgrade-all 2>&1 | echo
-	/usr/bin/pear install Crypt_CBC | echo
-	/usr/bin/pear install Auth_SASL | echo
+	/usr/bin/pear upgrade Console_Getopt > $TMP/pear.install
+	/usr/bin/pear upgrade-all >> $TMP/pear.install
+	/usr/bin/pear install Crypt_CBC >> $TMP/pear.install
+	/usr/bin/pear install Auth_SASL >> $TMP/pear.install
 fi
 
 # Changing root password of mysql
