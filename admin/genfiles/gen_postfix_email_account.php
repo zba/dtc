@@ -12,8 +12,13 @@
  * /usr/share/dtc/etc/postfix_vmailbox                      *
  * emailaddress@domain.com	dtc/domain/Mailboxs/<emailaddress>/Maildir/
  *                                            *
- * /usr/share/dtc/etc/postfix_virtual_uid_mapping           *
- * emailaddress@domain.com	65534         *
+ * /usr/share/dtc/etc/postfix_virtual_uid_mapping           
+ * emailaddress@domain.com	65534         
+ *
+ * /usr/share/dtc/etc/postfix_relay_domains
+ * domain.name
+ * domain2.name
+ *
  **********************************************/
 
 function mail_account_generate_postfix(){
@@ -36,12 +41,15 @@ function mail_account_generate_postfix(){
 	$conf_postfix_vmailbox_path = $conf_generated_file_path . "/postfix_vmailbox";
 	$conf_postfix_virtual_uid_mapping_path = $conf_generated_file_path . "/postfix_virtual_uid_mapping";
 
+	$conf_postfix_relay_domains_path = $conf_generated_file_path . "/postfix_relay_domains";
+
 	// now for our variables to write out the db info to
 
 	$domains_file = "";
 	$domains_postmasters_file = "";
 	$vmailboxes_file = "";
 	$uid_mappings_file = "";
+	$relay_domains_file = "";
 
 	// go through each admin login and find the domains associated 
 	$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login;";
@@ -68,7 +76,14 @@ function mail_account_generate_postfix(){
 		for($j=0;$j<$nbr_domain;$j++){
 			$domain = $data[$j];
 			$domain_full_name = $domain["name"];
-			$domains_file .= "$domain_full_name virtual\n";
+			//if we are primary mx, add to domains
+			//else add to relay
+			if ($domain["primary_mx"] == "" || $domain["primary_mx"] == "default")
+			{
+				$domains_file .= "$domain_full_name virtual\n";
+			} else {
+				$relay_domains_file .= "$domain_full_name\n";
+			}
 			$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
 			$emails = $domain["emails"];
 			$nbr_boites = sizeof($emails);
@@ -115,6 +130,8 @@ function mail_account_generate_postfix(){
 	}
 	$assign_file .= ".\n";
 
+	$relay_domains_file .= get_remote_mail_domains();
+
 	//write out our config files
 	$fp = fopen ( "$conf_postfix_virtual_mailbox_domains_path", "w");
 	fwrite($fp, $domains_file);
@@ -131,6 +148,11 @@ function mail_account_generate_postfix(){
 	$fp = fopen ( "$conf_postfix_virtual_uid_mapping_path", "w");
 	fwrite($fp, $uid_mappings_file);
 	fclose($fp);
+
+	$fp = fopen ( "$conf_postfix_relay_domains_path", "w");
+	fwrite($fp, $relay_domains_file);
+	fclose($fp);
+
 
 	//now that we have our base files, go and rebuild the db's
 	system("/usr/sbin/postmap $conf_postfix_virtual_mailbox_domains_path");

@@ -476,6 +476,7 @@ virtual_minimum_uid = 100
 virtual_uid_maps = static:65534
 virtual_gid_maps = static:65534
 virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
+relay_domains = $PATH_DTC_ETC/postfix_relay_domains
 virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
