@@ -124,7 +124,7 @@ else
 	  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
 	  /lib/libncurses.so.5 /usr/lib/libz.so.1 \
 	  /lib/librt.so.1 /lib/libpthread.so.0 \
-	  /lib/libattr.so.1 /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+	  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
 	if [ -e /usr/lib/libmagic.so.1 ]
 	then
 		cp -pf /usr/lib/libmagic.so.1 lib/
