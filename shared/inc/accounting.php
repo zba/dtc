@@ -1,3 +1,4 @@
+
 <?
 
 function mysql_table_exists($dbname,$tableName){
@@ -288,7 +289,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 					//check_sum($db_select_name,$selected_month_start,$selected_month_end,$domain,$vhost);
 					$query_del = "DELETE FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 					mysql_select_db("apachelogs");
-					//mysql_query($query_del) or die("Cannot execute query \"$query_del\" !!! ".mysql_error());
+					mysql_query($query_del) or die("Cannot execute query \"$query_del\" !!! ".mysql_error());
 				}
 			}
 			$start_month = 1;
