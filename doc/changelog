@@ -1,4 +1,7 @@
 V0.17.0-R2
+DTC now restarts proftpd, so it's up and working without worry
+after a fresh install.
+
 The installer now removes one temp install file that was not removed.
 
 DTC now has support for TXT records. 2 root records
