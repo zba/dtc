@@ -8,6 +8,9 @@
 function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_domain_table;
+
+
+
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);

@@ -1,8 +1,12 @@
 04-10-04:
+Thomas & damien:
+Now using installer to create .htpasswd and .htaccess of
+the root consol.
+
+Thomas:
 Checked SASL and patched for whenever a box has no support
-for it (Damien: how to install that in woody? How does it
-works for the final customer? Just add "secure auth" in
-outlook and that's it?).
+for it (Damien: how to install that in woody? For final
+customer, just add "secure auth" in outlook and that's it!
 
 Added a flag in installer for verbosivity, it was NOT
 possitble to continue like that! :)0
@@ -12,8 +16,8 @@ Damien:
 Postfix now has SASL SMTP AUTH support, and the sasldb file is
 generated along with the rest of the postfix generation.
 
-Also, a few tidy ups in regards to tmp file usage, and also
-other bashisms removed.
+Also, a few tidy ups in regards to tmp file usage, it's now
+using mktemp, and also other bashisms removed.
 
 Thomas & damien:
 Resolved pear install under Debian by a stupidly long php version
