@@ -19,7 +19,35 @@ $anotherLanguageSelection = anotherLanguageSelection();
 $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
 if($_REQUEST["action"] == "return_from_pay"){
-	print_r($_REQUEST);
+	// Here are paypal return parameters:
+	// [action] => return_from_pay
+	// [regid] => 50
+	// [payment_date] => 06:56:27 Jan 06, 2005 PST
+	// [txn_type] => web_accept
+	// [last_name] => nymous
+	// [payment_gross] => 26.21
+	// [mc_currency] => USD
+	// [item_name] => Multidomain Shared hosting 1GB
+	// [payment_type] => instant
+	// [business] => shop@gplhost.fr
+	// [verify_sign] => AFtU8hb3ziAYPkUJ8R4GQPFdbI4aA9TkFyW9lEc1zVI4hyqkw0ZBOvm2
+	// [payer_status] => verified
+	// [test_ipn] => 1
+	// [payer_email] => client@gplhost.fr
+	// [tax] => 0.00
+	// [txn_id] => 0NW35863KJ3304804
+	// [first_name] => ano
+	// [quantity] => 1
+	// [receiver_email] => shop@gplhost.fr
+	// [payer_id] => CHVT9B3VUVULC
+	// [receiver_id] => 2F3WTPYL6SJM2
+	// [item_number] => 13
+	// [payment_status] =>
+	// Completed [mc_fee] => 1.32
+	// [payment_fee] => 1.32
+	// [mc_gross] => 26.21
+	// [custom] =>
+	// [notify_version] => 1.6
 	$form = "Return from paiment API";
 }else{
 	$reguser = register_user();
