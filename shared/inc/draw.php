@@ -162,7 +162,7 @@ function drawAdminTools($admin){
 
 	$web_editor = "";
 
-	if($addrlink != "" && isset($addrlink)){
+	if(isset($addrlink) && $addrlink != ""){
 		$num_domain = AdminTool_findDomainNum($edit_domain,$admin_data);
 		$eddomain = @$admin_data[$num_domain];
 
