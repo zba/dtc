@@ -11,6 +11,11 @@ function validateWaitingUser($waiting_login){
 	global $txt_userwaiting_account_activated_subject;
 	global $txt_userwaiting_account_activated_text_header;
 
+	global $conf_site_root_host_path;
+	global $conf_demo_version;
+	global $conf_use_ssl;
+	global $conf_webmaster_email_addr;
+
 	// Check if there is a user by that name
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$waiting_login';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -37,7 +42,7 @@ function validateWaitingUser($waiting_login){
 	}
 
 	// Get the informations from the product table
-	$q2 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."";
+	$q2 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."'";
 	$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n2 = mysql_num_rows($r2);
 	if($n2 != 1)die("I can't find the product in the table line: ".__LINE__." file: ".__FILE__."!");
@@ -51,7 +56,7 @@ disk_quota_mb,bw_quota_per_month_gb) VALUES ('','".$a["iscomp"]."',
 '".addslashes($a["comp_name"])."','".addslashes($a["family_name"])."','".addslashes($a["first_name"])."',
 '".addslashes($a["addr1"])."','".addslashes($a["addr2"])."','".addslashes($a["addr3"])."','".addslashes($a["city"])."',
 '".addslashes($a["zipcode"])."','".addslashes($a["state"])."','".$a["country"]."','".addslashes($a["phone"])."',
-'".$a["fax"]."','".$a["email"]."','".$a2["quota_disk"]."','".$a2["bandwidth"]/1024."');";
+'".$a["fax"]."','".$a["email"]."','".$a2["quota_disk"]."','". $a2["bandwidth"]/1024 ."');";
 	$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$cid = mysql_insert_id();
 

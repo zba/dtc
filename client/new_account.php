@@ -55,12 +55,12 @@ if($_REQUEST["action"] == "return_from_pay"){
 		$form .= "Cannot reselect transaction: registration failed!";
 	}else{
 		$a = mysql_fetch_array($r);
-		$form .= "<h3>Your transaction status is now:</h3>";
+		$form .= "<h2>Your transaction status is now:</h2>";
 		if($a["valid"] != "yes"){
-			$form .= "<font color=\"red\">NOT VALIDATED</font><br>
+			$form .= "<h3><font color=\"red\">NOT VALIDATED</font></h3>
 			That might need that your payment has been canceled or that it is still being proceed.
-			If you have confirmed the payment then check a bit later here. If the payment status
-			was to stay like that, please contact customer support.";
+			If you have confirmed the payment then check a bit later here.<br><br>
+			If the payment status was to stay like that, please contact customer support.";
 		}else{
 			$q2 = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='".$_REQUEST["regid"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -69,8 +69,8 @@ if($_REQUEST["action"] == "return_from_pay"){
 				$form .= "Cannot reselect user: registration failed!";
 			}else{
 				$a2 = mysql_fetch_array($r2);
-				
-				$form .= "<font color=\"green\">TRASNACTION FINISHED AND APPROVED</font><br>
+				validateWaitingUser($a2["reqadm_login"]);
+				$form .= "<h3><font color=\"green\">TRASNACTION FINISHED AND APPROVED</font></h3>
 				Your account has just been created. Please login <a href=\"/dtc\">here</a> to
 				start using your account.";
 			}
