@@ -50,7 +50,8 @@ $form_start
 	if($_REQUEST["add_domain_type"] == "hosting"){
 		// The don't want name registration or transfer,
 		// Simply add the domain.
-		return "TODO !";
+		return "To have a new domain name to host without domain
+name registration, please write to: <a href=\"info@gplhost.com?subject=More domains\">info@gplhost.com</a>";
 	}
 
 	// Registration or domain transfer ?
@@ -98,13 +99,20 @@ Have another try:<br>$form_start $form_enter_domain_name</form>";
 
 	// DOMAIN IS AVAILABLE, PROCEED DO REGISTRATION
 	$out .= "Domain name <b>$fqdn</b> is available for registration.<br><br>
-<i><u>Step 2: Enter whois informations</u></i><br><br>
+<i><u>Step 2: Enter whois informations</u></i><br>
 ";
+//http://dtc.example.com/dtc/index.php?adm_login=dtc&adm_pass=bemybest&
+//addrlink=myaccount%2Fadddomain&
+//action=dtcrm_add_domain&add_domain_type=domreg&add_regortrans=register&
+//toreg_domain=yugluxrfvcd&toreg_extention=.com&
+//dtcrm_owner_hdl=1&dtcrm_billing_hdl=1&dtcrm_admin_hdl=1&
+//toreg_dns1=default&toreg_dns2=default&
+//toreg_period=1
 	if(!isset($_REQUEST["dtcrm_owner_hdl"]) || $_REQUEST["dtcrm_owner_hdl"] == "" ||
 		!isset($_REQUEST["dtcrm_admin_hdl"]) || $_REQUEST["dtcrm_admin_hdl"] == "" ||
 		!isset($_REQUEST["dtcrm_billing_hdl"]) || $_REQUEST["dtcrm_billing_hdl"] == "" ||
 		!isset($_REQUEST["toreg_dns1"]) || $_REQUEST["toreg_dns1"] == "" ||
-		isset($_REQUEST["toreg_dns2"]) || $_REQUEST["toreg_dns2"] != "" ||
+		!isset($_REQUEST["toreg_dns2"]) || $_REQUEST["toreg_dns2"] == "" ||
 		$_REQUEST["toreg_period"] < 1 || $_REQUEST["toreg_period"] > 10){
 
 		$out .= "Please select the 3 contact handles you want to use for registering that
@@ -123,7 +131,7 @@ Select how long you want to register this domain name:<br>
 <option value=\"8\">8 years</option>
 <option value=\"9\">9 years</option>
 <option value=\"10\">10 years</option>
-</select><br>
+</select><br><br>
 <input type=\"submit\" value=\"Ok\">
 </form>
 ";
@@ -187,12 +195,6 @@ $form_start
 Server said: <i>" . $regz["response_text"] . "</i>";
 		return $out;
 	}
-	$out .= "<font color=\"green\"><b>Registration succesfull</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>
-
-Click <a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">here</a>
-to refresh the menu or add another domain name.
-";
 	addDomainToUser($adm_login,$adm_pass,$fqdn);
 	unset($ns_ar);
 	$ns_ar[] = $_REQUEST["toreg_dns1"];
@@ -206,6 +208,14 @@ to refresh the menu or add another domain name.
 	if(isset($_REQUEST["toreg_dns6"]) && $_REQUEST["toreg_dns6"] != "")
 		$ns_ar[] = $_REQUEST["toreg_dns6"];
 	newWhois($fqdn,$owner_id,$billing_id,$admin_id,$period,$ns_ar);
+
+	$out .= "<font color=\"green\"><b>Registration succesfull</b></font><br>
+Server said: <i>" . $regz["response_text"] . "</i><br>
+
+Click <a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">here</a>
+to refresh the menu or add another domain name.
+";
+
 //	print_r($regz);
 // END OF DOMAIN NAME REGISTRATION //
 /////////////////////////////////////

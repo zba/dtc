@@ -1,80 +1,58 @@
 <?
-function mysql_table_exists($dbname,$tableName)
-{
-$tables = array();
-$tablesResult = mysql_list_tables($dbname);
-while ($row = mysql_fetch_row($tablesResult)) $tables[] = $row[0];
-return(in_array($tableName, $tables));
+function mysql_table_exists($dbname,$tableName){
+	$tables = array();
+	$tablesResult = mysql_list_tables($dbname);
+	while ($row = mysql_fetch_row($tablesResult)) $tables[] = $row[0];
+	return(in_array($tableName, $tables));
 }
 
-function fetchHTTPInfo($webname)
-{
-		global $pro_mysql_acc_http_table;
-        $query = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='".$webname."'";
-        $result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
-        $num_rows = mysql_num_rows($result);
-       	$amount = mysql_result($result,0,"transfer");
-	   
-		if($amount>1073741824)
-			$amount = round(($amount / 1073741824),3) ."Gbyte";
-		if($amount>1048567)
-			$amount = round(($amount / 1048567),3) ." Mbytes";
-		if($amount>1024)
-			$amount = round(($amount / 1024),3) ." kbytes";
-		return($amount);
+function fetchHTTPInfo($webname){
+	global $pro_mysql_acc_http_table;
+	$query = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='".$webname."'";
+	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
+	$num_rows = mysql_num_rows($result);
+	$amount = mysql_result($result,0,"transfer");
+
+	return $amount;
 }
                                                                                                                                                     
-function fetchFTPInfo($webname)
-{
-        global $pro_mysql_acc_ftp_table;
-        $query = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$webname."'";
-        $result = mysql_query($query) or die("Cannot execute query \"$query\"");
-        $total_ftp_amount = mysql_result($result,0,"transfer");
+function fetchFTPInfo($webname){
+	global $pro_mysql_acc_ftp_table;
+	$query = "SELECT SUM(transfer) AS transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$webname."'";
+	$result = mysql_query($query) or die("Cannot execute query \"$query\"");
+	$total_ftp_amount = mysql_result($result,0,"transfer");
 
-		if($total_ftp_amount>1073741824)
-			$total_ftp_amount = round(($total_ftp_amount / 1073741824),3) ."Gbyte";
-		if($total_ftp_amount>1048567)
-			$total_ftp_amount = round(($total_ftp_amount / 1048567),3) ." Mbytes";
-		if($total_ftp_amount>1024)
-			$total_ftp_amount = round(($total_ftp_amount / 1024),3) ." kbytes";
-        return($total_ftp_amount);
+	return $total_ftp_amount;
 }
 
 error_reporting(0);
 
-function sum_http($webname)
-{
+function sum_http($webname){
 	global $pro_mysql_subdomain_table;
 	global $pro_mysql_acc_http_table;
 	global $conf_mysql_db;
+
 	$query = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='".$webname."' AND ip='default'";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\"");
-    $num_rows = mysql_num_rows($result);
-    
+	$num_rows = mysql_num_rows($result);
 
-	for($i=0;$i<$num_rows;$i++)
-    {
-       $subdomain_name = mysql_result($result,$i,"subdomain_name");
-	   $db_webname=strtr($webname,'.','_');
-       $db_select_name = "access_".$subdomain_name."_".$db_webname;
-	   $last_run = "SELECT MAX(last_run) AS last FROM $pro_mysql_acc_http_table WHERE vhost='".$subdomain_name."' AND domain='".$webname."'";
-	   mysql_select_db($conf_mysql_db);
-	   $result_l = mysql_query($last_run) or die("Cannot execute query \"$last_run\"");
-	   for($l=0;$l<mysql_num_rows($result_l);$l++)
-	   {
-	   		if(mysql_table_exists("apachelogs",$db_select_name))
-				{
+	for($i=0;$i<$num_rows;$i++){
+		$subdomain_name = mysql_result($result,$i,"subdomain_name");
+		$db_webname=strtr($webname,'.','_');
+		$db_select_name = "access_".$subdomain_name."_".$db_webname;
+		$last_run = "SELECT MAX(last_run) AS last FROM $pro_mysql_acc_http_table WHERE vhost='".$subdomain_name."' AND domain='".$webname."'";
+		mysql_select_db($conf_mysql_db);
+		$result_l = mysql_query($last_run) or die("Cannot execute query \"$last_run\"");
+		for($l=0;$l<mysql_num_rows($result_l);$l++){
+			if(mysql_table_exists("apachelogs",$db_select_name)){
 				$last_run_st = mysql_result($result_l,0,"last");
-				if($last_run_st==NULL || $last_run_st==0)
-		   		{
+				if($last_run_st==NULL || $last_run_st==0){
 					//echo "Create first entry for ".$subdomain_name.".".$webname."<br />";
 					mysql_select_db($conf_mysql_db);
 					$query_insert = "INSERT INTO $pro_mysql_acc_http_table (vhost,bytes_sent,domain,last_run,month,year) VALUES ('".$subdomain_name."',0,'".$webname."','".$last_run_st."', ".date("m",time()).",".date("Y",time()).")";
 					mysql_query($query_insert)or die("Cannot execute query \"$query_insert\"");
 					$last_run_st=0;
-		   		}
-				elseif(strcmp(date("m.Y",$last_run_st),date("m.Y",time())))
-				{
+				}else if(strcmp(date("m.Y",$last_run_st),date("m.Y",time()))){
 					//echo "Create first entry for this month for ".$subdomain_name."<br />";
 					mysql_select_db($conf_mysql_db);
 					$query_insert = "INSERT INTO $pro_mysql_acc_http_table (vhost,bytes_sent,domain,last_run,month,year) VALUES ('".$subdomain_name."',0,'".$webname."','".time()."',".date("m",time()).",".date("Y",time()).")";
