@@ -1,6 +1,7 @@
 <?php
 
 $script_start_time = time();
+$panel_type="cronjob";
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
