@@ -53,14 +53,14 @@ option.
 <h5><a name="2.2.2"></a>2.2.2 Apache</h5>
 
 You'll have to get your hands dirty editing apache httpd.conf file. Only
-1 directives must be set: NameServer. Other directives are happily setup
+1 directives must be set: ServerName. Other directives are happily setup
 automaticaly by DTC using the Unix tool sed. We consider it's up to
 distribution's to do that job.<br><br>
 
 You have to setup a default server name for apache, using the same as what you
 have setup in /etc/hostname.
 
-<pre>NameServer www.example.com</pre>
+<pre>ServerName www.example.com</pre>
 
 On latest versions, DTC modify itself the httpd.conf. Under debian woody and
 FreeBSD, you normaly have nothing to do with it.

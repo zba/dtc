@@ -32,11 +32,11 @@ FLUSH PRIVILEGES;</pre>
 
 Il faut maintenant donner un nom par défaut au serveur apache et le configurer pour utiliser nobody/nogroup
 comme utilisateur, pour ce faire il suffit d'éditer le fichier httpd.conf en changeant les directives User, Group,
-NameServer :<br>
+ServerName :<br>
 
 <b>User nobody</b><br>
 <b>Group nogroup</b><br>
-<b>NameServer www.example.com</b> (le NameServer doit être le même que dans /etc/hostname)<br><br>
+<b>ServerName www.example.com</b> (le ServerName doit être le même que dans /etc/hostname)<br><br>
 
 (le fichier httpd.conf se retrouve avec un chemin différent selon la distribution installée, par exemple sous debian :
 /etc/apache/httpd.conf , sous redhat : /etc/httpd/conf/httpd.conf , si vous compilé apache vous même : /usr/local/apache/etc/httpd.conf , .. )<br><br>
