@@ -1,3 +1,35 @@
+2004-08-03: Version 0.14.0-R1 correct some minor bugs of 0.14.0-R0:
+access.log is now correctly dumped from sql so webalizer stats are now
+working again (was broken only in 0.14.0-R0), in the bandwidth monitor, in
+the graphic wich shows monthly usage over quota periodes are shown in red,
+and it works even if you haven't setup a quota for your user (all will then
+be drawn in red). Last thing: when installing DTC, it sometimes has to
+start/restart daemons. Under Debian, and since the begining of DTC's debian
+package, it was hanging at end of install script because it was waiting for
+daemon to finish to execute, wich of cource never occurs. Now a db_stop
+fixes that and DTC can now install all OK even on a fresh Debian install.
+DTC will be version 1.0 as soon as Mailman support is finished.
+
+2004-07-17: A big bunch of new stuff for 0.12.0-R8:
+- Now includes support for both Postfix, Courier and Dovecot. Trafic monitor
+is being written for those. Imap trafic monitor is beeing added too. The
+Qmail vs Postfix discution is now over! Thanks to Damien Mascord (from
+tusker.org) for his very good work on that part.
+- Added some spanish (someof was missing) and (all) chinese translations,
+DTC is now fully internationnalised.
+- Added some stuff in the CRM manager (root admin console) so there is not
+need to do some hacks in phpmyadmin any more. You can add and remove some
+admins to customer now.
+- Change mysql password fully working.
+- Change of FTP path re-works.
+- DTC now has a popup for changing skins. Now comes with 5 different skin to
+choose from. All the config panel has been reviewed and split in 4 screens.
+- The bandwidth monitor now includes a 12-month view of each customer trafic
+usage.
+- There is now an option to use [at]domain.com ftp login (enabled by
+default). - DTC works also with Debian Unstable and Woody using nicely
+moduleconfig if available.
+
 24/06/2004:
 - Network (ftp) backup now includes database backup
 - Reviewed and updated MX generation in zonefiles. Now it's possible
