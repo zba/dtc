@@ -30,8 +30,8 @@ function draw_UpgradeAccount($admin){
 ";
 	$client = $admin["client"];
 	$out .=  "<b><u>Upgrade my account:</u></b><br>";
-	$out .=  "<i><u>Step 1: select your contact</u></i><br>";
-	if($_REQUEST["prod_id"] == "" || !is_int($_REQUEST["prod_id"])){
+	$out .=  "<i><u>Step 1: choose your upgrade</u></i><br>";
+	if($_REQUEST["prod_id"] == "" || !isset($_REQUEST["prod_id"])){
 		$out .= "Your current account is ".smartByte($admin["info"]["quota"]*1024*1024)." disk storage
 and ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024)." of data transfer each month.<br>
 To what capacity would you like to upgrade to?<br>";
@@ -60,6 +60,57 @@ To what capacity would you like to upgrade to?<br>";
 		$out .= '</table><center><input type="submit" value="Calculate price"></center></form>';
 		return $out;
 	}
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["prod_id"]."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1)	die("Product not found !!!");
+	$ro = mysql_fetch_array($r);
+
+	$frm_start .= '<input type="hidden" name="prod_id" value="'.$ro["id"].'">';
+	$out .= "You have selected: ".$ro["name"];
+	$out .= " (Storage: ".smartByte($ro["quota_disk"]*1024*1024);
+	$out .= ", Transfer: ".smartByte($ro["bandwidth"]*1024*1024).'), ';
+	$out .= '$'.$ro["price_dollar"].' each '.smartDate($ro["period"]);
+
+	$out .=  "<br><br><i><u>Step 2: proceed to upgrade</u></i><br>";
+	$remaining = $admin["client"]["dollar"];
+
+	$ze_price = $ro["price_dollar"];
+//	$heber_price
+
+	$out .= "Remaining on your account: \$" . $remaining . "<br>
+Past account refundal: \$". $heber_price . "<br>
+Total price: \$". $heber_price . "<br><br>";
+	if($heber_price > $remaining){
+		$to_pay = $heber_price - $remaining;
+
+		$payButton = paynowButton($product_id,$to_pay);
+
+		$out .= "You currently don't have enough funds on your account. You will be
+redirected to our paiement system. Please click on the button bellow
+to pay, and then click refresh button.<br><br>
+<br><br>
+$form_start<input type=\"submit\" value=\"Paiement done, let met checkout\">
+</form>";
+		return $out;
+	}
+
+	// Check for confirmation
+	if($_REQUEST["toreg_confirm_register"] != "yes"){
+		$out .= "
+You have enough funds on your account to proceed account upgrade. Press
+the confirm button and your order will be proceeded.<br><br>
+$form_start
+<input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
+<input type=\"submit\" value=\"Proceed to account upgrade\">
+</form>";
+		return $out;
+	}
+
+
+
+
+	return $out;
 }
 
 ?>

@@ -158,7 +158,7 @@ Total price: \$". $fqdn_price . "<br><br>";
 	if($fqdn_price > $remaining){
 		$to_pay = $fqdn_price - $remaining;
 
-		$payButton = paynowButton($product_id,$amount);
+		$payButton = paynowButton($product_id,$to_pay);
 
 		$out .= "You currently don't have enough funds on your account. You will be
 redirected to our paiement system. Please click on the button bellow

@@ -10,6 +10,8 @@ function drawAdminTools_MyAccount($admin){
 	global $adm_pass;
 	global $addrlink;
 
+	global $dtcshared_path;
+
 	global $cc_code_array;
 
 	$frm_start = "<form action=\"$PHP_SELF\">

@@ -181,7 +181,7 @@ function pro_vhost_generate(){
 	php_admin_value safe_mode 1
 	php_admin_value sendmail_from webmaster@$web_name
 	<Location />
-		php_admin_value open_basedir \"$web_path/$web_name/subdomains/$web_subname/:$conf_php_library_path:$conf_php_additional_library_path:\"
+		php_admin_value open_basedir \"$web_path/$web_name/:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>
 	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_default_subdomain/cgi-bin
 	CustomLog $web_path/$web_name/subdomains/$web_default_subdomain/logs/access.log combined
