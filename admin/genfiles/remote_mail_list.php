@@ -69,11 +69,22 @@ function get_remote_mail_domains(){
 				$fp = fopen($f,"w+");
 				fwrite($fp,$remote_file);
 				fclose($fp);
-				$domain_list .= $remote_file;
-				$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
-				$r2 = mysql_query($q2)or die("Cannot query $q2 ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
-				$console .= "ok!<br>";
-				$flag = true;
+
+				// Check file is not zero lenght
+				$fp = fopen($f,"r");
+				fseek($fp,0,SEEK_END);
+				$size = ftell($fp);
+				fclose($fp);
+
+				if ($size > 0){
+					$domain_list .= $remote_file;
+					$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
+					$r2 = mysql_query($q2)or die("Cannot query $q2 ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
+					$console .= "ok!<br>";
+					$flag = true;
+				}else{
+					$console .= "wrong! File is empty!<br>";
+				}
 			}else{
 				$console .= "failed!<br>";
 			}
@@ -90,7 +101,7 @@ function get_remote_mail_domains(){
 				fseek($fp,0);
 				$domain_list .= fread($fp,$size);
 			} else {
-				$console .= "File [" . $f . "] is empty\n";
+				$console .= "File [" . $f . "] is empty<br>";
 			}
 			fclose($fp);
 			} else {
