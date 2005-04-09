@@ -693,7 +693,7 @@ function saveDTCConfigInMysql(){
 	mta_type='".$_REQUEST["new_mta_type"]."',
 	domain_based_ftp_logins='".$_REQUEST["new_domain_based_ftp_logins"]."',
 	session_expir_minute='".$_REQUEST["new_session_expir_minute"]."',
-	hide_password='".$_REQUEST["new_hidepassword"]."',
+	hide_password='".$_REQUEST["new_hidepsswd"]."',
 	skin='".$_REQUEST["skin_type"]."'
 	WHERE 1 LIMIT 1";
 		break;
