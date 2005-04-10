@@ -1,17 +1,18 @@
 Here is the todo in unsorted order:
 
-- Add support for wildcard DNS entries
+- Add support for wildcard DNS & Apache ServerAlias entries
+- Improove the MySQL database manager on the user side to
+allow creation/destruction of database and
+creation/addition/grant privileges/password management
+to mysql users
+- Add support for Freeradius (dlathem is doing it)
 - Add support for spamassassin & clamav
 - Add resseller interface
 - Add SSL support for customers
 - Enable multiple user delegation in SQL account manager
-- Integrate a mailling list manager
-- Integrate smtp AUTH
+- Integrate a mailling list manager (mlmmj : lupin3rd is doing it)
 - Find a SMART way to handle disk quotas
 - Finish tucows API integration
-- Integrate all new changes with FreeBSD &
-RedHat (to do at when all of the top is finished)
-- Make a Mac OS X graphical package
 - Make a windows port for cygwin using NDIS
 scriptable installer.
 

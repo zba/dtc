@@ -30,6 +30,24 @@ fi
 echo -n 'MySQL root password []: '
 read conf_mysql_pass
 
+echo ""
+echo "Do you want that DTC setup this password"
+echo "for you ? (eg: UPDATE user SET Password=PASSWORD('XXX')...)"
+echo -n 'Setup the mysql password [Ny]: '
+read conf_mysql_change_root
+
+if [ ""$conf_mysql_change_root = "y" ]; then
+	echo "===> Changing MySQL Root password"
+	echo "MySQL will now prompt your for the password to connect to"
+	echo "the database. This is the OLD password that was there before"
+	echo "you launched this script. If you didn't setup a root pass for"
+	echo "mysqld, just hit ENTER to use empty pass."
+	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pas"') WHERE User='root'; FLUSH PRIVILEGES;";
+else
+	echo "Skinping MySQL password root change!"
+fi
+
+
 echo -n 'Choose a DB name for DTC [dtc]: '
 read conf_mysql_db
 if [ ""$conf_mysql_db = "" ] ; then
