@@ -1,7 +1,16 @@
 V0.17.0-R3
-The panel can now install (almost) smoothly under newest FreeBSD
-5.3, thanks to users reporting in dtc forums. I've commited the
-port and it's waiting for addition.
+<<<<<<< changelog
+On freebsd: It's now using mod_log_sql2 and sbox-dtc
+(that last one is now in standard in freebsd ports)
+and mod_log_sql directive links agains the correct
+/tmp/mysqld.sock path, php.ini-dist is copied to php.ini
+if not exists, and an incdir directive to pear folder is
+now automaticaly added.
+
+The FreeBSD Makefile is revised and should depend correctly
+on other tools now. I pickedup examples from the phpmyadmin
+Makefile and others. It's tested and working, now I'm the
+foccus is on the dtc-install.sh script.
 
 Changed size of ip of subdomain to 255, now you can use it
 as a CNAME value. The entered value is checked for resolvability
