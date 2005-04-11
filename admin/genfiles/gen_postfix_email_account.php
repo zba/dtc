@@ -93,6 +93,7 @@ function mail_account_generate_postfix(){
 			}
 			$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
 			$store_catch_all = "";
+			$abuse_address = 0;
 			if(isset($domain["emails"])){
 				$emails = $domain["emails"];
 				$nbr_boites = sizeof($emails);
@@ -110,6 +111,12 @@ function mail_account_generate_postfix(){
 					$passwdtemp = $email["passwd"];
 					$passwd = crypt($passwdtemp);
 					$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
+
+					// if we have a $id equal to abuse
+					if ($id == "abuse")
+					{
+						$abuse_address = 1;
+					}
 					# first try and see if we have postfix in a chroot, else just put it in it's default location
 					system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
 					//$assign_file .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
@@ -138,6 +145,11 @@ function mail_account_generate_postfix(){
 			}
 			if(isset($store_catch_all) && $store_catch_all != ""){
 				$domains_postmasters_file .= $store_catch_all;
+			}
+			// if an abuse@ email hasn't been set, set one here to go to postmaster
+			if ($abuse_address == 0)
+			{
+				$domains_postmasters_file .= "abuse@$domain_full_name postmaster\n";
 			}
 		}
 	}
