@@ -639,17 +639,24 @@ MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, g
 
 " > $PATH_COURIER_CONF_PATH/authmysqlrc
 		if [ -x "/etc/init.d/courier-authdaemon" ] ; then
+			/etc/init.d/courier-authdaemon restart
+		else
 			if [ -x /usr/sbin/invoke-rc.d ]; then
 				/usr/sbin/invoke-rc.d courier-authdaemon restart
-			else
-				/etc/init.d/courier-authdaemon restart
 			fi
 		fi
 		if [ -x "/etc/init.d/courier-imap" ] ; then
+			/etc/init.d/courier-imap restart
+		else
 			if [ -x /usr/sbin/invoke-rc.d ]; then
 				/usr/sbin/invoke-rc.d courier-imap restart
-			else
-				/etc/init.d/courier-imap restart
+			fi
+		fi
+		if [ -x "/etc/init.d/courier-pop" ] ; then
+			/etc/init.d/courier-pop restart
+		else
+			if [ -x /usr/sbin/invoke-rc.d ]; then
+				/usr/sbin/invoke-rc.d courier-pop restart
 			fi
 		fi
 	fi	
@@ -728,6 +735,14 @@ default_pass_scheme = PLAIN
 password_query = SELECT passwd FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
 user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
 " > $PATH_DTC_ETC/dovecot-mysql.conf
+		# need to restart dovecot too
+		if [ -x "/etc/init.d/dovecot" ] ; then
+                        /etc/init.d/dovecot restart
+                else
+                        if [ -x /usr/sbin/invoke-rc.d ]; then
+                                /usr/sbin/invoke-rc.d dovecot restart
+                        fi
+                fi
 	fi	
 fi
 
