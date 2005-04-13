@@ -136,7 +136,7 @@ function named_generate(){
 	$djb_file = "";
 	$named_file = "";
 
-	$query = "SELECT * FROM $pro_mysql_domain_table WHERE primary_dns='default' ORDER BY name;";
+	$query = "SELECT * FROM $pro_mysql_domain_table WHERE primary_dns='default' OR other_dns='default' ORDER BY name;";
 	$result = mysql_query ($query)or die("Cannot execute query \"$query\"");
 	$num_rows = mysql_num_rows($result);
 
@@ -223,19 +223,32 @@ function named_generate(){
 		}else{
 			$ip_to_write = $conf_main_site_ip;
 		}
+		if($row["primary_dns"] == "default"){
 		$named_file .= "zone \"$web_name\" IN {
 	type master;
 	file \"$conf_generated_file_path/$conf_named_zonefiles_path/$web_name\";
 };
 ";
+		}
+
+		$master_ns_list = "";
+
+		$temp_ip = gethostbyname($thisdomain_dns1);
+		
+		$master_ns_list .= $temp_ip;
+
+		if($row["other_dns"] == "default"){
 		$slave_file .= "zone \"$web_name\" {
 	type slave;
-	masters { $conf_ip_slavezone_dns_server; };
+	masters { $master_ns_list; };
 	file \"$conf_generated_file_path/$conf_named_slavezonefiles_path/$web_name\";
 };
 ";
+		}
 
-		$this_site_file = "\$TTL 7200
+		if($row["primary_dns"] == "default"){
+
+			$this_site_file = "\$TTL 7200
 @               IN      SOA     $thisdomain_dns1. $bind_formated_webmaster_email_addr (
 						$todays_serial; serial
                         2H ; refresh
@@ -252,65 +265,66 @@ $more_mx_server
 @	IN	TXT	\"$root_txt_record2\"
 	IN	A	$ip_to_write
 ";
-		// Add all subdomains to it !
-		$is_pop_subdomain_set = "no";
-		$is_smtp_subdomain_set = "no";
-		$is_ftp_subdomain_set = "no";
-		$is_list_subdomain_set = "no";
-		for($j=0;$j<$num_rows2;$j++){
-			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
-			$web_subname = $subdomain["subdomain_name"];
-			// Check if it's an IP or not, to know if it's a CNAME record or a A record
-			if(isIP($subdomain["ip"]) || $subdomain["ip"] == "default"){
-				if($subdomain["ip"] == "default"){
-					$the_ip_writed = "A\t".$ip_to_write;
+			// Add all subdomains to it !
+			$is_pop_subdomain_set = "no";
+			$is_smtp_subdomain_set = "no";
+			$is_ftp_subdomain_set = "no";
+			$is_list_subdomain_set = "no";
+			for($j=0;$j<$num_rows2;$j++){
+				$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
+				$web_subname = $subdomain["subdomain_name"];
+				// Check if it's an IP or not, to know if it's a CNAME record or a A record
+				if(isIP($subdomain["ip"]) || $subdomain["ip"] == "default"){
+					if($subdomain["ip"] == "default"){
+						$the_ip_writed = "A\t".$ip_to_write;
+					}else{
+						$the_ip_writed = "A\t".$subdomain["ip"];
+					}
 				}else{
-					$the_ip_writed = "A\t".$subdomain["ip"];
+					$the_ip_writed = "CNAME\t".$subdomain["ip"].".";
 				}
-			}else{
-				$the_ip_writed = "CNAME\t".$subdomain["ip"].".";
+
+				if($web_subname == "pop"){
+					$is_pop_subdomain_set = "yes";
+				}
+				if($web_subname == "smtp"){
+					$is_smtp_subdomain_set = "yes";
+				}
+				if($web_subname == "ftp"){
+					$is_ftp_subdomain_set = "yes";
+				}
+				if($web_subname == "list"){
+					$is_list_subdomain_set = "yes";
+				}
+				$this_site_file .= "$web_subname	IN	$the_ip_writed\n";
+				if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
+					$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
+				}
+			}
+			if( $is_pop_subdomain_set != "yes"){
+				$this_site_file .= "pop	IN	A	$ip_to_write\n";
+			}
+			if( $is_smtp_subdomain_set != "yes"){
+				$this_site_file .= "smtp	IN	A	$ip_to_write\n";
+			}
+			if( $is_ftp_subdomain_set != "yes"){
+				$this_site_file .= "ftp	IN	A	$ip_to_write\n";
+			}
+			if( $is_list_subdomain_set != "yes"){
+				$this_site_file .= "list	IN	A	$ip_to_write\n";
 			}
 
-			if($web_subname == "pop"){
-				$is_pop_subdomain_set = "yes";
+			if($web_serial_flag=="yes"){
+				$console .= "Updating zone file for domain $web_name using serial : $todays_serial, ipaddr : $ip_to_write<br>";
+				$filep = fopen("$conf_generated_file_path/$conf_named_zonefiles_path/$web_name", "w+");
+				if( $filep == NULL){
+					die("Cannot open file for writting");
+				}
+				fwrite($filep,$this_site_file);
+				fclose($filep);
+				$query_serial = "UPDATE $pro_mysql_domain_table SET generate_flag='no' WHERE name='$web_name' LIMIT 1;";
+				$result_serial = mysql_query ($query_serial)or die("Cannot execute query \"$query_serial\"");
 			}
-			if($web_subname == "smtp"){
-				$is_smtp_subdomain_set = "yes";
-			}
-			if($web_subname == "ftp"){
-				$is_ftp_subdomain_set = "yes";
-			}
-			if($web_subname == "list"){
-				$is_list_subdomain_set = "yes";
-			}
-			$this_site_file .= "$web_subname	IN	$the_ip_writed\n";
-			if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
-				$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
-			}
-		}
-		if( $is_pop_subdomain_set != "yes"){
-			$this_site_file .= "pop	IN	A	$ip_to_write\n";
-		}
-		if( $is_smtp_subdomain_set != "yes"){
-			$this_site_file .= "smtp	IN	A	$ip_to_write\n";
-		}
-		if( $is_ftp_subdomain_set != "yes"){
-			$this_site_file .= "ftp	IN	A	$ip_to_write\n";
-		}
-		if( $is_list_subdomain_set != "yes"){
-			$this_site_file .= "list	IN	A	$ip_to_write\n";
-		}
-
-		if($web_serial_flag=="yes"){
-			$console .= "Updating zone file for domain $web_name using serial : $todays_serial, ipaddr : $ip_to_write<br>";
-			$filep = fopen("$conf_generated_file_path/$conf_named_zonefiles_path/$web_name", "w+");
-			if( $filep == NULL){
-				die("Cannot open file for writting");
-			}
-			fwrite($filep,$this_site_file);
-			fclose($filep);
-			$query_serial = "UPDATE $pro_mysql_domain_table SET generate_flag='no' WHERE name='$web_name' LIMIT 1;";
-			$result_serial = mysql_query ($query_serial)or die("Cannot execute query \"$query_serial\"");
 		}
 	}
 
@@ -329,6 +343,13 @@ $more_mx_server
 	if( $filep == NULL){
 		die("Cannot open file \"$conf_generated_file_path/$conf_named_slavefile_path\" for writting");
 	}
+
+	if ( ! file_exists($conf_generated_file_path . "/" . $conf_named_slavezonefiles_path)){
+
+		mkdir($conf_generated_file_path . "/" . $conf_named_slavezonefiles_path, 0775);
+	}
+
+	// make sure the slave directory is present
 	fwrite($filep,$slave_file);
 	fclose($filep);
 
