@@ -47,7 +47,7 @@ function drawAdminTools_DomainDNS($admin,$eddomain){
 	//if($eddomain["primary_dns"] == "default"){
 		$domain_dns_mx_conf_form .= "<tr><td align=\"right\" nowrap>".$txt_primary_mx_server[$lang]."</td><td><input type=\"text\" name=\"new_mx_1\" value=\"".$eddomain["primary_mx"]."\"></td></tr>
 <tr><td align=\"right\">".$txt_other_mx_servers[$lang]."</td><td>";
-		if($eddomain["other_mx"] == "default"){
+		if($eddomain["other_mx"] == "default" && $eddomain["primary_dns"] == "default"){
 			$domain_dns_mx_conf_form .= "<input type=\"text\" name=\"new_mx_2\" value=\"\"></td></tr>";
 		}else{
 			$new_mx_num = 2;
@@ -58,7 +58,7 @@ function drawAdminTools_DomainDNS($admin,$eddomain){
 				$domain_dns_mx_conf_form .= "<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".$other_mx[$z]."\"></td></tr>";
 				$new_mx_num += 1;
 			}
-			$domain_dns_mx_conf_form .= "<tr><td></td><td><input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".$other_mx[$z]."\"></td></tr>";
+			$domain_dns_mx_conf_form .= "<tr><td></td><td><input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"\"></td></tr>";
 		}
 //	}
 
