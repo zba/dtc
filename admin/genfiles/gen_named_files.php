@@ -237,7 +237,7 @@ function named_generate(){
 		
 		$master_ns_list .= $temp_ip;
 
-		if($row["other_dns"] == "default"){
+		if($row["other_dns"] == "default" && $row["primary_dns"] != "default"){
 		$slave_file .= "zone \"$web_name\" {
 	type slave;
 	masters { $master_ns_list; };
