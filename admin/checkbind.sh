@@ -7,7 +7,7 @@ if [ ""$bindgroup = "" ] ; then
 fi
 
 if [ ""$bindgroup != "" ]; then
-	echo "Changing "$bindgroup $conf_generated_file_path"/zones permissions to $bindgroup:""65534
+	echo "Changing $bindgroup $conf_generated_file_path/zones permissions to $bindgroup:65534"
         chown -R $bindgroup:""65534 $conf_generated_file_path/zones
 	chmod -R 0770 $conf_generated_file_path/zones
         chown -R $bindgroup:""65534 $conf_generated_file_path/slave_zones
