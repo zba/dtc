@@ -33,7 +33,7 @@ case "list_dns":
 			$out .= $a["primary_dns"];
 		}
 		$out .= '; };
-	file "'.$conf_generated_file_path.'/slave_zones/'.$a["name"].'";
+	file "'.$conf_generated_file_path.'/' . $conf_named_slavezonefiles_path . '/'.$a["name"].'";
 	};
 ';
 	}

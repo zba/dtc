@@ -51,6 +51,7 @@ $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error())
 // some change in his domain list
 function commitTriggerToRemote($a){
 	$flag = false;
+	$retry = 0;
         $url = $a["server_addr"].'/dtc/list_domains.php?action=update_request&login='.$a["server_login"].'&pass='.$a["server_pass"];
         while($retry < 3 && $flag == false){
 		$lines = file ($url);
@@ -61,7 +62,7 @@ function commitTriggerToRemote($a){
 		$retry ++;
 		if($flag == false)      sleep(3);
 	}
-	return flag;
+	return $flag;
 }
 
 $query = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes' AND status='pending';";
