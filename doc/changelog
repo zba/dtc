@@ -1,5 +1,12 @@
 V0.17.0-R3
-On freebsd: It's now using mod_log_sql2 and sbox-dtc
+Now, DTC checks that apache is REALLY restarted.
+If it's not, then it tries again durring 15 times,
+that should represent at least 45 seconds (could be
+1 minute), waiting 2 seconds between each retries.
+
+DTC now restarts Courier daemons after (re)install of the panel.
+
+On freebsd: It's now using mod_log_sql and sbox-dtc
 (that last one is now in standard in freebsd ports)
 and mod_log_sql directive links agains the correct
 /tmp/mysqld.sock path, php.ini-dist is copied to php.ini

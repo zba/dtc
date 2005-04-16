@@ -230,11 +230,7 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	if($return_var == false){
 		echo "Config is OK : restarting Apache\n";
 		system("$APACHECTL stop");
-		echo "Waiting 6... ";	// With 1000 domains on a celeron 800 and fast hard drives, 5 seconds is just the right value...
-		sleep(1);
-		echo "5... ";
-		sleep(1);
-		echo "4... ";
+		echo "Waiting 4... ";	// With 800 domains, 5 SSL sites on a celeron 800 and fast hard drives, 5 seconds is just the right value...
 		sleep(1);
 		echo "3... ";
 		sleep(1);
@@ -243,8 +239,16 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 		echo "1... ";
 		sleep(1);
 		echo "0\n";
-		system("$APACHECTL start");
+		$ctl_retry = 0;		// We have to continue going on, even if apache don't restart...
+		$ctl_return = system("$APACHECTL start");
+		// Check that apache is really started, because experience showed sometimes it's not !!!
+		while( strstr($ctl_return,"started") == false && $ctl_retry++ < 15){
+			echo "Warning: apache not started, will retry in 3 seconds...\n";
+			sleep(3);
+			$ctl_return = system("$APACHECTL start", $return_var);
+		}
 		// change to graceful apache restart, rather than a hard stop and start
+		// WARNING !!! Experience showed that it doesn't work sometimes !!!
 		//system("$APACHECTL graceful");
 	}else{
 		echo "Config not OK : I can't reload apache !!!\n";
