@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS radpostauth (
 ) ;
 
 CREATE TABLE IF NOT EXISTS nas (
-  id int(10) DEFAULT '0' NOT NULL auto_increment,
+  id int(10) NOT NULL auto_increment,
   nasname varchar(128) NOT NULL,
   shortname varchar(32),
   type varchar(30) DEFAULT 'other',
