@@ -172,11 +172,13 @@ PATH_POSTFIX_ETC="${LOCALBASE}/etc/postfix"
 PATH_SASL_PASSWD2="${LOCALBASE}/sbin/saslpasswd2"
 PATH_QMAIL_CTRL="${QMAIL_DIR}/control"
 PATH_PHP_CGI="${LOCALBASE}/bin/php"
+FREERADIUS_ETC="${LOCALBASE}/etc/raddb"
 PATH_DTC_SHARED="${PREFIX}/www/dtc"
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
+
 
 echo ""
 echo ""
@@ -204,6 +206,7 @@ echo "Courier authdaemonrc: "$PATH_COURIER_CONF_PATH
 echo "postfix/main.cf: "$PATH_POSTFIX_CONF
 echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI
+echo "Freeradius sql.conf and rad.conf folder: "$FREERADIUS_ETC
 echo "generated files: "$PATH_DTC_ETC
 echo ""
 echo ""
