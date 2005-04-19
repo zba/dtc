@@ -76,7 +76,9 @@ AND year='$year' AND month='$month'";
 	$n = mysql_num_rows($r);
 	if($n == 1){
 		$a = mysql_fetch_array($r);
-		$tr_tbl[$m] += $a["sent"];
+		if(isset($a["sent"])){
+			$tr_tbl[$m] += $a["sent"];
+		}
 	}
 
 	$q = "SELECT sum(transfer) as sent FROM admin,domain,$pro_mysql_acc_ftp_table
@@ -88,7 +90,9 @@ AND year='$year' AND month='$month';";
 	$n = mysql_num_rows($r);
 	if($n == 1){
 		$a = mysql_fetch_array($r);
-		$tr_tbl[$m] += $a["sent"];
+		if(isset($a["sent"])){
+			$tr_tbl[$m] += $a["sent"];
+		}
 	}
 
 	$q = "SELECT sum(smtp_trafic+pop_trafic+imap_trafic) as sent
@@ -101,10 +105,12 @@ AND $pro_mysql_acc_email_table.year='$year' AND $pro_mysql_acc_email_table.month
 	$n = mysql_num_rows($r);
 	if($n == 1){
 		$a = mysql_fetch_array($r);
-		$tr_tbl[$m] += $a["sent"];
-//		$tr_tbl[$m] += $a["smtp_trafic"];
-//		$tr_tbl[$m] += $a["pop_trafic"];
-//		$tr_tbl[$m] += $a["imap_trafic"];
+		if(isset($a["sent"])){
+			$tr_tbl[$m] += $a["sent"];
+//			$tr_tbl[$m] += $a["smtp_trafic"];
+//			$tr_tbl[$m] += $a["pop_trafic"];
+//			$tr_tbl[$m] += $a["imap_trafic"];
+		}
 	}
 
 }
