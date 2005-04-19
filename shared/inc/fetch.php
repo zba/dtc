@@ -80,6 +80,7 @@ function fetchAdminStats($admin){
 	global $pro_mysql_acc_ftp_table;
 	global $pro_mysql_acc_email_table;
 
+	$ret["total_http"] = 0;
 	$adm_path = $admin["info"]["path"];
 	$query = "SELECT name,du_stat FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
