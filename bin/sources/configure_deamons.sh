@@ -842,12 +842,12 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 		fi
 	fi
 
-	TMP_FILE=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
-	TMP_FILE2=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
-	TMP_FILE3=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
-	TMP_FILE4=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
-	TMP_FILE5=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
-	TMP_FILE6=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
+	TMP_FILE=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
+	TMP_FILE2=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
+	TMP_FILE3=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
+	TMP_FILE4=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
+	TMP_FILE5=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
+	TMP_FILE6=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
 
 	if [ -e /var/log/radacct ] ;then
 		chown -R nobody /var/log/radacct
