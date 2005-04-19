@@ -819,6 +819,99 @@ SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ft
 fi
 
 #
+# Install and configuration of FreeRadius 1.0
+#
+if [ -e ""$FREERADIUS_ETC ] ;then 
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then  
+		echo "DTC has found you are using Freeradius and it's now configuring it" 
+	fi 
+
+	FREERADIUS_CONF_FILE=$FREERADIUS_ETC/radiusd.conf  
+	FREERADIUS_SQL_FILE=$FREERADIUS_ETC/sql.conf 
+
+	# Backup of freeradius config files
+	if [ -e $FREERADIUS_CONF_FILE ] ;then
+		if ! [ -e $FREERADIUS_CONF_FILE".DTCbackup" ] ;then
+			cp $FREERADIUS_CONF_FILE $FREERADIUS_CONF_FILE".DTCbackup"
+		fi
+	fi
+
+	if [ -e $FREERADIUS_SQL_FILE ] ;then
+		if ! [ -e $FREERADIUS_SQL_FILE".DTCbackup" ] ;then
+			cp $FREERADIUS_SQL_FILE $FREERADIUS_SQL_FILE".DTCbackup"
+		fi
+	fi
+
+	TMP_FILE=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
+	TMP_FILE2=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
+	TMP_FILE3=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
+	TMP_FILE4=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
+	TMP_FILE5=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
+	TMP_FILE6=${MKTEMP} DTC_install.radius.conf.XXXXXX || exit 1
+
+	if [ -e /var/log/radacct ] ;then
+		chown -R nobody /var/log/radacct
+	fi
+
+	sed "s/#user = nobody/user = nobody/" $PATH_FREERADIUS_CONF >$TMP_FILE
+	if grep "group = nobody" $TMP_FILE >/dev/null ;then
+		sed "s/#group = nobody/group = nobody/" $TMP_FILE >$TMP_FILE2
+	else
+		sed "s/#group = nogroup/group = nogroup/" $TMP_FILE >$TMP_FILE2
+	fi
+	sed "s/log_auth = no/log_auth = yes/" $TMP_FILE2 >$TMP_FILE3
+	sed "s/log_auth_badpass = no/log_auth_badpass = yes/" $TMP_FILE3 >$TMP_FILE4
+	sed "s/log_auth_goodpass = no/log_auth_goodpass = yes/" $TMP_FILE4 >$TMP_FILE5
+	sed "s/#	sql/       sql/" $TMP_FILE5 >$TMP_FILE6 
+	sed "s/radius_db = \"radius\"/radius_db = \"dtc\"/" $TMP_FILE6 >$TMP_FILE7
+
+	cat <$TMP_FILE7 >$PATH_FREERADIUS_CONF
+
+	rm $TMP_FILE $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5 $TMP_FILE6 $TMP_FILE7
+
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	        echo "===> Adding directives to sql.conf"
+	fi
+
+	if grep "Configured by DTC" $PATH_FREERADIUS_SQL >/dev/null
+	then
+	        if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	                echo "sql.conf has been configured before : skiping include inssertion !"
+	        fi
+	else
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+                	echo "Inserting DTC configuration inside "$PATH_FREERADIUS_SQL
+		fi
+
+	        TMP_FILE1=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
+	        TMP_FILE2=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
+	        TMP_FILE3=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
+	        TMP_FILE4=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
+
+		# Remove the default config
+		grep -v "server =" $PATH_FREERADIUS_SQL >$TMP_FILE1
+		grep -v "login =" $TMP_FILE1 >$TMP_FILE2
+		grep -v "password =" $TMP_FILE2 >$TMP_FILE3
+		grep -v "radius_db =" $TMP_FILE3 >$TMP_FILE4
+
+		# Install the DTC db config
+	        TMP_FILE=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
+	        echo "# Configured by DTC v0.10 : Please don't touch this line !
+        # Connect info
+        server = "$conf_mysql_host"
+        login = "$conf_mysql_login"
+        password = "$conf_mysql_pass"" >> $TMP_FILE4
+#	        echo "SQLConnectInfo    "$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >> $TMP_FILE4
+	        echo "        # Database table configuration
+        radius_db = "$conf_mysql_db"
+}" >> $TMP_FILE4
+
+		cat <$TMP_FILE4 $PATH_FREERADIUS_SQL
+	fi
+	rm $TMP_FILE $TMP_FILE1 $TMP_FILE2 $TMP_FILE3 $TMP_FILE4
+fi
+
+#
 # Install the cron php4 script in the /etc/crontab
 #
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
