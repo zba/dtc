@@ -834,19 +834,19 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 		echo "DTC has found you are using Freeradius and it's now configuring it" 
 	fi 
 
-	FREERADIUS_CONF_FILE=$FREERADIUS_ETC/radiusd.conf  
-	FREERADIUS_SQL_FILE=$FREERADIUS_ETC/sql.conf 
+	FREERADIUS_CONF=$FREERADIUS_ETC/radiusd.conf  
+	FREERADIUS_SQL_DOT_CONF=$FREERADIUS_ETC/sql.conf 
 
 	# Backup of freeradius config files
-	if [ -e $FREERADIUS_CONF_FILE ] ;then
-		if ! [ -e $FREERADIUS_CONF_FILE".DTCbackup" ] ;then
-			cp $FREERADIUS_CONF_FILE $FREERADIUS_CONF_FILE".DTCbackup"
+	if [ -e $FREERADIUS_CONF ] ;then
+		if ! [ -e $FREERADIUS_CONF".DTCbackup" ] ;then
+			cp $FREERADIUS_CONF $FREERADIUS_CONF".DTCbackup"
 		fi
 	fi
 
-	if [ -e $FREERADIUS_SQL_FILE ] ;then
-		if ! [ -e $FREERADIUS_SQL_FILE".DTCbackup" ] ;then
-			cp $FREERADIUS_SQL_FILE $FREERADIUS_SQL_FILE".DTCbackup"
+	if [ -e $FREERADIUS_SQL_DOT_CONF ] ;then
+		if ! [ -e $FREERADIUS_SQL_DOT_CONF".DTCbackup" ] ;then
+			cp $FREERADIUS_SQL_DOT_CONF $FREERADIUS_SQL_DOT_CONF".DTCbackup"
 		fi
 	fi
 
@@ -881,29 +881,30 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 	        echo "===> Adding directives to sql.conf"
 	fi
 
-	if grep "Configured by DTC" $PATH_FREERADIUS_SQL >/dev/null
+	if grep "Configured by DTC" $FREERADIUS_SQL_DOT_CONF >/dev/null
 	then
 	        if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	                echo "sql.conf has been configured before : skiping include inssertion !"
 	        fi
 	else
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-                	echo "Inserting DTC configuration inside "$PATH_FREERADIUS_SQL
+                	echo "Inserting DTC configuration inside "$FREERADIUS_SQL_DOT_CONF
 		fi
 
-	        TMP_FILE1=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
-	        TMP_FILE2=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
-	        TMP_FILE3=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
-	        TMP_FILE4=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
+	        TMP_FILE1=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
+	        TMP_FILE2=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
+	        TMP_FILE3=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
+	        TMP_FILE4=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
+	        TMP_FILE5=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
 
 		# Remove the default config
-		grep -v "server =" $PATH_FREERADIUS_SQL >$TMP_FILE1
+		grep -v "server =" $FREERADIUS_SQL_DOT_CONF >$TMP_FILE1
 		grep -v "login =" $TMP_FILE1 >$TMP_FILE2
 		grep -v "password =" $TMP_FILE2 >$TMP_FILE3
-		grep -v "radius_db =" $TMP_FILE3 >$TMP_FILE4
+		grep -v "}" $TMP_FILE4 >$TMP_FILE5
 
 		# Install the DTC db config
-	        TMP_FILE=${MKTEMP} DTC_install.sql.conf.XXXXXX || exit 1
+	        TMP_FILE=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
 	        echo "# Configured by DTC v0.10 : Please don't touch this line !
         # Connect info
         server = "$conf_mysql_host"
@@ -912,11 +913,13 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 #	        echo "SQLConnectInfo    "$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >> $TMP_FILE4
 	        echo "        # Database table configuration
         radius_db = "$conf_mysql_db"
-}" >> $TMP_FILE4
+# End of DTC configuration v0.10 : please don't touch this line !
+}
+" >> $TMP_FILE4
 
-		cat <$TMP_FILE4 $PATH_FREERADIUS_SQL
+		cat <$TMP_FILE4 >$FREERADIUS_SQL_DOT_CONF
+		rm $TMP_FILE $TMP_FILE1 $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5
 	fi
-	rm $TMP_FILE $TMP_FILE1 $TMP_FILE2 $TMP_FILE3 $TMP_FILE4
 fi
 
 #
