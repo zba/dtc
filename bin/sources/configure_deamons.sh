@@ -501,10 +501,10 @@ then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "Inserting DTC configuration inside $PATH_POSTFIX_CONF"
 		fi
+
 		TMP_FILE=`${MKTEMP} DTC_install.postfix_main.cf.XXXXXX` || exit 1
 		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
-		echo "
-# DTC virtual configuration
+		echo "# DTC virtual configuration
 virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 virtual_mailbox_base = /
 virtual_mailbox_maps = hash:$PATH_DTC_ETC/postfix_vmailbox
@@ -514,6 +514,7 @@ virtual_gid_maps = static:65534
 virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
 relay_domains = $PATH_DTC_ETC/postfix_relay_domains
 virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
+
 
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo " Attempting to determine if you have sasl2 installed..."
@@ -571,6 +572,13 @@ smtpd_tls_auth_only = no
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 				echo "No saslpasswd2 found"
 			fi
+		fi
+		# this adds supports for "config" snippets to append to main.cf
+		if [ -f $PATH_DTC_ETC/postfix_config_snippets ]; then
+			cat $PATH_DTC_ETC/postfix_config_snippets >> $TMP_FILE
+		else
+			echo "# /usr/share/dtc/etc/postfix_config_snippets
+# this file is appended to the postfix configure, in case you need to override some configure parameters in the postfix main.cf" > $PATH_DTC_ETC/postfix_config_snippets
 		fi
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
 
