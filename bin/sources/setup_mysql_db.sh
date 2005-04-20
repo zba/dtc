@@ -141,6 +141,8 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER 
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE ftp_access CHANGE homedir homedir VARCHAR(255) DEFAULT '' NOT NULL"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE crypt crypt VARCHAR(255) DEFAULT '' NOT NULL"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE passwd passwd VARCHAR(255) DEFAULT '' NOT NULL"
+# Damien: if you think it's ok like that, uncomment the following line and remove this one !
+# $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"$1$\",SUBSTRING(crypt,4,8)))"
 
 echo "<?php" > $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_host=\""$conf_mysql_host"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
