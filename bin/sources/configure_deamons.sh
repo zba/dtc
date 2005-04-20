@@ -900,6 +900,7 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 		grep -v "server =" $FREERADIUS_SQL_DOT_CONF >$TMP_FILE1
 		grep -v "login =" $TMP_FILE1 >$TMP_FILE2
 		grep -v "password =" $TMP_FILE2 >$TMP_FILE3
+		grep -v "radius_db = " $TMP_FILE3 >$TMP_FILE4
 		grep -v "}" $TMP_FILE4 >$TMP_FILE5
 
 		# Install the DTC db config
@@ -908,13 +909,13 @@ if [ -e ""$FREERADIUS_ETC ] ;then
         # Connect info
         server = "$conf_mysql_host"
         login = "$conf_mysql_login"
-        password = "$conf_mysql_pass"" >> $TMP_FILE4
+        password = "$conf_mysql_pass"" >> $TMP_FILE5
 #	        echo "SQLConnectInfo    "$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >> $TMP_FILE4
 	        echo "        # Database table configuration
         radius_db = "$conf_mysql_db"
 # End of DTC configuration v0.10 : please don't touch this line !
 }
-" >> $TMP_FILE4
+" >> $TMP_FILE5
 
 		cat <$TMP_FILE4 >$FREERADIUS_SQL_DOT_CONF
 		rm $TMP_FILE $TMP_FILE1 $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5
