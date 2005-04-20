@@ -861,7 +861,7 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 		chown -R nobody /var/log/radacct
 	fi
 
-	sed "s/#user = nobody/user = nobody/" $PATH_FREERADIUS_CONF >$TMP_FILE
+	sed "s/#user = nobody/user = nobody/" $FREERADIUS_CONF >$TMP_FILE
 	if grep "group = nobody" $TMP_FILE >/dev/null ;then
 		sed "s/#group = nobody/group = nobody/" $TMP_FILE >$TMP_FILE2
 	else
@@ -871,11 +871,10 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 	sed "s/log_auth_badpass = no/log_auth_badpass = yes/" $TMP_FILE3 >$TMP_FILE4
 	sed "s/log_auth_goodpass = no/log_auth_goodpass = yes/" $TMP_FILE4 >$TMP_FILE5
 	sed "s/#	sql/       sql/" $TMP_FILE5 >$TMP_FILE6 
-	sed "s/radius_db = \"radius\"/radius_db = \"dtc\"/" $TMP_FILE6 >$TMP_FILE7
 
-	cat <$TMP_FILE7 >$PATH_FREERADIUS_CONF
+	cat <$TMP_FILE6 >$FREERADIUS_CONF
 
-	rm $TMP_FILE $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5 $TMP_FILE6 $TMP_FILE7
+	rm $TMP_FILE $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5 $TMP_FILE6
 
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	        echo "===> Adding directives to sql.conf"
