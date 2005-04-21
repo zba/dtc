@@ -77,7 +77,6 @@ chown nobody:65534 dtc/client/gfx dtc/admin/gfx dtc/shared/gfx dtc/email/gfx
 
 cat sources/redhat/install.sh >dtc/admin/dtc.rpm-install.sh
 cat sources/setup_mysql_db.sh >>dtc/admin/dtc.rpm-install.sh
-cat sources/setup_mysql_db.sh >>dtc/admin/dtc.rpm-install.sh
 cat sources/configure_deamons.sh >>dtc/admin/dtc.rpm-install.sh
 
 cat sources/redhat/uninstall.sh >dtc/admin/dtc.rpm-uninstall.sh
