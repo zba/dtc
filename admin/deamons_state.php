@@ -135,9 +135,9 @@ function drawDeamonStates(){
  
 	$out = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"1\" id=\"skinSimpleGreen2Content\">
 <tr>
-	<td align=\"center\" height=\"1\" width=\"16%\"><font color=\"#FFFFFF\">Qmail restart</font></td>
-	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Qmail-newu</font></td>
-	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Qmail gen files</font></td>
+	<td align=\"center\" height=\"1\" width=\"16%\"><font color=\"#FFFFFF\">Mail restart</font></td>
+	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Mail-newu</font></td>
+	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Mail gen files</font></td>
 	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Apache restart</font></td>
 	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Bind reload</font></td>
 	<td align=\"center\" width=\"17%\"><font color=\"#FFFFFF\">Next cronjob</font></td>

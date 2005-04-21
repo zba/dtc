@@ -19,9 +19,11 @@ $out = ""; //init $out variable
 switch($_REQUEST["action"]){
 case "list_dns":
 	$out .= "// Start of DTC generated slave zone file for backuping $conf_administrative_site\n";
-	$q = "SELECT * FROM $pro_mysql_domain_table WHERE other_dns='default' AND NOT primary_dns='default';";
+	$q = "SELECT * FROM $pro_mysql_domain_table WHERE other_dns='default' AND primary_dns='default';";
+	$out .= "// $q";
 	$r = mysql_query($q)or die("Cannot query $q ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
+	$out .= "// $n domain(s) installed\n";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$out .= 'zone "'.$a["name"].'" {
