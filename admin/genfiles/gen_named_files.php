@@ -10,10 +10,10 @@ function get_remote_ns($a){
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
 		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
-			$console .= "<br>Using lynx -source on ".$a["server_addr"]." with login ".$a["server_login"]."...";
+			$console .= "<br>Using lynx -source on ".$a["server_addr"]." with login ".$a["server_login"].".<br>\n";
 			$result = exec("lynx -source \"$url\"",$lines,$return_val);
 		}else{
-			$console .= "<br>Using php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"]."...";
+			$console .= "<br>Using php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"].".<br>\n";
 			$lines = file ($url);
 		}
 		$nline = sizeof($lines);
@@ -21,12 +21,16 @@ function get_remote_ns($a){
 		if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
 			strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
 			for($j=0;$j<$nline;$j++){
-				$named_file .= $lines[$j];
+				$named_file .= $lines[$j]."\n";
 			}
 			$flag = true;
+			$console .= "Success!<br>\n";
 		}
 		$retry ++;
-		if($flag == false)	sleep(5);
+		if($flag == false){
+			$console .= "Failed: delaying 3s!<br>\n";
+			sleep(3);
+		}
 	}
 	if($flag == false){
 		$keep_dns_generate_flag = "yes";
@@ -54,7 +58,7 @@ function get_remote_ns_domains(){
 		if($u == false)	return false;
 		$f = $conf_generated_file_path."/dns_domains.".$u;
 		if($a["status"] == "pending" || !file_exists($f)){
-			$console .= "Getting dns domain list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk...";
+			$console .= "Getting dns domain list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk.<br>\n";
 			$remote_file = get_remote_ns($a);
 			if($remote_file != false){
 				$fp = fopen($f,"w+");
@@ -83,7 +87,7 @@ function get_remote_ns_domains(){
 		if($flag == false){
 			if (file_exists($f))
 			{
-				$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
+				$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>\n";
 				$fp = fopen($f,"r");
 				$test = fseek($fp,0,SEEK_END);
 				if ($test == -1)
