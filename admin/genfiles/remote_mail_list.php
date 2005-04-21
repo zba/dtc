@@ -13,6 +13,7 @@ function get_remote_mail($a){
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"];
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
+		print_r($a_vers);
 		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
 			// Todo: use exec(lynx -source) because HTTPS will not work !
 			$lines = "";
@@ -22,10 +23,12 @@ function get_remote_mail($a){
 			if(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
 				strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>")){
 				for($j=1;$j<$nline-1;$j++){
-					$rcpthosts_file .= $lines[$j];
+					$rcpthosts_file .= $lines[$j]."\n";
 				}
 				$flag = true;
 				$console .= "success!<br>\n";
+			}else{
+				$console .= "Failed!<br>\n";
 			}
 //			$rcpthosts_file .= "";
 		}else{
@@ -73,7 +76,7 @@ function get_remote_mail_domains(){
 		if($u == false)	return false;
 		$f = $conf_generated_file_path."/mail_domains.".$u;
 		if($a["status"] == "pending" || !file_exists($f)){
-			$console .= "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk...";
+			$console .= "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk.<br>\n";
 			$remote_file = get_remote_mail($a);
 			if($remote_file != false){
 				$fp = fopen($f,"w+");
@@ -93,30 +96,27 @@ function get_remote_mail_domains(){
 					$console .= "ok!<br>";
 					$flag = true;
 				}else{
-					$console .= "wrong! File is empty!<br>";
+					$console .= "wrong! File is empty!<br>\n";
 				}
 			}else{
-				$console .= "failed!<br>";
+				$console .= "failed!<br>\n";
 			}
 		}
 		if($flag == false){
-			if (file_exists($f))
-                        {
-			$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
-			$fp = fopen($f,"r");
-			fseek($fp,0,SEEK_END);
-			$size = ftell($fp);
-			if ($size > 0)
-			{
-				fseek($fp,0);
-				$domain_list .= fread($fp,$size);
+			if (file_exists($f)){
+				$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>\n";
+				$fp = fopen($f,"r");
+				fseek($fp,0,SEEK_END);
+				$size = ftell($fp);
+				if ($size > 0){
+					fseek($fp,0);
+					$domain_list .= fread($fp,$size);
+				} else {
+					$console .= "File [" . $f . "] is empty<br>\n";
+				}
+				fclose($fp);
 			} else {
-				$console .= "File [" . $f . "] is empty<br>";
-			}
-			fclose($fp);
-			} else {
-                                $console .= "Cache file not present, probably fa
-iled to read from remote host";
+				$console .= "Cache file not present, probably failed to read from remote host<br>\n";
 			}
 		}
 	}
