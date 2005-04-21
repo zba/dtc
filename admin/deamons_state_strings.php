@@ -1,26 +1,26 @@
 <?php
 
 $txt_daemonstate_qmail_restart = array(
-	"fr" => "Qmail Restart",
-	"en" => "Qmail Restart",
-	"hu" => "A Qmail újraindítása",
-	"it" => "Qmail Restart",
-	"nl" => "Qmail herstarten",
-	"ru" => "Qmail Restart",
-	"de" => "Qmail Restart",
-	"zh" => "Qmail Restart",
-	"es" => "Reinicio de Qmail");
+	"fr" => "Mail Restart",
+	"en" => "Mail Restart",
+	"hu" => "A mail újraindítása",
+	"it" => "Mail Restart",
+	"nl" => "Mail herstarten",
+	"ru" => "Mail Restart",
+	"de" => "Mail Restart",
+	"zh" => "Mail Restart",
+	"es" => "Reinicio de mail");
 
 $txt_daemonstate_qmail_newu = array(
-	"fr" => "Qmail New Users",
-	"en" => "Qmail New Users",
-	"hu" => "Új Qmail Felhasználók",
-	"it" => "Qmail New Users",
-	"nl" => "Nieuwe Qmail gebruikers",
-	"ru" => "Qmail New Users",
-	"de" => "Qmail New Users",
-	"zh" => "Qmail New Users",
-	"es" => "Nuevos Usuarios de Qmail");
+	"fr" => "Mail New Users",
+	"en" => "Mail New Users",
+	"hu" => "Új mail Felhasználók",
+	"it" => "Mail New Users",
+	"nl" => "Nieuwe mail gebruikers",
+	"ru" => "Mail New Users",
+	"de" => "Mail New Users",
+	"zh" => "Mail New Users",
+	"es" => "Nuevos Usuarios de mail");
 
 $txt_daemonstate_gen_files = array(
 	"fr" => "Generate new Qmail userfile",
