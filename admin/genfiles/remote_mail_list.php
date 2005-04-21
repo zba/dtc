@@ -5,6 +5,8 @@
 function get_remote_mail($a){
 	global $conf_use_ssl;
 	global $console;
+	global $keep_mail_generate_flag;
+	
 	$flag = false;
 	$retry = 0;
 	$rcpthosts_file = ""; //init variable here
@@ -40,7 +42,10 @@ function get_remote_mail($a){
 		$retry ++;
 		if($flag == false)	sleep(5);
 	}
-	if($flag == false)	return false;
+	if($flag == false){
+		$keep_mail_generate_flag = "yes";
+		return false;
+	}
 	else		return $rcpthosts_file;
 }
 

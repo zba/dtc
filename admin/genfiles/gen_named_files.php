@@ -2,6 +2,7 @@
 
 function get_remote_ns($a){
 	global $console;
+	global $keep_dns_generate_flag;
 	$retry = 0;
 	$flag = false;
 	$named_file = ""; //init $named_file var
@@ -27,7 +28,10 @@ function get_remote_ns($a){
 		$retry ++;
 		if($flag == false)	sleep(5);
 	}
-	if($flag == false)	return false;
+	if($flag == false){
+		$keep_dns_generate_flag = "yes";
+		return false;
+	}
 	else		return $named_file;
 }
 

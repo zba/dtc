@@ -7,6 +7,9 @@ require_once("$dtcshared_path/dtc_lib.php");
 
 require_once("genfiles/genfiles.php");
 
+$keep_mail_generate_flag = "no";
+$keep_dns_generate_flag = "no";
+
 // Set here your apachectl path if you need it fully (like for example
 // /usr/sbin/apachectl for debian, or /usr/local/sbin/apachectl for FreeBSD)
 if($conf_unix_type == "debian" || $conf_unix_type == "redhat" || $conf_unix_type == "osx"){
@@ -257,7 +260,15 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 
 $exec_time = time() - $script_start_time;
 echo "Resetting all cron flags\n";
-$query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(),qmail_newu='no', restart_qmail='no', reload_named='no', restart_apache='no', gen_vhosts='no', gen_named='no', gen_qmail='no', gen_webalizer='no', gen_backup='no' WHERE 1;";
+$to_reset = "";
+if($keep_mail_generate_flag == "no"){
+	$to_reset .= " restart_qmail='no', gen_qmail='no', ";
+}
+if($keep_dns_generate_flag == "no"){
+	$to_reset .= " gen_named='no', reload_named='no', ";
+}
+
+$query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(), $reset  qmail_newu='no', restart_apache='no', gen_vhosts='no', gen_webalizer='no', gen_backup='no' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 if($exec_time > 60){
 	$ex_sec = $exec_time % 60;
