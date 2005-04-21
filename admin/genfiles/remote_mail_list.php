@@ -25,6 +25,7 @@ function get_remote_mail($a){
 					$rcpthosts_file .= $lines[$j];
 				}
 				$flag = true;
+				$console .= "success!<br>\n";
 			}
 //			$rcpthosts_file .= "";
 		}else{
@@ -37,10 +38,14 @@ function get_remote_mail($a){
 					$rcpthosts_file .= $lines[$j];
 				}
 				$flag = true;
+				$console .= "success!<br>\n";
 			}
 		}
 		$retry ++;
-		if($flag == false)	sleep(5);
+		if($flag == false){
+			$console .= "failed: delaying in 3s!<br>\n";
+			sleep(3);
+		}
 	}
 	if($flag == false){
 		$keep_mail_generate_flag = "yes";
