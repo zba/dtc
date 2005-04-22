@@ -924,10 +924,16 @@ fi
 #
 # Install the cron php4 script in the $PATH_CRONTAB_CONF
 #
+
+# just in case we haven't specified PATH_CRONTAB_CONF, default to /etc/crontab
+if [ ""$PATH_CRONTAB_CONF = ""]; then
+	PATH_CRONTAB_CONF=/etc/crontab
+fi
+
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Installing cron script in "$PATH_CRONTAB_CONF
 fi
-if grep "Configured by DTC "$PATH_CRONTAB_CONF >/dev/null
+if grep "Configured by DTC " $PATH_CRONTAB_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "/etc/crontab has been configured before : skinping include inssertion"

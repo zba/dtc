@@ -28,6 +28,7 @@ PATH_QMAIL_CTRL=/etc/qmail
 PATH_PHP_CGI="/usr/bin/php4"
 PATH_PROFTPD_CONF=/etc/proftpd.conf
 PATH_DOVECOT_CONF=/etc/dovecot.conf
+PATH_CRONTAB_CONF=/etc/crontab
 # in case our dovecot conf has moved...
 if [ -f /etc/dovecot/dovecot.conf ]; 
 then
