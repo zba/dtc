@@ -256,14 +256,15 @@ function checkDNS(){
 	$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said ".mysql_error());
 	$a = mysql_fetch_array($r);
 
-	$server = "localhost";
+	$server = $a["name"];
 	// echo "Checking POP3<br>";
-	if(($server_ip = gethostbynameFalse($a["name"])) == false){
-		$errTxt = "Cannot resolv ".$a["name"];
+	if(($server_ip = gethostbynameFalse($server)) == false){
+		$errTxt = "Cannot resolv ".$server;
 		return false;
 	}
-	if($a["ip_addr"] != $server_ip){
-		$errTxt = "IP Resolved is not same as the one I have in the database!";
+	$server_ip_db = $a["ip_addr"];
+	if($server_ip_db != $server_ip){
+		$errTxt = "IP Resolved [$server_ip] is not same as the one I have in the database [$server_ip_db]!";
 		return false;
 	}
 	return true;
@@ -290,25 +291,25 @@ function drawServerStatus(){
 	if(checkPOP3()){
 		$pop3_status = '<font color="#00FF00">Running ok</font>';
 	}else{
-		$pop3_status = '<font color="#FF0000">ERROR!</font>';
+		$pop3_status = '<font color="#FF0000">ERROR! '.$errTxt.'</font>';
 	}
 
 	if(checkSMTP()){
 		$smtp_status = '<font color="#00FF00">Running ok</font>';
 	}else{
-		$smtp_status = '<font color="#FF0000">ERROR!</font>';
+		$smtp_status = '<font color="#FF0000">ERROR! '.$errTxt.'</font>';
 	}
 
 	if(checkDNS()){
 		$dns_status = '<font color="#00FF00">Running ok</font>';
 	}else{
-		$dns_status = '<font color="#FF0000">ERROR!</font>';
+		$dns_status = '<font color="#FF0000">ERROR! '.$errTxt.'</font>';
 	}
 
 	if(checkFTP()){
 		$ftp_status = '<font color="#00FF00">Running ok</font>';
 	}else{
-		$ftp_status = '<font color="#FF0000">ERROR!</font>';
+		$ftp_status = '<font color="#FF0000">ERROR! '.$errTxt.'</font>';
 	}
 
 	$out = "<br><table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" height=\"1\">
