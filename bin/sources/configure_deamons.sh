@@ -582,8 +582,8 @@ smtpd_tls_auth_only = no
 
 		# if we have maildrop, we should use it!
 		if [ -f "/usr/sbin/userdb" ]; then
-			echo "virtual_transport = maildrop
-	fallback_transport = procmail" >> $TMP_FILE
+			echo "virtual_transport = maildrop" >> $TMP_FILE
+			echo "fallback_transport = procmail" >> $TMP_FILE
 			if grep "Configured by DTC" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
 				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 					echo "Postfix master.cf has been configured before, not adding maildrop options"
