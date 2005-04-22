@@ -43,6 +43,12 @@ function drawDTCConfigMenu(){
 	if($sousrub != "payconf")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "radius")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=radius\">";
+	$out .=  "radius";
+	if($sousrub != "radius")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "path")
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=path\">";
 	$out .= $txt_cfg_path_conf_title[$lang];
@@ -445,7 +451,6 @@ function drawDTCpayConfig(){
 	$n = mysql_num_rows($r);
         if($n != 1)	die("Error line: ".__LINE__." file: ".__file__." secpayconf table should have one and only one line!");
         $a = mysql_fetch_array($r);
-
         if($a["use_paypal"] == "yes"){
           $use_paypal_check_yes = " checked";
           $use_paypal_check_no = "";
@@ -482,6 +487,56 @@ function drawDTCpayConfig(){
 </table>
 ";
 	return $out;
+}
+
+function drawDTCradiusConfig(){
+  global $conf_dtcshared_path;
+  global $lang;
+
+  $out = "<h3>NAS config</h3>";
+  $out .= "<b><u>Your NAS server list:</u></b><br>";  
+        $q = "SELECT * FROM nas";
+        $r = mysql_query($q)or die("Cannot query : \"$q\" ! line: ".__LINE__." file: ".__file__." sql said: ".mysql_error());
+        $n = mysql_num_rows($r);
+        for($i=0;$i<$n;$i++){
+          $a = mysql_fetch_array($r);
+          if($i != 0)	$out .= " - ";
+          $out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."\">".$a["nasname"]."</a>";
+        }
+        $out .= "<br><a href=\"".$_SERVER["PHP_SELF"]."?rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&nas_id=new\">Add a new NAS</a>";
+        if(isset($_REQUEST["nas_id"])){
+	$out .="<table with=\"100%\" height=\"1\">
+<tr><td align=\"right\" nowrap>
+	NAS Name:</td><td width=\"100%\"><input type=\"text\" value=\"$ed_nas_name\" name=\"nas_name\"></td>
+</tr><tr><td align=\"right\" nowrap>
+	NAS short name:</td><td width=\"100%\"><input type=\"text\" value=\"$ed_nas_short_name\" name=\"nas_short_name\"></td>
+</tr><tr>
+  <td align=\"right\" nowrap>NAS type:</td>
+  <td width=\"100%\"><select name=\"nas_type\"><option value="cisco">cisco</option>
+<option value="computone">computone</option>
+<option value="livingston">livingston</option>
+<option value="max40xx">max40xx</option>
+<option value="multitech">multitech</option>
+<option value="netserver">netserver</option>
+<option value="pathras">pathras</option>
+<option value="patton">patton</option>
+<option value="portslave">portslave</option>
+<option value="tc">tc</option>
+<option value="usrhiper">usrhiper</option>
+<option value="other">other</option>
+</select</td>
+</tr><tr>
+  <td align=\"right\" nowrap>NAS port number:</td>
+  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"\" name=\"nas_port_num\"></td>
+</tr><tr>
+  <td align=\"right\" nowrap>".$txt_cfg_paypal_flatfee[$lang]."</td>
+  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a["paypal_flat"]."\" name=\"paypal_flat\"></td>
+</tr>
+</table>
+";
+        }
+
+  return $out;
 }
 
 function drawDTCpathConfig(){
@@ -627,6 +682,9 @@ function drawDTCConfigForm(){
                 break;
         case "payconf":
                 $global_conf = drawDTCpayConfig();
+                break;
+        case "radius":
+                $global_conf = drawDTCradiusConfig();
                 break;
 	case "path":
 		$global_conf = drawDTCpathConfig();
