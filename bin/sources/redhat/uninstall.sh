@@ -15,7 +15,7 @@ PATH_COURIER_CONF_PATH="/etc/courier"
 PATH_POSTFIX_CONF="/etc/postfix/main.cf"
 PATH_POSTFIX_ETC="/etc/postfix"
 PATH_QMAIL_CTRL="/var/qmail/control"
-
+PATH_CRONTAB_CONF="/etc/crontab"
 
 MKTEMP="mktemp -p /tmp"
 
