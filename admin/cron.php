@@ -57,7 +57,13 @@ function commitTriggerToRemote($a){
 	$retry = 0;
         $url = $a["server_addr"].'/dtc/list_domains.php?action=update_request&login='.$a["server_login"].'&pass='.$a["server_pass"];
         while($retry < 3 && $flag == false){
-		$lines = file ($url);
+		$a_vers = explode(".",phpversion());
+		print_r($a_vers);
+		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
+			$result = exec("lynx -source \"$url\"",$lines,$return_val);
+		}else{
+			$lines = file ($url);
+		}
 		$nline = sizeof($lines);
 		if(strstr($lines[0],"Successfuly recieved trigger!") != false){
 			$flag = true;
