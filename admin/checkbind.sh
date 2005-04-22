@@ -2,11 +2,11 @@
 conf_generated_file_path=$1
 bindgroup=`cat /etc/group | cut -f 1 -d: | grep named`
 
-if [ ""$bindgroup = "" ] ; then
+if [ -z "$bindgroup" ] ; then
 	bindgroup=`cat /etc/group | cut -f 1 -d: | grep bind`
 fi
 
-if [ ""$bindgroup != "" ]; then
+if [ -n "$bindgroup" ]; then
 	echo "Changing $bindgroup $conf_generated_file_path/zones permissions to $bindgroup:65534"
         chown -R $bindgroup:""65534 $conf_generated_file_path/zones
 	chmod -R 0770 $conf_generated_file_path/zones
