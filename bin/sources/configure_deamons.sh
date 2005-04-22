@@ -579,6 +579,32 @@ smtpd_tls_auth_only = no
 			echo "# /usr/share/dtc/etc/postfix_config_snippets
 # this file is appended to the postfix configure, in case you need to override some configure parameters in the postfix main.cf" > $PATH_DTC_ETC/postfix_config_snippets
 		fi
+
+		# if we have maildrop, we should use it!
+		if [ -f "/usr/sbin/userdb" ]; then
+			echo "virtual_transport = maildrop
+	fallback_transport = procmail" >> $TMP_FILE
+			if grep "Configured by DTC" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "Postfix master.cf has been configured before, not adding maildrop options"
+				fi
+			else
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "Inserting DTC configuration inside $PATH_POSTFIX_ETC/master.cf"
+				fi
+
+				TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
+				echo "# Configured by DTC v0.17 : Please don't touch this line !" > $TMP_FILE2
+				echo "maildrop  unix  -       n       n       -       -       pipe
+    flags=DRhu user=nobody argv=/usr/bin/maildrop -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
+" >> $TMP_FILE2
+				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
+
+			cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
+			rm $TMP_FILE2
+			fi
+		fi
+
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
 
 		# now to insert it at the end of the actual main.cf
@@ -590,7 +616,9 @@ smtpd_tls_auth_only = no
 			rm $SASLTMP_FILE
 		fi
 	fi
+
 fi
+
 
 # This avoid hanging when (re)starting daemons under debian
 if [ "$UNIX_TYPE" = "debian" ]
@@ -926,7 +954,7 @@ fi
 #
 
 # just in case we haven't specified PATH_CRONTAB_CONF, default to /etc/crontab
-if [ ""$PATH_CRONTAB_CONF = ""]; then
+if [ -z ""$PATH_CRONTAB_CONF ]; then
 	PATH_CRONTAB_CONF=/etc/crontab
 fi
 
