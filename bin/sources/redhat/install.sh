@@ -138,6 +138,7 @@ read conf_adm_pass
 echo "### DEAMON PATH CONFIGURATION ###"
 
 PATH_HTTPD_CONF=/etc/httpd/conf/httpd.conf
+PATH_CRONTAB_CONF=/etc/crontab
 PATH_NAMED_CONF=/etc/named.conf
 PATH_PROFTPD_CONF=/etc/proftpd.conf
 PATH_DOVECOT_CONF=/etc/dovecot.conf

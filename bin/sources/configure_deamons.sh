@@ -25,7 +25,7 @@
 
 # VERBOSE_INSTALL=yes
 
-if [ ""$MKTEMP = "" ] ; then
+if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
 fi
 
@@ -416,8 +416,7 @@ else
 fi
 
 # only try and do qmail stuff if we have qmail installed! (check the control directory)
-if [ -e $PATH_QMAIL_CTRL ]
-then
+if [ -e "$PATH_QMAIL_CTRL" ] ;then
 	#
 	# Install the qmail links in the /etc/qmail
 	#
@@ -487,7 +486,7 @@ fi
 # works if you don't have SASL
 
 SASLTMP_FILE="/thisfiledoesnotexists"
-if [ -f $PATH_POSTFIX_CONF ]
+if [ -f "$PATH_POSTFIX_CONF" ]
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Linking postfix control files to DTC generated files"
@@ -602,7 +601,7 @@ fi
 #
 # Install courier mysql authenticaion
 #
-if [ -f $PATH_COURIER_CONF_PATH/authdaemonrc ]
+if [ -f "$PATH_COURIER_CONF_PATH/authdaemonrc" ]
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Adding directives to Courier authdaemonrc"
@@ -923,23 +922,23 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 fi
 
 #
-# Install the cron php4 script in the /etc/crontab
+# Install the cron php4 script in the $PATH_CRONTAB_CONF
 #
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "===> Installing cron script in /etc/crontab"
+	echo "===> Installing cron script in "$PATH_CRONTAB_CONF
 fi
-if grep "Configured by DTC" /etc/crontab >/dev/null
+if grep "Configured by DTC "$PATH_CRONTAB_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "/etc/crontab has been configured before : skinping include inssertion"
 	fi
 else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "Inserting DTC cronjob in /etc/crontab"
+		echo "Inserting DTC cronjob in "$PATH_CRONTAB_CONF
 	fi
-	if ! [ -f /etc/crontab.DTC.backup ]
+	if ! [ -f $PATH_CRONTAB_CONF.DTC.backup ]
 	then
-		cp -f /etc/crontab /etc/crontab.DTC.backup
+		cp -f $PATH_CRONTAB_CONF $PATH_CRONTAB_CONF.DTC.backup
 	fi
 	TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
