@@ -241,6 +241,8 @@ then
 fi
 
 
+PATH_CRONTAB_CONF=/etc/crontab
+
 echo ""
 echo ""
 echo ""

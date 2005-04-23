@@ -116,7 +116,7 @@ echo "### DEAMON PATH CONFIGURATION ###"
 
 PATH_HTTPD_CONF="/etc/httpd/httpd.conf"
 PATH_NAMED_CONF="/etc/named.conf"
-
+PATH_CRONTAB_CONF="/etc/crontab"
 PATH_POSTFIX_ETC="/etc/postfix"
 
 PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"

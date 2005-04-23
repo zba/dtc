@@ -70,3 +70,4 @@ if [ "$PATH_QMAIL_CTRL" = "" ];
 then
 	PATH_QMAIL_CTRL="/var/qmail/control"
 fi
+PATH_CRONTAB_CONF=/etc/crontab
