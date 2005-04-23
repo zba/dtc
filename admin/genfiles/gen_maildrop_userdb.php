@@ -71,9 +71,9 @@ function mail_account_generate_maildrop(){
 			$domain_full_name = $domain["name"];
 			//if we are primary mx, add to userdb
 			//else add to relay
-			if ($domain["primary_mx"] == "" || $domain["primary_mx"] == "default")
+			if (!($domain["primary_mx"] == "" || $domain["primary_mx"] == "default"))
 			{
-				$domains_file .= "$domain_full_name virtual\n";
+				continue;
 			} 
 			
 			if(isset($domain["emails"])){
@@ -93,11 +93,8 @@ function mail_account_generate_maildrop(){
 					$passwdtemp = $email["passwd"];
 					$passwd = crypt($passwdtemp);
 
-					system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=65534 gid=65534");
-
 					if ($localdeliver == "yes"){
-						$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
-						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
+						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=65534 gid=65534");
 					} 
 				}
 			}
