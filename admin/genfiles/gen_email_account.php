@@ -20,6 +20,7 @@ function mail_account_generate(){
 
 	// always generate maildrop
 	// this will allow qmail to use maildrop along with postfix
+	mail_account_generate_maildrop();
 
 }
 
