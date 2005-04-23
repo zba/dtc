@@ -21,7 +21,7 @@
 
 # VERBOSE_INSTALL=yes
 
-if [ ""$MKTEMP = "" ] ; then
+if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
 fi
 
