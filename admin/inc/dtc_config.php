@@ -512,18 +512,18 @@ function drawDTCradiusConfig(){
 	NAS short name:</td><td width=\"100%\"><input type=\"text\" value=\"$ed_nas_short_name\" name=\"nas_short_name\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>NAS type:</td>
-  <td width=\"100%\"><select name=\"nas_type\"><option value="cisco">cisco</option>
-<option value="computone">computone</option>
-<option value="livingston">livingston</option>
-<option value="max40xx">max40xx</option>
-<option value="multitech">multitech</option>
-<option value="netserver">netserver</option>
-<option value="pathras">pathras</option>
-<option value="patton">patton</option>
-<option value="portslave">portslave</option>
-<option value="tc">tc</option>
-<option value="usrhiper">usrhiper</option>
-<option value="other">other</option>
+  <td width=\"100%\"><select name=\"nas_type\"><option value=\"cisco\">cisco</option>
+<option value=\"computone\">computone</option>
+<option value=\"livingston\">livingston</option>
+<option value=\"max40xx\">max40xx</option>
+<option value=\"multitech\">multitech</option>
+<option value=\"netserver\">netserver</option>
+<option value=\"pathras\">pathras</option>
+<option value=\"patton\">patton</option>
+<option value=\"portslave\">portslave</option>
+<option value=\"tc\">tc</option>
+<option value=\"usrhiper\">usrhiper</option>
+<option value=\"other\">other</option>
 </select</td>
 </tr><tr>
   <td align=\"right\" nowrap>NAS port number:</td>
