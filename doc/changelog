@@ -1,3 +1,11 @@
+R4
+- Now double checking if apache is restart. Retry if not.
+
+- Now have separated grant privileges for mysql access:
+a dtcdaemons user is created uppon install.
+
+- Qmail is new renamed to Mail in dtc daemons page.
+
 V0.17.0-R3
 Now, DTC checks that apache is REALLY restarted.
 If it's not, then it tries again durring 15 times,

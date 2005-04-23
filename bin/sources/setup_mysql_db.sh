@@ -143,6 +143,62 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER 
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE passwd passwd VARCHAR(255) DEFAULT '' NOT NULL"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8)))"
 
+# Add dtc userspace info to mysql db
+if $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE mysql.user ADD dtcowner varchar (255) DEFAULT 'none' NOT NULL" ;then
+	echo ""
+fi
+
+# Add a dtc user to the mysql db, generate a password randomly if no password is there already
+# Using a file to remember password...
+PATH_DB_PWD_FILE=${PATH_DTC_ETC}/dtcdb_passwd
+if ! [ -e ${PATH_DB_PWD_FILE} ] ;then
+	MYSQL_DTCDAEMONS_PASS=`echo ${RANDOM}${RANDOM}`
+	echo ${MYSQL_DTCDAEMONS_PASS} >${PATH_DB_PWD_FILE}
+else
+	MYSQL_DTCDAEMONS_PASS=`cat <${PATH_DB_PWD_FILE}`
+fi
+if [ -z "${MYSQL_DTCDAEMONS_PASS}" ] ;then
+	MYSQL_DTCDAEMONS_PASS=${RANDOM}${RANDOM}
+	echo ${MYSQL_DTC_PASS} >${PATH_DB_PWD_FILE}
+fi
+
+chmod 600 ${PATH_DB_PWD_FILE}
+# Inserting the user
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.user (Host, User, Password, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Reload_priv, Shutdown_priv, Process_priv, File_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('localhost', 'dtcdaemons', PASSWORD('"${MYSQL_DTCDAEMONS_PASS}"'), 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N')"
+
+# Update the password in case of (bad) reinstallation case
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE mysql.user SET Password=PASSWORD('"${MYSQL_DTCDAEMONS_PASS}"') WHERE User='dtcdaemons'"
+
+# grant Select,Insert,Update,Delete,References,Index to ftp_access
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'ftp_access', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', 'Select')"
+
+# grant Select,Insert,Update,Delete,References,Index to ftp_access
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'groups', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', 'Select')"
+
+# grant Select,Insert,Update,Delete,References,Index to ftp_logs
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'ftp_logs', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
+
+# grant Select,Insert,Update,Delete,References,Index to ftp_accounting
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'ftp_accounting', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
+
+# grant all to apachelogs
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.db (Host, Db, User, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('localhost', 'apachelogs', 'dtcdaemons', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'Y', 'Y', 'Y')"
+
+# grant select to pop_access
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'pop_access', '', NOW(NULL), 'Select', 'Select')"
+
+# grant Select,Insert,Update,Delete,References,Index to smtp_logs
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'smtp_logs', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
+
+# grant select to whitelist
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'whitelist', '', NOW(NULL), 'Select', 'Select')"
+
+# grant select to fetchmail
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'fetchmail', '', NOW(NULL), 'Select', 'Select')"
+
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="FLUSH PRIVILEGES"
+
+# The panel needs root access (it does database management)
 echo "<?php" > $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_host=\""$conf_mysql_host"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_login=\""$conf_mysql_login"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"

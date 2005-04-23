@@ -307,7 +307,7 @@ Include $PATH_DTC_ETC/vhosts.conf
 Listen 80
 Listen 443" >>$PATH_HTTPD_CONF
 	fi
-	echo "LogSQLLoginInfo localhost "$conf_mysql_login" "$conf_mysql_pass >>$PATH_HTTPD_CONF
+	echo "LogSQLLoginInfo localhost dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >>$PATH_HTTPD_CONF
 	if [ ""$UNIX_TYPE = "freebsd" ] ;then
 		echo "LogSQLSocketFile /tmp/mysqld.sock" >>$PATH_HTTPD_CONF
 	else
@@ -378,7 +378,7 @@ then
 		fi
 	fi
 	touch $PATH_PAMD_SMTP
-	echo "auth required pam_mysql.so user="$conf_mysql_login" passwd="$conf_mysql_pass" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
+	echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
 #	if grep "Configured by DTC" $PATH_PAMD_SMTP
 #		echo $PATH_PAMD_SMTP" has been configured before: skiping include insertion!"
 #	else
@@ -422,6 +422,7 @@ if [ -e "$PATH_QMAIL_CTRL" ] ;then
 	#
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Linking qmail control files to DTC generated files"
+		echo "111"
 	fi
 	if ! [ -e $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ]
 	then
@@ -659,8 +660,8 @@ then
 MYSQL_SERVER		$conf_mysql_host
 MYSQL_PORT		3306
 MYSQL_DATABASE		$conf_mysql_db
-MYSQL_USERNAME		$conf_mysql_login
-MYSQL_PASSWORD		$conf_mysql_pass
+MYSQL_USERNAME		dtcdaemons
+MYSQL_PASSWORD		${MYSQL_DTCDAEMONS_PASS}
 MYSQL_USER_TABLE        pop_access
 MYSQL_LOGIN_FIELD       id
 MYSQL_CRYPT_PWFIELD     crypt
@@ -762,8 +763,8 @@ db_host = $conf_mysql_host
 db_port = 3306
 db_unix_socket = /var/run/mysqld/mysqld.sock
 db = $conf_mysql_db
-db_user = $conf_mysql_login
-db_passwd = $conf_mysql_pass
+db_user = dtcdaemons
+db_passwd = ${MYSQL_DTCDAEMONS_PASS}
 db_client_flags = 0
 
 default_pass_scheme = PLAIN
@@ -808,7 +809,7 @@ else
 	echo "IdentLookups	off" >> $TMP_FILE
 	echo "DefaultRoot	~" >> $TMP_FILE
 	echo "SQLAuthenticate	on" >> $TMP_FILE
-	echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >> $TMP_FILE
+	echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >> $TMP_FILE
 	echo "SQLAuthTypes	Plaintext" >> $TMP_FILE
 	echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >> $TMP_FILE
 	echo "# // Transfer Log to Proftpd
