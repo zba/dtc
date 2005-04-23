@@ -8,10 +8,10 @@ fi
 
 if [ -n "$bindgroup" ]; then
 	echo "Changing $bindgroup $conf_generated_file_path/zones permissions to $bindgroup:65534"
-        chown -R $bindgroup:""65534 $conf_generated_file_path/zones
+        chown -R $bindgroup:65534 $conf_generated_file_path/zones
 	chmod -R 0770 $conf_generated_file_path/zones
-        chown -R $bindgroup:""65534 $conf_generated_file_path/slave_zones
+        chown -R $bindgroup:65534 $conf_generated_file_path/slave_zones
 	chmod -R 0770 $conf_generated_file_path/slave_zones
 else
-	echo "Didn't find any groups for named, it must be running as root"
+	echo "Didn't find named groups, it must be running as root: keeping permissions"
 fi
