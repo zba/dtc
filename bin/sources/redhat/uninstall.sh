@@ -16,6 +16,14 @@ PATH_POSTFIX_CONF="/etc/postfix/main.cf"
 PATH_POSTFIX_ETC="/etc/postfix"
 PATH_QMAIL_CTRL="/var/qmail/control"
 PATH_CRONTAB_CONF="/etc/crontab"
+PATH_DTC_SHARED=/usr/share/dtc
+FREERADIUS_ETC="/etc/raddb"
+
+PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
+PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
+PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
+
+#PATH_DTC_ETC
 
 MKTEMP="mktemp -p /tmp"
 

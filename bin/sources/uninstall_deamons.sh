@@ -25,6 +25,22 @@ if [ ""$MKTEMP = "" ] ; then
 	MKTEMP="mktemp -t"
 fi
 
+if grep "Configured by DTC" $PATH_CRONTAB_CONF >/dev/null
+then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> Uninstalling inclusion from crontab"
+	fi
+	TMP_FILE=`${MKTEMP} DTC_uninstall.crontab.XXXXXX` || exit 1
+	TMP_FILE2=`${MKTEMP} DTC_uninstall.crontab.XXXXXX` || exit 1
+	grep -v "Configured by DTC" $PATH_CRONTAB_CONF > $TMP_FILE
+	grep -v "cd /usr/share/dtc/admin; " $TMP_FILE > $TMP_FILE2
+	cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.removed
+	# don't rm the original file, just empty it so we keep permissions
+	echo -n > $PATH_CRONTAB_CONF
+	cat < $TMP_FILE2 >> $PATH_CRONTAB_CONF
+	rm -f $TMP_FILE $TMP_FILE2
+fi
+
 
 if grep "Configured by DTC" $PATH_NAMED_CONF >/dev/null
 then
