@@ -264,7 +264,7 @@ function checkDNS(){
 	}
 	$server_ip_db = $a["ip_addr"];
 	if($server_ip_db != $server_ip){
-		$errTxt = "IP Resolved [$server_ip] is not same as the one I have in the database [$server_ip_db]!";
+		$errTxt = "$server IP Resolved [$server_ip] is not same as the one I have in the database [$server_ip_db]!";
 		return false;
 	}
 	return true;
