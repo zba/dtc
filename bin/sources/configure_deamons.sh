@@ -505,6 +505,9 @@ then
 		TMP_FILE=`${MKTEMP} DTC_install.postfix_main.cf.XXXXXX` || exit 1
 		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
 		echo "# DTC virtual configuration
+# disable the following functionality by default (otherwise can't match subdomains correctly)
+parent_domain_matches_subdomains=
+
 virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 virtual_mailbox_base = /
 virtual_mailbox_maps = hash:$PATH_DTC_ETC/postfix_vmailbox
