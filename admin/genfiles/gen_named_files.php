@@ -337,7 +337,7 @@ $more_mx_server
 	$named_file .= get_remote_ns_domains();
 
 	// include the slave zone file
-	$named_file .= "include \"$conf_generated_file_path/$conf_named_slavefile_path\";\n";
+//	$named_file .= "include \"$conf_generated_file_path/$conf_named_slavefile_path\";\n";
 
 	// Write of the master zone file
 	$filep = fopen("$conf_generated_file_path/$conf_named_path", "w+");

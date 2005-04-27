@@ -10,18 +10,18 @@ function register_user(){
 	global $pro_mysql_new_admin_table;
 
 	// Check if all fields are blank, in wich case don't display error
-	if(($_REQUEST["reqadm_login"] == "" || !isset($_REQUEST["reqadm_login"]))
-	&& ($_REQUEST["reqadm_pass"] == "" || !isset($_REQUEST["reqadm_pass"]))
-	&& ($_REQUEST["reqadm_pass2"] == "" || !isset($_REQUEST["reqadm_pass2"]))
-	&& ($_REQUEST["domain_name"] == "" || !isset($_REQUEST["domain_name"]))
-	&& ($_REQUEST["familyname"] == "" || !isset($_REQUEST["familyname"]))
-	&& ($_REQUEST["firstname"] == "" || !isset($_REQUEST["firstname"]))
-	&& ($_REQUEST["email"] == "" || !isset($_REQUEST["email"]))
-	&& ($_REQUEST["phone"] == "" || !isset($_REQUEST["phone"]))
-	&& ($_REQUEST["address1"] == "" || !isset($_REQUEST["address1"]))
-	&& ($_REQUEST["zipcode"] == "" || !isset($_REQUEST["zipcode"]))
-	&& ($_REQUEST["city"] == "" || !isset($_REQUEST["city"]))
-	&& ($_REQUEST["firstname"] == "" || !isset($_REQUEST["firstname"]))){
+	if((!isset($_REQUEST["reqadm_login"]) || $_REQUEST["reqadm_login"] == "")
+	&& (!isset($_REQUEST["reqadm_pass"]) || $_REQUEST["reqadm_pass"] == "" )
+	&& (!isset($_REQUEST["reqadm_pass2"]) || $_REQUEST["reqadm_pass2"] == "")
+	&& (!isset($_REQUEST["domain_name"]) || $_REQUEST["domain_name"] == "")
+	&& (!isset($_REQUEST["familyname"]) || $_REQUEST["familyname"] == "")
+	&& (!isset($_REQUEST["firstname"]) || $_REQUEST["firstname"] == "")
+	&& (!isset($_REQUEST["email"]) || $_REQUEST["email"] == "")
+	&& (!isset($_REQUEST["phone"]) || $_REQUEST["phone"] == "")
+	&& (!isset($_REQUEST["address1"]) || $_REQUEST["address1"] == "")
+	&& (!isset($_REQUEST["zipcode"]) || $_REQUEST["zipcode"] == "")
+	&& (!isset($_REQUEST["city"]) || $_REQUEST["city"] == "")
+	&& (!isset($_REQUEST["firstname"]) || $_REQUEST["firstname"] == "")){
 		$ret["err"] = 1;
 		$ret["mesg"] = "Not registering";
 		return $ret;
@@ -259,22 +259,68 @@ function registration_form(){
 
 	global $pro_mysql_product_table;
 
+	$prod_popup = "";
 	$q = "SELECT * FROM $pro_mysql_product_table";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		if($a["id"] == $_REQUEST["product_id"]){
+		if(isset($_REQUEST["product_id"]) && $a["id"] == $_REQUEST["product_id"]){
 			$prod_popup .= "<option value=\"".$a["id"]."\" selected>".$a["name"]." / ".$a["price_dollar"]."\$</option>\n";
 		}else{
 			$prod_popup .= "<option value=\"".$a["id"]."\">".$a["name"]." / ".$a["price_dollar"]."\$</option>\n";
 		}
 	}
 
+	if(isset($_REQUEST["reqadm_login"]))	$frm_login = $_REQUEST["reqadm_login"];
+	else	$frm_login = "";
+
+	if(isset($_REQUEST["domain_name"]))	$frm_domain_name = $_REQUEST["domain_name"];
+	else	$frm_domain_name = "";
+
+	if(isset($_REQUEST["firstname"]))	$frm_firstname = $_REQUEST["firstname"];
+	else	$frm_firstname = "";
+
+	if(isset($_REQUEST["family_name"]))	$frm_family_name = $_REQUEST["family_name"];
+	else	$frm_family_name = "";
+
+	if(isset($_REQUEST["compname"]))	$frm_compname = $_REQUEST["compname"];
+	else	$frm_compname = "";
+
+	if(isset($_REQUEST["email"]))	$frm_email = $_REQUEST["email"];
+	else	$frm_email = "";
+
+	if(isset($_REQUEST["phone"]))	$frm_phone = $_REQUEST["phone"];
+	else	$frm_phone = "";
+
+	if(isset($_REQUEST["fax"]))	$frm_family_name = $_REQUEST["fax"];
+	else	$frm_fax = "";
+
+	if(isset($_REQUEST["address1"]))	$frm_addr1 = $_REQUEST["address1"];
+	else	$frm_addr1 = "";
+
+	if(isset($_REQUEST["address2"]))	$frm_addr2 = $_REQUEST["address2"];
+	else	$frm_addr2 = "";
+
+	if(isset($_REQUEST["address3"]))	$frm_addr3 = $_REQUEST["address3"];
+	else	$frm_addr3 = "";
+
+	if(isset($_REQUEST["zipcode"]))		$frm_zipcode = $_REQUEST["zipcode"];
+	else	$frm_zipcode = "";
+
+	if(isset($_REQUEST["city"]))	$frm_ciry = $_REQUEST["city"];
+	else	$frm_city = "";
+
+	if(isset($_REQUEST["state"]))	$frm_state = $_REQUEST["state"];
+	else	$frm_state = "";
+
+	if(isset($_REQUEST["country"]))	$frm_addr3 = $_REQUEST["country"];
+	else	$frm_country = "";
+
 	$login_info = "<table>
 <tr>
 	<td align=\"right\">".$txt_login_login[$lang]."</td>
-	<td><input type=\"text\" name=\"reqadm_login\" value=\"".$_REQUEST["reqadm_login"]."\"></td>
+	<td><input type=\"text\" name=\"reqadm_login\" value=\"$frm_login\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_login_pass[$lang]."</td>
 	<td><input type=\"password\" name=\"reqadm_pass\" value=\"\"></td>
@@ -283,63 +329,65 @@ function registration_form(){
 	<td><input type=\"password\" name=\"reqadm_pass2\" value=\"\"></td>
 </tr><tr>
 	<td align=\"right\">Desired domain name:</td>
-	<td><input type=\"text\" name=\"domain_name\" value=\"".$_REQUEST["domain_name"]."\"></td>
+	<td><input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></td>
 </tr></table>";
 	$login_skined = skin("frame",$login_info,"");
 
-	if($_REQUEST["iscomp"] == "yes"){
+	$compyes = "";
+	$compno = "";
+	if(isset($_REQUEST["iscomp"]) && $_REQUEST["iscomp"] == "yes"){
 		$compyes = "checked";
-	}else if($_REQUEST["iscomp"] == "no"){
+	}else if(isset($_REQUEST["iscomp"]) && $_REQUEST["iscomp"] == "no"){
 		$compno = " checked";
 	}
 	$client_info = "<table>
 <tr>
 	<td align=\"right\">".$txt_draw_client_info_familyname[$lang]."</td>
-	<td><input type=\"text\" name=\"familyname\" value=\"".$_REQUEST["familyname"]."\"></td>
+	<td><input type=\"text\" name=\"familyname\" value=\"$frm_family_name\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_firstname[$lang]."</td>
-	<td><input type=\"text\" name=\"firstname\" value=\"".$_REQUEST["firstname"]."\"></td>
+	<td><input type=\"text\" name=\"firstname\" value=\"$frm_firstname\"></td>
 </tr><tr>
 	<td align=\"right\">Is company</td>
 	<td><input type=\"radio\" name=\"iscomp\" value=\"yes\"$compyes>Yes
 <input type=\"radio\" name=\"iscomp\" value=\"no\"$compno>No</td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_comp_name[$lang]."</td>
-	<td><input type=\"text\" name=\"compname\" value=\"".$_REQUEST["compname"]."\"></td>
+	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_email[$lang]."</td>
-	<td><input type=\"text\" name=\"email\" value=\"".$_REQUEST["email"]."\"></td>
+	<td><input type=\"text\" name=\"email\" value=\"$frm_email\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_phone[$lang]."</td>
-	<td><input type=\"text\" name=\"phone\" value=\"".$_REQUEST["phone"]."\"></td>
+	<td><input type=\"text\" name=\"phone\" value=\"$frm_phone\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_fax[$lang]."</td>
-	<td><input type=\"text\" name=\"fax\" value=\"".$_REQUEST["fax"]."\"></td>
+	<td><input type=\"text\" name=\"fax\" value=\"$frm_fax\"></td>
 </tr></table>";
 	$client_skined = skin("frame",$client_info,"");
 
 	$client_addr = "<table>
 <tr>
 	<td align=\"right\">".$txt_draw_client_info_addr[$lang]."</td>
-	<td><input type=\"text\" name=\"address1\" value=\"".$_REQUEST["address1"]."\"></td>
+	<td><input type=\"text\" name=\"address1\" value=\"$frm_addr1\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_addr[$lang]." 2</td>
-	<td><input type=\"text\" name=\"address2\" value=\"".$_REQUEST["address2"]."\"></td>
+	<td><input type=\"text\" name=\"address2\" value=\"$frm_addr2\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_addr[$lang]." 3</td>
-	<td><input type=\"text\" name=\"address3\" value=\"".$_REQUEST["address3"]."\"></td>
+	<td><input type=\"text\" name=\"address3\" value=\"$frm_addr3\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_zipcode[$lang]."</td>
-	<td><input type=\"text\" name=\"zipcode\" value=\"".$_REQUEST["zipcode"]."\"></td>
+	<td><input type=\"text\" name=\"zipcode\" value=\"$frm_zipcode\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_city[$lang]."</td>
-	<td><input type=\"text\" name=\"city\" value=\"".$_REQUEST["city"]."\"></td>
+	<td><input type=\"text\" name=\"city\" value=\"$frm_city\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_state[$lang]."</td>
-	<td><input type=\"text\" name=\"state\" value=\"".$_REQUEST["state"]."\"></td>
+	<td><input type=\"text\" name=\"state\" value=\"$frm_state\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_country[$lang]."</td>
-	<td><select name=\"country\">".cc_code_popup($_REQUEST["country"])."</select></td>
+	<td><select name=\"country\">".cc_code_popup($frm_country)."</select></td>
 </tr></table>";
 	$addr_skined = skin("frame",$client_addr,"");
 

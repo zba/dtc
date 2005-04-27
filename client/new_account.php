@@ -13,12 +13,13 @@ get_secpay_conf();
 // Create the top banner and menu //
 ////////////////////////////////////
 $anotherTopBanner = anotherTopBanner("DTC");
-$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
-
+if(isset($txt_top_menu_entrys)){
+	$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
+}
 $anotherLanguageSelection = anotherLanguageSelection();
 $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
-if($_REQUEST["action"] == "return_from_pay"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "return_from_pay"){
 	// Here are paypal return parameters:
 	// [action] => return_from_pay
 	// [regid] => 50
@@ -115,6 +116,6 @@ $mypage = layout_login_and_languages($login_skined,$lang_sel);
 // Output the result !
 
 //echo anotherPage($txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
-echo anotherPage("Client:".$txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$mypage,anotherFooter(""));
+echo anotherPage("Client:","","",makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
 
 ?>
