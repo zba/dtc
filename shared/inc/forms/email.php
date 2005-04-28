@@ -180,6 +180,7 @@ http://www.gplhost.com/?rub=softwares&sousrub=dtc
 }
 
 function drawQuarantine($mailbox){
+	global $adm_email_login;
 	global $adm_email_pass;
 
 	$out = "";

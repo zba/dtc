@@ -22,6 +22,7 @@ function pass_check_email(){
 	else		return false;
 }
 
+if(isset($_REQUEST["action"])){
 switch($_REQUEST["action"]){
 
 case "activate_antispam":
@@ -180,6 +181,7 @@ case "dtcemail_edit_redirect":
 	break;
 default:
 	break;
+}
 }
 
 ?>
