@@ -16,6 +16,8 @@ DTCROOT?=	www/dtc
 DTCDIR=		${PREFIX}/${DTCROOT}
 PLIST_SUB+=	DTCROOT="${DTCROOT}"
 
+# Now tested and working. In fact, under BSD it's easyer to use Apache2 now.
+# If you know what to do so all dependancies are set correctly, please help!
 .if defined(WITH_APACHE2)
 IGNORE=		Untested
 .endif
