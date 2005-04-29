@@ -331,6 +331,16 @@ $more_mx_server
 				$query_serial = "UPDATE $pro_mysql_domain_table SET generate_flag='no' WHERE name='$web_name' LIMIT 1;";
 				$result_serial = mysql_query ($query_serial)or die("Cannot execute query \"$query_serial\"");
 			}
+		}else{
+			$temp_ip = gethostbyname($thisdomain_dns1);
+			if(isIP($temp_ip){
+				$named_file .= "zone \"$web_name\" {
+	type slave;
+	masters { $master_ns_list; };
+	file \"$conf_generated_file_path/$conf_named_slavezonefiles_path/$web_name\";
+};
+";
+			}
 		}
 	}
 
