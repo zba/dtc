@@ -32,6 +32,10 @@
 # "Hosting path: "$conf_hosting_path
 # $PATH_DTC_ETC & $PATH_DTC_SHARED
 
+if [ -z "$MKTEMP" ] ; then
+	MKTEMP="mktemp -t"
+fi
+
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "DTC is configuring your services: please wait..."
 	echo "DTC installer is in VERBOSE mode"
@@ -157,14 +161,23 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER 
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8)))"
 
 # Add dtc userspace info to mysql db if it's not there
-sql_field=`$MYSQLSHOW -u$conf_mysql_login mysql user | grep dtcowner`
-if [ -z "$sql_field" ] ; then
+echo "$MYSQLSHOW -u$conf_mysql_login mysql user | grep dtcowner"
+TMP_FILE=`${MKTEMP} dtc_downer_grep.XXXXXXXX`  || exit 1
+$MYSQLSHOW -u$conf_mysql_login mysql user >${TMP_FILE}
+if grep dtcowner ${TMP_FILE} ;then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Adding dtcowner column to mysql.user"
+	fi
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE mysql.user ADD dtcowner varchar (255) DEFAULT 'none' NOT NULL"
+fi
+if [ -e ${TMP_FILE} ] ;then
+	rm ${TMP_FILE}
 fi
 
 # Add a dtc user to the mysql db, generate a password randomly if no password is there already
 # Using a file to remember password...
 PATH_DB_PWD_FILE=${PATH_DTC_ETC}/dtcdb_passwd
+echo "if ! [ -e ${PATH_DB_PWD_FILE} ] ;then"
 if ! [ -e ${PATH_DB_PWD_FILE} ] ;then
 	MYSQL_DTCDAEMONS_PASS=`echo ${RANDOM}${RANDOM}`
 	echo ${MYSQL_DTCDAEMONS_PASS} >${PATH_DB_PWD_FILE}
@@ -177,6 +190,7 @@ if [ -z "${MYSQL_DTCDAEMONS_PASS}" ] ;then
 fi
 
 chmod 600 ${PATH_DB_PWD_FILE}
+
 # Inserting the user
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.user (Host, User, Password, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Reload_priv, Shutdown_priv, Process_priv, File_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('localhost', 'dtcdaemons', PASSWORD('"${MYSQL_DTCDAEMONS_PASS}"'), 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N')"
 

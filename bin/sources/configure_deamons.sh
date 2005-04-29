@@ -37,11 +37,6 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 fi
 chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
 
-
-if [ -z "$MKTEMP" ] ; then
-	MKTEMP="mktemp -t"
-fi
-
 if ! [ -f $PATH_DTC_SHARED/shared/securepay/paiement_config.php ] ; then
 	cp -v $PATH_DTC_SHARED/shared/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/shared/securepay/paiement_config.php
 fi
