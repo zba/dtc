@@ -166,12 +166,21 @@ function named_generate(){
 		$more_dns_server = "";
 		if($row["other_dns"] == "default"){
 			$thisdomain_dns2 = $conf_addr_secondary_dns;
+			$allow_xfer = "allow-transfer { $conf_addr_secondary_dns; };\n";
 		}else{
 			$all_dns = explode("|",$row["other_dns"]);
 			$thisdomain_dns2 = $all_dns[0];
 			$nbr_other_dns = sizeof($all_dns);
+			$all_ip = "";
 			for($z=1;$z<$nbr_other_dns;$z++){
 				$more_dns_server .= "@	IN	NS	".$all_dns[$z].".\n";
+				$temp_ip = gethostbyname($all_dns[$z]);
+				if(isIP($temp_ip)){
+					$all_ip .= $temp_ip."; ";
+				}
+			}
+			if(strlen($all_ip)>4){
+				$allow_xfer = "allow-transfer { $all_ip };";
 			}
 		}
 
@@ -234,14 +243,11 @@ function named_generate(){
 		if($row["primary_dns"] == "default"){
 		$named_file .= "zone \"$web_name\" IN {
 	type master;
+	$allow_xfer
 	file \"$conf_generated_file_path/$conf_named_zonefiles_path/$web_name\";
 };
 ";
 		}
-
-		$master_ns_list = "";
-//		$temp_ip = gethostbyname($thisdomain_dns1);
-//		$master_ns_list .= $temp_ip;
 
 		if($row["other_dns"] == "default" || $row["primary_dns"] == "default"){
 			$slave_file .= "zone \"$web_name\" {
