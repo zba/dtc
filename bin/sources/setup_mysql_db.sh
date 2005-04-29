@@ -75,14 +75,20 @@ if [ ""$conf_mysql_cli_path = "" ] ;then
 	echo "mysql_cli_path is not set"
 	conf_mysql_cli_path="mysql";
 fi
+if [ ""$conf_mysqlshow_cli_path = "" ] ;then
+	echo "mysqlshow_cli_path is not set"
+	conf_mysqlshow_cli_path="mysqlshow";
+fi
 if [ "$conf_mysql_pass" = "" ];
 then
 	echo "Setting up mysql cli "$conf_mysql_cli_path" without password"
         MYSQL=""$conf_mysql_cli_path
+	MYSQLSOW=$conf_mysqlshow_cli_path
 else
 	echo "Setting up mysql cli with password"
 #	MYSQL=""$conf_mysql_cli_path "-p"$conf_mysql_pass
 	MYSQL=$conf_mysql_cli_path" -p${conf_mysql_pass}"
+	MYSQLSHOW=$conf_mysqlshow_cli_path" -p${conf_mysql_pass}"
 fi
 
 
@@ -150,9 +156,10 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER 
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE passwd passwd VARCHAR(255) DEFAULT '' NOT NULL"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8)))"
 
-# Add dtc userspace info to mysql db
-if $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE mysql.user ADD dtcowner varchar (255) DEFAULT 'none' NOT NULL" ;then
-	echo ""
+# Add dtc userspace info to mysql db if it's not there
+sql_field=`MYSQLSHOW -u$conf_mysql_login mysql user | grep dtcowner`
+if [ -z "$sql_field" ] ; then
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE mysql.user ADD dtcowner varchar (255) DEFAULT 'none' NOT NULL"
 fi
 
 # Add a dtc user to the mysql db, generate a password randomly if no password is there already
