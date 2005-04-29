@@ -172,6 +172,10 @@ function named_generate(){
 			$thisdomain_dns2 = $all_dns[0];
 			$nbr_other_dns = sizeof($all_dns);
 			$all_ip = "";
+			$temp_ip = gethostbyname($thisdomain_dns2);
+			if(isIP($temp_ip)){
+				$all_ip .= $temp_ip."; ";
+			}
 			for($z=1;$z<$nbr_other_dns;$z++){
 				$more_dns_server .= "@	IN	NS	".$all_dns[$z].".\n";
 				$temp_ip = gethostbyname($all_dns[$z]);
