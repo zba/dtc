@@ -333,10 +333,10 @@ $more_mx_server
 			}
 		}else{
 			$temp_ip = gethostbyname($thisdomain_dns1);
-			if(isIP($temp_ip){
+			if(isIP($temp_ip)){
 				$named_file .= "zone \"$web_name\" {
 	type slave;
-	masters { $master_ns_list; };
+	masters { $temp_ip; };
 	file \"$conf_generated_file_path/$conf_named_slavezonefiles_path/$web_name\";
 };
 ";
