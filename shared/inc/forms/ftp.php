@@ -78,7 +78,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 		$path_popup .= "<option value=\"$adm_path/$edit_domain/subdomains/$sub_name\"$is_selected>/$edit_domain/subdomains/$sub_name/</option>";
 	}
 
-	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && isset($_REQUEST["deleteftpaccount"]) && $_REQUEST["deleteftpaccount"] != "Delete"){
+	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && (!isset($_REQUEST["deleteftpaccount"]) || $_REQUEST["deleteftpaccount"] != "Delete")){
 		$txt .= "<br><br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps\">".$txt_ftp_new_account_link[$lang]."</A><br>";
 		$txt .= "
 <br><u>".$txt_ftp_account_edit[$lang]."</u>
