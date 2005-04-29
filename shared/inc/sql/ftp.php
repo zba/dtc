@@ -8,37 +8,41 @@ if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 	$adm_path = getAdminPath($adm_login);
 
 	if(!ereg("^$adm_path",$_REQUEST["newftp_path"]) || strstr($_REQUEST["newftp_path"],'..')){
-		die("Your path is restricted to $adm_path");
+		$submit_err .= "Your path is restricted to $adm_path";
+		$commit_flag = "no";
 	}
 
 	// If no @ in the login, append the domain name
 	// if not, check that it's owner's domain name at end of login
 	if($conf_domain_based_ftp_logins == "yes"){
-		$pos = strpos($_REQUEST["newftp_login"],"@");
+		$pos = strpos($_REQUEST["newftp_login"],$edit_domain);
 		if($pos === false){
-			$_REQUEST["newftp_login"] .= "@".$edit_domain;
+			$_REQUEST["newftp_login"] .= $edit_domain;
 		}else{
 			if(!ereg($edit_domain."\$",$_REQUEST["newftp_login"])){
-				die("Your login must be in the form login@domain.com");
+				$submit_err .= "Your login must be in the form login@domain.com");
+				$commit_flag = "no";
 			}
 		}
 	}
 	if(!isFtpLogin($_REQUEST["newftp_login"])){
-		die("Incorrect FTP login");
+		$submit_err .= "Incorrect FTP login form: please enter another login and try again.<br>\n";
+		$commit_flag = "no";
 	}
-
 	if(!isDTCPassword($_REQUEST["newftp_pass"])){
-		die("Incorrect FTP password: from 6 to 16 chars, a-z A-Z 0-9");
+		$submit_err .= "<font color=\"red\">Incorrect FTP password: from 6 to 16 chars, a-z A-Z 0-9<br>\n";
+		$commit_flag = "no";
 	}
-
 	$_REQUEST["newftp_path"] = addslashes($_REQUEST["newftp_path"]);
 
-	$adm_query = " INSERT INTO $pro_mysql_ftp_table
+	if($commit_flag == "yes"){
+		$adm_query = " INSERT INTO $pro_mysql_ftp_table
 (login,           password, homedir, count, fhost, faddr, ftime, fcdir, fstor, fretr, bstor, bretr, creation, ts, frate, fcred, brate, bcred, flogs, size, shell, hostname)VALUES
 ('".$_REQUEST["newftp_login"]."', '".$_REQUEST["newftp_pass"]."', '".$_REQUEST["newftp_path"]."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
 '15', '5','1', NULL, '', '/bin/bash', '$edit_domain') ";
-	// $newftp_login $newftp_pass $edit_domain
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+		// $newftp_login $newftp_pass $edit_domain
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+	}
 }
 
 // $edftp_account $edit_domain
