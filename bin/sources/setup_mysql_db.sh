@@ -43,9 +43,9 @@ fi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "==> Creating directory for hosting "$main_domain_name
 fi
-mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/html"
-mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/logs"
-mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/"$dtc_admin_subdomain"/www/cgi-bin"
+mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain"/www/html"
+mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain"/www/logs"
+mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain"/www/cgi-bin"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/logs"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/cgi-bin"
@@ -54,9 +54,6 @@ mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/40
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/cgi-bin"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/Mailboxs"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/mysql"
-mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dtc/html"
-mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dtc/logs"
-mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dtc/cgi-bin"
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo chown -R nobody:65534 $conf_hosting_path
