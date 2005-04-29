@@ -157,7 +157,7 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER 
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8)))"
 
 # Add dtc userspace info to mysql db if it's not there
-sql_field=`MYSQLSHOW -u$conf_mysql_login mysql user | grep dtcowner`
+sql_field=`$MYSQLSHOW -u$conf_mysql_login mysql user | grep dtcowner`
 if [ -z "$sql_field" ] ; then
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE mysql.user ADD dtcowner varchar (255) DEFAULT 'none' NOT NULL"
 fi
