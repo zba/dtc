@@ -270,6 +270,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	for($i=0;$i<$num_rows;$i++){
 		//echo "$i<br>";
 		$row = mysql_fetch_array($result) or die ("Cannot fetch domain");
+		unset($domain);
 		$domain["name"] = $row["name"];
 		$domain["max_email"] = $row["max_email"];
 		$domain["max_ftp"] = $row["max_ftp"];
