@@ -56,9 +56,9 @@ mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/Mailboxs"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/mysql"
 ADMIN_HOME=$conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain"/www/html"
 if ! [ -e $ADMIN_HOME"/index.php" ] ;then
-	cp $PATH_DTC_SHARED"/share/default_admin_site.php" $ADMIN_HOME"/index.php"
+	cp $PATH_DTC_SHARED"/shared/default_admin_site.php" $ADMIN_HOME"/index.php"
 	if ! [ -e $ADMIN_HOME"/dtc_logo.gif" ] ;then
-		cp $PATH_DTC_SHARED"/share/template/dtc_logo.gif" $ADMIN_HOME
+		cp $PATH_DTC_SHARED"/shared/template/dtc_logo.gif" $ADMIN_HOME
 	fi
 fi
 
