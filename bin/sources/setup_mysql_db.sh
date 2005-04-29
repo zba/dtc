@@ -58,6 +58,9 @@ mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dt
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dtc/logs"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/dtc/cgi-bin"
 
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo chown -R nobody:65534 $conf_hosting_path
+fi
 chown -R nobody:65534 $conf_hosting_path
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
