@@ -25,6 +25,19 @@
 
 # VERBOSE_INSTALL=yes
 
+# We are just after the creation of the chroot tree, so it's time to copy it over
+# our newly created vhosts dirs (in update mode)
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Adding chroot environment to www."$main_domain_name
+fi
+cp -fupR  $conf_chroot_path $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+fi
+chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+
+
 if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
 fi
