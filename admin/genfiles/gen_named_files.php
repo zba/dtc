@@ -166,7 +166,8 @@ function named_generate(){
 		$more_dns_server = "";
 		if($row["other_dns"] == "default"){
 			$thisdomain_dns2 = $conf_addr_secondary_dns;
-			$allow_xfer = "allow-transfer { $conf_addr_secondary_dns; };\n";
+			$temp_ip = = gethostbyname($thisdomain_dns2);
+			$allow_xfer = "allow-transfer { $temp_ip; };\n";
 		}else{
 			$all_dns = explode("|",$row["other_dns"]);
 			$thisdomain_dns2 = $all_dns[0];
