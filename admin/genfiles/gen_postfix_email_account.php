@@ -51,7 +51,6 @@ function mail_account_generate_postfix(){
 	$vmailboxes_file = "";
 	$uid_mappings_file = "";
 	$relay_domains_file = "";
-	$poppasswd_file = "";
 
 	$data = ""; // init var for use later on
 
@@ -85,16 +84,21 @@ function mail_account_generate_postfix(){
 			$domain_full_name = $domain["name"];
 			//if we are primary mx, add to domains
 			//else add to relay
+			$primary_mx=0;
 			if ($domain["primary_mx"] == "" || $domain["primary_mx"] == "default")
 			{
+				$primary_mx=1;
 				$domains_file .= "$domain_full_name virtual\n";
 			} else {
 				$relay_domains_file .= "$domain_full_name\n";
 			}
-			$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
+
+			if ($primary_mx){
+				$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
+			}
 			$store_catch_all = "";
 			$abuse_address = 0;
-			if(isset($domain["emails"])){
+			if(isset($domain["emails"]) && $primary_mx){
 				$emails = $domain["emails"];
 				$nbr_boites = sizeof($emails);
 				// go through each of these emails and build the vmailbox file
@@ -110,7 +114,6 @@ function mail_account_generate_postfix(){
 					$home = $email["home"];
 					$passwdtemp = $email["passwd"];
 					$passwd = crypt($passwdtemp);
-					$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
 
 					// if we have a $id equal to abuse
 					if ($id == "abuse")
@@ -119,9 +122,7 @@ function mail_account_generate_postfix(){
 					}
 					# first try and see if we have postfix in a chroot, else just put it in it's default location
 					system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
-					//$assign_file .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
-					//$console .= "=$domain_postfix_name-$id:nobody:65534:65534:$home:::\n";
-					if ($localdeliver == "yes"){
+					if ($localdeliver == "yes" || $localdeliver == "true"){
 						$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
 						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
 					} else {
@@ -147,7 +148,7 @@ function mail_account_generate_postfix(){
 				$domains_postmasters_file .= $store_catch_all;
 			}
 			// if an abuse@ email hasn't been set, set one here to go to postmaster
-			if ($abuse_address == 0)
+			if ($abuse_address == 0 && $primary_mx)
 			{
 				$domains_postmasters_file .= "abuse@$domain_full_name postmaster\n";
 			}
