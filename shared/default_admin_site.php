@@ -12,15 +12,13 @@ $theTopsIcons = '<table cellspacing="0" cellpadding="0" border="0" width="100%" 
 </table>';
 
 $ZeContentWindowTitle = "General Server News And Infos|gplhost.gif";
-$ZeContent = '<center>
-<table width="90%" height="100%">
+$ZeContent = '<table width="100%" height="100%">
 <tr><td width="100%" height="100%">
 <center>
 
 <b><font face="Arial"><center>
 <a href="http://www.gplhost.com/?rub=softwares&sousrub=dtc">
-<img src="dtc_logo.gif"
-border="0"></a><br><br>
+<img src="dtc_logo.gif" border="0"></a><br><br>
 <h1><u>Welcome to '.$_SERVER["HTTP_HOST"].'!</u></h1>
 This is a place holder to show you how to create your client tool page.<br>
 Please edit '.__FILE__.' to customise this page.<br><br>
@@ -35,9 +33,7 @@ an open-source control panel<br>
 target="_blank" href="http://gplhost.com">GPLHost</a> and <a
 target="_blank" href="http://gplhost.com/?rub=softwares&sousrub=dtc">DTC
 home</a> for more infos.</i></font>
-</center></td></tr></table>
-</center>
-';
+</center></td></tr></table>';
 
 $sousrub = $_REQUEST["sousrub"];
 
@@ -101,7 +97,7 @@ $content = '<table cellspacing="0" cellpadding="0" border="0" width="100%" heigh
 </tr></table>';
 
 echo "<html>
-<body leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">$content;
+<body leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">$content
 </body>
 </html>";
 
