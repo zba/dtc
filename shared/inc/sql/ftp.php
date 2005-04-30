@@ -20,7 +20,7 @@ if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 			$_REQUEST["newftp_login"] .= $edit_domain;
 		}else{
 			if(!ereg($edit_domain."\$",$_REQUEST["newftp_login"])){
-				$submit_err .= "Your login must be in the form login@domain.com");
+				$submit_err .= "Your login must be in the form login@domain.com";
 				$commit_flag = "no";
 			}
 		}
