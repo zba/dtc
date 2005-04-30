@@ -11,23 +11,28 @@ if(isset($_REQUEST["delsubdomain"]) && $_REQUEST["delsubdomain"] == "Ok"){
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
 
 	if(!checkSubdomainFormat($_REQUEST["delsubdomain_name"])){
-		die("Incorrect subdomain name format...");
 	}
 	// Del subdomain in database
-	$adm_query = "DELETE FROM $pro_mysql_subdomain_table WHERE subdomain_name='".$_REQUEST["delsubdomain_name"]."' AND domain_name='$edit_domain' LIMIT 1;";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+	if($commit_flag == "yes"){
+		$adm_query = "DELETE FROM $pro_mysql_subdomain_table WHERE subdomain_name='".$_REQUEST["delsubdomain_name"]."' AND domain_name='$edit_domain' LIMIT 1;";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
-	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
+		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
+	}
 }
 ///////////////////////////////////////////////////////////
 if(isset($_REQUEST["subdomaindefault"]) && $_REQUEST["subdomaindefault"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	if(!checkSubdomainFormat($_REQUEST["subdomaindefault_name"])){
-		die("Incorrect subdomain name format...");
-	}	$adm_query = "UPDATE $pro_mysql_domain_table SET default_subdomain='".$_REQUEST["subdomaindefault_name"]."' WHERE name='$edit_domain' LIMIT 1;";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+		$submit_err .= "Incorrect subdomain name format: please enter a valid format.";
+		$commit_flag = "no";
+	}
+	if($commit_flag == "yes"){
+		$adm_query = "UPDATE $pro_mysql_domain_table SET default_subdomain='".$_REQUEST["subdomaindefault_name"]."' WHERE name='$edit_domain' LIMIT 1;";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
-	updateUsingCron("gen_vhosts='yes',restart_apache='yes'");
+		updateUsingCron("gen_vhosts='yes',restart_apache='yes'");
+	}
 }
 //////////////////////////////////////////////////////////
 // addrlink=example.com%2Fsubdomains&edit_domain=example.com&whatdoiedit=subdomains&subdomaindefault_name=www&delsubdomain_name=dtc&

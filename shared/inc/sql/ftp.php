@@ -8,7 +8,7 @@ if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 	$adm_path = getAdminPath($adm_login);
 
 	if(!ereg("^$adm_path",$_REQUEST["newftp_path"]) || strstr($_REQUEST["newftp_path"],'..')){
-		$submit_err .= "Your path is restricted to $adm_path";
+		$submit_err .= "Your path is restricted to $adm_path<br>\n";
 		$commit_flag = "no";
 	}
 
@@ -58,20 +58,25 @@ if(isset($_REQUEST["update_ftp_account"]) && $_REQUEST["update_ftp_account"] == 
 	$adm_path = getAdminPath($adm_login);
 
 	if(0 != strncmp($adm_path,$_REQUEST["edftp_path"],strlen($adm_path)-1) || strstr($_REQUEST["edftp_path"],'..') || strstr($_REQUEST["edftp_path"],"'") || strstr($_REQUEST["edftp_path"],"\\")){
-		die("Your path is restricted to &quot;$adm_path&quot;");
+		$submit_err .= "Your path is restricted to &quot;$adm_path&quot;<br>\n";
+		$commit_flag = "no";
 	}
 
 	if(!isFtpLogin($_REQUEST["edftp_account"])){
-		die("Incorrect FTP login");
+		$submit_err .= "Incorrect ftp login : this is not a good string for a ftp login, please enter a new one.";
+		$commit_flag = "no";
 	}
 
 	if(!isDTCPassword($_REQUEST["edftp_pass"])){
-		die("Incorrect FTP password: from 6 to 16 chars, a-z A-Z 0-9");
+		$submit_err .= "Incorrect FTP password: from 6 to 16 chars, a-z A-Z 0-9";
+		$commit_flag = "no";
 	}
 	$_REQUEST["edftp_path"] = addslashes($_REQUEST["edftp_path"]);
 
-	$adm_query = "UPDATE $pro_mysql_ftp_table SET homedir='".$_REQUEST["edftp_path"]."', password='".$_REQUEST["edftp_pass"]."' WHERE login ='".$_REQUEST["edftp_account"]."' AND hostname='$edit_domain' LIMIT 1;";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+	if($commit_flag == "yes"){
+		$adm_query = "UPDATE $pro_mysql_ftp_table SET homedir='".$_REQUEST["edftp_path"]."', password='".$_REQUEST["edftp_pass"]."' WHERE login ='".$_REQUEST["edftp_account"]."' AND hostname='$edit_domain' LIMIT 1;";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+	}
 }
 
 ?>
