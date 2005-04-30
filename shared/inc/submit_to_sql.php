@@ -1,5 +1,7 @@
 <?php
 
+$commit_flag = "yes";
+
 function validateWaitingUser($waiting_login){
 	global $conf_administrative_site;
 	global $conf_use_ssl;
@@ -162,6 +164,10 @@ if($panel_type!="email"){
 	require("$dtcshared_path/inc/sql/email.php");
 }else{
 	require("submit_to_sql_dtcemail.php");
+}
+
+if(isset($commit_flag) && $commit_flag == "no"){
+	echo "<font color=\"red\">$submit_err</font>";
 }
 
 ?>
