@@ -74,6 +74,7 @@ function sum_email($webname){
 	global $pro_mysql_acc_email_table;
 	global $pro_mysql_smtplogs_table;
 	global $pro_mysql_pop_table;
+	global $conf_mysql_db;
 
 	// Calculate current period
 	$current_year = date("Y",time());

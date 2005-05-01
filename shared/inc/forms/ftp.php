@@ -55,13 +55,13 @@ function drawAdminTools_Ftp($domain,$adm_path){
 		$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=ftps&edftp_account=$login\">$login</a>";
 	}
 
-	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && $ftpath == "$adm_path"){
+	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && isset($ftpath) && $ftpath == "$adm_path"){
 		$is_selected = " selected";
 	}else{
 		$is_selected ="";
 	}
 	$path_popup = "<option value=\"$adm_path\"$is_selected>/</option>";
-	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && $ftpath == "$adm_path/$edit_domain"){
+	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && isset($ftpath) && $ftpath == "$adm_path/$edit_domain"){
 		$is_selected = " selected";
 	}else{
 		$is_selected ="";
@@ -70,7 +70,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	$nbr_subdomains = sizeof($domain["subdomains"]);
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub_name = $domain["subdomains"][$i]["name"];
-		if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && $ftpath == "$adm_path/$edit_domain/subdomains/$sub_name"){
+		if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && isset($ftpath) && $ftpath == "$adm_path/$edit_domain/subdomains/$sub_name"){
 			$is_selected = " selected";
 		}else{
 			$is_selected ="";

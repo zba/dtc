@@ -1,6 +1,11 @@
 <?php
 
-$commit_flag = "yes";
+if(!isset($submit_err)){
+	$submit_err = "";
+}
+if(!isset($commit_flag)){
+	$commit_flag = "yes";
+}
 
 function validateWaitingUser($waiting_login){
 	global $conf_administrative_site;
@@ -166,7 +171,7 @@ if($panel_type!="email"){
 	require("submit_to_sql_dtcemail.php");
 }
 
-if(isset($commit_flag) && $commit_flag == "no"){
+if(isset($submit_err) && $submit_err != ""){
 	echo "<font color=\"red\">$submit_err</font>";
 }
 
