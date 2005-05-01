@@ -278,7 +278,7 @@ $query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(), $to_rese
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 if($exec_time > 60){
 	$ex_sec = $exec_time % 60;
-	$ex_min = $exec_time / 60;
+	$ex_min = round($exec_time / 60);
 }else{
 	$ex_sec = $exec_time;
 	$ex_min = 0;
