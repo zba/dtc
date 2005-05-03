@@ -161,7 +161,6 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER 
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8)))"
 
 # Add dtc userspace info to mysql db if it's not there
-echo "$MYSQLSHOW -u$conf_mysql_login mysql user | grep dtcowner"
 TMP_FILE=`${MKTEMP} dtc_downer_grep.XXXXXXXX`  || exit 1
 $MYSQLSHOW -u$conf_mysql_login mysql user >${TMP_FILE}
 if grep dtcowner ${TMP_FILE} ;then
@@ -172,6 +171,17 @@ if grep dtcowner ${TMP_FILE} ;then
 fi
 if [ -e ${TMP_FILE} ] ;then
 	rm ${TMP_FILE}
+fi
+
+# Add a fullemail field to the pop table if not exists.
+TMP_FILE=`${MKTEMP} dtc_downer_grep.XXXXXXXX`  || exit 1
+$MYSQLSHOW -u$conf_mysql_login dtc pop_access >${TMP_FILE}
+if grep fullemail ${TMP_FILE} ;then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Adding fullemail column to dtc.pop_access and updating id@mbox_host field."
+	fi
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE dtc.pop_access ADD fullemail varchar (255) DEFAULT 'none' NOT NULL"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET fullemail = concat( id,  \"@\", mbox_host )"
 fi
 
 # Add a dtc user to the mysql db, generate a password randomly if no password is there already

@@ -50,8 +50,8 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 	$mailbox_path = get_mailbox_complete_path($_REQUEST["newmail_login"],$edit_domain);
 	if($commit_flag == "yes"){
 		$adm_query = "INSERT INTO $pro_mysql_pop_table(
-        id,              home,           mbox_host,     crypt,        passwd,         redirect1,            redirect2            ,localdeliver)
-VALUES ('".$_REQUEST["newmail_login"]."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver');";
+        id,              fullemail, home,           mbox_host,     crypt,        passwd,         redirect1,            redirect2            ,localdeliver)
+VALUES ('".$_REQUEST["newmail_login"]."','".$_REQUEST["newmail_login"]."@".$edit_domain."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
 		writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);
