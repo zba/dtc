@@ -196,7 +196,7 @@ function named_generate(){
 		}
 
 		$more_mx_server = "";
-		if($row["other_mx"] == "default"){
+		if($row["other_mx"] == "default"  || $row["primary_mx"] == "default"){
 			if($conf_addr_backup_mail_server != ""){
 				$all_mx = explode("|",$conf_addr_backup_mail_server);
 				$nbr_other_mx = sizeof($all_mx);
