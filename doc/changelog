@@ -1,10 +1,21 @@
 R4
-- Now double checking if apache is restart. Retry if not.
+- Started a better MySQL manager by adding a field dtcowner in mysql.user.
+
+- Added a catchall feature for Qmail, corrected some of Postfix.
+(D.Mascord and T.Goirand, help from stilger in the forums)
+
+- Added FreeRadius automatic installer (web interface not finished yet).
+(T.Goirand)
+
+- Putting something else than default in DNS config of a domain
+does now produce a nice slave zone. (D.Mascord)
+
+- Now double checking if apache is restart. Retry if not. (T.Goirand)
 
 - Now have separated grant privileges for mysql access:
-a dtcdaemons user is created uppon install.
+a dtcdaemons user is created uppon install. (T.Goirand)
 
-- Qmail is new renamed to Mail in dtc daemons page.
+- Qmail is new renamed to Mail in dtc daemons page. (T.Goirand)
 
 V0.17.0-R3
 Now, DTC checks that apache is REALLY restarted.
