@@ -163,7 +163,7 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE
 # Add dtc userspace info to mysql db if it's not there
 TMP_FILE=`${MKTEMP} dtc_downer_grep.XXXXXXXX`  || exit 1
 $MYSQLSHOW -u$conf_mysql_login mysql user >${TMP_FILE}
-if grep dtcowner ${TMP_FILE} ;then
+if ! grep dtcowner ${TMP_FILE} ;then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "Adding dtcowner column to mysql.user"
 	fi
