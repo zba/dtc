@@ -70,17 +70,26 @@ function mail_account_generate_qmail(){
 
 			if(isset($domain["emails"])){
 				$emails = $domain["emails"];
+				$catch_all = $domain["catch_all"];
 				$nbr_boites = sizeof($emails);
+				$catch_all_flag = "no";
 				for($k=0;$k<$nbr_boites;$k++){
 					$email = $emails[$k];
 					$id = $email["id"];
-					$qmail_id = strtr($id,".",":");
 					$home = $email["home"];
+					if($catch_all == $id){
+						$catch_all_flag = "yes";
+						$catchall_home = $home;
+					}
+					$qmail_id = strtr($id,".",":");
 					$passwdtemp = $email["passwd"];
 					$passwd = crypt($passwdtemp);
 					$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
 					$assign_file .= "=$domain_qmail_name-$id:nobody:65534:65534:$home:::\n";
-					//$console .= "=$domain_qmail_name-$id:nobody:65534:65534:$home:::\n";
+				}
+				// Gen the catchall if there is a box like that
+				if($catch_all_flag == "yes"){
+					$assign_file .= "+$domain_qmail_name:nobody:65534:65534:$catchall_home:::\n";
 				}
 			}
 		}

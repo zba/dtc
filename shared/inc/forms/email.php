@@ -368,6 +368,7 @@ function drawAdminTools_Emails($domain){
 	if(isset($domain["emails"])){
 		$nbr_email = sizeof($domain["emails"]);
 		$emails = $domain["emails"];
+		$catchall_email = $domain["catchall_email"];
 	}
 	else	$nbr_email = 0;
 
@@ -380,7 +381,10 @@ function drawAdminTools_Emails($domain){
 	$nbrtxt = $txt_number_of_active_mailbox[$lang];
 	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_email ."</font> / <font size=\"-1\">" . $max_email . "</font><br><br>";
 
-	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>".$txt_mail_liste_of_your_box[$lang]."</u><br>";
+	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>Catch-all email set to deliver to:</u><br>";
+	$catch_popup = "<option value=\"no-mail-account\">No catch-all</option>";
+
+	$allmail_list .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>".$txt_mail_liste_of_your_box[$lang]."</u><br>";
 	for($i=0;$i<$nbr_email;$i++){
 		$email = $emails[$i];
 		$id = $email["id"];
@@ -393,15 +397,32 @@ function drawAdminTools_Emails($domain){
 			$localdeliver = $email["localdeliver"];
 			if($localdeliver == "yes"){
 				$checkbox_state = " checked";
+				
 			}else{
 				$checkbox_state = "";
 			}
 		}
 		if($i != 0){
-			$txt .= " - ";
+			$allmail_list .= " - ";
 		}
-		$txt .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$id\">$id</a>";
+		if($id == $catchall_email){
+			$catch_popup = "<option value=\"$id\" selected>No catch-all</option>";
+		}else{
+			$catch_popup = "<option value=\"$id\">No catch-all</option>";
+		}
+		$allmail_list .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$id\">$id</a>";
 	}
+
+	$txt .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
+	<input type=\"hidden\" name=\"action\" value=\"set_catchall_account\">
+	<select name=\"catchall_popup\">$catch_popup</select><input type=\"submit\" value=\"Ok\">
+</form>";
+
+	$txt .= $allmail_list;
 
 	if(!isset($_REQUEST["delemailaccount"]) && isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
 		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">".$txt_mail_new_mailbox_link[$lang]."</a> ";
