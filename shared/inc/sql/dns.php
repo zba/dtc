@@ -46,7 +46,7 @@ if(isset($_REQUEST["new_dns_and_mx_config"]) && $_REQUEST["new_dns_and_mx_config
 	if(isset($_REQUEST["new_mx_2"]) && isHostnameOrIP($_REQUEST["new_mx_2"])){
 		$new_mx_2 = $_REQUEST["new_mx_2"];
 	}else{
-		$new_mx_2 = "";
+		$new_mx_2 = "default";
 	}
 	if(isset($_REQUEST["new_mx_3"]) && isHostnameOrIP($_REQUEST["new_mx_3"])){
 		$new_mx_3 = $_REQUEST["new_mx_3"];
