@@ -90,7 +90,7 @@ function mail_account_generate_qmail(){
 				}
 				// Gen the catchall if there is a box like that
 				if($catch_all_flag == "yes"){
-					$assign_file .= "+$domain_qmail_name:nobody:65534:65534:$catchall_home:::\n";
+					$assign_file .= "+$domain_qmail_name:nobody:65534:65534:".getAdminPath($user_admin_name)."/".$domain["name"]."/Mailboxs:::\n";
 				}
 			}
 		}

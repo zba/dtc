@@ -160,6 +160,31 @@ function writeDotQmailFile($user,$host){
 	umask($oldumask);
 }
 
+function writeCatchallDotQmailFile($user,$host){
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host';";
+	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$box = mysql_fetch_array($res_mailbox);
+
+	// Fetch the path of the mailbox
+	$boxpath = get_mailbox_complete_path($user,$host);
+
+	// Write .qmail file
+	$oldumask = umask(0);
+	if($conf_demo_version == "no"){
+		if(!file_exists($boxpath)){
+			mkdir($boxpath, 0775);
+		}
+		mk_Maildir($boxpath);
+	}
+	$qmail_file_content = "./$user/Maildir/\n";
+	if($conf_demo_version == "no"){
+		$fp = fopen ( "$boxpath/../.qmail-default", "w");
+		fwrite ($fp,$qmail_file_content);
+		fclose($fp);
+	}
+	umask($oldumask);
+}
+
 if($panel_type!="email"){
 	require("$dtcshared_path/inc/sql/dns.php");
 	require("$dtcshared_path/inc/sql/database.php");
