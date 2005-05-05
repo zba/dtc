@@ -156,6 +156,7 @@ function writeDotQmailFile($user,$host){
 		$fp = fopen ( "$boxpath/.qmail", "w");
 		fwrite ($fp,$qmail_file_content);
 		fclose($fp);
+		chmod ( "$boxpath/.qmail", 644);
 	}
 	umask($oldumask);
 }
@@ -184,6 +185,7 @@ function writeCatchallDotQmailFile($user,$host){
 		$fp = fopen ( "$boxpath/../.qmail-default", "w");
 		fwrite ($fp,$qmail_file_content);
 		fclose($fp);
+		chmod ( "$boxpath/../.qmail-default", 644);
 	}
 	umask($oldumask);
 }
