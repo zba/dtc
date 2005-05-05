@@ -7,7 +7,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	if($_REQUEST["catchall_popup"] == "no-mail-account"){
-		$q = "UPDATE $pro_mysql_domain_table SET catch_all='' WHERE name='$edit_domain';";
+		$q = "UPDATE $pro_mysql_domain_table SET catchall_email='' WHERE name='$edit_domain';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said :".mysql_error());
 	}else{
 		if(!isMailbox($_REQUEST["catchall_popup"])){
