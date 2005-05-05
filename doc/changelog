@@ -1,7 +1,8 @@
 R4
 - Started a better MySQL manager by adding a field dtcowner in mysql.user.
 
-- Added a catchall feature for Qmail, corrected some of Postfix.
+- Added a popup for catchall feature for Qmail, corrected some of Postfix,
+the ugly * account doesn't exists anymore.
 (D.Mascord and T.Goirand, help from stilger in the forums)
 
 - Added FreeRadius automatic installer (web interface not finished yet).
