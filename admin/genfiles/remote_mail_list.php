@@ -13,7 +13,6 @@ function get_remote_mail($a){
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"];
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
-		print_r($a_vers);
 		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
 			// Todo: use exec(lynx -source) because HTTPS will not work !
 			$lines = "";

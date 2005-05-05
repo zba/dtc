@@ -384,6 +384,7 @@ function drawAdminTools_Emails($domain){
 	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>Catch-all email set to deliver to:</u><br>";
 	$catch_popup = "<option value=\"no-mail-account\">No catch-all</option>";
 
+	$allmail_list = "";
 	$allmail_list .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>".$txt_mail_liste_of_your_box[$lang]."</u><br>";
 	for($i=0;$i<$nbr_email;$i++){
 		$email = $emails[$i];
@@ -422,7 +423,7 @@ function drawAdminTools_Emails($domain){
 	<select name=\"catchall_popup\">$catch_popup</select><input type=\"submit\" value=\"Ok\">
 </form>";
 
-	$txt .= $allmail_list;
+	$txt .= "<br><br>".$allmail_list;
 
 	if(!isset($_REQUEST["delemailaccount"]) && isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
 		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">".$txt_mail_new_mailbox_link[$lang]."</a> ";

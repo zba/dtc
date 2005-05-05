@@ -6,27 +6,32 @@
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
-	if(!isMailbox($_REQUEST["newmail_login"]) && $_REQUEST["newmail_login"] != "*"){
-		$submit_err .= "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n";
-		$commit_flag = "no";
-	}
-
-	if(!isMailbox($_REQUEST["catchall_popup"]) && $_REQUEST["catchall_popup"] != "*"){
-		$submit_err .= "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n";
-		$commit_flag = "no";
+	if($_REQUEST["catchall_popup"] == "no-mail-account"){
+		$q = "UPDATE $pro_mysql_domain_table SET catch_all='' WHERE name='$edit_domain';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said :".mysql_error());
 	}else{
-		// Check if mail exists...
-		$test_query = "SELECT * FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["catchall_popup"]."' AND mbox_host='$edit_domain'";
-		$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
-		$testnum_rows = mysql_num_rows($test_result);
-		if($testnum_rows != 1){
-			$submit_err .= "Mailbox does no exists in database !<br>\n";
+		if(!isMailbox($_REQUEST["newmail_login"]) && $_REQUEST["newmail_login"] != "*"){
+			$submit_err .= "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n";
 			$commit_flag = "no";
 		}
-	}	
-	if($commit_flag == "yes"){
-		$q = "UPDATE $pro_mysql_domain_table SET catch_all='".$_REQUEST["catchall_popup"]."' WHERE name='$edit_domain';";
-		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said :".mysql_error());
+
+		if(!isMailbox($_REQUEST["catchall_popup"]) && $_REQUEST["catchall_popup"] != "*"){
+			$submit_err .= "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n";
+			$commit_flag = "no";
+		}else{
+			// Check if mail exists...
+			$test_query = "SELECT * FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["catchall_popup"]."' AND mbox_host='$edit_domain'";
+			$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
+			$testnum_rows = mysql_num_rows($test_result);
+			if($testnum_rows != 1){
+				$submit_err .= "Mailbox does no exists in database !<br>\n";
+				$commit_flag = "no";
+			}
+		}	
+		if($commit_flag == "yes"){
+			$q = "UPDATE $pro_mysql_domain_table SET catch_all='".$_REQUEST["catchall_popup"]."' WHERE name='$edit_domain';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said :".mysql_error());
+		}
 	}
 }
 //$edit_domain $newmail_login $newmail_redirect1 $newmail_pass $newmail_redirect2 $newmail_deliver_localy

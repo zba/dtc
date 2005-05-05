@@ -186,7 +186,8 @@ $dtc_database = array(
 			"du_stat" => "bigint(20) NOT NULL default '0' ",
 			"gen_unresolved_domain_alias" => "enum('yes','no') NOT NULL default 'no' ",
 			"txt_root_entry" => "varchar(128) NOT NULL default 'GPLHost:>_ Opensource hosting worldwide' ",
-			"txt_root_entry2" => "varchar(128) NOT NULL default 'This domain is hosted using Domain Technologie Control http://www.gplhost.com/?rub=softwares&sousrub=dtc' "
+			"txt_root_entry2" => "varchar(128) NOT NULL default 'This domain is hosted using Domain Technologie Control http://www.gplhost.com/?rub=softwares&sousrub=dtc' ",
+			"catchall_email" => "varchar(128) NOT NULL default ''"
 			),
 		"keys" => array(
 			"name" => "(name)"
@@ -348,7 +349,6 @@ $dtc_database = array(
 		"keys" => array(
 			"PRIMARY" => "(id)",
 			"vhost" => "(vhost,month,year,domain)",
-			"month" => "(month,year,vhost)"
 			)
 		),
 	"nameservers" => array(
@@ -514,12 +514,8 @@ $dtc_database = array(
 			),
 		"keys" => array(
 			"PRIMARY" => "(id)",
-			"delivery_id_text" => "(delivery_id_text)",
 			"newmsg_id" => "(newmsg_id)",
-			"bounce_qp" => "(bounce_qp)",
-			"delivery_id_text_2" => "(delivery_id_text)",
-			"sender_domain" => "(sender_domain)",
-			"delivery_domain" => "(delivery_domain)"
+			"bounce_qp" => "(bounce_qp)"
 			)
 		),
 	"subdomain" => array(

@@ -173,6 +173,16 @@ if [ -e ${TMP_FILE} ] ;then
 	rm ${TMP_FILE}
 fi
 
+# 2005/05/05 Remove bad keys preventing good accounting set in old dtc versions
+# This needs to be fixed with no error. Any idea???
+#$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE smtp_logs DROP INDEX sender_domain"
+#$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE smtp_logs DROP INDEX delivery_domain"
+#$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE smtp_logs DROP INDEX delivery_id_text"
+#$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE smtp_logs DROP INDEX delivery_id_text_2"
+#$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE http_accounting DROP INDEX month"
+#$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE email_accounting DROP INDEX sender_domain"
+#$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE email_accounting DROP INDEX delivery_domain"
+
 # Add a fullemail field to the pop table if not exists.
 TMP_FILE=`${MKTEMP} dtc_downer_grep.XXXXXXXX`  || exit 1
 $MYSQLSHOW -u$conf_mysql_login dtc pop_access >${TMP_FILE}
