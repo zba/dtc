@@ -494,6 +494,7 @@ function drawDTCradiusConfig(){
   global $lang;
 
   $out = "<h3>NAS config</h3>";
+  // Nass server list:
   $out .= "<b><u>Your NAS server list:</u></b><br>";  
         $q = "SELECT * FROM nas";
         $r = mysql_query($q)or die("Cannot query : \"$q\" ! line: ".__LINE__." file: ".__file__." sql said: ".mysql_error());
@@ -503,15 +504,35 @@ function drawDTCradiusConfig(){
           if($i != 0)	$out .= " - ";
           $out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."\">".$a["nasname"]."</a>";
         }
-        $out .= "<br><a href=\"".$_SERVER["PHP_SELF"]."?rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&nas_id=new\">Add a new NAS</a>";
+
+        $out .= "<br><br>";
+
+        if(!isset($_REQUEST["nas_id"]) || $_REQUEST["nas_id"] != "new"){
+          $out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&nas_id=new\">Add a new NAS</a><br><br>\n\n";
+        }
+        // NAS properties editor:
         if(isset($_REQUEST["nas_id"])){
+          if($_REQUEST["nas_id"] == "new"){
+            $out .= "<b><u>New NAS properties:</u></b><br>\n";
+            $ed_nas_name = "";
+            $ed_nas_short_name = "";
+          }else{
+            $out .= "<b><u>Edit NAS properties:</u></b><br>\n";
+            $q = "SELECT * FROM nas WHERE id='".$_REQUEST["nas_id"]."';";
+            $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+            $a = mysql_fetch_array($r);
+            $ed_nas_name = $a["nasname"];
+            $ed_nas_short_name = $a["shortname"];
+          }
 	$out .="<table with=\"100%\" height=\"1\">
-<tr><td align=\"right\" nowrap>
-	NAS Name:</td><td width=\"100%\"><input type=\"text\" value=\"$ed_nas_name\" name=\"nas_name\"></td>
-</tr><tr><td align=\"right\" nowrap>
-	NAS short name:</td><td width=\"100%\"><input type=\"text\" value=\"$ed_nas_short_name\" name=\"nas_short_name\"></td>
+<tr>
+  <td align=\"right\" nowrap>Name:</td>
+  <td width=\"100%\"><input type=\"text\" value=\"$ed_nas_name\" name=\"nas_name\"></td>
 </tr><tr>
-  <td align=\"right\" nowrap>NAS type:</td>
+  <td align=\"right\" nowrap>short name:</td>
+  <td width=\"100%\"><input type=\"text\" value=\"$ed_nas_short_name\" name=\"nas_short_name\"></td>
+</tr><tr>
+  <td align=\"right\" nowrap>Type:</td>
   <td width=\"100%\"><select name=\"nas_type\"><option value=\"cisco\">cisco</option>
 <option value=\"computone\">computone</option>
 <option value=\"livingston\">livingston</option>
@@ -526,11 +547,17 @@ function drawDTCradiusConfig(){
 <option value=\"other\">other</option>
 </select</td>
 </tr><tr>
-  <td align=\"right\" nowrap>NAS port number:</td>
+  <td align=\"right\" nowrap>Port number:</td>
   <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"\" name=\"nas_port_num\"></td>
 </tr><tr>
-  <td align=\"right\" nowrap>".$txt_cfg_paypal_flatfee[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a["paypal_flat"]."\" name=\"paypal_flat\"></td>
+  <td align=\"right\" nowrap>Secret</td>
+  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"\" name=\"paypal_flat\"></td>
+</tr><tr>
+  <td align=\"right\" nowrap>SNMP community</td>
+  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"\" name=\"paypal_flat\"></td>
+</tr><tr>
+  <td align=\"right\" nowrap>Description</td>
+  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"\" name=\"paypal_flat\"></td>
 </tr>
 </table>
 ";
