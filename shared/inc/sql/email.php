@@ -24,7 +24,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 					$commit_flag = "no";
 				}else{
 					$catch = $_REQUEST["catchall_popup"];
-					writeCatchallDotQmailFile($catch,$host);
+					writeCatchallDotQmailFile($catch,$edit_domain);
 				}
 			}else{
 				$catch = "";
