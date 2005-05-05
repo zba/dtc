@@ -1,0 +1,34 @@
+.TEXwincontainer{
+	border-color:#AAAAAA;
+	border-style:solid;
+	border-width:1px;
+}
+.TEXwintitle{
+	height:25px;
+        background-color:#DDDDDD;
+	background-image: url(bgtitlewin.png);
+	background-repeat:repeat-x;
+	font-family:Arial;
+	color:#868686;
+	font-weight: bold;
+	font-size:12px;
+	padding-top:  4px;
+	padding-left: 8px;
+}
+.TEXwinbody{
+	background-image: url(bgwin.png);
+	background-repeat:repeat-x;
+	text-align:justify;
+	font-family:Arial;
+	color:#555555;
+	font-size:11px;
+	padding-top: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+}
+
+TD{
+	font-family:Arial;
+	font-size:11px;
+}
