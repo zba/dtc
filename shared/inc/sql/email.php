@@ -10,22 +10,22 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 		$q = "UPDATE $pro_mysql_domain_table SET catch_all='' WHERE name='$edit_domain';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said :".mysql_error());
 	}else{
-		if(!isMailbox($_REQUEST["newmail_login"]) && $_REQUEST["newmail_login"] != "*"){
-			$submit_err .= "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n";
-			$commit_flag = "no";
-		}
-
-		if(!isMailbox($_REQUEST["catchall_popup"]) && $_REQUEST["catchall_popup"] != "*"){
+		if(!isMailbox($_REQUEST["catchall_popup"])){
 			$submit_err .= "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n";
 			$commit_flag = "no";
 		}else{
 			// Check if mail exists...
-			$test_query = "SELECT * FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["catchall_popup"]."' AND mbox_host='$edit_domain'";
-			$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
-			$testnum_rows = mysql_num_rows($test_result);
-			if($testnum_rows != 1){
-				$submit_err .= "Mailbox does no exists in database !<br>\n";
-				$commit_flag = "no";
+			if($_REQUEST["catchall_popup"] != "no-mail-account"){
+				$test_query = "SELECT * FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["catchall_popup"]."' AND mbox_host='$edit_domain'";
+				$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
+				$testnum_rows = mysql_num_rows($test_result);
+				if($testnum_rows != 1){
+					$submit_err .= "Mailbox does no exists in database !<br>\n";
+					$commit_flag = "no";
+				}
+				$catch = $_REQUEST["catchall_popup"];
+			}else{
+				$catch = "";
 			}
 		}	
 		if($commit_flag == "yes"){
@@ -38,7 +38,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
-	if(!isMailbox($_REQUEST["newmail_login"]) && $_REQUEST["newmail_login"] != "*"){
+	if(!isMailbox($_REQUEST["newmail_login"])){
 		$submit_err .= "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n";
 		$commit_flag = "no";
 	}else{
@@ -52,9 +52,7 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 		}
 	}
 
-	// Check for strings validity ($newmail_deliver_localy does not need to be tested because of lately test...)
-	//allow * for catch-all redirects
-	if(!isDTCPassword($_REQUEST["newmail_pass"]) && $newmail_deliver_localy == "no"){
+	if(!isDTCPassword($_REQUEST["newmail_pass"])){
 		$submit_err .= "Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n";
 		$commit_flag = "no";
 		die("");
@@ -84,7 +82,7 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 		$adm_query = "INSERT INTO $pro_mysql_pop_table(
         id,              fullemail, home,           mbox_host,     crypt,        passwd,         redirect1,            redirect2            ,localdeliver)
 VALUES ('".$_REQUEST["newmail_login"]."','".$_REQUEST["newmail_login"]."@".$edit_domain."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver');";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 		writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);
 		updateUsingCron("qmail_newu='yes',gen_qmail='yes'");

@@ -407,9 +407,9 @@ function drawAdminTools_Emails($domain){
 			$allmail_list .= " - ";
 		}
 		if($id == $catchall_email){
-			$catch_popup = "<option value=\"$id\" selected>No catch-all</option>";
+			$catch_popup .= "<option value=\"$id\" selected>$id</option>";
 		}else{
-			$catch_popup = "<option value=\"$id\">No catch-all</option>";
+			$catch_popup .= "<option value=\"$id\">$id</option>";
 		}
 		$allmail_list .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$id\">$id</a>";
 	}
