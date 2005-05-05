@@ -502,7 +502,7 @@ function drawDTCradiusConfig(){
         for($i=0;$i<$n;$i++){
           $a = mysql_fetch_array($r);
           if($i != 0)	$out .= " - ";
-          $out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."\">".$a["nasname"]."</a>";
+          $out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&nas_id=".$a["id"]."\">".$a["nasname"]."</a>";
         }
 
         $out .= "<br><br>";
@@ -512,52 +512,127 @@ function drawDTCradiusConfig(){
         }
         // NAS properties editor:
         if(isset($_REQUEST["nas_id"])){
+          $hidden = "<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+          <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+          ";
           if($_REQUEST["nas_id"] == "new"){
+            $hidden .= "<input type=\"hidden\" name=\"nas_id\" value=\"new\">
+            <input type=\"hidden\" name=\"action\" value=\"add_new_nas\">";
             $out .= "<b><u>New NAS properties:</u></b><br>\n";
             $ed_nas_name = "";
             $ed_nas_short_name = "";
+            $ed_nas_type = "cisco";
+            $ed_nas_port = "";
+            $ed_nas_secret = "";
+            $ed_nas_community = "";
+            $ed_nas_description = "";
           }else{
+            $hidden .= "<input type=\"hidden\" name=\"nas_id\" value=\"".$_REQUEST["nas_id"]."\">
+            <input type=\"hidden\" name=\"action\" value=\"edit_nas\">";
             $out .= "<b><u>Edit NAS properties:</u></b><br>\n";
             $q = "SELECT * FROM nas WHERE id='".$_REQUEST["nas_id"]."';";
             $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
             $a = mysql_fetch_array($r);
             $ed_nas_name = $a["nasname"];
             $ed_nas_short_name = $a["shortname"];
+            $ed_nas_type = $a["type"];
+            $ed_nas_port = $a["ports"];
+            $ed_nas_secret = $a["secret"];
+            $ed_nas_community = $a["community"];
+            $ed_nas_description = $a["description"];
           }
-	$out .="<table with=\"100%\" height=\"1\">
+
+
+          $nastype_cisco_sel = " ";
+          $nastype_computone_sel = " ";
+          $nastype_livingston_sel = " ";
+          $nastype_max40xx_sel = " ";
+          $nastype_multitech_sel = " ";
+          $nastype_netserver_sel = " ";
+          $nastype_pathras_sel = " ";
+          $nastype_patton_sel = " ";
+          $nastype_portslave_sel = " ";
+          $nastype_tc_sel = " ";
+          $nastype_usrhiper_sel = " ";
+          $nastype_other_sel = " ";
+
+          switch($ed_nas_type){
+            default:
+            case "cisco":
+              $nastype_cisco_sel = " selected ";
+              break;
+            case "computone":
+              $nastype_computone_sel = " selected ";
+              break;
+            case "livingston":
+              $nastype_livingston_sel = " selected ";
+              break;
+            case "max40xx":
+              $nastype_max40xx_sel = " selected ";
+              break;
+            case "multitech":
+              $nastype_multitech_sel = " selected ";
+              break;
+            case "netserver":
+              $nastype_netserver_sel = " selected ";
+              break;
+            case "pathras":
+              $nastype_pathras_sel = " selected ";
+              break;
+            case "patton":
+              $nastype_patton_sel = " selected ";
+              break;
+            case "portslave":
+              $nastype_portslave_sel = " selected ";
+              break;
+            case "tc":
+              $nastype_tc_sel = " selected ";
+              break;
+            case "usrhiper":
+              $nastype_usrhiper_sel = " selected ";
+              break;
+            case "other":
+              $nastype_other_sel = " selected ";
+              break;
+          }
+
+          $out .="<table with=\"100%\" height=\"1\">
 <tr>
   <td align=\"right\" nowrap>Name:</td>
-  <td width=\"100%\"><input type=\"text\" value=\"$ed_nas_name\" name=\"nas_name\"></td>
+  <td width=\"100%\"><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden<input type=\"text\" value=\"$ed_nas_name\" name=\"nas_name\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>short name:</td>
   <td width=\"100%\"><input type=\"text\" value=\"$ed_nas_short_name\" name=\"nas_short_name\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>Type:</td>
-  <td width=\"100%\"><select name=\"nas_type\"><option value=\"cisco\">cisco</option>
-<option value=\"computone\">computone</option>
-<option value=\"livingston\">livingston</option>
-<option value=\"max40xx\">max40xx</option>
-<option value=\"multitech\">multitech</option>
-<option value=\"netserver\">netserver</option>
-<option value=\"pathras\">pathras</option>
-<option value=\"patton\">patton</option>
-<option value=\"portslave\">portslave</option>
-<option value=\"tc\">tc</option>
-<option value=\"usrhiper\">usrhiper</option>
-<option value=\"other\">other</option>
+  <td width=\"100%\"><select name=\"nas_type\"><option value=\"cisco\"$nastype_cisco_sel>cisco</option>
+<option value=\"computone\"$nastype_computone_sel>computone</option>
+<option value=\"livingston\"$nastype_livingston_sel>livingston</option>
+<option value=\"max40xx\"$nastype_max40xx_sel>max40xx</option>
+<option value=\"multitech\"$nastype_multitech_sel>multitech</option>
+<option value=\"netserver\"$nastype_netserver_sel>netserver</option>
+<option value=\"pathras\"$nastype_pathras_sel>pathras</option>
+<option value=\"patton\"$nastype_patton_sel>patton</option>
+<option value=\"portslave\"$nastype_portslave_sel>portslave</option>
+<option value=\"tc\"$nastype_tc_sel>tc</option>
+<option value=\"usrhiper\"$nastype_usrhiper_sel>usrhiper</option>
+<option value=\"other\"$nastype_other_sel>other</option>
 </select</td>
 </tr><tr>
   <td align=\"right\" nowrap>Port number:</td>
-  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"\" name=\"nas_port_num\"></td>
+  <td width=\"100%\"><input type=\"text\" size =\"8\" value=\"$ed_nas_port\" name=\"nas_port_num\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>Secret</td>
-  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"\" name=\"paypal_flat\"></td>
+  <td width=\"100%\"><input type=\"text\" size =\"10\" value=\"$ed_nas_secret\" name=\"nas_secret\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>SNMP community</td>
-  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"\" name=\"paypal_flat\"></td>
+  <td width=\"100%\"><input type=\"text\" size =\"20\" value=\"$ed_nas_community\" name=\"nas_snmp_com\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>Description</td>
-  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"\" name=\"paypal_flat\"></td>
+  <td width=\"100%\"><input type=\"text\" size =\"20\" value=\"$ed_nas_description\" name=\"nas_description\"></td>
+</tr><tr>
+  <td></td>
+  <td><input type=\"submit\" name=\"install_new_config_values\" value=\"Ok\"></td>
 </tr>
 </table>
 ";
@@ -711,7 +786,7 @@ function drawDTCConfigForm(){
                 $global_conf = drawDTCpayConfig();
                 break;
         case "radius":
-                $global_conf = drawDTCradiusConfig();
+                return drawDTCradiusConfig();
                 break;
 	case "path":
 		$global_conf = drawDTCpathConfig();
@@ -926,10 +1001,30 @@ function saveDTCConfigInMysql(){
 	webalizer_stats_script_path='".$_REQUEST["new_webalizer_stats_script_path"]."'
 	WHERE 1 LIMIT 1";
 		break;
+        case "radius":
+          $query = "";
+          if($_REQUEST["action"] == "add_new_nas"){
+          // action=add_new_nas&nas_name=bla&nas_short_name=blabla&nas_type=computone&nas_port_num=76&nas_secret=pas
+          // &nas_snmp_com=toto&nas_description=didi
+            $query = "INSERT INTO nas ( id,nasname,shortname,type,ports,secret,community,description) VALUES
+              ('','".$_REQUEST["nas_name"]."','".$_REQUEST["nas_short_name"]."','".$_REQUEST["nas_type"]."',
+              '".$_REQUEST["nas_port_num"]."','".$_REQUEST["nas_secret"]."','".$_REQUEST["nas_snmp_com"]."',
+              '".$_REQUEST["nas_description"]."');";
+          }
+          if($_REQUEST["action"] == "edit_nas"){
+            $query = "UPDATE nas SET nasname = '".$_REQUEST["nas_name"]."',
+            shortname='".$_REQUEST["nas_short_name"]."',
+            type='".$_REQUEST["nas_type"]."',
+            ports='".$_REQUEST["nas_port_num"]."',
+            secret='".$_REQUEST["nas_secret"]."',
+            community='".$_REQUEST["nas_snmp_com"]."',
+            description='".$_REQUEST["nas_description"]."'
+            WHERE id='".$_REQUEST["nas_id"]."'";
+          }
+          break;
 	}
 
-	mysql_query($query)or die("Cannot query : \"$query\" ! line: ".__LINE__." file: ".__file__." sql said: ".mysql_error());
-
+        mysql_query($query)or die("Cannot query : \"$query\" ! line: ".__LINE__." file: ".__file__." sql said: ".mysql_error());
 	// Tell the cron job to activate the changes
         $adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes', restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes' WHERE 1;";
         mysql_query($adm_query);
