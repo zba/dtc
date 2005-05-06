@@ -71,6 +71,8 @@ function drawEditAdmin($admin){
 	<td><input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\"></td></tr>
 	<tr><td align=\"right\">".$txt_expiration_date[$lang]."</td>
 	<td><input type=\"text\" name=\"expire\" value=\"$expire\"></td></tr>
+	<tr><td align=\"right\">"."Number of database:"."</td>
+	<td><input type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\"></td></tr>
 	<tr><td align=\"right\">Allow to add domains:</td>
 	<td>$aldom_popup</td></tr>
 	<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">

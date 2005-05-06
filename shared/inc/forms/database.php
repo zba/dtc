@@ -17,7 +17,24 @@ function drawDataBase($database){
 
 	global $conf_demo_version;
 
-	$txt = "<br><b><u>".$txt_draw_tatabase_your_list[$lang]."</u></b><br>";
+	$txt = "<br><b><u>Your users:</u></b>";
+	$q = "SELECT * FROM mysq.user WHERE dtcowner='$adm_login';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	$txt .= "<table><tr><td>User></td><td>Password</td></td>Action</td></tr>";
+	$hidden = "<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+		<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
+		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$txt .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">
+		<input type=\"text\" name=\"db_user\" value=\"".$a["User"]."\"></td>
+		<td><input type=\"text\" name=\"db_pass\" value=\"".$a["Password"]."\"></td>
+		<td><input type=\"submit\" value=\"Save\"></form></td></tr>";
+	}
+	$txt .= "</table>";
+
+	$txt .= "<br><b><u>".$txt_draw_tatabase_your_list[$lang]."</u></b><br>";
 
 	if($conf_demo_version == "no"){
 		mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
