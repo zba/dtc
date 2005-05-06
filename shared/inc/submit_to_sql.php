@@ -180,7 +180,15 @@ function writeCatchallDotQmailFile($user,$host){
 		}
 		mk_Maildir($boxpath);
 	}
-	$qmail_file_content = "./$user/Maildir/\n";
+	if($box["localdeliver"] == "yes"){
+		$qmail_file_content = "./$user/Maildir/\n";
+	}
+	if($box["redirect1"] != "" && isset($box["redirect1"]) ){
+		$qmail_file_content .= '&'.$box["redirect1"]."\n";
+	}
+	if($box["redirect2"] != "" && isset($box["redirect2"]) ){
+		$qmail_file_content .= '&'.$box["redirect2"]."\n";
+	}
 	if($conf_demo_version == "no"){
 		$fp = fopen ( "$boxpath/../.qmail-default", "w");
 		fwrite ($fp,$qmail_file_content);
