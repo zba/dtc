@@ -43,6 +43,6 @@ chroot_path varchar(255) NOT NULL default '/var/www/chroot',
 domain_based_ftp_logins enum('yes','no') NOT NULL default 'no',
 hide_password enum('yes','no') NOT NULL default 'no',
 session_expir_minute int(9) NOT NULL default '10',
-skin varchar(128) NOT NULL default 'green',
+skin varchar(128) NOT NULL default 'tex',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
