@@ -1,4 +1,8 @@
 R4
+- Added NAS adding/editing for freeradius.
+
+- Added chmod 644 on all new / edited .qmail files.
+
 - Started a better MySQL manager by adding a field dtcowner in mysql.user.
 
 - Added a popup for catchall feature for Qmail, corrected some of Postfix,
