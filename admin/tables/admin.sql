@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS admin (
   pass_next_req varchar(128) NOT NULL default '0',
   pass_expire int(12) NOT NULL default '0',
   allow_add_domain enum('yes','no','check') NOT NULL default 'check',
+  nbrdb int(9) NOT NULL default '1',
   UNIQUE KEY adm_login (adm_login),
   UNIQUE KEY path (path)
 )TYPE=MyISAM

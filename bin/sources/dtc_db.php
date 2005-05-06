@@ -18,7 +18,8 @@ $dtc_database = array(
 			"pass_next_req" => "varchar(128) NOT NULL default '0' ",
 			"pass_expire" => "int(12) NOT NULL default '0' ",
 			"allow_add_domain" => "enum('yes','no','check') NOT NULL default 'check' ",
-			"prod_id" => "int(11) NOT NULL default '0' "
+			"prod_id" => "int(11) NOT NULL default '0' ",
+			"nbrdb" => "int(9) NOT NULL default '1'"
 			),
 		"keys" => array(
 			"PRIMARY" => "(adm_login)",
