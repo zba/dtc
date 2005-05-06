@@ -181,7 +181,7 @@ function drawGeneralConfig(){
 	<td nowrap><input type=\"text\" size=\"4\" value=\"$conf_session_expir_minute\" name=\"new_session_expir_minute\"></td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_hide_password[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_hide_password\"$conf_hdpasswd_yes>Yes
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_hidepassword\"$conf_hdpasswd_yes>Yes
 	<input type=\"radio\" value=\"no\" name=\"new_hidepasswd\"$conf_hdpasswd_no>No</td>
 </tr><tr>
 	<td colspan=\"2\"><h3>Daemon</h3></td>
