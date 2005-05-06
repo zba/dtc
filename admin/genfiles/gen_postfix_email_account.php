@@ -97,6 +97,7 @@ function mail_account_generate_postfix(){
 				$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
 			}
 			$store_catch_all = "";
+			$catch_all_id = $domain["catchall_email"];
 			$abuse_address = 0;
 			if(isset($domain["emails"]) && $primary_mx){
 				$emails = $domain["emails"];
@@ -123,6 +124,11 @@ function mail_account_generate_postfix(){
 					# first try and see if we have postfix in a chroot, else just put it in it's default location
 					system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
 					if ($localdeliver == "yes" || $localdeliver == "true"){
+						# setup the catch_all for locally delivered email addresses
+						if ($id == $catch_all_id)
+						{
+							$store_catch_all .= "@$domain_full_name        $id@$domain_full_name\n";
+						} 
 						$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
 						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
 					} else {
@@ -136,7 +142,7 @@ function mail_account_generate_postfix(){
 								$extra_redirects .= " $redirect2 ";
 							}
 						}
-						if ($id == "*"){
+						if ($id == "*" || $id == $catch_all_id){
 							$store_catch_all .= "@$domain_full_name        $extra_redirects\n";
 						} else {
 							$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
