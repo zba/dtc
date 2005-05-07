@@ -110,6 +110,13 @@ function isFtpLogin($mailbox){
 	else			return true;
 }
 
+// Check for validity of a database name
+function isDatabase($db){
+	$reg = "^([a-z]+)([a-z]+)\$";
+	if(!ereg($reg,$db))	return false;
+	else			return true;
+}
+
 // Check any mail password for another server
 function isMailPassword($login){
 //	$reg = '^([<>()\\\/\?_\[;,;:%\^@"!a-zA-Z0-9-]){4,16}$';
