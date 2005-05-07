@@ -10,7 +10,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 		$commit_flag = "no";
 	}
 	if(!isDTCPassword($_REQUEST["db_pass"])){
-		$submit_err .= "Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n";
+		$submit_err .= "Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long in file ".__FILE__.".<br>\n";
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){
@@ -164,7 +164,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 			$commit_flag = "no";
 		}else{
 			$a = mysql_fetch_array($r);
-			$q = "SELECT User FROM mysql.db WHERE Db='".$a["User"]."' AND dtcowner='$adm_login';";
+			$q = "SELECT User FROM mysql.user WHERE User='".$a["User"]."' AND dtcowner='$adm_login';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n < 1){
@@ -174,7 +174,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 		}
 	}
 	if($commit_flag == "yes"){
-		$q = "UPDATE INTO mysql.db SET User='".$_REQUEST["dbuser"]."' WHERE Db='".$_REQUEST["dbuser"]."';";
+		$q = "UPDATE mysql.db SET User='".$_REQUEST["dbuser"]."' WHERE Db='".$_REQUEST["dbname"]."';";
+		echo $q;
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
