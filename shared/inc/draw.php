@@ -32,13 +32,13 @@ function drawPasswordChange(){
   global $addrlink;
 
   $out = "<b><u>Change your password:</u></b><br>
-<form action=\"".$_SERVER["PHP_SELF"]."\">
+<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"action\" value=\"change_adm_pass\">
-New password: <input type=\"text\" name=\"new_pass1\" value=\"\">
-Retype new password: <input type=\"text\" name=\"new_pass2\" value=\"\">
+New password: <input type=\"password\" name=\"new_pass1\" value=\"\">
+Retype new password: <input type=\"password\" name=\"new_pass2\" value=\"\">
 <input type=\"submit\" value=\"Ok\">
 </form>";
   return $out;
