@@ -26,6 +26,24 @@ function AdminTool_findDomainNum($name,$domains){
 	return -1;
 }
 
+function drawPasswordChange(){
+  global $adm_login;
+  global $adm_pass;
+  global $addrlink;
+
+  $out = "<b><u>Change your password:</u></b><br>
+<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+<input type=\"hidden\" name=\"action\" value=\"change_adm_pass\">
+New password: <input type=\"text\" name=\"new_pass1\" value=\"\">
+Retype new password: <input type=\"text\" name=\"new_pass2\" value=\"\">
+<input type=\"submit\" value=\"Ok\">
+</form>";
+  return $out;
+}
+
 function drawAdminTools($admin){
 	global $adm_login;
 	global $adm_pass;
@@ -155,6 +173,10 @@ function drawAdminTools($admin){
 		"type" => "link",
 		"link" => "database");
 	$user_menu[] = array(
+		"text" => "password",
+		"type" => "link",
+		"link" => "password");
+	$user_menu[] = array(
 		"text" => "help",
 		"type" => "link",
 		"link" => "help");
@@ -215,6 +237,9 @@ function drawAdminTools($admin){
 		}else if($add_array[0] == "database"){
 			$web_editor .= drawDataBase("");
 			$title = $txt_title_database_form[$lang];
+		}else if($add_array[0] == "password"){
+			$web_editor .= drawPasswordChange();
+			$title = "Password";
 		}else if($add_array[0] == "help"){
 			$web_editor .= $txt_draw_help_content[$lang];
 			$title = $txt_title_help_form[$lang];
