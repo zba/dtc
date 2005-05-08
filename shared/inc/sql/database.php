@@ -175,7 +175,6 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 	}
 	if($commit_flag == "yes"){
 		$q = "UPDATE mysql.db SET User='".$_REQUEST["dbuser"]."' WHERE Db='".$_REQUEST["dbname"]."';";
-		echo $q;
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
