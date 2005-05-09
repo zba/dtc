@@ -100,7 +100,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$zeLanguage = "
 	<td valign=\"top\">&nbsp;</td>
 	<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
-		$links = "<a target=\"_blank\" href=\"/dtcdoc/\" class=\"DTCpageTopSubTitle\">Documentation</a> <a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a>";
+		$links = "<a target=\"_blank\" href=\"/dtcdoc/\">Documentation</a> <a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a>";
 	}else{
 		$links = "";
 		$zeLanguage = "";
@@ -123,9 +123,27 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	font-family:Arial;
 	color:#8686CC;
 	font-weight: bold;
+	font-size:12px;
+}
+.DTCpageTopTitle2{
+	font-family:Arial;
+	color:#8686CC;
+	font-weight: bold;
 	font-size:11px;
 }
+.DTCpageTopTitleLine2{
+	font-family:Arial;
+	color:#8686CC;
+	font-weight: bold;
+	font-size:8px;
+}
 .DTCpageTopSubTitle{
+	font-family:Arial;
+	color:#A8A8A8;
+	font-weight: normal;
+	font-size:9px;
+}
+A .DTCpageTopSubTitle{
 	font-family:Arial;
 	color:#A8A8A8;
 	font-weight: normal;
@@ -135,8 +153,8 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\"><tr>
 	<td valign=\"top\" width=\"1\"><a href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\"><img alt=\"Domain Technologie Control (DTC)\" border=\"0\" src=\"gfx/pagetop/dtc_logo.gif\"></a></td>
 	<td valign=\"top\" width=\"100%\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\">
-		<tr><td valign=\"bottom\" height=\"42\" $nowrap background=\"gfx/pagetop/dtc_banner.gif\" class=\"DTCpageTopTitle\">&nbsp;Domain Technologie Control -&nbsp;<br>&nbsp;</td>
-			<td width=\"100%\" valign=\"bottom\" height=\"42\" $nowrap background=\"gfx/pagetop/dtc_banner.gif\" class=\"DTCpageTopTitle\">".$txt_pagetop_zesubtitle[$lang]."<br>&nbsp;</td>
+		<tr><td valign=\"bottom\" height=\"42\" $nowrap background=\"gfx/pagetop/dtc_banner.gif\"><div class=\"DTCpageTopTitle\">&nbsp;Domain Technologie Control -&nbsp;</div><div class=\"DTCpageTopTitleLine2\">>&nbsp;</div></td>
+			<td width=\"100%\" valign=\"bottom\" height=\"42\" $nowrap background=\"gfx/pagetop/dtc_banner.gif\"><div class=\"DTCpageTopTitle2\">".$txt_pagetop_zesubtitle[$lang]."</div><div class=\"DTCpageTopTitleLine2\">&nbsp;</div></td>
 			<td valign=\"top\" ><img src=\"gfx/pagetop/dtc_banner_end.gif\"></td></tr>
 		<tr><td class=\"DTCpageTopSubTitle\">V$conf_dtc_version R$conf_dtc_release - $conf_unix_type</td>
 			<td><div align=\"right\" class=\"DTCpageTopSubTitle\">&nbsp;$links</div></td></tr>
