@@ -174,7 +174,8 @@ function userEditForms($adm_login,$adm_pass){
 
 		// Output and skin the result !
 		$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
-		$user_mysql_config = skin($conf_skin,$HTML_admin_mysql_config,"MySQL");
+// We don't need this one anymore now !!! :)
+		$user_mysql_config = ""; // skin($conf_skin,$HTML_admin_mysql_config,"MySQL");
 		$user_domain_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
 		$user_tools = skin($conf_skin,$HTML_admin_edit_data,"Domains for $adm_login");
 

@@ -19,7 +19,8 @@ $dtc_database = array(
 			"pass_expire" => "int(12) NOT NULL default '0' ",
 			"allow_add_domain" => "enum('yes','no','check') NOT NULL default 'check' ",
 			"prod_id" => "int(11) NOT NULL default '0' ",
-			"nbrdb" => "int(9) NOT NULL default '1'"
+			"nbrdb" => "int(9) NOT NULL default '1'",
+			"resseller_flag" => "enum('yes','no') NOT NULL default 'no'",
 			),
 		"keys" => array(
 			"PRIMARY" => "(adm_login)",
@@ -141,6 +142,8 @@ $dtc_database = array(
 			"chroot_path" => "varchar(255) NOT NULL default '/var/www/chroot' ",
 			"hide_password" => "enum('yes','no') NOT NULL default 'no' ",
 			"session_expir_minute" => "int(9) NOT NULL default '10' ",
+			"root_admin_random_pass" => "varchar(128) NOT NULL default '' ",
+			"pass_expire" => "int(12) NOT NULL default '1' ",
 			"unicrow2" => "int(11) NOT NULL default '1' "
 			),
 		"keys" => array(

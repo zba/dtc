@@ -1,9 +1,15 @@
 R4
+- Random rotative password is now used for the root web panel, so there
+is no password in any url now (exept the email panel maybe).
+
 - Added NAS adding/editing for freeradius.
 
 - Added chmod 644 on all new / edited .qmail files.
 
-- Started a better MySQL manager by adding a field dtcowner in mysql.user.
+- Added a better MySQL manager by adding a field dtcowner in mysql.user.
+Now virtual administrators can add/delete mysql users and can create/delete
+database. There is a field for each admin telling how mutch db at max,
+number of mysql user is not limited.
 
 - Added a popup for catchall feature for Qmail, corrected some of Postfix,
 the ugly * account doesn't exists anymore.

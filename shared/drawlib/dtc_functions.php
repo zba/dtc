@@ -36,6 +36,7 @@ function getRandomValue(){
 function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_domain_table;
+	global $pro_mysql_config_table;
 
 	if(strlen($adm_pass) > 16){
 	}
@@ -43,12 +44,25 @@ function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
-	if($num_rows != 1)      die("User or password is incorrect !");
+	if($num_rows != 1){
+		$query = "SELECT * FROM $pro_mysql_config_table WHERE root_admin_random_pass='$adm_pass' AND pass_expire > '".mktime()."';";
+		$result = mysql_query($query)or die("Cannot execute query \"$query\" !".mysql_error());
+		$num_rows = mysql_num_rows($result);
+		if($num_rows != 1){
+			die("User or password is incorrect !");
+		}
+		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+		$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
+		$num_rows = mysql_num_rows($result);
+		if($num_rows != 1){
+			die("User or password is incorrect !");
+		}
+	}
 
 	$query = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login' AND name='$domain_name';";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
-	if($num_rows != 1)	die("Cannot update DNS or MX the user does not own the domain name !");
+	if($num_rows != 1)	die("Cannot update: you are trying to do something on a domain name you don't own!");
 }
 ////////////////////////////////////////////////////////
 // Some ereg check functions to be sure of all inputs //

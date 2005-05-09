@@ -213,12 +213,15 @@ function fetchAdminData($adm_login,$adm_input_pass){
         global $pro_mysql_pop_table;
 	global $pro_mysql_ftp_table;
         global $pro_mysql_subdomain_table;
+        global $pro_mysql_config_table;
+        global $panel_type;
 
 	global $conf_session_expir_minute;
 
 //	global $adm_login;
 	global $adm_realpass;
 	global $adm_pass;
+	global $adm_random_pass;
 
 	// This one is used by the root GUI so that you can browse your user
 	// account at the same time as him without destroying his session.
@@ -231,26 +234,50 @@ function fetchAdminData($adm_login,$adm_input_pass){
 WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass'
 OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 
-	$result = mysql_query ($query)or die("Cannot execute query \"$query\"");
+	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error
+	message removed for security reasons).");
 	$num_rows = mysql_num_rows($result);
 
 	if($num_rows != 1){
-		$ret["mesg"] = "Wrong user or password, or timeout expired.";
-		$ret["err"] = -1;
-		return $ret;
+		$q = "SELECT * FROM $pro_mysql_config_table WHERE root_admin_random_pass='$adm_input_pass' AND pass_expire > '".mktime()."';";
+		$r = mysql_query($q)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
+		$n = mysql_num_rows($r);
+		if($n == 1){
+			$is_root_admin = "yes";
+			$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+			$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
+			$num_rows = mysql_num_rows($result);
+
+			if($num_rows != 1){
+				$ret["mesg"] = "Wrong user or password, or timeout expired.";
+				$ret["err"] = -1;
+				return $ret;
+			}
+		}else{
+			$ret["mesg"] = "Wrong user or password, or timeout expired.";
+			$ret["err"] = -1;
+			return $ret;
+		}
+	}else{
+		$is_root_admin = "no";
 	}
 
 	$row = mysql_fetch_array($result) or die ("Cannot fetch user");
 
 	// This stuff is rotating passwords helping NOT to save passwords on users browsers.
 	$rand = getRandomValue();
+	$adm_random_pass = $rand;
 	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-	if($DONOT_USE_ROTATING_PASS != "yes"){
-		$q = "UPDATE $pro_mysql_admin_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE adm_login='$adm_login'";
-		$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
-
+//	if($DONOT_USE_ROTATING_PASS != "yes"){
+		if($is_root_admin == "yes"){
+			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
+			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
+		}else{
+			$q = "UPDATE $pro_mysql_admin_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE adm_login='$adm_login'";
+			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
+		}
 		$adm_pass = $rand;
-	}
+//	}
 	$adm_realpass = $row["adm_pass"];
 
 	$adm_path = $row["path"];

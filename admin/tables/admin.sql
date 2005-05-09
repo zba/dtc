@@ -8,11 +8,12 @@ CREATE TABLE IF NOT EXISTS admin (
   bandwidth_per_month_mb INT ( 11 ) NOT NULL default '100',
   expire date NOT NULL default '0000-00-00',
   id_client int(9) NOT NULL default '0',
-  PRIMARY KEY  (adm_login),
   pass_next_req varchar(128) NOT NULL default '0',
   pass_expire int(12) NOT NULL default '0',
   allow_add_domain enum('yes','no','check') NOT NULL default 'check',
   nbrdb int(9) NOT NULL default '1',
+  resseller_flag enum('yes','no') NOT NULL default 'no',
+  PRIMARY KEY  (adm_login),
   UNIQUE KEY adm_login (adm_login),
   UNIQUE KEY path (path)
 )TYPE=MyISAM
