@@ -1,12 +1,5 @@
 <?php
 
-$txt_select_lang_title = array(
-	"fr" => "Langue",
-	"en" => "Language",
-	"nl" => "Taal",
-	"ru" => "Language",
-	"de" => "Language");
-
 function anotherLanguageSelection(){
 	global $lang;
 	global $rub;

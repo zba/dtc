@@ -1,5 +1,16 @@
 <?php
 
+$txt_select_lang_title = array(
+	"fr" => "Langue",
+	"en" => "Language",
+	"hu" => "Language",
+	"it" => "Lingua",
+	"nl" => "Taal",
+	"ru" => "Language",
+	"de" => "Language",
+	"zh" => "Language",
+	"es" => "Language");
+
 $txt_mailbox_redirection_edition = array(
   "fr" => "Edition des redirections de votre boite :",
   "en" => "Edit your mailbox redirections:",
