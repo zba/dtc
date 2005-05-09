@@ -1,4 +1,6 @@
 R4
+- Virtual admins can now change they're password themself. (T.Goirand)
+
 - Random rotative password is now used for the root web panel, so there
 is no password in any url now (exept the email panel maybe).
 
