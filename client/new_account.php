@@ -19,6 +19,7 @@ if(isset($txt_top_menu_entrys)){
 $anotherLanguageSelection = anotherLanguageSelection();
 $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
+$form = "";
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "return_from_pay"){
 	// Here are paypal return parameters:
 	// [action] => return_from_pay
