@@ -22,6 +22,7 @@ function validateWaitingUser($waiting_login){
 	global $conf_demo_version;
 	global $conf_use_ssl;
 	global $conf_webmaster_email_addr;
+	global $console;
 
 	// Check if there is a user by that name
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$waiting_login';";
