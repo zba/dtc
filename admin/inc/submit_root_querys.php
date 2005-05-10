@@ -33,7 +33,6 @@ if(isset($_REQUEST["newdomain"]) && $_REQUEST["newdomain"] == "Ok"){
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "valid_waiting_domain_to_user"){
 	$q = "SELECT * FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
-	echo $q;
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1)	die("ID of pending domain not found!");
@@ -143,7 +142,8 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 		adm_pass='".$_REQUEST["changed_pass"]."',path='".$_REQUEST["changed_path"]."',
 		quota='".$_REQUEST["adm_quota"]."', bandwidth_per_month_mb='".$_REQUEST["bandwidth_per_month"]."',
 		expire='".$_REQUEST["expire"]."',allow_add_domain='".$_REQUEST["allow_add_domain"]."',
-		nbrdb='".$_REQUEST["nbrdb"]."'
+		nbrdb='".$_REQUEST["nbrdb"]."',
+		resseller_flag='".$_REQUEST["resseller_flag"]."'
 		WHERE adm_login='$adm_login';";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 }
