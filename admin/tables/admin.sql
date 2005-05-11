@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS admin (
   allow_add_domain enum('yes','no','check') NOT NULL default 'check',
   nbrdb int(9) NOT NULL default '1',
   resseller_flag enum('yes','no') NOT NULL default 'no',
+  ob_head varchar(64) NOT NULL default '',
+  ob_tail varchar(64) NOT NULL default '',
+  ob_next varchar(64) NOT NULL default '',
   PRIMARY KEY  (adm_login),
   UNIQUE KEY adm_login (adm_login),
   UNIQUE KEY path (path)
