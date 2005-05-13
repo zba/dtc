@@ -1,8 +1,8 @@
 <?php
 
 require_once("../shared/autoSQLconfig.php");
-require_once("$dtcshared_path/dtc_lib.php");
 $panel_type="admin";
+require_once("$dtcshared_path/dtc_lib.php");
 // Admin include files
 require_once("genfiles/genfiles.php");
 
@@ -18,13 +18,13 @@ if(file_exists("dtcrm")){
 	include("dtcrm/product_manager.php");
 }
 
-$DONOT_USE_ROTATING_PASS=yes;
+$DONOT_USE_ROTATING_PASS="yes";
 
 ////////////////////////////////////
 // Create the top banner and menu //
 ////////////////////////////////////
 $anotherTopBanner = anotherTopBanner("DTC","yes");
-$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
+$anotherMenu = "";
 
 $q = "SELECT * FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."'";
 $r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
@@ -33,6 +33,7 @@ if($n != 1){
 	$newu_infos = "$q: User not found!!!";
 }else{
 	$a = $a = mysql_fetch_array($r);
+	$newu_infos = "";
 	$newu_infos .= "<h4><u>".$a["comp_name"].":</u> ";
 	$newu_infos .= $a["family_name"].", ".$a["first_name"]."</h4>";
 	$newu_infos .= "<b>Login:</b> ".$a["reqadm_login"]."<br>";
@@ -53,6 +54,6 @@ $the_page[] = skin($conf_skin,$newu_infos,"User details:");
 $pageContent = makeVerticalFrame($the_page);
 $anotherFooter = anotherFooter("Footer content<br><br>");
 
-echo anotherPage("admin:".$txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$pageContent,$anotherFooter);
+echo anotherPage("admin:","","",makePreloads(),$anotherTopBanner,$anotherMenu,$pageContent,$anotherFooter);
 
 ?>
