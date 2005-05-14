@@ -74,7 +74,11 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "return_from_pay"){
 				validateWaitingUser($a2["reqadm_login"]);
 				$form .= "<h3><font color=\"green\">TRANSACTION FINISHED AND APPROVED</font></h3>
 				Your account has just been created. Please login <a href=\"/dtc\">here</a> to
-				start using your account.";
+				start using your account.<br><br>
+				If you have registered your domain name yourself, then you should set the
+				whois to point to the following name servers:<br>
+				ns1: $conf_addr_primary_dns<br>
+				ns2: $conf_addr_secondary_dns";
 			}
 		}
 	}
