@@ -72,7 +72,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "return_from_pay"){
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				validateWaitingUser($a2["reqadm_login"]);
-				$form .= "<h3><font color=\"green\">TRASNACTION FINISHED AND APPROVED</font></h3>
+				$form .= "<h3><font color=\"green\">TRANSACTION FINISHED AND APPROVED</font></h3>
 				Your account has just been created. Please login <a href=\"/dtc\">here</a> to
 				start using your account.";
 			}
