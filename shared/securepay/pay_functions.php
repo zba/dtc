@@ -39,6 +39,7 @@ function createCreditCardPaiementID($amount_paid,$client_id,$label,$new_account=
 function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none",$secpay_custom_id="0",$total_payed=-1){
 	global $pro_mysql_pay_table;
 	global $conf_webmaster_email_addr;
+	global $pro_mysql_new_admin_table;
 
 	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$pay_id';";
 	logPay("Querying: $q");
@@ -65,14 +66,30 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
 
 	$txt_userwaiting_account_activated_subject = "GPLHost:>_ \$".$amount_paid." payment";
+
+	if($ar["new_account"] == "yes"){
+		$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE paiement_id='".$ar["id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$a = mysql_fetch_array($r);
+		$added_comments = "Login: ".$a["reqadm_login"]."
+Email: ".$a["email"]."
+Company: ".$a["comp_name"]."
+Customer: ".$a["first_name"].", ".$a["family_name"]."
+City: ".$a["city"]."
+Country: ".$a["country"]."";
+	}else{
+		$added_comments = "";
+	}
+
 	$txt_mail = "DTC hosting account opened!
 
 Hello,
 
 This is Domain Technologie Control panel robot.
-A \$".$amount_paid." payment has just been occured.
+A \$".$amount_paid." payment has just occured.
 
 Payid: ".$pay_id."
+$added_comments
 
 GPLHost:>_ Open-source hosting worldwide.
 http://www.gplhost.com
