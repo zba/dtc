@@ -55,10 +55,10 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 		}
 	}
 
-	if(!isDTCPassword($_REQUEST["newmail_pass"])){
+	if(!isDTCPassword($_REQUEST["newmail_pass"]) && ( ( isset($_REQUEST["newmail_deliver_localy"]) && $_REQUEST["newmail_deliver_localy"] == "yes") || (isset($_REQUEST["editmail_deliver_localy"]) && $_REQUEST["editmail_deliver_localy"] == "yes" ) ) ){
 		$submit_err .= "Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n";
 		$commit_flag = "no";
-		die("");
+		die($submit_err);
 	}
 	// if there is redirection, check for it's format
 	if($_REQUEST["newmail_redirect1"] != ""){
@@ -74,7 +74,7 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 		}
 	}
 	// Submit to the sql dtabase
-	if($_REQUEST["newmail_deliver_localy"] == "yes"){
+	if(isset($_REQUEST["newmail_deliver_localy"]) && $_REQUEST["newmail_deliver_localy"] == "yes"){
 		$dolocal_deliver = "yes";
 	}else{
 		$dolocal_deliver = "no";

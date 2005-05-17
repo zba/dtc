@@ -144,6 +144,7 @@ function writeDotQmailFile($user,$host){
 		}
 		mk_Maildir($boxpath);
 	}
+	$qmail_file_content = "";
 	if($box["localdeliver"] == "yes"){
 		$qmail_file_content = "./Maildir/\n";
 	}

@@ -122,8 +122,9 @@ function mail_account_generate_postfix(){
 						$abuse_address = 1;
 					}
 					# first try and see if we have postfix in a chroot, else just put it in it's default location
-					system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
 					if ($localdeliver == "yes" || $localdeliver == "true"){
+						# only generate sasl logins for local accounts
+						system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
 						# setup the catch_all for locally delivered email addresses
 						if ($id == $catch_all_id)
 						{
