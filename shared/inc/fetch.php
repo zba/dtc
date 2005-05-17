@@ -340,7 +340,9 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$subdomain["register_globals"] = $row2["register_globals"];
 			$subdomain["webalizer_generate"] = $row2["webalizer_generate"];
 			$subdomain["associated_txt_record"] = $row2["associated_txt_record"];
-			$subdomain["generate_vhost"] = $row2["generate_vhost"];
+			if (isset($row2["generate_vhost"])){
+				$subdomain["generate_vhost"] = $row2["generate_vhost"];
+			}
 			$subs[] = $subdomain;
 		}
 		$domain["subdomains"] = $subs;
