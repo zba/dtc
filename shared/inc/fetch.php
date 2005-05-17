@@ -342,6 +342,8 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$subdomain["associated_txt_record"] = $row2["associated_txt_record"];
 			if (isset($row2["generate_vhost"])){
 				$subdomain["generate_vhost"] = $row2["generate_vhost"];
+			} else {
+				$subdomain["generate_vhost"] = "yes";
 			}
 			$subs[] = $subdomain;
 		}
