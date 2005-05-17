@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS subdomain (
   pass varchar(64) default NULL,
   w3_alias enum('yes','no') NOT NULL default 'no',
   associated_txt_record varchar(128) NOT NULL default '',
+  generate_vhost enum('yes','no') NOT NULL default 'yes',
   PRIMARY KEY  (id),
   UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
 ) TYPE=MyISAM

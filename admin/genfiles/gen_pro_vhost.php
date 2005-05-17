@@ -154,6 +154,12 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
 
+			// if we explicitly don't want to generate a vhost entry for this subdomain
+			if (isset($subdomain["generate_vhost"]) && $subdomain["generate_vhost"] == "no")
+			{
+				continue;
+			}
+
 // ------------------------------------------------
 // --- Start of the conf of the panel subdomain ---
 // ------------------------------------------------
@@ -200,7 +206,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				// End of Luke's patch
 
 				$vhost_file .= "	ServerName $web_subname.$web_name\n";
-				if($conf_use_ssl == "yes"){
+				if($conf_use_ssl == "yes" && $k == 0){
 					$vhost_file .= "	SSLEngine on
 	SSLCertificateFile ".$conf_generated_file_path."/ssl/new.cert.cert
 	SSLCertificateKeyFile ".$conf_generated_file_path."/ssl/new.cert.key\n";

@@ -1850,6 +1850,18 @@ $txt_subdom_generate_webalizer = array(
 	"es" => "Generar estad�sticas webalizer mensualmente:"
 );
 
+$txt_subdom_generate_vhost = array(
+	"fr" => "Produisez de l'entrée de vhost d'apach e:",
+	"en" => "Generate apache vhost entry :",
+	"hu" => "TRANS Generate apache vhost entry :",
+	"it" => "Generi l'entrata del vhost del apache :",
+	"nl" => "Produceer apache vhost ingang :",
+	"ru" => "Произведите вход vhost апаша :",
+	"de" => "Erzeugen Sie Apache vhost Eintragung :",
+	"zh" => "TRANS Generate apache vhost entry :̬��",
+	"es" => "Genere la entrada del vhost de apache :"
+);
+
 $txt_subdom_wwwalias = array(
 	"fr" => "Faire un alias ",
 	"en" => "Make an alias ",

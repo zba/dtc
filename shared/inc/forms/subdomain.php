@@ -37,6 +37,7 @@ function drawAdminTools_Subdomain($domain){
 	global $txt_subdom_windowsusers;
 	global $txt_subdom_wwwalias;
 	global $txt_subdom_generate_webalizer;
+	global $txt_subdom_generate_vhost;
 
 	global $edit_a_subdomain;
 
@@ -77,6 +78,7 @@ function drawAdminTools_Subdomain($domain){
 				$pass_to_edit = "";
 			}
 			$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
+			$generate_vhost_to_edit = $subdomains[$i]["generate_vhost"];
 			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
 			$register_globals_to_edit = $subdomains[$i]["register_globals"];
 			$txt_rec = $subdomains[$i]["associated_txt_record"];
@@ -200,6 +202,16 @@ No<input type=\"radio\" name=\"register_globals\" value=\"no\" $checked_no></td>
 		$txt .= "<tr><td align=\"right\">".$txt_subdom_generate_webalizer[$lang]."</td>";
 		$txt .= "<td>Yes<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_yes>
 No<input type=\"radio\" name=\"webalizer\" value=\"no\" $checked_no></td></tr>";
+		if($generate_vhost_to_edit == "yes"){
+			$checked_yes = " checked";
+			$checked_no = "";
+		}else{
+			$checked_yes = "";
+			$checked_no = " checked";
+		}
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_generate_vhost[$lang]."</td>";
+		$txt .= "<td>Yes<input type=\"radio\" name=\"generate_vhost\" value=\"yes\" $checked_yes>
+No<input type=\"radio\" name=\"generate_vhost\" value=\"no\" $checked_no></td></tr>";
 		if($w3_alias_to_edit == "yes"){
 			$checked_yes = " checked";
 			$checked_no = "";

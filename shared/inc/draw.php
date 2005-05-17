@@ -309,6 +309,7 @@ function drawAdminTools($admin){
 //                                         ["w3_alias"]
 //                                         ["register_globals"]
 //                                         ["webalizer_generate"]
+//                                         ["generate_vhost"]
 //                      ["emails"][0-n]["id"]
 //                                     ["home"]
 //                                     ["crypt"]

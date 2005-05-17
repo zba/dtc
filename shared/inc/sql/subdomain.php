@@ -66,7 +66,9 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 	else		$webalizer = ", webalizer_generate='no'";
 	if($_REQUEST["w3_alias"] == "yes")	$w3alias = ", w3_alias='yes'";
 	else		$w3alias = ", w3_alias='no'";
-	$add_vals = $reg_globs.$webalizer.$w3alias;
+	if($_REQUEST["generate_vhost"] == "yes")	$gen_vhost = ", generate_vhost='yes'";
+	else		$gen_vhost = ", generate_vhost='no'";
+	$add_vals = $reg_globs.$webalizer.$w3alias.$gen_vhost;
 	// Update the flag so we regenerate the serial for bind
 	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
