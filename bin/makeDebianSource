@@ -4,7 +4,10 @@
 # Maintainer: Thomas GOIRAND <thomas [ at ] goirand.fr>
 # please do not ship with you packages
 # this is only a small coder tool...
-#
+# $Source: /var/lib/cvs/dtc/bin/makeDebianSource,v $
+# $Date: 2005/05/19 15:32:41 $
+# $Revision: 1.2 $
+
 
 VERS=`cat version`
 RELS=`cat release`
@@ -20,7 +23,8 @@ UNIX_TYPE=debian
 echo " --- Making DTC debian source package --- "
 
 # purge the existing directories
-rm -rf debian-src
+# [no need to purge, the Makefile takes care of that more correctly]
+# rm -rf debian-src
 # Make the directories
 mkdir -p debian-src/dtc-$VERS.orig
 mkdir -p debian-src/dtc-$VERS
