@@ -25,7 +25,7 @@ function drawResseller($admin){
 	$out = "<b><u>Your child accounts:</u></b>";
 	$out .= "<table>
 	<tr><td>Login</td><td>Password</td><td>Action</td></tr>";
-	if($admin["info"]["ob_head"] != "0"){
+	if($admin["info"]["ob_head"] != ""){
 		$next_adm = $admin["info"]["ob_head"];
 		while($next_adm != $adm_login){
 			$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$next_adm';";
