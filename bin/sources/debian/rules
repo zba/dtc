@@ -81,7 +81,7 @@ binary-arch: build install
 	dh_link
 	dh_strip
 	dh_compress
-	dh_fixperms
+	#dh_fixperms -X$(CURDIR)/debian/tmp/usr/share/dtc/admin -X$(CURDIR)/debian/tmp/usr/share/dtc/client -X$(CURDIR)/debian/tmp/usr/share/dtc/email -X$(CURDIR)/debian/tmp/usr/share/dtc/shared 
 #	dh_perl
 #	dh_python
 #	dh_makeshlibs
