@@ -223,7 +223,7 @@ if($panel_type!="email"){
 	require("$dtcshared_path/inc/sql/subdomain.php");
 	require("$dtcshared_path/inc/sql/ftp.php");
 	require("$dtcshared_path/inc/sql/email.php");
-	require("$dtcshared_path/inc/sql/resseller.php");
+	require("$dtcshared_path/inc/sql/reseller.php");
 }else{
 	require("submit_to_sql_dtcemail.php");
 }
