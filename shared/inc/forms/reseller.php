@@ -5,7 +5,7 @@
 //////////////////////////////////////
 // Todo : add a button for creating a MySql databe for one user
 // and add credential to it !
-function drawResseller($admin){
+function drawReseller($admin){
 	global $lang;
 	global $txt_draw_tatabase_your_list;
 	global $conf_mysql_db;
