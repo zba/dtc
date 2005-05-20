@@ -6,7 +6,7 @@ if($panel_type !="email"){
 	// require("$dtcshared_path/inc/forms/root_dns.php");
 	require("$dtcshared_path/inc/forms/domain_info.php");
 	require("$dtcshared_path/inc/forms/database.php");
-	require("$dtcshared_path/inc/forms/resseller.php");
+	require("$dtcshared_path/inc/forms/reseller.php");
 	require("$dtcshared_path/inc/forms/ftp.php");
         require("$dtcshared_path/inc/forms/packager.php");
 	require("$dtcshared_path/inc/forms/admin_stats.php");
