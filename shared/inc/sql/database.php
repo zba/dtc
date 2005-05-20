@@ -5,6 +5,7 @@
 ///////////////////////////
 // action=add_dbuser&dbuser=zigo2&db_pass=toto
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
+	checkLoginPass($adm_login,$adm_pass);
 	if(!isFtpLogin($_REQUEST["dbuser"])){
 		$submit_err .= "Incorrect MySQL login form: please enter another login and try again.<br>\n";
 		$commit_flag = "no";
@@ -31,6 +32,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 
 // action=add_dbuser&newdb_name=blabla&dbuser=zigo
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
+	checkLoginPass($adm_login,$adm_pass);
 	if(!isDatabase($_REQUEST["newdb_name"])){
 		$submit_err .= "This is not a valid database name! Please pickup another one.<br>\n";
 		$commit_flag = "no";
@@ -67,6 +69,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 }
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_dbuser_pass"){
+	checkLoginPass($adm_login,$adm_pass);
 	// action=modify_dbuser_pass&dbuser=zigo&db_pass=bla
 	if(!isFtpLogin($_REQUEST["dbuser"])){
 		$submit_err .= "Incorrect MySQL login form: please enter another login and try again.<br>\n";
@@ -93,6 +96,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_dbuser_pass"){
 	}
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "del_dbuser"){
+	checkLoginPass($adm_login,$adm_pass);
 	// action=del_dbuser&dbuser=zigo
 	if(!isFtpLogin($_REQUEST["dbuser"])){
 		$submit_err .= "Incorrect MySQL login form: please enter another login and try again.<br>\n";
@@ -114,6 +118,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "del_dbuser"){
 	}
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_user_db"){
+	checkLoginPass($adm_login,$adm_pass);
 	// action=delete_user_db&dbname=clem
 	if(!isDatabase($_REQUEST["dbname"])){
 		$submit_err .= "Incorrect MySQL db name: please enter another and try again.<br>\n";
@@ -147,6 +152,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_user_db"){
 
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
+	checkLoginPass($adm_login,$adm_pass);
 	// action=change_db_owner&dbname=clem&dbuser=zigo
 	if(!isFtpLogin($_REQUEST["dbuser"])){
 		$submit_err .= "Incorrect MySQL login form: please enter another login and try again.<br>\n";
@@ -182,6 +188,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 }
 
 if(isset($_REQUEST["change_mysql_password"]) && $_REQUEST["change_mysql_password"] == "Ok"){
+	checkLoginPass($adm_login,$adm_pass);
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);

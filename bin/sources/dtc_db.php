@@ -20,7 +20,10 @@ $dtc_database = array(
 			"allow_add_domain" => "enum('yes','no','check') NOT NULL default 'check' ",
 			"prod_id" => "int(11) NOT NULL default '0' ",
 			"nbrdb" => "int(9) NOT NULL default '1' ",
-			"resseller_flag" => "enum('yes','no') NOT NULL default 'no' "
+			"resseller_flag" => "enum('yes','no') NOT NULL default 'no'",
+			"ob_head" => "varchar(64) NOT NULL default ''",
+			"ob_tail" => "varchar(64) NOT NULL default ''",
+			"ob_next" => "varchar(64) NOT NULL default ''"
 			),
 		"keys" => array(
 			"PRIMARY" => "(adm_login)",

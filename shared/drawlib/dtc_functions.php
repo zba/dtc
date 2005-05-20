@@ -64,6 +64,28 @@ function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1)	die("Cannot update: you are trying to do something on a domain name you don't own!");
 }
+
+function checkLoginPass($adm_login,$adm_pass){
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
+	$num_rows = mysql_num_rows($result);
+	if($num_rows != 1){
+		$query = "SELECT * FROM $pro_mysql_config_table WHERE root_admin_random_pass='$adm_pass' AND pass_expire > '".mktime()."';";
+		$result = mysql_query($query)or die("Cannot execute query \"$query\" !".mysql_error());
+		$num_rows = mysql_num_rows($result);
+		if($num_rows != 1){
+			die("User or password is incorrect !");
+		}
+		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+		$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
+		$num_rows = mysql_num_rows($result);
+		if($num_rows != 1){
+			die("User or password is incorrect !");
+		}
+	}
+}
+
+
 ////////////////////////////////////////////////////////
 // Some ereg check functions to be sure of all inputs //
 ////////////////////////////////////////////////////////

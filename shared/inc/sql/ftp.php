@@ -30,7 +30,7 @@ if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 		$commit_flag = "no";
 	}
 	if(!isDTCPassword($_REQUEST["newftp_pass"])){
-		$submit_err .= "<font color=\"red\">Incorrect FTP password: from 6 to 16 chars, a-z A-Z 0-9<br>\n";
+		$submit_err .= "Incorrect FTP password: from 6 to 16 chars, a-z A-Z 0-9<br>\n";
 		$commit_flag = "no";
 	}
 	$_REQUEST["newftp_path"] = addslashes($_REQUEST["newftp_path"]);

@@ -6,6 +6,7 @@ if($panel_type !="email"){
 	// require("$dtcshared_path/inc/forms/root_dns.php");
 	require("$dtcshared_path/inc/forms/domain_info.php");
 	require("$dtcshared_path/inc/forms/database.php");
+	require("$dtcshared_path/inc/forms/resseller.php");
 	require("$dtcshared_path/inc/forms/ftp.php");
         require("$dtcshared_path/inc/forms/packager.php");
 	require("$dtcshared_path/inc/forms/admin_stats.php");
@@ -83,6 +84,7 @@ function drawAdminTools($admin){
 
 	$adm_cur_pass 	= $admin_info["adm_pass"];
 	$adm_path 	= $admin_info["path"];
+	$resseller_flag = $admin_info["resseller_flag"];
 
 	unset($user_ZEmenu);
 	$user_ZEmenu[] = array(
@@ -172,6 +174,12 @@ function drawAdminTools($admin){
 		"text" => "database",
 		"type" => "link",
 		"link" => "database");
+        if($resseller_flag == "yes"){
+        	$user_menu[] = array(
+	        	"text" => "resseller",
+	        	"type" => "link",
+	        	"link" => "resseller");
+        }
 	$user_menu[] = array(
 		"text" => "password",
 		"type" => "link",
@@ -237,6 +245,9 @@ function drawAdminTools($admin){
 		}else if($add_array[0] == "database"){
 			$web_editor .= drawDataBase("");
 			$title = $txt_title_database_form[$lang];
+		}else if($add_array[0] == "resseller"){
+			$web_editor .= drawResseller($admin);
+			$title = "Resseller (child accounts)";
 		}else if($add_array[0] == "password"){
 			$web_editor .= drawPasswordChange();
 			$title = "Password";

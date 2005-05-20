@@ -11,6 +11,7 @@ require("$dtcshared_path/vars/strings.php");		// Contain all the translated stri
 // Some sql functions //
 ////////////////////////
 require("$dtcshared_path/inc/accounting.php");		// ftp_sum() and http_sum()
+require("$dtcshared_path/inc/tree_mem_to_db.php");	// Tree <-> Memory functions
 
 //////////////////////////////////////////////
 // DRAWING PAGE AND FORMS LIBRARY FUNCTIONS //

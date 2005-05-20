@@ -197,3 +197,5 @@ fi
 
 MKTEMP="mktemp -p /tmp"
 
+MYSQL_DB_SOCKET_PATH="/var/lib/mysql/mysql.sock"
+

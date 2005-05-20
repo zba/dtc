@@ -38,6 +38,17 @@ function drawEditAdmin($admin){
 	$adm_id_client = $info["id_client"];
 	$expire = $info["expire"];
 	$allow_add_domain = $info["allow_add_domain"];
+	$resseller_flag = $info["resseller_flag"];
+
+	if($resseller_flag == "yes"){
+		$resflag_yes = " checked ";
+		$resflag_no = "";
+	}else{
+		$resflag_yes = " ";
+		$resflag_no = " checked ";
+	}
+	$res_selector = "<input type=\"radio\" name=\"resseller_flag\" value=\"yes\"$resflag_yes> Yes
+	<input type=\"radio\" name=\"resseller_flag\" value=\"no\"$resflag_no> No";
 
 	if($allow_add_domain == "yes")	$adyes = "selected";	else $adyes = "";
 	if($allow_add_domain == "check")$adcheck = "selected";	else $adcheck = "";
@@ -75,6 +86,8 @@ function drawEditAdmin($admin){
 	<td><input type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\"></td></tr>
 	<tr><td align=\"right\">Allow to add domains:</td>
 	<td>$aldom_popup</td></tr>
+	<tr><td align=\"right\">Can have subadmin (resseller):</td>
+	<td>$res_selector</td></tr>
 	<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
 </td></tr></table></form>";
 

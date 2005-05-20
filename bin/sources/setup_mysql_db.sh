@@ -64,6 +64,9 @@ if ! [ -e $ADMIN_HOME"/index.php" ] ;then
 	if ! [ -e $ADMIN_HOME"/dtc_logo.gif" ] ;then
 		cp $PATH_DTC_SHARED"/shared/template/dtc_logo.gif" $ADMIN_HOME
 	fi
+	if ! [ -e $ADMIN_HOME"/favicon.ico" ] ;then
+		cp $PATH_DTC_SHARED"/shared/template/favicon.ico" $ADMIN_HOME
+	fi
 fi
 
 # Copy a template site to the new main site

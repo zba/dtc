@@ -28,6 +28,10 @@
 # We are just after the creation of the chroot tree, so it's time to copy it over
 # our newly created vhosts dirs (in update mode)
 
+if [ -z ""$MYSQL_DB_SOCKET_PATH ] ;then
+	MYSQL_DB_SOCKET_PATH="/var/run/mysqld/mysqld.sock"
+fi
+
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Adding chroot environment to www."$main_domain_name
 fi
@@ -319,7 +323,7 @@ Listen 443" >>$PATH_HTTPD_CONF
 	if [ ""$UNIX_TYPE = "freebsd" ] ;then
 		echo "LogSQLSocketFile /tmp/mysqld.sock" >>$PATH_HTTPD_CONF
 	else
-		echo "LogSQLSocketFile /var/run/mysqld/mysqld.sock" >>$PATH_HTTPD_CONF
+		echo "LogSQLSocketFile ${MYSQL_DB_SOCKET_PATH}" >>$PATH_HTTPD_CONF
 	fi
 	echo "LogSQLDatabase apachelogs
 LogSQLCreateTables On
@@ -774,7 +778,7 @@ then
 # DB details for dtc mysql DB
 db_host = $conf_mysql_host
 db_port = 3306
-db_unix_socket = /var/run/mysqld/mysqld.sock
+db_unix_socket = $MYSQL_DB_SOCKET_PATH
 db = $conf_mysql_db
 db_user = dtcdaemons
 db_passwd = ${MYSQL_DTCDAEMONS_PASS}
