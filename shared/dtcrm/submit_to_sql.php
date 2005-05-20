@@ -1,6 +1,6 @@
 <?php
 
-function checkLoginPass(){
+function checkLoginPassSubmitToSQL(){
 	global $adm_login;
 	global $adm_pass;
 	global $pro_mysql_admin_table;
@@ -44,7 +44,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "refund"){
 // &hdl_id=&addrlink=nickhandles&
 // name=a&company=aa&firstname=b&lastname=c&addr1=d&addr2=e&addr3=f&state=g&country=h&zipcode=i&phone_num=j&fax_num=k&email=l
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "create_nickhandle"){
-	checkLoginPass();
+	checkLoginPassSubmitToSQL();
 		
 	if($_REQUEST["name"] == "" ||
 		$_REQUEST["addr1"] == "" ||
@@ -82,7 +82,7 @@ phone_num,fax_num,email) VALUES (
 	mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "update_nickhandle"){
-	checkLoginPass();
+	checkLoginPassSubmitToSQL();
 		
 	if($_REQUEST["name"] == "" ||
 		$_REQUEST["addr1"] == "" ||
