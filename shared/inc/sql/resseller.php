@@ -44,12 +44,12 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_child_account"){
 
 		// Insert the new admin
 		$q = "INSERT INTO $pro_mysql_admin_table (adm_login, adm_pass, path, ob_next, ob_head, ob_tail)
-		VALUES ('".$_REQUEST["new_adm_login"]."','".$_REQUEST["new_adm_pass"]."', '$new_adm_path','".$a["adm_login"]."','0','0');";
+		VALUES ('".$_REQUEST["new_adm_login"]."','".$_REQUEST["new_adm_pass"]."', '$new_adm_path','".$a["adm_login"]."','','');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		echo $q."<br>";
 		// If this admin had no child account
 		echo "ob_head: ".$a["ob_head"]."<br>"."ob_tail: ".$a["ob_tail"]."<br>";
-		if($a["ob_head"] == "0" && $a["ob_tail"] == "0"){
+		if($a["ob_head"] == "" && $a["ob_tail"] == ""){
 			// Simply update the main account ob_head and tail
 			$q = "UPDATE $pro_mysql_admin_table SET ob_head='".$_REQUEST["new_adm_login"]."',ob_tail='".$_REQUEST["new_adm_login"]."' WHERE adm_login='$adm_login';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());

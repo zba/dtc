@@ -176,9 +176,9 @@ function drawAdminTools($admin){
 		"link" => "database");
         if($resseller_flag == "yes"){
         	$user_menu[] = array(
-	        	"text" => "resseller",
+	        	"text" => "reseller",
 	        	"type" => "link",
-	        	"link" => "resseller");
+	        	"link" => "reseller");
         }
 	$user_menu[] = array(
 		"text" => "password",
@@ -245,8 +245,8 @@ function drawAdminTools($admin){
 		}else if($add_array[0] == "database"){
 			$web_editor .= drawDataBase("");
 			$title = $txt_title_database_form[$lang];
-		}else if($add_array[0] == "resseller"){
-			$web_editor .= drawResseller($admin);
+		}else if($add_array[0] == "reseller"){
+			$web_editor .= drawReseller($admin);
 			$title = "Resseller (child accounts)";
 		}else if($add_array[0] == "password"){
 			$web_editor .= drawPasswordChange();
