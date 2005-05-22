@@ -287,6 +287,7 @@ $more_mx_server
 ";
 			// Add all subdomains to it !
 			$is_pop_subdomain_set = "no";
+			$is_imap_subdomain_set = "no";
 			$is_smtp_subdomain_set = "no";
 			$is_ftp_subdomain_set = "no";
 			$is_list_subdomain_set = "no";
@@ -307,6 +308,9 @@ $more_mx_server
 				if($web_subname == "pop"){
 					$is_pop_subdomain_set = "yes";
 				}
+				if($web_subname == "imap"){
+					$is_imap_subdomain_set = "yes";
+				}
 				if($web_subname == "smtp"){
 					$is_smtp_subdomain_set = "yes";
 				}
@@ -323,6 +327,9 @@ $more_mx_server
 			}
 			if( $is_pop_subdomain_set != "yes"){
 				$this_site_file .= "pop	IN	A	$ip_to_write\n";
+			}
+			if( $is_imap_subdomain_set != "yes"){
+				$this_site_file .= "imap	IN	A	$ip_to_write\n";
 			}
 			if( $is_smtp_subdomain_set != "yes"){
 				$this_site_file .= "smtp	IN	A	$ip_to_write\n";
