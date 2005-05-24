@@ -1,5 +1,182 @@
 <?php
 
+// The client dropdown menu entries
+$txt_cmenu_myaccount = array(
+	"fr" => "Mon compte",
+	"en" => "My account",
+	"hu" => "TRANS My account",
+	"it" => "TRANS My account",
+	"nl" => "TRANS My account",
+	"ru" => "TRANS My account",
+	"de" => "TRANS My account",
+	"zh" => "TRANS My account",
+	"es" => "TRANS My account");
+
+$txt_cmenu_myaccount_stats = array(
+	"fr" => "Statistiques",
+	"en" => "Statistics",
+	"hu" => "TRANS Statistics",
+	"it" => "TRANS Statistics",
+	"nl" => "TRANS Statistics",
+	"ru" => "TRANS Statistics",
+	"de" => "TRANS Statistics",
+	"zh" => "TRANS Statistics",
+	"es" => "TRANS Statistics");
+
+$txt_cmenu_add_domain = array(
+	"fr" => "Ajouter un domaine",
+	"en" => "Add a domain",
+	"hu" => "TRANS Add a domain",
+	"it" => "TRANS Add a domain",
+	"nl" => "TRANS Add a domain",
+	"ru" => "TRANS Add a domain",
+	"de" => "TRANS Add a domain",
+	"zh" => "TRANS Add a domain",
+	"es" => "TRANS Add a domain");
+
+$txt_cmenu_nickhandles = array(
+	"fr" => "Responsables DNS",
+	"en" => "DNS Nick handles",
+	"hu" => "TRANS DNS Nick handles",
+	"it" => "TRANS DNS Nick handles",
+	"nl" => "TRANS DNS Nick handles",
+	"ru" => "TRANS DNS Nick handles",
+	"de" => "TRANS DNS Nick handles",
+	"zh" => "TRANS DNS Nick handles",
+	"es" => "TRANS DNS Nick handles");
+
+$txt_cmenu_nameservers = array(
+	"fr" => "Serveurs de noms",
+	"en" => "Name servers",
+	"hu" => "TRANS Name servers",
+	"it" => "TRANS Name servers",
+	"nl" => "TRANS Name servers",
+	"ru" => "TRANS Name servers",
+	"de" => "TRANS Name servers",
+	"zh" => "TRANS Name servers",
+	"es" => "TRANS Name servers");
+
+$txt_cmenu_whois = array(
+	"fr" => "Whois",
+	"en" => "Whois",
+	"hu" => "Whois",
+	"it" => "Whois",
+	"nl" => "Whois",
+	"ru" => "Whois",
+	"de" => "Whois",
+	"zh" => "Whois",
+	"es" => "Whois");
+
+$txt_cmenu_dns = array(
+	"fr" => "DNS et MX",
+	"en" => "DNS and MX",
+	"hu" => "TRANS DNS and MX",
+	"it" => "TRANS DNS and MX",
+	"nl" => "TRANS DNS and MX",
+	"ru" => "TRANS DNS and MX",
+	"de" => "TRANS DNS and MX",
+	"zh" => "TRANS DNS and MX",
+	"es" => "TRANS DNS and MX");
+
+$txt_cmenu_subdomains = array(
+	"fr" => "Sous-domaines",
+	"en" => "Sub-domains",
+	"hu" => "TRANS Sub-domains",
+	"it" => "TRANS Sub-domains",
+	"nl" => "TRANS Sub-domains",
+	"ru" => "TRANS Sub-domains",
+	"de" => "TRANS Sub-domains",
+	"zh" => "TRANS Sub-domains",
+	"es" => "TRANS Sub-domains");
+
+$txt_cmenu_ftpaccounts = array(
+	"fr" => "Comptes FTP",
+	"en" => "FTP accounts",
+	"hu" => "TRANS FTP accounts",
+	"it" => "TRANS FTP accounts",
+	"nl" => "TRANS FTP accounts",
+	"ru" => "TRANS FTP accounts",
+	"de" => "TRANS FTP accounts",
+	"zh" => "TRANS FTP accounts",
+	"es" => "TRANS FTP accounts");
+
+$txt_cmenu_packageinstaller = array(
+	"fr" => "Installateur de paquets",
+	"en" => "Package installer",
+	"hu" => "TRANS Package installer",
+	"it" => "TRANS Package installer",
+	"nl" => "TRANS Package installer",
+	"ru" => "TRANS Package installer",
+	"de" => "TRANS Package installer",
+	"zh" => "TRANS Package installer",
+	"es" => "TRANS Package installer");
+
+$txt_cmenu_mailboxs = array(
+	"fr" => "Boites emails",
+	"en" => "Mailboxes",
+	"hu" => "TRANS Mailboxes",
+	"it" => "TRANS Mailboxes",
+	"nl" => "TRANS Mailboxes",
+	"ru" => "TRANS Mailboxes",
+	"de" => "TRANS Mailboxes",
+	"zh" => "TRANS Mailboxes",
+	"es" => "TRANS Mailboxes");
+
+$txt_cmenu_mailinglists = array(
+	"fr" => "Liste de publication",
+	"en" => "Mailinglists",
+	"hu" => "TRANS Mailinglists",
+	"it" => "TRANS Mailinglists",
+	"nl" => "TRANS Mailinglists",
+	"ru" => "TRANS Mailinglists",
+	"de" => "TRANS Mailinglists",
+	"zh" => "TRANS Mailinglists",
+	"es" => "TRANS Mailinglists");
+
+$txt_cmenu_database = array(
+	"fr" => "Base de données",
+	"en" => "Databases",
+	"hu" => "TRANS Databases",
+	"it" => "TRANS Databases",
+	"nl" => "TRANS Databases",
+	"ru" => "TRANS Databases",
+	"de" => "TRANS Databases",
+	"zh" => "TRANS Databases",
+	"es" => "TRANS Databases");
+
+$txt_cmenu_reseller = array(
+	"fr" => "Sous comptes (revendeur)",
+	"en" => "Sub-accounts (reseller)",
+	"hu" => "TRANS Sub-accounts (reseller)",
+	"it" => "TRANS Sub-accounts (reseller)",
+	"nl" => "TRANS Sub-accounts (reseller)",
+	"ru" => "TRANS Sub-accounts (reseller)",
+	"de" => "TRANS Sub-accounts (reseller)",
+	"zh" => "TRANS Sub-accounts (reseller)",
+	"es" => "TRANS Sub-accounts (reseller)");
+
+$txt_cmenu_password = array(
+	"fr" => "Mot de passe",
+	"en" => "Password",
+	"hu" => "TRANS Password",
+	"it" => "TRANS Password",
+	"nl" => "TRANS Password",
+	"ru" => "TRANS Password",
+	"de" => "TRANS Password",
+	"zh" => "TRANS Password",
+	"es" => "TRANS Password");
+
+$txt_cmenu_help = array(
+	"fr" => "Aide",
+	"en" => "Help",
+	"hu" => "TRANS Help",
+	"it" => "TRANS Help",
+	"nl" => "TRANS Help",
+	"ru" => "TRANS Help",
+	"de" => "TRANS Help",
+	"zh" => "TRANS Help",
+	"es" => "TRANS Help");
+
 $txt_select_lang_title = array(
 	"fr" => "Langue",
 	"en" => "Language",
