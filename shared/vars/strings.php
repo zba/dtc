@@ -9,7 +9,7 @@ $txt_cmenu_myaccount = array(
 	"nl" => "TRANS My account",
 	"ru" => "TRANS My account",
 	"de" => "TRANS My account",
-	"zh" => "TRANS My account",
+	"zh" => "ÎÒµÄÕÅ",
 	"es" => "TRANS My account");
 
 $txt_cmenu_myaccount_stats = array(
