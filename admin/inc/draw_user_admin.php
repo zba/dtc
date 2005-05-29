@@ -159,6 +159,9 @@ function userEditForms($adm_login,$adm_pass){
 	global $txt_add_user_title;
 	global $conf_skin;
 	global $lang;
+	global $addrlink;
+	global $rub;
+
 	if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass)){
 		// Fetch all the selected user informations, Print a nice error message if failure.
 		$admin = fetchAdmin($adm_login,$adm_pass);
@@ -167,27 +170,31 @@ function userEditForms($adm_login,$adm_pass){
 		}
 
 		// Draw the html forms
-		$HTML_admin_edit_info = drawEditAdmin($admin);
-		$HTML_admin_mysql_config = drawMySqlAccountManger();
-		$HTML_admin_domain_config = drawDomainConfig($admin);
-		$HTML_admin_edit_data = drawAdminTools($admin);
-
-		// Output and skin the result !
-		$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
-// We don't need this one anymore now !!! :)
-		$user_mysql_config = ""; // skin($conf_skin,$HTML_admin_mysql_config,"MySQL");
-		$user_domain_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
-		$user_tools = skin($conf_skin,$HTML_admin_edit_data,"Domains for $adm_login");
+		if(isset($rub) && $rub == "adminedit"){
+			$HTML_admin_edit_info = drawEditAdmin($admin);
+			$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
+			return $user_config;
+		}else{
+			$HTML_admin_edit_data = drawAdminTools($admin);
+			if(!isset($addrlink) || $addrlink == ""){
+				$HTML_admin_domain_config = drawDomainConfig($admin);
+				$user_domain_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
+				
+				$HTML_admin_edit_data = "<table><tr>
+				<td valign=\"top\">".$HTML_admin_edit_data."</td>
+				<td valign=\"top\">".$user_domain_config."</td>
+				</tr></table>";
+			}
+			$user_tools = skin($conf_skin,$HTML_admin_edit_data,"Domains for $adm_login");
+			return $user_tools;
+		}
 
 		// All thoses tools in a simple table
 		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"4\">
 	<tr>
-		<tr><td width=\"100%\">$user_config
-		</td></tr><tr><td width=\"100%\">$user_mysql_config
-		</td></tr><tr><td width=\"100%\">$user_domain_config
-		</td></tr><tr><td width=\"100%\">$user_tools
-		</td></tr><tr><td height=\"100%\">&nbsp;
-		</td></tr>
+		<tr><td>$user_tools</td></tr>
+		<tr><td width=\"100%\">$user_config</td></tr>
+		<tr><td height=\"100%\">&nbsp;</td></tr>
 	</tr>
 </table>
 ";

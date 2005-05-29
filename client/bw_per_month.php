@@ -20,7 +20,11 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 // HTTP/1.0
 header("Pragma: no-cache");
 
-
+if(isFtpLogin($_REQUEST["adm_login"])){
+	$adm_login = $_REQUEST["adm_login"];
+}else{
+	die("No login in query");
+}
 
 $width = 120;
 $height = 48;

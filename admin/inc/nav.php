@@ -98,6 +98,7 @@ function adminList($password=""){
 	global $admlist_type;
 	global $txt_admlist_new_admin;
 	global $txt_admlist_sort_by_legend;
+	global $rub;
 
 	global $pro_mysql_admin_table;
 	global $pro_mysql_client_table;
@@ -149,6 +150,11 @@ function adminList($password=""){
 
 	$txt_new_admin = $txt_admlist_new_admin[$lang];
 	$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?\">$txt_new_admin</a><br>";
+	if(isset($rub)){
+		$added_rub = "&rub=".$_REQUEST["rub"];
+	}else{
+		$added_rub = "";
+	}
 	if($admlist_type == "Logins"){
 		// Fetch a list of all name admins
 		$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login";
@@ -159,7 +165,7 @@ function adminList($password=""){
 			$admin = mysql_fetch_array($result) or die ("Cannot fetch user");
 			$admin_login = $admin["adm_login"];
 			$admin_pass = $admin["adm_pass"];
-			$admins .= "<br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$admin_login&adm_pass=$zepass\">$admin_login</a>";
+			$admins .= "<br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$admin_login&adm_pass=$zepass$added_rub\">$admin_login</a>";
 		}
 	}else if($admlist_type == "Names"){
 		$admins .= "<br>";
@@ -174,7 +180,7 @@ function adminList($password=""){
 				$row2 = mysql_fetch_array($result2);
 				$linkadm_login = $row2["adm_login"];
 				$linkadm_pass = $row2["adm_pass"];
-				$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass\">$linkadm_login</a><br>";
+				$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$linkadm_login</a><br>";
 			}
 		}
 
@@ -198,7 +204,7 @@ function adminList($password=""){
 					$row2 = mysql_fetch_array($result2);
 					$linkadm_login = $row2["adm_login"];
 					$linkadm_pass = $row2["adm_pass"];
-					$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass\">$linkadm_login</a><br>";
+					$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$linkadm_login</a><br>";
 				}
 			}
 		}
@@ -221,7 +227,7 @@ function adminList($password=""){
 				$row2 = mysql_fetch_array($result2);
 				$linkadm_login = $row2["adm_login"];
 				$linkadm_pass = $row2["adm_pass"];
-				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass\">$domain_name</a><br>";
+				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$domain_name</a><br>";
 			}
 		}
 	}

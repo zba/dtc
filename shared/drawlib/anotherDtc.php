@@ -87,6 +87,8 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 
 	global $txt_pagetop_zesubtitle;
 	global $lang;
+	global $conf_skin;
+	global $dtcshared_path;
 
 	$nowrap = " style=\"white-space:nowrap\" valign=\"top\" nowrap ";
 	if($drawLanguageSelect=="yes"){
@@ -99,62 +101,62 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$zeLanguage = "";
 	}
 
-	$inside = "
+
+	$pagetop_filename = $dtcshared_path.'/gfx/skin/'.$conf_skin.'/pagetop.html';
+	if(file_exists($pagetop_filename)){
+		$fp = fopen($pagetop_filename,"r");
+		$inside = fread($fp,filesize($pagetop_filename));
+		fclose($fp);
+		$inside = str_replace("__DTC_SUBTITLE__",$txt_pagetop_zesubtitle[$lang],$inside);
+		$inside = str_replace("__DTC_LANGUAGES_LINKS__",$zeLanguage,$inside);
+		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);
+		$inside = str_replace("__DTC_LINK__",$links,$inside);
+		return $inside;
+	}else{
+		return "
 <table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\">
 <tr>
 	<td $nowrap><center><a href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
 <font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release - $conf_unix_type</font></center></td>
 	<td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
-<font size=\"-1\"><i>".$txt_pagetop_zesubtitle[$lang]."</i></font>$links</center></td>
+<font size=\"-1\"><i>".$txt_pagetop_zesubtitle[$lang]."</i></font><br>$links</center></td>
 	<td $nowrap width=\"100%\">&nbsp;</td>".$zeLanguage."
 </tr>
 </table>
 ";
+	}
 
 	$inside = "<style>
-.DTCpageTopTitle{
+.logo {
+	background-image:url(gfx/pagetop/logofond.gif);
+	background-repeat:repeat-x;
 	font-family:Arial;
-	color:#8686CC;
-	font-weight: bold;
-	font-size:12px;
+	font-weight:bold;
+	color:#868686;
+	height:59px;
 }
-.DTCpageTopTitle2{
-	font-family:Arial;
-	color:#8686CC;
-	font-weight: bold;
-	font-size:11px;
+.logotitle {
+	font-size:16px;
+	padding-top:20px;
 }
-.DTCpageTopTitleLine2{
-	font-family:Arial;
-	color:#8686CC;
-	font-weight: bold;
-	font-size:8px;
-}
-.DTCpageTopSubTitle{
-	font-family:Arial;
-	color:#A8A8A8;
-	font-weight: normal;
+.logosub {
 	font-size:9px;
+	padding-top:4px;
 }
-A .DTCpageTopSubTitle{
-	font-family:Arial;
-	color:#A8A8A8;
-	font-weight: normal;
+A .logosub {
 	font-size:9px;
+	padding-top:4px;
 }
 </style>
 <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\"><tr>
-	<td valign=\"top\" width=\"1\"><a href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\"><img alt=\"Domain Technologie Control (DTC)\" border=\"0\" src=\"gfx/pagetop/dtc_logo.gif\"></a></td>
-	<td valign=\"top\" width=\"100%\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\">
-		<tr><td valign=\"bottom\" height=\"42\" $nowrap background=\"gfx/pagetop/dtc_banner.gif\"><div class=\"DTCpageTopTitle\">&nbsp;Domain Technologie Control -&nbsp;</div><div class=\"DTCpageTopTitleLine2\">>&nbsp;</div></td>
-			<td width=\"100%\" valign=\"bottom\" height=\"42\" $nowrap background=\"gfx/pagetop/dtc_banner.gif\"><div class=\"DTCpageTopTitle2\">".$txt_pagetop_zesubtitle[$lang]."</div><div class=\"DTCpageTopTitleLine2\">&nbsp;</div></td>
-			<td valign=\"top\" ><img src=\"gfx/pagetop/dtc_banner_end.gif\"></td></tr>
-		<tr><td class=\"DTCpageTopSubTitle\">V$conf_dtc_version R$conf_dtc_release - $conf_unix_type</td>
-			<td><div align=\"right\" class=\"DTCpageTopSubTitle\">&nbsp;$links</div></td></tr>
-		</table></td>
-	<td>&nbsp;".$zeLanguage."</td>
+	<td valign=\"top\" width=\"100%\">
+	<img src=gfx/pagetop/logostart.gif align=left hspace=0><div class=logo>
+	<img src=gfx/pagetop/logoend.gif align=right hspace=0>
+	<div class=logotitle>Domain Technologie Control - <font style=\"font-size:12px\">Prenez le controle de votre nom de domaine</font></div>
+	<div class=logosub>V$conf_dtc_version R$conf_dtc_release - $conf_unix_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$links</div></td>
+	<td>&nbsp;$zeLanguage</td>
 </tr></table>
-";
+	";
 
 	return $inside;
 }

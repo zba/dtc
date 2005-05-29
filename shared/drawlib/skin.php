@@ -292,12 +292,13 @@ function calculateCurEntryAddr($entry){
 	return $ret;
 }
 
-function getCacheImageURL($text,$color,$arbo){
+function getCacheImageURL($text,$color,$arbo,$addrlink){
+	global $lang;
 	$cache = str_replace("/","_",$text.$color.$arbo) . ".png";
 	if(file_exists("/usr/share/dtc/shared/imgcache/$cache")){
 		return "imgcache/$cache";
 	}else{
-		return "inc/img.php?text=$text&color=$color&link=$arbo";
+		return "inc/img.php?text=$text&color=$color&link=$arbo&addrlink=$addrlink&lang=$lang";
 	}
 }
 
@@ -330,12 +331,12 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 
 		// Is it a drop down entry with plus/minus lign ?
 		if($entry["type"] == "menu"){
-			if($entry["text"] == $selected[$ietype_menu_recurs_level]){
+			if($entry["link"] == $selected[$ietype_menu_recurs_level]){
 				$treesign_array[$ietype_menu_recurs_level] = "minus";
 				$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
-				$image_source = getCacheImageURL($text,1,$arbo);
+				$image_source = getCacheImageURL($text,1,$arbo,$entrylink);
 				if($dtc_use_text_menu == "no"){
-					$ret .= "$alink<img width=\"220\" height=\"20\" border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><br>";
+					$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><br>";
 				}else{
 					$ret .= $alink." -".$entry["text"]."</a><br>";
 				}
@@ -351,11 +352,11 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 				// Menu is not selected, so just draw it normaly
 				$treesign_array[$ietype_menu_recurs_level] = "plus";
 				$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
-				$image_source = getCacheImageURL($text,0,$arbo);
-				$image_rolover = getCacheImageURL($text,1,$arbo);
+				$image_source = getCacheImageURL($text,0,$arbo,$entrylink);
+				$image_rolover = getCacheImageURL($text,1,$arbo,$entrylink);
 				if($dtc_use_text_menu == "no"){
 					$rolovered = addImageToPreloads($image_rolover);
-					$ret .= "$alink<img width=\"220\" height=\"20\" border=\"0\" name=\"$rolovered\"
+					$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
 				}else{
@@ -383,19 +384,19 @@ onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$im
 				$treesign_array[$ietype_menu_recurs_level] = "none";
 			}
 			$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
-			if($entry["text"] == @$selected[$ietype_menu_recurs_level]){
-				$image_source = getCacheImageURL($text,1,$arbo);
+			if($entry["link"] == @$selected[$ietype_menu_recurs_level]){
+				$image_source = getCacheImageURL($text,1,$arbo,$entrylink);
 				if($dtc_use_text_menu == "no"){
-					$ret .= "$alink<img width=\"220\" height=\"20\" border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
+					$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
 				}else{
 					$ret .= "$alink".$alt_signs.$entry["text"]."</a><br>";
 				}
 			}else{
-				$image_source = getCacheImageURL($text,0,$arbo);
-				$image_rolover = getCacheImageURL($text,1,$arbo);
+				$image_source = getCacheImageURL($text,0,$arbo,$entrylink);
+				$image_rolover = getCacheImageURL($text,1,$arbo,$entrylink);
 				if($dtc_use_text_menu == "no"){
 					$rolovered = addImageToPreloads($image_rolover);
-					$ret .= "$alink<img width=\"220\" height=\"20\" border=\"0\" name=\"$rolovered\"
+					$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
 				}else{

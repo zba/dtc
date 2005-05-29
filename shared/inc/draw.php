@@ -66,12 +66,30 @@ function drawAdminTools($admin){
 	global $txt_title_geninfo_form;
 	global $txt_my_account_global_stats_title;
 
+	global $txt_cmenu_myaccount;
+	global $txt_cmenu_myaccount_stats;
+	global $txt_cmenu_add_domain;
+	global $txt_cmenu_nickhandles;
+	global $txt_cmenu_nameservers;
+	global $txt_cmenu_whois;
+	global $txt_cmenu_dns;
+	global $txt_cmenu_subdomains;
+	global $txt_cmenu_ftpaccounts;
+	global $txt_cmenu_packageinstaller;
+	global $txt_cmenu_mailboxs;
+	global $txt_cmenu_mailinglists;
+	global $txt_cmenu_database;
+	global $txt_cmenu_reseller;
+	global $txt_cmenu_password;
+	global $txt_cmenu_help;
+
 	global $dtcshared_path;
 
 	global $dtc_use_text_menu;
 
 	global $conf_skin;
 
+	$add_array = explode("/",$addrlink);
         $doms_txt = "";
 
 	if(isset($admin["data"])){
@@ -88,31 +106,33 @@ function drawAdminTools($admin){
 
 	unset($user_ZEmenu);
 	$user_ZEmenu[] = array(
-		"text" => "stats",
+		"text" => $txt_cmenu_myaccount_stats[$lang],
 		"type" => "link",
 		"link" => "stats");
 	if(file_exists($dtcshared_path."/dtcrm")){
 		$user_ZEmenu[] = array(
-			"text" => "adddomain",
+			"text" => $txt_cmenu_add_domain[$lang],
 			"type" => "link",
 			"link" => "adddomain");
 		$user_ZEmenu[] = array(
-			"text" => "nickhandles",
+			"text" => $txt_cmenu_nickhandles[$lang],
 			"type" => "link",
 			"link" => "nickhandles");
 		$user_ZEmenu[] = array(
-			"text" => "nameservers",
+			"text" => $txt_cmenu_nameservers[$lang],
 			"type" => "link",
 			"link" => "nameservers");
 	}
 	$user_menu[] = array(
-		"text" => "myaccount",
+		"text" => $txt_cmenu_myaccount[$lang],
 		"type" => "menu",
 		"link" => "myaccount",
 		"sub" => $user_ZEmenu);
 
 	// Generate the admin tools
 	$doms_txt .= "<b>";
+	unset($selected_domain);
+	$not_selected_domains = array();
 	for($i=0;$i<$nbr_domain;$i++){
 
 		$dom = $admin_data[$i]["name"];
@@ -121,71 +141,87 @@ function drawAdminTools($admin){
 
 		if(file_exists($dtcshared_path."/dtcrm")){
 			$domain_conf_submenu[] = array(
-				"text" => "whois",
+				"text" => $txt_cmenu_whois[$lang],
 				"type" => "link",
 				"link" => "whois");
 		}
 
 		$domain_conf_submenu[] = array(
-			"text" => "stats",
+			"text" => $txt_cmenu_myaccount_stats[$lang],
 			"type" => "link",
 			"link" => "stats");
 
 		$domain_conf_submenu[] = array(
-			"text" => "dns",
+			"text" => $txt_cmenu_dns[$lang],
 			"type" => "link",
 			"link" => "dns");
 
 		if($admin_data[$i]["primary_dns"] == "default"){
 			$domain_conf_submenu[] = array(
-				"text" => "subdomains",
+				"text" => $txt_cmenu_subdomains[$lang],
 				"type" => "link",
 				"link" => "subdomains");
 
+			$domain_conf_submenu[] = array(
+				"text" => $txt_cmenu_ftpaccounts[$lang],
+				"type" => "link",
+				"link" => "ftp-accounts");
+			$domain_conf_submenu[] = array(
+				"text" => $txt_cmenu_packageinstaller[$lang],
+				"type" => "link",
+				"link" => "package-installer");
 			if($admin_data[$i]["primary_mx"] == "default"){
 				$domain_conf_submenu[] = array(
-					"text" => "mailboxs",
+					"text" => $txt_cmenu_mailboxs[$lang],
 					"type" => "link",
 					"link" => "mailboxs");
 			}
 			if($admin_data[$i]["primary_mx"] == "default"){
 				$domain_conf_submenu[] = array(
-					"text" => "mailing-lists",
+					"text" => $txt_cmenu_mailinglists[$lang],
 					"type" => "link",
 					"link" => "mailing-lists");
 			}
-			$domain_conf_submenu[] = array(
-				"text" => "ftp-accounts",
-				"type" => "link",
-				"link" => "ftp-accounts");
-			$domain_conf_submenu[] = array(
-				"text" => "package-installer",
-				"type" => "link",
-				"link" => "package-installer");
 		}
-
-		$user_menu[] = array(
+		if($add_array[0] == $dom){
+		  $selected_domain = array(
 			"text" => "$dom",
 			"type" => "menu",
 			"link" => "$dom",
 			"sub" => $domain_conf_submenu);
+		}else{
+		  $not_selected_domains[] = array(
+			"text" => "$dom",
+			"type" => "menu",
+			"link" => "$dom",
+			"sub" => $domain_conf_submenu);
+                }
 	}
+	if(isset($selected_domain)){
+	  $user_menu[] = $selected_domain;
+	}
+
+	$nbr_remaining = sizeof($not_selected_domains);
+	for($i=0;$i<$nbr_remaining;$i++){
+	  $user_menu[] = $not_selected_domains[$i];
+	}
+
 	$user_menu[] = array(
-		"text" => "database",
+		"text" => $txt_cmenu_database[$lang],
 		"type" => "link",
 		"link" => "database");
         if($resseller_flag == "yes"){
         	$user_menu[] = array(
-	        	"text" => "reseller",
+	        	"text" => $txt_cmenu_reseller[$lang],
 	        	"type" => "link",
 	        	"link" => "reseller");
         }
 	$user_menu[] = array(
-		"text" => "password",
+		"text" => $txt_cmenu_password[$lang],
 		"type" => "link",
 		"link" => "password");
 	$user_menu[] = array(
-		"text" => "help",
+		"text" => $txt_cmenu_help[$lang],
 		"type" => "link",
 		"link" => "help");
 
@@ -193,7 +229,6 @@ function drawAdminTools($admin){
 //	$mymenu = makeTreeMenu2($user_menu);
 
 
-	$add_array = explode("/",$addrlink);
 
 	$web_editor = "";
 
@@ -202,59 +237,77 @@ function drawAdminTools($admin){
 		$eddomain = @$admin_data[$num_domain];
 
 		if(@$add_array[1] == "mailboxs"){
+                        $web_editor .= "<img src=\"inc/mailboxs.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_mailboxs[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_Emails($eddomain);
 			$title = $txt_title_mailbox_form[$lang].$edit_domain;
 		}else if(@$add_array[1] == "mailing-lists"){
+                        $web_editor .= "<img src=\"inc/mailing-lists.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_mailinglists[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_MailingLists($eddomain);
 			$title = $txt_title_maillinglist_form[$lang].$edit_domain;
 		}else if(@$add_array[1] == "dns"){
+                        $web_editor .= "<img src=\"inc/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_nameservers[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
 			$title = "DNS config of: ".$edit_domain;
 		}else if(@$add_array[1] == "stats"){
 			if($add_array[0] == "myaccount"){
+			  $web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_myaccount_stats[$lang]:</u></b><br></font>";
 				$web_editor .= drawAdminTools_AdminStats($admin);
 				$title = $txt_my_account_global_stats_title[$lang];
 			}else{
+			  $web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_myaccount_stats[$lang]:</u></b><br></font>";
 				$web_editor .= drawAdminTools_DomainStats($admin,$eddomain);
 				$title = "Statistics of domain: ".$edit_domain;
 			}
 		}else if(@$add_array[1] == "whois"){
+                        $web_editor .= "<img src=\"inc/nickhandles.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_whois[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_Whois($admin,$eddomain);
 			$title = "Whois editor of: ".$edit_domain;
 		}else if(@$add_array[1] == "subdomains"){
+                        $web_editor .= "<img src=\"inc/subdomains.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_subdomains[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_Subdomain($eddomain);
 			$title = $txt_title_subdomain_form[$lang].$edit_domain;
 		}else if(@$add_array[1] == "ftp-accounts"){
+                        $web_editor .= "<img src=\"inc/ftp-accounts.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_ftpaccounts[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_Ftp($eddomain,$adm_path);
 			$title = $txt_title_ftp_form[$lang].$edit_domain;
 		}else if(@$add_array[1] == "package-installer"){
+                        $web_editor .= "<img src=\"inc/package-installer.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_packageinstaller[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_PackageInstaller($eddomain,$adm_path);
 			$title = "Package: ".$edit_domain;
 		}else if(@$add_array[1] == "nickhandles"){
+                        $web_editor .= "<img src=\"inc/nickhandles.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_nickhandles[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_NickHandles($admin);
 			$title = "Internet Whois Nick-Handles management";
 		}else if(@$add_array[1] == "adddomain"){
+                        $web_editor .= "<img src=\"inc/adddomain.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_add_domain[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_AddDomain($admin);
 			$title = "Add a domain name to my account";
 		}else if(@$add_array[1] == "nameservers"){
+                        $web_editor .= "<img src=\"inc/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_nameservers[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_NameServers($admin);
 			$title = "Manage my name servers";
 		}else if($add_array[0] == "myaccount"){   
+			$web_editor .= "<img src=\"inc/my-account.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_myaccount[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_MyAccount($admin);
 			$title = "My Account informations";
 		}else if($add_array[0] == "database"){
+                        $web_editor .= "<img src=\"inc/databases.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_database[$lang]:</u></b><br></font>";
 			$web_editor .= drawDataBase("");
 			$title = $txt_title_database_form[$lang];
 		}else if($add_array[0] == "reseller"){
+                        $web_editor .= "<img src=\"inc/reseller.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_reseller[$lang]:</u></b><br></font>";
 			$web_editor .= drawReseller($admin);
 			$title = "Resseller (child accounts)";
 		}else if($add_array[0] == "password"){
+                        $web_editor .= "<img src=\"inc/password.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_password[$lang]:</u></b><br></font>";
 			$web_editor .= drawPasswordChange();
 			$title = "Password";
 		}else if($add_array[0] == "help"){
+                        $web_editor .= "<img src=\"inc/help.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_help[$lang]:</u></b><br></font>";
 			$web_editor .= $txt_draw_help_content[$lang];
 			$title = $txt_title_help_form[$lang];
 		}else{
+                        $web_editor .= "<img src=\"inc/domains.png\" align=\"left\"><font size=\"+2\"><b><u>$addrlink:</u></b><br></font>";
 			$web_editor .= drawAdminTools_DomainInfo($admin,$eddomain);
 			$title = $txt_title_geninfo_form[$lang].$edit_domain;
 		}

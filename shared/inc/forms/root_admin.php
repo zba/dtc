@@ -21,6 +21,7 @@ function drawEditAdmin($admin){
 
 	global $adm_login;
 	global $adm_pass;
+	global $rub;
 
 	global $conf_hide_password;
 
@@ -63,14 +64,15 @@ function drawEditAdmin($admin){
 	// Generate the user configuration form
 	$user_data = "
 <form action=\"?\" methode=\"post\">
+<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <table>
 	<tr><td align=\"right\">".$txt_password[$lang]."</td>";
 	if ($conf_hide_password == "yes"){
-	$user_data .= "<td><input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\"></td></tr>";
+		$user_data .= "<td><input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\"></td></tr>";
 	} else {
-	$user_data .= "<td><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\"></td></tr>";
+		$user_data .= "<td><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\"></td></tr>";
 	}
 	$user_data .= "<tr><td align=\"right\">".$txt_path[$lang]."</td>
 	<td><input type=\"text\" name=\"changed_path\" value=\"$adm_path\"></td></tr>
@@ -93,7 +95,7 @@ function drawEditAdmin($admin){
 
 	// Generate the admin tool configuration module
 	// Deletion of domains :
-	$url = "".$_SERVER["PHP_SELF"]."?delete_admin_user=$adm_login";
+	$url = "".$_SERVER["PHP_SELF"]."?delete_admin_user=$adm_login&rub=$rub";
 	$confirmed_url = dtcJavascriptConfirmLink($txt_del_user_confirm[$lang],$url);
 	$domain_conf = "<a href=\"$confirmed_url\"><b>".$txt_del_user[$lang]."</b></a><br><br>";
 	if(isset($data)){
@@ -104,7 +106,7 @@ function drawEditAdmin($admin){
 			if($i != 0){
 				$domain_conf .= " - ";
 			}
-			$url = "?adm_login=$adm_login&adm_pass=$adm_pass&deluserdomain=$dom";
+			$url = "?adm_login=$adm_login&adm_pass=$adm_pass&deluserdomain=$dom&rub=$rub";
 			$js_url = dtcJavascriptConfirmLink($txt_del_user_domain_confirm[$lang],$url);
 			$domain_conf .= "<a href=\"$js_url\">$dom</a>";
 		}
@@ -114,6 +116,7 @@ function drawEditAdmin($admin){
 	$domain_conf .= "<b><u>".$txt_new_domain_for_user[$lang]."</u>";
 
 	$domain_conf .= "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"text\" name=\"newdomain_name\" value=\"\">
 	<input type=\"submit\" name=\"newdomain\" value=\"Ok\">

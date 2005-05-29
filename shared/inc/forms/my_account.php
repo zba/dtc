@@ -83,7 +83,7 @@ when paiement is done, click the refresh button.";
 	}
 
 	if($id_client != 0){
-		$out .= '<table><td>'.$overall.'</td><td><img src="bw_per_month.php?cid='.$id_client.'"></td></tr></table>';
+		$out .= '<table><td>'.$overall.'</td><td><img src="bw_per_month.php?cid='.$id_client.'&adm_login='.$adm_login.'"></td></tr></table>';
 	}else{
 		$out .= $overall;
 	}
