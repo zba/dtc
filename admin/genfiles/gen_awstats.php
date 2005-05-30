@@ -135,13 +135,13 @@ function generateTempAccessLog($web_name, $web_subname, $output_filename)
 	$selected_time_end = $tomorrow;
 
 	$query_dump = "SELECT * FROM `".$db_select_name."` WHERE time_stamp>=".$selected_time_start." AND time_stamp<=".$selected_time_end." ORDER BY time_stamp";
-	echo "\n$query_dump\n"; 
+	//echo "\n$query_dump\n"; 
 
-	echo "\n Trying to get dump for $domain $vhost \n";
+	//echo "\n Trying to get dump for $domain $vhost \n";
 	$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
 	$dump_num_rows = mysql_num_rows($result_dump);
 	if($dump_num_rows>0){
-		echo "\nDumping logs for ".$db_select_name."\n";//_".$month."_".$year."\n";
+		//echo "\nDumping logs for ".$db_select_name."\n";//_".$month."_".$year."\n";
 		$handle = fopen ($dump_file_name, "w");
 		for($z=0;$z<$dump_num_rows;$z++){
 			$rezar = mysql_fetch_array($result_dump);
