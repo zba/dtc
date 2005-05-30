@@ -1,5 +1,7 @@
 <?php
 
+require("genfiles/gen_awstats.php");
+
 function stat_script_generate(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
@@ -74,10 +76,10 @@ webalizer -o ./ -n $web_subname.$web_name -D $web_subname.$web_name.dnscache -N 
 	fclose($filep);
 	chmod("$conf_generated_file_path/$conf_webalizer_stats_script_path",0750);
 	$console .= "Generated statistic script files for $num_generated_vhosts vhosts !<br>";
+	// put a hack in here for now for awstats
+	awstat_script_generate();
+	// ok, awstats done
 	return true;
-
-
-
 }
 
 ?>

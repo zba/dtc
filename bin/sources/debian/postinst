@@ -40,6 +40,7 @@ PATH_POSTFIX_ETC=/etc/postfix
 PATH_SASL_PASSWD2=/usr/sbin/saslpasswd2
 PATH_DTC_SHARED=/usr/share/dtc
 FREERADIUS_ETC="/etc/raddb"
+PATH_AWSTATS_ETC=/etc/awstats
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
@@ -185,10 +186,12 @@ then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "Checking pear installation for PHP > 4.3"
 	fi
+	set +e
 	/usr/bin/pear upgrade Console_Getopt > $TMP_FILE
 	/usr/bin/pear upgrade-all >> $TMP_FILE
 	/usr/bin/pear install Crypt_CBC >> $TMP_FILE
 	/usr/bin/pear install Auth_SASL >> $TMP_FILE
+	set -e
 else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "This is a version of PHP that should have the modules included"

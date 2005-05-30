@@ -154,6 +154,15 @@ then
 fi
 
 echo ""
+echo "Where is located your awstats etc dir ?"
+echo -n "postfix etc path [/etc/awstats]: "
+read PATH_AWSTATS_ETC
+if [ "$PATH_AWSTATS_ETC" = "" ];
+then
+	PATH_AWSTATS_ETC="/etc/awstats"
+fi
+
+echo ""
 echo "Where is located your postfix/main.cf ?"
 echo -n "postfix control path [${PATH_POSTFIX_ETC}/main.cf]: "
 read PATH_POSTFIX_CONF

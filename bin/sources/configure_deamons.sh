@@ -968,6 +968,23 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 fi
 
 #
+# Generate default config file for awstats (if we have it installed)
+#
+
+if [ -f $PATH_AWSTATS_ETC/awstats.conf ]; then
+	# now if we don't already have a dtc awstats config, create one based on the installed package config
+	if ! [ -f $PATH_AWSTATS_ETC/awstats.dtc.conf ]; then
+		# we will use the environment variables while calling awstats...
+		# Parameter="__ENVNAME__"
+		cp $PATH_AWSTATS_ETC/awstats.conf $PATH_AWSTATS_ETC/awstats.dtc.conf
+		perl -i -p -e 's/^LogFile=\"[^\"]*\"/LogFile=\"__AWSTATS_LOG_FILE__\"/'  $PATH_AWSTATS_ETC/awstats.dtc.conf
+		perl -i -p -e 's/^SiteDomain=\"[^\"]*\"/SiteDomain=\"__AWSTATS_FULL_DOMAIN__\"/' $PATH_AWSTATS_ETC/awstats.dtc.conf
+		perl -i -p -e 's/^DirData=\"[^\"]*\"/DirData=\"__AWSTATS_DIR_DATA__\"/' $PATH_AWSTATS_ETC/awstats.dtc.conf
+		perl -i -p -e 's/^CreateDirDataIfNotExists=0/CreateDirDataIfNotExists=1/' $PATH_AWSTATS_ETC/awstats.dtc.conf
+	fi
+fi
+
+#
 # Install the cron php4 script in the $PATH_CRONTAB_CONF
 #
 

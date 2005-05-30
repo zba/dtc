@@ -175,6 +175,7 @@ PATH_PHP_CGI="${LOCALBASE}/bin/php"
 FREERADIUS_ETC="${LOCALBASE}/etc/raddb"
 PATH_DTC_SHARED="${PREFIX}/www/dtc"
 PATH_CRONTAB_CONF=/etc/crontab
+PATH_AWSTATS_ETC=${LOCALBASE}/etc/awstats
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
@@ -208,6 +209,7 @@ echo "postfix/main.cf: "$PATH_POSTFIX_CONF
 echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI
 echo "Freeradius sql.conf and rad.conf folder: "$FREERADIUS_ETC
+echo "Awstats awstats.conf folder: "$PATH_AWSTATS_ETC
 echo "generated files: "$PATH_DTC_ETC
 echo ""
 echo ""

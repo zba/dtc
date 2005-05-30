@@ -145,6 +145,7 @@ PATH_DOVECOT_CONF=/etc/dovecot.conf
 PATH_COURIER_CONF_PATH=/etc/courier
 PATH_POSTFIX_CONF=/etc/postfix/main.cf
 PATH_POSTFIX_ETC=/etc/postfix
+PATH_AWSTATS_ETC=/etc/awstats
 PATH_SASL_PASSWD2=/usr/sbin/saslpasswd2
 PATH_QMAIL_CTRL=/var/qmail/control
 PATH_PHP_CGI=/usr/bin/php

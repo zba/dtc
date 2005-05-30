@@ -19,5 +19,6 @@ PATH_COURIER_CONF_PATH="${LOCALBASE}/etc/courier"
 PATH_POSTFIX_CONF="${LOCALBASE}/etc/postfix/main.cf"
 PATH_POSTFIX_ETC="${LOCALBASE}/etc/postfix"
 PATH_SASL_PASSWD2="${LOCALBASE}/sbin/saslpasswd2"
+PATH_AWSTATS_ETC=${LOCALBASE}/etc/awstats
 PATH_QMAIL_CTRL="${QMAIL_DIR}/control"
 PATH_CRONTAB_CONF="/etc/crontab"

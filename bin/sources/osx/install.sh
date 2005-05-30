@@ -118,6 +118,7 @@ PATH_HTTPD_CONF="/etc/httpd/httpd.conf"
 PATH_NAMED_CONF="/etc/named.conf"
 PATH_CRONTAB_CONF="/etc/crontab"
 PATH_POSTFIX_ETC="/etc/postfix"
+PATH_AWSTATS_ETC="/etc/awstats"
 
 PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"
 
@@ -193,6 +194,7 @@ echo "proftpd.conf: "$PATH_PROFTPD_CONF
 echo "dovecot.conf: "$PATH_DOVECOT_CONF
 echo "Courier config path: "$PATH_COURIER_CONF_PATH
 echo "postfix/main.cf: "$PATH_POSTFIX_CONF
+echo "awstats etc: "$PATH_AWSTATS_ETC
 echo "qmail control: "$PATH_QMAIL_CTRL
 echo "php4 cgi: "$PATH_PHP_CGI
 echo "DTC shared folder:"$PATH_DTC_SHARED

@@ -71,3 +71,4 @@ then
 	PATH_QMAIL_CTRL="/var/qmail/control"
 fi
 PATH_CRONTAB_CONF=/etc/crontab
+PATH_AWSTATS_ETC=/etc/awstats
