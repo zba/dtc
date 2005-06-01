@@ -70,6 +70,10 @@ db_get dtc/dtc_adminsubdomain
 dtc_admin_subdomain=$RET
 db_get dtc/conf_ipaddr
 conf_ip_addr=$RET
+db_get dtc/conf_use_nated_vhost
+conf_use_nated_vhost=$RET
+db_get dtc/conf_nated_vhost_ip
+conf_nated_vhost_ip=$RET
 db_get dtc/conf_hostingpath
 conf_hosting_path=$RET
 db_get dtc/conf_chroot_path

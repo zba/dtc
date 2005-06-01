@@ -67,14 +67,13 @@ Description: DTC root panel subdomain.
 
 Template: dtc/conf_ipaddr
 Type: string
-Default: 192.168.0.1
+Default: 192.168.0.2
 Description: Primary IP addresse.
  What is your primary IP addresse ? This IP will
  be used for the domain name you just provided,
  and will be used as default for most DTC variables
- (easy change of theses values is available after
- instalation is done under the root-admin web
- control panel).
+ (beware that the only real way to change your IP
+ after is to use dpkg-reconfigure).
 
 Template: dtc/conf_hostingpath
 Type: string
@@ -125,6 +124,25 @@ Description: Mail Transfer Agent Type.
  prior to install DTC otherwise some of the install
  script parts could be skiped and so your configuration
  will not be fully done.
+
+Template: dtc/conf_use_nated_vhost
+Type: boolean
+Default: false
+Description: Use nated vhosts
+ Do you want that DTC generates apache file to use
+ a LAN IP address that your server is using?
+ If your server is in the LAN behind a firewall
+ that does NAT and port redirections of the public IP(s)
+ address(es) to your server, then you must say YES
+ here, otherwise (if your server is connected directly
+ to the internet with a public static IP) leave it to NO.
+
+Template: dtc/conf_nated_vhost_ip
+Type: string
+Default: 192.168.0.2
+Description: NATed LAN IP
+ Please enter the LAN IP of your server if you said
+ yes to use nated vhosts. Ignore otherwise.
 
 Template: dtc/conf_gen_ssl_cert
 Type: boolean

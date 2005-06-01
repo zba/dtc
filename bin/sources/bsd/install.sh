@@ -121,6 +121,33 @@ then
 fi
 
 echo ""
+echo " Do you want that DTC generates apache file to use"
+echo "a LAN IP address that your server is using?"
+echo "If your server is in the LAN behind a firewall"
+echo "that does NAT and port redirections of the public IP(s)"
+echo "address(es) to your server, then you must say YES"
+echo "here, otherwise (if your server is connected directly"
+echo "to the internet with a public static IP) leave it to NO."
+echo -n "Use NATed vhosts ? [N/y]: "
+read conf_use_nated_vhosts
+
+if [ ""$conf_use_nated_vhosts = "y" -o ""$conf_use_nated_vhosts = "Y" -o ""$conf_use_nated_vhosts = "yes"]; then
+	conf_use_nated_vhosts = "yes";
+else
+	conf_use_nated_vhosts = "no";
+fi
+
+echo ""
+echo " Please enter the LAN IP of your server if you said"
+echo "yes to use nated vhosts. Ignore otherwise."
+echo -n "IP address of your server if in the LAN [192.168.0.2]: "
+read conf_nated_vhost_ip
+if [ ""$conf_nated_vhosts_ip = "" ]; then
+	conf_nated_vhosts_ip = "192.168.0.2"
+fi
+
+
+echo ""
 echo "Where will you keep your files for hosting ?"
 echo -n "Hosting path [/var/www/sites]: "
 read conf_hosting_path

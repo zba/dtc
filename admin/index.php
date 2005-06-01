@@ -88,15 +88,16 @@ case "monitor": // Monitor button
 	$out .= "</table>";
 	$out .= $txt_server_total_bp[$lang].smartByte($total_box_transfer);
 	$module = skin($conf_skin,$out,$txt_customer_bw_consumption[$lang]);
-	$the_page[] = $module;
+	$zemain_content = $module;
 	break;
 	
 case "generate": // Gen Config Files
-	$the_page[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
+	$mainFrameCells[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
 	$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
-	$the_page[] = skin($conf_skin,$the_iframe,"Deamons states");
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,"Deamons states");
 	// The console
-	$the_page[] = skinConsole();
+	$mainFrameCells[] = skinConsole();
+	$zemain_content = makeVerticalFrame($mainFrameCells);
 	break;
 	
 case "config": // Global Config

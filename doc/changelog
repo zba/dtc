@@ -1,4 +1,9 @@
 R4
+- Added subaccount feature (reseller)
+
+- New layout for the main root consol. You wont have to scroll again and
+again like before, main stuff is now divided in 2 parts.
+
 - Virtual admins can now change they're password themself. (T.Goirand)
 
 - Random rotative password is now used for the root web panel, so there
