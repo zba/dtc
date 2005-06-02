@@ -9,7 +9,7 @@ $txt_client_panel_titleZ = array(
 	"ru" => "TRANS Client panel:",
 	"de" => "TRANS Client panel:",
 	"zh" => "ÎÒµÄÕÊ»§",
-	"pl" => "Moje konto",
+	"pl" => "TRANS Client panel:",
 	"es" => "TRANS Client panel:");
 
 // The client dropdown menu entries
