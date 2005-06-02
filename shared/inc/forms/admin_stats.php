@@ -92,19 +92,23 @@ function drawAdminTools_AdminStats($admin){
 	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td><td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>".$txt_total_trafic[$lang]."</b></td></tr>";
 	for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
 		if($ad % 2){
-			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\" style=\"color:#FFFFFF\" ";
+			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\" ";
+			$fnt1 = "<font color=\"#FFFFFF\">";
+			$fnt2 = "</font>";
 		}else{
 			$bgcolor = $nowrap;
+			$fnt1 = "";
+			$fnt2 = "";
 		}
 		$out .= "<tr>";
-		$out .= "<td$bgcolor>".$stats["domains"][$ad]["name"]."</td>";
-		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["du"])."</td>";
-		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["pop"])."</td>";
-		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["imap"])."</td>";
-		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["smtp"])."</td>";
-		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["ftp"])."</td>";
-		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["http"])."</td>";
-		$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["total_transfer"])."</td>";
+		$out .= "<td$bgcolor>$fnt1".$stats["domains"][$ad]["name"]."$fnt2</td>";
+		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["du"])."$fnt2</td>";
+		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["pop"])."$fnt2</td>";
+		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["imap"])."$fnt2</td>";
+		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["smtp"])."$fnt2</td>";
+		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["ftp"])."$fnt2</td>";
+		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["http"])."$fnt2</td>";
+		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["total_transfer"])."$fnt2</td>";
 		$out .= "</tr>";
 	}
 	$out .= '</table>';
