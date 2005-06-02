@@ -1,26 +1,28 @@
 <?php
 
 $txt_daemonstate_qmail_restart = array(
-	"fr" => "Mail Restart",
-	"en" => "Mail Restart",
-	"hu" => "A mail újraindítása",
-	"it" => "Mail Restart",
-	"nl" => "Mail herstarten",
-	"ru" => "Mail Restart",
-	"de" => "Mail Restart",
-	"zh" => "Mail Restart",
-	"es" => "Reinicio de mail");
+	"fr" => "Qmail Restart",
+	"en" => "Qmail Restart",
+	"hu" => "A Qmail újraindítása",
+	"it" => "Qmail Restart",
+	"nl" => "Qmail herstarten",
+	"ru" => "Qmail Restart",
+	"de" => "Qmail Restart",
+	"zh" => "Qmail Restart",
+	"pl" => "Restart Qmail-a",
+	"es" => "Reinicio de Qmail");
 
 $txt_daemonstate_qmail_newu = array(
-	"fr" => "Mail New Users",
-	"en" => "Mail New Users",
-	"hu" => "Új mail Felhasználók",
-	"it" => "Mail New Users",
-	"nl" => "Nieuwe mail gebruikers",
-	"ru" => "Mail New Users",
-	"de" => "Mail New Users",
-	"zh" => "Mail New Users",
-	"es" => "Nuevos Usuarios de mail");
+	"fr" => "Qmail New Users",
+	"en" => "Qmail New Users",
+	"hu" => "Új Qmail Felhasználók",
+	"it" => "Qmail New Users",
+	"nl" => "Nieuwe Qmail gebruikers",
+	"ru" => "Qmail New Users",
+	"de" => "Qmail New Users",
+	"zh" => "Qmail New Users",
+	"pl" => "Nowi u¿ytkownicy Qmail-a",
+	"es" => "Nuevos Usuarios de Qmail");
 
 $txt_daemonstate_gen_files = array(
 	"fr" => "Generate new Qmail userfile",
@@ -31,6 +33,7 @@ $txt_daemonstate_gen_files = array(
 	"ru" => "Generate new Qmail userfile",
 	"de" => "Generate new Qmail userfile",
 	"zh" => "Generate new Qmail userfile",
+	"pl" => "Utworzenie nowego pliku u¿ytkowników Qmail-a",
 	"es" => "Generando nuevos ficheros de usuario de Qmail");
 
 $txt_daemonstate_apache_restart = array(
@@ -42,6 +45,7 @@ $txt_daemonstate_apache_restart = array(
 	"ru" => "Apache Restart",
 	"de" => "Apache Restart",
 	"zh" => "Apache Restart",
+	"pl" => "Restart Apache-a",
 	"es" => "Reinicio de Apache");
 
 $txt_daemonstate_bind_reload = array(
@@ -53,6 +57,7 @@ $txt_daemonstate_bind_reload = array(
 	"ru" => "Reload Bind",
 	"de" => "Reload Bind",
 	"zh" => "Reload Bind",
+	"pl" => "Prze³adowanie Bind-a",
 	"es" => "Reinicio de Bind");
 
 $txt_daemonstate_next_cronjob = array(
@@ -64,6 +69,7 @@ $txt_daemonstate_next_cronjob = array(
 	"ru" => "Next cronjob",
 	"de" => "Next cronjob",
 	"zh" => "Next cronjob",
+	"pl" => "Nastêpny start crona za :",
 	"es" => "Siguiente cronjob");
 
 ?>

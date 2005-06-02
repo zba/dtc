@@ -11,6 +11,7 @@ $txt_langname = array(
 	"ru" => "koi8-r",
 	"de" => "iso-8859-15",
 	"zh" => "GB2312",
+	"pl" => "iso-8859-2",
 	"es" => "iso-8859-15");
 
 //check to see if we are running in the shell or web
@@ -48,6 +49,9 @@ if($panel_type!="cronjob"){
 		}
 		if($_REQUEST["change_language"] == "zh"){
 		  $lang = "zh";
+		}
+		if($_REQUEST["change_language"] == "pl"){
+		  $lang = "pl";
 		}
 		if($_REQUEST["change_language"] == "es"){
 		  $lang = "es";

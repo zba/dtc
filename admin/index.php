@@ -36,7 +36,7 @@ case "crm": // CRM TOOL
 	$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(),$txt_client_addr_title[$lang]);
 	if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
 		$rightFrameCells[] = skin($conf_skin,DTCRMclientAdmins(),$txt_client_admins_title[$lang]);
-		$rightFrameCells[] = skin($conf_skin,DTCRMshowClientCommands($id_client),$txt_client_commands_title[$lang]);
+		$rightFrameCells[] = skin($conf_skin,DTCRMshowClientCommands($_REQUEST["id"]),$txt_client_commands_title[$lang]);
 	}
 	$rightFrame = makeVerticalFrame($rightFrameCells);
 	$leftFrameCells[] = skin($conf_skin,DTCRMlistClients(),$txt_client_list_title[$lang]);
