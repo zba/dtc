@@ -7,7 +7,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url){
 	global $secpayconf_paypal_rate;
 	global $secpayconf_paypal_flat;
 
-	$out .= "<table width=\"100%\" height=\"1\">";
+	$out = "<table width=\"100%\" height=\"1\">";
 	$out .= "<tr><td>Paiement system</td><td>Amount</td><td>Gateway cost</td><td>Total</td><td>Instant account</td></tr>\n";
 	if($secpayconf_use_paypal == "yes"){
 		$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
@@ -25,6 +25,20 @@ function paynowButton($pay_id,$amount,$item_name,$return_url){
 	}
 	$out .= "</table>";
 	return $out;
+}
+
+// Return the amount of money that has been added to the account if payid has been validated
+function isPayIDValidated($pay_id){
+	global $pro_mysql_pay_table;
+	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$pay_id' AND valid='yes';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__);
+	$n = mysql_insert_id();
+	if($n != 1){
+		return 0;
+	}else{
+		$a = mysql_fetch_array($r);
+		return $a["refund_amount"];
+	}
 }
 
 function createCreditCardPaiementID($amount_paid,$client_id,$label,$new_account="yes"){

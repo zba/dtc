@@ -282,7 +282,7 @@ function make_new_adm_domain_dir($path){
 ///////////////////////////////
 // Add a domain to one admin //
 ///////////////////////////////
-function addDomainToUser($adm_login,$adm_pass,$domain_name){
+function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 	global $pro_mysql_admin_table;
 	global $conf_demo_version;
 	global $pro_mysql_domain_table;
@@ -292,11 +292,11 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 	global $conf_chroot_path;
 	global $conf_generated_file_path;
 
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_pass';";
-	$result = mysql_query($query)or die("Cannot query : \"$query\" !");
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	$result = mysql_query($query)or die("Cannot query : \"$query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$numrows = mysql_num_rows($result);
 	if($numrows != 1){
-		die("Cannot fetch admin path !");
+		die("Cannot fetch admin path line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
 	$row = mysql_fetch_array($result);
 	$admin_path = $row["path"];
@@ -309,7 +309,7 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name){
 	}
 
 	// Create domain in database
-	$domupdate_query = "INSERT INTO $pro_mysql_domain_table (name,owner,default_subdomain,ip_addr) VALUES ('".$domain_name."','$adm_login','www','".$conf_main_site_ip."');";
+	$domupdate_query = "INSERT INTO $pro_mysql_domain_table (name,owner,default_subdomain,ip_addr,registrar_password) VALUES ('".$domain_name."','$adm_login','www','".$conf_main_site_ip."','$domain_password');";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"! line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	// Create default domain www

@@ -75,7 +75,7 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 	// https://www.paypal.com/xclick/business=thomas%40goirand.fr&item_name=Domain+name+registration+.com&
 	// item_number=1&amount=11.50&no_note=1&currency_code=USD
 
-	if($conf_use_ssl == yes){
+	if($conf_use_ssl == "yes"){
 		$goback_start = "https://";
 	}else{
 		$goback_start = "http://";

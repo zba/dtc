@@ -18,5 +18,6 @@ CREATE TABLE IF NOT EXISTS domain (
   gen_unresolved_domain_alias enum('yes','no') NOT NULL default 'no',
   txt_root_entry varchar(128) NOT NULL default 'GPLHost:>_ Opensource hosting worldwide',
   txt_root_entry2 varchar(128) NOT NULL default 'This domain is hosted using Domain Technologie Control http://www.gplhost.com/?rub=softwares&sousrub=dtc',
+  registrar_password varchar(255) NOT NULL default '',
   UNIQUE KEY name (name)
 ) TYPE=MyISAM

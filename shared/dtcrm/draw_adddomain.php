@@ -16,6 +16,7 @@ function drawAdminTools_AddDomain($admin){
 	global $conf_webmaster_email_addr;
 	global $pro_mysql_pending_queries_table;
 	global $pro_mysql_domain_table;
+	global $pro_mysql_client_table;
 
 	global $pro_mysql_handle_table;
 
@@ -63,6 +64,8 @@ function drawAdminTools_AddDomain($admin){
 	global $txt_dtcrm_here;
 	global $txt_dtcrm_to_refresh_the_menu_or_add_another_domain;
 	global $txt_dtcrm_step2_enter_whois_info;
+
+	get_secpay_conf();
 
 	$out = "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
 
@@ -227,6 +230,16 @@ Have another try:<br>$form_start $form_enter_domain_name</form>";
 $form_start
 ";
 
+	// Check if paiement has just occured !
+	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_domain_add"){
+		$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
+		if($ze_refund == 0){
+			$out .= "The transaction failed, please try again!";
+		}else{
+			$query = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
+		}
+	}
+
 	// Check billing to know if user has enough money on his account
 	$price = registry_get_domain_price($fqdn,$_REQUEST["toreg_period"]);
 	$fqdn_price = $price["attributes"]["price"] + $registration_added_price;
@@ -244,12 +257,20 @@ $form_start
 	if($fqdn_price > $remaining){
 		$to_pay = $fqdn_price - $remaining;
 
-		$payButton = paynowButton($product_id,$to_pay);
+		$payid = createCreditCardPaiementID($to_pay,$admin["info"]["id_client"],"Domain name registration ".$_REQUEST["toreg_extention"],"no");
+// adm_login=zigo&adm_pass=632567763&addrlink=myaccount%2Fadddomain&action=dtcrm_add_domain&add_domain_type=domregandhosting
+// &add_regortrans=register&toreg_domain=xovi12312&toreg_extention=.org
+// &dtcrm_owner_hdl=1&dtcrm_admin_hdl=1&dtcrm_billing_hdl=1&toreg_dns1=default&toreg_dns2=default&toreg_dns3=&toreg_dns4=&toreg_dns5=&toreg_dns6=&toreg_period=1&adm_login=zigo&adm_pass=632567763&addrlink=myaccount%2Fadddomain&action=dtcrm_add_domain&add_domain_type=domregandhosting&add_regortrans=register&toreg_domain=xovi12312&toreg_extention=.org&dtcrm_owner_hdl=1&dtcrm_admin_hdl=1&dtcrm_billing_hdl=1&toreg_dns1=default&toreg_dns2=default&toreg_dns3=&toreg_dns4=&toreg_dns5=&toreg_dns6=&toreg_period=1
+		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=dtcrm_add_domain&add_domain_type=domregandhosting&add_regortrans=".$_REQUEST["add_regortrans"]."&toreg_domain=".$_REQUEST["toreg_domain"]."&toreg_extention=".$_REQUEST["toreg_extention"]."&dtcrm_owner_hdl=".$_REQUEST["dtcrm_owner_hdl"]
+		."&dtcrm_admin_hdl=".$_REQUEST["dtcrm_admin_hdl"]."&dtcrm_billing_hdl=".$_REQUEST["dtcrm_billing_hdl"]."&toreg_dns1=".$_REQUEST["toreg_dns1"]
+		."&toreg_dns2=".$_REQUEST["toreg_dns2"]."&toreg_dns3=".$_REQUEST["toreg_dns3"]."&toreg_dns4=".$_REQUEST["toreg_dns4"]."&toreg_dns5=".$_REQUEST["toreg_dns5"]."&toreg_dns6=".$_REQUEST["toreg_dns6"]
+		."&toreg_period=".$_REQUEST["toreg_period"]."&inner_action=return_from_paypal_domain_add&payid=$payid";
+		$paybutton = paynowButton($payid,$to_pay,"Domain name registration ".$_REQUEST["toreg_extention"],$return_url);
 
 		$out .= $txt_dtcrm_you_currently_dont_have_enough_funds[$lang]."<br>
 <br><br>
 $form_start<input type=\"submit\" value=\"".$txt_dtcrm_button_paiement_done_checkout[$lang]."\">
-</form>";
+</form> $paybutton";
 		return $out;
 	}
 
@@ -278,10 +299,11 @@ $form_start
 	$out .= "<font color=\"green\"><b>Registration succesfull</b></font><br>
 Server said: <i>" . $regz["response_text"] . "</i><br>";
 
-	$query = "UPDATE $pro_mysql_client_table SET dollar='".$remaining-$fqdn_price."' WHERE id='".$admin["info"]["id_client"]."';";
+	$operation = $remaining - $fqdn_price;
+	$query = "UPDATE $pro_mysql_client_table SET dollar='$operation' WHERE id='".$admin["info"]["id_client"]."';";
 	mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
-	addDomainToUser($adm_login,$adm_pass,$fqdn);
+	addDomainToUser($adm_login,$adm_pass,$fqdn,$adm_pass);
 	unset($ns_ar);
 	$ns_ar[] = $_REQUEST["toreg_dns1"];
 	$ns_ar[] = $_REQUEST["toreg_dns2"];
