@@ -17,13 +17,13 @@ function SRSregistry_check_availability($domain_name){
 function SRSregistry_get_domain_price($domain_name,$period){
 	$O = new openSRS('test','XCP');
 	$cmd = array(
-		protocol => "XCP",
-		action => "get_price",
-		object => "domain",
-		attributes => array(
-			domain => $domain_name,
-			period => $period,
-			reg_type => 'new',
+		"protocol" => "XCP",
+		"action" => "get_price",
+		"object" => "domain",
+		"attributes" => array(
+			"domain" => $domain_name,
+			"period" => $period,
+			"reg_type" => 'new',
 			)
 		);
 	$srs_result = $O->send_cmd($cmd);

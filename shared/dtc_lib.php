@@ -45,6 +45,7 @@ if(file_exists($dtcshared_path."/dtcrm")){
 // FORMS DRAWING
 require("$dtcshared_path/inc/fetch.php");		// Code that fetch all the data of one admin, to be used for calling draw.php functions
 if(file_exists($dtcshared_path."/dtcrm")){
+	include("$dtcshared_path/dtcrm/strings.php");
 	include("$dtcshared_path/dtcrm/draw.php");	// Functions Draws the forms for domain-name registration and paiement
 }
 require("$dtcshared_path/inc/draw.php");		// Functions that draws all user  forms

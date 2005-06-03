@@ -26,7 +26,7 @@
  **************************************************************************
  *
  * vim: set expandtab tabstop=4 shiftwidth=4:
- * $Id: OPS.php,v 1.1 2003/11/09 17:14:41 thomas Exp $
+ * $Id: OPS.php,v 1.2 2005/06/03 02:04:36 thomas Exp $
  *
  **************************************************************************
  */
@@ -355,7 +355,8 @@ class OPS extends PEAR {
 				break;
 
 			  case 'item':
-				$key = $value['attributes']['key'];
+			  	if(isset($value['attributes']))
+					$key = $value['attributes']['key'];
 
 				switch ($value['type']) {
 				  case 'open':
@@ -365,7 +366,8 @@ class OPS extends PEAR {
 				  case 'complete':
 					array_push($depth, $key);
 					$p = join('::',$depth);
-					$temp[$p] = $value['value'];
+					if(isset($value['value']))
+						$temp[$p] = $value['value'];
 					array_pop($depth);
 					break;
 

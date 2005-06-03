@@ -29,7 +29,7 @@
  **************************************************************************
  *
  * vim: set expandtab tabstop=4 shiftwidth=4:
- * $Id: openSRS_base.php,v 1.1 2003/11/09 17:14:41 thomas Exp $
+ * $Id: openSRS_base.php,v 1.2 2005/06/03 02:04:36 thomas Exp $
  *
  **************************************************************************
  */
@@ -599,7 +599,7 @@ class openSRS_base extends PEAR {
 
 	function authenticate($username=false,$private_key=false) {
 
-		if ($this->_authenticated) {
+		if (isset($this->_authenticated) && $this->_authenticated) {
 			return array('is_success' => true);
 		}
 
@@ -617,7 +617,7 @@ class openSRS_base extends PEAR {
 
 		$prompt = $this->read_data();
 
-		if ( $prompt['response_code'] == 555 ) {
+		if ( isset($prompt['response_code']) && $prompt['response_code'] == 555 ) {
 			# the ip address from which we are connecting is not accepted
 			return array(
 				'is_success'	=> false,
@@ -790,8 +790,12 @@ class openSRS_base extends PEAR {
 				$data['response_code']	= $answer['response_code'];
 				$data['response_text']	= $answer['response_text'];
 				$data['attributes']['status'] = $answer['attributes']['status'];
-				$data['attributes']['upg_to_subdomain'] = $answer['attributes']['upg_to_subdomain'];
-				$data['attributes']['reason'] = $answer['attributes']['reason'];
+				if(isset($answer['attributes']['upg_to_subdomain'])){
+					$data['attributes']['upg_to_subdomain'] = $answer['attributes']['upg_to_subdomain'];
+				}
+				if(isset($answer['attributes']['reason'])){
+					$data['attributes']['reason'] = $answer['attributes']['reason'];
+				}
 
 			}
 		}
@@ -832,10 +836,10 @@ class openSRS_base extends PEAR {
 			$this->_log('i',$data);
 		} else {
 			$data = $this->_CBC ? $this->_CBC->decrypt($buf) : $buf;
-			if (!$args['no_xml']) {
+			if (!isset($args['no_xml']) || !$args['no_xml']) {
 				$data = $this->_OPS->decode($data);
 			}
-			if ($args['binary']) {
+			if (isset($args['binary']) && $args['binary']) {
 				$temp = unpack('H*temp', $data);
 				$this->_log('r', 'BINARY: ' . $temp['temp'] );
 			} else {
@@ -854,7 +858,7 @@ class openSRS_base extends PEAR {
 
 	function send_data($message, $args=array()) {
 
-		if (!$args['no_xml']) {
+		if (!isset($args['no_xml']) || !$args['no_xml']) {
 			$message['protocol'] = $this->protocol;
 			$data_to_send = $this->_OPS->encode( $message );
 
@@ -868,7 +872,7 @@ class openSRS_base extends PEAR {
 			$data_to_send = $message;
 		}
 
-		if ($args['binary']) {
+		if (isset($args['binary']) && $args['binary']) {
 			$temp = unpack('H*temp', $message);
 			$this->_log('s', 'BINARY: ' . $temp['temp'] );
 		} else {
@@ -904,6 +908,8 @@ class openSRS_base extends PEAR {
 #
 
 	function check_domain_syntax($domain) {
+
+		global $OPENSRS_TLDS_REGEX;
 
 		$domain = strtolower($domain);
 
@@ -950,7 +956,7 @@ class openSRS_base extends PEAR {
 #
 
 	function getRelatedTLDs($tld) {
-		if (is_array($this->RELATED_TLDS)) {
+		if (isset($this->RELATED_TLDS) && is_array($this->RELATED_TLDS)) {
 			foreach($this->RELATED_TLDS as $relatedTLDs) {
 				foreach ($relatedTLDs as $TLDstring) {
 					if ($TLDstring==$tld) {

@@ -38,6 +38,8 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 		$rows[] = mysql_fetch_array($result);
 	}
 
+	$out = "";
+	$pop = "";
 	$out .= "
 Who will own the domain name and will be the registrant (domain owner)?<br>
 <select name=\"dtcrm_owner_hdl\">";
