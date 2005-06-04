@@ -1,4 +1,6 @@
-R4
+This will be version 0.18 when released:
+----------------------------------------
+
 - Reviewed and internationnalised the Tucows reseller interface,
 added a tucows API user/key form in the general config panel.
 
