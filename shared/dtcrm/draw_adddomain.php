@@ -234,9 +234,12 @@ $form_start
 	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_domain_add"){
 		$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
 		if($ze_refund == 0){
-			$out .= "The transaction failed, please try again!";
+			$out .= "<font color=\"red\">The transaction failed, please try again!</font>";
 		}else{
-			$query = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
+			$out .= "<font color=\"green\">Funds added to your account</font>";
+			$q = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
+			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$admin["client"]["dollar"] += $ze_refund;
 		}
 	}
 
@@ -257,15 +260,19 @@ $form_start
 	if($fqdn_price > $remaining){
 		$to_pay = $fqdn_price - $remaining;
 
-		$payid = createCreditCardPaiementID($to_pay,$admin["info"]["id_client"],"Domain name registration ".$_REQUEST["toreg_extention"],"no");
-// adm_login=zigo&adm_pass=632567763&addrlink=myaccount%2Fadddomain&action=dtcrm_add_domain&add_domain_type=domregandhosting
-// &add_regortrans=register&toreg_domain=xovi12312&toreg_extention=.org
-// &dtcrm_owner_hdl=1&dtcrm_admin_hdl=1&dtcrm_billing_hdl=1&toreg_dns1=default&toreg_dns2=default&toreg_dns3=&toreg_dns4=&toreg_dns5=&toreg_dns6=&toreg_period=1&adm_login=zigo&adm_pass=632567763&addrlink=myaccount%2Fadddomain&action=dtcrm_add_domain&add_domain_type=domregandhosting&add_regortrans=register&toreg_domain=xovi12312&toreg_extention=.org&dtcrm_owner_hdl=1&dtcrm_admin_hdl=1&dtcrm_billing_hdl=1&toreg_dns1=default&toreg_dns2=default&toreg_dns3=&toreg_dns4=&toreg_dns5=&toreg_dns6=&toreg_period=1
-		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=dtcrm_add_domain&add_domain_type=domregandhosting&add_regortrans=".$_REQUEST["add_regortrans"]."&toreg_domain=".$_REQUEST["toreg_domain"]."&toreg_extention=".$_REQUEST["toreg_extention"]."&dtcrm_owner_hdl=".$_REQUEST["dtcrm_owner_hdl"]
-		."&dtcrm_admin_hdl=".$_REQUEST["dtcrm_admin_hdl"]."&dtcrm_billing_hdl=".$_REQUEST["dtcrm_billing_hdl"]."&toreg_dns1=".$_REQUEST["toreg_dns1"]
-		."&toreg_dns2=".$_REQUEST["toreg_dns2"]."&toreg_dns3=".$_REQUEST["toreg_dns3"]."&toreg_dns4=".$_REQUEST["toreg_dns4"]."&toreg_dns5=".$_REQUEST["toreg_dns5"]."&toreg_dns6=".$_REQUEST["toreg_dns6"]
+		$payid = createCreditCardPaiementID($to_pay,$admin["info"]["id_client"],
+				"Domain name registration ".$_REQUEST["toreg_extention"],"no");
+		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+		."&addrlink=$addrlink&action=dtcrm_add_domain&add_domain_type=".$_REQUEST["add_domain_type"]
+		."&add_regortrans=".$_REQUEST["add_regortrans"]."&toreg_domain=".$_REQUEST["toreg_domain"]
+		."&toreg_extention=".$_REQUEST["toreg_extention"]."&dtcrm_owner_hdl=".$_REQUEST["dtcrm_owner_hdl"]
+		."&dtcrm_admin_hdl=".$_REQUEST["dtcrm_admin_hdl"]."&dtcrm_billing_hdl=".$_REQUEST["dtcrm_billing_hdl"]
+		."&toreg_dns1=".$_REQUEST["toreg_dns1"]."&toreg_dns2=".$_REQUEST["toreg_dns2"]
+		."&toreg_dns3=".$_REQUEST["toreg_dns3"]."&toreg_dns4=".$_REQUEST["toreg_dns4"]
+		."&toreg_dns5=".$_REQUEST["toreg_dns5"]."&toreg_dns6=".$_REQUEST["toreg_dns6"]
 		."&toreg_period=".$_REQUEST["toreg_period"]."&inner_action=return_from_paypal_domain_add&payid=$payid";
-		$paybutton = paynowButton($payid,$to_pay,"Domain name registration ".$_REQUEST["toreg_extention"],$return_url);
+		$paybutton = paynowButton($payid,$to_pay,
+				"Domain name registration ".$_REQUEST["toreg_extention"],$return_url);
 
 		$out .= $txt_dtcrm_you_currently_dont_have_enough_funds[$lang]."<br>
 <br><br>

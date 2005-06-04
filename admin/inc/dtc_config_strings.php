@@ -1,5 +1,140 @@
 <?php
 
+$txt_cfg_registry_api_title = array(
+"fr" => "Configuration de l'API d'enregistrement de nom de domaine",
+"en" => "Domain name registry API configuraiton",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_cfg_use_test_or_live = array (
+"fr" => "Utiliser le serveur LIVE (et non le test) :",
+"en" => "Use the LIVE server (and not the test one) :",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_cfg_tucows_username = array(
+"fr" => "Votre nom d'utilisateur SRS :",
+"en" => "Your SRS username:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_cfg_tucows_test_server_key = array(
+"fr" => "Votre clef d'accès pour le serveur de test :",
+"en" => "Your key to access the test server:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_cfg_tucows_live_server_key = array(
+"fr" => "Votre clef d'accès pour le serveur LIVE :",
+"en" => "Your key to access the LIVE server:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_cfg_registryapi_menu_entry = array(
+"fr" => "Enregistrement de domaine",
+"en" => "Domain name registration",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_cfg_backup_and_mx_menu_entry = array(
+"fr" => "Serveurs MX et NS de secours",
+"en" => "MX and NS backup servers",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_cfg_ip_and_network = array(
+"fr" => "Addresses IP et réseaux",
+"en" => "IP addresses and network",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_cfg_general_menu_entry = array(
+"fr" => "Générale",
+"en" => "General",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+
+$txt_cfg_paypal_use_sandbox = array(
+"fr" => "Utiliser le serveur de test sandbox :",
+"en" => "Use the sandbox test server:",
+	"hu" => "TRANS Use the sandbox test server:",
+	"it" => "TRANS Use the sandbox test server:",
+	"nl" => "TRANS Use the sandbox test server:",
+	"ru" => "TRANS Use the sandbox test server:",
+	"de" => "TRANS Use the sandbox test server:",
+	"zh" => "TRANS Use the sandbox test server:",
+	"pl" => "TRANS Use the sandbox test server:",
+	"es" => "TRANS Use the sandbox test server:");
+
+
+$txt_cfg_paypal_sandbox_email = array(
+"fr" => "Email du compte de test PayPal (sandbox) :",
+"en" => "PayPal test account email (sandbox):",
+	"hu" => "TRANS PayPal test account email (sandbox):",
+	"it" => "TRANS PayPal test account email (sandbox):",
+	"nl" => "TRANS PayPal test account email (sandbox):",
+	"ru" => "TRANS PayPal test account email (sandbox):",
+	"de" => "TRANS PayPal test account email (sandbox):",
+	"zh" => "TRANS PayPal test account email (sandbox):",
+	"pl" => "TRANS PayPal test account email (sandbox):",
+	"es" => "TRANS PayPal test account email (sandbox):");
+
+
 $txt_cfg_allow_following_servers_to_list = array(
 	"fr" => "Autoriser les servers suivant a lister les domaines pour les backuper : ",
 	"en" => "Allow those servers to list this server domain names for doing backup:¡¡",

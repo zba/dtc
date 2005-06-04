@@ -11,8 +11,33 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 	global $form_enter_dns_infos;
 	global $whois_forwareded_params;
 
-	$toreg_domain = $_REQUEST["toreg_domain"];
-	$toreg_extention = $_REQUEST["toreg_extention"];
+	global $txt_dtcrm_server_said;
+	global $txt_dtcrm_you_dont_have_a_client_id;
+	global $txt_dtcrm_remaining_on_your_account;
+	global $txt_dtcrm_total_price;
+	global $txt_dtcrm_you_currently_dont_have_enough_funds;
+
+	global $txt_dtcrm_enter_the_domain_name_to_transfer;
+	global $txt_dtcrm_transfer_check_failed;
+	global $txt_dtcrm_transfer_check_failed;
+	global $txt_dtcrm_step2_select_contact_transfer;
+	global $txt_dtcrm_step3_proceed_transfer;
+	global $txt_dtcrm_transaction_failed_try_again;
+	global $txt_dtcrm_your_account_has_been_refund;
+	global $txt_dtcrm_proceed_to_transfer_button;
+	global $txt_transfer_from_another_registrar;
+	global $txt_dtcrm_step1_check_domain_is_transferable;
+	global $txt_dtcrm_transfer_check_successfull;
+	global $lang;
+
+	$out = "";
+
+	if(isset($_REQUEST["toreg_domain"])){
+		$toreg_domain = $_REQUEST["toreg_domain"];
+	}
+	if(isset($_REQUEST["toreg_extention"])){
+		$toreg_extention = $_REQUEST["toreg_extention"];
+	}
 	if($given_fqdn != "none" && !isset($toreg_extention)){
 		$c = strrpos($given_fqdn,".");
 		$toreg_extention = substr($given_fqdn,$c);
@@ -23,7 +48,7 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 
 // $_REQUEST["add_domain_type"]
 
-	$form_start = "<form action=\"$PHP_SELF\">
+	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -32,9 +57,8 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 <input type=\"hidden\" name=\"add_domain_type\" value=\"".$_REQUEST["add_domain_type"]."\">
 ";
 //	registry_check_transfer($domain)
-	$out .= "<b><u>Transfer ".$eddomain["name"]." from
-another registrar to GPLHost:</u></b><br>
-<i><u>Step1: check if domain is transferable</u></i>";
+	$out .= "<b><u>".$txt_transfer_from_another_registrar[$lang]."</u></b><br>
+<i><u>".$txt_dtcrm_step1_check_domain_is_transferable[$lang]."</u></i>";
 
 	if(!isset($toreg_extention) || $toreg_extention == "" ||
 	!isset($toreg_domain) || $toreg_domain == "" ||
@@ -42,7 +66,7 @@ another registrar to GPLHost:</u></b><br>
 	$toreg_extention != ".org" && $toreg_extention != ".biz" &&
 	$toreg_extention != ".name" && $toreg_extention != ".info")		){
 		$out .= "$form_start<br>
-Please enter the domain name you wish to transfer:
+".$txt_dtcrm_enter_the_domain_name_to_transfer[$lang]."<br>
 $form_enter_domain_name";
 		return $out;
 	}
@@ -52,19 +76,18 @@ $form_enter_domain_name";
 
 	$regz = registry_check_transfer($toreg_domain.$toreg_extention);
 	if($regz["is_success"] != 1){
-		die("<font color=\"red\">TRANSFER CHECK FAILED: registry server didn't reply
-successfuly.</font>");
+		die("<font color=\"red\">".$txt_dtcrm_transfer_check_failed[$lang]."</font>");
 	}
 	$regz["attributes"]["transferrable"] = 1;
 	if($regz["attributes"]["transferrable"] != 1){
-		$out .= "<font color=\"red\">TRANSFER CHECK FAILED</font><br>
-Server said: ".$regz["attributes"]["reason"]."<br>
+		$out .= "<font color=\"red\">".$txt_dtcrm_transfer_check_failed[$lang]."</font><br>
+".$txt_dtcrm_server_said[$lang].$regz["attributes"]["reason"]."<br>
 $form_start<input type=\"submit\" value=\"Go back\"></form>";
 		return $out;
 	}
-	$out .= "<br><font color=\"green\">TRANSFER CHECK SUCCESSFULL</font><br>
-Server said: ".$regz["attributes"]["reason"]."<br><br>
-<i><u>Step2: select contacts for domain transfer</u></i><br>
+	$out .= "<br><font color=\"green\">".$txt_dtcrm_transfer_check_successfull[$lang]."</font><br>
+".$txt_dtcrm_server_said[$lang].$regz["attributes"]["reason"]."<br><br>
+<i><u>".$txt_dtcrm_step2_select_contact_transfer[$lang]."</u></i><br>
 ";
 	if(	!isset($_REQUEST["dtcrm_owner_hdl"]) || $_REQUEST["dtcrm_owner_hdl"] == "" ||
 		!isset($_REQUEST["dtcrm_admin_hdl"]) || $_REQUEST["dtcrm_admin_hdl"] == "" ||
@@ -73,7 +96,7 @@ Server said: ".$regz["attributes"]["reason"]."<br><br>
 		!isset($_REQUEST["toreg_dns2"]) || $_REQUEST["toreg_dns2"] == ""){
 		$out .= $form_start . whoisHandleSelection($admin);
 		$out .= $form_enter_dns_infos;
-		$out .= "<input type=\"submit\" value=\"Proceed to transfer\"></form>";
+		$out .= "<br><input type=\"submit\" value=\"".$txt_dtcrm_proceed_to_transfer_button[$lang]."\"></form>";
 		return $out;
 	}
 	$form_start .= $whois_forwareded_params;
@@ -82,33 +105,52 @@ Server said: ".$regz["attributes"]["reason"]."<br><br>
 	$out .= "DNS2: ".$_REQUEST["toreg_dns2"]."<br><br>";
 
 	$fqdn = $toreg_domain . $toreg_extention;
-	$price = registry_get_domain_price($fqdn,$_REQUEST["toreg_period"]);
+	$price = registry_get_domain_price($fqdn,1);
 	$fqdn_price = $price["attributes"]["price"] + $registration_added_price;
-	$fqdn_price *= $_REQUEST["toreg_period"];
 
 	if($admin["info"]["id_client"] != 0){
 		$remaining = $admin["client"]["dollar"];
 	}else{
-		$out .= "You don't have a client ID. Please contact us.<br>";
+		$out .= $txt_dtcrm_you_dont_have_a_client_id[$lang];
 		$remaining = 0;
 		return $out;
 	}
 
 	$out .= "<i><u>Step3: Proceed for transfer</u></i><br>";
-	$out .= "
-Remaining on your account: \$" . $remaining . "<br>
-Total price: \$". $fqdn_price . "<br><br>";
+	$out .= $txt_dtcrm_remaining_on_your_account[$lang]." \$" . $remaining . "<br>
+".$txt_dtcrm_total_price[$lang]." \$". $fqdn_price . "<br><br>";
 
+	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_domain_add"){
+		$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
+		if($ze_refund == 0){
+			$out .= "<font color=\"red\">".$txt_dtcrm_transaction_failed_try_again[$lang]."</font>";
+		}else{
+			$out .= "<font color=\"green\">".$txt_dtcrm_your_account_has_been_refund[$lang]."</font><br>";
+			$q = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$remaining += $ze_refund;
+		}
+	}
 	if($fqdn_price > $remaining){
-		$out .= "
-You currently don't have enough funds on your account. You will be
-redirected to our paiement system.<br><br>
-$form_start<input type=\"submit\" value=\"Proceed to paiement\">
-</form>";
+		$payid = createCreditCardPaiementID($fqdn_price,$admin["info"]["id_client"],
+			"Domain name registration ".$_REQUEST["toreg_extention"],"no");
+		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+			."&addrlink=$addrlink&action=dtcrm_add_domain&add_domain_type=".$_REQUEST["add_domain_type"]
+			."&add_regortrans=".$_REQUEST["add_regortrans"]."&toreg_domain=".$_REQUEST["toreg_domain"]
+			."&toreg_extention=".$_REQUEST["toreg_extention"]."&dtcrm_owner_hdl=".$_REQUEST["dtcrm_owner_hdl"]
+			."&dtcrm_admin_hdl=".$_REQUEST["dtcrm_admin_hdl"]."&dtcrm_billing_hdl=".$_REQUEST["dtcrm_billing_hdl"]
+			."&toreg_dns1=".$_REQUEST["toreg_dns1"]."&toreg_dns2=".$_REQUEST["toreg_dns2"]
+			."&toreg_dns3=".$_REQUEST["toreg_dns3"]."&toreg_dns4=".$_REQUEST["toreg_dns4"]
+			."&toreg_dns5=".$_REQUEST["toreg_dns5"]."&toreg_dns6=".$_REQUEST["toreg_dns6"]
+			."&toreg_period=1&inner_action=return_from_paypal_domain_add&payid=$payid";
+		$paybutton = paynowButton($payid,$fqdn_price,
+			"Domain name registration ".$_REQUEST["toreg_extention"],$return_url);
+
+		$out .= $txt_dtcrm_you_currently_dont_have_enough_funds[$lang]."<br><br>
+$paybutton";
 		return $out;
 	}
-	$out .= "IN DEVELOPEMENT: will be ready soon.<br>
-$form_start
+	$out .= "$form_start
 <input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
 <input type=\"submit\" value=\"Proceed transfer\">
 </form>

@@ -64,7 +64,9 @@ if($panel_type!="cronjob"){
 	if(isset($_SESSION["dtc_use_text_menu"]) && !is_string($_SESSION["dtc_use_text_menu"])){
 		unset($dtc_use_text_menu);
 	}
-	//$dtc_use_text_menu = $_SESSION["dtc_use_text_menu"];
+	if(isset($_SESSION["dtc_use_text_menu"])){
+		$dtc_use_text_menu = $_SESSION["dtc_use_text_menu"];
+	}
 	if(isset($_REQUEST["use_text_menu"]) && $_REQUEST["use_text_menu"] == "yes"){
 		$dtc_use_text_menu = "yes";
 	}

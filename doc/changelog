@@ -1,4 +1,10 @@
 R4
+- Reviewed and internationnalised the Tucows reseller interface,
+added a tucows API user/key form in the general config panel.
+
+- There is now a complete new design thanks to Jerome Centex,
+thanks to him and his help.
+
 - Added subaccount feature (reseller)
 
 - New layout for the main root consol. You wont have to scroll again and

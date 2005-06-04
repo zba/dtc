@@ -394,10 +394,10 @@ $txt_dtcrm_total_price = array (
 $txt_dtcrm_you_currently_dont_have_enough_funds = array (
 "fr" => "Vous n'avez pas assez d'argent sur votre compte. Vous
 serez redirigez sur notre system de paiement. Veuillez cliquer
-sur le boutou suivant pour payer, et appuyez sur le bouton de refresh.",
+sur le boutou suivant pour payer.",
 "en" => "You currently don't have enough funds on your account. You will be
 redirected to our paiement system. Please click on the button bellow
-to pay, and then click refresh button.",
+to pay.",
 "hu" => "TRANS ",
 "it" => "TRANS ",
 "nl" => "TRANS ",
@@ -527,6 +527,379 @@ $txt_dtcrm_to_refresh_the_menu_or_add_another_domain = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_enter_the_domain_name_to_transfer = array(
+"fr" => "Veuillez entrer le domaine que vous souhaitez transférer :",
+"en" => "Please enter the domain name you wish to transfer:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_transfer_check_failed = array(
+"fr" => "ECHEC DU TRANSFERE : le serveur d'enregistrement n'a pas répondu avec succès.",
+"en" => "TRANSFER CHECK FAILED: registry server didn't reply successfuly.",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_transfer_check_failed = array (
+"fr" => "ECHEC DU TEST DE TRANSFERABILITE",
+"en" => "TRANSFER CHECK FAILED",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_transfer_check_successfull = array (
+"fr" => "SUCCES DU TEST DE TRANSFERABILITE",
+"en" => "TRANSFER CHECK SUCCESSFULL",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_step2_select_contact_transfer = array(
+"fr" => "Etape 2 : selectionner les contacts pour le transfère de domaine",
+"en" => "Step2: select contacts for domain transfer",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_step3_proceed_transfer = array(
+"fr" => "Etape 3 : procéder au transfère",
+"en" => "Step3: proceed transfer",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_transaction_failed_try_again = array(
+"fr" => "La transaction à échoué, veuillez réessayer",
+"en" => "The transaction failed, please try again!",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_your_account_has_been_refund = array(
+"fr" => "Votre compte à été crédité!",
+"en" => "Your account has been refund!",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_proceed_to_transfer_button = array(
+"fr" => "Procéder au transfère",
+"en" => "Proceed transfer",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_transfer_from_another_registrar = array(
+"fr" => "Transfère depuis un autre registrar vers ce serveur :",
+"en" => "Transfer from another registrar to this server:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_step1_check_domain_is_transferable = array(
+"fr" => "Etape 1 : vérifier que le domaine est transférable",
+"en" => "Step1: check if domain is transferable",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_create_new_handle = array(
+"fr" => "Créer un nouveau contact",
+"en" => "Create a new handle",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_indicate_required_field = array(
+"fr" => "indique un champ requis",
+"en" => "marqued fields are required",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_name_for_this_handle = array(
+"fr" => "Nom pour ce contact : ",
+"en" => "Name for this handle: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_company = array(
+"fr" => "Société : ",
+"en" => "Company: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_firstname = array(
+"fr" => "Prénom : ",
+"en" => "First name: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_lastname = array(
+"fr" => "Nom : ",
+"en" => "Last name: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_street_addr1 = array(
+"fr" => "Adresse 1 : ",
+"en" => "Street address 1: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_street_addr2 = array(
+"fr" => "Adresse 2 : ",
+"en" => "Street address 2: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_street_addr3 = array(
+"fr" => "Adresse 3 : ",
+"en" => "Street address 3: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_optional = array(
+"fr" => "facultatif",
+"en" => "optional",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_if_applicable = array(
+"fr" => "ci nécessaire",
+"en" => "if applicable",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_state = array(
+"fr" => "Etat : ",
+"en" => "State: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_city = array(
+"fr" => "Ville : ",
+"en" => "City: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_zipcode = array(
+"fr" => "Code postal : ",
+"en" => "Zipcode: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_country = array(
+"fr" => "Pays : ",
+"en" => "Country: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_phone_number = array(
+"fr" => "Numéro de téléphone : ",
+"en" => "Phone number: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+// Translators: please insert your phone country code number here !
+$txt_dtcrm_phone_formating = array(
+"fr" => "format +33.XXXXXXXXX",
+"en" => "+1.XXXXXXXXXX format",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "+86.XXXXXX",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_fax_number = array (
+"fr" => "Numéro de fax : ",
+"en" => "Fax number: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "+86.XXXXXX",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_email = array (
+"fr" => "Adresse email : ",
+"en" => "Email address: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "+86.XXXXXX",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_must_be_valid_email = array (
+"fr" => "Cette addresse DOIT être valide",
+"en" => "This MUST be a valid address",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "+86.XXXXXX",
 "pl" => "TRANS ",
 "es" => "TRANS ");
 

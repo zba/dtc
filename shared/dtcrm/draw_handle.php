@@ -27,8 +27,10 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 	global $addrlink;
 
 	global $pro_mysql_handle_table;
+	global $txt_dtcrm_create_new_handle;
+	global $lang;
 
-	$link_create = "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=nickhandles\">Create new handle</a>";
+	$link_create = "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=nickhandles\">".$txt_dtcrm_create_new_handle[$lang]."</a>";
 
 	$query = "SELECT * FROM $pro_mysql_handle_table WHERE owner='$adm_login';";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
@@ -40,8 +42,7 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 
 	$out = "";
 	$pop = "";
-	$out .= "
-Who will own the domain name and will be the registrant (domain owner)?<br>
+	$out .= "Who will own the domain name and will be the registrant (domain owner)?<br>
 <select name=\"dtcrm_owner_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -157,8 +158,29 @@ function drawAdminTools_NickHandles($admin){
 	global $hdl_id;
 	global $pro_mysql_handle_table;
 
-	$out = "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>
-<b><u>List of your whois nick handles:</u></b><br>";
+	global $txt_dtcrm_indicate_required_field;
+	global $txt_dtcrm_create_new_handle;
+	global $txt_dtcrm_indicate_required_field;
+	global $txt_dtcrm_name_for_this_handle;
+	global $txt_dtcrm_company;
+	global $txt_dtcrm_firstname;
+	global $txt_dtcrm_lastname;
+	global $txt_dtcrm_street_addr1;
+	global $txt_dtcrm_street_addr2;
+	global $txt_dtcrm_street_addr3;
+	global $txt_dtcrm_optional;
+	global $txt_dtcrm_if_applicable;
+	global $txt_dtcrm_state;
+	global $txt_dtcrm_city;
+	global $txt_dtcrm_zipcode;
+	global $txt_dtcrm_country;
+	global $txt_dtcrm_phone_number;
+	global $txt_dtcrm_phone_formating;
+	global $txt_dtcrm_fax_number;
+	global $txt_dtcrm_email;
+	global $txt_dtcrm_must_be_valid_email;
+
+	$out = "<b><u>List of your whois nick handles:</u></b><br>";
 
 	$query = "SELECT * FROM $pro_mysql_handle_table WHERE owner='$adm_login';";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
@@ -185,14 +207,26 @@ function drawAdminTools_NickHandles($admin){
 		$hdlfirstname = $hdl["firstname"];
 		$hdllastname = $hdl["lastname"];
 		$hdladdr1 = $hdl["addr1"];
-		$hdladdr2 = $hdl["addr2"];
-		$hdladdr3 = $hdl["addr3"];
-		$hdlstate = $hdl["state"];
+		if(isset($hdl["addr2"]))
+			$hdladdr2 = $hdl["addr2"];
+		else
+			$hdladdr2 = "";
+		if(isset($hdl["addr3"]))
+			$hdladdr3 = $hdl["addr3"];
+		else
+			$hdladdr3 = "";
+		if(isset($hdl["state"]))
+			$hdlstate = $hdl["state"];
+		else
+			$hdlstate = "";
 		$hdlcity = $hdl["city"];
 		$hdlzipcode = $hdl["zipcode"];
 		$hdlcountry = $hdl["country"];
 		$hdlphone = $hdl["phone_num"];
-		$hdlfax = $hdl["fax_num"];
+		if(isset($hdl["fax_num"]))
+			$hdlfax = $hdl["fax_num"];
+		else
+			$hdlfax = "";
 		$hdlemail = $hdl["email"];
 	}else{
 		$out .= "<br><br><b><u>Create a new nick-handle:</u></b><br>";
@@ -213,52 +247,52 @@ function drawAdminTools_NickHandles($admin){
 		$hdlemail = "";
 	}
 	$rf = "<font color=\"red\">*</font>";	// Required field
-	$out .= "<form action=\"$PHP_SELF\">
+	$out .= "($rf ".$txt_dtcrm_indicate_required_field[$lang].")<form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">$hidden_inputs
 <input type=\"hidden\" name=\"hdl_id\" value=\"$hdl_id\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <table width=\"100%\" height=\"1\"><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Name for this handle$rf:</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_name_for_this_handle[$lang]."</td>
 	<td>$name_of_hdl</td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Company:</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_company[$lang]."</td>
 	<td><input type=\"text\" name=\"company\" value=\"".$hdlcompany."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Firstname$rf:</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_firstname[$lang]."</td>
 	<td><input type=\"text\" name=\"firstname\" value=\"".$hdlfirstname."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Lastname$rf:</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_lastname[$lang]."</td>
 	<td><input type=\"text\" name=\"lastname\" value=\"".$hdllastname."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Street address$rf:</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_street_addr1[$lang]."</td>
 	<td><input type=\"text\" name=\"addr1\" value=\"".$hdladdr1."\">
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Street address 2:<br><i>Optionnal</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_street_addr2[$lang]."<br><i>".$txt_dtcrm_optional[$lang]."</i></td>
 	<td><input type=\"text\" name=\"addr2\" value=\"".$hdladdr2."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Street address 3:<br><i>Optionnal</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_street_addr3[$lang]."<br><i>".$txt_dtcrm_optional[$lang]."</i></td>
 	<td><input type=\"text\" name=\"addr3\" value=\"".$hdladdr3."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>State:<br><i>If applicable</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_state[$lang]."<br><i>".$txt_dtcrm_if_applicable[$lang]."</i></td>
 	<td><input type=\"text\" name=\"state\" value=\"".$hdlstate."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>City:</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_city[$lang]."</td>
 	<td><input type=\"text\" name=\"city\" value=\"".$hdlcity."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Zipcode$rf:</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_zipcode[$lang]."</td>
 	<td><input type=\"text\" name=\"zipcode\" value=\"".$hdlzipcode."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Country$rf:</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_country[$lang]."</td>
 	<td><select name=\"country\">".cc_code_popup($hdlcountry)."</select></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Phone number$rf:</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_phone_number[$lang]."<br><i>".$txt_dtcrm_phone_formating[$lang]."</i></td>
 	<td><input type=\"text\" name=\"phone_num\" value=\"".$hdlphone."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>Fax number:<br><i>Optional</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_fax_number[$lang].":<br><i>".$txt_dtcrm_optional[$lang]."</i></td>
 	<td><input type=\"text\" name=\"fax_num\" value=\"".$hdlfax."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>email$rf:<br><i>MUST be a valid email</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_email."<br><i>".$txt_dtcrm_must_be_valid_email[$lang]."</i></td>
 	<td><input type=\"text\" name=\"email\" value=\"".$hdlemail."\"></td>
 </tr><tr>
 	<td></td><td><input type=\"submit\" value=\"Ok\"></td>

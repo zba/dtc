@@ -6,6 +6,12 @@ function drawDTCConfigMenu(){
 	global $txt_cfg_payconf_title;
 	global $lang;
 
+	global $txt_cfg_general_menu_entry;
+	global $txt_cfg_ip_and_network;
+	global $txt_cfg_backup_and_mx_menu_entry;
+	global $txt_cfg_registryapi_menu_entry;
+	
+
 	if(!isset($_REQUEST["sousrub"])){
 		$sousrub = "general";
         }else{
@@ -15,13 +21,13 @@ function drawDTCConfigMenu(){
 	$out = "<br><table><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "general")
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=general\">";
-	$out .= "General";
+	$out .= $txt_cfg_general_menu_entry[$lang];
 	if($sousrub != "general")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "ip")
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ip\">";
-	$out .= "IP and networks";
+	$out .= $txt_cfg_ip_and_network[$lang];
 	if($sousrub != "ip")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
@@ -33,8 +39,14 @@ function drawDTCConfigMenu(){
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "backup")
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=backup\">";
-	$out .= "Backup MX and NS";
+	$out .= $txt_cfg_backup_and_mx_menu_entry[$lang];
 	if($sousrub != "backup")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "registryapi")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=registryapi\">";
+	$out .=  $txt_cfg_registryapi_menu_entry[$lang];
+	if($sousrub != "registryapi")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "payconf")
@@ -432,6 +444,51 @@ function drawBackupConfig(){
         return $out;
 }
 
+function drawRegistryApiConfig(){
+  global $lang;
+
+  global $pro_mysql_config_table;
+
+  global $txt_cfg_registry_api_title;
+  global $txt_cfg_use_test_or_live;
+  global $txt_cfg_tucows_username;
+  global $txt_cfg_tucows_live_server_key;
+  global $txt_cfg_tucows_test_server_key;
+
+  global $conf_srs_user;
+  global $conf_srs_live_key;
+  global $conf_srs_test_key;
+  global $conf_srs_enviro;
+
+  $out = "";
+        $out .= "<h2><u>".$txt_cfg_registry_api_title[$lang]."</u></h2>
+        <h3>Tucows</h3>";
+
+        if($conf_srs_enviro == "yes"){
+          $use_live_system_yes = " checked";
+          $use_live_system_no = "";
+        }else{
+          $use_live_system_yes = "";
+          $use_live_system_no = " checked";
+        }
+
+	$out .= "<table with=\"100%\" height=\"1\">
+<tr><td align=\"right\" nowrap>
+	".$txt_cfg_use_test_or_live[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"LIVE\" name=\"srs_enviro\"$use_live_system_yes> Yes <input type=\"radio\" value=\"TEST\" name=\"srs_enviro\"$use_live_system_no> No</td>
+</tr><tr>
+  <td align=\"right\" nowrap>".$txt_cfg_tucows_username[$lang]."</td>
+  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_srs_user\" name=\"srs_username\"></td>
+</tr><tr>
+  <td align=\"right\" nowrap>".$txt_cfg_tucows_test_server_key[$lang]."</td>
+  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_srs_test_key\" name=\"srs_test_key\"></td>
+</tr><tr>
+  <td align=\"right\" nowrap>".$txt_cfg_tucows_live_server_key[$lang]."</td>
+  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_srs_live_key\" name=\"srs_live_key\"></td>
+</tr>
+</table>";
+  return $out;
+}
+
 function drawDTCpayConfig(){
 	global $lang;
 	
@@ -441,8 +498,11 @@ function drawDTCpayConfig(){
 	global $txt_cfg_paypal_ratefee;
 	global $txt_cfg_paypal_flatfee;
 	global $txt_cfg_paypal_autovalid;
+	global $txt_cfg_paypal_sandbox_email;
+	global $txt_cfg_paypal_use_sandbox;
 
 	global $pro_mysql_secpayconf_table;
+
 
 	$out = "";
 
@@ -466,9 +526,16 @@ function drawDTCpayConfig(){
           $auto_paypal_check_yes = "";
           $auto_paypal_check_no = " checked";
         }
-
+	if($a["paypal_sandbox"] == "yes"){
+	  $paypal_sandbox_check_yes = " checked ";
+	  $paypal_sandbox_check_no = "";
+        }else{
+	  $paypal_sandbox_check_yes = "";
+	  $paypal_sandbox_check_no = " checked ";
+        }
 	$out .= "<h2><u>".$txt_cfg_paytitle[$lang]."</u></h2>
 	<h3>PayPal:</h3>";
+	
 	$out .="<table with=\"100%\" height=\"1\">
 <tr><td align=\"right\" nowrap>
 	".$txt_cfg_use_paypal[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_paypal\"$use_paypal_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"use_paypal\"$use_paypal_check_no> No</td>
@@ -483,6 +550,11 @@ function drawDTCpayConfig(){
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_flatfee[$lang]."</td>
   <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a["paypal_flat"]."\" name=\"paypal_flat\"></td>
+</tr><tr><td align=\"right\" nowrap>
+	".$txt_cfg_paypal_use_sandbox[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"sandbox_paypal\"$paypal_sandbox_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"sandbox_paypal\"$paypal_sandbox_check_no> No</td>
+</tr><tr>
+  <td align=\"right\" nowrap>".$txt_cfg_paypal_sandbox_email[$lang]."</td>
+  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"".$a["paypal_sandbox_email"]."\" name=\"paypal_sandbox_email\"></td>
 </tr>
 </table>
 ";
@@ -782,6 +854,9 @@ function drawDTCConfigForm(){
 <input type=\"hidden\" name=\"sousrub\" value=\"$sousrub\">".drawBackupConfig()."</form>";
 		$global_conf = drawBackupConfig();
                 break;
+        case "registryapi":
+          $global_conf = drawRegistryApiConfig();
+          break;
         case "payconf":
                 $global_conf = drawDTCpayConfig();
                 break;
@@ -976,9 +1051,15 @@ function saveDTCConfigInMysql(){
   	 paypal_rate='".$_REQUEST["paypal_rate"]."',
   	 paypal_flat='".$_REQUEST["paypal_flat"]."',
   	 paypal_autovalidate='".$_REQUEST["autovalid_paypal"]."',
+  	 paypal_sandbox='".$_REQUEST["sandbox_paypal"]."',
+  	 paypal_sandbox_email='".$_REQUEST["paypal_sandbox_email"]."',
   	 paypal_email='".$_REQUEST["paypal_email"]."'
          WHERE 1 LIMIT 1;";
                 break;
+        case "registryapi":
+          // srs_enviro=TEST&srs_username=&srs_test_key=&srs_live_key=&install_new_config_values=Ok
+          $query = "UPDATE config SET srs_enviro='".$_REQUEST["srs_enviro"]."',srs_user='".$_REQUEST["srs_username"]."',srs_test_key='".$_REQUEST["srs_test_key"]."',srs_live_key='".$_REQUEST["srs_live_key"]."' WHERE 1;";
+          break;
 	case "path":
 		$query = "UPDATE config SET 
 	site_root_host_path='".$_REQUEST["new_site_root_host_path"]."',

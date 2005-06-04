@@ -63,15 +63,29 @@ function paypalNotifyPostbackScript(){
 }
 
 function paypalButton($product_id,$amount,$item_name,$return_url){
-	global $paypal_host;
-	global $paypal_cgi;
-
 	global $paypal_account;
 	global $conf_administrative_site;
 
 	global $secpayconf_use_paypal;
 	global $secpayconf_paypal_email;
+	global $secpayconf_paypal_sandbox;
+	global $secpayconf_paypal_sandbox_email;
 	global $conf_use_ssl;
+
+	if($secpayconf_paypal_sandbox == "yes"){
+		// This is test sandbox site
+		$paypal_host = "www.sandbox.paypal.com";
+		$paypal_cgi = "/us/cgi-bin/webscr";
+		$ze_paypal_email = $secpayconf_paypal_sandbox_email;
+	}else{
+		// This is production website
+		$paypal_host = "www.paypal.com";
+		$paypal_cgi = "/cgi-bin/webscr";
+		$ze_paypal_email = $secpayconf_paypal_email;
+	}
+
+
+
 	// https://www.paypal.com/xclick/business=thomas%40goirand.fr&item_name=Domain+name+registration+.com&
 	// item_number=1&amount=11.50&no_note=1&currency_code=USD
 
@@ -83,7 +97,7 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 
 	$out = '<form action="https://'.$paypal_host.$paypal_cgi.'" method="post">
 <input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="'.$secpayconf_paypal_email.'">
+<input type="hidden" name="business" value="'.$ze_paypal_email.'">
 <input type="hidden" name="item_name" value="'.$item_name.'">
 <input type="hidden" name="item_number" value="'.$product_id.'">
 <input type="hidden" name="amount" value="'.$amount.'">
@@ -96,14 +110,14 @@ name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!">
 </form>';
 	return $out;
 
-	$paypal_scripturl = "https://www.paypal.com/xclick/";
-	$paypal_url = $paypal_scripturl.
-		"business=$paypal_account&item_name=$item_name&item_number=$product_id".
-		"&amount=$amount&no_note=1&currency_code=USD&return=$return_url";
-	$img_src = "https://www.paypal.com/en_US/i/btn/x-click-but01.gif";
-	$img_alt = "Make payments with PayPal - it's fast, free and secure!";
-	$out = "<a  target=\"blank\" name=\"submit\" href=\"$paypal_url\"><img border=\"0\" src=\"$img_src\" alt=\"$img_alt\"></a>";
-	return $out;
+//	$paypal_scripturl = "https://www.paypal.com/xclick/";
+//	$paypal_url = $paypal_scripturl.
+//		"business=$paypal_account&item_name=$item_name&item_number=$product_id".
+//		"&amount=$amount&no_note=1&currency_code=USD&return=$return_url";
+//	$img_src = "https://www.paypal.com/en_US/i/btn/x-click-but01.gif";
+//	$img_alt = "Make payments with PayPal - it's fast, free and secure!";
+//	$out = "<a  target=\"blank\" name=\"submit\" href=\"$paypal_url\"><img border=\"0\" src=\"$img_src\" alt=\"$img_alt\"></a>";
+//	return $out;
 }
 
 ?>
