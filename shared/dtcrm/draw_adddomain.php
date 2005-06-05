@@ -67,7 +67,7 @@ function drawAdminTools_AddDomain($admin){
 
 	get_secpay_conf();
 
-	$out = "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
+	$out = "";
 
 $form_start = "
 <form action=\"".$_SERVER["PHP_SELF"]."\">

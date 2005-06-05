@@ -18,6 +18,10 @@ function drawEditAdmin($admin){
 	global $txt_domain_tbl_config_quotaMB;
 	global $txt_allowed_data_transferMB;
 	global $txt_expiration_date;
+	global $txt_heb_prod_id;
+	global $txt_can_have_subadmins_reseller;
+	global $txt_allow_to_add_domains;
+	global $txt_number_of_database;
 
 	global $adm_login;
 	global $adm_pass;
@@ -38,6 +42,8 @@ function drawEditAdmin($admin){
 	$bandwidth_per_month_mb = $info["bandwidth_per_month_mb"];
 	$adm_id_client = $info["id_client"];
 	$expire = $info["expire"];
+	$prod_id = $info["prod_id"];
+
 	$allow_add_domain = $info["allow_add_domain"];
 	$resseller_flag = $info["resseller_flag"];
 
@@ -84,11 +90,13 @@ function drawEditAdmin($admin){
 	<td><input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\"></td></tr>
 	<tr><td align=\"right\">".$txt_expiration_date[$lang]."</td>
 	<td><input type=\"text\" name=\"expire\" value=\"$expire\"></td></tr>
-	<tr><td align=\"right\">"."Number of database:"."</td>
+	<tr><td align=\"right\">".$txt_heb_prod_id[$lang]."</td>
+	<td><input type=\"text\" name=\"heb_prod_id\" value=\"$prod_id\"></td></tr>
+	<tr><td align=\"right\">".$txt_number_of_database[$lang]."</td>
 	<td><input type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\"></td></tr>
-	<tr><td align=\"right\">Allow to add domains:</td>
+	<tr><td align=\"right\">".$txt_allow_to_add_domains[$lang]."</td>
 	<td>$aldom_popup</td></tr>
-	<tr><td align=\"right\">Can have subadmin (resseller):</td>
+	<tr><td align=\"right\">".$txt_can_have_subadmins_reseller[$lang]."</td>
 	<td>$res_selector</td></tr>
 	<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
 </td></tr></table></form>";

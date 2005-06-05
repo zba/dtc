@@ -1,5 +1,250 @@
 <?php
 
+$txt_dtcrm_your_domain_has_been_registred_elsewhere = array(
+"fr" => "Votre nom de domaine a été enregistré ailleurs (eg pas sur ce site).
+Pour demander un transfère ici, veuillez cliquez ",
+"en" => "Your domain name has been registred elsewhere (eg
+not on this site). To order for it's transfer and management, please click",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_if_you_want_to_keep_your_current_registrar = array(
+"fr" => "Si vous voullez garder votre registrar actuel, vous devez faire pointer
+le whois vers les DNS suivants :",
+"en" => "If you want to keep your actual registrar, you have to make the whois point
+to thoses DNS:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_primary_dns = array(
+"fr" => "DNS primaire :",
+"en" => "Primary DNS:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_secondary_dns = array(
+"fr" => "DNS secondaire :",
+"en" => "Secondary DNS:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_your_domain_name_whois_data = array(
+"fr" => "Vos données whois pour ce domaine :",
+"en" => "Your domain name whois data:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_what_subzone_do_you_want_to_use = array(
+"fr" => "Quel sous-zone voulez vous utiliser (exemple : \"ns1\") :",
+"en" => "What subzone do you want to use (exemple: \"ns1\"):",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_edit_a_name_server = array(
+"fr" => "Editer un serveur de nom:",
+"en" => "Edit a name server:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_name_server_hostname = array(
+"fr" => "Nom d'hote du serveur de nom : ",
+"en" => "Name server hostname: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_wrong_user_or_password_or_timeout_expire = array(
+"fr" => "Mauvais utilisateur ou mot de passe, ou temps d'expiration atteint !",
+"en" => "Wrong user or password, or timeout expired!",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_registration_of_name_server_successfull = array(
+"fr" => "Enregistrement de votre serveur de nom réussit",
+"en" => "Registration of your name server succesfull",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+
+$txt_dtcrm_registration_of_name_server_failed = array(
+"fr" => "Echec lors de l'enregistrement de votre serveur de nom",
+"en" => "Registration of your name server failed",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_deletion_of_name_server_succesfull = array(
+"fr" => "Effacement de votre serveur de nom réussit",
+"en" => "Deletion of name server succesfull",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_edition_of_name_server_succesfull = array(
+"fr" => "Edition de votre serveur de nom réussit",
+"en" => "Edition of name server succesfull",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_edition_of_name_server_failed = array(
+"fr" => "Edition de votre serveur de nom réussit",
+"en" => "Edition of name server failed",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_deletion_of_name_server_failed = array(
+"fr" => "Echec lors de l'effacement du serveur de nom",
+"en" => "Deletion name server failed",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_list_of_registred_name_server = array(
+"fr" => "Liste de vos serveurs de nom enregistrés : ",
+"en" => "List of your registred name-servers:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_register_new_name_server = array(
+"fr" => "Enregistrer un nouveau serveur de nom :",
+"en" => "Register a new name server:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_delete_name_server = array(
+"fr" => "Effacer le serveur de nom",
+"en" => "Delete name server",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_select_your_domain_name_for_adding_name_server = array(
+"fr" => "Selectionner un de vos nom de domaine pour ajouter le serveur de nom a la registry :",
+"en" => "Select one your domain-name for adding a name server to the registries:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_dtcrm_ip_addr_of_that_name_server = array(
+"fr" => "Addresse IP de ce serveur de nom :",
+"en" => "IP address of that name server:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
 $txt_dtcrm_what_to_do = array(
 "fr" => "Que voulez vous ajouter :",
 "en" => "What do you want to add:",

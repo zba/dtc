@@ -32,14 +32,19 @@ function drawPasswordChange(){
   global $adm_pass;
   global $addrlink;
 
-  $out = "<b><u>Change your password:</u></b><br>
+  global $txt_change_your_password;
+  global $txt_type_new_password;
+  global $txt_retype_new_password;
+  global $lang;
+
+  $out = "<b><u>".$txt_change_your_password[$lang]."</u></b><br>
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"action\" value=\"change_adm_pass\">
-New password: <input type=\"password\" name=\"new_pass1\" value=\"\">
-Retype new password: <input type=\"password\" name=\"new_pass2\" value=\"\">
+".$txt_type_new_password[$lang]." <input type=\"password\" name=\"new_pass1\" value=\"\">
+".$txt_retype_new_password[$lang]." <input type=\"password\" name=\"new_pass2\" value=\"\">
 <input type=\"submit\" value=\"Ok\">
 </form>";
   return $out;

@@ -1,5 +1,246 @@
 <?php
 
+$txt_number_of_database = array(
+"fr" => "Nombre de base de données :",
+"en" => "Number of databases:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_allow_to_add_domains = array(
+"fr" => "Autorisé l'ajout de domaines :",
+"en" => "Allow to add domains:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_can_have_subadmins_reseller = array(
+"fr" => "Autorisé l'ajout de sous-comptes (revendeur) :",
+"en" => "Grant sub-account addition rights (reseller):",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_heb_prod_id = array(
+"fr" => "Numéro de produit :",
+"en" => "Product ID:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_change_your_password = array(
+"fr" => "Changer votre mot de passe :",
+"en" => "Change your password:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_type_new_password = array(
+"fr" => "Nouveau mot de passe :",
+"en" => "New password:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_retype_new_password = array(
+"fr" => "Retapper le nouveau mot de passe :",
+"en" => "Retype new password:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_delete = array(
+"fr" => "Effacer",
+"en" => "Delete",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_create = array(
+"fr" => "Créer",
+"en" => "Create",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_save = array(
+"fr" => "Sauver",
+"en" => "Save",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_your_users = array(
+"fr" => "Vos utilisateurs :",
+"en" => "Your users:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_user = array(
+"fr" => "Utilisateur",
+"en" => "User",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_database_name = array(
+"fr" => "Nom de base de donnée",
+"en" => "Database Name",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_total_database_number = array(
+"fr" => "Nombre total de base de donnée :",
+"en" => "Total database number:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_please_create_mysql_user_to_create_database = array(
+"fr" => "Veuillez créer un utilisateur MySQL pour pouvoir fabriquer des bases de données.",
+"en" => "Please create a MySQL user in order to be able to create a database.",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+
+$txt_wrong_user_or_password_or_timeout_expire = array(
+"fr" => "Mauvais utilisateur ou mot de passe, ou temps d'expiration atteint !",
+"en" => "Wrong user or password, or timeout expired!",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_error = array(
+"fr" => "Erreur",
+"en" => "Error",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_fetching_admin = array(
+"fr" => "en chargeant l'administrateur : ",
+"en" => "fetching admin: ",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_register_new_account = array(
+"fr" => "Ouvrir un nouveau compte",
+"en" => "Register a new account",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
+$txt_go_to_email_panel = array(
+"fr" => "Aller à l'interface email",
+"en" => "Go to email panel",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
 $txt_client_panel_title = array(
 	"fr" => "Interface client :",
 	"en" => "Client panel:",
@@ -1945,7 +2186,7 @@ $txt_login_title = array(
 	"es" => "Login"
 );
 $txt_login_login = array(
-	"fr" => "Login : ",
+	"fr" => "Utilisateur : ",
 	"en" => "Login: ",
 	"hu" => "Belépés: ",
 	"it" => "Login:",

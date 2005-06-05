@@ -7,6 +7,10 @@ function paynowButton($pay_id,$amount,$item_name,$return_url){
 	global $secpayconf_paypal_rate;
 	global $secpayconf_paypal_flat;
 
+	if(!isset($secpayconf_use_paypal) || ( $secpayconf_use_paypal != "no" && $secpayconf_use_paypal != "yes" )){
+		get_secpay_conf();
+	}
+
 	$out = "<table width=\"100%\" height=\"1\">";
 	$out .= "<tr><td>Paiement system</td><td>Amount</td><td>Gateway cost</td><td>Total</td><td>Instant account</td></tr>\n";
 	if($secpayconf_use_paypal == "yes"){

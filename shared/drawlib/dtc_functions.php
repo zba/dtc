@@ -369,6 +369,7 @@ function drawPercentBar($value,$max,$double="yes"){
 }
 
 function smartDate($date){
+	$out = "";
 	$ar = explode("-",$date);
 	if($ar[0] > 0 ){
 		$plop = $ar[0] +1;

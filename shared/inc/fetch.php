@@ -11,6 +11,8 @@ function fetchTable($query){
 
 function fetchMailboxInfos($adm_email_login,$adm_email_pass){
 	global $pro_mysql_pop_table;
+	global $lang;
+	global $txt_wrong_user_or_password_or_timeout_expire;
 
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
@@ -21,7 +23,7 @@ function fetchMailboxInfos($adm_email_login,$adm_email_pass){
 	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$mailbox' AND mbox_host='$domain';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
 	if(mysql_num_rows($r) != 1){
-		$ret["mesg"] = "Wrong user or password, or timeout expired.";
+		$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
 		$ret["err"] = -1;
 		return $ret;
 	}
@@ -223,6 +225,9 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	global $adm_pass;
 	global $adm_random_pass;
 
+	global $txt_wrong_user_or_password_or_timeout_expire;
+	global $lang;
+
 	// This one is used by the root GUI so that you can browse your user
 	// account at the same time as him without destroying his session.
 	global $DONOT_USE_ROTATING_PASS;
@@ -249,12 +254,12 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$num_rows = mysql_num_rows($result);
 
 			if($num_rows != 1){
-				$ret["mesg"] = "Wrong user or password, or timeout expired.";
+				$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
 				$ret["err"] = -1;
 				return $ret;
 			}
 		}else{
-			$ret["mesg"] = "Wrong user or password, or timeout expired.";
+			$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
 			$ret["err"] = -1;
 			return $ret;
 		}

@@ -5,12 +5,14 @@ function login_form(){
 	global $txt_login_pass;
 	global $txt_use_text_menu;
 	global $txt_login_title;
+	global $txt_register_new_account;
+	global $txt_go_to_email_panel;
 
 	global $conf_skin;
 
 	global $lang;
 
-	$HTML_admin_edit_data = "<a href=\"/dtcemail\">Go to email panel</a> - <a href=\"new_account.php\">Register account</a>
+	$HTML_admin_edit_data = "<a href=\"/dtcemail\">".$txt_go_to_email_panel[$lang]."</a> - <a href=\"new_account.php\">".$txt_register_new_account[$lang]."</a>
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <table>
 <tr>
@@ -20,7 +22,7 @@ function login_form(){
 	<td align=\"right\">".$txt_login_pass[$lang]."</td>
 	<td><input type=\"password\" name=\"adm_pass\" value=\"\"></td>
 </tr><tr>
-	<td align=\"right\">$txt_use_text_menu[$lang]</td>
+	<td align=\"right\">".$txt_use_text_menu[$lang]."</td>
 	<td><input type=\"checkbox\" name=\"use_text_menu\" value=\"yes\"></td>
 </tr><tr>
 	<td></td><td><input type=\"submit\" name=\"Login\" value=\"login\">

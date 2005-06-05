@@ -135,7 +135,7 @@ $form_start<input type=\"submit\" value=\"Go back\"></form>";
 		$payid = createCreditCardPaiementID($fqdn_price,$admin["info"]["id_client"],
 			"Domain name registration ".$_REQUEST["toreg_extention"],"no");
 		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
-			."&addrlink=$addrlink&action=dtcrm_add_domain&add_domain_type=".$_REQUEST["add_domain_type"]
+			."&addrlink=$addrlink&add_domain_type=".$_REQUEST["add_domain_type"]
 			."&add_regortrans=".$_REQUEST["add_regortrans"]."&toreg_domain=".$_REQUEST["toreg_domain"]
 			."&toreg_extention=".$_REQUEST["toreg_extention"]."&dtcrm_owner_hdl=".$_REQUEST["dtcrm_owner_hdl"]
 			."&dtcrm_admin_hdl=".$_REQUEST["dtcrm_admin_hdl"]."&dtcrm_billing_hdl=".$_REQUEST["dtcrm_billing_hdl"]
@@ -143,6 +143,11 @@ $form_start<input type=\"submit\" value=\"Go back\"></form>";
 			."&toreg_dns3=".$_REQUEST["toreg_dns3"]."&toreg_dns4=".$_REQUEST["toreg_dns4"]
 			."&toreg_dns5=".$_REQUEST["toreg_dns5"]."&toreg_dns6=".$_REQUEST["toreg_dns6"]
 			."&toreg_period=1&inner_action=return_from_paypal_domain_add&payid=$payid";
+		if(isset($_REQUEST["action"]))
+			$return_url .= "&action=".$_REQUEST["action"];
+		if(isset($_REQUEST["dtcrm_action"]))
+			$return_url .= "&dtcrm_action=".$_REQUEST["dtcrm_action"];
+
 		$paybutton = paynowButton($payid,$fqdn_price,
 			"Domain name registration ".$_REQUEST["toreg_extention"],$return_url);
 

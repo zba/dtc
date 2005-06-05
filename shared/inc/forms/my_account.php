@@ -42,7 +42,7 @@ function drawAdminTools_MyAccount($admin){
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 ";
 
-	$out = "<font color=\"red\">IN DEVELOPMENT: DO NOT USE</font><br>";
+	$out = "";
 
 	$id_client = $admin["info"]["id_client"];
 
@@ -53,16 +53,29 @@ function drawAdminTools_MyAccount($admin){
 	}
 
 	if(isset($_REQUEST["action"]) && $id_client != 0 && $_REQUEST["action"] == "refund_myaccount"){
-		$q = "INSERT INTO $pro_mysql_pay_table (id,id_client,id_command,label,currency,refund_amount,date,time)VALUES('','$id_client','0','Refund my account','USD','".$_REQUEST["refund_amount"]."','".date("Y-m-j")."','".date("H:i:s")."');";
-		$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error()." in file ".__FILE__." line ".__LINE__);
-		$payid = mysql_insert_id();
-		$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
-		$out .=" Please click on the button bellow to refund your account. Then,
-when paiement is done, click the refresh button.";
-		$out .= "<center><font size=\"+1\">\$".$_REQUEST["refund_amount"]."</font><br>".
-		paynowButton($payid,$_REQUEST["refund_amount"]);
-		$out .= "<br><br>$frm_start<input type=\"submit\" value=\"Refresh and see my account\"></form></center>";
-		return $out;
+		if(isset($_REQUEST["inneraction"]) && $_REQUEST["return_from_paypal_refund_my_account"]){
+			$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
+			if($ze_refund == 0){
+				$out .= "<font color=\"red\">The transaction failed, please try again!</font>";
+				return $out;
+			}else{
+				$out .= "<font color=\"green\">Funds added to your account!</font><br><br>";
+				$q = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
+				$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+				$admin["client"]["dollar"] += $ze_refund;
+				$out .= "Your account now has \$".$admin["client"]["dollar"];
+				return $out;
+			}
+		}else{
+			$payid = createCreditCardPaiementID(addslashes($_REQUEST["refund_amount"]),$admin["info"]["id_client"],
+				"Refund my account","no");
+			$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+				."&addrlink=$addrlink&action=refund_myaccount&inneraction=return_from_paypal_refund_my_account&payid=$payid";
+			$paybutton = paynowButton($payid,addslashes($_REQUEST["refund_amount"]),"Refund my account",$return_url);
+			$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
+			$out .=" Please click on the button bellow to refund your acount.<br><br>$paybutton";
+			return $out;
+		}
 	}
 
 	$out .= "<b><u>".$txt_transfer_du[$lang]."</u></b>";

@@ -20,9 +20,13 @@ function draw_UpgradeAccount($admin){
 	global $pro_mysql_client_table;
 	global $pro_mysql_product_table;
 
+	global $lang;
+	global $txt_dtcrm_you_currently_dont_have_enough_funds;
+
+	$out = "";
 	$nowrap = 'style="white-space:nowrap"';
 
-	$frm_start = "<form action=\"$PHP_SELF\">
+	$frm_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -57,7 +61,7 @@ function draw_UpgradeAccount($admin){
 		return $out;
 	}
 	$out .= "<i><u>Step 1: choose your upgrade</u></i><br>";
-	if($_REQUEST["prod_id"] == "" || !isset($_REQUEST["prod_id"])){
+	if(!isset($_REQUEST["prod_id"]) || $_REQUEST["prod_id"] == ""){
 		$out .= "Your current account is ".smartByte($admin["info"]["quota"]*1024*1024)." disk storage
 and ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024)." of data transfer each month.<br><br>
 To what capacity would you like to upgrade to?<br>";
@@ -72,16 +76,20 @@ To what capacity would you like to upgrade to?<br>";
 			$ro = mysql_fetch_array($r);
 			if($i % 2){
 				$color = " bgcolor=\"#000000\" ";
+				$fnt1 = "<font color=\"#FFFFFF\"> ";
+				$fnt2 = "</font>";
 			}else{
 				$color = "";
+				$fnt1 = "";
+				$fnt2 = "";
 			}
-			$out .= '<tr><td><input type="radio" name="prod_id" value="'.$ro["id"].'"></td>';
-			$out .= "<td $color $nowrap >".$ro["name"].'</td>';
-			$out .= "<td $color $nowrap >".smartByte($ro["quota_disk"]*1024*1024).'</td>';
-			$out .= "<td $color $nowrap >".smartByte($ro["bandwidth"]*1024*1024).'</td>';
-			$out .= "<td $color $nowrap >".$ro["price_dollar"].'</td>';
+			$out .= '<tr><td>'.$fnt1.'<input type="radio" name="prod_id" value="'.$ro["id"].'">'.$fnt2.'</td>';
+			$out .= "<td $color $nowrap >$fnt1".$ro["name"].$fnt2.'</td>';
+			$out .= "<td $color $nowrap >$fnt1".smartByte($ro["quota_disk"]*1024*1024).$fnt2.'</td>';
+			$out .= "<td $color $nowrap >$fnt1".smartByte($ro["bandwidth"]*1024*1024).$fnt2.'</td>';
+			$out .= "<td $color $nowrap >$fnt1".$ro["price_dollar"].$fnt2.'</td>';
 
-			$out .= "<td $color $nowrap >".smartDate($ro["period"]).'</td></tr>';
+			$out .= "<td $color $nowrap >$fnt1".smartDate($ro["period"]).$fnt2.'</td></tr>';
 		}
 		$out .= '</table><center><input type="submit" value="Calculate price"></center></form>';
 		return $out;
@@ -104,21 +112,34 @@ To what capacity would you like to upgrade to?<br>";
 	$ze_price = $ro["price_dollar"];
 	$heber_price = $ze_price - $refundal;
 
+	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_upgrade_account"){
+		$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
+		if($ze_refund == 0){
+			$out .= "<font color=\"red\">The transaction failed, please try again!</font>";
+		}else{
+			$out .= "<font color=\"green\">Funds added to your account!</font><br>";
+			$q = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
+			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$admin["client"]["dollar"] += $ze_refund;
+			$remaining += $ze_refund;
+		}
+	}
+
 	$out .= "Remaining on your account: \$" . $remaining . "<br>
 New account price: \$". $ze_price . "<br>
 Past account refundal: \$". $refundal . "<br>
 Total price: \$". $heber_price . "<br>";
+
 	if($heber_price > $remaining){
 		$to_pay = $heber_price - $remaining;
 
-		$payButton = paynowButton($product_id,$to_pay);
+		$payid = createCreditCardPaiementID($to_pay,$admin["info"]["id_client"],
+			"Account upgrade: ".$ro["name"],"no");
+		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+		."&addrlink=$addrlink&action=upgrade_myaccount&prod_id=9&inner_action=return_from_paypal_upgrade_account&payid=$payid";
+		$payButton = paynowButton($payid,$heber_price,"Account upgrade: ".$ro["name"],$return_url);
 
-		$out .= "<br>You currently don't have enough funds on your account. You will be
-redirected to our paiement system. Please click on the button bellow
-to pay, and then click refresh button.<br><br>
-<br><br>
-$form_start<input type=\"submit\" value=\"Paiement done, let met checkout\">
-</form>";
+		$out .= "<br>".$txt_dtcrm_you_currently_dont_have_enough_funds[$lang]."<br><br>".$payButton;
 		return $out;
 	}
 

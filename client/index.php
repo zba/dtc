@@ -20,8 +20,7 @@ if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass))
 	$admin = fetchAdmin($adm_login,$adm_pass);
 	if(($error = $admin["err"]) != 0){
 		$mesg = $admin["mesg"];
-		$login_txt = "<font color=\"red\" Wrong login or password !</font><br>";
-		$login_txt .= "Error $error fetching admin : $mesg";
+		$login_txt = $txt_error[$lang]." $error ".$txt_fetching_admin[$lang]."<font color=\"red\">$mesg</font><br>";
 		$login_txt .= login_form();
 		$login_skined = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
 		$mypage = layout_login_and_languages($login_skined,$lang_sel);
