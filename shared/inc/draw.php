@@ -248,7 +248,8 @@ function drawAdminTools($admin){
 		}else if(@$add_array[1] == "mailing-lists"){
                         $web_editor .= "<img src=\"inc/mailing-lists.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_mailinglists[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_MailingLists($eddomain);
-			$title = $txt_title_maillinglist_form[$lang].$edit_domain;
+// To be translated:
+			$title = "Edit mailing lists of domain ".$edit_domain;
 		}else if(@$add_array[1] == "dns"){
                         $web_editor .= "<img src=\"inc/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_nameservers[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
