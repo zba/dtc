@@ -1,20 +1,13 @@
 Here is the todo in unsorted order:
 
-- Add support for wildcard DNS & Apache ServerAlias entries
-- Improove the MySQL database manager on the user side to
-allow creation/destruction of database and
-creation/addition/grant privileges/password management
-to mysql users
+- Add support for DNS wildcard
 - Add support for Freeradius (dlathem is doing it)
 - Add support for spamassassin & clamav
 - Add resseller interface
 - Add SSL support for customers
-- Enable multiple user delegation in SQL account manager
 - Integrate a mailling list manager (mlmmj : lupin3rd is doing it)
 - Find a SMART way to handle disk quotas
 - Finish tucows API integration
-- Make a windows port for cygwin using NDIS
-scriptable installer.
+- Make a windows port for cygwin using NDIS scriptable installer.
 
-If you think you can help in one of those,
-please contact thomas [ at ] goirand . fr
+If you think you can help in one of those, please contact thomas [ at ] goirand . fr

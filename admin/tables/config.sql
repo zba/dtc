@@ -44,5 +44,10 @@ domain_based_ftp_logins enum('yes','no') NOT NULL default 'no',
 hide_password enum('yes','no') NOT NULL default 'no',
 session_expir_minute int(9) NOT NULL default '10',
 skin varchar(128) NOT NULL default 'tex',
+srs_user varchar(128) NOT NULL default '',
+srs_live_key varchar(255) NOT NULL default '',
+srs_test_key varchar(255) NOT NULL default '',
+srs_enviro enum('LIVE','TEST') NOT NULL default 'TEST',
+srs_crypt enum('DES','BLOWFISH') NOT NULL default 'DES',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM

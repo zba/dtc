@@ -148,7 +148,12 @@ $dtc_database = array(
 			"domain_based_ftp_logins" => "enum('yes','no') NOT NULL default 'yes' ",
 			"unicrow2" => "int(11) NOT NULL default '1' ",
 			"root_admin_random_pass" => "varchar(128) NOT NULL ",
-			"pass_expire" => "int(12) NOT NULL default '1' "
+			"pass_expire" => "int(12) NOT NULL default '1' ",
+			"srs_user" => "varchar(128) NOT NULL default ''",
+			"srs_live_key" => "varchar(255) NOT NULL default ''",
+			"srs_test_key" => "varchar(255) NOT NULL default ''",
+			"srs_enviro" => "enum('LIVE','TEST') NOT NULL default 'TEST'",
+			"srs_crypt" => "enum('DES','BLOWFISH') NOT NULL default 'DES'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)",
