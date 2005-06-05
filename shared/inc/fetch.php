@@ -87,6 +87,7 @@ function fetchAdminStats($admin){
 	$query = "SELECT name,du_stat FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
 	$num_domains = mysql_num_rows($result);
+	$ret["total_ftp"] = 0;
 	for($ad=0;$ad<$num_domains;$ad++){
 		$domain_name = mysql_result($result,$ad,"name");
 		$ret["domains"][$ad]["name"] = $domain_name;

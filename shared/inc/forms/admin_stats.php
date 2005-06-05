@@ -74,7 +74,12 @@ function drawAdminTools_AdminStats($admin){
 	$out .= "<br><br><u><b>".$txt_databases_disk_usage[$lang]."</b></u>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
 	$out .= "<tr><td$nowrap><b>".$txt_database_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></tr>";
-	for($i=0;$i<sizeof($stats["db"]);$i++){
+	if(isset($stats["db"])){
+		$n = sizeof($stats["db"]);
+	}else{
+		$n = 0;
+	}
+	for($i=0;$i<$n;$i++){
 		if($i % 2){
 			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\" style=\"color:#FFFFFF\" ";
 		}else{

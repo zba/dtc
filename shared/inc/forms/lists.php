@@ -91,9 +91,9 @@ $txt .= "
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
-	".$txt_list_name[$lang]."</td><td><input type=\"text\" name=\"newlist_name\" value=\"$list_name\">
+	".$txt_list_name[$lang]."</td><td><input type=\"text\" name=\"newlist_name\" value=\"\">
 </td></tr><tr><td align=\"right\">";
-			$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"newlist_owner\" value=\"$list_owner\">";
+			$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"newlist_owner\" value=\"\">";
 $txt .= "
 </td></tr><tr>
 <td></td>
