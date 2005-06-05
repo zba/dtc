@@ -1,5 +1,45 @@
 <?php
 
+$txt_list_name = array(
+	"fr" => "Nom de la liste",
+	"en" => "List name",
+	"it" => "Nome lista",
+	"nl" => "TRANS List name",
+	"ru" => "TRANS List name",
+	"de" => "TRANS List name",
+	"zh" => "TRANS List name",
+	"es" => "TRANS List name");
+
+$txt_list_owner = array(
+	"fr" => "Propriétaire de la liste",
+	"en" => "List owner",
+	"it" => "Proprietario lista",
+	"nl" => "TRANS List owner",
+	"ru" => "TRANS List owner",
+	"de" => "TRANS List owner",
+	"zh" => "TRANS List owner",
+	"es" => "TRANS List owner");
+
+$txt_list_liste_of_your_ml = array(
+	"fr" => "Liste de vos mailing lists:",
+	"en" => "List of your mailing lists:",
+	"it" => "Lista delle tue mailing lists:",
+	"nl" => "TRANS List of your mailing lists:",
+	"ru" => "TRANS List of your mailing lists:",
+	"de" => "TRANS List of your mailing lists:",
+	"zh" => "TRANS List of your mailing lists:",
+	"es" => "TRANS List of your mailing lists:");
+
+$txt_list_new_list = array(
+	"fr" => "New mailing list:",
+	"en" => "New mailing list:",
+	"it" => "Nuova mailing list:",
+	"nl" => "TRANS New mailing list:",
+	"ru" => "TRANS New mailing list:",
+	"de" => "TRANS New mailing list:",
+	"zh" => "TRANS New mailing list:",
+	"es" => "TRANS New mailing list:");
+
 $txt_number_of_database = array(
 "fr" => "Nombre de base de données :",
 "en" => "Number of databases:",
@@ -4385,3 +4425,4 @@ Opensource driven| hosting worldwide  /_____/                         |HOST.  </
 ");
 
 ?>
+>>>>>>> 1.38

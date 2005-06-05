@@ -22,7 +22,7 @@ $pro_mysql_secpayconf_table = "secpayconf";
 $pro_mysql_backup_table = "backup";
 $pro_mysql_fetchmail_table = "fetchmail";
 $pro_mysql_whitelist_table = "whitelist";
-
+$pro_mysql_list_table = "mailinglist";
 $pro_mysql_acc_http_table = "http_accounting";
 $pro_mysql_acc_ftp_table = "ftp_accounting";
 $pro_mysql_acc_email_table = "email_accounting";
