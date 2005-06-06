@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/makeDebianSource,v $
-# $Date: 2005/05/20 05:37:04 $
-# $Revision: 1.3 $
+# $Date: 2005/06/06 02:18:46 $
+# $Revision: 1.4 $
 
 
 VERS=`cat version`
@@ -159,6 +159,7 @@ then
 	cd $curdir
 fi
 cp sources/dtc_db.php sources/restor_db.php debian-src/dtc-$VERS/admin
+cp sources/dtc_db.php sources/restor_db.php debian-src/dtc-$VERS.orig/admin
 
 # Make the config file directory and script using standard
 # plus debian specific scripts
