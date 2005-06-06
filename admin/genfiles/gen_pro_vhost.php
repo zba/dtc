@@ -257,6 +257,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html/
 $vhost_more_conf	php_admin_value safe_mode 1
 	php_admin_value sendmail_from webmaster@$web_name
+	php_value session.save_path $web_path/$web_name/subdomains/$web_subname/tmp
 	<Location />
 		php_admin_value open_basedir \"$web_path/$web_name/:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>

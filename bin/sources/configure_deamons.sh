@@ -32,14 +32,28 @@ if [ -z ""$MYSQL_DB_SOCKET_PATH ] ;then
 	MYSQL_DB_SOCKET_PATH="/var/run/mysqld/mysqld.sock"
 fi
 
+
+# Copy newly created chroot tree to the 3 vhosts created with this installer (mx and ns don't have apache vhosts generated)
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "===> Adding chroot environment to www."$main_domain_name
+	echo -n "===> Adding chroot environment to www."$main_domain_name
 fi
 cp -fupR  $conf_chroot_path $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+	echo -n " "$dtc_admin_subdomain"."$main_domain_name
 fi
-chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+cp -fupR  $conf_chroot_path $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404"
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo -n " 404."$main_domain_name
+fi
+cp -fupR  $conf_chroot_path $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains"
+fi
+chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains"
+
 
 if ! [ -f $PATH_DTC_SHARED/shared/securepay/paiement_config.php ] ; then
 	cp -v $PATH_DTC_SHARED/shared/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/shared/securepay/paiement_config.php
