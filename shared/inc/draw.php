@@ -175,18 +175,18 @@ function drawAdminTools($admin){
 				"text" => $txt_cmenu_packageinstaller[$lang],
 				"type" => "link",
 				"link" => "package-installer");
-			if($admin_data[$i]["primary_mx"] == "default"){
-				$domain_conf_submenu[] = array(
-					"text" => $txt_cmenu_mailboxs[$lang],
-					"type" => "link",
-					"link" => "mailboxs");
-			}
-			if($admin_data[$i]["primary_mx"] == "default"){
-				$domain_conf_submenu[] = array(
-					"text" => $txt_cmenu_mailinglists[$lang],
-					"type" => "link",
-					"link" => "mailing-lists");
-			}
+		}
+		if($admin_data[$i]["primary_mx"] == "default"){
+			$domain_conf_submenu[] = array(
+				"text" => $txt_cmenu_mailboxs[$lang],
+				"type" => "link",
+				"link" => "mailboxs");
+		}
+		if($admin_data[$i]["primary_mx"] == "default"){
+			$domain_conf_submenu[] = array(
+				"text" => $txt_cmenu_mailinglists[$lang],
+				"type" => "link",
+				"link" => "mailing-lists");
 		}
 		if($add_array[0] == $dom){
 		  $selected_domain = array(
