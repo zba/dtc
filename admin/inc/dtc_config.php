@@ -462,7 +462,7 @@ function drawRegistryApiConfig(){
 
   $out = "";
         $out .= "<h2><u>".$txt_cfg_registry_api_title[$lang]."</u></h2>
-        <h3>Tucows</h3>";
+        <b><u>Tucows</u></b><br><img src=\"gfx/tucows.jpg\"><br>Note: you must have a Tucows reseller account.";
 
         if($conf_srs_enviro == "yes"){
           $use_live_system_yes = " checked";
