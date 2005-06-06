@@ -34,14 +34,19 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		}
 		if($pkg_info["unpack_type"] == "tar.gz"){
 			$cmd = "tar -C $target -xvzf $pkg_path/".$pkg_info["file"];
-			$x = $cmd."\n";
-//			echo $cmd;
-//			exec($cmd,$exec_out,$return_val);
-//			$n = sizeof($exec_out);
-//			$x = "";
-//			for($i=0;$i<$n;$i++)	$x .= $exec_out[$i]."\n";
+			$x = "tar -xvzf ".$pkg_info["file"]."\n";
+			exec($cmd,$exec_out,$return_val);
+		}else if($pkg_info["unpack_type"] == "tar.bz2"){
+			$cmd = "tar -C $target -xvjf $pkg_path/".$pkg_info["file"];
+			$x = "tar -xvjf ".$pkg_info["file"]."\n";
+			exec($cmd,$exec_out,$return_val);
 		}else{
 			die("Package methode not supported yet");
+		}
+		if(isset($pkg_info["renamedir_to"]) && isset($pkg_info["resulting_dir"]) && $pkg_info["resulting_dir"] != $pkg_info["renamedir_to"]){
+			$cmd = "mv $target/".$pkg_info["resulting_dir"]." $target/".$pkg_info["renamedir_to"];
+			$x .= "mv".$pkg_info["resulting_dir"]." ".$pkg_info["renamedir_to"]."\n";
+			exec($cmd,$exec_out,$return_val);
 		}
 		$txt .= "<b><u>Installation of ".$pkg_info["name"].":</u></b><br><pre>$x</pre>";
 		return $txt;
