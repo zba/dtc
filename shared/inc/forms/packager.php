@@ -11,19 +11,63 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 	global $dtcshared_path;
 	global $lang;
 
+	global $pro_mysql_subdomain_table;
+
+	$txt = "";
 	$dir = $dtcshared_path."/package-installer";
 
-	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "prepareinstall"){
+	if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "do_install" || $_REQUEST["action"] == "prepareinstall")){
 		$pkg_path = $dir."/".$_REQUEST["pkg"];
 		$dtc_pkg_info = $pkg_path."/dtc-pkg-info.php";
 		if(!file_exists($dtc_pkg_info)){
 			die("Package $dtc_pkg_info not found line ".__LINE__." file ".__FILE__);
 		}
 		include($dtc_pkg_info);
+	}
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "do_install"){
+		checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+		checkSubdomainFormat($_REQUEST["subdomain"]);
+		$admin_path = getAdminPath($adm_login);
+		$target = "$admin_path/$edit_domain/subdomains/".$_REQUEST["subdomain"]."/html";
+		if(!is_dir($target)){
+			die("Destination directory does not exists line ".__LINE__." file ".__FILE__);
+		}
+		if($pkg_info["unpack_type"] == "tar.gz"){
+			$cmd = "tar -C $target -xvzf $pkg_path/".$pkg_info["file"];
+			$x = $cmd."\n";
+//			echo $cmd;
+//			exec($cmd,$exec_out,$return_val);
+//			$n = sizeof($exec_out);
+//			$x = "";
+//			for($i=0;$i<$n;$i++)	$x .= $exec_out[$i]."\n";
+		}else{
+			die("Package methode not supported yet");
+		}
+		$txt .= "<b><u>Installation of ".$pkg_info["name"].":</u></b><br><pre>$x</pre>";
+		return $txt;
+	}
+
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "prepareinstall"){
 		$txt = "<b><u>You are about to install ".$pkg_info["name"].":</u></b><br>
 		<u>Description:</u> ".$pkg_info["long_desc"]."<br>
 		<u>Version:</u> ".$pkg_info["version"]."<br><br>";
-		$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=do_install&pkg=".$_REQUEST["pkg"]."\">INSTALL</a>";
+
+		$txt .= "<b><u>Choose the subdomain and install :</u></b><br>";
+		$txt .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+		<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+		<input type=\"hidden\" name=\"action\" value=\"do_install\">
+		<input type=\"hidden\" name=\"pkg\" value=\"".$_REQUEST["pkg"]."\">
+		<select name=\"subdomain\">";
+//		echo "<pre>";
+//		print_r($domain);
+//		echo "</pre>";
+		$n = sizeof($domain["subdomains"]);
+		for($i=0;$i<$n;$i++){
+			$txt .= "<option value=\"".$domain["subdomains"][$i]["name"]."\">".$domain["subdomains"][$i]["name"]."</option>";
+		}
+		$txt .= "</select><input type=\"submit\" value=\"Install\"></form>";
 		return $txt;
 	}
 	$txt = "<b><u>Choose a package to install:</u></b>";
