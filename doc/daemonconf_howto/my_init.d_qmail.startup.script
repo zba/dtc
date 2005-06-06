@@ -1,3 +1,6 @@
+
+# REMOVE THOSE 3 FIRST LINES BEFORE INSTALLING
+
 #!/bin/bash
 #
 # /etc/init.d/qmail : start or stop the qmail mail subsystem.

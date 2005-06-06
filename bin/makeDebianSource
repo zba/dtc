@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/makeDebianSource,v $
-# $Date: 2005/06/06 02:18:46 $
-# $Revision: 1.4 $
+# $Date: 2005/06/06 18:47:23 $
+# $Revision: 1.5 $
 
 
 VERS=`cat version`
@@ -32,6 +32,7 @@ mkdir -p debian-src/dtc-$VERS
 # Copy DTC's files into the two directories above
 cp -rf ../doc ../admin ../client ../shared ../email debian-src/dtc-$VERS.orig
 cp -rf ../doc ../admin ../client ../shared ../email debian-src/dtc-$VERS
+rm -rf debian-src/dtc-$VERS.orig/doc/LICENSE debian-src/dtc-$VERS/doc/LICENSE
 
 # now create an empty Makefile for dh_make
 cat > debian-src/dtc-$VERS/Makefile << Make-File
@@ -48,27 +49,27 @@ install:
 	cp -rf doc admin client shared email \$(DESTDIR)/usr/share/dtc
 	if ! [ -e \$(DESTDIR)/usr/share/dtc/admin/gfx ] ; \
 	then \
-		ln -s /usr/share/dtc/shared/gfx \$(DESTDIR)/usr/share/dtc/admin/gfx  ;\
+		ln -s ../shared/gfx \$(DESTDIR)/usr/share/dtc/admin/gfx  ;\
 	fi
 	if ! [ -e \$(DESTDIR)/usr/share/dtc/email/gfx ]  ;\
 	then \
-		ln -s /usr/share/dtc/shared/gfx \$(DESTDIR)/usr/share/dtc/email/gfx  ;\
+		ln -s ../shared/gfx \$(DESTDIR)/usr/share/dtc/email/gfx  ;\
 	fi
 	if ! [ -e \$(DESTDIR)/usr/share/dtc/client/gfx ]  ;\
 	then \
-		ln -s /usr/share/dtc/shared/gfx \$(DESTDIR)/usr/share/dtc/client/gfx  ;\
+		ln -s ../shared/gfx \$(DESTDIR)/usr/share/dtc/client/gfx  ;\
 	fi
 	if ! [ -e \$(DESTDIR)/usr/share/dtc/admin/imgcache ]  ;\
 	then \
-		ln -s /usr/share/dtc/shared/imgcache \$(DESTDIR)/usr/share/dtc/admin/imgcache  ;\
+		ln -s ../shared/imgcache \$(DESTDIR)/usr/share/dtc/admin/imgcache  ;\
 	fi
 	if ! [ -e \$(DESTDIR)/usr/share/dtc/client/imgcache ] ;\
 	then \
-		ln -s /usr/share/dtc/shared/imgcache \$(DESTDIR)/usr/share/dtc/client/imgcache ;\
+		ln -s ../shared/imgcache \$(DESTDIR)/usr/share/dtc/client/imgcache ;\
 	fi
 	if ! [ -e \$(DESTDIR)/usr/share/dtc/email/imgcache ] ;\
 	then \
-		ln -s /usr/share/dtc/shared/imgcache \$(DESTDIR)/usr/share/dtc/email/imgcache ;\
+		ln -s ../shared/imgcache \$(DESTDIR)/usr/share/dtc/email/imgcache ;\
 	fi
 	@#now for documentation
 	@-mkdir -p \$(DESTDIR)/usr/share/doc/dtc/upstream
