@@ -613,7 +613,6 @@ smtpd_tls_auth_only = no
 		# if we have maildrop, we should use it!
 		if [ -f "/usr/sbin/userdb" ]; then
 			echo "virtual_transport = maildrop" >> $TMP_FILE
-			echo "fallback_transport = procmail" >> $TMP_FILE
 			echo "## Set to 1 because Maildrop only delivers one message at a time.
 maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			if grep "Configured by DTC" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
