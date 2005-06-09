@@ -43,11 +43,8 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 		$toreg_extention = substr($given_fqdn,$c);
 		$toreg_domain = substr($given_fqdn,0,$c);
 	}
-//echo $toreg_domain."<br>";
-//echo $toreg_extention."<br>";
 
-// $_REQUEST["add_domain_type"]
-
+	// Step 1: enter domain name and check domain transferability
 	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -56,7 +53,7 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 <input type=\"hidden\" name=\"add_regortrans\" value=\"transfer\">
 <input type=\"hidden\" name=\"add_domain_type\" value=\"".$_REQUEST["add_domain_type"]."\">
 ";
-//	registry_check_transfer($domain)
+
 	$out .= "<b><u>".$txt_transfer_from_another_registrar[$lang]."</u></b><br>
 <i><u>".$txt_dtcrm_step1_check_domain_is_transferable[$lang]."</u></i>";
 
@@ -78,17 +75,19 @@ $form_enter_domain_name";
 	if($regz["is_success"] != 1){
 		die("<font color=\"red\">".$txt_dtcrm_transfer_check_failed[$lang]."</font>");
 	}
-	$regz["attributes"]["transferrable"] = 1;
+
 	if($regz["attributes"]["transferrable"] != 1){
-		$out .= "<font color=\"red\">".$txt_dtcrm_transfer_check_failed[$lang]."</font><br>
+		$out .= "<br><font color=\"red\">".$txt_dtcrm_transfer_check_failed[$lang]."</font><br>
 ".$txt_dtcrm_server_said[$lang].$regz["attributes"]["reason"]."<br>
-$form_start<input type=\"submit\" value=\"Go back\"></form>";
+$form_start<br>
+".$txt_dtcrm_enter_the_domain_name_to_transfer[$lang]."<br>
+$form_enter_domain_name";
 		return $out;
 	}
-	$out .= "<br><font color=\"green\">".$txt_dtcrm_transfer_check_successfull[$lang]."</font><br>
-".$txt_dtcrm_server_said[$lang].$regz["attributes"]["reason"]."<br><br>
-<i><u>".$txt_dtcrm_step2_select_contact_transfer[$lang]."</u></i><br>
-";
+	$out .= "<br><font color=\"green\">".$txt_dtcrm_transfer_check_successfull[$lang]."</font><br><br>";
+
+	// Step 2: enter whois infos
+	$out .= "<i><u>".$txt_dtcrm_step2_select_contact_transfer[$lang]."</u></i><br>";
 	if(	!isset($_REQUEST["dtcrm_owner_hdl"]) || $_REQUEST["dtcrm_owner_hdl"] == "" ||
 		!isset($_REQUEST["dtcrm_admin_hdl"]) || $_REQUEST["dtcrm_admin_hdl"] == "" ||
 		!isset($_REQUEST["dtcrm_billing_hdl"]) || $_REQUEST["dtcrm_billing_hdl"] == "" ||
@@ -116,6 +115,7 @@ $form_start<input type=\"submit\" value=\"Go back\"></form>";
 		return $out;
 	}
 
+	// Step 3: check account balance and transfer the domain name after transaction aprooval
 	$out .= "<i><u>Step3: Proceed for transfer</u></i><br>";
 	$out .= $txt_dtcrm_remaining_on_your_account[$lang]." \$" . $remaining . "<br>
 ".$txt_dtcrm_total_price[$lang]." \$". $fqdn_price . "<br><br>";
@@ -155,11 +155,14 @@ $form_start<input type=\"submit\" value=\"Go back\"></form>";
 $paybutton";
 		return $out;
 	}
-	$out .= "$form_start
-<input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
+	if(!isset($_REQUEST["toreg_confirm_reg"]) || $_REQUEST["toreg_confirm_reg"] == "yes"){
+		$out .= "$form_start
+<input type=\"hidden\" name=\"toreg_confirm_transfer\" value=\"yes\">
 <input type=\"submit\" value=\"Proceed transfer\">
 </form>
 ";
+		return $out;
+	}
 	return $out;
 }
 
