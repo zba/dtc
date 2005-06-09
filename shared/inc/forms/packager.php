@@ -13,6 +13,8 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 
 	global $pro_mysql_subdomain_table;
 
+	global $conf_mysql_db;
+
 	$txt = "";
 	$dir = $dtcshared_path."/package-installer";
 
@@ -57,12 +59,34 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		<u>Description:</u> ".$pkg_info["long_desc"]."<br>
 		<u>Version:</u> ".$pkg_info["version"]."<br><br>";
 
-		$txt .= "<b><u>Choose the subdomain and install :</u></b><br>";
 		$txt .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-		<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-		<input type=\"hidden\" name=\"action\" value=\"do_install\">
+		<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
+		if($pkg_info["need_database"] == "yes"){
+			$txt .= "<b><u>Choose a database name for setup:</u></b><br>";
+			mysql_select_db("mysql")or die ("Cannot select db: mysql");
+			$q = "SELECT db.Db FROM user,db
+			WHERE user.dtcowner='$adm_login'
+			AND db.User=user.User";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			if($n < 1){
+				$txt .= "You don't have any database yet. Please create one using the database tool
+				(click database in the menu, then create a user and a database for this user).";
+				return $txt;
+			}
+			$txt .= "<select name=\"database_name\">";
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				$txt .= "<option value=\"".$a["Db"]."\">".$a["Db"]."</option>";
+			}
+			$txt .= "</select><br><br>";
+			mysql_select_db($conf_mysql_db)or die ("Cannot select db: $conf_mysql_db");
+		}
+
+		$txt .= "<b><u>Choose the subdomain and install :</u></b><br>";
+		$txt .= "<input type=\"hidden\" name=\"action\" value=\"do_install\">
 		<input type=\"hidden\" name=\"pkg\" value=\"".$_REQUEST["pkg"]."\">
 		<select name=\"subdomain\">";
 //		echo "<pre>";
