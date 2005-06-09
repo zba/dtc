@@ -67,6 +67,7 @@ function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 
 function checkLoginPass($adm_login,$adm_pass){
 	global $pro_mysql_admin_table;
+	global $pro_mysql_config_table;
 
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
