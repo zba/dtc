@@ -1,5 +1,17 @@
 <?php
 
+$txt_cfg_use_des_or_blowfish = array(
+"fr" => "Type d'encryption utilisé pour se connecter au serveur Tucows :",
+"en" => "Type of encryption for connecting to Tucows server:",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"es" => "TRANS ");
+
 $txt_cfg_registry_api_title = array(
 "fr" => "Configuration de l'API d'enregistrement de nom de domaine",
 "en" => "Domain name registry API configuraiton",

@@ -536,8 +536,8 @@ $txt_sorry_domain_name_not_available1 = array(
 "es" => "TRANS ");
 
 $txt_sorry_domain_name_not_available2 = array(
-"fr" => " n'est PAS disponible, le serveur a retourner : ",
-"en" => "NOT available for registration. Registration server returned: ",
+"fr" => "n'est PAS disponible, le serveur a retourner : ",
+"en" => "is NOT available for registration. Registration server returned: ",
 "hu" => "Nem regisztrálható. A regisztrációs szerver a következõvel tért vissza: ",
 "it" => "TRANS ",
 "nl" => "TRANS ",

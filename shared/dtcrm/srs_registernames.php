@@ -2,6 +2,7 @@
 
 function SRSregistry_check_availability($domain_name){
 	$O = new openSRS('test','XCP');
+	$O->initAuth();
 	$cmd = array(
 		'action' => 'lookup',
 		'object' => 'domain',
@@ -16,6 +17,7 @@ function SRSregistry_check_availability($domain_name){
 
 function SRSregistry_get_domain_price($domain_name,$period){
 	$O = new openSRS('test','XCP');
+	$O->initAuth();
 	$cmd = array(
 		"protocol" => "XCP",
 		"action" => "get_price",
@@ -72,6 +74,7 @@ function SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$
 		)
 	);
 	$O = new openSRS('test','XCP');
+	$O->initAuth();
 	$srs_result = $O->send_cmd($cmd);
 	return $srs_result;
 

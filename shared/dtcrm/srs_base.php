@@ -9,6 +9,19 @@ class openSRS extends openSRS_base {
 	var $environment      = 'TEST';              # 'TEST' or 'LIVE'
 	var $crypt_type       = 'DES';               # 'DES' or 'BLOWFISH';
 	var $ext_version      = 'Foobar';            # anything you want
+
+	function initAuth(){
+		global $conf_srs_user;
+		global $conf_srs_test_key;
+		global $conf_srs_live_key;
+		global $conf_srs_crypt;
+		global $conf_srs_enviro;
+		$this->USERNAME = $conf_srs_user;
+		$this->TEST_PRIVATE_KEY = $conf_srs_test_key;
+		$this->LIVE_PRIVATE_KEY = $conf_srs_live_key;
+		$this->crypt_type = $conf_srs_crypt;
+		$this->environment = $conf_srs_enviro;
+	}
 }
 
 // Return an SRS cookie value

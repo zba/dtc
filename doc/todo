@@ -1,5 +1,11 @@
 Here is the todo in unsorted order:
 
+- Make the user deletion delete new type of database
+- Make dpkg-reconfigure regenerat the config files for named & apache
+- Replace the # caracter in table names by $ so it works with v2 of
+mod_log_sql
+
+
 - Add support for DNS wildcard
 - Add support for Freeradius (dlathem is doing it)
 - Add support for spamassassin & clamav

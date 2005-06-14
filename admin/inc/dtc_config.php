@@ -454,26 +454,38 @@ function drawRegistryApiConfig(){
   global $txt_cfg_tucows_username;
   global $txt_cfg_tucows_live_server_key;
   global $txt_cfg_tucows_test_server_key;
+  global $txt_cfg_use_des_or_blowfish;
 
   global $conf_srs_user;
   global $conf_srs_live_key;
   global $conf_srs_test_key;
+  global $conf_srs_crypt;
   global $conf_srs_enviro;
 
   $out = "";
         $out .= "<h2><u>".$txt_cfg_registry_api_title[$lang]."</u></h2>
         <b><u>Tucows</u></b><br><img src=\"gfx/tucows.jpg\"><br>Note: you must have a Tucows reseller account.";
 
-        if($conf_srs_enviro == "yes"){
-          $use_live_system_yes = " checked";
+        if($conf_srs_crypt == 'DES'){
+          $use_des = " checked ";
+          $use_blowfish = "";
+        }else{
+          $use_des = "";
+          $use_blowfish = " checked ";
+        }
+
+        if($conf_srs_enviro == "LIVE"){
+          $use_live_system_yes = " checked ";
           $use_live_system_no = "";
         }else{
           $use_live_system_yes = "";
-          $use_live_system_no = " checked";
+          $use_live_system_no = " checked ";
         }
 
 	$out .= "<table with=\"100%\" height=\"1\">
 <tr><td align=\"right\" nowrap>
+	".$txt_cfg_use_des_or_blowfish[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"DES\" name=\"srs_crypt\"$use_des> DES <input type=\"radio\" value=\"BLOWFISH\" name=\"srs_crypt\"$use_blowfish> Blowfish </td>
+</tr><tr><td align=\"right\" nowrap>
 	".$txt_cfg_use_test_or_live[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"LIVE\" name=\"srs_enviro\"$use_live_system_yes> Yes <input type=\"radio\" value=\"TEST\" name=\"srs_enviro\"$use_live_system_no> No</td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_tucows_username[$lang]."</td>

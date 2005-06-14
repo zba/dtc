@@ -29,7 +29,7 @@
  **************************************************************************
  *
  * vim: set expandtab tabstop=4 shiftwidth=4:
- * $Id: openSRS_base.php,v 1.2 2005/06/03 02:04:36 thomas Exp $
+ * $Id: openSRS_base.php,v 1.3 2005/06/14 03:10:54 thomas Exp $
  *
  **************************************************************************
  */
@@ -580,10 +580,12 @@ class openSRS_base extends PEAR {
 
 		# create a socket
 
+		echo "Connecting to ".$this->REMOTE_HOST;
 		$this->_socket = fsockopen($this->REMOTE_HOST, $this->REMOTE_PORT,
 			$this->_socket_err_num, $this->_socket_err_msg, $this->connect_timeout );
 
 		if (!$this->_socket) {
+			echo "Socket not created!";
 			return false;
 		} else {
 			$this->_log('i','Socket initialized: ' . $this->REMOTE_HOST . ':' . $this->REMOTE_PORT );
@@ -675,13 +677,22 @@ class openSRS_base extends PEAR {
 
 		$answer = $this->read_data();
 
-		if (substr($answer['response_code'],0,1)== '2') {
+
+		if (isset($answer['response_code']) && substr($answer['response_code'],0,1)== '2') {
 			$this->_authenticated = true;
 			return array('is_success' => true);
 		} else {
+	                ob_start();
+			echo "<pre>";
+	                print_r($answer);
+			echo "</pre>";
+	                $temp .= ob_get_contents() . "\n";
+			ob_end_clean();
+
 			return array(
 				'is_success'	=> false,
-				'error'			=> 'Authentication failed'
+				'error'			=> 'Authentication failed',
+				'answer'	=> $temp
 			);
 		}
 	}

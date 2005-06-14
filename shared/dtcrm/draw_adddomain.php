@@ -170,8 +170,8 @@ $form_start $form_enter_domain_name</form>";
 
 	if($domlookup["attributes"]["status"] != "available"){
 		$out .= "<br>
-".$txt_sorry_domain_name_not_available1[$lang]."<b>$fqdn</b>".$txt_sorry_domain_name_not_available2[$lang]
-."<br><font color=\"red\">" . $srs_result["response_text"] . "</font>
+".$txt_sorry_domain_name_not_available1[$lang]." <b>$fqdn</b> ".$txt_sorry_domain_name_not_available2[$lang]
+."<br><font color=\"red\">" . $domlookup["response_text"] . "</font>
 <br><br>
 Have another try:<br>$form_start $form_enter_domain_name</form>";
 		return $out;
