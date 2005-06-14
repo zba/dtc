@@ -293,7 +293,15 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 	global $conf_chroot_path;
 	global $conf_generated_file_path;
 
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	global $conf_root_admin_random_pass;
+	global $conf_pass_expire;
+
+	if($conf_root_admin_random_pass == $adm_pass &&  $conf_pass_expire > mktime()){
+		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+	}else{
+		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	}
+
 	$result = mysql_query($query)or die("Cannot query : \"$query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$numrows = mysql_num_rows($result);
 	if($numrows != 1){
