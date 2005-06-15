@@ -1,6 +1,7 @@
 <?php
 
 function awstat_script_generate(){
+	return; //this is disabled for now :)
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
 	global $pro_mysql_subdomain_table;
@@ -41,13 +42,21 @@ function awstat_script_generate(){
 		$web_name = $row["name"];
 		$web_owner = $row["owner"];
 		$web_default_subdomain = $row["default_subdomain"];
-
+		if (strlen($web_owner) == 0)
+		{
+			continue;
+		}
 		// Get the owner informations
 		$query2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$web_owner';";
-		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
+		$result2 = mysql_query ($query2);
+		if (!$result2) {
+			echo "Failed to execute query: \"$query2\"";
+			continue;
+		}
 		$num_rows2 = mysql_num_rows($result2);
 		if($num_rows2 != 1){
-			die("No user of that name !");
+			echo "No user of that name $web_owner !";
+			continue;
 		}
 		$webadmin = mysql_fetch_array($result2) or die ("Cannot fetch user");
 		$web_path = $webadmin["path"];
@@ -69,7 +78,7 @@ function awstat_script_generate(){
 				// Variable to use : $web_name $web_owner $web_subname
 				$stat_script .= "
 AWSTATS_LOG_FILE=$web_path/$web_name/subdomains/$web_subname/logs/$web_subname" . "_" . $web_name . ".tempaccess.log" . "
-if [ -f $AWSTATS_LOG_FILE ]; then
+if [ -f \$AWSTATS_LOG_FILE ]; then
 	AWSTATS_FULL_DOMAIN=$web_subname.$web_name
 	AWSTATS_DIR_DATA=$web_path/$web_name/subdomains/$web_subname/awstats
 	export AWSTATS_LOG_FILE AWSTATS_FULL_DOMAIN AWSTATS_DIR_DATA
