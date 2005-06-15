@@ -1,8 +1,9 @@
 <?php
 
 // db: add field dtc.backup: status enum('pending','done') default 'pending';
-
-function get_remote_mail($a){
+// $recipients = 1 (means email list)
+// $recipients = 0 (means domain list)
+function get_remote_mail($a,$recipients){
 	global $conf_use_ssl;
 	global $console;
 	global $keep_mail_generate_flag;
@@ -10,7 +11,11 @@ function get_remote_mail($a){
 	$flag = false;
 	$retry = 0;
 	$rcpthosts_file = ""; //init variable here
-	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"];
+	if ($recipients == 1){
+		$url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx_recipients&login='.$a["server_login"].'&pass='.$a["server_pass"];
+	} else {
+		$url = $a["server_addr"].'/dtc/list_domains.php?action=list_mx&login='.$a["server_login"].'&pass='.$a["server_pass"];
+	}
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
 		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
@@ -19,8 +24,14 @@ function get_remote_mail($a){
 			$console .= "<br>Using lynx -source on ".$a["server_addr"]." with login ".$a["server_login"]."...";
 			$result = exec("lynx -source \"$url\"",$lines,$return_val);
 			$nline = sizeof($lines);
-			if(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
-				strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>")){
+			if(
+				(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
+				strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>")
+				) ||
+				( $recipients == 1 && strstr($lines[0],"<dtc_backup_mx_recipient_list>") &&
+				strstr($lines[$nline-1],"</dtc_backup_mx_recipient_list>")
+				)
+			){
 				for($j=1;$j<$nline-1;$j++){
 					$rcpthosts_file .= $lines[$j]."\n";
 				}
@@ -29,13 +40,21 @@ function get_remote_mail($a){
 			}else{
 				$console .= "Failed!<br>\n";
 			}
+
+			
 //			$rcpthosts_file .= "";
 		}else{
 			$console .= "<br>Using php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"]."...";
 			$lines = file ($url);
 			$nline = sizeof($lines);
-			if(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
-				strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>")){
+			if(
+				(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
+				strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>")
+				) ||
+				( $recipients == 1 && strstr($lines[0],"<dtc_backup_mx_recipient_list>") &&
+				strstr($lines[$nline-1],"</dtc_backup_mx_recipient_list>")
+				)
+			){
 				for($j=1;$j<$nline-1;$j++){
 					$rcpthosts_file .= $lines[$j];
 				}
@@ -57,11 +76,23 @@ function get_remote_mail($a){
 }
 
 function get_remote_mail_domains(){
+	return get_remote_mail_domains_internal(0);
+}
+
+function get_remote_mail_recipients(){
+	return get_remote_mail_domains_internal(1);
+}
+
+// $recipients = 1 (means email list)
+// $recipients = 0 (means domain list)
+function get_remote_mail_domains_internal($recipients)
+{
 	global $pro_mysql_backup_table;
 	global $conf_generated_file_path;
 	global $console;
 
 	$domain_list = "";
+	$recipient_list = "";
 
 	// Get all domains from the servers for wich we act as backup MX
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='mail_backup';";
@@ -74,9 +105,15 @@ function get_remote_mail_domains(){
 		$u = remove_url_protocol($a["server_addr"]);
 		if($u == false)	return false;
 		$f = $conf_generated_file_path."/mail_domains.".$u;
+		$f_recipients = $conf_generated_file_path."/mail_recipients.".$u;
 		if($a["status"] == "pending" || !file_exists($f)){
-			$console .= "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk.<br>\n";
-			$remote_file = get_remote_mail($a);
+			if ($recipients == 1)
+			{ 
+				$console .= "Getting mail recipient list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk.<br>\n";
+			} else {
+				$console .= "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk.<br>\n";
+			}
+			$remote_file = get_remote_mail($a, 0);
 			if($remote_file != false){
 				$fp = fopen($f,"w+");
 				fwrite($fp,$remote_file);
@@ -88,8 +125,35 @@ function get_remote_mail_domains(){
 				$size = ftell($fp);
 				fclose($fp);
 
+				//now grab the recipients for these remote MX
+				$remote_file_recipients = get_remote_mail($a, 1);
+
+				if (! $remote_file_recipients)
+				{
+					//since we couldn't get the remote file, we need to relay for all emails
+					//TODO loop through each line, and prepend @
+					$domain_list = explode ("\n", $remote_file);
+					$remote_file_recipients = "";
+					foreach($domain_list as $domain)
+					{
+						if (isset($domain) && strlen($domain) > 0) {
+							$remote_file_recipients .= "@" . $domain . "\n";
+						}
+					}
+				}
+				$fp = fopen($f_recipients,"w+");
+				fwrite($fp,$remote_file_recipients);
+				fclose($fp);
+
+				// Check file is not zero lenght
+				$fp = fopen($f_recipients,"r");
+				fseek($fp,0,SEEK_END);
+				$size = ftell($fp);
+				fclose($fp);
+
 				if ($size > 0){
 					$domain_list .= $remote_file;
+					$recipient_list .= $remote_file_recipients;
 					$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
 					$r2 = mysql_query($q2)or die("Cannot query $q2 ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
 					$console .= "ok!<br>";
@@ -102,14 +166,48 @@ function get_remote_mail_domains(){
 			}
 		}
 		if($flag == false){
-			if (file_exists($f)){
-				$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>\n";
+			$f_domains = $f;
+			if ($recipients == 1)
+			{
+				$f = $f_recipients;
+			}
+			if (file_exists($f) || $recipients == 1){
+				if ($recipients == 1){
+					$console .= "Using mail recipient list from cache of ".$a["server_addr"]."...<br>\n";
+				} else {
+					$console .= "Using mail recipient list from cache of ".$a["server_addr"]."...<br>\n";
+				}
+				//if our recipient file doesn't exist, but our domains one does
+				if (!file_exists($f) && $recipients == 1 && file_exists($f_domains)) 
+				{
+					$f = $f_domains;
+				}
+				
 				$fp = fopen($f,"r");
 				fseek($fp,0,SEEK_END);
 				$size = ftell($fp);
 				if ($size > 0){
 					fseek($fp,0);
-					$domain_list .= fread($fp,$size);
+					if ($recipients == 1)
+					{
+						if ($f == $f_domains)
+						{
+							//we need to generate a fake recipient file for now
+							$domain_list .= fread($fp,$size);
+							$domains_array = explode("\n", $domain_list);
+							foreach($domains_array as $domain)
+							{
+								if (isset($domain) && strlen($domain) > 0){
+									$recipient_list .= "@" . $domain . "\n";
+								}
+							}
+						} else { 
+							//we have a real recipient file to read here
+							$recipient_list .= fread($fp,$size);
+						}
+					} else {
+						$domain_list .= fread($fp,$size);
+					}
 				} else {
 					$console .= "File [" . $f . "] is empty<br>\n";
 				}
@@ -119,7 +217,12 @@ function get_remote_mail_domains(){
 			}
 		}
 	}
-	return $domain_list;
+	if ($recipients == 1)
+	{
+		return $recipient_list;
+	} else {
+		return $domain_list;
+	}
 }
 
 ?>

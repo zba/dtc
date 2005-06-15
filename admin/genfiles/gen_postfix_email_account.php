@@ -19,6 +19,10 @@
  * domain.name
  * domain2.name
  *
+ * /usr/share/dtc/etc/postfix_relay_recipients
+ * emailaddress@domain.com	OK
+ * emailaddress2@domain.com	OK
+ *
  **********************************************/
 
 function mail_account_generate_postfix(){
@@ -43,6 +47,7 @@ function mail_account_generate_postfix(){
 	$conf_postfix_virtual_uid_mapping_path = $conf_generated_file_path . "/postfix_virtual_uid_mapping";
 
 	$conf_postfix_relay_domains_path = $conf_generated_file_path . "/postfix_relay_domains";
+	$conf_postfix_relay_recipients_path = $conf_generated_file_path . "/postfix_relay_recipients";
 
 	// now for our variables to write out the db info to
 
@@ -51,6 +56,7 @@ function mail_account_generate_postfix(){
 	$vmailboxes_file = "";
 	$uid_mappings_file = "";
 	$relay_domains_file = "";
+	$relay_recipients_file = "";
 
 	$data = ""; // init var for use later on
 
@@ -91,6 +97,7 @@ function mail_account_generate_postfix(){
 				$domains_file .= "$domain_full_name virtual\n";
 			} else {
 				$relay_domains_file .= "$domain_full_name\n";
+				$relay_recipients_file .= "@$domain_full_name OK\n";
 			}
 
 			if ($primary_mx){
@@ -164,6 +171,15 @@ function mail_account_generate_postfix(){
 
 	$relay_domains_file .= get_remote_mail_domains();
 
+	$relay_recipients_list = explode("\n", get_remote_mail_recipients());
+
+	foreach($relay_recipients_list as $email)
+	{
+		if (isset($email) && strlen($email) > 0){
+			$relay_recipients_file .= $email . " OK\n";
+		}
+	}
+
 	//write out our config files
 	$fp = fopen ( "$conf_postfix_virtual_mailbox_domains_path", "w");
 	fwrite($fp, $domains_file);
@@ -185,12 +201,17 @@ function mail_account_generate_postfix(){
 	fwrite($fp, $relay_domains_file);
 	fclose($fp);
 
+	$fp = fopen ( "$conf_postfix_relay_recipients_path", "w");
+	fwrite($fp, $relay_recipients_file);
+	fclose($fp);
+
 
 	//now that we have our base files, go and rebuild the db's
 	system("/usr/sbin/postmap $conf_postfix_virtual_mailbox_domains_path");
 	system("/usr/sbin/postmap $conf_postfix_virtual_path");
 	system("/usr/sbin/postmap $conf_postfix_vmailbox_path");
 	system("/usr/sbin/postmap $conf_postfix_virtual_uid_mapping_path");
+	system("/usr/sbin/postmap $conf_postfix_relay_recipients_path");
 
 	//in case our relay_domains file hasn't been created correctly, we should touch it
 	system("touch $conf_postfix_relay_domains_path");
