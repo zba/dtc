@@ -78,14 +78,7 @@ $top_commands = "
 	<img border=\"0\" src=\"gfx/dtc/generate_backup.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">".$txt_icon_backup_scripts[$lang]."</font></a>
 </div>
-</td><td valign=\"bottom\">
-<div align=\"center\">
-	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_stat_script=1\">
-	<img border=\"0\" src=\"gfx/dtc/generate_stats.gif\"><br>
-	<font face=\"Arial\" size=\"-2\">".$txt_icon_webalizer_script[$lang]."</font></a>
-</div>
-</td>
-</table>
+</td></tr></table>
 $browse_files_button</font></b>";
 
 
