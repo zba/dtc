@@ -139,16 +139,11 @@ function mail_account_generate_postfix(){
 						} 
 						$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
 						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
-					} else {
-						$extra_redirects = "";
-						if ($redirect1 != "" && isset($redirect1)){
-							$extra_redirects .= " $redirect1 ";
-						}if ($redirect2 != "" && isset($redirect2)){
-							if ($extra_redirects != ""){
-								$extra_redirects .= " , $redirect2";
-							} else {
-								$extra_redirects .= " $redirect2 ";
-							}
+					}
+					if(isset($redirect1) && $redirect1 != ""){{
+						$extra_redirects = " $redirect1 ";
+						if ($redirect2 != "" && isset($redirect2)){
+							$extra_redirects .= " , $redirect2";
 						}
 						if ($id == "*" || $id == $catch_all_id){
 							$store_catch_all .= "@$domain_full_name        $extra_redirects\n";
