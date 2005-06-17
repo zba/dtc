@@ -140,7 +140,7 @@ function mail_account_generate_postfix(){
 						$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
 						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
 					}
-					if(isset($redirect1) && $redirect1 != ""){{
+					if(isset($redirect1) && $redirect1 != ""){
 						$extra_redirects = " $redirect1 ";
 						if ($redirect2 != "" && isset($redirect2)){
 							$extra_redirects .= " , $redirect2";
