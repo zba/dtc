@@ -1,5 +1,7 @@
 This will be version 0.18 when released:
 ----------------------------------------
+- Corrected a bug for local delivery + redirection in postfix
+(when local delivery was set, no redirection possible)
 
 - Reviewed and internationnalised the Tucows reseller interface,
 added a tucows API user/key form in the general config panel.

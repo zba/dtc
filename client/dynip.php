@@ -10,7 +10,9 @@ require("$dtcshared_path/drawlib/dtc_functions.php");
 
 $login = $_REQUEST["login"];
 $pass = $_REQUEST["pass"];
-$ip = $_REQUEST["ip"];
+if(isset($_REQUEST["ip"])){
+	$ip = $_REQUEST["ip"];
+}
 $domain = $_REQUEST["domain"];
 
 if(!isset($login) || $login == "" || !isset($pass) || $pass == ""){
