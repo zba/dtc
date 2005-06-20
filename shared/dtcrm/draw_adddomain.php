@@ -165,7 +165,10 @@ $form_start $form_enter_domain_name</form>";
 	$fqdn = $_REQUEST["toreg_domain"] . $_REQUEST["toreg_extention"];
 	$domlookup = registry_check_availability($fqdn);
 	if($domlookup["is_success"] != 1){
-		die($txt_dtcrm_could_not_connect_to_api[$lang]);
+		$out .= "<font color=\"red\">".$txt_dtcrm_could_not_connect_to_api[$lang]
+			."</font><br>".$domlookup['response_text'];
+		return $out;
+//		die($txt_dtcrm_could_not_connect_to_api[$lang]);
 	}
 
 	if($domlookup["attributes"]["status"] != "available"){
