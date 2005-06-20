@@ -40,17 +40,19 @@ if [ -z $redirection2 ]; then
 	# only do one redirection
 echo "# Configured by DTC
 # If the destination maildir doesn't exist, create it.
-`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)`
+\`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)\`
 cc \"! $redirection\"
+to \$DEFAULT
 # End of DTC configuration" >> $TMP_FILE
 
 else
 	# do both redirections from the command line
 echo "# Configured by DTC
 # If the destination maildir doesn't exist, create it.
-`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)`
+\`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)\`
 cc \"! $redirection\"
 cc \"! $redirection2\"
+to \$DEFAULT
 # End of DTC configuration" >> $TMP_FILE
 
 fi
@@ -59,4 +61,5 @@ fi
 cat $MAILFILTER_FILE >> $TMP_FILE
 # now move the TMP_FILE over top of our MAILFILTER_FILE
 mv $TMP_FILE $MAILFILTER_FILE
+chmod 500 $MAILFILTER_FILE
 chown nobody:65534 $MAILFILTER_FILE

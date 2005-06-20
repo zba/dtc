@@ -144,22 +144,23 @@ function mail_account_generate_postfix(){
 						if ($localdeliver == "yes" || $localdeliver == "true"){
 							//need to generate .mailfilter file with "cc" and also local delivery
 							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $redirect1");
-						} else {
+						} else if (isset($extra_redirects)) {
 							$extra_redirects = " $redirect1 ";
 						}
 						if ($redirect2 != "" && isset($redirect2)){
 							if ($localdeliver == "yes" || $localdeliver == "true"){
 								//need to generate .mailfilter file with "cc" and also local delivery
 								system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $redirect1 $redirect2");
-							} else {
+							} else if (isset($extra_redirects)) {
 								$extra_redirects .= " , $redirect2";
 							}
 						}
 						if ($store_catch_all == "" && ($id == "*" || $id == $catch_all_id)){
 							$store_catch_all .= "@$domain_full_name        $extra_redirects\n";
-						} else {
+						} else if (isset($extra_redirects)) {
 							$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
 						}
+						unset($extra_redirects);
 					}
 				}
 			}
