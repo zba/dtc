@@ -213,8 +213,8 @@ updates manualy. ".mysql_error());
 
 if($conf_demo_version == 'yes'){
 	session_register("demo_version_has_started");
-	if($demo_version_has_started != "started"){
-		$demo_version_has_started = "started";
+	if(!isset($_SESSION["demo_version_has_started"]) || $_SESSION["demo_version_has_started"] != "started"){
+		$_SESSION["demo_version_has_started"] = "started";
 		$query = "DELETE FROM admin;";
 		$result = mysql_query($query)or die("Cannot query $query !!!".mysql_error());
 		$query = "DELETE FROM clients;";
