@@ -59,3 +59,4 @@ fi
 cat $MAILFILTER_FILE >> $TMP_FILE
 # now move the TMP_FILE over top of our MAILFILTER_FILE
 mv $TMP_FILE $MAILFILTER_FILE
+chown nobody:65534 $MAILFILTER_FILE
