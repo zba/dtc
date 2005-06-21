@@ -69,9 +69,11 @@ disk_quota_mb,bw_quota_per_month_gb) VALUES ('','".$a["iscomp"]."',
 	$cid = mysql_insert_id();
 
 	// Add user in database
+        $p_a = explode("-",$a2["period"]);
+        $expires = date("Y-m-d",mktime(0,0,0,date("n") + $p_a[1],date("d") + $p_a[2],date("Y") + $p_a[0]));
 	$adm_query = "INSERT INTO $pro_mysql_admin_table
-(adm_login        ,adm_pass         ,path            ,id_client)VALUES
-('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid') ";
+(adm_login        ,adm_pass         ,path            ,id_client,bandwidth_per_month_mb,quota,expire) VALUES
+('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','$expires');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
