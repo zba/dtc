@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/makeDebianSource,v $
-# $Date: 2005/06/13 07:04:08 $
-# $Revision: 1.7 $
+# $Date: 2005/06/21 13:28:19 $
+# $Revision: 1.8 $
 
 
 VERS=`cat version`
@@ -82,9 +82,7 @@ install:
 	@-mkdir -p \$(DESTDIR)/usr/share/dtc/etc/zones
 
 	chown -R root:root \$(DESTDIR)/usr/share/dtc
-	chown nobody:65534 \$(DESTDIR)/usr/share/dtc/shared
 	chown nobody:65534 \$(DESTDIR)/usr/share/dtc/client/imgcache \$(DESTDIR)/usr/share/dtc/admin/imgcache \$(DESTDIR)/usr/share/dtc/shared/imgcache \$(DESTDIR)/usr/share/dtc/email/imgcache
-	chown nobody:65534 \$(DESTDIR)/usr/share/dtc/client/gfx \$(DESTDIR)/usr/share/dtc/admin/gfx \$(DESTDIR)/usr/share/dtc/shared/gfx \$(DESTDIR)/usr/share/dtc/email/gfx
 
 Make-File
 # copy it into the orig folder too, so it doesn't appear in our diff
