@@ -26,6 +26,7 @@ function productManager(){
 			$a["nbr_email"] = "";
 			$a["nbr_database"] = "";
 			$a["period"] = "";
+			$a["allow_add_domain"] = "";
 		}
 		if($i%2){
 			$bg_color="bgcolor=\"#000000\"";
