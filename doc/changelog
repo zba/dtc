@@ -1,5 +1,7 @@
 This will be version 0.18 when released:
 ----------------------------------------
+- Newly added admins are added with correct values.
+
 - Corrected a bug for local delivery + redirection in postfix
 (when local delivery was set, no redirection possible)
 

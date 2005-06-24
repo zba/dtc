@@ -1,19 +1,20 @@
 Here is the todo in unsorted order:
 
-- Make the user deletion delete new type of database
-- Make dpkg-reconfigure regenerat the config files for named & apache
-- Replace the # caracter in table names by $ so it works with v2 of
-mod_log_sql
-
-
+- Add support for wildcard DNS & Apache ServerAlias entries
+- Make the user deletion delete new type of database (recursively)
+- Make dpkg-reconfigure regenerat the config files for named & apache:
+  it should be asking for use_vnat, but it's not working.
+- Replace the # caracter in table names by $ so it works with v2 of mod_log_sql
+- Detect if it's mod_log_sql2 and change the connect directive accordingly
 - Add support for DNS wildcard
-- Add support for Freeradius (dlathem is doing it)
+- Add support for Freeradius: now only need to write the user interface
 - Add support for spamassassin & clamav
-- Add resseller interface
+- Finish resseller interface (enable quota and flag edition of subadmins)
 - Add SSL support for customers
 - Integrate a mailling list manager (mlmmj : lupin3rd is doing it)
 - Find a SMART way to handle disk quotas
-- Finish tucows API integration
+- Finish tucows API integration: working in Tucows test server, transfer
+of domain names to be finished using the bulk_transfer() function
 - Make a windows port for cygwin using NDIS scriptable installer.
 
 If you think you can help in one of those, please contact thomas [ at ] goirand . fr
