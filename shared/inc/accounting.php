@@ -163,7 +163,7 @@ function sum_http($webname){
 	for($i=0;$i<$num_rows;$i++){
 		$subdomain_name = mysql_result($result,$i,"subdomain_name");
 		$db_webname=strtr($webname,'.','_');
-		$db_select_name = $db_webname."#".$subdomain_name."#xfer";
+		$db_select_name = $db_webname.'$'.$subdomain_name.'$'."xfer";
 
 		if(mysql_table_exists("apachelogs",$db_select_name)){
 			mysql_select_db("apachelogs");
@@ -250,7 +250,7 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 				mysql_select_db("apachelogs");
 
 				$dump_path = $admin_path."/".$domain."/subdomains/".$vhost."/logs/";
-				$dump_file_name = $dump_path.$db_select_name."_".$year."_".$month;
+				$dump_file_name = $dump_path."access_log.".$vhost.$domain."_".$year."_".$month;
 				if($year == $current_year && $month == $current_month){
 					
 				}
