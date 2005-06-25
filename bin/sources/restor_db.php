@@ -137,5 +137,37 @@ for($i=0;$i<$nbr_tables;$i++){
 }
 echo "\n";
 
-?>
+$q = "SHOW TABLES FROM apachelogs";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$n = mysql_num_rows($r);
+if($n > 0){
+	echo "=> Converting apachelogs table names from # to \$: ";
+}
+for($i=0;$i<$n;$i++){
+	$a = mysql_fetch_array($r);
+	$name = $a["Tables_in_apachelogs"];
+	if(strstr($name,"#")){
+		echo "$name ";
+		$q2 = "SET SQL_QUOTE_SHOW_CREATE = 1;";
+		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$q2 = "SHOW CREATE TABLE apachelogs.`$name`;";
+		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$a2 = mysql_fetch_array($r2);
+		$c_tbl = $a2["Create Table"];
+		$c_tbl = strstr($c_tbl,"\n");
+		$new_name = str_replace ( "#", '$', $name);
+		$q2 = "CREATE TABLE IF NOT EXISTS apachelogs.`$new_name`(";
+		$q2 .= $c_tbl.";\n";
+		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$q2 = "INSERT INTO apachelogs.`$new_name` SELECT * FROM apachelogs.`$name`;\n";
+		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$q2 = "DROP TABLE apachelogs.`$name`;\n";
+		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	}
+}
+if($n > 0){
+	echo "\n";
+}
 
+
+?>

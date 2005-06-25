@@ -99,7 +99,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	DocumentRoot $path_404/html
 	ScriptAlias /cgi-bin $path_404/cgi-bin
 	ErrorLog $path_404/logs/error.log
-	LogSQLTransferLogTable ".str_replace(".","_",$conf_main_domain)."#".$conf_404_subdomain."#xfer
+	LogSQLTransferLogTable ".str_replace(".","_",$conf_main_domain).'$'.$conf_404_subdomain.'$'."xfer
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>\n";
 				}
@@ -170,7 +170,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$gen_iterations = 2;
 			}
 			for ($k = 0; $k < $gen_iterations; $k++){
-				$log_tablename = str_replace(".","_",$web_name)."#".str_replace(".","_",$web_subname);
+				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
 				if($conf_use_ssl == "yes" && $k == 0){
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
 				}else{
@@ -229,7 +229,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 #	RewriteEngine on
 #	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
-	LogSQLTransferLogTable $log_tablename#xfer
+	LogSQLTransferLogTable $log_tablename\$xfer
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
@@ -243,7 +243,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
-				$log_tablename = str_replace(".","_",$web_name)."#".str_replace(".","_",$web_subname);
+				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
 				$vhost_more_conf = "";
 				if($subdomain["register_globals"] == "yes"){
 					$vhost_more_conf .= "	php_admin_value register_globals 1\n";
@@ -269,7 +269,7 @@ $vhost_more_conf	php_admin_value safe_mode 1
 
 #	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
-	LogSQLTransferLogTable $log_tablename#xfer
+	LogSQLTransferLogTable $log_tablename\$xfer
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
