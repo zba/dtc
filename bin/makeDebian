@@ -86,6 +86,13 @@ fi
 find ./debian -type d | xargs chmod 755
 find debian/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
 find debian/ -iname '*~' -exec rm -rf {} \; &>/dev/null
+
+FAKEROOT=`which fakeroot`
+if ! [ -x ""${FAKEROOT} ]; then
+	echo "You need to \"apt-get install fakeroot\" to build the dtc pacakge"
+	exit 1
+fi
+
 fakeroot ./buildDebianPackage
 
 mv debian.deb "dtc_"$VERSION"_all.deb"
