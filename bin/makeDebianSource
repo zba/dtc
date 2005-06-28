@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/makeDebianSource,v $
-# $Date: 2005/06/25 13:53:11 $
-# $Revision: 1.9 $
+# $Date: 2005/06/28 13:07:19 $
+# $Revision: 1.10 $
 
 
 VERS=`cat version`
@@ -83,6 +83,7 @@ install:
 
 	chown -R root:root \$(DESTDIR)/usr/share/dtc
 	chown nobody:65534 \$(DESTDIR)/usr/share/dtc/client/imgcache \$(DESTDIR)/usr/share/dtc/admin/imgcache \$(DESTDIR)/usr/share/dtc/shared/imgcache \$(DESTDIR)/usr/share/dtc/email/imgcache
+	chown nobody:65534 \$(DESTDIR)/usr/share/dtc/client/gfx \$(DESTDIR)/usr/share/dtc/admin/gfx \$(DESTDIR)/usr/share/dtc/shared/gfx \$(DESTDIR)/usr/share/dtc/email/gfx
 	gzip -9 \$(DESTDIR)/usr/share/dtc/doc/changelog
 
 Make-File
