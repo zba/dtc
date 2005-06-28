@@ -149,20 +149,17 @@ function recursiveDeleteAdmin($adm_login){
 	realDeleteAdmin($adm_login);
 }
 
-// adm_login=zigo&addrlink=resseller&adm_pass=513411410&action=delete_child_account&account_name=bbbb
-if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_child_account"){
-	checkLoginPass($adm_login,$adm_pass);
-
-
-	if(!isFtpLogin($_REQUEST["account_name"])){
-		$submit_err .= "Incorrect DTC login: a-z A-Z 0-9<br>\n";
-		$commit_flag = "no";
-	}else{ // start else !isFtpLogin
+// Check if $adm_login_to_delete is a direct child of $adm_login_father
+// and delete $adm_login_to_delete and it's children
+function deleteAdminFromFather($adm_login_to_delete,$adm_login_father){
+	global $pro_mysql_admin_table;
+	global $submit_err;
+	global $commit_flag;
 
 	// Search for child to delete: we have to be SURE the admin
 	// is one of our direct child accounts!!! If it is, then call the recursive deletion of the user
 	// and update SQL links
-	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login_father';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$a = mysql_fetch_array($r);
 	if($a["ob_head"] == "" || $a["ob_tail"] == ""){
@@ -170,7 +167,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_child_account"){
 		$commit_flag = "no";
 	}else{
 		// There is only one child, we should just delete the account recurcively and remove the tree
-		if($a["ob_head"] == $a["ob_tail"] && $a["ob_head"] != "" && $a["ob_head"] == $_REQUEST["account_name"]){
+		if($a["ob_head"] == $a["ob_tail"] && $a["ob_head"] != "" && $a["ob_head"] == $adm_login_to_delete){
 			echo "reached";
 			$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["ob_head"]."';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
@@ -178,15 +175,15 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_child_account"){
 				$submit_err .= "User not found in db: sub-admin tree is broken line ".__LINE__." file ".__FILE__.", please contact system administrator!";
 				$commit_flag = "no";
 			}else{
-				$q = "UPDATE $pro_mysql_admin_table SET ob_head='',ob_tail='' WHERE adm_login='$adm_login';";
+				$q = "UPDATE $pro_mysql_admin_table SET ob_head='',ob_tail='' WHERE adm_login='$adm_login_father';";
 				//$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 				echo $q."<br>";
-				recursiveDeleteAdmin($_REQUEST["account_name"]);
+				recursiveDeleteAdmin($adm_login_to_delete);
 			}
 		// There is more than one child
 		}else{
 			// Account to delete is first child
-			if($a["ob_head"] == $_REQUEST["account_name"]){
+			if($a["ob_head"] == $adm_login_to_delete){
 				$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["ob_head"]."';";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 				if(mysql_num_rows($r) != 1){
@@ -194,11 +191,11 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_child_account"){
 					$commit_flag = "no";
 				}else{
 					$a = mysql_fetch_array($r);
-					$q = "UPDATE $pro_mysql_admin_table SET ob_head='".$a["ob_next"]."' WHERE adm_login='$adm_login';";
+					$q = "UPDATE $pro_mysql_admin_table SET ob_head='".$a["ob_next"]."' WHERE adm_login='$adm_login_father';";
 					echo $q;
-					//recursiveDeleteAdmin($_REQUEST["account_name"]);
+					//recursiveDeleteAdmin($adm_login_to_delete);
 				}
-				recursiveDeleteAdmin($_REQUEST["account_name"]);
+				recursiveDeleteAdmin($adm_login_to_delete);
 			// Account to delete is last child or
 			// Account to delete is not first child and not last child, but in the chained list
 			// we should search for it first
@@ -207,7 +204,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_child_account"){
 				$ob_previous = $next;
 				$founded = "no";
 				$deep_limit = 9999;
-				while($next != $adm_login && $deep_limit > 0 && $founded == "no" && $commit_flag == "yes"){
+				while($next != $adm_login_father && $deep_limit > 0 && $founded == "no" && $commit_flag == "yes"){
 					$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$next';";
 					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 					if(mysql_num_rows($r) != 1){
@@ -215,7 +212,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_child_account"){
 						$commit_flag = "no";
 					}else{
 						$a2 = mysql_fetch_array($r);
-						if($a2["ob_next"] == $_REQUEST["account_name"]){
+						if($a2["ob_next"] == $adm_login_to_delete){
 							$founded = "yes";
 							$next = $a2["ob_next"];
 							break;
@@ -238,11 +235,11 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_child_account"){
 				}else{
 					if( $founded == "yes" && $commit_flag == "yes" ){
 						// Account is the last child
-						if($a["ob_tail"] == $_REQUEST["account_name"]){
-							$q = "UPDATE $pro_mysql_admin_table SET ob_head='$ob_previous' WHERE adm_login='$adm_login';";
+						if($a["ob_tail"] == $adm_login_to_delete){
+							$q = "UPDATE $pro_mysql_admin_table SET ob_head='$ob_previous' WHERE adm_login='$adm_login_father';";
 							echo $q."<br>";
 							//$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-							$q = "UPDATE $pro_mysql_admin_table SET ob_next='$adm_login' WHERE adm_login='$ob_previous';";
+							$q = "UPDATE $pro_mysql_admin_table SET ob_next='$adm_login_father' WHERE adm_login='$ob_previous';";
 							echo $q."<br>";
 							//$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 						// Account is one of the childs, but not first or last child
@@ -251,13 +248,57 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_child_account"){
 							//$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 							echo $q;
 						}
-						recursiveDeleteAdmin($_REQUEST["account_name"]);
+						recursiveDeleteAdmin($adm_login_to_delete);
 					}
 				}
 			}
 		}
 	}
-	} // end else !isFtpLogin
+}
+
+function rootConsolDeleteAdmin($adm_login){
+	global $pro_mysql_admin_table;
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1)	die("Cannot found admin line ".__LINE__." file ".__FILE__);
+	$a = mysql_fetch_array($r);
+	// The admin has a father admin and it should be removed from it's chain!
+	if($a["ob_next"] != ""){
+		// Search for the father admin
+		$cur = $a;
+		$max_loop = 1024;
+		do{
+			if($cur["ob_next"] == "")	die("Object should have ob_next line ".__LINE__." file ".__FILE__);
+			$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$cur["ob_next"]."'";
+			$r2 = mysql_query($q2)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$n2 = mysql_num_rows($r2);
+			if($n2 != 1)	die("Cannot found admin line ".__LINE__." file ".__FILE__);
+			$last_adm_login = $cur["adm_login"];
+			$cur = mysql_fetch_array($r2);
+			$max_loop--;
+		}while($cur["ob_tail"] != $last_adm_login && $max_loop != 0);
+		if($max_loop == 0){
+			die("Max loop reached line ".__LINE__." file ".__FILE__);
+		}
+		$adm_login_father = $cur["adm_login"];
+		deleteAdminFromFather($adm_login,$adm_login_father);
+	}else{
+		recursiveDeleteAdmin($adm_login);
+	}
+}
+
+// adm_login=zigo&addrlink=resseller&adm_pass=513411410&action=delete_child_account&account_name=bbbb
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_child_account"){
+	checkLoginPass($adm_login,$adm_pass);
+
+
+	if(!isFtpLogin($_REQUEST["account_name"])){
+		$submit_err .= "Incorrect DTC login: a-z A-Z 0-9<br>\n";
+		$commit_flag = "no";
+	}else{
+		deleteAdminFromFather($_REQUEST["account_name"],$adm_login);
+	}
 }
 
 ?>
