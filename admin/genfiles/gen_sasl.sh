@@ -7,10 +7,10 @@ mailname=$4
 
 # Try to find SASLpasswd2 binary
 if [ -e /usr/sbin/saslpasswd2 ] ; then
-	$SASLPWD2 = "/usr/sbin/saslpasswd2"
+	SASLPWD2=/usr/sbin/saslpasswd2
 fi
 if [ -e /usr/local/sbin/saslpasswd2 ] ; then
-	$SASLPWD2 = "/usr/local/sbin/saslpasswd2"
+	SASLPWD2=/usr/local/sbin/saslpasswd2
 fi
 
 # If found, use it to generate accounts
