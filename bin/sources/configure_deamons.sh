@@ -652,6 +652,15 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 
 fi
 
+#
+# prepare mlmmj environment to work with dtc
+#
+if [ -f "/usr/bin/mlmmj-make-ml" ]
+then
+	mkdir -p /etc/mlmmj/lists
+	chown -R root:65534 /etc/mlmmj/lists
+	chmod -R g+w /etc/mlmmj/lists
+fi
 
 # This avoid hanging when (re)starting daemons under debian
 if [ "$UNIX_TYPE" = "debian" ]
