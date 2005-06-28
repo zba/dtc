@@ -23,6 +23,10 @@ function drawAdminTools_MailingLists($domain){
 
 	$txt = "";
 	$nbr_email = sizeof($domain["emails"]);
+	if (isset($domain["mailinglists"]))
+	{
+	 $nbr_email += sizeof($domain["mailinglists"]);
+	}
 	$max_email = $domain["max_email"];
 	if($nbr_email >= $max_email){
 		$max_color = "color=\"#440000\"";
@@ -31,28 +35,23 @@ function drawAdminTools_MailingLists($domain){
 	$txt .= "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\">". $nbr_email ."</font> / <font size=\"-1\">" . $max_email . "</font><br><br>";
 
 	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>".$txt_list_liste_of_your_ml[$lang]."</u><br>";
-	$emails = $domain["emails"];
-	$nbr_boites = sizeof($emails);
+	if (isset($domain["mailinglists"]))
+	{
+		$lists = $domain["mailinglists"];
+	}
+	$nbr_boites = 0;
+	if (isset($lists)){
+		$nbr_boites = sizeof($lists);
+	}
 	for($i=0;$i<$nbr_boites;$i++){
-		$email = $emails[$i];
-		$id = $email["id"];
-		if(isset($_REQUEST["edit_mailbox"]) && $id == $_REQUEST["edit_mailbox"]){
-			$list_name = $id;
-			$home = $email["home"];
-			$list_owner = $email["passwd"];
-			$redir1 = $email["redirect1"];
-			$redir2 = $email["redirect2"];
-			$localdeliver = $email["localdeliver"];
-			if($localdeliver == "yes"){
-				$checkbox_state = " checked";
-			}else{
-				$checkbox_state = "";
-			}
-		}
+		$list = $lists[$i];
+		$id = $list["id"];
+		$list_name = $list["name"];
+		$list_owner = $list["owner"];
 		if($i != 0){
 			$txt .= " - ";
 		}
-		$txt .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$id\">$id</a>";
+		$txt .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$id\">$list_name</a>";
 	}
 
 	if(isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){

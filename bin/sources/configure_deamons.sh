@@ -541,6 +541,7 @@ virtual_minimum_uid = 100
 virtual_uid_maps = static:65534
 virtual_gid_maps = static:65534
 virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
+alias_maps = hash:/etc/aliases, hash:$PATH_DTC_ETC/postfix_aliases
 relay_domains = $PATH_DTC_ETC/postfix_relay_domains
 relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients
 virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE

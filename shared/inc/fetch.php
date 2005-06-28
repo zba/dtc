@@ -213,6 +213,7 @@ function fetchAdminStats($admin){
 function fetchAdminData($adm_login,$adm_input_pass){
         global $pro_mysql_domain_table;
         global $pro_mysql_admin_table;
+        global $pro_mysql_list_table;
         global $pro_mysql_pop_table;
 	global $pro_mysql_ftp_table;
         global $pro_mysql_subdomain_table;
@@ -414,6 +415,24 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$domain["emails"] = $emails;
 		}
 
+		//now to add all the mailing lists
+		$query4 = "SELECT * FROM $pro_mysql_list_table WHERE domain='$name' ORDER BY id LIMIT 800;";
+		$result4 = mysql_query ($query4)or die("Cannot execute query \"$query4\"");
+    $num_rows4 = mysql_num_rows($result4);
+    unset($mailinglists);
+		for($j=0; $j < $num_rows4; $j++)
+		{
+			$row4 = mysql_fetch_array($result4) or die ("Cannot fetch mailing list");
+			unset($mailinglist);
+			$mailinglist["id"] = $row4["id"];
+			$mailinglist["name"] = $row4["name"];
+			$mailinglist["owner"] = $row4["owner"];
+			$mailinglists[] = $mailinglist;
+		}
+		if(isset($mailinglists)){
+			$domain["mailinglists"] = $mailinglists;
+		}
+
 		$query4 = "SELECT * FROM $pro_mysql_ftp_table WHERE hostname='$name' ORDER BY login LIMIT 800";
 		$result4 = mysql_query($query4)or die("Cannot execute query \"$query4\"");
 		$num_rows4 = mysql_num_rows($result4);
@@ -454,6 +473,9 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 //                                     ["crypt"]
 //                                     ["passwd"]
 //                                     ["shell"]
+//			["mailinglists"][0-n]["id"]
+//					     ["name"]
+//					     ["owner"]
 //                      ["ftps"]["login"]
 //                              ["passwd"]
 //                              ["path"]
