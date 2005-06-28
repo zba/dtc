@@ -61,11 +61,18 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 				fclose($fp1);
 				
 				$fileName2 = "$conf_generated_file_path" . "/postfix_aliases";
-				$newLine2 = 'ml'.$lastml['id'].': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$_REQUEST["newlist_name"].'/"';
+				$newLine2 = 'ml'.$lastml['id'].': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"';
 				$fp2 = fopen($fileName2,"a");
 				fwrite($fp2,"\n");
 				fwrite($fp2,$newLine2);
 				fclose($fp2);
+				
+				//now need to edit the list address back to $_REQUEST["newlist_name"]; rather than $name
+				$fileName3 = $list_path.'/'.$name.'/control/listaddress';
+				$newLine3 = $_REQUEST["newlist_name"] . "@" . $edit_domain;
+				$fp3 = fopen($fileName3,"w");
+				fwrite($fp3,$newLine3);
+				fclose($fp3);
 				
 				sleep(2);
 				exec("postmap $conf_generated_file_path" . "/postfix_virtual");
