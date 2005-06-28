@@ -53,14 +53,14 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 				$command = "(echo $edit_domain; echo $owner; echo N;) | /usr/bin/mlmmj-make-ml -L $name -s $list_path";
 				exec($command);
 			
-				$fileName1 = '/usr/share/dtc/etc/postfix_virtual';
+				$fileName1 = "$conf_generated_file_path" . "/postfix_virtual";
 				$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' ml'.$lastml['id'].'';
 				$fp1 = fopen($fileName1,"a");
 				fwrite($fp1,"\n");
 				fwrite($fp1,$newLine1);
 				fclose($fp1);
 				
-				$fileName2 = "$conf_generated_file_path" . "postfix_aliases";
+				$fileName2 = "$conf_generated_file_path" . "/postfix_aliases";
 				$newLine2 = 'ml'.$lastml['id'].': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$_REQUEST["newlist_name"].'/"';
 				$fp2 = fopen($fileName2,"a");
 				fwrite($fp2,"\n");
@@ -68,8 +68,8 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 				fclose($fp2);
 				
 				sleep(2);
-				exec("postmap $conf_generated_file_path" . "postfix_virtual");
-				exec("postalias $conf_generated_file_path" . "postfix_aliases");
+				exec("postmap $conf_generated_file_path" . "/postfix_virtual");
+				exec("postalias $conf_generated_file_path" . "/postfix_aliases");
 				break;
 		default:
 		case "qmail":
