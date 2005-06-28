@@ -5,19 +5,29 @@ id=$2
 passwdtemp=$3
 mailname=$4
 
-echo $passwdtemp | /usr/sbin/saslpasswd2 -c -p -f ../etc/sasldb2 -u $mailname $id\@$domain_full_name
-chmod 664 ../etc/sasldb2 
-if [ -e /var/spool/postfix/etc ]; then
-	echo "OK, in /var/spool" >> /tmp/sasl.tmp
-	cat ../etc/sasldb2 > /var/spool/postfix/etc/sasldb2
-	chmod 664 /var/spool/postfix/etc/sasldb2
-	chown postfix:65534 /var/spool/postfix/etc/sasldb2
-else 
-	echo "OK, in /etc/" >> /tmp/sasl.tmp
-	cat ../etc/sasldb2 > /etc/sasldb2
-	chmod 664 /etc/sasldb2
-	chown postfix:65534 /etc/sasldb2
+# Try to find SASLpasswd2 binary
+if [ -e /usr/sbin/saslpasswd2 ] ; then
+	$SASLPWD2 = "/usr/sbin/saslpasswd2"
+fi
+if [ -e /usr/local/sbin/saslpasswd2 ] ; then
+	$SASLPWD2 = "/usr/local/sbin/saslpasswd2"
 fi
 
-ls ../etc/sasldb2 >> /tmp/sasl.tmp
+# If found, use it to generate accounts
+if ! [ -z ""$SASLPWD2 ] ; then
+	echo $passwdtemp | $SASLPWD2 -c -p -f ../etc/sasldb2 -u $mailname $id\@$domain_full_name
+	chmod 664 ../etc/sasldb2 
+	if [ -e /var/spool/postfix/etc ]; then
+		echo "OK, in /var/spool" >> /tmp/sasl.tmp
+		cat ../etc/sasldb2 > /var/spool/postfix/etc/sasldb2
+		chmod 664 /var/spool/postfix/etc/sasldb2
+		chown postfix:65534 /var/spool/postfix/etc/sasldb2
+	else 
+		echo "OK, in /etc/" >> /tmp/sasl.tmp
+		cat ../etc/sasldb2 > /etc/sasldb2
+		chmod 664 /etc/sasldb2
+		chown postfix:65534 /etc/sasldb2
+	fi
 
+	ls ../etc/sasldb2 >> /tmp/sasl.tmp
+fi
