@@ -22,7 +22,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
 	$testnum_rows = mysql_num_rows($test_result);
 	if($testnum_rows != 0){
-		die("Mailing list allready exist in database !");
+		die("Mailing list already exist in database !");
 	}
 
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
@@ -47,34 +47,34 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 	//Azioni su disco
 
 	switch($conf_mta_type){
-	case "postfix":
-	
-	$command = "(echo $edit_domain; echo $owner; echo N;) | /usr/bin/mlmmj-make-ml -L $name -s $list_path";
-	exec($command);
-
-	$fileName1 = '/usr/share/dtc/etc/postfix_virtual';
-	$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' ml'.$lastml['id'].'';
-	$fp1 = fopen($fileName1,"a");
-	fwrite($fp1,"\n");
-	fwrite($fp1,$newLine1);
-	fclose($fp1);
-	
-	$fileName2 = '/usr/share/dtc/etc/postfix_aliases';
-	$newLine2 = 'ml'.$lastml['id'].': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$_REQUEST["newlist_name"].'/"';
-	$fp2 = fopen($fileName2,"a");
-	fwrite($fp2,"\n");
-	fwrite($fp2,$newLine2);
-	fclose($fp2);
-	
-	sleep(2);
-	exec('postmap /usr/share/dtc/etc/postfix_virtual');
-	exec('postalias /usr/share/dtc/etc/postfix_aliases');
-	
-		break;
-	default:
-	case "qmail":
-		
-		break;
+		case "postfix":
+				$name = $edit_domain . "_" . $name;
+				$owner .= "@" . $edit_domain;
+				$command = "(echo $edit_domain; echo $owner; echo N;) | /usr/bin/mlmmj-make-ml -L $name -s $list_path";
+				exec($command);
+			
+				$fileName1 = '/usr/share/dtc/etc/postfix_virtual';
+				$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' ml'.$lastml['id'].'';
+				$fp1 = fopen($fileName1,"a");
+				fwrite($fp1,"\n");
+				fwrite($fp1,$newLine1);
+				fclose($fp1);
+				
+				$fileName2 = "$conf_generated_file_path" . "postfix_aliases";
+				$newLine2 = 'ml'.$lastml['id'].': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$_REQUEST["newlist_name"].'/"';
+				$fp2 = fopen($fileName2,"a");
+				fwrite($fp2,"\n");
+				fwrite($fp2,$newLine2);
+				fclose($fp2);
+				
+				sleep(2);
+				exec("postmap $conf_generated_file_path" . "postfix_virtual");
+				exec("postalias $conf_generated_file_path" . "postfix_aliases");
+				break;
+		default:
+		case "qmail":
+				
+				break;
 	}
 	
 	
