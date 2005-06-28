@@ -34,6 +34,9 @@ function mail_account_generate_postfix(){
 
 	global $conf_generated_file_path;
 	global $conf_addr_mail_server;
+
+	global $conf_unix_type;
+
 	//global $conf_postfix_virtual_mailbox_domains_path;
 	//global $conf_postfix_virtual_path;
 	//global $conf_postfix_vmailbox_path;
@@ -213,11 +216,16 @@ function mail_account_generate_postfix(){
 
 
 	//now that we have our base files, go and rebuild the db's
-	system("/usr/sbin/postmap $conf_postfix_virtual_mailbox_domains_path");
-	system("/usr/sbin/postmap $conf_postfix_virtual_path");
-	system("/usr/sbin/postmap $conf_postfix_vmailbox_path");
-	system("/usr/sbin/postmap $conf_postfix_virtual_uid_mapping_path");
-	system("/usr/sbin/postmap $conf_postfix_relay_recipients_path");
+	if($conf_unix_type == "freebsd"){
+		$POSTMAP_BIN = "/usr/local/sbin/postmap";
+	}else{
+		$POSTMAP_BIN = "/usr/sbin/postmap";
+	}
+	system("$POSTMAP_BIN $conf_postfix_virtual_mailbox_domains_path");
+	system("$POSTMAP_BIN $conf_postfix_virtual_path");
+	system("$POSTMAP_BIN $conf_postfix_vmailbox_path");
+	system("$POSTMAP_BIN $conf_postfix_virtual_uid_mapping_path");
+	system("$POSTMAP_BIN $conf_postfix_relay_recipients_path");
 
 	//in case our relay_domains file hasn't been created correctly, we should touch it
 	system("touch $conf_postfix_relay_domains_path");
