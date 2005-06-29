@@ -244,7 +244,8 @@ No<input type=\"radio\" name=\"w3_alias\" value=\"no\" $checked_no></td></tr>";
 <pre>
 #!/bin/sh
 
-LYNX=/usr/bin/lynx
+# You can use either links or lynx, sometimes only one of them works, depending on distribution.
+LYNX=/usr/bin/links
 DOMAIN=$edit_domain
 LOGIN=$login_to_edit
 PASS=$pass_to_edit

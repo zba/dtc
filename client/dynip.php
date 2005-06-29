@@ -52,9 +52,9 @@ if($num_rows != 1){
 
 		$adm_query = "UPDATE $pro_mysql_cronjob_table SET gen_named='yes',reload_named='yes' WHERE 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!".mysql_error());;
-		echo "Succes: updated to $ip";
+		echo "Succes: updated to $ip\n";
 	}else{
-		echo "Succes: update not needed to $ip";
+		echo "Succes: update not needed to $ip\n";
 	}
 
 }

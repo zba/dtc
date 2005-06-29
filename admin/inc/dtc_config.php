@@ -1070,7 +1070,12 @@ function saveDTCConfigInMysql(){
                 break;
         case "registryapi":
           // srs_enviro=TEST&srs_username=&srs_test_key=&srs_live_key=&install_new_config_values=Ok
-          $query = "UPDATE config SET srs_enviro='".$_REQUEST["srs_enviro"]."',srs_user='".$_REQUEST["srs_username"]."',srs_test_key='".$_REQUEST["srs_test_key"]."',srs_live_key='".$_REQUEST["srs_live_key"]."' WHERE 1;";
+          $query = "UPDATE config SET
+          srs_enviro='".$_REQUEST["srs_enviro"]."',
+          srs_user='".$_REQUEST["srs_username"]."',
+          srs_test_key='".$_REQUEST["srs_test_key"]."',
+          srs_live_key='".$_REQUEST["srs_live_key"]."',
+          srs_crypt='".$_REQUEST["srs_crypt"]."' WHERE 1;";
           break;
 	case "path":
 		$query = "UPDATE config SET 

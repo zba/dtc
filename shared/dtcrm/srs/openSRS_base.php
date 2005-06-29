@@ -29,7 +29,7 @@
  **************************************************************************
  *
  * vim: set expandtab tabstop=4 shiftwidth=4:
- * $Id: openSRS_base.php,v 1.3 2005/06/14 03:10:54 thomas Exp $
+ * $Id: openSRS_base.php,v 1.4 2005/06/29 23:01:22 thomas Exp $
  *
  **************************************************************************
  */
@@ -580,7 +580,6 @@ class openSRS_base extends PEAR {
 
 		# create a socket
 
-		echo "Connecting to ".$this->REMOTE_HOST;
 		$this->_socket = fsockopen($this->REMOTE_HOST, $this->REMOTE_PORT,
 			$this->_socket_err_num, $this->_socket_err_msg, $this->connect_timeout );
 
