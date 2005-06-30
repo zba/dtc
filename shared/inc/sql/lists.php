@@ -83,101 +83,55 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 				
 				break;
 	}
-	
-	
-	
 }
 
 /////////////////////////////////////////////////////////
-// $edit_domain $edit_mailbox $editmail_pass $editmail_redirect1 $editmail_redirect2 $editmail_deliver_localy
+// $edit_domain $edit_mailbox $editmail_owner
 /////////////////////////////////////////////////////////
 if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
-	die("Modifica ml");
-	/*checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+
+	$admin_path = getAdminPath($adm_login);
+        $list_path = "$admin_path/$edit_domain/lists";
+
+	$new_list_owner = $_REQUEST["editmail_owner"];
+
+	$name = $_REQUEST["edit_mailbox"];
+
+	//now need to edit the owner to $_REQUEST["editmail_owner"]; 
+	$fileName3 = $list_path.'/'. $edit_domain . '_' . $name.'/control/owner';
+	$newLine3 = $new_list_owner . "@" . $edit_domain;
+	$fp3 = fopen($fileName3,"w");
+	fwrite($fp3,$newLine3);
+	fclose($fp3);
+
+	// submit to sql
+	$adm_query = "UPDATE $pro_mysql_list_table SET owner='$new_list_owner' WHERE domain='$edit_domain' AND name='$name';";
+	unset($edit_mailbox);
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
 	if(!isMailbox($_REQUEST["edit_mailbox"])){
 		die($_REQUEST["edit_mailbox"]." does not look like a mailbox login...");
 	}
-
-	// Fetch the path of the mailbox
-	$test_query = "SELECT * FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain'";
-	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
-	$testnum_rows = mysql_num_rows($test_result);
-	if($testnum_rows != 1){
-		die("Mailbox does not exist in database !");
-	}
-	$mysqlmailbox = mysql_fetch_array($test_result) or die ("Cannot fetch user-admin");
-	$editmail_boxpath = $mysqlmailbox["home"];
-
-	// Check for strings validity
-	if(!isDTCPassword($_REQUEST["editmail_pass"])){
-		die("Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.");
-	}
-	if($_REQUEST["editmail_redirect1"] != ""){
-		if(!isValidEmail($_REQUEST["editmail_redirect1"])){
-			die("Incorect redirection 1");
-		}
-	}
-	if($_REQUEST["editmail_redirect2"] != ""){
-		if(!isValidEmail($_REQUEST["editmail_redirect2"])){
-			die("Incorect redirection 2");
-		}
-	}
-
-	// Write .qmail file
-	$oldumask = umask(0);
-	if($_REQUEST["editmail_deliver_localy"] == "yes" && $conf_demo_version == "no"){
-		// Create mailbox direcotry if does not exist
-		mk_Maildir($editmail_boxpath);
-		$qmail_file_content = "./Maildir/\n";
-	}
-	if($_REQUEST["editmail_redirect1"] != "" && isset($_REQUEST["editmail_redirect1"]) ){
-		$qmail_file_content .= '&'.$_REQUEST["editmail_redirect1"]."\n";
-	}
-	if($_REQUEST["newmail_redirect2"] != "" && isset($_REQUEST["editmail_redirect2"]) ){
-		$qmail_file_content .= '&'.$_REQUEST["editmail_redirect2"]."\n";
-	}
-
-	if($conf_demo_version == "no"){
-		$fp = fopen ( "$editmail_boxpath/.qmail", "w");
-		fwrite ($fp,$qmail_file_content);
-		fclose($fp);
-	}
-	umask($oldumask);
-
-	// Submit to sql database
-	if($_REQUEST["editmail_deliver_localy"] == "yes"){
-		$dolocal_deliver = "yes";
-	}else{
-		$dolocal_deliver = "no";
-	}
-	$crypted_pass = crypt($_REQUEST["editmail_pass"]);
-	$adm_query = "UPDATE $pro_mysql_pop_table SET
-	crypt='$crypted_pass',passwd='".$_REQUEST["editmail_pass"]."',redirect1='".$_REQUEST["editmail_redirect1"]."',redirect2='".$_REQUEST["editmail_redirect2"]."',localdeliver='$dolocal_deliver' WHERE
-	id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain' LIMIT 1;";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
-
-	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");*/
+	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 }
 //////////////////////////////////
 // $edit_domain $editmail_login
 //////////////////////////////////
 if(isset($_REQUEST["dellist"]) && $_REQUEST["dellist"] == "Del"){
-	echo "lol";
-	die("cancella ml");
-	/*checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
-
+	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+	
 	// Verify strings given
 	if(!isMailbox($_REQUEST["edit_mailbox"])){
 		die($_REQUEST["edit_mailbox"]." does not look like a mailbox login...");
 	}
 
 	// Submit to sql database
-	$adm_query="DELETE FROM $pro_mysql_pop_table WHERE mbox_host='$edit_domain' AND id='".$_REQUEST["edit_mailbox"]."' LIMIT 1";
+	$adm_query="DELETE FROM $pro_mysql_list_table WHERE domain='$edit_domain' AND name='".$_REQUEST["edit_mailbox"]."' LIMIT 1";
 	unset($edit_mailbox);
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
-	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");*/
+	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 }
 
 ?>

@@ -51,12 +51,19 @@ function drawAdminTools_MailingLists($domain){
 		if($i != 0){
 			$txt .= " - ";
 		}
-		$txt .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$id\">$list_name</a>";
+		$txt .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$list_name&list_owner=$list_owner\">$list_name</a>";
 	}
 
 	if(isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
 		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">".$txt_mail_new_mailbox_link[$lang]."</a> ";
 		$txt .= "<br><br><u>".$txt_mail_edit[$lang]."</u><br><br>";
+
+		$list_name = $_REQUEST["edit_mailbox"];
+		if (isset($_REQUEST["list_owner"])){
+			$list_owner = $_REQUEST["list_owner"];
+		} else if (isset($_REQUEST["editmail_owner"])){
+			$list_owner = $_REQUEST["editmail_owner"];
+		}
 
 		$txt .= "
 <table border=\"1\"><tr><td align=\"right\">
@@ -69,7 +76,7 @@ function drawAdminTools_MailingLists($domain){
 	<input type=\"hidden\" name=\"edit_mailbox\" value=\"".$_REQUEST["edit_mailbox"]."\">
 	".$txt_list_name[$lang]."</td><td><b>$list_name</b>@$edit_domain
 </td></tr><tr><td align=\"right\">";
-	$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"editmail_pass\" value=\"$list_owner\">";
+	$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"editmail_owner\" value=\"$list_owner\">";
 $txt .= "
 </td></tr><tr>
 <td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" value=\"Ok\">&nbsp;
