@@ -54,14 +54,14 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 				exec($command);
 			
 				$fileName1 = "$conf_generated_file_path" . "/postfix_virtual";
-				$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' ml'.$lastml['id'].'';
+				$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' '.$name.'';
 				$fp1 = fopen($fileName1,"a");
 				fwrite($fp1,"\n");
 				fwrite($fp1,$newLine1);
 				fclose($fp1);
 				
 				$fileName2 = "$conf_generated_file_path" . "/postfix_aliases";
-				$newLine2 = 'ml'.$lastml['id'].': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"';
+				$newLine2 = $name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"';
 				$fp2 = fopen($fileName2,"a");
 				fwrite($fp2,"\n");
 				fwrite($fp2,$newLine2);

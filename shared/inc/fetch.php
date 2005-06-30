@@ -427,6 +427,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$mailinglist["id"] = $row4["id"];
 			$mailinglist["name"] = $row4["name"];
 			$mailinglist["owner"] = $row4["owner"];
+			$mailinglist["domain"] = $row4["domain"];
 			$mailinglists[] = $mailinglist;
 		}
 		if(isset($mailinglists)){

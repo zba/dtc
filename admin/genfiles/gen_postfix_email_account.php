@@ -23,6 +23,9 @@
  * emailaddress@domain.com	OK
  * emailaddress2@domain.com	OK
  *
+ * /usr/share/dtc/etc/postfix_aliases
+ * mailinglist:		"|/usr/bin/mlmmj-recieve"
+ *
  **********************************************/
 
 function mail_account_generate_postfix(){
@@ -46,6 +49,7 @@ function mail_account_generate_postfix(){
 
 	$conf_postfix_virtual_mailbox_domains_path = $conf_generated_file_path . "/postfix_virtual_mailbox_domains";
 	$conf_postfix_virtual_path = $conf_generated_file_path . "/postfix_virtual";
+	$conf_postfix_aliases_path = $conf_generated_file_path . "/postfix_aliases";
 	$conf_postfix_vmailbox_path = $conf_generated_file_path . "/postfix_vmailbox";
 	$conf_postfix_virtual_uid_mapping_path = $conf_generated_file_path . "/postfix_virtual_uid_mapping";
 
@@ -56,6 +60,7 @@ function mail_account_generate_postfix(){
 
 	$domains_file = "";
 	$domains_postmasters_file = "";
+	$aliases_file = "";
 	$vmailboxes_file = "";
 	$uid_mappings_file = "";
 	$relay_domains_file = "";
@@ -80,6 +85,10 @@ function mail_account_generate_postfix(){
 		if(($error = $admin["err"]) != 0){
 			die("Error fetching admin : $error");
 		}
+
+		//Path of user's mailing lists
+		$admin_path = getAdminPath($user_admin_name);
+
 		$info = $admin["info"];
 		$nbr_domain = 0;
 		if (isset($admin["data"]))
@@ -167,13 +176,35 @@ function mail_account_generate_postfix(){
 					}
 				}
 			}
-			if(isset($store_catch_all) && $store_catch_all != ""){
-				$domains_postmasters_file .= $store_catch_all;
-			}
 			// if an abuse@ email hasn't been set, set one here to go to postmaster
 			if ($abuse_address == 0 && $primary_mx)
 			{
 				$domains_postmasters_file .= "abuse@$domain_full_name postmaster\n";
+			}
+
+			//add support for creation of mailing lists
+			if(isset($domain["mailinglists"]) && $primary_mx)
+			{
+				$lists = $domain["mailinglists"];
+				$nbr_boites = sizeof($lists);
+				// go through each of these lists and add to virtual maps and normal aliases
+				for($k=0;$k<$nbr_boites;$k++){
+					$list = $lists[$k];
+					$list_id = $list["id"];
+					$list_name = $list["name"];
+					$list_owner = $list["owner"];
+					$list_domain = $list["domain"];
+			
+					$list_path = "$admin_path/$list_domain/lists";
+					$name = $list_domain . "_" . $list_name;
+					$owner = $list_owner . "@" . $list_domain;
+					$domains_postmasters_file .= $list_name . "@" . $list_domain . " " . $name . "\n";
+					$aliases_file .= $name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"' . "\n";
+				}
+			}
+			//always store catch all last... :)
+			if(isset($store_catch_all) && $store_catch_all != ""){
+				$domains_postmasters_file .= $store_catch_all;
 			}
 		}
 	}
@@ -198,6 +229,10 @@ function mail_account_generate_postfix(){
 	fwrite($fp, $domains_postmasters_file);
 	fclose($fp);
 
+	$fp = fopen ( "$conf_postfix_aliases_path", "w");
+	fwrite($fp, $aliases_file);
+	fclose($fp);
+
 	$fp = fopen ( "$conf_postfix_vmailbox_path", "w");
 	fwrite($fp, $vmailboxes_file);
 	fclose($fp);
@@ -218,11 +253,15 @@ function mail_account_generate_postfix(){
 	//now that we have our base files, go and rebuild the db's
 	if($conf_unix_type == "freebsd"){
 		$POSTMAP_BIN = "/usr/local/sbin/postmap";
+		$POSTALIAS_BIN = "/usr/local/sbin/postalias";
 	}else{
 		$POSTMAP_BIN = "/usr/sbin/postmap";
+		$POSTALIAS_BIN = "/usr/sbin/postalias";
 	}
+
 	system("$POSTMAP_BIN $conf_postfix_virtual_mailbox_domains_path");
 	system("$POSTMAP_BIN $conf_postfix_virtual_path");
+	system("$POSTALIAS_BIN $conf_postfix_aliases_path");
 	system("$POSTMAP_BIN $conf_postfix_vmailbox_path");
 	system("$POSTMAP_BIN $conf_postfix_virtual_uid_mapping_path");
 	system("$POSTMAP_BIN $conf_postfix_relay_recipients_path");

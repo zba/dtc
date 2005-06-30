@@ -71,7 +71,7 @@ case "list_mx_recipients":
 		$a = mysql_fetch_array($r);
 		$domain = $a["name"];
 		$catchall_email = $a["catchall_email"];
-		$q_email = "SELECT fullemail FROM `pop_access` WHERE mbox_host='$domain';";
+		$q_email = "SELECT fullemail FROM `pop_access` WHERE mbox_host=\'$domain\';";
 		$r_email = mysql_query($q_email)or die("Cannot query $q_email ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n_email = mysql_num_rows($r_email);
 		for ($j=0; $j < $n_email; $j++) 
@@ -84,10 +84,20 @@ case "list_mx_recipients":
 		{
 			$out .= "@" . $domain . "\n";
 		}
+		//add the mailing lists as well
+		$q_mailinglist = "SELECT name FROM `mailinglist` WHERE domain=\'$domain\';";
+		$r_mailinglist =  mysql_query($q_mailinglist)or die("Cannot query $q_mailinglist ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n_mailinglist = mysql_num_rows($r_mailinglist);
+		for ($j=0; $j < $n_mailinglist; $j++)
+		{
+			$a_mailinglist = mysql_fetch_array($r_mailinglist);
+			$out .= $a_mailinglist["name"] . "@" . $a_mailinglist["domain"] . "\n";
+		}
 		//now make sure we have abuse@ and postmaster@
 		$out .= "abuse@" . $domain . "\n";
 		$out .= "postmaster@" . $domain . "\n";
 	}
+
 	$out .= "</dtc_backup_mx_recipient_list>\n";
 	break;
 default:
