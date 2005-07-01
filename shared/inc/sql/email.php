@@ -53,6 +53,16 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 			$submit_err .= "Mailbox allready exist in database !<br>\n";
 			$commit_flag = "no";
 		}
+
+	        //Check if list exists...
+	        $test_query = "SELECT * FROM $pro_mysql_list_table
+	        	WHERE name='".$_REQUEST["newmail_login"]."' AND domain='$edit_domain'";
+		$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+		$testnum_rows = mysql_num_rows($test_result);
+		if($testnum_rows != 0){
+			$submit_err .= "Mailbox allready exist in database as a mailing list!<br>\n";
+			$commit_flag = "no";
+		}
 	}
 
 	if(!isDTCPassword($_REQUEST["newmail_pass"]) && ( ( isset($_REQUEST["newmail_deliver_localy"]) && $_REQUEST["newmail_deliver_localy"] == "yes") || (isset($_REQUEST["editmail_deliver_localy"]) && $_REQUEST["editmail_deliver_localy"] == "yes" ) ) ){
@@ -73,6 +83,7 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 			$commit_flag = "no";
 		}
 	}
+
 	// Submit to the sql dtabase
 	if(isset($_REQUEST["newmail_deliver_localy"]) && $_REQUEST["newmail_deliver_localy"] == "yes"){
 		$dolocal_deliver = "yes";
