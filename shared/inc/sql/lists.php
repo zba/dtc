@@ -62,42 +62,41 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 	// T: Please lucas comments in english !!!
 	//Azioni su disco
 
+	$command = "(echo $edit_domain; echo ".$owner."@".$edit_domain."; echo N;) | /usr/bin/mlmmj-make-ml -L $name -s $list_path";
 	switch($conf_mta_type){
-		case "postfix":
-				$name = $edit_domain . "_" . $name;
-				$owner .= "@" . $edit_domain;
-				$command = "(echo $edit_domain; echo $owner; echo N;) | /usr/bin/mlmmj-make-ml -L $name -s $list_path";
-				exec($command);
+	case "postfix":
+		$name = $edit_domain . "_" . $name;
+		$owner .= "@" . $edit_domain;
+		exec($command);
 			
-				$fileName1 = "$conf_generated_file_path" . "/postfix_virtual";
-				$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' '.$name.'';
-				$fp1 = fopen($fileName1,"a");
-				fwrite($fp1,"\n");
-				fwrite($fp1,$newLine1);
-				fclose($fp1);
+		$fileName1 = "$conf_generated_file_path" . "/postfix_virtual";
+		$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' '.$name.'';
+		$fp1 = fopen($fileName1,"a");
+		fwrite($fp1,"\n");
+		fwrite($fp1,$newLine1);
+		fclose($fp1);
 				
-				$fileName2 = "$conf_generated_file_path" . "/postfix_aliases";
-				$newLine2 = $name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"';
-				$fp2 = fopen($fileName2,"a");
-				fwrite($fp2,"\n");
-				fwrite($fp2,$newLine2);
-				fclose($fp2);
+		$fileName2 = "$conf_generated_file_path" . "/postfix_aliases";
+		$newLine2 = $name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"';
+		$fp2 = fopen($fileName2,"a");
+		fwrite($fp2,"\n");
+		fwrite($fp2,$newLine2);
+		fclose($fp2);
 				
-				//now need to edit the list address back to $_REQUEST["newlist_name"]; rather than $name
-				$fileName3 = $list_path.'/'.$name.'/control/listaddress';
-				$newLine3 = $_REQUEST["newlist_name"] . "@" . $edit_domain;
-				$fp3 = fopen($fileName3,"w");
-				fwrite($fp3,$newLine3);
-				fclose($fp3);
-				
-				sleep(2);
-				exec("postmap $conf_generated_file_path" . "/postfix_virtual");
-				exec("postalias $conf_generated_file_path" . "/postfix_aliases");
-				break;
-		default:
-		case "qmail":
-				
-				break;
+		//now need to edit the list address back to $_REQUEST["newlist_name"]; rather than $name
+		$fileName3 = $list_path.'/'.$name.'/control/listaddress';
+		$newLine3 = $_REQUEST["newlist_name"] . "@" . $edit_domain;
+		$fp3 = fopen($fileName3,"w");
+		fwrite($fp3,$newLine3);
+		fclose($fp3);
+
+		sleep(2);
+		exec("postmap $conf_generated_file_path" . "/postfix_virtual");
+		exec("postalias $conf_generated_file_path" . "/postfix_aliases");
+		break;
+	default:
+	case "qmail":
+		break;
 	}
 }
 
