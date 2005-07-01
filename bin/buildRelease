@@ -11,8 +11,8 @@ RELS=`cat release`
 VERSION=$VERS"-"$RELS
 
 # Here comes script parameters !
-UNIX_TYPE=$1	// debian, gentoo, etc...
-BUILD_DIR=$2	// Example: debian/usr/share/dtc
+UNIX_TYPE=$1	# debian, gentoo, etc...
+BUILD_DIR=$2	# Example: debian/usr/share/dtc
 # PKG_FILENAME=$3	// Example: "dtcGentoo_"$VERSION"_all";
 
 echo " --- Making DTC $UNIX_TYPE package --- "

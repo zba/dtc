@@ -11,27 +11,11 @@ VERS=`cat version`
 RELS=`cat release`
 VERSION=$VERS"."$RELS
 UNIX_TYPE=bsd
+PKG_BUILD="dtc-"$VERSION
+PORT_BUILD=dtcBSDportBuild
+ARCH_NAME=$PKG_BUILD".tar.gz"
 
-echo " --- Making DTC BSD tarball package ---"
-
-# This block should be common to most unix packages :
-echo "===> Copying files"
-mkdir -p dtc/etc/zones
-mkdir -p dtc/shared/imgcache
-cp -rf ../admin ../client ../shared ../email ../doc dtc/
-
-# Copy the table dump in the admin directory
-if ! [ -f sources/dtc_db.php ]
-then
-        curdir=`pwd`
-	cd sources
-	echo "Dumping your DTC SQL structures."
-	echo -n "Please enter your mysql password: "
-	read conf_dbpass
-	php4 backup_db.php $conf_dbpass
-	cd $curdir
-fi
-cp sources/dtc_db.php sources/restor_db.php dtc/admin
+./buildRelease $UNIX_TYPE $PKG_BUILD
 
 kernel=`uname -a | awk '{print $1}'`;
 
@@ -40,55 +24,25 @@ echo "<?php
 \$conf_dtc_release= \""$RELS"\";
 \$conf_unix_type= \""$UNIX_TYPE"\";
 \$conf_kernel_type= \""$kernel"\";
-?>" > dtc/shared/dtc_version.php
-find dtc/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
-find dtc/ -iname '*~' -exec rm -rf {} \; &>/dev/null
-if ! [ -e dtc/admin/gfx ]
-then
-	ln -s ../shared/gfx dtc/admin/gfx
-fi
-if ! [ -e dtc/email/gfx ]
-then
-	ln -s ../shared/gfx dtc/email/gfx
-fi
-if ! [ -e dtc/client/gfx ]
-then
-	ln -s ../shared/gfx dtc/client/gfx
-fi
-if ! [ -e dtc/admin/imgcache ]
-then
-        ln -s ../shared/imgcache dtc/admin/imgcache
-fi
-if ! [ -e dtc/client/imgcache ]
-then
-        ln -s ../shared/imgcache dtc/client/imgcache
-fi
-if ! [ -e dtc/email/imgcache ]
-then
-        ln -s ../shared/imgcache dtc/email/imgcache
-fi
-chown -R root:0 dtc
-chown nobody:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/shared/imgcache dtc/email/imgcache
-chown nobody:65534 dtc/client/gfx dtc/admin/gfx dtc/shared/gfx dtc/email/gfx
+?>" > $PKG_BUILD/shared/dtc_version.php
+
+chown -R root:0 $PKG_BUILD
+chown nobody:65534 $PKG_BUILD/client/imgcache $PKG_BUILD/admin/imgcache $PKG_BUILD/shared/imgcache $PKG_BUILD/email/imgcache
 
 # Specific BSD package actions :
-mkdir "dtc-"$VERSION
-mv dtc "dtc-"$VERSION
-echo "all:" >"dtc-"$VERSION"/Makefile"
+echo "all:" >$PKG_BUILD"/Makefile"
 echo "===> Packaging files"
-tar -czf "dtc-"$VERSION".tar.gz" "dtc-"$VERSION
+tar -czf $ARCH_NAME $PKG_BUILD
 
-echo " --- Succesfully made BSD dtc-"$VERSION".tar.gz ---"
-echo " --- Makeing BSD port for version "$VERSION" ---"
+echo " --- Succesfully made BSD $ARCH_NAME ---"
+echo " --- Making BSD port for version "$VERSION" ---"
 
 # Move bsd version as if it was in ${PREFIX} so we can do lookups in it
-mkdir share
-mv "dtc-"$VERSION"/dtc" share
 
 echo "===> Creating port files"
 # Make  dtc port dir and copy static files in it
-mkdir -p dtc/files
-cp sources/bsd/pkg-descr dtc
+mkdir -p $PORT_BUILD/files
+cp sources/bsd/pkg-descr $PORT_BUILD
 # Create Makefile with correct port version
 echo "# Ports collection makefile for:        dtc
 # Date created:                 1 December 2003
@@ -98,57 +52,62 @@ echo "# Ports collection makefile for:        dtc
 #
 
 PORTNAME=	dtc
-PORTVERSION=	"$VERSION >dtc/Makefile
-cat sources/bsd/Makefile >>dtc/Makefile
+PORTVERSION=	"$VERSION >$PORT_BUILD/Makefile
+cat sources/bsd/Makefile >>$PORT_BUILD/Makefile
 
 # Create package install script
-cp sources/bsd/install.sh dtc/files/dtc-install.in
-cat sources/setup_mysql_db.sh >>dtc/files/dtc-install.in
-cat sources/create_chroot.sh >>dtc/files/dtc-install.in
-cat sources/configure_deamons.sh >>dtc/files/dtc-install.in
-chmod 644 dtc/files/dtc-install.in
+cp sources/bsd/install.sh $PORT_BUILD/files/dtc-install.in
+cat sources/setup_mysql_db.sh >>$PORT_BUILD/files/dtc-install.in
+cat sources/create_chroot.sh >>$PORT_BUILD/files/dtc-install.in
+cat sources/configure_deamons.sh >>$PORT_BUILD/files/dtc-install.in
+chmod 644 $PORT_BUILD/files/dtc-install.in
 
 # Create package uninstall script
-cp sources/bsd/uninstall.sh dtc/files/dtc-deinstall.in
-cat sources/uninstall_deamons.sh >>"dtc/files/dtc-deinstall.in"
-chmod 644 dtc/files/dtc-deinstall.in
+cp sources/bsd/uninstall.sh $PORT_BUILD/files/dtc-deinstall.in
+cat sources/uninstall_deamons.sh >>$PORT_BUILD"/files/dtc-deinstall.in"
+chmod 644 $PORT_BUILD/files/dtc-deinstall.in
 
-cp sources/bsd/pkg-message dtc
+cp sources/bsd/pkg-message $PORT_BUILD
 
 echo "===> Calculating package MD5 sum"
 # Make the md5 sum file in this distinfo
 SIZE=`ls -ALln "dtc-"$VERSION".tar.gz" | awk '{print $5}'`
 # If /sbin/md5, assume it's the BSD md5 binary, otherwise use the one in /usr/bin/md5sum
 if [ -e /sbin/md5 ] ; then
-	md5 "dtc-"$VERSION".tar.gz" >>dtc/distinfo
-	echo "SIZE (dtc-"$VERSION".tar.gz) = "$SIZE >>dtc/distinfo
+	md5 "dtc-"$VERSION".tar.gz" >>$PORT_BUILD/distinfo
+	echo "SIZE (dtc-"$VERSION".tar.gz) = "$SIZE >>$PORT_BUILD/distinfo
 else
 	BSDSUM=`md5sum "dtc-"$VERSION".tar.gz" | cut -f1 -d" "`
 	echo "MD5 (dtc-"$VERSION".tar.gz) = "$BSDSUM"
-SIZE (dtc-"$VERSION".tar.gz) = "$SIZE >>dtc/distinfo
+SIZE (dtc-"$VERSION".tar.gz) = "$SIZE >>$PORT_BUILD/distinfo
 fi
+
 
 echo "===> Creating package list file"
 # Make the pkg-plist file
-find share -type f >dtc/pkg-plist.tmp
+mkdir -p share/dtc
+cp -rf $PKG_BUILD/* share/dtc
+
+find share -type f >$PORT_BUILD/pkg-plist.tmp
 echo "share/dtc/admin/gfx
 share/dtc/admin/imgcache
 share/dtc/shared/mysql_config.php
 share/dtc/client/gfx
 share/dtc/client/imgcache
 sbin/dtc-install
-sbin/dtc-deinstall" >>dtc/pkg-plist.tmp
-find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>dtc/pkg-plist.tmp
-NBR_LINE=`cat dtc/pkg-plist.tmp | wc -l`
-cat dtc/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >dtc/pkg-plist.tmp2
-sed "s/share\/dtc/%%DTCROOT%%/" dtc/pkg-plist.tmp2 | grep -v "mysql_config.php" >dtc/pkg-plist
+sbin/dtc-deinstall" >>$PORT_BUILD/pkg-plist.tmp
+find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>$PORT_BUILD/pkg-plist.tmp
+NBR_LINE=`cat $PORT_BUILD/pkg-plist.tmp | wc -l`
+cat $PORT_BUILD/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >$PORT_BUILD/pkg-plist.tmp2
+sed "s/share\/dtc/%%DTCROOT%%/" $PORT_BUILD/pkg-plist.tmp2 | grep -v "mysql_config.php" >$PORT_BUILD/pkg-plist
 echo "@dirrm %%DTCROOT%%/etc/zones
 @dirrm %%DTCROOT%%/etc
-@dirrm %%DTCROOT%%" >>dtc/pkg-plist
-rm dtc/pkg-plist.tmp dtc/pkg-plist.tmp2
+@dirrm %%DTCROOT%%" >>$PORT_BUILD/pkg-plist
+rm $PORT_BUILD/pkg-plist.tmp $PORT_BUILD/pkg-plist.tmp2
+rm -r share
 
 mkdir sysutils
-mv dtc sysutils
+mv $PORT_BUILD sysutils/dtc
 # Those are slave ports, and is to be activatd in case of changes inside DTC's needs
 
 #mkdir -p lang/php4-dtc
