@@ -1,5 +1,7 @@
 Here is the todo in unsorted order:
 
+- Enhance the backup/restor DTC database stuff so it understands the
+concept of index and keys...
 - Add support for wildcard DNS & Apache ServerAlias entries
 - Make the user deletion delete new type of database (recursively)
 - Make dpkg-reconfigure regenerat the config files for named & apache:
