@@ -9,8 +9,13 @@ FTP_ROOT_LOCATION=/home/ftp
 FTP_PUB_LOCATION=$FTP_ROOT_LOCATION"/pub/dtc"
 
 echo "--- Making all packages ---"
-mkdir -p $FTP_PUB_LOCATION
 mkdir -p $FTP_ROOT_LOCATION"/debian/dists/stable/main/binary-i386/"
+mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/debian"
+mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/bsd"
+mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/cvs"
+mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/gentoo"
+mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/RPMS"
+mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/generic"
 
 ./clean
 ./makeCVSsnap
@@ -18,6 +23,7 @@ mkdir -p $FTP_ROOT_LOCATION"/debian/dists/stable/main/binary-i386/"
 ./makeTarball
 ./makeBSD
 ./makeRedhat
+./makeGentoo
 
 echo "--- Copying files to repository ---"
 cp -fv "dtc_"$VERSION"_all.deb" $FTP_ROOT_LOCATION"/debian/dists/stable/main/binary-i386/"
@@ -27,6 +33,7 @@ cp -fv "dtcBSDport-"$BSDVERSION".tar.gz" $FTP_PUB_LOCATION"/bsd/"
 cp -fv "dtc_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/generic"
 cp -fv "/root/rpmbuild/RPMS/noarch/dtc-"$VERS"-"$RELS".noarch.rpm" $FTP_PUB_LOCATION"/RPMS"
 cp -fv "CVS_dtc_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/cvs"
+cp -fv "dtcGentoo_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/gento"
 
 echo "--- Updating Debian Repository ---"
 curdir=`pwd`
