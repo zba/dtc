@@ -3,7 +3,7 @@
 # This is the DTC's tarball interactive install configuration script
 # made by Thomas Goirand <thomas [ at ] goirand.fr>
 
-UNIX_TYPE=generic
+UNIX_TYPE=gentoo
 
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
@@ -152,134 +152,21 @@ fi
 echo -n "Password: "
 read conf_adm_pass
 
-# Deamon path configuration
-
-echo "### DEAMON PATH CONFIGURATION ###"
-
-echo ""
-echo "Where is located you httpd.conf ?"
-echo -n "httpd.conf path [/usr/local/apache/httpd.conf]: "
-read PATH_HTTPD_CONF
-if [ -z ""$PATH_HTTPD_CONF ];
-then
-	PATH_HTTPD_CONF="/usr/local/apache/httpd.conf"
-fi
-
-echo ""
-echo "Where is located your named.conf ?"
-echo -n "named.conf path [/etc/named.conf]: "
-read PATH_NAMED_CONF
-if [ -z ""$PATH_NAMED_CONF ];
-then
-	PATH_NAMED_CONF="/etc/named.conf"
-fi
-
-echo ""
-echo "Where is located your postfix etc dir ?"
-echo -n "postfix etc path [/etc/postfix]: "
-read PATH_POSTFIX_ETC
-if [ -z ""$PATH_POSTFIX_ETC ];
-then
-	PATH_POSTFIX_ETC="/etc/postfix"
-fi
-
-echo ""
-echo "Where is located your awstats etc dir ?"
-echo -n "postfix etc path [/etc/awstats]: "
-read PATH_AWSTATS_ETC
-if [ -z ""$PATH_AWSTATS_ETC ];
-then
-	PATH_AWSTATS_ETC="/etc/awstats"
-fi
-
-echo ""
-echo "Where is located your postfix/main.cf ?"
-echo -n "postfix control path [${PATH_POSTFIX_ETC}/main.cf]: "
-read PATH_POSTFIX_CONF
-if [ -z ""$PATH_POSTFIX_CONF ];
-then
-	PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"
-fi
-
-echo ""
-echo "Where is saslpasswd2 located ?"
-echo -n "saslpasswd2 location [/usr/sbin/saslpasswd2]: "
-read PATH_SASL_PASSWD2
-if [ -z ""$PATH_SASL_PASSWD2 ];
-then
-	PATH_SASL_PASSWD2="/usr/sbin/saslpasswd2"
-fi
-
-echo ""
-echo "Where is located your courier config path (ie /etc/courier) ?"
-echo -n "courier config path [/etc/courier]: "
-read PATH_COURIER_CONF_PATH
-if [ -z ""$PATH_COURIER_CONF_PATH ];
-then
-	PATH_COURIER_CONF_PATH="/etc/courier"
-fi
-
-echo ""
-echo "Where is located your dovecot.conf ?"
-echo -n "Dovecot control path [/etc/dovecot.conf]: "
-read PATH_DOVECOT_CONF
-if [ -z ""$PATH_DOVECOT_CONF ];
-then
-	PATH_DOVECOT_CONF="/etc/dovecot.conf"
-fi
-
-echo ""
-echo "Where is located your proftpd.conf ?"
-echo -n "Proftpd control path [/etc/proftpd.conf]: "
-read PATH_PROFTPD_CONF
-if [ -z ""$PATH_PROFTPD_CONF ];
-then
-	PATH_PROFTPD_CONF="/etc/proftpd.conf"
-fi
-
-echo ""
-echo "Where is located your qmail control directory ?"
-echo -n "Qmail control path [/var/qmail/control]: "
-read PATH_QMAIL_CTRL
-if [ -z ""$PATH_QMAIL_CTRL ];
-then
-	PATH_QMAIL_CTRL="/var/qmail/control"
-fi
-
-echo ""
-echo "Where is located your php4 cgi parser ?"
-echo -n "php4 cgi path [/usr/local/bin/php4]: "
-read PATH_PHP_CGI
-if [ -z ""$PATH_PHP_CGI ];
-then
-	PATH_PHP_CGI="/usr/local/bin/php4"
-fi
-
-# DTC's own path
-
-echo "### DTC PATH ###"
-echo ""
-echo "Where do you want DTC be installed ?"
-echo -n "DTC shared install folder [/usr/share/dtc]: "
-read PATH_DTC_SHARED
-if [ -z ""$PATH_DTC_SHARED ];
-then
-	PATH_DTC_SHARED="/usr/share/dtc"
-fi
-
+PATH_HTTPD_CONF="/etc/apache2/httpd.conf"
+PATH_NAMED_CONF="/etc/named.conf"
+PATH_POSTFIX_ETC="/etc/postfix"
+PATH_AWSTATS_ETC="/etc/awstats"
+PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"
+PATH_SASL_PASSWD2="/usr/sbin/saslpasswd2"
+PATH_COURIER_CONF_PATH="/etc/courier"
+PATH_DOVECOT_CONF="/etc/dovecot.conf"
+PATH_PROFTPD_CONF="/etc/proftpd/proftpd.conf"
+PATH_QMAIL_CTRL="/var/qmail/control"
+PATH_PHP_CGI="/usr/bin/php"
+PATH_DTC_SHARED="/usr/share/dtc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
-
-echo ""
-echo "Where do you want DTC to store it's generated configuration files ?"
-echo -n "DTC generated files [${PATH_DTC_SHARED}/etc]: "
-read PATH_DTC_ETC
-if [ -z ""$PATH_DTC_ETC ];
-then
-	PATH_DTC_ETC="${PATH_DTC_SHARED}/etc"
-fi
-
-
+PATH_DTC_ETC="${PATH_DTC_SHARED}/etc"
 PATH_CRONTAB_CONF=/etc/crontab
 
 echo ""
