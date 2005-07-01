@@ -6,8 +6,20 @@
 //$edit_domain $newmail_login $newmail_redirect1 $newmail_pass $newmail_redirect2 $newmail_deliver_localy
 if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == "Ok"){
 	global $conf_mta_type;
+
+	// This has to be done BEFORE any other sql requests using login/pass or edit_domain !!!
+	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+
 	$name = $_REQUEST["newlist_name"];
 	$owner = $_REQUEST["newlist_owner"];
+
+	// YOU HAVE TO DO BASIC FIELD CHECKING otherwise it can lead to mysql insertion hack by a customer that has a valid pass!!!
+	if(!isMailbox($name)){
+		die("Mailbox format not correct !");
+	}
+	if(!isValidEmail($owner)){
+		die("Owner is not a valid email !");
+	}
 
 	// Check if mail exists...
 	$test_query = "SELECT * FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["newlist_name"]."' AND mbox_host='$edit_domain'";
@@ -25,8 +37,6 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 		die("Mailing list already exist in database !");
 	}
 
-	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
-	
 	//Path of user's mailing lists
 	$admin_path = getAdminPath($adm_login);
 	$list_path = "$admin_path/$edit_domain/lists";
@@ -97,6 +107,14 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	$new_list_owner = $_REQUEST["editmail_owner"];
 
 	$name = $_REQUEST["edit_mailbox"];
+
+	if(!isMailbox($name)){
+		die("Mailbox format not correct !");
+	}
+	if(!isValidEmail($new_list_owner)){
+		die("Owner is not a valid email !");
+	}
+
 
 	//now need to edit the owner to $_REQUEST["editmail_owner"]; 
 	$fileName3 = $list_path.'/'. $edit_domain . '_' . $name.'/control/owner';
