@@ -11,72 +11,25 @@ VERS=`cat version`
 RELS=`cat release`
 VERSION=$VERS"-"$RELS
 UNIX_TYPE=generic
+BUILD_DIR=dtc
+DEST_DIR="dtc_"$VERSION"-generic"
+ARCH_NAME=$DEST_DIR"-generic.tar.gz"
 
-echo " --- Making DTC tarball package ---"
+./buildRelease $UNIX_TUME $BUILD_DIR
 
-# This block should be common to most unix packages :
-echo "===> Copying files"
-rm -rf dtc
-mkdir -p dtc/etc/zones
-cp -rf ../admin ../client ../shared ../email ../doc dtc/
-echo "<?php
-\$conf_dtc_version= \""$VERS"\";
-\$conf_dtc_release= \""$RELS"\";
-\$conf_unix_type= \""$UNIX_TYPE"\";
-?>" > dtc/shared/dtc_version.php
-find dtc/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
-find dtc/ -iname '*~' -exec rm -rf {} \; &>/dev/null
-if ! [ -e dtc/admin/gfx ]
-then
-	ln -s ../shared/gfx dtc/admin/gfx
-fi
-if ! [ -e dtc/email/gfx ]
-then
-	ln -s ../shared/gfx dtc/email/gfx
-fi
-if ! [ -e dtc/client/gfx ]
-then
-	ln -s ../shared/gfx dtc/client/gfx
-fi
-if ! [ -e dtc/admin/imgcache ]
-then
-        ln -s ../shared/imgcache dtc/admin/imgcache
-fi
-if ! [ -e dtc/client/imgcache ]
-then
-        ln -s ../shared/imgcache dtc/client/imgcache
-fi
-if ! [ -e dtc/email/imgcache ]
-then
-        ln -s ../shared/imgcache dtc/email/imgcache
-fi
-# Copy the table dump in the admin directory
-if ! [ -f sources/dtc_db.php ]
-then
-        curdir=`pwd`
-	cd sources
-        echo "Dumping your DTC SQL structures."
-        echo -n "Please enter your mysql password: "
-        read conf_dbpass
-        php4 backup_db.php $conf_dbpass
-        cd $curdir
-fi
-cp sources/dtc_db.php sources/restor_db.php dtc/admin
-
-chown -R root:root dtc
-chown nobody:nogroup dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx dtc/email/gfx
+chown -R root:root $BUILD_DIR
+chown nobody:nogroup $BUILD_DIR/shared $BUILD_DIR/client/imgcache $BUILD_DIR/admin/imgcache
 
 # Specific tarball package actions :
-mkdir "dtc_"$VERSION"_all"
-mv dtc "dtc_"$VERSION"_all"
-cp sources/tarball/install.sh "dtc_"$VERSION"_all"
-cat sources/create_chroot.sh >>"dtc_"$VERSION"_all/install.sh"
-cat sources/setup_mysql_db.sh >>"dtc_"$VERSION"_all/install.sh"
-cat sources/configure_deamons.sh >>"dtc_"$VERSION"_all/install.sh"
+mv $BUILD_DIR $DEST_DIR
+cp sources/tarball/install.sh $DEST_DIR
+cat sources/create_chroot.sh >>$DEST_DIR"/install.sh"
+cat sources/setup_mysql_db.sh >>$DEST_DIR"/install.sh"
+cat sources/configure_deamons.sh >>$DEST_DIR"/install.sh"
 
-cp sources/tarball/uninstall.sh "dtc_"$VERSION"_all"
-cat sources/uninstall_deamons.sh >>"dtc_"$VERSION"_all/uninstall.sh"
+cp sources/tarball/uninstall.sh $DEST_DIR
+cat sources/uninstall_deamons.sh >>$DEST_DIR"/uninstall.sh"
 echo "===> Packaging"
-tar -czf "dtc_"$VERSION"_all.tar.gz" "dtc_"$VERSION"_all"
+tar -czf $ARCH_NAME $DEST_DIR
 
-echo " -- Succesfully made dtc_"$VERSION"_all.tar.gz ---"
+echo " -- Succesfully made $ARCH_NAME ---"

@@ -12,67 +12,17 @@ RELS=`cat release`
 VERSION=$VERS"-"$RELS
 UNIX_TYPE=generic
 BUILD_DIR=dtc
+DEST_DIR="dtc_"$VERSION"-gentoo"
+ARCH_NAME=$DEST_DIR"-gentoo.tar.gz"
 
-PKG_FILENAME="dtcGentoo_"$VERSION"_all";
+./buildRelease $UNIX_TUME $BUILD_DIR
 
-echo " --- Making DTC gentoo package ---"
+chown -R root:root $BUILD_DIR
+chown nobody:nogroup $BUILD_DIR/shared $BUILD_DIR/client/imgcache $BUILD_DIR/admin/imgcache
 
-# This block should be common to most unix packages :
-echo "===> Copying files"
-rm -rf $BUILD_DIR
-mkdir $BUILD_DIR
-mkdir -p $BUILD_DIR/etc/zones
-cp -rf ../admin ../client ../shared ../email ../doc $BUILD_DIR
-echo "<?php
-\$conf_dtc_version= \""$VERS"\";
-\$conf_dtc_release= \""$RELS"\";
-\$conf_unix_type= \""$UNIX_TYPE"\";
-?>" > $BUILD_DIR/shared/dtc_version.php
-find $BUILD_DIR/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
-find $BUILD_DIR/ -iname '*~' -exec rm -rf {} \; &>/dev/null
-if ! [ -e $BUILD_DIR/admin/gfx ]
-then
-	ln -s ../shared/gfx $BUILD_DIR/admin/gfx
-fi
-if ! [ -e $BUILD_DIR/email/gfx ]
-then
-	ln -s ../shared/gfx $BUILD_DIR/email/gfx
-fi
-if ! [ -e $BUILD_DIR/client/gfx ]
-then
-	ln -s ../shared/gfx $BUILD_DIR/client/gfx
-fi
-if ! [ -e $BUILD_DIR/admin/imgcache ]
-then
-        ln -s ../shared/imgcache $BUILD_DIR/admin/imgcache
-fi
-if ! [ -e $BUILD_DIR/client/imgcache ]
-then
-        ln -s ../shared/imgcache $BUILD_DIR/client/imgcache
-fi
-if ! [ -e $BUILD_DIR/email/imgcache ]
-then
-        ln -s ../shared/imgcache $BUILD_DIR/email/imgcache
-fi
-# Copy the table dump in the admin directory
-if ! [ -f sources/dtc_db.php ]
-then
-        curdir=`pwd`
-	cd sources
-        echo "Dumping your DTC SQL structures."
-        echo -n "Please enter your mysql password: "
-        read conf_dbpass
-        php4 backup_db.php $conf_dbpass
-        cd $curdir
-fi
-cp sources/dtc_db.php sources/restor_db.php $BUILD_DIR/admin
-
-chown -R root:root dtc
-chown nobody:nogroup dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx dtc/email/gfx
-
-# Specific tarball package actions :
-mkdir $PKG_FILENAME
-mv dtc $PKG_FILENAME
+# Specific gentoo package actions :
+PKG_FILENAME=$DEST_DIR
+mv $BUILD_DIR $PKG_FILENAME
 cp sources/gentoo/install.sh $PKG_FILENAME
 cat sources/create_chroot.sh >>$PKG_FILENAME"/install.sh"
 cat sources/setup_mysql_db.sh >>$PKG_FILENAME"/install.sh"
@@ -81,6 +31,6 @@ cat sources/configure_deamons.sh >>$PKG_FILENAME"/install.sh"
 cp sources/gentoo/uninstall.sh $PKG_FILENAME
 cat sources/uninstall_deamons.sh >>$PKG_FILENAME"/uninstall.sh"
 echo "===> Packaging"
-tar -czf $PKG_FILENAME".tar.gz" $PKG_FILENAME
+tar -czf $ARCH_NAME $PKG_FILENAME
 
-echo " -- Succesfully made "$PKG_FILENAME".tar.gz ---"
+echo " -- Succesfully made "$ARCH_NAME" ---"
