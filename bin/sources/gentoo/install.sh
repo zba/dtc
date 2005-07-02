@@ -161,7 +161,7 @@ echo -n "Password: "
 read conf_adm_pass
 
 PATH_HTTPD_CONF="/etc/apache2/httpd.conf"
-PATH_NAMED_CONF="/etc/named.conf"
+PATH_NAMED_CONF="/etc/bind/named.conf"
 PATH_POSTFIX_ETC="/etc/postfix"
 PATH_AWSTATS_ETC="/etc/awstats"
 PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"
