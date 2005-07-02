@@ -218,7 +218,7 @@ fi
 # Using a file to remember password...
 PATH_DB_PWD_FILE=${PATH_DTC_ETC}/dtcdb_passwd
 echo "if ! [ -e ${PATH_DB_PWD_FILE} ] ;then"
-if ! [ -e ${PATH_DB_PWD_FILE} ] ;then
+if ! [ -e ""${PATH_DB_PWD_FILE} ] ;then
 	MYSQL_DTCDAEMONS_PASS=`echo ${RANDOM}${RANDOM}`
 	echo ${MYSQL_DTCDAEMONS_PASS} >${PATH_DB_PWD_FILE}
 else

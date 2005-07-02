@@ -5,6 +5,8 @@
 
 UNIX_TYPE=gentoo
 
+VERBOSE_INSTALL=yes
+
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
 echo "###############################################################"
@@ -45,8 +47,12 @@ echo "you wish to use with DTC ? Type q for qmail"
 echo "or type p for postfix."
 echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
 read conf_mta_type
-if [ "$conf_mta_type" = "p" ];
-then
+
+if [ -z ""$conf_mta_type ] ; then
+	conf_mta_type="p"
+fi
+
+if [ "$conf_mta_type" = "p" ] ; then
 	conf_mta_type=postfix
 	echo "Postfix will be used"
 else
@@ -102,10 +108,12 @@ echo "to the internet with a public static IP) leave it to NO."
 echo -n "Use NATed vhosts ? [N/y]: "
 read conf_use_nated_vhosts
 
-if [ ""$conf_use_nated_vhosts = "y" -o ""$conf_use_nated_vhosts = "Y" -o ""$conf_use_nated_vhosts = "yes"]; then
+if [ ""$conf_use_nated_vhosts = "y" -o ""$conf_use_nated_vhosts = "Y" -o ""$conf_use_nated_vhosts = "yes" ]; then
 	conf_use_nated_vhosts = "yes";
+	echo "Nated vhosts will be used"
 else
 	conf_use_nated_vhosts = "no";
+	echo "Nated vhosts won't be used"
 fi
 
 echo ""

@@ -5,6 +5,8 @@
 
 UNIX_TYPE=generic
 
+VERBOSE_INSTALL=yes
+
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
 echo "###############################################################"

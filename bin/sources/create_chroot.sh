@@ -92,7 +92,13 @@ if [ $UNIX_TYPE"" = "freebsd"  -o $UNIX_TYPE"" = "osx" ] ; then
 fi
 
 # copy required binaries to $CHROOT_DIR/usr/bin and $CHROOT_DIR/bin
-cp -pf /usr/bin/file /usr/bin/bzip2 usr/bin/
+if [ $UNIX_TYPE"" = "gentoo" ] ; then
+	cp -pf /usr/bzip2 usr/bin/
+else
+	cp -pf /usr/bin/bzip2 usr/bin/
+fi
+
+cp -pf /usr/bin/file usr/bin/
 
 if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
@@ -118,6 +124,10 @@ if [ -e /etc/host.conf ] ; then
 	cp -pf /etc/host.conf etc/
 fi
 
+if [ -e /etc/ld.conf ] ; then
+	cp -pf /etc/ld.conf etc/
+fi
+
 if [ -e /etc/nsswitch.conf ] ; then
 	cp -pf /etc/nsswitch.conf etc/
 fi
@@ -138,17 +148,7 @@ if [ $UNIX_TYPE"" = "freebsd"  ] ; then
 		cp /usr/compat/linux/usr/lib/libz.so.1 usr/lib
 	fi
 else
-	if ! [ $UNIX_TYPE"" = "osx"  ] ; then
-		cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
-		  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
-		  /lib/libncurses.so.5 /usr/lib/libz.so.1 \
-		  /lib/librt.so.1 \
-		  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
-		if [ -e /usr/lib/libmagic.so.1 ]
-		then
-			cp -pf /usr/lib/libmagic.so.1 lib/
-		fi
-	else
+	if [ $UNIX_TYPE"" = "osx"  ] ; then
 		cp -pf /usr/lib/dyld /usr/lib/libSystem.B.dylib \
 		  /usr/lib/libc.dylib /usr/lib/libdl.dylib \
 		  /usr/lib/libncurses.5.dylib /usr/lib/libpam.dylib \
@@ -159,6 +159,21 @@ else
 		  /usr/lib/libz.dylib usr/lib
 		mkdir usr/lib/system
 		cp -pf /usr/lib/system/libmathCommon.A.dylib usr/lib/system
+	else
+		cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
+		  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
+		  /lib/libncurses.so.5 \
+		  /lib/librt.so.1 \
+		  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+		if [ -e /usr/lib/libmagic.so.1 ]
+		then
+			cp -pf /usr/lib/libmagic.so.1 lib/
+		fi
+		if [ $UNIX_TYPE"" = "gentoo" ] ; then
+			cp -pf /lib/libz.so.1 lib/
+		else
+			cp -pf /usr/lib/libz.so.1 lib/
+		fi
 	fi
 fi
 
