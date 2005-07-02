@@ -139,10 +139,24 @@ then
 			echo "Skiping include_path insertion in php.ini"
 		fi
 	else
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Your php.ini doesn't has pear in it's inc path: changin!"
+		if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/php >/dev/null
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Skiping include_path insertion in php.ini"
+			fi
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Your php.ini doesn't has pear in it's inc path: changin!"
+			fi
+			if [ -e /usr/share/pear ] ; then
+				echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cgi/php.ini
+			else
+				if [ -e /usr/share/php ] ; then
+					echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cgi/php.ini
+				else
+					echo "I couldn't do it: please check manualy you have PEAR installed!"
+				fi
+			fi
 		fi
-		echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cgi/php.ini
 	fi
 fi
 
