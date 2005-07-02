@@ -377,8 +377,7 @@ $dtc_database = array(
 			),
 		"keys" => array(
 			"PRIMARY" => "(id)",
-			"vhost" => "(vhost,month,year,domain)",
-			"month" => "(month,year,vhost)"
+			"vhost" => "(vhost,month,year,domain)"
 			)
 		),
 	"mailinglist" => array(
@@ -685,13 +684,8 @@ $dtc_database = array(
 			),
 		"keys" => array(
 			"PRIMARY" => "(id)",
-			"delivery_id_text" => "(delivery_id_text)",
-			"delivery_id_text_2" => "(delivery_id_text)",
 			"bounce_qp" => "(bounce_qp)",
-			"newmsg_id" => "(newmsg_id)",
-			"sender_domain" => "(sender_domain)",
-			"delivery_domain" => "(delivery_domain)"
-			)
+			"newmsg_id" => "(newmsg_id)"			)
 		),
 	"subdomain" => array(
 		"vars" => array(

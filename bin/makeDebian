@@ -16,12 +16,15 @@ echo " --- Making DTC debian package --- "
 # Make the directories
 mkdir -p debian/usr/share/dtc/etc/zones
 mkdir -p debian/DEBIAN
+mkdir -p debian/usr/share/dtc
 
 # Make the basic archive
 ./buildRelease $UNIX_TYPE debian/usr/share/dtc
 
 # Copy DTC's files in the good directories
-mkdir -p debian/usr/share/doc/dtc
+mkdir -p debian/usr/share/doc
+mv debian/usr/share/dtc/doc debian/usr/share/doc/dtc
+ln -s ../../dtc debian/usr/share/dtc/doc
 rm debian/usr/share/doc/dtc/LICENSE debian/usr/share/doc/dtc/INSTALL
 gzip -f -9 debian/usr/share/doc/dtc/changelog
 

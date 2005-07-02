@@ -1,4 +1,4 @@
 #!/bin/sh
 chown -R root:root debian/usr/share/dtc
-chown nobody:nogroup debian/usr/share/dtc/client/imgcache debian/usr/share/dtc/admin/imgcache debian/usr/share/dtc/shared/imgcache debian/usr/share/dtc/email/imgcache
+chown nobody:nogroup debian/usr/share/dtc/admin/gfx debian/usr/share/dtc/client/gfx debian/usr/share/dtc/email/gfx debian/usr/share/dtc/client/imgcache debian/usr/share/dtc/admin/imgcache debian/usr/share/dtc/shared/imgcache debian/usr/share/dtc/email/imgcache
 dpkg-deb --build debian
