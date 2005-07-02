@@ -140,6 +140,7 @@ then
 		fi
 	else
 		if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/php >/dev/null
+		then
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 				echo "Skiping include_path insertion in php.ini"
 			fi
