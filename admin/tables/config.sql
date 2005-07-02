@@ -49,5 +49,7 @@ srs_live_key varchar(255) NOT NULL default '',
 srs_test_key varchar(255) NOT NULL default '',
 srs_enviro enum('LIVE','TEST') NOT NULL default 'TEST',
 srs_crypt enum('DES','BLOWFISH') NOT NULL default 'DES',
+root_admin_random_pass varchar(128) NOT NULL default '',
+pass_expire int(12) NOT NULL default '0',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
