@@ -15,7 +15,7 @@ BUILD_DIR=dtc
 DEST_DIR="dtc_"$VERSION"-gentoo"
 ARCH_NAME=$DEST_DIR"-gentoo.tar.gz"
 
-./buildRelease $UNIX_TUME $BUILD_DIR
+./buildRelease $UNIX_TYPE $BUILD_DIR
 
 chown -R root:root $BUILD_DIR
 chown nobody:nogroup $BUILD_DIR/shared $BUILD_DIR/client/imgcache $BUILD_DIR/admin/imgcache
