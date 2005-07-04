@@ -90,20 +90,28 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 fi
 # Added for MacOS X support with mysql not in the path...
 if [ ""$conf_mysql_cli_path = "" ] ;then
-	echo "mysql_cli_path is not set"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "mysql_cli_path is not set"
+	fi
 	conf_mysql_cli_path="mysql";
 fi
 if [ ""$conf_mysqlshow_cli_path = "" ] ;then
-	echo "mysqlshow_cli_path is not set"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "mysqlshow_cli_path is not set"
+	fi
 	conf_mysqlshow_cli_path="mysqlshow";
 fi
 if [ "$conf_mysql_pass" = "" ];
 then
-	echo "Setting up mysql cli "$conf_mysql_cli_path" without password"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Setting up mysql cli "$conf_mysql_cli_path" without password"
+	fi
         MYSQL=""$conf_mysql_cli_path
 	MYSQLSOW=$conf_mysqlshow_cli_path
 else
-	echo "Setting up mysql cli with password"
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Setting up mysql cli with password"
+	fi
 #	MYSQL=""$conf_mysql_cli_path "-p"$conf_mysql_pass
 	MYSQL=$conf_mysql_cli_path" -p${conf_mysql_pass}"
 	MYSQLSHOW=$conf_mysqlshow_cli_path" -p${conf_mysql_pass}"
@@ -177,8 +185,8 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE
 
 # Add dtc userspace info to mysql db if it's not there
 TMP_FILE=`${MKTEMP} dtc_downer_grep.XXXXXXXX`  || exit 1
-$MYSQLSHOW -u$conf_mysql_login mysql user >${TMP_FILE}
-if ! grep dtcowner ${TMP_FILE} ;then
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -Dmysql --execute="DESCRIBE user dtcowner" >${TMP_FILE}
+if ! grep dtcowner ${TMP_FILE} 2>&1 >/dev/null ;then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "Adding dtcowner column to mysql.user"
 	fi
@@ -200,8 +208,8 @@ fi
 
 # Add a fullemail field to the pop table if not exists.
 TMP_FILE=`${MKTEMP} dtc_pop_access_grep.XXXXXXXX`  || exit 1
-$MYSQLSHOW -u$conf_mysql_login dtc pop_access >${TMP_FILE}
-if ! grep fullemail ${TMP_FILE} ;then
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="DESCRIBE pop_access fullemail" >${TMP_FILE}
+if ! grep fullemail ${TMP_FILE} 2>&1 >/dev/null ;then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "Adding fullemail column to dtc.pop_access and updating id@mbox_host field."
 	fi
@@ -217,7 +225,6 @@ fi
 # Add a dtc user to the mysql db, generate a password randomly if no password is there already
 # Using a file to remember password...
 PATH_DB_PWD_FILE=${PATH_DTC_ETC}/dtcdb_passwd
-echo "if ! [ -e ${PATH_DB_PWD_FILE} ] ;then"
 if ! [ -e ""${PATH_DB_PWD_FILE} ] ;then
 	MYSQL_DTCDAEMONS_PASS=`echo ${RANDOM}${RANDOM}`
 	echo ${MYSQL_DTCDAEMONS_PASS} >${PATH_DB_PWD_FILE}
@@ -273,6 +280,8 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE
 if [ ""$conf_use_nated_vhosts = "yes" ] ;then
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_nated_vhost='yes'"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET nated_vhost_ip='"${nated_vhost_ip}"'"
+else
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_nated_vhost='no'"
 fi
 
 # The panel needs root access (it does database management)

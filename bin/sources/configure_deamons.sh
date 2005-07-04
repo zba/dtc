@@ -1079,10 +1079,11 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "***********************************************************"
 	echo "*** Please wait while DTC configures all the daemons... ***"
 	echo "***********************************************************"
+
 	cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php
 	echo "--- --- --- INSTALLATION FINISHED --- --- ---"
 else
-	cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php 2>&1
+	cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php 2>&1 >/var/log/dtc.log
 	echo "done!"
 fi
 

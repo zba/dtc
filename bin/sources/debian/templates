@@ -197,7 +197,7 @@ Type: password
 Description: DTC SSL certificate challenge pass.
  Please enter your certificate challenge password.
 
-Template: dtc/conf_upgrade_pear_install
+Template: dtc/conf_upgrade_pear
 Type:  boolean
 Default: true
 Description: Update pear installation.
@@ -205,3 +205,4 @@ Description: Update pear installation.
  durring install? This REQUIRES a network connection to the
  internet. If you can't reply yes here, please check that you
  have the following PEAR modules up-to-date: Crypt_CBC and Auth_SASL.
+

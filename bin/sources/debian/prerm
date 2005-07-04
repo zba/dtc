@@ -2,9 +2,9 @@
 
 set -e
 # Automatically added by dh_installdocs
-if [ \( "$1" = "upgrade" -o "$1" = "remove" \) -a -L /usr/doc/dtc ]; then
-        rm -f /usr/doc/dtc
-fi
+#if [ \( "$1" = "upgrade" -o "$1" = "remove" \) -a -L /usr/doc/dtc ]; then
+#        rm -f /usr/doc/dtc
+#fi
 
 # Debian uninstall bash script for DTC
 # Written by Thomas GOIRAND <thomas@goirand.fr>

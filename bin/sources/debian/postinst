@@ -1,13 +1,13 @@
 #!/bin/sh
 
 set -e
-if [ "$1" = "configure" ]
-	then
-        if [ -d /usr/doc -a ! -e /usr/doc/dtc -a -d /usr/share/doc/dtc ]
-	then
-                ln -sf ../share/doc/dtc /usr/doc/dtc
-        fi
-fi
+#if [ "$1" = "configure" ]
+#	then
+#        if [ -d /usr/doc -a ! -e /usr/doc/dtc -a -d /usr/share/doc/dtc ]
+#	then
+#                ln -sf ../share/doc/dtc /usr/doc/dtc
+#        fi
+#fi
 
 
 # Debian install bash script for DTC
@@ -17,7 +17,7 @@ fi
 # exit 0
 
 # Enable this to debug!
-VERBOSE_INSTALL=yes
+#VERBOSE_INSTALL=yes
 
 UNIX_TYPE=debian
 
@@ -99,8 +99,8 @@ db_get dtc/conf_cert_email
 conf_cert_email=$RET
 db_get dtc/conf_cert_challenge_pass
 conf_cert_challenge_pass=$RET
-db_get dtc/conf_upgrade_pear_install
-conf_upgrade_pear_install=$RET
+db_get dtc/conf_upgrade_pear
+conf_upgrade_pear=$RET
 
 #db_unregister dtc/conf_gen_ssl_cert
 #db_unregister dtc/conf_cert_passphrase
@@ -108,7 +108,7 @@ conf_upgrade_pear_install=$RET
 db_unregister dtc/conf_mysqlpass
 db_unregister dtc/conf_mysql_change_root
 db_unregister dtc/conf_admpass
-db_unregister dtc/conf_upgrade_pear_install
+db_unregister dtc/conf_upgrade_pear
 # db_purge
 
 # This part is debian specific because of (in my point of view) some
@@ -205,20 +205,20 @@ fi
 TMP_FILE=`mktemp -t DTC_pear.install.XXXXXX` || exit 1
 if [ $PHPMAJOR -ge 4 -a $PHPMINOR -ge 3 -a -e /usr/bin/pear ]
 then
-	if [ ""$conf_mysql_change_root = "true" ] ; then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Checking pear installation for PHP > 4.3"
-		fi
-	set +e
-	/usr/bin/pear upgrade Console_Getopt > $TMP_FILE
-	/usr/bin/pear upgrade-all >> $TMP_FILE
-	/usr/bin/pear install Crypt_CBC >> $TMP_FILE
-	/usr/bin/pear install Auth_SASL >> $TMP_FILE
-	set -e
-	else
+	if [ ""$conf_conf_upgrade_pear = "false" ] ; then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "User selected not to check for pear: skiping."
 		fi
+	else
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Checking pear installation for PHP > 4.3"
+		fi
+		set +e
+		/usr/bin/pear upgrade Console_Getopt > $TMP_FILE
+		/usr/bin/pear upgrade-all >> $TMP_FILE
+		/usr/bin/pear install Crypt_CBC >> $TMP_FILE
+		/usr/bin/pear install Auth_SASL >> $TMP_FILE
+		set -e
 	fi
 else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
