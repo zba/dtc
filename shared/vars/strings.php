@@ -1,4 +1,15 @@
 <?php
+$txt_go_to_client_panel = array(
+        "fr" => "TRANS",
+        "en" => "Go to client panel",
+        "hu" => "Ugrás az ügyfél panelre",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
 
 $txt_no = array(
         "fr" => "TRANS",
