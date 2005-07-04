@@ -1,5 +1,118 @@
 <?php
 
+$txt_no = array(
+        "fr" => "TRANS",
+        "en" => "No",
+        "hu" => "Nem",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
+
+$txt_yes = array(
+        "fr" => "TRANS",
+        "en" => "Yes",
+        "hu" => "Igen",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
+
+$txt_is_company = array(
+        "fr" => "TRANS",
+        "en" => "Is company",
+        "hu" => "Céges elõfizetés",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
+
+$txt_desired_domain_name = array(
+        "fr" => "TRANS",
+        "en" => "Desired domain name",
+        "hu" => "Igényelt domain név",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
+
+$txt_confirm_pass = array(
+        "fr" => "TRANS",
+        "en" => "Confirm pass",
+        "hu" => "Jelszó megerõsítése",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
+
+$txt_login_info = array(
+        "fr" => "TRANS",
+        "en" => "Login info",
+        "hu" => "Belépési információk",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
+
+$txt_product = array(
+        "fr" => "TRANS",
+        "en" => "Product",
+        "hu" => "Csomag",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
+
+
+
+
+$txt_go_to_login = array(
+        "fr" => "TRANS",
+        "en" => "Go to login",
+        "hu" => "Belépés",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
+
+
+$txt_client_info = array(
+        "fr" => "TRANS",
+        "en" => "Client info:",
+        "hu" => "Ügyfél adatok:",
+        "it" => "TRANS",
+        "nl" => "TRANS",
+        "ru" => "TRANS",
+        "de" => "TRANS",
+        "zh" => "TRANS",
+        "es" => "TRANS",
+        "ch" => "TRANS");
+
+
 $txt_list_name = array(
 	"fr" => "Nom de la liste",
 	"en" => "List name",
@@ -566,7 +679,7 @@ $txt_no_domain_waiting = array(
 $txt_userndomain_waiting_for_addition = array(
   "fr" => "Utilisateurs et domaines en attente : ",
   "en" => "User and domain waiting for addition: ",
-  "hu" => "A felhasználó és a domain várakozik:",
+  "hu" => "A következõ felhasználók illetve domainek várnak jóváhagyásra:",
   "it" => "Utenti e domini in attesa: ",
   "nl" => "TRANS User and domain waiting for addition: ",
   "ru" => "TRANS User and domain waiting for addition: ",
