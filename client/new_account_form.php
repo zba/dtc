@@ -241,9 +241,17 @@ function registration_form(){
 	global $txt_login_pass;
 	global $txt_use_text_menu;
 	global $txt_login_title;
-
-	global $conf_skin;
-
+        global $txt_client_info;
+        global $txt_register_new_account;
+        global $txt_go_to_login;
+        global $txt_product;
+        global $txt_login_info;
+        global $txt_confirm_pass;
+        global $txt_desired_domain_name;	
+        global $conf_skin;
+        global $txt_is_company;
+        global $txt_yes;
+        global $txt_no;
 	global $lang;
 	global $txt_draw_client_info_familyname;
 	global $txt_draw_client_info_firstname;
@@ -316,7 +324,7 @@ function registration_form(){
 
 	if(isset($_REQUEST["country"]))	$frm_addr3 = $_REQUEST["country"];
 	else	$frm_country = "";
-
+        
 	$login_info = "<table>
 <tr>
 	<td align=\"right\">".$txt_login_login[$lang]."</td>
@@ -325,10 +333,10 @@ function registration_form(){
 	<td align=\"right\">".$txt_login_pass[$lang]."</td>
 	<td><input type=\"password\" name=\"reqadm_pass\" value=\"\"></td>
 </tr><tr>
-	<td align=\"right\">Confirm pass:</td>
+	<td align=\"right\">$txt_confirm_pass[$lang]:</td>
 	<td><input type=\"password\" name=\"reqadm_pass2\" value=\"\"></td>
 </tr><tr>
-	<td align=\"right\">Desired domain name:</td>
+	<td align=\"right\">$txt_desired_domain_name[$lang]:</td>
 	<td><input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></td>
 </tr></table>";
 	$login_skined = skin("frame",$login_info,"");
@@ -348,9 +356,9 @@ function registration_form(){
 	<td align=\"right\">".$txt_draw_client_info_firstname[$lang]."</td>
 	<td><input type=\"text\" name=\"firstname\" value=\"$frm_firstname\"></td>
 </tr><tr>
-	<td align=\"right\">Is company</td>
-	<td><input type=\"radio\" name=\"iscomp\" value=\"yes\"$compyes>Yes
-<input type=\"radio\" name=\"iscomp\" value=\"no\"$compno>No</td>
+	<td align=\"right\">$txt_is_company[$lang]?</td>
+	<td><input type=\"radio\" name=\"iscomp\" value=\"yes\"$compyes>$txt_yes[$lang]
+<input type=\"radio\" name=\"iscomp\" value=\"no\"$compno>$txt_no[$lang]</td>
 </tr><tr>
 	<td align=\"right\">".$txt_draw_client_info_comp_name[$lang]."</td>
 	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>
@@ -391,15 +399,15 @@ function registration_form(){
 </tr></table>";
 	$addr_skined = skin("frame",$client_addr,"");
 
-	$HTML_admin_edit_data = "<a href=\"/dtc\">Go to login</a>
+	$HTML_admin_edit_data = "<a href=\"/dtc\">$txt_go_to_login[$lang]</a>
 <form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 <input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>
 <tr>
-	<td>Product:<select name=\"product_id\">$prod_popup</select><br>
-Login info:$login_skined</td>
-	<td>Client info:$client_skined</td>
-	<td>Client info:$addr_skined</td>
+	<td>$txt_product[$lang]: <select name=\"product_id\">$prod_popup</select><br>
+$txt_login_info[$lang]:$login_skined</td>
+	<td>$txt_client_info[$lang] $client_skined</td>
+	<td>$txt_client_info[$lang] $addr_skined</td>
 </tr></table>
 <center><input type=\"submit\" name=\"Login\" value=\"Register\"></center>
 </form>";

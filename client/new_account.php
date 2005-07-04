@@ -1,6 +1,8 @@
 <?php
 
 
+global $txt_register_new_account;
+
 require_once("../shared/autoSQLconfig.php");
 $panel_type="client";
 // All shared files between DTCadmin and DTCclient
@@ -116,7 +118,7 @@ Please now click on the following button to go for paiment:<br>
 		.registration_form();
 	}
 }
-$login_skined = skin($conf_skin,$form,"New account registration:");
+$login_skined = skin($conf_skin,$form,$txt_register_new_account[$lang]);
 $mypage = layout_login_and_languages($login_skined,$lang_sel);
 // Output the result !
 
