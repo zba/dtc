@@ -11,8 +11,6 @@ RELS=`cat release`
 VERSION=$VERS"-"$RELS
 UNIX_TYPE=debian
 
-echo " --- Making DTC debian package --- "
-
 # Make the directories
 mkdir -p debian/usr/share/dtc/etc/zones
 mkdir -p debian/DEBIAN

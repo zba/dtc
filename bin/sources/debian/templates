@@ -125,7 +125,7 @@ Description: Mail Transfer Agent Type.
  script parts could be skiped and so your configuration
  will not be fully done.
 
-Template: dtc/conf_use_nated_vhost
+Template: dtc/conf_use_nated_vhosts
 Type: boolean
 Default: false
 Description: Use nated vhosts
@@ -137,7 +137,7 @@ Description: Use nated vhosts
  here, otherwise (if your server is connected directly
  to the internet with a public static IP) leave it to NO.
 
-Template: dtc/conf_nated_vhost_ip
+Template: dtc/conf_nated_vhosts_ip
 Type: string
 Default: 192.168.0.2
 Description: NATed LAN IP
@@ -197,3 +197,11 @@ Type: password
 Description: DTC SSL certificate challenge pass.
  Please enter your certificate challenge password.
 
+Template: dtc/conf_upgrade_pear_install
+Type:  boolean
+Default: true
+Description: Update pear installation.
+ Do you want that DTC checks that your pear installation
+ durring install? This REQUIRES a network connection to the
+ internet. If you can't reply yes here, please check that you
+ have the following PEAR modules up-to-date: Crypt_CBC and Auth_SASL.
