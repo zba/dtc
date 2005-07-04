@@ -289,13 +289,15 @@ function drawNamedConfig(){
 	global $txt_cfg_primary_dns_server_addr;
 	global $txt_cfg_secondary_dns_server_addr;
 	global $txt_cfg_slave_dns_ip;
+	global $txt_backup_mx_servers;
 
 	$out = "<h3>".$txt_cfg_name_zonefileconf_title[$lang]."</h3>
 <table with=\"100%\" height=\"1\">
 <tr><td align=\"right\" nowrap>
 	".$txt_cfg_main_mx_addr[$lang]."</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_addr_mail_server\" name=\"new_addr_mail_server\"><br>
-<tr><td align=\"right\" nowrap>List here your backup MX servers separated
-by &quot;|&quot;<br>(leave blank if you don't have backup MX server):</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_addr_backup_mail_server\" name=\"new_addr_backup_mail_server\"><br>
+<tr><td align=\"right\" nowrap>
+".$txt_backup_mx_servers[$lang]."
+</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_addr_backup_mail_server\" name=\"new_addr_backup_mail_server\"><br>
 </td></tr><tr><td align=\"right\">
 	".$txt_cfg_mail_addr_webmaster[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_webmaster_email_addr\" name=\"new_webmaster_email_addr\"><br>
 </td></tr><tr><td align=\"right\">
