@@ -126,6 +126,26 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	return $boxpath;
 }
 
+// Get the path of a mailinglist. pass_check_email() MUST have been called prior to call this function !!!
+// Sets "box" with the box infos;
+function get_mailingbox_complete_path($listname,$host){
+	global $pro_mysql_pop_table;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_admin_table;
+
+	$q = "SELECT $pro_mysql_admin_table.path
+FROM $pro_mysql_domain_table,$pro_mysql_admin_table
+WHERE $pro_mysql_domain_table.name='$host'
+AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1) die("Cannot find domain path in database ! line: ".__LINE__." file: ".__FILE__);
+	$a = mysql_fetch_array($r);
+
+	$boxpath = $a["path"]."/$host/lists/$listname";
+	return $boxpath;
+}
+
 function writeDotQmailFile($user,$host){
 	global $pro_mysql_pop_table;
 	global $conf_unix_type;
@@ -200,6 +220,19 @@ function writeCatchallDotQmailFile($user,$host){
 		chmod ( "$boxpath/../.qmail-default", 0644);
 	}
 	umask($oldumask);
+}
+
+function writeMlmmjQmailFile($listname,$host){
+	$box_path = get_mailingbox_complete_path($listname,$host);
+
+	// Write .qmail file
+	$qmail_file_content = "|/usr/bin/mlmmj-recieve -L $box_path\n";
+	if($conf_demo_version == "no"){
+		$fp = fopen ( "$boxpath/.qmail", "w");
+		fwrite ($fp,$qmail_file_content);
+		fclose($fp);
+		chmod ( "$boxpath/.qmail", 0644);
+	}
 }
 
 // action=change_adm_pass&new_pass1=blabla&new_pass2=blabla

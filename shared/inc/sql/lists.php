@@ -63,32 +63,32 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 	//Azioni su disco
 
 	$command = "(echo $edit_domain; echo ".$owner."@".$edit_domain."; echo N;) | /usr/bin/mlmmj-make-ml -L $name -s $list_path";
+	exec($command);
+
+	$fileName3 = $list_path.'/'.$name.'/control/listaddress';
+	$newLine3 = $name . "@" . $edit_domain;
+	$fp3 = fopen($fileName3,"w");
+	fwrite($fp3,$newLine3);
+	fclose($fp3);
+
 	switch($conf_mta_type){
 	case "postfix":
-		$name = $edit_domain . "_" . $name;
+		$postfix_name = $edit_domain . "_" . $name;
 		$owner .= "@" . $edit_domain;
-		exec($command);
 			
 		$fileName1 = "$conf_generated_file_path" . "/postfix_virtual";
-		$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' '.$name.'';
+		$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' '.$postfix_name.'';
 		$fp1 = fopen($fileName1,"a");
 		fwrite($fp1,"\n");
 		fwrite($fp1,$newLine1);
 		fclose($fp1);
 				
 		$fileName2 = "$conf_generated_file_path" . "/postfix_aliases";
-		$newLine2 = $name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"';
+		$newLine2 = $postfix_name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"';
 		$fp2 = fopen($fileName2,"a");
 		fwrite($fp2,"\n");
 		fwrite($fp2,$newLine2);
 		fclose($fp2);
-				
-		//now need to edit the list address back to $_REQUEST["newlist_name"]; rather than $name
-		$fileName3 = $list_path.'/'.$name.'/control/listaddress';
-		$newLine3 = $_REQUEST["newlist_name"] . "@" . $edit_domain;
-		$fp3 = fopen($fileName3,"w");
-		fwrite($fp3,$newLine3);
-		fclose($fp3);
 
 		sleep(2);
 		exec("postmap $conf_generated_file_path" . "/postfix_virtual");
@@ -96,6 +96,7 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 		break;
 	default:
 	case "qmail":
+		writeMlmmjQmailFile($name,$edit_domain);
 		break;
 	}
 }

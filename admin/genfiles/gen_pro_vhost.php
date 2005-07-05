@@ -91,10 +91,10 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			$result2 = mysql_query ($query2)or die("Cannot execute query \"$query\"");
 			$num_rows2 = mysql_num_rows($result2);
 			if($num_rows2 > 0){
-				$vhost_file .= "NameVirtualHost ".$all_site_addrs[$i]."\n";
+				$vhost_file .= "NameVirtualHost ".$all_site_addrs[$i].":80\n";
 				if ($enable404feature == true)
 				{
-				$vhost_file .= "<VirtualHost ".$all_site_addrs[$i].">
+				$vhost_file .= "<VirtualHost ".$all_site_addrs[$i].":80>
 	ServerName $conf_404_subdomain.$conf_main_domain
 	DocumentRoot $path_404/html
 	ScriptAlias /cgi-bin $path_404/cgi-bin
@@ -107,9 +107,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		}
 	}else{
 		if($conf_use_nated_vhost=="yes"){
-			$vhost_file .= "NameVirtualHost ".$conf_nated_vhost_ip."\n";
+			$vhost_file .= "NameVirtualHost ".$conf_nated_vhost_ip.":80\n";
 		}else{
-			$vhost_file .= "NameVirtualHost ".$conf_main_site_ip."\n";
+			$vhost_file .= "NameVirtualHost ".$conf_main_site_ip.":80\n";
 		}
 	}
 
@@ -174,7 +174,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				if($conf_use_ssl == "yes" && $k == 0){
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
 				}else{
-					$vhost_file .= "<VirtualHost ".$ip_to_write.">\n";
+					$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
 				}
 
 				// Added by Luke
@@ -251,7 +251,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				if($web_subname == "$web_default_subdomain"){
 					$vhost_more_conf .= "	ServerAlias $web_name\n";
 				}
-				$vhost_file .= "<VirtualHost $ip_to_write>
+				$vhost_file .= "<VirtualHost $ip_to_write:80>
 	ServerName $web_subname.$web_name
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html/

@@ -65,10 +65,17 @@ function mail_account_generate_qmail(){
 			$domain_full_name = $domain["name"];
 			$domain_qmail_name = strtr($domain_full_name, ".", "-");
 			$rcpthosts_file .= "$domain_full_name\n";
-			$virtualdomains_file .= "$domain_full_name:$domain_qmail_name\n";
 			$more_rcpt .= "$domain_full_name\n";
 
-			if(isset($domain["emails"])){
+			if ($domain["primary_mx"] == "" || $domain["primary_mx"] == "default"){
+				$virtualdomains_file .= "$domain_full_name:$domain_qmail_name\n";
+				$primary_mx=1;
+			}else{
+				$primary_mx=0;
+			}
+
+
+			if($primary_mx && isset($domain["emails"])){
 				$emails = $domain["emails"];
 				$catch_all = $domain["catchall_email"];
 				$nbr_boites = sizeof($emails);
@@ -91,6 +98,21 @@ function mail_account_generate_qmail(){
 				// Gen the catchall if there is a box like that
 				if($catch_all_flag == "yes"){
 					$assign_file .= "+$domain_qmail_name:nobody:65534:65534:".getAdminPath($user_admin_name)."/".$domain["name"]."/Mailboxs:::\n";
+				}
+			}
+			if(isset($domain["mailinglists"]) && $primary_mx){
+				$lists = $domain["mailinglists"];
+				$nbr_boites = sizeof($lists);
+				// go through each of these lists and add accounts to it
+				for($k=0;$k<$nbr_boites;$k++){
+					$list = $lists[$k];
+					$list_id = $list["id"];
+					$list_name = $list["name"];
+					$list_owner = $list["owner"];
+					$list_domain = $list["domain"];
+					
+					$list_path = "$admin_path/$list_domain/lists/$list_name";
+					$assign_file .= "=$domain_qmail_name-$list_id:nobody:65534:65534:$list_path:::\n";
 				}
 			}
 		}
