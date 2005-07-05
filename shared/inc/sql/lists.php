@@ -99,6 +99,7 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 		writeMlmmjQmailFile($name,$edit_domain);
 		break;
 	}
+	updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
 }
 
 /////////////////////////////////////////////////////////
@@ -124,7 +125,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 
 	//now need to edit the owner to $_REQUEST["editmail_owner"]; 
 	$fileName3 = $list_path.'/'. $edit_domain . '_' . $name.'/control/owner';
-	$newLine3 = $new_list_owner . "@" . $edit_domain;
+	$newLine3 = $new_list_owner;
 	$fp3 = fopen($fileName3,"w");
 	fwrite($fp3,$newLine3);
 	fclose($fp3);
@@ -134,9 +135,6 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	unset($edit_mailbox);
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
-	if(!isMailbox($_REQUEST["edit_mailbox"])){
-		die($_REQUEST["edit_mailbox"]." does not look like a mailbox login...");
-	}
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 }
 //////////////////////////////////

@@ -48,6 +48,9 @@ function mail_account_generate_qmail(){
 		$user_admin_name = $row["adm_login"];
 		$user_admin_pass = $row["adm_pass"];
 		$admin = fetchAdmin($user_admin_name,$user_admin_pass);
+
+		$admin_path = getAdminPath($user_admin_name);
+
 		if(($error = $admin["err"]) != 0){
 			die("Error fetching admin : $error");
 		}
@@ -84,6 +87,7 @@ function mail_account_generate_qmail(){
 					$email = $emails[$k];
 					$id = $email["id"];
 					$home = $email["home"];
+					$box_path = "$admin_path/Mailboxs/$id";
 					$qmail_id = strtr($id,".",":");
 					$passwdtemp = $email["passwd"];
 					$passwd = crypt($passwdtemp);
@@ -112,7 +116,7 @@ function mail_account_generate_qmail(){
 					$list_domain = $list["domain"];
 					
 					$list_path = "$admin_path/$list_domain/lists/$list_name";
-					$assign_file .= "+$domain_qmail_name-$list_id:nobody:65534:65534:$list_path:::\n";
+					$assign_file .= "+$domain_qmail_name-$list_name:nobody:65534:65534:$list_path:::\n";
 				}
 			}
 		}
