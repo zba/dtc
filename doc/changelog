@@ -1,5 +1,10 @@
 This will be version 0.18 when released:
 ----------------------------------------
+- Debian now asks to use vhost_nated IP for generating apache vhosts.
+
+- There is now support for MLMMJ mailing lists. (Core done by
+Lucas with a bit of help from Damien and Qmail part by Thomas)
+
 - Newly added admins are added with correct values.
 
 - Corrected a bug for local delivery + redirection in postfix
