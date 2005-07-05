@@ -112,7 +112,7 @@ function mail_account_generate_qmail(){
 					$list_domain = $list["domain"];
 					
 					$list_path = "$admin_path/$list_domain/lists/$list_name";
-					$assign_file .= "=$domain_qmail_name-$list_id:nobody:65534:65534:$list_path:::\n";
+					$assign_file .= "+$domain_qmail_name-$list_id:nobody:65534:65534:$list_path:::\n";
 				}
 			}
 		}

@@ -62,7 +62,7 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 	// T: Please lucas comments in english !!!
 	//Azioni su disco
 
-	$command = "(echo $edit_domain; echo ".$owner."@".$edit_domain."; echo N;) | /usr/bin/mlmmj-make-ml -L $name -s $list_path";
+	$command = "(echo $edit_domain; echo ".$owner."; echo N;) | /usr/bin/mlmmj-make-ml -L $name -s $list_path";
 	exec($command);
 
 	$fileName3 = $list_path.'/'.$name.'/control/listaddress';

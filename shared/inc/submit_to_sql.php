@@ -223,10 +223,11 @@ function writeCatchallDotQmailFile($user,$host){
 }
 
 function writeMlmmjQmailFile($listname,$host){
-	$box_path = get_mailingbox_complete_path($listname,$host);
+	global $conf_demo_version;
+	$boxpath = get_mailingbox_complete_path($listname,$host);
 
 	// Write .qmail file
-	$qmail_file_content = "|/usr/bin/mlmmj-recieve -L $box_path\n";
+	$qmail_file_content = "|/usr/bin/mlmmj-recieve -L $boxpath\n";
 	if($conf_demo_version == "no"){
 		$fp = fopen ( "$boxpath/.qmail", "w");
 		fwrite ($fp,$qmail_file_content);

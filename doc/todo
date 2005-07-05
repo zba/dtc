@@ -13,7 +13,6 @@ concept of index and keys...
 - Add support for spamassassin & clamav
 - Finish resseller interface (enable quota and flag edition of subadmins)
 - Add SSL support for customers
-- Integrate a mailling list manager (mlmmj : lupin3rd is doing it)
 - Find a SMART way to handle disk quotas
 - Finish tucows API integration: working in Tucows test server, transfer
 of domain names to be finished using the bulk_transfer() function
