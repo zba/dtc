@@ -70,7 +70,7 @@ then
 	fi
 	if grep "Configured by DTC v0.10" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		TMP_FILE=` DTC_uninstall.httpd.conf.XXXXXX` || exit 1
+		TMP_FILE=`$MKTEMP DTC_uninstall.httpd.conf.XXXXXX` || exit 1
 		grep -v "Configured by DTC" $PATH_HTTPD_CONF | grep -v "Include $PATH_DTC_ETC/vhosts.conf" > $TMP_FILE
 		cp -f $PATH_HTTPD_CONF $PATH_HTTPD_CONF.DTC.removed
 		echo -n > $PATH_HTTPD_CONF
