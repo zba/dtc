@@ -87,6 +87,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "return_from_pay"){
 }else{
 	$reguser = register_user();
 	if($reguser["err"] == 0){
+		$form = "";
 		$form .= "Your registration has been recorded in our database.<br>";
 		$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='".$reguser["id"]."';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());

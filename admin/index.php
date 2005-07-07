@@ -267,7 +267,7 @@ if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "config"){
 	$menu .= "</a>";
 }
 $html_array[] = $menu;
-$dtc_main_menu = make_table($html_array,sizeof($html_array));
+$dtc_main_menu = make_table_valign_top($html_array,sizeof($html_array));
 $the_page[] = skin($conf_skin,$dtc_main_menu,$txt_root_adm_title[$lang]);
 
 $the_page[] = $zemain_content;

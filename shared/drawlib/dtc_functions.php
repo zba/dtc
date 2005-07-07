@@ -122,7 +122,7 @@ function isMailbox($mailbox){
 
 // Check for valid (but maybe non-RFC) email addr we allow forwarding to
 function isValidEmail($email){
-	$reg = "^([a-z0-9]+)([_.a-z0-9-]+)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$";
+	$reg = "^([a-z0-9]+)([_.a-z0-9-]*)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$";
 	if(!ereg($reg,$email))	return false;
 	else			return true;
 }

@@ -289,7 +289,7 @@ function registration_form(){
 	if(isset($_REQUEST["firstname"]))	$frm_firstname = $_REQUEST["firstname"];
 	else	$frm_firstname = "";
 
-	if(isset($_REQUEST["family_name"]))	$frm_family_name = $_REQUEST["family_name"];
+	if(isset($_REQUEST["familyname"]))	$frm_family_name = $_REQUEST["familyname"];
 	else	$frm_family_name = "";
 
 	if(isset($_REQUEST["compname"]))	$frm_compname = $_REQUEST["compname"];
@@ -301,7 +301,7 @@ function registration_form(){
 	if(isset($_REQUEST["phone"]))	$frm_phone = $_REQUEST["phone"];
 	else	$frm_phone = "";
 
-	if(isset($_REQUEST["fax"]))	$frm_family_name = $_REQUEST["fax"];
+	if(isset($_REQUEST["fax"]))	$frm_fax = $_REQUEST["fax"];
 	else	$frm_fax = "";
 
 	if(isset($_REQUEST["address1"]))	$frm_addr1 = $_REQUEST["address1"];
@@ -316,13 +316,13 @@ function registration_form(){
 	if(isset($_REQUEST["zipcode"]))		$frm_zipcode = $_REQUEST["zipcode"];
 	else	$frm_zipcode = "";
 
-	if(isset($_REQUEST["city"]))	$frm_ciry = $_REQUEST["city"];
+	if(isset($_REQUEST["city"]))	$frm_city = $_REQUEST["city"];
 	else	$frm_city = "";
 
 	if(isset($_REQUEST["state"]))	$frm_state = $_REQUEST["state"];
 	else	$frm_state = "";
 
-	if(isset($_REQUEST["country"]))	$frm_addr3 = $_REQUEST["country"];
+	if(isset($_REQUEST["country"]))	$frm_country = $_REQUEST["country"];
 	else	$frm_country = "";
         
 	$login_info = "<table>

@@ -48,6 +48,33 @@ function make_table($html_array,$num_colone){
 	return $out;
 }
 
+function make_table_valign_top($html_array,$num_colone){
+	global $globspace;
+	global $globpadd;
+	$num_ligne = sizeof($html_array) / $num_colone;
+	$width = 100 / $num_colone;
+	$height = 100 / $num_ligne;
+	$out = "
+<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"$globpadd\">
+";
+	for($i=0;$i<$num_ligne;$i++){
+		$out .= "
+	<tr>";
+		for($j=0;$j<$num_colone;$j++){
+			$in = $html_array[$i*$num_colone+$j];
+			$out.= "<td width=\"$width%\" height=\"$height%\" valign=\"top\">
+	<center>$in</center></td>
+";
+		}
+		$out .= "
+	</tr>";
+	}
+	$out .= "
+</table>
+";
+	return $out;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 // Layout a image and a html content with a link (optional, could be equal to "") //
 ////////////////////////////////////////////////////////////////////////////////////
