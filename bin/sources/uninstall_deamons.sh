@@ -77,6 +77,7 @@ then
 		cat <$TMP_FILE >> $PATH_HTTPD_CONF
 		rm $TMP_FILE
 	else
+		TMP_FILE=`$MKTEMP DTC_uninstall.httpd.conf.XXXXXX` || exit 1
 		start_line=`grep -n "Configured by DTC" $PATH_HTTPD_CONF | cut -d":" -f1`
 		end_line=`grep -n "End of DTC configuration" $PATH_HTTPD_CONF| cut -d":" -f1`
 		nbr_line=`cat $PATH_HTTPD_CONF | wc -l`
