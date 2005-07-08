@@ -1,5 +1,12 @@
 This will be version 0.18 when released:
 ----------------------------------------
+- Now made it work with mod_log_sql2 using $ in table names of
+apachelogs and not # anymore. BSD port reviewed a bit to use
+mod_log_sql2 and mysql 4.1.
+
+- Added port number to be able to support apache2. Might
+be configurable in the futur in the general config form.
+
 - Debian now asks to use vhost_nated IP for generating apache vhosts.
 
 - There is now support for MLMMJ mailing lists. (Core done by
