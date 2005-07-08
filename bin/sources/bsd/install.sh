@@ -184,7 +184,7 @@ read conf_adm_pass
 # Deamon path configuration
 
 echo "### DEAMON PATH CONFIGURATION ###"
-PATH_HTTPD_CONF="${LOCALBASE}/etc/apache/httpd.conf"
+PATH_HTTPD_CONF="${LOCALBASE}/etc/apache2/httpd.conf"
 PATH_NAMED_CONF="/etc/namedb/named.conf"
 # Copy default conf if no conf exists (BSD specific)
 if [ ! -f ${LOCALBASE}/etc/proftpd.conf ];
