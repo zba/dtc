@@ -93,7 +93,7 @@ fi
 
 # copy required binaries to $CHROOT_DIR/usr/bin and $CHROOT_DIR/bin
 if [ $UNIX_TYPE"" = "gentoo" ] ; then
-	cp -pf /usr/bzip2 usr/bin/
+	cp -pf /bin/bzip2 usr/bin/
 else
 	cp -pf /usr/bin/bzip2 usr/bin/
 fi

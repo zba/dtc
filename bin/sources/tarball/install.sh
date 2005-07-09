@@ -326,4 +326,9 @@ fi
 
 echo "Copying DTC's php scripts to /usr/share..."
 
-cp -rf dtc /usr/share
+if [ -e $PATH_DTC_SHARED ];
+then
+	rm -rf $PATH_DTC_SHARED/admin $PATH_DTC_SHARED/client $PATH_DTC_SHARED/shared $PATH_DTC_SHARED/email $PATH_DTC_SHARED/doc
+fi
+mkdir -p $PATH_DTC_SHARED
+cp -rf ./ $PATH_DTC_SHARED
