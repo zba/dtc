@@ -25,18 +25,18 @@ mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/generic"
 ./makeRedhat
 ./makeGentoo
 
-echo "--- Copying files to repository ---"
+echo "--- Copying file to debian repository ---"
 cp -fv "dtc_"$VERSION"_all.deb" $FTP_ROOT_LOCATION"/debian/dists/stable/main/binary-i386/"
-cp -fv "dtc_"$VERSION"_all.deb" $FTP_PUB_LOCATION"/debian"
-cp -fv "dtc-"$BSDVERSION".tar.gz" $FTP_PUB_LOCATION"/bsd/"
-cp -fv "dtcBSDport-"$BSDVERSION".tar.gz" $FTP_PUB_LOCATION"/bsd/"
-cp -fv "dtc_"$VERSION"-generic.tar.gz" $FTP_PUB_LOCATION"/generic"
-cp -fv "/root/rpmbuild/RPMS/noarch/dtc-"$VERS"-"$RELS".noarch.rpm" $FTP_PUB_LOCATION"/RPMS"
-cp -fv "CVS_dtc_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/cvs"
-cp -fv "dtc_"$VERSION"-gentoo_all.tar.gz" $FTP_PUB_LOCATION"/gento"
-
-echo "--- Updating Debian Repository ---"
+echo "--- Rebuilding debian package listing ---"
 curdir=`pwd`
 cd $FTP_ROOT_LOCATION"/debian"
 dpkg-scanpackages dists/stable/main/binary-i386 /dev/null | gzip -9 >dists/stable/main/binary-i386/Packages.gz
 cd $curdir
+echo "--- Copying files to ftp server tree ---"
+cp -fv "dtc_"$VERSION"_all.deb" $FTP_PUB_LOCATION"/debian"
+cp -fv "dtc-"$BSDVERSION".tar.gz" $FTP_PUB_LOCATION"/bsd/"
+cp -fv "dtcBSDport-"$BSDVERSION".tar.gz" $FTP_PUB_LOCATION"/bsd/"
+cp -fv "dtc_"$VERSION"-generic_all.tar.gz" $FTP_PUB_LOCATION"/generic"
+cp -fv "/root/rpmbuild/RPMS/noarch/dtc-"$VERS"-"$RELS".noarch.rpm" $FTP_PUB_LOCATION"/RPMS"
+cp -fv "CVS_dtc_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/cvs"
+cp -fv "dtc_"$VERSION"-gentoo_all.tar.gz" $FTP_PUB_LOCATION"/gento"
