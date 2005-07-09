@@ -184,7 +184,14 @@ read conf_adm_pass
 # Deamon path configuration
 
 echo "### DEAMON PATH CONFIGURATION ###"
-PATH_HTTPD_CONF="${LOCALBASE}/etc/apache2/httpd.conf"
+if [ -f "${LOCALBASE}/etc/apache/httpd.conf" ] ;then
+	PATH_HTTPD_CONF="${LOCALBASE}/etc/apache/httpd.conf"
+elif [ -f "${LOCALBASE}/etc/apache2/httpd.conf" ] ;then
+	PATH_HTTPD_CONF="${LOCALBASE}/etc/apache2/httpd.conf"
+else
+	echo "Could not found your httpd.conf: exiting."
+	exit 1
+fi
 PATH_NAMED_CONF="/etc/namedb/named.conf"
 # Copy default conf if no conf exists (BSD specific)
 if [ ! -f ${LOCALBASE}/etc/proftpd.conf ];
@@ -203,6 +210,7 @@ FREERADIUS_ETC="${LOCALBASE}/etc/raddb"
 PATH_DTC_SHARED="${PREFIX}/www/dtc"
 PATH_CRONTAB_CONF=/etc/crontab
 PATH_AWSTATS_ETC=${LOCALBASE}/etc/awstats
+MYSQL_DB_SOCKET_PATH="/tmp/mysqld.sock"
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
