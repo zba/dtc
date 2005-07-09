@@ -18,7 +18,8 @@ ARCH_NAME=$DEST_DIR"_all.tar.gz"
 ./buildRelease $UNIX_TYPE $BUILD_DIR
 
 chown -R root:root $BUILD_DIR
-chown nobody:nogroup $BUILD_DIR/shared $BUILD_DIR/client/imgcache $BUILD_DIR/admin/imgcache
+chown nobody:nogroup $BUILD_DIR/client/imgcache $BUILD_DIR/admin/imgcache $BUILD_DIR/email/imgcache $BUILD_DIR/shared/imgcache
+chown nobody:nogroup $BUILD_DIR/client/gfx $BUILD_DIR/admin/gfx $BUILD_DIR/email/gfx $BUILD_DIR/shared/gfx
 
 # Specific tarball package actions :
 mv $BUILD_DIR $DEST_DIR
