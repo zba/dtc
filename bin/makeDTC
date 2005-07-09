@@ -33,7 +33,7 @@ cp -fv "dtcBSDport-"$BSDVERSION".tar.gz" $FTP_PUB_LOCATION"/bsd/"
 cp -fv "dtc_"$VERSION"-generic.tar.gz" $FTP_PUB_LOCATION"/generic"
 cp -fv "/root/rpmbuild/RPMS/noarch/dtc-"$VERS"-"$RELS".noarch.rpm" $FTP_PUB_LOCATION"/RPMS"
 cp -fv "CVS_dtc_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/cvs"
-cp -fv "dtcGentoo_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/gento"
+cp -fv "dtc_"$VERSION"-gentoo_all.tar.gz" $FTP_PUB_LOCATION"/gento"
 
 echo "--- Updating Debian Repository ---"
 curdir=`pwd`

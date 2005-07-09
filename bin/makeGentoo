@@ -13,7 +13,7 @@ VERSION=$VERS"-"$RELS
 UNIX_TYPE=generic
 BUILD_DIR=dtc
 DEST_DIR="dtc_"$VERSION"-gentoo"
-ARCH_NAME=$DEST_DIR"-gentoo.tar.gz"
+ARCH_NAME=$DEST_DIR"_all.tar.gz"
 
 ./buildRelease $UNIX_TYPE $BUILD_DIR
 
