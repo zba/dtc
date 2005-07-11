@@ -76,6 +76,13 @@ function drawAdminTools_Ftp($domain,$adm_path){
 			$is_selected ="";
 		}
 		$path_popup .= "<option value=\"$adm_path/$edit_domain/subdomains/$sub_name\"$is_selected>/$edit_domain/subdomains/$sub_name/</option>";
+
+		if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && isset($ftpath) && $ftpath == "$adm_path/$edit_domain/subdomains/$sub_name/html"){
+			$is_selected = " selected";
+		}else{
+			$is_selected ="";
+		}
+		$path_popup .= "<option value=\"$adm_path/$edit_domain/subdomains/$sub_name/html\"$is_selected>/$edit_domain/subdomains/$sub_name/html/</option>";
 	}
 
 	if(isset($_REQUEST["edftp_account"]) && $_REQUEST["edftp_account"] != "" && (!isset($_REQUEST["deleteftpaccount"]) || $_REQUEST["deleteftpaccount"] != "Delete")){
