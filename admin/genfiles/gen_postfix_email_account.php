@@ -197,7 +197,12 @@ function mail_account_generate_postfix(){
 			
 					$list_path = "$admin_path/$list_domain/lists";
 					$name = $list_domain . "_" . $list_name;
-					$owner = $list_owner . "@" . $list_domain;
+					if (!ereg("\@", $list_owner))
+                                        {
+						$owner = $list_owner . "@" . $list_domain;
+                                        } else {
+						$owner = $list_owner;
+					}
 					$domains_postmasters_file .= $list_name . "@" . $list_domain . " " . $name . "\n";
 					$aliases_file .= $name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"' . "\n";
 				}
