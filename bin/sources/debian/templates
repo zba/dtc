@@ -198,7 +198,7 @@ Description: DTC SSL certificate challenge pass.
  Please enter your certificate challenge password.
 
 Template: dtc/conf_upgrade_pear
-Type:  boolean
+Type: boolean
 Default: true
 Description: Update pear installation.
  Do you want that DTC checks that your pear installation
