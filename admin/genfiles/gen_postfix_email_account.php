@@ -26,6 +26,10 @@
  * /usr/share/dtc/etc/postfix_aliases
  * mailinglist:		"|/usr/bin/mlmmj-recieve"
  *
+ * /usr/share/dtc/etc/recipient_lists/$domain
+ * ($conf_postfix_recipient_lists_path/$domain)
+ * email@$domain	OK
+ *
  **********************************************/
 
 function mail_account_generate_postfix(){
@@ -55,6 +59,7 @@ function mail_account_generate_postfix(){
 
 	$conf_postfix_relay_domains_path = $conf_generated_file_path . "/postfix_relay_domains";
 	$conf_postfix_relay_recipients_path = $conf_generated_file_path . "/postfix_relay_recipients";
+	$conf_postfix_recipient_lists_path = $conf_generated_file_path . "/recipientlists";
 
 	// now for our variables to write out the db info to
 
@@ -65,6 +70,9 @@ function mail_account_generate_postfix(){
 	$uid_mappings_file = "";
 	$relay_domains_file = "";
 	$relay_recipients_file = "";
+	//store ALL of the domains we know about
+	//if we manage to get better information later, don't worry about the entry on this one
+	$relay_recipients_all_domains = "";
 
 	$data = ""; // init var for use later on
 
@@ -109,7 +117,7 @@ function mail_account_generate_postfix(){
 				$domains_file .= "$domain_full_name virtual\n";
 			} else {
 				$relay_domains_file .= "$domain_full_name\n";
-				$relay_recipients_file .= "@$domain_full_name OK\n";
+				$relay_recipients_all_domains .= "$domain_full_name\n";
 			}
 
 			if ($primary_mx){
@@ -153,10 +161,11 @@ function mail_account_generate_postfix(){
 						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
 					}
 					if(isset($redirect1) && $redirect1 != ""){
+						unset($extra_redirects);
 						if ($localdeliver == "yes" || $localdeliver == "true"){
 							//need to generate .mailfilter file with "cc" and also local delivery
 							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $redirect1");
-						} else if (isset($extra_redirects)) {
+						} else {
 							$extra_redirects = " $redirect1 ";
 						}
 						if ($redirect2 != "" && isset($redirect2)){
@@ -222,6 +231,39 @@ function mail_account_generate_postfix(){
 	{
 		if (isset($email) && strlen($email) > 0){
 			$relay_recipients_file .= $email . " OK\n";
+		}
+	}
+
+	// if we haven't added the following domains to the $relay_recipients_file, then we need to add a wildcard, bad, but necessary for domains we don't have email lists for
+	$relay_recipients_all_domains_list  = explode("\n", $relay_recipients_all_domains);
+	foreach($relay_recipients_all_domains_list as $domain)
+	{
+		// if the $domain isn't set here, keep going
+		if (!(isset($domain) && strlen($domain) >0))
+		{
+			continue;
+		}
+		//try and read a file here, and see if we have a list already created
+		if (is_file("$conf_postfix_recipient_lists_path/$domain")){
+			$fp = fopen( "$conf_postfix_recipient_lists_path/$domain", "r");
+			$contents = fread($fp, filesize("$conf_postfix_recipient_lists_path/$domain"));
+			fclose($fp);
+			//now we have found some domain email list, append it here
+			$relay_recipients_file .= $contents;
+		}
+		//finally check to see if we haven't got any entries for this domain
+		if (!ereg($domain, $relay_recipients_file))
+		{
+			$relay_recipients_file .= "@$domain OK\n";
+			//write this to a file, so admin/users can edit later
+			if (!file_exists("$conf_postfix_recipient_lists_path"))
+			{
+				//make a directory here if it doesn't exist yet
+				mkdir("$conf_postfix_recipient_lists_path");
+			}
+			$fp = fopen( "$conf_postfix_recipient_lists_path/$domain", "w");
+			fwrite($fp, "@$domain OK\n");
+			fclose($fp);	
 		}
 	}
 

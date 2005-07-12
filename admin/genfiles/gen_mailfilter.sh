@@ -20,8 +20,10 @@ if [ -f $MAILFILTER_FILE ]; then
 		nbr_line=`cat $MAILFILTER_FILE | wc -l`
 		TMP_FILE=$home/.DTC_uninstall.mailfilter.XXXXXX
 		touch $TMP_FILE
-		cat $MAILFILTER_FILE | head -n $(( $start_line - 1 )) > $TMP_FILE
-		cat $MAILFILTER_FILE | tail -n $(( $nbr_line - $end_line )) >> $TMP_FILE
+		top=$(( $start_line - 1 ))
+		bottom=$(( $nbr_line - $end_line ))
+		cat $MAILFILTER_FILE | head -n $top > $TMP_FILE
+		cat $MAILFILTER_FILE | tail -n $bottom >> $TMP_FILE
 		cp -f $MAILFILTER_FILE $MAILFILTER_FILE.DTC.removed
 		echo -n > $MAILFILTER_FILE
 		cat < $TMP_FILE >> $MAILFILTER_FILE
