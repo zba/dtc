@@ -252,7 +252,7 @@ function mail_account_generate_postfix(){
 			$relay_recipients_file .= $contents;
 		}
 		//finally check to see if we haven't got any entries for this domain
-		if (!ereg($domain, $relay_recipients_file))
+		if (!ereg("^$domain\w+OK", $relay_recipients_file))
 		{
 			$relay_recipients_file .= "@$domain OK\n";
 			//write this to a file, so admin/users can edit later
