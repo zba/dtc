@@ -10,7 +10,7 @@
 VERS=`cat version`
 RELS=`cat release`
 VERSION=$VERS"-"$RELS
-UNIX_TYPE=generic
+UNIX_TYPE=gentoo
 BUILD_DIR=dtc
 DEST_DIR="dtc_"$VERSION"-gentoo"
 ARCH_NAME=$DEST_DIR"_all.tar.gz"

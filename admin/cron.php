@@ -14,6 +14,8 @@ $keep_dns_generate_flag = "no";
 // /usr/sbin/apachectl for debian, or /usr/local/sbin/apachectl for FreeBSD)
 if($conf_unix_type == "debian" || $conf_unix_type == "redhat" || $conf_unix_type == "osx"){
 	$APACHECTL = "/usr/sbin/apachectl";
+}else if($conf_unix_type == "gentoo"){
+	$APACHECTL = "/usr/sbin/apachectl2";
 }else{
 	$APACHECTL = "/usr/local/sbin/apachectl";
 }

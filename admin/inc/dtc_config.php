@@ -280,7 +280,7 @@ function drawNamedConfig(){
 	global $conf_addr_primary_dns;
 	global $conf_addr_secondary_dns;
 	global $conf_ip_slavezone_dns_server;
-
+	global $conf_ip_allowed_dns_transfer;
 	global $lang;
 
 	global $txt_cfg_name_zonefileconf_title;
@@ -289,6 +289,7 @@ function drawNamedConfig(){
 	global $txt_cfg_primary_dns_server_addr;
 	global $txt_cfg_secondary_dns_server_addr;
 	global $txt_cfg_slave_dns_ip;
+	global $txt_cfg_allowed_dns_transfer_list;
 	global $txt_backup_mx_servers;
 
 	$out = "<h3>".$txt_cfg_name_zonefileconf_title[$lang]."</h3>
@@ -306,6 +307,8 @@ function drawNamedConfig(){
 	".$txt_cfg_secondary_dns_server_addr[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_addr_secondary_dns\" name=\"new_addr_secondary_dns\"><br>
 </td></tr><tr><td align=\"right\">
 	".$txt_cfg_slave_dns_ip[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_ip_slavezone_dns_server\" name=\"new_ip_slavezone_dns_server\"><br>
+</td></tr><tr><td align=\"right\">
+	".$txt_cfg_allowed_dns_transfer_list[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_ip_allowed_dns_transfer\" name=\"new_ip_allowed_transfer_dns_server\"><br>
 </td></tr></table>
 ";
 	return $out;
@@ -963,7 +966,8 @@ function saveDTCConfigInMysql(){
 	addr_primary_dns='".$_REQUEST["new_addr_primary_dns"]."',
 	addr_secondary_dns='".$_REQUEST["new_addr_secondary_dns"]."',
 	ip_slavezone_dns_server='".$_REQUEST["new_ip_slavezone_dns_server"]."',
-	webmaster_email_addr='".$_REQUEST["new_webmaster_email_addr"]."'
+	webmaster_email_addr='".$_REQUEST["new_webmaster_email_addr"]."',
+	ip_allowed_dns_transfer='".$_REQUEST["new_ip_allowed_transfer_dns_server"]."'
 	WHERE 1 LIMIT 1";
 		break;
         case "backup":

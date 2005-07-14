@@ -1,18 +1,47 @@
 <?php
 
+$txt_cfg_allowed_dns_transfer_list = array(
+	"fr" => "Listez ici les IPs des serveurs DNS abilité a faire des zone transfer séparé par des &quot;|&quot; (pipe)<br>
+	        (laissez vide si vous n'avez pas de serveur DNS de backup) :",
+        "en" => "List here DNS server IPs allowed to do zone transfers separated by &quot;|&quot; (pipe)<br>
+	        (leave blank if you don't have backup DNS server):",
+        "hu" => "TRANS List here DNS server IPs allowed to do zone transfers &quot;|&quot;-al elválasztva
+	        <br>(hagyja üresen, ha nincs tartalék DNS szervere)",
+        "it" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "nl" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "ru" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "de" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "zh" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "es" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):"
+	);
+
 $txt_backup_mx_servers = array(
-        "fr" => "TRANS",
-        "en" => "List here your backup MX servers separated
-        by \"|\" <br>(leave blank if you don't have backup MX server):",
-        "hu" => "Sorolja fel a tartalék mx szervereit \"|\"-al elválasztva
-        <br>(hagyja üresen, ha nincs tartalék mx szervere)",
-        "it" => "TRANS",
-        "nl" => "TRANS",
-        "ru" => "TRANS",
-        "de" => "TRANS",
-        "zh" => "TRANS",
-        "es" => "TRANS",
-        "ch" => "TRANS");
+        "fr" => "Listez ici vos serveur MX de backup séparé par des &quot;|&quot; (pipe)<br>
+	        (laissez vide si vous n'avez pas de serveur MX de backup) :",
+        "en" => "List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+        	(leave blank if you don't have backup MX server):",
+        "hu" => "Sorolja fel a tartalék mx szervereit &quot;|&quot;-al elválasztva
+        	<br>(hagyja üresen, ha nincs tartalék mx szervere)",
+        "it" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "nl" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "ru" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "de" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "zh" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "pl" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):",
+        "es" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+                (leave blank if you don't have backup MX server):");
 
 $txt_cfg_use_des_or_blowfish = array(
 "fr" => "Type d'encryption utilisé pour se connecter au serveur Tucows :",

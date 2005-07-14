@@ -116,7 +116,7 @@ for($i=0;$i<$nbr_tables;$i++){
 		if(!findFieldInTable($tblnames[$i],$varnames[$j])){
 			$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." ;";
 //			echo "$q\n";
-			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+			$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
 		}
 	}
 
@@ -137,6 +137,7 @@ for($i=0;$i<$nbr_tables;$i++){
 }
 echo "\n";
 
+// Converstion from 0.17.0-R3 and earlier versions
 $q = "SHOW TABLES FROM apachelogs";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 $n = mysql_num_rows($r);
@@ -168,6 +169,5 @@ for($i=0;$i<$n;$i++){
 if($n > 0){
 	echo "\n";
 }
-
 
 ?>
