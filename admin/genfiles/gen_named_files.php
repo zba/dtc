@@ -137,6 +137,7 @@ function named_generate(){
 	global $conf_named_zonefiles_path;
 	global $conf_named_slavefile_path;
 	global $conf_named_slavezonefiles_path;
+	global $conf_ip_allowed_dns_transfer;
 
 	$slave_file = "";
 	$todays_serial = date("YmdH");
@@ -168,9 +169,9 @@ function named_generate(){
 			$thisdomain_dns2 = $conf_addr_secondary_dns;
 			$temp_ip = gethostbyname($thisdomain_dns2);
 			if(isIP($temp_ip)){
-				$allow_xfer = "allow-transfer { $temp_ip; };\n";
+				$all_ip = "$temp_ip;";
 			}else{
-				$allow_xfer = "";
+				$all_ip = "";
 			}
 		}else{
 			$all_dns = explode("|",$row["other_dns"]);
@@ -188,9 +189,20 @@ function named_generate(){
 					$all_ip .= $temp_ip."; ";
 				}
 			}
-			if(strlen($all_ip)>4){
-				$allow_xfer = "allow-transfer { $all_ip };";
+		}
+
+		if(strlen($conf_ip_allowed_dns_transfer) > 4){
+			$more_allowed = explode("|",$conf_ip_allowed_dns_transfer);
+			$v = sizeof($more_allowed);
+			for($k=0; $k<$v; $k++){
+				$all_ip .= $more_allowed[$k] . "; ";
 			}
+		}
+
+		if(strlen($all_ip)>4){
+			$allow_xfer = "allow-transfer { $all_ip };";
+		}else{
+			$allow_xfer = "";
 		}
 
 		if($row["primary_mx"] == "default"){
