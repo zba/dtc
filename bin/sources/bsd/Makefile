@@ -33,6 +33,24 @@ OPTIONS=        BZ2      "bzip2 library support" on \
                 ZLIB     "ZLIB support" on \
                 MCRYPT   "MCrypt library support" on
 
+# DTC needs the following if you use PHP5. If you know how to
+# add all those dependencies, please do so and submit the resulting
+# makefile to me, the maintainer of this port (thomas [ at ] goirand.fr)
+#php5-5.0.4_2
+#php5-bz2-5.0.4_2
+#php5-gd-5.0.4_2
+#php5-mbstring-5.0.4_2
+#php5-mcrypt-5.0.4_2
+#php5-mysql-5.0.4_2
+#php5-mysqli-5.0.4_2
+#php5-openssl-5.0.4_2
+#php5-pcre-5.0.4_2
+#php5-pear-5.0.4_4
+#php5-session-5.0.4_2
+#php5-sockets-5.0.4_2
+#php5-xml-5.0.4_2
+#php5-zlib-5.0.4_2 
+
 do-configure:
 	@${SED} -e 's,%%PREFIX%%,${PREFIX},;\
 		s,%%LOCALBASE%%,${LOCALBASE},;\
