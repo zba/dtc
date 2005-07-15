@@ -13,10 +13,9 @@ MAILFILTER_FILE=$home/.mailfilter
 if [ -f $MAILFILTER_FILE ]; then
 
 	# first, strip off any additions by DTC
-	if grep "Configured by DTC" $MAILFILTER_FILE >/dev/null 2>&1
-	then
-		start_line=`grep -n "Configured by DTC" $MAILFILTER_FILE | cut -d":" -f1`
-		end_line=`grep -n "End of DTC configuration" $MAILFILTER_FILE| cut -d":" -f1`
+	while grep "Configured by DTC" $MAILFILTER_FILE >/dev/null 2>&1 ; do
+		start_line=`grep -n "Configured by DTC" $MAILFILTER_FILE | cut -d":" -f1 | head -n 1`
+		end_line=`grep -n "End of DTC configuration" $MAILFILTER_FILE| cut -d":" -f1 | head -n 1`
 		nbr_line=`cat $MAILFILTER_FILE | wc -l`
 		TMP_FILE=$home/.DTC_uninstall.mailfilter.XXXXXX
 		touch $TMP_FILE
@@ -28,7 +27,7 @@ if [ -f $MAILFILTER_FILE ]; then
 		echo -n > $MAILFILTER_FILE
 		cat < $TMP_FILE >> $MAILFILTER_FILE
 		rm $TMP_FILE
-	fi
+	done
 fi
 
 # create the file, and populate with normal things :)
