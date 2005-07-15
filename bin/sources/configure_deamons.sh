@@ -545,7 +545,17 @@ alias_maps = hash:/etc/aliases, hash:$PATH_DTC_ETC/postfix_aliases
 relay_domains = $PATH_DTC_ETC/postfix_relay_domains
 relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients
 virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
-
+		if [ -n $conf_dnsbl_list ]; then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo " Adding DNS Blacklist to postfix configuration..."
+			fi
+			IFS=, 
+			for i in $conf_dnsbl_list; do 
+				dnsbl_list="$dnsbl_list reject_rbl_client $i,"
+			done
+			unset IFS
+		fi
+		
 
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo " Attempting to determine if you have sasl2 installed..."
@@ -590,10 +600,11 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 			echo "pwcheck_method: auxprop
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
 			echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
-			echo "smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
-
-
-smtp_sasl_auth_enable = no
+			echo "smtpd_recipient_restrictions = permit_mynetworks, 
+                               permit_sasl_authenticated,
+			       $dnsbl_list
+                               reject_unauth_destination" >> $TMP_FILE
+echo "smtp_sasl_auth_enable = no
 smtpd_sasl_security_options = noanonymous
 smtpd_sasl_local_domain = /etc/mailname
 smtpd_sasl_auth_enable = yes
@@ -603,6 +614,9 @@ smtpd_tls_auth_only = no
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 				echo "No saslpasswd2 found"
 			fi
+			echo "smtpd_recipient_restrictions = permit_mynetworks,
+                               $dnsbl_list
+                               reject_unauth_destination" >> $TMP_FILE
 		fi
 		# this adds supports for "config" snippets to append to main.cf
 		if [ -f $PATH_DTC_ETC/postfix_config_snippets ]; then

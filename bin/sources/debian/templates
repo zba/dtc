@@ -206,3 +206,10 @@ Description: Update pear installation.
  internet. If you can't reply yes here, please check that you
  have the following PEAR modules up-to-date: Crypt_CBC and Auth_SASL.
 
+Template: dtc/conf_dnsbl_list
+Type: string
+Default: sbl-xbl.spamhaus.org,list.dsbl.org,relays.ordb.org
+Description: DNSBL (DNS BlackList) list
+ Please enter the list of prefered DNSBL servers to add to your 
+ mail server configuration.
+

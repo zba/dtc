@@ -35,6 +35,7 @@ db_input medium dtc/conf_cert_unit
 db_input high dtc/conf_cert_email
 db_input high dtc/conf_cert_challenge_pass
 db_input high dtc/conf_upgrade_pear
+db_input medium dtc/conf_dnsbl_list
 db_go
 
 exit 0;
