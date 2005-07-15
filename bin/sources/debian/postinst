@@ -41,6 +41,13 @@ PATH_SASL_PASSWD2=/usr/sbin/saslpasswd2
 PATH_DTC_SHARED=/usr/share/dtc
 FREERADIUS_ETC="/etc/raddb"
 PATH_AWSTATS_ETC=/etc/awstats
+PATH_AMAVISD_CONF=/etc/amavis/amavisd.conf
+PATH_CLAMAV_CONF=/etc/clamav/clamd.conf
+
+USER_ADD_CMD=useradd
+USER_ADD_CMD=groupadd
+USER_MOD_CMD=usermod
+PASSWD_CMD=passwd
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"

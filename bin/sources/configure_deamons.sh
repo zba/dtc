@@ -505,6 +505,141 @@ else
 	fi
 fi
 
+#
+# Make some changes to the amavisd-new configuration to allow clamav to work with it cleanly
+#
+
+# make sure the amavisd configuration has 'amavis' user and group
+
+if [ -f "$PATH_AMAVISD_CONF" ]; then
+        if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                echo "Checking user and group configuration for amavisd..."
+        fi
+
+        # make sure our users exist for amavis
+        set +e
+        # turn back on error handling, these users probably exist already
+        $GROUP_ADD_CMD amavis > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "Group amavis already exists..."
+                fi
+        fi
+        $USER_ADD_CMD -g amavis amavis > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "User amavis already exists..."
+                fi
+        fi
+        $PASSWD_CMD -l amavis > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "Change password failed for amavis user"
+                fi
+        fi
+        set -e
+
+        if grep "Configured by DTC" "$PATH_AMAVISD_CONF" >/dev/null; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "$PATH_AMAVISD_CONF already configured..."
+                fi
+        else
+                if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+                        echo "Inserting configuration into $PATH_AMAVISD_CONF"
+                fi
+
+                # strip the 1; from the end of the config file
+                perl -i -p -e 's/^1;[^\n]*\n//' $PATH_AMAVISD_CONF
+
+		# fix the clamd ctl file to point to /var/run/clamav/clamd.ctl
+		perl -i -p -e 's/\"i\/.*?\/clamd.ctl\"/\"\/var\/run\/clamav\/clamd.ctl\"/' $PATH_AMAVISD_CONF
+
+		mkdir -p /var/run/clamav/
+		chown -R clamav:clamav /var/run/clamav
+
+                TMP_FILE=`${MKTEMP} dtc_install.amavisd.conf.XXXXXX` || exit 1
+                echo "# Configured by DTC $VERSION" >> $TMP_FILE
+                echo "\$daemon_user  = 'amavis';" >> $TMP_FILE
+                echo "\$daemon_group  = 'amavis';" >> $TMP_FILE
+                echo "\$final_virus_destiny = D_DISCARD;" >> $TMP_FILE
+                echo "\$final_spam_destiny = D_DISCARD;" >> $TMP_FILE
+                echo "\$warnvirussender = 0;" >> $TMP_FILE
+                echo "\$warnspamsender = 0;" >> $TMP_FILE
+
+                echo "# End of DTC configuration $VERSION" >> $TMP_FILE
+                echo "1;  # insure a defined return" >> $TMP_FILE
+
+                # now to insert it at the end of the actual amavisd.conf
+                cat < $TMP_FILE >>$PATH_AMAVISD_CONF
+        fi
+fi
+
+if [ -f "$PATH_CLAMAV_CONF" ]; then
+        if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                echo "Checking user and group configuration for clamav..."
+        fi
+
+        # make sure our users exist for amavis
+        set +e
+        # turn back on error handling, these users probably exist already
+        $GROUP_ADD_CMD clamav > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "Group clamav already exists..."
+                fi
+        fi
+        $USER_ADD_CMD -g clamav clamav > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "User clamav already exists..."
+                fi
+        fi
+        $PASSWD_CMD -l clamav > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "Change password failed for clamav user"
+                fi
+        fi
+	# now add amavisd to the clamav group and vice versa
+	$USER_MOD_CMD -G clamav,amavis clamav > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "Change group failed for clamav user"
+                fi
+	fi
+	$USER_MOD_CMD -G amavis,clamav amavis > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "Change group failed for amavis user"
+                fi
+	fi
+	# need to add the following to the config file:
+	# AllowSupplementaryGroups
+	# LocalSocket /var/run/clamav/clamd.ctl
+
+	if grep "Configured by DTC" "$PATH_CLAMAV_CONF" >/dev/null; then
+                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                        echo "$PATH_CLAMAV_CONF already configured..."
+                fi
+        else
+                if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+                        echo "Inserting configuration into $PATH_CLAMAV_CONF"
+                fi
+
+                TMP_FILE=`${MKTEMP} dtc_install.clamav.conf.XXXXXX` || exit 1
+                echo "# Configured by DTC $VERSION" >> $TMP_FILE
+		echo "AllowSupplementaryGroups" >> $TMP_FILE
+		echo "LocalSocket /var/run/clamav/clamd.ctl" >> $TMP_FILE
+
+                echo "# End of DTC configuration $VERSION" >> $TMP_FILE
+                echo "1;  # insure a defined return" >> $TMP_FILE
+
+                # now to insert it at the end of the actual clamav.conf
+                cat < $TMP_FILE >>$PATH_CLAMAV_CONF
+        fi
+fi
+
+
 # 
 # Modify the postfix main.cf to include virtual delivery options
 #
@@ -533,6 +668,9 @@ then
 		echo "# DTC virtual configuration
 # disable the following functionality by default (otherwise can't match subdomains correctly)
 parent_domain_matches_subdomains=
+
+# stuff for amavis
+content_filter=smtp-amavis:[127.0.0.1]:10024
 
 virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 virtual_mailbox_base = /
@@ -650,6 +788,49 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
 			rm $TMP_FILE2
 			fi
+		fi
+
+		# check to see if we have our amavis stuff configured in our master.cf yet
+		if grep "smtp-amavis" $PATH_AMAVISD_CONF > /dev/null; then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Postfix master.cf has amavis configured before..."
+			fi
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Adding amavis options to Postfix master.cf..."
+			fi
+			TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
+			echo "# Configured by DTC v0.17 : Please don't touch this line !" > $TMP_FILE2
+		
+			echo "# amavisd-new
+smtp-amavis unix -      -       -       -       2  smtp
+    -o smtp_data_done_timeout=1200
+    -o smtp_send_xforward_command=yes
+    -o disable_dns_lookups=yes
+    -o max_use=20
+
+127.0.0.1:10025 inet n  -       -       -       -  smtpd
+    -o content_filter=
+    -o local_recipient_maps=
+    -o relay_recipient_maps=
+    -o smtpd_restriction_classes=
+    -o smtpd_client_restrictions=
+    -o smtpd_helo_restrictions=
+    -o smtpd_sender_restrictions=
+    -o smtpd_recipient_restrictions=permit_mynetworks,reject
+    -o mynetworks=127.0.0.0/8
+    -o strict_rfc821_envelopes=yes
+    -o smtpd_error_sleep_time=0
+    -o smtpd_soft_error_limit=1001
+    -o smtpd_hard_error_limit=1000
+    -o smtpd_client_connection_count_limit=0
+    -o smtpd_client_connection_rate_limit=0
+    -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks
+" >> $TMP_FILE2
+				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
+			cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
+			rm $TMP_FILE2
+
 		fi
 
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
