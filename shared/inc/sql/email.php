@@ -90,12 +90,17 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 	}else{
 		$dolocal_deliver = "no";
 	}
+	if(isset($_REQUEST["newmail_spam_mailbox_enable"]) && $_REQUEST["newmail_spam_mailbox_enable"] == "yes"){
+		$do_spam_mailbox_enable = "yes";
+	}else{
+		$do_spam_mailbox_enable = "no";
+	}
 	$crypted_pass = crypt($_REQUEST["newmail_pass"]);
 	if($commit_flag == "yes"){
 		$mailbox_path = get_mailbox_complete_path($_REQUEST["newmail_login"],$edit_domain);
 		$adm_query = "INSERT INTO $pro_mysql_pop_table(
-        id,              fullemail, home,           mbox_host,     crypt,        passwd,         redirect1,            redirect2            ,localdeliver)
-VALUES ('".$_REQUEST["newmail_login"]."','".$_REQUEST["newmail_login"]."@".$edit_domain."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver');";
+        id,              fullemail, home,           mbox_host,     crypt,        passwd,         redirect1,            redirect2            ,localdeliver, spam_mailbox_enable, spam_mailbox)
+VALUES ('".$_REQUEST["newmail_login"]."','".$_REQUEST["newmail_login"]."@".$edit_domain."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver','$do_spam_mailbox_enable','".$_REQUEST["newmail_spam_mailbox"]."');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 		writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);
@@ -147,10 +152,15 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 	}else{
 		$dolocal_deliver = "no";
 	}
+	if($_REQUEST["editmail_spam_mailbox_enable"] == "yes"){
+		$do_spam_mailbox_enable = "yes";
+	}else{
+		$do_spam_mailbox_enable = "no";
+	}
 	$crypted_pass = crypt($_REQUEST["editmail_pass"]);
 	if($commit_flag == "yes"){
 		$adm_query = "UPDATE $pro_mysql_pop_table SET
-	crypt='$crypted_pass',passwd='".$_REQUEST["editmail_pass"]."',redirect1='".$_REQUEST["editmail_redirect1"]."',redirect2='".$_REQUEST["editmail_redirect2"]."',localdeliver='$dolocal_deliver' WHERE
+	crypt='$crypted_pass',passwd='".$_REQUEST["editmail_pass"]."',redirect1='".$_REQUEST["editmail_redirect1"]."',redirect2='".$_REQUEST["editmail_redirect2"]."',localdeliver='$dolocal_deliver',spam_mailbox_enable='$do_spam_mailbox_enable',spam_mailbox='".$_REQUEST["editmail_spam_mailbox"]."' WHERE
 	id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain' LIMIT 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 

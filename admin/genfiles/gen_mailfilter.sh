@@ -1,13 +1,19 @@
 #!/bin/sh
 # generate mailfilter stuff
-# gen_mailfilter.sh <home> <id> <domain_full_name> <redirection> <redirection2>
+# gen_mailfilter.sh <home> <id> <domain_full_name> <spam mailbox enable> <spam mailbox> <redirection> <redirection2>
 home=$1
 id=$2
 domain_full_name=$3
-redirection=$4
-redirection2=$5
+spam_mailbox_enable=$4
+spam_mailbox=$5
+redirection=$6
+redirection2=$7
 
 MAILFILTER_FILE=$home/.mailfilter
+
+if [ ! -f $MAILFILTER_FILE ]; then
+	touch $MAILFILTER_FILE
+fi
 
 # first chown this file, so we can edit it
 chmod 660 $MAILFILTER_FILE
@@ -45,27 +51,39 @@ touch $MAILFILTER_FILE
 TMP_FILE=$home/.DTC_install.mailfilter.XXXXXX
 
 touch $TMP_FILE
+echo "# Configured by DTC" >> $TMP_FILE
 
 if [ -z $redirection2 ]; then
 	# only do one redirection
-echo "# Configured by DTC
-# If the destination maildir doesn't exist, create it.
+echo "# If the destination maildir doesn't exist, create it.
 \`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)\`
 cc \"! $redirection\"
 to \$DEFAULT
-# End of DTC configuration" >> $TMP_FILE
+" >> $TMP_FILE
 
 else
 	# do both redirections from the command line
-echo "# Configured by DTC
-# If the destination maildir doesn't exist, create it.
+echo "# If the destination maildir doesn't exist, create it.
 \`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)\`
 cc \"! $redirection\"
 cc \"! $redirection2\"
 to \$DEFAULT
-# End of DTC configuration" >> $TMP_FILE
+" >> $TMP_FILE
 
 fi
+
+if [ $spam_mailbox_enable == "yes" ]; then
+	echo "
+if (/^X-Spam-Flag: .*YES.*/)
+{
+	\`[ -d \$DEFAULT/.$spam_mailbox ] || (maildirmake \$DEFAULT && maildirmake -f $spam_mailbox  \$DEFAULT)\`
+	exception {
+		to \$DEFAULT/.$spam_mailbox/
+	}
+}
+" >> $TMP_FILE
+fi
+echo "# End of DTC configuration" >> $TMP_FILE
 
 # now that we have our temp file with the additions, prepend to the current mailfilter
 cat $MAILFILTER_FILE >> $TMP_FILE

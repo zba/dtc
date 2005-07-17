@@ -2757,6 +2757,30 @@ $txt_mail_redirection1 = array(
 	"pl" => "Przekierowanie 1: ",
 	"es" => "Redireccion 1: "
 );
+$txt_mail_spam_mailbox_enable = array(
+	"fr" => "Enable SPAM filtering: ",
+	"en" => "Enable SPAM filtering: ",
+	"hu" => "Enable SPAM filtering: ",
+	"it" => "Enable SPAM filtering: ",
+	"nl" => "Enable SPAM filtering: ",
+	"ru" => "Enable SPAM filtering: ",
+	"de" => "Enable SPAM filtering: ",
+	"zh" => "Enable SPAM filtering: ",
+	"pl" => "Enable SPAM filtering: ",
+	"es" => "Enable SPAM filtering: "
+);
+$txt_mail_spam_mailbox = array(
+	"fr" => "SPAM mailbox destination: ",
+	"en" => "SPAM mailbox destination: ",
+	"hu" => "SPAM mailbox destination: ",
+	"it" => "SPAM mailbox destination: ",
+	"nl" => "SPAM mailbox destination: ",
+	"ru" => "SPAM mailbox destination: ",
+	"de" => "SPAM mailbox destination: ",
+	"zh" => "SPAM mailbox destination: ",
+	"pl" => "SPAM mailbox destination: ",
+	"es" => "SPAM mailbox destination: "
+);
 $txt_mail_redirection2 = array(
 	"fr" => "Redirection 2: ",
 	"en" => "Redirection 2: ",

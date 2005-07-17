@@ -144,6 +144,10 @@ function mail_account_generate_postfix(){
 					$home = $email["home"];
 					$passwdtemp = $email["passwd"];
 					$passwd = crypt($passwdtemp);
+					$spam_mailbox = $email["spam_mailbox"];
+					$spam_mailbox_enable = $email["spam_mailbox_enable"];
+
+					$spam_stuff_done = 0;
 
 					// if we have a $id equal to abuse
 					if ($id == "abuse")
@@ -166,14 +170,16 @@ function mail_account_generate_postfix(){
 						unset($extra_redirects);
 						if ($localdeliver == "yes" || $localdeliver == "true"){
 							//need to generate .mailfilter file with "cc" and also local delivery
-							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $redirect1");
+							system("./genfiles/gen_mailfilter.sh $home $id $spam_mailbox_enable $spam_mailbox $domain_full_name $redirect1");
+							$spam_stuff_done = 1;
 						} else {
 							$extra_redirects = " $redirect1 ";
 						}
 						if ($redirect2 != "" && isset($redirect2)){
 							if ($localdeliver == "yes" || $localdeliver == "true"){
 								//need to generate .mailfilter file with "cc" and also local delivery
-								system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $redirect1 $redirect2");
+								system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $redirect1 $redirect2");
+								$spam_stuff_done = 1;
 							} else if (isset($extra_redirects)) {
 								$extra_redirects .= " , $redirect2";
 							}
@@ -184,6 +190,11 @@ function mail_account_generate_postfix(){
 							$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
 						}
 						unset($extra_redirects);
+					}
+					//if we haven't added the spam mailbox yet, do it here
+					if ($spam_stuff_done == 0)
+					{
+						system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox");
 					}
 				}
 			}

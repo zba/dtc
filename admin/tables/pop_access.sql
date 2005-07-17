@@ -26,6 +26,8 @@ CREATE TABLE IF NOT EXISTS pop_access (
   bounce_msg text NOT NULL,
   spf_protect enum('yes','no') NOT NULL default 'no',
   clamav_protect enum('yes','no') NOT NULL default 'no',
+  spam_mailbox_enable enum('yes','no') NOT NULL default 'no',
+  spam_mailbox varchar(255) NOT NULL default 'SPAM',
   pass_next_req varchar(128) NOT NULL default '',
   pass_expire int(12) NOT NULL default '0',
   PRIMARY KEY  (id,mbox_host)

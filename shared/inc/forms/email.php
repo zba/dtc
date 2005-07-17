@@ -202,6 +202,8 @@ function drawAdminTools_emailAccount($mailbox){
 	global $txt_change_your_password_title;
 	global $txt_repeate_password;
 	global $txt_mail_deliver_localy;
+	global $txt_mail_spam_mailbox_enable;
+	global $txt_mail_spam_mailbox;
 	global $txt_mail_redirection1;
 	global $txt_mail_redirection2;
 	global $txt_password;
@@ -357,6 +359,8 @@ function drawAdminTools_Emails($domain){
 	global $txt_mail_new_mailbox;
 	global $txt_mail_redirection1;
 	global $txt_mail_redirection2;
+	global $txt_mail_spam_mailbox_enable;
+	global $txt_mail_spam_mailbox;
 	global $txt_mail_deliver_localy;
 	global $txt_mail_edit;
 	global $txt_mail_new_mailbox_link;
@@ -396,12 +400,20 @@ function drawAdminTools_Emails($domain){
 			$redir1 = $email["redirect1"];
 			$redir2 = $email["redirect2"];
 			$localdeliver = $email["localdeliver"];
+			$spam_mailbox_enable = $email["spam_mailbox_enable"];
 			if($localdeliver == "yes"){
 				$checkbox_state = " checked";
 				
 			}else{
 				$checkbox_state = "";
 			}
+			if ($spam_mailbox_enable  == "yes"){
+                                $spam_checkbox_state = " checked";
+
+                        }else{
+                                $spam_checkbox_state = "";
+                        }
+			$spam_mailbox = $email["spam_mailbox"];
 		}
 		if($i != 0){
 			$allmail_list .= " - ";
@@ -452,6 +464,8 @@ function drawAdminTools_Emails($domain){
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"editmail_redirect2\" value=\"$redir2\">
 </td></tr><tr><td align=\"right\">
 ".$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"editmail_deliver_localy\" value=\"yes\"$checkbox_state></td>
+<td align=\"right\">".$txt_mail_spam_mailbox_enable[$lang]."</td><td><input type=\"checkbox\" name=\"editmail_spam_mailbox_enable\" value=\"yes\"$spam_checkbox_state></td>
+<td align=\"right\">".$txt_mail_spam_mailbox[$lang]."</td><td><input type=\"text\" name=\"editmail_spam_mailbox\" value=\"$spam_mailbox\"></td>
 <td>&nbsp;</td><td><input type=\"submit\" name=\"modifymailboxdata\" value=\"Ok\">&nbsp;
 <input type=\"submit\" name=\"delemailaccount\" value=\"Del\">
 </td></tr>
@@ -488,6 +502,7 @@ $txt .= "
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"newmail_redirect2\" value=\"\">
 </td></tr><tr><td align=\"right\">
 ".$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_deliver_localy\" value=\"yes\" checked></td>
+<td align=\"right\">".$txt_mail_spam_mailbox_enable[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_spam_mailbox_enable\" value=\"no\"></td>
 <td></td>
 <td><input type=\"submit\" name=\"addnewmailtodomain\" value=\"Ok\">
 </td></tr>
