@@ -9,8 +9,8 @@ redirection2=$5
 
 MAILFILTER_FILE=$home/.mailfilter
 
-# first chown this file
-chmod 500 $MAILFILTER_FILE
+# first chown this file, so we can edit it
+chmod 660 $MAILFILTER_FILE
 chown nobody:65534 $MAILFILTER_FILE
 
 # if the file exists, we need to edit and make sure our CC lines are present
