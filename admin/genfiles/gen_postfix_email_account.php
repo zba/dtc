@@ -170,7 +170,7 @@ function mail_account_generate_postfix(){
 						unset($extra_redirects);
 						if ($localdeliver == "yes" || $localdeliver == "true"){
 							//need to generate .mailfilter file with "cc" and also local delivery
-							system("./genfiles/gen_mailfilter.sh $home $id $spam_mailbox_enable $spam_mailbox $domain_full_name $redirect1");
+							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $redirect1");
 							$spam_stuff_done = 1;
 						} else {
 							$extra_redirects = " $redirect1 ";
