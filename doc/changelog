@@ -1,32 +1,38 @@
 This will be version 0.18 when released:
 ----------------------------------------
+- Added support for amavis (Damien Mascord)
+
+- Added a feature to add a list of allowed DNS IP for transfering.
+That helps managing slaves DNS that are not listed as NS1/NS2
+(otherwise by default transfer is forbidden). (Thomas Goirand)
+
 - Now made it work with mod_log_sql2 using $ in table names of
 apachelogs and not # anymore. BSD port reviewed a bit to use
-mod_log_sql2 and mysql 4.1.
+mod_log_sql2 and mysql 4.1. (Thomas Goirand)
 
 - Added port number to be able to support apache2. Might
-be configurable in the futur in the general config form.
+be configurable in the futur in the general config form. (Thomas)
 
 - Debian now asks to use vhost_nated IP for generating apache vhosts.
 
 - There is now support for MLMMJ mailing lists. (Core done by
 Lucas with a bit of help from Damien and Qmail part by Thomas)
 
-- Newly added admins are added with correct values.
+- Newly added admins are added with correct values. (Thomas)
 
-- Corrected a bug for local delivery + redirection in postfix
-(when local delivery was set, no redirection possible)
+- Corrected a bug for local delivery + redirection in postfix:
+when local delivery was set, no redirection possible (thomas & damien)
 
 - Reviewed and internationnalised the Tucows reseller interface,
-added a tucows API user/key form in the general config panel.
+added a tucows API user/key form in the general config panel. (Thomas)
 
 - There is now a complete new design thanks to Jerome Centex,
 thanks to him and his help.
 
-- Added subaccount feature (reseller)
+- Added subaccount feature (reseller) (thomas)
 
 - New layout for the main root consol. You wont have to scroll again and
-again like before, main stuff is now divided in 2 parts.
+again like before, main stuff is now divided in 2 parts. (thomas)
 
 - Virtual admins can now change they're password themself. (T.Goirand)
 
