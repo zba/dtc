@@ -108,6 +108,8 @@ function mail_account_generate_postfix(){
 		for($j=0;$j<$nbr_domain;$j++){
 			$domain = $data[$j];
 			$domain_full_name = $domain["name"];
+
+			//$console .= "Processing $domain_full_name ...\n";
 			//if we are primary mx, add to domains
 			//else add to relay
 			$primary_mx=0;
@@ -223,7 +225,19 @@ function mail_account_generate_postfix(){
 		}
 	}
 
-	$relay_domains_file .= get_remote_mail_domains();
+
+	//check to see if the domain is in our local recipients first before adding to allowed relay domains
+	$relay_domains_file_temp_list = explode("\n", get_remote_mail_domains());
+	foreach($relay_domains_file_temp_list as $domain)
+	{
+		if (isset($domain) && strlen($domain) > 0)
+		{
+			if (!preg_match("/@$domain\s/", $domains_postmasters_file))
+			{
+				$relay_domains_file .= "$domain\n";
+			}
+		}
+	}
 
 	$relay_recipients_list = explode("\n", get_remote_mail_recipients());
 
@@ -243,8 +257,10 @@ function mail_account_generate_postfix(){
 		{
 			continue;
 		}
+		//$console .= "$domain is being backed up\n";
 		//try and read a file here, and see if we have a list already created
 		if (is_file("$conf_postfix_recipient_lists_path/$domain")){
+			//$console .= "File found with domain info - $conf_postfix_recipient_lists_path/$domain\n";
 			$fp = fopen( "$conf_postfix_recipient_lists_path/$domain", "r");
 			$contents = fread($fp, filesize("$conf_postfix_recipient_lists_path/$domain"));
 			fclose($fp);
@@ -254,6 +270,7 @@ function mail_account_generate_postfix(){
 		//finally check to see if we haven't got any entries for this domain
 		if (!preg_match("/\@$domain\s+OK/", $relay_recipients_file))
 		{
+			//$console .= "Faking domain entry for $domain...\n";
 			$relay_recipients_file .= "@$domain OK\n";
 			//write this to a file, so admin/users can edit later
 			if (!file_exists("$conf_postfix_recipient_lists_path"))
