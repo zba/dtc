@@ -53,13 +53,13 @@ TMP_FILE=$home/.DTC_install.mailfilter.XXXXXX
 touch $TMP_FILE
 echo "# Configured by DTC" >> $TMP_FILE
 
-if [ -z $redirection2 ]; then
-	if [ -n $redirection ]; then
+if [ -z ""$redirection2 ]; then
+	if [ -n ""$redirection ]; then
 	# only do one redirection
-echo cc \"! $redirection\" " >> $TMP_FILE
+echo "cc \"! $redirection\" " >> $TMP_FILE
 	fi
 else
-	if [ -n $redirection -a -n $redirection2 ]; then
+	if [ -n ""$redirection -a -n ""$redirection2 ]; then
 	# do both redirections from the command line
 echo "cc \"! $redirection\"
 cc \"! $redirection2\" " >> $TMP_FILE
@@ -91,7 +91,7 @@ echo "# If the destination maildir doesn't exist, create it.
 \`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)\`" >> $TMP_FILE 
 
 # if we have one OR two redirections, we need a default "to"
-if [ -n $redirection -o -n $redirection2 ]; then
+if [ -n ""$redirection -o -n ""$redirection2 ]; then
 echo "to \$DEFAULT" >> $TMP_FILE
 fi
 
