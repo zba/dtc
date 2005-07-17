@@ -54,24 +54,19 @@ touch $TMP_FILE
 echo "# Configured by DTC" >> $TMP_FILE
 
 if [ -z $redirection2 ]; then
+	if [ -n $redirection ]; then
 	# only do one redirection
-echo "# If the destination maildir doesn't exist, create it.
-\`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)\`
-cc \"! $redirection\"
-to \$DEFAULT
-" >> $TMP_FILE
-
+echo cc \"! $redirection\" " >> $TMP_FILE
+	fi
 else
+	if [ -n $redirection -a -n $redirection2 ]; then
 	# do both redirections from the command line
-echo "# If the destination maildir doesn't exist, create it.
-\`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)\`
-cc \"! $redirection\"
-cc \"! $redirection2\"
-to \$DEFAULT
-" >> $TMP_FILE
-
+echo "cc \"! $redirection\"
+cc \"! $redirection2\" " >> $TMP_FILE
+	fi
 fi
 
+# we need to put our SPAM catching here, so that other mailboxes don't get it
 if [ $spam_mailbox_enable == "yes" ]; then
 	echo "
 if (/^X-Spam-Flag: .*YES.*/)
@@ -83,10 +78,25 @@ if (/^X-Spam-Flag: .*YES.*/)
 }
 " >> $TMP_FILE
 fi
+
 echo "# End of DTC configuration" >> $TMP_FILE
 
-# now that we have our temp file with the additions, prepend to the current mailfilter
+# now that we have our temp file with the cc and optionally SPAM additions, append our existing mailfilter to it
 cat $MAILFILTER_FILE >> $TMP_FILE
+
+# now we have put our cc at the beginning of the file, put the rest after any user contents
+# now onto a default "to"
+echo "# Configured by DTC" >> $TMP_FILE
+echo "# If the destination maildir doesn't exist, create it.
+\`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)\`" >> $TMP_FILE 
+
+# if we have one OR two redirections, we need a default "to"
+if [ -n $redirection -o -n $redirection2 ]; then
+echo "to \$DEFAULT" >> $TMP_FILE
+fi
+
+echo "# End of DTC configuration" >> $TMP_FILE
+
 # now move the TMP_FILE over top of our MAILFILTER_FILE
 mv $TMP_FILE $MAILFILTER_FILE
 chmod 500 $MAILFILTER_FILE
