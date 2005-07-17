@@ -562,9 +562,19 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
                 echo "\$daemon_user  = 'amavis';" >> $TMP_FILE
                 echo "\$daemon_group  = 'amavis';" >> $TMP_FILE
                 echo "\$final_virus_destiny = D_DISCARD;" >> $TMP_FILE
-                echo "\$final_spam_destiny = D_DISCARD;" >> $TMP_FILE
+                echo "\$final_spam_destiny = D_PASS;" >> $TMP_FILE
+                echo "\$final_banned_destiny = D_PASS;" >> $TMP_FILE
+                echo "\$final_bad_header_destiny = D_PASS;" >> $TMP_FILE
                 echo "\$warnvirussender = 0;" >> $TMP_FILE
                 echo "\$warnspamsender = 0;" >> $TMP_FILE
+		echo " # kill level defaults " >> $TMP_FILE
+
+		echo "\$sa_tag_level_deflt  = 2.0;" >> $TMP_FILE
+		echo "\$sa_tag2_level_deflt = 6.3;" >> $TMP_FILE
+		echo "\$sa_kill_level_deflt = $sa_tag2_level_deflt;" >> $TMP_FILE
+		echo "\$sa_dsn_cutoff_level = 50;" >> $TMP_FILE
+
+		echo "\$sa_mail_body_size_limit = 150*1024;" >> $TMP_FILE
 
                 echo "# End of DTC configuration $VERSION" >> $TMP_FILE
                 echo "1;  # insure a defined return" >> $TMP_FILE
@@ -668,6 +678,9 @@ then
 		echo "# DTC virtual configuration
 # disable the following functionality by default (otherwise can't match subdomains correctly)
 parent_domain_matches_subdomains=
+
+# disable mailbox size limit by default (user can add to postfix_config_snippets)
+mailbox_size_limit = 0
 
 # stuff for amavis
 content_filter=smtp-amavis:[127.0.0.1]:10024
