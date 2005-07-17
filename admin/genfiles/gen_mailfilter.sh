@@ -9,11 +9,19 @@ redirection2=$5
 
 MAILFILTER_FILE=$home/.mailfilter
 
+# first chown this file
+chmod 500 $MAILFILTER_FILE
+chown nobody:65534 $MAILFILTER_FILE
+
 # if the file exists, we need to edit and make sure our CC lines are present
 if [ -f $MAILFILTER_FILE ]; then
-
+	COUNT=0
 	# first, strip off any additions by DTC
 	while grep "Configured by DTC" $MAILFILTER_FILE >/dev/null 2>&1 ; do
+		if [ $COUNT -eq 10 ]; then
+			echo "Something is wrong with $MAILFILTER_FILE..."
+			exit 1;
+		fi
 		start_line=`grep -n "Configured by DTC" $MAILFILTER_FILE | cut -d":" -f1 | head -n 1`
 		end_line=`grep -n "End of DTC configuration" $MAILFILTER_FILE| cut -d":" -f1 | head -n 1`
 		nbr_line=`cat $MAILFILTER_FILE | wc -l`
@@ -27,6 +35,7 @@ if [ -f $MAILFILTER_FILE ]; then
 		echo -n > $MAILFILTER_FILE
 		cat < $TMP_FILE >> $MAILFILTER_FILE
 		rm $TMP_FILE
+		COUNT=$(( $COUNT + 1 ))
 	done
 fi
 
