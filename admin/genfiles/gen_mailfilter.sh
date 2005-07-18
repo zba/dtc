@@ -25,7 +25,7 @@ if [ -f $MAILFILTER_FILE ]; then
 	# first, strip off any additions by DTC
 	while grep "Configured by DTC" $MAILFILTER_FILE >/dev/null 2>&1 ; do
 		if [ $COUNT -eq 10 ]; then
-			echo "Something is wrong with $MAILFILTER_FILE..."
+			echo "Something is wrong with $MAILFILTER_FILE ..."
 			exit 1;
 		fi
 		start_line=`grep -n "Configured by DTC" $MAILFILTER_FILE | cut -d":" -f1 | head -n 1`
@@ -33,7 +33,23 @@ if [ -f $MAILFILTER_FILE ]; then
 		nbr_line=`cat $MAILFILTER_FILE | wc -l`
 		TMP_FILE=$home/.DTC_uninstall.mailfilter.XXXXXX
 		touch $TMP_FILE
+		# if we only have 1 line, and it's the "configured by DTC" one, we need to empty the file
+		if [ $nbr_line -eq 1 ]; then
+			cat < $TMP_FILE >> $MAILFILTER_FILE
+		fi
 		top=$(( $start_line - 1 ))
+		if [ -z $end_line ]; then
+			echo "Something is wrong with $MAILFILTER_FILE ..."
+			echo "Please edit this and manually remove any DTC additions"
+			exit 1;
+		fi
+
+		if [ ""$end_line == " " ]; then
+			echo "Something is wrong with $MAILFILTER_FILE ..."
+                        echo "Please edit this and manually remove any DTC additions"
+                        exit 1;
+                fi
+
 		bottom=$(( $nbr_line - $end_line ))
 		cat $MAILFILTER_FILE | head -n $top > $TMP_FILE
 		cat $MAILFILTER_FILE | tail -n $bottom >> $TMP_FILE

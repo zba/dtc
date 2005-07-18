@@ -243,7 +243,7 @@ function mail_account_generate_postfix(){
 	{
 		if (isset($domain) && strlen($domain) > 0)
 		{
-			if (!preg_match("/@$domain\s/", $domains_postmasters_file))
+			if (!preg_match("/^$domain\s/", $domains_file))
 			{
 				$relay_domains_file .= "$domain\n";
 			}
@@ -255,6 +255,7 @@ function mail_account_generate_postfix(){
 	foreach($relay_recipients_list as $email)
 	{
 		if (isset($email) && strlen($email) > 0){
+			// echo "Stage 1 - adding $email";
 			$relay_recipients_file .= $email . " OK\n";
 		}
 	}
@@ -272,17 +273,28 @@ function mail_account_generate_postfix(){
 		//try and read a file here, and see if we have a list already created
 		if (is_file("$conf_postfix_recipient_lists_path/$domain")){
 			//$console .= "File found with domain info - $conf_postfix_recipient_lists_path/$domain\n";
-			$fp = fopen( "$conf_postfix_recipient_lists_path/$domain", "r");
-			$contents = fread($fp, filesize("$conf_postfix_recipient_lists_path/$domain"));
-			fclose($fp);
-			//now we have found some domain email list, append it here
-			$relay_recipients_file .= $contents;
+			//check to see if we have already got this domain... 
+			//if we do, then it means that we have a rogue $domain file, and it should be deleted! :)
+
+			if (preg_match("/\@$domain\s+OK/", $relay_recipients_file))
+			{
+				unlink("$conf_postfix_recipient_lists_path/$domain");
+			} else {
+				// echo "Reading $domain from recip file...";
+				$fp = fopen( "$conf_postfix_recipient_lists_path/$domain", "r");
+				$contents = fread($fp, filesize("$conf_postfix_recipient_lists_path/$domain"));
+				fclose($fp);
+				//now we have found some domain email list, append it here
+				$relay_recipients_file .= $contents;
+				// echo "Stage 2 - adding $contents";
+			}
 		}
 		//finally check to see if we haven't got any entries for this domain
 		if (!preg_match("/\@$domain\s+OK/", $relay_recipients_file))
 		{
 			//$console .= "Faking domain entry for $domain...\n";
 			$relay_recipients_file .= "@$domain OK\n";
+			// echo "Stage 3 - adding $domain OK";
 			//write this to a file, so admin/users can edit later
 			if (!file_exists("$conf_postfix_recipient_lists_path"))
 			{

@@ -79,11 +79,6 @@ case "list_mx_recipients":
 			$a_email = mysql_fetch_array($r_email);
 			$out .= $a_email["fullemail"] . "\n";
 		}
-		//now for the catch_all email if the user has set it
-		if (isset($catchall_email) && strlen($catchall_email) > 0) 
-		{
-			$out .= "@" . $domain . "\n";
-		}
 		//add the mailing lists as well
 		$q_mailinglist = "SELECT name FROM `mailinglist` WHERE domain='$domain';";
 		$r_mailinglist =  mysql_query($q_mailinglist)or die("Cannot query $q_mailinglist ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -97,8 +92,17 @@ case "list_mx_recipients":
 			}
 		}
 		//now make sure we have abuse@ and postmaster@
-		$out .= "abuse@" . $domain . "\n";
-		$out .= "postmaster@" . $domain . "\n";
+		if (!preg_match("/abuse\@$domain$/", $out)){
+			$out .= "abuse@" . $domain . "\n";
+		}
+		if (!preg_match("/postmaster\@$domain$/", $out)){
+			$out .= "postmaster@" . $domain . "\n";
+		}
+		//finally, for the catch_all email if the user has set it
+		if (isset($catchall_email) && strlen($catchall_email) > 0) 
+		{
+			$out .= "@" . $domain . "\n";
+		}
 	}
 
 	$out .= "</dtc_backup_mx_recipient_list>\n";
