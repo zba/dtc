@@ -214,6 +214,18 @@ $txt_cfg_make_request_to_server_for_update = array(
 	"pl" => "Tell the following servers when a domain is added or removed : ",
 	"es" => "Avisar a los siguientes servidores cuando un dominio es añadido o eliminado : ");
 
+$txt_cfg_make_request_to_server_mx_update = array(
+	"fr" => "Prévenir les serveurs suivant quand un email est ajouté ou supprimer : ",
+	"en" => "Tell the following servers when an email is added or removed : ",
+	"hu" => "Értesítse a következõ szervereket, ha egy email hozzáadásra vagy törlésre kerül : ",
+	"it" => "Informa i seguenti servers quando un email viene aggiunto o rimosso : ",
+	"nl" => "TRANS Tell the following servers when a email is added or removed : ",
+	"ru" => "TRANS Tell the following servers when a email is added or removed : ",
+	"de" => "Folgende Server informieren, wenn eine email hinzugefügt oder gelöscht wird: ",
+	"zh" => "å‘Šè¯‰ä»¥ä¸‹æœåŠ¡å™¨ç”µå­é‚®ä»¶å¢žåŠ æˆ–è¢«åŽ»é™¤",
+	"pl" => "Tell the following servers when a email is added or removed : ",
+	"es" => "Avisar a los siguientes servidores cuando un email es añadido o eliminado : ");
+
 $txt_cfg_act_as_backup_mail_server = array(
 	"fr" => "Ce server sera serveur de backup mail pour les serveurs suivants : ",
 	"en" => "Act as backup mail server for the following servers: ",

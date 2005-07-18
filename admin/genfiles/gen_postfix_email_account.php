@@ -122,12 +122,10 @@ function mail_account_generate_postfix(){
 				$relay_recipients_all_domains .= "$domain_full_name\n";
 			}
 
-			if ($primary_mx){
-				$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
-			}
 			$store_catch_all = "";
 			$catch_all_id = $domain["catchall_email"];
 			$abuse_address = 0;
+			$postmaster_address = 0;
 			if(isset($domain["emails"]) && $primary_mx){
 				$emails = $domain["emails"];
 				$nbr_boites = sizeof($emails);
@@ -153,6 +151,10 @@ function mail_account_generate_postfix(){
 					if ($id == "abuse")
 					{
 						$abuse_address = 1;
+					}
+					if ($id == "postmaster")
+					{
+						$postmaster_address = 1;
 					}
 					# first try and see if we have postfix in a chroot, else just put it in it's default location
 					if ($localdeliver == "yes" || $localdeliver == "true"){
@@ -202,6 +204,9 @@ function mail_account_generate_postfix(){
 			if ($abuse_address == 0 && $primary_mx)
 			{
 				$domains_postmasters_file .= "abuse@$domain_full_name postmaster\n";
+			}
+			if ($postmaster_address == 0 && $primary_mx){
+				$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
 			}
 
 			//add support for creation of mailing lists

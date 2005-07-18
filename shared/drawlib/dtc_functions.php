@@ -211,6 +211,15 @@ function triggerDomainListUpdate(){
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
 
+function triggerMXListUpdate(){
+	global $pro_mysql_backup_table;
+
+	$q = "UPDATE $pro_mysql_backup_table SET status='pending' WHERE type='trigger_mx_changes';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+
+
+}
+
 // Return the path of one admin giving his path as argument
 function getAdminPath($adm_login){
 	global $pro_mysql_admin_table;

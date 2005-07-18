@@ -318,6 +318,7 @@ function drawBackupConfig(){
         global $pro_mysql_backup_table;
         global $txt_cfg_allow_following_servers_to_list;
         global $txt_cfg_make_request_to_server_for_update;
+        global $txt_cfg_make_request_to_server_mx_update;
         global $txt_cfg_act_as_backup_mail_server;
         global $txt_cfg_act_as_backup_dns_server;
         global $lang;
@@ -351,6 +352,7 @@ function drawBackupConfig(){
         $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
         $out .= "</table>";
 
+	//list of servers to update for domain or mail changes
 	$out .= "<h3>".$txt_cfg_make_request_to_server_for_update[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -383,6 +385,40 @@ function drawBackupConfig(){
         $this_srv_backup = $out;
         $out = "";
 
+	//servers to trigger when there are MX recipient changes (for backup MX, though not backup NS)
+	$out .= "<h3>".$txt_cfg_make_request_to_server_mx_update[$lang]."</h3>";
+	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_mx_changes';";
+	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+        $out .= "<table><tr><td>Server address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+	for($i=0;$i<$n;$i++){
+	        $a = mysql_fetch_array($r);
+	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+	        <input type=\"hidden\" name=\"action\" value=\"modify_mx_trigger_backup\">
+                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
+	        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
+	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
+	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
+        }
+        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+        <input type=\"hidden\" name=\"action\" value=\"add_mx_trigger_backup\">
+        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"http://dtc.\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
+        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
+        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
+        $out .= "</table>";
+	//append this to the server backup list
+        $this_srv_backup .= $out;
+        $out = "";
+
+	//list of servers to backup the email
 	$out .= "<h3>".$txt_cfg_act_as_backup_mail_server[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='mail_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -993,6 +1029,26 @@ function saveDTCConfigInMysql(){
                       '".$_REQUEST["server_login"]."',
                       '".$_REQUEST["server_pass"]."',
                       'grant_access');";
+                      break;
+                case "modify_mx_trigger_backup":
+                      switch($_REQUEST["todo"]){
+                      case "del":
+                        $query = "DELETE FROM $pro_mysql_backup_table WHERE id='".$_REQUEST["id"]."';";
+                        break;
+                      case "save":
+                        $query = "UPDATE $pro_mysql_backup_table SET
+                        server_addr='".$_REQUEST["server_addr"]."',
+                        server_login='".$_REQUEST["server_login"]."',
+                        server_pass='".$_REQUEST["server_pass"]."' WHERE id='".$_REQUEST["id"]."';";
+                        break;
+                      }
+                      break;
+                case "add_mx_trigger_backup":
+                      $query = "INSERT INTO $pro_mysql_backup_table (server_addr,server_login,server_pass,type)
+                      VALUES('".$_REQUEST["server_addr"]."',
+                      '".$_REQUEST["server_login"]."',
+                      '".$_REQUEST["server_pass"]."',
+                      'trigger_mx_changes');";
                       break;
                 case "modify_trigger_backup":
                       switch($_REQUEST["todo"]){

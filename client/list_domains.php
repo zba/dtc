@@ -61,6 +61,17 @@ case "update_request":
 
 	$out .= "Successfuly recieved trigger!";
 	break;
+case "trigger_update_mx_recipients":
+	// for this case, we should get new mail domains and mail recipients
+	// no need for the DNS payload though	
+	$q = "UPDATE $pro_mysql_cronjob_table SET gen_qmail='yes',restart_qmail='yes',gen_named='no',reload_named='no' WHERE 1;";
+        $r = mysql_query($q)or die("Cannot query $q ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+
+        $q = "UPDATE $pro_mysql_backup_table SET status='pending' WHERE type='mail_backup';";
+        $r = mysql_query($q)or die("Cannot query $q ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+
+        $out .= "Successfuly recieved trigger for MX!";
+        break;
 case "list_mx_recipients":
 	$q = "SELECT * FROM $pro_mysql_domain_table WHERE other_mx='default' AND primary_mx='default';";
 	$r = mysql_query($q)or die("Cannot query $q ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());

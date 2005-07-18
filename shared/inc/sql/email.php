@@ -33,6 +33,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 		if($commit_flag == "yes"){
 			$q = "UPDATE $pro_mysql_domain_table SET catchall_email='".$_REQUEST["catchall_popup"]."' WHERE name='$edit_domain';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			triggerMXListUpdate();
 			updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
 		}
 	}
@@ -104,6 +105,7 @@ VALUES ('".$_REQUEST["newmail_login"]."','".$_REQUEST["newmail_login"]."@".$edit
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 		writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);
+		triggerMXListUpdate();
 		updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
 	}
 }
@@ -165,7 +167,7 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
 		writeDotQmailFile($_REQUEST["edit_mailbox"],$edit_domain);
-
+		triggerMXListUpdate();
 		updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	}
 }
@@ -186,7 +188,7 @@ if(isset($_REQUEST["delemailaccount"]) && $_REQUEST["delemailaccount"] == "Del")
 		$adm_query="DELETE FROM $pro_mysql_pop_table WHERE mbox_host='$edit_domain' AND id='".$_REQUEST["edit_mailbox"]."' LIMIT 1";
 		unset($edit_mailbox);
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
-
+		triggerMXListUpdate();
 		updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	}
 }

@@ -36,7 +36,7 @@ $dtc_database = array(
 			"server_addr" => "varchar(128) NOT NULL ",
 			"server_login" => "varchar(128) NOT NULL ",
 			"server_pass" => "varchar(128) NOT NULL ",
-			"type" => "enum('grant_access','mail_backup','dns_backup','backup_ftp_to','trigger_changes') NOT NULL default 'grant_access' ",
+			"type" => "enum('grant_access','mail_backup','dns_backup','backup_ftp_to','trigger_changes','trigger_mx_changes') NOT NULL default 'grant_access' ",
 			"status" => "enum('pending','done') NOT NULL default 'pending' "
 			),
 		"keys" => array(

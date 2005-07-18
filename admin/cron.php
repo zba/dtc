@@ -51,13 +51,27 @@ echo "Setting-up lock flag\n";
 $query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='inprogress' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
+// This function call the apropriate server to tell that this server may have
+// some change in his domain list
+function commitTriggerToRemote($a)
+{
+	commitTriggerToRemote($a, 0);
+}
+
 
 // This function call the apropriate server to tell that this server may have
 // some change in his domain list
-function commitTriggerToRemote($a){
+// $recipients 1 - just mx recipient list
+// $recipients 0 - everything
+function commitTriggerToRemoteInternal($a, $recipients)
+{
 	$flag = false;
 	$retry = 0;
-        $url = $a["server_addr"].'/dtc/list_domains.php?action=update_request&login='.$a["server_login"].'&pass='.$a["server_pass"];
+	if ($recipients == 1){
+		$url = $a["server_addr"].'/dtc/list_domains.php?action=trigger_update_mx_recipients&login='.$a["server_login"].'&pass='.$a["server_pass"];
+	} else {
+		$url = $a["server_addr"].'/dtc/list_domains.php?action=update_request&login='.$a["server_login"].'&pass='.$a["server_pass"];
+	}
         while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
 		print_r($a_vers);
@@ -78,19 +92,46 @@ function commitTriggerToRemote($a){
 	return $flag;
 }
 
-$query = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes' AND status='pending';";
-$r = mysql_query($query)or die("Cannot query \"$query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-$n = mysql_num_rows($r);
-for($i=0;$i<$n;$i++){
-	$a = mysql_fetch_array($r);
-	echo "Triggering the change to the backup server ".$a["server_addr"]." with login ".$a["server_login"]."...";
-	if(commitTriggerToRemote($a)){
-		$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
-		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-		echo "success!\n";
-	}else{
-		echo "failed!\n";
+
+//$recipients 0 = trigger all changes
+//$recipients 1 = trigger only MX changes
+//returns 1 if the trigger was done
+//returns 0 if the trigger wasn't done
+function checkTriggers($recipients)
+{
+	global $pro_mysql_backup_table;
+	$returnValue = 0;
+	if ($recipients == 0){
+		$query = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes' AND status='pending';";
+	} else {
+		$query = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_mx_changes' AND status='pending';";
 	}
+	$r = mysql_query($query)or die("Cannot query \"$query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		echo "Triggering the change to the backup server ".$a["server_addr"]." with login ".$a["server_login"]."...";
+		if(commitTriggerToRemoteInternal($a,$recipients)){
+			$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
+			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+			echo "success!\n";
+			$returnValue = 1;
+		}else{
+			echo "failed!\n";
+			$returnValue = 0;
+		}
+	}
+	return $returnValue;
+}
+
+
+//first check to see if any domains OR MX have changed
+$trigger_update_done = checkTriggers(0);
+
+//if we haven't done a full update, see if we need to do just a mx update
+if ($trigger_update_done == 0)
+{
+	checkTriggers(1);
 }
 
 $start_stamps = mktime();
