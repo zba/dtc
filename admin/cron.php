@@ -83,8 +83,15 @@ function commitTriggerToRemoteInternal($a, $recipients)
 			$lines = file ($url);
 		}
 		$nline = sizeof($lines);
-		if(strstr($lines[0],"Successfuly recieved trigger!") != false){
-			$flag = true;
+		if ($recipients == 1){
+			if(strstr($lines[0],"Successfuly recieved trigger for MX!") != false){
+				$flag = true;
+			}
+
+		} else {
+			if(strstr($lines[0],"Successfuly recieved trigger!") != false){
+				$flag = true;
+			}
 		}
 		$retry ++;
 		if($flag == false)      sleep(3);
