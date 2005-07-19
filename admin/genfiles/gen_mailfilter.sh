@@ -55,7 +55,7 @@ if [ -f $MAILFILTER_FILE ]; then
 		if [ $top -ne 0 ]; then
 			cat $MAILFILTER_FILE | head -n $top > $TMP_FILE
 		fi
-		if [ $bottom -ne 0]; then
+		if [ $bottom -ne 0 ]; then
 			cat $MAILFILTER_FILE | tail -n $bottom >> $TMP_FILE
 		fi
 		cp -f $MAILFILTER_FILE $MAILFILTER_FILE.DTC.removed
