@@ -51,8 +51,13 @@ if [ -f $MAILFILTER_FILE ]; then
                 fi
 
 		bottom=$(( $nbr_line - $end_line ))
-		cat $MAILFILTER_FILE | head -n $top > $TMP_FILE
-		cat $MAILFILTER_FILE | tail -n $bottom >> $TMP_FILE
+		# no point catting 0 lines, now is there ?
+		if [ $top -ne 0 ]; then
+			cat $MAILFILTER_FILE | head -n $top > $TMP_FILE
+		fi
+		if [ $bottom -ne 0]; then
+			cat $MAILFILTER_FILE | tail -n $bottom >> $TMP_FILE
+		fi
 		cp -f $MAILFILTER_FILE $MAILFILTER_FILE.DTC.removed
 		echo -n > $MAILFILTER_FILE
 		cat < $TMP_FILE >> $MAILFILTER_FILE
