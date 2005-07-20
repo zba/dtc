@@ -77,7 +77,7 @@ ImageLine( $im, $im_width-2, 2, $im_width-2, $im_height-2, $darkblue_color);
 ImageLine( $im, $im_width-2, $im_height-2, $gfx_start_pos+7, $im_height-2, $darkblue_color);
 
 // Draw the transparency polygon...
-$alpha_color = imagecolorresolvealpha ( $im, 0, 0, 0, 255);
+$alpha_color = imagecolorresolvealpha ( $im, 0, 0, 0, 127);
 $alpha_array = array( $gfx_start_pos+0,0,
 					$gfx_start_pos+$im_break-1,0,
 					$gfx_start_pos+0,$im_break-1);

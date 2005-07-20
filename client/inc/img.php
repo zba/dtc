@@ -79,7 +79,7 @@ if($_REQUEST["lang"] == "zh"){
 
 
 // Draw the black border
-$alpha_color = imagecolorresolvealpha ( $im, 0, 0, 0, 255);
+$alpha_color = imagecolorresolvealpha ( $im, 0, 0, 0, 127);
 $black_border = array( 	  $gfx_start_pos+0,           $im_break,
 						  $gfx_start_pos+$im_break,   0,
 						  $im_width-1, 0,
