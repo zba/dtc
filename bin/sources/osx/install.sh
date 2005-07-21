@@ -159,6 +159,24 @@ then
 fi
 
 echo ""
+echo "Where is userdb (courier) binary located ?"
+echo -n "userdb location []: "
+read PATH_USERDB_BIN
+if [ "$PATH_USERDB_BIN" = "" ];
+then
+	PATH_USERDB_BIN=""
+fi
+
+echo ""
+echo "Where is maildrop (courier) binary located ?"
+echo -n "maildrop location []: "
+read PATH_MAILDROP_BIN
+if [ "$PATH_MAILDROP_BIN" = "" ];
+then
+	PATH_MAILDROP_BIN=""
+fi
+
+echo ""
 echo "Where is located your courier config path (ie /etc/courier) ?"
 echo "If Courier is not installed, just hit enter."
 echo -n "courier config path [/etc/courier]: "

@@ -213,6 +213,24 @@ then
 fi
 
 echo ""
+echo "Where is userdb (courier) located ?"
+echo -n "userdb location []: "
+read PATH_USERDB_BIN
+if [ -z ""$PATH_USERDB_BIN ];
+then
+	PATH_USERDB_BIN=
+fi
+
+echo ""
+echo "Where is maildrop (courier) located ?"
+echo -n "maildrop location []: "
+read PATH_MAILDROP_BIN
+if [ -z ""$PATH_MAILDROP_BIN ];
+then
+	PATH_MAILDROP_BIN=
+fi
+
+echo ""
 echo "Where is located your courier config path (ie /etc/courier) ?"
 echo -n "courier config path [/etc/courier]: "
 read PATH_COURIER_CONF_PATH

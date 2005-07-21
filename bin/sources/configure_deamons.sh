@@ -778,7 +778,7 @@ smtpd_tls_auth_only = no
 		fi
 
 		# if we have maildrop, we should use it!
-		if [ -f "/usr/sbin/userdb" ]; then
+		if [ -n ""$PATH_USERDB_BIN -a -f "$PATH_USERDB_BIN" -a -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
 			echo "virtual_transport = maildrop" >> $TMP_FILE
 			echo "## Set to 1 because Maildrop only delivers one message at a time.
 maildrop_destination_recipient_limit = 1" >> $TMP_FILE
@@ -794,7 +794,7 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 				TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
 				echo "# Configured by DTC v0.17 : Please don't touch this line !" > $TMP_FILE2
 				echo "maildrop  unix  -       n       n       -       -       pipe
-    flags=DRhu user=nobody argv=/usr/bin/maildrop -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
+    flags=DRhu user=nobody argv=$PATH_MAILDROP_BIN -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
 " >> $TMP_FILE2
 				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
 
