@@ -8,7 +8,7 @@ $txt_go_to_client_panel = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "Ir al panel de cliente",
         "ch" => "TRANS");
 
 $txt_no = array(
@@ -20,7 +20,7 @@ $txt_no = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "No",
         "ch" => "TRANS");
 
 $txt_yes = array(
@@ -32,7 +32,7 @@ $txt_yes = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "Sí",
         "ch" => "TRANS");
 
 $txt_is_company = array(
@@ -44,7 +44,7 @@ $txt_is_company = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "Es una empresa",
         "ch" => "TRANS");
 
 $txt_desired_domain_name = array(
@@ -56,7 +56,7 @@ $txt_desired_domain_name = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "Nombre de dominio deseado",
         "ch" => "TRANS");
 
 $txt_confirm_pass = array(
@@ -68,7 +68,7 @@ $txt_confirm_pass = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "confirmar contraseña",
         "ch" => "TRANS");
 
 $txt_login_info = array(
@@ -80,7 +80,7 @@ $txt_login_info = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "información de acceso",
         "ch" => "TRANS");
 
 $txt_product = array(
@@ -92,7 +92,7 @@ $txt_product = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "producto",
         "ch" => "TRANS");
 
 
@@ -107,7 +107,7 @@ $txt_go_to_login = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "Ir a acceso",
         "ch" => "TRANS");
 
 
@@ -120,7 +120,7 @@ $txt_client_info = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "TRANS",
-        "es" => "TRANS",
+        "es" => "Información de cliente:",
         "ch" => "TRANS");
 
 
@@ -133,7 +133,7 @@ $txt_list_name = array(
 	"ru" => "TRANS List name",
 	"de" => "TRANS List name",
 	"zh" => "TRANS List name",
-	"es" => "TRANS List name");
+	"es" => "Nombre de la lista");
 
 $txt_list_owner = array(
 	"fr" => "Propriétaire de la liste",
@@ -144,7 +144,7 @@ $txt_list_owner = array(
 	"ru" => "TRANS List owner",
 	"de" => "TRANS List owner",
 	"zh" => "TRANS List owner",
-	"es" => "TRANS List owner");
+	"es" => "Propietario de la lista");
 
 $txt_list_liste_of_your_ml = array(
 	"fr" => "Liste de vos mailing lists:",
@@ -155,7 +155,7 @@ $txt_list_liste_of_your_ml = array(
 	"ru" => "TRANS List of your mailing lists:",
 	"de" => "TRANS List of your mailing lists:",
 	"zh" => "TRANS List of your mailing lists:",
-	"es" => "TRANS List of your mailing lists:");
+	"es" => "Listado de listas de correo:");
 
 $txt_list_new_list = array(
 	"fr" => "New mailing list:",
@@ -166,7 +166,7 @@ $txt_list_new_list = array(
 	"ru" => "TRANS New mailing list:",
 	"de" => "TRANS New mailing list:",
 	"zh" => "TRANS New mailing list:",
-	"es" => "TRANS New mailing list:");
+	"es" => "Nueva lista de correo:");
 
 $txt_number_of_database = array(
 "fr" => "Nombre de base de données :",
@@ -178,7 +178,7 @@ $txt_number_of_database = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Número de bases de datos");
 
 $txt_allow_to_add_domains = array(
 "fr" => "Autorisé l'ajout de domaines :",
@@ -190,7 +190,7 @@ $txt_allow_to_add_domains = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Permitir añadir dominios");
 
 $txt_can_have_subadmins_reseller = array(
 "fr" => "Autorisé l'ajout de sous-comptes (revendeur) :",
@@ -202,7 +202,7 @@ $txt_can_have_subadmins_reseller = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Permitir añadir derechos de sub-cuenta (revendedor)");
 
 $txt_heb_prod_id = array(
 "fr" => "Numéro de produit :",
@@ -214,7 +214,7 @@ $txt_heb_prod_id = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "ID de producto");
 
 $txt_change_your_password = array(
 "fr" => "Changer votre mot de passe :",
@@ -226,7 +226,7 @@ $txt_change_your_password = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Cambiar contraseña");
 
 $txt_type_new_password = array(
 "fr" => "Nouveau mot de passe :",
@@ -238,7 +238,7 @@ $txt_type_new_password = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Nueva contraseña");
 
 $txt_retype_new_password = array(
 "fr" => "Retapper le nouveau mot de passe :",
@@ -250,7 +250,7 @@ $txt_retype_new_password = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Vuelve a escribir la contraseña");
 
 $txt_delete = array(
 "fr" => "Effacer",
@@ -262,7 +262,7 @@ $txt_delete = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Eliminar");
 
 $txt_create = array(
 "fr" => "Créer",
@@ -274,7 +274,7 @@ $txt_create = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Crear");
 
 $txt_save = array(
 "fr" => "Sauver",
@@ -286,7 +286,7 @@ $txt_save = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Guardar");
 
 $txt_your_users = array(
 "fr" => "Vos utilisateurs :",
@@ -298,7 +298,7 @@ $txt_your_users = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Tus usuarios");
 
 $txt_user = array(
 "fr" => "Utilisateur",
@@ -310,7 +310,7 @@ $txt_user = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Usuario");
 
 $txt_database_name = array(
 "fr" => "Nom de base de donnée",
@@ -322,7 +322,7 @@ $txt_database_name = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Nombre de la base de datos");
 
 $txt_total_database_number = array(
 "fr" => "Nombre total de base de donnée :",
@@ -334,7 +334,7 @@ $txt_total_database_number = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Número total de bases de datos");
 
 $txt_please_create_mysql_user_to_create_database = array(
 "fr" => "Veuillez créer un utilisateur MySQL pour pouvoir fabriquer des bases de données.",
@@ -346,7 +346,7 @@ $txt_please_create_mysql_user_to_create_database = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Tienes que crear un usuario mysql para poder crear una base de datos");
 
 
 $txt_wrong_user_or_password_or_timeout_expire = array(
@@ -359,7 +359,7 @@ $txt_wrong_user_or_password_or_timeout_expire = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Nombre de usuario o contraseña incorrecta, o tiempo de ejecución excedido");
 
 $txt_error = array(
 "fr" => "Erreur",
@@ -371,7 +371,7 @@ $txt_error = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Error");
 
 $txt_fetching_admin = array(
 "fr" => "en chargeant l'administrateur : ",
@@ -383,7 +383,7 @@ $txt_fetching_admin = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Administrador de recogida");
 
 $txt_register_new_account = array(
 "fr" => "Ouvrir un nouveau compte",
@@ -395,7 +395,7 @@ $txt_register_new_account = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Registrar una nueva cuenta");
 
 $txt_go_to_email_panel = array(
 "fr" => "Aller à l'interface email",
@@ -407,7 +407,7 @@ $txt_go_to_email_panel = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Ir al panel de e-mail");
 
 $txt_client_panel_title = array(
 	"fr" => "Interface client :",
@@ -419,7 +419,7 @@ $txt_client_panel_title = array(
 	"de" => "TRANS Client panel:",
 	"zh" => "TRANS Client panel:",
 	"pl" => "TRANS Client panel:",
-	"es" => "TRANS Client panel:");
+	"es" => "Panel de cliente:");
 
 // The client dropdown menu entries
 $txt_cmenu_myaccount = array(
@@ -432,7 +432,7 @@ $txt_cmenu_myaccount = array(
 	"de" => "TRANS My account",
 	"zh" => "ÎÒµÄÕÊ»§",
 	"pl" => "Moje konto",
-	"es" => "TRANS My account");
+	"es" => "Mi cuenta");
 
 $txt_cmenu_myaccount_stats = array(
 	"fr" => "Statistiques",
@@ -444,7 +444,7 @@ $txt_cmenu_myaccount_stats = array(
 	"de" => "TRANS Statistics",
 	"zh" => "Í³¼Æ",
 	"pl" => "Statystyki",
-	"es" => "TRANS Statistics");
+	"es" => "Estadisticas");
 
 $txt_cmenu_add_domain = array(
 	"fr" => "Ajouter un domaine",
@@ -456,7 +456,7 @@ $txt_cmenu_add_domain = array(
 	"de" => "TRANS Add a domain",
 	"zh" => "Ìí¼ÓÓòÃû",
 	"pl" => "Dodaj domenê",
-	"es" => "TRANS Add a domain");
+	"es" => "Añadir un dominio");
 
 $txt_cmenu_nickhandles = array(
 	"fr" => "Responsables DNS",
@@ -468,7 +468,7 @@ $txt_cmenu_nickhandles = array(
 	"de" => "TRANS DNS Nick handles",
 	"zh" => "DNS¡¡¸ºÔğÈË",
 	"pl" => "Odpowiedzi DNS",
-	"es" => "TRANS DNS Nick handles");
+	"es" => "Manejar nicks DNS");
 
 $txt_cmenu_nameservers = array(
 	"fr" => "Serveurs de noms",
@@ -480,7 +480,7 @@ $txt_cmenu_nameservers = array(
 	"de" => "TRANS Name servers",
 	"zh" => "ÓòÃû·şÎñÆ÷",
 	"pl" => "Nazwa serwerów",
-	"es" => "TRANS Name servers");
+	"es" => "Servidores DNS");
 
 $txt_cmenu_whois = array(
 	"fr" => "Whois",
@@ -504,7 +504,7 @@ $txt_cmenu_dns = array(
 	"de" => "TRANS DNS and MX",
 	"zh" => "DNS ºÍ MX",
 	"pl" => "DNS i MX",
-	"es" => "TRANS DNS and MX");
+	"es" => "TRANS DNS y MX");
 
 $txt_cmenu_subdomains = array(
 	"fr" => "Sous-domaines",
@@ -516,7 +516,7 @@ $txt_cmenu_subdomains = array(
 	"de" => "TRANS Sub-domains",
 	"zh" => "¸±ÓòÃû",
 	"pl" => "Subdomeny",
-	"es" => "TRANS Sub-domains");
+	"es" => "Subdominios");
 
 $txt_cmenu_ftpaccounts = array(
 	"fr" => "Comptes FTP",
@@ -528,7 +528,7 @@ $txt_cmenu_ftpaccounts = array(
 	"de" => "TRANS FTP accounts",
 	"zh" => "FTP ÕÊ»§",
 	"pl" => "Konta FTP",
-	"es" => "TRANS FTP accounts");
+	"es" => "Cuentas de ftp");
 
 $txt_cmenu_packageinstaller = array(
 	"fr" => "Installateur de paquets",
@@ -540,7 +540,7 @@ $txt_cmenu_packageinstaller = array(
 	"de" => "TRANS Package installer",
 	"zh" => "³ÌĞò°²×°",
 	"pl" => "Instalator pakietów",
-	"es" => "TRANS Package installer");
+	"es" => "Instalador de paquetes");
 
 $txt_cmenu_mailboxs = array(
 	"fr" => "Boites emails",
@@ -552,7 +552,7 @@ $txt_cmenu_mailboxs = array(
 	"de" => "TRANS Mailboxes",
 	"zh" => "ĞÅÏä",
 	"pl" => "Skrzynki pocztowe",
-	"es" => "TRANS Mailboxes");
+	"es" => "Buzones");
 
 $txt_cmenu_mailinglists = array(
 	"fr" => "Liste de publication",
@@ -564,7 +564,7 @@ $txt_cmenu_mailinglists = array(
 	"de" => "TRANS Mailinglists",
 	"zh" => "ĞÅÏäµØÖ·±í",
 	"pl" => "Listy mailingowe",
-	"es" => "TRANS Mailinglists");
+	"es" => "Listas de correo");
 
 $txt_cmenu_database = array(
 	"fr" => "Base de données",
@@ -576,7 +576,7 @@ $txt_cmenu_database = array(
 	"de" => "TRANS Databases",
 	"zh" => "Êı¾İ¿â",
 	"pl" => "Bazy danych",
-	"es" => "TRANS Databases");
+	"es" => "Bases de datos");
 
 $txt_cmenu_reseller = array(
 	"fr" => "Sous comptes (revendeur)",
@@ -588,7 +588,7 @@ $txt_cmenu_reseller = array(
 	"de" => "TRANS Sub-accounts (reseller)",
 	"zh" => "ÕÊ»§ÖØÊÛ",
 	"pl" => "Subkonta (reseller)",
-	"es" => "TRANS Sub-accounts (reseller)");
+	"es" => "Sub-cuentas (reseller)");
 
 $txt_cmenu_password = array(
 	"fr" => "Mot de passe",
@@ -600,7 +600,7 @@ $txt_cmenu_password = array(
 	"de" => "TRANS Password",
 	"zh" => "ÃÜÂë",
 	"pl" => "Has³o",
-	"es" => "TRANS Password");
+	"es" => "Contraseña");
 
 $txt_cmenu_help = array(
 	"fr" => "Aide",
@@ -612,7 +612,7 @@ $txt_cmenu_help = array(
 	"de" => "TRANS Help",
 	"zh" => "°ïÖú",
 	"pl" => "Pomoc",
-	"es" => "TRANS Help");
+	"es" => "Ayuda");
 
 $txt_select_lang_title = array(
 	"fr" => "Langue",
@@ -624,7 +624,7 @@ $txt_select_lang_title = array(
 	"de" => "Language",
 	"zh" => "Language",
 	"pl" => "Jêzyk",
-	"es" => "Language");
+	"es" => "Idioma");
 
 $txt_mailbox_redirection_edition = array(
   "fr" => "Edition des redirections de votre boite :",
@@ -673,7 +673,7 @@ $txt_no_user_waiting = array(
   "de" => "Kein Benutzer in Warteschleife",
   "zh" => "ÎŞÓÃ»§µÈ´ı£¡",
   "pl" => "Brak nowego u¿ytkownika!",
-  "es" => "¿Ningun usuario a la espera!");
+  "es" => "¡Ningun usuario a la espera!");
 
 $txt_no_domain_waiting = array(
   "fr" => "Pas de domaine en attente !",
@@ -697,7 +697,7 @@ $txt_userndomain_waiting_for_addition = array(
   "de" => "Benutzer und Domaine inn Warteschleife: ",
   "zh" => "ÓÃ»§ºÍÓòÃûµÈ´ı£º",
   "pl" => "Nowe zadania do wykonania : ",
-  "es" => "TRANS User and domain waiting for addition: ");
+  "es" => "Usuario y domino a la espera de ser añadido: ");
 
 $txt_add_a_new_user = array(
   "fr" => "Ajouter un nouvel utilisateur : ",
@@ -709,7 +709,7 @@ $txt_add_a_new_user = array(
   "de" => "Neuen Benuter hinzufügen: ",
   "zh" => "Ìí¼ÓĞÂÓÃ»§£º",
   "pl" => "Dodaj nowego u¿ytkownika : ",
-  "es" => "TRANS Add a new user: ");
+  "es" => "Añadir un nuevo usuario: ");
 
 $txt_title_maillinglist_form = array(
 	"fr" => "Listes de diffusion du domaine : ",
@@ -721,12 +721,12 @@ $txt_title_maillinglist_form = array(
         "de" => "Domaine Mailing Listen: ",
         "zh" => "ÓòÃûµÄÓÊ¼şµØÖ·²¾: ",
         "pl" => "Listy mailingowe domeny : ",
-        "es" => "TRANS Mailling-lists of the domain: "
+        "es" => "Listas de correo del dominio: "
 );
 
 $txt_pagetop_zesubtitle = array(
 	"fr" => "Prenez le controle de votre nom de domaine",
-	"en" => "Take the control of your domain name",
+	"en" => "Take control of your domain name",
 	"hu" => "Vegye kézbe domainje irányítását:",
         "it" => "Prendi il controllo del tuo dominio",
 	"nl" => "TRANS Take the control of your domain name",
@@ -734,7 +734,7 @@ $txt_pagetop_zesubtitle = array(
 	"de" => "Kontrollieren Sie Ihren Domain Name selbst",
 	"zh" => "<b>ÇáËÉ¿ØÖÆÄúµÄÓòÃû</b>",
         "pl" => "System zarz±dzania Twoj± domen±",
-	"es" => "TRANS Take the control of your domain name"
+	"es" => "Gestionar el nombre de dominio"
 );
 
 $txt_root_adm_title = array(
@@ -785,7 +785,7 @@ $txt_client_list_title = array(
 	"de" => "Kundenliste",
 	"zh" => "¹Ë¿ÍÁĞ±í",
         "pl" => "Lista klientów",
-	"es" => "TRANS Customers list");
+	"es" => "Lista de clientes");
 
 $txt_client_addr_title = array(
 	"fr" => "Adresse du client",
@@ -797,7 +797,7 @@ $txt_client_addr_title = array(
 	"de" => "Kundenadresse",
 	"zh" => "¹Ë¿ÍµØÖ·",
         "pl" => "Adresy klientów",
-	"es" => "TRANS Customers address");
+	"es" => "Direcciones de clientes");
 
 $txt_client_admins_title = array(
 	"fr" => "Administrateurs du client",
@@ -809,7 +809,7 @@ $txt_client_admins_title = array(
 	"de" => "Kunden-Administratoren",
 	"zh" => "¹Ë¿ÍµÄ¹ÜÀíÔ±",
         "pl" => "Administracja klientami",
-	"es" => "TRANS Customer's administrators");
+	"es" => "Administadores del cliente");
 
 $txt_client_commands_title = array(
 	"fr" => "Commandes du client",
@@ -821,7 +821,7 @@ $txt_client_commands_title = array(
 	"de" => "Kundenbestellung",
 	"zh" => "¹Ë¿ÍµÄ¶©µ¥",
         "pl" => "Zarz±dzanie klientami",
-	"es" => "TRANS Customer's orders");
+	"es" => "Pedidos del cliente");
 
 $txt_new_customer_link = array(
 	"fr" => "Nouveau client",
@@ -833,7 +833,7 @@ $txt_new_customer_link = array(
 	"de" => "Neuer Kunde",
 	"zh" => "ĞÂ¹Ë¿Í",
         "pl" => "Nowy klient",
-	"es" => "TRANS New customer");
+	"es" => "Nuevo cliente");
 
 $txt_select_a_new = array(
 	"fr" => "Selectionner un client.",
@@ -845,7 +845,7 @@ $txt_select_a_new = array(
 	"de" => "Kunden auswählen",
 	"zh" => "Ñ¡ÔñÒ»¸ö¹Ë¿Í",
         "pl" => "Wybierz klienta.",
-	"es" => "TRANS Select a customer.");
+	"es" => "Seleccionar cliente.");
 
 $txt_notes = array(
 	"fr" => "Notes :",
@@ -857,7 +857,7 @@ $txt_notes = array(
 	"de" => "Bemerkungen:",
 	"zh" => "¼ÇÊÂ±¾:",
         "pl" => "Notatki :",
-	"es" => "TRANS Notes:");
+	"es" => "Notas:");
 
 $txt_money_remaining = array(
 	"fr" => "Argent restant sur le compte :",
@@ -868,7 +868,7 @@ $txt_money_remaining = array(
 	"de" => "Verbleibendes Guthaben:",
 	"zh" => "Ê£ÓàÕÊ»§×Ê½ğ:",
         "pl" => "Pozosta³o na koncie :",
-	"es" => "TRANS Money remaining on account:");
+	"es" => "Efectivo restante en la cuenta:");
 
 $txt_remove_admin_from_client = array(
 	"fr" => "Enlever un administrateur de ce client :",
@@ -880,7 +880,7 @@ $txt_remove_admin_from_client = array(
 	"de" => "Administrator für diesen Kunden entfernen:",
 	"zh" => "¶ÔÕâ¸ö¹Ë¿ÍÈ¡Ïû¹ÜÀíÔ±:",
         "pl" => "Usuñ konto administracyjne klienta:",
-	"es" => "TRANS Remove an administrator for this customer:");
+	"es" => "Eliminar administrador para este cliente:");
 
 $txt_add_admin_to_client = array(
 	"fr" => "Ajouter un administrateur pour ce client :",
@@ -892,8 +892,7 @@ $txt_add_admin_to_client = array(
 	"de" => "Administrator für diesen Kunden hinzufügen:",
 	"zh" => "¶ÔÕâ¸ö¹Ë¿ÍÌí¼Ó¹ÜÀíÔ±:",
         "pl" => "Dodaj konto administracyjne klienta:",
-	"es" => "TRANS Add an administrator to this customer:
-");
+	"es" => "Añadir administrador para este cliente:");
 
 $txt_what = array(
 	"fr" => "Libelle",
@@ -905,7 +904,7 @@ $txt_what = array(
 	"de" => "Bezeichnung",
 	"zh" => "Ê²Ã´",
         "pl" => "Co",
-	"es" => "TRANS What");
+	"es" => "Qué");
 
 $txt_price = array(
 	"fr" => "Prix",
@@ -917,7 +916,7 @@ $txt_price = array(
 	"de" => "Preis",
 	"zh" => "¼Û¸ñ",
         "pl" => "Cena",
-	"es" => "TRANS Price");
+	"es" => "TRANS Precio");
 
 $txt_quantity = array(
 	"fr" => "Quantité",
@@ -929,7 +928,7 @@ $txt_quantity = array(
 	"de" => "Menge",
 	"zh" => "ÊıÁ¿",
         "pl" => "Wielko¶æ",
-	"es" => "TRANS Quantity");
+	"es" => "TRANS Cantidad");
 
 $txt_mainmenu_title_bandwidth_monitor = array(
 	"fr" => "Moniteur de bande passante",
@@ -953,7 +952,7 @@ $txt_customer_bw_consumption = array(
 	"de" => "Bandbreitenverbrauch",
 	"zh" => "¹Ë¿ÍµÄ´ø¿íÑ¡Ôñ",
         "pl" => "Wykorzystanie transferu u¿ytkownika",
-	"es" => "TRANS Customer's bandwidth consumption");
+	"es" => "Ancho de banda consumido por el cliente");
 
 $txt_bw_quota = array(
 	"fr" => "Quota de BP",
@@ -965,7 +964,7 @@ $txt_bw_quota = array(
 	"de" => "Bandbreitenquote",
 	"zh" => "´ø¿íÏŞ¶î",
         "pl" => "Wielko¶æ transferu",
-	"es" => "TRANS BW Quota");
+	"es" => "Cuota de ancho de banda");
 
 $txt_graf = array(
 	"fr" => "Graphique",
@@ -977,7 +976,7 @@ $txt_graf = array(
 	"de" => "Graphik",
 	"zh" => "°Ù·Ö±È",
         "pl" => "Grafika",
-	"es" => "TRANS Graphic");
+	"es" => "Grafico");
 
 $txt_server_total_bp = array(
 	"fr" => "Total des données transférées ce mois-ci sur le serveur : ",
@@ -989,7 +988,7 @@ $txt_server_total_bp = array(
 	"de" => "Gesamtmenge der diesen Monat auf den Server übertrangenen Daten: ",
 	"zh" => "±¾ÔÂ·şÎñÆ÷ÒÑ¼ÇÂ¼µÄ×Ü´«Êä: ",
         "pl" => "Ca³kowity transfer serwera w tym m-cu: ",
-	"es" => "TRANS Server total accounted transfers this month: ");
+	"es" => "Total de cuentas transferidas este mes: ");
 
 $txt_mainmenu_title_deamonfile_generation = array(
 	"fr" => "Génération des fichiers de configuration des demons",
@@ -1085,7 +1084,7 @@ $txt_icon_backup_scripts = array(
 	"de" => "Sicherung",
 	"zh" => "±¸·İÎÄ¼ş",
         "pl" => "SKRYPTY BACKUP-U",
-	"es" => "SCRIPTS DE BACKUPS");
+	"es" => "SCRIPTS DE BACKUP");
 
 $txt_icon_webalizer_script = array(
 	"fr" => "SCRIPTS WEBALIZER",
@@ -1116,73 +1115,73 @@ $txt_subdom_limit_reach = array(
 	sous-domaines.",
 	"en" => "Maximum number of subdomains reached. cannot add a new subdomain",
 	"hu" => "Az aldomain-ok száma elérte a maximumot. Nem adhat hozzá újabb aldomain-t",
-        "it" => "Raggiunto numero massimo sottodomini. Non puoi aggiungerne uno nuovo.",
+        "it" => "Raggiunto Número massimo sottodomini. Non puoi aggiungerne uno nuovo.",
 	"nl" => "Het maximum aantal subdomeinen is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of subdomains reach. cannot add a new subdomain",
 	"de" => "Maximale Anzahl von Subdomains erreicht. Es können keine weiteren mehr angelegt werden.",
 	"zh" => "ÏŞÖÆ¸±ÓòÃûÊı¶î",
         "pl" => "Wykorzystano ju¿ limit subdomen. Nie mogê dodaæ nowej.",
-	"es" => "Numero maximo de subdominios alcanzados. No es posible añadir un nuevo subdominio.");
+	"es" => "Número máximo de subdominios alcanzados. No es posible añadir un nuevo subdominio.");
 
 $txt_number_of_active_subdomains = array(
 	"fr" => "Nombre de sous-domaines actifs :",
 	"en" => "Number of active subdomains:",
 	"hu" => "Az aktív aldomain-ek száma:",
-        "it" => "Numero sottodomini attivi:",
+        "it" => "Número sottodomini attivi:",
 	"nl" => "Aantal active subdomeinen:",
 	"ru" => "Number of active subdomaines:",
 	"de" => "Anzahl aktiver Subdomains:",
 	"zh" => "ÏÖÓĞ¸±ÓòÃûÊı¶î",
         "pl" => "Ilo¶æ aktywnych subdomen:",
-	"es" => "Numero de subdominios activos:");
+	"es" => "Número de subdominios activos:");
 
 $txt_maxnumber_of_ftp_account_reached = array(
 	"fr" => "Nombre maximum de comptes ftp atteint. Impossible d'ajouter un nouveau compte.",
 	"en" => "Maximum number of ftp account reached. Cannot add a new account.",
 	"hu" => "Az ftp hozzáférések száma elérte a maximumot. Nem adhat hozzá újat.",
-        "it" => "Raggiunto numero massimo di account FTP. Non puoi aggiungerne uno nuovo.",
+        "it" => "Raggiunto Número massimo di account FTP. Non puoi aggiungerne uno nuovo.",
 	"nl" => "Het maximum aantal ftp accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of ftp account reach. Cannot add a new account.",
 	"de" => "Maximale Anzahl von FTP Accounts erreicht. Es können keine weiteren mehr angelegt werden.",
 	"zh" => "ÏŞÖÆftpÕÊ»§Êı¶î",
         "pl" => "Wykorzystano ju¿ limit kont FTP. Nie mogê dodaæ nowego.",
-	"es" => "Numero maximo de ftps alcanzados. No es posible añadir una cuenta nueva.");
+	"es" => "úumero máximo de ftps alcanzados. No es posible añadir una cuenta nueva.");
 
 $txt_number_of_active_ftp = array(
 	"fr" => "Nombre de comptes ftp actifs :",
 	"en" => "Number of active ftp accounts:",
 	"hu" => "Az aktív ftp hozzáférések száma:",
-        "it" => "Numero account FTP attivi:",
+        "it" => "Número account FTP attivi:",
 	"nl" => "Aantal actieve ftp accounts:",
 	"ru" => "Number of active ftp accounts:",
 	"de" => "Aktive FTP-Accounts:",
 	"zh" => "ÏÖÓĞftpÕÊ»§",
         "pl" => "Ilo¶æ aktywnych kont FTP:",
-	"es" => "Numero de ftps activos:");
+	"es" => "Número de ftps activos:");
 
 $txt_number_of_active_mailbox = array(
 	"fr" => "Nombre de boites actives :",
 	"en" => "Number of active mailboxes:",
 	"hu" => "Az aktív levelesládák száma:",
-        "it" => "Numero mailboxes attive:",
+        "it" => "Número mailboxes attive:",
 	"nl" => "Aantal actieve e-mail accounts :",
 	"ru" => "Number of active mailboxs:",
 	"de" => "Anzahl aktiver Mailboxen:",
 	"zh" => "ÏÖÓĞµç×ÓÓÊÏäÊı¶î",
         "pl" => "Ilo¶æ aktywnych kont pocztowych:",
-	"es" => "Numero de cuentas de correo activas:");
+	"es" => "Número de cuentas de correo activas:");
 
 $txt_maximum_mailbox_reach = array(
 	"fr" => "Nombre maximum de boites email atteint. Impossible d'ajouter un nouveau compte.",
 	"en" => "Maximum number of mailboxes reached. Cannot add a new account.",
 	"hu" => "A levelesládák száma elérte a maximumot. Nem adhat hozzá újat.",
-        "it" => "Raggiunto numero massimo mailboxes. Non puoi aggiungerne una nuova.",
+        "it" => "Raggiunto Número massimo mailboxes. Non puoi aggiungerne una nuova.",
 	"nl" => "Het maximum aantal e-mail accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
 	"ru" => "Maximum number of mailbox reach. Cannot add a new account.",
 	"de" => "Maximale Anzahl von Mailbox Accounts erreicht. Es können keine weiteren mehr angelegt werden.",
 	"zh" => "ÏŞÖÆµç×ÓÓÊÏäÊı¶î",
         "pl" => "Wykorzystano ju¿ limit kont e-mail. Nie mogê dodaæ nowego konta.",
-	"es" => "Numero maximo de cuentas de correo alcanzado. No es posible añadir una cuenta nueva.");
+	"es" => "Número maximo de cuentas de correo alcanzado. No es posible añadir una cuenta nueva.");
 
 $txt_virtual_admin_list = array(
 	"fr" => "Liste des admins",
@@ -1218,7 +1217,7 @@ $txt_generate_buttons_title = array(
 	"de" => "Konfigurationsdateien erstellen",
 	"zh" => "ÅäÖÃÎÄ¼şµÄÆô¶¯",
         "pl" => "Uruchom generator plików konfiguracji",
-	"es" => "Lanzando generacion de ficheros de configuracion.");
+	"es" => "Lanzando generación de ficheros de configuración.");
 
 $txt_general_virtual_admin_edition = array(
 	"fr" => "Edition de l'administrateur virtuel <i>\"$adm_login\"</i>",
@@ -1230,7 +1229,7 @@ $txt_general_virtual_admin_edition = array(
 	"de" => "Virtuellen Administrator konfigurieren<i>\"$adm_login\"</i> ",
 	"zh" => "ĞéÄâ¹ÜÀíÈËÔ±ÅäÖÃ <i>\"$adm_login\"</i>",
         "pl" => "Konfiguracja wirtualnego Administratora <i>\"$adm_login\"</i>",
-	"es" => "Configuracion del administrador <i>\"$adm_login\"</i>");
+	"es" => "Configuración del administrador <i>\"$adm_login\"</i>");
 
 $txt_domains_configuration_title = array(
 	"fr" => "Edition de la configuration des domaines de <i>\"$adm_login\"</i>",
@@ -1242,7 +1241,7 @@ $txt_domains_configuration_title = array(
 	"de" => "Konfiguration der Domains von  <i>\"$adm_login\"</i>",
 	"zh" => "¶ÔÃ¿Ò»¸ö <i>\"$adm_login\"</i>¡¡ÇøÓòµÄÅäÖÃ",
         "pl" => "Konfiguracja domen nale¿±cych do <i>\"$adm_login\"</i>",
-	"es" => "Configuracion para cada dominio de <i>\"$adm_login\"</i>");
+	"es" => "Configuración para cada dominio de <i>\"$adm_login\"</i>");
 
 $txt_admlist_sort_by_legend = array(
 	"fr" => "Afficher et trier par :",
@@ -1254,7 +1253,7 @@ $txt_admlist_sort_by_legend = array(
 	"de" => "Zeige und sortiere nach:",
 	"zh" => "Õ¹Ê¾ÓÚ·ÖÀà:",
         "pl" => "Sortuj wg:",
-	"es" => "Mostrar ordenador por:");
+	"es" => "Mostrar ordenado por:");
 	
 $txt_admlist_new_admin = array(
 	"fr" => "Nouvel admin virtuel",
@@ -1278,7 +1277,7 @@ $txt_path = array(
 	"de" => "Pfad:",
 	"zh" => "Â·¾¶:",
         "pl" => "Katalog :",
-	"es" => "Directorio:");
+	"es" => "Ruta:");
 
 $txt_use_text_menu = array(
 	"fr" => "Utiliser du texte pour le menu :",
@@ -1350,7 +1349,7 @@ $txt_del_user_confirm = array(
 	"de" => "Sind Sie sicher, dass Sie diesen Benutzer löschen wollen? Alle Domains, Dateien und Datenbanken werden gelöscht",
 	"zh" => "ÄãÈ·ĞÅÒªÉ¾³ıÕâ¸öÓÃ»§? ÕâÏî²Ù×÷½«ÒªÉ¾³ıËùÓĞËûµÄÓòÃû£¬ÎÄ¼ş£¬ºÍÊı¾İ¿â!!!",
         "pl" => "Czy napewno usun±æ U¿ytkownika ? Zostan± usuniête wszystkie jego domeny, konta i bazy danych !!!",
-	"es" => "¿Estas seguro de querer eliminar este usuario? Esto borrara todos sus dominios, ficheros y bases de datos !!!");
+	"es" => "¿Estas seguro de querer eliminar este usuario? Esto borrará todos sus dominios, ficheros y bases de datos !!!");
 
 $txt_del_user_domain = array(
 	"fr" => "Effacer un domaine de l'utilisateur :",
@@ -1374,7 +1373,7 @@ $txt_del_user_domain_confirm = array(
 	"de" => "Sind Sie sicher, dass Sie diese Domain löschen wollen? Alle Datein für diese Domain werden gelöscht",
 	"zh" => "ÄãÈ·ĞÅÒªÉ¾³ıÕâ¸öÓòÃû? ÕâÏî²Ù×÷½«ÒªÉ¾³ıËùÓĞÎÄ¼ş!!!",
         "pl" => "Czy napewno usun±æ domenê U¿ytkownika ? Wszystkie pliki tej domeny równie¿ zostan± usuniête !!!",
-	"es" => "¿Estas seguro de querer eliminar este nombre de dominio? Esto borrara todos los ficheros de dicho dominio !!!");
+	"es" => "¿Estás seguro de querer eliminar este nombre de dominio? Esto borrará todos los ficheros de dicho dominio !!!");
 
 $txt_new_domain_for_user = array(
 	"fr" => "Ajouter un domaine pour l'utilisateur :",
@@ -1410,7 +1409,7 @@ $txt_domain_tbl_config_quotaMB = array(
 	"de" => "Disk quota (MB):",
 	"zh" => "´ÅÅÌ·ÖÅä (MB):",
         "pl" => "Wielko¶æ dysku (MB) :",
-	"es" => "Quota de disco (MB):"
+	"es" => "Cuota de disco (MB):"
 );
 
 $txt_domain_tbl_config_quota = array(
@@ -1423,7 +1422,7 @@ $txt_domain_tbl_config_quota = array(
 	"de" => "Disk quota",
 	"zh" => "´ÅÅÌ·ÖÅä",
         "pl" => "Wielko¶æ dysku",
-	"es" => "Quota de disco"
+	"es" => "Cuota de disco"
 );
 
 $txt_domain_tbl_config_max_ftp = array(
@@ -1472,7 +1471,7 @@ $txt_domain_tbl_config_ip = array(
 	"de" => "IP Adresse",
 	"zh" => "IPµØÖ·",
         "pl" => "Adres IP",
-	"es" => "Direccion IP");
+	"es" => "Dirección IP");
 
 $txt_your_domain = array(
 	"fr" => "Votre domaine :",
@@ -1980,14 +1979,14 @@ Die Angabe \"default\" bedeutet, dass Sie den aktuellen Server nutzen wollen.",
 MX Â·¾¶¸æËßÄúÓÊ¼ş·şÎñÆ÷µÄµØÖ·£¨µ±ÓĞÈË¸øÄú·¢ËÍÓÊ¼şÊ±×Ü·şÎñÆ÷µØÖ·½«´¢´æËùÓĞÄúµÄÓÊ¼ş£©<br>
 ÔÚ¿ÕÀ¸ÖĞ±£Áô\"default\"ÒâÎ¶×ÅÄúÏ£ÍûÊ¹ÓÃµ±Ç°·şÎñÆ÷",
 	"pl" => "Sprawd¼ dane ! Z³e dane spowoduj± niepoprawne dzia³anie twojego serwera (web i mail).<br>Je¶li nie jeste¶ pewien, pozostaw <b>\"default\"</b> w polu DNS i MX.<br>Wpis <b>\"default\"</b> wskazuje na ten serwer.",
-		"es" => "¡Atencion ! La configuracion incorrecta 
+		"es" => "¡Atención ! La configuración incorrecta 
 de las siguientes opciones puede hacer parar 
 sus servicios (web or mail).<br>
 Poniendo algo distinto a \"default\" en las opciones de
 DNS indica que la página estara alojada en otro 
 sitio.<br>
 El parametro MX nos indica la direccion del servidor de 
-correp (almacena todos los correos cuando alguien envia
+correo (almacena todos los correos cuando alguien envia
 un mensaje). El valor \"default\" indica que se quiere
 usar el servidor actual.");
 
@@ -2164,7 +2163,7 @@ database).",
 Datenbank habe).",
         "zh" => "Ã»ÓĞmysqlÕÊ»§¹ÜÀíÊÔÓÃ°æ±¾£¨ÒòÎªÎÒÃ»ÓĞMySQLÊı¾İ¿âµÄroot³ÌĞò£©.",
         "pl" => "W wersji demo brak mo¿liwo¶ci administrowania kontami MySQL.",
-        "es" => "Cuentas mysql no creadas en la version de demostracion (porque no
+        "es" => "Cuentas mysql no creadas en la version de demostración (porque no
 tengo acceso de root a MySQL)."
 );
 
@@ -2295,7 +2294,7 @@ $txt_draw_client_info_phone = array(
 	"de" => "Telefon:",
 	"zh" => "µç»°ºÅÂë:",
         "pl" => "Telefon :",
-	"es" => "Número de telefono:"
+	"es" => "Número de teléfono:"
 );
 
 $txt_draw_client_info_fax = array(
@@ -2454,7 +2453,7 @@ $txt_subdom_txtrec = array(
 	"de" => "TRANS TXT field of the subdomain: ",
 	"zh" => "TRANS TXT field of the subdomain: ",
         "pl" => "Pole TXT dla DNS subdomeny : ",
-	"es" => "TRANS TXT field of the subdomain: "
+	"es" => "Campo TXT del subdominio: "
 );
 
 $txt_subdom_default_sub = array(
@@ -2767,7 +2766,7 @@ $txt_mail_spam_mailbox_enable = array(
 	"de" => "Enable SPAM filtering: ",
 	"zh" => "Enable SPAM filtering: ",
 	"pl" => "Enable SPAM filtering: ",
-	"es" => "Enable SPAM filtering: "
+	"es" => "Habilitar filtrado de spam: "
 );
 $txt_mail_spam_mailbox = array(
 	"fr" => "SPAM mailbox destination: ",
@@ -2779,7 +2778,7 @@ $txt_mail_spam_mailbox = array(
 	"de" => "SPAM mailbox destination: ",
 	"zh" => "SPAM mailbox destination: ",
 	"pl" => "SPAM mailbox destination: ",
-	"es" => "SPAM mailbox destination: "
+	"es" => "Buzón de destino para el SPAM: "
 );
 $txt_mail_redirection2 = array(
 	"fr" => "Redirection 2: ",
@@ -2868,7 +2867,7 @@ $txt_ftp_account_edit = array(
 	"de" => "Konfiguration des FTP Accounts",
 	"zh" => "FTPÕÊ»§ÅäÖÃ: ",
 	"pl" => "Konfiguracja konta FTP : ",
-	"es" => "Configuracion de las cuentas de ftp"
+	"es" => "Configuración de las cuentas de ftp"
 );
 $txt_ftp_new_account_link = array(
 	"fr" => "Nouveau compte ftp",
@@ -4499,7 +4498,7 @@ un subdominio sin eliminarlo usando DTC.  De hecho, el servidor web
 de Apache se quejará si no existe el directorio pero esta configurado 
 para él.<br><br>
 
-<u>3.5. Retardo al añadir / eliminar un subdominio</u><br><br>
+<u>3.5. Retraseo al añadir / eliminar un subdominio</u><br><br>
 Tendremos que reiniciar nuestro servidor web Apache para que 
 nuestros cambios tengan efecto.  La mayoría de las veces, 
 todos los cambios se validan al final de cada dia laboral, 

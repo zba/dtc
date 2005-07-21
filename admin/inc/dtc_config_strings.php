@@ -17,7 +17,7 @@ $txt_cfg_allowed_dns_transfer_list = array(
                 (leave blank if you don't have backup MX server):",
         "zh" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
                 (leave blank if you don't have backup MX server):",
-        "es" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+        "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):"
 	);
 
@@ -40,7 +40,7 @@ $txt_backup_mx_servers = array(
                 (leave blank if you don't have backup MX server):",
         "pl" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
                 (leave blank if you don't have backup MX server):",
-        "es" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+        "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):");
 
 $txt_cfg_use_des_or_blowfish = array(
@@ -53,7 +53,7 @@ $txt_cfg_use_des_or_blowfish = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Tipo de encriptaci髇 para conectar al servidor Tucows ");
 
 $txt_cfg_registry_api_title = array(
 "fr" => "Configuration de l'API d'enregistrement de nom de domaine",
@@ -65,7 +65,7 @@ $txt_cfg_registry_api_title = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Configuraci髇 del API para el registro de nombres");
 
 $txt_cfg_use_test_or_live = array (
 "fr" => "Utiliser le serveur LIVE (et non le test) :",
@@ -77,7 +77,7 @@ $txt_cfg_use_test_or_live = array (
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Usar el servidor LIVE (no el de pruebas)");
 
 $txt_cfg_tucows_username = array(
 "fr" => "Votre nom d'utilisateur SRS :",
@@ -89,7 +89,7 @@ $txt_cfg_tucows_username = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Tu nombre SRS");
 
 $txt_cfg_tucows_test_server_key = array(
 "fr" => "Votre clef d'acc鑣 pour le serveur de test :",
@@ -101,7 +101,7 @@ $txt_cfg_tucows_test_server_key = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Clave de acceso al servidor de pruebas");
 
 $txt_cfg_tucows_live_server_key = array(
 "fr" => "Votre clef d'acc鑣 pour le serveur LIVE :",
@@ -113,7 +113,7 @@ $txt_cfg_tucows_live_server_key = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Clave de acceso al servidor LIVE");
 
 $txt_cfg_registryapi_menu_entry = array(
 "fr" => "Enregistrement de domaine",
@@ -125,7 +125,7 @@ $txt_cfg_registryapi_menu_entry = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Registro de dominio");
 
 $txt_cfg_backup_and_mx_menu_entry = array(
 "fr" => "Serveurs MX et NS de secours",
@@ -137,7 +137,7 @@ $txt_cfg_backup_and_mx_menu_entry = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Servidores de respaldo MX y NS");
 
 $txt_cfg_ip_and_network = array(
 "fr" => "Addresses IP et r閟eaux",
@@ -149,7 +149,7 @@ $txt_cfg_ip_and_network = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "Direcci髇 IP y red");
 
 $txt_cfg_general_menu_entry = array(
 "fr" => "G閚閞ale",
@@ -161,7 +161,7 @@ $txt_cfg_general_menu_entry = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "TRANS ");
+"es" => "General");
 
 
 $txt_cfg_paypal_use_sandbox = array(
@@ -174,7 +174,7 @@ $txt_cfg_paypal_use_sandbox = array(
 	"de" => "TRANS Use the sandbox test server:",
 	"zh" => "TRANS Use the sandbox test server:",
 	"pl" => "TRANS Use the sandbox test server:",
-	"es" => "TRANS Use the sandbox test server:");
+	"es" => "Usar el servidor de pruebas sandbox:");
 
 
 $txt_cfg_paypal_sandbox_email = array(
@@ -187,7 +187,7 @@ $txt_cfg_paypal_sandbox_email = array(
 	"de" => "TRANS PayPal test account email (sandbox):",
 	"zh" => "TRANS PayPal test account email (sandbox):",
 	"pl" => "TRANS PayPal test account email (sandbox):",
-	"es" => "TRANS PayPal test account email (sandbox):");
+	"es" => "Cuenta de correo de pruebas de paypal (sandbox):");
 
 
 $txt_cfg_allow_following_servers_to_list = array(
@@ -464,7 +464,7 @@ $txt_cfg_use_domain_based_ftp_logins = array(
 	"de" => "@domain.com ftp Login verwenden:",
 	"zh" => "使用@domain.com ftp登入",
 	"pl" => "U縴j loginu ftp @domena.com :",
-	"es" => "Usar @dominio.com para acceso aftp:");
+	"es" => "Usar @dominio.com para acceso a ftp:");
 
 $txt_cfg_select_type_of_skin = array(
 	"fr" => "Selectionner le type d'abillage :",
@@ -488,8 +488,7 @@ $txt_cfg_full_hostname = array(
 	"de" => "Hostname des DTC Administrators",
 	"zh" => "DTC管理面板的网站全名",
 	"pl" => "Nazwa hosta do obs硊gi DTC :",
-	"es" => "Nombre completo del hostname del panel de adminitraci髇 de
-DTC:");
+	"es" => "Nombre completo del hostname del panel de adminitraci髇 de DTC:");
 
 $txt_cfg_main_site_ip =array(
 	"fr" => "IP principale du serveur :",
