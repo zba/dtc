@@ -123,25 +123,33 @@ for($i=0;$i<$nbr_tables;$i++){
 	// THIS CODE IS TO BE REWRITTED WITH THE NEWER PRIMARY KEY STUFF. IF YOU HAVE TIME, PLEASE DO IT!
 	$allvars = $tables[$tblnames[$i]]["keys"];
 	$numvars = sizeof($allvars);
-	$varnames = array_keys($allvars);
-	for($j=0;$j<$numvars;$j++){
-		if(!findKeyInTable($tblnames[$i],$varnames[$j])){
-			if($varnames[$j] == "PRIMARY")
-				$var_2_add = "PRIMARY KEY";
-			else
-				$var_2_add = "UNIQUE KEY ".$varnames[$j];
-			$q = "ALTER TABLE ".$tblnames[$i]." ADD $var_2_add ".$allvars[$varnames[$j]].";";
-//			echo "$q\n";
-			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+	if($numvars > 0){
+		$varnames = array_keys($allvars);
+		for($j=0;$j<$numvars;$j++){
+			if(!findKeyInTable($tblnames[$i],$varnames[$j])){
+				if($varnames[$j] == "PRIMARY")
+					$var_2_add = "PRIMARY KEY";
+				else
+					$var_2_add = "UNIQUE KEY ".$varnames[$j];
+				$q = "ALTER TABLE ".$tblnames[$i]." ADD $var_2_add ".$allvars[$varnames[$j]].";";
+//				echo "$q\n";
+				$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+			}
 		}
 	}
+
 	$allvars = $tables[$tblnames[$i]]["index"];
 	$numvars = sizeof($allvars);
-	$varnames = array_keys($allvars);
-	for($j=0;$j<$numvars;$j++){
-		// We have to rebuild indexes in order to get rid of past mistakes: this should go away when releasing v1.0
-		if(findKeyInTable($tblnames[$i],$varnames[$j])){
-			$q = "ALTER TABLE ".$tblnames[$i]."";
+	if($numvars > 0){
+		$varnames = array_keys($allvars);
+		for($j=0;$j<$numvars;$j++){
+			// We have to rebuild indexes in order to get rid of past mistakes: this should go away when releasing v1.0
+			if(findKeyInTable($tblnames[$i],$varnames[$j])){
+				$q = "ALTER TABLE ".$tblnames[$i]." DROP INDEX ".$varnames[$j]."";
+				$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+			}
+			$q = "ALTER TABLE ".$tblnames[$i]." ADD INDEX ".$varnames[$j]." ".$allvars[$varnames[$j]].";";
+			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 		}
 	}
 }
