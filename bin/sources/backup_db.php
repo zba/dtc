@@ -92,48 +92,88 @@ for($j=0;$j<$num;$j++){
 	$q = "SHOW INDEX FROM $row[0];";
         $r = mysql_query($q)or die("Cannot query \"$q\" !\nError in ".__FILE__." line ".__LINE__.": ".mysql_error());
         $n = mysql_num_rows($r);
-	if($i > 0)
-		$out .= ",\n\t\t\"keys\" => array(\n";
-
-	unset($primaries);
-	unset($keys);
-        for($i=0;$i<$n;$i++){
-                $a = mysql_fetch_array($r);
-		if($a['Key_name'] == "PRIMARY"){
-			$primaries[] = $a['Column_name'];
-		}else{
-			$keys[ $a['Key_name'] ][] = $a['Column_name'];
-		}
-        }
-	if(sizeof($primaries) > 0)
-		$out .= "\t\t\t\"PRIMARY\" => \"(".$primaries[0];
-	for($i=1;$i<sizeof($primaries);$i++){
-		$out .= ",".$primaries[$i];
-	}
-
-	if(sizeof($keys) > 0 && sizeof($primaries) > 0)
-		$out .= ")\",\n";
-	else if(sizeof($primaries) > 0)
-		$out .= ")\"\n\t\t\t)\n";
-	else if(sizeof($keys) == 0 && sizeof($primaries) == 0)
-		$out .= "\t\t\t)\n";
-
-	if(sizeof($keys>0)){
-		$kkeys = @array_keys($keys);
-		for($i=0;$i<sizeof($kkeys);$i++){
-			$cur = $keys[ $kkeys[$i] ];
-			$out .= "\t\t\t\"".$kkeys[$i]."\" => \"(";
-			for($k=0;$k<sizeof($cur);$k++){
-				if($k>0)	$out .= ",";
-				$out .= $cur[$k];
+	if($i > 0){
+		$out .= ",\n";
+		// Get all the keys and index in memory for the given table
+		unset($primaries);
+		unset($keys);
+		unset($indexes);
+		for($i=0;$i<$n;$i++){
+        	        $a = mysql_fetch_array($r);
+			if($a['Key_name'] == "PRIMARY"){
+				$primaries[] = $a['Column_name'];
+			}else{
+				if($a['Non_unique'] == "0"){
+					$keys[ $a['Key_name'] ][] = $a['Column_name'];
+				}else{
+					$indexes[ $a['Key_name'] ][] = $a['Column_name'];
+				}
 			}
-			if($i<sizeof($kkeys)-1)
-				$out .= ")\",\n";
-			else
-				$out .= ")\"\n\t\t\t)\n";
 		}
-	}
+		// Produce the array of index and keys
+		if(sizeof($primaries) > 0){
+			$out .= "\t\t\"primary\" => \"(".$primaries[0];
 
+			// Display all the keys here...
+			for($i=1;$i<sizeof($primaries);$i++){
+				$out .= ",".$primaries[$i];
+			}
+			$out .= ")\"";
+			if(sizeof($keys) > 0 || sizeof($indexes) > 0){
+				$out .= ",\n";
+			}else{
+				$out .= "\n";
+			}
+		}
+		if(sizeof($keys) > 0){
+			$out .= "\t\t\"keys\" => array(\n";
+			
+			// Backup all the UNIC keys here
+			$kkeys = @array_keys($keys);
+			for($i=0;$i<sizeof($kkeys);$i++){
+				$cur = $keys[ $kkeys[$i] ];
+				$out .= "\t\t\t\"".$kkeys[$i]."\" => \"(";
+				for($k=0;$k<sizeof($cur);$k++){
+					if($k>0)	$out .= ",";
+					$out .= $cur[$k];
+				}
+				if($i<sizeof($kkeys)-1)
+					$out .= ")\",\n";
+				else
+					$out .= ")\"\n";
+			}
+			
+			$out .= "\t\t\t)";
+			if(sizeof($indexes) > 0){
+				$out .= ",\n";
+			}else{
+				$out .= "\n";
+			}
+		}
+		if(sizeof($indexes) > 0){
+			$out .= "\t\t\"index\" => array(\n";
+			
+			// Backup all the INDEX keys here
+			$kkeys = @array_keys($indexes);
+			for($i=0;$i<sizeof($kkeys);$i++){
+				$cur = $indexes[ $kkeys[$i] ];
+				$out .= "\t\t\t\"".$kkeys[$i]."\" => \"(";
+				for($k=0;$k<sizeof($cur);$k++){
+					if($k>0)	$out .= ",";
+					$out .= $cur[$k];
+				}
+				if($i<sizeof($kkeys)-1)
+					$out .= ")\",\n";
+				else
+					$out .= ")\"\n";
+			}
+
+
+			$out .= "\t\t\t)\n";
+		}
+	}else{
+		$out .= "\n";
+	}
 	if($j < $num-1)
 		$out .= "\t\t),\n";
 	else
