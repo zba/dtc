@@ -177,6 +177,8 @@ PATH_DTC_SHARED="/usr/share/dtc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 PATH_DTC_ETC="${PATH_DTC_SHARED}/etc"
+PATH_AMAVISD_CONF=/etc/amavisd.conf
+PATH_CLAMAV_CONF=/etc/clamd.conf
 PATH_CRONTAB_CONF=/etc/crontab
 
 echo ""
