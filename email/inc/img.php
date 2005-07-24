@@ -4,7 +4,7 @@ header ("Content-type: image/png");
 
 $use_img_cache = "yes";
 function MENU_TREE_calc_cache_path(){
-	$conf_img_cache_path = "/usr/share/dtc/shared/imgcache";
+	$conf_img_cache_path = "../imgcache";
 
 	$cacheimg_filename = $_REQUEST["text"] . $_REQUEST["color"] . $_REQUEST["link"] . ".png";
 	$cacheimg_filename = str_replace("/","_",$cacheimg_filename);
@@ -27,36 +27,59 @@ $recurs_x_decal = 16;
 $curent_x_decal = $recurs_x_decal*$nbr_recursion;
 
 $im_width = 220;
-$im_height = 20;
+$im_height = 32;
 $im_break = 6;
 $im_backb = $im_height-($im_break+1);
 
 $gfx_start_pos = $curent_x_decal + 16;
 
 $im = ImageCreate ($im_width, $im_height) or die ("Cannot Initialize new GD image stream");
-
-$darkblue_color = ImageColorAllocate ($im, 110, 110, 135);
-$lightblue_color = ImageColorAllocate ($im, 180, 180, 220);
+if($color == 0){
+	$darkblue_color = ImageColorAllocate ($im, 0xCC, 0xCC, 0xCC);
+}else{
+	$darkblue_color = ImageColorAllocate ($im, 0xCC, 0xCC, 0xFF);
+}
+$lightblue_color = ImageColorAllocate ($im, 220, 220, 255);
 //$background_color = ImageColorAllocate ($im, 51, 255, 204);
 
 $black_color = ImageColorAllocate ($im, 0, 0, 0);
 
-if($color == 0){
-	$text_color = ImageColorAllocate ($im, 255, 255, 255);
-	$txt_x_pos = 25;
-	$txt_y_pos = 3;
-	ImageString ($im, 3, $gfx_start_pos+$txt_x_pos+1, $txt_y_pos+1,  $_REQUEST["text"], $black_color);
-}else if($color == 1){
-	$text_color = ImageColorAllocate ($im, 0xFF, 0xCC, 0);
-	$txt_x_pos = 26;
-	$txt_y_pos = 4;
+if($_REQUEST["lang"] == "zh"){
+//	include("gb2utf.php");
+//	$utf = gb2utf8($_REQUEST["text"]);
+	$utf = iconv("GB2312","UTF-8",$_REQUEST["text"]);
+	if($color == 0){
+		$text_color = ImageColorAllocate ($im, 0x00, 0x00, 0x0);
+		$txt_x_pos = 25+16;
+		$txt_y_pos = 22;
+	}else{
+		$text_color = ImageColorAllocate ($im, 0x44, 0x44, 0xCC);
+		$txt_x_pos = 26+16;
+		$txt_y_pos = 23;
+	}
+	imagettftext ( $im, 11, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, "/usr/share/dtc/client/inc/ukai.ttf", $utf );
+//	ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
+}else{
+	$font = 2;
+	if($color == 0){
+		$text_color = ImageColorAllocate ($im, 0x00, 0x00, 0x0);
+		$txt_x_pos = 25+16;
+		$txt_y_pos = 22;
+//		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos+1,  $_REQUEST["text"], $black_color);
+	}else if($color == 1){
+		$text_color = ImageColorAllocate ($im, 0x44, 0x44, 0xCC);
+		$txt_x_pos = 26+16;
+		$txt_y_pos = 23;
+	}
+	imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, "/usr/share/dtc/client/inc/arial.ttf", $_REQUEST["text"] );
+//	ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
 }
-ImageString ($im, 3, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
 
 //ImageString ($im, 3, $gfx_start_pos+200, 4,  "$_REQUEST["link"]", $text_color);
 
 
 // Draw the black border
+$alpha_color = imagecolorresolvealpha ( $im, 0, 0, 0, 127);
 $black_border = array( 	  $gfx_start_pos+0,           $im_break,
 						  $gfx_start_pos+$im_break,   0,
 						  $im_width-1, 0,
@@ -65,6 +88,7 @@ $black_border = array( 	  $gfx_start_pos+0,           $im_break,
 						  $gfx_start_pos+0,           $im_backb);
 
 ImagePolygon ( $im, $black_border, $im_break, $black_color);
+ImagePolygon ( $im, $black_border, $im_break, $alpha_color);
 
 // Draw the light part of the 3D effect
 ImageLine( $im, $gfx_start_pos+$im_break, $im_height-2, $gfx_start_pos+1, $im_backb, $lightblue_color);
@@ -77,7 +101,6 @@ ImageLine( $im, $im_width-2, 2, $im_width-2, $im_height-2, $darkblue_color);
 ImageLine( $im, $im_width-2, $im_height-2, $gfx_start_pos+7, $im_height-2, $darkblue_color);
 
 // Draw the transparency polygon...
-$alpha_color = imagecolorresolvealpha ( $im, 0, 0, 0, 127);
 $alpha_array = array( $gfx_start_pos+0,0,
 					$gfx_start_pos+$im_break-1,0,
 					$gfx_start_pos+0,$im_break-1);
@@ -101,11 +124,13 @@ $alpha_array = array( 	0,0,
 						0,0);
 imagefilledpolygon ( $im, $alpha_array, 3, $alpha_color);
 
+
 // Draw the polygon for the plus or minus sign
 $im_hori_center = ($im_height / 2)-1;
 $im_start_point = 2;
-$im_half_size = 6;
-$im_sign_space = 3;
+$im_half_size = 5;
+$im_sign_space = 0;
+$im_tree_adjust = 11;
 
 function makeSquare($cellnum){
 	global $im;
@@ -162,9 +187,10 @@ function makeTree($cellnum){
 	global $black_color;
 	global $im_height;
 	global $recurs_x_decal;
+	global $im_tree_adjust;
 
 	ImageLine( $im, $recurs_x_decal*$cellnum+ $im_start_point+$im_half_size, 0, $recurs_x_decal*$cellnum+ $im_start_point+$im_half_size, $im_height, $black_color);
-	ImageLine( $im, $recurs_x_decal*$cellnum+ $im_start_point+$im_half_size, $im_half_size+3, $recurs_x_decal*$cellnum+ $im_start_point+($im_half_size*2), $im_half_size+3, $black_color);
+	ImageLine( $im, $recurs_x_decal*$cellnum+ $im_start_point+$im_half_size, $im_half_size+$im_tree_adjust, $recurs_x_decal*$cellnum+ $im_start_point+($im_half_size*2), $im_half_size+$im_tree_adjust, $black_color);
 }
 
 function makeEndTree($cellnum){
@@ -176,9 +202,10 @@ function makeEndTree($cellnum){
 	global $black_color;
 	global $im_height;
 	global $recurs_x_decal;
+	global $im_tree_adjust;
 
 	ImageLine( $im, $recurs_x_decal*$cellnum+ $im_start_point+$im_half_size, 0, $recurs_x_decal*$cellnum+ $im_start_point+$im_half_size, $im_height/2, $black_color);
-	ImageLine( $im, $recurs_x_decal*$cellnum+ $im_start_point+$im_half_size, $im_half_size+3, $recurs_x_decal*$cellnum+ $im_start_point+($im_half_size*2), $im_half_size+3, $black_color);
+	ImageLine( $im, $recurs_x_decal*$cellnum+ $im_start_point+$im_half_size, $im_half_size+$im_tree_adjust, $recurs_x_decal*$cellnum+ $im_start_point+($im_half_size*2), $im_half_size+$im_tree_adjust, $black_color);
 }
 
 function makeHline($cellnum){
@@ -191,7 +218,7 @@ function makeHline($cellnum){
 	global $im_height;
 	global $recurs_x_decal;
 
-	ImageLine( $im, $recurs_x_decal*$cellnum+ $im_start_point-6+$im_sign_space,$im_hori_center, $recurs_x_decal*$cellnum+2+ $im_start_point+($im_half_size*2)-$im_sign_space, $im_hori_center, $black_color);
+	ImageLine( $im, $recurs_x_decal*$cellnum+ $im_start_point-6+$im_sign_space,$im_hori_center+1, $recurs_x_decal*$cellnum+2+ $im_start_point+($im_half_size*2)-$im_sign_space, $im_hori_center+1, $black_color);
 }
 
 function makeVline($cellnum){
@@ -226,21 +253,73 @@ for($i=0;$i<sizeof($array_of_sign);$i++){
 	}
 }
 $icon_x = $gfx_start_pos+$txt_x_pos - 19;
-if($_REQUEST["text"] == "myaccount")		$png = "home";
-else if($_REQUEST["text"] == "stats")		$png = "stat";
-else if($_REQUEST["text"] == "subdomains")	$png = "folder";
-else if($_REQUEST["text"] == "ftp-accounts")$png = "floppy";
-else if($_REQUEST["text"] == "adddomain")	$png = "tool";
-else if($_REQUEST["text"] == "nickhandles")	$png = "man";
-else if($_REQUEST["text"] == "whois")		$png = "man";
-else if($_REQUEST["text"] == "nameservers")	$png = "dns";
-else if($_REQUEST["text"] == "mailboxs")	$png = "mail";
-else if($_REQUEST["text"] == "dns")			$png = "dns";
-else if($_REQUEST["text"] == "database")	$png = "database";
-else if($_REQUEST["text"] == "help")		$png = "help";
-else	$png = "domain";
-$icon_im = imagecreatefrompng($png.".png");
-imagecopy($im,$icon_im, $icon_x, 2, 0, 0, 16, 16);
+// Select the icon according to the link
+$addrlink = explode("/",$_REQUEST["addrlink"]);
+if(sizeof($addrlink) == 1){
+	switch($addrlink[0]){
+	case "myaccount":
+		$icon_im = imagecreatefrompng("my-account.png");
+		break;
+	case "reseller":
+		$icon_im = imagecreatefrompng("reseller.png");
+		break;
+	case "password":
+		$icon_im = imagecreatefrompng("password.png");
+		break;
+	case "database":
+		$icon_im = imagecreatefrompng("databases.png");
+		break;
+	case "help":
+		$icon_im = imagecreatefrompng("help.png");
+		break;
+	default:
+		$icon_im = imagecreatefrompng("domains.png");
+		break;
+	}
+}else{
+	switch($addrlink[1]){
+	case "stats":
+		$icon_im = imagecreatefrompng("stats.png");
+		break;
+	case "subdomains":
+		$icon_im = imagecreatefrompng("subdomains.png");
+		break;
+	case "ftp-accounts":
+		$icon_im = imagecreatefrompng("ftp-accounts.png");
+		break;
+	case "adddomain":
+		$icon_im = imagecreatefrompng("adddomain.png");
+		break;
+	case "nickhandles":
+		$icon_im = imagecreatefrompng("nickhandles.png");
+		break;
+	case "whois":
+		$icon_im = imagecreatefrompng("nickhandles.png");
+		break;
+	case "nameservers":
+		$icon_im = imagecreatefrompng("nameservers.png");
+		break;
+	case "mailboxs":
+		$icon_im = imagecreatefrompng("mailboxs.png");
+		break;
+	case "dns":
+		$icon_im = imagecreatefrompng("nameservers.png");
+		break;
+	case "package-installer":
+		$icon_im = imagecreatefrompng("package-installer.png");
+		break;
+	case "mailing-lists":
+		$icon_im = imagecreatefrompng("mailing-lists.png");
+		break;
+	default:
+	}
+}
+$icon_x -= 16;
+if($color == 1)
+	$icon_y = 3;
+else
+	$icon_y = 2;
+imagecopy($im,$icon_im, $icon_x, $icon_y, 0, 0, 28, 28);
 
 // Save file if not found
 if(!file_exists($file_cache_path) && $use_img_cache== "yes"){
