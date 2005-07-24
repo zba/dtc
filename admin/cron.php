@@ -22,6 +22,8 @@ if($conf_unix_type == "debian" || $conf_unix_type == "redhat" || $conf_unix_type
 		$APACHECTL = "/usr/local/sbin/apachectl";
 	}else if(file_exists("/usr/local/sbin/apachectl2")){
 		$APACHECTL = "/usr/local/sbin/apachectl2";
+	}else if(file_exists("/usr/sbin/apache2ctl")){
+		$APACHECTL = "/usr/sbin/apache2ctl";
 	}
 // This should be the FreeBSD case
 }else{
