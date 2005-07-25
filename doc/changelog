@@ -4,7 +4,11 @@ This will be version 0.18 when released:
 and UNIC keys. Things should go back to normal when upgrading
 from a (bad) old db setup. (Thomas)
 
-- Added support for amavis + clamav + spamassassin (Damien Mascord)
+- Added support for amavis + clamav + spamassassin. If virus
+is found, it's destroyed, if spam is detected, then DTC looks
+for the SPAM flag in the email panel, and if it's set, then
+the spam is sent to the imap SPAM quarantine folder of the mail
+account. (Damien Mascord)
 
 - Added a feature to add a list of allowed DNS IP for transfering.
 That helps managing slaves DNS that are not listed as NS1/NS2
