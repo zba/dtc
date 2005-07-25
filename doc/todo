@@ -1,16 +1,10 @@
 Here is the todo in unsorted order:
 
-- Enhance the backup/restor DTC database stuff so it understands the
-concept of index and keys...
+- Make apachectl configtest and restart work correctly for RedHat and FreeBSD
 - Add support for wildcard DNS & Apache ServerAlias entries
 - Make the user deletion delete new type of database (recursively)
-- Make dpkg-reconfigure regenerat the config files for named & apache:
-  it should be asking for use_vnat, but it's not working.
-- Replace the # caracter in table names by $ so it works with v2 of mod_log_sql
-- Detect if it's mod_log_sql2 and change the connect directive accordingly
 - Add support for DNS wildcard
 - Add support for Freeradius: now only need to write the user interface
-- Add support for spamassassin & clamav
 - Finish resseller interface (enable quota and flag edition of subadmins)
 - Add SSL support for customers
 - Find a SMART way to handle disk quotas

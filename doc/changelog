@@ -1,6 +1,10 @@
 This will be version 0.18 when released:
 ----------------------------------------
-- Added support for amavis (Damien Mascord)
+- Backup/restor script are now working correctly with the INDEX
+and UNIC keys. Things should go back to normal when upgrading
+from a (bad) old db setup. (Thomas)
+
+- Added support for amavis + clamav + spamassassin (Damien Mascord)
 
 - Added a feature to add a list of allowed DNS IP for transfering.
 That helps managing slaves DNS that are not listed as NS1/NS2
