@@ -463,9 +463,11 @@ function drawAdminTools_Emails($domain){
 </td><td align=\"right\">
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"editmail_redirect2\" value=\"$redir2\">
 </td></tr><tr><td align=\"right\">
-".$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"editmail_deliver_localy\" value=\"yes\"$checkbox_state></td>
+".$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"editmail_deliver_localy\" value=\"yes\"$checkbox_state></td></tr>
+<tr>
 <td align=\"right\">".$txt_mail_spam_mailbox_enable[$lang]."</td><td><input type=\"checkbox\" name=\"editmail_spam_mailbox_enable\" value=\"yes\"$spam_checkbox_state></td>
 <td align=\"right\">".$txt_mail_spam_mailbox[$lang]."</td><td><input type=\"text\" name=\"editmail_spam_mailbox\" value=\"$spam_mailbox\"></td>
+</tr>
 <td>&nbsp;</td><td><input type=\"submit\" name=\"modifymailboxdata\" value=\"Ok\">&nbsp;
 <input type=\"submit\" name=\"delemailaccount\" value=\"Del\">
 </td></tr>
@@ -501,8 +503,11 @@ $txt .= "
 </td><td align=\"right\">
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"newmail_redirect2\" value=\"\">
 </td></tr><tr><td align=\"right\">
-".$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_deliver_localy\" value=\"yes\" checked></td>
+".$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_deliver_localy\" value=\"yes\" checked></td></tr>
+<tr>
 <td align=\"right\">".$txt_mail_spam_mailbox_enable[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_spam_mailbox_enable\" value=\"no\"></td>
+<td align=\"right\">".$txt_mail_spam_mailbox[$lang]."</td><td><input type=\"text\" name=\"newmail_spam_mailbox\" value=\"SPAM\"></td>
+</tr>
 <td></td>
 <td><input type=\"submit\" name=\"addnewmailtodomain\" value=\"Ok\">
 </td></tr>

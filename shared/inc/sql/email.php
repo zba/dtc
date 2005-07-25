@@ -154,7 +154,7 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 	}else{
 		$dolocal_deliver = "no";
 	}
-	if($_REQUEST["editmail_spam_mailbox_enable"] == "yes"){
+	if(isset($_REQUEST["editmail_spam_mailbox_enable"]) && $_REQUEST["editmail_spam_mailbox_enable"] == "yes"){
 		$do_spam_mailbox_enable = "yes";
 	}else{
 		$do_spam_mailbox_enable = "no";
