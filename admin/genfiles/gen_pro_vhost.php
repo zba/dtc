@@ -220,7 +220,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Alias /dtcemail $conf_dtcemail_path
 	Alias /dtcadmin $conf_dtcadmin_path
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
-	Alias /pipermail/ /var/lib/mailman/archives/public/
+	Alias /squirrelmail /usr/share/squirrelmail
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
 # This is old fashion no protection CGI
