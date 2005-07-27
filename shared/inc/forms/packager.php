@@ -32,6 +32,11 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		include($dtc_pkg_info);
 	}
 	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "do_install"){
+		$dtc_pkg_install = $pkg_path."/dtc-pkg-install.php";
+
+		if(file_exists($dtc_pkg_install)){
+			include($dtc_pkg_install);
+		}
 		// Check if user has enough rights
 		checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 		checkSubdomainFormat($_REQUEST["subdomain"]);
