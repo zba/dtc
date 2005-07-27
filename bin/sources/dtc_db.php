@@ -699,7 +699,6 @@ $dtc_database = array(
 			"pass" => "varchar(64) NULL ",
 			"w3_alias" => "enum('yes','no') NOT NULL default 'no' ",
 			"register_globals" => "enum('yes','no') NOT NULL default 'no' ",
-			" associated_txt_record" => "varchar(128) NOT NULL ",
 			"associated_txt_record" => "varchar(128) NOT NULL ",
 			"generate_vhost" => "enum('yes','no') NOT NULL default 'yes' "
 			),
