@@ -804,7 +804,7 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 		fi
 
 		# check to see if we have our amavis stuff configured in our master.cf yet
-		if grep "smtp-amavis" $PATH_AMAVISD_CONF > /dev/null; then
+		if grep "smtp-amavis" $PATH_POSTFIX_ETC/master.cf > /dev/null; then
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 				echo "Postfix master.cf has amavis configured before..."
 			fi
