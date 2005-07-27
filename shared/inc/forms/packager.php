@@ -62,16 +62,18 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		}
 // https://dtc.gpl-host.com/dtc/index.php?adm_login=zigo&adm_pass=toto&addrlink=gpl-host.com/package-installer&action=prepareinstall&pkg=phpbb
 		// Move the folder to the requested name dtcpkg_directory=bla
-		if($_REQUEST["dtcpkg_directory"] == ""){
-			$cmd = "mv $target/".$pkg_info["renamedir_to"]."/* $target/";
-			$x .= "=> Moving to folder $target/<br>";
-			exec($cmd,$exec_out,$return_val);
-			$realtarget = "$target";
-		}else{
-			$cmd = "mv $target/".$pkg_info["renamedir_to"]." $target/".$_REQUEST["dtcpkg_directory"];
-			$x .= "=> Moving to folder $target/".$_REQUEST["dtcpkg_directory"]."<br>";
-			exec($cmd,$exec_out,$return_val);
-			$realtarget = "$target/".$_REQUEST["dtcpkg_directory"];
+		if($pkg_info["can_select_directory"] == "yes"){
+			if($_REQUEST["dtcpkg_directory"] == ""){
+				$cmd = "mv $target/".$pkg_info["renamedir_to"]."/* $target/";
+				$x .= "=> Moving to folder $target/<br>";
+				exec($cmd,$exec_out,$return_val);
+				$realtarget = "$target";
+			}else{
+				$cmd = "mv $target/".$pkg_info["renamedir_to"]." $target/".$_REQUEST["dtcpkg_directory"];
+				$x .= "=> Moving to folder $target/".$_REQUEST["dtcpkg_directory"]."<br>";
+				exec($cmd,$exec_out,$return_val);
+				$realtarget = "$target/".$_REQUEST["dtcpkg_directory"];
+			}
 		}
 
 		// Get the database infos beffore calling the custom package installer

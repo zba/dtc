@@ -1,5 +1,8 @@
 This will be version 0.18 when released:
 ----------------------------------------
+- There is now a fantastico like installer that enables you to
+install phpBB2. Dev team is working on other packages.
+
 - Backup/restor script are now working correctly with the INDEX
 and UNIC keys. Things should go back to normal when upgrading
 from a (bad) old db setup. (Thomas)
