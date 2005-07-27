@@ -32,6 +32,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		include($dtc_pkg_info);
 	}
 	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "do_install"){
+		$pkg_path = $dir."/".$_REQUEST["pkg"];
 		$dtc_pkg_install = $pkg_path."/dtc-pkg-install.php";
 
 		if(file_exists($dtc_pkg_install)){
@@ -62,7 +63,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		// Rename folder to the destination folder name (eg remove version out of package.X.X.X folder name if exists)
 		if(isset($pkg_info["renamedir_to"]) && isset($pkg_info["resulting_dir"]) && $pkg_info["resulting_dir"] != $pkg_info["renamedir_to"]){
 			$cmd = "mv $target/".$pkg_info["resulting_dir"]." $target/".$pkg_info["renamedir_to"];
-			$x .= "=> Moving to folder ".$pkg_info["renamedir_to"]."<br>";
+			$x .= "=> Moving ".$pkg_info["resulting_dir"]." to ".$pkg_info["renamedir_to"]."<br>";
 			exec($cmd,$exec_out,$return_val);
 		}
 // https://dtc.gpl-host.com/dtc/index.php?adm_login=zigo&adm_pass=toto&addrlink=gpl-host.com/package-installer&action=prepareinstall&pkg=phpbb
@@ -70,12 +71,12 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		if($pkg_info["can_select_directory"] == "yes"){
 			if($_REQUEST["dtcpkg_directory"] == ""){
 				$cmd = "mv $target/".$pkg_info["renamedir_to"]."/* $target/";
-				$x .= "=> Moving to folder $target/<br>";
+				$x .= "=> Moving ".$pkg_info["renamedir_to"]." to folder /<br>";
 				exec($cmd,$exec_out,$return_val);
 				$realtarget = "$target";
 			}else{
 				$cmd = "mv $target/".$pkg_info["renamedir_to"]." $target/".$_REQUEST["dtcpkg_directory"];
-				$x .= "=> Moving to folder $target/".$_REQUEST["dtcpkg_directory"]."<br>";
+				$x .= "=> Moving ".$pkg_info["renamedir_to"]." to ".$_REQUEST["dtcpkg_directory"]."<br>";
 				exec($cmd,$exec_out,$return_val);
 				$realtarget = "$target/".$_REQUEST["dtcpkg_directory"];
 			}
@@ -96,12 +97,12 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		}
 		$nbr_remove = sizeof($pkg_info["remove_folder_path"]);
 		if($nbr_remove > 0){
-			print_r($pkg_info["remove_folder_path"]);
+		//	print_r($pkg_info["remove_folder_path"]);
 			$nbr_remove = sizeof($pkg_info["remove_folder_path"]);
 			$package_installer_console .= "Removing install folders...<br>";
 			for($i=0;$i<$nbr_remove;$i++){
 				$cmd = "rm -r $realtarget/".$pkg_info["remove_folder_path"][$i];
-				$package_installer_console .= $cmd."<br>";
+			//	$package_installer_console .= $cmd."<br>";
 				exec($cmd,$exec_out,$return_val);
 			}
 		}
