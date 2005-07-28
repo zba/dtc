@@ -50,7 +50,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		// Unpack the distribution package in target folder
 		if($pkg_info["unpack_type"] == "tar.gz"){
 			$cmd = "tar -C $target -xvzf $pkg_path/".$pkg_info["file"];
-			$x = "=> tar -xvzf ".$pkg_info["file"]."\n";
+			$x = "=> tar -C $target -xvzf $pkg_path/".$pkg_info["file"]."\n";
 			exec($cmd,$exec_out,$return_val);
 		}else if($pkg_info["unpack_type"] == "tar.bz2"){
 			$cmd = "tar -C $target -xvjf $pkg_path/".$pkg_info["file"];
@@ -187,7 +187,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 	$txt = "<b><u>Choose a package to install:</u></b>";
 
 	$txt .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"1\">";
-	$txt .= "<tr><td>Name</td><td>Description</td><td>Version</td><td>Need a database</td><td>Install</td></tr>";
+	$txt .= "<tr><td>Name</td><td>Description</td><td>Version</td><td>Need a database</td><td>Unpack size</td><td>Install</td></tr>";
 	if (is_dir($dir)) {
 		if ($dh = opendir($dir)) {
 			while (($file = readdir($dh)) !== false) {
@@ -198,6 +198,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 							<td>".$pkg_info["short_desc"]."</td>
 							<td>".$pkg_info["version"]."</td>
 							<td>".$pkg_info["need_database"]."</td>
+							<td>".smartByte($pkg_info["unpack_disk_usage"])."</td>
 							<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=prepareinstall&pkg=$file\">INSTALL</a></td></tr>";
 					}
 				}
