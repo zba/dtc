@@ -626,6 +626,12 @@ if [ -f "$PATH_CLAMAV_CONF" ]; then
 	# need to add the following to the config file:
 	# AllowSupplementaryGroups
 	# LocalSocket /var/run/clamav/clamd.ctl
+	
+	# need to fix a problem with a previous version
+
+	if grep "^1;" "$PATH_CLAMAV_CONF" > /dev/null; then
+		perl -i -p -e 's/^1;[^\n]*\n//' $PATH_CLAMAV_CONF
+	fi
 
 	if grep "Configured by DTC" "$PATH_CLAMAV_CONF" >/dev/null; then
                 if [ ""$VERBOSE_INSTALL == "yes" ]; then
@@ -642,7 +648,6 @@ if [ -f "$PATH_CLAMAV_CONF" ]; then
 		echo "LocalSocket /var/run/clamav/clamd.ctl" >> $TMP_FILE
 
                 echo "# End of DTC configuration $VERSION" >> $TMP_FILE
-                echo "1;  # insure a defined return" >> $TMP_FILE
 
                 # now to insert it at the end of the actual clamav.conf
                 cat < $TMP_FILE >>$PATH_CLAMAV_CONF
