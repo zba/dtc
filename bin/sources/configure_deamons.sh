@@ -927,6 +927,7 @@ MYSQL_DEFAULT_DOMAIN    $main_domain_name
 # use the experimental query
 MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, gid, home, '', quota_size, ''  FROM pop_access  WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
 
+MYSQL_CHPASS_CLAUSE	UPDATE	pop_access SET	passwd='\$(newpass)', crypt='\$(newpass_crypt)' WHERE	(id = '\$(local_part)' AND mbox_host = '\$(domain)') OR	(id = SUBSTRING_INDEX('\$(local_part)', '%', 1)  AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
 " > $PATH_COURIER_CONF_PATH/authmysqlrc
 		if [ -x "/etc/init.d/courier-authdaemon" ] ; then
 			if [ -x /usr/sbin/invoke-rc.d ]; then

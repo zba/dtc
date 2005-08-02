@@ -100,6 +100,19 @@ if (/^X-Spam-Flag: .*YES.*/)
 " >> $TMP_FILE
 fi
 
+# make sure we can have sqwebmail compatible rules, so create the config here
+if [ ! -e "$home/Maildir/maildirfilterconfig" ]; then
+	echo "MAILDIRFILTER=../.mailfilter.sqwebmail
+MAILDIR=\$DEFAULT" > $home/Maildir/maildirfilterconfig
+fi
+chmod 500 $home/Maildir/maildirfilterconfig
+chown nobody:65534 $home/Maildir/maildirfilterconfig
+
+# if we have some rules created from sqwebmail, import them here
+if [ -e "$home/.mailfilter.sqwebmail" ]; then
+	echo "include \".mailfilter.sqwebmail\"" >> $TMP_FILE
+fi
+
 echo "# End of DTC configuration" >> $TMP_FILE
 
 # now that we have our temp file with the cc and optionally SPAM additions, append our existing mailfilter to it
@@ -109,12 +122,13 @@ cat $MAILFILTER_FILE >> $TMP_FILE
 # now onto a default "to"
 echo "# Configured by DTC" >> $TMP_FILE
 echo "# If the destination maildir doesn't exist, create it.
-\`[ -d \$DEFAULT ] || (maildirmake \$DEFAULT && maildirmake -f SPAM \$DEFAULT)\`" >> $TMP_FILE 
+\`[ -d \$DEFAULT ] || maildirmake \$DEFAULT\`" >> $TMP_FILE 
 
 # if we have one OR two redirections, we need a default "to"
 if [ -n ""$redirection -o -n ""$redirection2 ]; then
 echo "to \$DEFAULT" >> $TMP_FILE
 fi
+
 
 echo "# End of DTC configuration" >> $TMP_FILE
 
