@@ -259,8 +259,12 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT
 # grant all to apachelogs
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.db (Host, Db, User, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('localhost', 'apachelogs', 'dtcdaemons', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'Y', 'Y', 'Y')"
 
-# grant select to pop_access
-$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'pop_access', '', NOW(NULL), 'Select', 'Select')"
+# grant select to pop_access 
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'pop_access', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+# update in case of old installations
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE IGNORE mysql.tables_priv SET Timestamp = NOW(NULL) , Table_priv = 'Select,Update', Column_priv = 'Select,Update' WHERE Host = 'localhost' AND Db = 'dtc' AND User = 'dtcdaemons' AND Table_name = 'pop_access' LIMIT 1 "
+
+#$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="GRANT SELECT , UPDATE ( crypt , passwd ) ON dtc.pop_access TO 'dtcdaemons'@'localhost'"
 
 # grant Select,Insert,Update,Delete,References,Index to smtp_logs
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'smtp_logs', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
