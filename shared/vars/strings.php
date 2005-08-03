@@ -2617,6 +2617,18 @@ $txt_subdom_generate_webalizer = array(
 	"es" => "Generar estadísticas webalizer mensualmente:"
 );
 
+$txt_subdom_generate_vhost = array(
+        "fr" => "Produisez de l'entr\xc3\xa9e de vhost d'apach e:",
+        "en" => "Generate apache vhost entry :",
+        "hu" => "TRANS Generate apache vhost entry :",
+        "it" => "Generi l'entrata del vhost del apache :",
+        "nl" => "Produceer apache vhost ingang :",
+        "ru" => "\xd0\x9f\xd1\x80\xd0\xbe\xd0\xb8\xd0\xb7\xd0\xb2\xd0\xb5\xd0\xb4\xd0\xb8\xd1\x82\xd0\xb5 \xd0\xb2\xd1\x85\xd0\xbe\xd0\xb4 vhost \xd0\xb0\xd0\xbf\xd0\xb0\xd1\x88\xd0\xb0 :",
+        "de" => "Erzeugen Sie Apache vhost Eintragung :",
+        "zh" => "TRANS Generate apache vhost entry :\xcc\xac\xa3\xba",
+        "es" => "Genere la entrada del vhost de apache :"
+);
+
 $txt_subdom_wwwalias = array(
 	"fr" => "Faire un alias ",
 	"en" => "Make an alias ",

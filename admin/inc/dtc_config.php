@@ -240,6 +240,7 @@ function drawNetworkConfig(){
 	}
 
 
+
 	if($conf_use_nated_vhost == "yes"){
 		$conf_use_nated_vhost_yes = " checked";
 		$conf_use_nated_vhost_no = "";
@@ -257,10 +258,12 @@ function drawNetworkConfig(){
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_site_addrs[$lang]."</td>
 	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_site_addrs\" name=\"new_site_addrs\"></td>
-</tr><tr>
+</tr>
+<tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_multiple_ip[$lang]."</td>
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_no>No</td>
-</tr><tr>
+</tr>
+<tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_nated_vhost[$lang]."</td>
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_no>No</td>
 </tr><tr>
@@ -281,6 +284,7 @@ function drawNamedConfig(){
 	global $conf_addr_secondary_dns;
 	global $conf_ip_slavezone_dns_server;
 	global $conf_ip_allowed_dns_transfer;
+	global $conf_use_cname_for_subdomains;
 	global $lang;
 
 	global $txt_cfg_name_zonefileconf_title;
@@ -291,6 +295,15 @@ function drawNamedConfig(){
 	global $txt_cfg_slave_dns_ip;
 	global $txt_cfg_allowed_dns_transfer_list;
 	global $txt_backup_mx_servers;
+	global $txt_cfg_use_cname_for_subdomains;
+
+	if($conf_use_cname_for_subdomains == "yes"){
+		$conf_use_cname_for_subdomains_yes = " checked";
+		$conf_use_cname_for_subdomains_no = "";
+	}else{
+		$conf_use_cname_for_subdomains_yes = "";
+		$conf_use_cname_for_subdomains_no = " checked";
+	}
 
 	$out = "<h3>".$txt_cfg_name_zonefileconf_title[$lang]."</h3>
 <table with=\"100%\" height=\"1\">
@@ -307,7 +320,12 @@ function drawNamedConfig(){
 	".$txt_cfg_secondary_dns_server_addr[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_addr_secondary_dns\" name=\"new_addr_secondary_dns\"><br>
 </td></tr><tr><td align=\"right\">
 	".$txt_cfg_slave_dns_ip[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_ip_slavezone_dns_server\" name=\"new_ip_slavezone_dns_server\"><br>
-</td></tr><tr><td align=\"right\">
+</td></tr>
+<tr>
+	<td align=\"right\" nowrap>".$txt_cfg_use_cname_for_subdomains[$lang]."</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_cname_for_subdomains\"$conf_use_cname_for_subdomains_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_cname_for_subdomains\"$conf_use_cname_for_subdomains_no>No</td>
+</tr>
+<tr><td align=\"right\">
 	".$txt_cfg_allowed_dns_transfer_list[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_ip_allowed_dns_transfer\" name=\"new_ip_allowed_transfer_dns_server\"><br>
 </td></tr></table>
 ";
@@ -936,6 +954,7 @@ function saveDTCConfigInMysql(){
 	global $new_main_site_ip;
 	global $new_site_addrs;
 	global $new_use_multiple_ip;
+	global $new_use_cname_for_subdomains;
 	global $new_use_javascript;
 	global $new_use_ssl;
 
@@ -1003,6 +1022,7 @@ function saveDTCConfigInMysql(){
 	addr_secondary_dns='".$_REQUEST["new_addr_secondary_dns"]."',
 	ip_slavezone_dns_server='".$_REQUEST["new_ip_slavezone_dns_server"]."',
 	webmaster_email_addr='".$_REQUEST["new_webmaster_email_addr"]."',
+	use_cname_for_subdomains='".$_REQUEST["new_use_cname_for_subdomains"]."',
 	ip_allowed_dns_transfer='".$_REQUEST["new_ip_allowed_transfer_dns_server"]."'
 	WHERE 1 LIMIT 1";
 		break;

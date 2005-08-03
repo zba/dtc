@@ -123,6 +123,7 @@ function named_generate(){
 	global $conf_main_site_ip;
 
 	global $conf_use_multiple_ip;
+	global $conf_use_cname_for_subdomains;
 	global $conf_webmaster_email_addr;
 	$bind_formated_webmaster_email_addr = str_replace('@',".",$conf_webmaster_email_addr).".";
 	global $conf_addr_primary_dns;
@@ -301,6 +302,7 @@ $more_mx_server
 			$is_pop_subdomain_set = "no";
 			$is_imap_subdomain_set = "no";
 			$is_smtp_subdomain_set = "no";
+			$is_mail_subdomain_set = "no";
 			$is_ftp_subdomain_set = "no";
 			$is_list_subdomain_set = "no";
 			for($j=0;$j<$num_rows2;$j++){
@@ -323,6 +325,9 @@ $more_mx_server
 				if($web_subname == "imap"){
 					$is_imap_subdomain_set = "yes";
 				}
+				if($web_subname == "mail"){
+					$is_mail_subdomain_set = "yes";
+				}
 				if($web_subname == "smtp"){
 					$is_smtp_subdomain_set = "yes";
 				}
@@ -332,27 +337,47 @@ $more_mx_server
 				if($web_subname == "list"){
 					$is_list_subdomain_set = "yes";
 				}
-				$this_site_file .= "$web_subname	IN	$the_ip_writed\n";
+				if ($conf_use_cname_for_subdomains == "yes")
+				{
+					$this_site_file .= "$web_subname	IN	CNAME	@\n";
+
+				} else {
+					$this_site_file .= "$web_subname	IN	$the_ip_writed\n";
+				}
 				if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
 					$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
 				}
 			}
-			if( $is_pop_subdomain_set != "yes"){
+			if( $is_pop_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
 				$this_site_file .= "pop	IN	A	$ip_to_write\n";
+			} else if ( $is_pop_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
+				$this_site_file .= "pop IN	CNAME	@\n";
 			}
-			if( $is_imap_subdomain_set != "yes"){
+			if( $is_imap_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
 				$this_site_file .= "imap	IN	A	$ip_to_write\n";
+			} else if ( $is_imap_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
+                                $this_site_file .= "imap	IN	CNAME	@\n";
 			}
-			if( $is_smtp_subdomain_set != "yes"){
+			if( $is_mail_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
+				$this_site_file .= "mail	IN	A	$ip_to_write\n";
+			} else if ( $is_mail_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
+                                $this_site_file .= "mail        IN      CNAME	@\n";
+			}
+			if( $is_smtp_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
 				$this_site_file .= "smtp	IN	A	$ip_to_write\n";
-			}
-			if( $is_ftp_subdomain_set != "yes"){
+			} else if ( $is_smtp_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
+                                $this_site_file .= "smtp        IN      CNAME	@\n";
+                        }
+			if( $is_ftp_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
 				$this_site_file .= "ftp	IN	A	$ip_to_write\n";
-			}
-			if( $is_list_subdomain_set != "yes"){
+			} else if ( $is_ftp_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
+                                $this_site_file .= "ftp        IN      CNAME	@\n";
+                        }
+			if( $is_list_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
 				$this_site_file .= "list	IN	A	$ip_to_write\n";
-			}
-
+			} else if ( $is_list_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
+                                $this_site_file .= "list        IN      CNAME	@\n";
+                        }
 			if($web_serial_flag=="yes"){
 				$console .= "Updating zone file for domain $web_name using serial : $todays_serial, ipaddr : $ip_to_write<br>";
 				$filep = fopen("$conf_generated_file_path/$conf_named_zonefiles_path/$web_name", "w+");

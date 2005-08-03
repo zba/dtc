@@ -394,6 +394,18 @@ $txt_cfg_use_multiple_ip =array(
 	"pl" => "U�yj adresu IP multi :",
 	"es" => "Usar multiples IPs");
 
+$txt_cfg_use_cname_for_subdomains =array(
+	"fr" => "Employez CNAME au lieu du disque de A pour des subdomains:",
+	"en" => "Use CNAME instead of A record for subdomains:",
+	"hu" => "TRANS - Use CNAME instead of A record for subdomains:",
+        "it" => "Usi CNAME anziché l'annotazione di A per i subdomains:",
+	"nl" => "Gebruik CNAME in plaats van A- verslag voor subdomains",
+	"ru" => "Используйте CNAME вместо показателя A для суб-domenov",	
+	"de" => "Verwenden Sie CNAME anstelle von der A Aufzeichnung für subdomains:",
+	"zh" => "使用CNAME 代替 A 纪录为次级领域:",
+	"pl" => "U�yj CNAME instead of A record for subdomains:",
+	"es" => "Utilice CNAME en vez del expediente de A para los secundario-dominios:");
+
 $txt_cfg_use_nated_vhost = array(
 	"fr" => "Generer toutes les vhost apache sur l'ip du reseau local (NAT)",
 	"en" => "Generate all apache vhosts on local network ip (NAT)",
