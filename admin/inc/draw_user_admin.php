@@ -166,6 +166,14 @@ function userEditForms($adm_login,$adm_pass){
 		// Fetch all the selected user informations, Print a nice error message if failure.
 		$admin = fetchAdmin($adm_login,$adm_pass);
 		if(($error = $admin["err"]) != 0){
+			// now print out all the stuff from our HTTP headers
+			//$input = array_merge($_GET,    $_POST,
+                        //     $_COOKIE, $_SERVER,
+                        //     $_ENV,    $_FILES,
+                        //     isset($_SESSION) ? $_SESSION : array()); 
+			//foreach ($input as $k => $v) { 
+			//	echo "$k - $input[$k]\n";	
+			//}
 			die("Error fetching admin : $error");
 		}
 
