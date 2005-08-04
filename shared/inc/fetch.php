@@ -511,6 +511,13 @@ function fetchClientData($id_client){
 }
 
 function fetchAdmin($adm_login,$adm_pass){
+	//by default use the admin panel...
+	//not sure how to determine this yet
+	return fetchAdmin_2($adm_login, $adm_pass, 1);
+}
+
+function fetchAdmin_2($adm_login, $adm_pass, $adm_panel)
+{
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
@@ -528,8 +535,8 @@ function fetchAdmin($adm_login,$adm_pass){
 		} else if (
 				isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
 		){
-			//we should try and grab the admin data based on the PHP_AUTH_PW and PHP_AUTH_USER
-			if ($adm_login != $_SERVER['PHP_AUTH_USER'])
+			//we should try and grab the admin data based on the PHP_AUTH_PW and PHP_AUTH_USER (only do this if we are not the admin panel) this is OK for user panels
+			if (!$adm_panel && $adm_login != $_SERVER['PHP_AUTH_USER'])
 			{
 				header('WWW-Authenticate: Basic realm="DTC Panel"');
 				header('HTTP/1.0 401 Unauthorized');
@@ -539,8 +546,8 @@ function fetchAdmin($adm_login,$adm_pass){
 			$data = fetchAdminData($adm_login,$_SERVER['PHP_AUTH_PW']);
 			if($data["err"] != 0){
 				$http_auth_worked = 0;
-				$err_msg = $info["err"] . $info["mesg"];
-				echo "error message: $err_msg\n";
+				$err_msg = $data["err"] . $data["mesg"];
+				echo "DTC Timeout Error: $err_msg\n";
 			} else {
 				$http_auth_worked = 1;
 				//echo "adm_login as $adm_login\n";
@@ -555,6 +562,10 @@ function fetchAdmin($adm_login,$adm_pass){
 			return $ret;
 		}
 	}
+	//since we are here, our login/password combo must be valid
+	$_SERVER['PHP_AUTH_USER'] = $adm_login;
+	$_SERVER['PHP_AUTH_PW'] = $adm_pass;
+
 	$info = fetchAdminInfo($adm_login);
 	if($info["err"] != 0){
 		$ret["err"] = $info["err"];
