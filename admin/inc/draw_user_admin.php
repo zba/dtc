@@ -177,6 +177,10 @@ function userEditForms($adm_login,$adm_pass){
 			die("Error fetching admin : $error");
 		}
 
+		//fix up the $adm_login in case it changed because of session vars:
+		//in case users play silly bugger with the "GET" variables
+		$adm_login = $admin["info"]["adm_login"];
+
 		// Draw the html forms
 		if(isset($rub) && $rub == "adminedit"){
 			$HTML_admin_edit_info = drawEditAdmin($admin);

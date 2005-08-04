@@ -523,21 +523,30 @@ function fetchAdmin($adm_login,$adm_pass){
 		if (!isset($_SERVER['PHP_AUTH_USER'])) {
 			header('WWW-Authenticate: Basic realm="DTC Panel"');
 			header('HTTP/1.0 401 Unauthorized');
-			echo 'You have not entered a correct password, please try again...';
+			echo 'You have not entered a correct user or password, please try again...';
 			exit;
 		} else if (
 				isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
 		){
 			//we should try and grab the admin data based on the PHP_AUTH_PW and PHP_AUTH_USER
-			$data = fetchAdminData($_SERVER['PHP_AUTH_USER'],$_SERVER['PHP_AUTH_PW']);
+			if ($adm_login != $_SERVER['PHP_AUTH_USER'])
+			{
+				header('WWW-Authenticate: Basic realm="DTC Panel"');
+				header('HTTP/1.0 401 Unauthorized');
+				echo 'You have not entered a correct user or password, please try again...';
+				exit;
+			}
+			$data = fetchAdminData($adm_login,$_SERVER['PHP_AUTH_PW']);
 			if($data["err"] != 0){
 				$http_auth_worked = 0;
 				$err_msg = $info["err"] . $info["mesg"];
 				echo "error message: $err_msg\n";
 			} else {
 				$http_auth_worked = 1;
+				//echo "adm_login as $adm_login\n";
 				$adm_pass = $_SERVER['PHP_AUTH_PW'];
 				$adm_login = $_SERVER['PHP_AUTH_USER'];
+				//echo "adm_login is now $adm_login\n";
 				$ret["err"] = 0;
 				$ret["mesg"] = "No error";
 			}
@@ -552,6 +561,8 @@ function fetchAdmin($adm_login,$adm_pass){
 		$ret["mesg"] = $info["mesg"];
 		return $ret;
 	}
+	//echo "adm_login is now $adm_login\n";
+	//echo "the array contains: " . $info["data"]["adm_login"] . "\n";
 
 	$id_client = $info["data"]["id_client"];
 	if($id_client != 0){
