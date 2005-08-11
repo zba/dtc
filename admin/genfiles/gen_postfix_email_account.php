@@ -123,7 +123,7 @@ function mail_account_generate_postfix(){
 			}
 
 			$store_catch_all = "";
-			$store_catch_all_md = "";
+			//$store_catch_all_md = "";
 			$catch_all_id = $domain["catchall_email"];
 			$abuse_address = 0;
 			$postmaster_address = 0;
@@ -164,7 +164,8 @@ function mail_account_generate_postfix(){
 						# setup the catch_all for locally delivered email addresses
 						if ($id == $catch_all_id)
 						{
-							$store_catch_all_md .= "@$domain_full_name        $home/Maildir/\n";
+							//$store_catch_all_md .= "@$domain_full_name        $home/Maildir/\n";
+							$store_catch_all .= "@$domain_full_name	$id@$domain_full_name\n";
 						} 
 						$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
 						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
@@ -188,7 +189,9 @@ function mail_account_generate_postfix(){
 							}
 						}
 						if ($store_catch_all == "" && ($id == "*" || $id == $catch_all_id)){
-							$store_catch_all .= "@$domain_full_name        $extra_redirects\n";
+							if(isset($extra_redirects)){
+								$store_catch_all .= "@$domain_full_name        $extra_redirects\n";
+}	
 						} else if (isset($extra_redirects)) {
 							$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
 						}

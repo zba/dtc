@@ -81,6 +81,7 @@ function mail_account_generate_maildrop(){
 				$nbr_boites = sizeof($emails);
 				// go through each of these emails and build the vmailbox file
 				//also create our sasldb2 if we have a saslpasswd2 exe
+				$catch_all = $domain["catchall_email"];
 				for($k=0;$k<$nbr_boites;$k++){
 					$email = $emails[$k];
 					$id = $email["id"];
@@ -95,6 +96,10 @@ function mail_account_generate_maildrop(){
 
 					if ($localdeliver == "yes"){
 						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=65534 gid=65534");
+						//if ($id == $catch_all)
+						//{
+						//	system("/usr/sbin/userdb \"$domain_full_name/@$domain_full_name\" set home=$home mail=$home uid=65534 gid=65534");
+						//}
 					} 
 				}
 			}
