@@ -196,6 +196,10 @@ function mail_account_generate_postfix(){
 							$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
 						}
 						unset($extra_redirects);
+					} else if (isset($catch_all_id) || $catch_all_id != "")
+					{
+						//just so we can deliver to our vmailboxs if we have set a catch-all (otherwise postfix gets confused, and delivers all mail to the catch all)
+						$domains_postmasters_file .= "$id@$domain_full_name $id@$domain_full_name\n";
 					}
 					//if we haven't added the spam mailbox yet, do it here
 					if ($spam_stuff_done == 0)

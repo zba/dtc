@@ -108,6 +108,28 @@ function mail_account_generate_maildrop(){
 
 	//after we have added all the users to the userdb
 	system("/usr/sbin/makeuserdb");
+	chown("/etc/courier/userdb/", "nobody");
+	recurse_chown_chgrp("/etc/courier/userdb/", "nobody", 65534);
 }
+
+function recurse_chown_chgrp($mypath, $uid, $gid)
+{
+   $d = opendir ($mypath) ;
+   while(($file = readdir($d)) !== false) {
+       if ($file != "." && $file != "..") {
+
+           $typepath = $mypath . "/" . $file ;
+
+           //print $typepath. " : " . filetype ($typepath). "<BR>" ;
+           if (filetype ($typepath) == 'dir') {
+               recurse_chown_chgrp ($typepath, $uid, $gid);
+           }
+
+           chown($typepath, $uid);
+           chgrp($typepath, $gid);
+       }
+   }
+
+ } 
 
 ?>
