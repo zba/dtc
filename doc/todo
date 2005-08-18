@@ -1,5 +1,8 @@
 Here is the todo in unsorted order:
 
+- Autoresponders
+- Make some function to enable loading/saving of an admin's config in a
+conveinient .dtc file. Import from other (commercial) control panels.
 - Make apachectl configtest and restart work correctly for RedHat and FreeBSD
 - Add support for wildcard DNS & Apache ServerAlias entries
 - Make the user deletion delete new type of database (recursively)

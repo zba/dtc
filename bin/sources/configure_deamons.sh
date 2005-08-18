@@ -324,7 +324,7 @@ else
 	fi
 
 	# It seems redhat has already the Listen directives...
-	if [ ""$UNIX_TYPE = "redhat" ] ;then
+	if [ ""$UNIX_TYPE = "redhat" -o ""$UNIX_TYPE = "gentoo" ] ;then
 		echo "# Configured by DTC v0.12 : please do not touch this line !
 Include $PATH_DTC_ETC/vhosts.conf" >>$PATH_HTTPD_CONF
 	else

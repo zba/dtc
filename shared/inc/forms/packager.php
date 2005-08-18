@@ -198,7 +198,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 							<td>".$pkg_info["short_desc"]."</td>
 							<td>".$pkg_info["version"]."</td>
 							<td>".$pkg_info["need_database"]."</td>
-							<td>".smartByte($pkg_info["unpack_disk_usage"])."</td>
+							<td style=\"white-space:nowrap;text-align=right\" nowrap>".smartByte($pkg_info["unpack_disk_usage"])."</td>
 							<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=prepareinstall&pkg=$file\">INSTALL</a></td></tr>";
 					}
 				}
