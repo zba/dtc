@@ -29,6 +29,7 @@ PATH_USERDB_BIN=/usr/sbin/userdb
 PATH_MAILDROP_BIN=/usr/bin/maildrop
 PATH_CRONTAB_CONF=/etc/crontab
 PATH_AWSTATS_ETC=/etc/awstats
+PATH_AMAVISD_CONF=/etc/amavis/amavisd.conf
 
 PATH_DTC_ETC=/usr/share/dtc/etc
 PATH_DTC_ADMIN=/usr/share/dtc/admin

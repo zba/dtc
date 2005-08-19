@@ -20,6 +20,7 @@ PATH_AWSTATS_ETC="/etc/awstats"
 PATH_QMAIL_CTRL="/var/qmail/control"
 PATH_CRONTAB_CONF="/etc/crontab"
 PATH_DTC_SHARED=/usr/share/dtc
+PATH_AMAVISD_CONF="/etc/amavis/amavisd.conf"
 FREERADIUS_ETC="/etc/raddb"
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
