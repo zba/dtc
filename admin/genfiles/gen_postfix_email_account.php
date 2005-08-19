@@ -52,6 +52,7 @@ function mail_account_generate_postfix(){
 	// prepend the configured path here
 
 	$conf_postfix_virtual_mailbox_domains_path = $conf_generated_file_path . "/postfix_virtual_mailbox_domains";
+	$conf_local_domains_path = $conf_generated_file_path . "/local_domains";
 	$conf_postfix_virtual_path = $conf_generated_file_path . "/postfix_virtual";
 	$conf_postfix_aliases_path = $conf_generated_file_path . "/postfix_aliases";
 	$conf_postfix_vmailbox_path = $conf_generated_file_path . "/postfix_vmailbox";
@@ -64,6 +65,7 @@ function mail_account_generate_postfix(){
 	// now for our variables to write out the db info to
 
 	$domains_file = "";
+	$local_domains_file = "";
 	$domains_postmasters_file = "";
 	$aliases_file = "";
 	$vmailboxes_file = "";
@@ -117,6 +119,7 @@ function mail_account_generate_postfix(){
 			{
 				$primary_mx=1;
 				$domains_file .= "$domain_full_name virtual\n";
+				$local_domains_file .="$domain_full_name\n";
 			} else {
 				$relay_domains_file .= "$domain_full_name\n";
 				$relay_recipients_all_domains .= "$domain_full_name\n";
@@ -328,6 +331,10 @@ function mail_account_generate_postfix(){
 	//write out our config files
 	$fp = fopen ( "$conf_postfix_virtual_mailbox_domains_path", "w");
 	fwrite($fp, $domains_file);
+	fclose($fp);
+
+	$fp = fopen ( "$conf_local_domains_path", "w");
+	fwrite($fp, $local_domains_file);
 	fclose($fp);
 
 	$fp = fopen ( "$conf_postfix_virtual_path", "w");

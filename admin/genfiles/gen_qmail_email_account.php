@@ -30,6 +30,7 @@ function mail_account_generate_qmail(){
 	global $conf_qmail_poppasswd_path;
 
 	$rcpthosts_file = "";
+	$local_domains_file = "";
 	$virtualdomains_file = "";
 	$poppasswd_file = "";
 	$assign_file = "";
@@ -68,6 +69,7 @@ function mail_account_generate_qmail(){
 			$domain_full_name = $domain["name"];
 			$domain_qmail_name = strtr($domain_full_name, ".", "-");
 			$rcpthosts_file .= "$domain_full_name\n";
+			$local_domains_file .= "$domain_full_name\n";
 			$more_rcpt .= "$domain_full_name\n";
 
 			if ($domain["primary_mx"] == "" || $domain["primary_mx"] == "default"){
@@ -133,6 +135,12 @@ function mail_account_generate_qmail(){
 	$fp = fopen ( "$conf_generated_file_path/$conf_qmail_rcpthost_path", "w");
 	fwrite ($fp,$rcpthosts_file);
 	fclose($fp);
+
+	$fp = fopen ( "$conf_generated_file_path/local_domains", "w");
+	fwrite ($fp,$local_domains_file);
+	fclose($fp);
+
+
 
 	$fp = fopen ( "$conf_generated_file_path/$conf_qmail_virtualdomains_path", "w");
 	fwrite ($fp,$virtualdomains_file);
