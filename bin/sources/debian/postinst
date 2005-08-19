@@ -216,7 +216,7 @@ fi
 TMP_FILE=`mktemp -t DTC_pear.install.XXXXXX` || exit 1
 if [ $PHPMAJOR -ge 4 -a $PHPMINOR -ge 3 -a -e /usr/bin/pear ]
 then
-	if [ ""$conf_conf_upgrade_pear = "false" ] ; then
+	if [ ""$conf_upgrade_pear = "false" ] ; then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "User selected not to check for pear: skiping."
 		fi
@@ -225,10 +225,12 @@ then
 			echo "Checking pear installation for PHP > 4.3"
 		fi
 		set +e
+		set -x
 		/usr/bin/pear upgrade Console_Getopt > $TMP_FILE
 		/usr/bin/pear upgrade-all >> $TMP_FILE
 		/usr/bin/pear install Crypt_CBC >> $TMP_FILE
 		/usr/bin/pear install Auth_SASL >> $TMP_FILE
+		set +x
 		set -e
 	fi
 else
