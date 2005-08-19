@@ -19,7 +19,7 @@
 # uninstall named.conf
 #
 
-# VERBOSE_INSTALL=yes
+VERBOSE_INSTALL=yes
 
 if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
@@ -167,6 +167,27 @@ then
 	cp -f $PATH_POSTFIX_CONF $PATH_POSTFIX_CONF.DTC.removed
 	echo -n > $PATH_POSTFIX_CONF
 	cat < $TMP_FILE >> $PATH_POSTFIX_CONF
+        rm $TMP_FILE
+fi
+
+#
+# uninstall amavis/amavisd.conf
+#
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Uninstalling inclusion from amavis/amavisd.conf"
+fi
+if grep "Configured by DTC" $PATH_AMAVISD_CONF >/dev/null 2>&1
+then
+	start_line=`grep -n "Configured by DTC" $PATH_AMAVISD_CONF | cut -d":" -f1`
+	end_line=`grep -n "End of DTC configuration" $PATH_AMAVISD_CONF| cut -d":" -f1`
+	nbr_line=`cat $PATH_AMAVISD_CONF | wc -l`
+	TMP_FILE=`${MKTEMP} DTC_uninstall.amavisd.conf.XXXXXX` || exit 1
+	cat $PATH_AMAVISD_CONF | head -n $(($start_line - 1 )) > $TMP_FILE
+	cat $PATH_AMAVISD_CONF | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
+	cp -f $PATH_AMAVISD_CONF $PATH_AMAVISD_CONF.DTC.removed
+	echo -n > $PATH_AMAVISD_CONF
+	cat < $TMP_FILE >> $PATH_AMAVISD_CONF
         rm $TMP_FILE
 fi
 
