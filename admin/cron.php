@@ -328,7 +328,9 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 		$ctl_retry = 0;		// We have to continue going on, even if apache don't restart...
 		$ctl_return = system("$APACHECTL start");
 		// Check that apache is really started, because experience showed sometimes it's not !!!
-		while( strstr($ctl_return,"httpd started") == false && $ctl_retry++ < 15){
+		//while( strstr($ctl_return,"httpd started") == false && $ctl_retry++ < 15){
+		// This new version should work on OS where apachectl start is quiet
+		while( strstr($ctl_return,"httpd started") == false && $ctl_retry++ < 15 && !empty($ctl_return)){
 			echo "Warning: apache not started, will retry in 3 seconds...\n";
 			sleep(3);
 			$ctl_return = system("$APACHECTL start", $return_var);
