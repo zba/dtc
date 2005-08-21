@@ -259,7 +259,7 @@ $vhost_more_conf	php_admin_value safe_mode 1
 	php_admin_value sendmail_from webmaster@$web_name
 	php_value session.save_path $web_path/$web_name/subdomains/$web_subname/tmp
 	<Location />
-		php_admin_value open_basedir \"$web_path/$web_name/:$conf_php_library_path:$conf_php_additional_library_path:\"
+		php_admin_value open_basedir \"$web_path:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>
 # This is old fashion no protection CGI
 #	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
