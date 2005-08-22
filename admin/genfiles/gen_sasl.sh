@@ -24,9 +24,15 @@ if ! [ -z ""$SASLPWD2 ] ; then
 		chown postfix:65534 /var/spool/postfix/etc/sasldb2
 	else 
 		echo "OK, in /etc/" >> /tmp/sasl.tmp
-		cat ../etc/sasldb2 > /etc/sasldb2
-		chmod 664 /etc/sasldb2
-		chown postfix:65534 /etc/sasldb2
+		if [ -d /etc/sasl2 ] ; then
+			chmod 664 /etc/sasl2/sasldb2
+			chown postfix:65534 /etc/sasl2/sasldb2
+			cat ../etc/sasldb2 > /etc/sasl2/sasldb2
+		else
+			chmod 664 /etc/sasldb2
+			chown postfix:65534 /etc/sasldb2
+			cat ../etc/sasldb2 > /etc/sasldb2
+		fi
 	fi
 
 	ls ../etc/sasldb2 >> /tmp/sasl.tmp

@@ -1,5 +1,7 @@
 Here is the todo in unsorted order:
 
+- Change the disk size submary so it takes information out of the new
+mysql manager
 - Autoresponders
 - Make some function to enable loading/saving of an admin's config in a
 conveinient .dtc file. Import from other (commercial) control panels.

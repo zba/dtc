@@ -744,12 +744,22 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
 					cp /var/spool/postfix/etc/sasldb2 $PATH_DTC_ETC/sasldb2
 				fi
-			else 
-				touch /etc/sasldb2
-				chown postfix:65534 /etc/sasldb2
-				chmod 664 /etc/sasldb2
+			else
+				if [ -d /etc/sasl2 ]; then
+					touch /etc/sasl2/sasldb2
+					chown postfix:65534 /etc/sasl2/sasldb2
+					chmod 664 /etc/sasl2/sasldb2
+				else
+					touch /etc/sasldb2
+					chown postfix:65534 /etc/sasldb2
+					chmod 664 /etc/sasldb2
+				fi
 				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
-					cp /etc/sasldb2 $PATH_DTC_ETC/sasldb2
+					if [ -d /etc/sasl2 ]; then
+						cp /etc/sasl2/sasldb2 $PATH_DTC_ETC/sasldb2
+					else
+						cp /etc/sasldb2 $PATH_DTC_ETC/sasldb2
+					fi
 				fi
 			fi
 
