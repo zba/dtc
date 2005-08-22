@@ -1,4 +1,4 @@
-#!/bin/sh
+#/bin/sh
 
 # This is the DTC's tarball interactive install configuration script
 # made by Thomas Goirand <thomas [ at ] goirand.fr>
@@ -180,6 +180,11 @@ PATH_DTC_ETC="${PATH_DTC_SHARED}/etc"
 PATH_AMAVISD_CONF=/etc/amavisd.conf
 PATH_CLAMAV_CONF=/etc/clamd.conf
 PATH_CRONTAB_CONF=/etc/crontab
+
+USER_ADD_CMD=useradd
+USER_ADD_CMD=groupadd
+USER_MOD_CMD=usermod
+PASSWD_CMD=passwd
 
 echo ""
 echo ""
