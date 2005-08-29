@@ -247,7 +247,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_adm_pass"){
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){
-		$q = "UPDATE $pro_mysql_admin_table SET adm_pass='".$_REQUEST["new_pass1"]."';";
+		$q = "UPDATE $pro_mysql_admin_table SET adm_pass='".$_REQUEST["new_pass1"]."' WHERE adm_login='$adm_login';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
 }
