@@ -1,125 +1,114 @@
 <?php
 $txt_go_to_client_panel = array(
-        "fr" => "TRANS",
+        "fr" => "Aller vers l'interface client",
         "en" => "Go to client panel",
         "hu" => "Ugrás az ügyfél panelre",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
-        "es" => "Ir al panel de cliente",
-        "ch" => "TRANS");
+        "zh" => "½øÈë¹Ë¿ÍÃæ°å",
+        "es" => "Ir al panel de cliente");
 
 $txt_no = array(
-        "fr" => "TRANS",
+        "fr" => "Non",
         "en" => "No",
         "hu" => "Nem",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
-        "es" => "No",
-        "ch" => "TRANS");
+        "zh" => "·ñ",
+        "es" => "No");
 
 $txt_yes = array(
-        "fr" => "TRANS",
+        "fr" => "Oui",
         "en" => "Yes",
         "hu" => "Igen",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
-        "es" => "Sí",
-        "ch" => "TRANS");
+        "zh" => "ÊÇ",
+        "es" => "Sí");
 
 $txt_is_company = array(
-        "fr" => "TRANS",
+        "fr" => "Est-ce une sociét?",
         "en" => "Is company",
         "hu" => "Céges elõfizetés",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
-        "es" => "Es una empresa",
-        "ch" => "TRANS");
+        "zh" => "ÊÇ¹«Ë¾Âð?",
+        "es" => "Es una empresa");
 
 $txt_desired_domain_name = array(
-        "fr" => "TRANS",
+        "fr" => "Nom de domaine desire",
         "en" => "Desired domain name",
         "hu" => "Igényelt domain név",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
-        "es" => "Nombre de dominio deseado",
-        "ch" => "TRANS");
+        "zh" => "Ñ¡ÔñÓòÃû",
+        "es" => "Nombre de dominio deseado");
 
 $txt_confirm_pass = array(
-        "fr" => "TRANS",
+        "fr" => "Confirmer le mot de passe",
         "en" => "Confirm pass",
         "hu" => "Jelszó megerõsítése",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
-        "es" => "confirmar contraseña",
-        "ch" => "TRANS");
+        "zh" => "È·ÈÏÃÜÂë",
+        "es" => "confirmar contraseña",);
 
 $txt_login_info = array(
-        "fr" => "TRANS",
+        "fr" => "Information de login",
         "en" => "Login info",
         "hu" => "Belépési információk",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
-        "es" => "información de acceso",
-        "ch" => "TRANS");
+        "zh" => "×¢²áÐÅÏ¢",
+        "es" => "información de acceso");
 
 $txt_product = array(
-        "fr" => "TRANS",
+        "fr" => "Produit",
         "en" => "Product",
         "hu" => "Csomag",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
-        "es" => "producto",
-        "ch" => "TRANS");
-
-
-
+        "zh" => "²úÆ·",
+        "es" => "producto");
 
 $txt_go_to_login = array(
-        "fr" => "TRANS",
+        "fr" => "Aller au login",
         "en" => "Go to login",
         "hu" => "Belépés",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
+        "zh" => "½øÈë×¢²á",
         "es" => "Ir a acceso",
         "ch" => "TRANS");
 
 
 $txt_client_info = array(
-        "fr" => "TRANS",
+        "fr" => "Info client :",
         "en" => "Client info:",
         "hu" => "Ügyfél adatok:",
         "it" => "TRANS",
         "nl" => "TRANS",
         "ru" => "TRANS",
         "de" => "TRANS",
-        "zh" => "TRANS",
+        "zh" => "¹Ë¿ÍÐÅÏ¢",
         "es" => "Información de cliente:",
         "ch" => "TRANS");
 
@@ -132,7 +121,7 @@ $txt_list_name = array(
 	"nl" => "TRANS List name",
 	"ru" => "TRANS List name",
 	"de" => "TRANS List name",
-	"zh" => "TRANS List name",
+	"zh" => "ÓÊÏäÁÐ±í",
 	"es" => "Nombre de la lista");
 
 $txt_list_owner = array(
@@ -143,18 +132,18 @@ $txt_list_owner = array(
 	"nl" => "TRANS List owner",
 	"ru" => "TRANS List owner",
 	"de" => "TRANS List owner",
-	"zh" => "TRANS List owner",
+	"zh" => "¹ÜÀíÔ±",
 	"es" => "Propietario de la lista");
 
 $txt_list_liste_of_your_ml = array(
 	"fr" => "Liste de vos mailing lists:",
 	"en" => "List of your mailing lists:",
-        "hu" => "Az ön levelezõlistáinak listája:",
+    "hu" => "Az ön levelezõlistáinak listája:",
 	"it" => "Lista delle tue mailing lists:",
 	"nl" => "TRANS List of your mailing lists:",
 	"ru" => "TRANS List of your mailing lists:",
 	"de" => "TRANS List of your mailing lists:",
-	"zh" => "TRANS List of your mailing lists:",
+	"zh" => "ÄúµÄÓÊÏäÁÐ±íÄ¿Â¼:",
 	"es" => "Listado de listas de correo:");
 
 $txt_list_new_list = array(
@@ -165,7 +154,7 @@ $txt_list_new_list = array(
 	"nl" => "TRANS New mailing list:",
 	"ru" => "TRANS New mailing list:",
 	"de" => "TRANS New mailing list:",
-	"zh" => "TRANS New mailing list:",
+	"zh" => "ÐÂÓÊÏäÁÐ±í:",
 	"es" => "Nueva lista de correo:");
 
 $txt_number_of_database = array(
@@ -176,7 +165,7 @@ $txt_number_of_database = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Êý¾Ý¿âµÄÊýÄ¿:",
 "pl" => "TRANS ",
 "es" => "Número de bases de datos");
 
@@ -188,7 +177,7 @@ $txt_allow_to_add_domains = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÔÊÐíÌí¼ÓÓòÃû:",
 "pl" => "TRANS ",
 "es" => "Permitir añadir dominios");
 
@@ -200,7 +189,7 @@ $txt_can_have_subadmins_reseller = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÊÚÈ¨Ìí¼Ó¸±ÕÊ»§(×ªÊÛ):",
 "pl" => "TRANS ",
 "es" => "Permitir añadir derechos de sub-cuenta (revendedor)");
 
@@ -212,7 +201,7 @@ $txt_heb_prod_id = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "²úÆ·Éí·Ö",
 "pl" => "TRANS ",
 "es" => "ID de producto");
 
@@ -224,7 +213,7 @@ $txt_change_your_password = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "¸ü¸ÄÃÜÂë:",
 "pl" => "TRANS ",
 "es" => "Cambiar contraseña");
 
@@ -236,7 +225,7 @@ $txt_type_new_password = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÐÂÃÜÂë:",
 "pl" => "TRANS ",
 "es" => "Nueva contraseña");
 
@@ -248,7 +237,7 @@ $txt_retype_new_password = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÖØÐÂÊäÈëÐÂÃÜÂë: ",
 "pl" => "TRANS ",
 "es" => "Vuelve a escribir la contraseña");
 
@@ -260,7 +249,7 @@ $txt_delete = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "É¾³ý ",
 "pl" => "TRANS ",
 "es" => "Eliminar");
 
@@ -272,7 +261,7 @@ $txt_create = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "´´½¨ ",
 "pl" => "TRANS ",
 "es" => "Crear");
 
@@ -284,7 +273,7 @@ $txt_save = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "±£´æ ",
 "pl" => "TRANS ",
 "es" => "Guardar");
 
@@ -296,7 +285,7 @@ $txt_your_users = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúµÄÓÃ»§ ",
 "pl" => "TRANS ",
 "es" => "Tus usuarios");
 
@@ -308,7 +297,7 @@ $txt_user = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÓÃ»§ ",
 "pl" => "TRANS ",
 "es" => "Usuario");
 
@@ -320,7 +309,7 @@ $txt_database_name = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Êý¾Ý¿âÃû ",
 "pl" => "TRANS ",
 "es" => "Nombre de la base de datos");
 
@@ -332,7 +321,7 @@ $txt_total_database_number = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Êý¾Ý¿âµÄ×ÜÊý ",
 "pl" => "TRANS ",
 "es" => "Número total de bases de datos");
 
@@ -344,7 +333,7 @@ $txt_please_create_mysql_user_to_create_database = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Èç¹ûÒª½¨Á¢Ò»¸öÊý¾Ý¿â,Çë´´½¨Ò»¸öMySQLÓÃ»§ ",
 "pl" => "TRANS ",
 "es" => "Tienes que crear un usuario mysql para poder crear una base de datos");
 
@@ -357,7 +346,7 @@ $txt_wrong_user_or_password_or_timeout_expire = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÓÃ»§´íÎó»òÃÜÂë´íÎó,»òÕßÒÑ¹ýÆÚ  ",
 "pl" => "TRANS ",
 "es" => "Nombre de usuario o contraseña incorrecta, o tiempo de ejecución excedido");
 
@@ -369,7 +358,7 @@ $txt_error = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "´íÎó ",
 "pl" => "TRANS ",
 "es" => "Error");
 
@@ -381,7 +370,7 @@ $txt_fetching_admin = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "×°ÔØÍøÂç¹ÜÀíÔ±",
 "pl" => "TRANS ",
 "es" => "Administrador de recogida");
 
@@ -393,7 +382,7 @@ $txt_register_new_account = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "×¢²áÐÂÕÊ»§ ",
 "pl" => "TRANS ",
 "es" => "Registrar una nueva cuenta");
 
@@ -405,7 +394,7 @@ $txt_go_to_email_panel = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "½øÈëÓÊÏäÃæ°å ",
 "pl" => "TRANS ",
 "es" => "Ir al panel de e-mail");
 
@@ -417,7 +406,7 @@ $txt_client_panel_title = array(
 	"nl" => "TRANS Client panel:",
 	"ru" => "TRANS Client panel:",
 	"de" => "TRANS Client panel:",
-	"zh" => "TRANS Client panel:",
+	"zh" => "¹Ë¿ÍÃæ°å:",
 	"pl" => "TRANS Client panel:",
 	"es" => "Panel de cliente:");
 
@@ -622,7 +611,7 @@ $txt_select_lang_title = array(
 	"nl" => "Taal",
 	"ru" => "Language",
 	"de" => "Language",
-	"zh" => "Language",
+	"zh" => "ÓïÑÔ",
 	"pl" => "Jêzyk",
 	"es" => "Idioma");
 
@@ -634,7 +623,7 @@ $txt_mailbox_redirection_edition = array(
   "nl" => "TRANS Edit your mailbox redirections:",
   "ru" => "TRANS Edit your mailbox redirections:",
   "de" => "Weiterleitung zu Ihrer Mailbox einrichten:",
-  "zh" => "TRANS±à¼­²¢×ª·¢ÄúµÄÓÊ¼þ£º",
+  "zh" => "±à¼­²¢×ª·¢ÄúµÄÓÊ¼þ£º",
   "pl" => "Edytuj przekierowanie swojej poczty :",
   "es" => "Edita las redirecciones de tu e-mail:");
 
@@ -2615,18 +2604,6 @@ $txt_subdom_generate_webalizer = array(
 	"zh" => "Ã¿ÔÂ¹ÜÀíwebalizer×´Ì¬£º",
 	"pl" => "Generowanie miesiêcznych statystyk Webalizera :",
 	"es" => "Generar estadísticas webalizer mensualmente:"
-);
-
-$txt_subdom_generate_vhost = array(
-        "fr" => "Produisez de l'entr\xc3\xa9e de vhost d'apach e:",
-        "en" => "Generate apache vhost entry :",
-        "hu" => "TRANS Generate apache vhost entry :",
-        "it" => "Generi l'entrata del vhost del apache :",
-        "nl" => "Produceer apache vhost ingang :",
-        "ru" => "\xd0\x9f\xd1\x80\xd0\xbe\xd0\xb8\xd0\xb7\xd0\xb2\xd0\xb5\xd0\xb4\xd0\xb8\xd1\x82\xd0\xb5 \xd0\xb2\xd1\x85\xd0\xbe\xd0\xb4 vhost \xd0\xb0\xd0\xbf\xd0\xb0\xd1\x88\xd0\xb0 :",
-        "de" => "Erzeugen Sie Apache vhost Eintragung :",
-        "zh" => "TRANS Generate apache vhost entry :\xcc\xac\xa3\xba",
-        "es" => "Genere la entrada del vhost de apache :"
 );
 
 $txt_subdom_wwwalias = array(
