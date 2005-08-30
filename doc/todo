@@ -1,5 +1,7 @@
 Here is the todo in unsorted order:
 
+- Add all the fields of TLD, refresh and all to be able to configure
+each type of extensions
 - Change the disk size submary so it takes information out of the new
 mysql manager
 - Autoresponders
