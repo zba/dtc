@@ -1,4 +1,5 @@
 <?php
+
 $txt_go_to_client_panel = array(
         "fr" => "Aller vers l'interface client",
         "en" => "Go to client panel",
@@ -8,6 +9,7 @@ $txt_go_to_client_panel = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "½øÈë¹Ë¿ÍÃæ°å",
+        "pl" => "TRANS",
         "es" => "Ir al panel de cliente");
 
 $txt_no = array(
@@ -19,6 +21,7 @@ $txt_no = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "·ñ",
+        "pl" => "TRANS",
         "es" => "No");
 
 $txt_yes = array(
@@ -30,6 +33,7 @@ $txt_yes = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "ÊÇ",
+        "pl" => "TRANS",
         "es" => "Sí");
 
 $txt_is_company = array(
@@ -41,6 +45,7 @@ $txt_is_company = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "ÊÇ¹«Ë¾Âğ?",
+        "pl" => "TRANS",
         "es" => "Es una empresa");
 
 $txt_desired_domain_name = array(
@@ -52,6 +57,7 @@ $txt_desired_domain_name = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "Ñ¡ÔñÓòÃû",
+        "pl" => "TRANS",
         "es" => "Nombre de dominio deseado");
 
 $txt_confirm_pass = array(
@@ -63,6 +69,7 @@ $txt_confirm_pass = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "È·ÈÏÃÜÂë",
+        "pl" => "TRANS",
         "es" => "confirmar contraseña",);
 
 $txt_login_info = array(
@@ -74,6 +81,7 @@ $txt_login_info = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "×¢²áĞÅÏ¢",
+        "pl" => "TRANS",
         "es" => "información de acceso");
 
 $txt_product = array(
@@ -85,6 +93,7 @@ $txt_product = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "²úÆ·",
+        "pl" => "TRANS",
         "es" => "producto");
 
 $txt_go_to_login = array(
@@ -97,7 +106,7 @@ $txt_go_to_login = array(
         "de" => "TRANS",
         "zh" => "½øÈë×¢²á",
         "es" => "Ir a acceso",
-        "ch" => "TRANS");
+        "pl" => "TRANS");
 
 
 $txt_client_info = array(
@@ -110,7 +119,7 @@ $txt_client_info = array(
         "de" => "TRANS",
         "zh" => "¹Ë¿ÍĞÅÏ¢",
         "es" => "Información de cliente:",
-        "ch" => "TRANS");
+        "pl" => "TRANS");
 
 
 $txt_list_name = array(
@@ -122,6 +131,7 @@ $txt_list_name = array(
 	"ru" => "TRANS List name",
 	"de" => "TRANS List name",
 	"zh" => "ÓÊÏäÁĞ±í",
+	"pl" => "TRANS",
 	"es" => "Nombre de la lista");
 
 $txt_list_owner = array(
@@ -133,6 +143,7 @@ $txt_list_owner = array(
 	"ru" => "TRANS List owner",
 	"de" => "TRANS List owner",
 	"zh" => "¹ÜÀíÔ±",
+	"pl" => "TRANS",
 	"es" => "Propietario de la lista");
 
 $txt_list_liste_of_your_ml = array(
@@ -144,6 +155,7 @@ $txt_list_liste_of_your_ml = array(
 	"ru" => "TRANS List of your mailing lists:",
 	"de" => "TRANS List of your mailing lists:",
 	"zh" => "ÄúµÄÓÊÏäÁĞ±íÄ¿Â¼:",
+	"pl" => "TRANS",
 	"es" => "Listado de listas de correo:");
 
 $txt_list_new_list = array(
@@ -155,6 +167,7 @@ $txt_list_new_list = array(
 	"ru" => "TRANS New mailing list:",
 	"de" => "TRANS New mailing list:",
 	"zh" => "ĞÂÓÊÏäÁĞ±í:",
+	"pl" => "TRANS",
 	"es" => "Nueva lista de correo:");
 
 $txt_number_of_database = array(
