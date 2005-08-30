@@ -4,14 +4,14 @@ $txt_dtcrm_your_domain_has_been_registred_elsewhere = array(
 "fr" => "Votre nom de domaine a été enregistré ailleurs (eg pas sur ce site).
 Pour demander un transfère ici, veuillez cliquez ",
 "en" => "Your domain name has been registred elsewhere (eg
-not on this site). To order for its transfer and management, please click",
+not on this site). To order for its transfer, please click",
 "hu" => "Az ön domainje valahol másol van regisztrálva (nem ezen a szerveren).
 Ha szeretné áttranszferáltatni erre a szerverre, kattintson ide.",
 "it" => "TRANS ",
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúµÄÓòÃûÒÑ±»Ê¹ÓÃ(²»ÔÚÕâ¸öÍøÒ³),Ö¸ÁîÓòÃûµÄ×ªÈÃ,Çëµã»÷",
 "pl" => "TRANS ",
 "es" => "El nombre de dominio ha sido registrado con otro registrador. Para pedir el traslado, click aquí");
 
@@ -26,7 +26,7 @@ to thoses DNS:",
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Èç¹ûÄúÏ£Íû±£ÁôÏÖÐÐµÄ×¢²áÔ±,Äú±ØÐë½«ÏÂÁÐµÄ DNS ÊäÈëÄúµÄ whois",
 "pl" => "TRANS ",
 "es" => "Si deseas mantener el registrador actual, tienes que modificar las DNS para que apunten a:");
 
@@ -38,7 +38,7 @@ $txt_dtcrm_primary_dns = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "µÚÒ»µÄDNS: ",
 "pl" => "TRANS ",
 "es" => "DNS primario");
 
@@ -50,7 +50,7 @@ $txt_dtcrm_secondary_dns = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "µÚ¶þµÄDNS: ",
 "pl" => "TRANS ",
 "es" => "DNS secundario");
 
@@ -62,7 +62,7 @@ $txt_dtcrm_your_domain_name_whois_data = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúµÄÓòÃûwhoisÊý¾Ý ",
 "pl" => "TRANS ",
 "es" => "Datos para WHOIS de tu dominio");
 
@@ -74,7 +74,7 @@ $txt_dtcrm_what_subzone_do_you_want_to_use = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúÏ£ÍûÊ¹ÓÃÄÄÒ»¸ö¸±ÓòÃû(ÀýÈç: \"ns1\"):",
 "pl" => "TRANS ",
 "es" => "¿Qué subzona deseas usar? (ejemplo: \"ns1\"):");
 
@@ -86,7 +86,7 @@ $txt_dtcrm_edit_a_name_server = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "±à¼­ÓòÃû·þÎñÆ÷ ",
 "pl" => "TRANS ",
 "es" => "Editar servidor de nombres");
 
@@ -98,7 +98,7 @@ $txt_dtcrm_name_server_hostname = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÓòÃû·þÎñÆ÷µçÄÔÃû",
 "pl" => "TRANS ",
 "es" => "nombre del host de servidor de nombres");
 
@@ -110,7 +110,7 @@ $txt_wrong_user_or_password_or_timeout_expire = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÓÃ»§´íÎó»òÃÜÂë´íÎó,»òÕßÒÑ¹ýÆÚ! ",
 "pl" => "TRANS ",
 "es" => "Nombre de usuario o contraseña incorrecta, o tiempo de ejecución excedido");
 
@@ -122,7 +122,7 @@ $txt_dtcrm_registration_of_name_server_successfull = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÒÑ³É¹¦×¢²áÄúµÄÓòÃû·þÎñÆ÷ ",
 "pl" => "TRANS ",
 "es" => "Registro de dominio correcto.");
 
@@ -135,7 +135,7 @@ $txt_dtcrm_registration_of_name_server_failed = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "×¢²áÄúµÄÓòÃû·þÎñÆ÷Ê§°Ü ",
 "pl" => "TRANS ",
 "es" => "Error en el registro de dominio");
 
@@ -147,7 +147,7 @@ $txt_dtcrm_deletion_of_name_server_succesfull = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÒÑ³É¹¦É¾³ýÄúµÄÓòÃû·þÎñÆ÷",
 "pl" => "TRANS ",
 "es" => "Eliminación del servidor de nombres correcto");
 
@@ -159,7 +159,7 @@ $txt_dtcrm_edition_of_name_server_succesfull = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÒÑ³É¹¦±à¼­ÄúµÄÓòÃû·þÎñÆ÷ ",
 "pl" => "TRANS ",
 "es" => "Edición del servidor de nombres correcto");
 
@@ -171,7 +171,7 @@ $txt_dtcrm_edition_of_name_server_failed = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "±à¼­ÄúµÄÓòÃû·þÎñÆ÷Ê§°Ü ",
 "pl" => "TRANS ",
 "es" => "Edición del servidor de nombres fallido");
 
@@ -183,7 +183,7 @@ $txt_dtcrm_deletion_of_name_server_failed = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "É¾³ýÄúµÄÓòÃû·þÎñÆ÷Ê§°Ü ",
 "pl" => "TRANS ",
 "es" => "Eliminación del servidor de nombres fallido");
 
@@ -195,7 +195,7 @@ $txt_dtcrm_list_of_registred_name_server = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúÒÑ×¢²áµÄÓòÃû·þÎñÆ÷Ä¿Â¼ ",
 "pl" => "TRANS ",
 "es" => "Listado de los servidores de nombres registrados");
 
@@ -207,7 +207,7 @@ $txt_dtcrm_register_new_name_server = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "×¢²áÐÂÓòÃû·þÎñÆ÷ ",
 "pl" => "TRANS ",
 "es" => "Registrar nuevo servidor de nombres");
 
@@ -219,7 +219,7 @@ $txt_dtcrm_delete_name_server = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "É¾³ýÓòÃû·þÎñÆ÷ ",
 "pl" => "TRANS ",
 "es" => "Eliminar servidor de nombres");
 
@@ -231,7 +231,7 @@ $txt_dtcrm_select_your_domain_name_for_adding_name_server = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Ñ¡ÔñÒ»¸öÓòÃû ",
 "pl" => "TRANS ",
 "es" => "Selecciona un nombre de dominio para añadir un servidor de nombres a los registros");
 
@@ -243,7 +243,7 @@ $txt_dtcrm_ip_addr_of_that_name_server = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Õâ¸öÓòÃû·þÎñÆ÷µÄIPµØÖ·",
 "pl" => "TRANS ",
 "es" => "Dirección IP del servidor de nombres");
 
@@ -255,7 +255,7 @@ $txt_dtcrm_what_to_do = array(
 "nl" => "TRANS What do you want to add:",
 "ru" => "TRANS What do you want to add:",
 "de" => "TRANS What do you want to add:",
-"zh" => "TRANS What do you want to add:",
+"zh" => "ÄúÏëÌí¼ÓÊ²Ã´:",
 "pl" => "TRANS What do you want to add:",
 "es" => "¿Qué quieres añadir?:");
 
@@ -267,7 +267,7 @@ $txt_dtcrm_hosting_and_domain_reg = array(
 "nl" => "TRANS Hosting + domain name registration or transfer",
 "ru" => "TRANS Hosting + domain name registration or transfer",
 "de" => "TRANS Hosting + domain name registration or transfer",
-"zh" => "TRANS Hosting + domain name registration or transfer",
+"zh" => "Íø¹Ü+ÓòÃû×¢²á»ò×ªÈÃ",
 "pl" => "TRANS Hosting + domain name registration or transfer",
 "es" => "Hosting + registro o transferencia de nombre de dominio");
 
@@ -279,7 +279,7 @@ $txt_dtcrm_hosting_only = array(
 "nl" => "TRANS Hosting only",
 "ru" => "TRANS Hosting only",
 "de" => "TRANS Hosting only",
-"zh" => "TRANS Hosting only",
+"zh" => "½öÍø¹Ü",
 "pl" => "TRANS Hosting only",
 "es" => "Sólo hosting");
 
@@ -291,7 +291,7 @@ $txt_dtcrm_enter_domain_to_add  = array(
 "nl" => "TRANS Please enter the domain name you wish to add:",
 "ru" => "TRANS Please enter the domain name you wish to add:",
 "de" => "TRANS Please enter the domain name you wish to add:",
-"zh" => "TRANS Please enter the domain name you wish to add:",
+"zh" => "ÇëÄúÏ£ÍûÌí¼ÓµÄÓòÃû:",
 "pl" => "TRANS Please enter the domain name you wish to add:",
 "es" => "Por favor introduce el nombre de dominio que te gustaría añadir:");
 
@@ -305,7 +305,7 @@ $txt_dtcrm_your_domain_will_be_soon = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúµÄÓòÃû²»¾Ã½«ÉúÐ§ ",
 "pl" => "TRANS ",
 "es" => "Tu nombre de dominio será validado en breve");
 
@@ -313,12 +313,13 @@ $txt_dtcrm_soon_an_admin_will_have_a_look = array(
 "fr" => "Bientot un administrateur validra votre requette d'ajout
 de nom de domaine sur votre compte. Vous n'avez pas les droits nécessaire
 pour l'ajout de nom de domaine automatique. Pour obtenir l'ajout automatique
-sans validation veuillez contacter :",
+sans validation, ou sans enregistrement de nom de domaine veuillez contacter :",
 "en" => "Soon an administrator will have a look to your request
 and validate the addition of this domain name to your account.
 You curently don't have enough privilege to add domain names.
 If you often add domain names, you can ask the administrator to
-do so. To have a new domain name to host without domain name
+grant you the privilege of automatic domain name addition.
+To have a new domain name to host without administrator validation or domain name
 registration, please write to:",
 "hu" => "Hamarosan az adminisztrátor ellenõrzi és jóváhagyja ezt a domain
 nevet. Önnek jelenleg nincs joga új domain neveket hozzáadni.
@@ -329,7 +330,7 @@ kérjük írjon erre címre:",
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "²»¾ÃÍøÂç¹ÜÀíÔ±½«»á¼ì²éÄúµÄÇëÇó,ÄúµÄÓòÃû½«»áÉúÐ§.ÄúÔÝÊ±Ã»ÓÐÈ¨ÀûÌí¼ÓÓòÃû,Èç¹ûÄú¾­³£Ìí¼ÓÓòÃû,Äú¿ÉÒÔÒªÇóÍøÂç¹ÜÀíÔ±ÊÚÓèÄú×Ô¶¯Ìí¼ÓÓòÃûÈ¨Àû,Äú½«ÓµÓÐÐÂµÄÓòÃû¶ø²»±ØÇëÇóÉúÐ§»òÕßÓòÃû×¢²á,Çë·¢ËÍÓÚ:",
 "pl" => "TRANS ",
 "es" => "En breve el administrador atenderá tu petición y validará el añadireste dominio
 a tu cuenta. De momento no tienes sufucientes permisos para añadir nombres de dominio.
@@ -344,7 +345,7 @@ $txt_dtcrm_add_another_domain = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Äú¿ÉÒÔÌí¼ÓÁíÍâÒ»¸öÓòÃû:",
 "pl" => "TRANS ",
 "es" => "Puedes añadir otro nombre de dominio");
 
@@ -356,7 +357,7 @@ $txt_dtcrm_transfer_existing_or_new = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúÒª¹ý»§Ò»¸öÏÖ´æµÄÓòÃû»òÕß×¢²áÒ»¸öÐÂµÄ?",
 "pl" => "TRANS ",
 "es" => "¿Quieres transferir un dominio existente o añadir uno nuevo?");
 
@@ -368,7 +369,7 @@ $txt_dtcrm_register_new_domain = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "×¢²áÒ»¸öÐÂµÄ ",
 "pl" => "TRANS ",
 "es" => "Registrar un nuevo dominio");
 
@@ -380,7 +381,7 @@ $txt_dtcrm_transfer_from_another_registrar = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "´ÓÁíÍâµÄ×¢²áÔ±¹ý»§Ò»¸öÏÖ´æµÄÓòÃû",
 "pl" => "TRANS ",
 "es" => "Transferir un dominio existente desde otro registrador");
 
@@ -392,7 +393,7 @@ $txt_dtcrm_title_register_a_domain_name = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "×¢²áÒ»¸öÓòÃû ",
 "pl" => "TRANS ",
 "es" => "Registrar nombre de dominio");
 
@@ -404,7 +405,7 @@ $txt_dtcrm_register_step1 = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "²½Öè1:¼ìÑéÓÐÐ§ÐÔ ",
 "pl" => "TRANS ",
 "es" => "Paso 1: Verificar disponibilidad");
 
@@ -416,7 +417,7 @@ $txt_dtcrm_step2_enter_whois_info = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "²½Öè2: ¼üÈëwhoisÐÅÏ¢",
 "pl" => "TRANS ",
 "es" => "Paso 2:Introducir información para WHOIS");
 
@@ -428,7 +429,7 @@ $txt_crm_enter_the_domain_name_you_wish_to_register = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "¼üÈëÄúÒª×¢²áµÄÓòÃû",
 "pl" => "TRANS ",
 "es" => "Introduce el nombre de dominio que deseas registrar :");
 
@@ -449,7 +450,7 @@ kérjük írjon erre címre:",
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúÔÝÊ±Ã»ÓÐÈ¨ÀûÌí¼ÓÓòÃû,Èç¹ûÄú¾­³£Ìí¼ÓÓòÃû,Äú¿ÉÒÔÒªÇóÍøÂç¹ÜÀíÔ±ÊÚÓèÄú×Ô¶¯Ìí¼ÓÓòÃûÈ¨Àû,Äú½«ÓµÓÐÐÂµÄÓòÃû¶ø²»±ØÇëÇóÉúÐ§»òÕßÓòÃû×¢²á,Çë·¢ËÍÓÚ:",
 "pl" => "TRANS ",
 "es" => "De momento no tienes sufucientes permisos para añadir nombres de dominio.
 Si añades nombres de dominio de forma frequente, puedes pedirle al administrador que 
@@ -464,7 +465,7 @@ $txt_dtcrm_not_correct_format = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Äú¼üÈëµÄÓòÃû´íÎó,Çë³¢ÊÔÁíÍâÒ»¸öÓòÃû",
 "pl" => "TRANS ",
 "es" => "El nombre de dominio que has introducido es incorrecto. Por favor introduce uno diferente");
 
@@ -476,7 +477,7 @@ $txt_domain_name_already_hosted_here = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "Õâ¸öÓòÃûÒÑ±»Ê¹ÓÃ,Çë³¢ÊÔÁíÍâÒ»¸öÓòÃû ",
 "pl" => "TRANS ",
 "es" => "Este dominio ya se aloja en este servidor. Por favor selecciona otro nombre");
 
@@ -488,7 +489,7 @@ $txt_dtcrm_domain_name_now_ready = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúµÄÓòÃûÒÑ³É¹¦",
 "pl" => "TRANS ",
 "es" => "Tu nombre de dominio ya está disponible");
 
@@ -501,7 +502,7 @@ en cliquant ici :",
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÄúÏÖÔÚ¿ÉÒÔ¼ì²éÓòÃûµÄÅäÖÃ, Çëµã»÷ÕâÀï:",
 "pl" => "TRANS ",
 "es" => "Ahora puedes comprobar la configuración clickando aquí");
 
@@ -513,19 +514,19 @@ $txt_dtcrm_or_you_can_add_another_domain = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "»òÕßÄú¿ÉÒÔÌí¼ÓÁíÍâÒ»¸öÓòÃû ",
 "pl" => "TRANS ",
 "es" => "O puedes añadir otro nombre de dominio");
 
 $txt_dtcrm_could_not_connect_to_api = array(
 "fr" => "Impossible de se connecter a l'API d'enregistrement de nom de domaine : veuillez essayez ultérieurement !",
-"en" => "Could not connect to domain registration server: please try again later !",
+"en" => "Could not connect to domain registration server: please try again later!",
 "hu" => "Nem tudok csatlakozni a domain regisztrációs szerverhez: kérem próbálja késõbb",
 "it" => "TRANS ",
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "ÁªÏµ²»µ½ÓòÃû×¢²á·þÎñÆ÷:ÇëÉÔºòÔÙ³¢ÊÔ!",
 "pl" => "TRANS ",
 "es" => "No se ha podido conectar al servidor de registro de nombres. Intentalo más tarde");
 
@@ -537,7 +538,7 @@ $txt_sorry_domain_name_not_available1 = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "¶Ô²»Æð,ÄúµÄÓòÃû",
 "pl" => "TRANS ",
 "es" => "Lo sentimos, el nombre de dominio");
 
@@ -549,7 +550,7 @@ $txt_sorry_domain_name_not_available2 = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "TRANS ",
+"zh" => "",
 "pl" => "TRANS ",
 "es" => "no está disponiblre para registro. El servidor de registros devolvió");
 
@@ -1057,7 +1058,7 @@ $txt_dtcrm_if_applicable = array(
 "de" => "TRANS ",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
-"es" => "Si aplicable");
+"es" => "si aplicable");
 
 $txt_dtcrm_state = array(
 "fr" => "Etat : ",
@@ -1128,7 +1129,7 @@ $txt_dtcrm_phone_formating = array(
 "nl" => "TRANS ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
-"zh" => "+86.XXXXXX",
+"zh" => "+86.XXXXXX format",
 "pl" => "TRANS ",
 "es" => "en formato +(prefijo).XXXXXXXX ");
 
