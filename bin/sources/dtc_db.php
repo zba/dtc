@@ -712,27 +712,6 @@ $dtc_database = array(
 			"domain_name_index" => "(domain_name)"
 			)
 		),
-	"testimonials" => array(
-		"vars" => array(
-			"id" => "int(11) NOT NULL auto_increment",
-			"url" => "varchar(255) NOT NULL ",
-			"company" => "varchar(255) NOT NULL ",
-			"comment" => "text NOT NULL ",
-			"publish" => "enum('yes','no') NOT NULL default 'no' "
-			),
-		"primary" => "(id)"
-		),
-	"treeindex" => array(
-		"vars" => array(
-			"id" => "int(9) NOT NULL auto_increment",
-			"name" => "varchar(32) NOT NULL ",
-			"root_object_id" => "int(11) NOT NULL default '0' "
-			),
-		"primary" => "(id)",
-		"index" => array(
-			"name" => "(name)"
-			)
-		),
 	"usergroup" => array(
 		"vars" => array(
 			"id" => "int(11) unsigned NOT NULL auto_increment",
