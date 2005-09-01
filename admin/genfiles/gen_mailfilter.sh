@@ -66,6 +66,13 @@ if [ -f $MAILFILTER_FILE ]; then
 	done
 fi
 
+# now that we have got rid of the legit additions, try and clean up "bad" End Of Config lines
+# this is in case of a bad install, or interupted install
+TMP_FILE=$home/.DTC_install.mailfilter.XXXXXX
+grep -v "End of DTC configuration" $MAILFILTER_FILE > $TMP_FILE
+cat < $TMP_FILE >> $MAILFILTER_FILE
+rm $TMP_FILE
+
 # create the file, and populate with normal things :)
 touch $MAILFILTER_FILE
 
