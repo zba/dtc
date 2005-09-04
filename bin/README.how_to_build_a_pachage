@@ -39,8 +39,8 @@ please do a ./clean beffore doing a "cvs commit".
 
 4. Starting to build a port for an other OS
 If you want to start to build a new package for a new unix
-system (remaining to do: gentoo, OS X (mac), windows+cygwin,
-mint, solaris, aix... :) then first copy what's written for
+system (remaining to do: windows+cygwin, OpenBSD, mint,
+solaris, aix... :) then first copy what's written for
 building the tarball package (read my makeTarball sh script,
 you will see it's not doing very mutch... :).
 
