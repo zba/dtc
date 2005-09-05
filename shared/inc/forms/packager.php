@@ -92,6 +92,9 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 
 		// Call the package specific installer php script
 		$install_ret = do_package_install();
+		// reselect the current dtc db in case another have been set
+		mysql_select_db($conf_mysql_db);
+
 		if($install_ret == 0){
 			$package_installer_console .= "Install successful !<br>";
 		}
