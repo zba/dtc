@@ -10,8 +10,8 @@ $txt_daemonstate_qmail_restart = array(
 	"de" => "Qmail Restart",
 	"zh" => "Qmail Restart",
 	"pl" => "Restart Qmail-a",
-	"es" => "Reinicio de Qmail");
-
+	"es" => "Reinicio de Qmail",
+	"pt" => "Reiniciar Qmail");
 $txt_daemonstate_qmail_newu = array(
 	"fr" => "Qmail New Users",
 	"en" => "Qmail New Users",
