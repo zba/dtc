@@ -11,7 +11,9 @@ $txt_daemonstate_qmail_restart = array(
 	"zh" => "Qmail Restart",
 	"pl" => "Restart Qmail-a",
 	"es" => "Reinicio de Qmail",
-	"pt" => "Reiniciar Qmail");
+	"pt" => "Reiniciar Qmail"
+	);
+
 $txt_daemonstate_qmail_newu = array(
 	"fr" => "Qmail New Users",
 	"en" => "Qmail New Users",
@@ -22,7 +24,9 @@ $txt_daemonstate_qmail_newu = array(
 	"de" => "Qmail New Users",
 	"zh" => "Qmail New Users",
 	"pl" => "Nowi u¿ytkownicy Qmail-a",
-	"es" => "Nuevos Usuarios de Qmail");
+	"es" => "Nuevos Usuarios de Qmail",
+	"pt" => "Novos utilizadores de Qmail"
+	);
 
 $txt_daemonstate_gen_files = array(
 	"fr" => "Generate new Qmail userfile",
@@ -34,7 +38,9 @@ $txt_daemonstate_gen_files = array(
 	"de" => "Generate new Qmail userfile",
 	"zh" => "Generate new Qmail userfile",
 	"pl" => "Utworzenie nowego pliku u¿ytkowników Qmail-a",
-	"es" => "Generando nuevos ficheros de usuario de Qmail");
+	"es" => "Generando nuevos ficheros de usuario de Qmail",
+	"pt" => "Gerar novos ficheiros userfile Qmail"
+	);
 
 $txt_daemonstate_apache_restart = array(
 	"fr" => "Apache Restart",
@@ -46,7 +52,9 @@ $txt_daemonstate_apache_restart = array(
 	"de" => "Apache Restart",
 	"zh" => "Apache Restart",
 	"pl" => "Restart Apache-a",
-	"es" => "Reinicio de Apache");
+	"es" => "Reinicio de Apache",
+	"pt" => "Reiniciar Apache" 
+	);
 
 $txt_daemonstate_bind_reload = array(
 	"fr" => "Reload bind",
@@ -58,7 +66,9 @@ $txt_daemonstate_bind_reload = array(
 	"de" => "Reload Bind",
 	"zh" => "Reload Bind",
 	"pl" => "Prze³adowanie Bind-a",
-	"es" => "Reinicio de Bind");
+	"es" => "Reinicio de Bind",
+	"pt" => "Reiniciar Bind"
+	);
 
 $txt_daemonstate_next_cronjob = array(
 	"fr" => "Next Cronjob",
@@ -70,6 +80,8 @@ $txt_daemonstate_next_cronjob = array(
 	"de" => "Next cronjob",
 	"zh" => "Next cronjob",
 	"pl" => "Nastêpny start crona za :",
-	"es" => "Siguiente cronjob");
+	"es" => "Siguiente cronjob",
+	"pt" => "Seguinte tarefa agendada"
+	);
 
 ?>
