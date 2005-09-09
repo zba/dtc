@@ -9,35 +9,39 @@ function anotherLanguageSelection(){
 <div align=\"right\">
 <table cellpadding=\"0\" cellspacing=\"4\">
 <tr><td align=\"right\" valign=\"center\" nowrap>
-	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=fr&rub=$rub\">FRANCAIS
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=fr&rub=$rub\">FR
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/fr.gif\"></a></td>
 <td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=en&rub=$rub\">
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/en.gif\">&nbsp;ENGLISH</a></td>
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/en.gif\">&nbsp;EN</a></td>
 <td align=\"right\" valign=\"center\" nowrap>
-	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=nl&rub=$rub\">DUTCH
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=nl&rub=$rub\">NL
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/nl.gif\"></a></td>
 <td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=ru&rub=$rub\">
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/ru.gif\">&nbsp;RUSSIAN</a></td>
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/ru.gif\">&nbsp;RU</a></td>
+<td align=\"right\" valign=\"center\" nowrap>
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=pt&rub=$rub\">PT
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/pt.gif\"></a></td>
 <td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=hu&rub=$rub\">
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/hu.gif\">&nbsp;HUNGARIAN</a></td>
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/hu.gif\">&nbsp;HU</a></td>
 </tr><tr><td align=\"right\" valign=\"center\" nowrap>
-	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=es&rub=$rub\">ESPANOL
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=es&rub=$rub\">ES
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/es.gif\"></a></td>
 <td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=de&rub=$rub\">
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/de.gif\">&nbsp;DEUTSCH</a></td>
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/de.gif\">&nbsp;DE</a></td>
 <td align=\"right\" valign=\"center\" nowrap>
-	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=it&rub=$rub\">ITALIANO
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=it&rub=$rub\">IT
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/it.gif\"></a></td>
 <td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=zh&rub=$rub\">
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/zh.gif\">&nbsp;CHINESE</a></td>
-<td valign=\"center\" nowrap>
-	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=pl&rub=$rub\">
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/pl.png\">&nbsp;POLSKI</a></td>
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/zh.gif\">&nbsp;ZH</a></td>
+<td align=\"right\" valign=\"center\" nowrap>
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=pl&rub=$rub\">PL
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/pl.png\"></a></td>
+<td>&nbsp;</td>
 </tr></table>
 </div>
 ";

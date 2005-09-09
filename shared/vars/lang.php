@@ -12,6 +12,7 @@ $txt_langname = array(
 	"de" => "iso-8859-15",
 	"zh" => "GB2312",
 	"pl" => "iso-8859-2",
+	"pt" )> "iso-8859-15",
 	"es" => "iso-8859-15");
 
 //check to see if we are running in the shell or web
@@ -55,6 +56,9 @@ if($panel_type!="cronjob"){
 		}
 		if($_REQUEST["change_language"] == "es"){
 		  $lang = "es";
+		}
+		if($_REQUEST["change_language"] == "pt"){
+		  $lang = "pt";
 		}
 	}
 	if(isset($lang)){
