@@ -43,51 +43,45 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	$admin_path = getAdminPath($adm_login);
 	$list_path = "$admin_path/$edit_domain/lists";
 	 
-	// T: Please lucas comments in english !!!
-	//Aggiungere validity string
-	// 
+	// Mailing list will be created in /var/www/sites/USERNAME/DOMAIN-NAME/lists/DOMAIN-NAME_LIST-NAME/
+	$folder_name = $edit_domain . "_" . $name;
+	$list_full_path = $list_path ."/".$folder_name;
 
-
-	// T: Please lucas comments in english !!!
-	//Inserimento nel db ed estrazione id inserito
-	$adm_query = "INSERT INTO $pro_mysql_list_table(domain, name, owner)
-VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_owner"]."');";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+	// Insert the record in the sql
+	$adm_query = "INSERT INTO $pro_mysql_list_table(domain, name, owner) VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_owner"]."');";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__line__." file ".__FILE__." sql said ".mysql_error());
 	
 	// T: Please lucas comments in english !!!
 	//prendo l'id autoincrementale che della ml che ho inserito
 	$query_last_ml = mysql_query ( "SELECT id from $pro_mysql_list_table order by id DESC limit 1" ) ;
 	$lastml = mysql_fetch_array($query_last_ml) ;
-	
-	// T: Please lucas comments in english !!!
-	//Azioni su disco
 
-	$command = "(echo $edit_domain; echo ".$owner."; echo N;) | /usr/bin/mlmmj-make-ml -L $edit_domain" . "_" . "$name -s $list_path";
+	// Call the mlmmj-make-ml command to create the mailing list
+	$command = "(echo $edit_domain; echo ".$owner."; echo N;) | /usr/bin/mlmmj-make-ml -L $folder_name -s $list_path";
 	exec($command);
 
-	$fileName3 = $list_path.'/'.$edit_domain.'_'.$name.'/control/listaddress';
+	$fileName3 = $list_path.'/'.$folder_name.'/control/listaddress';
 	$newLine3 = $name . "@" . $edit_domain;
 	$fp3 = fopen($fileName3,"w");
 	fwrite($fp3,$newLine3);
 	fclose($fp3);
 
+	if (!ereg("\@", $owner)){
+		$owner .= "@" . $edit_domain;
+	}
+
 	switch($conf_mta_type){
 	case "postfix":
-		$postfix_name = $edit_domain . "_" . $name;
-		if (!ereg("\@", $owner))
-		{
-			$owner .= "@" . $edit_domain;
-		}
 			
 		$fileName1 = "$conf_generated_file_path" . "/postfix_virtual";
-		$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' '.$postfix_name.'';
+		$newLine1 = ''.$_REQUEST["newlist_name"].'@'.$edit_domain.' '.$folder_name.'';
 		$fp1 = fopen($fileName1,"a");
 		fwrite($fp1,"\n");
 		fwrite($fp1,$newLine1);
 		fclose($fp1);
 				
 		$fileName2 = "$conf_generated_file_path" . "/postfix_aliases";
-		$newLine2 = $postfix_name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$edit_domain.'_'.$name.'/"';
+		$newLine2 = $folder_name.': "|/usr/bin/mlmmj-recieve -L '.$list_full_path.'/"';
 		$fp2 = fopen($fileName2,"a");
 		fwrite($fp2,"\n");
 		fwrite($fp2,$newLine2);
@@ -99,7 +93,7 @@ VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_own
 		break;
 	default:
 	case "qmail":
-		writeMlmmjQmailFile($edit_domain .'_'.$name,$edit_domain);
+		writeMlmmjQmailFile($list_path,$edit_domain);
 		break;
 	}
 	updateUsingCron("qmail_newu='yes',gen_qmail='yes'");

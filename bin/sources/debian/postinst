@@ -279,4 +279,10 @@ else
 	rm $TMP_FILE
 fi
 
+# Search for Squirrelmail folder to change it's GID so it works directly
+if [ -e /var/lib/squirrelmail/data/ ]; then
+	chgrp nogroup /var/lib/squirrelmail/data/
+fi
+
+
 # Upon this line, here is the standard DTC install script :

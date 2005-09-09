@@ -448,7 +448,6 @@ if [ -e "$PATH_QMAIL_CTRL" ] ;then
 	#
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Linking qmail control files to DTC generated files"
-		echo "111"
 	fi
 	if ! [ -e $PATH_QMAIL_CTRL/rcpthosts.DTC.backup ]
 	then

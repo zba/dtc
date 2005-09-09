@@ -2,12 +2,13 @@
 
 $theTopsIcons = '<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%">
 <tr>
-	<td width="16%" valign="bottom"><center><a href="'.$PHP_SELF.'?"><font face="Arial"><b>Home</b></font></a></center></td>
-	<td width="16%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=dtcadmin"><font face="Arial"><b>DTC Admin Panel</b></font></a></center></td>
-	<td width="17%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=dtc"><font face="Arial"><b>DTC Client Panel</b></font></a></center></td>
-	<td width="17%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=dtcemail"><font face="Arial"><b>DTC Email Panel</b></font></a></center></td>
-	<td width="17%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=phpmyadmin"><font face="Arial"><b>PhpMyAdmin</b></font></a></center></td>
-	<td width="17%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=register"><font face="Arial"><b>Register new account</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?"><font face="Arial"><b>Home</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=dtcadmin"><font face="Arial"><b>DTC Admin Panel</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=dtc"><font face="Arial"><b>DTC Client Panel</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=dtcemail"><font face="Arial"><b>DTC Email Panel</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=squirrelmail"><font face="Arial"><b>SquirrelMail</b></font></a></center></td>
+	<td width="15%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=phpmyadmin"><font face="Arial"><b>PhpMyAdmin</b></font></a></center></td>
+	<td width="15%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=register"><font face="Arial"><b>New account</b></font></a></center></td>
 </tr>
 </table>';
 
@@ -56,6 +57,15 @@ if($sousrub == "dtc"){
 	$ZeContent = '<IFRAME border="0" src="http://'.$_SERVER["HTTP_HOST"].'/dtc" width="100%" height="100%" scrolling="auto" frameborder="1">
   [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
   <A href="http://dtc.gplhost.com/dtc" target="_blank">the related document.</A>]
+  </IFRAME>
+';
+}
+
+if($sousrub == "squirrelmail"){
+	$ZeContentWindowTitle = "SquirrelMail|squirrel.gif";
+	$ZeContent = '<IFRAME border="0" src="http://'.$_SERVER["HTTP_HOST"].'/squirrelmail/src/" width="100%" height="100%" scrolling="auto" frameborder="1">
+  [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
+  <A href="http://dtc.gplhost.com/squirrelmail" target="_blank">the related document.</A>]
   </IFRAME>
 ';
 }

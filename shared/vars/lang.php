@@ -12,7 +12,7 @@ $txt_langname = array(
 	"de" => "iso-8859-15",
 	"zh" => "GB2312",
 	"pl" => "iso-8859-2",
-	"pt" )> "iso-8859-15",
+	"pt" => "iso-8859-15",
 	"es" => "iso-8859-15");
 
 //check to see if we are running in the shell or web
