@@ -10,7 +10,9 @@ $txt_go_to_client_panel = array(
         "de" => "TRANS",
         "zh" => "½øÈë¹Ë¿ÍÃæ°å",
         "pl" => "TRANS",
-        "es" => "Ir al panel de cliente");
+        "es" => "Ir al panel de cliente",
+		"pt" => "Ir para a área de clientes"
+		);
 
 $txt_no = array(
         "fr" => "Non",
@@ -22,7 +24,9 @@ $txt_no = array(
         "de" => "TRANS",
         "zh" => "·ñ",
         "pl" => "TRANS",
-        "es" => "No");
+        "es" => "No",
+		"pt" => "Não"
+		);
 
 $txt_yes = array(
         "fr" => "Oui",
@@ -34,7 +38,9 @@ $txt_yes = array(
         "de" => "TRANS",
         "zh" => "ÊÇ",
         "pl" => "TRANS",
-        "es" => "Sí");
+        "es" => "Sí",
+		"pt" => "Sim"
+		);
 
 $txt_is_company = array(
         "fr" => "Est-ce une sociét?",
@@ -46,7 +52,9 @@ $txt_is_company = array(
         "de" => "TRANS",
         "zh" => "ÊÇ¹«Ë¾Âð?",
         "pl" => "TRANS",
-        "es" => "Es una empresa");
+        "es" => "Es una empresa",
+		"pt" => "Pertence a uma empresa?"
+		);
 
 $txt_desired_domain_name = array(
         "fr" => "Nom de domaine desire",
@@ -58,7 +66,9 @@ $txt_desired_domain_name = array(
         "de" => "TRANS",
         "zh" => "Ñ¡ÔñÓòÃû",
         "pl" => "TRANS",
-        "es" => "Nombre de dominio deseado");
+        "es" => "Nombre de dominio deseado",
+		"es" => "Nome do dominio pretendido"
+		);
 
 $txt_confirm_pass = array(
         "fr" => "Confirmer le mot de passe",
@@ -70,7 +80,9 @@ $txt_confirm_pass = array(
         "de" => "TRANS",
         "zh" => "È·ÈÏÃÜÂë",
         "pl" => "TRANS",
-        "es" => "confirmar contraseña",);
+        "es" => "confirmar contraseña",
+		"pt" => "Confirmação da palavra chave"
+		);
 
 $txt_login_info = array(
         "fr" => "Information de login",
@@ -82,7 +94,9 @@ $txt_login_info = array(
         "de" => "TRANS",
         "zh" => "×¢²áÐÅÏ¢",
         "pl" => "TRANS",
-        "es" => "información de acceso");
+        "es" => "información de acceso",
+		"pt" => "Informação do utilizador para acesso"
+		);
 
 $txt_product = array(
         "fr" => "Produit",
@@ -94,7 +108,9 @@ $txt_product = array(
         "de" => "TRANS",
         "zh" => "²úÆ·",
         "pl" => "TRANS",
-        "es" => "producto");
+        "es" => "producto",
+		"pt" => "produto"
+		);
 
 $txt_go_to_login = array(
         "fr" => "Aller au login",
@@ -106,7 +122,9 @@ $txt_go_to_login = array(
         "de" => "TRANS",
         "zh" => "½øÈë×¢²á",
         "es" => "Ir a acceso",
-        "pl" => "TRANS");
+        "pl" => "TRANS",
+		"pt" => "Ir para o login"
+		);
 
 
 $txt_client_info = array(
@@ -119,7 +137,9 @@ $txt_client_info = array(
         "de" => "TRANS",
         "zh" => "¹Ë¿ÍÐÅÏ¢",
         "es" => "Información de cliente:",
-        "pl" => "TRANS");
+        "pl" => "TRANS",
+		"pt" => "Informação do cliente"
+		);
 
 
 $txt_list_name = array(
@@ -132,7 +152,9 @@ $txt_list_name = array(
 	"de" => "TRANS List name",
 	"zh" => "ÓÊÏäÁÐ±í",
 	"pl" => "TRANS",
-	"es" => "Nombre de la lista");
+	"es" => "Nombre de la lista",
+	"pt" => "Nome da Lista de distribuição"
+	);
 
 $txt_list_owner = array(
 	"fr" => "Propriétaire de la liste",
@@ -144,7 +166,9 @@ $txt_list_owner = array(
 	"de" => "TRANS List owner",
 	"zh" => "¹ÜÀíÔ±",
 	"pl" => "TRANS",
-	"es" => "Propietario de la lista");
+	"es" => "Propietario de la lista",
+	"pt" => "Propriatário da lista"
+	);
 
 $txt_list_liste_of_your_ml = array(
 	"fr" => "Liste de vos mailing lists:",
@@ -156,7 +180,9 @@ $txt_list_liste_of_your_ml = array(
 	"de" => "TRANS List of your mailing lists:",
 	"zh" => "ÄúµÄÓÊÏäÁÐ±íÄ¿Â¼:",
 	"pl" => "TRANS",
-	"es" => "Listado de listas de correo:");
+	"es" => "Listado de listas de correo:",
+	"pt" => "Lista dos subscritores" 
+	);
 
 $txt_list_new_list = array(
 	"fr" => "New mailing list:",
@@ -168,7 +194,9 @@ $txt_list_new_list = array(
 	"de" => "TRANS New mailing list:",
 	"zh" => "ÐÂÓÊÏäÁÐ±í:",
 	"pl" => "TRANS",
-	"es" => "Nueva lista de correo:");
+	"es" => "Nueva lista de correo:",
+	"pt" => "Nova lista de distribuição:"
+	);
 
 $txt_number_of_database = array(
 	"fr" => "Nombre de base de données :",
