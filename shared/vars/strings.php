@@ -1903,14 +1903,15 @@ $txt_allowed_data_transferMB = array(
 $txt_allowed_data_transferGB = array(
 	"fr" => "Bande passante mensuelle autorisée (Go) :",
 	"en" => "Allowed bandwidth per month (GB):",
-        "hu" => "Havi engedélyezett forgalom (GB):",
+    "hu" => "Havi engedélyezett forgalom (GB):",
 	"it" => "Banda mensile rimasta (GB):",	
 	"nl" => "Toegestane bandbreedte deze maand (GB):",
 	"ru" => "TRANSAllowed bandwidth per month (GB):",
 	"de" => "Zulässige Bandbreite pro Monat (GB):",
 	"zh" => "Ã¿ÔÂÔÊÐí´«ÊäÊý¾ÝÁ¿ (GB):",
-        "pl" => "Miesiêczny transfer (GB) :",
-	"es" => "Ancho de Banda permitido por mes (GB):"
+    "pl" => "Miesiêczny transfer (GB) :",
+	"es" => "Ancho de Banda permitido por mes (GB):",
+	"pt" => "Tráfego permitido por mês (GB)"
 );
 
 $txt_expiration_date = array(
@@ -1922,8 +1923,10 @@ $txt_expiration_date = array(
 	"ru" => "TRANSExpiration date",
 	"de" => "Ablaufdatum",
 	"zh" => "Ð­ÒéÖÕÖ¹ÈÕÆÚ",
-        "pl" => "Data wa¿no¶ci abonamentu :",
-	"es" => "Fecha de caducidad");
+    "pl" => "Data wa¿no¶ci abonamentu :",
+	"es" => "Fecha de caducidad",
+	"pt" => "Data de expiração"
+	);
 
 $txt_date = array(
 	"fr" => "Date",
@@ -1934,8 +1937,10 @@ $txt_date = array(
 	"ru" => "TRANSdate",
 	"de" => "Datum",
 	"zh" => "ÈÕÆÚ",
-        "pl" => "Data",
-	"es" => "Fecha");
+    "pl" => "Data",
+	"es" => "Fecha",
+	"pt" => "Data"
+	);
 
 $txt_action = array(
 	"fr" => "Action",
@@ -1947,7 +1952,9 @@ $txt_action = array(
 	"de" => "Aktion",
 	"zh" => "³Ê½»",
         "pl" => "Wykonaj",
-	"es" => "Acción");
+	"es" => "Acción",
+	"pt" => "Accão"
+	);
 
 $txt_upgrade_my_account_button = array(
 	"fr" => "Upgrader mon compte",
@@ -1958,8 +1965,10 @@ $txt_upgrade_my_account_button = array(
 	"ru" => "TRANSUpgrade my account",
 	"de" => "Mein Account upgraden",
 	"zh" => "¸üÐÂÔ¤¶¨",
-        "pl" => "Aktualizuj moje konto",
-	"es" => "Actualizar mi cuenta");
+    "pl" => "Aktualizuj moje konto",
+	"es" => "Actualizar mi cuenta",
+	"pt" => "Actualizar a minha conta"
+	);
 
 $txt_renew_my_account_button = array(
 	"fr" => "Renouveller mon abonnement",
@@ -1971,7 +1980,9 @@ $txt_renew_my_account_button = array(
 	"de" => "Mein Account erneuern",
 	"zh" => "´ÓÐÂ¸ü»»Ô¤¶¨",
         "pl" => "Odnów abonament",
-	"es" => "Renovar mi cuenta");
+	"es" => "Renovar mi cuenta",
+	"pt" => "Renovar a minha conta"
+	);
 
 $txt_remaining_money = array(
 	"fr" => "Argent restant sur mon compte :",
@@ -1982,8 +1993,10 @@ $txt_remaining_money = array(
 	"ru" => "TRANSRemaining money on my account:",
 	"de" => "Verbleibendes Guthaben auf meinem Account:",
 	"zh" => "ÎÒµÄÊ£ÓàÕÊ»§×Ê½ð:",
-        "pl" => "Pozosta³o na koncie :",
-	"es" => "Dinero restante en mi cuenta:");
+    "pl" => "Pozosta³o na koncie :",
+	"es" => "Dinero restante en mi cuenta:",
+	"pt" => "Crédito restante na minha conta :"
+	);
 
 $txt_refund_my_account = array(
 	"fr" => "Mettre de l'argent sur mon compte :",
@@ -1995,7 +2008,9 @@ $txt_refund_my_account = array(
 	"de" => "Guthaben auf mein Account übertragen:",
 	"zh" => "°ÑÇ®´æÔÚÎÒµÄÕÊ»§:",
         "pl" => "Zasil swoje konto :",
-	"es" => "Reembolsar mi cuenta:");
+	"es" => "Reembolsar mi cuenta:",
+	"pt" => "Recarregar a minha conta"
+	);
 
 $txt_please_tell_if_info_not_ok = array(
 	"fr" => "Merci de nous avertir si les informations ci-dessous n'étaient pas correctes :",
@@ -2007,7 +2022,9 @@ $txt_please_tell_if_info_not_ok = array(
 	"de" => "Bitte informieren Sie uns, wenn die folgenden Angaben nicht korrekt sind:",
 	"zh" => "ÓÃ»§ÁªÏµµØÖ·Óë·½Ê½:",
         "pl" => "Proszê powiadomiæ nas gdy dane bêd± niepoprawne :",
-	"es" => "Por favor, informenos si la informacion siguiente no es correcta:");
+	"es" => "Por favor, informenos si la informacion siguiente no es correcta:",
+	"pt" => "Por favor verifique se os seguintes dados não estão correctos :"
+	);
 
 // Myaccount/stats strings
 $txt_my_account_global_stats_title = array(
@@ -2020,7 +2037,9 @@ $txt_my_account_global_stats_title = array(
 	"de" => "Gesamtübersicht über mein Account",
 	"zh" => "ÕÊ»§Í³¼Æ",
         "pl" => "Ca³kowite statystyki konta",
-	"es" => "Estadísticas globales de mi cuenta");
+	"es" => "Estadísticas globales de mi cuenta",
+	"pt" => "Estatisticas gerais da minha conta"
+	);
 
 $txt_total_transfered_bytes_this_month = array(
 	"fr" => "Total des données transférées ce mois-ci :",
@@ -2032,7 +2051,9 @@ $txt_total_transfered_bytes_this_month = array(
 	"de" => "Gesamttransfer Bytes diesen Monat:",
 	"zh" => "ÒÑ´«ÊäÊý¾Ý:",
         "pl" => "Ca³kowity transfer miesiêczny w bajtach :",
-	"es" => "Transferencia total de bytes este mes:");
+	"es" => "Transferencia total de bytes este mes:",
+	"pt" => "Tráfego total usado este mês (byte)"
+	);
 
 $txt_stats_http_subdom = array(
 	"fr" => "Statistiques HTTP webalizer de vos sous-domaines :",
@@ -2044,7 +2065,8 @@ $txt_stats_http_subdom = array(
 	"de" => "Detaillierte Webalizer Statistiken (HTTP) Ihrer Subdomaines:",
 	"zh" => "¸±ÓòÃûµÄwebalizerÍ³¼ÆÏ¸½Ú:",
         "pl" => "Szczegó³owe statystyki Webalizera twoich subdomen :",
-	"es" => "Estadísticas detalladas de webalizer HTTP sobre sus subdominios:"
+	"es" => "Estadísticas detalladas de webalizer HTTP sobre sus subdominios:",
+	"pt" => "Estatistícas detalhadas HTTP dos seus dominios (Webalizer) :"
 );
 
 $txt_are_disk_usage = array(
@@ -2057,7 +2079,8 @@ $txt_are_disk_usage = array(
 	"de" => "Ihre Festplattennutzung:",
 	"zh" => "ÄúµÄ´ÅÅÌ´¢´æ¿Õ¼ä:",
         "pl" => "U¿ycie dysku :",
-	"es" => "Espacio de disco:"
+	"es" => "Espacio de disco:",
+	"pt" => "Espaço de disco usado :"
 );
 
 $txt_domain_name_files = array(
@@ -2070,7 +2093,9 @@ $txt_domain_name_files = array(
 	"de" => "Domain Name Dateien: ",
 	"zh" => "ÇøÓòÍøÖ·ÎÄ¼þ:",
         "pl" => "Spis twoich domen :",
-	"es" => "Ficheros de nombres de dominio:");
+	"es" => "Ficheros de nombres de dominio:",
+	"pt" => "Ficheiros de nomes de dominios :"
+	);
 
 $txt_database_files = array(
 	"fr" => "Fichiers des bases de données :",
@@ -2082,7 +2107,9 @@ $txt_database_files = array(
 	"de" => "Datenbanken Dateien:",
 	"zh" => "Êý¾Ý¿âÎÄ¼þ:",
         "pl" => "Spis twoich baz danych :",
-	"es" => "Ficheros de bases de datos:");
+	"es" => "Ficheros de bases de datos:",
+	"pt" => "Ficheiros de base de dados :"
+	);
 
 $txt_total_disk_usage = array(
 	"fr" => "Total de l'utilisation disque :",
@@ -2094,7 +2121,9 @@ $txt_total_disk_usage = array(
 	"de" => "Gesamtnutzung Festplatte:",
 	"zh" => "´ÅÅÌÔËÓÃÁ¿:",
         "pl" => "Ca³kowie u¿ycie dysku :",
-	"es" => "Uso total de disco:");
+	"es" => "Uso total de disco:",
+	"pt" => "Total de disco usado :"
+	);
 
 $txt_databases_disk_usage = array(
 	"fr" => "Utilisation disque des bases de données :",
@@ -2106,7 +2135,9 @@ $txt_databases_disk_usage = array(
 	"de" => "Datenbank Disk Usage:",
 	"zh" => "´ÅÅÌÊý¾Ý¿âµÄÊ¹ÓÃ:",
         "pl" => "U¿ycie dysku dla baz danych : ",
-	"es" => "Uso de disco de las bases de datos:");
+	"es" => "Uso de disco de las bases de datos:",
+	"pt" => "Total em disco das base de dados :"
+	);
 
 $txt_database_name = array(
 	"fr" => "Nom de la base de données",
@@ -2118,7 +2149,9 @@ $txt_database_name = array(
 	"de" => "Name Datenbank",
 	"zh" => "Êý¾Ý¿âµÄÃû³Æ",
         "pl" => "Nazwa bazy danych",
-	"es" => "Nombre de la base de datos");
+	"es" => "Nombre de la base de datos",
+	"pt" => "Nome da base de dados"
+	);
 
 $txt_disk_usage = array(
 	"fr" => "Utilisation disque",
@@ -2130,7 +2163,9 @@ $txt_disk_usage = array(
 	"de" => "Disk usage",
 	"zh" => "´ÅÅÌÎÄ¼þÔËÓÃºÍÒ»¸öÊý¾Ý¿âµÄÈÝÁ¿",
         "pl" => "U¿ycie dysku",
-	"es" => "Uso de disco");
+	"es" => "Uso de disco",
+	"pt" => "Utilização de disco"
+	);
 
 $txt_domain_name_trafic_du = array(
 	"fr" => "Nom de domaine, traffic et utilisation disque :",
@@ -2141,8 +2176,10 @@ $txt_domain_name_trafic_du = array(
 	"ru" => "TRANSDomain name trafic and disk usage:",
 	"de" => "Domain Name, Traffic und Disk Usage:",
 	"zh" => "ÇøÓòÃû£¬´«ÊäÁ¿£¬´ÅÅÌÔËÓÃ:",
-        "pl" => "Nazwa domeny, u¿ycie dla niej dysku i transfer :",
-	"es" => "Nombre de dominio, tráfico y uso de disco:");
+    "pl" => "Nazwa domeny, u¿ycie dla niej dysku i transfer :",
+	"es" => "Nombre de dominio, tráfico y uso de disco:",
+	"pt" => "Nome do dominio, tréfego e espaço em disco usado :" 
+	);
 
 $txt_domain_name = array(
 	"fr" => "Nom de domaine",
@@ -2154,7 +2191,9 @@ $txt_domain_name = array(
 	"de" => "Domain Name",
 	"zh" => "ÇøÓòÃû",
         "pl" => "Nazwa domeny",
-	"es" => "Nombre de dominio");
+	"es" => "Nombre de dominio",
+	"pt" => "Nome do dominio"
+	);
 
 $txt_disk_usage = array(
 	"fr" => "Utilisation disque",
@@ -2166,7 +2205,9 @@ $txt_disk_usage = array(
 	"de" => "Disk Usage",
 	"zh" => "´ÅÅÌÔËÓÃ",
         "pl" => "U¿ycie dysku",
-	"es" => "Uso de disco");
+	"es" => "Uso de disco",
+	"pt" => "Espaço em disco"
+	);
 
 $txt_total_trafic = array(
 	"fr" => "Traffic total",
@@ -2178,7 +2219,9 @@ $txt_total_trafic = array(
 	"de" => "Gesamtübertragung",
 	"zh" => "×Ü´«ÊäÁ¿",
         "pl" => "Ca³kowity transfer",
-	"es" => "Tráfico total");
+	"es" => "Tráfico total",
+	"pt" => "Tráfego total"
+	);
 
 $txt_comment_confirurate_your_domain_name = array(
 	"fr" => "Attention ! Si vous rentrez de
