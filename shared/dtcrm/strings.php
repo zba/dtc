@@ -557,7 +557,7 @@ scegli un altro nome.",
 "zh" => "Äú¼üÈëµÄÓòÃû´íÎó,Çë³¢ÊÔÁíÍâÒ»¸öÓòÃû",
 "pl" => "TRANS ",
 "es" => "El nombre de dominio que has introducido es incorrecto. Por favor introduce uno diferente",
-"pt" => "o nome do dominio é inválido, verifique sff.
+"pt" => "o nome do dominio é inválido, verifique sff."
 );
 
 $txt_domain_name_already_hosted_here = array(
@@ -732,7 +732,7 @@ $txt_dtcrm_you_dont_have_a_client_id = array(
 "zh" => "TRANS ",
 "pl" => "TRANS ",
 "es" => "Ni tienes identificación de cliente. Ponte el contacto con el administrador",
-"pt" => "Você não tem nenhum ID de cliente. Por favor contacte nos".
+"pt" => "Você não tem nenhum ID de cliente. Por favor contacte nos"
 );
 
 $txt_dtcrm_register_domain_step3 = array (
@@ -974,7 +974,7 @@ non risponde affermativamente.",
 "zh" => "TRANS ",
 "pl" => "TRANS ",
 "es" => "COMPROBACIÓN PARA TRANSFERENCIA FALLIDA: El servidor de registros no respondió satisfactoriamente",
-"pt" => "A validação de transferência FALHOU: O servidor não retornou os valores correctamente.
+"pt" => "A validação de transferência FALHOU: O servidor não retornou os valores correctamente."
 );
 
 $txt_dtcrm_transfer_check_failed = array (
@@ -1058,7 +1058,7 @@ $txt_dtcrm_your_account_has_been_refund = array(
 "zh" => "TRANS ",
 "pl" => "TRANS ",
 "es" => "Tu cuenta ha sido pagada",
-"pt" => "A sua conta foi apagada!
+"pt" => "A sua conta foi apagada!"
 );
 
 $txt_dtcrm_proceed_to_transfer_button = array(
