@@ -3136,7 +3136,7 @@ $txt_mail_redirection1 = array(
 	"pt" => "Redirecionar 1:"
 );
 $txt_mail_spam_mailbox_enable = array(
-	"fr" => "Enable SPAM filtering: ",
+	"fr" => "Activer le filtrage des SPAMs: ",
 	"en" => "Enable SPAM filtering: ",
 	"hu" => "Enable SPAM filtering: ",
 	"it" => "Abilita filtraggio SPAM: ",
@@ -3149,7 +3149,7 @@ $txt_mail_spam_mailbox_enable = array(
 	"pt" => "Activar filtro de SPAN: "
 );
 $txt_mail_spam_mailbox = array(
-	"fr" => "SPAM mailbox destination: ",
+	"fr" => "Boite destination des SPAMs: ",
 	"en" => "SPAM mailbox destination: ",
 	"hu" => "SPAM mailbox destination: ",
 	"it" => "Destinazione SPAM della mailbox: ",
