@@ -591,9 +591,8 @@ $txt_cmenu_dns = array(
 	"de" => "TRANS DNS and MX",
 	"zh" => "DNS 和 MX",
 	"pl" => "DNS i MX",
-	"es" => "TRANS DNS y MX,
-	"pt" => "DNS e MX"
-	");
+	"es" => "TRANS DNS y MX",
+	"pt" => "DNS e MX");
 
 $txt_cmenu_subdomains = array(
 	"fr" => "Sous-domaines",
@@ -1699,8 +1698,7 @@ $txt_domain_tbl_config_max_subdomain = array(
 	"zh" => "最大副域名",
         "pl" => "Subdomeny max",
 	"es" => "Max Subdominios",
-	"pt" => "Max. Subdominios
-	);
+	"pt" => "Max. Subdominios");
 
 $txt_domain_tbl_config_ip = array(
 	"fr" => "Adresse IP",
