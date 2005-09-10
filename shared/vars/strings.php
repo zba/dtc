@@ -2297,7 +2297,15 @@ sitio.<br>
 El parametro MX nos indica la direccion del servidor de 
 correo (almacena todos los correos cuando alguien envia
 un mensaje). El valor \"default\" indica que se quiere
-usar el servidor actual.");
+usar el servidor actual.",
+	"pt" => "!! ATENÇÃO !! 
+Esta operação poderá para os serviços de Web e Mail
+caso os parametros indicados estejam errados.<br>
+Se definir algo diferente de \"default\" no campo de DNS 
+quer dizer que os seu site é alojado noutro local.<br>
+O parametro MX é o endereço do servidor de email, se definir
+o valor \"default\" o serviço de correio será tratado neste servidor."
+);
 
 $txt_primari_dns_ip = array(
 	"fr" => "Addresse IP du serveur DNS primaire :",
@@ -2309,7 +2317,9 @@ $txt_primari_dns_ip = array(
 	"de" => "IP Addresse des primären DNS Servers:",
 	"zh" => "µÚÒ»¸öDNS·þÎñÆ÷µÄIPµØÖ·:",
         "pl" => "Adres IP serwera Primary DNS :",
-	"es" => "Dirección IP del servidor primario de DNS:");
+	"es" => "Dirección IP del servidor primario de DNS:",
+	"pt" => "Endereço IP do servidor de DNS primário :"
+	);
 
 $txt_other_dns_ip = array(
 	"fr" => "Autres serveurs DNS :",
@@ -2321,7 +2331,9 @@ $txt_other_dns_ip = array(
 	"de" => "Weitere DNS Server:",
 	"zh" => "ÆäËûDNS·þÎñÆ÷:",
         "pl" => "Inne serwery zapasowe DNS :",
-	"es" => "Otro servidor de DNS:");
+	"es" => "Otro servidor de DNS:",
+	"pt" => "Outros servidores de DNS"
+	);
 
 $txt_primary_mx_server = array(
 	"fr" => "Addresse du MX primaire :",
@@ -2333,7 +2345,9 @@ $txt_primary_mx_server = array(
 	"de" => "Primäre MX Adresse",
 	"zh" => "µÚÒ»¸öMXµØÖ·:",
         "pl" => "Adres IP serwera Primary MX :",
-	"es" => "Dirección primaria de MX:");
+	"es" => "Dirección primaria de MX:",
+	"pt" => "Endereço de Servidor MX primário :"
+	);
 
 $txt_other_mx_servers = array(
 	"fr" => "Autres serveurs MX (secondaire) :",
@@ -2345,7 +2359,9 @@ $txt_other_mx_servers = array(
 	"de" => "Weitere MX (Backup) Server:",
 	"zh" => "ÆäËûMX£¨±¸ÓÃ£©·þÎñÆ÷:",
         "pl" => "Inne serwery zapasowe MX :",
-	"es" => "Otro servidor MX (backup):");
+	"es" => "Otro servidor MX (backup):",
+	"pt" => "Outros servidores MX (backup) :"
+	);
  
 $txt_draw_tatabase_your_list = array(
 	"fr" => "Liste de vos bases de données :",
@@ -2357,7 +2373,9 @@ $txt_draw_tatabase_your_list = array(
 	"de" => "Liste der Datenbanken",
 	"zh" => "Êý¾Ý¿â±í:",
         "pl" => "Spis twoich baz danych :",
-	"es" => "Lista de tus bases de datos:");
+	"es" => "Lista de tus bases de datos:",
+	"pt" => "Lista de base de dados"
+	);
 
 $txt_draw_database_chpass = array(
 	"fr" => "Changer mon mot de passe MySql :",
@@ -2369,7 +2387,9 @@ $txt_draw_database_chpass = array(
 	"de" => "MySQL Passwort ändern:",
 	"zh" => "¸Ä±äMySQLÃÜÂë£º",
         "pl" => "Zmieñ has³o dostêpu do serwera MySQL :",
-	"es" => "Cambiar la contraseña de MySQL:");
+	"es" => "Cambiar la contraseña de MySQL:",
+	"pt" => "Alterar palavra chave de MySQL :"
+	);
 
 $txt_mysqlmang_nouser_by_that_name = array(
         "fr" => "Il n'y a pas d'utilisateur ayant ce nom dans
@@ -2413,7 +2433,12 @@ aby dodaæ konto u¿ytkownika MySQL ( takie samo jak login / has³o dostêpu do DTC)
         "es" => "No existe un usuario con este nombre en la base de datos de mysql.
 Pulsar <a
 href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">aqui</a>
-para añadir este usuario como usuario mysql (la misma contraseña que para DTC).");
+para añadir este usuario como usuario mysql (la misma contraseña que para DTC).",
+		"pt" => "Esse utilizador não existe na base de dados MySQL
+Clique <a
+href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">aqui</a>
+para adicionar este utilizador como uma conta MySQL (Utilizador e Palavra chave igual ai DTC)."
+);
 
 
 $txt_mysqlmang_delete_a_db = array(
@@ -2426,7 +2451,8 @@ $txt_mysqlmang_delete_a_db = array(
         "de" => "Löschen einer MySQL Datenbank für diesen Benutzer",
         "zh" => "É¾³ýÆäÖÐÒ»¸öÓÃ»§¼°ÆäÊý¾Ý¿â",
         "pl" => "Usuñ swoj± bazê danych MySQL :",
-        "es" => "Eliminar una de las bases de datos del usuario:"
+        "es" => "Eliminar una de las bases de datos del usuario:",
+		"pt" => "Apagar uma base de dados deste utilizador :"
 );
 $txt_mysqlmang_add_a_db = array(
         "fr" => "Ajouter une base de donnie a l'utilisateur :",
@@ -2438,7 +2464,8 @@ $txt_mysqlmang_add_a_db = array(
         "de" => "Anlegen einer Datenbank für diesen Benutzer",
         "zh" => "Ìí¼ÓÆäÖÐÒ»¸öÓÃ»§¼°ÆäÊý¾Ý¿â",
         "pl" => "Dodaj swoj± bazê danych MySQL :",
-        "es" => "Añadir una base de datos al usuario:"
+        "es" => "Añadir una base de datos al usuario:",
+		"pt" => "Adicionar uma base de dados para esse utlizador"
 );
 $txt_mysqlmang_db_name = array(
         "fr" => "Nom de la base de donnies :",
@@ -2450,7 +2477,8 @@ $txt_mysqlmang_db_name = array(
         "de" => "Datenbank Name:",
         "zh" => "Êý¾Ý¿âÃû×Ö:",
         "pl" => "Nazwa bazy danych : ",
-        "es" => "Nombre de la base de datos:"
+        "es" => "Nombre de la base de datos:",
+		"pt" => "Nome da base de dados :"
 );
 
 $txt_mysqlmang_not_in_demo = array(
@@ -2473,7 +2501,9 @@ Datenbank habe).",
         "zh" => "Ã»ÓÐmysqlÕÊ»§¹ÜÀíÊÔÓÃ°æ±¾£¨ÒòÎªÎÒÃ»ÓÐMySQLÊý¾Ý¿âµÄroot³ÌÐò£©.",
         "pl" => "W wersji demo brak mo¿liwo¶ci administrowania kontami MySQL.",
         "es" => "Cuentas mysql no creadas en la version de demostración (porque no
-tengo acceso de root a MySQL)."
+tengo acceso de root a MySQL).",
+		"pt" => "Na versão demo não existe gestor de contas MySQL.
+(Falta de permissões root para aceder a base de dados) "
 );
 
 $txt_delete_this_mysql_user_and_db = array(
@@ -2486,7 +2516,8 @@ $txt_delete_this_mysql_user_and_db = array(
 	"de" => "Löschen des MySQL Benutzers und all seiner Datenbanken.",
 	"zh" => "É¾³ýmysqlÓÃ»§¼°ÆäÈ«²¿Ïà¹ØÊý¾Ý¿â",
         "pl" => "Usuñ konto U¿ytkownika bazy danych i wszystkie jego bazy.",
-	"es" => "Eliminar usuario mysql y todas sus bases de datos"
+	"es" => "Eliminar usuario mysql y todas sus bases de datos",
+	"pt" => "Apagar o utilizador MySQL e todas as suas base de dados"
 );
 
 $txt_draw_client_info_comp_name = array(
@@ -2499,7 +2530,8 @@ $txt_draw_client_info_comp_name = array(
 	"de" => "Firmenname:",
 	"zh" => "¹«Ë¾Ãû×Ö:",
         "pl" => "Nazwa Firmy :",
-	"es" => "Nombre de la empresa:"
+	"es" => "Nombre de la empresa:",
+	"pt" => "Nome da base de dados"
 );
 
 $txt_draw_client_info_firstname = array(
@@ -2512,7 +2544,9 @@ $txt_draw_client_info_firstname = array(
 	"de" => "Vorname:",
 	"zh" => "Ãû:",
         "pl" => "Imiê :",
-	"es" => "Nombre:"
+	"es" => "Nombre:",
+	"pt" => "Primeiro Nome ;"
+
 );
 
 $txt_draw_client_info_familyname = array(
@@ -2525,7 +2559,8 @@ $txt_draw_client_info_familyname = array(
 	"de" => "Nachname:",
 	"zh" => "ÐÕ:",
         "pl" => "Nazwisko :",
-	"es" => "Apellidos:"
+	"es" => "Apellidos:",
+	"pt" => "Apelido ;"
 );
 
 $txt_draw_client_info_addr = array(
@@ -2538,7 +2573,8 @@ $txt_draw_client_info_addr = array(
 	"de" => "Adresse:",
 	"zh" => "µØÖ·:",
         "pl" => "Adres :",
-	"es" => "Dirección:"
+	"es" => "Dirección:",
+	"pt" => "Morada ;"
 );
 
 $txt_draw_client_info_zipcode = array(
@@ -2551,7 +2587,8 @@ $txt_draw_client_info_zipcode = array(
 	"de" => "PLZ:",
 	"zh" => "ÓÊ±à:",
         "pl" => "Kod pocztowy :",
-	"es" => "Código postal:"
+	"es" => "Código postal:",
+	"pt" => "Codigo Postal :" 
 );
 
 $txt_draw_client_info_country = array(
@@ -2564,7 +2601,8 @@ $txt_draw_client_info_country = array(
 	"de" => "Land:",
 	"zh" => "¹ú¼Ò:",
         "pl" => "Kraj :",
-	"es" => "Pais:"
+	"es" => "Pais:",
+	"pt" => "País :"
 );
 
 $txt_draw_client_info_city = array(
@@ -2577,7 +2615,8 @@ $txt_draw_client_info_city = array(
 	"de" => "Stadt:",
 	"zh" => "³ÇÊÐ:",
         "pl" => "Miejscowo¶æ :",
-	"es" => "Ciudad:"
+	"es" => "Ciudad:",
+	"pt" => "Cidade :"
 );
 
 $txt_draw_client_info_state = array(
@@ -2590,7 +2629,8 @@ $txt_draw_client_info_state = array(
 	"de" => "Bundesland:",
 	"zh" => "Ê¡·Ö:",
         "pl" => "Województwo a dla firm NIP :",
-	"es" => "Provincia:"
+	"es" => "Provincia:",
+	"pt" => "Destrito"
 );
 
 $txt_draw_client_info_phone = array(
@@ -2603,7 +2643,8 @@ $txt_draw_client_info_phone = array(
 	"de" => "Telefon:",
 	"zh" => "µç»°ºÅÂë:",
         "pl" => "Telefon :",
-	"es" => "Número de teléfono:"
+	"es" => "Número de teléfono:",
+	"pt" => "Numero de telefone :"
 );
 
 $txt_draw_client_info_fax = array(
@@ -2616,7 +2657,8 @@ $txt_draw_client_info_fax = array(
 	"de" => "Fax:",
 	"zh" => "´«Õæ:",
         "pl" => "Fax :",
-	"es" => "Fax:"
+	"es" => "Fax:",
+	"pt" => "FAX"
 );
 
 $txt_draw_client_info_email = array(
@@ -2629,7 +2671,8 @@ $txt_draw_client_info_email = array(
 	"de" => "Email:",
 	"zh" => "µç×ÓÓÊ¼þ:",
         "pl" => "E-mail :",
-	"es" => "Correo electrónico:"
+	"es" => "Correo electrónico:",
+	"pt" => "E-mail"
 );
 
 $domain_conf_submenu =array(
@@ -2658,8 +2701,9 @@ $txt_login_title = array(
 	"ru" => "éÍÑ",
 	"de" => "Login",
 	"zh" => "ÓÃ»§µÇÂ¼",
-        "pl" => "Login",
-	"es" => "Login"
+    "pl" => "Login",
+	"es" => "Login",
+	"pt" => "Login"
 );
 $txt_login_login = array(
 	"fr" => "Utilisateur : ",
@@ -2671,7 +2715,8 @@ $txt_login_login = array(
 	"de" => "Login:",
 	"zh" => "ÕÊ»§Ãû:",
         "pl" => "Login :",
-	"es" => "Login:"
+	"es" => "Login:",
+	"pt" => "Utilizador : "
 );
 $txt_login_pass = array(
 	"fr" => "Mot de passe :",
@@ -2683,7 +2728,8 @@ $txt_login_pass = array(
 	"de" => "Passwort:",
 	"zh" => "ÓÃ»§ÃÜÂë:",
         "pl" => "Has³o :",
-	"es" => "Contraseña:"
+	"es" => "Contraseña:",
+	"pt" => "Palavra chave :"
 );
 $txt_login_path = array(
 	"fr" => "Chemin:",
@@ -2695,7 +2741,8 @@ $txt_login_path = array(
 	"de" => "Pfad:",
 	"zh" => "Â·¾¶:",
         "pl" => "Katalog:",
-	"es" => "Directorio:"
+	"es" => "Directorio:",
+	"pt" => "Caminho"
 );
 
 $txt_left_menu_title = array(
@@ -2708,7 +2755,8 @@ $txt_left_menu_title = array(
 	"de" => "Ihre Domains",
 	"zh" => "ÄúµÄÇøÓò",
         "pl" => "Twoje domeny",
-	"es" => "Tus dominios"
+	"es" => "Tus dominios",
+	"pt" => "Os seus dominios"
 );
 	
 $txt_title_geninfo_form = array(
@@ -2721,7 +2769,8 @@ $txt_title_geninfo_form = array(
 	"de" => "Allgemeine Informationen",
 	"zg" => "ÖØÒªÐÅÏ¢ ",
         "pl" => "G³ówne informacje o ",
-	"es" => "Información general de "
+	"es" => "Información general de ",
+	"pt" => "Informação Geral de "
 );
 
 ///////////////
@@ -2737,7 +2786,8 @@ $txt_title_subdomain_form = array(
 	"de" => "Subdomains von ",
 	"zh" => "µÄ¸±ÇøÓò ",
         "pl" => "Subdomeny ",
-	"es" => "Subdominios de "
+	"es" => "Subdominios de ",
+	"pt" => "Subdominios de "
 );
 $txt_subdom_list = array(
 	"fr" => "Liste de vos sous-domaines : ",
@@ -2749,7 +2799,8 @@ $txt_subdom_list = array(
 	"de" => "Liste der Subdomains: ",
 	"zh" => "ÇøÓòÃûµ¥: ",
         "pl" => "Lista twoich subdomen : ",
-	"es" => "Lista de subdominios: "
+	"es" => "Lista de subdominios: ",
+	"pt" => "Lista de subdominios : "
 );
 
 $txt_subdom_txtrec = array(
@@ -2762,7 +2813,8 @@ $txt_subdom_txtrec = array(
 	"de" => "TRANS TXT field of the subdomain: ",
 	"zh" => "TRANS TXT field of the subdomain: ",
         "pl" => "Pole TXT dla DNS subdomeny : ",
-	"es" => "Campo TXT del subdominio: "
+	"es" => "Campo TXT del subdominio: ",
+	"pt" => "Campo TXT do subdominio : "
 );
 
 $txt_subdom_default_sub = array(
@@ -2775,7 +2827,8 @@ $txt_subdom_default_sub = array(
 	"de" => "Standard Subdomain",
 	"zh" => "Ô¤Éè¸±ÓòÃû:",
         "pl" => "Subdomena domy¶lna : ",
-	"es" => "Subdominio por defecto"
+	"es" => "Subdominio por defecto",
+	"pt" => "Subdominio pre-definido"
 );
 $txt_subdom_errase = array(
 	"fr" => "Effacer un sous-domaine: ",
@@ -2787,7 +2840,8 @@ $txt_subdom_errase = array(
 	"de" => "Löschen einer Subdomain",
 	"zh" => "É¾³ý¸±ÓòÃû: ",
         "pl" => "Usuwanie domeny : ",
-	"es" => "Eliminar un subdominio"
+	"es" => "Eliminar un subdominio",
+	"pt" => "Eliminar um subdominio"
 );
 
 $txt_subdom_create = array(
@@ -2800,7 +2854,8 @@ $txt_subdom_create = array(
 	"de" => "Anlegen einer Subdomain",
 	"zh" => "½¨Á¢¸±ÓòÃû: ",
         "pl" => "Zak³adanie subdomeny : ",
-	"es" => "Crear un subdominio"
+	"es" => "Crear un subdominio",
+	"pt" => "Criar um subdominio: "
 );
 
 $txt_subdom_newname = array(
@@ -2813,7 +2868,8 @@ $txt_subdom_newname = array(
 	"de" => "Subdomain Name:",
 	"zh" => "¸±ÓòÃû:",
         "pl" => "Nazwa subdomeny : ",
-	"es" => "Nombre del subdominio:"
+	"es" => "Nombre del subdominio:",
+	"pt" => "Nome do subdominio : "
 );
 
 $txt_subdom_ip = array(
@@ -2830,7 +2886,8 @@ hosting area, set server IP otherwise): ",
 	"zh" => "¸±ÓòÃûµÄIP (Ê¹ÓÃÔ¤ÉèÍøÒ³¹ÜÀíÇøÓò,·ñÔòÉèÖÃ·þÎñÆ÷IP): ",
 	"pl" => "Adres IP subdomeny ( je¶li nie wiesz co wpisaæ - pozostaw puste ) : ",
 	"es" => "IP del subdominio (dejar en blanco para usar el host web
-por defecto, indicar la IP de otro servidor en cualquier otro caso): "
+por defecto, indicar la IP de otro servidor en cualquier otro caso): ",
+	"pt" => "IP do subdominio (deixe em branco para usar o servidor web pre-definido) : "
 );
 
 $txt_subdom_dynip_logpass = array(
@@ -2857,7 +2914,8 @@ subdomain to point to it. First, enter login and password here: ",
 	"zh" => "¸ù¾ÝÄúµÄÐèÒª£¬¿ÉÒÔÒ£¿ØÉèÖÃÄúµÄ¸±ÓòÃû¡£¾Ù¸öÀý×ÓÀ´½²£¬Èç¹ûÄúÓÐÒ»¸ö¼ÒÍ¥Á¬½Ó¸Ä±äµØÖ·²¢ÇÒÏ£Íû¸±ÓòÃûÖ¸ÏòËü¡£Ê×ÏÈ£¬ÔÚÕâÀïÌîÈëµÇÂ¼ºÍÃÜÂë: ",
 	"pl" => "Je¿eli to mo¿liwe, wpisz swój adres domowy IP. Je¶li masz adres dynamiczny, np. z Neostrady, wpisz login i has³o tutaj : ",
 	"es" => "Si es necesario, es posible indicar la IP de tu subdominio remotamente, por ejemplo, si tienes una conexión con IP dinámica y quieres que un
-subdominio apunte a esta. Primero, introduce aqui el usuario y la contraseña: "
+subdominio apunte a esta. Primero, introduce aqui el usuario y la contraseña: ",
+	"pt" => "se precisar é possivel definir remotamente o endereço do seu subdominio, por exemplo caso tenha um acesso a internet com ip dinamico e quer que este subdominio aponte para esse IP. Primeiro defina o utilizador e palavra chave."
 );
 $txt_subdom_dynip_login = array(
 	"fr" => "Login IP dynamique :",
@@ -2869,7 +2927,8 @@ $txt_subdom_dynip_login = array(
 	"de" => "Dynamische IP Login: ",
 	"zh" => "¸Ä±äIPÉý¼¶µÇÂ¼: ",
 	"pl" => "Login do dynamicznej aktualizacji adresu IP : ",
-	"es" => "Login IP dinámica: "
+	"es" => "Login IP dinámica: ",
+	"pt" => "Utilizador DDNS : " 
 );
 
 $txt_subdom_dynip_pass = array(
@@ -2882,7 +2941,8 @@ $txt_subdom_dynip_pass = array(
 	"de" => "Dynamische IP Passwort: ",
 	"zh" => ":¸Ä±äIPÉý¼¶ÃÜÂë",
 	"pl" => "Has³o do dynamicznej aktualizacji adresu IP : ",
-	"es" => "Contraseña IP dinámica: "
+	"es" => "Contraseña IP dinámica: ",
+	"pt" => "Palavra chave DDNS :"
 );
 
 $txt_subdom_register_global = array(
@@ -2895,7 +2955,8 @@ $txt_subdom_register_global = array(
 	"de" => "Benutzerverzeichnis_globals=1:",
 	"zh" => "ÓÃ»§×¢²á_globals=1:",
 	"pl" => "Ustawienie register_globals=on : ",
-	"es" => "Usar register_globals=1:"
+	"es" => "Usar register_globals=1:",
+	"pt" => "Usar register_globals=1:"
 );
 
 $txt_subdom_edita = array(
@@ -2908,7 +2969,8 @@ $txt_subdom_edita = array(
 	"de" => "Subdomain erstellen:",
 	"zh" => "±à¼­¸±ÓòÃû:",
 	"pl" => "Edycja subdomen :",
-	"es" => "Editar un subdominio:"
+	"es" => "Editar un subdominio:",
+	"pt" => "Editar um subdominio :"
 );
 
 $txt_subdom_generate_webalizer = array(
@@ -2921,7 +2983,8 @@ $txt_subdom_generate_webalizer = array(
 	"de" => "Webalizer Statistiken monatlich erstellen:",
 	"zh" => "Ã¿ÔÂ¹ÜÀíwebalizer×´Ì¬£º",
 	"pl" => "Generowanie miesiêcznych statystyk Webalizera :",
-	"es" => "Generar estadísticas webalizer mensualmente:"
+	"es" => "Generar estadísticas webalizer mensualmente:",
+	"pt" => "Gerar estatistícas do Webalizer mensalmente :"
 );
 
 $txt_subdom_wwwalias = array(
@@ -2934,7 +2997,8 @@ $txt_subdom_wwwalias = array(
 	"de" => "Alias erstellen ",
 	"zh" => "TRANS Make an alias",
 	"pl" => "Utworzenie aliasu ",
-	"es" => "Crear un alias "
+	"es" => "Crear un alias ",
+	"pt" => "Criar um apontador (alias)"
 );
 $txt_subdom_scriptadvice = array(
 	"fr" => "Ensuite, ajouter simplement le script suivant a
@@ -2984,7 +3048,11 @@ de tu sitema Unix (lynx-ssl es necesario). El tiempo recomendado esta entre
 30 minutos y 2 horas. Por favor, no haga esto mas que cada 10
 minutos, sino DTC no podra generar un fichero de zona de dominios
 mas que cada 10 minutos (advertencia: configure su servidor con un
-reloj en red y haga esto en 9,19,29,39,49 y 59 de cada hora)."
+reloj en red y haga esto en 9,19,29,39,49 y 59 de cada hora).",
+	"pt" => " Depois adicione o seguinte secript ao seu systema 
+\"crontab\" (Lynx-ssl é necessário). O tempo recomendado é entre 
+30 m e 2h. O DTC não gera zonas em entrevalos menores a 10m.
+Dica: 9,19,29,39,49 e 59 de cada hora é um bom exemplo."
 );
 $txt_subdom_windowsusers = array(
 	"fr" => "Les utilisateurs de windows peuvent utiliser le planificateurde tache de windows pour effectuer la requête suivante :",
@@ -2997,7 +3065,8 @@ $txt_subdom_windowsusers = array(
 	"zh" => "Î¢Èí´°¿ÚÊ¹ÓÃÕß¿ÉÒÔÊ¹ÓÃÏÂÁÐURL£º",
 	"pl" => "U¿ytkownik Windows mo¿e ³atwo pobieraæ dane z adresu URL:",
 	"es" => "La ventana de  usuario puede automatizar fácilmente la pregunta del URL
-siguiente:"
+siguiente:",
+	"pt" => "Utilizadores de Windows podem simplesmente qceder ao seguinte endereço URL"
 );
 
 /////////////
@@ -3013,7 +3082,8 @@ $txt_title_mailbox_form = array(
 	"de" => "Mailboxen von ",
 	"zh" => "µç×ÓÐÅÏä ",
 	"pl" => "Skrzynki pocztowe ",
-	"es" => "Cuentas de correo de "
+	"es" => "Cuentas de correo de ",
+	"pt" => "Contas de correio de "
 );
 $txt_mail_liste_of_your_box = array(
 	"fr" => "Liste de vos boites emails : ",
@@ -3025,7 +3095,8 @@ $txt_mail_liste_of_your_box = array(
 	"de" => "Liste Ihrer Mailboxen",
 	"zh" => "µç×ÓÐÅÏäÃûµ¥: ",
 	"pl" => "Spis twoich skrzynek pocztowych : ",
-	"es" => "Listado de tus cuentas de correo"
+	"es" => "Listado de tus cuentas de correo",
+	"pt" => "Lista de contas de correio : "
 );
 $txt_mail_new_mailbox = array(
 	"fr" => "Nouvelle boite aux lettres : ",
@@ -3037,7 +3108,8 @@ $txt_mail_new_mailbox = array(
 	"de" => "Neue Mailbox: ",
 	"zh" => "ÐÂÓÊÏä: ",
 	"pl" => "Nowa skrzynka pocztowa : ",
-	"es" => "Nueva cuenta de correo: "
+	"es" => "Nueva cuenta de correo: ",
+	"pt" => "Nova conta de correio : "
 );
 $txt_mail_new_mailbox_link = array(
 	"fr" => "Nouvelle boite",
@@ -3049,7 +3121,8 @@ $txt_mail_new_mailbox_link = array(
 	"de" => "Neue Mailbox",
 	"zh" => "ÐÂÓÊÏä",
 	"pl" => "Nowa skrzynka pocztowa",
-	"es" => "Nueva cuenta de correo"
+	"es" => "Nueva cuenta de correo",
+	"pt" => "Nova conta de correio" 
 );
 $txt_mail_redirection1 = array(
 	"fr" => "Redirection 1: ",
@@ -3061,7 +3134,8 @@ $txt_mail_redirection1 = array(
 	"de" => "Umleitung 1:",
 	"zh" => "×ªËÍ1:",
 	"pl" => "Przekierowanie 1: ",
-	"es" => "Redireccion 1: "
+	"es" => "Redireccion 1: ",
+	"pt" => "Redirecionar 1:"
 );
 $txt_mail_spam_mailbox_enable = array(
 	"fr" => "Enable SPAM filtering: ",
@@ -3073,7 +3147,8 @@ $txt_mail_spam_mailbox_enable = array(
 	"de" => "Enable SPAM filtering: ",
 	"zh" => "Enable SPAM filtering: ",
 	"pl" => "Enable SPAM filtering: ",
-	"es" => "Habilitar filtrado de spam: "
+	"es" => "Habilitar filtrado de spam: ",
+	"pt" => "Activar filtro de SPAN: "
 );
 $txt_mail_spam_mailbox = array(
 	"fr" => "SPAM mailbox destination: ",
@@ -3085,7 +3160,8 @@ $txt_mail_spam_mailbox = array(
 	"de" => "SPAM mailbox destination: ",
 	"zh" => "SPAM mailbox destination: ",
 	"pl" => "SPAM mailbox destination: ",
-	"es" => "Buzón de destino para el SPAM: "
+	"es" => "Buzón de destino para el SPAM: ",
+	"pt" => "Conta de correio de destino para SPAM: "
 );
 $txt_mail_redirection2 = array(
 	"fr" => "Redirection 2: ",
@@ -3097,7 +3173,8 @@ $txt_mail_redirection2 = array(
 	"de" => "Umleitung 2:",
 	"zh" => "×ªËÍ2: ",
 	"pl" => "Przekierowanie 2: ",
-	"es" => "Redireccion 2: "
+	"es" => "Redireccion 2: ",
+	"pt" => "Redirecionar 2:"
 );
 
 $txt_mail_deliver_localy = array(
@@ -3110,7 +3187,8 @@ $txt_mail_deliver_localy = array(
 	"de" => "Nachrichten lokal zustellen: ",
 	"zh" => "±¾µØ´¢´æ: ",
 	"pl" => "Dostarczanie lokalne <br>(odznacz&nbsp;je¶li&nbsp;adres&nbsp; jest przekierowywany) : ",
-	"es" => "Enviar mensajes localmente: "
+	"es" => "Enviar mensajes localmente: ",
+	"pt" => "Enviar mensagens localmente: "
 );
 $txt_mail_edit = array(
 	"fr" => "Edition d'une boite aux lettres: ",
@@ -3122,7 +3200,8 @@ $txt_mail_edit = array(
 	"de" => "Mailbox Konfiguration",
 	"zh" => "ÓÊÏäÅäÖÃ: ",
 	"pl" => "Konfiguracja skrzynki pocztowej: ",
-	"es" => "Configuracion de la cuenta de correo:"
+	"es" => "Configuracion de la cuenta de correo:",
+	"pt" => "Configurar as contas de correio: "
 );
 
 //////////////////
@@ -3138,7 +3217,8 @@ $txt_title_ftp_form = array(
 	"de" => "FTP Accounts von ",
 	"zh" => "±¾ÍøÕ¾µÄFTPÕÊ»§ ",
 	"pl" => "Konta FTP ",
-	"es" => "Cuentas de ftp "
+	"es" => "Cuentas de ftp ",
+	"pt" => "Contas de ftp"
 );
 $txt_ftp_account_list = array(
 	"fr" => "Liste de vos comptes FTP: ",
@@ -3150,7 +3230,8 @@ $txt_ftp_account_list = array(
 	"de" => "Liste Ihrer FTP Accounts:",
 	"zh" => "ÄúµÄFTPÕÊ»§ÁÐ±í: ",
 	"pl" => "Spis twoich kont FTP : ",
-	"es" => "Listado de cuentas de ftp:"
+	"es" => "Listado de cuentas de ftp:",
+	"pt" => "Lista de contas de ftp"
 );
 $txt_ftp_new_account = array(
 	"fr" => "Nouveau compte FTP : ",
@@ -3162,7 +3243,8 @@ $txt_ftp_new_account = array(
 	"de" => "Neuer FTP Account",
 	"zh" => "ÐÂµÄFTPÕÊ»§: ",
 	"pl" => "Nowe konto FTP : ",
-	"es" => "Nueva cuenta de ftp"
+	"es" => "Nueva cuenta de ftp",
+	"pt" => "Nova conta de ftp"
 );
 $txt_ftp_account_edit = array(
 	"fr" => "Edition d'un compte FTP : ",
@@ -3174,7 +3256,8 @@ $txt_ftp_account_edit = array(
 	"de" => "Konfiguration des FTP Accounts",
 	"zh" => "FTPÕÊ»§ÅäÖÃ: ",
 	"pl" => "Konfiguracja konta FTP : ",
-	"es" => "Configuración de las cuentas de ftp"
+	"es" => "Configuración de las cuentas de ftp",
+	"pt" => "Configuração das contas de ftp"
 );
 $txt_ftp_new_account_link = array(
 	"fr" => "Nouveau compte ftp",
@@ -3186,7 +3269,8 @@ $txt_ftp_new_account_link = array(
 	"de" => "Neuer FTP Account",
 	"zh" => "ÐÂµÄFTPÕÊ»§",
 	"pl" => "Nowe konto FTP",
-	"es" => "Nueva cuenta de ftp"
+	"es" => "Nueva cuenta de ftp",
+	"pt" => "Nova conta de ftp"
 );
 
 ///////////////
@@ -3202,7 +3286,8 @@ $txt_new_password = array(
 	"de" => "Neuer FTP Account",
 	"zh" => "ÐÂµÄFTPÕÊ»§",
 	"pl" => "Nowe konto FTP",
-	"es" => "Nueva cuenta de ftp"
+	"es" => "Nueva cuenta de ftp",
+	"pt" => "Nova conta de ftp"
 );
 $txt_title_database_form = array(
 	"fr" => "Vos bases de données",
@@ -3214,7 +3299,8 @@ $txt_title_database_form = array(
 	"de" => "Ihre Datenbanken",
 	"zh" => "ÄúµÄÊý¾Ý¿â",
 	"pl" => "Twoje bazy danych",
-	"es" => "Tus bases de datos"
+	"es" => "Tus bases de datos",
+	"pt" => "As suas base de dados"
 );
 $txt_title_help_form = array(
 	"fr" => "Aide en ligne de DTC",
@@ -3226,7 +3312,8 @@ $txt_title_help_form = array(
 	"de" => "DTC Online Hilfe",
 	"zh" => "ÔÚÏß DTC°ïÖú",
 	"pl" => "Pomoc DTC Online",
-	"es" => "Ayuda en linea para DTC"
+	"es" => "Ayuda en linea para DTC",
+	"pt" => "Ajuda on-line para DTC"
 );
 
 $txt_draw_help_content = array(
@@ -4880,6 +4967,149 @@ paginas web de nuestro servidor sea mas rapida.<br><br><br>
 |___________\    |    |__________/|____|     /|___________\___________\GPL |   
 Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
 </font>
-");
+",
+"pt" => "<font face=\"Arial, Verdana\">
+<center><font size=\"+2\"><u><b>Ajuda DTC ON-Line
+</b></u></font></center><br><br>
+<div align=\"justify\">
+<font size=\"+1\"><u>1. O que é DTC</u></font><br><br>
+O DTC é um utilitário que foi feito a pensar em si, com este voce pode 
+controlar o seu dominio : Poderá gerir todos todas os seus subdominios,
+e-mails e contas FTP.<br><br>
+Tudo isto foi realizado segundo a licença <a
+href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence), o que quer dizer
+que poderá obter o codigo fonte deste interface, podera modifica-lo e usa-lo  
+Nos (GPLHost) acreditamos no software open source e esperamos que esta participação 
+incorage outros programadores. Considera-mos já que nós usamos apenas software open
+source para o serviço de alojamento é normal que façamos a distribuição do nosso 
+desenvolvimento .<br><br>
+
+<font size=\"+1\"><u>2. E-mails</u></font><br>
+<u>2.1. O que pderá fazer?</u><br><br>
+Voce poderá adiconar, elimnar e modificar a sua conta de e-mail
+com este utilitário.<br><br>
+
+<u>2.2. Redirecionamento e entrega local</u><br><br>
+
+Cada conta de e-mail pode ser redirecionada para outro endereço de e-mail,
+o que quer dizer que quando uma mensagem é recebida, é redirecionada para 
+outro ou outros endereços de e-mail. O parametro \"entrega Local\" faz com que 
+todos os e-mails sejam escritos no disco rigido, poderá aceder a estas com um 
+cliente de e-mail ligando se ao servidor. Não se esqueça de verificar os seus e-mails
+ja que o tamanho destes são incluidos na quota de disco da sua conta.<br><br>
+<u>2.3. Atraso quando adicionar / eliminar contas </u><br><br>
+Quando adicionar ou apagar uma conta não espere que as alterações surjam de imediato:
+Todas as acções serão validadas no sistema, depois disto teremos de dizer ao Qmail 
+para reiniciar a base de dados dos utilizadores.<br><br>  
+A maior parte das vezes, são validadas todas as  alterações no fim de cada dia de trabalho,
+caso necessite de uma validação imediata clique  <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Conta
+de e-mail \">aqui</a>.<br><br>
+
+<font size=\"+1\"><u>3. Subdominios</u></font><br>
+<u>3.1. O que pderá fazer?</u><br><br>
+Esta parte do interface permite a configuração dos seus subdominios.
+
+<pre>
+http://qualquercoisa.dominio.pt
+</pre>
+<u>3.2. O que é o subdominio pre definido ?</u><br><br>
+Se alguem tentar aceder a um site sem o sudominio será redirecionado para 
+o subdominio predefenido em outras palavras se disser que 
+<pre>
+www
+</pre>
+é o sudominio predefinido 
+<pre>
+http://mydomain.com
+</pre>
+será redirecionado para
+<pre>
+http://www.mydomain.com
+</pre>
+
+Na realidade o URL é guardado e nenhuma pagina HTML é criada simplesmente 
+esta configurado para apontar para o mesmo local do subdominio\"www\" e assim está 
+a aceder ao mesmo ficheiro que acederia usando o \"www\", também é partilhad o 
+ficheiro de log.<br><br>
+
+
+<u>3.3. Subdominios Proibidos</u><br><br>
+Porque alguns subdominios são usados noutros serviços, 
+não são permitidos usar os seguintes subdominios :
+<ul><li>ftp</li>
+<li>pop</li>
+<li>smtp</li>
+</ul>
+
+<u>3.4. Apagar subdominios</u><br><br> 
+Você poderá apagar qualquer ficheiro ou todos usando um cliente de ftp.
+Por favor tome cuidado para não apagar nenhum subdominio sem apagar primeiro no DTC.
+O servidor Apache irá reportar um erro ao iniciar.<br><br>
+
+<u>3.5. Atrasos em apagar / adiconar subdominios</u><br><br>
+Quando adicionar ou apagar um subdominio não espere que as alterações surjam de imediato:
+Todas as acções serão validadas no sistema, depois disto teremos de dizer ao Apache 
+para reiniciar com as alterações.<br><br>  
+A maior parte das vezes, são validadas todas as alterações no fim de cada dia de trabalho,
+caso necessite de uma validação imediata clique  <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]sub 
+dominio adicionado !\">aqui</a>.<br><br>
+
+<u>3.6. Estatisticas de trafego</u><br><br>
+Porque todo o trafego é registado é calculado e registado o trafego dos 12 Meses 
+passados usando o <a href=\"http://www.mrunix.net/webalizer/\">
+webalizer</a>. As estatísticassão são calculadas em horas de menor trafego, poderá 
+aceder a estas através do directorio \" /stats\" em cada subdominio.
+Exemplo : 
+
+<pre>
+http://www.meudominio.com
+</pre>
+todas as estatistícas serão acessiveis em 
+<pre>
+http://www.meudominio.com/stats/
+</pre>
+
+<font size=\"+1\"><u>4. Contas FTP</u></font><br>
+<u>4.1. O que pderá fazer?</u><br><br>
+Para gerir ficheiros da sua pagina é necessário realizar a tranferencia dos ficheiros
+através de FTP. O DTC permite gerir varios utilizadores para acederem a partes diferentes do seu site.
+.<br><br>
+
+<u>4.2.  Atrasos em apagar / adicionar contas de FTP </u><br><br>
+Porque usamos o ProFTPD com um modulo especial todas as alterações são feitas em tempo real.<br><br>
+
+<u>4.3. Limitando um utilizador a uma pasta</u><br><br>
+No momento não é possivel limitar um utilizador a uma pasta no DTC, caso 
+necessite poderá enviar um e-mail ao administrador para realizar a tarefa clicando 
+<a
+href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]FTP limite\">aqui</a>, Indicando o utilizador e a pasta.<br><br>
+
+<u>4.4. Politica de ficheiros !</u><br><br>
+O espaço desponibilizado no servidor serve para conteudo Html, isto quer dizer que não é permitido
+conteudo de binarios que não tenha os direitos, não é permitido qualquer tipo de ficheiros de pirataria, ou  ilegais.
+Tenha cuidado porque caso seja detectado algum abuso, a sua conta será fechada sem qualquer tipo de aviso.<br><br>
+
+
+
+<font size=\"+1\"><u>5. As vezes o FTP  está lento ?</u></font><br><br>
+Existem inumeras razões a mais provavel é que os nossos servidores não tenham
+largura de banda suficiente  para o upload e outras vezes existem inumeras pessoas a 
+realizar upload. Podendo no entanto ser outra razão alheia que nós não podemos controlar. 
+Algumas vezes a largura de banda é limitada para este serviço para permitir navegar nas 
+paginas mais rapidamente <br><br><br>
+
+</div>
+<center>A equipa GPLHost,</center><br>
+<div align=\"right\"><i><a href=\"mailto:thomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
+<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
+ _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
+|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
+|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
+|___________\    |    |__________/|____|     /|___________\___________\GPL |   
+Opensource driven| hosting worldwide  /_____/                         |HOST.  </pre>
+</font>
+"
+
+);
 
 ?>

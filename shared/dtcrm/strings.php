@@ -14,7 +14,9 @@ Ha szeretné áttranszferáltatni erre a szerverre, kattintson ide.",
 "de" => "TRANS ",
 "zh" => "ÄúµÄÓòÃûÒÑ±»Ê¹ÓÃ(²»ÔÚÕâ¸öÍøÒ³),Ö¸ÁîÓòÃûµÄ×ªÈÃ,Çëµã»÷",
 "pl" => "TRANS ",
-"es" => "El nombre de dominio ha sido registrado con otro registrador. Para pedir el traslado, click aquí");
+"es" => "El nombre de dominio ha sido registrado con otro registrador. Para pedir el traslado, click aquí",
+"pt" => "O seu dominio foi registado noutro local. Para pedir a alteração clique "
+);
 
 $txt_dtcrm_if_you_want_to_keep_your_current_registrar = array(
 "fr" => "Si vous voullez garder votre registrar actuel, vous devez faire pointer
@@ -30,7 +32,9 @@ il whois verso questi DNS:",
 "de" => "TRANS ",
 "zh" => "Èç¹ûÄúÏ£Íû±£ÁôÏÖĞĞµÄ×¢²áÔ±,Äú±ØĞë½«ÏÂÁĞµÄ DNS ÊäÈëÄúµÄ whois",
 "pl" => "TRANS ",
-"es" => "Si deseas mantener el registrador actual, tienes que modificar las DNS para que apunten a:");
+"es" => "Si deseas mantener el registrador actual, tienes que modificar las DNS para que apunten a:",
+"pt" => "Caso queira manter o seu actual Registar, queira fazer as seguintes alterações de DNS :"
+);
 
 $txt_dtcrm_primary_dns = array(
 "fr" => "DNS primaire :",
@@ -42,7 +46,9 @@ $txt_dtcrm_primary_dns = array(
 "de" => "TRANS ",
 "zh" => "µÚÒ»µÄDNS: ",
 "pl" => "TRANS ",
-"es" => "DNS primario");
+"es" => "DNS primario",
+"pt" => "DNS primário"
+);
 
 $txt_dtcrm_secondary_dns = array(
 "fr" => "DNS secondaire :",
@@ -53,8 +59,10 @@ $txt_dtcrm_secondary_dns = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "µÚ¶şµÄDNS: ",
-"pl" => "TRANS ",
-"es" => "DNS secundario");
+"pl" => "TRANS ", 
+"es" => "DNS secundario",
+"pt" => "DNS secundário"
+);
 
 $txt_dtcrm_your_domain_name_whois_data = array(
 "fr" => "Vos données whois pour ce domaine :",
@@ -66,7 +74,9 @@ $txt_dtcrm_your_domain_name_whois_data = array(
 "de" => "TRANS ",
 "zh" => "ÄúµÄÓòÃûwhoisÊı¾İ ",
 "pl" => "TRANS ",
-"es" => "Datos para WHOIS de tu dominio");
+"es" => "Datos para WHOIS de tu dominio",
+"pt" => "Dados para o WHOIS do seu dominio"
+);
 
 $txt_dtcrm_what_subzone_do_you_want_to_use = array(
 "fr" => "Quel sous-zone voulez vous utiliser (exemple : \"ns1\") :",
@@ -78,7 +88,9 @@ $txt_dtcrm_what_subzone_do_you_want_to_use = array(
 "de" => "TRANS ",
 "zh" => "ÄúÏ£ÍûÊ¹ÓÃÄÄÒ»¸ö¸±ÓòÃû(ÀıÈç: \"ns1\"):",
 "pl" => "TRANS ",
-"es" => "¿Qué subzona deseas usar? (ejemplo: \"ns1\"):");
+"es" => "¿Qué subzona deseas usar? (ejemplo: \"ns1\"):",
+"pt" => "Qual subzona quer usar (Exemplo: \"ns1\") :"
+);
 
 $txt_dtcrm_edit_a_name_server = array(
 "fr" => "Editer un serveur de nom:",
@@ -90,7 +102,9 @@ $txt_dtcrm_edit_a_name_server = array(
 "de" => "TRANS ",
 "zh" => "±à¼­ÓòÃû·şÎñÆ÷ ",
 "pl" => "TRANS ",
-"es" => "Editar servidor de nombres");
+"es" => "Editar servidor de nombres",
+"pt" => "Editar servidores de nomes"
+);
 
 $txt_dtcrm_name_server_hostname = array(
 "fr" => "Nom d'hote du serveur de nom : ",
@@ -102,7 +116,9 @@ $txt_dtcrm_name_server_hostname = array(
 "de" => "TRANS ",
 "zh" => "ÓòÃû·şÎñÆ÷µçÄÔÃû",
 "pl" => "TRANS ",
-"es" => "nombre del host de servidor de nombres");
+"es" => "nombre del host de servidor de nombres",
+"pt" => "Nome do servidor \"hostname\" "
+);
 
 $txt_wrong_user_or_password_or_timeout_expire = array(
 "fr" => "Mauvais utilisateur ou mot de passe, ou temps d'expiration atteint !",
@@ -114,7 +130,9 @@ $txt_wrong_user_or_password_or_timeout_expire = array(
 "de" => "TRANS ",
 "zh" => "ÓÃ»§´íÎó»òÃÜÂë´íÎó,»òÕßÒÑ¹ıÆÚ! ",
 "pl" => "TRANS ",
-"es" => "Nombre de usuario o contraseña incorrecta, o tiempo de ejecución excedido");
+"es" => "Nombre de usuario o contraseña incorrecta, o tiempo de ejecución excedido",
+"pt" => "Nome do utilizador ou palavra chave incorrecto" 
+);
 
 $txt_dtcrm_registration_of_name_server_successfull = array(
 "fr" => "Enregistrement de votre serveur de nom réussit",
@@ -126,7 +144,9 @@ $txt_dtcrm_registration_of_name_server_successfull = array(
 "de" => "TRANS ",
 "zh" => "ÒÑ³É¹¦×¢²áÄúµÄÓòÃû·şÎñÆ÷ ",
 "pl" => "TRANS ",
-"es" => "Registro de dominio correcto.");
+"es" => "Registro de dominio correcto.",
+"pt" => "O seu dominio foi registado correctamente"
+);
 
 
 $txt_dtcrm_registration_of_name_server_failed = array(
@@ -139,7 +159,9 @@ $txt_dtcrm_registration_of_name_server_failed = array(
 "de" => "TRANS ",
 "zh" => "×¢²áÄúµÄÓòÃû·şÎñÆ÷Ê§°Ü ",
 "pl" => "TRANS ",
-"es" => "Error en el registro de dominio");
+"es" => "Error en el registro de dominio",
+"pt" => "O regisot do seu dominio falhou"
+);
 
 $txt_dtcrm_deletion_of_name_server_succesfull = array(
 "fr" => "Effacement de votre serveur de nom réussit",
@@ -151,7 +173,9 @@ $txt_dtcrm_deletion_of_name_server_succesfull = array(
 "de" => "TRANS ",
 "zh" => "ÒÑ³É¹¦É¾³ıÄúµÄÓòÃû·şÎñÆ÷",
 "pl" => "TRANS ",
-"es" => "Eliminación del servidor de nombres correcto");
+"es" => "Eliminación del servidor de nombres correcto",
+"pt" => "O dominio foi eliminado"
+);
 
 $txt_dtcrm_edition_of_name_server_succesfull = array(
 "fr" => "Edition de votre serveur de nom réussit",
@@ -163,7 +187,9 @@ $txt_dtcrm_edition_of_name_server_succesfull = array(
 "de" => "TRANS ",
 "zh" => "ÒÑ³É¹¦±à¼­ÄúµÄÓòÃû·şÎñÆ÷ ",
 "pl" => "TRANS ",
-"es" => "Edición del servidor de nombres correcto");
+"es" => "Edición del servidor de nombres correcto",
+"pt" => "A alteração do servidor de nome foi efectuada correctamente" 
+);
 
 $txt_dtcrm_edition_of_name_server_failed = array(
 "fr" => "Edition de votre serveur de nom réussit",
@@ -175,7 +201,9 @@ $txt_dtcrm_edition_of_name_server_failed = array(
 "de" => "TRANS ",
 "zh" => "±à¼­ÄúµÄÓòÃû·şÎñÆ÷Ê§°Ü ",
 "pl" => "TRANS ",
-"es" => "Edición del servidor de nombres fallido");
+"es" => "Edición del servidor de nombres fallido",
+"pt" => "A alteração do servidor de nome falhou"
+);
 
 $txt_dtcrm_deletion_of_name_server_failed = array(
 "fr" => "Echec lors de l'effacement du serveur de nom",
@@ -187,7 +215,9 @@ $txt_dtcrm_deletion_of_name_server_failed = array(
 "de" => "TRANS ",
 "zh" => "É¾³ıÄúµÄÓòÃû·şÎñÆ÷Ê§°Ü ",
 "pl" => "TRANS ",
-"es" => "Eliminación del servidor de nombres fallido");
+"es" => "Eliminación del servidor de nombres fallido",
+"pt" => "A eliminação do servidor de nome falhou"
+);
 
 $txt_dtcrm_list_of_registred_name_server = array(
 "fr" => "Liste de vos serveurs de nom enregistrés : ",
@@ -199,7 +229,9 @@ $txt_dtcrm_list_of_registred_name_server = array(
 "de" => "TRANS ",
 "zh" => "ÄúÒÑ×¢²áµÄÓòÃû·şÎñÆ÷Ä¿Â¼ ",
 "pl" => "TRANS ",
-"es" => "Listado de los servidores de nombres registrados");
+"es" => "Listado de los servidores de nombres registrados",
+"pt" => "lista dos servidores de nomes foi registada"
+);
 
 $txt_dtcrm_register_new_name_server = array(
 "fr" => "Enregistrer un nouveau serveur de nom :",
@@ -211,7 +243,9 @@ $txt_dtcrm_register_new_name_server = array(
 "de" => "TRANS ",
 "zh" => "×¢²áĞÂÓòÃû·şÎñÆ÷ ",
 "pl" => "TRANS ",
-"es" => "Registrar nuevo servidor de nombres");
+"es" => "Registrar nuevo servidor de nombres",
+"pt" => "Registar novo servidor de nomes" 
+);
 
 $txt_dtcrm_delete_name_server = array(
 "fr" => "Effacer le serveur de nom",
@@ -223,7 +257,9 @@ $txt_dtcrm_delete_name_server = array(
 "de" => "TRANS ",
 "zh" => "É¾³ıÓòÃû·şÎñÆ÷ ",
 "pl" => "TRANS ",
-"es" => "Eliminar servidor de nombres");
+"es" => "Eliminar servidor de nombres",
+"pt" => "Eliminar servidor de nomes"
+);
 
 $txt_dtcrm_select_your_domain_name_for_adding_name_server = array(
 "fr" => "Selectionner un de vos nom de domaine pour ajouter le serveur de nom a la registry :",
@@ -236,7 +272,9 @@ server ai registri",
 "de" => "TRANS ",
 "zh" => "Ñ¡ÔñÒ»¸öÓòÃû ",
 "pl" => "TRANS ",
-"es" => "Selecciona un nombre de dominio para añadir un servidor de nombres a los registros");
+"es" => "Selecciona un nombre de dominio para añadir un servidor de nombres a los registros",
+"pt" => "Selecionar um dominio para adicionar um servidor de nomes aos registos :"
+);
 
 $txt_dtcrm_ip_addr_of_that_name_server = array(
 "fr" => "Addresse IP de ce serveur de nom :",
@@ -248,7 +286,9 @@ $txt_dtcrm_ip_addr_of_that_name_server = array(
 "de" => "TRANS ",
 "zh" => "Õâ¸öÓòÃû·şÎñÆ÷µÄIPµØÖ·",
 "pl" => "TRANS ",
-"es" => "Dirección IP del servidor de nombres");
+"es" => "Dirección IP del servidor de nombres",
+"pt" => "Endereço IP desse servidor de nomes :"
+);
 
 $txt_dtcrm_what_to_do = array(
 "fr" => "Que voulez vous ajouter :",
@@ -260,7 +300,9 @@ $txt_dtcrm_what_to_do = array(
 "de" => "TRANS What do you want to add:",
 "zh" => "ÄúÏëÌí¼ÓÊ²Ã´:",
 "pl" => "TRANS What do you want to add:",
-"es" => "¿Qué quieres añadir?:");
+"es" => "¿Qué quieres añadir?:",
+"pt" => "O que quer adicionar :"
+);
 
 $txt_dtcrm_hosting_and_domain_reg = array(
 "fr" => "Hébergement + enregistrement ou transfère de nom de domaine",
@@ -273,7 +315,9 @@ trasferimento",
 "de" => "TRANS Hosting + domain name registration or transfer",
 "zh" => "Íø¹Ü+ÓòÃû×¢²á»ò×ªÈÃ",
 "pl" => "TRANS Hosting + domain name registration or transfer",
-"es" => "Hosting + registro o transferencia de nombre de dominio");
+"es" => "Hosting + registro o transferencia de nombre de dominio",
+"pt" => "Alojamento + registo de dominio ou tranferencia"
+);
 
 $txt_dtcrm_hosting_only = array(
 "fr" => "Hébergement seulement",
@@ -285,7 +329,9 @@ $txt_dtcrm_hosting_only = array(
 "de" => "TRANS Hosting only",
 "zh" => "½öÍø¹Ü",
 "pl" => "TRANS Hosting only",
-"es" => "Sólo hosting");
+"es" => "Sólo hosting",
+"pt" => "Apenas alojamento"
+);
 
 $txt_dtcrm_enter_domain_to_add  = array(
 "fr" => "Veuillez entrer le nom de domaine que vous souhaitez ajouter:",
@@ -298,7 +344,9 @@ aggiungere:",
 "de" => "TRANS Please enter the domain name you wish to add:",
 "zh" => "ÇëÄúÏ£ÍûÌí¼ÓµÄÓòÃû:",
 "pl" => "TRANS Please enter the domain name you wish to add:",
-"es" => "Por favor introduce el nombre de dominio que te gustaría añadir:");
+"es" => "Por favor introduce el nombre de dominio que te gustaría añadir:",
+"pt" => "Por favor indiqye o dominio que quer adicionar :"
+);
 
 
 
@@ -312,7 +360,9 @@ $txt_dtcrm_your_domain_will_be_soon = array(
 "de" => "TRANS ",
 "zh" => "ÄúµÄÓòÃû²»¾Ã½«ÉúĞ§ ",
 "pl" => "TRANS ",
-"es" => "Tu nombre de dominio será validado en breve");
+"es" => "Tu nombre de dominio será validado en breve",
+"pt" => "O seu dominio será brevemente validado"
+);
 
 $txt_dtcrm_soon_an_admin_will_have_a_look = array(
 "fr" => "Bientot un administrateur validra votre requette d'ajout
@@ -345,7 +395,12 @@ domini senza la validazione da parte dell'amministratore, scrivi a:",
 "es" => "En breve el administrador atenderá tu petición y validará el añadireste dominio
 a tu cuenta. De momento no tienes sufucientes permisos para añadir nombres de dominio.
 Si añades nombres de dominio de forma frequente, puedes pedirle al administrador que 
-te de permisos. Para añadir un nuevo nombre de dominio para alojar sin registro, escribe a:");
+te de permisos. Para añadir un nuevo nombre de dominio para alojar sin registro, escribe a:",
+"pt" => "Assim que o administrador verifique este pedido e o valide 
+este dominio será adicionado a sua conta.
+Neste momentovocê  não tem permissões para adicionar dominios, poderá pedir para lhe atribuirem permissões para que  possa 
+realizar esta operação automaticamente escrevendo para o:"
+);
 
 $txt_dtcrm_add_another_domain = array(
 "fr" => "Vous pouvez ajouter un autre domaine:",
@@ -357,7 +412,9 @@ $txt_dtcrm_add_another_domain = array(
 "de" => "TRANS ",
 "zh" => "Äú¿ÉÒÔÌí¼ÓÁíÍâÒ»¸öÓòÃû:",
 "pl" => "TRANS ",
-"es" => "Puedes añadir otro nombre de dominio");
+"es" => "Puedes añadir otro nombre de dominio",
+"pt" => "Você poderá adicionar outro dominio:
+);
 
 $txt_dtcrm_transfer_existing_or_new = array(
 "fr" => "Voulez vous transférer un domaine existant ou en enregistrer un nouveau ?",
@@ -370,7 +427,9 @@ dominio?",
 "de" => "TRANS ",
 "zh" => "ÄúÒª¹ı»§Ò»¸öÏÖ´æµÄÓòÃû»òÕß×¢²áÒ»¸öĞÂµÄ?",
 "pl" => "TRANS ",
-"es" => "¿Quieres transferir un dominio existente o añadir uno nuevo?");
+"es" => "¿Quieres transferir un dominio existente o añadir uno nuevo?",
+"pt" => "Quer tranferir um dominio existente ou registar um novo?"
+);
 
 $txt_dtcrm_register_new_domain = array(
 "fr" => "Enregistrer un nouveau domaine",
@@ -382,7 +441,9 @@ $txt_dtcrm_register_new_domain = array(
 "de" => "TRANS ",
 "zh" => "×¢²áÒ»¸öĞÂµÄ ",
 "pl" => "TRANS ",
-"es" => "Registrar un nuevo dominio");
+"es" => "Registrar un nuevo dominio",
+"pt" => "Registar um novo dominio"
+);
 
 $txt_dtcrm_transfer_from_another_registrar = array(
 "fr" => "Transferer un domaine existant depuis un autre registrar",
@@ -394,7 +455,9 @@ $txt_dtcrm_transfer_from_another_registrar = array(
 "de" => "TRANS ",
 "zh" => "´ÓÁíÍâµÄ×¢²áÔ±¹ı»§Ò»¸öÏÖ´æµÄÓòÃû",
 "pl" => "TRANS ",
-"es" => "Transferir un dominio existente desde otro registrador");
+"es" => "Transferir un dominio existente desde otro registrador",
+"pt" => "Tranferir um dominio existente de outro registar"
+);
 
 $txt_dtcrm_title_register_a_domain_name = array(
 "fr" => "Enregistrer un nom de domaine",
@@ -406,7 +469,9 @@ $txt_dtcrm_title_register_a_domain_name = array(
 "de" => "TRANS ",
 "zh" => "×¢²áÒ»¸öÓòÃû ",
 "pl" => "TRANS ",
-"es" => "Registrar nombre de dominio");
+"es" => "Registrar nombre de dominio",
+"pt" => "Registar um dominio"
+);
 
 $txt_dtcrm_register_step1 = array(
 "fr" => "Etape 1 : vérifier la disponibilitée",
@@ -418,7 +483,9 @@ $txt_dtcrm_register_step1 = array(
 "de" => "TRANS ",
 "zh" => "²½Öè1:¼ìÑéÓĞĞ§ĞÔ ",
 "pl" => "TRANS ",
-"es" => "Paso 1: Verificar disponibilidad");
+"es" => "Paso 1: Verificar disponibilidad",
+"pt" => "Passo 1 : Verificar a disponibilidade"
+);
 
 $txt_dtcrm_step2_enter_whois_info = array(
 "fr" => "Etape 2 : entrez les informations du whois",
@@ -430,7 +497,9 @@ $txt_dtcrm_step2_enter_whois_info = array(
 "de" => "TRANS ",
 "zh" => "²½Öè2: ¼üÈëwhoisĞÅÏ¢",
 "pl" => "TRANS ",
-"es" => "Paso 2:Introducir información para WHOIS");
+"es" => "Paso 2:Introducir información para WHOIS",
+"pt" => "Passo 2: Informação pra Whois"
+);
 
 $txt_crm_enter_the_domain_name_you_wish_to_register = array(
 "fr" => "Entrer le nom de domaine que vous souhaitez enregistrer :",
@@ -442,7 +511,9 @@ $txt_crm_enter_the_domain_name_you_wish_to_register = array(
 "de" => "TRANS ",
 "zh" => "¼üÈëÄúÒª×¢²áµÄÓòÃû",
 "pl" => "TRANS ",
-"es" => "Introduce el nombre de dominio que deseas registrar :");
+"es" => "Introduce el nombre de dominio que deseas registrar :",
+"pt" => "Indique o dominio que quer registar"
+);
 
 $txt_dtcrm_not_enough_privileges = array(
 "fr" => "Vous n'avez pas les droits nécessaire a l'ajout de nom
