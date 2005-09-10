@@ -413,7 +413,7 @@ $txt_dtcrm_add_another_domain = array(
 "zh" => "Äú¿ÉÒÔÌí¼ÓÁíÍâÒ»¸öÓòÃû:",
 "pl" => "TRANS ",
 "es" => "Puedes añadir otro nombre de dominio",
-"pt" => "Você poderá adicionar outro dominio:
+"pt" => "Você poderá adicionar outro dominio:"
 );
 
 $txt_dtcrm_transfer_existing_or_new = array(
