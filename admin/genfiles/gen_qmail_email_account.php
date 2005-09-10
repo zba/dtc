@@ -80,6 +80,26 @@ function mail_account_generate_qmail(){
 			}
 
 
+			if(isset($domain["mailinglists"]) && $primary_mx){
+				$lists = $domain["mailinglists"];
+				$nbr_boites = sizeof($lists);
+				// go through each of these lists and add accounts to it
+				for($k=0;$k<$nbr_boites;$k++){
+					$list = $lists[$k];
+					$list_id = $list["id"];
+					$list_name = $list["name"];
+					$list_owner = $list["owner"];
+					$list_domain = $list["domain"];
+					// add the missing domain to the list owner
+					if (!ereg("\@", $list_owner))
+					{
+						$list_owner .= "@" . $list_domain;
+					}
+					
+					$list_path = "$admin_path/$list_domain/lists/$list_domain" . "_" . "$list_name";
+					$assign_file .= "+$domain_qmail_name-$list_name:nobody:65534:65534:$list_path:::\n";
+				}
+			}
 			if($primary_mx && isset($domain["emails"])){
 				$emails = $domain["emails"];
 				$catch_all = $domain["catchall_email"];
@@ -104,26 +124,6 @@ function mail_account_generate_qmail(){
 				// Gen the catchall if there is a box like that
 				if($catch_all_flag == "yes"){
 					$assign_file .= "+$domain_qmail_name:nobody:65534:65534:".getAdminPath($user_admin_name)."/".$domain["name"]."/Mailboxs:::\n";
-				}
-			}
-			if(isset($domain["mailinglists"]) && $primary_mx){
-				$lists = $domain["mailinglists"];
-				$nbr_boites = sizeof($lists);
-				// go through each of these lists and add accounts to it
-				for($k=0;$k<$nbr_boites;$k++){
-					$list = $lists[$k];
-					$list_id = $list["id"];
-					$list_name = $list["name"];
-					$list_owner = $list["owner"];
-					$list_domain = $list["domain"];
-					// add the missing domain to the list owner
-					if (!ereg("\@", $list_owner))
-					{
-						$list_owner .= "@" . $list_domain;
-					}
-					
-					$list_path = "$admin_path/$list_domain/lists/$list_domain" . "_" . "$list_name";
-					$assign_file .= "+$domain_qmail_name-$list_name:nobody:65534:65534:$list_path:::\n";
 				}
 			}
 		}

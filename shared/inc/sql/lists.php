@@ -57,7 +57,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	$lastml = mysql_fetch_array($query_last_ml) ;
 
 	// Call the mlmmj-make-ml command to create the mailing list
-	$command = "(echo $edit_domain; echo ".$owner."; echo N;) | /usr/bin/mlmmj-make-ml -L $folder_name -s $list_path";
+	$command = "(echo $edit_domain; echo ".$owner."; echo N;) | /usr/bin/mlmmj-make-ml.sh -L $folder_name -s $list_path";
 	exec($command);
 
 	$fileName3 = $list_path.'/'.$folder_name.'/control/listaddress';
@@ -93,7 +93,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 		break;
 	default:
 	case "qmail":
-		writeMlmmjQmailFile($list_path,$edit_domain);
+		writeMlmmjQmailFile($list_full_path);
 		break;
 	}
 	updateUsingCron("qmail_newu='yes',gen_qmail='yes'");

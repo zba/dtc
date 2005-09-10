@@ -222,9 +222,8 @@ function writeCatchallDotQmailFile($user,$host){
 	umask($oldumask);
 }
 
-function writeMlmmjQmailFile($listname,$host){
+function writeMlmmjQmailFile($boxpath){
 	global $conf_demo_version;
-	$boxpath = get_mailingbox_complete_path($listname,$host);
 
 	// Write .qmail file
 	$qmail_file_content = "|preline -f /usr/bin/mlmmj-recieve -L $boxpath\n";

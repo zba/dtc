@@ -46,7 +46,7 @@ di backup):",
                 (leave blank if you don't have backup MX server):",
         "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):",
-		"pt" => "Lista dos servidores de backup de e-mail (MX) separados por &quot;|&quot; (pipe)<br>"
+		"pt" => "Lista dos servidores de backup de e-mail (MX) separados por &quot;|&quot; (pipe)<br>
 				(deixe em branco se não tem nenhum servidor de backup de e-mail) :"
 		);
 
