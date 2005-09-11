@@ -879,8 +879,7 @@ fi
 #
 # prepare mlmmj environment to work with dtc
 #
-if [ -f "/usr/bin/mlmmj-make-ml" -o -f "/usr/bin/mlmmj-make-ml.sh"]
-then
+if [ -f "/usr/bin/mlmmj-make-ml" -o -f "/usr/bin/mlmmj-make-ml.sh" ] ; then
 	mkdir -p /etc/mlmmj/lists
 	chown -R root:65534 /etc/mlmmj/lists
 	chmod -R g+w /etc/mlmmj/lists

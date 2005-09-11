@@ -292,7 +292,7 @@ function drawAdminTools_NickHandles($admin){
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_fax_number[$lang].":<br><i>".$txt_dtcrm_optional[$lang]."</i></td>
 	<td><input type=\"text\" name=\"fax_num\" value=\"".$hdlfax."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_email."<br><i>".$txt_dtcrm_must_be_valid_email[$lang]."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_email[$lang]."<br><i>".$txt_dtcrm_must_be_valid_email[$lang]."</i></td>
 	<td><input type=\"text\" name=\"email\" value=\"".$hdlemail."\"></td>
 </tr><tr>
 	<td></td><td><input type=\"submit\" value=\"Ok\"></td>
