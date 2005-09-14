@@ -109,10 +109,10 @@ echo -n "Use NATed vhosts ? [N/y]: "
 read conf_use_nated_vhosts
 
 if [ ""$conf_use_nated_vhosts = "y" -o ""$conf_use_nated_vhosts = "Y" -o ""$conf_use_nated_vhosts = "yes" ]; then
-	conf_use_nated_vhosts = "yes";
+	conf_use_nated_vhosts="yes";
 	echo "Nated vhosts will be used"
 else
-	conf_use_nated_vhosts = "no";
+	conf_use_nated_vhosts="no";
 	echo "Nated vhosts won't be used"
 fi
 
@@ -122,7 +122,7 @@ echo "yes to use nated vhosts. Ignore otherwise."
 echo -n "IP address of your server if in the LAN [192.168.0.2]: "
 read conf_nated_vhost_ip
 if [ -z ""$conf_nated_vhosts_ip ]; then
-	conf_nated_vhosts_ip = "192.168.0.2"
+	conf_nated_vhosts_ip="192.168.0.2"
 fi
 
 echo ""

@@ -1279,7 +1279,15 @@ else
 		if [ -e "/usr/bin/htpasswd" ] ;then
 			HTPASSWD="/usr/bin/htpasswd"
 		else
-			HTPASSWD="htpasswd"
+			if [ -e "/usr/sbin/htpasswd" ] ;then
+				HTPASSWD="/usr/sbin/htpasswd"
+			else
+				if [ -e "/usr/sbin/htpasswd2" ] ;then
+					HTPASSWD="/usr/sbin/htpasswd2"
+				else
+					HTPASSWD="htpasswd"
+				fi
+			fi
 		fi
 	fi
 	$HTPASSWD -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" $conf_adm_pass
