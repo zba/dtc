@@ -16,8 +16,8 @@ if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 	// if not, check that it's owner's domain name at end of login
 	if($conf_domain_based_ftp_logins == "yes"){
 		$pos = strpos($_REQUEST["newftp_login"],$edit_domain);
-		if($pos === false){
-			$_REQUEST["newftp_login"] .= $edit_domain;
+		if($pos == false){
+			$_REQUEST["newftp_login"] .= '@' . $edit_domain;
 		}else{
 			if(!ereg($edit_domain."\$",$_REQUEST["newftp_login"])){
 				$submit_err .= "Your login must be in the form login@domain.com";
