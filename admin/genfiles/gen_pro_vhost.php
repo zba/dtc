@@ -188,7 +188,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
 				if($conf_use_ssl == "yes" && $k == 0){
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
-				} else if ($k == 1 && isset($backup_ip_addr)) {
+				} else if ($k == 1 && isset($backup_ip_addr) || ($conf_use_ssl != "yes" && $k == 0)) {
 					$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
 				}else {
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
