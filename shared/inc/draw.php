@@ -371,6 +371,7 @@ function drawAdminTools($admin){
 //                      ["max_ftp"]
 //                      ["max_subdomain"]
 //                      ["ip_addr"]
+//                      ["backup_ip_addr"]
 //                      ["subdomains"][0-n]["name"]
 //                                         ["path"]
 //                                         ["ip"]

@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS domain (
   max_ftp int(11) NOT NULL default '3',
   max_subdomain int(11) NOT NULL default '5',
   ip_addr varchar(16) NOT NULL default '213.215.47.212',
+  backup_ip_addr varchar(16) default NULL,
   primary_dns varchar(255) NOT NULL default 'default',
   other_dns varchar(255) NOT NULL default 'default',
   primary_mx varchar(255) NOT NULL default 'default',

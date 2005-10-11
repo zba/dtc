@@ -1705,13 +1705,27 @@ $txt_domain_tbl_config_ip = array(
 	"en" => "IP address",
 	"hu" => "IP cím",
         "it" => "Indirizzo IP",
-	"en" => "IP adres",
+	"nl" => "IP adres",
 	"ru" => "IP ÁÄÒÅÓÁ",
 	"de" => "IP Adresse",
 	"zh" => "IPµØÖ·",
         "pl" => "Adres IP",
 	"es" => "Dirección IP",
 	"pt" => "Endereço IP"
+	);
+
+$txt_domain_tbl_config_backup_ip = array(
+	"fr" => "Backup Vhost Adresse IP",
+	"en" => "Backup Vhost IP address",
+	"hu" => "Backup Vhost IP cím",
+        "it" => "Backup Vhost Indirizzo IP",
+	"nl" => "Backup Vhost IP adres",
+	"ru" => "Backup Vhost IP ÁÄÒÅÓÁ",
+	"de" => "Backup Vhost IP Adresse",
+	"zh" => "Backup Vhost IPµØÖ·",
+        "pl" => "Backup Vhost Adres IP",
+	"es" => "Backup Vhost Dirección IP",
+	"pt" => "Backup Vhost Endereço IP"
 	);
 
 $txt_your_domain = array(
@@ -2969,6 +2983,20 @@ $txt_subdom_edita = array(
 	"pl" => "Edycja subdomen :",
 	"es" => "Editar un subdominio:",
 	"pt" => "Editar um subdominio :"
+);
+
+$txt_subdom_generate_vhost = array(
+	"fr" => "Produisez d'une entrÃ©e de vhost pour ce subdomain:",
+	"en" => "Generate a vhost entry for this subdomain:",
+	"hu" => "TRANS: Generate a vhost entry for this subdomain:",
+	"it" => "Generi un'entrata del vhost per questo subdomain:",
+	"nl" => "Produceer een vhostingang voor dit subdomain:",
+	"ru" => "ÐŸÑ€Ð¾Ð¸Ð·Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ…Ð¾Ð´ vhost Ð´Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ subdomain:",
+	"de" => "Erzeugen Sie eine vhost Eintragung fÃ¼r dieses subdomain:",
+	"zh" => "å¼•èµ·ä¸€ä¸ªvhost è¯æ¡ä¸ºè¿™subdomain:",
+	"pl" => "TRANS: Generate a vhost entry for this subdomain:",
+	"es" => "Genere una entrada del vhost para este subdomain:",
+	"pt" => "TRANS: Generate a vhost entry for this subdomain:",
 );
 
 $txt_subdom_generate_webalizer = array(

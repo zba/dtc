@@ -118,6 +118,14 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$web_name = $row["name"];
 		$web_owner = $row["owner"];
 		$ip_addr = $row["ip_addr"];
+		if (isset($row["backup_ip_addr"]))
+		{
+			$backup_ip_addr = $row["backup_ip_addr"];
+		}
+		if (isset($backup_ip_addr) && ($backup_ip_addr == "NULL" || trim($backup_ip_addr) == ""))
+		{
+			unset($backup_ip_addr);
+		} 
 		if($conf_use_multiple_ip == "yes"){
 			$ip_to_write = $ip_addr;
 		}else{
@@ -167,13 +175,22 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			// generate SSL and non SSL if we have enabled SSL
 			$gen_iterations = 1;
 			if ($conf_use_ssl == "yes"){
-				$gen_iterations = 2;
+				$gen_iterations++;
+			}
+
+			// if we want to generate a backup IP (transitional)
+			// need to loop through this one
+			if (isset($backup_ip_addr))
+			{
+				$gen_iterations++;
 			}
 			for ($k = 0; $k < $gen_iterations; $k++){
 				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
 				if($conf_use_ssl == "yes" && $k == 0){
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
-				}else{
+				} else if ($k == 1 && isset($backup_ip_addr)) {
+					$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
+				}else {
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
 				}
 
@@ -189,6 +206,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					$web_nameX = $rowX["name"];
 					$web_ownerX = $rowX["owner"];
 					$ip_addrX = $rowX["ip_addr"];
+					$backup_ip_addrX = $rowX["backup_ip_addr"];
 					$alias_user_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$web_ownerX';";
 					$alias_user_result = mysql_query($alias_user_query) or die("Cannot fetch user for Alias");
 					$num_rows_alias_user = mysql_num_rows($alias_user_result);

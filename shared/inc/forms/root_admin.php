@@ -146,6 +146,7 @@ function drawDomainConfig($admin){
 	global $txt_domain_tbl_config_max_ftp;
 	global $txt_domain_tbl_config_max_subdomain;
 	global $txt_domain_tbl_config_ip;
+	global $txt_domain_tbl_config_backup_ip;
 
 	global $conf_site_addrs;
 	$site_addrs = explode("|",$conf_site_addrs);
@@ -162,7 +163,7 @@ function drawDomainConfig($admin){
 
 	$ret = "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\">
 			<tr><td>".$txt_domain_tbl_config_dom_name[$lang]."</td><td>".$txt_domain_tbl_config_quota[$lang]."</td><td>".$txt_domain_tbl_config_max_email[$lang]."</td>
-			<td>".$txt_domain_tbl_config_max_ftp[$lang]."</td><td>".$txt_domain_tbl_config_max_subdomain[$lang]."</td><td>Zone generation</td><td>".$txt_domain_tbl_config_ip[$lang]."</td><td>GO !</td></tr>";
+			<td>".$txt_domain_tbl_config_max_ftp[$lang]."</td><td>".$txt_domain_tbl_config_max_subdomain[$lang]."</td><td>Zone generation</td><td>".$txt_domain_tbl_config_ip[$lang]."</td><td>".$txt_domain_tbl_config_backup_ip[$lang]."</td><td>GO !</td></tr>";
 	for($i=0;$i<$nbr_domain;$i++){
 		$tobe_edited = $domains[$i];
 		$webname = $tobe_edited["name"];
@@ -171,6 +172,7 @@ function drawDomainConfig($admin){
 		$max_ftp = $tobe_edited["max_ftp"];
 		$max_subdomain = $tobe_edited["max_subdomain"];
 		$ip_addr = $tobe_edited["ip_addr"];
+		$backup_ip_addr = $tobe_edited["backup_ip_addr"];
 		if($tobe_edited["generate_flag"] == "yes"){
 			$webalizer_gen_flag_txt = "<font color=\"#00FF00\">YES</font>";
 			$what_to_switch = "no";
@@ -202,6 +204,7 @@ function drawDomainConfig($admin){
 				<td><input type=\"text\" name=\"new_max_subdomain\" value=\"$max_subdomain\" size=\"5\"></td>
 				<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_generate_flag&domain=$webname&switch_to=$what_to_switch\">$webalizer_gen_flag_txt</a></td>
 				<td>$popup_txt</td>
+				<td><input type=\"text\" name=\"new_backup_ip_addr\" value=\"$backup_ip_addr\" size=\"15\"></td>
 				";
 
 		$ret .= "<td><input type=\"submit\" name=\"modify_domain_config\" value=\"Ok\"></tr></form>";

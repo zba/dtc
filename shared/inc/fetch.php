@@ -311,6 +311,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 		$domain["max_subdomain"] = $row["max_subdomain"];
 		$domain["quota"] = $row["quota"];
 		$domain["ip_addr"] = $row["ip_addr"];
+		$domain["backup_ip_addr"] = $row["backup_ip_addr"];
 		$domain["generate_flag"] = $row["generate_flag"];
 		$name = $row["name"];
 		$domain["default_subdomain"] = $row["default_subdomain"];
@@ -380,6 +381,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 //                      ["max_ftp"]
 //                      ["max_subdomain"]
 //                      ["ip_addr"]
+//                      ["backup_ip_addr"]
 //                      ["subdomains"][0-n]["name"]
 //                                         ["path"]
 //                                         ["ip"]
@@ -459,6 +461,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 //                      ["max_ftp"]
 //                      ["max_subdomain"]
 //                      ["ip_addr"]
+//                      ["backup_ip_addr"]
 //                      ["subdomains"][0-n]["name"]
 //                                         ["path"]
 //                                         ["ip"]

@@ -211,6 +211,7 @@ $dtc_database = array(
 			"max_ftp" => "int(11) NOT NULL default '3' ",
 			"max_subdomain" => "int(11) NOT NULL default '5' ",
 			"ip_addr" => "varchar(16) NOT NULL default '127.0.0.1' ",
+			"backup_ip_addr" => "varchar(16) default NULL ",
 			"primary_dns" => "varchar(255) NOT NULL default 'default' ",
 			"other_dns" => "varchar(255) NOT NULL default 'default' ",
 			"primary_mx" => "varchar(255) NOT NULL default 'default' ",
