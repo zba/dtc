@@ -322,7 +322,7 @@ function calculateCurEntryAddr($entry){
 function getCacheImageURL($text,$color,$arbo,$addrlink){
 	global $lang;
 	$cache = str_replace("/","_",$text.$color.$arbo) . ".png";
-	if(file_exists("/usr/share/dtc/shared/imgcache/$cache")){
+	if(file_exists("../shared/imgcache/$cache")){
 		return "imgcache/$cache";
 	}else{
 		return "inc/img.php?text=$text&color=$color&link=$arbo&addrlink=$addrlink&lang=$lang";
