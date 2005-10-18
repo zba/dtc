@@ -118,6 +118,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$web_name = $row["name"];
 		$web_owner = $row["owner"];
 		$ip_addr = $row["ip_addr"];
+		unset($backup_ip_addr);
 		if (isset($row["backup_ip_addr"]))
 		{
 			$backup_ip_addr = $row["backup_ip_addr"];
