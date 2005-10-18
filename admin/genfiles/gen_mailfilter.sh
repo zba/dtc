@@ -10,6 +10,15 @@ redirection=$6
 redirection2=$7
 
 MAILFILTER_FILE=$home/.mailfilter
+MAILFILTER_LOCK=$home/.mailfilter.lock
+
+if [ -f $MAILFILTER_LOCK ]; then
+	echo "Mailfilter already working on $MAILFILTER_FILE, exitting";
+	echo "Two processes trying to work on $MAILFILTER_FILE..." >> /tmp/mailfilter.log
+	exit 1;
+fi
+
+touch $MAILFILTER_LOCK
 
 if [ ! -f $MAILFILTER_FILE ]; then
 	touch $MAILFILTER_FILE
@@ -26,13 +35,14 @@ if [ -f $MAILFILTER_FILE ]; then
 	while grep "Configured by DTC" $MAILFILTER_FILE >/dev/null 2>&1 ; do
 		if [ $COUNT -eq 10 ]; then
 			echo "Something is wrong with $MAILFILTER_FILE ..."
+			echo "Please edit this and manually remove any DTC additions"
 			exit 1;
 		fi
 		start_line=`grep -n "Configured by DTC" $MAILFILTER_FILE | cut -d":" -f1 | head -n 1`
 		end_line=`grep -n "End of DTC configuration" $MAILFILTER_FILE| cut -d":" -f1 | head -n 1`
 		nbr_line=`cat $MAILFILTER_FILE | wc -l`
-		TMP_FILE=$home/.DTC_uninstall.mailfilter.XXXXXX
-		touch $TMP_FILE
+		TMP_FILE=$home/.DTC_uninstall.mailfilter.XXXXXX.0
+		echo -n > $TMP_FILE
 		# if we only have 1 line, and it's the "configured by DTC" one, we need to empty the file
 		if [ $nbr_line -eq 1 ]; then
 			cat < $TMP_FILE >> $MAILFILTER_FILE
@@ -49,6 +59,14 @@ if [ -f $MAILFILTER_FILE ]; then
                         echo "Please edit this and manually remove any DTC additions"
                         exit 1;
                 fi
+		diff=$(( $end_line - $start_line ));
+		if [ $diff -gt 15 ]; then
+			echo "Something is wrong with $MAILFILTER_FILE..."
+			echo "Please edit this and manually remove any DTC additions"
+			echo "$id $domain_full_name diff $diff" >> /tmp/mailfilter.log
+			echo "$id $domain_full_name broken" >> /tmp/mailfilter.log
+			exit 1;
+		fi
 
 		bottom=$(( $nbr_line - $end_line ))
 		# no point catting 0 lines, now is there ?
@@ -58,7 +76,8 @@ if [ -f $MAILFILTER_FILE ]; then
 		if [ $bottom -ne 0 ]; then
 			cat $MAILFILTER_FILE | tail -n $bottom >> $TMP_FILE
 		fi
-		cp -f $MAILFILTER_FILE $MAILFILTER_FILE.DTC.removed
+		echo "$id $domain_full_name $nbr_line $top $bottom" >> /tmp/mailfilter.log
+		cp -f $MAILFILTER_FILE $MAILFILTER_FILE.DTC.removed.$COUNT
 		echo -n > $MAILFILTER_FILE
 		cat < $TMP_FILE >> $MAILFILTER_FILE
 		rm $TMP_FILE
@@ -66,19 +85,22 @@ if [ -f $MAILFILTER_FILE ]; then
 	done
 fi
 
+
 # now that we have got rid of the legit additions, try and clean up "bad" End Of Config lines
 # this is in case of a bad install, or interupted install
-TMP_FILE=$home/.DTC_install.mailfilter.XXXXXX
+TMP_FILE=$home/.DTC_install.mailfilter.XXXXXX.1
+echo -n > $TMP_FILE
 grep -v "End of DTC configuration" $MAILFILTER_FILE > $TMP_FILE
-cat < $TMP_FILE >> $MAILFILTER_FILE
+# we need to over-write the mail filter file here, not append
+cat < $TMP_FILE > $MAILFILTER_FILE
 rm $TMP_FILE
+
 
 # create the file, and populate with normal things :)
 touch $MAILFILTER_FILE
 
-TMP_FILE=$home/.DTC_install.mailfilter.XXXXXX
-
-touch $TMP_FILE
+TMP_FILE=$home/.DTC_install.mailfilter.XXXXXX.2
+echo -n > $TMP_FILE
 echo "# Configured by DTC" >> $TMP_FILE
 
 if [ -z ""$redirection2 ]; then
@@ -125,6 +147,7 @@ echo "# End of DTC configuration" >> $TMP_FILE
 # now that we have our temp file with the cc and optionally SPAM additions, append our existing mailfilter to it
 cat $MAILFILTER_FILE >> $TMP_FILE
 
+
 # now we have put our cc at the beginning of the file, put the rest after any user contents
 # now onto a default "to"
 echo "# Configured by DTC" >> $TMP_FILE
@@ -139,7 +162,10 @@ fi
 
 echo "# End of DTC configuration" >> $TMP_FILE
 
+
 # now move the TMP_FILE over top of our MAILFILTER_FILE
 mv $TMP_FILE $MAILFILTER_FILE
 chmod 500 $MAILFILTER_FILE
 chown nobody:65534 $MAILFILTER_FILE
+
+rm $MAILFILTER_LOCK
