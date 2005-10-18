@@ -127,6 +127,14 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		{
 			unset($backup_ip_addr);
 		} 
+		// need to check if we have a NameVirtualHost entry for this backup IP, to support multiple backup sites on one IP
+		if (isset($backup_ip_addr))
+		{
+			 if (!ereg("$backup_ip_addr", $vhost_file))	
+			 {
+				$vhost_file .= "NameVirtualHost ".$backup_ip_addr.":80\n";
+			 }
+		}
 		if($conf_use_multiple_ip == "yes"){
 			$ip_to_write = $ip_addr;
 		}else{
