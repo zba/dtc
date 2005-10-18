@@ -188,7 +188,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
 				if($conf_use_ssl == "yes" && $k == 0){
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
-				} else if ($k == 1 && isset($backup_ip_addr) || ($conf_use_ssl != "yes" && $k == 0)) {
+				} else if ($k == 1 && isset($backup_ip_addr) || ($conf_use_ssl != "yes" && $k == 0 && isset($backup_ip_addr))) {
 					$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
 				}else {
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
@@ -269,8 +269,20 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				if($web_subname == "$web_default_subdomain"){
 					$vhost_more_conf .= "	ServerAlias $web_name\n";
 				}
-				$vhost_file .= "<VirtualHost $ip_to_write:80>
-	ServerName $web_subname.$web_name
+				// if we want to generate a backup IP (transitional)
+				// need to loop through this one
+				$gen_iterations = 1;
+				if (isset($backup_ip_addr))
+				{
+					$gen_iterations++;
+				}
+				for ($k = 0; $k < $gen_iterations; $k++){
+					if ($k == 0 && isset($backup_ip_addr)) {
+						$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
+					} else {
+						$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
+					}
+				$vhost_file .= "	ServerName $web_subname.$web_name
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html/
 $vhost_more_conf	php_admin_value safe_mode 1
@@ -292,6 +304,7 @@ $vhost_more_conf	php_admin_value safe_mode 1
 </VirtualHost>
 
 ";
+				}
 			}
         }
 		$num_generated_vhosts += $num_rows2;
