@@ -87,7 +87,10 @@ echo -n "===> Creating tar file and move it to build tree: "
 echo -n "tar..."
 tar -cf dtc.tar.gz dtc
 echo -n "mv..."
-mv dtc.tar.gz /root/rpmbuild/SOURCES/
+mkdir -p ~/rpmbuild/SOURCES
+mkdir -p ~/rpmbuild/BUILD
+mkdir -p ~/rpmbuild/RPMS
+mv dtc.tar.gz ~/rpmbuild/SOURCES/
 echo -n "rm..."
 rm -rf dtc
 echo "done!"
@@ -107,5 +110,9 @@ echo "%changelog
 " >>dtc.spec
 
 echo "===> Building dtc-"$VERSION"-"$RELEASE".noarch.rpm"
+if [ ! -f ~/.rpmmacros ]; then
+	echo "%HOME %{expand:%%(cd; pwd)}
+ %_topdir %{HOME}/rpmbuild" > ~/.rpmmacros
+fi
 rpmbuild -bb --target=noarch dtc.spec
 echo " -- Made dtc-"$VERSION"-"$RELEASE".noarch.rpm ---"
