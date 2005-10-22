@@ -15,6 +15,47 @@ fi
 ";
 }
 
+function test_valid_local_ip($address)
+{
+	$port = 80;
+	// turn off error reporting for this function
+	$old_error_reporting = error_reporting('E_NONE');
+
+	if (($sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) < 0) {
+		echo "socket_create() failed: reason: " . socket_strerror($sock) . "\n";
+		return false;
+	}
+
+	if (!($ret = socket_bind($sock, $address, $port))) {
+		$error = socket_last_error();
+		if ($error == 98)
+		{
+			//echo "Address already in use!\n";
+			return false;
+		}
+		else if ($error == 99)
+		{
+			//echo "IP not on server...\n";
+			return false;
+		}
+		else if ($error == 13)
+		{
+			//echo "Permission denied...\n";
+			return false;
+		} else {
+			//echo "$error\n";
+			echo "socket_bind() failed: reason: " . socket_strerror($error) . "\n";
+			return false;
+		}
+	} else {
+		// bound ok! (nothing listening on this yet)
+		return true;
+	}
+
+	// turn it back on to what it was
+	error_reporting($old_error_reporting);
+}
+
 function pro_vhost_generate(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
@@ -91,6 +132,12 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			$result2 = mysql_query ($query2)or die("Cannot execute query \"$query\"");
 			$num_rows2 = mysql_num_rows($result2);
 			if($num_rows2 > 0){
+				if (test_valid_local_ip($all_site_addrs[$i]) && !ereg("Listen ".$all_site_addrs[$i].":80", $vhost_file))
+				{
+					$vhost_file .= "Listen ".$all_site_addrs[$i].":80\n";
+				} else {
+					$vhost_file .= "#Listen ".$all_site_addrs[$i].":80\n";
+				}
 				$vhost_file .= "NameVirtualHost ".$all_site_addrs[$i].":80\n";
 				if ($enable404feature == true)
 				{
@@ -107,8 +154,20 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		}
 	}else{
 		if($conf_use_nated_vhost=="yes"){
+			if (test_valid_local_ip($conf_nated_vhost_ip) && !ereg("Listen ".$conf_nated_vhost_ip.":80", $vhost_file))
+			{
+				$vhost_file .= "Listen ".$conf_nated_vhost_ip.":80\n";
+			} else {
+				$vhost_file .= "#Listen ".$conf_nated_vhost_ip.":80\n";
+			}
 			$vhost_file .= "NameVirtualHost ".$conf_nated_vhost_ip.":80\n";
 		}else{
+			if (test_valid_local_ip($conf_main_site_ip) && !ereg("Listen ".$conf_main_site_ip.":80", $vhost_file))
+			{
+				$vhost_file .= "Listen ".$conf_main_site_ip.":80\n";
+			} else {
+				$vhost_file .= "#Listen ".$conf_main_site_ip.":80\n";
+			}
 			$vhost_file .= "NameVirtualHost ".$conf_main_site_ip.":80\n";
 		}
 	}
@@ -130,10 +189,16 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		// need to check if we have a NameVirtualHost entry for this backup IP, to support multiple backup sites on one IP
 		if (isset($backup_ip_addr))
 		{
-			 if (!ereg("$backup_ip_addr", $vhost_file))	
-			 {
+			if (test_valid_local_ip($backup_ip_addr) && !ereg("Listen ".$backup_ip_addr.":80", $vhost_file))
+			{
+				$vhost_file .= "Listen ".$backup_ip_addr.":80\n";
+			} else {
+				$vhost_file .= "#Listen ".$backup_ip_addr.":80\n";
+			}
+			if (!ereg("NameVirtualHost $backup_ip_addr", $vhost_file))	
+			{
 				$vhost_file .= "NameVirtualHost ".$backup_ip_addr.":80\n";
-			 }
+			}
 		}
 		if($conf_use_multiple_ip == "yes"){
 			$ip_to_write = $ip_addr;

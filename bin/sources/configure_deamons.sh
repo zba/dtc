@@ -324,15 +324,23 @@ else
 	fi
 
 	# It seems redhat has already the Listen directives...
-	if [ ""$UNIX_TYPE = "redhat" -o ""$UNIX_TYPE = "gentoo" ] ;then
-		echo "# Configured by DTC v0.12 : please do not touch this line !
-Include $PATH_DTC_ETC/vhosts.conf" >>$PATH_HTTPD_CONF
-	else
-		echo "# Configured by DTC v0.12 : please do not touch this line !
-Include $PATH_DTC_ETC/vhosts.conf
-Listen 80
-Listen 443" >>$PATH_HTTPD_CONF
+	# detect whether we already have Listen directives, and comment them out	# and replace with Listen 127.0.0.1:80 and 127.0.0.1:443
+	# the other IPs will be created in vhosts.conf
+
+	if grep "^Listen" $PATH_HTTPD_CONF >/dev/null
+	then
+		perl -i -p -e 's/^Listen/#Listen/' $PATH_HTTPD_CONF	
 	fi
+	if grep "^BindAddress" $PATH_HTTPD_CONF >/dev/null
+	then
+		perl -i -p -e 's/^BindAddress/#BindAddress/' $PATH_HTTPD_CONF	
+	fi
+
+	echo "# Configured by DTC v0.12 : please do not touch this line !
+Include $PATH_DTC_ETC/vhosts.conf
+Listen 127.0.0.1:80
+Listen 127.0.0.1:443" >>$PATH_HTTPD_CONF
+
 	echo "LogSQLLoginInfo localhost dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >>$PATH_HTTPD_CONF
 	if [ ""$UNIX_TYPE = "freebsd" ] ;then
 		echo "LogSQLSocketFile /tmp/mysqld.sock" >>$PATH_HTTPD_CONF
