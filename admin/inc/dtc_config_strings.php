@@ -828,32 +828,32 @@ $txt_cfg_vhost_file_path =array(
 	"pt" => "Ficheiro de configuração dos \"Virtual Hosts\" ",
 	);
 
-$txt_cfg_phplib_path =array(
-	"fr" => "Librairies PHP (séparés par des \":\") :",
-	"en" => "Php libraries (separated by \":\"):",
-	"hu" => "Php könyvtárak (\":\" elválasztva):",
-	"it" => "Librerie PHP (separate da \":\"):",
-	"nl" => "Php libraries (gescheiden met een \":\"):",
-	"ru" => "Php ÂÉÂÌÉÏÔÅËÉ (ÒÁÚÄÅÌÅÎÎÙÅ \":\"):",
-	"de" => "PHP Bibliotheken (getrennt durch \":\"):",
-	"zh" => "PhpµÄÎÄ¼þ¼Ð(±»\":\"Çø·Ö):",
-	"pl" => "Biblioteki PHP (oddzielone \":\") :",
-	"es" => "Librerias de Php(separadas por \":\"):",
-	"pt" => "Librarias PHP (separadas por \":\") :"
+$txt_cfg_phplib_path = array(
+	"fr" => "Librairies PHP open_basedir (séparés par des \":\", initialisé à l'installation de dtc) :",
+	"en" => "Php libraries open_basedir (separated by \":\", reset on each dtc install):",
+	"hu" => "TRANS LPhp könyvtárak open_basedir (\":\" elválasztva, reset on each dtc install):",
+	"it" => "TRANS LLibrerie PHP open_basedir (separate da \":\", reset on each dtc install):",
+	"nl" => "TRANS LPhp libraries open_basedir (gescheiden met een \":\", reset on each dtc install):",
+	"ru" => "TRANS LPhp ÂÉÂÌÉÏÔÅËÉ open_basedir (ÒÁÚÄÅÌÅÎÎÙÅ \":\", reset on each dtc install):",
+	"de" => "TRANS LPHP Bibliotheken open_basedir (getrennt durch \":\", reset on each dtc install):",
+	"zh" => "TRANS LPhpµÄÎÄ¼þ¼Ð open_basedir (±»\":\"Çø·Ö, reset on each dtc install):",
+	"pl" => "TRANS LBiblioteki PHP open_basedir (oddzielone \":\", reset on each dtc install) :",
+	"es" => "TRANS LLibrerias de Php open_basedir (separadas por \":\", reset on each dtc install):",
+	"pt" => "TRANS Librarias PHP open_basedir (separadas por \":\", reset on each dtc install) :"
 	);
 
 $txt_cfg_phplib2_path =array(
-	"fr" => "Librairies PHP additionnelles :",
-	"en" => "Php additional libraries path:",
-	"hu" => "További php könyvtárak elérési útja:",
-	"it" => "Path librerie addizionali PHP:",
-	"nl" => "Additionele php library paden:",
-	"ru" => "ðÕÔØ Ë ÄÏÐÏÌÎÉÔÅÌØÎÙÍ ÂÉÂÌÉÏÔÅËÁÍ PHP:",
-	"de" => "Zusätzliche PHP Bibliotheken:",
-	"zh" => "PhpµÄ¸½¼ÓÎÄ¼þ¼ÐÂ·¾¶:",
-	"pl" => "Dodatkowe biblioteki PHP (oddzielone \":\") :",
-	"es" => "Librerias adicionales de Php:",
-	"pt" => "Librarias adicionais de PHP :"
+	"fr" => "Librairies PHP additionnelles open_basedir (conservé a la réinstallation):",
+	"en" => "Php open_basedir additional libraries path (keeped uppon reinstallation):",
+	"hu" => "További php könyvtárak elérési útja open_basedir (keeped uppon reinstallation):",
+	"it" => "Path librerie addizionali PHP open_basedir (keeped uppon reinstallation):",
+	"nl" => "Additionele php library paden open_basedir (keeped uppon reinstallation):",
+	"ru" => "ðÕÔØ Ë ÄÏÐÏÌÎÉÔÅÌØÎÙÍ ÂÉÂÌÉÏÔÅËÁÍ PHP open_basedir (keeped uppon reinstallation):",
+	"de" => "Zusätzliche PHP Bibliotheken open_basedir (keeped uppon reinstallation):",
+	"zh" => "PhpµÄ¸½¼ÓÎÄ¼þ¼ÐÂ·¾¶ open_basedir (keeped uppon reinstallation):",
+	"pl" => "Dodatkowe biblioteki PHP open_basedir (keeped uppon reinstallation) :",
+	"es" => "Librerias adicionales de Phpopen_basedir  (keeped uppon reinstallation):",
+	"pt" => "Librarias adicionais de PHP open_basedir (keeped uppon reinstallation):"
 	);
 
 $txt_cfg_named_filenames_title =array(
