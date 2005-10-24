@@ -131,6 +131,7 @@ fi
 
 # make sure we can have sqwebmail compatible rules, so create the config here
 if [ ! -e "$home/Maildir/maildirfilterconfig" ]; then
+	mkdir -p $home/Maildir
 	echo "MAILDIRFILTER=../.mailfilter.sqwebmail
 MAILDIR=\$DEFAULT" > $home/Maildir/maildirfilterconfig
 fi
