@@ -21,8 +21,6 @@ VERBOSE_INSTALL=yes
 
 UNIX_TYPE=debian
 
-PATH_HTTPD_CONF=/etc/apache/httpd.conf
-PATH_HTTPD_MODULES_CONF=/etc/apache/modules.conf
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
 PATH_PHP_CGI="/usr/bin/php4"
@@ -73,6 +71,8 @@ db_get dtc/conf_mysql_change_root
 conf_mysql_change_root=$RET
 db_get dtc/conf_mta_type
 conf_mta_type=$RET
+db_get dtc/conf_apache_version
+conf_apache_version=$RET
 db_get dtc/main_domainname
 main_domain_name=$RET
 db_get dtc/dtc_adminsubdomain
@@ -121,6 +121,14 @@ db_unregister dtc/conf_mysql_change_root
 db_unregister dtc/conf_admpass
 db_unregister dtc/conf_upgrade_pear
 # db_purge
+
+if [ ""$conf_apache_version = "2" ] ; then
+	PATH_HTTPD_CONF=/etc/apache/apache2.conf
+else
+	PATH_HTTPD_CONF=/etc/apache/httpd.conf
+	PATH_HTTPD_MODULES_CONF=/etc/apache/modules.conf
+fi
+
 
 # This part is debian specific because of (in my point of view) some
 # leak in distribution. Whis is that not made by default ?

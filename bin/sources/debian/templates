@@ -125,6 +125,14 @@ Description: Mail Transfer Agent Type.
  script parts could be skiped and so your configuration
  will not be fully done.
 
+Template: dtc/conf_apache_version
+Type: select
+Choices: 1, 2
+Description: Apache version to configure.
+ DTC now supports both Apache and Apache2,
+ but you need to tell which of them you want
+ to install.
+
 Template: dtc/conf_use_nated_vhosts
 Type: boolean
 Default: false
