@@ -294,4 +294,8 @@ if [ -e /var/lib/squirrelmail/data/ ]; then
 fi
 
 
+if [ -e /var/lib/apache2/fastcgi ] ; then
+	chown -R nobody:nogroup /var/lib/apache2/fastcgi
+fi
+
 # Upon this line, here is the standard DTC install script :
