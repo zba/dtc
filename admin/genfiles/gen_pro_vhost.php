@@ -31,7 +31,7 @@ function test_valid_local_ip($address)
 		if ($error == 98)
 		{
 			//echo "Address already in use!\n";
-			return false;
+			return true;
 		}
 		else if ($error == 99)
 		{
