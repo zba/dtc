@@ -10,6 +10,21 @@ echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
 echo "###############################################################"
 
+echo ""
+echo "Required packages before this script is run:"
+echo " - postfix (make sure inet_interfaces is correct) or qmail"
+echo " - mysql-server (and started)"
+echo " - courier-maildrop (download from http://tusker.sg/redhat/RPMS/i386/maildrop-2.0.1-2.i386.rpm or build your own)"
+echo " - php-mysql"
+echo " - pear (and Crypt_CBC module)"
+echo " - bind (and started)"
+echo -n "Have you completed the above steps (yN)?"
+read completed_steps
+if [ ""$completed_steps = "" -o ""$completed_steps = "n" ]; then
+	echo "Please come back later..."
+	exit 1
+fi 
+
 # DATABASE CONFIGURATION
 echo "### MYSQL CONFIGURATION ###"
 echo ""
@@ -113,10 +128,10 @@ echo "to the internet with a public static IP) leave it to NO."
 echo -n "Use NATed vhosts ? [N/y]: "
 read conf_use_nated_vhosts
 
-if [ ""$conf_use_nated_vhosts = "y" -o ""$conf_use_nated_vhosts = "Y" -o ""$conf_use_nated_vhosts = "yes"]; then
-	conf_use_nated_vhosts = "yes";
+if [ ""$conf_use_nated_vhosts = "y" -o ""$conf_use_nated_vhosts = "Y" -o ""$conf_use_nated_vhosts = "yes" ]; then
+	conf_use_nated_vhosts="yes";
 else
-	conf_use_nated_vhosts = "no";
+	conf_use_nated_vhosts="no";
 fi
 
 echo ""
@@ -125,7 +140,7 @@ echo "yes to use nated vhosts. Ignore otherwise."
 echo -n "IP address of your server if in the LAN [192.168.0.2]: "
 read conf_nated_vhost_ip
 if [ ""$conf_nated_vhosts_ip = "" ]; then
-	conf_nated_vhosts_ip = "192.168.0.2"
+	conf_nated_vhosts_ip="192.168.0.2"
 fi
 
 
