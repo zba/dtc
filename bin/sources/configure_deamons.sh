@@ -336,6 +336,12 @@ else
 		perl -i -p -e 's/^BindAddress/#BindAddress/' $PATH_HTTPD_CONF	
 	fi
 
+	# annoyingly redhat has a different Listen for the ssl.conf
+	# comment that out too
+	if [ ""$UNIX_TYPE = "redhat" ] ;then
+		perl -i -p -e 's/^Listen/#Listen/' /etc/httpd/conf.d/ssl.conf
+	fi
+
 	echo "# Configured by DTC v0.12 : please do not touch this line !
 Include $PATH_DTC_ETC/vhosts.conf
 Listen 127.0.0.1:80
