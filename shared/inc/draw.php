@@ -237,9 +237,14 @@ function drawAdminTools($admin){
 
 	$web_editor = "";
 
-	if(isset($addrlink) && $addrlink != "" && isset($admin_data)){
-		$num_domain = AdminTool_findDomainNum($edit_domain,$admin_data);
-		$eddomain = @$admin_data[$num_domain];
+	if(isset($addrlink) && $addrlink != ""){
+		if (isset($admin_data))
+		{
+			$num_domain = AdminTool_findDomainNum($edit_domain,$admin_data);
+			$eddomain = @$admin_data[$num_domain];
+		} else {
+			$num_domain = 0;
+		}
 
 		if(@$add_array[1] == "mailboxs"){
                         $web_editor .= "<img src=\"inc/mailboxs.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_mailboxs[$lang]:</u></b><br></font>";

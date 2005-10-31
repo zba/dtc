@@ -46,9 +46,25 @@ function drawAdminTools_AdminStats($admin){
 	$id_client = $admin["info"]["id_client"];
 
 	$out .= "<u><b>".$txt_total_transfered_bytes_this_month[$lang]."</b></u>";
+	if (!isset($stats["total_http"]))
+	{
+		$stats["total_http"] = 0;
+	}
 	$out .= "<br>HTTP: ".smartByte($stats["total_http"]);
+	if (!isset($stats["total_ftp"]))
+	{
+		$stats["total_ftp"] = 0;
+	}
 	$out .= "<br>FTP: ".smartByte($stats["total_ftp"]);
+	if (!isset($stats["total_email"]))
+	{
+		$stats["total_email"] = 0;
+	}
 	$out .= "<br>Email: ".smartByte($stats["total_email"]);
+	if (!isset($stats["total_transfer"]))
+	{
+		$stats["total_transfer"] = 0;
+	}
 	$out .= "<br>Total: ". smartByte($stats["total_transfer"]);
 
 	if($id_client != 0){
@@ -57,6 +73,10 @@ function drawAdminTools_AdminStats($admin){
 		$out .= drawPercentBar($stats["total_transfer"],$bw_quota);
 	}
 	$out .= "<br><u>".$txt_are_disk_usage[$lang]."<b></b></u>";
+	if (!isset($stats["total_du_domains"]))
+	{
+		$stats["total_du_domains"] = 0;
+	}
 	$out .= "<br>".$txt_domain_name_files[$lang]." ".smartByte($stats["total_du_domains"]);
 	if(isset($stats["total_db_du"])){
 		$out .= "<br>".$txt_database_files[$lang]." ".smartByte($stats["total_db_du"]);
@@ -95,26 +115,29 @@ function drawAdminTools_AdminStats($admin){
 	$out .= "<br><br><u><b>".$txt_domain_name_trafic_du[$lang]."</b></u>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
 	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td><td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>".$txt_total_trafic[$lang]."</b></td></tr>";
-	for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
-		if($ad % 2){
-			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\" ";
-			$fnt1 = "<font color=\"#FFFFFF\">";
-			$fnt2 = "</font>";
-		}else{
-			$bgcolor = $nowrap;
-			$fnt1 = "";
-			$fnt2 = "";
+	if (isset($stats["domains"]))
+	{
+		for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
+			if($ad % 2){
+				$bgcolor = "$nowrap nowrap bgcolor=\"#000000\" ";
+				$fnt1 = "<font color=\"#FFFFFF\">";
+				$fnt2 = "</font>";
+			}else{
+				$bgcolor = $nowrap;
+				$fnt1 = "";
+				$fnt2 = "";
+			}
+			$out .= "<tr>";
+			$out .= "<td$bgcolor>$fnt1".$stats["domains"][$ad]["name"]."$fnt2</td>";
+			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["du"])."$fnt2</td>";
+			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["pop"])."$fnt2</td>";
+			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["imap"])."$fnt2</td>";
+			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["smtp"])."$fnt2</td>";
+			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["ftp"])."$fnt2</td>";
+			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["http"])."$fnt2</td>";
+			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["total_transfer"])."$fnt2</td>";
+			$out .= "</tr>";
 		}
-		$out .= "<tr>";
-		$out .= "<td$bgcolor>$fnt1".$stats["domains"][$ad]["name"]."$fnt2</td>";
-		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["du"])."$fnt2</td>";
-		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["pop"])."$fnt2</td>";
-		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["imap"])."$fnt2</td>";
-		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["smtp"])."$fnt2</td>";
-		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["ftp"])."$fnt2</td>";
-		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["http"])."$fnt2</td>";
-		$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["total_transfer"])."$fnt2</td>";
-		$out .= "</tr>";
 	}
 	$out .= '</table>';
 	return $out;

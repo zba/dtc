@@ -198,7 +198,7 @@ function fetchAdminStats($admin){
 	}
 	if (isset($ret["total_du_domains"]))
 	{
-		$ret["total_du"] += $ret["total_du_domains"]);
+		$ret["total_du"] += $ret["total_du_domains"];
 	}
 // ["domains"][0-n]["name"]
 //                 ["du"]

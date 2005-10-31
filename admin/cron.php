@@ -315,15 +315,39 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	exec ("$APACHECTL configtest", $plop, $return_var);
 	if($return_var == false){
 		echo "Config is OK : restarting Apache\n";
+		$pid_file_was_there = is_file("$conf_generated_file_path/apache.pid");
+		clearstatcache();
 		system("$APACHECTL stop");
-		echo "Waiting 4... ";	// With 800 domains, 5 SSL sites on a celeron 800 and fast hard drives, 5 seconds is just the right value...
-		sleep(1);
-		echo "3... ";
-		sleep(1);
-		echo "2... ";
-		sleep(1);
-		echo "1... ";
-		sleep(1);
+
+		if ($pid_file_was_there)
+		{
+			echo "PidFile existed, so will wait until it's gone before restarting...\n";
+		}
+		// only wait if the pid file is still around... don't want to sleep if it has already shut down...
+		if (!$pid_file_was_there || is_file("$conf_generated_file_path/apache.pid"))
+		{
+			echo "Waiting 4... ";	// With 800 domains, 5 SSL sites on a celeron 800 and fast hard drives, 5 seconds is just the right value...
+			sleep(1);
+			clearstatcache();
+		}
+		if (!$pid_file_was_there || is_file("$conf_generated_file_path/apache.pid"))
+                {
+			echo "3... ";
+			sleep(1);
+			clearstatcache();
+		}
+		if (!$pid_file_was_there || is_file("$conf_generated_file_path/apache.pid"))
+                {
+			echo "2... ";
+			sleep(1);
+			clearstatcache();
+		}
+		if (!$pid_file_was_there || is_file("$conf_generated_file_path/apache.pid"))
+                {
+			echo "1... ";
+			sleep(1);
+			clearstatcache();
+		}
 		echo "0\n";
 		$ctl_retry = 0;		// We have to continue going on, even if apache don't restart...
 		$ctl_return = system("$APACHECTL start");

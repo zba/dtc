@@ -335,6 +335,17 @@ else
 	then
 		perl -i -p -e 's/^BindAddress/#BindAddress/' $PATH_HTTPD_CONF	
 	fi
+	# symlink the PidFile to our dtc location, so we can check it in our scripts
+	apachepidfile=`grep ^PidFile $PATH_HTTPD_CONF | cut -f2 -d' '`
+	echo "Symlinking $apachepidfile to $PATH_DTC_ETC/apache.pid ..."
+	rm -f $PATH_DTC_ETC/apache.pid
+	ln -s $apachepidfile $PATH_DTC_ETC/apache.pid
+	if [ ! -f $apachepidfile ]; then
+		echo "PidFile $apachepidfile didn't exist..."
+		if ps -e | grep apache$ > /dev/null; then
+			ps -e | grep apache$ | head -n 1 | cut -f1 -d' ' >> $apachepidfile	
+		fi
+	fi
 
 	# annoyingly redhat has a different Listen for the ssl.conf
 	# comment that out too

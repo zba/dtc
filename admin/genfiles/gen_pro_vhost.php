@@ -261,6 +261,13 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			for ($k = 0; $k < $gen_iterations; $k++){
 				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
 				if($conf_use_ssl == "yes" && $k == 0){
+					# add the directive for SSL here
+					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":443", $vhost_file))
+					{
+						$vhost_file .= "Listen ".$ip_to_write.":443\n";
+					} else {
+						$vhost_file .= "#Listen ".$ip_to_write.":443\n";
+					}
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
 				} else if ($k == 1 && isset($backup_ip_addr) || ($conf_use_ssl != "yes" && $k == 0 && isset($backup_ip_addr))) {
 					$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
