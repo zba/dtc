@@ -323,6 +323,8 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 		{
 			echo "PidFile existed, so will wait until it's gone before restarting...\n";
 		}
+		// DISABLE PID detection for now:
+		$pid_file_was_there = false;
 		// only wait if the pid file is still around... don't want to sleep if it has already shut down...
 		if (!$pid_file_was_there || is_file("$conf_generated_file_path/apache.pid"))
 		{
