@@ -128,16 +128,17 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$all_site_addrs = explode("|",$conf_site_addrs);
 		$nbr_addrs = sizeof($all_site_addrs);
 		for($i=0;$i<$nbr_addrs;$i++){
+			// first write all config'ed IPs with the Listen
+			if (test_valid_local_ip($all_site_addrs[$i]) && !ereg("Listen ".$all_site_addrs[$i].":80", $vhost_file))
+			{
+				$vhost_file .= "Listen ".$all_site_addrs[$i].":80\n";
+			} else {
+				$vhost_file .= "#Listen ".$all_site_addrs[$i].":80\n";
+			}
 			$query2 = "SELECT * FROM $pro_mysql_domain_table WHERE ip_addr='".$all_site_addrs[$i]."' LIMIT 1;";
 			$result2 = mysql_query ($query2)or die("Cannot execute query \"$query\"");
 			$num_rows2 = mysql_num_rows($result2);
 			if($num_rows2 > 0){
-				if (test_valid_local_ip($all_site_addrs[$i]) && !ereg("Listen ".$all_site_addrs[$i].":80", $vhost_file))
-				{
-					$vhost_file .= "Listen ".$all_site_addrs[$i].":80\n";
-				} else {
-					$vhost_file .= "#Listen ".$all_site_addrs[$i].":80\n";
-				}
 				$vhost_file .= "NameVirtualHost ".$all_site_addrs[$i].":80\n";
 				if ($enable404feature == true)
 				{
