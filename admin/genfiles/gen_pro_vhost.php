@@ -88,6 +88,7 @@ function pro_vhost_generate(){
 	global $conf_404_subdomain;
 
 	$vhost_file = "";
+	$vhost_file_listen = "";
 	$chk_dir_script = "#!/bin/sh\n";
 
 	// DB version check
@@ -129,11 +130,11 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$nbr_addrs = sizeof($all_site_addrs);
 		for($i=0;$i<$nbr_addrs;$i++){
 			// first write all config'ed IPs with the Listen
-			if (test_valid_local_ip($all_site_addrs[$i]) && !ereg("Listen ".$all_site_addrs[$i].":80", $vhost_file))
+			if (test_valid_local_ip($all_site_addrs[$i]) && !ereg("Listen ".$all_site_addrs[$i].":80", $vhost_file_listen))
 			{
-				$vhost_file .= "Listen ".$all_site_addrs[$i].":80\n";
+				$vhost_file_listen .= "Listen ".$all_site_addrs[$i].":80\n";
 			} else {
-				$vhost_file .= "#Listen ".$all_site_addrs[$i].":80\n";
+				$vhost_file_listen .= "#Listen ".$all_site_addrs[$i].":80\n";
 			}
 			$query2 = "SELECT * FROM $pro_mysql_domain_table WHERE ip_addr='".$all_site_addrs[$i]."' LIMIT 1;";
 			$result2 = mysql_query ($query2)or die("Cannot execute query \"$query\"");
@@ -155,19 +156,19 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		}
 	}else{
 		if($conf_use_nated_vhost=="yes"){
-			if (test_valid_local_ip($conf_nated_vhost_ip) && !ereg("Listen ".$conf_nated_vhost_ip.":80", $vhost_file))
+			if (test_valid_local_ip($conf_nated_vhost_ip) && !ereg("Listen ".$conf_nated_vhost_ip.":80", $vhost_file_listen))
 			{
-				$vhost_file .= "Listen ".$conf_nated_vhost_ip.":80\n";
+				$vhost_file_listen .= "Listen ".$conf_nated_vhost_ip.":80\n";
 			} else {
-				$vhost_file .= "#Listen ".$conf_nated_vhost_ip.":80\n";
+				$vhost_file_listen .= "#Listen ".$conf_nated_vhost_ip.":80\n";
 			}
 			$vhost_file .= "NameVirtualHost ".$conf_nated_vhost_ip.":80\n";
 		}else{
-			if (test_valid_local_ip($conf_main_site_ip) && !ereg("Listen ".$conf_main_site_ip.":80", $vhost_file))
+			if (test_valid_local_ip($conf_main_site_ip) && !ereg("Listen ".$conf_main_site_ip.":80", $vhost_file_listen))
 			{
-				$vhost_file .= "Listen ".$conf_main_site_ip.":80\n";
+				$vhost_file_listen .= "Listen ".$conf_main_site_ip.":80\n";
 			} else {
-				$vhost_file .= "#Listen ".$conf_main_site_ip.":80\n";
+				$vhost_file_listen .= "#Listen ".$conf_main_site_ip.":80\n";
 			}
 			$vhost_file .= "NameVirtualHost ".$conf_main_site_ip.":80\n";
 		}
@@ -190,11 +191,11 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		// need to check if we have a NameVirtualHost entry for this backup IP, to support multiple backup sites on one IP
 		if (isset($backup_ip_addr))
 		{
-			if (test_valid_local_ip($backup_ip_addr) && !ereg("Listen ".$backup_ip_addr.":80", $vhost_file))
+			if (test_valid_local_ip($backup_ip_addr) && !ereg("Listen ".$backup_ip_addr.":80", $vhost_file_listen))
 			{
-				$vhost_file .= "Listen ".$backup_ip_addr.":80\n";
+				$vhost_file_listen .= "Listen ".$backup_ip_addr.":80\n";
 			} else {
-				$vhost_file .= "#Listen ".$backup_ip_addr.":80\n";
+				$vhost_file_listen .= "#Listen ".$backup_ip_addr.":80\n";
 			}
 			if (!ereg("NameVirtualHost $backup_ip_addr", $vhost_file))	
 			{
@@ -263,11 +264,11 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
 				if($conf_use_ssl == "yes" && $k == 0){
 					# add the directive for SSL here
-					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":443", $vhost_file))
+					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":443", $vhost_file_listen))
 					{
-						$vhost_file .= "Listen ".$ip_to_write.":443\n";
+						$vhost_file_listen .= "Listen ".$ip_to_write.":443\n";
 					} else {
-						$vhost_file .= "#Listen ".$ip_to_write.":443\n";
+						$vhost_file_listen .= "#Listen ".$ip_to_write.":443\n";
 					}
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
 				} else if ($k == 1 && isset($backup_ip_addr) || ($conf_use_ssl != "yes" && $k == 0 && isset($backup_ip_addr))) {
@@ -397,6 +398,7 @@ $vhost_more_conf	php_admin_value safe_mode 1
 	if( $filep == NULL){
 		die("Cannot open $conf_generated_file_path/$conf_apache_vhost_path file for writting");
 	}
+	fwrite($filep,$vhost_file_listen);
 	fwrite($filep,$vhost_file);
 	fclose($filep);
 	$console .= "$num_generated_vhosts vhosts generated !<br>";
