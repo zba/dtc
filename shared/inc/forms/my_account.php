@@ -80,6 +80,11 @@ function drawAdminTools_MyAccount($admin){
 
 	$out .= "<b><u>".$txt_transfer_du[$lang]."</u></b>";
 	// Draw overall this month usage
+	// if there is no usage, set to 0
+	if (!isset($stats["total_transfer"]))
+	{
+		$stats["total_transfer"] = 0;
+	}
 	$overall = "<br>".$txt_transfer_this_month[$lang].smartByte($stats["total_transfer"]);
 	if($id_client != 0){
 		$bw_quota = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;

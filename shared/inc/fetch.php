@@ -190,7 +190,16 @@ function fetchAdminStats($admin){
 	}
 	mysql_select_db($conf_mysql_db);
 
-	$ret["total_du"] = $ret["total_du_db"] + $ret["total_du_domains"];
+	// reset to 0, and add total_du_db and total_du_domains
+	$ret["total_du"] = 0;
+	if (isset($ret["total_du_db"]))
+	{
+		$ret["total_du_db"] += $ret["total_du_db"];	
+	}
+	if (isset($ret["total_du_domains"]))
+	{
+		$ret["total_du"] += $ret["total_du_domains"]);
+	}
 // ["domains"][0-n]["name"]
 //                 ["du"]
 //                 ["ftp"]
