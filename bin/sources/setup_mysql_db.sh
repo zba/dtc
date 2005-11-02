@@ -256,6 +256,9 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT
 # grant Select,Insert,Update,Delete,References,Index to ftp_accounting
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'ftp_accounting', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
 
+# grant Select,Insert,Update,Delete,References,Index to http_accounting
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'http_accounting', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
+
 # grant all to apachelogs
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.db (Host, Db, User, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('localhost', 'apachelogs', 'dtcdaemons', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'Y', 'Y', 'Y')"
 
