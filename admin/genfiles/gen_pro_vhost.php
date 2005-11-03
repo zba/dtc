@@ -44,7 +44,7 @@ function test_valid_local_ip($address)
 			return false;
 		} else {
 			//echo "$error\n";
-			echo "socket_bind() failed: reason: " . socket_strerror($error) . "\n";
+			echo "socket_bind()[$address] failed: reason: " . socket_strerror($error) . "\n";
 			return false;
 		}
 	} else {
