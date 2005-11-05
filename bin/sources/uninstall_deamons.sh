@@ -171,6 +171,26 @@ then
 fi
 
 #
+# uninstall postfix/master.cf
+#
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Uninstalling inclusion from postfix/master.cf"
+fi
+if grep "Configured by DTC" ${PATH_POSTFIX_ETC}/master.cf >/dev/null 2>&1
+then
+	start_line=`grep -n "Configured by DTC" ${PATH_POSTFIX_ETC}/master.cf | cut -d":" -f1`
+	end_line=`rep -n "End of DTC configuration" ${PATH_POSTFIX_ETC}/master.cf | cut -d":" -f1`
+	nbr_line=`cat ${PATH_POSTFIX_ETC}/master.cf | wc -l`
+	TMP_FILE=`${MKTEMP} DTC_uninstall.postfix.conf.XXXXXX` || exit 1
+	cat ${PATH_POSTFIX_ETC}/master.cf | head -n $(($start_line - 1 )) > $TMP_FILE
+	cat ${PATH_POSTFIX_ETC}/master.cf | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
+	cp -f ${PATH_POSTFIX_ETC}/master.cf ${PATH_POSTFIX_ETC}/master.cf.DTC.removed
+	echo -n > ${PATH_POSTFIX_ETC}/master.cf
+	cat < $TMP_FILE >> ${PATH_POSTFIX_ETC}/master.cf
+	rm $TMP_FILE
+fi
+
+#
 # uninstall amavis/amavisd.conf
 #
 
