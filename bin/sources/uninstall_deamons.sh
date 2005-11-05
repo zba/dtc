@@ -179,7 +179,7 @@ fi
 if grep "Configured by DTC" ${PATH_POSTFIX_ETC}/master.cf >/dev/null 2>&1
 then
 	start_line=`grep -n "Configured by DTC" ${PATH_POSTFIX_ETC}/master.cf | cut -d":" -f1`
-	end_line=`rep -n "End of DTC configuration" ${PATH_POSTFIX_ETC}/master.cf | cut -d":" -f1`
+	end_line=`grep -n "End of DTC configuration" ${PATH_POSTFIX_ETC}/master.cf | cut -d":" -f1`
 	nbr_line=`cat ${PATH_POSTFIX_ETC}/master.cf | wc -l`
 	TMP_FILE=`${MKTEMP} DTC_uninstall.postfix.conf.XXXXXX` || exit 1
 	cat ${PATH_POSTFIX_ETC}/master.cf | head -n $(($start_line - 1 )) > $TMP_FILE
