@@ -168,6 +168,7 @@ $start_stamps = mktime();
 function updateAllDomainsStats(){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_domain_table;
+	global $conf_unix_type;
 
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE 1;";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error()." in file ".__FILE__." line ".__LINE__);
