@@ -166,8 +166,12 @@ function sum_http($webname){
 		$db_select_name = $db_webname.'$'.$subdomain_name.'$'."xfer";
 
 		if(mysql_table_exists("apachelogs",$db_select_name)){
-			mysql_select_db("apachelogs");
 
+/*	This old portion of code is now replaced by
+	realtime using mod_log_sql2 + patch
+
+
+			mysql_select_db("apachelogs");
 			// Get bytes_sent
 			$q_bytes = "SELECT SUM( bytes_sent ) AS amount FROM `".$db_select_name."` WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end;
 			$r_bytes = mysql_query($q_bytes) or die("Cannot execute query \"$q_visits\" !!! ".mysql_error());
@@ -211,10 +215,11 @@ function sum_http($webname){
 				mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
 				//dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
 			}
+			mysql_select_db($conf_mysql_db);
+*/
 			dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
 		}
 	}
-	mysql_select_db($conf_mysql_db);
 }
 
 function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_year){

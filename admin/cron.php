@@ -196,12 +196,13 @@ function updateAllDomainsStats(){
 			}
 			$q2 = "UPDATE $pro_mysql_domain_table SET du_stat='$domain_du' WHERE name='$domain_name';";
 			mysql_query($q2)or die("Cannot query \"$q2\" !!!".mysql_error()." in file ".__FILE__." line ".__LINE__);
-			echo "email...";
-			sum_email($domain_name);
-			echo "http...";
-			sum_http($domain_name);
+// Not needed as we do those realtime now ! :)
+//			echo "email...";
+//			sum_email($domain_name);
 			echo "ftp...";
 			sum_ftp($domain_name);
+			echo "http...";
+			sum_http($domain_name);
 			echo "done!\n";
 		}
 	}
@@ -209,11 +210,11 @@ function updateAllDomainsStats(){
 
 
 // This will set each day at 0:00
-if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
+// if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
 // This one is each hours
 // if(($start_stamps%(60*60))< 60*10)	updateAllDomainsStats();
 // This is each time the script is launched (all 10 minutes)
-// updateAllDomainsStats();
+updateAllDomainsStats();
 
 // Re-read cronjob values as long as they could have change
 // during this long job calculation !

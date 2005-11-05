@@ -149,6 +149,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	ScriptAlias /cgi-bin $path_404/cgi-bin
 	ErrorLog $path_404/logs/error.log
 	LogSQLTransferLogTable ".str_replace(".","_",$conf_main_domain).'$'.$conf_404_subdomain.'$'."xfer
+	LogSQLScoreDomain $conf_main_domain
+	LogSQLScoreSubdomain $conf_404_subdomain
+	LogSQLScoreTable dtc.http_accounting
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>\n";
 				}
@@ -331,6 +334,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 #	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename\$xfer
+	LogSQLScoreDomain $web_name
+	LogSQLScoreSubdomain $web_subname
+	LogSQLScoreTable dtc.http_accounting
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
