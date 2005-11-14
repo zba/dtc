@@ -7,7 +7,7 @@
 // &quota_disk=1&bandwidth=20&nbr_email=1&nbr_database=0
 // &allow_add_domain=yes&period=0001-00-00&submit=save
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_product"){
-	if($_REQUEST["allow_add_domain"] == "yes"){
+	if(isset($_REQUEST["allow_add_domain"]) && $_REQUEST["allow_add_domain"] == "yes"){
 		$yesval = "yes";
 	}else{
 		$yesval = "no";
