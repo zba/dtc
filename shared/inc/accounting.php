@@ -220,6 +220,7 @@ function sum_http($webname){
 			dump_access_log($subdomain_name,$webname,$db_select_name,$current_month,$current_year);
 		}
 	}
+	mysql_select_db($conf_mysql_db);
 }
 
 function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_year){
