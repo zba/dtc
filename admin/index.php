@@ -54,6 +54,7 @@ case "monitor": // Monitor button
 	$out .=
 "<tr><td><b>User</b></td><td><b>".$txt_transfer[$lang]." / ".$txt_bw_quota[$lang]."</b></td><td><b>Transfer per month</b></td><td><b>".$txt_disk_usage[$lang]." / ".$txt_domain_tbl_config_quota[$lang]."</b></td></tr>";
 	$total_box_transfer = 0;
+	$total_hits = 0;
 	for($i=0;$i<$nr;$i++){
 		$ar = mysql_fetch_array($r);
 		$transfer = 0;
@@ -69,6 +70,8 @@ case "monitor": // Monitor button
 			$admin_stats = fetchAdminStats($admin);
 			$transfer += $admin_stats["total_transfer"];
 			$du += $admin_stats["total_du"];
+			$hits = $admin_stats["total_hit"];
+			$total_hits += $hits;
 		}
 		if($i % 2){
 			$back = " bgcolor=\"#000000\" style=\"white-space:nowrap;color:#FFFFFF\" nowrap";
@@ -78,7 +81,7 @@ case "monitor": // Monitor button
 		$out .= "<tr><td$back><u>".$ar["company_name"].":</u><br>
 ".$ar["familyname"].", ".$ar["christname"]."</td>";
 		$out .= "<td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024,"no")."<br>
-".smartByte($transfer)." / ".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)."</td>";
+".smartByte($transfer)." / ".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)." ($hits hits)</td>";
 		$out .= "<td$back><img width=\"120\" height=\"48\" src=\"bw_per_month.php?cid=".$ar["id"]."\"></td>";
 		$out .= "<td$back>".drawPercentBar($du,$ar["disk_quota_mb"]*1024*1024,"no")."<br>
 ".smartByte($du)." / ".smartByte($ar["disk_quota_mb"]*1024*1024)."</td>";
@@ -86,7 +89,7 @@ case "monitor": // Monitor button
 //fetchAdminStats($admin)
 	}
 	$out .= "</table>";
-	$out .= $txt_server_total_bp[$lang].smartByte($total_box_transfer);
+	$out .= $txt_server_total_bp[$lang].smartByte($total_box_transfer)." ($total_hits hits)";
 	$module = skin($conf_skin,$out,$txt_customer_bw_consumption[$lang]);
 	$zemain_content = $module;
 	break;

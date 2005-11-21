@@ -50,7 +50,7 @@ function drawAdminTools_AdminStats($admin){
 	{
 		$stats["total_http"] = 0;
 	}
-	$out .= "<br>HTTP: ".smartByte($stats["total_http"]);
+	$out .= "<br>HTTP: ".smartByte($stats["total_http"])." ".$stats["total_hit"]." hits";
 	if (!isset($stats["total_ftp"]))
 	{
 		$stats["total_ftp"] = 0;
@@ -114,7 +114,10 @@ function drawAdminTools_AdminStats($admin){
 
 	$out .= "<br><br><u><b>".$txt_domain_name_trafic_du[$lang]."</b></u>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
-	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td><td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td><td$nowrap><b>".$txt_total_trafic[$lang]."</b></td></tr>";
+	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td>
+	<td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td>
+	<td$nowrap><b>HTTP HITS</b></td>
+	<td$nowrap><b>".$txt_total_trafic[$lang]."</b></td></tr>";
 	if (isset($stats["domains"]))
 	{
 		for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
@@ -135,6 +138,7 @@ function drawAdminTools_AdminStats($admin){
 			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["smtp"])."$fnt2</td>";
 			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["ftp"])."$fnt2</td>";
 			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["http"])."$fnt2</td>";
+			$out .= "<td$bgcolor>$fnt1".$stats["domains"][$ad]["hit"]."$fnt2</td>";
 			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["total_transfer"])."$fnt2</td>";
 			$out .= "</tr>";
 		}

@@ -83,6 +83,7 @@ function fetchAdminStats($admin){
 	global $pro_mysql_acc_email_table;
 
 	$ret["total_http"] = 0;
+	$ret["total_hit"] = 0;
 	$adm_path = $admin["info"]["path"];
 	$query = "SELECT name,du_stat FROM ".$pro_mysql_domain_table." WHERE owner='".$admin["info"]["adm_login"]."' ORDER BY name";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
@@ -107,17 +108,20 @@ function fetchAdminStats($admin){
 		// HTTP transfer
 // Uncomment this if you want it in realtime
 //		sum_http($domain_name);
-		$query_http = "SELECT SUM(bytes_sent) AS transfer FROM $pro_mysql_acc_http_table WHERE domain='$domain_name' AND month='".date("m",time())."' AND year='".date("Y",time())."'";
+		$query_http = "SELECT SUM(bytes_sent) as bytes_sent , SUM(count_impressions) as count_impressions FROM $pro_mysql_acc_http_table WHERE domain='$domain_name' AND month='".date("m",time())."' AND year='".date("Y",time())."'";
 		$result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
 		$num_rows = mysql_num_rows($result_http);
-		$rez_http = mysql_result($result_http,0,"transfer");
-		if($rez_http == NULL){
-			$ret["total_http"] += 0;
-			$ret["domains"][$ad]["http"] = 0;
-		}else{
-			if(!isset($ret["total_http"]))	$ret["total_http"] = $rez_http;
-			else	$ret["total_http"] += $rez_http;
+		if($num_rows == 1){
+			$rez_array = mysql_fetch_array($result_http);
+			$rez_http = $rez_array["bytes_sent"];
+			$ret["total_http"] += $rez_http;
 			$ret["domains"][$ad]["http"] = $rez_http;
+			$ret["total_hit"] += $rez_array["count_impressions"];
+			$ret["domains"][$ad]["hit"] = $rez_array["count_impressions"];
+		}else{
+			$rez_http = 0;
+			$ret["domains"][$ad]["http"] = 0;
+			$ret["domains"][$ad]["hit"] = 0;
 		}
 
 		// And FTP transfer
@@ -204,10 +208,12 @@ function fetchAdminStats($admin){
 //                 ["du"]
 //                 ["ftp"]
 //                 ["http"]
+//		   ["hit"]
 //                 ["smtp"]
 //                 ["pop"]
 //                 ["total_transfer"]
 // ["total_http"]
+// ["total_hit"]
 // ["total_ftp"]
 // ["total_email"]
 // ["total_transfer"]
