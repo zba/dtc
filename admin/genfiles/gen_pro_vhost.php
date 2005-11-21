@@ -15,10 +15,13 @@ fi
 ";
 }
 
-function test_valid_local_ip($address)
-{
+function test_valid_local_ip($address){
+	global $console;
+	global $panel_type;
 	$port = 80;
+//	return true;
 	// turn off error reporting for this function
+	$console .= "Checking IP $address:";
 	$old_error_reporting = error_reporting('E_NONE');
 
 	if (($sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) < 0) {
@@ -28,23 +31,30 @@ function test_valid_local_ip($address)
 
 	if (!($ret = socket_bind($sock, $address, $port))) {
 		$error = socket_last_error();
-		if ($error == 98)
-		{
+		if ($error == 98){
 			//echo "Address already in use!\n";
+			$console .= " already in use -> success\n";
 			return true;
 		}
 		else if ($error == 99)
 		{
 			//echo "IP not on server...\n";
+			$console .= " IP not on server -> failed\n";
 			return false;
 		}
 		else if ($error == 13)
 		{
+			if($panel_type=="admin"){
+				$console .= " permission denied -> assuming succes\n";
+				return true;
+			}
 			//echo "Permission denied...\n";
+			$console .= " permission denied -> failed\n";
 			return false;
 		} else {
 			//echo "$error\n";
 			echo "socket_bind()[$address] failed: reason: " . socket_strerror($error) . "\n";
+			$console .= " error ". socket_strerror($error) . " -> failed\n";
 			return false;
 		}
 	} else {
