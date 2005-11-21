@@ -108,6 +108,13 @@ else
 	cp -pf /bin/cpio usr/bin
 fi
 
+if [ -e /bin/bash ] ; then
+	cp -pf /bin/bash bin
+fi
+if [ -e /usr/bin/bash ] ; then
+	cp -pf /usr/bin/bash bin
+fi
+
 # copy required binaries to $CHROOT_DIR/bin
 cp -pf /bin/sh /bin/echo /bin/ls /bin/pwd /bin/cat bin/
 
