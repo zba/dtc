@@ -389,6 +389,9 @@ $vhost_more_conf	php_admin_value safe_mode 1
 #	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename\$xfer
+	LogSQLScoreDomain $web_name
+	LogSQLScoreSubdomain $web_subname
+	LogSQLScoreTable dtc.http_accounting
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
