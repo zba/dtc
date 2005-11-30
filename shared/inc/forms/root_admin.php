@@ -206,15 +206,15 @@ function drawDomainConfig($admin){
 		$popup_txt .= "</select>";
 
 		$ret .= "<td>$webname</td>
-				<td><input type=\"text\" name=\"new_quota\" value=\"$quota\" size=\"5\"></td>
-				<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_safe_mode_flag&domain=$webname&switch_to=$safe_to_switch\">$safe_gen_flag_txt</a></td>
-				<td><input type=\"text\" name=\"new_max_email\" value=\"$max_email\" size=\"5\"></td>
-				<td><input type=\"text\" name=\"new_max_ftp\" value=\"$max_ftp\" size=\"5\"></td>
-				<td><input type=\"text\" name=\"new_max_subdomain\" value=\"$max_subdomain\" size=\"5\"></td>
-				<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_generate_flag&domain=$webname&switch_to=$what_to_switch\">$webalizer_gen_flag_txt</a></td>
-				<td>$popup_txt</td>
-				<td><input type=\"text\" name=\"new_backup_ip_addr\" value=\"$backup_ip_addr\" size=\"15\"></td>
-				";
+			<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_safe_mode_flag&domain=$webname&switch_to=$safe_to_switch\">$safe_mode_flag_txt</a></td>
+			<td><input type=\"text\" name=\"new_quota\" value=\"$quota\" size=\"5\"></td>
+			<td><input type=\"text\" name=\"new_max_email\" value=\"$max_email\" size=\"5\"></td>
+			<td><input type=\"text\" name=\"new_max_ftp\" value=\"$max_ftp\" size=\"5\"></td>
+			<td><input type=\"text\" name=\"new_max_subdomain\" value=\"$max_subdomain\" size=\"5\"></td>
+			<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_generate_flag&domain=$webname&switch_to=$what_to_switch\">$webalizer_gen_flag_txt</a></td>
+			<td>$popup_txt</td>
+			<td><input type=\"text\" name=\"new_backup_ip_addr\" value=\"$backup_ip_addr\" size=\"15\"></td>
+			";
 
 		$ret .= "<td><input type=\"submit\" name=\"modify_domain_config\" value=\"Ok\"></tr></form>";
 	}

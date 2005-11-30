@@ -247,7 +247,11 @@ if(isset($_REQUEST["delete_admin_user"]) && $_REQUEST["delete_admin_user"] != ""
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "switch_generate_flag"){
 	$query = "UPDATE $pro_mysql_domain_table SET generate_flag='".$_REQUEST["switch_to"]."' WHERE name='".$_REQUEST["domain"]."';";
-	mysql_query($query);
+	mysql_query($query)or die("Cannot execute query \"$query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+}
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "switch_safe_mode_flag"){
+	$query = "UPDATE $pro_mysql_domain_table SET safe_mode='".$_REQUEST["switch_to"]."' WHERE name='".$_REQUEST["domain"]."';";
+	mysql_query($query)or die("Cannot execute query \"$query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
 
 //////////////////////////////
