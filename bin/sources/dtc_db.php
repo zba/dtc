@@ -203,6 +203,7 @@ $dtc_database = array(
 	"domain" => array(
 		"vars" => array(
 			"name" => "varchar(64) NOT NULL ",
+			"safe_mode" => "enum('yes','no') default 'yes'",
 			"owner" => "varchar(64) NOT NULL ",
 			"default_subdomain" => "varchar(64) NULL default 'www' ",
 			"generate_flag" => "varchar(10) NOT NULL default 'yes' ",

@@ -162,11 +162,12 @@ function drawDomainConfig($admin){
 	}
 
 	$ret = "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\">
-			<tr><td>".$txt_domain_tbl_config_dom_name[$lang]."</td><td>".$txt_domain_tbl_config_quota[$lang]."</td><td>".$txt_domain_tbl_config_max_email[$lang]."</td>
+			<tr><td>".$txt_domain_tbl_config_dom_name[$lang]."</td><td>Safe mode</td><td>".$txt_domain_tbl_config_quota[$lang]."</td><td>".$txt_domain_tbl_config_max_email[$lang]."</td>
 			<td>".$txt_domain_tbl_config_max_ftp[$lang]."</td><td>".$txt_domain_tbl_config_max_subdomain[$lang]."</td><td>Zone generation</td><td>".$txt_domain_tbl_config_ip[$lang]."</td><td>".$txt_domain_tbl_config_backup_ip[$lang]."</td><td>GO !</td></tr>";
 	for($i=0;$i<$nbr_domain;$i++){
 		$tobe_edited = $domains[$i];
 		$webname = $tobe_edited["name"];
+		$safe_mode = $tobe_edited["safe_mode"];
 		$quota = $tobe_edited["quota"];
 		$max_email = $tobe_edited["max_email"];
 		$max_ftp = $tobe_edited["max_ftp"];
@@ -179,6 +180,13 @@ function drawDomainConfig($admin){
 		}else{
 			$webalizer_gen_flag_txt = "<font color=\"#FF0000\">NO</font>";
 			$what_to_switch = "yes";
+		}
+		if($safe_mode == "no"){
+			$safe_mode_flag_txt = "<font color=\"#FF0000\">NO</font>";
+			$safe_to_switch = "yes";
+		}else{
+			$safe_mode_flag_txt = "<font color=\"#00FF00\">YES</font>";
+			$safe_to_switch = "no";
 		}
 		$ret .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 				<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
@@ -199,6 +207,7 @@ function drawDomainConfig($admin){
 
 		$ret .= "<td>$webname</td>
 				<td><input type=\"text\" name=\"new_quota\" value=\"$quota\" size=\"5\"></td>
+				<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_safe_mode_flag&domain=$webname&switch_to=$safe_to_switch\">$safe_gen_flag_txt</a></td>
 				<td><input type=\"text\" name=\"new_max_email\" value=\"$max_email\" size=\"5\"></td>
 				<td><input type=\"text\" name=\"new_max_ftp\" value=\"$max_ftp\" size=\"5\"></td>
 				<td><input type=\"text\" name=\"new_max_subdomain\" value=\"$max_subdomain\" size=\"5\"></td>

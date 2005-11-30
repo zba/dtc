@@ -818,44 +818,26 @@ smtpd_tls_auth_only = no
 # this file is appended to the postfix configure, in case you need to override some configure parameters in the postfix main.cf" > $PATH_DTC_ETC/postfix_config_snippets
 		fi
 
-		# if we have maildrop, we should use it!
-		if [ -n ""$PATH_USERDB_BIN -a -f "$PATH_USERDB_BIN" -a -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
-			echo "virtual_transport = maildrop" >> $TMP_FILE
-			echo "## Set to 1 because Maildrop only delivers one message at a time.
-maildrop_destination_recipient_limit = 1" >> $TMP_FILE
-			if grep "Configured by DTC" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo "Postfix master.cf has been configured before, not adding maildrop options"
-				fi
-			else
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo "Inserting DTC configuration inside $PATH_POSTFIX_ETC/master.cf"
-				fi
 
-				TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
-				echo "# Configured by DTC v0.17 : Please don't touch this line !" > $TMP_FILE2
-				echo "maildrop  unix  -       n       n       -       -       pipe
-    flags=DRhu user=nobody argv=$PATH_MAILDROP_BIN -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
-" >> $TMP_FILE2
-				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
-
-			cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
-			rm $TMP_FILE2
-			fi
-		fi
-
-		# check to see if we have our amavis stuff configured in our master.cf yet
-		if grep "smtp-amavis" $PATH_POSTFIX_ETC/master.cf > /dev/null; then
+		if grep "Configured by DTC" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "Postfix master.cf has amavis configured before..."
+				echo "Postfix master.cf has been configured before, not adding maildrop options"
 			fi
 		else
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "Adding amavis options to Postfix master.cf..."
+				echo "Inserting DTC configuration inside $PATH_POSTFIX_ETC/master.cf"
 			fi
+
 			TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.17 : Please don't touch this line !" > $TMP_FILE2
-		
+			# if we have maildrop, we should use it!
+			if [ -n ""$PATH_USERDB_BIN -a -f "$PATH_USERDB_BIN" -a -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
+				echo "maildrop  unix  -       n       n       -       -       pipe
+    flags=DRhu user=nobody argv=$PATH_MAILDROP_BIN -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
+" >> $TMP_FILE2
+			fi
+
+			# Insert our amavis stuff inside the master.cf
 			echo "# amavisd-new
 smtp-amavis unix -      -       -       -       2  smtp
     -o smtp_data_done_timeout=1200
@@ -881,10 +863,15 @@ smtp-amavis unix -      -       -       -       2  smtp
     -o smtpd_client_connection_rate_limit=0
     -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks
 " >> $TMP_FILE2
-				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
+			echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
 			cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
 			rm $TMP_FILE2
-
+		fi
+		# if we have maildrop, we should use it!
+		if [ -n ""$PATH_USERDB_BIN -a -f "$PATH_USERDB_BIN" -a -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
+			echo "virtual_transport = maildrop" >> $TMP_FILE
+			echo "## Set to 1 because Maildrop only delivers one message at a time.
+maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 		fi
 
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
@@ -1092,6 +1079,40 @@ else
 	then
 		cp -f $PATH_PROFTPD_CONF $PATH_PROFTPD_CONF.DTC.backup
 	fi
+
+	# Generate the OpenSSL test certificate if it does not exists
+	if [ ""$conf_gen_ssl_cert = "true" ]; then
+		if [ ! -e $PATH_DTC_ETC"/ssl" ]; then
+			mkdir -p $PATH_DTC_ETC"/ssl"
+		fi
+		if [ ! -e $PATH_DTC_ETC"/ssl/proftpd" ] ; then
+			 mkdir -p $PATH_DTC_ETC"/ssl/proftpd"
+		fi
+		cwd=`pwd`
+		cd $PATH_DTC_ETC"/ssl/proftpd"
+		if [ ! -e "./"new.cert.csr ]; then
+			if [ ! -e "./"new.cert.cert ]; then
+				if [ ! -e "./"new.cert.key ]; then
+				CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
+				echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
+				( echo $conf_cert_countrycode;
+				echo "the state";
+				echo $conf_cert_locality;
+				echo $conf_cert_organization;
+				echo $conf_cert_unit;
+				echo $dtc_admin_subdomain"."$main_domain_name;
+				echo $conf_cert_email;
+				echo $conf_cert_challenge_pass;
+				echo $conf_cert_organization; ) | openssl req -passout file:$CERTPASS_TMP_FILE -new > new.cert.csr
+				openssl rsa -passin file:$CERTPASS_TMP_FILE -in privkey.pem -out new.cert.key
+				openssl x509 -in new.cert.csr -out new.cert.cert -req -signkey new.cert.key -days 3650
+				rm $CERTPASS_TMP_FILE
+				fi
+			fi
+		fi
+		cd $cwd
+	fi
+
 	TMP_FILE=`${MKTEMP} DTC_install.proftp.conf.XXXXXX` || exit 1
 	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 # This directive is not used anymore in newer version of proftpd
@@ -1102,6 +1123,22 @@ else
 	echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >> $TMP_FILE
 	echo "SQLAuthTypes	Plaintext" >> $TMP_FILE
 	echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >> $TMP_FILE
+	if [ -e $PATH_DTC_ETC"/ssl/proftpd/new.cert.cert" ] ; then
+		if [ -e $PATH_DTC_ETC"/ssl/proftpd/new.cert.key" ] ; then
+			if [ ""$conf_gen_ssl_cert = "true" ]; then
+				echo "# This is the TLS auth support. Thanks to Erwan Gurcuff (gort) for the tip!
+<IfModule mod_tls.c>
+	TLSEngine on
+	TLSLog /var/log/proftpd-tls.log
+	TLSProtocol TLSv1
+	TLSRequired off
+	TLSRSACertificateFile "$PATH_DTC_ETC"/ssl/proftpd/new.cert.cert
+	TLSRSACertificateKeyFile "$PATH_DTC_ETC"/ssl/proftpd/new.cert.key
+	TLSVerifyClient on
+</IfModule>" >> $TMP_FILE
+			fi
+		fi
+	fi
 	echo "# // Transfer Log to Proftpd
 SQLLog RETR,STOR transfer1
 SQLNamedQuery transfer1 INSERT \"'%u', '%f', '%b', '%h', '%a', '%m', '%T',now(), 'c', NULL\" ftp_logs
