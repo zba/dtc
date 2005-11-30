@@ -57,6 +57,7 @@ function drawAdminTools_Subdomain($domain){
 
 	$default_subdomain = $domain["default_subdomain"];
 	$webname = $domain["name"];
+	$domain_safe_mode = $domain["safe_mode"];
 	$subdomains = $domain["subdomains"];
 	$nbr_subdomains = sizeof($subdomains);
 
@@ -77,6 +78,7 @@ function drawAdminTools_Subdomain($domain){
 				$login_to_edit = "";
 				$pass_to_edit = "";
 			}
+			$safe_mode = $subdomains[$i]["safe_mode"];
 			$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
 			$generate_vhost_to_edit = $subdomains[$i]["generate_vhost"];
 			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
@@ -182,6 +184,18 @@ function drawAdminTools_Subdomain($domain){
 		// Edition of existing subdomains
 		$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>".$txt_subdom_edita[$lang]."</u></b></font></td></tr>";
 		$txt .= "<tr><td align=\"right\">".$txt_subdom_newname[$lang]."</td><td>".$_REQUEST["edit_a_subdomain"]."</td><td></td></tr>";
+		if($domain_safe_mode == "no"){
+			if($safe_mode == "yes"){
+				$checked_yes = " checked";
+				$checked_no = "";
+			}else{
+				$checked_yes = "";
+				$checked_no = " checked";
+			}
+			$txt .= "<tr><td align=\"right\">safe_mode</td>";
+			$txt .= "<td>Yes<input type=\"radio\" name=\"safe_mode\" value=\"yes\" $checked_yes>
+No<input type=\"radio\" name=\"safe_mode\" value=\"no\" $checked_no></td></tr>";
+		}
 		if($register_globals_to_edit == "yes"){
 			$checked_yes = " checked";
 			$checked_no = "";

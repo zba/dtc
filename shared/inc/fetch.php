@@ -354,6 +354,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 		for($j=0;$j<$num_rows2;$j++){
 			$row2 = mysql_fetch_array($result2) or die ("Cannot fetch subdomain");
 			$subdomain["name"] = $row2["subdomain_name"];
+			$subdomain["safe_mode"] = $row2["safe_mode"];
 			$subdomain["path"] = $row2["path"];
 			$subdomain["ip"] = $row2["ip"];
 			if(isset($row2["login"])){

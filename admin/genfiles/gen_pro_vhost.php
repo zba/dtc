@@ -192,13 +192,12 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$web_name = $row["name"];
 		$web_owner = $row["owner"];
 		$ip_addr = $row["ip_addr"];
+		$domain_safe_mode = $row["safe_mode"];
 		unset($backup_ip_addr);
-		if (isset($row["backup_ip_addr"]))
-		{
+		if (isset($row["backup_ip_addr"])){
 			$backup_ip_addr = $row["backup_ip_addr"];
 		}
-		if (isset($backup_ip_addr) && ($backup_ip_addr == "NULL" || trim($backup_ip_addr) == ""))
-		{
+		if (isset($backup_ip_addr) && ($backup_ip_addr == "NULL" || trim($backup_ip_addr) == "")){
 			unset($backup_ip_addr);
 		} 
 		// need to check if we have a NameVirtualHost entry for this backup IP, to support multiple backup sites on one IP
@@ -357,6 +356,15 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 // --- Start of the conf of server users subdomain ---
 // ---------------------------------------------------
 			} else {
+				if($domain_safe_mode == "no"){
+					if($subdomain["safe_mode"] == "no"){
+						$safe_mode_value = "0";
+					}else{
+						$safe_mode_value = "1";
+					}
+				}else{
+					$safe_mode_value = "1";
+				}
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
@@ -381,10 +389,10 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					} else {
 						$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
 					}
-				$vhost_file .= "	ServerName $web_subname.$web_name
+					$vhost_file .= "	ServerName $web_subname.$web_name
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html/
-$vhost_more_conf	php_admin_value safe_mode 1
+$vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	php_admin_value sendmail_from webmaster@$web_name
 	php_value session.save_path $web_path/$web_name/subdomains/$web_subname/tmp
 	<Location />
@@ -406,10 +414,10 @@ $vhost_more_conf	php_admin_value safe_mode 1
 </VirtualHost>
 
 ";
+					$num_generated_vhosts += $num_rows2;
 				}
 			}
         }
-		$num_generated_vhosts += $num_rows2;
 	}
 
 	// Ecriture du fichier

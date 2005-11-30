@@ -693,6 +693,7 @@ $dtc_database = array(
 	"subdomain" => array(
 		"vars" => array(
 			"id" => "int(12) NOT NULL auto_increment",
+			"safe_mode" => "enum ('yes','no') default 'yes'",
 			"domain_name" => "varchar(64) NOT NULL ",
 			"subdomain_name" => "varchar(64) NOT NULL ",
 			"path" => "varchar(64) NOT NULL ",
