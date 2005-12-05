@@ -72,6 +72,7 @@ function pro_vhost_generate(){
 	global $pro_mysql_subdomain_table;
 
 	global $conf_db_version;
+	global $conf_unix_type;
 
 	global $conf_apache_vhost_path;
 	global $conf_generated_file_path;
@@ -100,6 +101,12 @@ function pro_vhost_generate(){
 	$vhost_file = "";
 	$vhost_file_listen = "";
 	$chk_dir_script = "#!/bin/sh\n";
+
+	if($conf_unix_type == "gentoo"){
+		$conf_tools_prefix = "/var/www/localhost/htdocs";
+	}else{
+		$conf_tools_prefix = "/usr/share";
+	}
 
 	// DB version check
 	if(($conf_db_version < 10000 || !isset($conf_db_version)) ||
@@ -327,13 +334,13 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
-				$vhost_file .= "	Alias /phpmyadmin /usr/share/phpmyadmin
+				$vhost_file .= "	Alias /phpmyadmin ".$conf_tools_prefix"./phpmyadmin
 	Alias /dtc $conf_dtcclient_path
 	Alias /dtcdoc $conf_dtcdoc_path/html/en
 	Alias /dtcemail $conf_dtcemail_path
 	Alias /dtcadmin $conf_dtcadmin_path
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
-	Alias /squirrelmail /usr/share/squirrelmail
+	Alias /squirrelmail ".$conf_tools_prefix."/squirrelmail
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
 # This is old fashion no protection CGI
