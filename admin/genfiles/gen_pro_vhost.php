@@ -334,7 +334,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
-				$vhost_file .= "	Alias /phpmyadmin ".$conf_tools_prefix"./phpmyadmin
+				$vhost_file .= "	Alias /phpmyadmin ".$conf_tools_prefix."/phpmyadmin
 	Alias /dtc $conf_dtcclient_path
 	Alias /dtcdoc $conf_dtcdoc_path/html/en
 	Alias /dtcemail $conf_dtcemail_path
