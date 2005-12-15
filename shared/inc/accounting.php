@@ -71,6 +71,8 @@ function fetchPOPInfo($webname){
 }
 
 function sum_email($webname){
+/* Code unactivated because now using realtime
+
 	global $pro_mysql_acc_email_table;
 	global $pro_mysql_smtplogs_table;
 	global $pro_mysql_pop_table;
@@ -144,6 +146,7 @@ function sum_email($webname){
 		VALUES ('$smtp_bytes','$pop_bytes','$imap_bytes','$current_month','$current_year','$webname')";
 		mysql_query($query)or die("Cannot execute query \"$query\"".mysql_error());
 	}
+*/
 }
 
 function sum_http($webname){
@@ -348,7 +351,7 @@ $rezar["status"]." ".$rezar["bytes_sent"].
 }
 
 function check_sum($db_select_name,$selected_month_start,$selected_month_end,$webname,$subdomain_name){
-	global $pro_mysql_subdomain_table;
+/*	global $pro_mysql_subdomain_table;
 	global $pro_mysql_acc_http_table;
 	global $conf_mysql_db;
 	mysql_select_db("apachelogs");
@@ -391,6 +394,7 @@ function check_sum($db_select_name,$selected_month_start,$selected_month_end,$we
 		VALUES ('".$subdomain_name."','".$bytes_sent."','".$hosts."','".$visits."','".$imp."','".$webname."','".$current_month."','".$current_year."')";
 		mysql_query($query_insert_bytes)or die("Cannot execute query \"$query_insert_bytes\"".mysql_error());
 	}
+*/
 }
 
 function sum_ftp($webname){
