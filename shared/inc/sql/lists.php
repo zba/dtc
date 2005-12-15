@@ -51,10 +51,11 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	$adm_query = "INSERT INTO $pro_mysql_list_table(domain, name, owner) VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_owner"]."');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__line__." file ".__FILE__." sql said ".mysql_error());
 	
-	// T: Please lucas comments in english !!!
-	//prendo l'id autoincrementale che della ml che ho inserito
+	/*/ T: Please lucas comments in english !!!
+	//this code take the last id -  i need if i use number to 
+identify the mailing list name but the new code don't need it
 	$query_last_ml = mysql_query ( "SELECT id from $pro_mysql_list_table order by id DESC limit 1" ) ;
-	$lastml = mysql_fetch_array($query_last_ml) ;
+	$lastml = mysql_fetch_array($query_last_ml) ;*/
 
 	// Call the mlmmj-make-ml command to create the mailing list
 	$command = "(echo $edit_domain; echo ".$owner."; echo N;) | /usr/bin/mlmmj-make-ml -L $folder_name -s $list_path";
@@ -144,6 +145,8 @@ if(isset($_REQUEST["dellist"]) && $_REQUEST["dellist"] == "Del"){
 	if(!isMailbox($_REQUEST["edit_mailbox"])){
 		die($_REQUEST["edit_mailbox"]." does not look like a mailbox login...");
 	}
+	
+	//I need to add the deletion of list directory (in var/www/... and in /etc/mlmmj)
 
 	// Submit to sql database
 	$adm_query="DELETE FROM $pro_mysql_list_table WHERE domain='$edit_domain' AND name='".$_REQUEST["edit_mailbox"]."' LIMIT 1";
