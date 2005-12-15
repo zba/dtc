@@ -178,24 +178,15 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 fi
 if grep "Configured by DTC" ${PATH_POSTFIX_ETC}/master.cf >/dev/null 2>&1
 then
-	echo 1
 	start_line=`grep -n "Configured by DTC" ${PATH_POSTFIX_ETC}/master.cf | cut -d":" -f1`
-	echo 2
 	end_line=`grep -n "End of DTC configuration" ${PATH_POSTFIX_ETC}/master.cf | cut -d":" -f1`
-	echo 3
 	nbr_line=`cat ${PATH_POSTFIX_ETC}/master.cf | wc -l`
-	echo 4
 	TMP_FILE=`${MKTEMP} DTC_uninstall.postfix.conf.XXXXXX` || exit 1
-	echo 5
 	cat ${PATH_POSTFIX_ETC}/master.cf | head -n $(($start_line - 1 )) > $TMP_FILE
-	echo 6
 	cat ${PATH_POSTFIX_ETC}/master.cf | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
-	echo 7
 	cp -f ${PATH_POSTFIX_ETC}/master.cf ${PATH_POSTFIX_ETC}/master.cf.DTC.removed
 	echo -n > ${PATH_POSTFIX_ETC}/master.cf
-	echo 8
 	cat < $TMP_FILE >> ${PATH_POSTFIX_ETC}/master.cf
-	echo 9
 	rm $TMP_FILE
 fi
 
