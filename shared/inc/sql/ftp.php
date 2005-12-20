@@ -38,7 +38,7 @@ if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 	if($commit_flag == "yes"){
 		$adm_query = " INSERT INTO $pro_mysql_ftp_table
 (login,           password, homedir, count, fhost, faddr, ftime, fcdir, fstor, fretr, bstor, bretr, creation, ts, frate, fcred, brate, bcred, flogs, size, shell, hostname)VALUES
-('".$_REQUEST["newftp_login"]."', '".$_REQUEST["newftp_pass"]."', '".$_REQUEST["newftp_path"]."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
+('".$_REQUEST["newftp_login"]."', '".$_REQUEST["newftp_pass"]."', '".$_REQUEST["newftp_path"]."/./"."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
 '15', '5','1', NULL, '', '/bin/sh', '$edit_domain') ";
 		// $newftp_login $newftp_pass $edit_domain
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
@@ -62,6 +62,12 @@ if(isset($_REQUEST["update_ftp_account"]) && $_REQUEST["update_ftp_account"] == 
 		$commit_flag = "no";
 	}
 
+	if( 0 != strstr($_REQUEST["edftp_path"],'/./') ){
+		$new_path = $_REQUEST["edftp_path"]."/./";
+	}else{
+		$new_path = $_REQUEST["edftp_path"];
+	}
+
 	if(!isFtpLogin($_REQUEST["edftp_account"])){
 		$submit_err .= "Incorrect ftp login : this is not a good string for a ftp login, please enter a new one.";
 		$commit_flag = "no";
@@ -74,7 +80,7 @@ if(isset($_REQUEST["update_ftp_account"]) && $_REQUEST["update_ftp_account"] == 
 	$_REQUEST["edftp_path"] = addslashes($_REQUEST["edftp_path"]);
 
 	if($commit_flag == "yes"){
-		$adm_query = "UPDATE $pro_mysql_ftp_table SET homedir='".$_REQUEST["edftp_path"]."', password='".$_REQUEST["edftp_pass"]."' WHERE login ='".$_REQUEST["edftp_account"]."' AND hostname='$edit_domain' LIMIT 1;";
+		$adm_query = "UPDATE $pro_mysql_ftp_table SET homedir='".addslashes($new_path)."', password='".$_REQUEST["edftp_pass"]."' WHERE login ='".$_REQUEST["edftp_account"]."' AND hostname='$edit_domain' LIMIT 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 	}
 }
