@@ -464,6 +464,10 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$ftp["login"] = $row4["login"];
 			$ftp["passwd"] = $row4["password"];
 			$ftp["path"] = $row4["homedir"];
+			// Remove the "/./" that is used to chroot pure-ftpd-mysql
+			if( false != ereg("/./\$",$ftp["path"]) ){
+				$ftp["path"] = substr($ftp["path"],0,strlen($ftp["path"]) - 3);
+			}
 			$ftps[] = $ftp;
 		}
 		if(isset($ftps)){

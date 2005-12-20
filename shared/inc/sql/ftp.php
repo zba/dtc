@@ -62,7 +62,7 @@ if(isset($_REQUEST["update_ftp_account"]) && $_REQUEST["update_ftp_account"] == 
 		$commit_flag = "no";
 	}
 
-	if( 0 != strstr($_REQUEST["edftp_path"],'/./') ){
+	if( 0 == strstr($_REQUEST["edftp_path"],'/./') ){
 		$new_path = $_REQUEST["edftp_path"]."/./";
 	}else{
 		$new_path = $_REQUEST["edftp_path"];
@@ -77,7 +77,6 @@ if(isset($_REQUEST["update_ftp_account"]) && $_REQUEST["update_ftp_account"] == 
 		$submit_err .= "Incorrect FTP password: from 6 to 16 chars, a-z A-Z 0-9";
 		$commit_flag = "no";
 	}
-	$_REQUEST["edftp_path"] = addslashes($_REQUEST["edftp_path"]);
 
 	if($commit_flag == "yes"){
 		$adm_query = "UPDATE $pro_mysql_ftp_table SET homedir='".addslashes($new_path)."', password='".$_REQUEST["edftp_pass"]."' WHERE login ='".$_REQUEST["edftp_account"]."' AND hostname='$edit_domain' LIMIT 1;";
