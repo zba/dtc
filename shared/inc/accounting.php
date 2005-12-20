@@ -239,16 +239,13 @@ function dump_access_log($vhost,$domain,$db_select_name,$current_month,$current_
 	$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 	$start = mysql_result($result,0,"start");
 
-	if($start!=0 && $end!=0)
-	{
+	if($start!=0 && $end!=0){
 		$year_start = date("Y",$start);
 		$year_end = date("Y",$end);
 		$start_month = date("m",$start);
 
-		for($year=$year_start;$year<=$year_end;$year++)
-		{
-			for($month=$start_month;$month<=12;$month++)
-			{
+		for($year=$year_start;$year<=$year_end;$year++){
+			for($month=$start_month;$month<=12;$month++){
 				mysql_select_db($conf_mysql_db);
 				$query_admin = "SELECT * FROM $pro_mysql_domain_table WHERE name='$domain'";
 				$result_admin = mysql_query($query_admin) or die("Cannot execute query \"$query_admin\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
