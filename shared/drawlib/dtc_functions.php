@@ -189,7 +189,7 @@ function isFtpLogin($mailbox){
 
 // Check for validity of a database name
 function isDatabase($db){
-	$reg = "^([a-z]+)([a-z]+)\$";
+	$reg = "^([0-9a-z]+)([0-9a-z]+)\$";
 	if(!ereg($reg,$db))	return false;
 	else			return true;
 }
