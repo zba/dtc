@@ -1062,6 +1062,37 @@ user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host
 	fi	
 fi
 
+#
+# Install pure-ftpd-mysql
+#
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Adding directives to pure-ftpd-mysql"
+fi
+PURE_FTPD_ETC="/etc/pure-ftpd"
+if [ -e $PURE_FTPD_ETC ] ;then
+	if [ -e $PURE_FTPD_ETC/db/ ] ;then
+		echo "# Configured by DTC v0.10 : Please don't touch this line !
+
+MYSQLSocket /var/run/mysqld/mysqld.sock
+MYSQLUser dtcdaemons
+MYSQLPassword ${MYSQL_DTCDAEMONS_PASS}
+MYSQLDatabase dtc
+MYSQLCrypt cleartext
+MYSQLGetPW      SELECT password FROM ftp_access WHERE login=\"\L\"
+MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
+MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
+MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
+
+" >$PURE_FTPD_ETC/db/mysql.conf;
+		if [ -x /usr/sbin/invoke-rc.d ]; then
+			/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
+		else
+			if [ -x /etc/init.d/pure-ftpd-mysql ] ;then
+				/etc/init.d/pure-ftpd-mysql restart
+			fi
+		fi
+	fi
+fi
 
 #
 # Install proftpd.conf to access to the database
