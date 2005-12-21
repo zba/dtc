@@ -50,11 +50,13 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 		}else{
 			$server = $_REQUEST["newsubdomain_ip"];
 			// echo "Checking POP3<br>";
-			if(($server_ip = gethostbynameFalse($server)) == false){
-				echo "Cannot resolv your server: ".$_REQUEST["newsubdomain_ip"]."<br>";
-				$newsubdomain_ip = "default";
-			}else{
-				$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+			if($server != "default"){
+				if(($server_ip = gethostbynameFalse($server)) == false){
+					echo "Cannot resolv your server: ".$_REQUEST["newsubdomain_ip"]."<br>";
+					$newsubdomain_ip = "default";
+				}else{
+					$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+				}
 			}
 		}
 	}
