@@ -69,6 +69,12 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 	if($_REQUEST["generate_vhost"] == "yes")	$gen_vhost = ", generate_vhost='yes'";
 	else		$gen_vhost = ", generate_vhost='no'";
 	$add_vals = $reg_globs.$webalizer.$w3alias.$gen_vhost;
+
+	if( !isset($_REQUEST["safe_mode"]) || (isset($_REQUEST["safe_mode"]) && $_REQUEST["safe_mode"] == "yes") ){
+		$safe_mode_switch = ", safe_mode='yes'";
+	}else{
+		$safe_mode_switch = ", safe_mode='no'";
+	}
 	// Update the flag so we regenerate the serial for bind
 	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
@@ -79,7 +85,7 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 		$add_vals .= ", login=NULL, pass=NULL ";
 	}
 	$domupdate_query = "UPDATE $pro_mysql_subdomain_table SET ip='".$_REQUEST["newsubdomain_ip"]."'$add_vals,
-	associated_txt_record='".addslashes($_REQUEST["associated_txt_record"])."' WHERE domain_name='$edit_domain' AND subdomain_name='".$_REQUEST["subdomain_name"]."' LIMIT 1;";
+	associated_txt_record='".addslashes($_REQUEST["associated_txt_record"])."'$safe_mode_switch WHERE domain_name='$edit_domain' AND subdomain_name='".$_REQUEST["subdomain_name"]."' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named='yes'");
