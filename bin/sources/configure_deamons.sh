@@ -1073,6 +1073,9 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 fi
 PURE_FTPD_ETC="/etc/pure-ftpd"
 if [ -e $PURE_FTPD_ETC ] ;then
+	if [ -e /etc/pure-ftpd/conf/ ] ;then
+		echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
+	fi
 	if [ -e $PURE_FTPD_ETC/db/ ] ;then
 		echo "# Configured by DTC v0.10 : Please don't touch this line !
 
