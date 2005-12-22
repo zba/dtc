@@ -41,25 +41,23 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 
 	//Path of user's mailing lists
 	$admin_path = getAdminPath($adm_login);
-	$list_path = "$admin_path/$edit_domain/lists";
+	$list_path = $admin_path."/".$edit_domain."/lists";
 	 
 	// Mailing list will be created in /var/www/sites/USERNAME/DOMAIN-NAME/lists/DOMAIN-NAME_LIST-NAME/
-	$folder_name = $edit_domain . "_" . $name;
-	$list_full_path = $list_path ."/".$folder_name;
+	$folder_name = $edit_domain."_".$name;
+	$list_full_path = $list_path."/".$folder_name;
 
 	// Insert the record in the sql
 	$adm_query = "INSERT INTO $pro_mysql_list_table(domain, name, owner) VALUES ('$edit_domain','".$_REQUEST["newlist_name"]."','".$_REQUEST["newlist_owner"]."');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__line__." file ".__FILE__." sql said ".mysql_error());
 	
-	/*/ T: Please lucas comments in english !!!
-	//this code take the last id -  i need if i use number to 
-identify the mailing list name but the new code don't need it
-	$query_last_ml = mysql_query ( "SELECT id from $pro_mysql_list_table order by id DESC limit 1" ) ;
-	$lastml = mysql_fetch_array($query_last_ml) ;*/
-
 	// Call the mlmmj-make-ml command to create the mailing list
 	$command = "(echo $edit_domain; echo ".$owner."; echo N;) | /usr/bin/mlmmj-make-ml -L $folder_name -s $list_path";
 	exec($command);
+	
+	//Create a symbolik link in /var/spool/mlmmj
+	$symlink = "ln -s ".$list_path."/".$folder_name." /var/spool/mlmmj/".$folder_name;
+	exec($symlink);
 
 	$fileName3 = $list_path.'/'.$folder_name.'/control/listaddress';
 	$newLine3 = $name . "@" . $edit_domain;
@@ -146,10 +144,22 @@ if(isset($_REQUEST["dellist"]) && $_REQUEST["dellist"] == "Del"){
 		die($_REQUEST["edit_mailbox"]." does not look like a mailbox login...");
 	}
 	
-	//I need to add the deletion of list directory (in var/www/... and in /etc/mlmmj)
-
-	// Submit to sql database
-	$adm_query="DELETE FROM $pro_mysql_list_table WHERE domain='$edit_domain' AND name='".$_REQUEST["edit_mailbox"]."' LIMIT 1";
+	//Some vars
+	$name = $_REQUEST["edit_mailbox"];
+	$admin_path = getAdminPath($adm_login);
+	$folder_name = $edit_domain."_".$name;
+	$list_full_path = $admin_path."/".$edit_domain."/lists/".$folder_name;
+	
+	//I delete all files of this mailing list
+	$del_spool = "rm /var/spool/mlmmj/".$folder_name;
+	exec($del_spool);
+	$del_etc = "rm -rf /etc/mlmmj/lists/".$folder_name;
+	exec($del_etc);
+	$del_ml = "rm -rf ".$list_full_path;
+	exec($del_ml);
+	
+	// Delete list from sql database
+	$adm_query="DELETE FROM $pro_mysql_list_table WHERE domain='$edit_domain' AND name='$name' LIMIT 1";
 	unset($edit_mailbox);
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
