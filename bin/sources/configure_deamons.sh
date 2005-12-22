@@ -899,6 +899,9 @@ if [ -f "/usr/bin/mlmmj-make-ml" -o -f "/usr/bin/mlmmj-make-ml.sh" ] ; then
 	chown -R root:65534 /etc/mlmmj/lists
 	chmod -R g+w /etc/mlmmj/lists
 fi
+if [ -e /var/spool/mlmmj/ ] ;then
+	chown nobody:65534 /var/spool/mlmmj/
+fi
 
 # This avoid hanging when (re)starting daemons under debian
 if [ "$UNIX_TYPE" = "debian" ]
