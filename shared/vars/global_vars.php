@@ -34,10 +34,10 @@ function isValidEmailLogin($email){
 }
 
 
-if(isset($adm_login) && !ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)\$",$adm_login) && $adm_login != ""){
+if(isset($adm_login) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$",$adm_login) && $adm_login != ""){
 	die("DTCclient login error: Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
-if(isset($adm_pass) && !ereg("^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_pass) && $adm_pass != ""){
+if(isset($adm_pass) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_pass) && $adm_pass != ""){
 	die("DTC client login error: Requested pass does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
 
