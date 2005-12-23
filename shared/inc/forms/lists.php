@@ -195,6 +195,51 @@ if (file_exists($option_file)){
 //add checkbox to form
 $output .= "<tr><td>subonlyget</td><td><input type=\"checkbox\" value=\"yes\" name=\"subonlyget\"".$check_option."></td></tr>";
 
+//9 tocc file exist?
+$check_option = "";
+$option_file = $list_path."tocc";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>tocc</td><td><input type=\"checkbox\" value=\"yes\" name=\"tocc\"".$check_option."></td></tr>";
+
+//10 addtohdr file exist?
+$check_option = "";
+$option_file = $list_path."addtohdr";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>addtohdr</td><td><input type=\"checkbox\" value=\"yes\" name=\"addtohdr\"".$check_option."></td></tr>";
+
+//11 notoccdenymails file exist?
+$check_option = "";
+$option_file = $list_path."notoccdenymails";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>notoccdenymails</td><td><input type=\"checkbox\" value=\"yes\" name=\"notoccdenymails\"".$check_option."></td></tr>";
+
+//12 noaccessdenymails file exist?
+$check_option = "";
+$option_file = $list_path."noaccessdenymails";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>noaccessdenymails</td><td><input type=\"checkbox\" value=\"yes\" name=\"noaccessdenymails\"".$check_option."></td></tr>";
+
+//13 nosubonlydenymails file exist?
+$check_option = "";
+$option_file = $list_path."nosubonlydenymails";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>nosubonlydenymails</td><td><input type=\"checkbox\" value=\"yes\" name=\"nosubonlydenymails\"".$check_option."></td></tr>";
+
 return $output;
 }
 

@@ -253,6 +253,81 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 		exec($rem);
 		} 
 	}
+	// 9 tocc
+	if (isset($_REQUEST["tocc"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/tocc";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/tocc";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 10 addtohdr
+	if (isset($_REQUEST["addtohdr"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/addtohdr";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/addtohdr";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 11 notoccdenymails
+	if (isset($_REQUEST["notoccdenymails"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/notoccdenymails";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/notoccdenymails";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 12 noaccessdenymails
+	if (isset($_REQUEST["noaccessdenymails"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/noaccessdenymails";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/noaccessdenymails";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 13 nosubonlydenymails
+	if (isset($_REQUEST["nosubonlydenymails"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/nosubonlydenymails";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/nosubonlydenymails";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
 	
 }
 //////////////////////////////////
