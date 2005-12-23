@@ -105,7 +105,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	$admin_path = getAdminPath($adm_login);
-        $list_path = "$admin_path/$edit_domain/lists";
+   $list_path = $admin_path."/".$edit_domain."/lists";
 
 	$new_list_owner = $_REQUEST["editmail_owner"];
 
@@ -118,7 +118,6 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 		die("Owner is not a valid email !");
 	}
 
-
 	//now need to edit the owner to $_REQUEST["editmail_owner"]; 
 	$fileName3 = $list_path.'/'. $edit_domain . '_' . $name.'/control/owner';
 	$newLine3 = $new_list_owner;
@@ -126,12 +125,135 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	fwrite($fp3,$newLine3);
 	fclose($fp3);
 
-	// submit to sql
+	//submit to sql
 	$adm_query = "UPDATE $pro_mysql_list_table SET owner='$new_list_owner' WHERE domain='$edit_domain' AND name='$name';";
 	unset($edit_mailbox);
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
+	
+	//Now i do all options commands!!
+	// 1 closedlist
+	if (isset($_REQUEST["closedlist"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/closedlist";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/closedlist";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 2 moderated
+	if (isset($_REQUEST["moderated"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/moderated";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/moderated";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 3 subonlypost
+	if (isset($_REQUEST["subonlypost"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/subonlypost";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/subonlypost";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 4 notifysub
+	if (isset($_REQUEST["notifysub"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/notifysub";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/notifysub";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 5 nosubconfirm
+	if (isset($_REQUEST["nosubconfirm"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/nosubconfirm";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/nosubconfirm";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 6 noarchive
+	if (isset($_REQUEST["noarchive"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/noarchive";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/noarchive";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 7 noget
+	if (isset($_REQUEST["noget"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/noget";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/noget";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	// 8 subonlyget
+	if (isset($_REQUEST["subonlyget"])){
+		//if file !exist -> i create
+		$option_file = $list_path."/".$edit_domain."_".$name."/subonlyget";
+		if (!file_exists($option_file)){
+		$touch = "touch ".$option_file;
+		exec($touch);
+		} 
+	}else{
+		$option_file = $list_path."/".$edit_domain."_".$name."/subonlyget";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+	
 }
 //////////////////////////////////
 // $edit_domain $editmail_login

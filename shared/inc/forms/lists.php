@@ -77,9 +77,9 @@ function drawAdminTools_MailingLists($domain){
 	".$txt_list_name[$lang]."</td><td><b>$list_name</b>@$edit_domain
 </td></tr><tr><td align=\"right\">";
 	$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"editmail_owner\" value=\"$list_owner\">";
-$txt .= "
-</td></tr><tr>
-<td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" value=\"Ok\">&nbsp;
+$txt .= "</td></tr>";
+$txt .= list_options();
+$txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" value=\"Ok\">&nbsp;
 <input type=\"submit\" name=\"dellist\" value=\"Del\">
 </td></tr>
 </table>
@@ -100,11 +100,10 @@ $txt .= "
 	".$txt_list_name[$lang]."</td><td><input type=\"text\" name=\"newlist_name\" value=\"\">
 </td></tr><tr><td align=\"right\">";
 			$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"newlist_owner\" value=\"\">";
-$txt .= "
-</td></tr><tr>
-<td></td>
-<td><input type=\"submit\" name=\"addnewlisttodomain\" value=\"Ok\">
-</td></tr>
+$txt .= "</td></tr>
+<tr><td>&nbsp;</td>
+<td><input type=\"submit\" name=\"addnewlisttodomain\" value=\"Ok\"></td>
+</tr>
 </table>
 </form>
 ";
@@ -116,5 +115,87 @@ $txt .= "
 	return $txt;
 }
 
+//this function check options and checkbox
+function list_options(){
+
+global $edit_domain;
+global $adm_login;
+$admin_path = getAdminPath($adm_login);
+$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"]."/";
+
+//1 closedlist file exist?
+$check_option = "";
+$option_file = $list_path."closedlist";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output = "<tr><td>closedlist</td><td><input type=\"checkbox\" value=\"yes\" name=\"closedlist\"".$check_option."></td></tr>";
+
+//2 moderated file exist?
+$check_option = "";
+$option_file = $list_path."moderated";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>moderated</td><td><input type=\"checkbox\" value=\"yes\" name=\"moderated\"".$check_option."></td></tr>";
+
+//3 subonlypost file exist?
+$check_option = "";
+$option_file = $list_path."subonlypost";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>subonlypost</td><td><input type=\"checkbox\" value=\"yes\" name=\"subonlypost\"".$check_option."></td></tr>";
+
+//4 notifysub file exist?
+$check_option = "";
+$option_file = $list_path."notifysub";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>notifysub</td><td><input type=\"checkbox\" value=\"yes\" name=\"notifysub\"".$check_option."></td></tr>";
+
+//5 nosubconfirm file exist?
+$check_option = "";
+$option_file = $list_path."nosubconfirm";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>nosubconfirm</td><td><input type=\"checkbox\" value=\"yes\" name=\"nosubconfirm\"".$check_option."></td></tr>";
+
+//6 noarchive file exist?
+$check_option = "";
+$option_file = $list_path."noarchive";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>noarchive</td><td><input type=\"checkbox\" value=\"yes\" name=\"noarchive\"".$check_option."></td></tr>";
+
+//7 noget file exist?
+$check_option = "";
+$option_file = $list_path."noget";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>noget</td><td><input type=\"checkbox\" value=\"yes\" name=\"noget\"".$check_option."></td></tr>";
+
+//8 subonlyget file exist?
+$check_option = "";
+$option_file = $list_path."subonlyget";
+if (file_exists($option_file)){
+	$check_option = " checked";
+	}
+//add checkbox to form
+$output .= "<tr><td>subonlyget</td><td><input type=\"checkbox\" value=\"yes\" name=\"subonlyget\"".$check_option."></td></tr>";
+
+return $output;
+}
 
 ?>
