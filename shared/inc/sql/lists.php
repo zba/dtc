@@ -114,6 +114,21 @@ function tunablesBooleanRequestCheck($ctrl_path,$tunable_name){
 	}
 }
 
+function tunablesValueRequestCheck($ctrl_path,$tunable_name){
+	if ($_REQUEST[$tunable_name]!=""){
+		//i write in the file
+		$option_file = $ctrl_path."/".$tunable_name;
+		$write_line = "echo ".$_REQUEST[$tunable_name]." > ".$option_file;
+		exec($write_line);
+	}else{ //i remove the file
+		$option_file = $ctrl_path."/".$tunable_name;
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
+}
+
 /////////////////////////////////////////////////////////
 // $edit_domain $edit_mailbox $editmail_owner
 /////////////////////////////////////////////////////////
@@ -165,19 +180,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesBooleanRequestCheck($ctrl_dir,"notoccdenymails");
 	tunablesBooleanRequestCheck($ctrl_dir,"noaccessdenymails");
 	tunablesBooleanRequestCheck($ctrl_dir,"nosubonlydenymails");
-	// 14 prefix
-	if ($_REQUEST["prefix"]!=""){
-		//i write in the file
-		$option_file = $list_path."/".$edit_domain."_".$name."/prefix";
-		$write_line = "echo ".$_REQUEST["prefix"]." > ".$option_file;
-		exec($write_line);
-	}else{ //i remove the file
-		$option_file = $list_path."/".$edit_domain."_".$name."/prefix";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
+	tunablesValueRequestCheck($ctrl_dir,"prefix");
 	
 }
 //////////////////////////////////
