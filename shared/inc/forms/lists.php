@@ -240,6 +240,16 @@ if (file_exists($option_file)){
 //add checkbox to form
 $output .= "<tr><td>nosubonlydenymails</td><td><input type=\"checkbox\" value=\"yes\" name=\"nosubonlydenymails\"".$check_option."></td></tr>";
 
+//14 prefix file exist?
+$txt_option = "";
+$option_file = $list_path."prefix";
+if (file_exists($option_file)){
+	$f = file($option_file);
+	$txt_option = $f[0];
+	}
+//add checkbox to form
+$output .= "<tr><td>prefix</td><td><input type=\"text\" value=\"".$txt_option."\" name=\"prefix\" size=\"20\" maxlength=\"20\"></td></tr>";
+
 return $output;
 }
 

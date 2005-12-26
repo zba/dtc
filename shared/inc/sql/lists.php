@@ -328,6 +328,19 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 		exec($rem);
 		} 
 	}
+	// 14 prefix
+	if ($_REQUEST["prefix"]!=""){
+		//i write in the file
+		$option_file = $list_path."/".$edit_domain."_".$name."/prefix";
+		$write_line = "echo ".$_REQUEST["prefix"]." > ".$option_file;
+		exec($write_line);
+	}else{ //i remove the file
+		$option_file = $list_path."/".$edit_domain."_".$name."/prefix";
+		if (file_exists($option_file)){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 
+	}
 	
 }
 //////////////////////////////////
