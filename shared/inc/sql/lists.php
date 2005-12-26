@@ -98,6 +98,22 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
 }
 
+function tunablesBooleanRequestCheck($ctrl_path,$tunable_name){
+	$option_file = $ctrl."/".$tunable_name;
+	if (isset($_REQUEST[$tunable_name])){
+		//if file !exist -> i create
+		if (!file_exists($option_file)){
+			$touch = "touch ".$option_file;
+			exec($touch);
+		} 
+	}else{
+		if (file_exists($option_file)){
+			$rem = "rm ".$option_file;
+			exec($rem);
+		} 
+	}
+}
+
 /////////////////////////////////////////////////////////
 // $edit_domain $edit_mailbox $editmail_owner
 /////////////////////////////////////////////////////////
@@ -105,7 +121,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	$admin_path = getAdminPath($adm_login);
-   $list_path = $admin_path."/".$edit_domain."/lists";
+	$list_path = $admin_path."/".$edit_domain."/lists";
 
 	$new_list_owner = $_REQUEST["editmail_owner"];
 
@@ -132,202 +148,23 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	
+	$ctrl_dir = $list_path."/".$edit_domain."_".$name."/control";
+
 	//Now i do all options commands!!
 	// 1 closedlist
-	if (isset($_REQUEST["closedlist"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/closedlist";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/closedlist";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 2 moderated
-	if (isset($_REQUEST["moderated"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/moderated";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/moderated";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 3 subonlypost
-	if (isset($_REQUEST["subonlypost"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/subonlypost";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/subonlypost";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 4 notifysub
-	if (isset($_REQUEST["notifysub"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/notifysub";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/notifysub";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 5 nosubconfirm
-	if (isset($_REQUEST["nosubconfirm"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/nosubconfirm";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/nosubconfirm";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 6 noarchive
-	if (isset($_REQUEST["noarchive"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/noarchive";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/noarchive";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 7 noget
-	if (isset($_REQUEST["noget"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/noget";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/noget";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 8 subonlyget
-	if (isset($_REQUEST["subonlyget"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/subonlyget";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/subonlyget";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 9 tocc
-	if (isset($_REQUEST["tocc"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/tocc";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/tocc";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 10 addtohdr
-	if (isset($_REQUEST["addtohdr"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/addtohdr";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/addtohdr";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 11 notoccdenymails
-	if (isset($_REQUEST["notoccdenymails"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/notoccdenymails";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/notoccdenymails";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 12 noaccessdenymails
-	if (isset($_REQUEST["noaccessdenymails"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/noaccessdenymails";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/noaccessdenymails";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
-	// 13 nosubonlydenymails
-	if (isset($_REQUEST["nosubonlydenymails"])){
-		//if file !exist -> i create
-		$option_file = $list_path."/".$edit_domain."_".$name."/nosubonlydenymails";
-		if (!file_exists($option_file)){
-		$touch = "touch ".$option_file;
-		exec($touch);
-		} 
-	}else{
-		$option_file = $list_path."/".$edit_domain."_".$name."/nosubonlydenymails";
-		if (file_exists($option_file)){
-		$rem = "rm ".$option_file;
-		exec($rem);
-		} 
-	}
+	tunablesBooleanRequestCheck($ctrl_dir,"closedlist");
+	tunablesBooleanRequestCheck($ctrl_dir,"moderated");
+	tunablesBooleanRequestCheck($ctrl_dir,"subonlypost");
+	tunablesBooleanRequestCheck($ctrl_dir,"notifysub");
+	tunablesBooleanRequestCheck($ctrl_dir,"nosubconfirm");
+	tunablesBooleanRequestCheck($ctrl_dir,"noarchive");
+	tunablesBooleanRequestCheck($ctrl_dir,"noget");
+	tunablesBooleanRequestCheck($ctrl_dir,"subonlyget");
+	tunablesBooleanRequestCheck($ctrl_dir,"tocc");
+	tunablesBooleanRequestCheck($ctrl_dir,"addtohdr");
+	tunablesBooleanRequestCheck($ctrl_dir,"notoccdenymails");
+	tunablesBooleanRequestCheck($ctrl_dir,"noaccessdenymails");
+	tunablesBooleanRequestCheck($ctrl_dir,"nosubonlydenymails");
 	// 14 prefix
 	if ($_REQUEST["prefix"]!=""){
 		//i write in the file
