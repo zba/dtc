@@ -131,28 +131,39 @@ function getListOptionsBoolean($ctrl_path,$tunable_name){
 function getListOptionsValue($ctrl_path,$tunable_name){
 	$option_file = $ctrl_path."/control/".$tunable_name;
 	if (!file_exists($option_file)){
-		$check_option = "";
+		$value = "";
 	}else{
-		file($option_file);
-		$check_option = "";
+		$a = file($option_file);
+		$value = $a[0];
 	}
 	return "<tr>
 			<td>".$tunable_name."</td>
-			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
+			<td><input type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td>
 		</tr>";
 }
 
 function getListOptionsList($ctrl_path,$tunable_name){
 	$option_file = $ctrl_path."/control/".$tunable_name;
-	if (file_exists($option_file)){
-		$check_option = " checked";
+	if (!file_exists($option_file)){
+		$values = array();
 	}else{
-		$check_option = "";
+		$values = file($option_file);
 	}
-	return "<tr>
-			<td>".$tunable_name."</td>
-			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
+	$out = "<tr>
+			<td><b>".$tunable_name."</b></td>
+			<td>&nbsp;</td>
 		</tr>";
+	for($i=0;$i<sizeof($values);$i++){
+		$out .= "<tr>
+			<td>&nbsp;</td>		
+			<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td>
+		</tr>";
+	}
+	$out .= "<tr>
+		<td>&nbsp;</td>		
+		<td><input type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td>
+	</tr>";
+	return $out;
 }
 
 //this function check options and checkbox
@@ -176,16 +187,18 @@ $output .= getListOptionsBoolean($list_path,"addtohdr");
 $output .= getListOptionsBoolean($list_path,"notoccdenymails");
 $output .= getListOptionsBoolean($list_path,"noaccessdenymails");
 $output .= getListOptionsBoolean($list_path,"nosubonlydenymails");
-
-//14 prefix file exist?
-$txt_option = "";
-$option_file = $list_path."prefix";
-if (file_exists($option_file)){
-	$f = file($option_file);
-	$txt_option = $f[0];
-	}
-//add checkbox to form
-$output .= "<tr><td>prefix</td><td><input type=\"text\" value=\"".$txt_option."\" name=\"prefix\" size=\"20\" maxlength=\"20\"></td></tr>";
+$output .= getListOptionsValue($list_path,"prefix");
+$output .= getListOptionsValue($list_path,"memorymailsize");
+$output .= getListOptionsValue($list_path,"relayhost");
+$output .= getListOptionsValue($list_path,"digestinterval");
+$output .= getListOptionsValue($list_path,"digestmaxmails");
+$output .= getListOptionsValue($list_path,"verp");
+$output .= getListOptionsValue($list_path,"maxverprecips");
+$output .= getListOptionsValue($list_path,"delimiter");
+$output .= getListOptionsList($list_path,"owner");
+$output .= getListOptionsList($list_path,"customheaders");
+$output .= getListOptionsList($list_path,"delheaders");
+$output .= getListOptionsList($list_path,"access");
 
 return $output;
 }
