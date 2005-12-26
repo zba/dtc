@@ -115,130 +115,40 @@ $txt .= "</td></tr>
 	return $txt;
 }
 
+function getListOptionsBoolean($ctrl_path,$tunable_name){
+	$option_file = $ctrl_path."/".$tunable_name;
+	if (file_exists($option_file)){
+		$check_option = " checked";
+	}else{
+		$check_option = "";
+	}
+	$out = "<tr>
+			<td>".$tunable_name."</td>
+			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
+		</tr>";
+}
+
 //this function check options and checkbox
 function list_options(){
 
 global $edit_domain;
 global $adm_login;
 $admin_path = getAdminPath($adm_login);
-$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"]."/";
+$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
 
-//1 closedlist file exist?
-$check_option = "";
-$option_file = $list_path."closedlist";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output = "<tr><td>closedlist</td><td><input type=\"checkbox\" value=\"yes\" name=\"closedlist\"".$check_option."></td></tr>";
-
-//2 moderated file exist?
-$check_option = "";
-$option_file = $list_path."moderated";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>moderated</td><td><input type=\"checkbox\" value=\"yes\" name=\"moderated\"".$check_option."></td></tr>";
-
-//3 subonlypost file exist?
-$check_option = "";
-$option_file = $list_path."subonlypost";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>subonlypost</td><td><input type=\"checkbox\" value=\"yes\" name=\"subonlypost\"".$check_option."></td></tr>";
-
-//4 notifysub file exist?
-$check_option = "";
-$option_file = $list_path."notifysub";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>notifysub</td><td><input type=\"checkbox\" value=\"yes\" name=\"notifysub\"".$check_option."></td></tr>";
-
-//5 nosubconfirm file exist?
-$check_option = "";
-$option_file = $list_path."nosubconfirm";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>nosubconfirm</td><td><input type=\"checkbox\" value=\"yes\" name=\"nosubconfirm\"".$check_option."></td></tr>";
-
-//6 noarchive file exist?
-$check_option = "";
-$option_file = $list_path."noarchive";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>noarchive</td><td><input type=\"checkbox\" value=\"yes\" name=\"noarchive\"".$check_option."></td></tr>";
-
-//7 noget file exist?
-$check_option = "";
-$option_file = $list_path."noget";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>noget</td><td><input type=\"checkbox\" value=\"yes\" name=\"noget\"".$check_option."></td></tr>";
-
-//8 subonlyget file exist?
-$check_option = "";
-$option_file = $list_path."subonlyget";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>subonlyget</td><td><input type=\"checkbox\" value=\"yes\" name=\"subonlyget\"".$check_option."></td></tr>";
-
-//9 tocc file exist?
-$check_option = "";
-$option_file = $list_path."tocc";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>tocc</td><td><input type=\"checkbox\" value=\"yes\" name=\"tocc\"".$check_option."></td></tr>";
-
-//10 addtohdr file exist?
-$check_option = "";
-$option_file = $list_path."addtohdr";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>addtohdr</td><td><input type=\"checkbox\" value=\"yes\" name=\"addtohdr\"".$check_option."></td></tr>";
-
-//11 notoccdenymails file exist?
-$check_option = "";
-$option_file = $list_path."notoccdenymails";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>notoccdenymails</td><td><input type=\"checkbox\" value=\"yes\" name=\"notoccdenymails\"".$check_option."></td></tr>";
-
-//12 noaccessdenymails file exist?
-$check_option = "";
-$option_file = $list_path."noaccessdenymails";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>noaccessdenymails</td><td><input type=\"checkbox\" value=\"yes\" name=\"noaccessdenymails\"".$check_option."></td></tr>";
-
-//13 nosubonlydenymails file exist?
-$check_option = "";
-$option_file = $list_path."nosubonlydenymails";
-if (file_exists($option_file)){
-	$check_option = " checked";
-	}
-//add checkbox to form
-$output .= "<tr><td>nosubonlydenymails</td><td><input type=\"checkbox\" value=\"yes\" name=\"nosubonlydenymails\"".$check_option."></td></tr>";
+$output = getListOptionsBoolean($list_path,"closedlist");
+$output .= getListOptionsBoolean($list_path,"moderated");
+$output .= getListOptionsBoolean($list_path,"subonlypost");
+$output .= getListOptionsBoolean($list_path,"notifysub");
+$output .= getListOptionsBoolean($list_path,"nosubconfirm");
+$output .= getListOptionsBoolean($list_path,"noarchive");
+$output .= getListOptionsBoolean($list_path,"noget");
+$output .= getListOptionsBoolean($list_path,"subonlyget");
+$output .= getListOptionsBoolean($list_path,"tocc");
+$output .= getListOptionsBoolean($list_path,"addtohdr");
+$output .= getListOptionsBoolean($list_path,"notoccdenymails");
+$output .= getListOptionsBoolean($list_path,"noaccessdenymails");
+$output .= getListOptionsBoolean($list_path,"nosubonlydenymails");
 
 //14 prefix file exist?
 $txt_option = "";
