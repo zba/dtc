@@ -116,13 +116,40 @@ $txt .= "</td></tr>
 }
 
 function getListOptionsBoolean($ctrl_path,$tunable_name){
-	$option_file = $ctrl_path."/".$tunable_name;
+	$option_file = $ctrl_path."/control/".$tunable_name;
 	if (file_exists($option_file)){
 		$check_option = " checked";
 	}else{
 		$check_option = "";
 	}
-	$out = "<tr>
+	return "<tr>
+			<td>".$tunable_name."</td>
+			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
+		</tr>";
+}
+
+function getListOptionsValue($ctrl_path,$tunable_name){
+	$option_file = $ctrl_path."/control/".$tunable_name;
+	if (!file_exists($option_file)){
+		$check_option = "";
+	}else{
+		file($option_file);
+		$check_option = "";
+	}
+	return "<tr>
+			<td>".$tunable_name."</td>
+			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
+		</tr>";
+}
+
+function getListOptionsList($ctrl_path,$tunable_name){
+	$option_file = $ctrl_path."/control/".$tunable_name;
+	if (file_exists($option_file)){
+		$check_option = " checked";
+	}else{
+		$check_option = "";
+	}
+	return "<tr>
 			<td>".$tunable_name."</td>
 			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
 		</tr>";

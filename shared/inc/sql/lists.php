@@ -99,7 +99,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 }
 
 function tunablesBooleanRequestCheck($ctrl_path,$tunable_name){
-	$option_file = $ctrl."/".$tunable_name;
+	$option_file = $ctrl_path."/".$tunable_name;
 	if (isset($_REQUEST[$tunable_name])){
 		//if file !exist -> i create
 		if (!file_exists($option_file)){
