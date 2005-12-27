@@ -115,18 +115,32 @@ function tunablesBooleanRequestCheck($ctrl_path,$tunable_name){
 }
 
 function tunablesValueRequestCheck($ctrl_path,$tunable_name){
+$option_file = $ctrl_path."/".$tunable_name;
 	if ($_REQUEST[$tunable_name]!=""){
 		//i write in the file
-		$option_file = $ctrl_path."/".$tunable_name;
 		$write_line = "echo ".$_REQUEST[$tunable_name]." > ".$option_file;
 		exec($write_line);
 	}else{ //i remove the file
-		$option_file = $ctrl_path."/".$tunable_name;
 		if (file_exists($option_file)){
 		$rem = "rm ".$option_file;
 		exec($rem);
 		} 
 	}
+}
+
+function tunablesListRequestCheck($ctrl_path,$tunable_name){
+$option_file = $ctrl_path."/".$tunable_name;
+if (file_exists($option_file)AND($tunable_name!="owner")){
+		$rem = "rm ".$option_file;
+		exec($rem);
+		} 		
+for($i=0;$i<sizeof($_REQUEST[$tunable_name]);$i++){
+	if ($_REQUEST[$tunable_name][$i]!=""){
+		$write_line = "echo ".$_REQUEST[$tunable_name][$i]." >> ".$option_file;
+		exec($write_line);
+	}
+}
+	
 }
 
 /////////////////////////////////////////////////////////
@@ -151,10 +165,8 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 
 	//now need to edit the owner to $_REQUEST["editmail_owner"]; 
 	$fileName3 = $list_path.'/'. $edit_domain . '_' . $name.'/control/owner';
-	$newLine3 = $new_list_owner;
-	$fp3 = fopen($fileName3,"w");
-	fwrite($fp3,$newLine3);
-	fclose($fp3);
+	$newLine3 = "echo ".$new_list_owner." > ".$fileName3;
+	exec($newLine3);
 
 	//submit to sql
 	$adm_query = "UPDATE $pro_mysql_list_table SET owner='$new_list_owner' WHERE domain='$edit_domain' AND name='$name';";
@@ -181,6 +193,17 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesBooleanRequestCheck($ctrl_dir,"noaccessdenymails");
 	tunablesBooleanRequestCheck($ctrl_dir,"nosubonlydenymails");
 	tunablesValueRequestCheck($ctrl_dir,"prefix");
+	tunablesValueRequestCheck($ctrl_dir,"memorymailsize");
+	tunablesValueRequestCheck($ctrl_dir,"relayhost");
+	tunablesValueRequestCheck($ctrl_dir,"digestinterval");
+	tunablesValueRequestCheck($ctrl_dir,"digestmaxmails");
+	tunablesValueRequestCheck($ctrl_dir,"verp");
+	tunablesValueRequestCheck($ctrl_dir,"maxverprecips");
+	tunablesValueRequestCheck($ctrl_dir,"delimiter");
+	tunablesListRequestCheck($ctrl_dir,"owner");
+	tunablesListRequestCheck($ctrl_dir,"customheaders");
+	tunablesListRequestCheck($ctrl_dir,"delheaders");
+	tunablesListRequestCheck($ctrl_dir,"access");
 	
 }
 //////////////////////////////////

@@ -153,7 +153,10 @@ function getListOptionsList($ctrl_path,$tunable_name){
 			<td><b>".$tunable_name."</b></td>
 			<td>&nbsp;</td>
 		</tr>";
-	for($i=0;$i<sizeof($values);$i++){
+	//if owner i don't control the first line
+	if($tunable_name=="owner"){$start=1;}else{$start=0;}
+	
+	for($i=$start;$i<sizeof($values);$i++){
 		$out .= "<tr>
 			<td>&nbsp;</td>		
 			<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td>
