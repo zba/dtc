@@ -352,7 +352,7 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 	$result = mysql_query($query)or die("Cannot query : \"$query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$numrows = mysql_num_rows($result);
 	if($numrows != 1){
-		die("Cannot fetch admin path line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		die("Cannot fetch admin path (maybe rotative random password expired) line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
 	$row = mysql_fetch_array($result);
 	$admin_path = $row["path"];
