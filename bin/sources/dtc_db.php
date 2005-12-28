@@ -388,7 +388,7 @@ $dtc_database = array(
 			"domain" => "varchar(50) NOT NULL "
 			),
 		"primary" => "(id)",
-                "keys" => array(
+                "index" => array(
                 	"vhost" => "(vhost,month,year,domain)"
 			)
 		),
