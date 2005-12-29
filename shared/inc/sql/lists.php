@@ -95,6 +95,15 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 		writeMlmmjQmailFile($list_full_path);
 		break;
 	}
+	
+	//dtc send an email to the owner
+	$subject = 'New mailing list '.$name.'@'.$edit_domain;
+	$msg = 'Your mailing list '.$name.'@'.$edit_domain.' is active. Now you can...';
+	$from = 'webmaster@lupin3rd.dyndns.org';
+	$headers = "FROM: $from\n";
+	$headers .= "Return-Path: $from\n";
+	mail($owner, $subject, $msg, $headers);
+	
 	updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
 }
 
