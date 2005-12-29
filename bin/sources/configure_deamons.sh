@@ -703,6 +703,17 @@ then
 			echo "Postfix main.cf has been configured before, not adding virtual mailbox options"
 		fi
 	else
+
+		if grep "recipient_delimiter = +" "$PATH_POSTFIX_ETC/main.cf" >/dev/null; then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Changing recipient delimiter from + to -"
+			fi
+			TMP_FILE=`${MKTEMP} DTC_install.main.cf.XXXXXX` || exit 1
+			sed "s/recipient_delimiter = +/recipient_delimiter = -/" "$PATH_POSTFIX_ETC/main.cf" >$TMP_FILE
+			cat <$TMP_FILE >"$PATH_POSTFIX_ETC/main.cf"
+			rm $TMP_FILE
+		fi
+
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "Inserting DTC configuration inside $PATH_POSTFIX_CONF"
 		fi
