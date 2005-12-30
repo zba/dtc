@@ -21,6 +21,9 @@ function drawAdminTools_MailingLists($domain){
 	global $txt_mail_new_mailbox_link;
 	global $txt_number_of_active_lists;
 	global $txt_maximum_mailbox_reach;
+	global $txt_lists_hlp_main_owner;
+	global $txt_lists_hlp_list_name;
+	global $lang;
 
 
 	$txt = "";
@@ -77,9 +80,9 @@ function drawAdminTools_MailingLists($domain){
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
 	<input type=\"hidden\" name=\"edit_mailbox\" value=\"".$_REQUEST["edit_mailbox"]."\">
 	".$txt_list_name[$lang]."</td><td><b>$list_name</b>@$edit_domain
-</td></tr><tr><td align=\"right\">";
+</td><td>".$txt_lists_hlp_list_name[$lang]."</td></tr><tr><td align=\"right\">";
 	$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"editmail_owner\" value=\"$list_owner\">";
-$txt .= "</td></tr>";
+$txt .= "</td><td>".$txt_lists_hlp_main_owner[$lang]."</td></tr>";
 $txt .= list_options();
 $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" value=\"Ok\">&nbsp;
 <input type=\"submit\" name=\"dellist\" value=\"Del\">
@@ -100,7 +103,7 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
 	".$txt_list_name[$lang]."</td><td><input type=\"text\" name=\"newlist_name\" value=\"\">
-</td></tr><tr><td align=\"right\">";
+</td><td>".$txt_lists_hlp_list_name[$lang]."</td></tr><tr><td align=\"right\">";
 			$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"newlist_owner\" value=\"\">";
 $txt .= "</td></tr>
 <tr><td>&nbsp;</td>
@@ -141,7 +144,7 @@ function getListOptionsBoolean($ctrl_path,$tunable_name){
 		$check_option = "";
 	}
 	return "<tr>
-			<td><div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div></td>
+			<td align=\"right\"><div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div></td>
 			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
 			<td>".getTunableHelp($tunable_name)."</td>
 		</tr>";
@@ -156,7 +159,7 @@ function getListOptionsValue($ctrl_path,$tunable_name){
 		$value = $a[0];
 	}
 	return "<tr>
-			<td><div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div></td>
+			<td align=\"right\"><div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div></td>
 			<td><input type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td>
 			<td>".getTunableHelp($tunable_name)."</td>
 		</tr>";
@@ -178,31 +181,26 @@ function getListOptionsList($ctrl_path,$tunable_name){
         $subject = "<div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div>";
 	$out = "<tr>";
 	for($i=$start;$i<sizeof($values);$i++){
-		$out .= "<td>";
 		if ($i==$start){
+		  $out .= "<td align=\"right\" rowspan=\"". (sizeof($values) - $start + 1) .">";
 		  $out .= $subject;
-		}else{
-		  $out .="&nbsp;";
-                }
-		$out .= "</td>
-		<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td>";
+		  $out .= "</td>";
+		}
+		$out .= "<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td>";
 		if ($i==$start){
-		  $out .= "<td collspan=\"". (sizeof($values) - $start + 1) ."\">".getTunableHelp($tunable_name)."</td>";
+		  $out .= "<td rowspan=\"". (sizeof($values) - $start + 1) ."\">".getTunableHelp($tunable_name)."</td>";
                 }
 		$out .= "</tr>";
 	}
-	$out .= "<tr><td>";
+	$out .= "<tr>";
 	if($start >= sizeof($values)){
-	  $out .= $subject;
+	  $out .= "<td align=\"right\">".$subject."</td>";
 	}
-	$out .="</td>		
+	$out .="
           <td><input type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td>";
 
         if($start >= sizeof($values)){
-          echo "hop";
           $out .= "<td>".getTunableHelp($tunable_name)."</td>";
-        }else{
-          $out .= "<td>&nbsp;</td>";
         }
 	$out .= "</tr>";
 	return $out;

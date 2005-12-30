@@ -1,5 +1,31 @@
 <?php
 
+$txt_lists_hlp_list_name = array (
+  "fr" => "Nom de la liste.",
+  "en" => "Name of the list",
+  "hu" => "",
+  "it" => "",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
+$txt_lists_hlp_main_owner = array (
+  "fr" => "Ce champ contient l'adresse de l'administrateur principal de la liste.",
+  "en" => "This is the main owner of the list.",
+  "hu" => "",
+  "it" => "",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
 $txt_lists_hlp_listaddress = array (
   "fr" => "Ce champ contient toutes les adresses que MLMMJ voit comme adresse de liste (voire l\'option tocc). La première est l\'adresse principale.",
   "en" => "This feild contains all addresses which mlmmj sees as listaddresses (see tocc option). The first one is the one used as the primary one, when mlmmj sends out mail.",
