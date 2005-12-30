@@ -125,8 +125,12 @@ function getTunableHelp($tunable_name){
   $varname = "txt_lists_hlp_".$tunable_name;
 
   global $$varname;
-  $out = $$varname;
-  return $out[$lang];
+  if(isset($$varname)){
+    $out = $$varname;
+    return $out[$lang];
+  }else{
+    return "";
+  }
 }
 
 function getListOptionsBoolean($ctrl_path,$tunable_name){
@@ -154,6 +158,7 @@ function getListOptionsValue($ctrl_path,$tunable_name){
 	return "<tr>
 			<td><div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div></td>
 			<td><input type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td>
+			<td>".getTunableHelp($tunable_name)."</td>
 		</tr>";
 }
 
@@ -165,24 +170,41 @@ function getListOptionsList($ctrl_path,$tunable_name){
 		$values = file($option_file);
 	}
 	//if owner i don't control the first line
-	if($tunable_name=="owner"){$start=1;}else{$start=0;}
-	$out = "";
+	if($tunable_name=="owner"){
+	  $start=1;
+        }else{
+          $start=0;
+        }
+        $subject = "<div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div>";
+	$out = "<tr>";
 	for($i=$start;$i<sizeof($values);$i++){
-		$out .= "<tr><td>";
+		$out .= "<td>";
 		if ($i==$start){
-		$out .= "<div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div>";
-		}else{$out .="&nbsp;";}
+		  $out .= $subject;
+		}else{
+		  $out .="&nbsp;";
+                }
 		$out .= "</td>
-		<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td>
-		</tr>";
+		<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td>";
+		if ($i==$start){
+		  $out .= "<td collspan=\"". (sizeof($values) - $start + 1) ."\">".getTunableHelp($tunable_name)."</td>";
+                }
+		$out .= "</tr>";
 	}
 	$out .= "<tr><td>";
-		if ($i==$start){
-		$out .= "<div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div>";
-		}else{$out .="&nbsp;";}
-		$out .= "</td>		
-		<td><input type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td>
-	</tr>";
+	if($start >= sizeof($values)){
+	  $out .= $subject;
+	}
+	$out .="</td>		
+          <td><input type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td>";
+
+        if($start >= sizeof($values)){
+          echo "hop";
+          $out .= "<td>".getTunableHelp($tunable_name)."</td>";
+        }else{
+          $out .= "<td>&nbsp;</td>";
+        }
+	$out .= "</tr>";
 	return $out;
 }
 
