@@ -114,13 +114,16 @@ $txt .= "</td></tr>
 		}
 	}
 	$txt .= "</b></font></font>";
+	
+	$txt .= "<script language=\"JavaScript\" type=\"text/javascript\" src=\"gfx/wz_tooltip.js\"></script>";
 	return $txt;
 }
 
 function getTunableHelp($tunable_name){
   global $lang;
 
-  $varname = "txt_lists_hlp_".tunable_name;
+  $varname = "txt_lists_hlp_".$tunable_name."[".$lang."]";
+
   global $$varname;
   return $$varname;
 }
@@ -133,7 +136,7 @@ function getListOptionsBoolean($ctrl_path,$tunable_name){
 		$check_option = "";
 	}
 	return "<tr>
-			<td>".$tunable_name."</td>
+			<td><div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div></td>
 			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
 		</tr>";
 }
@@ -147,7 +150,7 @@ function getListOptionsValue($ctrl_path,$tunable_name){
 		$value = $a[0];
 	}
 	return "<tr>
-			<td>".$tunable_name."</td>
+			<td><div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div></td>
 			<td><input type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td>
 		</tr>";
 }
@@ -159,21 +162,23 @@ function getListOptionsList($ctrl_path,$tunable_name){
 	}else{
 		$values = file($option_file);
 	}
-	$out = "<tr>
-			<td><b>".$tunable_name."</b></td>
-			<td>&nbsp;</td>
-		</tr>";
 	//if owner i don't control the first line
 	if($tunable_name=="owner"){$start=1;}else{$start=0;}
-	
+	$out = "";
 	for($i=$start;$i<sizeof($values);$i++){
-		$out .= "<tr>
-			<td>&nbsp;</td>		
-			<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td>
+		$out .= "<tr><td>";
+		if ($i==$start){
+		$out .= "<div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div>";
+		}else{$out .="&nbsp;";}
+		$out .= "</td>
+		<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td>
 		</tr>";
 	}
-	$out .= "<tr>
-		<td>&nbsp;</td>		
+	$out .= "<tr><td>";
+		if ($i==$start){
+		$out .= "<div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div>";
+		}else{$out .="&nbsp;";}
+		$out .= "</td>		
 		<td><input type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td>
 	</tr>";
 	return $out;
