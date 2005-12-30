@@ -79,10 +79,10 @@ function drawAdminTools_MailingLists($domain){
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
 	<input type=\"hidden\" name=\"edit_mailbox\" value=\"".$_REQUEST["edit_mailbox"]."\">
-	".$txt_list_name[$lang]."</td><td><b>$list_name</b>@$edit_domain
-</td><td>".$txt_lists_hlp_list_name[$lang]."</td></tr><tr><td align=\"right\">";
-	$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"editmail_owner\" value=\"$list_owner\">";
-$txt .= "</td><td>".$txt_lists_hlp_main_owner[$lang]."</td></tr>";
+	<div onmouseover=\"return escape('".$txt_lists_hlp_list_name[$lang]."')\">".$txt_list_name[$lang]."</div></td>
+	<td><b>$list_name</b>@$edit_domain</td></tr>
+	<tr><td align=\"right\"><div onmouseover=\"return escape('".$txt_lists_hlp_main_owner[$lang]."')\">".$txt_list_owner[$lang]."</div></td>
+	<td><input type=\"text\" name=\"editmail_owner\" value=\"$list_owner\"></td></tr>";
 $txt .= list_options();
 $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" value=\"Ok\">&nbsp;
 <input type=\"submit\" name=\"dellist\" value=\"Del\">
@@ -102,9 +102,10 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
-	".$txt_list_name[$lang]."</td><td><input type=\"text\" name=\"newlist_name\" value=\"\">
-</td><td>".$txt_lists_hlp_list_name[$lang]."</td></tr><tr><td align=\"right\">";
-			$txt .= $txt_list_owner[$lang]."</td><td><input type=\"text\" name=\"newlist_owner\" value=\"\">";
+	<div onmouseover=\"return escape('".$txt_lists_hlp_list_name[$lang]."')\">".$txt_list_name[$lang]."</div></td>
+	<td><input type=\"text\" name=\"newlist_name\" value=\"\"></td></tr>
+	<tr><td align=\"right\"><div onmouseover=\"return escape('".$txt_lists_hlp_main_owner[$lang]."')\">".$txt_list_owner[$lang]."</div></td>
+	<td><input type=\"text\" name=\"newlist_owner\" value=\"\">";
 $txt .= "</td></tr>
 <tr><td>&nbsp;</td>
 <td><input type=\"submit\" name=\"addnewlisttodomain\" value=\"Ok\"></td>
@@ -145,9 +146,7 @@ function getListOptionsBoolean($ctrl_path,$tunable_name){
 	}
 	return "<tr>
 			<td align=\"right\"><div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div></td>
-			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
-			<td>".getTunableHelp($tunable_name)."</td>
-		</tr>";
+			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
 }
 
 function getListOptionsValue($ctrl_path,$tunable_name){
@@ -159,10 +158,8 @@ function getListOptionsValue($ctrl_path,$tunable_name){
 		$value = $a[0];
 	}
 	return "<tr>
-			<td align=\"right\"><div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div></td>
-			<td><input type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td>
-			<td>".getTunableHelp($tunable_name)."</td>
-		</tr>";
+			<td align=\"right\"><div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div></td>
+			<td><input type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td></tr>";
 }
 
 function getListOptionsList($ctrl_path,$tunable_name){
@@ -178,31 +175,23 @@ function getListOptionsList($ctrl_path,$tunable_name){
         }else{
           $start=0;
         }
-        $subject = "<div onmouseover=\"return escape('Some text from getTunableHelp var')\">".$tunable_name."</div>";
+        
+   $subject = "<div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div>";
 	$out = "<tr>";
+	
 	for($i=$start;$i<sizeof($values);$i++){
 		if ($i==$start){
 		  $out .= "<td align=\"right\" rowspan=\"". (sizeof($values) - $start + 1) .">";
 		  $out .= $subject;
 		  $out .= "</td>";
 		}
-		$out .= "<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td>";
-		if ($i==$start){
-		  $out .= "<td rowspan=\"". (sizeof($values) - $start + 1) ."\">".getTunableHelp($tunable_name)."</td>";
-                }
-		$out .= "</tr>";
+		$out .= "<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td></tr>";
 	}
 	$out .= "<tr>";
 	if($start >= sizeof($values)){
 	  $out .= "<td align=\"right\">".$subject."</td>";
 	}
-	$out .="
-          <td><input type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td>";
-
-        if($start >= sizeof($values)){
-          $out .= "<td>".getTunableHelp($tunable_name)."</td>";
-        }
-	$out .= "</tr>";
+	$out .="<td><input type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td></tr>";
 	return $out;
 }
 

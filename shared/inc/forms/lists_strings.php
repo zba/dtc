@@ -2,9 +2,9 @@
 
 $txt_lists_hlp_list_name = array (
   "fr" => "Nom de la liste.",
-  "en" => "Name of the list",
+  "en" => "Name of the list.",
   "hu" => "",
-  "it" => "",
+  "it" => "Nome della lista.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -14,10 +14,10 @@ $txt_lists_hlp_list_name = array (
   "pt" => "");
 
 $txt_lists_hlp_main_owner = array (
-  "fr" => "Ce champ contient l'adresse de l'administrateur principal de la liste.",
+  "fr" => "Ce champ contient l\'adresse de l\'administrateur principal de la liste.",
   "en" => "This is the main owner of the list.",
   "hu" => "",
-  "it" => "",
+  "it" => "Il propietario principale della lista.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -30,7 +30,7 @@ $txt_lists_hlp_listaddress = array (
   "fr" => "Ce champ contient toutes les adresses que MLMMJ voit comme adresse de liste (voire l\'option tocc). La première est l\'adresse principale.",
   "en" => "This feild contains all addresses which mlmmj sees as listaddresses (see tocc option). The first one is the one used as the primary one, when mlmmj sends out mail.",
   "hu" => "",
-  "it" => "",
+  "it" => "Questo campo contiene gli indirizzi...",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -43,7 +43,7 @@ $txt_lists_hlp_closedlist = array (
   "fr" => "La liste est-elle fermée. Si elle est fermée, les inscription et désinscription sont désactivées.",
   "en" => "Is the list is open or closed. If it\'s closed subscribtion and unsubscription via mail is disabled.",
   "hu" => "",
-  "it" => "",
+  "it" => "Se selezionato la lista è chiusa. Le iscrizioni e cancellazioni dalla lista sono disattivate.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -56,7 +56,7 @@ $txt_lists_hlp_moderated = array (
   "fr" => "Si ce drapeau est positionné, alors la liste est modérée",
   "en" => "If this flag is set, the email addresses in the field moderators will act as moderators for the list.",
   "hu" => "",
-  "it" => "",
+  "it" => "Se selezionato, la lista diventa moderata.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -69,7 +69,7 @@ $txt_lists_hlp_moderators = array (
   "fr" => "Ceci est la liste des modérateurs.",
   "en" => "This is the list of moderators.",
   "hu" => "",
-  "it" => "",
+  "it" => "Lista dei moderatori (1 per linea).",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -92,10 +92,10 @@ $txt_lists_hlp_tocc = array (
   "pt" => "");
 
 $txt_lists_hlp_subonlypost = array (
-  "fr" => "Quand ce drapeau est positionné, seuls les inscrits peuvent envoyer. La vérification est faite en fonction du \"From:\" du header.",
-  "en" => "When this flag is set, only people who are subscribed to the list, are allowed to post to it. The check is made against the \"From:\" header.",
+  "fr" => "Quand ce drapeau est positionné, seuls les inscrits peuvent envoyer. La vérification est faite en fonction du &quot;From:&quot; du header.",
+  "en" => "When this flag is set, only people who are subscribed to the list, are allowed to post to it. The check is made against the &quot;From:&quot; header.",
   "hu" => "",
-  "it" => "",
+  "it" => "Quando selezionato, solo gli iscritti potranno postare nella lista. La verifica viene effettuata nel campo &quot;From:&quot; dell\'header.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -121,7 +121,7 @@ $txt_lists_hlp_owner = array (
   "fr" => "Les adresses emails de ces champs (1 par ligne) recevront les messages pour liste-owner@nom-de-domaine.tld",
   "en" => "The email addresses in this fields (1 per line) will get mails to listname-owner@listdomain.tld",
   "hu" => "",
-  "it" => "",
+  "it" => "Questi indirizzi email (1 per linea) riceveranno i messaggi destinati a lista-owner@dominio.tld.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -158,60 +158,7 @@ $txt_lists_hlp_delheaders = array (
 
 $txt_lists_hlp_access = array (
   "fr" => "Lire la partie README.access de la doc de MLMMJ.",
-  "en" => "If this file exists, all headers of a post to the list is matched against
-the rules. The first rule to match wins. See README.access for syntax and examples.
-
-NOTE: the default action is to deny access (reject the mail), so an empty
-access control file will cause mlmmj to reject all posts, whereas a non-
-existant file will change nothing, and mlmmj will behave as usual.
-
-Each header in the mail is tested against each rule, rule by rule. That is,
-all headers are first tested against the first rule, then all headers are
-tested against the second rule, and so on.
-
-The first rule to match a header decides which action to take - allow, deny
-or moderate the post.
-
-The syntax is quite simple: action[ [!]regexp]
-- \"Action\" can be \"allow\", \"deny\" or \"moderate\".
-- The optional \"!\" makes the rule a match, if NO header matches the regular expression.
-- \"Regexp\" is a POSIX.2 extended regular expression. Matching is done case insensitive.
-
-IMPORTANT: if \"moderate\" is used then don\'t forget to add people who should
-function as moderators in those fields.<br><br>
- 
-First a simple example. This rule set will reject any mail that is NOT plain
-text, or has a subject that contains \"BayStar\", and allow anything else:
- 
-deny !^Content-Type: text/plain
-deny ^Subject:.*BayStar
-allow
-    
-To allow only text mails, but have the moderators moderate every html mail one
-would use this:
-    
-allow ^Content-Type: text/plain
-moderate ^Content-Type: text/html
-deny
-       
-Now on to a more advanced example. Morten can post anything, Mads Martin can
-post if the subject does not contain \"SCO\". Everything else is denied:
-
-allow ^From: Morten
-deny ^Subject:.*SCO
-allow ^From: Mads Martin
-deny
-    
-The last rule (deny) can be left out, as deny is the default action.
-    
-A third example. Deny any mails with \"discount\", \"weightloss\", or \"bonus\" in
-the subject. Allow PGP signed and plain text mails. Anything else is denied:
-    
-deny ^Subject:.*discount
-deny ^Subject:.*weightloss
-deny ^Subject:.*bonus
-allow ^Content-Type: multipart/signed
-allow ^Content-Type: text/plain",
+  "en" => "If this file exists, all headers of a post to the list is matched against the rules. The first rule to match wins. See README.access for syntax and examples. NOTE: the default action is to deny access (reject the mail), so an empty access control file will cause mlmmj to reject all posts, whereas a non-existant file will change nothing, and mlmmj will behave as usual.",
   "hu" => "",
   "it" => "",
   "nl" => "",
@@ -250,8 +197,7 @@ $txt_lists_hlp_addtohdr = array (
 
 $txt_lists_hlp_notifysub = array (
   "fr" => "Si ce drapeau est drapeau est positionné, alors le(s) propriétaire(s) recevront les adresses des (dé)enregistrement à la liste.",
-  "en" => "If this flag is present, the owner(s) will get a mail with the address of
-someone sub/unsubscribing to a mailinglist.",
+  "en" => "If this flag is present, the owner(s) will get a mail with the address of someone sub/unsubscribing to a mailinglist.",
   "hu" => "",
   "it" => "",
   "nl" => "",
@@ -305,7 +251,7 @@ $txt_lists_hlp_noarchive = array (
   "fr" => "Si ce drapeau est positionné, alors le mail n\'est pas sauvé dans l\'archive mais simplement effacé.",
   "en" => " If this flag exists, the mail won\'t be saved in the archive but simply deleted.",
   "hu" => "",
-  "it" => "Se selezionato le email non verranno salvate nell\'archivio<br>ma semplicemente cancellate",
+  "it" => "Se selezionato le email non verranno salvate nell\'archivio ma semplicemente cancellate.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -331,7 +277,7 @@ $txt_lists_hlp_noget = array (
   "fr" => "Si ce drapeau est positionné, récupérer des posts avec -get-N est désactivé.",
   "en" => "If this file exists, then retrieving old posts with -get-N is disabled",
   "hu" => "",
-  "it" => "",
+  "it" => "Se selezionato la possibilità di recuperare vecchi posts con -get-N è disabilitata.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -357,7 +303,7 @@ $txt_lists_hlp_verp = array (
   "fr" => "Active le support VERP.",
   "en" => "Enable VERP support.",
   "hu" => "",
-  "it" => "",
+  "it" => "Attiva il supporto VERP.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -380,10 +326,10 @@ $txt_lists_hlp_maxverprecips = array (
   "pt" => "");
 
 $txt_lists_hlp_notoccdenymails = array (
-  "fr" => "Refuse les message si ni le To: ni le Cc: contient l'une des adresses de la liste.",
+  "fr" => "Refuse les message si ni le To: ni le Cc: contient l\'une des adresses de la liste.",
   "en" => "Reject mails that don\'t have the list adress in the To: or Cc:.",
   "hu" => "",
-  "it" => "",
+  "it" => "Rifiuta tutte le email che non contengono l\indirizzo della lista su To: o Cc:.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -396,7 +342,7 @@ $txt_lists_hlp_noaccessdenymails = array (
   "fr" => "-",
   "en" => "-",
   "hu" => "",
-  "it" => "",
+  "it" => "-",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -409,7 +355,7 @@ $txt_lists_hlp_nosubonlydenymails = array (
   "fr" => "-",
   "en" => "-",
   "hu" => "",
-  "it" => "",
+  "it" => "-",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -422,7 +368,7 @@ $txt_lists_hlp_delimiter = array (
   "fr" => "Ne pas modifier a moins que vous sachiez vraiment ce que vous faites.",
   "en" => "Do not change unless you really know what you are doing.",
   "hu" => "",
-  "it" => "",
+  "it" => "Non cambiare a meno che tu non sappia quello che stai facendo.",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -435,7 +381,7 @@ $txt_lists_hlp_relayhost = array (
   "fr" => "Serveur de mail utilisé pour les envois.",
   "en" => "Mail server used to send the messages.",
   "hu" => "",
-  "it" => "",
+  "it" => "Server mail usato per inviare messaggi.",
   "nl" => "",
   "ru" => "",
   "de" => "",
