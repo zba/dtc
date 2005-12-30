@@ -171,25 +171,26 @@ function getListOptionsList($ctrl_path,$tunable_name){
 	}
 	//if owner i don't control the first line
 	if($tunable_name=="owner"){
-	  $start=1;
-        }else{
-          $start=0;
-        }
+	$start=1;
+   }else{
+   $start=0;
+   }
         
    $subject = "<div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div>";
 	$out = "<tr>";
 	
 	for($i=$start;$i<sizeof($values);$i++){
 		if ($i==$start){
-		  $out .= "<td align=\"right\" rowspan=\"". (sizeof($values) - $start + 1) .">";
-		  $out .= $subject;
-		  $out .= "</td>";
-		}
-		$out .= "<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td></tr>";
+		  $out .= "<td align=\"right\" valign=\"top\" rowspan=\"".(sizeof($values) - $start + 1)."\">".$subject."</td>";
+		  }else{
+		  $out .= "<tr>";
+		  }
+	$out .= "<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td></tr>";
 	}
-	$out .= "<tr>";
 	if($start >= sizeof($values)){
-	  $out .= "<td align=\"right\">".$subject."</td>";
+	$out .= "<td align=\"right\">".$subject."</td>";
+	}else{
+	$out .= "<tr>";
 	}
 	$out .="<td><input type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td></tr>";
 	return $out;
