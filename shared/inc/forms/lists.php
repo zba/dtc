@@ -122,10 +122,11 @@ $txt .= "</td></tr>
 function getTunableHelp($tunable_name){
   global $lang;
 
-  $varname = "txt_lists_hlp_".$tunable_name."[".$lang."]";
+  $varname = "txt_lists_hlp_".$tunable_name;
 
   global $$varname;
-  return $$varname;
+  $out = $$varname;
+  return $out[$lang];
 }
 
 function getListOptionsBoolean($ctrl_path,$tunable_name){
@@ -138,6 +139,7 @@ function getListOptionsBoolean($ctrl_path,$tunable_name){
 	return "<tr>
 			<td><div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div></td>
 			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td>
+			<td>".getTunableHelp($tunable_name)."</td>
 		</tr>";
 }
 
