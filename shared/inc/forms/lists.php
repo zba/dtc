@@ -1,5 +1,7 @@
 <?php
 
+require("$dtcshared_path/inc/forms/lists_strings.php");
+
 ////////////////////////////////////////////////////
 // One domain name ftp account collection edition //
 ////////////////////////////////////////////////////
@@ -179,6 +181,7 @@ $list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["
 
 $output = getListOptionsBoolean($list_path,"closedlist");
 $output .= getListOptionsBoolean($list_path,"moderated");
+$output .= getListOptionsList($list_path,"moderators");
 $output .= getListOptionsBoolean($list_path,"subonlypost");
 $output .= getListOptionsBoolean($list_path,"notifysub");
 $output .= getListOptionsBoolean($list_path,"nosubconfirm");
