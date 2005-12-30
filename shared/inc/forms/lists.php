@@ -175,20 +175,21 @@ function getListOptionsList($ctrl_path,$tunable_name){
    }else{
    $start=0;
    }
-        
-   $subject = "<div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div>";
+
+  $mouseover = "onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\"";        
+   $subject = $tunable_name;
 	$out = "<tr>";
 	
 	for($i=$start;$i<sizeof($values);$i++){
 		if ($i==$start){
-		  $out .= "<td align=\"right\" valign=\"top\" rowspan=\"".(sizeof($values) - $start + 1)."\">".$subject."</td>";
+		  $out .= "<td $mouseover align=\"right\" valign=\"top\" rowspan=\"".(sizeof($values) - $start + 1)."\">".$subject."</td>";
 		  }else{
 		  $out .= "<tr>";
 		  }
 	$out .= "<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td></tr>";
 	}
 	if($start >= sizeof($values)){
-	$out .= "<td align=\"right\">".$subject."</td>";
+	$out .= "<td $mouseover align=\"right\">".$subject."</td>";
 	}else{
 	$out .= "<tr>";
 	}
