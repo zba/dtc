@@ -117,6 +117,14 @@ $txt .= "</td></tr>
 	return $txt;
 }
 
+function getTunableHelp($tunable_name){
+  global $lang;
+
+  $varname = "txt_lists_hlp_".tunable_name;
+  global $$varname;
+  return $$varname;
+}
+
 function getListOptionsBoolean($ctrl_path,$tunable_name){
 	$option_file = $ctrl_path."/control/".$tunable_name;
 	if (file_exists($option_file)){

@@ -190,6 +190,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	// 1 closedlist
 	tunablesBooleanRequestCheck($ctrl_dir,"closedlist");
 	tunablesBooleanRequestCheck($ctrl_dir,"moderated");
+	tunablesListRequestCheck($ctrl_dir,"moderators");
 	tunablesBooleanRequestCheck($ctrl_dir,"subonlypost");
 	tunablesBooleanRequestCheck($ctrl_dir,"notifysub");
 	tunablesBooleanRequestCheck($ctrl_dir,"nosubconfirm");
