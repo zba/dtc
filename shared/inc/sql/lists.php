@@ -59,6 +59,9 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	$symlink = "ln -s ".$list_path."/".$folder_name." /var/spool/mlmmj/".$folder_name;
 	exec($symlink);
 
+	$cmd = "echo \"-\" > ".$list_path."/".$folder_name."/control/delimiter";
+        exec($cmd);
+
 	$fileName3 = $list_path.'/'.$folder_name.'/control/listaddress';
 	$newLine3 = $name . "@" . $edit_domain;
 	$fp3 = fopen($fileName3,"w");
