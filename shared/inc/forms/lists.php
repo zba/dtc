@@ -137,6 +137,19 @@ function getTunableHelp($tunable_name){
   }
 }
 
+function getTunableTitle($tunable_name){
+  global $lang;
+  $varname = "txt_lists_title_".$tunable_name;
+  
+  global $$varname;
+  if(isset($$varname)){
+    $out = $$varname;
+    return $out[$lang];
+  }else{
+    return "";
+  }
+}
+
 function getListOptionsBoolean($ctrl_path,$tunable_name){
 	$option_file = $ctrl_path."/control/".$tunable_name;
 	if (file_exists($option_file)){
@@ -145,8 +158,8 @@ function getListOptionsBoolean($ctrl_path,$tunable_name){
 		$check_option = "";
 	}
 	return "<tr>
-			<td align=\"right\"><div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div></td>
-			<td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
+                <td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+                <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
 }
 
 function getListOptionsValue($ctrl_path,$tunable_name){
@@ -158,9 +171,24 @@ function getListOptionsValue($ctrl_path,$tunable_name){
 		$value = $a[0];
 	}
 	return "<tr>
-			<td align=\"right\"><div onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\">".$tunable_name."</div></td>
-			<td><input type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td></tr>";
+			<td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+			<td><input size=\"40\" type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td></tr>";
 }
+
+function getListOptionsTextarea($ctrl_path,$tunable_name){
+  $option_file = $ctrl_path."/control/".$tunable_name;
+  $value = "";
+  if (file_exists($option_file)){
+    $a = file($option_file);
+    foreach ($a as $line_num => $line) {
+      $value .= $line."\n";
+    }
+  }
+  return "<tr>
+    <td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+    <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
+}
+
 
 function getListOptionsList($ctrl_path,$tunable_name){
 	$option_file = $ctrl_path."/control/".$tunable_name;
@@ -169,31 +197,30 @@ function getListOptionsList($ctrl_path,$tunable_name){
 	}else{
 		$values = file($option_file);
 	}
-	//if owner i don't control the first line
+        //if owner i don't control the first line
 	if($tunable_name=="owner"){
-	$start=1;
-   }else{
-   $start=0;
-   }
+          $start=1;
+        }else{
+          $start=0;
+        }
 
-  $mouseover = "onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\"";        
-   $subject = $tunable_name;
+        $mouseover = "onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\"";
 	$out = "<tr>";
 	
 	for($i=$start;$i<sizeof($values);$i++){
 		if ($i==$start){
-		  $out .= "<td $mouseover align=\"right\" valign=\"top\" rowspan=\"".(sizeof($values) - $start + 1)."\">".$subject."</td>";
+		  $out .= "<td $mouseover align=\"right\" valign=\"top\" rowspan=\"".(sizeof($values) - $start + 1)."\">".getTunableTitle($tunable_name)."</td>";
 		  }else{
 		  $out .= "<tr>";
 		  }
-	$out .= "<td><input type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td></tr>";
+	$out .= "<td><input size=\"40\" type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td></tr>";
 	}
 	if($start >= sizeof($values)){
-	$out .= "<td $mouseover align=\"right\">".$subject."</td>";
+	$out .= "<td $mouseover align=\"right\">".getTunableTitle($tunable_name)."</td>";
 	}else{
 	$out .= "<tr>";
 	}
-	$out .="<td><input type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td></tr>";
+	$out .="<td><input size=\"40\" type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td></tr>";
 	return $out;
 }
 
@@ -202,35 +229,54 @@ function list_options(){
 
 global $edit_domain;
 global $adm_login;
+global $txt_lists_main_title_rights;
+global $txt_lists_main_title_header;
+global $txt_lists_main_title_archive;
+global $txt_lists_main_title_digest;
+global $txt_lists_main_title_notification;
+global $txt_lists_main_title_smtp_config;
+global $lang;
 $admin_path = getAdminPath($adm_login);
 $list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
 
-$output = getListOptionsBoolean($list_path,"closedlist");
+$output = "";
+$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_rights[$lang]."</b></td></tr>";
+$output .= getListOptionsBoolean($list_path,"subonlypost");
+$output .= getListOptionsBoolean($list_path,"closedlist");
+$output .= getListOptionsList($list_path,"owner");
 $output .= getListOptionsBoolean($list_path,"moderated");
 $output .= getListOptionsList($list_path,"moderators");
-$output .= getListOptionsBoolean($list_path,"subonlypost");
-$output .= getListOptionsBoolean($list_path,"notifysub");
 $output .= getListOptionsBoolean($list_path,"nosubconfirm");
+
+$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_header[$lang]."</b></td></tr>";
+$output .= getListOptionsValue($list_path,"prefix");
+$output .= getListOptionsList($list_path,"delheaders");
+$output .= getListOptionsBoolean($list_path,"addtohdr");
+$output .= getListOptionsBoolean($list_path,"tocc");
+$output .= getListOptionsTextarea($list_path,"customheaders");
+
+$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_archive[$lang]."</b></td></tr>";
 $output .= getListOptionsBoolean($list_path,"noarchive");
 $output .= getListOptionsBoolean($list_path,"noget");
 $output .= getListOptionsBoolean($list_path,"subonlyget");
-$output .= getListOptionsBoolean($list_path,"tocc");
-$output .= getListOptionsBoolean($list_path,"addtohdr");
-$output .= getListOptionsBoolean($list_path,"notoccdenymails");
-$output .= getListOptionsBoolean($list_path,"noaccessdenymails");
-$output .= getListOptionsBoolean($list_path,"nosubonlydenymails");
-$output .= getListOptionsValue($list_path,"prefix");
-$output .= getListOptionsValue($list_path,"memorymailsize");
-$output .= getListOptionsValue($list_path,"relayhost");
+
+$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_digest[$lang]."</b></td></tr>";
 $output .= getListOptionsValue($list_path,"digestinterval");
 $output .= getListOptionsValue($list_path,"digestmaxmails");
+
+$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_notification[$lang]."</b></td></tr>";
+$output .= getListOptionsBoolean($list_path,"notifysub");
+$output .= getListOptionsBoolean($list_path,"nosubonlydenymails");
+$output .= getListOptionsBoolean($list_path,"notoccdenymails");
+$output .= getListOptionsBoolean($list_path,"noaccessdenymails");
+
+$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_smtp_config[$lang]."</b></td></tr>";
+$output .= getListOptionsValue($list_path,"memorymailsize");
+$output .= getListOptionsValue($list_path,"relayhost");
 $output .= getListOptionsValue($list_path,"verp");
 $output .= getListOptionsValue($list_path,"maxverprecips");
 $output .= getListOptionsValue($list_path,"delimiter");
-$output .= getListOptionsList($list_path,"owner");
-$output .= getListOptionsList($list_path,"customheaders");
-$output .= getListOptionsList($list_path,"delheaders");
-$output .= getListOptionsList($list_path,"access");
+$output .= getListOptionsTextarea($list_path,"access");
 
 return $output;
 }

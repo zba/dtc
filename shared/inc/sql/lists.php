@@ -141,18 +141,30 @@ $option_file = $ctrl_path."/".$tunable_name;
 }
 
 function tunablesListRequestCheck($ctrl_path,$tunable_name){
-$option_file = $ctrl_path."/".$tunable_name;
-if (file_exists($option_file)AND($tunable_name!="owner")){
+	$option_file = $ctrl_path."/".$tunable_name;
+	if (file_exists($option_file) && ($tunable_name!="owner")){
 		$rem = "rm ".$option_file;
 		exec($rem);
-		} 		
-for($i=0;$i<sizeof($_REQUEST[$tunable_name]);$i++){
-	if ($_REQUEST[$tunable_name][$i]!=""){
-		$write_line = "echo ".$_REQUEST[$tunable_name][$i]." >> ".$option_file;
-		exec($write_line);
+	} 		
+	for($i=0;$i<sizeof($_REQUEST[$tunable_name]);$i++){
+		if ($_REQUEST[$tunable_name][$i]!=""){
+			$write_line = "echo ".$_REQUEST[$tunable_name][$i]." >> ".$option_file;
+			exec($write_line);
+		}
 	}
-}
 	
+}
+
+function tunablesTextareaRequestCheck($ctrl_path,$tunable_name){
+	$option_file = $ctrl_path."/".$tunable_name;
+	if( strlen($_REQUEST[$tunable_name]) > 2){
+		$fp = fopen($option_file,"w+");
+		fwrite($fp,$_REQUEST[$tunable_name]);
+		fclose($fp);
+	}else{
+		$rem = "rm ".$option_file;
+		exec($rem);
+	}
 }
 
 /////////////////////////////////////////////////////////
@@ -214,9 +226,9 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesValueRequestCheck($ctrl_dir,"maxverprecips");
 	tunablesValueRequestCheck($ctrl_dir,"delimiter");
 	tunablesListRequestCheck($ctrl_dir,"owner");
-	tunablesListRequestCheck($ctrl_dir,"customheaders");
+	tunablesTextareaRequestCheck($ctrl_dir,"customheaders");
 	tunablesListRequestCheck($ctrl_dir,"delheaders");
-	tunablesListRequestCheck($ctrl_dir,"access");
+	tunablesTextareaRequestCheck($ctrl_dir,"access");
 	
 }
 //////////////////////////////////
