@@ -256,6 +256,9 @@ if(isset($_REQUEST["dellist"]) && $_REQUEST["dellist"] == "Del"){
 	$del_ml = "rm -rf ".$list_full_path;
 	exec($del_ml);
 	
+	// i need to add the postfix's aliases deletion
+	// very important!!!
+	
 	// Delete list from sql database
 	$adm_query="DELETE FROM $pro_mysql_list_table WHERE domain='$edit_domain' AND name='$name' LIMIT 1";
 	unset($edit_mailbox);
