@@ -234,7 +234,7 @@ function mail_account_generate_postfix(){
 					$list_domain = $list["domain"];
 			
 					$list_path = "$admin_path/$list_domain/lists";
-					$name = $list_name;
+					$name = $list_domain . "_" . $list_name;
 					if (!ereg("\@", $list_owner))
                                         {
 						$owner = $list_owner . "@" . $list_domain;
