@@ -44,7 +44,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	$list_path = $admin_path."/".$edit_domain."/lists";
 	 
 	// Mailing list will be created in /var/www/sites/USERNAME/DOMAIN-NAME/lists/DOMAIN-NAME_LIST-NAME/
-	$folder_name = $edit_domain."_".$name;
+	$folder_name = $name;
 	$list_full_path = $list_path."/".$folder_name;
 
 	// Insert the record in the sql
@@ -199,7 +199,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	
-	$ctrl_dir = $list_path."/".$edit_domain."_".$name."/control";
+	$ctrl_dir = $list_path."/".$name."/control";
 
 	//Now i do all options commands!!
 	// 1 closedlist
@@ -245,7 +245,7 @@ if(isset($_REQUEST["dellist"]) && $_REQUEST["dellist"] == "Del"){
 	//Some vars
 	$name = $_REQUEST["edit_mailbox"];
 	$admin_path = getAdminPath($adm_login);
-	$folder_name = $edit_domain."_".$name;
+	$folder_name = $name;
 	$list_full_path = $admin_path."/".$edit_domain."/lists/".$folder_name;
 	
 	//I delete all files of this mailing list
