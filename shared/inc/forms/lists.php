@@ -185,7 +185,7 @@ function getListOptionsTextarea($ctrl_path,$tunable_name){
     }
   }
   return "<tr>
-    <td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+    <td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
     <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
 }
 
@@ -224,6 +224,22 @@ function getListOptionsList($ctrl_path,$tunable_name){
 	return $out;
 }
 
+function getListOptionsWABoolean($tunable_name){
+	global $pro_mysql_list_table;
+	global $edit_domain;
+	$name = $_REQUEST["edit_mailbox"];
+	$test_query = "SELECT webarchive FROM $pro_mysql_list_table	WHERE domain='$edit_domain' AND name='$name' LIMIT 1";
+	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+	$test = mysql_fetch_array($test_result);
+	if ($test[0]== "yes"){
+		$check_option = " checked";
+	}else{
+		$check_option = "";
+	}
+	return "<tr><td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+                <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
+}
+
 //this function check options and checkbox
 function list_options(){
 
@@ -235,6 +251,7 @@ global $txt_lists_main_title_archive;
 global $txt_lists_main_title_digest;
 global $txt_lists_main_title_notification;
 global $txt_lists_main_title_smtp_config;
+global $txt_lists_main_title_webarchive;
 global $lang;
 $admin_path = getAdminPath($adm_login);
 $list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
@@ -278,6 +295,10 @@ $output .= getListOptionsValue($list_path,"verp");
 $output .= getListOptionsValue($list_path,"maxverprecips");
 $output .= getListOptionsValue($list_path,"delimiter");
 $output .= getListOptionsTextarea($list_path,"access");
+
+$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_webarchive[$lang]."</b></td></tr>";
+$output .= getListOptionsWABoolean("webarchive");
+//$output .= getListOptionsTextarea($listWA_path,"");
 
 return $output;
 }

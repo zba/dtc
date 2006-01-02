@@ -6,6 +6,7 @@ global $txt_lists_main_title_archive;
 global $txt_lists_main_title_digest;
 global $txt_lists_main_title_notification;
 global $txt_lists_main_title_smtp_config;
+global $txt_lists_main_title_webarchive;
 
 $txt_lists_main_title_rights = array (
   "fr" => "Droits",
@@ -85,6 +86,19 @@ $txt_lists_main_title_smtp_config = array (
   "es" => "",
   "pt" => "");
 
+$txt_lists_main_title_webarchive = array (
+  "fr" => "",
+  "en" => "Webarchive",
+  "hu" => "",
+  "it" => "Archivio web",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+  
 $txt_lists_title_list_name = array (
   "fr" => "Nom de la liste :",
   "en" => "Name of the list:",
@@ -454,6 +468,19 @@ $txt_lists_title_footer = array (
   "en" => "Added footer:",
   "hu" => "",
   "it" => "Aggiungi footer:",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+  
+$txt_lists_title_webarchive = array (
+  "fr" => "",
+  "en" => "Enable webarchive:",
+  "hu" => "",
+  "it" => "Abilita archivio web:",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -857,6 +884,19 @@ $txt_lists_hlp_relayhost = array (
   "en" => "Mail server used to send the messages.",
   "hu" => "",
   "it" => "Server mail usato per inviare messaggi.",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+  
+$txt_lists_hlp_webarchive = array (
+  "fr" => "",
+  "en" => "Enable webarchive.",
+  "hu" => "",
+  "it" => "Selezionando questa opzione si avrà la generazione ogni ora dell\'archivio web.",
   "nl" => "",
   "ru" => "",
   "de" => "",

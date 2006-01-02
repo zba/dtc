@@ -167,6 +167,47 @@ function tunablesTextareaRequestCheck($ctrl_path,$tunable_name){
 	}
 }
 
+function tunablesWABooleanRequestCheck($list_dir,$tunable_name){
+	global $adm_login;
+	global $pro_mysql_list_table;
+	global $edit_domain;
+	$name = $_REQUEST["edit_mailbox"];
+	$admin_path = getAdminPath($adm_login);
+	$test_query = "SELECT webarchive FROM $pro_mysql_list_table	WHERE domain='$edit_domain' AND name='$name' LIMIT 1";
+	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+	$test = mysql_fetch_array($test_result);
+	if ($test[0]== "no"){
+		if (isset($_REQUEST[$tunable_name])){
+		$list_web_path = $admin_path."/".$edit_domain."/subdomains/www/html/lists";
+			if (!file_exists($list_web_path)){
+			$create_web_path = "mkdir ".$list_web_path;
+			exec($create_web_path);
+			}
+		$this_list_web_path = $admin_path."/".$edit_domain."/subdomains/www/html/lists/".$name;
+			if (!file_exists($this_list_web_path)){
+			$create_this_web_path = "mkdir ".$this_list_web_path;
+			exec($create_this_web_path);
+			}
+		$archive_dir = $list_dir."/archive";
+		$createwa = "mhonarc -outdir ".$this_list_web_path." ".$archive_dir;
+		exec($createwa);
+		$adm_query = "UPDATE $pro_mysql_list_table SET webarchive='yes' WHERE domain='$edit_domain' AND name='$name';";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+		}
+	}
+	if ($test[0]== "yes"){
+		if (!isset($_REQUEST[$tunable_name])){
+		$this_list_web_path = $admin_path."/".$edit_domain."/subdomains/www/html/lists/".$name;
+			if (file_exists($this_list_web_path)){
+			$delete_this_web_path = "rm -rf ".$this_list_web_path;
+			exec($delete_this_web_path);
+			}
+		$adm_query = "UPDATE $pro_mysql_list_table SET webarchive='no' WHERE domain='$edit_domain' AND name='$name';";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+		}
+	}
+}
+
 /////////////////////////////////////////////////////////
 // $edit_domain $edit_mailbox $editmail_owner
 /////////////////////////////////////////////////////////
@@ -199,7 +240,8 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	
-	$ctrl_dir = $list_path."/".$edit_domain."_".$name."/control";
+	$list_dir = $list_path."/".$edit_domain."_".$name;
+	$ctrl_dir = $list_dir."/control";
 
 	//Now i do all options commands!!
 	// 1 closedlist
@@ -230,6 +272,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesListRequestCheck($ctrl_dir,"delheaders");
 	tunablesTextareaRequestCheck($ctrl_dir,"access");
 	tunablesTextareaRequestCheck($ctrl_dir,"footer");
+	tunablesWABooleanRequestCheck($list_dir,"webarchive");
 	
 }
 //////////////////////////////////
