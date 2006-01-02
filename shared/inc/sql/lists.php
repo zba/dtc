@@ -157,7 +157,7 @@ function tunablesListRequestCheck($ctrl_path,$tunable_name){
 
 function tunablesTextareaRequestCheck($ctrl_path,$tunable_name){
 	$option_file = $ctrl_path."/".$tunable_name;
-	if( strlen($_REQUEST[$tunable_name]) > 2){
+	if( strlen($_REQUEST[$tunable_name]) > 0){
 		$fp = fopen($option_file,"w+");
 		fwrite($fp,$_REQUEST[$tunable_name]);
 		fclose($fp);
