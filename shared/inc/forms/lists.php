@@ -254,6 +254,7 @@ $output .= getListOptionsList($list_path,"delheaders");
 $output .= getListOptionsBoolean($list_path,"addtohdr");
 $output .= getListOptionsBoolean($list_path,"tocc");
 $output .= getListOptionsTextarea($list_path,"customheaders");
+$output .= getListOptionsTextarea($list_path,"footer");
 
 $output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_archive[$lang]."</b></td></tr>";
 $output .= getListOptionsBoolean($list_path,"noarchive");

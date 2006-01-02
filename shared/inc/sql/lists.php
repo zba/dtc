@@ -229,6 +229,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesTextareaRequestCheck($ctrl_dir,"customheaders");
 	tunablesListRequestCheck($ctrl_dir,"delheaders");
 	tunablesTextareaRequestCheck($ctrl_dir,"access");
+	tunablesTextareaRequestCheck($ctrl_dir,"footer");
 	
 }
 //////////////////////////////////
