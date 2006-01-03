@@ -236,8 +236,6 @@ function updateAllListWebArchive(){
 			}
 		$updatewa = "mhonarc".$rcfile."-outdir ".$web_path." -add ".$archive_dir;
 		exec($updatewa);
-		$test = "echo ".$updatewa." > /var/www/sites/dtc/lupin3rd.dyndns.org/lists/test.txt";
-		exec($test);
 	}	
 }
 
