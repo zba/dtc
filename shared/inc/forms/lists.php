@@ -72,7 +72,7 @@ function drawAdminTools_MailingLists($domain){
 
 		$txt .= "
 <table border=\"1\"><tr><td align=\"right\">
-<form action=\"?\" methode=\"post\">
+<form action=\"?\" method=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -95,7 +95,7 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 
 		if($nbr_email < $max_email){
 			$txt .= "
-<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <table border=\"1\"><tr><td align=\"right\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -158,7 +158,7 @@ function getListOptionsBoolean($ctrl_path,$tunable_name){
 		$check_option = "";
 	}
 	return "<tr>
-                <td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+                <td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
                 <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
 }
 
@@ -171,7 +171,7 @@ function getListOptionsValue($ctrl_path,$tunable_name){
 		$value = $a[0];
 	}
 	return "<tr>
-			<td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+			<td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
 			<td><input size=\"40\" type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td></tr>";
 }
 
@@ -185,7 +185,7 @@ function getListOptionsTextarea($ctrl_path,$tunable_name){
     }
   }
   return "<tr>
-    <td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+    <td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
     <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
 }
 
@@ -204,7 +204,7 @@ function getListOptionsList($ctrl_path,$tunable_name){
           $start=0;
         }
 
-        $mouseover = "onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\"";
+        $mouseover = "onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\"";
 	$out = "<tr>";
 	
 	for($i=$start;$i<sizeof($values);$i++){
@@ -236,8 +236,27 @@ function getListOptionsWABoolean($tunable_name){
 	}else{
 		$check_option = "";
 	}
-	return "<tr><td onmouseover=\"return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+	return "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
                 <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
+}
+
+function getListOptionsWATextarea($ctrl_path,$tunable_name){
+  $option_file = $ctrl_path."/".$tunable_name;
+  $value = "";
+  if (file_exists($option_file)){
+    $a = file($option_file);
+    foreach ($a as $line_num => $line) {
+      $value .= $line."\n";
+    }
+  }
+  return "<tr>
+    <td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+    <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
+}
+
+function getListOptionsWABooleanActions($tunable_name){
+	return "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+                <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"></td></tr>";
 }
 
 //this function check options and checkbox
@@ -298,7 +317,9 @@ $output .= getListOptionsTextarea($list_path,"access");
 
 $output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_webarchive[$lang]."</b></td></tr>";
 $output .= getListOptionsWABoolean("webarchive");
-//$output .= getListOptionsTextarea($listWA_path,"");
+$output .= getListOptionsWATextarea($list_path,"rcfile");
+$output .= getListOptionsWABooleanActions("recreatewa");
+$output .= getListOptionsWABooleanActions("deletewa");
 
 return $output;
 }

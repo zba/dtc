@@ -159,7 +159,7 @@ function tunablesTextareaRequestCheck($ctrl_path,$tunable_name){
 	$option_file = $ctrl_path."/".$tunable_name;
 	if( strlen($_REQUEST[$tunable_name]) > 0){
 		$fp = fopen($option_file,"w+");
-		fwrite($fp,$_REQUEST[$tunable_name]);
+		fwrite($fp,stripslashes($_REQUEST[$tunable_name]));
 		fclose($fp);
 	}else{
 		$rem = "rm ".$option_file;
@@ -188,8 +188,14 @@ function tunablesWABooleanRequestCheck($list_dir,$tunable_name){
 			$create_this_web_path = "mkdir ".$this_list_web_path;
 			exec($create_this_web_path);
 			}
+		$this_list_rcfile = $list_dir."/rcfile";	
+			if (file_exists($this_list_rcfile)){
+			$rcfile = " -rcfile ".$this_list_rcfile." ";
+			}else{
+			$rcfile = " ";
+			}
 		$archive_dir = $list_dir."/archive";
-		$createwa = "mhonarc -outdir ".$this_list_web_path." ".$archive_dir;
+		$createwa = "mhonarc".$rcfile."-outdir ".$this_list_web_path." ".$archive_dir;
 		exec($createwa);
 		$adm_query = "UPDATE $pro_mysql_list_table SET webarchive='yes' WHERE domain='$edit_domain' AND name='$name';";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
@@ -197,13 +203,49 @@ function tunablesWABooleanRequestCheck($list_dir,$tunable_name){
 	}
 	if ($test[0]== "yes"){
 		if (!isset($_REQUEST[$tunable_name])){
-		$this_list_web_path = $admin_path."/".$edit_domain."/subdomains/www/html/lists/".$name;
+		$adm_query = "UPDATE $pro_mysql_list_table SET webarchive='no' WHERE domain='$edit_domain' AND name='$name';";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+		}
+	}
+}
+
+function tunablesWABooleanActionsRequestCheck($list_dir){
+	global $adm_login;
+	global $pro_mysql_list_table;
+	global $edit_domain;
+	$name = $_REQUEST["edit_mailbox"];
+	$admin_path = getAdminPath($adm_login);
+	$this_list_web_path = $admin_path."/".$edit_domain."/subdomains/www/html/lists/".$name;
+	$test_query = "SELECT webarchive FROM $pro_mysql_list_table	WHERE domain='$edit_domain' AND name='$name' LIMIT 1";
+	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+	$test = mysql_fetch_array($test_result);
+	if ($test[0]== "no"){
+		if (isset($_REQUEST["deletewa"])){
 			if (file_exists($this_list_web_path)){
 			$delete_this_web_path = "rm -rf ".$this_list_web_path;
 			exec($delete_this_web_path);
 			}
-		$adm_query = "UPDATE $pro_mysql_list_table SET webarchive='no' WHERE domain='$edit_domain' AND name='$name';";
-		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+		}
+	}
+	if ($test[0]== "yes"){
+		if (isset($_REQUEST["recreatewa"])){
+			if (file_exists($this_list_web_path)){
+			$delete_this_web_path = "rm -rf ".$this_list_web_path;
+			exec($delete_this_web_path);
+			}
+			if (!file_exists($this_list_web_path)){
+			$create_this_web_path = "mkdir ".$this_list_web_path;
+			exec($create_this_web_path);
+			}
+		$this_list_rcfile = $list_dir."/rcfile";	
+			if (file_exists($this_list_rcfile)){
+			$rcfile = " -rcfile ".$this_list_rcfile." ";
+			}else{
+			$rcfile = " ";
+			}
+		$archive_dir = $list_dir."/archive";
+		$createwa = "mhonarc".$rcfile."-outdir ".$this_list_web_path." ".$archive_dir;
+		exec($createwa);
 		}
 	}
 }
@@ -273,6 +315,8 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesTextareaRequestCheck($ctrl_dir,"access");
 	tunablesTextareaRequestCheck($ctrl_dir,"footer");
 	tunablesWABooleanRequestCheck($list_dir,"webarchive");
+	tunablesTextareaRequestCheck($list_dir,"rcfile");
+	tunablesWABooleanActionsRequestCheck($list_dir);
 	
 }
 //////////////////////////////////

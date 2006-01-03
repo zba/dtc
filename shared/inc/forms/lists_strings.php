@@ -489,6 +489,45 @@ $txt_lists_title_webarchive = array (
   "es" => "",
   "pt" => "");
 
+$txt_lists_title_rcfile = array (
+  "fr" => "",
+  "en" => "Own template:",
+  "hu" => "",
+  "it" => "Template personalizzato:",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+  
+$txt_lists_title_recreatewa = array (
+  "fr" => "",
+  "en" => "Recreate:",
+  "hu" => "",
+  "it" => "Ricrea:",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
+$txt_lists_title_deletewa = array (
+  "fr" => "",
+  "en" => "Delete:",
+  "hu" => "",
+  "it" => "Cancella:",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
 $txt_lists_hlp_list_name = array (
   "fr" => "Nom de la liste.",
   "en" => "Name of the list.",
@@ -897,6 +936,45 @@ $txt_lists_hlp_webarchive = array (
   "en" => "Enable webarchive.",
   "hu" => "",
   "it" => "Selezionando questa opzione si avrà la generazione ogni ora dell\'archivio web.",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
+$txt_lists_hlp_rcfile = array (
+  "fr" => "",
+  "en" => "Insert here the template\'s code that you want use for your web archive. Read <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'blank\'>documentation</a> and see <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'blank\'>examples</a>.",
+  "hu" => "",
+  "it" => "Inserisci qui il codice del template che desideri usare per il tuo archivio web. Leggi la <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'blank\'>documentazione</a> e vedi gli <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'blank\'>esempi</a>.",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
+$txt_lists_hlp_recreatewa = array (
+  "fr" => "",
+  "en" => "Recreate all messages of webarchive. Use this only if you have changed the webarchive\'s template. NOTE: this works only if you have &quot;web archive&quot; checked.",
+  "hu" => "",
+  "it" => "Rigenera tutti i messaggi dell\'archivio web. Usalo solo se sono stati effettuati cambiamenti al file template. NOTA BENE: funziona solo se hai l\'&quot;archivio web&quot; attivato.",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
+$txt_lists_hlp_deletewa = array (
+  "fr" => "",
+  "en" => "Delete all messages of webarchive. NOTE: this works only if you have &quot;web archive&quot; not checked.",
+  "hu" => "",
+  "it" => "Elimina tutto l\'archivio web. NOTA BENE: funziona solo se hai l\'&quot;archivio web&quot; disattivato.",
   "nl" => "",
   "ru" => "",
   "de" => "",
