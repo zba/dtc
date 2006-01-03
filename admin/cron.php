@@ -209,11 +209,45 @@ function updateAllDomainsStats(){
 	}
 }
 
+function updateAllListWebArchive(){
+	global $pro_mysql_list_table;
+	global $pro_mysql_domain_table;
+
+	$query = "SELECT * FROM $pro_mysql_list_table WHERE webarchive='yes'";
+	$result = mysql_query ($query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+	$number = mysql_num_rows($result);
+	$row = mysql_fetch_array($result);
+	for($j=0;$j<$number;$j++){
+		$list_domain = $row[$j]["domain"];
+		$list_name = $row[$j]["name"];
+		$query2 = "SELECT owner FROM $pro_mysql_domain_table WHERE name='$list_domain' LIMIT 1";
+		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+		$row2 = mysql_fetch_array($result2);
+		$list_admin = $row2[0];
+		$admin_path = getAdminPath($list_admin);
+		$list_dir = $admin_path."/".$list_domain."/lists/".$list_domain."_".$list_name;
+		$web_path = $admin_path."/".$list_domain."/subdomains/www/html/lists/".$list_name;
+		$archive_dir = $list_dir."/archive";
+		$list_rcfile = $list_dir."/rcfile";
+		if (file_exists($list_rcfile)){
+			$rcfile = " -rcfile ".$list_rcfile." ";
+			}else{
+			$rcfile = " ";
+			}
+		$updatewa = "mhonarc".$rcfile."-outdir ".$web_path." -add ".$archive_dir;
+		exec($updatewa);
+		$test = "echo ".$updatewa." > /var/www/sites/dtc/lupin3rd.dyndns.org/lists/test.txt";
+		exec($test);
+	}	
+}
 
 // This will set each day at 0:00
 // if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
 // This one is each hours
-if(($start_stamps%(60*60))< 60*10)	updateAllDomainsStats();
+if(($start_stamps%(60*60))< 60*10){
+	updateAllDomainsStats();
+	updateAllListWebArchive();
+	}
 // This is each time the script is launched (all 10 minutes)
 // updateAllDomainsStats();
 
