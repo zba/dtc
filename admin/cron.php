@@ -216,14 +216,17 @@ function updateAllListWebArchive(){
 	$query = "SELECT * FROM $pro_mysql_list_table WHERE webarchive='yes'";
 	$result = mysql_query ($query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
 	$number = mysql_num_rows($result);
-	$row = mysql_fetch_array($result);
+//	$row = mysql_fetch_array($result);
+	echo "Update of $number webarchive:\n";
 	for($j=0;$j<$number;$j++){
-		$list_domain = $row[$j]["domain"];
-		$list_name = $row[$j]["name"];
+		$row = mysql_fetch_array($result);
+		$list_domain = $row["domain"];
+		$list_name = $row["name"];
 		$query2 = "SELECT owner FROM $pro_mysql_domain_table WHERE name='$list_domain' LIMIT 1";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
 		$row2 = mysql_fetch_array($result2);
 		$list_admin = $row2[0];
+		echo "...webarchive updating of $list_name on $list_domain\n";
 		$admin_path = getAdminPath($list_admin);
 		$list_dir = $admin_path."/".$list_domain."/lists/".$list_domain."_".$list_name;
 		$web_path = $admin_path."/".$list_domain."/subdomains/www/html/lists/".$list_name;
@@ -236,7 +239,7 @@ function updateAllListWebArchive(){
 			}
 		$updatewa = "mhonarc".$rcfile."-outdir ".$web_path." -add ".$archive_dir;
 		exec($updatewa);
-	}	
+	}
 }
 
 // This will set each day at 0:00
