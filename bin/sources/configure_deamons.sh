@@ -74,7 +74,11 @@ HTTPD_MODULES_CONFIG=/usr/sbin/apache-modconf
 # if apacheconfig is a symlink (deprecated), then use modules-config
 if [ -f $HTTPD_MODULES_CONFIG ]
 then
-	HTTPD_MODULES_CONFIG="$HTTPD_MODULES_CONFIG apache"
+	if [ ""$conf_apache_version = "2" ] ; then
+		HTTPD_MODULES_CONFIG="$HTTPD_MODULES_CONFIG apache2"
+	else
+		HTTPD_MODULES_CONFIG="$HTTPD_MODULES_CONFIG apache"
+	fi
 else
 	HTTPD_MODULES_CONFIG=""
 fi
@@ -283,12 +287,12 @@ else
 			fi
 		else
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo $HTTPD_MODULES_CONFIG enable log_sql_module
-				echo $HTTPD_MODULES_CONFIG enable log_sql_mysql_module
+				echo $HTTPD_MODULES_CONFIG enable sql_log_module
+				echo $HTTPD_MODULES_CONFIG enable sql_log_mysql_module
 			fi
-#			$HTTPD_MODULES_CONFIG enable sql_log_module
-			$HTTPD_MODULES_CONFIG enable log_sql_module
-			$HTTPD_MODULES_CONFIG enable log_sql_mysql_module
+#			$HTTPD_MODULES_CONFIG enable log_sql_module
+			$HTTPD_MODULES_CONFIG enable sql_log_module
+			$HTTPD_MODULES_CONFIG enable sql_log_mysql_module
 			$HTTPD_MODULES_CONFIG enable mod_log_sql # just in case
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 				echo " enabled by $HTTPD_MODULES_CONFIG"
