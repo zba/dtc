@@ -397,8 +397,8 @@ $dtc_database = array(
 			"id" => "int(9) NOT NULL auto_increment",
 			"domain" => "varchar(128) NOT NULL ",
 			"name" => "varchar(32) NOT NULL ",
-			"owner" => "varchar(255) NOT NULL "
-			"webarchive" => "enum('yes','no') NOT NULL default 'no'",
+			"owner" => "varchar(255) NOT NULL ",
+			"webarchive" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)"
 		),
