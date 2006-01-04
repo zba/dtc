@@ -287,12 +287,12 @@ else
 			fi
 		else
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo $HTTPD_MODULES_CONFIG enable sql_log_module
-				echo $HTTPD_MODULES_CONFIG enable sql_log_mysql_module
+				echo $HTTPD_MODULES_CONFIG enable log_sql_module
+				echo $HTTPD_MODULES_CONFIG enable log_sql_mysql_module
 			fi
 #			$HTTPD_MODULES_CONFIG enable log_sql_module
-			$HTTPD_MODULES_CONFIG enable sql_log_module
-			$HTTPD_MODULES_CONFIG enable sql_log_mysql_module
+			$HTTPD_MODULES_CONFIG enable log_sql_module
+			$HTTPD_MODULES_CONFIG enable log_sql_mysql_module
 			$HTTPD_MODULES_CONFIG enable mod_log_sql # just in case
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 				echo " enabled by $HTTPD_MODULES_CONFIG"
