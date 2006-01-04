@@ -123,7 +123,7 @@ db_unregister dtc/conf_upgrade_pear
 # db_purge
 
 if [ ""$conf_apache_version = "2" ] ; then
-	PATH_HTTPD_CONF=/etc/apache/apache2.conf
+	PATH_HTTPD_CONF=/etc/apache2/apache2.conf
 else
 	PATH_HTTPD_CONF=/etc/apache/httpd.conf
 	PATH_HTTPD_MODULES_CONF=/etc/apache/modules.conf
