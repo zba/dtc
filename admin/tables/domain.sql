@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS domain (
   generate_flag enum('yes','no') NOT NULL default 'yes',
   quota bigint(20) NOT NULL default '50',
   max_email int(11) NOT NULL default '9',
+  max_lists int(11) NOT NULL default '3',
   max_ftp int(11) NOT NULL default '3',
   max_subdomain int(11) NOT NULL default '5',
   ip_addr varchar(16) NOT NULL default '213.215.47.212',
