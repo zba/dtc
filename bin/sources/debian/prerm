@@ -15,7 +15,14 @@ db_version 2.0
 
 UNIX_TYPE=debian
 
-PATH_HTTPD_CONF=/etc/apache/httpd.conf
+db_get dtc/conf_apache_version
+conf_apache_version=$RET
+
+if [ ""$conf_apache_version = "2" ] ; then
+	PATH_HTTPD_CONF=/etc/apache2/apache2.conf
+else
+	PATH_HTTPD_CONF=/etc/apache/httpd.conf
+fi
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
 PATH_PHP_CGI="/usr/bin/php4"
