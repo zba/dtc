@@ -323,6 +323,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 		$domain["name"] = $row["name"];
 		$domain["safe_mode"] = $row["safe_mode"];
 		$domain["max_email"] = $row["max_email"];
+		$domain["max_lists"] = $row["max_lists"];
 		$domain["max_ftp"] = $row["max_ftp"];
 		$domain["max_subdomain"] = $row["max_subdomain"];
 		$domain["quota"] = $row["quota"];
