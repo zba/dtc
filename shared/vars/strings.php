@@ -1687,6 +1687,20 @@ $txt_domain_tbl_config_max_email = array(
 	"pt" => "Max. E-mail"
 	);
 
+$txt_domain_tbl_config_max_lists = array(
+	"fr" => "Listes max",
+	"en" => "Lists max",
+	"hu" => "TRANS Max lists",
+        "it" => "TRANS lists max",
+	"nl" => "TRANS lists max",
+	"ru" => "TRANS lists 土擞",
+	"de" => "TRANS Max. lists",
+	"zh" => "TRANS lists 最大电子信箱帐户",
+        "pl" => "TRANS lists max",
+	"es" => "TRANS Max Emails",
+	"pt" => "TRANS Max. E-mail"
+	);
+
 $txt_domain_tbl_config_max_subdomain = array(
 	"fr" => "Subdomain max",
 	"en" => "Subdomain max",

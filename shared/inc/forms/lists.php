@@ -32,7 +32,7 @@ function drawAdminTools_MailingLists($domain){
 	{
 	 $nbr_email += sizeof($domain["mailinglists"]);
 	}
-	$max_email = $domain["max_email"];
+	$max_email = $domain["max_lists"];
 	if($nbr_email >= $max_email){
 		$max_color = "color=\"#440000\"";
 	}
