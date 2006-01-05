@@ -147,7 +147,7 @@ function drawDomainConfig($admin){
 	global $txt_domain_tbl_config_max_subdomain;
 	global $txt_domain_tbl_config_ip;
 	global $txt_domain_tbl_config_backup_ip;
-	global txt_domain_tbl_config_max_lists;
+	global $txt_domain_tbl_config_max_lists;
 
 	global $conf_site_addrs;
 	$site_addrs = explode("|",$conf_site_addrs);
