@@ -87,7 +87,7 @@ $txt_lists_main_title_smtp_config = array (
   "pt" => "");
 
 $txt_lists_main_title_webarchive = array (
-  "fr" => "",
+  "fr" => "Archive web",
   "en" => "Webarchive",
   "hu" => "",
   "it" => "Archivio web",
@@ -477,7 +477,7 @@ $txt_lists_title_footer = array (
   "pt" => "");
   
 $txt_lists_title_webarchive = array (
-  "fr" => "",
+  "fr" => "Activé l'archivage web :",
   "en" => "Enable webarchive:",
   "hu" => "",
   "it" => "Abilita archivio web:",
@@ -490,7 +490,7 @@ $txt_lists_title_webarchive = array (
   "pt" => "");
 
 $txt_lists_title_rcfile = array (
-  "fr" => "",
+  "fr" => "Modèle personalisé :",
   "en" => "Own template:",
   "hu" => "",
   "it" => "Template personalizzato:",
@@ -503,7 +503,7 @@ $txt_lists_title_rcfile = array (
   "pt" => "");
   
 $txt_lists_title_recreatewa = array (
-  "fr" => "",
+  "fr" => "Recréer :",
   "en" => "Recreate:",
   "hu" => "",
   "it" => "Ricrea:",
@@ -516,7 +516,7 @@ $txt_lists_title_recreatewa = array (
   "pt" => "");
 
 $txt_lists_title_deletewa = array (
-  "fr" => "",
+  "fr" => "Effacer :",
   "en" => "Delete:",
   "hu" => "",
   "it" => "Cancella:",
@@ -932,7 +932,7 @@ $txt_lists_hlp_relayhost = array (
   "pt" => "");
   
 $txt_lists_hlp_webarchive = array (
-  "fr" => "",
+  "fr" => "Activer l'archivage",
   "en" => "Enable webarchive.",
   "hu" => "",
   "it" => "Selezionando questa opzione si avrà la generazione ogni ora dell\'archivio web.",
@@ -945,10 +945,10 @@ $txt_lists_hlp_webarchive = array (
   "pt" => "");
 
 $txt_lists_hlp_rcfile = array (
-  "fr" => "",
-  "en" => "Insert here the template\'s code that you want use for your web archive. Read <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'blank\'>documentation</a> and see <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'blank\'>examples</a>.",
+  "fr" => "Insérez ici le modèle du code que vous voulez voirez insérer à votre archive web. Consultez la documentation et voire les examples.",
+  "en" => "Insert here the template\'s code that you want use for your web archive. Read <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'_blank\'>documentation</a> and see <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'_blank\'>examples</a>.",
   "hu" => "",
-  "it" => "Inserisci qui il codice del template che desideri usare per il tuo archivio web. Leggi la <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'blank\'>documentazione</a> e vedi gli <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'blank\'>esempi</a>.",
+  "it" => "Inserisci qui il codice del template che desideri usare per il tuo archivio web. Leggi la <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'_blank\'>documentazione</a> e vedi gli <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'_blank\'>esempi</a>.",
   "nl" => "",
   "ru" => "",
   "de" => "",

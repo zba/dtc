@@ -27,11 +27,12 @@ function drawAdminTools_MailingLists($domain){
 
 
 	$txt = "";
-	$nbr_email = sizeof($domain["emails"]);
-	if (isset($domain["mailinglists"]))
-	{
-	 $nbr_email += sizeof($domain["mailinglists"]);
-	}
+//	$nbr_email = sizeof($domain["emails"]);
+	if (isset($domain["mailinglists"])){
+	 $nbr_email = sizeof($domain["mailinglists"]);
+	}else{
+	  $nbr_email = 0;
+        }
 	$max_email = $domain["max_lists"];
 	if($nbr_email >= $max_email){
 		$max_color = "color=\"#440000\"";

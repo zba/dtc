@@ -45,6 +45,7 @@ function drawAdminTools_AdminStats($admin){
 // ["total_du"]
 	$id_client = $admin["info"]["id_client"];
 
+	// Print the transfer overall total for this month
 	$out .= "<u><b>".$txt_total_transfered_bytes_this_month[$lang]."</b></u>";
 	if (!isset($stats["total_http"]))
 	{
@@ -72,14 +73,16 @@ function drawAdminTools_AdminStats($admin){
 		$out .= " / ".smartByte($bw_quota)."<br>";
 		$out .= drawPercentBar($stats["total_transfer"],$bw_quota);
 	}
-	$out .= "<br><u>".$txt_are_disk_usage[$lang]."<b></b></u>";
+
+	// Print disk usage
+	$out .= "<br><u><b>".$txt_are_disk_usage[$lang]."</b></u>";
 	if (!isset($stats["total_du_domains"]))
 	{
 		$stats["total_du_domains"] = 0;
 	}
 	$out .= "<br>".$txt_domain_name_files[$lang]." ".smartByte($stats["total_du_domains"]);
-	if(isset($stats["total_db_du"])){
-		$out .= "<br>".$txt_database_files[$lang]." ".smartByte($stats["total_db_du"]);
+	if(isset($stats["total_du_db"])){
+		$out .= "<br>".$txt_database_files[$lang]." ".smartByte($stats["total_du_db"]);
 	}else{
 		$out .= "<br>".$txt_database_files[$lang]." ".smartByte(0);
 	}
