@@ -143,7 +143,7 @@ for($i=0;$i<$nbr_tables;$i++){
 	if($numvars > 0){
 		$varnames = array_keys($allvars);
 		for($j=0;$j<$numvars;$j++){
-			// We have to rebuild indexes in order to get rid of past mistakes: this should go away when releasing v1.0
+			// We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
 			if(findKeyInTable($tblnames[$i],$varnames[$j])){
 				$q = "ALTER TABLE ".$tblnames[$i]." DROP INDEX ".$varnames[$j]."";
 				$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
