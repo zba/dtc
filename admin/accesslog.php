@@ -22,43 +22,85 @@ function make_stats(){
 	ORDER BY admin.adm_login,domain.name,subdomain.subdomain_name";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
-	mysql_select_db("apachelogs");
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/logs";
-		$table_name = $a["name"].'$'.$a["subdomain_name"].'$'."xfer";
-		
-		$query = "SELECT MIN(time_stamp) AS start FROM ".table_name."";
-		$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
-		$start = mysql_result($result,0,"start");
-		while($start<$today_midnight){
-			$query_dump = "SELECT * FROM ".$db_select_name." WHERE time_stamp>=".$selected_month_start." AND time_stamp<=".$selected_month_end." ORDER BY time_stamp";
-			$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
-			$dump_num_rows = mysql_num_rows($result_dump);
-			if($dump_num_rows>0){
-				echo "\nDumping logs for ".$table_name."_".$month."_".$year."\n";
-				$handle = fopen ($dump_file_name, "w");
-				for($z=0;$z<$dump_num_rows;$z++){
-					$rezar = mysql_fetch_array($result_dump);
-					if(strstr($rezar["referer"],$domain)){
-						$rezar["referer"] == "self";
-					}
-					$content = $rezar["remote_host"]." - - ".
-						date("[d/M/Y:H:i:s O] ",$rezar["time_stamp"]).
-						'"'.$rezar["request_method"]." ".$rezar["request_uri"]." ".$rezar["request_protocol"].'" '.
-						$rezar["status"]." ".$rezar["bytes_sent"].
-						' "'.$rezar["referer"].'" "'.$rezar["agent"].'"'."\n";
-					if (!fwrite($handle, $content)){
-						echo "WARNING: Cannot write logfile, maybe disk full...\n";
-					}
+		$table_name = str_replace(".","_",$a["name"].'$'.$a["subdomain_name"].'$'."xfer");
+
+		echo "Checking $table_name ... ";
+		if(mysql_table_exists("apachelogs",$table_name)){
+			mysql_select_db("apachelogs");
+			$qus = "SHOW TABLE STATUS LIKE '".$table_name."'";
+			$res = mysql_query($qus) or die("Cannot execute query \"$qus\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
+			$ars = mysql_fetch_array($res);
+			if($ars["Rows"] > 0){
+				$query = "SELECT MIN(time_stamp) AS start FROM apachelogs.".$table_name."";
+				$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
+				$start = mysql_result($result,0,"start");
+				if($start<$today_midnight){
+					echo "stats to be done!\n";
 				}
+				while($start<$today_midnight){
+					$year = date("Y",$start);
+					$month = date("m",$start);
+					$day = date("d",$start);
+					$dump_folder = $fullpath."/".$year."/".$month;;
+					$dump_filename = $dump_folder."/access_".$day.".log";
+
+					$start_24h = $start + (60*60*24);
+					$year_24h = date("Y",$start_24h);
+					$month_24h = date("m",$start_24h);
+					$day_24h = date("d",$start_24h);
+
+					$end = mktime(0,0,0,$month_24h,$day_24h,$year_24h);
+
+					echo "Querying SELECT * FROM apachelogs.".$table_name."...";
+					$query_dump = "SELECT * FROM apachelogs.".$table_name." WHERE time_stamp>='".$start."' AND time_stamp<='".$end."' ORDER BY time_stamp";
+					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
+					$dump_num_rows = mysql_num_rows($result_dump);
+					if($dump_num_rows>0){
+						echo "$dump_num_rows records for $dump_filename...\n";
+						if(!is_dir($dump_folder)){
+							exec("mkdir -p $dump_folder");
+						}
+						$handle = fopen ($dump_filename, "w+");
+						for($z=0;$z<$dump_num_rows;$z++){
+							$rezar = mysql_fetch_array($result_dump);
+							if(strstr($rezar["referer"],$a["name"])){
+								$rezar["referer"] == "self";
+							}
+							$content = $rezar["remote_host"]." - - ".
+								date("[d/M/Y:H:i:s O] ",$rezar["time_stamp"]).
+								'"'.$rezar["request_method"]." ".$rezar["request_uri"]." ".$rezar["request_protocol"].'" '.
+								$rezar["status"]." ".$rezar["bytes_sent"].
+								' "'.$rezar["referer"].'" "'.$rezar["agent"].'"'."\n";
+							if (!fwrite($handle, $content)){
+								echo "WARNING: Cannot write logfile, maybe disk full...\n";
+							}
+						}
+						fclose($handle);
+						echo "Calculating webalizer stats for ".$day." ".$month." ".$year."\n";
+						$webalizer_cmd = "webalizer -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
+						echo "$webalizer_cmd\n";
+						exec ($webalizer_cmd);
+					}else{
+						echo "table empty\n";
+					}
+					$query_dump = "DELETE FROM apachelogs.".$table_name." WHERE time_stamp<='".$end."'";
+					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
+
+					$query = "SELECT MIN(time_stamp) AS start FROM apachelogs.".$table_name."";
+					$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
+					$start = mysql_result($result,0,"start");
+				}
+			}else{
+				echo "No records!\n";
 			}
-			$query = "SELECT MIN(time_stamp) AS start FROM ".table_name."";
-			$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
-			$start = mysql_result($result,0,"start");
+			mysql_select_db($conf_mysql_db);
+		}else{
+			echo "no table!\n";
 		}
 	}
-	mysql_select_db($conf_mysql_db);
 }
 
 make_stats();
