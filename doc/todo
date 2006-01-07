@@ -1,4 +1,5 @@
 Here is the todo in unsorted order:
+- remove the du when going inside a domain: it's too slow!!!
 - Make webalizer stats each days
 - write mysqmail-pure-ftpd-logger
 - use the following directives for pure-ftpd-mysql:
