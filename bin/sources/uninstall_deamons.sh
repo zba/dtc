@@ -46,7 +46,6 @@ if grep "Configured by DTC" $PATH_NAMED_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Uninstalling inclusion from named.conf"
-		echo "removing \"Configured by DTC\" and include \""${PATH_DTC_ETC}/named.conf"\" lines"
 	fi
 	TMP_FILE=`${MKTEMP} DTC_uninstall.named.conf.XXXXXX` || exit 1
 	TMP_FILE2=`${MKTEMP} DTC_uninstall.named.conf.XXXXXX` || exit 1
