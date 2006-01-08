@@ -89,9 +89,16 @@ function make_stats(){
 					$query_dump = "DELETE FROM apachelogs.".$table_name." WHERE time_stamp<='".$end."'";
 					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
 
-					$query = "SELECT MIN(time_stamp) AS start FROM apachelogs.".$table_name."";
-					$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
-					$start = mysql_result($result,0,"start");
+					$qus = "SHOW TABLE STATUS LIKE '".$table_name."'";
+					$res = mysql_query($qus) or die("Cannot execute query \"$qus\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
+					$ars = mysql_fetch_array($res);
+					if($ars["Rows"] == 0){
+						$start = $today_midnight;
+					}else{
+						$query = "SELECT MIN(time_stamp) AS start FROM apachelogs.".$table_name."";
+						$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
+						$start = mysql_result($result,0,"start");
+					}
 				}
 			}else{
 				echo "No records!\n";
