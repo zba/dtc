@@ -95,8 +95,8 @@ function mail_account_generate_qmail(){
 					{
 						$list_owner .= "@" . $list_domain;
 					}
-					
 					$list_path = "$admin_path/$list_domain/lists/$list_domain" . "_" . "$list_name";
+					writeMlmmjQmailFile($admin_path);
 					$assign_file .= "+$domain_qmail_name-$list_name:nobody:65534:65534:$list_path:::\n";
 				}
 			}

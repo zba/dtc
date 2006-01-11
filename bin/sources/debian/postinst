@@ -135,37 +135,25 @@ fi
 
 # Adding support for mysql for php4-cgi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "Checking mysql.so in php.ini"
+	echo "===> Installing modifications in php.ini"
 fi
 if grep mysql.so /etc/php4/cgi/php.ini | grep extension= >/dev/null
 then
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "Skiping mysql.so insertion in php.ini"
-	fi
+	echo -n ""
 else
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "Your php.ini doesn't has mysql extension: DTC will add it !"
-	fi
 	echo "extension=mysql.so" >>/etc/php4/cgi/php.ini
 fi
 
 # Setup a minimum include path with . and /usr/share/pear (or /usr/share/php for debian testing) !!!
 if [ -f /usr/share/pear/PEAR.php ]
 then
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "Checking include_path=/usr/share/pear in php.ini"
-	fi
 	if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/pear >/dev/null
 	then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Skiping include_path insertion in php.ini"
-		fi
+		echo -n ""
 	else
 		if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/php >/dev/null
 		then
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "Skiping include_path insertion in php.ini"
-			fi
+			echo -n ""
 		else
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 				echo "Your php.ini doesn't has pear in it's inc path: changin!"
@@ -185,14 +173,9 @@ fi
 
 if [ -f /usr/share/php/PEAR.php ]
 then
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "Checking include_path=/usr/share/pear in php.ini"
-	fi
 	if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/php > /dev/null
 	then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Skiping include_path insertion in php.ini"
-		fi
+		echo -n ""
 	else
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "Your php.ini doesn't has pear in it's inc path: changin!"
@@ -226,11 +209,11 @@ if [ $PHPMAJOR -ge 4 -a $PHPMINOR -ge 3 -a -e /usr/bin/pear ]
 then
 	if [ ""$conf_upgrade_pear = "false" ] ; then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "User selected not to check for pear: skiping."
+			echo "===> User selected not to check for pear: skiping."
 		fi
 	else
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Checking pear installation for PHP > 4.3"
+			echo "===> Checking pear installation for PHP > 4.3"
 		fi
 		set +e
 		set -x
@@ -260,19 +243,15 @@ then
 	mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pass"') WHERE User='root'; FLUSH PRIVILEGES;"
 fi
 
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Checking \"nameserver 127.0.0.1\" in /etc/resolv.conf"
+fi
 if grep "nameserver 127.0.0.1" /etc/resolv.conf >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "/etc/resolv.conf seems to be OK !"
 	fi
 else
-	if grep "// forwarders" /etc/bind/named.conf
-	then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "!!! WARNING !!! Edit your named forwarders conf in /etc/bind/named.conf NOW !!!"
-		fi
-	fi
-
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "Adding nameserver 127.0.0.1 to /etc/resolv.conf"
 	fi

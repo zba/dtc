@@ -35,22 +35,22 @@ fi
 
 # Copy newly created chroot tree to the 3 vhosts created with this installer (mx and ns don't have apache vhosts generated)
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo -n "===> Adding chroot environment to www."$main_domain_name
+	echo -n "===> Installing chroot file environment for www."$main_domain_name
 fi
-cp -fupR  $conf_chroot_path $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+cp -fupR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n " "$dtc_admin_subdomain"."$main_domain_name
 fi
-cp -fupR  $conf_chroot_path $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404"
+cp -fupR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404"
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n " 404."$main_domain_name
 fi
-cp -fupR  $conf_chroot_path $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain
+cp -fupR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains"
+	echo " chown -R nobody:65534 "$conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains"
 fi
 chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains"
 
@@ -456,9 +456,6 @@ then
 		echo "named.conf has been configured before : skiping include insertion !"
 	fi
 else
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "Including named.conf in $PATH_NAMED_CONF"
-	fi
 	if ! [ -f $PATH_NAMED_CONF.DTC.backup ]
 	then
 		cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.backup
@@ -544,7 +541,7 @@ fi
 
 if [ -f "$PATH_AMAVISD_CONF" ]; then
         if [ ""$VERBOSE_INSTALL == "yes" ]; then
-                echo "Checking user and group configuration for amavisd..."
+                echo "===> Checking user and group configuration for amavisd..."
         fi
 
         # make sure our users exist for amavis
@@ -620,7 +617,7 @@ fi
 
 if [ -f "$PATH_CLAMAV_CONF" ]; then
         if [ ""$VERBOSE_INSTALL == "yes" ]; then
-                echo "Checking user and group configuration for clamav..."
+                echo "===> Checking user and group configuration for clamav..."
         fi
 
         # make sure our users exist for amavis

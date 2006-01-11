@@ -45,7 +45,7 @@ fi
 
 # Create hosting directories for main site
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "==> Creating directory for hosting "$main_domain_name
+	echo "===> Creating directory for hosting "$main_domain_name
 fi
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain"/html"
 mkdir -p $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain"/logs"
@@ -86,7 +86,7 @@ fi
 chown -R nobody:65534 $conf_hosting_path
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "==> DTC is now creating it's database:"
+	echo "===> DTC is now creating it's database:"
 fi
 # Added for MacOS X support with mysql not in the path...
 if [ ""$conf_mysql_cli_path = "" ] ;then
@@ -122,18 +122,15 @@ create_tables=$PATH_DTC_SHARED"/admin/tables"
 curdir=`pwd`
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "If not exists, create DTC's database name: "$conf_mysql_db
+	echo -n "===> Installing or upgrading DTC database: dtc "
 fi
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "Creating apachelogs database: apachelogs"
+	echo -n " apachelogs"
 fi
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
 
 cd $create_tables
-if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo -n "DTC is now creating table if not exists: "
-fi
 for i in $( ls *.sql );
 do
 	table_name=`echo $i | cut -f1 -d"."`
@@ -153,7 +150,7 @@ else
 	cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass" >/dev/null
 fi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "Inserting values in mysql for hosting "$main_domain_name
+	echo "===> Inserting values in mysql for hosting "$main_domain_name
 fi
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO groups (members) VALUES ('zigo')"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO admin (adm_login,adm_pass,path) VALUES ('"$conf_adm_login"','"$conf_adm_pass"','"$conf_hosting_path"/"$conf_adm_login"')"
