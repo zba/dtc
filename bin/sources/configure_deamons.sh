@@ -744,9 +744,6 @@ relay_domains = $PATH_DTC_ETC/postfix_relay_domains
 relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients
 virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 		if [ -n $conf_dnsbl_list ]; then
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo " Adding DNS Blacklist to postfix configuration..."
-			fi
 			IFS=, 
 			for i in $conf_dnsbl_list; do 
 				dnsbl_list="$dnsbl_list reject_rbl_client $i,"
@@ -754,14 +751,8 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 			unset IFS
 		fi
 		
-
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo " Attempting to determine if you have sasl2 installed..."
-		fi
 		if [ "$PATH_SASL_PASSWD2" = "" ]; then
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "No saslpasswd2 installed";
-			fi
+			echo -n ""
 		elif [ -f $PATH_SASL_PASSWD2 ]; then
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 				echo "Found sasl2passwd at $PATH_SASL_PASSWD2"
