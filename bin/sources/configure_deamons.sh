@@ -614,6 +614,7 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
 
                 # now to insert it at the end of the actual amavisd.conf
                 cat < $TMP_FILE >>$PATH_AMAVISD_CONF
+                rm ${TMP_FILE}
         fi
 fi
 
