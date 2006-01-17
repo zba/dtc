@@ -191,7 +191,7 @@ $txt_lists_title_notifysub = array (
   "pt" => "");
 
 $txt_lists_title_noarchive = array (
-  "fr" => "Pas d'archives :",
+  "fr" => "Pas d\'archives :",
   "en" => "No archives:",
   "hu" => "",
   "it" => "Nessun archivio:",
@@ -259,7 +259,7 @@ $txt_lists_title_addtohdr = array (
   "fr" => "Ajouter entête To: :",
   "en" => "Add To: header:",
   "hu" => "",
-  "it" => "Aggiungi all'header To:",
+  "it" => "Aggiungi all\'header To:",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -454,7 +454,7 @@ $txt_lists_title_access = array (
   "fr" => "Liste d'accès :",
   "en" => "Access list:",
   "hu" => "",
-  "it" => "Lista d'accesso:",
+  "it" => "Lista d\'accesso:",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -932,7 +932,7 @@ $txt_lists_hlp_relayhost = array (
   "pt" => "");
   
 $txt_lists_hlp_webarchive = array (
-  "fr" => "Activer l'archivage",
+  "fr" => "Activer l\'archivage",
   "en" => "Enable webarchive.",
   "hu" => "",
   "it" => "Selezionando questa opzione si avrà la generazione ogni ora dell\'archivio web.",
@@ -945,7 +945,7 @@ $txt_lists_hlp_webarchive = array (
   "pt" => "");
 
 $txt_lists_hlp_rcfile = array (
-  "fr" => "Insérez ici le modèle du code que vous voulez voirez insérer à votre archive web. Consultez la documentation et voire les examples.",
+  "fr" => "Insérez ici le modèle du code que vous voulez voirez insérer à votre archive web. Consultez la <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'_blank\'>documentation</a> et voire les <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'_blank\'>examples</a>.",
   "en" => "Insert here the template\'s code that you want use for your web archive. Read <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'_blank\'>documentation</a> and see <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'_blank\'>examples</a>.",
   "hu" => "",
   "it" => "Inserisci qui il codice del template che desideri usare per il tuo archivio web. Leggi la <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'_blank\'>documentazione</a> e vedi gli <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'_blank\'>esempi</a>.",

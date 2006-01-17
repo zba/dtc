@@ -132,9 +132,9 @@ function getTunableHelp($tunable_name){
   global $$varname;
   if(isset($$varname)){
     $out = $$varname;
-    return $out[$lang];
+    return "<b>".$tunable_name.": </b>".$out[$lang];
   }else{
-    return "";
+    return "<b>".$tunable_name."</b>";
   }
 }
 
