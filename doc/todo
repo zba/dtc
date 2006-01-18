@@ -1,4 +1,5 @@
 Here is the todo in unsorted order:
+- restart amavis when new domains???
 - remove the du when going inside a domain: it's too slow!!!
 - Make webalizer stats each days
 - write mysqmail-pure-ftpd-logger

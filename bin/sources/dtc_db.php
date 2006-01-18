@@ -319,6 +319,7 @@ $dtc_database = array(
 			"transfer" => "int(14) unsigned NOT NULL default '0' ",
 			"last_run" => "int(14) NOT NULL default '0' ",
 			"month" => "int(4) NOT NULL default '0' ",
+			"hits" => "int(14) NOT NULL default '0' ",
 			"year" => "int(4) NOT NULL default '0' "
 			),
 		"primary" => "(id)",
