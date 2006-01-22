@@ -1,5 +1,21 @@
 <?php
 
+function drawRegistrySelection(){
+  global $pro_mysql_registry_table;
+  $out = "<b><u>Registry selection:</u></b>";
+  $out .= "";
+  $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+<input type=\"hidden\" name=\"action\" value=\"add_mx_trigger_backup\">
+<input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
+<tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"http://dtc.\"></td>";
+$out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
+$out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
+$out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
+  return $out;
+}
+
 function drawDTCConfigMenu(){
 	global $txt_cfg_path_conf_title;
 	global $txt_cfg_name_zonefileconf_title;

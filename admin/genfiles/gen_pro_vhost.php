@@ -104,6 +104,8 @@ function pro_vhost_generate(){
 
 	if($conf_unix_type == "gentoo"){
 		$conf_tools_prefix = "/var/www/localhost/htdocs";
+	}else if($conf_unix_type == "freebsd"){
+		$conf_tools_prefix = "/usr/local/www";
 	}else{
 		$conf_tools_prefix = "/usr/share";
 	}
