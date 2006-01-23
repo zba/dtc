@@ -313,6 +313,8 @@ if($cronjob_table_content["restart_qmail"] == "yes"){
 	case "postfix":
 		echo "Reloading postfix\n";
 		system("/etc/init.d/postfix reload");
+		echo "Reloading amavis\n";
+		system("/etc/init.d/amavis reload");
 		break;
 	case "qmail":
 	default:

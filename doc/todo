@@ -2,7 +2,6 @@ Here is the todo in unsorted order:
 - restart amavis when new domains???
 - remove the du when going inside a domain: it's too slow!!!
 - Make webalizer stats each days
-- write mysqmail-pure-ftpd-logger
 - use the following directives for pure-ftpd-mysql:
 MySQLGetBandwidthUL SELECT ULBandwidth FROM ftpd WHERE User="\L"AND status="1" AND (ipaccess = "*" OR ipaccess LIKE "\R")
 MySQLGetBandwidthDL SELECT DLBandwidth FROM ftpd WHERE User="\L"AND status="1" AND (ipaccess = "*" OR ipaccess LIKE "\R")
@@ -10,12 +9,9 @@ MySQLGetQTASZ SELECT QuotaSize FROM ftpd WHERE User="\L"AND status="1" AND (ipac
 MySQLGetQTAFS SELECT QuotaFiles FROM ftpd WHERE User="\L"AND status="1" AND (ipaccess = "*" OR ipaccess LIKE "\R")
 - Add all the fields of TLD, refresh and all to be able to configure
 each type of extensions
-- Change the disk size submary so it takes information out of the new
-mysql manager
 - Autoresponders
 - Make some function to enable loading/saving of an admin's config in a
 conveinient .dtc file. Import from other (commercial) control panels.
-- Make apachectl configtest and restart work correctly for RedHat and FreeBSD
 - Add support for wildcard DNS & Apache ServerAlias entries
 - Make the user deletion delete new type of database (recursively)
 - Add support for DNS wildcard
