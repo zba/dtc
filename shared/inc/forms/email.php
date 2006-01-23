@@ -443,7 +443,7 @@ function drawAdminTools_Emails($domain){
 
 		$txt .= "
 <table border=\"1\"><tr><td align=\"right\">
-<form action=\"?\" methode=\"post\">
+<form name=\"emailfrm\" action=\"?\" methode=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -454,10 +454,11 @@ function drawAdminTools_Emails($domain){
 </td><td align=\"right\">
 	".$txt_mail_redirection1[$lang]."</td><td><input type=\"text\" name=\"editmail_redirect1\" value=\"$redir1\">
 </td></tr><tr><td align=\"right\">";
+		$gen_button = autoGeneratePassButton("emailfrm","editmail_pass");
 		if ($conf_hide_password == "yes"){
-			$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"editmail_pass\" value=\"$passwd\">";
+			$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"editmail_pass\" value=\"$passwd\">$gen_button";
 		} else {
-			$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"editmail_pass\" value=\"$passwd\">";
+			$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"editmail_pass\" value=\"$passwd\">$gen_button";
 		}
 		$txt .= "
 </td><td align=\"right\">

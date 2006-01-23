@@ -69,16 +69,17 @@ function drawEditAdmin($admin){
 
 	// Generate the user configuration form
 	$user_data = "
-<form action=\"?\" methode=\"post\">
+<form name=\"admattrbfrm\" action=\"?\" methode=\"post\">
 <input type=\"hidden\" name=\"rub\" value=\"$rub\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <table>
 	<tr><td align=\"right\">".$txt_password[$lang]."</td>";
+	$genpass = autoGeneratePassButton("admattrbfrm","changed_pass");
 	if ($conf_hide_password == "yes"){
-		$user_data .= "<td><input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\"></td></tr>";
+		$user_data .= "<td><input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass</td></tr>";
 	} else {
-		$user_data .= "<td><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\"></td></tr>";
+		$user_data .= "<td><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass</td></tr>";
 	}
 	$user_data .= "<tr><td align=\"right\">".$txt_path[$lang]."</td>
 	<td><input type=\"text\" name=\"changed_path\" value=\"$adm_path\"></td></tr>

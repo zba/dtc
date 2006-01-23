@@ -92,17 +92,18 @@ function drawAdminTools_Ftp($domain,$adm_path){
 <table>
 <tr><td align=\"right\">".$txt_login_login[$lang]."</td><td>".$_REQUEST["edftp_account"]."</td></tr>
 <tr><td align=\"right\">
-<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+<form name=\"ftpfrm\" action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"ftps\">
 	<input type=\"hidden\" name=\"edftp_account\" value=\"".$_REQUEST["edftp_account"]."\">";
+	$genpass = autoGeneratePassButton("ftpfrm","edftp_pass");
 	if ($conf_hide_password == "yes"){
-		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"edftp_pass\" value=\"$pass\">";
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"edftp_pass\" value=\"$pass\">$genpass";
 	}else{
-		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"edftp_pass\" value=\"$pass\">";
+		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"edftp_pass\" value=\"$pass\">$genpass";
 	}
 $txt .= "
 </td></tr><tr><td align=\"right\">

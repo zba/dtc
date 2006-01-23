@@ -1,5 +1,27 @@
 <?php
 
+function mdpauto(){
+	srand((double) microtime()*1000000);
+	$pool = "abcdefghjkmnprstuvwxyz234589";
+	$sid = "";
+	for($index=0;$index<8;$index++){
+		$sid .= substr($pool,(rand()%(strlen($pool))),1);
+	}
+	return $sid;
+}
+
+function autoGeneratePassButton($form_name,$field_name){
+	$mdp = mdpauto();
+	$out = "
+<script language=\"JavaScript\">
+function dtc_gen_passwd(){
+	document.".$form_name.".".$field_name.".value = '".$mdp."';
+}
+</script>
+<img src=\"gfx/generate_pass.png\" onClick=\"dtc_gen_passwd();\" alt)\"GENPASS\">";
+	return $out;
+}
+
 function HTTP_Post($URL,$data, $referrer=""){
 	$result = "";
 	// parsing the given URL
