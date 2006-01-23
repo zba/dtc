@@ -2,7 +2,8 @@
 
 function mdpauto(){
 	srand((double) microtime()*1000000);
-	$pool = "abcdefghjkmnprstuvwxyz234589";
+	//This pools grant no mistake between 0, o or O for example...
+	$pool = "abcdefghjkmnprstwxyz234589";
 	$sid = "";
 	for($index=0;$index<8;$index++){
 		$sid .= substr($pool,(rand()%(strlen($pool))),1);
