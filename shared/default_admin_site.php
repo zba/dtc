@@ -18,8 +18,8 @@ $ZeContent = '<table width="100%" height="100%">
 <center>
 
 <b><font face="Arial"><center>
-<a href="http://www.gplhost.com/?rub=softwares&sousrub=dtc">
-<img src="dtc_logo.gif" border="0"></a><br><br>
+<a href="http://www.gplhost.com/software-dtc.html">
+<img src="dtc_logo.gif" alt="DTC web control panel" border="0"></a><br><br>
 <h1><u>Welcome to '.$_SERVER["HTTP_HOST"].'!</u></h1>
 This is a place holder to show you how to create your client tool page.<br>
 Please edit '.__FILE__.' to customise this page.<br><br>
@@ -32,17 +32,16 @@ an open-source control panel<br>
 <a target="_blank" href="mailto:thomas [ at ] goirand.fr">Thomas GOIRAND</a>, under
 <a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit <a
 target="_blank" href="http://gplhost.com">GPLHost</a> and <a
-target="_blank" href="http://gplhost.com/?rub=softwares&sousrub=dtc">DTC
-home</a> for more infos.</i></font>
+target="_blank" href="http://gplhost.com/software-dtc.html">DTC web control panel</a> for more infos.</i></font>
 </center></td></tr></table>';
 
 $sousrub = $_REQUEST["sousrub"];
 
 if($sousrub == "register"){
 	$ZeContentWindowTitle = "Register an account|gplhost.gif";
-	$ZeContent = '<IFRAME border="0" src="http://'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php?product_id='.$_REQUEST["product_id"].'" width="100%" height="100%" scrolling="auto" frameborder="1">
+	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php?product_id='.$_REQUEST["product_id"].'" width="100%" height="100%" scrolling="auto" frameborder="1">
   [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="https://dtc.gplhost.com/dtc" target="_blank">the related document.</A>]
+  <A href="https://'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php" target="_blank">the related document.</A>]
   </IFRAME>
 ';
 }
@@ -54,9 +53,9 @@ if($sousrub == "register"){
 
 if($sousrub == "dtc"){
 	$ZeContentWindowTitle = "DTC Client interface|dtc.gif";
-	$ZeContent = '<IFRAME border="0" src="http://'.$_SERVER["HTTP_HOST"].'/dtc" width="100%" height="100%" scrolling="auto" frameborder="1">
+	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtc" width="100%" height="100%" scrolling="auto" frameborder="1">
   [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="http://dtc.gplhost.com/dtc" target="_blank">the related document.</A>]
+  <A href="https://'.$_SERVER["HTTP_HOST"].'/dtc/" target="_blank">the related document.</A>]
   </IFRAME>
 ';
 }
@@ -65,34 +64,34 @@ if($sousrub == "squirrelmail"){
 	$ZeContentWindowTitle = "SquirrelMail|squirrel.gif";
 	$ZeContent = '<IFRAME border="0" src="http://'.$_SERVER["HTTP_HOST"].'/squirrelmail/src/" width="100%" height="100%" scrolling="auto" frameborder="1">
   [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="http://dtc.gplhost.com/squirrelmail" target="_blank">the related document.</A>]
+  <A href="https://'.$_SERVER["HTTP_HOST"].'/squirrelmail" target="_blank">the related document.</A>]
   </IFRAME>
 ';
 }
 
 if($sousrub == "dtcadmin"){
 	$ZeContentWindowTitle = "DTC Client interface|dtc.gif";
-	$ZeContent = '<IFRAME border="0" src="http://'.$_SERVER["HTTP_HOST"].'/dtcadmin" width="100%" height="100%" scrolling="auto" frameborder="1">
+	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtcadmin" width="100%" height="100%" scrolling="auto" frameborder="1">
   [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="http://dtc.gplhost.com/dtc" target="_blank">the related document.</A>]
+  <A href="https://'.$_SERVER["HTTP_HOST"].'/dtc" target="_blank">the related document.</A>]
   </IFRAME>
 ';
 }
 
 if($sousrub == "dtcemail"){
 	$ZeContentWindowTitle = "DTC Email interface|dtc.gif";
-	$ZeContent = '<IFRAME border="0" src="http://'.$_SERVER["HTTP_HOST"].'/dtcemail" width="100%" height="100%" scrolling="auto" frameborder="1">
+	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtcemail" width="100%" height="100%" scrolling="auto" frameborder="1">
   [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="http://dtc.gplhost.com/dtcemail" target="_blank">the related document.</A>]
+  <A href="https://'.$_SERVER["HTTP_HOST"].'/dtcemail" target="_blank">the related document.</A>]
   </IFRAME>
 ';
 }
 
 if($sousrub == "phpmyadmin"){
 	$ZeContentWindowTitle = "PhpMyAdmin|mysql.png";
-	$ZeContent = '<IFRAME border="0" src="http://'.$_SERVER["HTTP_HOST"].'/phpmyadmin" width="100%" height="100%" scrolling="auto" frameborder="1">
+	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/phpmyadmin" width="100%" height="100%" scrolling="auto" frameborder="1">
   [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="http://dtc.gplhost.com/phpmyadmin" target="_blank">the related document.</A>]
+  <A href="https://'.$_SERVER["HTTP_HOST"].'/phpmyadmin" target="_blank">the related document.</A>]
   </IFRAME>
 ';
 }
