@@ -19,9 +19,8 @@ an open-source control panel<br>
 <i>Most of code done by:
 <a target="_blank" href="mailto:thomas [ at ] goirand.fr">Thomas GOIRAND</a>, under
 <a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit <a
-target="_blank" href="http://gplhost.com">GPLHost:>_</a> and <a
-target="_blank" href="http://gplhost.com/?rub=softwares&sousrub=dtc">DTC
-home</a> for more infos.</i></font>
+target="_blank" href="http://gplhost.com">GPLHost:>_ vps hosting</a> and <a
+target="_blank" href="http://gplhost.com/software-dtc.html">DTC web control panel</a> for more infos.</i></font>
 </center></td></tr></table>
 </center>
 </body>
