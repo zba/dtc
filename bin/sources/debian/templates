@@ -21,7 +21,12 @@ Description: MySql Login.
 Template: dtc/conf_mysqlpass
 Type: password
 Description: MySql Password.
- Please enter your mysql root password.
+ Please enter your desired mysql root
+ password. If you choose Yes on the
+ Change mysql root password dialog (just
+ after this one), it will
+ change your mysql root password
+ to the one entered here.
 
 Template: dtc/conf_mysqldb
 Type: string
