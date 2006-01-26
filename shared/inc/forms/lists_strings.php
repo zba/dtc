@@ -191,7 +191,7 @@ $txt_lists_title_notifysub = array (
   "pt" => "");
 
 $txt_lists_title_noarchive = array (
-  "fr" => "Pas d\'archives :",
+  "fr" => "Pas d'archives :",
   "en" => "No archives:",
   "hu" => "",
   "it" => "Nessun archivio:",
