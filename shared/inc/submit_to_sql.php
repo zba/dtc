@@ -228,10 +228,10 @@ function writeMlmmjQmailFile($boxpath){
 	// Write .qmail file
 	$qmail_file_content = "|preline -f /usr/bin/mlmmj-recieve -L $boxpath\n";
 	if($conf_demo_version == "no"){
-		$fp = fopen ( "$boxpath/.qmail", "w");
+		$fp = fopen ( "$boxpath/.qmail-default", "w");
 		fwrite ($fp,$qmail_file_content);
 		fclose($fp);
-		chmod ( "$boxpath/.qmail", 0644);
+		chmod ( "$boxpath/.qmail-default", 0644);
 	}
 }
 
