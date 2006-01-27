@@ -168,14 +168,16 @@ function tunablesTextareaRequestCheck($ctrl_path,$tunable_name){
 }
 
 function tunablesSUBTextareaRequestCheck($list_dir,$tunable_name){
-//must add email validation!!!
-$command = "/usr/bin/mlmmj-sub -L ".$list_dir."/ -a ".$tunable_name;
+$email = $_REQUEST[$tunable_name];
+//must add $email validation!!!
+$command = "/usr/bin/mlmmj-sub -L ".$list_dir."/ -a ".$email;
 exec($command);	
 }
 
 function tunablesUNSUBTextareaRequestCheck($list_dir,$tunable_name){
-//must add email validation!!!
-$command = "/usr/bin/mlmmj-unsub -L ".$list_dir."/ -a ".$tunable_name;
+$email = $_REQUEST[$tunable_name];
+//must add $email validation!!!
+$command = "/usr/bin/mlmmj-unsub -L ".$list_dir."/ -a ".$email;
 exec($command);	
 }
 
