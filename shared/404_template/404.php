@@ -17,9 +17,9 @@ website home page</a></font><br><br><br></td></tr>
 This website server is powered by Domain Technologie Control (DTC),
 an open-source control panel<br>
 <i>Most of code done by:
-<a target="_blank" href="mailto:thomas [ at ] goirand.fr">Thomas GOIRAND</a>, under
+<a target="_blank" href="http://thomas.goirand.fr">Thomas GOIRAND</a>, under
 <a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit <a
-target="_blank" href="http://gplhost.com">GPLHost:>_ vps hosting</a> and <a
+target="_blank" href="http://www.gplhost.com/hosting-vps.html">GPLHost:>_ vps hosting</a> and <a
 target="_blank" href="http://gplhost.com/software-dtc.html">DTC web control panel</a> for more infos.</i></font>
 </center></td></tr></table>
 </center>

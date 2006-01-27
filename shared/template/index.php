@@ -6,7 +6,7 @@
 <center>
 
 <b><font face="Arial"><center>
-<a href="http://www.gplhost.com/?rub=softwares&sousrub=dtc">
+<a href="http://www.gplhost.com/software-dtc.html">
 <img src="dtc_logo.gif"
 border="0"></a><br><br>
 <h1><u>Welcome to <?php echo $_SERVER["HTTP_HOST"]; ?>!</u></h1>
@@ -19,10 +19,8 @@ Please be back later to check this web site.<br><br>
 This website server is powered by Domain Technologie Control (DTC),
 an open-source control panel<br>
 <i>Most of code done by:
-<a target="_blank" href="mailto:thomas [ at ] goirand.fr">Thomas GOIRAND</a>, under
-<a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit <a
-target="_blank" href="http://gplhost.com">GPLHost multidomain hosting</a> and <a
-target="_blank" href="http://gplhost.com/?rub=softwares&sousrub=dtc">DTC GPL control panel
+<a target="_blank" href="http://thomas.goirand.fr">Thomas GOIRAND</a>, under
+<a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit <a target="_blank" href="http://www.gplhost.com">GPLHost multidomain hosting</a> and <a target="_blank" href="http://www.gplhost.com/software-dtc.html">DTC GPL control panel
 home</a> for more infos.</i></font>
 </center></td></tr></table>
 </center>
