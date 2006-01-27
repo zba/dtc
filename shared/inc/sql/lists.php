@@ -167,6 +167,14 @@ function tunablesTextareaRequestCheck($ctrl_path,$tunable_name){
 	}
 }
 
+function tunablesSUBTextareaRequestCheck($list_dir,$tunable_name){
+	
+}
+
+function tunablesUNSUBTextareaRequestCheck($list_dir,$tunable_name){
+	
+}
+
 function tunablesWABooleanRequestCheck($list_dir,$tunable_name){
 	global $adm_login;
 	global $pro_mysql_list_table;
@@ -314,6 +322,8 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesListRequestCheck($ctrl_dir,"delheaders");
 	tunablesTextareaRequestCheck($ctrl_dir,"access");
 	tunablesTextareaRequestCheck($ctrl_dir,"footer");
+	tunablesSUBTextareaRequestCheck($list_dir, "sub");
+	tunablesUNSUBTextareaRequestCheck($list_dir, "unsub");
 	tunablesWABooleanRequestCheck($list_dir,"webarchive");
 	tunablesTextareaRequestCheck($list_dir,"rcfile");
 	tunablesWABooleanActionsRequestCheck($list_dir);

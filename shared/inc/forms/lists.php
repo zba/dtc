@@ -316,6 +316,12 @@ $output .= getListOptionsValue($list_path,"maxverprecips");
 $output .= getListOptionsValue($list_path,"delimiter");
 $output .= getListOptionsTextarea($list_path,"access");
 
+$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_subunsub[$lang]."</b></td></tr>";
+$output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_sub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_sub[$lang]."</td>
+    <td><textarea rows=\"5\" cols=\"40\" name=\"sub\"></textarea></td></tr>";
+$output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_unsub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_unsub[$lang]."</td>
+    <td><textarea rows=\"5\" cols=\"40\" name=\"unsub\"></textarea></td></tr>";
+
 $output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_webarchive[$lang]."</b></td></tr>";
 $output .= getListOptionsWABoolean("webarchive");
 $output .= getListOptionsWATextarea($list_path,"rcfile");
