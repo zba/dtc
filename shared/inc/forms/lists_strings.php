@@ -6,6 +6,7 @@ global $txt_lists_main_title_archive;
 global $txt_lists_main_title_digest;
 global $txt_lists_main_title_notification;
 global $txt_lists_main_title_smtp_config;
+global $txt_lists_main_title_subunsub;
 global $txt_lists_main_title_webarchive;
 
 $txt_lists_main_title_rights = array (
@@ -78,6 +79,19 @@ $txt_lists_main_title_smtp_config = array (
   "en" => "SMTP configuration",
   "hu" => "",
   "it" => "Configurazione SMTP",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
+$txt_lists_main_title_subunsub = array (
+  "fr" => "",
+  "en" => "Subscribe/Unsubscribe an email address",
+  "hu" => "",
+  "it" => "Iscrivi/Cancella un indirizzo email",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -468,6 +482,32 @@ $txt_lists_title_footer = array (
   "en" => "Added footer:",
   "hu" => "",
   "it" => "Aggiungi footer:",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
+$txt_lists_title_sub = array (
+  "fr" => "",
+  "en" => "Subscribe:",
+  "hu" => "",
+  "it" => "Iscrivi:",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
+$txt_lists_title_unsub = array (
+  "fr" => "",
+  "en" => "Unsubscribe:",
+  "hu" => "",
+  "it" => "Elimina:",
   "nl" => "",
   "ru" => "",
   "de" => "",
@@ -923,6 +963,32 @@ $txt_lists_hlp_relayhost = array (
   "en" => "Mail server used to send the messages.",
   "hu" => "",
   "it" => "Server mail usato per inviare messaggi.",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+  
+$txt_lists_hlp_sub = array (
+  "fr" => "",
+  "en" => "Insert here an email address to subscribe it.",
+  "hu" => "",
+  "it" => "Inserisci qui un indirizzo email da inscrivere alla mailing list.",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
+$txt_lists_hlp_unsub = array (
+  "fr" => "",
+  "en" => "Insert here an email address to unsubscribe it.",
+  "hu" => "",
+  "it" => "Inserisci qui un indirizzo email da eliminare dalla mailing list.",
   "nl" => "",
   "ru" => "",
   "de" => "",

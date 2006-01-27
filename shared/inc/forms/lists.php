@@ -271,7 +271,12 @@ global $txt_lists_main_title_archive;
 global $txt_lists_main_title_digest;
 global $txt_lists_main_title_notification;
 global $txt_lists_main_title_smtp_config;
+global $txt_lists_main_title_subunsub;
 global $txt_lists_main_title_webarchive;
+global $txt_lists_title_sub;
+global $txt_lists_title_unsub;
+global $txt_lists_hlp_sub;
+global $txt_lists_hlp_unsub;
 global $lang;
 $admin_path = getAdminPath($adm_login);
 $list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
@@ -318,9 +323,9 @@ $output .= getListOptionsTextarea($list_path,"access");
 
 $output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_subunsub[$lang]."</b></td></tr>";
 $output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_sub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_sub[$lang]."</td>
-    <td><textarea rows=\"5\" cols=\"40\" name=\"sub\"></textarea></td></tr>";
+    <td><input size=\"40\" type=\"text\" value=\"\" name=\"sub\"></td></tr>";
 $output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_unsub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_unsub[$lang]."</td>
-    <td><textarea rows=\"5\" cols=\"40\" name=\"unsub\"></textarea></td></tr>";
+    <td><input size=\"40\" type=\"text\" value=\"\" name=\"unsub\"></td></tr>";
 
 $output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_webarchive[$lang]."</b></td></tr>";
 $output .= getListOptionsWABoolean("webarchive");
