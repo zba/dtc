@@ -194,16 +194,20 @@ else
 				fi
 			fi
 		else
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo $HTTPD_MODULES_CONFIG enable php4_module
-			fi
-			$HTTPD_MODULES_CONFIG enable php4_module
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo $HTTPD_MODULES_CONFIG enable mod_php4
-			fi
-			$HTTPD_MODULES_CONFIG enable mod_php4
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo " enabled by $HTTPD_MODULES_CONFIG"
+			if [ ""$conf_apache_version = "2" ] ; then
+				echo "Apache2 don't need module checkings..."
+			else
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo $HTTPD_MODULES_CONFIG enable php4_module
+				fi
+				$HTTPD_MODULES_CONFIG enable php4_module
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo $HTTPD_MODULES_CONFIG enable mod_php4
+				fi
+				$HTTPD_MODULES_CONFIG enable mod_php4
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo " enabled by $HTTPD_MODULES_CONFIG"
+				fi
 			fi
 		fi
 
@@ -232,12 +236,16 @@ else
 				fi
 			fi
 		else
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo $HTTPD_MODULES_CONFIG enable ssl_module
-			fi
-			$HTTPD_MODULES_CONFIG enable ssl_module
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo " enabled by $HTTPD_MODULES_CONFIG"
+			if [ ""$conf_apache_version = "2" ] ; then
+				echo "Apache 2 don't need module checkings..."
+			else
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo $HTTPD_MODULES_CONFIG enable ssl_module
+				fi
+				$HTTPD_MODULES_CONFIG enable ssl_module
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo " enabled by $HTTPD_MODULES_CONFIG"
+				fi
 			fi
 		fi
 
@@ -286,16 +294,20 @@ else
 				fi
 			fi
 		else
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo $HTTPD_MODULES_CONFIG enable log_sql_module
-				echo $HTTPD_MODULES_CONFIG enable log_sql_mysql_module
-			fi
-#			$HTTPD_MODULES_CONFIG enable log_sql_module
-			$HTTPD_MODULES_CONFIG enable log_sql_module
-			$HTTPD_MODULES_CONFIG enable log_sql_mysql_module
-			$HTTPD_MODULES_CONFIG enable mod_log_sql # just in case
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo " enabled by $HTTPD_MODULES_CONFIG"
+			if [ ""$conf_apache_version = "2" ] ; then
+				echo "Apache 2 don't need module checkings..."
+			else
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo $HTTPD_MODULES_CONFIG enable log_sql_module
+					echo $HTTPD_MODULES_CONFIG enable log_sql_mysql_module
+				fi
+	#			$HTTPD_MODULES_CONFIG enable log_sql_module
+				$HTTPD_MODULES_CONFIG enable log_sql_module
+				$HTTPD_MODULES_CONFIG enable log_sql_mysql_module
+				$HTTPD_MODULES_CONFIG enable mod_log_sql # just in case
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo " enabled by $HTTPD_MODULES_CONFIG"
+				fi
 			fi
 		fi
 	else
@@ -309,6 +321,16 @@ else
 		echo "should be compiled and installed on your server to"
 		echo "enable cgi-bin protected and chrooted environment."
 		echo ""
+	fi
+
+	if [ ""$conf_apache_version = "2" ] ; then
+		if [ -f /etc/apache2/mods-available/rewrite.load ] ; then
+			if [ -d /etc/apache2/mods-enabled ] ; then
+				if ! [ -e /etc/apache2/mods-enabled/rewrite.load ] ; then
+					ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+				fi
+			fi
+		fi
 	fi
 
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
