@@ -23,8 +23,6 @@ function drawAdminTools_MailingLists($domain){
 	global $txt_maximum_mailbox_reach;
 	global $txt_lists_hlp_main_owner;
 	global $txt_lists_hlp_list_name;
-	global $lang;
-
 
 	$txt = "";
 //	$nbr_email = sizeof($domain["emails"]);

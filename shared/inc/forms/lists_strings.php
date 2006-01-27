@@ -1049,4 +1049,54 @@ $txt_lists_hlp_deletewa = array (
   "es" => "",
   "pt" => "");
 
+$txt_lists_email_subject = array (
+  "fr" => "",
+  "en" => "List #name#@#domain# successfully created!",
+  "hu" => "",
+  "it" => "Lista #name#@#domain# creata con successo!",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+  
+$txt_lists_email_msg = array (
+  "fr" => "",
+  "en" => "You can control your mailing list by email or by control panel.
+You can send a email to the following addresses to execute the listed command:
+  
+  #name#-help@#domain# -> return the most common list's commands
+  #name#-list@#domain# -> return the subscribers's list
+  #name#-get-N@#domain# -> return the N list's message
+  #name#-owner@#domain# -> you can contact the list's owner by this address
+  #name#-unsubscribe@#domain# -> unsubscribe the email's sender from the list
+  #name#-subscribe@#domain# -> subscribe the email's sender to the list
+  #name#-subscribe-digest@#domain# -> subscribe the email's sender to the list's digest version
+  #name#-subscribe-nomail@#domain# -> subscribe the email's sender to the list's nomail version
+  
+For more informations go to mlmmj official web site at http://mlmmj.mmj.dk",
+  "hu" => "",
+  "it" => "La mailing list può essere controllata via email o tramite il pannello di controllo.
+Di seguito gli indirizzi ai quali puoi inviare una email per eseguire il rispettivo comando:
+
+  #name#-help@#domain# -> restituisce la lista dei comandi più comuni
+  #name#-list@#domain# -> restituisce la lista degli iscritti alla lista
+  #name#-get-N@#domain# -> restituisce il messaggio N della lista
+  #name#-owner@#domain# -> permette di inviare una email al proprietario della lista
+  #name#-unsubscribe@#domain# -> elimina l'indirizzo email del mittente dalla lista
+  #name#-subscribe@#domain# -> iscrive l'indirizzo email del mittente alla lista
+  #name#-subscribe-digest@#domain# -> iscrive l'indirizzo email del mittente alla versione digest della lista
+  #name#-subscribe-nomail@#domain# -> iscrive l'indirizzo email del mittente alla versione nomail della lista
+  
+Per ulteriori informazioni visita il sito ufficiale di mlmmj all'indirizzo http://mlmmj.mmj.dk",
+  "nl" => "",
+  "ru" => "",
+  "de" => "",
+  "zh" => "",
+  "pl" => "",
+  "es" => "",
+  "pt" => "");
+
 ?>

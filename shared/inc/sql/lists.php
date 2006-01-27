@@ -1,11 +1,13 @@
 <?php
-
+require("$dtcshared_path/inc/forms/lists_strings.php");
 ///////////////////////////////////////////////
 // Email account submition to mysql database //
 ///////////////////////////////////////////////
 //$edit_domain $newmail_login $newmail_redirect1 $newmail_pass $newmail_redirect2 $newmail_deliver_localy
 if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == "Ok"){
 	global $conf_mta_type;
+	global $conf_webmaster_email_addr;
+	global $lang;
 
 	// This has to be done BEFORE any other sql requests using login/pass or edit_domain !!!
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
@@ -100,11 +102,12 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	}
 	
 	//dtc send an email to the owner
-	$subject = 'New mailing list '.$name.'@'.$edit_domain;
-	$msg = 'Your mailing list '.$name.'@'.$edit_domain.' is active. Now you can...';
-	$from = 'webmaster@lupin3rd.dyndns.org';
-	$headers = "FROM: $from\n";
-	$headers .= "Return-Path: $from\n";
+	$subject = str_replace("#name#",$name,$txt_lists_email_subject[$lang]);
+	$subject = str_replace("#domain#",$edit_domain,$subject);
+	$msg = str_replace("#name#",$name,$txt_lists_email_msg[$lang]);
+	$msg = str_replace("#domain#",$edit_domain,$msg);
+	$headers = "FROM: $conf_webmaster_email_addr\n";
+	$headers .= "Return-Path: $conf_webmaster_email_addr\n";
 	mail($owner, $subject, $msg, $headers);
 	
 	updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
@@ -171,14 +174,14 @@ function tunablesSUBTextareaRequestCheck($list_dir,$tunable_name){
 $email = $_REQUEST[$tunable_name];
 //must add $email validation!!!
 $command = "/usr/bin/mlmmj-sub -L ".$list_dir."/ -a ".$email;
-exec($command);	
+exec($command);
 }
 
 function tunablesUNSUBTextareaRequestCheck($list_dir,$tunable_name){
 $email = $_REQUEST[$tunable_name];
 //must add $email validation!!!
 $command = "/usr/bin/mlmmj-unsub -L ".$list_dir."/ -a ".$email;
-exec($command);	
+exec($command);
 }
 
 function tunablesWABooleanRequestCheck($list_dir,$tunable_name){
