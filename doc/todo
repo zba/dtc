@@ -1,4 +1,6 @@
 Here is the todo in unsorted order:
+- Remove the /etc/apache2/ports.conf
+- Add extensions = mysql.so gd.so in /etc/php4/apache2/php.ini
 - restart amavis when new domains???
 - remove the du when going inside a domain: it's too slow!!!
 - Make webalizer stats each days
