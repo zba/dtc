@@ -223,5 +223,6 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 echo "drop...";
 $q = "DROP TABLE http_tmp_table;";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+echo "done!";
 
 ?>
