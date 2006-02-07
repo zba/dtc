@@ -208,5 +208,6 @@ $q = "DROP TABLE http_accounting;";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 $q = "RENAME TABLE http_tmp_table TO http_accounting;";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 ?>
