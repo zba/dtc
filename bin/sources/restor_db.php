@@ -192,22 +192,31 @@ if($n > 0){
 // Repair the bad http_accounting table //
 //////////////////////////////////////////
 echo "=> Repairing broken http_accounting table";
-// Make a copy of the table with the highest value that must be the good one
+// Make a copy of the table with the highest value that must be the good one, without any key...
 $q = "CREATE TEMPORARY TABLE http_tmp_table
 SELECT max( id ) as id, vhost, bytes_sent, count_hosts, count_visits, count_status_200, count_status_404, count_impressions, last_run, month, year, domain, bytes_receive
 FROM http_accounting
 GROUP BY vhost, month , year, domain;";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+// Work away from the logs if there are any...
+$q = "RENAME TABLE http_accounting TO http_accounting_tmp;";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
+// Wipe the table
+$q = "TRUNCATE http_accounting_tmp;";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 // Add the correct keys
-$q = "ALTER TABLE http_tmp_table ADD UNIQUE (`vhost` ,`month` ,`year` ,`domain`);";
+$q = "ALTER TABLE http_accounting_tmp ADD UNIQUE (`vhost` ,`month` ,`year` ,`domain`);";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
-// Delete the table content
-$q = "DROP TABLE http_accounting;";
+// Reget the values from temp table
+$q = "INSERT INTO http_accounting_tmp SELECT * FROM http_tmp_table;";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
-$q = "RENAME TABLE http_tmp_table TO http_accounting;";
+// Rename to old table name
+$q = "RENAME TABLE http_accounting_tmp TO http_accounting;";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 ?>
