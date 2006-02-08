@@ -1017,20 +1017,28 @@ if [ ""$conf_gen_ssl_cert = "true" ]; then
 	if [ ! -e "./"new.cert.csr ]; then
 		if [ ! -e "./"new.cert.cert ]; then
 			if [ ! -e "./"new.cert.key ]; then
-			CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
-			echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
-			( echo $conf_cert_countrycode;
-			echo "the state";
-			echo $conf_cert_locality;
-			echo $conf_cert_organization;
-			echo $conf_cert_unit;
-			echo $dtc_admin_subdomain"."$main_domain_name;
-			echo $conf_cert_email;
-			echo $conf_cert_challenge_pass;
-			echo $conf_cert_organization; ) | openssl req -passout file:$CERTPASS_TMP_FILE -new > new.cert.csr
-			openssl rsa -passin file:$CERTPASS_TMP_FILE -in privkey.pem -out new.cert.key
-			openssl x509 -in new.cert.csr -out new.cert.cert -req -signkey new.cert.key -days 3650
-			rm $CERTPASS_TMP_FILE
+				CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
+				echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
+				( echo $conf_cert_countrycode;
+				echo "the state";
+				echo $conf_cert_locality;
+				echo $conf_cert_organization;
+				echo $conf_cert_unit;
+				echo $dtc_admin_subdomain"."$main_domain_name;
+				echo $conf_cert_email;
+				echo $conf_cert_challenge_pass;
+				echo $conf_cert_organization; ) | openssl req -passout file:$CERTPASS_TMP_FILE -new > new.cert.csr
+				openssl rsa -passin file:$CERTPASS_TMP_FILE -in privkey.pem -out new.cert.key
+				openssl x509 -in new.cert.csr -out new.cert.cert -req -signkey new.cert.key -days 3650
+				rm $CERTPASS_TMP_FILE
+				# Copy the certificates to make them available for qmail
+				if [ -d /var/qmail/control ] ; then
+					if ! [ -e /var/qmail/control/servercert.pem ] ; then
+						cat $PATH_DTC_ETC/ssl/new.cert.key $PATH_DTC_ETC/ssl/new.cert.cert >/var/qmail/control/servercert.pem
+						chown qmaild:qmail /var/qmail/control/servercert.pem
+						chmod 400 /var/qmail/control/servercert.pem
+					fi
+				fi
 			fi
 		fi
 	fi
