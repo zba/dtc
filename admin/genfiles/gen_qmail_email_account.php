@@ -113,7 +113,10 @@ function mail_account_generate_qmail(){
 					$qmail_id = strtr($id,".",":");
 					$passwdtemp = $email["passwd"];
 					$passwd = crypt($passwdtemp);
-					$poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
+					// This one is if you use the jedi's checkpassword programm
+					// $poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
+					// This one is for cmd5checkpw
+					$poppasswd_file .= "$id@$domain_full_name:$passwdtemp\n";
 					if($catch_all == $id){
 						$catch_all_flag = "yes";
 						$catchall_home = $home;
