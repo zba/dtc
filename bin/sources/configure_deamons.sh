@@ -1373,10 +1373,14 @@ fi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
         echo "===> Setting up mail queue graph"
 fi
+if [ ! -e $PATH_DTC_ETC/mailqueues.rrd ]; then
 $PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC
+fi
 if [ ! -e /usr/lib/cgi-bin/queuegraph.cgi ]; then
 	ln -s $PATH_DTC_ADMIN/queuegraph.cgi /usr/lib/cgi-bin/queuegraph.cgi
 fi
+# fix path for mailqueues.rrd
+perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/queuegraph.cgi
 
 #
 # Install the cron php4 script in the $PATH_CRONTAB_CONF
