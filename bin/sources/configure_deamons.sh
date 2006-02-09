@@ -914,7 +914,6 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			rm $SASLTMP_FILE
 		fi
 	fi
-
 fi
 
 #
@@ -1369,6 +1368,17 @@ if [ -f $PATH_AWSTATS_ETC/awstats.conf ]; then
 fi
 
 #
+# create the rrd file for queuegraph.cgi
+#
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+        echo "===> Setting up mail queue graph"
+fi
+$PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC
+if [ ! -e /usr/lib/cgi-bin/queuegraph.cgi ]; then
+	ln -s $PATH_DTC_ADMIN/queuegraph.cgi /usr/lib/cgi-bin/queuegraph.cgi
+fi
+
+#
 # Install the cron php4 script in the $PATH_CRONTAB_CONF
 #
 
@@ -1396,6 +1406,12 @@ else
 	TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 	echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
+	if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ]; then
+		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_postfix.sh >>/var/log/dtc.log" >> $TMP_FILE
+	fi
+	if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ]; then
+		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_qmail.sh >>/var/log/dtc.log" >> $TMP_FILE
+	fi
 	cat < $TMP_FILE >>/etc/crontab
 	rm $TMP_FILE
 fi
