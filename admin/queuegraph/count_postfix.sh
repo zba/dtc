@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $Id: count_postfix.sh,v 1.1 2006/02/09 00:37:59 tusker Exp $
+# $Id: count_postfix.sh,v 1.2 2006/02/09 00:42:06 tusker Exp $
 
 # output the number of messages in the incoming, active, and deferred
 # queues of postfix one per line suitable for use with snmpd/cricket
@@ -14,10 +14,11 @@
 # 2006/02/08	       Damien Mascord <tusker at tusker DOT org>
 
 PATH=/usr/local/rrdtool-1.0.48/bin:/usr/local/bin:/usr/local/sbin:/sbin:/bin:/usr/bin:/usr/sbin:
-
+DTC_ETC=$1
+cd $DTC_ETC
 #set -x
 qdir=`postconf -h queue_directory`
 active=`find $qdir/incoming $qdir/active $qdir/maildrop -type f -print | wc -l | awk '{print $1}'`
 deferred=`find $qdir/deferred -type f -print | wc -l | awk '{print $1}'`
 #printf "active: %d\ndeferred: %d\n" $active $deferred
-rrdtool update mailqueues.rrd "N:$active:$deferred"
+rrdtool update $DTC_ETC/mailqueues.rrd "N:$active:$deferred"

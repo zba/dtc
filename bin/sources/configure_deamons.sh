@@ -1407,10 +1407,10 @@ else
 	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 	echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
 	if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ]; then
-		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_postfix.sh >>/var/log/dtc.log" >> $TMP_FILE
+		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_postfix.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	fi
 	if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ]; then
-		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_qmail.sh >>/var/log/dtc.log" >> $TMP_FILE
+		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_qmail.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	fi
 	cat < $TMP_FILE >>/etc/crontab
 	rm $TMP_FILE

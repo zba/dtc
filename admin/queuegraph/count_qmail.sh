@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $Id: count_qmail.sh,v 1.1 2006/02/09 00:37:59 tusker Exp $
+# $Id: count_qmail.sh,v 1.2 2006/02/09 00:42:06 tusker Exp $
 
 # output the number of messages in the incoming, active, and deferred
 # queues of postfix one per line suitable for use with snmpd/cricket
@@ -14,7 +14,9 @@
 # 2006/02/08	       Damien Mascord <tusker at tusker DOT org>
 
 PATH=/usr/local/bin:/usr/local/sbin:/sbin:/bin:/usr/bin:/usr/sbin:
+DTC_ETC=$1
 
+cd $DTC_ETC
 if [ -e /var/qmail/bin/qmail-qstat ]; then
 QMAIL_QSTAT=/var/qmail/bin/qmail-qstat
 elif [ -e /usr/sbin/qmail-qstat ]; then 
@@ -25,4 +27,4 @@ fi
 QMAIL_OUTPUT=(`$QMAIL_QSTAT | cut -f 2 -d':'`)
 active=${QMAIL_OUTPUT[0]}
 deferred=${QMAIL_OUTPUT[1]}
-rrdtool update mailqueues.rrd "N:$active:$deferred"
+rrdtool update $DTC_ETC/mailqueues.rrd "N:$active:$deferred"
