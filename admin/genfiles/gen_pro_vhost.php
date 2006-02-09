@@ -345,11 +345,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Alias /squirrelmail ".$conf_tools_prefix."/squirrelmail
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
-# This is old fashion no protection CGI
-	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
-# This is new style using SBOX engine
-#	RewriteEngine on
-#	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]
+# No ScriptAlias: we want to use system's /usr/lib/cgi-bin !!!
+#	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename\$xfer
 	LogSQLScoreDomain $web_name
