@@ -4,6 +4,7 @@
 # based on mailgraph, which is
 # copyright (c) 2000-2002 David Schweikert <dws@ee.ethz.ch>
 # released under the GNU General Public License
+# Modified by Damien Mascord for DTC
 
 use RRDs;
 use POSIX qw(uname);
@@ -90,7 +91,7 @@ sub print_html()
 <BODY BGCOLOR="#FFFFFF">
 HEADER
 
-	print "<H1>Postfix Queue Statistics for $host</H1>\n";
+	print "<H1>Mail Queue Statistics for $host</H1>\n";
 	for my $n (0..$#graphs) {
 		print "<H2>$graphs[$n]{title}</H2>\n";
 		print "<P><IMG BORDER=\"0\" SRC=\"$scriptname/queuegraph_${n}.png\" ALT=\"queuegraph\">\n";
