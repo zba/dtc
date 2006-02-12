@@ -58,6 +58,7 @@ function drawAdminTools_Subdomain($domain){
 	$default_subdomain = $domain["default_subdomain"];
 	$webname = $domain["name"];
 	$domain_safe_mode = $domain["safe_mode"];
+	$domain_sbox_protect = $domain["sbox_protect"];
 	$subdomains = $domain["subdomains"];
 	$nbr_subdomains = sizeof($subdomains);
 
@@ -79,6 +80,7 @@ function drawAdminTools_Subdomain($domain){
 				$pass_to_edit = "";
 			}
 			$safe_mode = $subdomains[$i]["safe_mode"];
+			$sbox_protect = $subdomains[$i]["sbox_protect"];
 			$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
 			$generate_vhost_to_edit = $subdomains[$i]["generate_vhost"];
 			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
@@ -195,6 +197,18 @@ function drawAdminTools_Subdomain($domain){
 			$txt .= "<tr><td align=\"right\">safe_mode</td>";
 			$txt .= "<td>Yes<input type=\"radio\" name=\"safe_mode\" value=\"yes\" $checked_yes>
 No<input type=\"radio\" name=\"safe_mode\" value=\"no\" $checked_no></td></tr>";
+		}
+		if($domain_sbox_protect == "no"){
+			if($sbox_protect == "yes"){
+				$checked_yes = " checked";
+				$checked_no = "";
+			}else{
+				$checked_yes = "";
+				$checked_no = " checked";
+			}
+			$txt .= "<tr><td align=\"right\">sbox_protect</td>";
+			$txt .= "<td>Yes<input type=\"radio\" name=\"sbox_protect\" value=\"yes\" $checked_yes>
+No<input type=\"radio\" name=\"sbox_protect\" value=\"no\" $checked_no></td></tr>";
 		}
 		if($register_globals_to_edit == "yes"){
 			$checked_yes = " checked";

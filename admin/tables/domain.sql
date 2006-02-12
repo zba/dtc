@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS domain (
   name varchar(64) NOT NULL default '',
   safe_mode enum('yes','no') default 'yes',
+  sbox_protect enum('yes','no') default 'yes',
   owner varchar(64) NOT NULL default '',
   default_subdomain varchar(64) default 'www',
   generate_flag enum('yes','no') NOT NULL default 'yes',

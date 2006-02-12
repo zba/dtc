@@ -202,6 +202,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$web_owner = $row["owner"];
 		$ip_addr = $row["ip_addr"];
 		$domain_safe_mode = $row["safe_mode"];
+		$domain_sbox_protect = $row["sbox_protect"];
 		unset($backup_ip_addr);
 		if (isset($row["backup_ip_addr"])){
 			$backup_ip_addr = $row["backup_ip_addr"];
@@ -362,15 +363,6 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 // --- Start of the conf of server users subdomain ---
 // ---------------------------------------------------
 			} else {
-				if($domain_safe_mode == "no"){
-					if($subdomain["safe_mode"] == "no"){
-						$safe_mode_value = "0";
-					}else{
-						$safe_mode_value = "1";
-					}
-				}else{
-					$safe_mode_value = "1";
-				}
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
@@ -382,6 +374,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				if($web_subname == "$web_default_subdomain"){
 					$vhost_more_conf .= "	ServerAlias $web_name\n";
 				}
+
 				// if we want to generate a backup IP (transitional)
 				// need to loop through this one
 				$gen_iterations = 1;
@@ -389,6 +382,20 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				{
 					$gen_iterations++;
 				}
+
+				// Sbox and safe mode protection values
+				if($domain_safe_mode == "no" && $subdomain["safe_mode"] == "no"){
+					$safe_mode_value = "0";
+				}else{
+					$safe_mode_value = "1";
+				}
+				if($domain_sbox_protect == "no" && $subdomain["sbox_protect"] == "no"){
+					$cgi_directive = "	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin";
+				}else{
+					$cgi_directive = "	RewriteEngine on
+	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]";
+				}
+
 				for ($k = 0; $k < $gen_iterations; $k++){
 					if ($k == 0 && isset($backup_ip_addr)) {
 						$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
@@ -404,13 +411,7 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	<Location />
 		php_admin_value open_basedir \"$web_path:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>
-# This is old fashion no protection CGI
-#	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
-# This is new style using SBOX engine
-	RewriteEngine on
-	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]
-
-#	CustomLog $web_path/$web_name/subdomains/$web_subname/logs/access.log combined
+	$cgi_directive
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename\$xfer
 	LogSQLScoreDomain $web_name

@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS subdomain (
   id int(12) NOT NULL auto_increment,
   safe_mode enum('yes','no') default 'yes',
+  sbox_protect enum('yes','no') default 'yes',
   domain_name varchar(64) NOT NULL default '',
   subdomain_name varchar(64) NOT NULL default '',
   path varchar(64) NOT NULL default '',

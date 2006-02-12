@@ -329,6 +329,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 		unset($domain);
 		$domain["name"] = $row["name"];
 		$domain["safe_mode"] = $row["safe_mode"];
+		$domain["sbox_protect"] = $row["sbox_protect"];
 		$domain["max_email"] = $row["max_email"];
 		$domain["max_lists"] = $row["max_lists"];
 		$domain["max_ftp"] = $row["max_ftp"];
@@ -363,6 +364,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$row2 = mysql_fetch_array($result2) or die ("Cannot fetch subdomain");
 			$subdomain["name"] = $row2["subdomain_name"];
 			$subdomain["safe_mode"] = $row2["safe_mode"];
+			$subdomain["sbox_protect"] = $row2["sbox_protect"];
 			$subdomain["path"] = $row2["path"];
 			$subdomain["ip"] = $row2["ip"];
 			if(isset($row2["login"])){

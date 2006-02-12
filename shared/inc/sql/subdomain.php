@@ -77,6 +77,11 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 	}else{
 		$safe_mode_switch = ", safe_mode='no'";
 	}
+	if( !isset($_REQUEST["sbox_protect"]) || (isset($_REQUEST["sbox_protect"]) && $_REQUEST["sbox_protect"] == "yes") ){
+		$sbox_protect_switch = ", sbox_protect='yes'";
+	}else{
+		$sbox_protect_switch = ", sbox_protect='no'";
+	}
 	// Update the flag so we regenerate the serial for bind
 	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
@@ -87,7 +92,7 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 		$add_vals .= ", login=NULL, pass=NULL ";
 	}
 	$domupdate_query = "UPDATE $pro_mysql_subdomain_table SET ip='".$_REQUEST["newsubdomain_ip"]."'$add_vals,
-	associated_txt_record='".addslashes($_REQUEST["associated_txt_record"])."'$safe_mode_switch WHERE domain_name='$edit_domain' AND subdomain_name='".$_REQUEST["subdomain_name"]."' LIMIT 1;";
+	associated_txt_record='".addslashes($_REQUEST["associated_txt_record"])."'$safe_mode_switch $sbox_protect_switch WHERE domain_name='$edit_domain' AND subdomain_name='".$_REQUEST["subdomain_name"]."' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named='yes'");
