@@ -390,9 +390,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					$safe_mode_value = "1";
 				}
 				if($domain_sbox_protect == "no" && $subdomain["sbox_protect"] == "no"){
-					$cgi_directive = "	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin";
+					$cgi_directive = "ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin";
 				}else{
-					$cgi_directive = "	RewriteEngine on
+					$cgi_directive = "RewriteEngine on
 	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]";
 				}
 
