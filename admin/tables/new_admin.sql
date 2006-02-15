@@ -19,5 +19,6 @@ CREATE TABLE IF NOT EXISTS new_admin (
   country char(2) NOT NULL default '',
   paiement_id int(9) NOT NULL default '0',
   product_id int(9) NOT NULL default '0',
+  custom_notes text NOT NULL,
   PRIMARY KEY  (id)
 ) TYPE=MyISAM;

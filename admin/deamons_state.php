@@ -226,8 +226,8 @@ function checkFTP(){
 	}
 	// echo "Checking ok after login<br>";
 	$popline = fgets($soc,1024);
-	if(!strstr($popline,"331")){
-		$errTxt = "Server did not send 331 after USER: $popline";
+	if(!strstr($popline,"331") || !strstr($popline,"220")){
+		$errTxt = "Server did not send 331 or 220 after USER: $popline";
 		return false;
 	}
 	// echo "Sending pass<br>";
