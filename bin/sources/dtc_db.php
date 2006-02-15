@@ -455,7 +455,8 @@ $dtc_database = array(
 			"state" => "varchar(32) NOT NULL ",
 			"country" => "char(2) NOT NULL ",
 			"paiement_id" => "int(9) NOT NULL default '0' ",
-			"product_id" => "int(9) NOT NULL default '0' "
+			"product_id" => "int(9) NOT NULL default '0' ",
+			"custom_notes" => "text NOT NULL"
 			),
 		"primary" => "(id)"
 		),

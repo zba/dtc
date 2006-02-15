@@ -156,6 +156,12 @@ function register_user(){
 		$esc_state = $_REQUEST["state"];
 	}
 
+	if (!get_magic_quotes_gpc()){
+		$esc_custom_notes = addslashes($_REQUEST["custom_notes"]);
+	}else{
+		$esc_custom_notes = $_REQUEST["custom_notes"];
+	}
+
 	if(!ereg("^([A-Z])([A-Z])\$",$_REQUEST["country"])){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Country code seems incorrect.";
@@ -208,7 +214,8 @@ zipcode,
 city,
 state,
 country,
-product_id
+product_id,
+custom_notes
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
@@ -227,7 +234,8 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 '$esc_city',
 '$esc_state',
 '".$_REQUEST["country"]."',
-'$esc_product_id')";
+'$esc_product_id',
+'$esc_custom_notes')";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$id = mysql_insert_id();
 	$ret["err"] = 0;
@@ -264,6 +272,7 @@ function registration_form(){
 	global $txt_draw_client_info_city;
 	global $txt_draw_client_info_state;
 	global $txt_draw_client_info_country;
+	global $txt_register_custom_message_title;
 
 	global $pro_mysql_product_table;
 
@@ -409,7 +418,13 @@ $txt_login_info[$lang]:$login_skined</td>
 	<td>$txt_client_info[$lang] $client_skined</td>
 	<td>$txt_client_info[$lang] $addr_skined</td>
 </tr></table>
-<center><input type=\"submit\" name=\"Login\" value=\"Register\"></center>
+<table border=\"0\">
+<tr>
+	<td>".$txt_register_custom_message_title[$lang]."</td>
+	<td><textarea name=\"custom_notes\" cols=\"50\" rows=\"5\"></textarea></td>
+	<td><input type=\"submit\" name=\"Login\" value=\"Register\"></td>
+</tr>
+</table>
 </form>";
 
 //	return $login_skined;

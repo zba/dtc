@@ -60,11 +60,12 @@ function validateWaitingUser($waiting_login){
 	$adm_query = "INSERT INTO $pro_mysql_client_table
 (id,is_company,company_name,familyname,christname,addr1,addr2,addr3,
 city,zipcode,state,country,phone,fax,email,
-disk_quota_mb,bw_quota_per_month_gb) VALUES ('','".$a["iscomp"]."',
-'".addslashes($a["comp_name"])."','".addslashes($a["family_name"])."','".addslashes($a["first_name"])."',
-'".addslashes($a["addr1"])."','".addslashes($a["addr2"])."','".addslashes($a["addr3"])."','".addslashes($a["city"])."',
-'".addslashes($a["zipcode"])."','".addslashes($a["state"])."','".$a["country"]."','".addslashes($a["phone"])."',
-'".addslashes($a["fax"])."','".addslashes($a["email"])."','".$a2["quota_disk"]."','". $a2["bandwidth"]/1024 ."');";
+disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
+'".$a["comp_name"]."','".$a["family_name"]."','".$a["first_name"]."',
+'".$a["addr1"]."','".$a["addr2"]."','".$a["addr3"]."','".$a["city"]."',
+'".$a["zipcode"]."','".$a["state"]."','".$a["country"]."','".$a["phone"]."',
+'".$a["fax"]."','".$a["email"]."','".$a2["quota_disk"]."','". $a2["bandwidth"]/1024 ."',
+'".$a["custom_notes"]."');";
 	$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$cid = mysql_insert_id();
 

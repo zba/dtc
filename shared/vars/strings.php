@@ -1,5 +1,19 @@
 <?php
 
+$txt_register_custom_message_title = array(
+  "fr" => "Laisser un message a l'administrateur pour indiquer des eventuels specificités pour votre compte:",
+        "en" => "Leave a message to tell any specific requirements you might have for your account:",
+        "hu" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+        "it" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+        "nl" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+        "ru" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+        "de" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+        "zh" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+        "pl" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+        "es" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+        "pt" => "TRANS Leave a message to tell any specific requirements you might have for your account:"
+);
+
 $txt_go_to_client_panel = array(
         "fr" => "Aller vers l'interface client",
         "en" => "Go to client panel",
