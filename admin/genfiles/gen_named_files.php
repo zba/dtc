@@ -265,6 +265,7 @@ function named_generate(){
 		$named_file .= "zone \"$web_name\" IN {
 	type master;
 	$allow_xfer
+	allow-query { any; };
 	file \"$conf_generated_file_path/$conf_named_zonefiles_path/$web_name\";
 };
 ";
@@ -273,6 +274,7 @@ function named_generate(){
 		if($row["other_dns"] == "default" || $row["primary_dns"] == "default"){
 			$slave_file .= "zone \"$web_name\" {
 	type slave;
+	allow-query { any; };
 	masters { $conf_ip_slavezone_dns_server; };
 	file \"$conf_generated_file_path/$conf_named_slavezonefiles_path/$web_name\";
 };
@@ -394,6 +396,7 @@ $more_mx_server
 			if(isIP($temp_ip)){
 				$named_file .= "zone \"$web_name\" {
 	type slave;
+	allow-query { any; };
 	masters { $temp_ip; };
 	file \"$conf_generated_file_path/$conf_named_slavezonefiles_path/$web_name\";
 };
