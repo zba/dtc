@@ -10,6 +10,15 @@ RUN_DEPENDS=	php:${PHP_PORT} \
 		${LOCALBASE}/bin/webalizer:${PORTSDIR}/www/webalizer \
 		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc
 
+# To me added:
+#.if  defined(WITH_POSTFIX)
+#RUN_DEPENDS+= <dependancy for postfix>
+#.elsif defined(WITH_QMAIL)
+#RUN_DEPENDS+= <dependancy for qmail>
+#.else
+#IGNORE="Needs a WITH_QMAIL or WITH_POSTFIX option!!!"
+#.endif
+
 PHP_PORT=${PORTSDIR}/www/php4-session
 
 DTCROOT?=	www/dtc
