@@ -61,7 +61,7 @@ sub graph($$$)
  
         	"DEF:loadaverage=$rrd:loadaverage:AVERAGE",
 
-        	'LINE1:loadaverage#00ff00:CPU LOAD\:',
+        	'LINE1:loadaverage#00ff00:CPU load average*100\:',
 		'GPRINT:loadaverage:MAX:Maximum\: %0.0lf ',
 		'GPRINT:loadaverage:AVERAGE:Average\: %0.0lf/min\n',
 					     

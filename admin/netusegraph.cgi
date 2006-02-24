@@ -62,11 +62,11 @@ sub graph($$$)
         	"DEF:bytesin=$rrd:bytesin:AVERAGE",
         	"DEF:bytesout=$rrd:bytesout:AVERAGE",
 
-        	'LINE2:bytesin#00ff00:Incoming network traffic\:',
+        	'LINE2:bytesin#00ff00:Incoming network traffic in bytes\:',
 		'GPRINT:bytesin:MAX:Maximum\: %0.0lf ',
 		'GPRINT:bytesin:AVERAGE:Average\: %0.0lf/min\n',
 					     
-        	'LINE1:bytesout#0000ff:Outgoing network traffic\:',
+        	'LINE1:bytesout#0000ff:Outgoing network traffic in bytes\:',
 		'GPRINT:bytesout:MAX:Maximum\: %0.0lf ',
 		'GPRINT:bytesout:AVERAGE:Average\: %0.0lf/min\l',
 					     
@@ -86,7 +86,7 @@ sub print_html()
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>Queue Statistics for $host</TITLE>
+<TITLE>Network usage statistics for $host</TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 HEADER
