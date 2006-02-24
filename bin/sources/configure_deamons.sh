@@ -1371,16 +1371,30 @@ fi
 # create the rrd file for queuegraph.cgi
 #
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-        echo "===> Setting up mail queue graph"
+        echo "===> Setting up rrdtools and graphs"
 fi
 if [ ! -e $PATH_DTC_ETC/mailqueues.rrd ]; then
-$PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC
+	$PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC
 fi
 if [ ! -e /usr/lib/cgi-bin/queuegraph.cgi ]; then
 	ln -s $PATH_DTC_ADMIN/queuegraph.cgi /usr/lib/cgi-bin/queuegraph.cgi
 fi
+
+
 # fix path for mailqueues.rrd
 perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/queuegraph.cgi
+
+#
+# create the rrd file for cpugraph.cgi
+#
+if [ ! -e $PATH_DTC_ETC/cpu.rrd ]; then
+	$PATH_DTC_ADMIN/cpugraph/createrrd.sh $PATH_DTC_ETC
+fi
+if [ ! -e /usr/lib/cgi-bin/cpugraph.cgi ]; then
+	ln -s $PATH_DTC_ADMIN/cpugraph.cgi /usr/lib/cgi-bin/cpugraph.cgi
+fi
+# fix path for cpugraph.cgi
+perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
 
 #
 # Install the cron php4 script in the $PATH_CRONTAB_CONF
@@ -1416,6 +1430,7 @@ else
 	if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ]; then
 		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_qmail.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	fi
+	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	cat < $TMP_FILE >>/etc/crontab
 	rm $TMP_FILE
 fi
