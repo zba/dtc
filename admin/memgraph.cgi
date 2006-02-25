@@ -60,7 +60,7 @@ sub graph($$$)
  		),
  
         	"DEF:totalmem=$rrd:totalmem:AVERAGE",
-        	"DEF:freemem=$rrd:freeswap:AVERAGE",
+        	"DEF:freemem=$rrd:freemem:AVERAGE",
         	"DEF:totalswap=$rrd:totalswap:AVERAGE",
         	"DEF:freeswap=$rrd:freeswap:AVERAGE",
 
