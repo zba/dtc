@@ -13,7 +13,7 @@ my $VERSION = "1.1";
 
 my $host = (POSIX::uname())[1];
 my $scriptname = 'memgraph.cgi';
-my $xpoints = 800;
+my $xpoints = 600;
 my $points_per_sample = 3;
 my $ypoints = 160;
 my $ypoints_err = 80;
@@ -59,14 +59,24 @@ sub graph($$$)
  			'--slope-mode'
  		),
  
-        	"DEF:freemem=$rrd:freemem:AVERAGE",
+        	"DEF:totalmem=$rrd:totalmem:AVERAGE",
+        	"DEF:freemem=$rrd:freeswap:AVERAGE",
+        	"DEF:totalswap=$rrd:totalswap:AVERAGE",
         	"DEF:freeswap=$rrd:freeswap:AVERAGE",
 
-        	'LINE2:freemem#00ff00:Free memory\:',
-		'GPRINT:freemem:MAX:Maximum\: %0.0lf ',
-		'GPRINT:freemem:AVERAGE:freemem\: %0.0lf/min\n',
+        	'LINE2:totalmem#000077:Total memory\:',
+		'GPRINT:totalmem:MAX:Maximum\: %0.0lf ',
+		'GPRINT:totalmem:AVERAGE:freemem\: %0.0lf/min\n',
 					     
-        	'LINE1:freeswap#0000ff:Free swap\:',
+        	'LINE2:freemem#4444ff:Free memory\:',
+		'GPRINT:freemem:MAX:Maximum\: %0.0lf ',
+		'GPRINT:freemem:AVERAGE:Average\: %0.0lf/min\l',
+					     
+        	'LINE2:totalswap#007700:Total swap\:',
+		'GPRINT:totalswap:MAX:Maximum\: %0.0lf ',
+		'GPRINT:totalswap:AVERAGE:totalswap\: %0.0lf/min\n',
+					     
+        	'LINE2:freeswap#44ff44:Free swap\:',
 		'GPRINT:freeswap:MAX:Maximum\: %0.0lf ',
 		'GPRINT:freeswap:AVERAGE:Average\: %0.0lf/min\l',
 					     
@@ -86,12 +96,12 @@ sub print_html()
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>Queue Statistics for $host</TITLE>
+<TITLE>Memory and Swap Statistics for $host</TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 HEADER
 
-	print "<H1>Memory and Swap Statistics for $host</H1>\n";
+	print "<H1>Mem+Swap Statistics for $host</H1>\n";
 	for my $n (0..$#graphs) {
 		print "<H2>$graphs[$n]{title}</H2>\n";
 		print "<P><IMG BORDER=\"0\" SRC=\"$scriptname/queuegraph_${n}.png\" ALT=\"queuegraph\">\n";

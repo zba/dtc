@@ -13,7 +13,7 @@ my $VERSION = "1.1";
 
 my $host = (POSIX::uname())[1];
 my $scriptname = 'cpugraph.cgi';
-my $xpoints = 800;
+my $xpoints = 600;
 my $points_per_sample = 3;
 my $ypoints = 160;
 my $ypoints_err = 80;
@@ -61,7 +61,7 @@ sub graph($$$)
  
         	"DEF:loadaverage=$rrd:loadaverage:AVERAGE",
 
-        	'LINE1:loadaverage#00ff00:CPU load average*100\:',
+        	'LINE2:loadaverage#ff0000:CPU load average*100\:',
 		'GPRINT:loadaverage:MAX:Maximum\: %0.0lf ',
 		'GPRINT:loadaverage:AVERAGE:Average\: %0.0lf/min\n',
 					     
@@ -81,7 +81,7 @@ sub print_html()
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>Queue Statistics for $host</TITLE>
+<TITLE>CPU Load average for $host</TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 HEADER

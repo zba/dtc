@@ -9,7 +9,9 @@ DTC_ETC=$1
 RRDTOOL=/usr/bin/rrdtool
 
 $RRDTOOL create $DTC_ETC/memusage.rrd --step 60 \
+	DS:totalmem:GAUGE:900:0:67108864 \
 	DS:freemem:GAUGE:900:0:67108864 \
+	DS:totalswap:GAUGE:900:0:67108864 \
 	DS:freeswap:GAUGE:900:0:67108864 \
 	RRA:AVERAGE:0.5:1:20160 \
 	RRA:AVERAGE:0.5:30:2016 \

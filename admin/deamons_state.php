@@ -226,9 +226,11 @@ function checkFTP(){
 	}
 	// echo "Checking ok after login<br>";
 	$popline = fgets($soc,1024);
-	if(!strstr($popline,"331") || !strstr($popline,"220")){
-		$errTxt = "Server did not send 331 or 220 after USER: $popline";
-		return false;
+	if(!strstr($popline,"331")){
+		if(!strstr($popline,"220")){
+			$errTxt = "Server did not send 331 or 220 after USER: $popline";
+			return false;
+		}
 	}
 	// echo "Sending pass<br>";
 	if(!fwrite($soc,"PASS ".$a["password"]."\n")){
@@ -238,8 +240,10 @@ function checkFTP(){
 	// echo "Checking ok after login<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"230")){
-		$errTxt = "Server did not send 230 after PASS: $popline. If no ftp user, please make one!";
-		return false;
+		if(!strstr($popline,"220")){
+			$errTxt = "Server did not send 230 after PASS: $popline. If no ftp user, please make one!";
+			return false;
+		}
 	}
 	//echo "Closing socket<br>";
 	fclose($soc);

@@ -13,7 +13,7 @@ my $VERSION = "1.1";
 
 my $host = (POSIX::uname())[1];
 my $scriptname = 'netusegraph.cgi';
-my $xpoints = 800;
+my $xpoints = 600;
 my $points_per_sample = 3;
 my $ypoints = 160;
 my $ypoints_err = 80;
