@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# queuegraph -- a postfix queue statistics rrdtool frontend
+# memgraph -- a postfix queue statistics rrdtool frontend
 # based on mailgraph, which is
 # copyright (c) 2000-2002 David Schweikert <dws@ee.ethz.ch>
 # released under the GNU General Public License
@@ -12,13 +12,13 @@ use POSIX qw(uname);
 my $VERSION = "1.1";
 
 my $host = (POSIX::uname())[1];
-my $scriptname = 'cpugraph.cgi';
+my $scriptname = 'memgraph.cgi';
 my $xpoints = 800;
 my $points_per_sample = 3;
 my $ypoints = 160;
 my $ypoints_err = 80;
-my $rrd = '/etc/postfix/cpu.rrd'; # path to where the RRD database is
-my $tmp_dir = '/tmp/cpugraph'; # temporary directory where to store the images
+my $rrd = '/etc/postfix/memusage.rrd'; # path to where the RRD database is
+my $tmp_dir = '/tmp/memusage'; # temporary directory where to store the images
 my $rrdtool_1_0 = ($RRDs::VERSION < 1.199908);
 
 my @graphs = (
@@ -52,18 +52,23 @@ sub graph($$$)
 		'--height', $ypoints,
 		'--start', "-$range",
 		'--end', "-".int($range*0.01),
-		'--vertical-label', 'CPU Load',
+		'--vertical-label', 'Memory usage',
 		'--title', $title,
 		'--lazy',
  		$rrdtool_1_0 ? () : (
  			'--slope-mode'
  		),
  
-        	"DEF:loadaverage=$rrd:loadaverage:AVERAGE",
+        	"DEF:freemem=$rrd:freemem:AVERAGE",
+        	"DEF:freeswap=$rrd:freeswap:AVERAGE",
 
-        	'LINE1:loadaverage#00ff00:CPU load average*100\:',
-		'GPRINT:loadaverage:MAX:Maximum\: %0.0lf ',
-		'GPRINT:loadaverage:AVERAGE:Average\: %0.0lf/min\n',
+        	'LINE2:freemem#00ff00:Free memory\:',
+		'GPRINT:freemem:MAX:Maximum\: %0.0lf ',
+		'GPRINT:freemem:AVERAGE:freemem\: %0.0lf/min\n',
+					     
+        	'LINE1:freeswap#0000ff:Free swap\:',
+		'GPRINT:freeswap:MAX:Maximum\: %0.0lf ',
+		'GPRINT:freeswap:AVERAGE:Average\: %0.0lf/min\l',
 					     
 		'HRULE:0#000000',
         	'COMMENT:\n',
@@ -86,7 +91,7 @@ sub print_html()
 <BODY BGCOLOR="#FFFFFF">
 HEADER
 
-	print "<H1>CPU Load Average Statistics for $host</H1>\n";
+	print "<H1>Memory and Swap Statistics for $host</H1>\n";
 	for my $n (0..$#graphs) {
 		print "<H2>$graphs[$n]{title}</H2>\n";
 		print "<P><IMG BORDER=\"0\" SRC=\"$scriptname/queuegraph_${n}.png\" ALT=\"queuegraph\">\n";

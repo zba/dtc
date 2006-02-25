@@ -91,7 +91,7 @@ sub print_html()
 <BODY BGCOLOR="#FFFFFF">
 HEADER
 
-	print "<H1>Mail Queue Statistics for $host</H1>\n";
+	print "<H1>Network Usage Statistics for $host</H1>\n";
 	for my $n (0..$#graphs) {
 		print "<H2>$graphs[$n]{title}</H2>\n";
 		print "<P><IMG BORDER=\"0\" SRC=\"$scriptname/queuegraph_${n}.png\" ALT=\"Netusage graph\">\n";

@@ -1410,6 +1410,18 @@ fi
 perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
 
 #
+# Create the rrd file for memgraph.cgi
+#
+if [ ! -e $PATH_DTC_ETC/memusage.rrd ]; then
+	$PATH_DTC_ADMIN/memgraph/createrrd.sh $PATH_DTC_ETC
+fi
+if [ ! -e /usr/lib/cgi-bin/memgraph.cgi ]; then
+	ln -s $PATH_DTC_ADMIN/memgraph.cgi /usr/lib/cgi-bin/memgraph.cgi
+fi
+# fix path for memgraph.cgi
+perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
+
+#
 # Install the cron php4 script in the $PATH_CRONTAB_CONF
 #
 
@@ -1445,6 +1457,7 @@ else
 	fi
 	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
+	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/memgraph/get_meminfo.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	cat < $TMP_FILE >>/etc/crontab
 	rm $TMP_FILE
 fi
