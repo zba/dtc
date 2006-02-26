@@ -277,4 +277,15 @@ if [ -e /var/lib/apache2/fastcgi ] ; then
 	chown -R nobody:nogroup /var/lib/apache2/fastcgi
 fi
 
+NBRLINES=`cat /proc/net/dev | wc -l`
+NBRIFACE=$((${NBRLINES} - 2 ))
+CNT=${NBRIFACE}
+ALL_IFACES=''
+while [ ${CNT} -gt 0 ]; do
+	ALL_IFACES=${ALL_IFACES}' '`cat /proc/net/dev | tail -n ${CNT} | cut -f 1 -d':' | gawk -F ' ' '{print $1}' | head -n 1`
+	CNT=$((${CNT} - 1 ))
+done
+
+echo ${ALL_IFACES}
+
 # Upon this line, here is the standard DTC install script :
