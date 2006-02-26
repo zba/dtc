@@ -81,7 +81,7 @@ case "monitor": // Monitor button
 		$out .= "<tr><td$back><u>".$ar["company_name"].":</u><br>
 ".$ar["familyname"].", ".$ar["christname"]."</td>";
 		$out .= "<td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024,"no")."<br>
-".smartByte($transfer)." / ".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)." ($hits hits)</td>";
+".smartByte($transfer)." / ".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)." ($total_hits hits)</td>";
 		$out .= "<td$back><img width=\"120\" height=\"48\" src=\"bw_per_month.php?cid=".$ar["id"]."\"></td>";
 		$out .= "<td$back>".drawPercentBar($du,$ar["disk_quota_mb"]*1024*1024,"no")."<br>
 ".smartByte($du)." / ".smartByte($ar["disk_quota_mb"]*1024*1024)."</td>";
