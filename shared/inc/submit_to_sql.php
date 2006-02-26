@@ -210,7 +210,7 @@ function writeCatchallDotQmailFile($user,$host){
 	if($box["localdeliver"] == "yes"){
 		$qmail_file_content = "./$user/Maildir/\n";
 	}
-	if(isset($box["redirect1"] && $box["redirect1"] != ""){
+	if(isset($box["redirect1"]) && $box["redirect1"] != ""){
 		$qmail_file_content .= '&'.$box["redirect1"]."\n";
 	}
 	if(isset($box["redirect2"]) && $box["redirect2"] != ""){

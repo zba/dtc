@@ -1460,7 +1460,7 @@ else
 		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_qmail.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	fi
 	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC $conf_eth2monitor >>/var/log/dtc.log" >> $TMP_FILE
+	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC \"$conf_eth2monitor\" >>/var/log/dtc.log" >> $TMP_FILE
 	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/memgraph/get_meminfo.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	cat < $TMP_FILE >>/etc/crontab
 	rm $TMP_FILE
