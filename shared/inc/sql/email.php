@@ -149,7 +149,7 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 	}
 
 	// Submit to sql database
-	if($_REQUEST["editmail_deliver_localy"] == "yes"){
+	if(isset($_REQUEST["editmail_deliver_localy"]) && $_REQUEST["editmail_deliver_localy"] == "yes"){
 		$dolocal_deliver = "yes";
 	}else{
 		$dolocal_deliver = "no";
