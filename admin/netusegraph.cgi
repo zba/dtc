@@ -13,7 +13,7 @@ my $VERSION = "1.1";
 
 my $host = (POSIX::uname())[1];
 my $scriptname = 'netusegraph.cgi';
-my $xpoints = 600;
+my $xpoints = 800;
 my $points_per_sample = 3;
 my $ypoints = 160;
 my $ypoints_err = 80;
@@ -87,18 +87,25 @@ sub print_html()
 <HTML>
 <HEAD>
 <TITLE>Network usage statistics for $host</TITLE>
+<style type="text/css">
+h1 {
+font: 12px Helvetica, Arial, sans-serif;
+font-weight: bold;
+color: #1C3029;
+}
+</style>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 HEADER
 
-	print "<H1>Network Usage Statistics for $host</H1>\n";
+	print "<H1>Network Usage Statistics for $host</H1>\n<center>";
 	for my $n (0..$#graphs) {
-		print "<H2>$graphs[$n]{title}</H2>\n";
-		print "<P><IMG BORDER=\"0\" SRC=\"$scriptname/queuegraph_${n}.png\" ALT=\"Netusage graph\">\n";
+#		print "<H2>$graphs[$n]{title}</H2>\n";
+		print "<IMG BORDER=\"0\" SRC=\"$scriptname/queuegraph_${n}.png\" ALT=\"Netusage graph\"><br>";
 	}
 
 	print <<FOOTER;
-<table border="0" width="400"><tr><td align="left">
+</center><table border="0" width="400"><tr><td align="left">
 <A href="http://www.stahl.bau.tu-bs.de/~hildeb/postfix/queuegraph">queuegraph</A> $VERSION
 by <A href="http://www.stahl.bau.tu-bs.de/~hildeb/">Ralf Hildebrandt</A>, 
 based on <A href="http://people.ee.ethz.ch/~dws/software/mailgraph">mailgraph</A> 

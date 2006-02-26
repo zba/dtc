@@ -93,6 +93,18 @@ case "monitor": // Monitor button
 	$module = skin($conf_skin,$out,$txt_customer_bw_consumption[$lang]);
 	$zemain_content = $module;
 	break;
+
+case "graph":
+	$the_iframe = "<IFRAME src=\"/cgi-bin/netusegraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,"Network Traffic Statistics");
+	$the_iframe = "<IFRAME src=\"/cgi-bin/cpugraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,"CPU Load Average");
+	$the_iframe = "<IFRAME src=\"/cgi-bin/memgraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,"Memory and Swap Usage");
+	$the_iframe = "<IFRAME src=\"/cgi-bin/queuegraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,"Mail Queue graph");
+	$zemain_content = makeVerticalFrame($mainFrameCells);
+	break;
 	
 case "generate": // Gen Config Files
 	$mainFrameCells[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
@@ -235,6 +247,20 @@ if(file_exists("dtcrm")){
 	}
 	$html_array[] = $menu;
 	$menu = "";
+}
+// The graph button
+if(!isset($rub) || $rub != "graph"){
+	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=graph\">";
+}
+$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>
+	Server monitor";
+if(!isset($rub) || $rub != "graph"){
+	$menu .= "</a>";
+}
+$html_array[] = $menu;
+$menu = "";
+
+if(file_exists("dtcrm")){
 	// Product manager
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "product"){
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=product\">";
