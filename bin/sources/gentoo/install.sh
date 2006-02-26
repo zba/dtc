@@ -160,6 +160,27 @@ fi
 echo -n "Password: "
 read conf_adm_pass
 
+if [ -z "$conf_eth2monitor" ] ; then
+	NBRLINES=`grep -v "lo:" /proc/net/dev | wc -l`
+	NBRIFACE=$((${NBRLINES} - 2 ))
+	CNT=${NBRIFACE}
+	ALL_IFACES=''
+	while [ ${CNT} -gt 0 ] ; do
+		ALL_IFACES=${ALL_IFACES}' '`grep -v "lo:" /proc/net/dev | tail -n ${CNT} | cut -f 1 -d':' | gawk -F ' ' '{print $1}' | head -n 1`
+		CNT=$((${CNT} - 1 ))
+	done
+	echo ""
+	echo "DTC will setup an RRDTools graphing system for your network"
+	echo "please enter all the interface used to calculate the total traffic."
+	echo -n 'Enter the iface you wish to monitor ['$ALL_IFACES']: '
+	read conf_eth2monitor
+	if [ -z "$conf_eth2monitor" ];
+	then
+		conf_eth2monitor=$ALL_IFACES
+	fi
+fi
+
+
 PATH_HTTPD_CONF="/etc/apache2/httpd.conf"
 PATH_NAMED_CONF="/etc/bind/named.conf"
 PATH_POSTFIX_ETC="/etc/postfix"

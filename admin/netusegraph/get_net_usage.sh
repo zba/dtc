@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $Id: get_net_usage.sh,v 1.1 2006/02/24 04:32:10 thomas Exp $
+# $Id: get_net_usage.sh,v 1.2 2006/02/26 13:04:04 thomas Exp $
 
 # output the number of messages in the incoming, active, and deferred
 # queues of postfix one per line suitable for use with snmpd/cricket
@@ -15,9 +15,15 @@
 
 PATH=/usr/local/bin:/usr/local/sbin:/sbin:/bin:/usr/bin:/usr/sbin:
 DTC_ETC=$1
+IFACELIST=$2
 
-cd $DTC_ETC
+BYTES_IN=0
+BYTES_OUT=0
 
-BYTES_IN=`cat /proc/net/dev | grep eth0 | cut -f 2 -d':' | gawk -F ' ' '{print $1}'`
-BYTES_OUT=`cat /proc/net/dev | grep eth0 | cut -f 2 -d':' | gawk -F ' ' '{print $9}'`
+for IFACE_NAME in $IFACELIST ; do
+#	echo $IFACE_NAME
+	IFACE_TXT=`cat /proc/net/dev | grep eth0 | cut -f 2 -d':'`
+	BYTES_IN=$(($BYTES_IN + `echo ${IFACE_TXT} | gawk -F ' ' '{print $1}'`))
+	BYTES_OUT=$(($BYTES_OUT + `echo ${IFACE_TXT} | gawk -F ' ' '{print $9}'`))
+done
 rrdtool update $DTC_ETC/netusage.rrd "N:${BYTES_IN}:${BYTES_OUT}"

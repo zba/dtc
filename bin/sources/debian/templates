@@ -226,3 +226,8 @@ Description: DNSBL (DNS BlackList) list
  Please enter the list of prefered DNSBL servers to add to your 
  mail server configuration.
 
+Template: dtc/conf_eth2monitor
+Type: string
+Description: Network devices to monitor
+ Please enter here all the network devices you wish to
+ be monitored by the RRDTools graphing.

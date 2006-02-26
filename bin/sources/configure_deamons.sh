@@ -1384,18 +1384,22 @@ fi
 # fix path for mailqueues.rrd
 perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/queuegraph.cgi
 
-#
-# create the rrd file for netusegraph.cgi
-#
-if [ ! -e $PATH_DTC_ETC/netusage.rrd ]; then
-	$PATH_DTC_ADMIN/netusegraph/createrrd.sh $PATH_DTC_ETC
-fi
-if [ ! -e /usr/lib/cgi-bin/netusegraph.cgi ]; then
-	ln -s $PATH_DTC_ADMIN/netusegraph.cgi /usr/lib/cgi-bin/netusegraph.cgi
-fi
+if [ -z $conf_eth2monitor ] ; then
+	echo "No interface selected: skiping the netusage.rrd setup!!!"
+else
+	#
+	# create the rrd file for netusegraph.cgi
+	#
+	if [ ! -e $PATH_DTC_ETC/netusage.rrd ]; then
+		$PATH_DTC_ADMIN/netusegraph/createrrd.sh $PATH_DTC_ETC
+	fi
+	if [ ! -e /usr/lib/cgi-bin/netusegraph.cgi ]; then
+		ln -s $PATH_DTC_ADMIN/netusegraph.cgi /usr/lib/cgi-bin/netusegraph.cgi
+	fi
 
-# fix path for netusage.rrd
-perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
+	# fix path for netusage.rrd
+	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
+fi
 
 #
 # create the rrd file for cpugraph.cgi
@@ -1456,7 +1460,7 @@ else
 		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_qmail.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	fi
 	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
+	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC $conf_eth2monitor >>/var/log/dtc.log" >> $TMP_FILE
 	echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/memgraph/get_meminfo.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	cat < $TMP_FILE >>/etc/crontab
 	rm $TMP_FILE

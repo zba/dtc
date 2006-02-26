@@ -299,6 +299,26 @@ then
 	PATH_DTC_ETC="${PATH_DTC_SHARED}/etc"
 fi
 
+if [ -z "$conf_eth2monitor" ] ; then
+	NBRLINES=`grep -v "lo:" /proc/net/dev | wc -l`
+	NBRIFACE=$((${NBRLINES} - 2 ))
+	CNT=${NBRIFACE}
+	ALL_IFACES=''
+	while [ ${CNT} -gt 0 ] ; do
+		ALL_IFACES=${ALL_IFACES}' '`grep -v "lo:" /proc/net/dev | tail -n ${CNT} | cut -f 1 -d':' | gawk -F ' ' '{print $1}' | head -n 1`
+		CNT=$((${CNT} - 1 ))
+	done
+	echo ""
+	echo "DTC will setup an RRDTools graphing system for you, please"
+	echo "enter all the interfaces you wish to see in the total traffic."
+	echo -n 'Enter the iface you wish to monitor ['$ALL_IFACES']: '
+	read conf_eth2monitor
+	if [ -z "$conf_eth2monitor" ];
+	then
+		conf_eth2monitor=$ALL_IFACES
+	fi
+fi
+
 
 PATH_CRONTAB_CONF=/etc/crontab
 
