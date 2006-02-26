@@ -190,6 +190,8 @@ function writeCatchallDotQmailFile($user,$host){
 	global $pro_mysql_pop_table;
 	global $conf_demo_version;
 
+	$qmail_file_content = "";
+
 	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host';";
 	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$box = mysql_fetch_array($res_mailbox);
