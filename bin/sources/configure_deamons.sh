@@ -1384,7 +1384,7 @@ fi
 # fix path for mailqueues.rrd
 perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/queuegraph.cgi
 
-if [ -z $conf_eth2monitor ] ; then
+if [ -z "$conf_eth2monitor" ] ; then
 	echo "No interface selected: skiping the netusage.rrd setup!!!"
 else
 	#
