@@ -73,7 +73,7 @@ find debian/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
 find debian/ -iname '*~' -exec rm -rf {} \; &>/dev/null
 chown -R root:root dtc
 chown nobody:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/shared/imgcache dtc/email/imgcache
-chown nobody:65534 dtc/client/gfx dtc/admin/gfx dtc/shared/gfx dtc/email/gfx
+chown nobody:65534 dtc/client/gfx dtc/admin/gfx dtc/shared/gfx dtc/email/gfx dtc/admin/*.cgi
 
 cat sources/redhat/install.sh >dtc/admin/dtc.rpm-install.sh
 cat sources/setup_mysql_db.sh >>dtc/admin/dtc.rpm-install.sh

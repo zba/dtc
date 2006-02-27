@@ -20,6 +20,7 @@ ARCH_NAME=$DEST_DIR"_all.tar.gz"
 chown -R root:root $BUILD_DIR
 chown nobody:nogroup $BUILD_DIR/client/imgcache $BUILD_DIR/admin/imgcache $BUILD_DIR/shared/imgcache $BUILD_DIR/client/imgcache
 chown nobody:nogroup $BUILD_DIR/client/gfx $BUILD_DIR/admin/gfx $BUILD_DIR/shared/gfx $BUILD_DIR/client/gfx
+chown nobody:nogroup $BUILD_DIR/admin/*.cgi
 
 # Specific gentoo package actions :
 PKG_FILENAME=$DEST_DIR
