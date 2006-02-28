@@ -245,11 +245,11 @@ function updateAllListWebArchive(){
 
 
 // This will set each day at 0:00
-// if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
+if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
 // This one is each hours
 // if(($start_stamps%(60*60))< 60*10){	updateAllDomainsStats();	}
 // This is each time the script is launched (all 10 minutes)
-updateAllDomainsStats();
+// updateAllDomainsStats();
 
 // Update all list archives
 if(($start_stamps%(60*60))< 60*10){	updateAllListWebArchive();	}
