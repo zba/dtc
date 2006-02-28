@@ -148,6 +148,8 @@ function mail_account_generate_postfix(){
 					$passwd = crypt($passwdtemp);
 					$spam_mailbox = $email["spam_mailbox"];
 					$spam_mailbox_enable = $email["spam_mailbox_enable"];
+					$vacation_flag = $email["vacation_flag"];
+					$vacation_text = stripslashes($email["vacation_text"]);
 
 					$spam_stuff_done = 0;
 
@@ -177,7 +179,12 @@ function mail_account_generate_postfix(){
 						unset($extra_redirects);
 						if ($localdeliver == "yes" || $localdeliver == "true"){
 							//need to generate .mailfilter file with "cc" and also local delivery
-							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $redirect1");
+							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $redirect1 $vacation_flag");
+							if($vacation_flag == "yes"){
+								$vac_fp = fopen("$home/.vacation.msg","w+");
+								fwrite($vac_fp,$vacation_text);
+								fclose($vac_fp);
+							}
 							$spam_stuff_done = 1;
 						} else {
 							$extra_redirects = " $redirect1 ";

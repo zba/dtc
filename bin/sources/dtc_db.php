@@ -529,7 +529,9 @@ $dtc_database = array(
 			"pass_expire" => "int(12) NOT NULL default '0' ",
 			"fullemail" => "varchar(255) NOT NULL default 'none' ",
 			"spam_mailbox_enable" => "enum('yes','no') NOT NULL default 'no' ",
-			"spam_mailbox" => "varchar(255) NOT NULL default 'SPAM' "
+			"spam_mailbox" => "varchar(255) NOT NULL default 'SPAM' ",
+			"vacation_flag" => "enum('yes','no') default 'no' ",
+			"vacation_text" => "text NOT NULL "
 			),
 		"primary" => "(id,mbox_host)"
 		),

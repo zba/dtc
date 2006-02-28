@@ -469,6 +469,12 @@ function drawAdminTools_Emails($domain){
 <td align=\"right\">".$txt_mail_spam_mailbox_enable[$lang]."</td><td><input type=\"checkbox\" name=\"editmail_spam_mailbox_enable\" value=\"yes\"$spam_checkbox_state></td>
 <td align=\"right\">".$txt_mail_spam_mailbox[$lang]."</td><td><input type=\"text\" name=\"editmail_spam_mailbox\" value=\"$spam_mailbox\"></td>
 </tr>
+<tr>
+<td align=\"right\">Send vacation message:</td><td colspan=\"3\"><input type=\"checkbox\" name=\"editmail_vacation_flag\" value=\"yes\"$spam_vacation_state></td>
+</tr><tr>
+<td align=\"right\">Vacation message:</td><td colspan=\"3\"><textarea name=\"editmail_vacation_text\"></textarea></td>
+</tr>
+<tr>
 <td>&nbsp;</td><td><input type=\"submit\" name=\"modifymailboxdata\" value=\"Ok\">&nbsp;
 <input type=\"submit\" name=\"delemailaccount\" value=\"Del\">
 </td></tr>
@@ -503,7 +509,8 @@ function drawAdminTools_Emails($domain){
 $txt .= "
 </td><td align=\"right\">
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"newmail_redirect2\" value=\"\">
-</td></tr><tr><td align=\"right\">
+</td></tr>
+<tr><td align=\"right\">
 ".$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_deliver_localy\" value=\"yes\" checked></td></tr>
 <tr>
 <td align=\"right\">".$txt_mail_spam_mailbox_enable[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_spam_mailbox_enable\" value=\"no\"></td>

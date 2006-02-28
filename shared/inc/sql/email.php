@@ -159,11 +159,24 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 	}else{
 		$do_spam_mailbox_enable = "no";
 	}
+
+	$admin_path = getAdminPath($adm_login);
+	$box_path = "$admin_path/$edit_domain/Mailboxs/".$_REQUEST["edit_mailbox"];
+	echo "Box path: $box_path";
+	if(isset($_REQUEST["editmail_vacation_flag"]) && $_REQUEST["editmail_vacation_flag"]) == "yes"){
+		$vacflag="yes";
+	}else{
+		$vacflag="no";
+		if(file_exists("$box_path/vacation.lst"))
+		unlink("$box_path/vacation.lst");
+	}
+
 	$crypted_pass = crypt($_REQUEST["editmail_pass"]);
 	if($commit_flag == "yes"){
-		$adm_query = "UPDATE $pro_mysql_pop_table SET
-	crypt='$crypted_pass',passwd='".$_REQUEST["editmail_pass"]."',redirect1='".$_REQUEST["editmail_redirect1"]."',redirect2='".$_REQUEST["editmail_redirect2"]."',localdeliver='$dolocal_deliver',spam_mailbox_enable='$do_spam_mailbox_enable',spam_mailbox='".$_REQUEST["editmail_spam_mailbox"]."' WHERE
-	id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain' LIMIT 1;";
+		$adm_query = "UPDATE $pro_mysql_pop_table
+	SET crypt='$crypted_pass',passwd='".$_REQUEST["editmail_pass"]."',redirect1='".$_REQUEST["editmail_redirect1"]."',redirect2='".$_REQUEST["editmail_redirect2"]."',localdeliver='$dolocal_deliver',spam_mailbox_enable='$do_spam_mailbox_enable',spam_mailbox='".$_REQUEST["editmail_spam_mailbox"]."',
+	vacation_flag='$vacflag',vacation_text='".addslashes($_REQUEST["editmail_vacation_text"])."'
+	WHERE id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain' LIMIT 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
 		writeDotQmailFile($_REQUEST["edit_mailbox"],$edit_domain);

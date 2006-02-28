@@ -440,6 +440,8 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$email["bounce_msg"] = $row4["bounce_msg"];
 			$email["spam_mailbox"] = $row4["spam_mailbox"];
 			$email["spam_mailbox_enable"] = $row4["spam_mailbox_enable"];
+			$email["vacation_flag"] = $row4["vacation_flag"];
+			$email["vacation_text"] = $row4["vacation_text"];
 			$emails[] = $email;
 		}	
 		if(isset($emails)){

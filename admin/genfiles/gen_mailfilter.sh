@@ -1,6 +1,6 @@
 #!/bin/sh
 # generate mailfilter stuff
-# gen_mailfilter.sh <home> <id> <domain_full_name> <spam mailbox enable> <spam mailbox> <redirection> <redirection2>
+# gen_mailfilter.sh <home> <id> <domain_full_name> <spam mailbox enable> <spam mailbox> <redirection> <redirection2> <vacation:yes|no>
 home=$1
 id=$2
 domain_full_name=$3
@@ -8,6 +8,7 @@ spam_mailbox_enable=$4
 spam_mailbox=$5
 redirection=$6
 redirection2=$7
+vacation_flag=$8
 
 MAILFILTER_FILE=$home/.mailfilter
 MAILFILTER_LOCK=$home/.mailfilter.lock
@@ -142,6 +143,11 @@ chown nobody:65534 $home/Maildir/maildirfilterconfig
 if [ -e "$home/.mailfilter.sqwebmail" ]; then
 	echo "include \".mailfilter.sqwebmail\"" >> $TMP_FILE
 fi
+
+if [ "$vacation_flag" = "yes" ] ; then
+	echo <genfiles/mailfilter_vacation_template >>$TMP_FILE
+fi
+
 
 echo "# End of DTC configuration" >> $TMP_FILE
 

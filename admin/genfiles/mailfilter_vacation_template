@@ -1,0 +1,14 @@
+cc $DEFAULT
+xfilter "reformail -r -t -I 'From: $LOGNAME'"
+/^To:.*/
+getaddr{$MATCH}=~ /^.*/;
+MATH=tolower${MATCH}
+flock "vacation.lock" {
+	`fgrep -iqx "$MATCH" vacation.lst 2>/dev/null || { \
+	echo "$MATCH" >>vacation.lst ; \  
+	exit 1 ; \
+	} `
+}
+if ( $RETURNCODE == 0 )
+        exit
+to "| (cat - ; echo ''; cat ~/.vacation.msg) | $SENDMAIL -t" 

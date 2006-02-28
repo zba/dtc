@@ -30,5 +30,7 @@ CREATE TABLE IF NOT EXISTS pop_access (
   spam_mailbox varchar(255) NOT NULL default 'SPAM',
   pass_next_req varchar(128) NOT NULL default '',
   pass_expire int(12) NOT NULL default '0',
+  vacation_flag enum('yes','no') default 'no',
+  vacation_text text NOT NULL,
   PRIMARY KEY  (id,mbox_host)
 ) TYPE=MyISAM
