@@ -1,4 +1,6 @@
 Here is the todo in unsorted order:
+- Notice: Undefined variable:  last_run_st in
+/usr/share/dtc/shared/inc/accounting.php on line 427
 - Remove the /etc/apache2/ports.conf
 - Add extensions = mysql.so gd.so in /etc/php4/apache2/php.ini
 - restart amavis when new domains???
