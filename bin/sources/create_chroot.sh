@@ -102,9 +102,9 @@ cp -pf /usr/bin/file usr/bin/
 
 if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
-	cp -pf /usr/bin/gunzip /usr/bin/false /usr/bin/su bin/
+	cp -pf /usr/bin/gunzip /usr/bin/tar /usr/bin/false /usr/bin/su bin/
 else
-	cp -pf /bin/gunzip /usr/bin/zip /bin/false /bin/su bin/
+	cp -pf /bin/gunzip /bin/tar /usr/bin/zip /bin/false /bin/su bin/
 	cp -pf /bin/cpio usr/bin
 fi
 
@@ -125,7 +125,40 @@ fi
 
 # copy needed /etc files to $CHROOT_DIR/etc
 cp -pf /etc/protocols /etc/services /etc/hosts \
-  /etc/group /etc/passwd /etc/resolv.conf etc/
+  /etc/resolv.conf etc/
+
+# generate /etc/passwd and /etc/group
+# ignore errors
+set +e
+grep daemon /etc/passwd > etc/passwd
+grep bin /etc/passwd >> etc/passwd
+grep sys /etc/passwd >> etc/passwd
+grep man /etc/passwd >> etc/passwd
+grep lp /etc/passwd >> etc/passwd
+grep mail /etc/passwd >> etc/passwd
+grep news /etc/passwd >> etc/passwd
+grep uucp /etc/passwd >> etc/passwd
+grep www-data /etc/passwd >> etc/passwd
+# generate this one manually: grep nobody /etc/passwd >> etc/passwd
+grep daemon /etc/group > etc/group
+grep bin /etc/group >> etc/group
+grep sys /etc/group >> etc/group
+grep man /etc/group >> etc/group
+grep lp /etc/group >> etc/group
+grep mail /etc/group >> etc/group
+grep news /etc/group >> etc/group
+grep uucp /etc/group >> etc/group
+grep www-data /etc/group >> etc/group
+grep nogroup /etc/group >> etc/group
+grep $WEB_USER /etc/group >> etc/group
+set -e
+
+# fix entry for nobody in /etc/passwd
+echo "$WEB_USER:x:65534:65534:$WEB_USER:/html:/bin/bash" >> etc/passwd
+
+# create shadow account line for nobody
+echo "$WEB_USER::12719:0:99999:7:::" > etc/shadow
+chown $WEB_USER:$WEB_GROUP etc/shadow
 
 if [ -e /etc/host.conf ] ; then
 	cp -pf /etc/host.conf etc/
@@ -171,6 +204,9 @@ else
 		  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
 		  /lib/libncurses.so.5 \
 		  /lib/librt.so.1 \
+		  /lib/libacl.so.1 \
+		  /lib/libattr.so.1 \
+		  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 /lib/libcap.so.1 \
 		  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
 		if [ -e /usr/lib/libmagic.so.1 ]
 		then
@@ -193,6 +229,22 @@ then
 	mkdir -p usr/share/misc/file
 	cp -pf /usr/share/misc/file/magic*   usr/share/misc/file
 	#cp -pf /usr/share/magic         usr/share/
+fi
+
+# fix up pam.d into jail
+if [ -e /etc/pam.d ]; then
+	mkdir -p ./etc/pam.d/
+	cp /etc/pam.d/* ./etc/pam.d/
+fi
+# copy PAM-Modules to jail
+if [ -e /lib/security ]; then
+	cp -r /lib/security ./lib/
+fi
+if [ -e /etc/security ]; then 
+	cp -r /etc/security ./etc/
+fi
+if [ -e /etc/login.defs ]; then
+	cp /etc/login.defs ./etc/
 fi
 
 # set protections
