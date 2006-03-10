@@ -266,6 +266,13 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE
 
 #$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="GRANT SELECT , UPDATE ( crypt , passwd ) ON dtc.pop_access TO 'dtcdaemons'@'localhost'"
 
+# grant select to ssh_access 
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'ssh_access', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+# grant select to ssh_groups
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'ssh_groups', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+# grant select to ssh_user_group
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'ssh_user_group', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+
 # grant Select,Insert,Update,Delete,References,Index to smtp_logs
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', 'dtc', 'dtcdaemons', 'smtp_logs', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
 

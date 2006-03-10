@@ -1222,7 +1222,7 @@ function saveDTCConfigInMysql(){
 
         mysql_query($query)or die("Cannot query : \"$query\" ! line: ".__LINE__." file: ".__file__." sql said: ".mysql_error());
 	// Tell the cron job to activate the changes
-        $adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes', restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes' WHERE 1;";
+        $adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes', restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes' WHERE 1;";
         mysql_query($adm_query);
 }
 

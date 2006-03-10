@@ -8,6 +8,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/database.php");
 	require("$dtcshared_path/inc/forms/reseller.php");
 	require("$dtcshared_path/inc/forms/ftp.php");
+	require("$dtcshared_path/inc/forms/ssh.php");
         require("$dtcshared_path/inc/forms/packager.php");
 	require("$dtcshared_path/inc/forms/admin_stats.php");
 	require("$dtcshared_path/inc/forms/domain_stats.php");
@@ -66,6 +67,7 @@ function drawAdminTools($admin){
 	global $txt_title_mailbox_form;
 	global $txt_title_subdomain_form;
 	global $txt_title_ftp_form;
+	global $txt_title_ssh_form;
 	global $txt_title_database_form;
 	global $txt_title_help_form;
 	global $txt_title_geninfo_form;
@@ -80,6 +82,7 @@ function drawAdminTools($admin){
 	global $txt_cmenu_dns;
 	global $txt_cmenu_subdomains;
 	global $txt_cmenu_ftpaccounts;
+	global $txt_cmenu_sshaccounts;
 	global $txt_cmenu_packageinstaller;
 	global $txt_cmenu_mailboxs;
 	global $txt_cmenu_mailinglists;
@@ -171,6 +174,10 @@ function drawAdminTools($admin){
 				"text" => $txt_cmenu_ftpaccounts[$lang],
 				"type" => "link",
 				"link" => "ftp-accounts");
+			$domain_conf_submenu[] = array(
+				"text" => $txt_cmenu_sshaccounts[$lang],
+				"type" => "link",
+				"link" => "ssh-accounts");
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_packageinstaller[$lang],
 				"type" => "link",
@@ -281,6 +288,10 @@ function drawAdminTools($admin){
                         $web_editor .= "<img src=\"inc/ftp-accounts.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_ftpaccounts[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_Ftp($eddomain,$adm_path);
 			$title = $txt_title_ftp_form[$lang].$edit_domain;
+		}else if(@$add_array[1] == "ssh-accounts"){
+                        $web_editor .= "<img src=\"inc/ssh-accounts.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_sshaccounts[$lang]:</u></b><br></font>";
+			$web_editor .= drawAdminTools_SSH($eddomain,$adm_path);
+			$title = $txt_title_ssh_form[$lang].$edit_domain;
 		}else if(@$add_array[1] == "package-installer"){
                         $web_editor .= "<img src=\"inc/package-installer.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_packageinstaller[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_PackageInstaller($eddomain,$adm_path);
@@ -364,6 +375,7 @@ function drawAdminTools($admin){
 //                   ["path"]
 //                   ["max_email"]
 //                   ["max_ftp"]
+//                   ["max_ssh"]
 //                   ["quota"];
 //                   ["bandwidth_per_month_mb"]
 //                   ["prod_id"]
@@ -374,6 +386,7 @@ function drawAdminTools($admin){
 //                      ["quota"]
 //                      ["max_email"]
 //                      ["max_ftp"]
+//                      ["max_ssh"]
 //                      ["max_subdomain"]
 //                      ["ip_addr"]
 //                      ["backup_ip_addr"]
@@ -394,11 +407,15 @@ function drawAdminTools($admin){
 //                      ["ftps"]["login"]
 //                              ["passwd"]
 //                              ["path"]
+//                      ["sshs"]["login"]
+//                              ["passwd"]
+//                              ["path"]
 
 // The fetchAdminStats($admin) return the followin structure:
 // ["domains"][0-n]["name"]
 //                 ["du"]
 //                 ["ftp"]
+//                 ["ssh"]
 //                 ["http"]
 //                 ["smtp"]
 //                 ["pop"]
@@ -406,6 +423,7 @@ function drawAdminTools($admin){
 //                 ["total_transfer"]
 // ["total_http"]
 // ["total_ftp"]
+// ["total_ssh"]
 // ["total_email"]
 // ["total_transfer"]
 // ["total_du_domains"]

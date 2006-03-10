@@ -238,6 +238,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
         global $pro_mysql_list_table;
         global $pro_mysql_pop_table;
 	global $pro_mysql_ftp_table;
+	global $pro_mysql_ssh_table;
         global $pro_mysql_subdomain_table;
         global $pro_mysql_config_table;
         global $panel_type;
@@ -311,6 +312,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 
 	$adm_path = $row["path"];
 	$adm_max_ftp = $row["max_ftp"];
+	$adm_max_ssh = $row["max_ssh"];
 	$adm_max_email = $row["max_email"];
 	$adm_quota = $row["quota"];
 
@@ -333,6 +335,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 		$domain["max_email"] = $row["max_email"];
 		$domain["max_lists"] = $row["max_lists"];
 		$domain["max_ftp"] = $row["max_ftp"];
+		$domain["max_ssh"] = $row["max_ssh"];
 		$domain["max_subdomain"] = $row["max_subdomain"];
 		$domain["quota"] = $row["quota"];
 		$domain["ip_addr"] = $row["ip_addr"];
@@ -406,6 +409,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 //                      ["quota"]
 //                      ["max_email"]
 //                      ["max_ftp"]
+//                      ["max_ssh"]
 //                      ["max_subdomain"]
 //                      ["ip_addr"]
 //                      ["backup_ip_addr"]
@@ -482,12 +486,28 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$domain["ftps"] = $ftps;
 		}
 
+		$query4 = "SELECT * FROM $pro_mysql_ssh_table WHERE hostname='$name' ORDER BY login LIMIT 800";
+		$result4 = mysql_query($query4)or die("Cannot execute query \"$query4\"");
+		$num_rows4 = mysql_num_rows($result4);
+		unset($sshs);
+		for($j=0;$j<$num_rows4;$j++){
+			$row4 = mysql_fetch_array($result4) or die ("Cannot fetch ssh account");
+			$ssh["login"] = $row4["login"];
+			$ssh["passwd"] = $row4["password"];
+			$ssh["path"] = $row4["homedir"];
+			$sshs[] = $ssh;
+		}
+		if(isset($sshs)){
+			$domain["sshs"] = $sshs;
+		}
+
 // Now we have :
 // $user_domains = [0-n]["default_subdomain"]
 //                      ["name"]
 //                      ["quota"]
 //                      ["max_email"]
 //                      ["max_ftp"]
+//                      ["max_ssh"]
 //                      ["max_subdomain"]
 //                      ["ip_addr"]
 //                      ["backup_ip_addr"]
@@ -514,6 +534,9 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 //                      ["ftps"]["login"]
 //                              ["passwd"]
 //                              ["path"]
+//                      ["sshs"]["login"]
+//                              ["passwd"]
+//                              ["path"]
 		$user_domains[] = $domain;
 	}
 	if(isset($user_domains)){
@@ -535,7 +558,7 @@ function fetchClientData($id_client){
 			return $ret;
 		}
 
-		$row4 = mysql_fetch_array($result4) or die ("Cannot fetch ftp account");
+		$row4 = mysql_fetch_array($result4) or die ("Cannot fetch client account");
 		$ret["err"] = 0;
 		$ret["msg"] = "No error";
 		$ret["data"] = $row4;

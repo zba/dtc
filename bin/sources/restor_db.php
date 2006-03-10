@@ -193,12 +193,41 @@ if($n > 0){
 //////////////////////////////////////////
 echo "=> Repairing broken http_accounting table...";
 // Make a copy of the table with the highest value that must be the good one, without any key...
+
+echo "Copy back http_tmp_table into real table just in case...";
+$q = "INSERT IGNORE INTO http_accounting SELECT * FROM http_tmp_table;";
+$r = mysql_query($q);
+if (!$r)
+{
+	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
+	echo "[OK, not present]\n";
+}
+
+
+echo "drop existing http_tmp_table...";
+$q = "DROP TABLE http_tmp_table;";
+$r = mysql_query($q);
+if (!$r)
+{
+	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
+	echo "[OK, not present]\n";
+}
+
 echo "copy...";
 $q = "CREATE TABLE http_tmp_table
 SELECT min( id ) as id, vhost, bytes_sent, count_hosts, count_visits, count_status_200, count_status_404, count_impressions, last_run, `month`, `year`, domain, bytes_receive
 FROM http_accounting
 GROUP BY `vhost`, `month` , `year`, `domain`;";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
+echo "drop existing http_accounting_tmp...";
+$q = "DROP TABLE http_accounting_tmp;";
+$r = mysql_query($q);
+if (!$r)
+{
+	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
+	echo "[OK, not present]\n";
+}
 
 echo "rename...";
 $q = "RENAME TABLE http_accounting TO http_accounting_tmp;";

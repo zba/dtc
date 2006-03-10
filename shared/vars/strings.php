@@ -636,6 +636,20 @@ $txt_cmenu_ftpaccounts = array(
 	"pt" => "Conta de FTP"
 	);
 
+$txt_cmenu_sshaccounts = array(
+	"fr" => "Comptes SSH",
+	"en" => "SSH accounts",
+	"hu" => "SSH hozzáférések",
+	"it" => "Account SSH",
+	"nl" => "SSH accounts",
+	"ru" => "TRANS SSH accounts",
+	"de" => "TRANS SSH accounts",
+	"zh" => "SSH ÕÊ»§",
+	"pl" => "Konta SSH",
+	"es" => "Cuentas de ssh",
+	"pt" => "Conta de SSH"
+	);
+
 $txt_cmenu_packageinstaller = array(
 	"fr" => "Installateur de paquets",
 	"en" => "Package installer",
@@ -1351,6 +1365,20 @@ $txt_maxnumber_of_ftp_account_reached = array(
 	"pt" => "Não é possivel adicionar conta de ftp, numero maximo alcançado."
 	);
 
+$txt_maxnumber_of_ssh_account_reached = array(
+	"fr" => "Nombre maximum de comptes ssh atteint. Impossible d'ajouter un nouveau compte.",
+	"en" => "Maximum number of ssh account reached. Cannot add a new account.",
+	"hu" => "Az ssh hozzáférések száma elérte a maximumot. Nem adhat hozzá újat.",
+        "it" => "Raggiunto Número massimo di account SSH. Non puoi aggiungerne uno nuovo.",
+	"nl" => "Het maximum aantal ssh accounts is bereikt. Je kan geen nieuwe meer toevoegen.",
+	"ru" => "Maximum number of ssh account reach. Cannot add a new account.",
+	"de" => "Maximale Anzahl von SSH Accounts erreicht. Es können keine weiteren mehr angelegt werden.",
+	"zh" => "ÏÞÖÆssh»§Êý¶î",
+        "pl" => "Wykorzystano ju¿ limit kont SSH. Nie mogê dodaæ nowego.",
+	"es" => "úumero máximo de sshs alcanzados. No es posible añadir una cuenta nueva.",
+	"pt" => "Não é possivel adicionar conta de ssh, numero maximo alcançado."
+	);
+
 $txt_number_of_active_ftp = array(
 	"fr" => "Nombre de comptes ftp actifs :",
 	"en" => "Number of active ftp accounts:",
@@ -1363,6 +1391,20 @@ $txt_number_of_active_ftp = array(
         "pl" => "Ilo¶æ aktywnych kont FTP:",
 	"es" => "Número de ftps activos:",
 	"pt" => "Número de contas FTP activas :"
+	);
+
+$txt_number_of_active_ssh = array(
+	"fr" => "Nombre de comptes ssh actifs :",
+	"en" => "Number of active ssh accounts:",
+	"hu" => "Az aktív ssh hozzáférések száma:",
+        "it" => "Número account SSH attivi:",
+	"nl" => "Aantal actieve ssh accounts:",
+	"ru" => "Number of active ssh accounts:",
+	"de" => "Aktive SSH-Accounts:",
+	"zh" => "ÏÖÓÐssh»§",
+        "pl" => "Ilo¶æ aktywnych kont SSH:",
+	"es" => "Número de sshs activos:",
+	"pt" => "Número de contas SSH activas :"
 	);
 
 $txt_number_of_active_mailbox = array(
@@ -1687,10 +1729,24 @@ $txt_domain_tbl_config_max_ftp = array(
 	"pt" => "Max. FTP"
 	);
 
+$txt_domain_tbl_config_max_ssh = array(
+	"fr" => "SSH max",
+	"en" => "Max SSH",
+	"hu" => "Max SSH",
+        "it" => "Max SSH",
+	"nl" => "Max SSH",
+	"ru" => "æôð ÍÁËÓ",
+	"de" => "Max. SSH",
+	"zh" => "×î´óSSH»§",
+        "pl" => "Ftp max",
+	"es" => "Max SSH",
+	"pt" => "Max. FTP"
+	);
+
 $txt_domain_tbl_config_max_email = array(
 	"fr" => "Email max",
 	"en" => "Email max",
-	"hu" => "Max ftp",
+	"hu" => "Max email",
         "it" => "Email max",
 	"nl" => "E-mail max",
 	"ru" => "ðÏÞÔÁ ÍÁËÓ",
@@ -1788,14 +1844,28 @@ $txt_your_domain_ftp = array(
 	"fr" => "Comptes ftp :",
 	"en" => "Ftp accounts:",
 	"hu" => "Ftp hozzáférések:",
-    "it" => "Accounts FTP:",
+    	"it" => "Accounts FTP:",
 	"nl" => "Ftp accounts:",
 	"ru" => "æôð ÁËËÁÕÎÔÙ:",
 	"de" => "FTP Acounts:",
 	"zh" => "FtpµÄÕÊ»§:",
-    "pl" => "Konta FTP :",
+    	"pl" => "Konta FTP :",
 	"es" => "Cuentas de ftp:",
 	"pt" => "Contas de ftp :"
+	);
+
+$txt_your_domain_ssh = array(
+	"fr" => "Comptes ssh :",
+	"en" => "SSH accounts:",
+	"hu" => "SSH hozzáférések:",
+    	"it" => "Accounts SSH:",
+	"nl" => "SSH accounts:",
+	"ru" => "æôð ÁËËÁÕÎÔÙ:",
+	"de" => "SSH Acounts:",
+	"zh" => "SSHµÄÕÊ»§:",
+    	"pl" => "Konta SSH :",
+	"es" => "Cuentas de ssh:",
+	"pt" => "Contas de ssh :"
 	);
 
 $txt_your_domain_subdomain = array(
@@ -2730,6 +2800,11 @@ $domain_conf_submenu =array(
 		"text" => "ftp-accounts",
 		"type" => "link",
 		"link" => "ftp-accounts"
+	),
+	array(
+		"text" => "ssh-accounts",
+		"type" => "link",
+		"link" => "ssh-accounts"
 	)
 );
 $txt_login_title = array(
@@ -3325,6 +3400,76 @@ $txt_ftp_new_account_link = array(
 	"pl" => "Nowe konto FTP",
 	"es" => "Nueva cuenta de ftp",
 	"pt" => "Nova conta de ftp"
+);
+
+//////////////////
+// SSH ACCOUNTS //
+//////////////////
+
+$txt_title_ssh_form = array(
+	"fr" => "Comptes ssh de ",
+	"en" => "Ssh accounts of ",
+	"hu" => "Ssh hozzáférései a(z) ",
+	"it" => "Accounts SSH di ",
+	"nl" => "Ssh accounts van ",
+	"ru" => "õÞÅÔÎÙÅ ÚÁÐÉÓÉ æôð",
+	"de" => "SSH Accounts von ",
+	"zh" => "±¾ÍøÕ¾µÄSSHÕÊ»§ ",
+	"pl" => "Konta FSSH ",
+	"es" => "Cuentas de ssh ",
+	"pt" => "Contas de ssh"
+);
+$txt_ssh_account_list = array(
+	"fr" => "Liste de vos comptes SSH: ",
+	"en" => "List of your SSH accounts: ",
+	"hu" => "Az ön SSH hozzáférései: ",
+	"it" => "Lista dei tuoi accounts SSH: ",
+	"nl" => "Lijst van jouw SSH accounts:",
+	"ru" => "óÐÉÓÏË ×ÁÛÉÈ æôð ÁËËÁÕÎÔÏ×:",
+	"de" => "Liste Ihrer SSH Accounts:",
+	"zh" => "ÄúµÄSSHÕÊ»§ÁÐ±í: ",
+	"pl" => "Spis twoich kont SSH : ",
+	"es" => "Listado de cuentas de ssh:",
+	"pt" => "Lista de contas de ssh"
+);
+$txt_ssh_new_account = array(
+	"fr" => "Nouveau compte SSH : ",
+	"en" => "New SSH account: ",
+	"hu" => "Új SSH hozzáférés: ",
+	"it" => "Nuovo account SSH: ",
+	"nl" => "Nieuw SSH account: ",
+	"ru" => "îÏ×ÙÊ ÁËËÁÕÎÔ:",
+	"de" => "Neuer SSH Account",
+	"zh" => "ÐÂµSSHPÕÊ»§: ",
+	"pl" => "Nowe konto SSH : ",
+	"es" => "Nueva cuenta de ssh",
+	"pt" => "Nova conta de ssh"
+);
+$txt_ssh_account_edit = array(
+	"fr" => "Edition d'un compte SSH : ",
+	"en" => "SSH account configuration: ",
+	"hu" => "SSH hozzáférés konfigurálása: ",
+	"it" => "Configurazione account SSH: ",
+	"nl" => "SSH account configuratie : ",
+	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ æôð-ÁËËÁÕÎÔÁ:",
+	"de" => "Konfiguration des SSH Accounts",
+	"zh" => "SSHÕÊ»§ÅäÖÃ: ",
+	"pl" => "Konfiguracja konta SSH : ",
+	"es" => "Configuración de las cuentas de ssh",
+	"pt" => "Configuração das contas de ssh"
+);
+$txt_ssh_new_account_link = array(
+	"fr" => "Nouveau compte ssh",
+	"en" => "New ssh account",
+	"hu" => "Új SSH hozzáférés",
+	"it" => "Nuovo account SSH",
+	"nl" => "Nieuw ssh account",
+	"ru" => "îÏ×ÙÊ æôð ÁËËÁÕÎÔ",
+	"de" => "Neuer SSH Account",
+	"zh" => "ÐÂµSSHPÕÊ»§",
+	"pl" => "Nowe konto SSH",
+	"es" => "Nueva cuenta de ssh",
+	"pt" => "Nova conta de ssh"
 );
 
 ///////////////

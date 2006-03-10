@@ -54,6 +54,71 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 fi
 chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains"
 
+# if we have a sudo binary around, then use it to create our chroot shell
+# check for some path defaults... 
+if [ -z "$PATH_SUDO" ]; then
+	PATH_SUDO=`which sudo`
+fi
+if [ -z "$PATH_CHROOT" ]; then
+	PATH_CHROOT=`which chroot`
+fi
+if [ -z "$PATH_SHELLS_CONF" ]; then
+	PATH_SHELLS_CONF=/etc/shells
+fi
+if [ -z "$PATH_SUDOERS_CONF" ]; then
+	PATH_SUDOERS_CONF=/etc/sudoers
+fi
+if [ -n "$PATH_SUDO" ] ; then
+	if [ ""$VERBOSE_INSTALL = "yes" ]; then
+		echo "Creating chroot shell..."
+	fi
+        # create a chroot shell script
+        CHROOT_SHELL=/bin/dtc-chroot-shell
+        echo '#!/bin/sh' > $CHROOT_SHELL
+	echo "# This shell script is used by DTC, please do not remove" >> $CHROOT_SHELL
+        echo "$PATH_SUDO -H $PATH_CHROOT \$HOME /bin/su - \$USER" \"\$@\" >> $CHROOT_SHELL
+        chmod 755 $CHROOT_SHELL
+        # fix sudoers
+	if grep "Configured by DTC" $PATH_SUDOERS_CONF >/dev/null
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "$PATH_SUDOERS_CONF has been configured before..."
+		fi
+	else
+		if ! [ -f $PATH_SUDOERS_CONF.DTC.backup ]
+		then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "===> Backuping "$PATH_SUDOERS_CONF
+			fi
+			cp -f "$PATH_SUDOERS_CONF" "$PATH_SUDOERS_CONF.DTC.backup"
+		fi
+		TMP_FILE=`${MKTEMP} DTC_install.sudoers.XXXXXX` || exit 1
+		echo "# Configured by DTC : please do not touch this line !" >> $TMP_FILE
+		echo "nobody      ALL= NOPASSWD: $PATH_CHROOT * /bin/su - *" >> $TMP_FILE
+		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
+		cat <$TMP_FILE >>$PATH_SUDOERS_CONF
+	fi
+        # fix /etc/shells
+	if grep "Configured by DTC" $PATH_SHELLS_CONF >/dev/null
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "$PATH_SHELLS_CONF has been configured before..."
+		fi
+	else
+		if ! [ -f $PATH_SHELLS_CONF.DTC.backup ]
+		then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "===> Backuping "$PATH_SHELLS_CONF
+			fi
+			cp -f "$PATH_SHELLS_CONF" "$PATH_SHELLS_CONF.DTC.backup"
+		fi
+		TMP_FILE=`${MKTEMP} DTC_install.shells.XXXXXX` || exit 1
+		echo "# Configured by DTC : please do not touch this line !" >> $TMP_FILE
+		echo "/bin/dtc-chroot-shell" >> $TMP_FILE
+		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
+		cat <$TMP_FILE >>$PATH_SHELLS_CONF
+	fi
+fi
 
 if ! [ -f $PATH_DTC_SHARED/shared/securepay/paiement_config.php ] ; then
 	cp -v $PATH_DTC_SHARED/shared/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/shared/securepay/paiement_config.php
@@ -1431,6 +1496,160 @@ perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
 chown nobody:nogroup /usr/lib/cgi-bin/memgraph.cgi
 
 #
+# Modify the SSH default option to make sure the UsePAM and turn on Password auth
+# 
+
+# default to /etc/ssh/sshd_config if it's not set by the installer
+if [ -z ""$PATH_SSH_CONF ]; then
+	PATH_SSH_CONF=/etc/ssh/sshd_config
+fi
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Modifying SSH config to allow chroot logins... "$PATH_SSH_CONF
+fi
+
+# first we want to comment out any previously set variables
+# PasswordAuthentication 
+# UsePAM
+
+TMP_FILE=`${MKTEMP} DTC_install.sshd_conf.XXXXXX` || exit 1
+
+if grep "^PasswordAuthentication" $PATH_SSH_CONF >/dev/null 2>&1
+then
+	sed -e "s/^PasswordAuthentication/#PasswordAuthentication/" $PATH_SSH_CONF > $TMP_FILE
+	cat <$TMP_FILE >$PATH_SSH_CONF
+fi
+
+if grep "^UsePAM" $PATH_SSH_CONF >/dev/null 2>&1
+then
+	sed -e "s/^UsePAM/#UsePAM/" $PATH_SSH_CONF > $TMP_FILE
+	cat <$TMP_FILE >$PATH_SSH_CONF
+fi
+
+# now that we have removed the conflicting entries, add it back with the DTC required switches
+
+if grep "Configured by DTC" $PATH_SSH_CONF >/dev/null
+then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "$PATH_SSH_CONF has been configured before..."
+	fi
+else
+	if ! [ -f $PATH_SSH_CONF.DTC.backup ]
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "===> Backuping "$PATH_SSH_CONF
+		fi
+		cp -f "$PATH_SSH_CONF" "$PATH_SSH_CONF.DTC.backup"
+	fi
+	echo "# Configured by DTC : please do not touch this line !" > $TMP_FILE
+	echo "UsePAM yes" >> $TMP_FILE
+	echo "PasswordAuthentication yes" >> $TMP_FILE
+	echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
+	cat <$TMP_FILE >>$PATH_SSH_CONF
+fi
+
+rm $TMP_FILE
+
+#
+# Modify /etc/nss-mysql.conf and /etc/nss-mysql-root.conf
+# 
+
+TMP_FILE=`${MKTEMP} DTC_install.nss-mysql.conf.XXXXXX` || exit 1
+
+if [ -z "$PATH_NSS_CONF" ]; then
+	PATH_NSS_CONF=/etc/nss-mysql.conf
+fi
+
+if [ -z "$PATH_NSS_ROOT_CONF" ]; then
+	PATH_NSS_ROOT_CONF=/etc/nss-mysql-root.conf
+fi
+
+if grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
+then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "$PATH_NSS_CONF has been configured before..."
+	fi
+else
+	if ! [ -f $PATH_NSS_CONF.DTC.backup ]
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "===> Backuping "$PATH_NSS_CONF
+		fi
+		cp -f "$PATH_NSS_CONF" "$PATH_NSS_CONF.DTC.backup"
+	fi
+	echo "# Configured by DTC : please do not touch this line !" > $TMP_FILE
+	echo "
+users.host = inet:localhost:3306;
+users.database = dtc;
+users.db_user = dtcdaemons;
+users.db_password = ${MYSQL_DTCDAEMONS_PASS};
+users.backup_host =;
+users.backup_database =;
+users.table = ssh_access;
+users.where_clause =;
+users.user_column = ssh_access.login;
+users.password_column = ssh_access.crypt;
+users.userid_column = ssh_access.uid;
+users.uid_column = ssh_access.uid;
+users.gid_column = ssh_access.gid;
+users.realname_column = \"DTC User\";
+users.homedir_column = ssh_access.homedir;
+users.shell_column = ssh_access.shell;
+groups.group_info_table = ssh_groups;
+groups.where_clause =;
+groups.group_name_column = ssh_groups.group_name;
+groups.groupid_column = ssh_groups.group_id;
+groups.gid_column = ssh_groups.gid;
+groups.password_column = ssh_groups.group_password;
+groups.members_table = ssh_user_group;
+groups.member_userid_column = ssh_user_group.user_id;
+groups.member_groupid_column = ssh_user_group.group_id;
+" >> $TMP_FILE
+	echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
+	cat <$TMP_FILE >>$PATH_NSS_CONF
+fi
+
+if grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
+then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "$PATH_NSS_ROOT_CONF has been configured before..."
+	fi
+else
+	if ! [ -f $PATH_NSS_ROOT_CONF.DTC.backup ]
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "===> Backuping "$PATH_NSS_ROOT_CONF
+		fi
+		cp -f "$PATH_NSS_ROOT_CONF" "$PATH_NSS_ROOT_CONF.DTC.backup"
+	fi
+	echo "# Configured by DTC : please do not touch this line !" > $TMP_FILE
+	echo "
+shadow.host = inet:localhost:3306;
+shadow.database = dtc;
+shadow.db_user = dtcdaemons;
+shadow.db_password = ${MYSQL_DTCDAEMONS_PASS};
+shadow.backup_host =; 
+shadow.backup_database =; 
+shadow.table = ssh_access;
+shadow.where_clause =;
+shadow.userid_column = ssh_access.uid;
+shadow.user_column = ssh_access.login;
+shadow.password_column = ssh_access.crypt;
+shadow.lastchange_column = UNIX_TIMESTAMP()-10;
+shadow.min_column = 1;
+shadow.max_column = 2;
+shadow.warn_column = 7;
+shadow.inact_column = -1; # disabled
+shadow.expire_column = -1; # disabled
+" >> $TMP_FILE
+	echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
+	cat <$TMP_FILE >>$PATH_NSS_ROOT_CONF
+fi
+
+rm $TMP_FILE
+
+
+#
 # Install the cron php4 script in the $PATH_CRONTAB_CONF
 #
 
@@ -1527,7 +1746,8 @@ else
 fi
 
 echo ""
-echo "Browse to: \"http(s)://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/\""
+echo "Browse to: \"http://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/\""
+echo "    or to: \"https://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/\""
 echo "with login/pass of the main domain admin."
 echo "Remember to relaunch this installer if you"
 echo "install some other mail servers, whatever"

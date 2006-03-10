@@ -5,6 +5,7 @@ $pro_mysql_admin_table = "admin";
 $pro_mysql_subdomain_table = "subdomain";
 $pro_mysql_pop_table = "pop_access";
 $pro_mysql_ftp_table = "ftp_access";
+$pro_mysql_ssh_table = "ssh_access";
 $pro_mysql_client_table = "clients";
 $pro_mysql_command_table = "commande";
 $pro_mysql_new_command_table = "command_new";

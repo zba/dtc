@@ -247,6 +247,19 @@ if [ -e /etc/login.defs ]; then
 	cp /etc/login.defs ./etc/
 fi
 
+# if we have a sudo binary around, then use it to create our chroot shell
+SUDO=`which sudo`
+if [ -n "$SUDO" ] ; then
+	# create a chroot shell script
+	echo "Creating chroot shell script..."
+	SHELL=/bin/dtc-chroot-shell
+	echo '#!/bin/sh' > $SHELL
+	echo "`which sudo` -H `which chroot` \$HOME /bin/su - \$USER" \"\$@\" >> $SHELL
+	chmod 755 $SHELL
+	# fix sudoers
+	# fix /etc/shells
+fi
+
 # set protections
 chmod 1770 tmp
 chmod 1770 var/tmp

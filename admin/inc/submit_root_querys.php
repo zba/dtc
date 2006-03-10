@@ -136,7 +136,7 @@ if(isset($_REQUEST["deluserdomain"]) && $_REQUEST["deluserdomain"] != ""){
 
 	// Tell the cron job to activate the changes
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
-	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes' WHERE 1;";
+	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes' WHERE 1;";
 	mysql_query($adm_query);
 	triggerDomainListUpdate();
 }
@@ -240,7 +240,7 @@ if(isset($_REQUEST["delete_admin_user"]) && $_REQUEST["delete_admin_user"] != ""
 
 	// Tell the cron job to activate the changes
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
-	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes' WHERE 1;";
+	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes' WHERE 1;";
 	mysql_query($adm_query);
 	triggerDomainListUpdate();
 }

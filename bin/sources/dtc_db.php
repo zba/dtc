@@ -11,6 +11,7 @@ $dtc_database = array(
 			"path" => "varchar(128) NOT NULL default '/web/disk4' ",
 			"max_email" => "int(12) NOT NULL default '3' ",
 			"max_ftp" => "int(12) NOT NULL default '3' ",
+			"max_ssh" => "int(12) NOT NULL default '3' ",
 			"quota" => "int(11) NOT NULL default '50' ",
 			"bandwidth_per_month_mb" => "int(11) NOT NULL default '0' ",
 			"id_client" => "int(4) NOT NULL default '0' ",
@@ -145,6 +146,7 @@ $dtc_database = array(
 			"skin" => "varchar(128) NOT NULL default 'green' ",
 			"mta_type" => "enum('qmail','postfix') NOT NULL default 'qmail' ",
 			"domain_based_ftp_logins" => "enum('yes','no') NOT NULL default 'yes' ",
+			"domain_based_ssh_logins" => "enum('yes','no') NOT NULL default 'yes' ",
 			"chroot_path" => "varchar(255) NOT NULL default '/var/www/chroot' ",
 			"main_domain" => "varchar(128) NOT NULL default 'gplhost.com' ",
 			"404_subdomain" => "varchar(128) NOT NULL default '404' ",
@@ -194,6 +196,7 @@ $dtc_database = array(
 			"gen_qmail" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_webalizer" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_backup" => "enum('yes','no') NOT NULL default 'no' ",
+			"gen_ssh" => "enum('yes','no') NOT NULL default 'no' ",
 			"lock_flag" => "enum('inprogress','finished') NOT NULL default 'finished' "
 			),
 		"keys" => array(
@@ -212,6 +215,7 @@ $dtc_database = array(
 			"max_email" => "int(11) NOT NULL default '9' ",
 			"max_lists" => "int(11) NOT NULL default '3'",
 			"max_ftp" => "int(11) NOT NULL default '3' ",
+			"max_ssh" => "int(11) NOT NULL default '3' ",
 			"max_subdomain" => "int(11) NOT NULL default '5' ",
 			"ip_addr" => "varchar(16) NOT NULL default '127.0.0.1' ",
 			"backup_ip_addr" => "varchar(16) default NULL ",
@@ -311,6 +315,69 @@ $dtc_database = array(
 			),
 		"index" => array(
 			"hostname" => "(hostname)"
+			)
+		),
+	"ssh_access" => array(
+		"vars" => array(
+			"login" => "varchar(50) NOT NULL ",
+			"uid" => "int(5) NOT NULL default '65534' ",
+			"gid" => "int(5) NOT NULL default '65534' ",
+			"crypt" => "varchar(50) NOT NULL default '' ",
+			"password" => "varchar(50) NOT NULL default 'passwd' ",
+			"homedir" => "varchar(255) NOT NULL ",
+			"count" => "int(11) NULL default '0' ",
+			"fhost" => "varchar(50) NULL ",
+			"faddr" => "varchar(15) NULL ",
+			"ftime" => "timestamp(14) NULL ",
+			"fcdir" => "varchar(150) NULL ",
+			"fstor" => "int(11) NULL default '0' ",
+			"fretr" => "int(11) NULL default '0' ",
+			"bstor" => "int(11) NULL default '0' ",
+			"bretr" => "int(11) NULL default '0' ",
+			"creation" => "datetime NULL ",
+			"ts" => "timestamp(14) NULL default '00000000000000' ",
+			"frate" => "int(11) NULL default '5' ",
+			"fcred" => "int(2) NULL default '15' ",
+			"brate" => "int(11) NULL default '5' ",
+			"bcred" => "int(2) NULL default '1' ",
+			"flogs" => "int(11) NULL default '0' ",
+			"size" => "int(11) NOT NULL default '0' ",
+			"shell" => "varchar(64) NOT NULL default '/bin/dtc-chroot-shell' ",
+			"hostname" => "varchar(64) NOT NULL default 'anotherlight.com' ",
+			"vhostip" => "varchar(16) NOT NULL default '0.0.0.0' ",
+			"login_count" => "int(11) NOT NULL default '0' ",
+			"last_login" => "datetime NOT NULL default '0000-00-00 00:00:00' ",
+			"dl_bytes" => "int(14) NOT NULL default '0' ",
+			"ul_bytes" => "int(14) NOT NULL default '0' ",
+			"dl_count" => "int(14) NOT NULL default '0' ",
+			"ul_count" => "int(14) NOT NULL default '0' "
+			),
+		"keys" => array(
+			"login" => "(login)"
+			),
+		"index" => array(
+			"hostname" => "(hostname)"
+			)
+		),
+	"ssh_groups" => array(
+		"vars" => array(
+			"group_id" => "int(11) NOT NULL auto_increment",
+			"group_name" => "varchar(30) NOT NULL default ''",
+			"status" => "char(1) default 'A'",
+			"group_password" => "varchar(64) NOT NULL default 'x'",
+			"gid" => "int(11) NOT NULL default '0'"
+			),
+		"keys" => array(
+			"group_id" => "(group_id)"
+			),
+		"index" => array(
+			"gid" => "(gid)"
+			)
+		),
+	"ssh_user_group" => array(
+		"vars" => array(
+			"user_id" => "int(11) NOT NULL default '0'",
+			"group_id" => "int(11) NOT NULL default '0'"
 			)
 		),
 	"ftp_accounting" => array(

@@ -287,6 +287,10 @@ if($cronjob_table_content["gen_webalizer"] == "yes"){
 	echo "Generating Webalizer stats script\n";
 	stat_script_generate();
 }
+if($cronjob_table_content["gen_ssh"] == "yes"){
+	echo "Generating SSH accounts\n";
+	ssh_account_generate();
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // This script should be launched as root, so we have to chown the generated files ! //
@@ -420,7 +424,7 @@ if($keep_dns_generate_flag == "no"){
 	$to_reset .= " gen_named='no', reload_named='no', ";
 }
 
-$query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(), $to_reset  qmail_newu='no', restart_apache='no', gen_vhosts='no', gen_webalizer='no', gen_backup='no' WHERE 1;";
+$query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(), $to_reset  qmail_newu='no', restart_apache='no', gen_vhosts='no', gen_webalizer='no', gen_backup='no', gen_ssh='no' WHERE 1;";
 $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 if($exec_time > 60){
 	$ex_sec = $exec_time % 60;
