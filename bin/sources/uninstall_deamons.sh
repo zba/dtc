@@ -368,3 +368,25 @@ then
         cat < $TMP_FILE >> $PATH_NSS_ROOT_CONF
         rm $TMP_FILE
 fi
+
+if [ -z "$PATH_NSSWITCH_CONF" ]; then
+        PATH_NSSWITCH_CONF=/etc/nsswitch.conf
+fi
+
+# remove the stuff from nsswitch.conf
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+        echo "===> Uninstalling inclusion from $PATH_NSSWITCH_CONF"
+fi
+if grep "Configured by DTC" $PATH_NSSWITCH_CONF >/dev/null 2>&1
+then
+        start_line=`grep -n "Configured by DTC" $PATH_NSSWITCH_CONF | cut -d":" -f1`
+        end_line=`grep -n "End of DTC configuration" $PATH_NSSWITCH_CONF | cut -d":" -f1`
+        nbr_line=`cat $PATH_NSSWITCH_CONF | wc -l`
+        TMP_FILE=`${MKTEMP} DTC_uninstall.nsswitch.XXXXXX` || exit 1
+        cat $PATH_NSSWITCH_CONF | head -n $(($start_line - 1 )) > $TMP_FILE
+        cat $PATH_NSSWITCH_CONF | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
+        cp -f $PATH_NSSWITCH_CONF $PATH_NSSWITCH_CONF.DTC.removed
+        echo -n > $PATH_NSSWITCH_CONF
+        cat < $TMP_FILE >> $PATH_NSS_ROOT_CONF
+        rm $TMP_FILE
+fi

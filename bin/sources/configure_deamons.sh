@@ -60,7 +60,7 @@ if [ -z "$PATH_SUDO" ]; then
 	PATH_SUDO=`which sudo`
 fi
 if [ -z "$PATH_CHROOT" ]; then
-	PATH_CHROOT=`which chroot`
+	PATH_CHROOT=`which chrootuid`
 fi
 if [ -z "$PATH_SHELLS_CONF" ]; then
 	PATH_SHELLS_CONF=/etc/shells
@@ -76,7 +76,7 @@ if [ -n "$PATH_SUDO" ] ; then
         CHROOT_SHELL=/bin/dtc-chroot-shell
         echo '#!/bin/sh' > $CHROOT_SHELL
 	echo "# This shell script is used by DTC, please do not remove" >> $CHROOT_SHELL
-        echo "$PATH_SUDO -H $PATH_CHROOT \$HOME /bin/su - \$USER" \"\$@\" >> $CHROOT_SHELL
+        echo "$PATH_SUDO -H $PATH_CHROOT \$HOME \$USER" /bin/bash \"\$@\" >> $CHROOT_SHELL
         chmod 755 $CHROOT_SHELL
         # fix sudoers
 	if grep "Configured by DTC" $PATH_SUDOERS_CONF >/dev/null
@@ -94,7 +94,7 @@ if [ -n "$PATH_SUDO" ] ; then
 		fi
 		TMP_FILE=`${MKTEMP} DTC_install.sudoers.XXXXXX` || exit 1
 		echo "# Configured by DTC : please do not touch this line !" >> $TMP_FILE
-		echo "nobody      ALL= NOPASSWD: $PATH_CHROOT * /bin/su - *" >> $TMP_FILE
+		echo "nobody      ALL= NOPASSWD: $PATH_CHROOT *" >> $TMP_FILE
 		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 		cat <$TMP_FILE >>$PATH_SUDOERS_CONF
 	fi
@@ -1551,6 +1551,40 @@ fi
 rm $TMP_FILE
 
 #
+# Modify /etc/nsswitch.conf
+#
+TMP_FILE=`${MKTEMP} DTC_install.nsswitch.conf.XXXXXX` || exit 1
+
+if [ -z "$PATH_NSSWITCH_CONF" ]; then
+	PATH_NSSWITCH_CONF=/etc/nsswitch.conf
+fi
+
+if grep "Configured by DTC" $PATH_NSSWITCH_CONF >/dev/null
+then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "$PATH_NSSWITCH_CONF has been configured before..."
+	fi
+else
+	if ! [ -f $PATH_NSSWITCH_CONF.DTC.backup ]
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "===> Backuping "$PATH_NSSWITCH_CONF
+		fi
+		cp -f "$PATH_NSSWITCH_CONF" "$PATH_NSSWITCH_CONF.DTC.backup"
+	fi
+	echo "# Configured by DTC : please do not touch this line !" > $TMP_FILE
+	echo "
+passwd:         compat mysql
+group:          compat mysql
+shadow:         compat mysql
+" >> $TMP_FILE
+	echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
+	cat <$TMP_FILE >>$PATH_NSSWITCH_CONF
+fi
+
+rm $TMP_FILE
+
+#
 # Modify /etc/nss-mysql.conf and /etc/nss-mysql-root.conf
 # 
 
@@ -1609,6 +1643,9 @@ groups.member_groupid_column = ssh_user_group.group_id;
 	cat <$TMP_FILE >>$PATH_NSS_CONF
 fi
 
+# fix perm for the nss root configuration
+chmod 400 $PATH_NSS_CONF
+
 if grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -1646,7 +1683,12 @@ shadow.expire_column = -1; # disabled
 	cat <$TMP_FILE >>$PATH_NSS_ROOT_CONF
 fi
 
+# fix perm for the nss root configuration
+chmod 400 $PATH_NSS_ROOT_CONF
+
 rm $TMP_FILE
+
+
 
 
 #
