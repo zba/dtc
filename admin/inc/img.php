@@ -287,6 +287,9 @@ if(sizeof($addrlink) == 1){
 	case "ftp-accounts":
 		$icon_im = imagecreatefrompng("ftp-accounts.png");
 		break;
+	case "ssh-accounts":
+		$icon_im = imagecreatefrompng("ssh-accounts.png");
+		break;
 	case "adddomain":
 		$icon_im = imagecreatefrompng("adddomain.png");
 		break;
