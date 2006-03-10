@@ -133,20 +133,25 @@ function drawDeamonStates(){
 	if($cron["reload_named"] == "yes")	$state_bind_reload = $pen;
 	else	$state_bind_reload = $done;
  
+	if($cron["gen_ssh"] == "yes")	$state_gen_ssh = $pen;
+	else	$state_gen_ssh = $done;
+ 
 	$out = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"1\" id=\"skinSimpleGreen2Content\">
 <tr>
 	<td align=\"center\" height=\"1\" width=\"16%\"><font color=\"#FFFFFF\">Mail restart</font></td>
-	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Mail-newu</font></td>
-	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Mail gen files</font></td>
-	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Apache restart</font></td>
-	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Bind reload</font></td>
-	<td align=\"center\" width=\"17%\"><font color=\"#FFFFFF\">Next cronjob</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">Mail-newu</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">Mail gen files</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">Apache restart</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">Bind reload</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">SSH gen pass</font></td>
+	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Next cronjob</font></td>
 </tr><tr>
 	<td height=\"1\" align=\"center\">$state_qm_restart</td>
 	<td align=\"center\">$state_qm_newu</td>
 	<td align=\"center\">$state_qm_genfile</td>
 	<td align=\"center\">$state_apa_restart</td>
 	<td align=\"center\">$state_bind_reload</td>
+	<td align=\"center\">$state_gen_ssh</td>
 	<td align=\"center\" style\"white-space:nowrap\" nowrap>$clock</td>
 </tr></table>";
 
