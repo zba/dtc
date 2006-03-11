@@ -1794,6 +1794,7 @@ echo "with login/pass of the main domain admin."
 echo "Remember to relaunch this installer if you"
 echo "install some other mail servers, whatever"
 echo "it is (qmail, postfix, courier, etc...)."
+echo "NOTE: please check sshd_config and then restart ssh"
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo ""
 	echo "Visit DTC Home page"
