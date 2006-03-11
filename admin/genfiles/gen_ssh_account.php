@@ -1,8 +1,10 @@
 <?php
-// this is the file that generates the SSH account details
+
+// this is the file that cleans up a chroot and makes sure it's owned by nobody
+// TODO This doesn't seem to work correctly... 
 function ssh_account_generate()
 {
-	// need to genereate ./etc/shadow ./etc/passwd and ./etc/group for account in chroot
+	// make sure we change all files to be owned by nobody, so that they can't escalate privelages
 	global $pro_mysql_domain_table;
         global $pro_mysql_admin_table;
         global $pro_mysql_subdomain_table;
@@ -37,9 +39,18 @@ function ssh_account_generate()
                 $row = mysql_fetch_array($result) or die ("Cannot fetch user");
 		$web_name = $row["name"];
                 $web_owner = $row["owner"];
-		echo "SSH: $web_name";
-		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default'
-ORDER BY subdomain_name;";
+
+		// Get the owner informations
+                $query2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$web_owner';";
+                $result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
+                $num_rows2 = mysql_num_rows($result2);
+                if($num_rows2 != 1){
+                        die("No user of that name !");
+                }
+                $webadmin = mysql_fetch_array($result2) or die ("Cannot fetch user");
+                $web_path = $webadmin["path"];	
+
+		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default' ORDER BY subdomain_name;";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
 
@@ -48,8 +59,9 @@ ORDER BY subdomain_name;";
 			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
                         $web_subname = $subdomain["subdomain_name"];
 			// now for each of these subdomains, we need to edit the etc/shadow etc and add the users
-
-			echo "SSH: $web_subname";
+			$directory = "$web_path/$web_name/subdomains/$web_subname/";
+			recurse_chown_chgrp($directory, 65534, 65534) ;
+			//$query3 = "SELECT * FROM $pro_mysql_ssh_table WHERE hostname='$web_name' ORDER BY login LIMIT 800";
 		}
 	}
 }
