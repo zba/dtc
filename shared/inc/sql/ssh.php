@@ -41,7 +41,7 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 		$adm_query = " INSERT INTO $pro_mysql_ssh_table
 (login, crypt, password, homedir, count, fhost, faddr, ftime, fcdir, fstor, fretr, bstor, bretr, creation, ts, frate, fcred, brate, bcred, flogs, size, shell, hostname)VALUES
 ('".$_REQUEST["newssh_login"]."', '" . $crypt_ssh_password . "', '".$_REQUEST["newssh_pass"]."', '".$_REQUEST["newssh_path"]."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
-'15', '5','1', NULL, '', '/bin/sh', '$edit_domain') ";
+'15', '5','1', NULL, '', '/bin/dtc-chroot-shell', '$edit_domain') ";
 		// $newssh_login $newssh_pass $edit_domain
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 	}
