@@ -1444,7 +1444,7 @@ fi
 if [ ! -e /usr/lib/cgi-bin/queuegraph.cgi ]; then
 	ln -s $PATH_DTC_ADMIN/queuegraph.cgi /usr/lib/cgi-bin/queuegraph.cgi
 fi
-chown nobody:nogroup /usr/lib/cgi-bin/queuegraph.cgi
+chown nobody:65534 /usr/lib/cgi-bin/queuegraph.cgi
 
 
 # fix path for mailqueues.rrd
@@ -1465,7 +1465,7 @@ else
 
 	# fix path for netusage.rrd
 	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
-	chown nobody:nogroup /usr/lib/cgi-bin/netusegraph.cgi
+	chown nobody:65534 /usr/lib/cgi-bin/netusegraph.cgi
 fi
 
 #
@@ -1479,7 +1479,7 @@ if [ ! -e /usr/lib/cgi-bin/cpugraph.cgi ]; then
 fi
 # fix path for cpugraph.cgi
 perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
-chown nobody:nogroup /usr/lib/cgi-bin/cpugraph.cgi
+chown nobody:65534 /usr/lib/cgi-bin/cpugraph.cgi
 
 
 #
@@ -1493,7 +1493,7 @@ if [ ! -e /usr/lib/cgi-bin/memgraph.cgi ]; then
 fi
 # fix path for memgraph.cgi
 perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
-chown nobody:nogroup /usr/lib/cgi-bin/memgraph.cgi
+chown nobody:65534 /usr/lib/cgi-bin/memgraph.cgi
 
 #
 # Modify the SSH default option to make sure the UsePAM and turn on Password auth
