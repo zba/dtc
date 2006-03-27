@@ -1,5 +1,9 @@
 This will be version 0.18 when released:
 ----------------------------------------
+- Bandwidth calculation is now done in realtime !!!
+
+- Added support for pure-ftpd-mysql
+
 - There is now a fantastico like installer that enables you to
 install phpBB2. Dev team is working on other packages.
 

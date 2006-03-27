@@ -1,4 +1,9 @@
 Here is the todo in unsorted order:
+- Add integration of a billing software (freeside?)
+- Add support for moving domains with one click (save of a domain conf in
+one flat file)
+- Finish the stats each days stuff...
+- Add SSL support for customers
 - Notice: Undefined variable:  last_run_st in
 /usr/share/dtc/shared/inc/accounting.php on line 427
 - Remove the /etc/apache2/ports.conf
@@ -21,7 +26,6 @@ conveinient .dtc file. Import from other (commercial) control panels.
 - Add support for DNS wildcard
 - Add support for Freeradius: now only need to write the user interface
 - Finish resseller interface (enable quota and flag edition of subadmins)
-- Add SSL support for customers
 - Find a SMART way to handle disk quotas
 - Finish tucows API integration: working in Tucows test server, transfer
 of domain names to be finished using the bulk_transfer() function
