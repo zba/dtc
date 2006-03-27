@@ -462,6 +462,15 @@ $dtc_database = array(
                 	"vhost" => "(vhost,month,year,domain)"
 			)
 		),
+	"ip_port_service" => array(
+                "vars" => array(
+                        "id" => "int(11) NOT NULL auto_increment",
+                        "ip" => "varchar(16) NOT NULL ",
+                        "port" => "varchar(16) NOT NULL ",
+                        "service" => "varchar(64) NOT NULL "
+                        ),
+                "primary" => "(id)"
+                ),
 	"mailinglist" => array(
 		"vars" => array(
 			"id" => "int(9) NOT NULL auto_increment",
