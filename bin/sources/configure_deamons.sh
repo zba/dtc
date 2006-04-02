@@ -1799,6 +1799,6 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo ""
 	echo "Visit DTC Home page"
 fi
-echo "http://www.gplhost.com/?rub=softwares&sousrub=dtc"
+echo "http://www.gplhost.com/software-dtc.html"
 
 exit 0
