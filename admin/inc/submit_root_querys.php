@@ -159,6 +159,9 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 	// Check for admin existance
 	// Create admin directorys
+	if(!isFtpLogin($_REQUEST["newadmin_login"])){
+		die("Username not valid: it should be only made of letters and numbers");
+	}
 	$newadmin_path = $_REQUEST["newadmin_path"]."/".$_REQUEST["newadmin_login"];
 	if($conf_demo_version == "no"){
 		$oldumask = umask(0);
