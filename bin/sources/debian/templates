@@ -130,6 +130,14 @@ Description: Mail Transfer Agent Type.
  script parts could be skiped and so your configuration
  will not be fully done.
 
+Template: dtc/conf_use_cyrus
+Type: boolean
+Default: false
+Description: Use cyrus mail system.
+ Do you want to use Cyrus for mail delivery, imap
+ and MTA? This assumes that you are also using
+ Postfix as MTA.
+
 Template: dtc/conf_apache_version
 Type: select
 Choices: 1, 2

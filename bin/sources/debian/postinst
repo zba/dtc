@@ -71,6 +71,8 @@ db_get dtc/conf_mysql_change_root
 conf_mysql_change_root=$RET
 db_get dtc/conf_mta_type
 conf_mta_type=$RET
+db_get dtc/conf_use_cyrus
+conf_use_cyrus=$RET
 db_get dtc/conf_apache_version
 conf_apache_version=$RET
 db_get dtc/main_domainname

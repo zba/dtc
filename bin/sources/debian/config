@@ -17,6 +17,7 @@ db_input high dtc/conf_mysqlpass
 db_input medium dtc/conf_mysqldb
 db_input high dtc/conf_mysql_change_root
 db_input high dtc/conf_mta_type
+db_input high dtc/conf_use_cyrus
 db_input high dtc/conf_apache_version
 db_input medium dtc/main_domainname
 db_input medium dtc/dtc_adminsubdomain
