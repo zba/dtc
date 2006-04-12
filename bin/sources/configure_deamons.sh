@@ -523,7 +523,7 @@ then
 		fi
 	fi
 	touch $PATH_PAMD_SMTP
-	echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
+	echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
 #	if grep "Configured by DTC" $PATH_PAMD_SMTP
 #		echo $PATH_PAMD_SMTP" has been configured before: skiping include insertion!"
 #	else
