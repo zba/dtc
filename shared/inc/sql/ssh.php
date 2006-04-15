@@ -1,11 +1,28 @@
 <?php
 
+function hasSSHLoginFlag($adm_login){
+	global $pro_mysql_admin_table;
+	$q = "SELECT ssh_login_flag FROM $pro_mysql_admin_table WHERE adm_login='$adm_login'";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$a = mysql_fetch_array($r);
+	if($a["ssh_login_flag"] != "yes"){
+		return false;
+	}else{
+		return true;
+	}
+}
+
 /////////////////////////////
 // SSH accounts management //
 /////////////////////////////
 if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	$adm_path = getAdminPath($adm_login);
+
+	if(!hasSSHLoginFlag($adm_login)){
+		$submit_err .= "You don't have the SSH login flag!";
+		$commit_flag = "no";
+	}
 
 	if(!ereg("^$adm_path",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
 		$submit_err .= "Your path is restricted to $adm_path<br>\n";
@@ -43,7 +60,7 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 ('".$_REQUEST["newssh_login"]."', '" . $crypt_ssh_password . "', '".$_REQUEST["newssh_pass"]."', '".$_REQUEST["newssh_path"]."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
 '15', '5','1', NULL, '', '/bin/dtc-chroot-shell', '$edit_domain') ";
 		// $newssh_login $newssh_pass $edit_domain
-		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
 	updateUsingCron("gen_ssh='yes'");
 }
@@ -51,6 +68,10 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 // $edssh_account $edit_domain
 if(isset($_REQUEST["deletesshaccount"]) && $_REQUEST["deletesshaccount"] == "Delete"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+	if(!hasSSHLoginFlag($adm_login)){
+		$submit_err .= "You don't have the SSH login flag!";
+		$commit_flag = "no";
+	}
 	$adm_query = "DELETE FROM $pro_mysql_ssh_table WHERE hostname='$edit_domain' AND login='".$_REQUEST["edssh_account"]."' LIMIT 1;";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 	updateUsingCron("gen_ssh='yes'");
@@ -60,6 +81,11 @@ if(isset($_REQUEST["deletesshaccount"]) && $_REQUEST["deletesshaccount"] == "Del
 if(isset($_REQUEST["update_ssh_account"]) && $_REQUEST["update_ssh_account"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	$adm_path = getAdminPath($adm_login);
+
+	if(!hasSSHLoginFlag($adm_login)){
+		$submit_err .= "You don't have the SSH login flag!";
+		$commit_flag = "no";
+	}
 
 	if(0 != strncmp($adm_path,$_REQUEST["edssh_path"],strlen($adm_path)-1) || strstr($_REQUEST["edssh_path"],'..') || strstr($_REQUEST["edssh_path"],"'") || strstr($_REQUEST["edssh_path"],"\\")){
 		$submit_err .= "Your path is restricted to &quot;$adm_path&quot;<br>\n";

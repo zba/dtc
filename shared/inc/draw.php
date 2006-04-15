@@ -111,6 +111,7 @@ function drawAdminTools($admin){
 	$adm_cur_pass 	= $admin_info["adm_pass"];
 	$adm_path 	= $admin_info["path"];
 	$resseller_flag = $admin_info["resseller_flag"];
+	$ssh_login_flag = $admin_info["ssh_login_flag"];
 
 	unset($user_ZEmenu);
 	$user_ZEmenu[] = array(
@@ -174,10 +175,12 @@ function drawAdminTools($admin){
 				"text" => $txt_cmenu_ftpaccounts[$lang],
 				"type" => "link",
 				"link" => "ftp-accounts");
-			$domain_conf_submenu[] = array(
+                        if($ssh_login_flag == "yes"){
+			  $domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_sshaccounts[$lang],
 				"type" => "link",
 				"link" => "ssh-accounts");
+                        }
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_packageinstaller[$lang],
 				"type" => "link",

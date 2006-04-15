@@ -256,6 +256,20 @@ $txt_can_have_subadmins_reseller = array(
 	"pt" => "Privilégios para gerir contas secundárias (revendedor) :"
 	);
 
+$txt_can_have_ssh_login_for_vhosts = array(
+  "fr" => "Autorisé l'ajout de comptes vhosts SSH :",
+  "en" => "Allow addition of SSH logins:",
+  "hu" => "TRANS Allow addition of SSH vhosts logins:",
+  "it" => "TRANS Allow addition of SSH vhosts logins:",
+  "nl" => "TRANS Allow addition of SSH vhosts logins:",
+  "ru" => "TRANS Allow addition of SSH vhosts logins:",
+  "de" => "TRANS Allow addition of SSH vhosts logins:",
+  "zh" => "TRANS Allow addition of SSH vhosts logins:",
+  "pl" => "TRANS Allow addition of SSH vhosts logins:",
+  "es" => "TRANS Allow addition of SSH vhosts logins:",
+  "pt" => "TRANS Allow addition of SSH vhosts logins:"
+  );
+
 $txt_heb_prod_id = array(
 	"fr" => "Numéro de produit :",
 	"en" => "Product ID:",

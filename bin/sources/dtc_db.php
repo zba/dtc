@@ -22,6 +22,7 @@ $dtc_database = array(
 			"allow_add_domain" => "enum('yes','no','check') NOT NULL default 'check' ",
 			"nbrdb" => "int(9) NOT NULL default '1' ",
 			"resseller_flag" => "enum('yes','no') NOT NULL default 'no' ",
+			"ssh_login_flag" => "enum('yes','no') NOT NULL default 'no'",
 			"ob_head" => "varchar(64) NOT NULL ",
 			"ob_tail" => "varchar(64) NOT NULL ",
 			"ob_next" => "varchar(64) NOT NULL "

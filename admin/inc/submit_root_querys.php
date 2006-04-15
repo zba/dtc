@@ -150,9 +150,10 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 		quota='".$_REQUEST["adm_quota"]."', bandwidth_per_month_mb='".$_REQUEST["bandwidth_per_month"]."',
 		expire='".$_REQUEST["expire"]."',allow_add_domain='".$_REQUEST["allow_add_domain"]."',
 		nbrdb='".$_REQUEST["nbrdb"]."',
-		resseller_flag='".$_REQUEST["resseller_flag"]."'
+		resseller_flag='".$_REQUEST["resseller_flag"]."',
+		ssh_login_flag='".$_REQUEST["ssh_login_flag"]."'
 		WHERE adm_login='$adm_login';";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." ".mysql_error());
 }
 
 // $newadmin_login $newadmin_pass $newadmin_path $newadmin_maxemail $newadmin_maxftp $newadmin_quota

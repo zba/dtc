@@ -20,6 +20,7 @@ function drawEditAdmin($admin){
 	global $txt_expiration_date;
 	global $txt_heb_prod_id;
 	global $txt_can_have_subadmins_reseller;
+	global $txt_can_have_ssh_login_for_vhosts;
 	global $txt_allow_to_add_domains;
 	global $txt_number_of_database;
 
@@ -46,6 +47,7 @@ function drawEditAdmin($admin){
 
 	$allow_add_domain = $info["allow_add_domain"];
 	$resseller_flag = $info["resseller_flag"];
+	$ssh_login_flag = $info["ssh_login_flag"];
 
 	if($resseller_flag == "yes"){
 		$resflag_yes = " checked ";
@@ -56,6 +58,16 @@ function drawEditAdmin($admin){
 	}
 	$res_selector = "<input type=\"radio\" name=\"resseller_flag\" value=\"yes\"$resflag_yes> Yes
 	<input type=\"radio\" name=\"resseller_flag\" value=\"no\"$resflag_no> No";
+
+	if($ssh_login_flag == "yes"){
+		$sshlogin_yes = " checked ";
+		$sshlogin_no = "";
+	}else{
+		$sshlogin_yes = "";
+		$sshlogin_no = " checked ";
+	}
+	$sshlog_selector = "<input type=\"radio\" name=\"ssh_login_flag\" value=\"yes\"$sshlogin_yes> Yes
+	<input type=\"radio\" name=\"ssh_login_flag\" value=\"no\"$sshlogin_no> No";
 
 	if($allow_add_domain == "yes")	$adyes = "selected";	else $adyes = "";
 	if($allow_add_domain == "check")$adcheck = "selected";	else $adcheck = "";
@@ -99,6 +111,8 @@ function drawEditAdmin($admin){
 	<td>$aldom_popup</td></tr>
 	<tr><td align=\"right\">".$txt_can_have_subadmins_reseller[$lang]."</td>
 	<td>$res_selector</td></tr>
+	<tr><td align=\"right\">".$txt_can_have_ssh_login_for_vhosts[$lang]."</td>
+	<td>$sshlog_selector</td></tr>
 	<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
 </td></tr></table></form>";
 
