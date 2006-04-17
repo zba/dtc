@@ -1,5 +1,31 @@
 <?php
 
+$txt_parking_popup_legend = array(
+  "fr" => "Ce domaine sera l'alias du domaine suivant (parking de domaine) :",
+  "en" => "This domain will be the alias of the following domain (domain parking):",
+  "hu" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "it" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "nl" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "ru" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "de" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "zh" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "pl" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "es" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "pt" => "TRANS This domain will be the alias of the following domain (domain parking):");
+
+$txt_no_parking_popup_text = array(
+  "fr" => "Pas de parking",
+  "en" => "No parking",
+  "hu" => "TRANS No parking",
+  "it" => "TRANS No parking",
+  "nl" => "TRANS No parking",
+  "ru" => "TRANS No parking",
+  "de" => "TRANS No parking",
+  "zh" => "TRANS No parking",
+  "pl" => "TRANS No parking",
+  "es" => "TRANS No parking",
+  "pt" => "TRANS No parking");
+
 $txt_register_custom_message_title = array(
   "fr" => "Laisser un message a l'administrateur pour indiquer des eventuels specificités pour votre compte:",
         "en" => "Leave a message to tell any specific requirements you might have for your account:",

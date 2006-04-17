@@ -349,10 +349,12 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 		$domain["other_mx"] = $row["other_mx"];
 		$domain["whois"] = $row["whois"];
 		$domain["hosting"] = $row["hosting"];
+		$domain["du_stat"] = $row["du_stat"];
 		$domain["gen_unresolved_domain_alias"] = $row["gen_unresolved_domain_alias"];
 		$domain["txt_root_entry"] = $row["txt_root_entry"];
 		$domain["txt_root_entry2"] = $row["txt_root_entry2"];
 		$domain["catchall_email"] = $row["catchall_email"];
+		$domain["domain_parking"] = $row["domain_parking"];
 
 		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$name';";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");

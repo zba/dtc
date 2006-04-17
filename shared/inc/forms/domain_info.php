@@ -16,11 +16,15 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	global $txt_confirurate_your_domain_name;
 	global $txt_total_transfered_bytes_this_month;
 	global $txt_are_disk_usage;
+	global $txt_no_parking_popup_text;
+	global $txt_parking_popup_legend;
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
 	global $dtcshared_path;
 	global $conf_administrative_site;
+
+	global $pro_mysql_domain_table;
 
 	$out = "";
 
@@ -33,14 +37,19 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	$max_email = $eddomain["max_email"];
 	$max_ftp = $eddomain["max_ftp"];
 	$max_subdomain = $eddomain["max_subdomain"];
+	$domain_parking = $eddomain["domain_parking"];
 
 	$adm_path = $admin["info"]["path"];
 	$webname = $eddomain["name"];
 
 	// Retrive disk usage
-	$du_string = exec("du -sm $adm_path/$webname --exclude=access.log",$retval);
-	$du_state = explode("\t",$du_string);
-	$du = $du_state[0];
+//	$du_string = exec("du -sm $adm_path/$webname --exclude=access.log",$retval);
+//	$du_state = explode("\t",$du_string);
+//	$du = $du_state[0];
+
+	// The upper version might be too slow and give a bad feeling to the user. This one should be a lot better:
+	$du_stat = $eddomain["du_stat"];
+	$du = $du_stat;
 
 	// Retrive number of mailbox
 	if(isset($eddomain["emails"]))	$email_nbr = sizeof($eddomain["emails"]);
@@ -60,7 +69,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 
 	$out .= "<b><u>".$txt_your_domain[$lang]."</u></b><br>
 	".$txt_total_transfered_bytes_this_month[$lang]." $total_transfer<br>
-	".$txt_are_disk_usage[$lang]." $du / $quota MBytes<br>
+	".$txt_are_disk_usage[$lang]." ".smartByte($du)." / $quota MBytes<br>
 	".$txt_your_domain_email[$lang]." $email_nbr / $max_email<br>
 	".$txt_your_domain_ftp[$lang]." $ftp_nbr / $max_ftp<br>
 	".$txt_your_domain_subdomain[$lang]." $subdomain_nbr /
@@ -84,8 +93,31 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 <input type=\"radio\" name=\"domain_gen_unresolv_alias\" value=\"yes\"$radio_yes>Yes
 <input type=\"radio\" name=\"domain_gen_unresolv_alias\" value=\"no\"$radio_no>No
 <input type=\"hidden\" name=\"change_unresolv_alias\" value=\"Ok\">
-<input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
+<input type=\"image\" src=\"gfx/stock_apply_20.png\"></form><br>";
 
+	$out .= $txt_parking_popup_legend[$lang];
+	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
+<input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"set_domain_parcking\" value=\"Ok\">
+<select name=\"domain_parking_value\">
+<option value=\"no-parking\">".$txt_no_parking_popup_text[$lang]."</option>
+";
+	$q = "SELECT name FROM $pro_mysql_domain_table WHERE owner='$adm_login' AND domain_parking='no-parking' AND name NOT LIKE '".$_REQUEST["addrlink"]."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." in file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if($domain_parking == $a["name"]){
+			$checked = " selected ";
+		}else{
+			$checked = "";
+		}
+		$out .= "<option value=\"".$a["name"]."\"$checked>".$a["name"]."</option>";
+	}
+
+	$out .= "</select><input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
 /*	if(file_exists($dtcshared_path."/dtcrm")){
 		$out .= "<b><u>Domain registration info:</u></b><br><br>";
 		if($eddomain["whois"] = "away"){
