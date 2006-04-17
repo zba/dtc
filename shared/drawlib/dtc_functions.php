@@ -221,7 +221,7 @@ function isDatabase($db){
 function isMailPassword($login){
 //	$reg = '^([<>()\\\/\?_\[;,;:%\^@"!a-zA-Z0-9-]){4,16}$';
 	$reg = "^([_.a-zA-Z0-9-]){1,64}\$";
-        if(!ereg($reg,$pass))   return false;
+        if(!ereg($reg,$login))   return false;
 	else                    return true;
 }
 
