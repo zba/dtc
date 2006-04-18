@@ -158,6 +158,7 @@ function named_generate(){
 		$web_owner = $row["owner"];
 		$web_serial_flag = $row["generate_flag"];
 		$ip_addr = $row["ip_addr"];
+		$domain_parking = $row["domain_parking"];
 		
 		// Get DNS addresses from database. Switch to $conf_* values if "default" is found
 		if($row["primary_dns"] == "default"){
@@ -249,12 +250,30 @@ function named_generate(){
 		$webadmin = mysql_fetch_array($result2) or die ("Cannot fetch user");
 		$web_path = $webadmin["path"];
 
+		// This should handle domain parking: need to get the target IP addr
+		if($domain_parking != "no-parking"){
+			$domain_to_get = $domain_parking;
+			$qp = "SELECT ip_addr FROM $pro_mysql_domain_table WHERE name='$domain_parking'";
+			$rp = mysql_query($qp)or die("Cannot query $qp line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$np = mysql_num_rows($rp);
+			if($np != 1){
+				echo "WARNING: error in your SQL table: target domain does not exists, will cancel domain parking!!!");
+				$domain_to_get = $web_name;
+				$domain_parking = "no-parking";
+			}else{
+				$ap = mysql_fetch_array($rp);
+				$ip_addr = $ap["ip_addr"];
+			}
+		}else{
+			$domain_to_get = $web_name;
+		}
+
 		// Grab all subdomains
-		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' ORDER BY subdomain_name;";
+		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_to_get' ORDER BY subdomain_name;";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
 		if($num_rows2 < 1){
-			die("No subdomain for domain $web_name !");
+			echo("WARNING: No subdomain for domain $domain_to_get !!!");
 		}
 		if($conf_use_multiple_ip == "yes"){
 			$ip_to_write = $ip_addr;
@@ -262,7 +281,7 @@ function named_generate(){
 			$ip_to_write = $conf_main_site_ip;
 		}
 		if($row["primary_dns"] == "default"){
-		$named_file .= "zone \"$web_name\" IN {
+			$named_file .= "zone \"$web_name\" IN {
 	type master;
 	$allow_xfer
 	allow-query { any; };
