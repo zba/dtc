@@ -203,6 +203,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$ip_addr = $row["ip_addr"];
 		$domain_safe_mode = $row["safe_mode"];
 		$domain_sbox_protect = $row["sbox_protect"];
+		$domain_parking = $row["domain_parking"];
 		unset($backup_ip_addr);
 		if (isset($row["backup_ip_addr"])){
 			$backup_ip_addr = $row["backup_ip_addr"];
@@ -211,16 +212,13 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			unset($backup_ip_addr);
 		} 
 		// need to check if we have a NameVirtualHost entry for this backup IP, to support multiple backup sites on one IP
-		if (isset($backup_ip_addr))
-		{
-			if (test_valid_local_ip($backup_ip_addr) && !ereg("Listen ".$backup_ip_addr.":80", $vhost_file_listen))
-			{
+		if (isset($backup_ip_addr)){
+			if (test_valid_local_ip($backup_ip_addr) && !ereg("Listen ".$backup_ip_addr.":80", $vhost_file_listen)){
 				$vhost_file_listen .= "Listen ".$backup_ip_addr.":80\n";
 			} else {
 				$vhost_file_listen .= "#Listen ".$backup_ip_addr.":80\n";
 			}
-			if (!ereg("NameVirtualHost $backup_ip_addr", $vhost_file))	
-			{
+			if (!ereg("NameVirtualHost $backup_ip_addr", $vhost_file)){
 				$vhost_file .= "NameVirtualHost ".$backup_ip_addr.":80\n";
 			}
 		}
@@ -244,11 +242,18 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$webadmin = mysql_fetch_array($result2) or die ("Cannot fetch user");
 		$web_path = $webadmin["path"];
 
+		if($domain_parking != "no-parking" && $web_name != $conf_main_domain){
+			$domain_to_get = $domain_parking;
+		}else{
+			$domain_to_get = $web_name;
+		}
+
 		// Grab all subdomains
-		if($web_name == $conf_main_domain)
+		if($web_name == $conf_main_domain){
 			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default' AND subdomain_name!='$conf_404_subdomain' ORDER BY subdomain_name;";
-		else
-			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default' ORDER BY subdomain_name;";
+		}else{
+			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$$domain_to_get' AND ip='default' ORDER BY subdomain_name;";
+		}
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
 // This is a bad idea to die in this case
@@ -363,46 +368,52 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 // --- Start of the conf of server users subdomain ---
 // ---------------------------------------------------
 			} else {
-				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
-				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
-				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
-				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
-				$vhost_more_conf = "";
-				if($subdomain["register_globals"] == "yes"){
-					$vhost_more_conf .= "	php_admin_value register_globals 1\n";
-				}
-				if($web_subname == "$web_default_subdomain"){
-					$vhost_more_conf .= "	ServerAlias $web_name\n";
-				}
-
-				// if we want to generate a backup IP (transitional)
-				// need to loop through this one
-				$gen_iterations = 1;
-				if (isset($backup_ip_addr))
-				{
-					$gen_iterations++;
-				}
-
-				// Sbox and safe mode protection values
-				if($domain_safe_mode == "no" && $subdomain["safe_mode"] == "no"){
-					$safe_mode_value = "0";
+				// Generate a permanet redirect for all subdomains of target if using a domain parking
+				if($domain_parking != "no-parking"){
+					$vhost_file .= "<VirtualHost ".$ip_to_write.":80>
+	ServerName $web_subname.$web_name
+	Redirect permanent / http://$web_subname.$domain_parking/
+</VirtualHost>\n\n";
 				}else{
-					$safe_mode_value = "1";
-				}
-				if($domain_sbox_protect == "no" && $subdomain["sbox_protect"] == "no"){
-					$cgi_directive = "ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin";
-				}else{
-					$cgi_directive = "RewriteEngine on
-	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]";
-				}
-
-				for ($k = 0; $k < $gen_iterations; $k++){
-					if ($k == 0 && isset($backup_ip_addr)) {
-						$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
-					} else {
-						$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
+					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
+					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
+					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
+					$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
+					$vhost_more_conf = "";
+					if($subdomain["register_globals"] == "yes"){
+						$vhost_more_conf .= "	php_admin_value register_globals 1\n";
 					}
-					$vhost_file .= "	ServerName $web_subname.$web_name
+					if($web_subname == "$web_default_subdomain"){
+						$vhost_more_conf .= "	ServerAlias $web_name\n";
+					}
+
+					// if we want to generate a backup IP (transitional)
+					// need to loop through this one
+					$gen_iterations = 1;
+					if (isset($backup_ip_addr)){
+						$gen_iterations++;
+					}
+
+					// Sbox and safe mode protection values
+					if($domain_safe_mode == "no" && $subdomain["safe_mode"] == "no"){
+						$safe_mode_value = "0";
+					}else{
+						$safe_mode_value = "1";
+					}
+					if($domain_sbox_protect == "no" && $subdomain["sbox_protect"] == "no"){
+						$cgi_directive = "ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin";
+					}else{
+						$cgi_directive = "RewriteEngine on
+	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]";
+					}
+
+					for ($k = 0; $k < $gen_iterations; $k++){
+						if ($k == 0 && isset($backup_ip_addr)) {
+							$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
+						} else {
+							$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
+						}
+						$vhost_file .= "	ServerName $web_subname.$web_name
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html/
 $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
@@ -421,10 +432,11 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 </VirtualHost>
 
 ";
-					$num_generated_vhosts += $num_rows2;
+						$num_generated_vhosts += $num_rows2;
+					}
 				}
 			}
-        }
+	        }
 	}
 
 	// Ecriture du fichier
