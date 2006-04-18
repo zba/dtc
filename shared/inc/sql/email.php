@@ -162,7 +162,6 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 
 	$admin_path = getAdminPath($adm_login);
 	$box_path = "$admin_path/$edit_domain/Mailboxs/".$_REQUEST["edit_mailbox"];
-	echo "Box path: $box_path";
 	if(isset($_REQUEST["editmail_vacation_flag"]) && $_REQUEST["editmail_vacation_flag"] == "yes"){
 		$vacflag="yes";
 	}else{

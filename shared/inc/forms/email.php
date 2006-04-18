@@ -414,6 +414,11 @@ function drawAdminTools_Emails($domain){
                                 $spam_checkbox_state = "";
                         }
 			$spam_mailbox = $email["spam_mailbox"];
+			if($email["vacation_flag"] == "yes"){
+				$checkbox_vacation_state = " checked ";
+			}else{
+				$checkbox_vacation_state = "";
+			}
 		}
 		if($i != 0){
 			$allmail_list .= " - ";
@@ -470,7 +475,7 @@ function drawAdminTools_Emails($domain){
 <td align=\"right\">".$txt_mail_spam_mailbox[$lang]."</td><td><input type=\"text\" name=\"editmail_spam_mailbox\" value=\"$spam_mailbox\"></td>
 </tr>
 <tr>
-<td align=\"right\">Send vacation message:</td><td colspan=\"3\"><input type=\"checkbox\" name=\"editmail_vacation_flag\" value=\"yes\"$spam_vacation_state></td>
+<td align=\"right\">Send vacation message:</td><td colspan=\"3\"><input type=\"checkbox\" name=\"editmail_vacation_flag\" value=\"yes\"$checkbox_vacation_state></td>
 </tr><tr>
 <td align=\"right\">Vacation message:</td><td colspan=\"3\"><textarea name=\"editmail_vacation_text\"></textarea></td>
 </tr>
