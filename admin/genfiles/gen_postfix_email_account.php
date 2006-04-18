@@ -130,6 +130,14 @@ function mail_account_generate_postfix(){
 			$catch_all_id = $domain["catchall_email"];
 			$abuse_address = 0;
 			$postmaster_address = 0;
+			// This should handle domain parking without a lot of code! :)
+			if($domain["domain_parking"] != "no-parking"){
+				for($b=0;$b<$nbr_domain;$b++){
+					if($data[$b]["name"] == $domain["domain_parking"]){
+						$domain["emails"] = $data[$b]["emails"];
+					}
+				}
+			}
 			if(isset($domain["emails"]) && $primary_mx){
 				$emails = $domain["emails"];
 				$nbr_boites = sizeof($emails);
@@ -154,12 +162,10 @@ function mail_account_generate_postfix(){
 					$spam_stuff_done = 0;
 
 					// if we have a $id equal to abuse
-					if ($id == "abuse")
-					{
+					if ($id == "abuse"){
 						$abuse_address = 1;
 					}
-					if ($id == "postmaster")
-					{
+					if ($id == "postmaster"){
 						$postmaster_address = 1;
 					}
 					# first try and see if we have postfix in a chroot, else just put it in it's default location

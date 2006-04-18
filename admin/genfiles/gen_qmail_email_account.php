@@ -105,11 +105,20 @@ function mail_account_generate_qmail(){
 				$catch_all = $domain["catchall_email"];
 				$nbr_boites = sizeof($emails);
 				$catch_all_flag = "no";
+				// Handles all domain parking nicely
+				if($domain["domain_parking"] != "no-parking"){
+					for($b=0;$b<$nbr_domain;$b++){
+						if($data[$b]["name"] == $domain["domain_parking"]){
+							$domain["emails"] = $data[$b]["emails"];
+						}
+					}
+				}
+				// Loop for all mailboxes
 				for($k=0;$k<$nbr_boites;$k++){
 					$email = $emails[$k];
 					$id = $email["id"];
 					$home = $email["home"];
-					$box_path = "$admin_path/Mailboxs/$id";
+//					$box_path = "$admin_path/Mailboxs/$id";
 					$qmail_id = strtr($id,".",":");
 					$passwdtemp = $email["passwd"];
 					$passwd = crypt($passwdtemp);

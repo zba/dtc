@@ -513,6 +513,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 //                      ["max_subdomain"]
 //                      ["ip_addr"]
 //                      ["backup_ip_addr"]
+//			["domain_parking"]
 //                      ["subdomains"][0-n]["name"]
 //                                         ["path"]
 //                                         ["ip"]
