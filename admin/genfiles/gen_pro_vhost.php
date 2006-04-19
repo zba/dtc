@@ -252,7 +252,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		if($web_name == $conf_main_domain){
 			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default' AND subdomain_name!='$conf_404_subdomain' ORDER BY subdomain_name;";
 		}else{
-			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$$domain_to_get' AND ip='default' ORDER BY subdomain_name;";
+			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_to_get' AND ip='default' ORDER BY subdomain_name;";
 		}
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
@@ -264,6 +264,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		for($j=0;$j<$num_rows2;$j++){
 			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
+
+//			$console .= "Working on $web_subname.$web_name\n";
 
 			// if we explicitly don't want to generate a vhost entry for this subdomain
 			if (isset($subdomain["generate_vhost"]) && $subdomain["generate_vhost"] == "no")
@@ -370,6 +372,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			} else {
 				// Generate a permanet redirect for all subdomains of target if using a domain parking
 				if($domain_parking != "no-parking"){
+					$console .= "Making domain parking for $web_subname.$web_name\n";
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":80>
 	ServerName $web_subname.$web_name
 	Redirect permanent / http://$web_subname.$domain_parking/
