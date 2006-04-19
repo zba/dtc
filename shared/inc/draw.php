@@ -145,6 +145,7 @@ function drawAdminTools($admin){
 	for($i=0;$i<$nbr_domain;$i++){
 
 		$dom = $admin_data[$i]["name"];
+		$domain_parking = $admin_data[$i]["domain_parking"];
 
 		unset($domain_conf_submenu);
 
@@ -166,11 +167,11 @@ function drawAdminTools($admin){
 			"link" => "dns");
 
 		if($admin_data[$i]["primary_dns"] == "default"){
+		  if($domain_parking == "no-parking"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_subdomains[$lang],
 				"type" => "link",
 				"link" => "subdomains");
-
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_ftpaccounts[$lang],
 				"type" => "link",
@@ -185,14 +186,15 @@ function drawAdminTools($admin){
 				"text" => $txt_cmenu_packageinstaller[$lang],
 				"type" => "link",
 				"link" => "package-installer");
+                  }
 		}
-		if($admin_data[$i]["primary_mx"] == "default"){
+		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_mailboxs[$lang],
 				"type" => "link",
 				"link" => "mailboxs");
 		}
-		if($admin_data[$i]["primary_mx"] == "default"){
+		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_mailinglists[$lang],
 				"type" => "link",

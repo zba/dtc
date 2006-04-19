@@ -257,7 +257,7 @@ function named_generate(){
 			$rp = mysql_query($qp)or die("Cannot query $qp line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$np = mysql_num_rows($rp);
 			if($np != 1){
-				echo "WARNING: error in your SQL table: target domain does not exists, will cancel domain parking!!!");
+				echo "WARNING: error in your SQL table: target domain does not exists, will cancel domain parking!!!";
 				$domain_to_get = $web_name;
 				$domain_parking = "no-parking";
 			}else{
