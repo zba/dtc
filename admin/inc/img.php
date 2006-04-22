@@ -59,6 +59,20 @@ if($_REQUEST["lang"] == "zh"){
 	}
 	imagettftext ( $im, 11, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, "/usr/share/dtc/client/inc/ukai.ttf", $utf );
 //	ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
+}else if($_REQUEST["lang"] == "pl"){
+	$utf= iconv("ISO-8859-2","UTF-8",$_REQUEST["text"]);
+	$font = 2;
+	if($color == 0){
+		$text_color = ImageColorAllocate ($im, 0x00, 0x00, 0x0);
+		$txt_x_pos = 25+16;
+		$txt_y_pos = 22;
+//		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos+1,  $_REQUEST["text"], $black_color);
+	}else if($color == 1){
+		$text_color = ImageColorAllocate ($im, 0x44, 0x44, 0xCC);
+		$txt_x_pos = 26+16;
+		$txt_y_pos = 23;
+	}
+	imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, "/usr/share/dtc/client/inc/verdana.ttf", $utf );
 }else{
 	$font = 2;
 	if($color == 0){
