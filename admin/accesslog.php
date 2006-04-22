@@ -110,6 +110,48 @@ function make_stats(){
 	}
 }
 
-make_stats();
+function make_log_archive (){
+	global $conf_mysql_db;
+	global $pro_mysql_domain_table;
+	global $dtcshared_path;
+
+	$today_midnight = mktime(0,0,0);
+
+	$q = "SELECT admin.adm_login,admin.path,subdomain.subdomain_name,domain.name
+	FROM admin,domain,subdomain
+	WHERE domain.owner=admin.adm_login
+	AND subdomain.domain_name=domain.name
+	AND subdomain.ip='default'
+	AND subdomain.generate_vhost='yes'
+	ORDER BY admin.adm_login,domain.name,subdomain.subdomain_name";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	$cur_year = date("Y");
+	$cur_month = date("m");
+	$last_year = $cur_year - 1;
+	$before_last_year = $last_year - 1;
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/logs";
+		for($j=0;$j<12;$j++){
+			$m = $cur_month + $j;
+			if($m > 12){
+				$m = $m - 12;
+				$year = $cur_year;
+			}else{
+				$year = $last_year;
+			}
+			if(strlen($m) < 2)	$m = "0".$m;
+			// If the month folder exists, do the archive...
+			echo "Testing $year $m for vhost ".$a["subdomain_name"].".".$a["name"].": $fullpath/$year/$m\n";
+			if(is_dir($fullpath."/".$year."/".$m)){
+				echo " Founded directory: compressing logs!\n";
+			}
+		}
+	}
+}
+
+//make_stats();
+make_log_archive();
 
 ?>
