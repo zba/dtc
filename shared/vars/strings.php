@@ -35,7 +35,7 @@ $txt_register_custom_message_title = array(
         "ru" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
         "de" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
         "zh" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
-        "pl" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+        "pl" => "Napisz nam jakich szczegó³owych uprawnieñ <br/>potrzebujesz dla swojego konta:",
         "es" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
         "pt" => "TRANS Leave a message to tell any specific requirements you might have for your account:"
 );
@@ -49,7 +49,7 @@ $txt_go_to_client_panel = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "½øÈë¹Ë¿ÍÃæ°å",
-        "pl" => "TRANS",
+        "pl" => "Panel klienta",
         "es" => "Ir al panel de cliente",
 		"pt" => "Ir para a área de clientes"
 		);
@@ -63,9 +63,9 @@ $txt_no = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "·ñ",
-        "pl" => "TRANS",
+        "pl" => "Nie",
         "es" => "No",
-		"pt" => "Não"
+	"pt" => "Não"
 		);
 
 $txt_yes = array(
@@ -77,9 +77,9 @@ $txt_yes = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "ÊÇ",
-        "pl" => "TRANS",
+        "pl" => "Tak",
         "es" => "Sí",
-		"pt" => "Sim"
+	"pt" => "Sim"
 		);
 
 $txt_is_company = array(
@@ -91,9 +91,9 @@ $txt_is_company = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "ÊÇ¹«Ë¾Âð?",
-        "pl" => "TRANS",
+        "pl" => "Firma ",
         "es" => "Es una empresa",
-		"pt" => "Pertence a uma empresa?"
+	"pt" => "Pertence a uma empresa?"
 		);
 
 $txt_desired_domain_name = array(
@@ -101,13 +101,13 @@ $txt_desired_domain_name = array(
         "en" => "Desired domain name",
         "hu" => "Igényelt domain név",
         "it" => "Nome dominio desiderato",
-        "nl" => "TRANS",
-        "ru" => "TRANS",
-        "de" => "TRANS",
+        "nl" => "TRANS nl",
+        "ru" => "TRANS ru",
+        "de" => "TRANS de",
         "zh" => "Ñ¡ÔñÓòÃû",
-        "pl" => "TRANS",
+        "pl" => "Nazwa domeny",
         "es" => "Nombre de dominio deseado",
-		"pt" => "Nome do dominio pretendido"
+	"pt" => "Nome do dominio pretendido"
 		);
 
 $txt_confirm_pass = array(
@@ -119,9 +119,9 @@ $txt_confirm_pass = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "È·ÈÏÃÜÂë",
-        "pl" => "TRANS",
+        "pl" => "Powtórz has³o",
         "es" => "confirmar contraseña",
-		"pt" => "Confirmação da palavra chave"
+	"pt" => "Confirmação da palavra chave"
 		);
 
 $txt_login_info = array(
@@ -133,9 +133,9 @@ $txt_login_info = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "×¢²áÐÅÏ¢",
-        "pl" => "TRANS",
+        "pl" => "Login info",
         "es" => "información de acceso",
-		"pt" => "Informação do utilizador para acesso"
+	"pt" => "Informação do utilizador para acesso"
 		);
 
 $txt_product = array(
@@ -147,9 +147,9 @@ $txt_product = array(
         "ru" => "TRANS",
         "de" => "TRANS",
         "zh" => "²úÆ·",
-        "pl" => "TRANS",
+        "pl" => "Produkt",
         "es" => "producto",
-		"pt" => "produto"
+	"pt" => "produto"
 		);
 
 $txt_go_to_login = array(
@@ -162,8 +162,8 @@ $txt_go_to_login = array(
         "de" => "TRANS",
         "zh" => "½øÈë×¢²á",
         "es" => "Ir a acceso",
-        "pl" => "TRANS",
-		"pt" => "Ir para o login"
+        "pl" => "Zaloguj siê",
+	"pt" => "Ir para o login"
 		);
 
 
@@ -177,8 +177,8 @@ $txt_client_info = array(
         "de" => "TRANS",
         "zh" => "¹Ë¿ÍÐÅÏ¢",
         "es" => "Información de cliente:",
-        "pl" => "TRANS",
-		"pt" => "Informação do cliente"
+        "pl" => "Informacje o kliencie",
+	"pt" => "Informação do cliente"
 		);
 
 
@@ -191,7 +191,7 @@ $txt_list_name = array(
 	"ru" => "TRANS List name",
 	"de" => "TRANS List name",
 	"zh" => "ÓÊÏäÁÐ±í",
-	"pl" => "TRANS",
+	"pl" => "Nazwa listy",
 	"es" => "Nombre de la lista",
 	"pt" => "Nome da Lista de distribuição"
 	);
@@ -205,7 +205,7 @@ $txt_list_owner = array(
 	"ru" => "TRANS List owner",
 	"de" => "TRANS List owner",
 	"zh" => "¹ÜÀíÔ±",
-	"pl" => "TRANS",
+	"pl" => "W³a¶ciciel listy",
 	"es" => "Propietario de la lista",
 	"pt" => "Propriatário da lista"
 	);
@@ -217,9 +217,9 @@ $txt_list_liste_of_your_ml = array(
 	"it" => "Lista delle tue mailing lists:",
 	"nl" => "TRANS List of your mailing lists:",
 	"ru" => "TRANS List of your mailing lists:",
-	"de" => "TRANS List of your mailing lists:",
+	"de" => "Twoje listy mailingowe:",
 	"zh" => "ÄúµÄÓÊÏäÁÐ±íÄ¿Â¼:",
-	"pl" => "TRANS",
+	"pl" => "Lista twoich grup pocztowych:",
 	"es" => "Listado de listas de correo:",
 	"pt" => "Lista dos subscritores:" 
 	);
@@ -233,7 +233,7 @@ $txt_list_new_list = array(
 	"ru" => "TRANS New mailing list:",
 	"de" => "TRANS New mailing list:",
 	"zh" => "ÐÂÓÊÏäÁÐ±í:",
-	"pl" => "TRANS",
+	"pl" => "Nowa lista pocztowa/mailingowa",
 	"es" => "Nueva lista de correo:",
 	"pt" => "Nova lista de distribuição:"
 	);
@@ -247,7 +247,7 @@ $txt_number_of_database = array(
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
 	"zh" => "Êý¾Ý¿âµÄÊýÄ¿:",
-	"pl" => "TRANS ",
+	"pl" => "Ilo¶æ baz danych",
 	"es" => "Número de bases de datos",
 	"pt" => "Número de base de dados"
 	);
@@ -261,7 +261,7 @@ $txt_allow_to_add_domains = array(
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
 	"zh" => "ÔÊÐíÌí¼ÓÓòÃû:",
-	"pl" => "TRANS ",
+	"pl" => "Prawo do dodawania domen ",
 	"es" => "Permitir añadir dominios",
 	"pt" => "Permitir adicionar dominios"
 	);
@@ -277,7 +277,7 @@ $txt_can_have_subadmins_reseller = array(
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
 	"zh" => "ÊÚÈ¨Ìí¼Ó¸±ÕÊ»§(×ªÊÛ):",
-	"pl" => "TRANS ",
+	"pl" => "Dodaj Resselera",
 	"es" => "Permitir añadir derechos de sub-cuenta (revendedor)",
 	"pt" => "Privilégios para gerir contas secundárias (revendedor) :"
 	);
@@ -305,7 +305,7 @@ $txt_heb_prod_id = array(
 	"ru" => "TRANS Product ID:",
 	"de" => "TRANS Product ID:",
 	"zh" => "²úÆ·Éí·Ö",
-	"pl" => "TRANS",
+	"pl" => "ID produktu",
 	"es" => "ID de producto",
 	"pt" => "ID do produto"
  	);
@@ -319,7 +319,7 @@ $txt_change_your_password = array(
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
 	"zh" => "¸ü¸ÄÃÜÂë:",
-	"pl" => "TRANS ",
+	"pl" => "Zmieñ has³o",
 	"es" => "Cambiar contraseña",
 	"pt" => "Modificar palavra chave :"
 	);
@@ -333,7 +333,7 @@ $txt_type_new_password = array(
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
 	"zh" => "ÐÂÃÜÂë:",
-	"pl" => "TRANS ",
+	"pl" => "Nowe has³o",
 	"es" => "Nueva contraseña",
 	"pt" => "Nova palavra chave"
 	);
@@ -347,7 +347,7 @@ $txt_retype_new_password = array(
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
 	"zh" => "ÖØÐÂÊäÈëÐÂÃÜÂë: ",
-	"pl" => "TRANS ",
+	"pl" => "Powtórz nowe has³o",
 	"es" => "Vuelve a escribir la contraseña",
 	"pt" => "Confirmar a palavra chave"
 	);
@@ -361,7 +361,7 @@ $txt_delete = array(
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
 	"zh" => "É¾³ý ",
-	"pl" => "TRANS ",
+	"pl" => "Usuñ ",
 	"es" => "Eliminar",
 	"pt" => "Remover"
 	);
@@ -375,7 +375,7 @@ $txt_create = array(
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
 	"zh" => "´´½¨ ",
-	"pl" => "TRANS ",
+	"pl" => "Stwórz",
 	"es" => "Crear",
 	"pt" => "Criar"
 	);
@@ -389,7 +389,7 @@ $txt_save = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "±£´æ ",
-"pl" => "TRANS ",
+"pl" => "Zapisz ",
 "es" => "Guardar",
 "pt" => "Guardar"
 );
@@ -403,7 +403,7 @@ $txt_your_users = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "ÄúµÄÓÃ»§ ",
-"pl" => "TRANS ",
+"pl" => "Twoi u¿ytkownicy ",
 "es" => "Tus usuarios",
 "pt" => "Seus utilizadores"
 );
@@ -417,7 +417,7 @@ $txt_user = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "ÓÃ»§ ",
-"pl" => "TRANS ",
+"pl" => "U¿ytkownik ",
 "es" => "Usuario",
 "pt" => "Utilizador"
 );
@@ -460,7 +460,7 @@ database",
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "Èç¹ûÒª½¨Á¢Ò»¸öÊý¾Ý¿â,Çë´´½¨Ò»¸öMySQLÓÃ»§ ",
-"pl" => "TRANS ",
+"pl" => "Utwórz u¿ytkownika MySQL w kolejnosci w jakiej bêd± oni tworzyc bazy danych ",
 "es" => "Tienes que crear un usuario mysql para poder crear una base de datos",
 "pt" => "Deverá criar um utilizador MySQL para poder criar base de dados."
 );
@@ -475,7 +475,7 @@ $txt_wrong_user_or_password_or_timeout_expire = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "ÓÃ»§´íÎó»òÃÜÂë´íÎó,»òÕßÒÑ¹ýÆÚ  ",
-"pl" => "TRANS ",
+"pl" => "B³êdny u¿ytkownik lub has³o, lub has³o siê przedawni³o ",
 "es" => "Nombre de usuario o contraseña incorrecta, o tiempo de ejecución excedido",
 "pt" => "O utilizador ou palava chave está incorrecto, também poderá occorido a expiração do tempo de autenticação!"
 );
@@ -489,7 +489,7 @@ $txt_error = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "´íÎó ",
-"pl" => "TRANS ",
+"pl" => "B³±d ",
 "es" => "Error",
 "pt" => "Erro"
 );
@@ -503,7 +503,7 @@ $txt_fetching_admin = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "×°ÔØÍøÂç¹ÜÀíÔ±",
-"pl" => "TRANS ",
+"pl" => "Wybierz admina ",
 "es" => "Administrador de recogida",
 "pt" => "Procurar administrador : "
 );
@@ -517,7 +517,7 @@ $txt_register_new_account = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "×¢²áÐÂÕÊ»§ ",
-"pl" => "TRANS ",
+"pl" => "Za³ó¿ nowe konto ",
 "es" => "Registrar una nueva cuenta",
 "pt" => "Registar uma nova conta"
 );
@@ -531,7 +531,7 @@ $txt_go_to_email_panel = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "½øÈëÓÊÏäÃæ°å ",
-"pl" => "TRANS ",
+"pl" => "Panel poczty ",
 "es" => "Ir al panel de e-mail",
 "pt" => "Ir para área de e-mail"
 );
@@ -545,7 +545,7 @@ $txt_client_panel_title = array(
 	"ru" => "TRANS Client panel:",
 	"de" => "TRANS Client panel:",
 	"zh" => "¹Ë¿ÍÃæ°å:",
-	"pl" => "TRANS Client panel:",
+	"pl" => "Panel klienta: ",
 	"es" => "Panel de cliente:",
 	"pt" => "Área de clientes :"
 	);
@@ -616,7 +616,7 @@ $txt_cmenu_nameservers = array(
 	"ru" => "TRANS Name servers",
 	"de" => "TRANS Name servers",
 	"zh" => "ÓòÃû·þÎñÆ÷",
-	"pl" => "Nazwa serwerów",
+	"pl" => "Serwery nazw",
 	"es" => "Servidores DNS",
 	"pt" => "Servidores de DNS"
 	);
@@ -938,7 +938,7 @@ $txt_root_adm_title = array(
 	"ru" => "TRANS Domain Technologie Control : root admin console",
 	"de" => "Domain Technologie Control: Root Admin Konsole",
 	"zh" => "Domain Technologie Control : ¹ÜÀíÃæ°å",
-    "pl" => "Domain Technologie Control : Konsola administratora",
+    "pl" => "Panel : Konsola administratora",
 	"es" => "Domain Technologie Control : consola de administracion para root",
 	"pt" => "Domain Technologie Control : Consola de administração para root"
 );
@@ -980,7 +980,7 @@ $txt_client_list_title = array(
 	"ru" => "TRANS Customers list",
 	"de" => "Kundenliste",
 	"zh" => "¹Ë¿ÍÁÐ±í",
-    "pl" => "Lista klientów",
+	"pl" => "Lista klientów",
 	"es" => "Lista de clientes",
 	"pt" => "Lista de clientes"
 	);
@@ -1105,7 +1105,7 @@ $txt_add_admin_to_client = array(
 	"ru" => "TRANS Add an administrator to this customer:",
 	"de" => "Administrator für diesen Kunden hinzufügen:",
 	"zh" => "¶ÔÕâ¸ö¹Ë¿ÍÌí¼Ó¹ÜÀíÔ±:",
-    "pl" => "Dodaj konto administracyjne klienta:",
+	"pl" => "Dodaj konto administracyjne klienta:",
 	"es" => "Añadir administrador para este cliente:",
 	"pt" => "Adicionar um administrador para este cliente :"
 	);
@@ -2480,7 +2480,7 @@ $txt_other_dns_ip = array(
 	"ru" => "TRANSOther DNS servers:",
 	"de" => "Weitere DNS Server:",
 	"zh" => "ÆäËûDNS·þÎñÆ÷:",
-        "pl" => "Inne serwery zapasowe DNS :",
+        "pl" => "Serwery zapasowe DNS :",
 	"es" => "Otro servidor de DNS:",
 	"pt" => "Outros servidores de DNS"
 	);
@@ -2856,7 +2856,7 @@ $txt_login_title = array(
 	"ru" => "éÍÑ",
 	"de" => "Login",
 	"zh" => "ÓÃ»§µÇÂ¼",
-    "pl" => "Login",
+    "pl" => "Logowanie",
 	"es" => "Login",
 	"pt" => "Login"
 );
@@ -3137,7 +3137,7 @@ $txt_subdom_generate_vhost = array(
 	"ru" => "ÐŸÑ€Ð¾Ð¸Ð·Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ…Ð¾Ð´ vhost Ð´Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ subdomain:",
 	"de" => "Erzeugen Sie eine vhost Eintragung fÃ¼r dieses subdomain:",
 	"zh" => "å¼•èµ·ä¸€ä¸ªvhost è¯æ¡ä¸ºè¿™subdomain:",
-	"pl" => "TRANS: Generate a vhost entry for this subdomain:",
+	"pl" => "Wygeneruj virtualne hosty dla swojej domeny(dodaj subdowmeny):",
 	"es" => "Genere una entrada del vhost para este subdomain:",
 	"pt" => "TRANS: Generate a vhost entry for this subdomain:",
 );
@@ -3315,7 +3315,7 @@ $txt_mail_spam_mailbox_enable = array(
 	"ru" => "Enable SPAM filtering: ",
 	"de" => "Enable SPAM filtering: ",
 	"zh" => "ÔËÐÐÀ¬»øÎÄ¼þ¹ýÂË¹¦ÄÜ: ",
-	"pl" => "Enable SPAM filtering: ",
+	"pl" => "W³±czenie filtra SPAMu: ",
 	"es" => "Habilitar filtrado de spam: ",
 	"pt" => "Activar filtro de SPAN: "
 );
@@ -3328,7 +3328,7 @@ $txt_mail_spam_mailbox = array(
 	"ru" => "SPAM mailbox destination: ",
 	"de" => "SPAM mailbox destination: ",
 	"zh" => "À¬»øÓÊ¼þÄ¿µÄµØ: ",
-	"pl" => "SPAM mailbox destination: ",
+	"pl" => "Przekierowanie spamu do : ",
 	"es" => "Buzón de destino para el SPAM: ",
 	"pt" => "Conta de correio de destino para SPAM: "
 );
@@ -3350,7 +3350,7 @@ $txt_mail_deliver_localy = array(
 	"fr" => "Délivrer les messages en local: ",
 	"en" => "Deliver messages localy: ",
 	"hu" => "Helyileg kézbesíti az üzeneteket: ",
-	"it" => "Deliver localmente: ",
+	"it" => "TRANS Deliver localmente: ",
 	"nl" => "TRANS Lokaal afleveren: ",
 	"ru" => "TRANS äÏÓÔÁ×ËÁ ÌÏËÁÌØÎÏ:",
 	"de" => "Nachrichten lokal zustellen: ",
@@ -3455,7 +3455,7 @@ $txt_title_ssh_form = array(
 	"ru" => "õÞÅÔÎÙÅ ÚÁÐÉÓÉ æôð",
 	"de" => "SSH Accounts von ",
 	"zh" => "±¾ÍøÕ¾µÄSSHÕÊ»§ ",
-	"pl" => "Konta FSSH ",
+	"pl" => "Konta SSH ",
 	"es" => "Cuentas de ssh ",
 	"pt" => "Contas de ssh"
 );
@@ -3550,7 +3550,7 @@ $txt_title_help_form = array(
 	"ru" => "ïÎÌÁÊÎ ÐÏÍÏÝØ DTC",
 	"de" => "DTC Online Hilfe",
 	"zh" => "ÔÚÏß DTC°ïÖú",
-	"pl" => "Pomoc DTC Online",
+	"pl" => "Pomoc Online",
 	"es" => "Ayuda en linea para DTC",
 	"pt" => "Ajuda on-line para DTC"
 );
@@ -4996,11 +4996,11 @@ Je¶li zmiany nie bêd± widoczne po d³u¿szym czasie proszê kliknij <a href=\"mailt
 <u>3.6. Statystyki twoich subdomen</u><br><br>
 Statystyki s± generowane w cyklu 12 miesiêcznym za pomoc± <a href=\"http://www.mrunix.net/webalizer/\">Webalizera</a>. Generowanie nastêpuje codziennie o godz. 4.00 rano ( je¶li wyst±pi³ transfer ) w katalogu \"/stats\" dla ka¿dej subdomeny, o ile w ustawieniach danej subdomeny w³±czyli¶my t± us³ugê. Np.dla wywo³ania URL :
 <pre>
-http://www.mojadomena.com
+http://www.twojhosting.com
 </pre>
 statystyki dostêpne s± w :
 <pre>
-http://www.mojadomena.com/stats/
+http://www.twojhosting.com/stats/
 </pre>
 
 <font size=\"+1\"><u>4. Konta FTP</u></font><br>
