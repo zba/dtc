@@ -18,7 +18,7 @@ $txt_lists_main_title_rights = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Uprawnienia",
   "es" => "",
   "pt" => "");
 
@@ -31,7 +31,7 @@ $txt_lists_main_title_header = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Nag³ówek",
   "es" => "",
   "pt" => "");
 
@@ -44,7 +44,7 @@ $txt_lists_main_title_archive = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Archiwum",
   "es" => "",
   "pt" => "");
 
@@ -70,7 +70,7 @@ $txt_lists_main_title_notification = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Opis",
   "es" => "",
   "pt" => "");
 
@@ -83,7 +83,7 @@ $txt_lists_main_title_smtp_config = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Konfguracja SMTP",
   "es" => "",
   "pt" => "");
 
@@ -96,7 +96,7 @@ $txt_lists_main_title_subunsub = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Adres e-mail subskrybcji/wypisania",
   "es" => "",
   "pt" => "");
 
@@ -109,7 +109,7 @@ $txt_lists_main_title_webarchive = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Archiwum przez WWW",
   "es" => "",
   "pt" => "");
   
@@ -122,7 +122,7 @@ $txt_lists_title_list_name = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Nazwa listy mailingowej/pocztowej:",
   "es" => "",
   "pt" => "");
 
@@ -135,7 +135,7 @@ $txt_lists_title_list_name = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "W³a¶ciciel",
   "es" => "",
   "pt" => "");
 
@@ -148,7 +148,7 @@ $txt_lists_title_closedlist = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Zamkniete listy",
   "es" => "",
   "pt" => "");
 
@@ -161,7 +161,7 @@ $txt_lists_title_moderated = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Moderowana:",
   "es" => "",
   "pt" => "");
 
@@ -174,7 +174,7 @@ $txt_lists_title_moderators = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Moderatorzy:",
   "es" => "",
   "pt" => "");
 
@@ -1045,7 +1045,7 @@ $txt_lists_hlp_deletewa = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Usuñ wszystkie wiadomo¶ci z archiwum na stronie. UWAGA: Zadzia³a tylko je¶li nie zaznaczone archiwum na www.",
   "es" => "",
   "pt" => "");
 
@@ -1058,7 +1058,7 @@ $txt_lists_email_subject = array (
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Utworzono listê #name#@#domain#",
   "es" => "",
   "pt" => "");
   
@@ -1095,7 +1095,22 @@ Per ulteriori informazioni visita il sito ufficiale di mlmmj all'indirizzo http:
   "ru" => "",
   "de" => "",
   "zh" => "",
-  "pl" => "",
+  "pl" => "Mo¿esz kontrolowaæ swoj± listê mailingow± przy pomocy maila lub panela sterowania DTC.
+	Mo¿esz wys³aæ maila na jeden z poni¿szych adresów aby wykonaæ komendy na li¶cie:
+  
+  #name#-help@#domain# -> zwraca pomoc i litê dostêpnych komend
+  #name#-list@#domain# -> zwraca listê osób zapisanych
+  #name#-get-N@#domain# -> zwraca ilo¶æ N wiadomo¶ci z listy
+  #name#-owner@#domain# -> Przez ten adres mozesz kontaktowaæ siê z list± jako w³a¶ciciel
+  #name#-unsubscribe@#domain# -> Wypisuje z listy maila, z którego wys³ano wiadomo¶æ
+  #name#-subscribe@#domain# -> Zapisuje na listê adres, z którego wys³ano maila  
+  #name#-subscribe-digest@#domain# -> zapisuje adres na li¶cie w wersji skróconej (zbiorczy mail raz dziennie)
+  #name#-subscribe-nomail@#domain# -> Zapisuje na listê adres z ktorego wys³ano maila (je¶li by³ na skróconej)
+    
+Dla uzyskania wiêkszej ilo¶ci informacji prosimy skorzystaæ z oficjalej strony mlmmj http://mlmmj.mmj.dk
+  
+  
+  ",
   "es" => "",
   "pt" => "");
 
