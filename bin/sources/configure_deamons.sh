@@ -113,7 +113,7 @@ if [ -n "$PATH_SUDO" ] ; then
 			cp -f "$PATH_SHELLS_CONF" "$PATH_SHELLS_CONF.DTC.backup"
 		fi
 		TMP_FILE=`${MKTEMP} DTC_install.shells.XXXXXX` || exit 1
-		echo "# Configured by DTC : please do not touch this line !" >> $TMP_FILE
+		echo "# Configured by DTC 0.21 : please do not touch this line !" >> $TMP_FILE
 		echo "/bin/dtc-chroot-shell" >> $TMP_FILE
 		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 		cat <$TMP_FILE >>$PATH_SHELLS_CONF
@@ -913,7 +913,7 @@ smtpd_tls_auth_only = no
 		fi
 
 
-		if grep "Configured by DTC" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
+		if grep "Configured by DTC 0.21" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
 			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 				echo "Postfix master.cf has been configured before, not adding maildrop options"
 			fi
@@ -1541,7 +1541,7 @@ else
 		fi
 		cp -f "$PATH_SSH_CONF" "$PATH_SSH_CONF.DTC.backup"
 	fi
-	echo "# Configured by DTC : please do not touch this line !" > $TMP_FILE
+	echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
 	echo "UsePAM yes" >> $TMP_FILE
 	echo "PasswordAuthentication yes" >> $TMP_FILE
 	echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
@@ -1572,7 +1572,7 @@ else
 		fi
 		cp -f "$PATH_NSSWITCH_CONF" "$PATH_NSSWITCH_CONF.DTC.backup"
 	fi
-	echo "# Configured by DTC : please do not touch this line !" > $TMP_FILE
+	echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
 	echo "
 passwd:         compat mysql
 group:          compat mysql
@@ -1611,7 +1611,7 @@ else
 		fi
 		cp -f "$PATH_NSS_CONF" "$PATH_NSS_CONF.DTC.backup"
 	fi
-	echo "# Configured by DTC : please do not touch this line !" > $TMP_FILE
+	echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
 	echo "
 users.host = inet:localhost:3306;
 users.database = dtc;
@@ -1659,7 +1659,7 @@ else
 		fi
 		cp -f "$PATH_NSS_ROOT_CONF" "$PATH_NSS_ROOT_CONF.DTC.backup"
 	fi
-	echo "# Configured by DTC : please do not touch this line !" > $TMP_FILE
+	echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
 	echo "
 shadow.host = inet:localhost:3306;
 shadow.database = dtc;
