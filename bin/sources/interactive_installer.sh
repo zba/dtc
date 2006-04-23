@@ -88,8 +88,8 @@ if [ ""$dtc_admin_subdomain = "" ] ; then
 	dtc_admin_subdomain="dtc"
 fi
 
-if [ ""$UNIX_TYPE = freebsd ]; then
-	echo "***FIX ME*** Installer in BSD version don't have IP addr detection yet!"
+if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
+	echo "***FIX ME*** Installer in OS X and BSD version don't have IP addr detection yet!"
 else
 	echo "Trying to guess your current IP..."
 	cur_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
@@ -163,6 +163,9 @@ echo -n "Password: "
 read conf_adm_pass
 
 if [ -z "$conf_eth2monitor" ] ; then
+	if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
+		echo "***FIX ME*** OS X and FreeBSD don't have interface detection yet!"
+	else
 		NBRLINES=`grep -v "lo:" /proc/net/dev | wc -l`
 		NBRIFACE=$((${NBRLINES} - 2 ))
 		CNT=${NBRIFACE}
