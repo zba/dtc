@@ -89,6 +89,9 @@ function make_stats(){
 					$query_dump = "DELETE FROM apachelogs.".$table_name." WHERE time_stamp<='".$end."'";
 					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
 
+					$opt_table = "OPTIMIZE TABLE apachelogs.".$table_name." ;";
+					mysql_query($opt_table) or die("Cannot execute query \"$opt_table\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
+
 					$qus = "SHOW TABLE STATUS LIKE '".$table_name."'";
 					$res = mysql_query($qus) or die("Cannot execute query \"$qus\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 					$ars = mysql_fetch_array($res);
