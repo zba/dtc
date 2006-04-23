@@ -145,37 +145,30 @@ function make_log_archive (){
 			// If the month folder exists, do the archive...
 			$monthlog_path = $fullpath."/".$year."/".$m;
 			if(is_dir($monthlog_path)){
-				echo "Compressing $monthlog_path";
+				echo "Archiving $monthlog_path\n";
 				$flist = array();
 				if(($dh = opendir($monthlog_path)) !== false){
 					while (($file = readdir($dh)) !== false) {
 						if(filetype($monthlog_path ."/". $file) == "file"){
 							$flist[] = $monthlog_path ."/". $file;
-//							echo "fichier : $file : type : " . filetype($monthlog_path ."/". $file) . "\n";
 						}
 					}
 				}
 				$nbr_file = sizeof($flist);
 				if($nbr_file > 0){
 					sort($flist);
-					$temp = tempnam("/tmp","accesslog_");
-					echo "Created file $temp\n";
+					$temp = tempnam($fullpath,"accesslog_");
 					for($k=0;$k<$nbr_file;$k++){
 						// echo $flist[$k]."\n";
 						$cmd = "cat ".$flist[$k]." >>".$temp;
 						exec($cmd);
-						echo $cmd."\n";
 						unlink($flist[$k]);
-						echo "Unlinking ".$flist[$k]."\n";
 					}
 					rmdir("$fullpath/$year/$m");
-					echo "rmdir $fullpath/$year/$m\n";
 					$cmd = "gzip $temp";
 					exec($cmd);
-					echo $cmd."\n";
 					$cmd = "mv ".$temp.".gz ".$fullpath."/accesslog.".$a["subdomain_name"].".".$a["name"]."_".$year."_".$m.".gz";
 					exec ($cmd);
-					echo $cmd."\n";
 				}
 			}
 		}
@@ -188,11 +181,16 @@ function make_log_archive (){
 			}else{
 				$year = $last_year - 1;
 			}
+			if(strlen($m) < 2)      $m = "0".$m;
+			$thefile = $fullpath."/accesslog.".$a["subdomain_name"].".".$a["name"]."_".$year."_".$m.".gz";
+			if(file_exists($thefile)){
+				unlink($thefile);
+			}
 		}
 	}
 }
 
-//make_stats();
+make_stats();
 make_log_archive();
 
 ?>
