@@ -93,7 +93,7 @@ if [ -n "$PATH_SUDO" ] ; then
 			cp -f "$PATH_SUDOERS_CONF" "$PATH_SUDOERS_CONF.DTC.backup"
 		fi
 		TMP_FILE=`${MKTEMP} DTC_install.sudoers.XXXXXX` || exit 1
-		echo "# Configured by DTC : please do not touch this line !" >> $TMP_FILE
+		echo "# Configured by DTC 0.21 : please do not touch this line !" >> $TMP_FILE
 		echo "nobody      ALL= NOPASSWD: $PATH_CHROOT *" >> $TMP_FILE
 		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 		cat <$TMP_FILE >>$PATH_SUDOERS_CONF
