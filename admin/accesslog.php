@@ -143,9 +143,50 @@ function make_log_archive (){
 			}
 			if(strlen($m) < 2)	$m = "0".$m;
 			// If the month folder exists, do the archive...
-			echo "Testing $year $m for vhost ".$a["subdomain_name"].".".$a["name"].": $fullpath/$year/$m\n";
-			if(is_dir($fullpath."/".$year."/".$m)){
-				echo " Founded directory: compressing logs!\n";
+			$monthlog_path = $fullpath."/".$year."/".$m;
+			if(is_dir($monthlog_path)){
+				echo "Compressing $monthlog_path";
+				$flist = array();
+				if(($dh = opendir($monthlog_path)) !== false){
+					while (($file = readdir($dh)) !== false) {
+						if(filetype($monthlog_path ."/". $file) == "file"){
+							$flist[] = $monthlog_path ."/". $file;
+//							echo "fichier : $file : type : " . filetype($monthlog_path ."/". $file) . "\n";
+						}
+					}
+				}
+				$nbr_file = sizeof($flist);
+				if($nbr_file > 0){
+					sort($flist);
+					$temp = tempnam("/tmp","accesslog_");
+					echo "Created file $temp\n";
+					for($k=0;$k<$nbr_file;$k++){
+						// echo $flist[$k]."\n";
+						$cmd = "cat ".$flist[$k]." >>".$temp;
+						exec($cmd);
+						echo $cmd."\n";
+						unlink($flist[$k]);
+						echo "Unlinking ".$flist[$k]."\n";
+					}
+					rmdir("$fullpath/$year/$m");
+					echo "rmdir $fullpath/$year/$m\n";
+					$cmd = "gzip $temp";
+					exec($cmd);
+					echo $cmd."\n";
+					$cmd = "mv ".$temp.".gz ".$fullpath."/accesslog.".$a["subdomain_name"].".".$a["name"]."_".$year."_".$m.".gz";
+					exec ($cmd);
+					echo $cmd."\n";
+				}
+			}
+		}
+		// Search if there are old logs (older than one year) that we should remove
+		for($j=0;$j<12;$j++){
+			$m = $cur_month + $j;
+			if($m > 12){
+				$m = $m - 12;
+				$year = $cur_year - 1;
+			}else{
+				$year = $last_year - 1;
 			}
 		}
 	}
