@@ -104,6 +104,36 @@ TMP_FILE=$home/.DTC_install.mailfilter.XXXXXX.2
 echo -n > $TMP_FILE
 echo "# Configured by DTC" >> $TMP_FILE
 
+cat <<EOF >> $TMP_FILE
+if (/^X-DTC-LoopDetected:\s*(.*)/:h)
+{
+        exit
+}
+
+if (/^X-DTC-Counter:\s*(.*)/:h)
+{
+        ZERO=$MATCH
+        DTCCOUNTER=length($ZERO) - 15
+
+        if ($DTCCOUNTER > 6)
+        {
+                # SUBJECT=xfilter "reformail -x Subject:"
+                # xfilter "reformail -I \"Subject: [DTC Email Loop] $SUBJECT\""
+                xfilter "reformail -I 'X-DTC-LoopDetected: X'"
+        }
+        else
+        {
+                DTCHEADERVALUE="$ZERO"'X'
+                xfilter "reformail -I \"$DTCHEADERVALUE\""
+                xfilter "reformail -I \"X-DTC-Counter-Value: $DTCCOUNTER\""
+        }
+}
+else
+{
+        xfilter "reformail -I 'X-DTC-Counter: X'"
+}
+EOF
+
 if [ -z ""$redirection2 ]; then
 	if [ -n ""$redirection ]; then
 	# only do one redirection
