@@ -26,6 +26,7 @@ chown nobody:nogroup $BUILD_DIR/admin/*.cgi
 PKG_FILENAME=$DEST_DIR
 mv $BUILD_DIR $PKG_FILENAME
 cp sources/gentoo/install.sh $PKG_FILENAME
+cat sources/interactive_installer.sh >>$PKG_FILENAME"/install.sh"
 cat sources/create_chroot.sh >>$PKG_FILENAME"/install.sh"
 cat sources/setup_mysql_db.sh >>$PKG_FILENAME"/install.sh"
 cat sources/configure_deamons.sh >>$PKG_FILENAME"/install.sh"

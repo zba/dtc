@@ -59,6 +59,7 @@ cat sources/bsd/Makefile >>$PORT_BUILD/Makefile
 
 # Create package install script
 cp sources/bsd/install.sh $PORT_BUILD/files/dtc-install.in
+cat sources/interactive_installer.sh >>$PORT_BUILD/files/dtc-install.in
 cat sources/setup_mysql_db.sh >>$PORT_BUILD/files/dtc-install.in
 cat sources/create_chroot.sh >>$PORT_BUILD/files/dtc-install.in
 cat sources/configure_deamons.sh >>$PORT_BUILD/files/dtc-install.in

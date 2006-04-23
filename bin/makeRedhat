@@ -76,6 +76,7 @@ chown nobody:65534 dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/shared/
 chown nobody:65534 dtc/client/gfx dtc/admin/gfx dtc/shared/gfx dtc/email/gfx dtc/admin/*.cgi
 
 cat sources/redhat/install.sh >dtc/admin/dtc.rpm-install.sh
+cat sources/interactive_installer.sh >>dtc/admin/dtc.rpm-install.sh
 cat sources/setup_mysql_db.sh >>dtc/admin/dtc.rpm-install.sh
 cat sources/configure_deamons.sh >>dtc/admin/dtc.rpm-install.sh
 
