@@ -202,8 +202,8 @@ function updateAllDomainsStats(){
 //			sum_email($domain_name);
 			echo "ftp...";
 			sum_ftp($domain_name);
-			echo "http...";
-			sum_http($domain_name);
+//			echo "http...";
+//			sum_http($domain_name);
 			echo "done!\n";
 		}
 	}

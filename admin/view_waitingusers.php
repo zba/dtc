@@ -46,6 +46,7 @@ if($n != 1){
 	$newu_infos .= "<b>State:</b> ".$a["state"]."<br>";
 	$newu_infos .= "<b>City:</b> ".$a["city"]."<br>";
 	$newu_infos .= "<b>Country:</b> ".$cc_code_array[$a["country"]]."<br>";
+	$newu_infos .= "<b>Customer notes:</b> ".$a["custom_notes"]."<br>";
 	$newu_infos .= "";
 }
 
