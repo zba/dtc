@@ -24,8 +24,8 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 		$commit_flag = "no";
 	}
 
-	if(!ereg("^$adm_path",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
-		$submit_err .= "Your path is restricted to $adm_path<br>\n";
+	if(!ereg("^$adm_path/$edit_domain/subdomains",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
+		$submit_err .= "Your path is restricted to $adm_path/$edit_domain/subdomains<br>\n";
 		$commit_flag = "no";
 	}
 
@@ -88,7 +88,7 @@ if(isset($_REQUEST["update_ssh_account"]) && $_REQUEST["update_ssh_account"] == 
 	}
 
 	if(0 != strncmp($adm_path,$_REQUEST["edssh_path"],strlen($adm_path)-1) || strstr($_REQUEST["edssh_path"],'..') || strstr($_REQUEST["edssh_path"],"'") || strstr($_REQUEST["edssh_path"],"\\")){
-		$submit_err .= "Your path is restricted to &quot;$adm_path&quot;<br>\n";
+		$submit_err .= "Your path is restricted to &quot;$adm_path/$edit_domain/subdomains&quot;<br>\n";
 		$commit_flag = "no";
 	}
 
