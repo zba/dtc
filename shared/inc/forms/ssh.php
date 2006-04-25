@@ -55,17 +55,17 @@ function drawAdminTools_SSH($domain,$adm_path){
 		$txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=sshs&edssh_account=$login\">$login</a>";
 	}
 
-	if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && isset($sshpath) && $sshpath == "$adm_path"){
-		$is_selected = " selected";
-	}else{
-		$is_selected ="";
-	}
-	$path_popup = "<option value=\"$adm_path\"$is_selected>/</option>";
-	if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && isset($sshpath) && $sshpath == "$adm_path/$edit_domain"){
-		$is_selected = " selected";
-	}else{
-		$is_selected ="";
-	}
+//	if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && isset($sshpath) && $sshpath == "$adm_path"){
+//		$is_selected = " selected";
+//	}else{
+//		$is_selected ="";
+//	}
+//	$path_popup = "<option value=\"$adm_path\"$is_selected>/</option>";
+//	if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && isset($sshpath) && $sshpath == "$adm_path/$edit_domain"){
+//		$is_selected = " selected";
+//	}else{
+//		$is_selected ="";
+//	}
 	$path_popup .= "<option value=\"$adm_path/$edit_domain\"$is_selected>/$edit_domain/</option>";
 	$nbr_subdomains = sizeof($domain["subdomains"]);
 	for($i=0;$i<$nbr_subdomains;$i++){
@@ -77,12 +77,12 @@ function drawAdminTools_SSH($domain,$adm_path){
 		}
 		$path_popup .= "<option value=\"$adm_path/$edit_domain/subdomains/$sub_name\"$is_selected>/$edit_domain/subdomains/$sub_name/</option>";
 
-		if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && isset($sshpath) && $sshpath == "$adm_path/$edit_domain/subdomains/$sub_name/html"){
-			$is_selected = " selected";
-		}else{
-			$is_selected ="";
-		}
-		$path_popup .= "<option value=\"$adm_path/$edit_domain/subdomains/$sub_name/html\"$is_selected>/$edit_domain/subdomains/$sub_name/html/</option>";
+//		if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && isset($sshpath) && $sshpath == "$adm_path/$edit_domain/subdomains/$sub_name/html"){
+//			$is_selected = " selected";
+//		}else{
+//			$is_selected ="";
+//		}
+//		$path_popup .= "<option value=\"$adm_path/$edit_domain/subdomains/$sub_name/html\"$is_selected>/$edit_domain/subdomains/$sub_name/html/</option>";
 	}
 
 	if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && (!isset($_REQUEST["deletesshaccount"]) || $_REQUEST["deletesshaccount"] != "Delete")){
