@@ -106,10 +106,10 @@ function make_stats(){
 			}else{
 				echo "No records!\n";
 			}
-			mysql_select_db($conf_mysql_db);
 		}else{
 			echo "no table!\n";
 		}
+		mysql_select_db($conf_mysql_db);
 	}
 }
 
