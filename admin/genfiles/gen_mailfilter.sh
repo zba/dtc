@@ -61,7 +61,7 @@ if [ -f $MAILFILTER_FILE ]; then
                         exit 1;
                 fi
 		diff=$(( $end_line - $start_line ));
-		if [ $diff -gt 15 ]; then
+		if [ $diff -gt 50 ]; then
 			echo "$0 failed line $LINENO making $MAILFILTER_FILE ..."
 			echo "Please edit this and manually remove any DTC additions"
 			echo "$id $domain_full_name diff $diff" >> /tmp/mailfilter.log
