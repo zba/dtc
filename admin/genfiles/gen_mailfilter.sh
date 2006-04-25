@@ -35,7 +35,7 @@ if [ -f $MAILFILTER_FILE ]; then
 	# first, strip off any additions by DTC
 	while grep "Configured by DTC" $MAILFILTER_FILE >/dev/null 2>&1 ; do
 		if [ $COUNT -eq 10 ]; then
-			echo "Something is wrong with $MAILFILTER_FILE ..."
+			echo "$0 failed line $LINENO making $MAILFILTER_FILE ..."
 			echo "Please edit this and manually remove any DTC additions"
 			exit 1;
 		fi
@@ -50,19 +50,19 @@ if [ -f $MAILFILTER_FILE ]; then
 		fi
 		top=$(( $start_line - 1 ))
 		if [ -z $end_line ]; then
-			echo "Something is wrong with $MAILFILTER_FILE ..."
+			echo "$0 failed line $LINENO making $MAILFILTER_FILE ..."
 			echo "Please edit this and manually remove any DTC additions"
 			exit 1;
 		fi
 
 		if [ ""$end_line == " " ]; then
-			echo "Something is wrong with $MAILFILTER_FILE ..."
+			echo "$0 failed line $LINENO making $MAILFILTER_FILE ..."
                         echo "Please edit this and manually remove any DTC additions"
                         exit 1;
                 fi
 		diff=$(( $end_line - $start_line ));
 		if [ $diff -gt 15 ]; then
-			echo "Something is wrong with $MAILFILTER_FILE..."
+			echo "$0 failed line $LINENO making $MAILFILTER_FILE ..."
 			echo "Please edit this and manually remove any DTC additions"
 			echo "$id $domain_full_name diff $diff" >> /tmp/mailfilter.log
 			echo "$id $domain_full_name broken" >> /tmp/mailfilter.log
