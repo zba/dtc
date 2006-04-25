@@ -161,6 +161,8 @@ function mail_account_generate_postfix(){
 
 					$spam_stuff_done = 0;
 
+					system("/bin/mkdir -p $home");
+
 					// if we have a $id equal to abuse
 					if ($id == "abuse"){
 						$abuse_address = 1;
