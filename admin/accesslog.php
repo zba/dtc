@@ -80,7 +80,7 @@ function make_stats(){
 						}
 						fclose($handle);
 						echo "Calculating webalizer stats for ".$day." ".$month." ".$year."\n";
-						$webalizer_cmd = "webalizer -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
+						$webalizer_cmd = "nice -n+20 webalizer -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
 						echo "$webalizer_cmd\n";
 						exec ($webalizer_cmd);
 					}else{
@@ -168,7 +168,7 @@ function make_log_archive (){
 						unlink($flist[$k]);
 					}
 					rmdir("$fullpath/$year/$m");
-					$cmd = "gzip $temp";
+					$cmd = "nice -n+20 gzip $temp";
 					exec($cmd);
 					$cmd = "mv ".$temp.".gz ".$fullpath."/accesslog.".$a["subdomain_name"].".".$a["name"]."_".$year."_".$m.".gz";
 					exec ($cmd);
