@@ -216,7 +216,7 @@ echo "generated files: "$PATH_DTC_ETC
 echo ""
 echo -n 'Confirm and install DTC ? [Ny]:'
 read valid_infos
-if [ ""$valid_infos = "y" -o ""$valid_infos = "Y"] ; then
+if [ ""$valid_infos = "y" -o ""$valid_infos = "Y" ] ; then
 	echo "Installation has started..."
 else
 	echo "Configuration not validated : exiting !"
