@@ -1,0 +1,11 @@
+--- saslauthd-ori	2006-04-11 17:57:14.000000000 +0000
++++ saslauthd	2006-04-12 09:07:48.000000000 +0000
+@@ -48,6 +48,8 @@
+ 	test -z "$dir" || createdir $dir
+ 	if start-stop-daemon ${START} >/dev/null 2>&1 ; then
+ 		echo "${NAME}."
++		rm -f /var/spool/postfix/var/run/saslauthd/mux
++		ln /var/run/saslauthd/mux /var/spool/postfix/var/run/saslauthd/mux
+ 	else
+ 		if start-stop-daemon --test ${START} >/dev/null 2>&1; then
+ 			echo "(failed)."

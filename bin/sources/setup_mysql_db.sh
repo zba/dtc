@@ -295,6 +295,9 @@ else
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_nated_vhost='no'"
 fi
 
+# Insert the cyrus user so we can use cyradm
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus','"${MYSQL_DTCDAEMONS_PASS}"',ENCRYPT('"${MYSQL_DTCDAEMONS_PASS}"'))"
+
 # The panel needs root access (it does database management)
 echo "<?php" > $PATH_DTC_SHARED"/shared/mysql_config.php"
 echo "\$conf_mysql_host=\""$conf_mysql_host"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"

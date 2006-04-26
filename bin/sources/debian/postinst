@@ -33,8 +33,12 @@ then
 PATH_DOVECOT_CONF=/etc/dovecot/dovecot.conf
 fi
 PATH_COURIER_CONF_PATH=/etc/courier
+PATH_CYRUS_CONF=/etc/imapd.conf
 PATH_POSTFIX_CONF=/etc/postfix/main.cf
 PATH_POSTFIX_ETC=/etc/postfix
+PATH_SASL_START_CONF=/etc/default/saslauthd
+PATH_SASL_STARTUP=/etc/init.d/saslauthd
+PATH_SASL_SOCKET=/var/spool/postfix/var/run/saslauthd/
 PATH_SASL_PASSWD2=/usr/sbin/saslpasswd2
 PATH_USERDB_BIN=/usr/sbin/userdb
 PATH_MAILDROP_BIN=/usr/bin/maildrop

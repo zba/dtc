@@ -1,6 +1,7 @@
 
 # Multi OS (Unix system) install sh script for DTC
 # Written by Thomas GOIRAND <thomas@goirand.fr>
+# Cyrus modifications by Cristian Livadaru <cristian@livadaru.net>
 # under LGPL Licence
 
 # The configuration for all thoses variables must be written BEFORE this
@@ -23,7 +24,7 @@
 # so it works automaticaly even without Tucows API
 #
 
-# VERBOSE_INSTALL=yes
+#VERBOSE_INSTALL=yes
 
 # We are just after the creation of the chroot tree, so it's time to copy it over
 # our newly created vhosts dirs (in update mode)
@@ -509,7 +510,24 @@ if ! [ -e $PATH_DTC_ETC/dtc404/404.php ]; then
 	cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC/dtc404/
 fi
 
+if [ ""$conf_use_cyrus = "true" ]; then
+	cyrus_auth_php="$PATH_DTC_SHARED/admin/cyrus.php"
+	echo "<?
+\$CYRUS = array(
+'HOST'  => 'localhost',
+'PORT'  => 143,
+'ADMIN' => 'cyrus',
+'PASS'  => '${MYSQL_DTCDAEMONS_PASS}'
+);
+\$cyrus_used=1;
+\$cyrus_default_quota=51200;
+?>" > $cyrus_auth_php;
+fi
+
 PATH_PAMD_SMTP=/etc/pam.d/smtp
+PATH_PAMD_IMAP=/etc/pam.d/imap
+PATH_PAMD_SIEVE=/etc/pam.d/sieve
+PATH_PAMD_POP=/etc/pam.d/pop
 if [ -e /etc/pam.d/ ]
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -524,6 +542,38 @@ then
 	fi
 	touch $PATH_PAMD_SMTP
 	echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
+	if [ ""$conf_use_cyrus = "true" ]; then
+		echo "account sufficient pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host=localhost db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1
+
+auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host=localhost db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1" >$PATH_PAMD_SMTP
+	
+		if [ -f $PATH_PAMD_IMAP ]
+		then
+			if ! [ -f $PATH_PAMD_IMAP.DTC.backup ]
+			then
+				cp -f $PATH_PAMD_IMAP $PATH_PAMD_IMAP.DTC.backup
+			fi
+		fi
+		cp -f $PATH_PAMD_SMTP $PATH_PAMD_IMAP
+
+		if [ -f $PATH_PAMD_SIEVE ]
+		then
+			if ! [ -f $PATH_PAMD_SIEVE.DTC.backup ]
+			then
+				cp -f $PATH_PAMD_SIEVE $PATH_PAMD_SIEVE.DTC.backup
+			fi
+		fi
+		cp -f $PATH_PAMD_SMTP $PATH_PAMD_SIEVE
+
+		if [ -f $PATH_PAMD_POP ]
+		then
+			if ! [ -f $PATH_PAMD_POP.DTC.backup ]
+			then
+				cp -f $PATH_PAMD_POP $PATH_PAMD_POP.DTC.backup
+			fi
+		fi
+		cp -f $PATH_PAMD_SMTP $PATH_PAMD_POP
+	fi
 #	if grep "Configured by DTC" $PATH_PAMD_SMTP
 #		echo $PATH_PAMD_SMTP" has been configured before: skiping include insertion!"
 #	else
@@ -772,7 +822,109 @@ if [ -f "$PATH_CLAMAV_CONF" ]; then
         fi
 fi
 
+#
+# Modify the cyrus imapd.conf 
+#
 
+if [ -f "$PATH_CYRUS_CONF" ]
+then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> modifying cyrus config"
+	fi
+	if grep "Configured by DTC" "$PATH_CYRUS_CONF" >/dev/null
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Cyrus imapd.conf has been configured before"
+		fi
+	else
+		if grep "unixhierarchysep: no" "$PATH_CYRUS_CONF" >/dev/null; then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Changing unixhierarchysep from no to yes"
+			fi
+			TMP_FILE=`${MKTEMP} DTC_install.imapd.conf.XXXXXX` || exit 1
+			sed "s/unixhierarchysep: no/unixhierarchysep: yes/" "$PATH_CYRUS_CONF" >$TMP_FILE
+			cat <$TMP_FILE >"$PATH_CYRUS_CONF"
+			rm $TMP_FILE
+		fi
+		if grep "sasl_pwcheck_method: auxprop" "$PATH_CYRUS_CONF" >/dev/null; then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Changing sasl_pwcheck_method from auxprop to saslauthd"
+			fi
+			TMP_FILE=`${MKTEMP} DTC_install.imapd.conf.XXXXXX` || exit 1
+			sed "s/sasl_pwcheck_method: auxprop/sasl_pwcheck_method: saslauthd/" "$PATH_CYRUS_CONF" >$TMP_FILE
+			cat <$TMP_FILE >"$PATH_CYRUS_CONF"
+			rm $TMP_FILE
+		fi
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Inserting DTC configuration inside $PATH_CYRUS_CONF"
+		fi
+
+		TMP_FILE=`${MKTEMP} DTC_install.imapd.conf.XXXXXX` || exit 1
+		echo "# Configured by DTC v0.20 : Please don't touch this line !" > $TMP_FILE
+		echo "virtdomains: yes
+quotawarn: 90
+admins: cyrus
+sasl_mech_list: PLAIN LOGIN" >> $TMP_FILE
+		echo "# End of DTC configuration v0.20 : Please don't touch this line !" >> $TMP_FILE
+	# now to insert it at the end of the actual imapd.conf
+	cat < $TMP_FILE >>$PATH_CYRUS_CONF
+	rm $TMP_FILE
+	fi
+    else
+	echo "$PATH_CYRUS_CONF NOT FOUND"
+fi
+
+if [ -f "$PATH_SASL_START_CONF" ]
+then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> modifying saslauthd startup parameters"
+	fi
+	if grep "Configured by DTC" $PATH_SASL_START_CONF >/dev/null
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "$PATH_SASL_START_CONF has been configured before..."
+		fi
+	else
+		TMP_FILE=`${MKTEMP} DTC_install.saslauthd.XXXXXX` || exit 1
+		echo "# Configured by DTC v0.20 : Please don't touch this line !" > $TMP_FILE
+		echo "START=yes
+PARAMS=\"-r -c \"" >> $TMP_FILE
+		echo "# End of DTC configuration v0.20 : Please don't touch this line !" >> $TMP_FILE
+		# now to insert it at the end of the actual saslauthd startup file
+		cat < $TMP_FILE >>$PATH_SASL_START_CONF
+		rm $TMP_FILE
+	fi
+	if [ -f $PATH_SASL_STARTUP ]
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "modifying saslatuhd startup file"
+		fi
+		# create the direcotry for postfix to access SASL socket
+		mkdir -p $PATH_SASL_SOCKET
+
+		# get the md5sum of the file, if it's original do the change
+		# else we have a problem and report it to do the change manualy
+		sasl_start_md5sum=`md5sum $PATH_SASL_STARTUP|cut -d " " -f1`
+		# ### CL find a better place for this !
+		sasl_orginal_m5="6307086733ad29bbd57f81b6c38334a1";
+		if [ ""$sasl_orginal_m5 = "$sasl_start_md5sum" ]
+		then
+			# ok file is original so we can "patch" it.
+			patch $PATH_SASL_STARTUP <$PATH_DTC_ADMIN/patch_saslatuhd_startup
+		else 
+			echo "Can not modify the saslauthd startupfile"
+			echo "Please edit $PATH_SASL_STARTUP by hand and add folowing after startup:"
+			echo "rm -f /var/spool/postfix/var/run/saslauthd/mux
+ln /var/run/saslauthd/mux /var/spool/postfix/var/run/saslauthd/mux"
+			echo "for more informations contact DTC development and DTC forums"
+		fi
+	fi
+else
+	if [ ""$conf_use_cyrus = "true" ]; then
+		echo "Big Problem: Cyrus install selected bo no saslauthd startup file";
+		echo "Workaround: make saslauth start with -r -c -a pam";
+	fi
+fi
 # 
 # Modify the postfix main.cf to include virtual delivery options
 #
@@ -809,6 +961,7 @@ then
 
 		TMP_FILE=`${MKTEMP} DTC_install.postfix_main.cf.XXXXXX` || exit 1
 		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
+		# CL: this is general config, for courier and cyrus
 		echo "# DTC virtual configuration
 # disable the following functionality by default (otherwise can't match subdomains correctly)
 parent_domain_matches_subdomains=
@@ -820,16 +973,28 @@ mailbox_size_limit = 0
 content_filter=smtp-amavis:[127.0.0.1]:10024
 
 virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
-virtual_mailbox_base = /
-virtual_mailbox_maps = hash:$PATH_DTC_ETC/postfix_vmailbox
-virtual_minimum_uid = 100
-virtual_uid_maps = static:65534
-virtual_gid_maps = static:65534
-virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
+" >> $TMP_FILE
+
+if [ ""$conf_use_cyrus = "true" ]; then
+	echo "virtual_transport = cyrus
+	mailbox_transport = cyrus
+	# local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
+else
+	# courier only!
+	echo "
+	virtual_mailbox_base = /
+	virtual_mailbox_maps = hash:$PATH_DTC_ETC/postfix_vmailbox
+	virtual_minimum_uid = 100
+	virtual_uid_maps = static:65534
+	virtual_gid_maps = static:65534
+	virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
+fi
+# CL continue with global part
+echo "virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
 alias_maps = hash:/etc/aliases, hash:$PATH_DTC_ETC/postfix_aliases
 relay_domains = $PATH_DTC_ETC/postfix_relay_domains
-relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients
-virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
+relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients "
+ >> $TMP_FILE
 		if [ -n $conf_dnsbl_list ]; then
 			IFS=, 
 			for i in $conf_dnsbl_list; do 
@@ -883,8 +1048,14 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 
 			SASLTMP_FILE=`${MKTEMP} DTC_install.postfix_sasl.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
-			echo "pwcheck_method: auxprop
+			# CL: for cyrus use saslauthd instead of auxprop!
+			if [ ""$conf_use_cyrus = "true" ]; then
+				echo "pwcheck_method: saslauthd
+mech_list: login plain" >> $SASLTMP_FILE
+			else
+				echo "pwcheck_method: auxprop
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
+			fi
 			echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
 			echo "smtpd_recipient_restrictions = permit_mynetworks, 
                                permit_sasl_authenticated,
@@ -929,6 +1100,11 @@ smtpd_tls_auth_only = no
 				echo "maildrop  unix  -       n       n       -       -       pipe
     flags=DRhu user=nobody argv=$PATH_MAILDROP_BIN -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
 " >> $TMP_FILE2
+			fi
+			# CL do we use cyrus? 
+			if [ ""$conf_use_cyrus = "true" ]; then
+				echo "cyrus     unix  -       n       n       -       -       pipe
+  flags=R user=cyrus argv=/usr/sbin/cyrdeliver -e -m \${extension} \${recipient}"  >> $TMP_FILE2
 			fi
 
 			# Insert our amavis stuff inside the master.cf

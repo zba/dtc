@@ -1,4 +1,6 @@
 <?php
+include "cyradm.php";
+include "cyrus.php";
 
 ///////////////////////////////////////////////
 // Email account submition to mysql database //
@@ -104,6 +106,39 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 VALUES ('".$_REQUEST["newmail_login"]."','".$_REQUEST["newmail_login"]."@".$edit_domain."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver','$do_spam_mailbox_enable','".$_REQUEST["newmail_spam_mailbox"]."');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
+		if ($cyrus_used)
+		{
+			# login to cyradm
+			$cyr_conn = new cyradm;
+			$error=$cyr_conn -> imap_login();
+			if ($error!=0){
+				die ("imap_login Error $error");
+			}
+			$result=$cyr_conn->createmb("user/" . $_REQUEST["newmail_login"]."@".$edit_domain);
+/*	this doesn't seem to work so lets just forget it for the moment
+				if (!$result){
+				echo "error creating mailbox user/" . $_REQUEST["newmail_login"]."@".$edit_domain;
+			}
+*/
+			# create spam mailbox
+			$result=$cyr_conn->createmb("user/" . $_REQUEST["newmail_login"]."/".$_REQUEST["newmail_spam_mailbox"]."@".$edit_domain);
+			/*
+			if (!$result){
+				echo "error creating mailbox user/" . $_REQUEST["newmail_login"]."@".$edit_domain;
+			}
+			*/
+			# set ACL so that admin can remove mailbox again
+			$result = $cyr_conn->setacl("user/" . $_REQUEST["newmail_login"]."@".$edit_domain, $CYRUS['ADMIN'], "lrswipcda");
+			/*
+			if (!$result)
+			{
+				echo "could not set ACL for user/" . $_REQUEST["newmail_login"]."@".$edit_domain;
+			}
+			*/
+			# CL ToDo change this ###
+			$quota=$cyrus_default_quota;
+			$result = $cyr_conn->setmbquota("user/" . $_REQUEST["newmail_login"]."@".$edit_domain, $quota);
+		}
 		writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);
 		triggerMXListUpdate();
 		updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
@@ -203,6 +238,12 @@ if(isset($_REQUEST["delemailaccount"]) && $_REQUEST["delemailaccount"] == "Del")
 		triggerMXListUpdate();
 		updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	}
+	$cyr_conn = new cyradm;
+	$error = $cyr_conn->imap_login();
+	if ($error != 0){
+		die ("Error: " . $error);
+	}
+	$cyr_conn->deletemb("user/".$_REQUEST["edit_mailbox"]."@".$edit_domain);
 }
 
 ?>
