@@ -18,6 +18,8 @@ vuoto se non si hanno server DNS di backup):",
                 (leave blank if you don't have backup MX server):",
         "zh" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
                 (leave blank if you don't have backup MX server):",
+	"pl" => "Lista serwerów DNS (adresy IP), dopuszczone do transferu stref odzielone przez &quot;|&quot; (pipe)<br>
+		        (Pozostaw puste jesli nie masz zapasowych serwerów DNS):",
         "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):",
 		"pt" => "Lista de IPs dos servidores de DNS com permissões para transferir zonas, separados  por  &quot;|&quot; (pipe)<br>
@@ -42,8 +44,8 @@ di backup):",
                 (leave blank if you don't have backup MX server):",
         "zh" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
                 (leave blank if you don't have backup MX server):",
-        "pl" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
-                (leave blank if you don't have backup MX server):",
+        "pl" => "Lista serwerów MX odzielona przez  &quot;|&quot; (pipe/rurka)<br>
+                        (Pozostaw puste je¶li nie masz zapasowych MX'ow-serwerów poczty):",
         "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):",
 		"pt" => "Lista dos servidores de backup de e-mail (MX) separados por &quot;|&quot; (pipe)<br>
@@ -59,7 +61,7 @@ $txt_cfg_use_des_or_blowfish = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "Klucz blowfish do serwera Tucows:",
 "es" => "Tipo de encriptación para conectar al servidor Tucows ",
 "pt" => "Tipo de cifra utilizado para se ligar ao servidor Tucows "
 );
@@ -74,7 +76,7 @@ $txt_cfg_registry_api_title = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "Konfiguracja API do rejestracji domen",
 "es" => "Configuración del API para el registro de nombres",
 "pt" => "Nome do dominio do API para o registro de nomes"
 );
@@ -88,7 +90,7 @@ $txt_cfg_use_test_or_live = array (
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "U¿ywaj rzeczywistego serwera (nie testuj niczego)",
 "es" => "Usar el servidor LIVE (no el de pruebas)",
 "pt" => "Usar o Servidor Live (não o de testes)"
 );
@@ -102,7 +104,7 @@ $txt_cfg_tucows_username = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "Twój login SRS",
 "es" => "Tu nombre SRS",
 "pt" => "O seu utilizador SRS :"
 );
@@ -116,7 +118,7 @@ $txt_cfg_tucows_test_server_key = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "Klucz do serwera testowego",
 "es" => "Clave de acceso al servidor de pruebas",
 "pt" => "Palavra chave para aceder ao servidor de testes :"
 );
@@ -130,7 +132,7 @@ $txt_cfg_tucows_live_server_key = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "Klucz dostêpowy do serwera LIVE",
 "es" => "Clave de acceso al servidor LIVE",
 "pt" => "Palavra chave para aceder ao servidor LIVE :"
 );
@@ -144,7 +146,7 @@ $txt_cfg_registryapi_menu_entry = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "Rejestracja domeny",
 "es" => "Registro de dominio",
 "pt" => "Registo de dominio"
 );
@@ -158,7 +160,7 @@ $txt_cfg_backup_and_mx_menu_entry = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "Serwery zapsowe poczty i DNS",
 "es" => "Servidores de respaldo MX y NS",
 "pt" => "Servidores de backup MX e NS"
 );
@@ -172,7 +174,7 @@ $txt_cfg_ip_and_network = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "Adres IP i sieci",
 "es" => "Dirección IP y red",
 "pt" => "Endereço de IP e rede"
 );
@@ -186,7 +188,7 @@ $txt_cfg_general_menu_entry = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "TRANS ",
+"pl" => "G³ówne",
 "es" => "General",
 "pt" => "Geral"
 );
@@ -201,7 +203,7 @@ $txt_cfg_paypal_use_sandbox = array(
 	"ru" => "TRANS Use the sandbox test server:",
 	"de" => "TRANS Use the sandbox test server:",
 	"zh" => "TRANS Use the sandbox test server:",
-	"pl" => "TRANS Use the sandbox test server:",
+	"pl" => "do tlumaczenia:",
 	"es" => "Usar el servidor de pruebas sandbox:",
 	"pt" => "Utilizar o servidor de testes \"sandbox\" :"
 	);
@@ -216,7 +218,7 @@ $txt_cfg_paypal_sandbox_email = array(
 	"ru" => "TRANS PayPal test account email (sandbox):",
 	"de" => "TRANS PayPal test account email (sandbox):",
 	"zh" => "TRANS PayPal test account email (sandbox):",
-	"pl" => "TRANS PayPal test account email (sandbox):",
+	"pl" => "Konto testowe Paypal (sandbox):",
 	"es" => "Cuenta de correo de pruebas de paypal (sandbox):",
 	"pt" => "E-mail da conta de teste Paypal (sandbox) :"
 	);
@@ -837,7 +839,7 @@ $txt_cfg_phplib_path = array(
 	"ru" => "TRANS LPhp ÂÉÂÌÉÏÔÅËÉ open_basedir (ÒÁÚÄÅÌÅÎÎÙÅ \":\", reset on each dtc install):",
 	"de" => "TRANS LPHP Bibliotheken open_basedir (getrennt durch \":\", reset on each dtc install):",
 	"zh" => "TRANS LPhpµÄÎÄ¼þ¼Ð open_basedir (±»\":\"Çø·Ö, reset on each dtc install):",
-	"pl" => "TRANS LBiblioteki PHP open_basedir (oddzielone \":\", reset on each dtc install) :",
+	"pl" => "LBiblioteki PHP open_basedir (oddzielone \":\", reset on each dtc install) :",
 	"es" => "TRANS LLibrerias de Php open_basedir (separadas por \":\", reset on each dtc install):",
 	"pt" => "TRANS Librarias PHP open_basedir (separadas por \":\", reset on each dtc install) :"
 	);
