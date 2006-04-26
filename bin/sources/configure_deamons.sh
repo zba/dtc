@@ -510,9 +510,8 @@ if ! [ -e $PATH_DTC_ETC/dtc404/404.php ]; then
 	cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC/dtc404/
 fi
 
-if [ ""$conf_use_cyrus = "true" ]; then
-	cyrus_auth_php="$PATH_DTC_SHARED/admin/cyrus.php"
-	echo "<?
+cyrus_auth_php="$PATH_DTC_SHARED/shared/cyrus.php"
+echo "<?
 \$CYRUS = array(
 'HOST'  => 'localhost',
 'PORT'  => 143,
@@ -522,7 +521,6 @@ if [ ""$conf_use_cyrus = "true" ]; then
 \$cyrus_used=1;
 \$cyrus_default_quota=51200;
 ?>" > $cyrus_auth_php;
-fi
 
 PATH_PAMD_SMTP=/etc/pam.d/smtp
 PATH_PAMD_IMAP=/etc/pam.d/imap

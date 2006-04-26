@@ -1,6 +1,6 @@
 <?php
 include "cyradm.php";
-include "cyrus.php";
+include "$dtcshared_path/cyrus.php";
 
 ///////////////////////////////////////////////
 // Email account submition to mysql database //
