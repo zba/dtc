@@ -61,7 +61,7 @@ echo "you wish to use with DTC ? Type q for qmail"
 echo "or type p for postfix."
 echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
 read conf_mta_type
-if [ ""$conf_mta_type = "p" -o ""$conf_mta_type = "P" ];
+if [ ""$conf_mta_type = "p" -o ""$conf_mta_type = "P" ]; then
 	conf_mta_type=postfix
 	echo "Postfix will be used"
 else
