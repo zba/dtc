@@ -248,11 +248,11 @@ for ($i = 0; $i < $n_indexes; $i++)
 	$index_name = $a_indexes[2];
 	if ($index_name != "PRIMARY"){
 		echo "Removing $index_name from $table_name...";
-		$q = "ALTER TABLE \"$table_name\" DROP INDEX \"$index_name\";";
+		$q = "ALTER TABLE $table_name DROP INDEX $index_name;";
 		$r = mysql_query($q);
 		if (!$r)
 		{
-			//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
+			echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
 		}
 		
 	}
