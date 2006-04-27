@@ -1,5 +1,18 @@
 <?php
 
+$txt_product_manager = array(
+  "fr" => "Création de pack d'éhbergement",
+  "en" => "Hosting product manager",
+  "hu" => "TRANS Hosting product manager",
+  "it" => "TRANS Hosting product manager",
+  "nl" => "TRANS Hosting product manager",
+  "ru" => "TRANS Hosting product manager",
+  "de" => "TRANS Hosting product manager",
+  "zh" => "TRANS Hosting product manager",
+  "pl" => "TRANS Hosting product manager",
+  "es" => "TRANS Hosting product manager",
+  "pt" => "TRANS Hosting product manager");
+
 $txt_parking_popup_legend = array(
   "fr" => "Ce domaine sera l'alias du domaine suivant (parking de domaine) :",
   "en" => "This domain will be the alias of the following domain (domain parking):",

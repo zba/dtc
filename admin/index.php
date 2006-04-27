@@ -133,7 +133,7 @@ case "config": // Global Config
 
 case "product":
 	$bla = productManager();
-	$zemain_content = skin($conf_skin,$bla,"Product manager");
+	$zemain_content = skin($conf_skin,$bla,$txt_product_manager[$lang]);
 	break;
 case "adminedit":
 	// A virtual admin edition
@@ -266,7 +266,7 @@ if(file_exists("dtcrm")){
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=product\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/product_manager.png\"><br>
-		Product manager";
+".$txt_product_manager[$lang];
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "product"){
 		$menu .= "</a>";
 	}
