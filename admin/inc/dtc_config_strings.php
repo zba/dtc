@@ -18,8 +18,8 @@ vuoto se non si hanno server DNS di backup):",
                 (leave blank if you don't have backup MX server):",
         "zh" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
                 (leave blank if you don't have backup MX server):",
-	"pl" => "Lista serwerów DNS (adresy IP), dopuszczone do transferu stref odzielone przez &quot;|&quot; (pipe)<br>
-		        (Pozostaw puste jesli nie masz zapasowych serwerów DNS):",
+        "pl" => "Lista serwerów DNS (adresy IP), dopuszczone do transferu stref odzielone przez &quot;|&quot; (pipe)<br>
+	        (Pozostaw puste jesli nie masz zapasowych serwerów DNS):",
         "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):",
 		"pt" => "Lista de IPs dos servidores de DNS com permissões para transferir zonas, separados  por  &quot;|&quot; (pipe)<br>
@@ -45,7 +45,7 @@ di backup):",
         "zh" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
                 (leave blank if you don't have backup MX server):",
         "pl" => "Lista serwerów MX odzielona przez  &quot;|&quot; (pipe/rurka)<br>
-                        (Pozostaw puste je¶li nie masz zapasowych MX'ow-serwerów poczty):",
+                (Pozostaw puste je¶li nie masz zapasowych MX'ow-serwerów poczty):",
         "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):",
 		"pt" => "Lista dos servidores de backup de e-mail (MX) separados por &quot;|&quot; (pipe)<br>
@@ -174,7 +174,7 @@ $txt_cfg_ip_and_network = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "Adres IP i sieci",
+"pl" => "Adres IP i sieci ",
 "es" => "Dirección IP y red",
 "pt" => "Endereço de IP e rede"
 );
@@ -188,22 +188,22 @@ $txt_cfg_general_menu_entry = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "G³ówne",
+"pl" => "G³ówne ",
 "es" => "General",
 "pt" => "Geral"
 );
 
 
 $txt_cfg_paypal_use_sandbox = array(
-"fr" => "Utiliser le serveur de test sandbox :",
-"en" => "Use the sandbox test server:",
+	"fr" => "Utiliser le serveur de test sandbox :",
+	"en" => "Use the sandbox test server:",
 	"hu" => "A kövezkezõ \"sandbox\" test szervert használja:",
 	"it" => "Utilizza il sandbox test server:",
 	"nl" => "TRANS Use the sandbox test server:",
 	"ru" => "TRANS Use the sandbox test server:",
 	"de" => "TRANS Use the sandbox test server:",
 	"zh" => "TRANS Use the sandbox test server:",
-	"pl" => "do tlumaczenia:",
+	"pl" => "Uzyj sandbox'a do testowania:",
 	"es" => "Usar el servidor de pruebas sandbox:",
 	"pt" => "Utilizar o servidor de testes \"sandbox\" :"
 	);
@@ -247,7 +247,7 @@ $txt_cfg_make_request_to_server_for_update = array(
 	"ru" => "TRANS Tell the following servers when a domain is added or removed : ",
 	"de" => "Folgende Server informieren, wenn eine Domaine hinzugefügt oder gelöscht wird: ",
 	"zh" => "µ±ÓòÃûÌí¼Ó»òÉ¾³ýÊ±Í¨ÖªÏÂÁÐ·þÎñÆ÷£º",
-	"pl" => "Tell the following servers when a domain is added or removed : ",
+	"pl" => "Powiadamiaj serwery o dodaniu b±dz usuniêcu domeny : ",
 	"es" => "Avisar a los siguientes servidores cuando un dominio es añadido o eliminado : ",
 	"pt" => "Emitir um aviso aos seguintes servidores quando um dominio é eliminado : "
 	);
@@ -261,7 +261,7 @@ $txt_cfg_make_request_to_server_mx_update = array(
 	"ru" => "TRANS Tell the following servers when a email is added or removed : ",
 	"de" => "Folgende Server informieren, wenn eine email hinzugefügt oder gelöscht wird: ",
 	"zh" => "å‘Šè¯‰ä»¥ä¸‹æœåŠ¡å™¨ç”µå­é‚®ä»¶å¢žåŠ æˆ–è¢«åŽ»é™¤",
-	"pl" => "Tell the following servers when a email is added or removed : ",
+	"pl" => "Zawiadom nastepuj±ce serwery o skasowaniu b±dz usuniêciu poczty: ",
 	"es" => "Avisar a los siguientes servidores cuando un email es añadido o eliminado : ",
 	"pt" => "Emitir um aviso aos seguintes servidores quando uma conta de e-mai e adicionada ou removida : "
 	);
@@ -275,7 +275,7 @@ $txt_cfg_act_as_backup_mail_server = array(
 	"ru" => "TRANS Act as backup mail server for the following servers: ",
 	"de" => "Als Backup Mail Server für folgende Server verwenden: ",
 	"zh" => "¶ÔÏÂÁÐ·þÎñÆ÷×÷Îª±¸·ÝÓÊ¼þ·þÎñÆ÷: ",
-	"pl" => "Act as backup mail server for the following servers: ",
+	"pl" => "Aktywuj kopie poczty na nastepuj±ce serwery: ",
 	"es" => "Actuar como servidor de correo de respaldo para los siguientes servidores: ",
 	"pt" => "Actuar como um servidor de backup de e-mail para os seguintes servidores : " 
 	);
@@ -289,7 +289,7 @@ $txt_cfg_act_as_backup_dns_server = array(
 	"ru" => "TRANS Act as backup DNS server for the following servers: ",
 	"de" => "Als Backup DNS Server für folgende Server verwenden: ",
 	"zh" => "¶ÔÏÂÁÐ·þÎñÆ÷×÷Îª±¸·ÝDNS·þÎñÆ÷: ",
-	"pl" => "Act as backup DNS server for the following servers: ",
+	"pl" => "Aktywuj kopie serwerow  DNS na nastepuj±ce serwerys: ",
 	"es" => "Actuar como servidor de DNS de respaldo para los siguientes servidores: ",
 	"pt" => "Actuar como um servidor de backup de DNS para os seguintes servidores : "
 	);
@@ -457,7 +457,7 @@ $txt_cfg_use_multiple_ip =array(
 	"ru" => "éÓÐÏÌØÚÏ×ÁÔØ ÎÅÓËÏÌØËÏ IP",	
 	"de" => "Mehrere IP Adressen verwenden:",
 	"zh" => "Ê¹ÓÃ¶àÖÖIP:",
-	"pl" => "U¿yj adresu IP multi :",
+	"pl" => "U¿yj adresu IP w trybie multi :",
 	"es" => "Usar multiples IPs",
 	"pt" => "Utilizar vários IPs"
 	);
@@ -472,7 +472,7 @@ subdomains:",
 	"ru" => "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐ¹Ñ‚Ðµ CNAME Ð²Ð¼ÐµÑÑ‚Ð¾ Ð¿Ð¾ÐºÐ°Ð·Ð°Ñ‚ÐµÐ»Ñ A Ð´Ð»Ñ ÑÑƒÐ±-domenov",	
 	"de" => "Verwenden Sie CNAME anstelle von der A Aufzeichnung fÃ¼r subdomains:",
 	"zh" => "ä½¿ç”¨CNAME ä»£æ›¿ A çºªå½•ä¸ºæ¬¡çº§é¢†åŸŸ:",
-	"pl" => "U¿yj CNAME instead of A record for subdomains:",
+	"pl" => "U¿yj CNAME rekordu A domeny dla dodawanych subdomen:",
 	"es" => "Utilice CNAME en vez del expediente de A para los secundario-dominios:",
 	"pt" => "Utilizar registos CNAME em vez de registos A para subdominios:"
 	);
@@ -514,7 +514,7 @@ $txt_cfg_use_javascript = array(
 	"ru" => "TRANS Use javascript:",
 	"de" => "JavaScript verwenden:",
 	"zh" => "Ê¹ÓÃjavascript:",
-	"pl" => "U¿yj JavaScript :",
+	"pl" => "U¿yj JavaScript'u :",
 	"es" => "Usar javascript:",
 	"pt" => "Usar JavaScript  :"
 	);
@@ -542,7 +542,7 @@ $txt_cfg_hide_password = array(
 	"ru" => "TRANS Hide passwords within DTC:",
 	"de" => "Passwörter im DTC verstecken:",
 	"zh" => "ÓÃDTCÒþ²ØÃÜÂë£º",
-	"pl" => "Ukryj has³o z DTC :",
+	"pl" => "Ukryj has³a z DTC :",
 	"es" => "Ocultar contraseñas dentro de DTC:",
 	"pt" => "Ofuscar as palavras chave no DTC:"
 	);
@@ -626,7 +626,7 @@ $txt_cfg_name_zonefileconf_title =array(
 	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ÚÏÎ äîó",
 	"de" => "Bind Zonendatei",
 	"zh" => "Named zonefilesÅäÖÃ",
-	"pl" => "Nazwy serwerów stref",
+	"pl" => "Konfiguracja stref binda",
 	"es" => "Zonas de Named",
 	"pt" => "Ficheiros de zonas"  
 	);
@@ -839,7 +839,7 @@ $txt_cfg_phplib_path = array(
 	"ru" => "TRANS LPhp ÂÉÂÌÉÏÔÅËÉ open_basedir (ÒÁÚÄÅÌÅÎÎÙÅ \":\", reset on each dtc install):",
 	"de" => "TRANS LPHP Bibliotheken open_basedir (getrennt durch \":\", reset on each dtc install):",
 	"zh" => "TRANS LPhpµÄÎÄ¼þ¼Ð open_basedir (±»\":\"Çø·Ö, reset on each dtc install):",
-	"pl" => "LBiblioteki PHP open_basedir (oddzielone \":\", reset on each dtc install) :",
+	"pl" => "Biblioteki PHP open_basedir (oddzielone \":\", zresetuj pozosta³e podczas instalacji dtc) :",
 	"es" => "TRANS LLibrerias de Php open_basedir (separadas por \":\", reset on each dtc install):",
 	"pt" => "TRANS Librarias PHP open_basedir (separadas por \":\", reset on each dtc install) :"
 	);
@@ -853,7 +853,7 @@ $txt_cfg_phplib2_path =array(
 	"ru" => "ðÕÔØ Ë ÄÏÐÏÌÎÉÔÅÌØÎÙÍ ÂÉÂÌÉÏÔÅËÁÍ PHP open_basedir (keeped uppon reinstallation):",
 	"de" => "Zusätzliche PHP Bibliotheken open_basedir (keeped uppon reinstallation):",
 	"zh" => "PhpµÄ¸½¼ÓÎÄ¼þ¼ÐÂ·¾¶ open_basedir (keeped uppon reinstallation):",
-	"pl" => "Dodatkowe biblioteki PHP open_basedir (keeped uppon reinstallation) :",
+	"pl" => "Dodatkowe biblioteki PHP w open_basedir (zachowaj przed reinstalacja) :",
 	"es" => "Librerias adicionales de Phpopen_basedir  (keeped uppon reinstallation):",
 	"pt" => "Librarias adicionais de PHP open_basedir (keeped uppon reinstallation):"
 	);
