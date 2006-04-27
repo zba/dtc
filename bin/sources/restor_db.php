@@ -237,6 +237,27 @@ echo "truncate...";
 $q = "TRUNCATE http_accounting_tmp;";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+echo "Remove indexes...";
+$q = "SHOW INDEX FROM http_accounting_tmp;";
+$r_indexes = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$n_indexes = mysql_num_rows($r_indexes);
+for ($i = 0; $i < $n_indexes; $i++)
+{
+	$a_indexes = mysql_fetch_array($r_indexes);
+	$table_name = $a_indexes[0];
+	$index_name = $a_indexes[2];
+	if ($index_name != "PRIMARY"){
+		echo "Removing $index_name from $table_name...";
+		$q = "ALTER TABLE \"$table_name\" DROP INDEX \"$index_name\";";
+		$r = mysql_query($q);
+		if (!$r)
+		{
+			//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
+		}
+		
+	}
+}
+
 echo "alter...";
 $q = "ALTER TABLE http_accounting_tmp ADD UNIQUE (`vhost` ,`month` ,`year` ,`domain`);";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
