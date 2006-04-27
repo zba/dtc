@@ -9,7 +9,7 @@ $txt_product_manager = array(
   "ru" => "TRANS Hosting product manager",
   "de" => "TRANS Hosting product manager",
   "zh" => "TRANS Hosting product manager",
-  "pl" => "TRANS Hosting product manager",
+  "pl" => "Zarzadzanie produktami",
   "es" => "TRANS Hosting product manager",
   "pt" => "TRANS Hosting product manager");
 
@@ -22,7 +22,7 @@ $txt_parking_popup_legend = array(
   "ru" => "TRANS This domain will be the alias of the following domain (domain parking):",
   "de" => "TRANS This domain will be the alias of the following domain (domain parking):",
   "zh" => "TRANS This domain will be the alias of the following domain (domain parking):",
-  "pl" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "pl" => "Domena ma byc aliasem do istniejacej domeny (parkowanie domeny):",
   "es" => "TRANS This domain will be the alias of the following domain (domain parking):",
   "pt" => "TRANS This domain will be the alias of the following domain (domain parking):");
 
@@ -35,7 +35,7 @@ $txt_no_parking_popup_text = array(
   "ru" => "TRANS No parking",
   "de" => "TRANS No parking",
   "zh" => "TRANS No parking",
-  "pl" => "TRANS No parking",
+  "pl" => "Nie parkuj",
   "es" => "TRANS No parking",
   "pt" => "TRANS No parking");
 
@@ -458,7 +458,7 @@ $txt_total_database_number = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "Êı¾İ¿âµÄ×ÜÊı ",
-"pl" => "TRANS ",
+"pl" => "Suma baz danych ",
 "es" => "Número total de bases de datos",
 "pt" => "Número total de base de dados"
 );
@@ -473,7 +473,7 @@ database",
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "Èç¹ûÒª½¨Á¢Ò»¸öÊı¾İ¿â,Çë´´½¨Ò»¸öMySQLÓÃ»§ ",
-"pl" => "Utwórz u¿ytkownika MySQL w kolejnosci w jakiej bêd± oni tworzyc bazy danych ",
+"pl" => "Utwórz u¿ytkownika MySQL w kolejnosci w jakiej bêd± oni tworzyæ bazy danych ",
 "es" => "Tienes que crear un usuario mysql para poder crear una base de datos",
 "pt" => "Deverá criar um utilizador MySQL para poder criar base de dados."
 );
@@ -881,7 +881,7 @@ $txt_no_domain_waiting = array(
   "ru" => "TRANS No domain waiting!",
   "de" => "Keine Domaine in Warteschleife!",
   "zh" => "ÎŞÓòÃûµÈ´ı£¡",
-  "pl" => "Brak nowej domeny!",
+  "pl" => "Brak oczekuj±cych domenn!",
   "es" => "¡Ningun dominio esperando!",
    "pt" => "Nenhum dominio pendente !"
   );
@@ -1104,7 +1104,7 @@ $txt_remove_admin_from_client = array(
 	"ru" => "TRANS Remove an administrator for this customer:",
 	"de" => "Administrator für diesen Kunden entfernen:",
 	"zh" => "¶ÔÕâ¸ö¹Ë¿ÍÈ¡Ïû¹ÜÀíÔ±:",
-    "pl" => "Usuñ konto administracyjne klienta:",
+	"pl" => "Usuñ konto administracyjne klienta:",
 	"es" => "Eliminar administrador para este cliente:",
 	"pt" => "Eliminar administrador para este cliente :"
 	);
