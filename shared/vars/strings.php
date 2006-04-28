@@ -1,5 +1,34 @@
 <?php
 
+$txt_mainmenu_title_server_monitor = array(
+  "fr" => "Moniteur serveur",
+  "en" => "Server monitor",
+  "hu" => "TRANS Server monitor",
+  "it" => "TRANS Server monitor",
+  "nl" => "TRANS Server monitor",
+  "ru" => "TRANS Server monitor",
+  "de" => "TRANS Server monitor",
+  "zh" => "TRANS Server monitor",
+  "pl" => "Monitoring servera",
+  "es" => "TRANS Server monitor",
+  "pt" => "TRANS Server monitor"
+  );
+
+$txt_admin_editor = array(
+  "fr" => "Editeur d'aministrateur",
+  "en" => "Admin editor",
+  "hu" => "TRANS Admin editor",
+  "it" => "TRANS Admin editor",
+  "nl" => "TRANS Admin editor",
+  "ru" => "TRANS Admin editor",
+  "de" => "TRANS Admin editor",
+  "zh" => "TRANS Admin editor",
+  "pl" => "Zarz±dzanie wirutalnymi administatorami",
+  "es" => "TRANS Admin editor",
+  "pt" => "TRANS Admin editor"
+  );
+
+
 $txt_product_manager = array(
   "fr" => "Création de pack d'éhbergement",
   "en" => "Hosting product manager",
@@ -9,7 +38,7 @@ $txt_product_manager = array(
   "ru" => "TRANS Hosting product manager",
   "de" => "TRANS Hosting product manager",
   "zh" => "TRANS Hosting product manager",
-  "pl" => "Zarzadzanie produktami",
+  "pl" => "Zarz±dzanie produktami",
   "es" => "TRANS Hosting product manager",
   "pt" => "TRANS Hosting product manager");
 
@@ -25,6 +54,20 @@ $txt_parking_popup_legend = array(
   "pl" => "Domena ma byc aliasem do istniejacej domeny (parkowanie domeny):",
   "es" => "TRANS This domain will be the alias of the following domain (domain parking):",
   "pt" => "TRANS This domain will be the alias of the following domain (domain parking):");
+
+$txt_mainmenu_title_server_monitor = array(
+  "fr" => "Moniteur serveur",
+  "en" => "Server monitor",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Monitoring servera",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
 
 $txt_no_parking_popup_text = array(
   "fr" => "Pas de parking",
@@ -1976,6 +2019,20 @@ $txt_transfer_this_month = array(
         "pl" => "Transfer w tym m-cu :",
 	"es" => "Transferencia este mes:",
 	"pt" => "Tráfego neste mês"
+	);
+
+$txt_transfer_per_month = array(
+	"fr" => "Transfère par mois",
+	"en" => "Transfer per month ",
+	"hu" => "TRANS Transfer per month ",
+	"it" => "TRANS Transfer per month ",
+	"nl" => "TRANS Transfer per month ",
+	"ru" => "TRANS Transfer per month ",
+	"de" => "TRANS Transfer per month ",
+	"zh" => "TRANS Transfer per month ",
+        "pl" => "Transfer na miesi±c",
+	"es" => "TRANS Transfer per month ",
+	"pt" => "TRANS Transfer per month"
 	);
 
 $txt_transfer = array(

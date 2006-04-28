@@ -52,7 +52,7 @@ case "monitor": // Monitor button
 	$nr = mysql_num_rows($r);
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="1" cellspacing="1">';
 	$out .=
-"<tr><td><b>User</b></td><td><b>".$txt_transfer[$lang]." / ".$txt_bw_quota[$lang]."</b></td><td><b>Transfer per month</b></td><td><b>".$txt_disk_usage[$lang]." / ".$txt_domain_tbl_config_quota[$lang]."</b></td></tr>";
+"<tr><td><b>".$txt_user[$lang]."</b></td><td><b>".$txt_transfer[$lang]." / ".$txt_bw_quota[$lang]."</b></td><td><b>".$txt_transfer_per_month[$lang]."</b></td><td><b>".$txt_disk_usage[$lang]." / ".$txt_domain_tbl_config_quota[$lang]."</b></td></tr>";
 	$total_box_transfer = 0;
 	$total_hits = 0;
 	for($i=0;$i<$nr;$i++){
@@ -207,7 +207,7 @@ $menu = "";
 if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "adminedit"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=adminedit$added_logpass\">";
 }
-$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/user-editor.png\"><br>"."Admin editor";
+$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/user-editor.png\"><br>".$txt_admin_editor[$lang];
 if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "adminedit"){
 	$menu .= "</a>";
 }
@@ -252,8 +252,8 @@ if(file_exists("dtcrm")){
 if(!isset($rub) || $rub != "graph"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=graph\">";
 }
-$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>
-	Server monitor";
+$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
+	$txt_mainmenu_title_server_monitor[$lang];
 if(!isset($rub) || $rub != "graph"){
 	$menu .= "</a>";
 }
