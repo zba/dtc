@@ -1,16 +1,21 @@
 <?php
 
+
+
 function login_emailpanel_form(){
 	global $txt_login_login;
 	global $txt_login_pass;
 	global $txt_use_text_menu;
 	global $txt_login_title;
-
+	
 	global $conf_skin;
 
 	global $lang;
-
-	$HTML_admin_edit_data = "<a href=\"/dtc\">Go to client panel</a>
+	
+	global $txt_goto_client_panel;
+	global $txt_go_to_login;
+	
+	$HTML_admin_edit_data = "<a href=\"/dtc\">".$txt_goto_client_panel[$lang]."</a>
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <table>
 <tr>
@@ -20,7 +25,7 @@ function login_emailpanel_form(){
 	<td align=\"right\">".$txt_login_pass[$lang]."</td>
 	<td><input type=\"password\" name=\"adm_email_pass\" value=\"\"></td>
 </tr><tr>
-	<td></td><td><input type=\"submit\" name=\"Login\" value=\"login\">
+	<td></td><td><input type=\"submit\" name=\"Login\" value=\"".$txt_go_to_login[$lang]."\">
 </td></tr>
 </table></form>";
 

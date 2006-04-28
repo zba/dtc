@@ -1,5 +1,101 @@
 <?php
 
+$txt_user_menu_email = array (
+  "fr" => "Mon e-mail",
+  "en" => "My e-mail",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Mój e-mail",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+$txt_user_menu_fetchmail = array (
+  "fr" => "Fetchmail",
+  "en" => "Fetchmail",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Sprawd¼ zdalny e-mail",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+$txt_user_menu_antispam = array (
+  "fr" => "Anti-spam",
+  "en" => "Antispam",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Antyspam",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+
+$txt_user_menu_quarantine = array (
+  "fr" => "Mon e-mail",
+  "en" => "My e-mail",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Kwarantanna",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+
+$txt_email_pass_error = array (
+  "fr" => "Mavais login ou mot de passe !",
+  "en" => "Wrong password or login!",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Z³e has³o lub login!",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+
+$txt_logout = array (
+  "fr" => "Déconnexion",
+  "en" => "Logout",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Wyloguj siê",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+);
+
+$txt_goto_client_panel = array(
+  "fr" => "Allez au panneau client",
+  "en" => "Go to client panel",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Przejdz do panela klienta",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+
 $txt_mainmenu_title_server_monitor = array(
   "fr" => "Moniteur serveur",
   "en" => "Server monitor",
@@ -15,7 +111,7 @@ $txt_mainmenu_title_server_monitor = array(
   );
 
 $txt_admin_editor = array(
-  "fr" => "Editeur d'aministrateur",
+  "fr" => "Editeur d'admin",
   "en" => "Admin editor",
   "hu" => "TRANS Admin editor",
   "it" => "TRANS Admin editor",
@@ -2022,17 +2118,17 @@ $txt_transfer_this_month = array(
 	);
 
 $txt_transfer_per_month = array(
-	"fr" => "Transfère par mois",
+	"fr" => "Transfert par mois",
 	"en" => "Transfer per month ",
-	"hu" => "TRANS Transfer per month ",
-	"it" => "TRANS Transfer per month ",
-	"nl" => "TRANS Transfer per month ",
-	"ru" => "TRANS Transfer per month ",
-	"de" => "TRANS Transfer per month ",
-	"zh" => "TRANS Transfer per month ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
         "pl" => "Transfer na miesi±c",
-	"es" => "TRANS Transfer per month ",
-	"pt" => "TRANS Transfer per month"
+	"es" => "TRANS ",
+	"pt" => "TRANS "
 	);
 
 $txt_transfer = array(
