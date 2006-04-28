@@ -210,7 +210,9 @@ function drawAdminTools_emailAccount($mailbox){
 	global $txt_mail_edit;
 	global $txt_mailbox_redirection_edition;
 	global $lang;
-
+	global $txt_yes;
+	global $txt_no;
+	
 	global $adm_email_login;
 	global $adm_email_pass;
 
@@ -232,9 +234,9 @@ function drawAdminTools_emailAccount($mailbox){
 <br><br>";
 
 	if($mailbox["data"]["localdeliver"] == "yes"){
-		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=no\"><font color=\"green\">yes</font></a>";
+		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=no\"><font color=\"green\">".$txt_yes[$lang]."</font></a>";
 	}else{
-		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=yes\"><font color=\"red\">no</font></a>";
+		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=yes\"><font color=\"red\">".$txt_no[$lang]."</font></a>";
 	}
 
 	$redirect_form = "<br><b><u>".$txt_mailbox_redirection_edition[$lang]."</b></u><br><br>
@@ -272,24 +274,30 @@ function drawAdminTools_emailPanel($mailbox){
 	global $adm_email_login;
 	global $adm_email_pass;
 
+	global $txt_user_menu_email;
+	global $txt_user_menu_fetchmail;
+	global $txt_user_menu_antispam;
+	global $txt_user_menu_quarantine;
+	global $txt_logout;
+
 	$user_menu[] = array(
-		"text" => "My Email",
+		"text" => $txt_user_menu_email[$lang],
 		"type" => "link",
 		"link" => "My Email");
 	$user_menu[] = array(
-		"text" => "fetchmail",
+		"text" => $txt_user_menu_fetchmail[$lang],
 		"type" => "link",
 		"link" => "fetchmail");
 	$user_menu[] = array(
-		"text" => "antispam",
+		"text" => $txt_user_menu_antispam[$lang],
 		"type" => "link",
 		"link" => "antispam");
 	$user_menu[] = array(
-		"text" => "quarantine",
+		"text" => $txt_user_menu_quarantine[$lang],
 		"type" => "link",
 		"link" => "quarantine");
 
-	$logout = "<a href=\"".$_SERVER["PHP_SELF"]."?action=logout\">Logout</a>";
+	$logout = "<a href=\"".$_SERVER["PHP_SELF"]."?action=logout\">".$txt_logout[$lang]."</a>";
 
 	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass","addrlink");
 	$left_menu = skin($conf_skin,"<br>".$mymenu."<center>$logout</center>",$adm_email_login);
