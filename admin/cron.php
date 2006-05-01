@@ -318,7 +318,12 @@ if($cronjob_table_content["restart_qmail"] == "yes"){
 		echo "Reloading postfix\n";
 		system("/etc/init.d/postfix reload");
 		echo "Reloading amavis\n";
-		system("/etc/init.d/amavis reload");
+		if( file_exists (/etc/init.d/amavis) ){
+			system("/etc/init.d/amavis reload");
+		}else if( file_exists (/etc/init.d/amavisd) ){
+			// Seems a restart is best (gentoo needs it)
+			system("/etc/init.d/amavisd restart");
+		}
 		break;
 	case "qmail":
 	default:
