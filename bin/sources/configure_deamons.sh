@@ -936,6 +936,12 @@ then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Linking postfix control files to DTC generated files"
 	fi
+	touch $PATH_POSTFIX_ETC/postfix_virtual.db
+	touch $PATH_POSTFIX_ETC/postfix_aliases.db
+	touch $PATH_POSTFIX_ETC/postfix_relay_recipients.db
+	touch $PATH_POSTFIX_ETC/postfix_vmailbox.db
+	touch $PATH_POSTFIX_ETC/postfix_virtual_uid_mapping.db
+	chown nobody:65534 $PATH_POSTFIX_ETC/postfix_*.db
 	if grep "Configured by DTC" "$PATH_POSTFIX_CONF" >/dev/null
 	then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
