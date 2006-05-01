@@ -747,7 +747,10 @@ $dtc_database = array(
 			"paypal_autovalidate" => "enum('yes','no') NOT NULL default 'yes' ",
 			"paypal_email" => "varchar(128) NOT NULL default 'palpay@gplhost.com' ",
 			"paypal_sandbox" => "enum('yes','no') NOT NULL default 'no' ",
-			"paypal_sandbox_email" => "varchar(255) NOT NULL "
+			"paypal_sandbox_email" => "varchar(255) NOT NULL ",
+			"use_enets" => "enum('yes','no') NOT NULL default 'no'",
+			"use_enets_test" => "enum('yes','no') NOT NULL default 'yes'",
+			"enets_mid_id" => "varchar(255) NOT NULL default ''"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

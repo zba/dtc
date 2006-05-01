@@ -645,6 +645,35 @@ function drawDTCpayConfig(){
 </tr>
 </table>
 ";
+
+
+	$out .= "<h3>eNETS:</h3>";
+	if($a["use_enets"] == "yes"){
+	  $use_enets_check_yes = " checked ";
+	  $use_enets_check_no = "";
+	}else{
+	  $use_enets_check_yes = " ";
+	  $use_enets_check_no = " checked ";
+	}
+	if($a["use_enets_test"] == "yes"){
+	  $use_enets_test_check_yes = " checked ";
+	  $use_enets_test_check_no = "";
+	}else{
+	  $use_enets_test_check_yes = " ";
+	  $use_enets_test_check_no = " checked ";
+	}
+	$out .="<table with=\"100%\" height=\"1\">
+      <tr><td align=\"right\" nowrap>
+	"."Use eNETS:"."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_enets\"$use_enets_check_yes> Yes
+	<input type=\"radio\" value=\"no\" name=\"use_enets\"$use_enets_check_no> No</td>
+      </tr><tr>
+	<td align=\"right\" nowrap>
+	"."eNETS server:"."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_enets_test\"$use_enets_test_check_yes> Test server
+	<input type=\"radio\" value=\"no\" name=\"use_enets_test\"$use_enets_test_check_no> Production server </td>
+      </tr><tr><td align=\"right\" nowrap>
+	eNETS mid:</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"".$a["enets_mid_id"]."\" name=\"enets_mid_id\"></td>
+      </tr></table>";
+
 	return $out;
 }
 
@@ -1163,8 +1192,12 @@ function saveDTCConfigInMysql(){
   	 paypal_autovalidate='".$_REQUEST["autovalid_paypal"]."',
   	 paypal_sandbox='".$_REQUEST["sandbox_paypal"]."',
   	 paypal_sandbox_email='".$_REQUEST["paypal_sandbox_email"]."',
-  	 paypal_email='".$_REQUEST["paypal_email"]."'
+  	 paypal_email='".$_REQUEST["paypal_email"]."',
+  	 use_enets='".$_REQUEST["use_enets"]."',
+  	 use_enets_test='".$_REQUEST["use_enets_test"]."',
+  	 enets_mid_id='".$_REQUEST["enets_mid_id"]."'
          WHERE 1 LIMIT 1;";
+//https://dtc.xen650202.gplhost.com/dtcadmin/index.php?rub=config&sousrub=payconf&use_paypal=yes&autovalid_paypal=no&paypal_email=webmaster%40xen650202.gplhost.com&paypal_rate=3.21&paypal_flat=0.50&sandbox_paypal=no&paypal_sandbox_email=&use_enets=no&use_enets_test=yes&paypal_email=1234&install_new_config_values=Ok
                 break;
         case "registryapi":
           // srs_enviro=TEST&srs_username=&srs_test_key=&srs_live_key=&install_new_config_values=Ok
