@@ -229,7 +229,7 @@ $dtc_database = array(
 			"du_stat" => "bigint(20) NOT NULL default '0' ",
 			"gen_unresolved_domain_alias" => "enum('yes','no') NOT NULL default 'no' ",
 			"txt_root_entry" => "varchar(128) NOT NULL default 'GPLHost:>_ Opensource hosting worldwide' ",
-			"txt_root_entry2" => "varchar(128) NOT NULL default 'This domain is hosted using Domain Technologie Control http://www.gplhost.com/?rub=softwares&sousrub=dtc' ",
+			"txt_root_entry2" => "varchar(128) NOT NULL default 'This domain is hosted using Domain Technologie Control http://www.gplhost.com/software-dtc.html' ",
 			"catchall_email" => "varchar(128) NOT NULL ",
 			"domain_parking" => "varchar(255) NOT NULL default 'no-parking' ",
 			"registrar_password" => "varchar(255) NOT NULL "

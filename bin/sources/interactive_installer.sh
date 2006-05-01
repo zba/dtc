@@ -37,7 +37,7 @@ echo "for you ? (eg: UPDATE user SET Password=PASSWORD('XXX')...)"
 echo -n 'Setup the mysql password [Ny]: '
 read conf_mysql_change_root
 
-if [ ""$conf_mysql_change_root = "y" -o ""$conf_mysql_change_root = "Y"]; then
+if [ ""$conf_mysql_change_root = "y" -o ""$conf_mysql_change_root = "Y" ]; then
 	echo "===> Changing MySQL Root password"
 	echo "MySQL will now prompt your for the password to connect to"
 	echo "the database. This is the OLD password that was there before"
