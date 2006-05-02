@@ -23,6 +23,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 	$txt = "";
 	$dir = $dtcshared_path."/package-installer";
 
+
 	if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "do_install" || $_REQUEST["action"] == "prepareinstall")){
 		$pkg_path = $dir."/".$_REQUEST["pkg"];
 		$dtc_pkg_info = $pkg_path."/dtc-pkg-info.php";
@@ -138,6 +139,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 			if($n < 1){
 				$txt .= "You don't have any database yet. Please create one using the database tool
 				(click database in the menu, then create a user and a database for this user).";
+				mysql_select_db($conf_mysql_db);
 				return $txt;
 			}
 			$txt .= "Database name: <select name=\"database_name\">";
