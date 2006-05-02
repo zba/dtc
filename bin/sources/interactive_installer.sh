@@ -80,7 +80,7 @@ read main_domain_name
 echo ""
 echo "DTC will install a root admin panel on a subdomain"
 echo "of the domain you just provided. The default subdomain"
-echo "is dtc, which leeds you to http://dtc."$main_domain_name"/"
+echo "is dtc, which leads you to http://dtc."$main_domain_name"/"
 echo "You can enter another subdomain name if you want."
 echo -n 'Subdomain for DTC admin panel [dtc]: '
 read dtc_admin_subdomain
@@ -90,16 +90,10 @@ fi
 
 if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
 	echo "***FIX ME*** Installer in OS X and BSD version don't have IP addr detection yet!"
+	guessed_ip_addr=""
 else
 	echo "Trying to guess your current IP..."
-	cur_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
-fi
-echo ""
-echo "I need now you host information for apache !"
-echo -n "What is your IP addresse ? ["$cur_ip_addr"]: "
-read conf_ip_addr
-if [ ""$conf_ip_addr = "" ]; then
-	conf_ip_addr=$cur_ip_addr
+	guessed_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
 fi
 
 echo ""
@@ -114,21 +108,30 @@ echo -n "Use NATed vhosts ? [N/y]: "
 read conf_use_nated_vhosts
 if [ ""$conf_use_nated_vhosts = "y" -o ""$conf_use_nated_vhosts = "Y" -o ""$conf_use_nated_vhosts = "yes" ]; then
 	conf_use_nated_vhosts="yes";
-else
-	conf_use_nated_vhosts="no";
-fi
-
-if [ ""conf_use_nated_vhosts = "yes" ] ; then
 	echo ""
 	echo " Please enter the LAN IP of your server if you said"
 	echo "yes to use nated vhosts. Ignore otherwise."
-	echo -n "IP address of your server if in the LAN [192.168.0.2]: "
+	echo -n "IP address of your server if in the LAN [${guessed_ip_addr}]: "
 	read conf_nated_vhost_ip
 	if [ ""$conf_nated_vhosts_ip = "" ]; then
-		conf_nated_vhosts_ip="192.168.0.2"
+		conf_nated_vhosts_ip=$guessed_ip_addr
 	fi
 else
+	conf_use_nated_vhosts="no";
 	conf_nated_vhosts_ip="192.168.0.2"
+fi
+
+echo ""
+echo "I need now you host information to configure the daemons."
+if [ ""conf_use_nated_vhosts = "yes" ] ; then
+	echo -n "What is your external (public) IP addresse ?: "
+	read conf_ip_addr
+else
+	echo -n "What is your IP addresse ? [${guessed_ip_addr}]: "
+	read conf_ip_addr
+	if [ ""$conf_ip_addr = "" ]; then
+		conf_ip_addr=$guessed_ip_addr
+	fi
 fi
 
 echo ""
