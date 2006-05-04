@@ -6,6 +6,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url){
 	global $secpayconf_use_paypal;
 	global $secpayconf_paypal_rate;
 	global $secpayconf_paypal_flat;
+	global $secpayconf_enets_rate;
 
 	if(!isset($secpayconf_use_paypal) || ( $secpayconf_use_paypal != "no" && $secpayconf_use_paypal != "yes" )){
 		get_secpay_conf();
@@ -20,7 +21,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url){
 		$out .= "<td>\$$amount</td><td>\$$cost</td><td>\$$total</td><td>No</td></tr>\n";
 	}
 	if($secpayconf_use_enets = "yes"){
-		$total = round(($amount / (1 - (4/100))+0.005),2);
+		$total = round(($amount / (1 - ($secpayconf_enets_rate/100))+0.005),2);
 		$cost = $total - $amount;
 		$out .= "<tr><td>".enetsButton($pay_id,$total,$item_name,$return_url)."</td>";
 		$out .= "<td>\$$amount</td><td>\$$cost</td><td>\$$total</td><td>No</td></tr>\n";

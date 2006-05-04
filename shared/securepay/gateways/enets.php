@@ -65,14 +65,17 @@ function enetsNotifyPostbackScript(){
 function enetsButton($payid,$amount,$item_name,$return_url){
 	global $secpayconf_enets_mid_id;
 	global $secpayconf_use_enets_test;
+	global $secpayconf_enets_test_mid_id;
 	global $conf_use_ssl;
 
 	if($secpayconf_use_enets_test == "yes"){
 		// This is test server URL
 		$enets_url = "http://ezpayd.consumerconnect.com.sg/masterMerchant/collectionPage.jsp";
+		$enets_mid = $secpayconf_enets_test_mid_id;
 	}else{
 		// This is production website
 		$enets_url = "https://www.enetspayments.com.sg/masterMerchant/collectionPage.jsp";
+		$enets_mid = $secpayconf_enets_mid_id;
 	}
 
 
@@ -81,7 +84,7 @@ function enetsButton($payid,$amount,$item_name,$return_url){
 	// item_number=1&amount=11.50&no_note=1&currency_code=USD
 
 	$out = '<form action="'.$enets_url.'" method="post">
-<input type="hidden" name="mid" value="'.$secpayconf_enets_mid_id.'">
+<input type="hidden" name="mid" value="'.$enets_mid.'">
 <input type="hidden" name="amount" value="'.$amount.'">
 
 <input type="hidden" name="txnRef" value="'.$payid.'">

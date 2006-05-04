@@ -118,6 +118,7 @@ if [ -n "$PATH_SUDO" ] ; then
 		echo "/bin/dtc-chroot-shell" >> $TMP_FILE
 		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 		cat <$TMP_FILE >>$PATH_SHELLS_CONF
+		rm $TMP_FILE
 	fi
 fi
 

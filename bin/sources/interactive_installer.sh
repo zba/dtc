@@ -1,4 +1,4 @@
-
+#!/bin/sh
 
 # This is the interactive installer that will asks questions
 # for all of these OS that don't have ncurse (or similar)
@@ -109,8 +109,7 @@ read conf_use_nated_vhosts
 if [ ""$conf_use_nated_vhosts = "y" -o ""$conf_use_nated_vhosts = "Y" -o ""$conf_use_nated_vhosts = "yes" ]; then
 	conf_use_nated_vhosts="yes";
 	echo ""
-	echo " Please enter the LAN IP of your server if you said"
-	echo "yes to use nated vhosts. Ignore otherwise."
+	echo " Please enter the LAN IP of your server."
 	echo -n "IP address of your server if in the LAN [${guessed_ip_addr}]: "
 	read conf_nated_vhost_ip
 	if [ ""$conf_nated_vhosts_ip = "" ]; then

@@ -630,18 +630,18 @@ function drawDTCpayConfig(){
 	".$txt_cfg_paypal_autovalid[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"autovalid_paypal\"$auto_paypal_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"autovalid_paypal\"$auto_paypal_check_no> No</td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_email[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"".$a["paypal_email"]."\" name=\"paypal_email\"></td>
+  <td width=\"100%\"><input type=\"text\" size=\"40\" value=\"".$a["paypal_email"]."\" name=\"paypal_email\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_ratefee[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a["paypal_rate"]."\" name=\"paypal_rate\"></td>
+  <td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["paypal_rate"]."\" name=\"paypal_rate\"></td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_flatfee[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"6\" value=\"".$a["paypal_flat"]."\" name=\"paypal_flat\"></td>
+  <td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["paypal_flat"]."\" name=\"paypal_flat\"></td>
 </tr><tr><td align=\"right\" nowrap>
 	".$txt_cfg_paypal_use_sandbox[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"sandbox_paypal\"$paypal_sandbox_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"sandbox_paypal\"$paypal_sandbox_check_no> No</td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_sandbox_email[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"".$a["paypal_sandbox_email"]."\" name=\"paypal_sandbox_email\"></td>
+  <td width=\"100%\"><input type=\"text\" size=\"40\" value=\"".$a["paypal_sandbox_email"]."\" name=\"paypal_sandbox_email\"></td>
 </tr>
 </table>
 ";
@@ -671,7 +671,11 @@ function drawDTCpayConfig(){
 	"."eNETS server:"."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_enets_test\"$use_enets_test_check_yes> Test server
 	<input type=\"radio\" value=\"no\" name=\"use_enets_test\"$use_enets_test_check_no> Production server </td>
       </tr><tr><td align=\"right\" nowrap>
-	eNETS mid:</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"".$a["enets_mid_id"]."\" name=\"enets_mid_id\"></td>
+	eNETS mid:</td><td width=\"100%\"><input type=\"text\" size=\"10\" value=\"".$a["enets_mid_id"]."\" name=\"enets_mid_id\"></td>
+      </tr><tr><td align=\"right\" nowrap>
+	eNETS test mid:</td><td width=\"100%\"><input size=\"10\" type=\"text\" value=\"".$a["enets_test_mid_id"]."\" name=\"enets_test_mid_id\"></td>
+      </tr><tr><td align=\"right\" nowrap>
+	eNETS fee rate:</td><td width=\"100%\"><input size=\"6\" type=\"text\" value=\"".$a["enets_rate"]."\" name=\"enets_rate\"></td>
       </tr></table>";
 
 	return $out;
@@ -1195,7 +1199,9 @@ function saveDTCConfigInMysql(){
   	 paypal_email='".$_REQUEST["paypal_email"]."',
   	 use_enets='".$_REQUEST["use_enets"]."',
   	 use_enets_test='".$_REQUEST["use_enets_test"]."',
-  	 enets_mid_id='".$_REQUEST["enets_mid_id"]."'
+  	 enets_mid_id='".$_REQUEST["enets_mid_id"]."',
+  	 enets_test_mid_id='".$_REQUEST["enets_test_mid_id"]."',
+  	 enets_rate='".$_REQUEST["enets_rate"]."'
          WHERE 1 LIMIT 1;";
 //https://dtc.xen650202.gplhost.com/dtcadmin/index.php?rub=config&sousrub=payconf&use_paypal=yes&autovalid_paypal=no&paypal_email=webmaster%40xen650202.gplhost.com&paypal_rate=3.21&paypal_flat=0.50&sandbox_paypal=no&paypal_sandbox_email=&use_enets=no&use_enets_test=yes&paypal_email=1234&install_new_config_values=Ok
                 break;
