@@ -44,7 +44,6 @@ if($status != "succ"){
 if($_SERVER["REMOTE_ADDR"] != "203.116.61.131"){
 	logPay("Recieved notify from an unkonwn IP addr ".__LINE__." file ".__FILE__."\n");
 	die();
-}
 }else{
 	$pay_fee = $amount * $secpayconf_enets_rate / 100;
 	$amount_paid = $amount - $pay_fee;
