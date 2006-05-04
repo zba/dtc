@@ -81,10 +81,10 @@ function enetsButton($payid,$amount,$item_name,$return_url){
 	// item_number=1&amount=11.50&no_note=1&currency_code=USD
 
 	$out = '<form action="'.$enets_url.'" method="post">
-<input type="hidden" name="mid" value="$secpayconf_enets_mid_id">
+<input type="hidden" name="mid" value="'.$secpayconf_enets_mid_id.'">
 <input type="hidden" name="amount" value="'.$amount.'">
 
-<input type="hidden" name="txnRef" value="$payid">
+<input type="hidden" name="txnRef" value="'.$payid.'">
 
 <input type="hidden" name="item_name" value="'.$item_name.'">
 <input type="hidden" name="currency_code" value="USD">
