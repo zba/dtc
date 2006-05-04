@@ -114,6 +114,16 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_
 			}
 		}
 	}
+
+}else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-cancel"){
+	$forms .= "<h3><font color=\"red\">PAYMENT CANCELED</font></h3>
+You have canceled the payment, your account wont be validated.
+To start again the registration procedure, follow the link here:<br>
+<a href=\"new_account.php\">New account</a>";
+}else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-failed"){
+	$forms .= "<h3><font color=\"red\">PAYMENT FAILED</font></h3>
+The payment gateway have reported that your payment has failed. Contact us,
+we also accept checks and wire transfers.";
 }else{
 	$reguser = register_user();
 	if($reguser["err"] == 0){

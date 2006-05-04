@@ -81,7 +81,11 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 
 	// Send a mail to user with how to login and use interface.
 	$txt_userwaiting_account_activated_subject = "GPLHost:>_ Account $waiting_login has been activated!";
-	if($conf_use_ssl == "yes")	$surl = "s";
+	if($conf_use_ssl == "yes"){
+		$surl = "s";
+	}else{
+		$surl = "";
+	}
 	$txt_userwaiting_account_activated_text_header = "DTC hosting account opened!
 
 Hello,
