@@ -14,13 +14,10 @@ foreach ($_REQUEST as $key => $value) {
 	$value = urlencode(stripslashes($value));
 	$req .= "&$key=$value";
 }
-logPay("Resending query to paypal: ".$req);
-if($secpayconf_paypal_sandbox == "yes"){
-	$paypal_server_hostname = "www.paypal.com";
-}else{
-	$paypal_server_hostname = "www.sandbox.paypal.com";
-}
-$paypal_server_script = "/cgi-bin/webscr";
+logPay("Received query from eNETS: ".$req);
+
+/*
+This is the paypal API that must be changed for eNETS
 
 // post back to PayPal system to validate
 $header .= "POST $paypal_server_script HTTP/1.0\r\n";
@@ -75,4 +72,5 @@ if (!$fp) {
 	}
 	fclose ($fp);
 }
+*/
 ?>

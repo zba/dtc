@@ -22,7 +22,7 @@ $anotherLanguageSelection = anotherLanguageSelection();
 $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
 $form = "";
-if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "return_from_pay"){
+if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_REQUEST["action"] == "enets-success")){
 	// Here are paypal return parameters:
 	// [action] => return_from_pay
 	// [regid] => 50
@@ -52,7 +52,37 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "return_from_pay"){
 	// [mc_gross] => 26.21
 	// [custom] =>
 	// [notify_version] => 1.6
-	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id_client='".$_REQUEST["regid"]."';";
+
+	// Here are the eNETS parameters:
+	// action=enets-success&
+	// amount=20.84&
+	// txnRef=12&
+	// payment=credit&
+	// txnDate=2006%2F05%2F04&
+	// txnTime=17%3A07%3A09&
+	// errorCode=00&
+	// status=succ&
+	// no_shipping=1&
+	// mid=616&
+	// item_name=Test+product1&
+	// curCode=USD&
+	// submit.x=127&
+	// submit.y=18&
+	// currency_code=USD
+
+	switch($_REQUEST["action"]){
+	case "return_from_pay":
+		$extapi_pay_id = $_REQUEST["regid"];
+		break;
+	case "enets-success":
+		$extapi_pay_id = $_REQUEST["txnRef"];
+		break;
+	default:
+		$extapi_pay_id = -1;
+		break;
+	}
+	
+	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id_client='$extapi_pay_id';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
@@ -66,7 +96,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "return_from_pay"){
 			If you have confirmed the payment then check a bit later here.<br><br>
 			If the payment status was to stay like that, please contact customer support.";
 		}else{
-			$q2 = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='".$_REQUEST["regid"]."';";
+			$q2 = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='$extapi_pay_id';";
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
