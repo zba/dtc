@@ -14,6 +14,7 @@ function drawAdminTools_AddDomain($admin){
 	global $whois_forwareded_params;
 	global $form_period_popup;
 	global $conf_webmaster_email_addr;
+	global $conf_use_registrar_api;
 	global $pro_mysql_pending_queries_table;
 	global $pro_mysql_domain_table;
 	global $pro_mysql_client_table;
@@ -82,9 +83,14 @@ $form_start = "
 		$_REQUEST["add_domain_type"] != "domreg" &&
 		$_REQUEST["add_domain_type"] != "hosting")){
 		$out .= "<b><u>".$txt_dtcrm_what_to_do[$lang]."</u></b><br>
-$form_start
-<input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>".$txt_dtcrm_hosting_and_domain_reg[$lang]."<br>
-<input type=\"radio\" name=\"add_domain_type\" value=\"hosting\">".$txt_dtcrm_hosting_only[$lang]."<br>
+$form_start";
+		if($conf_use_registrar_api == "yes"){
+			$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>".$txt_dtcrm_hosting_and_domain_reg[$lang]."<br>";
+			$add_domain_type_checked = " ";
+		}else{
+			$add_domain_type_checked = " checked ";
+		}
+		$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"hosting\" checked>".$txt_dtcrm_hosting_only[$lang]."<br>
 <input type=\"submit\" value=\"Ok\">
 </form>
 ";

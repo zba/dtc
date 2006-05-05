@@ -96,6 +96,7 @@ function drawAdminTools($admin){
 	global $dtc_use_text_menu;
 
 	global $conf_skin;
+	global $conf_use_registrar_api;
 
 	$add_array = explode("/",$addrlink);
         $doms_txt = "";
@@ -123,6 +124,8 @@ function drawAdminTools($admin){
 			"text" => $txt_cmenu_add_domain[$lang],
 			"type" => "link",
 			"link" => "adddomain");
+        }
+        if(file_exists($dtcshared_path."/dtcrm") && $conf_use_registrar_api == "yes"){
 		$user_ZEmenu[] = array(
 			"text" => $txt_cmenu_nickhandles[$lang],
 			"type" => "link",
@@ -149,7 +152,7 @@ function drawAdminTools($admin){
 
 		unset($domain_conf_submenu);
 
-		if(file_exists($dtcshared_path."/dtcrm")){
+		if(file_exists($dtcshared_path."/dtcrm") && $conf_use_registrar_api == "yes"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_whois[$lang],
 				"type" => "link",

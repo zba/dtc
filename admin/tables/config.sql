@@ -53,5 +53,6 @@ srs_enviro enum('LIVE','TEST') NOT NULL default 'TEST',
 srs_crypt enum('DES','BLOWFISH') NOT NULL default 'DES',
 root_admin_random_pass varchar(128) NOT NULL default '',
 pass_expire int(12) NOT NULL default '0',
+use_registrar_api enum('yes','no') NOT NULL default 'no',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM

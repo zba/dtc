@@ -536,10 +536,24 @@ function drawRegistryApiConfig(){
   global $conf_srs_test_key;
   global $conf_srs_crypt;
   global $conf_srs_enviro;
+  global $conf_use_registrar_api;
 
   $out = "";
-        $out .= "<h2><u>".$txt_cfg_registry_api_title[$lang]."</u></h2>
-        <b><u>Tucows</u></b><br><img src=\"gfx/tucows.jpg\"><br>Note: you must have a Tucows reseller account.";
+        $out .= "<h2><u>".$txt_cfg_registry_api_title[$lang]."</u></h2>";
+
+        if($conf_use_registrar_api == "yes"){
+          $regapi_check_yes = " checked ";
+          $regapi_check_no = " ";
+        }else{
+          $regapi_check_yes = " ";
+          $regapi_check_no = " checked ";
+        }
+
+        $out .= "Use registrar API: <input type=\"radio\" value=\"yes\" name=\"use_registrar_api\"$regapi_check_yes> Yes
+<input type=\"radio\" value=\"no\" name=\"use_registrar_api\"$regapi_check_no> No<br><br>";
+
+        $out .= "<h3>Tucows</h3><br>
+        <img src=\"gfx/tucows.jpg\"><br>Note: you must have a Tucows reseller account.";
 
         if($conf_srs_crypt == 'DES'){
           $use_des = " checked ";
@@ -1218,6 +1232,7 @@ function saveDTCConfigInMysql(){
         case "registryapi":
           // srs_enviro=TEST&srs_username=&srs_test_key=&srs_live_key=&install_new_config_values=Ok
           $query = "UPDATE config SET
+          use_registrar_api='".$_REQUEST["use_registrar_api"]."',
           srs_enviro='".$_REQUEST["srs_enviro"]."',
           srs_user='".$_REQUEST["srs_username"]."',
           srs_test_key='".$_REQUEST["srs_test_key"]."',
