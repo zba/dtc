@@ -41,7 +41,7 @@ if($status != "succ"){
 	logPay("Status not success line ".__LINE__." file ".__FILE__."\n");
 	die();
 }
-if($_SERVER["REMOTE_ADDR"] != "203.116.61.131"){
+if($_SERVER["REMOTE_ADDR"] != "203.116.61.131" && $_SERVER["REMOTE_ADDR"] != 203.116.94.76 && $_SERVER["REMOTE_ADDR"] != 203.116.94.74){
 	logPay("Recieved notify from an unkonwn IP addr ".__LINE__." file ".__FILE__."\n");
 	die();
 }else{

@@ -22,7 +22,7 @@ mkdir -p debian/usr/share/dtc
 # Copy DTC's files in the good directories
 mkdir -p debian/usr/share/doc
 mv debian/usr/share/dtc/doc debian/usr/share/doc/dtc
-ln -s ../../dtc debian/usr/share/dtc/doc
+ln -s ../doc/dtc debian/usr/share/dtc/doc
 rm debian/usr/share/doc/dtc/LICENSE debian/usr/share/doc/dtc/INSTALL
 gzip -f -9 debian/usr/share/doc/dtc/changelog
 gzip -f -9 debian/usr/share/doc/dtc/changelog.Debian
