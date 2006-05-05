@@ -472,12 +472,25 @@ ErrorDocument 404 /dtc404/404.php
 	fi
 fi
 
-# Create the ssl certificate if it does not exists (for distribs with /etc/apache only for the moment)
-if [ -e "/etc/apache" ]; then
-	if [ -e "/etc/apache/ssl" ]; then
-		mkdir -p /etc/apache/ssl
-	fi
+# Remove all the directives for mod_log_sql that we setup already in the main httpd.conf
+# Removes: "LogSQLLoginInfo", "LogSQLMassVirtualHosting" and "LogSQLTransferLogFormat"
+MOD_SQL_CONF="/etc/apache2/modules.d/42_mod_log_sql.conf"
+if [ -e ${MOD_SQL_CONF} ] ; then
+	TMP_FILE=`${MKTEMP} DTC_configure_mod_log_sql.conf.XXXXXX` || exit 1
+	grep -v "LogSQLLoginInfo" ${MOD_SQL_CONF} >${TMP_FILE}
+	TMP_FILE2=`${MKTEMP} DTC_configure2_mod_log_sql.conf.XXXXXX` || exit 1
+	grep -v "LogSQLMassVirtualHosting" ${TMP_FILE} >${TMP_FILE2}
+	grep -v "LogSQLTransferLogFormat" ${TMP_FILE2} >${MOD_SQL_CONF}
+	rm -f ${TMP_FILE} ${TMP_FILE2}
 fi
+
+# Create the ssl certificate if it does not exists (for distribs with /etc/apache only for the moment)
+# Obsolet code: removed!
+#if [ -e "/etc/apache" ]; then
+#	if [ -e "/etc/apache/ssl" ]; then
+#		mkdir -p /etc/apache/ssl
+#	fi
+#fi
 
 # copy the template directory from shared to etc, so we can edit it without worry of being purged on each install
 # only copy the directory, if it doesn't already exist in the etc path
