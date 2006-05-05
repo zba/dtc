@@ -77,6 +77,7 @@ function fetchAdminInfo($adm_login){
 function fetchAdminStats($admin){
 	global $adm_login;
 	global $conf_mysql_db;
+	global $conf_demo_version;
 	global $pro_mysql_domain_table;
 	global $pro_mysql_acc_http_table;
 	global $pro_mysql_acc_ftp_table;
@@ -173,33 +174,35 @@ function fetchAdminStats($admin){
 	}
 
 	$ret["total_du_db"] = 0;
-	mysql_select_db("mysql");
-	$qu = "SELECT User FROM user WHERE dtcowner='".$admin["info"]["adm_login"]."'";
-	$ru = $r = mysql_query($qu)or die("Cannot query \"$qu\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
-	$nbr_mysql_user = mysql_num_rows($ru);
-	for($j=0;$j<$nbr_mysql_user;$j++){
-		$au = mysql_fetch_array($ru);
-		$dtcowner_user = $au["User"];
+	if($conf_demo_version != "yes"){
+		mysql_select_db("mysql");
+		$qu = "SELECT User FROM user WHERE dtcowner='".$admin["info"]["adm_login"]."'";
+		$ru = $r = mysql_query($qu)or die("Cannot query \"$qu\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
+		$nbr_mysql_user = mysql_num_rows($ru);
+		for($j=0;$j<$nbr_mysql_user;$j++){
+			$au = mysql_fetch_array($ru);
+			$dtcowner_user = $au["User"];
 
-		$q = "SELECT Db FROM db WHERE User='$dtcowner_user'";
-		$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
-		$db_nbr = mysql_num_rows($r);
-		for($i=0;$i<$db_nbr;$i++){
-			$db_name = mysql_result($r,$i,"Db");
+			$q = "SELECT Db FROM db WHERE User='$dtcowner_user'";
+			$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
+			$db_nbr = mysql_num_rows($r);
+			for($i=0;$i<$db_nbr;$i++){
+				$db_name = mysql_result($r,$i,"Db");
 
-			$query = "SHOW TABLE STATUS FROM $db_name;";
-			$result = mysql_query($query)or die("Cannot query \"$q\" !".mysql_error());
-			$num_tbl = mysql_num_rows($result);
-			$ret["db"][$i]["du"] = 0;
-			for($j=0;$j<$num_tbl;$j++){
-				$db_du = mysql_result($result,$j,"Data_length");
-				$ret["db"][$i]["du"] += $db_du;
-				$ret["total_du_db"] += $db_du;
+				$query = "SHOW TABLE STATUS FROM $db_name;";
+				$result = mysql_query($query)or die("Cannot query \"$q\" !".mysql_error());
+				$num_tbl = mysql_num_rows($result);
+				$ret["db"][$i]["du"] = 0;
+				for($j=0;$j<$num_tbl;$j++){
+					$db_du = mysql_result($result,$j,"Data_length");
+					$ret["db"][$i]["du"] += $db_du;
+					$ret["total_du_db"] += $db_du;
+				}
+				$ret["db"][$i]["name"] = $db_name;
 			}
-			$ret["db"][$i]["name"] = $db_name;
 		}
+		mysql_select_db($conf_mysql_db);
 	}
-	mysql_select_db($conf_mysql_db);
 
 	// reset to 0, and add total_du_db and total_du_domains
 	$ret["total_du"] = 0;
