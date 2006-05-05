@@ -185,7 +185,7 @@ function getListOptionsTextarea($ctrl_path,$tunable_name){
   }
   return "<tr>
     <td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
-    <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
+    <td><textarea rows=\"5\" cols=\"60\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
 }
 
 
