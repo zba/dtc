@@ -2,6 +2,9 @@ Version 0.21:
 -------------
 - Added support for Cyrus (thanks to Cristian Livaradu).
 
+- Domain parking: a domain copies the configuration from
+another one for mail and DNS, and redirects all subdomains to it.
+
 - Apache log dumps and Webalizer stats are now done everyday
 archives older than one year are now deleted. (Thomas Goirand)
 
