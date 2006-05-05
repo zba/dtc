@@ -1,3 +1,33 @@
+Version 0.21:
+-------------
+- Added support for Cyrus (thanks to Cristian Livaradu).
+
+- Apache log dumps and Webalizer stats are now done everyday
+archives older than one year are now deleted. (Thomas Goirand)
+
+- There was some bad unic keys added uppon each installs
+of the panel in http_accounting, it's now automaticaly
+removed. (Damien Mascord)
+
+- Added NSSMySQL stuff so it's possible to grant ssh access
+to all vhosts directories using chroot + chuid: optional,
+selection for each admins, no by default (Damien Macord)
+
+- Registrar API is now optional
+
+- Added eNETS payment gateway support (Thomas Goirand)
+
+- Added Joomla CMS package installer
+
+- As usual: lot's of small debugs...
+
+Version 0.20:
+-------------
+- Added a score board system with realtime download
+statistics and HTTP hits, no need to wait end of the
+day anymore to have them, no big cron job that would
+slow down your server every day...
+
 This will be version 0.18 when released:
 ----------------------------------------
 - Bandwidth calculation is now done in realtime !!!
