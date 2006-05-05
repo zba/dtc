@@ -180,7 +180,7 @@ function getListOptionsTextarea($ctrl_path,$tunable_name){
   if (file_exists($option_file)){
     $a = file($option_file);
     foreach ($a as $line_num => $line) {
-      $value .= $line."\n";
+      $value .= str_replace("\r","",str_replace("\n","",$line))."\n";
     }
   }
   return "<tr>
