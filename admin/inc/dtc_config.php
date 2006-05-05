@@ -621,6 +621,14 @@ function drawDTCpayConfig(){
 	  $paypal_sandbox_check_no = " checked ";
         }
 	$out .= "<h2><u>".$txt_cfg_paytitle[$lang]."</u></h2>
+	<h3>Currency</h3>
+<table with=\"100%\" height=\"1\">
+<tr><td align=\"right\" nowrap>
+  Currency symbol:</td><td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["currency_symbol"]."\" name=\"currency_symbol\"></td>
+</tr><tr><td align=\"right\" nowrap>
+  Currency letters:</td><td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["currency_letters"]."\" name=\"currency_letters\"></td>
+</tr>
+</table>
 	<h3>PayPal:</h3>";
 	
 	$out .="<table with=\"100%\" height=\"1\">
@@ -1190,6 +1198,8 @@ function saveDTCConfigInMysql(){
 
 	case "payconf":
 		$query = "UPDATE $pro_mysql_secpayconf_table SET
+         currency_symbol='".$_REQUEST["currency_symbol"]."',
+         currency_letters='".$_REQUEST["currency_letters"]."',
          use_paypal='".$_REQUEST["use_paypal"]."',
   	 paypal_rate='".$_REQUEST["paypal_rate"]."',
   	 paypal_flat='".$_REQUEST["paypal_flat"]."',
