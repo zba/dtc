@@ -135,7 +135,7 @@ case "product":
 	$bla = productManager();
 	$zemain_content = skin($conf_skin,$bla,$txt_product_manager[$lang]);
 	break;
-case "adminedit":
+/*case "adminedit":
 	// A virtual admin edition
 	// We have to call it first, in case it will generate a random pass (edition of an admin with inclusion of user's panel)
 	$rightFrameCells[] = userEditForms($adm_login,$adm_pass);
@@ -158,7 +158,10 @@ case "adminedit":
 
 	$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);
 	break;
+*/
 case "user": // User Config
+case "domain_config":
+case "adminedit":
 default: // No rub selected
 	// A virtual admin edition
 	// We have to call it first, in case it will generate a random pass (edition of an admin with inclusion of user's panel)
@@ -192,7 +195,7 @@ if(isset($adm_login) && isset($adm_pass)){
 
 $menu = "";
 // User management icon
-if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "" && $_REQUEST["rub"] != "user"){
+if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "" && $_REQUEST["rub"] != "user" && $_REQUEST["rub"] != "domain_config" && $_REQUEST["rub"] != "adminedit"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=user$added_logpass\">";
 }
 $menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/admins.png\"><br>".
@@ -204,7 +207,7 @@ $html_array[] = $menu;
 $menu = "";
 
 // Generate edit admins icon
-if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "adminedit"){
+/*if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "adminedit"){
 	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=adminedit$added_logpass\">";
 }
 $menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/user-editor.png\"><br>".$txt_admin_editor[$lang];
@@ -213,6 +216,7 @@ if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "adminedit"){
 }
 $html_array[] = $menu;
 $menu = "";
+*/
 
 // CRM icons are present only if folder is present:
 // this helps simplification if user does not need it.

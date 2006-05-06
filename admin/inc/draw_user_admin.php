@@ -185,26 +185,52 @@ function userEditForms($adm_login,$adm_pass){
 		if(isset($rub) && $rub == "adminedit"){
 			$HTML_admin_edit_info = drawEditAdmin($admin);
 			$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
-			return $user_config;
+//			return $user_config;
+		}else if(isset($rub) && $rub == "domain_config"){
+			$HTML_admin_domain_config = drawDomainConfig($admin);
+			$user_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
 		}else{
 			$HTML_admin_edit_data = drawAdminTools($admin);
-			if(!isset($addrlink) || $addrlink == ""){
-				$HTML_admin_domain_config = drawDomainConfig($admin);
-				$user_domain_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
-				
-				$HTML_admin_edit_data = "<table><tr>
-				<td valign=\"top\">".$HTML_admin_edit_data."</td>
-				<td valign=\"top\">".$user_domain_config."</td>
-				</tr></table>";
-			}
-			$user_tools = skin($conf_skin,$HTML_admin_edit_data,"Domains for $adm_login");
-			return $user_tools;
+			$user_config = skin($conf_skin,$HTML_admin_edit_data,"Domains for $adm_login");
+//			return $user_tools;
 		}
 
+		$iface_select = "<table height=\"1\" border=\"0\" width=\"100%\">";
+		$iface_select .= "<tr><td width=\"33%\" valign=\"top\"><center>";
+		if($rub != "user" && $rub != ""){
+			$iface_select .= "<a href=\"?rub=user&adm_login=$adm_login&adm_pass=$adm_pass\">";
+		}
+		$iface_select .= "<img src=\"gfx/menu/client-interface.png\" width=\"48\" height=\"48\" border=\"0\"><br>
+Client interface";
+		if($rub != "user" && $rub != ""){
+			$iface_select .= "</a>";
+		}
+		$iface_select .= "</center></td><td width=\"33%\" valign=\"top\"><center>";
+		if($rub != "domain_config"){
+			$iface_select .= "<a href=\"?rub=domain_config&adm_login=$adm_login&adm_pass=$adm_pass\">";
+		}
+		$iface_select .= "<img src=\"gfx/menu/domain-config.png\" width=\"48\" height=\"48\" border=\"0\"><br>
+Domain config";
+		if($rub != "domain_config"){
+			$iface_select .= "</a>";
+		}
+		$iface_select .= "</center></td><td width=\"33%\" valign=\"top\"><center>";
+		if($rub != "adminedit"){
+			$iface_select .= "<a href=\"?rub=adminedit&adm_login=$adm_login&adm_pass=$adm_pass\">";
+		}
+		$iface_select .= "<img src=\"gfx/menu/user-editor.png\" width=\"48\" height=\"48\" border=\"0\"><br>
+Admin editor";
+		if($rub != "adminedit"){
+			$iface_select .= "</a>";
+		}
+		$iface_select .= "</center></td></tr></table>";
+
+		$iface_skined = skin($conf_skin,$iface_select,"User administration");
+
 		// All thoses tools in a simple table
-		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"4\">
+		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
 	<tr>
-		<tr><td>$user_tools</td></tr>
+		<tr><td width=\"100%\">$iface_skined</td></tr>
 		<tr><td width=\"100%\">$user_config</td></tr>
 		<tr><td height=\"100%\">&nbsp;</td></tr>
 	</tr>

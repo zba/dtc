@@ -155,6 +155,7 @@ function drawEditAdmin($admin){
 /////////////////////////////////////////////////////////////////
 function drawDomainConfig($admin){
 	global $lang;
+	global $rub;
 	global $txt_domain_tbl_config_dom_name;
 	global $txt_domain_tbl_config_quota;
 	global $txt_domain_tbl_config_max_email;
@@ -216,6 +217,7 @@ function drawDomainConfig($admin){
 		$ret .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 				<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 				<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+				<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 				<input type=\"hidden\" name=\"user_domain_to_modify\" value=\"$webname\"><tr>";
 
 		$popup_txt = "<select name=\"new_ip_addr\">";
