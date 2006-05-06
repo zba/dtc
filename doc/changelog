@@ -1,5 +1,11 @@
 Version 0.21:
 -------------
+- Changed a bit the layout of the admin panel so it's less
+confusing (for the admin editor)
+
+- The panel setup asks less stuffs (like it don't asks for
+NAT IP if not using NAT...)
+
 - Added support for Cyrus (thanks to Cristian Livaradu).
 
 - Domain parking: a domain copies the configuration from
