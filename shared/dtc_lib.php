@@ -34,6 +34,11 @@ require("$dtcshared_path/inc/fetchmail.php");
 /////////////////////////////////////////
 require("$dtcshared_path/securepay/paiement.php");			// The draw paiement button function
 
+//////////////////////////
+// Domain import/export //
+//////////////////////////
+require("$dtcshared_path/inc/domain_export.php");
+
 ////////////////////////////////////////
 // THE USER TOOLS FOR THEY'RE ACCOUNT //
 ////////////////////////////////////////
