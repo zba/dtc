@@ -186,7 +186,7 @@ Description: DTC certificate passphrase.
 
 Template: dtc/conf_cert_countrycode
 Type: string
-Default: AU
+Default: FR
 Description: DTC SSL certificate 2 letters country code.
  Please enter the 2 letter country code of your server location.
  Example: AU, UK, US, FR, DE, etc.
@@ -199,6 +199,7 @@ Description: DTC SSL certificate city name.
 
 Template: dtc/conf_cert_organization
 Type: string
+Default: GPLHost
 Description: DTC SSL certificate organization name.
  Please entre your organization name.
 
