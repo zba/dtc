@@ -472,6 +472,18 @@ ErrorDocument 404 /dtc404/404.php
 	fi
 fi
 
+if [ -e /etc/apache2/ports.conf ] ; then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Founded ports.conf: will remove it's directive"
+	fi
+	if [ -e /etc/apache2/ports.conf.DTC_backup ] ; then
+		echo -n "";
+	else
+		cp /etc/apache2/ports.conf /etc/apache2/ports.conf.DTC_backup
+	fi
+	echo "" >/etc/apache2/ports.conf
+fi
+
 # Remove all the directives for mod_log_sql that we setup already in the main httpd.conf
 # Removes: "LogSQLLoginInfo", "LogSQLMassVirtualHosting" and "LogSQLTransferLogFormat"
 MOD_SQL_CONF="/etc/apache2/modules.d/42_mod_log_sql.conf"

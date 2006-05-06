@@ -87,6 +87,15 @@ then
 	fi
 fi
 
+if [ -e /etc/apache2/ports.conf ] ; then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> Uninstalling ports.conf"
+	fi
+	if [ -e /etc/apache2/ports.conf.DTC_backup ] ;then
+		cat </etc/apache2/ports.conf.DTC_backup /etc/apache2/ports.conf
+	fi
+fi
+
 #
 # uninstall courier config details
 #
