@@ -169,6 +169,7 @@ function userEditForms($adm_login,$adm_pass){
 	global $lang;
 	// added by seeb
 	global $txt_user_administration;
+	global $txt_user_administration_domains_for;
 	// end added
 	global $conf_skin;
 	global $lang;
@@ -204,7 +205,7 @@ function userEditForms($adm_login,$adm_pass){
 			$user_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
 		}else{
 			$HTML_admin_edit_data = drawAdminTools($admin);
-			$user_config = skin($conf_skin,$HTML_admin_edit_data,"Domains for $adm_login");
+			$user_config = skin($conf_skin,$HTML_admin_edit_data,$txt_user_administration_domains_for[$lang]." ".$adm_login);
 //			return $user_tools;
 		}
 
@@ -259,10 +260,12 @@ function userEditForms($adm_login,$adm_pass){
 function skinConsole(){
 	global $HTTP_HOST;
 	global $console;
+	// added by seeb
+	global $txt_console_output;
 	return "<table bgcolor=\"#000000\" cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"100%\">
 <tr>
 <td>
-	<font color=\"#FFFFFF\">Console output</font>
+	<font color=\"#FFFFFF\">".$txt_console_output[$lang]."</font>
 </td>
 </tr>
 <tr>
