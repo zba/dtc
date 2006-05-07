@@ -1,5 +1,10 @@
 <?php
-
+	/**
+	* @package DTC
+	* @todo translate to any others language
+	* @version  $Id: strings.php,v 1.72 2006/05/07 00:00:13 seeb Exp $
+	* 
+	**/
 $txt_user_menu_email = array (
   "fr" => "Mon e-mail",
   "en" => "My e-mail",
