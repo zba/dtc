@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.75 2006/05/07 15:12:49 thomas Exp $
+	* @version  $Id: strings.php,v 1.76 2006/05/07 15:17:27 thomas Exp $
 	* 
 	**/
 
