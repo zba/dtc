@@ -1,4 +1,136 @@
 <?php
+	/**
+	* @package DTC
+	* @todo translate to any others language
+	* @version  $Id: dtc_config_strings.php,v 1.32 2006/05/07 11:52:09 seeb Exp $
+	* New arrays for translate menage_products
+	* @see /dtc/admin/dtcrm/product_manager.php
+	**/
+// added 7th may 2006 by seeb
+
+$txt_product_name = array (
+  "fr" => "TRANS ",
+  "en" => "Name ",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Nazwa ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+
+  $txt_product_price = array (
+  "fr" => "TRANS ",
+  "en" => "Price ",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Cena w ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+$txt_product_traffic = array (
+  "fr" => "TRANS ",
+  "en" => "Traffic ",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Transfer ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+$txt_product_disk= array (
+  "fr" => "TRANS ",
+  "en" => "Disk ",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Pojemno¶æ ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+
+$txt_product_action = array (
+  "fr" => "TRANS ",
+  "en" => "Action ",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Operacja: ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+$txt_product_adddomain= array (
+  "fr" => "TRANS ",
+  "en" => "Add domain ",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Dodaj domenê",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+$txt_product_period = array (
+  "fr" => "TRANS ",
+  "en" => "Period ",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Wa¿no¶æ ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );         
+
+
+$txt_product_mail = array (
+  "fr" => "TRANS ",
+  "en" => "Mail ",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Skrzynki ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );	
+
+// end of new arrays (added by seeb)
+$txt_user_menu_email = array (
+  "fr" => "Mon e-mail",
+  "en" => "My e-mail",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "Mój e-mail",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
 
 $txt_cfg_allowed_dns_transfer_list = array(
 	"fr" => "Listez ici les IPs des serveurs DNS abilité a faire des zone transfer séparé par des &quot;|&quot; (pipe)<br>
