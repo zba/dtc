@@ -1,16 +1,14 @@
 <?php
 
 	/**
-
 	* @package DTC
-
 	* @todo translate to any others language
-
-	* @version  $Id: strings.php,v 1.81 2006/05/07 20:56:12 seeb Exp $
-
+	* @version  $Id: strings.php,v 1.82 2006/05/07 22:16:38 seeb Exp $
 	* 
-
 	**/
+	// see line 3602 and translate
+	
+	
 	// new arrays by seeb
 	$txt_user_administration=array (
 	"fr" => "TRANS ",
@@ -3588,31 +3586,32 @@ $txt_path = array(
 
 
 $txt_use_text_menu = array(
-
 	"fr" => "Utiliser du texte pour le menu :",
-
 	"en" => "Use text menu:",
-
 	"hu" => "A szöveges menüt használja:",
-
     "it" => "Usa menu a testo:",
-
 	"nl" => "Gebruik tekst menu:",
-
 	"ru" => "TRANSUse text menu:",
-
 	"de" => "Textmenü verwenden:",
-
 	"zh" => "Ê¹ÓÃÎÄ±¾²Ëµ¥:",
-
-    "pl" => "Menu tekstowe :",
-
+    "pl" => "Menu tekstowe",
 	"es" => "Usar menu de texto:",
-
 	"pt" => "Utilizar menu de texto"
-
 	);
 
+$txt_use_images_menu = array(
+	"fr" => "TRANS Use image menu",
+	"en" => "Use image menu",
+	"hu" => "TRANS Use image menu",
+    "it" => "TRANS Use image menu",
+	"nl" => "TRANS Use image menu",
+	"ru" => "TRANSUse image menu",
+	"de" => "TRANS Use image menu",
+	"zh" => "TRANS Use image menu",
+    "pl" => "Menu graficzne",
+	"es" => "TRANS Use image menu",
+	"pt" => "TRANS Use image menu"
+	);
 
 
 $txt_password = array(
