@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.74 2006/05/07 14:58:32 thomas Exp $
+	* @version  $Id: strings.php,v 1.75 2006/05/07 15:12:49 thomas Exp $
 	* 
 	**/
 
@@ -14,7 +14,7 @@ $txt_client_interface = array(
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
-  "zh" => "TRANS ",
+  "zh" => "用户界面",
   "pl" => "TRANS ",
   "es" => "TRANS ",
   "pt" => "TRANS "
@@ -28,7 +28,7 @@ $txt_domain_config = array(
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
-  "zh" => "TRANS ",
+  "zh" => "域名设置",
   "pl" => "TRANS ",
   "es" => "TRANS ",
   "pt" => "TRANS "
@@ -42,7 +42,7 @@ $txt_user_menu_email = array (
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
-  "zh" => "TRANS ",
+  "zh" => "我的e-mail",
   "pl" => "M骿 e-mail",
   "es" => "TRANS ",
   "pt" => "TRANS "
@@ -138,7 +138,7 @@ $txt_mainmenu_title_server_monitor = array(
   "nl" => "TRANS Server monitor",
   "ru" => "TRANS Server monitor",
   "de" => "TRANS Server monitor",
-  "zh" => "TRANS Server monitor",
+  "zh" => "使用统计",
   "pl" => "Monitoring servera",
   "es" => "TRANS Server monitor",
   "pt" => "TRANS Server monitor"
