@@ -157,6 +157,12 @@ function userEditForms($adm_login,$adm_pass){
 	global $txt_general_virtual_admin_edition;
 	global $txt_domains_configuration_title;
 	global $txt_add_user_title;
+
+	global $txt_client_interface;
+	global $txt_domain_config;
+	global $txt_admin_editor;
+	global $lang;
+
 	global $conf_skin;
 	global $lang;
 	global $addrlink;
@@ -201,7 +207,7 @@ function userEditForms($adm_login,$adm_pass){
 			$iface_select .= "<a href=\"?rub=user&adm_login=$adm_login&adm_pass=$adm_pass\">";
 		}
 		$iface_select .= "<img src=\"gfx/menu/client-interface.png\" width=\"48\" height=\"48\" border=\"0\"><br>
-Client interface";
+".$txt_client_interface[$lang];
 		if($rub != "user" && $rub != ""){
 			$iface_select .= "</a>";
 		}
@@ -210,7 +216,7 @@ Client interface";
 			$iface_select .= "<a href=\"?rub=domain_config&adm_login=$adm_login&adm_pass=$adm_pass\">";
 		}
 		$iface_select .= "<img src=\"gfx/menu/domain-config.png\" width=\"48\" height=\"48\" border=\"0\"><br>
-Domain config";
+".$txt_domain_config[$lang];
 		if($rub != "domain_config"){
 			$iface_select .= "</a>";
 		}
@@ -219,7 +225,7 @@ Domain config";
 			$iface_select .= "<a href=\"?rub=adminedit&adm_login=$adm_login&adm_pass=$adm_pass\">";
 		}
 		$iface_select .= "<img src=\"gfx/menu/user-editor.png\" width=\"48\" height=\"48\" border=\"0\"><br>
-Admin editor";
+".$txt_admin_editor[$lang];
 		if($rub != "adminedit"){
 			$iface_select .= "</a>";
 		}

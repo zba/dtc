@@ -2,9 +2,53 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.72 2006/05/07 00:00:13 seeb Exp $
+	* @version  $Id: strings.php,v 1.73 2006/05/07 14:11:23 thomas Exp $
 	* 
 	**/
+
+$txt_client_interface = array(
+  "fr" => "Interface client",
+  "en" => "Client interface",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "TRANS ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+
+$txt_domain_config = array(
+  "fr" => "Configuration domaines",
+  "en" => "Domain config",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "TRANS ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+
+
+$txt_admin_editor = array(
+  "fr" => "Editeur d'admin",
+  "en" => "Admin editor",
+  "hu" => "TRANS ",
+  "it" => "TRANS ",
+  "nl" => "TRANS ",
+  "ru" => "TRANS ",
+  "de" => "TRANS ",
+  "zh" => "TRANS ",
+  "pl" => "TRANS ",
+  "es" => "TRANS ",
+  "pt" => "TRANS "
+  );
+
 $txt_user_menu_email = array (
   "fr" => "Mon e-mail",
   "en" => "My e-mail",
