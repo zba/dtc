@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.33 2006/05/07 13:58:42 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.34 2006/05/07 17:39:11 lupin Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	**/
@@ -12,7 +12,7 @@ $txt_product_name = array (
   "fr" => "Nom ",
   "en" => "Name ",
   "hu" => "TRANS ",
-  "it" => "TRANS ",
+  "it" => "Nome ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
@@ -26,7 +26,7 @@ $txt_product_name = array (
   "fr" => "Prix ",
   "en" => "Price ",
   "hu" => "TRANS ",
-  "it" => "TRANS ",
+  "it" => "Prezzo ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
@@ -39,7 +39,7 @@ $txt_product_traffic = array (
   "fr" => "Trafic ",
   "en" => "Traffic ",
   "hu" => "TRANS ",
-  "it" => "TRANS ",
+  "it" => "Traffico ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
@@ -52,7 +52,7 @@ $txt_product_disk= array (
   "fr" => "Disque ",
   "en" => "Disk ",
   "hu" => "TRANS ",
-  "it" => "TRANS ",
+  "it" => "Disco ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
@@ -66,7 +66,7 @@ $txt_product_action = array (
   "fr" => "Action ",
   "en" => "Action ",
   "hu" => "TRANS ",
-  "it" => "TRANS ",
+  "it" => "Azione ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
@@ -79,7 +79,7 @@ $txt_product_adddomain= array (
   "fr" => "Ajout de domaine ",
   "en" => "Add domain ",
   "hu" => "TRANS ",
-  "it" => "TRANS ",
+  "it" => "Aggiungi dominio ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
@@ -92,7 +92,7 @@ $txt_product_period = array (
   "fr" => "Periode ",
   "en" => "Period ",
   "hu" => "TRANS ",
-  "it" => "TRANS ",
+  "it" => "Periodo ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
@@ -107,7 +107,7 @@ $txt_product_mail = array (
   "fr" => "Mail ",
   "en" => "Mail ",
   "hu" => "TRANS ",
-  "it" => "TRANS ",
+  "it" => "Mail ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
@@ -122,7 +122,7 @@ $txt_user_menu_email = array (
   "fr" => "Mon e-mail",
   "en" => "My e-mail",
   "hu" => "TRANS ",
-  "it" => "TRANS ",
+  "it" => "Mia e-mail ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
