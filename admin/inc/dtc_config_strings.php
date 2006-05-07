@@ -2,14 +2,14 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.32 2006/05/07 11:52:09 seeb Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.33 2006/05/07 13:58:42 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	**/
 // added 7th may 2006 by seeb
 
 $txt_product_name = array (
-  "fr" => "TRANS ",
+  "fr" => "Nom ",
   "en" => "Name ",
   "hu" => "TRANS ",
   "it" => "TRANS ",
@@ -23,7 +23,7 @@ $txt_product_name = array (
   );
 
   $txt_product_price = array (
-  "fr" => "TRANS ",
+  "fr" => "Prix ",
   "en" => "Price ",
   "hu" => "TRANS ",
   "it" => "TRANS ",
@@ -36,7 +36,7 @@ $txt_product_name = array (
   "pt" => "TRANS "
   );
 $txt_product_traffic = array (
-  "fr" => "TRANS ",
+  "fr" => "Trafic ",
   "en" => "Traffic ",
   "hu" => "TRANS ",
   "it" => "TRANS ",
@@ -49,7 +49,7 @@ $txt_product_traffic = array (
   "pt" => "TRANS "
   );
 $txt_product_disk= array (
-  "fr" => "TRANS ",
+  "fr" => "Disque ",
   "en" => "Disk ",
   "hu" => "TRANS ",
   "it" => "TRANS ",
@@ -63,7 +63,7 @@ $txt_product_disk= array (
   );
 
 $txt_product_action = array (
-  "fr" => "TRANS ",
+  "fr" => "Action ",
   "en" => "Action ",
   "hu" => "TRANS ",
   "it" => "TRANS ",
@@ -76,7 +76,7 @@ $txt_product_action = array (
   "pt" => "TRANS "
   );
 $txt_product_adddomain= array (
-  "fr" => "TRANS ",
+  "fr" => "Ajout de domaine ",
   "en" => "Add domain ",
   "hu" => "TRANS ",
   "it" => "TRANS ",
@@ -89,7 +89,7 @@ $txt_product_adddomain= array (
   "pt" => "TRANS "
   );
 $txt_product_period = array (
-  "fr" => "TRANS ",
+  "fr" => "Periode ",
   "en" => "Period ",
   "hu" => "TRANS ",
   "it" => "TRANS ",
@@ -104,7 +104,7 @@ $txt_product_period = array (
 
 
 $txt_product_mail = array (
-  "fr" => "TRANS ",
+  "fr" => "Mail ",
   "en" => "Mail ",
   "hu" => "TRANS ",
   "it" => "TRANS ",
