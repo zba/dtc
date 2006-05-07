@@ -6,7 +6,7 @@
 
 	* @todo translate to any others language
 
-	* @version  $Id: strings.php,v 1.80 2006/05/07 20:48:21 seeb Exp $
+	* @version  $Id: strings.php,v 1.81 2006/05/07 20:56:12 seeb Exp $
 
 	* 
 
@@ -35,6 +35,19 @@
 	"de" => "TRANS ",
 	"zh" => "TRANS ",
 	"pl" => "Domeny u¿ytkownika ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+$txt_console_output=array(
+	"fr" => "TRANS ",
+	"en" => "Console output",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "Wynik dzia³ania konsoli",
 	"es" => "TRANS ",
 	"pt" => "TRANS "
 	);
