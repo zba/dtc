@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.8 2006/05/07 12:14:57 seeb Exp $
+	* @version  $Id: product_manager.php,v 1.9 2006/05/07 12:17:21 seeb Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -26,7 +26,7 @@ function productManager(){
         $out = "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\"><tr>
         <td><b>".$txt_product_name[$lang]."</b></td>
         <td><b>".$txt_product_price[$lang]." \$</b></td>
-        <td><b>".$txt_product_price[$lang]." e</b></td>
+        <td><b>".$txt_product_price[$lang]." &#8364;</b></td>
         <td><b>".$txt_product_disk[$lang]." MB</b></td>
         <td><b>".$txt_product_traffic[$lang]." MB</b></td>
         <td><b>".$txt_product_mail[$lang]."</b></td>
