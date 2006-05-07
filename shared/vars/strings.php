@@ -6,12 +6,12 @@
 
 	* @todo translate to any others language
 
-	* @version  $Id: strings.php,v 1.79 2006/05/07 20:34:15 seeb Exp $
+	* @version  $Id: strings.php,v 1.80 2006/05/07 20:48:21 seeb Exp $
 
 	* 
 
 	**/
-	// new array by seeb
+	// new arrays by seeb
 	$txt_user_administration=array (
 	"fr" => "TRANS ",
 	"en" => "User administration",
@@ -25,7 +25,20 @@
 	"es" => "TRANS ",
 	"pt" => "TRANS "
 	);
-// end array
+	$txt_user_administration_domains_for=array(
+	"fr" => "TRANS ",
+	"en" => "Domains for",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "Domeny u¿ytkownika ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+// end arrays
 
 $txt_client_interface = array(
 
