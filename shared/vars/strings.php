@@ -6,7 +6,7 @@
 
 	* @todo translate to any others language
 
-	* @version  $Id: strings.php,v 1.77 2006/05/07 18:23:29 seeb Exp $
+	* @version  $Id: strings.php,v 1.78 2006/05/07 18:51:32 seeb Exp $
 
 	* 
 
@@ -956,7 +956,7 @@ $txt_can_have_ssh_login_for_vhosts = array(
 
   "zh" => "TRANS Allow addition of SSH vhosts logins:",
 
-  "pl" => "TRANS Allow addition of SSH vhosts logins:",
+  "pl" => "Dostêp dodatkowy do SSH przez logowanie do vhostów:",
 
   "es" => "TRANS Allow addition of SSH vhosts logins:",
 
@@ -1236,7 +1236,7 @@ $txt_database_name = array(
 
 "zh" => "Êý¾Ý¿âÃû ",
 
-"pl" => "TRANS ",
+"pl" => "Nazwa bazy danych",
 
 "es" => "Nombre de la base de datos",
 
@@ -3986,7 +3986,7 @@ $txt_domain_tbl_config_max_lists = array(
 
 	"zh" => "TRANS lists ×î´óµç×ÓÐÅÏäÕÊ»§",
 
-        "pl" => "TRANS lists max",
+    "pl" => "Maksymalnie list",
 
 	"es" => "TRANS Max Emails",
 
@@ -4014,7 +4014,7 @@ $txt_domain_tbl_config_max_subdomain = array(
 
 	"zh" => "×î´ó¸±ÓòÃû",
 
-        "pl" => "Subdomeny max",
+    "pl" => "Subdomeny max",
 
 	"es" => "Max Subdominios",
 
@@ -4040,7 +4040,7 @@ $txt_domain_tbl_config_ip = array(
 
 	"zh" => "IPµØÖ·",
 
-        "pl" => "Adres IP",
+    "pl" => "Adres IP",
 
 	"es" => "Dirección IP",
 
@@ -4406,7 +4406,7 @@ $txt_your_hosting_account = array(
 
 	"zh" => "³ÖÓÐÕÊ»§:",
 
-        "pl" => "Twoje hostingowe konto :",
+    "pl" => "Twoje konto hostingowe:",
 
 	"es" => "Tu cuenta de hosts:",
 
@@ -4434,7 +4434,7 @@ $txt_storage_space = array(
 
 	"zh" => "×Ü´ÅÅÌ¿Õ¼ä",
 
-        "pl" => "Powierzchnia dysku",
+    "pl" => "Powierzchnia dysku",
 
 	"es" => "Espacio de disco",
 
@@ -4604,7 +4604,7 @@ $txt_action = array(
 
 	"zh" => "³Ê½»",
 
-        "pl" => "Wykonaj",
+    "pl" => "Wykonaj",
 
 	"es" => "Acción",
 
@@ -4660,7 +4660,7 @@ $txt_renew_my_account_button = array(
 
 	"zh" => "´ÓÐÂ¸ü»»Ô¤¶¨",
 
-        "pl" => "Odnów abonament",
+    "pl" => "Odnów abonament",
 
 	"es" => "Renovar mi cuenta",
 
@@ -4716,7 +4716,7 @@ $txt_refund_my_account = array(
 
 	"zh" => "°ÑÇ®´æÔÚÎÒµÄÕÊ»§:",
 
-        "pl" => "Zasil swoje konto :",
+    "pl" => "Zasil swoje konto :",
 
 	"es" => "Reembolsar mi cuenta:",
 
@@ -4744,7 +4744,7 @@ $txt_please_tell_if_info_not_ok = array(
 
 	"zh" => "ÓÃ»§ÁªÏµµØÖ·Óë·½Ê½:",
 
-        "pl" => "Proszê powiadomiæ nas gdy dane bêd± niepoprawne :",
+    "pl" => "Proszê powiadomiæ nas gdy dane bêd± niepoprawne :",
 
 	"es" => "Por favor, informenos si la informacion siguiente no es correcta:",
 
@@ -4774,7 +4774,7 @@ $txt_my_account_global_stats_title = array(
 
 	"zh" => "ÕÊ»§Í³¼Æ",
 
-        "pl" => "Ca³kowite statystyki konta",
+    "pl" => "Ca³kowite statystyki konta",
 
 	"es" => "Estadísticas globales de mi cuenta",
 
@@ -4802,7 +4802,7 @@ $txt_total_transfered_bytes_this_month = array(
 
 	"zh" => "ÒÑ´«ÊäÊý¾Ý:",
 
-        "pl" => "Ca³kowity transfer miesiêczny w bajtach :",
+    "pl" => "Ca³kowity transfer miesiêczny w bajtach :",
 
 	"es" => "Transferencia total de bytes este mes:",
 
@@ -4830,7 +4830,7 @@ $txt_stats_http_subdom = array(
 
 	"zh" => "¸±ÓòÃûµÄwebalizerÍ³¼ÆÏ¸½Ú:",
 
-        "pl" => "Szczegó³owe statystyki Webalizera twoich subdomen :",
+    "pl" => "Szczegó³owe statystyki Webalizera twoich subdomen :",
 
 	"es" => "Estadísticas detalladas de webalizer HTTP sobre sus subdominios:",
 
