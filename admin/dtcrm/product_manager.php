@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.7 2006/05/07 12:11:10 seeb Exp $
+	* @version  $Id: product_manager.php,v 1.8 2006/05/07 12:14:57 seeb Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -29,27 +29,13 @@ function productManager(){
         <td><b>".$txt_product_price[$lang]." e</b></td>
         <td><b>".$txt_product_disk[$lang]." MB</b></td>
         <td><b>".$txt_product_traffic[$lang]." MB</b></td>
-        <td><b>".$txt_product_mail[$lang]."Mail</b></td>
+        <td><b>".$txt_product_mail[$lang]."</b></td>
         <td><b>DB</b></td>
 		<td><b>".$txt_product_period[$lang]."</b></td>
 		<td><b>".$txt_product_adddomain[$lang]."</b></td>
 		<td><b>".$txt_product_action[$lang]."</b></td>
 		</tr>";
  // end modification
-        
-        
-/*       
-        
-        // modification by seeb 7th may 2006
-        $out = "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\"><tr>
-        <td><b>".$txt_product_name[$lang]."</b></td><td><b>".$txt_product_price[$lang]." \$</b></td><td><b>".$txt_product_price[$lang]."e</b></td>
-<td><b>".$txt_product_traffic[$lang]." MB</b></td><td><b>".$txt_product_mail[$lang]."</b></td><td><b>DB</b></td>
-<td><b>".$txt_product_period[$lang]."</b></td>
-<td><b>".$txt_product_adddomain[$lang]."</b></td>
-<td><b>".$txt_product_action[$lang]."</b></td>
-</tr>";
-        // end modification
-  */      
 	for($i=0;$i<$n+1;$i++){
 		if($i<$n){
 			$a = mysql_fetch_array($r);
