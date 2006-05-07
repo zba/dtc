@@ -1,18 +1,38 @@
 <?php
-
+	/**
+	* @package DTC
+	* @version  $Id: product_manager.php,v 1.5 2006/05/07 11:58:29 seeb Exp $
+	* New arrays for translate menage_products
+	* @see dtc/admin/inc/dtc_config_strings.php
+	**/
 function productManager(){
-	global $pro_mysql_product_table;
+        global $pro_mysql_product_table;
+        // modyfication by seeb 7-05-2006
+        global $lang;
+        global $txt_product_name;
+        global $txt_product_price;
+        global $txt_product_traffic;
+        global $txt_product_disk;
+        global $txt_product_mail;
+        global $txt_product_action;
+        global $txt_product_adddomain;
+        global $txt_product_period;
+        // end of modyfication ;)
 
-	$q = "SELECT * FROM $pro_mysql_product_table";
-	$r = mysql_query($q)or die("Cannot query \"$q\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-	$out = "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\"><tr>
-	<td><b>Name</b></td><td><b>Price \$</b></td><td><b>Price e</b></td><td><b>Disk MB</b></td>
-<td><b>Trafic MB</b></td><td><b>Mail</b></td><td><b>DB</b></td>
-<td><b>Period</b></td>
-<td><b>Add domain</b></td>
-<td><b>Action</b></td>
+        $q = "SELECT * FROM $pro_mysql_product_table";
+        $r = mysql_query($q)or die("Cannot query \"$q\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+        $n = mysql_num_rows($r);
+        
+        // modification by seeb 7th may 2006
+        $out = "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\"><tr>
+        <td><b>".$txt_product_name[$lang]."</b></td><td><b>".$txt_product_price[$lang]." \$</b></td><td><b>".$txt_product_price[$lang]."e</b></t
+<td><b>".$txt_product_traffic[$lang]." MB</b></td><td><b>".$txt_product_mail[$lang]."</b></td><td><b>DB</b></td>
+<td><b>".$txt_product_period[$lang]."</b></td>
+<td><b>".$txt_product_adddomain[$lang]."</b></td>
+<td><b>".$txt_product_action[$lang]."</b></td>
 </tr>";
+        // end modification
+        
 	for($i=0;$i<$n+1;$i++){
 		if($i<$n){
 			$a = mysql_fetch_array($r);
