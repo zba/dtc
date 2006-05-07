@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package DTC
+ * @version $id:$
+ * @return new admin menu
+ */
 
 function drawNewAdminForm(){
 	global $txt_login_login;
@@ -20,7 +25,7 @@ function drawNewAdminForm(){
 
 	// Draw the form for making a new admin
 	$add_a_user = "<h4>".$txt_add_a_new_user[$lang]."</h4>
-<form action=\"?\" methode=\"post\">
+<form action=\"?\" method=\"post\"><!-- changed bug by seeb -->
 <table>
 <tr><td align=\"right\">
 	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newadmin_login\" value=\"\"><br>
@@ -162,7 +167,9 @@ function userEditForms($adm_login,$adm_pass){
 	global $txt_domain_config;
 	global $txt_admin_editor;
 	global $lang;
-
+	// added by seeb
+	global $txt_user_administration;
+	// end added
 	global $conf_skin;
 	global $lang;
 	global $addrlink;
@@ -231,7 +238,7 @@ function userEditForms($adm_login,$adm_pass){
 		}
 		$iface_select .= "</center></td></tr></table>";
 
-		$iface_skined = skin($conf_skin,$iface_select,"User administration");
+		$iface_skined = skin($conf_skin,$iface_select,$txt_user_administration[$lang]);
 
 		// All thoses tools in a simple table
 		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
