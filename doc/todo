@@ -2,23 +2,11 @@ Here is the todo in unsorted order:
 - Add integration of a billing software (freeside?)
 - Add support for moving domains with one click (save of a domain conf in
 one flat file)
-- Finish the stats each days stuff...
 - Add SSL support for customers
 - Notice: Undefined variable:  last_run_st in
 /usr/share/dtc/shared/inc/accounting.php on line 427
-- Remove the /etc/apache2/ports.conf
-- Add extensions = mysql.so gd.so in /etc/php4/apache2/php.ini
-- restart amavis when new domains???
-- remove the du when going inside a domain: it's too slow!!!
-- Make webalizer stats each days
-- use the following directives for pure-ftpd-mysql:
-MySQLGetBandwidthUL SELECT ULBandwidth FROM ftpd WHERE User="\L"AND status="1" AND (ipaccess = "*" OR ipaccess LIKE "\R")
-MySQLGetBandwidthDL SELECT DLBandwidth FROM ftpd WHERE User="\L"AND status="1" AND (ipaccess = "*" OR ipaccess LIKE "\R")
-MySQLGetQTASZ SELECT QuotaSize FROM ftpd WHERE User="\L"AND status="1" AND (ipaccess = "*" OR ipaccess LIKE "\R")
-MySQLGetQTAFS SELECT QuotaFiles FROM ftpd WHERE User="\L"AND status="1" AND (ipaccess = "*" OR ipaccess LIKE "\R")
 - Add all the fields of TLD, refresh and all to be able to configure
 each type of extensions
-- Autoresponders
 - Make some function to enable loading/saving of an admin's config in a
 conveinient .dtc file. Import from other (commercial) control panels.
 - Add support for wildcard DNS & Apache ServerAlias entries
