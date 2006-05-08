@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.87 2006/05/08 10:20:58 seeb Exp $
+	* @version  $Id: strings.php,v 1.88 2006/05/08 12:33:22 seeb Exp $
 	* 
 	**/
 	// see line 3602 and translate
@@ -4187,7 +4187,7 @@ $txt_domain_tbl_config_backup_ip = array(
 
 	"zh" => "Backup Vhost IPµØÖ·",
 
-        "pl" => "Backup Vhost Adres IP",
+    "pl" => "Backup Vhost Adres IP",
 
 	"es" => "Backup Vhost Dirección IP",
 
@@ -11220,8 +11220,4 @@ Opensource driven| hosting worldwide  /_____/                         |HOST.  </
 
 
 );
-
-
-
 ?>
-
