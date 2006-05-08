@@ -160,9 +160,14 @@ function tunablesListRequestCheck($ctrl_path,$tunable_name){
 
 function tunablesTextareaRequestCheck($ctrl_path,$tunable_name){
 	$option_file = $ctrl_path."/".$tunable_name;
-	if( strlen($_REQUEST[$tunable_name]) > 0){
+	$buf_in = str_replace("\r","",$_REQUEST[$tunable_name]);
+	$num_chars = strlen($buf_in);
+	if($num_chars > 0){
+		if(substr($buf_in,$num_chars-1) != "\n"){
+			$buf_in .= "\n";
+		}
 		$fp = fopen($option_file,"w+");
-		fwrite($fp,stripslashes(str_replace("\r","",$_REQUEST[$tunable_name])));
+		fwrite($fp,stripslashes($buf_in));
 		fclose($fp);
 	}else{
 		$rem = "rm ".$option_file;
