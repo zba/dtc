@@ -1,5 +1,10 @@
 <?php
-
+	/**
+	* @package DTC
+	* @todo internationalization some text's
+	* @version  $Id: reseller.php,v 1.3 2006/05/08 10:24:48 seeb Exp $
+	* 
+	**/
 //////////////////////////////////////
 // Database management for one user //
 //////////////////////////////////////
@@ -15,16 +20,18 @@ function drawReseller($admin){
 
 	global $txt_draw_database_chpass;
 	global $txt_password;
-
+	global $txt_your_child_accounts;
+	global $txt_action;
+	
 	global $conf_demo_version;
 
 	$hidden = "<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">";
 
-	$out = "<b><u>Your child accounts:</u></b>";
+	$out = "<b><u>".$txt_your_child_accounts[$lang]."</u></b>";
 	$out .= "<table>
-	<tr><td>Login</td><td>Password</td><td>Action</td></tr>";
+	<tr><td>Login</td><td>".$txt_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
 	if($admin["info"]["ob_head"] != ""){
 		$next_adm = $admin["info"]["ob_head"];
 		while($next_adm != $adm_login){
