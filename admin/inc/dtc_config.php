@@ -1,8 +1,8 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.51 2006/05/08 09:23:58 seeb Exp $
- *
+ * @version $Id: dtc_config.php,v 1.53 2006/05/08 09:43:27 seeb Exp $
+ * @todo intrenationalize menus
  * @return forms
  * 
  */
@@ -321,6 +321,7 @@ function drawNamedConfig(){
 	//again seeb ;)
 	global $txt_yes;
 	global $txt_no;
+
 	
 	global $txt_cfg_name_zonefileconf_title;
 	global $txt_cfg_main_mx_addr;
@@ -332,6 +333,7 @@ function drawNamedConfig(){
 	global $txt_backup_mx_servers;
 	global $txt_cfg_use_cname_for_subdomains;
 
+	
 	if($conf_use_cname_for_subdomains == "yes"){
 		$conf_use_cname_for_subdomains_yes = " checked";
 		$conf_use_cname_for_subdomains_no = "";
@@ -375,12 +377,13 @@ function drawBackupConfig(){
         global $txt_cfg_act_as_backup_mail_server;
         global $txt_cfg_act_as_backup_dns_server;
         global $lang;
+        global $txt_cmenu_password;
 
 	$out = "<h3>".$txt_cfg_allow_following_servers_to_list[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='grant_access';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>IP address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+        $out .= "<table><tr><td>IP address</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>Action</td></tr>";
 	for($i=0;$i<$n;$i++){
 	        $a = mysql_fetch_array($r);
 	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -410,7 +413,7 @@ function drawBackupConfig(){
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>Server address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+        $out .= "<table><tr><td>Server address</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>Action</td></tr>";
 	for($i=0;$i<$n;$i++){
 	        $a = mysql_fetch_array($r);
 	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -443,7 +446,7 @@ function drawBackupConfig(){
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_mx_changes';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>Server address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+        $out .= "<table><tr><td>Server address</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>Action</td></tr>";
 	for($i=0;$i<$n;$i++){
 	        $a = mysql_fetch_array($r);
 	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -476,7 +479,7 @@ function drawBackupConfig(){
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='mail_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>Server hostname</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+        $out .= "<table><tr><td>Server hostname</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>Action</td></tr>";
 	for($i=0;$i<$n;$i++){
 	        $a = mysql_fetch_array($r);
 	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -505,7 +508,7 @@ function drawBackupConfig(){
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>Server address</td><td>Login</td><td>Pass</td><td>Action</td></tr>";
+        $out .= "<table><tr><td>Server address</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>Action</td></tr>";
 	for($i=0;$i<$n;$i++){
 	        $a = mysql_fetch_array($r);
 	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
