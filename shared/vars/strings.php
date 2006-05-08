@@ -3,11 +3,25 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.84 2006/05/08 08:38:10 seeb Exp $
+	* @version  $Id: strings.php,v 1.85 2006/05/08 08:52:10 seeb Exp $
 	* 
 	**/
 	// see line 3602 and translate
 	
+	
+	$txt_registry_selection=array (
+	"fr" => "TRANS ",
+	"en" => "Registry selection:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "Panel rejestracji:",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
 	
 	// new arrays by seeb
 	
