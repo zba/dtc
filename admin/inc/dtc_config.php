@@ -1,14 +1,16 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.48 2006/05/08 08:23:51 seeb Exp $
+ * @version $Id: dtc_config.php,v 1.49 2006/05/08 08:54:29 seeb Exp $
  *
  * @return forms
  * 
  */
 function drawRegistrySelection(){
   global $pro_mysql_registry_table;
-  $out = "<b><u>Registry selection:</u></b>";
+  global $txt_registry_selection;
+  global $lang;
+  $out = "<b><u>".$txt_registry_selection[$lang]."</u></b>";
   $out .= "";
   $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
@@ -230,7 +232,7 @@ function drawGeneralConfig(){
 	<td nowrap><input type=\"radio\" value=\"qmail\" name=\"new_mta_type\"$conf_mtatype_qmail>Qmail
 	<input type=\"radio\" value=\"postfix\" name=\"new_mta_type\"$conf_mtatype_postfix>Postfix</td>
 </tr><tr>
-	<td colspan=\"2\"><h3>DTC ".$txt_cfg_skin_chooser[$lang]."</h3></td>
+	<td colspan=\"2\"><h3>".$txt_cfg_skin_chooser[$lang]."</h3></td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_select_type_of_skin[$lang]."</td>
 	<td nowrap><select name=\"skin_type\">$skin_choose</select></td>
