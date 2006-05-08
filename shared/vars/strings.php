@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.83 2006/05/08 08:37:30 seeb Exp $
+	* @version  $Id: strings.php,v 1.84 2006/05/08 08:38:10 seeb Exp $
 	* 
 	**/
 	// see line 3602 and translate
@@ -332,7 +332,7 @@ $txt_mainmenu_title_server_monitor = array(
 
   "zh" => "使用统计",
 
-  "pl" => "Monitoring servera",
+  "pl" => "Monitoring serwera",
 
   "es" => "TRANS Server monitor",
 
