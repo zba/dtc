@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.49 2006/05/08 08:54:29 seeb Exp $
+ * @version $Id: dtc_config.php,v 1.50 2006/05/08 09:00:55 seeb Exp $
  *
  * @return forms
  * 
@@ -614,7 +614,10 @@ function drawRegistryApiConfig(){
 
 function drawDTCpayConfig(){
 	global $lang;
-	
+// seeb ...
+  global $txt_yes;
+  global $txt_no;
+  
 	global $txt_cfg_use_paypal;
 	global $txt_cfg_paytitle;
 	global $txt_cfg_paypal_email;
