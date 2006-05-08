@@ -120,6 +120,8 @@ function drawGeneralConfig(){
 	// added by seeb
 	global $txt_cfg_daemon;
 	global $txt_cfg_skin_chooser;
+	global $txt_yes;
+	global $txt_no;
 
 	global $conf_skin;
 	global $dtcshared_path;
@@ -194,33 +196,33 @@ function drawGeneralConfig(){
 <table with=\"100%\" height=\"1\">";
 	if($conf_demo_version == "yes"){
 		$out .= "<tr><td align=\"right\" nowrap>".$txt_cfg_demo_version[$lang]."</td><td width=\"100%\" nowrap>
-<input type=\"radio\" value=\"yes\" name=\"new_demo_version\" checked>Yes [ ]No</td></tr>";
+<input type=\"radio\" value=\"yes\" name=\"new_demo_version\" checked>".$txt_yes[$lang]." [ ]".$txt_no[$lang]."</td></tr>";
 	}else{
 		$out .= "<tr><td align=\"right\" nowrap>
-	".$txt_cfg_demo_version[$lang]."</td><td width=\"100%\" nowrap><input type=\"radio\" value=\"yes\" name=\"new_demo_version\"$conf_demo_version_yes>Yes
-	<input type=\"radio\" value=\"no\" name=\"new_demo_version\"$conf_demo_version_no>No
+	".$txt_cfg_demo_version[$lang]."</td><td width=\"100%\" nowrap><input type=\"radio\" value=\"yes\" name=\"new_demo_version\"$conf_demo_version_yes>".$txt_yes[$lang]."
+	<input type=\"radio\" value=\"no\" name=\"new_demo_version\"$conf_demo_version_no>".$txt_no[$lang]."
 </td></tr>";
 	}
 
 	$out .= "
 <tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_javascript[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_javascript\"$conf_use_javascript_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_javascript\"$conf_use_javascript_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_javascript\"$conf_use_javascript_yes>".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"new_use_javascript\"$conf_use_javascript_no>".$txt_no[$lang]."</td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_ssl[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_ssl\"$conf_use_ssl_yes>Yes
-	<input type=\"radio\" value=\"no\" name=\"new_use_ssl\"$conf_use_ssl_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_ssl\"$conf_use_ssl_yes>".$txt_yes[$lang]."
+	<input type=\"radio\" value=\"no\" name=\"new_use_ssl\"$conf_use_ssl_no>".$txt_no[$lang]."</td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_domain_based_ftp_logins[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_yes>Yes
-	<input type=\"radio\" value=\"no\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_yes>".$txt_yes[$lang]."
+	<input type=\"radio\" value=\"no\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_no>".$txt_no[$lang]."</td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_session_expir_time[$lang]."</td>
 	<td nowrap><input type=\"text\" size=\"4\" value=\"$conf_session_expir_minute\" name=\"new_session_expir_minute\"></td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_hide_password[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_hidepasswd\"$conf_hdpasswd_yes>Yes
-	<input type=\"radio\" value=\"no\" name=\"new_hidepasswd\"$conf_hdpasswd_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_hidepasswd\"$conf_hdpasswd_yes>".$txt_yes[$lang]."
+	<input type=\"radio\" value=\"no\" name=\"new_hidepasswd\"$conf_hdpasswd_no>".$txt_no[$lang]."</td>
 </tr><tr>
 	<td colspan=\"2\"><h3>".$txt_cfg_daemon[$lang]."</h3></td>
 </tr><tr>
@@ -228,7 +230,7 @@ function drawGeneralConfig(){
 	<td nowrap><input type=\"radio\" value=\"qmail\" name=\"new_mta_type\"$conf_mtatype_qmail>Qmail
 	<input type=\"radio\" value=\"postfix\" name=\"new_mta_type\"$conf_mtatype_postfix>Postfix</td>
 </tr><tr>
-	<td colspan=\"2\"><h3>".$txt_cfg_skin_chooser[$lang]." DTC Skin chooser</h3></td>
+	<td colspan=\"2\"><h3>DTC ".$txt_cfg_skin_chooser[$lang]."</h3></td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_select_type_of_skin[$lang]."</td>
 	<td nowrap><select name=\"skin_type\">$skin_choose</select></td>
