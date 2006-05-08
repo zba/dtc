@@ -111,6 +111,10 @@ function drawGeneralConfig(){
 
 	global $lang;
 
+	// added by seeb
+	global $txt_cfg_daemon;
+	global $txt_cfg_skin_chooser;
+
 	global $conf_skin;
 	global $dtcshared_path;
 	$dir = $dtcshared_path."/gfx/skin/";
@@ -212,13 +216,13 @@ function drawGeneralConfig(){
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_hidepasswd\"$conf_hdpasswd_yes>Yes
 	<input type=\"radio\" value=\"no\" name=\"new_hidepasswd\"$conf_hdpasswd_no>No</td>
 </tr><tr>
-	<td colspan=\"2\"><h3>Daemon</h3></td>
+	<td colspan=\"2\"><h3>".$txt_cfg_daemon[$lang]."</h3></td>
 </tr><tr>
 	<td align=\"right\" nowrap>MTA (Mail Transport Agent):</td>
 	<td nowrap><input type=\"radio\" value=\"qmail\" name=\"new_mta_type\"$conf_mtatype_qmail>Qmail
 	<input type=\"radio\" value=\"postfix\" name=\"new_mta_type\"$conf_mtatype_postfix>Postfix</td>
 </tr><tr>
-	<td colspan=\"2\"><h3>DTC Skin chooser</h3></td>
+	<td colspan=\"2\"><h3>".$txt_cfg_skin_chooser[$lang]." DTC Skin chooser</h3></td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_select_type_of_skin[$lang]."</td>
 	<td nowrap><select name=\"skin_type\">$skin_choose</select></td>
