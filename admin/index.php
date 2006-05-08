@@ -124,8 +124,8 @@ case "config": // Global Config
 	$chooser_menu = drawDTCConfigMenu();
 	$leftFrameCells[] = skin($conf_skin,$chooser_menu,"Menu");
 	$leftFrame = makeVerticalFrame($leftFrameCells);
-
-	$rightFrameCells[] = skin($conf_skin,drawDTCConfigForm(),"DTC configuration");
+// changes by seeb 
+	$rightFrameCells[] = skin($conf_skin,drawDTCConfigForm(),$txt_dtc_configuration[$lang]);
 	$rightFrame = makeVerticalFrame($rightFrameCells);
 
 	$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);
