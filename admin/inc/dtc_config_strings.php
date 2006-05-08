@@ -2,11 +2,26 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.37 2006/05/08 08:47:53 seeb Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.38 2006/05/08 10:56:00 seeb Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	**/
 	// added by seeb 8th may 2006 
+$txt_cfg_server_address =array(
+	"fr" => "TRANS:",
+	"en" => "Server address :",
+	"hu" => "TRANS:",
+	"it" => "TRANS:",
+	"nl" => "TRANS:",
+	"ru" => "TRANS:",
+	"de" => "TRANS:",
+	"zh" => "TRANS:",
+	"pl" => "Adres serwera :",
+	"es" => "TRANS:",
+	"pt" => "TRANS:"
+	);
+	
+	
 $txt_cfg_daemon = array (
   "fr" => "TRANS ",
   "en" => "Daemon",

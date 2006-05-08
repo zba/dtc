@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.54 2006/05/08 10:33:40 seeb Exp $
+ * @version $Id: dtc_config.php,v 1.55 2006/05/08 10:58:02 seeb Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -379,7 +379,8 @@ function drawBackupConfig(){
         global $lang;
         global $txt_cmenu_password;
 		global $txt_action;
-		global $txt_domain_tbl_config_ip;		
+		global $txt_domain_tbl_config_ip;
+		global $txt_cfg_server_address;		
 		
 	$out = "<h3>".$txt_cfg_allow_following_servers_to_list[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='grant_access';";
@@ -415,7 +416,7 @@ function drawBackupConfig(){
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>Server address</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
+        $out .= "<table><tr><td>".$txt_cfg_server_address[$lang]."</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
 	for($i=0;$i<$n;$i++){
 	        $a = mysql_fetch_array($r);
 	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -448,7 +449,7 @@ function drawBackupConfig(){
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_mx_changes';";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>Server address</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
+        $out .= "<table><tr><td>".$txt_cfg_server_address[$lang]."</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
 	for($i=0;$i<$n;$i++){
 	        $a = mysql_fetch_array($r);
 	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
