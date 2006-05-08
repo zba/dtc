@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.35 2006/05/08 07:44:35 seeb Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.36 2006/05/08 08:27:51 seeb Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	**/
@@ -16,21 +16,21 @@ $txt_cfg_daemon = array (
   "ru" => "TRANS ",
   "de" => "TRANS ",
   "zh" => "TRANS ",
-  "pl" => "Nazwa ",
+  "pl" => "Demony ",
   "es" => "TRANS ",
   "pt" => "TRANS "
   );
 
 $txt_cfg_skin_chooser= array (
   "fr" => "TRANS",
-  "en" => "Skin_chooser",
+  "en" => "DTC Skin chooser",
   "hu" => "TRANS ",
   "it" => "TRANS ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
   "de" => "TRANS ",
   "zh" => "TRANS ",
-  "pl" => "Wybieranie wygl±du ",
+  "pl" => "Wybór skórek ",
   "es" => "TRANS ",
   "pt" => "TRANS "
   );

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $id:$
+ * @version $Id: dtc_config.php,v 1.48 2006/05/08 08:23:51 seeb Exp $
  *
  * @return forms
  * 
@@ -258,6 +258,8 @@ function drawNetworkConfig(){
 	global $txt_cfg_main_software_config;
 
 	global $lang;
+	global $txt_yes;
+	global $txt_no;
 
 	if($conf_use_multiple_ip == "yes"){
 		$conf_use_multiple_ip_yes = " checked";
@@ -289,11 +291,11 @@ function drawNetworkConfig(){
 </tr>
 <tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_multiple_ip[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_yes>".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_no>".$txt_no[$lang]."</td>
 </tr>
 <tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_nated_vhost[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_yes>".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_no>".$txt_no[$lang]."</td>
 </tr><tr>
 	<td align=\"right\" nowrap>".$txt_cfg_nated_vhost_ip[$lang]."</td>
 	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_nated_vhost_ip\" name=\"new_nated_vhost_ip\"></td>
@@ -314,7 +316,10 @@ function drawNamedConfig(){
 	global $conf_ip_allowed_dns_transfer;
 	global $conf_use_cname_for_subdomains;
 	global $lang;
-
+	//again seeb ;)
+	global $txt_yes;
+	global $txt_no;
+	
 	global $txt_cfg_name_zonefileconf_title;
 	global $txt_cfg_main_mx_addr;
 	global $txt_cfg_mail_addr_webmaster;
@@ -351,7 +356,7 @@ function drawNamedConfig(){
 </td></tr>
 <tr>
 	<td align=\"right\" nowrap>".$txt_cfg_use_cname_for_subdomains[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_cname_for_subdomains\"$conf_use_cname_for_subdomains_yes>Yes <input type=\"radio\" value=\"no\" name=\"new_use_cname_for_subdomains\"$conf_use_cname_for_subdomains_no>No</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_cname_for_subdomains\"$conf_use_cname_for_subdomains_yes>".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"new_use_cname_for_subdomains\"$conf_use_cname_for_subdomains_no>".$txt_no[$lang]."</td>
 </tr>
 <tr><td align=\"right\">
 	".$txt_cfg_allowed_dns_transfer_list[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_ip_allowed_dns_transfer\" name=\"new_ip_allowed_transfer_dns_server\"><br>
@@ -533,6 +538,9 @@ function drawBackupConfig(){
 
 function drawRegistryApiConfig(){
   global $lang;
+// seeb ...
+  global $txt_yes;
+  global $txt_no;
 
   global $pro_mysql_config_table;
 
@@ -561,8 +569,8 @@ function drawRegistryApiConfig(){
           $regapi_check_no = " checked ";
         }
 
-        $out .= "Use registrar API: <input type=\"radio\" value=\"yes\" name=\"use_registrar_api\"$regapi_check_yes> Yes
-<input type=\"radio\" value=\"no\" name=\"use_registrar_api\"$regapi_check_no> No<br><br>";
+        $out .= "Use registrar API: <input type=\"radio\" value=\"yes\" name=\"use_registrar_api\"$regapi_check_yes> ".$txt_yes[$lang]."
+<input type=\"radio\" value=\"no\" name=\"use_registrar_api\"$regapi_check_no>".$txt_no[$lang]."<br><br>";
 
         $out .= "<h3>Tucows</h3><br>
         <img src=\"gfx/tucows.jpg\"><br>Note: you must have a Tucows reseller account.";
@@ -587,7 +595,7 @@ function drawRegistryApiConfig(){
 <tr><td align=\"right\" nowrap>
 	".$txt_cfg_use_des_or_blowfish[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"DES\" name=\"srs_crypt\"$use_des> DES <input type=\"radio\" value=\"BLOWFISH\" name=\"srs_crypt\"$use_blowfish> Blowfish </td>
 </tr><tr><td align=\"right\" nowrap>
-	".$txt_cfg_use_test_or_live[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"LIVE\" name=\"srs_enviro\"$use_live_system_yes> Yes <input type=\"radio\" value=\"TEST\" name=\"srs_enviro\"$use_live_system_no> No</td>
+	".$txt_cfg_use_test_or_live[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"LIVE\" name=\"srs_enviro\"$use_live_system_yes> ".$txt_yes[$lang]." <input type=\"radio\" value=\"TEST\" name=\"srs_enviro\"$use_live_system_no> ".$txt_no[$lang]."</td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_tucows_username[$lang]."</td>
   <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_srs_user\" name=\"srs_username\"></td>
@@ -659,9 +667,9 @@ function drawDTCpayConfig(){
 	
 	$out .="<table with=\"100%\" height=\"1\">
 <tr><td align=\"right\" nowrap>
-	".$txt_cfg_use_paypal[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_paypal\"$use_paypal_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"use_paypal\"$use_paypal_check_no> No</td>
+	".$txt_cfg_use_paypal[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_paypal\"$use_paypal_check_yes> ".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"use_paypal\"$use_paypal_check_no> ".$txt_no[$lang]."</td>
 </tr><tr><td align=\"right\" nowrap>
-	".$txt_cfg_paypal_autovalid[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"autovalid_paypal\"$auto_paypal_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"autovalid_paypal\"$auto_paypal_check_no> No</td>
+	".$txt_cfg_paypal_autovalid[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"autovalid_paypal\"$auto_paypal_check_yes> ".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"autovalid_paypal\"$auto_paypal_check_no> ".$txt_no[$lang]."</td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_email[$lang]."</td>
   <td width=\"100%\"><input type=\"text\" size=\"40\" value=\"".$a["paypal_email"]."\" name=\"paypal_email\"></td>
@@ -672,7 +680,7 @@ function drawDTCpayConfig(){
   <td align=\"right\" nowrap>".$txt_cfg_paypal_flatfee[$lang]."</td>
   <td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["paypal_flat"]."\" name=\"paypal_flat\"></td>
 </tr><tr><td align=\"right\" nowrap>
-	".$txt_cfg_paypal_use_sandbox[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"sandbox_paypal\"$paypal_sandbox_check_yes> Yes <input type=\"radio\" value=\"no\" name=\"sandbox_paypal\"$paypal_sandbox_check_no> No</td>
+	".$txt_cfg_paypal_use_sandbox[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"sandbox_paypal\"$paypal_sandbox_check_yes> ".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"sandbox_paypal\"$paypal_sandbox_check_no> ".$txt_no[$lang]."</td>
 </tr><tr>
   <td align=\"right\" nowrap>".$txt_cfg_paypal_sandbox_email[$lang]."</td>
   <td width=\"100%\"><input type=\"text\" size=\"40\" value=\"".$a["paypal_sandbox_email"]."\" name=\"paypal_sandbox_email\"></td>
@@ -698,8 +706,8 @@ function drawDTCpayConfig(){
 	}
 	$out .="<table with=\"100%\" height=\"1\">
       <tr><td align=\"right\" nowrap>
-	"."Use eNETS:"."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_enets\"$use_enets_check_yes> Yes
-	<input type=\"radio\" value=\"no\" name=\"use_enets\"$use_enets_check_no> No</td>
+	"."Use eNETS:"."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_enets\"$use_enets_check_yes> ".$txt_yes[$lang]."
+	<input type=\"radio\" value=\"no\" name=\"use_enets\"$use_enets_check_no> ".$txt_no[$lang]."</td>
       </tr><tr>
 	<td align=\"right\" nowrap>
 	"."eNETS server:"."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_enets_test\"$use_enets_test_check_yes> Test server
