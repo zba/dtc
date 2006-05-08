@@ -3,10 +3,24 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.86 2006/05/08 09:22:53 seeb Exp $
+	* @version  $Id: strings.php,v 1.87 2006/05/08 10:20:58 seeb Exp $
 	* 
 	**/
 	// see line 3602 and translate
+	
+	$txt_your_child_accounts = array(
+	"fr" => "TRANS ",
+	"en" => "Your child accounts:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "Twoje subkonta:",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	); 
 $txt_currency = array(
 	"fr" => "TRANS ",
 	"en" => "Currency",
