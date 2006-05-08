@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * @package DTC
+ * @version $id:$
+ *
+ * @return forms
+ * 
+ */
 function drawRegistrySelection(){
   global $pro_mysql_registry_table;
   $out = "<b><u>Registry selection:</u></b>";
