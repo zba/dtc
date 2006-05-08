@@ -3,11 +3,49 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.85 2006/05/08 08:52:10 seeb Exp $
+	* @version  $Id: strings.php,v 1.86 2006/05/08 09:22:53 seeb Exp $
 	* 
 	**/
 	// see line 3602 and translate
-	
+$txt_currency = array(
+	"fr" => "TRANS ",
+	"en" => "Currency",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "Pieni±dze:",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+$txt_currency_symbol=array (
+	"fr" => "TRANS ",
+	"en" => "Currency symbol:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "Symbol pieni±dza:",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+$txt_currency_ltr= array (
+	"fr" => "TRANS ",
+	"en" => "Currency letters:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "Oznaczenie literowe:",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
 	
 	$txt_registry_selection=array (
 	"fr" => "TRANS ",

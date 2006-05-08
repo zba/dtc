@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.49 2006/05/08 08:44:51 seeb Exp $
+	* @version  $Id: index.php,v 1.51 2006/05/08 09:29:05 seeb Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -99,7 +99,7 @@ case "monitor": // Monitor button
 	$module = skin($conf_skin,$out,$txt_customer_bw_consumption[$lang]);
 	$zemain_content = $module;
 	break;
-
+// todo inttrnetionalize 
 case "graph":
 	$the_iframe = "<IFRAME src=\"/cgi-bin/netusegraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
 	$mainFrameCells[] = skin($conf_skin,$the_iframe,"Network Traffic Statistics");

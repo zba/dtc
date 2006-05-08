@@ -1,8 +1,8 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.50 2006/05/08 09:00:55 seeb Exp $
- *
+ * @version $Id: dtc_config.php,v 1.52 2006/05/08 09:25:10 seeb Exp $
+ * @todo intrenationalize menus
  * @return forms
  * 
  */
@@ -615,9 +615,12 @@ function drawRegistryApiConfig(){
 function drawDTCpayConfig(){
 	global $lang;
 // seeb ...
-  global $txt_yes;
-  global $txt_no;
-  
+  	global $txt_yes;
+  	global $txt_no;
+	global $txt_currency;
+	global $txt_currency_symbol;
+	global $txt_currency_ltr;
+	
 	global $txt_cfg_use_paypal;
 	global $txt_cfg_paytitle;
 	global $txt_cfg_paypal_email;
@@ -629,7 +632,8 @@ function drawDTCpayConfig(){
 
 	global $pro_mysql_secpayconf_table;
 
-
+	
+	
 	$out = "";
 
 	$q = "SELECT * FROM $pro_mysql_secpayconf_table";
@@ -660,12 +664,12 @@ function drawDTCpayConfig(){
 	  $paypal_sandbox_check_no = " checked ";
         }
 	$out .= "<h2><u>".$txt_cfg_paytitle[$lang]."</u></h2>
-	<h3>Currency</h3>
+	<h3>".$txt_currency[$lang]."</h3>
 <table with=\"100%\" height=\"1\">
 <tr><td align=\"right\" nowrap>
-  Currency symbol:</td><td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["currency_symbol"]."\" name=\"currency_symbol\"></td>
+  ".$txt_currency_symbol[$lang]."</td><td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["currency_symbol"]."\" name=\"currency_symbol\"></td>
 </tr><tr><td align=\"right\" nowrap>
-  Currency letters:</td><td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["currency_letters"]."\" name=\"currency_letters\"></td>
+  ".$txt_currency_ltr[$lang]."</td><td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["currency_letters"]."\" name=\"currency_letters\"></td>
 </tr>
 </table>
 	<h3>PayPal:</h3>";
