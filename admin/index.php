@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.51 2006/05/08 09:29:05 seeb Exp $
+	* @version  $Id: index.php,v 1.50 2006/05/08 09:27:58 seeb Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	

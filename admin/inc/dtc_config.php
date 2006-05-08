@@ -1,8 +1,8 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.52 2006/05/08 09:25:10 seeb Exp $
- * @todo intrenationalize menus
+ * @version $Id: dtc_config.php,v 1.51 2006/05/08 09:23:58 seeb Exp $
+ *
  * @return forms
  * 
  */
