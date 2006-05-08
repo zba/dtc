@@ -3,13 +3,28 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.82 2006/05/07 22:16:38 seeb Exp $
+	* @version  $Id: strings.php,v 1.83 2006/05/08 08:37:30 seeb Exp $
 	* 
 	**/
 	// see line 3602 and translate
 	
 	
 	// new arrays by seeb
+	
+	$txt_dtc_configuration=array (
+	"fr" => "TRANS ",
+	"en" => "DTC Configuration",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "Konfiguracja DTC",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+	
 	$txt_user_administration=array (
 	"fr" => "TRANS ",
 	"en" => "User administration",
