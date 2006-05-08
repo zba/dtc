@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.36 2006/05/08 08:27:51 seeb Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.37 2006/05/08 08:47:53 seeb Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	**/
@@ -30,7 +30,7 @@ $txt_cfg_skin_chooser= array (
   "ru" => "TRANS ",
   "de" => "TRANS ",
   "zh" => "TRANS ",
-  "pl" => "Wybór skórek ",
+  "pl" => "Wybór skórek DTC",
   "es" => "TRANS ",
   "pt" => "TRANS "
   );

@@ -1,5 +1,11 @@
 <?php
-
+	/**
+	* @package DTC
+	* @todo internationalize menu and/or options
+	* @version  $Id: index.php,v 1.49 2006/05/08 08:44:51 seeb Exp $
+	* @see dtc/shared/vars/strings.php
+	**/
+	
 $panel_type="admin";
 require_once("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
