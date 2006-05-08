@@ -66,7 +66,8 @@ function drawAdminTools_SSH($domain,$adm_path){
 //	}else{
 //		$is_selected ="";
 //	}
-	$path_popup .= "<option value=\"$adm_path/$edit_domain\"$is_selected>/$edit_domain/</option>";
+//	$path_popup .= "<option value=\"$adm_path/$edit_domain\"$is_selected>/$edit_domain/</option>";
+	$path_popup = "";
 	$nbr_subdomains = sizeof($domain["subdomains"]);
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub_name = $domain["subdomains"][$i]["name"];

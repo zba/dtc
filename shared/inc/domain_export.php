@@ -52,6 +52,14 @@ function exportDomain($domain_name,$path_to){
 
         $out = exportSqlTable($pro_mysql_domain_table,"name",$domain_name);
         $out .= exportSqlTable($pro_mysql_subdomain_table,"domain_name",$domain_name);
+        $out .= exportSqlTable($pro_mysql_pop_table,'mbox_host',$domain_name);
+        $out .= exportSqlTable($pro_mysql_ftp_table,'hostname',$domain_name);
+        $out .= exportSqlTable($pro_mysql_ssh_table,'hostname',$domain_name);
+        $out .= exportSqlTable($pro_mysql_whois_table,'domain_name',$domain_name);
+        $out .= exportSqlTable($pro_mysql_nameservers_table,'domain_name',$domain_name);
+        $out .= exportSqlTable($pro_mysql_acc_http_table,'domain',$domain_name);
+        $out .= exportSqlTable($pro_mysql_ftp_http_table,'sub_domain',$domain_name);
+        $out .= exportSqlTable($pro_mysql_registry_table,'sub_domain',$domain_name);
         return $out;
 }
 
