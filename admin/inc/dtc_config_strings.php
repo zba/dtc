@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.39 2006/05/10 04:16:05 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.40 2006/05/10 07:51:18 seeb Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	**/
@@ -195,7 +195,7 @@ vuoto se non si hanno server DNS di backup):",
         "zh" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
                 (leave blank if you don't have backup MX server):",
         "pl" => "Lista serwerów DNS (adresy IP), dopuszczone do transferu stref odzielone przez &quot;|&quot; (pipe)<br>
-	        (Pozostaw puste jesli nie masz zapasowych serwerów DNS):",
+	        (Pozostaw puste je¶li nie masz zapasowych serwerów DNS):",
         "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):",
 		"pt" => "Lista de IPs dos servidores de DNS com permissões para transferir zonas, separados  por  &quot;|&quot; (pipe)<br>
@@ -237,7 +237,7 @@ $txt_cfg_use_des_or_blowfish = array(
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "TRANS ",
-"pl" => "Klucz blowfish do serwera Tucows:",
+"pl" => "Klucz do serwera Tucows:",
 "es" => "Tipo de encriptación para conectar al servidor Tucows ",
 "pt" => "Tipo de cifra utilizado para se ligar ao servidor Tucows "
 );
