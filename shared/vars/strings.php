@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.89 2006/05/10 05:42:57 thomas Exp $
+	* @version  $Id: strings.php,v 1.90 2006/05/10 10:55:16 lupin Exp $
 	* 
 	**/
 	// see line 3602 and translate
@@ -12,7 +12,7 @@
 	"fr" => "Vos sous-comptes: ",
 	"en" => "Your child accounts:",
 	"hu" => "TRANS ",
-	"it" => "TRANS ",
+	"it" => "Tuoi sotto-account ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
@@ -25,7 +25,7 @@ $txt_currency = array(
 	"fr" => "Devise",
 	"en" => "Currency",
 	"hu" => "TRANS ",
-	"it" => "TRANS ",
+	"it" => "Valuta ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
@@ -38,7 +38,7 @@ $txt_currency_symbol=array (
 	"fr" => "Symbole de devise: ",
 	"en" => "Currency symbol:",
 	"hu" => "TRANS ",
-	"it" => "TRANS ",
+	"it" => "Simbolo valuta: ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
@@ -51,7 +51,7 @@ $txt_currency_ltr= array (
 	"fr" => "Devise en toutes lettres: ",
 	"en" => "Currency letters:",
 	"hu" => "TRANS ",
-	"it" => "TRANS ",
+	"it" => "Lettere valuta: ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
@@ -65,7 +65,7 @@ $txt_currency_ltr= array (
 	"fr" => "Selection du registre: ",
 	"en" => "Registry selection:",
 	"hu" => "TRANS ",
-	"it" => "TRANS ",
+	"it" => "Selezione del registro: ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
@@ -81,7 +81,7 @@ $txt_currency_ltr= array (
 	"fr" => "Configuration de DTC",
 	"en" => "DTC Configuration",
 	"hu" => "TRANS ",
-	"it" => "TRANS ",
+	"it" => "Configurazione di DTC ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
@@ -95,7 +95,7 @@ $txt_currency_ltr= array (
 	"fr" => "Administration utilisateur",
 	"en" => "User administration",
 	"hu" => "TRANS ",
-	"it" => "TRANS ",
+	"it" => "Amministrazione utente",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
@@ -108,7 +108,7 @@ $txt_currency_ltr= array (
 	"fr" => "Domaines pour",
 	"en" => "Domains for",
 	"hu" => "TRANS ",
-	"it" => "TRANS ",
+	"it" => "Domini per ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
@@ -121,7 +121,7 @@ $txt_console_output=array(
 	"fr" => "Sortie console",
 	"en" => "Console output",
 	"hu" => "TRANS ",
-	"it" => "TRANS ",
+	"it" => "Output della console",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
@@ -156,7 +156,7 @@ $txt_domain_config = array(
 
   "hu" => "TRANS ",
 
-  "it" => "TRANS ",
+  "it" => "Configurazione domini ",
 
   "nl" => "TRANS ",
 
@@ -184,7 +184,7 @@ $txt_user_menu_email = array (
 
   "hu" => "TRANS ",
 
-  "it" => "TRANS ",
+  "it" => "Mia e-mail ",
 
   "nl" => "TRANS ",
 
@@ -210,7 +210,7 @@ $txt_user_menu_fetchmail = array (
 
   "hu" => "TRANS ",
 
-  "it" => "TRANS ",
+  "it" => "Fetchmail",
 
   "nl" => "TRANS ",
 
@@ -236,7 +236,7 @@ $txt_user_menu_antispam = array (
 
   "hu" => "TRANS ",
 
-  "it" => "TRANS ",
+  "it" => "Antispam",
 
   "nl" => "TRANS ",
 
@@ -264,7 +264,7 @@ $txt_user_menu_quarantine = array (
 
   "hu" => "TRANS ",
 
-  "it" => "TRANS ",
+  "it" => "Mia e-mail ",
 
   "nl" => "TRANS ",
 
@@ -292,7 +292,7 @@ $txt_email_pass_error = array (
 
   "hu" => "TRANS ",
 
-  "it" => "TRANS ",
+  "it" => "Login o password errati!",
 
   "nl" => "TRANS ",
 
@@ -320,7 +320,7 @@ $txt_logout = array (
 
   "hu" => "TRANS ",
 
-  "it" => "TRANS ",
+  "it" => "Disconnetti ",
 
   "nl" => "TRANS ",
 
@@ -348,7 +348,7 @@ $txt_goto_client_panel = array(
 
   "hu" => "TRANS ",
 
-  "it" => "TRANS ",
+  "it" => "Vai al pannello cliente",
 
   "nl" => "TRANS ",
 
@@ -376,7 +376,7 @@ $txt_mainmenu_title_server_monitor = array(
 
   "hu" => "TRANS Server monitor",
 
-  "it" => "TRANS Server monitor",
+  "it" => "Server monitor",
 
   "nl" => "TRANS Server monitor",
 
@@ -404,7 +404,7 @@ $txt_admin_editor = array(
 
   "hu" => "TRANS Admin editor",
 
-  "it" => "TRANS Admin editor",
+  "it" => "Editor dell'admin",
 
   "nl" => "TRANS Admin editor",
 
@@ -434,7 +434,7 @@ $txt_product_manager = array(
 
   "hu" => "TRANS Hosting product manager",
 
-  "it" => "TRANS Hosting product manager",
+  "it" => "Manager dei prodotti Hosting",
 
   "nl" => "TRANS Hosting product manager",
 
@@ -486,7 +486,7 @@ $txt_mainmenu_title_server_monitor = array(
 
   "hu" => "TRANS ",
 
-  "it" => "TRANS ",
+  "it" => "Server Monitor",
 
   "nl" => "TRANS ",
 
