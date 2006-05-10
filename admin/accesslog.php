@@ -67,7 +67,7 @@ function make_stats(){
 						for($z=0;$z<$dump_num_rows;$z++){
 							$rezar = mysql_fetch_array($result_dump);
 							if(strstr($rezar["referer"],$a["name"])){
-								$rezar["referer"] == "self";
+								$rezar["referer"] = "self";
 							}
 							$content = $rezar["remote_host"]." - - ".
 								date("[d/M/Y:H:i:s O] ",$rezar["time_stamp"]).

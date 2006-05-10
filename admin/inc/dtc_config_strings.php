@@ -2,13 +2,13 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.38 2006/05/08 10:56:00 seeb Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.39 2006/05/10 04:16:05 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	**/
 	// added by seeb 8th may 2006 
 $txt_cfg_server_address =array(
-	"fr" => "TRANS:",
+	"fr" => "Address serveur:",
 	"en" => "Server address :",
 	"hu" => "TRANS:",
 	"it" => "TRANS:",
@@ -23,7 +23,7 @@ $txt_cfg_server_address =array(
 	
 	
 $txt_cfg_daemon = array (
-  "fr" => "TRANS ",
+  "fr" => "Daemon",
   "en" => "Daemon",
   "hu" => "TRANS ",
   "it" => "TRANS ",
@@ -37,7 +37,7 @@ $txt_cfg_daemon = array (
   );
 
 $txt_cfg_skin_chooser= array (
-  "fr" => "TRANS",
+  "fr" => "Selecteur de theme DTC",
   "en" => "DTC Skin chooser",
   "hu" => "TRANS ",
   "it" => "TRANS ",
