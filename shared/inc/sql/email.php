@@ -13,7 +13,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said :".mysql_error());
 	}else{
 		if(!isMailbox($_REQUEST["catchall_popup"])){
-			$submit_err .= "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n";
+			$submit_err .= $txt_err_email_format[$lang];
 			$commit_flag = "no";
 		}else{
 			// Check if mail exists...
@@ -22,7 +22,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 				$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
 				$testnum_rows = mysql_num_rows($test_result);
 				if($testnum_rows != 1){
-					$submit_err .= "Mailbox does no exists in database !<br>\n";
+					$submit_err .= $txt_err_mailbox_does_not_exists_in_db[$lang];
 					$commit_flag = "no";
 				}else{
 					$catch = $_REQUEST["catchall_popup"];
@@ -45,7 +45,7 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	if(!isMailbox($_REQUEST["newmail_login"])){
-		$submit_err .= "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n";
+		$submit_err .= $txt_err_email_format[$lang];
 		$commit_flag = "no";
 	}else{
 		// Check if mail exists...
@@ -53,7 +53,7 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 		$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
 		$testnum_rows = mysql_num_rows($test_result);
 		if($testnum_rows != 0){
-			$submit_err .= "Mailbox allready exist in database !<br>\n";
+			$submit_err .= $txt_err_mailbox_does_not_exists_in_db[$lang];
 			$commit_flag = "no";
 		}
 
@@ -63,13 +63,13 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 		$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
 		$testnum_rows = mysql_num_rows($test_result);
 		if($testnum_rows != 0){
-			$submit_err .= "Mailbox allready exist in database as a mailing list!<br>\n";
+			$submit_err .= $txt_err_email_exists_as_mailinglist[$lang];
 			$commit_flag = "no";
 		}
 	}
 
 	if(!isDTCPassword($_REQUEST["newmail_pass"]) && ( ( isset($_REQUEST["newmail_deliver_localy"]) && $_REQUEST["newmail_deliver_localy"] == "yes") || (isset($_REQUEST["editmail_deliver_localy"]) && $_REQUEST["editmail_deliver_localy"] == "yes" ) ) ){
-		$submit_err .= "Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n";
+		$submit_err .= $txt_err_password_format[$lang];
 		$commit_flag = "no";
 		die($submit_err);
 	}

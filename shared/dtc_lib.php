@@ -6,6 +6,7 @@ require("$dtcshared_path/vars/table_names.php");	// The table names DTC is using
 require("$dtcshared_path/vars/global_vars.php");	// Make basic checks on standard DTC params and set them as global vars
 require("$dtcshared_path/vars/lang.php");			// Setup the $lang global variable (to en, en-us, fr, etc... : whatever is translated !)
 require("$dtcshared_path/vars/strings.php");		// Contain all the translated string
+require("$dtcshared_path/vars/error_strings.php");
 
 ////////////////////////
 // Some sql functions //

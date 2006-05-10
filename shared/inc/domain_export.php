@@ -27,7 +27,7 @@ function exportSqlTable($table_name,$filter_field,$filter_value){
             if($j != 0){
               $out .= ",\n";
             }
-            $out .= "\t\"" . $field_names[$j] . '"' . " => " . '"' . $row[$field_names[$j]] . '"';
+            $out .= "\t\"" . $field_names[$j] . '"' . " => " . '"' . urlencode($row[$field_names[$j]]) . '"';
           }
           $out .= ");\n";
         }
@@ -35,7 +35,7 @@ function exportSqlTable($table_name,$filter_field,$filter_value){
         return $out;
 }
 
-function exportDomain($domain_name,$path_to){
+function exportDomainSQL($domain_name,$path_to){
         global $pro_mysql_domain_table;
         global $pro_mysql_subdomain_table;
         global $pro_mysql_pop_table;
@@ -58,8 +58,8 @@ function exportDomain($domain_name,$path_to){
         $out .= exportSqlTable($pro_mysql_whois_table,'domain_name',$domain_name);
         $out .= exportSqlTable($pro_mysql_nameservers_table,'domain_name',$domain_name);
         $out .= exportSqlTable($pro_mysql_acc_http_table,'domain',$domain_name);
-        $out .= exportSqlTable($pro_mysql_ftp_http_table,'sub_domain',$domain_name);
-        $out .= exportSqlTable($pro_mysql_registry_table,'sub_domain',$domain_name);
+        $out .= exportSqlTable($pro_mysql_acc_ftp_table,'sub_domain',$domain_name);
+        $out .= exportSqlTable($pro_mysql_acc_email_table,'domain_name',$domain_name);
         return $out;
 }
 

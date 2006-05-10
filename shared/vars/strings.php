@@ -3,13 +3,13 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.88 2006/05/08 12:33:22 seeb Exp $
+	* @version  $Id: strings.php,v 1.89 2006/05/10 05:42:57 thomas Exp $
 	* 
 	**/
 	// see line 3602 and translate
 	
 	$txt_your_child_accounts = array(
-	"fr" => "TRANS ",
+	"fr" => "Vos sous-comptes: ",
 	"en" => "Your child accounts:",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
@@ -22,7 +22,7 @@
 	"pt" => "TRANS "
 	); 
 $txt_currency = array(
-	"fr" => "TRANS ",
+	"fr" => "Devise",
 	"en" => "Currency",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
@@ -35,7 +35,7 @@ $txt_currency = array(
 	"pt" => "TRANS "
 	);
 $txt_currency_symbol=array (
-	"fr" => "TRANS ",
+	"fr" => "Symbole de devise: ",
 	"en" => "Currency symbol:",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
@@ -48,7 +48,7 @@ $txt_currency_symbol=array (
 	"pt" => "TRANS "
 	);
 $txt_currency_ltr= array (
-	"fr" => "TRANS ",
+	"fr" => "Devise en toutes lettres: ",
 	"en" => "Currency letters:",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
@@ -62,7 +62,7 @@ $txt_currency_ltr= array (
 	);
 	
 	$txt_registry_selection=array (
-	"fr" => "TRANS ",
+	"fr" => "Selection du registre: ",
 	"en" => "Registry selection:",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
@@ -78,7 +78,7 @@ $txt_currency_ltr= array (
 	// new arrays by seeb
 	
 	$txt_dtc_configuration=array (
-	"fr" => "TRANS ",
+	"fr" => "Configuration de DTC",
 	"en" => "DTC Configuration",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
@@ -92,7 +92,7 @@ $txt_currency_ltr= array (
 	);
 	
 	$txt_user_administration=array (
-	"fr" => "TRANS ",
+	"fr" => "Administration utilisateur",
 	"en" => "User administration",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
@@ -105,7 +105,7 @@ $txt_currency_ltr= array (
 	"pt" => "TRANS "
 	);
 	$txt_user_administration_domains_for=array(
-	"fr" => "TRANS ",
+	"fr" => "Domaines pour",
 	"en" => "Domains for",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
@@ -118,7 +118,7 @@ $txt_currency_ltr= array (
 	"pt" => "TRANS "
 	);
 $txt_console_output=array(
-	"fr" => "TRANS ",
+	"fr" => "Sortie console",
 	"en" => "Console output",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
@@ -133,29 +133,17 @@ $txt_console_output=array(
 // end arrays
 
 $txt_client_interface = array(
-
   "fr" => "Interface client",
-
   "en" => "Client interface",
-
   "hu" => "TRANS ",
-
   "it" => "TRANS ",
-
   "nl" => "TRANS ",
-
   "ru" => "TRANS ",
-
   "de" => "TRANS ",
-
   "zh" => "用户界面",
-
   "pl" => "Interfejs u縴tkownika",
-
   "es" => "TRANS ",
-
   "pt" => "TRANS "
-
   );
 
 
@@ -3681,7 +3669,7 @@ $txt_use_text_menu = array(
 	);
 
 $txt_use_images_menu = array(
-	"fr" => "TRANS Use image menu",
+	"fr" => "Menu en images",
 	"en" => "Use image menu",
 	"hu" => "TRANS Use image menu",
     "it" => "TRANS Use image menu",
