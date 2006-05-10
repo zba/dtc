@@ -9,7 +9,7 @@ $txt_err_email_format = array(
   "ru" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "de" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "zh" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
-  "pl" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "pl" => "B³êdny format maila lub loginu: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus).<br>\n",
   "es" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "pt" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n");
 
@@ -22,7 +22,7 @@ $txt_err_mailbox_does_not_exists_in_db = array(
   "ru" => "TRANS Mailbox does no exists in database!<br>\n",
   "de" => "TRANS Mailbox does no exists in database!<br>\n",
   "zh" => "TRANS Mailbox does no exists in database!<br>\n",
-  "pl" => "TRANS Mailbox does no exists in database!<br>\n",
+  "pl" => "Nie ma takiej skrzynki!<br>\n",
   "es" => "TRANS Mailbox does no exists in database!<br>\n",
   "pt" => "TRANS Mailbox does no exists in database!<br>\n");
 
@@ -35,7 +35,7 @@ $txt_err_email_exists_as_mailinglist = array(
   "ru" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "de" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "zh" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
-  "pl" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
+  "pl" => "Taka skrzynka ju¿ istnieje na liscie mailingowej!<br>\n",
   "es" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "pt" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n");
 
@@ -48,7 +48,7 @@ $txt_err_password_format = array(
   "ru" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "de" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "zh" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
-  "pl" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
+  "pl" => "Has³o jest tworzone ze standardowego zestawu znaków (a-zA-Z0-9) i jego dlugo¶æ mo¿e siê zawieraæ miedzy 6 a 16 znaków.<br>\n",
   "es" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "pt" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n");
 
