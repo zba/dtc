@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.7 2006/05/12 16:24:39 seeb Exp $
+ * @version $Id: error_strings.php,v 1.8 2006/05/12 17:02:51 seeb Exp $
  * 
  */
 
@@ -23,6 +23,9 @@ PAYMENT FAILED $txt_err_payment_failed[$lang]
 "Cannot reselect product: registration failed!" $txt_err_register_cant_reselect_product[$lang]
 $txt_err_register_succ[$lang]
 */
+global $extapi_pay_id; // bug in my script - seeb
+
+
 
 $txt_err_payment_not_valid=array(
 	"fr" => "NOT VALIDATED",
