@@ -1,9 +1,136 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.4 2006/05/11 13:40:54 seeb Exp $
+ * @version $Id: error_strings.php,v 1.5 2006/05/12 16:09:08 seeb Exp $
  * 
  */
+
+
+
+/**
+ * new localization for new account
+ * @see dtc/client/new_account.php
+ * 
+ */
+/*
+NOT VALIDATED
+TRANSACTION FINISHED AND APPROVED
+PAYMENT CANCELED
+PAYMENT FAILED
+
+"Cannot reselect transaction for id $extapi_pay_id: registration failed!"
+"Cannot reselect user: registration failed!"
+"Cannot reselect product: registration failed!"
+
+*/
+
+$txt_err_payment_not_valid=array(
+	"fr" => "TRANS ",
+	"en" => "NOT VALIDATED",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+$txt_err_payment_finish_approved=array(
+	"fr" => "TRANS ",
+	"en" => "TRANSACTION FINISHED AND APPROVED",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+$txt_err_payment_=array(
+	"fr" => "TRANS ",
+	"en" => "PAYMENT CANCELED",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_err_payment_failed=array(
+	"fr" => "TRANS ",
+	"en" => "PAYMENT FAILED",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+$txt_err_register_cant_reselect_=array(
+	"fr" => "TRANS ",
+	"en" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+$txt_err_register_cant_reselect_=array(
+	"fr" => "TRANS ",
+	"en" => "Cannot reselect user: registration failed!",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+$txt_err_register_cant_reselect_=array(
+	"fr" => "TRANS ",
+	"en" => "Cannot reselect product: registration failed!",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_err_register_succ=array (
+	"fr" => "Registration successfull!",
+	"en" => "Registration successfull!",
+	"hu" => "Registration successfull!",
+	"it" => "Registration successfull!",
+	"nl" => "Registration successfull!",
+	"ru" => "Registration successfull!",
+	"de" => "Registration successfull!",
+	"zh" => "Registration successfull!",
+	"pl" => "Registration successfull!",
+	"es" => "Registration successfull!",
+	"pt" => "Registration successfull!"
+);
+/** end new arrays **/
 $txt_err_email_format = array(
   "fr" => "Mauvais format du login mail: il doit être composé uniquement de lettre non capitales, de nombre ou du signe \"-\".<br>\n",
   "en" => "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
@@ -56,4 +183,17 @@ $txt_err_password_format = array(
   "es" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "pt" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n");
 
+$txt_clear_array=array(
+	"fr" => "TRANS ",
+	"en" => "TRANS ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
 ?>
