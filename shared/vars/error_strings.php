@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.5 2006/05/12 16:09:08 seeb Exp $
+ * @version $Id: error_strings.php,v 1.6 2006/05/12 16:21:07 seeb Exp $
  * 
  */
 
@@ -25,96 +25,96 @@ PAYMENT FAILED
 */
 
 $txt_err_payment_not_valid=array(
-	"fr" => "TRANS ",
+	"fr" => "NOT VALIDATED",
 	"en" => "NOT VALIDATED",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+	"hu" => "NOT VALIDATED",
+	"it" => "NOT VALIDATED",
+	"nl" => "NOT VALIDATED",
+	"ru" => "NOT VALIDATED",
+	"de" => "NOT VALIDATED",
+	"zh" => "NOT VALIDATED",
+	"pl" => "P£ATNO¦Æ NIESPRAWDZONA		",
+	"es" => "NOT VALIDATED",
+	"pt" => "NOT VALIDATED"
 );
 $txt_err_payment_finish_approved=array(
-	"fr" => "TRANS ",
+	"fr" => "TRANSACTION FINISHED AND APPROVED",
 	"en" => "TRANSACTION FINISHED AND APPROVED",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+	"hu" => "TRANSACTION FINISHED AND APPROVED",
+	"it" => "TRANSACTION FINISHED AND APPROVED",
+	"nl" => "TRANSACTION FINISHED AND APPROVED",
+	"ru" => "TRANSACTION FINISHED AND APPROVED",
+	"de" => "TRANSACTION FINISHED AND APPROVED",
+	"zh" => "TRANSACTION FINISHED AND APPROVED",
+	"pl" => "TRANZAKCJA ZAKOÑCZONA I ZAAKCEPTOWANA",
+	"es" => "TRANSACTION FINISHED AND APPROVED",
+	"pt" => "TRANSACTION FINISHED AND APPROVED"
 );
 $txt_err_payment_=array(
-	"fr" => "TRANS ",
+	"fr" => "PAYMENT CANCELED",
 	"en" => "PAYMENT CANCELED",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+	"hu" => "PAYMENT CANCELED",
+	"it" => "PAYMENT CANCELED",
+	"nl" => "PAYMENT CANCELED",
+	"ru" => "PAYMENT CANCELED",
+	"de" => "PAYMENT CANCELED",
+	"zh" => "PAYMENT CANCELED",
+	"pl" => "P£ATNO¦Æ ANULOWANA",
+	"es" => "PAYMENT CANCELED",
+	"pt" => "PAYMENT CANCELED"
 );
 
 $txt_err_payment_failed=array(
-	"fr" => "TRANS ",
+	"fr" => "PAYMENT FAILED",
 	"en" => "PAYMENT FAILED",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+	"hu" => "PAYMENT FAILED",
+	"it" => "PAYMENT FAILED",
+	"nl" => "PAYMENT FAILED",
+	"ru" => "PAYMENT FAILED",
+	"de" => "PAYMENT FAILED",
+	"zh" => "PAYMENT FAILED",
+	"pl" => "P£ATNO¦Æ NIEUDANA",
+	"es" => "PAYMENT FAILED",
+	"pt" => "PAYMENT FAILED"
 );
 $txt_err_register_cant_reselect_=array(
-	"fr" => "TRANS ",
+	"fr" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"en" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+	"hu" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"it" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"nl" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"ru" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"de" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"zh" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"pl" => "Nie mogê ponownie wybraæ transakcji dla ID $extapi_pay_id: Rejestracja nieudana!",
+	"es" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"pt" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!"
 );
 $txt_err_register_cant_reselect_=array(
-	"fr" => "TRANS ",
+	"fr" => "Cannot reselect user: registration failed!",
 	"en" => "Cannot reselect user: registration failed!",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+	"hu" => "Cannot reselect user: registration failed!",
+	"it" => "Cannot reselect user: registration failed!",
+	"nl" => "Cannot reselect user: registration failed!",
+	"ru" => "Cannot reselect user: registration failed!",
+	"de" => "Cannot reselect user: registration failed!",
+	"zh" => "Cannot reselect user: registration failed!",
+	"pl" => "Nie mogê ponownie wybraæ u¿ytkownika: Rejestracja nieudana!",
+	"es" => "Cannot reselect user: registration failed!",
+	"pt" => "Cannot reselect user: registration failed!"
 );
 $txt_err_register_cant_reselect_=array(
-	"fr" => "TRANS ",
+	"fr" => "Cannot reselect product: registration failed!",
 	"en" => "Cannot reselect product: registration failed!",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+	"hu" => "Cannot reselect product: registration failed!",
+	"it" => "Cannot reselect product: registration failed!",
+	"nl" => "Cannot reselect product: registration failed!",
+	"ru" => "Cannot reselect product: registration failed!",
+	"de" => "Cannot reselect product: registration failed!",
+	"zh" => "Cannot reselect product: registration failed!",
+	"pl" => "Nie mogê ponownie wybraæ produktu: Rejestracja nieudana!",
+	"es" => "Cannot reselect product: registration failed!",
+	"pt" => "Cannot reselect product: registration failed!"
 );
 
 $txt_err_register_succ=array (
@@ -126,7 +126,7 @@ $txt_err_register_succ=array (
 	"ru" => "Registration successfull!",
 	"de" => "Registration successfull!",
 	"zh" => "Registration successfull!",
-	"pl" => "Registration successfull!",
+	"pl" => "Rejestracja przebieg³a pomy¶nie",
 	"es" => "Registration successfull!",
 	"pt" => "Registration successfull!"
 );
