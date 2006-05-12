@@ -41,15 +41,15 @@ if($status != "succ"){
 	logPay("Status not success line ".__LINE__." file ".__FILE__."\n");
 	die();
 }
-if($_SERVER["REMOTE_ADDR"] != "203.116.61.131" && $_SERVER["REMOTE_ADDR"] != 203.116.94.76 && $_SERVER["REMOTE_ADDR"] != 203.116.94.74){
+if($_SERVER["REMOTE_ADDR"] != "203.116.61.131" && $_SERVER["REMOTE_ADDR"] != "203.116.94.76" && $_SERVER["REMOTE_ADDR"] != "203.116.94.74"){
 	logPay("Recieved notify from an unkonwn IP addr ".__LINE__." file ".__FILE__."\n");
-	die();
-}else{
-	$pay_fee = $amount * $secpayconf_enets_rate / 100;
-	$amount_paid = $amount - $pay_fee;
-	logPay("Payment success from enets: calling validate()\n");
-	validatePaiement($pay_id,$amount_paid,"online","enets",0,$amount);
+	$content="Recieved notify from an unkonwn IP addr ".$_SERVER["REMOTE_ADDR"];
+	Mail($conf_webmaster_email_addr,"[DTC Robot]: Recieved notify from an unkonwn IP",$content);
 }
+$pay_fee = $amount * $secpayconf_enets_rate / 100;
+$amount_paid = $amount - $pay_fee;
+logPay("Payment success from enets: calling validate()\n");
+validatePaiement($pay_id,$amount_paid,"online","enets",0,$amount);
 /*
 This is the paypal API that must be changed for eNETS
 

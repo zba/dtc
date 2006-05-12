@@ -82,11 +82,11 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_
 		break;
 	}
 	
-	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id_client='$extapi_pay_id';";
+	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$extapi_pay_id';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		$form .= "Cannot reselect transaction: registration failed!";
+		$form .= "Cannot reselect transaction for id $extapi_pay_id: registration failed!";
 	}else{
 		$a = mysql_fetch_array($r);
 		$form .= "<h2>Your transaction status is now:</h2>";
@@ -96,7 +96,7 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_
 			If you have confirmed the payment then check a bit later here.<br><br>
 			If the payment status was to stay like that, please contact customer support.";
 		}else{
-			$q2 = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='$extapi_pay_id';";
+			$q2 = "SELECT * FROM $pro_mysql_new_admin_table WHERE paiement_id='$extapi_pay_id';";
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
