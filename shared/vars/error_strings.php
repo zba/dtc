@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.6 2006/05/12 16:21:07 seeb Exp $
+ * @version $Id: error_strings.php,v 1.7 2006/05/12 16:24:39 seeb Exp $
  * 
  */
 
@@ -13,15 +13,15 @@
  * 
  */
 /*
-NOT VALIDATED
-TRANSACTION FINISHED AND APPROVED
-PAYMENT CANCELED
-PAYMENT FAILED
+NOT VALIDATED $txt_err_payment_not_valid[$lang]
+TRANSACTION FINISHED AND APPROVED $txt_err_payment_finish_approved[$lang]
+PAYMENT CANCELED $txt_err_payment_cancel[$lang]
+PAYMENT FAILED $txt_err_payment_failed[$lang]
 
-"Cannot reselect transaction for id $extapi_pay_id: registration failed!"
-"Cannot reselect user: registration failed!"
-"Cannot reselect product: registration failed!"
-
+"Cannot reselect transaction for id $extapi_pay_id: registration failed!" $txt_err_register_cant_reselect_trans[$lang]
+"Cannot reselect user: registration failed!" $txt_err_register_cant_reselect_user[$lang]
+"Cannot reselect product: registration failed!" $txt_err_register_cant_reselect_product[$lang]
+$txt_err_register_succ[$lang]
 */
 
 $txt_err_payment_not_valid=array(
@@ -50,7 +50,7 @@ $txt_err_payment_finish_approved=array(
 	"es" => "TRANSACTION FINISHED AND APPROVED",
 	"pt" => "TRANSACTION FINISHED AND APPROVED"
 );
-$txt_err_payment_=array(
+$txt_err_payment_cancel=array(
 	"fr" => "PAYMENT CANCELED",
 	"en" => "PAYMENT CANCELED",
 	"hu" => "PAYMENT CANCELED",
@@ -77,7 +77,7 @@ $txt_err_payment_failed=array(
 	"es" => "PAYMENT FAILED",
 	"pt" => "PAYMENT FAILED"
 );
-$txt_err_register_cant_reselect_=array(
+$txt_err_register_cant_reselect_trans=array(
 	"fr" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"en" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"hu" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
@@ -90,7 +90,7 @@ $txt_err_register_cant_reselect_=array(
 	"es" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"pt" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!"
 );
-$txt_err_register_cant_reselect_=array(
+$txt_err_register_cant_reselect_user=array(
 	"fr" => "Cannot reselect user: registration failed!",
 	"en" => "Cannot reselect user: registration failed!",
 	"hu" => "Cannot reselect user: registration failed!",
@@ -103,7 +103,7 @@ $txt_err_register_cant_reselect_=array(
 	"es" => "Cannot reselect user: registration failed!",
 	"pt" => "Cannot reselect user: registration failed!"
 );
-$txt_err_register_cant_reselect_=array(
+$txt_err_register_cant_reselect_product=array(
 	"fr" => "Cannot reselect product: registration failed!",
 	"en" => "Cannot reselect product: registration failed!",
 	"hu" => "Cannot reselect product: registration failed!",
