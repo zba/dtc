@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: new_account.php,v 1.25 2006/05/13 11:40:12 seeb Exp $
+ * @version $Id: new_account.php,v 1.26 2006/05/13 14:09:26 thomas Exp $
  * @abstract Localization must go on ... ;) seeb
  * @todo repair bug for 
  * "Cannot reselect transaction for id $extapi_pay_id: registration failed!" 
@@ -25,6 +25,21 @@
 
 
 global $txt_register_new_account;
+
+// This one is moved before the includes so we can use $extapi_pay_id in the string files.
+if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_REQUEST["action"] == "enets-success")){
+	switch($_REQUEST["action"]){
+	case "return_from_pay":
+		$extapi_pay_id = $_REQUEST["regid"];
+		break;
+	case "enets-success":
+		$extapi_pay_id = $_REQUEST["txnRef"];
+		break;
+	default:
+		$extapi_pay_id = -1;
+		break;
+	}
+}
 
 require_once("../shared/autoSQLconfig.php");
 $panel_type="client";
@@ -93,17 +108,6 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_
 	// submit.y=18&
 	// currency_code=USD
 
-	switch($_REQUEST["action"]){
-	case "return_from_pay":
-		$extapi_pay_id = $_REQUEST["regid"];
-		break;
-	case "enets-success":
-		$extapi_pay_id = $_REQUEST["txnRef"];
-		break;
-	default:
-		$extapi_pay_id = -1;
-		break;
-	}
 
 	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$extapi_pay_id';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());

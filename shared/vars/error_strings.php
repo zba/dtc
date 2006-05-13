@@ -1,21 +1,27 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.10 2006/05/13 13:52:22 thomas Exp $
+ * @version $Id: error_strings.php,v 1.11 2006/05/13 14:09:26 thomas Exp $
  * 
  */
+
+/**
+ * TG: Added some code to check password format of new admins
+ *
+ */
+
 $txt_err_dtc_login_format = array(
-  "fr" => "Mauvais format du login administrateur: il doit jtre composi uniquement de lettre non capitales, de nombre ou du signe \"-\".<br>\n",
-  "en" => "Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
-  "hu" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
-  "it" => "Formato del login email errato: dovrebbe essere composto solo da lettere minuscole o numeri o dal simbolo \"-\".<br>\n",
-  "nl" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
-  "ru" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
-  "de" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
-  "zh" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
-  "pl" => "B³êdny format admin lub loginu: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus).<br>\n",
-  "es" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
-  "pt" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n");
+  "fr" => "Mauvais format du mot de passe du login administrateur: il doit jtre composi uniquement de lettre non capitales, de nombre ou du signe \"-\" et doit faire entre 4 et 16 caractères.<br>\n",
+  "en" => "Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+  "hu" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+  "it" => "TRANS Formato del login email errato: dovrebbe essere composto solo da lettere minuscole o numeri o dal simbolo \"-\" and should be between 4 and 16 chars long.<br>\n",
+  "nl" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+  "ru" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+  "de" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+  "zh" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+  "pl" => "TRANS B³êdny format admin lub loginu: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus) and should be between 4 and 16 chars long.<br>\n",
+  "es" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+  "pt" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n");
 
 /**
  * new localization for new account
@@ -33,12 +39,15 @@ PAYMENT FAILED $txt_err_payment_failed[$lang]
 "Cannot reselect product: registration failed!" $txt_err_register_cant_reselect_product[$lang]
 $txt_err_register_succ[$lang]
 */
-global $extapi_pay_id; // bug in my script - seeb
+// TG remark to Seeb: This didn't work as the code that makes this variable is called AFTER this file...
+// That code is now moved before the include. We don't need the global here as it's not in a function.
+// When you see this text, please just delete it, together with that global variable.
+//global $extapi_pay_id; // bug in my script - seeb
 
 
 
 $txt_err_payment_not_valid=array(
-	"fr" => "NOT VALIDATED",
+	"fr" => "NON VALIDE",
 	"en" => "NOT VALIDATED",
 	"hu" => "NOT VALIDATED",
 	"it" => "NOT VALIDATED",
@@ -52,7 +61,7 @@ $txt_err_payment_not_valid=array(
 	"pt" => "NOT VALIDATED"
 );
 $txt_err_payment_finish_approved=array(
-	"fr" => "TRANSACTION FINISHED AND APPROVED",
+	"fr" => "TRANSACTION FINIE ET APPROUVEE",
 	"en" => "TRANSACTION FINISHED AND APPROVED",
 	"hu" => "TRANSACTION FINISHED AND APPROVED",
 	"it" => "TRANSACTION FINISHED AND APPROVED",
@@ -66,7 +75,7 @@ $txt_err_payment_finish_approved=array(
 	"pt" => "TRANSACTION FINISHED AND APPROVED"
 );
 $txt_err_payment_cancel=array(
-	"fr" => "PAYMENT CANCELED",
+	"fr" => "PAYMENT ABANDONNE",
 	"en" => "PAYMENT CANCELED",
 	"hu" => "PAYMENT CANCELED",
 	"it" => "PAYMENT CANCELED",
@@ -81,7 +90,7 @@ $txt_err_payment_cancel=array(
 );
 
 $txt_err_payment_failed=array(
-	"fr" => "PAYMENT FAILED",
+	"fr" => "ECHEC DU PAYMENT",
 	"en" => "PAYMENT FAILED",
 	"hu" => "PAYMENT FAILED",
 	"it" => "PAYMENT FAILED",
@@ -95,7 +104,7 @@ $txt_err_payment_failed=array(
 	"pt" => "PAYMENT FAILED"
 );
 $txt_err_register_cant_reselect_trans=array(
-	"fr" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"fr" => "Impossible de resélectionner la transaction numéro $extapi_pay_id: echec de l'enregistrement!",
 	"en" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"hu" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"it" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
@@ -109,7 +118,7 @@ $txt_err_register_cant_reselect_trans=array(
 	"pt" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!"
 );
 $txt_err_register_cant_reselect_user=array(
-	"fr" => "Cannot reselect user: registration failed!",
+	"fr" => "Impossible de resélectionner l'utilisateur: echec de l'enregistrement!",
 	"en" => "Cannot reselect user: registration failed!",
 	"hu" => "Cannot reselect user: registration failed!",
 	"it" => "Cannot reselect user: registration failed!",
@@ -123,7 +132,7 @@ $txt_err_register_cant_reselect_user=array(
 	"pt" => "Cannot reselect user: registration failed!"
 );
 $txt_err_register_cant_reselect_product=array(
-	"fr" => "Cannot reselect product: registration failed!",
+	"fr" => "Impossible de resélectionner le produit: échec de l'enregistrement!",
 	"en" => "Cannot reselect product: registration failed!",
 	"hu" => "Cannot reselect product: registration failed!",
 	"it" => "Cannot reselect product: registration failed!",
@@ -138,7 +147,7 @@ $txt_err_register_cant_reselect_product=array(
 );
 
 $txt_err_register_succ=array (
-	"fr" => "Registration successfull!",
+	"fr" => "Enregistrement réussit!",
 	"en" => "Registration successfull!",
 	"hu" => "Registration successfull!",
 	"it" => "Registration successfull!",
