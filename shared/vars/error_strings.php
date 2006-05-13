@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.8 2006/05/12 17:02:51 seeb Exp $
+ * @version $Id: error_strings.php,v 1.9 2006/05/13 08:13:43 seeb Exp $
  * 
  */
 
@@ -36,7 +36,8 @@ $txt_err_payment_not_valid=array(
 	"ru" => "NOT VALIDATED",
 	"de" => "NOT VALIDATED",
 	"zh" => "NOT VALIDATED",
-	"pl" => "P£ATNO¦Æ NIESPRAWDZONA		",
+	"pl" => "P£ATNO¦Æ NIESPRAWDZONA",
+	"se" => "TRANS SVENSKA",
 	"es" => "NOT VALIDATED",
 	"pt" => "NOT VALIDATED"
 );
@@ -50,6 +51,7 @@ $txt_err_payment_finish_approved=array(
 	"de" => "TRANSACTION FINISHED AND APPROVED",
 	"zh" => "TRANSACTION FINISHED AND APPROVED",
 	"pl" => "TRANZAKCJA ZAKOÑCZONA I ZAAKCEPTOWANA",
+	"se" => "TRANS SVENSKA",
 	"es" => "TRANSACTION FINISHED AND APPROVED",
 	"pt" => "TRANSACTION FINISHED AND APPROVED"
 );
@@ -63,6 +65,7 @@ $txt_err_payment_cancel=array(
 	"de" => "PAYMENT CANCELED",
 	"zh" => "PAYMENT CANCELED",
 	"pl" => "P£ATNO¦Æ ANULOWANA",
+	"se" => "TRANS SVENSKA",
 	"es" => "PAYMENT CANCELED",
 	"pt" => "PAYMENT CANCELED"
 );
@@ -77,6 +80,7 @@ $txt_err_payment_failed=array(
 	"de" => "PAYMENT FAILED",
 	"zh" => "PAYMENT FAILED",
 	"pl" => "P£ATNO¦Æ NIEUDANA",
+	"se" => "TRANS SVENSKA",
 	"es" => "PAYMENT FAILED",
 	"pt" => "PAYMENT FAILED"
 );
@@ -90,6 +94,7 @@ $txt_err_register_cant_reselect_trans=array(
 	"de" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"zh" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"pl" => "Nie mogê ponownie wybraæ transakcji dla ID $extapi_pay_id: Rejestracja nieudana!",
+	"se" => "TRANS SVENSKA",
 	"es" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"pt" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!"
 );
@@ -103,6 +108,7 @@ $txt_err_register_cant_reselect_user=array(
 	"de" => "Cannot reselect user: registration failed!",
 	"zh" => "Cannot reselect user: registration failed!",
 	"pl" => "Nie mogê ponownie wybraæ u¿ytkownika: Rejestracja nieudana!",
+	"se" => "TRANS SVENSKA",
 	"es" => "Cannot reselect user: registration failed!",
 	"pt" => "Cannot reselect user: registration failed!"
 );
@@ -116,6 +122,7 @@ $txt_err_register_cant_reselect_product=array(
 	"de" => "Cannot reselect product: registration failed!",
 	"zh" => "Cannot reselect product: registration failed!",
 	"pl" => "Nie mogê ponownie wybraæ produktu: Rejestracja nieudana!",
+	"se" => "TRANS SVENSKA",
 	"es" => "Cannot reselect product: registration failed!",
 	"pt" => "Cannot reselect product: registration failed!"
 );
@@ -130,6 +137,7 @@ $txt_err_register_succ=array (
 	"de" => "Registration successfull!",
 	"zh" => "Registration successfull!",
 	"pl" => "Rejestracja przebieg³a pomy¶nie",
+	"se" => "TRANS SVENSKA",
 	"es" => "Registration successfull!",
 	"pt" => "Registration successfull!"
 );
@@ -144,6 +152,7 @@ $txt_err_email_format = array(
   "de" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "zh" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "pl" => "B³êdny format maila lub loginu: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus).<br>\n",
+  "se" => "TRANS SVENSKA",
   "es" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "pt" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n");
 
@@ -157,6 +166,7 @@ $txt_err_mailbox_does_not_exists_in_db = array(
   "de" => "TRANS Mailbox does no exists in database!<br>\n",
   "zh" => "TRANS Mailbox does no exists in database!<br>\n",
   "pl" => "Nie ma takiej skrzynki!<br>\n",
+  "se" => "TRANS SVENSKA",
   "es" => "TRANS Mailbox does no exists in database!<br>\n",
   "pt" => "TRANS Mailbox does no exists in database!<br>\n");
 
@@ -170,6 +180,7 @@ $txt_err_email_exists_as_mailinglist = array(
   "de" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "zh" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "pl" => "Taka skrzynka ju¿ istnieje na liscie mailingowej!<br>\n",
+  "se" => "TRANS SVENSKA",
   "es" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "pt" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n");
 
@@ -183,6 +194,7 @@ $txt_err_password_format = array(
   "de" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "zh" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "pl" => "Has³o jest tworzone ze standardowego zestawu znaków (a-zA-Z0-9) i jego d³ugo¶æ mo¿e siê zawieraæ miêdzy 6 a 16 znaków.<br>\n",
+  "se" => "TRANS SVENSKA",
   "es" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "pt" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n");
 
@@ -195,6 +207,7 @@ $txt_clear_array=array(
 	"ru" => "TRANS ",
 	"de" => "TRANS ",
 	"zh" => "TRANS ",
+	"se" => "TRANS SVENSKA",
 	"pl" => "TRANS ",
 	"es" => "TRANS ",
 	"pt" => "TRANS "
