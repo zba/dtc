@@ -1,4 +1,21 @@
 <?php
+/**
+ * @package DTC
+ * @version $Id: new_account.php,v 1.24 2006/05/13 11:34:57 seeb Exp $
+ * @abstract Localization must go on ... ;) seeb
+ */
+	/*
+	chages:
+NOT VALIDATED $txt_err_payment_not_valid[$lang]
+TRANSACTION FINISHED AND APPROVED ".$txt_err_payment_finish_approved[$lang]."
+PAYMENT CANCELED $txt_err_payment_cancel[$lang]
+PAYMENT FAILED $txt_err_payment_failed[$lang]
+
+"Cannot reselect transaction for id $extapi_pay_id: registration failed!" ".$txt_err_register_cant_reselect_trans[$lang]."
+"Cannot reselect user: registration failed!" ".$txt_err_register_cant_reselect_user[$lang]."
+"Cannot reselect product: registration failed!" ".$txt_err_register_cant_reselect_product[$lang]."
+".$txt_err_register_succ[$lang]."
+*/
 
 
 global $txt_register_new_account;
@@ -81,17 +98,17 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_
 		$extapi_pay_id = -1;
 		break;
 	}
-	
+
 	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$extapi_pay_id';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		$form .= "Cannot reselect transaction for id $extapi_pay_id: registration failed!";
+		$form .= $txt_err_register_cant_reselect_trans[$lang];//"Cannot reselect transaction for id $extapi_pay_id: registration failed!";
 	}else{
 		$a = mysql_fetch_array($r);
 		$form .= "<h2>Your transaction status is now:</h2>";
 		if($a["valid"] != "yes"){
-			$form .= "<h3><font color=\"red\">NOT VALIDATED</font></h3>
+			$form .= "<h3><font color=\"red\">".$txt_err_payment_not_valid[$lang]."<!-- NOT VALIDATED --></font></h3>
 			That might need that your payment has been canceled or that it is still being proceed.
 			If you have confirmed the payment then check a bit later here.<br><br>
 			If the payment status was to stay like that, please contact customer support.";
@@ -100,11 +117,11 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$form .= "Cannot reselect user: registration failed!";
+				$form .= $txt_err_register_cant_reselect_user[$lang];//"Cannot reselect user: registration failed!";
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				validateWaitingUser($a2["reqadm_login"]);
-				$form .= "<h3><font color=\"green\">TRANSACTION FINISHED AND APPROVED</font></h3>
+				$form .= "<h3><font color=\"green\">".$txt_err_payment_finish_approved[$lang]."<!-- TRANSACTION FINISHED AND APPROVED--></font></h3>
 				Your account has just been created. Please login <a href=\"/dtc\">here</a> to
 				start using your account.<br><br>
 				If you have registered your domain name yourself, then you should set the
@@ -116,12 +133,12 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_
 	}
 
 }else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-cancel"){
-	$forms .= "<h3><font color=\"red\">PAYMENT CANCELED</font></h3>
+	$forms .= "<h3><font color=\"red\">".$txt_err_payment_cancel[$lang]."<!-- PAYMENT CANCELED --></font></h3>
 You have canceled the payment, your account wont be validated.
 To start again the registration procedure, follow the link here:<br>
-<a href=\"new_account.php\">New account</a>";
+<a href=\"new_account.php\">".$txt_register_new_account[$lang]."</a>";
 }else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-failed"){
-	$forms .= "<h3><font color=\"red\">PAYMENT FAILED</font></h3>
+	$forms .= "<h3><font color=\"red\">".$txt_err_payment_failed[$lang]."<!-- PAYMENT FAILED --></font></h3>
 The payment gateway have reported that your payment has failed. Contact us,
 we also accept checks and wire transfers.";
 }else{
@@ -133,14 +150,14 @@ we also accept checks and wire transfers.";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
-			$form .= "Cannot reselect user: registration failed!";
+			$form .= $txt_err_register_cant_reselect_user[$lang];//"Cannot reselect user: registration failed!";
 		}else{
 			$newadmin = mysql_fetch_array($r);
 			$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$newadmin["product_id"]."';";
 			$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n != 1){
-				$form = "Cannot reselect product: registration failed!";
+				$form = $txt_err_register_cant_reselect_product[$lang];//"Cannot reselect product: registration failed!";
 			}
 			$product = mysql_fetch_array($r);
 			$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"],"yes");
@@ -148,7 +165,7 @@ we also accept checks and wire transfers.";
 			$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=".$reguser["id"];
 			$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"],$return_url);
-			$form = $reguser["mesg"]."<br><h4>Registration successfull!</h4>
+			$form = $reguser["mesg"]."<br><h4>".$txt_err_register_succ[$lang]."<!--Registration successfull!--></h4>
 Please now click on the following button to go for paiment:<br>
 <br>$paybutton";
 		}
