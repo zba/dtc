@@ -1,21 +1,27 @@
 <?php
 /**
  * @package DTC
- * @version $Id: new_account.php,v 1.24 2006/05/13 11:34:57 seeb Exp $
+ * @version $Id: new_account.php,v 1.25 2006/05/13 11:40:12 seeb Exp $
  * @abstract Localization must go on ... ;) seeb
+ * @todo repair bug for 
+ * "Cannot reselect transaction for id $extapi_pay_id: registration failed!" 
+ * ".$txt_err_register_cant_reselect_trans[$lang]."
+ * now $extapi_pay_id must be 
+ * global $extapi_pay_id;
  */
+
 	/*
 	chages:
-NOT VALIDATED $txt_err_payment_not_valid[$lang]
-TRANSACTION FINISHED AND APPROVED ".$txt_err_payment_finish_approved[$lang]."
-PAYMENT CANCELED $txt_err_payment_cancel[$lang]
-PAYMENT FAILED $txt_err_payment_failed[$lang]
+	NOT VALIDATED $txt_err_payment_not_valid[$lang]
+	TRANSACTION FINISHED AND APPROVED moved to $txt_err_payment_finish_approved[$lang]
+	PAYMENT CANCELED moved to $txt_err_payment_cancel[$lang]
+	PAYMENT FAILED moved to $txt_err_payment_failed[$lang]
 
-"Cannot reselect transaction for id $extapi_pay_id: registration failed!" ".$txt_err_register_cant_reselect_trans[$lang]."
-"Cannot reselect user: registration failed!" ".$txt_err_register_cant_reselect_user[$lang]."
-"Cannot reselect product: registration failed!" ".$txt_err_register_cant_reselect_product[$lang]."
-".$txt_err_register_succ[$lang]."
-*/
+	"Cannot reselect transaction for id $extapi_pay_id: registration failed!" moved to $txt_err_register_cant_reselect_trans[$lang]
+	"Cannot reselect user: registration failed!" moved to $txt_err_register_cant_reselect_user[$lang]
+	"Cannot reselect product: registration failed!" moved to  $txt_err_register_cant_reselect_product[$lang]
+	"Registration Succes...!" moved to ".$txt_err_register_succ[$lang]."
+	*/
 
 
 global $txt_register_new_account;
