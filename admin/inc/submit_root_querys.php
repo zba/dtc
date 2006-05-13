@@ -1,5 +1,8 @@
 <?php
 
+if(!isset($submit_err)){
+	$submit_err = "";
+}
 ///////////////////////////////////////////////////////////////
 // Mark all named zone file for generation and serial update //
 ///////////////////////////////////////////////////////////////
@@ -158,10 +161,17 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 
 // $newadmin_login $newadmin_pass $newadmin_path $newadmin_maxemail $newadmin_maxftp $newadmin_quota
 if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
+	echo "test!";
 	// Check for admin existance
 	// Create admin directorys
 	if(!isFtpLogin($_REQUEST["newadmin_login"])){
+		$submit_err .= $txt_err_dtc_login_format[$lang];
+		$commit_flag = "no";
 		die("Username not valid: it should be only made of letters and numbers");
+	}
+	if(!isDTCPassword($_REQUEST["newadmin_pass"])){
+		$submit_err .= $txt_err_password_format[$lang];
+		$commit_flag = "no";
 	}
 	$newadmin_path = $_REQUEST["newadmin_path"]."/".$_REQUEST["newadmin_login"];
 	if($conf_demo_version == "no"){
@@ -174,10 +184,12 @@ if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 	}
 
 	// Add user in database
-	$adm_query = "INSERT INTO $pro_mysql_admin_table
+	if($commit_flag == "no"){
+		$adm_query = "INSERT INTO $pro_mysql_admin_table
 (adm_login        ,adm_pass         ,path            )VALUES
 ('".$_REQUEST["newadmin_login"]."', '".$_REQUEST["newadmin_pass"]."','$newadmin_path') ";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}
 }
 
 // action=delete_waiting_user&reqadm_login=tom

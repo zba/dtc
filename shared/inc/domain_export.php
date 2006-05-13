@@ -35,7 +35,7 @@ function exportSqlTable($table_name,$filter_field,$filter_value){
         return $out;
 }
 
-function exportDomainSQL($domain_name,$path_to){
+function exportDomainSQL($domain_name){
         global $pro_mysql_domain_table;
         global $pro_mysql_subdomain_table;
         global $pro_mysql_pop_table;
@@ -61,6 +61,70 @@ function exportDomainSQL($domain_name,$path_to){
         $out .= exportSqlTable($pro_mysql_acc_ftp_table,'sub_domain',$domain_name);
         $out .= exportSqlTable($pro_mysql_acc_email_table,'domain_name',$domain_name);
         return $out;
+}
+
+//dtc_sql_config/<domain_name>/dtc_dump.php -> dtc config dump (pop, ftp, ssh, etc...)
+//user_db_dump/<dbname>/mysql_dump.sql -> user's database
+//domain_files/<domain_name>/[files]
+//dtc_dump_index.php
+//
+//    dtc_dump_info = array(
+//      "admin_name" => "xxxx",
+
+function exportDomain($domain_name,$path_to){
+  global $export_domain_err;
+  global $pro_mysql_domain_table;
+
+  // Get the domain's file path
+  $q = "SELECT owner FROM $pro_mysql_domain_table WHERE name='$domain_name'";
+  $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+  $n = mysql_num_rows($r);
+  if($n != 1){
+    $export_domain_err = "Cannot find domain in db";
+    return false;
+  }
+  $a = mysql_fetch_array($r);
+  $adm_login = $a["owner"];
+  $adm_path = getAdminPath($adm_login);
+
+  // Prepare the folders
+  $real_path = $path_to."/dtc_export";
+  if(is_dir($real_path) || file_exists($real_path)){
+    $export_domain_err = "$real_path exists!";
+    return false;
+  }
+
+  // Create the dirs
+  mkdir($real_path);
+
+  $dtc_sql_config  = $real_path."/dtc_sql_config"
+  mkdir($dtc_sql_config);
+
+  $dtc_sql_dump_path = $dtc_sql_config."/$domain_name";
+  mkdir($dtc_sql_dump_path."/$domain_name");
+
+  $dtc_sql_dump_filename = $dtc_sql_dump_path."/dtc_dump.php";
+  $dtc_domain_files_path = $real_path."/domain_files";
+  mkdir($dtc_domain_files_path);
+
+  // Get the dump
+  $dtc_sql_dump = exportDomainSQL($domain_name);
+
+  // Write the sql dump
+  $fp = fopen($dtc_sql_dump_filename,"wb+");
+  if($fp == NULL){
+    $export_domain_err = "Can't open file $real_path";
+    return false;
+  }
+  if(!fwrite($fp,$dtc_sql_dump)){
+    $export_domain_err = "Can't write file $real_path";
+    return false;
+  }
+  fclose($fp);
+
+  // Copy all the domain files in the folder
+  $cmd = "cp -auf $adm_path/$domain_name $dtc_domain_files_path";
+  $last_line = exec($cmd,$output,$return_var);
 }
 
 ?>

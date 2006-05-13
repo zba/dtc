@@ -1,11 +1,21 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.9 2006/05/13 08:13:43 seeb Exp $
+ * @version $Id: error_strings.php,v 1.10 2006/05/13 13:52:22 thomas Exp $
  * 
  */
-
-
+$txt_err_dtc_login_format = array(
+  "fr" => "Mauvais format du login administrateur: il doit jtre composi uniquement de lettre non capitales, de nombre ou du signe \"-\".<br>\n",
+  "en" => "Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "hu" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "it" => "Formato del login email errato: dovrebbe essere composto solo da lettere minuscole o numeri o dal simbolo \"-\".<br>\n",
+  "nl" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "ru" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "de" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "zh" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "pl" => "B³êdny format admin lub loginu: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus).<br>\n",
+  "es" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "pt" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n");
 
 /**
  * new localization for new account
