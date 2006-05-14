@@ -12,6 +12,7 @@
  * $sign -> The current sign to use for drawing (minus, tree, endtree, vline, hline, plus or none)
  *				Example value can be: tree/hline
  * @see img.php
+ * $Log:$
  */
 
 header ("Content-type: image/png");
