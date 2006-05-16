@@ -333,7 +333,10 @@ function registration_form(){
 
 	if(isset($_REQUEST["country"]))	$frm_country = $_REQUEST["country"];
 	else	$frm_country = "";
-        
+
+	if(isset($_REQUEST["custom_notes"]))	$frm_custom_notes = $_REQUEST["custom_notes"];
+	else	$frm_custom_notes = "";
+
 	$login_info = "<table>
 <tr>
 	<td align=\"right\">".$txt_login_login[$lang]."</td>
@@ -421,7 +424,7 @@ $txt_login_info[$lang]:$login_skined</td>
 <table border=\"0\">
 <tr>
 	<td>".$txt_register_custom_message_title[$lang]."</td>
-	<td><textarea name=\"custom_notes\" cols=\"50\" rows=\"5\"></textarea></td>
+	<td><textarea name=\"custom_notes\" cols=\"50\" rows=\"5\">$frm_custom_notes</textarea></td>
 	<td><input type=\"submit\" name=\"Login\" value=\"Register\"></td>
 </tr>
 </table>
