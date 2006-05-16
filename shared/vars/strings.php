@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.91 2006/05/13 11:25:47 seeb Exp $
+	* @version  $Id: strings.php,v 1.92 2006/05/16 15:38:21 thomas Exp $
 	* 
 	**/
 	
@@ -12,7 +12,6 @@
  * @see dtc/client/new_account.php
  * 
  */
-$txt_;
 
 /** end new arrays **/
 	
