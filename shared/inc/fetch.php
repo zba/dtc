@@ -235,6 +235,63 @@ function fetchAdminStats($admin){
 	return $ret;
 }
 
+function randomizePassword($adm_login,$adm_input_pass){
+	global $adm_realpass;
+	global $adm_pass;
+	global $adm_random_pass;
+	global $txt_wrong_user_or_password_or_timeout_expire;
+	global $lang;
+
+	if(isset($adm_realpass) && strlen($adm_realpass > 2)){
+		return;
+	}
+	$query = "SELECT * FROM $pro_mysql_admin_table
+WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass'
+OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error
+	message removed for security reasons).");
+	$num_rows = mysql_num_rows($result);
+
+	if($num_rows != 1){
+		$q = "SELECT * FROM $pro_mysql_config_table WHERE root_admin_random_pass='$adm_input_pass' AND pass_expire > '".mktime()."';";
+		$r = mysql_query($q)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
+		$n = mysql_num_rows($r);
+		if($n == 1){
+			$is_root_admin = "yes";
+			$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+			$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
+			$num_rows = mysql_num_rows($result);
+
+			if($num_rows != 1){
+				$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
+				$ret["err"] = -1;
+				return $ret;
+			}
+		}else{
+			$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
+			$ret["err"] = -1;
+			return $ret;
+		}
+	}else{
+		$is_root_admin = "no";
+	}
+	$row = mysql_fetch_array($result) or die ("Cannot fetch user");
+
+	// This stuff is rotating passwords helping NOT to save passwords on users browsers.
+	$rand = getRandomValue();
+	$adm_random_pass = $rand;
+	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
+	if($is_root_admin == "yes"){
+		$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
+	}else{
+		$q = "UPDATE $pro_mysql_admin_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE adm_login='$adm_login'";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
+	}
+	$adm_pass = $rand;
+	$adm_realpass = $row["adm_pass"];
+}
+
 function fetchAdminData($adm_login,$adm_input_pass){
         global $pro_mysql_domain_table;
         global $pro_mysql_admin_table;
@@ -263,55 +320,9 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
-	$query = "SELECT * FROM $pro_mysql_admin_table
-WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass'
-OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
-
-	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error
-	message removed for security reasons).");
-	$num_rows = mysql_num_rows($result);
-
-	if($num_rows != 1){
-		$q = "SELECT * FROM $pro_mysql_config_table WHERE root_admin_random_pass='$adm_input_pass' AND pass_expire > '".mktime()."';";
-		$r = mysql_query($q)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
-		$n = mysql_num_rows($r);
-		if($n == 1){
-			$is_root_admin = "yes";
-			$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
-			$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
-			$num_rows = mysql_num_rows($result);
-
-			if($num_rows != 1){
-				$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
-				$ret["err"] = -1;
-				return $ret;
-			}
-		}else{
-			$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
-			$ret["err"] = -1;
-			return $ret;
-		}
-	}else{
-		$is_root_admin = "no";
-	}
-
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_realpass';";
+	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
 	$row = mysql_fetch_array($result) or die ("Cannot fetch user");
-
-	// This stuff is rotating passwords helping NOT to save passwords on users browsers.
-	$rand = getRandomValue();
-	$adm_random_pass = $rand;
-	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-//	if($DONOT_USE_ROTATING_PASS != "yes"){
-		if($is_root_admin == "yes"){
-			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
-			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
-		}else{
-			$q = "UPDATE $pro_mysql_admin_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE adm_login='$adm_login'";
-			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
-		}
-		$adm_pass = $rand;
-//	}
-	$adm_realpass = $row["adm_pass"];
 
 	$adm_path = $row["path"];
 	$adm_max_ftp = $row["max_ftp"];
@@ -323,11 +334,6 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$query = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login' ORDER BY name;";
 	$result = mysql_query ($query)or die("Cannot execute query \"$query\"");
 	$num_rows = mysql_num_rows($result);
-	/*if($num_rows < 1){
-		$ret["mesg"] = "No domain for this user.";
-		$ret["err"] = -2;
-		return $ret;
-	}*/
 	for($i=0;$i<$num_rows;$i++){
 		//echo "$i<br>";
 		$row = mysql_fetch_array($result) or die ("Cannot fetch domain");
@@ -460,10 +466,9 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 		//now to add all the mailing lists
 		$query4 = "SELECT * FROM $pro_mysql_list_table WHERE domain='$name' ORDER BY id LIMIT 800;";
 		$result4 = mysql_query ($query4)or die("Cannot execute query \"$query4\"");
-    $num_rows4 = mysql_num_rows($result4);
-    unset($mailinglists);
-		for($j=0; $j < $num_rows4; $j++)
-		{
+		$num_rows4 = mysql_num_rows($result4);
+		unset($mailinglists);
+		for($j=0; $j < $num_rows4; $j++){
 			$row4 = mysql_fetch_array($result4) or die ("Cannot fetch mailing list");
 			unset($mailinglist);
 			$mailinglist["id"] = $row4["id"];
@@ -577,8 +582,7 @@ function fetchAdmin($adm_login,$adm_pass){
 	return fetchAdmin_2($adm_login, $adm_pass, 1);
 }
 
-function fetchAdmin_2($adm_login, $adm_pass, $adm_panel)
-{
+function fetchAdmin_2($adm_login, $adm_pass, $adm_panel){
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
@@ -593,9 +597,7 @@ function fetchAdmin_2($adm_login, $adm_pass, $adm_panel)
 			header('HTTP/1.0 401 Unauthorized');
 			echo 'You have not entered a correct user or password, please try again...';
 			exit;
-		} else if (
-				isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
-		){
+		} else if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])){
 			//we should try and grab the admin data based on the PHP_AUTH_PW and PHP_AUTH_USER (only do this if we are not the admin panel) this is OK for user panels
 			if (!$adm_panel && $adm_login != $_SERVER['PHP_AUTH_USER'])
 			{

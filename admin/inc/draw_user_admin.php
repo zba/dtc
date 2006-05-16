@@ -170,15 +170,25 @@ function userEditForms($adm_login,$adm_pass){
 	// added by seeb
 	global $txt_user_administration;
 	global $txt_user_administration_domains_for;
+
+	global $adm_random_pass;
+
 	// end added
 	global $conf_skin;
 	global $lang;
 	global $addrlink;
 	global $rub;
 
-	if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass)){
+	if(isset($adm_login) && $adm_login != "" && isset($adm_pass) && $adm_pass != ""){
 		// Fetch all the selected user informations, Print a nice error message if failure.
 		$admin = fetchAdmin($adm_login,$adm_pass);
+
+		if(isset($adm_random_pass)){
+			$pass = $adm_random_pass;
+		}else{
+			$pass = $adm_pass;
+		}
+
 		if(($error = $admin["err"]) != 0){
 			// now print out all the stuff from our HTTP headers
 			//$input = array_merge($_GET,    $_POST,
@@ -212,7 +222,7 @@ function userEditForms($adm_login,$adm_pass){
 		$iface_select = "<table height=\"1\" border=\"0\" width=\"100%\">";
 		$iface_select .= "<tr><td width=\"33%\" valign=\"top\"><center>";
 		if($rub != "user" && $rub != ""){
-			$iface_select .= "<a href=\"?rub=user&adm_login=$adm_login&adm_pass=$adm_pass\">";
+			$iface_select .= "<a href=\"?rub=user&adm_login=$adm_login&adm_pass=$pass\">";
 		}
 		$iface_select .= "<img src=\"gfx/menu/client-interface.png\" width=\"48\" height=\"48\" border=\"0\"><br>
 ".$txt_client_interface[$lang];
@@ -221,7 +231,7 @@ function userEditForms($adm_login,$adm_pass){
 		}
 		$iface_select .= "</center></td><td width=\"33%\" valign=\"top\"><center>";
 		if($rub != "domain_config"){
-			$iface_select .= "<a href=\"?rub=domain_config&adm_login=$adm_login&adm_pass=$adm_pass\">";
+			$iface_select .= "<a href=\"?rub=domain_config&adm_login=$adm_login&adm_pass=$pass\">";
 		}
 		$iface_select .= "<img src=\"gfx/menu/domain-config.png\" width=\"48\" height=\"48\" border=\"0\"><br>
 ".$txt_domain_config[$lang];
@@ -230,7 +240,7 @@ function userEditForms($adm_login,$adm_pass){
 		}
 		$iface_select .= "</center></td><td width=\"33%\" valign=\"top\"><center>";
 		if($rub != "adminedit"){
-			$iface_select .= "<a href=\"?rub=adminedit&adm_login=$adm_login&adm_pass=$adm_pass\">";
+			$iface_select .= "<a href=\"?rub=adminedit&adm_login=$adm_login&adm_pass=$pass\">";
 		}
 		$iface_select .= "<img src=\"gfx/menu/user-editor.png\" width=\"48\" height=\"48\" border=\"0\"><br>
 ".$txt_admin_editor[$lang];

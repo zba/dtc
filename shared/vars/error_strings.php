@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.11 2006/05/13 14:09:26 thomas Exp $
+ * @version $Id: error_strings.php,v 1.12 2006/05/16 15:32:58 thomas Exp $
  * 
  */
 
@@ -103,6 +103,8 @@ $txt_err_payment_failed=array(
 	"es" => "PAYMENT FAILED",
 	"pt" => "PAYMENT FAILED"
 );
+
+if(isset($extapi_pay_id)){
 $txt_err_register_cant_reselect_trans=array(
 	"fr" => "Impossible de resélectionner la transaction numéro $extapi_pay_id: echec de l'enregistrement!",
 	"en" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
@@ -117,6 +119,8 @@ $txt_err_register_cant_reselect_trans=array(
 	"es" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"pt" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!"
 );
+}
+
 $txt_err_register_cant_reselect_user=array(
 	"fr" => "Impossible de resélectionner l'utilisateur: echec de l'enregistrement!",
 	"en" => "Cannot reselect user: registration failed!",

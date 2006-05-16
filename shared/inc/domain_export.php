@@ -97,7 +97,7 @@ function exportDomain($domain_name,$path_to){
   // Create the dirs
   mkdir($real_path);
 
-  $dtc_sql_config  = $real_path."/dtc_sql_config"
+  $dtc_sql_config  = $real_path."/dtc_sql_config";
   mkdir($dtc_sql_config);
 
   $dtc_sql_dump_path = $dtc_sql_config."/$domain_name";

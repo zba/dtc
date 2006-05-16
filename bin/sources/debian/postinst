@@ -281,7 +281,7 @@ if [ -e /var/lib/squirrelmail/data/ ]; then
 fi
 
 if [ -e /var/spool/squirrelmail/attach ] ; then
-	chgrp nogruop /var/spool/squirrelmail/attach
+	chgrp nogroup /var/spool/squirrelmail/attach
 fi
 
 if [ -e /var/lib/apache2/fastcgi ] ; then
