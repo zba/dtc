@@ -280,6 +280,9 @@ if [ -e /var/lib/squirrelmail/data/ ]; then
 	chgrp nogroup /var/lib/squirrelmail/data/
 fi
 
+if [ -e /var/spool/squirrelmail/attach ] ; then
+	chgrp nogruop /var/spool/squirrelmail/attach
+fi
 
 if [ -e /var/lib/apache2/fastcgi ] ; then
 	chown -R nobody:nogroup /var/lib/apache2/fastcgi
