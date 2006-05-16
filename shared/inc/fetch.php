@@ -322,10 +322,15 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
-	if(!isset($adm_realpass)){
+	if(!isset($adm_realpass) && $panel_type != "cronjob"){
 		randomizePassword($adm_login,$adm_input_pass);
 	}
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_realpass';";
+	if($panel_type == "cronjob"){
+		$pass = $adm_input_pass;
+	}else{
+		$pass = $adm_realpass;
+	}
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$pass';";
 	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
 	$row = mysql_fetch_array($result) or die ("Cannot fetch user line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
