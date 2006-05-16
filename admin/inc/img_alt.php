@@ -3,7 +3,7 @@
  * @package DTC
  * @author seeb <seeb@seeb.net.pl>
  * @abstract alternative image creation from image file. File based on oryginal img.php by Thomas Goirand <thomas@goirand.fr>
- * @version $Id: img_alt.php,v 1.1 2006/05/13 18:21:06 seeb Exp $
+ * @version $Id: img_alt.php,v 1.2 2006/05/16 22:37:27 seeb Exp $
  * @param $text, $color ,$link $sign
  *
  * $text -> Text to be drawn
@@ -12,6 +12,12 @@
  * $sign -> The current sign to use for drawing (minus, tree, endtree, vline, hline, plus or none)
  *				Example value can be: tree/hline
  * @see img.php
+ * $Log: img_alt.php,v $
+ * Revision 1.2  2006/05/16 22:37:27  seeb
+ * Adding to file cvs user log as comment
+ * Please comment any change(s).
+ * Tnx
+ *
  */
 
 header ("Content-type: image/png");

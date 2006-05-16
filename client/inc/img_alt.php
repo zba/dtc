@@ -3,7 +3,7 @@
  * @package DTC
  * @author seeb <seeb@seeb.net.pl>
  * @abstract alternative image creation from image file. File based on oryginal img.php by Thomas Goirand <thomas@goirand.fr>
- * @version $Id:$
+ * @version $Id: $
  * @param $text, $color ,$link $sign
  *
  * $text -> Text to be drawn
@@ -12,7 +12,7 @@
  * $sign -> The current sign to use for drawing (minus, tree, endtree, vline, hline, plus or none)
  *				Example value can be: tree/hline
  * @see img.php
- * $Log:$
+ * $Log: $
  */
 
 header ("Content-type: image/png");
