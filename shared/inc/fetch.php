@@ -236,6 +236,8 @@ function fetchAdminStats($admin){
 }
 
 function randomizePassword($adm_login,$adm_input_pass){
+	global $pro_mysql_admin_table;
+	global $pro_mysql_config_table;
 	global $adm_realpass;
 	global $adm_pass;
 	global $adm_random_pass;
@@ -248,8 +250,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 	$query = "SELECT * FROM $pro_mysql_admin_table
 WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass'
 OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
-	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error
-	message removed for security reasons).");
+	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
 	$num_rows = mysql_num_rows($result);
 
 	if($num_rows != 1){
@@ -320,6 +321,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
+	echo "Calling randomizePassword() with : $adm_login,$adm_input_pass)";
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_realpass';";
 	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
 	$row = mysql_fetch_array($result) or die ("Cannot fetch user");
