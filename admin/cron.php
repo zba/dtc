@@ -276,7 +276,7 @@ if($cronjob_table_content["gen_named"] == "yes"){
 	named_generate();
 }
 if($cronjob_table_content["gen_qmail"] == "yes"){
-	echo "Generating Qmail accounts\n";
+	echo "Generating mail accounts\n";
 	mail_account_generate();
 }
 if($cronjob_table_content["gen_backup"] == "yes"){
