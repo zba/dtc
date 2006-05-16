@@ -69,7 +69,7 @@ function fetchAdminInfo($adm_login){
 		$ret["err"] = -1;
 		return $ret;
 	}
-	$row = mysql_fetch_array($result) or die ("Cannot fetch user");
+	$row = mysql_fetch_array($result) or die ("Cannot fetch user line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$ret["data"] = $row;
 	return $ret;
 }
@@ -243,6 +243,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 	global $adm_random_pass;
 	global $txt_wrong_user_or_password_or_timeout_expire;
 	global $lang;
+	global $conf_session_expir_minute;
 
 	if(isset($adm_realpass) && strlen($adm_realpass > 2)){
 		return;
@@ -276,7 +277,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	}else{
 		$is_root_admin = "no";
 	}
-	$row = mysql_fetch_array($result) or die ("Cannot fetch user");
+	$row = mysql_fetch_array($result) or die ("Cannot fetch user line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	// This stuff is rotating passwords helping NOT to save passwords on users browsers.
 	$rand = getRandomValue();
@@ -321,10 +322,12 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
-	echo "Calling randomizePassword() with : $adm_login,$adm_input_pass)";
+	if(!isset($adm_realpass)){
+		randomizePassword($adm_login,$adm_input_pass);
+	}
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$adm_realpass';";
 	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
-	$row = mysql_fetch_array($result) or die ("Cannot fetch user");
+	$row = mysql_fetch_array($result) or die ("Cannot fetch user line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	$adm_path = $row["path"];
 	$adm_max_ftp = $row["max_ftp"];
