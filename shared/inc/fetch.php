@@ -245,9 +245,6 @@ function randomizePassword($adm_login,$adm_input_pass){
 	global $lang;
 	global $conf_session_expir_minute;
 
-	if(isset($adm_realpass) && strlen($adm_realpass > 2)){
-		return;
-	}
 	$query = "SELECT * FROM $pro_mysql_admin_table
 WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass'
 OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
@@ -322,17 +319,15 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
-	if(!isset($adm_realpass) && $panel_type != "cronjob"){
-		randomizePassword($adm_login,$adm_input_pass);
-	}
 	if($panel_type == "cronjob"){
 		$pass = $adm_input_pass;
 	}else{
+		randomizePassword($adm_login,$adm_input_pass);
 		$pass = $adm_realpass;
 	}
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$pass';";
 	$result = mysql_query ($query)or die("Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).");
-	$row = mysql_fetch_array($result) or die ("Cannot fetch user line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$row = mysql_fetch_array($result) or die ("Cannot fetch user line ".__LINE__." file ".__FILE__);
 
 	$adm_path = $row["path"];
 	$adm_max_ftp = $row["max_ftp"];
