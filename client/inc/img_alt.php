@@ -12,17 +12,7 @@
  * $sign -> The current sign to use for drawing (minus, tree, endtree, vline, hline, plus or none)
  *				Example value can be: tree/hline
  * @see img.php
- * $Log: img_alt.php,v $
- * Revision 1.3  2006/05/17 12:58:01  seeb
- * Adding to file cvs user log as comment
- * Please comment any change(s).
- * Tnx
- * /seeb
- *
- * Revision 1.2  2006/05/16 22:37:27  seeb
- * Adding to file cvs user log as comment
- * Please comment any change(s).
- * Tnx
+ * $Log: $
  */
 
 header ("Content-type: image/png");
