@@ -3,7 +3,7 @@
  * @package DTC
  * @author seeb <seeb@seeb.net.pl>
  * @abstract alternative image creation from image file. File based on oryginal img.php by Thomas Goirand <thomas@goirand.fr>
- * @version $Id: img_alt.php,v 1.2 2006/05/16 22:37:27 seeb Exp $
+ * @version $Id: img_alt.php,v 1.3 2006/05/17 12:58:01 seeb Exp $
  * @param $text, $color ,$link $sign
  *
  * $text -> Text to be drawn
@@ -13,6 +13,12 @@
  *				Example value can be: tree/hline
  * @see img.php
  * $Log: img_alt.php,v $
+ * Revision 1.3  2006/05/17 12:58:01  seeb
+ * Adding to file cvs user log as comment
+ * Please comment any change(s).
+ * Tnx
+ * /seeb
+ *
  * Revision 1.2  2006/05/16 22:37:27  seeb
  * Adding to file cvs user log as comment
  * Please comment any change(s).
@@ -22,7 +28,7 @@
 
 header ("Content-type: image/png");
 
-$use_img_cache = "no"; /// bylo yes
+$use_img_cache = "yes"; /// bylo yes
 function MENU_TREE_calc_cache_path(){
 	$conf_img_cache_path = "../imgcache";
 
