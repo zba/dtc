@@ -1,8 +1,19 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.12 2006/05/16 15:32:58 thomas Exp $
+ * @version $Id: error_strings.php,v 1.13 2006/05/17 13:08:47 seeb Exp $
  * 
+ * --------------------------------------------------------
+ * For all translators check in new array is new data - se 
+ * In plan add swedish language to DTC 
+ * --------------------------------------------------------
+ * $Log: error_strings.php,v $
+ * Revision 1.13  2006/05/17 13:08:47  seeb
+ * Adding to file cvs user log as comment
+ * Please comment any change(s).
+ * Tnx
+ * /seeb
+ *
  */
 
 /**
@@ -11,40 +22,31 @@
  */
 
 $txt_err_dtc_login_format = array(
-  "fr" => "Mauvais format du mot de passe du login administrateur: il doit jtre composi uniquement de lettre non capitales, de nombre ou du signe \"-\" et doit faire entre 4 et 16 caractères.<br>\n",
-  "en" => "Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
-  "hu" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
-  "it" => "TRANS Formato del login email errato: dovrebbe essere composto solo da lettere minuscole o numeri o dal simbolo \"-\" and should be between 4 and 16 chars long.<br>\n",
-  "nl" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
-  "ru" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
-  "de" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
-  "zh" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
-  "pl" => "TRANS B³êdny format admin lub loginu: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus) and should be between 4 and 16 chars long.<br>\n",
-  "es" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
-  "pt" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n");
+	"fr" => "Mauvais format du mot de passe du login administrateur: il doit jtre composi uniquement de lettre non capitales, de nombre ou du signe \"-\" et doit faire entre 4 et 16 caractères.<br>\n",
+	"en" => "Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"hu" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"it" => "TRANS Formato del login email errato: dovrebbe essere composto solo da lettere minuscole o numeri o dal simbolo \"-\" and should be between 4 and 16 chars long.<br>\n",
+	"nl" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"ru" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"de" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"zh" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"pl" => "TRANS B³êdny format loginu lub has³a: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus) i musi zawieraæ miêdzy 4 a 16 znaków.<br>\n",
+	"se" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"es" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"pt" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n");
 
 /**
  * new localization for new account
  * @see dtc/client/new_account.php
  * 
  */
-/*
-NOT VALIDATED $txt_err_payment_not_valid[$lang]
-TRANSACTION FINISHED AND APPROVED $txt_err_payment_finish_approved[$lang]
-PAYMENT CANCELED $txt_err_payment_cancel[$lang]
-PAYMENT FAILED $txt_err_payment_failed[$lang]
 
-"Cannot reselect transaction for id $extapi_pay_id: registration failed!" $txt_err_register_cant_reselect_trans[$lang]
-"Cannot reselect user: registration failed!" $txt_err_register_cant_reselect_user[$lang]
-"Cannot reselect product: registration failed!" $txt_err_register_cant_reselect_product[$lang]
-$txt_err_register_succ[$lang]
-*/
 // TG remark to Seeb: This didn't work as the code that makes this variable is called AFTER this file...
 // That code is now moved before the include. We don't need the global here as it's not in a function.
 // When you see this text, please just delete it, together with that global variable.
 //global $extapi_pay_id; // bug in my script - seeb
 
-
+/** I read any comment ofcourse this global was only for tests but show error **/
 
 $txt_err_payment_not_valid=array(
 	"fr" => "NON VALIDE",
