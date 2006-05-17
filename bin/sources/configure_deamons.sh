@@ -962,12 +962,12 @@ then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Linking postfix control files to DTC generated files"
 	fi
-	touch $PATH_POSTFIX_ETC/postfix_virtual.db
-	touch $PATH_POSTFIX_ETC/postfix_aliases.db
-	touch $PATH_POSTFIX_ETC/postfix_relay_recipients.db
-	touch $PATH_POSTFIX_ETC/postfix_vmailbox.db
-	touch $PATH_POSTFIX_ETC/postfix_virtual_uid_mapping.db
-	chown nobody:65534 $PATH_POSTFIX_ETC/postfix_*.db
+	touch $PATH_DTC_ETC/postfix_virtual.db
+	touch $PATH_DTC_ETC/postfix_aliases.db
+	touch $PATH_DTC_ETC/postfix_relay_recipients.db
+	touch $PATH_DTC_ETC/postfix_vmailbox.db
+	touch $PATH_DTC_ETC/postfix_virtual_uid_mapping.db
+	chown nobody:65534 $PATH_DTC_ETC/postfix_*.db
 	if grep "Configured by DTC" "$PATH_POSTFIX_CONF" >/dev/null
 	then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -1007,17 +1007,16 @@ virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 
 if [ ""$conf_use_cyrus = "true" ]; then
 	echo "virtual_transport = cyrus
-	mailbox_transport = cyrus
-	# local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
+mailbox_transport = cyrus
+# local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
 else
-	# courier only!
-	echo "
-	virtual_mailbox_base = /
-	virtual_mailbox_maps = hash:$PATH_DTC_ETC/postfix_vmailbox
-	virtual_minimum_uid = 100
-	virtual_uid_maps = static:65534
-	virtual_gid_maps = static:65534
-	virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
+	# courier/postfix only!
+	echo "virtual_mailbox_base = /
+virtual_mailbox_maps = hash:$PATH_DTC_ETC/postfix_vmailbox
+virtual_minimum_uid = 100
+virtual_uid_maps = static:65534
+virtual_gid_maps = static:65534
+virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 fi
 # CL continue with global part
 echo "virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
