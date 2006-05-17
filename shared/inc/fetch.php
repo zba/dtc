@@ -581,13 +581,8 @@ function fetchClientData($id_client){
 		return $ret;
 }
 
-function fetchAdmin($adm_login,$adm_pass){
-	//by default use the admin panel...
-	//not sure how to determine this yet
-	return fetchAdmin_2($adm_login, $adm_pass, 1);
-}
-
-function fetchAdmin_2($adm_login, $adm_pass, $adm_panel){
+function fetchAdmin($adm_login, $adm_pass){
+	global $panel_type;
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
@@ -604,7 +599,7 @@ function fetchAdmin_2($adm_login, $adm_pass, $adm_panel){
 			exit;
 		} else if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])){
 			//we should try and grab the admin data based on the PHP_AUTH_PW and PHP_AUTH_USER (only do this if we are not the admin panel) this is OK for user panels
-			if (!$adm_panel && $adm_login != $_SERVER['PHP_AUTH_USER'])
+			if ($panel_type != "admin" && $adm_login != $_SERVER['PHP_AUTH_USER'])
 			{
 				header('WWW-Authenticate: Basic realm="DTC Panel"');
 				header('HTTP/1.0 401 Unauthorized');
