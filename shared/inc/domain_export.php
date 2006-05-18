@@ -95,19 +95,24 @@ function exportDomain($domain_name,$path_to){
   }
 
   // Create the dirs
+  echo "mkdir $real_path\n";
   mkdir($real_path);
 
   $dtc_sql_config  = $real_path."/dtc_sql_config";
+  echo "mkdir $dtc_sql_config\n";
   mkdir($dtc_sql_config);
 
   $dtc_sql_dump_path = $dtc_sql_config."/$domain_name";
-  mkdir($dtc_sql_dump_path."/$domain_name");
+  echo "mkdir ".$dtc_sql_dump_path."\n";
+  mkdir($dtc_sql_dump_path);
 
   $dtc_sql_dump_filename = $dtc_sql_dump_path."/dtc_dump.php";
   $dtc_domain_files_path = $real_path."/domain_files";
+  echo "mkdir $dtc_domain_files_path\n";
   mkdir($dtc_domain_files_path);
 
   // Get the dump
+  echo "Dumping SQL config for $domain_name...<br>\n";
   $dtc_sql_dump = exportDomainSQL($domain_name);
 
   // Write the sql dump
@@ -123,8 +128,18 @@ function exportDomain($domain_name,$path_to){
   fclose($fp);
 
   // Copy all the domain files in the folder
+  echo "Copying domain files for $domain_name...<br>\n";
   $cmd = "cp -auf $adm_path/$domain_name $dtc_domain_files_path";
   $last_line = exec($cmd,$output,$return_var);
+
+  echo "Compressing export for $domain_name...<br>\n";
+  $old_dir = getcwd();
+  chdir($path_to);
+  $cmd = "tar -cvzf $domain_name.dtc.tar.gz dtc_export";
+  $last_line = exec($cmd,$output,$return_var);
+  $cmd = "rm -r dtc_export";
+  $last_line = exec($cmd,$output,$return_var);
+  chdir($old_dir);
 }
 
 ?>
