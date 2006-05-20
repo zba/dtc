@@ -1,4 +1,10 @@
 <?php
+/**
+ * Enter description here...
+ * @package DTC
+ * @version $Id: login.php,v 1.4 2006/05/20 23:37:12 seeb Exp $
+ * @return unknown
+ */
 
 function login_form(){
 	global $txt_login_login;
