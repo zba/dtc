@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * @package DTC
+ * @version $Id: anotherDtc.php,v 1.33 2006/05/20 23:47:40 seeb Exp $
+ * @abstract language chose link/images
+ * 
+ * Added swedish to project languages
+ * if posible translate to swedish.
+ * $Log: anotherDtc.php,v $
+ * Revision 1.33  2006/05/20 23:47:40  seeb
+ * Adding swedish
+ *
+ */
 function anotherLanguageSelection(){
 	global $lang;
 	global $rub;
@@ -41,7 +52,8 @@ function anotherLanguageSelection(){
 <td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=pl&rub=$rub\">PL
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/pl.png\"></a></td>
-<td>&nbsp;</td>
+<td><a href=\"".$_SERVER["PHP_SELF"]."?change_language=pl&rub=$rub\">SE
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/se.png\"></a></td>
 </tr></table>
 </div>
 ";
