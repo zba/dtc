@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.98 2006/05/21 21:35:14 seeb Exp $
+	* @version  $Id: strings.php,v 1.99 2006/05/21 22:13:39 seeb Exp $
 	* 
 	**/
 	
@@ -12,6 +12,108 @@
  * @see dtc/client/new_account.php
  * 
  */
+$txt_package_version=array(
+	"fr" => "TRANS Package version ",
+	"en" => "Package version",
+	"hu" => "TRANS Package version ",
+	"it" => "TRANS Package version ",
+	"nl" => "TRANS Package version ",
+	"ru" => "TRANS Package version ",
+	"de" => "TRANS Package version ",
+	"zh" => "TRANS Package version ",
+	"pl" => "Wersja pakietu",
+	"se" => "TRANS Package version SVENSKA",
+	"es" => "TRANS Package version ",
+	"pt" => "TRANS Package version "
+);
+$txt_package_need_db=array(
+	"fr" => "TRANS Need a database ",
+	"en" => "Need a database",
+	"hu" => "TRANS Need a database ",
+	"it" => "TRANS Need a database ",
+	"nl" => "TRANS Need a database ",
+	"ru" => "TRANS Need a database ",
+	"de" => "TRANS Need a database ",
+	"zh" => "TRANS Need a database ",
+	"pl" => "Wymagana baza danych",
+	"se" => "TRANS Need a database SVENSKA",
+	"es" => "TRANS Need a database ",
+	"pt" => "TRANS Need a database "
+);
+$txt_package_un_size=array(
+	"fr" => "TRANS Unpack size ",
+	"en" => "TRANS Unpack size ",
+	"hu" => "TRANS Unpack size ",
+	"it" => "TRANS Unpack size ",
+	"nl" => "TRANS Unpack size ",
+	"ru" => "TRANS Unpack size ",
+	"de" => "TRANS Unpack size ",
+	"zh" => "TRANS Unpack size ",
+	"pl" => "Wielko¶æ po instalacji",
+	"se" => "TRANS Unpack size SVENSKA",
+	"es" => "TRANS Unpack size ",
+	"pt" => "TRANS Unpack size "
+);//[$lang]."Unpack size</td><td>".
+
+$txt_install=array(
+	"fr" => "TRANS Install ",
+	"en" => "Install",
+	"hu" => "TRANS Install ",
+	"it" => "TRANS Install ",
+	"nl" => "TRANS Install ",
+	"ru" => "TRANS Install ",
+	"de" => "TRANS Install ",
+	"zh" => "TRANS Install ",
+	"pl" => "Instalacja",
+	"se" => "TRANS Install SVENSKA",
+	"es" => "TRANS Install ",
+	"pt" => "TRANS Install "
+);//Install
+	
+$txt_package_name=array(
+	"fr" => "TRANS Package name ",
+	"en" => "Package name ",
+	"hu" => "TRANS Package name ",
+	"it" => "TRANS Package name ",
+	"nl" => "TRANS Package name ",
+	"ru" => "TRANS Package name ",
+	"de" => "TRANS Package name ",
+	"zh" => "TRANS Package name ",
+	"pl" => "Nazwa pakietu",
+	"se" => "TRANS Package name SVENSKA",
+	"es" => "TRANS Package name ",
+	"pt" => "TRANS Package name "
+);
+
+$txt_description=array(
+	"fr" => "TRANS Description ",
+	"en" => "Description",
+	"hu" => "TRANS Description ",
+	"it" => "TRANS Description ",
+	"nl" => "TRANS Description ",
+	"ru" => "TRANS Description ",
+	"de" => "TRANS Description ",
+	"zh" => "TRANS Description ",
+	"pl" => "Opis",
+	"se" => "TRANS Description SVENSKA",
+	"es" => "TRANS Description ",
+	"pt" => "TRANS Description "
+);
+$txt_choose_package_install =array (
+	"fr" => "TRANS Choose a package to install",
+	"en" => "Choose a package to install",
+	"hu" => "TRANS Choose a package to install",
+	"it" => "TRANS Choose a package to install",
+	"nl" => "TRANS Choose a package to install",
+	"ru" => "TRANS Choose a package to install",
+	"de" => "TRANS Choose a package to install",
+	"zh" => "TRANS Choose a package to install",
+	"pl" => "Wybierz pakiet do instalacji",
+	"se" => "TRANS Choose a package to install",
+	"es" => "TRANS Choose a package to install",
+	"pt" => "TRANS Choose a package to install"
+);
+
 $txt_subdom_new=array (
 	"fr" => "TRANS New subdomain",
 	"en" => "New subdomain",
@@ -116,14 +218,14 @@ $txt_aliasing=array(
 );
 	$txt_Package =array(	
 	"fr" => "TRANS Package",
-	"en" => "Package:",
+	"en" => "Package",
 	"hu" => "TRANS Package",
 	"it" => "TRANS Package ",
 	"nl" => "TRANS Package",
 	"ru" => "TRANS Package",
 	"de" => "TRANS Package",
 	"zh" => "TRANS Package",
-	"pl" => "Pakiet:",
+	"pl" => "Pakiety instalacyjne",
 	"se" => "TRANS SVENSKA Package",
 	"es" => "TRANS Package",
 	"pt" => "TRANS Package"

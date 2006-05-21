@@ -1,4 +1,12 @@
 <?php
+/**
+ * @package DTC
+ * @version $Id: packager.php,v 1.16 2006/05/21 22:18:23 seeb Exp $
+ * @param unknown_type $domain
+ * @param unknown_type $adm_path
+ * @return unknown
+ */
+
 
 ////////////////////////////////////////////////////
 // One domain name ftp account collection edition //
@@ -19,6 +27,18 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 	global $dtcpkg_db_login;
 
 	global $pkg_info;
+	
+	global $txt_yes;
+	global $txt_no;
+	global $txt_choose_package_install;
+	global $txt_description;
+	global $txt_package_name;
+	
+	global $txt_package_version;
+	global $txt_package_need_db;//[$lang]."Need a database</td><td>".
+	global $txt_package_un_size;//[$lang]."Unpack size</td><td>".
+	global $txt_install;//Install
+	
 
 	$txt = "";
 	$dir = $dtcshared_path."/package-installer";
@@ -189,10 +209,10 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		$txt .= "</form>";
 		return $txt;
 	}
-	$txt = "<b><u>Choose a package to install:</u></b>";
+	$txt = "<b><u>".$txt_choose_package_install[$lang].":</u></b>";
 
 	$txt .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"1\">";
-	$txt .= "<tr><td>Name</td><td>Description</td><td>Version</td><td>Need a database</td><td>Unpack size</td><td>Install</td></tr>";
+	$txt .= "<tr><td>".$txt_package_name[$lang]."</td><td>".$txt_description[$lang]."</td><td>".$txt_package_version[$lang]."Version</td><td>".$txt_package_need_db[$lang]."</td><td>".$txt_package_un_size[$lang]."</td><td>".$txt_install[$lang]."</td></tr>";
 	if (is_dir($dir)) {
 		if ($dh = opendir($dir)) {
 			while (($file = readdir($dh)) !== false) {
@@ -204,7 +224,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 							<td>".$pkg_info["version"]."</td>
 							<td>".$pkg_info["need_database"]."</td>
 							<td style=\"white-space:nowrap;text-align=right\" nowrap>".smartByte($pkg_info["unpack_disk_usage"])."</td>
-							<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=prepareinstall&pkg=$file\">INSTALL</a></td></tr>";
+							<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=prepareinstall&pkg=$file\">".$txt_install[$lang]."</a></td></tr>";
 					}
 				}
 			}
