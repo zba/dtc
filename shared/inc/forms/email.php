@@ -374,7 +374,9 @@ function drawAdminTools_Emails($domain){
 	global $txt_mail_new_mailbox_link;
 	global $txt_number_of_active_mailbox;
 	global $txt_maximum_mailbox_reach;
-
+	global $txt_mail_catch_no;
+	global $txt_mail_catch_all_deliver;
+	
 	global $conf_hide_password;
 
 	if(isset($domain["emails"])){
@@ -393,8 +395,8 @@ function drawAdminTools_Emails($domain){
 	$nbrtxt = $txt_number_of_active_mailbox[$lang];
 	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_email ."</font> / <font size=\"-1\">" . $max_email . "</font><br><br>";
 
-	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>Catch-all email set to deliver to:</u><br>";
-	$catch_popup = "<option value=\"no-mail-account\">No catch-all</option>";
+	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>".$txt_mail_catch_all_deliver[$lang].":</u><br>";
+	$catch_popup = "<option value=\"no-mail-account\">".$txt_mail_catch_no[$lang]."</option>";
 
 	$allmail_list = "";
 	$allmail_list .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>".$txt_mail_liste_of_your_box[$lang]."</u><br>";

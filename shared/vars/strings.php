@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.99 2006/05/21 22:13:39 seeb Exp $
+	* @version  $Id: strings.php,v 1.100 2006/05/21 22:54:23 seeb Exp $
 	* 
 	**/
 	
@@ -12,6 +12,36 @@
  * @see dtc/client/new_account.php
  * 
  */
+$txt_mail_catch_no=array(
+	"fr" => "TRANS No catch-all ",
+	"en" => "No catch-all",
+	"hu" => "TRANS No catch-all ",
+	"it" => "TRANS No catch-all ",
+	"nl" => "TRANS No catch-all ",
+	"ru" => "TRANS No catch-all ",
+	"de" => "TRANS No catch-all ",
+	"zh" => "TRANS No catch-all ",
+	"pl" => "Nie. Przekazuj wszystkie odbiorcom",
+	"se" => "TRANS No catch-all SVENSKA",
+	"es" => "TRANS No catch-all ",
+	"pt" => "TRANS No catch-all "
+);
+
+$txt_mail_catch_all_deliver=array(
+	"fr" => "TRANS Catch-all email set to deliver to ",
+	"en" => "Catch-all email set to deliver to",
+	"hu" => "TRANS Catch-all email set to deliver to ",
+	"it" => "TRANS Catch-all email set to deliver to ",
+	"nl" => "TRANS Catch-all email set to deliver to ",
+	"ru" => "TRANS Catch-all email set to deliver to ",
+	"de" => "TRANS Catch-all email set to deliver to ",
+	"zh" => "TRANS Catch-all email set to deliver to ",
+	"pl" => "Przeka¿ wszystkie wiadomo¶ci do",
+	"se" => "TRANS Catch-all email set to deliver to SVENSKA",
+	"es" => "TRANS Catch-all email set to deliver to ",
+	"pt" => "TRANS Catch-all email set to deliver to "
+);
+
 $txt_package_version=array(
 	"fr" => "TRANS Package version ",
 	"en" => "Package version",
