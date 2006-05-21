@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.93 2006/05/21 00:46:21 seeb Exp $
+	* @version  $Id: strings.php,v 1.94 2006/05/21 00:49:44 seeb Exp $
 	* 
 	**/
 	
@@ -1935,7 +1935,7 @@ $txt_general_virtual_admin_edition = array(
 	"de" => "Virtuellen Administrator konfigurieren<i>\"$adm_login\"</i> ",
 	"zh" => "虚拟管理人员配置 <i>\"$adm_login\"</i>",
 	"pl" => "Konfiguracja wirtualnego Administratora <i>\"$adm_login\"</i>",
-	"se" => "TRANS SVENSKA",
+	"se" => "TRANS SVENSKA Configuration of the virtual administrator <i>\"$adm_login\"</i>",
 	"es" => "Configuraci髇 del administrador <i>\"$adm_login\"</i>",
 	"pt" => "Configura玢o do administrador virtual <i>\"$adm_login\"</i>"
 	);
@@ -3313,7 +3313,7 @@ $txt_login_login = array(
 	"de" => "Login:",
 	"zh" => "帐户名:",
 	"pl" => "Login :",
-	"se" => "TRANS SVENSKA",
+	"se" => "Login",
 	"es" => "Login:",
 	"pt" => "Utilizador : "
 );
