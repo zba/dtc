@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.92 2006/05/16 15:38:21 thomas Exp $
+	* @version  $Id: strings.php,v 1.93 2006/05/21 00:46:21 seeb Exp $
 	* 
 	**/
 	
@@ -161,7 +161,7 @@ $txt_client_interface = array(
   "de" => "TRANS ",
   "zh" => "ÓÃ»§½çÃæ",
   "pl" => "Interfejs u¿ytkownika",
-  "se" => "TRANS SVENSKA",
+  "se" => "Kund panel",
   "es" => "TRANS ",
   "pt" => "TRANS "
   );
@@ -176,7 +176,7 @@ $txt_domain_config = array(
   "de" => "TRANS ",
   "zh" => "ÓòÃûÉèÖÃ",
   "pl" => "Konfiguracja domeny",
-  "se" => "TRANS SVENSKA",
+  "se" => "Doman config",
   "es" => "TRANS ",
   "pt" => "TRANS "
   );
@@ -191,7 +191,7 @@ $txt_user_menu_email = array (
   "de" => "TRANS ",
   "zh" => "ÎÒµÄe-mail",
   "pl" => "Mój e-mail",
-  "se" => "TRANS SVENSKA",
+  "se" => "Min e-post",
   "es" => "TRANS ",
   "pt" => "TRANS "
   );
@@ -206,7 +206,7 @@ $txt_user_menu_fetchmail = array (
   "de" => "TRANS ",
   "zh" => "TRANS ",
   "pl" => "Sprawd¼ zdalny e-mail",
-  "se" => "TRANS SVENSKA",
+  "se" => "Kolla e-post",
   "es" => "TRANS ",
   "pt" => "TRANS "
   );
@@ -221,7 +221,7 @@ $txt_user_menu_antispam = array (
   "de" => "TRANS ",
   "zh" => "TRANS ",
   "pl" => "Antyspam",
-  "se" => "TRANS SVENSKA",
+  "se" => "Antispam",
   "es" => "TRANS ",
   "pt" => "TRANS "
   );
@@ -252,7 +252,7 @@ $txt_email_pass_error = array (
   "de" => "TRANS ",
   "zh" => "TRANS ",
   "pl" => "Z³e has³o lub login!",
-  "se" => "TRANS SVENSKA",
+  "se" => "Fel Lösenord!",
   "es" => "TRANS ",
   "pt" => "TRANS "
 
@@ -2003,11 +2003,11 @@ $txt_use_text_menu = array(
 	"hu" => "A szöveges menüt használja:",
     "it" => "Usa menu a testo:",
 	"nl" => "Gebruik tekst menu:",
-	"ru" => "TRANSUse text menu:",
+	"ru" => "TRANS Use text menu:",
 	"de" => "Textmenü verwenden:",
 	"zh" => "Ê¹ÓÃÎÄ±¾²Ëµ¥:",
     "pl" => "Menu tekstowe",
-    "se" => "TRANS SVENSKA",
+    "se" => "Text menu",
 	"es" => "Usar menu de texto:",
 	"pt" => "Utilizar menu de texto"
 	);
@@ -2022,7 +2022,7 @@ $txt_use_images_menu = array(
 	"de" => "TRANS Use image menu",
 	"zh" => "TRANS Use image menu",
     "pl" => "Menu graficzne",
-    "se" => "TRANS SVENSKA",
+    "se" => "Bild menu",
 	"es" => "TRANS Use image menu",
 	"pt" => "TRANS Use image menu"
 	);
@@ -2038,7 +2038,7 @@ $txt_password = array(
 	"de" => "Passwort",
 	"zh" => "ÃÜÂë:",
     "pl" => "Has³o :",
-    "se" => "TRANS SVENSKA",
+    "se" => "Lösenord",
 	"es" => "Contraseña:",
 	"pt" => "Palavra chave"
 	);
