@@ -3,7 +3,7 @@
  * @package DTC
  * @author seeb <seeb@seeb.net.pl>
  * @abstract alternative image creation from image file. File based on oryginal img.php by Thomas Goirand <thomas@goirand.fr>
- * @version $Id: img_alt_skin.php,v 1.1 2006/05/21 17:14:56 seeb Exp $
+ * @version $Id: img_alt_skin.php,v 1.2 2006/05/21 19:37:29 seeb Exp $
  * @param $text, $color ,$link $sign
  *
  * $text -> Text to be drawn
@@ -13,6 +13,9 @@
  *				Example value can be: tree/hline
  * @see img.php
  * $Log: img_alt_skin.php,v $
+ * Revision 1.2  2006/05/21 19:37:29  seeb
+ * repair bug in line 63
+ *
  * Revision 1.1  2006/05/21 17:14:56  seeb
  * Create menu from image in skin folder
  *
@@ -60,7 +63,7 @@ $gfx_start_pos = $curent_x_decal + 16;
 
 // define img from skin 
 $imglong="../gfx/skin/".$skin->config_skin."/imglong.png";
-$imgshort="dtcadmin/gfx/skin/".$skin->config_skin."/imgshort.png";
+$imgshort="../gfx/skin/".$skin->config_skin."/imgshort.png";
 // end define img ;)
 
 // select image to create button
