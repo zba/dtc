@@ -1,12 +1,15 @@
 <?php
 /**
  * @package DTC
- * @version $Id: anotherDtc.php,v 1.34 2006/05/21 00:20:00 seeb Exp $
+ * @version $Id: anotherDtc.php,v 1.35 2006/05/21 01:01:26 seeb Exp $
  * @abstract language chose link/images
  * 
  * Added swedish to project languages
  * if posible translate to swedish.
  * $Log: anotherDtc.php,v $
+ * Revision 1.35  2006/05/21 01:01:26  seeb
+ * $txt_documentation added
+ *
  * Revision 1.34  2006/05/21 00:20:00  seeb
  * *** empty log message ***
  *
@@ -104,18 +107,19 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	global $conf_dtc_version;
 	global $conf_dtc_release;
 	global $conf_unix_type;
-
+	
 	global $txt_pagetop_zesubtitle;
 	global $lang;
 	global $conf_skin;
 	global $dtcshared_path;
-
+	global $txt_documentation;
+	
 	$nowrap = " style=\"white-space:nowrap\" valign=\"top\" nowrap ";
 	if($drawLanguageSelect=="yes"){
 		$zeLanguage = "
 	<td valign=\"top\">&nbsp;</td>
 	<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
-		$links = "<a target=\"_blank\" href=\"/dtcdoc/\">Documentation</a> <a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a>";
+		$links = "<a target=\"_blank\" href=\"/dtcdoc/\">".$txt_documentation[$lang]."</a> <a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a>";
 	}else{
 		$links = "";
 		$zeLanguage = "";

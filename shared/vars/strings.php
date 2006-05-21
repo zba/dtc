@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.94 2006/05/21 00:49:44 seeb Exp $
+	* @version  $Id: strings.php,v 1.95 2006/05/21 01:00:03 seeb Exp $
 	* 
 	**/
 	
@@ -17,6 +17,22 @@
 	
 	
 	// see line 3602 and translate
+	
+$txt_documentation = array(
+	"fr" => "TRANS Documentation",
+	"en" => "Documentation:",
+	"hu" => "TRANS Documentation",
+	"it" => "TRANS Documentation",
+	"nl" => "TRANS Documentation",
+	"ru" => "TRANS Documentation",
+	"de" => "TRANS Documentation",
+	"zh" => "TRANS Documentation",
+	"pl" => "Documentacja:",
+	"se" => "TRANS SVENSKA Documentation",
+	"es" => "TRANS Documentation",
+	"pt" => "TRANS Documentation"
+	); 
+	
 	
 $txt_your_child_accounts = array(
 	"fr" => "Vos sous-comptes: ",
