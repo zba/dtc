@@ -1,4 +1,13 @@
 <?php
+/**
+ * @package DTC
+ * @version $Id: lang.php,v 1.17 2006/05/21 00:34:26 seeb Exp $
+ * @abstract language change
+ * $Log: lang.php,v $
+ * Revision 1.17  2006/05/21 00:34:26  seeb
+ * Adding swedish
+ *
+ */
 
 $txt_default_lang = "en";
 
@@ -12,6 +21,7 @@ $txt_langname = array(
 	"de" => "iso-8859-15",
 	"zh" => "GB2312",
 	"pl" => "iso-8859-2",
+	"se" => "iso-8859-15",
 	"pt" => "iso-8859-15",
 	"es" => "iso-8859-15");
 
@@ -54,6 +64,9 @@ if($panel_type!="cronjob"){
 		if($_REQUEST["change_language"] == "pl"){
 		  $lang = "pl";
 		}
+		if($_REQUEST["change_language"] == "se"){
+		  $lang = "se";
+		}
 		if($_REQUEST["change_language"] == "es"){
 		  $lang = "es";
 		}
@@ -68,6 +81,7 @@ if($panel_type!="cronjob"){
 	//for cron, we will just use english
 	$lang = "en";
 }
+
 
 
 // Get the default language variable. Multilanguage example taken from OMail.
@@ -87,13 +101,13 @@ if (!isset($lang)){
 			}
 		}
 	}
+
 	if (!isset($lang)) {
 		// didn't catch any valid lang : we use the default settings
 		$lang = $txt_default_lang; 
         }
         $_SESSION["lang"] = $lang;
 }
-
 $charset = $txt_langname[$lang];
 $page_metacontent = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">";
 header("Content-type: text/html; charset=$charset");
