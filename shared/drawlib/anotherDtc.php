@@ -1,12 +1,15 @@
 <?php
 /**
  * @package DTC
- * @version $Id: anotherDtc.php,v 1.35 2006/05/21 01:01:26 seeb Exp $
+ * @version $Id: anotherDtc.php,v 1.36 2006/05/21 12:52:41 seeb Exp $
  * @abstract language chose link/images
  * 
  * Added swedish to project languages
  * if posible translate to swedish.
  * $Log: anotherDtc.php,v $
+ * Revision 1.36  2006/05/21 12:52:41  seeb
+ * Change dispaly bug
+ *
  * Revision 1.35  2006/05/21 01:01:26  seeb
  * $txt_documentation added
  *
@@ -58,8 +61,8 @@ function anotherLanguageSelection(){
 <td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=pl&rub=$rub\">PL
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/pl.png\"></a></td>
-<td><a href=\"".$_SERVER["PHP_SELF"]."?change_language=se&rub=$rub\">SE
-	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/se.png\"></a></td>
+<td><a href=\"".$_SERVER["PHP_SELF"]."?change_language=se&rub=$rub\">
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/se.png\">&nbsp;SE</a></td>
 </tr></table>
 </div>
 ";
