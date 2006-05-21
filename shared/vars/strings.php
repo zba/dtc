@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.100 2006/05/21 22:54:23 seeb Exp $
+	* @version  $Id: strings.php,v 1.101 2006/05/21 23:57:31 seeb Exp $
 	* 
 	**/
 	
@@ -1619,7 +1619,7 @@ $txt_no_domain_waiting = array(
 	"ru" => "TRANS No domain waiting!",
 	"de" => "Keine Domaine in Warteschleife!",
 	"zh" => "ÎŞÓòÃûµÈ´ı£¡",
-	"pl" => "Brak oczekuj±cych domenn!",
+	"pl" => "Brak oczekuj±cych domen!",
 	"se" => "TRANS SVENSKA",
 	"es" => "¡Ningun dominio esperando!",
 	"pt" => "Nenhum dominio pendente !"
