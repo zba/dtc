@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.96 2006/05/21 20:47:17 seeb Exp $
+	* @version  $Id: strings.php,v 1.97 2006/05/21 21:08:39 seeb Exp $
 	* 
 	**/
 	
@@ -17,6 +17,34 @@
 	
 	
 	// see line 3602 and translate
+$txt_use=array(	
+	"fr" => "TRANS Use: ",
+	"en" => "Use :",
+	"hu" => "TRANS Use",
+	"it" => "TRANS Use",
+	"nl" => "TRANS Use",
+	"ru" => "TRANS Use",
+	"de" => "TRANS Use",
+	"zh" => "TRANS Use",
+	"pl" => "U¿yj ",
+	"se" => "TRANS Use",
+	"es" => "TRANS Use",
+	"pt" => "TRANS Use"
+);
+$txt_aliasing=array(	
+	"fr" => "TRANS aliasing",
+	"en" => "aliasing",
+	"hu" => "TRANS aliasing",
+	"it" => "TRANS aliasing",
+	"nl" => "TRANS aliasing",
+	"ru" => "TRANS aliasing",
+	"de" => "TRANS aliasing",
+	"zh" => "TRANS aliasing",
+	"pl" => "jako alias",
+	"se" => "TRANS aliasing",
+	"es" => "TRANS aliasing",
+	"pt" => "TRANS aliasing"
+);
 
 	$txt_DNS_config_of =array(	
 	"fr" => "DNS config of: ",
@@ -503,7 +531,7 @@ $txt_parking_popup_legend = array(
   "ru" => "TRANS This domain will be the alias of the following domain (domain parking):",
   "de" => "TRANS This domain will be the alias of the following domain (domain parking):",
   "zh" => "TRANS This domain will be the alias of the following domain (domain parking):",
-  "pl" => "Domena ma byc aliasem do istniejacej domeny (parkowanie domeny):",
+  "pl" => "Domena ma byæ aliasem do istniejacej domeny (parkowanie domeny):",
   "se" => "TRANS SVENSKA",
   "es" => "TRANS This domain will be the alias of the following domain (domain parking):",
   "pt" => "TRANS This domain will be the alias of the following domain (domain parking):");

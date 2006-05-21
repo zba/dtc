@@ -25,7 +25,10 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	global $conf_administrative_site;
 
 	global $pro_mysql_domain_table;
-
+	global $txt_use;
+	global $txt_aliasing;
+	global $txt_yes;
+	global $txt_no;
 	$out = "";
 
 	// TODO : fetch the expiration in the database
@@ -76,7 +79,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	$max_subdomain<br><br>";
 
 	$out .= "<b><u>".$txt_your_domain[$lang]."</u></b><br>
-	Use http(s)://".$conf_administrative_site."/".$_REQUEST["addrlink"]." aliasing:";
+	".$txt_use[$lang]." http(s)://".$conf_administrative_site."/".$_REQUEST["addrlink"]." ".$txt_aliasing[$lang].":";
 
 	if($eddomain["gen_unresolved_domain_alias"] == "yes"){
 		$radio_yes = " checked";
@@ -90,8 +93,8 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-<input type=\"radio\" name=\"domain_gen_unresolv_alias\" value=\"yes\"$radio_yes>Yes
-<input type=\"radio\" name=\"domain_gen_unresolv_alias\" value=\"no\"$radio_no>No
+<input type=\"radio\" name=\"domain_gen_unresolv_alias\" value=\"yes\"$radio_yes>".$txt_yes[$lang]."
+<input type=\"radio\" name=\"domain_gen_unresolv_alias\" value=\"no\"$radio_no>".$txt_no[$lang]."
 <input type=\"hidden\" name=\"change_unresolv_alias\" value=\"Ok\">
 <input type=\"image\" src=\"gfx/stock_apply_20.png\"></form><br>";
 
