@@ -1,12 +1,24 @@
 <?php
+/**
+ * 
+ * @package DTC
+ * @version $Id: email.php,v 1.26 2006/05/21 23:10:53 seeb Exp $
+ * @param unknown_type $mailbox
+ * @return unknown
+ */
+
 
 function drawImportedMail($mailbox){
 	global $adm_email_login;
 	global $adm_email_pass;
 	global $errTxt;
-
 	global $pro_mysql_fetchmail_table;
-
+	
+	global $txt_login_login;
+	global $txt_login_pass;
+	global $txt_use;
+	global $txt_action;
+	
 	$out = "";
 
 	if(isset($errTxt) && $errTxt != ""){
@@ -23,7 +35,9 @@ function drawImportedMail($mailbox){
 	$r = mysql_query($q)or die("Cannot query $q ! line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	$out .= "<table border=\"1\">
-<tr><td>Address email</td><td>Mailbox type</td><td>Server addr</td><td>Login</td><td>Pass</td><td>Use</td><td>Action</td></tr>";
+	
+	<!-- to translate -->
+<tr><td>Address email</td><td>Mailbox type</td><td>Server addr</td><td>".$txt_login_title[$lang]."</td><td>".$txt_login_pass[$lang]."</td><td>".$txt_use[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$pop3_selected = "";
