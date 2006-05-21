@@ -22,6 +22,7 @@ function draw_UpgradeAccount($admin){
 
 	global $lang;
 	global $txt_dtcrm_you_currently_dont_have_enough_funds;
+	global $txt_upgrade_my_account_button;
 
 	$out = "";
 	$nowrap = 'style="white-space:nowrap"';
@@ -33,7 +34,7 @@ function draw_UpgradeAccount($admin){
 <input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
 ";
 	$client = $admin["client"];
-	$out .= "<b><u>".$$txt_upgrade_my_account_button[$lang].":</u></b><br>";
+	$out .= "<b><u>".$txt_upgrade_my_account_button[$lang].":</u></b><br>";
 	if($admin["info"]["prod_id"] != 0){
 		$out .= "<i><u>Past account refundal</u></i><br>";
 		$out .= "Your last command expire on the: ".$admin["info"]["expire"].".<br>";
