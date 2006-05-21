@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.97 2006/05/21 21:08:39 seeb Exp $
+	* @version  $Id: strings.php,v 1.98 2006/05/21 21:35:14 seeb Exp $
 	* 
 	**/
 	
@@ -12,10 +12,36 @@
  * @see dtc/client/new_account.php
  * 
  */
-
+$txt_subdom_new=array (
+	"fr" => "TRANS New subdomain",
+	"en" => "New subdomain",
+	"hu" => "TRANS New subdomain",
+	"it" => "TRANS New subdomain",
+	"nl" => "TRANS New subdomain",
+	"ru" => "TRANS New subdomain",
+	"de" => "TRANS New subdomain",
+	"zh" => "TRANS New subdomain",
+	"pl" => "Nowa subdomena",
+	"se" => "TRANS New subdomain",
+	"es" => "TRANS New subdomain",
+	"pt" => "TRANS New subdomain"
+);
 /** end new arrays **/
-	
-	
+$txt_subdom_edit_one= array (
+	"fr" => "TRANS Edit one of your subdomains",
+	"en" => "Edit one of your subdomains",
+	"hu" => "TRANS Edit one of your subdomains",
+	"it" => "TRANS Edit one of your subdomains",
+	"nl" => "TRANS Edit one of your subdomains",
+	"ru" => "TRANS Edit one of your subdomains",
+	"de" => "TRANS Edit one of your subdomains",
+	"zh" => "TRANS Edit one of your subdomains",
+	"pl" => "Edytuj jedn± ze swoich subdomen",
+	"se" => "TRANS Edit one of your subdomains",
+	"es" => "TRANS Edit one of your subdomains",
+	"pt" => "TRANS Edit one of your subdomains"
+);
+
 	// see line 3602 and translate
 $txt_use=array(	
 	"fr" => "TRANS Use: ",

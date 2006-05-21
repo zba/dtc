@@ -1,4 +1,11 @@
 <?php
+/**
+ * @package DTC
+ * @version $Id: subdomain.php,v 1.10 2006/05/21 21:38:10 seeb Exp $
+ * @param unknown_type $domain
+ * @return unknown
+ */
+
 
 /////////////////////////////////////////////////////
 // Draw the form for editing a domain's subdomains //
@@ -38,7 +45,11 @@ function drawAdminTools_Subdomain($domain){
 	global $txt_subdom_wwwalias;
 	global $txt_subdom_generate_webalizer;
 	global $txt_subdom_generate_vhost;
-
+	global $txt_subdom_edit_one;
+	global $txt_subdom_new;
+	global $txt_yes;
+	global $txt_no;
+	
 	global $edit_a_subdomain;
 
 	global $dtcshared_path;
@@ -138,7 +149,7 @@ function drawAdminTools_Subdomain($domain){
 	$txt .= "</select></td><td><input type=\"submit\" name=\"delsubdomain\" value=\"Ok\"></td></tr>";
 	$txt .= "<tr><td colspan=\"3\"><hr width=\"90%\"></td></tr>";
 
-	$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>Edit one of your subdomains:</u></b></font></td></tr>";
+	$txt .= "<tr><td collspan=\"3\"><font size=\"-1\"><b><u>".$txt_subdom_edit_one[$lang]." :</u></b></font></td></tr>";
 	$txt .= "<tr><td collspan=\"3\">";
 	$in_new = true;
 	// List of subdomains to edit
@@ -158,9 +169,9 @@ function drawAdminTools_Subdomain($domain){
 		}
 	}
 	if($in_new == false){
-		$txt .= "<br><br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&edit_domain=$webname&addrlink=$addrlink\">new subdomain</a>";
+		$txt .= "<br><br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&edit_domain=$webname&addrlink=$addrlink\">".$txt_subdom_new[$lang]."</a>";
 	}else{
-		$txt .= "<br><br>new subdomain";
+		$txt .= "<br><br>".$txt_subdom_new[$lang];
 	}
 	$txt .= "</td></tr>";
 
@@ -195,8 +206,8 @@ function drawAdminTools_Subdomain($domain){
 				$checked_no = " checked";
 			}
 			$txt .= "<tr><td align=\"right\">safe_mode</td>";
-			$txt .= "<td>Yes<input type=\"radio\" name=\"safe_mode\" value=\"yes\" $checked_yes>
-No<input type=\"radio\" name=\"safe_mode\" value=\"no\" $checked_no></td></tr>";
+			$txt .= "<td>".$txt_yes[$lang]."<input type=\"radio\" name=\"safe_mode\" value=\"yes\" $checked_yes>".$txt_no[$lang]."
+<input type=\"radio\" name=\"safe_mode\" value=\"no\" $checked_no></td></tr>";
 		}
 		if($domain_sbox_protect == "no"){
 			if($sbox_protect == "yes"){
@@ -207,8 +218,8 @@ No<input type=\"radio\" name=\"safe_mode\" value=\"no\" $checked_no></td></tr>";
 				$checked_no = " checked";
 			}
 			$txt .= "<tr><td align=\"right\">sbox_protect</td>";
-			$txt .= "<td>Yes<input type=\"radio\" name=\"sbox_protect\" value=\"yes\" $checked_yes>
-No<input type=\"radio\" name=\"sbox_protect\" value=\"no\" $checked_no></td></tr>";
+			$txt .= "<td>".$txt_yes[$lang]."<input type=\"radio\" name=\"sbox_protect\" value=\"yes\" $checked_yes>".$txt_no[$lang]."
+<input type=\"radio\" name=\"sbox_protect\" value=\"no\" $checked_no></td></tr>";
 		}
 		if($register_globals_to_edit == "yes"){
 			$checked_yes = " checked";
@@ -218,8 +229,8 @@ No<input type=\"radio\" name=\"sbox_protect\" value=\"no\" $checked_no></td></tr
 			$checked_no = " checked";
 		}
 		$txt .= "<tr><td align=\"right\">".$txt_subdom_register_global[$lang]."</td>";
-		$txt .= "<td>Yes<input type=\"radio\" name=\"register_globals\" value=\"yes\" $checked_yes>
-No<input type=\"radio\" name=\"register_globals\" value=\"no\" $checked_no></td></tr>";
+		$txt .= "<td>".$txt_yes[$lang]."<input type=\"radio\" name=\"register_globals\" value=\"yes\" $checked_yes>
+".$txt_no[$lang]."<input type=\"radio\" name=\"register_globals\" value=\"no\" $checked_no></td></tr>";
 		if($webalizer_to_edit == "yes"){
 			$checked_yes = " checked";
 			$checked_no = "";
@@ -228,8 +239,8 @@ No<input type=\"radio\" name=\"register_globals\" value=\"no\" $checked_no></td>
 			$checked_no = " checked";
 		}
 		$txt .= "<tr><td align=\"right\">".$txt_subdom_generate_webalizer[$lang]."</td>";
-		$txt .= "<td>Yes<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_yes>
-No<input type=\"radio\" name=\"webalizer\" value=\"no\" $checked_no></td></tr>";
+		$txt .= "<td>".$txt_yes[$lang]."<input type=\"radio\" name=\"webalizer\" value=\"yes\" $checked_yes>
+".$txt_no[$lang]."<input type=\"radio\" name=\"webalizer\" value=\"no\" $checked_no></td></tr>";
 		if($generate_vhost_to_edit == "yes"){
 			$checked_yes = " checked";
 			$checked_no = "";
@@ -238,8 +249,8 @@ No<input type=\"radio\" name=\"webalizer\" value=\"no\" $checked_no></td></tr>";
 			$checked_no = " checked";
 		}
 		$txt .= "<tr><td align=\"right\">".$txt_subdom_generate_vhost[$lang]."</td>";
-		$txt .= "<td>Yes<input type=\"radio\" name=\"generate_vhost\" value=\"yes\" $checked_yes>
-No<input type=\"radio\" name=\"generate_vhost\" value=\"no\" $checked_no></td></tr>";
+		$txt .= "<td>".$txt_yes[$lang]."<input type=\"radio\" name=\"generate_vhost\" value=\"yes\" $checked_yes>
+".$txt_no[$lang]."<input type=\"radio\" name=\"generate_vhost\" value=\"no\" $checked_no></td></tr>";
 		if($w3_alias_to_edit == "yes"){
 			$checked_yes = " checked";
 			$checked_no = "";
@@ -248,8 +259,8 @@ No<input type=\"radio\" name=\"generate_vhost\" value=\"no\" $checked_no></td></
 			$checked_no = " checked";
 		}
 		$txt .= "<tr><td align=\"right\">".$txt_subdom_wwwalias[$lang].$_REQUEST["edit_a_subdomain"]." alias:</td>";
-		$txt .= "<td>Yes<input type=\"radio\" name=\"w3_alias\" value=\"yes\" $checked_yes>
-No<input type=\"radio\" name=\"w3_alias\" value=\"no\" $checked_no></td></tr>";
+		$txt .= "<td>".$txt_yes[$lang]."<input type=\"radio\" name=\"w3_alias\" value=\"yes\" $checked_yes>
+".$txt_no[$lang]."<input type=\"radio\" name=\"w3_alias\" value=\"no\" $checked_no></td></tr>";
 		$txt .= "<tr><td colspan=\"3\">";
 		$txt .= $txt_subdom_ip[$lang]."</td></tr>";
 		
