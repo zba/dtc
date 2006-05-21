@@ -1,11 +1,4 @@
 <?php
-/**
- * @package DTC
- * @version $Id: subdomain.php,v 1.10 2006/05/21 21:38:10 seeb Exp $
- * @param unknown_type $domain
- * @return unknown
- */
-
 
 /////////////////////////////////////////////////////
 // Draw the form for editing a domain's subdomains //
