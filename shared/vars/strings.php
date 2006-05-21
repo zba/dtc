@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.95 2006/05/21 01:00:03 seeb Exp $
+	* @version  $Id: strings.php,v 1.96 2006/05/21 20:47:17 seeb Exp $
 	* 
 	**/
 	
@@ -17,6 +17,149 @@
 	
 	
 	// see line 3602 and translate
+
+	$txt_DNS_config_of =array(	
+	"fr" => "DNS config of: ",
+	"en" => "DNS config of:",
+	"hu" => "TRANS DNS_config of",
+	"it" => "TRANS DNS_config of",
+	"nl" => "TRANS DNS_config of",
+	"ru" => "TRANS DNS_config of",
+	"de" => "TRANS DNS_config of",
+	"zh" => "TRANS DNS_config of",
+	"pl" => "Konfiguracja DNS dla",
+	"se" => "TRANS DNS_config of",
+	"es" => "TRANS DNS_config of",
+	"pt" => "TRANS DNS_config of"
+);
+	$txt_Statistics_of_domain =array(	
+	"fr" => "TRANS Statistics of domain: ",
+	"en" => "Statistics of domain:",
+	"hu" => "TRANS Statistics of domain",
+	"it" => "TRANS Statistics of domain",
+	"nl" => "TRANS Statistics of domain",
+	"ru" => "TRANS Statistics of domain",
+	"de" => "TRANS Statistics of domain",
+	"zh" => "TRANS Statistics of domain",
+	"pl" => "Statystyki dla",
+	"se" => "TRANS Statistics of domain",
+	"es" => "TRANS Statistics of domain",
+	"pt" => "TRANS Statistics of domain"
+);
+	$txt_Whois_editor_of =array(
+	"fr" => "Vos sous-comptes: ",
+	"en" => "Your child accounts:",
+	"hu" => "TRANS ",
+	"it" => "Tuoi sotto-account ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "Edycja danych whois dla:",
+	"se" => "TRANS SVENSKA",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+	$txt_Package =array(	
+	"fr" => "TRANS Package",
+	"en" => "Package:",
+	"hu" => "TRANS Package",
+	"it" => "TRANS Package ",
+	"nl" => "TRANS Package",
+	"ru" => "TRANS Package",
+	"de" => "TRANS Package",
+	"zh" => "TRANS Package",
+	"pl" => "Pakiet:",
+	"se" => "TRANS SVENSKA Package",
+	"es" => "TRANS Package",
+	"pt" => "TRANS Package"
+);
+	$txt_Internet_Whois_Nick_Handles_management =array(	
+	"fr" => "TRANS Internet Whois Nick Handles management",
+	"en" => "Internet Whois Nick Handles management:",
+	"hu" => "TRANS Internet Whois Nick Handles management",
+	"it" => "TRANS Internet Whois Nick Handles management ",
+	"nl" => "TRANS Internet Whois Nick Handles management",
+	"ru" => "TRANS Internet Whois Nick Handles management",
+	"de" => "TRANS Internet Whois Nick Handles management",
+	"zh" => "TRANS Internet Whois Nick Handles management",
+	"pl" => "Zarz±dzanie danymi Whois:",
+	"se" => "TRANS SVENSKA",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+	$txt_Add_a_domain_name_to_my_account =array(	
+	"fr" => "TRANS Add a domain name to my account",
+	"en" => "Add a domain name to my account:",
+	"hu" => "TRANS Add a domain name to my account",
+	"it" => "TRANS Add a domain name to my account",
+	"nl" => "TRANS Add a domain name to my account",
+	"ru" => "TRANS Add a domain name to my account",
+	"de" => "TRANS Add a domain name to my account",
+	"zh" => "TRANS Add a domain name to my account",
+	"pl" => "Dodaj domenê do mojego konta",
+	"se" => "TRANS Add a domain name to my account",
+	"es" => "TRANS Add a domain name to my account",
+	"pt" => "TRANS Add a domain name to my account"
+);
+	$txt_Manage_my_name_servers =array(	
+	"fr" => "TRANS Manage my name servers",
+	"en" => "Manage my name servers:",
+	"hu" => "TRANS Manage my name servers",
+	"it" => "TRANS Manage my name servers",
+	"nl" => "TRANS Manage my name servers",
+	"ru" => "TRANS Manage my name servers",
+	"de" => "TRANS Manage my name servers",
+	"zh" => "TRANS Manage my name servers",
+	"pl" => "Zarz±dzaj serwerami nazw:",
+	"se" => "TRANS Manage my name servers",
+	"es" => "TRANS Manage my name servers",
+	"pt" => "TRANS Manage my name servers"
+);
+	$txt_My_Account_information =array(	
+	"fr" => "TRANS My Account information: ",
+	"en" => "My Account information:",
+	"hu" => "TRANS My Account information:",
+	"it" => "TRANS My Account information:",
+	"nl" => "TRANS My Account information:",
+	"ru" => "TRANS My Account information:",
+	"de" => "TRANS My Account information:",
+	"zh" => "TRANS My Account information:",
+	"pl" => "Informacje o Twoim koncie:",
+	"se" => "TRANS My Account information:",
+	"es" => "TRANS My Account information:",
+	"pt" => "TRANS My Account information:"
+);
+	$txt_resseller_child_accounts =array(	
+	"fr" => "TRANS Resseller child accounts",
+	"en" => "Resseller child accounts",
+	"hu" => "TRANS Resseller child accounts",
+	"it" => "TRANS Resseller child accounts",
+	"nl" => "TRANS Resseller child accounts",
+	"ru" => "TRANS Resseller child accounts",
+	"de" => "TRANS Resseller child accounts",
+	"zh" => "TRANS Resseller child accounts",
+	"pl" => "Subkonta resellerskie:",
+	"se" => "TRANS SVENSKA",
+	"es" => "TRANS Resseller child accounts",
+	"pt" => "TRANS Resseller child accounts"
+);
+
+
+$txt_edit_mailing_lists_of_domain = array(
+	"fr" => "TRANS Edit mailing lists of domain",
+	"en" => "Edit mailing lists of domain:",
+	"hu" => "TRANS Edit mailing lists of domain",
+	"it" => "TRANS Edit mailing lists of domain",
+	"nl" => "TRANS Edit mailing lists of domain",
+	"ru" => "TRANS Edit mailing lists of domain",
+	"de" => "TRANS Edit mailing lists of domain",
+	"zh" => "TRANS Edit mailing lists of domain",
+	"pl" => "Edytuj listy mailingowe dla domeny",
+	"se" => "TRANS SVENSKA Edit mailing lists of domain",
+	"es" => "TRANS Edit mailing lists of domain",
+	"pt" => "TRANS Edit mailing lists of domain"
+	); 
 	
 $txt_documentation = array(
 	"fr" => "TRANS Documentation",
