@@ -2,9 +2,12 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.43 2006/05/22 11:06:45 seeb Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.44 2006/05/22 11:09:42 seeb Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
+	* 
+	* Swedish supported
+	*  
 	**/
 
 	// added by seeb 8th may 2006 
@@ -18,6 +21,7 @@ $txt_cfg_server_address =array(
 	"de" => "TRANS Server address :",
 	"zh" => "TRANS Server address :",
 	"pl" => "Adres serwera :",
+	"se" => "TRANS Server address :",
 	"es" => "TRANS Server address :",
 	"pt" => "TRANS Server address :"
 	);
@@ -33,6 +37,7 @@ $txt_cfg_daemon = array (
   "de" => "TRANS Daemon",
   "zh" => "TRANS Daemon",
   "pl" => "Demony ",
+  "se" => "TRANS Daemon",
   "es" => "TRANS Daemon",
   "pt" => "TRANS Daemon"
   );
@@ -47,6 +52,7 @@ $txt_cfg_skin_chooser= array (
   "de" => "TRANS DTC Skin chooser",
   "zh" => "TRANS DTC Skin chooser",
   "pl" => "Wybór skórek DTC",
+  "se" => "TRANS DTC Skin chooser",
   "es" => "TRANS DTC Skin chooser",
   "pt" => "TRANS DTC Skin chooser"
   );
