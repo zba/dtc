@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.41 2006/05/12 18:27:44 seeb Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.42 2006/05/22 02:16:22 seeb Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	**/
@@ -62,6 +62,7 @@ $txt_product_name = array (
   "de" => "TRANS Name ",
   "zh" => "TRANS Name ",
   "pl" => "Nazwa ",
+  "se" => "Name ",
   "es" => "TRANS Name ",
   "pt" => "TRANS Name "
   );
@@ -76,6 +77,7 @@ $txt_product_name = array (
   "de" => "TRANS Price ",
   "zh" => "TRANS Price ",
   "pl" => "Cena w ",
+	  "se" => "Pris",
   "es" => "TRANS Price ",
   "pt" => "TRANS Price "
   );
@@ -89,6 +91,7 @@ $txt_product_traffic = array (
   "de" => "TRANS Traffic ",
   "zh" => "TRANS Traffic ",
   "pl" => "Transfer ",
+  "se" => "Trafik",
   "es" => "TRANS Traffic ",
   "pt" => "TRANS Traffic "
   );
@@ -102,6 +105,7 @@ $txt_product_disk= array (
   "de" => "Disk ",
   "zh" => "Disk ",
   "pl" => "Pojemno¶æ ",
+  "se" => "Trafik",  
   "es" => "Disk ",
   "pt" => "Disk "
   );
@@ -116,6 +120,7 @@ $txt_product_action = array (
   "de" => "TRANS Action ",
   "zh" => "TRANS Action ",
   "pl" => "Operacja: ",
+  "se" => "Operation",
   "es" => "TRANS Action ",
   "pt" => "TRANS Action "
   );
@@ -129,6 +134,7 @@ $txt_product_adddomain= array (
   "de" => "TRANS Add domain ",
   "zh" => "TRANS Add domain ",
   "pl" => "Dodaj domenê",
+  "se" => "TRANS add domain",
   "es" => "TRANS Add domain ",
   "pt" => "TRANS Add domain "
   );
@@ -142,6 +148,7 @@ $txt_product_period = array (
   "de" => "TRANS Period ",
   "zh" => "TRANS Period ",
   "pl" => "Okres ",
+  "se" => "TRANS tid/??",
   "es" => "TRANS Period ",
   "pt" => "TRANS Period "
   );         
@@ -157,6 +164,7 @@ $txt_product_mail = array (
   "de" => "TRANS Mail ",
   "zh" => "TRANS Mail ",
   "pl" => "Skrzynki ",
+  "se" => "TRANS e-post",
   "es" => "TRANS Mail ",
   "pt" => "TRANS Mail "
   );	
@@ -172,6 +180,7 @@ $txt_user_menu_email = array (
   "de" => "TRANS My e-mail",
   "zh" => "TRANS My e-mail",
   "pl" => "Mój e-mail",
+  "se" => "Min e-post ",
   "es" => "TRANS My e-mail",
   "pt" => "TRANS My e-mail"
   );
@@ -196,9 +205,12 @@ vuoto se non si hanno server DNS di backup):",
                 (leave blank if you don't have backup MX server):",
         "pl" => "Lista serwerów DNS (adresy IP), dopuszczone do transferu stref odzielone przez &quot;|&quot; (pipe)<br>
 	        (Pozostaw puste je¶li nie masz zapasowych serwerów DNS):",
-        "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
+        "se" => "TRANS List here DNS server IPs allowed to do zone transfers separated by &quot;|&quot; (pipe)<br>
+	        (leave blank if you don't have backup DNS server):",        "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):",
-		"pt" => "Lista de IPs dos servidores de DNS com permissões para transferir zonas, separados  por  &quot;|&quot; (pipe)<br>
+      "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
+                (leave blank if you don't have backup MX server):",
+        "pt" => "Lista de IPs dos servidores de DNS com permissões para transferir zonas, separados  por  &quot;|&quot; (pipe)<br>
 		(deixe em branco se não tem nenhum servidor de DNS secundário) :"
 	);
 
@@ -222,6 +234,8 @@ di backup):",
                 (leave blank if you don't have backup MX server):",
         "pl" => "Lista serwerów MX odzielona przez  &quot;|&quot; (pipe/rurka)<br>
                 (Pozostaw puste je¶li nie masz zapasowych MX'ow-serwerów poczty):",
+        "se" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+        	(leave blank if you don't have backup MX server):",
         "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
                 (leave blank if you don't have backup MX server):",
 		"pt" => "Lista dos servidores de backup de e-mail (MX) separados por &quot;|&quot; (pipe)<br>
@@ -238,6 +252,7 @@ $txt_cfg_use_des_or_blowfish = array(
 "de" => "TRANS Type of encryption for connecting to Tucows server:",
 "zh" => "TRANS Type of encryption for connecting to Tucows server:",
 "pl" => "Klucz do serwera Tucows:",
+"se" => "TRANS Type of encryption for connecting to Tucows server:",
 "es" => "Tipo de encriptación para conectar al servidor Tucows ",
 "pt" => "Tipo de cifra utilizado para se ligar ao servidor Tucows "
 );
@@ -253,6 +268,7 @@ $txt_cfg_registry_api_title = array(
 "de" => "TRANS Domain name registry API configuraiton",
 "zh" => "TRANS Domain name registry API configuraiton",
 "pl" => "Konfiguracja API do rejestracji domen",
+"se" => "TRANS Domain name registry API configuraiton",
 "es" => "Configuración del API para el registro de nombres",
 "pt" => "Nome do dominio do API para o registro de nomes"
 );
@@ -267,6 +283,7 @@ $txt_cfg_use_test_or_live = array (
 "de" => "TRANS Domain name registry API configuraiton",
 "zh" => "TRANS Domain name registry API configuraiton",
 "pl" => "U¿ywaj rzeczywistego serwera (nie testuj niczego)",
+"en" => "TRANS Use the LIVE server (and not the test one) :",
 "es" => "Usar el servidor LIVE (no el de pruebas)",
 "pt" => "Usar o Servidor Live (não o de testes)"
 );
@@ -281,6 +298,7 @@ $txt_cfg_tucows_username = array(
 "de" => "TRANS Your SRS username:",
 "zh" => "TRANS Your SRS username:",
 "pl" => "Twój login SRS",
+"se" => "TRANS Your SRS username:",
 "es" => "Tu nombre SRS",
 "pt" => "O seu utilizador SRS :"
 );
@@ -295,6 +313,7 @@ $txt_cfg_tucows_test_server_key = array(
 "de" => "TRANS Your key to access the test server:",
 "zh" => "TRANS Your key to access the test server:",
 "pl" => "Klucz do serwera testowego",
+"se" => "TRANS Your key to access the test server:",
 "es" => "Clave de acceso al servidor de pruebas",
 "pt" => "Palavra chave para aceder ao servidor de testes :"
 );
@@ -309,6 +328,7 @@ $txt_cfg_tucows_live_server_key = array(
 "de" => "TRANS Your key to access the LIVE server:",
 "zh" => "TRANS Your key to access the LIVE server:",
 "pl" => "Klucz dostêpowy do serwera LIVE",
+"se" => "TRANS Your key to access the LIVE server:",
 "es" => "Clave de acceso al servidor LIVE",
 "pt" => "Palavra chave para aceder ao servidor LIVE :"
 );
@@ -323,6 +343,7 @@ $txt_cfg_registryapi_menu_entry = array(
 "de" => "TRANS Domain name registration",
 "zh" => "TRANS Domain name registration",
 "pl" => "Rejestracja domeny",
+"se" => "TRANS Domain name registration",
 "es" => "Registro de dominio",
 "pt" => "Registo de dominio"
 );
@@ -337,6 +358,7 @@ $txt_cfg_backup_and_mx_menu_entry = array(
 "de" => "TRANS MX and NS backup servers",
 "zh" => "TRANS MX and NS backup servers",
 "pl" => "Serwery zapsowe poczty i DNS",
+"se" => "TRANS MX and NS backup servers",
 "es" => "Servidores de respaldo MX y NS",
 "pt" => "Servidores de backup MX e NS"
 );
@@ -351,6 +373,7 @@ $txt_cfg_ip_and_network = array(
 "de" => "TRANS IP addresses and network",
 "zh" => "TRANS IP addresses and network",
 "pl" => "Adres IP i sieci ",
+"se" => "TRANS IP addresses and network",
 "es" => "Dirección IP y red",
 "pt" => "Endereço de IP e rede"
 );
@@ -365,6 +388,7 @@ $txt_cfg_general_menu_entry = array(
 "de" => "TRANS General",
 "zh" => "TRANS General",
 "pl" => "G³ówne ",
+"se" => "TRANS General",
 "es" => "General",
 "pt" => "Geral"
 );
@@ -380,6 +404,7 @@ $txt_cfg_paypal_use_sandbox = array(
 	"de" => "TRANS Use the sandbox test server:",
 	"zh" => "TRANS Use the sandbox test server:",
 	"pl" => "Uzyj sandbox'a do testowania:",
+	"se" => "TRANS Use the sandbox test server:",
 	"es" => "Usar el servidor de pruebas sandbox:",
 	"pt" => "Utilizar o servidor de testes \"sandbox\" :"
 	);
@@ -395,6 +420,7 @@ $txt_cfg_paypal_sandbox_email = array(
 	"de" => "TRANS PayPal test account email (sandbox):",
 	"zh" => "TRANS PayPal test account email (sandbox):",
 	"pl" => "Konto testowe Paypal (sandbox):",
+	"se" => "TRANS PayPal test account email (sandbox):",
 	"es" => "Cuenta de correo de pruebas de paypal (sandbox):",
 	"pt" => "E-mail da conta de teste Paypal (sandbox) :"
 	);
@@ -410,6 +436,7 @@ $txt_cfg_allow_following_servers_to_list = array(
 	"de" => "Folgende Server autorisieren, den Server Domain Name bei Backups einzuschliessen: ",
 	"zh" => "ÔÊÐíÏÂÁÐ·þÎñÆ÷Á¬½ÓºÍÅÅÁÐÓòÃû±í£º",
 	"pl" => "Pozwól temu serwerowi na wykonanie backup-u domen: ",
+	"se" => "Allow those servers to list this server domain names for doing backup:¡¡",
 	"es" => "Autorizar a los siguientes servidores a añádir este servidor de dominios para realizar copias de seguridad: ",
 	"pt" => "Autorizar estes servidores a aceder ao servidor de nomes para realizar cópias de segurança"
 	);
@@ -424,6 +451,7 @@ $txt_cfg_make_request_to_server_for_update = array(
 	"de" => "Folgende Server informieren, wenn eine Domaine hinzugefügt oder gelöscht wird: ",
 	"zh" => "µ±ÓòÃûÌí¼Ó»òÉ¾³ýÊ±Í¨ÖªÏÂÁÐ·þÎñÆ÷£º",
 	"pl" => "Powiadamiaj serwery o dodaniu b±dz usuniêcu domeny : ",
+	"se" => "TRANS Tell the following servers when a domain is added or removed : ",
 	"es" => "Avisar a los siguientes servidores cuando un dominio es añadido o eliminado : ",
 	"pt" => "Emitir um aviso aos seguintes servidores quando um dominio é eliminado : "
 	);
@@ -438,6 +466,7 @@ $txt_cfg_make_request_to_server_mx_update = array(
 	"de" => "Folgende Server informieren, wenn eine email hinzugefügt oder gelöscht wird: ",
 	"zh" => "å‘Šè¯‰ä»¥ä¸‹æœåŠ¡å™¨ç”µå­é‚®ä»¶å¢žåŠ æˆ–è¢«åŽ»é™¤",
 	"pl" => "Zawiadom nastepuj±ce serwery o skasowaniu b±dz usuniêciu poczty: ",
+	"se" => "TRANS Tell the following servers when a email is added or removed : ",
 	"es" => "Avisar a los siguientes servidores cuando un email es añadido o eliminado : ",
 	"pt" => "Emitir um aviso aos seguintes servidores quando uma conta de e-mai e adicionada ou removida : "
 	);
@@ -452,6 +481,7 @@ $txt_cfg_act_as_backup_mail_server = array(
 	"de" => "Als Backup Mail Server für folgende Server verwenden: ",
 	"zh" => "¶ÔÏÂÁÐ·þÎñÆ÷×÷Îª±¸·ÝÓÊ¼þ·þÎñÆ÷: ",
 	"pl" => "Aktywuj kopie poczty na nastepuj±ce serwery: ",
+	"se" => "TRANS Act as backup mail server for the following servers: ",	
 	"es" => "Actuar como servidor de correo de respaldo para los siguientes servidores: ",
 	"pt" => "Actuar como um servidor de backup de e-mail para os seguintes servidores : " 
 	);
@@ -466,6 +496,7 @@ $txt_cfg_act_as_backup_dns_server = array(
 	"de" => "Als Backup DNS Server für folgende Server verwenden: ",
 	"zh" => "¶ÔÏÂÁÐ·þÎñÆ÷×÷Îª±¸·ÝDNS·þÎñÆ÷: ",
 	"pl" => "Aktywuj kopie serwerow  DNS na nastepuj±ce serwerys: ",
+	"se" => "Als Backup DNS Server für folgende Server verwenden: ",	
 	"es" => "Actuar como servidor de DNS de respaldo para los siguientes servidores: ",
 	"pt" => "Actuar como um servidor de backup de DNS para os seguintes servidores : "
 	);
@@ -480,6 +511,7 @@ $txt_cfg_use_paypal = array(
 	"de" => "Paypal verwenden: ",
 	"zh" => "Ê¹ÓÃ paypal: ",
 	"pl" => "U¿yj karty p³atniczej : ",
+	"se" => "TRANS Use paypal: ",
 	"es" => "Utilizar Paypal: ",
 	"pt" => "Utilizar Paypal : "
 	);
@@ -494,6 +526,7 @@ $txt_cfg_paypal_autovalid = array(
 	"de" => "Neue Konten validieren, wenn Zahlung erfolgt: ",
 	"zh" => "Èç¹ûÒÑ¸¶¿îÐÂÕÊ»§ÉúÐ§: ",
 	"pl" => "Sprawdzanie konta p³atno¶ci : ",
+	"se" => "TRANS Validate new account if payed: ",
 	"es" => "Validar nueva cuenta si ha sido pagada: ",
 	"pt" => "Validar novas contas quando estas estejam pagas : "
 	);
@@ -508,6 +541,7 @@ $txt_cfg_paytitle = array(
 	"de" => "Secure payment Konfiguration: ",
 	"zh" => "°²È«¸¶¿îÅäÖÃ: ",
 	"pl" => "Konfiguracja p³atno¶ci elektroniczych",
+	"se" => "TRANS Secure paiment configuration: ",
 	"es" => "Configuración del pago seguro: ",
 	"pt" => "Configuração de pagamento seguro"
 	);
@@ -522,6 +556,7 @@ $txt_cfg_paypal_email = array(
 	"de" => "E-mail Paypal Geschäftskonto: ",
 	"zh" => "PayPal ÉÌÎñÕÊ»§ÎÄ¼þ: ",
 	"pl" => "Biznesowe konto p³atno¶ci e-mail : ",
+	"se" => "TRANS PayPal business account email: ",
 	"es" => "Email de la cuenta de negocio de Paypal: ",
 	"pt" => "Conta de e-mail Paypal responsável pelos pagamentos : "
 	);
@@ -536,6 +571,7 @@ $txt_cfg_paypal_ratefee = array(
 	"de" => "PayPal Kommissionen: ",
 	"zh" => "PayPal ´¿·ÑÓÃ£¥: ",
 	"pl" => "Procent prowizji PayPal : ",
+	"se" => "TRANS PayPal fee rate: ",	
 	"es" => "Porcentaje de comisión de Paypal: ",
 	"pt" => "Percentagem da comissão do Paypal : "
 	);
@@ -550,6 +586,7 @@ $txt_cfg_paypal_flatfee = array(
 	"de" => "PayPal Festpreis: ",
 	"zh" => "PayPal ×Ü·ÑÓÃ£¥: ",
 	"pl" => "Wska¼nik liniowy PayPal : ",
+	"se" => "TRANS PayPal flat rate: ",
 	"es" => "Comisión fija de Paypal: ",
 	"pt" => "Taxa fixa do Paypal : "
 	);
@@ -564,10 +601,11 @@ $txt_cfg_new_chroot_path_path = array(
 	"de" => "Path für CGI-Wrapper Laufwerk (Chroot für SBOX): ",
 	"zh" => "Â·¾¶ (chroot for SBOX): ",
 	"pl" => "¦cie¿ka do katalogu CGI-Wrapper (chroot SBOX) : ",
+	"se" => "Path of the cgi-wrapper disk (chroot for SBOX): ",
 	"es" => "Ruta del cgi-wrapper (chroot para SBOX): ",
 	"pt" => "Caminho do disco cgi-wrapper (chroot para SBOX) : "
 	);
-
+//************************************************************************
 $txt_cfg_main_software_config =array(
 	"fr" => "Configuration principale de DTC",
 	"en" => "Main software configuration",
@@ -1142,6 +1180,7 @@ $txt_cfg_backup_destination_folder =array(
 	"de" => "Backupzielverzeichnis",
 	"zh" => "±¸ÓÃÄ¿µÄµØÄ¿Â¼:",
 	"pl" => "Katalog docelowy Backup-u :",
+	"se" => "TRANS Backup destination directory:",
 	"es" => "Directorio de destino del Backup:",
 	"pt" => "Directório de destino do backup :"
 	);
@@ -1156,6 +1195,7 @@ $txt_cfg_webalizer_script_filename =array(
 	"de" => "Webalizer bash-script:",
 	"zh" => "Webalizer bash³ÌÐòÃû×Ö:",
 	"pl" => "Nazwa skryptu Webalizera :",
+	"se" => "TRANS Webalizer bash-script name:",
 	"es" => "Nombre del script de Webalizer:",
 	"pt" => "Nome do script Webalizer :"
 	);
