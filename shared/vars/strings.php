@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.104 2006/05/22 01:53:06 seeb Exp $
+	* @version  $Id: strings.php,v 1.105 2006/05/22 11:46:17 seeb Exp $
 	* 
 	**/
 	
@@ -3665,6 +3665,7 @@ $txt_draw_client_info_fax = array(
 	"de" => "Fax:",
 	"zh" => "ДЋец:",
 	"pl" => "Fax :",
+	"se" => "Fax:",
 	"es" => "Fax:",
 	"pt" => "FAX"
 );
