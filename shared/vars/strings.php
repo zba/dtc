@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.101 2006/05/21 23:57:31 seeb Exp $
+	* @version  $Id: strings.php,v 1.102 2006/05/22 01:09:14 seeb Exp $
 	* 
 	**/
 	
@@ -703,8 +703,8 @@ $txt_mainmenu_title_server_monitor = array(
   "ru" => "TRANS ",
   "de" => "TRANS ",
   "zh" => "TRANS ",
-  "pl" => "Monitoring servera",
-  "se" => "TRANS SVENSKA",
+  "pl" => "Monitoring serwera",
+  "se" => "Server Monitor",
   "es" => "TRANS ",
   "pt" => "TRANS "
   );
@@ -724,7 +724,7 @@ $txt_no_parking_popup_text = array(
   "pt" => "TRANS No parking");
 
 $txt_register_custom_message_title = array(
-		"fr" => "Laisser un message a l'administrateur pour indiquer des eventuels specificités pour votre compte:",
+	"fr" => "Laisser un message a l'administrateur pour indiquer des eventuels specificités pour votre compte:",
 	"en" => "Leave a message to tell any specific requirements you might have for your account:",
 	"hu" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
 	"it" => "Per favore lascia un messaggio per richieste specifiche:",
