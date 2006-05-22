@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.103 2006/05/22 01:18:39 seeb Exp $
+	* @version  $Id: strings.php,v 1.104 2006/05/22 01:53:06 seeb Exp $
 	* 
 	**/
 	
@@ -12,6 +12,20 @@
  * @see dtc/client/new_account.php
  * 
  */
+$txt_iframe_ds=array(
+	"fr" => "TRANS Deamons states ",
+	"en" => "Deamons states",
+	"hu" => "TRANS Deamons states ",
+	"it" => "TRANS Deamons states ",
+	"nl" => "TRANS Deamons states ",
+	"ru" => "TRANS Deamons states ",
+	"de" => "TRANS Deamons states ",
+	"zh" => "TRANS Deamons states ",
+	"pl" => "TRANS Deamons states ",
+	"se" => "TRANS Deamons states SVENSKA",
+	"es" => "TRANS Deamons states ",
+	"pt" => "TRANS Deamons states "
+);
 $txt_iframe_nts=array(
 	"fr" => "TRANS Network Traffic Statistics ",
 	"en" => "Network Traffic Statistics ",
