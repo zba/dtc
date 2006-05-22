@@ -2,7 +2,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.26 2006/05/21 23:10:53 seeb Exp $
+ * @version $Id: email.php,v 1.27 2006/05/22 00:40:51 seeb Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -18,6 +18,7 @@ function drawImportedMail($mailbox){
 	global $txt_login_pass;
 	global $txt_use;
 	global $txt_action;
+	global $txt_cfg_server_address;
 	
 	$out = "";
 
@@ -37,7 +38,7 @@ function drawImportedMail($mailbox){
 	$out .= "<table border=\"1\">
 	
 	<!-- to translate -->
-<tr><td>Address email</td><td>Mailbox type</td><td>Server addr</td><td>".$txt_login_title[$lang]."</td><td>".$txt_login_pass[$lang]."</td><td>".$txt_use[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
+<tr><td>Address email</td><td>Mailbox type</td><td>".$txt_cfg_server_address[$lang]."</td><td>".$txt_login_title[$lang]."</td><td>".$txt_login_pass[$lang]."</td><td>".$txt_use[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$pop3_selected = "";
