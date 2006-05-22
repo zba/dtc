@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.102 2006/05/22 01:09:14 seeb Exp $
+	* @version  $Id: strings.php,v 1.103 2006/05/22 01:18:39 seeb Exp $
 	* 
 	**/
 	
@@ -12,6 +12,62 @@
  * @see dtc/client/new_account.php
  * 
  */
+$txt_iframe_nts=array(
+	"fr" => "TRANS Network Traffic Statistics ",
+	"en" => "Network Traffic Statistics ",
+	"hu" => "TRANS Network Traffic Statistics ",
+	"it" => "TRANS Network Traffic Statistics ",
+	"nl" => "TRANS Network Traffic Statistics ",
+	"ru" => "TRANS Network Traffic Statistics ",
+	"de" => "TRANS Network Traffic Statistics ",
+	"zh" => "TRANS Network Traffic Statistics ",
+	"pl" => "Statystyki ³±cza:",
+	"se" => "TRANS Network Traffic Statistics SVENSKA",
+	"es" => "TRANS Network Traffic Statistics ",
+	"pt" => "TRANS Network Traffic Statistics "
+);
+$txt_iframe_cpu=array(
+	"fr" => "TRANS CPU Load Average ",
+	"en" => "CPU Load Average ",
+	"hu" => "TRANS CPU Load Average ",
+	"it" => "TRANS CPU Load Average ",
+	"nl" => "TRANS CPU Load Average ",
+	"ru" => "TRANS CPU Load Average ",
+	"de" => "TRANS CPU Load Average ",
+	"zh" => "TRANS CPU Load Average ",
+	"pl" => "Obci±¿enie procesora",
+	"se" => "TRANS CPU Load Average SVENSKA",
+	"es" => "TRANS CPU Load Average ",
+	"pt" => "TRANS CPU Load Average "
+);
+$txt_iframe_msu=array(
+	"fr" => "TRANS Memory and Swap Usage ",
+	"en" => "Memory and Swap Usage ",
+	"hu" => "TRANS Memory and Swap Usage ",
+	"it" => "TRANS Memory and Swap Usage ",
+	"nl" => "TRANS Memory and Swap Usage ",
+	"ru" => "TRANS Memory and Swap Usage ",
+	"de" => "TRANS Memory and Swap Usage ",
+	"zh" => "TRANS Memory and Swap Usage ",
+	"pl" => "Pamiêæ i plik wymiany",
+	"se" => "TRANS Memory and Swap Usage SVENSKA",
+	"es" => "TRANS Memory and Swap Usage ",
+	"pt" => "TRANS Memory and Swap Usage "
+);
+$txt_iframe_mqg=array(
+	"fr" => "TRANS Mail Queue graph ",
+	"en" => "Mail Queue graph ",
+	"hu" => "TRANS Mail Queue graph ",
+	"it" => "TRANS Mail Queue graph ",
+	"nl" => "TRANS Mail Queue graph ",
+	"ru" => "TRANS Mail Queue graph ",
+	"de" => "TRANS Mail Queue graph ",
+	"zh" => "TRANS Mail Queue graph ",
+	"pl" => "Statystyki poczty",
+	"se" => "TRANS Mail Queue graph SVENSKA",
+	"es" => "TRANS Mail Queue graph ",
+	"pt" => "TRANS Mail Queue graph "
+);
 $txt_mail_catch_no=array(
 	"fr" => "TRANS No catch-all ",
 	"en" => "No catch-all",
