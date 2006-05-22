@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.50 2006/05/08 09:27:58 seeb Exp $
+	* @version  $Id: index.php,v 1.52 2006/05/22 01:23:55 seeb Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -102,20 +102,20 @@ case "monitor": // Monitor button
 // todo inttrnetionalize 
 case "graph":
 	$the_iframe = "<IFRAME src=\"/cgi-bin/netusegraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
-	$mainFrameCells[] = skin($conf_skin,$the_iframe,"Network Traffic Statistics");
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,$txt_iframe_nts[$lang]);
 	$the_iframe = "<IFRAME src=\"/cgi-bin/cpugraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
-	$mainFrameCells[] = skin($conf_skin,$the_iframe,"CPU Load Average");
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,$txt_iframe_cpu[$lang]);
 	$the_iframe = "<IFRAME src=\"/cgi-bin/memgraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
-	$mainFrameCells[] = skin($conf_skin,$the_iframe,"Memory and Swap Usage");
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,$txt_iframe_msu[$lang]);
 	$the_iframe = "<IFRAME src=\"/cgi-bin/queuegraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
-	$mainFrameCells[] = skin($conf_skin,$the_iframe,"Mail Queue graph");
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,$txt_iframe_mqg[$lang]);
 	$zemain_content = makeVerticalFrame($mainFrameCells);
 	break;
 	
 case "generate": // Gen Config Files
 	$mainFrameCells[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
 	$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
-	$mainFrameCells[] = skin($conf_skin,$the_iframe,"Deamons states");
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,$txt_iframe_ds);
 	// The console
 	$mainFrameCells[] = skinConsole();
 	$zemain_content = makeVerticalFrame($mainFrameCells);
