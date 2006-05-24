@@ -315,7 +315,7 @@ function sum_ftp($webname){
 	$result_l = mysql_query($q) or die("Cannot execute query \"$q\"");
 	$numrow_acctable = mysql_num_rows($result_l);
 	if($numrow_acctable < 1){
-		$q2 = "INSERT INTO $pro_mysql_acc_ftp_table (sub_domain,transfer,last_run,month,year) VALUES ('".$webname."','$total_ftp_amount','".$last_run_st."', ".date("m",time()).",".date("Y",time()).")";
+		$q2 = "INSERT INTO $pro_mysql_acc_ftp_table (sub_domain,transfer,last_run,month,year) VALUES ('".$webname."','$total_ftp_amount','".time()."', ".date("m",time()).",".date("Y",time()).")";
 	}else{
 		$q2 = "UPDATE $pro_mysql_acc_ftp_table set transfer=transfer+".$total_ftp_amount."+0, last_run=".time()." WHERE sub_domain='".$webname."' AND month='".date("m",time())."' AND year='".date("Y",time())."';";
 	}
