@@ -152,7 +152,7 @@ function drawDeamonStates(){
 	<td align=\"center\">$state_apa_restart</td>
 	<td align=\"center\">$state_bind_reload</td>
 	<td align=\"center\">$state_gen_ssh</td>
-	<td align=\"center\" style\"white-space:nowrap\" nowrap>$clock</td>
+	<td align=\"center\" style=\"white-space:nowrap\" nowrap>$clock</td>
 </tr></table>";
 
 	return $out;
