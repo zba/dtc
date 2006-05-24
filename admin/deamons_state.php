@@ -209,13 +209,13 @@ function checkFTP(){
 	$server = "localhost";
 	// echo "Checking POP3<br>";
 	if(($server_ip = gethostbynameFalse($server)) == false){
-		$errTxt = "Cannot resolv your $server SMTP server.";
+		$errTxt = "Cannot resolv your $server FTP server.";
 		return false;
 	}
 
 	$soc = fsockopen($server_ip,21,$erno,$errstring,10);
 	if($soc == false){
-		$errTxt = "Could not connect to SMTP server (timed out): $server";
+		$errTxt = "Could not connect to FTP server (timed out): $server";
 		return false;
 	}
 	// echo "Checking ok after connect<br>";
@@ -282,7 +282,7 @@ function checkDNS(){
 function checkPOP3(){
 	global $pro_mysql_pop_table;
 
-	$q = "SELECT * FROM $pro_mysql_pop_table WHERE 1 LIMIT 1";
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id NOT LIKE 'cyrus' LIMIT 1";
 	$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said ".mysql_error());
 	$a = mysql_fetch_array($r);
 

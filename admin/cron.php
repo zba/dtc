@@ -358,7 +358,8 @@ if($cronjob_table_content["reload_named"] == "yes"){
 
 if($cronjob_table_content["restart_apache"] == "yes"){
 	$plop = array();
-	echo ("Testing and creating directories for vhosts...\n");
+	// Now this echo is in the script itself!
+	//echo ("Testing and creating directories for vhosts...\n");
 	system("chmod +x \"$conf_generated_file_path/vhost_check_dir\"");
 	system("$conf_generated_file_path/vhost_check_dir");
 	echo "Testing apache conf\n";
