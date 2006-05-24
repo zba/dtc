@@ -3,7 +3,9 @@
 // This script is launched before restarting apache
 // to check if a bastard has deleted his directories
 // with ftp: apache would refuse to start otherwise.
-$chk_dir_script="#!/bin/sh\n";
+$chk_dir_script="#!/bin/sh
+
+echo \"Checking vhosts directories existance...\"\n";
 function vhost_chk_dir_sh($dir){
 	global $chk_dir_script;
 	$chk_dir_script .= "
