@@ -102,7 +102,6 @@ function pro_vhost_generate(){
 
 	$vhost_file = "";
 	$vhost_file_listen = "";
-	$chk_dir_script = "#!/bin/sh\n";
 
 	if($conf_unix_type == "gentoo"){
 		$conf_tools_prefix = "/var/www/localhost/htdocs";
