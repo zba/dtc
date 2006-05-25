@@ -34,7 +34,7 @@ function make_stats(){
 			$res = mysql_query($qus) or die("Cannot execute query \"$qus\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 			$ars = mysql_fetch_array($res);
 			if($ars["Rows"] > 0){
-				$query = "SELECT MIN(time_stamp) AS start FROM apachelogs.".$table_name."";
+				$query = "SELECT MIN(time_stamp) AS start FROM apachelogs.`".$table_name."`";
 				$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 				$start = mysql_result($result,0,"start");
 				if($start<$today_midnight){
@@ -55,7 +55,7 @@ function make_stats(){
 					$end = mktime(0,0,0,$month_24h,$day_24h,$year_24h);
 
 					echo "Querying SELECT * FROM apachelogs.".$table_name."...";
-					$query_dump = "SELECT * FROM apachelogs.".$table_name." WHERE time_stamp>='".$start."' AND time_stamp<='".$end."' ORDER BY time_stamp";
+					$query_dump = "SELECT * FROM apachelogs.`".$table_name."` WHERE time_stamp>='".$start."' AND time_stamp<='".$end."' ORDER BY time_stamp";
 					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
 					$dump_num_rows = mysql_num_rows($result_dump);
 					if($dump_num_rows>0){
@@ -86,10 +86,10 @@ function make_stats(){
 					}else{
 						echo "table empty\n";
 					}
-					$query_dump = "DELETE FROM apachelogs.".$table_name." WHERE time_stamp<='".$end."'";
+					$query_dump = "DELETE FROM apachelogs.`".$table_name."` WHERE time_stamp<='".$end."'";
 					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
 
-					$opt_table = "OPTIMIZE TABLE apachelogs.".$table_name." ;";
+					$opt_table = "OPTIMIZE TABLE apachelogs.`".$table_name."` ;";
 					mysql_query($opt_table) or die("Cannot execute query \"$opt_table\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 
 					$qus = "SHOW TABLE STATUS LIKE '".$table_name."'";
@@ -98,7 +98,7 @@ function make_stats(){
 					if($ars["Rows"] == 0){
 						$start = $today_midnight;
 					}else{
-						$query = "SELECT MIN(time_stamp) AS start FROM apachelogs.".$table_name."";
+						$query = "SELECT MIN(time_stamp) AS start FROM apachelogs.`".$table_name."`";
 						$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 						$start = mysql_result($result,0,"start");
 					}
