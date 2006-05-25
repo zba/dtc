@@ -112,20 +112,20 @@ if (/^X-DTC-LoopDetected:\s*(.*)/:h)
 
 if (/^X-DTC-Counter:\s*(.*)/:h)
 {
-        ZERO=$MATCH
-        DTCCOUNTER=length($ZERO) - 15
+        ZERO=\$MATCH
+        DTCCOUNTER=length(\$ZERO) - 15
 
-        if ($DTCCOUNTER > 6)
+        if (\$DTCCOUNTER > 6)
         {
                 # SUBJECT=xfilter "reformail -x Subject:"
-                # xfilter "reformail -I \"Subject: [DTC Email Loop] $SUBJECT\""
+                # xfilter "reformail -I \"Subject: [DTC Email Loop] \$SUBJECT\""
                 xfilter "reformail -I 'X-DTC-LoopDetected: X'"
         }
         else
         {
-                DTCHEADERVALUE="$ZERO"'X'
-                xfilter "reformail -I \"$DTCHEADERVALUE\""
-                xfilter "reformail -I \"X-DTC-Counter-Value: $DTCCOUNTER\""
+                DTCHEADERVALUE="\$ZERO"'X'
+                xfilter "reformail -I \"\$DTCHEADERVALUE\""
+                xfilter "reformail -I \"X-DTC-Counter-Value: \$DTCCOUNTER\""
         }
 }
 else
