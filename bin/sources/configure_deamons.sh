@@ -391,10 +391,19 @@ else
 	fi
 
 	if [ ""$conf_apache_version = "2" ] ; then
+		# Activate mod_rewrite
 		if [ -f /etc/apache2/mods-available/rewrite.load ] ; then
 			if [ -d /etc/apache2/mods-enabled ] ; then
 				if ! [ -e /etc/apache2/mods-enabled/rewrite.load ] ; then
 					ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+				fi
+			fi
+		fi
+		# Activate mod_ssl
+		if [ -f /etc/apache2/mods-available/ssl.load ] ; then
+			if [ -d /etc/apache2/mods-enabled ] ; then
+				if ! [ -e /etc/apache2/mods-enabled/ssl.load ] ; then
+					ln -s ../mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
 				fi
 			fi
 		fi
