@@ -1031,8 +1031,7 @@ fi
 echo "virtual_alias_maps = hash:$PATH_DTC_ETC/postfix_virtual
 alias_maps = hash:/etc/aliases, hash:$PATH_DTC_ETC/postfix_aliases
 relay_domains = $PATH_DTC_ETC/postfix_relay_domains
-relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients "
- >> $TMP_FILE
+relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FILE
 		if [ -n $conf_dnsbl_list ]; then
 			IFS=, 
 			for i in $conf_dnsbl_list; do 
