@@ -203,6 +203,7 @@ else
 		cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
 		  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
 		  /lib/libncurses.so.5 \
+		  /lib/libbz2.so.1.0 \
 		  /lib/librt.so.1 \
 		  /lib/libacl.so.1 \
 		  /lib/libattr.so.1 \
@@ -231,18 +232,18 @@ then
 	#cp -pf /usr/share/magic         usr/share/
 fi
 
-# fix up pam.d into jail
-if [ -e /etc/pam.d ]; then
-	mkdir -p ./etc/pam.d/
-	cp /etc/pam.d/* ./etc/pam.d/
-fi
-# copy PAM-Modules to jail
-if [ -e /lib/security ]; then
-	cp -r /lib/security ./lib/
-fi
-if [ -e /etc/security ]; then 
-	cp -r /etc/security ./etc/
-fi
+# No need anymore - fix up pam.d into jail
+# if [ -e /etc/pam.d ]; then
+# 	mkdir -p ./etc/pam.d/
+# 	cp /etc/pam.d/* ./etc/pam.d/
+# fi
+# No need anymore - copy PAM-Modules to jail
+#if [ -e /lib/security ]; then
+	#cp -r /lib/security ./lib/
+#fi
+#if [ -e /etc/security ]; then 
+#	cp -r /etc/security ./etc/
+#fi
 if [ -e /etc/login.defs ]; then
 	cp /etc/login.defs ./etc/
 fi
