@@ -102,9 +102,9 @@ cp -pf /usr/bin/file usr/bin/
 
 if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
-	cp -pf /usr/bin/gunzip /usr/bin/tar /usr/bin/false /usr/bin/su bin/
+	cp -pf /usr/bin/rm /usr/bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
 else
-	cp -pf /bin/gunzip /bin/tar /usr/bin/zip /bin/false /bin/su bin/
+	cp -pf /bin/rm /bin/mv /bin/gunzip /bin/tar /usr/bin/zip /bin/false bin/
 	cp -pf /bin/cpio usr/bin
 fi
 
@@ -115,7 +115,7 @@ if [ -e /usr/bin/bash ] ; then
 	cp -pf /usr/bin/bash bin
 fi
 
-# copy required binaries to $CHROOT_DIR/bin
+# copy more required binaries to $CHROOT_DIR/bin
 cp -pf /bin/sh /bin/echo /bin/ls /bin/pwd /bin/cat bin/
 
 # copy ldconfig from sbin to $CHROOT_DIR/sbin
