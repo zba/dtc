@@ -104,7 +104,7 @@ if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
 	cp -pf /usr/bin/rm /usr/bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
 else
-	cp -pf /bin/rm /bin/mv /bin/gunzip /bin/tar /usr/bin/zip /bin/false bin/
+	cp -pf /bin/rm /bin/mv /bin/gunzip /usr/bin/tar /usr/bin/zip /usr/bin/false bin/
 	cp -pf /bin/cpio usr/bin
 fi
 
@@ -129,7 +129,9 @@ cp -pf /etc/protocols /etc/services /etc/hosts \
 
 # generate /etc/passwd and /etc/group
 # ignore errors
-set +e
+if [ $UNIX_TYPE"" = "debian" ] ; then
+	set +e
+fi
 grep daemon /etc/passwd > etc/passwd
 grep bin /etc/passwd >> etc/passwd
 grep sys /etc/passwd >> etc/passwd
@@ -151,7 +153,9 @@ grep uucp /etc/group >> etc/group
 grep www-data /etc/group >> etc/group
 grep nogroup /etc/group >> etc/group
 grep $WEB_USER /etc/group >> etc/group
-set -e
+if [ $UNIX_TYPE"" = "debian" ] ; then
+	set -e
+fi
 
 # fix entry for nobody in /etc/passwd
 echo "$WEB_USER:x:65534:65534:$WEB_USER:/html:/bin/bash" >> etc/passwd
