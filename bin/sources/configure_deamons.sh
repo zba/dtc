@@ -1932,7 +1932,7 @@ else
 	TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 	echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
-	echo "* 4 * * * nobody cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
+	echo "* 4 * * * nobody cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php >/dev/null" >> $TMP_FILE
 	if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ]; then
 		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_postfix.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	fi
