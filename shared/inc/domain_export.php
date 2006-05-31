@@ -218,7 +218,7 @@ function domainImport($path_from,$adm_login){
     }else{
       $sql_d = mysql_fetch_array($r);
       if($sql_d["owner"] != $domain[0]["owner"]){
-        echo "Domain exists for another admin: import aborted");
+        echo "Domain exists for another admin: import aborted";
         return false;
       }
       $q = "UPDATE $pro_mysql_domain_table
