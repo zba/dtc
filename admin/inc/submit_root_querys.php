@@ -184,7 +184,7 @@ if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 	}
 
 	// Add user in database
-	if($commit_flag == "no"){
+	if($commit_flag != "no"){
 		$adm_query = "INSERT INTO $pro_mysql_admin_table
 (adm_login        ,adm_pass         ,path            )VALUES
 ('".$_REQUEST["newadmin_login"]."', '".$_REQUEST["newadmin_pass"]."','$newadmin_path') ";
