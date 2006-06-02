@@ -161,7 +161,6 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 
 // $newadmin_login $newadmin_pass $newadmin_path $newadmin_maxemail $newadmin_maxftp $newadmin_quota
 if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
-	echo "test!";
 	// Check for admin existance
 	// Create admin directorys
 	if(!isFtpLogin($_REQUEST["newadmin_login"])){
@@ -189,6 +188,10 @@ if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 (adm_login        ,adm_pass         ,path            )VALUES
 ('".$_REQUEST["newadmin_login"]."', '".$_REQUEST["newadmin_pass"]."','$newadmin_path') ";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	} 
+	else 
+	{
+		echo "Haven't created admin user due to $submit_err";
 	}
 }
 
