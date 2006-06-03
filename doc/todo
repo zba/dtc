@@ -18,5 +18,6 @@ conveinient .dtc file. Import from other (commercial) control panels.
 - Finish tucows API integration: working in Tucows test server, transfer
 of domain names to be finished using the bulk_transfer() function
 - Make a windows port for cygwin using NDIS scriptable installer.
+- Create IP manager, which deals with SSL (need to fix ns1 generate vhost, and also add text to subdomain edit)
 
 If you think you can help in one of those, please contact thomas [ at ] goirand . fr
