@@ -1,5 +1,7 @@
 Version 0.21:
 -------------
+- Added import/export functionnalities for domains.
+
 - Changed a bit the layout of the admin panel so it's less
 confusing (for the admin editor)
 
