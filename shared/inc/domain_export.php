@@ -2,6 +2,7 @@
 
 function exportSqlTable($table_name,$filter_field,$filter_value){
         global $conf_mysql_db;
+        global $pro_mysql_pop_table;
 
         $out = '$' . "$table_name = array();\n";
 
@@ -11,7 +12,7 @@ function exportSqlTable($table_name,$filter_field,$filter_value){
         $field_names = array();
         for($i=0;$i<$columns;$i++){
           $fld_name = mysql_field_name($fields, $i);
-          if($fld_name != "id" && strlen($fld_name) > 0){
+          if(($table_name == $pro_mysql_pop_table && strlen($fld_name) > 0) || ($fld_name != "id" && strlen($fld_name) > 0)){
             $field_names[] = $fld_name;
           }
         }
@@ -52,6 +53,18 @@ function exportDomainSQL($domain_name){
 
 
         $out = "<?php\n";
+        $q = "SELECT owner FROM $pro_mysql_domain_table WHERE name='$domain_name'";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+        $n = mysql_num_rows($r);
+        if($n != 1){
+          $export_domain_err = "Cannot find domain in db";
+          return false;
+        }
+        $a = mysql_fetch_array($r);
+        $adm_login = $a["owner"];
+        $adm_path = getAdminPath($adm_login);
+
+        $out .= "\$exported_admin_path = \"$adm_path\";\n\n";
         $out .= exportSqlTable($pro_mysql_domain_table,"name",$domain_name);
         $out .= exportSqlTable($pro_mysql_subdomain_table,"domain_name",$domain_name);
         $out .= exportSqlTable($pro_mysql_pop_table,'mbox_host',$domain_name);
@@ -147,6 +160,8 @@ function exportDomain($domain_name,$path_to){
 function domainImport($path_from,$adm_login){
   global $pro_mysql_admin_table;
   global $pro_mysql_domain_table;
+  global $pro_mysql_ftp_table;
+  global $pro_mysql_pop_table;
 
   global $conf_main_site_ip;
   $q = "SELECT path FROM $pro_mysql_admin_table WHERE adm_login='$adm_login'";
@@ -249,8 +264,286 @@ function domainImport($path_from,$adm_login){
     }
     $n = sizeof($subdomain);
     for($i=0;$i<$n;$i++){
-      $q = "SELECT subdomain_name FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_name' AND subdomain_name='".urldecode($subdomain[$i]["subdomain_name"])."';";
+      $q = "SELECT subdomain_name FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_name' AND subdomain_name='".addslashes(urldecode($subdomain[$i]["subdomain_name"]))."';";
+      $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+      $n1 = mysql_num_rows($r);
+      if($n1 == 0){
+        $q = "INSERT INTO $pro_mysql_subdomain_table (safe_mode,sbox_protect,domain_name,subdomain_name,
+        path,webalizer_generate,register_globals,login,pass,
+        w3_alias,associated_txt_record,generate_vhost)
+        VALUES ('".addslashes($subdomain[$i]["safe_mode"])."',
+        '".addslashes($subdomain[$i]["sbox_protect"])."',
+        '".addslashes(urldecode($subdomain[$i]["domain_name"]))."',
+        '".addslashes(urldecode($subdomain[$i]["subdomain_name"]))."',
+        '".addslashes(urldecode($subdomain[$i]["path"]))."',
+        '".addslashes($subdomain[$i]["webalizer_generate"])."',
+        '".addslashes($subdomain[$i]["register_globals"])."',
+        '".addslashes(urldecode($subdomain[$i]["login"]))."',
+        '".addslashes(urldecode($subdomain[$i]["pass"]))."',
+        '".addslashes($subdomain[$i]["w3_alias"])."',
+        '".addslashes(urldecode($subdomain[$i]["associated_txt_record"]))."',
+        '".addslashes($subdomain[$i]["generate_vhost"])."');";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+      }else{
+        $q = "UPDATE $pro_mysql_subdomain_table
+        SET safe_mode='".addslashes($subdomain[$i]["safe_mode"])."',
+        sbox_protect='".addslashes($subdomain[$i]["sbox_protect"])."',
+        path='".addslashes(urldecode($subdomain[$i]["path"]))."',
+        webalizer_generate='".addslashes($subdomain[$i]["webalizer_generate"])."',
+        register_globals='".addslashes($subdomain[$i]["register_globals"])."',
+        login='".addslashes(urldecode($subdomain[$i]["login"]))."',
+        pass='".addslashes(urldecode($subdomain[$i]["pass"]))."',
+        w3_alias='".addslashes($subdomain[$i]["w3_alias"])."',
+        associated_txt_record='".addslashes(urldecode($subdomain[$i]["associated_txt_record"]))."',
+        generate_vhost='".addslashes($subdomain[$i]["generate_vhost"])."'
+        WHERE domain_name='$domain_name' AND subdomain_name='".addslashes(urldecode($subdomain[$i]["subdomain_name"]))."';";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+      }
     }
+    $n = sizeof($pop_access);
+    for($i=0;$i<$n;$i++){
+      $q = "SELECT id FROM $pro_mysql_pop_table WHERE id='".$pop_access["id"]."' AND mbox_host='$domain_name';";
+      $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+      $n1 = mysql_num_rows($r);
+      if($n1 == 0){
+        $q = "INSERT INTO $pro_mysql_pop_table (id,uid,gid,home,shell,mbox_host,crypt,passwd,active,start_date,expire_date,quota_size,
+        type,memo,du,another_perso,redirect1,redirect2,localdeliver,pop3_login_count,pop3_transfered_bytes,imap_login_count,imap_transfered_bytes,
+        last_login,bounce_msg,spf_protect,clamav_protect,
+        spam_mailbox_enable,spam_mailbox,pass_next_req,pass_expire,iwall_protect,fullemail,vacation_flag,vacation_text)
+        VALUES('".addslashes(urldecode($pop_access[$i]["id"]))."',
+        '".addslashes(urldecode($pop_access[$i]["uid"]))."',
+        '".addslashes(urldecode($pop_access[$i]["gid"]))."',
+        '".$adm_path."/".$domain_name."/Mailboxs/".addslashes(urldecode($pop_access[$i]["id"]))."',
+        '".addslashes(urldecode($pop_access[$i]["shell"]))."',
+        '".addslashes(urldecode($pop_access[$i]["mbox_host"]))."',
+        '".addslashes(urldecode($pop_access[$i]["crypt"]))."',
+        '".addslashes(urldecode($pop_access[$i]["passwd"]))."',
+        '".addslashes(urldecode($pop_access[$i]["active"]))."',
+        '".addslashes(urldecode($pop_access[$i]["start_date"]))."',
+        '".addslashes(urldecode($pop_access[$i]["expire_date"]))."',
+        '".addslashes(urldecode($pop_access[$i]["quota_size"]))."',
+
+        '".addslashes(urldecode($pop_access[$i]["type"]))."',
+        '".addslashes(urldecode($pop_access[$i]["memo"]))."',
+        '".addslashes(urldecode($pop_access[$i]["du"]))."',
+        '".addslashes(urldecode($pop_access[$i]["another_perso"]))."',
+        '".addslashes(urldecode($pop_access[$i]["redirect1"]))."',
+        '".addslashes(urldecode($pop_access[$i]["redirect2"]))."',
+        '".addslashes(urldecode($pop_access[$i]["localdeliver"]))."',
+        '".addslashes(urldecode($pop_access[$i]["pop3_login_count"]))."',
+        '".addslashes(urldecode($pop_access[$i]["pop3_transfered_bytes"]))."',
+        '".addslashes(urldecode($pop_access[$i]["imap_login_count"]))."',
+        '".addslashes(urldecode($pop_access[$i]["imap_transfered_bytes"]))."',
+
+        '".addslashes(urldecode($pop_access[$i]["last_login"]))."',
+        '".addslashes(urldecode($pop_access[$i]["bounce_msg"]))."',
+        '".addslashes(urldecode($pop_access[$i]["spf_protect"]))."',
+        '".addslashes(urldecode($pop_access[$i]["clamav_protect"]))."',
+
+        '".addslashes(urldecode($pop_access[$i]["spam_mailbox_enable"]))."',
+        '".addslashes(urldecode($pop_access[$i]["spam_mailbox"]))."',
+        '".addslashes(urldecode($pop_access[$i]["pass_next_req"]))."',
+        '".addslashes(urldecode($pop_access[$i]["pass_expire"]))."',
+        '".addslashes(urldecode($pop_access[$i]["iwall_protect"]))."',
+        '".addslashes(urldecode($pop_access[$i]["fullemail"]))."',
+        '".addslashes(urldecode($pop_access[$i]["vacation_flag"]))."',
+        '".addslashes(urldecode($pop_access[$i]["vacation_text"]))."');";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+      }else{
+        $q = "UPDATE $pro_mysql_pop_table
+        SET uid='".addslashes(urldecode($pop_access[$i]["uid"]))."',
+        gid='".addslashes(urldecode($pop_access[$i]["gid"]))."',
+        home=''".$adm_path."/".$domain_name."/Mailboxs/".addslashes(urldecode($pop_access[$i]["id"]))."',
+        shell=''".addslashes(urldecode($pop_access[$i]["shell"]))."',
+        crypt='".addslashes(urldecode($pop_access[$i]["crypt"]))."',
+        passwd='".addslashes(urldecode($pop_access[$i]["passwd"]))."',
+        active='".addslashes(urldecode($pop_access[$i]["active"]))."',
+        start_date='".addslashes(urldecode($pop_access[$i]["start_date"]))."',
+        expire_date='".addslashes(urldecode($pop_access[$i]["expire_date"]))."',
+        quota_size='".addslashes(urldecode($pop_access[$i]["quota_size"]))."',
+        type='".addslashes(urldecode($pop_access[$i]["type"]))."',
+        memo='".addslashes(urldecode($pop_access[$i]["memo"]))."',
+        du='".addslashes(urldecode($pop_access[$i]["du"]))."',
+        another_perso='".addslashes(urldecode($pop_access[$i]["another_perso"]))."',
+        redirect1='".addslashes(urldecode($pop_access[$i]["redirect1"]))."',
+        redirect2='".addslashes(urldecode($pop_access[$i]["redirect2"]))."',
+        localdeliver='".addslashes(urldecode($pop_access[$i]["localdeliver"]))."',
+        pop3_login_count'".addslashes(urldecode($pop_access[$i]["pop3_login_count"]))."',
+        pop3_transfered_bytes='".addslashes(urldecode($pop_access[$i]["pop3_transfered_bytes"]))."',
+        imap_login_count='".addslashes(urldecode($pop_access[$i]["imap_login_count"]))."',
+        imap_transfered_bytes='".addslashes(urldecode($pop_access[$i]["imap_transfered_bytes"]))."',
+        last_login='".addslashes(urldecode($pop_access[$i]["last_login"]))."',
+        bounce_msg='".addslashes(urldecode($pop_access[$i]["bounce_msg"]))."',
+        spf_protect='".addslashes(urldecode($pop_access[$i]["spf_protect"]))."',
+        clamav_protect='".addslashes(urldecode($pop_access[$i]["clamav_protect"]))."',
+        spam_mailbox_enable='".addslashes(urldecode($pop_access[$i]["spam_mailbox_enable"]))."',
+        spam_mailbox='".addslashes(urldecode($pop_access[$i]["spam_mailbox"]))."',
+        pass_next_req='".addslashes(urldecode($pop_access[$i]["pass_next_req"]))."',
+        pass_expire='".addslashes(urldecode($pop_access[$i]["pass_expire"]))."',
+        iwall_protect='".addslashes(urldecode($pop_access[$i]["iwall_protect"]))."',
+        fullemail='".addslashes(urldecode($pop_access[$i]["fullemail"]))."',
+        vacation_flag='".addslashes(urldecode($pop_access[$i]["vacation_flag"]))."',
+        vacation_text='".addslashes(urldecode($pop_access[$i]["vacation_text"]))."'
+        WHERE id='".addslashes(urldecode($pop_access["id"]))."' AND mbox_host='$domain_name'";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+      }
+    }
+    $n = sizeof($ftp_access);
+    for($i=0;$i<$n;$i++){
+      $acc_path = urldecode($ftp_access[$i]["homedir"]);
+      if(!strstr($acc_path,$adm_path)){
+        echo "Cannot find adm path in the ftp account ".urldecode($ftp_access[$i]["login"])."\n";
+        continue;
+      }
+      $new_acc_path = str_replace($exported_admin_path,$adm_path,$acc_path);
+      $q = "SELECT login FROM $pro_mysql_pop_table WHERE login='".$ftp_access["login"]."' AND hostname='$domain_name';";
+      $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+      $n1 = mysql_num_rows($r);
+      if($n1 == 0){
+        $q2 = "SELECT login FROM $pro_mysql_pop_table WHERE login='".$ftp_access["login"]."';";
+        $r2 = mysql_query($q)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+        $n2 = mysql_num_rows($r2);
+        if($n2 > 0){
+          echo "Cannot create ftp login ".$ftp_access["login"].": username exists already in the database!!!";
+          continue;
+        }else{
+          $q = "INSERT INTO $pro_mysql_ftp_table (login,uid,gid,password,homedir,count,fhost,faddr,ftime,fcdir,fstor,fretr,creation,
+          ts,frate,fcred,brate,bcred,flogs,size,shell,hostname,login_count,last_login,dl_bytes,ul_bytes,dl_count,ul_count,vhostip)
+          VALUES('".addslashes(urldecode($ftp_access[$i]["login"]))."',
+          '65534',
+          '65534',
+          '".addslashes(urldecode($ftp_access[$i]["password"]))."',
+          '".addslashes($new_acc_path)."',
+          '".addslashes(urldecode($ftp_access[$i]["count"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["fhost"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["faddr"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["ftime"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["fcdir"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["fstor"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["fretr"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["creation"]))."',
+          
+          '".addslashes(urldecode($ftp_access[$i]["ts"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["frate"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["fcred"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["brate"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["bcred"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["flogs"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["size"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["shell"]))."',
+          '".$domain_name."',
+          '".addslashes(urldecode($ftp_access[$i]["login_count"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["last_login"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["dl_bytes"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["ul_bytes"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["dl_count"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["ul_count"]))."',
+          '".addslashes(urldecode($ftp_access[$i]["vhostip"]))."');";
+        }
+      }else{
+        $q = "UPDATE $pro_mysql_ftp_table
+        SET password='".addslashes(urldecode($ftp_access[$i]["password"]))."',
+        homedir='".addslashes($new_acc_path)."',
+        count='".addslashes(urldecode($ftp_access[$i]["count"]))."',
+        fhost='".addslashes(urldecode($ftp_access[$i]["fhost"]))."',
+        faddr='".addslashes(urldecode($ftp_access[$i]["faddr"]))."',
+        ftime='".addslashes(urldecode($ftp_access[$i]["ftime"]))."',
+        fcdir='".addslashes(urldecode($ftp_access[$i]["fcdir"]))."',
+        fstor='".addslashes(urldecode($ftp_access[$i]["fstor"]))."',
+        fretr='".addslashes(urldecode($ftp_access[$i]["fretr"]))."',
+        creation='".addslashes(urldecode($ftp_access[$i]["creation"]))."',
+        ts='".addslashes(urldecode($ftp_access[$i]["ts"]))."',
+        frate='".addslashes(urldecode($ftp_access[$i]["frate"]))."',
+        fcred='".addslashes(urldecode($ftp_access[$i]["fcred"]))."',
+        brate='".addslashes(urldecode($ftp_access[$i]["brate"]))."',
+        bcred='".addslashes(urldecode($ftp_access[$i]["bcred"]))."',
+        flogs='".addslashes(urldecode($ftp_access[$i]["flogs"]))."',
+        size='".addslashes(urldecode($ftp_access[$i]["size"]))."',
+        shell='".addslashes(urldecode($ftp_access[$i]["shell"]))."',
+        login_count='".addslashes(urldecode($ftp_access[$i]["login_count"]))."',
+        vhostip='".addslashes(urldecode($ftp_access[$i]["vhostip"]))."' WHERE
+        hostname='".$domain_name."' AND login='".addslashes(urldecode($ftp_access[$i]["login"]))."';";
+      }
+    }
+
+    $n = sizeof($ssh_access);
+    for($i=0;$i<$n;$i++){
+      $acc_path = urldecode($ssh_access[$i]["homedir"]);
+      if(!strstr($acc_path,$adm_path)){
+        echo "Cannot find adm path in the ftp account ".urldecode($ssh_access[$i]["login"])."\n";
+        continue;
+      }
+      $new_acc_path = str_replace($exported_admin_path,$adm_path,$acc_path);
+      $q = "SELECT login FROM $pro_mysql_pop_table WHERE login='".$ssh_access["login"]."' AND hostname='$domain_name';";
+      $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+      $n1 = mysql_num_rows($r);
+      if($n1 == 0){
+        $q2 = "SELECT login FROM $pro_mysql_pop_table WHERE login='".$ssh_access["login"]."';";
+        $r2 = mysql_query($q)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+        $n2 = mysql_num_rows($r2);
+        if($n2 > 0){
+          echo "Cannot create ftp login ".$ssh_access["login"].": username exists already in the database!!!";
+          continue;
+        }else{
+          $q = "INSERT INTO $pro_mysql_ftp_table (login,uid,gid,password,homedir,count,fhost,faddr,ftime,fcdir,fstor,fretr,creation,
+          ts,frate,fcred,brate,bcred,flogs,size,shell,hostname,login_count,last_login,dl_bytes,ul_bytes,dl_count,ul_count,vhostip)
+          VALUES('".addslashes(urldecode($ssh_access[$i]["login"]))."',
+          '65534',
+          '65534',
+          '".addslashes(urldecode($ssh_access[$i]["password"]))."',
+          '".addslashes($new_acc_path)."',
+          '".addslashes(urldecode($ssh_access[$i]["count"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["fhost"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["faddr"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["ftime"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["fcdir"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["fstor"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["fretr"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["creation"]))."',
+          
+          '".addslashes(urldecode($ssh_access[$i]["ts"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["frate"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["fcred"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["brate"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["bcred"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["flogs"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["size"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["shell"]))."',
+          '".$domain_name."',
+          '".addslashes(urldecode($ssh_access[$i]["login_count"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["last_login"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["dl_bytes"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["ul_bytes"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["dl_count"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["ul_count"]))."',
+          '".addslashes(urldecode($ssh_access[$i]["vhostip"]))."');";
+        }
+      }else{
+        $q = "UPDATE $pro_mysql_ftp_table
+        SET password='".addslashes(urldecode($ssh_access[$i]["password"]))."',
+        homedir='".addslashes($new_acc_path)."',
+        count='".addslashes(urldecode($ssh_access[$i]["count"]))."',
+        fhost='".addslashes(urldecode($ssh_access[$i]["fhost"]))."',
+        faddr='".addslashes(urldecode($ssh_access[$i]["faddr"]))."',
+        ftime='".addslashes(urldecode($ssh_access[$i]["ftime"]))."',
+        fcdir='".addslashes(urldecode($ssh_access[$i]["fcdir"]))."',
+        fstor='".addslashes(urldecode($ssh_access[$i]["fstor"]))."',
+        fretr='".addslashes(urldecode($ssh_access[$i]["fretr"]))."',
+        creation='".addslashes(urldecode($ssh_access[$i]["creation"]))."',
+        ts='".addslashes(urldecode($ssh_access[$i]["ts"]))."',
+        frate='".addslashes(urldecode($ssh_access[$i]["frate"]))."',
+        fcred='".addslashes(urldecode($ssh_access[$i]["fcred"]))."',
+        brate='".addslashes(urldecode($ssh_access[$i]["brate"]))."',
+        bcred='".addslashes(urldecode($ssh_access[$i]["bcred"]))."',
+        flogs='".addslashes(urldecode($ssh_access[$i]["flogs"]))."',
+        size='".addslashes(urldecode($ssh_access[$i]["size"]))."',
+        shell='".addslashes(urldecode($ssh_access[$i]["shell"]))."',
+        login_count='".addslashes(urldecode($ssh_access[$i]["login_count"]))."',
+        vhostip='".addslashes(urldecode($ssh_access[$i]["vhostip"]))."' WHERE
+        hostname='".$domain_name."' AND login='".addslashes(urldecode($ssh_access[$i]["login"]))."';";
+      }
+    }
+
   }
   closedir($dh);
 
