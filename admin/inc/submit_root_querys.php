@@ -81,19 +81,23 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 
 	// Delete all mail accounts
 	$adm_query = "DELETE FROM $pro_mysql_pop_table WHERE mbox_host='$deluserdomain';";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	// Delete all mailboxs
 	$adm_query = "DELETE FROM $pro_mysql_ftp_table WHERE hostname='$deluserdomain';";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	
 	// Delete all subdomains
 	$domupdate_query = "DELETE FROM $pro_mysql_subdomain_table WHERE domain_name='$deluserdomain';";
-	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
+	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	// Delete all mailinglists
+	$domupdate_query = "DELETE FROM $pro_mysql_list_table WHERE name='$deluserdomain';";
+	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	// Delete the domain
 	$adm_query = "DELETE FROM $pro_mysql_domain_table WHERE name='$deluserdomain' LIMIT 1;";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	// Delete the files of the domain name
 	if($delete_directories == true && $conf_demo_version == "no"){
