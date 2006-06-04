@@ -11,6 +11,12 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "import_domain"){
 //	echo "Importing domain file: ".$_FILES["domain_import_file"]["name"]." for user $adm_login";
 	move_uploaded_file($_FILES["domain_import_file"]["tmp_name"],$uploaded_full_path);
 	domainImport($uploaded_full_path,$adm_login);
+
+	// Tell the cron job to activate the changes
+	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
+	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes' WHERE 1;";
+	mysql_query($adm_query);
+	triggerDomainListUpdate();
 }
 
 ///////////////////////////////////////////////////////////////
