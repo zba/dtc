@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.105 2006/05/22 11:46:17 seeb Exp $
+	* @version  $Id: strings.php,v 1.106 2006/06/04 12:55:35 thomas Exp $
 	* 
 	**/
 	
@@ -12,8 +12,38 @@
  * @see dtc/client/new_account.php
  * 
  */
+$txt_import_a_domain_for_this_user = array(
+  "fr" => "Importer un fichier de domaine pour cet utilisateur :",
+  "en" => "Import a domain file for this user:",
+	"hu" => "TRANS Import a domain file for this user:",
+	"it" => "TRANS Import a domain file for this user:",
+	"nl" => "TRANS Import a domain file for this user:",
+	"ru" => "TRANS Import a domain file for this user:",
+	"de" => "TRANS Import a domain file for this user:",
+	"zh" => "TRANS Import a domain file for this user:",
+	"pl" => "TRANS Import a domain file for this user:",
+	"se" => "TRANS Import a domain file for this user:",
+	"es" => "TRANS Import a domain file for this user:",
+	"pt" => "TRANS Import a domain file for this user:"
+);
+
+$txt_export_domain_to_file = array(
+  "fr" => "Exporter ce domaine dans un fichier",
+  "en" => "Export this domain to a file",
+	"hu" => "TRANS Export this domain to a file",
+	"it" => "TRANS Export this domain to a file",
+	"nl" => "TRANS Export this domain to a file",
+	"ru" => "TRANS Export this domain to a file",
+	"de" => "TRANS Export this domain to a file",
+	"zh" => "TRANS Export this domain to a file",
+	"pl" => "TRANS Export this domain to a file",
+	"se" => "TRANS Export this domain to a file",
+	"es" => "TRANS Export this domain to a file",
+	"pt" => "TRANS Export this domain to a file"
+);
+
 $txt_iframe_ds=array(
-	"fr" => "TRANS Deamons states ",
+	"fr" => "Etat des daemons",
 	"en" => "Deamons states",
 	"hu" => "TRANS Deamons states ",
 	"it" => "TRANS Deamons states ",
@@ -27,7 +57,7 @@ $txt_iframe_ds=array(
 	"pt" => "TRANS Deamons states "
 );
 $txt_iframe_nts=array(
-	"fr" => "TRANS Network Traffic Statistics ",
+	"fr" => "Statistiques du trafic réseau",
 	"en" => "Network Traffic Statistics ",
 	"hu" => "TRANS Network Traffic Statistics ",
 	"it" => "TRANS Network Traffic Statistics ",
@@ -41,7 +71,7 @@ $txt_iframe_nts=array(
 	"pt" => "TRANS Network Traffic Statistics "
 );
 $txt_iframe_cpu=array(
-	"fr" => "TRANS CPU Load Average ",
+	"fr" => "Charge moyenne processeur ",
 	"en" => "CPU Load Average ",
 	"hu" => "TRANS CPU Load Average ",
 	"it" => "TRANS CPU Load Average ",
@@ -55,7 +85,7 @@ $txt_iframe_cpu=array(
 	"pt" => "TRANS CPU Load Average "
 );
 $txt_iframe_msu=array(
-	"fr" => "TRANS Memory and Swap Usage ",
+	"fr" => "Utilisation mémoire et swap ",
 	"en" => "Memory and Swap Usage ",
 	"hu" => "TRANS Memory and Swap Usage ",
 	"it" => "TRANS Memory and Swap Usage ",
@@ -69,7 +99,7 @@ $txt_iframe_msu=array(
 	"pt" => "TRANS Memory and Swap Usage "
 );
 $txt_iframe_mqg=array(
-	"fr" => "TRANS Mail Queue graph ",
+	"fr" => "Graphique de la file d'attente mail ",
 	"en" => "Mail Queue graph ",
 	"hu" => "TRANS Mail Queue graph ",
 	"it" => "TRANS Mail Queue graph ",
@@ -83,7 +113,7 @@ $txt_iframe_mqg=array(
 	"pt" => "TRANS Mail Queue graph "
 );
 $txt_mail_catch_no=array(
-	"fr" => "TRANS No catch-all ",
+	"fr" => "Pas de catch-all ",
 	"en" => "No catch-all",
 	"hu" => "TRANS No catch-all ",
 	"it" => "TRANS No catch-all ",
@@ -98,7 +128,7 @@ $txt_mail_catch_no=array(
 );
 
 $txt_mail_catch_all_deliver=array(
-	"fr" => "TRANS Catch-all email set to deliver to ",
+	"fr" => "Le catch-all email est positionner pour délivrer à",
 	"en" => "Catch-all email set to deliver to",
 	"hu" => "TRANS Catch-all email set to deliver to ",
 	"it" => "TRANS Catch-all email set to deliver to ",
@@ -113,7 +143,7 @@ $txt_mail_catch_all_deliver=array(
 );
 
 $txt_package_version=array(
-	"fr" => "TRANS Package version ",
+	"fr" => "Version du package",
 	"en" => "Package version",
 	"hu" => "TRANS Package version ",
 	"it" => "TRANS Package version ",
@@ -127,7 +157,7 @@ $txt_package_version=array(
 	"pt" => "TRANS Package version "
 );
 $txt_package_need_db=array(
-	"fr" => "TRANS Need a database ",
+	"fr" => "Besion d'une base de donnée ",
 	"en" => "Need a database",
 	"hu" => "TRANS Need a database ",
 	"it" => "TRANS Need a database ",
@@ -141,7 +171,7 @@ $txt_package_need_db=array(
 	"pt" => "TRANS Need a database "
 );
 $txt_package_un_size=array(
-	"fr" => "TRANS Unpack size ",
+	"fr" => "Taille décompressée ",
 	"en" => "TRANS Unpack size ",
 	"hu" => "TRANS Unpack size ",
 	"it" => "TRANS Unpack size ",
@@ -156,7 +186,7 @@ $txt_package_un_size=array(
 );//[$lang]."Unpack size</td><td>".
 
 $txt_install=array(
-	"fr" => "TRANS Install ",
+	"fr" => "Installer ",
 	"en" => "Install",
 	"hu" => "TRANS Install ",
 	"it" => "TRANS Install ",
@@ -171,7 +201,7 @@ $txt_install=array(
 );//Install
 	
 $txt_package_name=array(
-	"fr" => "TRANS Package name ",
+	"fr" => "Nom du package ",
 	"en" => "Package name ",
 	"hu" => "TRANS Package name ",
 	"it" => "TRANS Package name ",
@@ -186,7 +216,7 @@ $txt_package_name=array(
 );
 
 $txt_description=array(
-	"fr" => "TRANS Description ",
+	"fr" => "Description ",
 	"en" => "Description",
 	"hu" => "TRANS Description ",
 	"it" => "TRANS Description ",
@@ -200,7 +230,7 @@ $txt_description=array(
 	"pt" => "TRANS Description "
 );
 $txt_choose_package_install =array (
-	"fr" => "TRANS Choose a package to install",
+	"fr" => "Choisissez un package à installer",
 	"en" => "Choose a package to install",
 	"hu" => "TRANS Choose a package to install",
 	"it" => "TRANS Choose a package to install",
@@ -215,7 +245,7 @@ $txt_choose_package_install =array (
 );
 
 $txt_subdom_new=array (
-	"fr" => "TRANS New subdomain",
+	"fr" => "Nouveau sous-domain",
 	"en" => "New subdomain",
 	"hu" => "TRANS New subdomain",
 	"it" => "TRANS New subdomain",
@@ -230,7 +260,7 @@ $txt_subdom_new=array (
 );
 /** end new arrays **/
 $txt_subdom_edit_one= array (
-	"fr" => "TRANS Edit one of your subdomains",
+	"fr" => "Editer l'un de vos sous-domaines",
 	"en" => "Edit one of your subdomains",
 	"hu" => "TRANS Edit one of your subdomains",
 	"it" => "TRANS Edit one of your subdomains",
@@ -245,8 +275,8 @@ $txt_subdom_edit_one= array (
 );
 
 	// see line 3602 and translate
-$txt_use=array(	
-	"fr" => "TRANS Use: ",
+$txt_use=array(
+	"fr" => "Utiliser: ",
 	"en" => "Use :",
 	"hu" => "TRANS Use",
 	"it" => "TRANS Use",
@@ -260,7 +290,7 @@ $txt_use=array(
 	"pt" => "TRANS Use"
 );
 $txt_aliasing=array(	
-	"fr" => "TRANS aliasing",
+	"fr" => "Alias",
 	"en" => "aliasing",
 	"hu" => "TRANS aliasing",
 	"it" => "TRANS aliasing",
@@ -275,7 +305,7 @@ $txt_aliasing=array(
 );
 
 	$txt_DNS_config_of =array(	
-	"fr" => "DNS config of: ",
+	"fr" => "Configuration DNS de : ",
 	"en" => "DNS config of:",
 	"hu" => "TRANS DNS_config of",
 	"it" => "TRANS DNS_config of",
@@ -289,7 +319,7 @@ $txt_aliasing=array(
 	"pt" => "TRANS DNS_config of"
 );
 	$txt_Statistics_of_domain =array(	
-	"fr" => "TRANS Statistics of domain: ",
+	"fr" => "Statistiques du domaine : ",
 	"en" => "Statistics of domain:",
 	"hu" => "TRANS Statistics of domain",
 	"it" => "TRANS Statistics of domain",
@@ -317,7 +347,7 @@ $txt_aliasing=array(
 	"pt" => "TRANS "
 );
 	$txt_Package =array(	
-	"fr" => "TRANS Package",
+	"fr" => "Package",
 	"en" => "Package",
 	"hu" => "TRANS Package",
 	"it" => "TRANS Package ",
@@ -331,7 +361,7 @@ $txt_aliasing=array(
 	"pt" => "TRANS Package"
 );
 	$txt_Internet_Whois_Nick_Handles_management =array(	
-	"fr" => "TRANS Internet Whois Nick Handles management",
+	"fr" => "Configuration des nick handles internet des whois internet",
 	"en" => "Internet Whois Nick Handles management:",
 	"hu" => "TRANS Internet Whois Nick Handles management",
 	"it" => "TRANS Internet Whois Nick Handles management ",
@@ -345,7 +375,7 @@ $txt_aliasing=array(
 	"pt" => "TRANS "
 );
 	$txt_Add_a_domain_name_to_my_account =array(	
-	"fr" => "TRANS Add a domain name to my account",
+	"fr" => "Ajouter un nom de domaine à mon compte",
 	"en" => "Add a domain name to my account:",
 	"hu" => "TRANS Add a domain name to my account",
 	"it" => "TRANS Add a domain name to my account",
@@ -359,7 +389,7 @@ $txt_aliasing=array(
 	"pt" => "TRANS Add a domain name to my account"
 );
 	$txt_Manage_my_name_servers =array(	
-	"fr" => "TRANS Manage my name servers",
+	"fr" => "Configurer mes serveurs de noms",
 	"en" => "Manage my name servers:",
 	"hu" => "TRANS Manage my name servers",
 	"it" => "TRANS Manage my name servers",
@@ -373,7 +403,7 @@ $txt_aliasing=array(
 	"pt" => "TRANS Manage my name servers"
 );
 	$txt_My_Account_information =array(	
-	"fr" => "TRANS My Account information: ",
+	"fr" => "Informations de mon compte: ",
 	"en" => "My Account information:",
 	"hu" => "TRANS My Account information:",
 	"it" => "TRANS My Account information:",
@@ -387,7 +417,7 @@ $txt_aliasing=array(
 	"pt" => "TRANS My Account information:"
 );
 	$txt_resseller_child_accounts =array(	
-	"fr" => "TRANS Resseller child accounts",
+	"fr" => "Sous-comptes revendeur",
 	"en" => "Resseller child accounts",
 	"hu" => "TRANS Resseller child accounts",
 	"it" => "TRANS Resseller child accounts",
@@ -403,7 +433,7 @@ $txt_aliasing=array(
 
 
 $txt_edit_mailing_lists_of_domain = array(
-	"fr" => "TRANS Edit mailing lists of domain",
+	"fr" => "Editer les liste de publipostage de mon domaine :",
 	"en" => "Edit mailing lists of domain:",
 	"hu" => "TRANS Edit mailing lists of domain",
 	"it" => "TRANS Edit mailing lists of domain",
@@ -418,7 +448,7 @@ $txt_edit_mailing_lists_of_domain = array(
 	); 
 	
 $txt_documentation = array(
-	"fr" => "TRANS Documentation",
+	"fr" => "Documentation",
 	"en" => "Documentation:",
 	"hu" => "TRANS Documentation",
 	"it" => "TRANS Documentation",
