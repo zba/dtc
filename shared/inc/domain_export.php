@@ -110,24 +110,24 @@ function exportDomain($domain_name,$path_to){
   }
 
   // Create the dirs
-  echo "mkdir $real_path\n";
+//  echo "mkdir $real_path\n";
   mkdir($real_path);
 
   $dtc_sql_config  = $real_path."/dtc_sql_config";
-  echo "mkdir $dtc_sql_config\n";
+//  echo "mkdir $dtc_sql_config\n";
   mkdir($dtc_sql_config);
 
   $dtc_sql_dump_path = $dtc_sql_config."/$domain_name";
-  echo "mkdir ".$dtc_sql_dump_path."\n";
+//  echo "mkdir ".$dtc_sql_dump_path."\n";
   mkdir($dtc_sql_dump_path);
 
   $dtc_sql_dump_filename = $dtc_sql_dump_path."/dtc_dump.php";
   $dtc_domain_files_path = $real_path."/domain_files";
-  echo "mkdir $dtc_domain_files_path\n";
+//  echo "mkdir $dtc_domain_files_path\n";
   mkdir($dtc_domain_files_path);
 
   // Get the dump
-  echo "Dumping SQL config for $domain_name...<br>\n";
+//  echo "Dumping SQL config for $domain_name...<br>\n";
   $dtc_sql_dump = exportDomainSQL($domain_name);
 
   // Write the sql dump
@@ -143,17 +143,18 @@ function exportDomain($domain_name,$path_to){
   fclose($fp);
 
   // Copy all the domain files in the folder
-  echo "Copying domain files for $domain_name...<br>\n";
+//  echo "Copying domain files for $domain_name...<br>\n";
   $cmd = "cp -auf $adm_path/$domain_name $dtc_domain_files_path";
+//  echo "$cmd<br>\n";
   $last_line = exec($cmd,$output,$return_var);
 
-  echo "Compressing export for $domain_name...<br>\n";
+//  echo "Compressing export for $domain_name...<br>\n";
   $old_dir = getcwd();
   chdir($path_to);
   $cmd = "tar -cvzf $domain_name.dtc.tar.gz dtc_export";
   $last_line = exec($cmd,$output,$return_var);
   $cmd = "rm -r dtc_export";
-  $last_line = exec($cmd,$output,$return_var);
+//  $last_line = exec($cmd,$output,$return_var);
   chdir($old_dir);
 }
 
@@ -161,7 +162,9 @@ function domainImport($path_from,$adm_login){
   global $pro_mysql_admin_table;
   global $pro_mysql_domain_table;
   global $pro_mysql_ftp_table;
+  global $pro_mysql_ssh_table;
   global $pro_mysql_pop_table;
+  global $pro_mysql_subdomain_table;
 
   global $conf_main_site_ip;
   $q = "SELECT path FROM $pro_mysql_admin_table WHERE adm_login='$adm_login'";
@@ -182,10 +185,10 @@ function domainImport($path_from,$adm_login){
   $path = substr($path_from,0,strlen($path_from) - strlen($basename));
   $old_dir = getcwd();
   chdir($path);
-  echo "Uncompressing $basename...";
+//  echo "Uncompressing $basename...";
   $cmd = "tar -xzf $basename";
   $last_line = exec($cmd,$output,$return_var);
-  echo "done!<br>\n";
+//  echo "done!<br>\n";
 
   $od = $path."dtc_export/dtc_sql_config";
   if (!is_dir($od)) {
@@ -196,7 +199,7 @@ function domainImport($path_from,$adm_login){
     echo "Cannot open directory: $od";
     return false;
   }
-  echo "Parsing dir $od...\n";
+//  echo "Parsing dir $od...\n";
   while (($file = readdir($dh)) !== false) {
     if($file == "." || $file == ".."){
       continue;
@@ -302,7 +305,7 @@ function domainImport($path_from,$adm_login){
     }
     $n = sizeof($pop_access);
     for($i=0;$i<$n;$i++){
-      $q = "SELECT id FROM $pro_mysql_pop_table WHERE id='".$pop_access["id"]."' AND mbox_host='$domain_name';";
+      $q = "SELECT id FROM $pro_mysql_pop_table WHERE id='".$pop_access[$i]["id"]."' AND mbox_host='$domain_name';";
       $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
       $n1 = mysql_num_rows($r);
       if($n1 == 0){
@@ -384,7 +387,7 @@ function domainImport($path_from,$adm_login){
         fullemail='".addslashes(urldecode($pop_access[$i]["fullemail"]))."',
         vacation_flag='".addslashes(urldecode($pop_access[$i]["vacation_flag"]))."',
         vacation_text='".addslashes(urldecode($pop_access[$i]["vacation_text"]))."'
-        WHERE id='".addslashes(urldecode($pop_access["id"]))."' AND mbox_host='$domain_name'";
+        WHERE id='".addslashes(urldecode($pop_access[$i]["id"]))."' AND mbox_host='$domain_name'";
         $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
       }
     }
@@ -396,15 +399,15 @@ function domainImport($path_from,$adm_login){
         continue;
       }
       $new_acc_path = str_replace($exported_admin_path,$adm_path,$acc_path);
-      $q = "SELECT login FROM $pro_mysql_pop_table WHERE login='".$ftp_access["login"]."' AND hostname='$domain_name';";
+      $q = "SELECT login FROM $pro_mysql_ftp_table WHERE login='".$ftp_access[$i]["login"]."' AND hostname='$domain_name';";
       $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
       $n1 = mysql_num_rows($r);
       if($n1 == 0){
-        $q2 = "SELECT login FROM $pro_mysql_pop_table WHERE login='".$ftp_access["login"]."';";
+        $q2 = "SELECT login FROM $pro_mysql_ftp_table WHERE login='".$ftp_access[$i]["login"]."';";
         $r2 = mysql_query($q)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
         $n2 = mysql_num_rows($r2);
         if($n2 > 0){
-          echo "Cannot create ftp login ".$ftp_access["login"].": username exists already in the database!!!";
+          echo "Cannot create ftp login ".$ftp_access[$i]["login"].": username exists already in the database!!!";
           continue;
         }else{
           $q = "INSERT INTO $pro_mysql_ftp_table (login,uid,gid,password,homedir,count,fhost,faddr,ftime,fcdir,fstor,fretr,creation,
@@ -470,22 +473,22 @@ function domainImport($path_from,$adm_login){
     for($i=0;$i<$n;$i++){
       $acc_path = urldecode($ssh_access[$i]["homedir"]);
       if(!strstr($acc_path,$adm_path)){
-        echo "Cannot find adm path in the ftp account ".urldecode($ssh_access[$i]["login"])."\n";
+        echo "Cannot find adm path in the ssh account ".urldecode($ssh_access[$i]["login"])."\n";
         continue;
       }
       $new_acc_path = str_replace($exported_admin_path,$adm_path,$acc_path);
-      $q = "SELECT login FROM $pro_mysql_pop_table WHERE login='".$ssh_access["login"]."' AND hostname='$domain_name';";
+      $q = "SELECT login FROM $pro_mysql_ssh_table WHERE login='".$ssh_access[$i]["login"]."' AND hostname='$domain_name';";
       $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
       $n1 = mysql_num_rows($r);
       if($n1 == 0){
-        $q2 = "SELECT login FROM $pro_mysql_pop_table WHERE login='".$ssh_access["login"]."';";
+        $q2 = "SELECT login FROM $pro_mysql_ssh_table WHERE login='".$ssh_access[$i]["login"]."';";
         $r2 = mysql_query($q)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
         $n2 = mysql_num_rows($r2);
         if($n2 > 0){
-          echo "Cannot create ftp login ".$ssh_access["login"].": username exists already in the database!!!";
+          echo "Cannot create ssh login ".$ssh_access[$i]["login"].": username exists already in the database!!!";
           continue;
         }else{
-          $q = "INSERT INTO $pro_mysql_ftp_table (login,uid,gid,password,homedir,count,fhost,faddr,ftime,fcdir,fstor,fretr,creation,
+          $q = "INSERT INTO $pro_mysql_ssh_table (login,uid,gid,password,homedir,count,fhost,faddr,ftime,fcdir,fstor,fretr,creation,
           ts,frate,fcred,brate,bcred,flogs,size,shell,hostname,login_count,last_login,dl_bytes,ul_bytes,dl_count,ul_count,vhostip)
           VALUES('".addslashes(urldecode($ssh_access[$i]["login"]))."',
           '65534',
@@ -517,9 +520,10 @@ function domainImport($path_from,$adm_login){
           '".addslashes(urldecode($ssh_access[$i]["dl_count"]))."',
           '".addslashes(urldecode($ssh_access[$i]["ul_count"]))."',
           '".addslashes(urldecode($ssh_access[$i]["vhostip"]))."');";
+          $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
         }
       }else{
-        $q = "UPDATE $pro_mysql_ftp_table
+        $q = "UPDATE $pro_mysql_ssh_table
         SET password='".addslashes(urldecode($ssh_access[$i]["password"]))."',
         homedir='".addslashes($new_acc_path)."',
         count='".addslashes(urldecode($ssh_access[$i]["count"]))."',
@@ -541,6 +545,7 @@ function domainImport($path_from,$adm_login){
         login_count='".addslashes(urldecode($ssh_access[$i]["login_count"]))."',
         vhostip='".addslashes(urldecode($ssh_access[$i]["vhostip"]))."' WHERE
         hostname='".$domain_name."' AND login='".addslashes(urldecode($ssh_access[$i]["login"]))."';";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
       }
     }
 

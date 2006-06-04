@@ -3,6 +3,16 @@
 if(!isset($submit_err)){
 	$submit_err = "";
 }
+
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "import_domain"){
+	$adm_path = getAdminPath($adm_login);
+	$uploaded_file = basename($_FILES['domain_import_file']['name']);
+	$uploaded_full_path = $adm_path."/".$uploaded_file;
+//	echo "Importing domain file: ".$_FILES["domain_import_file"]["name"]." for user $adm_login";
+	move_uploaded_file($_FILES["domain_import_file"]["tmp_name"],$uploaded_full_path);
+	domainImport($uploaded_full_path,$adm_login);
+}
+
 ///////////////////////////////////////////////////////////////
 // Mark all named zone file for generation and serial update //
 ///////////////////////////////////////////////////////////////
@@ -81,23 +91,19 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 
 	// Delete all mail accounts
 	$adm_query = "DELETE FROM $pro_mysql_pop_table WHERE mbox_host='$deluserdomain';";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 
 	// Delete all mailboxs
 	$adm_query = "DELETE FROM $pro_mysql_ftp_table WHERE hostname='$deluserdomain';";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 	
 	// Delete all subdomains
 	$domupdate_query = "DELETE FROM $pro_mysql_subdomain_table WHERE domain_name='$deluserdomain';";
-	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-
-	// Delete all mailinglists
-	$domupdate_query = "DELETE FROM $pro_mysql_list_table WHERE name='$deluserdomain';";
-	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
 
 	// Delete the domain
 	$adm_query = "DELETE FROM $pro_mysql_domain_table WHERE name='$deluserdomain' LIMIT 1;";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 
 	// Delete the files of the domain name
 	if($delete_directories == true && $conf_demo_version == "no"){
@@ -165,6 +171,7 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 
 // $newadmin_login $newadmin_pass $newadmin_path $newadmin_maxemail $newadmin_maxftp $newadmin_quota
 if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
+	echo "test!";
 	// Check for admin existance
 	// Create admin directorys
 	if(!isFtpLogin($_REQUEST["newadmin_login"])){
@@ -192,10 +199,6 @@ if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 (adm_login        ,adm_pass         ,path            )VALUES
 ('".$_REQUEST["newadmin_login"]."', '".$_REQUEST["newadmin_pass"]."','$newadmin_path') ";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	} 
-	else 
-	{
-		echo "Haven't created admin user due to $submit_err";
 	}
 }
 

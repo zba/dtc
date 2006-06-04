@@ -1,5 +1,16 @@
 <?php
 
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "export_domain"){
+	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+	$file_name = $edit_domain.'.dtc.tar.gz';
+	exportDomain($edit_domain,$conf_site_root_host_path);
+	header('Content-type: application/tar.gz');
+	header('Content-Disposition: attachment; filename="'.$file_name.'"');
+	readfile($conf_site_root_host_path.'/'.$file_name);
+	unlink($conf_site_root_host_path.'/'.$file_name);
+	die();
+}
+
 if(isset($_REQUEST["set_domain_parcking"]) && $_REQUEST["set_domain_parcking"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 

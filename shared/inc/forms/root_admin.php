@@ -136,7 +136,7 @@ function drawEditAdmin($admin){
 		$domain_conf .= "</b><br><br>";
 	}
 	// Creation of domains :
-	$domain_conf .= "<b><u>".$txt_new_domain_for_user[$lang]."</u>";
+	$domain_conf .= "<b><u>".$txt_new_domain_for_user[$lang]."</u></b>";
 
 	$domain_conf .= "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
@@ -144,6 +144,17 @@ function drawEditAdmin($admin){
 	<input type=\"text\" name=\"newdomain_name\" value=\"\">
 	<input type=\"submit\" name=\"newdomain\" value=\"Ok\">
 	</form>";
+
+	$domain_conf .= "<b><u>Import a domain for this user</u></b>
+	<form action=\"?\" enctype=\"multipart/form-data\" method=\"post\">
+	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"action\" value=\"import_domain\">
+	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+	<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"30000000\">
+	<input type=\"file\" name=\"domain_import_file\" size=\"40\">
+	<input type=\"submit\" value=\"Import\"></form>";
 
 	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/cadre04/trait06.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
 	$conf_user .= "</b></font> ";

@@ -121,6 +121,9 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	}
 
 	$out .= "</select><input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
+
+	$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&action=export_domain&addrlink=".$_REQUEST["addrlink"]."\" target=\"_blank\">Export domain to file</a>";
+
 /*	if(file_exists($dtcshared_path."/dtcrm")){
 		$out .= "<b><u>Domain registration info:</u></b><br><br>";
 		if($eddomain["whois"] = "away"){
