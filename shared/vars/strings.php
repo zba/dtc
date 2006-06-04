@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.106 2006/06/04 12:55:35 thomas Exp $
+	* @version  $Id: strings.php,v 1.107 2006/06/04 13:02:30 thomas Exp $
 	* 
 	**/
 	
@@ -12,6 +12,22 @@
  * @see dtc/client/new_account.php
  * 
  */
+
+$txt_import_button = array(
+  "fr" => "Importer",
+  "en" => "Import",
+	"hu" => "TRANS Import",
+	"it" => "TRANS Import",
+	"nl" => "TRANS Import",
+	"ru" => "TRANS Import",
+	"de" => "TRANS Import",
+	"zh" => "TRANS Import",
+	"pl" => "TRANS Import",
+	"se" => "TRANS Import",
+	"es" => "TRANS Import",
+	"pt" => "TRANS Import"
+);
+
 $txt_import_a_domain_for_this_user = array(
   "fr" => "Importer un fichier de domaine pour cet utilisateur :",
   "en" => "Import a domain file for this user:",

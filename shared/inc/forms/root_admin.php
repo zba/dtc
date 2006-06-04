@@ -23,6 +23,8 @@ function drawEditAdmin($admin){
 	global $txt_can_have_ssh_login_for_vhosts;
 	global $txt_allow_to_add_domains;
 	global $txt_number_of_database;
+	global $txt_import_a_domain_for_this_user;
+	global $txt_import_button;
 
 	global $adm_login;
 	global $adm_pass;
@@ -145,7 +147,7 @@ function drawEditAdmin($admin){
 	<input type=\"submit\" name=\"newdomain\" value=\"Ok\">
 	</form>";
 
-	$domain_conf .= "<b><u>Import a domain for this user</u></b>
+	$domain_conf .= "<b><u>".$txt_import_a_domain_for_this_user[$lang]."</u></b>
 	<form action=\"?\" enctype=\"multipart/form-data\" method=\"post\">
 	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 	<input type=\"hidden\" name=\"action\" value=\"import_domain\">
@@ -154,7 +156,7 @@ function drawEditAdmin($admin){
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"30000000\">
 	<input type=\"file\" name=\"domain_import_file\" size=\"40\">
-	<input type=\"submit\" value=\"Import\"></form>";
+	<input type=\"submit\" value=\"".$txt_import_button[$lang]."\"></form>";
 
 	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/cadre04/trait06.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
 	$conf_user .= "</b></font> ";

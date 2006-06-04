@@ -23,6 +23,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	global $addrlink;
 	global $dtcshared_path;
 	global $conf_administrative_site;
+	global $txt_export_domain_to_file;
 
 	global $pro_mysql_domain_table;
 	global $txt_use;
@@ -122,7 +123,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 
 	$out .= "</select><input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
 
-	$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&action=export_domain&addrlink=".$_REQUEST["addrlink"]."\" target=\"_blank\">Export domain to file</a>";
+	$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&action=export_domain&addrlink=".$_REQUEST["addrlink"]."\" target=\"_blank\">".$txt_export_domain_to_file[$lang]."</a>";
 
 /*	if(file_exists($dtcshared_path."/dtcrm")){
 		$out .= "<b><u>Domain registration info:</u></b><br><br>";
