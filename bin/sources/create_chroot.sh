@@ -104,7 +104,7 @@ if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
 	cp -pf /usr/bin/rm /usr/bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
 else
-	cp -pf /bin/rm /bin/mv /bin/gunzip /usr/bin/tar /usr/bin/zip /usr/bin/false bin/
+	cp -pf /bin/rm /bin/mv /bin/gunzip /usr/bin/zip bin/
 	cp -pf /bin/cpio usr/bin
 fi
 
@@ -113,6 +113,18 @@ if [ -e /bin/bash ] ; then
 fi
 if [ -e /usr/bin/bash ] ; then
 	cp -pf /usr/bin/bash bin
+fi
+if [ -e /usr/bin/tar ]; then
+	cp -pf /usr/bin/tar bin
+fi
+if [ -e /bin/tar ]; then
+	cp -pf /bin/tar bin
+fi
+if [ -e /usr/bin/false ]; then
+	cp -pf /usr/bin/false bin
+fi
+if [ -e /bin/false ]; then
+	cp -pf /bin/false bin
 fi
 
 # copy more required binaries to $CHROOT_DIR/bin
@@ -207,12 +219,18 @@ else
 		cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
 		  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
 		  /lib/libncurses.so.5 \
-		  /lib/libbz2.so.1.0 \
 		  /lib/librt.so.1 \
 		  /lib/libacl.so.1 \
 		  /lib/libattr.so.1 \
 		  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 /lib/libcap.so.1 \
 		  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+
+		if [ -e /lib/libbz2.so.1.0 ]; then
+			cp /lib/libbz2.so.1.0 lib/
+		fi 
+		if [ -e /usr/lib/libbz2.so.1.0 ]; then
+			cp /usr/lib/libbz2.so.1.0 lib/
+		fi
 		if [ -e /usr/lib/libmagic.so.1 ]
 		then
 			cp -pf /usr/lib/libmagic.so.1 lib/
