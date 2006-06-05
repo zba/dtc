@@ -1202,6 +1202,10 @@ if [ -f "/usr/bin/mlmmj-make-ml" -o -f "/usr/bin/mlmmj-make-ml.sh" ] ; then
 	chown -R root:65534 /etc/mlmmj/lists
 	chmod -R g+w /etc/mlmmj/lists
 fi
+# create mlmmj spool directory if it doesn't exist yet
+if [ ! -e /var/spool/mlmmj/ ]; then
+	mkdir -p /var/spool/mlmmj
+fi
 if [ -e /var/spool/mlmmj/ ] ;then
 	chown nobody:65534 /var/spool/mlmmj/
 fi
