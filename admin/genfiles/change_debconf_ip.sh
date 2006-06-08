@@ -14,7 +14,6 @@ echo "IP was set as $conf_ipaddr"
 if [ $# -lt 1 ]; then
 echo "Usage: $0 <new IP>"
 fi
-exit 
 echo "We want the IP to be $1"
 
 db_set dtc/conf_ipaddr $1
