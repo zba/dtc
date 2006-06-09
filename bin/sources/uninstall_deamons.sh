@@ -396,6 +396,6 @@ then
         cat $PATH_NSSWITCH_CONF | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
         cp -f $PATH_NSSWITCH_CONF $PATH_NSSWITCH_CONF.DTC.removed
         echo -n > $PATH_NSSWITCH_CONF
-        cat < $TMP_FILE >> $PATH_NSS_ROOT_CONF
+        cat < $TMP_FILE >> $PATH_NSSWITCH_CONF
         rm $TMP_FILE
 fi
