@@ -33,7 +33,8 @@ if(isset($_REQUEST["modify_domain_config"]) && $_REQUEST["modify_domain_config"]
 		die("Incorrect script parameters");
 	}*/
 	$adm_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes',
-	quota='".$_REQUEST["new_quota"]."',max_email='".$_REQUEST["new_max_email"]."',max_ftp='".$_REQUEST["new_max_ftp"]."',
+	quota='".$_REQUEST["new_quota"]."',max_email='".$_REQUEST["new_max_email"]."',
+	max_lists='".$_REQUEST["new_max_lists"]."', max_ftp='".$_REQUEST["new_max_ftp"]."',
 	max_subdomain='".$_REQUEST["new_max_subdomain"]."',ip_addr='".$_REQUEST["new_ip_addr"]."',backup_ip_addr='".$_REQUEST["new_backup_ip_addr"]."'
 	WHERE owner='$adm_login' AND name='".$_REQUEST["user_domain_to_modify"]."';";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
