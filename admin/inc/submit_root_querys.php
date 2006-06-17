@@ -178,7 +178,6 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 
 // $newadmin_login $newadmin_pass $newadmin_path $newadmin_maxemail $newadmin_maxftp $newadmin_quota
 if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
-	echo "test!";
 	// Check for admin existance
 	// Create admin directorys
 	if(!isFtpLogin($_REQUEST["newadmin_login"])){
