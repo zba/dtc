@@ -48,6 +48,24 @@ if($n != 1){
 	$newu_infos .= "<b>Country:</b> ".$cc_code_array[$a["country"]]."<br>";
 	$newu_infos .= "<b>Customer notes:</b> ".$a["custom_notes"]."<br>";
 	$newu_infos .= "";
+	$q2 = "SELECT * FROM product WHERE id='".$a["product_id"]."';";
+	$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+	$n2 = mysql_num_rows($r2);
+	if($n2 != 1){
+		$newu_infos .= "<font color=\"red\">Product not found!</font><br>";
+	}else{
+		$a2 = mysql_fetch_array($r2);
+		$newu_infos .= "<b>Product:</b> ".$a2["name"]." (".$a2["price_dollar"]."USD)<br>";
+	}
+	$q3 = "SELECT * FROM paiement WHERE id='".$a["paiement_id"]."';";
+	$r3 = mysql_query($q3)or die("Cannot query \"$q3\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+	$n3 = mysql_num_rows($r3);
+	if($n3 != 1){
+		$newu_infos .= "<font color=\"red\">Paiement not found!</font><br>";
+	}else{
+		$a3 = mysql_fetch_array($r3);
+		$newu_infos .= "<b>Payment site:</b> ".$a3["secpay_site"]."<br>";
+	}
 }
 
 $the_page[] = skin($conf_skin,$newu_infos,"User details:");
