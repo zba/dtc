@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.44 2006/05/22 11:09:42 seeb Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.45 2006/06/18 09:12:31 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	* 
@@ -945,7 +945,7 @@ $txt_cfg_slave_dns_ip =array(
 	);
 
 $txt_cfg_payconf_title = array (
-	"fr" => "Portail de paiment",
+	"fr" => "Portail de paiement",
 	"en" => "Pay gateway",
 	"hu" => "Fizetési átjáró",
 	"it" => "Gateway per pagamento",
