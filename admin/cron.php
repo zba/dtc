@@ -93,7 +93,6 @@ function commitTriggerToRemoteInternal($a, $recipients)
 	}
         while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
-		print_r($a_vers);
 		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
 			echo "using lynx -source...";
 			$result = exec("lynx -source \"$url\"",$lines,$return_val);
