@@ -214,7 +214,7 @@ if ! grep fullemail ${TMP_FILE} 2>&1 >/dev/null ;then
 	if $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE pop_access ADD fullemail varchar (255) DEFAULT 'none' NOT NULL" ; then
 		echo "plop !"
 	fi
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET fullemail = concat( id,  \"@\", mbox_host )"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET fullemail = concat( \`id\`,  '@', \`mbox_host\` )"
 fi
 if [ -e ${TMP_FILE} ] ;then
 	rm ${TMP_FILE}
