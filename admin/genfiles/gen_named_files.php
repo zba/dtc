@@ -3,6 +3,7 @@
 function get_remote_ns($a){
 	global $console;
 	global $keep_dns_generate_flag;
+	global $panel_type;
 	$retry = 0;
 	$flag = false;
 	$named_file = ""; //init $named_file var
@@ -10,10 +11,18 @@ function get_remote_ns($a){
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
 		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
-			$console .= "<br>Using lynx -source on ".$a["server_addr"]." with login ".$a["server_login"].".<br>\n";
+			if( $panel_type == "cronjob"){
+				echo "\nUsing lynx -source on ".$a["server_addr"]." with login ".$a["server_login"].".\n";
+			}else{
+				$console .= "<br>Using lynx -source on ".$a["server_addr"]." with login ".$a["server_login"].".<br>\n";
+			}
 			$result = exec("lynx -source \"$url\"",$lines,$return_val);
 		}else{
-			$console .= "<br>Using php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"].".<br>\n";
+			if( $panel_type == "cronjob"){
+				echo "\nUsing php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"].".";
+			}else{
+				$console .= "<br>Using php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"].".";
+			}
 			$lines = file ($url);
 		}
 		$nline = sizeof($lines);
@@ -24,11 +33,19 @@ function get_remote_ns($a){
 				$named_file .= $lines[$j]."\n";
 			}
 			$flag = true;
-			$console .= "Success!<br>\n";
+			if( $panel_type == "cronjob"){
+				echo "Success!\n";
+			}else{
+				$console .= "Success!<br>";
+			}
 		}
 		$retry ++;
 		if($flag == false){
-			$console .= "Failed: delaying 3s!<br>\n";
+			if( $panel_type == "cronjob"){
+				$console .= "Failed: delaying 3s!\n";
+			}else{
+				$console .= "Failed: delaying 3s!<br>";
+			}
 			sleep(3);
 		}
 	}
@@ -43,6 +60,7 @@ function get_remote_ns_domains(){
 	global $pro_mysql_backup_table;
 	global $conf_generated_file_path;
 	global $console;
+	global $panel_type;
 
 	$domain_list = "";
 
@@ -58,7 +76,11 @@ function get_remote_ns_domains(){
 		if($u == false)	return false;
 		$f = $conf_generated_file_path."/dns_domains.".$u;
 		if($a["status"] == "pending" || !file_exists($f)){
-			$console .= "Getting dns domain list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk.<br>\n";
+			if( $panel_type == "cronjob"){
+				echo "Getting dns domain list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk.\n";
+			}else{
+				$console .= "Getting dns domain list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk.<br>";
+			}
 			$remote_file = get_remote_ns($a);
 			if($remote_file != false){
 				$fp = fopen($f,"w+");
@@ -75,24 +97,42 @@ function get_remote_ns_domains(){
 					$domain_list .= $remote_file;
 					$q2 = "UPDATE $pro_mysql_backup_table SET status='done' WHERE id='".$a["id"]."';";
 					$r2 = mysql_query($q2)or die("Cannot query $q2 ! line ".__FILE__." file ".__FILE__." sql said ".mysql_error());
-					$console .= "ok!<br>";
+					if( $panel_type == "cronjob"){
+						echo "ok!\n";
+					}else{
+						$console .= "ok!<br>";
+					}
 					$flag = true;
 				}else{
-					$console .= "wrong! File is empty!!!<br>";
+					if( $panel_type == "cronjob"){
+						echo "wrong! File is empty!!!\n";
+					}else{
+						$console .= "wrong! File is empty!!!<br>";
+					}
 				}
 			}else{
-				$console .= "failed!<br>";
+				if( $panel_type == "cronjob"){
+					echo "failed!\n";
+				}else{
+					$console .= "failed!<br>";
+				}
 			}
 		}
 		if($flag == false){
-			if (file_exists($f))
-			{
-				$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>\n";
+			if (file_exists($f)){
+				if( $panel_type == "cronjob"){
+					echo "Using mail domain list from cache of ".$a["server_addr"]."...\n";
+				}else{
+					$console .= "Using mail domain list from cache of ".$a["server_addr"]."...<br>";
+				}
 				$fp = fopen($f,"r");
 				$test = fseek($fp,0,SEEK_END);
-				if ($test == -1)
-				{
-					$console .= "Failed to seek to end of $f\n";
+				if ($test == -1){
+					if( $panel_type == "cronjob"){
+						echo "Failed to seek to end of $f\n";
+					}else{
+						$console .= "Failed to seek to end of $f<br>";
+					}
 				}
 				$size = ftell($fp);
 				if ($size > 0)
@@ -104,7 +144,11 @@ function get_remote_ns_domains(){
 				}
 				fclose($fp);
 			} else {
-				$console .= "Cache file not present, probably failed to read from remote host\n";
+				if( $panel_type == "cronjob"){
+					echo "Cache file not present, probably failed to read from remote host\n";
+				}else{
+					$console .= "Cache file not present, probably failed to read from remote host<br>";
+				}
 			}
 		}
 	}
