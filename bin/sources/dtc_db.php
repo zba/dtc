@@ -625,7 +625,8 @@ $dtc_database = array(
 			"nbr_database" => "int(9) NOT NULL default '0' ",
 			"bandwidth" => "int(15) NOT NULL default '0' ",
 			"period" => "date NOT NULL default '0001-00-00' ",
-			"allow_add_domain" => "enum('yes','no') NOT NULL default 'no' "
+			"allow_add_domain" => "enum('yes','no') NOT NULL default 'no' ",
+			"heb_type" => "enum('shared','ssl','vps','server') NOT NULL default 'shared' "
 			),
 		"primary" => "(id)",
 		"keys" => array(
