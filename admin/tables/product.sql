@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS product (
   nbr_database int(9) NOT NULL default '0',
   bandwidth int(9) NOT NULL default '0',
   period date NOT NULL default '0001-00-00',
-  allow_add_domain enum('yes','no','check') default 'no',
+  allow_add_domain enum('yes','no','check') NOT NULL default 'no',
+  heb_type enum('shared','ssl','vps','server') NOT NULL default 'shared',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
 ) TYPE=MyISAM

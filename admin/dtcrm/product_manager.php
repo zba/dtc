@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.9 2006/05/07 12:17:21 seeb Exp $
+	* @version  $Id: product_manager.php,v 1.10 2006/06/23 07:52:12 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -33,6 +33,7 @@ function productManager(){
         <td><b>DB</b></td>
 		<td><b>".$txt_product_period[$lang]."</b></td>
 		<td><b>".$txt_product_adddomain[$lang]."</b></td>
+		<td><b>Hosting type</b></td>
 		<td><b>".$txt_product_action[$lang]."</b></td>
 		</tr>";
  // end modification
@@ -50,6 +51,8 @@ function productManager(){
 			$a["nbr_database"] = "";
 			$a["period"] = "";
 			$a["allow_add_domain"] = "";
+			$a["allow_add_domain"] = "check";
+			$a["heb_type"] = "shared";
 		}
 		if($i%2){
 			$bg_color="bgcolor=\"#000000\"";
@@ -65,11 +68,40 @@ function productManager(){
 		$out .= "<td $bg_color><input size=\"2\" type=\"text\" name=\"nbr_email\" value=\"".$a["nbr_email"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"2\" type=\"text\" name=\"nbr_database\" value=\"".$a["nbr_database"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"8\" type=\"text\" name=\"period\" value=\"".$a["period"]."\"></td>";
+		
+		$allow_yes_selected = " ";
+		$allow_no_selected = " ";
+		$allow_check_selected = " ";
 		if($a["allow_add_domain"] == "yes"){
-			$out .= "<td $bg_color><input type=\"checkbox\" name=\"allow_add_domain\" value=\"yes\" checked></td>";
+			$allow_yes_selected = " selected ";
+		}else if($a["allow_add_domain"] == "check"){
+			$allow_check_selected = " selected ";
 		}else{
-			$out .= "<td $bg_color><input type=\"checkbox\" name=\"allow_add_domain\" value=\"yes\"></td>";
+			$allow_no_selected = " selected ";
 		}
+		$out .= "<td $bg_color><select name=\"allow_add_domain\">
+				<option value=\"yes\" $allow_yes_selected>yes</option>
+				<option value=\"no\" $allow_no_selected>no</option>
+				<option value=\"check\" $allow_check_selected>check</option></select></td>";
+
+		$heb_type_shared_selected = " ";
+		$heb_type_ssl_selected = " ";
+		$heb_type_vps_selected = " ";
+		$heb_type_server_selected = " ";
+		if($a["heb_type"] == "server"){
+			$heb_type_server_selected = " selected ";
+		}else if($a["heb_type"] == "ssl"){
+			$heb_type_ssl_selected = " selected ";
+		}else if($a["heb_type"] == "vps"){
+			$heb_type_vps_selected = " selected ";
+		}else{
+			$heb_type_shared_selected = " selected ";
+		}
+		$out .= "<td $bg_color><select name=\"heb_type\">
+				<option value=\"shared\" $heb_type_shared_selected>shared</option>
+				<option value=\"ssl\" $heb_type_ssl_selected>ssl</option>
+				<option value=\"vps\" $heb_type_vps_selected>vps</option>
+				<option value=\"server\" $heb_type_server_selected>server</option></select></td>";
 
 		if($i<$n){
 			$out .= "<td $bg_color><input type=\"submit\" name=\"submit\" value=\"save\"> ";
