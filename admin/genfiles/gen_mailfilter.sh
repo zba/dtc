@@ -152,7 +152,7 @@ if [ $spam_mailbox_enable == "yes" ]; then
 	echo "
 if (/^X-Spam-Flag: .*YES.*/)
 {
-	\`[ -d \$DEFAULT/.$spam_mailbox ] || (maildirmake \$DEFAULT && maildirmake -f $spam_mailbox  \$DEFAULT)\`
+	\`[ -d \$DEFAULT ] || maildirmake \$DEFAULT && [ -d \$DEFAULT/.$spam_mailbox ] || maildirmake -f $spam_mailbox \$DEFAULT\`
 	exception {
 		to \$DEFAULT/.$spam_mailbox/
 	}
