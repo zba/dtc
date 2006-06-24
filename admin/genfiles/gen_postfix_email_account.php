@@ -182,12 +182,17 @@ function mail_account_generate_postfix(){
 						} 
 						$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
 						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
+						if (isset($catch_all_id) || $catch_all_id != "")
+						{
+							//just so we can deliver to our vmailboxs if we have set a catch-all (otherwise postfix gets confused, and delivers all mail to the catch all)
+							$domains_postmasters_file .= "$id@$domain_full_name $id@$domain_full_name\n";
+						}
 					}
 					if(isset($redirect1) && $redirect1 != ""){
 						unset($extra_redirects);
 						if ($localdeliver == "yes" || $localdeliver == "true"){
 							//need to generate .mailfilter file with "cc" and also local delivery
-							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $redirect1 $vacation_flag");
+							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1");
 							if($vacation_flag == "yes"){
 								$vac_fp = fopen("$home/.vacation.msg","w+");
 								fwrite($vac_fp,$vacation_text);
@@ -200,7 +205,12 @@ function mail_account_generate_postfix(){
 						if ($redirect2 != "" && isset($redirect2)){
 							if ($localdeliver == "yes" || $localdeliver == "true"){
 								//need to generate .mailfilter file with "cc" and also local delivery
-								system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $redirect1 $redirect2");
+								system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1 $redirect2");
+								if($vacation_flag == "yes"){
+									$vac_fp = fopen("$home/.vacation.msg","w+");
+									fwrite($vac_fp,$vacation_text);
+									fclose($vac_fp);
+								}
 								$spam_stuff_done = 1;
 							} else if (isset($extra_redirects)) {
 								$extra_redirects .= " , $redirect2";
@@ -214,11 +224,7 @@ function mail_account_generate_postfix(){
 							$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
 						}
 						unset($extra_redirects);
-					} else if (isset($catch_all_id) || $catch_all_id != "")
-					{
-						//just so we can deliver to our vmailboxs if we have set a catch-all (otherwise postfix gets confused, and delivers all mail to the catch all)
-						$domains_postmasters_file .= "$id@$domain_full_name $id@$domain_full_name\n";
-					}
+					} 
 					//if we haven't added the spam mailbox yet, do it here
 					if ($spam_stuff_done == 0)
 					{

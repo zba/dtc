@@ -6,9 +6,9 @@ id=$2
 domain_full_name=$3
 spam_mailbox_enable=$4
 spam_mailbox=$5
-redirection=$6
-redirection2=$7
-vacation_flag=$8
+vacation_flag=$6
+redirection=$7
+redirection2=$8
 
 MAILFILTER_FILE=$home/.mailfilter
 MAILFILTER_LOCK=$home/.mailfilter.lock
