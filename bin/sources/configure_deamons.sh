@@ -777,12 +777,13 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
 		echo "read_hash(\\%local_domains, '$PATH_DTC_ETC/local_domains');" >> $TMP_FILE
 
 		# if we have a list of postfix relay domains, we may as well check them to virii etc...
-	 	if [ -e "$PATH_DTC_ETC/postfix_relay_domains" ]; then
-			echo "my %tmp_relay_domains;" >> $TMP_FILE
-			echo "read_hash(\\%tmp_relay_domains, '$PATH_DTC_ETC/postfix_relay_domains');" >> $TMP_FILE
-			echo "# now merge the two hashes" >> $TMP_FILE
-			echo "@local_domains{keys %tmp_relay_domains} = values %tmp_relay_domains;" >> $TMP_FILE
-		fi
+		# If you enable this, it will tag ***SPAM*** twice... not very good looking :)
+	 	# if [ -e "$PATH_DTC_ETC/postfix_relay_domains" ]; then
+	 	#	echo "my %tmp_relay_domains;" >> $TMP_FILE
+		#	echo "read_hash(\\%tmp_relay_domains, '$PATH_DTC_ETC/postfix_relay_domains');" >> $TMP_FILE
+		#	echo "# now merge the two hashes" >> $TMP_FILE
+		#	echo "@local_domains{keys %tmp_relay_domains} = values %tmp_relay_domains;" >> $TMP_FILE
+		# fi
 
                 echo "# End of DTC configuration $VERSION" >> $TMP_FILE
                 echo "1;  # insure a defined return" >> $TMP_FILE
