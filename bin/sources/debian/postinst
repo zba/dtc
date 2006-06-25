@@ -120,6 +120,8 @@ db_get dtc/conf_dnsbl_list
 conf_dnsbl_list=$RET
 db_get dtc/conf_eth2monitor
 conf_eth2monitor=$RET
+db_get dtc/conf_report_setup_stat
+conf_report_setup=$RET
 
 #db_unregister dtc/conf_gen_ssl_cert
 #db_unregister dtc/conf_cert_passphrase

@@ -187,6 +187,22 @@ if [ -z "$conf_eth2monitor" ] ; then
 	fi
 fi
 
+echo "In order to know how many DTC setup has been done, the"
+echo "installer can report to GPLHost web site. No data is collected"
+echo "exept the operating system (Debian in your case), IP address"
+echo "of the setup (we use the IP as an identifier so we don't account"
+echo "upgrades and/or reinstallations, we wont ever use it for commercial"
+echo "purpose)."
+echo "You need an internet connection and wget installed to report. Do you"
+echo "wish to allow DTC installer to report the setup of the control panel?"
+echo -n 'Allow installer to report setup? [Yn]:'
+read report_setup
+if [ ""$valid_infos = "y" -o ""$valid_infos = "Y" -o ""$valid_infos = "" ] ; then
+	conf_report_setup="true";
+else
+	conf_report_setup="false";
+fi
+
 # Deamon path configuration
 echo ""
 echo ""

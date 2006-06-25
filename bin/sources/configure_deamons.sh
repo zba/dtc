@@ -2014,6 +2014,22 @@ else
 	echo "done!"
 fi
 
+if [ ""$conf_report_setup = "true" ]; then
+	if [ -e /usr/bin/wget ] ; then
+		WGET="/usr/bin/wget"
+	else
+		WGET=`which wget`
+	fi
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Reporting install using $WGET -b -q --output-document=/dev/null http://www.gplhost.com/dtc-install-stats.php?ostype=${UNIX_TYPE}"
+	fi
+	$WGET -b -q --output-document=/dev/null "http://www.gplhost.com/dtc-install-stats.php?ostype=${UNIX_TYPE}" >/dev/null
+else
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Not reporting install this time..."
+	fi
+fi
+
 echo ""
 echo "Browse to: \"http://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/\""
 echo "    or to: \"https://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/\""

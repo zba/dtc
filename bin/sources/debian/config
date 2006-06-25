@@ -63,6 +63,7 @@ if [ -z "$conf_eth2monitor" ] ; then
 	db_set dtc/conf_eth2monitor "${ALL_IFACES}"
 fi
 db_input high dtc/conf_eth2monitor
+db_input medium dtc/conf_report_setup_stat
 db_go
 
 exit 0;

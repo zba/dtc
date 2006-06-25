@@ -240,3 +240,16 @@ Type: string
 Description: Network devices to monitor
  Please enter here all the network devices you wish to
  be monitored by the RRDTools graphing.
+
+Template: dtc/conf_report_setup_stat
+Type: boolean
+Default: true
+Description: Allow to report anonymous statistc
+ In order to know how many DTC setup has been done, the
+ installer can report to GPLHost web site. No data is collected
+ exept the operating system (Debian in your case), IP address
+ of the setup (we use the IP as an identifier so we don't account
+ upgrades and/or reinstallations, we wont ever use it for commercial
+ purpose).
+ You need an internet connection and wget installed to report. Do you
+ wish to allow DTC installer to report the setup of the control panel?
