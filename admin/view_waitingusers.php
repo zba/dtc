@@ -37,6 +37,7 @@ if($n != 1){
 	$newu_infos .= "<h4><u>".$a["comp_name"].":</u> ";
 	$newu_infos .= $a["family_name"].", ".$a["first_name"]."</h4>";
 	$newu_infos .= "<b>Login:</b> ".$a["reqadm_login"]."<br>";
+	$newu_infos .= "<b>Password:</b> ".$a["reqadm_pass"]."<br>";
 	$newu_infos .= "<b>Domain name:</b> ".$a["domain_name"]."<br>";
 	$newu_infos .= "<b>Email:</b> ".$a["email"]."<br>";
 	$newu_infos .= "<b>Phone:</b> ".$a["phone"]."<br>";
