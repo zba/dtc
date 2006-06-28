@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: strings.php,v 1.15 2006/05/13 08:37:39 seeb Exp $
+ * @version $Id: strings.php,v 1.16 2006/06/28 07:03:04 thomas Exp $
  * @abstract Arrays for translations admin panel to many laguages
  * 
  * adedd swedish to array by seeb <seeb@seeb.net.pl>
@@ -22,7 +22,7 @@ Ha szeretné áttranszferáltatni erre a szerverre, kattintson ide.",
 "zh" => "ÄúµÄÓòÃûÒÑ±»Ê¹ÓÃ(²»ÔÚÕâ¸öÍøÒ³),Ö¸ÁîÓòÃûµÄ×ªÈÃ,Çëµã»÷",
 "pl" => "Twoja domena zosta³a zarejestrowana na innym serwerze ",
 "se" => "TRANS SVENSKA",
-"es" => "El nombre de dominio ha sido registrado con otro registrador. Para pedir el traslado, click aquí",
+"es" => "Su dominio ha sido registrado con otro registrador. Para pedir el traslado, click aqu&iacute;",
 "pt" => "O seu dominio foi registado noutro local. Para pedir a alteração clique "
 );
 
@@ -41,7 +41,7 @@ il whois verso questi DNS:",
 "zh" => "Èç¹ûÄúÏ£Íû±£ÁôÏÖÐÐµÄ×¢²áÔ±,Äú±ØÐë½«ÏÂÁÐµÄ DNS ÊäÈëÄúµÄ whois",
 "pl" => "Je¶li chcesz pozostawiæ aktualnego rejestratora, mo¿esz  to zrobiæ w zak³adce DNS:DTCRM ",
 "se" => "TRANS SVENSKA",
-"es" => "Si deseas mantener el registrador actual, tienes que modificar las DNS para que apunten a:",
+"es" => "Si desea mantener el registrador actual debe apuntar la informaci&oacute;n WHOIS a estos DNS:",
 "pt" => "Caso queira manter o seu actual Registar, queira fazer as seguintes alterações de DNS :"
 );
 
@@ -86,7 +86,7 @@ $txt_dtcrm_your_domain_name_whois_data = array(
 "zh" => "ÄúµÄÓòÃûwhoisÊý¾Ý ",
 "se" => "TRANS SVENSKA",
 "pl" => "Dane <i>whois</i> twojej domeny",
-"es" => "Datos para WHOIS de tu dominio",
+"es" => "Datos WHOIS de su dominio",
 "pt" => "Dados para o WHOIS do seu dominio"
 );
 
@@ -101,7 +101,7 @@ $txt_dtcrm_what_subzone_do_you_want_to_use = array(
 "zh" => "ÄúÏ£ÍûÊ¹ÓÃÄÄÒ»¸ö¸±ÓòÃû(ÀýÈç: \"ns1\"):",
 "pl" => "Jakiej dodatkowej strefy chcesz u¿yæ?(np: \"ns1\") ",
 "se" => "TRANS SVENSKA",
-"es" => "¿Qué subzona deseas usar? (ejemplo: \"ns1\"):",
+"es" => "¿Qué subzona desea usar? (ejemplo: &quot;ns1&quot;):",
 "pt" => "Qual subzona quer usar (Exemplo: \"ns1\") :"
 );
 
@@ -116,7 +116,7 @@ $txt_dtcrm_edit_a_name_server = array(
 "zh" => "±à¼­ÓòÃû·þÎñÆ÷ ",
 "pl" => "Edycja serwerów nazw",
 "se" => "TRANS SVENSKA",
-"es" => "Editar servidor de nombres",
+"es" => "Editar un servidor de nombres",
 "pt" => "Editar servidores de nomes"
 );
 
@@ -131,7 +131,7 @@ $txt_dtcrm_name_server_hostname = array(
 "zh" => "ÓòÃû·þÎñÆ÷µçÄÔÃû",
 "pl" => "Nazwa serwera nazw (nie IP) ",
 "se" => "TRANS SVENSKA",
-"es" => "nombre del host de servidor de nombres",
+"es" => "nombre de host de servidor de nombres",
 "pt" => "Nome do servidor \"hostname\" "
 );
 
@@ -146,7 +146,7 @@ $txt_wrong_user_or_password_or_timeout_expire = array(
 "zh" => "ÓÃ»§´íÎó»òÃÜÂë´íÎó,»òÕßÒÑ¹ýÆÚ! ",
 "pl" => "Z³e has³o lub nazwa u¿ytkownika, mo¿liwe przedawnienie has³a ",
 "se" => "TRANS SVENSKA",
-"es" => "Nombre de usuario o contraseña incorrecta, o tiempo de ejecución excedido",
+"es" => "Nombre de usuario o contrase&ntilde;a incorrectos o tiempo de ejecuci&oacute;n excedido",
 "pt" => "Nome do utilizador ou palavra chave incorrecto" 
 );
 
@@ -161,7 +161,7 @@ $txt_dtcrm_registration_of_name_server_successfull = array(
 "zh" => "ÒÑ³É¹¦×¢²áÄúµÄÓòÃû·þÎñÆ÷ ",
 "pl" => "Rejestracja serwerów dns powiod³a siê ",
 "se" => "TRANS SVENSKA",
-"es" => "Registro de dominio correcto.",
+"es" => "Registro del servidor de nombres correcto.",
 "pt" => "O seu dominio foi registado correctamente"
 );
 
@@ -177,7 +177,7 @@ $txt_dtcrm_registration_of_name_server_failed = array(
 "zh" => "×¢²áÄúµÄÓòÃû·þÎñÆ÷Ê§°Ü ",
 "pl" => "Rejestracja serwerów dns nie powiod³a siê ",
 "se" => "TRANS SVENSKA",
-"es" => "Error en el registro de dominio",
+"es" => "Registro de su servidor de nombres fallido",
 "pt" => "O regisot do seu dominio falhou"
 );
 
@@ -192,7 +192,7 @@ $txt_dtcrm_deletion_of_name_server_succesfull = array(
 "zh" => "ÒÑ³É¹¦É¾³ýÄúµÄÓòÃû·þÎñÆ÷",
 "pl" => "Deklaracja serwera nazw powiod³a siê ",
 "se" => "TRANS SVENSKA",
-"es" => "Eliminación del servidor de nombres correcto",
+"es" => "Eliminaci&oacute;n correcta del servidor de nombres",
 "pt" => "O dominio foi eliminado"
 );
 
@@ -207,7 +207,7 @@ $txt_dtcrm_edition_of_name_server_succesfull = array(
 "zh" => "ÒÑ³É¹¦±à¼­ÄúµÄÓòÃû·þÎñÆ÷ ",
 "pl" => "Edycja serwera nazw powiod³a siê",
 "se" => "TRANS SVENSKA",
-"es" => "Edición del servidor de nombres correcto",
+"es" => "Edici&oacute;n del servidor de nombres correcta",
 "pt" => "A alteração do servidor de nome foi efectuada correctamente" 
 );
 
@@ -222,7 +222,7 @@ $txt_dtcrm_edition_of_name_server_failed = array(
 "zh" => "±à¼­ÄúµÄÓòÃû·þÎñÆ÷Ê§°Ü ",
 "pl" => "Edycja serwera nazw nie powiod³a siê",
 "se" => "TRANS SVENSKA",
-"es" => "Edición del servidor de nombres fallido",
+"es" => "Edici&oacute;n del servidor de nombres fallida",
 "pt" => "A alteração do servidor de nome falhou"
 );
 
@@ -237,7 +237,7 @@ $txt_dtcrm_deletion_of_name_server_failed = array(
 "zh" => "É¾³ýÄúµÄÓòÃû·þÎñÆ÷Ê§°Ü ",
 "pl" => "Deklaracja serwera nazw nie powiod³a siê  ",
 "se" => "TRANS SVENSKA",
-"es" => "Eliminación del servidor de nombres fallido",
+"es" => "Eliminaci&oacute;n del servidor de nombres fallida",
 "pt" => "A eliminação do servidor de nome falhou"
 );
 
@@ -252,7 +252,7 @@ $txt_dtcrm_list_of_registred_name_server = array(
 "zh" => "ÄúÒÑ×¢²áµÄÓòÃû·þÎñÆ÷Ä¿Â¼ ",
 "pl" => "Lista Twoich serwerów DNS ",
 "se" => "TRANS SVENSKA",
-"es" => "Listado de los servidores de nombres registrados",
+"es" => "Listado de sus servidores de nombres registrados",
 "pt" => "lista dos servidores de nomes foi registada"
 );
 
@@ -267,7 +267,7 @@ $txt_dtcrm_register_new_name_server = array(
 "zh" => "×¢²áÐÂÓòÃû·þÎñÆ÷ ",
 "pl" => "Nowy serwer nazw: ",
 "se" => "TRANS SVENSKA",
-"es" => "Registrar nuevo servidor de nombres",
+"es" => "Registrar un nuevo servidor de nombres",
 "pt" => "Registar novo servidor de nomes" 
 );
 
@@ -298,7 +298,7 @@ server ai registri",
 "zh" => "Ñ¡ÔñÒ»¸öÓòÃû ",
 "pl" => "Wybierz jeden z twoich DNS\'ow ",
 "se" => "TRANS SVENSKA",
-"es" => "Selecciona un nombre de dominio para añadir un servidor de nombres a los registros",
+"es" => "Seleccione uno de sus nombres de dominio para a&ntilde;adir el servidor de nombres a los registros",
 "pt" => "Selecionar um dominio para adicionar um servidor de nomes aos registos :"
 );
 
@@ -313,7 +313,7 @@ $txt_dtcrm_ip_addr_of_that_name_server = array(
 "zh" => "Õâ¸öÓòÃû·þÎñÆ÷µÄIPµØÖ·",
 "pl" => "Adres IP serwera nazw (DNS)",
 "se" => "TRANS SVENSKA",
-"es" => "Dirección IP del servidor de nombres",
+"es" => "Direcci&oacute;n IP del servidor de nombres",
 "pt" => "Endereço IP desse servidor de nomes :"
 );
 
@@ -328,7 +328,7 @@ $txt_dtcrm_what_to_do = array(
 "zh" => "ÄúÏëÌí¼ÓÊ²Ã´:",
 "pl" => "Co chcesz dodaæ:",
 "se" => "TRANS SVENSKA",
-"es" => "¿Qué quieres añadir?:",
+"es" => "¿Qu&eacute; desea a&ntilde;adir?:",
 "pt" => "O que quer adicionar :"
 );
 
@@ -359,7 +359,7 @@ $txt_dtcrm_hosting_only = array(
 "zh" => "½öÍø¹Ü",
 "pl" => "Tylko hosting",
 "se" => "TRANS SVENSKA",
-"es" => "Sólo hosting",
+"es" => "S&oacute;lo hosting",
 "pt" => "Apenas alojamento"
 );
 
@@ -375,7 +375,7 @@ aggiungere:",
 "zh" => "ÇëÄúÏ£ÍûÌí¼ÓµÄÓòÃû:",
 "pl" => "Proszê podaæ nazwê domeny do dodania:",
 "se" => "TRANS SVENSKA",
-"es" => "Por favor introduce el nombre de dominio que te gustaría añadir:",
+"es" => "Por favor introduzca el nombre de dominio que desea a&ntilde;adir:",
 "pt" => "Por favor indiqye o dominio que quer adicionar :"
 );
 
@@ -392,7 +392,7 @@ $txt_dtcrm_your_domain_will_be_soon = array(
 "zh" => "ÄúµÄÓòÃû²»¾Ã½«ÉúÐ§ ",
 "pl" => "Twoja domena zostanie pó¼niej sprawdzona ",
 "se" => "TRANS SVENSKA",
-"es" => "Tu nombre de dominio será validado en breve",
+"es" => "Su nombre de dominio ser&aacute; validado en breve",
 "pt" => "O seu dominio será brevemente validado"
 );
 
@@ -427,10 +427,10 @@ domini senza la validazione da parte dell'amministratore, scrivi a:",
 Aktualnie nie masz uprawnieñ do dodawania domen. Je¶li czêsto dodajesz domeny, mo¿esz zapytaæ administratora o mo¿liwo¶æ nadania uprawnieñ do automatycznego dodawania domen.
 Aby mieæ mo¿liwo¶æ dodawania domen bez sprawdzania przez administratora proszê napisaæ do: ",
 "se" => "TRANS SVENSKA",
-"es" => "En breve el administrador atenderá tu petición y validará el añadireste dominio
-a tu cuenta. De momento no tienes sufucientes permisos para añadir nombres de dominio.
-Si añades nombres de dominio de forma frequente, puedes pedirle al administrador que 
-te de permisos. Para añadir un nuevo nombre de dominio para alojar sin registro, escribe a:",
+"es" => "En breve un administrador atender&aacute; su petici&oacute;n y validar&aacute; el agregado de este 
+dominio a su cuenta. De momento Ud. no tiene suficientes privilegios para a&ntilde;adir nombres de 
+dominio autom&aacute;ticamente. Para poder a&ntilde;adir dominios no validados por el 
+administrador o sin registrar debe escribir a::",
 "pt" => "Assim que o administrador verifique este pedido e o valide 
 este dominio será adicionado a sua conta.
 Neste momentovocê  não tem permissões para adicionar dominios, poderá pedir para lhe atribuirem permissões para que  possa 
@@ -448,7 +448,7 @@ $txt_dtcrm_add_another_domain = array(
 "zh" => "Äú¿ÉÒÔÌí¼ÓÁíÍâÒ»¸öÓòÃû:",
 "pl" => "Mo¿esz dodaæ kolejn± domenê:  ",
 "se" => "TRANS SVENSKA",
-"es" => "Puedes añadir otro nombre de dominio",
+"es" => "Puede a&ntilde;adir otro nombre de dominio",
 "pt" => "Você poderá adicionar outro dominio:"
 );
 
@@ -464,7 +464,7 @@ dominio?",
 "zh" => "ÄúÒª¹ý»§Ò»¸öÏÖ´æµÄÓòÃû»òÕß×¢²áÒ»¸öÐÂµÄ?",
 "pl" => "Czy chcesz przetransferowaæ istniej±c± domenê lub zarejestrowaæ now±? ",
 "se" => "TRANS SVENSKA",
-"es" => "¿Quieres transferir un dominio existente o añadir uno nuevo?",
+"es" => "¿Desea transferir un dominio existente o registrar uno nuevo?",
 "pt" => "Quer tranferir um dominio existente ou registar um novo?"
 );
 
@@ -508,7 +508,7 @@ $txt_dtcrm_title_register_a_domain_name = array(
 "de" => "TRANS ",
 "zh" => "×¢²áÒ»¸öÓòÃû ",
 "pl" => "Rejestruj domenê",
-"es" => "Registrar nombre de dominio",
+"es" => "Registrar un nombre de dominio",
 "pt" => "Registar um dominio"
 );
 
@@ -538,7 +538,7 @@ $txt_dtcrm_step2_enter_whois_info = array(
 "zh" => "²½Öè2: ¼üÈëwhoisÐÅÏ¢",
 "pl" => "Krok 2:Wprowadzanie danych o rejestruj±cym ",
 "se" => "TRANS SVENSKA",
-"es" => "Paso 2:Introducir información para WHOIS",
+"es" => "Paso 2: Introducir informaci&oacute;n WHOIS",
 "pt" => "Passo 2: Informação pra Whois"
 );
 
@@ -553,7 +553,7 @@ $txt_crm_enter_the_domain_name_you_wish_to_register = array(
 "zh" => "¼üÈëÄúÒª×¢²áµÄÓòÃû",
 "pl" => "Wprowad¼ nazwê domeny, ktor± chcesz zarejestrowaæ ",
 "se" => "TRANS SVENSKA",
-"es" => "Introduce el nombre de dominio que deseas registrar :",
+"es" => "Indique el nombre de dominio que desea registrar :",
 "pt" => "Indique o dominio que quer registar :"
 );
 
@@ -581,9 +581,9 @@ dominio da hostare senza la registrazione del nome, scrivi a: ",
 "pl" => "Obecnie nie masz uprawnieñ do dodawania domen. Je¶li czêsto dodajesz domeny, mo¿esz zapytaæ administratora jak to zrobiæ.
 Aby mieæ mo¿liwo¶æ dodawania domen do hosta bez rejestracji domen, proszê napisaæ do: ",
 "se" => "TRANS SVENSKA",
-"es" => "De momento no tienes sufucientes permisos para añadir nombres de dominio.
-Si añades nombres de dominio de forma frequente, puedes pedirle al administrador que 
-te de permisos. Para añadir un nuevo nombre de dominio para alojar sin registro, escribe a:",
+"es" => "De momento Ud. no tiene suficientes privilegios para a&ntilde;adir nombres de dominio.
+Si desea alojar un nuevo nombre de dominio sin registrarlo puede pedirle al administrador que
+lo haga escribiendo a:",
 "pt" => "Neste momento você  não tem permissões para adicionar dominios, poderá pedir para lhe atribuirem permissões para que  possa 
 realizar esta operação automaticamente escrevendo para :"
 );
@@ -601,7 +601,7 @@ scegli un altro nome.",
 "zh" => "Äú¼üÈëµÄÓòÃû´íÎó,Çë³¢ÊÔÁíÍâÒ»¸öÓòÃû",
 "pl" => "Nazwa domeny ma nieprawid³owy format, proszê wprowadziæ inn± nazwê ",
 "se" => "TRANS SVENSKA",
-"es" => "El nombre de dominio que has introducido es incorrecto. Por favor introduce uno diferente",
+"es" => "El formato del nombre de dominio introducido es incorrecto. Por favor elija uno diferente",
 "pt" => "o nome do dominio é inválido, verifique sff."
 );
 
@@ -617,7 +617,7 @@ altro nome. ",
 "zh" => "Õâ¸öÓòÃûÒÑ±»Ê¹ÓÃ,Çë³¢ÊÔÁíÍâÒ»¸öÓòÃû ",
 "pl" => "Hostujemy ju¿ t± domenê , proszê wybraæ inn± nazwê. ",
 "se" => "TRANS SVENSKA",
-"es" => "Este dominio ya se aloja en este servidor. Por favor selecciona otro nombre",
+"es" => "Este dominio ya se aloja en este servidor. Por favor seleccione otro nombre",
 "pt" => "Este dominio ja se encontra alojado neste servidor, por favor escolha outro"
 );
 
@@ -632,7 +632,7 @@ $txt_dtcrm_domain_name_now_ready = array(
 "zh" => "ÄúµÄÓòÃûÒÑ³É¹¦",
 "pl" => "Twoja domena jest gotowa do u¿ycia:",
 "se" => "TRANS SVENSKA",
-"es" => "Tu nombre de dominio ya está disponible",
+"es" => "Su nombre de dominio ya est&aacute; disponible",
 "pt" => "O seu dominio está configurado"
 );
 
@@ -648,7 +648,7 @@ en cliquant ici :",
 "zh" => "ÄúÏÖÔÚ¿ÉÒÔ¼ì²éÓòÃûµÄÅäÖÃ, Çëµã»÷ÕâÀï:",
 "pl" => "Teraz mo¿esz przej¶æ do sprawdzenia ustawieñ klikaj±c tu: ",
 "se" => "TRANS SVENSKA",
-"es" => "Ahora puedes comprobar la configuración clickando aquí",
+"es" => "Ahora puede comprobar su configuraci&oacute;n haciendo click aqu&iacute;",
 "pt" => "Poderá agora verificar a sua configuração clicando aqui :"
 );
 
@@ -663,7 +663,7 @@ $txt_dtcrm_or_you_can_add_another_domain = array(
 "zh" => "»òÕßÄú¿ÉÒÔÌí¼ÓÁíÍâÒ»¸öÓòÃû ",
 "pl" => "Mo¿esz dodaæ kolejn± domenê ",
 "se" => "TRANS SVENSKA",
-"es" => "O puedes añadir otro nombre de dominio",
+"es" => "O puede a&ntilde;adir otro nombre de dominio",
 "pt" => "Ou poderá agora configurar outro dominio :"
 );
 
@@ -679,7 +679,7 @@ domini: per favore riprova più tardi",
 "zh" => "ÁªÏµ²»µ½ÓòÃû×¢²á·þÎñÆ÷:ÇëÉÔºòÔÙ³¢ÊÔ!",
 "pl" => "Nie mo¿na po³±czyæ siê z globalnym rejestatorem",
 "se" => "TRANS SVENSKA",
-"es" => "No se ha podido conectar al servidor de registro de nombres. Intentalo más tarde",
+"es" => "No se ha podido conectar al servidor de registro de nombres. Int&eacute;ntelo m&aacute;s tarde",
 "pt" => "Não foi possivel contactar o servidor de registos, por favor tente mais tarde! "
 );
 
@@ -694,7 +694,7 @@ $txt_sorry_domain_name_not_available1 = array(
 "zh" => "¶Ô²»Æð,ÄúµÄÓòÃû",
 "pl" => "Przepraszamy, domena jest niedostêpna",
 "se" => "TRANS SVENSKA",
-"es" => "Lo sentimos, el nombre de dominio",
+"es" => "Lamentablemente el nombre de dominio",
 "pt" => "Desculpe, o dominio "
 );
 
@@ -710,7 +710,7 @@ registrazione dice: ",
 "zh" => "ÎÞÐ§×¢²á,×¢²á·þÎñÆ÷·µ»Ø: ",
 "pl" => "do rejestracji, Serwer rejestruj±cy zwróci³: ",
 "se" => "TRANS SVENSKA",
-"es" => "no está disponiblre para registro. El servidor de registros devolvió",
+"es" => "no est&aacute; disponible para registrar. El servidor de registros devolvió",
 "pt" => "não esta disponivel para o registo. O servidor de registos returnou :"
 );
 
@@ -728,7 +728,7 @@ registrare il nome a dominio.",
 "zh" => "ÇëÑ¡ÔñÈý¸öÁªÏµÃûÀ´×¢²áÕâ¸öÓòÃû ",
 "pl" => "Proszê wybraæ trzy podrêczne kontakty, których chesz u¿ywaæ do rejestracji domen.",
 "se" => "TRANS SVENSKA",
-"es" => "Por favor selectiona los 3 gestores de contacto que quieras usar para registrar el nombre de dominio",
+"es" => "Por favor seleccione 3 contactos responsables que quiera usar para registrar el nombre de dominio",
 "pt" => "Por favor selecione 3 contactos para usar no registo desse dominio."
 );
 
@@ -743,7 +743,7 @@ $txt_dtcrm_select_how_long_you_want_to_register = array(
 "zh" => "Ñ¡Ôñ×¢²áÕâ¸öÓòÃûµÄÆÚÏÞ ",
 "pl" => "Wybierz na jak d³ugo chcesz zarejestrowaæ domenê: ",
 "se" => "TRANS SVENSKA",
-"es" => "Selecciona la duración del registro del dominio",
+"es" => "Seleccione la duración del registro del dominio",
 "pt" => "Selecione o tempo do registo :"
 );
 
@@ -758,7 +758,7 @@ $txt_dtcrm_year = array(
 "zh" => "Äê ",
 "pl" => "Rok ",
 "se" => "TRANS SVENSKA",
-"es" => "año",
+"es" => "a&ntilde;o",
 "pt" => "ano"
 );
 
@@ -773,7 +773,7 @@ $txt_dtcrm_years = array(
 "zh" => "Äê ",
 "pl" => "lata ",
 "se" => "TRANS SVENSKA",
-"es" => "años",
+"es" => "a&ntilde;os",
 "pt" => "anos"
 );
 
@@ -788,7 +788,7 @@ $txt_dtcrm_you_dont_have_a_client_id = array(
 "zh" => "ÄúÃ»ÓÐ¿Í»§ID.ÇëÁªÏµÎÒÃÇ. ",
 "pl" => "Nie masz ID klienta. Prosimy o kontakt. ",
 "se" => "TRANS SVENSKA",
-"es" => "Ni tienes identificación de cliente. Ponte el contacto con el administrador",
+"es" => "No tiene ID de cliente. Por favor contacte al administrador",
 "pt" => "Você não tem nenhum ID de cliente. Por favor contacte nos"
 );
 
@@ -818,7 +818,7 @@ $txt_dtcrm_remaining_on_your_account = array (
 "zh" => "ÄúÕÊ»§µÄÊ£Óà¿î¶î ",
 "pl" => "Pozostalo na twoim koncie: ",
 "se" => "TRANS SVENSKA",
-"es" => "Restante en tu cuenta",
+"es" => "Restante en su cuenta",
 "pt" => "Restante na sua conta : "
 );
 
@@ -855,8 +855,8 @@ bottone sotto per pagare.",
 "zh" => "Ä¿Ç°ÄúµÄÕÊ»§Óà¶î²»×ã,Äú½«½øÈë¸¶·ÑÏµÍ³, Çëµã»÷ÏÂ·½Ö§¸¶ ",
 "pl" => "Aktualnie nie posiadasz ¶rodków na koncie by dokoñczyæ transakcjê. Zostaniesz przekierowany do systemu p³atno¶ci. ",
 "se" => "TRANS SVENSKA",
-"es" => "Actualmente no tienes suficientes fondos en tu cuenta. Se te redireccionará al
-sistema de pago. Pulsa en el botón para pagar.",
+"es" => "Actualmente no tiene suficientes fondos en su cuenta. Se lo redireccionar&aacute; al
+sistema de pago. Pulse en el bot&oacute;n indicado para pagar.",
 "pt" => "Neste momento não tem crédito suficiente, será redirecionado para o sistema de pagamentos.
 Queira clica no botão seguinte para efectuar o pagamento." 
 );
@@ -877,8 +877,8 @@ registrazione. Premi il bottone di conferma per procedere.",
 "zh" => "ÄúµÄÕÊ»§ÓµÓÐ×ã¹»µÄ×Ê½ðÀ´×¢²á,Òª¼ÌÐøÇëµã»÷È·ÈÏ¼ü ",
 "pl" => "Aktualnie posiadasz wystarczaj±co funduszy na koncie by zakoñczyæ rejestracjê. Wci¶nij potwierdzenie rejestracji by zakoñczyæ. ",
 "se" => "TRANS SVENSKA",
-"es" => "Tienes fondos suficientes en tu cuenta para proseguir con el registro. Pulsa
-el botón de confirmar para continuar",
+"es" => "Ud. tiene fondos suficientes en su cuenta para proceder con el registro. Pulse
+el bot&oacute;n de confirmar para continuar",
 "pt" => "Você tem credito suficente para efectuar o pagamento. Tem de confirmar o pedido clicando no botão de confirmação"
 );
 
@@ -893,7 +893,7 @@ $txt_dtcrm_button_paiement_done_checkout = array (
 "zh" => "¸¶¿îÍê±Ï,Çë¼ìÑé ",
 "pl" => "Dokonano p³atno¶ci, Proszê sprawdziæ ",
 "se" => "TRANS SVENSKA",
-"es" => "Pago realizado. Se efectuará la comprobación",
+"es" => "Pago realizado. Continuar",
 "pt" => "Pagamento efectuado, deixe me efectuar a ultima validação."
 );
 
@@ -938,7 +938,7 @@ $txt_dtcrm_registration_succesfull = array (
 "zh" => "×¢²á³É¹¦ ",
 "pl" => "Rejestracja zakonczy³a siê powodzeniem",
 "se" => "TRANS SVENSKA",
-"es" => "Registro realizado satisfactoriamente",
+"es" => "Registro exitoso",
 "pt" => "O registo foi efectuado correctamente"
 );
 
@@ -969,7 +969,7 @@ database di hosting",
 "zh" => "³É¹¦Ìí¼ÓÄúµÄÓòÃûµ½ÍøÂç¹ÜÀíÊý¾Ý¿â ",
 "pl" => "Dodano Twoj± domenê do bazy utrzymywanych na naszym serwerze",
 "se" => "TRANS SVENSKA",
-"es" => "Dominio añadido satisfactoriamente a la base de datos de alojamiento",
+"es" => "Dominio a&ntilde;adido satisfactoriamente a la base de datos",
 "pt" => "O seu dominio foi adicionado a base de dados de alojamentos"
 );
 
@@ -999,7 +999,7 @@ $txt_dtcrm_here = array (
 "zh" => "ÕâÀï ",
 "pl" => "tutaj ",
 "se" => "TRANS SVENSKA",
-"es" => "aquí",
+"es" => "aqu&iacute;",
 "pt" => "aqui"
 );
 
@@ -1014,7 +1014,7 @@ $txt_dtcrm_to_refresh_the_menu_or_add_another_domain = array(
 "zh" => "»Ö¸´²Ëµ¥»òÕßÌí¼ÓÁíÍâÒ»¸öÓòÃû ",
 "pl" => "aby od¶wie¿yæ menu albo dodaæ nastêpn± domenê. ",
 "se" => "TRANS SVENSKA",
-"es" => "Para refrescar el menú o añadir otro dominio.",
+"es" => "Para actualizar el men&uacute; o a&ntilde;adir otro dominio.",
 "pt" => "para fazer \"refresh\" ou para adicionar outro dominio."
 );
 
@@ -1029,7 +1029,7 @@ $txt_dtcrm_enter_the_domain_name_to_transfer = array(
 "zh" => "Çë½øÈëÒ»¸öÄúÏ£Íû×ªÕÊµÄÓòÃû ",
 "pl" => "Proszê wprowadziæ nazwê domeny, któr± chcesz przetransferowaæ:",
 "se" => "TRANS SVENSKA",
-"es" => "Introduce el dominio a transferir",
+"es" => "Por favor ingrese el dominio a transferir",
 "pt" => "Indique por favor o dominio a tranferir : "
 );
 
@@ -1046,7 +1046,7 @@ non risponde affermativamente.",
 "zh" => "×¢²á·þÎñÆ÷Ã»ÓÐ³É¹¦´ð¸´ ",
 "pl" => "TRANSFER NIEUDANY: serwer rejestruj±cy nie by³ w stanie odpowiedzieæ.",
 "se" => "TRANS SVENSKA",
-"es" => "COMPROBACIÓN PARA TRANSFERENCIA FALLIDA: El servidor de registros no respondió satisfactoriamente",
+"es" => "COMPROBACI&Oacute;N PARA TRANSFERENCIA FALLIDA: El servidor de registros no respondi&oacute; satisfactoriamente",
 "pt" => "A validação de transferência FALHOU: O servidor não retornou os valores correctamente."
 );
 
@@ -1061,7 +1061,7 @@ $txt_dtcrm_transfer_check_failed = array (
 "zh" => "´«ÊäÐ£ÑéÊ§°Ü ",
 "pl" => "SPRAWDZENIE TRANSFERU NIEUDANE ",
 "se" => "TRANS SVENSKA",
-"es" => "COMPROBACIÓN PARA TRANSFERENCIA FALLIDA",
+"es" => "COMPROBACI&Oacute;N DE TRANSFERENCIA FALLIDA",
 "pt" => "A validação de transferência FALHOU"
 );
 
@@ -1076,7 +1076,7 @@ $txt_dtcrm_transfer_check_successfull = array (
 "zh" => "´«ÊäÐ£Ñé³É¹¦ ",
 "pl" => "TRANSFER ZAKONCZONY POWODZENIEM ",
 "se" => "TRANS SVENSKA",
-"es" => "COMPROBACIÓN PARA TRANSFERENCIA SATISFACTORIA",
+"es" => "COMPROBACI&Oacute;N DE TRANSFERENCIA SATISFACTORIA",
 "pt" => "A validação de transferência foi validada CORRECTAMENTE"
 );
 
@@ -1091,7 +1091,7 @@ $txt_dtcrm_step2_select_contact_transfer = array(
 "zh" => "²½Öè2:Ñ¡ÔñÓòÃû×ªÕÊµÄÁªÏµ ",
 "pl" => "Krok 2: wybierz kontakt dla transferu domeny ",
 "se" => "TRANS SVENSKA",
-"es" => "Paso 2: Selecciona contactos para la transferencia de dominio",
+"es" => "Paso 2: Seleccionar contactos para la transferencia de dominio",
 "pt" => "Passo 3: Selecione os contactos para a tranferencia do dominio" 
 );
 
@@ -1121,7 +1121,7 @@ $txt_dtcrm_transaction_failed_try_again = array(
 "zh" => "´¦ÀíÊ§°Ü,ÇëÔÙÊÔÒ»´Î! ",
 "pl" => "Transakcja nieudana, proszê spróbowaæ ponownie!",
 "se" => "TRANS SVENSKA",
-"es" => "Transacción fallida. Por favor intentalo de nuevo",
+"es" => "Transacci&oacute;n fallida. Por favor int&eacute;ntelo de nuevo",
 "pt" => "A comunicação com o gateway falhou, tente mais tarde!"
 );
 
@@ -1136,7 +1136,7 @@ $txt_dtcrm_your_account_has_been_refund = array(
 "zh" => "ÄúµÄÕÊ»§ÒÑ±»ÍË¿î ",
 "pl" => "Twoje konto zosta³o zasilone!",
 "se" => "TRANS SVENSKA",
-"es" => "Tu cuenta ha sido pagada",
+"es" => "Su cuenta ha sido acreditada",
 "pt" => "A sua conta foi apagada!"
 );
 
@@ -1181,7 +1181,7 @@ $txt_dtcrm_step1_check_domain_is_transferable = array(
 "zh" => "²½Öè1:¼ì²éÓòÃûÊÇ·ñ¿É×ªÒÆ ",
 "pl" => "Krok 1: Sprawdz czy domenê mo¿na przetransferowaæ",
 "se" => "TRANS SVENSKA",
-"es" => "Paso 1: Comprobar si el dominio se puede transferir",
+"es" => "Paso 1: Comprobar si el dominio es transferible",
 "pt" => "Passo 1: Vereficar se o seu dominio pode ser tranferido"
 );
 
@@ -1196,7 +1196,7 @@ $txt_dtcrm_create_new_handle = array(
 "zh" => "½¨Á¢Ò»¸öÐÂ¾ä±ú ",
 "pl" => "Tworzenie nowego identyfikatora",
 "se" => "TRANS SVENSKA",
-"es" => "Crear un nuevo manejador",
+"es" => "Crear un nuevo contacto",
 "pt" => "Criar um novo contacto"
 );
 
@@ -1211,7 +1211,7 @@ $txt_dtcrm_indicate_required_field = array(
 "zh" => "ÐÇºÅÎª±ØÌîÏî ",
 "pl" => "oznaczona pola s± wymagfane ",
 "se" => "TRANS SVENSKA",
-"es" => "Los campos señalados son obligatorios",
+"es" => "Los campos marcados son obligatorios",
 "pt" => "os campos marcados, são obrigatórios"
 );
 
@@ -1226,7 +1226,7 @@ $txt_dtcrm_name_for_this_handle = array(
 "zh" => "¾ä±úµÄÃû×Ö ",
 "pl" => "Nazwa dla tego identyfikatora: ",
 "se" => "TRANS SVENSKA",
-"es" => "Nombre para este manejador",
+"es" => "Nombre para este contacto",
 "pt" => "Nome para este contacto"
 );
 
@@ -1241,7 +1241,7 @@ $txt_dtcrm_company = array(
 "zh" => "¹«Ë¾: ",
 "pl" => "Firma: ",
 "se" => "TRANS SVENSKA",
-"es" => "Compañia: ",
+"es" => "Empresa: ",
 "pt" => "Empresa : "
 );
 
@@ -1286,7 +1286,7 @@ $txt_dtcrm_street_addr1 = array(
 "zh" => "½ÖµÀµØÖ·1: ",
 "pl" => "Ulica (1)",
 "se" => "TRANS SVENSKA",
-"es" => "Dirección",
+"es" => "Direcci&oacute;n",
 "pt" => "Morada : "
 );
 
@@ -1301,7 +1301,7 @@ $txt_dtcrm_street_addr2 = array(
 "zh" => "½ÖµÀµØÖ·2: ",
 "pl" => "ulica cd.",
 "se" => "gatan",
-"es" => "Dirección 2",
+"es" => "Direcci&oacute;n 2",
 "pt" => "Morada 2 :"
 );
 
@@ -1316,7 +1316,7 @@ $txt_dtcrm_street_addr3 = array(
 "zh" => "½ÖµÀµØÖ·3: ",
 "pl" => "ulica cd. ",
 "se" => "gatan",
-"es" => "Dirección 3",
+"es" => "Direcci&oacute;n 3",
 "pt" => "Morada 3 :"
 );
 
@@ -1331,7 +1331,7 @@ $txt_dtcrm_optional = array(
 "zh" => "Ñ¡Ïî ",
 "pl" => "Opcjopnalnie",
 "se" => "TRANS SVENSKA",
-"es" => "Opcional",
+"es" => "opcional",
 "pt" => "Opcional"
 );
 
@@ -1346,7 +1346,7 @@ $txt_dtcrm_if_applicable = array(
 "zh" => "ÊÇ·ñÊÊÓÃ ",
 "pl" => "je¶li poprawny",
 "se" => "TRANS SVENSKA",
-"es" => "si aplicable",
+"es" => "si es aplicable",
 "pt" => "se for aplicável"
 );
 
@@ -1391,7 +1391,7 @@ $txt_dtcrm_zipcode = array(
 "zh" => "ÓÊ±à: ",
 "pl" => "Kod pocztowy",
 "se" => "TRANS SVENSKA",
-"es" => "Código postal",
+"es" => "C&oacute;digo postal",
 "pt" => "Código Postal : "
 );
 
@@ -1421,7 +1421,7 @@ $txt_dtcrm_phone_number = array(
 "zh" => "µç»°ºÅÂë ",
 "pl" => "Nr telefonu",
 "se" => "TRANS SVENSKA",
-"es" => "Teléfono",
+"es" => "Tel&eacute;fono",
 "pt" => "Telefone : "
 );
 
@@ -1467,7 +1467,7 @@ $txt_dtcrm_email = array (
 "zh" => "µç×ÓÓÊÏäµØÖ·",
 "pl" => "adres e-mail",
 "se" => "TRANS SVENSKA",
-"es" => "Dirección de e-mail: ",
+"es" => "Direcci&oacute;n de e-mail: ",
 "pt" => "Correio electrónico " 
 );
 
@@ -1482,7 +1482,7 @@ $txt_dtcrm_must_be_valid_email = array (
 "zh" => "Õâ¸ö±ØÐèÊÇÓÐÐ§µØÖ·",
 "pl" => "Adres musi byæ prawid³owy",
 "se" => "TRANS SVENSKA",
-"es" => "Ha de ser una dirección de correo válida",
+"es" => "Debe ser una direcci&oacute;n de correo v&aacute;lida",
 "pt" => "Terá de ser um endereço válido"
 );
 ?>

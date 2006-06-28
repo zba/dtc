@@ -19,7 +19,7 @@ $txt_lists_main_title_rights = array (
   "de" => "",
   "zh" => "",
   "pl" => "Uprawnienia",
-  "es" => "",
+  "es" => "Derechos",
   "pt" => "");
 
 $txt_lists_main_title_header = array (
@@ -32,7 +32,7 @@ $txt_lists_main_title_header = array (
   "de" => "",
   "zh" => "",
   "pl" => "Nag³ówek",
-  "es" => "",
+  "es" => "Cabecera",
   "pt" => "");
 
 $txt_lists_main_title_archive = array (
@@ -45,7 +45,7 @@ $txt_lists_main_title_archive = array (
   "de" => "",
   "zh" => "",
   "pl" => "Archiwum",
-  "es" => "",
+  "es" => "Archivo",
   "pt" => "");
 
 $txt_lists_main_title_digest = array (
@@ -58,7 +58,7 @@ $txt_lists_main_title_digest = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Recopilaci&oacute;n",
   "pt" => "");
 
 $txt_lists_main_title_notification = array (
@@ -71,7 +71,7 @@ $txt_lists_main_title_notification = array (
   "de" => "",
   "zh" => "",
   "pl" => "Opis",
-  "es" => "",
+  "es" => "Notificaciones",
   "pt" => "");
 
 $txt_lists_main_title_smtp_config = array (
@@ -84,7 +84,7 @@ $txt_lists_main_title_smtp_config = array (
   "de" => "",
   "zh" => "",
   "pl" => "Konfguracja SMTP",
-  "es" => "",
+  "es" => "Configuraci&oacute;n SMTP",
   "pt" => "");
 
 $txt_lists_main_title_subunsub = array (
@@ -97,7 +97,7 @@ $txt_lists_main_title_subunsub = array (
   "de" => "",
   "zh" => "",
   "pl" => "Adres e-mail subskrybcji/wypisania",
-  "es" => "",
+  "es" => "Suscribir/desuscribir una direcci&oacute;n de correo",
   "pt" => "");
 
 $txt_lists_main_title_webarchive = array (
@@ -110,7 +110,7 @@ $txt_lists_main_title_webarchive = array (
   "de" => "",
   "zh" => "",
   "pl" => "Archiwum przez WWW",
-  "es" => "",
+  "es" => "Archivo web",
   "pt" => "");
   
 $txt_lists_title_list_name = array (
@@ -123,7 +123,7 @@ $txt_lists_title_list_name = array (
   "de" => "",
   "zh" => "",
   "pl" => "Nazwa listy mailingowej/pocztowej:",
-  "es" => "",
+  "es" => "Nombre de la lista:",
   "pt" => "");
 
 $txt_lists_title_list_name = array (
@@ -136,7 +136,7 @@ $txt_lists_title_list_name = array (
   "de" => "",
   "zh" => "",
   "pl" => "W³a¶ciciel",
-  "es" => "",
+  "es" => "Propietario:",
   "pt" => "");
 
 $txt_lists_title_closedlist = array (
@@ -149,7 +149,7 @@ $txt_lists_title_closedlist = array (
   "de" => "",
   "zh" => "",
   "pl" => "Zamkniete listy",
-  "es" => "",
+  "es" => "Lista cerrada:",
   "pt" => "");
 
 $txt_lists_title_moderated = array (
@@ -162,7 +162,7 @@ $txt_lists_title_moderated = array (
   "de" => "",
   "zh" => "",
   "pl" => "Moderowana:",
-  "es" => "",
+  "es" => "Moderada:",
   "pt" => "");
 
 $txt_lists_title_moderators = array (
@@ -175,7 +175,7 @@ $txt_lists_title_moderators = array (
   "de" => "",
   "zh" => "",
   "pl" => "Moderatorzy:",
-  "es" => "",
+  "es" => "Moderadores:",
   "pt" => "");
 
 $txt_lists_title_subonlypost = array (
@@ -188,7 +188,7 @@ $txt_lists_title_subonlypost = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "S&oacute;lo suscriptos pueden postear:",
   "pt" => "");
 
 $txt_lists_title_notifysub = array (
@@ -201,7 +201,7 @@ $txt_lists_title_notifysub = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Notificar nuevas suscripciones:",
   "pt" => "");
 
 $txt_lists_title_noarchive = array (
@@ -214,7 +214,7 @@ $txt_lists_title_noarchive = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "No archivar:",
   "pt" => "");
 
 $txt_lists_title_nosubconfirm = array (
@@ -227,7 +227,7 @@ $txt_lists_title_nosubconfirm = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Sin confirmaci&oacute;n de suscripci&oacute;n:",
   "pt" => "");
 
 $txt_lists_title_noget = array (
@@ -240,7 +240,7 @@ $txt_lists_title_noget = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Deshabilitar funci&oacute;n get-N: ",
   "pt" => "");
 
 $txt_lists_title_subonlyget = array (
@@ -253,7 +253,7 @@ $txt_lists_title_subonlyget = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Funci&oacute;n get-N s&oacute;lo para suscriptos:",
   "pt" => "");
 
 $txt_lists_title_tocc = array (
@@ -266,7 +266,7 @@ $txt_lists_title_tocc = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "To: o Cc: no obligatorio:",
   "pt" => "");
 
 $txt_lists_title_addtohdr = array (
@@ -279,7 +279,7 @@ $txt_lists_title_addtohdr = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Agregar cabecera To:",
   "pt" => "");
 
 $txt_lists_title_notoccdenymails = array (
@@ -292,7 +292,7 @@ $txt_lists_title_notoccdenymails = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Rechazar si falta To: o Cc:",
   "pt" => "");
 
 $txt_lists_title_noaccessdenymails = array (
@@ -305,7 +305,7 @@ $txt_lists_title_noaccessdenymails = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Notificar post enviados sin acceso:",
   "pt" => "");
 
 $txt_lists_title_nosubonlydenymails = array (
@@ -318,7 +318,7 @@ $txt_lists_title_nosubonlydenymails = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Notificar post de no suscriptos:",
   "pt" => "");
 
 $txt_lists_title_prefix = array (
@@ -331,7 +331,7 @@ $txt_lists_title_prefix = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Prefijo del asunto:",
   "pt" => "");
 
 $txt_lists_title_memorymailsize = array (
@@ -344,7 +344,7 @@ $txt_lists_title_memorymailsize = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Memoria m&aacute;xima del mensaje:",
   "pt" => "");
 
 $txt_lists_title_relayhost = array (
@@ -357,7 +357,7 @@ $txt_lists_title_relayhost = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Servidor de relay SMTP:",
   "pt" => "");
 
 $txt_lists_title_digestinterval = array (
@@ -370,7 +370,7 @@ $txt_lists_title_digestinterval = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Intervalo de recopilaci&oacute;n:",
   "pt" => "");
 
 $txt_lists_title_digestmaxmails = array (
@@ -383,7 +383,7 @@ $txt_lists_title_digestmaxmails = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "N&uacute;mero m&aacute;ximo de emails por recopilaci&oacute;n:",
   "pt" => "");
 
 $txt_lists_title_verp = array (
@@ -396,7 +396,7 @@ $txt_lists_title_verp = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "VERP",
   "pt" => "");
 
 $txt_lists_title_maxverprecips = array (
@@ -409,7 +409,7 @@ $txt_lists_title_maxverprecips = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Max destinatarios VERP:",
   "pt" => "");
 
 $txt_lists_title_delimiter = array (
@@ -422,7 +422,7 @@ $txt_lists_title_delimiter = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Delimitar:",
   "pt" => "");
 
 $txt_lists_title_owner = array (
@@ -435,7 +435,7 @@ $txt_lists_title_owner = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Propietario:",
   "pt" => "");
 
 $txt_lists_title_customheaders = array (
@@ -448,7 +448,7 @@ $txt_lists_title_customheaders = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Cabeceras personalizadas:",
   "pt" => "");
 
 $txt_lists_title_delheaders = array (
@@ -461,7 +461,7 @@ $txt_lists_title_delheaders = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Eliminar cabeceras:",
   "pt" => "");
 
 $txt_lists_title_access = array (
@@ -474,7 +474,7 @@ $txt_lists_title_access = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Lista de acceso:",
   "pt" => "");
 
 $txt_lists_title_footer = array (
@@ -487,7 +487,7 @@ $txt_lists_title_footer = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Pie de mensaje adicional:",
   "pt" => "");
 
 $txt_lists_title_sub = array (
@@ -500,7 +500,7 @@ $txt_lists_title_sub = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Suscribir:",
   "pt" => "");
 
 $txt_lists_title_unsub = array (
@@ -513,7 +513,7 @@ $txt_lists_title_unsub = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Desuscribir:",
   "pt" => "");
   
 $txt_lists_title_webarchive = array (
@@ -526,7 +526,7 @@ $txt_lists_title_webarchive = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Habilitar archivo web:",
   "pt" => "");
 
 $txt_lists_title_rcfile = array (
@@ -539,7 +539,7 @@ $txt_lists_title_rcfile = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Plantilla propia:",
   "pt" => "");
   
 $txt_lists_title_recreatewa = array (
@@ -552,7 +552,7 @@ $txt_lists_title_recreatewa = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Recrear:",
   "pt" => "");
 
 $txt_lists_title_deletewa = array (
@@ -565,7 +565,7 @@ $txt_lists_title_deletewa = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Eliminar:",
   "pt" => "");
 
 $txt_lists_hlp_list_name = array (
@@ -578,7 +578,7 @@ $txt_lists_hlp_list_name = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Nombre de la lista:",
   "pt" => "");
 
 $txt_lists_hlp_main_owner = array (
@@ -591,7 +591,7 @@ $txt_lists_hlp_main_owner = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Direcci&oacute;n administrador principal de la lista",
   "pt" => "");
 
 $txt_lists_hlp_listaddress = array (
@@ -604,7 +604,7 @@ $txt_lists_hlp_listaddress = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Este campo contiene todas las direcciones que MLMMJ ve como direcciones de lista (ver opci&oacute;n tocc). La primera es la usada como primaria cuando mlmmj env&iacute;a un mail.",
   "pt" => "");
 
 $txt_lists_hlp_closedlist = array (
@@ -617,7 +617,7 @@ $txt_lists_hlp_closedlist = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "La lista est&aacute; cerrada. Las suscripciones y desuscripciones est&aacute;n desactivadas.",
   "pt" => "");
 
 $txt_lists_hlp_moderated = array (
@@ -630,7 +630,7 @@ $txt_lists_hlp_moderated = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Si se activa esta casilla la lista est&aacute; moderada.",
   "pt" => "");
 
 $txt_lists_hlp_moderators = array (
@@ -643,7 +643,7 @@ $txt_lists_hlp_moderators = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Lista de moderadores (1 por linea).",
   "pt" => "");
 
 $txt_lists_hlp_tocc = array (
@@ -656,7 +656,7 @@ $txt_lists_hlp_tocc = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Si se activa esta opci&oacute;n la lista de direcciones no debe estar en las cabeceras To: o Cc: del mail a la lista.",
   "pt" => "");
 
 $txt_lists_hlp_subonlypost = array (
@@ -669,7 +669,7 @@ $txt_lists_hlp_subonlypost = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Si se activa esta casilla, s&oacute;lo los suscriptos a la lista pueden postear. Se verificar&aacute; la cabecera &quot;From:&quot;",
   "pt" => "");
 
 $txt_lists_hlp_prefix = array (
@@ -682,7 +682,7 @@ $txt_lists_hlp_prefix = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Prefijo de la linea &quot;Asunto:&quot; en los mails a la lista. Este prefijo se agregar&aacute; si no est&aacute; presente en otra parte.",
   "pt" => "");
 
 $txt_lists_hlp_owner = array (
@@ -695,7 +695,7 @@ $txt_lists_hlp_owner = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Las direcciones de mail en este campo (1 por linea) recibir&aacute;n los mensajes para: propietario_de_la_lista@dominio.tld.",
   "pt" => "");
 
 $txt_lists_hlp_customheaders = array (
@@ -708,7 +708,7 @@ $txt_lists_hlp_customheaders = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Estas cabeceras son agregadas a todo mail entrante. Aqu&iacute; es donde puede agregar el encabezado &quot;Reply-To:&quot; si asi lo desea.",
   "pt" => "");
 
 $txt_lists_hlp_delheaders = array (
@@ -721,7 +721,7 @@ $txt_lists_hlp_delheaders = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "En este archivo se especifica *UN* control de cabecera por l&iacute;nea. Si el archivo consiste de:<br><br>Received:<br>Message-ID:<br><br>todas las apariciones de estos encabezados en el correo entrante de la lista ser&aacute;n borradas. From: y Return-Path: son borrados por defecto.",
   "pt" => "");
 
 $txt_lists_hlp_access = array (
@@ -734,7 +734,7 @@ $txt_lists_hlp_access = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Si este archivo existe, todos los encabezados de un post a la lista son contrastados con las reglas. La primera regla que coincide gana. Ver README.access para sintaxis y ejemplos.",
   "pt" => "");
 
 $txt_lists_hlp_footer = array (
@@ -747,7 +747,7 @@ $txt_lists_hlp_footer = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Complete aqu&iacute; si desea que todo correo tenga algo como:<br>--<br>Para desuscribirse envie un correo a coollist+unsuscribe@lists.domain.net.",
   "pt" => "");
 
 $txt_lists_hlp_memorymailsize = array (
@@ -760,7 +760,7 @@ $txt_lists_hlp_memorymailsize = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Aqu&iacute; se especifica en bytes qué tama&ntilde;o puede tener un correo y a&uacute;n ser preparado para enviar en memoria. El valor por defecto es 16K (16384 bytes).",
   "pt" => "");
 
 $txt_lists_hlp_addtohdr = array (
@@ -773,7 +773,7 @@ $txt_lists_hlp_addtohdr = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Cuando esta opci&oacute;n est&aacute; presente, un encabezado To: incluyendo las direcciones de los destinatarios será agregado al mail saliente. El uso recomendado es remover antes los To: existentes con &quot;Eliminar cabecera&quot; (ver arriba).",
   "pt" => "");
 
 $txt_lists_hlp_notifysub = array (
@@ -786,7 +786,7 @@ $txt_lists_hlp_notifysub = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "El propietario recibir&aacute; un mail con la direcci&oacute;n de alguien suscribi&eacute;ndose/desuscribi&eacute;ndose a una lista de correo.",
   "pt" => "");
 
 $txt_lists_hlp_digestinterval = array (
@@ -799,7 +799,7 @@ $txt_lists_hlp_digestinterval = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Este valor indica cu&aacute;ntos segundos pasar&aacute;n antes de que la siguiente recopilaci&oacute;n sea enviada. El valor por defecto es de 604800 segundos (7 dias).",
   "pt" => "");
 
 $txt_lists_hlp_digestmaxmails = array (
@@ -812,7 +812,7 @@ $txt_lists_hlp_digestmaxmails = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Este archivo especifica cuantos correos pueden acumularse antes de enviar la recopilaci&oacute;n. Por defecto es 50, lo que significa que si llegan 50 correos a la lista antes de transcurrido el intervalo de recopilaci&oacute;n, dicha recopilaci&oacute;n es enviada.",
   "pt" => "");
 
 $txt_lists_hlp_bouncelife = array (
@@ -825,7 +825,7 @@ $txt_lists_hlp_bouncelife = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Aqu&iacute; se indica por cu&aacute;nto tiempo en segundos una direcci&oacute;n puede rebotar antes de su desuscripci&oacute;n. Por defecto es 432000 seg (5 dias).",
   "pt" => "");
 
 $txt_lists_hlp_noarchive = array (
@@ -838,7 +838,7 @@ $txt_lists_hlp_noarchive = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Si se selecciona, el correo no ser&aacute; guardado en el archivo, simplemente ser&aacute; borrado.",
   "pt" => "");
 
 $txt_lists_hlp_nosubconfirm = array (
@@ -851,7 +851,7 @@ $txt_lists_hlp_nosubconfirm = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Si est&aacute; marcada, no ser&aacute; necesaria la confirmaci&oacute;n para suscribirse a una lista. Esto no deber&iacute;a usarse NUNCA, pero a veces es &uacute;til en listas locales. USAR CON CUIDADO!.",
   "pt" => "");
 
 $txt_lists_hlp_noget = array (
@@ -864,7 +864,7 @@ $txt_lists_hlp_noget = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Si este archivo existe estar&aacute; deshabilitada la descarga de post antiguos con -get-N (ejemplo: milista-get-12@mi-dominio.tld).",
   "pt" => "");
 
 $txt_lists_hlp_subonlyget = array (
@@ -877,7 +877,7 @@ $txt_lists_hlp_subonlyget = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Si este archivo existe la descarga de post antiguos con -get-N s&oacute;lo es posible para suscriptos. Lo mencionado arriba \'noget\' tiene prioridad.",
   "pt" => "");
 
 $txt_lists_hlp_verp = array (
@@ -890,7 +890,7 @@ $txt_lists_hlp_verp = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Habilita soporte VERP",
   "pt" => "");
 
 $txt_lists_hlp_maxverprecips = array (
@@ -903,7 +903,7 @@ $txt_lists_hlp_maxverprecips = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Cuantos destinatarios por mail se entregan al servidor SMTP. Por defecto son 100.",
   "pt" => "");
 
 $txt_lists_hlp_notoccdenymails = array (
@@ -916,7 +916,7 @@ $txt_lists_hlp_notoccdenymails = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Rechaza los correos que no llevan la direcci&oacute;n de la lista en el To: o Cc:.",
   "pt" => "");
 
 $txt_lists_hlp_noaccessdenymails = array (
@@ -955,7 +955,7 @@ $txt_lists_hlp_delimiter = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "No modificar a menos que realmente sepa lo que est&aacute; haciendo.",
   "pt" => "");
 
 $txt_lists_hlp_relayhost = array (
@@ -968,7 +968,7 @@ $txt_lists_hlp_relayhost = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Servidor de correo utilizado para enviar mensajes.",
   "pt" => "");
   
 $txt_lists_hlp_sub = array (
@@ -981,7 +981,7 @@ $txt_lists_hlp_sub = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Ingrese una direcci&oacute;n para suscribir.",
   "pt" => "");
 
 $txt_lists_hlp_unsub = array (
@@ -994,7 +994,7 @@ $txt_lists_hlp_unsub = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Ingrese una direcci&oacute;n para desuscribir.",
   "pt" => "");
   
 $txt_lists_hlp_webarchive = array (
@@ -1007,7 +1007,7 @@ $txt_lists_hlp_webarchive = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Habilitar archivo web",
   "pt" => "");
 
 $txt_lists_hlp_rcfile = array (
@@ -1020,7 +1020,7 @@ $txt_lists_hlp_rcfile = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Inserte aqu&iacute; el c&oacute;digo de la plantilla que desea usar para su archivo web. Lea <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'_blank\'>documentation</a> y vea <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'_blank\'>examples</a>.",
   "pt" => "");
 
 $txt_lists_hlp_recreatewa = array (
@@ -1033,7 +1033,7 @@ $txt_lists_hlp_recreatewa = array (
   "de" => "",
   "zh" => "",
   "pl" => "",
-  "es" => "",
+  "es" => "Recrea todos los mensajes del archivo web. Use esto s&oacute;lo si ha cambiado la plantilla del archivo web. NOTA: Esto sirve si tiene &quot;archivo web&quot; activado.",
   "pt" => "");
 
 $txt_lists_hlp_deletewa = array (
@@ -1046,7 +1046,7 @@ $txt_lists_hlp_deletewa = array (
   "de" => "",
   "zh" => "",
   "pl" => "Usuñ wszystkie wiadomo¶ci z archiwum na stronie. UWAGA: Zadzia³a tylko je¶li nie zaznaczone archiwum na www.",
-  "es" => "",
+  "es" => "Elimina todos los mensajes del archivo web. NOTA: Esto sirve si tiene &quot;archivo web&quot; desactivado.",
   "pt" => "");
 
 $txt_lists_email_subject = array (
@@ -1059,7 +1059,7 @@ $txt_lists_email_subject = array (
   "de" => "",
   "zh" => "",
   "pl" => "Utworzono listê #name#@#domain#",
-  "es" => "",
+  "es" => "Lista #name#@#domain# creada con &eacute;xito!.",
   "pt" => "");
   
 $txt_lists_email_msg = array (
@@ -1111,7 +1111,19 @@ Dla uzyskania wiêkszej ilo¶ci informacji prosimy skorzystaæ z oficjalej strony m
   
   
   ",
-  "es" => "",
+  "es" => "Ud. puede controlar su lista de correo por mail o desde el panel de control.
+Puede enviar un mail a las siguientes direcciones para ejecutar los comandos listados:
+
+ #name#-help@#domain# -> devuelve la lista de comandos m&aacute;s comunes
+ #name#-list@#domain# -> devuelve las lista de suscriptos
+ #name#-get-N@#domain# -> devuelve el mensaje de la lista N
+ #name#-owner@#domain# -> Ud. puede contactar al propietario de la lista con esta direcci&oacute;n
+ #name#-unsubscribe@#domain# -> desuscribe de la lista al remitente del correo
+ #name#-subscribe@#domain# -> suscribe en la lista al remitente
+ #name#-subscribe-digest@#domain# -> subscribe al remitente a la versi&oacute;n digest de la lista
+ #name#-subscribe-nomail@#domain# -> subscribe al remitente a la versi&oacute;n nomail de la lista
+
+Para m&aacute;s informaci&oacute;n vaya al sitio oficial de mlmmj en http://mlmmj.mmj.df.",
   "pt" => "");
 
 ?>
