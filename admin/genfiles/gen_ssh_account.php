@@ -50,7 +50,7 @@ function ssh_account_generate()
                 $webadmin = mysql_fetch_array($result2) or die ("Cannot fetch user");
                 $web_path = $webadmin["path"];	
 
-		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default' ORDER BY subdomain_name;";
+/*		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default' ORDER BY subdomain_name;";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
 
@@ -62,7 +62,7 @@ function ssh_account_generate()
 			$directory = "$web_path/$web_name/subdomains/$web_subname/";
 			recurse_chown_chgrp($directory, 65534, 65534) ;
 			//$query3 = "SELECT * FROM $pro_mysql_ssh_table WHERE hostname='$web_name' ORDER BY login LIMIT 800";
-		}
+		}*/
 	}
 }
 ?>
