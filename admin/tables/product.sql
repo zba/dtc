@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS product (
   price_euro varchar(9) NOT NULL default '',
   name varchar(255) NOT NULL default '',
   quota_disk int(9) NOT NULL default '0',
+  memory_size int(9) NOT NULL default '48',
   nbr_email int(9) NOT NULL default '0',
   nbr_database int(9) NOT NULL default '0',
   bandwidth int(9) NOT NULL default '0',

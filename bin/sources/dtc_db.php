@@ -621,6 +621,7 @@ $dtc_database = array(
 			"price_euro" => "varchar(9) NOT NULL ",
 			"name" => "varchar(255) NOT NULL ",
 			"quota_disk" => "int(9) NOT NULL default '0' ",
+			"memory_size" => "int(9) NOT NULL default '48'",
 			"nbr_email" => "int(9) NOT NULL default '0' ",
 			"nbr_database" => "int(9) NOT NULL default '0' ",
 			"bandwidth" => "int(15) NOT NULL default '0' ",

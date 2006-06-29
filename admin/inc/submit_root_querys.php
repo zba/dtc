@@ -4,6 +4,82 @@ if(!isset($submit_err)){
 	$submit_err = "";
 }
 
+function calculateExpirationDate($date,$period){
+	$tbl = explode("-",$date);
+	$year = $tbl[0];
+	$month = $tbl[1];
+	$day = $tbl[2];
+
+	$period = explode("-",$period);
+	$year = date("Y")+$period[0];
+	$month = date("m")+$period[1];
+	if($month > 12){
+		$month = $month - 12;
+		$year += 1;
+	}
+	if( $day > date("t",mktime(1,1,1,$month,1,$year))){
+		$day = $day - date("t",mktime(1,1,1,$month,1,$year));
+		$month += 1;
+		if($month > 12){
+			$month = $month - 12;
+			$year += 1;
+		}
+	}
+	$day = date("d")+$period[2];
+	$exp_date = $year."-".$month."-".$day;
+	return $exp_date;
+}
+
+// VPS management
+// action=delete_a_vps&id=2
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE id='".$_REQUEST["id"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Didn't find the VPS id you want to delete line ".__LINE__." file ".__FILE__);
+	}
+	$vps = mysql_fetch_array($r);
+	$q = "UPDATE $pro_mysql_vps_ip_table SET available='yes' WHERE vps_server_hostname='".$vps["vps_server_hostname"]."' AND vps_xen_name='".$vps["vps_xen_name"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	$q = "DELETE FROM $pro_mysql_vps_table WHERE id='".$_REQUEST["id"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+}
+
+// action=add_vps_to_user&vps_server_ip=66.251.193.60&vps_mem=1&vps_hdd=1&vps_duration=0000-01-00
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_vps_to_user"){
+// $pro_mysql_vps_table = "vps";
+// $pro_mysql_vps_ip_table = "vps_ip";
+// $pro_mysql_vps_server_table = "vps_server";
+	$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_addr='".$_REQUEST["vps_server_ip"]."' AND available='yes';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Didn't find the IP address you want to add line ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+
+	$q = "UPDATE $pro_mysql_vps_ip_table SET vps_xen_name='".$_REQUEST["vps_name"]."', available='no' WHERE ip_addr='".$_REQUEST["vps_server_ip"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["product_id"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Didn't find the IP address you want to add line ".__LINE__." file ".__FILE__);
+	}
+	$prod = mysql_fetch_array($r);
+
+	$exp_date = calculateExpirationDate(date("Y-m-d"),$prod["period"]);
+
+	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,product_id)
+	VALUES('','$adm_login','".$a["vps_server_hostname"]."','".$_REQUEST["vps_name"]."','".date("Y-m-d")."','$exp_date','".$prod["quota_disk"]."','".$prod["memory_size"]."','".$_REQUEST["product_id"]."');";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+}
+
+// Import of domain config
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "import_domain"){
 	$adm_path = getAdminPath($adm_login);
 	$uploaded_file = basename($_FILES['domain_import_file']['name']);

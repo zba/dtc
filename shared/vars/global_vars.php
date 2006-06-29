@@ -42,11 +42,17 @@ if(isset($adm_pass) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$
 }
 
 if(isset($addrlink) && $addrlink != ""){
-        $exploded = explode("/",$addrlink);
-        if($addrlink != "help" && $addrlink != "database"){
-        	if(sizeof($exploded) > 1)	$whatdoiedit = $exploded[1];
-                $edit_domain = $exploded[0];
-        }
+	if(substr($addrlink,0,3) == "vps"){
+		$vps_exploded = explode(":",$addrlink);
+		$vps_node = $vps_exploded[1];
+		$vps_name = $vps_exploded[2];
+	}else{
+	        $exploded = explode("/",$addrlink);
+	        if($addrlink != "help" && $addrlink != "database"){
+	        	if(sizeof($exploded) > 1)	$whatdoiedit = $exploded[1];
+	                $edit_domain = $exploded[0];
+	        }
+	}
 }
 
 if(isset($whatdoiedit) && $whatdoiedit == "nickhandles" && isset($_REQUEST["edit_id"])){

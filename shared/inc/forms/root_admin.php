@@ -5,6 +5,12 @@
 ////////////////////////////////////////////////////////////////////////////
 function drawEditAdmin($admin){
 	global $lang;
+
+	global $pro_mysql_vps_server_table;
+	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_vps_table;
+	global $pro_mysql_product_table;
+
 	global $txt_password;
 
 	global $txt_path;
@@ -152,11 +158,53 @@ function drawEditAdmin($admin){
 	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 	<input type=\"hidden\" name=\"action\" value=\"import_domain\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"30000000\">
 	<input type=\"file\" name=\"domain_import_file\" size=\"40\">
 	<input type=\"submit\" value=\"".$txt_import_button[$lang]."\"></form>";
+
+	// Deletion of VPS
+	$domain_conf .= "<b><u>Delete one of the admin VPS:</u></b><br>";
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if($i > 0){
+			$domain_conf .= " - ";
+		}
+		$domain_conf .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub&action=delete_a_vps&id=".$a["id"]."\"><b>".$a["vps_server_hostname"].":".$a["vps_xen_name"]."</b></a>";
+	}
+	$domain_conf .= "<br><br>";
+
+	// Creation of VPS
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='vps';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$vps_prods = "";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$vps_prods .= "<option value=\"".$a["id"]."\">".$a["name"]."</option>";
+	}
+
+	$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE available='yes' ORDER BY vps_server_hostname;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$vps_srvs = "";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$vps_srvs .= "<option value=\"".$a["ip_addr"]."\">".$a["vps_server_hostname"].": ".$a["ip_addr"]."</option>";
+	}
+	$domain_conf .= "<b><u>Add a VPS for this admin</u></b>
+	<form action=\"?\">
+	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+	<input type=\"hidden\" name=\"action\" value=\"add_vps_to_user\">
+	VPS Server hostname: <select name=\"vps_server_ip\">$vps_srvs</select><br>
+	VPS number: <input type=\"text\" name=\"vps_name\" value=\"\"><br>
+	Product: <select name=\"product_id\">$vps_prods</select>
+	<input type=\"submit\" value=\"Add VPS\"></form>";
 
 	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/cadre04/trait06.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
 	$conf_user .= "</b></font> ";

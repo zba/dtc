@@ -300,6 +300,9 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	global $pro_mysql_ssh_table;
         global $pro_mysql_subdomain_table;
         global $pro_mysql_config_table;
+        global $pro_mysql_vps_table;
+        global $pro_mysql_vps_ip_table;
+        global $pro_mysql_vps_server_table;
         global $panel_type;
 
 	global $conf_session_expir_minute;
@@ -334,6 +337,26 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$adm_max_ssh = $row["max_ssh"];
 	$adm_max_email = $row["max_email"];
 	$adm_quota = $row["quota"];
+
+	// Get all the VPS of the user
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login';";
+	$r = mysql_query ($q)or die("Cannot execute query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$user_vps = array();
+	for($i=0;$i<$n;$i++){
+		$one_vps = mysql_fetch_array($r);
+		$q2 = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$one_vps["vps_server_hostname"]."' AND vps_xen_name='".$one_vps["vps_xen_name"]."' AND available='no';";
+		$r2 = mysql_query ($q2)or die("Cannot execute query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		unset($vps_ip);
+		$vps_ip = array();
+		for($j=0;$j<$n2;$j++){
+			$a2 = mysql_fetch_array($r2);
+			$vps_ip[] = $a2["ip_addr"];
+		}
+		$one_vps["ip_addr"] = $vps_ip;
+		$user_vps[] = $one_vps;
+	}
 
 	// Get all domains of the user
 	$query = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login' ORDER BY name;";
@@ -558,6 +581,9 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	if(isset($user_domains)){
 		$ret["data"] = $user_domains;
 	}
+	if(isset($user_vps)){
+		$ret["vps"] = $user_vps;
+	}
 	return $ret;
 }
 
@@ -653,6 +679,9 @@ function fetchAdmin($adm_login, $adm_pass){
 	$ret["info"] = $info["data"];
 	if(isset($data["data"])){
 		$ret["data"] = $data["data"];
+	}
+	if(isset($data["vps"])){
+		$ret["vps"] = $data["vps"];
 	}
 	return $ret;
 }

@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.10 2006/06/23 07:52:12 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.11 2006/06/29 09:31:56 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -28,6 +28,7 @@ function productManager(){
         <td><b>".$txt_product_price[$lang]." \$</b></td>
         <td><b>".$txt_product_price[$lang]." &#8364;</b></td>
         <td><b>".$txt_product_disk[$lang]." MB</b></td>
+        <td><b>Memory size (MB)</b></td>
         <td><b>".$txt_product_traffic[$lang]." MB</b></td>
         <td><b>".$txt_product_mail[$lang]."</b></td>
         <td><b>DB</b></td>
@@ -46,6 +47,7 @@ function productManager(){
 			$a["price_dollar"] = "";
 			$a["price_euro"] = "";
 			$a["quota_disk"] = "";
+			$a["memory_size"] = "";
 			$a["bandwidth"] = "";
 			$a["nbr_email"] = "";
 			$a["nbr_database"] = "";
@@ -64,6 +66,7 @@ function productManager(){
 		$out .= "<td $bg_color><input size=\"4\" type=\"text\" name=\"price_dollar\" value=\"".$a["price_dollar"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"4\" type=\"text\" name=\"price_euro\" value=\"".$a["price_euro"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"6\" type=\"text\" name=\"quota_disk\" value=\"".$a["quota_disk"]."\"></td>";
+		$out .= "<td $bg_color><input size=\"6\" type=\"text\" name=\"memory_size\" value=\"".$a["memory_size"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"6\" type=\"text\" name=\"bandwidth\" value=\"".$a["bandwidth"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"2\" type=\"text\" name=\"nbr_email\" value=\"".$a["nbr_email"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"2\" type=\"text\" name=\"nbr_database\" value=\"".$a["nbr_database"]."\"></td>";

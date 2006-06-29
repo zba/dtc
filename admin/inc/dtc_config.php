@@ -1,11 +1,121 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.55 2006/05/08 10:58:02 seeb Exp $
+ * @version $Id: dtc_config.php,v 1.56 2006/06/29 09:31:56 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
  */
+
+function drawVPSServerConfig(){
+  global $pro_mysql_vps_table;
+  global $pro_mysql_vps_ip_table;
+  global $pro_mysql_vps_server_table;
+  global $rub;
+  $out = "<h3>VPS Server registry edition</h3>";
+
+  if(isset($_REQUEST["action"])){
+    switch($_REQUEST["action"]){
+    case "edit_vps_server_hostname":
+      $q = "UPDATE $pro_mysql_vps_server_table SET hostname='".$_REQUEST["hostname"]."' WHERE id='".$_REQUEST["vps_server_id"]."';";
+      $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+      break;
+    case "delete_vps_server_hostname":
+      $q = "DELETE FROM $pro_mysql_vps_server_table WHERE id='".$_REQUEST["vps_server_id"]."';";
+      $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+      break;
+    case "new_vps_server_hostname":
+      $q = "INSERT INTO $pro_mysql_vps_server_table (id,hostname) VALUES ('','".$_REQUEST["hostname"]."');";
+      $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+    default:
+      break;
+    }
+  }
+
+  $q = "SELECT * FROM $pro_mysql_vps_server_table WHERE 1 ORDER BY hostname;";
+  $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+  $n = mysql_num_rows($r);
+  $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>Hostname</td><td colspan=\"3\">Action</td></tr>";
+  for($i=0;$i<$n;$i++){
+    $a = mysql_fetch_array($r);
+    if( ($i % 2) == 0){
+      $bg = " bgcolor=\"black\" ";
+    }else{
+      $bg = "";
+    }
+    $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
+    $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"".$a["hostname"]."\"></td><td$bg><input type=\"submit\" value=\"Save\"></td></form>
+    $frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"delete_vps_server_hostname\"><input type=\"submit\" value=\"Delete\"></form></td>
+    <td$bg><a href=\"?rub=$rub&editor=ipaddr&sousrub=".$_REQUEST["sousrub"]."&hostname=".$a["hostname"]."\">Edit IP addrs</a></td></tr>";
+  }
+  if( ($i % 2) == 0){
+    $bg = " bgcolor=\"black\" ";
+  }else{
+    $bg = "";
+  }
+  $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"\"></td><td$bg colspan=\"3\"><input type=\"submit\" value=\"New\"></td></form>
+  </tr>";
+  $out .= "</table><br><br>";
+
+  if(isset($_REQUEST["editor"]) && $_REQUEST["editor"] == "ipaddr"){
+
+    if(isset($_REQUEST["action"])){
+      switch($_REQUEST["action"]){
+      case "edit_vps_server_ip":
+        $q = "UPDATE $pro_mysql_vps_ip_table SET ip_addr='".$_REQUEST["ip"]."' WHERE id='".$_REQUEST["vps_server_ip_id"]."';";
+        $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+        break;
+      case "delete_vps_server_ip":
+        $q = "DELETE FROM $pro_mysql_vps_ip_table WHERE id='".$_REQUEST["vps_server_ip_id"]."';";
+        $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+        break;
+      case "new_vps_server_ip":
+        $q = "INSERT INTO $pro_mysql_vps_ip_table (id,vps_server_hostname,ip_addr) VALUES ('','".$_REQUEST["hostname"]."','".$_REQUEST["ip"]."');";
+        $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+      default:
+        break;
+      }
+    }
+
+    $q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$_REQUEST["hostname"]."';";
+    $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+    $n = mysql_num_rows($r);
+    $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>IP Address</td><td colspan=\"2\">Action</td></tr>";
+    $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+<input type=\"hidden\" name=\"editor\" value=\"ipaddr\">
+<input type=\"hidden\" name=\"hostname\" value=\"".$_REQUEST["hostname"]."\">
+";
+    for($i=0;$i<$n;$i++){
+      $a = mysql_fetch_array($r);
+      if( ($i % 2) == 0){
+        $bg = " bgcolor=\"black\" ";
+      }else{
+        $bg = "";
+      }
+      if($a["available"] == "no"){
+        $disabled = "disabled";
+      }else{
+        $disabled = "";
+      }
+      $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_ip_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"".$a["ip_addr"]."\"></td><td$bg><input type=\"submit\" value=\"Save\"></td></form>
+      $frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_ip_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"delete_vps_server_ip\"><input type=\"submit\" value=\"Delete\" $disabled></form></td></tr>";
+    }
+    if( ($i % 2) == 0){
+      $bg = " bgcolor=\"black\" ";
+    }else{
+      $bg = "";
+    }
+    $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"\"></td><td$bg colspan=\"2\"><input type=\"submit\" value=\"New\"></td></form></tr>";
+    $out .= "</table>";
+  }
+
+  return $out;
+}
+
 function drawRegistrySelection(){
   global $pro_mysql_registry_table;
   global $txt_registry_selection;
@@ -90,6 +200,13 @@ function drawDTCConfigMenu(){
 	$out .= $txt_cfg_path_conf_title[$lang];
 	if($sousrub != "path")
 		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "vps")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=vps\">";
+	$out .= "VPS servers";
+	if($sousrub != "vps")
+		$out .= "</a>";
+
 	$out .= "</td></tr></table>";
 	return $out;
 }
@@ -1043,6 +1160,8 @@ function drawDTCConfigForm(){
 	case "path":
 		$global_conf = drawDTCpathConfig();
 		break;
+        case "vps":
+          return drawVPSServerConfig();
 	}
 
 	return "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"config\">
@@ -1098,6 +1217,8 @@ function saveDTCConfigInMysql(){
 		$sousrub = "general";
 
 	switch($sousrub){
+	case "vps":
+	  break;
 	case "general":
 		$query = "UPDATE config SET 
 	demo_version='".$_REQUEST["new_demo_version"]."',

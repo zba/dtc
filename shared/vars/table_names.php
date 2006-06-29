@@ -28,5 +28,8 @@ $pro_mysql_acc_http_table = "http_accounting";
 $pro_mysql_acc_ftp_table = "ftp_accounting";
 $pro_mysql_acc_email_table = "email_accounting";
 $pro_mysql_registry_table = "registry";
+$pro_mysql_vps_table = "vps";
+$pro_mysql_vps_ip_table = "vps_ip";
+$pro_mysql_vps_server_table = "vps_server";
 
 ?>

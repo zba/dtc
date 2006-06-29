@@ -20,6 +20,7 @@ SET price_dollar='".$_REQUEST["price_dollar"]."',
 price_euro='".$_REQUEST["price_euro"]."',
 name='".$_REQUEST["prodname"]."',
 quota_disk='".$_REQUEST["quota_disk"]."',
+memory_size='".$_REQUEST["memory_size"]."',
 nbr_email='".$_REQUEST["nbr_email"]."',
 nbr_database='".$_REQUEST["nbr_database"]."',
 bandwidth='".$_REQUEST["bandwidth"]."',
@@ -34,9 +35,9 @@ WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	}else if($_REQUEST["submit"] == "create"){
 		$q = "INSERT INTO $pro_mysql_product_table
-(id,price_dollar,price_euro,name,quota_disk,nbr_email,nbr_database,
+(id,price_dollar,price_euro,name,quota_disk,memory_size,nbr_email,nbr_database,
 bandwidth,period,allow_add_domain,heb_type) VALUES('','".$_REQUEST["price_dollar"]."','".$_REQUEST["price_euro"]."','".$_REQUEST["prodname"]."',
-'".$_REQUEST["quota_disk"]."','".$_REQUEST["nbr_email"]."','".$_REQUEST["nbr_database"]."',
+'".$_REQUEST["quota_disk"]."','".$_REQUEST["memory_size"]."','".$_REQUEST["nbr_email"]."','".$_REQUEST["nbr_database"]."',
 '".$_REQUEST["bandwidth"]."','".$_REQUEST["period"]."','$yesval','".$_REQUEST["heb_type"]."');";
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	}
