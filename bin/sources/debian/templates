@@ -78,7 +78,8 @@ Description: Primary IP addresse.
  be used for the domain name you just provided,
  and will be used as default for most DTC variables
  (beware that the only real way to change your IP
- after is to use dpkg-reconfigure).
+ after is to use dpkg-reconfigure). In case of NAT,
+ please enter your EXTERNAL IP address.
 
 Template: dtc/conf_hostingpath
 Type: string
