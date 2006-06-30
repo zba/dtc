@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS ps (
+CREATE TABLE IF NOT EXISTS `vps` (
   `id` int(11) NOT NULL auto_increment,
   `owner` varchar(64) NOT NULL default '',
   `vps_server_hostname` varchar(255) NOT NULL default '',
