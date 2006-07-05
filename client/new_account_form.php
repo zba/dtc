@@ -8,6 +8,7 @@ function register_user(){
 
 	global $pro_mysql_admin_table;
 	global $pro_mysql_new_admin_table;
+	global $conf_webmaster_email_addr;
 
 	// Check if all fields are blank, in wich case don't display error
 	if((!isset($_REQUEST["reqadm_login"]) || $_REQUEST["reqadm_login"] == "")
@@ -241,6 +242,31 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 	$ret["err"] = 0;
 	$ret["mesg"] = "Query ok!";
 	$ret["id"] = $id;
+
+	$mail_content = "
+Somebody tried to register an account. Here is the details of the new user:
+
+login: ".$_REQUEST["reqadm_login"]."
+pass: ".$_REQUEST["reqadm_pass"]."
+domain: ".$_REQUEST["domain_name"]."
+Company name: ".$_REQUEST["compname"]."
+First name: ".$_REQUEST["firstname"]."
+Family name: ".$_REQUEST["familyname"]."
+Email: ".$_REQUEST["email"]."
+Phone: $esc_phone
+Fax: $esc_fax
+Addr: ".$_REQUEST["address1"]." ".$_REQUEST["address2"]." ".$_REQUEST["address3"]."
+Zipcode: $esc_zipcode
+City: ".$_REQUEST["city"]."
+State: ".$_REQUEST["state"]."
+Contry: ".$_REQUEST["country"]."
+Product id: $esc_product_id
+Customer note: ".$_REQUEST["custom_notes"]."
+";
+
+	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
+	mail($conf_webmaster_email_addr, "[DTC] Somebody tried to register an account", $mail_content, $headers);
+
 	return $ret;
 }
 
