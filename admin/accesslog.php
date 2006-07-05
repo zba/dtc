@@ -25,6 +25,7 @@ function make_stats(){
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/logs";
+		$html_fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/html";
 		$table_name = str_replace(".","_",$a["name"].'$'.$a["subdomain_name"].'$'."xfer");
 
 		echo "Checking $table_name ... ";
@@ -38,7 +39,7 @@ function make_stats(){
 				$result = mysql_query($query) or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__.": ".mysql_error());
 				$start = mysql_result($result,0,"start");
 				if($start<$today_midnight){
-					echo "stats to be done!\n";
+					echo "stats to be done!";
 				}
 				while($start<$today_midnight){
 					$year = date("Y",$start);
@@ -66,6 +67,16 @@ function make_stats(){
 						$handle = fopen ($dump_filename, "w+");
 						for($z=0;$z<$dump_num_rows;$z++){
 							$rezar = mysql_fetch_array($result_dump);
+							// in case we don't have a request_method logged
+							if (!isset($rezar["request_method"]))
+							{
+								$rezar["request_method"]="GET";
+							}
+							// in case we don't have a HTTP proto logged
+							if (!isset($rezar["request_protocol"]))
+							{
+								$rezar["request_protocol"]="HTTP/1.1";
+							}
 							if(strstr($rezar["referer"],$a["name"])){
 								$rezar["referer"] = "self";
 							}
@@ -83,6 +94,45 @@ function make_stats(){
 						$webalizer_cmd = "nice -n+20 webalizer -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
 						echo "$webalizer_cmd\n";
 						exec ($webalizer_cmd);
+
+						// demo code for visitor
+                                                // echo "Calculating visitor stats...\n";
+                                                // $visitor_cmd = "nice -n+20 visitors -A -m 30 $dump_filename -o html > $fullpath/report.html";
+                                                // echo "$visitor_cmd\n";
+                                                // exec ($visitor_cmd);
+
+						// disable AWSTATS for now, it's too slow
+						/*
+						$stat_script = "#!/bin/sh
+AWSTATS_LOG_FILE=$dump_filename
+if [ -f \$AWSTATS_LOG_FILE ]; then
+        AWSTATS_FULL_DOMAIN=".$a["subdomain_name"].".".$a["name"]."
+	if [ ! -e $fullpath/awstats ]; then
+		mkdir -p $fullpath/awstats
+	fi
+        AWSTATS_DIR_DATA=$fullpath/awstats
+        export AWSTATS_LOG_FILE AWSTATS_FULL_DOMAIN AWSTATS_DIR_DATA
+	echo \"\$AWSTATS_LOG_FILE \$AWSTATS_FULL_DOMAIN \$AWSTATS_DIR_DATA\" >> /tmp/awstats.log
+        if [ -f /usr/share/doc/awstats/examples/awstats_buildstaticpages.pl ]; then
+                nice -n+20 /usr/share/doc/awstats/examples/awstats_buildstaticpages.pl -config=dtc -update -awstatsprog=/usr/lib/cgi-bin/awstats.pl -dir=$fullpath/awstats
+                chown nobody:65534 $fullpath/awstats
+		if [ ! -e $html_fullpath/awstats ]; then 
+			ln -s $fullpath/awstats $html_fullpath/awstats
+		fi
+        fi
+fi
+";
+						$filep = fopen("$fullpath/awstats.sh", "w+");
+						if( $filep == NULL){
+							die("Cannot open file for writing");
+						}
+						fwrite($filep,$stat_script);
+						fclose($filep);
+
+						echo "$fullpath/awstats.sh\n";
+						chmod("$fullpath/awstats.sh",0750);
+						exec ("$fullpath/awstats.sh");
+						*/ 
 					}else{
 						echo "table empty\n";
 					}
@@ -103,6 +153,7 @@ function make_stats(){
 						$start = mysql_result($result,0,"start");
 					}
 				}
+				echo "[OK]\n";
 			}else{
 				echo "No records!\n";
 			}
