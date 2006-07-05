@@ -280,6 +280,7 @@ function named_generate(){
 		$root_txt_record = $row["txt_root_entry"];
 		$root_txt_record2 = $row["txt_root_entry2"];
 
+
 		$web_extention = substr($web_name,-strpos(strrev($web_name),'.'));
 
 		$web_default_subdomain = $row["default_subdomain"];
@@ -411,6 +412,12 @@ $more_mx_server
 				}
 				if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
 					$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
+				}
+				if(isset($subdomain["nameserver_for"]) && $subdomain["nameserver_for"] != "")
+				{
+					// add support for creating NS records
+					$nameserver_for = $subdomain["nameserver_for"];
+					$this_site_file .= "$nameserver_for	IN	NS	$web_subname.$web_name.\n";
 				}
 			}
 			if( $is_pop_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){

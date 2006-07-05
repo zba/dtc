@@ -422,6 +422,13 @@ function fetchAdminData($adm_login,$adm_input_pass){
 			} else {
 				$subdomain["generate_vhost"] = "yes";
 			}
+
+			// if we want to generate a NS entry with this subdomain as the nameserver
+			if (isset($row2["nameserver_for"])){
+				$subdomain["nameserver_for"] = $row2["nameserver_for"];
+			} else {
+				$subdomain["nameserver_for"] = NULL;
+			}
 			$subs[] = $subdomain;
 		}
 		$domain["subdomains"] = $subs;

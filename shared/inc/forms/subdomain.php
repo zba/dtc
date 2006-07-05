@@ -1,4 +1,11 @@
 <?php
+/**
+ * @package DTC
+ * @version $Id: subdomain.php,v 1.11 2006/07/05 09:11:14 tusker Exp $
+ * @param unknown_type $domain
+ * @return unknown
+ */
+
 
 /////////////////////////////////////////////////////
 // Draw the form for editing a domain's subdomains //
@@ -38,6 +45,7 @@ function drawAdminTools_Subdomain($domain){
 	global $txt_subdom_wwwalias;
 	global $txt_subdom_generate_webalizer;
 	global $txt_subdom_generate_vhost;
+	global $txt_subdom_nameserver_for;
 	global $txt_subdom_edit_one;
 	global $txt_subdom_new;
 	global $txt_yes;
@@ -87,6 +95,12 @@ function drawAdminTools_Subdomain($domain){
 			$sbox_protect = $subdomains[$i]["sbox_protect"];
 			$webalizer_to_edit = $subdomains[$i]["webalizer_generate"];
 			$generate_vhost_to_edit = $subdomains[$i]["generate_vhost"];
+			if (isset($subdomains[$i]["nameserver_for"]) && $subdomains[$i]["nameserver_for"] != "")
+			{
+				$nameserver_for_to_edit = $subdomains[$i]["nameserver_for"];
+			} else {
+				$nameserver_for_to_edit = "";
+			}
 			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
 			$register_globals_to_edit = $subdomains[$i]["register_globals"];
 			$txt_rec = $subdomains[$i]["associated_txt_record"];
@@ -182,6 +196,7 @@ function drawAdminTools_Subdomain($domain){
 			$txt .= $txt_subdom_dynip_logpass[$lang]."</td></tr>";
 			$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_login[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_dynlogin\" value=\"\"></td></tr>";
 			$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_pass[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_dynpass\" value=\"\"></td></tr>";
+			$txt .= "<tr><td align=\"right\">".$txt_subdom_nameserver_for[$lang]."</td><td><input type=\"text\" name=\"newsubdomain_nameserver_for\" value=\"\"></td></tr>";
 			$txt .= "<td><input type=\"submit\" name=\"newsubdomain\" value=\"Ok\"></td></tr>";
 		}else{
 			$txt .= "<td colspan=\"3\">".$txt_subdom_limit_reach[$lang]."</td>";
@@ -270,6 +285,7 @@ function drawAdminTools_Subdomain($domain){
 		} else {
 			$txt .= "<tr><td align=\"right\">".$txt_subdom_dynip_pass[$lang]."</td><td><input type=\"text\" name=\"subdomain_dynpass\" value=\"$pass_to_edit\"></td></tr>";
 		}
+		$txt .= "<tr><td align=\"right\">".$txt_subdom_nameserver_for[$lang]."</td><td><input type=\"text\" name=\"nameserver_for\" value=\"$nameserver_for_to_edit\"></td></tr>";
 		$txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"edit_one_subdomain\" value=\"Ok\"></td></tr>";
 		if($login_to_edit != "" && isset($login_to_edit)){
 			$txt .= "<tr><td colspan=\"3\">".$txt_subdom_scriptadvice[$lang]."<br>

@@ -82,9 +82,17 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 	}else{
 		$sbox_protect_switch = ", sbox_protect='no'";
 	}
+
 	// Update the flag so we regenerate the serial for bind
 	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
+
+	// check to see if we want to add a ns subdomain
+	if ( isset($_REQUEST["nameserver_for"]) && $_REQUEST["nameserver_for"] != "" ){
+		$add_vals .= ", nameserver_for='".$_REQUEST["nameserver_for"]."' ";
+	} else {
+		$add_vals .= ", nameserver_for=NULL ";
+	}
 
 	if(isFtpLogin($_REQUEST["subdomain_dynlogin"]) && isDTCPassword($_REQUEST["subdomain_dynpass"])){
 		$add_vals .= ", login='".$_REQUEST["subdomain_dynlogin"]."', pass='".$_REQUEST["subdomain_dynpass"]."'";

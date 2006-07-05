@@ -800,7 +800,8 @@ $dtc_database = array(
 			"w3_alias" => "enum('yes','no') NOT NULL default 'no' ",
 			"register_globals" => "enum('yes','no') NOT NULL default 'no' ",
 			"associated_txt_record" => "varchar(128) NOT NULL ",
-			"generate_vhost" => "enum('yes','no') NOT NULL default 'yes' "
+			"generate_vhost" => "enum('yes','no') NOT NULL default 'yes' ",
+			"nameserver_for" => "varchar(64) NULL ",
 			),
 		"primary" => "(id)",
 		"keys" => array(

@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.108 2006/06/28 07:03:04 thomas Exp $
+	* @version  $Id: strings.php,v 1.109 2006/07/05 09:11:14 tusker Exp $
 	* 
 	**/
 	
@@ -4078,6 +4078,20 @@ $txt_subdom_wwwalias = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Crear un alias ",
 	"pt" => "Criar um apontador (alias)"
+);
+$txt_subdom_nameserver_for = array(
+	"fr" => "Ce subdomain est une entrée du nameserver (NS) pour le subdomain suivant  ",
+	"en" => "This subdomain is a nameserver (NS) entry for the following subdomain: ",
+	"hu" => "TRANS This subdomain is a nameserver (NS) entry for the following subdomain: ",
+	"it" => "Questo subdomain è un'entrata del nameserver (NS) per il seguente subdomain: ",
+	"nl" => "Dit subdomain is een nameserver(ns) ingang voor volgende subdomain: ",
+	"ru" => "Этим subdomain будет вход nameserver (ns) для following subdomain: ",
+	"de" => "Dieses subdomain ist eine nameserver (NS) Eintragung für das folgende subdomain: ",
+	"zh" => "这subdomain 是一个nameserver (NS) 词条为以下subdomain: ",
+	"pl" => "TRANS This subdomain is a nameserver (NS) entry for the following subdomain: ",
+	"se" => "TRANS This subdomain is a nameserver (NS) entry for the following subdomain: ",
+	"es" => "Este subdomain es una entrada del nameserver (NS) para el subdomain siguiente: ",
+	"pt" => "Este subdomain é uma entrada do nameserver (NS) para o seguinte subdomain: ",
 );
 $txt_subdom_scriptadvice = array(
 	"fr" => "Ensuite, ajouter simplement le script suivant a
