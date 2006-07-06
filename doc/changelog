@@ -1,9 +1,13 @@
 Version 0.21:
 -------------
-- Added import/export functionnalities for domains.
+- Corrected the net_backup.sh script to take into account
+the new mysql manager. Wrote a net_restor.sh script. (thomas)
+
+- Added import/export functionnalities for domains: to be tested
+and debugged fully. (thomas)
 
 - Changed a bit the layout of the admin panel so it's less
-confusing (for the admin editor)
+confusing (for the admin editor) (thomas)
 
 - The panel setup asks less stuffs (like it don't asks for
 NAT IP if not using NAT...)
