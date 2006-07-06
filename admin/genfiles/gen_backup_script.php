@@ -159,7 +159,7 @@ date\n";
 	if( $filep == NULL){
 		die("Cannot open file for writting");
 	}
-	fwrite($filep,$backup_net);
+	fwrite($filep,$restor_net);
 	fclose($filep);
 	chmod("$conf_generated_file_path/net_restor.sh",0750);
 	$console .= "Generated net_restor.sh script for $num_generated_vhosts domains and $num_generated_db db!<br>";
