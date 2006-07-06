@@ -19,6 +19,9 @@ function backup_by_ftp(){
 	$num_generated_vhosts=0;
 	$num_generated_db=0;
 
+	$restor_net = "#!/bin/sh
+date\n";
+
 	$backup_net = "#!/bin/sh
 date\n";
 
@@ -31,7 +34,7 @@ date\n";
 		$owner = $ra["adm_login"];
 		$path = $ra["path"];
 
-		$restor_net .= "echo \"===> Restoring all files for user $ower:\"\n";
+		$restor_net .= "echo \"===> Restoring all files for user $owner:\"\n";
 		$restor_net .= "mkdir -p $path\n";
 		$restor_net .= "chown nobody:65534 $path\n";
 		$restor_net .= "cd $path\n";
