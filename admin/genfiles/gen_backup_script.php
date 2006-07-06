@@ -64,8 +64,12 @@ date\n";
 			$backup_net .= "gzip -f $owner.$webname.tar\n";
 			$backup_net .= "echo \" uploading\"\n";
 
+			$restor_net .= "echo \"Getting domain file $owner.$webname.tar.gz\"\n";
 			$restor_net .= "ncftpget -f /etc/ncftpput_login.cfg -E / $owner.$webname.tar.gz\n";
-			$restor_net .= "tar -xvzf $owner.$webname.tar.gz\n";
+			$restor_net .= "echo \"Unpacking...\"\n";
+			$restor_net .= "tar -xzf $owner.$webname.tar.gz\n";
+			$restor_net .= "echo \"Chown... $webname\"\n";
+			$restor_net .= "chown -R nobody:nogroup $webname\n";
 			$restor_net .= "rm -f $owner.$webname.tar.gz\n";
 
 			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / $owner.$webname.tar.gz\n";
