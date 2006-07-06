@@ -110,8 +110,8 @@ function get_remote_mail_recipients(){
 
 // $recipients = 1 (means email list)
 // $recipients = 0 (means domain list)
-function get_remote_mail_domains_internal($recipients)
-{
+function get_remote_mail_domains_internal($recipients){
+	global $panel_type;
 	global $pro_mysql_backup_table;
 	global $conf_generated_file_path;
 	global $console;
