@@ -12,6 +12,8 @@ function backup_by_ftp(){
 	global $conf_mysql_login;
 	global $conf_mysql_pass;
 
+	global $conf_mysql_db;
+
 	global $console;
 
 	$num_generated_vhosts=0;
@@ -57,7 +59,8 @@ date\n";
 			$num_generated_vhosts++;
 		}
 		$backup_net .= "echo \"===> Backuping all dabatases for user $owner:\"\n";
-		$q3 = "SELECT * FROM mysql.db WHERE User='$owner'";
+		mysql_select_db("mysql");
+		$q3 = "SELECT db.Db FROM db,user WHERE user.dtcowner='$owner' AND db.User=user.User;";
 		$r3 = mysql_query($q3)or die("Cannot query \"$q3\" ! Line:".__LINE__." File:".__FILE__);
 		$n3 = mysql_num_rows($r3);
 		for($k=0;$k<$n3;$k++){
@@ -73,6 +76,7 @@ date\n";
 			$backup_net .= "echo \" deleting archive\"\n";
 			$backup_net .= "rm -f ".$dbfilename.".gz\n";
 		}
+		mysql_select_db($conf_mysql_db);
 	}
 	$backup_net .= "echo -n \"===> Backuping database dtc: \"\n";
 	$dbfilename = "dtcdb.sql";
