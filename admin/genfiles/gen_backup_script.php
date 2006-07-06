@@ -146,6 +146,7 @@ date\n";
 	$restor_net .= "mysql -u$conf_mysql_login -p$conf_mysql_pass <".$dbfilename."\n";
 	$restor_net .= "echo \" deleting archive\"\n";
 	$restor_net .= "rm -f ".$dbfilename."\n";
+	$restor_net .= "date\n";
 
 	$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / $conf_generated_file_path/net_restor.sh\n";
 
