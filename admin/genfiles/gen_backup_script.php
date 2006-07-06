@@ -17,6 +17,7 @@ function backup_by_ftp(){
 	global $console;
 
 	$num_generated_vhosts=0;
+	$num_generated_db=0;
 
 	$backup_net = "#!/bin/sh
 date\n";
@@ -29,6 +30,12 @@ date\n";
 		$ra = mysql_fetch_array($r);
 		$owner = $ra["adm_login"];
 		$path = $ra["path"];
+
+		$restor_net .= "echo \"===> Restoring all files for user $ower:\"\n";
+		$restor_net .= "mkdir -p $path\n";
+		$restor_net .= "chown nobody:65534 $path\n";
+		$restor_net .= "cd $path\n";
+
 		$backup_net .= "echo \"===> Backuping all files for user $owner:\"\n";
 		$backup_net .= "cd $path\n";
 		$q2 = "SELECT name FROM $pro_mysql_domain_table WHERE owner='$owner';";
@@ -53,14 +60,19 @@ date\n";
 			$backup_net .= "echo -n \" compressing\"\n";
 			$backup_net .= "gzip -f $owner.$webname.tar\n";
 			$backup_net .= "echo \" uploading\"\n";
-			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E /webserver/ftp/gplhost/hostedfiles/ $owner.$webname.tar.gz\n";
+
+			$restor_net .= "ncftpget -f /etc/ncftpput_login.cfg -E / $owner.$webname.tar.gz\n";
+			$restor_net .= "tar -xvzf $owner.$webname.tar.gz\n";
+			$restor_net .= "rm -f $owner.$webname.tar.gz\n";
+
+			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / $owner.$webname.tar.gz\n";
 			$backup_net .= "echo \" deleting archive\"\n";
 			$backup_net .= "rm -f $owner.$webname.tar.gz\n";
 			$num_generated_vhosts++;
 		}
 		$backup_net .= "echo \"===> Backuping all dabatases for user $owner:\"\n";
 		mysql_select_db("mysql");
-		$q3 = "SELECT db.Db FROM db,user WHERE user.dtcowner='$owner' AND db.User=user.User;";
+		$q3 = "SELECT db.Db FROM db,user WHERE user.dtcowner='$owner' AND db.User=user.User GROUP BY db.Db;";
 		$r3 = mysql_query($q3)or die("Cannot query \"$q3\" ! Line:".__LINE__." File:".__FILE__);
 		$n3 = mysql_num_rows($r3);
 		for($k=0;$k<$n3;$k++){
@@ -72,9 +84,19 @@ date\n";
 			$backup_net .= "echo -n \" compressing...\"\n";
 			$backup_net .= "gzip $dbfilename\n";
 			$backup_net .= "echo \" Done! Starting upload!\"\n";
-			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E /webserver/ftp/gplhost/hostedfiles/ ".$dbfilename.".gz\n";
+			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / ".$dbfilename.".gz\n";
+
+			$restor_net .= "echo \"Getting file ".$dbfilename.".gz\"\n";
+			$restor_net .= "ncftpget -f /etc/ncftpput_login.cfg -E / ".$dbfilename.".gz\n";
+			$restor_net .= "echo \"Ungziping...\"\n";
+			$restor_net .= "gzip -d ".$dbfilename.".gz\n";
+			$restor_net .= "echo \"Restoring SQL...\"\n";
+			$restor_net .= "mysql -u$conf_mysql_login -p$conf_mysql_pass <".$dbfilename."\n";
+			$restor_net .= "rm -f ".$dbfilename."\n";
+
 			$backup_net .= "echo \" deleting archive\"\n";
 			$backup_net .= "rm -f ".$dbfilename.".gz\n";
+			$num_generated_db++;
 		}
 		mysql_select_db($conf_mysql_db);
 	}
@@ -89,6 +111,15 @@ date\n";
 	$backup_net .= "echo \" deleting archive\"\n";
 	$backup_net .= "rm -f ".$dbfilename.".gz\n";
 
+	$restor_net .= "echo \"Getting file ".$dbfilename.".gz\"\n";
+	$restor_net .= "ncftpget -f /etc/ncftpput_login.cfg -E / ".$dbfilename.".gz\n";
+	$restor_net .= "echo \"Ungziping...\"\n";
+	$restor_net .= "gzip -d ".$dbfilename.".gz\n";
+	$restor_net .= "echo \"Restoring SQL...\"\n";
+	$restor_net .= "mysql -u$conf_mysql_login -p$conf_mysql_pass <".$dbfilename."\n";
+	$restor_net .= "echo \" deleting archive\"\n";
+	$restor_net .= "rm -f ".$dbfilename."\n";
+
 	$backup_net .= "echo -n \"===> Backuping database mysql: \"\n";
 	$dbfilename = "mysqldb.sql";
 	$backup_net .= "echo -n \" dumping...\"\n";
@@ -100,6 +131,17 @@ date\n";
 	$backup_net .= "echo \" deleting archive\"\n";
 	$backup_net .= "rm -f ".$dbfilename.".gz\n";
 
+	$restor_net .= "echo \"Getting file ".$dbfilename.".gz\"\n";
+	$restor_net .= "ncftpget -f /etc/ncftpput_login.cfg -E / ".$dbfilename.".gz\n";
+	$restor_net .= "echo \"Ungziping...\"\n";
+	$restor_net .= "gzip -d ".$dbfilename.".gz\n";
+	$restor_net .= "echo \"Restoring SQL...\"\n";
+	$restor_net .= "mysql -u$conf_mysql_login -p$conf_mysql_pass <".$dbfilename."\n";
+	$restor_net .= "echo \" deleting archive\"\n";
+	$restor_net .= "rm -f ".$dbfilename."\n";
+
+	$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / $conf_generated_file_path/net_restor.sh\n";
+
 	$backup_net .= "date\n";
 	$filep = fopen("$conf_generated_file_path/net_backup.sh", "w+");
 	if( $filep == NULL){
@@ -108,7 +150,16 @@ date\n";
 	fwrite($filep,$backup_net);
 	fclose($filep);
 	chmod("$conf_generated_file_path/net_backup.sh",0750);
-	$console .= "Generated net-backup script for $num_generated_vhosts domains !<br>";
+	$console .= "Generated net_backup.sh script for $num_generated_vhosts domains and $num_generated_db db!<br>";
+
+	$filep = fopen("$conf_generated_file_path/net_restor.sh", "w+");
+	if( $filep == NULL){
+		die("Cannot open file for writting");
+	}
+	fwrite($filep,$backup_net);
+	fclose($filep);
+	chmod("$conf_generated_file_path/net_restor.sh",0750);
+	$console .= "Generated net_restor.sh script for $num_generated_vhosts domains and $num_generated_db db!<br>";
 }
 
 function backup_script_generate(){
