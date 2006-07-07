@@ -149,6 +149,21 @@ date\n";
 	$restor_net .= "date\n";
 
 	$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / $conf_generated_file_path/net_restor.sh\n";
+	$backup_net .= "if [ -e /etc/apache/httpd.conf ] ; then\n";
+	$backup_net .= "	ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / /etc/apache/httpd.conf\n";
+	$backup_net .= "fi\n";
+	$backup_net .= "if [ -e /etc/apache2/apache.conf ] ; then\n";
+	$backup_net .= "	ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / /etc/apache2/apache.conf\n";
+	$backup_net .= "fi\n";
+	$backup_net .= "if [ -e /etc/php4/apache/php.ini ] ; then\n";
+	$backup_net .= "	ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / /etc/php4/apache/php.ini\n";
+	$backup_net .= "fi\n";
+	$backup_net .= "if [ -e /etc/php4/apache2/php.ini ] ; then\n";
+	$backup_net .= "	ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / /etc/php4/apache2/php.ini\n";
+	$backup_net .= "fi\n";
+	$backup_net .= "if [ -e /etc/crontab ] ; then\n";
+	$backup_net .= "	ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E / /etc/crontab\n";
+	$backup_net .= "fi\n";
 
 	$backup_net .= "date\n";
 	$filep = fopen("$conf_generated_file_path/net_backup.sh", "w+");
