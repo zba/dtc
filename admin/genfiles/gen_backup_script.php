@@ -57,7 +57,7 @@ date\n";
 				$ra3 = mysql_fetch_array($r3);
 				$subdom_name = $ra3["subdomain_name"];
 				$backup_net .= "echo -n \",$subdom_name\"\n";
-				$backup_net .= "tar -rf $owner.$webname.tar $webname/subdomains/$subdom_name/html $webname/subdomains/$subdom_name/cgi-bin\n";
+				$backup_net .= "tar -rf $owner.$webname.tar $webname/subdomains/$subdom_name\n";
 			}
 			$backup_net .= "echo -n \")\"\n";
 			$backup_net .= "echo -n \" compressing\"\n";
