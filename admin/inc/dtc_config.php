@@ -1,11 +1,84 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.56 2006/06/29 09:31:56 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.57 2006/07/08 10:57:06 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
  */
+
+function drawFTPBacupConfig(){
+  global $conf_ftp_backup_host;
+  global $conf_ftp_backup_login;
+  global $conf_ftp_backup_pass;
+  global $conf_ftp_backup_frequency;
+  global $pro_mysql_config_table;
+  global $conf_ftp_backup_activate;
+  global $conf_ftp_backup_dest_folder;
+
+  if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_ftp_backup_values"){
+    $q = "UPDATE config SET ftp_backup_activate='".$_REQUEST["ftp_backup_activate"]."',
+    ftp_backup_host='".$_REQUEST["ftp_backup_host"]."',
+    ftp_backup_login='".$_REQUEST["ftp_backup_login"]."',
+    ftp_backup_pass='".$_REQUEST["ftp_backup_pass"]."',
+    ftp_backup_frequency='".$_REQUEST["ftp_backup_frequency"]."',
+    ftp_backup_dest_folder='".$_REQUEST["ftp_backup_dest_folder"]."' WHERE 1;";
+    $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+    $conf_ftp_backup_host = $_REQUEST["ftp_backup_host"];
+    $conf_ftp_backup_activate = $_REQUEST["ftp_backup_activate"];
+    $conf_ftp_backup_login = $_REQUEST["ftp_backup_login"];
+    $conf_ftp_backup_pass = $_REQUEST["ftp_backup_pass"];
+    $conf_ftp_backup_frequency = $_REQUEST["ftp_backup_frequency"];
+    $conf_ftp_backup_dest_folder = $_REQUEST["ftp_backup_dest_folder"];
+  }
+
+  $out = "";
+  $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
+
+  $out .= "<h3>FTP backup configuration</h3>";
+
+  $selector_month = " ";
+  $selector_week = " ";
+  $selector_day = " ";
+  switch($conf_ftp_backup_frequency){
+  case "day":
+    $selector_day = " selected ";
+    break;
+  case "month":
+    $selector_month = " selected ";
+    break;
+  case "week":
+  default:
+    $selector_week = " selected ";
+    break;
+  }
+
+  if($conf_ftp_backup_activate == "yes"){
+    $selector_backup_activate_yes = " checked ";
+    $selector_backup_activate_no = " ";
+  }else{
+    $selector_backup_activate_yes = " ";
+    $selector_backup_activate_no = " checked ";
+  }
+
+  $out .= "$frm_strt<input type=\"hidden\" name=\"action\" value=\"edit_ftp_backup_values\">
+  <table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Activate FTP backups: </td><td><input type=\"radio\" name=\"ftp_backup_activate\" value=\"yes\"$selector_backup_activate_yes> yes <input type=\"radio\" name=\"ftp_backup_activate\" value=\"no\"$selector_backup_activate_no> no</td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Hostname: </td><td><input type=\"text\" name=\"ftp_backup_host\" value=\"$conf_ftp_backup_host\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">FTP login: </td><td><input type=\"text\" name=\"ftp_backup_login\" value=\"$conf_ftp_backup_login\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">FTP password: </td><td><input type=\"text\" name=\"ftp_backup_pass\" value=\"$conf_ftp_backup_pass\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Destination folder: </td><td><input type=\"text\" name=\"ftp_backup_dest_folder\" value=\"$conf_ftp_backup_dest_folder\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Backup frequency: </td><td><select name=\"ftp_backup_frequency\">
+<option value=\"day\"$selector_day>daily</option>
+<option value=\"week\"$selector_week>weekly</option>
+<option value=\"month\"$selector_month>monthly</option>
+</select></td></tr>
+<tr><td collspan=\"2\"><input type=\"submit\" value=\"Ok\"></td></tr></table></form>
+";
+  return $out;
+}
 
 function drawVPSServerConfig(){
   global $pro_mysql_vps_table;
@@ -193,6 +266,12 @@ function drawDTCConfigMenu(){
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=radius\">";
 	$out .=  "radius";
 	if($sousrub != "radius")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "ftpbackup")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ftpbackup\">";
+	$out .=  "ftpbackup";
+	if($sousrub != "ftpbackup")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "path")
@@ -1157,6 +1236,9 @@ function drawDTCConfigForm(){
         case "radius":
                 return drawDTCradiusConfig();
                 break;
+        case "ftpbackup":
+          return drawFTPBacupConfig();
+          break;
 	case "path":
 		$global_conf = drawDTCpathConfig();
 		break;

@@ -241,8 +241,6 @@ function updateAllListWebArchive(){
 	}
 }
 
-
-
 // This will set each day at 0:00
 if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
 // This one is each hours
@@ -416,6 +414,32 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 		//system("$APACHECTL graceful");
 	}else{
 		echo "Config not OK : I can't reload apache !!!\n";
+	}
+}
+
+// If 00:00 and check the frequency of the bacup and launch it if needed
+if(($start_stamps%(60*60*24))< 60*10 && $conf_ftp_backup_activate == "yes"){
+	$do_ftp_backup = "no";
+	switch($conf_ftp_backup_frequency){
+	case "day":
+		$do_ftp_backup = "yes";
+		break;
+	case "week":
+		if(date("N",$start_stamps) == "1"){
+			$do_ftp_backup = "yes";
+		}
+		break;
+	case "month":
+		if(date("j",$start_stamps) == "1"){
+			$do_ftp_backup = "yes";
+		}
+		break;
+	default:
+		break;
+	}
+	if($do_ftp_backup == "yes"){
+		echo "Launching ftp backup script !\n";
+		system("$conf_generated_file_path/net_backup.sh &");
 	}
 }
 

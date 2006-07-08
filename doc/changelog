@@ -1,5 +1,7 @@
 Version 0.21:
 -------------
+- Added a form to do ftp backup weekly, daily or monthly by FTP
+
 - Corrected the net_backup.sh script to take into account
 the new mysql manager. Wrote a net_restor.sh script. (thomas)
 

@@ -163,7 +163,13 @@ $dtc_database = array(
 			"srs_enviro" => "enum('LIVE','TEST') NOT NULL default 'TEST' ",
 			"srs_crypt" => "enum('DES','BLOWFISH') NOT NULL default 'DES' ",
 			"ip_allowed_dns_transfer" => "varchar(255) NOT NULL default '192.168.0.1' ",
-			"use_registrar_api" => "enum('yes','no') NOT NULL default 'no'"
+			"use_registrar_api" => "enum('yes','no') NOT NULL default 'no'",
+			"ftp_backup_host" => "varchar(255) NOT NULL default ''",
+			"ftp_backup_login" => "varchar(255) NOT NULL default ''",
+			"ftp_backup_pass" => "varchar(255) NOT NULL default ''",
+			"ftp_backup_frequency" => "enum('day','week','month') NOT NULL default 'week'",
+			"ftp_backup_activate" => "enum('yes','no') NOT NULL default 'no'",
+			"ftp_backup_dest_folder" => "varchar(255) NOT NULL default '/'"
 			),
 		"keys" => array(
 			"unicrow2" => "(unicrow2)",

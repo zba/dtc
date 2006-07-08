@@ -2002,6 +2002,9 @@ AuthUserFile "$conf_hosting_path"/.htpasswd
 require valid-user" >$PATH_DTC_ADMIN/.htaccess
 fi
 
+# Alias the ncftp login file in etc to the path of the DTC /etc
+ln -s $PATH_DTC_ETC/ncftpput_login.cfg /etc/ncftpput_login.cfg
+
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "***********************************************************"
 	echo "*** Please wait while DTC configures all the daemons... ***"

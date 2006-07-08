@@ -54,5 +54,11 @@ srs_crypt enum('DES','BLOWFISH') NOT NULL default 'DES',
 root_admin_random_pass varchar(128) NOT NULL default '',
 pass_expire int(12) NOT NULL default '0',
 use_registrar_api enum('yes','no') NOT NULL default 'no',
+ftp_backup_host varchar(255) NOT NULL default '',
+ftp_backup_login varchar(255) NOT NULL default '',
+ftp_backup_pass varchar(255) NOT NULL default '',
+ftp_backup_frequency enum('day','week','month') NOT NULL default 'week',
+ftp_backup_activate enum('yes','no') NOT NULL default 'no',
+ftp_backup_dest_folder varchar(255) NOT NULL default '/',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
