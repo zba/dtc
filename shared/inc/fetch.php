@@ -393,7 +393,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 		$domain["catchall_email"] = $row["catchall_email"];
 		$domain["domain_parking"] = $row["domain_parking"];
 
-		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$name';";
+		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$name' ORDER BY subdomain_name;";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
 		if($num_rows < 1 && $domain["default_subdomain"] == NULL){
