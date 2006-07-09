@@ -2003,7 +2003,9 @@ require valid-user" >$PATH_DTC_ADMIN/.htaccess
 fi
 
 # Alias the ncftp login file in etc to the path of the DTC /etc
-ln -s $PATH_DTC_ETC/ncftpput_login.cfg /etc/ncftpput_login.cfg
+if [ ! -e /etc/ncftpput_login.cfg ] ; then
+	ln -s $PATH_DTC_ETC/ncftpput_login.cfg /etc/ncftpput_login.cfg
+fi
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "***********************************************************"
