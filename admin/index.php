@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.52 2006/05/22 01:23:55 seeb Exp $
+	* @version  $Id: index.php,v 1.53 2006/07/10 07:25:37 thomas Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -60,10 +60,11 @@ case "monitor": // Monitor button
 	$out .=
 "<tr><td><b>".$txt_user[$lang]."</b></td><td><b>".$txt_transfer[$lang]." / ".$txt_bw_quota[$lang]."</b></td><td><b>".$txt_transfer_per_month[$lang]."</b></td><td><b>".$txt_disk_usage[$lang]." / ".$txt_domain_tbl_config_quota[$lang]."</b></td></tr>";
 	$total_box_transfer = 0;
-	$total_hits = 0;
+	$total_box_hits = 0;
 	for($i=0;$i<$nr;$i++){
 		$ar = mysql_fetch_array($r);
 		$transfer = 0;
+		$total_hits = 0;
 		$du = 0;
 		// For each of it's admins
 		$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$ar["id"]."';";
@@ -92,6 +93,7 @@ case "monitor": // Monitor button
 		$out .= "<td$back>".drawPercentBar($du,$ar["disk_quota_mb"]*1024*1024,"no")."<br>
 ".smartByte($du)." / ".smartByte($ar["disk_quota_mb"]*1024*1024)."</td>";
 		$total_box_transfer += $transfer;
+		$total_box_hits += $total_hits;
 //fetchAdminStats($admin)
 	}
 	$out .= "</table>";
