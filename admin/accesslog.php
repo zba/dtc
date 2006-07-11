@@ -97,7 +97,7 @@ function make_stats(){
 
 						// demo code for visitor
                                                 // echo "Calculating visitor stats...\n";
-                                                // $visitor_cmd = "nice -n+20 visitors -A -m 30 $dump_filename -o html > $fullpath/report.html";
+                                                // $visitor_cmd = "nice -n+20 visitors -A -m 30 $dump_folder/access_*.log -o html > $fullpath/$year.$month.report.html";
                                                 // echo "$visitor_cmd\n";
                                                 // exec ($visitor_cmd);
 
