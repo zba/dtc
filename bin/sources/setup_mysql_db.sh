@@ -303,6 +303,14 @@ else
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_nated_vhost='no'"
 fi
 
+# Set the value to use SSL directly...
+if [ ""$conf_gen_ssl_cert = "true" ]; then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Adding the use of SSL directly!"
+	fi
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_ssl='yes'"
+fi
+
 # Insert the cyrus user so we can use cyradm
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus','"${MYSQL_DTCDAEMONS_PASS}"',ENCRYPT('"${MYSQL_DTCDAEMONS_PASS}"'))"
 

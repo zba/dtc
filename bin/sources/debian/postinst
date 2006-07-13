@@ -88,11 +88,11 @@ conf_ip_addr=$RET
 db_get dtc/conf_use_nated_vhosts
 conf_use_nated_vhosts=$RET
 if [ ""$conf_use_nated_vhosts = "true" -o ""$conf_use_nated_vhosts = "yes" ] ; then
-	conf_use_nated_vhosts = "yes"
+	conf_use_nated_vhosts="yes"
 	db_get dtc/conf_nated_vhosts_ip
 	conf_nated_vhosts_ip=$RET
 else
-	conf_use_nated_vhosts = "no"
+	conf_use_nated_vhosts="no"
 	conf_nated_vhosts_ip="192.168.0.2"
 fi
 db_get dtc/conf_hostingpath

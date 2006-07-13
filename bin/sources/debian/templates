@@ -177,7 +177,11 @@ Description: Generate OpenSSL certificate for DTC.
  using /usr/share/dtc/etc/ssl/new.cert.csr when
  buying the certificate from a trusted source.
  You will then change /usr/share/dtc/etc/ssl/new.cert.cert
- by a real certificate.
+ by a real certificate. Note that if you say yes,
+ DTC will also activate SSL directly and generate the
+ apache config to use HTTPS url for the panel, if
+ you enter NO, it will leave the value stored in the
+ database (which is no at the first install).
 
 Template: dtc/conf_cert_passphrase
 Type: password
