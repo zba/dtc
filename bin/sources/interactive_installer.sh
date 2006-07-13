@@ -122,7 +122,7 @@ fi
 
 echo ""
 echo "I need now you host information to configure the daemons."
-if [ ""conf_use_nated_vhosts = "yes" ] ; then
+if [ ""$conf_use_nated_vhosts = "yes" ] ; then
 	echo -n "What is your external (public) IP addresse ?: "
 	read conf_ip_addr
 else
