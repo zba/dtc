@@ -1840,7 +1840,7 @@ else
 	echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
 	echo "
 users.host = inet:localhost:3306;
-users.database = dtc;
+users.database = ${conf_mysql_db};
 users.db_user = dtcdaemons;
 users.db_password = ${MYSQL_DTCDAEMONS_PASS};
 users.backup_host =;
