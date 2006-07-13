@@ -1888,7 +1888,7 @@ else
 	echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
 	echo "
 shadow.host = inet:localhost:3306;
-shadow.database = dtc;
+shadow.database = ${conf_mysql_db};
 shadow.db_user = dtcdaemons;
 shadow.db_password = ${MYSQL_DTCDAEMONS_PASS};
 shadow.backup_host =; 
