@@ -1,13 +1,16 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.13 2006/05/17 13:08:47 seeb Exp $
+ * @version $Id: error_strings.php,v 1.14 2006/07/15 14:56:08 seeb Exp $
  * 
  * --------------------------------------------------------
  * For all translators check in new array is new data - se 
  * In plan add swedish language to DTC 
  * --------------------------------------------------------
  * $Log: error_strings.php,v $
+ * Revision 1.14  2006/07/15 14:56:08  seeb
+ * fixed polish
+ *
  * Revision 1.13  2006/05/17 13:08:47  seeb
  * Adding to file cvs user log as comment
  * Please comment any change(s).
@@ -30,7 +33,7 @@ $txt_err_dtc_login_format = array(
 	"ru" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"de" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"zh" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
-	"pl" => "TRANS B³êdny format loginu lub has³a: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus) i musi zawieraæ miêdzy 4 a 16 znaków.<br>\n",
+	"pl" => "B³êdny format loginu lub has³a: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus) i musi zawieraæ miêdzy 4 a 16 znaków.<br>\n",
 	"se" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"es" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"pt" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n");
