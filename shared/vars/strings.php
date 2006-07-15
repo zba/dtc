@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.109 2006/07/05 09:11:14 tusker Exp $
+	* @version  $Id: strings.php,v 1.110 2006/07/15 14:38:37 seeb Exp $
 	* 
 	**/
 	
@@ -22,7 +22,7 @@ $txt_import_button = array(
 	"ru" => "TRANS Import",
 	"de" => "TRANS Import",
 	"zh" => "TRANS Import",
-	"pl" => "TRANS Import",
+	"pl" => "Import",
 	"se" => "TRANS Import",
 	"es" => "Importar",
 	"pt" => "TRANS Import"
@@ -37,7 +37,7 @@ $txt_import_a_domain_for_this_user = array(
 	"ru" => "TRANS Import a domain file for this user:",
 	"de" => "TRANS Import a domain file for this user:",
 	"zh" => "TRANS Import a domain file for this user:",
-	"pl" => "TRANS Import a domain file for this user:",
+	"pl" => "Zaimportuj domenê z pliku dla tego u¿ytkownika:",
 	"se" => "TRANS Import a domain file for this user:",
 	"es" => "Importar un archivo de dominio para este usuario:",
 	"pt" => "TRANS Import a domain file for this user:"
@@ -52,7 +52,7 @@ $txt_export_domain_to_file = array(
 	"ru" => "TRANS Export this domain to a file",
 	"de" => "TRANS Export this domain to a file",
 	"zh" => "TRANS Export this domain to a file",
-	"pl" => "TRANS Export this domain to a file",
+	"pl" => "Wyeksportuj t± domenê do pliku",
 	"se" => "TRANS Export this domain to a file",
 	"es" => "Exportar este dominio a un archivo",
 	"pt" => "TRANS Export this domain to a file"
@@ -67,7 +67,7 @@ $txt_iframe_ds=array(
 	"ru" => "TRANS Deamons states ",
 	"de" => "TRANS Deamons states ",
 	"zh" => "TRANS Deamons states ",
-	"pl" => "TRANS Deamons states ",
+	"pl" => "Status demonów",
 	"se" => "TRANS Deamons states SVENSKA",
 	"es" => "Estado de los demonios ",
 	"pt" => "TRANS Deamons states "
