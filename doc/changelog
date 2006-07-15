@@ -1,5 +1,7 @@
 Version 0.21:
 -------------
+- A better apache2 and php5 support (better dependencies)
+
 - Added a form to do ftp backup weekly, daily or monthly by FTP
 
 - Corrected the net_backup.sh script to take into account
