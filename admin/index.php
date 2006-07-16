@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.53 2006/07/10 07:25:37 thomas Exp $
+	* @version  $Id: index.php,v 1.54 2006/07/16 11:48:18 seeb Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -117,7 +117,7 @@ case "graph":
 case "generate": // Gen Config Files
 	$mainFrameCells[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
 	$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
-	$mainFrameCells[] = skin($conf_skin,$the_iframe,$txt_iframe_ds);
+	$mainFrameCells[] = skin($conf_skin,$the_iframe,$txt_iframe_ds[$lang]); // fixed bug by seeb
 	// The console
 	$mainFrameCells[] = skinConsole();
 	$zemain_content = makeVerticalFrame($mainFrameCells);
