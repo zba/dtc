@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.46 2006/06/28 07:03:04 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.47 2006/07/17 05:43:38 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	* 
@@ -930,18 +930,18 @@ $txt_cfg_secondary_dns_server_addr =array(
 	);
 
 $txt_cfg_slave_dns_ip =array(
-	"fr" => "Adresse IP du serveur DNS esclave :",
-	"en" => "Slave DNS server ip address:",
-	"hu" => "A szolga DNS szerver ip címe:",
-	"it" => "Indirizzo IP server DNS slave:",
-	"nl" => "Tertiaire dns server ip adres:",
-	"ru" => "áÄÒÅÓ ÐÏÄÞÉÎÅÎÎÏÇÏ äîó-ÓÅÒ×ÅÒÁ:",
-	"de" => "IP Adresse des Slave DNS Servers:",
-	"zh" => "±¸ÓÃÓòÃû·þÎñÆ÷µØÖ·",
-	"pl" => "Adres IP serwera Secondary DNS :",
+	"fr" => "IP du champ master a ecrire dans le fichier named.slavezones.conf : ",
+	"en" => "IP of the master DNS to be written in the named.slavezones.conf: ",
+	"hu" => "TRANS: A szolga DNS szerver ip címe:",
+	"it" => "TRANS: Indirizzo IP server DNS slave:",
+	"nl" => "TRANS: Tertiaire dns server ip adres:",
+	"ru" => "TRANS: áÄÒÅÓ ÐÏÄÞÉÎÅÎÎÏÇÏ äîó-ÓÅÒ×ÅÒÁ:",
+	"de" => "TRANS: IP Adresse des Slave DNS Servers:",
+	"zh" => "TRANS: ±¸ÓÃÓòÃû·þÎñÆ÷µØÖ·",
+	"pl" => "TRANS: Adres IP serwera Secondary DNS :",
 	"se" => "TRANS Slave DNS server ip address:",
-	"es" => "Direcci&oacute;n IP del servidor DNS esclavo:",
-	"pt" => "Endereço IP do servidor de DNS secundário"
+	"es" => "TRANS: Direcci&oacute;n IP del servidor DNS esclavo:",
+	"pt" => "TRANS: Endereço IP do servidor de DNS secundário"
 	);
 
 $txt_cfg_payconf_title = array (
