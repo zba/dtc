@@ -107,7 +107,7 @@ then
 		echo "Setting up mysql cli "$conf_mysql_cli_path" without password"
 	fi
         MYSQL=""$conf_mysql_cli_path
-	MYSQLSOW=$conf_mysqlshow_cli_path
+	MYSQLSHOW=$conf_mysqlshow_cli_path
 else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "Setting up mysql cli with password"
