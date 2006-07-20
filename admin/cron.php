@@ -233,10 +233,15 @@ function updateAllListWebArchive(){
 		$list_rcfile = $list_dir."/rcfile";
 		if (file_exists($list_rcfile)){
 			$rcfile = " -rcfile ".$list_rcfile." ";
-			}else{
+		}else{
 			$rcfile = " ";
-			}
-		$updatewa = "mhonarc".$rcfile."-outdir ".$web_path." -add ".$archive_dir;
+		}
+		if($row["spammode"] == "yes"){
+			$spammode = " -spammode ";
+		}else{
+			$spammode = " -nospammode ";
+		}
+		$updatewa = "mhonarc".$rcfile."-outdir ".$web_path." -add ".$spammode.$archive_dir;
 		exec($updatewa);
 	}
 }

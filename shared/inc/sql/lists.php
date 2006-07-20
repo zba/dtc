@@ -195,39 +195,54 @@ function tunablesWABooleanRequestCheck($list_dir,$tunable_name){
 	global $edit_domain;
 	$name = $_REQUEST["edit_mailbox"];
 	$admin_path = getAdminPath($adm_login);
-	$test_query = "SELECT webarchive FROM $pro_mysql_list_table	WHERE domain='$edit_domain' AND name='$name' LIMIT 1";
-	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
-	$test = mysql_fetch_array($test_result);
-	if ($test[0]== "no"){
-		if (isset($_REQUEST[$tunable_name])){
-		$list_web_path = $admin_path."/".$edit_domain."/subdomains/www/html/lists";
+	if($tuname_name == "webarchive"){
+		$test_query = "SELECT webarchive FROM $pro_mysql_list_table WHERE domain='$edit_domain' AND name='$name' LIMIT 1";
+		$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+		$test = mysql_fetch_array($test_result);
+		// If no webarchive before and we want one now, we might need to create it's folders.
+		if ($test[0] == "no" && isset($_REQUEST["webarchive"])){
+			// Check if the list folder exists
+			$list_web_path = $admin_path."/".$edit_domain."/subdomains/www/html/lists";
 			if (!file_exists($list_web_path)){
-			$create_web_path = "mkdir ".$list_web_path;
-			exec($create_web_path);
+				$create_web_path = "mkdir ".$list_web_path;
+				exec($create_web_path);
 			}
-		$this_list_web_path = $admin_path."/".$edit_domain."/subdomains/www/html/lists/".$name;
+			// Check if the lists/listname folder exists
+			$this_list_web_path = $admin_path."/".$edit_domain."/subdomains/www/html/lists/".$name;
 			if (!file_exists($this_list_web_path)){
-			$create_this_web_path = "mkdir ".$this_list_web_path;
-			exec($create_this_web_path);
+				$create_this_web_path = "mkdir ".$this_list_web_path;
+				exec($create_this_web_path);
 			}
-		$this_list_rcfile = $list_dir."/rcfile";	
+			$this_list_rcfile = $list_dir."/rcfile";	
 			if (file_exists($this_list_rcfile)){
-			$rcfile = " -rcfile ".$this_list_rcfile." ";
+				$rcfile = " -rcfile ".$this_list_rcfile." ";
 			}else{
-			$rcfile = " ";
+				$rcfile = " ";
 			}
-		$archive_dir = $list_dir."/archive";
-		$createwa = "mhonarc".$rcfile."-outdir ".$this_list_web_path." ".$archive_dir;
-		exec($createwa);
-		$adm_query = "UPDATE $pro_mysql_list_table SET webarchive='yes' WHERE domain='$edit_domain' AND name='$name';";
-		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+			if(isset($_REQUEST["spammode"])){
+				$spammode = " -spammode ";
+			}else{
+				$spammode = " -nospammode ";
+			}
+			// Create the archive
+			$archive_dir = $list_dir."/archive";
+			$createwa = "mhonarc".$rcfile."-outdir ".$this_list_web_path.$spammode.$archive_dir;
+			exec($createwa);
+			$adm_query = "UPDATE $pro_mysql_list_table SET webarchive='yes' WHERE domain='$edit_domain' AND name='$name';";
+			mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 		}
-	}
-	if ($test[0]== "yes"){
-		if (!isset($_REQUEST[$tunable_name])){
-		$adm_query = "UPDATE $pro_mysql_list_table SET webarchive='no' WHERE domain='$edit_domain' AND name='$name';";
-		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+		if ($test[0]== "yes" && !isset($_REQUEST["webarchive"])){
+			$adm_query = "UPDATE $pro_mysql_list_table SET webarchive='no' WHERE domain='$edit_domain' AND name='$name';";
+			mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		}
+	}else{
+		if(isset($_REQUEST[$tunable_name])){
+			$tun_value = "yes";
+		}else{
+			$tun_value = "no";
+		}
+		$q = "UPDATE $pro_mysql_list_table SET $tunable_name='$tun_value' WHERE domain='$edit_domain' AND name='$name';";
+		$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	}
 }
 
@@ -340,6 +355,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesUNSUBTextareaRequestCheck($list_dir, "unsub");
 	tunablesWABooleanRequestCheck($list_dir,"webarchive");
 	tunablesTextareaRequestCheck($list_dir,"rcfile");
+	tunablesWABooleanRequestCheck($ctrl_dir,"spammode");
 	tunablesWABooleanActionsRequestCheck($list_dir);
 	
 }

@@ -330,6 +330,7 @@ $output .= getListOptionsWABoolean("webarchive");
 $output .= getListOptionsWATextarea($list_path,"rcfile");
 $output .= getListOptionsWABooleanActions("recreatewa");
 $output .= getListOptionsWABooleanActions("deletewa");
+$output .= getListOptionsWABoolean("spammode");
 
 return $output;
 }

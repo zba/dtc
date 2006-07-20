@@ -8,6 +8,7 @@ global $txt_lists_main_title_notification;
 global $txt_lists_main_title_smtp_config;
 global $txt_lists_main_title_subunsub;
 global $txt_lists_main_title_webarchive;
+global $txt_lists_main_title_spammode;
 
 $txt_lists_main_title_rights = array (
   "fr" => "Droits",
@@ -112,7 +113,20 @@ $txt_lists_main_title_webarchive = array (
   "pl" => "Archiwum przez WWW",
   "es" => "Archivo web",
   "pt" => "");
-  
+
+$txt_lists_main_title_spammode = array (
+  "fr" => "Spam mode",
+  "en" => "Spam mode",
+  "hu" => "TRANS Spam mode",
+  "it" => "TRANS Spam mode",
+  "nl" => "TRANS Spam mode",
+  "ru" => "TRANS Spam mode",
+  "de" => "TRANS Spam mode",
+  "zh" => "TRANS Spam mode",
+  "pl" => "TRANS Spam mode",
+  "es" => "TRANS Spam mode",
+  "pt" => "TRANS Spam mode");
+
 $txt_lists_title_list_name = array (
   "fr" => "Nom de la liste :",
   "en" => "Name of the list:",
@@ -515,6 +529,20 @@ $txt_lists_title_unsub = array (
   "pl" => "",
   "es" => "Desuscribir:",
   "pt" => "");
+
+$txt_lists_title_spammode = array (
+  "fr" => "Caché les adresse emails (spammode) :",
+  "en" => "Hide the email addresses (spammode):",
+  "hu" => "TRANS Hide the email addresses (spammode):",
+  "it" => "TRANS Hide the email addresses (spammode):",
+  "nl" => "TRANS Hide the email addresses (spammode):",
+  "ru" => "TRANS Hide the email addresses (spammode):",
+  "de" => "TRANS Hide the email addresses (spammode):",
+  "zh" => "TRANS Hide the email addresses (spammode):",
+  "pl" => "TRANS Hide the email addresses (spammode):",
+  "es" => "TRANS Hide the email addresses (spammode):",
+  "pt" => "TRANS Hide the email addresses (spammode):");
+
   
 $txt_lists_title_webarchive = array (
   "fr" => "Activé l'archivage web :",
@@ -1009,6 +1037,20 @@ $txt_lists_hlp_webarchive = array (
   "pl" => "",
   "es" => "Habilitar archivo web",
   "pt" => "");
+
+$txt_lists_hlp_spammode = array(
+  "fr" => "Cache les adresses email pour éviter le spam.",
+  "en" => "Hide email addresses to avoid spam.",
+  "hu" => "TRANS Hide email addreses to avoid spam.",
+  "it" => "TRANS Hide email addreses to avoid spam.",
+  "nl" => "TRANS Hide email addreses to avoid spam.",
+  "ru" => "TRANS Hide email addreses to avoid spam.",
+  "de" => "TRANS Hide email addreses to avoid spam.",
+  "zh" => "TRANS Hide email addreses to avoid spam.",
+  "pl" => "TRANS Hide email addreses to avoid spam.",
+  "es" => "TRANS Hide email addreses to avoid spam.",
+  "pt" => "TRANS Hide email addreses to avoid spam.");
+
 
 $txt_lists_hlp_rcfile = array (
   "fr" => "Insérez ici le modèle du code que vous voulez voirez insérer à votre archive web. Consultez la <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'_blank\'>documentation</a> et voire les <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'_blank\'>examples</a>.",
