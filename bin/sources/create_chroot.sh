@@ -104,8 +104,15 @@ if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
 	cp -pf /usr/bin/rm /usr/bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
 else
-	cp -pf /bin/rm /bin/mv /bin/gunzip /usr/bin/zip bin/
+	cp -pf /bin/rm /bin/mv /bin/gunzip bin/
 	cp -pf /bin/cpio usr/bin
+fi
+# copy zip and unzip if they are present
+if [ -e /usr/bin/zip ];
+	cp -pf /usr/bin/zip bin/
+fi
+if [ -e /usr/bin/unzip ];
+	cp -pf /usr/bin/unzip bin/
 fi
 
 if [ -e /bin/bash ] ; then
