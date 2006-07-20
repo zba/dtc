@@ -69,6 +69,22 @@ function drawAdminTools_SSH($domain,$adm_path){
 //	$path_popup .= "<option value=\"$adm_path/$edit_domain\"$is_selected>/$edit_domain/</option>";
 	$path_popup = "";
 	$nbr_subdomains = sizeof($domain["subdomains"]);
+	// first add the domains main directory, so a SSH user can access all base accounts
+	if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && isset($sshpath) && $sshpath == "$adm_path/$edit_domain/"){
+		$is_selected = " selected";
+	}else{
+		$is_selected ="";
+	}
+	$path_popup .= "<option value=\"$adm_path/$edit_domain/\"$is_selected>/$edit_domain/ [Uses www chroot]</option>";
+
+	// then add the admin users directory
+	if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && isset($sshpath) && $sshpath == "$adm_path/"){
+		$is_selected = " selected";
+	}else{
+		$is_selected ="";
+	}
+	$path_popup .= "<option value=\"$adm_path/\"$is_selected>/ [Uses www chroot]</option>";
+	
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub_name = $domain["subdomains"][$i]["name"];
 		if(isset($_REQUEST["edssh_account"]) && $_REQUEST["edssh_account"] != "" && isset($sshpath) && $sshpath == "$adm_path/$edit_domain/subdomains/$sub_name"){

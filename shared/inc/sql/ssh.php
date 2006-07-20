@@ -24,7 +24,11 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 		$commit_flag = "no";
 	}
 
-	if(!ereg("^$adm_path/$edit_domain/subdomains",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
+	if (ereg("^$adm_path/$edit_domain/$", $_REQUEST["newssh_path"]) || ereg("^$adm_path/$", $_REQUEST["newssh_path"]))
+	{
+		// all good here, can go ahead
+	}
+	else if(!ereg("^$adm_path/$edit_domain/subdomains",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
 		$submit_err .= "Your path is restricted to $adm_path/$edit_domain/subdomains<br>\n";
 		$commit_flag = "no";
 	}

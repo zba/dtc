@@ -50,8 +50,27 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 fi
 cp -fupR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain
 
+# symlink directories so that users can login with ssh to the admin account directory
+if [ ! -e $conf_hosting_path/$conf_adm_login/bin ]; then ln -s $main_domain_name/subdomains/www/bin  $conf_hosting_path/$conf_adm_login/bin; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/var ]; then ln -s $main_domain_name/subdomains/www/var  $conf_hosting_path/$conf_adm_login/var; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/lib ]; then ln -s $main_domain_name/subdomains/www/lib  $conf_hosting_path/$conf_adm_login/lib; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/sbin ]; then ln -s $main_domain_name/subdomains/www/sbin  $conf_hosting_path/$conf_adm_login/sbin; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/tmp ]; then ln -s $main_domain_name/subdomains/www/tmp  $conf_hosting_path/$conf_adm_login/tmp; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/usr ]; then ln -s $main_domain_name/subdomains/www/usr  $conf_hosting_path/$conf_adm_login/usr; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/dev ]; then ln -s $main_domain_name/subdomains/www/dev  $conf_hosting_path/$conf_adm_login/dev; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/etc ]; then ln -s $main_domain_name/subdomains/www/etc  $conf_hosting_path/$conf_adm_login/etc; fi
+# also, so the user can login to the main domain names base directory
+if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/bin ]; then ln -s subdomains/www/bin  $conf_hosting_path/$conf_adm_login/$main_domain_name/bin; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/var ]; then ln -s subdomains/www/var  $conf_hosting_path/$conf_adm_login/$main_domain_name/var; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/lib ]; then ln -s subdomains/www/lib  $conf_hosting_path/$conf_adm_login/$main_domain_name/lib; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/sbin ]; then ln -s subdomains/www/sbin  $conf_hosting_path/$conf_adm_login/$main_domain_name/sbin; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp ]; then ln -s subdomains/www/tmp  $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/usr ]; then ln -s subdomains/www/usr  $conf_hosting_path/$conf_adm_login/$main_domain_name/usr; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/dev ]; then ln -s subdomains/www/dev  $conf_hosting_path/$conf_adm_login/$main_domain_name/dev; fi
+if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/etc ]; then ln -s subdomains/www/etc  $conf_hosting_path/$conf_adm_login/$main_domain_name/etc; fi
+
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo " chown -R nobody:65534 "$conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains"
+	echo " chown -R nobody:65534 "$conf_hosting_path"/"$conf_hosting_path/$conf_adm_login"/"$main_domain_name"/subdomains"
 fi
 chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains"
 
