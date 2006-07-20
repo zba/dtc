@@ -870,8 +870,8 @@ function fetchAdmin($adm_login, $adm_pass){
 			$data = fetchAdminData($adm_login,$_SERVER['PHP_AUTH_PW']);
 			if($data["err"] != 0){
 				$http_auth_worked = 0;
-				$err_msg = $data["err"] . $data["mesg"];
-				echo "DTC Timeout Error: $err_msg\n";
+				$data["mesg"] = "DTC Timeout Error:" . $data["mesg"] ."\n";
+				return $data;
 			} else {
 				$http_auth_worked = 1;
 				//echo "adm_login as $adm_login\n";

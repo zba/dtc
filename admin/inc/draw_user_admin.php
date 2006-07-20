@@ -179,6 +179,9 @@ function userEditForms($adm_login,$adm_pass){
 	global $addrlink;
 	global $rub;
 
+	$ret["err"] = 0;
+	$ret["mesg"] = "No error";
+
 	if(isset($adm_login) && $adm_login != "" && isset($adm_pass) && $adm_pass != ""){
 		// Fetch all the selected user informations, Print a nice error message if failure.
 		$admin = fetchAdmin($adm_login,$adm_pass);
@@ -198,7 +201,10 @@ function userEditForms($adm_login,$adm_pass){
 			//foreach ($input as $k => $v) { 
 			//	echo "$k - $input[$k]\n";	
 			//}
-			die("Error fetching admin : $error");
+			echo("Error fetching admin : $error");
+			$ret["err"] = $admin["err"];
+			$ret["mesg"] = $admin["mesg"];
+			return $ret;
 		}
 
 		//fix up the $adm_login in case it changed because of session vars:
