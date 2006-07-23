@@ -108,10 +108,10 @@ else
 	cp -pf /bin/cpio usr/bin
 fi
 # copy zip and unzip if they are present
-if [ -e /usr/bin/zip ];
+if [ -e /usr/bin/zip ] ; then
 	cp -pf /usr/bin/zip bin/
 fi
-if [ -e /usr/bin/unzip ];
+if [ -e /usr/bin/unzip ] ; then
 	cp -pf /usr/bin/unzip bin/
 fi
 
