@@ -830,6 +830,19 @@ $dtc_database = array(
 			"UserName" => "(UserName)"
 			)
 		),
+        "vps_server" => array(
+                "vars" => array(
+                        "id" => "int(11) NOT NULL auto_increment",
+                        "hostname" => "varchar(255) NOT NULL ",
+                        "location" => "varchar(64) NOT NULL ",
+                        "soap_login" => "varchar(64) NOT NULL ",
+                        "soap_pass" => "varchar(64) NOT NULL "
+                        ),
+                "primary" => "(id)",
+                "keys" => array(
+                        "hostname" => "(hostname)"
+                        )
+                ),
 	"whitelist" => array(
 		"vars" => array(
 			"id" => "int(9) NOT NULL auto_increment",
