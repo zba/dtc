@@ -1,0 +1,27 @@
+#!/bin/sh
+UNIX_TYPE=$1
+BUILD_DIR=$2
+ARCH_NAME=$3
+DEST_DIR=$4
+
+./buildRelease $UNIX_TYPE $BUILD_DIR
+
+chown -R root:root $BUILD_DIR
+chown nobody:nogroup $BUILD_DIR/client/imgcache $BUILD_DIR/admin/imgcache $BUILD_DIR/shared/imgcache $BUILD_DIR/client/imgcache
+chown nobody:nogroup $BUILD_DIR/client/gfx $BUILD_DIR/admin/gfx $BUILD_DIR/shared/gfx $BUILD_DIR/client/gfx
+chown nobody:nogroup $BUILD_DIR/admin/*.cgi
+
+# Specific gentoo package actions :
+PKG_FILENAME=$DEST_DIR
+mv $BUILD_DIR $PKG_FILENAME
+cp sources/gentoo/install.sh $PKG_FILENAME
+cat sources/interactive_installer.sh >>$PKG_FILENAME"/install.sh"
+cat sources/create_chroot.sh >>$PKG_FILENAME"/install.sh"
+cat sources/setup_mysql_db.sh >>$PKG_FILENAME"/install.sh"
+cat sources/configure_deamons.sh >>$PKG_FILENAME"/install.sh"
+
+cp sources/gentoo/uninstall.sh $PKG_FILENAME
+cat sources/uninstall_deamons.sh >>$PKG_FILENAME"/uninstall.sh"
+echo "===> Packaging"
+tar -czf $ARCH_NAME $PKG_FILENAME
+
