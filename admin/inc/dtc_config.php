@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.57 2006/07/08 10:57:06 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.58 2006/07/25 10:01:29 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -90,7 +90,7 @@ function drawVPSServerConfig(){
   if(isset($_REQUEST["action"])){
     switch($_REQUEST["action"]){
     case "edit_vps_server_hostname":
-      $q = "UPDATE $pro_mysql_vps_server_table SET hostname='".$_REQUEST["hostname"]."' WHERE id='".$_REQUEST["vps_server_id"]."';";
+      $q = "UPDATE $pro_mysql_vps_server_table SET hostname='".$_REQUEST["hostname"]."',soap_login='".$_REQUEST["soap_login"]."',soap_pass='".$_REQUEST["soap_pass"]."' WHERE id='".$_REQUEST["vps_server_id"]."';";
       $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
       break;
     case "delete_vps_server_hostname":
@@ -98,7 +98,7 @@ function drawVPSServerConfig(){
       $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
       break;
     case "new_vps_server_hostname":
-      $q = "INSERT INTO $pro_mysql_vps_server_table (id,hostname) VALUES ('','".$_REQUEST["hostname"]."');";
+      $q = "INSERT INTO $pro_mysql_vps_server_table (id,hostname,soap_login,soap_pass) VALUES ('','".$_REQUEST["hostname"]."','".$_REQUEST["soap_login"]."','".$_REQUEST["soap_pass"]."');";
       $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
     default:
       break;
@@ -108,7 +108,7 @@ function drawVPSServerConfig(){
   $q = "SELECT * FROM $pro_mysql_vps_server_table WHERE 1 ORDER BY hostname;";
   $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
   $n = mysql_num_rows($r);
-  $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>Hostname</td><td colspan=\"3\">Action</td></tr>";
+  $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>Hostname</td><td>SOAP login</td><td>SOAP password</td><td colspan=\"3\">Action</td></tr>";
   for($i=0;$i<$n;$i++){
     $a = mysql_fetch_array($r);
     if( ($i % 2) == 0){
@@ -116,10 +116,11 @@ function drawVPSServerConfig(){
     }else{
       $bg = "";
     }
-    $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+    $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
 <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
-    $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"".$a["hostname"]."\"></td><td$bg><input type=\"submit\" value=\"Save\"></td></form>
+    $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"".$a["hostname"]."\"></td>
+    <td$bg><input type=\"text\" name=\"soap_login\" value=\"".$a["soap_login"]."\"></td><td$bg><input type=\"text\" name=\"soap_pass\" value=\"".$a["soap_pass"]."\"></td><td$bg><input type=\"submit\" value=\"Save\"></td></form>
     $frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"delete_vps_server_hostname\"><input type=\"submit\" value=\"Delete\"></form></td>
     <td$bg><a href=\"?rub=$rub&editor=ipaddr&sousrub=".$_REQUEST["sousrub"]."&hostname=".$a["hostname"]."\">Edit IP addrs</a></td></tr>";
   }
@@ -128,7 +129,8 @@ function drawVPSServerConfig(){
   }else{
     $bg = "";
   }
-  $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"\"></td><td$bg colspan=\"3\"><input type=\"submit\" value=\"New\"></td></form>
+  $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"\"></td>
+  <td$bg><input type=\"text\" name=\"soap_login\" value=\"dtc-xen\"></td><td$bg><input type=\"text\" name=\"soap_pass\" value=\"\"></td><td$bg colspan=\"3\"><input type=\"submit\" value=\"New\"></td></form>
   </tr>";
   $out .= "</table><br><br>";
 
