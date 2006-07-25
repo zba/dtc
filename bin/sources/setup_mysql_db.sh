@@ -294,7 +294,7 @@ if [ ""$conf_use_nated_vhosts = "yes" ] ;then
 		echo "Setting-up values in MySQL for using NAT"
 	fi
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_nated_vhost='yes'"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET nated_vhost_ip='"${conf_nated_vhost_ip}"'"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET nated_vhost_ip='"${conf_nated_vhosts_ip}"'"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_multiple_ip='no'"
 else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then

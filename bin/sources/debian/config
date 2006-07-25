@@ -24,7 +24,7 @@ db_input medium dtc/dtc_adminsubdomain
 guessed_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
 db_input medium dtc/conf_use_nated_vhosts
 db_get dtc/conf_use_nated_vhosts
-if [ ""$RET = "yes" ] ; then
+if [ ""$RET = "yes" -o ""$RET = "true" ] ; then
 	db_input medium dtc/conf_nated_vhosts_ip
 	db_input high dtc/conf_ipaddr
 else
