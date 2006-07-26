@@ -281,7 +281,7 @@ $dtc_database = array(
 			),
 		"primary" => "(id)",
 		"keys" => array(
-			"domain_user" => "(domain_user,domain_name,pop3_server,pop3_login)",
+			"domain_user" => "(domain_user,domain_name(64),pop3_server(64),pop3_login)",
 			"pop3_email" => "(pop3_email)"
 			)
 		),

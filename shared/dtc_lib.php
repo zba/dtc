@@ -31,8 +31,8 @@ require("$dtcshared_path/drawlib/skinLib.php");			// This is the new modular ski
 require("$dtcshared_path/inc/fetchmail.php");
 
 // The soap API to connect to xen servers
-if (!function_exists("soapclient")){
-	require("$dtcshared_path/inc/nusoap.php");
+if (!class_exists("nusoapclient")){
+	require_once("$dtcshared_path/inc/nusoap.php");
 }
 
 /////////////////////////////////////////

@@ -227,10 +227,20 @@ else
 		  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
 		  /lib/libncurses.so.5 \
 		  /lib/librt.so.1 \
-		  /lib/libacl.so.1 \
-		  /lib/libattr.so.1 \
-		  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 /lib/libcap.so.1 \
+		  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 \
 		  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+
+		if [ -e /lib/libacl.so.1 ]; then
+		  	cp /lib/libacl.so.1 lib/
+		fi
+
+		if [ -e /lib/libattr.so.1 ]; then
+			cp /lib/libattr.so.1 lib/
+		fi
+
+		if [ -e /lib/libcap.so.1 ]; then
+			cp /lib/libcap.so.1 lib/
+		fi
 
 		if [ -e /lib/libbz2.so.1.0 ]; then
 			cp /lib/libbz2.so.1.0 lib/
@@ -301,6 +311,9 @@ cp -pf /usr/bin/perl usr/bin/
 
 if ! [ $UNIX_TYPE"" = "osx" ] ;then
 	# now create our ld.so cache
+	mkdir -p $CHROOT_DIR/etc
+	touch $CHROOT_DIR/etc/ld.so.cache
+	touch $CHROOT_DIR/etc/ld.so.conf
 	chroot $CHROOT_DIR ./sbin/ldconfig 
 	# just in case we have wiped our /etc/ld.so.cache (run locally)
 	/sbin/ldconfig

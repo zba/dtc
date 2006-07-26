@@ -70,9 +70,9 @@ if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/dev ]; then ln -s
 if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/etc ]; then ln -s subdomains/www/etc  $conf_hosting_path/$conf_adm_login/$main_domain_name/etc; fi
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo " chown -R nobody:65534 "$conf_hosting_path"/"$conf_hosting_path/$conf_adm_login"/"$main_domain_name"/subdomains"
+	echo "chown -R nobody:65534 $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains"
 fi
-chown -R nobody:65534 $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains"
+chown -R nobody:65534 $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains
 
 # if we have a sudo binary around, then use it to create our chroot shell
 # check for some path defaults... 
@@ -462,6 +462,9 @@ else
 	fi
 	# symlink the PidFile to our dtc location, so we can check it in our scripts
 	apachepidfile=`grep ^PidFile $PATH_HTTPD_CONF | cut -f2 -d' '`
+	## strip the pid of " characters if they exist
+	apachepidfile=${apachepidfile##\"}
+	apachepidfile=${apachepidfile%%\"}
 	echo "Symlinking $apachepidfile to $PATH_DTC_ETC/apache.pid ..."
 	rm -f $PATH_DTC_ETC/apache.pid
 	ln -s $apachepidfile $PATH_DTC_ETC/apache.pid
@@ -640,6 +643,50 @@ fi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Adding inclusion to named.conf"
 fi
+# need to detect named chroot for gentoo
+NAMED_CHROOT=
+if [ -e /etc/conf.d/named ]; then
+	NAMED_CHROOT=$( source /etc/conf.d/named; echo -n $CHROOT )
+	echo "named is configured for chroot at $NAMED_CHROOT"
+fi
+# check to see if NAMED_CHROOT is / 
+# if so, then we need not do all this hooha below
+if [ ""$NAMED_CHROOT = "/" ]; then
+	NAMED_CHROOT=
+fi
+
+if [ -n ""$NAMED_CHROOT ]; then
+	if [ -e ""$NAMED_CHROOT ]; then
+		mkdir -p $NAMED_CHROOT/$PATH_DTC_ETC/zones
+		mkdir -p $NAMED_CHROOT/$PATH_DTC_ETC/slave_zones
+		touch $NAMED_CHROOT/$PATH_DTC_ETC/named.conf
+		if [ -e $PATH_DTC_ETC/named.conf ]; then
+			if [ ! -L $PATH_DTC_ETC/named.conf -a ! -e $PATH_DTC_ETC/named.conf.moved ] ; then 
+				mv $PATH_DTC_ETC/named.conf $PATH_DTC_ETC/named.conf.moved
+			fi
+		fi
+		if [ -e $PATH_DTC_ETC/zones ]; then 
+			if [ ! -L $PATH_DTC_ETC/zones -a ! -e $PATH_DTC_ETC/zones.moved ]; then
+				mv $PATH_DTC_ETC/zones $PATH_DTC_ETC/zones.moved
+			fi
+		fi
+		if [ -e $PATH_DTC_ETC/slave_zones ]; then 
+			if [ ! -L $PATH_DTC_ETC/slave_zones -a ! -e $PATH_DTC_ETC/slave_zones.moved ]; then
+				mv $PATH_DTC_ETC/slave_zones $PATH_DTC_ETC/slave_zones.moved
+			fi
+		fi
+		if [ ! -L $PATH_DTC_ETC/named.conf ]; then
+			ln -s $NAMED_CHROOT/$PATH_DTC_ETC/named.conf $PATH_DTC_ETC/named.conf
+		fi
+		if [ ! -L $PATH_DTC_ETC/zones ]; then
+			ln -s $NAMED_CHROOT/$PATH_DTC_ETC/zones $PATH_DTC_ETC/zones
+		fi
+		if [ ! -L $PATH_DTC_ETC/slave_zones ]; then
+			ln -s $NAMED_CHROOT/$PATH_DTC_ETC/slave_zones $PATH_DTC_ETC/slave_zones
+		fi
+	fi
+fi
+
 if grep "Configured by DTC" $PATH_NAMED_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -730,7 +777,7 @@ fi
 # make sure the amavisd configuration has 'amavis' user and group
 
 if [ -f "$PATH_AMAVISD_CONF" ]; then
-        if [ ""$VERBOSE_INSTALL == "yes" ]; then
+        if [ ""$VERBOSE_INSTALL = "yes" ]; then
                 echo "===> Checking user and group configuration for amavisd..."
         fi
 
@@ -739,26 +786,26 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
         # turn back on error handling, these users probably exist already
         $GROUP_ADD_CMD amavis > /dev/null 2>&1
         if [ $? -ne 0 ]; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "Group amavis already exists..."
                 fi
         fi
         $USER_ADD_CMD -g amavis amavis > /dev/null 2>&1
         if [ $? -ne 0 ]; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "User amavis already exists..."
                 fi
         fi
         $PASSWD_CMD -l amavis > /dev/null 2>&1
         if [ $? -ne 0 ]; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "Change password failed for amavis user"
                 fi
         fi
         set -e
 
         if grep "Configured by DTC" "$PATH_AMAVISD_CONF" >/dev/null; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "$PATH_AMAVISD_CONF already configured..."
                 fi
         else
@@ -815,7 +862,7 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
 fi
 
 if [ -f "$PATH_CLAMAV_CONF" ]; then
-        if [ ""$VERBOSE_INSTALL == "yes" ]; then
+        if [ ""$VERBOSE_INSTALL = "yes" ]; then
                 echo "===> Checking user and group configuration for clamav..."
         fi
 
@@ -824,32 +871,32 @@ if [ -f "$PATH_CLAMAV_CONF" ]; then
         # turn back on error handling, these users probably exist already
         $GROUP_ADD_CMD clamav > /dev/null 2>&1
         if [ $? -ne 0 ]; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "Group clamav already exists..."
                 fi
         fi
         $USER_ADD_CMD -g clamav clamav > /dev/null 2>&1
         if [ $? -ne 0 ]; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "User clamav already exists..."
                 fi
         fi
         $PASSWD_CMD -l clamav > /dev/null 2>&1
         if [ $? -ne 0 ]; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "Change password failed for clamav user"
                 fi
         fi
 	# now add amavisd to the clamav group and vice versa
 	$USER_MOD_CMD -G clamav,amavis clamav > /dev/null 2>&1
         if [ $? -ne 0 ]; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "Change group failed for clamav user"
                 fi
 	fi
 	$USER_MOD_CMD -G amavis,clamav amavis > /dev/null 2>&1
         if [ $? -ne 0 ]; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "Change group failed for amavis user"
                 fi
 	fi
@@ -864,7 +911,7 @@ if [ -f "$PATH_CLAMAV_CONF" ]; then
 	fi
 
 	if grep "Configured by DTC" "$PATH_CLAMAV_CONF" >/dev/null; then
-                if [ ""$VERBOSE_INSTALL == "yes" ]; then
+                if [ ""$VERBOSE_INSTALL = "yes" ]; then
                         echo "$PATH_CLAMAV_CONF already configured..."
                 fi
         else
@@ -1361,6 +1408,21 @@ fi
 if [ -f $PATH_DOVECOT_CONF ]
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Detecting dovecot version..."
+	fi
+	DOVECOT_VERSION=`dovecot --version`
+	DOVECOT_POSTONE=false
+	case $DOVECOT_VERSION in
+		1.*)
+			echo "Found version 1.0 or greater"
+			DOVECOT_POSTONE=true
+			;;
+		0.*)
+			echo "Found pre 1.0 version"
+			;;
+
+	esac
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Adding directives to dovecot.conf"
 	fi
 	if grep "Configured by DTC" $PATH_DOVECOT_CONF >/dev/null
@@ -1369,21 +1431,59 @@ then
 			echo "dovecot.conf has been configure before: skipping include insertion !"
 		fi
 	else
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Inserting DTC configuration inside "$PATH_DOVECOT_CONF
+
+		if [ ""$DOVECOT_POSTONE ]; then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Version 1.x needs a new config file... replacing existing"
+			fi
+			if ! [ -f $PATH_DOVECOT_CONF.DTC.backup ]; then
+				cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
+			fi
+			echo "
+# Configured by DTC v0.x : Please don't touch this line !
+protocols = imap imaps pop3 pop3s
+default_mail_env = maildir:%h/Maildir
+maildir_copy_with_hardlinks = yes
+protocol imap {
+}
+protocol pop3 {
+}
+auth default {
+  mechanisms = plain
+  passdb pam {
+    args = \"*\"
+  }
+  userdb passwd {
+  }
+  user = root
+  userdb sql {
+    args = $PATH_DTC_ETC/dovecot-mysql.conf
+  }
+  passdb sql {
+    args = $PATH_DTC_ETC/dovecot-mysql.conf
+  }
+}
+plugin {
+}
+# End of DTC configuration v0.x : please don't touch this line !
+" > $PATH_DOVECOT_CONF
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Inserting DTC configuration inside "$PATH_DOVECOT_CONF
+			fi
+			if ! [ -f $PATH_DOVECOT_CONF.DTC.backup ]
+			then
+				cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
+			fi
+			TMP_FILE=`${MKTEMP} DTC_install.dovecot.conf.XXXXXX` || exit 1
+			echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
+			echo "auth_userdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >> $TMP_FILE
+			echo "auth_passdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >> $TMP_FILE
+			echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE 
+			# now append this to the existing configuration file
+			cat < $TMP_FILE >> $PATH_DOVECOT_CONF
+			rm  $TMP_FILE
 		fi
-		if ! [ -f $PATH_DOVECOT_CONF.DTC.backup ]
-		then
-			cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
-		fi
-		TMP_FILE=`${MKTEMP} DTC_install.dovecot.conf.XXXXXX` || exit 1
-		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
-		echo "auth_userdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >> $TMP_FILE
-		echo "auth_passdb = mysql $PATH_DTC_ETC/dovecot-mysql.conf" >> $TMP_FILE
-		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE 
-		# now append this to the existing configuration file
-		cat < $TMP_FILE >> $PATH_DOVECOT_CONF
-		rm  $TMP_FILE
 		echo "
 # DB details for dtc mysql DB
 db_host = $conf_mysql_host

@@ -125,10 +125,44 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n "===> Installing or upgrading DTC database: dtc "
 fi
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo -n "===> Checking version of mysql installed..."
+fi
+# mysql  Ver 14.7 Distrib 4.1.20, for pc-linux-gnu (i386) using readline 5.1
+MYSQL_VERSION=`mysql -V`
+MYSQL_VER=30
+case $MYSQL_VERSION in
+	*Distrib\ 3.*)
+		echo "Found version 3.x ..."
+		MYSQL_VER=30
+		;;
+	*Distrib\ 4.0*)
+		echo "Found version 4.0.x ..."
+		MYSQL_VER=40
+		;;
+	*Distrib\ 4.1*)
+		echo "Found version 4.1.x ..."
+		MYSQL_VER=41
+		;;
+	*Distrib\ 5.*)
+		echo "Found version 5.x ..."
+		MYSQL_VER=50
+		;;
+esac
+
+if [ ""$MYSQL_VER -gt 40 ]; then
+	echo "Modifying character set to latin1..."
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="ALTER DATABASE \`$conf_mysql_db\` DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
+fi
+
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n " apachelogs"
 fi
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
+if [ ""$MYSQL_VER -gt 40 ]; then
+		$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="ALTER DATABASE apachelogs DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
+fi
 
 cd $create_tables
 for i in $( ls *.sql );
@@ -143,6 +177,12 @@ done
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "done."
 fi
+
+# fix some tables for 4.1
+if [ ""$MYSQL_VER -gt 40 ]; then
+		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE fetchmail DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
+fi
+
 #echo $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db $conf_mysql_pass
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass"
