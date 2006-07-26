@@ -12,16 +12,16 @@ function drawAdminTools_VPS($admin,$vps){
   $out = "";
 
 //  echo "<pre>";print_r($vps);echo "</pre>";
+  $frm_start = "<form action=\"?\">
+  <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+  <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+  <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
 
   $out .= "<b><u>Expiration date:</u></b><br>";
   $out .= "Your VPS was first registered on the: ".$vps["start_date"]."<br>";
   $out .= "Your VPS will expire on the: ".$vps["expire_date"]."";
 
-  $out .= "<form action=\"?\">
-  <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-  <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-  <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-  <input type=\"hidden\" name=\"action\" value=\"renew_vps\"
+  $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"renew_vps\"
   <input type=\"submit\" value=\"renew\">
   </form>";
 
@@ -29,12 +29,14 @@ function drawAdminTools_VPS($admin,$vps){
   $out .= "<b><u>Network usage:</u></b><br>";
   $out .= "<b><u>Start/stop VPS:</u></b><br>";
   $out .= "Current VPS status:";
-  $out .= "<form action=\"?\">
-  <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-  <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-  <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-  <input type=\"hidden\" name=\"action\" value=\"shutdown_vps\"
-  <input type=\"submit\" value=\"stop\">
+  $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\"
+  <input type=\"submit\" value=\"Gracefully shutdown\">
+  </form>";
+  $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\"
+  <input type=\"submit\" value=\"Destroy now\">
+  </form>";
+  $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\"
+  <input type=\"submit\" value=\"Start\">
   </form>";
 
   $out .= "<b><u>Console last display:</u></b><br>";
