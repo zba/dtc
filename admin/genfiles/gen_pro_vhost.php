@@ -25,7 +25,7 @@ function test_valid_local_ip($address){
 	// turn off error reporting for this function
 	$console .= "Checking IP $address:";
 
-	if (!function_exists(socket_create) && !extension_loaded('php_sockets')) {
+	if (!function_exists('socket_create') && !extension_loaded('php_sockets')) {
                 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
                         dl('php_sockets.dll');
                 } else {
@@ -33,7 +33,7 @@ function test_valid_local_ip($address){
                 }
         }
 
-        if (!function_exists(socket_create)) {
+        if (!function_exists('socket_create')) {
                 die("WARNING! WARNING! Failed to load php_sockets library, there is something wrong with your php installation, please ensure you have a php_sockets.so or php_sockets.dll, or have the sockets compiled into PHP");
         }
 
