@@ -1515,7 +1515,17 @@ plugin {
 			cat < $TMP_FILE >> $PATH_DOVECOT_CONF
 			rm  $TMP_FILE
 		fi
-		echo "
+		if [ ""$DOVECOT_POSTONE ]; then
+			# there is a new configuration for 1.0.x
+			echo "
+connect = host=$MYSQL_DB_SOCKET_PATH port=3306 dbname=$conf_mysql_db user=dtcdaemons password=${MYSQL_DTCDAEMONS_PASS} client_flags=0
+driver = mysql
+default_pass_scheme = PLAIN
+password_query = SELECT passwd AS password FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
+user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
+" > $PATH_DTC_ETC/dovecot-mysql.conf
+		else
+			echo "
 # DB details for dtc mysql DB
 db_host = $conf_mysql_host
 db_port = 3306
@@ -1526,9 +1536,10 @@ db_passwd = ${MYSQL_DTCDAEMONS_PASS}
 db_client_flags = 0
 
 default_pass_scheme = PLAIN
-password_query = SELECT passwd FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
+password_query = SELECT passwd AS password FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
 user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
 " > $PATH_DTC_ETC/dovecot-mysql.conf
+		fi
 		# need to restart dovecot too
 		if [ -x "/etc/init.d/dovecot" ] ; then
                         /etc/init.d/dovecot restart
