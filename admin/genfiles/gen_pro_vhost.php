@@ -24,6 +24,19 @@ function test_valid_local_ip($address){
 //	return true;
 	// turn off error reporting for this function
 	$console .= "Checking IP $address:";
+
+	if (!function_exists(socket_create) && !extension_loaded('php_sockets')) {
+                if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                        dl('php_sockets.dll');
+                } else {
+                        dl('php_sockets.so');
+                }
+        }
+
+        if (!function_exists(socket_create)) {
+                die("WARNING! WARNING! Failed to load php_sockets library, there is something wrong with your php installation, please ensure you have a php_sockets.so or php_sockets.dll, or have the sockets compiled into PHP");
+        }
+
 	$old_error_reporting = error_reporting('E_NONE');
 
 	if (($sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) < 0) {
