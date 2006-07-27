@@ -399,3 +399,23 @@ then
         cat < $TMP_FILE >> $PATH_NSSWITCH_CONF
         rm $TMP_FILE
 fi
+
+APACHE2_CONFD="/etc/conf.d/apache2"
+if [ -e ${APACHE2_CONFD} ]; then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "===> Uninstalling inclusion from $APACHE2_CONFD"
+	fi
+	if grep "Configured by DTC" $APACHE2_CONFD >/dev/null 2>&1
+	then
+		start_line=`grep -n "Configured by DTC" $APACHE2_CONFD | cut -d":" -f1`
+		end_line=`grep -n "End of DTC configuration" $APACHE2_CONFD | cut -d":" -f1`
+		nbr_line=`cat $APACHE2_CONFD | wc -l`
+		TMP_FILE=`${MKTEMP} DTC_uninstall.conf.d_apache2.XXXXXX` || exit 1
+		cat $APACHE2_CONFD | head -n $(($start_line - 1 )) > $TMP_FILE
+		cat $APACHE2_CONFD | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
+		cp -f $APACHE2_CONFD $APACHE2_CONFD.DTC.removed
+		echo -n > $APACHE2_CONFD
+		cat < $TMP_FILE >> $APACHE2_CONFD
+		rm $TMP_FILE
+	fi
+fi

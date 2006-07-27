@@ -528,6 +528,37 @@ if [ -e ${MOD_SQL_CONF} ] ; then
 	rm -f ${TMP_FILE} ${TMP_FILE2}
 fi
 
+# need to make sure we are loading LOG_SQL in the /etc/conf.d/apache2 if that file exists
+# this is especially true for gentoo
+APACHE2_CONFD="/etc/conf.d/apache2"
+if [ -e ${APACHE2_CONFD} ] ; then
+	if grep "Configured by DTC" $APACHE2_CONFD >/dev/null
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "$APACHE2_CONFD has been configured before : skiping include inssertion !"
+		fi
+	else
+		if ! [ -f $APACHE2_CONFD.DTC.backup ]
+		then
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "===> Backing up "$APACHE2_CONFD
+			fi
+			cp -f "$APACHE2_CONFD" "$APACHE2_CONFD.DTC.backup"
+		fi
+
+	fi
+	TMP_FILE=`${MKTEMP} DTC_install_conf.d_apache2.XXXXXX` || exit 1
+	echo "# Configured by DTC $VERSION" >> $TMP_FILE
+	echo "APACHE2_OPTS=\"$APACHE2_OPTS -D LOG_SQL\"" >> $TMP_FILE
+	echo "# End of DTC configuration $VERSION" >> $TMP_FILE
+
+	# now to insert it at the end of the actual $APACHE2_CONFD
+	cat < $TMP_FILE >>$APACHE2_CONFD
+	rm ${TMP_FILE}
+fi
+
+
+
 # Create the ssl certificate if it does not exists (for distribs with /etc/apache only for the moment)
 # Obsolet code: removed!
 #if [ -e "/etc/apache" ]; then
