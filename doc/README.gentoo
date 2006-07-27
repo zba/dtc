@@ -26,3 +26,7 @@ src_unpack() {
     epatch "${FILESDIR}"/patch-mod_log_sql.c
     epatch "${FILESDIR}"/patch-mod_log_sql.h
 }
+
+# make sure /etc/conf.d/apache2 has LOG_SQL defined in APACHE2_OPTS
+
+APACHE2_OPTS="$APACHE2_OPTS -D LOG_SQL"
