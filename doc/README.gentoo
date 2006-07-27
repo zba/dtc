@@ -1,0 +1,28 @@
+Create custom version of mod_log_sql for gentoo
+-----------------------------------------------
+
+# create a local portage directory
+mkdir -p /usr/local/portage && echo 'PORTDIR_OVERLAY="/usr/local/portage"' >> /etc/make.conf
+
+# create the appropriate directory for the new mod_log_sql
+mkdir -p /usr/local/portage/net-www/mod_log_sql
+
+# copy the existing mod_log_sql to the new portage
+cp -r /usr/portage/net-www/mod_log_sql/* /usr/local/portage/net-www/mod_log_sql
+
+
+# add it to the digest
+ebuild /usr/local/portage/net-www/mod_log_sql/mod_log_sql-1.100.ebuild digest
+
+# download the patchs to /usr/local/portage/net-www/mod_log_sql/files
+wget ftp://ftp.gplhost.com/pub/libapache-mod-log-sql/bsd/patch-mod_log_sql.h
+wget ftp://ftp.gplhost.com/pub/libapache-mod-log-sql/bsd/patch-mod_log_sql.c
+
+# add the following to the end of the ebuild
+
+src_unpack() {
+    unpack ${A}
+    cd "${S}"
+    epatch "${FILESDIR}"/patch-mod_log_sql.c
+    epatch "${FILESDIR}"/patch-mod_log_sql.h
+}
