@@ -460,6 +460,18 @@ else
 	then
 		perl -i -p -e 's/^BindAddress/#BindAddress/' $PATH_HTTPD_CONF	
 	fi
+
+	# if we have a modules.d folder, we need to check to see if there are any Listen or BindAddress there too
+	if [ -e /etc/apache*/modules.d/ ]; then
+		# first Listen
+		for i in `grep -l ^Listen /etc/apache*/modules.d/*`; do
+			perl -i -p -e 's/^Listen/#Listen/' $i	
+		done
+		# then BindAddress
+		for i in `grep -l ^BindAddress /etc/apache*/modules.d/*`; do
+			perl -i -p -e 's/^BindAddress/#BindAddress/' $i	
+		done
+	fi
 	# symlink the PidFile to our dtc location, so we can check it in our scripts
 	apachepidfile=`grep ^PidFile $PATH_HTTPD_CONF | cut -f2 -d' '`
 	## strip the pid of " characters if they exist
@@ -528,6 +540,8 @@ if [ -e ${MOD_SQL_CONF} ] ; then
 	rm -f ${TMP_FILE} ${TMP_FILE2}
 fi
 
+
+
 # need to make sure we are loading LOG_SQL in the /etc/conf.d/apache2 if that file exists
 # this is especially true for gentoo
 APACHE2_CONFD="/etc/conf.d/apache2"
@@ -549,7 +563,7 @@ if [ -e ${APACHE2_CONFD} ] ; then
 		TMP_FILE=`${MKTEMP} DTC_install_conf.d_apache2.XXXXXX` || exit 1
 		echo "# Configured by DTC $VERSION" >> $TMP_FILE
 		echo "# This overrides all APACHE2_OPTS, if you wish to modify these options," >> $TMP_FILE
-		echo "# please add the following line after the End of DTC configuration," >> $TMP_FILE
+		echo "# please add the following line to the end of the file" >> $TMP_FILE
 		echo "# and replace <your defines> with the obvious" >> $TMP_FILE
 		echo "# APACHE2_OPTS=\"\$APACHE2_OPTS <your defines>\"" >> $TMP_FILE
 		echo "APACHE2_OPTS=\"-D PHP5 -D SSL -D MOD_LOG -D LOG_SQL\"" >> $TMP_FILE
