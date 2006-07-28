@@ -553,7 +553,7 @@ if [ -e ${APACHE2_CONFD} ] ; then
 	echo "# please add the following line after the End of DTC configuration," >> $TMP_FILE
 	echo "# and replace <your defines> with the obvious" >> $TMP_FILE
 	echo "# APACHE2_OPTS=\"\$APACHE2_OPTS <your defines>\"" >> $TMP_FILE
-	echo "APACHE2_OPTS="-D PHP5 -D SSL -D MOD_LOG -D LOG_SQL"
+	echo "APACHE2_OPTS=\"-D PHP5 -D SSL -D MOD_LOG -D LOG_SQL\"" >> $TMP_FILE
 	echo "# End of DTC configuration $VERSION" >> $TMP_FILE
 
 	# now to insert it at the end of the actual $APACHE2_CONFD
