@@ -223,8 +223,14 @@ else
 		mkdir usr/lib/system
 		cp -pf /usr/lib/system/libmathCommon.A.dylib usr/lib/system
 	else
+		if [ -e /lib/ld-linux.so.2 ] ; then
+			cp -pf /lib/ld-linux.so.2 lib/
+		fi
+		if [ -e /lib/ld-linux-x86-64.so.2 ] ; then
+			cp -pf /lib/ld-linux-x86-64.so.2 lib/
+		fi
 		cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
-		  /lib/libc.so.6 /lib/libcrypt.so.1 /lib/ld-linux.so.2 \
+		  /lib/libc.so.6 /lib/libcrypt.so.1 \
 		  /lib/libncurses.so.5 \
 		  /lib/librt.so.1 \
 		  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 \
