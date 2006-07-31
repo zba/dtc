@@ -124,7 +124,7 @@ $txt_lists_main_title_spammode = array (
   "de" => "TRANS Spam mode",
   "zh" => "TRANS Spam mode",
   "pl" => "TRANS Spam mode",
-  "es" => "TRANS Spam mode",
+  "es" => "Modo Spam",
   "pt" => "TRANS Spam mode");
 
 $txt_lists_title_list_name = array (
@@ -540,7 +540,7 @@ $txt_lists_title_spammode = array (
   "de" => "TRANS Hide the email addresses (spammode):",
   "zh" => "TRANS Hide the email addresses (spammode):",
   "pl" => "TRANS Hide the email addresses (spammode):",
-  "es" => "TRANS Hide the email addresses (spammode):",
+  "es" => "Ocultar direcciones de email (spammode):",
   "pt" => "TRANS Hide the email addresses (spammode):");
 
   
@@ -1048,7 +1048,7 @@ $txt_lists_hlp_spammode = array(
   "de" => "TRANS Hide email addreses to avoid spam.",
   "zh" => "TRANS Hide email addreses to avoid spam.",
   "pl" => "TRANS Hide email addreses to avoid spam.",
-  "es" => "TRANS Hide email addreses to avoid spam.",
+  "es" => "Ocultar direcciones de email para evitar spam.",
   "pt" => "TRANS Hide email addreses to avoid spam.");
 
 

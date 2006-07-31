@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: strings.php,v 1.16 2006/06/28 07:03:04 thomas Exp $
+ * @version $Id: strings.php,v 1.17 2006/07/31 05:44:25 thomas Exp $
  * @abstract Arrays for translations admin panel to many laguages
  * 
  * adedd swedish to array by seeb <seeb@seeb.net.pl>
@@ -1046,7 +1046,7 @@ non risponde affermativamente.",
 "zh" => "×¢²á·þÎñÆ÷Ã»ÓÐ³É¹¦´ð¸´ ",
 "pl" => "TRANSFER NIEUDANY: serwer rejestruj±cy nie by³ w stanie odpowiedzieæ.",
 "se" => "TRANS SVENSKA",
-"es" => "COMPROBACI&Oacute;N PARA TRANSFERENCIA FALLIDA: El servidor de registros no respondi&oacute; satisfactoriamente",
+"es" => "COMPROBACI&Oacute;N DE TRANSFERENCIA FALLIDA: El servidor de registros no respondi&oacute; satisfactoriamente",
 "pt" => "A validação de transferência FALHOU: O servidor não retornou os valores correctamente."
 );
 

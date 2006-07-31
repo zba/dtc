@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.110 2006/07/15 14:38:37 seeb Exp $
+	* @version  $Id: strings.php,v 1.111 2006/07/31 05:44:25 thomas Exp $
 	* 
 	**/
 	
@@ -1438,7 +1438,7 @@ $txt_cmenu_myaccount_stats = array(
 	"zh" => "Í³¼Æ",
 	"pl" => "Statystyki",
 	"se" => "TRANS SVENSKA",
-	"es" => "Estadisticas",
+	"es" => "Estad&iacute;sticas",
 	"pt" => "Estatísticas"
 	);
 $txt_cmenu_add_domain = array(
@@ -2086,7 +2086,7 @@ $txt_server_total_bp = array(
 	"zh" => "±¾ÔÂ·þÎñÆ÷ÒÑ¼ÇÂ¼µÄ×Ü´«Êä: ",
     "pl" => "Ca³kowity transfer serwera w tym m-cu: ",
     "se" => "TRANS SVENSKA",
-	"es" => "Total de cuentas transferidas este mes: ",
+	"es" => "Transferencia total del servidor para este mes: ",
 	"pt" => "Total de contas tranferidas neste mês : "
 	);
 $txt_mainmenu_title_deamonfile_generation = array(
@@ -3351,7 +3351,7 @@ DNS significa que Ud. desea alojar su sitio en otra parte.<br>
 El par&aacute;metro MX nos indica la direcci&oacute;n del servidor de 
 correo (el que almacena todo su correo cuando alguien le envia
 un mensaje). El valor &quot;default&quot; indica que se quiere
-usar el servidor actual.",
+usar este servidor.",
 	
 	"pt" => "!! ATENÇÃO !! 
 Esta operação poderá para os serviços de Web e Mail
@@ -4090,7 +4090,7 @@ $txt_subdom_nameserver_for = array(
 	"zh" => "è¿™subdomain æ˜¯ä¸€ä¸ªnameserver (NS) è¯æ¡ä¸ºä»¥ä¸‹subdomain: ",
 	"pl" => "TRANS This subdomain is a nameserver (NS) entry for the following subdomain: ",
 	"se" => "TRANS This subdomain is a nameserver (NS) entry for the following subdomain: ",
-	"es" => "Este subdomain es una entrada del nameserver (NS) para el subdomain siguiente: ",
+	"es" => "Este subdominio es una entrada del nameserver (NS) para el subdominio siguiente: ",
 	"pt" => "Este subdomain Ã© uma entrada do nameserver (NS) para o seguinte subdomain: ",
 );
 $txt_subdom_scriptadvice = array(
@@ -4483,7 +4483,7 @@ $txt_title_database_form = array(
 	"zh" => "ÄúµÄÊý¾Ý¿â",
 	"pl" => "Twoje bazy danych",
 	"se" => "TRANS SVENSKA",
-	"es" => "Tus bases de datos",
+	"es" => "Sus bases de datos",
 	"pt" => "As suas base de dados"
 
 );

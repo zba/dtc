@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.47 2006/07/17 05:43:38 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.48 2006/07/31 05:44:25 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	* 
@@ -213,9 +213,8 @@ vuoto se non si hanno server DNS di backup):",
         "pl" => "Lista serwer體 DNS (adresy IP), dopuszczone do transferu stref odzielone przez &quot;|&quot; (pipe)<br>
 	        (Pozostaw puste je秎i nie masz zapasowych serwer體 DNS):",
         "se" => "TRANS List here DNS server IPs allowed to do zone transfers separated by &quot;|&quot; (pipe)<br>
-	        (leave blank if you don't have backup DNS server):",        "es" => "Escribe los servidores MX de respaldo separados por &quot;|&quot; (pipeline)<br>
-                (leave blank if you don't have backup MX server):",
-      "es" => "Escriba las IP de los servidores DNS habilitados para transferencias de zona separados por &quot;|&quot; (pipeline)<br>
+	        (leave blank if you don't have backup DNS server):",
+        "es" => "Escriba las IP de los servidores DNS habilitados para transferencias de zona separados por &quot;|&quot; (pipeline)<br>
                 (Dejar en blanco si no tiene servidores DNS de respaldo):",
         "pt" => "Lista de IPs dos servidores de DNS com permiss鮡s para transferir zonas, separados  por  &quot;|&quot; (pipe)<br>
 		(deixe em branco se n鉶 tem nenhum servidor de DNS secund醨io) :"
@@ -940,7 +939,7 @@ $txt_cfg_slave_dns_ip =array(
 	"zh" => "TRANS: 备用域名服务器地址",
 	"pl" => "TRANS: Adres IP serwera Secondary DNS :",
 	"se" => "TRANS Slave DNS server ip address:",
-	"es" => "TRANS: Direcci&oacute;n IP del servidor DNS esclavo:",
+	"es" => "IP del DNS primario para ser escrita en named.slavezones.conf: ",
 	"pt" => "TRANS: Endere鏾 IP do servidor de DNS secund醨io"
 	);
 
