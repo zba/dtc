@@ -268,6 +268,8 @@ if($panel_type!="email"){
 	require("$dtcshared_path/inc/sql/email.php");
 	require("$dtcshared_path/inc/sql/lists.php");
 	require("$dtcshared_path/inc/sql/reseller.php");
+	require("$dtcshared_path/inc/vps.php");
+	require("$dtcshared_path/inc/sql/vps.php");
 }else{
 	require("submit_to_sql_dtcemail.php");
 }
