@@ -8,6 +8,7 @@ function register_user(){
 
 	global $pro_mysql_admin_table;
 	global $pro_mysql_new_admin_table;
+	global $pro_mysql_product_table;
 	global $conf_webmaster_email_addr;
 
 	// Check if all fields are blank, in wich case don't display error
@@ -243,6 +244,17 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 	$ret["mesg"] = "Query ok!";
 	$ret["id"] = $id;
 
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='$esc_product_id';";
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		echo "<font color=\"red\">Cannot find product id!</font>";
+		$the_prod = $esc_product_id." (0 USD)";
+	}else{
+		$a = mysql_fetch_array($r);
+		$the_prod = $a["name"]." (".$a["price_dollar"]." USD)";
+	}
+
 	$mail_content = "
 Somebody tried to register an account. Here is the details of the new user:
 
@@ -260,7 +272,7 @@ Zipcode: $esc_zipcode
 City: ".$_REQUEST["city"]."
 State: ".$_REQUEST["state"]."
 Contry: ".$_REQUEST["country"]."
-Product id: $esc_product_id
+Product id: $the_prod
 Customer note: ".$_REQUEST["custom_notes"]."
 ";
 
