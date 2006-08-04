@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.11 2006/06/29 09:31:56 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.12 2006/08/04 09:52:10 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -19,11 +19,13 @@ function productManager(){
         global $txt_product_period;
         // end of modyfication ;)
 
+
         $q = "SELECT * FROM $pro_mysql_product_table";
         $r = mysql_query($q)or die("Cannot query \"$q\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
         $n = mysql_num_rows($r);
 // modification by seeb 7th may 2006
         $out = "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\"><tr>
+        <td><b>ID</b></td>
         <td><b>".$txt_product_name[$lang]."</b></td>
         <td><b>".$txt_product_price[$lang]." \$</b></td>
         <td><b>".$txt_product_price[$lang]." &#8364;</b></td>
@@ -35,6 +37,7 @@ function productManager(){
 		<td><b>".$txt_product_period[$lang]."</b></td>
 		<td><b>".$txt_product_adddomain[$lang]."</b></td>
 		<td><b>Hosting type</b></td>
+		<td><b>Renew ID</b></td>
 		<td><b>".$txt_product_action[$lang]."</b></td>
 		</tr>";
  // end modification
@@ -55,14 +58,37 @@ function productManager(){
 			$a["allow_add_domain"] = "";
 			$a["allow_add_domain"] = "check";
 			$a["heb_type"] = "shared";
+			$a["renew_prod_id"] = "0";
 		}
+
+		// Build the product ID popup
+	        $qp = "SELECT id FROM $pro_mysql_product_table WHERE renew_prod_id='0'";
+	        $rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	        $np = mysql_num_rows($rp);
+	        $renew_id_popup = "<select name=\"renew_prod_id\">";
+	        $renew_id_popup .= "<option value=\"0\">Not renewal</option>";
+		for($j=0;$j<$np;$j++){
+			$ap = mysql_fetch_array($rp);
+			if($a["renew_prod_id"] == $ap["id"]){
+				$renew_selected = " selected ";
+			}else{
+				$renew_selected = "";
+			}
+			$renew_id_popup .= "<option value=\"".$ap["id"]."\"$renew_selected>".$ap["id"]."</option>";
+		}
+		$renew_id_popup .= "</select>";
+
 		if($i%2){
 			$bg_color="bgcolor=\"#000000\"";
+			$fnt1 = "<font color=\"#FFFFFF\">";
+			$fnt2 = "</font>";
 		}else{
 			$bg_color="";
+			$fnt1 = "";
+			$fnt2 = "";
 		}
 		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">";
-		$out .= "<tr><td $bg_color><input type=\"hidden\" name=\"action\" value=\"edit_product\"><input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\"><input size=\"35\" type=\"text\" name=\"prodname\" value=\"".$a["name"]."\"><input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\"></td>";
+		$out .= "<tr><td $bg_color>$fnt1".$a["id"]."$fnt2</td><td $bg_color><input type=\"hidden\" name=\"action\" value=\"edit_product\"><input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\"><input size=\"35\" type=\"text\" name=\"prodname\" value=\"".$a["name"]."\"><input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"4\" type=\"text\" name=\"price_dollar\" value=\"".$a["price_dollar"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"4\" type=\"text\" name=\"price_euro\" value=\"".$a["price_euro"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"6\" type=\"text\" name=\"quota_disk\" value=\"".$a["quota_disk"]."\"></td>";
@@ -105,6 +131,8 @@ function productManager(){
 				<option value=\"ssl\" $heb_type_ssl_selected>ssl</option>
 				<option value=\"vps\" $heb_type_vps_selected>vps</option>
 				<option value=\"server\" $heb_type_server_selected>server</option></select></td>";
+
+		$out .= "<td>$renew_id_popup</td>";
 
 		if($i<$n){
 			$out .= "<td $bg_color><input type=\"submit\" name=\"submit\" value=\"save\"> ";

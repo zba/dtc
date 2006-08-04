@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS product (
   period date NOT NULL default '0001-00-00',
   allow_add_domain enum('yes','no','check') NOT NULL default 'no',
   heb_type enum('shared','ssl','vps','server') NOT NULL default 'shared',
+  renew_prod_id int(11) NOT NULL default '0',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
 ) TYPE=MyISAM

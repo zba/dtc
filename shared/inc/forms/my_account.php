@@ -78,6 +78,11 @@ function drawAdminTools_MyAccount($admin){
 		}
 	}
 
+	if($id_client != 0){
+		$client = $admin["client"];
+	}
+
+if(isset($admin["data"])){
 	$out .= "<b><u>".$txt_transfer_du[$lang]."</u></b>";
 	// Draw overall this month usage
 	// if there is no usage, set to 0
@@ -92,12 +97,10 @@ function drawAdminTools_MyAccount($admin){
 		$overall .= drawPercentBar($stats["total_transfer"],$bw_quota);
 	}
 	$overall .= $txt_total_disk_usage[$lang].smartByte($stats["total_du"]);
-	if($id_client != 0){
+	if($id_client != 0 && isset($admin["data"])){
 		$du_quota = $admin["info"]["quota"]*1024*1024;
 		$overall .= " / ".smartByte($du_quota)."<br>";
 		$overall .= drawPercentBar($stats["total_du"],$du_quota);
-
-		$client = $admin["client"];
 	}
 
 	if($id_client != 0){
@@ -105,8 +108,12 @@ function drawAdminTools_MyAccount($admin){
 	}else{
 		$out .= $overall;
 	}
+}
 
 	if($id_client != 0){
+
+// If the customer has domains (he could have only a VPS...).
+if(isset($admin["data"])){
 		$out .= "<br><b><u>".$txt_your_hosting_account[$lang]."</u></b>";
 		$out .= "<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"1\">
 <tr>
@@ -137,6 +144,8 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 </table>
 <hr width=\"90%\">
 ";
+}
+
 
 		$out .= "<center><b>".$txt_please_tell_if_info_not_ok[$lang]."</b></center>";
 

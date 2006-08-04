@@ -68,9 +68,18 @@ function drawAdminTools_VPS($admin,$vps){
   <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
   <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
 
+  // Expiration management !
+  $ar = explode("-",$vps["expire_date"]);
   $out .= "<b><u>Expiration date:</u></b><br>";
   $out .= "Your VPS was first registered on the: ".$vps["start_date"]."<br>";
-  $out .= "Your VPS will expire on the: ".$vps["expire_date"]."";
+  if(date("Y") > $ar[0] ||
+      (date("Y") == $ar[0] && date("m") > $ar[1]) ||
+      (date("Y") == $ar[0] && date("m") == $ar[1] && date("d") > $ar[2])){
+    $out .= "<font color=\"red\">"."Your VPS has expired on the: ".$vps["expire_date"]."</font>"
+      ."<br>Please renew with one of the following options:<br>";
+  }else{
+    $out .= "Your VPS will expire on the: ".$vps["expire_date"];
+  }
 
   $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"renew_vps\"
   <input type=\"submit\" value=\"renew\">

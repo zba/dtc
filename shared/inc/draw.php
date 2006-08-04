@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.79 2006/06/29 09:31:56 thomas Exp $
+ * @version $Id: draw.php,v 1.80 2006/08/04 09:52:10 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -49,7 +49,7 @@ function drawPasswordChange(){
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"action\" value=\"change_adm_pass\">
-".$txt_type_new_password[$lang]." <input type=\"password\" name=\"new_pass1\" value=\"\">
+".$txt_type_new_password[$lang]." <input type=\"password\" name=\"new_pass1\" value=\"\"><br>
 ".$txt_retype_new_password[$lang]." <input type=\"password\" name=\"new_pass2\" value=\"\">
 <input type=\"submit\" value=\"Ok\">
 </form>";
@@ -153,7 +153,7 @@ function drawAdminTools($admin){
 		"text" => $txt_cmenu_myaccount_stats[$lang],
 		"type" => "link",
 		"link" => "stats");
-	if(file_exists($dtcshared_path."/dtcrm")){
+	if(file_exists($dtcshared_path."/dtcrm") && $nbr_domain > 0){
 		$user_ZEmenu[] = array(
 			"text" => $txt_cmenu_add_domain[$lang],
 			"type" => "link",
@@ -169,11 +169,18 @@ function drawAdminTools($admin){
 			"type" => "link",
 			"link" => "nameservers");
 	}
-	$user_menu[] = array(
+	if($nbr_domain > 0){
+	  $user_menu[] = array(
 		"text" => $txt_cmenu_myaccount[$lang],
 		"type" => "menu",
 		"link" => "myaccount",
 		"sub" => $user_ZEmenu);
+        }else{
+          $user_menu[] = array(
+            "text" => $txt_cmenu_myaccount[$lang],
+            "type" => "link",
+            "link" => "myaccount");
+        }
 
         // Draw all vps
         for($i=0;$i<$nbr_vps;$i++){
@@ -268,10 +275,12 @@ function drawAdminTools($admin){
 	  $user_menu[] = $not_selected_domains[$i];
 	}
 
-	$user_menu[] = array(
+	if($nbr_domain > 0){
+	  $user_menu[] = array(
 		"text" => $txt_cmenu_database[$lang],
 		"type" => "link",
 		"link" => "database");
+        }
         if($resseller_flag == "yes"){
         	$user_menu[] = array(
 	        	"text" => $txt_cmenu_reseller[$lang],
