@@ -71,7 +71,7 @@ function connect2base(){
 	global $conf_mysql_pass;
 	global $conf_mysql_db;
 
-	$ressource_id = @mysql_connect("$conf_mysql_host", "$conf_mysql_login", "$conf_mysql_pass");
+	$ressource_id = mysql_connect("$conf_mysql_host", "$conf_mysql_login", "$conf_mysql_pass");
 	if($ressource_id == false)	return false;
 	return @mysql_select_db($conf_mysql_db)or die("Cannot select db: $conf_mysql_db");
 }
