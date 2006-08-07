@@ -493,4 +493,17 @@ function smartByte($bytes){
 	return $bytes." Bytes";
 }
 
+function calculateExpirationDate($date,$period){
+	$tbl = explode("-",$date);
+	$year = $tbl[0];
+	$month = $tbl[1];
+	$day = $tbl[2];
+
+	$period = explode("-",$period);
+	$date_timestamp = mktime(1,1,1,$month+$period[1],$day+$period[2],$year+$period[0]);
+	$calculated = date("Y-m-d",$date_timestamp);
+
+	return $calculated;
+}
+
 ?>

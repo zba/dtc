@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.54 2006/07/16 11:48:18 seeb Exp $
+	* @version  $Id: index.php,v 1.55 2006/08/07 20:52:59 thomas Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -48,6 +48,12 @@ case "crm": // CRM TOOL
 	$leftFrameCells[] = skin($conf_skin,DTCRMlistClients(),$txt_client_list_title[$lang]);
 	$leftFrame = makeVerticalFrame($leftFrameCells);
 	$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);
+	break;
+
+case "renewal":
+	$out = "bla!";
+	$module = skin($conf_skin,$out,"Customer Renewals");
+	$zemain_content = $module;
 	break;
 
 case "monitor": // Monitor button
@@ -267,6 +273,17 @@ if(!isset($rub) || $rub != "graph"){
 $menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
 	$txt_mainmenu_title_server_monitor[$lang];
 if(!isset($rub) || $rub != "graph"){
+	$menu .= "</a>";
+}
+$html_array[] = $menu;
+$menu = "";
+
+if(!isset($rub) || $rub != "renewal"){
+	$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=renewal\">";
+}
+$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/renewals.png\"><br>"."Renewals";
+
+if(!isset($rub) || $rub != "renewal"){
 	$menu .= "</a>";
 }
 $html_array[] = $menu;

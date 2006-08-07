@@ -11,6 +11,8 @@ function drawAdminTools_VPS($admin,$vps){
 
   global $vps_soap_err;
 
+  global $pro_mysql_product_table;
+
   $out = "";
 
   $checker = checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name);
@@ -68,6 +70,18 @@ function drawAdminTools_VPS($admin,$vps){
   <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
   <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
 
+// Display the current contract
+  $q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$vps["product_id"]."';";
+  $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+  $n = mysql_num_rows($r);
+  if($n == 1){
+    $vps_prod = mysql_fetch_array($r);
+    $contract = $vps_prod["name"];
+  }else{
+    $contact = "not found!";
+  }
+  $out .= "<b><u>Current contract:</u></b><br>$contract<br><br>";
+
   // Expiration management !
   $ar = explode("-",$vps["expire_date"]);
   $out .= "<b><u>Expiration date:</u></b><br>";
@@ -81,12 +95,24 @@ function drawAdminTools_VPS($admin,$vps){
     $out .= "Your VPS will expire on the: ".$vps["expire_date"];
   }
 
-  $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"renew_vps\"
-  <input type=\"submit\" value=\"renew\">
+  // Renewal buttons
+  $q = "SELECT * FROM $pro_mysql_product_table WHERE renew_prod_id='".$vps["product_id"]."';";
+  $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+  $n = mysql_num_rows($r);
+  for($i=0;$i<$n;$i++){
+    $a = mysql_fetch_array($r);
+    $out .= "<form action=\"/dtc/new_account.php\">
+  <input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
+  <input type=\"hidden\" name=\"renew_type\" value=\"vps\">
+  <input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
+  <input type=\"hidden\" name=\"vps_id\" value=\"".$vps["id"]."\">
+  <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+  <input type=\"submit\" value=\"".$a["name"]."\">
   </form>";
+  }
 
-  $out .= "<b><u>CPU usage:</u></b><br>";
-  $out .= "<b><u>Network usage:</u></b><br>";
+  $out .= "<b><u>CPU and Network usage:</u></b><br>
+<a target=\"_blank\" href=\"http://".$vps["vps_server_hostname"]."/dtc-xen/\">http://".$vps["vps_server_hostname"]."/dtc-xen/</a><br><br>";
   $out .= "<b><u>Current VPS status:</b></u><br>";
   $out .= $vps_out;
   $out .= "<b><u>Start/stop VPS:</u></b><br>";
@@ -103,7 +129,12 @@ function drawAdminTools_VPS($admin,$vps){
   </form>";
   }
 
-  $out .= "<b><u>Console last display:</u></b><br>";
+  $out .= "<b><u>Physical console last display and ssh access:</u></b><br>";
+
+  $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_passwd\">
+  New password: <input type=\"password\" name=\"new_password\" value=\"\"><input type=\"submit\" value=\"Ok\">
+  </form>";
+  $out .= "To access to your console, first setup a password above, and then ssh to:<br>xen".$vps_name."@".$vps_node."<br><br>";
 
   $out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
   <tr><td bgcolor=\"black\"><font color=\"white\">$vps_node:$vps_name</font></td>

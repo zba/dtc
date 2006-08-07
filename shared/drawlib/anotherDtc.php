@@ -1,12 +1,16 @@
 <?php
 /**
  * @package DTC
- * @version $Id: anotherDtc.php,v 1.36 2006/05/21 12:52:41 seeb Exp $
+ * @version $Id: anotherDtc.php,v 1.37 2006/08/07 20:53:00 thomas Exp $
  * @abstract language chose link/images
  * 
  * Added swedish to project languages
  * if posible translate to swedish.
  * $Log: anotherDtc.php,v $
+ * Revision 1.37  2006/08/07 20:53:00  thomas
+ * Added VPS renewal. Still have to validate payment by hand, but working
+ * well appart from that.
+ *
  * Revision 1.36  2006/05/21 12:52:41  seeb
  * Change dispaly bug
  *
@@ -99,7 +103,7 @@ function anotherFooter($content){
 <a target=\"_blank\" href=\"mailto:thomas [ at ] goirand.fr\">Thomas GOIRAND</a>, under
 <a target=\"_blank\" href=\"http://www.gnu.org/copyleft/lesser.txt\">LGPL</a>. Please visit <a
 target=\"_blank\" href=\"http://www.gplhost.com\">GPLHost</a> and <a
-target=\"_blank\" href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\">DTC home</a> for more infos.</i></font>
+target=\"_blank\" href=\"http://www.gplhost.com/software-dtc.html\">DTC home</a> for more infos.</i></font>
 </center>
 ";
 
@@ -143,7 +147,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		return "
 <table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\">
 <tr>
-	<td $nowrap><center><a href=\"http://www.gplhost.com/?rub=softwares&sousrub=dtc\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
+	<td $nowrap><center><a href=\"http://www.gplhost.com/software-dtc.html\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
 <font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release - $conf_unix_type</font></center></td>
 	<td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
 <font size=\"-1\"><i>".$txt_pagetop_zesubtitle[$lang]."</i></font><br>$links</center></td>

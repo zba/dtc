@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS paiement (
   valid_time varchar(8) NOT NULL default '00:00:00',
   valid enum('yes','no') NOT NULL default 'no',
   new_account enum('yes','no') NOT NULL default 'yes',
+  product_id int(11) NOT NULL default '0',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
 ) TYPE=MyISAM;

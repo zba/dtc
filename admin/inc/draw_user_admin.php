@@ -15,6 +15,9 @@ function drawNewAdminForm(){
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_pending_queries_table;
 	global $pro_mysql_pay_table;
+	global $pro_mysql_pending_renewal_table;
+	global $pro_mysql_product_table;
+	global $pro_mysql_vps_table;
 
 	global $txt_add_a_new_user;
 	global $txt_userndomain_waiting_for_addition;
@@ -94,6 +97,57 @@ function drawNewAdminForm(){
 		}
 		$waiting_new_users .= "</table>";
 	}
+
+	$q = "SELECT * FROM $pro_mysql_pending_renewal_table";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n < 1){
+		$waiting_new_users .= "<br><b>No pending renewals!</b><br>";
+	}else{
+		$waiting_new_users .= "<table border=\"1\">
+	<tr><td>".$txt_login_title[$lang]."</td><td>Product</td><td>Payment date</td><td>Bank validated</td><td>Type</td><td>Action</td></tr>";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$waiting_new_users .= "<tr><td>".$a["adm_login"]."</td>";
+			$q2 = "SELECT name,price_dollar,period FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."';";
+			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+			$n2 = mysql_num_rows($r2);
+			if($n2 != 1){
+				$prod_name = "Cannot find product!";
+			}else{
+				$a2 = mysql_fetch_array($r2);
+				$prod_name = $a2["name"]." (".$a2["price_dollar"]." USD: ".$a2["period"].")";
+			}
+			$waiting_new_users .= "<td>$prod_name</td>";
+			$waiting_new_users .= "<td>".$a["renew_date"]." ".$a["renew_time"]."</td>";
+			$q2 = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$a["pay_id"]."';";
+			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+			$n2 = mysql_num_rows($r2);
+			if($n2 != 1){
+				$bank = "Cannot find payment!";
+			}else{
+				$a2 = mysql_fetch_array($r2);
+				$bank = $a2["valid"];
+			}
+			$waiting_new_users .= "<td>$bank</td>";
+			switch($a["heb_type"]){
+			case "vps":
+				$q2 = "SELECT * FROM $pro_mysql_vps_table WHERE id='".$a["renew_id"]."'";
+				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+				if($n2 != 1){
+					$heb_type = "VPS: Cannot find VPS in db!";
+				}else{
+					$a2 = mysql_fetch_array($r2);
+					$heb_type = "VPS: ".$a2["vps_xen_name"]."@".$a2["vps_server_hostname"];
+				}
+			}
+			$waiting_new_users .= "<td>$heb_type</td>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a href=\"".$_SERVER["PHP_SELF"]."?action=validate_renewal&id=".$a["id"]."\">Validate</a> <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_renewal&id=".$a["id"]."\">Del</a></td>";
+			$waiting_new_users .= "</tr>";
+		}
+		$waiting_new_users .= "</table>";
+	}
+
 	return "<table>
 <tr>
 	<td valign=\"top\">".

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: new_account.php,v 1.26 2006/05/13 14:09:26 thomas Exp $
+ * @version $Id: new_account.php,v 1.27 2006/08/07 20:53:00 thomas Exp $
  * @abstract Localization must go on ... ;) seeb
  * @todo repair bug for 
  * "Cannot reselect transaction for id $extapi_pay_id: registration failed!" 
@@ -46,6 +46,7 @@ $panel_type="client";
 // All shared files between DTCadmin and DTCclient
 require_once("$dtcshared_path/dtc_lib.php");
 require_once("new_account_form.php");
+require_once("new_account_renewal.php");
 
 get_secpay_conf();
 
@@ -60,7 +61,10 @@ $anotherLanguageSelection = anotherLanguageSelection();
 $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
 $form = "";
-if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_REQUEST["action"] == "enets-success")){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "contract_renewal"){
+	$ret = renew_form();
+	$form = $ret["mesg"];
+}else if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_REQUEST["action"] == "enets-success")){
 	// Here are paypal return parameters:
 	// [action] => return_from_pay
 	// [regid] => 50
@@ -173,7 +177,7 @@ we also accept checks and wire transfers.";
 			$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"],"yes");
 			$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='".$reguser["id"]."';";
 			$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-			$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=".$reguser["id"];
+			$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
 			$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"],$return_url);
 			$form = $reguser["mesg"]."<br><h4>".$txt_err_register_succ[$lang]."<!--Registration successfull!--></h4>
 Please now click on the following button to go for paiment:<br>

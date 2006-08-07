@@ -565,7 +565,8 @@ $dtc_database = array(
 			"time" => "time NOT NULL default '00:00:00' ",
 			"new_account" => "enum('yes','no') NOT NULL default 'no' ",
 			"valid_date" => "date NOT NULL default '0000-00-00' ",
-			"valid_time" => "time NOT NULL default '00:00:00' "
+			"valid_time" => "time NOT NULL default '00:00:00' ",
+			"product_id" => "int(11) NOT NULL default '0'"
 			),
 		"primary" => "(id)",
 		"keys" => array(

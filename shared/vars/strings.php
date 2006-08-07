@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.111 2006/07/31 05:44:25 thomas Exp $
+	* @version  $Id: strings.php,v 1.112 2006/08/07 20:53:00 thomas Exp $
 	* 
 	**/
 	
@@ -782,7 +782,7 @@ $txt_admin_editor = array(
 
 
 $txt_product_manager = array(
-  "fr" => "Création de pack d'éhbergement",
+  "fr" => "Création de pack d'hébergement",
   "en" => "Hosting product manager",
   "hu" => "TRANS Hosting product manager",
   "it" => "Manager dei prodotti Hosting",

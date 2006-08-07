@@ -2,7 +2,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.27 2006/05/22 00:40:51 seeb Exp $
+ * @version $Id: email.php,v 1.28 2006/08/07 20:53:00 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -125,7 +125,7 @@ Thank you for your understanding.
 
 Antispam software:
 Grey listing+SPF, only available with Domain Technologie Control
-http://www.gplhost.com/?rub=softwares&sousrub=dtc
+http://www.gplhost.com/software-dtc.html
 ";
 
 	$out = "";

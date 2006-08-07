@@ -4,7 +4,7 @@
 !define PRODUCT_NAME "DTC"
 !define PRODUCT_VERSION "0.16.0.1"
 !define PRODUCT_PUBLISHER "GPLHost:>_"
-!define PRODUCT_WEB_SITE "http://www.gplhost.com/?rub=softwares&sousrub=dtc"
+!define PRODUCT_WEB_SITE "http://www.gplhost.com/software-dtc.html"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 

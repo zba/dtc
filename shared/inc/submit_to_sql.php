@@ -7,6 +7,56 @@ if(!isset($commit_flag)){
 	$commit_flag = "yes";
 }
 
+function validateRenewal($renew_id){
+	global $pro_mysql_pending_renewal_table;
+	global $pro_mysql_product_table;
+	global $pro_mysql_vps_table;
+
+	$q = "SELECT * FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$submit_err = "Could not find pending renewal in table line ".__LINE__." file ".__FILE__;
+		$commit_flag = "no";
+		return false;
+	}
+	$renew_entry = mysql_fetch_array($r);
+
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$renew_entry["product_id"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$submit_err = "Could not find product in table line ".__LINE__." file ".__FILE__;
+		$commit_flag = "no";
+		return false;
+	}
+	$product = mysql_fetch_array($r);
+
+	switch($renew_entry["heb_type"]){
+	case "vps":
+		$q = "SELECT * FROM $pro_mysql_vps_table WHERE id='".$renew_entry["renew_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find VPS id in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$vps_entry = mysql_fetch_array($r);
+		$date_expire = calculateExpirationDate($vps_entry["expire_date"],$product["period"]);
+		$q = "UPDATE $pro_mysql_vps_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		break;
+	default:
+		die("Unknown heb type line ".__LINE__." file ".__FILE__);
+		break;
+	}
+
+	$q = "DELETE FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	return true;
+}
+
 function validateWaitingUser($waiting_login){
 	global $conf_administrative_site;
 	global $conf_use_ssl;

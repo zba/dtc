@@ -4,32 +4,6 @@ if(!isset($submit_err)){
 	$submit_err = "";
 }
 
-function calculateExpirationDate($date,$period){
-	$tbl = explode("-",$date);
-	$year = $tbl[0];
-	$month = $tbl[1];
-	$day = $tbl[2];
-
-	$period = explode("-",$period);
-	$year = date("Y")+$period[0];
-	$month = date("m")+$period[1];
-	if($month > 12){
-		$month = $month - 12;
-		$year += 1;
-	}
-	if( $day > date("t",mktime(1,1,1,$month,1,$year))){
-		$day = $day - date("t",mktime(1,1,1,$month,1,$year));
-		$month += 1;
-		if($month > 12){
-			$month = $month - 12;
-			$year += 1;
-		}
-	}
-	$day = date("d")+$period[2];
-	$exp_date = $year."-".$month."-".$day;
-	return $exp_date;
-}
-
 // VPS management
 // action=delete_a_vps&id=2
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
@@ -45,6 +19,20 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
 
 	$q = "DELETE FROM $pro_mysql_vps_table WHERE id='".$_REQUEST["id"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+}
+
+/////////////////////////
+// Renewal managements //
+/////////////////////////
+// Delete a pending
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_renewal"){
+	$q = "DELETE FROM $pro_mysql_pending_renewal_table WHERE id='".$_REQUEST["id"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+}
+
+// Validate a renew
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "validate_renewal"){
+	validateRenewal($_REQUEST["id"]);
 }
 
 // action=add_vps_to_user&vps_server_ip=66.251.193.60&vps_mem=1&vps_hdd=1&vps_duration=0000-01-00
