@@ -88,19 +88,28 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
   }
 }
 
-// Get all the VPS that will expire in 10 and 5 days
-sendVPSReminderEmail(10,"vps_will_expire.txt");
-sendVPSReminderEmail(5,"vps_will_expire.txt");
+// Send reminders before expiration
+$before = explode("|",$conf_vps_renewal_before);
+$n = sizeof($before);
+for($i=0;$i<$n;$i++){
+  sendVPSReminderEmail($before[$i],"vps_will_expire.txt");
+}
 
-// Get all the VPS that expire today
-sendVPSReminderEmail(0,"vps_expired_today.txt");
+// Send reminders after expiration
+$after = explode("|",$conf_vps_renewal_after);
+$n = sizeof($after);
+for($i=0;$i<$n;$i++){
+  $days = 0 - $after[$i];
+  sendVPSReminderEmail($days,"vps_expired_already.txt");
+}
+          
+// Send reminders the day of the expiration
+sendVPSReminderEmail(0,"vps_expired_today.txt","yes");
 
-// Get all the VPS that expired 3, 7 and 12 days ago
-sendVPSReminderEmail(-3,"vps_expired_already.txt");
-sendVPSReminderEmail(-7,"vps_expired_already.txt");
-sendVPSReminderEmail(-12,"vps_expired_last_warning.txt","yes");
+// Send reminders for last warning
+sendVPSReminderEmail($conf_vps_renewal_lastwarning,"vps_expired_last_warning.txt","yes");
 
-// We now shutdown the VPS
-sendVPSReminderEmail(-15,"vps_expired_shutdown.txt","yes");
+// Send the shutdown message
+sendVPSReminderEmail($conf_vps_renewal_shutdown,"vps_expired_shutdown.txt","yes");
 
 ?>

@@ -1,11 +1,57 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.58 2006/07/25 10:01:29 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.59 2006/08/08 18:31:25 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
  */
+
+function drawRenewalsConfig(){
+  global $conf_vps_renewal_before;
+  global $conf_vps_renewal_after;
+  global $conf_vps_renewal_lastwarning;
+  global $conf_vps_renewal_shutdown;
+  global $conf_dtcadmin_path;
+
+  global $pro_mysql_config_table;
+
+  $out = "";
+
+  $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
+
+  $out .= "<h3>VPS renewals periodicity</h3>";
+  $out .= "These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ".$conf_dtcadmin_path."/reminders_msg/<br><br>";
+
+  if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_vps_renewals_days"){
+    $q = "UPDATE $pro_mysql_config_table
+    SET vps_renewal_before='".$_REQUEST["vps_renewal_before"]."',
+    vps_renewal_after='".$_REQUEST["vps_renewal_after"]."',
+    vps_renewal_lastwarning='".$_REQUEST["vps_renewal_lastwarning"]."',
+    vps_renewal_shutdown='".$_REQUEST["vps_renewal_shutdown"]."'
+    WHERE 1";
+    $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+    $conf_vps_renewal_before = $_REQUEST["vps_renewal_before"];
+    $conf_vps_renewal_after = $_REQUEST["vps_renewal_after"];
+    $conf_vps_renewal_lastwarning = $_REQUEST["vps_renewal_lastwarning"];
+    $conf_vps_renewal_shutdown = $_REQUEST["vps_renewal_shutdown"];
+  }
+
+  $out .= "$frm_strt<input type=\"hidden\" name=\"action\" value=\"edit_vps_renewals_days\">
+  <table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Warnings before expiration: </td><td><input type=\"text\" name=\"vps_renewal_before\" value=\"$conf_vps_renewal_before\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Warnings after expiration: </td><td><input type=\"text\" name=\"vps_renewal_after\" value=\"$conf_vps_renewal_after\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Last Warnings: </td><td><input type=\"text\" name=\"vps_renewal_lastwarning\" value=\"$conf_vps_renewal_lastwarning\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Shutdown warnings: </td><td><input type=\"text\" name=\"vps_renewal_shutdown\" value=\"$conf_vps_renewal_shutdown\"></td></tr>
+  <tr><td collspan=\"2\"><input type=\"submit\" value=\"Ok\"></td></tr></table></form>
+";
+  return $out;
+}
 
 function drawFTPBacupConfig(){
   global $conf_ftp_backup_host;
@@ -281,6 +327,12 @@ function drawDTCConfigMenu(){
 	$out .= $txt_cfg_path_conf_title[$lang];
 	if($sousrub != "path")
 		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+        if($sousrub != "renewals")
+          $out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=renewals\">";
+        $out .= "Renewals";
+        if($sousrub != "renewals")
+          $out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "vps")
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=vps\">";
@@ -1244,6 +1296,9 @@ function drawDTCConfigForm(){
 	case "path":
 		$global_conf = drawDTCpathConfig();
 		break;
+        case "renewals":
+          return drawRenewalsConfig();
+          break;
         case "vps":
           return drawVPSServerConfig();
 	}

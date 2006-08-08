@@ -60,5 +60,9 @@ ftp_backup_pass varchar(255) NOT NULL default '',
 ftp_backup_frequency enum('day','week','month') NOT NULL default 'week',
 ftp_backup_activate enum('yes','no') NOT NULL default 'no',
 ftp_backup_dest_folder varchar(255) NOT NULL default '/',
+vps_renewal_before varchar (64) NUT NULL default '5|10',
+vps_renewal_after varchar (64) NUT NULL default '3|7',
+vps_renewal_lastwarning varchar (64) NUT NULL default '12',
+vps_renewal_shutdown varchar (64) NUT NULL default '15',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
