@@ -12,7 +12,7 @@ function sendAdminWarning($message){
   mail($conf_webmaster_email_addr,"[DTC] Reminder warning message!",$msg_2_send,$headers);
 }
 
-function sendVPSReminderEmail($remaining_days,$file){
+function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
   global $pro_mysql_admin_table;
   global $pro_mysql_client_table;
   global $pro_mysql_vps_table;
@@ -79,9 +79,12 @@ function sendVPSReminderEmail($remaining_days,$file){
     }
     $msg_2_send = str_replace("%%%DTC_CLIENT_URL%%%","http".$surl."://".$conf_administrative_site."/dtc/",$msg_2_send);
 
-    echo "Sending reminder to: ".$client["email"]."\n";
     $headers = "From: ".$conf_webmaster_email_addr;
     mail($client["email"],"[DTC] Your VPS expiration",$msg_2_send,$headers);
+    if($send_webmaster_copy == "yes"){
+      $headers = "From: ".$conf_webmaster_email_addr;
+      mail($conf_webmaster_email_addr,"[DTC] Your VPS expiration",$msg_2_send,$headers);
+    }
   }
 }
 
@@ -95,9 +98,9 @@ sendVPSReminderEmail(0,"vps_expired_today.txt");
 // Get all the VPS that expired 3, 7 and 12 days ago
 sendVPSReminderEmail(-3,"vps_expired_already.txt");
 sendVPSReminderEmail(-7,"vps_expired_already.txt");
-sendVPSReminderEmail(-12,"vps_expired_last_warning.txt");
+sendVPSReminderEmail(-12,"vps_expired_last_warning.txt","yes");
 
 // We now shutdown the VPS
-sendVPSReminderEmail(-15,"vps_expired_shutdown.txt");
+sendVPSReminderEmail(-15,"vps_expired_shutdown.txt","yes");
 
 ?>
