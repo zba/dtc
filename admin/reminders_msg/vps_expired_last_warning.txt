@@ -13,7 +13,8 @@ click on your VPS tab, and renew it.
 This is our last warning before we shutdown your VPS. Please
 understand that we can't keep your VPS running as we need the
 space for other customers, and that hosting has to be paid in
-advance.
+advance. If you don't renew, your VPS will be shutdown in
+3 days.
 
 Best regards,
 
