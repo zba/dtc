@@ -12,6 +12,9 @@ function validateRenewal($renew_id){
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_table;
 
+	global $commit_flag;
+	global $submit_err;
+
 	$q = "SELECT * FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);

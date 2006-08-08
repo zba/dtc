@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: new_account.php,v 1.27 2006/08/07 20:53:00 thomas Exp $
+ * @version $Id: new_account.php,v 1.28 2006/08/08 17:53:40 thomas Exp $
  * @abstract Localization must go on ... ;) seeb
  * @todo repair bug for 
  * "Cannot reselect transaction for id $extapi_pay_id: registration failed!" 
@@ -127,32 +127,49 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "contract_renewal"){
 			If you have confirmed the payment then check a bit later here.<br><br>
 			If the payment status was to stay like that, please contact customer support.";
 		}else{
-			$q2 = "SELECT * FROM $pro_mysql_new_admin_table WHERE paiement_id='$extapi_pay_id';";
-			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-			$n2 = mysql_num_rows($r2);
-			if($n2 != 1){
-				$form .= $txt_err_register_cant_reselect_user[$lang];//"Cannot reselect user: registration failed!";
+			$form .= "<h3><font color=\"green\">".$txt_err_payment_finish_approved[$lang]."<!-- TRANSACTION FINISHED AND APPROVED--></font></h3>";
+			if($a["new_account"] == "yes"){
+				$q2 = "SELECT * FROM $pro_mysql_new_admin_table WHERE paiement_id='$extapi_pay_id';";
+				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 != 1){
+					$form .= $txt_err_register_cant_reselect_user[$lang];//"Cannot reselect user: registration failed!";
+				}else{
+					$a2 = mysql_fetch_array($r2);
+					validateWaitingUser($a2["reqadm_login"]);
+					$form .= "Your account has just been created. Please login <a href=\"/dtc\">here</a> to
+					start using your account.<br><br>
+					If you have registered your domain name yourself, then you should set the
+					whois to point to the following name servers:<br>
+					ns1: $conf_addr_primary_dns<br>
+					ns2: $conf_addr_secondary_dns";
+				}
+			// If it's not a new account, then it's a renewal and there must be a record of it
 			}else{
-				$a2 = mysql_fetch_array($r2);
-				validateWaitingUser($a2["reqadm_login"]);
-				$form .= "<h3><font color=\"green\">".$txt_err_payment_finish_approved[$lang]."<!-- TRANSACTION FINISHED AND APPROVED--></font></h3>
-				Your account has just been created. Please login <a href=\"/dtc\">here</a> to
-				start using your account.<br><br>
-				If you have registered your domain name yourself, then you should set the
-				whois to point to the following name servers:<br>
-				ns1: $conf_addr_primary_dns<br>
-				ns2: $conf_addr_secondary_dns";
+				$q2 = "SELECT * FROM $pro_mysql_pending_renewal_table WHERE pay_id='$extapi_pay_id';";
+				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 != 1){
+					$form .= "Could not find your renewal order in the database!";
+				}else{
+					$a2 = mysql_fetch_array($r2);
+					$ret = validateRenewal($a2["id"]);
+					if($ret != true){
+						$form .= $submit_err;
+					}else{
+						$form .= "Your renewal order has been processed!";
+					}
+				}
 			}
 		}
 	}
-
 }else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-cancel"){
-	$forms .= "<h3><font color=\"red\">".$txt_err_payment_cancel[$lang]."<!-- PAYMENT CANCELED --></font></h3>
+	$form .= "<h3><font color=\"red\">".$txt_err_payment_cancel[$lang]."<!-- PAYMENT CANCELED --></font></h3>
 You have canceled the payment, your account wont be validated.
 To start again the registration procedure, follow the link here:<br>
 <a href=\"new_account.php\">".$txt_register_new_account[$lang]."</a>";
 }else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-failed"){
-	$forms .= "<h3><font color=\"red\">".$txt_err_payment_failed[$lang]."<!-- PAYMENT FAILED --></font></h3>
+	$form .= "<h3><font color=\"red\">".$txt_err_payment_failed[$lang]."<!-- PAYMENT FAILED --></font></h3>
 The payment gateway have reported that your payment has failed. Contact us,
 we also accept checks and wire transfers.";
 }else{

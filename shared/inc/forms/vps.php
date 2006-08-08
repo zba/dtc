@@ -28,7 +28,13 @@ function drawAdminTools_VPS($admin,$vps){
 //    print_r($vps_remote_info);
 
     if($vps_remote_info == false){
-      $vps_out .= "Could not get remote status. Maybe the VPS is not running...<br><br>";
+      if(strstr($vps_soap_err,"Method getVPSState failed")){
+        $vps_out .= "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...<br><br>";
+      }else if(strstr($vps_soap_err,"couldn't connect to host")){
+        $vps_out .= "Could not get remote status: could not connect to the SOAP server (HTTP error).<br><br>";
+      }else{
+        $vps_out .= "Could not get remote status. Unkown error: $vps_soap_err<br><br>";
+      }
     }else{
       $uptime = substr($vps_remote_info["up_time"],0,strpos($vps_remote_info["up_time"],"."));
       $uptime_s = $uptime % 60;
