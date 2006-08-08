@@ -24,7 +24,6 @@ function sendVPSReminderEmail($remaining_days,$file){
   $now_timestamp = mktime();
   $one_day = 3600 * 24;
   $q = "SELECT * FROM $pro_mysql_vps_table WHERE expire_date='".date("Y-m-d",$now_timestamp + $one_day*$remaining_days)."';";
-  echo $q."\n";
 
   $fname = "reminders_msg/".$file;
   $fp = fopen($fname,"r");
