@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.59 2006/08/08 18:31:25 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.60 2006/08/09 06:47:50 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -630,7 +630,7 @@ function drawBackupConfig(){
         global $txt_cmenu_password;
 		global $txt_action;
 		global $txt_domain_tbl_config_ip;
-		global $txt_cfg_server_address;		
+        global $txt_cfg_server_address;		
 		
 	$out = "<h3>".$txt_cfg_allow_following_servers_to_list[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='grant_access';";
