@@ -1,23 +1,24 @@
 
-Subject: Your VPS server will expire soon
+Subject: Your hosting account will expire soon
 
 Hello %%%FIRST_NAME%%%,
 
 This is an automated message sent by the Domain Technologie
 Control (DTC) robot.
 
-Your Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
-will expire in %%%REMAINING_DAYS%%% days, on the: %%%EXPIRATION_DATE%%%.
+Your shared hosting account will expire in %%%REMAINING_DAYS%%% days, on the:
+
+%%%EXPIRATION_DATE%%%.
 
 Please login into your control panel at:
 
 %%%DTC_CLIENT_URL%%%
 
-with your login %%%DTC_ADM_LOGIN%%% click on your VPS tab, and renew it.
+with your login %%%DTC_ADM_LOGIN%%% click on your my-account tab, and renew it.
 
-Note that our payment system uses eNETS payment gateway in Singapore as
-well as paypal. eNETS accept VISA and Mastercard, and the fees for using
-it are lower. If you can, please use it.
+Note that our payment system uses eNETS payment gateway in Singapore
+as well as paypal. eNETS accept VISA and Mastercard, and the fees for
+using it are lower. If you can, please use it.
 
 Best regards,
 

@@ -1,22 +1,24 @@
 
-Subject: Your VPS has expired
+Subject: Your shared hosting account expires today
 
 Hello %%%FIRST_NAME%%%,
 
 This is an automated message sent by the Domain Technologie
 Control (DTC) robot.
 
-Your Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
-has expired %%%EXPIRED_DAYS%%% days ago, on the: %%%EXPIRATION_DATE%%%.
+Your shared hosting account expires today, on the:
+
+%%%EXPIRATION_DATE%%%
 
 Please login into your control panel at
 
 %%%DTC_CLIENT_URL%%%
 
-with your login %%%DTC_ADM_LOGIN%%%, click on your VPS tab, and renew it.
+with your login %%%DTC_ADM_LOGIN%%%, click on the my-account tab, and renew it.
 
-We will keep your VPS up few days to give you the time to
-renew your contract.
+We will keep your hosting account up few days to give you the time to
+renew your contract. After the grace period your account will be
+deleted.
 
 Best regards,
 
