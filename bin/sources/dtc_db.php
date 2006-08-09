@@ -173,7 +173,11 @@ $dtc_database = array(
 			"vps_renewal_before" => "varchar (64) NUT NULL default '5|10'",
 			"vps_renewal_after" => "varchar (64) NUT NULL default '3|7'",
 			"vps_renewal_lastwarning" => "varchar (64) NUT NULL default '12'",
-			"vps_renewal_shutdown" => "varchar (64) NUT NULL default '15'"
+			"vps_renewal_shutdown" => "varchar (64) NUT NULL default '15'",
+			"shared_renewal_before" => "varchar (64) NOT NULL default '40|20|7'",
+			"shared_renewal_after" => "varchar (64) NOT NULL default '15|7'",
+			"shared_renewal_lastwarning" => "varchar (64) NOT NULL default '25'",
+			"shared_renewal_shutdown" => "varchar (64) NOT NULL default '28'"
 			),
 		"keys" => array(
 			"unicrow2" => "(unicrow2)",

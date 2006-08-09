@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.60 2006/08/09 06:47:50 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.61 2006/08/09 10:35:39 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -12,6 +12,10 @@ function drawRenewalsConfig(){
   global $conf_vps_renewal_after;
   global $conf_vps_renewal_lastwarning;
   global $conf_vps_renewal_shutdown;
+  global $conf_shared_renewal_before;
+  global $conf_shared_renewal_after;
+  global $conf_shared_renewal_lastwarning;
+  global $conf_shared_renewal_shutdown;
   global $conf_dtcadmin_path;
 
   global $pro_mysql_config_table;
@@ -22,25 +26,33 @@ function drawRenewalsConfig(){
 <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
 <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
 
-  $out .= "<h3>VPS renewals periodicity</h3>";
-  $out .= "These numbers represent the days before and after expiration.
-Warnings before and after expiration can be listed separated by |,
-while others are made of a unique value. The message templates
-are stored in: ".$conf_dtcadmin_path."/reminders_msg/<br><br>";
-
   if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_vps_renewals_days"){
     $q = "UPDATE $pro_mysql_config_table
     SET vps_renewal_before='".$_REQUEST["vps_renewal_before"]."',
     vps_renewal_after='".$_REQUEST["vps_renewal_after"]."',
     vps_renewal_lastwarning='".$_REQUEST["vps_renewal_lastwarning"]."',
-    vps_renewal_shutdown='".$_REQUEST["vps_renewal_shutdown"]."'
+    vps_renewal_shutdown='".$_REQUEST["vps_renewal_shutdown"]."',
+    shared_renewal_before='".$_REQUEST["shared_renewal_before"]."',
+    shared_renewal_after='".$_REQUEST["shared_renewal_after"]."',
+    shared_renewal_lastwarning='".$_REQUEST["shared_renewal_lastwarning"]."',
+    shared_renewal_shutdown='".$_REQUEST["shared_renewal_shutdown"]."'
     WHERE 1";
     $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
     $conf_vps_renewal_before = $_REQUEST["vps_renewal_before"];
     $conf_vps_renewal_after = $_REQUEST["vps_renewal_after"];
     $conf_vps_renewal_lastwarning = $_REQUEST["vps_renewal_lastwarning"];
     $conf_vps_renewal_shutdown = $_REQUEST["vps_renewal_shutdown"];
+    $conf_shared_renewal_before = $_REQUEST["shared_renewal_before"];
+    $conf_shared_renewal_after = $_REQUEST["shared_renewal_after"];
+    $conf_shared_renewal_lastwarning = $_REQUEST["shared_renewal_lastwarning"];
+    $conf_shared_renewal_shutdown = $_REQUEST["shared_renewal_shutdown"];
   }
+
+  $out .= "<h3>VPS renewal email reminders periodicity</h3>";
+  $out .= "These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ".$conf_dtcadmin_path."/reminders_msg/<br><br>";
 
   $out .= "$frm_strt<input type=\"hidden\" name=\"action\" value=\"edit_vps_renewals_days\">
   <table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">
@@ -48,7 +60,17 @@ are stored in: ".$conf_dtcadmin_path."/reminders_msg/<br><br>";
   <tr><td style=\"white-space: nowrap; text-align: right;\">Warnings after expiration: </td><td><input type=\"text\" name=\"vps_renewal_after\" value=\"$conf_vps_renewal_after\"></td></tr>
   <tr><td style=\"white-space: nowrap; text-align: right;\">Last Warnings: </td><td><input type=\"text\" name=\"vps_renewal_lastwarning\" value=\"$conf_vps_renewal_lastwarning\"></td></tr>
   <tr><td style=\"white-space: nowrap; text-align: right;\">Shutdown warnings: </td><td><input type=\"text\" name=\"vps_renewal_shutdown\" value=\"$conf_vps_renewal_shutdown\"></td></tr>
-  <tr><td collspan=\"2\"><input type=\"submit\" value=\"Ok\"></td></tr></table></form>
+  <tr><td collspan=\"2\"></td></tr></table>
+
+  <h3>Shared accounts renewal email reminders periodicity</h3>
+  <table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Warnings before expiration: </td><td><input type=\"text\" name=\"shared_renewal_before\" value=\"$conf_shared_renewal_before\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Warnings after expiration: </td><td><input type=\"text\" name=\"shared_renewal_after\" value=\"$conf_shared_renewal_after\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Last Warnings: </td><td><input type=\"text\" name=\"shared_renewal_lastwarning\" value=\"$conf_shared_renewal_lastwarning\"></td></tr>
+  <tr><td style=\"white-space: nowrap; text-align: right;\">Shutdown warnings: </td><td><input type=\"text\" name=\"shared_renewal_shutdown\" value=\"$conf_shared_renewal_shutdown\"></td></tr>
+  <tr><td collspan=\"2\"></td></tr></table>
+<center><input type=\"submit\" value=\"Ok\"></center>
+</form>
 ";
   return $out;
 }

@@ -170,14 +170,26 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
   }
 }
 
-sendSharedHostingReminderEmail(40,"shared_will_expire.txt");
-sendSharedHostingReminderEmail(20,"shared_will_expire.txt");
-sendSharedHostingReminderEmail(7,"shared_will_expire.txt");
+// Send reminders before expiration
+$before = explode("|",$conf_shared_renewal_before);
+$n = sizeof($before);
+for($i=0;$i<$n;$i++){
+  sendVPSReminderEmail($before[$i],"vps_will_expire.txt");
+  sendSharedHostingReminderEmail($before[$i],"shared_will_expire.txt");
+}
+// Send reminder the day of expiration
 sendSharedHostingReminderEmail(0,"shared_expired_today.txt","yes");
-sendSharedHostingReminderEmail(-7,"shared_expired_already.txt");
-sendSharedHostingReminderEmail(-15,"shared_expired_already.txt");
-sendSharedHostingReminderEmail(-30,"shared_expired_last_warning.txt","yes");
-sendSharedHostingReminderEmail(-33,"shared_expired_shutdown.txt","yes");
-
+// Send reminders after expiration
+$after = explode("|",$conf_vps_renewal_after);
+$n = sizeof($after);
+for($i=0;$i<$n;$i++){
+  $days = 0 - $after[$i];
+  sendVPSReminderEmail($days,"vps_expired_already.txt");
+  sendSharedHostingReminderEmail($days,"shared_expired_already.txt");
+}
+// Send last warning
+sendSharedHostingReminderEmail(-$conf_shared_renewal_lastwarning,"shared_expired_last_warning.txt","yes");
+// Send rexpiration reminder
+sendSharedHostingReminderEmail(-$conf_shared_renewal_shutdown,"shared_expired_shutdown.txt","yes");
 
 ?>
