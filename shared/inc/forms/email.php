@@ -2,7 +2,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.28 2006/08/07 20:53:00 thomas Exp $
+ * @version $Id: email.php,v 1.29 2006/08/09 06:21:06 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -486,9 +486,9 @@ function drawAdminTools_Emails($domain){
 </td></tr><tr><td align=\"right\">";
 		$gen_button = autoGeneratePassButton("emailfrm","editmail_pass");
 		if ($conf_hide_password == "yes"){
-			$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"editmail_pass\" value=\"$passwd\">$gen_button";
+			$txt .= $txt_login_pass[$lang]."</td><td style=\"white-space: nowrap;\"><input type=\"password\" name=\"editmail_pass\" value=\"$passwd\">$gen_button";
 		} else {
-			$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"editmail_pass\" value=\"$passwd\">$gen_button";
+			$txt .= $txt_login_pass[$lang]."</td><td style=\"white-space: nowrap;\"><input type=\"text\" name=\"editmail_pass\" value=\"$passwd\">$gen_button";
 		}
 		$txt .= "
 </td><td align=\"right\">
@@ -518,7 +518,7 @@ function drawAdminTools_Emails($domain){
 			if(isset($mailbox_name))	$mn = $mailbox_name;
 			else	$mn = "";
 			$txt .= "
-<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+<form name=\"emailfrm\" action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 <table border=\"1\"><tr><td align=\"right\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -532,9 +532,9 @@ function drawAdminTools_Emails($domain){
 	if(isset($passwd)) $pd = $passwd;
 	else $pd = "";
 	if ($conf_hide_password == "yes"){
-		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"newmail_pass\" value=\"$pd\">";
+		$txt .= $txt_login_pass[$lang]."</td><td style=\"white-space: nowrap;\"><input type=\"password\" name=\"newmail_pass\" value=\"$pd\">".autoGeneratePassButton("emailfrm","newmail_pass");
 	}else{
-		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newmail_pass\" value=\"$pd\">";
+		$txt .= $txt_login_pass[$lang]."</td><td style=\"white-space: nowrap;\"><input type=\"text\" name=\"newmail_pass\" value=\"$pd\">".autoGeneratePassButton("emailfrm","newmail_pass");
 	}
 $txt .= "
 </td><td align=\"right\">

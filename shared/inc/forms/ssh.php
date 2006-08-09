@@ -143,7 +143,7 @@ $txt .= "
 			}
 			$txt .= "
 <table><tr><td align=\"right\">
-<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+<form name=\"sshfrm\" action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -152,7 +152,7 @@ $txt .= "
 	<input type=\"hidden\" name=\"edssh_account\" value=\"".$edssh_account."\">
 	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newssh_login\" value=\"\">
 </td></tr><tr><td align=\"right\">
-	".$txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newssh_pass\" value=\"\">
+	".$txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newssh_pass\" value=\"\">".autoGeneratePassButton("sshfrm","newssh_pass")."
 </td></tr><tr><td align=\"right\">
 	".$txt_path[$lang]."</td><td><select name=\"newssh_path\">$path_popup</select>
 </td></tr><tr><td align=\"right\">

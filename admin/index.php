@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.56 2006/08/09 03:39:53 thomas Exp $
+	* @version  $Id: index.php,v 1.57 2006/08/09 06:21:06 thomas Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -51,7 +51,7 @@ case "crm": // CRM TOOL
 	break;
 
 case "renewal":
-	$out = "bla!<br>";
+	$out = "<h3>Shared renewals</h3>";
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' ORDER BY expire;";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
 	$n = mysql_num_rows($r);
@@ -60,7 +60,7 @@ case "renewal":
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$q2 = "SELECT * FROM $pro_mysql_client_table WHERE id='".$a["id_client"]."';";
-		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__);
+		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		if($n2 != 1){
 			$client_name = "Client name not found!";
@@ -71,6 +71,35 @@ case "renewal":
 		$out .= "<tr><td>".$a["adm_login"]."</td><td>$client_name</td><td>".$a2["email"]."</td><td>".$a["expire"]."</td></tr>";
 	}
 	$out .= "</table>";
+
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE expire_date < '".date("Y-m-d")."' ORDER BY expire_date";
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
+	$n = mysql_num_rows($r);
+	$out .= "<h3>VPS renewals</h3>";
+	$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
+	<tr><td>Login</td><td>VPS</td><td>Client</td><td>Email</td><td>Expiration date</td></tr>";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+
+		$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["owner"]."';";
+		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		if($n2 != 1){
+			die("Cannot find admin name ".$a["owner"]." line ".__LINE__." file ".__FILE__);
+		}else{
+			$admin = mysql_fetch_array($r2);
+		}
+		$q2 = "SELECT * FROM $pro_mysql_client_table WHERE id='".$admin["id_client"]."';";
+		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		if($n2 != 1){
+			$client_name = "Client name not found!";
+		}else{
+			$a2 = mysql_fetch_array($r2);
+			$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
+		}
+		$out .= "<tr><td>".$a["owner"]."</td><td>".$a["vps_xen_name"].":".$a["vps_server_hostname"]."</td><td>$client_name</td><td>".$a2["email"]."</td><td>".$a["expire_date"]."</td></tr>";
+	}
 	$module = skin($conf_skin,$out,"Customer Renewals");
 	$zemain_content = $module;
 	break;

@@ -97,9 +97,9 @@ function drawEditAdmin($admin){
 	<tr><td align=\"right\">".$txt_password[$lang]."</td>";
 	$genpass = autoGeneratePassButton("admattrbfrm","changed_pass");
 	if ($conf_hide_password == "yes"){
-		$user_data .= "<td><input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass</td></tr>";
+		$user_data .= "<td style=\"white-space: nowrap;\"><input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass</td></tr>";
 	} else {
-		$user_data .= "<td><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass</td></tr>";
+		$user_data .= "<td style=\"white-space: nowrap;\"><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass</td></tr>";
 	}
 	$user_data .= "<tr><td align=\"right\">".$txt_path[$lang]."</td>
 	<td><input type=\"text\" name=\"changed_path\" value=\"$adm_path\"></td></tr>

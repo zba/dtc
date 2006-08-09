@@ -101,7 +101,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	<input type=\"hidden\" name=\"edftp_account\" value=\"".$_REQUEST["edftp_account"]."\">";
 	$genpass = autoGeneratePassButton("ftpfrm","edftp_pass");
 	if ($conf_hide_password == "yes"){
-		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"password\" name=\"edftp_pass\" value=\"$pass\">$genpass";
+		$txt .= $txt_login_pass[$lang]."</td><td style=\"white-space: nowrap;\"><input type=\"password\" name=\"edftp_pass\" value=\"$pass\">$genpass";
 	}else{
 		$txt .= $txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"edftp_pass\" value=\"$pass\">$genpass";
 	}
@@ -126,7 +126,7 @@ $txt .= "
 			}
 			$txt .= "
 <table><tr><td align=\"right\">
-<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+<form name=\"ftpfrm\" action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -135,7 +135,7 @@ $txt .= "
 	<input type=\"hidden\" name=\"edftp_account\" value=\"".$edftp_account."\">
 	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newftp_login\" value=\"\">
 </td></tr><tr><td align=\"right\">
-	".$txt_login_pass[$lang]."</td><td><input type=\"text\" name=\"newftp_pass\" value=\"\">
+	".$txt_login_pass[$lang]."</td><td style=\"white-space: nowrap;\"><input type=\"text\" name=\"newftp_pass\" value=\"\">".autoGeneratePassButton("ftpfrm","newftp_pass")."
 </td></tr><tr><td align=\"right\">
 	".$txt_path[$lang]."</td><td><select name=\"newftp_path\">$path_popup</select>
 </td></tr><tr><td align=\"right\">

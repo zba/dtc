@@ -12,14 +12,24 @@ function mdpauto(){
 }
 
 function autoGeneratePassButton($form_name,$field_name){
+	global $jscript_gen_autopass;
 	$mdp = mdpauto();
-	$out = "
+	$out = "";
+	if(!isset($jscript_gen_autopass) && $jscript_gen_autopass != "yes"){
+		$jscript_gen_autopass;
+		$out .= "
 <script language=\"JavaScript\">
-function dtc_gen_passwd(){
-	document.".$form_name.".".$field_name.".value = '".$mdp."';
+function dtc_gen_passwd(frm_name,fld_name){
+	document[frm_name][fld_name].value = '".$mdp."';
+	document[frm_name][fld_name].type = 'text';
 }
-</script>
-<img src=\"gfx/generate_pass.png\" onClick=\"dtc_gen_passwd();\" alt)\"GENPASS\">";
+function dtc_see_password(frm_name,fld_name){
+	document[frm_name][fld_name].type = 'text';
+}
+</script>";
+	}
+	$out .= "<img src=\"gfx/generate_pass.png\" onClick=\"dtc_gen_passwd('".$form_name."','".$field_name."');\" alt=\"GENPASS\">
+<img src=\"gfx/see_password.png\" onClick=\"dtc_see_password('".$form_name."','".$field_name."');\" alt=\"SEEPASS\">";
 	return $out;
 }
 
