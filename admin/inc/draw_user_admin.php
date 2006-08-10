@@ -140,6 +140,11 @@ function drawNewAdminForm(){
 					$a2 = mysql_fetch_array($r2);
 					$heb_type = "VPS: ".$a2["vps_xen_name"]."@".$a2["vps_server_hostname"];
 				}
+				break;
+			case "shared":
+			case "ssl":
+				$heb_type = "Shared";
+				break;
 			}
 			$waiting_new_users .= "<td>$heb_type</td>";
 			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a href=\"".$_SERVER["PHP_SELF"]."?action=validate_renewal&id=".$a["id"]."\">Validate</a> <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_renewal&id=".$a["id"]."\">Del</a></td>";
