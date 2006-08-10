@@ -333,11 +333,14 @@ function registration_form(){
 	}
 
 	$prod_popup = "";
-	$q = "SELECT * FROM $pro_mysql_product_table WHERE $heb_type AND renew_prod_id='0' ORDER BY id";
+	$p_jscript = " prod_popup_htype = new Array();";
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE $heb_type_condition AND renew_prod_id='0' ORDER BY id";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
+	$prod_popup .= "<option value=\"-1\">Please select!</optioon>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
+		$p_jscript .= " prod_popup_htype[".$a["id"]."] = '".$a["heb_type"]."';\n";
 		if(isset($_REQUEST["product_id"]) && $a["id"] == $_REQUEST["product_id"]){
 			$prod_popup .= "<option value=\"".$a["id"]."\" selected>".$a["name"]." / ".$a["price_dollar"]."\$</option>\n";
 		}else{
@@ -468,11 +471,24 @@ function registration_form(){
 	$addr_skined = skin("frame",$client_addr,"");
 
 	$HTML_admin_edit_data = "<a href=\"/dtc\">$txt_go_to_login[$lang]</a>
-<form action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+<script language=\"javascript\">
+
+$p_jscript
+
+function hostingProductChanged(){
+	if(document.newuser_form.product_id.value == -1){
+		return;
+	}
+	hosting_type = prod_popup_htype[document.newuser_form.product_id.value];
+//	alert(hosting_type);
+}
+
+</script>
+<form name=\"newuser_form\" action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 <input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>
 <tr>
-	<td>$txt_product[$lang]: <select name=\"product_id\">$prod_popup</select><br>
+	<td>$txt_product[$lang]: <select onChange=\"hostingProductChanged();\" name=\"product_id\">$prod_popup</select><br>
 $txt_login_info[$lang]:$login_skined</td>
 	<td>$txt_client_info[$lang] $client_skined</td>
 	<td>$txt_client_info[$lang] $addr_skined</td>
