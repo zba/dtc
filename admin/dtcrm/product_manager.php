@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.12 2006/08/04 09:52:10 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.13 2006/08/10 10:04:21 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -20,11 +20,11 @@ function productManager(){
         // end of modyfication ;)
 
 
-        $q = "SELECT * FROM $pro_mysql_product_table";
+        $q = "SELECT * FROM $pro_mysql_product_table ORDER BY id";
         $r = mysql_query($q)or die("Cannot query \"$q\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
         $n = mysql_num_rows($r);
 // modification by seeb 7th may 2006
-        $out = "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\"><tr>
+        $out = "<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\"><tr>
         <td><b>ID</b></td>
         <td><b>".$txt_product_name[$lang]."</b></td>
         <td><b>".$txt_product_price[$lang]." \$</b></td>
@@ -96,7 +96,7 @@ function productManager(){
 		$out .= "<td $bg_color><input size=\"6\" type=\"text\" name=\"bandwidth\" value=\"".$a["bandwidth"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"2\" type=\"text\" name=\"nbr_email\" value=\"".$a["nbr_email"]."\"></td>";
 		$out .= "<td $bg_color><input size=\"2\" type=\"text\" name=\"nbr_database\" value=\"".$a["nbr_database"]."\"></td>";
-		$out .= "<td $bg_color><input size=\"8\" type=\"text\" name=\"period\" value=\"".$a["period"]."\"></td>";
+		$out .= "<td $bg_color><input size=\"10\" type=\"text\" name=\"period\" value=\"".$a["period"]."\"></td>";
 		
 		$allow_yes_selected = " ";
 		$allow_no_selected = " ";
@@ -132,10 +132,10 @@ function productManager(){
 				<option value=\"vps\" $heb_type_vps_selected>vps</option>
 				<option value=\"server\" $heb_type_server_selected>server</option></select></td>";
 
-		$out .= "<td>$renew_id_popup</td>";
+		$out .= "<td $bg_color>$renew_id_popup</td>";
 
 		if($i<$n){
-			$out .= "<td $bg_color><input type=\"submit\" name=\"submit\" value=\"save\"> ";
+			$out .= "<td $bg_color style=\"white-space: nowrap;\"><input type=\"submit\" name=\"submit\" value=\"save\"> ";
 			$out .= "<input type=\"submit\" name=\"submit\" value=\"del\"></td></form>";
 		}else{
 			$out .= "<td $bg_color><input type=\"submit\" name=\"submit\" value=\"create\"></td>";

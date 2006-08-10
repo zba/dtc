@@ -49,6 +49,14 @@ function renew_form(){
 			}
 			$client_id = $_REQUEST["vps_id"];
 			break;
+		case "shared":
+		case "ssl":
+			if(!isRandomNum($_REQUEST["client_id"])){
+				$ret["err"] = 3;$ret["mesg"] = "<font color=\"red\">Client id is not a valid number!</font>";
+				return $ret;
+			}
+			$client_id = $_REQUEST["client_id"];
+			break;
 		default:
 			die("Renew type unknown line ".__LINE__." file ".__FILE__);	// To be implemented for other means!
 			break;

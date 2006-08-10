@@ -11,6 +11,7 @@ function validateRenewal($renew_id){
 	global $pro_mysql_pending_renewal_table;
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_table;
+	global $pro_mysql_admin_table;
 
 	global $commit_flag;
 	global $submit_err;
@@ -48,6 +49,21 @@ function validateRenewal($renew_id){
 		$vps_entry = mysql_fetch_array($r);
 		$date_expire = calculateExpirationDate($vps_entry["expire_date"],$product["period"]);
 		$q = "UPDATE $pro_mysql_vps_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		break;
+	case "shared":
+	case "ssl":
+		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find admin login in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$admin = mysql_fetch_array($r);
+		$date_expire = calculateExpirationDate($admin["expire"],$product["period"]);
+		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire' WHERE adm_login='".$renew_entry["adm_login"]."'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
 	default:
@@ -126,8 +142,8 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
         $p_a = explode("-",$a2["period"]);
         $expires = date("Y-m-d",mktime(0,0,0,date("n") + $p_a[1],date("d") + $p_a[2],date("Y") + $p_a[0]));
 	$adm_query = "INSERT INTO $pro_mysql_admin_table
-(adm_login        ,adm_pass         ,path            ,id_client,bandwidth_per_month_mb,quota,expire) VALUES
-('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','$expires');";
+(adm_login        ,adm_pass         ,path            ,id_client,bandwidth_per_month_mb,quota,expire,prod_id,nbrdb,max_email) VALUES
+('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','$expires','".$a2["id"]."','".$a2["nbr_database"]."','".$a2["nbr_email"]."');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);

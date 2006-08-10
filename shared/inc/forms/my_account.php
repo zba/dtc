@@ -82,40 +82,40 @@ function drawAdminTools_MyAccount($admin){
 		$client = $admin["client"];
 	}
 
-if(isset($admin["data"])){
-	$out .= "<b><u>".$txt_transfer_du[$lang]."</u></b>";
-	// Draw overall this month usage
-	// if there is no usage, set to 0
-	if (!isset($stats["total_transfer"]))
-	{
-		$stats["total_transfer"] = 0;
-	}
-	$overall = "<br>".$txt_transfer_this_month[$lang].smartByte($stats["total_transfer"]);
-	if($id_client != 0){
-		$bw_quota = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;
-		$overall .= " / ".smartByte($bw_quota)."<br>";
-		$overall .= drawPercentBar($stats["total_transfer"],$bw_quota);
-	}
-	$overall .= $txt_total_disk_usage[$lang].smartByte($stats["total_du"]);
-	if($id_client != 0 && isset($admin["data"])){
-		$du_quota = $admin["info"]["quota"]*1024*1024;
-		$overall .= " / ".smartByte($du_quota)."<br>";
-		$overall .= drawPercentBar($stats["total_du"],$du_quota);
+	if(isset($admin["data"])){
+		$out .= "<b><u>".$txt_transfer_du[$lang]."</u></b>";
+		// Draw overall this month usage
+		// if there is no usage, set to 0
+		if (!isset($stats["total_transfer"]))
+		{
+			$stats["total_transfer"] = 0;
+		}
+		$overall = "<br>".$txt_transfer_this_month[$lang].smartByte($stats["total_transfer"]);
+		if($id_client != 0){
+			$bw_quota = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;
+			$overall .= " / ".smartByte($bw_quota)."<br>";
+			$overall .= drawPercentBar($stats["total_transfer"],$bw_quota);
+		}
+		$overall .= $txt_total_disk_usage[$lang].smartByte($stats["total_du"]);
+		if($id_client != 0 && isset($admin["data"])){
+			$du_quota = $admin["info"]["quota"]*1024*1024;
+			$overall .= " / ".smartByte($du_quota)."<br>";
+			$overall .= drawPercentBar($stats["total_du"],$du_quota);
+		}
+
+		if($id_client != 0){
+			$out .= '<table><td>'.$overall.'</td><td><img src="bw_per_month.php?cid='.$id_client.'&adm_login='.$adm_login.'"></td></tr></table>';
+		}else{
+			$out .= $overall;
+		}
 	}
 
 	if($id_client != 0){
-		$out .= '<table><td>'.$overall.'</td><td><img src="bw_per_month.php?cid='.$id_client.'&adm_login='.$adm_login.'"></td></tr></table>';
-	}else{
-		$out .= $overall;
-	}
-}
 
-	if($id_client != 0){
-
-// If the customer has domains (he could have only a VPS...).
-if(isset($admin["data"])){
-		$out .= "<br><b><u>".$txt_your_hosting_account[$lang]."</u></b>";
-		$out .= "<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"1\">
+		// If the customer has domains (he could have only a VPS...).
+		if(isset($admin["data"])){
+			$out .= "<br><b><u>".$txt_your_hosting_account[$lang]."</u></b>";
+			$out .= "<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"1\">
 <tr>
 	<td><b>".$txt_storage_space[$lang]."</b></td><td><b>".$txt_allowed_data_transfer[$lang]."</b></td><td><b>".$txt_expiration_date[$lang]."</b></td>
 </tr>
@@ -123,16 +123,21 @@ if(isset($admin["data"])){
 	<td>".smartByte($du_quota)."</td><td>".smartByte($bw_quota)."</td><td>".$admin["info"]["expire"]."</td>
 </tr>
 </table>";
-		if(file_exists($dtcshared_path."/dtcrm")){
-			$out .= "<br><center>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
+			if(file_exists($dtcshared_path."/dtcrm")){
+				$out .= "<br><center>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
 <input type=\"submit\" value=\"".$txt_upgrade_my_account_button[$lang]."\">
 </form>";
-			$out .= "$frm_start<input type=\"hidden\" name=\"action\" value=\"renew_myaccount\">
+				$out .= "<form action=\"/dtc/new_account.php\">
+<input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
+<input type=\"hidden\" name=\"renew_type\" value=\"shared\">
+<input type=\"hidden\" name=\"product_id\" value=\"".$admin["info"]["prod_id"]."\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"client_id\" value=\"$id_client\">
 <input type=\"submit\" value=\"".$txt_renew_my_account_button[$lang]."\">
 </form></center><br>";
-		}
+			}
 
-		$out .=  "<b><u>".$txt_remaining_money[$lang]."</u></b><br>
+			$out .=  "<b><u>".$txt_remaining_money[$lang]."</u></b><br>
 <table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"0\">
 <tr>
 	<td><font size=\"+1\">\$".$client["dollar"]."</font></td>
@@ -144,7 +149,7 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 </table>
 <hr width=\"90%\">
 ";
-}
+		}
 
 
 		$out .= "<center><b>".$txt_please_tell_if_info_not_ok[$lang]."</b></center>";
