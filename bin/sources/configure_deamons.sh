@@ -611,6 +611,16 @@ if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/w
 	fi
 fi
 
+# copy the expired.php to the destination folder
+if ! [ -e $PATH_DTC_ETC/expired_site ] ; then
+	mkdir -p $PATH_DTC_ETC/expired_site
+fi
+if ! [ -e $PATH_DTC_ETC/expired_site/index.php ] ; then
+	if ! [ -e $PATH_DTC_ETC/expired_site/index.html ] ; then
+		cp $PATH_DTC_SHARED/shared/404_template/expired.php $PATH_DTC_ETC/expired_site/index.php
+	fi
+fi
+
 # also copy it to the dtc404 directory
 if ! [ -e $PATH_DTC_ETC/dtc404/404.php ]; then
 	mkdir -p $PATH_DTC_ETC/dtc404/

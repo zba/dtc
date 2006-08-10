@@ -98,6 +98,8 @@ function pro_vhost_generate(){
 	global $conf_administrative_site;
 	global $conf_use_ssl;
 
+	global $conf_shared_renewal_shutdown;
+
 	global $conf_use_nated_vhost;
 	global $conf_nated_vhost_ip;
 
@@ -249,6 +251,19 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		}
 		$webadmin = mysql_fetch_array($result2) or die ("Cannot fetch user");
 		$web_path = $webadmin["path"];
+		$expire_stored = $webadmin["expire"];
+		if($expire_stored == "0000-00-00"){
+			$site_expired = "no";
+		}else{
+			$calc_expire_date = calculateExpirationDate($expire_stored,"0000-00-$conf_shared_renewal_shutdown");
+			$calc_expire_date_array = explode("-",$calc_expire_date);
+			$expire_timestamp = mktime(1,1,1,$calc_expire_date_array[1],$calc_expire_date_array[2],$calc_expire_date_array[0]);
+			if($expire_timestamp < mktime()){
+				$site_expired = "yes";
+			}else{
+				$site_expired = "no";
+			}
+		}
 
 		if($domain_parking != "no-parking" && $web_name != $conf_main_domain){
 			$domain_to_get = $domain_parking;
@@ -425,16 +440,23 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 							$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
 						}
 						$vhost_file .= "	ServerName $web_subname.$web_name
-	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
-	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html/
+	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs\n";
+						// Disable the site if expired
+						if($site_expired == "yes"){
+							$document_root = $conf_generated_file_path."/expired_site/";
+							$vhost_file .= "	DocumentRoot $document_root\n";
+						}else{
+							$document_root = "$web_path/$web_name/subdomains/$web_subname/html/";
+							$vhost_file .= "	DocumentRoot $document_root
 $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	php_admin_value sendmail_from webmaster@$web_name
 	php_value session.save_path $web_path/$web_name/subdomains/$web_subname/tmp
 	<Location />
 		php_admin_value open_basedir \"$web_path:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>
-	$cgi_directive
-	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
+	$cgi_directive\n";
+						}
+						$vhost_file .= "	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename\$xfer
 	LogSQLScoreDomain $web_name
 	LogSQLScoreSubdomain $web_subname
