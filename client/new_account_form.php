@@ -314,8 +314,26 @@ function registration_form(){
 
 	global $pro_mysql_product_table;
 
+	if(isset($_REQUEST["product_id"])){
+		if(!isRandomNum($_REQUEST["product_id"])){
+			die("Product ID is not a number line ".__LINE__." file ".__FILE__);
+		}
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["product_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			die("Product ID not found here line ".__LINE__." file ".__FILE__);
+		}
+		$a = mysql_fetch_array($r);
+		$heb_type_condition = " heb_type='".$a["heb_type"]."' ";
+		$heb_type = $a["heb_type"];
+	}else{
+		$heb_type_condition = " 1 ";
+		$heb_type = "all";
+	}
+
 	$prod_popup = "";
-	$q = "SELECT * FROM $pro_mysql_product_table ORDER BY id";
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE $heb_type AND renew_prod_id='0' ORDER BY id";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
