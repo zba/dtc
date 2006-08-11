@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.63 2006/08/11 08:42:42 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.64 2006/08/11 17:44:21 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -179,6 +179,9 @@ function drawVPSServerConfig(){
   $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>Hostname</td><td>SOAP login</td><td>SOAP password</td>
   <td>Server location</td>
   <td colspan=\"3\">Action</td></tr>";
+  $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
   for($i=0;$i<$n;$i++){
     $a = mysql_fetch_array($r);
     if( ($i % 2) == 0){
@@ -186,9 +189,6 @@ function drawVPSServerConfig(){
     }else{
       $bg = "";
     }
-    $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
-<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
     $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"".$a["hostname"]."\"></td>
     <td$bg><input size=\"10\" type=\"text\" name=\"soap_login\" value=\"".$a["soap_login"]."\"></td>
     <td$bg><input size=\"10\" type=\"text\" name=\"soap_pass\" value=\"".$a["soap_pass"]."\"></td>
