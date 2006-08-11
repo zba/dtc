@@ -409,7 +409,7 @@ function registration_form(){
 	$vps_location_popup = "<option value=\"-1\">Please select!</optioon>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		if($_REQUEST["vps_server_hostname"] == $a["hostname"]){
+		if(isset($_REQUEST["vps_server_hostname"]) && $_REQUEST["vps_server_hostname"] == $a["hostname"]){
 			$selected = " selected ";
 		}else{
 			$selected = "";
