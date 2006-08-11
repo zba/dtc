@@ -52,13 +52,29 @@ function drawNewAdminForm(){
 		$waiting_new_users .= "<b>".$txt_no_user_waiting[$lang]."</b>";
 	}else{
 		$waiting_new_users .= "<table width=\"100%\"border=\"1\">
-	<tr><td>Name</td><td>".$txt_login_title[$lang]."</td><td>Domain name</td><td>Bank</td><td>Action</td></tr>";
+	<tr><td>Name</td><td>".$txt_login_title[$lang]."</td><td>Domain name / VPS server hostname</td><td>Product</td><td>Bank</td><td>Action</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".$a["comp_name"].":</u><br>";
 			$waiting_new_users .= $a["family_name"].", ".$a["first_name"]."</td>";
 			$waiting_new_users .= "<td>".$a["reqadm_login"]."</td>";
-			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
+			$prod_id = $a["product_id"];
+			$q2 = "SELECT * FROM $pro_mysql_product_table WHERE id='$prod_id';";
+			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+			$n2 = mysql_num_rows($r2);
+			if($n2 != 1){
+				$dom_name = "Cannot find product in db!";
+				$prod_name = "Cannot find product in db!";
+			}else{
+				$a2 = mysql_fetch_array($r2);
+				$prod_name = $a2["name"];
+				if($a2["heb_type"] == "vps"){
+					$dom_name = $a["vps_location"];
+				}else{
+					$dom_name = $a["domain_name"];
+				}
+			}
+			$waiting_new_users .= "<td>$dom_name</td><td>$prod_name</td>";
 			if($a["paiement_id"] == 0){
 				$waiting_new_users .= "<td>No pay ID!</td>";
 			}else{

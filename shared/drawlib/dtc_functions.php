@@ -360,6 +360,32 @@ function make_new_adm_domain_dir($path){
 	}
 	umask($oldumask);
 }
+////////////////////////////
+// Add a VPS to one admin //
+////////////////////////////
+function addVPSToUser($adm_login,$vps_server_hostname,$product_id){
+	global $pro_mysql_product_table;
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='$product_id';";
+	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($n);
+	if($n != 1){
+		die("Cannot find product line ".__LINE__." file ".__FILE__);
+	}
+	$product = mysql_fetch_array($r);
+	$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE available='yes' AND vps_server_hostname='$vps_server_hostname' LIMIT 1;";
+	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($n);
+	if($n != 1){
+		 die("Cannot find available IP and Xen name in $vps_server_hostname line ".__LINE__." file ".__FILE__);
+	}
+	$vps_ip = mysql_fetch_array($r);
+	$q = "UPDATE $pro_mysql_vps_ip_table SET available='no' WHERE ip_addr='".$vps_ip["vps_server_ip"]."';";
+	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
+	$exp_date = calculateExpirationDate(date("Y-m-d"),$product["period"]);
+	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,product_id)
+	VALUES('','$adm_login','".$vps_ip["vps_server_hostname"]."','".$vps_ip["vps_name"]."','".date("Y-m-d")."','$exp_date','".$product["quota_disk"]."','".$product["memory_size"]."','$product_id');";
+}
 ///////////////////////////////
 // Add a domain to one admin //
 ///////////////////////////////

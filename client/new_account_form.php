@@ -9,6 +9,7 @@ function register_user(){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_product_table;
+	global $pro_mysql_vps_server_table;
 	global $conf_webmaster_email_addr;
 
 	// Check if all fields are blank, in wich case don't display error
@@ -29,6 +30,23 @@ function register_user(){
 		return $ret;
 	}
 
+	$esc_product_id = addslashes($_REQUEST["product_id"]);
+
+	if(!isRandomNum($esc_product_id)){
+		$ret["err"] = 2;
+		$ret["mesg"] = "Product ID not valid!";
+		return $ret;
+	}
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='$esc_product_id';";
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$ret["err"] = 2;
+		$ret["mesg"] = "Product not found in database";
+	}else{
+		$db_product = mysql_fetch_array($r);
+	}
+
 	// Do field format checking and escaping for all fields
 	if(!isFtpLogin($_REQUEST["reqadm_login"])){
 		$ret["err"] = 2;
@@ -45,10 +63,35 @@ function register_user(){
 		$ret["mesg"] = "Passwords 1 and 2 does not match!";
 		return $ret;
 	}
-	if(!isHostnameOrIP($_REQUEST["domain_name"])){
-		$ret["err"] = 2;
-		$ret["mesg"] = "Domain name does not look like to be a correct hostname.";
-		return $ret;
+	// If shared or ssl hosting, we MUST do type checkings
+	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl"){
+		if(!isHostnameOrIP($_REQUEST["domain_name"])){
+			$ret["err"] = 2;
+			$ret["mesg"] = "Domain name does not look like to be a correct hostname.";
+			return $ret;
+		}
+	// If not a shared or ssl account, we don't care if it's umpty, but we take care of mysql insertion anyway
+	}else{
+		if($_REQUEST["domain_name"] != "" && (!isHostnameOrIP($_REQUEST["domain_name"]))){
+			$ret["err"] = 2;
+			$ret["mesg"] = "Domain name does not look like to be a correct hostname.";
+			return $ret;
+		}
+	}
+	if($db_product["heb_type"] == "vps"){
+		if($_REQUEST["vps_server_hostname"] == "-1"){
+			$ret["err"] = 2;
+			$ret["mesg"] = "VPS location not selected!";
+			return $ret;
+		}
+		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".addslashes($_REQUEST["vps_server_hostname"])."';";
+		$r = mysql_query($q)or die("Cannot query $q ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$ret["err"] = 2;
+			$ret["mesg"] = "Could not find the VPS server in database";
+			return $ret;
+		}
 	}
 	if(!isValidEmail($_REQUEST["email"])){
 		$ret["err"] = 2;
@@ -180,8 +223,6 @@ function register_user(){
 		return $ret;
 	}
 
-	$esc_product_id = addslashes($_REQUEST["product_id"]);
-
 	$q = "SELECT adm_login FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["reqadm_login"]."';";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -197,6 +238,16 @@ function register_user(){
 		$ret["err"] = 3;
 		$ret["mesg"] = "Username already tried to be taken! Try again.";
 		return $ret;
+	}
+	if($db_product["heb_type"] == "vps"){
+		if (!get_magic_quotes_gpc()){
+			$esc_vps_os = addslashes($_REQUEST["vps_os"]);
+		}else{
+			$esc_vps_os = $_REQUEST["vps_os"];
+		}
+		$vps_add1 = ",vps_location,vps_os";
+		$vps_add2 = ",'".$_REQUEST["vps_server_hostname"]."','$esc_vps_os'";
+		$vps_mail_add1 = "VPS hostname: ".$_REQUEST["vps_server_hostname"];
 	}
 	$q = "INSERT INTO $pro_mysql_new_admin_table
 (reqadm_login,
@@ -217,7 +268,7 @@ city,
 state,
 country,
 product_id,
-custom_notes
+custom_notes$vps_add1
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
@@ -237,7 +288,7 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 '$esc_state',
 '".$_REQUEST["country"]."',
 '$esc_product_id',
-'$esc_custom_notes')";
+'$esc_custom_notes'$vps_add2)";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$id = mysql_insert_id();
 	$ret["err"] = 0;
@@ -274,6 +325,7 @@ State: ".$_REQUEST["state"]."
 Contry: ".$_REQUEST["country"]."
 Product id: $the_prod
 Customer note: ".$_REQUEST["custom_notes"]."
+$vps_mail_add1
 ";
 
 	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
@@ -313,11 +365,10 @@ function registration_form(){
 	global $txt_register_custom_message_title;
 
 	global $pro_mysql_product_table;
+	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_vps_server_table;
 
-	if(isset($_REQUEST["product_id"])){
-		if(!isRandomNum($_REQUEST["product_id"])){
-			die("Product ID is not a number line ".__LINE__." file ".__FILE__);
-		}
+	if(isset($_REQUEST["product_id"]) && isRandomNum($_REQUEST["product_id"])){
 		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["product_id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
@@ -346,6 +397,24 @@ function registration_form(){
 		}else{
 			$prod_popup .= "<option value=\"".$a["id"]."\">".$a["name"]." / ".$a["price_dollar"]."\$</option>\n";
 		}
+	}
+
+	$q = "SELECT $pro_mysql_vps_server_table.hostname,$pro_mysql_vps_server_table.location
+	FROM $pro_mysql_vps_ip_table,$pro_mysql_vps_server_table
+	WHERE $pro_mysql_vps_ip_table.vps_server_hostname=$pro_mysql_vps_server_table.hostname
+	AND $pro_mysql_vps_ip_table.available='yes'
+	GROUP BY $pro_mysql_vps_server_table.location;";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$vps_location_popup = "<option value=\"-1\">Please select!</optioon>";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if($_REQUEST["vps_server_hostname"] == $a["hostname"]){
+			$selected = " selected ";
+		}else{
+			$selected = "";
+		}
+		$vps_location_popup .= "<option value=\"".$a["hostname"]."\" $selected>".$a["location"]."</optioon>";
 	}
 
 	if(isset($_REQUEST["reqadm_login"]))	$frm_login = $_REQUEST["reqadm_login"];
@@ -396,19 +465,49 @@ function registration_form(){
 	if(isset($_REQUEST["custom_notes"]))	$frm_custom_notes = $_REQUEST["custom_notes"];
 	else	$frm_custom_notes = "";
 
+	if($heb_type == "all" || $heb_type == "shared" || $heb_type == "ssl"){
+		$domname_hidden = " ";
+	}else{
+		$domname_hidden = " style=\"display:none;visibility:hidden;\" ";
+	}
+
+	if($heb_type == "all" || $heb_type == "vps"){
+		$vps_hidden = " ";
+	}else{
+		$vps_hidden = " style=\"display:none;visibility:hidden;\" ";
+	}
+
+	$debian_selected = " ";
+	$centos_selected = " ";
+	$gentoo_selected = " ";
+	$netbsd_selected = " ";
+	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "debian")	$debian_selected = " selected ";
+	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "centos")	$centos_selected = " selected ";
+	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "gentoo")	$gentoo_selected = " selected ";
+	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "netbsd")	$netbsd_selected = " selected ";
 	$login_info = "<table>
 <tr>
-	<td align=\"right\">".$txt_login_login[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_login_login[$lang]."</td>
 	<td><input type=\"text\" name=\"reqadm_login\" value=\"$frm_login\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_login_pass[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_login_pass[$lang]."</td>
 	<td><input type=\"password\" name=\"reqadm_pass\" value=\"\"></td>
 </tr><tr>
-	<td align=\"right\">$txt_confirm_pass[$lang]:</td>
+	<td style=\"white-space: nowrap;text-align: right;\">$txt_confirm_pass[$lang]:</td>
 	<td><input type=\"password\" name=\"reqadm_pass2\" value=\"\"></td>
 </tr><tr>
-	<td align=\"right\">$txt_desired_domain_name[$lang]:</td>
-	<td><input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></td>
+	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"domname_text\" id=\"domname_text\" $domname_hidden>".$txt_desired_domain_name[$lang].":</div></td>
+	<td><div name=\"domname_field\" id=\"domname_field\" $domname_hidden><input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></div></td>
+</tr><tr>
+	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_popup_text\" id=\"vps_popup_text\" $vps_hidden>VPS location:</div></td>
+	<td><div name=\"vps_popup_field\" id=\"vps_popup_field\" $vps_hidden><select name=\"vps_server_hostname\">$vps_location_popup</select></div></td>
+</tr><tr>
+	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_ospopup_text\" id=\"vps_ospopup_text\" $vps_hidden>VPS operating system:</div></td>
+	<td><div name=\"vps_ospopup_field\" id=\"vps_ospopup_field\" $vps_hidden><select name=\"vps_os\">
+		<option value=\"debian\" $debian_selected>Debian</option>
+		<option value=\"centos\" $centos_selected>CentOS</option>
+		<option value=\"gentoo\" $gentoo_selected>Gentoo</option>
+		<option value=\"netbsd\" $netbsd_selected>NetBSD</option></select></div></td>
 </tr></table>";
 	$login_skined = skin("frame",$login_info,"");
 
@@ -421,51 +520,51 @@ function registration_form(){
 	}
 	$client_info = "<table>
 <tr>
-	<td align=\"right\">".$txt_draw_client_info_familyname[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_familyname[$lang]."</td>
 	<td><input type=\"text\" name=\"familyname\" value=\"$frm_family_name\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_firstname[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_firstname[$lang]."</td>
 	<td><input type=\"text\" name=\"firstname\" value=\"$frm_firstname\"></td>
 </tr><tr>
-	<td align=\"right\">$txt_is_company[$lang]?</td>
+	<td style=\"white-space: nowrap;text-align: right;\">$txt_is_company[$lang]?</td>
 	<td><input type=\"radio\" name=\"iscomp\" value=\"yes\"$compyes>$txt_yes[$lang]
 <input type=\"radio\" name=\"iscomp\" value=\"no\"$compno>$txt_no[$lang]</td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_comp_name[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_comp_name[$lang]."</td>
 	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_email[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_email[$lang]."</td>
 	<td><input type=\"text\" name=\"email\" value=\"$frm_email\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_phone[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_phone[$lang]."</td>
 	<td><input type=\"text\" name=\"phone\" value=\"$frm_phone\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_fax[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_fax[$lang]."</td>
 	<td><input type=\"text\" name=\"fax\" value=\"$frm_fax\"></td>
 </tr></table>";
 	$client_skined = skin("frame",$client_info,"");
 
 	$client_addr = "<table>
 <tr>
-	<td align=\"right\">".$txt_draw_client_info_addr[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_addr[$lang]."</td>
 	<td><input type=\"text\" name=\"address1\" value=\"$frm_addr1\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_addr[$lang]." 2</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_addr[$lang]." 2</td>
 	<td><input type=\"text\" name=\"address2\" value=\"$frm_addr2\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_addr[$lang]." 3</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_addr[$lang]." 3</td>
 	<td><input type=\"text\" name=\"address3\" value=\"$frm_addr3\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_zipcode[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_zipcode[$lang]."</td>
 	<td><input type=\"text\" name=\"zipcode\" value=\"$frm_zipcode\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_city[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_city[$lang]."</td>
 	<td><input type=\"text\" name=\"city\" value=\"$frm_city\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_state[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_state[$lang]."</td>
 	<td><input type=\"text\" name=\"state\" value=\"$frm_state\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_draw_client_info_country[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_country[$lang]."</td>
 	<td><select name=\"country\">".cc_code_popup($frm_country)."</select></td>
 </tr></table>";
 	$addr_skined = skin("frame",$client_addr,"");
@@ -475,12 +574,61 @@ function registration_form(){
 
 $p_jscript
 
+var DHTML = (document.getElementById || document.all || document.layers);
+function getObj(name){
+	if (document.getElementById){
+		this.obj = document.getElementById(name);
+		this.style = document.getElementById(name).style;
+	}else if(document.all){
+		this.obj = document.all[name];
+		this.style = document.all[name].style;
+	}else{
+		this.obj = document.layers[name];
+		this.style = document.layers[name];
+	}
+}
+
 function hostingProductChanged(){
+	if (!DHTML) return;
 	if(document.newuser_form.product_id.value == -1){
 		return;
 	}
 	hosting_type = prod_popup_htype[document.newuser_form.product_id.value];
-//	alert(hosting_type);
+	var a = new getObj('domname_field');
+	var b = new getObj('domname_text');
+	var c = new getObj('vps_popup_field');
+	var d = new getObj('vps_popup_text');
+	var e = new getObj('vps_ospopup_text');
+	var f = new getObj('vps_ospopup_field');
+	if(hosting_type == 'vps'){
+		a.style.visibility = 'hidden';
+		a.style.display = 'none';
+		b.style.visibility = 'hidden';
+		b.style.display = 'none';
+
+		c.style.visibility = 'visible';
+		c.style.display = 'block';
+		d.style.visibility = 'visible';
+		d.style.display = 'block';
+		e.style.visibility = 'visible';
+		e.style.display = 'block';
+		f.style.visibility = 'visible';
+		f.style.display = 'block';
+	}else{
+		a.style.visibility = 'visible';
+		a.style.display = 'block';
+		b.style.visibility = 'visible';
+		b.style.display = 'block';
+
+		c.style.visibility = 'hidden';
+		c.style.display = 'none';
+		d.style.visibility = 'hidden';
+		d.style.display = 'none';
+		e.style.visibility = 'hidden';
+		e.style.display = 'none';
+		f.style.visibility = 'hidden';
+		f.style.display = 'none';
+	}
 }
 
 </script>

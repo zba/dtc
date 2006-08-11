@@ -290,6 +290,9 @@ if(sizeof($addrlink) == 1){
 		$icon_im = imagecreatefrompng("domains.png");
 		break;
 	}
+	if(substr($addrlink[0],0,3) == "vps"){
+		$icon_im = imagecreatefrompng("virtual-server.png");
+	}
 }else{
 	switch($addrlink[1]){
 	case "stats":

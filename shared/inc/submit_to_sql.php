@@ -139,14 +139,24 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 	$cid = mysql_insert_id();
 
 	// Add user in database
-        $p_a = explode("-",$a2["period"]);
-        $expires = date("Y-m-d",mktime(0,0,0,date("n") + $p_a[1],date("d") + $p_a[2],date("Y") + $p_a[0]));
+        $expires = calculateExpirationDate(date("Y-m-d"),$a2["period"]);
+        if($a2["heb_type"] == "vps"){
+        	$admtbl_added1 = ",expire,prod_id";
+        	$admtbl_added2 = ",'0000-00-00','0'";
+        }else{
+        	$admtbl_added1 = ",expire,prod_id";
+        	$admtbl_added2 = ",'$expires','".$a2["id"]."'";
+        }
 	$adm_query = "INSERT INTO $pro_mysql_admin_table
-(adm_login        ,adm_pass         ,path            ,id_client,bandwidth_per_month_mb,quota,expire,prod_id,nbrdb,max_email) VALUES
-('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','$expires','".$a2["id"]."','".$a2["nbr_database"]."','".$a2["nbr_email"]."');";
+(adm_login        ,adm_pass         ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,max_email$admtbl_added1) VALUES
+('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["nbr_email"]."'$admtbl_added2);";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
-	addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
+        if($a2["heb_type"] == "vps"){
+        	addVPSToUser($a["reqadm_pass"],$a["vps_location"],$a2["id"]);
+        }else{
+		addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
+        }
 
 	// Send a mail to user with how to login and use interface.
 	$txt_userwaiting_account_activated_subject = "GPLHost:>_ Account $waiting_login has been activated!";
@@ -160,7 +170,7 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 Hello,
 
 This is Domain Technologie Control panel robot.
-The hosting account you have ordered is now
+The shared hosting account you have ordered is now
 ready to be used. You can login to the control
 panel using the following informations:
 

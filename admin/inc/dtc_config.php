@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.62 2006/08/10 16:23:32 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.63 2006/08/11 08:42:42 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -190,8 +190,8 @@ function drawVPSServerConfig(){
 <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
 <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
     $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"".$a["hostname"]."\"></td>
-    <td$bg><input size=\"20\" type=\"text\" name=\"soap_login\" value=\"".$a["soap_login"]."\"></td>
-    <td$bg><input size=\"20\" type=\"text\" name=\"soap_pass\" value=\"".$a["soap_pass"]."\"></td>
+    <td$bg><input size=\"10\" type=\"text\" name=\"soap_login\" value=\"".$a["soap_login"]."\"></td>
+    <td$bg><input size=\"10\" type=\"text\" name=\"soap_pass\" value=\"".$a["soap_pass"]."\"></td>
     <td$bg><input size=\"20\" type=\"text\" name=\"location\" value=\"".$a["location"]."\"></td>
     <td$bg><input type=\"submit\" value=\"Save\"></td></form>
     $frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"delete_vps_server_hostname\"><input type=\"submit\" value=\"Delete\"></form></td>
@@ -203,8 +203,8 @@ function drawVPSServerConfig(){
     $bg = "";
   }
   $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"\"></td>
-  <td$bg><input size=\"20\" type=\"text\" name=\"soap_login\" value=\"dtc-xen\"></td>
-  <td$bg><input size=\"20\" type=\"text\" name=\"soap_pass\" value=\"\">
+  <td$bg><input size=\"10\" type=\"text\" name=\"soap_login\" value=\"dtc-xen\"></td>
+  <td$bg><input size=\"10\" type=\"text\" name=\"soap_pass\" value=\"\">
   <td$bg><input size=\"20\" type=\"text\" name=\"location\" value=\"\"></td>
   </td><td$bg colspan=\"3\"><input type=\"submit\" value=\"New\"></td></form>
   </tr>";
@@ -215,7 +215,7 @@ function drawVPSServerConfig(){
     if(isset($_REQUEST["action"])){
       switch($_REQUEST["action"]){
       case "edit_vps_server_ip":
-        $q = "UPDATE $pro_mysql_vps_ip_table SET ip_addr='".$_REQUEST["ip"]."' WHERE id='".$_REQUEST["vps_server_ip_id"]."';";
+        $q = "UPDATE $pro_mysql_vps_ip_table SET ip_addr='".$_REQUEST["ip"]."',vps_xen_name='".$_REQUEST["vps_xen_name"]."' WHERE id='".$_REQUEST["vps_server_ip_id"]."';";
         $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
         break;
       case "delete_vps_server_ip":
@@ -223,17 +223,17 @@ function drawVPSServerConfig(){
         $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
         break;
       case "new_vps_server_ip":
-        $q = "INSERT INTO $pro_mysql_vps_ip_table (id,vps_server_hostname,ip_addr) VALUES ('','".$_REQUEST["hostname"]."','".$_REQUEST["ip"]."');";
+        $q = "INSERT INTO $pro_mysql_vps_ip_table (id,vps_server_hostname,ip_addr,vps_xen_name) VALUES ('','".$_REQUEST["hostname"]."','".$_REQUEST["ip"]."','".$_REQUEST["vps_xen_name"]."');";
         $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
       default:
         break;
       }
     }
 
-    $q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$_REQUEST["hostname"]."';";
+    $q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$_REQUEST["hostname"]."' ORDER BY vps_xen_name;";
     $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
     $n = mysql_num_rows($r);
-    $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>IP Address</td><td colspan=\"2\">Action</td></tr>";
+    $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>IP Address</td><td>VPS name</td><td colspan=\"2\">Action</td></tr>";
     $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
 <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
@@ -252,7 +252,9 @@ function drawVPSServerConfig(){
       }else{
         $disabled = "";
       }
-      $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_ip_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"".$a["ip_addr"]."\"></td><td$bg><input type=\"submit\" value=\"Save\"></td></form>
+      $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_ip_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"".$a["ip_addr"]."\"></td>
+      <td$bg><input type=\"text\" name=\"vps_xen_name\" value=\"".$a["vps_xen_name"]."\">
+      <td$bg><input type=\"submit\" value=\"Save\"></td></form>
       $frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_ip_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"delete_vps_server_ip\"><input type=\"submit\" value=\"Delete\" $disabled></form></td></tr>";
     }
     if( ($i % 2) == 0){
@@ -260,7 +262,9 @@ function drawVPSServerConfig(){
     }else{
       $bg = "";
     }
-    $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"\"></td><td$bg colspan=\"2\"><input type=\"submit\" value=\"New\"></td></form></tr>";
+    $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"\"></td>
+    <td$bg><input type=\"text\" name=\"vps_xen_name\" value=\"\">
+    <td$bg colspan=\"2\"><input type=\"submit\" value=\"New\"></td></form></tr>";
     $out .= "</table>";
   }
 
