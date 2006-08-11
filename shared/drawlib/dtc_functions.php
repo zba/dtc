@@ -381,7 +381,6 @@ function addVPSToUser($adm_login,$vps_server_hostname,$product_id){
 		 die("Cannot find available IP and Xen name in $vps_server_hostname line ".__LINE__." file ".__FILE__);
 	}
 	$vps_ip = mysql_fetch_array($r);
-	print_r($vps_ip);
 	$q = "UPDATE $pro_mysql_vps_ip_table SET available='no' WHERE ip_addr='".$vps_ip["ip_addr"]."';";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
