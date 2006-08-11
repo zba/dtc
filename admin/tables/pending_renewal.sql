@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `vps` (
+CREATE TABLE IF NOT EXISTS `pending_renewal` (
   `id` int(11) NOT NULL auto_increment,
   `adm_login` varchar(64) NOT NULL default '',
   `renew_date` date NOT NULL default '0000-00-00',
