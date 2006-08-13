@@ -12,6 +12,7 @@ function drawAdminTools_VPS($admin,$vps){
   global $vps_soap_err;
 
   global $pro_mysql_product_table;
+  global $pro_mysql_vps_ip_table;
 
   $out = "";
 
@@ -36,16 +37,6 @@ function drawAdminTools_VPS($admin,$vps){
         $vps_out .= "Could not get remote status. Unkown error: $vps_soap_err<br><br>";
       }
     }else{
-      $uptime = substr($vps_remote_info["up_time"],0,strpos($vps_remote_info["up_time"],"."));
-      $uptime_s = $uptime % 60;
-      $uptime_m = round($uptime/60) % 60;
-      $uptime_h = round($uptime/3600) % 24;
-      $uptime_j = round($uptime/86400);
-      if($uptime_s > 1)	$upt_s_s = "s";	else	$upt_s_s = "";
-      if($uptime_m > 1)	$upt_s_m = "s";	else	$upt_s_m = "";
-      if($uptime_h > 1)	$upt_s_h = "s";	else	$upt_s_h = "";
-      if($uptime_j > 1)	$upt_s_j = "s";	else	$upt_s_j = "";
-
       $vps_out .= "VM id: ".$vps_remote_info["id"]."<br>";
       $vps_out .= "Name: ".$vps_remote_info["name"]."<br>";
       $vps_out .= "Memory: ".$vps_remote_info["memory"]."<br>";
@@ -64,8 +55,21 @@ function drawAdminTools_VPS($admin,$vps){
       }else{
         $vps_out .= "State: cannot fetch (maybe boot in progress?)<br>";
       }
-      $vps_out .= "Up time: $uptime_j day$upt_s_j $uptime_h hour$upt_s_h $uptime_m minute$upt_s_m $uptime_s seconde$upt_s_s<br>";
-      $vps_out .= "Start date: ".date("Y-m-d H:i:s",substr($vps_remote_info["start_time"],0,strlen($vps_remote_info["start_time"])-2))."<br><br>";
+      if($vps_remote_info["xen_type"] == 2){
+        $uptime = substr($vps_remote_info["up_time"],0,strpos($vps_remote_info["up_time"],"."));
+        $uptime_s = $uptime % 60;
+        $uptime_m = round($uptime/60) % 60;
+        $uptime_h = round($uptime/3600) % 24;
+        $uptime_j = round($uptime/86400);
+        if($uptime_s > 1)	$upt_s_s = "s";	else	$upt_s_s = "";
+        if($uptime_m > 1)	$upt_s_m = "s";	else	$upt_s_m = "";
+        if($uptime_h > 1)	$upt_s_h = "s";	else	$upt_s_h = "";
+        if($uptime_j > 1)	$upt_s_j = "s";	else	$upt_s_j = "";
+
+        $vps_out .= "Up time: $uptime_j day$upt_s_j $uptime_h hour$upt_s_h $uptime_m minute$upt_s_m $uptime_s seconde$upt_s_s<br>";
+        $vps_out .= "Start date: ".date("Y-m-d H:i:s",substr($vps_remote_info["start_time"],0,strlen($vps_remote_info["start_time"])-2))."<br>";
+      }
+      $vps_out .= "<br>";
     }
   }else{
     $vps_out .= "Could not connect to the VPS SOAP Server.";
@@ -118,7 +122,25 @@ function drawAdminTools_VPS($admin,$vps){
   }
 
   $out .= "<b><u>CPU and Network usage:</u></b><br>
-<a target=\"_blank\" href=\"http://".$vps["vps_server_hostname"]."/dtc-xen/\">http://".$vps["vps_server_hostname"]."/dtc-xen/</a><br><br>";
+<a target=\"_blank\" href=\"http://".$vps["vps_server_hostname"]."/dtc-xen/\">http://".$vps["vps_server_hostname"]."/dtc-xen/</a><br>";
+
+  print_r($vps["ip_addr"]);
+  $vps_ips = $vps["ip_addr"];
+  $n = sizeof($vps_ips);
+  if($n > 1){
+    $out .= "IP addresses: ";
+  }else{
+    $out .= "IP address: ";
+  }
+  for($i=0;$i<$n;$i++){
+    if($i != 0){
+      $out .= " - ";
+    }
+    $out .= $vps_ips[$i];
+  }
+  $out .= "<br><br>";
+//  $q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ";
+
   $out .= "<b><u>Current VPS status:</b></u><br>";
   $out .= $vps_out;
   $out .= "<b><u>Start/stop VPS:</u></b><br>";

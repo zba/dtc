@@ -48,13 +48,26 @@ function getVPSInfo($vps_node,$vps_name,$soap_client){
     return false;
   }else{
     $out = array();
-    $rez = $r["Result"];
+    // To see what's happening, just do a print_r($r); and you will see...
+    // This type of result is seen on Xen 2
+    // echo "<pre>"; print_r($r); echo "</pre>";
+    if(isset($r["Result"])){
+      $out["xen_type"] = 2;
+      $rez = $r["Result"];
+    // This one on Xen 3
+    }else{
+      $out["xen_type"] = 3;
+      $rez = $r;
+    }
     $n = sizeof($rez);
     for($i=0;$i<$n;$i++){
       $a = $rez[$i];
       if(is_array($a)){
         switch($a[0]){
           case "id":
+            $out["id"] = $a[1];
+            break;
+          case "domid":
             $out["id"] = $a[1];
             break;
           case "name":
@@ -70,6 +83,9 @@ function getVPSInfo($vps_node,$vps_name,$soap_client){
             $out["state"] = $a[1];
             break;
           case "cpu":
+            $out["cpu"] = $a[1];
+            break;
+          case "vcpus":
             $out["cpu"] = $a[1];
             break;
           case "up_time":
