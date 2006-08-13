@@ -60,4 +60,34 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_p
   }
 }
 
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "fsck_vps"){
+  if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
+    $submit_err = "Access not granted line ".__LINE__." file ".__FILE__;
+    $commit_flag = "no";
+  }
+  if($commit_flag == "yes"){
+    $soap_client = connectToVPSServer($vps_node,$vps_name);
+    if($soap_client === false){
+      echo "<font color=\"red\">Could not connect to VPS server!</font>";
+      return;
+    }
+//    $r = $soap_client->call("changeVPSxmPassword",array("vpsname" => "xen".$vps_name,"password" => $_REQUEST["new_password"]),"","","");
+  }
+}
+
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_vps"){
+  if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
+    $submit_err = "Access not granted line ".__LINE__." file ".__FILE__;
+    $commit_flag = "no";
+  }
+  if($commit_flag == "yes"){
+    $soap_client = connectToVPSServer($vps_node,$vps_name);
+    if($soap_client === false){
+      echo "<font color=\"red\">Could not connect to VPS server!</font>";
+      return;
+    }
+//    $r = $soap_client->call("changeVPSxmPassword",array("vpsname" => "xen".$vps_name,"password" => $_REQUEST["new_password"]),"","","");
+  }
+}
+
 ?>
