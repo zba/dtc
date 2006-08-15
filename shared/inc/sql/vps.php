@@ -71,22 +71,33 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "fsck_vps"){
       echo "<font color=\"red\">Could not connect to VPS server!</font>";
       return;
     }
-//    $r = $soap_client->call("changeVPSxmPassword",array("vpsname" => "xen".$vps_name,"password" => $_REQUEST["new_password"]),"","","");
+    $r = $soap_client->call("fsckVPSpartition",array("vpsname" => "xen".$vps_name),"","","");
   }
 }
 
-if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_vps"){
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
   if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
     $submit_err = "Access not granted line ".__LINE__." file ".__FILE__;
     $commit_flag = "no";
   }
+  switch($_REQUEST["os_type"]){
+  case "debian":
+  case "gentoo":
+  case "centos":
+    break;
+  default:
+    $submit_err = "OS type is not corret ".__LINE__." file ".__FILE__;
+    $commit_flag = "no";
+    break;
+  }
+
   if($commit_flag == "yes"){
     $soap_client = connectToVPSServer($vps_node,$vps_name);
     if($soap_client === false){
       echo "<font color=\"red\">Could not connect to VPS server!</font>";
       return;
     }
-//    $r = $soap_client->call("changeVPSxmPassword",array("vpsname" => "xen".$vps_name,"password" => $_REQUEST["new_password"]),"","","");
+    $r = $soap_client->call("reinstallVPSos",array("vpsname" => "xen".$vps_name,"ostype" => $_REQUEST["os_type"]),"","","");
   }
 }
 

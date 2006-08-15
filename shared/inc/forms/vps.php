@@ -36,6 +36,10 @@ function drawAdminTools_VPS($admin,$vps){
       }else{
         $vps_out .= "Could not get remote status. Unkown error: $vps_soap_err<br><br>";
       }
+    }else if($vps_remote_info == "fsck"){
+      $vps_out .= "Checking filesystem...<br><br>";
+    }else if($vps_remote_info == "mkos"){
+      $vps_out .= "Reinstalling operating system...<br><br>";
     }else{
       $vps_out .= "VM id: ".$vps_remote_info["id"]."<br>";
       $vps_out .= "Name: ".$vps_remote_info["name"]."<br>";
@@ -124,7 +128,7 @@ function drawAdminTools_VPS($admin,$vps){
   $out .= "<b><u>CPU and Network usage:</u></b><br>
 <a target=\"_blank\" href=\"http://".$vps["vps_server_hostname"]."/dtc-xen/\">http://".$vps["vps_server_hostname"]."/dtc-xen/</a><br>";
 
-  print_r($vps["ip_addr"]);
+//  print_r($vps["ip_addr"]);
   $vps_ips = $vps["ip_addr"];
   $n = sizeof($vps_ips);
   if($n > 1){
@@ -144,7 +148,11 @@ function drawAdminTools_VPS($admin,$vps){
   $out .= "<b><u>Current VPS status:</b></u><br>";
   $out .= $vps_out;
   $out .= "<b><u>Start/stop VPS:</u></b><br>";
-  if($vps_remote_info == true){
+  if($vps_remote_info == "fsck"){
+    $out .= "Please wait until file system check is finished first.<br><br>";
+  }else if($vps_remote_info == "mkos"){
+    $out .= "Wait until operating system reinstallation is finished first.<br><br>";
+  }else if($vps_remote_info == true){
     $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\"
   <input type=\"submit\" value=\"Gracefully shutdown (xm shutdown)\">
   </form>";
@@ -152,8 +160,18 @@ function drawAdminTools_VPS($admin,$vps){
   <input type=\"submit\" value=\"Immediate kill (xm destroy)\">
   </form>";
   }else{
-    $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\"
+    $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\">
   <input type=\"submit\" value=\"Boot up (xm start)\">
+  </form>";
+    $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"fsck_vps\">
+  <input type=\"submit\" value=\"File system check (fsck)\">
+  </form>";
+    $out .= $frm_start."<select name=\"os_type\">
+    <option value=\"debian\">Debian</option>
+    <option value=\"centos\">CentOS</option>
+    <option value=\"gentoo\">Gentoo</option>
+    </select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
+  <input type=\"submit\" value=\"Reinstall operating system\">
   </form>";
   }
 

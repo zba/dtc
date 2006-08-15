@@ -50,7 +50,10 @@ function getVPSInfo($vps_node,$vps_name,$soap_client){
     $out = array();
     // To see what's happening, just do a print_r($r); and you will see...
     // This type of result is seen on Xen 2
-    // echo "<pre>"; print_r($r); echo "</pre>";
+    //echo "<pre>"; print_r($r); echo "</pre>";
+    if($r == "fsck" || $r == "mkos"){
+      return $r;
+    }
     if(isset($r["Result"])){
       $out["xen_type"] = 2;
       $rez = $r["Result"];
