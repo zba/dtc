@@ -51,6 +51,10 @@ function getVPSInfo($vps_node,$vps_name,$soap_client){
     // To see what's happening, just do a print_r($r); and you will see...
     // This type of result is seen on Xen 2
     //echo "<pre>"; print_r($r); echo "</pre>";
+    if($r == "Not running"){
+      $vps_soap_err = "VPS server reported VPS not running";
+      return false;
+    }
     if($r == "fsck" || $r == "mkos"){
       return $r;
     }

@@ -159,28 +159,72 @@ function drawAdminTools_VPS($admin,$vps){
     $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\"
   <input type=\"submit\" value=\"Immediate kill (xm destroy)\">
   </form>";
+    $out .= "To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first.<br><br>";
   }else{
     $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\">
   <input type=\"submit\" value=\"Boot up (xm start)\">
   </form>";
+    $out .= "<b><u>File-system check:</u></b><br>";
     $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"fsck_vps\">
   <input type=\"submit\" value=\"File system check (fsck)\">
   </form>";
+    $out .= "<b><u>Reinstall the operating system:</u></b><br>";
+    $out .= "Currently installed operating system: ".$vps["operatingsystem"]."<br>";
+    $deb_selected = " ";
+    $cent_selected = " ";
+    $gen_selected = " ";
+    $bsd_selected = " ";
+    switch($vps["operatingsystem"]){
+    case "debian":
+      $deb_selected = " selected ";
+      break;
+    case "centos":
+      $cent_selected = " selected ";
+      break;
+    case "gentoo":
+      $gen_selected = " selected ";
+      break;
+    case "netbsd":
+      $bsd_selected = " selected ";
+      break;
+    default:
+      die("Operating system type not suppoorted");
+      break;
+    }
     $out .= $frm_start."<select name=\"os_type\">
-    <option value=\"debian\">Debian</option>
-    <option value=\"centos\">CentOS</option>
-    <option value=\"gentoo\">Gentoo</option>
+    <option value=\"debian\" $deb_selected>Debian</option>
+    <option value=\"centos\" $cent_selected>CentOS</option>
+    <option value=\"gentoo\" $gen_selected>Gentoo</option>
+    <option value=\"netbsd\" $bsd_selected>NetBSD</option>
     </select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
   <input type=\"submit\" value=\"Reinstall operating system\">
   </form>";
+    if($vps["operatingsystem"] == "netbsd"){
+      if($vps["bsdkernel"] == "install"){
+        $normal_selected = " ";
+        $install_selected = " selected ";
+      }else{
+        $normal_selected = " selected ";
+        $install_selected = " ";
+      }
+      $out .= $frm_start."<select name=\"bsdkernel\">
+    <option value=\"normal\" $normal_selected>Normal</option>
+    <option value=\"install\" $install_selected>Install</option>
+    </select><input type=\"hidden\" name=\"action\" value=\"change_bsd_kernel_type\">
+    <input type=\"submit\" value=\"Change BSD kernel\">
+    </form>";
+    }
   }
 
   $out .= "<b><u>Physical console last display and ssh access:</u></b><br>";
 
   $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_passwd\">
-  New password: <input type=\"password\" name=\"new_password\" value=\"\"><input type=\"submit\" value=\"Ok\">
+  New ssh password: <input type=\"text\" name=\"new_password\" value=\"\"><input type=\"submit\" value=\"Ok\">
   </form>";
-  $out .= "To access to your console, first setup a password above, and then ssh to:<br>xen".$vps_name."@".$vps_node."<br><br>";
+  $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_key\">
+  New ssh key: <input size=\"40\" type=\"text\" name=\"new_key\" value=\"\"><input type=\"submit\" value=\"Ok\">
+  </form>";
+  $out .= "To access to your console, first setup a ssh password or key above, and then ssh to:<br>xen".$vps_name."@".$vps_node."<br><br>";
 
   $out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
   <tr><td bgcolor=\"black\"><font color=\"white\">$vps_node:$vps_name</font></td>
