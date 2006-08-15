@@ -165,6 +165,16 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
     $commit_flag = "no";
     break;
   }
+
+  $q = "SELECT * FROM $pro_mysql_vps_table WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
+  $r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+  $n = mysql_num_rows($r);
+  if($n != 1){
+    $commit_flag = "no";
+    $submit_err = "Cannot get VPS informations line ".__LINE__." file ".__FILE__;
+  }
+  $ze_vps = mysql_fetch_array($r);
+
   if($commit_flag == "yes"){
     $soap_client = connectToVPSServer($vps_node,$vps_name);
     if($soap_client === false){
@@ -173,9 +183,10 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
     }
     $q = "UPDATE $pro_mysql_vps_table SET bsdkernel='".$_REQUEST["bsdkernel"]."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
     $r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-    if($_REQUEST["os_type"] != "netbsd"){
-      $r = $soap_client->call("reinstallVPSos",array("vpsname" => "xen".$vps_name,"ostype" => $_REQUEST["os_type"]),"","","");
-    }
+    $r = $soap_client->call("changeBSDkernel",array(
+          "vpsname" => "xen".$vps_name,
+          "ramsize" => $ze_vps["ramsize"],
+          "kerneltype" => $_REQUEST["bsdkernel"]),"","","");
   }
 }
 
