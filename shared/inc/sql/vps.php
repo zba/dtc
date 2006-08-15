@@ -6,7 +6,6 @@ function remoteVPSAction($vps_node,$vps_name,$action){
     echo "<font color=\"red\">Could not connect to VPS server!</font>";
     return;
   }
-  echo $action;
   switch($action){
   case "start_vps":
     $r = $soap_client->call("startVPS",array("vpsname" => "xen".$vps_name),"","","");
