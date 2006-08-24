@@ -91,7 +91,7 @@ function make_stats(){
 						}
 						fclose($handle);
 						echo "Calculating webalizer stats for ".$day." ".$month." ".$year."\n";
-						$webalizer_cmd = "nice -n+20 webalizer -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
+						$webalizer_cmd = "nice -n+20 webalizer -R 50 -Y -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
 						echo "$webalizer_cmd\n";
 						exec ($webalizer_cmd);
 
