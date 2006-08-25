@@ -911,6 +911,10 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
 		#	echo "@local_domains{keys %tmp_relay_domains} = values %tmp_relay_domains;" >> $TMP_FILE
 		# fi
 
+		echo "# Make sure anti-virus and spam are enabled
+@bypass_virus_checks_acl = [ 1 ];
+@bypass_spam_checks_acl  = [ 1 ];" >> $TMP_FILE
+
                 echo "# End of DTC configuration $VERSION" >> $TMP_FILE
                 echo "1;  # insure a defined return" >> $TMP_FILE
 
