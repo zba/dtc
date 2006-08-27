@@ -175,8 +175,41 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 					"ipaddr" => $avps["ip_addr"]),"","","");
 			}
 		}
+		$txt_welcome_message = "The Virtual Server hosting account you have
+ordered has been validated. It's currently
+setting-up your operating system. You can login
+in the control panel using the information following.
+
+Once the operating system will be setup, you will have
+to click on the control panel to bootup your VPS. Once
+it boots up, you need to login on the physical console
+using ssh (after you have setup your password). Then,
+you can install ssh on it and finish the installation.
+
+Note that if you need our team to setup DTC control
+panel on your VPS, you need to get in touch with us.
+
+Here is your login information:";
         }else{
 		addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
+		$txt_welcome_message = "The shared hosting account you have ordered is now
+ready to be used. Note that it can take up to 10 minutes
+until your domain name is setup on our DNS and apache
+server (a cron job runs each 10 minutes for new mail,
+domains and subdomains, but you don't need to wait
+for your ftp accounts).
+
+Note that your files should be uploaded in:
+
+/var/www/sites/YOU-USERNAME/your-domain.com/subdomains/www/html
+
+And when creating a new ftp account, you wont see the
+first part of the path, so it will be relative to:
+
+/var/www/sites/YOU-USERNAME
+
+You can login to the control
+panel using the following informations:";
         }
 
 	// Send a mail to user with how to login and use interface.
@@ -191,9 +224,8 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 Hello,
 
 This is Domain Technologie Control panel robot.
-The hosting account you have ordered is now
-ready to be used. You can login to the control
-panel using the following informations:
+
+$txt_welcome_message
 
 URL: http$surl://$conf_administrative_site/dtc/
 Login: $waiting_login
