@@ -175,21 +175,24 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 					"ipaddr" => $avps["ip_addr"]),"","","");
 			}
 		}
-		$txt_welcome_message = "The Virtual Server hosting account you have
-ordered has been validated. It's currently
-setting-up your operating system. You can login
-in the control panel using the information following.
+		$txt_welcome_message = "The Virtual Server hosting account you have ordered
+has been validated. It's currently setting-up your
+operating system. You can login in the control panel
+using the information following.
 
 Once the operating system will be setup, you will have
 to click on the control panel to bootup your VPS. Once
 it boots up, you need to login on the physical console
-using ssh (after you have setup your password). Then,
-you can install ssh on it and finish the installation.
+using ssh (after you have setup your password).
+
+Once you are logged on the physica console of your VPS,
+login as root, and change the root password. Then, you
+can install ssh on it and finish the installation.
 
 Note that if you need our team to setup DTC control
 panel on your VPS, you need to get in touch with us.
 
-Here is your login information:";
+Here is your login information in the DTC control panel::";
         }else{
 		addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
 		$txt_welcome_message = "The shared hosting account you have ordered is now
@@ -223,7 +226,8 @@ panel using the following informations:";
 
 Hello,
 
-This is Domain Technologie Control panel robot.
+This is a message sent automaticaly by the Domain
+Technologie Control panel robot.
 
 $txt_welcome_message
 
