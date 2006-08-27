@@ -92,13 +92,15 @@ if [ $UNIX_TYPE"" = "freebsd"  -o $UNIX_TYPE"" = "osx" ] ; then
 fi
 
 # copy required binaries to $CHROOT_DIR/usr/bin and $CHROOT_DIR/bin
-if [ $UNIX_TYPE"" = "gentoo" ] ; then
+if [ -e /bin/bzip2 ] ; then
 	cp -pf /bin/bzip2 usr/bin/
-else
+fi
+if [ -e /usr/bin/bzip2 ] ; then
 	cp -pf /usr/bin/bzip2 usr/bin/
 fi
-
-cp -pf /usr/bin/file usr/bin/
+if [ -e /usr/bin/file ] ; then
+	cp -pf /usr/bin/file usr/bin/
+fi
 
 if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
