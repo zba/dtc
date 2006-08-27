@@ -13,7 +13,7 @@ function checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name){
   }
 }
 
-function connectToVPSServer($vps_node,$vps_name){
+function connectToVPSServer($vps_node){
   global $pro_mysql_vps_server_table;
   $q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='$vps_node';";
   $r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());

@@ -388,6 +388,7 @@ function addVPSToUser($adm_login,$vps_server_hostname,$product_id){
 	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,product_id)
 	VALUES('','$adm_login','".$vps_ip["vps_server_hostname"]."','".$vps_ip["vps_xen_name"]."','".date("Y-m-d")."','$exp_date','".$product["quota_disk"]."','".$product["memory_size"]."','$product_id');";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	return $vps_ip["vps_xen_name"];
 }
 ///////////////////////////////
 // Add a domain to one admin //

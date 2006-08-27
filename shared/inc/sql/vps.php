@@ -1,7 +1,7 @@
 <?php
 
 function remoteVPSAction($vps_node,$vps_name,$action){
-  $soap_client = connectToVPSServer($vps_node,$vps_name);
+  $soap_client = connectToVPSServer($vps_node);
   if($soap_client === false){
     echo "<font color=\"red\">Could not connect to VPS server!</font>";
     return;
@@ -45,7 +45,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_p
     $commit_flag = "no";
   }
   if($commit_flag == "yes"){
-    $soap_client = connectToVPSServer($vps_node,$vps_name);
+    $soap_client = connectToVPSServer($vps_node);
     if($soap_client === false){
       echo "<font color=\"red\">Could not connect to VPS server!</font>";
       return;
@@ -67,7 +67,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_k
   $commit_flag = "no";
   $submit_err = "Need to add the code for checking ssh key string validity!";
   if($commit_flag == "yes"){
-    $soap_client = connectToVPSServer($vps_node,$vps_name);
+    $soap_client = connectToVPSServer($vps_node);
     if($soap_client === false){
       echo "<font color=\"red\">Could not connect to VPS server!</font>";
       return;
@@ -87,7 +87,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "fsck_vps"){
     $commit_flag = "no";
   }
   if($commit_flag == "yes"){
-    $soap_client = connectToVPSServer($vps_node,$vps_name);
+    $soap_client = connectToVPSServer($vps_node);
     if($soap_client === false){
       echo "<font color=\"red\">Could not connect to VPS server!</font>";
       return;
@@ -131,7 +131,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
   $ze_vps_ip = mysql_fetch_array($r);
 
   if($commit_flag == "yes"){
-    $soap_client = connectToVPSServer($vps_node,$vps_name);
+    $soap_client = connectToVPSServer($vps_node);
     if($soap_client === false){
       echo "<font color=\"red\">Could not connect to VPS server!</font>";
       return;
@@ -176,7 +176,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
   $ze_vps = mysql_fetch_array($r);
 
   if($commit_flag == "yes"){
-    $soap_client = connectToVPSServer($vps_node,$vps_name);
+    $soap_client = connectToVPSServer($vps_node);
     if($soap_client === false){
       echo "<font color=\"red\">Could not connect to VPS server!</font>";
       return;

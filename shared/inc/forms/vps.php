@@ -21,7 +21,7 @@ function drawAdminTools_VPS($admin,$vps){
     return "Credential not correct: can't display in file ".__FILE__." line ".__LINE__;
   }
 
-  $soap_client = connectToVPSServer($vps_node,$vps_name);
+  $soap_client = connectToVPSServer($vps_node);
 
   $vps_out = "";
   if($soap_client != false){

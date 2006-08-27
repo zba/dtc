@@ -83,6 +83,7 @@ function validateWaitingUser($waiting_login){
 	global $pro_mysql_client_table;
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_product_table;
+	global $pro_mysql_vps_ip_table;
 
 	global $txt_userwaiting_account_activated_subject;
 	global $txt_userwaiting_account_activated_text_header;
@@ -153,7 +154,27 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
         if($a2["heb_type"] == "vps"){
-        	addVPSToUser($a["reqadm_pass"],$a["vps_location"],$a2["id"]);
+		$vps_xen_name = addVPSToUser($a["reqadm_pass"],$a["vps_location"],$a2["id"]);
+		$soap_client = connectToVPSServer($a["vps_location"]);
+		if($soap_client == false){
+			echo "Could not connect to the VPS server for doing the setup: please contact the administrator!";
+		}else{
+			$r = $soap_client->call("setupLVMDisks",array("vpsname" => $vps_xen_name, "hddsize" => $a2["quota_disk"], "swapsize" => $a2["memory_size"]),"","","");
+			$qvps = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$a["vps_location"]."' AND vps_xen_name='$vps_xen_name' LIMIT 1;";
+			$rvps = mysql_query($qvps)or die("Cannot execute query \"qvps\" line ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+			$nvps = mysql_num_rows($rvps);
+			if($nvps != 1){
+				echo "Cannot find VPS IP: wont be able to setup the os, please get in touch with the administrator!";
+			}else{
+				$avps = mysql_fetch_array($rvps);
+				$r = $soap_client->call("reinstallVPSos",array(
+					"vpsname" => $vps_xen_name,
+					"ostype" => $a["vps_os"],
+					"hddsize" => $a2["quota_disk"],
+					"ramsize" => $a2["memory_size"],
+					"ipaddr" => $avps["ip_addr"]),"","","");
+			}
+		}
         }else{
 		addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
         }
@@ -170,7 +191,7 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 Hello,
 
 This is Domain Technologie Control panel robot.
-The shared hosting account you have ordered is now
+The hosting account you have ordered is now
 ready to be used. You can login to the control
 panel using the following informations:
 
