@@ -101,6 +101,24 @@ function drawEditAdmin($admin){
 	} else {
 		$user_data .= "<td style=\"white-space: nowrap;\"><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass</td></tr>";
 	}
+
+	// The product popup
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE (heb_type='shared' OR heb_type='ssl') AND renew_prod_id='0' ORDER BY id;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$prodsid = "";
+	$prodsid .= "<select name=\"heb_prod_id\"><option value=\"0\">No product</option>";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if($a["id"] == $prod_id){
+			$prodsid_sel = " selected ";
+		}else{
+			$prodsid_sel = " ";
+		}
+		$prodsid .= "<option value=\"".$a["id"]."\"$prodsid_sel>".$a["id"].": ".$a["name"]."</option>";
+	}
+	$prodsid .= "</select>";
+
 	$user_data .= "<tr><td align=\"right\">".$txt_path[$lang]."</td>
 	<td><input type=\"text\" name=\"changed_path\" value=\"$adm_path\"></td></tr>
 	<tr><td align=\"right\">".$txt_id_client[$lang]."</td>
@@ -112,7 +130,7 @@ function drawEditAdmin($admin){
 	<tr><td align=\"right\">".$txt_expiration_date[$lang]."</td>
 	<td><input type=\"text\" name=\"expire\" value=\"$expire\"></td></tr>
 	<tr><td align=\"right\">".$txt_heb_prod_id[$lang]."</td>
-	<td><input type=\"text\" name=\"heb_prod_id\" value=\"$prod_id\"></td></tr>
+	<td>$prodsid</td></tr>
 	<tr><td align=\"right\">".$txt_number_of_database[$lang]."</td>
 	<td><input type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\"></td></tr>
 	<tr><td align=\"right\">".$txt_allow_to_add_domains[$lang]."</td>
