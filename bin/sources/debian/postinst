@@ -23,7 +23,20 @@ UNIX_TYPE=debian
 
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
-PATH_PHP_CGI="/usr/bin/php4"
+if [ -e /usr/bin/php4 ] ; then
+	PATH_PHP_CGI="/usr/bin/php4"
+else
+	if [ -e /usr/bin/php5 ] ; then
+		PATH_PHP_CGI="/usr/bin/php5"
+	else
+		if [ -e /usr/bin/php ] ; then
+			PATH_PHP_CGI="/usr/bin/php"
+		else
+			echo "Could not found the php cli binary!!!"
+			exit 0
+		fi
+	fi
+fi
 PATH_PROFTPD_CONF=/etc/proftpd.conf
 PATH_DOVECOT_CONF=/etc/dovecot.conf
 PATH_CRONTAB_CONF=/etc/crontab
