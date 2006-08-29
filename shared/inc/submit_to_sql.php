@@ -154,7 +154,7 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
         if($a2["heb_type"] == "vps"){
-		$vps_xen_name = addVPSToUser($a["reqadm_pass"],$a["vps_location"],$a2["id"]);
+		$vps_xen_name = addVPSToUser($waiting_login,$a["vps_location"],$a2["id"]);
 		$soap_client = connectToVPSServer($a["vps_location"]);
 		if($soap_client == false){
 			echo "Could not connect to the VPS server for doing the setup: please contact the administrator!";
