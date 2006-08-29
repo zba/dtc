@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.57 2006/08/09 06:21:06 thomas Exp $
+	* @version  $Id: index.php,v 1.58 2006/08/29 07:07:00 tusker Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -129,7 +129,10 @@ case "monitor": // Monitor button
 
 			$admin = fetchAdmin($ar2["adm_login"],$ar2["adm_pass"]);
 			$admin_stats = fetchAdminStats($admin);
-			$transfer += $admin_stats["total_transfer"];
+			if (isset($admin_stats["total_transfer"]))
+			{
+				$transfer += $admin_stats["total_transfer"];
+			}
 			$du += $admin_stats["total_du"];
 			$hits = $admin_stats["total_hit"];
 			$total_hits += $hits;
