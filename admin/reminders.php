@@ -87,9 +87,9 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
     $msg_2_send = str_replace("%%%VPS_NODE%%%",$vps["vps_server_hostname"],$msg_2_send);
 
     $headers = "From: ".$conf_webmaster_email_addr;
-#    mail($client["email"],"[DTC] Your VPS expiration",$msg_2_send,$headers);
+    mail($client["email"],"[DTC] Your VPS expiration",$msg_2_send,$headers);
     if($send_webmaster_copy == "yes"){
-#      mail($conf_webmaster_email_addr,"[DTC] A VPS has expired",$msg_2_send,$headers);
+      mail($conf_webmaster_email_addr,"[DTC] A VPS has expired",$msg_2_send,$headers);
     }
   }
 }
@@ -162,9 +162,9 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
     $msg_2_send = getCustomizedReminder($msg_2_send,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
 
     $headers = "From: ".$conf_webmaster_email_addr;
-#    mail($client["email"],"[DTC] Your shared hosting expiration",$msg_2_send,$headers);
+    mail($client["email"],"[DTC] Your shared hosting expiration",$msg_2_send,$headers);
     if($send_webmaster_copy == "yes"){
-#      mail($conf_webmaster_email_addr,"[DTC] A shared hosting account has expired",$msg_2_send,$headers);
+      mail($conf_webmaster_email_addr,"[DTC] A shared hosting account has expired",$msg_2_send,$headers);
     }
     
   }
