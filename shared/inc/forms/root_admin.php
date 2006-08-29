@@ -196,7 +196,7 @@ function drawEditAdmin($admin){
 	$domain_conf .= "<br><br>";
 
 	// Creation of VPS
-	$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='vps';";
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='vps' AND renew_prod_id='0';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$vps_prods = "";
