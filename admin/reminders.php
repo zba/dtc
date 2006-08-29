@@ -87,9 +87,9 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
     $msg_2_send = str_replace("%%%VPS_NODE%%%",$vps["vps_server_hostname"],$msg_2_send);
 
     $headers = "From: ".$conf_webmaster_email_addr;
-    mail($client["email"],"[DTC] Your VPS expiration",$msg_2_send,$headers);
+#    mail($client["email"],"[DTC] Your VPS expiration",$msg_2_send,$headers);
     if($send_webmaster_copy == "yes"){
-      mail($conf_webmaster_email_addr,"[DTC] A VPS has expired",$msg_2_send,$headers);
+#      mail($conf_webmaster_email_addr,"[DTC] A VPS has expired",$msg_2_send,$headers);
     }
   }
 }
@@ -162,9 +162,9 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
     $msg_2_send = getCustomizedReminder($msg_2_send,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
 
     $headers = "From: ".$conf_webmaster_email_addr;
-    mail($client["email"],"[DTC] Your shared hosting expiration",$msg_2_send,$headers);
+#    mail($client["email"],"[DTC] Your shared hosting expiration",$msg_2_send,$headers);
     if($send_webmaster_copy == "yes"){
-      mail($conf_webmaster_email_addr,"[DTC] A shared hosting account has expired",$msg_2_send,$headers);
+#      mail($conf_webmaster_email_addr,"[DTC] A shared hosting account has expired",$msg_2_send,$headers);
     }
     
   }
@@ -174,17 +174,15 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 $before = explode("|",$conf_shared_renewal_before);
 $n = sizeof($before);
 for($i=0;$i<$n;$i++){
-  sendVPSReminderEmail($before[$i],"vps_will_expire.txt");
   sendSharedHostingReminderEmail($before[$i],"shared_will_expire.txt");
 }
 // Send reminder the day of expiration
 sendSharedHostingReminderEmail(0,"shared_expired_today.txt","yes");
 // Send reminders after expiration
-$after = explode("|",$conf_vps_renewal_after);
+$after = explode("|",$conf_shared_renewal_after);
 $n = sizeof($after);
 for($i=0;$i<$n;$i++){
   $days = 0 - $after[$i];
-  sendVPSReminderEmail($days,"vps_expired_already.txt");
   sendSharedHostingReminderEmail($days,"shared_expired_already.txt");
 }
 // Send last warning
