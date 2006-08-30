@@ -122,7 +122,7 @@ function drawEditAdmin($admin){
 	$user_data .= "<tr><td align=\"right\">".$txt_path[$lang]."</td>
 	<td><input type=\"text\" name=\"changed_path\" value=\"$adm_path\"></td></tr>
 	<tr><td align=\"right\">".$txt_id_client[$lang]."</td>
-	<td><input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"></td></tr>
+	<td style=\"white-space: nowrap;\"><input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a></td></tr>
 	<tr><td align=\"right\">".$txt_domain_tbl_config_quotaMB[$lang]."</td>
 	<td><input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\"></td></tr>
 	<tr><td align=\"right\">".$txt_allowed_data_transferMB[$lang]."</td>
