@@ -102,7 +102,7 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 <input type="hidden" name="item_name" value="'.$item_name.'">
 <input type="hidden" name="item_number" value="'.$product_id.'">
 <input type="hidden" name="amount" value="'.$amount.'">
-<input type="hidden" name="currency_code" value="$secpayconf_currency_letters">
+<input type="hidden" name="currency_code" value="'.$secpayconf_currency_letters.'">
 <input type="hidden" name="no_shipping" value="1">
 <input type="hidden" name="return" value="'.$goback_start.$conf_administrative_site.$return_url.'">
 <input type="hidden" name="notify_url" value="'.$goback_start.$conf_administrative_site.'/dtc/paypal.php">
