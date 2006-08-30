@@ -4,6 +4,18 @@ if(!isset($submit_err)){
 	$submit_err = "";
 }
 
+// action=edit_vps_config&vps_server_hostname=node0106.gplhost.com&vps_xen_name=14&start_date=2006-04-24&expire_date=2006-10-24&hddsize=25600&ramsize=256&product_id=22
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_vps_config"){
+	$q = "UPDATE $pro_mysql_vps_table
+	SET start_date='".$_REQUEST["start_date"]."',
+	expire_date='".$_REQUEST["expire_date"]."',
+	hddsize='".$_REQUEST["hddsize"]."',
+	ramsize='".$_REQUEST["ramsize"]."',
+	product_id='".$_REQUEST["product_id"]."'
+	WHERE vps_server_hostname='".$_REQUEST["vps_server_hostname"]."' AND vps_xen_name='".$_REQUEST["vps_xen_name"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+}
+
 // VPS management
 // action=delete_a_vps&id=2
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
