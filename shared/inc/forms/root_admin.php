@@ -344,6 +344,7 @@ function drawDomainConfig($admin){
 		$ret .= "<tr><form action=\"".$_SERVER["PHP_SELF"]."\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+		<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 		<input type=\"hidden\" name=\"action\" value=\"edit_vps_config\">
 		<input type=\"hidden\" name=\"vps_server_hostname\" value=\"".$vps["vps_server_hostname"]."\">
 		<input type=\"hidden\" name=\"vps_xen_name\" value=\"".$vps["vps_xen_name"]."\">";
