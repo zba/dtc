@@ -16,6 +16,8 @@ function validateRenewal($renew_id){
 	global $commit_flag;
 	global $submit_err;
 
+	global $conf_webmaster_email_addr;
+
 	$q = "SELECT * FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -75,14 +77,14 @@ function validateRenewal($renew_id){
 
 A renewal have been paid! Here is the details of the renewal:
 
-login: ".$admin["adm_login"]."
-Product: ".$product["name"]."(".$a["price_dollar"]." USD)
+login: ".$renew_entry["adm_login"]."
+Product: ".$product["name"]."(".$product["price_dollar"]." USD)
 Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
 
 ";
 
 	$headers = "From: ".$conf_webmaster_email_addr;
-	mail($a["email"],"[DTC] Renewal approved!",$txt_renewal_approved,$headers);
+	mail($conf_webmaster_email_addr,"[DTC] Renewal approved!",$txt_renewal_approved,$headers);
 
 	$q = "DELETE FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
