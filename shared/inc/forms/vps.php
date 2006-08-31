@@ -121,7 +121,7 @@ function drawAdminTools_VPS($admin,$vps){
   <input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
   <input type=\"hidden\" name=\"vps_id\" value=\"".$vps["id"]."\">
   <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-  <input type=\"submit\" value=\"".$a["name"]."\">
+  <input type=\"submit\" value=\"".$a["name"]." (".$a["price_dollar"]." USD)"."\">
   </form>";
   }
 
