@@ -53,6 +53,11 @@ function register_user(){
 		$ret["mesg"] = "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.";
 		return $ret;
 	}
+	if($_REQUEST["reqadm_login"] == "root" || $_REQUEST["reqadm_login"] == "debian-sys-maint"){
+		$ret["err"] = 2;
+		$ret["mesg"] = "Username invalid: please pickup something else than root or debian-sys-maint";
+		return $ret;
+	}
 	if(!isDTCPassword($_REQUEST["reqadm_pass"])){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.";
