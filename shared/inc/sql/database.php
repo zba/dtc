@@ -10,6 +10,10 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 		$submit_err .= "Incorrect MySQL login form: please enter another login and try again.<br>\n";
 		$commit_flag = "no";
 	}
+	if($_REQUEST["dbuser"] == "root" || $_REQUEST["dbuser"] == "debian-sys-maint"){
+		$submit_err .= "Incorrect MySQL login form: please don't enter root or debian-sys-maint";
+		$commit_flag = "no";
+	}
 	if(!isDTCPassword($_REQUEST["db_pass"])){
 		$submit_err .= "Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long in file ".__FILE__.".<br>\n";
 		$commit_flag = "no";
