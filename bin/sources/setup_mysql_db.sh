@@ -36,6 +36,21 @@ if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
 fi
 
+# Params:
+# $1 - File where to search
+# $2 - String to search
+# $3 - String to replace
+# must be set: MKTEMP=/bin/mktemp
+function searchAndReplace (){
+	if ! grep ${2} ${1} >/dev/null 2>&1 ; then
+		TMP_FILE=${MKTEMP} DTC_SAR_TEMP.XXXXXX || exit 1
+		sed "s/${2}/${3}/" ${1} >${TMP_FILE}
+		cat ${TMP_FILE} >${1}
+		rm ${TMP_FILE}
+	fi
+}
+
+
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "DTC is configuring your services: please wait..."
 	echo "DTC installer is in VERBOSE mode"

@@ -37,6 +37,16 @@ else
 		fi
 	fi
 fi
+if [ -e /etc/php4/apache/php.ini ] ; then
+	PATH_PHP_INI_APACHE=/etc/php4/apache/php.ini
+fi
+if [ -e /etc/php4/cli/php.ini ] ; then
+	PATH_PHP_INI_CLI=/etc/php4/cli/php.ini
+fi
+if [ -e /etc/php4/apache2/php.ini ] ; then
+	PATH_PHP_INI_APACHE2=/etc/php4/apache2/php.ini
+fi
+
 PATH_PROFTPD_CONF=/etc/proftpd.conf
 PATH_DOVECOT_CONF=/etc/dovecot.conf
 PATH_CRONTAB_CONF=/etc/crontab
@@ -166,21 +176,21 @@ fi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Installing modifications in php.ini"
 fi
-if grep mysql.so /etc/php4/cgi/php.ini | grep extension= >/dev/null
+if grep mysql.so /etc/php4/cli/php.ini | grep extension= >/dev/null
 then
 	echo -n ""
 else
-	echo "extension=mysql.so" >>/etc/php4/cgi/php.ini
+	echo "extension=mysql.so" >>/etc/php4/cli/php.ini
 fi
 
 # Setup a minimum include path with . and /usr/share/pear (or /usr/share/php for debian testing) !!!
 if [ -f /usr/share/pear/PEAR.php ]
 then
-	if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/pear >/dev/null
+	if grep include_path /etc/php4/cli/php.ini | grep /usr/share/pear >/dev/null
 	then
 		echo -n ""
 	else
-		if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/php >/dev/null
+		if grep include_path /etc/php4/cli/php.ini | grep /usr/share/php >/dev/null
 		then
 			echo -n ""
 		else
@@ -188,10 +198,10 @@ then
 				echo "Your php.ini doesn't has pear in it's inc path: changin!"
 			fi
 			if [ -e /usr/share/pear ] ; then
-				echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cgi/php.ini
+				echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cli/php.ini
 			else
 				if [ -e /usr/share/php ] ; then
-					echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cgi/php.ini
+					echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cli/php.ini
 				else
 					echo "I couldn't do it: please check manualy you have PEAR installed!"
 				fi
@@ -202,14 +212,14 @@ fi
 
 if [ -f /usr/share/php/PEAR.php ]
 then
-	if grep include_path /etc/php4/cgi/php.ini | grep /usr/share/php > /dev/null
+	if grep include_path /etc/php4/cli/php.ini | grep /usr/share/php > /dev/null
 	then
 		echo -n ""
 	else
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "Your php.ini doesn't has pear in it's inc path: changin!"
 		fi
-		echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cgi/php.ini
+		echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cli/php.ini
 	fi
 
 fi

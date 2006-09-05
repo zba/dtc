@@ -33,7 +33,6 @@ if [ -z ""$MYSQL_DB_SOCKET_PATH ] ;then
 	MYSQL_DB_SOCKET_PATH="/var/run/mysqld/mysqld.sock"
 fi
 
-
 # Copy newly created chroot tree to the 3 vhosts created with this installer (mx and ns don't have apache vhosts generated)
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n "===> Installing chroot file environment for www."$main_domain_name
@@ -144,6 +143,19 @@ fi
 
 if ! [ -f $PATH_DTC_SHARED/shared/securepay/paiement_config.php ] ; then
 	cp -v $PATH_DTC_SHARED/shared/securepay/RENAME_ME_paiement_config.php $PATH_DTC_SHARED/shared/securepay/paiement_config.php
+fi
+
+#
+# Modify the php.ini to increase memory limits
+#
+if [ -z ""$PATH_PHP_INI_APACHE ] ; then
+	searchAndReplace ($PATH_PHP_INI_APACHE,"memory_limit = 8M","memory_limit = 16M")
+fi
+if [ -z ""$PATH_PHP_INI_APACHE2 ] ; then
+	searchAndReplace ($PATH_PHP_INI_APACHE2,"memory_limit = 8M","memory_limit = 16M")
+fi
+if [ -z ""$PATH_PHP_INI_CLI ] ; then
+	searchAndReplace ($PATH_PHP_INI_CLI,"memory_limit = 8M","memory_limit = 16M")
 fi
 
 #
