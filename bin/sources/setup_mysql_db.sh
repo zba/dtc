@@ -40,10 +40,10 @@ fi
 # $1 - File where to search
 # $2 - String to search
 # $3 - String to replace
-# must be set: MKTEMP=/bin/mktemp
+# $4 - MKTEMP binary and params
 function searchAndReplace (){
 	if ! grep ${2} ${1} >/dev/null 2>&1 ; then
-		TMP_FILE=${MKTEMP} DTC_SAR_TEMP.XXXXXX || exit 1
+		TMP_FILE=`${MKTEMP} DTC_SAR_TEMP.XXXXXX` || exit 1
 		sed "s/${2}/${3}/" ${1} >${TMP_FILE}
 		cat ${TMP_FILE} >${1}
 		rm ${TMP_FILE}
