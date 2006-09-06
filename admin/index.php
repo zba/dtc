@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.58 2006/08/29 07:07:00 tusker Exp $
+	* @version  $Id: index.php,v 1.59 2006/09/06 08:18:21 thomas Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -68,7 +68,12 @@ case "renewal":
 			$a2 = mysql_fetch_array($r2);
 			$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
 		}
-		$out .= "<tr><td>".$a["adm_login"]."</td><td>$client_name</td><td>".$a2["email"]."</td><td>".$a["expire"]."</td></tr>";
+		$q2 = "SELECT * FROM $pro_mysql_domain_table WHERE owner='".$a["adm_login"]."';";
+		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__);
+		$n2 = mysql_num_rows($r2);
+		if($n2 > 0){
+			$out .= "<tr><td>".$a["adm_login"]."</td><td>$client_name</td><td>".$a2["email"]."</td><td>".$a["expire"]."</td></tr>";
+		}
 	}
 	$out .= "</table>";
 
