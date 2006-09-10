@@ -211,7 +211,7 @@ function drawEditAdmin($admin){
 	$vps_srvs = "";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$vps_srvs .= "<option value=\"".$a["ip_addr"]."\">".$a["vps_server_hostname"].": ".$a["ip_addr"]."</option>";
+		$vps_srvs .= "<option value=\"".$a["ip_addr"]."\">".$a["vps_server_hostname"].":".$a["vps_xen_name"]." (".$a["ip_addr"].")</option>";
 	}
 	$domain_conf .= "<b><u>Add a VPS for this admin</u></b>
 	<form action=\"?\">
