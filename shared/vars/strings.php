@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.112 2006/08/07 20:53:00 thomas Exp $
+	* @version  $Id: strings.php,v 1.113 2006/09/10 15:42:40 dracula Exp $
 	* 
 	**/
 	
@@ -4290,6 +4290,38 @@ $txt_mail_deliver_localy = array(
 	"es" => "Entregar mensajes localmente: ",
 	"pt" => "Enviar mensagens localmente: "
 );
+$txt_mail_quota = array(
+	"fr" => "TRANS: quota: ",
+	"en" => "Mailbox quota: ",
+	"hu" => "TRANS: quota: ",
+	"it" => "TRANS: quota: ",
+	"nl" => "TRANS: quota: ",
+	"ru" => "TRANS: quota: ",
+	"de" => "Mailbox Quota: ",
+	"ro" => "Mailbox Quota: ",
+	"zh" => "TRANS: quota: ",
+	"pl" => "TRANS: quota: ",
+	"se" => "TRANS: quota: ",
+	"es" => "TRANS: quota: ",
+	"pt" => "TRANS: quota: "
+);
+
+$txt_used_quota = array(
+	"fr" => "TRANS: Used quota: ",
+	"en" => "Used quota: ",
+	"hu" => "TRANS: Used quota: ",
+	"it" => "TRANS: Used quota: ",
+	"nl" => "TRANS: Used quota: ",
+	"ru" => "TRANS: Used quota: ",
+	"de" => "Benutzte Quota: ",
+	"ro" => "Quota folosita: ",
+	"zh" => "TRANS: quota: ",
+	"pl" => "TRANS: quota: ",
+	"se" => "TRANS: quota: ",
+	"es" => "TRANS: quota: ",
+	"pt" => "TRANS: quota: "
+);
+
 $txt_mail_edit = array(
 	"fr" => "Edition d'une boite aux lettres: ",
 	"en" => "Mailbox configuration: ",

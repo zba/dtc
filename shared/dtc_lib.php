@@ -8,6 +8,10 @@ require("$dtcshared_path/vars/lang.php");			// Setup the $lang global variable (
 require("$dtcshared_path/vars/strings.php");		// Contain all the translated string
 require("$dtcshared_path/vars/error_strings.php");
 
+// CYRUS STUFF
+require("$dtcshared_path/cyradm.php");
+require("$dtcshared_path/cyrus.php");
+
 ////////////////////////
 // Some sql functions //
 ////////////////////////

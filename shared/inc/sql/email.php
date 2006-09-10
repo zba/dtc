@@ -1,6 +1,6 @@
 <?php
-include "cyradm.php";
-include "$dtcshared_path/cyrus.php";
+#include "$dtcshared_path/cyradm.php";
+#include "$dtcshared_path/cyrus.php";
 
 ///////////////////////////////////////////////
 // Email account submition to mysql database //
@@ -136,7 +136,9 @@ VALUES ('".$_REQUEST["newmail_login"]."','".$_REQUEST["newmail_login"]."@".$edit
 			}
 			*/
 			# CL ToDo change this ###
-			$quota=$cyrus_default_quota;
+			if (!$_REQUEST["cyrus_quota"])
+			{ die ("invalid quota"); }
+			$quota=$_REQUEST["cyrus_quota"];
 			$result = $cyr_conn->setmbquota("user/" . $_REQUEST["newmail_login"]."@".$edit_domain, $quota);
 		}
 		writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);
@@ -212,6 +214,20 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 	vacation_flag='$vacflag',vacation_text='".addslashes($_REQUEST["editmail_vacation_text"])."'
 	WHERE id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain' LIMIT 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+
+		if ($cyrus_used)
+		{
+			# login to cyradm
+			$cyr_conn = new cyradm;
+			$error=$cyr_conn -> imap_login();
+			if ($error!=0){
+				die ("imap_login Error $error");
+			}
+			if (!$_REQUEST["cyrus_quota"])
+			{ die ("invalid quota"); }
+			$quota=$_REQUEST["cyrus_quota"];
+			$result = $cyr_conn->setmbquota("user/" . $_REQUEST["edit_mailbox"]."@".$edit_domain, $quota);
+		}
 
 		writeDotQmailFile($_REQUEST["edit_mailbox"],$edit_domain);
 		triggerMXListUpdate();

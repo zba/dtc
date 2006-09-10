@@ -1,12 +1,12 @@
 <?php
+
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.29 2006/08/09 06:21:06 thomas Exp $
+ * @version $Id: email.php,v 1.30 2006/09/10 15:42:40 dracula Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
-
 
 function drawImportedMail($mailbox){
 	global $adm_email_login;
@@ -391,8 +391,20 @@ function drawAdminTools_Emails($domain){
 	global $txt_maximum_mailbox_reach;
 	global $txt_mail_catch_no;
 	global $txt_mail_catch_all_deliver;
-	
+	global $txt_mail_quota;
+	global $txt_used_quota;
+	global $cyrus_used;
+	global $cyrus_default_quota;
+	global $CYRUS;
+
 	global $conf_hide_password;
+
+	# login to cyradm
+	$cyr_conn = new cyradm;
+	$error=$cyr_conn -> imap_login();
+	if ($error!=0){
+	        die ("imap_login Error $error");
+	}
 
 	if(isset($domain["emails"])){
 		$nbr_email = sizeof($domain["emails"]);
@@ -493,19 +505,36 @@ function drawAdminTools_Emails($domain){
 		$txt .= "
 </td><td align=\"right\">
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"editmail_redirect2\" value=\"$redir2\">
-</td></tr><tr><td align=\"right\">
-".$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"editmail_deliver_localy\" value=\"yes\"$checkbox_state></td></tr>
+</td></tr><tr><td align=\"right\">";
+
+if ($cyrus_used)
+{
+	$cyrus_quota=$cyr_conn->getquota("user/" . $mailbox_name."@".$edit_domain);
+	$max_quota=$cyrus_quota['qmax'];
+	$used_quota=$cyrus_quota['used'];
+	$txt=$txt.$txt_mail_quota[$lang]."</td><td><input type=\"text\" name=\"cyrus_quota\" value=\"$max_quota\"> Kb</td><td align=\"right\">$txt_used_quota[$lang]: </td><td><b>$used_quota </b>Kb
+</td></tr>
+<tr><td align=\"right\">";
+}
+
+$txt=$txt.$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"editmail_deliver_localy\" value=\"yes\"$checkbox_state></td></tr>
 <tr>
 <td align=\"right\">".$txt_mail_spam_mailbox_enable[$lang]."</td><td><input type=\"checkbox\" name=\"editmail_spam_mailbox_enable\" value=\"yes\"$spam_checkbox_state></td>
 <td align=\"right\">".$txt_mail_spam_mailbox[$lang]."</td><td><input type=\"text\" name=\"editmail_spam_mailbox\" value=\"$spam_mailbox\"></td>
-</tr>
-<tr>
-<td align=\"right\">Send vacation message:</td><td colspan=\"3\"><input type=\"checkbox\" name=\"editmail_vacation_flag\" value=\"yes\"$checkbox_vacation_state></td>
-</tr><tr>
-<td align=\"right\">Vacation message:</td><td colspan=\"3\"><textarea name=\"editmail_vacation_text\"></textarea></td>
-</tr>
-<tr>
-<td>&nbsp;</td><td><input type=\"submit\" name=\"modifymailboxdata\" value=\"Ok\">&nbsp;
+</tr>";
+if (!$cyrus_used)
+{
+	$txt=$txt."<tr>
+	<td align=\"right\">Send vacation message:</td><td colspan=\"3\"><input type=\"checkbox\" name=\"editmail_vacation_flag\" value=\"yes\"$checkbox_vacation_state></td>
+	</tr><tr>
+	<td align=\"right\">Vacation message:</td><td colspan=\"3\"><textarea name=\"editmail_vacation_text\"></textarea></td>
+	</tr>";
+}
+else
+{
+	$txt=$txt."<input type=\"hidden\" name=\"editmail_vacation_text\" value=\"\">";
+}
+$txt=$txt."<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifymailboxdata\" value=\"Ok\">&nbsp;
 <input type=\"submit\" name=\"delemailaccount\" value=\"Del\">
 </td></tr>
 </table>
@@ -540,8 +569,17 @@ $txt .= "
 </td><td align=\"right\">
 	".$txt_mail_redirection2[$lang]."</td><td><input type=\"text\" name=\"newmail_redirect2\" value=\"\">
 </td></tr>
-<tr><td align=\"right\">
-".$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_deliver_localy\" value=\"yes\" checked></td></tr>
+<tr><td align=\"right\">";
+
+if ($cyrus_used)
+{
+	$txt=$txt.$txt_mail_quota[$lang]."</td><td><input type=\"text\" name=\"cyrus_quota\" value=\"$cyrus_default_quota\">
+</td></tr>
+<tr><td align=\"right\">";
+}
+
+
+$txt=$txt.$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_deliver_localy\" value=\"yes\" checked></td></tr>
 <tr>
 <td align=\"right\">".$txt_mail_spam_mailbox_enable[$lang]."</td><td><input type=\"checkbox\" name=\"newmail_spam_mailbox_enable\" value=\"no\"></td>
 <td align=\"right\">".$txt_mail_spam_mailbox[$lang]."</td><td><input type=\"text\" name=\"newmail_spam_mailbox\" value=\"SPAM\"></td>
