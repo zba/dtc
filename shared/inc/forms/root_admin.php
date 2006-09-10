@@ -244,11 +244,15 @@ function drawDomainConfig($admin){
 	global $txt_domain_tbl_config_backup_ip;
 	global $txt_domain_tbl_config_max_lists;
 
+	global $pro_mysql_product_table;
+
 	global $conf_site_addrs;
 	$site_addrs = explode("|",$conf_site_addrs);
 
 	global $adm_login;
 	global $adm_pass;
+
+	$ret = "";
 
 	if(isset($admin["data"])){
 		$domains = $admin["data"];
@@ -257,10 +261,12 @@ function drawDomainConfig($admin){
 		$nbr_domain = 0;
 	}
 
-	$ret = "<h3>Configuration of the domains</h3>";
-	$ret .= "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\">
+	if($nbr_domain > 0){
+		$ret = "<h3>Configuration of the domains</h3>";
+		$ret .= "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\">
 			<tr><td>".$txt_domain_tbl_config_dom_name[$lang]."</td><td>Safe mode</td><td>Sbox protection</td><td>".$txt_domain_tbl_config_quota[$lang]."</td><td>".$txt_domain_tbl_config_max_email[$lang]."</td><td>".$txt_domain_tbl_config_max_lists[$lang]."</td>
 			<td>".$txt_domain_tbl_config_max_ftp[$lang]."</td><td>".$txt_domain_tbl_config_max_subdomain[$lang]."</td><td>Zone generation</td><td>".$txt_domain_tbl_config_ip[$lang]."</td><td>".$txt_domain_tbl_config_backup_ip[$lang]."</td><td>GO !</td></tr>";
+	}
 	for($i=0;$i<$nbr_domain;$i++){
 		$tobe_edited = $domains[$i];
 		$webname = $tobe_edited["name"];
@@ -327,7 +333,9 @@ function drawDomainConfig($admin){
 
 		$ret .= "<td><input type=\"submit\" name=\"modify_domain_config\" value=\"Ok\"></tr></form>";
 	}
-	$ret .= "</table>";
+	if($nbr_domain > 0){
+		$ret .= "</table>";
+	}
 
 	if(isset($admin["vps"])){
 		$vpses = $admin["vps"];
@@ -336,27 +344,41 @@ function drawDomainConfig($admin){
 		$nbr_vps = 0;
 	}
 
-	$ret .= "<h3>Configuration of the VPSes</h3>";
-	$ret .= "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\">
-	<tr><td>VPS name</td><td>Start date</td><td>Expiration</td><td>HDD size (MB)</td><td>RAM size (MB)</td><td>Product</td><td>Action</td></tr>";
-	for($i=0;$i<$nbr_vps;$i++){
-		$vps = $vpses[$i];
-		$ret .= "<tr><form action=\"".$_SERVER["PHP_SELF"]."\">
-		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-		<input type=\"hidden\" name=\"rub\" value=\"$rub\">
-		<input type=\"hidden\" name=\"action\" value=\"edit_vps_config\">
-		<input type=\"hidden\" name=\"vps_server_hostname\" value=\"".$vps["vps_server_hostname"]."\">
-		<input type=\"hidden\" name=\"vps_xen_name\" value=\"".$vps["vps_xen_name"]."\">";
-		$ret .= "<td>".$vps["vps_server_hostname"].":".$vps["vps_xen_name"]."</td>";
-		$ret .= "<td><input size=\"10\" type=\"text\" name=\"start_date\" value=\"".$vps["start_date"]."\"></td>";
-		$ret .= "<td><input size=\"10\" type=\"text\" name=\"expire_date\" value=\"".$vps["expire_date"]."\"></td>";
-		$ret .= "<td><input size=\"6\" type=\"text\" name=\"hddsize\" value=\"".$vps["hddsize"]."\"></td>";
-		$ret .= "<td><input size=\"6\" type=\"text\" name=\"ramsize\" value=\"".$vps["ramsize"]."\"></td>";
-		$ret .= "<td><input size=\"2\" type=\"text\" name=\"product_id\" value=\"".$vps["product_id"]."\"></td>";
-		$ret .= "<td><input type=\"submit\" value=\"Save\"></td></form></tr>";
+	if($nbr_vps > 0){
+		$ret .= "<h3>Configuration of the VPSes</h3>";
+		$ret .= "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\">
+		<tr><td>VPS name</td><td>Start date</td><td>Expiration</td><td>HDD size (MB)</td><td>RAM size (MB)</td><td>Product</td><td>Action</td></tr>";
+		for($i=0;$i<$nbr_vps;$i++){
+			$vps = $vpses[$i];
+			$ret .= "<tr><form action=\"".$_SERVER["PHP_SELF"]."\">
+			<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+			<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+			<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+			<input type=\"hidden\" name=\"action\" value=\"edit_vps_config\">
+			<input type=\"hidden\" name=\"vps_server_hostname\" value=\"".$vps["vps_server_hostname"]."\">
+			<input type=\"hidden\" name=\"vps_xen_name\" value=\"".$vps["vps_xen_name"]."\">";
+			$ret .= "<td>".$vps["vps_server_hostname"].":".$vps["vps_xen_name"]."</td>";
+			$ret .= "<td><input size=\"10\" type=\"text\" name=\"start_date\" value=\"".$vps["start_date"]."\"></td>";
+			$ret .= "<td><input size=\"10\" type=\"text\" name=\"expire_date\" value=\"".$vps["expire_date"]."\"></td>";
+			$ret .= "<td><input size=\"6\" type=\"text\" name=\"hddsize\" value=\"".$vps["hddsize"]."\"></td>";
+			$ret .= "<td><input size=\"6\" type=\"text\" name=\"ramsize\" value=\"".$vps["ramsize"]."\"></td>";
+			$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='vps' AND renew_prod_id='0' ORDER BY id";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			$vps_prod_p = "";
+			for($j=0;$j<$n;$j++){
+				$a = mysql_fetch_array($r);
+				if($a["id"] == $vps["product_id"]){
+					$vps_prod_p .= "<option value=\"".$a["id"]."\" selected>".$a["name"]."</option>";
+				}else{
+					$vps_prod_p .= "<option value=\"".$a["id"]."\">".$a["name"]."</option>";
+				}
+			}
+			$ret .= "<td><select name=\"product_id\">$vps_prod_p</select>";
+			$ret .= "<td><input type=\"submit\" value=\"Save\"></td></form></tr>";
+		}
+		$ret .= "</table>";
 	}
-	$ret .= "</table>";
 	return $ret;
 }
 
