@@ -124,8 +124,12 @@ if(isset($_REQUEST["modify_domain_config"]) && $_REQUEST["modify_domain_config"]
 // Domain name database management //
 /////////////////////////////////////
 if(isset($_REQUEST["newdomain"]) && $_REQUEST["newdomain"] == "Ok"){
-	addDomainToUser($adm_login,$adm_pass,$_REQUEST["newdomain_name"]);
-	triggerDomainListUpdate();
+	if(isHostname($_REQUEST["newdomain_name"])){
+		addDomainToUser($adm_login,$adm_pass,$_REQUEST["newdomain_name"]);
+		triggerDomainListUpdate();
+	}else{
+		echo "<font color=\"red\">Hostname is not a valid domain name!</font>";
+	}
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "valid_waiting_domain_to_user"){
 	$q = "SELECT * FROM $pro_mysql_pending_queries_table WHERE id='".$_REQUEST["reqid"]."';";
