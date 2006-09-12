@@ -177,7 +177,8 @@ $dtc_database = array(
 			"shared_renewal_before" => "varchar (64) NOT NULL default '40|20|7'",
 			"shared_renewal_after" => "varchar (64) NOT NULL default '15|7'",
 			"shared_renewal_lastwarning" => "varchar (64) NOT NULL default '25'",
-			"shared_renewal_shutdown" => "varchar (64) NOT NULL default '28'"
+			"shared_renewal_shutdown" => "varchar (64) NOT NULL default '28'",
+			"webalizer_country_graph" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"keys" => array(
 			"unicrow2" => "(unicrow2)",

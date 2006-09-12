@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.64 2006/08/11 17:44:21 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.65 2006/09/12 17:38:38 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -394,6 +394,7 @@ function drawGeneralConfig(){
 
 	global $conf_session_expir_minute;
 	global $conf_domain_based_ftp_logins;
+	global $conf_webalizer_country_graph;
 
 	//additions for hide_password support (for ftp logins etc)
 	global $txt_cfg_hide_password;
@@ -478,6 +479,13 @@ function drawGeneralConfig(){
 		$conf_mtatype_postfix = " checked";
 	}
 
+	if($conf_webalizer_country_graph == "yes"){
+		$conf_webalizer_country_graph_no = " ";
+		$conf_webalizer_country_graph_yes = " checked ";
+	}else{
+		$conf_webalizer_country_graph_no = " checked ";
+		$conf_webalizer_country_graph_yes = " ";
+	}
 	$out = "<h3>".$txt_cfg_general[$lang]."</h3>
 <table with=\"100%\" height=\"1\">";
 	if($conf_demo_version == "yes"){
@@ -515,6 +523,10 @@ function drawGeneralConfig(){
 	<td align=\"right\" nowrap>MTA (Mail Transport Agent):</td>
 	<td nowrap><input type=\"radio\" value=\"qmail\" name=\"new_mta_type\"$conf_mtatype_qmail>Qmail
 	<input type=\"radio\" value=\"postfix\" name=\"new_mta_type\"$conf_mtatype_postfix>Postfix</td>
+</tr><tr>
+	<td align=\"right\" nowrap>Webalizer contry graph</td>
+	<td nowrap><input type=\"radio\" value=\"yes\" name=\"webalizer_country_graph\"$conf_webalizer_country_graph_yes>Yes
+	<input type=\"radio\" value=\"no\" name=\"webalizer_country_graph\"$conf_webalizer_country_graph_no>No</td>
 </tr><tr>
 	<td colspan=\"2\"><h3>".$txt_cfg_skin_chooser[$lang]."</h3></td>
 </tr><tr>
@@ -1401,7 +1413,8 @@ function saveDTCConfigInMysql(){
 	domain_based_ftp_logins='".$_REQUEST["new_domain_based_ftp_logins"]."',
 	session_expir_minute='".$_REQUEST["new_session_expir_minute"]."',
 	hide_password='".$_REQUEST["new_hidepasswd"]."',
-	skin='".$_REQUEST["skin_type"]."'
+	skin='".$_REQUEST["skin_type"]."',
+	webalizer_country_graph='".$_REQUEST["webalizer_country_graph"]."'
 	WHERE 1 LIMIT 1";
 		break;
 	case "ip":
