@@ -11,36 +11,38 @@ RELS=`cat release`
 VERSION=$VERS"-"$RELS
 UNIX_TYPE=debian
 
+DEST_TREE=debian
+
 # Make the directories
-mkdir -p debian/usr/share/dtc/etc/zones
-mkdir -p debian/DEBIAN
-mkdir -p debian/usr/share/dtc
+mkdir -p ${DEST_TREE}/usr/share/dtc/etc/zones
+mkdir -p ${DEST_TREE}/DEBIAN
+mkdir -p ${DEST_TREE}/usr/share/dtc
 
 # Make the basic archive
-./buildRelease $UNIX_TYPE debian/usr/share/dtc
+./buildRelease $UNIX_TYPE ${DEST_TREE}/usr/share/dtc
 
 # Copy DTC's files in the good directories
-mkdir -p debian/usr/share/doc
-mv debian/usr/share/dtc/doc debian/usr/share/doc/dtc
-ln -s ../doc/dtc debian/usr/share/dtc/doc
-rm debian/usr/share/doc/dtc/LICENSE debian/usr/share/doc/dtc/INSTALL
-gzip -f -9 debian/usr/share/doc/dtc/changelog
-gzip -f -9 debian/usr/share/doc/dtc/changelog.Debian
+mkdir -p ${DEST_TREE}/usr/share/doc
+mv ${DEST_TREE}/usr/share/dtc/doc ${DEST_TREE}/usr/share/doc/dtc
+ln -s ../doc/dtc ${DEST_TREE}/usr/share/dtc/doc
+rm ${DEST_TREE}/usr/share/doc/dtc/LICENSE ${DEST_TREE}/usr/share/doc/dtc/INSTALL
+gzip -f -9 ${DEST_TREE}/usr/share/doc/dtc/changelog
+gzip -f -9 ${DEST_TREE}/usr/share/doc/dtc/changelog.Debian
 
 # Store DTC's package name and version in the control file
 echo "Package: dtc
-Version: "$VERSION >debian/DEBIAN/control
-cat sources/debian/control >>debian/DEBIAN/control
+Version: "$VERSION >${DEST_TREE}/DEBIAN/control
+cat sources/debian/control >>${DEST_TREE}/DEBIAN/control
 
 # Make the config file directory and script using standard
 # plus debian specific scripts
-cp -f sources/debian/prerm sources/debian/config sources/debian/postinst sources/debian/templates debian/DEBIAN
-cat sources/setup_mysql_db.sh >>debian/DEBIAN/postinst
-cat sources/create_chroot.sh >>debian/DEBIAN/postinst
-cat sources/configure_deamons.sh >>debian/DEBIAN/postinst
-cat sources/uninstall_deamons.sh >>debian/DEBIAN/prerm
+cp -f sources/debian/prerm sources/debian/config sources/debian/postinst sources/debian/templates ${DEST_TREE}/DEBIAN
+cat sources/setup_mysql_db.sh >>${DEST_TREE}/DEBIAN/postinst
+cat sources/create_chroot.sh >>${DEST_TREE}/DEBIAN/postinst
+cat sources/configure_deamons.sh >>${DEST_TREE}/DEBIAN/postinst
+cat sources/uninstall_deamons.sh >>${DEST_TREE}/DEBIAN/prerm
 
-find ./debian -type d | xargs chmod 755
+find ./${DEST_TREE} -type d | xargs chmod 755
 
 FAKEROOT=`which fakeroot`
 if ! [ -x ""${FAKEROOT} ]; then
@@ -48,8 +50,16 @@ if ! [ -x ""${FAKEROOT} ]; then
 	exit 1
 fi
 
-fakeroot ./buildDebianPackage
+fakeroot ./buildDebianPackage ${DEST_TREE}
 
-mv debian.deb "dtc_"$VERSION"_all.deb"
+mv ${DEST_TREE}.deb "dtc_"$VERSION"_all.deb"
 
 echo " -- Succesfully made dtc_"$VERSION"_all.deb ---"
+
+echo "Package: dtc-postfix-courier
+Version: "$VERSION >${DEST_TREE}/DEBIAN/control
+cat sources/debian/control_postfix_courier >>${DEST_TREE}/DEBIAN/control
+
+fakeroot ./buildDebianPackage ${DEST_TREE}
+mv ${DEST_TREE}.deb "dtc-postfix-courier_"$VERSION"_all.deb"
+echo " -- Succesfully made dtc-postfix-courier_"$VERSION"_all.deb ---"
