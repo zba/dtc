@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.65 2006/09/12 17:38:38 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.66 2006/09/13 05:12:11 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -173,6 +173,7 @@ function drawVPSServerConfig(){
     }
   }
 
+  // VPS server listing
   $q = "SELECT * FROM $pro_mysql_vps_server_table WHERE 1 ORDER BY hostname;";
   $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
   $n = mysql_num_rows($r);
@@ -202,6 +203,7 @@ function drawVPSServerConfig(){
   }else{
     $bg = "";
   }
+  // New VPS server
   $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"\"></td>
   <td$bg><input size=\"10\" type=\"text\" name=\"soap_login\" value=\"dtc-xen\"></td>
   <td$bg><input size=\"10\" type=\"text\" name=\"soap_pass\" value=\"\">
@@ -210,6 +212,7 @@ function drawVPSServerConfig(){
   </tr>";
   $out .= "</table><br><br>";
 
+  // Editing a VPS Server
   if(isset($_REQUEST["editor"]) && $_REQUEST["editor"] == "ipaddr"){
 
     if(isset($_REQUEST["action"])){
@@ -230,6 +233,7 @@ function drawVPSServerConfig(){
       }
     }
 
+    // List VPS server IPs
     $q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$_REQUEST["hostname"]."' ORDER BY vps_xen_name;";
     $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
     $n = mysql_num_rows($r);
@@ -253,7 +257,7 @@ function drawVPSServerConfig(){
         $disabled = "";
       }
       $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_ip_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"".$a["ip_addr"]."\"></td>
-      <td$bg><input type=\"text\" name=\"vps_xen_name\" value=\"".$a["vps_xen_name"]."\">
+      <td$bg><input size=\"4\" type=\"text\" name=\"vps_xen_name\" value=\"".$a["vps_xen_name"]."\">
       <td$bg><input type=\"submit\" value=\"Save\"></td></form>
       $frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_ip_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"delete_vps_server_ip\"><input type=\"submit\" value=\"Delete\" $disabled></form></td></tr>";
     }
@@ -262,8 +266,29 @@ function drawVPSServerConfig(){
     }else{
       $bg = "";
     }
+    // New VPS server IP
     $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"\"></td>
-    <td$bg><input type=\"text\" name=\"vps_xen_name\" value=\"\">
+    <td$bg><select name=\"vps_xen_name\">
+      <option value=\"01\">01</option>
+      <option value=\"02\">02</option>
+      <option value=\"03\">03</option>
+      <option value=\"04\">04</option>
+      <option value=\"05\">05</option>
+      <option value=\"06\">06</option>
+      <option value=\"07\">07</option>
+      <option value=\"08\">08</option>
+      <option value=\"09\">09</option>
+      <option value=\"10\">10</option>
+      <option value=\"11\">11</option>
+      <option value=\"12\">12</option>
+      <option value=\"13\">13</option>
+      <option value=\"14\">14</option>
+      <option value=\"15\">15</option>
+      <option value=\"16\">16</option>
+      <option value=\"17\">17</option>
+      <option value=\"18\">18</option>
+      <option value=\"19\">19</option>
+    </select>
     <td$bg colspan=\"2\"><input type=\"submit\" value=\"New\"></td></form></tr>";
     $out .= "</table>";
   }

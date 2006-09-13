@@ -220,7 +220,6 @@ function drawEditAdmin($admin){
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"action\" value=\"add_vps_to_user\">
 	VPS Server hostname: <select name=\"vps_server_ip\">$vps_srvs</select><br>
-	VPS number: <input type=\"text\" name=\"vps_name\" value=\"\"><br>
 	Product: <select name=\"product_id\">$vps_prods</select>
 	<input type=\"submit\" value=\"Add VPS\"></form>";
 

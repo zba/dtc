@@ -60,7 +60,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_vps_to_user"){
 	}
 	$a = mysql_fetch_array($r);
 
-	$q = "UPDATE $pro_mysql_vps_ip_table SET vps_xen_name='".$_REQUEST["vps_name"]."', available='no' WHERE ip_addr='".$_REQUEST["vps_server_ip"]."';";
+	$q = "UPDATE $pro_mysql_vps_ip_table SET vps_xen_name='".$a["vps_xen_name"]."', available='no' WHERE ip_addr='".$_REQUEST["vps_server_ip"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 
@@ -75,7 +75,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_vps_to_user"){
 	$exp_date = calculateExpirationDate(date("Y-m-d"),$prod["period"]);
 
 	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,product_id)
-	VALUES('','$adm_login','".$a["vps_server_hostname"]."','".$_REQUEST["vps_name"]."','".date("Y-m-d")."','$exp_date','".$prod["quota_disk"]."','".$prod["memory_size"]."','".$_REQUEST["product_id"]."');";
+	VALUES('','$adm_login','".$a["vps_server_hostname"]."','".$a["vps_xen_name"]."','".date("Y-m-d")."','$exp_date','".$prod["quota_disk"]."','".$prod["memory_size"]."','".$_REQUEST["product_id"]."');";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 }
 
