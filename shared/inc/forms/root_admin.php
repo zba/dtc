@@ -223,14 +223,20 @@ function drawEditAdmin($admin){
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		<input type=\"hidden\" name=\"action\" value=\"add_vps_to_user\">
-		VPS Server hostname: <select name=\"vps_server_ip\">$vps_srvs</select><br>
-		Product: <select name=\"product_id\">$vps_prods</select>
-		<input type=\"submit\" value=\"Add VPS\"></form>";
+		<table border=\"0\">
+		<tr><td style=\"text-align: right; white-space: nowrap;\">VPS Server hostname:</td>
+		<td><select name=\"vps_server_ip\">$vps_srvs</select></td></tr>
+		<tr><td style=\"text-align: right; white-space: nowrap;\">Product:</td>
+		<td><select name=\"product_id\">$vps_prods</select></td></tr>
+		<tr><td style=\"text-align: right; white-space: nowrap;\">Setup physical VPS (LVM):</td>
+		<td><input type=\"radio\" name=\"physical_setup\" value=\"yes\">Yes
+		<input type=\"radio\" name=\"physical_setup\" value=\"no\" checked>No</td></tr>
+		<tr><td></td><td><input type=\"submit\" value=\"Add VPS\"></td></tr></table></form>";
 	}else{
 		$domain_conf .= "To add a VPS, you need to setup some free IPs VPS in the general config and setup some VPS products.";
 	}
 
-	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/cadre04/trait06.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
+	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/skin/frame/border_2.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
 	$conf_user .= "</b></font> ";
 
 	return $conf_user;
