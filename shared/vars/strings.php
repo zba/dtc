@@ -3,7 +3,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.113 2006/09/10 15:42:40 dracula Exp $
+	* @version  $Id: strings.php,v 1.114 2006/09/13 07:54:50 thomas Exp $
 	* 
 	**/
 	
@@ -1094,7 +1094,7 @@ $txt_number_of_database = array(
 	);
 
 $txt_allow_to_add_domains = array(
-	"fr" => "Autorisé l'ajout de domaines :",
+	"fr" => "Autoriser l'ajout de domaines :",
 	"en" => "Allow to add domains:",
 	"hu" => "Engedélyezi a domainek hozzáadását:",
 	"it" => "Autorizza ad aggiungere domini:",
@@ -1110,7 +1110,7 @@ $txt_allow_to_add_domains = array(
 	);
 
 $txt_can_have_subadmins_reseller = array(
-	"fr" => "Autorisé l'ajout de sous-comptes (revendeur) :",
+	"fr" => "Autoriser l'ajout de sous-comptes (revendeur) :",
 	"en" => "Grant sub-account addition rights (reseller):",
 	"hu" => "Engedélyezi az al-hozzáférések hozzáadását (viszonteladó): ",
 	"it" => "Autorizza l'aggiunta di sotto-account (rivenditori):",
@@ -1126,7 +1126,7 @@ $txt_can_have_subadmins_reseller = array(
 	);
 
 $txt_can_have_ssh_login_for_vhosts = array(
-  "fr" => "Autorisé l'ajout de comptes vhosts SSH :",
+  "fr" => "Autoriser l'ajout de comptes vhosts SSH :",
   "en" => "Allow addition of SSH logins:",
   "hu" => "TRANS Allow addition of SSH vhosts logins:",
   "it" => "Permetti l'aggiunta di logins SSH vhosts:",
