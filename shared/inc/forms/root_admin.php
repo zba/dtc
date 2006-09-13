@@ -182,23 +182,26 @@ function drawEditAdmin($admin){
 	<input type=\"submit\" value=\"".$txt_import_button[$lang]."\"></form>";
 
 	// Deletion of VPS
-	$domain_conf .= "<b><u>Delete one of the admin VPS:</u></b><br>";
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-	for($i=0;$i<$n;$i++){
-		$a = mysql_fetch_array($r);
-		if($i > 0){
-			$domain_conf .= " - ";
+	if($n > 0){
+		$domain_conf .= "<b><u>Delete one of the admin VPS:</u></b><br>";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			if($i > 0){
+				$domain_conf .= " - ";
+			}
+			$domain_conf .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub&action=delete_a_vps&id=".$a["id"]."\"><b>".$a["vps_server_hostname"].":".$a["vps_xen_name"]."</b></a>";
 		}
-		$domain_conf .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub&action=delete_a_vps&id=".$a["id"]."\"><b>".$a["vps_server_hostname"].":".$a["vps_xen_name"]."</b></a>";
+		$domain_conf .= "<br><br>";
 	}
-	$domain_conf .= "<br><br>";
 
 	// Creation of VPS
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='vps' AND renew_prod_id='0';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
+	$num_prods_vps = $n;
 	$vps_prods = "";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
@@ -213,15 +216,19 @@ function drawEditAdmin($admin){
 		$a = mysql_fetch_array($r);
 		$vps_srvs .= "<option value=\"".$a["ip_addr"]."\">".$a["vps_server_hostname"].":".$a["vps_xen_name"]." (".$a["ip_addr"].")</option>";
 	}
-	$domain_conf .= "<b><u>Add a VPS for this admin</u></b>
-	<form action=\"?\">
-	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
-	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-	<input type=\"hidden\" name=\"action\" value=\"add_vps_to_user\">
-	VPS Server hostname: <select name=\"vps_server_ip\">$vps_srvs</select><br>
-	Product: <select name=\"product_id\">$vps_prods</select>
-	<input type=\"submit\" value=\"Add VPS\"></form>";
+	if($n > 0 && $num_prods_vps > 0){
+		$domain_conf .= "<b><u>Add a VPS for this admin</u></b>
+		<form action=\"?\">
+		<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+		<input type=\"hidden\" name=\"action\" value=\"add_vps_to_user\">
+		VPS Server hostname: <select name=\"vps_server_ip\">$vps_srvs</select><br>
+		Product: <select name=\"product_id\">$vps_prods</select>
+		<input type=\"submit\" value=\"Add VPS\"></form>";
+	}else{
+		$domain_conf .= "To add a VPS, you need to setup some free IPs VPS in the general config and setup some VPS products.";
+	}
 
 	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/cadre04/trait06.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
 	$conf_user .= "</b></font> ";
