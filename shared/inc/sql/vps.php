@@ -159,6 +159,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 				"ramsize" => $ze_vps["ramsize"],
 				"ipaddr" => $vps_all_ips),"","","");
 		}
+	}else{
+		echo "<font color=\"red\">Commit flat to no: not doing it!</font>";
 	}
 }
 
@@ -186,6 +188,25 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
 	}
 	$ze_vps = mysql_fetch_array($r);
 
+	// Get all IP addresses
+	$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node' AND available='no';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n < 1){
+		$commit_flag = "no";
+		$submit_err = "Cannot get VPS IP addresses informations line ".__LINE__." file ".__FILE__;
+	}
+	$vps_all_ips = "";
+	for($i=0;$i<$n;$i++){
+		$iparray = mysql_fetch_array($r);
+		if($i == 0){
+			$ze_vps_ip = $iparray;
+		}else{
+			$vps_all_ips .= " ";
+		}
+		$vps_all_ips .= $iparray["ip_addr"];
+	}
+
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
@@ -197,7 +218,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
 		$r = $soap_client->call("changeBSDkernel",array(
 			"vpsname" => "xen".$vps_name,
 			"ramsize" => $ze_vps["ramsize"],
-			"kerneltype" => $_REQUEST["bsdkernel"]),"","","");
+			"kerneltype" => $_REQUEST["bsdkernel"],
+			"allipaddrs" => $vps_all_ips),"","","");
 	}
 }
 
