@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.59 2006/09/06 08:18:21 thomas Exp $
+	* @version  $Id: index.php,v 1.60 2006/09/15 06:37:45 thomas Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -51,7 +51,53 @@ case "crm": // CRM TOOL
 	break;
 
 case "renewal":
-	$out = "<h3>Shared renewals</h3>";
+	$out = "<h3>Total recurring</h3>";
+	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
+	FROM $pro_mysql_product_table,$pro_mysql_admin_table
+	WHERE $pro_mysql_product_table.id = $pro_mysql_admin_table.prod_id
+	AND $pro_mysql_product_table.heb_type='shared'
+	AND $pro_mysql_admin_table.expire != '0000-00-00'";
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
+	$n = mysql_num_rows($r);
+	$total_shared = 0;
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$period = $a["period"];
+		$price = $a["price_dollar"];
+		if($period == '0001-00-00'){
+			$total_shared += $price / 12;
+		}else{
+			$papoum = explode('-',$period);
+			$months = $papoum[1];
+			$total_shared += $price / $months;
+		}
+	}
+
+	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
+	FROM $pro_mysql_product_table,$pro_mysql_vps_table
+	WHERE $pro_mysql_product_table.id = $pro_mysql_vps_table.product_id";
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
+	$n = mysql_num_rows($r);
+	$total_vps = 0;
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$period = $a["period"];
+		$price = $a["price_dollar"];
+		if($period == '0001-00-00'){
+			$total_shared += $price / 12;
+		}else{
+			$papoum = explode('-',$period);
+			$months = $papoum[1];
+			$total_vps += $price / $months;
+		}
+	}
+
+	$out .= "Shared hosting: ".round($total_shared,2)." USD<br>";
+	$out .= "VPS: ".round($total_vps,2)." USD<br>";
+	$big_total = $total_shared + $total_vps;
+	$out .= "Total: ".round($big_total,2)." USD";
+
+	$out .= "<h3>Shared renewals</h3>";
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' ORDER BY expire;";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
 	$n = mysql_num_rows($r);
