@@ -5,7 +5,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.116 2006/09/16 15:37:43 thomas Exp $
+	* @version  $Id: strings.php,v 1.117 2006/09/16 17:55:18 thomas Exp $
 	* 
 	**/
 	
@@ -604,18 +604,18 @@ $txt_reinstall_operating_system = array(
 );
 
 $txt_reinstall_operating_system_button = array(
-	"fr" => "Réinstaller le système : ",
-	"en" => "Reinstall operating system:",
-	"hu" => "TRANS Reinstall operating system:",
-	"it" => "TRANS Reinstall operating system:",
-	"nl" => "TRANS Reinstall operating system:",
-	"ru" => "TRANS Reinstall operating system:",
-	"de" => "TRANS Reinstall operating system:",
-	"zh" => "TRANS Reinstall operating system:",
-	"pl" => "TRANS Reinstall operating system:",
-	"se" => "TRANS Reinstall operating system:",
-	"es" => "TRANS Reinstall operating system:",
-	"pt" => "TRANS Reinstall operating system:"
+	"fr" => "Réinstaller le système",
+	"en" => "Reinstall operating system",
+	"hu" => "TRANS Reinstall operating system",
+	"it" => "TRANS Reinstall operating system",
+	"nl" => "TRANS Reinstall operating system",
+	"ru" => "TRANS Reinstall operating system",
+	"de" => "TRANS Reinstall operating system",
+	"zh" => "TRANS Reinstall operating system",
+	"pl" => "TRANS Reinstall operating system",
+	"se" => "TRANS Reinstall operating system",
+	"es" => "TRANS Reinstall operating system",
+	"pt" => "TRANS Reinstall operating system"
 );
 
 $txt_currently_installed_operating_system = array(
