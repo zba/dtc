@@ -1,197 +1,199 @@
 <?php
 
 function drawAdminTools_VPS($admin,$vps){
-  global $vps_name;
-  global $vps_node;
+	global $vps_name;
+	global $vps_node;
 
-  global $adm_login;
-  global $adm_pass;
-  global $rub;
-  global $addrlink;
+	global $adm_login;
+	global $adm_pass;
+	global $rub;
+	global $addrlink;
 
-  global $vps_soap_err;
+	global $vps_soap_err;
 
-  global $pro_mysql_product_table;
-  global $pro_mysql_vps_ip_table;
+	global $pro_mysql_product_table;
+	global $pro_mysql_vps_ip_table;
 
-  $out = "";
+	global $txt_credential_not_correct;
 
-  $checker = checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name);
-  if($checker != true){
-    return "Credential not correct: can't display in file ".__FILE__." line ".__LINE__;
-  }
+	$out = "";
 
-  $soap_client = connectToVPSServer($vps_node);
+	$checker = checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name);
+	if($checker != true){
+		return "Credential not correct: can't display in file ".__FILE__." line ".__LINE__;
+	}
 
-  $vps_out = "";
-  if($soap_client != false){
-    $vps_remote_info = getVPSInfo($vps_node,$vps_name,$soap_client);
-//    print_r($vps_remote_info);
+	$soap_client = connectToVPSServer($vps_node);
 
-    if($vps_remote_info == false){
-      if(strstr($vps_soap_err,"Method getVPSState failed")){
-        $vps_out .= "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...<br><br>";
-      }else if(strstr($vps_soap_err,"couldn't connect to host")){
-        $vps_out .= "Could not get remote status: could not connect to the SOAP server (HTTP error).<br><br>";
-      }else{
-        $vps_out .= "Could not get remote status. Unkown error: $vps_soap_err<br><br>";
-      }
-    }else if($vps_remote_info == "fsck"){
-      $vps_out .= "Checking filesystem...<br><br>";
-    }else if($vps_remote_info == "mkos"){
-      $vps_out .= "Reinstalling operating system...<br><br>";
-    }else{
-      $vps_out .= "VM id: ".$vps_remote_info["id"]."<br>";
-      $vps_out .= "Name: ".$vps_remote_info["name"]."<br>";
-      $vps_out .= "Memory: ".$vps_remote_info["memory"]."<br>";
-      if(isset($vps_remote_info["maxmem"])){
-        $vps_out .= "Maxmem: ".$vps_remote_info["maxmem"]."<br>";
-      }else{
-        $vps_out .= "Maxmem: cannot fetch (maybe boot in progress?)<br>";
-      }
-      if(isset($vps_remote_info["cpu"])){
-        $vps_out .= "CPU: ".$vps_remote_info["cpu"]."<br>";
-      }else{
-        $vps_out .= "CPU: cannot fetch (maybe boot in progress?)<br>";
-      }
-      if(isset($vps_remote_info["state"])){
-        $vps_out .= "State: ".$vps_remote_info["state"]."<br>";
-      }else{
-        $vps_out .= "State: cannot fetch (maybe boot in progress?)<br>";
-      }
-      if($vps_remote_info["xen_type"] == 2){
-        $uptime = substr($vps_remote_info["up_time"],0,strpos($vps_remote_info["up_time"],"."));
-        $uptime_s = $uptime % 60;
-        $uptime_m = round($uptime/60) % 60;
-        $uptime_h = round($uptime/3600) % 24;
-        $uptime_j = round($uptime/86400);
-        if($uptime_s > 1)	$upt_s_s = "s";	else	$upt_s_s = "";
-        if($uptime_m > 1)	$upt_s_m = "s";	else	$upt_s_m = "";
-        if($uptime_h > 1)	$upt_s_h = "s";	else	$upt_s_h = "";
-        if($uptime_j > 1)	$upt_s_j = "s";	else	$upt_s_j = "";
+	$vps_out = "";
+	if($soap_client != false){
+		$vps_remote_info = getVPSInfo($vps_node,$vps_name,$soap_client);
+//		print_r($vps_remote_info);
 
-        $vps_out .= "Up time: $uptime_j day$upt_s_j $uptime_h hour$upt_s_h $uptime_m minute$upt_s_m $uptime_s seconde$upt_s_s<br>";
-        $vps_out .= "Start date: ".date("Y-m-d H:i:s",substr($vps_remote_info["start_time"],0,strlen($vps_remote_info["start_time"])-2))."<br>";
-      }
-      $vps_out .= "<br>";
-    }
-  }else{
-    $vps_out .= "Could not connect to the VPS SOAP Server.";
-  }
-  
-  $frm_start = "<form action=\"?\">
-  <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-  <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-  <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
+		if($vps_remote_info == false){
+			if(strstr($vps_soap_err,"Method getVPSState failed")){
+				$vps_out .= "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...<br><br>";
+			}else if(strstr($vps_soap_err,"couldn't connect to host")){
+				$vps_out .= "Could not get remote status: could not connect to the SOAP server (HTTP error).<br><br>";
+			}else{
+				$vps_out .= "Could not get remote status. Unkown error: $vps_soap_err<br><br>";
+			}
+		}else if($vps_remote_info == "fsck"){
+			$vps_out .= "Checking filesystem...<br><br>";
+		}else if($vps_remote_info == "mkos"){
+			$vps_out .= "Reinstalling operating system...<br><br>";
+		}else{
+			$vps_out .= "VM id: ".$vps_remote_info["id"]."<br>";
+			$vps_out .= "Name: ".$vps_remote_info["name"]."<br>";
+			$vps_out .= "Memory: ".$vps_remote_info["memory"]."<br>";
+			if(isset($vps_remote_info["maxmem"])){
+				$vps_out .= "Maxmem: ".$vps_remote_info["maxmem"]."<br>";
+			}else{
+				$vps_out .= "Maxmem: cannot fetch (maybe boot in progress?)<br>";
+			}
+			if(isset($vps_remote_info["cpu"])){
+				$vps_out .= "CPU: ".$vps_remote_info["cpu"]."<br>";
+			}else{
+				$vps_out .= "CPU: cannot fetch (maybe boot in progress?)<br>";
+			}
+			if(isset($vps_remote_info["state"])){
+				$vps_out .= "State: ".$vps_remote_info["state"]."<br>";
+			}else{
+				$vps_out .= "State: cannot fetch (maybe boot in progress?)<br>";
+			}
+			if($vps_remote_info["xen_type"] == 2){
+				$uptime = substr($vps_remote_info["up_time"],0,strpos($vps_remote_info["up_time"],"."));
+				$uptime_s = $uptime % 60;
+				$uptime_m = round($uptime/60) % 60;
+				$uptime_h = round($uptime/3600) % 24;
+				$uptime_j = round($uptime/86400);
+				if($uptime_s > 1)	$upt_s_s = "s";	else	$upt_s_s = "";
+				if($uptime_m > 1)	$upt_s_m = "s";	else	$upt_s_m = "";
+				if($uptime_h > 1)	$upt_s_h = "s";	else	$upt_s_h = "";
+				if($uptime_j > 1)	$upt_s_j = "s";	else	$upt_s_j = "";
 
-// Display the current contract
-  $q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$vps["product_id"]."';";
-  $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-  $n = mysql_num_rows($r);
-  if($n == 1){
-    $vps_prod = mysql_fetch_array($r);
-    $contract = $vps_prod["name"];
-  }else{
-    $contact = "not found!";
-  }
-  $out .= "<b><u>Current contract:</u></b><br>$contract<br><br>";
+				$vps_out .= "Up time: $uptime_j day$upt_s_j $uptime_h hour$upt_s_h $uptime_m minute$upt_s_m $uptime_s seconde$upt_s_s<br>";
+				$vps_out .= "Start date: ".date("Y-m-d H:i:s",substr($vps_remote_info["start_time"],0,strlen($vps_remote_info["start_time"])-2))."<br>";
+			}
+			$vps_out .= "<br>";
+		}
+	}else{
+		$vps_out .= "Could not connect to the VPS SOAP Server.";
+	}
 
-  // Expiration management !
-  $ar = explode("-",$vps["expire_date"]);
-  $out .= "<b><u>Expiration date:</u></b><br>";
-  $out .= "Your VPS was first registered on the: ".$vps["start_date"]."<br>";
-  if(date("Y") > $ar[0] ||
-      (date("Y") == $ar[0] && date("m") > $ar[1]) ||
-      (date("Y") == $ar[0] && date("m") == $ar[1] && date("d") > $ar[2])){
-    $out .= "<font color=\"red\">"."Your VPS has expired on the: ".$vps["expire_date"]."</font>"
-      ."<br>Please renew with one of the following options:<br>";
-  }else{
-    $out .= "Your VPS will expire on the: ".$vps["expire_date"];
-  }
+	$frm_start = "<form action=\"?\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
 
-  // Renewal buttons
-  $q = "SELECT * FROM $pro_mysql_product_table WHERE renew_prod_id='".$vps["product_id"]."';";
-  $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-  $n = mysql_num_rows($r);
-  for($i=0;$i<$n;$i++){
-    $a = mysql_fetch_array($r);
-    $out .= "<form action=\"/dtc/new_account.php\">
-  <input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
-  <input type=\"hidden\" name=\"renew_type\" value=\"vps\">
-  <input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
-  <input type=\"hidden\" name=\"vps_id\" value=\"".$vps["id"]."\">
-  <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-  <input type=\"submit\" value=\"".$a["name"]." (".$a["price_dollar"]." USD)"."\">
-  </form>";
-  }
+	// Display the current contract
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$vps["product_id"]."';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		$vps_prod = mysql_fetch_array($r);
+		$contract = $vps_prod["name"];
+	}else{
+		$contact = "not found!";
+	}
+	$out .= "<b><u>Current contract:</u></b><br>$contract<br><br>";
 
-  $out .= "<b><u>CPU and Network usage:</u></b><br>
+	// Expiration management !
+	$ar = explode("-",$vps["expire_date"]);
+	$out .= "<b><u>Expiration date:</u></b><br>";
+	$out .= "Your VPS was first registered on the: ".$vps["start_date"]."<br>";
+	if(date("Y") > $ar[0] ||
+			(date("Y") == $ar[0] && date("m") > $ar[1]) ||
+			(date("Y") == $ar[0] && date("m") == $ar[1] && date("d") > $ar[2])){
+		$out .= "<font color=\"red\">"."Your VPS has expired on the: ".$vps["expire_date"]."</font>"
+			."<br>Please renew with one of the following options:<br>";
+	}else{
+		$out .= "Your VPS will expire on the: ".$vps["expire_date"];
+	}
+
+	// Renewal buttons
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE renew_prod_id='".$vps["product_id"]."';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$out .= "<form action=\"/dtc/new_account.php\">
+<input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
+<input type=\"hidden\" name=\"renew_type\" value=\"vps\">
+<input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
+<input type=\"hidden\" name=\"vps_id\" value=\"".$vps["id"]."\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"submit\" value=\"".$a["name"]." (".$a["price_dollar"]." USD)"."\">
+</form>";
+	}
+
+	$out .= "<b><u>CPU and Network usage:</u></b><br>
 <a target=\"_blank\" href=\"http://".$vps["vps_server_hostname"]."/dtc-xen/\">http://".$vps["vps_server_hostname"]."/dtc-xen/</a><br>";
 
-//  print_r($vps["ip_addr"]);
-  $vps_ips = $vps["ip_addr"];
-  $n = sizeof($vps_ips);
-  if($n > 1){
-    $out .= "IP addresses: ";
-  }else{
-    $out .= "IP address: ";
-  }
-  for($i=0;$i<$n;$i++){
-    if($i != 0){
-      $out .= " - ";
-    }
-    $out .= $vps_ips[$i];
-  }
-  $out .= "<br><br>";
+//	print_r($vps["ip_addr"]);
+	$vps_ips = $vps["ip_addr"];
+	$n = sizeof($vps_ips);
+	if($n > 1){
+		$out .= "IP addresses: ";
+	}else{
+		$out .= "IP address: ";
+	}
+	for($i=0;$i<$n;$i++){
+		if($i != 0){
+			$out .= " - ";
+		}
+		$out .= $vps_ips[$i];
+	}
+	$out .= "<br><br>";
 //  $q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ";
 
-  $out .= "<b><u>Current VPS status:</b></u><br>";
-  $out .= $vps_out;
-  $out .= "<b><u>Start/stop VPS:</u></b><br>";
-  if($vps_remote_info == "fsck"){
-    $out .= "Please wait until file system check is finished first.<br><br>";
-  }else if($vps_remote_info == "mkos"){
-    $out .= "Wait until operating system reinstallation is finished first.<br><br>";
-  }else if($vps_remote_info == true){
-    $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\"
-  <input type=\"submit\" value=\"Gracefully shutdown (xm shutdown)\">
-  </form>";
-    $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\"
-  <input type=\"submit\" value=\"Immediate kill (xm destroy)\">
-  </form>";
-    $out .= "To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first.<br><br>";
-  }else{
-    $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\">
-  <input type=\"submit\" value=\"Boot up (xm start)\">
-  </form>";
-    $out .= "<b><u>File-system check:</u></b><br>";
-    $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"fsck_vps\">
-  <input type=\"submit\" value=\"File system check (fsck)\">
-  </form>";
-    $out .= "<b><u>Reinstall the operating system:</u></b><br>";
-    $out .= "Currently installed operating system: ".$vps["operatingsystem"]."<br>";
-    $deb_selected = " ";
-    $cent_selected = " ";
-    $gen_selected = " ";
-    $bsd_selected = " ";
-    switch($vps["operatingsystem"]){
-    case "debian":
-      $deb_selected = " selected ";
-      break;
-    case "centos":
-      $cent_selected = " selected ";
-      break;
-    case "gentoo":
-      $gen_selected = " selected ";
-      break;
-    case "netbsd":
-      $bsd_selected = " selected ";
-      break;
-    default:
-      die("Operating system type not suppoorted");
-      break;
-    }
-    $out .= $frm_start."<select name=\"os_type\">
+	$out .= "<b><u>Current VPS status:</b></u><br>";
+	$out .= $vps_out;
+	$out .= "<b><u>Start/stop VPS:</u></b><br>";
+	if($vps_remote_info == "fsck"){
+		$out .= "Please wait until file system check is finished first.<br><br>";
+	}else if($vps_remote_info == "mkos"){
+		$out .= "Wait until operating system reinstallation is finished first.<br><br>";
+	}else if($vps_remote_info == true){
+		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\"
+<input type=\"submit\" value=\"Gracefully shutdown (xm shutdown)\">
+</form>";
+		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\"
+<input type=\"submit\" value=\"Immediate kill (xm destroy)\">
+</form>";
+		$out .= "To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first.<br><br>";
+	}else{
+		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\">
+<input type=\"submit\" value=\"Boot up (xm start)\">
+</form>";
+		$out .= "<b><u>File-system check:</u></b><br>";
+		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"fsck_vps\">
+<input type=\"submit\" value=\"File system check (fsck)\">
+</form>";
+		$out .= "<b><u>Reinstall the operating system:</u></b><br>";
+		$out .= "Currently installed operating system: ".$vps["operatingsystem"]."<br>";
+		$deb_selected = " ";
+		$cent_selected = " ";
+		$gen_selected = " ";
+		$bsd_selected = " ";
+		switch($vps["operatingsystem"]){
+		case "debian":
+			$deb_selected = " selected ";
+			break;
+		case "centos":
+			$cent_selected = " selected ";
+			break;
+		case "gentoo":
+			$gen_selected = " selected ";
+			break;
+		case "netbsd":
+			$bsd_selected = " selected ";
+			break;
+		default:
+			die("Operating system type not suppoorted");
+			break;
+		}
+		$out .= $frm_start."<select name=\"os_type\">
     <option value=\"debian\" $deb_selected>Debian</option>
     <option value=\"centos\" $cent_selected>CentOS</option>
     <option value=\"gentoo\" $gen_selected>Gentoo</option>
@@ -199,38 +201,38 @@ function drawAdminTools_VPS($admin,$vps){
     </select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
   <input type=\"submit\" value=\"Reinstall operating system\">
   </form>";
-    if($vps["operatingsystem"] == "netbsd"){
-      if($vps["bsdkernel"] == "install"){
-        $normal_selected = " ";
-        $install_selected = " selected ";
-      }else{
-        $normal_selected = " selected ";
-        $install_selected = " ";
-      }
-      $out .= $frm_start."<select name=\"bsdkernel\">
+		if($vps["operatingsystem"] == "netbsd"){
+			if($vps["bsdkernel"] == "install"){
+				$normal_selected = " ";
+				$install_selected = " selected ";
+			}else{
+				$normal_selected = " selected ";
+				$install_selected = " ";
+			}
+			$out .= $frm_start."<select name=\"bsdkernel\">
     <option value=\"normal\" $normal_selected>Normal</option>
     <option value=\"install\" $install_selected>Install</option>
     </select><input type=\"hidden\" name=\"action\" value=\"change_bsd_kernel_type\">
     <input type=\"submit\" value=\"Change BSD kernel\">
     </form>";
-    }
-  }
+		}
+	}
 
-  $out .= "<b><u>Physical console last display and ssh access:</u></b><br>";
+	$out .= "<b><u>Physical console last display and ssh access:</u></b><br>";
 
-  $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_passwd\">
-  New ssh password: <input type=\"text\" name=\"new_password\" value=\"\"><input type=\"submit\" value=\"Ok\">
-  </form>";
-  $out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_key\">
-  New ssh key: <input size=\"40\" type=\"text\" name=\"new_key\" value=\"\"><input type=\"submit\" value=\"Ok\">
-  </form>";
-  $out .= "To access to your console, first setup a ssh password or key above, and then ssh to:<br>xen".$vps_name."@".$vps_node."<br><br>";
+	$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_passwd\">
+New ssh password: <input type=\"text\" name=\"new_password\" value=\"\"><input type=\"submit\" value=\"Ok\">
+</form>";
+	$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_key\">
+New ssh key: <input size=\"40\" type=\"text\" name=\"new_key\" value=\"\"><input type=\"submit\" value=\"Ok\">
+</form>";
+	$out .= "To access to your console, first setup a ssh password or key above, and then ssh to:<br>xen".$vps_name."@".$vps_node."<br><br>";
 
-  $out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
-  <tr><td bgcolor=\"black\"><font color=\"white\">$vps_node:$vps_name</font></td>
-  <tr><td bgcolor=\"black\"><font color=\"white\"><pre>...</pre></font></td>
-  </table>";
-  return $out;
+	$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
+<tr><td bgcolor=\"black\"><font color=\"white\">$vps_node:$vps_name</font></td>
+<tr><td bgcolor=\"black\"><font color=\"white\"><pre>...</pre></font></td>
+</table>";
+	return $out;
 }
 
 ?>
