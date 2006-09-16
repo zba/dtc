@@ -1,9 +1,11 @@
 <?php
 
+
+
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.114 2006/09/13 07:54:50 thomas Exp $
+	* @version  $Id: strings.php,v 1.115 2006/09/16 14:36:44 thomas Exp $
 	* 
 	**/
 	
@@ -13,9 +15,657 @@
  * 
  */
 
+
+// Strings for VPS
+
+$txt_credential_not_correct = array(
+	"fr" => "",
+	"en" => "Credential not correct: can't display in file ",
+	"hu" => "TRANS Credential not correct: can't display in file ",
+	"it" => "TRANS Credential not correct: can't display in file ",
+	"nl" => "TRANS Credential not correct: can't display in file ",
+	"ru" => "TRANS Credential not correct: can't display in file ",
+	"de" => "TRANS Credential not correct: can't display in file ",
+	"zh" => "TRANS Credential not correct: can't display in file ",
+	"pl" => "TRANS Credential not correct: can't display in file ",
+	"se" => "TRANS Credential not correct: can't display in file ",
+	"es" => "TRANS Credential not correct: can't display in file ",
+	"pt" => "TRANS Credential not correct: can't display in file "
+);
+
+$txt_method_getvpsstate_failed_not_running = array(
+	"fr" => "Impossible de récupéré le status distant (la méthode getVPSState() a échoué). Peut-être que le VPS n'est pas démarré...",
+	"en" => "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"hu" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"it" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"nl" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"ru" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"de" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"zh" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"pl" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"se" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"es" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"pt" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running..."
+);
+
+$txt_couldnot_connect_to_soap_server_http_error = array(
+	"fr" => "Impossible de récupéré le status distant: impossible de se connecté au serveur SOAP (erreur HTTP).",
+	"en" => "Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"hu" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"it" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"nl" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"ru" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"de" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"zh" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"pl" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"se" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"es" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error).",
+	"pt" => "TRANS Could not get remote status: could not connect to the SOAP server (HTTP error)."
+);
+
+$txt_couldnot_connect_unknown_error = array(
+	"fr" => "Impossible de récupéré le status distant. Erreur inconue : ",
+	"en" => "Could not get remote status. Unkown error: ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_checking_filesystem = array(
+	"fr" => "Vérification du system de fichier en cours...",
+	"en" => "Checking filesystem...",
+	"hu" => "TRANS Checking filesystem...",
+	"it" => "TRANS Checking filesystem...",
+	"nl" => "TRANS Checking filesystem...",
+	"ru" => "TRANS Checking filesystem...",
+	"de" => "TRANS Checking filesystem...",
+	"zh" => "TRANS Checking filesystem...",
+	"pl" => "TRANS Checking filesystem...",
+	"se" => "TRANS Checking filesystem...",
+	"es" => "TRANS Checking filesystem...",
+	"pt" => "TRANS Checking filesystem..."
+);
+
+$txt_reinstalling_operating_system = array(
+	"fr" => "Réinstallation du système d'exploitation en cours...",
+	"en" => "Reinstalling operating system...",
+	"hu" => "TRANS Reinstalling operating system...",
+	"it" => "TRANS Reinstalling operating system...",
+	"nl" => "TRANS Reinstalling operating system...",
+	"ru" => "TRANS Reinstalling operating system...",
+	"de" => "TRANS Reinstalling operating system...",
+	"zh" => "TRANS Reinstalling operating system...",
+	"pl" => "TRANS Reinstalling operating system...",
+	"se" => "TRANS Reinstalling operating system...",
+	"es" => "TRANS Reinstalling operating system...",
+	"pt" => "TRANS Reinstalling operating system..."
+);
+
+$txt_vm_id = array(
+	"fr" => "ID du VDS : ",
+	"en" => "VM id: ",
+	"hu" => "TRANS VM id: ",
+	"it" => "TRANS VM id: ",
+	"nl" => "TRANS VM id: ",
+	"ru" => "TRANS VM id: ",
+	"de" => "TRANS VM id: ",
+	"zh" => "TRANS VM id: ",
+	"pl" => "TRANS VM id: ",
+	"se" => "TRANS VM id: ",
+	"es" => "TRANS VM id: ",
+	"pt" => "TRANS VM id: "
+);
+
+$txt_vps_name = array(
+	"fr" => "Nom : ",
+	"en" => "Name: ",
+	"hu" => "TRANS Name: ",
+	"it" => "TRANS Name: ",
+	"nl" => "TRANS Name: ",
+	"ru" => "TRANS Name: ",
+	"de" => "TRANS Name: ",
+	"zh" => "TRANS Name: ",
+	"pl" => "TRANS Name: ",
+	"se" => "TRANS Name: ",
+	"es" => "TRANS Name: ",
+	"pt" => "TRANS Name: "
+);
+
+$txt_vps_memory = array(
+	"fr" => "Mémoire : ",
+	"en" => "Memory: ",
+	"hu" => "TRANS Memory: ",
+	"it" => "TRANS Memory: ",
+	"nl" => "TRANS Memory: ",
+	"ru" => "TRANS Memory: ",
+	"de" => "TRANS Memory: ",
+	"zh" => "TRANS Memory: ",
+	"pl" => "TRANS Memory: ",
+	"se" => "TRANS Memory: ",
+	"es" => "TRANS Memory: ",
+	"pt" => "TRANS Memory: "
+);
+
+$txt_vps_maxmem = array(
+	"fr" => "Mémoire maxi : ",
+	"en" => "Max memory: ",
+	"hu" => "TRANS Max memory: ",
+	"it" => "TRANS Max memory: ",
+	"nl" => "TRANS Max memory: ",
+	"ru" => "TRANS Max memory: ",
+	"de" => "TRANS Max memory: ",
+	"zh" => "TRANS Max memory: ",
+	"pl" => "TRANS Max memory: ",
+	"se" => "TRANS Max memory: ",
+	"es" => "TRANS Max memory: ",
+	"pt" => "TRANS Max memory: "
+);
+
+$txt_number_of_cpu = array(
+	"fr" => "Nombre de CPU : ",
+	"en" => "Number of CPU: ",
+	"hu" => "TRANS Number of CPU: ",
+	"it" => "TRANS Number of CPU: ",
+	"nl" => "TRANS Number of CPU: ",
+	"ru" => "TRANS Number of CPU: ",
+	"de" => "TRANS Number of CPU: ",
+	"zh" => "TRANS Number of CPU: ",
+	"pl" => "TRANS Number of CPU: ",
+	"se" => "TRANS Number of CPU: ",
+	"es" => "TRANS Number of CPU: ",
+	"pt" => "TRANS Number of CPU: "
+);
+
+$txt_vps_state = array(
+	"fr" => "Etat : ",
+	"en" => "State: ",
+	"hu" => "TRANS State: ",
+	"it" => "TRANS State: ",
+	"nl" => "TRANS State: ",
+	"ru" => "TRANS State: ",
+	"de" => "TRANS State: ",
+	"zh" => "TRANS State: ",
+	"pl" => "TRANS State: ",
+	"se" => "TRANS State: ",
+	"es" => "TRANS State: ",
+	"pt" => "TRANS State: "
+);
+
+$txt_maxmem_cannot_fetch = array(
+	"fr" => "Mémoire maximum : impossible de récupéré la valeur (peut-être redémarrage en cours ?)",
+	"en" => "Maxmem: cannot fetch (maybe boot in progress?)",
+	"hu" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)",
+	"it" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)",
+	"nl" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)",
+	"ru" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)",
+	"de" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)",
+	"zh" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)",
+	"pl" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)",
+	"se" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)",
+	"es" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)",
+	"pt" => "TRANS Maxmem: cannot fetch (maybe boot in progress?)"
+);
+
+$txt_cpu_cannot_fetch = array(
+	"fr" => "Nombre de CPU : impossible de récupéré la valeur (peut-être redémarrage en cours ?)",
+	"en" => "Number of CPU: cannot fetch (maybe boot in progress?)",
+	"hu" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)",
+	"it" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)",
+	"nl" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)",
+	"ru" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)",
+	"de" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)",
+	"zh" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)",
+	"pl" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)",
+	"se" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)",
+	"es" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)",
+	"pt" => "TRANS Number of CPU: cannot fetch (maybe boot in progress?)"
+);
+
+$txt_state_cannot_fetch = array(
+	"fr" => "Etat : impossible de récupéré la valeur (peut-être redémarrage en cours ?)",
+	"en" => "State: cannot fetch (maybe boot in progress?)",
+	"hu" => "TRANS State: cannot fetch (maybe boot in progress?)",
+	"it" => "TRANS State: cannot fetch (maybe boot in progress?)",
+	"nl" => "TRANS State: cannot fetch (maybe boot in progress?)",
+	"ru" => "TRANS State: cannot fetch (maybe boot in progress?)",
+	"de" => "TRANS State: cannot fetch (maybe boot in progress?)",
+	"zh" => "TRANS State: cannot fetch (maybe boot in progress?)",
+	"pl" => "TRANS State: cannot fetch (maybe boot in progress?)",
+	"se" => "TRANS State: cannot fetch (maybe boot in progress?)",
+	"es" => "TRANS State: cannot fetch (maybe boot in progress?)",
+	"pt" => "TRANS State: cannot fetch (maybe boot in progress?)"
+);
+
+$txt_vps_uptime = array(
+	"fr" => "Up time : ",
+	"en" => "Up time: ",
+	"hu" => "TRANS Up time: ",
+	"it" => "TRANS Up time: ",
+	"nl" => "TRANS Up time: ",
+	"ru" => "TRANS Up time: ",
+	"de" => "TRANS Up time: ",
+	"zh" => "TRANS Up time: ",
+	"pl" => "TRANS Up time: ",
+	"se" => "TRANS Up time: ",
+	"es" => "TRANS Up time: ",
+	"pt" => "TRANS Up time: "
+);
+
+$txt_vps_last_boot_date = array(
+	"fr" => "Date du dernier démarage : ",
+	"en" => "Last boot date: ",
+	"hu" => "TRANS Last boot date: ",
+	"it" => "TRANS Last boot date: ",
+	"nl" => "TRANS Last boot date: ",
+	"ru" => "TRANS Last boot date: ",
+	"de" => "TRANS Last boot date: ",
+	"zh" => "TRANS Last boot date: ",
+	"pl" => "TRANS Last boot date: ",
+	"se" => "TRANS Last boot date: ",
+	"es" => "TRANS Last boot date: ",
+	"pt" => "TRANS Last boot date: "
+);
+
+$txt_could_not_connect_to_vps_soap_server = array(
+	"fr" => "Impossible de se connecter au serveur SOAP du VDS.",
+	"en" => "Could not connect to the VPS SOAP Server.",
+	"hu" => "TRANS Could not connect to the VPS SOAP Server.",
+	"it" => "TRANS Could not connect to the VPS SOAP Server.",
+	"nl" => "TRANS Could not connect to the VPS SOAP Server.",
+	"ru" => "TRANS Could not connect to the VPS SOAP Server.",
+	"de" => "TRANS Could not connect to the VPS SOAP Server.",
+	"zh" => "TRANS Could not connect to the VPS SOAP Server.",
+	"pl" => "TRANS Could not connect to the VPS SOAP Server.",
+	"se" => "TRANS Could not connect to the VPS SOAP Server.",
+	"es" => "TRANS Could not connect to the VPS SOAP Server.",
+	"pt" => "TRANS Could not connect to the VPS SOAP Server."
+);
+
+$txt_current_vps_contract = array(
+	"fr" => "Contrat courrant : ",
+	"en" => "Current contract: ",
+	"hu" => "TRANS Current contract: ",
+	"it" => "TRANS Current contract: ",
+	"nl" => "TRANS Current contract: ",
+	"ru" => "TRANS Current contract: ",
+	"de" => "TRANS Current contract: ",
+	"zh" => "TRANS Current contract: ",
+	"pl" => "TRANS Current contract: ",
+	"se" => "TRANS Current contract: ",
+	"es" => "TRANS Current contract: ",
+	"pt" => "TRANS Current contract: "
+);
+
+$txt_vps_expiration_date = array(
+	"fr" => "Date d'expiration : ",
+	"en" => "Expiration date: ",
+	"hu" => "TRANS Expiration date: ",
+	"it" => "TRANS Expiration date: ",
+	"nl" => "TRANS Expiration date: ",
+	"ru" => "TRANS Expiration date: ",
+	"de" => "TRANS Expiration date: ",
+	"zh" => "TRANS Expiration date: ",
+	"pl" => "TRANS Expiration date: ",
+	"se" => "TRANS Expiration date: ",
+	"es" => "TRANS Expiration date: ",
+	"pt" => "TRANS Expiration date: "
+);
+
+$txt_your_vps_was_first_registered_on_the = array(
+	"fr" => "Votre serveur virtuel à été enregistré le : ",
+	"en" => "Your VPS was first registered on the: ",
+	"hu" => "TRANS Your VPS was first registered on the: ",
+	"it" => "TRANS Your VPS was first registered on the: ",
+	"nl" => "TRANS Your VPS was first registered on the: ",
+	"ru" => "TRANS Your VPS was first registered on the: ",
+	"de" => "TRANS Your VPS was first registered on the: ",
+	"zh" => "TRANS Your VPS was first registered on the: ",
+	"pl" => "TRANS Your VPS was first registered on the: ",
+	"se" => "TRANS Your VPS was first registered on the: ",
+	"es" => "TRANS Your VPS was first registered on the: ",
+	"pt" => "TRANS Your VPS was first registered on the: "
+);
+
+$txt_your_vps_has_expired_on_the = array(
+	"fr" => "",
+	"en" => "Your VPS has expired on the: ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_please_renew_with_one_of_the_following_options = array(
+	"fr" => "",
+	"en" => "Please renew with one of the following options: ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_your_vps_will_expire_on_the = array(
+	"fr" => "",
+	"en" => "Your VPS will expire on the: ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_cpu_and_network_usage = array(
+	"fr" => "",
+	"en" => "CPU and Network usage:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_ip_addresses = array(
+	"fr" => "",
+	"en" => "IP addresses: ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_ip_address = array(
+	"fr" => "",
+	"en" => "IP address: ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_current_vps_status = array(
+	"fr" => "",
+	"en" => "Current VPS status:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_start_stop_vps = array(
+	"fr" => "",
+	"en" => "Start/stop VPS:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_please_wait_until_fsck_finished = array(
+	"fr" => "",
+	"en" => "Please wait until file system check is finished first.",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_gracefully_shutdown_xm_shutdown = array(
+	"fr" => "",
+	"en" => "Gracefully shutdown (xm shutdown)",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_immediate_kill_xm_destroy = array(
+	"fr" => "",
+	"en" => "Immediate kill (xm destroy)",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_to_do_a_file_system_check_or_operating_system_reinstallation = array(
+	"fr" => "",
+	"en" => "To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first.",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_boot_up_xm_start = array(
+	"fr" => "",
+	"en" => "Boot up (xm start)",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_file_system_check = array(
+	"fr" => "",
+	"en" => "File-system check:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_file_system_check_fsck = array(
+	"fr" => "",
+	"en" => "File system check (fsck)",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_operating_system_type_not_supported = array(
+	"fr" => "",
+	"en" => "Operating system type not suppoorted",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_reinstall_operating_system = array(
+	"fr" => "",
+	"en" => "Reinstall operating system",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_change_bsd_kernel = array(
+	"fr" => "",
+	"en" => "Change BSD kernel",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_physical_console_last_display_and_ssh_access = array(
+	"fr" => "",
+	"en" => "Physical console last display and ssh access:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_new_ssh_password = array(
+	"fr" => "",
+	"en" => "New ssh password: ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_new_ssh_key = array(
+	"fr" => "",
+	"en" => "New ssh key: ",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
+$txt_to_access_to_your_console_first_setup_a_ssh_password = array(
+	"fr" => "",
+	"en" => "To access to your console, first setup a ssh password or key above, and then ssh to:",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+);
+
 $txt_import_button = array(
-  "fr" => "Importer",
-  "en" => "Import",
+	"fr" => "Importer",
+	"en" => "Import",
 	"hu" => "TRANS Import",
 	"it" => "TRANS Import",
 	"nl" => "TRANS Import",

@@ -14,13 +14,59 @@ function drawAdminTools_VPS($admin,$vps){
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
 
+	global $lang;
 	global $txt_credential_not_correct;
+	global $txt_method_getvpsstate_failed_not_running;
+	global $txt_couldnot_connect_to_soap_server_http_error;
+	global $txt_couldnot_connect_unknown_error;
+	global $txt_checking_filesystem;
+	global $txt_reinstalling_operating_system;
+
+	global $txt_state_cannot_fetch;
+	global $txt_cpu_cannot_fetch;
+	global $txt_maxmem_cannot_fetch;
+	global $txt_vps_state;
+	global $txt_number_of_cpu;
+	global $txt_vps_maxmem;
+	global $txt_vps_memory;
+	global $txt_vps_name;
+	global $txt_vm_id;
+	global $txt_vps_uptime;
+	global $txt_vps_last_boot_date;
+	global $txt_could_not_connect_to_vps_soap_server;
+
+	global $txt_current_vps_contract;
+	global $txt_vps_expiration_date;
+	global $txt_your_vps_was_first_registered_on_the;
+
+	global $txt_your_vps_has_expired_on_the;
+	global $txt_please_renew_with_one_of_the_following_options;
+	global $txt_your_vps_will_expire_on_the;
+	global $txt_cpu_and_network_usage ;
+	global $txt_ip_addresses;
+	global $txt_ip_address;
+	global $txt_current_vps_status;
+	global $txt_start_stop_vps;
+	global $txt_please_wait_until_fsck_finished;
+	global $txt_gracefully_shutdown_xm_shutdown;
+	global $txt_immediate_kill_xm_destroy;
+	global $txt_to_do_a_file_system_check_or_operating_system_reinstallation;
+	global $txt_boot_up_xm_start;
+	global $txt_file_system_check;
+	global $txt_file_system_check_fsck;
+	global $txt_operating_system_type_not_supported;
+	global $txt_reinstall_operating_system;
+	global $txt_change_bsd_kernel;
+	global $txt_physical_console_last_display_and_ssh_access;
+	global $txt_new_ssh_password;
+	global $txt_new_ssh_key;
+	global $txt_to_access_to_your_console_first_setup_a_ssh_password;
 
 	$out = "";
 
 	$checker = checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name);
 	if($checker != true){
-		return "Credential not correct: can't display in file ".__FILE__." line ".__LINE__;
+		return $txt_credential_not_correct[$lang].__FILE__." line ".__LINE__;
 	}
 
 	$soap_client = connectToVPSServer($vps_node);
@@ -32,34 +78,34 @@ function drawAdminTools_VPS($admin,$vps){
 
 		if($vps_remote_info == false){
 			if(strstr($vps_soap_err,"Method getVPSState failed")){
-				$vps_out .= "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...<br><br>";
+				$vps_out .= $txt_method_getvpsstate_failed_not_running[$lang]."<br><br>";
 			}else if(strstr($vps_soap_err,"couldn't connect to host")){
-				$vps_out .= "Could not get remote status: could not connect to the SOAP server (HTTP error).<br><br>";
+				$vps_out .= $txt_couldnot_connect_to_soap_server_http_error[$lang]."<br><br>";
 			}else{
-				$vps_out .= "Could not get remote status. Unkown error: $vps_soap_err<br><br>";
+				$vps_out .= $txt_couldnot_connect_unknown_error[$lang]."$vps_soap_err<br><br>";
 			}
 		}else if($vps_remote_info == "fsck"){
-			$vps_out .= "Checking filesystem...<br><br>";
+			$vps_out .= $txt_checking_filesystem[$lang]."<br><br>";
 		}else if($vps_remote_info == "mkos"){
-			$vps_out .= "Reinstalling operating system...<br><br>";
+			$vps_out .= $txt_reinstalling_operating_system[$lang]."<br><br>";
 		}else{
-			$vps_out .= "VM id: ".$vps_remote_info["id"]."<br>";
-			$vps_out .= "Name: ".$vps_remote_info["name"]."<br>";
-			$vps_out .= "Memory: ".$vps_remote_info["memory"]."<br>";
+			$vps_out .= $txt_vm_id[$lang].$vps_remote_info["id"]."<br>";
+			$vps_out .= $txt_vps_name[$lang].$vps_remote_info["name"]."<br>";
+			$vps_out .= $txt_vps_memory[$lang].$vps_remote_info["memory"]."<br>";
 			if(isset($vps_remote_info["maxmem"])){
-				$vps_out .= "Maxmem: ".$vps_remote_info["maxmem"]."<br>";
+				$vps_out .= $txt_vps_maxmem[$lang].$vps_remote_info["maxmem"]."<br>";
 			}else{
-				$vps_out .= "Maxmem: cannot fetch (maybe boot in progress?)<br>";
+				$vps_out .= $txt_maxmem_cannot_fetch[$lang]."<br>";
 			}
 			if(isset($vps_remote_info["cpu"])){
-				$vps_out .= "CPU: ".$vps_remote_info["cpu"]."<br>";
+				$vps_out .= $txt_number_of_cpu[$lang].$vps_remote_info["cpu"]."<br>";
 			}else{
-				$vps_out .= "CPU: cannot fetch (maybe boot in progress?)<br>";
+				$vps_out .= $txt_cpu_cannot_fetch[$lang]."<br>";
 			}
 			if(isset($vps_remote_info["state"])){
-				$vps_out .= "State: ".$vps_remote_info["state"]."<br>";
+				$vps_out .= $txt_vps_state[$lang].$vps_remote_info["state"]."<br>";
 			}else{
-				$vps_out .= "State: cannot fetch (maybe boot in progress?)<br>";
+				$vps_out .= $txt_state_cannot_fetch[$lang]."<br>";
 			}
 			if($vps_remote_info["xen_type"] == 2){
 				$uptime = substr($vps_remote_info["up_time"],0,strpos($vps_remote_info["up_time"],"."));
@@ -72,13 +118,13 @@ function drawAdminTools_VPS($admin,$vps){
 				if($uptime_h > 1)	$upt_s_h = "s";	else	$upt_s_h = "";
 				if($uptime_j > 1)	$upt_s_j = "s";	else	$upt_s_j = "";
 
-				$vps_out .= "Up time: $uptime_j day$upt_s_j $uptime_h hour$upt_s_h $uptime_m minute$upt_s_m $uptime_s seconde$upt_s_s<br>";
-				$vps_out .= "Start date: ".date("Y-m-d H:i:s",substr($vps_remote_info["start_time"],0,strlen($vps_remote_info["start_time"])-2))."<br>";
+				$vps_out .= $txt_vps_uptime[$lang]."$uptime_j day$upt_s_j $uptime_h hour$upt_s_h $uptime_m minute$upt_s_m $uptime_s seconde$upt_s_s<br>";
+				$vps_out .= $txt_vps_last_boot_date[$lang].date("Y-m-d H:i:s",substr($vps_remote_info["start_time"],0,strlen($vps_remote_info["start_time"])-2))."<br>";
 			}
 			$vps_out .= "<br>";
 		}
 	}else{
-		$vps_out .= "Could not connect to the VPS SOAP Server.";
+		$vps_out .= $txt_could_not_connect_to_vps_soap_server[$lang];
 	}
 
 	$frm_start = "<form action=\"?\">
@@ -96,12 +142,12 @@ function drawAdminTools_VPS($admin,$vps){
 	}else{
 		$contact = "not found!";
 	}
-	$out .= "<b><u>Current contract:</u></b><br>$contract<br><br>";
+	$out .= "<b><u>".$txt_current_vps_contract[$lang]."</u></b><br>$contract<br><br>";
 
 	// Expiration management !
 	$ar = explode("-",$vps["expire_date"]);
-	$out .= "<b><u>Expiration date:</u></b><br>";
-	$out .= "Your VPS was first registered on the: ".$vps["start_date"]."<br>";
+	$out .= "<b><u>".$txt_vps_expiration_date[$lang]."</u></b><br>";
+	$out .= $txt_your_vps_was_first_registered_on_the[$lang].$vps["start_date"]."<br>";
 	if(date("Y") > $ar[0] ||
 			(date("Y") == $ar[0] && date("m") > $ar[1]) ||
 			(date("Y") == $ar[0] && date("m") == $ar[1] && date("d") > $ar[2])){
