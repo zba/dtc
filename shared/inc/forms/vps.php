@@ -48,6 +48,7 @@ function drawAdminTools_VPS($admin,$vps){
 	global $txt_current_vps_status;
 	global $txt_start_stop_vps;
 	global $txt_please_wait_until_fsck_finished;
+	global $txt_please_wait_until_reinstall_os_finished;
 	global $txt_gracefully_shutdown_xm_shutdown;
 	global $txt_immediate_kill_xm_destroy;
 	global $txt_to_do_a_file_system_check_or_operating_system_reinstallation;
@@ -56,6 +57,8 @@ function drawAdminTools_VPS($admin,$vps){
 	global $txt_file_system_check_fsck;
 	global $txt_operating_system_type_not_supported;
 	global $txt_reinstall_operating_system;
+	global $txt_reinstall_operating_system_button;
+	global $txt_currently_installed_operating_system;
 	global $txt_change_bsd_kernel;
 	global $txt_physical_console_last_display_and_ssh_access;
 	global $txt_new_ssh_password;
@@ -69,12 +72,12 @@ function drawAdminTools_VPS($admin,$vps){
 		return $txt_credential_not_correct[$lang].__FILE__." line ".__LINE__;
 	}
 
+	// VPS (remote SOAP) Status
 	$soap_client = connectToVPSServer($vps_node);
 
 	$vps_out = "";
 	if($soap_client != false){
 		$vps_remote_info = getVPSInfo($vps_node,$vps_name,$soap_client);
-//		print_r($vps_remote_info);
 
 		if($vps_remote_info == false){
 			if(strstr($vps_soap_err,"Method getVPSState failed")){
@@ -151,10 +154,10 @@ function drawAdminTools_VPS($admin,$vps){
 	if(date("Y") > $ar[0] ||
 			(date("Y") == $ar[0] && date("m") > $ar[1]) ||
 			(date("Y") == $ar[0] && date("m") == $ar[1] && date("d") > $ar[2])){
-		$out .= "<font color=\"red\">"."Your VPS has expired on the: ".$vps["expire_date"]."</font>"
-			."<br>Please renew with one of the following options:<br>";
+		$out .= "<font color=\"red\">".$txt_your_vps_has_expired_on_the[$lang].$vps["expire_date"]."</font>"
+			."<br>".$txt_please_renew_with_one_of_the_following_options[$lang]."<br>";
 	}else{
-		$out .= "Your VPS will expire on the: ".$vps["expire_date"];
+		$out .= $txt_your_vps_will_expire_on_the[$lang].$vps["expire_date"];
 	}
 
 	// Renewal buttons
@@ -173,16 +176,16 @@ function drawAdminTools_VPS($admin,$vps){
 </form>";
 	}
 
-	$out .= "<b><u>CPU and Network usage:</u></b><br>
+	$out .= "<b><u>".$txt_cpu_and_network_usage[$lang]."</u></b><br>
 <a target=\"_blank\" href=\"http://".$vps["vps_server_hostname"]."/dtc-xen/\">http://".$vps["vps_server_hostname"]."/dtc-xen/</a><br>";
 
-//	print_r($vps["ip_addr"]);
+	// The ip address(es)
 	$vps_ips = $vps["ip_addr"];
 	$n = sizeof($vps_ips);
 	if($n > 1){
-		$out .= "IP addresses: ";
+		$out .= $txt_ip_addresses[$lang];
 	}else{
-		$out .= "IP address: ";
+		$out .= $txt_ip_address[$lang];
 	}
 	for($i=0;$i<$n;$i++){
 		if($i != 0){
@@ -191,33 +194,37 @@ function drawAdminTools_VPS($admin,$vps){
 		$out .= $vps_ips[$i];
 	}
 	$out .= "<br><br>";
-//  $q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ";
 
-	$out .= "<b><u>Current VPS status:</b></u><br>";
+	// VPS status
+	$out .= "<b><u>".$txt_current_vps_status[$lang]."</b></u><br>";
 	$out .= $vps_out;
-	$out .= "<b><u>Start/stop VPS:</u></b><br>";
+
+	// Start / stop VPS
+	$out .= "<b><u>".$txt_start_stop_vps[$lang]."</u></b><br>";
 	if($vps_remote_info == "fsck"){
-		$out .= "Please wait until file system check is finished first.<br><br>";
+		$out .= $txt_please_wait_until_fsck_finished[$lang]."<br><br>";
 	}else if($vps_remote_info == "mkos"){
-		$out .= "Wait until operating system reinstallation is finished first.<br><br>";
+		$out .= $txt_please_wait_until_reinstall_os_finished[$lang]."<br><br>";
 	}else if($vps_remote_info == true){
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\"
-<input type=\"submit\" value=\"Gracefully shutdown (xm shutdown)\">
+<input type=\"submit\" value=\"".$txt_gracefully_shutdown_xm_shutdown[$lang]."\">
 </form>";
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\"
-<input type=\"submit\" value=\"Immediate kill (xm destroy)\">
+<input type=\"submit\" value=\"".$txt_immediate_kill_xm_destroy[$lang]."\">
 </form>";
-		$out .= "To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first.<br><br>";
+		$out .= $txt_to_do_a_file_system_check_or_operating_system_reinstallation[$lang]."<br><br>";
 	}else{
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\">
-<input type=\"submit\" value=\"Boot up (xm start)\">
+<input type=\"submit\" value=\"".$txt_boot_up_xm_start[$lang]."\">
 </form>";
-		$out .= "<b><u>File-system check:</u></b><br>";
+		// FSCK
+		$out .= "<b><u>".$txt_file_system_check[$lang]."</u></b><br>";
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"fsck_vps\">
-<input type=\"submit\" value=\"File system check (fsck)\">
+<input type=\"submit\" value=\"".$txt_file_system_check_fsck[$lang]."\">
 </form>";
-		$out .= "<b><u>Reinstall the operating system:</u></b><br>";
-		$out .= "Currently installed operating system: ".$vps["operatingsystem"]."<br>";
+		// OS reinstall
+		$out .= "<b><u>".$txt_reinstall_operating_system[$lang]."</u></b><br>";
+		$out .= $txt_currently_installed_operating_system[$lang].$vps["operatingsystem"]."<br>";
 		$deb_selected = " ";
 		$cent_selected = " ";
 		$gen_selected = " ";
@@ -236,17 +243,19 @@ function drawAdminTools_VPS($admin,$vps){
 			$bsd_selected = " selected ";
 			break;
 		default:
-			die("Operating system type not suppoorted");
+			die($txt_operating_system_type_not_supported[$lang]);
 			break;
 		}
+		// Operating system selection popup and reinstallation button
 		$out .= $frm_start."<select name=\"os_type\">
     <option value=\"debian\" $deb_selected>Debian</option>
     <option value=\"centos\" $cent_selected>CentOS</option>
     <option value=\"gentoo\" $gen_selected>Gentoo</option>
     <option value=\"netbsd\" $bsd_selected>NetBSD</option>
     </select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
-  <input type=\"submit\" value=\"Reinstall operating system\">
+  <input type=\"submit\" value=\"".$txt_reinstall_operating_system_button[$lang]."\">
   </form>";
+  		// BSD kernel change popup
 		if($vps["operatingsystem"] == "netbsd"){
 			if($vps["bsdkernel"] == "install"){
 				$normal_selected = " ";
@@ -259,20 +268,21 @@ function drawAdminTools_VPS($admin,$vps){
     <option value=\"normal\" $normal_selected>Normal</option>
     <option value=\"install\" $install_selected>Install</option>
     </select><input type=\"hidden\" name=\"action\" value=\"change_bsd_kernel_type\">
-    <input type=\"submit\" value=\"Change BSD kernel\">
+    <input type=\"submit\" value=\"".$txt_change_bsd_kernel[$lang]."\">
     </form>";
 		}
 	}
 
-	$out .= "<b><u>Physical console last display and ssh access:</u></b><br>";
+	// SSH Physical console password changing
+	$out .= "<b><u>".$txt_physical_console_last_display_and_ssh_access[$lang]."</u></b><br>";
 
 	$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_passwd\">
-New ssh password: <input type=\"text\" name=\"new_password\" value=\"\"><input type=\"submit\" value=\"Ok\">
+".$txt_new_ssh_password[$lang]."<input type=\"text\" name=\"new_password\" value=\"\"><input type=\"submit\" value=\"Ok\">
 </form>";
 	$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_key\">
-New ssh key: <input size=\"40\" type=\"text\" name=\"new_key\" value=\"\"><input type=\"submit\" value=\"Ok\">
+".$txt_new_ssh_key[$lang]."<input size=\"40\" type=\"text\" name=\"new_key\" value=\"\"><input type=\"submit\" value=\"Ok\">
 </form>";
-	$out .= "To access to your console, first setup a ssh password or key above, and then ssh to:<br>xen".$vps_name."@".$vps_node."<br><br>";
+	$out .= $txt_to_access_to_your_console_first_setup_a_ssh_password[$lang]."<br>xen".$vps_name."@".$vps_node."<br><br>";
 
 	$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
 <tr><td bgcolor=\"black\"><font color=\"white\">$vps_node:$vps_name</font></td>
