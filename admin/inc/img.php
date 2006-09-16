@@ -57,7 +57,14 @@ if($_REQUEST["lang"] == "zh"){
 		$txt_x_pos = 26+16;
 		$txt_y_pos = 23;
 	}
-	imagettftext ( $im, 11, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, "/usr/share/dtc/client/inc/ukai.ttf", $utf );
+	if(file_exists("/usr/share/fonts/truetype/arphic/ukai.ttf")){
+		$ukai_path = "/usr/share/fonts/truetype/arphic/ukai.ttf";
+	}else if(file_exists("ukai.ttf"){
+		$ukai_path = "ukai.ttf";
+	}else{
+		$ukai_path = "../ukai.ttf";
+	}
+	imagettftext ( $im, 11, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, $ukai_path, $utf );
 //	ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
 }else if($_REQUEST["lang"] == "pl"){
 	$utf= iconv("ISO-8859-2","UTF-8",$_REQUEST["text"]);
@@ -72,7 +79,20 @@ if($_REQUEST["lang"] == "zh"){
 		$txt_x_pos = 26+16;
 		$txt_y_pos = 23;
 	}
-	imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, "/usr/share/dtc/client/inc/verdana.ttf", $utf );
+	if(file_exists("/usr/share/fonts/truetype/msttcorefonts/Verdana.ttf")){
+		$verdana_path = "/usr/share/fonts/truetype/msttcorefonts/Verdana.ttf";
+	}else if(file_exists("verdana.ttf")){
+		$verdana_path = "verdana.ttf";
+	}else if(file_exists("../verdana.ttf")){
+		$verdana_path = "../verdana.ttf";
+	}else if(file_exists("../../client/inc/verdana.ttf")){
+		$verdana_path = "../../client/inc/verdana.ttf";
+	}
+	if(isset($verdana_path)){
+		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, $verdana_path, $utf );
+	}else{
+		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
+	}
 }else{
 	$font = 2;
 	if($color == 0){
@@ -85,12 +105,23 @@ if($_REQUEST["lang"] == "zh"){
 		$txt_x_pos = 26+16;
 		$txt_y_pos = 23;
 	}
-	imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, "/usr/share/dtc/client/inc/arial.ttf", $_REQUEST["text"] );
-//	ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
+	if(file_exists("/usr/share/fonts/truetype/msttcorefonts/arial.ttf")){
+		$arial_path = "/usr/share/fonts/truetype/msttcorefonts/arial.ttf";
+	}else if(file_exists("arial.ttf")){
+		$arial_path = "arial.ttf";
+	}else if(file_exists("../arial.ttf")){
+		$arial_path = "../arial.ttf";
+	}else if(file_exists("../../client/inc/arial.ttf")){
+		$arial_path = "../../client/inc/arial.ttf";
+	}
+	if(isset($arial_path)){
+		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, $arial_path, $_REQUEST["text"] );
+	}else{
+		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
+	}
 }
 
 //ImageString ($im, 3, $gfx_start_pos+200, 4,  "$_REQUEST["link"]", $text_color);
-
 
 // Draw the black border
 $alpha_color = imagecolorresolvealpha ( $im, 0, 0, 0, 127);
