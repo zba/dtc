@@ -1,5 +1,7 @@
 <?php
 
+require("$dtcshared_path/inc/forms/vps_strings.php");
+
 function drawAdminTools_VPS($admin,$vps){
 	global $vps_name;
 	global $vps_node;
