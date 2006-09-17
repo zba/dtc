@@ -216,7 +216,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
 		$q = "UPDATE $pro_mysql_vps_table SET bsdkernel='".$_REQUEST["bsdkernel"]."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$r = $soap_client->call("changeBSDkernel",array(
-			"vpsname" => "xen".$vps_name,
+			"vpsname" => $vps_name,
 			"ramsize" => $ze_vps["ramsize"],
 			"kerneltype" => $_REQUEST["bsdkernel"],
 			"allipaddrs" => $vps_all_ips),"","","");
