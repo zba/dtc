@@ -1,9 +1,14 @@
 <?php
 
+require("$dtcshared_path/inc/sql/vps_strings.php");
+
 function remoteVPSAction($vps_node,$vps_name,$action){
+	global $txt_vpsql_could_not_connect_to_vps_server;
+	global $lang;
+
 	$soap_client = connectToVPSServer($vps_node);
 	if($soap_client === false){
-		echo "<font color=\"red\">Could not connect to VPS server!</font>";
+		echo "<font color=\"red\">"..$txt_vpsql_could_not_connect_to_vps_server[$lang]."</font>";
 		return;
 	}
 	switch($action){
@@ -31,23 +36,23 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "shutdown_vps" || $_REQ
 	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) == true){
 		remoteVPSAction($vps_node,$vps_name,$_REQUEST["action"]);
 	}else{
-		$submit_err = "Access not granted line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_access_not_granted[$lang].__LINE__." file ".__FILE__;
 	}
 }
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_passwd"){
 	if(!isDTCPassword($_REQUEST["new_password"])){
-		$submit_err = "The password you have submited is not a valid password!";
+		$submit_err = $txt_vpsql_the_password_you_have_submited_is_not_valid[$lang];
 		$commit_flag = "no";
 	}
 	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
-		$submit_err = "Access not granted line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_access_not_granted[$lang].__LINE__." file ".__FILE__;
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">Could not connect to VPS server!</font>";
+			echo "<font color=\"red\">".$txt_vpsql_could_not_connect_to_vps_server[$lang]."</font>";
 			return;
 		}
 		$r = $soap_client->call("changeVPSxmPassword",array("vpsname" => "xen".$vps_name,"password" => $_REQUEST["new_password"]),"","","");
@@ -61,7 +66,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_p
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_key"){
 	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
-		$submit_err = "Access not granted line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_access_not_granted[$lang].__LINE__." file ".__FILE__;
 		$commit_flag = "no";
 	}
 	$commit_flag = "no";
@@ -69,7 +74,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_k
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">Could not connect to VPS server!</font>";
+			echo "<font color=\"red\">".$txt_vpsql_could_not_connect_to_vps_server[$lang]."</font>";
 			return;
 		}
 		$r = $soap_client->call("changeVPSsshKey",array("vpsname" => "xen".$vps_name,"keystring" => $_REQUEST["new_key"]),"","","");
@@ -83,13 +88,13 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_k
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "fsck_vps"){
 	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
-		$submit_err = "Access not granted line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_access_not_granted[$lang].__LINE__." file ".__FILE__;
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">Could not connect to VPS server!</font>";
+			echo "<font color=\"red\">".$txt_vpsql_could_not_connect_to_vps_server[$lang]."</font>";
 			return;
 		}
 		$r = $soap_client->call("fsckVPSpartition",array("vpsname" => "xen".$vps_name),"","","");
@@ -98,7 +103,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "fsck_vps"){
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
-		$submit_err = "Access not granted line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_access_not_granted[$lang].__LINE__." file ".__FILE__;
 		$commit_flag = "no";
 	}
 	switch($_REQUEST["os_type"]){
@@ -118,7 +123,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 	$n = mysql_num_rows($r);
 	if($n != 1){
 		$commit_flag = "no";
-		$submit_err = "Cannot get VPS informations line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_cannot_not_get_vps_informations[$lang].__LINE__." file ".__FILE__;
 	}
 	$ze_vps = mysql_fetch_array($r);
 
@@ -128,7 +133,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 	$n = mysql_num_rows($r);
 	if($n < 1){
 		$commit_flag = "no";
-		$submit_err = "Cannot get VPS IP addresses informations line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_cannot_get_vps_ip_addr_infos_line[$lang].__LINE__." file ".__FILE__;
 	}
 	$vps_all_ips = "";
 	for($i=0;$i<$n;$i++){
@@ -144,7 +149,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">Could not connect to VPS server!</font>";
+			echo "<font color=\"red\">".$txt_vpsql_could_not_connect_to_vps_server[$lang]."</font>";
 			return;
 		}
 
@@ -159,14 +164,12 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 				"ramsize" => $ze_vps["ramsize"],
 				"ipaddr" => $vps_all_ips),"","","");
 		}
-	}else{
-		echo "<font color=\"red\">Commit flat to no: not doing it!</font>";
 	}
 }
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"){
 	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
-		$submit_err = "Access not granted line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_access_not_granted[$lang].__LINE__." file ".__FILE__;
 		$commit_flag = "no";
 	}
 	switch($_REQUEST["bsdkernel"]){
@@ -174,7 +177,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
 	case "install":
 		break;
 	default:
-		$submit_err = "BSD kernel type is not correct ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_bsd_kernel_type_not_correct[$lang].__LINE__." file ".__FILE__;
 		$commit_flag = "no";
 		break;
 	}
@@ -184,7 +187,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
 	$n = mysql_num_rows($r);
 	if($n != 1){
 		$commit_flag = "no";
-		$submit_err = "Cannot get VPS informations line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_cannot_not_get_vps_informations[$lang].__LINE__." file ".__FILE__;
 	}
 	$ze_vps = mysql_fetch_array($r);
 
@@ -194,7 +197,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
 	$n = mysql_num_rows($r);
 	if($n < 1){
 		$commit_flag = "no";
-		$submit_err = "Cannot get VPS IP addresses informations line ".__LINE__." file ".__FILE__;
+		$submit_err = $txt_vpsql_cannot_get_vps_ip_addr_infos_line[$lang].__LINE__." file ".__FILE__;
 	}
 	$vps_all_ips = "";
 	for($i=0;$i<$n;$i++){
@@ -210,7 +213,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">Could not connect to VPS server!</font>";
+			echo "<font color=\"red\">".$txt_vpsql_could_not_connect_to_vps_server[$lang]."</font>";
 			return;
 		}
 		$q = "UPDATE $pro_mysql_vps_table SET bsdkernel='".$_REQUEST["bsdkernel"]."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";

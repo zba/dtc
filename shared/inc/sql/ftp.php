@@ -1,5 +1,7 @@
 <?php
 
+require("$dtcshared_path/inc/sql/ftp_strings.php");
+
 /////////////////////////////
 // Ftp accounts management //
 /////////////////////////////
@@ -20,17 +22,17 @@ if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 			$_REQUEST["newftp_login"] .= '@' . $edit_domain;
 		}else{
 			if(!ereg($edit_domain."\$",$_REQUEST["newftp_login"])){
-				$submit_err .= "Your login must be in the form login@domain.com";
+				$submit_err .= $txt_ftpsql_your_login_must_be_in_the_form_login_at_domain[$lang];
 				$commit_flag = "no";
 			}
 		}
 	}
 	if(!isFtpLogin($_REQUEST["newftp_login"])){
-		$submit_err .= "Incorrect FTP login form: please enter another login and try again.<br>\n";
+		$submit_err .= $txt_ftpsql_incorrect_ftp_login_form_please_enter_another[$lang]."<br>\n";
 		$commit_flag = "no";
 	}
 	if(!isDTCPassword($_REQUEST["newftp_pass"])){
-		$submit_err .= "Incorrect FTP password: from 6 to 16 chars, a-z A-Z 0-9<br>\n";
+		$submit_err .= $txt_ftpsql_incorrect_ftp_password_form[$lang]."<br>\n";
 		$commit_flag = "no";
 	}
 	$_REQUEST["newftp_path"] = addslashes($_REQUEST["newftp_path"]);
@@ -48,8 +50,14 @@ if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 // $edftp_account $edit_domain
 if(isset($_REQUEST["deleteftpaccount"]) && $_REQUEST["deleteftpaccount"] == "Delete"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
-	$adm_query = "DELETE FROM $pro_mysql_ftp_table WHERE hostname='$edit_domain' AND login='".$_REQUEST["edftp_account"]."' LIMIT 1;";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+	if(!isFtpLogin($_REQUEST["edftp_account"])){
+		$submit_err .= $txt_ftpsql_incorrect_ftp_login_form_please_enter_another[$lang]."<br>\n";
+		$commit_flag = "no";
+	}
+	if($commit_flag == "yes"){
+		$adm_query = "DELETE FROM $pro_mysql_ftp_table WHERE hostname='$edit_domain' AND login='".$_REQUEST["edftp_account"]."' LIMIT 1;";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+	}
 }
 
 // $edftp_account $edit_domain $edftp_pass
@@ -58,19 +66,19 @@ if(isset($_REQUEST["update_ftp_account"]) && $_REQUEST["update_ftp_account"] == 
 	$adm_path = getAdminPath($adm_login);
 
 	if(0 != strncmp($adm_path,$_REQUEST["edftp_path"],strlen($adm_path)-1) || strstr($_REQUEST["edftp_path"],'..') || strstr($_REQUEST["edftp_path"],"'") || strstr($_REQUEST["edftp_path"],"\\")){
-		$submit_err .= "Your path is restricted to &quot;$adm_path&quot;<br>\n";
+		$submit_err .= $txt_ftpsql_your_ftp_login_path_is_restricted_to[$lang]."&quot;$adm_path&quot;<br>\n";
 		$commit_flag = "no";
 	}
 
 	$new_path = $_REQUEST["edftp_path"];
 
 	if(!isFtpLogin($_REQUEST["edftp_account"])){
-		$submit_err .= "Incorrect ftp login : this is not a good string for a ftp login, please enter a new one.";
+		$submit_err .= $txt_ftpsql_incorrect_ftp_login_form_this_is_not_good[$lang];
 		$commit_flag = "no";
 	}
 
 	if(!isDTCPassword($_REQUEST["edftp_pass"])){
-		$submit_err .= "Incorrect FTP password: from 6 to 16 chars, a-z A-Z 0-9";
+		$submit_err .= $txt_ftpsql_incorrect_ftp_password_form[$lang];
 		$commit_flag = "no";
 	}
 

@@ -1,19 +1,23 @@
 <?php
 
+require("$dtcshared_path/inc/sql/subdomain_strings.php");
+
 ////////////////////////////
 // Sub-domains management //
 ////////////////////////////
 if(isset($_REQUEST["delsubdomain"]) && $_REQUEST["delsubdomain"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
-	// Update the flag so we regenerate the serial for bind
-	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
-	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
-
 	if(!checkSubdomainFormat($_REQUEST["delsubdomain_name"])){
+		$submit_err .= $txt_subdomsql_incorrect_subdomain_format[$lang];
+		$commit_flag = "no";
 	}
 	// Del subdomain in database
 	if($commit_flag == "yes"){
+		// Update the flag so we regenerate the serial for bind
+		$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
+		$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
+
 		$adm_query = "DELETE FROM $pro_mysql_subdomain_table WHERE subdomain_name='".$_REQUEST["delsubdomain_name"]."' AND domain_name='$edit_domain' LIMIT 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
@@ -24,7 +28,7 @@ if(isset($_REQUEST["delsubdomain"]) && $_REQUEST["delsubdomain"] == "Ok"){
 if(isset($_REQUEST["subdomaindefault"]) && $_REQUEST["subdomaindefault"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	if(!checkSubdomainFormat($_REQUEST["subdomaindefault_name"])){
-		$submit_err .= "Incorrect subdomain name format: please enter a valid format.";
+		$submit_err .= $txt_subdomsql_incorrect_subdomain_format[$lang];
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){
@@ -39,7 +43,8 @@ if(isset($_REQUEST["subdomaindefault"]) && $_REQUEST["subdomaindefault"] == "Ok"
 if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	if(!checkSubdomainFormat($_REQUEST["subdomain_name"])){
-		die("Incorrect subdomain name format...");
+		$submit_err .= $txt_subdomsql_incorrect_subdomain_format[$lang];
+		$commit_flag = "no";
 	}
 	// Verify it's an valid IP or CNAME value
 	if(!isIP($_REQUEST["newsubdomain_ip"]) && !isHostnameOrIP($_REQUEST["newsubdomain_ip"])){
@@ -99,11 +104,13 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 	}else{
 		$add_vals .= ", login=NULL, pass=NULL ";
 	}
-	$domupdate_query = "UPDATE $pro_mysql_subdomain_table SET ip='".$_REQUEST["newsubdomain_ip"]."'$add_vals,
-	associated_txt_record='".addslashes($_REQUEST["associated_txt_record"])."'$safe_mode_switch $sbox_protect_switch WHERE domain_name='$edit_domain' AND subdomain_name='".$_REQUEST["subdomain_name"]."' LIMIT 1;";
-	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	if($commit_flag == "yes"){
+		$domupdate_query = "UPDATE $pro_mysql_subdomain_table SET ip='".$_REQUEST["newsubdomain_ip"]."'$add_vals,
+		associated_txt_record='".addslashes($_REQUEST["associated_txt_record"])."'$safe_mode_switch $sbox_protect_switch WHERE domain_name='$edit_domain' AND subdomain_name='".$_REQUEST["subdomain_name"]."' LIMIT 1;";
+		$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
-	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named='yes'");
+		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named='yes'");
+	}
 }
 /////////////////////////////////////////////////////
 if(isset($_REQUEST["newsubdomain"]) && $_REQUEST["newsubdomain"] == "Ok"){
@@ -116,7 +123,8 @@ if(isset($_REQUEST["newsubdomain"]) && $_REQUEST["newsubdomain"] == "Ok"){
 
 	// Verify string validity
 	if(!checkSubdomainFormat($_REQUEST["newsubdomain_name"])){
-		die("Incorect subdomain name format...");
+		$submit_err .= $txt_subdomsql_incorrect_subdomain_format[$lang];
+		$commit_flag = "no";
 	}
 
 	// We have now to get the user directory and use it ! :)
@@ -129,57 +137,59 @@ if(isset($_REQUEST["newsubdomain"]) && $_REQUEST["newsubdomain"] == "Ok"){
 	$row = mysql_fetch_array($result);
 	$admin_path = $row["path"];
 
-	// Make the directorys
-	$newsubdomain_dirpath = "$admin_path/$edit_domain/subdomains/".$_REQUEST["newsubdomain_name"];
-	if($conf_demo_version == "no"){
-		if(!file_exists("$newsubdomain_dirpath"))
-			mkdir("$newsubdomain_dirpath", 0750);
-		if(!file_exists("$newsubdomain_dirpath/html"))
-			mkdir("$newsubdomain_dirpath/html", 0750);
-		if(!file_exists("$newsubdomain_dirpath/cgi-bin"))
-			mkdir("$newsubdomain_dirpath/cgi-bin", 0750);
-		if(!file_exists("$newsubdomain_dirpath/logs"))
-			mkdir("$newsubdomain_dirpath/logs", 0750);
-		exec("cp -fulpRv $conf_chroot_path/* $newsubdomain_dirpath");
-	}
-	// Update the flag so we regenerate the serial for bind
-	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
-	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
+	if($commit_flag == "yes"){
+		// Make the directorys
+		$newsubdomain_dirpath = "$admin_path/$edit_domain/subdomains/".$_REQUEST["newsubdomain_name"];
+		if($conf_demo_version == "no"){
+			if(!file_exists("$newsubdomain_dirpath"))
+				mkdir("$newsubdomain_dirpath", 0750);
+			if(!file_exists("$newsubdomain_dirpath/html"))
+				mkdir("$newsubdomain_dirpath/html", 0750);
+			if(!file_exists("$newsubdomain_dirpath/cgi-bin"))
+				mkdir("$newsubdomain_dirpath/cgi-bin", 0750);
+			if(!file_exists("$newsubdomain_dirpath/logs"))
+				mkdir("$newsubdomain_dirpath/logs", 0750);
+			exec("cp -fulpRv $conf_chroot_path/* $newsubdomain_dirpath");
+		}
+		// Update the flag so we regenerate the serial for bind
+		$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
+		$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
 
-	// Verify it's an valid IP
-	if(!isIP($_REQUEST["newsubdomain_ip"]) && !isHostnameOrIP($_REQUEST["newsubdomain_ip"])){
-		$newsubdomain_ip = "default";
-	}else{
-		if(isIP($_REQUEST["newsubdomain_ip"])){
-			$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+		// Verify it's an valid IP
+		if(!isIP($_REQUEST["newsubdomain_ip"]) && !isHostnameOrIP($_REQUEST["newsubdomain_ip"])){
+			$newsubdomain_ip = "default";
 		}else{
-			$server = $_REQUEST["newsubdomain_ip"];
-			// echo "Checking POP3<br>";
-			if(($server_ip = gethostbynameFalse($server)) == false){
-				echo "Cannot resolv your server: ".$_REQUEST["newsubdomain_ip"]."<br>";
-				$newsubdomain_ip = "default";
-			}else{
+			if(isIP($_REQUEST["newsubdomain_ip"])){
 				$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+			}else{
+				$server = $_REQUEST["newsubdomain_ip"];
+				// echo "Checking POP3<br>";
+				if(($server_ip = gethostbynameFalse($server)) == false){
+					echo "Cannot resolv your server: ".$_REQUEST["newsubdomain_ip"]."<br>";
+					$newsubdomain_ip = "default";
+				}else{
+					$newsubdomain_ip = $_REQUEST["newsubdomain_ip"];
+				}
 			}
 		}
+
+		if(isFtpLogin($_REQUEST["newsubdomain_dynlogin"]) && isDTCPassword($_REQUEST["newsubdomain_dynpass"])){
+			$add_field = ",login,pass";
+			$add_values = ",'".$_REQUEST["newsubdomain_dynlogin"]."','".$_REQUEST["newsubdomain_dynpass"]."'";
+		}else{
+			$add_field = "";
+			$add_values = "";
+		}
+		$adm_query = "INSERT INTO $pro_mysql_subdomain_table (id,domain_name,subdomain_name,associated_txt_record,ip".$add_field.") VALUES ('','$edit_domain','".$_REQUEST["newsubdomain_name"]."','".addslashes($_REQUEST["associated_txt_record"])."','$newsubdomain_ip'".$add_values.");";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
+
+	        // Create the new site html front page
+	        if($conf_demo_version == "no"){
+	                system ("cp -rf $conf_generated_file_path/template/* $admin_path/$edit_domain/subdomains/".$_REQUEST["newsubdomain_name"]."/html");
+	        }
+
+		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
 	}
-
-	if(isFtpLogin($_REQUEST["newsubdomain_dynlogin"]) && isDTCPassword($_REQUEST["newsubdomain_dynpass"])){
-		$add_field = ",login,pass";
-		$add_values = ",'".$_REQUEST["newsubdomain_dynlogin"]."','".$_REQUEST["newsubdomain_dynpass"]."'";
-	}else{
-		$add_field = "";
-		$add_values = "";
-	}
-	$adm_query = "INSERT INTO $pro_mysql_subdomain_table (id,domain_name,subdomain_name,associated_txt_record,ip".$add_field.") VALUES ('','$edit_domain','".$_REQUEST["newsubdomain_name"]."','".addslashes($_REQUEST["associated_txt_record"])."','$newsubdomain_ip'".$add_values.");";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
-
-        // Create the new site html front page
-        if($conf_demo_version == "no"){
-                system ("cp -rf $conf_generated_file_path/template/* $admin_path/$edit_domain/subdomains/".$_REQUEST["newsubdomain_name"]."/html");
-        }
-
-	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
 }
 
 ?>

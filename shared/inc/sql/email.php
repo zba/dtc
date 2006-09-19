@@ -2,6 +2,8 @@
 #include "$dtcshared_path/cyradm.php";
 #include "$dtcshared_path/cyrus.php";
 
+require("$dtcshared_path/inc/sql/email_strings.php");
+
 ///////////////////////////////////////////////
 // Email account submition to mysql database //
 ///////////////////////////////////////////////
@@ -76,13 +78,13 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 	// if there is redirection, check for it's format
 	if($_REQUEST["newmail_redirect1"] != ""){
 		if(!isValidEmail($_REQUEST["newmail_redirect1"])){
-			$submit_err .= "Incorect redirection 1: this is not a correct emailbox format.<br>\n";
+			$submit_err .= $txt_mailsql_incorrect_redirection1_thisis_not_a_correct_email_format[$lang]."<br>\n";
 			$commit_flag = "no";
 		}
 	}
 	if($_REQUEST["newmail_redirect2"] != ""){
 		if(!isValidEmail($_REQUEST["newmail_redirect2"])){
-			$submit_err .= "Incorect redirection 2: this is not a correct emailbox format.<br>\n";
+			$submit_err .= $txt_mailsql_incorrect_redirection2_thisis_not_a_correct_email_format[$lang]."<br>\n";
 			$commit_flag = "no";
 		}
 	}
@@ -154,7 +156,7 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	if(!isMailbox($_REQUEST["edit_mailbox"])){
-		$submit_err .= $_REQUEST["edit_mailbox"]." does not look like a mailbox login...";
+		$submit_err .= $_REQUEST["edit_mailbox"].$txt_mailsql_does_not_look_like_a_mailbox_login[$lang];
 		$commit_flag = "no";
 	}
 
@@ -163,24 +165,24 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
 	$testnum_rows = mysql_num_rows($test_result);
 	if($testnum_rows != 1){
-		$submit_err .= "Mailbox does not exist in database !";
+		$submit_err .= $txt_mailsql_mailbox_does_not_exists_in_db[$lang];
 		$commit_flag = "no";
 	}
 
 	// Check for strings validity
 	if(!isDTCPassword($_REQUEST["editmail_pass"])){
-		$submit_err .= "Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.";
+		$submit_err .= $txt_mailsql_pass_are_made_only_with_std_chars_and_nums_and_should_be_6to16_long[$lang];
 		$commit_flag = "no";
 	}
 	if($_REQUEST["editmail_redirect1"] != ""){
 		if(!isValidEmail($_REQUEST["editmail_redirect1"])){
-			$submit_err .= "Incorect redirection 1: this is not a correct emailbox format.<br>\n";
+			$submit_err .= $txt_mailsql_incorrect_redirection1_thisis_not_a_correct_email_format[$lang]."<br>\n";
 			$commit_flag = "no";
 		}
 	}
 	if($_REQUEST["editmail_redirect2"] != ""){
 		if(!isValidEmail($_REQUEST["editmail_redirect2"])){
-			$submit_err .= "Incorect redirection 1: this is not a correct emailbox format.<br>\n";
+			$submit_err .= $txt_mailsql_incorrect_redirection2_thisis_not_a_correct_email_format[$lang]."<br>\n";
 			$commit_flag = "no";
 		}
 	}
@@ -215,8 +217,7 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 	WHERE id='".$_REQUEST["edit_mailbox"]."' AND mbox_host='$edit_domain' LIMIT 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
-		if ($cyrus_used)
-		{
+		if ($cyrus_used){
 			# login to cyradm
 			$cyr_conn = new cyradm;
 			$error=$cyr_conn -> imap_login();
@@ -242,7 +243,7 @@ if(isset($_REQUEST["delemailaccount"]) && $_REQUEST["delemailaccount"] == "Del")
 
 	// Verify strings given
 	if(!isMailbox($_REQUEST["edit_mailbox"])){
-		$submit_err .= $_REQUEST["edit_mailbox"]." does not look like a mailbox login...";
+		$submit_err .= $_REQUEST["edit_mailbox"].$txt_mailsql_does_not_look_like_a_mailbox_login[$lang];
 		$commit_flag = "no";
 	}
 

@@ -18,7 +18,7 @@ if(isset($_REQUEST["set_domain_parcking"]) && $_REQUEST["set_domain_parcking"] =
 		// Check for mysql insertion and that the user owns the domain he wants to send it's domain to parking to
 		if(!isHostname($_REQUEST["domain_parking_value"]) || $_REQUEST["domain_parking_value"] == $edit_domain){
 			if($_REQUEST["domain_parking_value"] == $edit_domain){
-				echo "target == domain line (domain_parking_value=".$_REQUEST["domain_parking_value"].", edit_domain=$edit_domain)".__LINE__." file ".__FILE__;
+				echo "You cannot set a domain to be parked to itself";
 			}else{
 				echo "Not a hostname: ".$_REQUEST["domain_parking_value"];
 			}
