@@ -44,6 +44,13 @@ function draw_UpgradeAccount($admin){
 		$expire = mktime (0,0,0,$ar[1],0,$ar[0]);
 		$remaining_seconds = $expire - $today;
 		$days_remaining = $remaining_seconds / (60*60*24);
+		$days_outstanding = 0;
+		// don't give credit if there are negative days remaining
+		if ($days_remaining < 0)
+		{
+			$days_outstanding = $days_remaining;
+			$days_remaining = 0;
+		}	
 
 		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$admin["info"]["prod_id"]."';";
 		$r = mysql_query($q)or die("Cannot querry: \"$q\" !!!".mysql_error()." line ".__LINE__." in file ".__FILE__);
@@ -54,9 +61,11 @@ function draw_UpgradeAccount($admin){
 		$price_per_days = $prod["price_dollar"] / $prod_days;
 
 		$refundal = floor($days_remaining * $price_per_days);
+		$owing = floor($days_outstanding * $price_per_days);
 
 		$out .= "Your past account was: \$".$prod["price_dollar"]." for ".smartDate($prod["period"])."<br>";
 		$out .= "Refundal ($days_remaining days) for upgrading will be: \$$refundal<br><br>";
+		$out .= "You have ($days_outstanding days), with \$$owing remaining to be paid<br>";
 	}else{
 		$out .= "You currently don't have a validated account. Please contact customer support.";
 		return $out;
@@ -148,11 +157,11 @@ Total price: \$". $heber_price . "<br>";
 	$out .= "After upgrade, you will have: \$$after_upgrade_remaining<br><br>";
 
 	// Check for confirmation
-	if($_REQUEST["toreg_confirm_register"] != "yes"){
+	if(isset($_REQUEST["toreg_confirm_register"]) && $_REQUEST["toreg_confirm_register"] != "yes"){
 		$out .= "
 You have enough funds on your account to proceed account upgrade. Press
 the confirm button and your order will be proceeded.<br><br>
-$form_start
+$frm_start
 <input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
 <input type=\"submit\" value=\"Proceed to account upgrade\">
 </form>";
