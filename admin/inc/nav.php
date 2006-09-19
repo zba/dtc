@@ -108,7 +108,8 @@ function adminList($password=""){
 
 	if($panel_type!="cronjob"){
 		// Find the current display type
-		session_register("cur_admlist_type");
+		// Depreacted: session_register("cur_admlist_type");
+		$_SESSION["cur_admlist_type"] = "";
 		if(isset($_REQUEST["admlist_type"]) && $_REQUEST["admlist_type"] != ""){
 			$_SESSION["cur_admlist_type"] = $_REQUEST["admlist_type"];
 			$admlist_type = $_REQUEST["admlist_type"];
@@ -159,7 +160,14 @@ function adminList($password=""){
 			$admin = mysql_fetch_array($result) or die ("Cannot fetch user");
 			$admin_login = $admin["adm_login"];
 			$admin_pass = $admin["adm_pass"];
-			$admins .= "<br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$admin_login&adm_pass=$zepass$added_rub\">$admin_login</a>";
+			$admin_owner = $admin["ob_next"];
+			if (isset($admin_owner) && strlen($admin_owner) > 0)
+			{
+				$admin_owner = "[ $admin_owner ]";
+			} else {
+				$admin_owner = "";
+			}
+			$admins .= "<br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$admin_login&adm_pass=$zepass$added_rub\">$admin_login $admin_owner</a>";
 		}
 	}else if($admlist_type == "Names"){
 		$admins .= "<br>";
