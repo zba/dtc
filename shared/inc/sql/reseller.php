@@ -26,9 +26,16 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_child_account"){
 	}
 
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+
+        if($conf_root_admin_random_pass == $adm_pass &&  $conf_pass_expire > mktime()){
+                $q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+        }else{
+                $q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+        }
+
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
-	if($n != 1)	die("Cannot find user $adm_login line ".__LINE__." file ".__FILE__);
+	if($n < 1)	die("Cannot find user $adm_login line ".__LINE__." file ".__FILE__);
 	$a = mysql_fetch_array($r);
 	if($commit_flag == "yes"){
 		// Create the admin's path
@@ -46,30 +53,33 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_child_account"){
 		$q = "INSERT INTO $pro_mysql_admin_table (adm_login, adm_pass, path, ob_next, ob_head, ob_tail)
 		VALUES ('".$_REQUEST["new_adm_login"]."','".$_REQUEST["new_adm_pass"]."', '$new_adm_path','".$a["adm_login"]."','','');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		echo $q."<br>";
+		echo "<!-- $q -->";
 		// If this admin had no child account
-		echo "ob_head: ".$a["ob_head"]."<br>"."ob_tail: ".$a["ob_tail"]."<br>";
+		echo "<!-- ob_head: ".$a["ob_head"]."<br>"."ob_tail: ".$a["ob_tail"]."<br> -->";
 		if($a["ob_head"] == "" && $a["ob_tail"] == ""){
 			// Simply update the main account ob_head and tail
 			$q = "UPDATE $pro_mysql_admin_table SET ob_head='".$_REQUEST["new_adm_login"]."',ob_tail='".$_REQUEST["new_adm_login"]."' WHERE adm_login='$adm_login';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		echo $q."<br>";
+		echo "<!-- $q -->";
 		// If this admin has children
 		}else{
 			// Update the last child's ob_next to point to the added admin
 			$q = "UPDATE $pro_mysql_admin_table SET ob_next='".$_REQUEST["new_adm_login"]."' WHERE adm_login='".$a["ob_tail"]."';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		echo $q."<br>";
+		echo "<!-- $q -->";
 
 			// Simply update the main account ob_tail, ob_head is good already
 			$q = "UPDATE $pro_mysql_admin_table SET ob_tail='".$_REQUEST["new_adm_login"]."' WHERE adm_login='$adm_login';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		echo $q."<br>";
+		echo "<!-- $q -->";
 		}
 	}
 }
 
 function deleteAllMySQLAccounts($adm_login){
+
+	echo "<!-- deleteAllMySQLAccounts($adm_login) -->";
+
 	$q = "SELECT * FROM mysql.user WHERE dtcowner='$adm_login';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -96,6 +106,8 @@ function realDeleteAdmin($adm_login){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_domain_table;
 
+	echo "<!-- realDeleteAdmin($adm_login) -->";
+
 	$adm_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login'";
 	$result = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 	$num_rows = mysql_num_rows($result);
@@ -105,10 +117,13 @@ function realDeleteAdmin($adm_login){
 
 	// Delete all domains of the user (that includes also mailboxs, ftp accounts, domains subdomains and files)
 	$query = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
+	echo "<!-- $query -->";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	echo "<!-- $result -->";
 	$num_rows = mysql_num_rows($result);
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result);
+		echo "<!-- About to deleteUserDomain -->";
 		deleteUserDomain($adm_login,$row_virtual_admin["adm_pass"],$row["name"]);
 	}
 
@@ -117,11 +132,16 @@ function realDeleteAdmin($adm_login){
 
 	// Inform the other servers that the list of domain have changed
 	triggerDomainListUpdate();
+
+	// finally remove the admin account from the table
+        $adm_query = "DELETE FROM $pro_mysql_admin_table WHERE adm_login='$adm_login'";
+        mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 }
 
 function recursiveDeleteAdmin($adm_login){
 	global $pro_mysql_admin_table;
 
+	echo "<!-- recursiveDeleteAdmin($adm_login) -->";
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$a = mysql_fetch_array($r);
@@ -156,6 +176,8 @@ function deleteAdminFromFather($adm_login_to_delete,$adm_login_father){
 	global $submit_err;
 	global $commit_flag;
 
+	echo "<!-- deleteAdminFromFather $adm_login_to_delete, $adm_login_father -->";
+
 	// Search for child to delete: we have to be SURE the admin
 	// is one of our direct child accounts!!! If it is, then call the recursive deletion of the user
 	// and update SQL links
@@ -168,7 +190,7 @@ function deleteAdminFromFather($adm_login_to_delete,$adm_login_father){
 	}else{
 		// There is only one child, we should just delete the account recurcively and remove the tree
 		if($a["ob_head"] == $a["ob_tail"] && $a["ob_head"] != "" && $a["ob_head"] == $adm_login_to_delete){
-			echo "reached";
+			echo "<!-- reached -->";
 			$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["ob_head"]."';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			if(mysql_num_rows($r) != 1){
@@ -176,8 +198,8 @@ function deleteAdminFromFather($adm_login_to_delete,$adm_login_father){
 				$commit_flag = "no";
 			}else{
 				$q = "UPDATE $pro_mysql_admin_table SET ob_head='',ob_tail='' WHERE adm_login='$adm_login_father';";
-				//$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-				echo $q."<br>";
+				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+				echo "<!-- $q -->";
 				recursiveDeleteAdmin($adm_login_to_delete);
 			}
 		// There is more than one child
@@ -192,7 +214,7 @@ function deleteAdminFromFather($adm_login_to_delete,$adm_login_father){
 				}else{
 					$a = mysql_fetch_array($r);
 					$q = "UPDATE $pro_mysql_admin_table SET ob_head='".$a["ob_next"]."' WHERE adm_login='$adm_login_father';";
-					echo $q;
+					echo "<!-- $q -->";
 					//recursiveDeleteAdmin($adm_login_to_delete);
 				}
 				recursiveDeleteAdmin($adm_login_to_delete);
@@ -237,16 +259,16 @@ function deleteAdminFromFather($adm_login_to_delete,$adm_login_father){
 						// Account is the last child
 						if($a["ob_tail"] == $adm_login_to_delete){
 							$q = "UPDATE $pro_mysql_admin_table SET ob_head='$ob_previous' WHERE adm_login='$adm_login_father';";
-							echo $q."<br>";
+							echo "<!-- $q -->";
 							//$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 							$q = "UPDATE $pro_mysql_admin_table SET ob_next='$adm_login_father' WHERE adm_login='$ob_previous';";
-							echo $q."<br>";
+							echo "<!-- $q -->";
 							//$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 						// Account is one of the childs, but not first or last child
 						}else{
 							$q = "UPDATE $pro_mysql_admin_table SET ob_next='$next' WHERE adm_login='$ob_previous';";
 							//$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-							echo $q;
+							echo "<!-- $q -->";
 						}
 						recursiveDeleteAdmin($adm_login_to_delete);
 					}
@@ -258,6 +280,8 @@ function deleteAdminFromFather($adm_login_to_delete,$adm_login_father){
 
 function rootConsolDeleteAdmin($adm_login){
 	global $pro_mysql_admin_table;
+
+	echo "<!-- rootConsolDeleteAdmin($adm_login) -->";
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
