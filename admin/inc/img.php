@@ -57,14 +57,20 @@ if($_REQUEST["lang"] == "zh"){
 		$txt_x_pos = 26+16;
 		$txt_y_pos = 23;
 	}
-	if(file_exists("/usr/share/fonts/truetype/arphic/ukai.ttf")){
+	if(file_exists("/usr/share/fonts/truetype/arphic/ukai.ttf"))
+	{
 		$ukai_path = "/usr/share/fonts/truetype/arphic/ukai.ttf";
-	}else if(file_exists("ukai.ttf"){
+	} else if(file_exists("ukai.ttf")){
 		$ukai_path = "ukai.ttf";
-	}else{
+	}else if (file_exists("../ukai.ttf")){
 		$ukai_path = "../ukai.ttf";
 	}
-	imagettftext ( $im, 11, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, $ukai_path, $utf );
+	if (isset($ukai_path))
+	{
+		imagettftext ( $im, 11, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, realpath($ukai_path), $utf );
+	} else {
+		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
+	}
 //	ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
 }else if($_REQUEST["lang"] == "pl"){
 	$utf= iconv("ISO-8859-2","UTF-8",$_REQUEST["text"]);
@@ -89,7 +95,7 @@ if($_REQUEST["lang"] == "zh"){
 		$verdana_path = "../../client/inc/verdana.ttf";
 	}
 	if(isset($verdana_path)){
-		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, $verdana_path, $utf );
+		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, realpath($verdana_path), $utf );
 	}else{
 		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
 	}
@@ -113,9 +119,9 @@ if($_REQUEST["lang"] == "zh"){
 		$arial_path = "../arial.ttf";
 	}else if(file_exists("../../client/inc/arial.ttf")){
 		$arial_path = "../../client/inc/arial.ttf";
-	}
+	} 
 	if(isset($arial_path)){
-		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, $arial_path, $_REQUEST["text"] );
+		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, realpath($arial_path), $_REQUEST["text"] );
 	}else{
 		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
 	}
