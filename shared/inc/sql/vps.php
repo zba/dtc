@@ -8,7 +8,7 @@ function remoteVPSAction($vps_node,$vps_name,$action){
 
 	$soap_client = connectToVPSServer($vps_node);
 	if($soap_client === false){
-		echo "<font color=\"red\">"..$txt_vpsql_could_not_connect_to_vps_server[$lang]."</font>";
+		echo "<font color=\"red\">".$txt_vpsql_could_not_connect_to_vps_server[$lang]."</font>";
 		return;
 	}
 	switch($action){
