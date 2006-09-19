@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.60 2006/09/15 06:37:45 thomas Exp $
+	* @version  $Id: index.php,v 1.61 2006/09/19 08:52:26 tusker Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -185,8 +185,11 @@ case "monitor": // Monitor button
 				$transfer += $admin_stats["total_transfer"];
 			}
 			$du += $admin_stats["total_du"];
-			$hits = $admin_stats["total_hit"];
-			$total_hits += $hits;
+			if (isset($admin_stats["total_hit"]))
+			{
+				$hits = $admin_stats["total_hit"];
+				$total_hits += $hits;
+			}
 		}
 		if($i % 2){
 			$back = " bgcolor=\"#000000\" style=\"white-space:nowrap;color:#FFFFFF\" nowrap";
