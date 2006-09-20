@@ -136,6 +136,23 @@ if [ -e /bin/false ]; then
 	cp -pf /bin/false bin
 fi
 
+if [ -e /usr/bin/sftp ]; then
+	cp -pf /usr/bin/sftp bin/
+fi
+
+# the sftp-server binary can be in /usr/lib or /lib, so check both places
+if [ -e /usr/lib/sftp-server ]; then
+	cp -pf /usr/lib/sftp-server usr/lib/
+fi
+
+if [ -e /lib/sftp-server ]; then
+	cp -pf /lib/sftp-server lib/
+fi
+
+if [ -e /usr/bin/scp ]; then
+	cp -pf /usr/bin/scp bin/
+fi
+
 # copy more required binaries to $CHROOT_DIR/bin
 cp -pf /bin/sh /bin/echo /bin/ls /bin/pwd /bin/cat bin/
 
@@ -264,6 +281,24 @@ else
 			cp -pf /lib/libz.so.1 lib/
 		else
 			cp -pf /usr/lib/libz.so.1 lib/
+		fi
+
+		# libs for sftp and scp
+
+		if [ -e /lib/libresolv.so.2 ]; then
+			cp -pf /lib/libresolv.so.2 lib/
+		fi
+
+		if [ -e /usr/lib/libcrypto.so.0.9.7 ]; then
+			cp -pf /usr/lib/libcrypto.so.0.9.7 lib/
+		fi
+
+		if [ -e /usr/lib/libcrypto.so.0.9.8 ]; then
+			cp -pf /usr/lib/libcrypto.so.0.9.8 lib/
+		fi
+
+		if [ -e /lib/libutil.so.1 ]; then
+			cp -pf /lib/libutil.so.1 lib/
 		fi
 	fi
 fi
