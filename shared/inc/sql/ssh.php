@@ -1,5 +1,7 @@
 <?php
 
+require("$dtcshared_path/inc/sql/ssh_strings.php");
+
 function hasSSHLoginFlag($adm_login){
 	global $pro_mysql_admin_table;
 	$q = "SELECT ssh_login_flag FROM $pro_mysql_admin_table WHERE adm_login='$adm_login'";
@@ -20,16 +22,14 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 	$adm_path = getAdminPath($adm_login);
 
 	if(!hasSSHLoginFlag($adm_login)){
-		$submit_err .= "You don't have the SSH login flag!";
+		$submit_err .= $txt_sshsql_you_dont_have_the_ssh_login[$lang];
 		$commit_flag = "no";
 	}
 
-	if (ereg("^$adm_path/$edit_domain/$", $_REQUEST["newssh_path"]) || ereg("^$adm_path/$", $_REQUEST["newssh_path"]))
-	{
+	if (ereg("^$adm_path/$edit_domain/$", $_REQUEST["newssh_path"]) || ereg("^$adm_path/$", $_REQUEST["newssh_path"])){
 		// all good here, can go ahead
-	}
-	else if(!ereg("^$adm_path/$edit_domain/subdomains",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
-		$submit_err .= "Your path is restricted to $adm_path/$edit_domain/subdomains<br>\n";
+	}else if(!ereg("^$adm_path/$edit_domain/subdomains",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
+		$submit_err .= $txt_sshsql_your_path_is_restricted_to[$lang]."$adm_path/$edit_domain/subdomains<br>\n";
 		$commit_flag = "no";
 	}
 
