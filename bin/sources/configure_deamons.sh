@@ -149,14 +149,14 @@ fi
 # Modify the php.ini to increase memory limits
 #
 if ! [ -z ""$PATH_PHP_INI_APACHE ] ; then
-	searchAndReplace $PATH_PHP_INI_APACHE memory_limit\ =\ 8M memory_limit\ =\ 16M
+	searchAndReplace $PATH_PHP_INI_APACHE memory_limit\ =\ 8M memory_limit\ =\ 32M
 fi
 if ! [ -z ""$PATH_PHP_INI_APACHE2 ] ; then
-	searchAndReplace $PATH_PHP_INI_APACHE2 memory_limit\ =\ 8M memory_limit\ =\ 16M
+	searchAndReplace $PATH_PHP_INI_APACHE2 memory_limit\ =\ 8M memory_limit\ =\ 32M
 fi
 if ! [ -z ""$PATH_PHP_INI_CLI ] ; then
 	searchAndReplace $PATH_PHP_INI_CLI max_execution_time\ =\ 30 max_execution_time\ =\ 1200
-	searchAndReplace $PATH_PHP_INI_CLI memory_limit\ =\ 8M memory_limit\ =\ 16M
+	searchAndReplace $PATH_PHP_INI_CLI memory_limit\ =\ 8M memory_limit\ =\ 32M
 fi
 
 #
