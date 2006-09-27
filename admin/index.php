@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.61 2006/09/19 08:52:26 tusker Exp $
+	* @version  $Id: index.php,v 1.62 2006/09/27 03:00:20 tusker Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -208,7 +208,7 @@ case "monitor": // Monitor button
 //fetchAdminStats($admin)
 	}
 	$out .= "</table>";
-	$out .= $txt_server_total_bp[$lang].smartByte($total_box_transfer)." ($total_hits hits)";
+	$out .= $txt_server_total_bp[$lang].smartByte($total_box_transfer)." ($total_box_hits hits)";
 	$module = skin($conf_skin,$out,$txt_customer_bw_consumption[$lang]);
 	$zemain_content = $module;
 	break;
