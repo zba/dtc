@@ -862,6 +862,18 @@ fi
 
 # make sure the amavisd configuration has 'amavis' user and group
 
+PATH_AMAVISD_ETC=`dirname $PATH_AMAVISD_CONF`
+AMAVISD_CONFD=0
+# CLAMD_CONF is the file we modify that has the clamd.ctl
+AMAVIS_CLAMD_CONF=$PATH_AMAVISD_CONF
+# if there is no amavisd conf, but there is a conf.d, create a 99-dtc file
+if [ ! -f "$PATH_AMAVISD_CONF" -a -e $PATH_AMAVISD_ETC/conf.d ]; then
+	touch $PATH_AMAVISD_ETC/conf.d/99-dtc
+	PATH_AMAVISD_CONF=$PATH_AMAVISD_ETC/conf.d/99-dtc
+	AMAVISD_CONFD=1
+	AMAVIS_CLAMD_CONF=`grep -l clamd.ctl $PATH_AMAVISD_ETC/conf.d/*`	
+fi
+
 if [ -f "$PATH_AMAVISD_CONF" ]; then
         if [ ""$VERBOSE_INSTALL = "yes" ]; then
                 echo "===> Checking user and group configuration for amavisd..."
@@ -903,7 +915,7 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
                 perl -i -p -e 's/^1;[^\n]*\n//' $PATH_AMAVISD_CONF
 
 		# fix the clamd ctl file to point to /var/run/clamav/clamd.ctl
-		perl -i -p -e 's/\"i\/.*?\/clamd.ctl\"/\"\/var\/run\/clamav\/clamd.ctl\"/' $PATH_AMAVISD_CONF
+		perl -i -p -e 's/\"i\/.*?\/clamd.ctl\"/\"\/var\/run\/clamav\/clamd.ctl\"/' $AMAVIS_CLAMD_CONF
 
 		mkdir -p /var/run/clamav/
 		chown -R clamav:clamav /var/run/clamav
@@ -940,7 +952,12 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
 
 		echo "# Make sure anti-virus and spam are enabled
 @bypass_virus_checks_acl = [ 1 ];
-@bypass_spam_checks_acl  = [ 1 ];" >> $TMP_FILE
+@bypass_spam_checks_acl  = [ 1 ];
+@bypass_virus_checks_maps = (
+   \\%bypass_virus_checks, \\@bypass_virus_checks_acl, \\\$bypass_virus_checks_re);
+@bypass_spam_checks_maps = (
+   \\%bypass_spam_checks, \\@bypass_spam_checks_acl, \\\$bypass_spam_checks_re);
+" >> $TMP_FILE
 
                 echo "# End of DTC configuration $VERSION" >> $TMP_FILE
                 echo "1;  # insure a defined return" >> $TMP_FILE

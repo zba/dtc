@@ -202,6 +202,12 @@ fi
 # uninstall amavis/amavisd.conf
 #
 
+PATH_AMAVISD_ETC=`dirname $PATH_AMAVISD_CONF`
+# if there is no amavisd conf, but there is a conf.d, delete a 99-dtc file
+if [ ! -f "$PATH_AMAVISD_CONF" -a -e $PATH_AMAVISD_ETC/conf.d/99-dtc ]; then
+        rm $PATH_AMAVISD_ETC/conf.d/99-dtc
+fi
+
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Uninstalling inclusion from amavis/amavisd.conf"
 fi
