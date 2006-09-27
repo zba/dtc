@@ -608,6 +608,10 @@ if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
 	chmod -R 775 $PATH_DTC_ETC/template
 fi
 
+# fix the perms for the gfx and imgcache 
+chown -R nobody:65534 $PATH_DTC_SHARED/shared/imgcache
+chown -R nobody:65534 $PATH_DTC_SHARED/shared/gfx
+
 # copy the 404 index.php file if none is found.
 if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.php" ]; then
 	if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.html" ]; then
@@ -1877,7 +1881,7 @@ fi
 if [ ! -e /usr/lib/cgi-bin/queuegraph.cgi ]; then
 	ln -s $PATH_DTC_ADMIN/queuegraph.cgi /usr/lib/cgi-bin/queuegraph.cgi
 fi
-chown nobody:65534 /usr/lib/cgi-bin/queuegraph.cgi
+chown -R nobody:65534 /usr/lib/cgi-bin/queuegraph.cgi
 
 
 # fix path for mailqueues.rrd
@@ -1898,7 +1902,7 @@ else
 
 	# fix path for netusage.rrd
 	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
-	chown nobody:65534 /usr/lib/cgi-bin/netusegraph.cgi
+	chown -R nobody:65534 /usr/lib/cgi-bin/netusegraph.cgi
 fi
 
 #
@@ -1912,7 +1916,7 @@ if [ ! -e /usr/lib/cgi-bin/cpugraph.cgi ]; then
 fi
 # fix path for cpugraph.cgi
 perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
-chown nobody:65534 /usr/lib/cgi-bin/cpugraph.cgi
+chown -R nobody:65534 /usr/lib/cgi-bin/cpugraph.cgi
 
 
 #
@@ -1926,7 +1930,7 @@ if [ ! -e /usr/lib/cgi-bin/memgraph.cgi ]; then
 fi
 # fix path for memgraph.cgi
 perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
-chown nobody:65534 /usr/lib/cgi-bin/memgraph.cgi
+chown -R nobody:65534 /usr/lib/cgi-bin/memgraph.cgi
 
 #
 # Modify the SSH default option to make sure the UsePAM and turn on Password auth
