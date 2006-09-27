@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.30 2006/09/10 15:42:40 dracula Exp $
+ * @version $Id: email.php,v 1.31 2006/09/27 03:52:03 tusker Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -399,11 +399,14 @@ function drawAdminTools_Emails($domain){
 
 	global $conf_hide_password;
 
-	# login to cyradm
-	$cyr_conn = new cyradm;
-	$error=$cyr_conn -> imap_login();
-	if ($error!=0){
-	        die ("imap_login Error $error");
+	if ($cyrus_used)
+	{
+		# login to cyradm
+		$cyr_conn = new cyradm;
+		$error=$cyr_conn -> imap_login();
+		if ($error!=0){
+			die ("imap_login Error $error");
+		}
 	}
 
 	if(isset($domain["emails"])){

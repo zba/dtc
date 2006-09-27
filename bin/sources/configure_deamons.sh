@@ -645,7 +645,9 @@ if ! [ -e $PATH_DTC_ETC/dtc404/404.php ]; then
 fi
 
 cyrus_auth_php="$PATH_DTC_SHARED/shared/cyrus.php"
-echo "<?
+if [ -e /usr/pkg/cyrus/bin/imapd -o -e /usr/lib/cyrus/bin/imapd -o -e /usr/local/cyrus/bin/imapd -o -e /usr/cyrus/bin/imapd ]; then
+
+	echo "<?
 \$CYRUS = array(
 'HOST'  => 'localhost',
 'PORT'  => 143,
@@ -655,6 +657,14 @@ echo "<?
 \$cyrus_used=1;
 \$cyrus_default_quota=51200;
 ?>" > $cyrus_auth_php;
+
+else
+
+	echo "<?
+\$cyrus_used=0;
+?>" > $cyrus_auth_php;
+
+fi
 
 PATH_PAMD_SMTP=/etc/pam.d/smtp
 PATH_PAMD_IMAP=/etc/pam.d/imap

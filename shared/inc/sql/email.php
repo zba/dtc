@@ -108,6 +108,7 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 VALUES ('".$_REQUEST["newmail_login"]."','".$_REQUEST["newmail_login"]."@".$edit_domain."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver','$do_spam_mailbox_enable','".$_REQUEST["newmail_spam_mailbox"]."');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
+		writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);
 		if ($cyrus_used)
 		{
 			# login to cyradm
@@ -143,7 +144,6 @@ VALUES ('".$_REQUEST["newmail_login"]."','".$_REQUEST["newmail_login"]."@".$edit
 			$quota=$_REQUEST["cyrus_quota"];
 			$result = $cyr_conn->setmbquota("user/" . $_REQUEST["newmail_login"]."@".$edit_domain, $quota);
 		}
-		writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);
 		triggerMXListUpdate();
 		updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
 	}
