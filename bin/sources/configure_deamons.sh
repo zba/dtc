@@ -953,10 +953,21 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
 		echo "# Make sure anti-virus and spam are enabled
 @bypass_virus_checks_acl = [ 1 ];
 @bypass_spam_checks_acl  = [ 1 ];
-@bypass_virus_checks_maps = (
+
+# need to check to see if the variables exist, and set them properly if they do
+my \$ref=\"bypass_virus_checks_maps\";
+if (defined @\$ref)
+{
+@\$ref = (
    \\%bypass_virus_checks, \\@bypass_virus_checks_acl, \\\$bypass_virus_checks_re);
-@bypass_spam_checks_maps = (
+}
+\$ref=\"bypass_spam_checks_maps\";
+if (defined @\$ref)
+{
+@\$ref = (
    \\%bypass_spam_checks, \\@bypass_spam_checks_acl, \\\$bypass_spam_checks_re);
+}
+
 " >> $TMP_FILE
 
                 echo "# End of DTC configuration $VERSION" >> $TMP_FILE
