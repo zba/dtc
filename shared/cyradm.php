@@ -16,9 +16,9 @@
  - Added renamemailbox command as available with cyrus IMAP 2.2.0-Alpha
  - Added getversion to find out what version of cyrus IMAP is running
 
- Last Change on $Date: 2006/09/10 15:42:40 $
+ Last Change on $Date: 2006/10/03 08:21:36 $
 
- $Id: cyradm.php,v 1.1 2006/09/10 15:42:40 dracula Exp $
+ $Id: cyradm.php,v 1.2 2006/10/03 08:21:36 tusker Exp $
  
 
  You should have received a copy of the GNU Public
@@ -75,7 +75,7 @@ class cyradm
 	function imap_login()
 	{
 #		echo "$this->host, $this->port $this->admin, $this->pass";
-		$this->fp = fsockopen($this->host, $this->port, &$errno, &$errstr);
+		$this->fp = fsockopen($this->host, $this->port, $errno, $errstr);
 		$this->error_msg = $errstr;
 		if(!$this->fp) {
 			echo "<br>ERRORNO: ($errno) <br>ERRSTR: ($errstr)<br><hr>\n";
