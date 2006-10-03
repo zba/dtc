@@ -1,4 +1,4 @@
-Copyright: LGPL
+License: LGPL
 Group: System/Configuration
 Source: dtc.tar.gz
 BuildRoot: %{_tmppath}/%{name}-root
