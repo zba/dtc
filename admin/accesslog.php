@@ -120,7 +120,17 @@ if [ -f \$AWSTATS_LOG_FILE ]; then
 	echo \"\$AWSTATS_LOG_FILE \$AWSTATS_FULL_DOMAIN \$AWSTATS_DIR_DATA\" >> /tmp/awstats.log
         if [ -f /usr/share/doc/awstats/examples/awstats_buildstaticpages.pl ]; then
                 nice -n+20 /usr/share/doc/awstats/examples/awstats_buildstaticpages.pl -config=dtc -update -awstatsprog=/usr/lib/cgi-bin/awstats.pl -dir=$fullpath/awstats
-                chown nobody:65534 $fullpath/awstats
+		nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nobody`
+		# if we can't find the nobody group, try nogroup
+		if [ -z \"\"\$nobodygroup ]; then
+			nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nogroup`
+		fi
+		# if we can't find nogroup, then set to 65534
+		if [ -z \"\"\$nobodygroup ]; then
+			nobodygroup=65534
+		fi
+
+                chown nobody:\$nobodygroup $fullpath/awstats
 		if [ ! -e $html_fullpath/awstats ]; then 
 			ln -s $fullpath/awstats $html_fullpath/awstats
 		fi

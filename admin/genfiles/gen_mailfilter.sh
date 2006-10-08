@@ -27,7 +27,17 @@ fi
 
 # first chown this file, so we can edit it
 chmod 660 $MAILFILTER_FILE
-chown nobody:65534 $MAILFILTER_FILE
+
+nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nobody`
+# if we can't find the nobody group, try nogroup
+if [ -z ""$nobodygroup ]; then
+	nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nogroup`
+fi
+# if we can't find nogroup, then set to 65534
+if [ -z ""$nobodygroup ]; then
+	nobodygroup=65534
+fi
+chown nobody:$nobodygroup $MAILFILTER_FILE
 
 # if the file exists, we need to edit and make sure our CC lines are present
 if [ -f $MAILFILTER_FILE ]; then
@@ -167,7 +177,7 @@ if [ ! -e "$home/Maildir/maildirfilterconfig" ]; then
 MAILDIR=\$DEFAULT" > $home/Maildir/maildirfilterconfig
 fi
 chmod 500 $home/Maildir/maildirfilterconfig
-chown nobody:65534 $home/Maildir/maildirfilterconfig
+chown nobody:$nobodygroup $home/Maildir/maildirfilterconfig
 
 # if we have some rules created from sqwebmail, import them here
 if [ -e "$home/.mailfilter.sqwebmail" ]; then
@@ -203,6 +213,6 @@ echo "# End of DTC configuration" >> $TMP_FILE
 # now move the TMP_FILE over top of our MAILFILTER_FILE
 mv $TMP_FILE $MAILFILTER_FILE
 chmod 500 $MAILFILTER_FILE
-chown nobody:65534 $MAILFILTER_FILE
+chown nobody:$nobodygroup $MAILFILTER_FILE
 
 rm $MAILFILTER_LOCK

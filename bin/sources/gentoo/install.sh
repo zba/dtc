@@ -16,6 +16,12 @@ PATH_SASL_PASSWD2="/usr/sbin/saslpasswd2"
 PATH_USERDB_BIN="/usr/sbin/userdb"
 PATH_MAILDROP_BIN="/usr/bin/maildrop"
 PATH_COURIER_CONF_PATH="/etc/courier"
+PATH_COURIER_AUTHD_CONF_PATH="/etc/courier"
+if [ ! -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc ]; then
+        if [ -f /etc/authlib/authdaemonrc ]; then
+                PATH_COURIER_AUTHD_CONF_PATH="/etc/authlib"
+        fi
+fi
 PATH_DOVECOT_CONF="/etc/dovecot.conf"
 PATH_PROFTPD_CONF="/etc/proftpd/proftpd.conf"
 PATH_QMAIL_CTRL="/var/qmail/control"
@@ -27,6 +33,7 @@ PATH_DTC_ETC="${PATH_DTC_SHARED}/etc"
 PATH_AMAVISD_CONF=/etc/amavisd.conf
 PATH_CLAMAV_CONF=/etc/clamd.conf
 PATH_CRONTAB_CONF=/etc/crontab
+PATH_CGIBIN=/usr/lib/cgi-bin
 
 USER_ADD_CMD=useradd
 USER_ADD_CMD=groupadd

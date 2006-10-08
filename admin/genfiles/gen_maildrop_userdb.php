@@ -16,6 +16,8 @@ function mail_account_generate_maildrop(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
 	global $pro_mysql_subdomain_table;
+	global $conf_nobody_user_id;
+	global $conf_nobody_group_id;
 
 	global $console;
 
@@ -86,6 +88,13 @@ function mail_account_generate_maildrop(){
 					$email = $emails[$k];
 					$id = $email["id"];
 					$uid = $email["uid"];
+
+					// if our uid is 65534, make sure it's the correct uid as per the OS (99 for redhat)
+                                        if ($uid == 65534)
+                                        {
+                                                $uid = $conf_nobody_user_id;
+                                        }
+
 					$localdeliver = $email["localdeliver"];
 					$redirect1 = $email["redirect1"];
 					$redirect2 = $email["redirect2"];
@@ -95,10 +104,10 @@ function mail_account_generate_maildrop(){
 					$passwd = crypt($passwdtemp);
 
 					if ($localdeliver == "yes"){
-						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=65534 gid=65534");
+						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");
 						//if ($id == $catch_all)
 						//{
-						//	system("/usr/sbin/userdb \"$domain_full_name/@$domain_full_name\" set home=$home mail=$home uid=65534 gid=65534");
+						//	system("/usr/sbin/userdb \"$domain_full_name/@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");
 						//}
 					} 
 				}
@@ -108,8 +117,8 @@ function mail_account_generate_maildrop(){
 
 	//after we have added all the users to the userdb
 	system("/usr/sbin/makeuserdb");
-	chown("/etc/courier/userdb/", "nobody");
-	recurse_chown_chgrp("/etc/courier/userdb/", "nobody", 65534);
+	chown("/etc/courier/userdb/", "$conf_nobody_user_name");
+	recurse_chown_chgrp("/etc/courier/userdb/", "$conf_nobody_user_name", $conf_nobody_group_id);
 }
 
 ?>

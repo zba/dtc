@@ -40,6 +40,12 @@ fi
 PATH_PROFTPD_CONF="${LOCALBASE}/etc/proftpd.conf"
 PATH_DOVECOT_CONF="${LOCALBASE}/etc/dovecot.conf"
 PATH_COURIER_CONF_PATH="${LOCALBASE}/etc/courier"
+PATH_COURIER_AUTHD_CONF_PATH="${LOCALBASE}/etc/courier"
+if [ ! -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc ]; then
+	if [ -f ${LOCALBASE}/etc/authlib/authdaemonrc ]; then
+		PATH_COURIER_AUTHD_CONF_PATH="${LOCALBASE}/etc/authlib"
+	fi
+fi
 PATH_POSTFIX_CONF="${LOCALBASE}/etc/postfix/main.cf"
 PATH_POSTFIX_ETC="${LOCALBASE}/etc/postfix"
 PATH_SASL_PASSWD2="${LOCALBASE}/sbin/saslpasswd2"
@@ -52,6 +58,7 @@ PATH_DTC_SHARED="${PREFIX}/www/dtc"
 PATH_CRONTAB_CONF=/etc/crontab
 PATH_AWSTATS_ETC=${LOCALBASE}/etc/awstats
 MYSQL_DB_SOCKET_PATH="/tmp/mysqld.sock"
+PATH_CGIBIN="${LOCALBASE}/lib/cgi-bin"
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"

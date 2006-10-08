@@ -4,6 +4,7 @@ require("$dtcshared_path/inc/sql/ssh_strings.php");
 
 function hasSSHLoginFlag($adm_login){
 	global $pro_mysql_admin_table;
+
 	$q = "SELECT ssh_login_flag FROM $pro_mysql_admin_table WHERE adm_login='$adm_login'";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$a = mysql_fetch_array($r);
@@ -60,8 +61,8 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 
 	if($commit_flag == "yes"){
 		$adm_query = " INSERT INTO $pro_mysql_ssh_table
-(login, crypt, password, homedir, count, fhost, faddr, ftime, fcdir, fstor, fretr, bstor, bretr, creation, ts, frate, fcred, brate, bcred, flogs, size, shell, hostname)VALUES
-('".$_REQUEST["newssh_login"]."', '" . $crypt_ssh_password . "', '".$_REQUEST["newssh_pass"]."', '".$_REQUEST["newssh_path"]."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
+(login, uid, gid, crypt, password, homedir, count, fhost, faddr, ftime, fcdir, fstor, fretr, bstor, bretr, creation, ts, frate, fcred, brate, bcred, flogs, size, shell, hostname)VALUES
+('".$_REQUEST["newssh_login"]."', $conf_nobody_user_id, $conf_nobody_group_id, '" . $crypt_ssh_password . "', '".$_REQUEST["newssh_pass"]."', '".$_REQUEST["newssh_path"]."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
 '15', '5','1', NULL, '', '/bin/dtc-chroot-shell', '$edit_domain') ";
 		// $newssh_login $newssh_pass $edit_domain
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());

@@ -48,8 +48,8 @@ echo date("Y m d / H:i:s T",$script_start_time)." Starting DTC cron job\n";
 // Let's see if DTC's mysql_config.php is OK and lock back the shared folder
 // and mysql_config.php to root:root
 if($conf_mysql_conf_ok=="yes" && $conf_demo_version  == "no"){
-	exec("chown root:65534 $dtcshared_path");
-	exec("chown root:65534 $dtcshared_path/mysql_config.php");
+	exec("chown root:$conf_nobody_group_name $dtcshared_path");
+	exec("chown root:$conf_nobody_group_name $dtcshared_path/mysql_config.php");
 }
 
 $query = "SELECT * FROM $pro_mysql_cronjob_table WHERE 1 LIMIT 1;";
@@ -298,7 +298,7 @@ if($cronjob_table_content["gen_ssh"] == "yes"){
 // This script should be launched as root, so we have to chown the generated files ! //
 // (otherwise, the web interface wont be able to write them)                         //
 ///////////////////////////////////////////////////////////////////////////////////////
-system("chown -R nobody:65534 $conf_generated_file_path");
+system("chown -R nobody:$conf_nobody_group_id $conf_generated_file_path");
 system("./checkbind.sh $conf_generated_file_path");
 //system("chmod -R 777 $conf_generated_file_path/zones");
 

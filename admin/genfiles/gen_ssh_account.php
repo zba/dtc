@@ -60,7 +60,7 @@ function ssh_account_generate()
                         $web_subname = $subdomain["subdomain_name"];
 			// now for each of these subdomains, we need to edit the etc/shadow etc and add the users
 			$directory = "$web_path/$web_name/subdomains/$web_subname/";
-			recurse_chown_chgrp($directory, 65534, 65534) ;
+			recurse_chown_chgrp($directory, $conf_nobody_user_id, $conf_nobody_group_id) ;
 			//$query3 = "SELECT * FROM $pro_mysql_ssh_table WHERE hostname='$web_name' ORDER BY login LIMIT 800";
 		}*/
 	}

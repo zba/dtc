@@ -42,7 +42,7 @@ date\n";
 
 		$restor_net .= "echo \"===> Restoring all files for user $owner:\"\n";
 		$restor_net .= "mkdir -p $path\n";
-		$restor_net .= "chown nobody:65534 $path\n";
+		$restor_net .= "chown nobody:$conf_nobody_group_id $path\n";
 		$restor_net .= "cd $path\n";
 
 		$backup_net .= "echo \"===> Backuping all files for user $owner:\"\n";

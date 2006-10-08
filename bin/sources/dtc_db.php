@@ -386,7 +386,8 @@ $dtc_database = array(
 			"gid" => "int(11) NOT NULL default '0'"
 			),
 		"keys" => array(
-			"group_id" => "(group_id)"
+			"group_name_gid" => "(group_name,gid)",
+			"group_gid" => "(gid)"
 			),
 		"index" => array(
 			"gid" => "(gid)"

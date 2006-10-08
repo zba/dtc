@@ -44,6 +44,8 @@ function mail_account_generate_postfix(){
 
 	global $conf_unix_type;
 
+	global $conf_nobody_user_id;
+
 	//global $conf_postfix_virtual_mailbox_domains_path;
 	//global $conf_postfix_virtual_path;
 	//global $conf_postfix_vmailbox_path;
@@ -147,6 +149,11 @@ function mail_account_generate_postfix(){
 					$email = $emails[$k];
 					$id = $email["id"];
 					$uid = $email["uid"];
+					// if our uid is 65534, make sure it's the correct uid as per the OS (99 for redhat)
+					if ($uid == 65534)
+					{
+						$uid = $conf_nobody_user_id;	
+					}
 					$localdeliver = $email["localdeliver"];
 					$redirect1 = $email["redirect1"];
 					$redirect2 = $email["redirect2"];

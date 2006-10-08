@@ -168,6 +168,15 @@ then
 fi
 
 echo ""
+echo "Where is cgi-bin located ?"
+echo -n "cgi-bin path [/usr/lib/cgi-bin]: "
+read PATH_CGIBIN
+if [ -z ""$PATH_CGIBIN ];
+then
+	PATH_CGIBIN="/usr/lib/cgi-bin"
+fi
+
+echo ""
 echo "Where is located your named.conf ?"
 echo -n "named.conf path [/etc/named.conf]: "
 read PATH_NAMED_CONF
@@ -237,6 +246,16 @@ read PATH_COURIER_CONF_PATH
 if [ -z ""$PATH_COURIER_CONF_PATH ];
 then
 	PATH_COURIER_CONF_PATH="/etc/courier"
+fi
+
+echo ""
+echo "Where is located your courier authlib path (ie /etc/authlib) ?"
+echo "If Courier is not installed, just hit enter."
+echo -n "courier config path [/etc/authlib]: "
+read PATH_COURIER_AUTHD_CONF_PATH
+if [ "$PATH_COURIER_AUTHD_CONF_PATH" = "" ];
+then
+        PATH_COURIER_AUTHD_CONF_PATH="/etc/authlib"
 fi
 
 echo ""
@@ -370,3 +389,11 @@ then
 fi
 mkdir -p $PATH_DTC_SHARED
 cp -prf ./ $PATH_DTC_SHARED
+
+if [ "$conf_mta_type" = "p" ];
+	if [ -x /usr/sbin/alternatives ]; then
+		echo "Fixing MTA preference for postfix..."
+		/usr/sbin/alternatives --set mta /usr/sbin/sendmail.postfix
+	fi
+fi
+

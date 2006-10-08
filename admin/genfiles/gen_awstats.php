@@ -87,7 +87,17 @@ if [ -f \$AWSTATS_LOG_FILE ]; then
 	export AWSTATS_LOG_FILE AWSTATS_FULL_DOMAIN AWSTATS_DIR_DATA
 	if [ -f /usr/share/doc/awstats/examples/awstats_buildstaticpages.pl ]; then 
 		nice 15 /usr/share/doc/awstats/examples/awstats_buildstaticpages.pl -config=dtc -update -awstatsprog=/usr/lib/cgi-bin/awstats.pl -dir=$web_path/$web_name/subdomains/$web_subname/awstats
-		chown nobody:65534 $web_path/$web_name/subdomains/$web_subname/awstats
+		nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nobody`
+		# if we can't find the nobody group, try nogroup
+		if [ -z \"\"\$nobodygroup ]; then
+			nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nogroup`
+		fi
+		# if we can't find nogroup, then set to 65534
+		if [ -z \"\"\$nobodygroup ]; then
+			nobodygroup=65534
+		fi
+
+		chown nobody:$nobodygroup $web_path/$web_name/subdomains/$web_subname/awstats
 		ln -s $web_path/$web_name/subdomains/$web_subname/awstats $web_path/$web_name/subdomains/$web_subname/html/awstats
 	fi
 fi

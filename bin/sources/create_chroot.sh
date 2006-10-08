@@ -24,7 +24,7 @@ if [ $CHROOT_DIR"" = "" ] ; then
 	CHROOT_DIR=/var/www/chroot
 fi
 
-if [ $UNIX_TYPE"" = "freebsd" ] ; then
+if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "redhat" ] ; then
 	WEB_GROUP=nobody
 else
 	WEB_GROUP=nogroup
@@ -167,9 +167,7 @@ cp -pf /etc/protocols /etc/services /etc/hosts \
 
 # generate /etc/passwd and /etc/group
 # ignore errors
-if [ $UNIX_TYPE"" = "debian" ] ; then
-	set +e
-fi
+set +e
 grep daemon /etc/passwd > etc/passwd
 grep bin /etc/passwd >> etc/passwd
 grep sys /etc/passwd >> etc/passwd
@@ -189,11 +187,9 @@ grep mail /etc/group >> etc/group
 grep news /etc/group >> etc/group
 grep uucp /etc/group >> etc/group
 grep www-data /etc/group >> etc/group
-grep nogroup /etc/group >> etc/group
+grep $WEB_GROUP /etc/group >> etc/group
 grep $WEB_USER /etc/group >> etc/group
-if [ $UNIX_TYPE"" = "debian" ] ; then
-	set -e
-fi
+set -e
 
 # fix entry for nobody in /etc/passwd
 echo "$WEB_USER:x:65534:65534:$WEB_USER:/html:/bin/bash" >> etc/passwd
@@ -250,10 +246,17 @@ else
 		fi
 		cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
 		  /lib/libc.so.6 /lib/libcrypt.so.1 \
-		  /lib/libncurses.so.5 \
 		  /lib/librt.so.1 \
 		  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 \
 		  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+
+		if [ -e /lib/libncurses.so.5 ]; then
+		  cp  /lib/libncurses.so.5 lib/
+		fi
+
+		if [ -e /usr/lib/libncurses.so.5 ]; then
+		  cp /usr/lib/libncurses.so.5 lib/
+		fi
 
 		if [ -e /lib/libacl.so.1 ]; then
 		  	cp /lib/libacl.so.1 lib/
@@ -328,6 +331,35 @@ fi
 #fi
 if [ -e /etc/login.defs ]; then
 	cp /etc/login.defs ./etc/
+fi
+
+# now we have come this far, make sure our chroot includes enough libs for this environment
+LDD=`which ldd`
+if [ -n "$LDD" ]; then
+
+for i in bin/*;
+do
+        for j in `$LDD $i | cut -f 1 -d' '`;
+        do
+		if [ -e $j ]; then
+			cp -pf $j lib/
+		fi
+
+                if [ -e /lib/$j ]; then
+                        cp -pf /lib/$j lib/
+                fi
+
+                if [ -e /usr/lib/$j ]; then
+                        cp -pf /usr/lib/$j lib/
+                fi
+
+                if [ -e /usr/local/lib/$j ]; then
+                        cp -pf /usr/local/lib/$j lib/
+                fi
+        done
+done
+
+
 fi
 
 # if we have a sudo binary around, then use it to create our chroot shell

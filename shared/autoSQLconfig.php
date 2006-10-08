@@ -22,6 +22,38 @@ $conf_mysql_login="ENTER YOUR LOGIN";
 $conf_mysql_pass="ENTER YOUR PASSWORD";
 $conf_mysql_db="dtc";
 
+// need to detect the nobody group, so parse /etc/group
+// look for nogroup and nobody
+// nobody:x:99:
+// nogroup:x:65534:
+
+// default to 65534 and nogroup
+global $conf_nobody_group_id;
+$conf_nobody_group_id = 65534;
+global $conf_nobody_group_name;
+$conf_nobody_group_name = "nogroup";
+$etc_group = join('',file("/etc/group"));
+preg_match('#(nobody|nogroup):[^:]*:(\\d+):#', $etc_group, $matches);
+if ($matches[0])
+{
+        $conf_nobody_group_id = $matches[2];
+        $conf_nobody_group_name = $matches[1];
+}
+
+// default to 65534 and nobody
+global $conf_nobody_user_id;
+$conf_nobody_user_id = 65534;
+global $conf_nobody_user_name;
+$conf_nobody_user_name = "nobody";
+$etc_passwd = join('',file("/etc/passwd"));
+preg_match('#(nobody):[^:]*:(\\d+):(\\d+)#', $etc_passwd, $matches);
+if ($matches[0])
+{
+        $conf_nobody_user_id = $matches[2];
+        $conf_nobody_user_name = $matches[1];
+}
+
+
 // Save the config file containing database access values for connecting to db
 function saveConfigFile(){
 	global $conf_mysql_host;

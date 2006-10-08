@@ -68,10 +68,35 @@ if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/usr ]; then ln -s
 if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/dev ]; then ln -s subdomains/www/dev  $conf_hosting_path/$conf_adm_login/$main_domain_name/dev; fi
 if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/etc ]; then ln -s subdomains/www/etc  $conf_hosting_path/$conf_adm_login/$main_domain_name/etc; fi
 
-if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "chown -R nobody:65534 $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains"
+set +e
+
+nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nobody`
+# if we can't find the nobody group, try nogroup
+if [ -z ""$nobodygroup ]; then
+	nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nogroup`
 fi
-chown -R nobody:65534 $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains
+# if we can't find nogroup, then set to 65534
+if [ -z ""$nobodygroup ]; then
+	nobodygroup=65534
+fi
+
+nobodygid=`cat /etc/group | grep ^nobody | cut -f 3 -d:`
+# if we can't find the nobody group, try nogroup
+if [ -z ""$nobodygid ]; then
+        nobodygid=`cat /etc/group | grep ^nogroup | cut -f 3 -d:`
+fi
+# if we can't find nogroup, then set to 65534
+if [ -z ""$nobodygid ]; then
+        nobodygid=65534
+fi
+
+
+set -e
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "chown -R nobody:$nobodygroup $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains"
+fi
+chown -R nobody:$nobodygroup $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains
 
 # if we have a sudo binary around, then use it to create our chroot shell
 # check for some path defaults... 
@@ -491,6 +516,21 @@ else
 	apachepidfile=${apachepidfile##\"}
 	apachepidfile=${apachepidfile%%\"}
 	echo "Symlinking $apachepidfile to $PATH_DTC_ETC/apache.pid ..."
+
+	# in case the specified pid file doesn't exist, try and find it
+	if [ ! -e $apachepidfile ]; then
+		if [ -e /etc/httpd/$apachepidfile ]; then
+			apachepidfile=/etc/httpd/$apachepidfile	
+		fi
+		if [ -e /var/$apachepidfile ]; then
+			apachepidfile=/var/$apachepidfile	
+		fi
+		if [ -e /var/run/$apachepidfile ]; then
+			apachepidfile=/var/run/$apachepidfile	
+		fi
+		
+	fi
+
 	rm -f $PATH_DTC_ETC/apache.pid
 	ln -s $apachepidfile $PATH_DTC_ETC/apache.pid
 	if [ ! -f $apachepidfile ]; then
@@ -604,13 +644,13 @@ if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
 	if [ ! -e "$PATH_DTC_ETC/template" ]; then
 		cp -r $PATH_DTC_SHARED/shared/template $PATH_DTC_ETC
 	fi
-	chown -R nobody:65534 $PATH_DTC_ETC/template
+	chown -R nobody:$nobodygroup $PATH_DTC_ETC/template
 	chmod -R 775 $PATH_DTC_ETC/template
 fi
 
 # fix the perms for the gfx and imgcache 
-chown -R nobody:65534 $PATH_DTC_SHARED/shared/imgcache
-chown -R nobody:65534 $PATH_DTC_SHARED/shared/gfx
+chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/shared/imgcache
+chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/shared/gfx
 
 # copy the 404 index.php file if none is found.
 if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.php" ]; then
@@ -862,7 +902,9 @@ fi
 
 # make sure the amavisd configuration has 'amavis' user and group
 
-PATH_AMAVISD_ETC=`dirname $PATH_AMAVISD_CONF`
+if [ -n ""$PATH_AMAVISD_CONF ]; then
+	PATH_AMAVISD_ETC=`dirname $PATH_AMAVISD_CONF`
+fi
 AMAVISD_CONFD=0
 # CLAMD_CONF is the file we modify that has the clamd.ctl
 AMAVIS_CLAMD_CONF=$PATH_AMAVISD_CONF
@@ -955,6 +997,8 @@ if [ -f "$PATH_AMAVISD_CONF" ]; then
 @bypass_spam_checks_acl  = [ 1 ];
 
 # need to check to see if the variables exist, and set them properly if they do
+{
+no strict 'refs';
 my \$ref=\"bypass_virus_checks_maps\";
 if (defined @\$ref)
 {
@@ -966,6 +1010,7 @@ if (defined @\$ref)
 {
 @\$ref = (
    \\%bypass_spam_checks, \\@bypass_spam_checks_acl, \\\$bypass_spam_checks_re);
+}
 }
 
 " >> $TMP_FILE
@@ -1167,10 +1212,13 @@ then
 	fi
 	touch $PATH_DTC_ETC/postfix_virtual.db
 	touch $PATH_DTC_ETC/postfix_aliases.db
+	# fix default /etc/aliases
+	touch /etc/aliases
+	newaliases
 	touch $PATH_DTC_ETC/postfix_relay_recipients.db
 	touch $PATH_DTC_ETC/postfix_vmailbox.db
 	touch $PATH_DTC_ETC/postfix_virtual_uid_mapping.db
-	chown nobody:65534 $PATH_DTC_ETC/postfix_*.db
+	chown nobody:$nobodygroup $PATH_DTC_ETC/postfix_*.db
 	if grep "Configured by DTC" "$PATH_POSTFIX_CONF" >/dev/null
 	then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -1195,7 +1243,10 @@ then
 		TMP_FILE=`${MKTEMP} DTC_install.postfix_main.cf.XXXXXX` || exit 1
 		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
 		# CL: this is general config, for courier and cyrus
+		# for mailname to be mx.$main_domain_name
+		echo "mx.$main_domain_name" > /etc/mailname
 		echo "# DTC virtual configuration
+myhostname = mx.$main_domain_name
 # disable the following functionality by default (otherwise can't match subdomains correctly)
 parent_domain_matches_subdomains=
 
@@ -1216,9 +1267,9 @@ else
 	# courier/postfix only!
 	echo "virtual_mailbox_base = /
 virtual_mailbox_maps = hash:$PATH_DTC_ETC/postfix_vmailbox
-virtual_minimum_uid = 100
-virtual_uid_maps = static:65534
-virtual_gid_maps = static:65534
+virtual_minimum_uid = 98
+virtual_uid_maps = static:$nobodygid
+virtual_gid_maps = static:$nobodygid
 virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 fi
 # CL continue with global part
@@ -1253,7 +1304,7 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 
 			if [ -e /var/spool/postfix/etc ]; then
 				touch /var/spool/postfix/etc/sasldb2
-				chown postfix:65534 /var/spool/postfix/etc/sasldb2
+				chown postfix:$nobodygroup /var/spool/postfix/etc/sasldb2
 				chmod 664 /var/spool/postfix/etc/sasldb2
 				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
 					cp /var/spool/postfix/etc/sasldb2 $PATH_DTC_ETC/sasldb2
@@ -1261,11 +1312,11 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 			else
 				if [ -d /etc/sasl2 ]; then
 					touch /etc/sasl2/sasldb2
-					chown postfix:65534 /etc/sasl2/sasldb2
+					chown postfix:$nobodygroup /etc/sasl2/sasldb2
 					chmod 664 /etc/sasl2/sasldb2
 				else
 					touch /etc/sasldb2
-					chown postfix:65534 /etc/sasldb2
+					chown postfix:$nobodygroup /etc/sasldb2
 					chmod 664 /etc/sasldb2
 				fi
 				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
@@ -1393,7 +1444,7 @@ fi
 #
 if [ -f "/usr/bin/mlmmj-make-ml" -o -f "/usr/bin/mlmmj-make-ml.sh" ] ; then
 	mkdir -p /etc/mlmmj/lists
-	chown -R root:65534 /etc/mlmmj/lists
+	chown -R root:$nobodygroup /etc/mlmmj/lists
 	chmod -R g+w /etc/mlmmj/lists
 fi
 # create mlmmj spool directory if it doesn't exist yet
@@ -1401,7 +1452,7 @@ if [ ! -e /var/spool/mlmmj/ ]; then
 	mkdir -p /var/spool/mlmmj
 fi
 if [ -e /var/spool/mlmmj/ ] ;then
-	chown nobody:65534 /var/spool/mlmmj/
+	chown nobody:$nobodygroup /var/spool/mlmmj/
 fi
 
 # This avoid hanging when (re)starting daemons under debian
@@ -1413,30 +1464,30 @@ fi
 #
 # Install courier mysql authenticaion
 #
-if [ -f "$PATH_COURIER_CONF_PATH/authdaemonrc" ]
+if [ -f "$PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc" ]
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Adding directives to Courier authdaemonrc"
 	fi
-	if grep "Configured by DTC" $PATH_COURIER_CONF_PATH/authdaemonrc >/dev/null
+	if grep "Configured by DTC" $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc >/dev/null
 	then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "authdaemonrc has been configure before: skipping include insertion !"
 		fi
 	else
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Inserting DTC configuration inside "$PATH_COURIER_CONF_PATH/authdaemonrc
+			echo "Inserting DTC configuration inside "$PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc
 		fi
-		if ! [ -f $PATH_COURIER_CONF_PATH.DTC.backup ]
+		if ! [ -f $PATH_COURIER_AUTHD_CONF_PATH.DTC.backup ]
 		then
-			cp -f $PATH_COURIER_CONF_PATH/authdaemonrc $PATH_COURIER_CONF_PATH.DTC.backup
+			cp -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc $PATH_COURIER_AUTHD_CONF_PATH.DTC.backup
 		fi
 		TMP_FILE=`${MKTEMP} DTC_install.courier.conf.XXXXXX` || exit 1
 		echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
 		echo "authmodulelist=\"authmysql authpam\"" >> $TMP_FILE
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
 		# now append this to the existing configuration file
-		cat < $TMP_FILE >> $PATH_COURIER_CONF_PATH/authdaemonrc
+		cat < $TMP_FILE >> $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc
 		rm $TMP_FILE
 		echo "
 # DB details for dtc mysql DB
@@ -1457,12 +1508,23 @@ MYSQL_DEFAULT_DOMAIN    $main_domain_name
 MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, gid, home, '', quota_size, ''  FROM pop_access  WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
 
 MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(newpass_crypt)' WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1)  AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
-" > $PATH_COURIER_CONF_PATH/authmysqlrc
+" > $PATH_COURIER_AUTHD_CONF_PATH/authmysqlrc
 		if [ -x "/etc/init.d/courier-authdaemon" ] ; then
 			if [ -x /usr/sbin/invoke-rc.d ]; then
 				/usr/sbin/invoke-rc.d courier-authdaemon restart
 			else
-				/etc/init.d/courier-authdaemon restart
+				if [ -x /etc/init.d/courier-authdaemon ]; then
+					/etc/init.d/courier-authdaemon restart
+				fi
+			fi
+		fi
+		if [ -x "/etc/init.d/courier-authlib" ] ; then
+			if [ -x /usr/sbin/invoke-rc.d ]; then
+				/usr/sbin/invoke-rc.d courier-authlib restart
+			else
+				if [ -x /etc/init.d/courier-authlib ]; then
+					/etc/init.d/courier-authlib restart
+				fi
 			fi
 		fi
 		if [ -x "/etc/init.d/courier-imap" ] ; then
@@ -1479,7 +1541,29 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 				/etc/init.d/courier-pop restart
 			fi
 		fi
+		if [ -x "/etc/init.d/courier" ]; then
+			if [ -x /usr/sbin/invoke-rc.d ]; then
+				/usr/sbin/invoke-rc.d courier stop
+			else
+				/etc/init.d/courier stop
+			fi
+		fi
+
+		# try to disable courierd using chkconfig
+		if [ -x /sbin/chkconfig ]; then
+			/sbin/chkconfig courier off
+		fi
 	fi	
+fi
+
+# need to remove the paths for courier in /etc/profile.d/
+# since the MTA really breaks postfix paths and handling
+if [ -e /etc/profile.d/courier.sh ]; then
+	mv /etc/profile.d/courier.sh /etc/profile.d/courier.sh.DTC.disabled
+fi
+
+if [ -e /etc/profile.d/courier.csh ]; then
+	mv /etc/profile.d/courier.csh /etc/profile.d/courier.csh.DTC.disabled
 fi
 
 # Generate the OpenSSL test certificate if it does not exists
@@ -1726,10 +1810,14 @@ else
 		cd $cwd
 	fi
 
+	# need to comment out any existing AuthOrder, since we are changing it
+	perl -i -p -e 's/AuthOrder/#AuthOrder/' $PATH_PROFTPD_CONF
+
 	TMP_FILE=`${MKTEMP} DTC_install.proftp.conf.XXXXXX` || exit 1
 	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 # This directive is not used anymore in newer version of proftpd
 #	echo "#UserReverseDNS	off" >> $TMP_FILE
+	echo "AuthOrder		mod_sql.c mod_auth_pam.c* mod_auth_unix.c" >> $TMP_FILE
 	echo "IdentLookups	off" >> $TMP_FILE
 	echo "DefaultRoot	~" >> $TMP_FILE
 	echo "SQLAuthenticate	on" >> $TMP_FILE
@@ -1916,10 +2004,13 @@ fi
 if [ ! -e $PATH_DTC_ETC/mailqueues.rrd ]; then
 	$PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC
 fi
-if [ ! -e /usr/lib/cgi-bin/queuegraph.cgi ]; then
-	ln -s $PATH_DTC_ADMIN/queuegraph.cgi /usr/lib/cgi-bin/queuegraph.cgi
+if [ ! -e $PATH_CGIBIN/queuegraph.cgi ]; then
+	ln -s $PATH_DTC_ADMIN/queuegraph.cgi $PATH_CGIBIN/queuegraph.cgi
 fi
-chown -R nobody:65534 /usr/lib/cgi-bin/queuegraph.cgi
+if [ -e $PATH_CGIBIN/queuegraph.cgi ]; then
+	chown -hR nobody:$nobodygroup $PATH_CGIBIN/queuegraph.cgi
+fi
+
 
 
 # fix path for mailqueues.rrd
@@ -1934,13 +2025,15 @@ else
 	if [ ! -e $PATH_DTC_ETC/netusage.rrd ]; then
 		$PATH_DTC_ADMIN/netusegraph/createrrd.sh $PATH_DTC_ETC
 	fi
-	if [ ! -e /usr/lib/cgi-bin/netusegraph.cgi ]; then
-		ln -s $PATH_DTC_ADMIN/netusegraph.cgi /usr/lib/cgi-bin/netusegraph.cgi
+	if [ ! -e $PATH_CGIBIN/netusegraph.cgi ]; then
+		ln -s $PATH_DTC_ADMIN/netusegraph.cgi $PATH_CGIBIN/netusegraph.cgi
 	fi
 
-	# fix path for netusage.rrd
-	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
-	chown -R nobody:65534 /usr/lib/cgi-bin/netusegraph.cgi
+	if [ -e $PATH_CGIBIN/netusegraph.cgi ]; then
+		# fix path for netusage.rrd
+		perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
+		chown -hR nobody:$nobodygroup $PATH_CGIBIN/netusegraph.cgi
+	fi
 fi
 
 #
@@ -1949,12 +2042,15 @@ fi
 if [ ! -e $PATH_DTC_ETC/cpu.rrd ]; then
 	$PATH_DTC_ADMIN/cpugraph/createrrd.sh $PATH_DTC_ETC
 fi
-if [ ! -e /usr/lib/cgi-bin/cpugraph.cgi ]; then
-	ln -s $PATH_DTC_ADMIN/cpugraph.cgi /usr/lib/cgi-bin/cpugraph.cgi
+if [ ! -e $PATH_CGIBIN/cpugraph.cgi ]; then
+	ln -s $PATH_DTC_ADMIN/cpugraph.cgi $PATH_CGIBIN/cpugraph.cgi
 fi
-# fix path for cpugraph.cgi
-perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
-chown -R nobody:65534 /usr/lib/cgi-bin/cpugraph.cgi
+
+if [ -e $PATH_DTC_ADMIN/cpugraph.cgi ]; then 
+	# fix path for cpugraph.cgi
+	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
+	chown -hR nobody:$nobodygroup $PATH_CGIBIN/cpugraph.cgi
+fi
 
 
 #
@@ -1963,12 +2059,14 @@ chown -R nobody:65534 /usr/lib/cgi-bin/cpugraph.cgi
 if [ ! -e $PATH_DTC_ETC/memusage.rrd ]; then
 	$PATH_DTC_ADMIN/memgraph/createrrd.sh $PATH_DTC_ETC
 fi
-if [ ! -e /usr/lib/cgi-bin/memgraph.cgi ]; then
-	ln -s $PATH_DTC_ADMIN/memgraph.cgi /usr/lib/cgi-bin/memgraph.cgi
+if [ ! -e $PATH_CGIBIN/memgraph.cgi ]; then
+	ln -s $PATH_DTC_ADMIN/memgraph.cgi $PATH_CGIBIN/memgraph.cgi
 fi
-# fix path for memgraph.cgi
-perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
-chown -R nobody:65534 /usr/lib/cgi-bin/memgraph.cgi
+if [ -e $PATH_DTC_ADMIN/memgraph.cgi ]; then
+	# fix path for memgraph.cgi
+	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
+	chown -hR nobody:$nobodygroup $PATH_CGIBIN/memgraph.cgi
+fi
 
 #
 # Modify the SSH default option to make sure the UsePAM and turn on Password auth
@@ -2073,6 +2171,22 @@ if [ -z "$PATH_NSS_ROOT_CONF" ]; then
 	PATH_NSS_ROOT_CONF=/etc/nss-mysql-root.conf
 fi
 
+NSSMYSQL_VERSION=nss-mysql
+
+if [ ! -e $PATH_NSS_CONF ]; then
+	if [ -e /etc/libnss-mysql.cfg ]; then
+		PATH_NSS_CONF=/etc/libnss-mysql.cfg	
+		NSSMYSQL_VERSION=libnss-mysql
+	fi
+fi
+
+if [ ! -e $PATH_NSS_CONF ]; then
+	if [ -e /etc/libnss-mysql-root.cfg ]; then
+		PATH_NSS_CONF=/etc/libnss-mysql-root.cfg	
+		NSSMYSQL_VERSION=libnss-mysql
+	fi
+fi
+
 if grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -2086,8 +2200,10 @@ else
 		fi
 		cp -f "$PATH_NSS_CONF" "$PATH_NSS_CONF.DTC.backup"
 	fi
+
 	echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
-	echo "
+	if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
+		echo "
 users.host = inet:localhost:3306;
 users.database = ${conf_mysql_db};
 users.db_user = dtcdaemons;
@@ -2114,6 +2230,30 @@ groups.members_table = ssh_user_group;
 groups.member_userid_column = ssh_user_group.user_id;
 groups.member_groupid_column = ssh_user_group.group_id;
 " >> $TMP_FILE
+	else
+		# this is the libnss version
+		echo "
+[queries]
+getpwnam    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE login='%1$s' LIMIT 1
+getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1$u' LIMIT 1
+getpwent    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access
+getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1$s' LIMIT 1
+getgrgid    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_id='%1$u' LIMIT 1
+getgrent    SELECT group_name,group_password,group_id FROM ssh_groups
+memsbygid   SELECT login FROM ssh_access WHERE gid='%1$u'
+gidsbymem   SELECT gid  FROM ssh_access WHERE login='%1$s'
+getspnam    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access WHERE ssh_access.login='%1$s' LIMIT 1
+getspent    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access
+
+[server]
+host localhost
+port 3306
+database ${conf_mysql_db}
+username dtcdaemons
+password ${MYSQL_DTCDAEMONS_PASS}
+" >> $TMP_FILE
+
+	fi
 	echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 	cat <$TMP_FILE >>$PATH_NSS_CONF
 fi
@@ -2135,6 +2275,7 @@ else
 		cp -f "$PATH_NSS_ROOT_CONF" "$PATH_NSS_ROOT_CONF.DTC.backup"
 	fi
 	echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
+	if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
 	echo "
 shadow.host = inet:localhost:3306;
 shadow.database = ${conf_mysql_db};
@@ -2154,6 +2295,18 @@ shadow.warn_column = 7;
 shadow.inact_column = -1; # disabled
 shadow.expire_column = -1; # disabled
 " >> $TMP_FILE
+	else
+		# libnss version
+	echo "[server]
+host localhost
+port 3306
+database ${conf_mysql_db}
+username dtcdaemons
+password ${MYSQL_DTCDAEMONS_PASS}
+" >> $TMP_FILE
+
+	fi
+
 	echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 	cat <$TMP_FILE >>$PATH_NSS_ROOT_CONF
 fi

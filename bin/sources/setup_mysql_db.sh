@@ -95,10 +95,34 @@ if ! [ -e $MAINSITE_HOME"/index.php" ] ;then
 	fi
 fi
 
-if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo chown -R nobody:65534 $conf_hosting_path
+set +e
+
+nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nobody`
+# if we can't find the nobody group, try nogroup
+if [ -z ""$nobodygroup ]; then
+        nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nogroup`
 fi
-chown -R nobody:65534 $conf_hosting_path
+# if we can't find nogroup, then set to 65534
+if [ -z ""$nobodygroup ]; then
+        nobodygroup=65534
+fi
+
+# if we can't find the nobody group, try nogroup
+nobodygid=`cat /etc/group | grep ^nobody | cut -f 3 -d:`
+if [ -z ""$nobodygid ]; then
+        nobodygid=`cat /etc/group | grep ^nogroup | cut -f 3 -d:`
+fi
+# if we can't find nogroup, then set to 65534
+if [ -z ""$nobodygid ]; then
+        nobodygid=65534
+fi
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo chown -R nobody:$nobodygroup $conf_hosting_path
+fi
+chown -R nobody:$nobodygroup $conf_hosting_path
+
+set -e
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> DTC is now creating it's database:"
@@ -134,6 +158,9 @@ fi
 
 
 create_tables=$PATH_DTC_SHARED"/admin/tables"
+# fix the group id for nobody group
+perl -i -p -e "s/65534/$nobodygid/g" $create_tables/*.sql
+
 curdir=`pwd`
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -328,6 +355,9 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'ssh_groups', '', NOW(NULL), 'Select,Update', 'Select,Update')"
 # grant select to ssh_user_group
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'ssh_user_group', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+
+# populate some data into the ssh_groups table, so that it works correctly
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO ssh_groups (group_id, group_name, status, group_password, gid) VALUES (NULL, 'root', 'A', 'x', 0), (NULL, 'nobody', 'A', 'x', 99), (NULL, 'nobody', 'A', 'x', 65534);"
 
 # grant Select,Insert,Update,Delete,References,Index to smtp_logs
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'smtp_logs', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"

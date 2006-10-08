@@ -7,6 +7,11 @@
 # this is only a small coder tool...
 #
 
+if [ -z $FAKED_MODE ]; then
+	echo "Please run this with fakeroot, ie fakeroot ./makeRedhat"
+	exit 1
+fi
+
 VERSION=`cat version`
 RELEASE=`cat release`
 UNIX_TYPE=redhat
@@ -78,6 +83,7 @@ chown nobody:65534 dtc/client/gfx dtc/admin/gfx dtc/shared/gfx dtc/email/gfx dtc
 cat sources/redhat/install.sh >dtc/admin/dtc.rpm-install.sh
 cat sources/interactive_installer.sh >>dtc/admin/dtc.rpm-install.sh
 cat sources/setup_mysql_db.sh >>dtc/admin/dtc.rpm-install.sh
+cat sources/create_chroot.sh >>dtc/admin/dtc.rpm-install.sh
 cat sources/configure_deamons.sh >>dtc/admin/dtc.rpm-install.sh
 
 cat sources/redhat/uninstall.sh >dtc/admin/dtc.rpm-uninstall.sh

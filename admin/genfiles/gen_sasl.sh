@@ -13,6 +13,16 @@ if [ -e /usr/local/sbin/saslpasswd2 ] ; then
 	SASLPWD2=/usr/local/sbin/saslpasswd2
 fi
 
+nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nobody`
+# if we can't find the nobody group, try nogroup
+if [ -z ""$nobodygroup ]; then
+	nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nogroup`
+fi
+# if we can't find nogroup, then set to 65534
+if [ -z ""$nobodygroup ]; then
+	nobodygroup=65534
+fi
+
 # If found, use it to generate accounts
 if ! [ -z ""$SASLPWD2 ] ; then
 	echo $passwdtemp | $SASLPWD2 -c -p -f ../etc/sasldb2 -u $mailname $id\@$domain_full_name
@@ -21,16 +31,17 @@ if ! [ -z ""$SASLPWD2 ] ; then
 		echo "OK, in /var/spool" >> /tmp/sasl.tmp
 		cat ../etc/sasldb2 > /var/spool/postfix/etc/sasldb2
 		chmod 664 /var/spool/postfix/etc/sasldb2
-		chown postfix:65534 /var/spool/postfix/etc/sasldb2
+
+		chown postfix:$nobodygroup /var/spool/postfix/etc/sasldb2
 	else 
 		echo "OK, in /etc/" >> /tmp/sasl.tmp
 		if [ -d /etc/sasl2 ] ; then
 			chmod 664 /etc/sasl2/sasldb2
-			chown postfix:65534 /etc/sasl2/sasldb2
+			chown postfix:$nobodygroup /etc/sasl2/sasldb2
 			cat ../etc/sasldb2 > /etc/sasl2/sasldb2
 		else
 			chmod 664 /etc/sasldb2
-			chown postfix:65534 /etc/sasldb2
+			chown postfix:$nobodygroup /etc/sasldb2
 			cat ../etc/sasldb2 > /etc/sasldb2
 		fi
 	fi

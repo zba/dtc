@@ -14,6 +14,7 @@ PATH_NAMED_CONF="/etc/named.conf"
 PATH_CRONTAB_CONF="/etc/crontab"
 PATH_POSTFIX_ETC="/etc/postfix"
 PATH_AWSTATS_ETC="/etc/awstats"
+PATH_CGIBIN="/usr/lib/cgi-bin"
 
 PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"
 
@@ -52,6 +53,16 @@ read PATH_COURIER_CONF_PATH
 if [ "$PATH_COURIER_CONF_PATH" = "" ];
 then
 	PATH_COURIER_CONF_PATH="/etc/courier"
+fi
+
+echo ""
+echo "Where is located your courier authlib path (ie /etc/authlib) ?"
+echo "If Courier is not installed, just hit enter."
+echo -n "courier config path [/etc/authlib]: "
+read PATH_COURIER_AUTHD_CONF_PATH
+if [ "$PATH_COURIER_AUTHD_CONF_PATH" = "" ];
+then
+	PATH_COURIER_AUTHD_CONF_PATH="/etc/authlib"
 fi
 
 echo ""

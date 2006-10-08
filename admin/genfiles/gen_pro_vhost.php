@@ -11,7 +11,16 @@ function vhost_chk_dir_sh($dir){
 	$chk_dir_script .= "
 if [ ! -d $dir ] ; then
 	mkdir -p $dir
-	chown nobody:65534 $dir
+	nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nobody`
+	# if we can't find the nobody group, try nogroup
+	if [ -z \"\"\$nobodygroup ]; then
+		nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nogroup`
+	fi
+	# if we can't find nogroup, then set to 65534
+	if [ -z \"\"\$nobodygroup ]; then
+		nobodygroup=65534
+	fi
+	chown nobody:\$nobodygroup $dir
 	echo \"Directory $dir was missing and has been created.\"
 fi
 ";

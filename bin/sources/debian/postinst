@@ -56,6 +56,7 @@ then
 PATH_DOVECOT_CONF=/etc/dovecot/dovecot.conf
 fi
 PATH_COURIER_CONF_PATH=/etc/courier
+PATH_COURIER_AUTHD_CONF_PATH=/etc/courier
 PATH_CYRUS_CONF=/etc/imapd.conf
 PATH_POSTFIX_CONF=/etc/postfix/main.cf
 PATH_POSTFIX_ETC=/etc/postfix
@@ -70,6 +71,7 @@ FREERADIUS_ETC="/etc/raddb"
 PATH_AWSTATS_ETC=/etc/awstats
 PATH_AMAVISD_CONF=/etc/amavis/amavisd.conf
 PATH_CLAMAV_CONF=/etc/clamav/clamd.conf
+PATH_CGIBIN=/usr/lib/cgi-bin
 
 USER_ADD_CMD=useradd
 USER_ADD_CMD=groupadd

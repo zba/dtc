@@ -97,7 +97,7 @@ function mail_account_generate_qmail(){
 					}
 					$list_path = "$admin_path/$list_domain/lists/$list_domain" . "_" . "$list_name";
 					writeMlmmjQmailFile($admin_path);
-					$assign_file .= "+$domain_qmail_name-$list_name:nobody:65534:65534:$list_path:::\n";
+					$assign_file .= "+$domain_qmail_name-$list_name:nobody:$conf_nobody_user_id:$conf_nobody_group_id:$list_path:::\n";
 				}
 			}
 			if($primary_mx && isset($domain["emails"])){
@@ -130,12 +130,12 @@ function mail_account_generate_qmail(){
 						$catch_all_flag = "yes";
 						$catchall_home = $home;
 					}else{
-						$assign_file .= "=$domain_qmail_name-$id:nobody:65534:65534:$home:::\n";
+						$assign_file .= "=$domain_qmail_name-$id:nobody:$conf_nobody_user_id:$conf_nobody_group_id:$home:::\n";
 					}
 				}
 				// Gen the catchall if there is a box like that
 				if($catch_all_flag == "yes"){
-					$assign_file .= "+$domain_qmail_name:nobody:65534:65534:".getAdminPath($user_admin_name)."/".$domain["name"]."/Mailboxs:::\n";
+					$assign_file .= "+$domain_qmail_name:nobody:$conf_nobody_user_id:$conf_nobody_group_id:".getAdminPath($user_admin_name)."/".$domain["name"]."/Mailboxs:::\n";
 				}
 			}
 		}
