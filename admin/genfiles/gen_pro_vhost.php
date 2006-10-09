@@ -196,7 +196,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			}
 		}
 	}else{
+		$ip_for_404=$conf_main_site_ip;
 		if($conf_use_nated_vhost=="yes"){
+			$ip_for_404=conf_nated_vhost_ip;
 			if (test_valid_local_ip($conf_nated_vhost_ip) && !ereg("Listen ".$conf_nated_vhost_ip.":80", $vhost_file_listen))
 			{
 				$vhost_file_listen .= "Listen ".$conf_nated_vhost_ip.":80\n";
@@ -212,6 +214,20 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$vhost_file_listen .= "#Listen ".$conf_main_site_ip.":80\n";
 			}
 			$vhost_file .= "NameVirtualHost ".$conf_main_site_ip.":80\n";
+		}
+		if ($enable404feature == true)
+		{
+			$vhost_file .= "<VirtualHost ".$ip_for_404.":80>
+        ServerName $conf_404_subdomain.$conf_main_domain
+        DocumentRoot $path_404/html
+        ScriptAlias /cgi-bin $path_404/cgi-bin
+        ErrorLog $path_404/logs/error.log
+        LogSQLTransferLogTable ".str_replace(".","_",$conf_main_domain).'$'.$conf_404_subdomain.'$'."xfer
+        LogSQLScoreDomain $conf_main_domain
+        LogSQLScoreSubdomain $conf_404_subdomain
+        LogSQLScoreTable dtc.http_accounting
+        DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
+</VirtualHost>\n";
 		}
 	}
 
