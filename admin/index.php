@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.62 2006/09/27 03:00:20 tusker Exp $
+	* @version  $Id: index.php,v 1.63 2006/10/09 18:58:52 tusker Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -171,6 +171,10 @@ case "monitor": // Monitor button
 		$transfer = 0;
 		$total_hits = 0;
 		$du = 0;
+		// make sure we are selecting the correct DB
+		// there is a condition where we have lost the link to the main DB
+		// this may hide another bug, but at least it will show things to the user
+                mysql_select_db($conf_mysql_db);
 		// For each of it's admins
 		$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$ar["id"]."';";
 		$r2 = mysql_query($q2)or die("Cannot query: \"$q2\" !".mysql_error()." line ".__LINE__." in file ".__FILE__);
