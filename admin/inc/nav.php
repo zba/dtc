@@ -99,6 +99,7 @@ function adminList($password=""){
 	global $pro_mysql_vps_table;
 	global $panel_type;
 	global $cur_admlist_type;
+	global $conf_mysql_db;
 
 	if($password != ""){
 		$zepass = $password;
@@ -151,6 +152,7 @@ function adminList($password=""){
 		$added_rub = "";
 	}
 	if($admlist_type == "Logins"){
+		mysql_select_db($conf_mysql_db);
 		// Fetch a list of all name admins
 		$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login";
 		$result = mysql_query ($query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
