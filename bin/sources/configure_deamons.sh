@@ -482,6 +482,23 @@ else
 			echo "ok!"
 		fi
 	fi
+
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo -n "Checking for Options None..."
+	fi
+	if grep "Options None" $PATH_HTTPD_CONF
+	then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Options None -> Options FollowSymLinks"
+		fi
+		sed "s/Options None/Options FollowSymLinks/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	else
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "ok!"
+		fi
+	fi
+
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "=> Adding DTC's directives to httpd.conf end"
 	fi
