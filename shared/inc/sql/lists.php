@@ -195,7 +195,7 @@ function tunablesWABooleanRequestCheck($list_dir,$tunable_name){
 	global $edit_domain;
 	$name = $_REQUEST["edit_mailbox"];
 	$admin_path = getAdminPath($adm_login);
-	if($tuname_name == "webarchive"){
+	if($tunable_name == "webarchive"){
 		$test_query = "SELECT webarchive FROM $pro_mysql_list_table WHERE domain='$edit_domain' AND name='$name' LIMIT 1";
 		$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
 		$test = mysql_fetch_array($test_result);

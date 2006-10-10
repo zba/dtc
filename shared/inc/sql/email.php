@@ -255,12 +255,15 @@ if(isset($_REQUEST["delemailaccount"]) && $_REQUEST["delemailaccount"] == "Del")
 		triggerMXListUpdate();
 		updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	}
-	$cyr_conn = new cyradm;
-	$error = $cyr_conn->imap_login();
-	if ($error != 0){
-		die ("Error: " . $error);
+	if ($cyrus_used)
+	{
+		$cyr_conn = new cyradm;
+		$error = $cyr_conn->imap_login();
+		if ($error != 0){
+			die ("Error: " . $error);
+		}
+		$cyr_conn->deletemb("user/".$_REQUEST["edit_mailbox"]."@".$edit_domain);
 	}
-	$cyr_conn->deletemb("user/".$_REQUEST["edit_mailbox"]."@".$edit_domain);
 }
 
 ?>

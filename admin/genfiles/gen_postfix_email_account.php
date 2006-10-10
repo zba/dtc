@@ -172,10 +172,10 @@ function mail_account_generate_postfix(){
 
 					// if we have a $id equal to abuse
 					if ($id == "abuse"){
-						$abuse_address = 1;
+						$abuse_address++;
 					}
 					if ($id == "postmaster"){
-						$postmaster_address = 1;
+						$postmaster_address++; 
 					}
 					# first try and see if we have postfix in a chroot, else just put it in it's default location
 					if ($localdeliver == "yes" || $localdeliver == "true"){
@@ -239,15 +239,6 @@ function mail_account_generate_postfix(){
 					}
 				}
 			}
-			// if an abuse@ email hasn't been set, set one here to go to postmaster
-			if ($abuse_address == 0 && $primary_mx)
-			{
-				$domains_postmasters_file .= "abuse@$domain_full_name postmaster\n";
-			}
-			if ($postmaster_address == 0 && $primary_mx){
-				$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
-			}
-
 			//add support for creation of mailing lists
 			if(isset($domain["mailinglists"]) && $primary_mx)
 			{
@@ -258,6 +249,14 @@ function mail_account_generate_postfix(){
 					$list = $lists[$k];
 					$list_id = $list["id"];
 					$list_name = $list["name"];
+					if ($list_name == "abuse")
+					{
+						$abuse_address++;
+					}
+					else if ($list_name = "postmaster")
+					{
+						$postmaster_address++;
+					}
 					$list_owner = $list["owner"];
 					$list_domain = $list["domain"];
 			
@@ -273,6 +272,15 @@ function mail_account_generate_postfix(){
 					$aliases_file .= $name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"' . "\n";
 				}
 			}
+			// if an abuse@ email hasn't been set, set one here to go to postmaster
+			if ($abuse_address == 0 && $primary_mx)
+			{
+				$domains_postmasters_file .= "abuse@$domain_full_name postmaster\n";
+			}
+			if ($postmaster_address == 0 && $primary_mx){
+				$domains_postmasters_file .= "postmaster@$domain_full_name postmaster\n";
+			}
+
 			//always store catch all last... :)
 			if(isset($store_catch_all) && $store_catch_all != ""){
 				$domains_postmasters_file .= $store_catch_all;
