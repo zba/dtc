@@ -1460,6 +1460,13 @@ fi
 # prepare mlmmj environment to work with dtc
 #
 if [ -f "/usr/bin/mlmmj-make-ml" -o -f "/usr/bin/mlmmj-make-ml.sh" ] ; then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+		echo "Detected presence of mlmmj... prepping environment..."
+	fi
+	# symlink the .sh to the non .sh, for the genfiles 
+	if [ ! -e "/usr/bin/mlmmj-make-ml" ] ; then
+		ln -s "/usr/bin/mlmmj-make-ml.sh" "/usr/bin/mlmmj-make-ml"
+	fi
 	mkdir -p /etc/mlmmj/lists
 	chown -R root:$nobodygroup /etc/mlmmj/lists
 	chmod -R g+w /etc/mlmmj/lists

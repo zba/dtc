@@ -28,6 +28,8 @@ echo " - amavisd-new (yum install amavisd-new)"
 echo " - proftpd (Download the source rpm from http://dag.wieers.com/packages/proftpd/ and rpmbuild --rebuild <file> --with mysql) NOTE: The source rpm is older than the apt-get one, so don't upgrade proftpd..."
 echo " - libnss-mysql (build yourself from source (rpmbuild -ta libnss-mysql-1.5.tar.gz)"
 echo " - chrootuid (as per courier-maildrop above)"
+echo " - mlmmj (built from src.rpm, ie http://ftp.dulug.duke.edu/pub/fedora/linux/extras/development/SRPMS/mlmmj-1.2.11-5.fc6.src.rpm)
+echo " - mhonarc (build from src.rpm, ie http://ftp.dulug.duke.edu/pub/fedora/linux/extras/development/SRPMS/mhonarc-2.6.16-2.fc6.src.rpm)
 echo " - optionally SqWebMail"
 echo -n "Have you completed the above steps (yN)?"
 read completed_steps
