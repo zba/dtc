@@ -253,7 +253,7 @@ function mail_account_generate_postfix(){
 					{
 						$abuse_address++;
 					}
-					else if ($list_name = "postmaster")
+					else if ($list_name == "postmaster")
 					{
 						$postmaster_address++;
 					}
