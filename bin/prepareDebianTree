@@ -1,0 +1,88 @@
+#!/bin/sh
+#
+# Welcome to the DTC install maker !
+# Maintainer: Thomas GOIRAND <thomas [ at ] goirand.fr>
+# please do not ship with you packages
+# this is only a small coder tool...
+# $Source: /var/lib/cvs/dtc/bin/prepareDebianTree,v $
+# $Date: 2006/10/13 22:49:15 $
+# $Revision: 1.1 $
+
+DSTDIR=..
+
+VERS=`cat version`
+RELS=`cat release`
+if [ ""$VERS == "" ]; then
+	VERS=0
+fi
+if [ ""$RELS == "" ]; then
+	RELS=0
+fi
+VERSION=$VERS"-"$RELS
+UNIX_TYPE=debian
+
+echo " --- Updating DTC debian source package tree --- "
+
+# create the empty debian directory
+mkdir -p ${DSTDIR}/debian/
+
+#cp sources/debian/rules ${DSTDIR}/debian/
+
+# update the changelog if we haven't done so already... 
+
+echo "dtc ($VERSION) unstable; urgency=low
+" > ${DSTDIR}/debian/changelog
+echo "  * Fake changelog entry
+" >> ${DSTDIR}/debian/changelog
+NOWDATE=`date +'%a, %d %b %G %H:%m:%S %z'`
+echo " -- Thomas GOIRAND <thomas@goirand.fr>  $NOWDATE
+" >> ${DSTDIR}/debian/changelog
+
+# now add the previous changelog we have checked in already
+cat sources/debian/changelog >> ${DSTDIR}/debian/changelog
+
+# create the control file for the source package
+echo "Source: dtc
+Section: admin
+Priority: optional
+Maintainer: Thomas GOIRAND <thomas@goirand.fr>
+Build-Depends: debhelper (>> 4.0.0), dh-make
+Standards-Version: 3.6.1" > ${DSTDIR}/debian/control
+
+# Create the dtc target package
+echo "" >> ${DSTDIR}/debian/control # add an empty line
+echo "Package: dtc
+Version: "$VERS >> ${DSTDIR}/debian/control
+cat sources/debian/control >> ${DSTDIR}/debian/control
+
+# Create the dtc-postfix target package
+echo "" >> ${DSTDIR}/debian/control # add an empty line
+echo "Package: dtc-postfix-courier
+Version: "$VERS >> ${DSTDIR}/debian/control
+cat sources/debian/control_postfix_courier >> ${DSTDIR}/debian/control
+
+# Create the dtc-toaster target package
+echo "" >> ${DSTDIR}/debian/control # add an empty line
+echo "Package: dtc-toaster
+Version: "$VERS >> ${DSTDIR}/debian/control
+cat sources/debian/control_dtc_toaster >> ${DSTDIR}/debian/control
+
+# Create the dtc-package-installer target package
+echo "" >> ${DSTDIR}/debian/control # add an empty line
+echo "Package: dtc-package-installer
+Version: "$VERS >> ${DSTDIR}/debian/control
+cat sources/debian/control_dtc_package_installer >> ${DSTDIR}/debian/control
+
+# now for the 'copyright' file (copy from docs)
+cp ../doc/copyright ${DSTDIR}/debian/
+
+# Make the config file directory and script using standard
+# plus debian specific scripts
+cp -f sources/debian/prerm sources/debian/config sources/debian/postinst sources/debian/templates ${DSTDIR}/debian
+# somehow the config file gets lost
+cp -f sources/debian/config ${DSTDIR}/debian/dtc.config
+
+cat sources/setup_mysql_db.sh >>${DSTDIR}/debian/postinst
+cat sources/create_chroot.sh >>${DSTDIR}/debian/postinst
+cat sources/configure_deamons.sh >>${DSTDIR}/debian/postinst
+cat sources/uninstall_deamons.sh >>${DSTDIR}/debian/prerm

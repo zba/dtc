@@ -1,0 +1,8 @@
+Section: web
+Priority: optional
+Architecture: all
+Depends: dtc
+Maintainer: Thomas GOIRAND <thomas@goirand.fr>
+Description: Adds package installer apps to DTC
+ This is a collection of apps that are done for
+ the package installer of DTC.

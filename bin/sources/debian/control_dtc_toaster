@@ -1,0 +1,10 @@
+Section: web
+Priority: optional
+Architecture: all
+Depends: dtc-postfix-courier, mysqmail-courier-logger, mysqmail-postfix-logger, mysqmail-pure-ftpd-logger, ttf-arphic-ukai, msttcorefonts, dtc-package-installer
+Maintainer: Thomas GOIRAND <thomas@goirand.fr>
+Description: A meta package to setup all necessary DTC package
+ This is a meta package that will setup every package
+ that you need when you want to use DTC web hosting control
+ panel. If you want more information, have a look to the
+ dtc package itself.
