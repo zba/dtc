@@ -3,7 +3,7 @@
  * @package DTC
  * @author seeb <seeb@seeb.net.pl>
  * @abstract alternative image creation from image file. File based on oryginal img.php by Thomas Goirand <thomas@goirand.fr>
- * @version $Id: img_alt_skin.php,v 1.2 2006/05/21 19:37:29 seeb Exp $
+ * @version $Id: img_alt_skin.php,v 1.3 2006/10/13 05:49:24 tusker Exp $
  * @param $text, $color ,$link $sign
  *
  * $text -> Text to be drawn
@@ -13,6 +13,9 @@
  *				Example value can be: tree/hline
  * @see img.php
  * $Log: img_alt_skin.php,v $
+ * Revision 1.3  2006/10/13 05:49:24  tusker
+ * Adds new tools tab (directory protect - beta 1)
+ *
  * Revision 1.2  2006/05/21 19:37:29  seeb
  * repair bug in line 63
  *
@@ -316,6 +319,9 @@ if(sizeof($addrlink) == 1){
 		break;
 	case "mailing-lists":
 		$icon_im = imagecreatefrompng("mailing-lists.png");
+		break;
+	case "tools":
+		$icon_im = imagecreatefrompng("tools.png");
 		break;
 	default:
 	}

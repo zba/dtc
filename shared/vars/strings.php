@@ -5,7 +5,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.118 2006/09/17 07:01:15 thomas Exp $
+	* @version  $Id: strings.php,v 1.119 2006/10/13 05:49:24 tusker Exp $
 	* 
 	**/
 	
@@ -322,7 +322,7 @@ $txt_aliasing=array(
 	"pt" => "TRANS aliasing"
 );
 
-	$txt_DNS_config_of =array(	
+$txt_DNS_config_of =array(	
 	"fr" => "Configuration DNS de : ",
 	"en" => "DNS config of:",
 	"hu" => "TRANS DNS_config of",
@@ -336,7 +336,23 @@ $txt_aliasing=array(
 	"es" => "Configuraci&oacute;n DNS de :",
 	"pt" => "TRANS DNS_config of"
 );
-	$txt_Statistics_of_domain =array(	
+
+$txt_domain_tools =array(
+	"fr" => "Domain Tools: ",
+        "en" => "Domain Tools:",
+        "hu" => "TRANS Domain Tools:",
+        "it" => "TRANS Domain Tools:",
+        "nl" => "TRANS Domain Tools:",
+        "ru" => "TRANS Domain Tools:",
+        "de" => "TRANS Domain Tools:",
+        "zh" => "TRANS Domain Tools:",
+        "pl" => "TRANS Domain Tools:",
+        "se" => "TRANS Domain Tools:",
+        "es" => "TRANS Domain Tools:",
+        "pt" => "TRANS Domain Tools:"
+);
+
+$txt_Statistics_of_domain =array(	
 	"fr" => "Statistiques du domaine : ",
 	"en" => "Statistics of domain:",
 	"hu" => "TRANS Statistics of domain",
@@ -350,7 +366,7 @@ $txt_aliasing=array(
 	"es" => "Estad&iacute;sticas del dominio",
 	"pt" => "TRANS Statistics of domain"
 );
-	$txt_Whois_editor_of =array(
+$txt_Whois_editor_of =array(
 	"fr" => "Vos sous-comptes: ",
 	"en" => "Your child accounts:",
 	"hu" => "TRANS ",

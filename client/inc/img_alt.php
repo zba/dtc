@@ -12,7 +12,17 @@
  * $sign -> The current sign to use for drawing (minus, tree, endtree, vline, hline, plus or none)
  *				Example value can be: tree/hline
  * @see img.php
- * $Log: $
+ * $Log: img_alt.php,v $
+ * Revision 1.3  2006/05/17 12:58:01  seeb
+ * Adding to file cvs user log as comment
+ * Please comment any change(s).
+ * Tnx
+ * /seeb
+ *
+ * Revision 1.2  2006/05/16 22:37:27  seeb
+ * Adding to file cvs user log as comment
+ * Please comment any change(s).
+ * Tnx
  */
 
 header ("Content-type: image/png");
@@ -289,6 +299,9 @@ if(sizeof($addrlink) == 1){
 		break;
 	case "mailing-lists":
 		$icon_im = imagecreatefrompng("mailing-lists.png");
+		break;
+	case "tools":
+		$icon_im = imagecreatefrompng("tools.png");
 		break;
 	default:
 	}

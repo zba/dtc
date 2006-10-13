@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.80 2006/08/04 09:52:10 thomas Exp $
+ * @version $Id: draw.php,v 1.81 2006/10/13 05:49:24 tusker Exp $
  * 
  */
 if($panel_type !="email"){
@@ -19,6 +19,10 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/dns.php");
 	require("$dtcshared_path/inc/forms/subdomain.php");
 	require("$dtcshared_path/inc/forms/lists.php");
+	//udns.us add
+       require("$dtcshared_path/inc/forms/tools.php");
+	//udns.us /add
+
 	require("$dtcshared_path/inc/forms/vps.php");
 }
 require("$dtcshared_path/inc/forms/email.php");
@@ -115,6 +119,7 @@ function drawAdminTools($admin){
 	global $txt_password;
 	global $txt_edit_mailing_lists_of_domain;
 	global $txt_DNS_config_of;
+	global $txt_domain_tools;
 	global $txt_Statistics_of_domain;
 	global $txt_Whois_editor_of;
 	global $txt_Package;
@@ -252,6 +257,14 @@ function drawAdminTools($admin){
 				"type" => "link",
 				"link" => "mailing-lists");
 		}
+//udns.us add
+		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
+			$domain_conf_submenu[] = array(
+				"text" => $txt_domain_tools[$lang],
+				"type" => "link",
+				"link" => "tools");
+		}
+//udns.us /add
 		if($add_array[0] == $dom){
 		  $selected_domain = array(
 			"text" => "$dom",
@@ -333,6 +346,13 @@ function drawAdminTools($admin){
                         $web_editor .= "<img src=\"inc/mailing-lists.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_mailinglists[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_MailingLists($eddomain);
 			$title = $txt_edit_mailing_lists_of_domain[$lang].":".$edit_domain;
+		//udns.us add
+		}else if(@$add_array[1] == "tools"){
+			$web_editor .= "<img src=\"inc/tools.png\" align=\"left\"><font size=\"+2\"><b><u>Tools:</u></b><br></font>";
+			$web_editor .= drawAdminTools_Tools($eddomain);
+			// To be translated:
+			$title = $txt_domain_tools[$lang].":".$edit_domain;
+			//udns.us /add
 		}else if(@$add_array[1] == "dns"){
                         $web_editor .= "<img src=\"inc/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_nameservers[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);

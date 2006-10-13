@@ -368,6 +368,11 @@ if(sizeof($addrlink) == 1){
 	case "mailing-lists":
 		$icon_im = imagecreatefrompng("mailing-lists.png");
 		break;
+//udns.us add
+	case "tools":
+		$icon_im = imagecreatefrompng("tools.png");
+		break;
+//udns.us /add
 	default:
 	}
 }
