@@ -57,8 +57,9 @@ install: build
 	# Add here commands to install the package into debian/dtc.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/dtc-postfix-courier
+	mkdir -p $(CURDIR)/debian/dtc-postfix-courier/DEBIAN
+	cp $(CURDIR)/debian/postinst $(CURDIR)/debian/prerm $(CURDIR)/debian/templates $(CURDIR)/debian/config $(CURDIR)/debian/dtc-postfix-courier/DEBIAN
 	$(MAKE) installpkg DESTDIR=$(CURDIR)/debian/dtc-package-installer
-
 
 # Build architecture-independent files here.
 binary-indep: build install
