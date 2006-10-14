@@ -19,3 +19,9 @@ Description: A GPL web control panel for admin and accounting hosting services
  All this using a single system UID/GID. It does as well monitoring of all
  trafic accounting per user and per service (and globaly using RRDTools).
  Since version 0.12, DTC is fully skinable and translated in several languages.
+ This specific package has dependencies to setup postfix, courier,
+ phpmyadmin and other apps in once, so you don't have to setup all the
+ dependencies by hand. The counter part is that you can't use this
+ package when using Cyrus, Dovecot and others (for that, you need to
+ use the package dtc which has a lot less dependencies).
+
