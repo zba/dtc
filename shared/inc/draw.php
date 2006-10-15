@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.81 2006/10/13 05:49:24 tusker Exp $
+ * @version $Id: draw.php,v 1.82 2006/10/15 11:07:24 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -19,6 +19,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/dns.php");
 	require("$dtcshared_path/inc/forms/subdomain.php");
 	require("$dtcshared_path/inc/forms/lists.php");
+	require("$dtcshared_path/inc/forms/ticket.php");
 	//udns.us add
        require("$dtcshared_path/inc/forms/tools.php");
 	//udns.us /add
@@ -305,6 +306,10 @@ function drawAdminTools($admin){
 		"type" => "link",
 		"link" => "password");
 	$user_menu[] = array(
+		"text" => "Support tickets",
+		"type" => "link",
+		"link" => "ticket");
+	$user_menu[] = array(
 		"text" => $txt_cmenu_help[$lang],
 		"type" => "link",
 		"link" => "help");
@@ -415,6 +420,10 @@ function drawAdminTools($admin){
                         $web_editor .= "<img src=\"inc/password.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_password[$lang]:</u></b><br></font>";
 			$web_editor .= drawPasswordChange();
 			$title = $txt_password[$lang];
+		}else if($add_array[0] == "ticket"){
+                        $web_editor .= "<img src=\"inc/ticket.png\" align=\"left\"><font size=\"+2\"><b><u>Support tickets:</u></b><br></font>";
+			$web_editor .= drawTickets($admin);
+			$title = "Support ticket system";
 		}else if($add_array[0] == "help"){
                         $web_editor .= "<img src=\"inc/help.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_help[$lang]:</u></b><br></font>";
 			$web_editor .= $txt_draw_help_content[$lang];

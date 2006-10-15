@@ -323,6 +323,9 @@ if(sizeof($addrlink) == 1){
 	case "help":
 		$icon_im = imagecreatefrompng("help.png");
 		break;
+	case "ticket":
+		$icon_im = imagecreatefrompng("ticket.png");
+		break;
 	default:
 		$icon_im = imagecreatefrompng("domains.png");
 		break;
