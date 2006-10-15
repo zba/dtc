@@ -7,11 +7,23 @@ function drawTickets($admin){
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
+	global $conf_administrative_site;
 
-	$out = "<font color=\"red\">This part is in active development: do not use yet</font><br>";
+	$out = "<br>";
 
 	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "new_ticket"){
-		print_r($admin["vps"]);
+		$popup_hostname = "";
+		if(isset($admin["data"])){
+			$popup_hostname .= "<option value=\"$conf_administrative_site\">$conf_administrative_site</option>";
+		}
+		if(isset($admin["vps"])){
+			$nbr_vps = sizeof($admin["vps"]);
+			for($i=0;$i<$nbr_vps;$i++){
+				$vps_name = $admin["vps"][$i]["vps_server_hostname"].":".$admin["vps"][$i]["vps_xen_name"];
+				$popup_hostname .= "<option value=\"$vps_name\">$vps_name</option>";
+			}
+		}
+//		print_r($admin["vps"]);
 		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\" enctype=\"application/x-www-form-urlencoded\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -19,16 +31,9 @@ function drawTickets($admin){
 
 Subject: <input name=\"subject\" type=\"text\" size=\"40\" maxlength=\"40\"><br>
 
-What type of hosting are you having the issue with:<br>
-<select name=\"hosting_type\">
-<option value=\"shared\">Shared</option>
-<option value=\"vps\">VPS</option>
-<option value=\"dedicated\">Dedicated server</option>
-</select><br>
-
 What is your server hostname:<br>
 <select name=\"server_hostname\">
-<option value=\"node0103\">node0103</option>
+$popup_hostname
 </select><br>
 
 Type of problem:<br>
