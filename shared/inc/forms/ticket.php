@@ -9,7 +9,7 @@ function drawTickets($admin){
 	global $addrlink;
 	global $conf_administrative_site;
 
-	$out = "<br>";
+	$out = "<font color=\"red\">This part is still in development: do not use</font><br>";
 
 	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "new_ticket"){
 		$popup_hostname = "";
