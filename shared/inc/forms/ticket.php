@@ -71,10 +71,10 @@ Full description of the trouble:<br>
 		if($n != 1){
 			$out .= "Ticket not found!!!";
 		}else{
-			$a = mysql_fetch_array($r);
-			$out .= "Subject: ".$a["subject"]."<br>";
+			$a_t = mysql_fetch_array($r);
+			$out .= "Subject: ".stripslashes($a_t["subject"])."<br>";
 
-			$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a["cat_id"]."';";
+			$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a_t["cat_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
@@ -83,8 +83,8 @@ Full description of the trouble:<br>
 				$a2 = mysql_fetch_array($r2);
 				$out .= "Type: ".$a2["catdescript"]."<br>";
 			}
-			$out .= "First query date: ".$a["date"]." ".$a["time"]."<br>";
-			$out .= "Server hostname related: ".$a["server_hostname"]."<br>";
+			$out .= "First query date: ".$a_t["date"]." ".$a_t["time"]."<br>";
+			$out .= "Server hostname related: ".$a_t["server_hostname"]."<br>";
 			
 			$out .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"0\">";
 			$next_tikq = $_REQUEST["tik_id"];
@@ -97,15 +97,31 @@ Full description of the trouble:<br>
 					break;
 				}
 				$a = mysql_fetch_array($r);
+				$last_tik_id = $next_tikq;
 				$next_tikq = $a["reply_id"];
 				if($a["admin_or_user"] == "user"){
 					$bg = " bgcolor=\"#AAAAFF\" ";
 				}else{
 					$bg = " bgcolor=\"#FFFFAA\" ";
 				}
-				$out .= "<tr><td$bg><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".$a["text"]."</td></tr>";
+				$out .= "<tr><td$bg><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".stripslashes($a["text"])."</td></tr>";
 			}
 			$out .= "</table>";
+			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"subaction\" value=\"view_ticket\">
+<input type=\"hidden\" name=\"action\" value=\"add_ticket_reply\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+<input type=\"hidden\" name=\"tik_id\" value=\"".$_REQUEST["tik_id"]."\">
+<input type=\"hidden\" name=\"last_tik_id\" value=\"$last_tik_id\">
+<input type=\"hidden\" name=\"subject\" value=\"".$a_t["subject"]."\">
+<input type=\"hidden\" name=\"cat_id\" value=\"".$a_t["cat_id"]."\">
+<input type=\"hidden\" name=\"server_hostname\" value=\"".$a_t["server_hostname"]."\">
+<textarea name=\"ticketbody\" cols=\"60\" rows=\"10\" wrap=\"physical\"></textarea><br>
+<input type=\"submit\" value=\"Submit new support issue\">
+</form>
+";
 		}
 	// The main screen
 	}else{
@@ -140,7 +156,7 @@ Full description of the trouble:<br>
 				$a2 = mysql_fetch_array($r2);
 				$out .= "<td>".$a2["catname"]."</td>";
 			}
-			$out .= "<td>".$a["server_hostname"]."</td><td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&subaction=view_ticket&tik_id=".$a["id"]."\">".$a["subject"]."</a></td>";
+			$out .= "<td>".$a["server_hostname"]."</td><td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&subaction=view_ticket&tik_id=".$a["id"]."\">".stripslashes($a["subject"])."</a></td>";
 			$out .= "</tr>";
 		}
 		$out .= "</table>";

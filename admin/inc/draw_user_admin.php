@@ -38,15 +38,91 @@ function drawNewAdminForm(){
 	global $txt_login_title;
 	global $txt_domain_tbl_config_dom_name;
 
+	$out = "";
 	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "resolv_ticket"){
-		$out = "";
 		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='".$_REQUEST["tik_id"]."';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
 			return "Cannot find ticket!";
 		}
-		return "Resolving ticket!";
+		$a = mysql_fetch_array($r);
+		$out .= "Subject: ".$a["subject"]."<br>";
+		
+		$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a["cat_id"]."';";
+		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		if($n2 != 1){
+			$out .= "Type: type not found!";
+		}else{
+			$a2 = mysql_fetch_array($r2);
+			$out .= "Type: ".$a2["catdescript"]."<br>";
+		}
+		$out .= "First query date: ".$a["date"]." ".$a["time"]."<br>";
+		$out .= "Server hostname related: ".$a["server_hostname"]."<br>";
+		
+		$out .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"0\">";
+		$next_tikq = $_REQUEST["tik_id"];
+		while($next_tikq != 0){
+			$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE adm_login='".$a["adm_login"]."' AND id='$next_tikq';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			if($n != 1){
+				$out .= "Ticket not found!!!";
+				break;
+			}
+			$a = mysql_fetch_array($r);
+			$last_tik = $next_tikq;
+			$next_tikq = $a["reply_id"];
+			if($a["admin_or_user"] == "user"){
+				$bg = " bgcolor=\"#AAAAFF\" ";
+			}else{
+				$bg = " bgcolor=\"#FFFFAA\" ";
+			}
+			$out .= "<tr><td$bg><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".$a["text"]."</td></tr>";
+		}
+		$out .= "</table>";
+		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+		<input type=\"hidden\" name=\"subaction\" value=\"ticket_reply\">
+		<textarea cols=\"60\" rows=\"10\" wrap=\"physical\" name=\"ticketbody\"></textarea><br>
+		<input type=\"hidden\" name=\"tik_id\" value=\"".$_REQUEST["tik_id"]."\">
+		<input type=\"hidden\" name=\"last_tik_id\" value=\"$last_tik\">
+		<input type=\"submit\" name=\"answer\" value=\"Send reply\">
+		<input type=\"submit\" name=\"answer_close\" value=\"Send reply and close ticket\">
+		<input type=\"submit\" name=\"close\" value=\"Close without reply\">
+		</form>";
+		return $out;
+	}
+	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "ticket_reply"){
+		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='".$_REQUEST["tik_id"]."';";
+		$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			return "Cannot find ticket!";
+		}
+		$a = mysql_fetch_array($r);
+		if(isset($_REQUEST["answer"])){
+			$closed = "no";
+		}else{
+			$closed = "yes";
+		}
+		if(isset($_REQUEST["answer"]) || isset($_REQUEST["answer_close"])){
+			$q2 = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,subject,text,cat_id,initial_ticket,server_hostname,closed)
+			VALUES ('','".$a["adm_login"]."','".date("Y-m-d")."','".date("H:i:s")."','".$_REQUEST["last_tik_id"]."','0','admin','".$a["subject"]."','".addslashes($_REQUEST["ticketbody"])."','".$a["cat_id"]."','".$a["id"]."','".$a["server_hostname"]."','$closed');";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$ins_id = mysql_insert_id();
+			$q2 = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$ins_id' WHERE id='".$_REQUEST["last_tik_id"]."';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$out .= "Ticket reply sent!<br>
+				<form action=\"".$_SERVER["PHP_SELF"]."\">
+				<input type=\"submit\" name=\"submit\" value=\"Back to pending requests\">
+				</form>";
+		}
+		if($closed == "yes"){
+			$q2 = "UPDATE $pro_mysql_tik_queries_table SET closed='yes' WHERE id='".$_REQUEST["tik_id"]."';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		}
+		return $out;
 	}
 
 	// Draw the form for making a new admin
