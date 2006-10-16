@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS tik_queries (
   `text` text,
   `cat_id` int(11) NOT NULL default '0',
   `initial_ticket` enum('yes','no') NOT NULL default 'yes',
+  `server_hostname` varchar(64) NOT NULL default '',
   PRIMARY KEY  (id),
   INDEX in_reply (in_reply_of_id),
   INDEX reply_id (reply_id),
