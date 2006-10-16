@@ -89,7 +89,7 @@ Full description of the trouble:<br>
 			$out .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"0\">";
 			$next_tikq = $_REQUEST["tik_id"];
 			while($next_tikq != 0){
-				$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE adm_login='$adm_login' AND id='".$_REQUEST["tik_id"]."';";
+				$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE adm_login='$adm_login' AND id='$next_tikq';";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$n = mysql_num_rows($r);
 				if($n != 1){
