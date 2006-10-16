@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS tik_queries (
   `admin_or_user` enum('admin','user') NOT NULL default 'user',
   `subject` varchar(255) NOT NULL default '',
   `text` text,
+  `cat_id` int(11) NOT NULL default '0',
+  `initial_ticket` enum('yes','no') NOT NULL default 'yes',
   PRIMARY KEY  (id),
   INDEX in_reply (in_reply_of_id),
   INDEX reply_id (reply_id),
