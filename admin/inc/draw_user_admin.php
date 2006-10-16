@@ -5,6 +5,15 @@
  * @return new admin menu
  */
 
+function calculateAge($date,$time){
+	$exp_date = explode("-",$date);
+	$exp_time = explode(":",$time);
+	$timestamp = mktime($exp_time[0],$exp_time[1],$exp_time[2],$exp_date[1],$exp_date[2],$exp_date[0]);
+	$age_timestamp = mktime() - $timestamp;
+	$age = date("Y-m-d H:i",$age_timestamp);
+	return $age;
+}
+
 function drawNewAdminForm(){
 	global $txt_login_login;
 	global $txt_login_pass;
@@ -18,6 +27,9 @@ function drawNewAdminForm(){
 	global $pro_mysql_pending_renewal_table;
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_table;
+	global $pro_mysql_tik_admins_table;
+	global $pro_mysql_tik_queries_table;
+	global $pro_mysql_tik_cats_table;
 
 	global $txt_add_a_new_user;
 	global $txt_userndomain_waiting_for_addition;
@@ -25,6 +37,17 @@ function drawNewAdminForm(){
 	global $txt_no_domain_waiting;
 	global $txt_login_title;
 	global $txt_domain_tbl_config_dom_name;
+
+	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "resolv_ticket"){
+		$out = "";
+		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='".$_REQUEST["tik_id"]."';";
+		$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			return "Cannot find ticket!";
+		}
+		return "Resolving ticket!";
+	}
 
 	// Draw the form for making a new admin
 	$add_a_user = "<h4>".$txt_add_a_new_user[$lang]."</h4>
@@ -168,7 +191,32 @@ function drawNewAdminForm(){
 		}
 		$waiting_new_users .= "</table>";
 	}
-
+	// Ticket manager
+	$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE closed='no' AND initial_ticket='yes';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n < 1){
+		$waiting_new_users .= "<br><b>No pending support tickets!</b><br>";
+	}else{
+		$waiting_new_users .= "<table border=\"1\">
+	<tr><td>".$txt_login_title[$lang]."</td><td>Age</td><td>Type</td><td>Subject</td></tr>";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$waiting_new_users .= "<tr><td>".$a["adm_login"]."</td>";
+			$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a["cat_id"]."'";
+			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+			$n2 = mysql_num_rows($r2);
+			if($n2 != 1){
+				$cat = "Type not found!";
+			}else{
+				$a2 = mysql_fetch_array($r2);
+				$cat = $a2["catname"];
+			}
+			$age = calculateAge($a["date"],$a["time"]);
+			$waiting_new_users .= "<td>$age</td><td>$cat</td><td><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".$a["subject"]."</a></td></tr>";
+		}
+		$waiting_new_users .= "</table>";
+	}
 	return "<table>
 <tr>
 	<td valign=\"top\">".
