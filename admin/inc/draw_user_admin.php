@@ -47,7 +47,7 @@ function drawNewAdminForm(){
 			return "Cannot find ticket!";
 		}
 		$a = mysql_fetch_array($r);
-		$out .= "Subject: ".$a["subject"]."<br>";
+		$out .= "Subject: ".stripslashes($a["subject"])."<br>";
 		
 		$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a["cat_id"]."';";
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -79,7 +79,7 @@ function drawNewAdminForm(){
 			}else{
 				$bg = " bgcolor=\"#FFFFAA\" ";
 			}
-			$out .= "<tr><td$bg><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".$a["text"]."</td></tr>";
+			$out .= "<tr><td$bg><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".stripslashes($a["text"])."</td></tr>";
 		}
 		$out .= "</table>";
 		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
