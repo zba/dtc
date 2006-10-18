@@ -14,6 +14,71 @@ function calculateAge($date,$time){
 	return $age;
 }
 
+function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
+	global $pro_mysql_admin_table;
+	global $pro_mysql_client_table;
+	global $conf_webmaster_email_addr;
+	global $conf_administrative_site;
+
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		return "Admin not found!";
+	}
+	$a = mysql_fetch_array($r);
+	$q = "SELECT * FROM $pro_mysql_client_table WHERE id='".$a["id_client"]."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		return "Admin not found!";
+	}
+	$a = mysql_fetch_array($r);
+	$headers = "From: ".$conf_webmaster_email_addr;
+
+	$content = "Subject: ".stripslashes($subject)."
+
+Hello,
+
+An administrator has replied to your suppor ticket.
+Bellow is a copy of the reply sent by the administrator.
+
+**********
+$body
+**********
+
+Please DO NOT reply to this mail. In order to keep a history,
+and enable us to reply faster and share the support work with
+all the members of our team, use the control panel support
+ticket tab to reply.
+
+";
+
+	if($closed == "yes"){
+		$content .= "Note that the ticket is still open, meaning we are waiting
+for your answer. So please login to the control panel at the
+following URL:
+
+http://$conf_administrative_site/dtc/
+
+with your login $adm_login, then go in the support ticket tab
+and type your reply.
+";
+	}else{
+		$content .= "Note that the ticket has been closed, meaning that there is
+no need for another reply. If you are still needing help, then
+you must open a new support ticket. To do so, login to the
+control panel at the following URL:
+
+http://$conf_administrative_site/dtc/
+
+with your login $adm_login, then go in the support
+ticket tab and type your reply.
+";
+	}
+	mail($a["email"],"[DTC] An administrator replied to your support ticket",$content,$headers);
+}
+
 function drawNewAdminForm(){
 	global $txt_login_login;
 	global $txt_login_pass;
@@ -117,10 +182,12 @@ function drawNewAdminForm(){
 				<form action=\"".$_SERVER["PHP_SELF"]."\">
 				<input type=\"submit\" name=\"submit\" value=\"Back to pending requests\">
 				</form>";
+			mailUserTicketReply($a["adm_login"],$a["subject"],$_REQUEST["ticketbody"],$closed);
 		}
 		if($closed == "yes"){
 			$q2 = "UPDATE $pro_mysql_tik_queries_table SET closed='yes' WHERE id='".$_REQUEST["tik_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			mailUserTicketReply($a["adm_login"],"The ticket has been closed (without text reply)","yes");
 		}
 		return $out;
 	}
