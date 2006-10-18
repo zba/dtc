@@ -10,7 +10,7 @@ function calculateAge($date,$time){
 	$exp_time = explode(":",$time);
 	$timestamp = mktime($exp_time[0],$exp_time[1],$exp_time[2],$exp_date[1],$exp_date[2],$exp_date[0]);
 	$age_timestamp = mktime() - $timestamp;
-	$age = date("Y-m-d H:i",$age_timestamp);
+	$age =  round($age_timestamp/(60*60*24)) ." j " .round(($age_timestamp/(60*60))%24) ." h " .round(($age_timestamp/60)%60) ." m " . $age_timestamp%60 . " s";
 	return $age;
 }
 
@@ -289,7 +289,7 @@ function drawNewAdminForm(){
 				$cat = $a2["catname"];
 			}
 			$age = calculateAge($a["date"],$a["time"]);
-			$waiting_new_users .= "<td>$age</td><td>$cat</td><td><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".$a["subject"]."</a></td></tr>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".$a["subject"]."</a></td></tr>";
 		}
 		$waiting_new_users .= "</table>";
 	}
