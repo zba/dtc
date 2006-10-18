@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.67 2006/10/18 05:30:43 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.68 2006/10/18 08:24:43 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -13,7 +13,27 @@ function drawTicketConfig(){
 	global $rub;
 	global $sousrub;
 
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_tik_admin"){
+		$q = "INSERT INTO $pro_mysql_tik_admins_table (id,pseudo,realname,email,available)
+			VALUES ('','".$_REQUEST["pseudo"]."','".$_REQUEST["realname"]."','".$_REQUEST["email"]."','".$_REQUEST["available"]."');";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	}
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_tik_admin"){
+		$q = "UPDATE $pro_mysql_tik_admins_table
+			SET pseudo='".$_REQUEST["pseudo"]."',
+			realname='".$_REQUEST["realname"]."',
+			email='".$_REQUEST["email"]."',
+			available='".$_REQUEST["available"]."'
+			WHERE id='".$_REQUEST["id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	}
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_tik_admin"){
+		$q = "DELETE FROM $pro_mysql_tik_admins_table WHERE id='".$_REQUEST["id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	}
+
 	$out = "";
+	$out .= "<b><u>List of support ticket administrators:</u></b><br>";
 	$q = "SELECT * FROM $pro_mysql_tik_admins_table";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -28,27 +48,30 @@ function drawTicketConfig(){
 			$avail_yes = " ";
 			$avail_no = " checked ";
 		}
-		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\"><input type=\"hidden\" name=\"sousrub\" value=\"$sousrub\">
+		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
 	<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
 	<input type=\"hidden\" name=\"action\" value=\"edit_tik_admin\">
 	<input type=\"text\" name=\"pseudo\" value=\"".$a["pseudo"]."\"></td>
 	<td><input type=\"text\" name=\"realname\" value=\"".$a["realname"]."\"></td>
 	<td><input type=\"text\" name=\"email\" value=\"".$a["email"]."\"></td>
-	<td><input type=\"radio\" name=\"available\" value=\"yes\" $avail_yes>
-	<input type=\"radio\" name=\"available\" value=\"no\" $avail_no></td>
+	<td><input type=\"radio\" name=\"available\" value=\"yes\" $avail_yes> Yes
+	<input type=\"radio\" name=\"available\" value=\"no\" $avail_no> No</td>
 	<td style=\"white-space:nowrap;\"><input type=\"submit\" value=\"Save\"></form>
-	<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\"><input type=\"hidden\" name=\"sousrub\" value=\"$sousrub\">
+	<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
 	<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
 	<input type=\"hidden\" name=\"action\" value=\"delete_tik_admin\">
 	<input type=\"submit\" value=\"Delete\"></form></td></tr>";
 	}
-	$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\"><input type=\"hidden\" name=\"sousrub\" value=\"$sousrub\">
+	$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
 	<input type=\"hidden\" name=\"action\" value=\"new_tik_admin\">
 	<input type=\"text\" name=\"pseudo\" value=\"\"></td>
 	<td><input type=\"text\" name=\"realname\" value=\"\"></td>
 	<td><input type=\"text\" name=\"email\" value=\"\"></td>
-	<td><input type=\"radio\" name=\"available\" value=\"yes\" checked>
-	<input type=\"radio\" name=\"available\" value=\"no\"></td>
+	<td><input type=\"radio\" name=\"available\" value=\"yes\" checked> Yes
+	<input type=\"radio\" name=\"available\" value=\"no\"> No</td>
 	<td style=\"white-space:nowrap;\"><input type=\"submit\" value=\"New\"></form></td></tr>";
 	$out .= "</table>";
 	return $out;
