@@ -16,6 +16,8 @@ set -e
 
 # exit 0
 
+#DEBHELPER#
+
 # Enable this to debug!
 VERBOSE_INSTALL=yes
 
