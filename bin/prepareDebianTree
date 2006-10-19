@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/prepareDebianTree,v $
-# $Date: 2006/10/19 06:43:10 $
-# $Revision: 1.3 $
+# $Date: 2006/10/19 06:44:45 $
+# $Revision: 1.4 $
 
 DSTDIR=..
 
@@ -52,25 +52,25 @@ Standards-Version: $VERS" > ${DSTDIR}/debian/control
 # Create the dtc target package
 echo "" >> ${DSTDIR}/debian/control # add an empty line
 echo "Package: dtc
-Version: "$VERS >> ${DSTDIR}/debian/control
+Version: "$VERSION >> ${DSTDIR}/debian/control
 cat sources/debian/control >> ${DSTDIR}/debian/control
 
 # Create the dtc-postfix target package
 echo "" >> ${DSTDIR}/debian/control # add an empty line
 echo "Package: dtc-postfix-courier
-Version: "$VERS >> ${DSTDIR}/debian/control
+Version: "$VERSION >> ${DSTDIR}/debian/control
 cat sources/debian/control_postfix_courier >> ${DSTDIR}/debian/control
 
 # Create the dtc-toaster target package
 echo "" >> ${DSTDIR}/debian/control # add an empty line
 echo "Package: dtc-toaster
-Version: "$VERS >> ${DSTDIR}/debian/control
+Version: "$VERSION >> ${DSTDIR}/debian/control
 cat sources/debian/control_dtc_toaster >> ${DSTDIR}/debian/control
 
 # Create the dtc-package-installer target package
 echo "" >> ${DSTDIR}/debian/control # add an empty line
 echo "Package: dtc-package-installer
-Version: "$VERS >> ${DSTDIR}/debian/control
+Version: "$VERSION >> ${DSTDIR}/debian/control
 cat sources/debian/control_dtc_package_installer >> ${DSTDIR}/debian/control
 
 # now for the 'copyright' file (copy from docs)
