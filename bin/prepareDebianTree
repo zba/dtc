@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/prepareDebianTree,v $
-# $Date: 2006/10/18 15:55:19 $
-# $Revision: 1.2 $
+# $Date: 2006/10/19 06:43:10 $
+# $Revision: 1.3 $
 
 DSTDIR=..
 
@@ -47,7 +47,7 @@ Section: admin
 Priority: optional
 Maintainer: Thomas GOIRAND <thomas@goirand.fr>
 Build-Depends: debhelper (>> 4.0.0), dh-make
-Standards-Version: $VERSION" > ${DSTDIR}/debian/control
+Standards-Version: $VERS" > ${DSTDIR}/debian/control
 
 # Create the dtc target package
 echo "" >> ${DSTDIR}/debian/control # add an empty line
