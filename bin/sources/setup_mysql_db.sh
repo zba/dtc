@@ -262,6 +262,9 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER 
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE passwd passwd VARCHAR(255) DEFAULT '' NOT NULL"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE paiement CHANGE secpay_site secpay_site enum('none', 'paypal', 'worldpay','enets') DEFAULT 'none' NOT NULL"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8)))"
+# fix size of accounting variables to store more info
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE http_accounting CHANGE bytes_receive bytes_receive BIGINT(14) UNSIGNED NOT NULL DEFAULT '0'"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE http_accounting CHANGE bytes_sent bytes_sent BIGINT(14) UNSIGNED NOT NULL DEFAULT '0'"
 
 # Add dtc userspace info to mysql db if it's not there
 TMP_FILE=`${MKTEMP} dtc_downer_grep.XXXXXXXX`  || exit 1
