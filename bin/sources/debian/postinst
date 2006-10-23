@@ -180,11 +180,13 @@ fi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Installing modifications in php.ini"
 fi
-if grep mysql.so /etc/php4/cli/php.ini | grep extension= >/dev/null
-then
-	echo -n ""
-else
-	echo "extension=mysql.so" >>/etc/php4/cli/php.ini
+if [ -d /etc/php4/cli/ ] ; then
+	if grep mysql.so /etc/php4/cli/php.ini | grep extension= >/dev/null
+	then
+		echo -n ""
+	else
+		echo "extension=mysql.so" >>/etc/php4/cli/php.ini
+	fi
 fi
 
 # Setup a minimum include path with . and /usr/share/pear (or /usr/share/php for debian testing) !!!
