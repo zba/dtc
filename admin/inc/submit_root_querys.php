@@ -77,6 +77,16 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_vps_to_user"){
 	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,product_id)
 	VALUES('','$adm_login','".$a["vps_server_hostname"]."','".$a["vps_xen_name"]."','".date("Y-m-d")."','$exp_date','".$prod["quota_disk"]."','".$prod["memory_size"]."','".$_REQUEST["product_id"]."');";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	// Setup the physical VPS (do the lvcreate remotly)
+	if($_REQUEST["physical_setup"] == "yes"){
+		$soap_client = connectToVPSServer($a["vps_server_hostname"]);
+		if($soap_client == false){
+			echo "Could not connect to the VPS server for doing the setup: please contact the administrator!";
+		}else{
+			$r = $soap_client->call("setupLVMDisks",array("vpsname" => $a["vps_xen_name"], "hddsize" => $prod["quota_disk"], "swapsize" => $prod["memory_size"]),"","","");
+		}
+	}
 }
 
 // Import of domain config
