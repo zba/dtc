@@ -22,7 +22,7 @@ mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/generic"
 ./makeDebian
 ./makeTarball
 ./makeBSD
-./makeRedhat
+fakeroot ./makeRedhat
 ./makeGentoo
 
 echo "--- Copying file to debian repository ---"
