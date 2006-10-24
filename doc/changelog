@@ -1,5 +1,7 @@
-Version 0.21:
+Version 0.22:
 -------------
+- Added support ticket system with email reminders
+
 - Added an eye icon to see the content of the password fields
 
 - Added support for VPS together with the dtc-xen hosting package
