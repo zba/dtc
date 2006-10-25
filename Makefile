@@ -13,6 +13,8 @@ install:
 	@-echo "Copying to $(DESTDIR)..."
 
 	@-mkdir -p $(DESTDIR)/usr/share/dtc/etc/zones
+	@-mkdir -p $(DESTDIR)/usr/share/doc/dtc
+
 	cp -rf doc admin client shared email $(DESTDIR)/usr/share/dtc
 	rm -rf $(DESTDIR)/usr/share/dtc/shared/package-installer
 	rm -rf $(DESTDIR)/usr/share/dtc/doc/LICENSE
@@ -25,7 +27,7 @@ install:
 	if ! [ -e $(DESTDIR)/usr/share/dtc/client/imgcache ] ;	then 		ln -s ../shared/imgcache $(DESTDIR)/usr/share/dtc/client/imgcache ;	fi
 	if ! [ -e $(DESTDIR)/usr/share/dtc/email/imgcache ] ;	then 		ln -s ../shared/imgcache $(DESTDIR)/usr/share/dtc/email/imgcache ;	fi
 
-	echo "<?php $$conf_dtc_version= \""$(VERS)"\"; $$conf_dtc_release= \""$(RELS)"\"; $$conf_unix_type= \""debian"\"; ?>" > $(DESTDIR)/usr/share/dtc/shared/dtc_version.php
+	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" > $(DESTDIR)/usr/share/dtc/shared/dtc_version.php
 	mkdir -p $(DESTDIR)/usr/share/dtc/shared/imgcache
 	cp bin/sources/dtc_db.php bin/sources/restor_db.php $(DESTDIR)/usr/share/dtc/admin
 
