@@ -238,6 +238,11 @@ else
 		mkdir usr/lib/system
 		cp -pf /usr/lib/system/libmathCommon.A.dylib usr/lib/system
 	else
+		FOUNDED_ARCH=`uname -m`
+		if [ ""$FOUNDED_ARCH = "x86_64" ] ; then
+			ln -s lib lib64
+			ln -s usr/lib usr/lib64
+		fi
 		if [ -e /lib/ld-linux.so.2 ] ; then
 			cp -pf /lib/ld-linux.so.2 lib/
 		fi
