@@ -240,7 +240,9 @@ else
 	else
 		FOUNDED_ARCH=`uname -m`
 		if [ ""$FOUNDED_ARCH = "x86_64" ] ; then
-			ln -s lib lib64
+			if [ ! -e lib64 ]; then
+				ln -s lib lib64
+			fi
 		fi
 		if [ -e /lib/ld-linux.so.2 ] ; then
 			cp -pf /lib/ld-linux.so.2 lib/
