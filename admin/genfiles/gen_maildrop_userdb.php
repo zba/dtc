@@ -18,6 +18,7 @@ function mail_account_generate_maildrop(){
 	global $pro_mysql_subdomain_table;
 	global $conf_nobody_user_id;
 	global $conf_nobody_group_id;
+	global $conf_nobody_user_name;
 
 	global $console;
 
