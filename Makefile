@@ -33,6 +33,14 @@ install:
 
 	rm -rf `find $(DESTDIR) -type d -name CVS`
 	rm -rf `find $(DESTDIR) -type f -name '*~'`
+# Remove those files because of license problems
+	rm -rf $(DESTDIR)/usr/share/dtc/admin/inc/arial.ttf
+	rm -rf $(DESTDIR)/usr/share/dtc/admin/inc/verdana.ttf
+	rm -rf $(DESTDIR)/usr/share/dtc/admin/inc/ukai.ttf
+
+	rm -rf $(DESTDIR)/usr/share/dtc/client/inc/arial.ttf
+	rm -rf $(DESTDIR)/usr/share/dtc/client/inc/verdana.ttf
+	rm -rf $(DESTDIR)/usr/share/dtc/client/inc/ukai.ttf
 
 	chown -R root:root $(DESTDIR)/usr/share/dtc
 	chown nobody:65534 $(DESTDIR)/usr/share/dtc/client/imgcache $(DESTDIR)/usr/share/dtc/admin/imgcache $(DESTDIR)/usr/share/dtc/shared/imgcache $(DESTDIR)/usr/share/dtc/email/imgcache
