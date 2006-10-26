@@ -42,7 +42,7 @@ clean:
 	rm -f build-stamp configure-stamp
 
 	# Add here commands to clean up after the build process.
-	-$(MAKE) clean DESTDIR=$(CURDIR)/debian/tmp
+	-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc
 	-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc-postfix-courier
 	-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc-package-installer
 
@@ -55,7 +55,7 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/dtc.
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/dtc
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/dtc-postfix-courier
 	mkdir -p $(CURDIR)/debian/dtc-postfix-courier/DEBIAN
 	cp $(CURDIR)/debian/postinst $(CURDIR)/debian/prerm $(CURDIR)/debian/templates $(CURDIR)/debian/config $(CURDIR)/debian/dtc-postfix-courier/DEBIAN
