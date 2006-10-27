@@ -18,6 +18,8 @@ function backup_by_ftp(){
 	global $conf_ftp_backup_frequency;
 	global $conf_ftp_backup_dest_folder;
 
+	global $conf_nobody_group_id;
+
 	global $conf_mysql_db;
 
 	global $console;
@@ -75,7 +77,7 @@ date\n";
 			$restor_net .= "echo \"Unpacking...\"\n";
 			$restor_net .= "tar -xzf $owner.$webname.tar.gz\n";
 			$restor_net .= "echo \"Chown... $webname\"\n";
-			$restor_net .= "chown -R nobody:nogroup $webname\n";
+			$restor_net .= "chown -R nobody:$conf_nobody_group_id $webname\n";
 			$restor_net .= "rm -f $owner.$webname.tar.gz\n";
 
 			$backup_net .= "ncftpput -f /etc/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder $owner.$webname.tar.gz\n";

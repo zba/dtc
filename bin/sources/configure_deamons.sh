@@ -668,6 +668,8 @@ fi
 # fix the perms for the gfx and imgcache 
 chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/shared/imgcache
 chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/shared/gfx
+chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/client/imgcache
+chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/client/gfx
 
 # copy the 404 index.php file if none is found.
 if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.php" ]; then

@@ -28,22 +28,30 @@ function chmod_R($path, $filemode) {
 
 function recurse_chown_chgrp($mypath, $uid, $gid)
 {
-   $d = opendir ($mypath) ;
-   while(($file = readdir($d)) !== false) {
-       if ($file != "." && $file != "..") {
+	$d = opendir ($mypath);
+	while(($file = readdir($d)) !== false) {
+		if ($file != "." && $file != "..") {
 
-           $typepath = $mypath . "/" . $file ;
+			$typepath = $mypath . "/" . $file ;
 
-           //print $typepath. " : " . filetype ($typepath). "<BR>" ;
-           if (filetype ($typepath) == 'dir') {
-               recurse_chown_chgrp ($typepath, $uid, $gid);
-           }
-
-           chown($typepath, $uid);
-           chgrp($typepath, $gid);
-       }
-   }
-
+			//print $typepath. " : " . filetype ($typepath). "<BR>" ;
+			if (filetype ($typepath) == 'dir') {
+				recurse_chown_chgrp ($typepath, $uid, $gid);
+			}
+			if (is_numeric($uid))
+			{
+				chown($typepath, intval($uid));
+			} else {
+				chown($typepath, $uid);
+			}
+			if (is_numeric($gid))
+			{
+				chgrp($typepath, intval($gid));
+			}  else {
+				chgrp($typepath, $gid);
+			}
+		}
+	}
 }
 
 // require("genfiles/gen_perso_vhost.php");

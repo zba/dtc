@@ -42,6 +42,7 @@ function drawAdminTools_SSH($domain,$adm_path){
 	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_ssh ."</font> / <font size=\"-1\">" . $max_ssh . "</font><br><br>";
 
 	$txt .= "<font face=\"Verdana, Arial\"><font size=\"-1\"><b><u>".$txt_ssh_account_list[$lang]."</u><br>";
+	$pass = "";
 	for($i=0;$i<$nbr_account;$i++){
 		$ssh = $sshs[$i];
 		$login = $ssh["login"];
