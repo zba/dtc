@@ -1487,6 +1487,12 @@ then
 	db_stop
 fi
 
+# check to see if we have a userdb FILE, rather than a directory
+# move it out of the way, if so
+if [ -f "$PATH_COURIER_AUTHD_CONF_PATH/userdb" ]; then
+	mv $PATH_COURIER_AUTHD_CONF_PATH/userdb $PATH_COURIER_AUTHD_CONF_PATH/userdb.existing
+fi
+
 #
 # Install courier mysql authenticaion
 #
