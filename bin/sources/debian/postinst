@@ -188,6 +188,14 @@ if [ -d /etc/php4/cli/ ] ; then
 		echo "extension=mysql.so" >>/etc/php4/cli/php.ini
 	fi
 fi
+if [ -d /etc/php4/apache/ ] ; then
+	if grep mysql.so /etc/php4/apache/php.ini | grep extension= >/dev/null
+	then
+		echo -n ""
+	else
+		echo "extension=mysql.so" >>/etc/php4/cli/php.ini
+	fi
+fi
 
 # Setup a minimum include path with . and /usr/share/pear (or /usr/share/php for debian testing) !!!
 if [ -f /usr/share/pear/PEAR.php ]
