@@ -280,173 +280,172 @@ else
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
-	if [ "$UNIX_TYPE" = "debian" -o "$UNIX_TYPE" = "osx" ]
-	then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "=> Checking apache modules"
-			echo -n "Checking for php4..."
-		fi
-		# first of all, may as well try to use the provided modules-config or apacheconfig provided by debian...
-		# else use the normal method to be cross platform compatible
-
-		if [ "$HTTPD_MODULES_CONFIG" = "" ]
-		then
-			# need to support modules.conf version of apache debian package
-			# default to normal HTTPD_CONF
-			PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_CONF
-			if [ -f $PATH_HTTPD_MODULES_CONF ]
-			then
-				PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_MODULES_CONF
-			fi
-			if grep -i "# LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-			then
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo "found commented: activating php4 module!"
-				fi
-				sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
-				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
-			else
-				if grep -i "LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-				then
-					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-						echo " ok!"
-					fi
-				else
-					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-						echo "php4 missing! please install it or run apacheconfig!!!"
-					fi
-					exit 1
-				fi
-			fi
-		else
-			if [ ""$conf_apache_version = "2" ] ; then
-				echo "Apache2 don't need module checkings..."
-			else
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo $HTTPD_MODULES_CONFIG enable php4_module
-				fi
-				$HTTPD_MODULES_CONFIG enable php4_module
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo $HTTPD_MODULES_CONFIG enable mod_php4
-				fi
-				$HTTPD_MODULES_CONFIG enable mod_php4
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo " enabled by $HTTPD_MODULES_CONFIG"
-				fi
-			fi
-		fi
-
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo -n "Checking for ssl..."
-		fi
-		if [ "$HTTPD_MODULES_CONFIG" = "" ]
-		then
-			if grep -i "# LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-			then
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo "found commented: activating ssl module!"
-				fi
-				sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
-				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
-			else
-				if grep -i "LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-				then
-					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-						echo " ok!"
-					fi
-				else
-					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-						echo "!!! Warning: ssl_module for apache not present !!!"
-					fi
-				fi
-			fi
-		else
-			if [ ""$conf_apache_version = "2" ] ; then
-				echo "Apache 2 don't need module checkings..."
-			else
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo $HTTPD_MODULES_CONFIG enable ssl_module
-				fi
-				$HTTPD_MODULES_CONFIG enable ssl_module
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo " enabled by $HTTPD_MODULES_CONFIG"
-				fi
-			fi
-		fi
-
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo -n "Checking for sql_log..."
-		fi
-		if [ "$HTTPD_MODULES_CONFIG" = "" ]
-		then
-			if grep -i "# LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-			then
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo "found commented: ativating sql_log module!"
-				fi
-				sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
-				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
-			else
-				if grep -i "LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-				then
-					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-						echo " ok!"
-					fi
-				else
-					if grep -i "# LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-					then
-						if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-							echo "found commented: ativating sql_log module!"
-						fi
-						sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
-						cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
-					else
-						if grep -i "LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
-						then
-							if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-								echo " ok!"
-							fi
-						else
-							echo "!!! sql_log_module for apache not present !!!"
-							echo "please install it or run apacheconfig"
-							echo "or add the following type directive"
-							echo "(matching your path) to httpd.conf:"
-							echo "LoadModule sql_log_module /usr/lib/apache/1.3/mod_log_sql.so (debian)"
-							echo "LoadModule log_sql_module /usr/local/libexec/apache/mod_log_sql.so (bsd)"
-							exit 1
-						fi
-					fi
-				fi
-			fi
-		else
-			if [ ""$conf_apache_version = "2" ] ; then
-				echo "Apache 2 don't need module checkings..."
-			else
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo $HTTPD_MODULES_CONFIG enable log_sql_module
-					echo $HTTPD_MODULES_CONFIG enable log_sql_mysql_module
-				fi
-	#			$HTTPD_MODULES_CONFIG enable log_sql_module
-				$HTTPD_MODULES_CONFIG enable log_sql_module
-				$HTTPD_MODULES_CONFIG enable log_sql_mysql_module
-				$HTTPD_MODULES_CONFIG enable mod_log_sql # just in case
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo " enabled by $HTTPD_MODULES_CONFIG"
-				fi
-			fi
-		fi
-	else
-		echo ""
-		echo "!!! WARNING !!! Tests for the folling apache modules"
-		echo "has NOT been executed because this could crash"
-		echo "the installer. Please verify you have the following"
-		echo "apache modules configured and working:"
-		echo "php4, ssl, rewrite, and sql_log"
-		echo "Note also that current DTC wroks with SBOX and that it"
-		echo "should be compiled and installed on your server to"
-		echo "enable cgi-bin protected and chrooted environment."
-		echo ""
-	fi
+#	if [ "$UNIX_TYPE" = "debian" -o "$UNIX_TYPE" = "osx" ]
+#	then
+#		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#			echo "=> Checking apache modules"
+#			echo -n "Checking for php4..."
+#		fi
+#		# first of all, may as well try to use the provided modules-config or apacheconfig provided by debian...
+#		# else use the normal method to be cross platform compatible
+#
+#		if [ "$HTTPD_MODULES_CONFIG" = "" ]
+#		then
+#			# need to support modules.conf version of apache debian package
+#			# default to normal HTTPD_CONF
+#			PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_CONF
+#			if [ -f $PATH_HTTPD_MODULES_CONF ]
+#			then
+#				PATH_HTTPD_CONF_TEMP=$PATH_HTTPD_MODULES_CONF
+#			fi
+#			if grep -i "# LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+#			then
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo "found commented: activating php4 module!"
+#				fi
+#				sed "s/# LoadModule php4_module/LoadModule php4_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+#				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
+#			else
+#				if grep -i "LoadModule php4_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+#				then
+#					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#						echo " ok!"
+#					fi
+#				else
+#					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#						echo "php4 missing! please install it or run apacheconfig!!!"
+#					fi
+#					exit 1
+#				fi
+#			fi
+#		else
+#			if [ ""$conf_apache_version = "2" ] ; then
+#				echo "Apache2 don't need module checkings..."
+#			else
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo $HTTPD_MODULES_CONFIG enable php4_module
+#				fi
+#				$HTTPD_MODULES_CONFIG enable php4_module
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo $HTTPD_MODULES_CONFIG enable mod_php4
+#				fi
+#				$HTTPD_MODULES_CONFIG enable mod_php4
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo " enabled by $HTTPD_MODULES_CONFIG"
+#				fi
+#			fi
+#		fi
+#
+#		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#			echo -n "Checking for ssl..."
+#		fi
+#		if [ "$HTTPD_MODULES_CONFIG" = "" ]
+#		then
+#			if grep -i "# LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+#			then
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo "found commented: activating ssl module!"
+#				fi
+#				sed "s/# LoadModule ssl_module/LoadModule ssl_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+#				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
+#			else
+#				if grep -i "LoadModule ssl_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+#				then
+#					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#						echo " ok!"
+#					fi
+#				else
+#					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#						echo "!!! Warning: ssl_module for apache not present !!!"
+#					fi
+#				fi
+#			fi
+#		else
+#			if [ ""$conf_apache_version = "2" ] ; then
+#				echo "Apache 2 don't need module checkings..."
+#			else
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo $HTTPD_MODULES_CONFIG enable ssl_module
+#				fi
+#				$HTTPD_MODULES_CONFIG enable ssl_module
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo " enabled by $HTTPD_MODULES_CONFIG"
+#				fi
+#			fi
+#		fi
+#
+#		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#			echo -n "Checking for sql_log..."
+#		fi
+#		if [ "$HTTPD_MODULES_CONFIG" = "" ]
+#		then
+#			if grep -i "# LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+#			then
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo "found commented: ativating sql_log module!"
+#				fi
+#				sed "s/# LoadModule sql_log_module/LoadModule sql_log_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+#				cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
+#			else
+#				if grep -i "LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+#				then
+#					if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#						echo " ok!"
+#					fi
+#				else
+#					if grep -i "# LoadModule log_sql_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+#					then
+#						if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#							echo "found commented: ativating sql_log module!"
+#						fi
+#						sed "s/# LoadModule log_sql_module/LoadModule log_sql_module/" $PATH_HTTPD_CONF_TEMP >$TMP_FILE
+#						cat <$TMP_FILE >$PATH_HTTPD_CONF_TEMP
+#					else
+#						if grep -i "LoadModule sql_log_module" $PATH_HTTPD_CONF_TEMP >/dev/null 2>&1
+#						then
+#							if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#								echo " ok!"
+#							fi
+#						else
+#							echo "!!! sql_log_module for apache not present !!!"
+#							echo "please install it or run apacheconfig"
+#							echo "or add the following type directive"
+#							echo "(matching your path) to httpd.conf:"
+#							echo "LoadModule sql_log_module /usr/lib/apache/1.3/mod_log_sql.so (debian)"
+#							echo "LoadModule log_sql_module /usr/local/libexec/apache/mod_log_sql.so (bsd)"
+#							exit 1
+#						fi
+#					fi
+#				fi
+#			fi
+#		else
+#			if [ ""$conf_apache_version = "2" ] ; then
+#				echo "Apache 2 don't need module checkings..."
+#			else
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo $HTTPD_MODULES_CONFIG enable log_sql_module
+#					echo $HTTPD_MODULES_CONFIG enable log_sql_mysql_module
+#				fi
+#				$HTTPD_MODULES_CONFIG enable log_sql_module
+#				$HTTPD_MODULES_CONFIG enable log_sql_mysql_module
+#				$HTTPD_MODULES_CONFIG enable mod_log_sql # just in case
+#				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+#					echo " enabled by $HTTPD_MODULES_CONFIG"
+#				fi
+#			fi
+#		fi
+#	else
+#		echo ""
+#		echo "!!! WARNING !!! Tests for the folling apache modules"
+#		echo "has NOT been executed because this could crash"
+#		echo "the installer. Please verify you have the following"
+#		echo "apache modules configured and working:"
+#		echo "php4, ssl, rewrite, and sql_log"
+#		echo "Note also that current DTC wroks with SBOX and that it"
+#		echo "should be compiled and installed on your server to"
+#		echo "enable cgi-bin protected and chrooted environment."
+#		echo ""
+#	fi
 
 	if [ ""$conf_apache_version = "2" ] ; then
 		# Activate mod_rewrite
