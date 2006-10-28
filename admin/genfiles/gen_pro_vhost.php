@@ -231,6 +231,17 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		}
 	}
 
+	$vhost_file .= "<Directory $conf_dtcadmin_path>
+	Options FollowSymLinks
+</Directory>
+<Directory $conf_dtcclient_path>
+	Options FollowSymLinks
+</Directory>
+<Directory $conf_dtcemail_path>
+	Options FollowSymLinks
+</Directory>
+";
+
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
 		$web_name = $row["name"];
@@ -339,16 +350,6 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			}
 			for ($k = 0; $k < $gen_iterations; $k++){
 				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
-$vhost_file .= "<Directory $conf_dtcadmin_path>
-	Options FollowSymLinks
-</Directory>
-<Directory $conf_dtcclient_path>
-	Options FollowSymLinks
-</Directory>
-<Directory $conf_dtcemail_path>
-	Options FollowSymLinks
-</Directory>
-";
 				if($conf_use_ssl == "yes" && $k == 0){
 					# add the directive for SSL here
 					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":443", $vhost_file_listen))
