@@ -43,8 +43,8 @@ install:
 	rm -rf $(DESTDIR)/usr/share/dtc/client/inc/ukai.ttf
 
 	chown -R root:root $(DESTDIR)/usr/share/dtc
-	chown nobody:65534 $(DESTDIR)/usr/share/dtc/client/imgcache $(DESTDIR)/usr/share/dtc/admin/imgcache $(DESTDIR)/usr/share/dtc/shared/imgcache $(DESTDIR)/usr/share/dtc/email/imgcache
-	chown nobody:65534 $(DESTDIR)/usr/share/dtc/client/gfx $(DESTDIR)/usr/share/dtc/admin/gfx $(DESTDIR)/usr/share/dtc/shared/gfx $(DESTDIR)/usr/share/dtc/email/gfx
+	chown -R nobody:65534 $(DESTDIR)/usr/share/dtc/client/imgcache $(DESTDIR)/usr/share/dtc/admin/imgcache $(DESTDIR)/usr/share/dtc/shared/imgcache $(DESTDIR)/usr/share/dtc/email/imgcache
+	chown -R nobody:65534 $(DESTDIR)/usr/share/dtc/client/gfx $(DESTDIR)/usr/share/dtc/admin/gfx $(DESTDIR)/usr/share/dtc/shared/gfx $(DESTDIR)/usr/share/dtc/email/gfx
 	gzip -9 $(DESTDIR)/usr/share/dtc/doc/changelog
 
 installpkg:
