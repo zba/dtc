@@ -239,8 +239,13 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 </Directory>
 <Directory $conf_dtcemail_path>
 	Options FollowSymLinks
-</Directory>
-";
+</Directory>\n";
+	if($conf_unix_type == "debian"){
+		$vhost_file .= "ScriptAlias /cgi-bin /usr/lib/cgi-bin
+<Directory /usr/lib/cgi-bin>
+	Options FollowSymLinks
+</Directory>\n";
+	}
 
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
