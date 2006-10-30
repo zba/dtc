@@ -244,6 +244,9 @@ function register_user(){
 		$ret["mesg"] = "Username already tried to be taken! Try again.";
 		return $ret;
 	}
+	$vps_add1 = "";
+	$vps_add2 = "";
+	$vps_mail_add1 = "";
 	if($db_product["heb_type"] == "vps"){
 		if (!get_magic_quotes_gpc()){
 			$esc_vps_os = addslashes($_REQUEST["vps_os"]);
