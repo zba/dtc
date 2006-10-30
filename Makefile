@@ -43,6 +43,7 @@ install:
 	rm -rf $(DESTDIR)/usr/share/dtc/client/inc/ukai.ttf
 
 	chown -R root:root $(DESTDIR)/usr/share/dtc
+	chown nobody:nogroup $(DESTDIR)/usr/share/dtc/admin/gfx
 	gzip -9 $(DESTDIR)/usr/share/dtc/doc/changelog
 
 installpkg:
