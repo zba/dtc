@@ -671,16 +671,14 @@ chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/client/imgcache
 chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/client/gfx
 
 # copy the 404 index.php file if none is found.
-if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.php" ]; then
-	if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/index.html" ]; then
-		if [ -e $PATH_DTC_SHARED/shared/404_template/index.php ]; then
-			cp $PATH_DTC_SHARED/shared/404_template/index.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
-		fi
+if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/index.* ]; then
+	if [ -e $PATH_DTC_SHARED/shared/404_template/index.php ]; then
+		cp $PATH_DTC_SHARED/shared/404_template/index.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
 	fi
 fi
 
 # copy the Error 404 document
-if ! [ -e $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/404.php" ]; then
+if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/www/html/404.* ]; then
 	if [ -e $PATH_DTC_SHARED/shared/404_template/404.php ]; then 
 		cp $PATH_DTC_SHARED/shared/404_template/404.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/"
 	fi
@@ -690,10 +688,8 @@ fi
 if ! [ -e $PATH_DTC_ETC/expired_site ] ; then
 	mkdir -p $PATH_DTC_ETC/expired_site
 fi
-if ! [ -e $PATH_DTC_ETC/expired_site/index.php ] ; then
-	if ! [ -e $PATH_DTC_ETC/expired_site/index.html ] ; then
-		cp $PATH_DTC_SHARED/shared/404_template/expired.php $PATH_DTC_ETC/expired_site/index.php
-	fi
+if ! [ -e $PATH_DTC_ETC/expired_site/index.* ] ; then
+	cp $PATH_DTC_SHARED/shared/404_template/expired.php $PATH_DTC_ETC/expired_site/index.php
 fi
 
 # also copy it to the dtc404 directory

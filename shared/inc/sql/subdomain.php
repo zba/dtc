@@ -185,7 +185,7 @@ if(isset($_REQUEST["newsubdomain"]) && $_REQUEST["newsubdomain"] == "Ok"){
 
 	        // Create the new site html front page
 	        if($conf_demo_version == "no"){
-	                system ("cp -rf $conf_generated_file_path/template/* $admin_path/$edit_domain/subdomains/".$_REQUEST["newsubdomain_name"]."/html");
+			system ("if [ ! -e $admin_path/$edit_domain/subdomains/".$_REQUEST["newsubdomain_name"]."/html/index.* ]; then cp -rf $conf_generated_file_path/template/* $admin_path/$edit_domain/subdomains/".$_REQUEST["newsubdomain_name"]."/html; fi");
 	        }
 
 		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
