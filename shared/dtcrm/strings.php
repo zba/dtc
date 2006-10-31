@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: strings.php,v 1.17 2006/07/31 05:44:25 thomas Exp $
+ * @version $Id: strings.php,v 1.18 2006/10/31 08:20:41 tusker Exp $
  * @abstract Arrays for translations admin panel to many laguages
  * 
  * adedd swedish to array by seeb <seeb@seeb.net.pl>
@@ -198,7 +198,7 @@ $txt_dtcrm_deletion_of_name_server_succesfull = array(
 
 $txt_dtcrm_edition_of_name_server_succesfull = array(
 "fr" => "Edition de votre serveur de nom réussit",
-"en" => "Edition of name server succesfull",
+"en" => "Addition of name server succesfull",
 "hu" => "A névszerver módosítása sikeresen megtörtént ",
 "it" => "Editazione del name server avvenuta con successo",
 "nl" => "TRANS ",
@@ -213,7 +213,7 @@ $txt_dtcrm_edition_of_name_server_succesfull = array(
 
 $txt_dtcrm_edition_of_name_server_failed = array(
 "fr" => "Edition de votre serveur de nom réussit",
-"en" => "Edition of name server failed",
+"en" => "Addition of name server failed",
 "hu" => "A névszerver módosítása nem sikerült",
 "it" => "Editazione del name server fallita",
 "nl" => "TRANS ",
@@ -228,7 +228,7 @@ $txt_dtcrm_edition_of_name_server_failed = array(
 
 $txt_dtcrm_deletion_of_name_server_failed = array(
 "fr" => "Echec lors de l'effacement du serveur de nom",
-"en" => "Deletion name server failed",
+"en" => "Deletion of name server failed",
 "hu" => "A névszerver törlése nem sikerült",
 "it" => "Cancellazione del name server fallita",
 "nl" => "TRANS ",
@@ -288,7 +288,7 @@ $txt_dtcrm_delete_name_server = array(
 
 $txt_dtcrm_select_your_domain_name_for_adding_name_server = array(
 "fr" => "Selectionner un de vos nom de domaine pour ajouter le serveur de nom a la registry :",
-"en" => "Select one your domain-name for adding a name server to the registries:",
+"en" => "Select one of your domain-names for adding a name server to the registries:",
 "hu" => "Válasszon egy domain nevet amit regisztrálni szeretne névszerveren:",
 "it" => "Seleziona uno dei tuoi nomi a domini per aggiungere un name 
 server ai registri",
@@ -403,7 +403,7 @@ pour l'ajout de nom de domaine automatique. Pour obtenir l'ajout automatique
 sans validation, ou sans enregistrement de nom de domaine veuillez contacter :",
 "en" => "Soon an administrator will have a look to your request
 and validate the addition of this domain name to your account.
-You curently don't have enough privilege to add domain names.
+You curently don't have enough privileges to add domain names.
 If you often add domain names, you can ask the administrator to
 grant you the privilege of automatic domain name addition.
 To have a new domain name to host without administrator validation or domain name
@@ -529,7 +529,7 @@ $txt_dtcrm_register_step1 = array(
 
 $txt_dtcrm_step2_enter_whois_info = array(
 "fr" => "Etape 2 : entrez les informations du whois",
-"en" => "Step 2: Enter whois informations",
+"en" => "Step 2: Enter whois information",
 "hu" => "Második lépés: A whois információk megadása",
 "it" => "Passo 2: Inserisci le informazioni per il whois",
 "nl" => "TRANS ",
@@ -562,7 +562,7 @@ $txt_dtcrm_not_enough_privileges = array(
 de domaine sur votre compte. Si vous désirez ajouter des domaines
 sans enregistrement, vous pouvez demander a l'administrateur de
 le faire pour vous en écrivant à:",
-"en" => "You curently don't have enough privilege to
+"en" => "You curently don't have enough privileges to
 add domain names. If you often add domain names, you can ask the
 administrator to do so. To have a new domain name to host without domain
 name registration, please write to:",
@@ -865,7 +865,7 @@ $txt_dtcrm_you_have_enough_funds_proceed = array (
 "fr" => "Vous avez assez d'argent sur votre compte pour procéder à
 l'enregistrement. Veuillez cliquer sur le bouton suivant pour
 continuer.",
-"en" => "You have enough funds on your account to proceed registration. Press
+"en" => "You have enough funds on your account to proceed with registration. Press
 the confirm button to proceed.",
 "hu" => "Önnek megfelelõ mennyiségû pénz van a számláján a regisztrációhoz.
 Kattintson a jóváhagyás gombra és a megrendelése elindul.",
@@ -959,7 +959,7 @@ $txt_dtcrm_server_said = array (
 
 $txt_dtcrm_succesfully_added_domain = array (
 "fr" => "Nom de domaine ajouté a la base de donnée avec succes",
-"en" => "Succesfull added your domain name to hosting database",
+"en" => "Succesfully added your domain name to the hosting database",
 "hu" => "Sikeresen hozzáadtuk a domain nevet az adatbázishoz ",
 "it" => "Il tuo nome a dominio è stato aggiunto con successo al 
 database di hosting",
@@ -1202,7 +1202,7 @@ $txt_dtcrm_create_new_handle = array(
 
 $txt_dtcrm_indicate_required_field = array(
 "fr" => "indique un champ requis",
-"en" => "marqued fields are required",
+"en" => "marked fields are required",
 "hu" => "a megjelölt mezõk kötelezõek",
 "it" => "indica i campi richiesti",
 "nl" => "TRANS ",
