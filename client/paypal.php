@@ -15,7 +15,7 @@ foreach ($_REQUEST as $key => $value) {
 	$req .= "&$key=$value";
 }
 logPay("Resending query to paypal: ".$req);
-if($secpayconf_paypal_sandbox == "yes"){
+if($secpayconf_paypal_sandbox == "no"){
 	$paypal_server_hostname = "www.paypal.com";
 }else{
 	$paypal_server_hostname = "www.sandbox.paypal.com";
