@@ -238,6 +238,47 @@ then
 
 fi
 
+if [ -f /usr/share/pear/PEAR.php -o -f /usr/share/php/PEAR.php ]
+then
+	if grep include_path /etc/php4/apache/php.ini | grep /usr/share/pear >/dev/null
+	then
+		echo -n ""
+	else
+		if grep include_path /etc/php4/apache/php.ini | grep /usr/share/php >/dev/null
+		then
+			echo -n ""
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Your php.ini doesn't has pear in it's inc path: changin!"
+			fi
+			if [ -e /usr/share/pear ] ; then
+				echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/apache/php.ini
+			else
+				if [ -e /usr/share/php ] ; then
+					echo "include_path = \".:/usr/share/php\"" >>/etc/php4/apache/php.ini
+				else
+					echo "I couldn't do it: please check manualy you have PEAR installed!"
+				fi
+			fi
+		fi
+	fi
+fi
+
+if [ -f /usr/share/php/PEAR.php ]
+then
+	if grep include_path /etc/php4/apache/php.ini | grep /usr/share/php > /dev/null
+	then
+		echo -n ""
+	else
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "Your php.ini doesn't has pear in it's inc path: changin!"
+		fi
+		echo "include_path = \".:/usr/share/php\"" >>/etc/php4/apache/php.ini
+	fi
+
+fi
+
+
 # Do a test to check php version. Those fucking PHP guys had
 # made things so simple that this test is not very short... :(
 CNT=`/usr/bin/php4 -v | wc -l`
