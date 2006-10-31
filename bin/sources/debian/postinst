@@ -198,7 +198,7 @@ if [ -d /etc/php4/apache/ ] ; then
 fi
 
 # Setup a minimum include path with . and /usr/share/pear (or /usr/share/php for debian testing) !!!
-if [ -f /usr/share/pear/PEAR.php ]
+if [ -f /usr/share/pear/PEAR.php -o -f /usr/share/php/PEAR.php]
 then
 	if grep include_path /etc/php4/cli/php.ini | grep /usr/share/pear >/dev/null
 	then
