@@ -2322,8 +2322,8 @@ shadow.lastchange_column = UNIX_TIMESTAMP()-10;
 shadow.min_column = 1;
 shadow.max_column = 2;
 shadow.warn_column = 7;
-shadow.inact_column = -1; # disabled
-shadow.expire_column = -1; # disabled
+shadow.inact_column = -1; 
+shadow.expire_column = -1; 
 " >> $TMP_FILE
 	else
 		# libnss version
