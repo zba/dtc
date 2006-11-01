@@ -49,12 +49,14 @@ function make_stats(){
 					$dump_folder = $fullpath."/".$year."/".$month;;
 					$dump_filename = $dump_folder."/access_".$day.".log";
 
-					$start_24h = $start + (60*60*24);
-					$year_24h = date("Y",$start_24h);
-					$month_24h = date("m",$start_24h);
-					$day_24h = date("d",$start_24h);
-
-					$end = mktime(0,0,0,$month_24h,$day_24h,$year_24h);
+#					$start_24h = $start + (60*60*24);
+#					$year_24h = date("Y",$start_24h);
+#					$month_24h = date("m",$start_24h);
+#					$day_24h = date("d",$start_24h);
+#
+#					$end = mktime(0,0,0,$month_24h,$day_24h,$year_24h);
+					$secs = $start % (60*60*24);
+					$end = $start - $secs + (60*60*24);
 
 					echo "Querying SELECT * FROM apachelogs.".$table_name."...";
 					$query_dump = "SELECT * FROM apachelogs.`".$table_name."` WHERE time_stamp>='".$start."' AND time_stamp<='".$end."' ORDER BY time_stamp";
