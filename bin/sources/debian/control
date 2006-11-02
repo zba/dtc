@@ -18,3 +18,4 @@ Description: A GPL web control panel for admin and accounting hosting services
  All this using a single system UID/GID. It does as well monitoring of all
  trafic accounting per user and per service (and globaly using RRDTools).
  Since version 0.12, DTC is fully skinable and translated in several languages.
+ See http://www.gplhost.com/software-dtc.html for more details.
