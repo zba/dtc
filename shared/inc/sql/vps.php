@@ -157,12 +157,18 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		if($_REQUEST["os_type"] != "netbsd"){
 		// On this one we pass only "XX" and not "xenXX" as parameter !
+			$image_type = "lvm";
+			if (isVPSNodeLVMEnabled($vps_node) == "no")
+			{
+				$image_type = "vbd";	
+			}
 			$r = $soap_client->call("reinstallVPSos",array(
 				"vpsname" => $vps_name,
 				"ostype" => $_REQUEST["os_type"],
 				"hddsize" => $ze_vps["hddsize"],
 				"ramsize" => $ze_vps["ramsize"],
-				"ipaddr" => $vps_all_ips),"","","");
+				"ipaddr" => $vps_all_ips,
+                                "imagetype" => $image_type),"","","");
 		}
 	}
 }

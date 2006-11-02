@@ -39,6 +39,25 @@ function connectToVPSServer($vps_node){
   return $soap_client;
 }
 
+function isVPSNodeLVMEnabled($vps_node){
+  global $pro_mysql_vps_server_table;
+  $q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='$vps_node';";
+  $r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+  $n = mysql_num_rows($r);
+  if($n != 1){
+    die("Cannot find hostname of VPS server line ".__LINE__." file ".__FILE__);
+  }
+  $a = mysql_fetch_array($r);
+  if (isset($a["lvmenable"]))
+  {
+     return $a["lvmenable"];
+  } else {
+     // default to yes
+     return "yes";
+  }
+
+}
+
 function getVPSInfo($vps_node,$vps_name,$soap_client){
   global $vps_soap_err;
   $r = $soap_client->call("getVPSState",array("vpsname" => "xen".$vps_name),"","","");

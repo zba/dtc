@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.68 2006/10/18 08:24:43 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.69 2006/11/02 10:00:59 tusker Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -228,7 +228,7 @@ function drawVPSServerConfig(){
   if(isset($_REQUEST["action"])){
     switch($_REQUEST["action"]){
     case "edit_vps_server_hostname":
-      $q = "UPDATE $pro_mysql_vps_server_table SET hostname='".$_REQUEST["hostname"]."',soap_login='".$_REQUEST["soap_login"]."',soap_pass='".$_REQUEST["soap_pass"]."',location='".$_REQUEST["location"]."' WHERE id='".$_REQUEST["vps_server_id"]."';";
+      $q = "UPDATE $pro_mysql_vps_server_table SET hostname='".$_REQUEST["hostname"]."',soap_login='".$_REQUEST["soap_login"]."',soap_pass='".$_REQUEST["soap_pass"]."',location='".$_REQUEST["location"]."',lvmenable='".$_REQUEST["lvmenable"]."' WHERE id='".$_REQUEST["vps_server_id"]."';";
       $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
       break;
     case "delete_vps_server_hostname":
@@ -236,7 +236,7 @@ function drawVPSServerConfig(){
       $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
       break;
     case "new_vps_server_hostname":
-      $q = "INSERT INTO $pro_mysql_vps_server_table (id,hostname,soap_login,soap_pass,location) VALUES ('','".$_REQUEST["hostname"]."','".$_REQUEST["soap_login"]."','".$_REQUEST["soap_pass"]."','".$_REQUEST["location"]."');";
+      $q = "INSERT INTO $pro_mysql_vps_server_table (id,hostname,soap_login,soap_pass,location,lvmenable) VALUES ('','".$_REQUEST["hostname"]."','".$_REQUEST["soap_login"]."','".$_REQUEST["soap_pass"]."','".$_REQUEST["location"]."','".$_REQUEST["lvmenable"]."');";
       $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
     default:
       break;
@@ -248,7 +248,7 @@ function drawVPSServerConfig(){
   $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
   $n = mysql_num_rows($r);
   $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>Hostname</td><td>SOAP login</td><td>SOAP password</td>
-  <td>Server location</td>
+  <td>Server location</td><td>LVM yes|no</td>
   <td colspan=\"3\">Action</td></tr>";
   $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
@@ -260,10 +260,21 @@ function drawVPSServerConfig(){
     }else{
       $bg = "";
     }
+
+    $lvmenable_yes = "checked";
+    $lvmenable_no = "";
+    // if it is set to "no" in the DB, set to no in the form
+    if (isset($a["lvmenable"]) && $a["lvmenable"] == "no")
+    {
+	$lvmenable_yes = "";
+	$lvmenable_no = "checked";
+    } 
+
     $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"".$a["hostname"]."\"></td>
     <td$bg><input size=\"10\" type=\"text\" name=\"soap_login\" value=\"".$a["soap_login"]."\"></td>
     <td$bg><input size=\"10\" type=\"text\" name=\"soap_pass\" value=\"".$a["soap_pass"]."\"></td>
     <td$bg><input size=\"20\" type=\"text\" name=\"location\" value=\"".$a["location"]."\"></td>
+    <td$bg><input size=\"20\" type=\"radio\" name=\"lvmenable\" value=\"yes\" $lvmenable_yes><input size=\"20\" type=\"radio\" name=\"lvmenable\" value=\"no\" $lvmenable_no></td>
     <td$bg><input type=\"submit\" value=\"Save\"></td></form>
     $frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"delete_vps_server_hostname\"><input type=\"submit\" value=\"Delete\"></form></td>
     <td$bg><a href=\"?rub=$rub&editor=ipaddr&sousrub=".$_REQUEST["sousrub"]."&hostname=".$a["hostname"]."\">Edit IP addrs</a></td></tr>";
@@ -278,6 +289,7 @@ function drawVPSServerConfig(){
   <td$bg><input size=\"10\" type=\"text\" name=\"soap_login\" value=\"dtc-xen\"></td>
   <td$bg><input size=\"10\" type=\"text\" name=\"soap_pass\" value=\"\">
   <td$bg><input size=\"20\" type=\"text\" name=\"location\" value=\"\"></td>
+  <td$bg><input size=\"20\" type=\"radio\" name=\"lvmenable\" value=\"yes\" checked><input size=\"20\" type=\"radio\" name=\"lvmenable\" value=\"no\"></td>
   </td><td$bg colspan=\"3\"><input type=\"submit\" value=\"New\"></td></form>
   </tr>";
   $out .= "</table><br><br>";

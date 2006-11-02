@@ -850,7 +850,8 @@ $dtc_database = array(
                         "hostname" => "varchar(255) NOT NULL ",
                         "location" => "varchar(64) NOT NULL ",
                         "soap_login" => "varchar(64) NOT NULL ",
-                        "soap_pass" => "varchar(64) NOT NULL "
+                        "soap_pass" => "varchar(64) NOT NULL ",
+			"lvmenable" => "enum('yes','no') NOT NULL default 'yes' "
                         ),
                 "primary" => "(id)",
                 "keys" => array(

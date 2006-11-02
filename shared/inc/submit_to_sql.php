@@ -174,7 +174,13 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 		if($soap_client == false){
 			echo "Could not connect to the VPS server for doing the setup: please contact the administrator!";
 		}else{
-			$r = $soap_client->call("setupLVMDisks",array("vpsname" => $vps_xen_name, "hddsize" => $a2["quota_disk"], "swapsize" => $a2["memory_size"]),"","","");
+			$image_type = "lvm";
+                        if (isVPSNodeLVMEnabled($vps_node) == "no")
+                        {
+                                $image_type = "vbd";
+                        }
+
+			$r = $soap_client->call("setupLVMDisks",array("vpsname" => $vps_xen_name, "hddsize" => $a2["quota_disk"], "swapsize" => $a2["memory_size"], "imagetype" => $image_type),"","","");
 			$qvps = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$a["vps_location"]."' AND vps_xen_name='$vps_xen_name' LIMIT 1;";
 			$rvps = mysql_query($qvps)or die("Cannot execute query \"qvps\" line ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$nvps = mysql_num_rows($rvps);

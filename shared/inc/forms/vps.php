@@ -94,9 +94,18 @@ function drawAdminTools_VPS($admin,$vps){
 		}else if($vps_remote_info == "mkos"){
 			$vps_out .= $txt_reinstalling_operating_system[$lang]."<br><br>";
 		}else{
-			$vps_out .= $txt_vm_id[$lang].$vps_remote_info["id"]."<br>";
-			$vps_out .= $txt_vps_name[$lang].$vps_remote_info["name"]."<br>";
-			$vps_out .= $txt_vps_memory[$lang].$vps_remote_info["memory"]."<br>";
+			if (isset($vps_remote_info["id"]))
+			{
+				$vps_out .= $txt_vm_id[$lang].$vps_remote_info["id"]."<br>";
+			}
+			if (isset($vps_remote_info["name"]))
+			{
+				$vps_out .= $txt_vps_name[$lang].$vps_remote_info["name"]."<br>";
+			}
+			if (isset($vps_remote_info["memory"]))
+			{
+				$vps_out .= $txt_vps_memory[$lang].$vps_remote_info["memory"]."<br>";
+			}
 			if(isset($vps_remote_info["maxmem"])){
 				$vps_out .= $txt_vps_maxmem[$lang].$vps_remote_info["maxmem"]."<br>";
 			}else{
@@ -112,7 +121,7 @@ function drawAdminTools_VPS($admin,$vps){
 			}else{
 				$vps_out .= $txt_state_cannot_fetch[$lang]."<br>";
 			}
-			if($vps_remote_info["xen_type"] == 2){
+			if($vps_remote_info["xen_type"] == 2 && isset($vps_remote_info["up_time"])){
 				$uptime = substr($vps_remote_info["up_time"],0,strpos($vps_remote_info["up_time"],"."));
 				$uptime_s = $uptime % 60;
 				$uptime_m = round($uptime/60) % 60;

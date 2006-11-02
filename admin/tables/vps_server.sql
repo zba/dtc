@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS vps_server (
   location varchar(64) NOT NULL default '',
   soap_login varchar(64) NOT NULL default '',
   soap_pass varchar(64) NOT NULL default '',
+  lvmenable enum('yes','no') NOT NULL default 'yes',
   PRIMARY KEY  (id),
   UNIQUE KEY hostname (hostname)
 ) TYPE=MyISAM;

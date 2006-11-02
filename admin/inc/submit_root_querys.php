@@ -84,7 +84,13 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_vps_to_user"){
 		if($soap_client == false){
 			echo "Could not connect to the VPS server for doing the setup: please contact the administrator!";
 		}else{
-			$r = $soap_client->call("setupLVMDisks",array("vpsname" => $a["vps_xen_name"], "hddsize" => $prod["quota_disk"], "swapsize" => $prod["memory_size"]),"","","");
+			$image_type = "lvm";
+                        if (isVPSNodeLVMEnabled($a["vps_server_hostname"]) == "no")
+                        {
+                                $image_type = "vbd";
+                        }
+
+			$r = $soap_client->call("setupLVMDisks",array("vpsname" => $a["vps_xen_name"], "hddsize" => $prod["quota_disk"], "swapsize" => $prod["memory_size"], "imagetype" => $image_type),"","","");
 		}
 	}
 }
