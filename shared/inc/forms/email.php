@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.31 2006/09/27 03:52:03 tusker Exp $
+ * @version $Id: email.php,v 1.32 2006/11/03 04:06:35 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -19,6 +19,8 @@ function drawImportedMail($mailbox){
 	global $txt_use;
 	global $txt_action;
 	global $txt_cfg_server_address;
+	global $txt_login_title;
+	global $lang;
 	
 	$out = "";
 
