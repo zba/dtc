@@ -9,7 +9,7 @@ require_once("$dtcshared_path/dtc_lib.php");
 function sendAdminWarning($message){
   global $conf_webmaster_email_addr;
   $headers = "From: ".$conf_webmaster_email_addr;
-  mail($conf_webmaster_email_addr,"[DTC] Reminder warning message!",$msg_2_send,$headers);
+  mail($conf_webmaster_email_addr,"[DTC] Reminder warning message!",$message,$headers);
 }
 
 function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$adm_login){
