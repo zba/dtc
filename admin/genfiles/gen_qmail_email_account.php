@@ -29,6 +29,9 @@ function mail_account_generate_qmail(){
 	global $conf_qmail_assign_path;
 	global $conf_qmail_poppasswd_path;
 
+	global $conf_nobody_user_id;
+	global $conf_nobody_group_id;
+
 	$rcpthosts_file = "";
 	$local_domains_file = "";
 	$virtualdomains_file = "";
