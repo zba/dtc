@@ -198,7 +198,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	}else{
 		$ip_for_404=$conf_main_site_ip;
 		if($conf_use_nated_vhost=="yes"){
-			$ip_for_404=conf_nated_vhost_ip;
+			$ip_for_404 = $conf_nated_vhost_ip;
 			if (test_valid_local_ip($conf_nated_vhost_ip) && !ereg("Listen ".$conf_nated_vhost_ip.":80", $vhost_file_listen))
 			{
 				$vhost_file_listen .= "Listen ".$conf_nated_vhost_ip.":80\n";
