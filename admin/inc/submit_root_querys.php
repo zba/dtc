@@ -270,6 +270,10 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 		ssh_login_flag='".$_REQUEST["ssh_login_flag"]."'
 		WHERE adm_login='$adm_login';";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." ".mysql_error());
+
+	// Tell the cron job to activate the changes (because the account might now be (not) expiring)
+	$adm_query = "UPDATE $pro_mysql_cronjob_table SET gen_vhosts='yes',restart_apache='yes' WHERE 1;";
+	mysql_query($adm_query);
 }
 
 // $newadmin_login $newadmin_pass $newadmin_path $newadmin_maxemail $newadmin_maxftp $newadmin_quota
