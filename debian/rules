@@ -41,11 +41,12 @@ binary-indep: install
 
 # Build architecture-dependent files here.
 binary-arch: install
-#	dh_testdir
+	dh_testdir
 	dh_testroot
 	dh_installchangelogs 
-	dh_installdocs
+#	dh_installdocs
 	dh_installexamples
+	dh_installdirs
 	dh_install
 
 	rm -f debian/dtc/usr/share/dtc/admin/inc/arial.ttf
@@ -62,7 +63,7 @@ binary-arch: install
 	rm -f debian/dtc-postfix-courier/usr/share/dtc/client/inc/verdana.ttf
 	rm -f debian/dtc-postfix-courier/usr/share/dtc/client/inc/ukai.ttf
 
-	dh_links
+#	dh_link
 #	dh_installmenu
 	dh_installdebconf	
 #	dh_installlogrotate
@@ -73,7 +74,7 @@ binary-arch: install
 #	dh_installcron
 #	dh_installinfo
 	dh_installman
-	dh_link
+#	dh_link
 	dh_strip
 	dh_compress
 	#dh_fixperms -X$(CURDIR)/debian/tmp/usr/share/dtc/admin -X$(CURDIR)/debian/tmp/usr/share/dtc/client -X$(CURDIR)/debian/tmp/usr/share/dtc/email -X$(CURDIR)/debian/tmp/usr/share/dtc/shared 
