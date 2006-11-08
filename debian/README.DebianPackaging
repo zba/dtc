@@ -1,8 +1,14 @@
 Hi!
 
-Here, you ONLY want to edit the rules file and maybe
-the toplevel Makefile. DO NOT edit anything else,
-the files here are generated with a script that
+Here, you DON'T want to edit the postinst and
+prerm script files. DO NOT edit them are they
+are generated using the script found in ../bin.
+
+It's done like that because those scripts are
+REALLY big and it helps a lot to use it this
+way.
+
+The files here are generated with a script that
 reside in ../bin. The (un)install scripts here are
 created with the scripts in ../bin/sources. The
 debian files to edit are located in
@@ -32,4 +38,3 @@ acceptable for Debian, let me know and I will move
 back to something more conventional.
 
 Thomas Goirand <thomas@goirand.fr>
-
