@@ -3,14 +3,19 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+VERS=`cat bin/version`
+RELS=`cat bin/release`
+VERSION=$(VERS)"-"$(RELS)
+
 clean:
 	dh_testdir
 	dh_testroot
+	dh_clean
 
 	# Add here commands to clean up after the build process.
-	-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc
-	-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc-postfix-courier
-	-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc-package-installer
+	#-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc
+	#-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc-postfix-courier
+	#-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc-package-installer
 
 	dh_clean 
 
@@ -20,6 +25,9 @@ install:
 	dh_clean -k 
 	dh_installdirs
 
+	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc/usr/share/dtc/shared/dtc_version.php
+	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc-postfix-courier/usr/share/dtc/shared/dtc_version.php
+
 	# Add here commands to install the package into debian/dtc.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/dtc
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/dtc-postfix-courier
@@ -28,17 +36,33 @@ install:
 	$(MAKE) installpkg DESTDIR=$(CURDIR)/debian/dtc-package-installer
 
 # Build architecture-independent files here.
-binary-indep: build install
+binary-indep: install
 # We have nothing to do by default.
 
 # Build architecture-dependent files here.
-binary-arch: build install
+binary-arch: install
 #	dh_testdir
 	dh_testroot
 	dh_installchangelogs 
 	dh_installdocs
 	dh_installexamples
-#	dh_install
+	dh_install
+
+	rm -f debian/dtc/usr/share/dtc/admin/inc/arial.ttf
+	rm -f debian/dtc/usr/share/dtc/admin/inc/verdana.ttf
+	rm -f debian/dtc/usr/share/dtc/admin/inc/ukai.ttf
+	rm -f debian/dtc/usr/share/dtc/client/inc/arial.ttf
+	rm -f debian/dtc/usr/share/dtc/client/inc/verdana.ttf
+	rm -f debian/dtc/usr/share/dtc/client/inc/ukai.ttf
+
+	rm -f debian/dtc-postfix-courier/usr/share/dtc/admin/inc/arial.ttf
+	rm -f debian/dtc-postfix-courier/usr/share/dtc/admin/inc/verdana.ttf
+	rm -f debian/dtc-postfix-courier/usr/share/dtc/admin/inc/ukai.ttf
+	rm -f debian/dtc-postfix-courier/usr/share/dtc/client/inc/arial.ttf
+	rm -f debian/dtc-postfix-courier/usr/share/dtc/client/inc/verdana.ttf
+	rm -f debian/dtc-postfix-courier/usr/share/dtc/client/inc/ukai.ttf
+
+	dh_links
 #	dh_installmenu
 	dh_installdebconf	
 #	dh_installlogrotate
