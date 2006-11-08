@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/prepareDebianTree,v $
-# $Date: 2006/11/08 20:29:51 $
-# $Revision: 1.7 $
+# $Date: 2006/11/08 21:05:12 $
+# $Revision: 1.8 $
 
 DSTDIR=..
 
@@ -22,9 +22,6 @@ VERSION=$VERS"-"$RELS
 UNIX_TYPE=debian
 
 echo " --- Updating DTC debian source package tree --- "
-
-# now add the previous changelog we have checked in already
-cat sources/debian/changelog >> ${DSTDIR}/debian/changelog
 
 # Make the config file directory and script using standard
 # plus debian specific scripts
