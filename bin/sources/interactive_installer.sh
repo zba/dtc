@@ -187,6 +187,7 @@ if [ -z "$conf_eth2monitor" ] ; then
 	fi
 fi
 
+echo ""
 echo "In order to know how many DTC setup has been done, the"
 echo "installer can report to GPLHost web site. No data is collected"
 echo "exept the operating system (Debian in your case), IP address"
@@ -197,10 +198,23 @@ echo "You need an internet connection and wget installed to report. Do you"
 echo "wish to allow DTC installer to report the setup of the control panel?"
 echo -n 'Allow installer to report setup? [Yn]:'
 read report_setup
-if [ ""$valid_infos = "y" -o ""$valid_infos = "Y" -o ""$valid_infos = "" ] ; then
+if [ ""$report_setup = "y" -o ""$report_setup = "Y" -o ""$report_setup = "" ] ; then
 	conf_report_setup="true";
 else
 	conf_report_setup="false";
+fi
+
+echo ""
+echo "In some environment, like FreeBSD Jail or Linux vServer,"
+echo "mknod is not allowed to be executed. For that reason, it's possible"
+echo "to skip the creation of the dev null, random and urandom devices"
+echo "durring the chroot template creation."
+echo -n "Allow installer to create the devices template? [Yn]:"
+read omit_dev_mknod
+if [ ""$omit_dev_mknod = "y" -o ""$omit_dev_mknod = "Y" -o ""$omit_dev_mknod = "" ] ; then
+	conf_omit_dev_mknod="no"
+else
+	conf_omit_dev_mknod="yes"
 fi
 
 # Deamon path configuration

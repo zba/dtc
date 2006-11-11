@@ -46,48 +46,48 @@ mkdir -p etc dev bin lib tmp var/tmp var/run sbin
 mkdir -p usr/bin usr/lib usr/libexec usr/share usr/lib/zoneinfo
 
 # make devices - adjust MAJOR/MINOR as appropriate ( see ls -l /dev/* )
-if ! [ -e dev/null ]
-then
-	if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ];
-	then
-		mknod dev/null    c  2 2   # FreeBSD?
-	else
-		mknod dev/null    c  1 3   # Linux
+if ! [ ""$conf_omit_dev_mknod = "yes" ] ; then
+	if ! [ -e dev/null ] ; then
+		if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
+			mknod dev/null    c  2 2   # FreeBSD?
+		else
+			mknod dev/null    c  1 3   # Linux
+		fi
 	fi
-fi
 
-if [ $UNIX_TYPE"" = "freebsd"  -o $UNIX_TYPE"" = "osx" ] ; then
-	if [ $kernel"" = "OpenBSD" ] ; then
-		if ! [ -e dev/urandom ] ; then
-			mknod dev/urandom c 45 2   # OpenBSD ?
+	if [ $UNIX_TYPE"" = "freebsd"  -o $UNIX_TYPE"" = "osx" ] ; then
+		if [ $kernel"" = "OpenBSD" ] ; then
+			if ! [ -e dev/urandom ] ; then
+				mknod dev/urandom c 45 2   # OpenBSD ?
+			fi
+		else
+			if ! [ -e dev/random ] ; then
+				mknod dev/random  c  2 3   # FreeBSD
+			fi
+			if ! [ -e dev/urandom ] ; then
+				mknod dev/urandom  c  2 3
+			fi
 		fi
 	else
 		if ! [ -e dev/random ] ; then
-			mknod dev/random  c  2 3   # FreeBSD
+			mknod dev/random  c  1 8   # Linux
 		fi
 		if ! [ -e dev/urandom ] ; then
-			mknod dev/urandom  c  2 3
+			mknod dev/urandom c  1 9   # Linux
 		fi
 	fi
-else
-	if ! [ -e dev/random ] ; then
-		mknod dev/random  c  1 8   # Linux
-	fi
-	if ! [ -e dev/urandom ] ; then
-		mknod dev/urandom c  1 9   # Linux
-	fi
-fi
 
-# some external programs may need these:
-if [ $UNIX_TYPE"" = "freebsd"  -o $UNIX_TYPE"" = "osx" ] ; then
-	if ! [ -e dev/stdin ] ; then
-		mknod dev/stdin   c 22 0   # FreeBSD, OpenBSD
-	fi
-	if ! [ -e dev/stdout ] ; then
-		mknod dev/stdout  c 22 1   # FreeBSD, OpenBSD
-	fi
-	if ! [ -e dev/stderr ] ; then
-		mknod dev/stderr  c 22 2   # FreeBSD, OpenBSD
+	# some external programs may need these:
+	if [ $UNIX_TYPE"" = "freebsd"  -o $UNIX_TYPE"" = "osx" ] ; then
+		if ! [ -e dev/stdin ] ; then
+			mknod dev/stdin   c 22 0   # FreeBSD, OpenBSD
+		fi
+		if ! [ -e dev/stdout ] ; then
+			mknod dev/stdout  c 22 1   # FreeBSD, OpenBSD
+		fi
+		if ! [ -e dev/stderr ] ; then
+			mknod dev/stderr  c 22 2   # FreeBSD, OpenBSD
+		fi
 	fi
 fi
 
