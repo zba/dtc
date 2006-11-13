@@ -1,7 +1,7 @@
 Source: dtc
 Section: admin
 Priority: optional
-Maintainer: Thomas GOIRAND <thomas@goirand.fr>
+Maintainer: Thomas Goirand <thomas@goirand.fr>
 Build-Depends: debhelper (>> 4.0.0), dh-make, po-debconf
 Standards-Version: 0.24.1
 
