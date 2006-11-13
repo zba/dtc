@@ -12,13 +12,6 @@ clean:
 	dh_testroot
 	dh_clean
 
-	# Add here commands to clean up after the build process.
-	#-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc
-	#-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc-postfix-courier
-	#-$(MAKE) clean DESTDIR=$(CURDIR)/debian/dtc-package-installer
-
-	dh_clean 
-
 install:
 	dh_testdir
 	dh_testroot
@@ -30,18 +23,7 @@ install:
 	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc/usr/share/dtc/shared/dtc_version.php
 	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc-postfix-courier/usr/share/dtc/shared/dtc_version.php
 
-	# Add here commands to install the package into debian/dtc.
-	#$(MAKE) install DESTDIR=$(CURDIR)/debian/dtc
-	#$(MAKE) install DESTDIR=$(CURDIR)/debian/dtc-postfix-courier
-	#mkdir -p $(CURDIR)/debian/dtc-postfix-courier/DEBIAN
-	#cp $(CURDIR)/debian/postinst $(CURDIR)/debian/prerm $(CURDIR)/debian/templates $(CURDIR)/debian/config $(CURDIR)/debian/dtc-postfix-courier/DEBIAN
-	#$(MAKE) installpkg DESTDIR=$(CURDIR)/debian/dtc-package-installer
-
-# Build architecture-independent files here.
 binary-indep: install
-# We have nothing to do by default.
-
-# Build architecture-dependent files here.
 binary-arch: install
 	dh_testdir
 	dh_testroot
