@@ -55,12 +55,12 @@ fi
 
 # Do a test to check php version. Those fucking PHP guys had
 # made things so simple that this test is not very short... :(
-CNT=`/usr/bin/php4 -v | wc -l`
+CNT=`${PATH_PHP_CGI} -v | wc -l`
 if [ $CNT -ge 2 ]
 then
-	PHPVE=`/usr/bin/php4 -v | head -n 1 | cut -f2 -d" "`
+	PHPVE=`${PATH_PHP_CGI} -v | head -n 1 | cut -f2 -d" "`
 else
-	PHPVE=`/usr/bin/php4 -v || true`
+	PHPVE=`${PATH_PHP_CGI} -v || true`
 fi
 
 PHPMAJOR=`echo $PHPVE | cut -f1 -d"."`
@@ -73,7 +73,7 @@ fi
 # This part is debian specific because of (in my point of view) some
 # leak in distribution. Whis is that not made by default ?
 
-# Adding support for mysql for php4-cgi
+# Adding support for mysql for phpX-cgi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Installing modifications in php.ini"
 fi
