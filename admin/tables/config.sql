@@ -69,5 +69,6 @@ shared_renewal_after varchar (64) NOT NULL default '15|7',
 shared_renewal_lastwarning varchar (64) NOT NULL default '25',
 shared_renewal_shutdown varchar (64) NOT NULL default '28',
 webalizer_country_graph enum('yes','no') NOT NULL default 'no',
+apache_version varchar (16) NOT NULL default '1',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
