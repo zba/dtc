@@ -15,10 +15,6 @@
 # because it's up to you to write it ! :)
 # Do a "cat setup_mysql_db.sh >>your_os_setup_script"
 
-# This is the setup script for
-# MYSQL database initialisation procedure
-# Written by Thomas Goirand <thomas@goirand.fr>
-
 
 # Uses the following variables :
 # "MySQL host: "$conf_mysql_host
@@ -41,7 +37,7 @@ fi
 # $2 - String to search
 # $3 - String to replace
 # $4 - MKTEMP binary and params
-function searchAndReplace (){
+searchAndReplace () {
 	if ! grep ${2} ${1} >/dev/null 2>&1 ; then
 		TMP_FILE=`${MKTEMP} DTC_SAR_TEMP.XXXXXX` || exit 1
 		sed "s/${2}/${3}/" ${1} >${TMP_FILE}
