@@ -23,20 +23,34 @@ else
 		if [ -e /usr/bin/php5 ] ; then
 			PATH_PHP_CGI="/usr/bin/php5"
 		else
-			if [ -e /usr/bin/php ] ; then
-				PATH_PHP_CGI="/usr/bin/php"
-			else
-				echo "Could not found the php cli binary!!!"
-				exit 0
-			fi
+			echo "Could not found the php cli binary!!!"
+			exit 0
 		fi
 	fi
 fi
-if [ -e /etc/php4/apache/php.ini ] ; then
-	PATH_PHP_INI_APACHE=/etc/php4/apache/php.ini
+if [ -e ""$conf_apache_version = "2" ] ; then
+	if [ -e /etc/php5/apache2/php.ini ] ; then
+		PATH_PHP_INI_APACHE=/etc/php5/apache2/php.ini
+	else
+		if [ -e /etc/php4/apache2/php.ini ] ; then
+			PATH_PHP_INI_APACHE=/etc/php4/apache2/php.ini
+		fi
+	fi
+else
+	if [ -e /etc/php5/apache/php.ini ] ; then
+		PATH_PHP_INI_APACHE=/etc/php5/apache/php.ini
+	else
+		if [ -e /etc/php4/apache/php.ini ] ; then
+			PATH_PHP_INI_APACHE=/etc/php4/apache/php.ini
+		fi
+	fi
 fi
-if [ -e /etc/php4/cli/php.ini ] ; then
-	PATH_PHP_INI_CLI=/etc/php4/cli/php.ini
+if [ -e /etc/php5/cli/php.ini ] ; then
+	PATH_PHP_INI_CLI=/etc/php5/cli/php.ini
+else
+	if [ -e /etc/php4/cli/php.ini ] ; then
+		PATH_PHP_INI_CLI=/etc/php4/cli/php.ini
+	fi
 fi
 if [ -e /etc/php4/apache2/php.ini ] ; then
 	PATH_PHP_INI_APACHE2=/etc/php4/apache2/php.ini
@@ -203,14 +217,10 @@ db_get dtc/conf_eth2monitor
 conf_eth2monitor=$RET
 db_get dtc/conf_report_setup_stat
 conf_report_setup=$RET
-#db_unregister dtc/conf_gen_ssl_cert
-#db_unregister dtc/conf_cert_passphrase
-#db_unregister dtc/conf_cert_challenge_pass
 db_unregister dtc/conf_mysqlpass
 db_unregister dtc/conf_mysql_change_root
 db_unregister dtc/conf_admpass
 db_unregister dtc/conf_upgrade_pear
-# db_purge
 
 if [ ""$conf_apache_version = "2" ] ; then
 	PATH_HTTPD_CONF=/etc/apache2/apache2.conf
@@ -455,8 +465,7 @@ fi
 # now update the pear modules if you have the "pear" installed
 # since PHP >= 4.3.0 doesn't come with Crypt_CBC that OpenSRS needs
 TMP_FILE=`mktemp -t DTC_pear.install.XXXXXX` || exit 1
-if [ $PHPMAJOR -ge 4 -a $PHPMINOR -ge 3 -a -e /usr/bin/pear ]
-then
+if [ $PHPMAJOR -ge 4 -a $PHPMINOR -ge 3 -a -e /usr/bin/pear ] ; then
 	if [ ""$conf_upgrade_pear = "false" ] ; then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "===> User selected not to check for pear: skiping."
