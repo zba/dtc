@@ -26,16 +26,20 @@ UNIX_TYPE=debian
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
 if [ -e /usr/bin/php4 ] ; then
-	PATH_PHP_CGI="/usr/bin/php4"
+	PATH_PHP_CGI="/usr/bin/php"
 else
-	if [ -e /usr/bin/php5 ] ; then
-		PATH_PHP_CGI="/usr/bin/php5"
+	if [ -e /usr/bin/php4 ] ; then
+		PATH_PHP_CGI="/usr/bin/php4"
 	else
-		if [ -e /usr/bin/php ] ; then
-			PATH_PHP_CGI="/usr/bin/php"
+		if [ -e /usr/bin/php5 ] ; then
+			PATH_PHP_CGI="/usr/bin/php5"
 		else
-			echo "Could not found the php cli binary!!!"
-			exit 0
+			if [ -e /usr/bin/php ] ; then
+				PATH_PHP_CGI="/usr/bin/php"
+			else
+				echo "Could not found the php cli binary!!!"
+				exit 0
+			fi
 		fi
 	fi
 fi
@@ -49,13 +53,70 @@ if [ -e /etc/php4/apache2/php.ini ] ; then
 	PATH_PHP_INI_APACHE2=/etc/php4/apache2/php.ini
 fi
 
+# Do a test to check php version. Those fucking PHP guys had
+# made things so simple that this test is not very short... :(
+CNT=`/usr/bin/php4 -v | wc -l`
+if [ $CNT -ge 2 ]
+then
+	PHPVE=`/usr/bin/php4 -v | head -n 1 | cut -f2 -d" "`
+else
+	PHPVE=`/usr/bin/php4 -v || true`
+fi
+
+PHPMAJOR=`echo $PHPVE | cut -f1 -d"."`
+PHPMINOR=`echo $PHPVE | cut -f2 -d"."`
+
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "The DTC installer has detected PHP version "$PHPMAJOR" release $PHPMINOR"
+fi
+
+# This part is debian specific because of (in my point of view) some
+# leak in distribution. Whis is that not made by default ?
+
+# Adding support for mysql for php4-cgi
+if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	echo "===> Installing modifications in php.ini"
+fi
+if [ -d /etc/php4/cli/ ] ; then
+	if grep mysql.so /etc/php4/cli/php.ini | grep extension= >/dev/null
+	then
+		echo -n ""
+	else
+		echo "extension=mysql.so" >>/etc/php4/cli/php.ini
+	fi
+fi
+if [ -d /etc/php4/apache/ ] ; then
+	if grep mysql.so /etc/php4/apache/php.ini | grep extension= >/dev/null
+	then
+		echo -n ""
+	else
+		echo "extension=mysql.so" >>/etc/php4/cli/php.ini
+	fi
+fi
+
+if [ -d /etc/php5/cli/ ] ; then
+	if grep mysql.so /etc/php5/cli/php.ini | grep extension= >/dev/null
+	then
+		echo -n ""
+	else
+		echo "extension=mysql.so" >>/etc/php5/cli/php.ini
+	fi
+fi
+if [ -d /etc/php5/apache/ ] ; then
+	if grep mysql.so /etc/php5/apache/php.ini | grep extension= >/dev/null
+	then
+		echo -n ""
+	else
+		echo "extension=mysql.so" >>/etc/php5/cli/php.ini
+	fi
+fi
+
 PATH_PROFTPD_CONF=/etc/proftpd.conf
 PATH_DOVECOT_CONF=/etc/dovecot.conf
 PATH_CRONTAB_CONF=/etc/crontab
 # in case our dovecot conf has moved...
-if [ -f /etc/dovecot/dovecot.conf ]; 
-then
-PATH_DOVECOT_CONF=/etc/dovecot/dovecot.conf
+if [ -f /etc/dovecot/dovecot.conf ] ; then
+	PATH_DOVECOT_CONF=/etc/dovecot/dovecot.conf
 fi
 PATH_COURIER_CONF_PATH=/etc/courier
 PATH_COURIER_AUTHD_CONF_PATH=/etc/courier
@@ -173,33 +234,8 @@ else
 fi
 
 
-# This part is debian specific because of (in my point of view) some
-# leak in distribution. Whis is that not made by default ?
-
-# Adding support for mysql for php4-cgi
-if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "===> Installing modifications in php.ini"
-fi
-if [ -d /etc/php4/cli/ ] ; then
-	if grep mysql.so /etc/php4/cli/php.ini | grep extension= >/dev/null
-	then
-		echo -n ""
-	else
-		echo "extension=mysql.so" >>/etc/php4/cli/php.ini
-	fi
-fi
-if [ -d /etc/php4/apache/ ] ; then
-	if grep mysql.so /etc/php4/apache/php.ini | grep extension= >/dev/null
-	then
-		echo -n ""
-	else
-		echo "extension=mysql.so" >>/etc/php4/cli/php.ini
-	fi
-fi
-
 # Setup a minimum include path with . and /usr/share/pear (or /usr/share/php for debian testing) !!!
-if [ -f /usr/share/pear/PEAR.php -o -f /usr/share/php/PEAR.php ]
-then
+if [ -f /usr/share/pear/PEAR.php -o -f /usr/share/php/PEAR.php ] ; then
 	if grep include_path /etc/php4/cli/php.ini | grep /usr/share/pear >/dev/null
 	then
 		echo -n ""
@@ -222,29 +258,12 @@ then
 			fi
 		fi
 	fi
-fi
 
-if [ -f /usr/share/php/PEAR.php ]
-then
-	if grep include_path /etc/php4/cli/php.ini | grep /usr/share/php > /dev/null
+	if grep include_path /etc/php5/cli/php.ini | grep /usr/share/pear >/dev/null
 	then
 		echo -n ""
 	else
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Your php.ini doesn't has pear in it's inc path: changin!"
-		fi
-		echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cli/php.ini
-	fi
-
-fi
-
-if [ -f /usr/share/pear/PEAR.php -o -f /usr/share/php/PEAR.php ]
-then
-	if grep include_path /etc/php4/apache/php.ini | grep /usr/share/pear >/dev/null
-	then
-		echo -n ""
-	else
-		if grep include_path /etc/php4/apache/php.ini | grep /usr/share/php >/dev/null
+		if grep include_path /etc/php5/cli/php.ini | grep /usr/share/php >/dev/null
 		then
 			echo -n ""
 		else
@@ -252,10 +271,10 @@ then
 				echo "Your php.ini doesn't has pear in it's inc path: changin!"
 			fi
 			if [ -e /usr/share/pear ] ; then
-				echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/apache/php.ini
+				echo "include_path = \".:/usr/share/pear\"" >>/etc/php5/cli/php.ini
 			else
 				if [ -e /usr/share/php ] ; then
-					echo "include_path = \".:/usr/share/php\"" >>/etc/php4/apache/php.ini
+					echo "include_path = \".:/usr/share/php\"" >>/etc/php5/cli/php.ini
 				else
 					echo "I couldn't do it: please check manualy you have PEAR installed!"
 				fi
@@ -264,37 +283,187 @@ then
 	fi
 fi
 
-if [ -f /usr/share/php/PEAR.php ]
-then
-	if grep include_path /etc/php4/apache/php.ini | grep /usr/share/php > /dev/null
-	then
-		echo -n ""
-	else
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Your php.ini doesn't has pear in it's inc path: changin!"
+if [ -f /usr/share/php/PEAR.php ] ; then
+	if [ -e /etc/php4/cli/php.ini ] ; then
+		if grep include_path /etc/php4/cli/php.ini | grep /usr/share/php > /dev/null
+		then
+			echo -n ""
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Your php.ini doesn't has pear in it's inc path: changin!"
+			fi
+			echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cli/php.ini
 		fi
-		echo "include_path = \".:/usr/share/php\"" >>/etc/php4/apache/php.ini
+	fi
+
+	if [ -e /etc/php5/cli/php.ini ] ; then
+		if grep include_path /etc/php5/cli/php.ini | grep /usr/share/php > /dev/null
+		then
+			echo -n ""
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Your php.ini doesn't has pear in it's inc path: changin!"
+			fi
+			echo "include_path = \".:/usr/share/php\"" >>/etc/php5/cli/php.ini
+		fi
+	fi
+fi
+
+if [ -f /usr/share/pear/PEAR.php -o -f /usr/share/php/PEAR.php ] ; then
+	if [ -e /etc/php4/apache/php.ini ] ; then
+		if grep include_path /etc/php4/apache/php.ini | grep /usr/share/pear >/dev/null
+		then
+			echo -n ""
+		else
+			if grep include_path /etc/php4/apache/php.ini | grep /usr/share/php >/dev/null
+			then
+				echo -n ""
+			else
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "Your php.ini doesn't has pear in it's inc path: changin!"
+				fi
+				if [ -e /usr/share/pear ] ; then
+					echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/apache/php.ini
+				else
+					if [ -e /usr/share/php ] ; then
+						echo "include_path = \".:/usr/share/php\"" >>/etc/php4/apache/php.ini
+					else
+						echo "I couldn't do it: please check manualy you have PEAR installed!"
+					fi
+				fi
+			fi
+		fi
+	fi
+
+	if [ -e /etc/php4/apache2/php.ini ] ; then
+		if grep include_path /etc/php4/apache2/php.ini | grep /usr/share/pear >/dev/null
+		then
+			echo -n ""
+		else
+			if grep include_path /etc/php4/apache2/php.ini | grep /usr/share/php >/dev/null
+			then
+				echo -n ""
+			else
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "Your php.ini doesn't has pear in it's inc path: changin!"
+				fi
+				if [ -e /usr/share/pear ] ; then
+					echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/apache2/php.ini
+				else
+					if [ -e /usr/share/php ] ; then
+						echo "include_path = \".:/usr/share/php\"" >>/etc/php4/apache2/php.ini
+					else
+						echo "I couldn't do it: please check manualy you have PEAR installed!"
+					fi
+				fi
+			fi
+		fi
+	fi
+
+	if [ -e /etc/php5/apache/php.ini ] ; then
+		if grep include_path /etc/php5/apache/php.ini | grep /usr/share/pear >/dev/null
+		then
+			echo -n ""
+		else
+			if grep include_path /etc/php5/apache/php.ini | grep /usr/share/php >/dev/null
+			then
+				echo -n ""
+			else
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "Your php.ini doesn't has pear in it's inc path: changin!"
+				fi
+				if [ -e /usr/share/pear ] ; then
+					echo "include_path = \".:/usr/share/pear\"" >>/etc/php5/apache/php.ini
+				else
+					if [ -e /usr/share/php ] ; then
+						echo "include_path = \".:/usr/share/php\"" >>/etc/php5/apache/php.ini
+					else
+						echo "I couldn't do it: please check manualy you have PEAR installed!"
+					fi
+				fi
+			fi
+		fi
+	fi
+
+	if [ -e /etc/php5/apache2/php.ini ] ; then
+		if grep include_path /etc/php5/apache2/php.ini | grep /usr/share/pear >/dev/null
+		then
+			echo -n ""
+		else
+			if grep include_path /etc/php5/apache2/php.ini | grep /usr/share/php >/dev/null
+			then
+				echo -n ""
+			else
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "Your php.ini doesn't has pear in it's inc path: changin!"
+				fi
+				if [ -e /usr/share/pear ] ; then
+					echo "include_path = \".:/usr/share/pear\"" >>/etc/php5/apache2/php.ini
+				else
+					if [ -e /usr/share/php ] ; then
+						echo "include_path = \".:/usr/share/php\"" >>/etc/php5/apache2/php.ini
+					else
+						echo "I couldn't do it: please check manualy you have PEAR installed!"
+					fi
+				fi
+			fi
+		fi
 	fi
 
 fi
 
-
-# Do a test to check php version. Those fucking PHP guys had
-# made things so simple that this test is not very short... :(
-CNT=`/usr/bin/php4 -v | wc -l`
-if [ $CNT -ge 2 ]
+if [ -f /usr/share/php/PEAR.php ]
 then
-	PHPVE=`/usr/bin/php4 -v | head -n 1 | cut -f2 -d" "`
-else
-	PHPVE=`/usr/bin/php4 -v || true`
+	if [ -e /etc/php4/apache/php.ini ] ; then
+		if grep include_path /etc/php4/apache/php.ini | grep /usr/share/php > /dev/null
+		then
+			echo -n ""
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Your php.ini doesn't have pear in it's inc path: changin!"
+			fi
+			echo "include_path = \".:/usr/share/php\"" >>/etc/php4/apache/php.ini
+		fi
+	fi
+
+	if [ -e /etc/php4/apache2/php.ini ] ; then
+		if grep include_path /etc/php4/apache2/php.ini | grep /usr/share/php > /dev/null
+		then
+			echo -n ""
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Your php.ini doesn't have pear in it's inc path: changin!"
+			fi
+			echo "include_path = \".:/usr/share/php\"" >>/etc/php4/apache2/php.ini
+		fi
+	fi
+
+	if [ -e /etc/php5/apache/php.ini ] ; then
+		if grep include_path /etc/php5/apache/php.ini | grep /usr/share/php > /dev/null
+		then
+			echo -n ""
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Your php.ini doesn't have pear in it's inc path: changin!"
+			fi
+			echo "include_path = \".:/usr/share/php\"" >>/etc/php5/apache/php.ini
+		fi
+	fi
+
+	if [ -e /etc/php5/apache2/php.ini ] ; then
+		if grep include_path /etc/php5/apache2/php.ini | grep /usr/share/php > /dev/null
+		then
+			echo -n ""
+		else
+			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+				echo "Your php.ini doesn't have pear in it's inc path: changin!"
+			fi
+			echo "include_path = \".:/usr/share/php\"" >>/etc/php5/apache2/php.ini
+		fi
+	fi
+
 fi
 
-PHPMAJOR=`echo $PHPVE | cut -f1 -d"."`
-PHPMINOR=`echo $PHPVE | cut -f2 -d"."`
-
-if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "The DTC installer has detected PHP version "$PHPMAJOR" release $PHPMINOR"
-fi
 
 # now update the pear modules if you have the "pear" installed
 # since PHP >= 4.3.0 doesn't come with Crypt_CBC that OpenSRS needs

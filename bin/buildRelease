@@ -42,7 +42,7 @@ if ! [ -f sources/dtc_db.php ]; then
 	echo "Dumping your DTC SQL structures."
 	echo -n "Please enter your mysql password: "
 	read conf_dbpass
-	php4 backup_db.php $conf_dbpass
+	php backup_db.php $conf_dbpass
 	cd $curdir
 fi
 cp sources/dtc_db.php sources/restor_db.php $BUILD_DIR/admin

@@ -243,7 +243,7 @@ echo "dovecot.conf: "$PATH_DOVECOT_CONF
 echo "Courier config path: "$PATH_COURIER_CONF_PATH
 echo "postfix/main.cf: "$PATH_POSTFIX_CONF
 echo "qmail control: "$PATH_QMAIL_CTRL
-echo "php4 cgi: "$PATH_PHP_CGI
+echo "php cgi: "$PATH_PHP_CGI
 echo "generated files: "$PATH_DTC_ETC
 echo ""
 echo -n 'Confirm and install DTC ? [Ny]:'

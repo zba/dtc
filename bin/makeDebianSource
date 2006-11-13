@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/makeDebianSource,v $
-# $Date: 2005/06/28 13:07:19 $
-# $Revision: 1.10 $
+# $Date: 2006/11/13 08:05:35 $
+# $Revision: 1.11 $
 
 
 VERS=`cat version`
@@ -157,7 +157,7 @@ then
 	echo "Dumping your DTC SQL structures."
 	echo -n "Please enter your mysql password: "
 	read conf_dbpass
-	php4 backup_db.php $conf_dbpass
+	php backup_db.php $conf_dbpass
 	cd $curdir
 fi
 cp sources/dtc_db.php sources/restor_db.php debian-src/dtc-$VERS/admin

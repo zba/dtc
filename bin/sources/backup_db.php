@@ -4,7 +4,7 @@ $pro_mysql_host="localhost";
 $pro_mysql_login="root";
 $pro_mysql_db="dtc";
 
-$usages = "Usage: php4 backup.php [ options ] db_password
+$usages = "Usage: php backup.php [ options ] db_password
 
 Options are:
   -h host (default to localhost)
