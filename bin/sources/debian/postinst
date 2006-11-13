@@ -1,20 +1,6 @@
 #!/bin/sh
 
 set -e
-#if [ "$1" = "configure" ]
-#	then
-#        if [ -d /usr/doc -a ! -e /usr/doc/dtc -a -d /usr/share/doc/dtc ]
-#	then
-#                ln -sf ../share/doc/dtc /usr/doc/dtc
-#        fi
-#fi
-
-
-# Debian install bash script for DTC
-# Written by Thomas GOIRAND <thomas@goirand.fr>
-# under LGPL Licence
-
-# exit 0
 
 #DEBHELPER#
 
@@ -22,6 +8,9 @@ set -e
 VERBOSE_INSTALL=yes
 
 UNIX_TYPE=debian
+
+. /usr/share/debconf/confmodule
+db_version 2.0
 
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
@@ -85,6 +74,7 @@ if [ -d /etc/php4/cli/ ] ; then
 		echo "extension=mysql.so" >>/etc/php4/cli/php.ini
 	fi
 fi
+
 if [ -d /etc/php4/apache/ ] ; then
 	if grep mysql.so /etc/php4/apache/php.ini | grep extension= >/dev/null
 	then
@@ -102,6 +92,7 @@ if [ -d /etc/php5/cli/ ] ; then
 		echo "extension=mysql.so" >>/etc/php5/cli/php.ini
 	fi
 fi
+
 if [ -d /etc/php5/apache/ ] ; then
 	if grep mysql.so /etc/php5/apache/php.ini | grep extension= >/dev/null
 	then
@@ -118,6 +109,7 @@ PATH_CRONTAB_CONF=/etc/crontab
 if [ -f /etc/dovecot/dovecot.conf ] ; then
 	PATH_DOVECOT_CONF=/etc/dovecot/dovecot.conf
 fi
+
 PATH_COURIER_CONF_PATH=/etc/courier
 PATH_COURIER_AUTHD_CONF_PATH=/etc/courier
 PATH_CYRUS_CONF=/etc/imapd.conf
@@ -144,11 +136,6 @@ PASSWD_CMD=passwd
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
-
-# Source debconf library -- we have a Depends line
-# to make sure it is there...
-. /usr/share/debconf/confmodule
-db_version 2.0
 
 # Simply fetch all values stored in debconf
 db_get dtc/conf_mysqlhost
@@ -216,7 +203,6 @@ db_get dtc/conf_eth2monitor
 conf_eth2monitor=$RET
 db_get dtc/conf_report_setup_stat
 conf_report_setup=$RET
-
 #db_unregister dtc/conf_gen_ssl_cert
 #db_unregister dtc/conf_cert_passphrase
 #db_unregister dtc/conf_cert_challenge_pass
@@ -233,50 +219,53 @@ else
 	PATH_HTTPD_MODULES_CONF=/etc/apache/modules.conf
 fi
 
-
 # Setup a minimum include path with . and /usr/share/pear (or /usr/share/php for debian testing) !!!
 if [ -f /usr/share/pear/PEAR.php -o -f /usr/share/php/PEAR.php ] ; then
-	if grep include_path /etc/php4/cli/php.ini | grep /usr/share/pear >/dev/null
-	then
-		echo -n ""
-	else
-		if grep include_path /etc/php4/cli/php.ini | grep /usr/share/php >/dev/null
+	if [ -e /etc/php4/cli/php.ini ] ; then
+		if grep include_path /etc/php4/cli/php.ini | grep /usr/share/pear >/dev/null
 		then
 			echo -n ""
 		else
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "Your php.ini doesn't has pear in it's inc path: changin!"
-			fi
-			if [ -e /usr/share/pear ] ; then
-				echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cli/php.ini
+			if grep include_path /etc/php4/cli/php.ini | grep /usr/share/php >/dev/null
+			then
+				echo -n ""
 			else
-				if [ -e /usr/share/php ] ; then
-					echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cli/php.ini
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "Your php.ini doesn't has pear in it's inc path: changin!"
+				fi
+				if [ -e /usr/share/pear ] ; then
+					echo "include_path = \".:/usr/share/pear\"" >>/etc/php4/cli/php.ini
 				else
-					echo "I couldn't do it: please check manualy you have PEAR installed!"
+					if [ -e /usr/share/php ] ; then
+						echo "include_path = \".:/usr/share/php\"" >>/etc/php4/cli/php.ini
+					else
+						echo "I couldn't do it: please check manualy you have PEAR installed!"
+					fi
 				fi
 			fi
 		fi
 	fi
 
-	if grep include_path /etc/php5/cli/php.ini | grep /usr/share/pear >/dev/null
-	then
-		echo -n ""
-	else
-		if grep include_path /etc/php5/cli/php.ini | grep /usr/share/php >/dev/null
+	if [ -e /etc/php5/cli/php.ini ] ; then
+		if grep include_path /etc/php5/cli/php.ini | grep /usr/share/pear >/dev/null
 		then
 			echo -n ""
 		else
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "Your php.ini doesn't has pear in it's inc path: changin!"
-			fi
-			if [ -e /usr/share/pear ] ; then
-				echo "include_path = \".:/usr/share/pear\"" >>/etc/php5/cli/php.ini
+			if grep include_path /etc/php5/cli/php.ini | grep /usr/share/php >/dev/null
+			then
+				echo -n ""
 			else
-				if [ -e /usr/share/php ] ; then
-					echo "include_path = \".:/usr/share/php\"" >>/etc/php5/cli/php.ini
+				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+					echo "Your php.ini doesn't has pear in it's inc path: changin!"
+				fi
+				if [ -e /usr/share/pear ] ; then
+					echo "include_path = \".:/usr/share/pear\"" >>/etc/php5/cli/php.ini
 				else
-					echo "I couldn't do it: please check manualy you have PEAR installed!"
+					if [ -e /usr/share/php ] ; then
+						echo "include_path = \".:/usr/share/php\"" >>/etc/php5/cli/php.ini
+					else
+						echo "I couldn't do it: please check manualy you have PEAR installed!"
+					fi
 				fi
 			fi
 		fi
@@ -412,8 +401,7 @@ if [ -f /usr/share/pear/PEAR.php -o -f /usr/share/php/PEAR.php ] ; then
 
 fi
 
-if [ -f /usr/share/php/PEAR.php ]
-then
+if [ -f /usr/share/php/PEAR.php ] ; then
 	if [ -e /etc/php4/apache/php.ini ] ; then
 		if grep include_path /etc/php4/apache/php.ini | grep /usr/share/php > /dev/null
 		then
@@ -464,7 +452,6 @@ then
 
 fi
 
-
 # now update the pear modules if you have the "pear" installed
 # since PHP >= 4.3.0 doesn't come with Crypt_CBC that OpenSRS needs
 TMP_FILE=`mktemp -t DTC_pear.install.XXXXXX` || exit 1
@@ -482,7 +469,6 @@ then
 		set -x
 		# The upgrade all is currently broken in current debian release
 		/usr/bin/pear upgrade Console_Getopt > $TMP_FILE
-#		/usr/bin/pear upgrade-all >> $TMP_FILE
 		/usr/bin/pear install Crypt_CBC >> $TMP_FILE
 		/usr/bin/pear install Auth_SASL >> $TMP_FILE
 		set +x
@@ -493,7 +479,7 @@ else
 		echo "This is a version of PHP that should have the modules included"
 	fi
 fi
-rm $TMP_FILE
+rm -f $TMP_FILE
 
 # Changing root password of mysql
 if [ "$conf_mysql_change_root" = "true" ]
