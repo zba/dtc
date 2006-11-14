@@ -2396,18 +2396,23 @@ else
 	fi
 	TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 	echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
-	echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
-	echo "9 4 * * * nobody cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
+	# Under Debian, we use cron.d in the rules file as much as possible
+	# (unfortunatly, I don't know if it's possible to make it dynamic)
+	if [ ! ""$UNIX_TYPE = "debian" ] ; then
+		echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
+		echo "9 4 * * * nobody cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
+		echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
+		echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC \"$conf_eth2monitor\" >>/var/log/dtc.log" >> $TMP_FILE
+		echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/memgraph/get_meminfo.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
+		echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
+	fi
+
 	if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ]; then
 		echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_postfix.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	fi
 	if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ]; then
 		echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/queuegraph/count_qmail.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 	fi
-	echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-	echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC \"$conf_eth2monitor\" >>/var/log/dtc.log" >> $TMP_FILE
-	echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/memgraph/get_meminfo.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-	echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
 	cat < $TMP_FILE >>/etc/crontab
 	rm $TMP_FILE
 fi
