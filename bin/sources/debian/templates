@@ -227,3 +227,11 @@ Description: Allow to report anonymous statistc
  ever use it for commercial purpose). You need an internet connection and
  wget installed to report. Do you wish to allow DTC installer to report the
  setup of the control panel?
+
+Template: dtc/conf_omit_dev_mknod
+Type: boolean
+Default: false
+Description: Skip mknod calls when building chroot template?
+ In some environment, like Linux vServer, mknod is not allowed to be
+ executed. For that reason, it's possible to skip the creation of the
+ dev null, random and urandom devices durring the chroot template creation.

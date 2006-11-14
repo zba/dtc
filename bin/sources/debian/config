@@ -42,7 +42,7 @@ db_input medium dtc/conf_admlogin
 db_input high dtc/conf_admpass
 db_input high dtc/conf_gen_ssl_cert
 db_get dtc/conf_gen_ssl_cert
-if [ ""$RET = "yes" ] ; then
+if [ ""$RET = "yes" -o ""$RET = "true" ] ; then
 	db_input high dtc/conf_cert_passphrase
 	db_input low dtc/conf_cert_countrycode
 	db_input low dtc/conf_cert_locality
@@ -51,6 +51,7 @@ if [ ""$RET = "yes" ] ; then
 	db_input high dtc/conf_cert_email
 	db_input high dtc/conf_cert_challenge_pass
 fi
+db_input high dev/conf_omit_dev_mknod
 db_input high dtc/conf_upgrade_pear
 db_input low dtc/conf_dnsbl_list
 

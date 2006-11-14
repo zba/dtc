@@ -209,6 +209,8 @@ db_get dtc/conf_cert_email
 conf_cert_email=$RET
 db_get dtc/conf_cert_challenge_pass
 conf_cert_challenge_pass=$RET
+db_get dtc/conf_omit_dev_mknod
+omit_dev_mknod=$RET
 db_get dtc/conf_upgrade_pear
 conf_upgrade_pear=$RET
 db_get dtc/conf_dnsbl_list
