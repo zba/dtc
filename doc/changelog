@@ -1,3 +1,7 @@
+Version 0.24:
+- Lot's of clean-up and bug fixes (0.22 has never been said
+a stable version, but was always our CVS one).
+
 Version 0.22:
 -------------
 - Added support ticket system with email reminders
