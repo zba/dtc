@@ -210,7 +210,11 @@ conf_cert_email=$RET
 db_get dtc/conf_cert_challenge_pass
 conf_cert_challenge_pass=$RET
 db_get dtc/conf_omit_dev_mknod
-omit_dev_mknod=$RET
+if [ ""$RET = "true" -o ""$RET = "yes" ] ; then
+	omit_dev_mknod="yes"
+else
+	omit_dev_mknod="no"
+fi
 db_get dtc/conf_upgrade_pear
 conf_upgrade_pear=$RET
 db_get dtc/conf_dnsbl_list
