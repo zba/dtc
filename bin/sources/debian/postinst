@@ -471,7 +471,14 @@ fi
 # now update the pear modules if you have the "pear" installed
 # since PHP >= 4.3.0 doesn't come with Crypt_CBC that OpenSRS needs
 TMP_FILE=`mktemp -t DTC_pear.install.XXXXXX` || exit 1
+can_do_pear_upgrade="no"
 if [ $PHPMAJOR -ge 4 -a $PHPMINOR -ge 3 -a -e /usr/bin/pear ] ; then
+	can_do_pear_upgrade="yes"
+fi
+if [ $PHPMAJOR -ge 5 -a -e /usr/bin/pear ] ; then
+	can_do_pear_upgrade="yes"
+fi
+if [ $can_do_pear_upgrade = "yes" ] ; then
 	if [ ""$conf_upgrade_pear = "false" ] ; then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 			echo "===> User selected not to check for pear: skiping."
