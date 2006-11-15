@@ -34,7 +34,6 @@ then
 	TMP_FILE2=`${MKTEMP} DTC_uninstall.crontab.XXXXXX` || exit 1
 	grep -v "Configured by DTC" $PATH_CRONTAB_CONF > $TMP_FILE
 	grep -v "cd /usr/share/dtc/admin; " $TMP_FILE > $TMP_FILE2
-	cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.removed
 	# don't rm the original file, just empty it so we keep permissions
 	echo -n > $PATH_CRONTAB_CONF
 	cat < $TMP_FILE2 >> $PATH_CRONTAB_CONF
@@ -52,11 +51,10 @@ then
 	grep -v "Configured by DTC" $PATH_NAMED_CONF > $TMP_FILE
 	grep -v "include \"$PATH_DTC_ETC/named.conf\"" $TMP_FILE > $TMP_FILE2
 	cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.removed
-	# don't purge the original file, just empty it
+	# don't rm the original file, just empty it
 	echo -n > $PATH_NAMED_CONF
 	cat < $TMP_FILE2 >> $PATH_NAMED_CONF
-	rm -f $TMP_FILE
-	rm -f $TMP_FILE2
+	rm -f $TMP_FILE $TMP_FILE2
 fi
 
 #
