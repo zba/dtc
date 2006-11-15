@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/prepareDebianTree,v $
-# $Date: 2006/11/08 21:05:12 $
-# $Revision: 1.8 $
+# $Date: 2006/11/15 20:15:08 $
+# $Revision: 1.9 $
 
 DSTDIR=..
 
@@ -25,19 +25,19 @@ echo " --- Updating DTC debian source package tree --- "
 
 # Make the config file directory and script using standard
 # plus debian specific scripts
-cp -f sources/debian/config ${DSTDIR}/debian/config
+cp -f sources/debian/config ${DSTDIR}/debian/dtc.config
 cp -f sources/debian/config ${DSTDIR}/debian/dtc-postfix-courier.config
-cp -f sources/debian/postinst ${DSTDIR}/debian/postinst
+cp -f sources/debian/postinst ${DSTDIR}/debian/dtc.postinst
 cp -f sources/debian/postinst ${DSTDIR}/debian/dtc-postfix-courier.postinst
-cp -f sources/debian/templates ${DSTDIR}/debian/templates
+cp -f sources/debian/templates ${DSTDIR}/debian/dtc.templates
 cp -f sources/debian/templates ${DSTDIR}/debian/dtc-postfix-courier.templates
-cp -f sources/debian/prerm ${DSTDIR}/debian/prerm
+cp -f sources/debian/prerm ${DSTDIR}/debian/dtc.prerm
 cp -f sources/debian/prerm ${DSTDIR}/debian/dtc-postfix-courier.prerm
 
-cat sources/setup_mysql_db.sh >>${DSTDIR}/debian/postinst
-cat sources/create_chroot.sh >>${DSTDIR}/debian/postinst
-cat sources/configure_deamons.sh >>${DSTDIR}/debian/postinst
-cat sources/uninstall_deamons.sh >>${DSTDIR}/debian/prerm
+cat sources/setup_mysql_db.sh >>${DSTDIR}/debian/dtc.postinst
+cat sources/create_chroot.sh >>${DSTDIR}/debian/dtc.postinst
+cat sources/configure_deamons.sh >>${DSTDIR}/debian/dtc.postinst
+cat sources/uninstall_deamons.sh >>${DSTDIR}/debian/dtc.prerm
 cat sources/setup_mysql_db.sh >>${DSTDIR}/debian/dtc-postfix-courier.postinst
 cat sources/create_chroot.sh >>${DSTDIR}/debian/dtc-postfix-courier.postinst
 cat sources/configure_deamons.sh >>${DSTDIR}/debian/dtc-postfix-courier.postinst

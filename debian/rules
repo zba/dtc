@@ -3,8 +3,8 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-VERS=`cat bin/version`
-RELS=`cat bin/release`
+VERS=$(shell echo `cat bin/version`)
+RELS=$(shell echo `cat bin/release`)
 VERSION=$(VERS)"-"$(RELS)
 
 clean:
