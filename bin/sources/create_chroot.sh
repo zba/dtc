@@ -102,7 +102,10 @@ if [ -e /usr/bin/file ] ; then
 	cp -pf /usr/bin/file usr/bin/
 fi
 
-if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
+if [ $UNIX_TYPE"" = "freebsd" ] ; then
+	cp -pf /usr/bin/cpio usr/bin
+	cp -pf /bin/rm /bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
+elif [ $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
 	cp -pf /usr/bin/rm /usr/bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
 else
@@ -384,13 +387,21 @@ fi
 # set protections
 chmod 1770 tmp
 chmod 1770 var/tmp
+if ! [ ""$conf_omit_dev_mknod = "yes" ] ; then
 chmod 666 dev/null
 chmod 644 dev/*random
+endif
 
 #now need to copy over the perl binary and some modules
 cp -pf /usr/bin/perl usr/bin/
 
-if ! [ $UNIX_TYPE"" = "osx" ] ;then
+if [ $UNIX_TYPE"" = "freebsd" ] ;then
+        # now create our ld.so cache
+        cp /libexec/ld-elf.so.1 $CHROOT_DIR/libexec
+        chroot $CHROOT_DIR ./sbin/ldconfig
+        # just in case we have wiped our /etc/ld.so.cache (run locally)
+        /sbin/ldconfig
+elif ! [ $UNIX_TYPE"" = "osx" ] ;then
 	# now create our ld.so cache
 	mkdir -p $CHROOT_DIR/etc
 	touch $CHROOT_DIR/etc/ld.so.cache
