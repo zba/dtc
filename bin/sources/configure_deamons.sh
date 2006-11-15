@@ -2399,6 +2399,14 @@ else
 	# Under Debian, we use cron.d in the rules file as much as possible
 	# (unfortunatly, I don't know if it's possible to make it dynamic)
 	if [ ! ""$UNIX_TYPE = "debian" ] ; then
+		echo "-"
+		echo "-"
+		echo "-"
+		echo "-Debian shouldn't go here !!!"
+		echo "-"
+		echo "-"
+		echo "-"
+		echo "-"
 		echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
 		echo "9 4 * * * nobody cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
 		echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
