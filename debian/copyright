@@ -1,12 +1,12 @@
 This package was debianized by Thomas Goirand <thomas@goirand.fr> on
 Sat,  9 Apr 2005 21:54:10 +0200.
 
-Copyright Holder: Thomas Goirand <thomas@goirand.fr>
+Upstream Author: Thomas Goirand <thomas@goirand.fr>
 
 License:
 
-	Copyright (c) Thomas Goirand <thomas@goirand.fr>
-	Copyright (c) GPLHost LLC <info@gplhost.com>
+	Copyright (C) Thomas Goirand <thomas@goirand.fr>
+	Copyright (C) GPLHost LLC <info@gplhost.com>
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
