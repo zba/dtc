@@ -18,8 +18,6 @@ install:
 	dh_clean -k 
 	dh_installdirs
 
-	chown -R nobody:nogroup debian/dtc/usr/share/dtc/shared/imgcache
-	chown -R nobody:nogroup debian/dtc-postfix-courier/usr/share/dtc/shared/imgcache
 	# This warn fresh checkouts from CVS, please leave...
 	if ! [ -e debian/postinst ] ; then echo "postinst script missing! cd to bin and run ./prepareDebianTree first!" ; exit 1 ; fi
 
