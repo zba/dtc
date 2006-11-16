@@ -2497,7 +2497,7 @@ if [ ""$conf_report_setup = "true" ]; then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "Reporting install using $WGET -b -q --output-document=/dev/null http://www.gplhost.com/dtc-install-stats.php?ostype=${UNIX_TYPE}"
 	fi
-	$WGET -b -q --output-document=/dev/null "http://www.gplhost.com/dtc-install-stats.php?ostype=${UNIX_TYPE}" >/dev/null
+	$WGET -b -q --output-document=/dev/null "http://www.gplhost.com/dtc-install-stats.php?ostype=${UNIX_TYPE}" -o /dev/null >/dev/null
 else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "Not reporting install this time..."

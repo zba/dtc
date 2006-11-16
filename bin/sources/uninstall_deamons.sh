@@ -423,3 +423,6 @@ if [ -e ${APACHE2_CONFD} ]; then
 		rm $TMP_FILE
 	fi
 fi
+
+rm ${PATH_DTC_ADMIN}/.htaccess
+
