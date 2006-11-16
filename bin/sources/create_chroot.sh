@@ -1,24 +1,5 @@
-#!/bin/sh
-
-# this chroot creation script will only work for debian testing
-# please modify this for your particular distribution/OS
-# Damien Mascord <tusker@tusker.org>
-
-# Added support for Debian stable and integrate it in install
-# script for all OS (path needs to be checked for BSD and RedHat...
-# so this script is for the moment UNTESTED)
-# Thomas GOIRAND <thomas [ at ] goirand.fr>
-
-# first check to see if we have the correct command line settings
-#if [ "$1" = "" ]
-#then
-#	echo "Usage: $0 <directory to create chroot in> <webuser> <webgroup>"
-#	exit 1
-#fi
-
-# assign our variables
 CHROOT_DIR=$conf_chroot_path
-WEB_USER=nobody
+WEB_USER=${CONF_DTC_SYSTEM_USERNAME}
 
 if [ $CHROOT_DIR"" = "" ] ; then
 	CHROOT_DIR=/var/www/chroot
@@ -390,7 +371,7 @@ chmod 1770 var/tmp
 if ! [ ""$conf_omit_dev_mknod = "yes" ] ; then
 	chmod 666 dev/null
 	chmod 644 dev/*random
-if
+fi
 
 #now need to copy over the perl binary and some modules
 cp -pf /usr/bin/perl usr/bin/
@@ -401,13 +382,15 @@ if [ $UNIX_TYPE"" = "freebsd" ] ;then
         chroot $CHROOT_DIR ./sbin/ldconfig
         # just in case we have wiped our /etc/ld.so.cache (run locally)
         /sbin/ldconfig
-elif ! [ $UNIX_TYPE"" = "osx" ] ;then
-	# now create our ld.so cache
-	mkdir -p $CHROOT_DIR/etc
-	touch $CHROOT_DIR/etc/ld.so.cache
-	touch $CHROOT_DIR/etc/ld.so.conf
-	chroot $CHROOT_DIR ./sbin/ldconfig 
-	# just in case we have wiped our /etc/ld.so.cache (run locally)
-	/sbin/ldconfig
+else
+	if ! [ $UNIX_TYPE"" = "osx" ] ;then
+		# now create our ld.so cache
+		mkdir -p $CHROOT_DIR/etc
+		touch $CHROOT_DIR/etc/ld.so.cache
+		touch $CHROOT_DIR/etc/ld.so.conf
+		chroot $CHROOT_DIR ./sbin/ldconfig 
+		# just in case we have wiped our /etc/ld.so.cache (run locally)
+		/sbin/ldconfig
+	fi
 fi
 
