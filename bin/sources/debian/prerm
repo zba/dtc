@@ -46,6 +46,7 @@ PATH_AMAVISD_CONF=/etc/amavis/amavisd.conf
 
 PATH_DTC_ETC=/usr/share/dtc/etc
 PATH_DTC_ADMIN=/usr/share/dtc/admin
+PATH_DTC_SHARED=/usr/share/dtc
 
 # Get stored values in debconf
 

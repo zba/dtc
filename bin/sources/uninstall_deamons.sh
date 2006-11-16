@@ -424,5 +424,7 @@ if [ -e ${APACHE2_CONFD} ]; then
 	fi
 fi
 
-rm ${PATH_DTC_ADMIN}/.htaccess
-
+rm -f ${PATH_DTC_ADMIN}/.htaccess
+rm -f ${PATH_DTC_SHARED}/shared/cyrus.php
+rm -f ${PATH_DTC_SHARED}/shared/securepay/paiement_config.php
+rm -f ${PATH_DTC_SHARED}/shared/mysql_config.php
