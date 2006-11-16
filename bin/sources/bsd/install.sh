@@ -13,6 +13,14 @@ UNIX_TYPE=freebsd
 
 VERBOSE_INSTALL=yes
 
+# Should be wrong for the moment: PLEASE FIX !!!
+CONF_DTC_SYSTEM_USERNAME=dtc
+if grep "${CONF_DTC_SYSTEM_USERNAME}:" /etc/passwd >/dev/null ; then
+	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+else
+	useradd -m -s /bin/false ${CONF_DTC_SYSTEM_USERNAME}
+fi
+
 # DATABASE CONFIGURATION
 echo "### MYSQL CONFIGURATION ###"
 echo ""

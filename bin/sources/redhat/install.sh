@@ -43,6 +43,13 @@ else
 	exit 1
 fi 
 
+CONF_DTC_SYSTEM_USERNAME=dtc
+if grep "${CONF_DTC_SYSTEM_USERNAME}:" /etc/passwd >/dev/null ; then
+	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+else
+	useradd -m -s /bin/false ${CONF_DTC_SYSTEM_USERNAME}
+fi
+
 PATH_NAMED_CONF=/etc/named.conf
 PATH_QMAIL_CTRL=/var/qmail/control
 PATH_PHP_CGI=/usr/bin/php

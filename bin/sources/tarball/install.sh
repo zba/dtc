@@ -338,6 +338,12 @@ if [ -z "$conf_eth2monitor" ] ; then
 	fi
 fi
 
+CONF_DTC_SYSTEM_USERNAME=dtc
+if grep "${CONF_DTC_SYSTEM_USERNAME}:" /etc/passwd >/dev/null ; then
+	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+else
+	useradd -m -s /bin/false ${CONF_DTC_SYSTEM_USERNAME}
+fi
 
 PATH_CRONTAB_CONF=/etc/crontab
 

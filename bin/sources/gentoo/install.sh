@@ -7,6 +7,13 @@ UNIX_TYPE=gentoo
 
 VERBOSE_INSTALL=yes
 
+CONF_DTC_SYSTEM_USERNAME=dtc
+if grep "${CONF_DTC_SYSTEM_USERNAME}:" /etc/passwd >/dev/null ; then
+	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+else
+	useradd -m -s /bin/false ${CONF_DTC_SYSTEM_USERNAME}
+fi
+
 PATH_HTTPD_CONF="/etc/apache2/httpd.conf"
 PATH_NAMED_CONF="/etc/bind/named.conf"
 PATH_POSTFIX_ETC="/etc/postfix"

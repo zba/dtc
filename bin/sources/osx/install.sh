@@ -7,6 +7,12 @@ UNIX_TYPE=osx
 
 VERBOSE_INSTALL="yes"
 
+CONF_DTC_SYSTEM_USERNAME=dtc
+if grep "${CONF_DTC_SYSTEM_USERNAME}:" /etc/passwd >/dev/null ; then
+	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+else
+	useradd -m -s /bin/false ${CONF_DTC_SYSTEM_USERNAME}
+fi
 
 # Deamon path configuration
 PATH_HTTPD_CONF="/etc/httpd/httpd.conf"

@@ -112,9 +112,9 @@ if [ -z ""$nobodygid ]; then
 fi
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo chown -R nobody:$nobodygroup $conf_hosting_path
+	echo chown -R ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $conf_hosting_path
 fi
-chown -R nobody:$nobodygroup $conf_hosting_path
+chown -R ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $conf_hosting_path
 
 set -e
 

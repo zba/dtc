@@ -94,9 +94,9 @@ fi
 set -e
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "chown -R nobody:$nobodygroup $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains"
+	echo "chown -R ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains"
 fi
-chown -R nobody:$nobodygroup $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains
+chown -R ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains
 
 # if we have a sudo binary around, then use it to create our chroot shell
 # check for some path defaults... 
@@ -138,8 +138,8 @@ if [ -n "$PATH_SUDO" ] ; then
 		fi
 		TMP_FILE=`${MKTEMP} DTC_install.sudoers.XXXXXX` || exit 1
 		echo "# Configured by DTC 0.21 : please do not touch this line !" >> $TMP_FILE
-		echo "Defaults:nobody !set_logname" >> $TMP_FILE
-		echo "nobody      ALL= NOPASSWD: $PATH_CHROOT *" >> $TMP_FILE
+		echo "Defaults:${CONF_DTC_SYSTEM_USERNAME} !set_logname" >> $TMP_FILE
+		echo "${CONF_DTC_SYSTEM_USERNAME}      ALL= NOPASSWD: $PATH_CHROOT *" >> $TMP_FILE
 		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 		cat <$TMP_FILE >>$PATH_SUDOERS_CONF
 	fi
@@ -261,8 +261,8 @@ else
 	# Those 2 are for debian
 	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "User www-data -> User nobody"
-		sed "s/User www-data/User nobody/" $PATH_HTTPD_CONF >$TMP_FILE
+		echo "User www-data -> User ${CONF_DTC_SYSTEM_USERNAME}"
+		sed "s/User www-data/User ${CONF_DTC_SYSTEM_USERNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
@@ -276,21 +276,21 @@ else
 	# Those 2 are for BSD
 	if grep "User www" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "User www -> User nobody"
-		sed "s/User www/User nobody/" $PATH_HTTPD_CONF >$TMP_FILE
+		echo "User www -> User ${CONF_DTC_SYSTEM_USERNAME}"
+		sed "s/User www/User ${CONF_DTC_SYSTEM_USERNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 	if grep "Group www" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "Group www -> Group nobody"
-		sed "s/Group www/Group nobody/" $PATH_HTTPD_CONF >$TMP_FILE
+		echo "Group www -> Group ${CONF_DTC_SYSTEM_USERNAME}"
+		sed "s/Group www/Group ${CONF_DTC_SYSTEM_USERNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 	# Those 2 are for RedHat
 	if grep "User apache" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "User apache -> User nobody"
-		sed "s/User apache/User nobody/" $PATH_HTTPD_CONF >$TMP_FILE
+		echo "User apache -> User ${CONF_DTC_SYSTEM_USERNAME}"
+		sed "s/User apache/User ${CONF_DTC_SYSTEM_USERNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 	if grep "Group apache" $PATH_HTTPD_CONF >/dev/null 2>&1
@@ -680,15 +680,15 @@ if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
 	if [ ! -e "$PATH_DTC_ETC/template" ]; then
 		cp -r $PATH_DTC_SHARED/shared/template $PATH_DTC_ETC
 	fi
-	chown -R nobody:$nobodygroup $PATH_DTC_ETC/template
+	chown -R ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_ETC/template
 	chmod -R 775 $PATH_DTC_ETC/template
 fi
 
 # fix the perms for the gfx and imgcache 
-chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/shared/imgcache
-chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/shared/gfx
-chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/client/imgcache
-chown -hR nobody:$nobodygroup $PATH_DTC_SHARED/client/gfx
+chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_SHARED/shared/imgcache
+chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_SHARED/shared/gfx
+chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_SHARED/client/imgcache
+chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_SHARED/client/gfx
 
 # copy the 404 index.php file if none is found.
 if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/index.* ]; then
@@ -1252,7 +1252,7 @@ then
 	touch $PATH_DTC_ETC/postfix_relay_recipients.db
 	touch $PATH_DTC_ETC/postfix_vmailbox.db
 	touch $PATH_DTC_ETC/postfix_virtual_uid_mapping.db
-	chown nobody:$nobodygroup $PATH_DTC_ETC/postfix_*.db
+	chown ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_ETC/postfix_*.db
 	if grep "Configured by DTC" "$PATH_POSTFIX_CONF" >/dev/null
 	then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -1414,7 +1414,7 @@ smtpd_tls_auth_only = no
 			# if we have maildrop, we should use it!
 			if [ -n ""$PATH_USERDB_BIN -a -f "$PATH_USERDB_BIN" -a -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
 				echo "maildrop  unix  -       n       n       -       -       pipe
-    flags=DRhu user=nobody argv=$PATH_MAILDROP_BIN -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
+    flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
 " >> $TMP_FILE2
 			fi
 			# CL do we use cyrus? 
@@ -1493,7 +1493,7 @@ if [ ! -e /var/spool/mlmmj/ ]; then
 	mkdir -p /var/spool/mlmmj
 fi
 if [ -e /var/spool/mlmmj/ ] ;then
-	chown nobody:$nobodygroup /var/spool/mlmmj/
+	chown ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup /var/spool/mlmmj/
 fi
 
 # This avoid hanging when (re)starting daemons under debian
@@ -1961,7 +1961,7 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 	TMP_FILE6=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
 
 	if [ -e /var/log/radacct ] ;then
-		chown -R nobody /var/log/radacct
+		chown -R ${CONF_DTC_SYSTEM_USERNAME} /var/log/radacct
 	fi
 
 	sed "s/#user = nobody/user = nobody/" $FREERADIUS_CONF >$TMP_FILE
@@ -2055,7 +2055,7 @@ if [ ! -e $PATH_CGIBIN/queuegraph.cgi ]; then
 	ln -s $PATH_DTC_ADMIN/queuegraph.cgi $PATH_CGIBIN/queuegraph.cgi
 fi
 if [ -e $PATH_CGIBIN/queuegraph.cgi ]; then
-	chown -hR nobody:$nobodygroup $PATH_CGIBIN/queuegraph.cgi
+	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_CGIBIN/queuegraph.cgi
 fi
 
 
@@ -2079,7 +2079,7 @@ else
 	if [ -e $PATH_CGIBIN/netusegraph.cgi ]; then
 		# fix path for netusage.rrd
 		perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
-		chown -hR nobody:$nobodygroup $PATH_CGIBIN/netusegraph.cgi
+		chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_CGIBIN/netusegraph.cgi
 	fi
 fi
 
@@ -2096,7 +2096,7 @@ fi
 if [ -e $PATH_DTC_ADMIN/cpugraph.cgi ]; then 
 	# fix path for cpugraph.cgi
 	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
-	chown -hR nobody:$nobodygroup $PATH_CGIBIN/cpugraph.cgi
+	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_CGIBIN/cpugraph.cgi
 fi
 
 
@@ -2112,7 +2112,7 @@ fi
 if [ -e $PATH_DTC_ADMIN/memgraph.cgi ]; then
 	# fix path for memgraph.cgi
 	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
-	chown -hR nobody:$nobodygroup $PATH_CGIBIN/memgraph.cgi
+	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_CGIBIN/memgraph.cgi
 fi
 
 #
@@ -2400,7 +2400,7 @@ else
 	# (unfortunatly, I don't know if it's possible to make it dynamic)
 	if [ ! ""$UNIX_TYPE = "debian" ] ; then
 		echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
-		echo "9 4 * * * nobody cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
+		echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
 		echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
 		echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC \"$conf_eth2monitor\" >>/var/log/dtc.log" >> $TMP_FILE
 		echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/memgraph/get_meminfo.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE

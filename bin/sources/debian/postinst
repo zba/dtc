@@ -12,6 +12,13 @@ UNIX_TYPE=debian
 . /usr/share/debconf/confmodule
 db_version 2.0
 
+CONF_DTC_SYSTEM_USERNAME=dtc
+if grep "${CONF_DTC_SYSTEM_USERNAME}:" /etc/passwd >/dev/null ; then
+	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+else
+	useradd -m -s /bin/false ${CONF_DTC_SYSTEM_USERNAME}
+fi
+
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
 if [ -e /usr/bin/php4 ] ; then
@@ -548,7 +555,7 @@ if [ -e /var/spool/squirrelmail/attach ] ; then
 fi
 
 if [ -e /var/lib/apache2/fastcgi ] ; then
-	chown -R nobody:nogroup /var/lib/apache2/fastcgi
+	chown -R ${CONF_DTC_SYSTEM_USERNAME}:nogroup /var/lib/apache2/fastcgi
 fi
 
 NBRLINES=`cat /proc/net/dev | wc -l`
