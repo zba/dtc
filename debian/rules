@@ -57,7 +57,7 @@ binary-arch: install
 	dh_installcron
 	dh_installman
 	dh_compress
-	dh_fixperms -X$(CURDIR)/debian/dtc/usr/share/dtc/shared/imgcache -X$(CURDIR)/debian/dtc-postfix-courier/usr/share/dtc/shared/imgcache
+	dh_fixperms
 	dh_installdeb
 	dh_gencontrol
 	dh_md5sums
