@@ -388,9 +388,9 @@ fi
 chmod 1770 tmp
 chmod 1770 var/tmp
 if ! [ ""$conf_omit_dev_mknod = "yes" ] ; then
-chmod 666 dev/null
-chmod 644 dev/*random
-endif
+	chmod 666 dev/null
+	chmod 644 dev/*random
+if
 
 #now need to copy over the perl binary and some modules
 cp -pf /usr/bin/perl usr/bin/

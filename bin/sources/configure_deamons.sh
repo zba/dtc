@@ -258,6 +258,14 @@ else
 		echo "=> Verifying User and Group directive"
 	fi
 
+	# This one is from upgrades from older versions using nobody
+	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
+	then
+		echo "User nobody -> User ${CONF_DTC_SYSTEM_USERNAME}"
+		sed "s/User nobody/User ${CONF_DTC_SYSTEM_USERNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+
 	# Those 2 are for debian
 	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
@@ -2464,6 +2472,9 @@ fi
 if [ ! -e /etc/ncftpput_login.cfg ] ; then
 	ln -s $PATH_DTC_ETC/ncftpput_login.cfg /etc/ncftpput_login.cfg
 fi
+
+# Chown the imgcache folder so the script can write in it
+chown -R ${CONF_DTC_SYSTEM_USERNAME} ${PATH_DTC_SHARED}/shared/imgcache
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "***********************************************************"
