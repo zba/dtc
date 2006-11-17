@@ -174,34 +174,41 @@ fi
 # Modify the php.ini to increase memory limits
 #
 if ! [ -z ""$PATH_PHP_INI_APACHE ] ; then
-	searchAndReplace $PATH_PHP_INI_APACHE memory_limit\ =\ 8M memory_limit\ =\ 32M
+	searchAndReplace $PATH_PHP_INI_APACHE memory_limit\ =\ 8M memory_limit\ =\ 64M
+	searchAndReplace $PATH_PHP_INI_APACHE memory_limit\ =\ 16M memory_limit\ =\ 64M
 fi
 if ! [ -z ""$PATH_PHP_INI_APACHE2 ] ; then
-	searchAndReplace $PATH_PHP_INI_APACHE2 memory_limit\ =\ 8M memory_limit\ =\ 32M
+	searchAndReplace $PATH_PHP_INI_APACHE2 memory_limit\ =\ 8M memory_limit\ =\ 64M
+	searchAndReplace $PATH_PHP_INI_APACHE2 memory_limit\ =\ 16M memory_limit\ =\ 64M
 fi
 if ! [ -z ""$PATH_PHP_INI_CLI ] ; then
 	searchAndReplace $PATH_PHP_INI_CLI max_execution_time\ =\ 30 max_execution_time\ =\ 1200
-	searchAndReplace $PATH_PHP_INI_CLI memory_limit\ =\ 8M memory_limit\ =\ 32M
+	searchAndReplace $PATH_PHP_INI_CLI memory_limit\ =\ 8M memory_limit\ =\ 64M
+	searchAndReplace $PATH_PHP_INI_CLI memory_limit\ =\ 16M memory_limit\ =\ 64M
 fi
 
 if [ -e /etc/php5/apache/php.ini ] ; then
 	searchAndReplace /etc/php5/apache/php.ini max_execution_time\ =\ 30 max_execution_time\ =\ 1200
-	searchAndReplace /etc/php5/apache/php.ini memory_limit\ =\ 8M memory_limit\ =\ 32M
+	searchAndReplace /etc/php5/apache/php.ini memory_limit\ =\ 8M memory_limit\ =\ 64M
+	searchAndReplace /etc/php5/apache/php.ini memory_limit\ =\ 16M memory_limit\ =\ 64M
 fi
 
 if [ -e /etc/php5/apache2/php.ini ] ; then
 	searchAndReplace /etc/php5/apache2/php.ini max_execution_time\ =\ 30 max_execution_time\ =\ 1200
-	searchAndReplace /etc/php5/apache2/php.ini memory_limit\ =\ 8M memory_limit\ =\ 32M
+	searchAndReplace /etc/php5/apache2/php.ini memory_limit\ =\ 8M memory_limit\ =\ 64M
+	searchAndReplace /etc/php5/apache2/php.ini memory_limit\ =\ 16M memory_limit\ =\ 64M
 fi
 
 if [ -e /etc/php4/apache/php.ini ] ; then
 	searchAndReplace /etc/php4/apache/php.ini max_execution_time\ =\ 30 max_execution_time\ =\ 1200
-	searchAndReplace /etc/php4/apache/php.ini memory_limit\ =\ 8M memory_limit\ =\ 32M
+	searchAndReplace /etc/php4/apache/php.ini memory_limit\ =\ 8M memory_limit\ =\ 64M
+	searchAndReplace /etc/php4/apache/php.ini memory_limit\ =\ 16M memory_limit\ =\ 64M
 fi
 
 if [ -e /etc/php4/apache2/php.ini ] ; then
 	searchAndReplace /etc/php4/apache2/php.ini max_execution_time\ =\ 30 max_execution_time\ =\ 1200
-	searchAndReplace /etc/php4/apache2/php.ini memory_limit\ =\ 8M memory_limit\ =\ 32M
+	searchAndReplace /etc/php4/apache2/php.ini memory_limit\ =\ 8M memory_limit\ =\ 64M
+	searchAndReplace /etc/php4/apache2/php.ini memory_limit\ =\ 16M memory_limit\ =\ 64M
 fi
 
 #
