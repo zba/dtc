@@ -19,7 +19,7 @@ install:
 	dh_installdirs
 
 	# This warn fresh checkouts from CVS, please leave...
-	if ! [ -e debian/postinst ] ; then echo "postinst script missing! cd to bin and run ./prepareDebianTree first!" ; exit 1 ; fi
+	if ! [ -e debian/dtc.postinst ] ; then echo "postinst script missing! cd to bin and run ./prepareDebianTree first!" ; exit 1 ; fi
 
 	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc/usr/share/dtc/shared/dtc_version.php
 	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc-postfix-courier/usr/share/dtc/shared/dtc_version.php
