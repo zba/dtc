@@ -186,21 +186,6 @@ $dtc_database = array(
 			"unicrow" => "(unicrow)"
 			)
 		),
-	"costs" => array(
-		"vars" => array(
-			"id" => "int(11) NOT NULL auto_increment",
-			"devise" => "enum('euro','dolar') NOT NULL default 'euro' ",
-			"price" => "varchar(9) NOT NULL ",
-			"descript" => "varchar(255) NOT NULL ",
-			"paiement_methode" => "enum('cb','cheque','wire','coins','other','free') NOT NULL default 'cb' ",
-			"account" => "enum('thomas','gplhost') NOT NULL default 'thomas' ",
-			"forwho" => "varchar(255) NOT NULL "
-			),
-		"primary" => "(id)",
-		"keys" => array(
-			"id" => "(id)"
-			)
-		),
 	"cron_job" => array(
 		"vars" => array(
 			"unicrow" => "int(11) NOT NULL default '1' ",
