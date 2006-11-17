@@ -12,6 +12,9 @@ UNIX_TYPE=debian
 . /usr/share/debconf/confmodule
 db_version 2.0
 
+db_get dtc/conf_apache_version
+conf_apache_version=$RET
+
 CONF_DTC_SYSTEM_USERNAME=dtc
 if getent passwd ${CONF_DTC_SYSTEM_USERNAME} >/dev/null ; then
 	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
@@ -173,8 +176,6 @@ db_get dtc/conf_mta_type
 conf_mta_type=$RET
 db_get dtc/conf_use_cyrus
 conf_use_cyrus=$RET
-db_get dtc/conf_apache_version
-conf_apache_version=$RET
 db_get dtc/main_domainname
 main_domain_name=$RET
 db_get dtc/dtc_adminsubdomain
