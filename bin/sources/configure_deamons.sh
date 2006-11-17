@@ -259,7 +259,7 @@ else
 	fi
 
 	# This one is from upgrades from older versions using nobody
-	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
+	if grep "User nobody" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "User nobody -> User ${CONF_DTC_SYSTEM_USERNAME}"
 		sed "s/User nobody/User ${CONF_DTC_SYSTEM_USERNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
