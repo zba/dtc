@@ -104,8 +104,8 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 	if($commit_flag == "yes"){
 		$mailbox_path = get_mailbox_complete_path($_REQUEST["newmail_login"],$edit_domain);
 		$adm_query = "INSERT INTO $pro_mysql_pop_table(
-        id, uid, fullemail, home,           mbox_host,     crypt,        passwd,         redirect1,            redirect2            ,localdeliver, spam_mailbox_enable, spam_mailbox)
-VALUES ('".$_REQUEST["newmail_login"]."', '$conf_dtc_system_uid','".$_REQUEST["newmail_login"]."@".$edit_domain."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver','$do_spam_mailbox_enable','".$_REQUEST["newmail_spam_mailbox"]."');";
+        id, uid, gid, fullemail, home,           mbox_host,     crypt,        passwd,         redirect1,            redirect2            ,localdeliver, spam_mailbox_enable, spam_mailbox)
+VALUES ('".$_REQUEST["newmail_login"]."', '$conf_dtc_system_uid', '$conf_dtc_system_gid', '".$_REQUEST["newmail_login"]."@".$edit_domain."','$mailbox_path','$edit_domain','$crypted_pass','".$_REQUEST["newmail_pass"]."','".$_REQUEST["newmail_redirect1"]."','".$_REQUEST["newmail_redirect2"]."','$dolocal_deliver','$do_spam_mailbox_enable','".$_REQUEST["newmail_spam_mailbox"]."');";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 		writeDotQmailFile($_REQUEST["newmail_login"],$edit_domain);

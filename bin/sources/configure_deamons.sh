@@ -94,9 +94,9 @@ fi
 set -e
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "chown -R ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains"
+	echo "chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains"
 fi
-chown -R ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains
+chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains
 
 # if we have a sudo binary around, then use it to create our chroot shell
 # check for some path defaults... 
@@ -695,15 +695,15 @@ if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
 	if [ ! -e "$PATH_DTC_ETC/template" ]; then
 		cp -r $PATH_DTC_SHARED/shared/template $PATH_DTC_ETC
 	fi
-	chown -R ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_ETC/template
+	chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_ETC/template
 	chmod -R 775 $PATH_DTC_ETC/template
 fi
 
 # fix the perms for the gfx and imgcache 
-chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_SHARED/shared/imgcache
-chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_SHARED/shared/gfx
-chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_SHARED/client/imgcache
-chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_SHARED/client/gfx
+chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/shared/imgcache
+chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/shared/gfx
+chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/client/imgcache
+chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/client/gfx
 
 # copy the 404 index.php file if none is found.
 if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/index.* ]; then
@@ -1267,7 +1267,7 @@ then
 	touch $PATH_DTC_ETC/postfix_relay_recipients.db
 	touch $PATH_DTC_ETC/postfix_vmailbox.db
 	touch $PATH_DTC_ETC/postfix_virtual_uid_mapping.db
-	chown ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_DTC_ETC/postfix_*.db
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_ETC/postfix_*.db
 	if grep "Configured by DTC" "$PATH_POSTFIX_CONF" >/dev/null
 	then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -1353,7 +1353,7 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 
 			if [ -e /var/spool/postfix/etc ]; then
 				touch /var/spool/postfix/etc/sasldb2
-				chown postfix:$nobodygroup /var/spool/postfix/etc/sasldb2
+				chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/postfix/etc/sasldb2
 				chmod 664 /var/spool/postfix/etc/sasldb2
 				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
 					cp /var/spool/postfix/etc/sasldb2 $PATH_DTC_ETC/sasldb2
@@ -1361,11 +1361,11 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 			else
 				if [ -d /etc/sasl2 ]; then
 					touch /etc/sasl2/sasldb2
-					chown postfix:$nobodygroup /etc/sasl2/sasldb2
+					chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /etc/sasl2/sasldb2
 					chmod 664 /etc/sasl2/sasldb2
 				else
 					touch /etc/sasldb2
-					chown postfix:$nobodygroup /etc/sasldb2
+					chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /etc/sasldb2
 					chmod 664 /etc/sasldb2
 				fi
 				if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
@@ -1500,7 +1500,7 @@ if [ -f "/usr/bin/mlmmj-make-ml" -o -f "/usr/bin/mlmmj-make-ml.sh" ] ; then
 		ln -s "/usr/bin/mlmmj-make-ml.sh" "/usr/bin/mlmmj-make-ml"
 	fi
 	mkdir -p /etc/mlmmj/lists
-	chown -R root:$nobodygroup /etc/mlmmj/lists
+	chown -R root:${CONF_DTC_SYSTEM_GROUPNAME} /etc/mlmmj/lists
 	chmod -R g+w /etc/mlmmj/lists
 fi
 # create mlmmj spool directory if it doesn't exist yet
@@ -1508,7 +1508,7 @@ if [ ! -e /var/spool/mlmmj/ ]; then
 	mkdir -p /var/spool/mlmmj
 fi
 if [ -e /var/spool/mlmmj/ ] ;then
-	chown ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup /var/spool/mlmmj/
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/mlmmj/
 fi
 
 # This avoid hanging when (re)starting daemons under debian
@@ -2070,7 +2070,7 @@ if [ ! -e $PATH_CGIBIN/queuegraph.cgi ]; then
 	ln -s $PATH_DTC_ADMIN/queuegraph.cgi $PATH_CGIBIN/queuegraph.cgi
 fi
 if [ -e $PATH_CGIBIN/queuegraph.cgi ]; then
-	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_CGIBIN/queuegraph.cgi
+	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/queuegraph.cgi
 fi
 
 
@@ -2094,7 +2094,7 @@ else
 	if [ -e $PATH_CGIBIN/netusegraph.cgi ]; then
 		# fix path for netusage.rrd
 		perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
-		chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_CGIBIN/netusegraph.cgi
+		chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/netusegraph.cgi
 	fi
 fi
 
@@ -2111,7 +2111,7 @@ fi
 if [ -e $PATH_DTC_ADMIN/cpugraph.cgi ]; then 
 	# fix path for cpugraph.cgi
 	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
-	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_CGIBIN/cpugraph.cgi
+	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/cpugraph.cgi
 fi
 
 
@@ -2127,7 +2127,7 @@ fi
 if [ -e $PATH_DTC_ADMIN/memgraph.cgi ]; then
 	# fix path for memgraph.cgi
 	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
-	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:$nobodygroup $PATH_CGIBIN/memgraph.cgi
+	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/memgraph.cgi
 fi
 
 #
@@ -2482,7 +2482,7 @@ fi
 
 # Chown the imgcache folder so the script can write in it
 chown -R ${CONF_DTC_SYSTEM_USERNAME} ${PATH_DTC_SHARED}/shared/imgcache
-chown -R ${CONF_DTC_SYSTEM_USERNAME} ${PATH_DTC_ETC}
+chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "***********************************************************"

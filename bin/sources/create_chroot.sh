@@ -1,14 +1,9 @@
 CHROOT_DIR=$conf_chroot_path
 WEB_USER=${CONF_DTC_SYSTEM_USERNAME}
+WEB_GROUP=${CONF_DTC_SYSTEM_GROUPNAME}
 
 if [ $CHROOT_DIR"" = "" ] ; then
 	CHROOT_DIR=/var/www/chroot
-fi
-
-if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "redhat" ] ; then
-	WEB_GROUP=nobody
-else
-	WEB_GROUP=nogroup
 fi
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -171,16 +166,16 @@ grep mail /etc/group >> etc/group
 grep news /etc/group >> etc/group
 grep uucp /etc/group >> etc/group
 grep www-data /etc/group >> etc/group
-grep $WEB_GROUP /etc/group >> etc/group
-grep $WEB_USER /etc/group >> etc/group
+grep ${CONF_DTC_SYSTEM_GROUPNAME} /etc/group >> etc/group
+grep ${CONF_DTC_SYSTEM_USERNAME} /etc/group >> etc/group
 set -e
 
 # fix entry for nobody in /etc/passwd
-echo "$WEB_USER:x:65534:65534:$WEB_USER:/html:/bin/bash" >> etc/passwd
+echo "${CONF_DTC_SYSTEM_USERNAME}:x:${CONF_DTC_SYSTEM_UID}:${CONF_DTC_SYSTEM_GID}:${CONF_DTC_SYSTEM_USERNAME}:/html:/bin/bash" >> etc/passwd
 
 # create shadow account line for nobody
-echo "$WEB_USER::12719:0:99999:7:::" > etc/shadow
-chown $WEB_USER:$WEB_GROUP etc/shadow
+echo "${CONF_DTC_SYSTEM_USERNAME}::12719:0:99999:7:::" > etc/shadow
+chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} etc/shadow
 
 if [ -e /etc/host.conf ] ; then
 	cp -pf /etc/host.conf etc/

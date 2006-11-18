@@ -7,13 +7,21 @@ UNIX_TYPE=osx
 
 VERBOSE_INSTALL="yes"
 
+# Create our group and user
 CONF_DTC_SYSTEM_USERNAME=dtc
-if grep "${CONF_DTC_SYSTEM_USERNAME}:" /etc/passwd >/dev/null ; then
-	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+CONF_DTC_SYSTEM_GROUPNAME=dtc
+if getent group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
+        echo "Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skiping creation!"
 else
-	useradd -m -s /bin/false ${CONF_DTC_SYSTEM_USERNAME}
+        groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
 fi
-CONF_DTC_SYSTEM_UID=`getent passwd dtc | cut -d':' -f3`
+CONF_DTC_SYSTEM_GID=`getent group ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d':' -f3`
+if getent passwd ${CONF_DTC_SYSTEM_USERNAME} >/dev/null ; then
+        echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+else
+        useradd -m -s /bin/false -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
+fi
+CONF_DTC_SYSTEM_UID=`getent passwd ${CONF_DTC_SYSTEM_USERNAME} | cut -d':' -f3`
 
 # Deamon path configuration
 PATH_HTTPD_CONF="/etc/httpd/httpd.conf"

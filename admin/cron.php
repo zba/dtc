@@ -298,7 +298,7 @@ if($cronjob_table_content["gen_ssh"] == "yes"){
 // This script should be launched as root, so we have to chown the generated files ! //
 // (otherwise, the web interface wont be able to write them)                         //
 ///////////////////////////////////////////////////////////////////////////////////////
-system("chown -R nobody:$conf_nobody_group_id $conf_generated_file_path");
+system("chown -R $conf_dtc_system_username:$conf_nobody_group_id $conf_generated_file_path");
 system("./checkbind.sh $conf_generated_file_path");
 //system("chmod -R 777 $conf_generated_file_path/zones");
 

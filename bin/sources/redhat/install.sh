@@ -51,6 +51,22 @@ else
 fi
 CONF_DTC_SYSTEM_UID=`getent passwd dtc | cut -d':' -f3`
 
+# Create our group and user
+CONF_DTC_SYSTEM_USERNAME=dtc
+CONF_DTC_SYSTEM_GROUPNAME=dtc
+if getent group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
+	echo "Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skiping creation!"
+else
+	groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
+fi
+CONF_DTC_SYSTEM_GID=`getent group ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d':' -f3`
+if getent passwd ${CONF_DTC_SYSTEM_USERNAME} >/dev/null ; then
+	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+else
+	useradd -m -s /bin/false -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
+fi
+CONF_DTC_SYSTEM_UID=`getent passwd ${CONF_DTC_SYSTEM_USERNAME} | cut -d':' -f3`
+
 PATH_NAMED_CONF=/etc/named.conf
 PATH_QMAIL_CTRL=/var/qmail/control
 PATH_PHP_CGI=/usr/bin/php

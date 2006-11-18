@@ -39,8 +39,8 @@ if(isset($_REQUEST["newftpaccount"]) && $_REQUEST["newftpaccount"] == "Ok"){
 
 	if($commit_flag == "yes"){
 		$adm_query = " INSERT INTO $pro_mysql_ftp_table
-(login, uid, password, homedir, count, fhost, faddr, ftime, fcdir, fstor, fretr, bstor, bretr, creation, ts, frate, fcred, brate, bcred, flogs, size, shell, hostname)VALUES
-('".$_REQUEST["newftp_login"]."', '$conf_dtc_system_uid', '".$_REQUEST["newftp_pass"]."', '".$_REQUEST["newftp_path"]."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
+(login, uid, gid, password, homedir, count, fhost, faddr, ftime, fcdir, fstor, fretr, bstor, bretr, creation, ts, frate, fcred, brate, bcred, flogs, size, shell, hostname)VALUES
+('".$_REQUEST["newftp_login"]."', '$conf_dtc_system_uid', '$conf_dtc_system_gid', '".$_REQUEST["newftp_pass"]."', '".$_REQUEST["newftp_path"]."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
 '15', '5','1', NULL, '', '/bin/sh', '$edit_domain') ";
 		// $newftp_login $newftp_pass $edit_domain
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
