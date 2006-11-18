@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS tik_queries (
   `cat_id` int(11) NOT NULL default '0',
   `initial_ticket` enum('yes','no') NOT NULL default 'yes',
   `server_hostname` varchar(64) NOT NULL default '',
+  `request_close` enum('yes','no') NOT NULL default 'no',
   `closed` enum('yes','no') NOT NULL default 'no',
   PRIMARY KEY  (id),
   INDEX in_reply (in_reply_of_id),

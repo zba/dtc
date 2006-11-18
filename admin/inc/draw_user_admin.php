@@ -128,6 +128,7 @@ function drawNewAdminForm(){
 		
 		$out .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"0\">";
 		$next_tikq = $_REQUEST["tik_id"];
+		$close_request = "no";
 		while($next_tikq != 0){
 			$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE adm_login='".$a["adm_login"]."' AND id='$next_tikq';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -144,9 +145,18 @@ function drawNewAdminForm(){
 			}else{
 				$bg = " bgcolor=\"#FFFFAA\" ";
 			}
-			$out .= "<tr><td$bg><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".stripslashes($a["text"])."</td></tr>";
+			$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
+			if($a["request_close"]){
+				$close_request = "yes";
+			}
 		}
 		$out .= "</table>";
+		$out .= "Request to close the ticket: ";
+		if($close_request == "yes"){
+			$out .= "<font color=\"#FF0000\">No</font><br>";
+		}else{
+			$out .= "<font color=\"#FF0000\">Yes</font><br>";
+		}
 		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 		<input type=\"hidden\" name=\"subaction\" value=\"ticket_reply\">
 		<textarea cols=\"60\" rows=\"10\" wrap=\"physical\" name=\"ticketbody\"></textarea><br>

@@ -823,6 +823,31 @@ $dtc_database = array(
 			"domain_name_index" => "(domain_name)"
 			)
 		),
+	"tik_queries" => array (
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"adm_login" => "varchar(64) NOT NULL default ''",
+			"date" => "date NOT NULL default '0000-00-00'",
+			"time" => "time NOT NULL default '00:00:00'",
+			"in_reply_of_id" => "int(11) NOT NULL default '0'",
+			"got_reply" => "enum('yes','no') NOT NULL default 'no'",
+			"reply_id" => "int(11) NOT NULL default '0'",
+			"admin_or_user" => "enum('admin','user') NOT NULL default 'user'",
+			"subject" => "varchar(255) NOT NULL default ''",
+			"text" => "text",
+			"cat_id" => "int(11) NOT NULL default '0'",
+			"initial_ticket" => "enum('yes','no') NOT NULL default 'yes'",
+			"server_hostname" => "varchar(64) NOT NULL default ''",
+			"request_close" => "enum('yes','no') NOT NULL default 'no'",
+			"closed" => "enum('yes','no') NOT NULL default 'no'"
+			),
+		"primary" => "(id)",
+		"index" => array(
+			"in_reply" => "(in_reply_of_id)",
+			"reply_id" => "(reply_id)",
+			"got_reply2" => "(got_reply)"
+			)
+		),
 	"usergroup" => array(
 		"vars" => array(
 			"id" => "int(11) unsigned NOT NULL auto_increment",

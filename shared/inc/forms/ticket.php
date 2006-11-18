@@ -104,7 +104,7 @@ Full description of the trouble:<br>
 				}else{
 					$bg = " bgcolor=\"#FFFFAA\" ";
 				}
-				$out .= "<tr><td$bg><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".stripslashes($a["text"])."</td></tr>";
+				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
 			}
 			$out .= "</table>";
 			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -119,6 +119,8 @@ Full description of the trouble:<br>
 <input type=\"hidden\" name=\"cat_id\" value=\"".$a_t["cat_id"]."\">
 <input type=\"hidden\" name=\"server_hostname\" value=\"".$a_t["server_hostname"]."\">
 <textarea name=\"ticketbody\" cols=\"60\" rows=\"10\" wrap=\"physical\"></textarea><br>
+Request to close the issue:<input type=\"radio\" name=\"request_to_close\" value=\"yes\" checked> Yes
+<input type=\"radio\" name=\"request_to_close\" value=\"no\"> No<br>
 <input type=\"submit\" value=\"Submit new support issue\">
 </form>
 ";
