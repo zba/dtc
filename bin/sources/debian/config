@@ -15,7 +15,7 @@ DEBIAN_VERSION_MINOR=`echo ${DEBIAN_VERSION} | cut -f2 -d"."`
 DEBIAN_VERSION_MAJOR=`echo ${DEBIAN_VERSION} | cut -f1 -d"."`
 echo "Founded version $DEBIAN_VERSION_MAJOR release $DEBIAN_VERSION_MINOR"
 
-if [ $DEBIAN_VERSION_MAJOR -ge 3 ] ; then
+if [ $DEBIAN_VERSION_MAJOR -lt 4 ] ; then
 	db_input high dtc/conf_mysql_change_root
 else
 	db_set dtc/conf_mysql_change_root "false"
