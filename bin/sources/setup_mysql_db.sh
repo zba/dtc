@@ -249,9 +249,10 @@ $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET php_library_path='/usr/lib/php:/tmp:/usr/share/pear:$PATH_DTC_ETC/dtc404:/usr/share/php', dtc_system_uid='$CONF_DTC_SYSTEM_UID', dtc_system_username='$CONF_DTC_SYSTEM_USERNAME' WHERE 1"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE domain SET ip_addr='"$conf_ip_addr"', generate_flag='yes' WHERE name='"$main_domain_name"'"
 
-# Fix the rights for the ftp table
+# Fix the rights for the UIDs in tables
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE ftp_access SET uid='$CONF_DTC_SYSTEM_UID' WHERE 1"
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET uid='$CONF_DTC_SYSTEM_UID' WHERE 1"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE ssh_access SET uid='$CONF_DTC_SYSTEM_UID' WHERE 1"
 
 # Here are some DB maintainance for old DTC versions
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE subdomain CHANGE ip ip VARCHAR(255) DEFAULT 'default' NOT NULL"
