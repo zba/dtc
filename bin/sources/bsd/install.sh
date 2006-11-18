@@ -20,6 +20,7 @@ if grep "${CONF_DTC_SYSTEM_USERNAME}:" /etc/passwd >/dev/null ; then
 else
 	useradd -m -s /bin/false ${CONF_DTC_SYSTEM_USERNAME}
 fi
+CONF_DTC_SYSTEM_UID=`getent passwd dtc | cut -d':' -f3`
 
 # DATABASE CONFIGURATION
 echo "### MYSQL CONFIGURATION ###"

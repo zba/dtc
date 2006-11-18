@@ -70,5 +70,9 @@ shared_renewal_lastwarning varchar (64) NOT NULL default '25',
 shared_renewal_shutdown varchar (64) NOT NULL default '28',
 webalizer_country_graph enum('yes','no') NOT NULL default 'no',
 apache_version varchar (16) NOT NULL default '1',
+dtc_system_uid varchar (16) NOT NULL default '65534',
+dtc_system_username varchar (64) NOT NULL default 'dtc',
+dtc_system_gid varchar (16) NOT NULL default '65534',
+dtc_system_groupname varchar (64) NOT NULL default 'nogroup',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
