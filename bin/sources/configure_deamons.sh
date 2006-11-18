@@ -2482,6 +2482,7 @@ fi
 
 # Chown the imgcache folder so the script can write in it
 chown -R ${CONF_DTC_SYSTEM_USERNAME} ${PATH_DTC_SHARED}/shared/imgcache
+chown -R ${CONF_DTC_SYSTEM_USERNAME} ${PATH_DTC_ETC}
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "***********************************************************"
