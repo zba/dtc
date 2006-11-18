@@ -48,7 +48,7 @@ else
 		fi
 	fi
 fi
-if [ -e ""$conf_apache_version = "2" ] ; then
+if [ ""$conf_apache_version = "2" ] ; then
 	if [ -e /etc/php5/apache2/php.ini ] ; then
 		PATH_PHP_INI_APACHE=/etc/php5/apache2/php.ini
 	else

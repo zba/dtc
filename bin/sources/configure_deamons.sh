@@ -272,10 +272,10 @@ else
 		sed "s/User nobody/User ${CONF_DTC_SYSTEM_USERNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
-	if grep "User nogroup" $PATH_HTTPD_CONF >/dev/null 2>&1
+	if grep "Group nogroup" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "User nobody -> User ${CONF_DTC_SYSTEM_GROUPNAME}"
-		sed "s/User nogroup/User ${CONF_DTC_SYSTEM_GROUPNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
+		echo "Group nobody -> User ${CONF_DTC_SYSTEM_GROUPNAME}"
+		sed "s/Group nogroup/Group ${CONF_DTC_SYSTEM_GROUPNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
@@ -2487,7 +2487,7 @@ if [ ! -e /etc/ncftpput_login.cfg ] ; then
 fi
 
 # Chown the imgcache folder so the script can write in it
-chown -R ${CONF_DTC_SYSTEM_USERNAME} ${PATH_DTC_SHARED}/shared/imgcache
+chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_SHARED}/shared/imgcache
 chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
