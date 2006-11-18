@@ -265,11 +265,17 @@ else
 		echo "=> Verifying User and Group directive"
 	fi
 
-	# This one is from upgrades from older versions using nobody
+	# This is from upgrades from older versions using nobody
 	if grep "User nobody" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "User nobody -> User ${CONF_DTC_SYSTEM_USERNAME}"
 		sed "s/User nobody/User ${CONF_DTC_SYSTEM_USERNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
+		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+	if grep "User nogroup" $PATH_HTTPD_CONF >/dev/null 2>&1
+	then
+		echo "User nobody -> User ${CONF_DTC_SYSTEM_GROUPNAME}"
+		sed "s/User nogroup/User ${CONF_DTC_SYSTEM_GROUPNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
@@ -283,8 +289,8 @@ else
 
 	if grep "Group www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "Group www-data -> Group nogroup"
-		sed "s/Group www-data/Group nogroup/" $PATH_HTTPD_CONF >$TMP_FILE
+		echo "Group www-data -> Group ${CONF_DTC_SYSTEM_GROUPNAME}"
+		sed "s/Group www-data/Group ${CONF_DTC_SYSTEM_GROUPNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
@@ -297,8 +303,8 @@ else
 	fi
 	if grep "Group www" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "Group www -> Group ${CONF_DTC_SYSTEM_USERNAME}"
-		sed "s/Group www/Group ${CONF_DTC_SYSTEM_USERNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
+		echo "Group www -> Group ${CONF_DTC_SYSTEM_GROUPNAME}"
+		sed "s/Group www/Group ${CONF_DTC_SYSTEM_GROUPNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 	# Those 2 are for RedHat
@@ -310,8 +316,8 @@ else
 	fi
 	if grep "Group apache" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
-		echo "Group apache -> Group nobody"
-		sed "s/Group apache/Group nobody/" $PATH_HTTPD_CONF >$TMP_FILE
+		echo "Group apache -> Group ${CONF_DTC_SYSTEM_GROUPNAME}"
+		sed "s/Group apache/Group ${CONF_DTC_SYSTEM_GROUPNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 

@@ -43,17 +43,9 @@ else
 	exit 1
 fi 
 
-CONF_DTC_SYSTEM_USERNAME=dtc
-if grep "${CONF_DTC_SYSTEM_USERNAME}:" /etc/passwd >/dev/null ; then
-	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
-else
-	useradd -m -s /bin/false ${CONF_DTC_SYSTEM_USERNAME}
-fi
-CONF_DTC_SYSTEM_UID=`getent passwd dtc | cut -d':' -f3`
-
 # Create our group and user
 CONF_DTC_SYSTEM_USERNAME=dtc
-CONF_DTC_SYSTEM_GROUPNAME=dtc
+CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
 if getent group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
 	echo "Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skiping creation!"
 else

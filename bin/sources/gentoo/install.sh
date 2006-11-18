@@ -9,7 +9,7 @@ VERBOSE_INSTALL=yes
 
 # Create our group and user
 CONF_DTC_SYSTEM_USERNAME=dtc
-CONF_DTC_SYSTEM_GROUPNAME=dtc
+CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
 if getent group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
         echo "Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skiping creation!"
 else
