@@ -1,11 +1,57 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.69 2006/11/02 10:00:59 tusker Exp $
+ * @version $Id: dtc_config.php,v 1.70 2006/11/18 19:37:03 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
  */
+
+function drawSSLIPConfig(){
+	global $lang;
+	global $pro_mysql_ssl_ips_table;
+	global $rub;
+	global $sousrub;
+
+	$out = "<h3>Manage IPs for SSL (https):</h3>";
+	$out .= "<font color=\"#FF0000\">NOT AVAILABLE YET: STILL IN DEVELOPMENT</font><br><i>Take care not to add the control panel IP if you don't want to have conflicts</i><br>";
+
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_ssl_addr"){
+		$q = "UPDATE $pro_mysql_ssl_ips_table SET ip_addr='".$_REQUEST["ip_addr"]."',adm_login='".$_REQUEST["adm_login"]."' WHERE id='".$_REQUEST["id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	}
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_ssl_addr"){
+		$q = "DELETE FROM $pro_mysql_ssl_ips_table WHERE id='".$_REQUEST["id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	}
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_ssl_addr"){
+		$q = "INSERT INTO $pro_mysql_ssl_ips_table (id,ip_addr,adm_login) VALUES ('','".$_REQUEST["ip_addr"]."','".$_REQUEST["adm_login"]."');";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	}
+
+	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
+	$q = "SELECT * FROM $pro_mysql_ssl_ips_table ORDER BY ip_addr";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	$out .= "<table>";
+	$out .= "<tr><td>IP addreess</td><td>Admin login</td></tr>";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$out .= "<tr><td>$form_start<input type=\"hidden\" name=\"action\" value=\"edit_ssl_addr\">
+<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
+<input type=\"text\" name=\"ip_addr\" value=\"".$a["ip_addr"]."\"></td>
+<td><input type=\"text\" name=\"adm_login\" value=\"".$a["adm_login"]."\"></td>
+<td><input type=\"submit\" value=\"Save\"></form></td>
+<td>$form_start<input type=\"hidden\" name=\"action\" value=\"delete_ssl_addr\"><input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
+<input type=\"submit\" value=\"Delete\"></form></tr>";
+	}
+	$out .= "<tr><td>$form_start<input type=\"hidden\" name=\"action\" value=\"new_ssl_addr\"><input type=\"text\" name=\"ip_addr\"></td>
+<td><input type=\"text\" name=\"adm_login\"></td>
+<td><input type=\"submit\" value=\"New\"></form></td></tr>";
+	$out .= "</table>";
+	return $out;
+}
 
 function drawTicketConfig(){
 	global $lang;
@@ -425,6 +471,12 @@ function drawDTCConfigMenu(){
 		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ip\">";
 	$out .= $txt_cfg_ip_and_network[$lang];
 	if($sousrub != "ip")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "sslip")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=sslip\">";
+	$out .= "SSL IPs";
+	if($sousrub != "sslip")
 		$out .= "</a>";
 	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "zonefile")
@@ -1431,6 +1483,9 @@ function drawDTCConfigForm(){
 		break;
 	case "ip":
 		$global_conf = drawNetworkConfig();
+		break;
+	case "sslip":
+		return drawSSLIPConfig();
 		break;
 	case "zonefile":
 		$global_conf = drawNamedConfig();
