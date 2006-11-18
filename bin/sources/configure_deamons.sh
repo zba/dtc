@@ -76,14 +76,6 @@ if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp ]; then ln -s
 if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/usr ]; then ln -s subdomains/www/usr  $conf_hosting_path/$conf_adm_login/$main_domain_name/usr; fi
 if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/dev ]; then ln -s subdomains/www/dev  $conf_hosting_path/$conf_adm_login/$main_domain_name/dev; fi
 if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/etc ]; then ln -s subdomains/www/etc  $conf_hosting_path/$conf_adm_login/$main_domain_name/etc; fi
-chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/bin
-chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/var
-chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/lib
-chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/sbin
-chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp
-chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/usr
-chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/dev
-chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/etc
 
 set +e
 
