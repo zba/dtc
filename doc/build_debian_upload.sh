@@ -23,4 +23,5 @@ mv debian dtc-${VERS}
 cd dtc-${VERS}
 dpkg-buildpackage -rfakeroot -sa
 cd ..
-dupload -c -f --to mentors dtc_${VERSION}
+FOUNDED_ARCH=`uname -m`
+dupload -c -f --to mentors dtc_${VERSION}_${FOUNDED_ARCH}.changes
