@@ -7,6 +7,8 @@ VERS=$(shell echo `cat bin/version`)
 RELS=$(shell echo `cat bin/release`)
 VERSION=$(VERS)"-"$(RELS)
 
+build:
+
 clean:
 	dh_testdir
 	dh_testroot
