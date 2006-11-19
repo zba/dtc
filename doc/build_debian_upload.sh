@@ -8,8 +8,10 @@ VERSION=${VERS}"-"${RELS}
 
 rm -f dtc/admin/inc/verdana.ttf
 rm -f dtc/admin/inc/arial.ttf
+rm -f dtc/admin/inc/ukai.ttf
 rm -f dtc/client/inc/verdana.ttf
 rm -f dtc/client/inc/arial.ttf
+rm -f dtc/client/inc/ukai.ttf
 
 mv dtc dtc-${VERS}
 cd dtc-${VERS}/bin

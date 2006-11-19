@@ -1,17 +1,17 @@
-W: dtc: possibly-insecure-handling-of-tmp-files-in-maintainer-script postinst:801
-W: dtc: possible-bashism-in-maintainer-script postinst:949 '${MYSQL_DTCDAEMONS_PASS}"',ENCRYPT('"${MYSQL_DTCDAEMONS_PASS}'
-W: dtc: mknod-in-maintainer-script postinst:1012
-W: dtc: mknod-in-maintainer-script postinst:1014
-W: dtc: mknod-in-maintainer-script postinst:1021
-W: dtc: mknod-in-maintainer-script postinst:1025
+W: dtc: possibly-insecure-handling-of-tmp-files-in-maintainer-script postinst:834
+W: dtc: possible-bashism-in-maintainer-script postinst:987 '${MYSQL_DTCDAEMONS_PASS}"',ENCRYPT('"${MYSQL_DTCDAEMONS_PASS}'
+W: dtc: mknod-in-maintainer-script postinst:1026
 W: dtc: mknod-in-maintainer-script postinst:1028
-W: dtc: mknod-in-maintainer-script postinst:1033
-W: dtc: mknod-in-maintainer-script postinst:1036
-W: dtc: mknod-in-maintainer-script postinst:1043
-W: dtc: mknod-in-maintainer-script postinst:1046
-W: dtc: mknod-in-maintainer-script postinst:1049
-W: dtc: possible-bashism-in-maintainer-script postinst:2171 ' source /etc/conf.d/named;'
+W: dtc: mknod-in-maintainer-script postinst:1035
+W: dtc: mknod-in-maintainer-script postinst:1039
+W: dtc: mknod-in-maintainer-script postinst:1042
+W: dtc: mknod-in-maintainer-script postinst:1047
+W: dtc: mknod-in-maintainer-script postinst:1050
+W: dtc: mknod-in-maintainer-script postinst:1057
+W: dtc: mknod-in-maintainer-script postinst:1060
+W: dtc: mknod-in-maintainer-script postinst:1063
+W: dtc: possible-bashism-in-maintainer-script postinst:2231 ' source /etc/conf.d/named;'
 W: dtc: postinst-has-useless-call-to-ldconfig
-W: dtc: debconf-is-not-a-registry ./usr/share/dtc/admin/ip_change.sh
 W: dtc: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_domain.sh
 W: dtc: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_ip.sh
+W: dtc: debconf-is-not-a-registry ./usr/share/dtc/admin/ip_change.sh

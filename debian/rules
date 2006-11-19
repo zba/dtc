@@ -35,21 +35,6 @@ binary-arch: install
 	dh_installexamples
 	dh_installdirs
 	dh_install
-
-	rm -f debian/dtc/usr/share/dtc/admin/inc/arial.ttf
-	rm -f debian/dtc/usr/share/dtc/admin/inc/verdana.ttf
-	rm -f debian/dtc/usr/share/dtc/admin/inc/ukai.ttf
-	rm -f debian/dtc/usr/share/dtc/client/inc/arial.ttf
-	rm -f debian/dtc/usr/share/dtc/client/inc/verdana.ttf
-	rm -f debian/dtc/usr/share/dtc/client/inc/ukai.ttf
-
-	rm -f debian/dtc-postfix-courier/usr/share/dtc/admin/inc/arial.ttf
-	rm -f debian/dtc-postfix-courier/usr/share/dtc/admin/inc/verdana.ttf
-	rm -f debian/dtc-postfix-courier/usr/share/dtc/admin/inc/ukai.ttf
-	rm -f debian/dtc-postfix-courier/usr/share/dtc/client/inc/arial.ttf
-	rm -f debian/dtc-postfix-courier/usr/share/dtc/client/inc/verdana.ttf
-	rm -f debian/dtc-postfix-courier/usr/share/dtc/client/inc/ukai.ttf
-
 	dh_link
 	dh_installmenu -n
 	dh_installdebconf	
