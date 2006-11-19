@@ -839,7 +839,7 @@ fi
 # need to detect named chroot for gentoo
 NAMED_CHROOT=
 if [ -e /etc/conf.d/named ]; then
-	NAMED_CHROOT=$( source /etc/conf.d/named; echo -n $CHROOT )
+	NAMED_CHROOT=`. /etc/conf.d/named; echo -n $CHROOT`
 	echo "named is configured for chroot at $NAMED_CHROOT"
 fi
 # check to see if NAMED_CHROOT is / 
