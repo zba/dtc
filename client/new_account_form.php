@@ -505,7 +505,7 @@ function registration_form(){
 	<td><input type=\"password\" name=\"reqadm_pass2\" value=\"\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"domname_text\" id=\"domname_text\" $domname_hidden>".$txt_desired_domain_name[$lang].":</div></td>
-	<td><div name=\"domname_field\" id=\"domname_field\" $domname_hidden><input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></div></td>
+	<td><div name=\"domname_field\" id=\"domname_field\" $domname_hidden>www.<input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></div></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_popup_text\" id=\"vps_popup_text\" $vps_hidden>VPS location:</div></td>
 	<td><div name=\"vps_popup_field\" id=\"vps_popup_field\" $vps_hidden><select name=\"vps_server_hostname\">$vps_location_popup</select></div></td>
