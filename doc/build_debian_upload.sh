@@ -6,9 +6,10 @@ VERS=`cat dtc/bin/version`
 RELS=`cat dtc/bin/release`
 VERSION=${VERS}"-"${RELS}
 
-rm -f dtc/admin/*.ttf
-rm -f dtc/client/*.ttf
-rm -f dtc/email/*.ttf
+rm -f dtc/admin/inc/verdana.ttf
+rm -f dtc/admin/inc/arial.ttf
+rm -f dtc/client/inc/verdana.ttf
+rm -f dtc/client/inc/arial.ttf
 
 mv dtc dtc-${VERS}
 cd dtc-${VERS}/bin
