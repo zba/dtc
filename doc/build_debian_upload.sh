@@ -17,7 +17,26 @@ cd dtc-${VERS}
 dpkg-buildpackage -rfakeroot -sa
 cd ..
 FOUNDED_ARCH=`uname -m`
-if [ ${FOUNDED_ARCH} = "x86_64" ] ; then
-	FOUNDED_ARCH=amd64
-fi
+case "$FOUNDED_ARCH" in
+        i386)
+                DEBIAN_BINARCH=i386
+                ;;
+        i436)
+                DEBIAN_BINARCH=i386
+                ;;
+        i586)
+                DEBIAN_BINARCH=i386
+                ;;
+        i686)
+                DEBIAN_BINARCH=i386
+                ;;
+        x86_64)
+                DEBIAN_BINARCH=amd64
+                ;;
+        *)
+                echo "Unrecognized arch: exiting!"
+                exit 1
+                ;;
+esac
+
 dupload -c -f --to mentors dtc_${VERSION}_${FOUNDED_ARCH}.changes
