@@ -6,6 +6,10 @@ VERS=`cat dtc/bin/version`
 RELS=`cat dtc/bin/release`
 VERSION=${VERS}"-"${RELS}
 
+rm -f dtc/admin/*.ttf
+rm -f dtc/client/*.ttf
+rm -f dtc/email/*.ttf
+
 mv dtc dtc-${VERS}
 cd dtc-${VERS}/bin
 ./prepareDebianTree
