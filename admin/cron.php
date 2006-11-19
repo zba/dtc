@@ -364,11 +364,19 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	exec ("$APACHECTL configtest", $plop, $return_var);
 	if($return_var == false){
 		echo "Config is OK : restarting Apache\n";
-		$pid_file_was_there = is_file("$conf_generated_file_path/apache.pid");
-		clearstatcache();
+//		$pid_file_was_there = is_file("$conf_generated_file_path/apache.pid");
+//		clearstatcache();
 		system("$APACHECTL stop");
+		sleep(1);
+		while( is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 15){
+			echo "Warning: apache not stoped, will retry in 2 seconds...";
+			echo "2...";sleep(1);echo "1...";sleep(1);echo "0\n";
+			clearstatcache();
+			$ctl_return = system("$APACHECTL stop", $return_var);
+		}
+		clearstatcache();
 
-		if ($pid_file_was_there)
+/*		if ($pid_file_was_there)
 		{
 			echo "PidFile existed, so will wait until it's gone before restarting...\n";
 		}
@@ -377,7 +385,7 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 		// only wait if the pid file is still around... don't want to sleep if it has already shut down...
 		if (!$pid_file_was_there || is_file("$conf_generated_file_path/apache.pid"))
 		{
-			echo "Waiting 4... ";	// With 800 domains, 5 SSL sites on a celeron 800 and fast hard drives, 5 seconds is just the right value...
+			echo "Waiting 4... ";
 			sleep(1);
 			clearstatcache();
 		}
@@ -400,14 +408,15 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 			clearstatcache();
 		}
 		echo "0\n";
-		$ctl_retry = 0;		// We have to continue going on, even if apache don't restart...
+		$ctl_retry = 0;		// We have to continue going on, even if apache don't restart...*/
 		$ctl_return = system("$APACHECTL start");
 		// Check that apache is really started, because experience showed sometimes it's not !!!
 		//while( strstr($ctl_return,"httpd started") == false && $ctl_retry++ < 15){
 		// This new version should work on OS where apachectl start is quiet
-		while( strstr($ctl_return,"httpd started") == false && $ctl_retry++ < 15 && !empty($ctl_return)){
-			echo "Warning: apache not started, will retry in 3 seconds...\n";
-			sleep(3);
+		while( !is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 15){
+			echo "Warning: apache not started, will retry in 3 seconds...";
+			sleep(1);echo "3...";sleep(1);echo "2...";sleep(1);echo "1...";sleep(1);echo "0\n";
+			clearstatcache();
 			$ctl_return = system("$APACHECTL start", $return_var);
 		}
 		// change to graceful apache restart, rather than a hard stop and start

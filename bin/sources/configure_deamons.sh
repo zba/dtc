@@ -576,33 +576,36 @@ else
 			perl -i -p -e 's/^BindAddress/#BindAddress/' $i	
 		done
 	fi
-	# symlink the PidFile to our dtc location, so we can check it in our scripts
-	apachepidfile=`grep ^PidFile $PATH_HTTPD_CONF | cut -f2 -d' '`
-	## strip the pid of " characters if they exist
-	apachepidfile=${apachepidfile##\"}
-	apachepidfile=${apachepidfile%%\"}
-	echo "Symlinking $apachepidfile to $PATH_DTC_ETC/apache.pid ..."
 
-	# in case the specified pid file doesn't exist, try and find it
-	if [ ! -e $apachepidfile ]; then
-		if [ -e /etc/httpd/$apachepidfile ]; then
-			apachepidfile=/etc/httpd/$apachepidfile	
+	# If the variable is not set prior to calling this sript, then search for it!
+	if [ -z "$PATH_APACHE_PID_FILE" ] ; then
+		# symlink the PidFile to our dtc location, so we can check it in our scripts
+		PATH_APACHE_PID_FILE=`grep ^PidFile $PATH_HTTPD_CONF | cut -f2 -d' '`
+		## strip the pid of " characters if they exist
+		PATH_APACHE_PID_FILE=${PATH_APACHE_PID_FILE##\"}
+		PATH_APACHE_PID_FILE=${PATH_APACHE_PID_FILE%%\"}
+		echo "Symlinking $PATH_APACHE_PID_FILE to $PATH_DTC_ETC/apache.pid ..."
+	
+		# in case the specified pid file doesn't exist, try and find it
+		if [ ! -e $PATH_APACHE_PID_FILE ]; then
+			if [ -e /etc/httpd/$PATH_APACHE_PID_FILE ]; then
+				PATH_APACHE_PID_FILE=/etc/httpd/$PATH_APACHE_PID_FILE	
+			fi
+			if [ -e /var/$PATH_APACHE_PID_FILE ]; then
+				PATH_APACHE_PID_FILE=/var/$PATH_APACHE_PID_FILE	
+			fi
+			if [ -e /var/run/$PATH_APACHE_PID_FILE ]; then
+				PATH_APACHE_PID_FILE=/var/run/$PATH_APACHE_PID_FILE	
+			fi
 		fi
-		if [ -e /var/$apachepidfile ]; then
-			apachepidfile=/var/$apachepidfile	
-		fi
-		if [ -e /var/run/$apachepidfile ]; then
-			apachepidfile=/var/run/$apachepidfile	
-		fi
-		
 	fi
 
 	rm -f $PATH_DTC_ETC/apache.pid
-	ln -s $apachepidfile $PATH_DTC_ETC/apache.pid
-	if [ ! -f $apachepidfile ]; then
-		echo "PidFile $apachepidfile didn't exist..."
+	ln -s $PATH_APACHE_PID_FILE $PATH_DTC_ETC/apache.pid
+	if [ ! -f $PATH_APACHE_PID_FILE ]; then
+		echo "PidFile $PATH_APACHE_PID_FILE didn't exist..."
 		if ps -e | grep apache$ > /dev/null; then
-			ps -e | grep apache$ | head -n 1 | cut -f1 -d' ' >> $apachepidfile	
+			ps -e | grep apache$ | head -n 1 | cut -f1 -d' ' >> $PATH_APACHE_PID_FILE
 		fi
 	fi
 

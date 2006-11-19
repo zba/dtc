@@ -248,7 +248,9 @@ db_unregister dtc/conf_upgrade_pear
 
 if [ ""$conf_apache_version = "2" ] ; then
 	PATH_HTTPD_CONF=/etc/apache2/apache2.conf
+	PATH_APACHE_PID_FILE=/var/run/apache2.pid
 else
+	PATH_APACHE_PID_FILE=/var/run/apache.pid
 	PATH_HTTPD_CONF=/etc/apache/httpd.conf
 	PATH_HTTPD_MODULES_CONF=/etc/apache/modules.conf
 fi
