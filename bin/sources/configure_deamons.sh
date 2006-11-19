@@ -1954,8 +1954,8 @@ SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ft
 	# This restarts proftpd if under debian like system
 	# work has to be done under other OS to restart the ftp daemon
 	if [ -x "/etc/init.d/proftpd" ] ; then
-		if [ -x /usr/sbin/invoke-rc.d ]; then
-			/usr/sbin/invoke-rc.d proftpd restart
+		if [ -x "`which /usr/sbin/invoke-rc.d 2>/dev/null`" ]; then
+			invoke-rc.d proftpd restart
 		else
 			/etc/init.d/proftpd restart
 		fi
