@@ -24,7 +24,7 @@ Description: MySql Password:
 Template: dtc/conf_mysqldb
 Type: string
 Default: dtc
-Description: DTC database name?
+Description: DTC database name:
  DTC save all it's hosting information in a database automaticaly created.
  You should enter it's name here.
 
@@ -224,12 +224,12 @@ Template: dtc/conf_report_setup_stat
 Type: boolean
 Default: true
 Description: Allow to report anonymous statistc to GPLHost?
- In order to know how many DTC setup has been done, the installer can
- report to GPLHost web site. No data is collected exept the operating
- system (Debian in your case), IP address of the setup (we use the IP as an
- identifier so we don't account upgrades and/or reinstallations, we wont
- ever use it for commercial purpose). An internet connection and
- wget installed to report are required.
+ You can help GPLHost to know how many DTC setup has been done, by
+ reporting your installation to it's web site. No data will be collected
+ exept the operating system (Debian in your case), IP address of the setup
+ (the IP is used as an identifier so GPLHost don't account upgrades and/or
+ reinstallations, it will never be used for commercial purpose). You have
+ to be connected to internet and wget must be installed to do the report.
 
 Template: dtc/conf_omit_dev_mknod
 Type: boolean
