@@ -10,7 +10,6 @@ dtc: mknod-in-maintainer-script postinst:1050
 dtc: mknod-in-maintainer-script postinst:1057
 dtc: mknod-in-maintainer-script postinst:1060
 dtc: mknod-in-maintainer-script postinst:1063
-dtc: possible-bashism-in-maintainer-script postinst:2231 ' source /etc/conf.d/named;'
 dtc: postinst-has-useless-call-to-ldconfig
 dtc: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_domain.sh
 dtc: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_ip.sh
