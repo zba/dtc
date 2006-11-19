@@ -18,9 +18,8 @@ Description: MySql Login:
 Template: dtc/conf_mysqlpass
 Type: password
 Description: MySql Password:
- Please enter your desired mysql root password. If you choose Yes on the
- Change mysql root password dialog (just after this one), it will change
- your mysql root password to the one entered here.
+ Please enter your mysql root password so DTC can connect to MySQL and
+ add/remove databases.
 
 Template: dtc/conf_mysqldb
 Type: string
@@ -38,7 +37,7 @@ Description: Change MySql root?
  that root password for you if you didn't change it before. If you have
  setup a root password for mysql before, or if you are just upgrading DTC
  to a newer version, say no to the above. If your root mysql password is
- not set yet, then anser yes and DTC will change it with the root password
+ not set yet, then you can ask DTC to change it with the root password
  you just entered. Please note that if DTC can't connect with root, then
  install will fail.
 
@@ -112,8 +111,9 @@ Template: dtc/conf_use_cyrus
 Type: boolean
 Default: false
 Description: Use cyrus mail system?
- Do you want to use Cyrus for mail delivery, imap and MTA? This assumes
- that you are also using Postfix as MTA.
+ If you are using the Cyrus for mail delivery, imap and MTA, you should
+ inform the DTC installer about it. This assumes that you are also using
+ Postfix as MTA.
 
 Template: dtc/conf_apache_version
 Type: select
@@ -126,11 +126,12 @@ Template: dtc/conf_use_nated_vhosts
 Type: boolean
 Default: false
 Description: Use nated vhosts?
- Do you want that DTC generates apache file to use a LAN IP address that
- your server is using? If your server is in the LAN behind a firewall that
+ It's possible that DTC generates apache file to use a LAN IP address that
+ your server is using. If your server is in the LAN behind a firewall that
  does NAT and port redirections of the public IP(s) address(es) to your
- server, then you must say YES here, otherwise (if your server is connected
- directly to the internet with a public static IP) leave it to NO.
+ server, then you must say ask to generate nated vhosts here, otherwise
+ (if your server is connected directly to the internet with a public
+ static IP) leave it to default.
 
 Template: dtc/conf_nated_vhosts_ip
 Type: string
@@ -143,15 +144,18 @@ Template: dtc/conf_gen_ssl_cert
 Type: boolean
 Default: false
 Description: Generate OpenSSL certificate for DTC?
- If you decide to enter YES, then DTC will generate an OpenSSL certificate
- for you so you can enjoy browsing the panel with Secure Socket Layer
- connections. You can later upgrade to a root CA certificate by using
- /usr/share/dtc/etc/ssl/new.cert.csr when buying the certificate from a
- trusted source. You will then change /usr/share/dtc/etc/ssl/new.cert.cert
- by a real certificate. Note that if you say yes, DTC will also activate
+ If you decide generate a certificate, then DTC will generate an self
+ signed OpenSSL certificate for you, so you can enjoy browsing the panel
+ with Secure Socket Layer connections. You can later upgrade to a root
+ CA certificate by using /usr/share/dtc/etc/ssl/new.cert.csr when buying
+ the certificate from a trusted source. You will then change
+ /usr/share/dtc/etc/ssl/new.cert.cert by a real certificate. Note that
+ even you ask to generate the certificate, DTC will also activate
  SSL directly and generate the apache config to use HTTPS url for the
- panel, if you enter NO, it will leave the value stored in the database
- (which is no at the first install).
+ panel, if you don't, it will leave the value stored in the database
+ (which is no at the first install). As well, DTC will never overrite
+ a previously generated certificate. If you wish to regenerate it, you
+ need to remove all the files in /usr/share/dtc/etc/ssl.
 
 Template: dtc/conf_cert_passphrase
 Type: password
@@ -175,7 +179,7 @@ Description: DTC SSL certificate city name:
 Template: dtc/conf_cert_organization
 Type: string
 Default: GPLHost
-Description: DTC SSL certificate organization name.
+Description: DTC SSL certificate organization name:
  Please entre your organization name.
 
 Template: dtc/conf_cert_unit
@@ -191,15 +195,15 @@ Description: DTC SSL certificate email addr:
 
 Template: dtc/conf_cert_challenge_pass
 Type: password
-Description: DTC SSL certificate challenge pass.
+Description: DTC SSL certificate challenge pass:
  Please enter your certificate challenge password.
 
 Template: dtc/conf_upgrade_pear
 Type: boolean
 Default: true
 Description: Update pear installation?
- Do you want that DTC checks that your pear installation durring install?
- This REQUIRES a network connection to the internet. If you can't reply yes
+ You can ask DTC to check your pear installation durring install.
+ This REQUIRES a network connection to the internet. If you can't do so
  here, please check that you have the following PEAR modules up-to-date:
  Crypt_CBC and Auth_SASL.
 
@@ -219,14 +223,13 @@ Description: Network devices to monitor:
 Template: dtc/conf_report_setup_stat
 Type: boolean
 Default: true
-Description: Allow to report anonymous statistc?
+Description: Allow to report anonymous statistc to GPLHost?
  In order to know how many DTC setup has been done, the installer can
  report to GPLHost web site. No data is collected exept the operating
  system (Debian in your case), IP address of the setup (we use the IP as an
  identifier so we don't account upgrades and/or reinstallations, we wont
  ever use it for commercial purpose). You need an internet connection and
- wget installed to report. Do you wish to allow DTC installer to report the
- setup of the control panel?
+ wget installed to report.
 
 Template: dtc/conf_omit_dev_mknod
 Type: boolean
