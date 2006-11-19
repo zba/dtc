@@ -1,4 +1,4 @@
-!#/bin/sh
+#!/bin/sh
 
 cvs -d :pserver:anonymous@gplhost.com:/var/lib/cvs export -D today dtc
 
