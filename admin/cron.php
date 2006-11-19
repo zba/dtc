@@ -366,6 +366,7 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 		echo "Config is OK : restarting Apache\n";
 //		$pid_file_was_there = is_file("$conf_generated_file_path/apache.pid");
 //		clearstatcache();
+		echo "$APACHECTL stop\n";
 		system("$APACHECTL stop");
 		sleep(1);
 		while( is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 15){
@@ -410,6 +411,7 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 		echo "0\n";
 		$ctl_retry = 0;		// We have to continue going on, even if apache don't restart...*/
 		$ctl_return = system("$APACHECTL start");
+		clearstatcache();
 		// Check that apache is really started, because experience showed sometimes it's not !!!
 		//while( strstr($ctl_return,"httpd started") == false && $ctl_retry++ < 15){
 		// This new version should work on OS where apachectl start is quiet
