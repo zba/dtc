@@ -53,7 +53,7 @@ Description: A web control panel for admin and accounting hosting services
 
 Package: dtc-toaster
 Architecture: all
-Depends: dtc-postfix-courier, ttf-arphic-ukai, msttcorefonts
+Depends: dtc-postfix-courier, ttf-arphic-ukai, ttf-bitstream-vera
 Description: A meta package to setup all necessary DTC package
  This is a meta package that will setup every package
  that you need when you want to use DTC web hosting control

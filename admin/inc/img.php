@@ -87,6 +87,8 @@ if($_REQUEST["lang"] == "zh"){
 	}
 	if(file_exists("/usr/share/fonts/truetype/msttcorefonts/Verdana.ttf")){
 		$verdana_path = "/usr/share/fonts/truetype/msttcorefonts/Verdana.ttf";
+	}else if(file_exists("/usr/share/fonts/truetype/ttf-bitstream-vera/Vera.ttf")){
+		$verdana_path = "/usr/share/fonts/truetype/ttf-bitstream-vera/Vera.ttf";
 	}else if(file_exists("verdana.ttf")){
 		$verdana_path = "verdana.ttf";
 	}else if(file_exists("../verdana.ttf")){
@@ -113,6 +115,8 @@ if($_REQUEST["lang"] == "zh"){
 	}
 	if(file_exists("/usr/share/fonts/truetype/msttcorefonts/arial.ttf")){
 		$arial_path = "/usr/share/fonts/truetype/msttcorefonts/arial.ttf";
+	}else if(file_exists("/usr/share/fonts/truetype/ttf-bitstream-vera/Vera.ttf")){
+		$arial_path = "/usr/share/fonts/truetype/ttf-bitstream-vera/Vera.ttf";
 	}else if(file_exists("arial.ttf")){
 		$arial_path = "arial.ttf";
 	}else if(file_exists("../arial.ttf")){

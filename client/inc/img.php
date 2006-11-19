@@ -69,7 +69,7 @@ if($_REQUEST["lang"] == "zh"){
 	{
 		imagettftext ( $im, 11, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, realpath($ukai_path), $utf );
 	} else {
-		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos-25,  $_REQUEST["text"], $text_color);
+		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos-15,  $_REQUEST["text"], $text_color);
 	}
 //	ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos,  $_REQUEST["text"], $text_color);
 }else if($_REQUEST["lang"] == "pl"){
@@ -87,6 +87,8 @@ if($_REQUEST["lang"] == "zh"){
 	}
 	if(file_exists("/usr/share/fonts/truetype/msttcorefonts/Verdana.ttf")){
 		$verdana_path = "/usr/share/fonts/truetype/msttcorefonts/Verdana.ttf";
+	}else if(file_exists("/usr/share/fonts/truetype/ttf-bitstream-vera/Vera.ttf")){
+		$verdana_path = "/usr/share/fonts/truetype/ttf-bitstream-vera/Vera.ttf";
 	}else if(file_exists("verdana.ttf")){
 		$verdana_path = "verdana.ttf";
 	}else if(file_exists("../verdana.ttf")){
@@ -97,7 +99,7 @@ if($_REQUEST["lang"] == "zh"){
 	if(isset($verdana_path)){
 		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, realpath($verdana_path), $utf );
 	}else{
-		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos-25,  $_REQUEST["text"], $text_color);
+		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos-15,  $_REQUEST["text"], $text_color);
 	}
 }else{
 	$font = 2;
@@ -113,6 +115,8 @@ if($_REQUEST["lang"] == "zh"){
 	}
 	if(file_exists("/usr/share/fonts/truetype/msttcorefonts/arial.ttf")){
 		$arial_path = "/usr/share/fonts/truetype/msttcorefonts/arial.ttf";
+	}else if(file_exists("/usr/share/fonts/truetype/ttf-bitstream-vera/Vera.ttf")){
+		$arial_path = "/usr/share/fonts/truetype/ttf-bitstream-vera/Vera.ttf";
 	}else if(file_exists("arial.ttf")){
 		$arial_path = "arial.ttf";
 	}else if(file_exists("../arial.ttf")){
@@ -123,7 +127,7 @@ if($_REQUEST["lang"] == "zh"){
 	if(isset($arial_path)){
 		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, realpath($arial_path), $_REQUEST["text"] );
 	}else{
-		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos-25,  $_REQUEST["text"], $text_color);
+		ImageString ($im, $font, $gfx_start_pos+$txt_x_pos, $txt_y_pos-15,  $_REQUEST["text"], $text_color);
 	}
 }
 
