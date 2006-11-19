@@ -474,9 +474,9 @@ function registration_form(){
 	else	$frm_custom_notes = "";
 
 	if($heb_type == "all" || $heb_type == "shared" || $heb_type == "ssl"){
-		$domname_hidden = " ";
+		$domname_hidden = " style=\"white-space:nowrap;\" ";
 	}else{
-		$domname_hidden = " style=\"display:none;visibility:hidden;\" ";
+		$domname_hidden = " style=\"display:none;visibility:hidden;white-space:nowrap;\" ";
 	}
 
 	if($heb_type == "all" || $heb_type == "vps"){
