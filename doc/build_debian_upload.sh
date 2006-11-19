@@ -6,16 +6,6 @@ VERS=`cat dtc/bin/version`
 RELS=`cat dtc/bin/release`
 VERSION=${VERS}"-"${RELS}
 
-rm -f dtc/admin/inc/verdana.ttf
-rm -f dtc/admin/inc/arial.ttf
-rm -f dtc/admin/inc/ukai.ttf
-rm -f dtc/client/inc/verdana.ttf
-rm -f dtc/client/inc/arial.ttf
-rm -f dtc/client/inc/ukai.ttf
-rm -f dtc/email/inc/verdana.ttf
-rm -f dtc/email/inc/arial.ttf
-rm -f dtc/email/inc/ukai.ttf
-
 mv dtc dtc-${VERS}
 cd dtc-${VERS}/bin
 ./prepareDebianTree
@@ -27,4 +17,7 @@ cd dtc-${VERS}
 dpkg-buildpackage -rfakeroot -sa
 cd ..
 FOUNDED_ARCH=`uname -m`
+if [ ${FOUNDED_ARCH} = "x86_64" ] ; then
+	FOUNDED_ARCH=amd64
+fi
 dupload -c -f --to mentors dtc_${VERSION}_${FOUNDED_ARCH}.changes
