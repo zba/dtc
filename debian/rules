@@ -34,7 +34,6 @@ binary-arch: install
 	dh_testroot
 	dh_installchangelogs doc/changelog
 	dh_installdocs
-	dh_installexamples
 	dh_installdirs
 	dh_install
 	dh_link
