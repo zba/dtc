@@ -12,25 +12,21 @@ $keep_dns_generate_flag = "no";
 
 // Set here your apachectl path if you need it fully (like for example
 // /usr/sbin/apachectl for debian, or /usr/local/sbin/apachectl for FreeBSD)
-if($conf_unix_type == "debian" || $conf_unix_type == "redhat" || $conf_unix_type == "osx" || $conf_unix_type == "gentoo"){
-	if(file_exists("/usr/sbin/apachectl")){
-		$APACHECTL = "/usr/sbin/apachectl";
+if($conf_apache_version == "2"){
+	if(file_exists("/usr/sbin/apache2ctl")){
+		$APACHECTL = "/usr/sbin/apache2ctl";
+	}else if(file_exists("/usr/local/sbin/apache2ctl")){
+		$APACHECTL = "/usr/local/sbin/apache2ctl";
 	}else if(file_exists("/usr/sbin/apachectl2")){
 		$APACHECTL = "/usr/sbin/apachectl2";
-	// Those are in case you compile apache yourself...
+	}else if(file_exists("/usr/local/sbin/apachectl2")){
+		$APACHECTL = "/usr/local/sbin/apachectl2";
+	}
+}else{
+	if(file_exists("/usr/sbin/apachectl")){
+		$APACHECTL = "/usr/sbin/apachectl";
 	}else if(file_exists("/usr/local/sbin/apachectl")){
 		$APACHECTL = "/usr/local/sbin/apachectl";
-	}else if(file_exists("/usr/local/sbin/apachectl2")){
-		$APACHECTL = "/usr/local/sbin/apachectl2";
-	}else if(file_exists("/usr/sbin/apache2ctl")){
-		$APACHECTL = "/usr/sbin/apache2ctl";
-	}
-// This should be the FreeBSD case
-}else{
-	if(file_exists("/usr/local/sbin/apachectl")){
-		$APACHECTL = "/usr/local/sbin/apachectl";
-	}else if(file_exists("/usr/local/sbin/apachectl2")){
-		$APACHECTL = "/usr/local/sbin/apachectl2";
 	}
 }
 
