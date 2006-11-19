@@ -39,4 +39,4 @@ case "$FOUNDED_ARCH" in
                 ;;
 esac
 
-dupload -c -f --to mentors dtc_${VERSION}_${FOUNDED_ARCH}.changes
+dupload -c -f --to mentors dtc_${VERSION}_${DEBIAN_BINARCH}.changes
