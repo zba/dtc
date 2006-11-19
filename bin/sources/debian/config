@@ -51,7 +51,7 @@ if [ ""$RET = "yes" -o ""$RET = "true" ] ; then
 	db_input high dtc/conf_cert_email
 	db_input high dtc/conf_cert_challenge_pass
 fi
-db_input high dev/conf_omit_dev_mknod
+db_input high dtc/conf_omit_dev_mknod
 db_input high dtc/conf_upgrade_pear
 db_input low dtc/conf_dnsbl_list
 
