@@ -9,7 +9,6 @@ Package: dtc
 Architecture: all
 Depends:
 apache2 | apache, apache2-common | apache-common, amavisd-new, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam, coreutils, courier-maildrop | cyrus-imapd-2.2, debconf, file, fileutils, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache-mod-php5 | libapache-mod-php4 | libapache2-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql, librrds-perl, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, patch, php5 | php4, php5-cli | php4-cli, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, php-pear | php4-pear, php5-curl | php4-curl, pure-ftpd-mysql | proftpd-mysql, rrdtool, sasl2-bin, sbox-dtc, spamassassin, spamc, ssh, sudo, unzip, webalizer, zip
-
 Suggests: courier-authmysql, dovecot, postfix, qmail, postfix-tls, libsasl2, libsasl2-modules, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2
 Replaces: dtc-postfix-courier
 Description: A web control panel for admin and accounting hosting services
