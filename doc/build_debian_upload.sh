@@ -12,6 +12,9 @@ rm -f dtc/admin/inc/ukai.ttf
 rm -f dtc/client/inc/verdana.ttf
 rm -f dtc/client/inc/arial.ttf
 rm -f dtc/client/inc/ukai.ttf
+rm -f dtc/email/inc/verdana.ttf
+rm -f dtc/email/inc/arial.ttf
+rm -f dtc/email/inc/ukai.ttf
 
 mv dtc dtc-${VERS}
 cd dtc-${VERS}/bin
