@@ -6,17 +6,81 @@ cvs -d :pserver:anonymous@gplhost.com:/var/lib/cvs export -D today dtc
 
 Upstream Author: Thomas Goirand <thomas@goirand.fr>
 
-License (cgi-bin/*):
+License (admin/*.cgi):
 
 	Copyright (C) David Schweikert <dws@ee.ethz.ch>
 
-	The copyright of this software is GPL, version 2.
-	See the GNU General Public Licence version 2 or later for copying conditions.
-	There is no warranty.
+        This program is free software; you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation; either version 2 of the License, or
+        (at your option) any later version.
 
-License (nusoap):
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program; if not, write to the Free Software
+        Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+
+License (shared/dtcrm/srs/*):
+
+	Copyright (C) 2000, 2001, 2002, 2003 Colin Viebrock and easyDNS Technologies Inc.
+
+        This program is free software; you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation; either version 2 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program; if not, write to the Free Software
+        Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+
+License (shared/inc/nusoap.php):
 
 	Copyright (c) 2002 NuSphere Corporation Dietrich Ayala <dietrich@ganx4.com>
+
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Lesser General Public
+	License as published by the Free Software Foundation; either
+	version 2.1 of the License, or (at your option) any later version.
+
+	This library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	Lesser General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public
+	License along with this library; if not, write to the Free Software
+	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+License (shared/gfx/wz_tooltip.js):
+
+	Copyright (C) 2002-2005 Walter Zorn. <walter2615@gmx.de>
+
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Lesser General Public
+	License as published by the Free Software Foundation; either
+	version 2.1 of the License, or (at your option) any later version.
+
+	This library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	Lesser General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public
+	License along with this library; if not, write to the Free Software
+	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+License (shared/cyradm.php):
+
+	Copyright (C) 2000 Gernot Stocker <muecketb@sbox.tu-graz.ac.at>
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -51,8 +115,8 @@ License (everything else):
 	License along with this library; if not, write to the Free Software
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
-On Debian systems, a copy of the GNU Lesser General Public
+On Debian systems, the complete text of the GNU Lesser General Public
 License (LGPL) may be found in /usr/share/common-licenses/LGPL.
 
-On Debian systems, the complete text of the GNU General Public License
+On Debian systems, the complete text of the GNU General Public License v2 (GPL)
 can be found in /usr/share/common-licenses/GPL-2.
