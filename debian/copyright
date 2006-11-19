@@ -63,7 +63,7 @@ License (shared/inc/nusoap.php):
 
 License (bin/sources/redhat/RPM-build-tree.sh):
 
-	copyright (C) 2002 Owl River Company - Columbus OH info@owlriver.com
+	Copyright (C) 2002 Owl River Company - Columbus OH info@owlriver.com
 
         This program is free software; you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
