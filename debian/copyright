@@ -6,7 +6,7 @@ cvs -d :pserver:anonymous@gplhost.com:/var/lib/cvs export -D today dtc
 
 Upstream Author: Thomas Goirand <thomas@goirand.fr>
 
-License:
+License (everything else):
 
 	Copyright (C) Thomas Goirand <thomas@goirand.fr>
 	Copyright (C) GPLHost LLC <info@gplhost.com>
@@ -25,5 +25,36 @@ License:
 	License along with this library; if not, write to the Free Software
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
+
+License (cgi-bin/*):
+
+	Copyright (C) David Schweikert <dws@ee.ethz.ch>
+
+	The copyright of this software is GPL, version 2.
+	See the GNU General Public Licence version 2 or later for copying conditions.
+	There is no warranty.
+
+
+License (nusoap):
+
+	Copyright (c) 2002 NuSphere Corporation Dietrich Ayala <dietrich@ganx4.com>
+
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Lesser General Public
+	License as published by the Free Software Foundation; either
+	version 2.1 of the License, or (at your option) any later version.
+
+	This library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	Lesser General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public
+	License along with this library; if not, write to the Free Software
+	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
 On Debian systems, a copy of the GNU Lesser General Public
 License (LGPL) may be found in /usr/share/common-licenses/LGPL.
+
+On Debian systems, the complete text of the GNU General Public License
+can be found in /usr/share/common-licenses/GPL-2.

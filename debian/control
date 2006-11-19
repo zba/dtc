@@ -55,18 +55,10 @@ Description: A web control panel for admin and accounting hosting services
 
 Package: dtc-toaster
 Architecture: all
-Depends: dtc-postfix-courier, ttf-arphic-ukai, msttcorefonts, dtc-package-installer
+Depends: dtc-postfix-courier, ttf-arphic-ukai, msttcorefonts
 Description: A meta package to setup all necessary DTC package
  This is a meta package that will setup every package
  that you need when you want to use DTC web hosting control
  panel. If you want more information, have a look to the
  dtc package itself.
- See http://www.gplhost.com/software-dtc.html for more details
-
-Package: dtc-package-installer
-Architecture: all
-Depends: dtc-postfix-courier | dtc
-Description: Adds package installer apps to DTC
- This is a collection of apps that are done for
- the package installer of DTC.
  See http://www.gplhost.com/software-dtc.html for more details
