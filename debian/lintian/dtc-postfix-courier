@@ -1,0 +1,15 @@
+W: dtc-postfix-courier: postinst-has-useless-call-to-ldconfig
+W: dtc-postfix-courier: possibly-insecure-handling-of-tmp-files-in-maintainer-script postinst:834
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1026
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1028
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1035
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1039
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1042
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1047
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1050
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1057
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1060
+E: dtc-postfix-courier: mknod-in-maintainer-script postinst:1063
+W: dtc-postfix-courier: debconf-is-not-a-registry ./usr/share/dtc/admin/ip_change.sh
+W: dtc-postfix-courier: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_domain.sh
+W: dtc-postfix-courier: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_ip.sh
