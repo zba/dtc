@@ -11,25 +11,49 @@ echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
 echo "###############################################################"
 
+if [ -f "/root/.dtc_install" ]; then
+  . /root/.dtc_install
+else 
+  touch /root/.dtc_install
+fi
+
 # DATABASE CONFIGURATION
 echo "### MYSQL CONFIGURATION ###"
 echo ""
 echo "DTC needs to access to your mysql database"
 echo "Please give your mysql account information"
-echo -n 'MySQL hostname [localhost]: '
-read conf_mysql_host
-if [ ""$conf_mysql_host = "" ] ; then
+if [ -z $conf_mysql_host ] ; then
 	conf_mysql_host="localhost"
 fi
+echo -n "MySQL hostname [${conf_mysql_host}]: "
+read answer
+if [ ! -z $answer ]; then
+	conf_mysql_host=${answer}
+fi
+sed -i.bak '/conf_mysql_host/d' /root/.dtc_install
+echo "conf_mysql_host=${conf_mysql_host}" >> /root/.dtc_install
 
-echo -n 'MySQL root login [root]: '
-read conf_mysql_login
-if [ ""$conf_mysql_login = "" ] ; then
+if [ -z $conf_mysql_login ] ; then
 	conf_mysql_login="root"
 fi
+echo -n "MySQL root login [${conf_mysql_login}]: "
+read answer
+if [ ! -z $answer ]; then
+	conf_mysql_login=${answer}
+fi
+sed -i.bak '/conf_mysql_login/d' /root/.dtc_install
+echo "conf_mysql_login=${conf_mysql_login}" >> /root/.dtc_install
 
-echo -n 'MySQL root password []: '
-read conf_mysql_pass
+if [ -z $conf_mysql_pass ] ; then
+	conf_mysql_pass=""
+fi
+echo -n "MySQL root password [${conf_mysql_pass}]: "
+read answer
+if [ ! -z $answer ]; then
+	conf_mysql_pass=${answer}
+fi
+sed -i.bak '/conf_mysql_pass/d' /root/.dtc_install
+echo "conf_mysql_pass=${conf_mysql_pass}" >> /root/.dtc_install
 
 echo ""
 echo "Do you want that DTC setup this password"
