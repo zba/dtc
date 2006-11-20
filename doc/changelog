@@ -1,5 +1,9 @@
 Version 0.24.6:
 ---------------
+- The site preview with https://dtc.your-host.com/site.net/
+is now https://dtc.your-host.com/whatever-subdomain.site.net/
+and understands the register_globals value.
+
 - The panel is now using dtc:dtcgrp as user/group instead
 of nobody:nogroup
 
