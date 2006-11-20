@@ -13,6 +13,14 @@ UNIX_TYPE=debian
 
 DEST_TREE=debian
 
+./prepareDebianTree
+cd ..
+dpkg-buildpackage
+
+exit 0
+
+
+
 # Make the directories
 mkdir -p ${DEST_TREE}/usr/share/dtc/etc/zones
 mkdir -p ${DEST_TREE}/DEBIAN
