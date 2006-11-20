@@ -45,6 +45,7 @@ else
 	echo "Could not found your httpd.conf: exiting."
 	exit 1
 fi
+PATH_APACHE_PID_FILE="/var/run/httpd.pid"
 PATH_NAMED_CONF="/etc/namedb/named.conf"
 # Copy default conf if no conf exists (BSD specific)
 if [ ! -f ${LOCALBASE}/etc/proftpd.conf ];
