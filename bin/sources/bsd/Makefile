@@ -20,6 +20,7 @@ USE_PHP=	mysql pcre session
 .if defined(WITH_PHP5)
 DEFAULT_PHP_VER=5
 BROKEN_WITH_PHP=4
+RUN_DEPENDS+=    ${LOCALBASE}/bin/pear:${PORTSDIR}/devel/pear
 USE_PHP+=	bz2 gd mbstring mcrypt mysql mysqli openssl pcre \
 		pear session sockets xml zlib
 .endif
