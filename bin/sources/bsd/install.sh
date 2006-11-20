@@ -39,10 +39,8 @@ echo ""
 
 # Deamon path configuration
 echo "### DEAMON PATH CONFIGURATION ###"
-if [ -f "${LOCALBASE}/etc/apache/httpd.conf" ] ;then
-	PATH_HTTPD_CONF="${LOCALBASE}/etc/apache/httpd.conf"
-elif [ -f "${LOCALBASE}/etc/apache2/httpd.conf" ] ;then
-	PATH_HTTPD_CONF="${LOCALBASE}/etc/apache2/httpd.conf"
+if [ -f "${LOCALBASE}/sbin/apxs" ]; then
+	PATH_HTTPD_CONF="`/usr/local/sbin/apxs -q SYSCONFDIR`/httpd.conf"
 else
 	echo "Could not found your httpd.conf: exiting."
 	exit 1
@@ -75,6 +73,9 @@ PATH_CRONTAB_CONF=/etc/crontab
 PATH_AWSTATS_ETC=${LOCALBASE}/etc/awstats
 MYSQL_DB_SOCKET_PATH="/tmp/mysqld.sock"
 PATH_CGIBIN="${LOCALBASE}/lib/cgi-bin"
+
+PATH_SUDOERS_CONF="${LOCALBASE}/etc/sudoers"
+PATH_RRDTOOL="${LOCALBASE}/bin/rrdtool"
 
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
