@@ -392,10 +392,24 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					$alias_path = mysql_fetch_array($alias_user_result) or die ("Cannot fetch user");
 					$web_pathX = $alias_path["path"];
 					// TG: Added open_basedir restriction (for obvious security reasons)
-					$vhost_file .= "\tAlias /$web_nameX $web_pathX/$web_nameX/subdomains/www/html
-	<Location /$web_nameX>
+					$qsubdom = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_nameX' AND ip='default';";
+					$rx = mysql_query ($qsubdom)or die("Cannot execute query \"$qsubdom\" line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+					$numx =  mysql_num_rows($rx);
+					for($subx=0;$subx<$numx;$subx++){
+						$ax = mysql_fetch_array($rx) or die ("Cannot fetch subdomain for Alias");
+						$subdomx = $ax["subdomain_name"];
+						$globalx = $ax["register_globals"];
+						if($globalx == "yes"){
+							$gblx = "php_admin_value register_globals 1";
+						}else{
+							$gblx = "php_admin_value register_globals 0";
+						}
+						$vhost_file .= "\tAlias /$subdomx.$web_nameX $web_pathX/$web_nameX/subdomains/$subdomx/html
+	<Location /$subdomx.$web_nameX>
 		php_admin_value open_basedir \"$web_pathX/$web_nameX/:$conf_php_library_path:$conf_php_additional_library_path:\"
+		$gblx
 	</Location>\n";
+					}
 				}
 				// End of Luke's patch
 
