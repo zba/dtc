@@ -5,7 +5,7 @@ MAINTAINER=	thomas@goirand.fr
 COMMENT=	A hosting web GUI for admin and accounting all hosting services
 
 RUN_DEPENDS=	${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
-		${LOCALBASE}/libexec/apache/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2 \
+		${LOCALBASE}/libexec/apache22/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2-dtc \
 		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc \
 		${LOCALBASE}/bin/sudo:${PORTSDIR}/security/sudo \
 		${LOCALBASE}/bin/run-mailcap:${PORTSDIR}/misc/mime-support \
