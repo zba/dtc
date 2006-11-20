@@ -121,7 +121,7 @@ for($i=0;$i<$nbr_tables;$i++){
 	}
 
 	// THIS CODE IS TO BE REWRITTED WITH THE NEWER PRIMARY KEY STUFF. IF YOU HAVE TIME, PLEASE DO IT!
-	if( isset($tables[$tblnames[$i]]["keys"] ){
+	if( isset($tables[$tblnames[$i]]["keys"]) ){
 		$allvars = $tables[$tblnames[$i]]["keys"];
 		$numvars = sizeof($allvars);
 		if($numvars > 0){
@@ -139,7 +139,7 @@ for($i=0;$i<$nbr_tables;$i++){
 		}
 	}
 
-	if( isset($tables[$tblnames[$i]]["index"] ){
+	if( isset($tables[$tblnames[$i]]["index"]) ){
 		$allvars = $tables[$tblnames[$i]]["index"];
 		$numvars = sizeof($allvars);
 		if($numvars > 0){
