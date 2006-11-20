@@ -12,7 +12,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Cry
 		${LOCALBASE}/lib/nss_mysql.so:${PORTSDIR}/net/libnss-mysql \
 		${LOCALBASE}/sbin/chrootuid:${PORTSDIR}/security/chrootuid \
 		${LOCALBASE}/bin/rrdtool:${PORTSDIR}/net/rrdtool \
-		${X11BASE}/lib/X11/fonts/bitstream-vera:${PORTSDIR}/x11-fonts/bitstream-vera \
+		${X11BASE}/lib/X11/fonts/bitstream-vera:${PORTSDIR}/x11-fonts/bitstream-vera/Vera.ttf \
 		${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server
 
 NO_BUILD=	yes
