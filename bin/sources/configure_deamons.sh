@@ -795,9 +795,9 @@ sql_hostnames: localhost
 sql_user: root
 sql_pass: ${MYSQL_DTCDAEMONS_PASS}
 sql_database: ${conf_mysql_db}
-sql_select: SELECT %p FROM sasl_auth WHERE userid = '%u@%r'
-sql_insert: INSERT INTO sasl_auth ( userid, %p, domain ) VALUES ( '%u@%r', '%v', )
-sql_update: UPDATE sasl_auth SET %p = '%v' WHERE userid = '%u@%r'
+password_format: crypt
+sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
+sql_update: UPDATE pop_access SET crypt = '%v' WHERE fullemail = '%u@%r'
 sql_verbose: yes" >${PATH_AUTH_SMTPD}
 
 	if [ -f $PATH_AUTH_SASLPASSWD ]; then
@@ -822,9 +822,9 @@ sasl_sql_hostnames: localhost
 sasl_sql_user: root
 sasl_sql_pass: ${MYSQL_DTCDAEMONS_PASS}
 sasl_sql_database: ${conf_mysql_db}
-sasl_sql_select: SELECT %p FROM sasl_auth WHERE userid = '%u@%r'
-sasl_sql_insert: INSERT INTO sasl_auth ( userid, %p, domain ) VALUES ( '%u@%r', '%v' )
-sasl_sql_update: UPDATE sasl_auth SET %p = '%v' WHERE userid = '%u@%r'
+sasl_password_format: crypt
+sasl_sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
+sasl_sql_update: UPDATE pop_access SET crypt = '%v' WHERE fullemail = '%u@%r'
 sasl_sql_verbose: yes" >>$PATH_AUTH_CYRUS
 
 else
