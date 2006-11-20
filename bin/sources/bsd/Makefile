@@ -10,6 +10,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Cry
 		${LOCALBASE}/bin/sudo:${PORTSDIR}/security/sudo \
 		${LOCALBASE}/bin/run-mailcap:${PORTSDIR}/misc/mime-support \
 		${LOCALBASE}/lib/nss_mysql.so:${PORTSDIR}/net/libnss-mysql \
+		${LOCALBASE}/sbin/chrootuid:${PORTSDIR}/security/chrootuid \
 		${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server
 
 NO_BUILD=	yes
@@ -25,7 +26,7 @@ USE_PHP+=	bz2 gd mbstring mcrypt mysql mysqli openssl pcre \
 .if defined(DTC_TOASTER)
 RUN_DEPENDS+=	${LOCALBASE}/bin/webalizer:${PORTSDIR}/www/webalizer  \
 		${LOCALBASE}/www/awstats:${PORTSDIR}/www/awstats \
-		${LOCALBASE}/bin/mhonarc:${PORTSDIR}/mail/mhonarc \
+		${LOCALBASE}/bin/mhonarc:${PORTSDIR}/www/mhonarc \
 		${LOCALBASE}/bin/mlmmj-list:${PORTSDIR}/mail/mlmmj \
 		${LOCALBASE}/sbin/pure-ftpd:${PORTSDIR}/ftp/pure-ftpd \
 		${LOCALBASE}/libexec/postfix/smtpd:${PORTSDIR}/mail/postfix \
@@ -43,7 +44,7 @@ RUN_DEPENDS+=	${LOCALBASE}/www/awstats:${PORTSDIR}/www/awstats
 .endif
 
 .if defined(WITH_MHONARC)
-RUN_DEPENDS+=	${LOCALBASE}/bin/mhonarc:${PORTSDIR}/mail/mhonarc
+RUN_DEPENDS+=	${LOCALBASE}/bin/mhonarc:${PORTSDIR}/www/mhonarc
 .endif
 
 .if defined(WITH_MLMMJ)
