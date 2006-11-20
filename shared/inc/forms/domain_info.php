@@ -80,7 +80,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	$max_subdomain<br><br>";
 
 	$out .= "<b><u>".$txt_your_domain[$lang]."</u></b><br>
-	".$txt_use[$lang]." http(s)://".$conf_administrative_site."/".$_REQUEST["addrlink"]." ".$txt_aliasing[$lang].":";
+	".$txt_use[$lang]." http(s)://".$conf_administrative_site."/www.".$_REQUEST["addrlink"]." ".$txt_aliasing[$lang].":";
 
 	if($eddomain["gen_unresolved_domain_alias"] == "yes"){
 		$radio_yes = " checked";
