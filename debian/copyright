@@ -4,7 +4,20 @@ Sat,  9 Apr 2005 21:54:10 +0200.
 It was downloaded from:
 cvs -d :pserver:anonymous@gplhost.com:/var/lib/cvs export -D today dtc
 
-Upstream Author: Thomas Goirand <thomas@goirand.fr>
+Upstream Authors:
+
+	Thomas Goirand <thomas@goirand.fr>
+	Damien Mascord <tusker@tusker.org>
+
+	Plus minor contributions and translators from arround the world
+	as follow (hoping nobody has been forgotten):
+	* Christian Livadaru <cristian@livadaru.net>: Cyrus support
+	* Luca Franceschini <lupin3rd@gmx.it>: MLMMJ support
+	* Brian Freemans <admin@udns.us>: Protected apache directories.
+	* Many thanks to all the translators : Jelle Kalf (Dutch),
+	Igor Trofimov (partial Russian), Feher Sandor (Hungarian),
+	Jose Toscano and Jorge Mendez (Espanol), Andrea Polte (Deutsch),
+	Luca Franceschini (Italiano), my lovely girlfriend Cao Wei (Chinese).
 
 License (admin/*.cgi):
 
@@ -131,6 +144,7 @@ License (bin/sources/osx/Crypt/*):
 License (everything else):
 
 	Copyright (C) Thomas Goirand <thomas@goirand.fr>
+	Copyright (C) Damien Mascord <tusker@tusker.org>
 	Copyright (C) GPLHost LLC <info@gplhost.com>
 
 	This library is free software; you can redistribute it and/or
