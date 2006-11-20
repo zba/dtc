@@ -11,6 +11,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Cry
 		${LOCALBASE}/bin/run-mailcap:${PORTSDIR}/misc/mime-support \
 		${LOCALBASE}/lib/nss_mysql.so:${PORTSDIR}/net/libnss-mysql \
 		${LOCALBASE}/sbin/chrootuid:${PORTSDIR}/security/chrootuid \
+		${LOCALBASE}/bin/rrdtool:${PORTSDIR}/net/rrdtool \
 		${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server
 
 NO_BUILD=	yes

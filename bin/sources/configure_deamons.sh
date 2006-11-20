@@ -37,17 +37,17 @@ fi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n "===> Installing chroot file environment for www."$main_domain_name
 fi
-cp -fupR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n " "$dtc_admin_subdomain"."$main_domain_name
 fi
-cp -fupR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404"
+cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404"
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n " 404."$main_domain_name
 fi
-cp -fupR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain
+cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain
 
 # symlink directories so that users can login with ssh to the admin account directory
 if [ ! -e $conf_hosting_path/$conf_adm_login/bin ]; then ln -s $main_domain_name/subdomains/www/bin  $conf_hosting_path/$conf_adm_login/bin; fi
@@ -616,9 +616,12 @@ else
 	fi
 
 	echo "# Configured by DTC v0.12 : please do not touch this line !
-Include $PATH_DTC_ETC/vhosts.conf
-Listen 127.0.0.1:80
+Include $PATH_DTC_ETC/vhosts.conf" >>$PATH_HTTPD_CONF
+
+	if ! [ ""$conf_omit_dev_mknod = "yes" ] ; then
+		echo "Listen 127.0.0.1:80
 Listen 127.0.0.1:443" >>$PATH_HTTPD_CONF
+	fi
 
 	echo "LogSQLLoginInfo localhost dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >>$PATH_HTTPD_CONF
 	if [ ""$UNIX_TYPE = "freebsd" ] ;then
@@ -773,61 +776,106 @@ else
 
 fi
 
-PATH_PAMD_SMTP=/etc/pam.d/smtp
-PATH_PAMD_IMAP=/etc/pam.d/imap
-PATH_PAMD_SIEVE=/etc/pam.d/sieve
-PATH_PAMD_POP=/etc/pam.d/pop
-if [ -e /etc/pam.d/ ]
-then
+if [ ""$UNIX_TYPE = "freebsd" -a -f /usr/local/lib/sasl2/sql.so ] ;then
+	PATH_AUTH_SMTPD=/usr/local/lib/sasl2/smtpd.conf
+	PATH_AUTH_SASLPASSWD=/usr/local/lib/sasl2/saslpasswd.conf
+	PATH_AUTH_CYRUS=/usr/local/etc/imapd.conf
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "===> Adding configuration inside "$PATH_PAMD_SMTP
+		echo "===> Adding configuration inside /usr/local/lib/sasl2"
 	fi
-	if [ -f $PATH_PAMD_SMTP ]
-	then
-		if ! [ -f $PATH_PAMD_SMTP.DTC.backup ]
-		then
-			cp -f $PATH_PAMD_SMTP $PATH_PAMD_SMTP.DTC.backup
+	if [ -f $PATH_AUTH_SMTP ]; then
+		if ! [ -f $PATH_AUTH_SMTP.DTC.backup ]; then
+			cp -f $PATH_AUTH_SMTP $PATH_AUTH_SMTP.DTC.backup
 		fi
 	fi
-	touch $PATH_PAMD_SMTP
-	echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
-	if [ ""$conf_use_cyrus = "true" ]; then
-		echo "account sufficient pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host=localhost db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1
+	echo "pwcheck_method: auxprop
+auxprop_plugin: sql
+sql_engine: mysql
+sql_hostnames: localhost
+sql_user: root
+sql_pass: ${MYSQL_DTCDAEMONS_PASS}
+sql_database: ${conf_mysql_db}
+sql_select: SELECT %p FROM sasl_auth WHERE userid = '%u@%r'
+sql_insert: INSERT INTO sasl_auth ( userid, %p, domain ) VALUES ( '%u@%r', '%v', )
+sql_update: UPDATE sasl_auth SET %p = '%v' WHERE userid = '%u@%r'
+sql_verbose: yes" >${PATH_AUTH_SMTPD}
+
+	if [ -f $PATH_AUTH_SASLPASSWD ]; then
+		if ! [ -f $PATH_AUTH_SASLPASSWD.DTC.backup ]; then
+			cp -f $PATH_AUTH_SASLPASSWD $PATH_AUTH_SASLPASSWD.DTC.backup
+		fi
+	fi
+ 
+	cp -f $PATH_AUTH_SMTP $PATH_AUTH_SASLPASSWD
+
+	if [ -f $PATH_AUTH_CYRUS ]; then
+		if ! [ -f $PATH_AUTH_CYRUS.DTC.backup ]; then
+			cp -f $PATH_AUTH_CYRUS $PATH_AUTH_CYRUS.DTC.backup
+		fi
+	fi
+
+	echo "pwcheck_method: auxprop
+auxprop_plugin: sql
+
+sasl_sql_engine: mysql
+sasl_sql_hostnames: localhost
+sasl_sql_user: root
+sasl_sql_pass: ${MYSQL_DTCDAEMONS_PASS}
+sasl_sql_database: ${conf_mysql_db}
+sasl_sql_select: SELECT %p FROM sasl_auth WHERE userid = '%u@%r'
+sasl_sql_insert: INSERT INTO sasl_auth ( userid, %p, domain ) VALUES ( '%u@%r', '%v' )
+sasl_sql_update: UPDATE sasl_auth SET %p = '%v' WHERE userid = '%u@%r'
+sasl_sql_verbose: yes" >>$PATH_AUTH_CYRUS
+
+else
+
+	PATH_PAMD_SMTP=/etc/pam.d/smtp
+	PATH_PAMD_IMAP=/etc/pam.d/imap
+	PATH_PAMD_SIEVE=/etc/pam.d/sieve
+	PATH_PAMD_POP=/etc/pam.d/pop
+	if [ -e /etc/pam.d/ ]; then
+		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+			echo "===> Adding configuration inside "$PATH_PAMD_SMTP
+		fi
+		if [ -f $PATH_PAMD_SMTP ]; then
+			if ! [ -f $PATH_PAMD_SMTP.DTC.backup ]; then
+				cp -f $PATH_PAMD_SMTP $PATH_PAMD_SMTP.DTC.backup
+			fi
+		fi
+		touch $PATH_PAMD_SMTP
+		echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
+		if [ ""$conf_use_cyrus = "true" ]; then
+			echo "account sufficient pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host=localhost db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1
 
 auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host=localhost db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1" >$PATH_PAMD_SMTP
 	
-		if [ -f $PATH_PAMD_IMAP ]
-		then
-			if ! [ -f $PATH_PAMD_IMAP.DTC.backup ]
-			then
-				cp -f $PATH_PAMD_IMAP $PATH_PAMD_IMAP.DTC.backup
+			if [ -f $PATH_PAMD_IMAP ]; then
+				if ! [ -f $PATH_PAMD_IMAP.DTC.backup ]; then
+					cp -f $PATH_PAMD_IMAP $PATH_PAMD_IMAP.DTC.backup
+				fi
 			fi
-		fi
-		cp -f $PATH_PAMD_SMTP $PATH_PAMD_IMAP
+			cp -f $PATH_PAMD_SMTP $PATH_PAMD_IMAP
 
-		if [ -f $PATH_PAMD_SIEVE ]
-		then
-			if ! [ -f $PATH_PAMD_SIEVE.DTC.backup ]
-			then
-				cp -f $PATH_PAMD_SIEVE $PATH_PAMD_SIEVE.DTC.backup
+			if [ -f $PATH_PAMD_SIEVE ]; then
+				if ! [ -f $PATH_PAMD_SIEVE.DTC.backup ]; then
+					cp -f $PATH_PAMD_SIEVE $PATH_PAMD_SIEVE.DTC.backup
+				fi
 			fi
-		fi
-		cp -f $PATH_PAMD_SMTP $PATH_PAMD_SIEVE
+			cp -f $PATH_PAMD_SMTP $PATH_PAMD_SIEVE
 
-		if [ -f $PATH_PAMD_POP ]
-		then
-			if ! [ -f $PATH_PAMD_POP.DTC.backup ]
-			then
-				cp -f $PATH_PAMD_POP $PATH_PAMD_POP.DTC.backup
+			if [ -f $PATH_PAMD_POP ]; then
+				if ! [ -f $PATH_PAMD_POP.DTC.backup ]; then
+					cp -f $PATH_PAMD_POP $PATH_PAMD_POP.DTC.backup
+				fi
 			fi
+			cp -f $PATH_PAMD_SMTP $PATH_PAMD_POP
 		fi
-		cp -f $PATH_PAMD_SMTP $PATH_PAMD_POP
+#		if grep "Configured by DTC" $PATH_PAMD_SMTP
+#			echo $PATH_PAMD_SMTP" has been configured before: skiping include insertion!"
+#		else
+#			echo "Including configuration in "$PATH_PAMD_SMTP
+#		fi
 	fi
-#	if grep "Configured by DTC" $PATH_PAMD_SMTP
-#		echo $PATH_PAMD_SMTP" has been configured before: skiping include insertion!"
-#	else
-#		echo "Including configuration in "$PATH_PAMD_SMTP
-#	fi
 fi
 
 #
@@ -1840,6 +1888,8 @@ fi
 #
 # Install proftpd.conf to access to the database
 #
+
+if [ -f $PATH_PROFTPD_CONF ]; then
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo "===> Adding directives to proftpd.conf"
 fi
@@ -1960,6 +2010,7 @@ SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ft
 			/etc/init.d/proftpd restart
 		fi
 	fi
+fi
 fi
 
 #

@@ -18,7 +18,7 @@ mkdir -p $CHROOT_DIR
 cd $CHROOT_DIR
 
 # create directory structure
-mkdir -p etc dev bin lib tmp var/tmp var/run sbin
+mkdir -p etc dev bin lib tmp var/tmp var/run sbin libexec
 mkdir -p usr/bin usr/lib usr/libexec usr/share usr/lib/zoneinfo
 
 # make devices - adjust MAJOR/MINOR as appropriate ( see ls -l /dev/* )
@@ -80,6 +80,7 @@ fi
 
 if [ $UNIX_TYPE"" = "freebsd" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
+        cp -pf /libexec/ld-elf.so.1 libexec
 	cp -pf /bin/rm /bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
 elif [ $UNIX_TYPE"" = "osx" ] ; then
 	cp -pf /usr/bin/cpio usr/bin
