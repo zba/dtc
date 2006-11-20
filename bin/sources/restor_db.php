@@ -121,19 +121,20 @@ for($i=0;$i<$nbr_tables;$i++){
 	}
 
 	// THIS CODE IS TO BE REWRITTED WITH THE NEWER PRIMARY KEY STUFF. IF YOU HAVE TIME, PLEASE DO IT!
-	$allvars = $tables[$tblnames[$i]]["keys"];
-	$numvars = sizeof($allvars);
-	if($numvars > 0){
-		$varnames = array_keys($allvars);
-		for($j=0;$j<$numvars;$j++){
-			if(!findKeyInTable($tblnames[$i],$varnames[$j])){
-				if($varnames[$j] == "PRIMARY")
-					$var_2_add = "PRIMARY KEY";
-				else
-					$var_2_add = "UNIQUE KEY ".$varnames[$j];
-				$q = "ALTER TABLE ".$tblnames[$i]." ADD $var_2_add ".$allvars[$varnames[$j]].";";
-//				echo "$q\n";
-				$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+	if( isset($tables[$tblnames[$i]]["keys"] ){
+		$allvars = $tables[$tblnames[$i]]["keys"];
+		$numvars = sizeof($allvars);
+		if($numvars > 0){
+			$varnames = array_keys($allvars);
+			for($j=0;$j<$numvars;$j++){
+				if(!findKeyInTable($tblnames[$i],$varnames[$j])){
+					if($varnames[$j] == "PRIMARY")
+						$var_2_add = "PRIMARY KEY";
+					else
+						$var_2_add = "UNIQUE KEY ".$varnames[$j];
+					$q = "ALTER TABLE ".$tblnames[$i]." ADD $var_2_add ".$allvars[$varnames[$j]].";";
+					$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+				}
 			}
 		}
 	}
