@@ -138,18 +138,20 @@ for($i=0;$i<$nbr_tables;$i++){
 		}
 	}
 
-	$allvars = $tables[$tblnames[$i]]["index"];
-	$numvars = sizeof($allvars);
-	if($numvars > 0){
-		$varnames = array_keys($allvars);
-		for($j=0;$j<$numvars;$j++){
-			// We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
-			if(findKeyInTable($tblnames[$i],$varnames[$j])){
-				$q = "ALTER TABLE ".$tblnames[$i]." DROP INDEX ".$varnames[$j]."";
+	if( isset($tables[$tblnames[$i]]["index"] ){
+		$allvars = $tables[$tblnames[$i]]["index"];
+		$numvars = sizeof($allvars);
+		if($numvars > 0){
+			$varnames = array_keys($allvars);
+			for($j=0;$j<$numvars;$j++){
+				// We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
+				if(findKeyInTable($tblnames[$i],$varnames[$j])){
+					$q = "ALTER TABLE ".$tblnames[$i]." DROP INDEX ".$varnames[$j]."";
+					$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+				}
+				$q = "ALTER TABLE ".$tblnames[$i]." ADD INDEX ".$varnames[$j]." ".$allvars[$varnames[$j]].";";
 				$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 			}
-			$q = "ALTER TABLE ".$tblnames[$i]." ADD INDEX ".$varnames[$j]." ".$allvars[$varnames[$j]].";";
-			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 		}
 	}
 }
