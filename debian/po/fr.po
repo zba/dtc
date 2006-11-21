@@ -27,13 +27,14 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../dtc.templates:4 ../dtc-postfix-courier.templates:4
-msgid "MySql hostname:"
+msgid "Nom de l'hote MySql :"
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../dtc.templates:4 ../dtc-postfix-courier.templates:4
 msgid ""
+"Quel est le nom d'hote ou l'ip que vous utiliserez pour vous connecter à votre serveur MySQL."
 "What hostname or ip do you want to use to connect to your mysql server ? If "
 "the mysql server runs localy, then you can safely leave the default to "
 "localhost."
