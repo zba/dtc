@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.70 2006/11/18 19:37:03 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.71 2006/11/21 11:21:48 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -56,26 +56,40 @@ function drawSSLIPConfig(){
 function drawTicketConfig(){
 	global $lang;
 	global $pro_mysql_tik_admins_table;
+	global $pro_mysql_tik_cats_table;
 	global $rub;
 	global $sousrub;
 
-	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_tik_admin"){
-		$q = "INSERT INTO $pro_mysql_tik_admins_table (id,pseudo,realname,email,available)
-			VALUES ('','".$_REQUEST["pseudo"]."','".$_REQUEST["realname"]."','".$_REQUEST["email"]."','".$_REQUEST["available"]."');";
-		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	}
-	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_tik_admin"){
-		$q = "UPDATE $pro_mysql_tik_admins_table
-			SET pseudo='".$_REQUEST["pseudo"]."',
-			realname='".$_REQUEST["realname"]."',
-			email='".$_REQUEST["email"]."',
-			available='".$_REQUEST["available"]."'
-			WHERE id='".$_REQUEST["id"]."';";
-		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	}
-	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_tik_admin"){
-		$q = "DELETE FROM $pro_mysql_tik_admins_table WHERE id='".$_REQUEST["id"]."';";
-		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	if(isset($_REQUEST["action"])){
+		switch($_REQUEST["action"]){
+		case "edit_tik_cat":
+			$q = "UPDATE $pro_mysql_tik_cats_table SET catname='".$_REQUEST["catname"]."', catdescript='".$_REQUEST["catdescript"]."' WHERE id='".$_REQUEST["id"]."';";
+			break;
+		case "delete_tik_cat":
+			$q = "DELETE FROM $pro_mysql_tik_cats_table WHERE id='".$_REQUEST["id"]."';";
+			break;
+		case "new_tik_cat":
+			$q = "INSERT INTO $pro_mysql_tik_cats_table (id,catname,catdescript) VALUES('','".$_REQUEST["catname"]."','".$_REQUEST["catdescript"]."');";
+			break;
+		case "new_tik_admin":
+			$q = "INSERT INTO $pro_mysql_tik_admins_table (id,pseudo,realname,email,available)
+				VALUES ('','".$_REQUEST["pseudo"]."','".$_REQUEST["realname"]."','".$_REQUEST["email"]."','".$_REQUEST["available"]."');";
+			break;
+		case "edit_tik_admin":
+			$q = "UPDATE $pro_mysql_tik_admins_table
+				SET pseudo='".$_REQUEST["pseudo"]."', realname='".$_REQUEST["realname"]."',
+				email='".$_REQUEST["email"]."', available='".$_REQUEST["available"]."' WHERE id='".$_REQUEST["id"]."';";
+			break;
+		case "delete_tik_admin":
+			$q = "DELETE FROM $pro_mysql_tik_admins_table WHERE id='".$_REQUEST["id"]."';";
+			break;
+		default:
+			$q = "";
+			break;
+		}
+		if($q != ""){
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		}
 	}
 
 	$out = "";
@@ -120,6 +134,40 @@ function drawTicketConfig(){
 	<input type=\"radio\" name=\"available\" value=\"no\"> No</td>
 	<td style=\"white-space:nowrap;\"><input type=\"submit\" value=\"New\"></form></td></tr>";
 	$out .= "</table>";
+
+
+	$out .= "<b><u>List of support ticket administrators:</u></b><br>";
+	$q = "SELECT * FROM $pro_mysql_tik_cats_table";
+	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">";
+	$out .= "<tr><td>Short name</td><td>Description</td><td colspan=\"2\">Action</td></tr>";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if($i % 2){
+		  $bg = " bgcolor=\"black\" ";
+		}else{
+		  $bg = "";
+		}
+		$out .= "<tr><td $bg><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+	<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
+	<input type=\"hidden\" name=\"action\" value=\"edit_tik_cat\">
+	<input type=\"text\" name=\"catname\" value=\"".$a["catname"]."\"></td>
+	<td $bg><input type=\"text\" size=\"50\" name=\"catdescript\" value=\"".$a["catdescript"]."\"></td>
+	<td $bg><input type=\"submit\" value=\"Save\"></form></td>
+	<td $bg><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+	<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
+	<input type=\"hidden\" name=\"action\" value=\"delete_tik_cat\">
+	<input type=\"submit\" value=\"Delete\"></form></td></tr>";
+	}
+	$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+	<input type=\"hidden\" name=\"action\" value=\"new_tik_cat\">
+	<input type=\"text\" name=\"catname\" value=\"\"></td>
+	<td><input type=\"text\" size=\"50\" name=\"catdescript\" value=\"\"></td>
+	<td style=\"white-space:nowrap;\" colspan=\"2\"><input type=\"submit\" value=\"New\"></form></td></tr></table>";
 	return $out;
 }
 
