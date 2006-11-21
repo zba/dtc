@@ -1,0 +1,493 @@
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-11-21 06:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: string
+#. Description
+#: ../dtc.templates:4 ../dtc-postfix-courier.templates:4
+msgid "MySql hostname:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:4 ../dtc-postfix-courier.templates:4
+msgid ""
+"What hostname or ip do you want to use to connect to your mysql server ? If "
+"the mysql server runs localy, then you can safely leave the default to "
+"localhost."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:12 ../dtc-postfix-courier.templates:12
+msgid "MySql Login:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:12 ../dtc-postfix-courier.templates:12
+msgid ""
+"What is your mysql root login ? DTC needs it to access to your mysql table "
+"in order to grant privileges to it's users. It's sugested that you add a "
+"user specialy for dtc that has the rights for modifying grant tables, but "
+"root il also ok."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../dtc.templates:20 ../dtc-postfix-courier.templates:20
+msgid "MySql Password:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../dtc.templates:20 ../dtc-postfix-courier.templates:20
+msgid ""
+"Please enter your mysql root password so DTC can connect to MySQL and add/"
+"remove databases."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:27 ../dtc-postfix-courier.templates:27
+msgid "DTC database name:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:27 ../dtc-postfix-courier.templates:27
+msgid ""
+"DTC save all it's hosting information in a database automaticaly created. "
+"You should enter it's name here."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:34 ../dtc-postfix-courier.templates:34
+msgid "Change MySql root?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:34 ../dtc-postfix-courier.templates:34
+msgid ""
+"When installing mysql-server package under debian, the default installed "
+"root password for database access is an empty password. DTC can change that "
+"root password for you if you didn't change it before. If you have setup a "
+"root password for mysql before, or if you are just upgrading DTC to a newer "
+"version, say no to the above. If your root mysql password is not set yet, "
+"then you can ask DTC to change it with the root password you just entered. "
+"Please note that if DTC can't connect with root, then install will fail."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:47 ../dtc-postfix-courier.templates:47
+msgid "Domain name:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:47 ../dtc-postfix-courier.templates:47
+msgid ""
+"Enter a the first domain name you want DTC to administrate. This domain name "
+"will be used for installing the root admin and customer web control panel of "
+"DTC (on one of this domain subdomains)."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:55 ../dtc-postfix-courier.templates:55
+msgid "DTC root panel subdomain:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:55 ../dtc-postfix-courier.templates:55
+msgid "Enter the subdomain you want DTC to install it's control panel."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:61 ../dtc-postfix-courier.templates:61
+msgid "Primary IP addresse:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:61 ../dtc-postfix-courier.templates:61
+msgid ""
+"What is your primary IP addresse ? This IP will be used for the domain name "
+"you just provided, and will be used as default for most DTC variables "
+"(beware that the only real way to change your IP after is to use dpkg-"
+"reconfigure). In case of NAT, please enter your EXTERNAL IP address."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:70 ../dtc-postfix-courier.templates:70
+msgid "Path for hosted domains:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:70 ../dtc-postfix-courier.templates:70
+msgid ""
+"Where do you want DTC to store all hosted domains files (mail and web "
+"files) ? (easy change of this value available in the root admin web control "
+"panel, but this is also where the main domain name will be installed)."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:70 ../dtc-postfix-courier.templates:70
+msgid ""
+"Please note that apache's standard installation setup /var/www as the apache "
+"web area. Remove this manualy in your /etc/apache/httpd.conf if you choose /"
+"var/www/sites as DTC's hosting area."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:83 ../dtc-postfix-courier.templates:83
+msgid "Path where to build the chroot environment:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:83 ../dtc-postfix-courier.templates:83
+msgid ""
+"Where do you want DTC to build the cgi-bin chroot environment? Please note "
+"that DTC will do hardlinks to that directory, so the chroot path should be "
+"in the same logical device as the path for hosted domains files."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:91 ../dtc-postfix-courier.templates:91
+msgid "Main domain admin name:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:91 ../dtc-postfix-courier.templates:91
+msgid ""
+"DTC has to configurate an admin for each domains. Please enter the admin "
+"name for the domain name just entered."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../dtc.templates:98 ../dtc-postfix-courier.templates:98
+msgid "Main domain admin password:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../dtc.templates:98 ../dtc-postfix-courier.templates:98
+msgid "Please give the main domain's administrator a password."
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../dtc.templates:104 ../dtc-postfix-courier.templates:104
+msgid "Mail Transfer Agent Type:"
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../dtc.templates:104 ../dtc-postfix-courier.templates:104
+msgid ""
+"What type of MTA did you plan to use with DTC? Please not that this software "
+"must be installed prior to install DTC otherwise some of the install script "
+"parts could be skiped and so your configuration will not be fully done."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:113 ../dtc-postfix-courier.templates:113
+msgid "Use cyrus mail system?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:113 ../dtc-postfix-courier.templates:113
+msgid ""
+"If you are using the Cyrus for mail delivery, imap and MTA, you should "
+"inform the DTC installer about it. This assumes that you are also using "
+"Postfix as MTA."
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../dtc.templates:121 ../dtc-postfix-courier.templates:121
+msgid "Apache version to configure:"
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../dtc.templates:121 ../dtc-postfix-courier.templates:121
+msgid ""
+"DTC now supports both Apache and Apache2, but you need to tell which of them "
+"you want to install."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:128 ../dtc-postfix-courier.templates:128
+msgid "Use nated vhosts?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:128 ../dtc-postfix-courier.templates:128
+msgid ""
+"It's possible that DTC generates apache file to use a LAN IP address that "
+"your server is using. If your server is in the LAN behind a firewall that "
+"does NAT and port redirections of the public IP(s) address(es) to your "
+"server, then you must say ask to generate nated vhosts here, otherwise (if "
+"your server is connected directly to the internet with a public static IP) "
+"leave it to default."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:139 ../dtc-postfix-courier.templates:139
+msgid "NATed LAN IP:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:139 ../dtc-postfix-courier.templates:139
+msgid ""
+"This is the LAN (local area network) IP of your server, so DTC can generate "
+"all the vhosts of Apache using this IP."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:146 ../dtc-postfix-courier.templates:146
+msgid "Generate OpenSSL certificate for DTC?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:146 ../dtc-postfix-courier.templates:146
+msgid ""
+"If you decide generate a certificate, then DTC will generate an self signed "
+"OpenSSL certificate for you, so you can enjoy browsing the panel with Secure "
+"Socket Layer connections. You can later upgrade to a root CA certificate by "
+"using /usr/share/dtc/etc/ssl/new.cert.csr when buying the certificate from a "
+"trusted source. You will then change /usr/share/dtc/etc/ssl/new.cert.cert by "
+"a real certificate. Note that even you ask to generate the certificate, DTC "
+"will also activate SSL directly and generate the apache config to use HTTPS "
+"url for the panel, if you don't, it will leave the value stored in the "
+"database (which is no at the first install). As well, DTC will never "
+"overrite a previously generated certificate. If you wish to regenerate it, "
+"you need to remove all the files in /usr/share/dtc/etc/ssl."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../dtc.templates:162 ../dtc-postfix-courier.templates:162
+msgid "DTC certificate passphrase:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../dtc.templates:162 ../dtc-postfix-courier.templates:162
+msgid ""
+"To generate a certificate request and a certificate, OpenSSL needs you enter "
+"a password. Please type it here."
+msgstr ""
+
+#. Type: string
+#. Default
+#: ../dtc.templates:168 ../dtc-postfix-courier.templates:168
+msgid "FR"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:169 ../dtc-postfix-courier.templates:169
+msgid "DTC SSL certificate 2 letters country code:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:169 ../dtc-postfix-courier.templates:169
+msgid ""
+"Please enter the 2 letter country code of your server location. Example: AU, "
+"UK, US, FR, DE, etc."
+msgstr ""
+
+#. Type: string
+#. Default
+#: ../dtc.templates:175 ../dtc-postfix-courier.templates:175
+msgid "Paris"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:176 ../dtc-postfix-courier.templates:176
+msgid "DTC SSL certificate city name:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:176 ../dtc-postfix-courier.templates:176
+msgid "Please enter the city name of your server location."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:182 ../dtc-postfix-courier.templates:182
+msgid "DTC SSL certificate organization name:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:182 ../dtc-postfix-courier.templates:182
+msgid "Please entre your organization name."
+msgstr ""
+
+#. Type: string
+#. Default
+#: ../dtc.templates:187 ../dtc-postfix-courier.templates:187
+msgid "no-unit"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:188 ../dtc-postfix-courier.templates:188
+msgid "DTC SSL certificate organization unit:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:188 ../dtc-postfix-courier.templates:188
+msgid "Please enter your organization unit name."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:193 ../dtc-postfix-courier.templates:193
+msgid "DTC SSL certificate email addr:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:193 ../dtc-postfix-courier.templates:193
+msgid "Please enter your certificate email address."
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../dtc.templates:198 ../dtc-postfix-courier.templates:198
+msgid "DTC SSL certificate challenge pass:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../dtc.templates:198 ../dtc-postfix-courier.templates:198
+msgid "Please enter your certificate challenge password."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:204 ../dtc-postfix-courier.templates:204
+msgid "Update pear installation?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:204 ../dtc-postfix-courier.templates:204
+msgid ""
+"You can ask DTC to check your pear installation durring install. This "
+"REQUIRES a network connection to the internet. If you can't do so here, "
+"please check that you have the following PEAR modules up-to-date: Crypt_CBC "
+"and Auth_SASL."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:213 ../dtc-postfix-courier.templates:213
+msgid "DNSBL (DNS BlackList) list:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:213 ../dtc-postfix-courier.templates:213
+msgid ""
+"Please enter the list of prefered DNSBL servers to add to your mail server "
+"configuration."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:219 ../dtc-postfix-courier.templates:219
+msgid "Network devices to monitor:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:219 ../dtc-postfix-courier.templates:219
+msgid ""
+"Please enter here all the network devices you wish to be monitored by the "
+"RRDTools graphing."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:226 ../dtc-postfix-courier.templates:226
+msgid "Allow to report anonymous statistc to GPLHost?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:226 ../dtc-postfix-courier.templates:226
+msgid ""
+"You can help GPLHost to know how many DTC setup has been done, by reporting "
+"your installation to it's web site. No data will be collected exept the "
+"operating system (Debian in your case), IP address of the setup (the IP is "
+"used as an identifier so GPLHost don't account upgrades and/or "
+"reinstallations, it will never be used for commercial purpose). You have to "
+"be connected to internet and wget must be installed to do the report."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:237 ../dtc-postfix-courier.templates:237
+msgid "Skip mknod calls when building chroot template?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc.templates:237 ../dtc-postfix-courier.templates:237
+msgid ""
+"In some environment, like Linux vServer, mknod is not allowed to be "
+"executed. For that reason, it's possible to skip the creation of the dev "
+"null, random and urandom devices durring the chroot template creation."
+msgstr ""

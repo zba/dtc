@@ -1,0 +1,240 @@
+Template: dtc/conf_mysqlhost
+Type: string
+Default: localhost
+_Description: MySql hostname:
+ What hostname or ip do you want to use to connect to your mysql server ?
+ If the mysql server runs localy, then you can safely leave the default to
+ localhost.
+
+Template: dtc/conf_mysqllogin
+Type: string
+Default: root
+_Description: MySql Login:
+ What is your mysql root login ? DTC needs it to access to your mysql table
+ in order to grant privileges to it's users. It's sugested that you add a
+ user specialy for dtc that has the rights for modifying grant tables, but
+ root il also ok.
+
+Template: dtc/conf_mysqlpass
+Type: password
+_Description: MySql Password:
+ Please enter your mysql root password so DTC can connect to MySQL and
+ add/remove databases.
+
+Template: dtc/conf_mysqldb
+Type: string
+Default: dtc
+_Description: DTC database name:
+ DTC save all it's hosting information in a database automaticaly created.
+ You should enter it's name here.
+
+Template: dtc/conf_mysql_change_root
+Type: boolean
+Default: false
+_Description: Change MySql root?
+ When installing mysql-server package under debian, the default installed
+ root password for database access is an empty password. DTC can change
+ that root password for you if you didn't change it before. If you have
+ setup a root password for mysql before, or if you are just upgrading DTC
+ to a newer version, say no to the above. If your root mysql password is
+ not set yet, then you can ask DTC to change it with the root password you
+ just entered. Please note that if DTC can't connect with root, then
+ install will fail.
+
+Template: dtc/main_domainname
+Type: string
+Default: example.com
+_Description: Domain name:
+ Enter a the first domain name you want DTC to administrate. This domain
+ name will be used for installing the root admin and customer web control
+ panel of DTC (on one of this domain subdomains).
+
+Template: dtc/dtc_adminsubdomain
+Type: string
+Default: dtc
+_Description: DTC root panel subdomain:
+ Enter the subdomain you want DTC to install it's control panel.
+
+Template: dtc/conf_ipaddr
+Type: string
+Default: 192.168.0.2
+_Description: Primary IP addresse:
+ What is your primary IP addresse ? This IP will be used for the domain
+ name you just provided, and will be used as default for most DTC variables
+ (beware that the only real way to change your IP after is to use
+ dpkg-reconfigure). In case of NAT, please enter your EXTERNAL IP address.
+
+Template: dtc/conf_hostingpath
+Type: string
+Default: /var/www/sites
+_Description: Path for hosted domains:
+ Where do you want DTC to store all hosted domains files (mail and web
+ files) ? (easy change of this value available in the root admin web
+ control panel, but this is also where the main domain name will be
+ installed).
+ .
+ Please note that apache's standard installation setup /var/www as the
+ apache web area. Remove this manualy in your /etc/apache/httpd.conf if you
+ choose /var/www/sites as DTC's hosting area.
+
+Template: dtc/conf_chroot_path
+Type: string
+Default: /var/www/chroot
+_Description: Path where to build the chroot environment:
+ Where do you want DTC to build the cgi-bin chroot environment? Please note
+ that DTC will do hardlinks to that directory, so the chroot path should be
+ in the same logical device as the path for hosted domains files.
+
+Template: dtc/conf_admlogin
+Type: string
+Default: dtc
+_Description: Main domain admin name:
+ DTC has to configurate an admin for each domains. Please enter the admin
+ name for the domain name just entered.
+
+Template: dtc/conf_admpass
+Type: password
+Default: 
+_Description: Main domain admin password:
+ Please give the main domain's administrator a password.
+
+Template: dtc/conf_mta_type
+Type: select
+Choices: qmail, postfix
+_Description: Mail Transfer Agent Type:
+ What type of MTA did you plan to use with DTC? Please not that this
+ software must be installed prior to install DTC otherwise some of the
+ install script parts could be skiped and so your configuration will not be
+ fully done.
+
+Template: dtc/conf_use_cyrus
+Type: boolean
+Default: false
+_Description: Use cyrus mail system?
+ If you are using the Cyrus for mail delivery, imap and MTA, you should
+ inform the DTC installer about it. This assumes that you are also using
+ Postfix as MTA.
+
+Template: dtc/conf_apache_version
+Type: select
+Choices: 1, 2
+_Description: Apache version to configure:
+ DTC now supports both Apache and Apache2, but you need to tell which of
+ them you want to install.
+
+Template: dtc/conf_use_nated_vhosts
+Type: boolean
+Default: false
+_Description: Use nated vhosts?
+ It's possible that DTC generates apache file to use a LAN IP address that
+ your server is using. If your server is in the LAN behind a firewall that
+ does NAT and port redirections of the public IP(s) address(es) to your
+ server, then you must say ask to generate nated vhosts here, otherwise (if
+ your server is connected directly to the internet with a public static IP)
+ leave it to default.
+
+Template: dtc/conf_nated_vhosts_ip
+Type: string
+Default: 192.168.0.2
+_Description: NATed LAN IP:
+ This is the LAN (local area network) IP of your server, so DTC can
+ generate all the vhosts of Apache using this IP.
+
+Template: dtc/conf_gen_ssl_cert
+Type: boolean
+Default: false
+_Description: Generate OpenSSL certificate for DTC?
+ If you decide generate a certificate, then DTC will generate an self
+ signed OpenSSL certificate for you, so you can enjoy browsing the panel
+ with Secure Socket Layer connections. You can later upgrade to a root CA
+ certificate by using /usr/share/dtc/etc/ssl/new.cert.csr when buying the
+ certificate from a trusted source. You will then change
+ /usr/share/dtc/etc/ssl/new.cert.cert by a real certificate. Note that even
+ you ask to generate the certificate, DTC will also activate SSL directly
+ and generate the apache config to use HTTPS url for the panel, if you
+ don't, it will leave the value stored in the database (which is no at the
+ first install). As well, DTC will never overrite a previously generated
+ certificate. If you wish to regenerate it, you need to remove all the
+ files in /usr/share/dtc/etc/ssl.
+
+Template: dtc/conf_cert_passphrase
+Type: password
+_Description: DTC certificate passphrase:
+ To generate a certificate request and a certificate, OpenSSL needs you
+ enter a password. Please type it here.
+
+Template: dtc/conf_cert_countrycode
+Type: string
+_Default: FR
+_Description: DTC SSL certificate 2 letters country code:
+ Please enter the 2 letter country code of your server location. Example:
+ AU, UK, US, FR, DE, etc.
+
+Template: dtc/conf_cert_locality
+Type: string
+_Default: Paris
+_Description: DTC SSL certificate city name:
+ Please enter the city name of your server location.
+
+Template: dtc/conf_cert_organization
+Type: string
+Default: GPLHost
+_Description: DTC SSL certificate organization name:
+ Please entre your organization name.
+
+Template: dtc/conf_cert_unit
+Type: string
+_Default: no-unit
+_Description: DTC SSL certificate organization unit:
+ Please enter your organization unit name.
+
+Template: dtc/conf_cert_email
+Type: string
+_Description: DTC SSL certificate email addr:
+ Please enter your certificate email address.
+
+Template: dtc/conf_cert_challenge_pass
+Type: password
+_Description: DTC SSL certificate challenge pass:
+ Please enter your certificate challenge password.
+
+Template: dtc/conf_upgrade_pear
+Type: boolean
+Default: true
+_Description: Update pear installation?
+ You can ask DTC to check your pear installation durring install. This
+ REQUIRES a network connection to the internet. If you can't do so here,
+ please check that you have the following PEAR modules up-to-date:
+ Crypt_CBC and Auth_SASL.
+
+Template: dtc/conf_dnsbl_list
+Type: string
+Default: sbl-xbl.spamhaus.org,list.dsbl.org,relays.ordb.org
+_Description: DNSBL (DNS BlackList) list:
+ Please enter the list of prefered DNSBL servers to add to your mail server
+ configuration.
+
+Template: dtc/conf_eth2monitor
+Type: string
+_Description: Network devices to monitor:
+ Please enter here all the network devices you wish to be monitored by the
+ RRDTools graphing.
+
+Template: dtc/conf_report_setup_stat
+Type: boolean
+Default: true
+_Description: Allow to report anonymous statistc to GPLHost?
+ You can help GPLHost to know how many DTC setup has been done, by
+ reporting your installation to it's web site. No data will be collected
+ exept the operating system (Debian in your case), IP address of the setup
+ (the IP is used as an identifier so GPLHost don't account upgrades and/or
+ reinstallations, it will never be used for commercial purpose). You have
+ to be connected to internet and wget must be installed to do the report.
+
+Template: dtc/conf_omit_dev_mknod
+Type: boolean
+Default: false
+_Description: Skip mknod calls when building chroot template?
+ In some environment, like Linux vServer, mknod is not allowed to be
+ executed. For that reason, it's possible to skip the creation of the dev
+ null, random and urandom devices durring the chroot template creation.
