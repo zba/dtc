@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.71 2006/11/21 11:21:48 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.72 2006/11/22 05:44:33 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -136,7 +136,7 @@ function drawTicketConfig(){
 	$out .= "</table>";
 
 
-	$out .= "<b><u>List of support ticket administrators:</u></b><br>";
+	$out .= "<b><u>List of support topics:</u></b><br>";
 	$q = "SELECT * FROM $pro_mysql_tik_cats_table";
 	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
