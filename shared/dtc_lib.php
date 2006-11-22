@@ -57,6 +57,7 @@ require("$dtcshared_path/inc/submit_to_sql.php");		// Submit all user actions, c
 if(file_exists($dtcshared_path."/dtcrm")){
 	include("$dtcshared_path/dtcrm/submit_to_sql.php");	// Some domain name registrations sql submition (most are included in draw module...)
 }
+require("$dtcshared_path/drawlib/templates.php");
 // FORMS DRAWING
 require("$dtcshared_path/inc/fetch.php");		// Code that fetch all the data of one admin, to be used for calling draw.php functions
 if(file_exists($dtcshared_path."/dtcrm")){

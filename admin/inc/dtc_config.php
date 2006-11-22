@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.72 2006/11/22 05:44:33 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.73 2006/11/22 16:48:26 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -60,114 +60,47 @@ function drawTicketConfig(){
 	global $rub;
 	global $sousrub;
 
-	if(isset($_REQUEST["action"])){
-		switch($_REQUEST["action"]){
-		case "edit_tik_cat":
-			$q = "UPDATE $pro_mysql_tik_cats_table SET catname='".$_REQUEST["catname"]."', catdescript='".$_REQUEST["catdescript"]."' WHERE id='".$_REQUEST["id"]."';";
-			break;
-		case "delete_tik_cat":
-			$q = "DELETE FROM $pro_mysql_tik_cats_table WHERE id='".$_REQUEST["id"]."';";
-			break;
-		case "new_tik_cat":
-			$q = "INSERT INTO $pro_mysql_tik_cats_table (id,catname,catdescript) VALUES('','".$_REQUEST["catname"]."','".$_REQUEST["catdescript"]."');";
-			break;
-		case "new_tik_admin":
-			$q = "INSERT INTO $pro_mysql_tik_admins_table (id,pseudo,realname,email,available)
-				VALUES ('','".$_REQUEST["pseudo"]."','".$_REQUEST["realname"]."','".$_REQUEST["email"]."','".$_REQUEST["available"]."');";
-			break;
-		case "edit_tik_admin":
-			$q = "UPDATE $pro_mysql_tik_admins_table
-				SET pseudo='".$_REQUEST["pseudo"]."', realname='".$_REQUEST["realname"]."',
-				email='".$_REQUEST["email"]."', available='".$_REQUEST["available"]."' WHERE id='".$_REQUEST["id"]."';";
-			break;
-		case "delete_tik_admin":
-			$q = "DELETE FROM $pro_mysql_tik_admins_table WHERE id='".$_REQUEST["id"]."';";
-			break;
-		default:
-			$q = "";
-			break;
-		}
-		if($q != ""){
-			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		}
-	}
+	$dsc = array(
+		"table_name" => "$pro_mysql_tik_admins_table",
+		"action" => "tik_admins",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"pseudo" => array(
+				"type" => "text",
+				"legend" => "Nick name"),
+			"realname" => array(
+				"type" => "text",
+				"legend" => "Real name"),
+			"email" => array(
+				"type" => "text",
+				"legend" => "Email addr")));
+	$ticket_admins = dtcDatagrid($dsc);
 
-	$out = "";
-	$out .= "<b><u>List of support ticket administrators:</u></b><br>";
-	$q = "SELECT * FROM $pro_mysql_tik_admins_table";
-	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-	$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">";
-	$out .= "<tr><td>Nick name</td><td>Real name</td><td>Email</td><td>Available</td><td>Action</td></tr>";
-	for($i=0;$i<$n;$i++){
-		$a = mysql_fetch_array($r);
-		if($a["available"] == "yes"){
-			$avail_yes = " checked ";
-			$avail_no = " ";
-		}else{
-			$avail_yes = " ";
-			$avail_no = " checked ";
-		}
-		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
-	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	<input type=\"hidden\" name=\"action\" value=\"edit_tik_admin\">
-	<input type=\"text\" name=\"pseudo\" value=\"".$a["pseudo"]."\"></td>
-	<td><input type=\"text\" name=\"realname\" value=\"".$a["realname"]."\"></td>
-	<td><input type=\"text\" name=\"email\" value=\"".$a["email"]."\"></td>
-	<td><input type=\"radio\" name=\"available\" value=\"yes\" $avail_yes> Yes
-	<input type=\"radio\" name=\"available\" value=\"no\" $avail_no> No</td>
-	<td style=\"white-space:nowrap;\"><input type=\"submit\" value=\"Save\"></form>
-	<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
-	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	<input type=\"hidden\" name=\"action\" value=\"delete_tik_admin\">
-	<input type=\"submit\" value=\"Delete\"></form></td></tr>";
-	}
-	$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
-	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	<input type=\"hidden\" name=\"action\" value=\"new_tik_admin\">
-	<input type=\"text\" name=\"pseudo\" value=\"\"></td>
-	<td><input type=\"text\" name=\"realname\" value=\"\"></td>
-	<td><input type=\"text\" name=\"email\" value=\"\"></td>
-	<td><input type=\"radio\" name=\"available\" value=\"yes\" checked> Yes
-	<input type=\"radio\" name=\"available\" value=\"no\"> No</td>
-	<td style=\"white-space:nowrap;\"><input type=\"submit\" value=\"New\"></form></td></tr>";
-	$out .= "</table>";
-
-
+	$dsc = array(
+		"table_name" => $pro_mysql_tik_cats_table,
+		"action" => "tik_cats",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"catname" => array(
+				"type" => "text",
+				"legend" => "Nick name"),
+			"catdescript" => array(
+				"type" => "text",
+				"size" => "50",
+				"legend" => "Real name")));
+	$ticket_cats = dtcDatagrid($dsc);
+	$out = "<b><u>List of support ticket administrators:</u></b><br>";
+	$out .= $ticket_admins;
 	$out .= "<b><u>List of support topics:</u></b><br>";
-	$q = "SELECT * FROM $pro_mysql_tik_cats_table";
-	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-	$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">";
-	$out .= "<tr><td>Short name</td><td>Description</td><td colspan=\"2\">Action</td></tr>";
-	for($i=0;$i<$n;$i++){
-		$a = mysql_fetch_array($r);
-		if($i % 2){
-		  $bg = " bgcolor=\"black\" ";
-		}else{
-		  $bg = "";
-		}
-		$out .= "<tr><td $bg><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
-	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	<input type=\"hidden\" name=\"action\" value=\"edit_tik_cat\">
-	<input type=\"text\" name=\"catname\" value=\"".$a["catname"]."\"></td>
-	<td $bg><input type=\"text\" size=\"50\" name=\"catdescript\" value=\"".$a["catdescript"]."\"></td>
-	<td $bg><input type=\"submit\" value=\"Save\"></form></td>
-	<td $bg><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
-	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	<input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	<input type=\"hidden\" name=\"action\" value=\"delete_tik_cat\">
-	<input type=\"submit\" value=\"Delete\"></form></td></tr>";
-	}
-	$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"$rub\">
-	<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	<input type=\"hidden\" name=\"action\" value=\"new_tik_cat\">
-	<input type=\"text\" name=\"catname\" value=\"\"></td>
-	<td><input type=\"text\" size=\"50\" name=\"catdescript\" value=\"\"></td>
-	<td style=\"white-space:nowrap;\" colspan=\"2\"><input type=\"submit\" value=\"New\"></form></td></tr></table>";
+	$out .= $ticket_cats;
 	return $out;
 }
 
