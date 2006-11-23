@@ -1,7 +1,5 @@
 <?php
 
-require("$dtcshared_path/inc/forms/lists_strings.php");
-
 ////////////////////////////////////////////////////
 // One domain name ftp account collection edition //
 ////////////////////////////////////////////////////
@@ -23,7 +21,7 @@ function drawAdminTools_Tools($domain){
 
         $view_result = "";
 
-        if(isset($_REQUEST["encrypt_pass"])&&($_REQUEST["encrypt_user"])){
+        if(isset($_REQUEST["encrypt_pass"]) && isset($_REQUEST["encrypt_user"]) && $_REQUEST["encrypt_pass"] != "" && $_REQUEST["encrypt_user"] != ""){
 		$encrypt_user = $_REQUEST["encrypt_user"];
 		$encrypt_pass = $_REQUEST["encrypt_pass"];
 		$encrypt_directory = $_REQUEST["encrypt_directory"];
@@ -116,7 +114,7 @@ function crypt_password($password) {
 	if (empty($password))
 		return "** EMPTY PASSWORD **";
 
-	$salt = random();
+	$salt = getRandomValue();
 	$salt = substr($salt, 0, 2);
 	return crypt($password, $salt);
 }
