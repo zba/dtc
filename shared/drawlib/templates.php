@@ -63,7 +63,11 @@ function dtcDatagrid($dsc){
 			$vals = "";
 			$qflds = "";
 			for($i=0;$i<$nbr_fld;$i++){
-				if($dsc["cols"][ $keys[$i] ]["type"] != "hyperlink" && $dsc["cols"][ $keys[$i] ]["type"] != "id"){
+				switch($dsc["cols"][ $keys[$i] ]["type"]){
+				case "text":
+				case "radio":
+				case "popup":
+				case "textarea":
 					if($added_one == "yes"){
 						$vals .= ", ";
 						$qflds .= ", ";
@@ -71,6 +75,22 @@ function dtcDatagrid($dsc){
 					$qflds .= $keys[$i];
 					$vals .= "'".$_REQUEST[ $keys[$i] ]."'";
 					$added_one = "yes";
+					break;
+				case "checkbox":
+					if($added_one == "yes"){
+						$vals .= ", ";
+						$qflds .= ", ";
+					}
+					if( isset($_REQUEST[ $keys[$i] ]) ){
+						$index_val = 0;
+					}else{
+						$index_val = 1;
+					}
+					$qflds .= $keys[$i];
+					$vals .= "'".$dsc["cols"][ $keys[$i] ]["values"][$index_val]."'";
+					break;
+				default:
+					break;
 				}
 			}
 			$q = "INSERT INTO ".$dsc["table_name"]." ($qflds) VALUES($vals);";
@@ -82,6 +102,16 @@ function dtcDatagrid($dsc){
 					$id = $_REQUEST[ $keys[$i] ];
 					$id_name = $keys[$i];
 				}else if($dsc["cols"][ $keys[$i] ]["type"] == "hyperlink"){
+				}else if($dsc["cols"][ $keys[$i] ]["type"] == "checkbox"){
+					if( isset($_REQUEST[ $keys[$i] ]) ){
+						$index_val = 0;
+					}else{
+						$index_val = 1;
+					}
+					if($added_one == "yes"){
+						$vals .= ", ";
+					}
+					$vals .= " ".$keys[$i]."='".$dsc["cols"][ $keys[$i] ]["values"][$index_val]."' ";
 				}else{
 					if($added_one == "yes"){
 						$vals .= ", ";
@@ -174,19 +204,55 @@ function dtcDatagrid($dsc){
 					}else{
 						$selected = "";
 					}
-					$out .= " <input type=\"radio\" $size name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
+					$out .= " <input type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
 					$out .= $dsc["cols"][ $keys[$j] ]["values"][$x];
 				}
 				$out .= "</td>";
 				break;
 			case "checkbox":
+				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				if($a[ $keys[$j] ] == $dsc["cols"][ $keys[$j] ]["values"][0]){
+					$selected = " checked ";
+				}else{
+					$selected = "";
+				}
+				$out .= " <input type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" $selected> ";
+				$out .= "</td>";
 				break;
 			case "textaera":
+				if( isset($dsc["cols"][ $keys[$j] ]["cols"])){
+					$cols = " cols=\"".$dsc["cols"][ $keys[$j] ]["cols"]."\" ";
+				}else{
+					$cols = "";
+				}
+				if( isset($dsc["cols"][ $keys[$j] ]["raws"])){
+					$raws = " cols=\"".$dsc["cols"][ $keys[$j] ]["raws"]."\" ";
+				}else{
+					$raws = "";
+				}
+				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<textarea $cols $raws name=\"".$keys[$j]."\">".$a[ $keys[$j] ]."</textarea>";
+				$out .= "</td>";
 				break;
 			case "hyperlink":
 				$out .= "<td class=\"dtcDatagrid_table_flds\">";
 				$out .= "<a href=\"$fw_link&".$keys[$j]."=".$id."\">";
 				$out .= $dsc["cols"][ $keys[$j] ]["text"]."</a>";
+				$out .= "</td>";
+				break;
+			case "popup":
+				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<select name=\"".$keys[$j]."\">";
+				$nbr_values = sizeof($dsc["cols"][ $keys[$j] ]["values"]);
+				for($x=0;$x<$nbr_values;$x++){
+					if($dsc["cols"][ $keys[$j] ]["values"][$x] == $a[ $keys[$j] ]){
+						$selected = " selected ";
+					}else{
+						$selected = "";
+					}
+					$out .= "<option value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected>".$dsc["cols"][ $keys[$j] ]["values"][$x]."</option>";
+				}
+				$out .= "<select>";
 				$out .= "</td>";
 				break;
 			case "id":
@@ -203,9 +269,9 @@ function dtcDatagrid($dsc){
 				break;
 			}
 		}
-		$out .= "<td class=\"dtcDatagrid_table_flds\"><input type=\"submit\" value=\"Save\"></form></td>";
+		$out .= "<td class=\"dtcDatagrid_table_flds\"><input type=\"image\" src=\"gfx/stock_apply_20.png\"></form></td>";
 		$out .= "<td class=\"dtcDatagrid_table_flds\"><form action=\"".$_SERVER["PHP_SELF"]."\">$fw$id_hidden
-		<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete\"><input type=\"submit\" value=\"Delete\"></form></td>";
+		<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete\"><input type=\"image\" src=\"gfx/stock_trash_24.png\"></form></td>";
 		$out .= "</form></tr>";
 	}
 	// Write the NEW stuff...
@@ -238,11 +304,24 @@ function dtcDatagrid($dsc){
 			$out .= "</td>";
 			break;
 		case "checkbox":
+			$out .= "<td class=\"dtcDatagrid_table_flds\">";
+			$out .= " <input type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" selected> ";
+			$out .= "</td>";
 			break;
 		case "textaera":
 			break;
 		case "hyperlink":
 			$out .= "<td class=\"dtcDatagrid_table_flds\"></td>";
+			break;
+		case "popup":
+			$out .= "<td class=\"dtcDatagrid_table_flds\">";
+			$out .= "<select name=\"".$keys[$j]."\">";
+			$nbr_values = sizeof($dsc["cols"][ $keys[$j] ]["values"]);
+			for($x=0;$x<$nbr_values;$x++){
+				$out .= "<option value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\">".$dsc["cols"][ $keys[$j] ]["values"][$x]."</option>";
+			}
+			$out .= "<select>";
+			$out .= "</td>";
 			break;
 		case "id":
 			$id = $a[ $keys[$j] ];
@@ -257,7 +336,7 @@ function dtcDatagrid($dsc){
 			break;
 		}
 	}
-	$out .= "<td class=\"dtcDatagrid_table_flds\" colspan=\"2\"><input type=\"submit\" value=\"New\"></form></td></tr>";
+	$out .= "<td class=\"dtcDatagrid_table_flds\" colspan=\"2\"><input type=\"image\" src=\"gfx/stock_add_24.png\"></form></td></tr>";
 	$out .= "</table>";
 	return $out;
 }
