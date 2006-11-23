@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.13 2006/08/10 10:04:21 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.14 2006/11/23 09:15:26 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -19,7 +19,69 @@ function productManager(){
         global $txt_product_period;
         // end of modyfication ;)
 
-
+        $dsc = array(
+        	"table_name" => $pro_mysql_product_table,
+        	"title" => "Product list editor",
+        	"action" => "hosting_product_list",
+        	"forward" => array("rub"),
+        	"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "Id"
+				),
+			"price_dollar" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"price_euro" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"name" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"quota_disk" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"memory_size" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"nbr_email" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"nbr_database" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"bandwidth" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"period" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"allow_add_domain" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"heb_type" => array(
+				"type" => "text",
+				"legend" => ""
+				),
+			"renew_prod_id" => array(
+				"type" => "text",
+				"legend" => ""
+				)
+        		)
+        	);
+	$out = dtcDatagrid($dsc);
+	return $out;
         $q = "SELECT * FROM $pro_mysql_product_table ORDER BY id";
         $r = mysql_query($q)or die("Cannot query \"$q\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
         $n = mysql_num_rows($r);
