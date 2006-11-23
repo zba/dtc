@@ -61,9 +61,9 @@ function drawAdminTools_Tools($domain){
 
 	if($encrypt != ""){
 		$htaccess_contents = "AuthType Basic<br>
-	AuthName \"proxy\"<br>
-	AuthUserFile \"$encrypt_directory.htpasswd\"<br>
-	require valid-user";
+AuthName \"proxy\"<br>
+AuthUserFile \"$encrypt_directory.htpasswd\"<br>
+require valid-user";
 		$htaccess_contents2 = "AuthType Basic\n
 AuthName \"proxy\"\n
 AuthUserFile \"$encrypt_directory.htpasswd\"\n
@@ -86,38 +86,31 @@ require valid-user";
 		$txt .= "</table>";
 	}
 
+	if((!isset($_REQUEST["modify"]))&&($view_result != "yes")){
+		$encrypt_user = "";
+		$encrypt_pass = "";
+		$encrypt = "";
+		$txt ="";
+		$txt .= "<table align=\"left\"><tr><td colspan=\"2\"><b>Password Protect Directories</b><br></td></tr>";
+		$txt .= prot_dir_select();
+		$txt .= "<tr><td><FORM><INPUT TYPE=\"button\" VALUE=\"Back\" onClick=\"history.go(-1);return true;\"> </FORM></td></tr>";
+		$txt .= "</table>";
+	}
 
-        if((!isset($_REQUEST["modify"]))&&($view_result != "yes")){
-          $encrypt_user = "";
-          $encrypt_pass = "";
-          $encrypt = "";
-          $txt ="";
-        $txt .= "<table align=\"left\"><tr><td colspan=\"2\"><b>Password Protect Directories</b><br></td></tr>";
-        $txt .= prot_dir_select();
-        $txt .= "<tr><td><FORM><INPUT TYPE=\"button\" VALUE=\"Back\" onClick=\"history.go(-1);return true;\"> </FORM></td></tr>";
-        $txt .= "</table>";
-        }
-
-        if(isset($_REQUEST["delete"])){
-        $txt = "";
-        $txt .= "<table align=\"left\"><tr><td colspan=\"2\"><b>Password Protect Directories</b><br></td></tr>";
-              if(isset($_REQUEST["remuser"])){
-                $txt .= remove_user($_REQUEST["file2"],$_REQUEST["remuser"]);
-                $txt .= "<tr><td><FORM><INPUT TYPE=\"button\" VALUE=\"Back\" onClick=\"history.go(-1);return true;\"> </FORM></td></tr>";
-              }else{
-                $txt .= remove_user($_REQUEST["file2"],"");
-
-              }
-                $txt .= "<tr><td><FORM><INPUT TYPE=\"button\" VALUE=\"Back\" onClick=\"history.go(-1);return true;\"> </FORM></td></tr>";
-                $txt .="</table>";
-          }
+	if(isset($_REQUEST["delete"])){
+		$txt = "";
+		$txt .= "<table align=\"left\"><tr><td colspan=\"2\"><b>Password Protect Directories</b><br></td></tr>";
+		if(isset($_REQUEST["remuser"])){
+			$txt .= remove_user($_REQUEST["file2"],$_REQUEST["remuser"]);
+			$txt .= "<tr><td><FORM><INPUT TYPE=\"button\" VALUE=\"Back\" onClick=\"history.go(-1);return true;\"> </FORM></td></tr>";
+		}else{
+			$txt .= remove_user($_REQUEST["file2"],"");
+		}
+		$txt .= "<tr><td><FORM><INPUT TYPE=\"button\" VALUE=\"Back\" onClick=\"history.go(-1);return true;\"> </FORM></td></tr>";
+		$txt .="</table>";
+	}
 	return $txt;
-
-
 }
-
-
-
 
 function crypt_password($password) {
 	if (empty($password))
@@ -193,7 +186,6 @@ function prot_dir_select(){
 	}
 	return $txt;
 }
-
 
 function passwd_read($file2){
 //$file2 = $path.".htpasswd";
