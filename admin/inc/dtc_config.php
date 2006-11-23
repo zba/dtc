@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.73 2006/11/22 16:48:26 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.74 2006/11/23 04:56:29 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -16,7 +16,32 @@ function drawSSLIPConfig(){
 	$out = "<h3>Manage IPs for SSL (https):</h3>";
 	$out .= "<font color=\"#FF0000\">NOT AVAILABLE YET: STILL IN DEVELOPMENT</font><br><i>Take care not to add the control panel IP if you don't want to have conflicts</i><br>";
 
-	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_ssl_addr"){
+	$dsc = array(
+		"table_name" => "$pro_mysql_ssl_ips_table",
+		"title" => "SSL dedicated IPs:",
+		"action" => "ssl_ip_list",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"ip_addr" => array(
+				"type" => "text",
+				"legend" => "IP addr"),
+			"adm_login" => array(
+				"type" => "text",
+				"legend" => "Admin login"),
+			"available" => array(
+				"type" => "radio",
+				"legend" => "Available",
+				"values" => array("yes","no"))
+			)
+		);
+	$out .= dtcDatagrid($dsc);
+	return $out;
+
+/*	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_ssl_addr"){
 		$q = "UPDATE $pro_mysql_ssl_ips_table SET ip_addr='".$_REQUEST["ip_addr"]."',adm_login='".$_REQUEST["adm_login"]."' WHERE id='".$_REQUEST["id"]."';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
@@ -50,7 +75,7 @@ function drawSSLIPConfig(){
 <td><input type=\"text\" name=\"adm_login\"></td>
 <td><input type=\"submit\" value=\"New\"></form></td></tr>";
 	$out .= "</table>";
-	return $out;
+	return $out;*/
 }
 
 function drawTicketConfig(){
@@ -60,8 +85,10 @@ function drawTicketConfig(){
 	global $rub;
 	global $sousrub;
 
+	$out = "<h3>Support ticket configuration</h3>";
 	$dsc = array(
 		"table_name" => "$pro_mysql_tik_admins_table",
+		"title" => "Suport ticket administrator list:",
 		"action" => "tik_admins",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -77,11 +104,18 @@ function drawTicketConfig(){
 				"legend" => "Real name"),
 			"email" => array(
 				"type" => "text",
-				"legend" => "Email addr")));
-	$ticket_admins = dtcDatagrid($dsc);
+				"legend" => "Email addr"),
+			"available" => array(
+				"type" => "radio",
+				"legend" => "Available",
+				"values" => array("yes","no"))
+			)
+		);
+	$out .= dtcDatagrid($dsc);
 
 	$dsc = array(
 		"table_name" => $pro_mysql_tik_cats_table,
+		"title" => "Ticket categories:",
 		"action" => "tik_cats",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -96,11 +130,7 @@ function drawTicketConfig(){
 				"type" => "text",
 				"size" => "50",
 				"legend" => "Real name")));
-	$ticket_cats = dtcDatagrid($dsc);
-	$out = "<b><u>List of support ticket administrators:</u></b><br>";
-	$out .= $ticket_admins;
-	$out .= "<b><u>List of support topics:</u></b><br>";
-	$out .= $ticket_cats;
+	$out .= dtcDatagrid($dsc);
 	return $out;
 }
 
@@ -250,8 +280,74 @@ function drawVPSServerConfig(){
   global $pro_mysql_vps_ip_table;
   global $pro_mysql_vps_server_table;
   global $rub;
-  $out = "<h3>VPS Server registry edition</h3>";
 
+
+	$out = "<h3>VPS Server registry edition</h3>";
+	$dsc = array(
+		"table_name" => $pro_mysql_vps_server_table,
+		"title" => "VPS Server list:",
+		"action" => "vps_server_list",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"edithost" => array(
+				"type" => "hyperlink",
+				"legend" => "IPs addrs",
+				"text" => "Edit IPs"),
+			"hostname" => array(
+				"type" => "text",
+				"legend" => "Hostname"),
+			"location" => array(
+				"type" => "text",
+				"legend" => "Location"),
+			"soap_login" => array(
+				"type" => "text",
+				"size" => "10",
+				"legend" => "Soap login"),
+			"soap_pass" => array(
+				"type" => "text",
+				"size" => "10",
+				"legend" => "Soam password"),
+			"lvmenable" => array(
+				"type" => "radio",
+				"legend" => "Use LVM backend",
+				"values" => array("yes","no"))));
+	$vps_server_list = dtcDatagrid($dsc);
+	$out .= $vps_server_list;
+
+	if(isset($_REQUEST["edithost"])){
+		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE id='".$_REQUEST["edithost"]."';";
+		$r = mysql_query($q);
+		$a = mysql_fetch_array($r);
+		$dsc = array(
+			"table_name" => $pro_mysql_vps_ip_table,
+			"title" => "VPS IPs for ".$a["hostname"].":",
+			"where_condition" => "vps_server_hostname='".$a["hostname"]."'",
+			"action" => "vps_server_ip_list",
+			"forward" => array("rub","sousrub","edithost"),
+			"cols" => array(
+				"id" => array(
+					"type" => "id",
+					"display" => "no",
+					"legend" => "id"),
+				"vps_xen_name" => array(
+					"type" => "text",
+					"legend" => "VPS xen number"),
+				"ip_addr" => array(
+					"type" => "text",
+					"legend" => "IP addr"),
+				"available" => array(
+					"type" => "radio",
+					"legend" => "available",
+					"values" => array("yes","no")))
+			);
+		$out .= dtcDatagrid($dsc);
+	}
+	return $out;
+/*
   if(isset($_REQUEST["action"])){
     switch($_REQUEST["action"]){
     case "edit_vps_server_hostname":
@@ -402,7 +498,7 @@ function drawVPSServerConfig(){
     $out .= "</table>";
   }
 
-  return $out;
+  return $out;*/
 }
 
 function drawRegistrySelection(){
