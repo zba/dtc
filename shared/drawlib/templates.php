@@ -7,10 +7,15 @@ function helpLink($link){
 
 // Properties for this grid_display stuff is an object of that kind:
 // array(
-//   action => "name" -> name of the sql function for doing the submit job
+//   table_name => "$pro_mysql_blabla_table" -> Name of the SQL table to edit
+//   title => "The editor for this" -> Name of the title to display
+//   action => "domain_prop_editor" -> name of the sql function forwarded in the form for doing the submit job (anything is ok, but don't have twice the same stuff)
 //   forward => array(var1,var2...) -> names of the variables to forward
+//   [skip_deletion] => "yes" -> Do not display the deletion option
+//   [skip_creation] => "yes" -> Do not display the new item line
+//   [where_condition] => "blabla='hop' AND titi='toto'" -> Condition of the display of the table
 //   cols => array(
-//		"feild0" => array(
+//		"feild0" => array(	-> Note this will be use as a WHERE blabla='titi' for the UPDATE statement
 //			type => "id",
 //			display => yes|no,
 //			legend => "Text to display"),
