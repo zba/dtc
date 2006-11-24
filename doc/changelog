@@ -1,5 +1,8 @@
 Version 0.24.6:
 ---------------
+- The restor_db.php can now check primary keys and (re)add them
+if needed. It also works with auto_increment keys.
+
 - The site preview with https://dtc.your-host.com/site.net/
 is now https://dtc.your-host.com/whatever-subdomain.site.net/
 and understands the register_globals value.

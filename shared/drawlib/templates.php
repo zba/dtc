@@ -1,5 +1,10 @@
 <?php
 
+function helpLink($link){
+	$out = "<a target=\"_blank\" href=\"http://dtcsupport.gplhost.com/pmwiki/$link\"><img border=\"0\" src=\"gfx/help.png\"</a>";
+	return $out;
+}
+
 // Properties for this grid_display stuff is an object of that kind:
 // array(
 //   action => "name" -> name of the sql function for doing the submit job
@@ -13,7 +18,7 @@
 //			type => "text",
 //			legend => "Text to display"),
 //              "feild2" => array(
-//			type => "radio",
+//			type => "radio", -> works the same way if "popup"
 //			values => array("red","green","blue"),
 //			legend => "Text to display"),
 //		"feild3" => array(

@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.14 2006/11/23 09:15:26 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.15 2006/11/24 14:42:53 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -27,60 +27,68 @@ function productManager(){
         	"cols" => array(
 			"id" => array(
 				"type" => "id",
-				"display" => "no",
+				"display" => "yes",
 				"legend" => "Id"
-				),
-			"price_dollar" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"price_euro" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"name" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"quota_disk" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"memory_size" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"nbr_email" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"nbr_database" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"bandwidth" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"period" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"allow_add_domain" => array(
-				"type" => "text",
-				"legend" => ""
-				),
-			"heb_type" => array(
-				"type" => "text",
-				"legend" => ""
 				),
 			"renew_prod_id" => array(
 				"type" => "text",
-				"legend" => ""
+				"legend" => "Renewal-ID",
+				"size" => "4"
+				),
+			"name" => array(
+				"type" => "text",
+				"legend" => $txt_product_name[$lang],
+				"size" => "30"
+				),
+			"heb_type" => array(
+				"type" => "popup",
+				"legend" => "Type",
+				"values" => array("shared","ssl","vps","server")
+				),
+			"period" => array(
+				"type" => "text",
+				"legend" => $txt_product_period[$lang],
+				"size" => "10"
+				),
+			"price_dollar" => array(
+				"type" => "text",
+				"legend" => $txt_product_price[$lang],
+				"size" => "4"
+				),
+			"quota_disk" => array(
+				"type" => "text",
+				"legend" => $txt_product_disk[$lang],
+				"size" => "4"
+				),
+			"memory_size" => array(
+				"type" => "text",
+				"legend" => "RAM",
+				"size" => "4"
+				),
+			"nbr_email" => array(
+				"type" => "text",
+				"legend" => $txt_product_mail[$lang],
+				"size" => "2"
+				),
+			"nbr_database" => array(
+				"type" => "text",
+				"legend" => "DB",
+				"size" => "2"
+				),
+			"bandwidth" => array(
+				"type" => "text",
+				"legend" => $txt_product_traffic[$lang],
+				"size" => "5"
+				),
+			"allow_add_domain" => array(
+				"type" => "popup",
+				"legend" => $txt_product_adddomain[$lang],
+				"values" => array("check","no","yes")
 				)
         		)
         	);
 	$out = dtcDatagrid($dsc);
+	$out .= helpLink("PmWiki/HostingProductManager");
 	return $out;
         $q = "SELECT * FROM $pro_mysql_product_table ORDER BY id";
         $r = mysql_query($q)or die("Cannot query \"$q\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());

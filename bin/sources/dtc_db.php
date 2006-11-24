@@ -212,6 +212,7 @@ $dtc_database = array(
 		),
 	"domain" => array(
 		"vars" => array(
+			"id" => "int(12) NOT NULL auto_increment",
 			"name" => "varchar(64) NOT NULL ",
 			"safe_mode" => "enum('yes','no') default 'yes'",
 			"sbox_protect" => "enum('yes','no') default 'yes'",
@@ -243,6 +244,7 @@ $dtc_database = array(
 		"keys" => array(
 			"name" => "(name)"
 			),
+		"primary" => "(id)",
 		"index" => array(
 			"owner_index" => "(owner)"
 			)
@@ -375,6 +377,7 @@ $dtc_database = array(
 			"group_password" => "varchar(64) NOT NULL default 'x'",
 			"gid" => "int(11) NOT NULL default '0'"
 			),
+		"primary" => "(group_id)",
 		"keys" => array(
 			"group_name_gid" => "(group_name,gid)",
 			"group_gid" => "(gid)"

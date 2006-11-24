@@ -1,5 +1,9 @@
 <?php
 
+# This script updates the strutures of the database of the control
+# panel so it keeps compatibility with backward versions
+# it normaly doesn't alter the CONTENT of the db itself.
+
 echo "==> Restor DB script for DTC\n";
 
 $pro_mysql_host="localhost";
@@ -114,13 +118,19 @@ for($i=0;$i<$nbr_tables;$i++){
 
 	for($j=0;$j<$numvars;$j++){
 		if(!findFieldInTable($tblnames[$i],$varnames[$j])){
-			$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." ;";
-//			echo "$q\n";
-			$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
+			if( strstr($allvars[$varnames[$j]], "auto_increment") != FALSE){
+				// In case there was a primary key, drop it!
+				$q = "ALTER IGNORE TABLE ".$tblnames[$i]." DROP PRIMARY KEY;";
+				$r = mysql_query($q)or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+				$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." PRIMARY KEY;";
+				$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
+			}else{
+				$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." ;";
+				$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
+			}
 		}
 	}
 
-	// THIS CODE IS TO BE REWRITTED WITH THE NEWER PRIMARY KEY STUFF. IF YOU HAVE TIME, PLEASE DO IT!
 	if( isset($tables[$tblnames[$i]]["keys"]) ){
 		$allvars = $tables[$tblnames[$i]]["keys"];
 		$numvars = sizeof($allvars);
@@ -128,14 +138,32 @@ for($i=0;$i<$nbr_tables;$i++){
 			$varnames = array_keys($allvars);
 			for($j=0;$j<$numvars;$j++){
 				if(!findKeyInTable($tblnames[$i],$varnames[$j])){
-					if($varnames[$j] == "PRIMARY")
-						$var_2_add = "PRIMARY KEY";
-					else
-						$var_2_add = "UNIQUE KEY ".$varnames[$j];
+					$var_2_add = "UNIQUE KEY ".$varnames[$j];
 					$q = "ALTER TABLE ".$tblnames[$i]." ADD $var_2_add ".$allvars[$varnames[$j]].";";
-					$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+					$r = mysql_query($q)or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 				}
 			}
+		}
+	}
+
+	if( isset($tables[$tblnames[$i]]["primary"]) ){
+		$allvars = $tables[$tblnames[$i]]["primary"];
+		// Check if we have a auto_increment value somewhere, it which case we don't touch the PRIMARY key
+		// Simply because it has been done just above !
+		$to_check_var = substr($allvars,1,strlen($allvars)-2);
+		$skip_primary_key_set = "no";
+		if(isset($tables[$tblnames[$i]]["vars"][ $to_check_var ]) ){
+			$to_check_var_content = $tables[$tblnames[$i]]["vars"][ $to_check_var ];
+			if( strstr($to_check_var_content,"auto_increment") != FALSE){
+				$skip_primary_key_set = "yes";
+			}
+		}
+		if($skip_primary_key_set != "yes"){
+			// Always remove and readd the PRIMARY KEY in case it has changed
+			$q = "ALTER IGNORE TABLE ".$tblnames[$i]." DROP PRIMARY KEY;";
+			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+			$q = "ALTER IGNORE TABLE ".$tblnames[$i]." ADD PRIMARY KEY dtcprimary ".$allvars.";";
+			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 		}
 	}
 
@@ -276,6 +304,6 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 echo "drop...";
 $q = "DROP TABLE http_tmp_table;";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-echo "done!";
+echo "done!\n";
 
 ?>
