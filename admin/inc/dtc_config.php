@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.74 2006/11/23 04:56:29 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.75 2006/11/24 14:57:00 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -17,7 +17,7 @@ function drawSSLIPConfig(){
 	$out .= "<font color=\"#FF0000\">NOT AVAILABLE YET: STILL IN DEVELOPMENT</font><br><i>Take care not to add the control panel IP if you don't want to have conflicts</i><br>";
 
 	$dsc = array(
-		"table_name" => "$pro_mysql_ssl_ips_table",
+		"table_name" => $pro_mysql_ssl_ips_table,
 		"title" => "SSL dedicated IPs:",
 		"action" => "ssl_ip_list",
 		"forward" => array("rub","sousrub"),
