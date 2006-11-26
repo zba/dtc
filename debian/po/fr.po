@@ -14,7 +14,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 0.24.6-1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-26 16:13+0000\n"
 "PO-Revision-Date: 2006-11-21 06:49+0000\n"
@@ -615,7 +615,7 @@ msgstr ""
 #. Description
 #: ../dtc.templates:249 ../dtc-postfix-courier.templates:249
 msgid "Skip mknod calls when building chroot template?"
-msgstr "Sautté les appels mknod lors de la création du chroot ?"
+msgstr "Sautter les appels mknod lors de la création du chroot ?"
 
 #. Type: boolean
 #. Description
