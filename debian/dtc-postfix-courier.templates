@@ -131,7 +131,7 @@ _Description: Use nated vhosts?
  It's possible that DTC generates apache files to use a LAN IP address that
  your server is using. If your server is in the LAN behind a firewall that
  does NAT and port redirections of the public IP(s) address(es) to your
- server, then you must say ask to generate nated vhosts here, otherwise (if
+ server, then you must ask to generate nated vhosts here, otherwise (if
  your server is connected directly to the internet with a public static IP)
  leave it to default which is to use a public static IP.
  .
