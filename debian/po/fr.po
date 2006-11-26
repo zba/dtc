@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-21 16:27+0800\n"
+"POT-Creation-Date: 2006-11-26 16:13+0000\n"
 "PO-Revision-Date: 2006-11-21 06:49+0000\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: FRENCH <FR@li.org>\n"
@@ -39,8 +39,8 @@ msgid ""
 "localhost."
 msgstr ""
 "Entrez l'adresse de l'hôte ou son ip pour vous connecter au serveur MySQL. "
-"Si MySQL tourne en local, alors vous pouvez laisser la valeur localhost "
-"par defaut."
+"Si MySQL tourne en local, alors vous pouvez laisser la valeur localhost par "
+"defaut."
 
 #. Type: string
 #. Description
@@ -75,8 +75,8 @@ msgid ""
 "Please enter your mysql root password so DTC can connect to MySQL and add/"
 "remove databases."
 msgstr ""
-"Entrez le mot de passe MySQL pour que DTC puisse se connecter et ajouter "
-"et effacer des bases de données."
+"Entrez le mot de passe MySQL pour que DTC puisse se connecter et ajouter et "
+"effacer des bases de données."
 
 #. Type: string
 #. Description
@@ -113,10 +113,10 @@ msgid ""
 "root password you just entered. Please note that if DTC can't connect with "
 "root, then install will fail."
 msgstr ""
-"Par défaut, le package mysql-server de la Debian Sarge est installé "
-"sans mot de passe. Vous DEVEZ en fixer un maintenant si ce n'est pas déjà "
-"fait. DTC peut vous aider a le faire. Nottez que si DTC ne peut pas se "
-"connecter a MySQL, alors l'installation va échouer."
+"Par défaut, le package mysql-server de la Debian Sarge est installé sans mot "
+"de passe. Vous DEVEZ en fixer un maintenant si ce n'est pas déjà fait. DTC "
+"peut vous aider a le faire. Nottez que si DTC ne peut pas se connecter a "
+"MySQL, alors l'installation va échouer."
 
 #. Type: string
 #. Description
@@ -127,8 +127,9 @@ msgstr "Nom de domaine :"
 #. Type: string
 #. Description
 #: ../dtc.templates:47 ../dtc-postfix-courier.templates:47
+#, fuzzy
 msgid ""
-"Enter a the first domain name you want DTC to administrate. This domain name "
+"Enter the first domain name you want DTC to administrate. This domain name "
 "will be used for installing the root admin and customer web control panel of "
 "DTC (on one of this domain subdomains)."
 msgstr ""
@@ -191,9 +192,9 @@ msgid ""
 "(or in /etc/apache2) if you choose /var/www/sites as DTC's hosting area."
 msgstr ""
 "Veuillez notter que l'installation standard de apache est dans /var/www "
-"(document root). Veuillez enlever manuellement cette entrée dans le fichier "
-"/etc/apache/httpd.conf (ou dans /etc/apache2) si vous choisissez /var/www/sites "
-"comme espace d'hébergement pour DTC."
+"(document root). Veuillez enlever manuellement cette entrée dans le fichier /"
+"etc/apache/httpd.conf (ou dans /etc/apache2) si vous choisissez /var/www/"
+"sites comme espace d'hébergement pour DTC."
 
 #. Type: string
 #. Description
@@ -208,8 +209,8 @@ msgid ""
 "Please enter the path where you want DTC to build the cgi-bin chroot "
 "environment template."
 msgstr ""
-"Veuillez rentrer le chemin où DTC va créer le patron de l'environement "
-"pour les cgi-bin."
+"Veuillez rentrer le chemin où DTC va créer le patron de l'environement pour "
+"les cgi-bin."
 
 #. Type: string
 #. Description
@@ -263,12 +264,12 @@ msgid ""
 "fully done. If you didn't setup any MTA (Postfix or Qmail), then you must "
 "finish the setup of DTC, install your MTA, and dpkg-reconfigure dtc."
 msgstr ""
-"Sélectionner le type de serveur de mail (MTA) que vous voulez utiliser "
-"avec DTC. Veuillez notter que ce logiciel doit être installé AVANT DTC, "
-"sinon certaines parties du script d'installation vont être sautés, et "
-"la configuration ne sera pas totalement effectué. Si vous n'avez pas "
-"encore installé votre MTA (Postfix ou Qmail), alors vous devez finir "
-"l'installation de DTC, installer votre MTA, et dpkg-reconfigure dtc."
+"Sélectionner le type de serveur de mail (MTA) que vous voulez utiliser avec "
+"DTC. Veuillez notter que ce logiciel doit être installé AVANT DTC, sinon "
+"certaines parties du script d'installation vont être sautés, et la "
+"configuration ne sera pas totalement effectué. Si vous n'avez pas encore "
+"installé votre MTA (Postfix ou Qmail), alors vous devez finir l'installation "
+"de DTC, installer votre MTA, et dpkg-reconfigure dtc."
 
 #. Type: boolean
 #. Description
@@ -284,9 +285,9 @@ msgid ""
 "inform the DTC installer about it. This assumes that you are also using "
 "Postfix as MTA (and not Qmail)."
 msgstr ""
-"Si vous voulez utiliser Cyrus pour délivrer vos message et pour l'IMAP "
-"et le POP, alors vous devez en informer l'installeur. Ceci présuppose "
-"que vous avez déjà installé Postfix comme MTA (et non Qmail)."
+"Si vous voulez utiliser Cyrus pour délivrer vos message et pour l'IMAP et le "
+"POP, alors vous devez en informer l'installeur. Ceci présuppose que vous "
+"avez déjà installé Postfix comme MTA (et non Qmail)."
 
 #. Type: select
 #. Description
@@ -304,7 +305,7 @@ msgid ""
 msgstr ""
 "DTC supporte maitenant Apache et Apache2, mais vous devez dire quel version "
 "vous voulez utiliser/configurer, puisque il est possible de faire tourner "
-"les deux version en même temps sur une distribution Debian.
+"les deux version en même temps sur une distribution Debian."
 
 #. Type: boolean
 #. Description
@@ -315,23 +316,23 @@ msgstr "Utiliser des vhosts avec le NAT ?"
 #. Type: boolean
 #. Description
 #: ../dtc.templates:130 ../dtc-postfix-courier.templates:130
+#, fuzzy
 msgid ""
 "It's possible that DTC generates apache files to use a LAN IP address that "
 "your server is using. If your server is in the LAN behind a firewall that "
 "does NAT and port redirections of the public IP(s) address(es) to your "
-"server, then you must say ask to generate nated vhosts here, otherwise (if "
-"your server is connected directly to the internet with a public static IP) "
-"leave it to default which is to use a public static IP."
+"server, then you must ask to generate nated vhosts here, otherwise (if your "
+"server is connected directly to the internet with a public static IP) leave "
+"it to default which is to use a public static IP."
 msgstr ""
 "Il est possible que DTC génère les fichiers de Apache en utilisant une "
 "adresse IP dans votre LAN (Local Area Network : votre réseau local) sur "
 "lequel votre serveur est installé. Si votre serveur est effectivement "
-"derrière un par-feu qui réalise le NAT (Network Adresse Translation), "
-"avec redirection de votre/vos adresse(s) publique(s) vers votre serveur, "
-"alors vous devez demander de générer les vhosts sur le réseau local, "
-"autrement (si votre serveur est connecté dirrectement à internet avec "
-"une IP plubique), laissez la valeur par defaut qui est d'utiliser une "
-"IP publique statique."
+"derrière un par-feu qui réalise le NAT (Network Adresse Translation), avec "
+"redirection de votre/vos adresse(s) publique(s) vers votre serveur, alors "
+"vous devez demander de générer les vhosts sur le réseau local, autrement (si "
+"votre serveur est connecté dirrectement à internet avec une IP plubique), "
+"laissez la valeur par defaut qui est d'utiliser une IP publique statique."
 
 #. Type: boolean
 #. Description
@@ -418,8 +419,8 @@ msgid ""
 "in /usr/share/dtc/etc/ssl."
 msgstr ""
 "Aussi, nottez que DTC n'écrasera jamais un certificat déjà présent. Si vous "
-"désirez regénérer un certificat auto-signé, vous devez d'abbord effacer "
-"tous les fichiers dans /usr/share/dtc/etc/ssl."
+"désirez regénérer un certificat auto-signé, vous devez d'abbord effacer tous "
+"les fichiers dans /usr/share/dtc/etc/ssl."
 
 #. Type: password
 #. Description
@@ -546,11 +547,11 @@ msgid ""
 "please check that you have the following PEAR modules up-to-date: Crypt_CBC "
 "and Auth_SASL. The files should be in /usr/share/php if you want to check."
 msgstr ""
-"Vous pouvez demander a DTC de vérifier votre installation pear "
-"pendant l'installation. Ceci REQUIERE une connection réseau à internet. "
-"Si vous ne pouvez pas le faire ici, vérifiez que vous avez bien les "
-"modules suivant pour PEAR : Crypt_CBC et Auth_SASL. Les fichiers doivent "
-"se trouver normalement dans /usr/share/php si vous voulez vérifier."
+"Vous pouvez demander a DTC de vérifier votre installation pear pendant "
+"l'installation. Ceci REQUIERE une connection réseau à internet. Si vous ne "
+"pouvez pas le faire ici, vérifiez que vous avez bien les modules suivant "
+"pour PEAR : Crypt_CBC et Auth_SASL. Les fichiers doivent se trouver "
+"normalement dans /usr/share/php si vous voulez vérifier."
 
 #. Type: string
 #. Description
@@ -565,8 +566,8 @@ msgid ""
 "Please enter the list of prefered DNSBL servers to add to your Postfix mail "
 "server configuration."
 msgstr ""
-"Veuillez rentrer la liste de vos serveur DNSBL préférés pour les ajouter "
-"à la configuration du serveur de messagerie Postfix."
+"Veuillez rentrer la liste de vos serveur DNSBL préférés pour les ajouter à "
+"la configuration du serveur de messagerie Postfix."
 
 #. Type: string
 #. Description
@@ -602,13 +603,13 @@ msgid ""
 "be connected to internet and wget must be installed to do the report."
 msgstr ""
 "Vous pouvez aider GPLHost a connaitre combien d'interface DTC ont été "
-"installé en rapportant votre installation à leur site web. Aucune donnée "
-"ne sera conllecté si ce n'est votre système d'exploitation (Debian dans "
-"votre cas), votre addresse IP lors de l'installation (l'IP est utiliser "
-"comme identifiant pour que GPLHost ne compte pas les mises a jours "
-"ou les réinstallations, cette information ne sera jamais utilisé à des "
-"fins commerciales). Vous devez être connecté à internet et avoir wget "
-"installé pour faire le rappart (wget est installé par défaut normalement)."
+"installé en rapportant votre installation à leur site web. Aucune donnée ne "
+"sera conllecté si ce n'est votre système d'exploitation (Debian dans votre "
+"cas), votre addresse IP lors de l'installation (l'IP est utiliser comme "
+"identifiant pour que GPLHost ne compte pas les mises a jours ou les "
+"réinstallations, cette information ne sera jamais utilisé à des fins "
+"commerciales). Vous devez être connecté à internet et avoir wget installé "
+"pour faire le rappart (wget est installé par défaut normalement)."
 
 #. Type: boolean
 #. Description
@@ -624,7 +625,7 @@ msgid ""
 "executed. For that reason, it's possible to skip the creation of the dev "
 "null, random and urandom devices durring the chroot template creation."
 msgstr ""
-"Dans certains environements comme Linux vServer, mknod n'est pas "
-"authorisé. Pour cette raison, il est possible de sautté cette phase "
-"d'installation des périphérique null, random et urandom pendant la "
-"création du patron (template) pour le chroot."
+"Dans certains environements comme Linux vServer, mknod n'est pas authorisé. "
+"Pour cette raison, il est possible de sautté cette phase d'installation des "
+"périphérique null, random et urandom pendant la création du patron "
+"(template) pour le chroot."
