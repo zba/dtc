@@ -14,11 +14,15 @@ function dtcFormLineDraw($text,$control){
 	$bgcolor = "#AAAAFF";
 	$incolor = "#FFFFFF";
 	$out = "<tr><td bgcolor=\"$bgcolor\" style=\"text-align:right;white-space:nowrap;\">$text</td>
-	<td bgcolor=\"$bgcolor\"><table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" bgcolor=\"$incolor\">
+	<td bgcolor=\"$bgcolor\"><table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" bgcolor=\"$incolor\" width=\"100%\">
 <tr><td style=\"white-space:nowrap;vertical-valign:bottom;\">$control</td></tr></table></td></tr>";
 	return $out;
 }
 
+function dtcFromOkDraw(){
+	$out = "<tr><td>&nbsp;</td><td><input type=\"image\" src=\"gfx/stock_apply_20.png\"></td></tr>";
+	return $out;
+}
 
 // Properties for this grid_display stuff is an object of that kind:
 // array(
