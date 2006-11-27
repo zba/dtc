@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.16 2006/11/27 10:21:33 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.17 2006/11/27 10:24:54 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -100,9 +100,8 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => "Private",
-				"values" => array("yes","no")
+				"values" => array("yes","no"),
 				"default" => "no")
-				)
         		)
         	);
 	$out = dtcDatagrid($dsc);
