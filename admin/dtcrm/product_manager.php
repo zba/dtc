@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.15 2006/11/24 14:42:53 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.16 2006/11/27 10:21:33 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -19,6 +19,17 @@ function productManager(){
         global $txt_product_period;
         // end of modyfication ;)
 
+	// Build the product ID popup
+        $qp = "SELECT id FROM $pro_mysql_product_table WHERE renew_prod_id='0'";
+        $rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+        $np = mysql_num_rows($rp);
+        $renew_id_popup = array();
+        $renew_id_popup[] = 0;
+	for($j=0;$j<$np;$j++){
+		$ap = mysql_fetch_array($rp);
+		$renew_id_popup[] = $ap["id"];
+	}
+
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
         	"title" => "Product list editor",
@@ -31,9 +42,10 @@ function productManager(){
 				"legend" => "Id"
 				),
 			"renew_prod_id" => array(
-				"type" => "text",
+				"type" => "popup",
 				"legend" => "Renewal-ID",
-				"size" => "4"
+				"values" => $renew_id_popup,
+				"display_replace" => array("No-renew")
 				),
 			"name" => array(
 				"type" => "text",
@@ -84,6 +96,12 @@ function productManager(){
 				"type" => "popup",
 				"legend" => $txt_product_adddomain[$lang],
 				"values" => array("check","no","yes")
+				),
+			"private" => array(
+				"type" => "checkbox",
+				"legend" => "Private",
+				"values" => array("yes","no")
+				"default" => "no")
 				)
         		)
         	);
