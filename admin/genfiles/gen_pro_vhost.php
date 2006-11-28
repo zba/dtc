@@ -404,8 +404,14 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						}else{
 							$gblx = "php_admin_value register_globals 0";
 						}
+						if($rowX["safe_mode"] == "no" && $ax["safe_mode"] == "no"){
+							$safex = "php_admin_value safe_mode 1";
+						}else{
+							$safex = "php_admin_value safe_mode 0";
+						}
 						$vhost_file .= "\tAlias /$subdomx.$web_nameX $web_pathX/$web_nameX/subdomains/$subdomx/html
 	<Location /$subdomx.$web_nameX>
+		$safex
 		php_admin_value open_basedir \"$web_pathX/$web_nameX/:$conf_php_library_path:$conf_php_additional_library_path:\"
 		$gblx
 	</Location>\n";
