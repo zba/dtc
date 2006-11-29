@@ -2304,6 +2304,8 @@ if [ -z "$PATH_NSS_CONF" ]; then
 				mv ${PATH_NSS_CONF} ${PATH_NSS_CONF}.before.dtc
 				touch ${PATH_NSS_CONF}
 	                fi
+		else
+			touch ${PATH_NSS_CONF}
 		fi
         elif [ -e /etc/libnss-mysql.cfg ]; then
 		PATH_NSS_CONF=/etc/libnss-mysql.cfg	
@@ -2327,6 +2329,8 @@ if [ -z "$PATH_NSS_ROOT_CONF" ]; then
 				mv ${PATH_NSS_ROOT_CONF} ${PATH_NSS_ROOT_CONF}.before.dtc
 				touch ${PATH_NSS_ROOT_CONF}
 			fi
+		else
+			touch ${PATH_NSS_ROOT_CONF}
                 fi
         elif [ -e /etc/libnss-mysql-root.cfg ]; then
 		PATH_NSS_ROOT_CONF=/etc/libnss-mysql-root.cfg	
