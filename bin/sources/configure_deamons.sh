@@ -2302,6 +2302,7 @@ if [ -z "$PATH_NSS_CONF" ]; then
 			if ! grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
 			then
 				mv ${PATH_NSS_CONF} ${PATH_NSS_CONF}.before.dtc
+				touch ${PATH_NSS_CONF}
 	                fi
 		fi
         elif [ -e /etc/libnss-mysql.cfg ]; then
@@ -2309,6 +2310,7 @@ if [ -z "$PATH_NSS_CONF" ]; then
 		NSSMYSQL_VERSION=libnss-mysql
 		# mv the existing config out of the way
 		mv $PATH_NSS_CONF $PATH_NSS_CONF.before.dtc
+		touch ${PATH_NSS_CONF}
 	else
 		PATH_NSS_CONF=/etc/nss-mysql.conf
 		NSSMYSQL_VERSION=nss-mysql
@@ -2323,12 +2325,14 @@ if [ -z "$PATH_NSS_ROOT_CONF" ]; then
 			if ! grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
 			then
 				mv ${PATH_NSS_ROOT_CONF} ${PATH_NSS_ROOT_CONF}.before.dtc
+				touch ${PATH_NSS_ROOT_CONF}
 			fi
                 fi
         elif [ -e /etc/libnss-mysql-root.cfg ]; then
 		PATH_NSS_ROOT_CONF=/etc/libnss-mysql-root.cfg	
 		NSSMYSQL_VERSION=libnss-mysql
 		mv $PATH_NSS_ROOT_CONF $PATH_NSS_ROOT_CONF.before.dtc
+		touch ${PATH_NSS_ROOT_CONF}
 	else
 		PATH_NSS_ROOT_CONF=/etc/nss-mysql-root.conf
 		NSSMYSQL_VERSION=nss-mysql
