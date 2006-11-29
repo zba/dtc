@@ -2295,29 +2295,41 @@ rm $TMP_FILE
 TMP_FILE=`${MKTEMP} DTC_install.nss-mysql.conf.XXXXXX` || exit 1
 
 if [ -z "$PATH_NSS_CONF" ]; then
-	PATH_NSS_CONF=/etc/nss-mysql.conf
-fi
-
-if [ -z "$PATH_NSS_ROOT_CONF" ]; then
-	PATH_NSS_ROOT_CONF=/etc/nss-mysql-root.conf
-fi
-
-NSSMYSQL_VERSION=nss-mysql
-
-if [ ! -e $PATH_NSS_CONF ]; then
-	if [ -e /etc/libnss-mysql.cfg ]; then
+	if [ ""$UNIX_TYPE = "freebsd" ] ;then
+		PATH_NSS_CONF="${LOCALBASE}/etc/libnss-mysql.cfg"
+		NSSMYSQL_VERSION=libnss-mysql
+		if [ -f $PATH_NSS_CONF ]; then
+			if ! grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
+				mv ${PATH_NSS_CONF} ${PATH_NSS_CONF}.before.dtc
+	                fi
+		fi
+        elif [ -e /etc/libnss-mysql.cfg ]; then
 		PATH_NSS_CONF=/etc/libnss-mysql.cfg	
 		NSSMYSQL_VERSION=libnss-mysql
 		# mv the existing config out of the way
 		mv $PATH_NSS_CONF $PATH_NSS_CONF.before.dtc
+	else
+		PATH_NSS_CONF=/etc/nss-mysql.conf
+		NSSMYSQL_VERSION=nss-mysql
 	fi
 fi
 
-if [ ! -e $PATH_NSS_ROOT_CONF ]; then
-	if [ -e /etc/libnss-mysql-root.cfg ]; then
+if [ -z "$PATH_NSS_ROOT_CONF" ]; then
+	if [ ""$UNIX_TYPE = "freebsd" ] ;then
+		PATH_NSS_ROOT_CONF="${LOCALBASE}/etc/libnss-mysql-root.cfg"
+		NSSMYSQL_VERSION=libnss-mysql
+		if [ -f $PATH_NSS_ROOT_CONF ]; then
+			if ! grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
+				mv ${PATH_NSS_ROOT_CONF} ${PATH_NSS_ROOT_CONF}.before.dtc
+			fi
+                fi
+        elif [ -e /etc/libnss-mysql-root.cfg ]; then
 		PATH_NSS_ROOT_CONF=/etc/libnss-mysql-root.cfg	
 		NSSMYSQL_VERSION=libnss-mysql
 		mv $PATH_NSS_ROOT_CONF $PATH_NSS_ROOT_CONF.before.dtc
+	else
+		PATH_NSS_ROOT_CONF=/etc/nss-mysql-root.conf
+		NSSMYSQL_VERSION=nss-mysql
 	fi
 fi
 
