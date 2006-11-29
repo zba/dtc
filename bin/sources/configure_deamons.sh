@@ -2300,6 +2300,7 @@ if [ -z "$PATH_NSS_CONF" ]; then
 		NSSMYSQL_VERSION=libnss-mysql
 		if [ -f $PATH_NSS_CONF ]; then
 			if ! grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
+			then
 				mv ${PATH_NSS_CONF} ${PATH_NSS_CONF}.before.dtc
 	                fi
 		fi
@@ -2320,6 +2321,7 @@ if [ -z "$PATH_NSS_ROOT_CONF" ]; then
 		NSSMYSQL_VERSION=libnss-mysql
 		if [ -f $PATH_NSS_ROOT_CONF ]; then
 			if ! grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
+			then
 				mv ${PATH_NSS_ROOT_CONF} ${PATH_NSS_ROOT_CONF}.before.dtc
 			fi
                 fi
