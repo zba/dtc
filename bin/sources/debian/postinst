@@ -34,7 +34,7 @@ CONF_DTC_SYSTEM_UID=`getent passwd ${CONF_DTC_SYSTEM_USERNAME} | cut -d':' -f3`
 
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
-if [ -e /usr/bin/php4 ] ; then
+if [ -e /usr/bin/php ] ; then
 	PATH_PHP_CGI="/usr/bin/php"
 else
 	if [ -e /usr/bin/php4 ] ; then
