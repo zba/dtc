@@ -291,19 +291,37 @@ for ($i = 0; $i < $n_indexes; $i++)
 
 echo "alter...";
 $q = "ALTER TABLE http_accounting_tmp ADD UNIQUE (`vhost` ,`month` ,`year` ,`domain`);";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$r = mysql_query($q);
+if (!$r)
+{
+	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
+}
 
 echo "insert...";
-$q = "INSERT INTO http_accounting_tmp SELECT * FROM http_tmp_table;";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$q = "INSERT IGNORE INTO http_accounting_tmp SELECT * FROM http_tmp_table;";
+$r = mysql_query($q);
+if (!$r)
+{
+	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
+}
 
 echo "rename...";
 $q = "RENAME TABLE http_accounting_tmp TO http_accounting;";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$r = mysql_query($q);
+if (!$r)
+{
+	echo "[ERROR] Failed to rename table, please report this as a bug, and copy paste the output";
+	die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());	
+}
 
 echo "drop...";
 $q = "DROP TABLE http_tmp_table;";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$r = mysql_query($q);
+if (!$r)
+{
+	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
+	echo "[Warning] Can't drop http_tmp_table, please do so manually...";
+}
 echo "done!\n";
 
 ?>
