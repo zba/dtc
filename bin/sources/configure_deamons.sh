@@ -799,7 +799,7 @@ auxprop_plugin: sql" > /usr/local/etc/imapd.conf
 			cp /etc/rc.conf /etc/rc.conf.old
 			echo "/etc/rc.conf /etc/rc.conf.old saved"
 			cat /etc/rc.conf | grep -v "cyrus_imapd_enable" >> /etc/rc.tmp
-			echo 'cyrus_imapd_enable="YES"
+			echo 'cyrus_imapd_enable="YES"'
 			mv /etc/rc.tmp /etc/rc.conf
 			echo "cyrus imapd /etc/rc.conf injected"
 		else
