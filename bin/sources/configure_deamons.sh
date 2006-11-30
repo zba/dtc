@@ -623,9 +623,17 @@ Include $PATH_DTC_ETC/vhosts.conf" >>$PATH_HTTPD_CONF
 Listen 127.0.0.1:443" >>$PATH_HTTPD_CONF
 	fi
 
-	echo "LogSQLLoginInfo ${conf_mysql_host} dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >>$PATH_HTTPD_CONF
 	if [ ""$UNIX_TYPE = "freebsd" ] ;then
-		echo "LogSQLSocketFile /tmp/mysqld.sock" >>$PATH_HTTPD_CONF
+		if [ -z ${MYSQL_DTCDAEMONS_PASS} ]; then
+			echo "LogSQLLoginInfo mysql://dtcdaemons@${conf_mysql_host} " >>$PATH_HTTPD_CONF
+		else
+			echo "LogSQLLoginInfo mysql://dtcdaemons:${MYSQL_DTCDAEMONS_PASS}@${conf_mysql_host} " >>$PATH_HTTPD_CONF
+		fi
+	else
+		echo "LogSQLLoginInfo ${conf_mysql_host} dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >>$PATH_HTTPD_CONF
+	fi
+	if [ ""$UNIX_TYPE = "freebsd" ] ;then
+		echo "LogSQLSocketFile /tmp/mysql.sock" >>$PATH_HTTPD_CONF
 	else
 		echo "LogSQLSocketFile ${MYSQL_DB_SOCKET_PATH}" >>$PATH_HTTPD_CONF
 	fi
