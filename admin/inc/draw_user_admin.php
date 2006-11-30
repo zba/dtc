@@ -204,17 +204,13 @@ function drawNewAdminForm(){
 
 	// Draw the form for making a new admin
 	$add_a_user = "<h4>".$txt_add_a_new_user[$lang]."</h4>
-<form name=\"addnewuser_frm\" action=\"?\" method=\"post\"><!-- changed bug by seeb -->
-<table>
-<tr><td align=\"right\">
-	".$txt_login_login[$lang]."</td><td><input type=\"text\" name=\"newadmin_login\" value=\"\"><br>
-</td></tr><tr><td style=\"text-align: right; white-space: nowrap;\">
-	".$txt_login_pass[$lang]."</td><td style=\"white-space: nowrap;\"><input type=\"password\" name=\"newadmin_pass\" value=\"\">".autoGeneratePassButton("addnewuser_frm","newadmin_pass")."<br>
-</td></tr><tr><td style=\"text-align: right; white-space: nowrap;\">
-	".$txt_login_path[$lang]."</td><td><input type=\"text\" name=\"newadmin_path\" value=\"$conf_site_root_host_path\"><br>
-</td></tr><tr><td style=\"text-align: right; white-space: nowrap;\">
-	&nbsp;</td><td><input type=\"submit\" name=\"newadminuser\" value=\"Ok\">
-</td></tr>
+<form name=\"addnewuser_frm\" action=\"?\" method=\"post\">
+<input type=\"hidden\" name=\"newadminuser\" value=\"Ok\">
+".dtcFormTableAttrs().
+dtcFormLineDraw($txt_login_login[$lang],"<input type=\"text\" name=\"newadmin_login\" value=\"\">").
+dtcFormLineDraw($txt_login_pass[$lang],"<input type=\"password\" name=\"newadmin_pass\" value=\"\">".autoGeneratePassButton("addnewuser_frm","newadmin_pass")).
+dtcFormLineDraw($txt_login_path[$lang],"<input type=\"text\" name=\"newadmin_path\" value=\"$conf_site_root_host_path\">").
+dtcFromOkDraw()."
 </form>
 </table>
 ";

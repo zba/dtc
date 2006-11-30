@@ -1,11 +1,60 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.11 2006/07/05 09:11:14 tusker Exp $
+ * @version $Id: subdomain.php,v 1.12 2006/11/30 06:27:50 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
 
+
+function subdomainCreateDirsCallBack(){
+	global $adm_login;
+	global $conf_chroot_path;
+	global $conf_demo_version;
+	global $conf_generated_file_path;
+
+	$adm_path = getAdminPath($adm_login);
+	$doms = explode("/",$_REQUEST["addrlink"]);
+	$domain = $doms[0];
+	$newsubdomain_dirpath = $adm_path."/".$domain."/subdomains/".$_REQUEST["subdomain_name"];
+
+	if($conf_demo_version == "no"){
+		if(!file_exists("$newsubdomain_dirpath"))
+			mkdir("$newsubdomain_dirpath", 0750);
+		if(!file_exists("$newsubdomain_dirpath/html"))
+			mkdir("$newsubdomain_dirpath/html", 0750);
+		if(!file_exists("$newsubdomain_dirpath/cgi-bin"))
+			mkdir("$newsubdomain_dirpath/cgi-bin", 0750);
+		if(!file_exists("$newsubdomain_dirpath/logs"))
+			mkdir("$newsubdomain_dirpath/logs", 0750);
+		exec("cp -fulpRv $conf_chroot_path/* $newsubdomain_dirpath");
+		system ("if [ ! -e $newsubdomain_dirpath/html/index.* ]; then cp -rf $conf_generated_file_path/template/* $newsubdomain_dirpath/html; fi");
+		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
+	}
+	return;
+}
+
+function subdomainDeleteDirsCallBack(){
+	global $adm_login;
+	global $pro_mysql_subdomain_table;
+
+	$adm_path = getAdminPath($adm_login);
+	$doms = explode("/",$_REQUEST["addrlink"]);
+	$domain = $doms[0];
+
+	$q = "SELECT * FROM $pro_mysql_subdomain_table WHERE id='".$_REQUEST["id"]."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		echo "<font color=\"red\">Could not found subdomain in table for folder deletion</font>";
+	}else{
+		$a = mysql_fetch_array($r);
+		$subdom_name = $a["subdomain_name"];
+		$subdomain_dirpath = $adm_path."/".$domain."/subdomains/$subdom_name";
+		system("rm -rf $subdomain_dirpath");
+	}
+	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
+}
 
 /////////////////////////////////////////////////////
 // Draw the form for editing a domain's subdomains //
@@ -55,19 +104,124 @@ function drawAdminTools_Subdomain($domain){
 
 	global $dtcshared_path;
 	global $pro_mysql_nameservers_table;
+	global $pro_mysql_subdomain_table;
+
+	$txt = "";
+
+	checkLoginPassAndDomain($adm_login,$adm_pass,$domain["name"]);
 
 	$nbr_subdomain = sizeof($domain["subdomains"]);
 	$max_subdomain = $domain["max_subdomain"];
-	if($nbr_subdomain >= $max_subdomain){
-		$max_color = "color=\"#440000\"";
-	}else{
-		$max_color = "";
+//	if($nbr_subdomain >= $max_subdomain){
+//		$max_color = "color=\"#440000\"";
+//	}else{
+//		$max_color = "";
+//	}
+//	$nbrtxt = $txt_number_of_active_subdomains[$lang];
+//	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_subdomain ."</font> / <font size=\"-1\">" . $max_subdomain . "</font><br><br>";
+
+	// Let's start a form !
+	$txt .= "<form action=\"?\" methode=\"post\">";
+	$txt .= "<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">";
+	$txt .= "<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">";
+	$txt .= "<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
+	$txt .= "<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">";
+	$txt .= "<input type=\"hidden\" name=\"whatdoiedit\" value=\"subdomains\">";
+
+	// Popup for choosing default subdomain.
+	$subdomains = $domain["subdomains"];
+	$txt .= "<table><tr><td align=\"right\">";
+	$txt .= $txt_subdom_default_sub[$lang]."</td><td><select name=\"subdomaindefault_name\">";
+	for($i=0;$i<$nbr_subdomain;$i++){
+		$sub = $subdomains[$i]["name"];
+		if($domain["default_subdomain"] == "$sub"){
+			$txt .= "<option value=\"$sub\" selected>$sub</option>";
+		}else{
+			$txt .= "<option value=\"$sub\">$sub</option>";
+		}
 	}
-	$nbrtxt = $txt_number_of_active_subdomains[$lang];
-	$txt = "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\" $max_color>". $nbr_subdomain ."</font> / <font size=\"-1\">" . $max_subdomain . "</font><br><br>";
+	$txt .= "</select></td><td><input type=\"hidden\" name=\"subdomaindefault\" value=\"Ok\"><input type=\"image\" src=\"gfx/stock_apply_20.png\"></td></tr></table></form>";
 
+	$dsc = array(
+		"title" => $txt_subdom_list[$lang],
+		"new_item_title" => $txt_subdom_create[$lang],
+		"new_item_link" => $txt_subdom_new[$lang],
+		"edit_item_title" => $txt_subdom_edit_one[$lang],
+		"table_name" => $pro_mysql_subdomain_table,
+		"action" => "subdomain_editor",
+		"forward" => array("adm_login","adm_pass","addrlink"),
+		"id_fld" => "id",
+		"list_fld_show" => "subdomain_name",
+		"max_item" => $max_subdomain,
+		"num_item_txt" => $txt_number_of_active_subdomains[$lang],
+		"create_item_callback" => "subdomainCreateDirsCallBack",
+		"delete_item_callback" => "subdomainDeleteDirsCallBack",
+		"where_list" => array(
+			"domain_name" => $domain["name"]),
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"subdomain_name" => array(
+				"type" => "text",
+				"check" => "subdomain",
+				"disable_edit" => "yes",
+				"legend" => $txt_subdom_newname[$lang]),
+			"ip" => array(
+				"type" => "text",
+				"check" => "subdomain_or_ip",
+				"can_be_empty" => "yes",
+				"legend" => "IP address or CNAME: "),
+			"generate_vhost" => array(
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"legend" => $txt_subdom_generate_vhost[$lang]),
+			"register_globals" => array(
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"default" => "no",
+				"legend" => $txt_subdom_register_global[$lang]),
+			"associated_txt_record" => array(
+				"type" => "text",
+				"legend" => $txt_subdom_txtrec[$lang]),
+			"nameserver_for" => array(
+				"type" => "text",
+				"check" => "domain_or_ip",
+				"can_be_empty" => "yes",
+				"legend" => $txt_subdom_nameserver_for[$lang])
+			)
+		);
+	if($domain["safe_mode"] == "no"){
+		$dsc["cols"]["safe_mode"] = array(
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"legend" => "PHP safe mode: ");
+	}
+	if($domain["sbox_protect"] == "no"){
+		$dsc["cols"]["sbox_protect"] = array(
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"legend" => "Sbox cgi-bin protection: ");
+	}
+	$dsc["cols"]["login"] = array(
+				"type" => "text",
+				"check" => "dtc_login",
+				"empty_makes_sql_null" => "yes",
+				"can_be_empty" => "yes",
+				"legend" => $txt_subdom_dynip_login[$lang]);
+	$dsc["cols"]["pass"] = array(
+				"type" => "text",
+				"check" => "dtc_pass",
+				"empty_makes_sql_null" => "yes",
+				"can_be_empty" => "yes",
+				"legend" => $txt_subdom_dynip_pass[$lang]);
 
-	$default_subdomain = $domain["default_subdomain"];
+	$txt .= dtcListItemsEdit($dsc);
+	$txt .= helpLink("PmWiki/Subdomains");
+	return $txt;
+
+/*	$default_subdomain = $domain["default_subdomain"];
 	$webname = $domain["name"];
 	$domain_safe_mode = $domain["safe_mode"];
 	$domain_sbox_protect = $domain["sbox_protect"];
@@ -79,9 +233,6 @@ function drawAdminTools_Subdomain($domain){
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub = $subdomains[$i]["name"];
 		$ip = $subdomains[$i]["ip"];
-		if($i!=0){
-			$txt .= " - ";
-		}
 		if(isset($_REQUEST["edit_a_subdomain"]) && $sub == $_REQUEST["edit_a_subdomain"]){
 			$ip_domain_to_edit = $ip;
 			if(isset($subdomains[$i]["login"])){
@@ -104,7 +255,9 @@ function drawAdminTools_Subdomain($domain){
 			$w3_alias_to_edit = $subdomains[$i]["w3_alias"];
 			$register_globals_to_edit = $subdomains[$i]["register_globals"];
 			$txt_rec = $subdomains[$i]["associated_txt_record"];
-		}else{
+		}
+		if($i!=0){
+			$txt .= " - ";
 		}
 		$txt .= "<a href=\"http://$sub.$webname\" target=\"_blank\">";
 		$txt .= $sub;
@@ -112,26 +265,6 @@ function drawAdminTools_Subdomain($domain){
 	}
 	$txt .= "<hr width=\"90%\">";
 
-	// Let's start a form !
-	$txt .= "<form action=\"?\" methode=\"post\">";
-	$txt .= "<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">";
-	$txt .= "<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">";
-	$txt .= "<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
-	$txt .= "<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">";
-	$txt .= "<input type=\"hidden\" name=\"whatdoiedit\" value=\"subdomains\">";
-
-	// Popup for choosing default subdomain.
-	$txt .= "<table><tr><td align=\"right\">";
-	$txt .= $txt_subdom_default_sub[$lang]."</td><td><select name=\"subdomaindefault_name\">";
-	for($i=0;$i<$nbr_subdomains;$i++){
-		$sub = $subdomains[$i]["name"];
-		if($domain["default_subdomain"] == "$sub"){
-			$txt .= "<option value=\"$sub\" selected>$sub</option>";
-		}else{
-			$txt .= "<option value=\"$sub\">$sub</option>";
-		}
-	}
-	$txt .= "</select></td><td><input type=\"submit\" name=\"subdomaindefault\" value=\"Ok\"></td></tr>";
 
 	// Print list of subdomains, allow creation of new ones, and destruction of existings.
 	$txt .= "<tr><td align=\"right\">".$txt_subdom_errase[$lang]."</td><td><select name=\"delsubdomain_name\">";
@@ -310,7 +443,7 @@ https://$conf_administrative_site/dtc/dynip.php?login=$login_to_edit&pass=$pass_
 	$txt .= "</table></form>";
 
 	$txt .= "</b></font></font>";
-	return $txt;
+	return $txt;*/
 }
 
 

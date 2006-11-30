@@ -93,14 +93,15 @@ function drawEditAdmin($admin){
 <input type=\"hidden\" name=\"rub\" value=\"$rub\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-<table>
-	<tr><td align=\"right\">".$txt_password[$lang]."</td>";
+<input type=\"hidden\" name=\"updateuserinfo\" value=\"Ok\">
+".dtcFormTableAttrs();
 	$genpass = autoGeneratePassButton("admattrbfrm","changed_pass");
 	if ($conf_hide_password == "yes"){
-		$user_data .= "<td style=\"white-space: nowrap;\"><input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass</td></tr>";
+		$ctrl = "<input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass";
 	} else {
-		$user_data .= "<td style=\"white-space: nowrap;\"><input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass</td></tr>";
+		$ctrl = "<input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass";
 	}
+	$user_data .= dtcFormLineDraw($txt_password[$lang],$ctrl);
 
 	// The product popup
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE (heb_type='shared' OR heb_type='ssl') AND renew_prod_id='0' ORDER BY id;";
@@ -119,27 +120,18 @@ function drawEditAdmin($admin){
 	}
 	$prodsid .= "</select>";
 
-	$user_data .= "<tr><td align=\"right\">".$txt_path[$lang]."</td>
-	<td><input type=\"text\" name=\"changed_path\" value=\"$adm_path\"></td></tr>
-	<tr><td align=\"right\">".$txt_id_client[$lang]."</td>
-	<td style=\"white-space: nowrap;\"><input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a></td></tr>
-	<tr><td align=\"right\">".$txt_domain_tbl_config_quotaMB[$lang]."</td>
-	<td><input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\"></td></tr>
-	<tr><td align=\"right\">".$txt_allowed_data_transferMB[$lang]."</td>
-	<td><input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\"></td></tr>
-	<tr><td align=\"right\">".$txt_expiration_date[$lang]."</td>
-	<td><input type=\"text\" name=\"expire\" value=\"$expire\"></td></tr>
-	<tr><td align=\"right\">".$txt_heb_prod_id[$lang]."</td>
-	<td>$prodsid</td></tr>
-	<tr><td align=\"right\">".$txt_number_of_database[$lang]."</td>
-	<td><input type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\"></td></tr>
-	<tr><td align=\"right\">".$txt_allow_to_add_domains[$lang]."</td>
-	<td>$aldom_popup</td></tr>
-	<tr><td align=\"right\">".$txt_can_have_subadmins_reseller[$lang]."</td>
-	<td>$res_selector</td></tr>
-	<tr><td align=\"right\">".$txt_can_have_ssh_login_for_vhosts[$lang]."</td>
-	<td>$sshlog_selector</td></tr>
-	<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
+	$user_data .= dtcFormLineDraw($txt_password[$lang],"<input type=\"text\" name=\"changed_path\" value=\"$adm_path\">");
+	$user_data .= dtcFormLineDraw($txt_id_client[$lang],"<input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a>");
+	$user_data .= dtcFormLineDraw($txt_domain_tbl_config_quotaMB[$lang],"<input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">");
+	$user_data .= dtcFormLineDraw($txt_allowed_data_transferMB[$lang],"<input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\">");
+	$user_data .= dtcFormLineDraw($txt_expiration_date[$lang],"<input type=\"text\" name=\"expire\" value=\"$expire\">");
+	$user_data .= dtcFormLineDraw($txt_heb_prod_id[$lang],$prodsid);
+	$user_data .= dtcFormLineDraw($txt_number_of_database[$lang],"<input type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\">");
+	$user_data .= dtcFormLineDraw($txt_allow_to_add_domains[$lang],$aldom_popup);
+	$user_data .= dtcFormLineDraw($txt_can_have_subadmins_reseller[$lang],$res_selector);
+	$user_data .= dtcFormLineDraw($txt_can_have_ssh_login_for_vhosts[$lang],$sshlog_selector);
+	$user_data .= dtcFromOkDraw()."</table></form>";
+	$user_data .= "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
 </td></tr></table></form>";
 
 	// Generate the admin tool configuration module
@@ -257,6 +249,9 @@ function drawDomainConfig($admin){
 	global $txt_domain_tbl_config_max_lists;
 
 	global $pro_mysql_product_table;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_product_table;
+	global $pro_mysql_vps_table;
 
 	global $conf_site_addrs;
 	$site_addrs = explode("|",$conf_site_addrs);
@@ -274,79 +269,68 @@ function drawDomainConfig($admin){
 	}
 
 	if($nbr_domain > 0){
-		$ret = "<h3>Configuration of the domains</h3>";
-		$ret .= "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\">
-			<tr><td>".$txt_domain_tbl_config_dom_name[$lang]."</td><td>Safe mode</td><td>Sbox protection</td><td>".$txt_domain_tbl_config_quota[$lang]."</td><td>".$txt_domain_tbl_config_max_email[$lang]."</td><td>".$txt_domain_tbl_config_max_lists[$lang]."</td>
-			<td>".$txt_domain_tbl_config_max_ftp[$lang]."</td><td>".$txt_domain_tbl_config_max_subdomain[$lang]."</td><td>Zone generation</td><td>".$txt_domain_tbl_config_ip[$lang]."</td><td>".$txt_domain_tbl_config_backup_ip[$lang]."</td><td>GO !</td></tr>";
-	}
-	for($i=0;$i<$nbr_domain;$i++){
-		$tobe_edited = $domains[$i];
-		$webname = $tobe_edited["name"];
-		$safe_mode = $tobe_edited["safe_mode"];
-		$sbox_protect = $tobe_edited["sbox_protect"];
-		$quota = $tobe_edited["quota"];
-		$max_email = $tobe_edited["max_email"];
-		$max_lists = $tobe_edited["max_lists"];
-		$max_ftp = $tobe_edited["max_ftp"];
-		$max_subdomain = $tobe_edited["max_subdomain"];
-		$ip_addr = $tobe_edited["ip_addr"];
-		$backup_ip_addr = $tobe_edited["backup_ip_addr"];
-		if($tobe_edited["generate_flag"] == "yes"){
-			$webalizer_gen_flag_txt = "<font color=\"#00FF00\">YES</font>";
-			$what_to_switch = "no";
-		}else{
-			$webalizer_gen_flag_txt = "<font color=\"#FF0000\">NO</font>";
-			$what_to_switch = "yes";
+		if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_domain_config_edit"){
+			$q = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='".$_REQUEST["name"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
 		}
-		if($safe_mode == "no"){
-			$safe_mode_flag_txt = "<font color=\"#FF0000\">NO</font>";
-			$safe_to_switch = "yes";
-		}else{
-			$safe_mode_flag_txt = "<font color=\"#00FF00\">YES</font>";
-			$safe_to_switch = "no";
-		}
-		if($sbox_protect == "no"){
-			$sbox_protect_flag_txt = "<font color=\"#FF0000\">NO</font>";
-			$sbox_protect_to_switch = "yes";
-		}else{
-			$sbox_protect_flag_txt = "<font color=\"#00FF00\">YES</font>";
-			$sbox_protect_to_switch = "no";
-		}
-		$ret .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-				<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-				<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-				<input type=\"hidden\" name=\"rub\" value=\"$rub\">
-				<input type=\"hidden\" name=\"user_domain_to_modify\" value=\"$webname\"><tr>";
 
-		$popup_txt = "<select name=\"new_ip_addr\">";
-		$nbr_site_ip = sizeof($site_addrs);
-		for($j=0;$j<$nbr_site_ip;$j++){
-			$curr_ip = $site_addrs[$j];
-			if($curr_ip == $ip_addr){
-				$popup_txt .= "<option value=\"$curr_ip\" selected>$curr_ip";
-			}else{
-				$popup_txt .= "<option value=\"$curr_ip\">$curr_ip";
-			}
-		}
-		$popup_txt .= "</select>";
-
-		$ret .= "<td>$webname</td>
-			<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_safe_mode_flag&domain=$webname&switch_to=$safe_to_switch\">$safe_mode_flag_txt</a></td>
-			<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_sbox_protect_flag&domain=$webname&switch_to=$sbox_protect_to_switch\">$sbox_protect_flag_txt</a></td>
-			<td><input type=\"text\" name=\"new_quota\" value=\"$quota\" size=\"5\"></td>
-			<td><input type=\"text\" name=\"new_max_email\" value=\"$max_email\" size=\"5\"></td>
-			<td><input type=\"text\" name=\"new_max_lists\" value=\"$max_lists\" size=\"5\"></td>
-			<td><input type=\"text\" name=\"new_max_ftp\" value=\"$max_ftp\" size=\"5\"></td>
-			<td><input type=\"text\" name=\"new_max_subdomain\" value=\"$max_subdomain\" size=\"5\"></td>
-			<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=switch_generate_flag&domain=$webname&switch_to=$what_to_switch\">$webalizer_gen_flag_txt</a></td>
-			<td>$popup_txt</td>
-			<td><input type=\"text\" name=\"new_backup_ip_addr\" value=\"$backup_ip_addr\" size=\"15\"></td>
-			";
-
-		$ret .= "<td><input type=\"submit\" name=\"modify_domain_config\" value=\"Ok\"></tr></form>";
-	}
-	if($nbr_domain > 0){
-		$ret .= "</table>";
+		$dsc = array(
+			"table_name" => $pro_mysql_domain_table,
+			"title" => "Configuration of the domains",
+			"action" => "change_domain_config",
+			"forward" => array("rub","adm_login","adm_pass"),
+			"skip_deletion" => "yes",
+			"skip_creation" => "yes",
+			"where_condition" => "owner='$adm_login'",
+			"cols" => array(
+				"name" => array(
+					"type" => "id",
+					"display" => "yes",
+					"legend" => $txt_domain_tbl_config_dom_name[$lang]),
+				"safe_mode" => array(
+					"type" => "checkbox",
+					"legend" => "Safe mode",
+					"values" => array("yes","no")),
+				"sbox_protect" => array(
+					"type" => "checkbox",
+					"legend" => "Sbox protection",
+					"values" => array("yes","no")),
+				"quota" => array(
+					"type" => "text",
+					"legend" => $txt_domain_tbl_config_quota[$lang],
+					"size" => "6"),
+				"max_email" => array(
+					"type" => "text",
+					"legend" => $txt_domain_tbl_config_max_email[$lang],
+					"size" => "3"),
+				"max_lists" => array(
+					"type" => "text",
+					"legend" => $txt_domain_tbl_config_max_lists[$lang],
+					"size" => "3"),
+				"max_ftp" => array(
+					"type" => "text",
+					"legend" => $txt_domain_tbl_config_max_ftp[$lang],
+					"size" => "3"),
+				"max_subdomain" => array(
+					"type" => "text",
+					"legend" => $txt_domain_tbl_config_max_subdomain[$lang],
+					"size" => "3"),
+				"max_ssh" => array(
+					"type" => "text",
+					"legend" => "Max ssh",
+					"size" => "3"),
+				"ip_addr" => array(
+					"type" => "popup",
+					"legend" => $txt_domain_tbl_config_ip[$lang],
+					"values" => $site_addrs),
+				"backup_ip_addr" => array(
+					"type" => "text",
+					"legend" => $txt_domain_tbl_config_backup_ip[$lang],
+					"size" => "14"),
+				)
+			);
+		$ret .= dtcDatagrid($dsc);
 	}
 
 	if(isset($admin["vps"])){
@@ -357,39 +341,58 @@ function drawDomainConfig($admin){
 	}
 
 	if($nbr_vps > 0){
-		$ret .= "<h3>Configuration of the VPSes</h3>";
-		$ret .= "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\">
-		<tr><td>VPS name</td><td>Start date</td><td>Expiration</td><td>HDD size (MB)</td><td>RAM size (MB)</td><td>Product</td><td>Action</td></tr>";
-		for($i=0;$i<$nbr_vps;$i++){
-			$vps = $vpses[$i];
-			$ret .= "<tr><form action=\"".$_SERVER["PHP_SELF"]."\">
-			<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-			<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-			<input type=\"hidden\" name=\"rub\" value=\"$rub\">
-			<input type=\"hidden\" name=\"action\" value=\"edit_vps_config\">
-			<input type=\"hidden\" name=\"vps_server_hostname\" value=\"".$vps["vps_server_hostname"]."\">
-			<input type=\"hidden\" name=\"vps_xen_name\" value=\"".$vps["vps_xen_name"]."\">";
-			$ret .= "<td>".$vps["vps_server_hostname"].":".$vps["vps_xen_name"]."</td>";
-			$ret .= "<td><input size=\"10\" type=\"text\" name=\"start_date\" value=\"".$vps["start_date"]."\"></td>";
-			$ret .= "<td><input size=\"10\" type=\"text\" name=\"expire_date\" value=\"".$vps["expire_date"]."\"></td>";
-			$ret .= "<td><input size=\"6\" type=\"text\" name=\"hddsize\" value=\"".$vps["hddsize"]."\"></td>";
-			$ret .= "<td><input size=\"6\" type=\"text\" name=\"ramsize\" value=\"".$vps["ramsize"]."\"></td>";
-			$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='vps' AND renew_prod_id='0' ORDER BY id";
-			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			$n = mysql_num_rows($r);
-			$vps_prod_p = "";
-			for($j=0;$j<$n;$j++){
-				$a = mysql_fetch_array($r);
-				if($a["id"] == $vps["product_id"]){
-					$vps_prod_p .= "<option value=\"".$a["id"]."\" selected>".$a["name"]."</option>";
-				}else{
-					$vps_prod_p .= "<option value=\"".$a["id"]."\">".$a["name"]."</option>";
-				}
-			}
-			$ret .= "<td><select name=\"product_id\">$vps_prod_p</select>";
-			$ret .= "<td><input type=\"submit\" value=\"Save\"></td></form></tr>";
+		$q = "SELECT id,name FROM $pro_mysql_product_table WHERE heb_type='vps' AND renew_prod_id='0';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		$prod_name = array();
+		$prod_id = array();
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$prod_name[] = $a["name"];
+			$prod_id = $a["id"];			
 		}
-		$ret .= "</table>";
+		$dsc = array(
+			"table_name" => $pro_mysql_vps_table,
+			"title" => "Configuration of the VPSes",
+			"action" => "change_vps_config",
+			"forward" => array("rub","adm_login","adm_pass"),
+			"skip_deletion" => "yes",
+			"skip_creation" => "yes",
+			"where_condition" => "owner='$adm_login'",
+			"cols" => array(
+				"id" => array(
+					"type" => "id",
+					"display" => "no",
+					"legend" => "id"),
+				"vps_server_hostname" => array(
+					"type" => "info",
+					"legend" => "VPS Server"),
+				"vps_xen_name" => array(
+					"type" => "info",
+					"legend" => "VPS Name"),
+				"start_date" => array(
+					"type" => "text",
+					"size" => "10",
+					"legend" => "Registration"),
+				"expire_date" => array(
+					"type" => "text",
+					"size" => "10",
+					"legend" => "Expiration"),
+				"hddsize" => array(
+					"type" => "text",
+					"size" => "5",
+					"legend" => "HDD"),
+				"ramsize" => array(
+					"type" => "text",
+					"size" => "5",
+					"legend" => "RAM"),
+				"product_id" => array(
+					"type" => "popup",
+					"legend" => "Product",
+					"values" => $prod_id,
+					"display_replace" => $prod_name)
+				));
+		$ret .= dtcDatagrid($dsc);
 	}
 	return $ret;
 }
