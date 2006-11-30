@@ -5,7 +5,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.119 2006/10/13 05:49:24 tusker Exp $
+	* @version  $Id: strings.php,v 1.120 2006/11/30 08:17:36 thomas Exp $
 	* 
 	**/
 	
@@ -4098,18 +4098,18 @@ $txt_subdom_wwwalias = array(
 	"pt" => "Criar um apontador (alias)"
 );
 $txt_subdom_nameserver_for = array(
-	"fr" => "Ce subdomain est une entrée du nameserver (NS) pour le subdomain suivant  ",
-	"en" => "This subdomain is a nameserver (NS) entry for the following subdomain: ",
-	"hu" => "TRANS This subdomain is a nameserver (NS) entry for the following subdomain: ",
-	"it" => "Questo subdomain è un'entrata del nameserver (NS) per il seguente subdomain: ",
-	"nl" => "Dit subdomain is een nameserver(ns) ingang voor volgende subdomain: ",
-	"ru" => "Этим subdomain будет вход nameserver (ns) для following subdomain: ",
-	"de" => "Dieses subdomain ist eine nameserver (NS) Eintragung für das folgende subdomain: ",
-	"zh" => "这subdomain 是一个nameserver (NS) 词条为以下subdomain: ",
-	"pl" => "TRANS This subdomain is a nameserver (NS) entry for the following subdomain: ",
-	"se" => "TRANS This subdomain is a nameserver (NS) entry for the following subdomain: ",
-	"es" => "Este subdominio es una entrada del nameserver (NS) para el subdominio siguiente: ",
-	"pt" => "Este subdomain é uma entrada do nameserver (NS) para o seguinte subdomain: ",
+	"fr" => "Ce subdomain est une entrée du nameserver (NS)<br>pour le subdomain suivant  ",
+	"en" => "This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
+	"hu" => "TRANS This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
+	"it" => "Questo subdomain è un'entrata del nameserver (NS)<br>per il seguente subdomain: ",
+	"nl" => "Dit subdomain is een nameserver(ns)<br>ingang voor volgende subdomain: ",
+	"ru" => "Этим subdomain будет вход nameserver (ns)<br>для following subdomain: ",
+	"de" => "Dieses subdomain ist eine nameserver (NS)<br>Eintragung für das folgende subdomain: ",
+	"zh" => "这subdomain 是一个nameserver (NS)<br>词条为以下subdomain: ",
+	"pl" => "TRANS This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
+	"se" => "TRANS This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
+	"es" => "Este subdominio es una entrada del nameserver (NS)<br>para el subdominio siguiente: ",
+	"pt" => "Este subdomain é uma entrada do nameserver (NS)<br>para o seguinte subdomain: ",
 );
 $txt_subdom_scriptadvice = array(
 	"fr" => "Ensuite, ajouter simplement le script suivant a
