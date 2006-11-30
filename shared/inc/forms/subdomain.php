@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.12 2006/11/30 06:27:50 thomas Exp $
+ * @version $Id: subdomain.php,v 1.13 2006/11/30 08:19:39 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
@@ -211,7 +211,7 @@ function drawAdminTools_Subdomain($domain){
 				"can_be_empty" => "yes",
 				"legend" => $txt_subdom_dynip_login[$lang]);
 	$dsc["cols"]["pass"] = array(
-				"type" => "text",
+				"type" => "password",
 				"check" => "dtc_pass",
 				"empty_makes_sql_null" => "yes",
 				"can_be_empty" => "yes",

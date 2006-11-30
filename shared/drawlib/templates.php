@@ -575,6 +575,7 @@ function dtcListItemsEdit($dsc){
 		for($i=0;$i<$nbr_fld;$i++){
 			switch($dsc["cols"][ $keys[$i] ]["type"]){
 			case "text":
+			case "password":
 				if($added_one == "yes"){
 					$fld_names .= ",";
 					$values .= ",";
@@ -585,6 +586,16 @@ function dtcListItemsEdit($dsc){
 				}else{
 					$values .= "'".addslashes($_REQUEST[ $keys[$i] ])."'";
 				}
+				$added_one = "yes";
+				break;
+			case "checkbox":
+			case "radio":
+				if($added_one == "yes"){
+					$fld_names .= ",";
+					$values .= ",";
+				}
+				$fld_names .= $keys[$i];
+				$values .= "'".addslashes($_REQUEST[ $keys[$i] ])."'";
 				$added_one = "yes";
 				break;
 			}
@@ -700,6 +711,7 @@ function dtcListItemsEdit($dsc){
 				$id_fld_value = addslashes($_REQUEST[ $keys[$i] ]);
 				break;
 			case "text":
+			case "password":
 				if( !isset($dsc["cols"][ $keys[$i] ]["disable_edit"]) || $dsc["cols"][ $keys[$i] ]["disable_edit"] != "yes"){
 					if($added_one == "yes"){
 						$reqs .= ",";
@@ -784,12 +796,17 @@ function dtcListItemsEdit($dsc){
 		if(isset($dsc["max_item"]) && $current_num_items >= $dsc["max_item"]){
 			$out .= "<font color=\"red\">Maximum number reached!</font><br>";
 		}else{
-			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">$fw
+			$out .= "<form name=\"".$dsc["action"]."_new_item_frm\" action=\"".$_SERVER["PHP_SELF"]."\">$fw
 				<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_new_item\">".dtcFormTableAttrs();
 			for($i=0;$i<$nbr_fld;$i++){
 				switch($dsc["cols"][ $keys[$i] ]["type"]){
 				case "id":
 					$out .= "<input type=\"hidden\" name=\"".$keys[$i]."\" value=\"\">";
+					break;
+				case "password":
+					$genpass = autoGeneratePassButton($dsc["action"]."_new_item_frm",$keys[$i]);
+					$ctrl = "<input type=\"password\" name=\"".$keys[$i]."\" value=\"\">$genpass";
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
 					break;
 				case "text":
 					$ctrl = "<input type=\"text\" name=\"".$keys[$i]."\" value=\"\">";
@@ -835,7 +852,7 @@ function dtcListItemsEdit($dsc){
 		$n = mysql_num_rows($r);
 		if($n == 1){
 			$a = mysql_fetch_array($r);
-			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">$fw";
+			$out .= "<form name=\"".$dsc["action"]."_save_item_frm\" action=\"".$_SERVER["PHP_SELF"]."\">$fw";
 			$out .= "<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_save_item\">";
 			$out .= "<input type=\"hidden\" name=\"subaction\" value=\"".$dsc["action"]."_edit_item\">";
 			$out .= "<input type=\"hidden\" name=\"item\" value=\"".$a[ $dsc["id_fld"] ]."\">";
@@ -849,6 +866,7 @@ function dtcListItemsEdit($dsc){
 					$id_fld_value = $a[ $keys[$j] ];
 					break;
 				default:
+				case "password":
 				case "text":
 					if( isset($dsc["cols"][ $keys[$j] ]["disable_edit"]) && $dsc["cols"][ $keys[$j] ]["disable_edit"] == "yes"){
 						$disabled = " disabled ";
@@ -860,7 +878,12 @@ function dtcListItemsEdit($dsc){
 					}else{
 						$size = "";
 					}
-					$ctrl = "<input type=\"text\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\" $disabled>";
+					if($the_fld["type"] == "password"){
+						$genpass = autoGeneratePassButton($dsc["action"]."_save_item_frm",$keys[$j]);
+						$ctrl = "<input type=\"password\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\" $disabled>$genpass";
+					}else{
+						$ctrl = "<input type=\"text\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\" $disabled>";
+					}
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
 					break;
 				case "radio":
