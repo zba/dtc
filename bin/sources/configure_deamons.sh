@@ -776,6 +776,39 @@ if [ -e /usr/pkg/cyrus/bin/imapd -o -e /usr/lib/cyrus/bin/imapd -o -e /usr/local
 \$cyrus_default_quota=51200;
 ?>" > $cyrus_auth_php;
 
+	if [ ""$UNIX_TYPE = "freebsd" ] ;then
+		echo "configdirectory: /var/spool/imap
+partition-default: /var/spool/mail
+admins: admin@${main_domain_name}
+duplicatesuppression: 1
+sievedir: /var/spool/sieve
+sendmail: /usr/sbin/sendmail
+hashimapspool: yes
+lmtpsocket: /var/run/socket/lmtp
+quotawarn: 90
+virtdomains: 1
+
+pwcheck_method: auxprop
+auxprop_plugin: sql" > /usr/local/etc/imapd.conf
+
+		/usr/local/cyrus/bin/mkimap
+
+	        named=`grep  cyrus_imapd_enable /etc/rc.conf`
+		if [ "$named" = "" ] || [ "$nonamed" != "" ]; then
+			echo "===> FreeBSD: Backing up /etc/rc.conf and inserting cyrus_imapd_enable=YES"
+			cp /etc/rc.conf /etc/rc.conf.old
+			echo "/etc/rc.conf /etc/rc.conf.old saved"
+			cat /etc/rc.conf | grep -v "cyrus_imapd_enable" >> /etc/rc.tmp
+			echo 'cyrus_imapd_enable="YES"
+			mv /etc/rc.tmp /etc/rc.conf
+			echo "cyrus imapd /etc/rc.conf injected"
+		else
+	                echo "===> /etc/rc.conf is already configured: leaving..."
+		fi
+
+		/usr/local/etc/rc.d/imapd restart
+	fi
+
 else
 
 	echo "<?
