@@ -757,7 +757,7 @@ fi
 cyrus_auth_php="$PATH_DTC_SHARED/shared/cyrus.php"
 if [ -e /usr/pkg/cyrus/bin/imapd -o -e /usr/lib/cyrus/bin/imapd -o -e /usr/local/cyrus/bin/imapd -o -e /usr/cyrus/bin/imapd ]; then
 
-	echo "<?
+	echo "<?php
 \$CYRUS = array(
 'HOST'  => 'localhost',
 'PORT'  => 143,

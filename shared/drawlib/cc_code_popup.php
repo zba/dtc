@@ -1,4 +1,4 @@
-<?
+<?php
 
 $cc_code_array = array(
 "AF"=>'Afghanistan',

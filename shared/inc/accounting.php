@@ -1,4 +1,4 @@
-<?
+<?php
 
 function mysql_table_exists($dbname,$tableName){
 	$tables = array();
