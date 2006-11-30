@@ -399,7 +399,7 @@ function mail_account_generate_postfix(){
 
 
 	//now that we have our base files, go and rebuild the db's
-	if($conf_unix_type == "freebsd"){
+	if($conf_unix_type == "bsd"){
 		$POSTMAP_BIN = "/usr/local/sbin/postmap";
 		$POSTALIAS_BIN = "/usr/local/sbin/postalias";
 	}else{
