@@ -418,6 +418,43 @@ function dtcDatagrid($dsc){
 	return $out;
 }
 
+// Properties of the $dsc parameter for this function:
+// title => $txt_subdom_list[$lang] -> Main title to display for this list
+// new_item_title => $txt_subdom_create[$lang] -> Title to display when a new item is in edition
+// new_item_link => $txt_subdom_new[$lang] -> Text for the link for new items
+// edit_item_title => $txt_subdom_edit_one[$lang] -> Text to display when an existing item is in edition
+// table_name => $pro_mysql_subdomain_table -> Name of the SQL table involved in this editor
+// action => "subdomain_editor" -> Prefix of the hidden action of all forms and the form name prefix as well
+// forward => array("adm_login","adm_pass","addrlink") -> List of variables to forward in hidden <input>
+// id_fld => "id" -> Column to use as a autoincrement_id in the SQL
+// list_fld_show => "subdomain_name" -> Column holding the variable to display in the list of items
+// [max_item] => $max_subdomain, -> Max number of items to display in this list, if number is bigger, creation not allowed
+// [num_item_txt] => $txt_number_of_active_subdomains[$lang] -> Text to display for the number of items
+// [create_item_callback] => "subdomainCreateDirsCallBack", -> Name of the callback function called after a creation of an item
+// [delete_item_callback] => "subdomainDeleteDirsCallBack" -> Name of the callback function called after a deletion of an item
+// [where_list] => array("domain_name" => $domain["name"]) -> List of field => value to set in all the WHERE of all SQL (listing and submit)
+// cols => "field1"
+//         "field2"
+//         ...
+// Properties of each fields:
+// "type" => "id" -> This is the auto_increment ID of the table
+// "display" => "no" -> Display it or not in the list (currently only "no" is working, and is used only when type=id)
+// "legend" => "id" -> Text to display in the left side of the field
+//
+// "type" => "text" -> The HTML control is a TEXT field
+// "type" => "password" -> The HTML control is a PASSWORD field with the random pass generation button
+// Both types text and password understands the following (not mandatory) fields:
+//   [disable_edit] => "yes" -> Can be used to disable the edition of a field in the edit mode (will still be editable in creation of items)
+//   [check] => "subdomain", -> Check against the format of the field content before allowing creation or edition
+//                            Currently can have the follwing values: subdomain, subdomain_or_ip, domain_or_ip, dtc_login, dtc_pass
+//   [can_be_empty] => "yes" -> Allow the field to be empty even with a check value
+//   [empty_makes_sql_null] => "yes" -> Makes a SQL query with NULL as parametter wheneger a field is empty
+
+// "type" => "radio" -> The control is a radio button
+// "type" => "checkbox" -> The control is a checkbox
+// "values" => array("yes","no") -> Values of the radio buttons (in display order)
+//   [default] => "no" -> default value of the radio button for creation of an item
+
 // This function is to be used for the user panel, it has field content check & validations plus addslashes
 function dtcListItemsEdit($dsc){
 	global $adm_pass;
