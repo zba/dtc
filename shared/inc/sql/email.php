@@ -100,7 +100,7 @@ if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == 
 	}else{
 		$do_spam_mailbox_enable = "no";
 	}
-	$crypted_pass = crypt($_REQUEST["newmail_pass"]);
+	$crypted_pass = crypt($_REQUEST["newmail_pass"], dtc_makesalt());
 	if($commit_flag == "yes"){
 		$mailbox_path = get_mailbox_complete_path($_REQUEST["newmail_login"],$edit_domain);
 		$adm_query = "INSERT INTO $pro_mysql_pop_table(
@@ -209,7 +209,7 @@ if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "O
 		unlink("$box_path/vacation.lst");
 	}
 
-	$crypted_pass = crypt($_REQUEST["editmail_pass"]);
+	$crypted_pass = crypt($_REQUEST["editmail_pass"], dtc_makesalt());
 	if($commit_flag == "yes"){
 		$adm_query = "UPDATE $pro_mysql_pop_table
 	SET crypt='$crypted_pass',passwd='".$_REQUEST["editmail_pass"]."',redirect1='".$_REQUEST["editmail_redirect1"]."',redirect2='".$_REQUEST["editmail_redirect2"]."',localdeliver='$dolocal_deliver',spam_mailbox_enable='$do_spam_mailbox_enable',spam_mailbox='".$_REQUEST["editmail_spam_mailbox"]."',

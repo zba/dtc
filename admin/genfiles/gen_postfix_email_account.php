@@ -160,7 +160,7 @@ function mail_account_generate_postfix(){
 					$_id = strtr($id,".",":");
 					$home = $email["home"];
 					$passwdtemp = $email["passwd"];
-					$passwd = crypt($passwdtemp);
+					$passwd = crypt($passwdtemp, dtc_makesalt());
 					$spam_mailbox = $email["spam_mailbox"];
 					$spam_mailbox_enable = $email["spam_mailbox_enable"];
 					$vacation_flag = $email["vacation_flag"];

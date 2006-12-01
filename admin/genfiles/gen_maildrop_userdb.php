@@ -102,7 +102,7 @@ function mail_account_generate_maildrop(){
 					$_id = strtr($id,".",":");
 					$home = $email["home"];
 					$passwdtemp = $email["passwd"];
-					$passwd = crypt($passwdtemp);
+					$passwd = crypt($passwdtemp, dtc_makesalt());
 
 					if ($localdeliver == "yes"){
 						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");

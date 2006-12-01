@@ -546,4 +546,16 @@ function calculateExpirationDate($date,$period){
 	return $calculated;
 }
 
+function dtc_makesalt()  {
+	$hash = '';
+	for($i=0;$i<8;$i++) {
+		$j = mt_rand(0,53);
+		if($j<26)$hash .= chr(rand(65,90));
+		else if($j<52)$hash .= chr(rand(97,122));
+		else if($j<53)$hash .= '.';
+		else $hash .= '/';
+	}
+	return '$1$'.$hash.'$';
+}
+
 ?>

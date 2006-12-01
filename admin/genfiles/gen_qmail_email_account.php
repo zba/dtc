@@ -128,7 +128,7 @@ function mail_account_generate_qmail(){
 //					$box_path = "$admin_path/Mailboxs/$id";
 					$qmail_id = strtr($id,".",":");
 					$passwdtemp = $email["passwd"];
-					$passwd = crypt($passwdtemp);
+					$passwd = crypt($passwdtemp, dtc_makesalt());
 					// This one is if you use the jedi's checkpassword programm
 					// $poppasswd_file .= "$id@$domain_full_name:$passwd:nobody:$home\n";
 					// This one is for cmd5checkpw

@@ -57,7 +57,7 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 	}
 	$_REQUEST["newssh_path"] = addslashes($_REQUEST["newssh_path"]);
 
-	$crypt_ssh_password = crypt($_REQUEST["newssh_pass"]);
+	$crypt_ssh_password = crypt($_REQUEST["newssh_pass"], dtc_makesalt());
 
 	if($commit_flag == "yes"){
 		$adm_query = " INSERT INTO $pro_mysql_ssh_table
@@ -109,7 +109,7 @@ if(isset($_REQUEST["update_ssh_account"]) && $_REQUEST["update_ssh_account"] == 
 		$commit_flag = "no";
 	}
 
-	$crypt_ssh_password = crypt($_REQUEST["edssh_pass"]);
+	$crypt_ssh_password = crypt($_REQUEST["edssh_pass"], dtc_makesalt());
 
 	if($commit_flag == "yes"){
 		$adm_query = "UPDATE $pro_mysql_ssh_table SET homedir='".addslashes($new_path)."', crypt='".$crypt_ssh_password."', password='".$_REQUEST["edssh_pass"]."' WHERE login ='".$_REQUEST["edssh_account"]."' AND hostname='$edit_domain' LIMIT 1;";

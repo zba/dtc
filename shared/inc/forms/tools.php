@@ -114,9 +114,7 @@ function crypt_password($password) {
 	if (empty($password))
 		return "** EMPTY PASSWORD **";
 
-	$salt = getRandomValue();
-	$salt = substr($salt, 0, 2);
-	return crypt($password, $salt);
+	return crypt($password, dtc_makesalt());
 }
 
 function random() {
