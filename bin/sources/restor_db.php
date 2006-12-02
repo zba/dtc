@@ -121,7 +121,8 @@ for($i=0;$i<$nbr_tables;$i++){
 			if( strstr($allvars[$varnames[$j]], "auto_increment") != FALSE){
 				// In case there was a primary key, drop it!
 				$q = "ALTER IGNORE TABLE ".$tblnames[$i]." DROP PRIMARY KEY;";
-				$r = mysql_query($q)or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+				// Don't die, in some case it can fail!
+				$r = mysql_query($q); // or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 				$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." PRIMARY KEY;";
 				$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
 			}else{

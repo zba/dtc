@@ -37,17 +37,29 @@ fi
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n "===> Installing chroot file environment for www."$main_domain_name
 fi
-cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
+	cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+else
+	cp -fupR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/"
+fi
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n " "$dtc_admin_subdomain"."$main_domain_name
 fi
-cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404"
+if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
+	cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404"
+else
+	cp -fupR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404"
+fi
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 	echo -n " 404."$main_domain_name
 fi
-cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain
+if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
+	cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain
+else
+	cp -fpR  $conf_chroot_path/* $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$dtc_admin_subdomain
+fi
 
 # symlink directories so that users can login with ssh to the admin account directory
 if [ ! -e $conf_hosting_path/$conf_adm_login/bin ]; then ln -s $main_domain_name/subdomains/www/bin  $conf_hosting_path/$conf_adm_login/bin; fi
