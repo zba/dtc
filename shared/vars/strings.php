@@ -5,7 +5,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.120 2006/11/30 08:17:36 thomas Exp $
+	* @version  $Id: strings.php,v 1.121 2006/12/05 23:04:16 dracula Exp $
 	* 
 	**/
 	
@@ -22,7 +22,8 @@ $txt_import_button = array(
 	"it" => "TRANS Import",
 	"nl" => "TRANS Import",
 	"ru" => "TRANS Import",
-	"de" => "TRANS Import",
+	"de" => "Import",
+	"ro" => "Import",
 	"zh" => "TRANS Import",
 	"pl" => "Import",
 	"se" => "TRANS Import",
@@ -37,7 +38,8 @@ $txt_import_a_domain_for_this_user = array(
 	"it" => "TRANS Import a domain file for this user:",
 	"nl" => "TRANS Import a domain file for this user:",
 	"ru" => "TRANS Import a domain file for this user:",
-	"de" => "TRANS Import a domain file for this user:",
+	"de" => "Importiere eine Domaindatei fuer diesen Benutzer:",
+	"ro" => "Importeza un fisier de domeniu pentru acest utilizator:",
 	"zh" => "TRANS Import a domain file for this user:",
 	"pl" => "Zaimportuj domenê z pliku dla tego u¿ytkownika:",
 	"se" => "TRANS Import a domain file for this user:",
@@ -52,7 +54,8 @@ $txt_export_domain_to_file = array(
 	"it" => "TRANS Export this domain to a file",
 	"nl" => "TRANS Export this domain to a file",
 	"ru" => "TRANS Export this domain to a file",
-	"de" => "TRANS Export this domain to a file",
+	"de" => "Exportiere diese Domain in eine Datei",
+	"ro" => "Exporteaza acest domeniu ”n un fi&#351;ier",
 	"zh" => "TRANS Export this domain to a file",
 	"pl" => "Wyeksportuj t± domenê do pliku",
 	"se" => "TRANS Export this domain to a file",
@@ -67,7 +70,8 @@ $txt_iframe_ds=array(
 	"it" => "TRANS Deamons states ",
 	"nl" => "TRANS Deamons states ",
 	"ru" => "TRANS Deamons states ",
-	"de" => "TRANS Deamons states ",
+	"de" => "Deamonen Status ",
+	"ro" => "Status-ul demonilor ",
 	"zh" => "TRANS Deamons states ",
 	"pl" => "Status demonów",
 	"se" => "TRANS Deamons states SVENSKA",
@@ -81,7 +85,8 @@ $txt_iframe_nts=array(
 	"it" => "TRANS Network Traffic Statistics ",
 	"nl" => "TRANS Network Traffic Statistics ",
 	"ru" => "TRANS Network Traffic Statistics ",
-	"de" => "TRANS Network Traffic Statistics ",
+	"de" => "Netzwerkverkehr Statistiken ",
+	"ro" => "Statistica traficului pe re&#355;ea ",
 	"zh" => "TRANS Network Traffic Statistics ",
 	"pl" => "Statystyki ³±cza:",
 	"se" => "TRANS Network Traffic Statistics SVENSKA",
@@ -95,7 +100,8 @@ $txt_iframe_cpu=array(
 	"it" => "TRANS CPU Load Average ",
 	"nl" => "TRANS CPU Load Average ",
 	"ru" => "TRANS CPU Load Average ",
-	"de" => "TRANS CPU Load Average ",
+	"de" => "Durschnitts CPU Last ",
+	"ro" => "&Icirc;nc&#462;rcarea CPU &icirc;n mediu ",
 	"zh" => "TRANS CPU Load Average ",
 	"pl" => "Obci±¿enie procesora",
 	"se" => "TRANS CPU Load Average SVENSKA",
@@ -109,7 +115,8 @@ $txt_iframe_msu=array(
 	"it" => "TRANS Memory and Swap Usage ",
 	"nl" => "TRANS Memory and Swap Usage ",
 	"ru" => "TRANS Memory and Swap Usage ",
-	"de" => "TRANS Memory and Swap Usage ",
+	"de" => "Speicher und Swap nutzung ",
+	"ro" => "Folosire memorie &#351;i swap ",
 	"zh" => "TRANS Memory and Swap Usage ",
 	"pl" => "Pamiêæ i plik wymiany",
 	"se" => "TRANS Memory and Swap Usage SVENSKA",
@@ -123,7 +130,8 @@ $txt_iframe_mqg=array(
 	"it" => "TRANS Mail Queue graph ",
 	"nl" => "TRANS Mail Queue graph ",
 	"ru" => "TRANS Mail Queue graph ",
-	"de" => "TRANS Mail Queue graph ",
+	"de" => "Mail Queue Grafik ",
+	"ro" => "Grafic&#462; mail queue ",
 	"zh" => "TRANS Mail Queue graph ",
 	"pl" => "Statystyki poczty",
 	"se" => "TRANS Mail Queue graph SVENSKA",
@@ -137,7 +145,8 @@ $txt_mail_catch_no=array(
 	"it" => "TRANS No catch-all ",
 	"nl" => "TRANS No catch-all ",
 	"ru" => "TRANS No catch-all ",
-	"de" => "TRANS No catch-all ",
+	"de" => "Kein catch-all ",
+	"ro" => "F&#462;r&#462; catch-all ",
 	"zh" => "TRANS No catch-all ",
 	"pl" => "Nie. Przekazuj wszystkie odbiorcom",
 	"se" => "TRANS No catch-all SVENSKA",
@@ -152,7 +161,8 @@ $txt_mail_catch_all_deliver=array(
 	"it" => "TRANS Catch-all email set to deliver to ",
 	"nl" => "TRANS Catch-all email set to deliver to ",
 	"ru" => "TRANS Catch-all email set to deliver to ",
-	"de" => "TRANS Catch-all email set to deliver to ",
+	"de" => "Catch-all email gesetzt ",
+	"ro" => "Catch-all email setat s&#462; livreze la ",
 	"zh" => "TRANS Catch-all email set to deliver to ",
 	"pl" => "Przeka¿ wszystkie wiadomo¶ci do",
 	"se" => "TRANS Catch-all email set to deliver to SVENSKA",
@@ -167,7 +177,8 @@ $txt_package_version=array(
 	"it" => "TRANS Package version ",
 	"nl" => "TRANS Package version ",
 	"ru" => "TRANS Package version ",
-	"de" => "TRANS Package version ",
+	"de" => "Package Version ",
+	"ro" => "Versiunea pachetului ",
 	"zh" => "TRANS Package version ",
 	"pl" => "Wersja pakietu",
 	"se" => "TRANS Package version SVENSKA",
@@ -181,7 +192,8 @@ $txt_package_need_db=array(
 	"it" => "TRANS Need a database ",
 	"nl" => "TRANS Need a database ",
 	"ru" => "TRANS Need a database ",
-	"de" => "TRANS Need a database ",
+	"de" => "Benoetige eine Datenbank ",
+	"ro" => "necisita baza de date ",
 	"zh" => "TRANS Need a database ",
 	"pl" => "Wymagana baza danych",
 	"se" => "TRANS Need a database SVENSKA",
@@ -195,7 +207,8 @@ $txt_package_un_size=array(
 	"it" => "TRANS Unpack size ",
 	"nl" => "TRANS Unpack size ",
 	"ru" => "TRANS Unpack size ",
-	"de" => "TRANS Unpack size ",
+	"de" => "Entpackte groesse ",
+	"ro" => "Marimea despachetata ",
 	"zh" => "TRANS Unpack size ",
 	"pl" => "Wielko¶æ po instalacji",
 	"se" => "TRANS Unpack size SVENSKA",
@@ -210,7 +223,8 @@ $txt_install=array(
 	"it" => "TRANS Install ",
 	"nl" => "TRANS Install ",
 	"ru" => "TRANS Install ",
-	"de" => "TRANS Install ",
+	"de" => "Installiere ",
+	"ro" => "Instaleaza ",
 	"zh" => "TRANS Install ",
 	"pl" => "Instalacja",
 	"se" => "TRANS Install SVENSKA",
@@ -225,7 +239,8 @@ $txt_package_name=array(
 	"it" => "TRANS Package name ",
 	"nl" => "TRANS Package name ",
 	"ru" => "TRANS Package name ",
-	"de" => "TRANS Package name ",
+	"de" => "Package Name ",
+	"ro" => "numele pachetului ",
 	"zh" => "TRANS Package name ",
 	"pl" => "Nazwa pakietu",
 	"se" => "TRANS Package name SVENSKA",
@@ -240,7 +255,8 @@ $txt_description=array(
 	"it" => "TRANS Description ",
 	"nl" => "TRANS Description ",
 	"ru" => "TRANS Description ",
-	"de" => "TRANS Description ",
+	"de" => "Beschreibung ",
+	"ro" => "Descriptie ",
 	"zh" => "TRANS Description ",
 	"pl" => "Opis",
 	"se" => "TRANS Description SVENSKA",
@@ -254,7 +270,8 @@ $txt_choose_package_install =array (
 	"it" => "TRANS Choose a package to install",
 	"nl" => "TRANS Choose a package to install",
 	"ru" => "TRANS Choose a package to install",
-	"de" => "TRANS Choose a package to install",
+	"de" => "Waehle ein zu Installierendes Package aus",
+	"ro" => "alege un pachet de instalat",
 	"zh" => "TRANS Choose a package to install",
 	"pl" => "Wybierz pakiet do instalacji",
 	"se" => "TRANS Choose a package to install",
@@ -269,7 +286,8 @@ $txt_subdom_new=array (
 	"it" => "TRANS New subdomain",
 	"nl" => "TRANS New subdomain",
 	"ru" => "TRANS New subdomain",
-	"de" => "TRANS New subdomain",
+	"de" => "Neue Subdomain",
+	"ro" => "subdomeniu nou",
 	"zh" => "TRANS New subdomain",
 	"pl" => "Nowa subdomena",
 	"se" => "TRANS New subdomain",
@@ -284,7 +302,8 @@ $txt_subdom_edit_one= array (
 	"it" => "TRANS Edit one of your subdomains",
 	"nl" => "TRANS Edit one of your subdomains",
 	"ru" => "TRANS Edit one of your subdomains",
-	"de" => "TRANS Edit one of your subdomains",
+    "ro" => "Prelucreaza un subdomeniu de-al tau",
+	"de" => "Bearbeite eines deiner Subdomains",
 	"zh" => "TRANS Edit one of your subdomains",
 	"pl" => "Edytuj jedn± ze swoich subdomen",
 	"se" => "TRANS Edit one of your subdomains",
@@ -300,7 +319,8 @@ $txt_use=array(
 	"it" => "TRANS Use",
 	"nl" => "TRANS Use",
 	"ru" => "TRANS Use",
-	"de" => "TRANS Use",
+	"de" => "Benutze",
+	"ro" => "foloseste",
 	"zh" => "TRANS Use",
 	"pl" => "U¿yj ",
 	"se" => "TRANS Use",
@@ -314,7 +334,8 @@ $txt_aliasing=array(
 	"it" => "TRANS aliasing",
 	"nl" => "TRANS aliasing",
 	"ru" => "TRANS aliasing",
-	"de" => "TRANS aliasing",
+	"de" => "Alias",
+	"ro" => "Alias",
 	"zh" => "TRANS aliasing",
 	"pl" => "jako alias",
 	"se" => "TRANS aliasing",
@@ -329,7 +350,8 @@ $txt_DNS_config_of =array(
 	"it" => "TRANS DNS_config of",
 	"nl" => "TRANS DNS_config of",
 	"ru" => "TRANS DNS_config of",
-	"de" => "TRANS DNS_config of",
+	"de" => "DNS Konfiguration von:",
+	"ro" => "Configuratie DNS de :",
 	"zh" => "TRANS DNS_config of",
 	"pl" => "Konfiguracja DNS dla",
 	"se" => "TRANS DNS_config of",
@@ -344,7 +366,8 @@ $txt_domain_tools =array(
         "it" => "TRANS Domain Tools:",
         "nl" => "TRANS Domain Tools:",
         "ru" => "TRANS Domain Tools:",
-        "de" => "TRANS Domain Tools:",
+        "de" => "Domain Werkzeuge:",
+        "ro" => "Unelte pentru domenii:",
         "zh" => "TRANS Domain Tools:",
         "pl" => "TRANS Domain Tools:",
         "se" => "TRANS Domain Tools:",
@@ -359,7 +382,8 @@ $txt_Statistics_of_domain =array(
 	"it" => "TRANS Statistics of domain",
 	"nl" => "TRANS Statistics of domain",
 	"ru" => "TRANS Statistics of domain",
-	"de" => "TRANS Statistics of domain",
+	"de" => "Statistik der Domain",
+	"ro" => "Statistica domeniului",
 	"zh" => "TRANS Statistics of domain",
 	"pl" => "Statystyki dla",
 	"se" => "TRANS Statistics of domain",
@@ -373,7 +397,8 @@ $txt_Whois_editor_of =array(
 	"it" => "Tuoi sotto-account ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Deine unterkonten ",
+	"ro" => "###Subconturile tale ",
 	"zh" => "TRANS ",
 	"pl" => "Edycja danych whois dla:",
 	"se" => "TRANS SVENSKA",
@@ -387,7 +412,8 @@ $txt_Whois_editor_of =array(
 	"it" => "TRANS Package ",
 	"nl" => "TRANS Package",
 	"ru" => "TRANS Package",
-	"de" => "TRANS Package",
+	"de" => "Package",
+	"ro" => "Pachet",
 	"zh" => "TRANS Package",
 	"pl" => "Pakiety instalacyjne",
 	"se" => "TRANS SVENSKA Package",
@@ -402,6 +428,7 @@ $txt_Whois_editor_of =array(
 	"nl" => "TRANS Internet Whois Nick Handles management",
 	"ru" => "TRANS Internet Whois Nick Handles management",
 	"de" => "TRANS Internet Whois Nick Handles management",
+	"ro" => "TRANS Internet Whois Nick Handles management",
 	"zh" => "TRANS Internet Whois Nick Handles management",
 	"pl" => "Zarz±dzanie danymi Whois:",
 	"se" => "TRANS SVENSKA",
@@ -415,7 +442,8 @@ $txt_Whois_editor_of =array(
 	"it" => "TRANS Add a domain name to my account",
 	"nl" => "TRANS Add a domain name to my account",
 	"ru" => "TRANS Add a domain name to my account",
-	"de" => "TRANS Add a domain name to my account",
+	"de" => "Fuege einen Domainnamen zu meinem Konto hinzu",
+	"ro" => "Adauga un nume de domeniu la contu meu",
 	"zh" => "TRANS Add a domain name to my account",
 	"pl" => "Dodaj domenê do mojego konta",
 	"se" => "TRANS Add a domain name to my account",
@@ -429,7 +457,8 @@ $txt_Whois_editor_of =array(
 	"it" => "TRANS Manage my name servers",
 	"nl" => "TRANS Manage my name servers",
 	"ru" => "TRANS Manage my name servers",
-	"de" => "TRANS Manage my name servers",
+	"de" => "Verwalte meine Nameserver",
+	"ro" => "TRANS Manage my name servers",
 	"zh" => "TRANS Manage my name servers",
 	"pl" => "Zarz±dzaj serwerami nazw:",
 	"se" => "TRANS Manage my name servers",
@@ -443,8 +472,8 @@ $txt_Whois_editor_of =array(
 	"it" => "TRANS My Account information:",
 	"nl" => "TRANS My Account information:",
 	"ru" => "TRANS My Account information:",
-	"de" => "TRANS My Account information:",
-	"zh" => "TRANS My Account information:",
+	"de" => "Meine Konto Informationen:",
+	"ro" => "Informatia contului meu:",
 	"pl" => "Informacje o Twoim koncie:",
 	"se" => "TRANS My Account information:",
 	"es" => "Informaci&oacute;n de mi cuenta:",
@@ -457,7 +486,8 @@ $txt_Whois_editor_of =array(
 	"it" => "TRANS Resseller child accounts",
 	"nl" => "TRANS Resseller child accounts",
 	"ru" => "TRANS Resseller child accounts",
-	"de" => "TRANS Resseller child accounts",
+	"de" => "Wiederverkaeufer unterkonten",
+	"ro" => "Subconturi ###reseller",
 	"zh" => "TRANS Resseller child accounts",
 	"pl" => "Subkonta resellerskie:",
 	"se" => "TRANS SVENSKA",
@@ -473,7 +503,8 @@ $txt_edit_mailing_lists_of_domain = array(
 	"it" => "TRANS Edit mailing lists of domain",
 	"nl" => "TRANS Edit mailing lists of domain",
 	"ru" => "TRANS Edit mailing lists of domain",
-	"de" => "TRANS Edit mailing lists of domain",
+	"de" => "Bearbeite mailinglisten einer Domain",
+	"ro" => "Prelucreaza listele de mailuri unui domeniu",
 	"zh" => "TRANS Edit mailing lists of domain",
 	"pl" => "Edytuj listy mailingowe dla domeny",
 	"se" => "TRANS SVENSKA Edit mailing lists of domain",
@@ -488,7 +519,8 @@ $txt_documentation = array(
 	"it" => "TRANS Documentation",
 	"nl" => "TRANS Documentation",
 	"ru" => "TRANS Documentation",
-	"de" => "TRANS Documentation",
+	"de" => "Dokumentation",
+	"ro" => "Documentatie",
 	"zh" => "TRANS Documentation",
 	"pl" => "Documentacja:",
 	"se" => "TRANS SVENSKA Documentation",
@@ -504,7 +536,8 @@ $txt_your_child_accounts = array(
 	"it" => "Tuoi sotto-account ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Deine Unterkonten:",
+	"ro" => "Subconturile tale:",
 	"zh" => "TRANS ",
 	"pl" => "Twoje subkonta:",
 	"se" => "TRANS SVENSKA",
@@ -518,7 +551,8 @@ $txt_currency = array(
 	"it" => "Valuta ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "WŠhrungen ",
+	"ro" => "Valuta ",
 	"zh" => "TRANS ",
 	"pl" => "Waluta:",
 	"se" => "TRANS SVENSKA",
@@ -532,7 +566,8 @@ $txt_currency_symbol=array (
 	"it" => "Simbolo valuta: ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Waehrungssymbol ",
+	"ro" => "Simbol de valuta ",
 	"zh" => "TRANS ",
 	"pl" => "Symbol waluty:",
 	"es" => "S&iacute;mbolo de moneda: ",
@@ -546,7 +581,8 @@ $txt_currency_ltr= array (
 	"it" => "Lettere valuta: ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Waehrungsbuchstabe: ",
+	"ro" => "Litera de valuta: ",
 	"zh" => "TRANS ",
 	"pl" => "Oznaczenie literowe:",
 	"se" => "TRANS SVENSKA",
@@ -561,7 +597,8 @@ $txt_registry_selection=array (
 	"it" => "Selezione del registro: ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "###TRANS ",
+	"ro" => "###Alegere registry ",
 	"zh" => "TRANS ",
 	"pl" => "Panel rejestracji:",
 	"se" => "TRANS SVENSKA",
@@ -578,7 +615,8 @@ $txt_dtc_configuration=array (
 	"it" => "Configurazione di DTC ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "DTC Konfiguration",
+	"ro" => "Configuratie DTC",
 	"zh" => "TRANS ",
 	"pl" => "Konfiguracja DTC",
 	"se" => "TRANS SVENSKA",
@@ -593,7 +631,8 @@ $txt_user_administration=array (
 	"it" => "Amministrazione utente",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Benutzerverwaltung",
+	"ro" => "Administrare utilizatori",
 	"zh" => "TRANS ",
 	"pl" => "Administracja u¿ytkownikiem",
 	"se" => "TRANS SVENSKA",
@@ -607,7 +646,8 @@ $txt_user_administration_domains_for=array(
 	"it" => "Domini per ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Domaaene fuer ",
+	"ro" => "Domeniu pentru ",
 	"zh" => "TRANS ",
 	"pl" => "Domeny u¿ytkownika ",
 	"se" => "TRANS SVENSKA",
@@ -621,7 +661,8 @@ $txt_console_output=array(
 	"it" => "Output della console",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Konsolenausgabe",
+	"ro" => "Consola zice",
 	"zh" => "TRANS ",
 	"pl" => "Wynik dzia³ania konsoli",
 	"se" => "TRANS SVENSKA",
@@ -637,7 +678,8 @@ $txt_client_interface = array(
   "it" => "TRANS ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Kundenoberflaeche",
+  "ro" => "Interfata client",
   "zh" => "ÓÃ»§½çÃæ",
   "pl" => "Interfejs u¿ytkownika",
   "se" => "Kund panel",
@@ -652,7 +694,8 @@ $txt_domain_config = array(
   "it" => "Configurazione domini ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Domaenen konfiguration",
+  "ro" => "Configurare domenii",
   "zh" => "ÓòÃûÉèÖÃ",
   "pl" => "Konfiguracja domeny",
   "se" => "Doman config",
@@ -667,7 +710,8 @@ $txt_user_menu_email = array (
   "it" => "Mia e-mail ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Mein e-mail",
+  "ro" => "e-mailu meu",
   "zh" => "ÎÒµÄe-mail",
   "pl" => "Mój e-mail",
   "se" => "Min e-post",
@@ -682,7 +726,8 @@ $txt_user_menu_fetchmail = array (
   "it" => "Fetchmail",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Fetchmail",
+  "ro" => "Fetchmail",
   "zh" => "TRANS ",
   "pl" => "Sprawd¼ zdalny e-mail",
   "se" => "Kolla e-post",
@@ -697,7 +742,8 @@ $txt_user_menu_antispam = array (
   "it" => "Antispam",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Spamschutz",
+  "ro" => "Antispam",
   "zh" => "TRANS ",
   "pl" => "Antyspam",
   "se" => "Antispam",
@@ -712,7 +758,8 @@ $txt_user_menu_quarantine = array (
   "it" => "Mia e-mail ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Mein e-mail",
+  "ro" => "e-mailu meu",
   "zh" => "TRANS ",
   "pl" => "Kwarantanna",
   "se" => "TRANS SVENSKA",
@@ -728,7 +775,8 @@ $txt_email_pass_error = array (
   "it" => "Login o password errati!",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Bentuzername oder Passwort falsch",
+  "ro" => "Utilizator sau parola gresita",
   "zh" => "TRANS ",
   "pl" => "Z³e has³o lub login!",
   "se" => "Fel Lösenord!",
@@ -744,7 +792,8 @@ $txt_logout = array (
   "it" => "Disconnetti ",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Abmelden",
+  "ro" => "Iesire",
   "zh" => "TRANS ",
   "pl" => "Wyloguj siê",
   "se" => "TRANS SVENSKA",
@@ -759,7 +808,8 @@ $txt_goto_client_panel = array(
   "it" => "Vai al pannello cliente",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Zur Kundenoberflaeche",
+  "ro" => "La interfata de client",
   "zh" => "TRANS ",
   "pl" => "Przejdz do panela klienta",
   "se" => "TRANS SVENSKA",
@@ -774,7 +824,8 @@ $txt_mainmenu_title_server_monitor = array(
   "it" => "Server monitor",
   "nl" => "TRANS Server monitor",
   "ru" => "TRANS Server monitor",
-  "de" => "TRANS Server monitor",
+  "de" => "Server ueberwachung",
+  "ro" => "Supraveghere server",
   "zh" => "Ê¹ÓÃÍ³¼Æ",
   "pl" => "Monitoring serwera",
   "se" => "TRANS SVENSKA",
@@ -789,7 +840,8 @@ $txt_admin_editor = array(
   "it" => "Editor dell'admin",
   "nl" => "TRANS Admin editor",
   "ru" => "TRANS Admin editor",
-  "de" => "TRANS Admin editor",
+  "de" => "Admin bearbeiten",
+  "ro" => "Prelucrare Admin",
   "zh" => "TRANS Admin editor",
   "pl" => "Zarz±dzanie wirutalnymi administatorami",
   "se" => "TRANS SVENSKA",
@@ -806,7 +858,8 @@ $txt_product_manager = array(
   "it" => "Manager dei prodotti Hosting",
   "nl" => "TRANS Hosting product manager",
   "ru" => "TRANS Hosting product manager",
-  "de" => "TRANS Hosting product manager",
+  "de" => "Hosting Produktverwaltung",
+  "ro" => "### TRANS",
   "zh" => "TRANS Hosting product manager",
   "pl" => "Zarz±dzanie produktami",
   "se" => "TRANS SVENSKA",
@@ -821,7 +874,8 @@ $txt_parking_popup_legend = array(
   "it" => "Questo dominio sarà l'alias del seguente dominio (parking di dominio):",
   "nl" => "TRANS This domain will be the alias of the following domain (domain parking):",
   "ru" => "TRANS This domain will be the alias of the following domain (domain parking):",
-  "de" => "TRANS This domain will be the alias of the following domain (domain parking):",
+  "de" => "Diese Domaene wird das Alias von folgender Domaene (domain parking):",
+  "ro" => "Acest domeniu va fi alias urmatorului domeniu (domain parking):",
   "zh" => "TRANS This domain will be the alias of the following domain (domain parking):",
   "pl" => "Domena ma byæ aliasem do istniejacej domeny (parkowanie domeny):",
   "se" => "TRANS SVENSKA",
@@ -835,7 +889,8 @@ $txt_mainmenu_title_server_monitor = array(
   "it" => "Server Monitor",
   "nl" => "TRANS ",
   "ru" => "TRANS ",
-  "de" => "TRANS ",
+  "de" => "Server ueberwachung",
+  "ro" => "Supraveghere server",
   "zh" => "TRANS ",
   "pl" => "Monitoring serwera",
   "se" => "Server Monitor",
@@ -850,13 +905,16 @@ $txt_no_parking_popup_text = array(
   "it" => "Nessun parking",
   "nl" => "TRANS No parking",
   "ru" => "TRANS No parking",
-  "de" => "TRANS No parking",
+  "de" => "Kein parking",
+  "ro" => "### No parking",
   "zh" => "TRANS No parking",
   "pl" => "Nie parkuj",
   "se" => "TRANS SVENSKA",
   "es" => "Sin parking",
   "pt" => "TRANS No parking");
 
+/* #### CL continue here
+*/
 $txt_register_custom_message_title = array(
 	"fr" => "Laisser un message a l'administrateur pour indiquer des eventuels specificités pour votre compte:",
 	"en" => "Leave a message to tell any specific requirements you might have for your account:",
@@ -864,7 +922,7 @@ $txt_register_custom_message_title = array(
 	"it" => "Per favore lascia un messaggio per richieste specifiche:",
 	"nl" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
 	"ru" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
-	"de" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
+	"de" => "Schicken Sie eine Nachricht, wenn sie spezielle Anforderungen für Ihren Account haben:",
 	"zh" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
 	"pl" => "Napisz nam jakich szczegó³owych uprawnieñ <br/>potrzebujesz dla swojego konta:",
 	"se" => "TRANS SVENSKA",
@@ -879,7 +937,7 @@ $txt_go_to_client_panel = array(
 	"it" => "Vai al pannello cliente",
 	"nl" => "TRANS",
 	"ru" => "TRANS",
-	"de" => "TRANS",
+	"de" => "Gehen Sie zum Client-Panel",
 	"zh" => "½øÈë¹Ë¿ÍÃæ°å",
 	"pl" => "Panel klienta",
 	"se" => "TRANS SVENSKA",
@@ -894,7 +952,7 @@ $txt_no = array(
 	"it" => "No",
 	"nl" => "TRANS",
 	"ru" => "TRANS",
-	"de" => "TRANS",
+	"de" => "Nein",
 	"zh" => "·ñ",
 	"pl" => "Nie",
 	"se" => "TRANS SVENSKA",
@@ -909,7 +967,7 @@ $txt_yes = array(
 	"it" => "Sì",
 	"nl" => "TRANS",
 	"ru" => "TRANS",
-	"de" => "TRANS",
+	"de" => "Ja",
 	"zh" => "ÊÇ",
 	"pl" => "Tak",
 	"se" => "TRANS SVENSKA",
@@ -925,7 +983,7 @@ $txt_is_company = array(
 	"it" => "E' una società",
 	"nl" => "TRANS",
 	"ru" => "TRANS",
-	"de" => "TRANS",
+	"de" => "Ist Firma",
 	"zh" => "ÊÇ¹«Ë¾Âð?",
 	"pl" => "Firma ",
 	"se" => "TRANS SVENSKA",
@@ -940,7 +998,7 @@ $txt_desired_domain_name = array(
 	"it" => "Nome dominio desiderato",
 	"nl" => "TRANS nl",
 	"ru" => "TRANS ru",
-	"de" => "TRANS de",
+	"de" => "Gewünschter Domain Namex",
 	"zh" => "Ñ¡ÔñÓòÃû",
 	"pl" => "Nazwa domeny",
 	"se" => "TRANS SVENSKA",
@@ -956,7 +1014,7 @@ $txt_confirm_pass = array(
 	"it" => "Conferma password",
 	"nl" => "TRANS",
 	"ru" => "TRANS",
-	"de" => "TRANS",
+	"de" => "Passwort bestätigen",
 	"zh" => "È·ÈÏÃÜÂë",
 	"pl" => "Powtórz has³o",
 	"se" => "TRANS SVENSKA",
@@ -972,7 +1030,7 @@ $txt_login_info = array(
 	"it" => "Informazioni di login",
 	"nl" => "TRANS",
 	"ru" => "TRANS",
-	"de" => "TRANS",
+	"de" => "Login info",
 	"zh" => "×¢²áÐÅÏ¢",
 	"pl" => "Login info",
 	"se" => "TRANS SVENSKA",
@@ -987,7 +1045,7 @@ $txt_product = array(
 	"it" => "Prodotto",
 	"nl" => "TRANS",
 	"ru" => "TRANS",
-	"de" => "TRANS",
+	"de" => "Produkt",
 	"zh" => "²úÆ·",
 	"pl" => "Produkt",
 	"se" => "TRANS SVENSKA",
@@ -1003,7 +1061,7 @@ $txt_go_to_login = array(
 	"it" => "Vai al login",
 	"nl" => "TRANS",
 	"ru" => "TRANS",
-	"de" => "TRANS",
+	"de" => "Gehen Sie zum Login",
 	"zh" => "½øÈë×¢²á",
 	"pl" => "Zaloguj siê",
 	"se" => "TRANS SVENSKA",
@@ -1021,7 +1079,7 @@ $txt_client_info = array(
 	"it" => "Info cliente:",
 	"nl" => "TRANS",
 	"ru" => "TRANS",
-	"de" => "TRANS",
+	"de" => "Client Information:",
 	"zh" => "¹Ë¿ÍÐÅÏ¢",
 	"es" => "Informaci&oacute;n del cliente:",
 	"pl" => "Informacje o kliencie",
@@ -1039,7 +1097,7 @@ $txt_list_name = array(
 	"it" => "Nome lista",
 	"nl" => "TRANS List name",
 	"ru" => "TRANS List name",
-	"de" => "TRANS List name",
+	"de" => "Listenname",
 	"zh" => "ÓÊÏäÁÐ±í",
 	"pl" => "Nazwa listy",
 	"se" => "TRANS SVENSKA",
@@ -1055,7 +1113,7 @@ $txt_list_owner = array(
 	"it" => "Proprietario lista",
 	"nl" => "TRANS List owner",
 	"ru" => "TRANS List owner",
-	"de" => "TRANS List owner",
+	"de" => "Listenbesitzer",
 	"zh" => "¹ÜÀíÔ±",
 	"pl" => "W³a¶ciciel listy",
 	"se" => "TRANS SVENSKA",
@@ -1071,7 +1129,7 @@ $txt_list_liste_of_your_ml = array(
 	"it" => "Lista delle tue mailing lists:",
 	"nl" => "TRANS List of your mailing lists:",
 	"ru" => "TRANS List of your mailing lists:",
-	"de" => "Twoje listy mailingowe:",
+	"de" => "Liste Ihrer Mailing-Listen:",
 	"zh" => "ÄúµÄÓÊÏäÁÐ±íÄ¿Â¼:",
 	"pl" => "Lista twoich grup pocztowych:",
 	"se" => "TRANS SVENSKA",
@@ -1087,7 +1145,7 @@ $txt_list_new_list = array(
 	"it" => "Nuova mailing list:",
 	"nl" => "TRANS New mailing list:",
 	"ru" => "TRANS New mailing list:",
-	"de" => "TRANS New mailing list:",
+	"de" => "Neue Mailing-Liste:",
 	"zh" => "ÐÂÓÊÏäÁÐ±í:",
 	"pl" => "Nowa lista pocztowa/mailingowa",
 	"se" => "TRANS SVENSKA",
@@ -1103,7 +1161,7 @@ $txt_number_of_database = array(
 	"it" => "Numero di database:",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Anzahl der Datenbanken:",
 	"zh" => "Êý¾Ý¿âµÄÊýÄ¿:",
 	"pl" => "Ilo¶æ baz danych",
 	"se" => "TRANS SVENSKA",
@@ -1118,7 +1176,7 @@ $txt_allow_to_add_domains = array(
 	"it" => "Autorizza ad aggiungere domini:",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Erlauben Domains hinzuzufügen:",
 	"zh" => "ÔÊÐíÌí¼ÓÓòÃû:",
 	"pl" => "Prawo do dodawania domen ",
 	"se" => "TRANS SVENSKA",
@@ -1134,7 +1192,7 @@ $txt_can_have_subadmins_reseller = array(
 	"it" => "Autorizza l'aggiunta di sotto-account (rivenditori):",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Sub-Konto Hinzufügerechte vergeben (Weiterverkäufer)",
 	"zh" => "ÊÚÈ¨Ìí¼Ó¸±ÕÊ»§(×ªÊÛ):",
 	"pl" => "Dodaj Resselera",
 	"se" => "TRANS SVENSKA",
@@ -1150,7 +1208,7 @@ $txt_can_have_ssh_login_for_vhosts = array(
   "it" => "Permetti l'aggiunta di logins SSH vhosts:",
   "nl" => "TRANS Allow addition of SSH vhosts logins:",
   "ru" => "TRANS Allow addition of SSH vhosts logins:",
-  "de" => "TRANS Allow addition of SSH vhosts logins:",
+  "de" => "Erlaube hinzufügen von SSH Logins:",
   "zh" => "TRANS Allow addition of SSH vhosts logins:",
   "pl" => "Dostêp dodatkowy do SSH przez logowanie do vhostów:",
   "se" => "TRANS SVENSKA",
@@ -1165,7 +1223,7 @@ $txt_heb_prod_id = array(
 	"it" => "ID prodotto:",
 	"nl" => "TRANS Product ID:",
 	"ru" => "TRANS Product ID:",
-	"de" => "TRANS Product ID:",
+	"de" => "Produktnummer:",
 	"zh" => "²úÆ·Éí·Ö",
 	"pl" => "ID produktu",
 	"se" => "TRANS SVENSKA",
@@ -1181,7 +1239,7 @@ $txt_change_your_password = array(
 	"it" => "Cambia la tua password: ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Ändern Sie Ihr Passwort:",
 	"zh" => "¸ü¸ÄÃÜÂë:",
 	"pl" => "Zmieñ has³o",
 	"se" => "TRANS SVENSKA",
@@ -1197,7 +1255,7 @@ $txt_type_new_password = array(
 	"it" => "Nuova password:",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Neues Passwort:",
 	"zh" => "ÐÂÃÜÂë:",
 	"pl" => "Nowe has³o",
 	"se" => "TRANS SVENSKA",
@@ -1213,7 +1271,7 @@ $txt_retype_new_password = array(
 	"it" => "Ripeti la nuova password:",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Passwort wiederholen:",
 	"zh" => "ÖØÐÂÊäÈëÐÂÃÜÂë: ",
 	"pl" => "Powtórz nowe has³o",
 	"se" => "TRANS SVENSKA",
@@ -1228,7 +1286,7 @@ $txt_delete = array(
 	"it" => "Cancella",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Löschen",
 	"zh" => "É¾³ý ",
 	"pl" => "Usuñ ",
 	"se" => "TRANS SVENSKA",
@@ -1244,7 +1302,7 @@ $txt_create = array(
 	"it" => "Crea",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Erstellen",
 	"zh" => "´´½¨ ",
 	"pl" => "Stwórz",
 	"se" => "TRANS SVENSKA",
@@ -1260,7 +1318,7 @@ $txt_save = array(
 	"it" => "Salva",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Speichern",
 	"zh" => "±£´æ ",
 	"pl" => "Zapisz ",
 	"se" => "TRANS SVENSKA",
@@ -1276,7 +1334,7 @@ $txt_your_users = array(
 	"it" => "Tuoi utenti:",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Ihre Benutzer:",
 	"zh" => "ÄúµÄÓÃ»§ ",
 	"pl" => "Twoi u¿ytkownicy ",
 	"es" => "Sus usuarios",
@@ -1290,7 +1348,7 @@ $txt_user = array(
 	"it" => "Utente",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Benutzer",
 	"zh" => "ÓÃ»§ ",
 	"pl" => "U¿ytkownik ",
 	"se" => "TRANS SVENSKA",
@@ -1306,7 +1364,7 @@ $txt_database_name = array(
 	"it" => "Nome database",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Name der Datenbank",
 	"zh" => "Êý¾Ý¿âÃû ",
 	"pl" => "Nazwa bazy danych",
 	"se" => "TRANS SVENSKA",
@@ -1321,7 +1379,7 @@ $txt_total_database_number = array(
 	"it" => "Numero totale database:",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Gesamtanzahl Datenbanken ",
 	"zh" => "Êý¾Ý¿âµÄ×ÜÊý ",
 	"pl" => "Suma baz danych ",
 	"se" => "TRANS SVENSKA",
@@ -1336,7 +1394,7 @@ $txt_please_create_mysql_user_to_create_database = array(
 	"it" => "Per favore crea prima un utente mysql se vuoi poter creare database",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Bitte erstellen Sie einen MySQL Benutzer um eine Datenbank erstellen zu können.",
 	"zh" => "Èç¹ûÒª½¨Á¢Ò»¸öÊý¾Ý¿â,Çë´´½¨Ò»¸öMySQLÓÃ»§ ",
 	"pl" => "Utwórz u¿ytkownika MySQL w kolejnosci w jakiej bêd± oni tworzyæ bazy danych ",
 	"se" => "TRANS SVENSKA",
@@ -1352,7 +1410,7 @@ $txt_wrong_user_or_password_or_timeout_expire = array(
 	"it" => "Utente o password errati, o tempo scaduto!",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Falscher Benutzername oder Passwort oder Timeout abgelaufen!",
 	"zh" => "ÓÃ»§´íÎó»òÃÜÂë´íÎó,»òÕßÒÑ¹ýÆÚ  ",
 	"pl" => "B³êdny u¿ytkownik lub has³o, lub has³o siê przedawni³o ",
 	"se" => "TRANS SVENSKA",
@@ -1366,7 +1424,7 @@ $txt_error = array(
 	"it" => "Errore",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Fehler",
 	"zh" => "´íÎó ",
 	"pl" => "B³±d ",
 	"se" => "TRANS SVENSKA",
@@ -1381,7 +1439,7 @@ $txt_fetching_admin = array(
 	"it" => "fetching admin:",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Hole Admin: ",
 	"zh" => "×°ÔØÍøÂç¹ÜÀíÔ±",
 	"pl" => "Wybierz admina ",
 	"se" => "TRANS SVENSKA",
@@ -1395,7 +1453,7 @@ $txt_register_new_account = array(
 	"it" => "Registra un nuovo account",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Neues Konto registrieren",
 	"zh" => "×¢²áÐÂÕÊ»§ ",
 	"pl" => "Za³ó¿ nowe konto ",
 	"se" => "TRANS SVENSKA",
@@ -1409,7 +1467,7 @@ $txt_go_to_email_panel = array(
 	"it" => "Vai al pannello emails",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Gehen Sie zum E-Mail Panel",
 	"zh" => "½øÈëÓÊÏäÃæ°å ",
 	"pl" => "Panel poczty ",
 	"se" => "TRANS SVENSKA",
@@ -1423,7 +1481,7 @@ $txt_client_panel_title = array(
 	"it" => "Panello cliente:",
 	"nl" => "TRANS Client panel:",
 	"ru" => "TRANS Client panel:",
-	"de" => "TRANS Client panel:",
+	"de" => "Client Panel:",
 	"zh" => "¹Ë¿ÍÃæ°å:",
 	"pl" => "Panel klienta: ",
 	"se" => "TRANS SVENSKA",
@@ -1438,7 +1496,7 @@ $txt_cmenu_myaccount = array(
 	"it" => "Il Mio Account",
 	"nl" => "Mijn account",
 	"ru" => "TRANS My account",
-	"de" => "TRANS My account",
+	"de" => "Mein Konto",
 	"zh" => "ÎÒµÄÕÊ»§",
 	"pl" => "Moje konto",
 	"se" => "TRANS SVENSKA",
@@ -1452,7 +1510,7 @@ $txt_cmenu_myaccount_stats = array(
 	"it" => "Statistiche",
 	"nl" => "Statistieken",
 	"ru" => "TRANS Statistics",
-	"de" => "TRANS Statistics",
+	"de" => "Statistiken",
 	"zh" => "Í³¼Æ",
 	"pl" => "Statystyki",
 	"se" => "TRANS SVENSKA",
@@ -1466,7 +1524,7 @@ $txt_cmenu_add_domain = array(
 	"it" => "Aggiungi Un Dominio",
 	"nl" => "Voeg domein toe",
 	"ru" => "TRANS Add a domain",
-	"de" => "TRANS Add a domain",
+	"de" => "Domain hinzufügen",
 	"zh" => "Ìí¼ÓÓòÃû",
 	"pl" => "Dodaj domenê",
 	"se" => "TRANS SVENSKA",
@@ -1480,7 +1538,7 @@ $txt_cmenu_nickhandles = array(
 	"it" => "DNS Nick handles",
 	"nl" => "DNS Nick handles",
 	"ru" => "TRANS DNS Nick handles",
-	"de" => "TRANS DNS Nick handles",
+	"de" => "Verantwortliche DNS",
 	"zh" => "DNS¡¡¸ºÔðÈË",
 	"pl" => "Odpowiedzi DNS",
 	"se" => "TRANS SVENSKA",
@@ -1495,7 +1553,7 @@ $txt_cmenu_nameservers = array(
 	"it" => "Name servers",
 	"nl" => "Domain Name servers",
 	"ru" => "TRANS Name servers",
-	"de" => "TRANS Name servers",
+	"de" => "Name Server",
 	"zh" => "ÓòÃû·þÎñÆ÷",
 	"pl" => "Serwery nazw",
 	"se" => "TRANS SVENSKA",
@@ -1525,7 +1583,7 @@ $txt_cmenu_dns = array(
 	"it" => "DNS e MX",
 	"nl" => "DNS en MX",
 	"ru" => "TRANS DNS and MX",
-	"de" => "TRANS DNS and MX",
+	"de" => "DNS und MX",
 	"zh" => "DNS ºÍ MX",
 	"pl" => "DNS i MX",
 	"se" => "DNS och MX",
@@ -1539,7 +1597,7 @@ $txt_cmenu_subdomains = array(
 	"it" => "Sotto-Domini",
 	"nl" => "Subdomeinen",
 	"ru" => "TRANS Sub-domains",
-	"de" => "TRANS Sub-domains",
+	"de" => "Sub-Domäne",
 	"zh" => "¸±ÓòÃû",
 	"pl" => "Subdomeny",
 	"se" => "TRANS SVENSKA",
@@ -1553,7 +1611,7 @@ $txt_cmenu_ftpaccounts = array(
 	"it" => "Account FTP",
 	"nl" => "FTP accounts",
 	"ru" => "TRANS FTP accounts",
-	"de" => "TRANS FTP accounts",
+	"de" => "FTP Konto",
 	"zh" => "FTP ÕÊ»§",
 	"pl" => "Konta FTP",
 	"se" => "TRANS SVENSKA",
@@ -1567,7 +1625,7 @@ $txt_cmenu_sshaccounts = array(
 	"it" => "Account SSH",
 	"nl" => "SSH accounts",
 	"ru" => "TRANS SSH accounts",
-	"de" => "TRANS SSH accounts",
+	"de" => "SSH Konto",
 	"zh" => "SSH ÕÊ»§",
 	"pl" => "Konta SSH",
 	"se" => "TRANS SVENSKA",
@@ -1581,7 +1639,7 @@ $txt_cmenu_packageinstaller = array(
 	"it" => "Installazione Pacchetti",
 	"nl" => "Package installer",
 	"ru" => "TRANS Package installer",
-	"de" => "TRANS Package installer",
+	"de" => "Paket Installer",
 	"zh" => "³ÌÐò°²×°",
 	"pl" => "Instalator pakietów",
 	"se" => "TRANS SVENSKA",
@@ -1595,7 +1653,7 @@ $txt_cmenu_mailboxs = array(
 	"it" => "Mailboxes",
 	"nl" => "Mailboxen",
 	"ru" => "TRANS Mailboxes",
-	"de" => "TRANS Mailboxes",
+	"de" => "Mailboxen",
 	"zh" => "ÐÅÏä",
 	"pl" => "Skrzynki pocztowe",
 	"se" => "TRANS SVENSKA",
@@ -1609,7 +1667,7 @@ $txt_cmenu_mailinglists = array(
 	"it" => "Mailinglists",
 	"nl" => "e-maillijsten",
 	"ru" => "TRANS Mailinglists",
-	"de" => "TRANS Mailinglists",
+	"de" => "Mailing-Liste",
 	"zh" => "ÐÅÏäµØÖ·±í",
 	"pl" => "Listy mailingowe",
 	"se" => "TRANS SVENSKA",
@@ -1623,7 +1681,7 @@ $txt_cmenu_database = array(
 	"it" => "Database",
 	"nl" => "Databasen",
 	"ru" => "TRANS Databases",
-	"de" => "TRANS Databases",
+	"de" => "Datenbanken",
 	"zh" => "Êý¾Ý¿â",
 	"pl" => "Bazy danych",
 	"se" => "TRANS SVENSKA",
@@ -1637,7 +1695,7 @@ $txt_cmenu_reseller = array(
 	"it" => "Sotto-account (rivenditori)",
 	"nl" => "sub-accounts (wederverkoper)",
 	"ru" => "TRANS Sub-accounts (reseller)",
-	"de" => "TRANS Sub-accounts (reseller)",
+	"de" => "Sub-Konten (Wiederverkäufer)",
 	"zh" => "ÕÊ»§ÖØÊÛ",
 	"pl" => "Subkonta (reseller)",
 	"se" => "TRANS SVENSKA",
@@ -1651,7 +1709,7 @@ $txt_cmenu_password = array(
 	"it" => "Password",
 	"nl" => "wachtwoord",
 	"ru" => "TRANS Password",
-	"de" => "TRANS Password",
+	"de" => "Passwort",
 	"zh" => "ÃÜÂë",
 	"pl" => "Has³o",
 	"se" => "TRANS SVENSKA",
@@ -1665,7 +1723,7 @@ $txt_cmenu_help = array(
 	"it" => "Aiuto",
 	"nl" => "Hilfe",
 	"ru" => "TRANS Help",
-	"de" => "TRANS Help",
+	"de" => "Hilfe",
 	"zh" => "°ïÖú",
 	"pl" => "Pomoc",
 	"se" => "TRANS SVENSKA",
@@ -1679,7 +1737,7 @@ $txt_select_lang_title = array(
 	"it" => "Lingua",
 	"nl" => "Taal",
 	"ru" => "Language",
-	"de" => "Language",
+	"de" => "Sprache",
 	"zh" => "ÓïÑÔ",
 	"pl" => "Jêzyk",
 	"se" => "TRANS SVENSKA",
@@ -1703,7 +1761,7 @@ $txt_mailbox_redirection_edition = array(
   );
 $txt_repeate_password = array(
 	"fr" => "Répéter votre mot de passe :",
-	"en" => "Repeate password:",
+	"en" => "Repeat password:",
 	"hu" => "Ismételje meg a jelszót:",
 	"it" => "Ripeti la password:",
 	"nl" => "TRANS Repeate password:",
@@ -1751,7 +1809,7 @@ $txt_no_domain_waiting = array(
 	"it" => "Nessun dominio in attesa!",
 	"nl" => "TRANS No domain waiting!",
 	"ru" => "TRANS No domain waiting!",
-	"de" => "Keine Domaine in Warteschleife!",
+	"de" => "Keine Domäne in Warteschleife!",
 	"zh" => "ÎÞÓòÃûµÈ´ý£¡",
 	"pl" => "Brak oczekuj±cych domen!",
 	"se" => "TRANS SVENSKA",
@@ -1765,7 +1823,7 @@ $txt_userndomain_waiting_for_addition = array(
 	"it" => "Utenti e domini in attesa: ",
 	"nl" => "TRANS User and domain waiting for addition: ",
 	"ru" => "TRANS User and domain waiting for addition: ",
-	"de" => "Benutzer und Domaine inn Warteschleife: ",
+	"de" => "Benutzer und Domaine in Warteschleife: ",
 	"zh" => "ÓÃ»§ºÍÓòÃûµÈ´ý£º",
 	"pl" => "Nowe zadania do wykonania : ",
 	"se" => "TRANS SVENSKA",
@@ -2086,7 +2144,7 @@ $txt_graf = array(
     "it" => "Grafica",
 	"nl" => "TRANS Graphic",
 	"ru" => "TRANS Graphic",
-	"de" => "Graphik",
+	"de" => "Grafik",
 	"zh" => "°Ù·Ö±È",
 	"pl" => "Grafika",
 	"se" => "TRANS SVENSKA",
@@ -2184,7 +2242,7 @@ $txt_icon_named_zones = array(
     "it" => "FILES ZONE NAMED",
 	"nl" => "DNS ZONE BESTANDEN",
 	"ru" => "TRANSNAMED ZONES FILES",
-	"de" => "Bind Zonen Datein",
+	"de" => "Bind Zonen Dateien",
 	"zh" => "ÓòÃû·ÖÅäÎÄµµ",
     "pl" => "PLIKI STREF DNS",
     "se" => "TRANS SVENSKA",
@@ -2498,7 +2556,7 @@ $txt_use_images_menu = array(
     "it" => "TRANS Use image menu",
 	"nl" => "TRANS Use image menu",
 	"ru" => "TRANSUse image menu",
-	"de" => "TRANS Use image menu",
+	"de" => "Verwenden Sie das Image-Menü",
 	"zh" => "TRANS Use image menu",
     "pl" => "Menu graficzne",
     "se" => "Bild menu",
@@ -2598,7 +2656,7 @@ $txt_del_user_domain_confirm = array(
     "it" => "Sei sicuro di voler cancellare questo nome a dominio? In questo modo cancellerai tutti i files del dominio !!!",
 	"nl" => "Weet je zeker dat je dit domein wilt wissen? Deze actie zal het domein wissen INCLUSIEF alle bestanden op het filesysteem !!!",
 	"ru" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
-	"de" => "Sind Sie sicher, dass Sie diese Domain löschen wollen? Alle Datein für diese Domain werden gelöscht",
+	"de" => "Sind Sie sicher, dass Sie diese Domain löschen wollen? Alle Dateien für diese Domain werden gelöscht",
 	"zh" => "ÄãÈ·ÐÅÒªÉ¾³ýÕâ¸öÓòÃû? ÕâÏî²Ù×÷½«ÒªÉ¾³ýËùÓÐÎÄ¼þ!!!",
     "pl" => "Czy napewno usun±æ domenê U¿ytkownika ? Wszystkie pliki tej domeny równie¿ zostan± usuniête !!!",
     "se" => "TRANS SVENSKA",
@@ -2710,7 +2768,7 @@ $txt_domain_tbl_config_max_lists = array(
 	"it" => "Lists max",
 	"nl" => "TRANS lists max",
 	"ru" => "TRANS lists ÍÁËÓ",
-	"de" => "TRANS Max. lists",
+	"de" => "Max. Listen",
 	"zh" => "TRANS lists ×î´óµç×ÓÐÅÏäÕÊ»§",
     "pl" => "Maksymalnie list",
     "se" => "TRANS SVENSKA",
@@ -2793,7 +2851,7 @@ $txt_your_domain_ftp = array(
 	"it" => "Accounts FTP:",
 	"nl" => "Ftp accounts:",
 	"ru" => "æôð ÁËËÁÕÎÔÙ:",
-	"de" => "FTP Acounts:",
+	"de" => "FTP Konten:",
 	"zh" => "FtpµÄÕÊ»§:",
 	"pl" => "Konta FTP :",
 	"se" => "TRANS SVENSKA",
@@ -2807,7 +2865,7 @@ $txt_your_domain_ssh = array(
    	"it" => "Accounts SSH:",
 	"nl" => "SSH accounts:",
 	"ru" => "æôð ÁËËÁÕÎÔÙ:",
-	"de" => "SSH Acounts:",
+	"de" => "SSH Konten:",
 	"zh" => "SSHµÄÕÊ»§:",
    	"pl" => "Konta SSH :",
    	"se" => "TRANS SVENSKA",
@@ -2821,7 +2879,7 @@ $txt_your_domain_subdomain = array(
 	"it" => "Sottodomini:",
 	"nl" => "Subdomeinen:",
 	"ru" => "óÕÂÄÏÍÅÎÙ:",
-	"de" => "Subdomains:",
+	"de" => "Sub-Domänen:",
 	"zh" => "¸±ÓòÃû:",
     "pl" => "Subdomeny :",
     "se" => "TRANS SVENSKA",
@@ -2878,7 +2936,7 @@ $txt_transfer_per_month = array(
 	"it" => "TRANS ",
 	"nl" => "TRANS ",
 	"ru" => "TRANS ",
-	"de" => "TRANS ",
+	"de" => "Transfer pro Montat ",
 	"zh" => "TRANS ",
    	"pl" => "Transfer na miesi±c",
    	"se" => "TRANS SVENSKA",
@@ -3891,7 +3949,7 @@ $txt_subdom_txtrec = array(
 	"it" => "Campo TXT del sottodominio: ",
 	"nl" => "TRANS TXT field of the subdomain: ",
 	"ru" => "TRANS TXT field of the subdomain: ",
-	"de" => "TRANS TXT field of the subdomain: ",
+	"de" => "TXT Feld der Sub-Domäne: ",
 	"zh" => "TXT ¸±ÓòÃûÇøÓò: ",
 	"pl" => "Pole TXT dla DNS subdomeny : ",
 	"se" => "TRANS SVENSKA",
@@ -3905,7 +3963,7 @@ $txt_subdom_default_sub = array(
 	"it" => "Sottodominio di default: ",
 	"nl" => "Standaard subdomein: ",
 	"ru" => "óÕÂÄÏÍÅÎ ÐÏ ÕÍÏÌÞÁÎÉÀ:",
-	"de" => "Standard Subdomain",
+	"de" => "Standard Sub-Domäne",
 	"zh" => "Ô¤Éè¸±ÓòÃû:",
 	"pl" => "Subdomena domy¶lna : ",
 	"se" => "TRANS SVENSKA",
@@ -3933,7 +3991,7 @@ $txt_subdom_create = array(
 	"it" => "Crea un sottodominio: ",
 	"nl" => "Creeer een subdomein: ",
 	"ru" => "óÏÚÄÁÔØ ÓÕÂÄÏÍÅÎ:",
-	"de" => "Anlegen einer Subdomain",
+	"de" => "Anlegen einer Sub-Domäne",
 	"zh" => "½¨Á¢¸±ÓòÃû: ",
 	"pl" => "Zak³adanie subdomeny : ",
 	"se" => "TRANS SVENSKA",
@@ -3947,7 +4005,7 @@ $txt_subdom_newname = array(
 	"it" => "Nome sottodominio: ",
 	"nl" => "TRANSSubdomain name: ",
 	"ru" => "TRANSSubdomain name:",
-	"de" => "Subdomain Name:",
+	"de" => "Sub-Domänen Name:",
 	"zh" => "¸±ÓòÃû:",
 	"pl" => "Nazwa subdomeny : ",
 	"se" => "TRANS SVENSKA",
@@ -4104,7 +4162,7 @@ $txt_subdom_nameserver_for = array(
 	"it" => "Questo subdomain Ã¨ un'entrata del nameserver (NS)<br>per il seguente subdomain: ",
 	"nl" => "Dit subdomain is een nameserver(ns)<br>ingang voor volgende subdomain: ",
 	"ru" => "Ð­Ñ‚Ð¸Ð¼ subdomain Ð±ÑƒÐ´ÐµÑ‚ Ð²Ñ…Ð¾Ð´ nameserver (ns)<br>Ð´Ð»Ñ following subdomain: ",
-	"de" => "Dieses subdomain ist eine nameserver (NS)<br>Eintragung fÃ¼r das folgende subdomain: ",
+	"de" => "Diese Subdomain ist eine nameserver (NS)<br>Eintragung fÃ¼r das folgende subdomain: ",
 	"zh" => "è¿™subdomain æ˜¯ä¸€ä¸ªnameserver (NS)<br>è¯æ¡ä¸ºä»¥ä¸‹subdomain: ",
 	"pl" => "TRANS This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
 	"se" => "TRANS This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
@@ -4259,7 +4317,7 @@ $txt_mail_spam_mailbox_enable = array(
 	"it" => "Abilita filtraggio SPAM: ",
 	"nl" => "Enable SPAM filtering: ",
 	"ru" => "Enable SPAM filtering: ",
-	"de" => "Enable SPAM filtering: ",
+	"de" => "SPAM Filter aktivieren: ",
 	"zh" => "ÔËÐÐÀ¬»øÎÄ¼þ¹ýÂË¹¦ÄÜ: ",
 	"pl" => "W³±czenie filtra SPAMu: ",
 	"se" => "TRANS SVENSKA",
@@ -4273,7 +4331,7 @@ $txt_mail_spam_mailbox = array(
 	"it" => "Destinazione SPAM della mailbox: ",
 	"nl" => "SPAM mailbox destination: ",
 	"ru" => "SPAM mailbox destination: ",
-	"de" => "SPAM mailbox destination: ",
+	"de" => "SPAM Mailbox Ziel: ",
 	"zh" => "À¬»øÓÊ¼þÄ¿µÄµØ: ",
 	"pl" => "Przekierowanie spamu do : ",
 	"se" => "TRANS SVENSKA",
@@ -5566,145 +5624,143 @@ Opensource driven| hosting worldwide  /_____/ 			|HOST.  </pre>
 <font face=\"Arial, Verdana\">
 <center><font size=\"+2\"><u><b>ONLINE DTC HELP</b></u></font></center><br><br>
 <div align=\"justify\">
-<font size=\"+1\"><u>1. What is DTC</u></font><br><br>
-DTC is a tool we made especialy for you. With it, you can take the
-control of your domain administration : you can
-manage all your subdomains, emails, and ftp accounts.<br><br>
-All this tool had been release under the <a
-href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence),
-which means that you can have a copy of this interface source
-code, modify it and use it as you wish, as long as you redistribute
-all thoses changes. We (at GPLHost) believe in the Free
-Software effort, and we hope this participation will encourage
-other developpements. We consider that because we use only
-open-source software for our hosting service, it is normal
-to redistribute our developpements.<br><br>
+<font size=\"+1\"><u>1. Was ist DTC</u></font><br><br>
+DTC ist ein Tool, das wir speziell für Sie gemacht haben. Mit diesem
+Tool, können Sie Ihre Domäne administrieren : Sie können all Ihre
+Sub-Domänen, E-Mail und FTP Konten verwalten.<br><br>
+Dieses Tool wurde unter <a
+href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence) freigegeben,
+das heißt, Sie können eine Kopie des Quellcodes erhalten, modifizieren
+und verwenden, solange Sie etwaige Änderungen wieder anderen bereitstellen.
+Wir (bei GPLHost) glauben an die Freie Softwareentwicklung und glauben
+damit ein gutes Beispiel für andere Softwareentwicklungen zu sein.
+Wir wollten Sie nur darauf hinweisen, dass wir einzig und allein
+Open-Source Software für unsere Hosting-Services verwenden und
+etwaige Weiterentwicklungen natürlich anderen wieder zugänglich
+machen.<br><br>
 <font size=\"+1\"><u>2. Emails</u></font><br>
-<u>2.1. What will it do ?</u><br><br>
-You can add, delete or modify a mailbox with this tool.<br><br>
-<u>2.2. Redirection and local delivery</u><br><br>
-Each mailbox can be redirected to one or more email addresse, which
-means that when a message is recieved, it is forwared to one
-or tow email adresse(s). The \"deliver localy\" checkbox
-tells wether or not all message for this mailbox will be
-written on our hard disk, so thenafter you will be able to
-read your message using a mail client, connecting to
-our server. Don't forget to checkup your mails often if
-you have trafic, because the mailbox are included in the
-quota<br><br>
-<u>2.3. Delay when adding / deleting accounts</u><br><br>
-When you add or delete a mail account, don't expect it to
-work immediatly : we will have to validate the changes in
-the system in order to have your new accounts changes to
-take effect : we have to tell Qmail (our mail server) to
-reload it's user database.<br><br>
-Most of the time, we validate all changes at the end of
-each working days, but if you need an immediate validation,
-click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
-validation\">here</a>.<br><br>
-<font size=\"+1\"><u>3. Subdomains</u></font><br>
-<u>3.1. What will it do ?</u><br><br>
-This part of the interface is for configurating your
-somain's sites, which means that you will be able
-to populate your web site with url of the form :
+<u>2.1. Was kann ich damit tun ?</u><br><br>
+Sie können mit diesem Tool Mailboxen hinzufügen, löschen oder
+ändern<br><br>
+<u>2.2. Umleitung und lokale Zustellung</u><br><br>
+Jede Mailbox kann auf eine oder mehrer E-Mail Adressen umgeleitet
+werden. Das heisst, wenn eine Nachricht empfangen wird, wird Sie
+automatisch an eine oder zwei E-Mail Adresse(n) weitergeleitet.
+Die \"Lokale Zustellung\" Checkbox bestimmt, ob alle Nachrichten
+für diese Mailbox auf die Festplatte geschrieben werden sollen,
+sodass sie dann die Nachricht mit einem Mail-Client auf unserem
+Server lesen können. Bitte prüfen Sie Ihre Mails häufig, wenn
+Sie viel Traffic haben, denn die Mailbox ist im Kontingent
+enthalten<br><br>
+<u>2.3. Verzögerung, wenn Sie Konten hinzufügen oder löschen</u><br><br>
+Wenn Sie ein Mail-Konto hinzufügen oder löschen, bitte bedenken
+Sie, dass diese Änderung nicht sofort sichtbar ist, denn
+wir müssen die Änderungen überprüfen um Ihre Änderungen
+scharf zu schalten. Wir müssen QMail (unserem Mail-Server)
+mitteilen, dass dieser seine Benutzer-Datenbank neu laden
+muss<br><br>
+Meistens werden Ihre Änderungen am Ende des Tages überprüft,
+aber wenn Sie eine sofortige Überprüfung brauchen, klicken
+Sie <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
+validation\"></a>.<br><br>
+<font size=\"+1\"><u>3. Sub-Domänen</u></font><br>
+<u>3.1. Was kann ich damit tun ?</u><br><br>
+Dieser Teil des Interfaces wird benutzt, um Ihre Domänen-Sites
+zu konfigurieren. Das heißt, sie können Ihre Web-Seite in der Form
 <pre>
 http://anything.u.want.mydomain.com
 </pre>
-<u>3.2. What is the default subdomain ?</u><br><br>
-Whe someone trys to contact your web site with an
-URL without a subdomain, he is redirected to the
-subdomain you said it was the default. In other
-words, if you tell that:
+publizieren.
+<u>3.2. Was ist die Standard-Subdomäne ?</u><br><br>
+Versucht jemand Ihre Seite mit einer URL ohne Subdomäne
+aufzurufen, so wird er automatisch zu der Subdomäne
+umgeleitet, die Sie als Standard eingestellt haben.
+Mit anderen Worten, wenn Sie sagen:
 <pre>
 www
 </pre>
-is the default subdomain, someone that trys to
-connect using an url starting with:
+ist die Standard Subdomäne und jemand verbindet sich zu einer
+URL wie folgt: 
 <pre>
 http://mydomain.com
 </pre>
-will be redirected to:
+wird dieser jeamnd zu:
 <pre>
 http://www.mydomain.com
 </pre>
-In fact, the URL is kept, and no URL redirection
-in a HTML page has been created, but simply, a
-website with that URL has been configurated to
-the same location of the \"www\" subdomain, so
-it accesses the same html (or php) files, and
-shares the same log file.<br><br>
-<u>3.3. Forbidden subdomains</u><br><br>
-Because we have configurated those subdomains for
-other services than web, you cannot use the following
-subdomains for apache web sites :
+weitergeleitet.
+<u>3.3. Verbotene Sub-Domänen</u><br><br>
+Folgende Sub-Domänen haben wir für andere Zwecke als
+für das Web konfiguriert. Diese können daher nicht
+als Sub-Domänen für Apache Webseiten benutzt werden:
 <ul><li>ftp</li>
 <li>pop</li>
 <li>smtp</li>
 </ul>
-<u>3.4. Deleting subdomains</u><br><br>
-It is up to you to delete the files used by your subdomain.
-You can delete all the files using a standard ftp client.
-But PLEASE take realy care not to delete a subdomain files
-without deleting it using DTC. Indeed, the Apache web server
-will complain if the directory does not exist but a web site
-is configurated for it, and this will be anoying when restarting
-apache.<br><br>
-<u>3.5. Delay when adding / deleting subdomain</u><br><br>
-We will have to restart our Apache web server in order
-to have your changes taking effect. Most of the time, we validate all
-changes at the end of
-each working days, but if you need an immediate validation,
-click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
+<u>3.4. Löschen von Sub-Domänen</u><br><br>
+Wenn Sie eine Sub-Domäne löschen, müssen Sie alle Dateien,
+die diese Sub-Domäne benötigt löschen.
+Sie können diese mit einem Standard FTP-Client löschen.
+Aber VORSICHT: Löschen Sie keine Sub-Domänen Dateien ohne
+diese vorher mittels DTC zu entfernen.
+Der Apache-Web Server wird sich sonst über ein fehlendes
+Verzeichnis beschweren, da die Web-Site noch immer konfiguriert
+ist.<br><br>
+<u>3.5. Verzögerung beim Hinzufügen/Löschen von Sub-Domänen</u><br><br>
+Der Apache Web-Server muss neu gestartet werden, damit Ihre Änderungen
+aktiv werden. Meistens wird die Änderung am Ende des Tages durchgeführt.
+Sollten Sie aber eine sofortige Überprüfung benötigen, klicken Sie
+ <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
 : please restart apache now !\">here</a>.<br><br>
-<u>3.6. Trafic statistics for your subdomains</u><br><br>
-Because all your trafic is loged, we calculate the overall
-last 12 month statistics using <a href=\"http://www.mrunix.net/webalizer/\">
-webalizer</a>. The statistics are calculated each days at
-4 in the morning (this is when there is less trafic), and
-can be reach under the \"/stats\" directory on each
-subdomains. That means that if you have registerd :
+<u>3.6. Traffic-Statistik für Ihre Sub-Domänen</u><br><br>
+Wir berechnen eine Gesamtübersicht Ihres Daten-Traffics über die letzten
+12 Monate mittels: <a href=\"http://www.mrunix.net/webalizer/\">
+webalizer</a>. Diese Statistiken werden jeden Tag um 4 Uhr früh
+( wenn normalerweise wenig Traffic ist ) erstellt und können
+unter dem Verzeichnis \"/stats\" eomer jeden Sub-Domäne abgerufen
+werden.
+Das heißt, wenn Sie folgendes registriert haben :
 <pre>
 http://www.mydomain.com
 </pre>
-all statistics will be generated under :
+sind die Statistiken unter :
 <pre>
 http://www.mydomain.com/stats/
 </pre>
-<font size=\"+1\"><u>4. FTP accounts</u></font><br>
-<u>4.1. What will it do ?</u><br><br>
-To have your page working and running, you have to upload
-them. But because you may not be only one to work on your
-web site, you may want to have more that one FTP account
-for accessing your web site. DTC will be the tool for
-managing thoses accounts and passwords.<br><br>
-<u>4.2. Delay when adding / deleting FTP accounts</u><br><br>
-Because we use ProFTP with a special module for handling accounts in
-our MySql database, all changes to your FTP accounts take effect
-in realtime.<br><br>
-<u>4.3. Limiting user to specified path</u><br><br>
-For the moment you cannont limit one user to access to only
-a part of your web site. But we (the administrators) can
-do it if you ask sending an <a
+zu finden.
+<font size=\"+1\"><u>4. FTP Konten</u></font><br>
+<u>4.1. Was kann ich damit tun ?</u><br><br>
+Wenn Ihre Homepage laufen soll, werden Sie diese uploaden müssen.
+Aber Sie können auch mehr als nur einen FTP Account für Ihre Web-Site
+definieren. Mit DTC können Sie diese Konten und Passwörter verwalten.<br><br>
+<u>4.2. Verzögerung beim Hinzufügen/Löschen von FTP Konten</u><br><br>
+Weil wir ProFTP mit einem speziellen Modul für die Konten-Verwaltung in
+einer MySQL Datenbank verwenden, werden all Ihre Änderungen an FTP Konten
+in Echtzeit durchgeführt.<br><br>
+<u>4.3. Benutzer auf ein Verzeichnis beschränken</u><br><br>
+Im Moment können Sie keine Beschränkung für einen Benutzer auf ein
+Verzeichnis auf Ihrer Web-Site machen. Aber wir (die Administratoren)
+können das tun, wenn Sie uns eine E-Mail über folgenden Link senden:
+<a
 href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
-user path change in FTP\">email</a>, telling what user
-and what path you need.<br><br>
-<u>4.4. No piracy or file exchange on our servers please !</u><br><br>
-If we provide a user space on our ftp servers, this is
-for you to upload HTML content. This means no binary
-files you don't own the rights ! Take care if you abuse,
-we could close your accounts without notification.<br><br>
-<font size=\"+1\"><u>5. Why ftp or pop is slow, sometimes ?</u></font><br><br>
-There are many reasons for that. The first one is because
-we don't have many band with for uploading, and sometimes,
-there are realy a lot of people uploading. The one that
-are closer to our servers take most of the time all that
-band width, so one user has most of it, and some have
-not. There is nothing we can do about that...<br><br>
-Another reason is because we have decided to limit the
-band width for pop, smtp, and ftp, so that web browsing
-on our server is faster.<br><br><br>
+user path change in FTP\">email</a>, und uns in dem Mail mitteilen,
+für welchen Benutzer Sie welches Verzeichnis wollen.<br><br>
+<u>4.4. Keine Piraterie oder Dateien-Austausch auf unseren Servern, bitte !</u><br><br>
+Der Benutzer-Bereich auf unseren FTP-Servern sollte dazu genutzt werden, damit
+Sie ihren HTML Inhalt hochladen können.
+Das heisst, bitte keine binären Dateien, für die Sie nicht die Rechte besitzen!
+Bei Mißbrauch wird Ihr Konto sofort und ohne Verständigung geschlossen!<br><br>
+<font size=\"+1\"><u>5. Warum ist FTP oder POP manchmal langsam ?</u></font><br><br>
+Es kann einige Gründe dafür geben.
+Der erste ist, weil wir keine Große Bandbreite für Uploads haben und manchmal
+viele Leute gleichzeitig uploaden. Derjenige, der näher bei unseren Servern ist,
+bekommt die meiste Zeit die komplette Bandbreite. 
+Dagegen können wir leider nichts unternehmen...<br><br>
+Ein anderer Grund könnte sein, dass wir die Bandbreite für
+pop, smtp und ftp beschränkt haben, sodass das Web-Browsen
+auf unserern Servern schneller ist.<br><br><br>
 </div>
-<center>For the GPLHost team,</center><br>
+<center>Für das GPLHost Team,</center><br>
 <div align=\"right\"><i><a href=\"mailto:thomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
 <pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
  _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
