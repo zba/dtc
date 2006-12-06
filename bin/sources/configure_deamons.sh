@@ -830,7 +830,7 @@ else
 fi
 
 if [ ""$UNIX_TYPE = "freebsd" -a -f /usr/local/lib/sasl2/libsql.so ] ;then
-	PATH_AUTH_SMTPD=/usr/local/lib/sasl2/smtpd.conf
+	PATH_AUTH_SMTP=/usr/local/lib/sasl2/smtpd.conf
 	PATH_AUTH_SASLPASSWD=/usr/local/lib/sasl2/saslpasswd.conf
 	PATH_AUTH_CYRUS=/usr/local/etc/imapd.conf
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -851,7 +851,7 @@ sql_database: ${conf_mysql_db}
 password_format: crypt
 sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
 sql_update: UPDATE pop_access SET crypt = '%v' WHERE fullemail = '%u@%r'
-sql_verbose: yes" >${PATH_AUTH_SMTPD}
+sql_verbose: yes" >${PATH_AUTH_SMTP}
 
 	if [ -f $PATH_AUTH_SASLPASSWD ]; then
 		if ! [ -f $PATH_AUTH_SASLPASSWD.DTC.backup ]; then
