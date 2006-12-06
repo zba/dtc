@@ -829,7 +829,7 @@ else
 
 fi
 
-if [ ""$UNIX_TYPE = "freebsd" -a -f /usr/local/lib/sasl2/sql.so ] ;then
+if [ ""$UNIX_TYPE = "freebsd" -a -f /usr/local/lib/sasl2/libsql.so ] ;then
 	PATH_AUTH_SMTPD=/usr/local/lib/sasl2/smtpd.conf
 	PATH_AUTH_SASLPASSWD=/usr/local/lib/sasl2/saslpasswd.conf
 	PATH_AUTH_CYRUS=/usr/local/etc/imapd.conf
