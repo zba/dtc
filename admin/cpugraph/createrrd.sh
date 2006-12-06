@@ -6,7 +6,7 @@ DTC_ETC=$1
 # http://www.stahl.bau.tu-bs.de/~hildeb/postfix/queuegraph/
 # modified by Damien Mascord for dtc
 
-RRDTOOL=/usr/bin/rrdtool
+RRDTOOL=rrdtool
 
 $RRDTOOL create $DTC_ETC/cpu.rrd --step 60 \
 	DS:loadaverage:GAUGE:900:0:U \
