@@ -823,7 +823,7 @@ auxprop_plugin: sql" > /usr/local/etc/imapd.conf
 
 else
 
-	echo "<?
+	echo "<?php
 \$cyrus_used=0;
 ?>" > $cyrus_auth_php;
 
