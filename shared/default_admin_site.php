@@ -2,13 +2,13 @@
 
 $theTopsIcons = '<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%">
 <tr>
-	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?"><font face="Arial"><b>Home</b></font></a></center></td>
-	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=dtcadmin"><font face="Arial"><b>DTC Admin Panel</b></font></a></center></td>
-	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=dtc"><font face="Arial"><b>DTC Client Panel</b></font></a></center></td>
-	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=dtcemail"><font face="Arial"><b>DTC Email Panel</b></font></a></center></td>
-	<td width="14%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=squirrelmail"><font face="Arial"><b>SquirrelMail</b></font></a></center></td>
-	<td width="15%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=phpmyadmin"><font face="Arial"><b>PhpMyAdmin</b></font></a></center></td>
-	<td width="15%" valign="bottom"><center><a href="'.$PHP_SELF.'?sousrub=register"><font face="Arial"><b>New account</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?"><font face="Arial"><b>Home</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtcadmin"><font face="Arial"><b>DTC Admin Panel</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtc"><font face="Arial"><b>DTC Client Panel</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtcemail"><font face="Arial"><b>DTC Email Panel</b></font></a></center></td>
+	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=squirrelmail"><font face="Arial"><b>SquirrelMail</b></font></a></center></td>
+	<td width="15%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=phpmyadmin"><font face="Arial"><b>PhpMyAdmin</b></font></a></center></td>
+	<td width="15%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=register"><font face="Arial"><b>New account</b></font></a></center></td>
 </tr>
 </table>';
 
