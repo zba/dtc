@@ -2330,19 +2330,11 @@ else
 		cp -f "$PATH_NSSWITCH_CONF" "$PATH_NSSWITCH_CONF.DTC.backup"
 	fi
 	echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
-	if [ ""$UNIX_TYPE = "freebsd" ] ;then
-		echo "
-passwd:         files mysql
-group:          files mysql
-shadow:         files mysql
-" >> $TMP_FILE
-	else
-		echo "
+	echo "
 passwd:         compat mysql
 group:          compat mysql
 shadow:         compat mysql
 " >> $TMP_FILE
-	fi
 	echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 	cat <$TMP_FILE >>$PATH_NSSWITCH_CONF
 fi
