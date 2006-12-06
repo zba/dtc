@@ -288,6 +288,7 @@ $dtc_database = array(
 		),
 	"ftp_access" => array(
 		"vars" => array(
+			"id" => "int(12) NOT NULL auto_increment",
 			"login" => "varchar(50) NOT NULL ",
 			"uid" => "int(5) NOT NULL default '65534' ",
 			"gid" => "int(5) NOT NULL default '65534' ",
@@ -323,12 +324,14 @@ $dtc_database = array(
 		"keys" => array(
 			"login" => "(login)"
 			),
+		"primary" => "(id)",
 		"index" => array(
 			"hostname" => "(hostname)"
 			)
 		),
 	"ssh_access" => array(
 		"vars" => array(
+			"id" => "int(12) NOT NULL auto_increment",
 			"login" => "varchar(50) NOT NULL ",
 			"uid" => "int(5) NOT NULL default '65534' ",
 			"gid" => "int(5) NOT NULL default '65534' ",
@@ -365,6 +368,7 @@ $dtc_database = array(
 		"keys" => array(
 			"login" => "(login)"
 			),
+		"primary" => "(id)",
 		"index" => array(
 			"hostname" => "(hostname)"
 			)
