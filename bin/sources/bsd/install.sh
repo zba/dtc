@@ -11,7 +11,7 @@ QMAIL_DIR=%%QMAIL_DIR%%
 
 UNIX_TYPE=freebsd
 
-VERBOSE_INSTALL=yes
+VERBOSE_INSTALL=no
 
 # Create our group and user
 CONF_DTC_SYSTEM_USERNAME=dtc
