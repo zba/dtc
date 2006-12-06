@@ -73,7 +73,7 @@ PATH_DTC_SHARED="${PREFIX}/www/dtc"
 PATH_CRONTAB_CONF=/etc/crontab
 PATH_AWSTATS_ETC=${LOCALBASE}/etc/awstats
 MYSQL_DB_SOCKET_PATH="/tmp/mysqld.sock"
-PATH_CGIBIN="${LOCALBASE}/lib/cgi-bin"
+PATH_CGIBIN="${LOCALBASE}/www/cgi-bin"
 
 PATH_SUDOERS_CONF="${LOCALBASE}/etc/sudoers"
 PATH_RRDTOOL="${LOCALBASE}/bin/rrdtool"
