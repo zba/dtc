@@ -1,5 +1,16 @@
 <?php
 
+function ftpAccountsCallback(){
+	global $pro_mysql_ftp_table;
+	global $conf_dtc_system_uid;
+	global $conf_dtc_system_gid;
+
+	// Todo: optimize by changing only the UID/GID of the revelant account.
+	$q = "UPDATE $pro_mysql_ftp_table SET uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE 1;";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	return;
+}
+
 ////////////////////////////////////////////////////
 // One domain name ftp account collection edition //
 ////////////////////////////////////////////////////
@@ -24,7 +35,68 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	global $txt_number_of_active_ftp;
 	global $txt_maxnumber_of_ftp_account_reached;
 
-	if(isset($domain["ftps"])){
+	global $pro_mysql_ftp_table;
+
+	checkLoginPassAndDomain($adm_login,$adm_pass,$domain["name"]);
+
+	$txt = "";
+
+	// Build the popup values and display values arrays
+	$path_popup_vals = array();
+	$path_popup_disp = array();
+	$path_popup_vals[] = "$adm_path";
+	$path_popup_disp[] = "/";
+	$path_popup_vals[] = "$adm_path/$edit_domain";
+	$path_popup_disp[] = "/$edit_domain";
+	$nbr_subdomains = sizeof($domain["subdomains"]);
+	for($i=0;$i<$nbr_subdomains;$i++){
+		$sub_name = $domain["subdomains"][$i]["name"];
+		$path_popup_vals[] = "$adm_path/$edit_domain/subdomains/$sub_name";
+		$path_popup_disp[] = "/$edit_domain/subdomains/$sub_name";
+		$path_popup_vals[] = "$adm_path/$edit_domain/subdomains/$sub_name/html";
+		$path_popup_disp[] = "/$edit_domain/subdomains/$sub_name/html";
+	}
+
+	// Just create the list editor now...
+	$dsc = array(
+		"title" => $txt_ftp_account_list[$lang],
+		"new_item_title" => $txt_ftp_new_account[$lang],
+		"new_item_link" => "New ftp login",
+		"edit_item_title" => $txt_ftp_account_edit[$lang],
+		"table_name" => $pro_mysql_ftp_table,
+		"action" => "ftp_access_editor",
+		"forward" => array("adm_login","adm_pass","addrlink"),
+		"id_fld" => "id",
+		"list_fld_show" => "login",
+		"max_item" => $domain["max_ftp"],
+		"num_item_txt" => $txt_number_of_active_ftp[$lang],
+		"create_item_callback" => "ftpAccountsCallback",
+		"where_list" => array(
+			"hostname" => $domain["name"]),
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"login" => array(
+				"type" => "text",
+				"check" => "dtc_login",
+				"legend" => $txt_login_login[$lang]),
+			"password" => array(
+				"type" => "password",
+				"check" => "dtc_pass",
+				"legend" => $txt_login_pass[$lang]),
+			"homedir" => array(
+				"type" => "popup",
+				"values" => $path_popup_vals,
+				"display_replace" => $path_popup_disp,
+				"legend" => $txt_path[$lang])
+			)
+		);
+	$txt .= dtcListItemsEdit($dsc);
+	return $txt;
+
+/*	if(isset($domain["ftps"])){
 		$nbr_ftp = sizeof($domain["ftps"]);
 		$ftps = $domain["ftps"];
 		$nbr_account = $nbr_ftp;
@@ -155,6 +227,7 @@ $txt .= "
 	}
 
 	return $txt;
+*/
 }
 
 ?>

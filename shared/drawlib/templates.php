@@ -451,11 +451,16 @@ function dtcDatagrid($dsc){
 //   [empty_makes_sql_null] => "yes" -> Makes a SQL query with NULL as parametter wheneger a field is empty
 
 // "type" => "radio" -> The control is a radio button
-// "type" => "checkbox" -> The control is a checkbox
+// "type" => "checkbox" -> The control is a checkbox. Checkboxes have only 2 values (the possible ones in the db) and is not implemented yet
 // "values" => array("yes","no") -> Values of the radio buttons (in display order)
 //   [default] => "no" -> default value of the radio button for creation of an item
 
+// "type" => "popup" -> The control is a popup
+// "values" => array("yes","no") -> Values of the popup (in display order)
+// [display_replace] => array(... -> Values to replace in the display (can be smaller than the values array)
+
 // This function is to be used for the user panel, it has field content check & validations plus addslashes
+
 function dtcListItemsEdit($dsc){
 	global $adm_pass;
 
@@ -515,6 +520,7 @@ function dtcListItemsEdit($dsc){
 		$commit_err = "";
 		for($i=0;$i<$nbr_fld;$i++){
 			switch($dsc["cols"][ $keys[$i] ]["type"]){
+			case "popup":
 			case "radio":
 			case "checkbox":
 				$nbr_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
@@ -625,6 +631,7 @@ function dtcListItemsEdit($dsc){
 				}
 				$added_one = "yes";
 				break;
+			case "popup":
 			case "checkbox":
 			case "radio":
 				if($added_one == "yes"){
@@ -652,6 +659,7 @@ function dtcListItemsEdit($dsc){
 		$commit_err = "";
 		for($i=0;$i<$nbr_fld;$i++){
 			switch($dsc["cols"][ $keys[$i] ]["type"]){
+			case "popup":
 			case "radio":
 			case "checkbox":
 				$nbr_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
@@ -757,6 +765,7 @@ function dtcListItemsEdit($dsc){
 					$added_one = "yes";
 				}
 				break;
+			case "popup":
 			case "radio":
 				if($added_one == "yes"){
 					$reqs .= ",";
@@ -866,13 +875,39 @@ function dtcListItemsEdit($dsc){
 								$selected = "";
 							}
 						}
-						$ctrl .= " <input type=\"radio\" name=\"".$keys[$i]."\" value=\"".$dsc["cols"][ $keys[$i] ]["values"][$x]."\" $selected> ";
-						$ctrl .= $dsc["cols"][ $keys[$i] ]["values"][$x];
+						if( isset($dsc["cols"][ $keys[$i] ]["display_replace"][$x]) ){
+							$display_val = $dsc["cols"][ $keys[$i] ]["display_replace"][$x];
+						}else{
+							$display_val = $dsc["cols"][ $keys[$i] ]["values"][$x];
+						}
+						$ctrl .= "<input type=\"radio\" name=\"".$keys[$i]."\" value=\"".$dsc["cols"][ $keys[$i] ]["values"][$x]."\" $selected> ";
+						$ctrl .= $display_val;
+					}
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					break;
+				case "popup":
+					$nbr_choices = sizeof( $dsc["cols"][ $keys[$i] ]["values"] );
+					$ctrl = "<select name=\"".$keys[$i]."\">";
+					for($x=0;$x<$nbr_choices;$x++){
+						$selected = "";
+						if( isset($dsc["cols"][ $keys[$i] ]["default"]) ){
+							if($dsc["cols"][ $keys[$i] ]["values"][$x] == $dsc["cols"][ $keys[$i] ]["default"]){
+								$selected = " selected ";
+							}else{
+								$selected = "";
+							}
+						}
+						if( isset($dsc["cols"][ $keys[$i] ]["display_replace"][$x]) ){
+							$display_val = $dsc["cols"][ $keys[$i] ]["display_replace"][$x];
+						}else{
+							$display_val = $dsc["cols"][ $keys[$i] ]["values"][$x];
+						}
+						$ctrl .= " <option value=\"".$dsc["cols"][ $keys[$i] ]["values"][$x]."\" $selected>$display_val</option>";
 					}
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
 					break;
 				default:
-					$ctrl = "bla";
+					$ctrl = "Not implemented yet!!!";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
 					break;
 				}
@@ -902,7 +937,6 @@ function dtcListItemsEdit($dsc){
 					$id_fldname = $keys[$j];
 					$id_fld_value = $a[ $keys[$j] ];
 					break;
-				default:
 				case "password":
 				case "text":
 					if( isset($dsc["cols"][ $keys[$j] ]["disable_edit"]) && $dsc["cols"][ $keys[$j] ]["disable_edit"] == "yes"){
@@ -935,6 +969,28 @@ function dtcListItemsEdit($dsc){
 						$ctrl .= " <input type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
 						$ctrl .= $dsc["cols"][ $keys[$j] ]["values"][$x];
 					}
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					break;
+				case "popup":
+					$nbr_choices = sizeof( $dsc["cols"][ $keys[$j] ]["values"] );
+					$ctrl = "<select name=\"".$keys[$j]."\">";
+					for($x=0;$x<$nbr_choices;$x++){
+						if($dsc["cols"][ $keys[$j] ]["values"][$x] == $a[ $keys[$j] ]){
+							$selected = " selected ";
+						}else{
+							$selected = "";
+						}
+						if( isset($dsc["cols"][ $keys[$j] ]["display_replace"][$x]) ){
+							$display_val = $dsc["cols"][ $keys[$j] ]["display_replace"][$x];
+						}else{
+							$display_val = $dsc["cols"][ $keys[$j] ]["values"][$x];
+						}
+						$ctrl .= " <option value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected>$display_val</option>";
+					}
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					break;
+				default:
+					$ctrl = "Not implemented yet!!!";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
 					break;
 				}
