@@ -791,17 +791,27 @@ if [ -e /usr/pkg/cyrus/bin/imapd -o -e /usr/lib/cyrus/bin/imapd -o -e /usr/local
 	if [ ""$UNIX_TYPE = "freebsd" ] ;then
 		echo "configdirectory: /var/spool/imap
 partition-default: /var/spool/mail
-admins: admin@${main_domain_name}
+admins: cyrus
 duplicatesuppression: 1
 sievedir: /var/spool/sieve
 sendmail: /usr/sbin/sendmail
 hashimapspool: yes
-lmtpsocket: /var/run/socket/lmtp
 quotawarn: 90
 virtdomains: 1
+unixhierarchysep: yes
 
-pwcheck_method: auxprop
-auxprop_plugin: sql" > /usr/local/etc/imapd.conf
+sasl_pwcheck_method: auxprop
+auxprop_plugin: sql
+
+sasl_sql_engine: mysql
+sasl_sql_hostnames: localhost
+sasl_sql_pass: ${MYSQL_DTCDAEMONS_PASS}
+sasl_sql_database: ${conf_mysql_db}
+sasl_sql_user: dtcdaemons
+sasl_sql_database: dtc
+sasl_sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
+sasl_sql_verbose: yes
+" > /usr/local/etc/imapd.conf
 
 		/usr/local/cyrus/bin/mkimap
 
@@ -845,7 +855,7 @@ if [ ""$UNIX_TYPE = "freebsd" -a -f /usr/local/lib/sasl2/libsql.so ] ;then
 auxprop_plugin: sql
 sql_engine: mysql
 sql_hostnames: localhost
-sql_user: root
+sql_user: dtcdaemons
 sql_pass: ${MYSQL_DTCDAEMONS_PASS}
 sql_database: ${conf_mysql_db}
 password_format: crypt
@@ -872,7 +882,7 @@ auxprop_plugin: sql
 
 sasl_sql_engine: mysql
 sasl_sql_hostnames: localhost
-sasl_sql_user: root
+sasl_sql_user: dtcdaemons
 sasl_sql_pass: ${MYSQL_DTCDAEMONS_PASS}
 sasl_sql_database: ${conf_mysql_db}
 sasl_password_format: crypt
@@ -1266,7 +1276,7 @@ fi
 # Modify the cyrus imapd.conf 
 #
 
-if [ -f "$PATH_CYRUS_CONF" ]
+if [ -f "$PATH_CYRUS_CONF" -a  ""$UNIX_TYPE != "freebsd" ]
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> modifying cyrus config"

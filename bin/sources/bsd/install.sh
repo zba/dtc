@@ -78,6 +78,8 @@ PATH_CGIBIN="${LOCALBASE}/www/cgi-bin"
 PATH_SUDOERS_CONF="${LOCALBASE}/etc/sudoers"
 PATH_RRDTOOL="${LOCALBASE}/bin/rrdtool"
 
+PATH_CYRUS_CONF=/usr/local/etc/imapd.conf
+
 PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
