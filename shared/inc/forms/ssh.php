@@ -1,5 +1,8 @@
 <?php
 
+function sshAccountsCallback (){
+}
+
 ////////////////////////////////////////////////////
 // One domain name ssh account collection edition //
 ////////////////////////////////////////////////////
@@ -23,6 +26,60 @@ function drawAdminTools_SSH($domain,$adm_path){
 
 	global $txt_number_of_active_ssh;
 	global $txt_maxnumber_of_ssh_account_reached;
+
+	global $pro_mysql_ssh_table;
+
+        // Build the popup values and display values arrays
+	$path_popup_vals = array();
+	$path_popup_disp = array();
+	$path_popup_vals[] = "$adm_path";
+	$path_popup_disp[] = "/ [ uses www ]";
+	$path_popup_vals[] = "$adm_path/$edit_domain";
+	$path_popup_disp[] = "/$edit_domain [ uses www ]";
+	$nbr_subdomains = sizeof($domain["subdomains"]);
+	for($i=0;$i<$nbr_subdomains;$i++){
+		$sub_name = $domain["subdomains"][$i]["name"];
+		$path_popup_vals[] = "$adm_path/$edit_domain/subdomains/$sub_name";
+		$path_popup_disp[] = "/$edit_domain/subdomains/$sub_name";
+	}
+
+	$dsc = array(
+		"title" => $txt_ssh_account_list[$lang],
+		"new_item_title" => $txt_ssh_new_account[$lang],
+		"new_item_link" => $txt_ssh_new_account_link[$lang],
+		"edit_item_title" => $txt_ssh_account_edit[$lang],
+		"table_name" => $pro_mysql_ssh_table,
+		"action" => "ssh_access_editor",
+		"forward" => array("adm_login","adm_pass","addrlink"),
+		"id_fld" => "id",
+		"list_fld_show" => "login",
+		"max_item" => $domain["max_ssh"],
+		"num_item_txt" => $txt_number_of_active_ssh[$lang],
+		"create_item_callback" => "sshAccountsCallback",
+		"where_list" => array(
+			"hostname" => $domain["name"]),
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"login" => array(
+				"type" => "text",
+				"check" => "dtc_login",
+				"legend" => $txt_login_login[$lang]),
+			"password" => array(
+				"type" => "password",
+				"check" => "dtc_pass",
+				"legend" => $txt_login_pass[$lang]),
+			"homedir" => array(
+				"type" => "popup",
+				"values" => $path_popup_vals,
+				"display_replace" => $path_popup_disp,
+				"legend" => $txt_path[$lang])
+			)
+		);
+	$txt .= dtcListItemsEdit($dsc);
+	return $txt;
 
 	if(isset($domain["sshs"])){
 		$nbr_ssh = sizeof($domain["sshs"]);

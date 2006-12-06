@@ -217,10 +217,10 @@ function drawAdminTools_VPS($admin,$vps){
 	}else if($vps_remote_info == "mkos"){
 		$out .= $txt_please_wait_until_reinstall_os_finished[$lang]."<br><br>";
 	}else if($vps_remote_info == true){
-		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\"
+		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\">
 <input type=\"submit\" value=\"".$txt_gracefully_shutdown_xm_shutdown[$lang]."\">
 </form>";
-		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\"
+		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\">
 <input type=\"submit\" value=\"".$txt_immediate_kill_xm_destroy[$lang]."\">
 </form>";
 		$out .= $txt_to_do_a_file_system_check_or_operating_system_reinstallation[$lang]."<br><br>";
