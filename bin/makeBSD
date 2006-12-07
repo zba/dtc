@@ -109,8 +109,8 @@ echo "@dirrm %%DTCROOT%%/etc/zones
 rm $PORT_BUILD/pkg-plist.tmp $PORT_BUILD/pkg-plist.tmp2
 rm -r share
 
-mkdir sysutils
-mv $PORT_BUILD sysutils/dtc
+mkdir -p sysutils/dtc
+mv $PORT_BUILD/* sysutils/dtc/
 # Those are slave ports, and is to be activatd in case of changes inside DTC's needs
 
 #mkdir -p lang/php4-dtc
