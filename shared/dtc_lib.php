@@ -64,6 +64,8 @@ if(file_exists($dtcshared_path."/dtcrm")){
 	include("$dtcshared_path/dtcrm/strings.php");
 	include("$dtcshared_path/dtcrm/draw.php");	// Functions Draws the forms for domain-name registration and paiement
 }
+#include "$dtcshared_path/cyradm.php";
+#include "$dtcshared_path/cyrus.php";
 require("$dtcshared_path/inc/draw.php");		// Functions that draws all user  forms
 
 ?>

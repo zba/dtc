@@ -3,8 +3,69 @@
 ////////////////////////////////////////////////////
 // One domain name ftp account collection edition //
 ////////////////////////////////////////////////////
+$htaccess_edit_flag_selected_subdomain = "no";
+function subdomainSelector($domain){
+	global $adm_login;
+	global $adm_pass;
+	global $addrlink;
+	global $htaccess_edit_flag_selected_subdomain;
+	$out = "";
+
+	$nbr_subdomains = sizeof($domain["subdomains"]);
+	$subdomain_selected = "no";
+	for($i=0;$i<$nbr_subdomains;$i++){
+		if($i != 0){
+			$out .= " - ";
+		}
+		if(isset($_REQUEST["edit_subdomain"]) && $_REQUEST["edit_subdomain"] == $domain["subdomains"][$i]["name"]){
+			$htaccess_edit_flag_selected_subdomain = "yes";
+			$link1 = "";
+			$link2 = "";
+		}else{
+			$link1 = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_subdomain=".$domain["subdomains"][$i]["name"]."\">";
+			$link2 = "</a>";
+		}
+		$out .= $link1.$domain["subdomains"][$i]["name"].$link2;
+	}
+	$out .= "<br>";
+	return $out;
+}
 
 function drawAdminTools_Tools($domain){
+	global $adm_login;
+	global $adm_pass;
+	global $addrlink;
+	global $lang;
+
+	global $htaccess_edit_flag_selected_subdomain;
+
+	$out = "";
+
+	$out .= subdomainSelector($domain);
+	
+	if($htaccess_edit_flag_selected_subdomain == "yes"){
+		if(isset($_REQUEST["edit_folder"]) && $_REQUEST["edit_folder"] == "/"){
+			$link1 = "";
+			$link2 = "";
+		}else{
+			$link1 = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_subdomain=".$domain["subdomains"][$i]["name"]."&edit_folder=/\">";
+			$link2 = "</a>";
+		}
+		$out .= "$link1 / $link2";
+
+		if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (($file = readdir($dh)) !== false) {
+					$out .= "fichier : $file : type : " . filetype($dir . $file);
+				}
+				closedir($dh);
+			}
+		}
+	}
+	return $out;
+}
+
+/*function drawAdminTools_Tools($domain){
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
@@ -109,7 +170,7 @@ require valid-user";
 	}
 	return $txt;
 }
-
+*/
 function crypt_password($password) {
 	if (empty($password))
 		return "** EMPTY PASSWORD **";

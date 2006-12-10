@@ -1,5 +1,5 @@
 <?php
-
+/*
 require("$dtcshared_path/inc/sql/ftp_strings.php");
 
 /////////////////////////////
@@ -87,5 +87,5 @@ if(isset($_REQUEST["update_ftp_account"]) && $_REQUEST["update_ftp_account"] == 
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 	}
 }
-
+*/
 ?>

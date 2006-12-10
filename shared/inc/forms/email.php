@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.34 2006/12/10 10:34:43 thomas Exp $
+ * @version $Id: email.php,v 1.35 2006/12/10 12:58:06 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -378,6 +378,8 @@ function emailAccountsCreateCallback ($id){
 	global $edit_domain;
 	global $cyrus_used;
 
+	global $CYRUS;
+
 	$q = "SELECT * FROM $pro_mysql_pop_table WHERE autoinc='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	$n = mysql_num_rows($r);
@@ -408,15 +410,52 @@ function emailAccountsCreateCallback ($id){
 		if ($error!=0){
 			die ("imap_login Error $error");
 		}
-		$result=$cyr_conn->createmb("user/" . $_REQUEST["newmail_login"]."@".$edit_domain);
-		$result=$cyr_conn->createmb("user/" . $_REQUEST["newmail_login"]."/".$_REQUEST["newmail_spam_mailbox"]."@".$edit_domain);
-		$result = $cyr_conn->setacl("user/" . $_REQUEST["newmail_login"]."@".$edit_domain, $CYRUS['ADMIN'], "lrswipcda");
-		$result = $cyr_conn->setmbquota("user/" . $_REQUEST["edit_mailbox"]."@".$edit_domain, $quota);
+		$result=$cyr_conn->createmb("user/" . $a["id"]."@".$edit_domain);
+		$result=$cyr_conn->createmb("user/" . $a["id"]."/".$a["spam_mailbox"]."@".$edit_domain);
+		$result = $cyr_conn->setacl("user/" . $a["id"]."@".$edit_domain, $CYRUS['ADMIN'], "lrswipcda");
+		$result = $cyr_conn->setmbquota("user/" . $a["id"]."@".$edit_domain, $a["quota_size"]);
 	}
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	return "";
 }
+function emailAccountsEditCallback ($id){
+	global $cyrus_used;
+
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE autoinc='$id';";
+	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find created email line ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+
+	$crypted_pass = crypt($a["passwd"], dtc_makesalt());
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass' WHERE autoinc='$id';";
+	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+
+	writeDotQmailFile($a["login"],$a["mbox_host"]);
+	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
+
+	if ($cyrus_used){
+		# login to cyradm
+		$cyr_conn = new cyradm;
+		$error=$cyr_conn -> imap_login();
+		if ($error!=0){
+			die ("imap_login Error $error");
+		}
+		if (!$_REQUEST["cyrus_quota"]){
+			die ("invalid quota");
+		}
+		$quota=$_REQUEST["cyrus_quota"];
+		$result = $cyr_conn->setmbquota("user/" . $_REQUEST["edit_mailbox"]."@".$edit_domain, $a["quota_used"]
+		);
+	}
+	return "";
+}
+
 function emailAccountsDeleteCalaback ($id){
+	triggerMXListUpdate();
+	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	return "";
 }
 function drawAdminTools_Emails($domain){
@@ -469,6 +508,7 @@ function drawAdminTools_Emails($domain){
 		"num_item_txt" => $txt_number_of_active_mailbox[$lang],
 		"create_item_callback" => "emailAccountsCreateCallback",
 		"delete_item_callback" => "emailAccountsDeleteCalaback",
+		"edit_item_callback" => "emailAccountsEditCallback",
 		"where_list" => array(
 			"mbox_host" => $domain["name"]),
 		"cols" => array(
@@ -529,11 +569,37 @@ function drawAdminTools_Emails($domain){
 				"rows" => "7")
 			)
 		);
-        $out .= dtcListItemsEdit($dsc);
+        $list_items = dtcListItemsEdit($dsc);
+
+        // We have to query again, in case something has changed
+        $q = "SELECT id FROM $pro_mysql_pop_table WHERE mbox_host='".$domain["name"]."';";
+        $r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+        $n = mysql_num_rows($r);
+	$catch_popup = "<option value=\"no-mail-account\">".$txt_mail_catch_no[$lang]."</option>";
+        for($i=0;$i<$n;$i++){
+        	$a = mysql_fetch_array($r);
+        	if($a["id"] == $domain["catchall_email"]){
+        		$selected = " selected ";
+		}else{
+			$selected = " ";
+		}
+		$catch_popup .= "<option value=\"".$a["id"]."\" $selected>".$a["id"]."</option>";
+        }
+	$out .= "<b><u>".$txt_mail_catch_all_deliver[$lang].":</u></b><br>";
+	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
+	Catchall: <input type=\"hidden\" name=\"action\" value=\"set_catchall_account\">
+	<select name=\"catchall_popup\">$catch_popup</select><input type=\"image\" src=\"gfx/stock_apply_20.png\">
+</form>";
+	
+	$out .= $list_items;
 	return $out;
 
-/*
 
+/*
 	if ($cyrus_used)
 	{
 		# login to cyradm

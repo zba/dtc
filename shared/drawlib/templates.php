@@ -872,6 +872,9 @@ function dtcListItemsEdit($dsc){
 		}else{
 			$q = "UPDATE ".$dsc["table_name"]." SET $reqs $where AND $id_fldname='$id_fld_value';";
 			$r = mysql_query($q)or $out .= "<font color=\"red\">Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error()."</font>";
+			if(isset($dsc["edit_item_callback"])){
+				$dsc["edit_item_callback"]($id_fld_value);
+			}
 		}
 	}else if( isset($_REQUEST["action"]) && $_REQUEST["action"] == $dsc["action"]."_delete_item" ){
 		for($i=0;$i<$nbr_fld;$i++){

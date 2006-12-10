@@ -1,6 +1,4 @@
 <?php
-#include "$dtcshared_path/cyradm.php";
-#include "$dtcshared_path/cyrus.php";
 
 require("$dtcshared_path/inc/sql/email_strings.php");
 
@@ -43,6 +41,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 	}
 }
 //$edit_domain $newmail_login $newmail_redirect1 $newmail_pass $newmail_redirect2 $newmail_deliver_localy
+/*
 if(isset($_REQUEST["addnewmailtodomain"]) && $_REQUEST["addnewmailtodomain"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
@@ -118,26 +117,10 @@ VALUES ('".$_REQUEST["newmail_login"]."', '$conf_dtc_system_uid', '$conf_dtc_sys
 				die ("imap_login Error $error");
 			}
 			$result=$cyr_conn->createmb("user/" . $_REQUEST["newmail_login"]."@".$edit_domain);
-/*	this doesn't seem to work so lets just forget it for the moment
-				if (!$result){
-				echo "error creating mailbox user/" . $_REQUEST["newmail_login"]."@".$edit_domain;
-			}
-*/
 			# create spam mailbox
 			$result=$cyr_conn->createmb("user/" . $_REQUEST["newmail_login"]."/".$_REQUEST["newmail_spam_mailbox"]."@".$edit_domain);
-			/*
-			if (!$result){
-				echo "error creating mailbox user/" . $_REQUEST["newmail_login"]."@".$edit_domain;
-			}
-			*/
 			# set ACL so that admin can remove mailbox again
 			$result = $cyr_conn->setacl("user/" . $_REQUEST["newmail_login"]."@".$edit_domain, $CYRUS['ADMIN'], "lrswipcda");
-			/*
-			if (!$result)
-			{
-				echo "could not set ACL for user/" . $_REQUEST["newmail_login"]."@".$edit_domain;
-			}
-			*/
 			# CL ToDo change this ###
 			if (!$_REQUEST["cyrus_quota"])
 			{ die ("invalid quota"); }
@@ -152,7 +135,7 @@ VALUES ('".$_REQUEST["newmail_login"]."', '$conf_dtc_system_uid', '$conf_dtc_sys
 /////////////////////////////////////////////////////////
 // $edit_domain $edit_mailbox $editmail_pass $editmail_redirect1 $editmail_redirect2 $editmail_deliver_localy
 /////////////////////////////////////////////////////////
-if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "Ok"){
+/*if(isset($_REQUEST["modifymailboxdata"]) && $_REQUEST["modifymailboxdata"] == "Ok"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 
 	if(!isMailbox($_REQUEST["edit_mailbox"])){
@@ -265,5 +248,5 @@ if(isset($_REQUEST["delemailaccount"]) && $_REQUEST["delemailaccount"] == "Del")
 		$cyr_conn->deletemb("user/".$_REQUEST["edit_mailbox"]."@".$edit_domain);
 	}
 }
-
+*/
 ?>
