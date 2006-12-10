@@ -1,13 +1,13 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.13 2006/11/30 08:19:39 thomas Exp $
+ * @version $Id: subdomain.php,v 1.14 2006/12/10 08:57:14 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
 
 
-function subdomainCreateDirsCallBack(){
+function subdomainCreateDirsCallBack($id){
 	global $adm_login;
 	global $conf_chroot_path;
 	global $conf_demo_version;
@@ -34,7 +34,7 @@ function subdomainCreateDirsCallBack(){
 	return;
 }
 
-function subdomainDeleteDirsCallBack(){
+function subdomainDeleteDirsCallBack($id){
 	global $adm_login;
 	global $pro_mysql_subdomain_table;
 
@@ -42,7 +42,7 @@ function subdomainDeleteDirsCallBack(){
 	$doms = explode("/",$_REQUEST["addrlink"]);
 	$domain = $doms[0];
 
-	$q = "SELECT * FROM $pro_mysql_subdomain_table WHERE id='".$_REQUEST["id"]."';";
+	$q = "SELECT * FROM $pro_mysql_subdomain_table WHERE id='$id';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){

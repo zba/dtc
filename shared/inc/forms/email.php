@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.32 2006/11/03 04:06:35 thomas Exp $
+ * @version $Id: email.php,v 1.33 2006/12/10 08:57:14 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -369,6 +369,45 @@ function drawAdminTools_emailPanel($mailbox){
 /////////////////////////////////////////
 // One domain email collection edition //
 /////////////////////////////////////////
+function emailAccountsCreateCallback ($id){
+	global $pro_mysql_pop_table;
+	global $conf_dtc_system_uid;
+	global $conf_dtc_system_gid;
+	global $adm_login;
+	global $edit_domain;
+
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE autoinc='$id';";
+	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find created email line ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+	$crypted_pass = crypt($a["passwd"], dtc_makesalt());
+	writeDotQmailFile($a["id"],$a["mbox_host"]);
+	$admin_path = getAdminPath($adm_login);
+	$box_path = "$admin_path/$edit_domain/Mailboxs/".$a["id"];
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE id='$id';";
+	$r2 = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+	triggerMXListUpdate();
+	if ($cyrus_used){
+		# login to cyradm
+		$cyr_conn = new cyradm;
+		$error=$cyr_conn -> imap_login();
+		if ($error!=0){
+			die ("imap_login Error $error");
+		}
+		$result=$cyr_conn->createmb("user/" . $_REQUEST["newmail_login"]."@".$edit_domain);
+		$result=$cyr_conn->createmb("user/" . $_REQUEST["newmail_login"]."/".$_REQUEST["newmail_spam_mailbox"]."@".$edit_domain);
+		$result = $cyr_conn->setacl("user/" . $_REQUEST["newmail_login"]."@".$edit_domain, $CYRUS['ADMIN'], "lrswipcda");
+		$result = $cyr_conn->setmbquota("user/" . $_REQUEST["edit_mailbox"]."@".$edit_domain, $quota);
+	}
+	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
+	return;
+}
+function emailAccountsDeleteCalaback ($id){
+	return;
+}
 function drawAdminTools_Emails($domain){
 
 	global $adm_login;
@@ -400,6 +439,89 @@ function drawAdminTools_Emails($domain){
 	global $CYRUS;
 
 	global $conf_hide_password;
+	global $pro_mysql_pop_table;
+
+	checkLoginPassAndDomain($adm_login,$adm_pass,$domain["name"]);
+
+	$out = "";
+	$dsc = array(
+		"title" => $txt_mail_liste_of_your_box[$lang],
+		"new_item_title" => $txt_mail_new_mailbox[$lang],
+		"new_item_link" => $txt_mail_new_mailbox[$lang],
+		"edit_item_title" => $txt_mail_edit[$lang],
+		"table_name" => $pro_mysql_pop_table,
+		"action" => "pop_access_editor",
+		"forward" => array("adm_login","adm_pass","addrlink"),
+		"id_fld" => "autoinc",
+		"list_fld_show" => "id",
+		"max_item" => $domain["max_email"],
+		"num_item_txt" => $txt_number_of_active_mailbox[$lang],
+		"create_item_callback" => "emailAccountsCreateCallback",
+		"delete_item_callback" => "emailAccountsDeleteCalaback",
+		"where_list" => array(
+			"mbox_host" => $domain["name"]),
+		"cols" => array(
+			"autoinc" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => $txt_login_login[$lang]),
+			"id" => array(
+				"type" => "text",
+				"disable_edit" => "yes",
+				"happen" => "@".$domain["name"],
+				"legend" => $txt_login_login[$lang]),
+			"passwd" => array(
+				"type" => "password",
+				"check" => "dtc_pass",
+				"legend" => $txt_login_pass[$lang]),
+			"quota_size" => array(
+				"type" => "text",
+				"check" => "number",
+				"default" => "0",
+				"legend" => $txt_mail_quota[$lang]),
+			"redirect1" => array(
+				"type" => "text",
+				"check" => "email",
+				"can_be_empty" => "yes",
+				"empty_makes_sql_null" => "",
+				"legend" => $txt_mail_redirection1[$lang]),
+			"redirect2" => array(
+				"type" => "text",
+				"check" => "email",
+				"can_be_empty" => "yes",
+				"empty_makes_sql_null" => "yes",
+				"legend" => $txt_mail_redirection2[$lang]),
+			"localdeliver" => array(
+				"type" => "checkbox",
+				"values" => array(
+					"yes","no"),
+				"legend" => $txt_mail_deliver_localy[$lang]),
+			"spam_mailbox_enable" => array(
+				"type" => "checkbox",
+				"values" => array(
+					"yes","no"),
+				"legend" => $txt_mail_spam_mailbox_enable[$lang]),
+			"spam_mailbox" => array(
+				"type" => "text",
+				"default" => "SPAM",
+				"legend" => $txt_mail_spam_mailbox[$lang]),
+			"vacation_flag" => array(
+				"type" => "checkbox",
+				"values" => array(
+					"yes","no"),
+				"default" => "no",
+				"legend" => "Check to send a bounce message."),
+			"vacation_text" => array(
+				"type" => "textarea",
+				"legend" => "Bounce message content:",
+				"cols" => "40",
+				"rows" => "7")
+			)
+		);
+        $out .= dtcListItemsEdit($dsc);
+	return $out;
+
+/*
 
 	if ($cyrus_used)
 	{
@@ -601,6 +723,7 @@ $txt=$txt.$txt_mail_deliver_localy[$lang]."</td><td><input type=\"checkbox\" nam
 	}
 	$txt .= "</b></font></font>";
 	return $txt;
+*/
 }
 
 ?>

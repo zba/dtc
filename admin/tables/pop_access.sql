@@ -1,5 +1,6 @@
 
 CREATE TABLE IF NOT EXISTS pop_access (
+  autoinc int(12) NOT NULL auto_increment,
   id varchar(32) NOT NULL default '',
   uid int(11) NOT NULL default '65534',
   gid int(11) NOT NULL default '65534',
@@ -32,5 +33,6 @@ CREATE TABLE IF NOT EXISTS pop_access (
   pass_expire int(12) NOT NULL default '0',
   vacation_flag enum('yes','no') default 'no',
   vacation_text text NOT NULL,
-  PRIMARY KEY  (id,mbox_host)
+  UNIQUE id (id,mbox_host),
+  PRIMARY KEY (autoinc)
 ) TYPE=MyISAM

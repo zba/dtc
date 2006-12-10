@@ -593,6 +593,7 @@ $dtc_database = array(
 		),
 	"pop_access" => array(
 		"vars" => array(
+			"autoinc" => "int(12) NOT NULL auto_increment",
 			"id" => "varchar(32) NOT NULL ",
 			"uid" => "int(11) NOT NULL default '65534' ",
 			"gid" => "int(11) NOT NULL default '65534' ",
@@ -629,7 +630,10 @@ $dtc_database = array(
 			"vacation_flag" => "enum('yes','no') default 'no' ",
 			"vacation_text" => "text NOT NULL "
 			),
-		"primary" => "(id,mbox_host)"
+		"primary" => "(autoinc)",
+		"unique" => array(
+			"id" => "(id,mbox_host)"
+			)
 		),
 	"product" => array(
 		"vars" => array(

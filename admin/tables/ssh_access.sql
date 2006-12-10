@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS ssh_access (
+  `id` int(12) NOT NULL auto_increment,
   login varchar(50) NOT NULL default '',
   uid int(5) NOT NULL default '65534',
   gid int(5) NOT NULL default '65534',
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS ssh_access (
   ul_bytes int(14) NOT NULL default '0',
   dl_count int(14) NOT NULL default '0',
   ul_count int(14) NOT NULL default '0',
+  PRIMARY KEY  (`id`),
   UNIQUE KEY login (login),
   KEY hostname (hostname)
 ) TYPE=MyISAM;

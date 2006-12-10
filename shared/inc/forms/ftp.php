@@ -1,6 +1,6 @@
 <?php
 
-function ftpAccountsCallback(){
+function ftpAccountsCallback($id){
 	global $pro_mysql_ftp_table;
 	global $conf_dtc_system_uid;
 	global $conf_dtc_system_gid;

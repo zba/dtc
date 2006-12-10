@@ -52,6 +52,8 @@ function dtcFromOkDraw($delete_form=""){
 //              "field4" => array(
 //			type => "textarea",
 //			legend => "Text to display"),
+//			[cols] => 40 -> Number of cols
+//			[rows] => 9 -> Number of rows
 //              "field5" => array(
 //                      type => "hyperlink"
 //                      text => "text to the link"
@@ -111,7 +113,12 @@ function dtcDatagrid($dsc){
 						$qflds .= ", ";
 					}
 					$qflds .= $keys[$i];
-					$vals .= "'".$_REQUEST[ $keys[$i] ]."'";
+					if(isset($_REQUEST[ $keys[$i] ]["happen_domain"])){
+						$happen = $_REQUEST[ $keys[$i] ]["happen_domain"];
+					}else{
+						$happen = "";
+					}
+					$vals .= "'".$_REQUEST[ $keys[$i] ].$happen."'";
 					$added_one = "yes";
 					break;
 				case "checkbox":
@@ -273,13 +280,13 @@ function dtcDatagrid($dsc){
 				}else{
 					$cols = "";
 				}
-				if( isset($dsc["cols"][ $keys[$j] ]["raws"])){
-					$raws = " cols=\"".$dsc["cols"][ $keys[$j] ]["raws"]."\" ";
+				if( isset($dsc["cols"][ $keys[$j] ]["rows"])){
+					$rows = " cols=\"".$dsc["cols"][ $keys[$j] ]["rows"]."\" ";
 				}else{
-					$raws = "";
+					$rows = "";
 				}
 				$out .= "<td class=\"dtcDatagrid_table_flds\">";
-				$out .= "<textarea $cols $raws name=\"".$keys[$j]."\">".$a[ $keys[$j] ]."</textarea>";
+				$out .= "<textarea $cols $rows name=\"".$keys[$j]."\">".$a[ $keys[$j] ]."</textarea>";
 				$out .= "</td>";
 				break;
 			case "hyperlink":
@@ -522,7 +529,6 @@ function dtcListItemsEdit($dsc){
 			switch($dsc["cols"][ $keys[$i] ]["type"]){
 			case "popup":
 			case "radio":
-			case "checkbox":
 				$nbr_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
 				$is_one_of_them = "no";
 				for($j=0;$j<$nbr_choices;$j++){
@@ -597,6 +603,26 @@ function dtcListItemsEdit($dsc){
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
 							$commit_err .= $keys[$i].": not a correct password format<br>";
+						}
+					}
+					break;
+				case "email":
+					if( !isValidEmail($_REQUEST[ $keys[$i] ]) ){
+						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+									|| $_REQUEST[ $keys[$i] ] != ""){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": not a correct email format<br>";
+						}
+					}
+					break;
+				case "number":
+					if( !isRandomNum($_REQUEST[ $keys[$i] ]) ){
+						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+									|| $_REQUEST[ $keys[$i] ] != ""){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": not a correct number format<br>";
 						}
 					}
 					break;
@@ -619,6 +645,7 @@ function dtcListItemsEdit($dsc){
 			switch($dsc["cols"][ $keys[$i] ]["type"]){
 			case "text":
 			case "password":
+			case "textarea":
 				if($added_one == "yes"){
 					$fld_names .= ",";
 					$values .= ",";
@@ -627,12 +654,28 @@ function dtcListItemsEdit($dsc){
 				if( isset($dsc["cols"][ $keys[$i] ]["empty_makes_sql_null"]) && $dsc["cols"][ $keys[$i] ]["empty_makes_sql_null"] == "yes" && $_REQUEST[ $keys[$i] ] == ""){
 					$values .= "NULL";
 				}else{
-					$values .= "'".addslashes($_REQUEST[ $keys[$i] ])."'";
+					if(isset($dsc["cols"][ $keys[$i] ]["happen_domain"])){
+						$values .= "'".addslashes($_REQUEST[ $keys[$i] ]).$dsc["cols"][ $keys[$i] ]["happen_domain"]."'";
+					}else{
+						$values .= "'".addslashes($_REQUEST[ $keys[$i] ])."'";
+					}
 				}
 				$added_one = "yes";
 				break;
-			case "popup":
 			case "checkbox":
+				if($added_one == "yes"){
+					$fld_names .= ",";
+					$values .= ",";
+				}
+				$added_one = "yes";
+				$fld_names .= $keys[$i];
+				if (isset($_REQUEST[ $keys[$i] ])) {
+					$values .= "'".$dsc["cols"][ $keys[$i] ]["values"][0]."'";
+				}else{
+					$values .= "'".$dsc["cols"][ $keys[$i] ]["values"][1]."'";
+				}
+				break;
+			case "popup":
 			case "radio":
 				if($added_one == "yes"){
 					$fld_names .= ",";
@@ -646,9 +689,15 @@ function dtcListItemsEdit($dsc){
 		}
 		if($commit_flag == "yes"){
 			$q = "INSERT INTO ".$dsc["table_name"]." ($added_insert_names $fld_names) VALUES ($added_insert_values $values);";
-			$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
-			if( isset($dsc["create_item_callback"]) ){
-				$dsc["create_item_callback"]();
+			$success = "yes";
+			$r = mysql_query($q)or $success = "no";
+			if($success == "yes"){
+				$insert_id = mysql_insert_id();
+				if( isset($dsc["create_item_callback"]) ){
+					$dsc["create_item_callback"]($insert_id);
+				}
+			}else{
+				$out .= "<font color=\"red\">Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error()."</font>";
 			}
 		}else{
 			$out .= "<font color=\"red\">Could not commit the changes because of an error in field format: <br>$commit_err</font>";
@@ -659,6 +708,8 @@ function dtcListItemsEdit($dsc){
 		$commit_err = "";
 		for($i=0;$i<$nbr_fld;$i++){
 			switch($dsc["cols"][ $keys[$i] ]["type"]){
+			case "checkbox":
+				break;
 			case "popup":
 			case "radio":
 			case "checkbox":
@@ -739,6 +790,26 @@ function dtcListItemsEdit($dsc){
 						}
 					}
 					break;
+				case "email":
+					if( !isValidEmail($_REQUEST[ $keys[$i] ]) ){
+						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+									|| $_REQUEST[ $keys[$i] ] != ""){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": not a correct email format<br>";
+						}
+					}
+					break;
+				case "number":
+					if( !isRandomNum($_REQUEST[ $keys[$i] ]) ){
+						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+									|| $_REQUEST[ $keys[$i] ] != ""){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": not a correct number format<br>";
+						}
+					}
+					break;
 				default:
 					$commit_flag = "no";
 					$commit_err .= $keys[$i].": unknown field checking type (".$dsc["cols"][ $keys[$i] ]["check"].").<br>";
@@ -756,12 +827,18 @@ function dtcListItemsEdit($dsc){
 				$id_fld_value = addslashes($_REQUEST[ $keys[$i] ]);
 				break;
 			case "text":
+			case "textarea":
 			case "password":
 				if( !isset($dsc["cols"][ $keys[$i] ]["disable_edit"]) || $dsc["cols"][ $keys[$i] ]["disable_edit"] != "yes"){
 					if($added_one == "yes"){
 						$reqs .= ",";
 					}
-					$reqs .= $keys[$i]."='".addslashes($_REQUEST[ $keys[$i] ])."'";
+					if( isset($dsc["cols"][ $keys[$i] ]["happen_domain"])){
+						$happen = $dsc["cols"][ $keys[$i] ]["happen_domain"];
+					}else{
+						$happen = "";
+					}
+					$reqs .= $keys[$i]."='".addslashes($_REQUEST[ $keys[$i] ]).$happen."'";
 					$added_one = "yes";
 				}
 				break;
@@ -774,8 +851,17 @@ function dtcListItemsEdit($dsc){
 				$added_one = "yes";
 				break;
 			case "checkbox":
+				if($added_one == "yes"){
+					$reqs .= ",";
+				}
+				if( isset($_REQUEST[ $keys[$i] ])){
+					$reqs .= $keys[$i]."='".$dsc["cols"][ $keys[$i] ]["values"][0]."'";
+				}else{
+					$reqs .= $keys[$i]."='".$dsc["cols"][ $keys[$i] ]["values"][1]."'";
+				}
+				break;
 			default:
-				die("Not implemented yet line ".__LINE__." file ".__FILE__);
+				die($dsc["cols"][ $keys[$i] ]["type"].": Not implemented yet line ".__LINE__." file ".__FILE__);
 				break;
 			}
 		}
@@ -785,7 +871,7 @@ function dtcListItemsEdit($dsc){
 			$out .= "<font color=\"red\">Could not commit the changes because the id is not set!</font>";
 		}else{
 			$q = "UPDATE ".$dsc["table_name"]." SET $reqs $where AND $id_fldname='$id_fld_value';";
-			$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
+			$r = mysql_query($q)or $out .= "<font color=\"red\">Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error()."</font>";
 		}
 	}else if( isset($_REQUEST["action"]) && $_REQUEST["action"] == $dsc["action"]."_delete_item" ){
 		for($i=0;$i<$nbr_fld;$i++){
@@ -796,10 +882,10 @@ function dtcListItemsEdit($dsc){
 		}
 		if( isset($id_fldname) && isset($id_fld_value) ){
 			if( isset($dsc["delete_item_callback"]) ){
-				$dsc["delete_item_callback"]();
+				$dsc["delete_item_callback"]($id_fld_value);
 			}
 			$q = "DELETE FROM ".$dsc["table_name"]." $where AND $id_fldname='".$id_fld_value."';";
-			$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
+			$r = mysql_query($q)or $out .= "<font color=\"red\">Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error()."</font>";
 		}else{
 			$out .= "<font color=\"red\">Could not commit the deletion because the id field could not be found.</font>";
 		}
@@ -855,7 +941,34 @@ function dtcListItemsEdit($dsc){
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
 					break;
 				case "text":
-					$ctrl = "<input type=\"text\" name=\"".$keys[$i]."\" value=\"\">";
+					if( isset($dsc["cols"][ $keys[$i] ]["happen_domain"]) ){
+						$happen = $dsc["cols"][ $keys[$i] ]["happen_domain"];
+					}else{
+						$happen = "";
+					}
+					if( isset($dsc["cols"][ $keys[$i] ]["happen"]) ){
+						$happen .= $dsc["cols"][ $keys[$i] ]["happen"];
+					}
+					if( isset($dsc["cols"][ $keys[$i] ]["default"]) ){
+						$ctrl_value = $dsc["cols"][ $keys[$i] ]["default"];
+					}else{
+						$ctrl_value = "";
+					}
+					$ctrl = "<input type=\"text\" name=\"".$keys[$i]."\" value=\"$ctrl_value\">$happen";
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					break;
+				case "textarea":
+					if( isset($dsc["cols"][ $keys[$i] ]["cols"]) ){
+						$ctrl_cols = " cols=\"".$dsc["cols"][ $keys[$i] ]["cols"]."\" ";
+					}else{
+						$ctrl_cols = "";
+					}
+					if( isset($dsc["cols"][ $keys[$i] ]["rows"]) ){
+						$ctrl_rows = " rows=\"".$dsc["cols"][ $keys[$i] ]["rows"]."\" ";
+					}else{
+						$ctrl_rows = "";
+					}
+					$ctrl = "<textarea $ctrl_cols $ctrl_rows name=\"".$keys[$i]."\"></textarea>";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
 					break;
 				case "radio":
@@ -883,6 +996,15 @@ function dtcListItemsEdit($dsc){
 						$ctrl .= "<input type=\"radio\" name=\"".$keys[$i]."\" value=\"".$dsc["cols"][ $keys[$i] ]["values"][$x]."\" $selected> ";
 						$ctrl .= $display_val;
 					}
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					break;
+				case "checkbox":
+					if( !isset($dsc["cols"][ $keys[$i] ]["default"]) ){
+						$checked = " checked ";
+					}else{
+						$checked = " ";
+					}
+					$ctrl = "<input type=\"checkbox\" name=\"".$keys[$i]."\" value=\"yes\" $checked>";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
 					break;
 				case "popup":
@@ -937,6 +1059,20 @@ function dtcListItemsEdit($dsc){
 					$id_fldname = $keys[$j];
 					$id_fld_value = $a[ $keys[$j] ];
 					break;
+				case "textarea":
+					if( isset($dsc["cols"][ $keys[$j] ]["cols"]) ){
+						$ctrl_cols = " cols=\"".$dsc["cols"][ $keys[$j] ]["cols"]."\" ";
+					}else{
+						$ctrl_cols = "";
+					}
+					if( isset($dsc["cols"][ $keys[$j] ]["rows"]) ){
+						$ctrl_rows = " rows=\"".$dsc["cols"][ $keys[$j] ]["rows"]."\" ";
+					}else{
+						$ctrl_rows = "";
+					}
+					$ctrl = "<textarea $ctrl_cols $ctrl_rows name=\"".$keys[$j]."\">".$a[ $keys[$j] ]."</textarea>";
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					break;
 				case "password":
 				case "text":
 					if( isset($dsc["cols"][ $keys[$j] ]["disable_edit"]) && $dsc["cols"][ $keys[$j] ]["disable_edit"] == "yes"){
@@ -949,12 +1085,21 @@ function dtcListItemsEdit($dsc){
 					}else{
 						$size = "";
 					}
+					if( isset($dsc["cols"][ $keys[$j] ]["happen_domain"]) && ereg($dsc["cols"][ $keys[$j] ]["happen_domain"]."$",$a[ $keys[$j] ])){
+						$input_disp_value = substr($a[ $keys[$j] ],0,strlen($a[ $keys[$j] ]) - strlen($dsc["cols"][ $keys[$j] ]["happen_domain"]));
+						$happen = $dsc["cols"][ $keys[$j] ]["happen_domain"];
+					}else{
+						$input_disp_value = $a[ $keys[$j] ];
+						$happen = "";
+					}
 					if($the_fld["type"] == "password"){
 						$genpass = autoGeneratePassButton($dsc["action"]."_save_item_frm",$keys[$j]);
-						$ctrl = "<input type=\"password\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\" $disabled>$genpass";
+						$input_disp_type = "password";
 					}else{
-						$ctrl = "<input type=\"text\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\" $disabled>";
+						$genpass = "";
+						$input_disp_type = "text";
 					}
+					$ctrl = "<input type=\"$input_disp_type\" $size name=\"".$keys[$j]."\" value=\"$input_disp_value\" $disabled>$genpass$happen";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
 					break;
 				case "radio":
@@ -969,6 +1114,15 @@ function dtcListItemsEdit($dsc){
 						$ctrl .= " <input type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
 						$ctrl .= $dsc["cols"][ $keys[$j] ]["values"][$x];
 					}
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					break;
+				case "checkbox":
+					if($dsc["cols"][ $keys[$j] ]["values"][0] == $a[ $keys[$j] ]){
+						$selected = " checked ";
+					}else{
+						$selected = " ";
+					}
+					$ctrl = "<input type=\"checkbox\" name=\"".$keys[$j]."\" value=\"yes\" ".$selected.">";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
 					break;
 				case "popup":

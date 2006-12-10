@@ -1,6 +1,6 @@
 <?php
 
-function sshAccountsCallback (){
+function sshAccountsCallback ($id){
 }
 
 ////////////////////////////////////////////////////
@@ -28,6 +28,8 @@ function drawAdminTools_SSH($domain,$adm_path){
 	global $txt_maxnumber_of_ssh_account_reached;
 
 	global $pro_mysql_ssh_table;
+
+	$txt = "";
 
         // Build the popup values and display values arrays
 	$path_popup_vals = array();
@@ -66,6 +68,7 @@ function drawAdminTools_SSH($domain,$adm_path){
 			"login" => array(
 				"type" => "text",
 				"check" => "dtc_login",
+				"happen_domain" => "@".$domain["name"],
 				"legend" => $txt_login_login[$lang]),
 			"password" => array(
 				"type" => "password",
