@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.33 2006/12/10 08:57:14 thomas Exp $
+ * @version $Id: email.php,v 1.34 2006/12/10 10:34:43 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -371,10 +371,12 @@ function drawAdminTools_emailPanel($mailbox){
 /////////////////////////////////////////
 function emailAccountsCreateCallback ($id){
 	global $pro_mysql_pop_table;
+	global $pro_mysql_list_table;
 	global $conf_dtc_system_uid;
 	global $conf_dtc_system_gid;
 	global $adm_login;
 	global $edit_domain;
+	global $cyrus_used;
 
 	$q = "SELECT * FROM $pro_mysql_pop_table WHERE autoinc='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
@@ -383,11 +385,20 @@ function emailAccountsCreateCallback ($id){
 		die("Cannot find created email line ".__LINE__." file ".__FILE__);
 	}
 	$a = mysql_fetch_array($r);
+
+	$test_query = "SELECT * FROM $pro_mysql_list_table WHERE name='".$a["id"]."' AND domain='$edit_domain'";
+	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+	$testnum_rows = mysql_num_rows($test_result);
+	if($testnum_rows >= 1){
+		$q = "DELETE FROM $pro_mysql_pop_table WHERE autoinc='$id';";
+		$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+		return "<font color=\"red\">Error: a mailing list already exists with this name!</font>";
+	}
 	$crypted_pass = crypt($a["passwd"], dtc_makesalt());
 	writeDotQmailFile($a["id"],$a["mbox_host"]);
 	$admin_path = getAdminPath($adm_login);
 	$box_path = "$admin_path/$edit_domain/Mailboxs/".$a["id"];
-	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE id='$id';";
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE autoinc='$id';";
 	$r2 = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	triggerMXListUpdate();
 	if ($cyrus_used){
@@ -403,10 +414,10 @@ function emailAccountsCreateCallback ($id){
 		$result = $cyr_conn->setmbquota("user/" . $_REQUEST["edit_mailbox"]."@".$edit_domain, $quota);
 	}
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
-	return;
+	return "";
 }
 function emailAccountsDeleteCalaback ($id){
-	return;
+	return "";
 }
 function drawAdminTools_Emails($domain){
 

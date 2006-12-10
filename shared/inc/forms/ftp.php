@@ -1,14 +1,13 @@
 <?php
 
-function ftpAccountsCallback($id){
+function ftpAccountsCallback ($id){
 	global $pro_mysql_ftp_table;
 	global $conf_dtc_system_uid;
 	global $conf_dtc_system_gid;
 
-	// Todo: optimize by changing only the UID/GID of the revelant account.
-	$q = "UPDATE $pro_mysql_ftp_table SET uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE 1;";
+	$q = "UPDATE $pro_mysql_ftp_table SET uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE id='$id';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	return;
+	return "";
 }
 
 ////////////////////////////////////////////////////

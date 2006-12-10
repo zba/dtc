@@ -1,6 +1,13 @@
 <?php
 
 function sshAccountsCallback ($id){
+	global $pro_mysql_ssh_table;
+	global $conf_dtc_system_uid;
+	global $conf_dtc_system_gid;
+
+	$q = "UPDATE $pro_mysql_ssh_table SET uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE id='$id';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	return "";
 }
 
 ////////////////////////////////////////////////////

@@ -694,7 +694,7 @@ function dtcListItemsEdit($dsc){
 			if($success == "yes"){
 				$insert_id = mysql_insert_id();
 				if( isset($dsc["create_item_callback"]) ){
-					$dsc["create_item_callback"]($insert_id);
+					$out .= $dsc["create_item_callback"]($insert_id);
 				}
 			}else{
 				$out .= "<font color=\"red\">Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error()."</font>";
