@@ -792,12 +792,13 @@ if [ -e /usr/pkg/cyrus/bin/imapd -o -e /usr/lib/cyrus/bin/imapd -o -e /usr/local
 		echo "configdirectory: /var/spool/imap
 partition-default: /var/spool/mail
 admins: cyrus
+defaultdomain: mx.${main_domain_name}
 duplicatesuppression: 1
 sievedir: /var/spool/sieve
 sendmail: /usr/sbin/sendmail
 hashimapspool: yes
 quotawarn: 90
-virtdomains: 1
+virtdomains: userid
 unixhierarchysep: yes
 
 sasl_pwcheck_method: auxprop
@@ -808,7 +809,6 @@ sasl_sql_hostnames: localhost
 sasl_sql_database: ${conf_mysql_db}
 sasl_sql_user: dtcdaemons
 sasl_sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
-sasl_sql_verbose: yes
 " > /usr/local/etc/imapd.conf
 
 		if [ ! -z ${MYSQL_DTCDAEMONS_PASS} ]; then
