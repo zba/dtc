@@ -782,7 +782,7 @@ if [ $conf_cyrus_enable = "yes" ]; then
 'HOST'  => 'localhost',
 'PORT'  => 143,
 'ADMIN' => 'cyrus@mx.${main_domain_name}',
-'PASS'  => '${MYSQL_DTCDAEMONS_PASS}'
+'PASS'  => '${conf_cyrus_pass}'
 );
 \$cyrus_used=1;
 \$cyrus_default_quota=51200;
