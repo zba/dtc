@@ -400,7 +400,7 @@ fi
 
 # Insert the cyrus user so we can use cyradm
 if [ ""$UNIX_TYPE = "freebsd" ] ;then
-$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@mx."${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@"${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
 else
 $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
 fi
