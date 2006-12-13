@@ -399,7 +399,11 @@ if [ ""$conf_gen_ssl_cert = "true" ]; then
 fi
 
 # Insert the cyrus user so we can use cyradm
-$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus','"${MYSQL_DTCDAEMONS_PASS}"',ENCRYPT('"${MYSQL_DTCDAEMONS_PASS}"'))"
+if [ ""$UNIX_TYPE = "freebsd" ] ;then
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@mx."${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+else
+$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+fi
 
 # The panel needs root access (it does database management)
 echo "<?php" > $PATH_DTC_SHARED"/shared/mysql_config.php"

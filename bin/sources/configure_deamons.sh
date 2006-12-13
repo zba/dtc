@@ -775,13 +775,13 @@ if ! [ -e $PATH_DTC_ETC/dtc404/404.php ]; then
 fi
 
 cyrus_auth_php="$PATH_DTC_SHARED/shared/cyrus.php"
-if [ -e /usr/pkg/cyrus/bin/imapd -o -e /usr/lib/cyrus/bin/imapd -o -e /usr/local/cyrus/bin/imapd -o -e /usr/cyrus/bin/imapd ]; then
+if [ $conf_cyrus_enable = "yes" ]; then
 
 	echo "<?php
 \$CYRUS = array(
 'HOST'  => 'localhost',
 'PORT'  => 143,
-'ADMIN' => 'cyrus',
+'ADMIN' => 'cyrus@mx.${main_domain_name}',
 'PASS'  => '${MYSQL_DTCDAEMONS_PASS}'
 );
 \$cyrus_used=1;
@@ -808,7 +808,7 @@ sasl_sql_engine: mysql
 sasl_sql_hostnames: localhost
 sasl_sql_database: ${conf_mysql_db}
 sasl_sql_user: dtcdaemons
-sasl_sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
+sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 " > /usr/local/etc/imapd.conf
 
 		if [ ! -z ${MYSQL_DTCDAEMONS_PASS} ]; then
@@ -844,7 +844,6 @@ fi
 if [ ""$UNIX_TYPE = "freebsd" -a -f /usr/local/lib/sasl2/libsql.so ] ;then
 	PATH_AUTH_SMTP=/usr/local/lib/sasl2/smtpd.conf
 	PATH_AUTH_SASLPASSWD=/usr/local/lib/sasl2/saslpasswd.conf
-	PATH_AUTH_CYRUS=/usr/local/etc/imapd.conf
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo "===> Adding configuration inside /usr/local/lib/sasl2"
 	fi
@@ -872,25 +871,6 @@ sql_verbose: yes" >${PATH_AUTH_SMTP}
 	fi
  
 	cp -f $PATH_AUTH_SMTP $PATH_AUTH_SASLPASSWD
-
-	if [ -f $PATH_AUTH_CYRUS ]; then
-		if ! [ -f $PATH_AUTH_CYRUS.DTC.backup ]; then
-			cp -f $PATH_AUTH_CYRUS $PATH_AUTH_CYRUS.DTC.backup
-		fi
-	fi
-
-	echo "pwcheck_method: auxprop
-auxprop_plugin: sql
-
-sasl_sql_engine: mysql
-sasl_sql_hostnames: localhost
-sasl_sql_user: dtcdaemons
-sasl_sql_pass: ${MYSQL_DTCDAEMONS_PASS}
-sasl_sql_database: ${conf_mysql_db}
-sasl_password_format: crypt
-sasl_sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
-sasl_sql_update: UPDATE pop_access SET crypt = '%v' WHERE fullemail = '%u@%r'
-sasl_sql_verbose: yes" >>$PATH_AUTH_CYRUS
 
 else
 

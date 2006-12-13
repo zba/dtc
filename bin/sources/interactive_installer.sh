@@ -93,6 +93,23 @@ else
 	echo "Qmail will be used"
 fi
 
+echo ""
+echo -n 'Are you using Cyrus IMAPd? [Y/n]: '
+read conf_cyrus_enable
+if [ ""$conf_cyrus_enable = "n" -o ""$conf_cyrus_enable = "N" ]; then
+	conf_cyrus_enable=no
+else   
+	conf_cyrus_enable=yes
+	conf_cyrus_pass=${conf_mysql_pass}
+	echo "Cyrus IMAPd will be used"
+	echo ""
+	echo -n "Password for Mail Administrator? [${conf_mysql_pass}]: "
+	read answer
+	if [ ! -z $answer ]; then
+		conf_cyrus_pass=${answer}
+	fi
+fi
+
 # Host configuration
 echo "### YOUR SERVER CONFIGURATION ###"
 echo ""
