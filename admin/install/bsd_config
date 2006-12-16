@@ -1,7 +1,6 @@
 #!/bin/sh
 
 UNIX_TYPE=freebsd
-
 VERBOSE_INSTALL=yes
 
 CONF_DTC_SYSTEM_USERNAME=dtc
