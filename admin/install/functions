@@ -912,7 +912,7 @@ modifyHTTPD_CONF () {
 
 		echoIfVerbose -n "Checking for AllowOverride..."
 		searchAndReplace $PATH_HTTPD_CONF AllowOverride\ None AllowOverride\ AuthConfig\ FileInfo\ Limit\ Indexes
-		searchAndReplace $PATH_HTTPD_CONF Options\ None memory_limit\ FollowSymLinks
+		searchAndReplace $PATH_HTTPD_CONF Options\ None Options\ FollowSymLinks
 
 		# It seems redhat has already the Listen directives...
 		# detect whether we already have Listen directives, and comment them out	# and replace with Listen 127.0.0.1:80 and 127.0.0.1:443
