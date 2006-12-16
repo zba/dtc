@@ -1,40 +1,17 @@
 Hi!
 
-Here, you DON'T want to edit the postinst and
-prerm script files. DO NOT edit them are they
-are generated using the script found in ../bin.
+To be policy compliant a package cannot modify another package config file. So
+configuring all the daemons within the installer is forbidden by debian. Even
+I don't feel it's right, this is the way it is, and there is nothing I can do
+about it.
 
-It's done like that because those scripts are
-REALLY big and it helps a lot to use it this
-way.
+The only way to have everything ready is to launch the install script by hand
+after the setup of the package:
 
-The files here are generated with a script that
-reside in ../bin. The (un)install scripts here are
-created with the scripts in ../bin/sources. The
-debian files to edit are located in
-../bin/sources/debian.
+cd /usr/share/dtc/admin/install ; ./install
 
-To build the package, follow those steps:
+You can uninstall the same way:
 
-1. Download the lastest version from CVS
-   cvs -d :pserver:anonymous@gplhost.com:/var/lib/cvs dtc
-
-2. Generate the debian source files
-   cd dtc/bin
-   ./prepareDebianTree
-   cd ..
-
-3. Make the packages (as usual)
-   dpkg-buildpackage -rfakeroot
-
-I hope this helps.
-If you make any modification in the package, please
-send your patch (using cvs diff -u) to the dtc devel
-mailing list. You can subscribe by sending a main to:
-dtcdev-subscribe@gplhost.sg
-
-Also, if that generation stuff is NOT something
-acceptable for Debian, let me know and I will move
-back to something more conventional.
+cd /usr/share/dtc/admin/install ; ./uninstall
 
 Thomas Goirand <thomas@goirand.fr>

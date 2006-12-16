@@ -1,74 +1,21 @@
 #!/bin/sh
 
 set -e
-# Automatically added by dh_installdocs
-#if [ \( "$1" = "upgrade" -o "$1" = "remove" \) -a -L /usr/doc/dtc ]; then
-#        rm -f /usr/doc/dtc
-#fi
 
-# Debian uninstall bash script for DTC
-# Written by Thomas GOIRAND <thomas@goirand.fr>
-# under LGPL Licence
-
-#DEBHELPER#
+. /usr/share/dtc/admin/install/debian_config
+. /usr/share/dtc/admin/install/functions.sh
 
 . /usr/share/debconf/confmodule
 db_version 2.0
 
-UNIX_TYPE=debian
+#DEBHELPER#
 
 db_get dtc/conf_apache_version
 conf_apache_version=$RET
-
 if [ ""$conf_apache_version = "2" ] ; then
 	PATH_HTTPD_CONF=/etc/apache2/apache2.conf
 else
 	PATH_HTTPD_CONF=/etc/apache/httpd.conf
 fi
-PATH_NAMED_CONF=/etc/bind/named.conf
-PATH_QMAIL_CTRL=/etc/qmail
-PATH_PHP_CGI="/usr/bin/php"
-PATH_PROFTPD_CONF=/etc/proftpd.conf
-PATH_DOVECOT_CONF=/etc/dovecot.conf
-PATH_COURIER_CONF_PATH=/etc/courier
-PATH_CYRUS_CONF=/etc/imapd.conf
-PATH_POSTFIX_CONF=/etc/postfix/main.cf
-PATH_POSTFIX_ETC=/etc/postfix
-PATH_SASL_START_CONF=/etc/default/saslauthd
-PATH_SASL_STARTUP=/etc/init.d/saslauthd
-PATH_SASL_SOCKET=/var/spool/postfix/var/run/saslauthd/
-PATH_SASL_PASSWD2=/usr/sbin/saslpasswd2
-PATH_USERDB_BIN=/usr/sbin/userdb
-PATH_MAILDROP_BIN=/usr/bin/maildrop
-PATH_CRONTAB_CONF=/etc/crontab
-PATH_AWSTATS_ETC=/etc/awstats
-PATH_AMAVISD_CONF=/etc/amavis/amavisd.conf
 
-PATH_DTC_ETC=/usr/share/dtc/etc
-PATH_DTC_ADMIN=/usr/share/dtc/admin
-PATH_DTC_SHARED=/usr/share/dtc
-
-# Get stored values in debconf
-
-#db_get dtc/conf_mysqlhost
-#conf_mysql_host=$RET
-#db_get dtc/conf_mysqllogin
-#conf_mysql_login=$RET
-#db_get dtc/conf_mysqlpass 
-#conf_mysql_pass=$RET 
-#db_get dtc/conf_mysqldb  
-#conf_mysql_db=$RET  
-#db_get dtc/main_domainname
-#main_domain_name=$RET
-#db_get dtc/dtc_adminsubdomain
-#dtc_admin_subdomain=$RET
-#db_get dtc/conf_ipaddr
-#conf_ip_addr=$RET
-#db_get dtc/conf_hostingpath
-#conf_hosting_path=$RET
-#db_get dtc/conf_hostingpath
-#conf_hosting_path=$RET
-#db_get dtc/conf_admlogin
-#conf_adm_login=$RET
-
-# Upon this line, here is the standard DTC uninstall script :
+DTCuninstallPackage

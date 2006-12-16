@@ -1,75 +1,81 @@
 <?php
 
 $script_start_time = time();
+$start_stamps = mktime();
 $panel_type="cronjob";
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
 require_once("genfiles/genfiles.php");
 
+echo date("Y m d / H:i:s T",$script_start_time)." Starting DTC cron job\n";
 $keep_mail_generate_flag = "no";
 $keep_dns_generate_flag = "no";
-
-// Set here your apachectl path if you need it fully (like for example
-// /usr/sbin/apachectl for debian, or /usr/local/sbin/apachectl for FreeBSD)
-if($conf_apache_version == "2"){
-	if(file_exists("/usr/sbin/apache2ctl")){
-		$APACHECTL = "/usr/sbin/apache2ctl";
-	}else if(file_exists("/usr/local/sbin/apache2ctl")){
-		$APACHECTL = "/usr/local/sbin/apache2ctl";
-	}else if(file_exists("/usr/sbin/apachectl2")){
-		$APACHECTL = "/usr/sbin/apachectl2";
-	}else if(file_exists("/usr/local/sbin/apachectl2")){
-		$APACHECTL = "/usr/local/sbin/apachectl2";
-	}
-}else{
-	if(file_exists("/usr/sbin/apachectl")){
-		$APACHECTL = "/usr/sbin/apachectl";
-	}else if(file_exists("/usr/local/sbin/apachectl")){
-		$APACHECTL = "/usr/local/sbin/apachectl";
-	}
-}
-
-if(!isset($APACHECTL) || !file_exists($APACHECTL)){
-	echo "FATAL ERROR: APACHECTL NOT FOUND, DTC CAN'T RELOAD APACHE !!!\n";
-	die();
-}
 
 // Set to yes if you want to check for qmail pop3d availability and relaunch
 // it if needed. Note that you can have to customise that cron script part
 // for your qmail installation. This is done for debian standard start script.
 $CHECK_QMAIL_POP3D = "no";
 
-echo date("Y m d / H:i:s T",$script_start_time)." Starting DTC cron job\n";
-// Let's see if DTC's mysql_config.php is OK and lock back the shared folder
-// and mysql_config.php to root:root
-if($conf_mysql_conf_ok=="yes" && $conf_demo_version  == "no"){
-	exec("chown root:$conf_nobody_group_name $dtcshared_path");
-	exec("chown root:$conf_nobody_group_name $dtcshared_path/mysql_config.php");
+function markCronflagOk ($flag) {
+	$query = "UPDATE cron_job SET $flag  WHERE 1;";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 }
 
-$query = "SELECT * FROM $pro_mysql_cronjob_table WHERE 1 LIMIT 1;";
-$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-$num_rows = mysql_num_rows($result);
-if($num_rows != 1)	die("No data in the cronjob table !!!");
-$cronjob_table_content = mysql_fetch_array($result);
+function searchApachectl () {
+	global $conf_apache_version;
+	// Set here your apachectl path if you need it fully (like for example
+	// /usr/sbin/apachectl for debian, or /usr/local/sbin/apachectl for FreeBSD)
+	if($conf_apache_version == "2"){
+		if(file_exists("/usr/sbin/apache2ctl")){
+			$APACHECTL = "/usr/sbin/apache2ctl";
+		}else if(file_exists("/usr/local/sbin/apache2ctl")){
+			$APACHECTL = "/usr/local/sbin/apache2ctl";
+		}else if(file_exists("/usr/sbin/apachectl2")){
+			$APACHECTL = "/usr/sbin/apachectl2";
+		}else if(file_exists("/usr/local/sbin/apachectl2")){
+			$APACHECTL = "/usr/local/sbin/apachectl2";
+		}
+	}else{
+		if(file_exists("/usr/sbin/apachectl")){
+			$APACHECTL = "/usr/sbin/apachectl";
+		}else if(file_exists("/usr/local/sbin/apachectl")){
+			$APACHECTL = "/usr/local/sbin/apachectl";
+		}
+	}
+	if(!isset($APACHECTL) || !file_exists($APACHECTL)){
+		echo "FATAL ERROR: APACHECTL NOT FOUND, DTC CAN'T RELOAD APACHE !!!\n";
+		die();
+	}
+	return $APACHECTL;
+}
 
+function getCronFlags () {
+	global $pro_mysql_cronjob_table;
+	$query = "SELECT * FROM $pro_mysql_cronjob_table WHERE 1 LIMIT 1;";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+	$num_rows = mysql_num_rows($result);
+	if($num_rows != 1)	die("No data in the cronjob table !!!");
+	$cronjob_table_content = mysql_fetch_array($result);
+	return $cronjob_table_content;
+}
 
-// Lock the cron flag, in case the cron script takes more than 10 minutes
-if($cronjob_table_content["lock_flag"] != "finished"){
-	echo "DB flag says that last cron job is not finished: exiting.\n
+function checkLockFlag () {
+	// Lock the cron flag, in case the cron script takes more than 10 minutes
+	if($cronjob_table_content["lock_flag"] != "finished"){
+		echo "DB flag says that last cron job is not finished: exiting.\n
 If no cronjob is running, then please please type:\n
 mysql -uroot -Ddtc -p --execute=\"UPDATE $pro_mysql_cronjob_table SET lock_flag='finished';\"\n";
-	die("Exiting NOW!");
+		die("Exiting NOW!");
+	}
+	echo "Setting-up lock flag\n";
+	$query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='inprogress' WHERE 1;";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 }
-echo "Setting-up lock flag\n";
-$query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='inprogress' WHERE 1;";
-$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
 // This function call the apropriate server to tell that this server may have
 // some change in his domain list
-function commitTriggerToRemote($a)
-{
+function commitTriggerToRemote($a){
 	commitTriggerToRemote($a, 0);
 }
 
@@ -78,8 +84,7 @@ function commitTriggerToRemote($a)
 // some change in his domain list
 // $recipients 1 - just mx recipient list
 // $recipients 0 - everything
-function commitTriggerToRemoteInternal($a, $recipients)
-{
+function commitTriggerToRemoteInternal($a, $recipients){
 	$flag = false;
 	$retry = 0;
 	if ($recipients == 1){
@@ -118,8 +123,7 @@ function commitTriggerToRemoteInternal($a, $recipients)
 //$recipients 1 = trigger only MX changes
 //returns 1 if the trigger was done
 //returns 0 if the trigger wasn't done
-function checkTriggers($recipients)
-{
+function checkTriggers($recipients){
 	global $pro_mysql_backup_table;
 	$returnValue = 0;
 	if ($recipients == 0){
@@ -145,20 +149,8 @@ function checkTriggers($recipients)
 	return $returnValue;
 }
 
-
-//first check to see if any domains OR MX have changed
-$trigger_update_done = checkTriggers(0);
-
-//if we haven't done a full update, see if we need to do just a mx update
-if ($trigger_update_done == 0)
-{
-	checkTriggers(1);
-}
-
-$start_stamps = mktime();
 ////////////////////////////////////////////////////////////
 // First find if it's time for long statistic generation. //
-// Do it all the time, for (debuging) the moment... :)    //
 ////////////////////////////////////////////////////////////
 function updateAllDomainsStats(){
 	global $pro_mysql_admin_table;
@@ -192,13 +184,8 @@ function updateAllDomainsStats(){
 			}
 			$q2 = "UPDATE $pro_mysql_domain_table SET du_stat='$domain_du' WHERE name='$domain_name';";
 			mysql_query($q2)or die("Cannot query \"$q2\" !!!".mysql_error()." in file ".__FILE__." line ".__LINE__);
-// Not needed as we do those realtime now ! :)
-//			echo "email...";
-//			sum_email($domain_name);
 			echo "ftp...";
 			sum_ftp($domain_name);
-//			echo "http...";
-//			sum_http($domain_name);
 			echo "done!\n";
 		}
 	}
@@ -220,7 +207,7 @@ function updateAllListWebArchive(){
 		$query2 = "SELECT owner FROM $pro_mysql_domain_table WHERE name='$list_domain' LIMIT 1";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
 		$row2 = mysql_fetch_array($result2);
-		$list_admin = $row2[0];
+		$list_admin = $row2["owner"];
 		echo "...webarchive updating of $list_name on $list_domain\n";
 		$admin_path = getAdminPath($list_admin);
 		$list_dir = $admin_path."/".$list_domain."/lists/".$list_domain."_".$list_name;
@@ -241,123 +228,12 @@ function updateAllListWebArchive(){
 		exec($updatewa);
 	}
 }
+function restartApache () {
+	global $conf_generated_file_path;
 
-// This will set each day at 0:00
-if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
-// This one is each hours
-// if(($start_stamps%(60*60))< 60*10){	updateAllDomainsStats();	}
-// This is each time the script is launched (all 10 minutes)
-// updateAllDomainsStats();
-
-// Update all list archives
-if(($start_stamps%(60*60))< 60*10){	updateAllListWebArchive();	}
-
-// Re-read cronjob values as long as they could have change
-// during this long job calculation !
-$query = "SELECT * FROM $pro_mysql_cronjob_table WHERE 1 LIMIT 1;";
-$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-$num_rows = mysql_num_rows($result);
-if($num_rows != 1)	die("No data in the cronjob table !!!");
-$cronjob_table_content = mysql_fetch_array($result);
-
-
-
-///////////////////////////////////////////////////////
-// First, see if we have to regenerate deamons files //
-///////////////////////////////////////////////////////
-if($cronjob_table_content["gen_vhosts"] == "yes"){
-	echo "Generating Apache vhosts\n";
-	pro_vhost_generate();
-}
-if($cronjob_table_content["gen_named"] == "yes"){
-	echo "Generating Named zonefile\n";
-	named_generate();
-}
-if($cronjob_table_content["gen_qmail"] == "yes"){
-	echo "Generating mail accounts\n";
-	mail_account_generate();
-}
-if($cronjob_table_content["gen_backup"] == "yes"){
-	echo "Generating backup script\n";
-	backup_script_generate();
-}
-if($cronjob_table_content["gen_webalizer"] == "yes"){
-	echo "Generating Webalizer stats script\n";
-	stat_script_generate();
-}
-if($cronjob_table_content["gen_ssh"] == "yes"){
-	echo "Generating SSH accounts\n";
-	ssh_account_generate();
-}
-
-///////////////////////////////////////////////////////////////////////////////////////
-// This script should be launched as root, so we have to chown the generated files ! //
-// (otherwise, the web interface wont be able to write them)                         //
-///////////////////////////////////////////////////////////////////////////////////////
-system("chown -R $conf_dtc_system_username:$conf_dtc_system_groupname $conf_generated_file_path");
-system("./checkbind.sh $conf_generated_file_path");
-//system("chmod -R 777 $conf_generated_file_path/zones");
-
-if($cronjob_table_content["qmail_newu"] == "yes"){
-	echo "Starting qmail-newu\n";
-	switch($conf_mta_type){
-	case "qmail":
-		system("/var/qmail/bin/qmail-newu");
-		break;
-	case "postfix":
-		//not sure what newu equiv in postfix
-		break;
-	}
-}
-
-if($cronjob_table_content["restart_qmail"] == "yes"){
-	switch($conf_mta_type){
-	case "postfix":
-		echo "Reloading postfix\n";
-		system("/etc/init.d/postfix reload");
-		echo "Reloading amavis\n";
-		if( file_exists ("/etc/init.d/amavis") ){
-			system("/etc/init.d/amavis force-reload");
-		}else if( file_exists ("/etc/init.d/amavisd") ){
-			// Seems a restart is best (gentoo needs it)
-			system("/etc/init.d/amavisd restart");
-		}
-		break;
-	case "qmail":
-	default:
-		echo "Sending qmail-send a HUP\n";	// This runs well on stock debian woody qmail-src package. Anyone had trouble with it ?
-		system("killall -HUP qmail-send");
-//		echo "Restarting qmail\n";		// I've read somewhere it cannot reload correcly to do qmail-send a HUP, but I've tested and it does ! :)
-//		system("/etc/init.d/qmail stop");
-//		sleep(2);
-//		system("/etc/init.d/qmail start");
-		break;
-	}
-}
-
-// Check if pop is running, restart qmail if not
-if($conf_mta_type == "qmail" && $CHECK_QMAIL_POP3D == "yes"){
-	$fp = fsockopen ($conf_addr_mail_server, 110, $errno, $errstr, 30);
-	if(!fp){
-		echo "$errno/$errstr: POP3 is not running ! Restarting qmail !!!\n";
-		system("/etc/init.d/qmail stop");
-		sleep(2);
-		system("/etc/init.d/qmail start");
-	}else{
-		fclose ($fp);
-	}
-
-}
-
-if($cronjob_table_content["reload_named"] == "yes"){
-	echo "Reloading name-server\n";
-	system("killall -HUP named");
-}
-
-if($cronjob_table_content["restart_apache"] == "yes"){
+	$APACHECTL = searchApachectl();
 	$plop = array();
 	// Now this echo is in the script itself!
-	//echo ("Testing and creating directories for vhosts...\n");
 	system("chmod +x \"$conf_generated_file_path/vhost_check_dir\"");
 	system("$conf_generated_file_path/vhost_check_dir");
 	echo "Testing apache conf\n";
@@ -368,10 +244,15 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 		system("$APACHECTL stop");
 		sleep(1);
 		while( is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 15){
-			echo "Warning: apache not stoped, will retry in 2 seconds...";
-			echo "2...";sleep(1);echo "1...";sleep(1);echo "0\n";
+			echo "Warning: apache not stoped, will check and maybe retry in 2 seconds...";
+			echo "2...";sleep(1);echo "1...";sleep(1);echo "0";
 			clearstatcache();
-			$ctl_return = system("$APACHECTL stop", $return_var);
+			if( is_file("$conf_generated_file_path/apache.pid") ){
+				echo "...retrying!\n";
+				$ctl_return = system("$APACHECTL stop", $return_var);
+			}else{
+				echo "...ok!\n";
+			}
 		}
 		clearstatcache();
 
@@ -381,10 +262,15 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 		//while( strstr($ctl_return,"httpd started") == false && $ctl_retry++ < 15){
 		// This new version should work on OS where apachectl start is quiet
 		while( !is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 15){
-			echo "Warning: apache not started, will retry in 3 seconds...";
-			sleep(1);echo "3...";sleep(1);echo "2...";sleep(1);echo "1...";sleep(1);echo "0\n";
+			echo "Warning: apache not started, will check and maybe retry in 2 seconds...";
+			echo "2...";sleep(1);echo "1...";sleep(1);echo "0";
 			clearstatcache();
-			$ctl_return = system("$APACHECTL start", $return_var);
+			if( !is_file("$conf_generated_file_path/apache.pid") ){
+				echo "...retrying!\n";
+				$ctl_return = system("$APACHECTL start", $return_var);
+			}else{
+				echo "...ok!\n";
+			}
 		}
 		// change to graceful apache restart, rather than a hard stop and start
 		// WARNING !!! Experience showed that it doesn't work sometimes !!!
@@ -394,52 +280,211 @@ if($cronjob_table_content["restart_apache"] == "yes"){
 	}
 }
 
-// If 00:00 and check the frequency of the bacup and launch it if needed
-if(($start_stamps%(60*60*24))< 60*10 && $conf_ftp_backup_activate == "yes"){
-	$do_ftp_backup = "no";
-	switch($conf_ftp_backup_frequency){
-	case "day":
-		$do_ftp_backup = "yes";
-		break;
-	case "week":
-		if(date("N",$start_stamps) == "1"){
-			$do_ftp_backup = "yes";
+function checkPop3dStarted () {
+	global $conf_mta_type;
+	global $CHECK_QMAIL_POP3D;
+	// Check if pop is running, restart qmail if not
+	if($conf_mta_type == "qmail" && $CHECK_QMAIL_POP3D == "yes"){
+		$fp = fsockopen ($conf_addr_mail_server, 110, $errno, $errstr, 30);
+		if(!fp){
+			echo "$errno/$errstr: POP3 is not running ! Restarting qmail !!!\n";
+			system("/etc/init.d/qmail stop");
+			sleep(2);
+			system("/etc/init.d/qmail start");
+		}else{
+			fclose ($fp);
 		}
-		break;
-	case "month":
-		if(date("j",$start_stamps) == "1"){
-			$do_ftp_backup = "yes";
-		}
-		break;
-	default:
-		break;
-	}
-	if($do_ftp_backup == "yes"){
-		echo "Launching ftp backup script !\n";
-		system("$conf_generated_file_path/net_backup.sh &");
+	
 	}
 }
 
-$exec_time = time() - $script_start_time;
-echo "Resetting all cron flags\n";
-$to_reset = "";
-if($keep_mail_generate_flag == "no"){
-	$to_reset .= " restart_qmail='no', gen_qmail='no', ";
-}
-if($keep_dns_generate_flag == "no"){
-	$to_reset .= " gen_named='no', reload_named='no', ";
+function checkTimeAndLaunchNetBackupScript () {
+	global $start_stamps;
+	global $conf_ftp_backup_activate;
+	global $conf_ftp_backup_activate;
+	if(($start_stamps%(60*60*24))< 60*10 && $conf_ftp_backup_activate == "yes"){	// If 00:00 and check the frequency of the bacup and launch it if needed
+		$do_ftp_backup = "no";
+		switch($conf_ftp_backup_frequency){
+		case "day":
+			$do_ftp_backup = "yes";
+			break;
+		case "week":
+			if(date("N",$start_stamps) == "1"){
+				$do_ftp_backup = "yes";
+			}
+			break;
+		case "month":
+			if(date("j",$start_stamps) == "1"){
+				$do_ftp_backup = "yes";
+			}
+			break;
+		default:
+			break;
+			}
+		if($do_ftp_backup == "yes"){
+			echo "Launching ftp backup script !\n";
+			system("$conf_generated_file_path/net_backup.sh &");
+		}
+	}
 }
 
-$query = "UPDATE cron_job SET lock_flag='finished', last_cronjob=NOW(), $to_reset  qmail_newu='no', restart_apache='no', gen_vhosts='no', gen_webalizer='no', gen_backup='no', gen_ssh='no' WHERE 1;";
-$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-if($exec_time > 60){
-	$ex_sec = $exec_time % 60;
-	$ex_min = round($exec_time / 60);
-}else{
-	$ex_sec = $exec_time;
-	$ex_min = 0;
+function cronMailSystem () {
+	global $keep_mail_generate_flag;
+	global $conf_mta_type;
+
+	$cronjob_table_content = getCronFlags();
+	if($cronjob_table_content["gen_qmail"] == "yes"){
+		echo "Generating mail accounts\n";
+		mail_account_generate();
+		if($keep_mail_generate_flag == "no"){
+			markCronflagOk ("gen_qmail='no'");
+		}
+	}
+	if($cronjob_table_content["qmail_newu"] == "yes"){
+		echo "Starting qmail-newu\n";
+		switch($conf_mta_type){
+		case "qmail":
+			system("/var/qmail/bin/qmail-newu");
+			break;
+		case "postfix":
+			//not sure what newu equiv in postfix
+			break;
+		}
+		markCronflagOk ("qmail_newu='no'");
+	}
+	if($cronjob_table_content["restart_qmail"] == "yes"){
+		switch($conf_mta_type){
+		case "postfix":
+			echo "Reloading postfix\n";
+			system("/etc/init.d/postfix reload");
+			echo "Reloading amavis\n";
+			if( file_exists ("/etc/init.d/amavis") ){
+				system("/etc/init.d/amavis force-reload");
+			}else if( file_exists ("/etc/init.d/amavisd") ){
+				// Seems a restart is best (gentoo needs it)
+				system("/etc/init.d/amavisd restart");
+			}
+			break;
+		case "qmail":
+		default:
+			echo "Sending qmail-send a HUP\n";	// This runs well on stock debian woody qmail-src package. Anyone had trouble with it ?
+			system("killall -HUP qmail-send");
+			break;
+		}
+		if($keep_mail_generate_flag == "no"){
+			markCronflagOk ("restart_qmail='no'");
+		}
+	}
 }
-echo date("Y m d / H:i:s T")." DTC cron job finished (exec time=".$ex_min.":".$ex_sec.")\n\n";
+function checkOtherServerTriggers () {
+	//first check to see if any domains OR MX have changed
+	$trigger_update_done = checkTriggers(0);
+
+	//if we haven't done a full update, see if we need to do just a mx update
+	if ($trigger_update_done == 0){
+		checkTriggers(1);
+	}
+}
+
+function checkNamedCronService () {
+	global $conf_generated_file_path;
+	global $keep_dns_generate_flag;
+	$cronjob_table_content = getCronFlags();
+	///////////////////////////////////////////////////////
+	// First, see if we have to regenerate deamons files //
+	///////////////////////////////////////////////////////
+	if($cronjob_table_content["gen_named"] == "yes"){
+		echo "Generating Named zonefile\n";
+		named_generate();
+		system("./checkbind.sh $conf_generated_file_path");
+		if($keep_dns_generate_flag == "no"){
+			markCronflagOk ("gen_named='no'");
+		}
+	}
+	if($cronjob_table_content["reload_named"] == "yes"){
+		echo "Reloading name-server\n";
+		system("killall -HUP named");
+		if($keep_dns_generate_flag == "no"){
+			markCronflagOk ("reload_named='no'");
+		}
+	}
+}
+
+function checkSSHCronService () {
+	$cronjob_table_content = getCronFlags();
+	if($cronjob_table_content["gen_ssh"] == "yes"){
+		echo "Generating SSH accounts\n";
+		ssh_account_generate();
+		markCronflagOk ("gen_ssh='no'");
+	}
+}
+
+function checkApacheCronService () {
+	$cronjob_table_content = getCronFlags();
+	if($cronjob_table_content["gen_vhosts"] == "yes"){
+		echo "Generating Apache vhosts\n";
+		pro_vhost_generate();
+		markCronflagOk ("gen_vhosts='no'");
+	}
+	if($cronjob_table_content["restart_apache"] == "yes"){
+		restartApache ();
+		markCronflagOk ("restart_apache='no'");
+	}
+}
+
+function checkWebalizerCronService () {
+	$cronjob_table_content = getCronFlags();
+	if($cronjob_table_content["gen_webalizer"] == "yes"){
+		echo "Generating Webalizer stats script\n";
+		stat_script_generate();
+		markCronflagOk ("gen_webalizer='no'");
+	}
+}
+
+function printEndTime () {
+	global $script_start_time;
+	$exec_time = time() - $script_start_time;
+	if($exec_time > 60){
+		$ex_sec = $exec_time % 60;
+		$ex_min = round($exec_time / 60);
+	}else{
+		$ex_sec = $exec_time;
+		$ex_min = 0;
+	}
+	echo date("Y m d / H:i:s T")." DTC cron job finished (exec time=".$ex_min.":".$ex_sec.")\n\n";
+}
+
+
+
+// Edit the following if you want to disable some services...
+
+checkOtherServerTriggers();
+checkNamedCronService();
+cronMailSystem();
+checkPop3dStarted();
+checkSSHCronService();
+checkApacheCronService();
+$cronjob_table_content = getCronFlags();
+if($cronjob_table_content["gen_backup"] == "yes"){
+	echo "Generating backup script\n";
+	backup_script_generate();
+	markCronflagOk ("gen_backup='no'");
+}
+// This will set each day at 0:00
+if(($start_stamps%(60*60*24))< 60*10)	updateAllDomainsStats();
+// This one is each hours
+// if(($start_stamps%(60*60))< 60*10){	updateAllDomainsStats();	}
+// This is each time the script is launched (all 10 minutes)
+// updateAllDomainsStats();
+// Update all list archives
+if(($start_stamps%(60*60))< 60*10){	updateAllListWebArchive();	}
+
+// Re-read cronjob values as long as they could have change
+// during this long job calculation !
+checkWebalizerCronService();
+$cronjob_table_content = getCronFlags();
+checkTimeAndLaunchNetBackupScript();
+printEndTime();
 exit();
 
 ?>

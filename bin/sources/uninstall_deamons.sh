@@ -428,3 +428,6 @@ rm -f ${PATH_DTC_ADMIN}/.htaccess
 rm -f ${PATH_DTC_SHARED}/shared/cyrus.php
 rm -f ${PATH_DTC_SHARED}/shared/securepay/paiement_config.php
 rm -f ${PATH_DTC_SHARED}/shared/mysql_config.php
+if [ -e /bin/dtc-chroot-shell ] ; then
+	rm /bin/dtc-chroot-shell
+fi

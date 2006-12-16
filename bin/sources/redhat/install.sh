@@ -1,10 +1,4 @@
 #!/bin/sh
-# This is the DTC's RPM interactive install configuration script
-# made by Thomas Goirand <thomas [ at ] goirand.fr>
-
-UNIX_TYPE=redhat
-
-VERBOSE_INSTALL=yes
 
 echo "###############################################################"
 echo "### Welcome to DTC config script for automatic installation ###"
@@ -43,58 +37,10 @@ else
 	exit 1
 fi 
 
-# Create our group and user
-CONF_DTC_SYSTEM_USERNAME=dtc
-CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
-if getent group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
-	echo "Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skiping creation!"
-else
-	groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
-fi
-CONF_DTC_SYSTEM_GID=`getent group ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d':' -f3`
-if getent passwd ${CONF_DTC_SYSTEM_USERNAME} >/dev/null ; then
-	echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
-else
-	useradd -m -s /bin/false -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
-fi
-CONF_DTC_SYSTEM_UID=`getent passwd ${CONF_DTC_SYSTEM_USERNAME} | cut -d':' -f3`
+. /usr/share/dtc/admin/install/redhat_config
+. /usr/share/dtc/admin/install/interactive_installer
+. /usr/share/dtc/admin/install/functions
 
-PATH_NAMED_CONF=/etc/named.conf
-PATH_QMAIL_CTRL=/var/qmail/control
-PATH_PHP_CGI=/usr/bin/php
-PATH_PHP_INI_APACHE=/etc/php.ini
-PATH_PROFTPD_CONF=/etc/proftpd.conf
-PATH_DOVECOT_CONF=/etc/dovecot.conf
-PATH_CRONTAB_CONF=/etc/crontab
-PATH_COURIER_CONF_PATH=/etc/courier
-PATH_COURIER_AUTHD_CONF_PATH=/etc/courier
-if [ ! -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc ]; then
-        if [ -f /etc/authlib/authdaemonrc ]; then
-                PATH_COURIER_AUTHD_CONF_PATH="/etc/authlib"
-        fi
-fi
-PATH_CYRUS_CONF=/etc/imapd.conf
-PATH_POSTFIX_CONF=/etc/postfix/main.cf
-PATH_POSTFIX_ETC=/etc/postfix
-PATH_SASL_START_CONF=/etc/init.d/saslauthd
-PATH_SASL_STARTUP=/etc/init.d/saslauthd
-PATH_SASL_SOCKET=/var/spool/postfix/var/run/saslauthd/
-PATH_SASL_PASSWD2=/usr/sbin/saslpasswd2
-PATH_USERDB_BIN=/usr/sbin/userdb
-PATH_MAILDROP_BIN=/usr/bin/maildrop
-PATH_HTTPD_CONF=/etc/httpd/conf/httpd.conf
-PATH_AWSTATS_ETC=/etc/awstats
-PATH_AMAVISD_CONF=/etc/amavisd.conf
-PATH_CLAMAV_CONF=/etc/clamd.conf
-PATH_DTC_ETC=/usr/share/dtc/etc
-PATH_DTC_SHARED=/usr/share/dtc
-PATH_DTC_ADMIN=/usr/share/dtc/admin
-PATH_DTC_CLIENT=/usr/share/dtc/client
-PATH_CGIBIN=/var/www/cgi-bin
-
-if [ -e /var/lib/php/session ] ; then
-	chgrp -R nobody /var/lib/php/session
-fi
-
-MKTEMP="mktemp -p /tmp"
-MYSQL_DB_SOCKET_PATH="/var/lib/mysql/mysql.sock"
+interactiveInstaller
+DTCinstallPackage
+DTCsetupDaemons

@@ -59,15 +59,15 @@ cat sources/bsd/Makefile >>$PORT_BUILD/Makefile
 
 # Create package install script
 cp sources/bsd/install.sh $PORT_BUILD/files/dtc-install.in
-cat sources/interactive_installer.sh >>$PORT_BUILD/files/dtc-install.in
-cat sources/setup_mysql_db.sh >>$PORT_BUILD/files/dtc-install.in
-cat sources/create_chroot.sh >>$PORT_BUILD/files/dtc-install.in
-cat sources/configure_deamons.sh >>$PORT_BUILD/files/dtc-install.in
+#cat sources/interactive_installer.sh >>$PORT_BUILD/files/dtc-install.in
+#cat sources/setup_mysql_db.sh >>$PORT_BUILD/files/dtc-install.in
+#cat sources/create_chroot.sh >>$PORT_BUILD/files/dtc-install.in
+#cat sources/configure_deamons.sh >>$PORT_BUILD/files/dtc-install.in
 chmod 644 $PORT_BUILD/files/dtc-install.in
 
 # Create package uninstall script
 cp sources/bsd/uninstall.sh $PORT_BUILD/files/dtc-deinstall.in
-cat sources/uninstall_deamons.sh >>$PORT_BUILD"/files/dtc-deinstall.in"
+#cat sources/uninstall_deamons.sh >>$PORT_BUILD"/files/dtc-deinstall.in"
 chmod 644 $PORT_BUILD/files/dtc-deinstall.in
 
 cp sources/bsd/pkg-message $PORT_BUILD

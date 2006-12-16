@@ -1,33 +1,8 @@
-# Redhat RPM uninstall sh script for DTC
-# Written by Thomas GOIRAND <thomas [ at ] goirand.fr>
-# under LGPL Licence
+#!/bin/sh
 
-UNIX_TYPE=redhat
+. /usr/share/dtc/admin/install/redhat_config
+. /usr/share/dtc/admin/install/interactive_installer
+. /usr/share/dtc/admin/install/functions
 
-VERBOSE_INSTALL=yes
-
-echo "### DEAMON PATH CONFIGURATION ###"
-PATH_HTTPD_CONF=/etc/httpd/conf/httpd.conf
-PATH_NAMED_CONF="/etc/named.conf"
-PATH_PROFTPD_CONF="/etc/proftpd.conf"
-PATH_DOVECOT_CONF="/etc/dovecot.conf"
-PATH_COURIER_CONF_PATH="/etc/courier"
-PATH_POSTFIX_CONF="/etc/postfix/main.cf"
-PATH_POSTFIX_ETC="/etc/postfix"
-PATH_MAILDROP_BIN="/usr/bin/maildrop"
-PATH_USERDB_BIN="/usr/sbin/userdb"
-PATH_AWSTATS_ETC="/etc/awstats"
-PATH_QMAIL_CTRL="/var/qmail/control"
-PATH_CRONTAB_CONF="/etc/crontab"
-PATH_DTC_SHARED=/usr/share/dtc
-PATH_AMAVISD_CONF="/etc/amavis/amavisd.conf"
-FREERADIUS_ETC="/etc/raddb"
-
-PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
-PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
-PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
-
-#PATH_DTC_ETC
-
-MKTEMP="mktemp -p /tmp"
-
+DTCsearchConfigFiles
+DTCuninstallPackage

@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/prepareDebianTree,v $
-# $Date: 2006/11/21 06:53:06 $
-# $Revision: 1.10 $
+# $Date: 2006/12/16 08:39:09 $
+# $Revision: 1.11 $
 
 DSTDIR=..
 
@@ -29,8 +29,6 @@ cp -f sources/debian/config ${DSTDIR}/debian/dtc.config
 cp -f sources/debian/config ${DSTDIR}/debian/dtc-postfix-courier.config
 cp -f sources/debian/postinst ${DSTDIR}/debian/dtc.postinst
 cp -f sources/debian/postinst ${DSTDIR}/debian/dtc-postfix-courier.postinst
-#cp -f sources/debian/templates ${DSTDIR}/debian/dtc.templates
-#cp -f sources/debian/templates ${DSTDIR}/debian/dtc-postfix-courier.templates
 cp -f sources/debian/prerm ${DSTDIR}/debian/dtc.prerm
 cp -f sources/debian/prerm ${DSTDIR}/debian/dtc-postfix-courier.prerm
 
