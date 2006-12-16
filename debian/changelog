@@ -1,3 +1,10 @@
+dtc (0.25.0-1) unstable; urgency=low
+
+  * The postinst does not modify other package config files anymore
+  * Full review of the install procedure
+
+ -- Thomas Goirand <thomas@goirand.fr>  Sat, 16 Dec 2006 03:11:17 +0800
+
 dtc (0.24.6-1) unstable; urgency=low
 
   * Initial release.

@@ -3691,7 +3691,7 @@ DTCsetupDaemons () {
 	DTCsearchConfigFiles
 
 	modifyResolvConf
-	DTCsearchConfigFiles
+#	setupDTCDatabase
 	chownSquirrelAndFastcgiToDtcUserAndGroup
 	modifySUODERS_DOT_CONF
 	increasePhpIniMemAndExecTime

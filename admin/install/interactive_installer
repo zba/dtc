@@ -7,7 +7,7 @@
 # and Damien Mascord <tusker at tusker.org> with the help
 # of some contributors
 
-interactiveInstaller () {
+installerQuestions () {
 	echo "###############################################################"
 	echo "### Welcome to DTC config script for automatic installation ###"
 	echo "###############################################################"
@@ -19,6 +19,7 @@ interactiveInstaller () {
 	fi
 
 	# DATABASE CONFIGURATION
+	# conf_mysql_host
 	echo "### MYSQL CONFIGURATION ###"
 	echo ""
 	echo "DTC needs to access to your mysql database"
@@ -34,6 +35,7 @@ interactiveInstaller () {
 	sed -i.bak '/conf_mysql_host/d' /root/.dtc_install
 	echo "conf_mysql_host=${conf_mysql_host}" >> /root/.dtc_install
 
+	# conf_mysql_login
 	if [ -z $conf_mysql_login ] ; then
 		conf_mysql_login="root"
 	fi
@@ -45,6 +47,7 @@ interactiveInstaller () {
 	sed -i.bak '/conf_mysql_login/d' /root/.dtc_install
 	echo "conf_mysql_login=${conf_mysql_login}" >> /root/.dtc_install
 
+	# conf_mysql_pass
 	if [ -z $conf_mysql_pass ] ; then
 		conf_mysql_pass=""
 	fi
@@ -56,67 +59,143 @@ interactiveInstaller () {
 	sed -i.bak '/conf_mysql_pass/d' /root/.dtc_install
 	echo "conf_mysql_pass=${conf_mysql_pass}" >> /root/.dtc_install
 
+	# conf_mysql_change_root
 	echo ""
 	echo "Do you want that DTC setup this password"
 	echo "for you ? (eg: UPDATE user SET Password=PASSWORD('XXX')...)"
-	echo -n 'Setup the mysql password [Ny]: '
-	read conf_mysql_change_root
-
-	if [ ""$conf_mysql_change_root = "y" -o ""$conf_mysql_change_root = "Y" ]; then
-		echo "===> Changing MySQL Root password"
-		echo "MySQL will now prompt your for the password to connect to"
-		echo "the database. This is the OLD password that was there before"
-		echo "you launched this script. If you didn't setup a root pass for"
-		echo "mysqld, just hit ENTER to use empty pass."
-		mysql -u$conf_mysql_login -p -h$conf_mysql_host -Dmysql --execute="UPDATE user SET Password=PASSWORD('"$conf_mysql_pas"') WHERE User='root'; FLUSH PRIVILEGES;";
-	else
-		echo "Skinping MySQL password root change!"
+	if [ -z ""$conf_mysql_change_root ] ; then
+		conf_mysql_change_root="false"
 	fi
+	if [ $conf_mysql_change_root"" = "true" ] ; then
+		echo -n 'Setup the mysql password [nY]: '
+		read answer
+		if [ -z $answer"" ] ; then
+			answer="true"
+		fi
+	else
+		echo -n 'Setup the mysql password [Ny]: '
+		read answer
+		if [ -z $answer"" ] ; then
+			answer="false"
+		fi
+	fi
+	if [ ""$answer = "y" -o ""$answer = "Y" ]; then
+		answer="true"
+	fi
+	if [ ""$answer = "n" -o ""$answer = "N" ]; then
+		answer="false"
+	fi
+	if [ ""$answer = "true" ] ; then
+		echo "===> Will change MySQL Root password"
+		conf_mysql_change_root="true"
+	else
+		echo "-> Will skip MySQL password root change!"
+		conf_mysql_change_root="false"
+	fi
+	sed -i.bak '/conf_mysql_change_root/d' /root/.dtc_install
+	echo "conf_mysql_change_root=${conf_mysql_change_root}" >> /root/.dtc_install
 
-	echo -n 'Choose a DB name for DTC [dtc]: '
-	read conf_mysql_db
+	# conf_mysql_db
+	if [ -z ""$conf_mysql_db ] ; then
+		conf_mysql_db="dtc"
+	fi
+	echo -n "Choose a DB name for DTC [${conf_mysql_db}]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		conf_mysql_db=$answer
+	fi
 	if [ ""$conf_mysql_db = "" ] ; then
 		conf_mysql_db="dtc"
 	fi
+	sed -i.bak '/conf_mysql_change_root/d' /root/.dtc_install
+	echo "conf_mysql_change_root=${conf_mysql_db}" >> /root/.dtc_install
 
+	# conf_mta_type
+	if [ -z ""$conf_mta_type ] ; then
+		conf_mta_type=postfix
+	fi
 	echo ""
 	echo "What MTA (Mail Tranport Agent, the one that"
 	echo "will route and deliver your incoming mail) do"
 	echo "you wish to use with DTC ? Type q for qmail"
 	echo "or type p for postfix."
-	echo -n 'MTA type (Qmail or Postfix) [q/P]: '
-	read conf_mta_type
-	if [ ""$conf_mta_type = "Q" -o ""$conf_mta_type = "q" ]; then
-		conf_mta_type=qmail
-		echo "Qmail will be used"
+	if [ ""$conf_mta_type = "postfix" ] ; then
+		echo -n 'MTA type (Qmail or Postfix) [q/P]: '
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_mta_type=postfix
+		fi
 	else
-		conf_mta_type=postfix
-		echo "Postfix will be used"
+		echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_mta_type=qmail
+		fi
 	fi
+	if [ ""$answer = "Q" -o ""$answer = "q" ]; then
+		conf_mta_type=qmail
+	fi
+	if [ ""$answer = "P" -o ""$answer = "p" ]; then
+		conf_mta_type=postfix
+	fi
+	if [ ! ""$conf_mta_type = "postfix" ] ; then
+		conf_mta_type=qmail
+	fi
+	sed -i.bak '/conf_mta_type/d' /root/.dtc_install
+	echo "conf_mta_type=${conf_mta_type}" >> /root/.dtc_install
 
-	echo ""
-	echo -n 'Are you using Cyrus IMAPd? [Y/n]: '
-	read conf_cyrus_enable
-	if [ ""$conf_cyrus_enable = "n" -o ""$conf_cyrus_enable = "N" ]; then
-		conf_cyrus_enable=no
-	else   
-		conf_cyrus_enable=yes
-		conf_cyrus_pass=${conf_mysql_pass}
+	# conf_cyrus_enable
+	if [ -z ""$conf_cyrus_enable ] ; then
+		conf_cyrus_enable="true"
+	fi
+	if [ ""$conf_cyrus_enable = "true" ] ; then
+		echo -n 'Are you using Cyrus IMAPd? [Y/n]: '
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_cyrus_enable="true"
+		fi
+	else
+		echo -n 'Are you using Cyrus IMAPd? [y/N]: '
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_cyrus_enable="false"
+		fi
+	fi
+	if [ ""$answer = "n" -o ""$conf_cyrus_enable = "N" ]; then
+		conf_cyrus_enable="false"
+	fi
+	if [ ""$answer = "y" -o ""$conf_cyrus_enable = "Y" ]; then
+		conf_cyrus_enable="true"
+	fi
+	sed -i.bak '/conf_cyrus_enable/d' /root/.dtc_install
+	echo "conf_cyrus_enable=${conf_cyrus_enable}" >> /root/.dtc_install
+
+	if [ ""$conf_cyrus_enable = "true" ]; then
+		if [ -z ""$conf_cyrus_pass ] ; then
+			conf_cyrus_pass=${conf_mysql_pass}
+		fi
 		echo "Cyrus IMAPd will be used"
 		echo ""
-		echo -n "Password for Mail Administrator? [${conf_mysql_pass}]: "
+		echo -n "Password for Mail Administrator? [${conf_cyrus_pass}]: "
 		read answer
 		if [ ! -z $answer ]; then
 			conf_cyrus_pass=${answer}
 		fi
+	else
+		conf_cyrus_pass=${conf_mysql_pass}
 	fi
+	sed -i.bak '/conf_mysql_pass/d' /root/.dtc_install
+	echo "conf_mysql_pass=${conf_mysql_pass}" >> /root/.dtc_install
 
 	# Host configuration
+	if [ -z ""${main_domain_name} ] ; then
+		main_domain_name="example.com"
+	fi
 	echo "### YOUR SERVER CONFIGURATION ###"
 	echo ""
 	echo "Please enter the main domain name you will use."
 	echo "DTC will install the root admin panel on that host."
-	echo -n "Domain name (example: toto.com) [${main_domain_name}]: "
+	echo -n "Domain name [${main_domain_name}]: "
 	read answer
 	if [ ! -z ""${answer} ] ; then
 		main_domain_name=${answer}
@@ -124,16 +203,21 @@ interactiveInstaller () {
 	sed -i.bak '/main_domain_name/d' /root/.dtc_install
 	echo "main_domain_name=${main_domain_name}" >> /root/.dtc_install
 
+	if [ -z ""$dtc_admin_subdomain ] ; then
+		dtc_admin_subdomain="dtc"
+	fi
 	echo ""
 	echo "DTC will install a root admin panel on a subdomain"
 	echo "of the domain you just provided. The default subdomain"
 	echo "is dtc, which leads you to http://dtc."$main_domain_name"/"
 	echo "You can enter another subdomain name if you want."
-	echo -n 'Subdomain for DTC admin panel [dtc]: '
-	read dtc_admin_subdomain
-	if [ ""$dtc_admin_subdomain = "" ] ; then
-		dtc_admin_subdomain="dtc"
+	echo -n "Subdomain for DTC admin panel [$dtc_admin_subdomain]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		dtc_admin_subdomain=$answer
 	fi
+	sed -i.bak '/dtc_admin_subdomain/d' /root/.dtc_install
+	echo "dtc_admin_subdomain=${dtc_admin_subdomain}" >> /root/.dtc_install
 
 	if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
 		echo "***FIX ME*** Installer in OS X and BSD version don't have IP addr detection yet!"
@@ -143,30 +227,60 @@ interactiveInstaller () {
 		guessed_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
 	fi
 
+	# conf_use_nated_vhosts
+	# conf_nated_vhosts_ip
 	echo ""
-	echo " Do you want that DTC generates apache file to use"
+	echo "Do you want that DTC generates apache file to use"
 	echo "a LAN IP address that your server is using?"
 	echo "If your server is in the LAN behind a firewall"
 	echo "that does NAT and port redirections of the public IP(s)"
 	echo "address(es) to your server, then you must say YES"
 	echo "here, otherwise (if your server is connected directly"
 	echo "to the internet with a public static IP) leave it to NO."
-	echo -n "Use NATed vhosts ? [N/y]: "
-	read conf_use_nated_vhosts
-	if [ ""$conf_use_nated_vhosts = "y" -o ""$conf_use_nated_vhosts = "Y" -o ""$conf_use_nated_vhosts = "yes" ]; then
-		conf_use_nated_vhosts="yes";
+	if [ -z ""$conf_use_nated_vhosts ] ; then
+		conf_use_nated_vhosts="false"
+	fi
+	if [ ""$conf_use_nated_vhosts = "false" ] ; then
+		echo -n "Use NATed vhosts ? [N/y]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_use_nated_vhosts="false"
+		fi
+	else
+		echo -n "Use NATed vhosts ? [n/Y]: "
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_use_nated_vhosts="true"
+		fi
+	fi
+	if [ ""$answer = "y" -o ""$answer = "Y" -o ""$answer = "yes" ]; then
+		conf_use_nated_vhosts="true"
+	fi
+	if [ ""$answer = "n" -o ""$answer = "N" ] ; then
+		conf_use_nated_vhosts="false"
+	fi
+	if [ ! ""$conf_use_nated_vhosts = "false" ] ; then
+		conf_use_nated_vhosts = "true"
+	fi
+	if [ ""$conf_use_nated_vhosts = "true" ] ; then
 		echo ""
 		echo " Please enter the LAN IP of your server."
 		echo -n "IP address of your server if in the LAN [${guessed_ip_addr}]: "
-		read conf_nated_vhost_ip
-		if [ ""$conf_nated_vhosts_ip = "" ]; then
-			conf_nated_vhosts_ip=$guessed_ip_addr
+		read answer
+		if [ ! -z ""$answer ]; then
+			conf_nated_vhosts_ip=$answer
+		else
+			conf_nated_vhosts_ip=${guessed_ip_addr}
 		fi
 	else
-		conf_use_nated_vhosts="no";
 		conf_nated_vhosts_ip="192.168.0.2"
 	fi
+	sed -i.bak '/conf_use_nated_vhosts/d' /root/.dtc_install
+	echo "conf_use_nated_vhosts=${conf_use_nated_vhosts}" >> /root/.dtc_install
+	sed -i.bak '/conf_nated_vhosts_ip/d' /root/.dtc_install
+	echo "conf_nated_vhosts_ip=${conf_nated_vhosts_ip}" >> /root/.dtc_install
 
+	# conf_ip_addr
 	echo ""
 	echo "I need now you host information to configure the daemons."
 	if [ ""$conf_use_nated_vhosts = "yes" ] ; then
@@ -183,14 +297,23 @@ interactiveInstaller () {
 		echo "conf_ip_addr=${conf_ip_addr}" >> /root/.dtc_install
 	fi
 
-	echo ""
-	echo "Where will you keep your files for hosting ?"
-	echo -n "Hosting path [/var/www/sites]: "
-	read conf_hosting_path
-	if [ ""$conf_hosting_path = "" ] ; then
+	if [ -z ""$conf_hosting_path ] ; then
 		conf_hosting_path="/var/www/sites"
 	fi
+	echo ""
+	echo "Where will you keep your files for hosting ?"
+	echo -n "Hosting path [$conf_hosting_path]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		conf_hosting_path=$answer
+	fi
+	sed -i.bak '/conf_hosting_path/d' /root/.dtc_install
+	echo "conf_hosting_path=${conf_hosting_path}" >> /root/.dtc_install
 
+	# conf_chroot_path
+	if [ -z ""$conf_chroot_path ] ; then
+		conf_chroot_path="/var/www/chroot"
+	fi
 	echo ""
 	echo "Path where to build the chroot environment."
 	echo "Where do you want DTC to build the cgi-bin chroot"
@@ -198,19 +321,29 @@ interactiveInstaller () {
 	echo "to that directory, so the chroot path should be in"
 	echo "the same logical device as the path for hosted"
 	echo "domains files."
-	echo -n "Chroot path [/var/www/chroot]: "
-	read conf_chroot_path
-	if [ ""$conf_chroot_path = "" ] ; then
-		conf_chroot_path="/var/www/chroot"
+	echo -n "Chroot path [$conf_chroot_path]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		conf_chroot_path=$answer
 	fi
+	sed -i.bak '/conf_chroot_path/d' /root/.dtc_install
+	echo "conf_chroot_path=${conf_chroot_path}" >> /root/.dtc_install
 
+	# conf_adm_login
+	if [ -z ""$conf_adm_login ] ; then
+		conf_adm_login=dtc
+	fi
 	echo ""
 	echo "What admin login/pass you want for the administration of "$main_domain_name "?"
-	echo -n "Login [dtc]: "
-	read conf_adm_login
-	if [ ""$conf_adm_login = "" ] ; then
-		conf_adm_login="dtc"
+	echo -n "Login [${conf_adm_login}]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		conf_adm_login=${answer}
 	fi
+	sed -i.bak '/conf_adm_login/d' /root/.dtc_install
+	echo "conf_adm_login=${conf_adm_login}" >> /root/.dtc_install
+
+	# conf_adm_pass
 	echo -n "Password: [${conf_adm_pass}]"
 	read answer
 	if [ ! -z ${answer} ] ; then
@@ -219,28 +352,32 @@ interactiveInstaller () {
 	sed -i.bak '/conf_adm_pass/d' /root/.dtc_install
 	echo "conf_adm_pass=${conf_adm_pass}" >> /root/.dtc_install
 
-	if [ -z "$conf_eth2monitor" ] ; then
-		if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
-			echo "***FIX ME*** OS X and FreeBSD don't have interface detection yet!"
-		else
-			NBRLINES=`grep -v "lo:" /proc/net/dev | wc -l`
-			NBRIFACE=$((${NBRLINES} - 2 ))
-			CNT=${NBRIFACE}
-			ALL_IFACES=''
-			while [ ${CNT} -gt 0 ] ; do
-				ALL_IFACES=${ALL_IFACES}' '`grep -v "lo:" /proc/net/dev | tail -n ${CNT} | cut -f 1 -d':' | gawk -F ' ' '{print $1}' | head -n 1`
-				CNT=$((${CNT} - 1 ))
-			done
-		fi
-		echo ""
-		echo "DTC will setup an RRDTools graphing system for you, please"
-		echo "enter all the interfaces you wish to see in the total traffic."
-		echo -n 'Enter the iface you wish to monitor ['$ALL_IFACES']: '
-		read conf_eth2monitor
-		if [ -z "$conf_eth2monitor" ]; then
-			conf_eth2monitor=$ALL_IFACES
-		fi
+	# conf_eth2monitor
+	if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
+		echo "***FIX ME*** OS X and FreeBSD don't have interface detection yet!"
+	else
+		NBRLINES=`grep -v "lo:" /proc/net/dev | wc -l`
+		NBRIFACE=$((${NBRLINES} - 2 ))
+		CNT=${NBRIFACE}
+		ALL_IFACES=''
+		while [ ${CNT} -gt 0 ] ; do
+			ALL_IFACES=${ALL_IFACES}' '`grep -v "lo:" /proc/net/dev | tail -n ${CNT} | cut -f 1 -d':' | gawk -F ' ' '{print $1}' | head -n 1`
+			CNT=$((${CNT} - 1 ))
+		done
 	fi
+	if [ -z ""$conf_eth2monitor ] ; then
+		conf_eth2monitor=$ALL_IFACES
+	fi
+	echo ""
+	echo "DTC will setup an RRDTools graphing system for you, please"
+	echo "enter all the interfaces you wish to see in the total traffic."
+	echo -n 'Enter the iface you wish to monitor ['$conf_eth2monitor']: '
+	read answer
+	if [ ! -z ""$answer ]; then
+		conf_eth2monitor=$answer
+	fi
+	sed -i.bak '/conf_eth2monitor/d' /root/.dtc_install
+	echo "conf_eth2monitor=${conf_eth2monitor}" >> /root/.dtc_install
 
 	echo ""
 	echo "In order to know how many DTC setup has been done, the"
@@ -251,44 +388,61 @@ interactiveInstaller () {
 	echo "purpose)."
 	echo "You need an internet connection and wget installed to report. Do you"
 	echo "wish to allow DTC installer to report the setup of the control panel?"
-	echo -n 'Allow installer to report setup? [Yn]:'
-	read report_setup
-	if [ ""$report_setup = "y" -o ""$report_setup = "Y" -o ""$report_setup = "" ] ; then
-		conf_report_setup="true";
+	if [ ""$conf_report_setup = "true" ] ; then
+		echo -n 'Allow installer to report setup? [Yn]:'
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_report_setup="true"
+		fi
 	else
-		conf_report_setup="false";
+		echo -n 'Allow installer to report setup? [yN]:'
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_report_setup="false"
+		fi
 	fi
+	if [ ""$answer = "y" -o ""$answer = "Y" ] ; then
+		conf_report_setup="true"
+	fi
+	if [ ""$answer = "n" -o ""$answer = "N"] ; then
+		conf_report_setup="false"
+	fi
+	sed -i.bak '/conf_report_setup/d' /root/.dtc_install
+	echo "conf_report_setup=${conf_report_setup}" >> /root/.dtc_install
 
 	echo ""
 	echo "In some environment, like FreeBSD Jail or Linux vServer,"
 	echo "mknod is not allowed to be executed. For that reason, it's possible"
 	echo "to skip the creation of the dev null, random and urandom devices"
 	echo "durring the chroot template creation."
-	echo -n "Allow installer to create the devices template? [Yn]:"
-	read omit_dev_mknod
-	if [ ""$omit_dev_mknod = "y" -o ""$omit_dev_mknod = "Y" -o ""$omit_dev_mknod = "" ] ; then
-		conf_omit_dev_mknod="no"
+	if [ ""$conf_omit_dev_mknod = "true" ] ; then
+		echo "Skip mknod? [Yn]";
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_omit_dev_mknod="true"
+		fi
 	else
-		conf_omit_dev_mknod="yes"
+		echo "Skip mknod? [yN]";
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_omit_dev_mknod="false"
+		fi
 	fi
+	if [ ""$answer = "n" -o ""$answer = "N" ] ; then
+		conf_omit_dev_mknod="false"
+	fi
+	if [ ""$answer = "y" -o ""$answer = "Y" ] ; then
+		conf_omit_dev_mknod="true"
+	fi
+	if [ ! ""$conf_omit_dev_mknod = "true" ] ; then
+		conf_omit_dev_mknod="false"
+	fi
+	sed -i.bak '/conf_omit_dev_mknod/d' /root/.dtc_install
+	echo "conf_omit_dev_mknod=${conf_omit_dev_mknod}" >> /root/.dtc_install
+}
 
-	# Deamon path configuration
-	echo ""
-	echo ""
-	echo ""
-	echo "### Last confirmation before installation !!! ###"
-	echo ""
-	echo "Here are the given informations:"
-	echo ""
-	echo "MySQL host: "$conf_mysql_host
-	echo "MySQL login: "$conf_mysql_login
-	echo "MySQL pass: "$conf_mysql_pass
-	echo "MySQL db: "$conf_mysql_db
-	echo "Addresse of dtc panel: http://"$dtc_admin_subdomain"."$main_domain_name"/"
-	echo "IP addr: "$conf_ip_addr
-	echo "Hosting path: "$conf_hosting_path
-	echo "DTC login: "$conf_adm_login
-	echo "DTC pass: "$conf_adm_pass
+printVariables () {
+	echo "### Daemon path ###"
 	echo "httpd.conf: "$PATH_HTTPD_CONF
 	echo "named.conf: "$PATH_NAMED_CONF
 	echo "proftpd.conf: "$PATH_PROFTPD_CONF
@@ -298,7 +452,78 @@ interactiveInstaller () {
 	echo "qmail control: "$PATH_QMAIL_CTRL
 	echo "php cgi: "$PATH_PHP_CGI
 	echo "generated files: "$PATH_DTC_ETC
+
+	echo "### DATABASE ###"
+	echo "MySQL host: "$conf_mysql_host
+	echo "MySQL login: "$conf_mysql_login
+	echo "MySQL pass: "$conf_mysql_pass
+	echo "MySQL db: "$conf_mysql_db
+	echo "MySQL change pass: $conf_mysql_change_root"
+
+	echo "### Mail ###"
+	echo "MTA type: $conf_mta_type"
+	echo "Cyrus enable: $conf_cyrus_enable"
+	echo "Cyrus pass: $conf_cyrus_pass"
+
+	echo "### Admin interface addresse ###"
+	echo "Addresse of dtc panel: http://"$dtc_admin_subdomain"."$main_domain_name"/"
+	echo "DTC login: "$conf_adm_login
+	echo "DTC pass: "$conf_adm_pass
+	echo "IP addr: "$conf_ip_addr
+	echo "Use nated vhosts: $conf_use_nated_vhosts"
+	echo "LAN IP for NAT: $conf_nated_vhosts_ip"
+
+	echo "### Preferences ###"
+	echo "Hosting path: "$conf_hosting_path
+	echo "Chroot template path: $conf_chroot_path"
+	echo "Iface to monitor: $conf_eth2monitor"
+	echo "Report setup: $conf_report_setup"
+	echo "Omit mknod devices: $conf_omit_dev_mknod"
+}
+
+saveConfig () {
+	echo "
+conf_mysql_host=${conf_mysql_host}
+conf_mysql_login=${conf_mysql_login}
+conf_mysql_pass=${conf_mysql_pass}
+conf_mysql_db=${conf_mysql_db}
+conf_mysql_change_root=${conf_mysql_change_root}
+conf_mta_type=${conf_mta_type}
+conf_cyrus_enable=${conf_cyrus_enable}
+conf_cyrus_pass=${conf_cyrus_pass}
+dtc_admin_subdomain=${dtc_admin_subdomain}
+main_domain_name=${main_domain_name}
+conf_adm_login=${conf_adm_login}
+conf_adm_pass=${conf_adm_pass}
+conf_ip_addr=${conf_ip_addr}
+conf_use_nated_vhosts=${conf_use_nated_vhosts}
+conf_nated_vhosts_ip=${conf_nated_vhosts_ip}
+conf_hosting_path=${conf_hosting_path}
+conf_chroot_path=${conf_chroot_path}
+conf_eth2monitor=${conf_eth2monitor}
+conf_report_setup=${conf_report_setup}
+conf_omit_dev_mknod=${conf_omit_dev_mknod}
+" >/root/.dtc_saved_config
+}
+
+interactiveInstaller () {
+	if [ -f /root/.dtc_saved_config ] ; then
+		. /root/.dtc_saved_config
+	fi
+	printVariables
+	echo "Config ok and continuing install? [Yn]"
+	read continueinst
+	while [ ! ""$continueinst = "y" -a ! ""$continueinst = "Y" ] ; do
+		installerQuestions
+		printVariables
+		echo "Config ok and continuing install? [Yn]"
+		read continueinst
+	done
+	saveConfig
+
+	# Deamon path configuration
 	echo ""
+	echo "### Last confirmation before installation !!! ###"
 	echo -n 'Confirm and install DTC ? [Ny]:'
 	read valid_infos
 	if [ ""$valid_infos = "y" -o ""$valid_infos = "Y" ] ; then
