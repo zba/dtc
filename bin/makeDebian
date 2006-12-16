@@ -13,7 +13,6 @@ UNIX_TYPE=debian
 
 DEST_TREE=debian
 
-./prepareDebianTree
 cd ..
 dpkg-buildpackage
 
