@@ -1,0 +1,21 @@
+#!/bin/sh
+
+VERBOSE_INSTALL=yes
+
+set -e
+
+if [ -f /etc/debian_version ] ; then
+	. /usr/share/debconf/confmodule
+	db_version 2.0
+	. /usr/share/dtc/admin/install/debian_config
+	debianGetDebconfValues
+	db_stop
+	if [ ""$conf_apache_version = "2" ] ; then
+		PATH_HTTPD_CONF=/etc/apache2/apache2.conf
+	else
+		PATH_HTTPD_CONF=/etc/apache/httpd.conf
+	fi
+	. /usr/share/dtc/admin/install/functions
+fi
+
+DTCsetupDaemons
