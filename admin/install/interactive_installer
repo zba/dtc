@@ -481,31 +481,6 @@ printVariables () {
 	echo "Omit mknod devices: $conf_omit_dev_mknod"
 }
 
-saveConfig () {
-	echo "
-conf_mysql_host=${conf_mysql_host}
-conf_mysql_login=${conf_mysql_login}
-conf_mysql_pass=${conf_mysql_pass}
-conf_mysql_db=${conf_mysql_db}
-conf_mysql_change_root=${conf_mysql_change_root}
-conf_mta_type=${conf_mta_type}
-conf_cyrus_enable=${conf_cyrus_enable}
-conf_cyrus_pass=${conf_cyrus_pass}
-dtc_admin_subdomain=${dtc_admin_subdomain}
-main_domain_name=${main_domain_name}
-conf_adm_login=${conf_adm_login}
-conf_adm_pass=${conf_adm_pass}
-conf_ip_addr=${conf_ip_addr}
-conf_use_nated_vhosts=${conf_use_nated_vhosts}
-conf_nated_vhosts_ip=${conf_nated_vhosts_ip}
-conf_hosting_path=${conf_hosting_path}
-conf_chroot_path=${conf_chroot_path}
-conf_eth2monitor=${conf_eth2monitor}
-conf_report_setup=${conf_report_setup}
-conf_omit_dev_mknod=${conf_omit_dev_mknod}
-" >/root/.dtc_saved_config
-}
-
 interactiveInstaller () {
 	if [ -f /root/.dtc_saved_config ] ; then
 		. /root/.dtc_saved_config
