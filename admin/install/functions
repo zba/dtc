@@ -3678,7 +3678,7 @@ DTCinstallPackage () {
 	saveConfig
 	createChrootTemplate
 	createHostingDirAndFiles
-	setupDTCDatabase
+#	setupDTCDatabase
 	generateMySQLConfigPHPfile
 	createDTCRootShellScript
 	createApachePIDSymLink
@@ -3719,7 +3719,7 @@ DTCsetupDaemons () {
 	. /root/.dtc_saved_config
 
 	modifyResolvConf
-#	setupDTCDatabase
+	setupDTCDatabase
 	chownSquirrelAndFastcgiToDtcUserAndGroup
 	modifySUODERS_DOT_CONF
 	increasePhpIniMemAndExecTime

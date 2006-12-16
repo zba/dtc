@@ -32,8 +32,8 @@ installerQuestions () {
 	if [ ! -z $answer ]; then
 		conf_mysql_host=${answer}
 	fi
-	sed -i.bak '/conf_mysql_host/d' /root/.dtc_install
-	echo "conf_mysql_host=${conf_mysql_host}" >> /root/.dtc_install
+#	sed -i.bak '/conf_mysql_host/d' /root/.dtc_install
+#	echo "conf_mysql_host=${conf_mysql_host}" >> /root/.dtc_install
 
 	# conf_mysql_login
 	if [ -z $conf_mysql_login ] ; then
@@ -44,8 +44,8 @@ installerQuestions () {
 	if [ ! -z $answer ]; then
 		conf_mysql_login=${answer}
 	fi
-	sed -i.bak '/conf_mysql_login/d' /root/.dtc_install
-	echo "conf_mysql_login=${conf_mysql_login}" >> /root/.dtc_install
+#	sed -i.bak '/conf_mysql_login/d' /root/.dtc_install
+#	echo "conf_mysql_login=${conf_mysql_login}" >> /root/.dtc_install
 
 	# conf_mysql_pass
 	if [ -z $conf_mysql_pass ] ; then
@@ -56,8 +56,8 @@ installerQuestions () {
 	if [ ! -z $answer ]; then
 		conf_mysql_pass=${answer}
 	fi
-	sed -i.bak '/conf_mysql_pass/d' /root/.dtc_install
-	echo "conf_mysql_pass=${conf_mysql_pass}" >> /root/.dtc_install
+#	sed -i.bak '/conf_mysql_pass/d' /root/.dtc_install
+#	echo "conf_mysql_pass=${conf_mysql_pass}" >> /root/.dtc_install
 
 	# conf_mysql_change_root
 	echo ""
@@ -92,8 +92,8 @@ installerQuestions () {
 		echo "-> Will skip MySQL password root change!"
 		conf_mysql_change_root="false"
 	fi
-	sed -i.bak '/conf_mysql_change_root/d' /root/.dtc_install
-	echo "conf_mysql_change_root=${conf_mysql_change_root}" >> /root/.dtc_install
+#	sed -i.bak '/conf_mysql_change_root/d' /root/.dtc_install
+#	echo "conf_mysql_change_root=${conf_mysql_change_root}" >> /root/.dtc_install
 
 	# conf_mysql_db
 	if [ -z ""$conf_mysql_db ] ; then
@@ -107,8 +107,8 @@ installerQuestions () {
 	if [ ""$conf_mysql_db = "" ] ; then
 		conf_mysql_db="dtc"
 	fi
-	sed -i.bak '/conf_mysql_change_root/d' /root/.dtc_install
-	echo "conf_mysql_change_root=${conf_mysql_db}" >> /root/.dtc_install
+#	sed -i.bak '/conf_mysql_change_root/d' /root/.dtc_install
+#	echo "conf_mysql_change_root=${conf_mysql_db}" >> /root/.dtc_install
 
 	# conf_mta_type
 	if [ -z ""$conf_mta_type ] ; then
@@ -141,8 +141,8 @@ installerQuestions () {
 	if [ ! ""$conf_mta_type = "postfix" ] ; then
 		conf_mta_type=qmail
 	fi
-	sed -i.bak '/conf_mta_type/d' /root/.dtc_install
-	echo "conf_mta_type=${conf_mta_type}" >> /root/.dtc_install
+#	sed -i.bak '/conf_mta_type/d' /root/.dtc_install
+#	echo "conf_mta_type=${conf_mta_type}" >> /root/.dtc_install
 
 	# conf_cyrus_enable
 	if [ -z ""$conf_cyrus_enable ] ; then
@@ -167,8 +167,8 @@ installerQuestions () {
 	if [ ""$answer = "y" -o ""$conf_cyrus_enable = "Y" ]; then
 		conf_cyrus_enable="true"
 	fi
-	sed -i.bak '/conf_cyrus_enable/d' /root/.dtc_install
-	echo "conf_cyrus_enable=${conf_cyrus_enable}" >> /root/.dtc_install
+#	sed -i.bak '/conf_cyrus_enable/d' /root/.dtc_install
+#	echo "conf_cyrus_enable=${conf_cyrus_enable}" >> /root/.dtc_install
 
 	if [ ""$conf_cyrus_enable = "true" ]; then
 		if [ -z ""$conf_cyrus_pass ] ; then
@@ -184,8 +184,8 @@ installerQuestions () {
 	else
 		conf_cyrus_pass=${conf_mysql_pass}
 	fi
-	sed -i.bak '/conf_mysql_pass/d' /root/.dtc_install
-	echo "conf_mysql_pass=${conf_mysql_pass}" >> /root/.dtc_install
+#	sed -i.bak '/conf_mysql_pass/d' /root/.dtc_install
+#	echo "conf_mysql_pass=${conf_mysql_pass}" >> /root/.dtc_install
 
 	# Host configuration
 	if [ -z ""${main_domain_name} ] ; then
@@ -200,8 +200,8 @@ installerQuestions () {
 	if [ ! -z ""${answer} ] ; then
 		main_domain_name=${answer}
 	fi
-	sed -i.bak '/main_domain_name/d' /root/.dtc_install
-	echo "main_domain_name=${main_domain_name}" >> /root/.dtc_install
+#	sed -i.bak '/main_domain_name/d' /root/.dtc_install
+#	echo "main_domain_name=${main_domain_name}" >> /root/.dtc_install
 
 	if [ -z ""$dtc_admin_subdomain ] ; then
 		dtc_admin_subdomain="dtc"
@@ -216,8 +216,8 @@ installerQuestions () {
 	if [ ! -z ""$answer ] ; then
 		dtc_admin_subdomain=$answer
 	fi
-	sed -i.bak '/dtc_admin_subdomain/d' /root/.dtc_install
-	echo "dtc_admin_subdomain=${dtc_admin_subdomain}" >> /root/.dtc_install
+#	sed -i.bak '/dtc_admin_subdomain/d' /root/.dtc_install
+#	echo "dtc_admin_subdomain=${dtc_admin_subdomain}" >> /root/.dtc_install
 
 	if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
 		echo "***FIX ME*** Installer in OS X and BSD version don't have IP addr detection yet!"
@@ -275,10 +275,10 @@ installerQuestions () {
 	else
 		conf_nated_vhosts_ip="192.168.0.2"
 	fi
-	sed -i.bak '/conf_use_nated_vhosts/d' /root/.dtc_install
-	echo "conf_use_nated_vhosts=${conf_use_nated_vhosts}" >> /root/.dtc_install
-	sed -i.bak '/conf_nated_vhosts_ip/d' /root/.dtc_install
-	echo "conf_nated_vhosts_ip=${conf_nated_vhosts_ip}" >> /root/.dtc_install
+#	sed -i.bak '/conf_use_nated_vhosts/d' /root/.dtc_install
+#	echo "conf_use_nated_vhosts=${conf_use_nated_vhosts}" >> /root/.dtc_install
+#	sed -i.bak '/conf_nated_vhosts_ip/d' /root/.dtc_install
+#	echo "conf_nated_vhosts_ip=${conf_nated_vhosts_ip}" >> /root/.dtc_install
 
 	# conf_ip_addr
 	echo ""
@@ -293,8 +293,8 @@ installerQuestions () {
 		if [ ! -z ${answer} ] ; then
 			conf_ip_addr=${answer}
 		fi
-		sed -i.bak '/conf_ip_addr/d' /root/.dtc_install
-		echo "conf_ip_addr=${conf_ip_addr}" >> /root/.dtc_install
+#		sed -i.bak '/conf_ip_addr/d' /root/.dtc_install
+#		echo "conf_ip_addr=${conf_ip_addr}" >> /root/.dtc_install
 	fi
 
 	if [ -z ""$conf_hosting_path ] ; then
@@ -307,8 +307,8 @@ installerQuestions () {
 	if [ ! -z ""$answer ] ; then
 		conf_hosting_path=$answer
 	fi
-	sed -i.bak '/conf_hosting_path/d' /root/.dtc_install
-	echo "conf_hosting_path=${conf_hosting_path}" >> /root/.dtc_install
+#	sed -i.bak '/conf_hosting_path/d' /root/.dtc_install
+#	echo "conf_hosting_path=${conf_hosting_path}" >> /root/.dtc_install
 
 	# conf_chroot_path
 	if [ -z ""$conf_chroot_path ] ; then
@@ -326,8 +326,8 @@ installerQuestions () {
 	if [ ! -z ""$answer ] ; then
 		conf_chroot_path=$answer
 	fi
-	sed -i.bak '/conf_chroot_path/d' /root/.dtc_install
-	echo "conf_chroot_path=${conf_chroot_path}" >> /root/.dtc_install
+#	sed -i.bak '/conf_chroot_path/d' /root/.dtc_install
+#	echo "conf_chroot_path=${conf_chroot_path}" >> /root/.dtc_install
 
 	# conf_adm_login
 	if [ -z ""$conf_adm_login ] ; then
@@ -340,8 +340,8 @@ installerQuestions () {
 	if [ ! -z ""$answer ] ; then
 		conf_adm_login=${answer}
 	fi
-	sed -i.bak '/conf_adm_login/d' /root/.dtc_install
-	echo "conf_adm_login=${conf_adm_login}" >> /root/.dtc_install
+#	sed -i.bak '/conf_adm_login/d' /root/.dtc_install
+#	echo "conf_adm_login=${conf_adm_login}" >> /root/.dtc_install
 
 	# conf_adm_pass
 	echo -n "Password: [${conf_adm_pass}]"
@@ -349,8 +349,8 @@ installerQuestions () {
 	if [ ! -z ${answer} ] ; then
 		conf_adm_pass=${answer}
 	fi
-	sed -i.bak '/conf_adm_pass/d' /root/.dtc_install
-	echo "conf_adm_pass=${conf_adm_pass}" >> /root/.dtc_install
+#	sed -i.bak '/conf_adm_pass/d' /root/.dtc_install
+#	echo "conf_adm_pass=${conf_adm_pass}" >> /root/.dtc_install
 
 	# conf_eth2monitor
 	if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
@@ -376,8 +376,8 @@ installerQuestions () {
 	if [ ! -z ""$answer ]; then
 		conf_eth2monitor=$answer
 	fi
-	sed -i.bak '/conf_eth2monitor/d' /root/.dtc_install
-	echo "conf_eth2monitor=${conf_eth2monitor}" >> /root/.dtc_install
+#	sed -i.bak '/conf_eth2monitor/d' /root/.dtc_install
+#	echo "conf_eth2monitor=${conf_eth2monitor}" >> /root/.dtc_install
 
 	echo ""
 	echo "In order to know how many DTC setup has been done, the"
@@ -407,8 +407,8 @@ installerQuestions () {
 	if [ ""$answer = "n" -o ""$answer = "N"] ; then
 		conf_report_setup="false"
 	fi
-	sed -i.bak '/conf_report_setup/d' /root/.dtc_install
-	echo "conf_report_setup=${conf_report_setup}" >> /root/.dtc_install
+#	sed -i.bak '/conf_report_setup/d' /root/.dtc_install
+#	echo "conf_report_setup=${conf_report_setup}" >> /root/.dtc_install
 
 	echo ""
 	echo "In some environment, like FreeBSD Jail or Linux vServer,"
@@ -437,8 +437,8 @@ installerQuestions () {
 	if [ ! ""$conf_omit_dev_mknod = "true" ] ; then
 		conf_omit_dev_mknod="false"
 	fi
-	sed -i.bak '/conf_omit_dev_mknod/d' /root/.dtc_install
-	echo "conf_omit_dev_mknod=${conf_omit_dev_mknod}" >> /root/.dtc_install
+#	sed -i.bak '/conf_omit_dev_mknod/d' /root/.dtc_install
+#	echo "conf_omit_dev_mknod=${conf_omit_dev_mknod}" >> /root/.dtc_install
 }
 
 printVariables () {
