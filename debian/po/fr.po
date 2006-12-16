@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.24.6-1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-26 16:13+0000\n"
+"POT-Creation-Date: 2006-12-16 18:24+0000\n"
 "PO-Revision-Date: 2006-11-21 06:49+0000\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: FRENCH <FR@li.org>\n"
@@ -439,12 +439,6 @@ msgstr ""
 "un mot de passe. Veuillez le rentrer ici."
 
 #. Type: string
-#. Default
-#: ../dtc.templates:179 ../dtc-postfix-courier.templates:179
-msgid "FR"
-msgstr "FR"
-
-#. Type: string
 #. Description
 #: ../dtc.templates:180 ../dtc-postfix-courier.templates:180
 msgid "DTC SSL certificate 2 letters country code:"
@@ -459,12 +453,6 @@ msgid ""
 msgstr ""
 "Veuillez rentrer un code de pays pour votre certificat SSL. Exemple : AU, "
 "UK, US, FR, DE, etc."
-
-#. Type: string
-#. Default
-#: ../dtc.templates:186 ../dtc-postfix-courier.templates:186
-msgid "Paris"
-msgstr "Paris"
 
 #. Type: string
 #. Description
@@ -489,12 +477,6 @@ msgstr "Nom de l'organisation pour le certificat SSL de DTC :"
 #: ../dtc.templates:193 ../dtc-postfix-courier.templates:193
 msgid "Please entre your organization name."
 msgstr "Rentrez ici le nom de votre organisation."
-
-#. Type: string
-#. Default
-#: ../dtc.templates:198 ../dtc-postfix-courier.templates:198
-msgid "no-unit"
-msgstr "no-unit"
 
 #. Type: string
 #. Description
@@ -629,3 +611,12 @@ msgstr ""
 "Pour cette raison, il est possible de sautté cette phase d'installation des "
 "périphérique null, random et urandom pendant la création du patron "
 "(template) pour le chroot."
+
+#~ msgid "FR"
+#~ msgstr "FR"
+
+#~ msgid "Paris"
+#~ msgstr "Paris"
+
+#~ msgid "no-unit"
+#~ msgstr "no-unit"

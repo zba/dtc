@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-26 16:13+0000\n"
+"POT-Creation-Date: 2006-12-16 18:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -359,12 +359,6 @@ msgid ""
 msgstr ""
 
 #. Type: string
-#. Default
-#: ../dtc.templates:179 ../dtc-postfix-courier.templates:179
-msgid "FR"
-msgstr ""
-
-#. Type: string
 #. Description
 #: ../dtc.templates:180 ../dtc-postfix-courier.templates:180
 msgid "DTC SSL certificate 2 letters country code:"
@@ -376,12 +370,6 @@ msgstr ""
 msgid ""
 "Please enter the 2 letter country code of your server location. Example: AU, "
 "UK, US, FR, DE, etc."
-msgstr ""
-
-#. Type: string
-#. Default
-#: ../dtc.templates:186 ../dtc-postfix-courier.templates:186
-msgid "Paris"
 msgstr ""
 
 #. Type: string
@@ -406,12 +394,6 @@ msgstr ""
 #. Description
 #: ../dtc.templates:193 ../dtc-postfix-courier.templates:193
 msgid "Please entre your organization name."
-msgstr ""
-
-#. Type: string
-#. Default
-#: ../dtc.templates:198 ../dtc-postfix-courier.templates:198
-msgid "no-unit"
 msgstr ""
 
 #. Type: string
