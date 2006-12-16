@@ -398,9 +398,7 @@ createHostingDirAndFiles () {
 	chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}
 	set +e
 
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path
-	fi
+	echoIfVerbose "chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path"
 	chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path
 
 	set -e
@@ -489,9 +487,7 @@ setupDTCDatabase () {
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="ALTER DATABASE \`$conf_mysql_db\` DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
 	fi
 
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echoIfVerbose -n " apachelogs"
-	fi
+	echoIfVerbose -n " apachelogs"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
 	if [ ""$MYSQL_VER -gt 40 ]; then
 			$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="ALTER DATABASE apachelogs DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
@@ -501,15 +497,11 @@ setupDTCDatabase () {
 	for i in $( ls *.sql );
 	do
 		table_name=`echo $i | cut -f1 -d"."`
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echoIfVerbose -n $table_name" "
-		fi
+		echoIfVerbose -n $table_name" "
 		table_create=`cat $i`
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db <$i
 	done
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echoIfVerbose "done."
-	fi
+	echoIfVerbose "done."
 
 	# fix some tables for 4.1
 	if [ ""$MYSQL_VER -gt 40 ]; then
@@ -643,15 +635,13 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET dtcadmin_path='${PATH_DTC_ADMIN}', dtcclient_path='${PATH_DTC_CLIENT}', dtcdoc_path='${PATH_DTC_SHARED}/doc', dtcemail_path='${PATH_DTC_SHARED}/email' WHERE 1"
 
 	# Add the config for nated vhosts if needed
-	if [ ""$conf_use_nated_vhosts = "yes" ] ; then
+	if [ ""$conf_use_nated_vhosts = "true" ] ; then
 		echoIfVerbose "Setting-up values in MySQL for using NAT"
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_nated_vhost='yes'"
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET nated_vhost_ip='"${conf_nated_vhosts_ip}"'"
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_multiple_ip='no'"
 	else
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "Setting-up values in MySQL NOT using NAT"
-		fi
+		echoIfVerbose "Setting-up values in MySQL NOT using NAT"
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_nated_vhost='no'"
 	fi
 
@@ -685,10 +675,7 @@ generateMySQLConfigPHPfile () {
 createDTCRootShellScript () {
 	echoIfVerbose "-> Creating dtc-chroot-shell script"
 	if [ -n "$PATH_SUDO" ] ; then
-		if [ ""$VERBOSE_INSTALL = "yes" ]; then
-			echo "Creating chroot shell..."
-		fi
-
+		echoIfVerbose "Creating chroot shell..."
 	        # create a chroot shell script
 	        CHROOT_SHELL=/bin/dtc-chroot-shell
 	        echo '#!/bin/sh' > $CHROOT_SHELL
@@ -704,15 +691,11 @@ modifySUODERS_DOT_CONF () {
 	        # fix sudoers
 		if grep "Configured by DTC" $PATH_SUDOERS_CONF >/dev/null
 		then
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "$PATH_SUDOERS_CONF has been configured before..."
-			fi
+			echoIfVerbose "$PATH_SUDOERS_CONF has been configured before..."
 		else
 			if ! [ -f $PATH_SUDOERS_CONF.DTC.backup ]
 			then
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo "===> Backuping "$PATH_SUDOERS_CONF
-				fi
+				echoIfVerbose "===> Backuping "$PATH_SUDOERS_CONF
 				cp -f "$PATH_SUDOERS_CONF" "$PATH_SUDOERS_CONF.DTC.backup"
 			fi
 			TMP_FILE=`${MKTEMP} DTC_install.sudoers.XXXXXX` || exit 1
@@ -725,15 +708,11 @@ modifySUODERS_DOT_CONF () {
 	        # fix /etc/shells
 		if grep "Configured by DTC" $PATH_SHELLS_CONF >/dev/null
 		then
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "$PATH_SHELLS_CONF has been configured before..."
-			fi
+			echoIfVerbose "$PATH_SHELLS_CONF has been configured before..."
 		else
 			if ! [ -f $PATH_SHELLS_CONF.DTC.backup ]
 			then
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo "===> Backuping "$PATH_SHELLS_CONF
-				fi
+				echoIfVerbose "===> Backuping "$PATH_SHELLS_CONF
 				cp -f "$PATH_SHELLS_CONF" "$PATH_SHELLS_CONF.DTC.backup"
 			fi
 			TMP_FILE=`${MKTEMP} DTC_install.shells.XXXXXX` || exit 1
@@ -970,10 +949,11 @@ modifyHTTPD_CONF () {
 		echo "# Configured by DTC v0.12 : please do not touch this line !
 Include $PATH_DTC_ETC/vhosts.conf" >>$PATH_HTTPD_CONF
 
-		if ! [ ""$conf_omit_dev_mknod = "yes" ] ; then
+# There is something wrong in this logic !!!
+#		if ! [ ""$conf_omit_dev_mknod = "true" ] ; then
 			echo "Listen 127.0.0.1:80
 Listen 127.0.0.1:443" >>$PATH_HTTPD_CONF
-		fi
+#		fi
 
 		if [ -z ${MYSQL_DTCDAEMONS_PASS} ]; then
 			echo "LogSQLLoginInfo mysql://dtcdaemons@${conf_mysql_host} " >>$PATH_HTTPD_CONF
@@ -993,9 +973,7 @@ ErrorDocument 404 /dtc404/404.php
 	fi
 
 	if [ -e /etc/apache2/ports.conf ] ; then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echoIfVerbose "Founded ports.conf: will remove it's directive"
-		fi
+		echoIfVerbose "Founded ports.conf: will remove it's directive"
 		if [ -e /etc/apache2/ports.conf.DTC_backup ] ; then
 			echo -n "";
 		else
@@ -1017,9 +995,7 @@ modifyETC_CONFD_APACHE2 () {
 		else
 			if ! [ -f $APACHE2_CONFD.DTC.backup ]
 			then
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echoIfVerbose "===> Backing up "$APACHE2_CONFD
-				fi
+				echoIfVerbose "===> Backing up "$APACHE2_CONFD
 				if [ ! -e $APACHE2_CONFD".DTC.backup" ] ; then
 					cp -f "$APACHE2_CONFD" "$APACHE2_CONFD.DTC.backup"
 				fi
@@ -1085,8 +1061,7 @@ generateOpenSSLApacheCert () {
 createCyrusAuthPhp () {
 	echoIfVerbose "===> Creating cyrus.php"
 	cyrus_auth_php="$PATH_DTC_SHARED/shared/cyrus.php"
-	if [ ""$conf_cyrus_enable = "yes" ] ; then
-
+	if [ ""$conf_cyrus_enable = "true" ] ; then
 		echo "<?php
 \$CYRUS = array(
 'HOST'  => 'localhost',
@@ -1105,7 +1080,7 @@ createCyrusAuthPhp () {
 }
 
 modifyCyrusImapdConf () {
-	if [ ""$conf_cyrus_enable = "yes" ]; then
+	if [ ""$conf_cyrus_enable = "true" ]; then
 		if [ ""$UNIX_TYPE = "freebsd" ] ;then
 			echo "configdirectory: /var/spool/imap
 partition-default: /var/spool/mail
@@ -1154,9 +1129,7 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 		if [ ""$UNIX_TYPE = "freebsd" -a -f /usr/local/lib/sasl2/libsql.so ] ;then
 			PATH_AUTH_SMTP=/usr/local/lib/sasl2/smtpd.conf
 			PATH_AUTH_SASLPASSWD=/usr/local/lib/sasl2/saslpasswd.conf
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "===> Adding configuration inside /usr/local/lib/sasl2"
-			fi
+			echoIfVerbose "===> Adding configuration inside /usr/local/lib/sasl2"
 			if [ -f $PATH_AUTH_SMTP ]; then
 				if ! [ -f $PATH_AUTH_SMTP.DTC.backup ]; then
 					cp -f $PATH_AUTH_SMTP $PATH_AUTH_SMTP.DTC.backup
@@ -1187,9 +1160,7 @@ sql_verbose: yes" >${PATH_AUTH_SMTP}
 			PATH_PAMD_SIEVE=/etc/pam.d/sieve
 			PATH_PAMD_POP=/etc/pam.d/pop
 			if [ -e /etc/pam.d/ ]; then
-				if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-					echo "===> Adding configuration inside "$PATH_PAMD_SMTP
-				fi
+				echoIfVerbose "===> Adding configuration inside "$PATH_PAMD_SMTP
 				if [ -f $PATH_PAMD_SMTP ]; then
 					if ! [ -f $PATH_PAMD_SMTP.DTC.backup ]; then
 						cp -f $PATH_PAMD_SMTP $PATH_PAMD_SMTP.DTC.backup
@@ -2270,19 +2241,13 @@ configFreeRadius () {
 
 		rm $TMP_FILE $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5 $TMP_FILE6
 
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		        echo "===> Adding directives to sql.conf"
-		fi
+		echoIfVerbose "===> Adding directives to sql.conf"
 
 		if grep "Configured by DTC" $FREERADIUS_SQL_DOT_CONF >/dev/null
 		then
-		        if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		                echo "sql.conf has been configured before : skiping include inssertion !"
-		        fi
+	                echoIfVerbose "sql.conf has been configured before : skiping include inssertion !"
 		else
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	                	echo "Inserting DTC configuration inside "$FREERADIUS_SQL_DOT_CONF
-			fi
+	                echoIfVerbose "Inserting DTC configuration inside "$FREERADIUS_SQL_DOT_CONF
 
 		        TMP_FILE1=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
 		        TMP_FILE2=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
@@ -2405,7 +2370,6 @@ createRRDFiles () {
 	fi
 }
 
-
 modifySSHDConfig () {
 	#
 	# Modify the SSH default option to make sure the UsePAM and turn on Password auth
@@ -2416,14 +2380,10 @@ modifySSHDConfig () {
 		PATH_SSH_CONF=/etc/ssh/sshd_config
 	fi
 
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "===> Modifying SSH config to allow chroot logins... "$PATH_SSH_CONF
-	fi
-
+	echoIfVerbose "===> Modifying SSH config to allow chroot logins... "$PATH_SSH_CONF
 	# first we want to comment out any previously set variables
 	# PasswordAuthentication 
 	# UsePAM
-
 	TMP_FILE=`${MKTEMP} DTC_install.sshd_conf.XXXXXX` || exit 1
 
 	if grep "^PasswordAuthentication" $PATH_SSH_CONF >/dev/null 2>&1
@@ -2442,15 +2402,11 @@ modifySSHDConfig () {
 
 	if grep "Configured by DTC" $PATH_SSH_CONF >/dev/null
 	then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "$PATH_SSH_CONF has been configured before..."
-		fi
+		echoIfVerbose "$PATH_SSH_CONF has been configured before..."
 	else
 		if ! [ -f $PATH_SSH_CONF.DTC.backup ]
 		then
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "===> Backuping "$PATH_SSH_CONF
-			fi
+			echoIfVerbose "===> Backuping "$PATH_SSH_CONF
 			cp -f "$PATH_SSH_CONF" "$PATH_SSH_CONF.DTC.backup"
 		fi
 		echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
@@ -2475,15 +2431,11 @@ modifyNSSConfig () {
 
 	if grep "Configured by DTC" $PATH_NSSWITCH_CONF >/dev/null
 	then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "$PATH_NSSWITCH_CONF has been configured before..."
-		fi
+		echoIfVerbose "$PATH_NSSWITCH_CONF has been configured before..."
 	else
 		if ! [ -f $PATH_NSSWITCH_CONF.DTC.backup ]
 		then
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "===> Backuping "$PATH_NSSWITCH_CONF
-			fi
+			echoIfVerbose "===> Backuping "$PATH_NSSWITCH_CONF
 			cp -f "$PATH_NSSWITCH_CONF" "$PATH_NSSWITCH_CONF.DTC.backup"
 		fi
 		echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
@@ -2554,15 +2506,11 @@ shadow:         compat mysql
 
 	if grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
 	then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "$PATH_NSS_CONF has been configured before..."
-		fi
+		echoIfVerbose "$PATH_NSS_CONF has been configured before..."
 	else
 		if ! [ -f $PATH_NSS_CONF.DTC.backup ]
 		then
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "===> Backuping "$PATH_NSS_CONF
-			fi
+			echoIfVerbose "===> Backuping "$PATH_NSS_CONF
 			cp -f "$PATH_NSS_CONF" "$PATH_NSS_CONF.DTC.backup"
 		fi
 
@@ -2628,15 +2576,11 @@ password ${MYSQL_DTCDAEMONS_PASS}
 
 	if grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
 	then
-		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "$PATH_NSS_ROOT_CONF has been configured before..."
-		fi
+		echoIfVerbose "$PATH_NSS_ROOT_CONF has been configured before..."
 	else
 		if ! [ -f $PATH_NSS_ROOT_CONF.DTC.backup ]
 		then
-			if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-				echo "===> Backuping "$PATH_NSS_ROOT_CONF
-			fi
+			echoIfVerbose "===> Backuping "$PATH_NSS_ROOT_CONF
 			cp -f "$PATH_NSS_ROOT_CONF" "$PATH_NSS_ROOT_CONF.DTC.backup"
 		fi
 		echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
@@ -2781,10 +2725,7 @@ createChrootTemplate () {
 		CHROOT_DIR=/var/www/chroot
 	fi
 
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "===> Creating chroot tree in "$conf_chroot_path
-	fi
-
+	echoIfVerbose "===> Creating chroot tree in "$conf_chroot_path
 	# set our umask so things are created with the correct group perms
 	umask 022
 
@@ -2797,7 +2738,7 @@ createChrootTemplate () {
 	mkdir -p usr/bin usr/lib usr/libexec usr/share usr/lib/zoneinfo
 
 	# make devices - adjust MAJOR/MINOR as appropriate ( see ls -l /dev/* )
-	if ! [ ""$conf_omit_dev_mknod = "yes" ] ; then
+	if ! [ ""$conf_omit_dev_mknod = "true" ] ; then
 		if ! [ -e dev/null ] ; then
 			if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 				mknod dev/null    c  2 2   # FreeBSD?
@@ -3135,7 +3076,7 @@ createChrootTemplate () {
 	# set protections
 	chmod 1770 tmp
 	chmod 1770 var/tmp
-	if ! [ ""$conf_omit_dev_mknod = "yes" ] ; then
+	if ! [ ""$conf_omit_dev_mknod = "true" ] ; then
 		chmod 666 dev/null
 		chmod 644 dev/*random
 	fi
