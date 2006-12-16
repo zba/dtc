@@ -73,8 +73,8 @@ debianGetDebconfValues () {
 	conf_eth2monitor=$RET
 	db_get dtc/conf_report_setup_stat
 	conf_report_setup=$RET
-#	db_unregister dtc/conf_mysqlpass
-#	db_unregister dtc/conf_mysql_change_root
+	db_unregister dtc/conf_mysqlpass
+	db_unregister dtc/conf_mysql_change_root
 	db_unregister dtc/conf_admpass
 }
 

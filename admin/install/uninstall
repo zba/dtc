@@ -4,17 +4,10 @@ VERBOSE_INSTALL=yes
 
 if [ -f /etc/debian_version ] ; then
 	. /usr/share/dtc/admin/install/debian_config
-	. /usr/share/debconf/confmodule
-	db_version 2.0
-	db_get dtc/conf_apache_version
-	conf_apache_version=$RET
-	db_stop
-	if [ ""$conf_apache_version = "2" ] ; then
-		PATH_HTTPD_CONF=/etc/apache2/apache2.conf
-	else
-		PATH_HTTPD_CONF=/etc/apache/httpd.conf
-	fi
 	. /usr/share/dtc/admin/install/functions
-fi
 
-DTCuninstallDaemons
+	PATH_HTTPD_CONF=/etc/apache2/apache2.conf
+	DTCuninstallDaemons
+	PATH_HTTPD_CONF=/etc/apache/httpd.conf
+	uninstallHttpdConfig
+fi
