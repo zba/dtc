@@ -6,7 +6,15 @@ DTC_ETC=$1
 # http://www.stahl.bau.tu-bs.de/~hildeb/postfix/queuegraph/
 # modified by Damien Mascord for dtc
 
-RRDTOOL=/usr/bin/rrdtool
+if [ -x /usr/bin/rrdtool ] ; then
+	RRDTOOL=/usr/bin/rrdtool
+else
+	if [ -x /usr/local/bin/rrdtool ] ; then
+		RRDTOOL=/usr/local/bin/rrdtool
+	else
+		exit 1
+	fi
+fi
 
 $RRDTOOL create $DTC_ETC/netusage.rrd --step 60 \
 	DS:bytesin:COUNTER:900:0:8589934592 \

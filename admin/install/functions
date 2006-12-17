@@ -2739,6 +2739,7 @@ createChrootTemplate () {
 
 	# make devices - adjust MAJOR/MINOR as appropriate ( see ls -l /dev/* )
 	if ! [ ""$conf_omit_dev_mknod = "true" ] ; then
+		echoIfVerbose "-> Making devices"
 		if ! [ -e dev/null ] ; then
 			if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
 				mknod dev/null    c  2 2   # FreeBSD?
@@ -2784,6 +2785,7 @@ createChrootTemplate () {
 	fi
 
 	# copy required binaries to $conf_chroot_path/usr/bin and $conf_chroot_path/bin
+	echoIfVerbose "-> Copying utilities"
 	if [ -e /bin/bzip2 ] ; then
 		cp -pf /bin/bzip2 usr/bin/
 	fi
@@ -2794,17 +2796,6 @@ createChrootTemplate () {
 		cp -pf /usr/bin/file usr/bin/
 	fi
 
-	if [ $UNIX_TYPE"" = "freebsd" ] ; then
-		cp -pf /usr/bin/cpio usr/bin
-	        cp -pf /libexec/ld-elf.so.1 libexec
-		cp -pf /bin/rm /bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
-	elif [ $UNIX_TYPE"" = "osx" ] ; then
-		cp -pf /usr/bin/cpio usr/bin
-		cp -pf /usr/bin/rm /usr/bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
-	else
-		cp -pf /bin/rm /bin/mv /bin/gunzip bin/
-		cp -pf /bin/cpio usr/bin
-	fi
 	# copy zip and unzip if they are present
 	if [ -e /usr/bin/zip ] ; then
 		cp -pf /usr/bin/zip bin/
@@ -2852,14 +2843,26 @@ createChrootTemplate () {
 	# copy more required binaries to $conf_chroot_path/bin
 	cp -pf /bin/sh /bin/echo /bin/ls /bin/pwd /bin/cat bin/
 
+	if [ $UNIX_TYPE"" = "freebsd" ] ; then
+		cp -pf /usr/bin/cpio usr/bin
+	        cp -pf /libexec/ld-elf.so.1 libexec
+		cp -pf /bin/rm /bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
+	elif [ $UNIX_TYPE"" = "osx" ] ; then
+		cp -pf /usr/bin/cpio usr/bin
+		cp -pf /usr/bin/rm /usr/bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
+	else
+		cp -pf /bin/rm /bin/mv /bin/gunzip bin/
+		cp -pf /bin/cpio usr/bin
+	fi
+
 	# copy ldconfig from sbin to $conf_chroot_path/sbin
 	if ! [ $UNIX_TYPE"" = "osx" ] ; then
 		cp -pf /sbin/ldconfig sbin/
 	fi
 
+	echoIfVerbose "-> Creating /etc template"
 	# copy needed /etc files to $conf_chroot_path/etc
-	cp -pf /etc/protocols /etc/services /etc/hosts \
-  /etc/resolv.conf etc/
+	cp -pf /etc/protocols /etc/services /etc/hosts /etc/resolv.conf etc/
 
 	# generate /etc/passwd and /etc/group
 	# ignore errors
@@ -2915,9 +2918,11 @@ createChrootTemplate () {
 	#
 	#FreeBSD: 
 	#for j in \
+	echoIfVerbose "-> Copying essential libraries"
 	if [ $UNIX_TYPE"" = "freebsd"  ] ; then
-		cp -pf /usr/lib/libc.so* /usr/lib/libm.so* \
-		  /usr/lib/libstdc\+\+.so* usr/lib/
+		cp -f /usr/lib/libc.so* usr/lib/
+		cp -pf /usr/lib/libm.so* usr/lib/
+		cp -pf /usr/lib/libstdc\+\+.so* usr/lib/
 		if [ -e /usr/compat/linux/usr/lib/libz.so.1 ] ; then
 			cp /usr/compat/linux/usr/lib/libz.so.1 usr/lib
 		fi
@@ -2946,10 +2951,13 @@ createChrootTemplate () {
 			if [ -e /lib/ld-linux-x86-64.so.2 ] ; then
 				cp -pf /lib/ld-linux-x86-64.so.2 lib/
 			fi
-			cp -pf /lib/libdl.so.2 /lib/libm.so.6 /lib/libpthread.so.0 \
-			  /lib/libc.so.6 /lib/libcrypt.so.1 \
-			  /lib/librt.so.1 \
-			  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 \
+			cp -pf /lib/libdl.so.2 lib/
+			cp -pf /lib/libm.so.6 lib/
+			cp -pf /lib/libpthread.so.0 lib/
+			cp -pf /lib/libc.so.6 lib/
+			cp -pf /lib/libcrypt.so.1 lib/
+			cp -pf /lib/librt.so.1 lib/
+			cp -pf  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 \
 			  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
 	
 			if [ -e /lib/libncurses.so.5 ]; then
@@ -3010,8 +3018,7 @@ createChrootTemplate () {
 	# magic files needed by file(1). Different versions and installations
 	# expect magic files in different locations. Check the documentation.
 	# Some usual locations are:
-	if [ -e /usr/share/misc/file ]
-	then
+	if [ -e /usr/share/misc/file ] ; then
 		#cp -pf /usr/local/share/file/*  usr/local/share/file/
 		mkdir -p usr/share/misc/file
 		cp -pf /usr/share/misc/file/magic*   usr/share/misc/file
@@ -3035,8 +3042,9 @@ createChrootTemplate () {
 	fi
 
 	# now we have come this far, make sure our chroot includes enough libs for this environment
+	echoIfVerbose "-> Some ldd things"
 	LDD=`which ldd`
-	if [ -n "$LDD" ]; then
+	if [ -n "$LDD" -a ! $UNIX_TYPE"" = "freebsd" ]; then
 
 		for i in bin/* ; do
 		        for j in `$LDD $i | cut -f 1 -d' '`;
@@ -3044,15 +3052,12 @@ createChrootTemplate () {
 				if [ -e $j ]; then
 					cp -pf $j lib/
 				fi
-	
 		                if [ -e /lib/$j ]; then
 		                        cp -pf /lib/$j lib/
 		                fi
-
 		                if [ -e /usr/lib/$j ]; then
 		                        cp -pf /usr/lib/$j lib/
 		                fi
-
 		                if [ -e /usr/local/lib/$j ]; then
 		                        cp -pf /usr/local/lib/$j lib/
 		                fi
@@ -3074,6 +3079,7 @@ createChrootTemplate () {
 	fi
 
 	# set protections
+	echoIfVerbose "-> Fixup rights"
 	chmod 1770 tmp
 	chmod 1770 var/tmp
 	if ! [ ""$conf_omit_dev_mknod = "true" ] ; then
@@ -3084,9 +3090,10 @@ createChrootTemplate () {
 	#now need to copy over the perl binary and some modules
 	cp -pf /usr/bin/perl usr/bin/
 
+	echoIfVerbose "-> Managing ldconfig"
 	if [ $UNIX_TYPE"" = "freebsd" ] ;then
 	        # now create our ld.so cache
-#	        cp /libexec/ld-elf.so.1 $conf_chroot_path/libexec
+	        cp /libexec/ld-elf.so.1 $conf_chroot_path/libexec
 	        chroot $conf_chroot_path ./sbin/ldconfig
 	        # just in case we have wiped our /etc/ld.so.cache (run locally)
 	        /sbin/ldconfig
@@ -3101,6 +3108,7 @@ createChrootTemplate () {
 			/sbin/ldconfig
 		fi
 	fi
+	echoIfVerbose "-> Done chroot template!"
 }
 
 checkBsdKernel () {

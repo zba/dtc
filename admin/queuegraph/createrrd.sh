@@ -6,7 +6,15 @@ DTC_ETC=$1
 # http://www.stahl.bau.tu-bs.de/~hildeb/postfix/queuegraph/
 # modified by Damien Mascord for dtc
 
-RRDTOOL=rrdtool
+if [ -x /usr/bin/rrdtool ] ; then
+	RRDTOOL=/usr/bin/rrdtool
+else
+	if [ -x /usr/local/bin/rrdtool ] ; then
+		RRDTOOL=/usr/local/bin/rrdtool
+        else
+		exit 1
+	fi
+fi
 
 $RRDTOOL create $DTC_ETC/mailqueues.rrd --step 60 \
 	DS:active:GAUGE:900:0:U \
