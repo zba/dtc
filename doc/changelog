@@ -1,3 +1,10 @@
+Version 0.25.0:
+---------------
+Review and reorganized:
+- Install script (full re-organization with functions)
+- Cron job
+- Forms drawings of 70% of the panel
+
 Version 0.24.6:
 ---------------
 - The restor_db.php can now check primary keys and (re)add them
