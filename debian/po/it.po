@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-16 18:24+0000\n"
+"POT-Creation-Date: 2006-12-17 21:41+0800\n"
 "PO-Revision-Date: 2006-11-22 22:24+0100\n"
 "Last-Translator: Luca Franceschini <lupin3rd@gmx.it>\n"
 "Language-Team: Italian <lupin3rd@gmx.it>\n"
@@ -27,15 +27,17 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../dtc.templates:4 ../dtc-postfix-courier.templates:4
-msgid "MySql hostname:"
+#, fuzzy
+msgid "MySQL hostname:"
 msgstr "Hostname MySql:"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:4 ../dtc-postfix-courier.templates:4
+#, fuzzy
 msgid ""
-"Enter the hostname or ip do you want to use to connect to your mysql server. "
-"If the mysql server runs localy, then you can safely leave the default to "
+"Enter the hostname or ip do you want to use to connect to your MySQL server. "
+"If the MySQL server runs locally, then you can safely leave the default to "
 "localhost."
 msgstr ""
 "Inserisci l'hostname o ip che vuoi usare per connetterti al tuo server "
@@ -45,17 +47,19 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../dtc.templates:12 ../dtc-postfix-courier.templates:12
-msgid "MySql Login:"
+#, fuzzy
+msgid "MySQL Login:"
 msgstr "Login MySql"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:12 ../dtc-postfix-courier.templates:12
+#, fuzzy
 msgid ""
-"Enter the mysql root login. DTC needs it to access to your mysql table in "
-"order to grant privileges to it's users. It's sugested that you add a user "
+"Enter the MySQL root login. DTC needs it to access to your MySQL table in "
+"order to grant privileges to it's users. It's suggested that you add a user "
 "specialy for dtc that has the rights for modifying grant tables, but root is "
-"also ok."
+"also working."
 msgstr ""
 "Inserisci il login root di mysql. DTC lo richiede per poter accedere alla "
 "tua tabella mysql per poter garantire alcuni privilegi ai suoi utenti. E' "
@@ -65,14 +69,16 @@ msgstr ""
 #. Type: password
 #. Description
 #: ../dtc.templates:20 ../dtc-postfix-courier.templates:20
-msgid "MySql Password:"
+#, fuzzy
+msgid "MySQL Password:"
 msgstr "Password MySql:"
 
 #. Type: password
 #. Description
 #: ../dtc.templates:20 ../dtc-postfix-courier.templates:20
+#, fuzzy
 msgid ""
-"Please enter your mysql root password so DTC can connect to MySQL and add/"
+"Please enter your MySQL root password so DTC can connect to MySQL and add/"
 "remove databases."
 msgstr ""
 "Per favore inserisci la tua password di root così DTC può connettersi a "
@@ -87,8 +93,9 @@ msgstr "Nome database DTC:"
 #. Type: string
 #. Description
 #: ../dtc.templates:27 ../dtc-postfix-courier.templates:27
+#, fuzzy
 msgid ""
-"DTC save all it's hosting information in a database automaticaly created. "
+"DTC save all it's hosting information in a database automatically created. "
 "You should enter it's name here."
 msgstr ""
 "DTC salva tutte le proprie informazioni per l'hosting in un database che "
@@ -97,19 +104,21 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../dtc.templates:34 ../dtc-postfix-courier.templates:34
-msgid "Change MySql root?"
+#, fuzzy
+msgid "Change MySQL root?"
 msgstr "Cambiare "
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:34 ../dtc-postfix-courier.templates:34
+#, fuzzy
 msgid ""
-"When installing mysql-server package under debian, the default installed "
+"When installing mysql-server package under Debian, the default installed "
 "root password for database access is an empty password. DTC can change that "
 "root password for you if you didn't change it before. If you have setup a "
-"root password for mysql before, or if you are just upgrading DTC to a newer "
+"root password for MySQL before, or if you are just upgrading DTC to a newer "
 "version, you might don't need to setup a new root password. If your root "
-"mysql password is not set yet, then you can ask DTC to change it with the "
+"MySQL password is not set yet, then you can ask DTC to change it with the "
 "root password you just entered. Please note that if DTC can't connect with "
 "root, then install will fail."
 msgstr ""
@@ -158,16 +167,18 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../dtc.templates:61 ../dtc-postfix-courier.templates:61
-msgid "Primary IP addresse:"
+#, fuzzy
+msgid "Primary IP address:"
 msgstr "Indirizzo IP primario:"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:61 ../dtc-postfix-courier.templates:61
+#, fuzzy
 msgid ""
-"Enter your primary IP addresse here. This IP will be used for the domain "
-"name you just provided, and will be used as default for most DTC variables. "
-"In case of NAT, please enter your EXTERNAL IP address."
+"Enter your primary IP address here. This IP will be used for the domain name "
+"you just provided, and will be used as default for most DTC variables. In "
+"case of NAT, please enter your EXTERNAL IP address."
 msgstr ""
 "Inserisci qui il tuo indirizzo IP primario. Questo IP verrà usato per il "
 "nome a dominio che hai inserito precedentemente, e verrà usato come default "
@@ -183,19 +194,21 @@ msgstr "Path per l'hosting dei domini:"
 #. Type: string
 #. Description
 #: ../dtc.templates:69 ../dtc-postfix-courier.templates:69
+#, fuzzy
 msgid ""
-"Where do you want DTC to store all hosted domains files (mail and web "
-"files) ?"
+"This path is where you want DTC to store all hosted domains files (mail and "
+"web files) ?"
 msgstr ""
 "Dove vuoi che DTC tenga tutti i files (files web e mail) dei domini hostati?"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:69 ../dtc-postfix-courier.templates:69
+#, fuzzy
 msgid ""
 "Please note that apache's standard installation setup /var/www as the apache "
-"web area (document root). Remove this manualy in your /etc/apache/httpd.conf "
-"(or in /etc/apache2) if you choose /var/www/sites as DTC's hosting area."
+"web area (document root). Remove this manually in your /etc/apache/httpd."
+"conf (or in /etc/apache2) if you choose /var/www/sites as DTC's hosting area."
 msgstr ""
 "Ricorda che l'istallazione standard di apache setta /var/www come area web "
 "di apache (document root). Rimuovi questa manualmente nel tuo /etc/apache/"
@@ -242,9 +255,10 @@ msgstr "Password admin del dominio principale:"
 #. Type: password
 #. Description
 #: ../dtc.templates:95 ../dtc-postfix-courier.templates:95
+#, fuzzy
 msgid ""
 "Please give the main domain's administrator a password. Note that access to "
-"the control panel is to be managed manualy in /var/www/sites/.htpasswd "
+"the control panel is to be managed manually in /var/www/sites/.htpasswd "
 "currently (or in an other path if you decided not to use /var/www as your "
 "hosting root path)."
 msgstr ""
@@ -476,7 +490,8 @@ msgstr "Nome società (organization) del certificato SSL di DTC:"
 #. Type: string
 #. Description
 #: ../dtc.templates:193 ../dtc-postfix-courier.templates:193
-msgid "Please entre your organization name."
+#, fuzzy
+msgid "Please enter your organization name."
 msgstr "Inserisci il nome della tua società."
 
 #. Type: string
@@ -494,7 +509,8 @@ msgstr "Inserisci il nome dell'ufficio della tua società."
 #. Type: string
 #. Description
 #: ../dtc.templates:204 ../dtc-postfix-courier.templates:204
-msgid "DTC SSL certificate email addr:"
+#, fuzzy
+msgid "DTC SSL certificate email address:"
 msgstr "Indirizzo email del certificato SSL di DTC:"
 
 #. Type: string
@@ -524,8 +540,9 @@ msgstr "Aggiornare l'istallazione PEAR?"
 #. Type: boolean
 #. Description
 #: ../dtc.templates:215 ../dtc-postfix-courier.templates:215
+#, fuzzy
 msgid ""
-"You can ask DTC to check your pear installation durring install. This "
+"You can ask DTC to check your pear installation during install. This "
 "REQUIRES a network connection to the internet. If you can't do so here, "
 "please check that you have the following PEAR modules up-to-date: Crypt_CBC "
 "and Auth_SASL. The files should be in /usr/share/php if you want to check."
@@ -545,8 +562,9 @@ msgstr "DNSBL (DNS BlackList) list:"
 #. Type: string
 #. Description
 #: ../dtc.templates:225 ../dtc-postfix-courier.templates:225
+#, fuzzy
 msgid ""
-"Please enter the list of prefered DNSBL servers to add to your Postfix mail "
+"Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
 msgstr ""
 "Inserisci la lista dei tuoi servers DNSBL preferiti per aggiungerla alla tua "
@@ -571,15 +589,17 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../dtc.templates:238 ../dtc-postfix-courier.templates:238
-msgid "Allow to report anonymous statistc to GPLHost?"
+#, fuzzy
+msgid "Allow to report anonymous statistic to GPLHost?"
 msgstr "Permetti di comunicare statistiche anonime a GPLHost?"
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:238 ../dtc-postfix-courier.templates:238
+#, fuzzy
 msgid ""
 "You can help GPLHost to know how many DTC setup has been done, by reporting "
-"your installation to it's web site. No data will be collected exept the "
+"your installation to it's web site. No data will be collected except the "
 "operating system (Debian in your case), IP address of the setup (the IP is "
 "used as an identifier so GPLHost don't account upgrades and/or "
 "reinstallations, it will never be used for commercial purpose). You have to "
@@ -602,10 +622,11 @@ msgstr "Tralascia chiamate mknod mentre crei il template chroot?"
 #. Type: boolean
 #. Description
 #: ../dtc.templates:249 ../dtc-postfix-courier.templates:249
+#, fuzzy
 msgid ""
 "In some environment, like Linux vServer, mknod is not allowed to be "
 "executed. For that reason, it's possible to skip the creation of the dev "
-"null, random and urandom devices durring the chroot template creation."
+"null, random and urandom devices during the chroot template creation."
 msgstr ""
 "In alcuni ambienti, come Linux vServer, mknod non può essere eseguito. Per "
 "questa ragione, è possibile tralasciare la creazione dei devices null, "
