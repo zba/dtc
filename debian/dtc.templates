@@ -1,43 +1,43 @@
 Template: dtc/conf_mysqlhost
 Type: string
 Default: localhost
-_Description: MySql hostname:
- Enter the hostname or ip do you want to use to connect to your mysql server.
- If the mysql server runs localy, then you can safely leave the default to
+_Description: MySQL hostname:
+ Enter the hostname or ip do you want to use to connect to your MySQL server.
+ If the MySQL server runs locally, then you can safely leave the default to
  localhost.
 
 Template: dtc/conf_mysqllogin
 Type: string
 Default: root
-_Description: MySql Login:
- Enter the mysql root login. DTC needs it to access to your mysql table
- in order to grant privileges to it's users. It's sugested that you add a
+_Description: MySQL Login:
+ Enter the MySQL root login. DTC needs it to access to your MySQL table
+ in order to grant privileges to it's users. It's suggested that you add a
  user specialy for dtc that has the rights for modifying grant tables, but
- root is also ok.
+ root is also working.
 
 Template: dtc/conf_mysqlpass
 Type: password
-_Description: MySql Password:
- Please enter your mysql root password so DTC can connect to MySQL and
+_Description: MySQL Password:
+ Please enter your MySQL root password so DTC can connect to MySQL and
  add/remove databases.
 
 Template: dtc/conf_mysqldb
 Type: string
 Default: dtc
 _Description: DTC database name:
- DTC save all it's hosting information in a database automaticaly created.
+ DTC save all it's hosting information in a database automatically created.
  You should enter it's name here.
 
 Template: dtc/conf_mysql_change_root
 Type: boolean
 Default: false
-_Description: Change MySql root?
- When installing mysql-server package under debian, the default installed
+_Description: Change MySQL root?
+ When installing mysql-server package under Debian, the default installed
  root password for database access is an empty password. DTC can change
  that root password for you if you didn't change it before. If you have
- setup a root password for mysql before, or if you are just upgrading DTC
+ setup a root password for MySQL before, or if you are just upgrading DTC
  to a newer version, you might don't need to setup a new root password.
- If your root mysql password is not set yet, then you can ask DTC to change
+ If your root MySQL password is not set yet, then you can ask DTC to change
  it with the root password you just entered. Please note that if DTC can't
  connect with root, then install will fail.
 
@@ -58,8 +58,8 @@ _Description: DTC root panel subdomain:
 Template: dtc/conf_ipaddr
 Type: string
 Default: 192.168.0.2
-_Description: Primary IP addresse:
- Enter your primary IP addresse here. This IP will be used for the domain
+_Description: Primary IP address:
+ Enter your primary IP address here. This IP will be used for the domain
  name you just provided, and will be used as default for most DTC variables.
  In case of NAT, please enter your EXTERNAL IP address.
 
@@ -67,11 +67,11 @@ Template: dtc/conf_hostingpath
 Type: string
 Default: /var/www/sites
 _Description: Path for hosted domains:
- Where do you want DTC to store all hosted domains files (mail and web
- files) ?
+ This path is where you want DTC to store all hosted domains
+ files (mail and web files) ?
  .
  Please note that apache's standard installation setup /var/www as the
- apache web area (document root). Remove this manualy in your
+ apache web area (document root). Remove this manually in your
  /etc/apache/httpd.conf (or in /etc/apache2) if you choose /var/www/sites
  as DTC's hosting area.
 
@@ -94,7 +94,7 @@ Type: password
 Default: 
 _Description: Main domain admin password:
  Please give the main domain's administrator a password. Note that access
- to the control panel is to be managed manualy in /var/www/sites/.htpasswd
+ to the control panel is to be managed manually in /var/www/sites/.htpasswd
  currently (or in an other path if you decided not to use /var/www as your
  hosting root path).
 
@@ -191,7 +191,7 @@ Template: dtc/conf_cert_organization
 Type: string
 Default: GPLHost
 _Description: DTC SSL certificate organization name:
- Please entre your organization name.
+ Please enter your organization name.
 
 Template: dtc/conf_cert_unit
 Type: string
@@ -201,7 +201,7 @@ _Description: DTC SSL certificate organization unit:
 
 Template: dtc/conf_cert_email
 Type: string
-_Description: DTC SSL certificate email addr:
+_Description: DTC SSL certificate email address:
  Please enter your certificate email address.
 
 Template: dtc/conf_cert_challenge_pass
@@ -213,7 +213,7 @@ Template: dtc/conf_upgrade_pear
 Type: boolean
 Default: true
 _Description: Update pear installation?
- You can ask DTC to check your pear installation durring install. This
+ You can ask DTC to check your pear installation during install. This
  REQUIRES a network connection to the internet. If you can't do so here,
  please check that you have the following PEAR modules up-to-date:
  Crypt_CBC and Auth_SASL. The files should be in /usr/share/php if you
@@ -223,7 +223,7 @@ Template: dtc/conf_dnsbl_list
 Type: string
 Default: sbl-xbl.spamhaus.org,list.dsbl.org,relays.ordb.org
 _Description: DNSBL (DNS BlackList) list:
- Please enter the list of prefered DNSBL servers to add to your Postfix
+ Please enter the list of preferred DNSBL servers to add to your Postfix
  mail server configuration.
 
 Template: dtc/conf_eth2monitor
@@ -235,10 +235,10 @@ _Description: Network devices to monitor:
 Template: dtc/conf_report_setup_stat
 Type: boolean
 Default: true
-_Description: Allow to report anonymous statistc to GPLHost?
+_Description: Allow to report anonymous statistic to GPLHost?
  You can help GPLHost to know how many DTC setup has been done, by
  reporting your installation to it's web site. No data will be collected
- exept the operating system (Debian in your case), IP address of the setup
+ except the operating system (Debian in your case), IP address of the setup
  (the IP is used as an identifier so GPLHost don't account upgrades and/or
  reinstallations, it will never be used for commercial purpose). You have
  to be connected to internet and wget must be installed to do the report.
@@ -249,4 +249,4 @@ Default: false
 _Description: Skip mknod calls when building chroot template?
  In some environment, like Linux vServer, mknod is not allowed to be
  executed. For that reason, it's possible to skip the creation of the dev
- null, random and urandom devices durring the chroot template creation.
+ null, random and urandom devices during the chroot template creation.
