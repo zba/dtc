@@ -1,9 +1,24 @@
 dtc (0.25.0-1) unstable; urgency=low
 
-  * The postinst does not modify other package config files anymore
-  * Full review of the install procedure
+  * The postinst doesnn't modify other package config files anymore
+    this is now done in a script to be launched manualy after the
+    setup of the package (Closes: #402432)
+  * Full review of the install procedure (Closes: #402834)
+  * Now using po-debconf (Closes: #402657)
 
  -- Thomas Goirand <thomas@goirand.fr>  Sat, 16 Dec 2006 03:11:17 +0800
+
+dtc (0.24.6-1.1) unstable; urgency=low
+
+  * Non-maintainer upload from the sponsor :)
+  * Disabled maintainer scripts:
+    - The maintainer scripts are currently way too intrusive.
+      They need to be carefully rewritten. Until this is done, I disabled
+      them
+      (they are shipped in /usr/share/doc/{dtc,dtc-postfix}/ though).
+    - disabled postinst check in rules.
+
+ -- Daniel Baumann <daniel@debian.org>  Mon, 11 Dec 2006 08:49:00 +0100
 
 dtc (0.24.6-1) unstable; urgency=low
 
