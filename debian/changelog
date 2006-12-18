@@ -1,5 +1,6 @@
 dtc (0.25.0-1) unstable; urgency=low
 
+  * Now using po-debconf internationalization
   * The postinst doesn't modify other package config files anymore
     this is now done in a script to be launched manualy after the
     setup of the package (Closes: #402432, #402433)
