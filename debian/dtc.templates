@@ -77,7 +77,7 @@ _Description: Path for hosted domains:
 
 Template: dtc/conf_chroot_path
 Type: string
-Default: /usr/share/dtc/chroot_template
+Default: /var/lib/dtc/chroot_template
 _Description: Path where to build the chroot environment:
  Please enter the path where you want DTC to build the cgi-bin chroot
  environment template.
