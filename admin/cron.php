@@ -35,6 +35,8 @@ function searchApachectl () {
 			$APACHECTL = "/usr/sbin/apachectl2";
 		}else if(file_exists("/usr/local/sbin/apachectl2")){
 			$APACHECTL = "/usr/local/sbin/apachectl2";
+		}else if(file_exists("/usr/local/sbin/apachectl")){
+                	 $APACHECTL = "/usr/local/sbin/apachectl";
 		}
 	}else{
 		if(file_exists("/usr/sbin/apachectl")){
@@ -356,7 +358,12 @@ function cronMailSystem () {
 		switch($conf_mta_type){
 		case "postfix":
 			echo "Reloading postfix\n";
-			system("/etc/init.d/postfix reload");
+			if( file_exists("/etc/init.d/postfix")){
+				$PATH_POSTFIX_SCRIPT = "/etc/init.d/postfix";
+			}else if( file_exists("/usr/local/etc/rc.d/postfix")){
+				$PATH_POSTFIX_SCRIPT = "/usr/local/etc/rc.d/postfix";
+			}
+			system("$PATH_POSTFIX_SCRIPT reload");
 			echo "Reloading amavis\n";
 			if( file_exists ("/etc/init.d/amavis") ){
 				system("/etc/init.d/amavis force-reload");

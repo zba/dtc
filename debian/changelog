@@ -1,12 +1,13 @@
 dtc (0.25.0-1) unstable; urgency=low
 
-  * Long desc split in parts. (Closes: #403504)
-  * Now using po-debconf internationalization
+  * Now using a2enmod for enabling apache2 rewrite and ssl.
+  * Long desc split in parts. (Closes: #403504).
+  * Now using po-debconf internationalization.
   * The postinst doesn't modify other package config files anymore
     this is now done in a script to be launched manualy after the
-    setup of the package (Closes: #402432, #402433)
-  * Full review of the install procedure (Closes: #402834)
-  * Now using po-debconf (Closes: #402657, #402657)
+    setup of the package (Closes: #402432, #402433).
+  * Full review of the install procedure (Closes: #402834).
+  * Now using po-debconf (Closes: #402657, #402657).
 
  -- Thomas Goirand <thomas@goirand.fr>  Sat, 16 Dec 2006 03:11:17 +0800
 

@@ -831,13 +831,17 @@ createApachePIDSymLink () {
 }
 
 enableApache2Modules () {
-	echoIfVerbose "-> Enabling mod rewrite and modssl for apache 2"
 	if [ ""$conf_apache_version = "2" ] ; then
+		echoIfVerbose "-> Enabling mod rewrite and modssl for apache 2"
 		# Activate mod_rewrite
 		if [ -f /etc/apache2/mods-available/rewrite.load ] ; then
 			if [ -d /etc/apache2/mods-enabled ] ; then
 				if ! [ -e /etc/apache2/mods-enabled/rewrite.load ] ; then
-					ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+					if [ -x /usr/sbin/a2enmod ] ; then
+						a2enmod rewrite || /bin/true
+					else
+						ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+					fi
 				fi
 			fi
 		fi
@@ -845,7 +849,11 @@ enableApache2Modules () {
 		if [ -f /etc/apache2/mods-available/ssl.load ] ; then
 			if [ -d /etc/apache2/mods-enabled ] ; then
 				if ! [ -e /etc/apache2/mods-enabled/ssl.load ] ; then
-					ln -s ../mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
+					if [ -x /usr/sbin/a2enmod ] ; then
+						a2enmod ssl || /bin/true
+					else
+						ln -s ../mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
+					fi
 				fi
 			fi
 		fi
