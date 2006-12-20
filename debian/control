@@ -24,7 +24,8 @@ Description: A web control panel for admin and accounting hosting services
  backup scripts, calculation scripts, and config files. All this using a
  single system UID/GID.
  .
- It does as well monitoring of all trafic accounting per user and per service (and globaly using RRDTools).
+ It does as well monitoring of all trafic accounting per user and per
+ service (and globaly using RRDTools).
  Since version 0.12, DTC is fully skinable and translated in several languages.
  .
  See homepage for more details: http://www.gplhost.com/software-dtc.html
@@ -49,7 +50,8 @@ Description: A web control panel for admin and accounting hosting services
  backup scripts, calculation scripts, and config files. All this using a
  single system UID/GID.
  .
- It does as well monitoring of all trafic accounting per user and per service (and globaly using RRDTools).
+ It does as well monitoring of all trafic accounting per user and per
+ service (and globaly using RRDTools).
  Since version 0.12, DTC is fully skinable and translated in several languages.
  .
  This specific package has dependencies to setup postfix, courier,
@@ -63,9 +65,10 @@ Description: A web control panel for admin and accounting hosting services
 Package: dtc-toaster
 Architecture: all
 Depends: dtc-postfix-courier, ttf-arphic-ukai, ttf-bitstream-vera
+Suggests: msttcorefonts
 Description: A meta package to setup all necessary DTC package
  This is a meta package that will setup every package
  that you need when you want to use DTC web hosting control
  panel. If you want more information, have a look to the
  dtc package itself.
- See http://www.gplhost.com/software-dtc.html for more details
+ See homepage for mor details http://www.gplhost.com/software-dtc.html

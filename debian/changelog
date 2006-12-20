@@ -1,5 +1,6 @@
 dtc (0.25.0-1) unstable; urgency=low
 
+  * The chroot template is now built in /var/lib/dtc as default.
   * Now using a2enmod for enabling apache2 rewrite and ssl.
   * Long desc split in parts. (Closes: #403504).
   * Now using po-debconf internationalization.
