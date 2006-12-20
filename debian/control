@@ -18,15 +18,16 @@ Description: A web control panel for admin and accounting hosting services
  containing all the hosting informations.
  .
  It has support for many programs (bind 8 and 9 and compatibles, MySQL,
- Apache 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin, courier 2,
- cyrus, dovecot, proftpd, webalizer, mod-log-sql, etc...) using config files
- and/or MySQL plugin (when service is non-critical). It can also generates
- backup scripts, calculation scripts, and config files. All this using a
- single system UID/GID.
+ Apache 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin,
+ courier 2, cyrus, dovecot, proftpd, webalizer, mod-log-sql, etc...)
+ using config files and/or MySQL plugin (when service is non-critical).
+ It can also generates backup scripts, calculation scripts, and config
+ files. All this using a single system UID/GID.
  .
  It does as well monitoring of all trafic accounting per user and per
  service (and globaly using RRDTools).
- Since version 0.12, DTC is fully skinable and translated in several languages.
+ Since version 0.12, DTC is fully skinable and translated in several
+ languages.
  .
  See homepage for more details: http://www.gplhost.com/software-dtc.html
 
@@ -44,15 +45,16 @@ Description: A web control panel for admin and accounting hosting services
  containing all the hosting informations.
  .
  It has support for many programs (bind 8 and 9 and compatibles, MySQL,
- Apache 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin, courier 2,
- cyrus, dovecot, proftpd, webalizer, mod-log-sql, etc...) using config files
- and/or MySQL plugin (when service is non-critical). It can also generates
- backup scripts, calculation scripts, and config files. All this using a
- single system UID/GID.
+ Apache 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin,
+ courier 2, cyrus, dovecot, proftpd, webalizer, mod-log-sql, etc...)
+ using config files and/or MySQL plugin (when service is non-critical).
+ It can also generates backup scripts, calculation scripts, and config
+ files. All this using a single system UID/GID.
  .
  It does as well monitoring of all trafic accounting per user and per
  service (and globaly using RRDTools).
- Since version 0.12, DTC is fully skinable and translated in several languages.
+ Since version 0.12, DTC is fully skinable and translated in several
+ languages.
  .
  This specific package has dependencies to setup postfix, courier,
  phpmyadmin and other apps in once, so you don't have to setup all the
