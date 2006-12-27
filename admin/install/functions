@@ -2928,6 +2928,7 @@ createChrootTemplate () {
 	#for j in \
 	echoIfVerbose "-> Copying essential libraries"
 	if [ $UNIX_TYPE"" = "freebsd"  ] ; then
+		cp -f /lib/libc.so* /lib/libm.so* lib/
 		cp -f /usr/lib/libc.so* usr/lib/
 		cp -pf /usr/lib/libm.so* usr/lib/
 		cp -pf /usr/lib/libstdc\+\+.so* usr/lib/
