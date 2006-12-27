@@ -448,8 +448,11 @@ printVariables () {
 	echo "proftpd.conf: "$PATH_PROFTPD_CONF
 	echo "dovecot.conf: "$PATH_DOVECOT_CONF
 	echo "Courier config path: "$PATH_COURIER_CONF_PATH
-	echo "postfix/main.cf: "$PATH_POSTFIX_CONF
-	echo "qmail control: "$PATH_QMAIL_CTRL
+        if [ $conf_mta_type = "postfix" ]; then
+                echo "postfix/main.cf: "$PATH_POSTFIX_CONF
+        else   
+                echo "qmail control: "$PATH_QMAIL_CTRL
+        fi
 	echo "php cgi: "$PATH_PHP_CGI
 	echo "generated files: "$PATH_DTC_ETC
 
@@ -463,7 +466,9 @@ printVariables () {
 	echo "### Mail ###"
 	echo "MTA type: $conf_mta_type"
 	echo "Cyrus enable: $conf_cyrus_enable"
-	echo "Cyrus pass: $conf_cyrus_pass"
+	if [ $conf_cyrus_enable = "true" ]; then
+		echo "Cyrus pass: $conf_cyrus_pass"
+	fi
 
 	echo "### Admin interface addresse ###"
 	echo "Addresse of dtc panel: http://"$dtc_admin_subdomain"."$main_domain_name"/"
@@ -471,7 +476,9 @@ printVariables () {
 	echo "DTC pass: "$conf_adm_pass
 	echo "IP addr: "$conf_ip_addr
 	echo "Use nated vhosts: $conf_use_nated_vhosts"
-	echo "LAN IP for NAT: $conf_nated_vhosts_ip"
+	if [ $conf_use_nated_vhosts = "true" ]; then
+		echo "LAN IP for NAT: $conf_nated_vhosts_ip"
+	fi
 
 	echo "### Preferences ###"
 	echo "Hosting path: "$conf_hosting_path
@@ -485,10 +492,13 @@ interactiveInstaller () {
 	if [ -f /root/.dtc_saved_config ] ; then
 		. /root/.dtc_saved_config
 	fi
+	if [ -z $conf_mysql_host ]; then
+		installerQuestions
+	fi
 	printVariables
 	echo "Config ok and continuing install? [Yn]"
 	read continueinst
-	while [ ! ""$continueinst = "y" -a ! ""$continueinst = "Y" ] ; do
+	while [ ""$continueinst = "n" -o ""$continueinst = "N" ] ; do
 		installerQuestions
 		printVariables
 		echo "Config ok and continuing install? [Yn]"
