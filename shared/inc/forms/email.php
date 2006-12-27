@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.39 2006/12/27 15:52:53 fournier Exp $
+ * @version $Id: email.php,v 1.40 2006/12/27 18:56:51 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -455,6 +455,7 @@ function emailAccountsEditCallback ($id){
 
 function emailAccountsDeleteCallback ($id){
 	global $cyrus_used;
+	global $edit_domain;
 
 	triggerMXListUpdate();
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
