@@ -812,7 +812,7 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 " > /usr/local/etc/imapd.conf
 
 		if [ ! -z ${MYSQL_DTCDAEMONS_PASS} ]; then
-			echo "sasl_sql_pass: ${MYSQL_DTCDAEMONS_PASS}" >> /usr/local/etc/imapd.conf
+			echo "sasl_sql_passwd: ${MYSQL_DTCDAEMONS_PASS}" >> /usr/local/etc/imapd.conf
 		fi
 
 		/usr/local/cyrus/bin/mkimap
