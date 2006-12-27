@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.36 2006/12/27 14:21:23 fournier Exp $
+ * @version $Id: email.php,v 1.37 2006/12/27 15:02:57 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -400,7 +400,7 @@ function emailAccountsCreateCallback ($id){
 	writeDotQmailFile($a["id"],$a["mbox_host"]);
 	$admin_path = getAdminPath($adm_login);
 	$box_path = "$admin_path/$edit_domain/Mailboxs/".$a["id"];
-	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE autoinc='$id';";
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid',fullemail='".$a["id"].'@'.$a["mbox_host"]."' WHERE autoinc='$id';";
 	$r2 = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	triggerMXListUpdate();
 	if ($cyrus_used){
@@ -534,7 +534,7 @@ function drawAdminTools_Emails($domain){
 				"type" => "text",
 				"check" => "email",
 				"can_be_empty" => "yes",
-				"empty_makes_sql_null" => "",
+				"empty_makes_sql_null" => "yes",
 				"legend" => $txt_mail_redirection1[$lang]),
 			"redirect2" => array(
 				"type" => "text",
