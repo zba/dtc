@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.38 2006/12/27 15:06:52 thomas Exp $
+ * @version $Id: email.php,v 1.39 2006/12/27 15:52:53 fournier Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -412,7 +412,7 @@ function emailAccountsCreateCallback ($id){
 		}
 		$result=$cyr_conn->createmb("user/" . $a["id"]."@".$edit_domain);
 		$result=$cyr_conn->createmb("user/" . $a["id"]."/".$a["spam_mailbox"]."@".$edit_domain);
-		$result = $cyr_conn->setacl("user/" . $a["id"]."@".$edit_domain, $CYRUS['ADMIN'], "lrswipcda");
+		$result = $cyr_conn->setacl("user/" . $a["id"]."@".$edit_domain, "cyrus", "lrswipcda");
 		$result = $cyr_conn->setmbquota("user/" . $a["id"]."@".$edit_domain, $a["quota_size"]);
 	}
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
@@ -454,8 +454,19 @@ function emailAccountsEditCallback ($id){
 }
 
 function emailAccountsDeleteCallback ($id){
+	global $cyrus_used;
+
 	triggerMXListUpdate();
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
+        if ($cyrus_used){
+                # login to cyradm
+                $cyr_conn = new cyradm;
+                $error=$cyr_conn -> imap_login();
+                if ($error!=0){
+                        die ("imap_login Error $error");
+                }
+                $result=$cyr_conn->deletemb("user/" . $a["id"]."@".$edit_domain);
+        }
 	return "";
 }
 function drawAdminTools_Emails($domain){
