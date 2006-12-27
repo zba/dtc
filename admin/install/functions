@@ -13,7 +13,7 @@ echoIfVerbose () {
 createDTCuserAndGroup () {
 	echoIfVerbose "===> Create DTC user and group"
 	if getent group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
-		echoIfVerbose "-> Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skiping creation!"
+		echoIfVerbose "-> Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skipping creation!"
 	else
 		if [ -x /usr/sbin/groupadd ] ; then
 			/usr/sbin/groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
@@ -24,7 +24,7 @@ createDTCuserAndGroup () {
 	CONF_DTC_SYSTEM_GID=`getent group ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d':' -f3`
 
 	if getent passwd ${CONF_DTC_SYSTEM_USERNAME} >/dev/null ; then
-		echoIfVerbose "-> User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+		echoIfVerbose "-> User ${CONF_DTC_SYSTEM_USERNAME} already exists: skipping creation!"
 	else
 		if [ -x /usr/sbin/useradd ] ; then
 			/usr/sbin/useradd -m -s /bin/false -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
@@ -909,7 +909,7 @@ modifyHTTPD_CONF () {
 
 	if grep "Configured by DTC" $PATH_HTTPD_CONF >/dev/null
 	then
-		echoIfVerbose "httpd.conf has been configured before : skiping include inssertion !"
+		echoIfVerbose "httpd.conf has been configured before : skipping include inssertion !"
 	else
 		if ! [ -f $PATH_HTTPD_CONF.DTC.backup ]
 		then
@@ -999,7 +999,7 @@ modifyETC_CONFD_APACHE2 () {
 		echoIfVerbose "Customizing ${APACHE2_CONFD}"
 		if grep "Configured by DTC" $APACHE2_CONFD >/dev/null
 		then
-			echoIfVerbose "$APACHE2_CONFD has been configured before : skiping include inssertion !"
+			echoIfVerbose "$APACHE2_CONFD has been configured before : skipping include inssertion !"
 		else
 			if ! [ -f $APACHE2_CONFD.DTC.backup ]
 			then
@@ -1258,7 +1258,7 @@ modifyNamedConf () {
 
 	if grep "Configured by DTC" $PATH_NAMED_CONF >/dev/null
 	then
-		echoIfVerbose "named.conf has been configured before : skiping include insertion !"
+		echoIfVerbose "named.conf has been configured before : skipping include insertion !"
 	else
 		if ! [ -f $PATH_NAMED_CONF.DTC.backup ]
 		then
@@ -1535,7 +1535,7 @@ modifySaslStartAndSaslStartup () {
 	if [ -f "$PATH_SASL_START_CONF" ] ; then
 		echoIfVerbose "===> modifying saslauthd startup parameters"
 		if grep "Configured by DTC" $PATH_SASL_START_CONF >/dev/null ; then
-			echoIfVerbose "Already configured: skiping"
+			echoIfVerbose "Already configured: skipping"
 		else
 			TMP_FILE=`${MKTEMP} DTC_install.saslauthd.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.20 : Please don't touch this line !" > $TMP_FILE
@@ -2085,7 +2085,7 @@ configProftpd () {
 		echoIfVerbose "===> Adding directives to proftpd.conf"
 		if grep "Configured by DTC" $PATH_PROFTPD_CONF >/dev/null
 		then
-			echoIfVerbose "proftpd.conf has been configured before : skiping include inssertion !"
+			echoIfVerbose "proftpd.conf has been configured before : skipping include inssertion !"
 		else
 			echoIfVerbose "Inserting DTC configuration inside "$PATH_PROFTPD_CONF
 			if ! [ -f $PATH_PROFTPD_CONF.DTC.backup ]
@@ -2253,7 +2253,7 @@ configFreeRadius () {
 
 		if grep "Configured by DTC" $FREERADIUS_SQL_DOT_CONF >/dev/null
 		then
-	                echoIfVerbose "sql.conf has been configured before : skiping include inssertion !"
+	                echoIfVerbose "sql.conf has been configured before : skipping include inssertion !"
 		else
 	                echoIfVerbose "Inserting DTC configuration inside "$FREERADIUS_SQL_DOT_CONF
 
@@ -2327,7 +2327,7 @@ createRRDFiles () {
 	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/queuegraph.cgi
 
 	if [ -z "$conf_eth2monitor" ] ; then
-		echo "No interface selected: skiping the netusage.rrd setup!!!"
+		echo "No interface selected: skipping the netusage.rrd setup!!!"
 	else
 		#
 		# create the rrd file for netusegraph.cgi

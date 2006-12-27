@@ -271,7 +271,7 @@ fi
 if grep "Configured by DTC" $PATH_HTTPD_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "httpd.conf has been configured before : skiping include inssertion !"
+		echo "httpd.conf has been configured before : skipping include inssertion !"
 	fi
 else
 	if ! [ -f $PATH_HTTPD_CONF.DTC.backup ]
@@ -694,7 +694,7 @@ if [ -e ${APACHE2_CONFD} ] ; then
 	if grep "Configured by DTC" $APACHE2_CONFD >/dev/null
 	then
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-			echo "$APACHE2_CONFD has been configured before : skiping include inssertion !"
+			echo "$APACHE2_CONFD has been configured before : skipping include inssertion !"
 		fi
 	else
 		if ! [ -f $APACHE2_CONFD.DTC.backup ]
@@ -916,7 +916,7 @@ auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" hos
 			cp -f $PATH_PAMD_SMTP $PATH_PAMD_POP
 		fi
 #		if grep "Configured by DTC" $PATH_PAMD_SMTP
-#			echo $PATH_PAMD_SMTP" has been configured before: skiping include insertion!"
+#			echo $PATH_PAMD_SMTP" has been configured before: skipping include insertion!"
 #		else
 #			echo "Including configuration in "$PATH_PAMD_SMTP
 #		fi
@@ -976,7 +976,7 @@ fi
 if grep "Configured by DTC" $PATH_NAMED_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "named.conf has been configured before : skiping include insertion !"
+		echo "named.conf has been configured before : skipping include insertion !"
 	fi
 else
 	if ! [ -f $PATH_NAMED_CONF.DTC.backup ]
@@ -1941,7 +1941,7 @@ fi
 if grep "Configured by DTC" $PATH_PROFTPD_CONF >/dev/null
 then
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-		echo "proftpd.conf has been configured before : skiping include inssertion !"
+		echo "proftpd.conf has been configured before : skipping include inssertion !"
 	fi
 else
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -2115,7 +2115,7 @@ if [ -e ""$FREERADIUS_ETC ] ;then
 	if grep "Configured by DTC" $FREERADIUS_SQL_DOT_CONF >/dev/null
 	then
 	        if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	                echo "sql.conf has been configured before : skiping include inssertion !"
+	                echo "sql.conf has been configured before : skipping include inssertion !"
 	        fi
 	else
 		if [ ""$VERBOSE_INSTALL = "yes" ] ;then
@@ -2193,7 +2193,7 @@ fi
 perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/queuegraph.cgi
 
 if [ -z "$conf_eth2monitor" ] ; then
-	echo "No interface selected: skiping the netusage.rrd setup!!!"
+	echo "No interface selected: skipping the netusage.rrd setup!!!"
 else
 	#
 	# create the rrd file for netusegraph.cgi

@@ -11,13 +11,13 @@ VERBOSE_INSTALL="yes"
 CONF_DTC_SYSTEM_USERNAME=dtc
 CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
 if getent group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
-        echo "Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skiping creation!"
+        echo "Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skipping creation!"
 else
         groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
 fi
 CONF_DTC_SYSTEM_GID=`getent group ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d':' -f3`
 if getent passwd ${CONF_DTC_SYSTEM_USERNAME} >/dev/null ; then
-        echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skiping creation!"
+        echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skipping creation!"
 else
         useradd -m -s /bin/false -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
 fi
