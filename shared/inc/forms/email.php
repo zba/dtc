@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.37 2006/12/27 15:02:57 thomas Exp $
+ * @version $Id: email.php,v 1.38 2006/12/27 15:06:52 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -516,7 +516,7 @@ function drawAdminTools_Emails($domain){
 				"type" => "id",
 				"display" => "no",
 				"legend" => $txt_login_login[$lang]),
-			"newmail_login" => array(
+			"id" => array(
 				"type" => "text",
 				"disable_edit" => "yes",
 				"happen" => "@".$domain["name"],
