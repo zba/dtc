@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.35 2006/12/10 12:58:06 thomas Exp $
+ * @version $Id: email.php,v 1.36 2006/12/27 14:21:23 fournier Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -453,7 +453,7 @@ function emailAccountsEditCallback ($id){
 	return "";
 }
 
-function emailAccountsDeleteCalaback ($id){
+function emailAccountsDeleteCallback ($id){
 	triggerMXListUpdate();
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	return "";
@@ -507,7 +507,7 @@ function drawAdminTools_Emails($domain){
 		"max_item" => $domain["max_email"],
 		"num_item_txt" => $txt_number_of_active_mailbox[$lang],
 		"create_item_callback" => "emailAccountsCreateCallback",
-		"delete_item_callback" => "emailAccountsDeleteCalaback",
+		"delete_item_callback" => "emailAccountsDeleteCallback",
 		"edit_item_callback" => "emailAccountsEditCallback",
 		"where_list" => array(
 			"mbox_host" => $domain["name"]),
@@ -516,7 +516,7 @@ function drawAdminTools_Emails($domain){
 				"type" => "id",
 				"display" => "no",
 				"legend" => $txt_login_login[$lang]),
-			"id" => array(
+			"newmail_login" => array(
 				"type" => "text",
 				"disable_edit" => "yes",
 				"happen" => "@".$domain["name"],
