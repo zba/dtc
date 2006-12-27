@@ -3133,7 +3133,7 @@ enableBsdBind () {
 		nonamed=`cat /etc/rc.conf | grep named  | awk '{print $1}' | grep NO`
 		if [ "$named" = "" ] || [ "$nonamed" != "" ]; 
 		then
-			echo "===> FreeBSD or NetBSD: Backing up /etc/rc.conf and insterting named_enamble=YES"
+			echo "===> FreeBSD or NetBSD: Backing up /etc/rc.conf and inserting named_enable=YES"
 			cp /etc/rc.conf /etc/rc.conf.old
 			echo "/etc/rc.conf /etc/rc.conf.old saved"
 			cat /etc/rc.conf | grep -v "named" >> /etc/rc.tmp
@@ -3153,7 +3153,7 @@ enableBsdBind () {
 		echo "conf $flag"
 		if [ "$flag" = "" ];
 		then
-			echo "===> OpenBSD: Backing up /etc/rc.conf and insterting named_flags=\"-c /etc/named.conf\""
+			echo "===> OpenBSD: Backing up /etc/rc.conf and inserting named_flags=\"-c /etc/named.conf\""
 			echo "/etc/rc.conf no named"
 			cp /etc/rc.conf /etc/rc.conf.old
 			echo "/etc/rc.conf /etc/rc.conf.old saved"
