@@ -85,8 +85,15 @@ searchPHPversion () {
 
 searchPATH_PHP_INI_CLI () {
 	echoIfVerbose "-> Searching for PATH_PHP_INI_CLI"
+	# This one is for FreeBSD
 	if [ -f /usr/local/etc/php.ini ] ; then
 		PATH_PHP_INI_CLI=/usr/local/etc/php.ini
+	# This one for RedHat / CentOS
+	else if [ -f /etc/php.ini ] ; then
+		PATH_PHP_INI_CLI=/etc/php.ini
+	# This one for Gentoo
+	else if [ -f /etc/php/apache2-php5/php.ini ] ; then
+		PATH_PHP_INI_CLI=/etc/php/apache2-php5/php.ini
 	else
 		if [ ""${PHPMAJOR} -lt 5 ] ; then
 			if [ -f /etc/php4/cli/php.ini ] ; then
