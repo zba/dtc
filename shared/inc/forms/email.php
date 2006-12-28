@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.41 2006/12/28 16:35:30 fournier Exp $
+ * @version $Id: email.php,v 1.42 2006/12/28 16:51:14 fournier Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -455,17 +455,25 @@ function emailAccountsEditCallback ($id){
 
 function emailAccountsDeleteCallback ($id){
 	global $cyrus_used;
+	global $pro_mysql_pop_table;
 
 	triggerMXListUpdate();
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 	if ($cyrus_used){
 		# login to cyradm
+		$q = "SELECT id, mbox_host FROM $pro_mysql_pop_table WHERE autoinc='$id';";
+		$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			die("Cannot find created email line ".__LINE__." file ".__FILE__);
+		}
+                $v = mysql_fetch_row($r);
 		$cyr_conn = new cyradm;
 		$error=$cyr_conn -> imap_login();
 		if ($error!=0){
 			die ("imap_login Error $error");
 		}
-		$result=$cyr_conn->deletemb("user/" . $a["id"]."@".$edit_domain);
+		$result=$cyr_conn->deletemb("user/" . $v[0]."@".$v[1]);
 	}
 	return "";
 }
