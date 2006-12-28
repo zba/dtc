@@ -93,6 +93,7 @@ searchPATH_PHP_INI_CLI () {
 		PATH_PHP_INI_CLI=/etc/php.ini
 	# This one for Gentoo
 	else if [ -f /etc/php/apache2-php5/php.ini ] ; then
+		echo "FIX ME!!! Is gentoo path for php cli really in /etc/php/apache2-php5/php.ini ??? FIX ME!!!"
 		PATH_PHP_INI_CLI=/etc/php/apache2-php5/php.ini
 	else
 		if [ ""${PHPMAJOR} -lt 5 ] ; then
@@ -125,8 +126,15 @@ searchDebianVersion () {
 
 searchPATH_PHP_INI_APACHE () {
 	echoIfVerbose "-> Searching for php.ini for the apache $conf_apache_version module and php ${PHPMAJOR}"
+	# This one is for FreeBSD
 	if [ -f /usr/local/etc/php.ini ] ; then
 		PATH_PHP_INI_APACHE=/usr/local/etc/php.ini
+	# This one for RedHat and Centos
+	else if [ -f /etc/php.ini ] ; then
+		PATH_PHP_INI_APACHE=/etc/php.ini
+	# This one for Gentoo
+	else if [ -f /etc/php/apache2-php5/php.ini ] ; then
+		PATH_PHP_INI_APACHE=/etc/php/apache2-php5/php.ini
 	else
 		if [ ""$conf_apache_version = "2" ] ; then
 			if [ ""${PHPMAJOR} -lt 5 ] ; then
