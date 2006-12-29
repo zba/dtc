@@ -89,27 +89,25 @@ searchPATH_PHP_INI_CLI () {
 	if [ -f /usr/local/etc/php.ini ] ; then
 		PATH_PHP_INI_CLI=/usr/local/etc/php.ini
 	# This one for RedHat / CentOS
-	else if [ -f /etc/php.ini ] ; then
+	elif [ -f /etc/php.ini ] ; then
 		PATH_PHP_INI_CLI=/etc/php.ini
 	# This one for Gentoo
-	else if [ -f /etc/php/apache2-php5/php.ini ] ; then
+	elif [ -f /etc/php/apache2-php5/php.ini ] ; then
 		echo "FIX ME!!! Is gentoo path for php cli really in /etc/php/apache2-php5/php.ini ??? FIX ME!!!"
 		PATH_PHP_INI_CLI=/etc/php/apache2-php5/php.ini
-	else
-		if [ ""${PHPMAJOR} -lt 5 ] ; then
-			if [ -f /etc/php4/cli/php.ini ] ; then
-				PATH_PHP_INI_CLI=/etc/php4/cli/php.ini
-			else
-				echo "Cannot find php.ini path!"
-				exit 1
-			fi
+	elif [ ""${PHPMAJOR} -lt 5 ] ; then
+		if [ -f /etc/php4/cli/php.ini ] ; then
+			PATH_PHP_INI_CLI=/etc/php4/cli/php.ini
 		else
-			if [ -f /etc/php5/cli/php.ini ] ; then
-				PATH_PHP_INI_CLI=/etc/php5/cli/php.ini
-			else
-				echo "Cannot find php.ini path!"
-				exit 1
-			fi
+			echo "Cannot find php.ini path!"
+			exit 1
+		fi
+	else
+		if [ -f /etc/php5/cli/php.ini ] ; then
+			PATH_PHP_INI_CLI=/etc/php5/cli/php.ini
+		else
+			echo "Cannot find php.ini path!"
+			exit 1
 		fi
 	fi
 }
@@ -130,44 +128,40 @@ searchPATH_PHP_INI_APACHE () {
 	if [ -f /usr/local/etc/php.ini ] ; then
 		PATH_PHP_INI_APACHE=/usr/local/etc/php.ini
 	# This one for RedHat and Centos
-	else if [ -f /etc/php.ini ] ; then
+	elif [ -f /etc/php.ini ] ; then
 		PATH_PHP_INI_APACHE=/etc/php.ini
 	# This one for Gentoo
-	else if [ -f /etc/php/apache2-php5/php.ini ] ; then
+	elif [ -f /etc/php/apache2-php5/php.ini ] ; then
 		PATH_PHP_INI_APACHE=/etc/php/apache2-php5/php.ini
-	else
-		if [ ""$conf_apache_version = "2" ] ; then
-			if [ ""${PHPMAJOR} -lt 5 ] ; then
-				if [ -f /etc/php4/apache2/php.ini ] ; then
-					PATH_PHP_INI_APACHE=/etc/php4/apache2/php.ini
-				else
-					echo "Problem in your setup. You asked to setup apache2, the PHP cli version is 4 but there is no /etc/php4/apache2/php.ini";
-					exit 1
-				fi
+	elif [ ""$conf_apache_version = "2" ] ; then
+		if [ ""${PHPMAJOR} -lt 5 ] ; then
+			if [ -f /etc/php4/apache2/php.ini ] ; then
+				PATH_PHP_INI_APACHE=/etc/php4/apache2/php.ini
 			else
-				if [ -f /etc/php5/apache2/php.ini ] ; then
-					PATH_PHP_INI_APACHE=/etc/php5/apache2/php.ini
-				else
-					echo "Problem in your setup. You asked to setup apache2, the PHP cli version is 5 but there is no /etc/php5/apache2/php.ini";
-					exit 1
-				fi
+				echo "Problem in your setup. You asked to setup apache2, the PHP cli version is 4 but there is no /etc/php4/apache2/php.ini";
+				exit 1
 			fi
 		else
-			if [ ""${PHPMAJOR} -lt 5 ] ; then
-				if [ -f /etc/php4/apache/php.ini ] ; then
-					PATH_PHP_INI_APACHE=/etc/php4/apache/php.ini
-				else
-					echo "Problem in your setup. You asked to setup apache 1.3, the PHP cli version is 4 but there is no /etc/php4/apache/php.ini";
-					exit 1
-				fi
+			if [ -f /etc/php5/apache2/php.ini ] ; then
+				PATH_PHP_INI_APACHE=/etc/php5/apache2/php.ini
 			else
-				if [ -f /etc/php5/apache/php.ini ] ; then
-					PATH_PHP_INI_APACHE=/etc/php5/apache/php.ini
-				else
-					echo "Problem in your setup. You asked to setup apache 1.3, the PHP cli version is 5 but there is no /etc/php5/apache/php.ini";
-					exit 1
-				fi
+				echo "Problem in your setup. You asked to setup apache2, the PHP cli version is 5 but there is no /etc/php5/apache2/php.ini";
+				exit 1
 			fi
+		fi
+	elif [ ""${PHPMAJOR} -lt 5 ] ; then
+		if [ -f /etc/php4/apache/php.ini ] ; then
+			PATH_PHP_INI_APACHE=/etc/php4/apache/php.ini
+		else
+			echo "Problem in your setup. You asked to setup apache 1.3, the PHP cli version is 4 but there is no /etc/php4/apache/php.ini";
+			exit 1
+		fi
+	else
+		if [ -f /etc/php5/apache/php.ini ] ; then
+			PATH_PHP_INI_APACHE=/etc/php5/apache/php.ini
+		else
+			echo "Problem in your setup. You asked to setup apache 1.3, the PHP cli version is 5 but there is no /etc/php5/apache/php.ini";
+			exit 1
 		fi
 	fi
 }
