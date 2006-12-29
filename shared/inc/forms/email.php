@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.42 2006/12/28 16:51:14 fournier Exp $
+ * @version $Id: email.php,v 1.43 2006/12/29 04:07:03 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -513,126 +513,80 @@ function drawAdminTools_Emails($domain){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$domain["name"]);
 
 	$out = "";
+	$dsc = array(
+		"title" => $txt_mail_liste_of_your_box[$lang],
+		"new_item_title" => $txt_mail_new_mailbox[$lang],
+		"new_item_link" => $txt_mail_new_mailbox[$lang],
+		"edit_item_title" => $txt_mail_edit[$lang],
+		"table_name" => $pro_mysql_pop_table,
+		"action" => "pop_access_editor",
+		"forward" => array("adm_login","adm_pass","addrlink"),
+		"id_fld" => "autoinc",
+		"list_fld_show" => "id",
+		"max_item" => $domain["max_email"],
+		"num_item_txt" => $txt_number_of_active_mailbox[$lang],
+		"create_item_callback" => "emailAccountsCreateCallback",
+		"delete_item_callback" => "emailAccountsDeleteCallback",
+		"edit_item_callback" => "emailAccountsEditCallback",
+		"where_list" => array(
+			"mbox_host" => $domain["name"]),
+		"cols" => array(
+			"autoinc" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => $txt_login_login[$lang]),
+			"id" => array(
+				"type" => "text",
+				"disable_edit" => "yes",
+				"happen" => "@".$domain["name"],
+				"legend" => $txt_login_login[$lang]),
+			"passwd" => array(
+				"type" => "password",
+				"check" => "dtc_pass",
+				"legend" => $txt_login_pass[$lang]),
+			"spam_mailbox_enable" => array(
+				"type" => "checkbox",
+				"values" => array( "yes","no"),
+				"legend" => $txt_mail_spam_mailbox_enable[$lang]),
+			"spam_mailbox" => array(
+				"type" => "text",
+				"default" => "SPAM",
+				"legend" => $txt_mail_spam_mailbox[$lang]),
+			)
+		);
 	if($cyrus_used) {
-		$dsc = array(
-			"title" => $txt_mail_liste_of_your_box[$lang],
-			"new_item_title" => $txt_mail_new_mailbox[$lang],
-			"new_item_link" => $txt_mail_new_mailbox[$lang],
-			"edit_item_title" => $txt_mail_edit[$lang],
-			"table_name" => $pro_mysql_pop_table,
-			"action" => "pop_access_editor",
-			"forward" => array("adm_login","adm_pass","addrlink"),
-			"id_fld" => "autoinc",
-			"list_fld_show" => "id",
-			"max_item" => $domain["max_email"],
-			"num_item_txt" => $txt_number_of_active_mailbox[$lang],
-			"create_item_callback" => "emailAccountsCreateCallback",
-			"delete_item_callback" => "emailAccountsDeleteCallback",
-			"edit_item_callback" => "emailAccountsEditCallback",
-			"where_list" => array(
-				"mbox_host" => $domain["name"]),
-			"cols" => array(
-				"autoinc" => array(
-					"type" => "id",
-					"display" => "no",
-					"legend" => $txt_login_login[$lang]),
-				"id" => array(
-					"type" => "text",
-					"disable_edit" => "yes",
-					"happen" => "@".$domain["name"],
-					"legend" => $txt_login_login[$lang]),
-				"passwd" => array(
-					"type" => "password",
-					"check" => "dtc_pass",
-					"legend" => $txt_login_pass[$lang]),
-				"quota_size" => array(
-					"type" => "text",
-					"check" => "number",
-					"default" => "0",
-					"legend" => $txt_mail_quota[$lang]),
-				"spam_mailbox_enable" => array(
-					"type" => "checkbox",
-					"values" => array( "yes","no"),
-					"legend" => $txt_mail_spam_mailbox_enable[$lang]),
-				"spam_mailbox" => array(
-					"type" => "text",
-					"default" => "SPAM",
-					"legend" => $txt_mail_spam_mailbox[$lang]),
-				)
-			);
+		$dsc["cols"]["quota_size"] => array(
+			"type" => "text",
+			"check" => "number",
+			"default" => "0",
+			"legend" => $txt_mail_quota[$lang]);
 	} else {
-		$dsc = array(
-			"title" => $txt_mail_liste_of_your_box[$lang],
-			"new_item_title" => $txt_mail_new_mailbox[$lang],
-			"new_item_link" => $txt_mail_new_mailbox[$lang],
-			"edit_item_title" => $txt_mail_edit[$lang],
-			"table_name" => $pro_mysql_pop_table,
-			"action" => "pop_access_editor",
-			"forward" => array("adm_login","adm_pass","addrlink"),
-			"id_fld" => "autoinc",
-			"list_fld_show" => "id",
-			"max_item" => $domain["max_email"],
-			"num_item_txt" => $txt_number_of_active_mailbox[$lang],
-			"create_item_callback" => "emailAccountsCreateCallback",
-			"delete_item_callback" => "emailAccountsDeleteCallback",
-			"edit_item_callback" => "emailAccountsEditCallback",
-			"where_list" => array(
-				"mbox_host" => $domain["name"]),
-			"cols" => array(
-				"autoinc" => array(
-					"type" => "id",
-					"display" => "no",
-					"legend" => $txt_login_login[$lang]),
-				"id" => array(
-					"type" => "text",
-					"disable_edit" => "yes",
-					"happen" => "@".$domain["name"],
-					"legend" => $txt_login_login[$lang]),
-				"passwd" => array(
-					"type" => "password",
-					"check" => "dtc_pass",
-					"legend" => $txt_login_pass[$lang]),
-				"quota_size" => array(
-					"type" => "text",
-					"check" => "number",
-					"default" => "0",
-					"legend" => $txt_mail_quota[$lang]),
-				"redirect1" => array(
-					"type" => "text",
-					"check" => "email",
-					"can_be_empty" => "yes",
-					"empty_makes_sql_null" => "yes",
-					"legend" => $txt_mail_redirection1[$lang]),
-				"redirect2" => array(
-					"type" => "text",
-					"check" => "email",
-					"can_be_empty" => "yes",
-					"empty_makes_sql_null" => "yes",
-					"legend" => $txt_mail_redirection2[$lang]),
-				"localdeliver" => array(
-					"type" => "checkbox",
-					"values" => array( "yes","no"),
-					"legend" => $txt_mail_deliver_localy[$lang]),
-				"spam_mailbox_enable" => array(
-					"type" => "checkbox",
-					"values" => array( "yes","no"),
-					"legend" => $txt_mail_spam_mailbox_enable[$lang]),
-				"spam_mailbox" => array(
-					"type" => "text",
-					"default" => "SPAM",
-					"legend" => $txt_mail_spam_mailbox[$lang]),
-				"vacation_flag" => array(
-					"type" => "checkbox",
-					"values" => array( "yes","no"),
-					"default" => "no",
-					"legend" => "Check to send a bounce message."),
-				"vacation_text" => array(
-					"type" => "textarea",
-					"legend" => "Bounce message content:",
-					"cols" => "40",
-					"rows" => "7")
-				)
-			);
+		$dsc["cols"]["redirect1"] => array(
+			"type" => "text",
+			"check" => "email",
+			"can_be_empty" => "yes",
+			"empty_makes_sql_null" => "yes",
+			"legend" => $txt_mail_redirection1[$lang]);
+		$dsc["cols"]["redirect2"] => array(
+			"type" => "text",
+			"check" => "email",
+			"can_be_empty" => "yes",
+			"empty_makes_sql_null" => "yes",
+			"legend" => $txt_mail_redirection2[$lang]);
+		$dsc["cols"]["localdeliver"] => array(
+			"type" => "checkbox",
+			"values" => array( "yes","no"),
+			"legend" => $txt_mail_deliver_localy[$lang]);
+		$dsc["cols"]["vacation_flag"] => array(
+			"type" => "checkbox",
+			"values" => array( "yes","no"),
+			"default" => "no",
+			"legend" => "Check to send a bounce message."),
+		$dsc["cols"]["vacation_text"] => array(
+			"type" => "textarea",
+			"legend" => "Bounce message content:",
+			"cols" => "40",
+			"rows" => "7");
 	}
         $list_items = dtcListItemsEdit($dsc);
 
