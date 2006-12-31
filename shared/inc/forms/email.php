@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.43 2006/12/29 04:07:03 thomas Exp $
+ * @version $Id: email.php,v 1.44 2006/12/31 04:59:51 fournier Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -555,34 +555,34 @@ function drawAdminTools_Emails($domain){
 			)
 		);
 	if($cyrus_used) {
-		$dsc["cols"]["quota_size"] => array(
+		$dsc["cols"]["quota_size"] = array(
 			"type" => "text",
 			"check" => "number",
 			"default" => "0",
 			"legend" => $txt_mail_quota[$lang]);
 	} else {
-		$dsc["cols"]["redirect1"] => array(
+		$dsc["cols"]["redirect1"] = array(
 			"type" => "text",
 			"check" => "email",
 			"can_be_empty" => "yes",
 			"empty_makes_sql_null" => "yes",
 			"legend" => $txt_mail_redirection1[$lang]);
-		$dsc["cols"]["redirect2"] => array(
+		$dsc["cols"]["redirect2"] = array(
 			"type" => "text",
 			"check" => "email",
 			"can_be_empty" => "yes",
 			"empty_makes_sql_null" => "yes",
 			"legend" => $txt_mail_redirection2[$lang]);
-		$dsc["cols"]["localdeliver"] => array(
+		$dsc["cols"]["localdeliver"] = array(
 			"type" => "checkbox",
 			"values" => array( "yes","no"),
 			"legend" => $txt_mail_deliver_localy[$lang]);
-		$dsc["cols"]["vacation_flag"] => array(
+		$dsc["cols"]["vacation_flag"] = array(
 			"type" => "checkbox",
 			"values" => array( "yes","no"),
 			"default" => "no",
-			"legend" => "Check to send a bounce message."),
-		$dsc["cols"]["vacation_text"] => array(
+			"legend" => "Check to send a bounce message.");
+		$dsc["cols"]["vacation_text"] = array(
 			"type" => "textarea",
 			"legend" => "Bounce message content:",
 			"cols" => "40",
