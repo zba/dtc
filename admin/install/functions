@@ -1635,6 +1635,9 @@ parent_domain_matches_subdomains=
 mailbox_size_limit = 0
 
 # uncomment to enable amavis
+#   - if you do uncomment this, make sure that you
+#     also edit the master.cf file to make sure that
+#     the return channel is set correctly
 #content_filter=smtp-amavis:[127.0.0.1]:10024
 
 virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
@@ -1779,7 +1782,6 @@ smtp-amavis unix -      -       -       -       2  smtp
     -o smtpd_helo_restrictions=
     -o smtpd_sender_restrictions=
     -o smtpd_recipient_restrictions=permit_mynetworks,reject
-    -o mynetworks=127.0.0.0/8
     -o strict_rfc821_envelopes=yes
     -o smtpd_error_sleep_time=0
     -o smtpd_soft_error_limit=1001
