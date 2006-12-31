@@ -1624,23 +1624,25 @@ modifyPostfixConfig () {
 			# CL: this is general config, for courier and cyrus
 			# for mailname to be mx.$main_domain_name
 			echo "mx.$main_domain_name" > /etc/mailname
-			echo "# DTC virtual configuration
-myhostname = mx.$main_domain_name
-# disable the following functionality by default (otherwise can't match subdomains correctly)
+			echo "# DTC virtual configuration" >> $TMP_FILE
+			if [ ""$conf_cyrus_enable != "true" ]; then
+				echo "myhostname = mx.$main_domain_name" >> $TMP_FILE
+			fi
+			echo "# disable the following functionality by default (otherwise can't match subdomains correctly)
 parent_domain_matches_subdomains=
 
 # disable mailbox size limit by default (user can add to postfix_config_snippets)
 mailbox_size_limit = 0
 
-# stuff for amavis
-content_filter=smtp-amavis:[127.0.0.1]:10024
+# uncomment to enable amavis
+#content_filter=smtp-amavis:[127.0.0.1]:10024
 
 virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 " >> $TMP_FILE
 
 			if [ ""$conf_cyrus_enable = "true" ]; then
 				echo "virtual_transport = cyrus
-mailbox_transport = cyrus
+mailbox_transport = lmtp:unix:/var/run/socket/lmtp
 # local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
 			else
 				# courier/postfix only!
