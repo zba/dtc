@@ -967,10 +967,13 @@ modifyHTTPD_CONF () {
 Include $PATH_DTC_ETC/vhosts.conf" >>$PATH_HTTPD_CONF
 
 # There is something wrong in this logic !!!
-#		if ! [ ""$conf_omit_dev_mknod = "true" ] ; then
+		if ! [ ""$conf_omit_dev_mknod = "true" ] ; then
 			echo "Listen 127.0.0.1:80
 Listen 127.0.0.1:443" >>$PATH_HTTPD_CONF
-#		fi
+		else
+			echo "Listen ${conf_ip_addr}:80
+Listen ${conf_ip_addr}:443" >>$PATH_HTTPD_CONF
+		fi
 
 		if [ -z ${MYSQL_DTCDAEMONS_PASS} ]; then
 			echo "LogSQLLoginInfo mysql://dtcdaemons@${conf_mysql_host} " >>$PATH_HTTPD_CONF
