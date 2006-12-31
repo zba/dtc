@@ -1140,6 +1140,10 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 		                echo "===> /etc/rc.conf is already configured: leaving..."
 			fi
 
+			if [ ! -d /var/imap/socket ]; then
+				mkdir -p /var/imap/socket
+			fi
+
 			/usr/local/etc/rc.d/imapd restart
 
 			$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,mbox_host,fullemail,passwd,crypt) VALUES('root','"${main_domain_name}"','root@"${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
