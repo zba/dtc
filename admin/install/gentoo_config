@@ -4,6 +4,7 @@ UNIX_TYPE=gentoo
 
 VERBOSE_INSTALL=yes
 
+conf_apache_version=2
 CONF_DTC_SYSTEM_USERNAME=dtc
 CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
 PATH_HTTPD_CONF="/etc/apache2/httpd.conf"

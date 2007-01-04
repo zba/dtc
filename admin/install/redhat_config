@@ -7,6 +7,7 @@ VERBOSE_INSTALL=yes
 # Create our group and user
 CONF_DTC_SYSTEM_USERNAME=dtc
 CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
+conf_apache_version=1
 PATH_NAMED_CONF=/etc/named.conf
 PATH_QMAIL_CTRL=/var/qmail/control
 PATH_PHP_CGI=/usr/bin/php

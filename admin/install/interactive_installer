@@ -481,6 +481,7 @@ printVariables () {
 	fi
 
 	echo "### Preferences ###"
+	echo "Apache version: "$conf_apache_version
 	echo "Hosting path: "$conf_hosting_path
 	echo "Chroot template path: $conf_chroot_path"
 	echo "Iface to monitor: $conf_eth2monitor"
