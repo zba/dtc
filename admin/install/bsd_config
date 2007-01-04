@@ -20,6 +20,7 @@ if [ ! -f ${LOCALBASE}/etc/proftpd.conf ] ; then
 		cp ${LOCALBASE}/etc/proftpd.conf.default ${LOCALBASE}/etc/proftpd.conf
 	fi
 fi
+conf_apache_version=2
 PATH_PROFTPD_CONF="${LOCALBASE}/etc/proftpd.conf"
 PATH_DOVECOT_CONF="${LOCALBASE}/etc/dovecot.conf"
 PATH_COURIER_CONF_PATH="${LOCALBASE}/etc/courier"
