@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#VERBOSE_INSTALL=yes
+VERBOSE_INSTALL=yes
 
 UNIX_TYPE=debian
 
@@ -44,6 +44,9 @@ debianGetDebconfValues () {
 	conf_adm_login=$RET
 	db_get dtc/conf_admpass
 	conf_adm_pass=$RET
+
+	db_get dtc/conf_apache_version
+	conf_apache_version=$RET
 
 	db_get dtc/conf_gen_ssl_cert
 	conf_gen_ssl_cert=$RET

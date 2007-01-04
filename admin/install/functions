@@ -3629,6 +3629,7 @@ conf_adm_pass=${conf_adm_pass}
 conf_ip_addr=${conf_ip_addr}
 conf_use_nated_vhosts=${conf_use_nated_vhosts}
 conf_nated_vhosts_ip=${conf_nated_vhosts_ip}
+conf_apache_version=${conf_apache_version}
 conf_hosting_path=${conf_hosting_path}
 conf_chroot_path=${conf_chroot_path}
 conf_eth2monitor=${conf_eth2monitor}
