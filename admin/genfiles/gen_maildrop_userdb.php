@@ -20,6 +20,11 @@ function mail_account_generate_maildrop(){
 	global $conf_nobody_group_id;
 	global $conf_nobody_user_name;
 
+	global $dtc_system_uid;
+	global $dtc_system_username;
+	global $dtc_system_gid;
+	global $dtc_system_groupname;
+
 	global $console;
 
 	global $conf_generated_file_path;
@@ -28,8 +33,8 @@ function mail_account_generate_maildrop(){
 	// check to see if we have maildrop installed
 	// if we don't yet, don't run this
 
-	if(!file_exists("/usr/sbin/userdb"))
-	{
+	if(!file_exists("/usr/sbin/userdb")){
+		echo "/usr/sbin/userdb exists as a file! Please remove...";
 		return;
 	}
 
@@ -44,13 +49,17 @@ function mail_account_generate_maildrop(){
 	$num_rows = mysql_num_rows($result);
 
 	if($num_rows < 1){
-		die("No account to generate");
+// This is TOTALY forbidden to die in the cron script!!!
+// I know there should always be an admin, but still...
+// Damien, did you write this one???
+//		die("No account to generate");
 	}
 
-	if (!file_exists("/etc/courier/userdb/"))
-	{
+	if (!file_exists("/etc/courier/userdb/")){
 		mkdir("/etc/courier/userdb/",0700);
-		chown("/etc/courier/userdb/", "nobody");
+		// (from thomas) I'm not sure about this one, so I first leave it commented with corrections...
+		// chown("/etc/courier/userdb/", "nobody");
+		chown("/etc/courier/userdb/", "$dtc_system_username");
 	}
 
 	for($i=0;$i<$num_rows;$i++){
@@ -105,7 +114,8 @@ function mail_account_generate_maildrop(){
 					$passwd = crypt($passwdtemp, dtc_makesalt());
 
 					if ($localdeliver == "yes"){
-						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");
+//						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");
+						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$dtc_system_uid gid=$dtc_system_gid");
 						//if ($id == $catch_all)
 						//{
 						//	system("/usr/sbin/userdb \"$domain_full_name/@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");
@@ -118,8 +128,10 @@ function mail_account_generate_maildrop(){
 
 	//after we have added all the users to the userdb
 	system("/usr/sbin/makeuserdb");
-	chown("/etc/courier/userdb/", "$conf_nobody_user_name");
-	recurse_chown_chgrp("/etc/courier/userdb/", "$conf_nobody_user_name", $conf_nobody_group_id);
+//	chown("/etc/courier/userdb/", "$conf_nobody_user_name");
+	chown("/etc/courier/userdb/", "$dtc_system_username");
+//	recurse_chown_chgrp("/etc/courier/userdb/", "$conf_nobody_user_name", $conf_nobody_group_id);
+	recurse_chown_chgrp("/etc/courier/userdb/", "$dtc_system_username", $dtc_system_gid);
 }
 
 ?>
