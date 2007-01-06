@@ -239,7 +239,8 @@ $dtc_database = array(
 			"txt_root_entry2" => "varchar(128) NOT NULL default 'This domain is hosted using Domain Technologie Control http://www.gplhost.com/software-dtc.html' ",
 			"catchall_email" => "varchar(128) NOT NULL ",
 			"domain_parking" => "varchar(255) NOT NULL default 'no-parking' ",
-			"registrar_password" => "varchar(255) NOT NULL "
+			"registrar_password" => "varchar(255) NOT NULL ",
+			"ttl" => "int NULL default '7200' ",
 			),
 		"keys" => array(
 			"name" => "(name)"
@@ -649,8 +650,14 @@ $dtc_database = array(
 			"period" => "date NOT NULL default '0001-00-00' ",
 			"allow_add_domain" => "enum('yes','no') NOT NULL default 'no' ",
 			"heb_type" => "enum('shared','ssl','vps','server') NOT NULL default 'shared' ",
+<<<<<<< dtc_db.php
+			"renew_prod_id" => "int(11) NOT NULL default '0'",
+			"visibility" => "enum('all','client','dtc','none') NOT NULL default 'all' ",
+			"id_client" => "int(11) NOT NULL default '0' ",
+=======
 			"renew_prod_id" => "int(11) NOT NULL default '0'",
 			"private" => "enum('yes','no') NOT NULL default 'no'"
+>>>>>>> 1.97
 			),
 		"primary" => "(id)",
 		"keys" => array(
@@ -825,6 +832,7 @@ $dtc_database = array(
 			"associated_txt_record" => "varchar(128) NOT NULL ",
 			"generate_vhost" => "enum('yes','no') NOT NULL default 'yes' ",
 			"nameserver_for" => "varchar(64) NULL ",
+			"ttl" => "int NULL default '7200' ",
 			),
 		"primary" => "(id)",
 		"keys" => array(
