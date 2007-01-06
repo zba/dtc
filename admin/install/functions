@@ -1681,7 +1681,7 @@ content_filter=smtp-amavis:[127.0.0.1]:10024
 #content_filter=smtp-amavis:[127.0.0.1]:10024
 " >> $TMP_FILE
 			fi
-virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
+echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 " >> $TMP_FILE
 
 			if [ ""$conf_cyrus_enable = "true" ]; then
