@@ -18,6 +18,7 @@ createDTCuserAndGroup () {
 		if [ -x /usr/sbin/groupadd ] ; then
 			/usr/sbin/groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
 		else
+			# This is for freebsd
 			pw groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
 		fi
 	fi
@@ -27,9 +28,18 @@ createDTCuserAndGroup () {
 		echoIfVerbose "-> User ${CONF_DTC_SYSTEM_USERNAME} already exists: skipping creation!"
 	else
 		if [ -x /usr/sbin/useradd ] ; then
-			/usr/sbin/useradd -m -s /bin/false -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
+			if [ -x /bin/bash ] ; then
+				/usr/sbin/useradd -m -s /bin/bash -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
+			else
+				echo "Could not find a shell, please fix me here!!!"
+			fi
+		# This one is for freebsd
 		else
-			pw useradd ${CONF_DTC_SYSTEM_USERNAME} -g ${CONF_DTC_SYSTEM_GROUPNAME} -s /usr/bin/false
+			if [ -x /usr/bin/sh ] ; then
+				pw useradd ${CONF_DTC_SYSTEM_USERNAME} -g ${CONF_DTC_SYSTEM_GROUPNAME} -s /usr/bin/sh
+			else
+				echo "Could not find a shell, please fix me here!!!"
+			fi
 		fi
 	fi
 	CONF_DTC_SYSTEM_UID=`getent passwd ${CONF_DTC_SYSTEM_USERNAME} | cut -d':' -f3`
