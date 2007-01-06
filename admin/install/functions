@@ -1665,13 +1665,20 @@ parent_domain_matches_subdomains=
 
 # disable mailbox size limit by default (user can add to postfix_config_snippets)
 mailbox_size_limit = 0
-
-# uncomment to enable amavis
+" >> $TMP_FILE
+			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new ] ; then
+				echo "# Amavis has been detected as installed, so this has been activated by default
+# if this is not what you want, comment it and restart postfix
+content_filter=smtp-amavis:[127.0.0.1]:10024
+" >> $TMP_FILE
+			else
+				echo "# uncomment to enable amavis
 #   - if you do uncomment this, make sure that you
 #     also edit the master.cf file to make sure that
 #     the return channel is set correctly
 #content_filter=smtp-amavis:[127.0.0.1]:10024
-
+" >> $TMP_FILE
+			fi
 virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 " >> $TMP_FILE
 
