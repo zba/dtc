@@ -1693,8 +1693,8 @@ mailbox_transport = lmtp:unix:/var/run/socket/lmtp
 				echo "virtual_mailbox_base = /
 virtual_mailbox_maps = hash:$PATH_DTC_ETC/postfix_vmailbox
 virtual_minimum_uid = 98
-virtual_uid_maps = static:$nobodygid
-virtual_gid_maps = static:$nobodygid
+virtual_uid_maps = static:${CONF_DTC_SYSTEM_UID}
+virtual_gid_maps = static:${CONF_DTC_SYSTEM_GID}
 virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 			fi
 			# CL continue with global part
