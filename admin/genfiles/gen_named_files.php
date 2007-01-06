@@ -202,6 +202,12 @@ function named_generate(){
 		$web_owner = $row["owner"];
 		$web_serial_flag = $row["generate_flag"];
 		$ip_addr = $row["ip_addr"];
+		// domain wide TTL
+		$domain_ttl = 7200;
+		if (isset($row["ttl"]))
+		{
+			$domain_ttl = $row["ttl"];	
+		}
 		$domain_parking = $row["domain_parking"];
 		
 		// Get DNS addresses from database. Switch to $conf_* values if "default" is found
@@ -347,7 +353,7 @@ function named_generate(){
 
 		if($row["primary_dns"] == "default"){
 
-			$this_site_file = "\$TTL 7200
+			$this_site_file = "\$TTL $domain_ttl
 @               IN      SOA     $thisdomain_dns1. $bind_formated_webmaster_email_addr (
 						$todays_serial; serial
                         2H ; refresh
@@ -374,6 +380,12 @@ $more_mx_server
 			for($j=0;$j<$num_rows2;$j++){
 				$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 				$web_subname = $subdomain["subdomain_name"];
+				// TTL support
+				$sub_ttl = 7200;
+                                if (isset($subdomain["ttl"]))
+                                {
+                                        $sub_ttl = $subdomain["ttl"];
+                                }
 				// Check if it's an IP or not, to know if it's a CNAME record or a A record
 				if(isIP($subdomain["ip"]) || $subdomain["ip"] == "default"){
 					if($subdomain["ip"] == "default"){
@@ -403,12 +415,13 @@ $more_mx_server
 				if($web_subname == "list"){
 					$is_list_subdomain_set = "yes";
 				}
+				// write TTL values into subdomain
 				if ($conf_use_cname_for_subdomains == "yes")
 				{
-					$this_site_file .= "$web_subname	IN	CNAME	@\n";
+					$this_site_file .= "$web_subname	$sub_ttl	IN	CNAME	@\n";
 
 				} else {
-					$this_site_file .= "$web_subname	IN	$the_ip_writed\n";
+					$this_site_file .= "$web_subname	$sub_ttl	IN	$the_ip_writed\n";
 				}
 				if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
 					$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
