@@ -20,10 +20,10 @@ function backup_by_ftp(){
 
 	global $conf_nobody_group_id;
 
-	global $dtc_system_uid;
-	global $dtc_system_username;
-	global $dtc_system_gid;
-	global $dtc_system_groupname;
+	global $conf_dtc_system_uid;
+	global $conf_dtc_system_username;
+	global $conf_dtc_system_gid;
+	global $conf_dtc_system_groupname;
 
 	global $conf_mysql_db;
 
@@ -50,7 +50,7 @@ date\n";
 		$restor_net .= "echo \"===> Restoring all files for user $owner:\"\n";
 		$restor_net .= "mkdir -p $path\n";
 //		$restor_net .= "chown nobody:$conf_nobody_group_id $path\n";
-		$restor_net .= "chown  $dtc_system_username:$dtc_system_groupname $path\n";
+		$restor_net .= "chown  $conf_dtc_system_username:$conf_dtc_system_groupname $path\n";
 		$restor_net .= "cd $path\n";
 
 		$backup_net .= "echo \"===> Backuping all files for user $owner:\"\n";
@@ -84,7 +84,7 @@ date\n";
 			$restor_net .= "tar -xzf $owner.$webname.tar.gz\n";
 			$restor_net .= "echo \"Chown... $webname\"\n";
 //			$restor_net .= "chown -R nobody:$conf_nobody_group_id $webname\n";
-			$restor_net .= "chown -R $dtc_system_username:$dtc_system_groupname $webname\n";
+			$restor_net .= "chown -R $conf_dtc_system_username:$conf_dtc_system_groupname $webname\n";
 			$restor_net .= "rm -f $owner.$webname.tar.gz\n";
 
 			$backup_net .= "ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder $owner.$webname.tar.gz\n";
