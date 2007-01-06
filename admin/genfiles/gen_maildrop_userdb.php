@@ -20,10 +20,10 @@ function mail_account_generate_maildrop(){
 	global $conf_nobody_group_id;
 	global $conf_nobody_user_name;
 
-	global $dtc_system_uid;
-	global $dtc_system_username;
-	global $dtc_system_gid;
-	global $dtc_system_groupname;
+	global $conf_dtc_system_uid;
+	global $conf_dtc_system_username;
+	global $conf_dtc_system_gid;
+	global $conf_dtc_system_groupname;
 
 	global $console;
 
@@ -59,7 +59,7 @@ function mail_account_generate_maildrop(){
 		mkdir("/etc/courier/userdb/",0700);
 		// (from thomas) I'm not sure about this one, so I first leave it commented with corrections...
 		// chown("/etc/courier/userdb/", "nobody");
-		chown("/etc/courier/userdb/", "$dtc_system_username");
+		chown("/etc/courier/userdb/", $conf_dtc_system_username);
 	}
 
 	for($i=0;$i<$num_rows;$i++){
@@ -115,7 +115,7 @@ function mail_account_generate_maildrop(){
 
 					if ($localdeliver == "yes"){
 //						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");
-						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$dtc_system_uid gid=$dtc_system_gid");
+						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$conf_dtc_system_uid gid=$conf_dtc_system_gid");
 						//if ($id == $catch_all)
 						//{
 						//	system("/usr/sbin/userdb \"$domain_full_name/@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");
@@ -129,9 +129,9 @@ function mail_account_generate_maildrop(){
 	//after we have added all the users to the userdb
 	system("/usr/sbin/makeuserdb");
 //	chown("/etc/courier/userdb/", "$conf_nobody_user_name");
-	chown("/etc/courier/userdb/", "$dtc_system_username");
+	chown("/etc/courier/userdb/", "$conf_dtc_system_username");
 //	recurse_chown_chgrp("/etc/courier/userdb/", "$conf_nobody_user_name", $conf_nobody_group_id);
-	recurse_chown_chgrp("/etc/courier/userdb/", "$dtc_system_username", $dtc_system_gid);
+	recurse_chown_chgrp("/etc/courier/userdb/", "$conf_dtc_system_username", $conf_dtc_system_gid);
 }
 
 ?>
