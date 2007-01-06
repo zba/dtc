@@ -290,7 +290,7 @@ searchAndReplace () {
 		TMP_FILE=`${MKTEMP} DTC_SAR_TEMP.XXXXXX` || exit 1
 		sed "s/${2}/${3}/" ${1} >${TMP_FILE}
 		cat ${TMP_FILE} >${1}
-		rm ${TMP_FILE}
+		rm -f ${TMP_FILE}
 	fi
 }
 
@@ -723,6 +723,7 @@ modifySUODERS_DOT_CONF () {
 			echo "${CONF_DTC_SYSTEM_USERNAME}      ALL= NOPASSWD: $PATH_CHROOT *" >> $TMP_FILE
 			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 			cat <$TMP_FILE >>$PATH_SUDOERS_CONF
+			rm -r $TMP_FILE
 		fi
 	        # fix /etc/shells
 		if grep "Configured by DTC" $PATH_SHELLS_CONF >/dev/null
@@ -922,7 +923,6 @@ modifyHTTPD_CONF () {
 	# Include $PATH_DTC_ETC/vhosts.conf in $PATH_HTTPD_CONF
 	#
 
-	TMP_FILE=`${MKTEMP} DTC_install.httpd.conf.XXXXXX` || exit 1
 
 	echoIfVerbose "===> Modifying httpd.conf"
 
@@ -936,6 +936,7 @@ modifyHTTPD_CONF () {
 			cp -f "$PATH_HTTPD_CONF" "$PATH_HTTPD_CONF.DTC.backup"
 		fi
 
+		TMP_FILE=`${MKTEMP} DTC_install.httpd.conf.XXXXXX` || exit 1
 
 		echoIfVerbose -n "Checking for AllowOverride..."
 		searchAndReplace $PATH_HTTPD_CONF AllowOverride\ None AllowOverride\ AuthConfig\ FileInfo\ Limit\ Indexes
@@ -1528,6 +1529,7 @@ modifyClamavConf () {
 
 	                # now to insert it at the end of the actual clamav.conf
 	                cat < $TMP_FILE >>$PATH_CLAMAV_CONF
+	                rm -f $TMP_FILE
 	        fi
 	        # Finaly restart the daemon
 	        if [ -x "/etc/init.d/clamav-daemon" ] ; then
