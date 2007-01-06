@@ -1529,6 +1529,16 @@ modifyClamavConf () {
 	                # now to insert it at the end of the actual clamav.conf
 	                cat < $TMP_FILE >>$PATH_CLAMAV_CONF
 	        fi
+	        # Finaly restart the daemon
+	        if [ -x "/etc/init.d/clamav-daemon" ] ; then
+	        	if [ -x /usr/sbin/invoke-rc.d ]; then
+	        		/usr/sbin/invoke-rc.d clamav-daemon restart
+	        	else
+	        		if [ -x "/etc/init.d/clamav-daemon" ] ; then
+	        			/etc/init.d/clamav-daemon restart
+	        		fi
+	        	fi
+	        fi
 	fi
 }
 
