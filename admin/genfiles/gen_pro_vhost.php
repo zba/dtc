@@ -7,8 +7,8 @@ $chk_dir_script="#!/bin/sh
 
 echo \"Checking vhosts directories existance...\"\n";
 function vhost_chk_dir_sh($dir){
-	global $dtc_system_username;
-	global $dtc_system_groupname;
+	global $conf_dtc_system_username;
+	global $conf_dtc_system_groupname;
 
 	global $chk_dir_script;
 
@@ -32,7 +32,7 @@ fi
 	$chk_dir_script .= "
 if [ ! -d $dir ] ; then
 	mkdir -p $dir
-	chown $dtc_system_username:$dtc_system_groupname
+	chown $conf_dtc_system_username:$conf_dtc_system_groupname
 	echo \"Directory $dir was missing and has been created.\"
 fi
 ";
