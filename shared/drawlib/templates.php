@@ -471,6 +471,7 @@ function dtcDatagrid($dsc){
 function dtcListItemsEdit($dsc){
 	global $adm_pass;
 
+	echo $adm_pass;
 	$out = "<b><u>".$dsc["title"]."</u></b><br><br>";
 
 	// Calculate the forwards parameters for links and forms
@@ -480,7 +481,11 @@ function dtcListItemsEdit($dsc){
 	$fw = "";
 	$fw_link = $_SERVER["PHP_SELF"]."?";
 	for($i=0;$i<$nbr_forwards;$i++){
-		$fw .= "<input type=\"hidden\" name=\"".$dsc["forward"][$i]."\" value=\"".$_REQUEST[ $dsc["forward"][$i] ]."\">";
+		if($dsc["forward"][$i] == "adm_pass"){
+			$fw .= "<input type=\"hidden\" name=\"".$dsc["forward"][$i]."\" value=\"".$adm_pass."\">";
+		}else{
+			$fw .= "<input type=\"hidden\" name=\"".$dsc["forward"][$i]."\" value=\"".$_REQUEST[ $dsc["forward"][$i] ]."\">";
+		}
 		if($i != 0){
 			$fw_link .= "&";
 		}
