@@ -651,8 +651,6 @@ $dtc_database = array(
 			"allow_add_domain" => "enum('yes','no') NOT NULL default 'no' ",
 			"heb_type" => "enum('shared','ssl','vps','server') NOT NULL default 'shared' ",
 			"renew_prod_id" => "int(11) NOT NULL default '0'",
-			"visibility" => "enum('all','client','dtc','none') NOT NULL default 'all' ",
-			"id_client" => "int(11) NOT NULL default '0' ",
 			"private" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)",
