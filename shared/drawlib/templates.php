@@ -471,7 +471,6 @@ function dtcDatagrid($dsc){
 function dtcListItemsEdit($dsc){
 	global $adm_pass;
 
-	echo $adm_pass;
 	$out = "<b><u>".$dsc["title"]."</u></b><br><br>";
 
 	// Calculate the forwards parameters for links and forms
