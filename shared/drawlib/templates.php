@@ -75,7 +75,11 @@ function dtcDatagrid($dsc){
 	$fw = "";
 	$fw_link = $_SERVER["PHP_SELF"]."?";
 	for($i=0;$i<$nbr_forwards;$i++){
-		$fw .= "<input type=\"hidden\" name=\"".$dsc["forward"][$i]."\" value=\"".$_REQUEST[ $dsc["forward"][$i] ]."\">";
+		if($dsc["forward"][$i] == "adm_pass"){
+			$fw .= "<input type=\"hidden\" name=\"".$dsc["forward"][$i]."\" value=\"".$adm_pass."\">";
+		}else{
+			$fw .= "<input type=\"hidden\" name=\"".$dsc["forward"][$i]."\" value=\"".$_REQUEST[ $dsc["forward"][$i] ]."\">";
+		}
 		if($i != 0){
 			$fw_link .= "&";
 		}
