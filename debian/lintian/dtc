@@ -1,0 +1,3 @@
+debconf-is-not-a-registry ./usr/share/dtc/admin/ip_change.sh
+debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_domain.sh
+debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_ip.sh
