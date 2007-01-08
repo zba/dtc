@@ -74,5 +74,6 @@ dtc_system_uid varchar (16) NOT NULL default '65534',
 dtc_system_username varchar (64) NOT NULL default 'dtc',
 dtc_system_gid varchar (16) NOT NULL default '65534',
 dtc_system_groupname varchar (64) NOT NULL default 'nogroup',
+selling_conditions_url varchar (255) NOT NULL default 'none',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
