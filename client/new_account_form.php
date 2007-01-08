@@ -11,6 +11,7 @@ function register_user(){
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_server_table;
 	global $conf_webmaster_email_addr;
+	global $conf_selling_conditions_url;
 
 	// Check if all fields are blank, in wich case don't display error
 	if((!isset($_REQUEST["reqadm_login"]) || $_REQUEST["reqadm_login"] == "")
@@ -228,6 +229,12 @@ function register_user(){
 		return $ret;
 	}
 
+	if($conf_selling_conditions_url != "none" && (!isset($_REQUEST["condition"]) || $_REQUEST["condition"] != "yes")){
+		$ret["err"] = 2;
+		$ret["mesg"] = "Selling conditions not accepted!";
+		return $ret;
+	}
+
 	$q = "SELECT adm_login FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["reqadm_login"]."';";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -375,6 +382,8 @@ function registration_form(){
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_server_table;
+
+	global $conf_selling_conditions_url;
 
 	if(isset($_REQUEST["product_id"]) && isRandomNum($_REQUEST["product_id"])){
 		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["product_id"]."';";
@@ -577,6 +586,12 @@ function registration_form(){
 </tr></table>";
 	$addr_skined = skin("frame",$client_addr,"");
 
+	if($conf_selling_conditions_url != "none"){
+		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> I agree to the <a href=\"$conf_selling_conditions_url\">selling conditions</a>";
+	}else{
+		$conditions = "";
+	}
+
 	$HTML_admin_edit_data = "<a href=\"/dtc\">$txt_go_to_login[$lang]</a>
 <script language=\"javascript\">
 
@@ -649,6 +664,7 @@ $txt_login_info[$lang]:$login_skined</td>
 	<td>$txt_client_info[$lang] $client_skined</td>
 	<td>$txt_client_info[$lang] $addr_skined</td>
 </tr></table>
+$conditions
 <table border=\"0\">
 <tr>
 	<td>".$txt_register_custom_message_title[$lang]."</td>
