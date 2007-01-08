@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.15 2007/01/08 05:55:42 thomas Exp $
+ * @version $Id: subdomain.php,v 1.16 2007/01/08 05:56:30 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
@@ -56,7 +56,7 @@ function subdomainDeleteDirsCallBack($id){
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
 }
 
-subdomainEditCallBack($id){
+function subdomainEditCallBack($id){
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
 }
 
