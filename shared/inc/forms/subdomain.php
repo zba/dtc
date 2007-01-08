@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.14 2006/12/10 08:57:14 thomas Exp $
+ * @version $Id: subdomain.php,v 1.15 2007/01/08 05:55:42 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
@@ -53,6 +53,10 @@ function subdomainDeleteDirsCallBack($id){
 		$subdomain_dirpath = $adm_path."/".$domain."/subdomains/$subdom_name";
 		system("rm -rf $subdomain_dirpath");
 	}
+	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
+}
+
+subdomainEditCallBack($id){
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
 }
 
@@ -156,6 +160,7 @@ function drawAdminTools_Subdomain($domain){
 		"num_item_txt" => $txt_number_of_active_subdomains[$lang],
 		"create_item_callback" => "subdomainCreateDirsCallBack",
 		"delete_item_callback" => "subdomainDeleteDirsCallBack",
+		"edit_item_callback" => "subdomainEditCallBack",
 		"where_list" => array(
 			"domain_name" => $domain["name"]),
 		"cols" => array(
