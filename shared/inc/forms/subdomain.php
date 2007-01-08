@@ -1,11 +1,26 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.16 2007/01/08 05:56:30 thomas Exp $
+ * @version $Id: subdomain.php,v 1.17 2007/01/08 06:16:54 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
 
+function setZoneToGenerate($id){
+	global $pro_mysql_subdomain_table;
+	global $pro_mysql_domain_table;
+
+	$q = "SELECT * FROM $pro_mysql_subdomain_table WHERE id='$id';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		echo "<font color=\"red\">Could not found subdomain in table for folder deletion</font>";
+	}else{
+		$a = mysql_fetch_array($r);
+		$q = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='".$a["domain_name"]."';";
+		$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	}
+}
 
 function subdomainCreateDirsCallBack($id){
 	global $adm_login;
@@ -13,6 +28,7 @@ function subdomainCreateDirsCallBack($id){
 	global $conf_demo_version;
 	global $conf_generated_file_path;
 
+	setZoneToGenerate($id);
 	$adm_path = getAdminPath($adm_login);
 	$doms = explode("/",$_REQUEST["addrlink"]);
 	$domain = $doms[0];
@@ -38,6 +54,7 @@ function subdomainDeleteDirsCallBack($id){
 	global $adm_login;
 	global $pro_mysql_subdomain_table;
 
+	setZoneToGenerate($id);
 	$adm_path = getAdminPath($adm_login);
 	$doms = explode("/",$_REQUEST["addrlink"]);
 	$domain = $doms[0];
@@ -57,6 +74,7 @@ function subdomainDeleteDirsCallBack($id){
 }
 
 function subdomainEditCallBack($id){
+	setZoneToGenerate($id);
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
 }
 
@@ -177,6 +195,7 @@ function drawAdminTools_Subdomain($domain){
 				"type" => "text",
 				"check" => "subdomain_or_ip",
 				"can_be_empty" => "yes",
+				"empty_makes_default" => "yes",
 				"legend" => "IP address or CNAME: "),
 			"generate_vhost" => array(
 				"type" => "radio",

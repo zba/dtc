@@ -661,6 +661,8 @@ function dtcListItemsEdit($dsc){
 				$fld_names .= $keys[$i];
 				if( isset($dsc["cols"][ $keys[$i] ]["empty_makes_sql_null"]) && $dsc["cols"][ $keys[$i] ]["empty_makes_sql_null"] == "yes" && $_REQUEST[ $keys[$i] ] == ""){
 					$values .= "NULL";
+				}else if( isset($dsc["cols"][ $keys[$i] ]["empty_makes_default"]) && $dsc["cols"][ $keys[$i] ]["empty_makes_default"] == "yes" && $_REQUEST[ $keys[$i] ] == ""){
+					$values .= "'default'";
 				}else{
 					if(isset($dsc["cols"][ $keys[$i] ]["happen_domain"])){
 						$values .= "'".addslashes($_REQUEST[ $keys[$i] ]).$dsc["cols"][ $keys[$i] ]["happen_domain"]."'";
@@ -846,7 +848,13 @@ function dtcListItemsEdit($dsc){
 					}else{
 						$happen = "";
 					}
-					$reqs .= $keys[$i]."='".addslashes($_REQUEST[ $keys[$i] ]).$happen."'";
+					if( isset($dsc["cols"][ $keys[$i] ]["empty_makes_sql_null"]) && $dsc["cols"][ $keys[$i] ]["empty_makes_sql_null"] == "yes" && $_REQUEST[ $keys[$i] ] == ""){
+						$reqs .= $keys[$i]."=NULL";
+					}else if( isset($dsc["cols"][ $keys[$i] ]["empty_makes_default"]) && $dsc["cols"][ $keys[$i] ]["empty_makes_default"] == "yes" && $_REQUEST[ $keys[$i] ] == ""){
+						$reqs .= $keys[$i]."='default'";
+					}else{
+						$reqs .= $keys[$i]."='".addslashes($_REQUEST[ $keys[$i] ]).$happen."'";
+					}
 					$added_one = "yes";
 				}
 				break;
