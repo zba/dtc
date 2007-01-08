@@ -439,6 +439,62 @@ installerQuestions () {
 	fi
 #	sed -i.bak '/conf_omit_dev_mknod/d' /root/.dtc_install
 #	echo "conf_omit_dev_mknod=${conf_omit_dev_mknod}" >> /root/.dtc_install
+
+	echo ""
+	echo "DTC can generates a self signed certificate"
+	echo "so you can browse safely the control panel use SSL"
+	echo -n "Generate an SSL cert [Yn]: "
+	read answer
+	if [ -z ""$answer -o ""$answer = "y" -o ""$answer = "Y" ] ; then
+		conf_gen_ssl_cert="true"
+	else
+		conf_gen_ssl_cert="false"
+	fi
+	if [ ""$conf_gen_ssl_cert = "true" ] ; then
+		echo ""
+		echo -n "Certificate pass phrase [${conf_cert_passphrase}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_passphrase=$answer
+		fi
+
+		echo -n "Certificate 2 letter country code [${conf_cert_countrycode}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_countrycode=$answer
+		fi
+
+		echo -n "Certificate locality [${conf_cert_locality}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_locality=$answer
+		fi
+
+		echo -n "Certificate organization [${conf_cert_organization}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_organization=$answer
+		fi
+
+		echo -n "Organization unit [${conf_cert_unit}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_unit=$answer
+		fi
+
+		echo -n "Certificate email [${conf_cert_email}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_email=$answer
+		fi
+
+		echo -n "Certificate challenge pass [${conf_cert_challenge_pass}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_challenge_pass=$answer
+		fi
+		read conf_cert_challenge_pass
+	fi
 }
 
 printVariables () {
