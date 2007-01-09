@@ -2137,7 +2137,7 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 " >/usr/local/etc/pureftpd-mysql.conf;
 			fi
 
-			if grep 'pureftpd_enable="YES"' /etc/rc.conf >/dev/null
+			if grep 'pureftpd_enable="YES"' /etc/rc.conf >/dev/null ; then
 				echoIfVerbose "rc.conf already has pureftpd_enable=yes"
 			else
 				echoIfVerbose "Adding pureftpd_enable=yes in rc.conf"
