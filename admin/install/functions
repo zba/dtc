@@ -2113,14 +2113,40 @@ modifyPureFtpdMySQLConfig () {
 	#
 	# Install pure-ftpd-mysql
 	#
-	echoIfVerbose "===> Adding directives to pure-ftpd-mysql"
-	PURE_FTPD_ETC="/etc/pure-ftpd"
-	if [ -e $PURE_FTPD_ETC ] ;then
-		if [ -e /etc/pure-ftpd/conf/ ] ;then
-			echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
-		fi
-		if [ -e $PURE_FTPD_ETC/db/ ] ;then
-			echo "# Configured by DTC v0.10 : Please don't touch this line !
+	if [ $conf_ftp_type = "pureftpd" ]; then
+ 	 	echoIfVerbose "===> Adding directives to pure-ftpd-mysql"
+		if [ ""$UNIX_TYPE = "freebsd" ] ;then
+			if [ ! -f "/usr/local/etc/pure-ftpd.conf" ]; then
+				sed -e "/^# MySQLConfigFile/d" /usr/local/etc/pure-ftpd.conf.sample > /usr/local/etc/pure-ftpd.conf
+				echo "MySQLConfigFile		/usr/local/etc/pureftpd-mysql.conf" >> /usr/local/etc/pure-ftpd.conf
+			fi
+			if [ ! -f "/usr/local/etc/pureftpd-mysql.conf" ]; then
+				echo "# Configured by DTC v0.10 : Please don't touch this line !
+
+MYSQLSocket /tmp/mysql.sock
+MYSQLUser dtcdaemons
+MYSQLPassword ${MYSQL_DTCDAEMONS_PASS}
+MYSQLDatabase dtc
+MYSQLCrypt cleartext
+MYSQLGetPW      SELECT password FROM ftp_access WHERE login=\"\L\"
+MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
+MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
+MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
+
+" >/usr/local/etc/pureftpd-mysql.conf;
+			fi
+
+			echo 'pureftpd_enable="YES"' >> /etc/rc.conf
+
+			/usr/local/etc/rc.d/pure-ftpd start
+		else	
+			PURE_FTPD_ETC="/etc/pure-ftpd"
+			if [ -e $PURE_FTPD_ETC ] ;then
+				if [ -e /etc/pure-ftpd/conf/ ] ;then
+					echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
+				fi
+				if [ -e $PURE_FTPD_ETC/db/ ] ;then
+					echo "# Configured by DTC v0.10 : Please don't touch this line !
 
 MYSQLSocket /var/run/mysqld/mysqld.sock
 MYSQLUser dtcdaemons
@@ -2133,11 +2159,13 @@ MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
 " >$PURE_FTPD_ETC/db/mysql.conf;
-			if [ -x /usr/sbin/invoke-rc.d ]; then
-				/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
-			else
-				if [ -x /etc/init.d/pure-ftpd-mysql ] ;then
-					/etc/init.d/pure-ftpd-mysql restart
+					if [ -x /usr/sbin/invoke-rc.d ]; then
+						/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
+					else
+						if [ -x /etc/init.d/pure-ftpd-mysql ] ;then
+							/etc/init.d/pure-ftpd-mysql restart
+						fi
+					fi
 				fi
 			fi
 		fi

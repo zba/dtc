@@ -187,6 +187,24 @@ installerQuestions () {
 #	sed -i.bak '/conf_mysql_pass/d' /root/.dtc_install
 #	echo "conf_mysql_pass=${conf_mysql_pass}" >> /root/.dtc_install
 
+	# FTP configuration
+	if [ -z ""$conf_ftp_type ] ; then
+		conf_ftp_type=pureftpd
+	fi
+	echo ""
+	echo "What FTP Server do you wish to use with DTC ?"
+	echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [1]"
+	read answer
+	if [ -z ""$answer ] ; then
+		conf_ftp_type=pureftpd
+	fi
+	if [ ""$answer = "1" ]; then
+		conf_ftp_type=pureftpd
+	fi
+	if [ ""$answer = "2" ]; then
+		conf_ftp_type=proftpd
+	fi
+
 	# Host configuration
 	if [ -z ""${main_domain_name} ] ; then
 		main_domain_name="example.com"
