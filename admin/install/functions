@@ -2115,6 +2115,7 @@ modifyPureFtpdMySQLConfig () {
 	#
 	if [ $conf_ftp_type = "pureftpd" ]; then
  	 	echoIfVerbose "===> Adding directives to pure-ftpd-mysql"
+ 	 	# FreeBSD has a file pure-ftpd.conf to configure pure-ftpd
 		if [ ""$UNIX_TYPE = "freebsd" ] ;then
 			if [ ! -f "/usr/local/etc/pure-ftpd.conf" ]; then
 				sed -e "/^# MySQLConfigFile/d" /usr/local/etc/pure-ftpd.conf.sample > /usr/local/etc/pure-ftpd.conf
@@ -2136,9 +2137,15 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 " >/usr/local/etc/pureftpd-mysql.conf;
 			fi
 
-			echo 'pureftpd_enable="YES"' >> /etc/rc.conf
+			if grep 'pureftpd_enable="YES"' /etc/rc.conf >/dev/null
+				echoIfVerbose "rc.conf already has pureftpd_enable=yes"
+			else
+				echoIfVerbose "Adding pureftpd_enable=yes in rc.conf"
+				echo 'pureftpd_enable="YES"' >> /etc/rc.conf
+			fi
 
 			/usr/local/etc/rc.d/pure-ftpd start
+		# Debian uses a directory structure with many files (and maybe other distro)
 		else	
 			PURE_FTPD_ETC="/etc/pure-ftpd"
 			if [ -e $PURE_FTPD_ETC ] ;then
@@ -2159,6 +2166,7 @@ MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
 " >$PURE_FTPD_ETC/db/mysql.conf;
+					# Retart after we did the config
 					if [ -x /usr/sbin/invoke-rc.d ]; then
 						/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
 					else
