@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.17 2007/01/08 06:16:54 thomas Exp $
+ * @version $Id: subdomain.php,v 1.18 2007/01/09 05:03:34 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
@@ -10,7 +10,7 @@ function setZoneToGenerate($id){
 	global $pro_mysql_subdomain_table;
 	global $pro_mysql_domain_table;
 
-	$q = "SELECT * FROM $pro_mysql_subdomain_table WHERE id='$id';";
+	$q = "SELECT domain_name FROM $pro_mysql_subdomain_table WHERE id='$id';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
