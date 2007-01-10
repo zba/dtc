@@ -7,22 +7,6 @@ UNIX_TYPE=osx
 
 VERBOSE_INSTALL="yes"
 
-# Create our group and user
-CONF_DTC_SYSTEM_USERNAME=dtc
-CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
-if getent group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
-        echo "Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skipping creation!"
-else
-        groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
-fi
-CONF_DTC_SYSTEM_GID=`getent group ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d':' -f3`
-if getent passwd ${CONF_DTC_SYSTEM_USERNAME} >/dev/null ; then
-        echo "User ${CONF_DTC_SYSTEM_USERNAME} already exists: skipping creation!"
-else
-        useradd -m -s /bin/false -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
-fi
-CONF_DTC_SYSTEM_UID=`getent passwd ${CONF_DTC_SYSTEM_USERNAME} | cut -d':' -f3`
-
 # Deamon path configuration
 PATH_HTTPD_CONF="/etc/httpd/httpd.conf"
 PATH_NAMED_CONF="/etc/named.conf"
@@ -133,4 +117,14 @@ fi
 # php and that mysql comes as default on Mac OS X Server, I leave the standard one
 # otherwise you will have to recompile php with mysql4 support.
 #conf_mysql_cli_path=/usr/local/mysql/bin/mysql
+
+
+
+. /usr/share/dtc/admin/install/osx_config
+. /usr/share/dtc/admin/install/interactive_installer
+. /usr/share/dtc/admin/install/functions
+
+interactiveInstaller
+DTCinstallPackage
+DTCsetupDaemons
 
