@@ -38,17 +38,17 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "unsubscribe_user"){
 	$n = sizeof($subs);
 	$newsubs = array();
 	for($i=0;$i<$n;$i++){
-		if($subs[$i] != $_REQUEST["subscriber_email"]."\n"){
+		if($subs[$i] != $_REQUEST["subscriber_email"]."\n" && $subs[$i] != ""){
 			$newsubs[] = $subs[$i];
 		}
 	}
 
-	if( sizeof($subs) == 0){
+	if( sizeof($subs) == 1){
 		// Remove the file if no subscriber
 		unlink($filename);
 	}else{
 		// Write the file if there are some remaining subscribers
-		$towrite = implode('\n',$newsubs);
+		$towrite = implode("",$newsubs);
 		$fp = fopen($filename,"w+");
 		fwrite($fp,$towrite);
 		fclose($fp);
