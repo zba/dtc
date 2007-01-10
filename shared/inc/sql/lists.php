@@ -1,5 +1,60 @@
 <?php
 require("$dtcshared_path/inc/forms/lists_strings.php");
+/////////////////////////////////////////////////////
+// Subscribe / Unsubscribe users to a mailing list //
+/////////////////////////////////////////////////////
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "unsubscribe_user"){
+	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+	$name = $_REQUEST["edit_mailbox"];
+	if(!isMailbox($name)){
+		die("Mailbox format not correct !");
+	}
+	if(!isValidEmail($_REQUEST["subscriber_email"])){
+		die("Incorrect format for subscriber!");
+	}
+
+	//Check if list exists...
+	$test_query = "SELECT * FROM $pro_mysql_list_table WHERE name='".$_REQUEST["edit_mailbox"]."' AND domain='$edit_domain'";
+	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+	$testnum_rows = mysql_num_rows($test_result);
+	if($testnum_rows != 1){
+		die("Mailing list doesn't exist in database !");
+	}
+
+	// Read the file
+	$admin_path = getAdminPath($adm_login);
+	$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"]."/subscribers.d/";
+	$filename = $list_path.substr($_REQUEST["subscriber_email"],0,1);
+	$subs = file($filename);
+
+	// Remove subscriber from content
+/*	echo "<pre>"; print_r($subs); echo "</pre>";
+	$to_remove = array();
+	$to_remove[] = $_REQUEST["subscriber_email"];
+//	echo "<pre>"; print_r($to_remove); echo "</pre>";
+	$subs = array_diff($subs,array($_REQUEST["subscriber_email"]));
+	echo "<pre>"; print_r($subs); echo "</pre>";
+*/
+	$n = sizeof($subs);
+	$newsubs = array();
+	for($i=0;$i<$n;$i++){
+		if($subs[$i] != $_REQUEST["subscriber_email"]."\n"){
+			$newsubs[] = $subs[$i];
+		}
+	}
+
+	if( sizeof($subs) == 0){
+		// Remove the file if no subscriber
+		unlink($filename);
+	}else{
+		// Write the file if there are some remaining subscribers
+		$towrite = implode('\n',$newsubs);
+		$fp = fopen($filename,"w+");
+		fwrite($fp,$towrite);
+		fclose($fp);
+	}
+}
+
 ///////////////////////////////////////////////
 // Email account submition to mysql database //
 ///////////////////////////////////////////////

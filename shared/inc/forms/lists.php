@@ -24,6 +24,7 @@ function drawAdminTools_MailingLists($domain){
 	global $txt_lists_hlp_main_owner;
 	global $txt_lists_hlp_list_name;
 
+
 	$txt = "";
 //	$nbr_email = sizeof($domain["emails"]);
 	if (isset($domain["mailinglists"])){
@@ -55,7 +56,11 @@ function drawAdminTools_MailingLists($domain){
 		if($i != 0){
 			$txt .= " - ";
 		}
-		$txt .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$list_name&list_owner=$list_owner\">$list_name</a>";
+		if(isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] == $list_name){
+			$txt .= "$list_name";
+		}else{
+			$txt .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=$list_name&list_owner=$list_owner\">$list_name</a>";
+		}
 	}
 
 	if(isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
@@ -89,7 +94,11 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 </table>
 </form>
 ";
+		$admin_path = getAdminPath($adm_login);
+		$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
+		$txt .= subscribers_list($list_path);
 	}else{
+		$txt .= "<br><br>".$txt_mail_new_mailbox_link[$lang];
 		$txt .= "<br><br><u>".$txt_list_new_list[$lang]."</u><br>";
 
 		if($nbr_email < $max_email){
@@ -122,31 +131,82 @@ $txt .= "</td></tr>
 	return $txt;
 }
 
+function subscribers_list($list_path){
+	global $adm_login;
+	global $adm_pass;
+	global $addrlink;
+	global $edit_domain;
+
+	$out = "<br><u><b>Subscriber list (click to unsubscribe):</b></u><br><br>";
+
+	$path = $list_path."/subscribers.d";
+
+	// Get all the subscribers in an array
+	$subs = array();
+	if (is_dir($path)){
+		if ($dh = opendir($path)){
+			while (($file = readdir($dh)) !== false){
+				$fpath = $path ."/". $file;
+				if(filetype($fpath) == "file"){
+					$fcontent = file($fpath);
+					$n = sizeof($fcontent);
+					for($i=0;$i<$n;$i++){
+						$subs[] = $fcontent[$i];
+					}
+				}
+			}
+		}
+	}
+	// Sort by alpha order
+	sort($subs);
+	// Display
+	$n = sizeof($subs);
+	for($i=0;$i<$n;$i++){
+		if($i != 0){
+			$out .= " - ";
+		}
+		$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=".$_REQUEST["edit_mailbox"]."&action=unsubscribe_user&subscriber_email=".$subs[$i]."\">".$subs[$i]."</a>";
+	}
+	$out .= "<br><u><b>Subscribe a new user:</b></u><br><br>";
+	$out .= "<form action=\"?\" method=\"post\">
+	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
+	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
+	<input type=\"hidden\" name=\"edit_mailbox\" value=\"".$_REQUEST["edit_mailbox"]."\">
+	<input type=\"hidden\" name=\"action\" value=\"subscribe_new_user\">
+	<input type=\"text\" size=\"40\" name=\"subscriber_email\" value=\"\">
+	<input type=\"submit\" value=\"Ok\">
+	</form>";
+	return $out;
+}
+
 function getTunableHelp($tunable_name){
-  global $lang;
+	global $lang;
 
-  $varname = "txt_lists_hlp_".$tunable_name;
+	$varname = "txt_lists_hlp_".$tunable_name;
 
-  global $$varname;
-  if(isset($$varname)){
-    $out = $$varname;
-    return "<b>".$tunable_name.": </b>".$out[$lang];
-  }else{
-    return "<b>".$tunable_name."</b>";
-  }
+	global $$varname;
+	if(isset($$varname)){
+		$out = $$varname;
+		return "<b>".$tunable_name.": </b>".$out[$lang];
+	}else{
+		return "<b>".$tunable_name."</b>";
+	}
 }
 
 function getTunableTitle($tunable_name){
-  global $lang;
-  $varname = "txt_lists_title_".$tunable_name;
+	global $lang;
+	$varname = "txt_lists_title_".$tunable_name;
   
-  global $$varname;
-  if(isset($$varname)){
-    $out = $$varname;
-    return $out[$lang];
-  }else{
-    return "";
-  }
+	global $$varname;
+	if(isset($$varname)){
+		$out = $$varname;
+		return $out[$lang];
+	}else{
+		return "";
+	}
 }
 
 function getListOptionsBoolean($ctrl_path,$tunable_name){
@@ -175,17 +235,17 @@ function getListOptionsValue($ctrl_path,$tunable_name){
 }
 
 function getListOptionsTextarea($ctrl_path,$tunable_name){
-  $option_file = $ctrl_path."/control/".$tunable_name;
-  $value = "";
-  if (file_exists($option_file)){
-    $a = file($option_file);
-    foreach ($a as $line_num => $line) {
-      $value .= str_replace("\r","",str_replace("\n","",$line))."\n";
-    }
-  }
-  return "<tr>
-    <td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
-    <td><textarea rows=\"5\" cols=\"60\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
+	$option_file = $ctrl_path."/control/".$tunable_name;
+	$value = "";
+	if (file_exists($option_file)){
+		$a = file($option_file);
+		foreach ($a as $line_num => $line) {
+			$value .= str_replace("\r","",str_replace("\n","",$line))."\n";
+		}
+	}
+	return "<tr>
+	<td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+	<td><textarea rows=\"5\" cols=\"60\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
 }
 
 
@@ -240,15 +300,15 @@ function getListOptionsWABoolean($tunable_name){
 }
 
 function getListOptionsWATextarea($ctrl_path,$tunable_name){
-  $option_file = $ctrl_path."/".$tunable_name;
-  $value = "";
-  if (file_exists($option_file)){
-    $a = file($option_file);
-    foreach ($a as $line_num => $line) {
-      $value .= $line."\n";
-    }
-  }
-  return "<tr>
+	$option_file = $ctrl_path."/".$tunable_name;
+	$value = "";
+	if (file_exists($option_file)){
+		$a = file($option_file);
+		foreach ($a as $line_num => $line) {
+			$value .= $line."\n";
+		}
+	}
+	return "<tr>
     <td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
     <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
 }
@@ -261,78 +321,78 @@ function getListOptionsWABooleanActions($tunable_name){
 //this function check options and checkbox
 function list_options(){
 
-global $edit_domain;
-global $adm_login;
-global $txt_lists_main_title_rights;
-global $txt_lists_main_title_header;
-global $txt_lists_main_title_archive;
-global $txt_lists_main_title_digest;
-global $txt_lists_main_title_notification;
-global $txt_lists_main_title_smtp_config;
-global $txt_lists_main_title_subunsub;
-global $txt_lists_main_title_webarchive;
-global $txt_lists_title_sub;
-global $txt_lists_title_unsub;
-global $txt_lists_hlp_sub;
-global $txt_lists_hlp_unsub;
-global $lang;
-$admin_path = getAdminPath($adm_login);
-$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
+	global $edit_domain;
+	global $adm_login;
+	global $txt_lists_main_title_rights;
+	global $txt_lists_main_title_header;
+	global $txt_lists_main_title_archive;
+	global $txt_lists_main_title_digest;
+	global $txt_lists_main_title_notification;
+	global $txt_lists_main_title_smtp_config;
+	global $txt_lists_main_title_subunsub;
+	global $txt_lists_main_title_webarchive;
+	global $txt_lists_title_sub;
+	global $txt_lists_title_unsub;
+	global $txt_lists_hlp_sub;
+	global $txt_lists_hlp_unsub;
+	global $lang;
+	$admin_path = getAdminPath($adm_login);
+	$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
 
-$output = "";
-$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_rights[$lang]."</b></td></tr>";
-$output .= getListOptionsBoolean($list_path,"subonlypost");
-$output .= getListOptionsBoolean($list_path,"closedlist");
-$output .= getListOptionsList($list_path,"owner");
-$output .= getListOptionsBoolean($list_path,"moderated");
-$output .= getListOptionsList($list_path,"moderators");
-$output .= getListOptionsBoolean($list_path,"nosubconfirm");
+	$output = "";
+	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_rights[$lang]."</b></td></tr>";
+	$output .= getListOptionsBoolean($list_path,"subonlypost");
+	$output .= getListOptionsBoolean($list_path,"closedlist");
+	$output .= getListOptionsList($list_path,"owner");
+	$output .= getListOptionsBoolean($list_path,"moderated");
+	$output .= getListOptionsList($list_path,"moderators");
+	$output .= getListOptionsBoolean($list_path,"nosubconfirm");
 
-$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_header[$lang]."</b></td></tr>";
-$output .= getListOptionsValue($list_path,"prefix");
-$output .= getListOptionsList($list_path,"delheaders");
-$output .= getListOptionsBoolean($list_path,"addtohdr");
-$output .= getListOptionsBoolean($list_path,"tocc");
-$output .= getListOptionsTextarea($list_path,"customheaders");
-$output .= getListOptionsTextarea($list_path,"footer");
+	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_header[$lang]."</b></td></tr>";
+	$output .= getListOptionsValue($list_path,"prefix");
+	$output .= getListOptionsList($list_path,"delheaders");
+	$output .= getListOptionsBoolean($list_path,"addtohdr");
+	$output .= getListOptionsBoolean($list_path,"tocc");
+	$output .= getListOptionsTextarea($list_path,"customheaders");
+	$output .= getListOptionsTextarea($list_path,"footer");
 
-$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_archive[$lang]."</b></td></tr>";
-$output .= getListOptionsBoolean($list_path,"noarchive");
-$output .= getListOptionsBoolean($list_path,"noget");
-$output .= getListOptionsBoolean($list_path,"subonlyget");
+	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_archive[$lang]."</b></td></tr>";
+	$output .= getListOptionsBoolean($list_path,"noarchive");
+	$output .= getListOptionsBoolean($list_path,"noget");
+	$output .= getListOptionsBoolean($list_path,"subonlyget");
 
-$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_digest[$lang]."</b></td></tr>";
-$output .= getListOptionsValue($list_path,"digestinterval");
-$output .= getListOptionsValue($list_path,"digestmaxmails");
+	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_digest[$lang]."</b></td></tr>";
+	$output .= getListOptionsValue($list_path,"digestinterval");
+	$output .= getListOptionsValue($list_path,"digestmaxmails");
 
-$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_notification[$lang]."</b></td></tr>";
-$output .= getListOptionsBoolean($list_path,"notifysub");
-$output .= getListOptionsBoolean($list_path,"nosubonlydenymails");
-$output .= getListOptionsBoolean($list_path,"notoccdenymails");
-$output .= getListOptionsBoolean($list_path,"noaccessdenymails");
+	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_notification[$lang]."</b></td></tr>";
+	$output .= getListOptionsBoolean($list_path,"notifysub");
+	$output .= getListOptionsBoolean($list_path,"nosubonlydenymails");
+	$output .= getListOptionsBoolean($list_path,"notoccdenymails");
+	$output .= getListOptionsBoolean($list_path,"noaccessdenymails");
 
-$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_smtp_config[$lang]."</b></td></tr>";
-$output .= getListOptionsValue($list_path,"memorymailsize");
-$output .= getListOptionsValue($list_path,"relayhost");
-$output .= getListOptionsValue($list_path,"verp");
-$output .= getListOptionsValue($list_path,"maxverprecips");
-$output .= getListOptionsValue($list_path,"delimiter");
-$output .= getListOptionsTextarea($list_path,"access");
+	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_smtp_config[$lang]."</b></td></tr>";
+	$output .= getListOptionsValue($list_path,"memorymailsize");
+	$output .= getListOptionsValue($list_path,"relayhost");
+	$output .= getListOptionsValue($list_path,"verp");
+	$output .= getListOptionsValue($list_path,"maxverprecips");
+	$output .= getListOptionsValue($list_path,"delimiter");
+	$output .= getListOptionsTextarea($list_path,"access");
 
-$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_subunsub[$lang]."</b></td></tr>";
-$output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_sub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_sub[$lang]."</td>
+	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_subunsub[$lang]."</b></td></tr>";
+	$output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_sub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_sub[$lang]."</td>
     <td><input size=\"40\" type=\"text\" value=\"\" name=\"sub\"></td></tr>";
-$output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_unsub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_unsub[$lang]."</td>
+	$output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_unsub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_unsub[$lang]."</td>
     <td><input size=\"40\" type=\"text\" value=\"\" name=\"unsub\"></td></tr>";
 
-$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_webarchive[$lang]."</b></td></tr>";
-$output .= getListOptionsWABoolean("webarchive");
-$output .= getListOptionsWATextarea($list_path,"rcfile");
-$output .= getListOptionsWABooleanActions("recreatewa");
-$output .= getListOptionsWABooleanActions("deletewa");
-$output .= getListOptionsWABoolean("spammode");
+	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_webarchive[$lang]."</b></td></tr>";
+	$output .= getListOptionsWABoolean("webarchive");
+	$output .= getListOptionsWATextarea($list_path,"rcfile");
+	$output .= getListOptionsWABooleanActions("recreatewa");
+	$output .= getListOptionsWABooleanActions("deletewa");
+	$output .= getListOptionsWABoolean("spammode");
 
-return $output;
+	return $output;
 }
 
 ?>
