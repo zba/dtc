@@ -1,5 +1,9 @@
 Version 0.25.0:
 ---------------
+- Added a (customizable) link to selling conditions when
+people register. Of course, the checkbox has to be checked
+to be able to register. If the link is not customized
+(eg "none" in the field), then the feature does not appear.
 - Added functions to subscribe / unsubscribe users to a
 MLMMJ list.
 
