@@ -167,7 +167,7 @@ function subscribers_list($list_path){
 		}
 		$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=".$_REQUEST["edit_mailbox"]."&action=unsubscribe_user&subscriber_email=".$subs[$i]."\">".$subs[$i]."</a>";
 	}
-	$out .= "<br><u><b>Subscribe a new user:</b></u><br><br>";
+	$out .= "<br><br><u><b>Subscribe a new user:</b></u><br><br>";
 	$out .= "<form action=\"?\" method=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">

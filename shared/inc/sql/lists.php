@@ -28,13 +28,6 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "unsubscribe_user"){
 	$subs = file($filename);
 
 	// Remove subscriber from content
-/*	echo "<pre>"; print_r($subs); echo "</pre>";
-	$to_remove = array();
-	$to_remove[] = $_REQUEST["subscriber_email"];
-//	echo "<pre>"; print_r($to_remove); echo "</pre>";
-	$subs = array_diff($subs,array($_REQUEST["subscriber_email"]));
-	echo "<pre>"; print_r($subs); echo "</pre>";
-*/
 	$n = sizeof($subs);
 	$newsubs = array();
 	for($i=0;$i<$n;$i++){
@@ -49,6 +42,56 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "unsubscribe_user"){
 	}else{
 		// Write the file if there are some remaining subscribers
 		$towrite = implode("",$newsubs);
+		$fp = fopen($filename,"w+");
+		fwrite($fp,$towrite);
+		fclose($fp);
+	}
+}
+
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "subscribe_new_user"){
+	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+	$name = $_REQUEST["edit_mailbox"];
+	if(!isMailbox($name)){
+		die("Mailbox format not correct !");
+	}
+	if(!isValidEmail($_REQUEST["subscriber_email"])){
+		die("Incorrect format for subscriber!");
+	}
+
+	//Check if list exists...
+	$test_query = "SELECT * FROM $pro_mysql_list_table WHERE name='".$_REQUEST["edit_mailbox"]."' AND domain='$edit_domain'";
+	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+	$testnum_rows = mysql_num_rows($test_result);
+	if($testnum_rows != 1){
+		die("Mailing list doesn't exist in database !");
+	}
+
+	// Read the file
+	$admin_path = getAdminPath($adm_login);
+	$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"]."/subscribers.d/";
+	$filename = $list_path.substr($_REQUEST["subscriber_email"],0,1);
+	if(is_file($filename)){
+		$subs = file($filename);
+	}else{
+		$subs = array();
+	}
+
+	// Check if subscriber exists in the list
+	$n = sizeof($subs);
+	$newsubs = array();
+	$exists = "false";
+	for($i=0;$i<$n;$i++){
+		if($subs[$i] == $_REQUEST["subscriber_email"]."\n"){
+			$exists = "true";
+		}
+	}
+	if($exists == "true"){
+		echo "<font color=\"red\">Subscriber exists already in the list!</font>";
+	}else{
+		$subs[] = $_REQUEST["subscriber_email"]."\n";
+		sort($subs);
+		// Write the file if there are some remaining subscribers
+		$towrite = implode("",$subs);
 		$fp = fopen($filename,"w+");
 		fwrite($fp,$towrite);
 		fclose($fp);
