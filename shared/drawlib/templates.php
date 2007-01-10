@@ -411,11 +411,11 @@ function dtcDatagrid($dsc){
 				$out .= "</td>";
 				break;
 			case "id":
-				$id = $a[ $keys[$j] ];
+//				$id = $a[ $keys[$j] ];
 				if($dsc["cols"][ $keys[$j] ]["display"] == "yes"){
 					$out .= "<td class=\"dtcDatagrid_table_flds\">";
 					$out .= "<input type=\"hidden\" name=\"".$keys[$j]."\" value=\"\">";
-					$out .= $a[ $keys[$j] ];
+//					$out .= $a[ $keys[$j] ];
 					$out .= "</td>";
 				}else{
 					$out .= "<input type=\"hidden\" name=\"".$keys[$j]."\" value=\"\">";
