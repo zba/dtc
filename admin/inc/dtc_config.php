@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.76 2007/01/10 07:03:05 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.77 2007/01/10 07:18:08 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -603,6 +603,8 @@ function drawGeneralConfig(){
 	global $conf_domain_based_ftp_logins;
 	global $conf_webalizer_country_graph;
 
+	global $conf_selling_conditions_url;
+
 	//additions for hide_password support (for ftp logins etc)
 	global $txt_cfg_hide_password;
 	global $conf_hide_password;
@@ -724,6 +726,9 @@ function drawGeneralConfig(){
 	<td align=\"right\" nowrap>".$txt_cfg_hide_password[$lang]."</td>
 	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_hidepasswd\"$conf_hdpasswd_yes>".$txt_yes[$lang]."
 	<input type=\"radio\" value=\"no\" name=\"new_hidepasswd\"$conf_hdpasswd_no>".$txt_no[$lang]."</td>
+</tr><tr>
+	<td align=\"right\" nowrap>Selling conditions URL:</td>
+	<td><input type=\"text\" size=\"50\" value=\"$conf_selling_conditions_url\" name=\"selling_conditions_url\"></td>
 </tr><tr>
 	<td colspan=\"2\"><h3>".$txt_cfg_daemon[$lang]."</h3></td>
 </tr><tr>
@@ -1141,8 +1146,7 @@ function drawDTCpayConfig(){
 
 	global $pro_mysql_secpayconf_table;
 
-	
-	
+
 	$out = "";
 
 	$q = "SELECT * FROM $pro_mysql_secpayconf_table";
@@ -1626,7 +1630,8 @@ function saveDTCConfigInMysql(){
 	session_expir_minute='".$_REQUEST["new_session_expir_minute"]."',
 	hide_password='".$_REQUEST["new_hidepasswd"]."',
 	skin='".$_REQUEST["skin_type"]."',
-	webalizer_country_graph='".$_REQUEST["webalizer_country_graph"]."'
+	webalizer_country_graph='".$_REQUEST["webalizer_country_graph"]."',
+	selling_conditions_url='".$_REQUEST["selling_conditions_url"]."'
 	WHERE 1 LIMIT 1";
 		break;
 	case "ip":
