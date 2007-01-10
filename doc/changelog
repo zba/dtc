@@ -1,9 +1,12 @@
 Version 0.25.0:
 ---------------
+- Added functions to subscribe / unsubscribe users to a
+MLMMJ list.
+
 Review and reorganized:
 - Install script (full re-organization with functions)
 - Cron job
-- Forms drawings of 70% of the panel
+- Forms drawings of 70% of the panel (using a template thing)
 
 Version 0.24.6:
 ---------------
