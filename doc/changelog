@@ -12,8 +12,8 @@ Review and reorganized:
 - Cron job
 - Forms drawings of 70% of the panel (using a template thing)
 
-Version 0.24.6:
----------------
+Version 0.24.6 (never released, dev version):
+---------------------------------------------
 - The restor_db.php can now check primary keys and (re)add them
 if needed. It also works with auto_increment keys.
 
