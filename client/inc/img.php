@@ -336,6 +336,8 @@ if(sizeof($addrlink) == 1){
 	}
 	if(substr($addrlink[0],0,3) == "vps"){
 		$icon_im = imagecreatefrompng("virtual-server.png");
+	}else if(substr($addrlink[0],0,6) == "server"){
+		$icon_im = imagecreatefrompng("dedic-server.png");
 	}
 }else{
 	switch($addrlink[1]){

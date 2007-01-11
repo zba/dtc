@@ -4,7 +4,33 @@ if(!isset($submit_err)){
 	$submit_err = "";
 }
 
-// action=edit_vps_config&vps_server_hostname=node0106.gplhost.com&vps_xen_name=14&start_date=2006-04-24&expire_date=2006-10-24&hddsize=25600&ramsize=256&product_id=22
+//////////////////////////////////
+// Dedicated servers management //
+//////////////////////////////////
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_dedicated"){
+	$q = "DELETE FROM $pro_mysql_dedicated_table WHERE id='".$_REQUEST["id"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+}
+
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dedicated_to_user"){
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["product_id"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Didn't find the product you want to add line ".__LINE__." file ".__FILE__);
+	}
+	$prod = mysql_fetch_array($r);
+
+	$exp_date = calculateExpirationDate(date("Y-m-d"),$prod["period"]);
+
+	$q = "INSERT INTO $pro_mysql_dedicated_table (id,owner,server_hostname,start_date,expire_date,hddsize,ramsize,product_id)
+	VALUES('','$adm_login','".$_REQUEST["server_hostname"]."','".date("Y-m-d")."','$exp_date','".$prod["quota_disk"]."','".$prod["memory_size"]."','".$_REQUEST["product_id"]."');";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+}
+
+////////////////////
+// VPS management //
+////////////////////
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_vps_config"){
 	$q = "UPDATE $pro_mysql_vps_table
 	SET start_date='".$_REQUEST["start_date"]."',
@@ -16,8 +42,6 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_vps_config"){
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 }
 
-// VPS management
-// action=delete_a_vps&id=2
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE id='".$_REQUEST["id"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.82 2006/10/15 11:07:24 thomas Exp $
+ * @version $Id: draw.php,v 1.83 2007/01/11 09:02:48 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -21,10 +21,11 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/lists.php");
 	require("$dtcshared_path/inc/forms/ticket.php");
 	//udns.us add
-       require("$dtcshared_path/inc/forms/tools.php");
+	require("$dtcshared_path/inc/forms/tools.php");
 	//udns.us /add
 
 	require("$dtcshared_path/inc/forms/vps.php");
+	require("$dtcshared_path/inc/forms/dedicated.php");
 }
 require("$dtcshared_path/inc/forms/email.php");
 
@@ -39,16 +40,16 @@ function AdminTool_findDomainNum($name,$domains){
 }
 
 function drawPasswordChange(){
-  global $adm_login;
-  global $adm_pass;
-  global $addrlink;
+	global $adm_login;
+	global $adm_pass;
+	global $addrlink;
 
-  global $txt_change_your_password;
-  global $txt_type_new_password;
-  global $txt_retype_new_password;
-  global $lang;
+	global $txt_change_your_password;
+	global $txt_type_new_password;
+	global $txt_retype_new_password;
+	global $lang;
 
-  $out = "<b><u>".$txt_change_your_password[$lang]."</u></b><br>
+	$out = "<b><u>".$txt_change_your_password[$lang]."</u></b><br>
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -58,7 +59,7 @@ function drawPasswordChange(){
 ".$txt_retype_new_password[$lang]." <input type=\"password\" name=\"new_pass2\" value=\"\">
 <input type=\"submit\" value=\"Ok\">
 </form>";
-  return $out;
+	return $out;
 }
 
 function drawAdminTools($admin){
@@ -115,6 +116,7 @@ function drawAdminTools($admin){
 
 	global $vps_node;
 	global $vps_name;
+	global $dedicated_server_hostname;
 	
 // nowe
 	global $txt_password;
@@ -141,10 +143,17 @@ function drawAdminTools($admin){
 	}
 
 	if(isset($admin["vps"])){
-	  $admin_vps = $admin["vps"];
-	  $nbr_vps = sizeof($admin_vps);
+		$admin_vps = $admin["vps"];
+		$nbr_vps = sizeof($admin_vps);
 	}else{
-	  $nbr_vps = 0;
+		$nbr_vps = 0;
+	}
+
+	if(isset($admin["dedicated"])){
+		$admin_dedicated = $admin["dedicated"];
+		$nbr_dedicated = sizeof($admin_dedicated);
+	}else{
+		$nbr_dedicated = 0;
 	}
 
 	$admin_info = $admin["info"];
@@ -181,20 +190,28 @@ function drawAdminTools($admin){
 		"type" => "menu",
 		"link" => "myaccount",
 		"sub" => $user_ZEmenu);
-        }else{
-          $user_menu[] = array(
-            "text" => $txt_cmenu_myaccount[$lang],
-            "type" => "link",
-            "link" => "myaccount");
-        }
+	}else{
+		$user_menu[] = array(
+			"text" => $txt_cmenu_myaccount[$lang],
+			"type" => "link",
+			"link" => "myaccount");
+	}
 
-        // Draw all vps
-        for($i=0;$i<$nbr_vps;$i++){
-          $user_menu[] = array(
-            "text" => $admin_vps[$i]["vps_server_hostname"].":".$admin_vps[$i]["vps_xen_name"],
-            "type" => "link",
-            "link" => "vps:".$admin_vps[$i]["vps_server_hostname"].":".$admin_vps[$i]["vps_xen_name"]);
-        }
+	// Draw all vps
+	for($i=0;$i<$nbr_vps;$i++){
+		$user_menu[] = array(
+			"text" => $admin_vps[$i]["vps_server_hostname"].":".$admin_vps[$i]["vps_xen_name"],
+			"type" => "link",
+			"link" => "vps:".$admin_vps[$i]["vps_server_hostname"].":".$admin_vps[$i]["vps_xen_name"]);
+	}
+
+	// Draw all the dedicated servers
+	for($i=0;$i<$nbr_dedicated;$i++){
+		$user_menu[] = array(
+			"text" => $admin_dedicated[$i]["server_hostname"],
+			"type" => "link",
+			"link" => "server:".$admin_dedicated[$i]["server_hostname"]);
+	}
 
 	// Generate the admin tools
 	$doms_txt .= "<b>";
@@ -329,20 +346,23 @@ function drawAdminTools($admin){
 			$num_domain = 0;
 		}
 		if(isset($vps_node)){
-		  $vps_founded = 0;
-		  for($i=0;$i<$nbr_vps;$i++){
-		    if($vps_name == $admin_vps[$i]["vps_xen_name"] && $vps_node == $admin_vps[$i]["vps_server_hostname"]){
-		      $vps_order_number = $i;
-		      $vps_founded = 1;
-		    }
-		  }
-		  $web_editor .= "<img src=\"inc/virtual-server.png\" align=\"left\"><font size=\"+2\"><b><u>VPS $vps_name:$vps_node</u></b><br></font>";
-                  if($vps_founded){
-		    $web_editor .= drawAdminTools_VPS($admin,$admin["vps"][$vps_order_number]);
-                  }else{
-                    $web_editor .= "VPS not found!";
-                  }
-		$title = "Virtual Private Server $vps_name running on $vps_node";
+			$vps_founded = 0;
+			for($i=0;$i<$nbr_vps;$i++){
+				if($vps_name == $admin_vps[$i]["vps_xen_name"] && $vps_node == $admin_vps[$i]["vps_server_hostname"]){
+					$vps_order_number = $i;
+					$vps_founded = 1;
+				}
+			}
+			$web_editor .= "<img src=\"inc/virtual-server.png\" align=\"left\"><font size=\"+2\"><b><u>VPS $vps_name:$vps_node</u></b><br></font>";
+			if($vps_founded){
+				$web_editor .= drawAdminTools_VPS($admin,$admin["vps"][$vps_order_number]);
+			}else{
+				$web_editor .= "VPS not found!";
+			}
+			$title = "Virtual Private Server $vps_name running on $vps_node";
+		}else if(substr($addrlink,0,6) == "server"){
+			$web_editor .= drawAdminTools_Dedicated($admin,$dedicated_server_hostname);
+			$title = "Dedicated server: $dedicated_server_hostname";
 		}else if(@$add_array[1] == "mailboxs"){
                         $web_editor .= "<img src=\"inc/mailboxs.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_mailboxs[$lang]:</u></b><br></font>";
                         $web_editor .= drawAdminTools_Emails($eddomain);

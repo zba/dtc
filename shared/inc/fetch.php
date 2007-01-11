@@ -422,6 +422,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
         global $pro_mysql_vps_table;
         global $pro_mysql_vps_ip_table;
         global $pro_mysql_vps_server_table;
+        global $pro_mysql_dedicated_table;
         global $panel_type;
 
 	global $conf_session_expir_minute;
@@ -449,15 +450,13 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	}
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$pass';";
 	$result = mysql_query ($query);
-	if (!$result)
-	{
+	if (!$result){
 		$ret["err"] = 1;
 		$ret["mesg"]="Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).";
 		return $ret;
 	}
 	$row = mysql_fetch_array($result);
-	if (!$row)
-	{ 
+	if (!$row){
 		$ret["err"] = 2;
 		$ret["mesg"]="Cannot fetch user line ".__LINE__." file ".__FILE__;
 		return $ret;
@@ -499,6 +498,20 @@ function fetchAdminData($adm_login,$adm_input_pass){
 		}
 		$one_vps["ip_addr"] = $vps_ip;
 		$user_vps[] = $one_vps;
+	}
+
+	// Get all the dedicated servers of the user
+	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE owner='$adm_login';";
+	$r = mysql_query ($q);
+	if (!$r){
+		$ret["err"] = 3;
+		$ret["mesg"]="Cannot execute query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error();
+		return $ret;
+	}
+	$n = mysql_num_rows($r);
+	$user_dedicated = array();
+	for($i=0;$i<$n;$i++){
+		$user_dedicated[] = mysql_fetch_array($r);
 	}
 
 	// Get all domains of the user
@@ -805,6 +818,9 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	if(isset($user_vps)){
 		$ret["vps"] = $user_vps;
 	}
+	if(isset($user_dedicated)){
+		$ret["dedicated"] = $user_dedicated;
+	}
 	return $ret;
 }
 
@@ -917,6 +933,9 @@ function fetchAdmin($adm_login, $adm_pass){
 	}
 	if(isset($data["vps"])){
 		$ret["vps"] = $data["vps"];
+	}
+	if(isset($data["dedicated"])){
+		$ret["dedicated"] = $data["dedicated"];
 	}
 	return $ret;
 }

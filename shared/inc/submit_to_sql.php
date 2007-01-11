@@ -7,6 +7,19 @@ if(!isset($commit_flag)){
 	$commit_flag = "yes";
 }
 
+function checkDedicatedAdmin($adm_login,$adm_pass,$dedicated_server_hostname){
+	global $pro_mysql_dedicated_table;
+	checkLoginPass($adm_login,$adm_pass);
+	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE owner='$adm_login' AND server_hostname='".addslashes($dedicated_server_hostname)."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 function validateRenewal($renew_id){
 	global $pro_mysql_pending_renewal_table;
 	global $pro_mysql_product_table;

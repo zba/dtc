@@ -46,6 +46,9 @@ if(isset($addrlink) && $addrlink != ""){
 		$vps_exploded = explode(":",$addrlink);
 		$vps_node = $vps_exploded[1];
 		$vps_name = $vps_exploded[2];
+	}else if(substr($addrlink,0,6) == "server"){
+		$vps_exploded = explode(":",$addrlink);
+		$dedicated_server_hostname = $vps_exploded[1];
 	}else{
 	        $exploded = explode("/",$addrlink);
 	        if($addrlink != "help" && $addrlink != "database"){

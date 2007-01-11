@@ -10,6 +10,7 @@ function drawEditAdmin($admin){
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_table;
 	global $pro_mysql_product_table;
+	global $pro_mysql_dedicated_table;
 
 	global $txt_password;
 
@@ -131,8 +132,8 @@ function drawEditAdmin($admin){
 	$user_data .= dtcFormLineDraw($txt_can_have_subadmins_reseller[$lang],$res_selector);
 	$user_data .= dtcFormLineDraw($txt_can_have_ssh_login_for_vhosts[$lang],$sshlog_selector);
 	$user_data .= dtcFromOkDraw()."</table></form>";
-	$user_data .= "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
-</td></tr></table></form>";
+/*	$user_data .= "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
+</td></tr></table></form>";*/
 
 	// Generate the admin tool configuration module
 	// Deletion of domains :
@@ -227,6 +228,43 @@ function drawEditAdmin($admin){
 	}else{
 		$domain_conf .= "To add a VPS, you need to setup some free IPs VPS in the general config and setup some VPS products.";
 	}
+
+	// Deletion of dedicated
+	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE owner='$adm_login';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		$domain_conf .= "<br><br><b><u>Delete one of the admin dedicated server:</u></b><br>";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			if($i > 0){
+				$domain_conf .= " - ";
+			}
+			$domain_conf .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub&action=delete_a_dedicated&id=".$a["id"]."\"><b>".$a["server_hostname"]."</b></a>";
+		}
+	}
+	// Creation of dedicated servers
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='server' AND renew_prod_id='0';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$num_prods_vps = $n;
+	$server_prods = "";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$server_prods .= "<option value=\"".$a["id"]."\">".$a["name"]."</option>";
+	}
+	$domain_conf .= "<br><br><b><u>Add a dedicated server for this admin:</u></b>
+	<form action=\"?\">
+	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+	<input type=\"hidden\" name=\"action\" value=\"add_dedicated_to_user\">
+	<table border=\"0\">
+	<tr><td style=\"text-align: right; white-space: nowrap;\">Product:</td>
+	<td><select name=\"product_id\">$server_prods</select></td></tr>
+	<tr><td style=\"text-align: right; white-space: nowrap;\">Hostname:</td>
+	<td><input type=\"text\" name=\"server_hostname\" value=\"\"></td>
+	<tr><td></td><td><input type=\"submit\" value=\"Add server\"></td></tr></table></form>";
 
 	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/skin/frame/border_2.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
 	$conf_user .= "</b></font> ";
