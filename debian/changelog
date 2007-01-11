@@ -3,12 +3,28 @@ dtc (0.25.0-1) unstable; urgency=low
   * The chroot template is now built in /var/lib/dtc as default.
   * Now using a2enmod for enabling apache2 rewrite and ssl.
   * Long desc split in parts. (Closes: #403504).
-  * Now using po-debconf internationalization.
+  * Now using po-debconf internationalization (Closes: #402655).
   * The postinst doesn't modify other package config files anymore
     this is now done in a script to be launched manualy after the
-    setup of the package (Closes: #402432, #402433).
-  * Full review of the install procedure (Closes: #402834).
-  * Now using po-debconf (Closes: #402657).
+    setup of the package (Closes: #402432).
+  * Full review of the install procedure:
+    - All forbidden (by debian policy) things are removed from the
+      postinst.
+    - The user has to cd into /usr/share/dtc/admin/install and run
+      ./install in order to have the install script modify the
+      configuration files of the daemons this package (dtc or it's
+      brother dtc-postfix-courier) uses.
+    - The postinst script saves the values answered in debconf in
+      /root/.dtc_install as they are needed for the 2nd stage as
+      well (like path for hosted files, domain name, mysql password
+      and so on) as otherwise it would raise a "debconf is not a
+      registry" error in Lintian.
+    Side notes: This has been said to be the correct way (eg: debian
+    policy compliant). If there is a smarter way, I'm open to any
+    suggestions, but consider that it's not nice to ask twice the
+    same thing to the user to the package, and that splitting the
+    setup script in 2 parts (because touching other package config
+    file) is not a very nice feature already. (Closes: #402834).
 
  -- Thomas Goirand <thomas@goirand.fr>  Sat, 16 Dec 2006 03:11:17 +0800
 
