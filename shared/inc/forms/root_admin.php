@@ -290,6 +290,7 @@ function drawDomainConfig($admin){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_table;
+	global $pro_mysql_dedicated_table;
 
 	global $conf_site_addrs;
 	$site_addrs = explode("|",$conf_site_addrs);
@@ -408,6 +409,64 @@ function drawDomainConfig($admin){
 				"vps_xen_name" => array(
 					"type" => "info",
 					"legend" => "VPS Name"),
+				"start_date" => array(
+					"type" => "text",
+					"size" => "10",
+					"legend" => "Registration"),
+				"expire_date" => array(
+					"type" => "text",
+					"size" => "10",
+					"legend" => "Expiration"),
+				"hddsize" => array(
+					"type" => "text",
+					"size" => "5",
+					"legend" => "HDD"),
+				"ramsize" => array(
+					"type" => "text",
+					"size" => "5",
+					"legend" => "RAM"),
+				"product_id" => array(
+					"type" => "popup",
+					"legend" => "Product",
+					"values" => $prod_id,
+					"display_replace" => $prod_name)
+				));
+		$ret .= dtcDatagrid($dsc);
+	}
+	if(isset($admin["dedicated"])){
+		$servers = $admin["dedicated"];
+		$nbr_server = sizeof($servers);
+	}else{
+		$nbr_server = 0;
+	}
+	if($nbr_server > 0){
+		$q = "SELECT id,name FROM $pro_mysql_product_table WHERE heb_type='server' AND renew_prod_id='0';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		$prod_name = array();
+		$prod_id = array();
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$prod_name[] = $a["name"];
+			$prod_id = $a["id"];			
+		}
+
+		$dsc = array(
+			"table_name" => $pro_mysql_dedicated_table,
+			"title" => "Configuration of the dedicated servers",
+			"action" => "change_dedicated_config",
+			"forward" => array("rub","adm_login","adm_pass"),
+			"skip_deletion" => "yes",
+			"skip_creation" => "yes",
+			"where_condition" => "owner='$adm_login'",
+			"cols" => array(
+				"id" => array(
+					"type" => "id",
+					"display" => "no",
+					"legend" => "id"),
+				"server_hostname" => array(
+					"type" => "info",
+					"legend" => "VPS Server"),
 				"start_date" => array(
 					"type" => "text",
 					"size" => "10",
