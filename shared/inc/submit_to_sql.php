@@ -81,6 +81,20 @@ function validateRenewal($renew_id){
 		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire' WHERE adm_login='".$renew_entry["adm_login"]."'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
+	case "server":
+		$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE id='".$renew_entry["renew_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find dedicated server id in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$dedicated_entry = mysql_fetch_array($r);
+		$date_expire = calculateExpirationDate($dedicated_entry["expire_date"],$product["period"]);
+		$q = "UPDATE $pro_mysql_dedicated_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		break;
 	default:
 		die("Unknown heb type line ".__LINE__." file ".__FILE__);
 		break;

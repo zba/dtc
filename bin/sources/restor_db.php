@@ -220,6 +220,10 @@ if($n > 0){
 	echo "\n";
 }
 
+// Period was a date before, but it doesn't work with MySQL 5, so we are switching it to a varchar //
+$q = "ALTER TABLE `product` CHANGE `period` `period` VARCHAR( 12 ) NOT NULL DEFAULT '0001-00-00';";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 //////////////////////////////////////////
 // Repair the bad http_accounting table //
 //////////////////////////////////////////
