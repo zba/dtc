@@ -117,8 +117,8 @@ function dtcDatagrid($dsc){
 						$qflds .= ", ";
 					}
 					$qflds .= $keys[$i];
-					if(isset($_REQUEST[ $keys[$i] ]["happen_domain"])){
-						$happen = $_REQUEST[ $keys[$i] ]["happen_domain"];
+					if(isset($dsc["cols"][ $keys[$i] ]["happen_domain"])){
+						$happen = $dsc["cols"][ $keys[$i] ]["happen_domain"];
 					}else{
 						$happen = "";
 					}
