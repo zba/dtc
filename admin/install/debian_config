@@ -1,6 +1,7 @@
 #!/bin/sh
 
-VERBOSE_INSTALL=yes
+# Uncomment this to have a verbose output durring setup (both postinst and userspace install).
+#VERBOSE_INSTALL=yes
 
 UNIX_TYPE=debian
 
