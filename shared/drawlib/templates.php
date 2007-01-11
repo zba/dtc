@@ -142,6 +142,12 @@ function dtcDatagrid($dsc){
 					break;
 				}
 			}
+			// Make sure we have the where_condition field filled with the correct value
+			if( isset($dsc["where_condition"]) ){
+				$exploded = explode("=",$dsc["where_condition"]);
+				$qflds .= ", ".$exploded[0];
+				$vals .= ", ".$exploded[1];
+			}
 			$q = "INSERT INTO ".$dsc["table_name"]." ($qflds) VALUES($vals);";
 			break;
 		case $dsc["action"]."_edit":
