@@ -3,15 +3,18 @@
 // Those are supposed to be filled at eatch queries, therefore they
 // are global variables.
 
-if(isset($_REQUEST["rub"]))
+if(isset($_REQUEST["rub"])){
+	if(!ereg("^([a-z0-9]+)([.a-z0-9-]*)([a-z0-9]+)\$",$_REQUEST["rub"])){
+		die("Rub parameter not correct: XSS attempt?");
+	}
 	$rub = $_REQUEST["rub"];
+}
 
 if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "crm"){
 	if(isset( $_REQUEST["id_client"] )){
 		$id_client = $_REQUEST["id_client"];
 		if($id_client != "" && isset($id_client) && !ereg("^([0-9]+)\$",$id_client)){
-			die("The provided id_client does not seems to be in the correct format.
-							It should be a single number.");
+			die("The provided id_client does not seems to be in the correct format. It should be a single number.");
 		}
 	}
 }
@@ -35,10 +38,16 @@ function isValidEmailLogin($email){
 
 
 if(isset($adm_login) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$",$adm_login) && $adm_login != ""){
-	die("DTCclient login error: Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
+	die("DTC client login error: Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
 if(isset($adm_pass) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_pass) && $adm_pass != ""){
 	die("DTC client login error: Requested pass does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
+}
+if(isset($adm_email_login) && !ereg("^([a-z0-9]+)([_.a-z0-9-]*)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$",$adm_email_login) && $adm_email_login != ""){
+	die("DTC email client login error: Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
+}
+if(isset($adm_email_pass) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_email_pass) && $adm_email_pass != ""){
+	die("DTC email client login error: Requested pass does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
 
 if(isset($addrlink) && $addrlink != ""){

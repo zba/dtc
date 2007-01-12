@@ -1,9 +1,13 @@
 <?php
 /**
  * @package DTC
- * @version $Id: lang.php,v 1.17 2006/05/21 00:34:26 seeb Exp $
+ * @version $Id: lang.php,v 1.18 2007/01/12 16:32:01 thomas Exp $
  * @abstract language change
  * $Log: lang.php,v $
+ * Revision 1.18  2007/01/12 16:32:01  thomas
+ * Added more protections for some global variables (maybe an XSS flow, not
+ * sure about it, but it's better to correct it, just in case...).
+ *
  * Revision 1.17  2006/05/21 00:34:26  seeb
  * Adding swedish
  *
@@ -37,6 +41,9 @@ if($panel_type!="cronjob"){
 	  $lang = $_SESSION["lang"];
         }
 	if(isset($_REQUEST["change_language"])){
+		if(!ereg("^([a-z0-9]+)([.a-z0-9-]*)([a-z0-9]+)\$",$_REQUEST["change_language"])){
+			die("Lang parameter not correct!!!");
+		}
 	        if($_REQUEST["change_language"] == "fr"){
 	                $lang = "fr";
 	        }
