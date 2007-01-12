@@ -360,6 +360,24 @@ function make_new_adm_domain_dir($path){
 	}
 	umask($oldumask);
 }
+function addDedicatedToUser($adm_login,$server_hostname,$product_id){
+	global $pro_mysql_product_table;
+	global $pro_mysql_dedicated_table;
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='$product_id';";
+	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find product line ".__LINE__." file ".__FILE__);
+	}
+	$product = mysql_fetch_array($r);
+	
+	$exp_date = calculateExpirationDate(date("Y-m-d"),$product["period"]);
+	$q = "INSERT INTO $pro_mysql_dedicated_table (id,owner,server_hostname,start_date,expire_date,hddsize,ramsize,product_id)
+	VALUES('','$adm_login','$server_hostname','".date("Y-m-d")."','$exp_date','".$product["quota_disk"]."','".$product["memory_size"]."','$product_id');";
+	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	return ;
+}
+
 ////////////////////////////
 // Add a VPS to one admin //
 ////////////////////////////

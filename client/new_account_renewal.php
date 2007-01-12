@@ -57,6 +57,14 @@ function renew_form(){
 			}
 			$client_id = $_REQUEST["client_id"];
 			break;
+		case "server":
+			if(!isRandomNum($_REQUEST["server_id"])){
+				$ret["err"] = 3;
+				$ret["mesg"] = "<font color=\"red\">Server id is not a valid number!</font>";
+				return $ret;
+			}
+			$client_id = $_REQUEST["server_id"];
+			break;
 		default:
 			die("Renew type unknown line ".__LINE__." file ".__FILE__);	// To be implemented for other means!
 			break;

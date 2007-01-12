@@ -95,6 +95,7 @@ function drawNewAdminForm(){
 	global $pro_mysql_tik_admins_table;
 	global $pro_mysql_tik_queries_table;
 	global $pro_mysql_tik_cats_table;
+	global $pro_mysql_dedicated_table;
 
 	global $txt_add_a_new_user;
 	global $txt_userndomain_waiting_for_addition;
@@ -332,6 +333,16 @@ dtcFromOkDraw()."
 			case "shared":
 			case "ssl":
 				$heb_type = "Shared";
+				break;
+			case "server":
+				$q2 = "SELECT * FROM $pro_mysql_dedicated_table WHERE id='".$a["renew_id"]."'";
+				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+				if($n2 != 1){
+					$heb_type = "Server: Cannot find server in db!";
+				}else{
+					$a2 = mysql_fetch_array($r2);
+					$heb_type = "Server: ".$a2["server_hostname"];
+				}
 				break;
 			}
 			$waiting_new_users .= "<td>$heb_type</td>";

@@ -31,7 +31,9 @@ function register_user(){
 		return $ret;
 	}
 
-	$esc_product_id = addslashes($_REQUEST["product_id"]);
+	if(isset($_REQUEST["product_id"])){
+		$esc_product_id = addslashes($_REQUEST["product_id"]);
+	}
 
 	if(!isRandomNum($esc_product_id)){
 		$ret["err"] = 2;

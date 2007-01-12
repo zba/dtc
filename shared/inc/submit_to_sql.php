@@ -25,6 +25,7 @@ function validateRenewal($renew_id){
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_table;
 	global $pro_mysql_admin_table;
+	global $pro_mysql_dedicated_table;
 
 	global $commit_flag;
 	global $submit_err;
@@ -186,6 +187,9 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
         if($a2["heb_type"] == "vps"){
         	$admtbl_added1 = ",expire,prod_id";
         	$admtbl_added2 = ",'0000-00-00','0'";
+	}else if($a2["heb_type"] == "server"){
+		$admtbl_added1 = ",expire,prod_id";
+		$admtbl_added2 = ",'0000-00-00','0'";
         }else{
         	$admtbl_added1 = ",expire,prod_id";
         	$admtbl_added2 = ",'$expires','".$a2["id"]."'";
@@ -240,7 +244,17 @@ can install ssh on it and finish the installation.
 Note that if you need our team to setup DTC control
 panel on your VPS, you need to get in touch with us.
 
-Here is your login information in the DTC control panel::";
+Here is your login information in the DTC control panel:";
+	}else if($a2["heb_type"] == "server"){
+		addDedicatedToUser($waiting_login,$a["domain_name"],$a2["id"]);
+		$txt_welcome_message = "The dedicated server you have ordered is now
+validated. Note that there is a delay when ordering a
+dedicated server with us. Please get in touch to know
+how long it can take to have it online.
+
+From now on, you can login to our control panel for doing
+the renewals of your contract. Here is the login information
+you will need:";
         }else{
 		addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
 		$txt_welcome_message = "The shared hosting account you have ordered is now
