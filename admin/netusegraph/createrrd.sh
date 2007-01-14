@@ -2,10 +2,6 @@
 
 DTC_ETC=$1
 
-# orig by Ralf Hildebrandt
-# http://www.stahl.bau.tu-bs.de/~hildeb/postfix/queuegraph/
-# modified by Damien Mascord for dtc
-
 if [ -x /usr/bin/rrdtool ] ; then
 	RRDTOOL=/usr/bin/rrdtool
 else

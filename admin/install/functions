@@ -3067,7 +3067,7 @@ createChrootTemplate () {
 		fi
 	else
 		if [ $UNIX_TYPE"" = "osx"  ] ; then
-			mkdir usr/lib
+			mkdir -p usr/lib
 			echo "-> usr/lib"
 			cp -pf /usr/lib/dyld /usr/lib/libSystem.B.dylib \
 			  /usr/lib/libc.dylib /usr/lib/libdl.dylib \
@@ -3078,7 +3078,7 @@ createChrootTemplate () {
 			  /usr/lib/libncurses.dylib /usr/lib/libpam_misc.dylib \
 			  /usr/lib/libz.dylib usr/lib
 			echo "-> usr/lib/system"
-			mkdir usr/lib/system
+			mkdir -p usr/lib/system
 			cp -pf /usr/lib/system/libmathCommon.A.dylib usr/lib/system
 		else
 			FOUNDED_ARCH=`uname -m`

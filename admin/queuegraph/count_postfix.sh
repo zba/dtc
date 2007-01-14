@@ -1,21 +1,21 @@
 #!/bin/sh
 
-# $Id: count_postfix.sh,v 1.2 2006/02/09 00:42:06 tusker Exp $
-
-# output the number of messages in the incoming, active, and deferred
-# queues of postfix one per line suitable for use with snmpd/cricket
-#
-# mailqsize was originally written by Vivek Khera.  All I did was
-# make it update an rrd.
-# 2003/01/24 01:19:37  Mike Saunders <method at method DOT cx>
-# I bundled this with a modified mailgraph
-# 2003/04/14           Ralf Hildebrandz <ralf.hildebrandt at charite DOT de>
-# Modified for DTC
-# 2006/02/08	       Damien Mascord <tusker at tusker DOT org>
-
 PATH=/usr/local/rrdtool-1.0.48/bin:/usr/local/bin:/usr/local/sbin:/sbin:/bin:/usr/bin:/usr/sbin:
 DTC_ETC=$1
 cd $DTC_ETC
+
+if [ -x /usr/bin/rrdtool ] ; then
+	RRDTOOL=/usr/bin/rrdtool
+else
+	if [ -x /usr/local/bin/rrdtool ] ; then
+		RRDTOOL=/usr/local/bin/rrdtool
+	else
+		exit 1
+	fi
+fi
+
+
+
 #set -x
 qdir=`postconf -h queue_directory`
 active=`find $qdir/incoming $qdir/active $qdir/maildrop -type f -print | wc -l | awk '{print $1}'`

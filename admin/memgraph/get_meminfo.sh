@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $Id: get_meminfo.sh,v 1.2 2006/02/25 22:16:27 thomas Exp $
+# $Id: get_meminfo.sh,v 1.3 2007/01/14 09:49:33 thomas Exp $
 
 # output the number of messages in the incoming, active, and deferred
 # queues of postfix one per line suitable for use with snmpd/cricket
@@ -18,8 +18,19 @@ DTC_ETC=$1
 
 cd $DTC_ETC
 
+if [ -x /usr/bin/rrdtool ] ; then
+	RRDTOOL=/usr/bin/rrdtool
+else
+	if [ -x /usr/local/bin/rrdtool ] ; then
+		RRDTOOL=/usr/local/bin/rrdtool
+	else
+		exit 1
+	fi
+fi
+
+
 MEMTOTAL=`grep MemTotal /proc/meminfo | gawk -F ' ' '{print $2}'`
 MEMFREE=`grep MemFree /proc/meminfo | gawk -F ' ' '{print $2}'`
 SWAPTOTAL=`grep SwapTotal /proc/meminfo | gawk -F ' ' '{print $2}'`
 SWAPFREE=`grep SwapFree /proc/meminfo | gawk -F ' ' '{print $2}'`
-rrdtool update $DTC_ETC/memusage.rrd "N:${MEMTOTAL}:${MEMFREE}:${SWAPTOTAL}:${SWAPFREE}"
+$RRDTOOL update $DTC_ETC/memusage.rrd "N:${MEMTOTAL}:${MEMFREE}:${SWAPTOTAL}:${SWAPFREE}"
