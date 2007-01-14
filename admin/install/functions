@@ -2135,6 +2135,8 @@ modifyPureFtpdMySQLConfig () {
 	#
 	echoIfVerbose "===> Adding directives to pure-ftpd-mysql"
 	# FreeBSD has a file pure-ftpd.conf to configure pure-ftpd
+	# It has to be tested like that because Debian don't have $conf_ftp_type and it
+	# will never have: it just tests for the directory existance...
 	if [ ""$UNIX_TYPE = "freebsd" -a ""$conf_ftp_type = "pureftpd" ] ;then
 		if [ ! -f "/usr/local/etc/pure-ftpd.conf" ]; then
 			sed -e "/^# MySQLConfigFile/d" /usr/local/etc/pure-ftpd.conf.sample > /usr/local/etc/pure-ftpd.conf
