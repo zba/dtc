@@ -51,6 +51,7 @@ echo "done!"
 # This adds the mod_log_sql module if needed
 if ! [ -e /usr/libexec/httpd/mod_log_sql.so ] ; then
 	cp mod_log_sql.so /usr/libexec/httpd/
+	cp mod_log_sql_mysql.so /usr/libexec/httpd/
 fi
 
 # Under osx, it doesn't seem to exist, so we create it!
