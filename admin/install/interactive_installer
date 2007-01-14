@@ -12,10 +12,12 @@ installerQuestions () {
 	echo "### Welcome to DTC config script for automatic installation ###"
 	echo "###############################################################"
 
-	if [ -f "/root/.dtc_install" ]; then
-		. /root/.dtc_install
-	else 
-		touch /root/.dtc_install
+	if [ -z ""$DTC_SAVED_INSTALL_CONFIG ] ; then
+		DTC_SAVED_INSTALL_CONFIG="/root/.dtc_saved_config"
+	fi
+
+	if [ -f /root/.dtc_saved_config ] ; then
+		. ${DTC_SAVED_INSTALL_CONFIG}
 	fi
 
 	# DATABASE CONFIGURATION

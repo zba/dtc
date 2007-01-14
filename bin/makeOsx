@@ -54,21 +54,9 @@ then
         ln -s ../shared/imgcache dtc/email/imgcache
 fi
 # Copy the table dump in the admin directory
-if ! [ -f sources/dtc_db.php ]
-then
-        curdir=`pwd`
-	cd sources
-        echo "Dumping your DTC SQL structures."
-        echo -n "Please enter your mysql password: "
-        read conf_dbpass
-        php backup_db.php $conf_dbpass
-        cd $curdir
-fi
 cp sources/dtc_db.php sources/restor_db.php dtc/admin
 
 chown -R root:0 dtc
-chown nobody:nogroup dtc/shared dtc/client/imgcache dtc/admin/imgcache dtc/client/gfx dtc/admin/gfx dtc/email/gfx
-chown nobody:nogroup dtc/admin/*.cgi
 
 # Specific Mac OS X package actions :
 mkdir -p $FOLDER/usr/share
@@ -85,4 +73,3 @@ echo "===> Packaging"
 tar -czf $ARCHIVE $FOLDER
 
 echo " -- Succesfully made "$ARCHIVE" ---"
-
