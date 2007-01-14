@@ -16,8 +16,10 @@ installerQuestions () {
 		DTC_SAVED_INSTALL_CONFIG="/root/.dtc_saved_config"
 	fi
 
-	if [ -f /root/.dtc_saved_config ] ; then
+	if [ -f ${DTC_SAVED_INSTALL_CONFIG} ] ; then
 		. ${DTC_SAVED_INSTALL_CONFIG}
+	else
+		touch DTC_SAVED_INSTALL_CONFIG
 	fi
 
 	# DATABASE CONFIGURATION
