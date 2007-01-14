@@ -30,10 +30,15 @@ PATH_DTC_SHARED="/usr/share/dtc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 PATH_DTC_ETC="/usr/share/dtc/etc"
+
+mkdir -p /var/lib/dtc
+DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
+
+echo "Copying dtc files in the /usr/share folder"
 mkdir -p /usr/share/dtc
 cp -rf usr /
 cp -f install.sh /usr/sbin/dtc-install.sh
-cp -f uninstall.sh /usr/sbin/dtc-uninstall.sh
+cp -f uninstall.sh /usr/sbin/dtc-uninstall
 chmod +x /usr/sbin/dtc-install.sh /usr/sbin/dtc-uninstall.sh
 
 # Mac OS X does not have php4 Crypt CBC as default, like other >= 4.3 php distributions
@@ -57,6 +62,7 @@ fi
 
 
 . /usr/share/dtc/admin/install/osx_config
+. ${DTC_SAVED_INSTALL_CONFIG}
 . /usr/share/dtc/admin/install/interactive_installer
 . /usr/share/dtc/admin/install/functions
 
