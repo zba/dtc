@@ -62,7 +62,6 @@ fi
 
 
 . /usr/share/dtc/admin/install/osx_config
-. ${DTC_SAVED_INSTALL_CONFIG}
 . /usr/share/dtc/admin/install/interactive_installer
 . /usr/share/dtc/admin/install/functions
 
