@@ -53,13 +53,24 @@ if ! [ -e /usr/libexec/httpd/mod_log_sql.so ] ; then
 	cp mod_log_sql.so /usr/libexec/httpd/
 fi
 
+# Under osx, it doesn't seem to exist, so we create it!
+mkdir -p /usr/lib/cgi-bin
+
 # This might help if you want to use the mysql4 provided by fink
 # Since standard Mac OS X 10.0.3.7 server that I have here uses mysql 3 within
 # php and that mysql comes as default on Mac OS X Server, I leave the standard one
 # otherwise you will have to recompile php with mysql4 support.
 #conf_mysql_cli_path=/usr/local/mysql/bin/mysql
-
-
+if [ -x /usr/bin/mysql ] ; then
+	conf_mysql_cli_path=/usr/bin/mysql
+fi
+if [ -x /usr/local/mysql/bin/mysql ] ; then
+	conf_mysql_cli_path=/usr/local/mysql/bin/mysql
+fi
+if [ -z ""$conf_mysql_cli_path ] ; then
+	echo "Cannot find the mysql cli binary in /usr/bin/mysql or in /usr/local/mysql/bin/mysql: exiting!"
+	exit 1
+fi
 
 . /usr/share/dtc/admin/install/osx_config
 . /usr/share/dtc/admin/install/interactive_installer
