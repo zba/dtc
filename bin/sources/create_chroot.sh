@@ -7,7 +7,7 @@ if [ $CHROOT_DIR"" = "" ] ; then
 fi
 
 if [ ""$VERBOSE_INSTALL = "yes" ] ;then
-	echo "===> Creating chroot tree in "$CHROOT_DIR
+	echo "===> Creating chroot tree in "$CHROOT_DIR" for unix type: "$UNIX_TYPE
 fi
 
 # set our umask so things are created with the correct group perms

@@ -63,7 +63,8 @@ mkdir -p $FOLDER/usr/share
 mv dtc $FOLDER/usr/share
 mkdir -p $FOLDER/Crypt
 cp sources/osx/Crypt/CBC.php sources/osx/Crypt/HCEMD5.php $FOLDER/Crypt
-cp sources/osx/mod_log_sql.so.gif $FOLDER/mod_log_sql.so
+cp sources/osx/mod_log_sql.so $FOLDER/mod_log_sql.so
+cp sources/osx/mod_log_sql_mysql.so $FOLDER/mod_log_sql_mysql.so
 cp sources/osx/install.sh $FOLDER
 
 cp sources/osx/uninstall.sh $FOLDER

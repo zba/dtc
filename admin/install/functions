@@ -2566,94 +2566,95 @@ modifyNSSConfig () {
 		PATH_NSSWITCH_CONF=/etc/nsswitch.conf
 	fi
 
-	if grep "Configured by DTC" $PATH_NSSWITCH_CONF >/dev/null
-	then
-		echoIfVerbose "$PATH_NSSWITCH_CONF has been configured before..."
-	else
-		if ! [ -f $PATH_NSSWITCH_CONF.DTC.backup ]
+	if -f [ $PATH_NSSWITCH_CONF ] ; then
+		if grep "Configured by DTC" $PATH_NSSWITCH_CONF >/dev/null
 		then
-			echoIfVerbose "===> Backuping "$PATH_NSSWITCH_CONF
-			cp -f "$PATH_NSSWITCH_CONF" "$PATH_NSSWITCH_CONF.DTC.backup"
-		fi
-		echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
-		echo "
+			echoIfVerbose "$PATH_NSSWITCH_CONF has been configured before..."
+		else
+			if ! [ -f $PATH_NSSWITCH_CONF.DTC.backup ]
+			then
+				echoIfVerbose "===> Backuping "$PATH_NSSWITCH_CONF
+				cp -f "$PATH_NSSWITCH_CONF" "$PATH_NSSWITCH_CONF.DTC.backup"
+			fi
+			echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
+			echo "
 passwd:         compat mysql
 group:          compat mysql
 shadow:         compat mysql
 " >> $TMP_FILE
-		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
-		cat <$TMP_FILE >>$PATH_NSSWITCH_CONF
-	fi
+			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
+			cat <$TMP_FILE >>$PATH_NSSWITCH_CONF
+		fi
 
-	rm $TMP_FILE
+		rm $TMP_FILE
 
-	#
-	# Modify /etc/nss-mysql.conf and /etc/nss-mysql-root.conf
-	# 
-	TMP_FILE=`${MKTEMP} DTC_install.nss-mysql.conf.XXXXXX` || exit 1
+		#
+		# Modify /etc/nss-mysql.conf and /etc/nss-mysql-root.conf
+		# 
+		TMP_FILE=`${MKTEMP} DTC_install.nss-mysql.conf.XXXXXX` || exit 1
 
-	if [ -z "$PATH_NSS_CONF" ]; then
-		if [ ""$UNIX_TYPE = "freebsd" ] ;then
-			PATH_NSS_CONF="${LOCALBASE}/etc/libnss-mysql.cfg"
-			NSSMYSQL_VERSION=libnss-mysql
-			if [ -f $PATH_NSS_CONF ]; then
-				if ! grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
-				then
-					mv ${PATH_NSS_CONF} ${PATH_NSS_CONF}.before.dtc
+		if [ -z "$PATH_NSS_CONF" ]; then
+			if [ ""$UNIX_TYPE = "freebsd" ] ;then
+				PATH_NSS_CONF="${LOCALBASE}/etc/libnss-mysql.cfg"
+				NSSMYSQL_VERSION=libnss-mysql
+				if [ -f $PATH_NSS_CONF ]; then
+					if ! grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
+					then
+						mv ${PATH_NSS_CONF} ${PATH_NSS_CONF}.before.dtc
+						touch ${PATH_NSS_CONF}
+			                fi
+				else
 					touch ${PATH_NSS_CONF}
-		                fi
-			else
-				touch ${PATH_NSS_CONF}
-			fi
-	        elif [ -e /etc/libnss-mysql.cfg ]; then
-			PATH_NSS_CONF=/etc/libnss-mysql.cfg	
-			NSSMYSQL_VERSION=libnss-mysql
-			# mv the existing config out of the way
-			mv $PATH_NSS_CONF $PATH_NSS_CONF.before.dtc
-			touch ${PATH_NSS_CONF}
-		else
-			PATH_NSS_CONF=/etc/nss-mysql.conf
-			NSSMYSQL_VERSION=nss-mysql
-		fi
-	fi
-
-	if [ -z "$PATH_NSS_ROOT_CONF" ]; then
-		if [ ""$UNIX_TYPE = "freebsd" ] ;then
-			PATH_NSS_ROOT_CONF="${LOCALBASE}/etc/libnss-mysql-root.cfg"
-			NSSMYSQL_VERSION=libnss-mysql
-			if [ -f $PATH_NSS_ROOT_CONF ]; then
-				if ! grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
-				then
-					mv ${PATH_NSS_ROOT_CONF} ${PATH_NSS_ROOT_CONF}.before.dtc
-					touch ${PATH_NSS_ROOT_CONF}
 				fi
+		        elif [ -e /etc/libnss-mysql.cfg ]; then
+				PATH_NSS_CONF=/etc/libnss-mysql.cfg	
+				NSSMYSQL_VERSION=libnss-mysql
+				# mv the existing config out of the way
+				mv $PATH_NSS_CONF $PATH_NSS_CONF.before.dtc
+				touch ${PATH_NSS_CONF}
 			else
+				PATH_NSS_CONF=/etc/nss-mysql.conf
+				NSSMYSQL_VERSION=nss-mysql
+			fi
+		fi
+
+		if [ -z "$PATH_NSS_ROOT_CONF" ]; then
+			if [ ""$UNIX_TYPE = "freebsd" ] ;then
+				PATH_NSS_ROOT_CONF="${LOCALBASE}/etc/libnss-mysql-root.cfg"
+				NSSMYSQL_VERSION=libnss-mysql
+				if [ -f $PATH_NSS_ROOT_CONF ]; then
+					if ! grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
+					then
+						mv ${PATH_NSS_ROOT_CONF} ${PATH_NSS_ROOT_CONF}.before.dtc
+						touch ${PATH_NSS_ROOT_CONF}
+					fi
+				else
+					touch ${PATH_NSS_ROOT_CONF}
+		                fi
+		        elif [ -e /etc/libnss-mysql-root.cfg ]; then
+				PATH_NSS_ROOT_CONF=/etc/libnss-mysql-root.cfg	
+				NSSMYSQL_VERSION=libnss-mysql
+				mv $PATH_NSS_ROOT_CONF $PATH_NSS_ROOT_CONF.before.dtc
 				touch ${PATH_NSS_ROOT_CONF}
-	                fi
-	        elif [ -e /etc/libnss-mysql-root.cfg ]; then
-			PATH_NSS_ROOT_CONF=/etc/libnss-mysql-root.cfg	
-			NSSMYSQL_VERSION=libnss-mysql
-			mv $PATH_NSS_ROOT_CONF $PATH_NSS_ROOT_CONF.before.dtc
-			touch ${PATH_NSS_ROOT_CONF}
-		else
-			PATH_NSS_ROOT_CONF=/etc/nss-mysql-root.conf
-			NSSMYSQL_VERSION=nss-mysql
+			else
+				PATH_NSS_ROOT_CONF=/etc/nss-mysql-root.conf
+				NSSMYSQL_VERSION=nss-mysql
+			fi
 		fi
-	fi
 
-	if grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
-	then
-		echoIfVerbose "$PATH_NSS_CONF has been configured before..."
-	else
-		if ! [ -f $PATH_NSS_CONF.DTC.backup ]
+		if grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
 		then
-			echoIfVerbose "===> Backuping "$PATH_NSS_CONF
-			cp -f "$PATH_NSS_CONF" "$PATH_NSS_CONF.DTC.backup"
-		fi
+			echoIfVerbose "$PATH_NSS_CONF has been configured before..."
+		else
+			if ! [ -f $PATH_NSS_CONF.DTC.backup ]
+			then
+				echoIfVerbose "===> Backuping "$PATH_NSS_CONF
+				cp -f "$PATH_NSS_CONF" "$PATH_NSS_CONF.DTC.backup"
+			fi
 
-		echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
-		if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
-			echo "
+			echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
+			if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
+				echo "
 users.host = inet:localhost:3306;
 users.database = ${conf_mysql_db};
 users.db_user = dtcdaemons;
@@ -2680,9 +2681,9 @@ groups.members_table = ssh_user_group;
 groups.member_userid_column = ssh_user_group.user_id;
 groups.member_groupid_column = ssh_user_group.group_id;
 " >> $TMP_FILE
-		else
-			# this is the libnss version
-			echo "
+			else
+				# this is the libnss version
+				echo "
 [queries]
 getpwnam    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE login='%1$s' LIMIT 1
 getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1$u' LIMIT 1
@@ -2703,26 +2704,26 @@ username dtcdaemons
 password ${MYSQL_DTCDAEMONS_PASS}
 " >> $TMP_FILE
 
+			fi
+			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
+			cat <$TMP_FILE >>$PATH_NSS_CONF
 		fi
-		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
-		cat <$TMP_FILE >>$PATH_NSS_CONF
-	fi
 
-	# fix perm for the nss root configuration
-	chmod 400 $PATH_NSS_CONF
+		# fix perm for the nss root configuration
+		chmod 400 $PATH_NSS_CONF
 
-	if grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
-	then
-		echoIfVerbose "$PATH_NSS_ROOT_CONF has been configured before..."
-	else
-		if ! [ -f $PATH_NSS_ROOT_CONF.DTC.backup ]
+		if grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
 		then
-			echoIfVerbose "===> Backuping "$PATH_NSS_ROOT_CONF
-			cp -f "$PATH_NSS_ROOT_CONF" "$PATH_NSS_ROOT_CONF.DTC.backup"
-		fi
-		echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
-		if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
-		echo "
+			echoIfVerbose "$PATH_NSS_ROOT_CONF has been configured before..."
+		else
+			if ! [ -f $PATH_NSS_ROOT_CONF.DTC.backup ]
+			then
+				echoIfVerbose "===> Backuping "$PATH_NSS_ROOT_CONF
+				cp -f "$PATH_NSS_ROOT_CONF" "$PATH_NSS_ROOT_CONF.DTC.backup"
+			fi
+			echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
+			if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
+			echo "
 shadow.host = inet:localhost:3306;
 shadow.database = ${conf_mysql_db};
 shadow.db_user = dtcdaemons;
@@ -2741,23 +2742,26 @@ shadow.warn_column = 7;
 shadow.inact_column = -1; 
 shadow.expire_column = -1; 
 " >> $TMP_FILE
-		else
-			# libnss version
-			echo "[server]
+			else
+				# libnss version
+				echo "[server]
 host localhost
 port 3306
 database ${conf_mysql_db}
 username dtcdaemons
 password ${MYSQL_DTCDAEMONS_PASS}
 " >> $TMP_FILE
+			fi
+			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
+			cat <$TMP_FILE >>$PATH_NSS_ROOT_CONF
 		fi
-		echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
-		cat <$TMP_FILE >>$PATH_NSS_ROOT_CONF
-	fi
-	# fix perm for the nss root configuration
-	chmod 400 $PATH_NSS_ROOT_CONF
+		# fix perm for the nss root configuration
+		chmod 400 $PATH_NSS_ROOT_CONF
 
-	rm $TMP_FILE
+		rm $TMP_FILE
+	else
+		echo "-> Didn't find libnss nsswitch.conf: configuration of libnssmysql aborded"
+	fi
 }
 
 #

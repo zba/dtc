@@ -1,0 +1,3 @@
+- Have all the rrd stuff working (adapted) for OSX
+- Have a way to have nssmysql ported
+- Check SASL2 is working (should not be currently)

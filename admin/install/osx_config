@@ -50,4 +50,6 @@ PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 
+PATH_SSH_CONF=/private/etc/sshd_config
+
 DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
