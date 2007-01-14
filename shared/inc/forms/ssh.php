@@ -89,9 +89,10 @@ function drawAdminTools_SSH($domain,$adm_path){
 			)
 		);
 	$txt .= dtcListItemsEdit($dsc);
+	$txt .= helpLink("PmWiki/Ssh-Accounts");
 	return $txt;
 
-	if(isset($domain["sshs"])){
+/*	if(isset($domain["sshs"])){
 		$nbr_ssh = sizeof($domain["sshs"]);
 		$sshs = $domain["sshs"];
 		$nbr_account = $nbr_ssh;
@@ -238,7 +239,7 @@ $txt .= "
 		$txt .= "<br></b></font>";
 	}
 
-	return $txt;
+	return $txt;*/
 }
 
 ?>
