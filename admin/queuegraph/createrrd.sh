@@ -12,7 +12,12 @@ else
 	if [ -x /usr/local/bin/rrdtool ] ; then
 		RRDTOOL=/usr/local/bin/rrdtool
         else
-		exit 1
+        	if [ -x /opt/local/bin/rrdtool ] ; then
+        		RRDTOOL=/opt/local/bin/rrdtool
+        	else
+        		echo "Could not find the rrdtool binary in $0"
+			exit 1
+		fi
 	fi
 fi
 

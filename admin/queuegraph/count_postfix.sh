@@ -10,7 +10,12 @@ else
 	if [ -x /usr/local/bin/rrdtool ] ; then
 		RRDTOOL=/usr/local/bin/rrdtool
 	else
-		exit 1
+		if [ -x /opt/local/bin/rrdtool ] ; then
+			RRDTOOL=/opt/local/bin/rrdtool
+		else
+			echo "Could not find the rrdtool binary in $0"
+			exit 1
+		fi
 	fi
 fi
 
@@ -21,4 +26,4 @@ qdir=`postconf -h queue_directory`
 active=`find $qdir/incoming $qdir/active $qdir/maildrop -type f -print | wc -l | awk '{print $1}'`
 deferred=`find $qdir/deferred -type f -print | wc -l | awk '{print $1}'`
 #printf "active: %d\ndeferred: %d\n" $active $deferred
-rrdtool update $DTC_ETC/mailqueues.rrd "N:$active:$deferred"
+$RRDTOOL update $DTC_ETC/mailqueues.rrd "N:$active:$deferred"

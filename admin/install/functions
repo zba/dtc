@@ -2438,7 +2438,7 @@ createRRDFiles () {
 	# create the rrd file for queuegraph.cgi
 	#
 	echoIfVerbose "===> Setting up rrdtools and graphs in \"$PATH_CGIBIN\""
-	echoIfVerbose "-> Creating mail queue rrd"
+	echoIfVerbose "-> Creating mail queue rrd: $PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC"
 	if [ ! -e $PATH_DTC_ETC/mailqueues.rrd ]; then
 		$PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC
 	fi
