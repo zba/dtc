@@ -12,42 +12,59 @@ echoIfVerbose () {
 
 createDTCuserAndGroup () {
 	echoIfVerbose "===> Create DTC user and group"
-	if [ -x /usr/compat/linux/usr/bin/getent ] ; then
-		GETENT=/usr/compat/linux/usr/bin/getent
-	else
-		GETENT=getent
-	fi
-	if ${GETENT} group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
-		echoIfVerbose "-> Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skipping creation!"
-	else
-		if [ -x /usr/sbin/groupadd ] ; then
-			/usr/sbin/groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
-		else
-			# This is for freebsd
-			pw groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
+	# This is for OXS
+	if [ -x /usr/bin/niutil ] ; then
+		NIUTIL=/usr/bin/niutil
+		if [ ! $NIUTIL -list . /groups | grep ""${CONF_DTC_SYSTEM_GROUPNAME} ] ; then
+			$NIUTIL -create . /groups/${CONF_DTC_SYSTEM_GROUPNAME}
 		fi
-	fi
-	CONF_DTC_SYSTEM_GID=`${GETENT} group ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d':' -f3`
-
-	if ${GETENT} passwd ${CONF_DTC_SYSTEM_USERNAME} >/dev/null ; then
-		echoIfVerbose "-> User ${CONF_DTC_SYSTEM_USERNAME} already exists: skipping creation!"
+		CONF_DTC_SYSTEM_GID=`$NIUTIL -list . /groups | grep ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d" " -f1`
+		
+		if [ ! $NIUTIL -list . /users | grep ${CONF_DTC_SYSTEM_USERNAME} ] ; then
+			$NIUTIL -create . /users/${CONF_DTC_SYSTEM_USERNAME} gid ${CONF_DTC_SYSTEM_GID}
+		fi
+		CONF_DTC_SYSTEM_UID=`$NIUTIL -list . /users | grep ${CONF_DTC_SYSTEM_USERNAME} | cut -d" " -f1`
+		$NIUTIL -createprop . /groups/${CONF_DTC_SYSTEM_GROUPNAME} gid ${CONF_DTC_SYSTEM_GID}
+		$NIUTIL -createprop . /users/${CONF_DTC_SYSTEM_USERNAME} gid ${CONF_DTC_SYSTEM_GID}
+		$NIUTIL -createprop . /users/${CONF_DTC_SYSTEM_USERNAME} uid ${CONF_DTC_SYSTEM_UID}
 	else
-		if [ -x /usr/sbin/useradd ] ; then
-			if [ -x /bin/bash ] ; then
-				/usr/sbin/useradd -m -s /bin/bash -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
-			else
-				echo "Could not find a shell, please fix me here!!!"
-			fi
-		# This one is for freebsd
+		if [ -x /usr/compat/linux/usr/bin/getent ] ; then
+			GETENT=/usr/compat/linux/usr/bin/getent
 		else
-			if [ -x /bin/sh ] ; then
-				pw useradd ${CONF_DTC_SYSTEM_USERNAME} -g ${CONF_DTC_SYSTEM_GROUPNAME} -s /bin/sh
+			GETENT=getent
+		fi
+		if ${GETENT} group ${CONF_DTC_SYSTEM_GROUPNAME} >/dev/null ; then
+			echoIfVerbose "-> Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skipping creation!"
+		else
+			if [ -x /usr/sbin/groupadd ] ; then
+				/usr/sbin/groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
 			else
-				echo "Could not find a shell, please fix me here!!!"
+				# This is for freebsd
+				pw groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
 			fi
 		fi
+		CONF_DTC_SYSTEM_GID=`${GETENT} group ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d':' -f3`
+	
+		if ${GETENT} passwd ${CONF_DTC_SYSTEM_USERNAME} >/dev/null ; then
+			echoIfVerbose "-> User ${CONF_DTC_SYSTEM_USERNAME} already exists: skipping creation!"
+		else
+			if [ -x /usr/sbin/useradd ] ; then
+				if [ -x /bin/bash ] ; then
+					/usr/sbin/useradd -m -s /bin/bash -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
+				else
+					echo "Could not find a shell, please fix me here!!!"
+				fi
+			# This one is for freebsd
+			else
+				if [ -x /bin/sh ] ; then
+					pw useradd ${CONF_DTC_SYSTEM_USERNAME} -g ${CONF_DTC_SYSTEM_GROUPNAME} -s /bin/sh
+				else
+					echo "Could not find a shell, please fix me here!!!"
+				fi
+			fi
+		fi
+		CONF_DTC_SYSTEM_UID=`${GETENT} passwd ${CONF_DTC_SYSTEM_USERNAME} | cut -d':' -f3`
 	fi
-	CONF_DTC_SYSTEM_UID=`${GETENT} passwd ${CONF_DTC_SYSTEM_USERNAME} | cut -d':' -f3`
 	if [ -z ""$CONF_DTC_SYSTEM_UID ] ; then
 		echo "No dtc system user: exiting"
 		exit 1
@@ -3692,6 +3709,9 @@ uninstallETC_CONFD_APACHE2 () {
 
 ############################ HERE STARTS THE GENERAL CALLING SCRIPTS ###############################
 saveConfig () {
+	if [ -z ""$DTC_SAVED_INSTALL_CONFIG ] ; then
+		DTC_SAVED_INSTALL_CONFIG="/root/.dtc_saved_config"
+	fi
         echo "
 conf_mysql_host=${conf_mysql_host}
 conf_mysql_login=${conf_mysql_login}
@@ -3722,7 +3742,7 @@ conf_cert_organization=${conf_cert_organization}
 conf_cert_unit=${conf_cert_unit}
 conf_cert_email=${conf_cert_email}
 conf_cert_challenge_pass=${conf_cert_challenge_pass}
-" >/root/.dtc_saved_config
+" >${DTC_SAVED_INSTALL_CONFIG}
 }
 
 DTCsearchConfigFiles () {
