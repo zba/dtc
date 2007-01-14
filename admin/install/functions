@@ -159,8 +159,11 @@ searchPATH_PHP_INI_APACHE () {
 	# This one is for FreeBSD
 	if [ -f /usr/local/etc/php.ini ] ; then
 		PATH_PHP_INI_APACHE=/usr/local/etc/php.ini
-	# This one for RedHat and Centos
-	elif [ -f /etc/php.ini ] ; then
+	# This one for RedHat and Centos, and osx !
+	elif [ -f /etc/php.ini -o -f /etc/php.ini.default ] ; then
+		if [ ! -f /etc/php.ini ] ; then
+			cp /etc/php.ini.default /etc/php.ini
+		fi
 		PATH_PHP_INI_APACHE=/etc/php.ini
 	# This one for Gentoo
 	elif [ -f /etc/php/apache2-php5/php.ini ] ; then
