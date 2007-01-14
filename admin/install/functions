@@ -20,7 +20,7 @@ createDTCuserAndGroup () {
 		fi
 		CONF_DTC_SYSTEM_GID=`$NIUTIL -list . /groups | grep ${CONF_DTC_SYSTEM_GROUPNAME} | cut -d" " -f1`
 		
-		if [ ! $NIUTIL -list . /users | grep ${CONF_DTC_SYSTEM_USERNAME} ] ; then
+		if [ ! $NIUTIL -list . /users | grep ""${CONF_DTC_SYSTEM_USERNAME} ] ; then
 			$NIUTIL -create . /users/${CONF_DTC_SYSTEM_USERNAME} gid ${CONF_DTC_SYSTEM_GID}
 		fi
 		CONF_DTC_SYSTEM_UID=`$NIUTIL -list . /users | grep ${CONF_DTC_SYSTEM_USERNAME} | cut -d" " -f1`
@@ -2863,7 +2863,7 @@ createChrootTemplate () {
 		CHROOT_DIR=/var/www/chroot
 	fi
 
-	echoIfVerbose "===> Creating chroot tree in "$conf_chroot_path
+	echoIfVerbose "===> Creating chroot tree in "$conf_chroot_path" for unix type: "$UNIX_TYPE
 	# set our umask so things are created with the correct group perms
 	umask 022
 
@@ -3067,6 +3067,8 @@ createChrootTemplate () {
 		fi
 	else
 		if [ $UNIX_TYPE"" = "osx"  ] ; then
+			mkdir usr/lib
+			echo "-> usr/lib"
 			cp -pf /usr/lib/dyld /usr/lib/libSystem.B.dylib \
 			  /usr/lib/libc.dylib /usr/lib/libdl.dylib \
 			  /usr/lib/libncurses.5.dylib /usr/lib/libpam.dylib \
@@ -3075,6 +3077,7 @@ createChrootTemplate () {
 			  /usr/lib/libcrypto.dylib /usr/lib/libm.dylib \
 			  /usr/lib/libncurses.dylib /usr/lib/libpam_misc.dylib \
 			  /usr/lib/libz.dylib usr/lib
+			echo "-> usr/lib/system"
 			mkdir usr/lib/system
 			cp -pf /usr/lib/system/libmathCommon.A.dylib usr/lib/system
 		else
