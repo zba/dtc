@@ -77,11 +77,6 @@ mkdir -p $FOLDER/Crypt
 cp sources/osx/Crypt/CBC.php sources/osx/Crypt/HCEMD5.php $FOLDER/Crypt
 cp sources/osx/mod_log_sql.so.gif $FOLDER/mod_log_sql.so
 cp sources/osx/install.sh $FOLDER
-cat sources/interactive_installer.sh >>$PKG_FILENAME"/install.sh"
-cat sources/create_chroot.sh >>$FOLDER"/install.sh"
-cat sources/setup_mysql_db.sh >>$FOLDER"/install.sh"
-cat sources/configure_deamons.sh >>$FOLDER"/install.sh"
-chmod +x $FOLDER"/install.sh"
 
 cp sources/osx/uninstall.sh $FOLDER
 cat sources/uninstall_deamons.sh >>$FOLDER"/uninstall.sh"
