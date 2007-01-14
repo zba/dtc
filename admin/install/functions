@@ -2133,16 +2133,15 @@ modifyPureFtpdMySQLConfig () {
 	#
 	# Install pure-ftpd-mysql
 	#
-	if [ $conf_ftp_type = "pureftpd" ]; then
- 	 	echoIfVerbose "===> Adding directives to pure-ftpd-mysql"
- 	 	# FreeBSD has a file pure-ftpd.conf to configure pure-ftpd
-		if [ ""$UNIX_TYPE = "freebsd" ] ;then
-			if [ ! -f "/usr/local/etc/pure-ftpd.conf" ]; then
-				sed -e "/^# MySQLConfigFile/d" /usr/local/etc/pure-ftpd.conf.sample > /usr/local/etc/pure-ftpd.conf
-				echo "MySQLConfigFile		/usr/local/etc/pureftpd-mysql.conf" >> /usr/local/etc/pure-ftpd.conf
-			fi
-			if [ ! -f "/usr/local/etc/pureftpd-mysql.conf" ]; then
-				echo "# Configured by DTC v0.10 : Please don't touch this line !
+	echoIfVerbose "===> Adding directives to pure-ftpd-mysql"
+	# FreeBSD has a file pure-ftpd.conf to configure pure-ftpd
+	if [ ""$UNIX_TYPE = "freebsd" -a ""$conf_ftp_type = "pureftpd" ] ;then
+		if [ ! -f "/usr/local/etc/pure-ftpd.conf" ]; then
+			sed -e "/^# MySQLConfigFile/d" /usr/local/etc/pure-ftpd.conf.sample > /usr/local/etc/pure-ftpd.conf
+			echo "MySQLConfigFile		/usr/local/etc/pureftpd-mysql.conf" >> /usr/local/etc/pure-ftpd.conf
+		fi
+		if [ ! -f "/usr/local/etc/pureftpd-mysql.conf" ]; then
+			echo "# Configured by DTC v0.10 : Please don't touch this line !
 
 MYSQLSocket /tmp/mysql.sock
 MYSQLUser dtcdaemons
@@ -2155,25 +2154,25 @@ MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
 " >/usr/local/etc/pureftpd-mysql.conf;
-			fi
+		fi
 
-			if grep 'pureftpd_enable="YES"' /etc/rc.conf >/dev/null ; then
-				echoIfVerbose "rc.conf already has pureftpd_enable=yes"
-			else
-				echoIfVerbose "Adding pureftpd_enable=yes in rc.conf"
-				echo 'pureftpd_enable="YES"' >> /etc/rc.conf
-			fi
+		if grep 'pureftpd_enable="YES"' /etc/rc.conf >/dev/null ; then
+			echoIfVerbose "rc.conf already has pureftpd_enable=yes"
+		else
+			echoIfVerbose "Adding pureftpd_enable=yes in rc.conf"
+			echo 'pureftpd_enable="YES"' >> /etc/rc.conf
+		fi
 
-			/usr/local/etc/rc.d/pure-ftpd start
-		# Debian uses a directory structure with many files (and maybe other distro)
-		else	
-			PURE_FTPD_ETC="/etc/pure-ftpd"
-			if [ -e $PURE_FTPD_ETC ] ;then
-				if [ -e /etc/pure-ftpd/conf/ ] ;then
-					echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
-				fi
-				if [ -e $PURE_FTPD_ETC/db/ ] ;then
-					echo "# Configured by DTC v0.10 : Please don't touch this line !
+		/usr/local/etc/rc.d/pure-ftpd start
+	# Debian uses a directory structure with many files (and maybe other distro)
+	else	
+		PURE_FTPD_ETC="/etc/pure-ftpd"
+		if [ -e $PURE_FTPD_ETC ] ;then
+			if [ -e /etc/pure-ftpd/conf/ ] ;then
+				echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
+			fi
+			if [ -e $PURE_FTPD_ETC/db/ ] ;then
+				echo "# Configured by DTC v0.10 : Please don't touch this line !
 
 MYSQLSocket /var/run/mysqld/mysqld.sock
 MYSQLUser dtcdaemons
@@ -2186,13 +2185,12 @@ MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
 " >$PURE_FTPD_ETC/db/mysql.conf;
-					# Retart after we did the config
-					if [ -x /usr/sbin/invoke-rc.d ]; then
-						/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
-					else
-						if [ -x /etc/init.d/pure-ftpd-mysql ] ;then
-							/etc/init.d/pure-ftpd-mysql restart
-						fi
+				# Retart after we did the config
+				if [ -x /usr/sbin/invoke-rc.d ]; then
+					/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
+				else
+					if [ -x /etc/init.d/pure-ftpd-mysql ] ;then
+						/etc/init.d/pure-ftpd-mysql restart
 					fi
 				fi
 			fi
