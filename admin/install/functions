@@ -3824,7 +3824,11 @@ DTCsetupDaemons () {
 	createDTCuserAndGroup
 	DTCsearchConfigFiles
 
-	. /root/.dtc_saved_config
+	if [ -z ${DTC_SAVED_INSTALL_CONFIG} ] ; then
+		DTC_SAVED_INSTALL_CONFIG=/root/.dtc_saved_config
+	fi
+
+	${DTC_SAVED_INSTALL_CONFIG} /root/.dtc_saved_config
 
 	modifyResolvConf
 	setupDTCDatabase
