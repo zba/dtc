@@ -13,7 +13,6 @@ PATH_AWSTATS_ETC="/etc/awstats"
 PATH_CGIBIN="/usr/lib/cgi-bin"
 
 PATH_APACHE_PID_FILE="/var/run/httpd.pid"
-PATH_NAMED_CONF="/etc/namedb/named.conf"
 # Copy default conf if no conf exists (BSD specific)
 if [ ! -f ${LOCALBASE}/etc/proftpd.conf ] ; then
 	if [ -e ${LOCALBASE}/etc/proftpd.conf.default ] ; then
