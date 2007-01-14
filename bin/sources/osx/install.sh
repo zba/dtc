@@ -16,84 +16,20 @@ PATH_AWSTATS_ETC="/etc/awstats"
 PATH_CGIBIN="/usr/lib/cgi-bin"
 
 PATH_POSTFIX_CONF="${PATH_POSTFIX_ETC}/main.cf"
-
-echo ""
-echo "Where is saslpasswd2 located ?"
-echo -n "saslpasswd2 location []: "
-read PATH_SASL_PASSWD2
-if [ "$PATH_SASL_PASSWD2" = "" ];
-then
-	PATH_SASL_PASSWD2=""
-fi
-
-echo ""
-echo "Where is userdb (courier) binary located ?"
-echo -n "userdb location []: "
-read PATH_USERDB_BIN
-if [ "$PATH_USERDB_BIN" = "" ];
-then
-	PATH_USERDB_BIN=""
-fi
-
-echo ""
-echo "Where is maildrop (courier) binary located ?"
-echo -n "maildrop location []: "
-read PATH_MAILDROP_BIN
-if [ "$PATH_MAILDROP_BIN" = "" ];
-then
-	PATH_MAILDROP_BIN=""
-fi
-
-echo ""
-echo "Where is located your courier config path (ie /etc/courier) ?"
-echo "If Courier is not installed, just hit enter."
-echo -n "courier config path [/etc/courier]: "
-read PATH_COURIER_CONF_PATH
-if [ "$PATH_COURIER_CONF_PATH" = "" ];
-then
-	PATH_COURIER_CONF_PATH="/etc/courier"
-fi
-
-echo ""
-echo "Where is located your courier authlib path (ie /etc/authlib) ?"
-echo "If Courier is not installed, just hit enter."
-echo -n "courier config path [/etc/authlib]: "
-read PATH_COURIER_AUTHD_CONF_PATH
-if [ "$PATH_COURIER_AUTHD_CONF_PATH" = "" ];
-then
-	PATH_COURIER_AUTHD_CONF_PATH="/etc/authlib"
-fi
-
-echo ""
-echo "Where is located your dovecot.conf ?"
-echo "If Dovecot is not installed, just hit enter."
-echo -n "Dovecot control path [/etc/dovecot.conf]: "
-read PATH_DOVECOT_CONF
-if [ "$PATH_DOVECOT_CONF" = "" ];
-then
-	PATH_DOVECOT_CONF="/etc/dovecot.conf"
-fi
-
-echo ""
-echo "Where is located your proftpd.conf ?"
-echo -n "Proftpd control path [/etc/proftpd.conf]: "
-read PATH_PROFTPD_CONF
-if [ "$PATH_PROFTPD_CONF" = "" ];
-then
-	PATH_PROFTPD_CONF="/etc/proftpd.conf"
-fi
-
+PATH_SASL_PASSWD2=""
+PATH_USERDB_BIN=""
+PATH_MAILDROP_BIN=""
+PATH_COURIER_CONF_PATH=""
+PATH_COURIER_AUTHD_CONF_PATH=""
+PAH_COURIER_AUTHD_CONF_PATH="/etc/authlib"
+PATH_DOVECOT_CONF=""
+PATH_PROFTPD_CONF=""
 PATH_QMAIL_CTRL="/var/qmail/control"
 PATH_PHP_CGI="/usr/bin/php"
-
-# DTC's own path
-
 PATH_DTC_SHARED="/usr/share/dtc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 PATH_DTC_ETC="/usr/share/dtc/etc"
-
-echo -n "Copying DTC's php scripts to /usr/share..."
 mkdir -p /usr/share/dtc
 cp -rf usr /
 cp -f install.sh /usr/sbin/dtc-install.sh
