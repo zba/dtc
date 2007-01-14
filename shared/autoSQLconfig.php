@@ -32,12 +32,15 @@ global $conf_nobody_group_id;
 $conf_nobody_group_id = 65534;
 global $conf_nobody_group_name;
 $conf_nobody_group_name = "nogroup";
-$etc_group = join('',file("/etc/group"));
-preg_match('#(nobody|nogroup):[^:]*:(\\d+):#', $etc_group, $matches);
-if ($matches[0])
-{
-        $conf_nobody_group_id = $matches[2];
-        $conf_nobody_group_name = $matches[1];
+if($conf_unix_type != "osx"){
+	$etc_group = join('',file("/etc/group"));
+	preg_match('#(nobody|nogroup):[^:]*:(\\d+):#', $etc_group, $matches);
+	if ($matches[0]){
+	        $conf_nobody_group_id = $matches[2];
+	        $conf_nobody_group_name = $matches[1];
+	}
+}else{
+	$conf_nobody_group_id = 65534;
 }
 
 // default to 65534 and nobody
@@ -45,12 +48,15 @@ global $conf_nobody_user_id;
 $conf_nobody_user_id = 65534;
 global $conf_nobody_user_name;
 $conf_nobody_user_name = "nobody";
-$etc_passwd = join('',file("/etc/passwd"));
-preg_match('#(nobody):[^:]*:(\\d+):(\\d+)#', $etc_passwd, $matches);
-if ($matches[0])
-{
-        $conf_nobody_user_id = $matches[2];
-        $conf_nobody_user_name = $matches[1];
+if($conf_unix_type != "osx"){
+	$etc_passwd = join('',file("/etc/passwd"));
+	preg_match('#(nobody):[^:]*:(\\d+):(\\d+)#', $etc_passwd, $matches);
+	if ($matches[0]){
+	        $conf_nobody_user_id = $matches[2];
+	        $conf_nobody_user_name = $matches[1];
+	}
+}else{
+	$conf_nobody_user_id = 65534;
 }
 
 
