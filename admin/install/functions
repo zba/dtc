@@ -3833,7 +3833,7 @@ DTCsetupDaemons () {
 		DTC_SAVED_INSTALL_CONFIG=/root/.dtc_saved_config
 	fi
 
-	${DTC_SAVED_INSTALL_CONFIG} /root/.dtc_saved_config
+	. ${DTC_SAVED_INSTALL_CONFIG}
 
 	modifyResolvConf
 	setupDTCDatabase
