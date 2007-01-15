@@ -3259,6 +3259,7 @@ createChrootTemplate () {
 			/sbin/ldconfig
 		fi
 	fi
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} etc dev bin lib tmp var sbin libexec usr
 	echoIfVerbose "-> Done chroot template!"
 }
 
