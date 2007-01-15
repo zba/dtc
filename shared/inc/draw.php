@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.83 2007/01/11 09:02:48 thomas Exp $
+ * @version $Id: draw.php,v 1.84 2007/01/15 06:33:55 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -276,12 +276,13 @@ function drawAdminTools($admin){
 				"link" => "mailing-lists");
 		}
 //udns.us add
-		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
-			$domain_conf_submenu[] = array(
-				"text" => $txt_domain_tools[$lang],
-				"type" => "link",
-				"link" => "tools");
-		}
+// This is to be re-written from scratch, has many holes.
+//		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
+//			$domain_conf_submenu[] = array(
+//				"text" => $txt_domain_tools[$lang],
+//				"type" => "link",
+//				"link" => "tools");
+//		}
 //udns.us /add
 		if($add_array[0] == $dom){
 		  $selected_domain = array(
