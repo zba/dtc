@@ -1761,11 +1761,11 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 
 				if [ -e /var/spool/postfix/etc ]; then
 					touch /var/spool/postfix/etc/sasldb2
-					chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/postfix/etc/sasldb2
-					chmod 664 /var/spool/postfix/etc/sasldb2
 					if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
 						cp /var/spool/postfix/etc/sasldb2 $PATH_DTC_ETC/sasldb2
 					fi
+					chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/postfix/etc/sasldb2
+					chmod 664 /var/spool/postfix/etc/sasldb2
 				else
 					if [ -d /etc/sasl2 ]; then
 						touch /etc/sasl2/sasldb2
