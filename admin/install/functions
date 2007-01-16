@@ -2438,72 +2438,73 @@ createRRDFiles () {
 	# create the rrd file for queuegraph.cgi
 	#
 	echoIfVerbose "===> Setting up rrdtools and graphs in \"$PATH_CGIBIN\""
-	echoIfVerbose "-> Creating mail queue rrd: $PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC"
-	if [ ! -e $PATH_DTC_ETC/mailqueues.rrd ]; then
-		$PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC
-	fi
-	if [ ! -e $PATH_CGIBIN/queuegraph.cgi ]; then
-		ln -s $PATH_DTC_ADMIN/queuegraph.cgi $PATH_CGIBIN/queuegraph.cgi
-	fi
-	if [ -e $PATH_CGIBIN/queuegraph.cgi ]; then
-		chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/queuegraph.cgi
-	fi
-	# fix path for mailqueues.rrd
-	echoIfVerbose "-> Fixking paths in queuegraph.cgi"
-	perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/queuegraph.cgi
+	if [ ! ""$UNIX_TYPE = "osx" ] ; then
+		echoIfVerbose "-> Creating mail queue rrd: $PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC"
+		if [ ! -e $PATH_DTC_ETC/mailqueues.rrd ]; then
+			$PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC
+		fi
+		if [ ! -e $PATH_CGIBIN/queuegraph.cgi ]; then
+			ln -s $PATH_DTC_ADMIN/queuegraph.cgi $PATH_CGIBIN/queuegraph.cgi
+		fi
+		if [ -e $PATH_CGIBIN/queuegraph.cgi ]; then
+			chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/queuegraph.cgi
+		fi
+		# fix path for mailqueues.rrd
+		echoIfVerbose "-> Fixking paths in queuegraph.cgi"
+		perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/queuegraph.cgi
+	
+		if [ -z "$conf_eth2monitor" ] ; then
+			echoIfVerbose "No interface selected: skipping the netusage.rrd setup!!!"
+		else
+			#
+			# create the rrd file for netusegraph.cgi
+			#
+			if [ ! -e $PATH_DTC_ETC/netusage.rrd ]; then
+				$PATH_DTC_ADMIN/netusegraph/createrrd.sh $PATH_DTC_ETC
+			fi
+			if [ ! -e $PATH_CGIBIN/netusegraph.cgi ]; then
+				ln -s $PATH_DTC_ADMIN/netusegraph.cgi $PATH_CGIBIN/netusegraph.cgi
+			fi
 
-	if [ -z "$conf_eth2monitor" ] ; then
-		echoIfVerbose "No interface selected: skipping the netusage.rrd setup!!!"
-	else
+			if [ -e $PATH_CGIBIN/netusegraph.cgi ]; then
+				# fix path for netusage.rrd
+				perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
+				chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/netusegraph.cgi
+			fi
+		fi
 		#
-		# create the rrd file for netusegraph.cgi
+		# create the rrd file for cpugraph.cgi
 		#
-		if [ ! -e $PATH_DTC_ETC/netusage.rrd ]; then
-			$PATH_DTC_ADMIN/netusegraph/createrrd.sh $PATH_DTC_ETC
+		echoIfVerbose "-> Creating cpu queue rrd"
+		if [ ! -e $PATH_DTC_ETC/cpu.rrd ]; then
+			$PATH_DTC_ADMIN/cpugraph/createrrd.sh $PATH_DTC_ETC
 		fi
-		if [ ! -e $PATH_CGIBIN/netusegraph.cgi ]; then
-			ln -s $PATH_DTC_ADMIN/netusegraph.cgi $PATH_CGIBIN/netusegraph.cgi
+		if [ ! -e $PATH_CGIBIN/cpugraph.cgi ]; then
+			ln -s $PATH_DTC_ADMIN/cpugraph.cgi $PATH_CGIBIN/cpugraph.cgi
+		fi
+		echoIfVerbose "-> Fixing path in cpugraph.cgi"
+		if [ -e $PATH_DTC_ADMIN/cpugraph.cgi ]; then 
+			# fix path for cpugraph.cgi
+			perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
+			chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/cpugraph.cgi
 		fi
 
-		if [ -e $PATH_CGIBIN/netusegraph.cgi ]; then
-			# fix path for netusage.rrd
-			perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
-			chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/netusegraph.cgi
+		#
+		# Create the rrd file for memgraph.cgi
+		#
+		echoIfVerbose "-> Creating memory rrd"
+		if [ ! -e $PATH_DTC_ETC/memusage.rrd ]; then
+			$PATH_DTC_ADMIN/memgraph/createrrd.sh $PATH_DTC_ETC
 		fi
-	fi
-	#
-	# create the rrd file for cpugraph.cgi
-	#
-	echoIfVerbose "-> Creating cpu queue rrd"
-	if [ ! -e $PATH_DTC_ETC/cpu.rrd ]; then
-		$PATH_DTC_ADMIN/cpugraph/createrrd.sh $PATH_DTC_ETC
-	fi
-	if [ ! -e $PATH_CGIBIN/cpugraph.cgi ]; then
-		ln -s $PATH_DTC_ADMIN/cpugraph.cgi $PATH_CGIBIN/cpugraph.cgi
-	fi
-	echoIfVerbose "-> Fixing path in cpugraph.cgi"
-	if [ -e $PATH_DTC_ADMIN/cpugraph.cgi ]; then 
-		# fix path for cpugraph.cgi
-		perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
-		chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/cpugraph.cgi
-	fi
-
-
-	#
-	# Create the rrd file for memgraph.cgi
-	#
-	echoIfVerbose "-> Creating memory rrd"
-	if [ ! -e $PATH_DTC_ETC/memusage.rrd ]; then
-		$PATH_DTC_ADMIN/memgraph/createrrd.sh $PATH_DTC_ETC
-	fi
-	if [ ! -e $PATH_CGIBIN/memgraph.cgi ]; then
-		ln -s $PATH_DTC_ADMIN/memgraph.cgi $PATH_CGIBIN/memgraph.cgi
-	fi
-	echoIfVerbose "-> Fixing path in memgraph.cgi"
-	if [ -e $PATH_DTC_ADMIN/memgraph.cgi ]; then
-		# fix path for memgraph.cgi
-		perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
-		chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/memgraph.cgi
+		if [ ! -e $PATH_CGIBIN/memgraph.cgi ]; then
+			ln -s $PATH_DTC_ADMIN/memgraph.cgi $PATH_CGIBIN/memgraph.cgi
+		fi
+		echoIfVerbose "-> Fixing path in memgraph.cgi"
+		if [ -e $PATH_DTC_ADMIN/memgraph.cgi ]; then
+			# fix path for memgraph.cgi
+			perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
+			chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/memgraph.cgi
+		fi
 	fi
 }
 
