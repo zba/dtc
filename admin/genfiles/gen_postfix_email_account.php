@@ -268,8 +268,9 @@ function mail_account_generate_postfix(){
                                         } else {
 						$owner = $list_owner;
 					}
-					$domains_postmasters_file .= $list_name . "@" . $list_domain . " " . $name . "\n";
-					$aliases_file .= $name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"' . "\n";
+					$modified_name = str_replace("-","_",$name);
+					$domains_postmasters_file .= $list_name . "@" . $list_domain . " " . $modified_name . "\n";
+					$aliases_file .= $modified_name.': "|/usr/bin/mlmmj-recieve -L '.$list_path.'/'.$name.'/"' . "\n";
 				}
 			}
 			// if an abuse@ email hasn't been set, set one here to go to postmaster
