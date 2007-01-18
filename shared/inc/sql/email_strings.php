@@ -17,7 +17,7 @@ $txt_mailsql_does_not_look_like_a_mailbox_login = array(
 
 $txt_mailsql_mailbox_does_not_exists_in_db = array(
 	"fr" => "La boite aux lettres n'existe pas en base de donnée !",
-	"en" => "Mailbox does not exists in database!",
+	"en" => "Mailbox does not exist in database!",
 	"hu" => "TRANS Mailbox does not exists in database!",
 	"it" => "TRANS Mailbox does not exists in database!",
 	"nl" => "TRANS Mailbox does not exists in database!",
@@ -32,7 +32,7 @@ $txt_mailsql_mailbox_does_not_exists_in_db = array(
 
 $txt_mailsql_pass_are_made_only_with_std_chars_and_nums_and_should_be_6to16_long = array(
 	"fr" => "Les mots de passes sont fait uniquement de caractères standard (a-zA-Z0-9) et doivent etre entre 6 et 16 caractère de longueur.",
-	"en" => "Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.",
+	"en" => "Password must consist of letters and numbers only (a-zA-Z0-9) and should be between 6 and 16 chars long.",
 	"hu" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.",
 	"it" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.",
 	"nl" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.",
@@ -47,7 +47,7 @@ $txt_mailsql_pass_are_made_only_with_std_chars_and_nums_and_should_be_6to16_long
 
 $txt_mailsql_incorrect_redirection1_thisis_not_a_correct_email_format = array(
 	"fr" => "Redirection 1 incorrect: ce n'est pas un format de boite aux lettres correct!",
-	"en" => "Incorect redirection 1: this is not a correct emailbox format!",
+	"en" => "Incorrect redirection 1: this is not a correct email-box format!",
 	"hu" => "TRANS Incorect redirection 1: this is not a correct emailbox format!",
 	"it" => "TRANS Incorect redirection 1: this is not a correct emailbox format!",
 	"nl" => "TRANS Incorect redirection 1: this is not a correct emailbox format!",
@@ -62,7 +62,7 @@ $txt_mailsql_incorrect_redirection1_thisis_not_a_correct_email_format = array(
 
 $txt_mailsql_incorrect_redirection1_thisis_not_a_correct_email_format = array(
 	"fr" => "Redirection 2 incorrect: ce n'est pas un format de boite aux lettres correct!",
-	"en" => "Incorect redirection 2: this is not a correct emailbox format.",
+	"en" => "Incorrect redirection 2: this is not a correct email-box format.",
 	"hu" => "TRANS Incorect redirection 2: this is not a correct emailbox format.",
 	"it" => "TRANS Incorect redirection 2: this is not a correct emailbox format.",
 	"nl" => "TRANS Incorect redirection 2: this is not a correct emailbox format.",

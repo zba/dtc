@@ -1,13 +1,16 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.15 2006/07/31 05:44:25 thomas Exp $
+ * @version $Id: error_strings.php,v 1.16 2007/01/18 06:19:28 thomas Exp $
  * 
  * --------------------------------------------------------
  * For all translators check in new array is new data - se 
  * In plan add swedish language to DTC 
  * --------------------------------------------------------
  * $Log: error_strings.php,v $
+ * Revision 1.16  2007/01/18 06:19:28  thomas
+ * Some engly corrections thanks to Andrew McGill <andrewm@intoweb.co.za>
+ *
  * Revision 1.15  2006/07/31 05:44:25  thomas
  * Added some minor spanish translation patch. Thanks to jvaquero for this!
  *
@@ -29,7 +32,7 @@
 
 $txt_err_dtc_login_format = array(
 	"fr" => "Mauvais format du mot de passe du login administrateur: il doit jtre composi uniquement de lettre non capitales, de nombre ou du signe \"-\" et doit faire entre 4 et 16 caractères.<br>\n",
-	"en" => "Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"en" => "Incorect admin login format: it should consist of only lowercase letters or numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n",
 	"hu" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"it" => "TRANS Formato del login email errato: dovrebbe essere composto solo da lettere minuscole o numeri o dal simbolo \"-\" and should be between 4 and 16 chars long.<br>\n",
 	"nl" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
@@ -84,17 +87,17 @@ $txt_err_payment_finish_approved=array(
 );
 $txt_err_payment_cancel=array(
 	"fr" => "PAYMENT ABANDONNE",
-	"en" => "PAYMENT CANCELED",
-	"hu" => "PAYMENT CANCELED",
-	"it" => "PAYMENT CANCELED",
-	"nl" => "PAYMENT CANCELED",
-	"ru" => "PAYMENT CANCELED",
-	"de" => "PAYMENT CANCELED",
-	"zh" => "PAYMENT CANCELED",
+	"en" => "PAYMENT CANCELLED",
+	"hu" => "PAYMENT CANCELLED",
+	"it" => "PAYMENT CANCELLED",
+	"nl" => "PAYMENT CANCELLED",
+	"ru" => "PAYMENT CANCELLED",
+	"de" => "PAYMENT CANCELLED",
+	"zh" => "PAYMENT CANCELLED",
 	"pl" => "P£ATNO¦Æ ANULOWANA",
 	"se" => "TRANS SVENSKA",
 	"es" => "PAGO CANCELADO",
-	"pt" => "PAYMENT CANCELED"
+	"pt" => "PAYMENT CANCELLED"
 );
 
 $txt_err_payment_failed=array(
@@ -160,22 +163,22 @@ $txt_err_register_cant_reselect_product=array(
 
 $txt_err_register_succ=array (
 	"fr" => "Enregistrement réussit!",
-	"en" => "Registration successfull!",
-	"hu" => "Registration successfull!",
-	"it" => "Registration successfull!",
-	"nl" => "Registration successfull!",
-	"ru" => "Registration successfull!",
-	"de" => "Registration successfull!",
-	"zh" => "Registration successfull!",
+	"en" => "Registration successful!",
+	"hu" => "Registration successful!",
+	"it" => "Registration successful!",
+	"nl" => "Registration successful!",
+	"ru" => "Registration successful!",
+	"de" => "Registration successful!",
+	"zh" => "Registration successful!",
 	"pl" => "Rejestracja przebieg³a pomy¶nie",
 	"se" => "TRANS SVENSKA",
 	"es" => "Registro exitoso!",
-	"pt" => "Registration successfull!"
+	"pt" => "Registration successful!"
 );
 /** end new arrays **/
 $txt_err_email_format = array(
   "fr" => "Mauvais format du login mail: il doit être composé uniquement de lettre non capitales, de nombre ou du signe \"-\".<br>\n",
-  "en" => "Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "en" => "Incorect mail login format: it should consist of only lowercase letters, numbers, or the \"-\" sign.<br>\n",
   "hu" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "it" => "Formato del login email errato: dovrebbe essere composto solo da lettere minuscole o numeri o dal simbolo \"-\".<br>\n",
   "nl" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
@@ -189,7 +192,7 @@ $txt_err_email_format = array(
 
 $txt_err_mailbox_does_not_exists_in_db = array(
   "fr" => "Cette boite au lettre n'existe pas dans la base de donnée !<br>\n",
-  "en" => "Mailbox does no exists in database!<br>\n",
+  "en" => "Mailbox does not exists in database!<br>\n",
   "hu" => "TRANS Mailbox does no exists in database!<br>\n",
   "it" => "La Mailbox non esiste nel database!<br>\n",
   "nl" => "TRANS Mailbox does no exists in database!<br>\n",
@@ -203,7 +206,7 @@ $txt_err_mailbox_does_not_exists_in_db = array(
 
 $txt_err_email_exists_as_mailinglist = array(
   "fr" => "Cette boite existe déjà dans la base en tant que liste de publipostage !<br>\n",
-  "en" => "Mailbox allready exist in database as a mailing list!<br>\n",
+  "en" => "Mailbox allready exist in the database as a mailing list!<br>\n",
   "hu" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "it" => "La Mailbox esiste già nel database come mailing list!<br>\n",
   "nl" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
@@ -217,7 +220,7 @@ $txt_err_email_exists_as_mailinglist = array(
 
 $txt_err_password_format = array(
   "fr" => "Les mots de passes doivent être fait uniquement de caractères, de chiffres (a-zA-Z0-9) et doivent faire entre 6 et 16 caractères.<br>\n",
-  "en" => "Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
+  "en" => "Password consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "hu" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "it" => "La password è costituita solo da caratteri standard e numeri (a-zA-Z0-9) e dovrebbe essere di lunghezza compresa fra i 6 e i 16 caratteri.<br>\n",
   "nl" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",

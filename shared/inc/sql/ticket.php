@@ -9,8 +9,8 @@ function mailTicketToAllAdmins($subject,$body){
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$content = "A customer has wrote a support ticket.
-Bellow is a copy of his message:
+		$content = "A customer has submitted a support ticket.
+Below is a copy of his message:
 
 **********
 Subject: ".stripslashes($subject)."
@@ -19,7 +19,7 @@ Subject: ".stripslashes($subject)."
 **********
 ";
 		$headers = "From: ".$conf_webmaster_email_addr;
-		mail($a["email"],"[DTC] A customer has wrote a support ticket",$content,$headers);
+		mail($a["email"],"[DTC] A customer has submitted a support ticket",$content,$headers);
 	}
 }
 

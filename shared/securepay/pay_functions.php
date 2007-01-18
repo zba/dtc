@@ -14,7 +14,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url){
 	}
 
 	$out = "<table width=\"100%\" height=\"1\">";
-	$out .= "<tr><td>Paiement system</td><td>Amount</td><td>Gateway cost</td><td>Total</td><td>Instant account</td></tr>\n";
+	$out .= "<tr><td>Payment system</td><td>Amount</td><td>Gateway cost</td><td>Total</td><td>Instant account</td></tr>\n";
 	if($secpayconf_use_paypal == "yes"){
 		$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
 		$cost = $total - $amount;

@@ -103,7 +103,7 @@ $txt_lists_main_title_subunsub = array (
 
 $txt_lists_main_title_webarchive = array (
   "fr" => "Archive web",
-  "en" => "Webarchive",
+  "en" => "Web archive",
   "hu" => "",
   "it" => "Archivio web",
   "nl" => "",

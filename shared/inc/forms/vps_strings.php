@@ -5,21 +5,21 @@
 $txt_credential_not_correct = array(
 	"fr" => "Droits incorrect: impossible d'afficher dans le fichier ",
 	"en" => "Credential not correct: can't display in file ",
-	"hu" => "TRANS Credential not correct: can't display in file ",
+	"hu" => "TRANS Credentials not correct: can't display in file ",
 	"it" => "Credenziali non corrette: non posso mostrare il file ",
-	"nl" => "TRANS Credential not correct: can't display in file ",
-	"ru" => "TRANS Credential not correct: can't display in file ",
-	"de" => "TRANS Credential not correct: can't display in file ",
+	"nl" => "TRANS Credentials not correct: can't display in file ",
+	"ru" => "TRANS Credentials not correct: can't display in file ",
+	"de" => "TRANS Credentials not correct: can't display in file ",
 	"zh" => "TRANS Credential not correct: can't display in file ",
-	"pl" => "TRANS Credential not correct: can't display in file ",
-	"se" => "TRANS Credential not correct: can't display in file ",
-	"es" => "TRANS Credential not correct: can't display in file ",
-	"pt" => "TRANS Credential not correct: can't display in file "
+	"pl" => "TRANS Credentials not correct: can't display in file ",
+	"se" => "TRANS Credentials not correct: can't display in file ",
+	"es" => "TRANS Credentials not correct: can't display in file ",
+	"pt" => "TRANS Credentials not correct: can't display in file "
 );
 
 $txt_method_getvpsstate_failed_not_running = array(
 	"fr" => "Impossible de récupéré le status distant (la méthode getVPSState() a échoué). Peut-être que le VPS n'est pas démarré...",
-	"en" => "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
+	"en" => "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running?",
 	"hu" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
 	"it" => "Non posso ottenere lo stato remoto (Method getVPSState() failed). Il VPS potrebbe non essere in esecuzione...",
 	"nl" => "TRANS Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running...",
@@ -454,7 +454,7 @@ $txt_please_wait_until_fsck_finished = array(
 
 $txt_please_wait_until_reinstall_os_finished = array(
 	"fr" => "Veuillez attendre la fin de la réinstallation du système d'exploitation.",
-	"en" => "Please wait until operating system reinstallation is finished first.",
+	"en" => "Please wait until operating system reinstallation has completed.",
 	"hu" => "TRANS Please wait until operating system reinstallation is finished first.",
 	"it" => "Prima attendi che sia ultimata la reinstallazione del sistema operativo.",
 	"nl" => "TRANS Please wait until operating system reinstallation is finished first.",
@@ -559,17 +559,17 @@ $txt_file_system_check_fsck = array(
 
 $txt_operating_system_type_not_supported = array(
 	"fr" => "Système d'exploitation non supporté",
-	"en" => "Operating system type not suppoorted",
-	"hu" => "TRANS Operating system type not suppoorted",
+	"en" => "Operating system type not supported",
+	"hu" => "TRANS Operating system type not supported",
 	"it" => "Tipo di sistema operativo non supportato",
-	"nl" => "TRANS Operating system type not suppoorted",
-	"ru" => "TRANS Operating system type not suppoorted",
-	"de" => "TRANS Operating system type not suppoorted",
-	"zh" => "TRANS Operating system type not suppoorted",
-	"pl" => "TRANS Operating system type not suppoorted",
-	"se" => "TRANS Operating system type not suppoorted",
-	"es" => "TRANS Operating system type not suppoorted",
-	"pt" => "TRANS Operating system type not suppoorted"
+	"nl" => "TRANS Operating system type not supported",
+	"ru" => "TRANS Operating system type not supported",
+	"de" => "TRANS Operating system type not supported",
+	"zh" => "TRANS Operating system type not supported",
+	"pl" => "TRANS Operating system type not supported",
+	"se" => "TRANS Operating system type not supported",
+	"es" => "TRANS Operating system type not supported",
+	"pt" => "TRANS Operating system type not supported"
 );
 
 $txt_reinstall_operating_system = array(
@@ -679,7 +679,7 @@ $txt_new_ssh_key = array(
 
 $txt_to_access_to_your_console_first_setup_a_ssh_password = array(
 	"fr" => "Pour accèder a votre console, installer un nouveau mot de passe ou une clef ci-après et connectez vous à : ",
-	"en" => "To access to your console, first setup a ssh password or key above, and then ssh to:",
+	"en" => "To access to your console, first enter a ssh password or key above, and then ssh to:",
 	"hu" => "TRANS To access to your console, first setup a ssh password or key above, and then ssh to:",
 	"it" => "Per accedere alla tua console, prima setta una password o chiave SSH, e poi fai un ssh su:",
 	"nl" => "TRANS To access to your console, first setup a ssh password or key above, and then ssh to:",

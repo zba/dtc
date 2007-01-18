@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.48 2006/07/31 05:44:25 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.49 2007/01/18 06:19:28 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	* 
@@ -195,7 +195,7 @@ $txt_user_menu_email = array (
 $txt_cfg_allowed_dns_transfer_list = array(
 	"fr" => "Listez ici les IPs des serveurs DNS abilité a faire des zone transfer séparé par des &quot;|&quot; (pipe)<br>
 	        (laissez vide si vous n'avez pas de serveur DNS de backup) :",
-        "en" => "List here DNS server IPs allowed to do zone transfers separated by &quot;|&quot; (pipe)<br>
+        "en" => "List the DNS server IPs allowed to do zone transfers separated by &quot;|&quot; (pipe)<br>
 	        (leave blank if you don't have backup DNS server):",
         "hu" => "TRANS List here DNS server IPs allowed to do zone transfers &quot;|&quot;-al elválasztva
 	        <br>(hagyja üresen, ha nincs tartalék DNS szervere)",
@@ -223,7 +223,7 @@ vuoto se non si hanno server DNS di backup):",
 $txt_backup_mx_servers = array(
         "fr" => "Listez ici vos serveur MX de backup séparé par des &quot;|&quot; (pipe)<br>
 	        (laissez vide si vous n'avez pas de serveur MX de backup) :",
-        "en" => "List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+        "en" => "List your backup MX servers separated by &quot;|&quot; (pipe)<br>
         	(leave blank if you don't have backup MX server):",
         "hu" => "Sorolja fel a tartalék mx szervereit &quot;|&quot;-al elválasztva
         	<br>(hagyja üresen, ha nincs tartalék mx szervere)",
@@ -434,7 +434,7 @@ $txt_cfg_paypal_sandbox_email = array(
 
 $txt_cfg_allow_following_servers_to_list = array(
 	"fr" => "Autoriser les servers suivant a lister les domaines pour les backuper : ",
-	"en" => "Allow those servers to list this server domain names for doing backup:¡¡",
+	"en" => "Allow those servers to list this server's domain names for doing backup:¡¡",
 	"hu" => "A következõ szerverek backup céljából hozzáférhetnek az ezen a szerveren létezõ domain nevekhez:",
 	"it" => "Autorizza i seguenti servers i nomi a dominio di questo server per effettuare backup: ",
 	"nl" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
@@ -524,7 +524,7 @@ $txt_cfg_use_paypal = array(
 
 $txt_cfg_paypal_autovalid = array(
 	"fr" => "Valider les nouveaux compte si payé : ",
-	"en" => "Validate new account if payed: ",
+	"en" => "Validate new account if paid: ",
 	"hu" => "Akkor aktiválja az új hozzáférést, ha az ki van fizetve: ",
 	"it" => "Autorizza il nuovo account se ha pagato: ",
 	"nl" => "TRANS Validate new account if payed: ",
@@ -659,22 +659,22 @@ $txt_cfg_demo_version =array(
 
 $txt_cfg_session_expir_time = array(
 	"fr" => "Expiration des sessions utilisateur (mn):",
-	"en" => "User session expire time (mn):",
+	"en" => "User session expire time (min):",
 	"hu" => "A felhasználói munkamenet lejárati ideje (perc):",
 	"it" => "Tempo scadenza della sessione utente (mn):",
-	"nl" => "TRANS User session expire time (mn):",
-	"ru" => "TRANS User session expire time (mn):",
+	"nl" => "TRANS User session expire time (min):",
+	"ru" => "TRANS User session expire time (min):",
 	"de" => "Expire Time für User Sitzung (min):",
 	"zh" => "³¬Ê±²Ù×÷£¨·ÖÖÓ£©",
 	"pl" => "Czas sesji (min) :",
-	"se" => "TRANS User session expire time (mn):",
+	"se" => "TRANS User session expire time (min):",
 	"es" => "Caducidad de la sesi&oacute;n de usuario (min):",
 	"pt" => "Duração para a expiração da sessão (min):"
 	);
 
 $txt_cfg_use_multiple_ip =array(
 	"fr" => "Utiliser plusieurs adresses IP :",
-	"en" => "Use multiple IP:",
+	"en" => "Use multiple IPs:",
 	"hu" => "Többszörös IP címet használ:",
 	"it" => "Usa IP multipli:",
 	"nl" => "!TRANSLATE Use multiple IP",
@@ -870,7 +870,7 @@ $txt_cfg_name_zonefileconf_title =array(
 
 $txt_cfg_main_mx_addr =array(
 	"fr" => "Adresse de votre serveur MX principal:",
-	"en" => "Address of your main MX server :",
+	"en" => "Address of your main MX server:",
 	"hu" => "A fõ MX szerver címe :",
 	"it" => "Indirizzo del tuo MX server primario :",
 	"nl" => "Hostname van je primaire MX record",
@@ -900,7 +900,7 @@ $txt_cfg_mail_addr_webmaster =array(
 
 $txt_cfg_primary_dns_server_addr =array(
 	"fr" => "Adresse du serveur DNS primaire :",
-	"en" => "Primary dns server addr:",
+	"en" => "Primary DNS server address:",
 	"hu" => "Az elsõdleges dns szerver címe:",
 	"it" => "Indirizzo server DNS primario:",
 	"nl" => "Het primaire DNS serveradres:",
@@ -915,7 +915,7 @@ $txt_cfg_primary_dns_server_addr =array(
 
 $txt_cfg_secondary_dns_server_addr =array(
 	"fr" => "Adresse du serveur DNS secondaire :",
-	"en" => "Secondary dns server addr:",
+	"en" => "Secondary DNS server address:",
 	"hu" => "A másodlagos dns szerver címe:",
 	"it" => "Indirizzo server DNS secondario:",
 	"nl" => "Secundaire DNS serveradres:",
@@ -945,7 +945,7 @@ $txt_cfg_slave_dns_ip =array(
 
 $txt_cfg_payconf_title = array (
 	"fr" => "Portail de paiement",
-	"en" => "Pay gateway",
+	"en" => "Payment gateway",
 	"hu" => "Fizetési átjáró",
 	"it" => "Gateway per pagamento",
 	"nl" => "TRANS: Pay gateway",
@@ -1097,7 +1097,7 @@ $txt_cfg_phplib_path = array(
 
 $txt_cfg_phplib2_path =array(
 	"fr" => "Librairies PHP additionnelles open_basedir (conservé a la réinstallation):",
-	"en" => "Php open_basedir additional libraries path (keeped uppon reinstallation):",
+	"en" => "Php open_basedir additional libraries path (survives reinstallation):",
 	"hu" => "További php könyvtárak elérési útja open_basedir (keeped uppon reinstallation):",
 	"it" => "Path librerie addizionali PHP open_basedir (keeped uppon reinstallation):",
 	"nl" => "Additionele php library paden open_basedir (keeped uppon reinstallation):",

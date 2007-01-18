@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: strings.php,v 1.18 2006/10/31 08:20:41 tusker Exp $
+ * @version $Id: strings.php,v 1.19 2007/01/18 06:19:28 thomas Exp $
  * @abstract Arrays for translations admin panel to many laguages
  * 
  * adedd swedish to array by seeb <seeb@seeb.net.pl>
@@ -10,8 +10,8 @@
 $txt_dtcrm_your_domain_has_been_registred_elsewhere = array(
 "fr" => "Votre nom de domaine a été enregistré ailleurs (eg pas sur ce site).
 Pour demander un transfère ici, veuillez cliquez ",
-"en" => "Your domain name has been registred elsewhere (eg
-not on this site). To order for its transfer, please click",
+"en" => "Your domain name has been registred elsewhere (i.e.
+not on this site). To order its transfer, please click",
 "hu" => "Az ön domainje valahol másol van regisztrálva (nem ezen a szerveren).
 Ha szeretné áttranszferáltatni erre a szerverre, kattintson ide.",
 "it" => "Il tuo nome a dominio è già stato registrato da qualche parte 
@@ -29,8 +29,8 @@ Ha szeretné áttranszferáltatni erre a szerverre, kattintson ide.",
 $txt_dtcrm_if_you_want_to_keep_your_current_registrar = array(
 "fr" => "Si vous voullez garder votre registrar actuel, vous devez faire pointer
 le whois vers les DNS suivants :",
-"en" => "If you want to keep your actual registrar, you have to make the whois point
-to thoses DNS:",
+"en" => "If you want to keep your current registrar, you have to make the whois point
+to these DNS:",
 "hu" => "Ha meg szeretne maradni a jelenlegi regisztrátoránál, akkor a whois rekordnak
  azok",
 "it" => "Se vuoi mantenere il tuo attuale registrar, devi far puntare 
@@ -152,7 +152,7 @@ $txt_wrong_user_or_password_or_timeout_expire = array(
 
 $txt_dtcrm_registration_of_name_server_successfull = array(
 "fr" => "Enregistrement de votre serveur de nom réussit",
-"en" => "Registration of your name server succesful",
+"en" => "Registration of your name server was succesful",
 "hu" => "A névszerver regisztrációja sikeresen megtörtént.",
 "it" => "Registrazione del tuo name server avvenuta con successo",
 "nl" => "TRANS ",
@@ -183,7 +183,7 @@ $txt_dtcrm_registration_of_name_server_failed = array(
 
 $txt_dtcrm_deletion_of_name_server_succesfull = array(
 "fr" => "Effacement de votre serveur de nom réussit",
-"en" => "Deletion of name server succesful",
+"en" => "Deletion of name server was succesful",
 "hu" => "Sikeresen törölte a névszervert",
 "it" => "Cancellazione del name server avvenuta con successo",
 "nl" => "TRANS ",
@@ -198,7 +198,7 @@ $txt_dtcrm_deletion_of_name_server_succesfull = array(
 
 $txt_dtcrm_edition_of_name_server_succesfull = array(
 "fr" => "Edition de votre serveur de nom réussit",
-"en" => "Addition of name server succesfull",
+"en" => "Addition of name server was succesfull",
 "hu" => "A névszerver módosítása sikeresen megtörtént ",
 "it" => "Editazione del name server avvenuta con successo",
 "nl" => "TRANS ",
@@ -288,7 +288,7 @@ $txt_dtcrm_delete_name_server = array(
 
 $txt_dtcrm_select_your_domain_name_for_adding_name_server = array(
 "fr" => "Selectionner un de vos nom de domaine pour ajouter le serveur de nom a la registry :",
-"en" => "Select one of your domain-names for adding a name server to the registries:",
+"en" => "Select one of your domain-names for registering an additional name server to the registries:",
 "hu" => "Válasszon egy domain nevet amit regisztrálni szeretne névszerveren:",
 "it" => "Seleziona uno dei tuoi nomi a domini per aggiungere un name 
 server ai registri",
@@ -304,7 +304,7 @@ server ai registri",
 
 $txt_dtcrm_ip_addr_of_that_name_server = array(
 "fr" => "Addresse IP de ce serveur de nom :",
-"en" => "IP address of that name server:",
+"en" => "IP address of name server:",
 "hu" => "A névszerver IP címe:",
 "it" => "Indirizzo IP di questo name server:",
 "nl" => "TRANS ",
@@ -401,12 +401,12 @@ $txt_dtcrm_soon_an_admin_will_have_a_look = array(
 de nom de domaine sur votre compte. Vous n'avez pas les droits nécessaire
 pour l'ajout de nom de domaine automatique. Pour obtenir l'ajout automatique
 sans validation, ou sans enregistrement de nom de domaine veuillez contacter :",
-"en" => "Soon an administrator will have a look to your request
+"en" => "An administrator will examine your request shortly,
 and validate the addition of this domain name to your account.
 You curently don't have enough privileges to add domain names.
 If you often add domain names, you can ask the administrator to
 grant you the privilege of automatic domain name addition.
-To have a new domain name to host without administrator validation or domain name
+To request hosting for a new domain name, without administrator validation or domain name
 registration, please write to:",
 "hu" => "Hamarosan az adminisztrátor ellenõrzi és jóváhagyja ezt a domain
 nevet. Önnek jelenleg nincs joga új domain neveket hozzáadni.
@@ -564,7 +564,7 @@ sans enregistrement, vous pouvez demander a l'administrateur de
 le faire pour vous en écrivant à:",
 "en" => "You curently don't have enough privileges to
 add domain names. If you often add domain names, you can ask the
-administrator to do so. To have a new domain name to host without domain
+administrator to do so. To request hosting for a new domain without domain
 name registration, please write to:",
 "hu" => "Önnek jelenleg nincs joga új domain neveket hozzáadni.
 Ha gyakran visz fel új domain neveket, akkor megkérheti az adminisztrátort,
@@ -591,7 +591,7 @@ realizar esta operação automaticamente escrevendo para :"
 
 $txt_dtcrm_not_correct_format = array(
 "fr" => "Le nom de domaine que vous avez entré n'est pas valide. Veuillez essayer a nouveau.",
-"en" => "Domain name is not in correct format, please select another name.",
+"en" => "Domain name is not in correct format. Please enter another name.",
 "hu" => "A domain név nem megfelelõ formátumú. Kérjük válassszon másik nevet.",
 "it" => "In nome a dominio non è nel formato corretto, perfavore 
 scegli un altro nome.",
@@ -607,7 +607,7 @@ scegli un altro nome.",
 
 $txt_domain_name_already_hosted_here = array(
 "fr" => "Ce nom de domaine est déjà hébergé ici. Veuillez en choisir un autre.",
-"en" => "This domain name already hosted here, please select another name.",
+"en" => "This domain name already hosted here, please enter another name.",
 "hu" => "Ezt a domain-t már hosztoljuk, kérjük válasszon másik nevet.",
 "it" => "Questo nome a dominio è già hostato qui, per favore scegli un 
 altro nome. ",
@@ -639,7 +639,7 @@ $txt_dtcrm_domain_name_now_ready = array(
 $txt_dtcrm_you_can_check_config = array(
 "fr" => "Vous pouvez maintenant utiliser votre domaine
 en cliquant ici :",
-"en" => "Now you can go to check it's configuration by cliking here:",
+"en" => "Now you can go to check its configuration by cliking here:",
 "hu" => "Most ellenõrizheti a konfigurációját, ha ide kattint:",
 "it" => "Ora puoi controllare la sua configurazione cliccando qui:",
 "nl" => "TRANS ",
@@ -654,7 +654,7 @@ en cliquant ici :",
 
 $txt_dtcrm_or_you_can_add_another_domain = array(
 "fr" => "Vous pouvez aussi ajouter un autre domaine:",
-"en" => "Or you can add another domain name:",
+"en" => "Alternatively, you can add another domain name:",
 "hu" => "Vagy hozzáadhat további domain neveket:",
 "it" => "Oppure puoi aggiungere un altro dominio:",
 "nl" => "TRANS ",
@@ -700,7 +700,7 @@ $txt_sorry_domain_name_not_available1 = array(
 
 $txt_sorry_domain_name_not_available2 = array(
 "fr" => "n'est PAS disponible, le serveur a retourner : ",
-"en" => "is NOT available for registration. Registration server returned: ",
+"en" => "is NOT available for registration. The registration server returned: ",
 "hu" => "Nem regisztrálható. A regisztrációs szerver a következõvel tért vissza: ",
 "it" => "NON è disponibile per la registrazione. Il server di 
 registrazione dice: ",
@@ -842,7 +842,7 @@ $txt_dtcrm_you_currently_dont_have_enough_funds = array (
 serez redirigez sur notre system de paiement. Veuillez cliquer
 sur le boutou suivant pour payer.",
 "en" => "You currently don't have enough funds on your account. You will be
-redirected to our payement system. Please click on the button bellow
+redirected to our payement system. Please click on the button below
 to pay.",
 "hu" => "Önnek nincs elegendõ pénz a számláján. Ön átirányításra kerül a mi fizetési rendszerünkhöz.
 Fizetéshez kattintson az alábbi gombra.",
@@ -884,7 +884,7 @@ el bot&oacute;n de confirmar para continuar",
 
 $txt_dtcrm_button_paiement_done_checkout = array (
 "fr" => "Paiement effectué, je veux continuer",
-"en" => "Payment done, let met checkout",
+"en" => "Payment complete. Proceed to checkout",
 "hu" => "Sikeres fizetés. Ellenõrzöm.. ",
 "it" => "Pagamento effettuato, lasciami continuare.",
 "nl" => "TRANS ",
@@ -929,7 +929,7 @@ $txt_dtcrm_registration_failed = array (
 
 $txt_dtcrm_registration_succesfull = array (
 "fr" => "Enregistrement réussit",
-"en" => "Registration succesfull",
+"en" => "Registration successful",
 "hu" => "A regisztráció sikerült",
 "it" => "Registrazione avvenuta con successo",
 "nl" => "TRANS ",
@@ -959,7 +959,7 @@ $txt_dtcrm_server_said = array (
 
 $txt_dtcrm_succesfully_added_domain = array (
 "fr" => "Nom de domaine ajouté a la base de donnée avec succes",
-"en" => "Succesfully added your domain name to the hosting database",
+"en" => "Successfully added your domain name to the hosting database",
 "hu" => "Sikeresen hozzáadtuk a domain nevet az adatbázishoz ",
 "it" => "Il tuo nome a dominio è stato aggiunto con successo al 
 database di hosting",
@@ -1067,7 +1067,7 @@ $txt_dtcrm_transfer_check_failed = array (
 
 $txt_dtcrm_transfer_check_successfull = array (
 "fr" => "SUCCES DU TEST DE TRANSFERABILITE",
-"en" => "TRANSFER CHECK SUCCESSFULL",
+"en" => "TRANSFER CHECK SUCCESSFUL",
 "hu" => "A TRANSZFER ELLENÕRZÉSE SIKERES",
 "it" => "CHECK TRASFERIMENTO AVVENUTO CON SUCCESSO",
 "nl" => "TRANS ",
@@ -1082,7 +1082,7 @@ $txt_dtcrm_transfer_check_successfull = array (
 
 $txt_dtcrm_step2_select_contact_transfer = array(
 "fr" => "Etape 2 : selectionner les contacts pour le transfère de domaine",
-"en" => "Step2: select contacts for domain transfer",
+"en" => "Step 2: select contacts for domain transfer",
 "hu" => "Második lépés: jelölje ki a kapcsolattartókat a domain transzferhez",
 "it" => "Step 2: seleziona i contatti per il trasferimento dominio",
 "nl" => "TRANS ",
@@ -1097,7 +1097,7 @@ $txt_dtcrm_step2_select_contact_transfer = array(
 
 $txt_dtcrm_step3_proceed_transfer = array(
 "fr" => "Etape 3 : procéder au transfère",
-"en" => "Step3: proceed transfer",
+"en" => "Step 3: proceed transfer",
 "hu" => "Harmadik lépés: transzfer indítása ",
 "it" => "Passo 3: procedi col trasferimento ",
 "nl" => "TRANS ",
@@ -1127,7 +1127,7 @@ $txt_dtcrm_transaction_failed_try_again = array(
 
 $txt_dtcrm_your_account_has_been_refund = array(
 "fr" => "Votre compte à été crédité!",
-"en" => "Your account has been refund!",
+"en" => "Your account has been credited!",
 "hu" => "A számlája visszafizetésre került!",
 "it" => "Il pagamento è stato aggiunto al vostro conto",
 "nl" => "TRANS ",
@@ -1142,7 +1142,7 @@ $txt_dtcrm_your_account_has_been_refund = array(
 
 $txt_dtcrm_proceed_to_transfer_button = array(
 "fr" => "Procéder au transfère",
-"en" => "Proceed transfer",
+"en" => "Proceed to transfer",
 "hu" => "Transzfer indítása",
 "it" => "Procedi col trasferimento",
 "nl" => "TRANS ",

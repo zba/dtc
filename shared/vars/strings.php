@@ -5,7 +5,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.122 2007/01/11 06:39:48 thomas Exp $
+	* @version  $Id: strings.php,v 1.123 2007/01/18 06:19:28 thomas Exp $
 	* 
 	**/
 	
@@ -917,7 +917,7 @@ $txt_no_parking_popup_text = array(
 */
 $txt_register_custom_message_title = array(
 	"fr" => "Laisser un message a l'administrateur pour indiquer des eventuels specificités pour votre compte:",
-	"en" => "Leave a message to tell any specific requirements you might have for your account:",
+	"en" => "Leave a message describing any specific requirements you might have for your account:",
 	"hu" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
 	"it" => "Per favore lascia un messaggio per richieste specifiche:",
 	"nl" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
@@ -2296,9 +2296,8 @@ $txt_icon_mysite_at_mydomain = array(
 	"pt" => "ÁREA DE VHOSTS FTP"
 	);
 $txt_subdom_limit_reach = array(
-	"fr" => "Nombre maximum de sous-domaines atteint. Impossible d'ajouter de nouveaux
-	sous-domaines.",
-	"en" => "Maximum number of subdomains reached. cannot add a new subdomain",
+	"fr" => "Nombre maximum de sous-domaines atteint. Impossible d'ajouter de nouveaux sous-domaines.",
+	"en" => "Maximum number of subdomains reached. Cannot add a new subdomain",
 	"hu" => "Az aldomain-ok száma elérte a maximumot. Nem adhat hozzá újabb aldomain-t",
 	"it" => "Raggiunto Numero massimo sottodomini. Non puoi aggiungerne uno nuovo.",
 	"nl" => "Het maximum aantal subdomeinen is bereikt. Je kan geen nieuwe meer toevoegen.",
@@ -2464,7 +2463,7 @@ $txt_general_virtual_admin_edition = array(
 	);
 $txt_domains_configuration_title = array(
 	"fr" => "Edition de la configuration des domaines de <i>\"$adm_login\"</i>",
-	"en" => "Configuration for each domains of <i>\"$adm_login\"</i>",
+	"en" => "Configuration of domains for <i>\"$adm_login\"</i>",
 	"hu" => "Az összes domain konfigurációja, ami a következõ felhasználó tulajdonában van <i>\"$adm_login\"</i>",
 	"it" => "Configurazione per ogni dominio del <i>\"$adm_login\"</i>",
 	"nl" => "Configuratie van elk domein voor <i>\"$adm_login\"</i>",
@@ -2609,7 +2608,7 @@ $txt_del_user = array(
 	);
 $txt_del_user_confirm = array(
 	"fr" => "Etes-vous sûr de vouloir effacer cet utilisateur ? Ceci effacera tous ses noms de domaines, ses fichiers et ses bases de données !!!",
-	"en" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
+	"en" => "Are your sure you want to delete this user? This will erase all his hosted domain names, files, and databases !!!",
 	"hu" => "Biztos benne hogy törölni akarja ezt a felhasználót ? Ez a mûvelet törli a felhasználó összes domain nevét, fájljait és adatbázisait!!!",
 	"it" => "Sei sicuro di voler cancellare questo utente? In questo modo cancellerai tutti i suoi domini, files e database !!!",
 	"nl" => "Weet je zeker dat je deze gebruiker wilt wissen? Als je hier op JA klikt, wis je DEFINITIEF alle domeinnamen, bestanden en databases gekoppeld aan deze gebruiker !!!",
@@ -2637,7 +2636,7 @@ $txt_del_user_domain = array(
 	);
 $txt_del_user_domain_confirm = array(
 	"fr" => "Etes vous sure de vouloir effacer ce nom de domaine ? Ceci effacera tous les fichiers hébergés pour ce domaine !!!",
-	"en" => "Are you sure you want to delete this domain name ? This will erase all hosted filles for this domain !!!",
+	"en" => "Are you sure you want to delete this domain name ? This will erase all hosted files for this domain !!!",
 	"hu" => "Biztosan törli ezt a domain nevet ? Ez a mûvelet a domain-hez tartozó összes fájlt is törli !!!",
 	"it" => "Sei sicuro di voler cancellare questo nome a dominio? In questo modo cancellerai tutti i files del dominio !!!",
 	"nl" => "Weet je zeker dat je dit domein wilt wissen? Deze actie zal het domein wissen INCLUSIEF alle bestanden op het filesysteem !!!",
@@ -2707,7 +2706,7 @@ $txt_domain_tbl_config_quota = array(
 );
 $txt_domain_tbl_config_max_ftp = array(
 	"fr" => "Ftp max",
-	"en" => "Max ftp",
+	"en" => "Max FTP",
 	"hu" => "Max ftp",
 	"it" => "Max ftp",
 	"nl" => "Max ftp",
@@ -2831,8 +2830,8 @@ $txt_your_domain_email = array(
 	"pt" => "Contas de correio :"
 	);
 $txt_your_domain_ftp = array(
-	"fr" => "Comptes ftp :",
-	"en" => "Ftp accounts:",
+	"fr" => "Comptes FTP :",
+	"en" => "FTP accounts:",
 	"hu" => "Ftp hozzáférések:",
 	"it" => "Accounts FTP:",
 	"nl" => "Ftp accounts:",
@@ -3029,7 +3028,7 @@ $txt_allowed_data_transferGB = array(
 );
 $txt_expiration_date = array(
 	"fr" => "Date d'expiration",
-	"en" => "Expiration date",
+	"en" => "Expiry date",
 	"hu" => "Lejárat dátuma",
 	"it" => "Data scadenza",
 	"nl" => "Eind datum",
@@ -3347,15 +3346,15 @@ courrier (celui qui récupère et stocke tous vos
 courriers). La valeur \"default\" signifie que vous
 désirez utiliser le serveur actuel.",
 	
-	"en" => "Take care ! Setting wrong value
-in the following fields can lead to the stop of
-your site services (web or mail).<br>
-Put something else than \"default\" in the DNS
+	"en" => "Take care ! Setting a wrong value
+in the following fields can lead to
+your site services stopping (web or mail).<br>
+Putting something else than \"default\" in the DNS
 fields means that you want your site to be
 hosted elsewhere.<br>
-The MX parameter tells the addresse of the mail server
-(the one that stores all your mail when somebody sends
-your a message). The value \"default\" means that
+The MX parameter determines the address of the mail server
+that receives all your mail when somebody sends
+your a message. The value \"default\" means that
 you want to use the current server.",
 	
 	"hu" => "Figyelem ! Hibás értékek megadása az alábbi mezõkben
@@ -3885,7 +3884,7 @@ $txt_left_menu_title = array(
 	
 $txt_title_geninfo_form = array(
 	"fr" => "Informations générales de ",
-	"en" => "General informations of ",
+	"en" => "General information of ",
 	"hu" => "Általános információk ",
 	"it" => "Informazioni generali su ",
 	"nl" => "Algemene informatie over ",
@@ -4020,9 +4019,9 @@ $txt_subdom_dynip_logpass = array(
 IP a distance, par exemple si vous dispose d'une IP dynamyque et que vous
 voulez que le sous-domaine pointe dessus. Dans ce cas, veuillez rentrer
 un couple login/mot de passe ci-dessous:",
-	"en" => "If need it, it's possible to set your subdomain IP remotely,
-for example if you have a home connection dynamic address and you want a
-subdomain to point to it. First, enter login and password here: ",
+	"en" => "If required, it is possible to set your subdomain IP remotely.
+For example if you have a home connection with a dynamic address and you want a
+subdomain to point to it. Enter login and password here: ",
 	"hu" => "Ha szükséges, akkor lehetõség van az aldomain-je IP címét távolról beállítani.
 Például akkor, ha van otthoni internet hozzáférése dinamikus címmel és szeretné ha az aldomain
 erre mutasson. Elõször adja meg a login nevet és a jelszót itt: ",
@@ -4045,11 +4044,11 @@ subdominio apunte a &eacute;sta. Primero, introduce aqu&iacute; el usuario y la 
 );
 $txt_subdom_dynip_login = array(
 	"fr" => "Login IP dynamique :",
-	"en" => "Dynamic ip update login: ",
-	"hu" => "Dinamikus ip frissítés login neve: ",
+	"en" => "Dynamic IP update login: ",
+	"hu" => "Dinamikus IP frissítés login neve: ",
 	"it" => "Login IP dinamico: ",
-	"nl" => "TRANS Dynamic ip update login: ",
-	"ru" => "TRANS Dynamic ip update login: ",
+	"nl" => "TRANS Dynamic IP update login: ",
+	"ru" => "TRANS Dynamic IP update login: ",
 	"de" => "Dynamische IP Login: ",
 	"zh" => "¸Ä±äIPÉý¼¶µÇÂ¼: ",
 	"pl" => "Login do dynamicznej aktualizacji adresu IP : ",
@@ -4059,11 +4058,11 @@ $txt_subdom_dynip_login = array(
 );
 $txt_subdom_dynip_pass = array(
 	"fr" => "Mot de pass IP dynamique :",
-	"en" => "Dynamic ip update password: ",
-	"hu" => "Dinamikus ip frissítés jelszó: ",
+	"en" => "Dynamic IP update password: ",
+	"hu" => "Dinamikus IP frissítés jelszó: ",
 	"it" => "Modifica password IP dinamico: ",
-	"nl" => "TRANS Dynamic ip update password: ",
-	"ru" => "TRANS Dynamic ip update password: ",
+	"nl" => "TRANS Dynamic IP update password: ",
+	"ru" => "TRANS Dynamic IP update password: ",
 	"de" => "Dynamische IP Passwort: ",
 	"zh" => ":¸Ä±äIPÉý¼¶ÃÜÂë",
 	"pl" => "Has³o do dynamicznej aktualizacji adresu IP : ",
@@ -4164,11 +4163,11 @@ de toutes facons DTC ne mettra pas a jour plus rapidement (conseil:
 si vous avez ntpdate qui regle votre horloge systeme, vous pouvez
 faire les updates toutes les heures a 9, 19, 29, 39, 49 et 59 minutes.",
 	"en" => "Then simply add the following script to your Unix
-system crontab (lynx-ssl is needed). Recommanded time is between
-30 minutes and 2 hours. Please don't do it more than each 10
-minutes, anyway DTC will not generate a domaine zone file more
-oftently than each 10 minutes (advice: setup you server with
-network clock and do it at 9,19,29,39,49 and 59 of each hours).",
+system crontab (lynx-ssl is needed). Recommended time is every
+30 minutes to 2 hours. Please don't do it more than each 10
+minutes. DTC will not generate a domaine zone file more
+oftently than each 10 minutes anyway (advice: setup you server with
+NTP (network time protocol) and do it at 9,19,29,39,49 and 59 of each hours).",
 	"hu" => "Tehát egyszerûen adja hozzá a következõ scriptet a Unix
 rendszere crontab bejegyzéséhez (lynx-ssl -re szüksége lesz). A javasolt idõzítés
 30 perc és 2 óra között van. Kérem ne állítsa 10 percnél többre, mert enélkül a
@@ -4340,7 +4339,7 @@ $txt_mail_redirection2 = array(
 );
 $txt_mail_deliver_localy = array(
 	"fr" => "Délivrer les messages en local: ",
-	"en" => "Deliver messages localy: ",
+	"en" => "Deliver messages locally: ",
 	"hu" => "Helyileg kézbesíti az üzeneteket: ",
 	"it" => "TRANS Deliver localmente: ",
 	"nl" => "TRANS Lokaal afleveren: ",
@@ -4402,18 +4401,18 @@ $txt_mail_edit = array(
 // FTP accounts //
 //////////////////
 $txt_title_ftp_form = array(
-	"fr" => "Comptes ftp de ",
-	"en" => "Ftp accounts of ",
-	"hu" => "Ftp hozzáférései a(z) ",
+	"fr" => "Comptes FTP de ",
+	"en" => "FTP accounts of ",
+	"hu" => "FTP hozzáférései a(z) ",
 	"it" => "Accounts FTP di ",
-	"nl" => "Ftp accounts van ",
+	"nl" => "FTP accounts van ",
 	"ru" => "õÞÅÔÎÙÅ ÚÁÐÉÓÉ æôð",
 	"de" => "FTP Accounts von ",
 	"zh" => "±¾ÍøÕ¾µÄFTPÕÊ»§ ",
 	"pl" => "Konta FTP ",
 	"se" => "TRANS SVENSKA",
 	"es" => "Cuentas FTP de ",
-	"pt" => "Contas de ftp"
+	"pt" => "Contas de FTP"
 );
 $txt_ftp_account_list = array(
 	"fr" => "Liste de vos comptes FTP: ",
@@ -4475,9 +4474,9 @@ $txt_ftp_new_account_link = array(
 // SSH ACCOUNTS //
 //////////////////
 $txt_title_ssh_form = array(
-	"fr" => "Comptes ssh de ",
-	"en" => "Ssh accounts of ",
-	"hu" => "Ssh hozzáférései a(z) ",
+	"fr" => "Comptes SSH de ",
+	"en" => "SSH accounts of ",
+	"hu" => "SSH hozzáférései a(z) ",
 	"it" => "Accounts SSH di ",
 	"nl" => "Ssh accounts van ",
 	"ru" => "õÞÅÔÎÙÅ ÚÁÐÉÓÉ æôð",
@@ -4486,7 +4485,7 @@ $txt_title_ssh_form = array(
 	"pl" => "Konta SSH ",
 	"se" => "TRANS SVENSKA",
 	"es" => "Cuentas SSH de ",
-	"pt" => "Contas de ssh"
+	"pt" => "Contas de SSH"
 );
 $txt_ssh_account_list = array(
 	"fr" => "Liste de vos comptes SSH: ",
@@ -4532,8 +4531,8 @@ $txt_ssh_account_edit = array(
 );
 
 $txt_ssh_new_account_link = array(
-	"fr" => "Nouveau compte ssh",
-	"en" => "New ssh account",
+	"fr" => "Nouveau compte SSH",
+	"en" => "New SSH account",
 	"hu" => "Új SSH hozzáférés",
 	"it" => "Nuovo account SSH",
 	"nl" => "Nieuw ssh account",
@@ -4551,8 +4550,8 @@ $txt_ssh_new_account_link = array(
 ///////////////
 
 $txt_new_password = array(
-	"fr" => "Nouveau compte ftp",
-	"en" => "New ftp account",
+	"fr" => "Nouveau compte FTP",
+	"en" => "New FTP account",
 	"hu" => "Új FTP hozzáférés",
 	"it" => "Nuovo account FTP",
 	"nl" => "Nieuw ftp account",
@@ -4820,9 +4819,9 @@ to redistribute our developpements.<br><br>
 You can add, delete or modify a mailbox with this tool.<br><br>
 
 <u>2.2. Redirection and local delivery</u><br><br>
-Each mailbox can be redirected to one or more email addresse, which
+Each mailbox can be redirected to one or more email addresses. This
 means that when a message is recieved, it is forwared to one
-or tow email adresse(s). The \"deliver localy\" checkbox
+or two email adresse(s). The \"deliver locally\" checkbox
 tells wether or not all message for this mailbox will be
 written on our hard disk, so thenafter you will be able to
 read your message using a mail client, connecting to
@@ -4831,10 +4830,9 @@ you have trafic, because the mailbox are included in the
 quota<br><br>
 <u>2.3. Delay when adding / deleting accounts</u><br><br>
 When you add or delete a mail account, don't expect it to
-work immediatly : we will have to validate the changes in
-the system in order to have your new accounts changes to
-take effect : we have to tell Qmail (our mail server) to
-reload it's user database.<br><br>
+work immediatly : you will have to wait until the next
+cron job to start, so the mail, ssh or web server
+reloads it's database.<br><br>
 Most of the time, we validate all changes at the end of
 each working days, but if you need an immediate validation,
 click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
@@ -4943,13 +4941,13 @@ we could close your accounts without notification.<br><br>
 
 <font size=\"+1\"><u>5. Why ftp or pop is slow, sometimes ?</u></font><br><br>
 There are many reasons for that. The first one is because
-we don't have many band with for uploading, and sometimes,
-there are realy a lot of people uploading. The one that
-are closer to our servers take most of the time all that
-band width, so one user has most of it, and some have
-not. There is nothing we can do about that...<br><br>
+we don't have unlimited bandwidth with for uploading, and sometimes,
++there are really a lot of people uploading. The ones that
++are closer to our servers usually use all the
++bandwidth, so one user has most of it, and some have
++none. There is nothing we can do about that...<br><br>
 Another reason is because we have decided to limit the
-band width for pop, smtp, and ftp, so that web browsing
+bandwidth for pop, smtp, and ftp, so that web browsing
 on our server is faster.<br><br><br>
 </div>
 <center>For the GPLHost team,</center><br>
@@ -5143,7 +5141,7 @@ You can add, delete or modify a mailbox with this tool.<br><br>
 <u>2.2. Redirection and local delivery</u><br><br>
 Each mailbox can be redirected to one or more email addresse, which
 means that when a message is recieved, it is forwared to one
-or tow email adresse(s). The \"deliver localy\" checkbox
+or tow email adresse(s). The \"deliver locally\" checkbox
 tells wether or not all message for this mailbox will be
 written on our hard disk, so thenafter you will be able to
 read your message using a mail client, connecting to
@@ -5784,7 +5782,7 @@ You can add, delete or modify a mailbox with this tool.<br><br>
 <u>2.2. Redirection and local delivery</u><br><br>
 Each mailbox can be redirected to one or more email addresse, which
 means that when a message is recieved, it is forwared to one
-or tow email adresse(s). The \"deliver localy\" checkbox
+or tow email adresse(s). The \"deliver locally\" checkbox
 tells wether or not all message for this mailbox will be
 written on our hard disk, so thenafter you will be able to
 read your message using a mail client, connecting to

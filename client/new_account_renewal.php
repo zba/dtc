@@ -95,7 +95,7 @@ Renew product type: ".$_REQUEST["renew_type"]."
 
 	$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
 	$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"],$return_url);
-	$form .= "Please click on the button bellow to refund your acount:<br><br>$paybutton";
+	$form .= "Please click on the button below to send money in your acount:<br><br>$paybutton";
 
 	$ret["err"] = 0;
 	$ret["mesg"] = $form;

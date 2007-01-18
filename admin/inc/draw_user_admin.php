@@ -40,8 +40,8 @@ function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
 
 Hello,
 
-An administrator has replied to your suppor ticket.
-Bellow is a copy of the reply sent by the administrator.
+An administrator has replied to your support ticket.
+Below is a copy of the reply sent by the administrator.
 
 **********
 $body

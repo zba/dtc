@@ -73,7 +73,7 @@ function drawAdminTools_MyAccount($admin){
 				."&addrlink=$addrlink&action=refund_myaccount&inneraction=return_from_paypal_refund_my_account&payid=$payid";
 			$paybutton = paynowButton($payid,addslashes($_REQUEST["refund_amount"]),"Refund my account",$return_url);
 			$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
-			$out .=" Please click on the button bellow to refund your acount.<br><br>$paybutton";
+			$out .=" Please click on the button below to pay your acount.<br><br>$paybutton";
 			return $out;
 		}
 	}
