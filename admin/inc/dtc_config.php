@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.81 2007/01/19 09:30:16 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.82 2007/01/19 10:41:56 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -532,7 +532,21 @@ function drawGeneralConfig(){
 				"legend" => "Webalizer contry graph:",
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]))));
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"user_mysql_type" => array(
+				"legend" => "Location of user's database:",
+				"type" => "radio",
+				"values" => array("localhost","distant"),
+				"display_replace" => array("Same as for DTC","Another location")),
+			"user_mysql_host" => array(
+				"legend" => "User MySQL host:",
+				"type" => "text"),
+			"user_mysql_root_login" => array(
+				"legend" => "User MySQL root login:",
+				"type" => "text"),
+			"user_mysql_root_pass" => array(
+				"legend" => "User MySQL root password:",
+				"type" => "text")));
 	$out .= configEditorTemplate ($dsc);
 
 	// Open a known directory, and proceed to read its contents
