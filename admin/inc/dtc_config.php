@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.78 2007/01/19 07:20:22 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.79 2007/01/19 07:48:18 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -690,170 +690,134 @@ function drawBackupConfig(){
         global $txt_cfg_act_as_backup_dns_server;
         global $lang;
         global $txt_cmenu_password;
-		global $txt_action;
-		global $txt_domain_tbl_config_ip;
+	global $txt_action;
+	global $txt_domain_tbl_config_ip;
         global $txt_cfg_server_address;		
-		
-	$out = "<h3>".$txt_cfg_allow_following_servers_to_list[$lang]."</h3>";
-	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='grant_access';";
-	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>".$txt_domain_tbl_config_ip[$lang]."</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
-	for($i=0;$i<$n;$i++){
-	        $a = mysql_fetch_array($r);
-	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	        <input type=\"hidden\" name=\"action\" value=\"modify_grant_backup\">
-                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
-	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
-        }
-        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-        <input type=\"hidden\" name=\"action\" value=\"add_grant_backup\">
-        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
-        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
-        $out .= "</table>";
 
-	//list of servers to update for domain or mail changes
-	$out .= "<h3>".$txt_cfg_make_request_to_server_for_update[$lang]."</h3>";
-	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_changes';";
-	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>".$txt_cfg_server_address[$lang]."</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
-	for($i=0;$i<$n;$i++){
-	        $a = mysql_fetch_array($r);
-	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	        <input type=\"hidden\" name=\"action\" value=\"modify_trigger_backup\">
-                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
-	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
-        }
-        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-        <input type=\"hidden\" name=\"action\" value=\"add_trigger_backup\">
-        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"http://dtc.\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
-        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
-        $out .= "</table>";
 
-        $this_srv_backup = $out;
-        $out = "";
+	$out = "";
 
-	//servers to trigger when there are MX recipient changes (for backup MX, though not backup NS)
-	$out .= "<h3>".$txt_cfg_make_request_to_server_mx_update[$lang]."</h3>";
-	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='trigger_mx_changes';";
-	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>".$txt_cfg_server_address[$lang]."</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
-	for($i=0;$i<$n;$i++){
-	        $a = mysql_fetch_array($r);
-	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	        <input type=\"hidden\" name=\"action\" value=\"modify_mx_trigger_backup\">
-                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
-	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
-        }
-        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-        <input type=\"hidden\" name=\"action\" value=\"add_mx_trigger_backup\">
-        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"http://dtc.\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
-        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
-        $out .= "</table>";
-	//append this to the server backup list
-        $this_srv_backup .= $out;
-        $out = "";
+	$dsc = array(
+		"table_name" => $pro_mysql_backup_table,
+		"title" => $txt_cfg_allow_following_servers_to_list[$lang],
+		"action" => "backup_grant_access_editor",
+		"forward" => array("rub","sousrub"),
+		"where_condition" => "type='grant_access'",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"server_addr" => array(
+				"type" => "text",
+				"legend" => $txt_domain_tbl_config_ip[$lang]),
+			"server_login" => array(
+				"type" => "text",
+				"legend" => "Login"),
+			"server_pass" => array(
+				"type" => "text",
+				"legend" => $txt_cmenu_password[$lang])
+			)
+		);
+	$out .= dtcDatagrid($dsc);
 
-	//list of servers to backup the email
-	$out .= "<h3>".$txt_cfg_act_as_backup_mail_server[$lang]."</h3>";
-	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='mail_backup';";
-	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>Server hostname</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
-	for($i=0;$i<$n;$i++){
-	        $a = mysql_fetch_array($r);
-	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	        <input type=\"hidden\" name=\"action\" value=\"modify_mail_backup\">
-                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
-	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
-        }
-        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-        <input type=\"hidden\" name=\"action\" value=\"add_mail_backup\">
-        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"http://dtc.\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
-        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
-        $out .= "</table>";
+	$dsc = array(
+		"table_name" => $pro_mysql_backup_table,
+		"title" => $txt_cfg_make_request_to_server_for_update[$lang],
+		"action" => "trigger_dns_update_editor",
+		"forward" => array("rub","sousrub"),
+		"where_condition" => "type='trigger_changes'",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"server_addr" => array(
+				"type" => "text",
+				"legend" => "Server address"),
+			"server_login" => array(
+				"type" => "text",
+				"legend" => "Login"),
+			"server_pass" => array(
+				"type" => "text",
+				"legend" => $txt_cmenu_password[$lang])
+			)
+		);
+	$out .= dtcDatagrid($dsc);
 
-	$out .= "<h3>".$txt_cfg_act_as_backup_dns_server[$lang]."</h3>";
-	$q = "SELECT * FROM $pro_mysql_backup_table WHERE type='dns_backup';";
-	$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-        $out .= "<table><tr><td>Server address</td><td>Login</td><td>".$txt_cmenu_password[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
-	for($i=0;$i<$n;$i++){
-	        $a = mysql_fetch_array($r);
-	        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-	        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-	        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-	        <input type=\"hidden\" name=\"action\" value=\"modify_dns_backup\">
-                <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-                <input type=\"hidden\" name=\"id\" value=\"".$a["id"]."\">
-	        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"".$a["server_addr"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"".$a["server_login"]."\"></td>";
-	        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"".$a["server_pass"]."\"></td>";
-	        $out .= "<td><input type=\"submit\" name=\"todo\" value=\"save\"><input type=\"submit\" name=\"todo\" value=\"del\"></td></tr></form>\n";
-        }
-        $out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-        <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-        <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-        <input type=\"hidden\" name=\"action\" value=\"add_dns_backup\">
-        <input type=\"hidden\" name=\"install_new_config_values\" value=\"Ok\">
-        <tr><td><input size=\"40\" type=\"text\" name=\"server_addr\" value=\"http://dtc.\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
-        $out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
-        $out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
-        $out .= "</table>";
+	$dsc = array(
+		"table_name" => $pro_mysql_backup_table,
+		"title" => $txt_cfg_make_request_to_server_mx_update[$lang],
+		"action" => "trigger_mx_update_editor",
+		"forward" => array("rub","sousrub"),
+		"where_condition" => "type='trigger_mx_changes'",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"server_addr" => array(
+				"type" => "text",
+				"legend" => "Server address"),
+			"server_login" => array(
+				"type" => "text",
+				"legend" => "Login"),
+			"server_pass" => array(
+				"type" => "text",
+				"legend" => $txt_cmenu_password[$lang])
+			)
+		);
+	$out .= dtcDatagrid($dsc);
 
-        $other_server_backup = $out;
-        $out = skin("frame",$this_srv_backup,"This server backup");
-        $out .= skin("frame",$other_server_backup,"This server backup");
+	$dsc = array(
+		"table_name" => $pro_mysql_backup_table,
+		"title" => $txt_cfg_act_as_backup_mail_server[$lang],
+		"action" => "trigger_mx_update_editor",
+		"forward" => array("rub","sousrub"),
+		"where_condition" => "type='mail_backup'",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"server_addr" => array(
+				"type" => "text",
+				"legend" => "Server address"),
+			"server_login" => array(
+				"type" => "text",
+				"legend" => "Login"),
+			"server_pass" => array(
+				"type" => "text",
+				"legend" => $txt_cmenu_password[$lang])
+			)
+		);
+	$out .= dtcDatagrid($dsc);
 
-//	$out .= "<h3>Backup all files to this ftp server each weeks:</h3>";
-        return $out;
+	$dsc = array(
+		"table_name" => $pro_mysql_backup_table,
+		"title" => $txt_cfg_act_as_backup_dns_server[$lang],
+		"action" => "trigger_mx_update_editor",
+		"forward" => array("rub","sousrub"),
+		"where_condition" => "type='dns_backup'",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"server_addr" => array(
+				"type" => "text",
+				"legend" => "Server address"),
+			"server_login" => array(
+				"type" => "text",
+				"legend" => "Login"),
+			"server_pass" => array(
+				"type" => "text",
+				"legend" => $txt_cmenu_password[$lang])
+			)
+		);
+	$out .= dtcDatagrid($dsc);
+
+	return $out;
 }
 
 function drawRegistryApiConfig(){

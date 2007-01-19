@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.49 2007/01/18 06:19:28 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.50 2007/01/19 07:48:18 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	* 
@@ -434,7 +434,7 @@ $txt_cfg_paypal_sandbox_email = array(
 
 $txt_cfg_allow_following_servers_to_list = array(
 	"fr" => "Autoriser les servers suivant a lister les domaines pour les backuper : ",
-	"en" => "Allow those servers to list this server's domain names for doing backup:¡¡",
+	"en" => "Allow those servers to list this server's domain names for doing backup:",
 	"hu" => "A következõ szerverek backup céljából hozzáférhetnek az ezen a szerveren létezõ domain nevekhez:",
 	"it" => "Autorizza i seguenti servers i nomi a dominio di questo server per effettuare backup: ",
 	"nl" => "TRANS Allow the following servers to list this server domain names for doing backup: ",
@@ -442,7 +442,7 @@ $txt_cfg_allow_following_servers_to_list = array(
 	"de" => "Folgende Server autorisieren, den Server Domain Name bei Backups einzuschliessen: ",
 	"zh" => "ÔÊÐíÏÂÁÐ·þÎñÆ÷Á¬½ÓºÍÅÅÁÐÓòÃû±í£º",
 	"pl" => "Pozwól temu serwerowi na wykonanie backup-u domen: ",
-	"se" => "Allow those servers to list this server domain names for doing backup:¡¡",
+	"se" => "Allow those servers to list this server domain names for doing backup:",
 	"es" => "Autorizar a los siguientes servidores a listar los dominios para realizar copias de seguridad: ",
 	"pt" => "Autorizar estes servidores a aceder ao servidor de nomes para realizar cópias de segurança"
 	);
