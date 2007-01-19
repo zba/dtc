@@ -184,7 +184,11 @@ $dtc_database = array(
 			"dtc_system_username" => "varchar (64) NOT NULL default 'dtc'",
 			"dtc_system_gid" => "varchar (16) NOT NULL default '65534'",
 			"dtc_system_groupname" => "varchar (64) NOT NULL default 'nogroup'",
-			"selling_conditions_url" => "varchar (255) NOT NULL default 'none'"
+			"selling_conditions_url" => "varchar (255) NOT NULL default 'none'",
+			"user_mysql_type" => "enum('localhost','distant') NOT NULL default 'localhost'",
+			"user_mysql_host" => "varchar (255) NOT NULL default 'none'",
+			"user_mysql_root_login" => "varchar (255) NOT NULL default 'none'",
+			"user_mysql_root_pass" => "varchar (255) NOT NULL default 'none'"
 			),
 		"keys" => array(
 			"unicrow2" => "(unicrow2)",
