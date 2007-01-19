@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.63 2006/10/09 18:58:52 tusker Exp $
+	* @version  $Id: index.php,v 1.64 2007/01/19 09:24:41 thomas Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -239,11 +239,6 @@ case "generate": // Gen Config Files
 	break;
 	
 case "config": // Global Config
-	if(isset($_REQUEST["install_new_config_values"]) && $_REQUEST["install_new_config_values"] == "Ok"){
-		saveDTCConfigInMysql();
-		getConfig();
-	}
-
 	$chooser_menu = drawDTCConfigMenu();
 	$leftFrameCells[] = skin($conf_skin,$chooser_menu,"Menu");
 	$leftFrame = makeVerticalFrame($leftFrameCells);
