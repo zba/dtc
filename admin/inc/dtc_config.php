@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.80 2007/01/19 09:24:41 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.81 2007/01/19 09:30:16 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -127,19 +127,19 @@ are stored in: ".$conf_dtcadmin_path."/reminders_msg/",
 			"vps_renewal_before" => array(
 				"legend" => "Warnings before expiration:",
 				"type" => "text",
-				"size" => "6"),
+				"size" => "16"),
 			"vps_renewal_after" => array(
 				"legend" => "Warnings after expiration:",
                                 "type" => "text",
-                                "size" => "6"),
+                                "size" => "16"),
 			"vps_renewal_lastwarning" => array(
 				"legend" => "Last Warnings:",
                                 "type" => "text",
-                                "size" => "6"),
+                                "size" => "16"),
 			"vps_renewal_shutdown" => array(
 				"legend" => "Shutdown warnings:",
                                 "type" => "text",
-                                "size" => "6")
+                                "size" => "16")
 			)
 		);
 	return configEditorTemplate ($dsc);
@@ -1018,6 +1018,7 @@ function drawDTCradiusConfig(){
 				"legend" => "Short name:"),
 			"type" => array(
 				"type" => "popup",
+				"legend" => "Type:",
 				"values" => array("cisco","computone","livingston","max40xx","multitech","netserver","pathras","patton","portslave","tc","usrhiper","other")),
 			"ports" => array(
 				"type" => "text",
