@@ -1,11 +1,149 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.77 2007/01/10 07:18:08 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.78 2007/01/19 07:20:22 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
  */
+
+function configEditorTemplate ($dsc,$conftype="config"){
+	global $pro_mysql_config_table;
+	global $pro_mysql_secpayconf_table;
+	$out = "";
+
+	if($conftype == "config"){
+		$sql_table = $pro_mysql_config_table;
+		$prefix = "conf_";
+	}else{
+		$sql_table = $pro_mysql_secpayconf_table;
+		$prefix = "secpayconf_";
+	}
+
+	$keys = array_keys($dsc["cols"]);
+	$n = sizeof($keys);
+
+	// Do the sql stuff here!
+	if( isset($_REQUEST["action"]) && $_REQUEST["action"] == $dsc["action"] ){
+		$vals = "";
+		for($i=0;$i<$n;$i++){
+			if($i != 0){
+				$vals .= ", ";
+			}
+			$vals .= $keys[$i]."='".$_REQUEST[ $keys[$i] ]."'";
+		}
+		$q = "UPDATE $sql_table SET $vals WHERE 1;";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+	}
+
+	if($conftype == "config"){
+		getConfig();
+	}else{
+		get_secpay_conf();
+	}
+
+	$out .= "<h3><u>".$dsc["title"]."</u></h3>";
+	if( isset($dsc["desc"]) ){
+		$out .= $dsc["desc"]."<br><br>";
+	}
+
+	$nbr_forwards = sizeof($dsc["forward"]);
+	$fw = "";
+	for($i=0;$i<$nbr_forwards;$i++){
+		$fw .= "<input type=\"hidden\" name=\"".$dsc["forward"][$i]."\" value=\"".$_REQUEST[ $dsc["forward"][$i] ]."\">";
+	}
+
+	$out .= dtcFormTableAttrs();
+	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."\">$fw";
+	for($i=0;$i<$n;$i++){
+		$fld = $prefix.$keys[$i];
+		global $$fld;
+		switch($dsc["cols"][ $keys[$i] ]["type"]){
+		case "radio":
+			$nb_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
+			$control = "";
+			for($j=0;$j<$nb_choices;$j++){
+				if($$fld == $dsc["cols"][ $keys[$i] ]["values"][$j]){
+					$selected = " checked ";
+				}else{
+					$selected = "";
+				}
+				if( isset($dsc["cols"][ $keys[$i] ]["display_replace"][$j]) ){
+					$text = $dsc["cols"][ $keys[$i] ]["display_replace"][$j];
+				}else{
+					$text = $dsc["cols"][ $keys[$i] ]["values"][$j];
+				}
+				$control .= "<input type=\"radio\" name=\"".$keys[$i]."\" value=\"".$dsc["cols"][ $keys[$i] ]["values"][$j]."\" $selected> $text";
+			}
+			break;
+		case "popup":
+			$nb_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
+			$control = "";
+			for($j=0;$j<$nb_choices;$j++){
+				if($$fld == $dsc["cols"][ $keys[$i] ]["values"][$j]){
+					$selected = " selected ";
+				}else{
+					$selected = "";
+				}
+				if( isset($dsc["cols"][ $keys[$i] ]["display_replace"][$j]) ){
+					$text = $dsc["cols"][ $keys[$i] ]["display_replace"][$j];
+				}else{
+					$text = $dsc["cols"][ $keys[$i] ]["values"][$j];
+				}
+				$control .= "<option value=\"".$dsc["cols"][ $keys[$i] ]["values"][$j]."\" $selected>$text</option>";
+			}
+			$control = "<select name=\"".$keys[$i]."\">".$control."</select>";
+			break;
+		case "text":
+		default:
+			if( isset($dsc["cols"][ $keys[$i] ]["size"]) ){
+				$size = " size=\"".$dsc["cols"][ $keys[$i] ]["size"]."\" ";
+			}else{
+				$size = "";
+			}
+			$control = "<input $size type=\"text\" name=\"".$keys[$i]."\" value=\"".$$fld."\">";
+			break;
+		}
+		$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$control);
+	}
+	$out .= dtcFromOkDraw();
+	return $out;
+}
+
+function drawRenewalsConfig(){
+	global $conf_dtcadmin_path;
+	$out = "";
+
+	$dsc = array(
+		"title" => "VPS renewal email reminders periodicity",
+		"action" => "vps_renewal_period",
+		"forward" => array("rub","sousrub"),
+		"desc" => "These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ".$conf_dtcadmin_path."/reminders_msg/",
+		"cols" => array(
+			"vps_renewal_before" => array(
+				"legend" => "Warnings before expiration:",
+				"type" => "text",
+				"size" => "6"),
+			"vps_renewal_after" => array(
+				"legend" => "Warnings after expiration:",
+                                "type" => "text",
+                                "size" => "6"),
+			"vps_renewal_lastwarning" => array(
+				"legend" => "Last Warnings:",
+                                "type" => "text",
+                                "size" => "6"),
+			"vps_renewal_shutdown" => array(
+				"legend" => "Shutdown warnings:",
+                                "type" => "text",
+                                "size" => "6")
+			)
+		);
+	return configEditorTemplate ($dsc);
+}
 
 function drawSSLIPConfig(){
 	global $lang;
@@ -99,145 +237,43 @@ function drawTicketConfig(){
 	return $out;
 }
 
-function drawRenewalsConfig(){
-	global $conf_vps_renewal_before;
-	global $conf_vps_renewal_after;
-	global $conf_vps_renewal_lastwarning;
-	global $conf_vps_renewal_shutdown;
-	global $conf_shared_renewal_before;
-	global $conf_shared_renewal_after;
-	global $conf_shared_renewal_lastwarning;
-	global $conf_shared_renewal_shutdown;
-	global $conf_dtcadmin_path;
-
-	global $pro_mysql_config_table;
-
-	$out = "";
-
-	$frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
-<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
-
-	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_vps_renewals_days"){
-		$q = "UPDATE $pro_mysql_config_table
-		SET vps_renewal_before='".$_REQUEST["vps_renewal_before"]."',
-		vps_renewal_after='".$_REQUEST["vps_renewal_after"]."',
-		vps_renewal_lastwarning='".$_REQUEST["vps_renewal_lastwarning"]."',
-		vps_renewal_shutdown='".$_REQUEST["vps_renewal_shutdown"]."',
-		shared_renewal_before='".$_REQUEST["shared_renewal_before"]."',
-		shared_renewal_after='".$_REQUEST["shared_renewal_after"]."',
-		shared_renewal_lastwarning='".$_REQUEST["shared_renewal_lastwarning"]."',
-		shared_renewal_shutdown='".$_REQUEST["shared_renewal_shutdown"]."'
-		WHERE 1";
-		$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-		$conf_vps_renewal_before = $_REQUEST["vps_renewal_before"];
-		$conf_vps_renewal_after = $_REQUEST["vps_renewal_after"];
-		$conf_vps_renewal_lastwarning = $_REQUEST["vps_renewal_lastwarning"];
-		$conf_vps_renewal_shutdown = $_REQUEST["vps_renewal_shutdown"];
-		$conf_shared_renewal_before = $_REQUEST["shared_renewal_before"];
-		$conf_shared_renewal_after = $_REQUEST["shared_renewal_after"];
-		$conf_shared_renewal_lastwarning = $_REQUEST["shared_renewal_lastwarning"];
-		$conf_shared_renewal_shutdown = $_REQUEST["shared_renewal_shutdown"];
-	}
-
-	$out .= "<h3>VPS renewal email reminders periodicity</h3>";
-	$out .= "These numbers represent the days before and after expiration.
-Warnings before and after expiration can be listed separated by |,
-while others are made of a unique value. The message templates
-are stored in: ".$conf_dtcadmin_path."/reminders_msg/<br><br>";
-
-	$out .= "$frm_strt<input type=\"hidden\" name=\"action\" value=\"edit_vps_renewals_days\">
-<table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">
-<tr><td style=\"white-space: nowrap; text-align: right;\">Warnings before expiration: </td><td><input type=\"text\" name=\"vps_renewal_before\" value=\"$conf_vps_renewal_before\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">Warnings after expiration: </td><td><input type=\"text\" name=\"vps_renewal_after\" value=\"$conf_vps_renewal_after\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">Last Warnings: </td><td><input type=\"text\" name=\"vps_renewal_lastwarning\" value=\"$conf_vps_renewal_lastwarning\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">Shutdown warnings: </td><td><input type=\"text\" name=\"vps_renewal_shutdown\" value=\"$conf_vps_renewal_shutdown\"></td></tr>
-<tr><td collspan=\"2\"></td></tr></table>
-
-<h3>Shared accounts renewal email reminders periodicity</h3>
-<table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">
-<tr><td style=\"white-space: nowrap; text-align: right;\">Warnings before expiration: </td><td><input type=\"text\" name=\"shared_renewal_before\" value=\"$conf_shared_renewal_before\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">Warnings after expiration: </td><td><input type=\"text\" name=\"shared_renewal_after\" value=\"$conf_shared_renewal_after\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">Last Warnings: </td><td><input type=\"text\" name=\"shared_renewal_lastwarning\" value=\"$conf_shared_renewal_lastwarning\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">Shutdown warnings: </td><td><input type=\"text\" name=\"shared_renewal_shutdown\" value=\"$conf_shared_renewal_shutdown\"></td></tr>
-<tr><td collspan=\"2\"></td></tr></table>
-<center><input type=\"submit\" value=\"Ok\"></center>
-</form>
-";
-	return $out;
-}
 
 function drawFTPBacupConfig(){
-	global $conf_ftp_backup_host;
-	global $conf_ftp_backup_login;
-	global $conf_ftp_backup_pass;
-	global $conf_ftp_backup_frequency;
-	global $pro_mysql_config_table;
-	global $conf_ftp_backup_activate;
-	global $conf_ftp_backup_dest_folder;
-
-	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_ftp_backup_values"){
-		$q = "UPDATE config SET ftp_backup_activate='".$_REQUEST["ftp_backup_activate"]."',
-		ftp_backup_host='".$_REQUEST["ftp_backup_host"]."',
-		ftp_backup_login='".$_REQUEST["ftp_backup_login"]."',
-		ftp_backup_pass='".$_REQUEST["ftp_backup_pass"]."',
-		ftp_backup_frequency='".$_REQUEST["ftp_backup_frequency"]."',
-		ftp_backup_dest_folder='".$_REQUEST["ftp_backup_dest_folder"]."' WHERE 1;";
-		$r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-		$conf_ftp_backup_host = $_REQUEST["ftp_backup_host"];
-		$conf_ftp_backup_activate = $_REQUEST["ftp_backup_activate"];
-		$conf_ftp_backup_login = $_REQUEST["ftp_backup_login"];
-		$conf_ftp_backup_pass = $_REQUEST["ftp_backup_pass"];
-		$conf_ftp_backup_frequency = $_REQUEST["ftp_backup_frequency"];
-		$conf_ftp_backup_dest_folder = $_REQUEST["ftp_backup_dest_folder"];
-	}
-
-	$out = "";
-	$frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
-<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
-
-	$out .= "<h3>FTP backup configuration</h3>";
-
-	$selector_month = " ";
-	$selector_week = " ";
-	$selector_day = " ";
-	switch($conf_ftp_backup_frequency){
-	case "day":
-		$selector_day = " selected ";
-		break;
-	case "month":
-		$selector_month = " selected ";
-		break;
-	case "week":
-	default:
-		$selector_week = " selected ";
-		break;
-	}
-
-	if($conf_ftp_backup_activate == "yes"){
-		$selector_backup_activate_yes = " checked ";
-		$selector_backup_activate_no = " ";
-	}else{
-		$selector_backup_activate_yes = " ";
-		$selector_backup_activate_no = " checked ";
-	}
-
-	$out .= "$frm_strt<input type=\"hidden\" name=\"action\" value=\"edit_ftp_backup_values\">
-<table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">
-<tr><td style=\"white-space: nowrap; text-align: right;\">Activate FTP backups: </td><td><input type=\"radio\" name=\"ftp_backup_activate\" value=\"yes\"$selector_backup_activate_yes> yes <input type=\"radio\" name=\"ftp_backup_activate\" value=\"no\"$selector_backup_activate_no> no</td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">Hostname: </td><td><input type=\"text\" name=\"ftp_backup_host\" value=\"$conf_ftp_backup_host\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">FTP login: </td><td><input type=\"text\" name=\"ftp_backup_login\" value=\"$conf_ftp_backup_login\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">FTP password: </td><td><input type=\"text\" name=\"ftp_backup_pass\" value=\"$conf_ftp_backup_pass\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">Destination folder: </td><td><input type=\"text\" name=\"ftp_backup_dest_folder\" value=\"$conf_ftp_backup_dest_folder\"></td></tr>
-<tr><td style=\"white-space: nowrap; text-align: right;\">Backup frequency: </td><td><select name=\"ftp_backup_frequency\">
-<option value=\"day\"$selector_day>daily</option>
-<option value=\"week\"$selector_week>weekly</option>
-<option value=\"month\"$selector_month>monthly</option>
-</select></td></tr>
-<tr><td collspan=\"2\"><input type=\"submit\" value=\"Ok\"></td></tr></table></form>
-";
-	return $out;
+	global $txt_yes;
+	global $txt_no;
+	global $lang;
+	$dsc = array(
+		"title" => "FTP backup configuration",
+		"action" => "ftp_backup_configuration",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"ftp_backup_activate" => array(
+				"legend" => "Activate FTP backups:",
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"ftp_backup_host" => array(
+				"legend" => "Hostname:",
+				"type" => "text",
+				"size" => "30"),
+			"ftp_backup_login" => array(
+				"legend" => "FTP login:",
+				"type" => "text",
+				"size" => "30"),
+			"ftp_backup_pass" => array(
+				"legend" => "FTP password:",
+				"type" => "text",
+				"size" => "30"),
+			"ftp_backup_frequency" => array(
+				"legend" => "Backup frequency:",
+				"type" => "popup",
+				"values" => array("day","week","month"),
+				"display_replace" => array("daily","weekly","monthly")),
+			"ftp_backup_dest_folder" => array(
+				"legend" => "Destination folder:",
+				"type" => "text",
+				"size" => "30")));
+	return configEditorTemplate ($dsc);
 }
 
 function drawVPSServerConfig(){
@@ -312,158 +348,6 @@ function drawVPSServerConfig(){
 		$out .= dtcDatagrid($dsc);
 	}
 	return $out;
-/*
-  if(isset($_REQUEST["action"])){
-    switch($_REQUEST["action"]){
-    case "edit_vps_server_hostname":
-      $q = "UPDATE $pro_mysql_vps_server_table SET hostname='".$_REQUEST["hostname"]."',soap_login='".$_REQUEST["soap_login"]."',soap_pass='".$_REQUEST["soap_pass"]."',location='".$_REQUEST["location"]."',lvmenable='".$_REQUEST["lvmenable"]."' WHERE id='".$_REQUEST["vps_server_id"]."';";
-      $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-      break;
-    case "delete_vps_server_hostname":
-      $q = "DELETE FROM $pro_mysql_vps_server_table WHERE id='".$_REQUEST["vps_server_id"]."';";
-      $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-      break;
-    case "new_vps_server_hostname":
-      $q = "INSERT INTO $pro_mysql_vps_server_table (id,hostname,soap_login,soap_pass,location,lvmenable) VALUES ('','".$_REQUEST["hostname"]."','".$_REQUEST["soap_login"]."','".$_REQUEST["soap_pass"]."','".$_REQUEST["location"]."','".$_REQUEST["lvmenable"]."');";
-      $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-    default:
-      break;
-    }
-  }
-
-  // VPS server listing
-  $q = "SELECT * FROM $pro_mysql_vps_server_table WHERE 1 ORDER BY hostname;";
-  $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-  $n = mysql_num_rows($r);
-  $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>Hostname</td><td>SOAP login</td><td>SOAP password</td>
-  <td>Server location</td><td>LVM yes|no</td>
-  <td colspan=\"3\">Action</td></tr>";
-  $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
-<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">";
-  for($i=0;$i<$n;$i++){
-    $a = mysql_fetch_array($r);
-    if( ($i % 2) == 0){
-      $bg = " bgcolor=\"black\" ";
-    }else{
-      $bg = "";
-    }
-
-    $lvmenable_yes = "checked";
-    $lvmenable_no = "";
-    // if it is set to "no" in the DB, set to no in the form
-    if (isset($a["lvmenable"]) && $a["lvmenable"] == "no")
-    {
-	$lvmenable_yes = "";
-	$lvmenable_no = "checked";
-    } 
-
-    $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"".$a["hostname"]."\"></td>
-    <td$bg><input size=\"10\" type=\"text\" name=\"soap_login\" value=\"".$a["soap_login"]."\"></td>
-    <td$bg><input size=\"10\" type=\"text\" name=\"soap_pass\" value=\"".$a["soap_pass"]."\"></td>
-    <td$bg><input size=\"20\" type=\"text\" name=\"location\" value=\"".$a["location"]."\"></td>
-    <td$bg><input size=\"20\" type=\"radio\" name=\"lvmenable\" value=\"yes\" $lvmenable_yes><input size=\"20\" type=\"radio\" name=\"lvmenable\" value=\"no\" $lvmenable_no></td>
-    <td$bg><input type=\"submit\" value=\"Save\"></td></form>
-    $frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"delete_vps_server_hostname\"><input type=\"submit\" value=\"Delete\"></form></td>
-    <td$bg><a href=\"?rub=$rub&editor=ipaddr&sousrub=".$_REQUEST["sousrub"]."&hostname=".$a["hostname"]."\">Edit IP addrs</a></td></tr>";
-  }
-  if( ($i % 2) == 0){
-    $bg = " bgcolor=\"black\" ";
-  }else{
-    $bg = "";
-  }
-  // New VPS server
-  $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_hostname\"><input size=\"30\" type=\"text\" name=\"hostname\" value=\"\"></td>
-  <td$bg><input size=\"10\" type=\"text\" name=\"soap_login\" value=\"dtc-xen\"></td>
-  <td$bg><input size=\"10\" type=\"text\" name=\"soap_pass\" value=\"\">
-  <td$bg><input size=\"20\" type=\"text\" name=\"location\" value=\"\"></td>
-  <td$bg><input size=\"20\" type=\"radio\" name=\"lvmenable\" value=\"yes\" checked><input size=\"20\" type=\"radio\" name=\"lvmenable\" value=\"no\"></td>
-  </td><td$bg colspan=\"3\"><input type=\"submit\" value=\"New\"></td></form>
-  </tr>";
-  $out .= "</table><br><br>";
-
-  // Editing a VPS Server
-  if(isset($_REQUEST["editor"]) && $_REQUEST["editor"] == "ipaddr"){
-
-    if(isset($_REQUEST["action"])){
-      switch($_REQUEST["action"]){
-      case "edit_vps_server_ip":
-        $q = "UPDATE $pro_mysql_vps_ip_table SET ip_addr='".$_REQUEST["ip"]."',vps_xen_name='".$_REQUEST["vps_xen_name"]."' WHERE id='".$_REQUEST["vps_server_ip_id"]."';";
-        $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-        break;
-      case "delete_vps_server_ip":
-        $q = "DELETE FROM $pro_mysql_vps_ip_table WHERE id='".$_REQUEST["vps_server_ip_id"]."';";
-        $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-        break;
-      case "new_vps_server_ip":
-        $q = "INSERT INTO $pro_mysql_vps_ip_table (id,vps_server_hostname,ip_addr,vps_xen_name) VALUES ('','".$_REQUEST["hostname"]."','".$_REQUEST["ip"]."','".$_REQUEST["vps_xen_name"]."');";
-        $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-      default:
-        break;
-      }
-    }
-
-    // List VPS server IPs
-    $q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$_REQUEST["hostname"]."' ORDER BY vps_xen_name;";
-    $r = mysql_query($q)or die("Cannot query $q ! Line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-    $n = mysql_num_rows($r);
-    $out .= "<table cellspacing=\"0\" cellpadding=\"4\"><tr><td>IP Address</td><td>VPS name</td><td colspan=\"2\">Action</td></tr>";
-    $frm_strt = "<form action=\"".$_SERVER["PHP_SELF"]."\">
-<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-<input type=\"hidden\" name=\"editor\" value=\"ipaddr\">
-<input type=\"hidden\" name=\"hostname\" value=\"".$_REQUEST["hostname"]."\">
-";
-    for($i=0;$i<$n;$i++){
-      $a = mysql_fetch_array($r);
-      if( ($i % 2) == 0){
-        $bg = " bgcolor=\"black\" ";
-      }else{
-        $bg = "";
-      }
-      if($a["available"] == "no"){
-        $disabled = "disabled";
-      }else{
-        $disabled = "";
-      }
-      $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_ip_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"edit_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"".$a["ip_addr"]."\"></td>
-      <td$bg><input size=\"4\" type=\"text\" name=\"vps_xen_name\" value=\"".$a["vps_xen_name"]."\">
-      <td$bg><input type=\"submit\" value=\"Save\"></td></form>
-      $frm_strt<td$bg><input type=\"hidden\" name=\"vps_server_ip_id\" value=\"".$a["id"]."\"><input type=\"hidden\" name=\"action\" value=\"delete_vps_server_ip\"><input type=\"submit\" value=\"Delete\" $disabled></form></td></tr>";
-    }
-    if( ($i % 2) == 0){
-      $bg = " bgcolor=\"black\" ";
-    }else{
-      $bg = "";
-    }
-    // New VPS server IP
-    $out .= "<tr>$frm_strt<td$bg><input type=\"hidden\" name=\"action\" value=\"new_vps_server_ip\"><input size=\"16\" type=\"text\" name=\"ip\" value=\"\"></td>
-    <td$bg><select name=\"vps_xen_name\">
-      <option value=\"01\">01</option>
-      <option value=\"02\">02</option>
-      <option value=\"03\">03</option>
-      <option value=\"04\">04</option>
-      <option value=\"05\">05</option>
-      <option value=\"06\">06</option>
-      <option value=\"07\">07</option>
-      <option value=\"08\">08</option>
-      <option value=\"09\">09</option>
-      <option value=\"10\">10</option>
-      <option value=\"11\">11</option>
-      <option value=\"12\">12</option>
-      <option value=\"13\">13</option>
-      <option value=\"14\">14</option>
-      <option value=\"15\">15</option>
-      <option value=\"16\">16</option>
-      <option value=\"17\">17</option>
-      <option value=\"18\">18</option>
-      <option value=\"19\">19</option>
-    </select>
-    <td$bg colspan=\"2\"><input type=\"submit\" value=\"New\"></td></form></tr>";
-    $out .= "</table>";
-  }
-
-  return $out;*/
 }
 
 function drawRegistrySelection(){
@@ -504,7 +388,7 @@ function drawDTCConfigMenu(){
 
 	$out = "<br><table><tr><td style=\"white-space:nowrap\" nowrap>";
 	if($sousrub != "general")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=general\">";
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
 	$out .= $txt_cfg_general_menu_entry[$lang];
 	if($sousrub != "general")
 		$out .= "</a>";
@@ -586,167 +470,94 @@ function drawDTCConfigMenu(){
 }
 
 function drawGeneralConfig(){
-	global $conf_demo_version;
-	global $conf_use_javascript;
-	global $conf_use_ssl;
-
 	global $txt_cfg_general;
 	global $txt_cfg_demo_version;
 	global $txt_cfg_use_javascript;
 	global $txt_cfg_use_ssl;
-
 	global $txt_cfg_use_domain_based_ftp_logins;
 	global $txt_cfg_session_expir_time;
 	global $txt_cfg_select_type_of_skin;
-
-	global $conf_session_expir_minute;
-	global $conf_domain_based_ftp_logins;
-	global $conf_webalizer_country_graph;
-
-	global $conf_selling_conditions_url;
-
-	//additions for hide_password support (for ftp logins etc)
-	global $txt_cfg_hide_password;
-	global $conf_hide_password;
-
-	global $conf_mta_type;
-
-	global $lang;
-
-	// added by seeb
 	global $txt_cfg_daemon;
 	global $txt_cfg_skin_chooser;
 	global $txt_yes;
 	global $txt_no;
+	global $lang;
 
 	global $conf_skin;
 	global $dtcshared_path;
 	$dir = $dtcshared_path."/gfx/skin/";
 
+	$out = "";
+
+	$dsc = array(
+		"title" => $txt_cfg_general[$lang],
+		"action" => "general_config_editor",
+		"forward" => array("rub"),
+		"cols" => array(
+			"use_javascript" => array(
+				"legend" => $txt_cfg_use_javascript[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"use_ssl" => array(
+				"legend" => $txt_cfg_use_ssl[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"domain_based_ftp_logins" => array(
+				"legend" => $txt_cfg_use_domain_based_ftp_logins[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"session_expir_minute" => array(
+				"legend" => $txt_cfg_session_expir_time[$lang],
+				"type" => "text",
+				"size" => "10"),
+			"selling_conditions_url" => array(
+				"legend" => "Selling condition URL:",
+				"type" => "text",
+				"size" => "40")));
+	$out .= configEditorTemplate ($dsc);
+
+	$dsc = array(
+		"title" => $txt_cfg_daemon[$lang],
+		"action" => "general_config_daemon",
+		"forward" => array("rub"),
+		"cols" => array (
+			"mta_type" => array(
+				"legend" => "MTA (Mail Transport Agent):",
+				"type" => "radio",
+				"values" => array("qmail","postfix")),
+			"webalizer_country_graph" => array(
+				"legend" => "Webalizer contry graph:",
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]))));
+	$out .= configEditorTemplate ($dsc);
+
 	// Open a known directory, and proceed to read its contents
-	$skin_choose = "";
+	$skin_list = array();
 	if (is_dir($dir)) {
 		if ($dh = opendir($dir)) {
 			while (($file = readdir($dh)) !== false) {
 				if(is_dir($dtcshared_path."/gfx/skin/".$file) && $file != "." && $file != ".."){
-					if($file == $conf_skin){
-						$skin_choose .= "<option name=\"".$file."\" selected>".$file."</option>";
-					}else{
-						$skin_choose .= "<option name=\"".$file."\">".$file."</option>";
-					}
+					$skin_list[] = $file;
 				}
 			}
 			closedir($dh);
 		}
 	}
+	$dsc = array(
+		"title" => $txt_cfg_skin_chooser[$lang],
+		"action" => "general_config_skin_chooser",
+		"forward" => array("rub"),
+		"cols" => array(
+			"skin" => array(
+				"legend" => $txt_cfg_select_type_of_skin[$lang],
+				"type" => "popup",
+				"values" => $skin_list)));
+	$out .= configEditorTemplate ($dsc);
 
-	if("$conf_demo_version" == "yes"){
-		$conf_demo_version_yes = " checked";
-		$conf_demo_version_no = "";
-	}else{
-		$conf_demo_version_yes = "";
-		$conf_demo_version_no = " checked";
-	}
-
-	if($conf_use_javascript == "yes"){
-		$conf_use_javascript_yes = " checked";
-		$conf_use_javascript_no = "";
-	}else{
-		$conf_use_javascript_yes = "";
-		$conf_use_javascript_no = " checked";
-	}
-
-	if($conf_use_ssl == "yes"){
-		$conf_use_ssl_yes = " checked";
-		$conf_use_ssl_no = "";
-	}else{
-		$conf_use_ssl_yes = "";
-		$conf_use_ssl_no = " checked";
-	}
-
-	if($conf_domain_based_ftp_logins == "yes"){
-		$conf_domftplog_yes = " checked";
-		$conf_domftplog_no = "";
-	}else{
-		$conf_domftplog_yes = "";
-		$conf_domftplog_no = " checked";
-	}
-
-	if($conf_hide_password == "yes"){
-		$conf_hdpasswd_yes = " checked";
-		$conf_hdpasswd_no = "";
-	}else{
-		$conf_hdpasswd_yes = "";
-		$conf_hdpasswd_no = " checked";
-	}
-
-	if($conf_mta_type == "qmail"){
-		$conf_mtatype_qmail = " checked";
-		$conf_mtatype_postfix = "";
-	}else{
-		$conf_mtatype_qmail = "";
-		$conf_mtatype_postfix = " checked";
-	}
-
-	if($conf_webalizer_country_graph == "yes"){
-		$conf_webalizer_country_graph_no = " ";
-		$conf_webalizer_country_graph_yes = " checked ";
-	}else{
-		$conf_webalizer_country_graph_no = " checked ";
-		$conf_webalizer_country_graph_yes = " ";
-	}
-	$out = "<h3>".$txt_cfg_general[$lang]."</h3>
-<table with=\"100%\" height=\"1\">";
-	if($conf_demo_version == "yes"){
-		$out .= "<tr><td align=\"right\" nowrap>".$txt_cfg_demo_version[$lang]."</td><td width=\"100%\" nowrap>
-<input type=\"radio\" value=\"yes\" name=\"new_demo_version\" checked>".$txt_yes[$lang]." [ ]".$txt_no[$lang]."</td></tr>";
-	}else{
-		$out .= "<tr><td align=\"right\" nowrap>
-	".$txt_cfg_demo_version[$lang]."</td><td width=\"100%\" nowrap><input type=\"radio\" value=\"yes\" name=\"new_demo_version\"$conf_demo_version_yes>".$txt_yes[$lang]."
-	<input type=\"radio\" value=\"no\" name=\"new_demo_version\"$conf_demo_version_no>".$txt_no[$lang]."
-</td></tr>";
-	}
-
-	$out .= "
-<tr>
-	<td align=\"right\" nowrap>".$txt_cfg_use_javascript[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_javascript\"$conf_use_javascript_yes>".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"new_use_javascript\"$conf_use_javascript_no>".$txt_no[$lang]."</td>
-</tr><tr>
-	<td align=\"right\" nowrap>".$txt_cfg_use_ssl[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_ssl\"$conf_use_ssl_yes>".$txt_yes[$lang]."
-	<input type=\"radio\" value=\"no\" name=\"new_use_ssl\"$conf_use_ssl_no>".$txt_no[$lang]."</td>
-</tr><tr>
-	<td align=\"right\" nowrap>".$txt_cfg_use_domain_based_ftp_logins[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_yes>".$txt_yes[$lang]."
-	<input type=\"radio\" value=\"no\" name=\"new_domain_based_ftp_logins\"$conf_domftplog_no>".$txt_no[$lang]."</td>
-</tr><tr>
-	<td align=\"right\" nowrap>".$txt_cfg_session_expir_time[$lang]."</td>
-	<td nowrap><input type=\"text\" size=\"4\" value=\"$conf_session_expir_minute\" name=\"new_session_expir_minute\"></td>
-</tr><tr>
-	<td align=\"right\" nowrap>".$txt_cfg_hide_password[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_hidepasswd\"$conf_hdpasswd_yes>".$txt_yes[$lang]."
-	<input type=\"radio\" value=\"no\" name=\"new_hidepasswd\"$conf_hdpasswd_no>".$txt_no[$lang]."</td>
-</tr><tr>
-	<td align=\"right\" nowrap>Selling conditions URL:</td>
-	<td><input type=\"text\" size=\"50\" value=\"$conf_selling_conditions_url\" name=\"selling_conditions_url\"></td>
-</tr><tr>
-	<td colspan=\"2\"><h3>".$txt_cfg_daemon[$lang]."</h3></td>
-</tr><tr>
-	<td align=\"right\" nowrap>MTA (Mail Transport Agent):</td>
-	<td nowrap><input type=\"radio\" value=\"qmail\" name=\"new_mta_type\"$conf_mtatype_qmail>Qmail
-	<input type=\"radio\" value=\"postfix\" name=\"new_mta_type\"$conf_mtatype_postfix>Postfix</td>
-</tr><tr>
-	<td align=\"right\" nowrap>Webalizer contry graph</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"webalizer_country_graph\"$conf_webalizer_country_graph_yes>Yes
-	<input type=\"radio\" value=\"no\" name=\"webalizer_country_graph\"$conf_webalizer_country_graph_no>No</td>
-</tr><tr>
-	<td colspan=\"2\"><h3>".$txt_cfg_skin_chooser[$lang]."</h3></td>
-</tr><tr>
-	<td align=\"right\" nowrap>".$txt_cfg_select_type_of_skin[$lang]."</td>
-	<td nowrap><select name=\"skin_type\">$skin_choose</select></td>
-</tr>
-</table>
-";
 	return $out;
 }
 
@@ -771,49 +582,38 @@ function drawNetworkConfig(){
 	global $txt_yes;
 	global $txt_no;
 
-	if($conf_use_multiple_ip == "yes"){
-		$conf_use_multiple_ip_yes = " checked";
-		$conf_use_multiple_ip_no = "";
-	}else{
-		$conf_use_multiple_ip_yes = "";
-		$conf_use_multiple_ip_no = " checked";
-	}
-
-
-
-	if($conf_use_nated_vhost == "yes"){
-		$conf_use_nated_vhost_yes = " checked";
-		$conf_use_nated_vhost_no = "";
-	}else{
-		$conf_use_nated_vhost_yes = "";
-		$conf_use_nated_vhost_no = " checked";
-	}
-
-	$out = "<h3>".$txt_cfg_main_software_config[$lang]."</h3>
-<table with=\"100%\" height=\"1\">
-<tr>
-	<td align=\"right\" nowrap>
-".$txt_cfg_main_site_ip[$lang]."</td>
-	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_main_site_ip\" name=\"new_main_site_ip\"></td>
-</tr><tr>
-	<td align=\"right\" nowrap>".$txt_cfg_site_addrs[$lang]."</td>
-	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_site_addrs\" name=\"new_site_addrs\"></td>
-</tr>
-<tr>
-	<td align=\"right\" nowrap>".$txt_cfg_use_multiple_ip[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_yes>".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"new_use_multiple_ip\"$conf_use_multiple_ip_no>".$txt_no[$lang]."</td>
-</tr>
-<tr>
-	<td align=\"right\" nowrap>".$txt_cfg_use_nated_vhost[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_yes>".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"new_use_nated_vhost\"$conf_use_nated_vhost_no>".$txt_no[$lang]."</td>
-</tr><tr>
-	<td align=\"right\" nowrap>".$txt_cfg_nated_vhost_ip[$lang]."</td>
-	<td nowrap><input type=\"text\" size =\"40\" value=\"$conf_nated_vhost_ip\" name=\"new_nated_vhost_ip\"></td>
-</tr><tr>
-	<td align=\"right\" nowrap>
-	".$txt_cfg_full_hostname[$lang]."</td><td nowrap><input type=\"text\" size =\"40\" value=\"$conf_administrative_site\" name=\"new_administrative_site\"></td>
-</tr></table>";
-	return $out;
+	$dsc = array(
+		"title" => $txt_cfg_main_software_config[$lang],
+		"action" => "general_config_editor",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"main_site_ip" => array(
+				"legend" => $txt_cfg_main_site_ip[$lang],
+				"type" => "text",
+				"size" => "20"),
+			"site_addrs" => array(
+				"legend" => $txt_cfg_site_addrs[$lang],
+				"type" => "text",
+				"size" => "50"),
+			"use_multiple_ip" => array(
+				"legend" => $txt_cfg_use_multiple_ip[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"use_nated_vhost" => array(
+				"legend" => $txt_cfg_use_nated_vhost[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"nated_vhost_ip" => array(
+				"legend" => $txt_cfg_nated_vhost_ip[$lang],
+				"type" => "text",
+				"size" => "20"),
+			"administrative_site" => array(
+				"legend" => $txt_cfg_full_hostname[$lang],
+				"type" => "text",
+				"size" => "50")));
+	return configEditorTemplate ($dsc);
 }
 
 function drawNamedConfig(){
@@ -826,7 +626,6 @@ function drawNamedConfig(){
 	global $conf_ip_allowed_dns_transfer;
 	global $conf_use_cname_for_subdomains;
 	global $lang;
-	//again seeb ;)
 	global $txt_yes;
 	global $txt_no;
 
@@ -841,40 +640,45 @@ function drawNamedConfig(){
 	global $txt_backup_mx_servers;
 	global $txt_cfg_use_cname_for_subdomains;
 
-	
-	if($conf_use_cname_for_subdomains == "yes"){
-		$conf_use_cname_for_subdomains_yes = " checked";
-		$conf_use_cname_for_subdomains_no = "";
-	}else{
-		$conf_use_cname_for_subdomains_yes = "";
-		$conf_use_cname_for_subdomains_no = " checked";
-	}
-
-	$out = "<h3>".$txt_cfg_name_zonefileconf_title[$lang]."</h3>
-<table with=\"100%\" height=\"1\">
-<tr><td align=\"right\" nowrap>
-	".$txt_cfg_main_mx_addr[$lang]."</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_addr_mail_server\" name=\"new_addr_mail_server\"><br>
-<tr><td align=\"right\" nowrap>
-".$txt_backup_mx_servers[$lang]."
-</td><td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_addr_backup_mail_server\" name=\"new_addr_backup_mail_server\"><br>
-</td></tr><tr><td align=\"right\">
-	".$txt_cfg_mail_addr_webmaster[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_webmaster_email_addr\" name=\"new_webmaster_email_addr\"><br>
-</td></tr><tr><td align=\"right\">
-	".$txt_cfg_primary_dns_server_addr[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_addr_primary_dns\" name=\"new_addr_primary_dns\"><br>
-</td></tr><tr><td align=\"right\">
-	".$txt_cfg_secondary_dns_server_addr[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_addr_secondary_dns\" name=\"new_addr_secondary_dns\"><br>
-</td></tr><tr><td align=\"right\">
-	".$txt_cfg_slave_dns_ip[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_ip_slavezone_dns_server\" name=\"new_ip_slavezone_dns_server\"><br>
-</td></tr>
-<tr>
-	<td align=\"right\" nowrap>".$txt_cfg_use_cname_for_subdomains[$lang]."</td>
-	<td nowrap><input type=\"radio\" value=\"yes\" name=\"new_use_cname_for_subdomains\"$conf_use_cname_for_subdomains_yes>".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"new_use_cname_for_subdomains\"$conf_use_cname_for_subdomains_no>".$txt_no[$lang]."</td>
-</tr>
-<tr><td align=\"right\">
-	".$txt_cfg_allowed_dns_transfer_list[$lang]."</td><td><input type=\"text\" size =\"40\" value=\"$conf_ip_allowed_dns_transfer\" name=\"new_ip_allowed_transfer_dns_server\"><br>
-</td></tr></table>
-";
-	return $out;
+	$dsc = array(
+		"title" => $txt_cfg_name_zonefileconf_title[$lang],
+		"action" => "named_zonefile_config_editor",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"addr_mail_server" => array(
+				"legend" => $txt_cfg_main_mx_addr[$lang],
+				"type" => "text",
+				"size" => "40"),
+			"addr_backup_mail_server" => array(
+				"legend" => $txt_backup_mx_servers[$lang],
+				"type" => "text",
+				"size" => "50"),
+			"webmaster_email_addr" => array(
+				"legend" => $txt_cfg_mail_addr_webmaster[$lang],
+				"type" => "text",
+				"size" => "40"),
+			"addr_primary_dns" => array(
+				"legend" => $txt_cfg_primary_dns_server_addr[$lang],
+				"type" => "text",
+				"size" => "40"),
+			"addr_secondary_dns" => array(
+				"legend" => $txt_cfg_secondary_dns_server_addr[$lang],
+				"type" => "text",
+				"size" => "40"),
+			"ip_slavezone_dns_server" => array(
+				"legend" => $txt_cfg_slave_dns_ip[$lang],
+				"type" => "text",
+				"size" => "20"),
+			"use_cname_for_subdomains" => array(
+				"legend" => $txt_cfg_use_cname_for_subdomains[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"ip_allowed_dns_transfer" => array(
+				"legend" => $txt_cfg_allowed_dns_transfer_list[$lang],
+				"type" => "text",
+				"size" => "50")));
+	return configEditorTemplate ($dsc);
 }
 
 function drawBackupConfig(){
@@ -1074,56 +878,38 @@ function drawRegistryApiConfig(){
 	global $conf_srs_enviro;
 	global $conf_use_registrar_api;
 
-	$out = "";
-        $out .= "<h2><u>".$txt_cfg_registry_api_title[$lang]."</u></h2>";
-
-	if($conf_use_registrar_api == "yes"){
-		$regapi_check_yes = " checked ";
-		$regapi_check_no = " ";
-	}else{
-		$regapi_check_yes = " ";
-		$regapi_check_no = " checked ";
-	}
-
-	$out .= "Use registrar API: <input type=\"radio\" value=\"yes\" name=\"use_registrar_api\"$regapi_check_yes> ".$txt_yes[$lang]."
-<input type=\"radio\" value=\"no\" name=\"use_registrar_api\"$regapi_check_no>".$txt_no[$lang]."<br><br>";
-
-	$out .= "<h3>Tucows</h3><br>
-<img src=\"gfx/tucows.jpg\"><br>Note: you must have a Tucows reseller account.";
-
-	if($conf_srs_crypt == 'DES'){
-		$use_des = " checked ";
-		$use_blowfish = "";
-	}else{
-		$use_des = "";
-		$use_blowfish = " checked ";
-	}
-
-	if($conf_srs_enviro == "LIVE"){
-		$use_live_system_yes = " checked ";
-		$use_live_system_no = "";
-	}else{
-		$use_live_system_yes = "";
-		$use_live_system_no = " checked ";
-	}
-
-	$out .= "<table with=\"100%\" height=\"1\">
-<tr><td align=\"right\" nowrap>
-	".$txt_cfg_use_des_or_blowfish[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"DES\" name=\"srs_crypt\"$use_des> DES <input type=\"radio\" value=\"BLOWFISH\" name=\"srs_crypt\"$use_blowfish> Blowfish </td>
-</tr><tr><td align=\"right\" nowrap>
-	".$txt_cfg_use_test_or_live[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"LIVE\" name=\"srs_enviro\"$use_live_system_yes> ".$txt_yes[$lang]." <input type=\"radio\" value=\"TEST\" name=\"srs_enviro\"$use_live_system_no> ".$txt_no[$lang]."</td>
-</tr><tr>
-  <td align=\"right\" nowrap>".$txt_cfg_tucows_username[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_srs_user\" name=\"srs_username\"></td>
-</tr><tr>
-  <td align=\"right\" nowrap>".$txt_cfg_tucows_test_server_key[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_srs_test_key\" name=\"srs_test_key\"></td>
-</tr><tr>
-  <td align=\"right\" nowrap>".$txt_cfg_tucows_live_server_key[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size =\"40\" value=\"$conf_srs_live_key\" name=\"srs_live_key\"></td>
-</tr>
-</table>";
-	return $out;
+	$dsc = array(
+		"title" => $txt_cfg_registry_api_title[$lang],
+		"action" => "domain_registry_config_editor",
+		"forward" => array("rub","sousrub"),
+		"desc" => "<img src=\"gfx/tucows.jpg\"><br>Note: you must have a Tucows reseller account.",
+		"cols" => array(
+			"use_registrar_api" => array(
+				"legend" => "Use registrar API:",
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"srs_crypt" => array(
+				"legend" => $txt_cfg_use_des_or_blowfish[$lang],
+				"type" => "radio",
+				"values" => array("DES","BLOWFISH")),
+			"srs_enviro" => array(
+				"legend" => $txt_cfg_use_test_or_live[$lang],
+				"type" => "radio",
+				"values" => array("LIVE","TEST")),
+			"srs_user" => array(
+				"legend" => $txt_cfg_tucows_username[$lang],
+				"type" => "text",
+				"size" => "30"),
+			"srs_test_key" => array(
+				"legend" => $txt_cfg_tucows_test_server_key[$lang],
+				"type" => "text",
+				"size" => "50"),
+			"srs_live_key" => array(
+				"legend" => $txt_cfg_tucows_live_server_key[$lang],
+				"type" => "text",
+				"size" => "50")));
+	return configEditorTemplate ($dsc);
 }
 
 function drawDTCpayConfig(){
@@ -1146,102 +932,89 @@ function drawDTCpayConfig(){
 
 	global $pro_mysql_secpayconf_table;
 
-
 	$out = "";
 
-	$q = "SELECT * FROM $pro_mysql_secpayconf_table";
-	$r = mysql_query($q)or die("Cannot query : \"$q\" ! line: ".__LINE__." file: ".__file__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-	if($n != 1)
-		die("Error line: ".__LINE__." file: ".__file__." secpayconf table should have one and only one line!");
-	$a = mysql_fetch_array($r);
-	if($a["use_paypal"] == "yes"){
-		$use_paypal_check_yes = " checked";
-		$use_paypal_check_no = "";
-	}else{
-		$use_paypal_check_yes = "";
-		$use_paypal_check_no = " checked";
-	}
+	$dsc = array(
+		"title" => $txt_cfg_paytitle[$lang],
+		"action" => "payment_gateway_currency_edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"currency_symbol" => array(
+				"legend" => $txt_currency_symbol[$lang],
+				"type" => "text",
+				"size" => "6"),
+			"currency_letters" => array(
+				"legend" => $txt_currency_ltr[$lang],
+				"type" => "text",
+				"size" => "6")));
+	$out .= configEditorTemplate ($dsc,"secpay");
 
-	if($a["paypal_autovalidate"] == "yes"){
-		$auto_paypal_check_yes = " checked";
-		$auto_paypal_check_no = "";
-	}else{
-		$auto_paypal_check_yes = "";
-		$auto_paypal_check_no = " checked";
-	}
-	if($a["paypal_sandbox"] == "yes"){
-		$paypal_sandbox_check_yes = " checked ";
-		$paypal_sandbox_check_no = "";
-	}else{
-		$paypal_sandbox_check_yes = "";
-		$paypal_sandbox_check_no = " checked ";
-	}
-	$out .= "<h2><u>".$txt_cfg_paytitle[$lang]."</u></h2>
-	<h3>".$txt_currency[$lang]."</h3>
-<table with=\"100%\" height=\"1\">
-<tr><td align=\"right\" nowrap>
-  ".$txt_currency_symbol[$lang]."</td><td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["currency_symbol"]."\" name=\"currency_symbol\"></td>
-</tr><tr><td align=\"right\" nowrap>
-  ".$txt_currency_ltr[$lang]."</td><td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["currency_letters"]."\" name=\"currency_letters\"></td>
-</tr>
-</table>
-	<h3>PayPal:</h3>";
-	
-	$out .="<table with=\"100%\" height=\"1\">
-<tr><td align=\"right\" nowrap>
-	".$txt_cfg_use_paypal[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_paypal\"$use_paypal_check_yes> ".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"use_paypal\"$use_paypal_check_no> ".$txt_no[$lang]."</td>
-</tr><tr><td align=\"right\" nowrap>
-	".$txt_cfg_paypal_autovalid[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"autovalid_paypal\"$auto_paypal_check_yes> ".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"autovalid_paypal\"$auto_paypal_check_no> ".$txt_no[$lang]."</td>
-</tr><tr>
-  <td align=\"right\" nowrap>".$txt_cfg_paypal_email[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size=\"40\" value=\"".$a["paypal_email"]."\" name=\"paypal_email\"></td>
-</tr><tr>
-  <td align=\"right\" nowrap>".$txt_cfg_paypal_ratefee[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["paypal_rate"]."\" name=\"paypal_rate\"></td>
-</tr><tr>
-  <td align=\"right\" nowrap>".$txt_cfg_paypal_flatfee[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size=\"6\" value=\"".$a["paypal_flat"]."\" name=\"paypal_flat\"></td>
-</tr><tr><td align=\"right\" nowrap>
-	".$txt_cfg_paypal_use_sandbox[$lang]."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"sandbox_paypal\"$paypal_sandbox_check_yes> ".$txt_yes[$lang]." <input type=\"radio\" value=\"no\" name=\"sandbox_paypal\"$paypal_sandbox_check_no> ".$txt_no[$lang]."</td>
-</tr><tr>
-  <td align=\"right\" nowrap>".$txt_cfg_paypal_sandbox_email[$lang]."</td>
-  <td width=\"100%\"><input type=\"text\" size=\"40\" value=\"".$a["paypal_sandbox_email"]."\" name=\"paypal_sandbox_email\"></td>
-</tr>
-</table>
-";
+	$dsc = array(
+		"title" => "PayPal:",
+		"action" => "payment_gateway_paypal_edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"use_paypal" => array(
+				"legend" => $txt_cfg_use_paypal[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"paypal_autovalidate" => array(
+				"legend" => $txt_cfg_paypal_autovalid[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"paypal_email" => array(
+				"legend" => $txt_cfg_paypal_email[$lang],
+				"type" => "text",
+				"size" => "30"),
+			"paypal_rate" => array(
+				"legend" => $txt_cfg_paypal_ratefee[$lang],
+				"type" => "text",
+				"size" => "6"),
+			"paypal_flat" => array(
+				"legend" => $txt_cfg_paypal_flatfee[$lang],
+				"type" => "text",
+				"size" => "6"),
+			"paypal_sandbox" => array(
+				"legend" => $txt_cfg_paypal_use_sandbox[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"paypal_sandbox_email" => array(
+				"legend" => $txt_cfg_paypal_sandbox_email[$lang],
+				"type" => "text",
+				"size" => "6")));
+	$out .= configEditorTemplate ($dsc,"secpay");
 
-
-	$out .= "<h3>eNETS:</h3>";
-	if($a["use_enets"] == "yes"){
-		$use_enets_check_yes = " checked ";
-		$use_enets_check_no = "";
-	}else{
-		$use_enets_check_yes = " ";
-		$use_enets_check_no = " checked ";
-	}
-	if($a["use_enets_test"] == "yes"){
-		$use_enets_test_check_yes = " checked ";
-		$use_enets_test_check_no = "";
-	}else{
-		$use_enets_test_check_yes = " ";
-		$use_enets_test_check_no = " checked ";
-	}
-	$out .="<table with=\"100%\" height=\"1\">
-      <tr><td align=\"right\" nowrap>
-	"."Use eNETS:"."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_enets\"$use_enets_check_yes> ".$txt_yes[$lang]."
-	<input type=\"radio\" value=\"no\" name=\"use_enets\"$use_enets_check_no> ".$txt_no[$lang]."</td>
-      </tr><tr>
-	<td align=\"right\" nowrap>
-	"."eNETS server:"."</td><td width=\"100%\"><input type=\"radio\" value=\"yes\" name=\"use_enets_test\"$use_enets_test_check_yes> Test server
-	<input type=\"radio\" value=\"no\" name=\"use_enets_test\"$use_enets_test_check_no> Production server </td>
-      </tr><tr><td align=\"right\" nowrap>
-	eNETS mid:</td><td width=\"100%\"><input type=\"text\" size=\"10\" value=\"".$a["enets_mid_id"]."\" name=\"enets_mid_id\"></td>
-      </tr><tr><td align=\"right\" nowrap>
-	eNETS test mid:</td><td width=\"100%\"><input size=\"10\" type=\"text\" value=\"".$a["enets_test_mid_id"]."\" name=\"enets_test_mid_id\"></td>
-      </tr><tr><td align=\"right\" nowrap>
-	eNETS fee rate:</td><td width=\"100%\"><input size=\"6\" type=\"text\" value=\"".$a["enets_rate"]."\" name=\"enets_rate\"></td>
-      </tr></table>";
+	$dsc = array(
+		"title" => "eNETS:",
+		"action" => "payment_gateway_enets_edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"use_enets" => array(
+				"legend" => "Use eNETS:",
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"use_enets_test" => array(
+				"legend" => "eNETS server:",
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array("Test server","Production server")),
+			"enets_mid_id" => array(
+				"legend" => "eNETS mid:",
+				"type" => "text",
+				"size" => "6"),
+			"enets_test_mid_id" => array(
+				"legend" => "eNETS test mid:",
+				"type" => "text",
+				"size" => "6"),
+			"enets_rate" => array(
+				"legend" => "eNETS rate:",
+				"type" => "text",
+				"size" => "6")));
+	$out .= configEditorTemplate ($dsc,"secpay");
 
 	return $out;
 }
@@ -1525,16 +1298,16 @@ function drawDTCConfigForm(){
 
 	switch($sousrub){
 	case "general":
-		$global_conf = drawGeneralConfig();
+		return drawGeneralConfig();
 		break;
 	case "ip":
-		$global_conf = drawNetworkConfig();
+		return drawNetworkConfig();
 		break;
 	case "sslip":
 		return drawSSLIPConfig();
 		break;
 	case "zonefile":
-		$global_conf = drawNamedConfig();
+		return drawNamedConfig();
 		break;
         case "backup":
                 return "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"rub\" value=\"config\">
@@ -1542,17 +1315,17 @@ function drawDTCConfigForm(){
 		$global_conf = drawBackupConfig();
                 break;
         case "registryapi":
-          $global_conf = drawRegistryApiConfig();
-          break;
+		return drawRegistryApiConfig();
+		break;
         case "payconf":
-                $global_conf = drawDTCpayConfig();
+                return drawDTCpayConfig();
                 break;
         case "radius":
                 return drawDTCradiusConfig();
                 break;
         case "ftpbackup":
-          return drawFTPBacupConfig();
-          break;
+		return drawFTPBacupConfig();
+		break;
 	case "path":
 		$global_conf = drawDTCpathConfig();
 		break;
@@ -1620,42 +1393,6 @@ function saveDTCConfigInMysql(){
 	switch($sousrub){
 	case "vps":
 	  break;
-	case "general":
-		$query = "UPDATE config SET 
-	demo_version='".$_REQUEST["new_demo_version"]."',
-	use_javascript='".$_REQUEST["new_use_javascript"]."',
-	use_ssl='".$_REQUEST["new_use_ssl"]."',
-	mta_type='".$_REQUEST["new_mta_type"]."',
-	domain_based_ftp_logins='".$_REQUEST["new_domain_based_ftp_logins"]."',
-	session_expir_minute='".$_REQUEST["new_session_expir_minute"]."',
-	hide_password='".$_REQUEST["new_hidepasswd"]."',
-	skin='".$_REQUEST["skin_type"]."',
-	webalizer_country_graph='".$_REQUEST["webalizer_country_graph"]."',
-	selling_conditions_url='".$_REQUEST["selling_conditions_url"]."'
-	WHERE 1 LIMIT 1";
-		break;
-	case "ip":
-		$query = "UPDATE config SET 
-	main_site_ip='".$_REQUEST["new_main_site_ip"]."',
-	site_addrs='".$_REQUEST["new_site_addrs"]."',
-	use_multiple_ip='".$_REQUEST["new_use_multiple_ip"]."',
-	use_nated_vhost='".$_REQUEST["new_use_nated_vhost"]."',
-	nated_vhost_ip='".$_REQUEST["new_nated_vhost_ip"]."',
-	administrative_site='".$_REQUEST["new_administrative_site"]."'
-	WHERE 1 LIMIT 1";
-		break;
-	case "zonefile":
-		$query = "UPDATE config SET 
-	addr_mail_server='".$_REQUEST["new_addr_mail_server"]."',
-	addr_backup_mail_server='".$_REQUEST["new_addr_backup_mail_server"]."',
-	addr_primary_dns='".$_REQUEST["new_addr_primary_dns"]."',
-	addr_secondary_dns='".$_REQUEST["new_addr_secondary_dns"]."',
-	ip_slavezone_dns_server='".$_REQUEST["new_ip_slavezone_dns_server"]."',
-	webmaster_email_addr='".$_REQUEST["new_webmaster_email_addr"]."',
-	use_cname_for_subdomains='".$_REQUEST["new_use_cname_for_subdomains"]."',
-	ip_allowed_dns_transfer='".$_REQUEST["new_ip_allowed_transfer_dns_server"]."'
-	WHERE 1 LIMIT 1";
-		break;
         case "backup":
                 switch($_REQUEST["action"]){
                 case "modify_grant_backup":
@@ -1768,36 +1505,6 @@ function saveDTCConfigInMysql(){
                       break;
                 }
                 break;
-
-	case "payconf":
-		$query = "UPDATE $pro_mysql_secpayconf_table SET
-         currency_symbol='".$_REQUEST["currency_symbol"]."',
-         currency_letters='".$_REQUEST["currency_letters"]."',
-         use_paypal='".$_REQUEST["use_paypal"]."',
-  	 paypal_rate='".$_REQUEST["paypal_rate"]."',
-  	 paypal_flat='".$_REQUEST["paypal_flat"]."',
-  	 paypal_autovalidate='".$_REQUEST["autovalid_paypal"]."',
-  	 paypal_sandbox='".$_REQUEST["sandbox_paypal"]."',
-  	 paypal_sandbox_email='".$_REQUEST["paypal_sandbox_email"]."',
-  	 paypal_email='".$_REQUEST["paypal_email"]."',
-  	 use_enets='".$_REQUEST["use_enets"]."',
-  	 use_enets_test='".$_REQUEST["use_enets_test"]."',
-  	 enets_mid_id='".$_REQUEST["enets_mid_id"]."',
-  	 enets_test_mid_id='".$_REQUEST["enets_test_mid_id"]."',
-  	 enets_rate='".$_REQUEST["enets_rate"]."'
-         WHERE 1 LIMIT 1;";
-//https://dtc.xen650202.gplhost.com/dtcadmin/index.php?rub=config&sousrub=payconf&use_paypal=yes&autovalid_paypal=no&paypal_email=webmaster%40xen650202.gplhost.com&paypal_rate=3.21&paypal_flat=0.50&sandbox_paypal=no&paypal_sandbox_email=&use_enets=no&use_enets_test=yes&paypal_email=1234&install_new_config_values=Ok
-                break;
-        case "registryapi":
-          // srs_enviro=TEST&srs_username=&srs_test_key=&srs_live_key=&install_new_config_values=Ok
-          $query = "UPDATE config SET
-          use_registrar_api='".$_REQUEST["use_registrar_api"]."',
-          srs_enviro='".$_REQUEST["srs_enviro"]."',
-          srs_user='".$_REQUEST["srs_username"]."',
-          srs_test_key='".$_REQUEST["srs_test_key"]."',
-          srs_live_key='".$_REQUEST["srs_live_key"]."',
-          srs_crypt='".$_REQUEST["srs_crypt"]."' WHERE 1;";
-          break;
 	case "path":
 		$query = "UPDATE config SET 
 	site_root_host_path='".$_REQUEST["new_site_root_host_path"]."',
