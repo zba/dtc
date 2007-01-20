@@ -37,7 +37,7 @@ binary-arch: install
 	dh_installmenu -n
 	dh_installdebconf	
 	dh_installlogrotate
-	dh_installcron
+	dh_installcron --name=dtc
 	dh_installman
 	dh_compress
 	dh_fixperms
