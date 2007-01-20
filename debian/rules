@@ -36,7 +36,7 @@ binary-arch: install
 	dh_link
 	dh_installmenu -n
 	dh_installdebconf	
-	dh_installlogrotate
+	dh_installlogrotate --name=dtc
 	dh_installcron --name=dtc
 	dh_installman
 	dh_compress
