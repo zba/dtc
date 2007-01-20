@@ -64,6 +64,7 @@ function createCreditCardPaiementID($amount_paid,$client_id,$label,$new_account=
 }
 
 function createCommandEntry($id_client,$price_devise,$price,$product_id,$payment_id){
+	
 	return;
 }
 

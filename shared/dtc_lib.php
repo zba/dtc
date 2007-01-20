@@ -8,6 +8,19 @@ require("$dtcshared_path/vars/lang.php");			// Setup the $lang global variable (
 require("$dtcshared_path/vars/strings.php");		// Contain all the translated string
 require("$dtcshared_path/vars/error_strings.php");
 
+// The FPDF lib
+if(file_exists("/usr/share/fpdf/fpdf.php")){
+	define('FPDF_FONTPATH','/usr/share/fpdf/font/');
+	require('/usr/share/fpdf/fpdf.php');
+}else{
+	if(file_exists("$dtcshared_path/fpdf/fpdf.php")){
+		define('FPDF_FONTPATH',"$dtcshared_path/fpdf/font/");
+		require("$dtcshared_path/fpdf/fpdf.php");
+	}else{
+		echo "FPDF library not found. Pleasse install it in $dtcshared_path/fpdf";
+	}
+}
+
 // CYRUS STUFF
 require("$dtcshared_path/cyradm.php");
 require("$dtcshared_path/cyrus.php");
