@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.82 2007/01/19 10:41:56 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.83 2007/01/20 09:10:34 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -365,107 +365,6 @@ function drawRegistrySelection(){
 	$out .= "<td><input type=\"text\" name=\"server_login\" value=\"\"></td>";
 	$out .= "<td><input type=\"text\" name=\"server_pass\" value=\"\"></td>";
 	$out .= "<td><input type=\"submit\" name=\"add\" value=\"add\"></td></tr></form>\n";
-	return $out;
-}
-
-function drawDTCConfigMenu(){
-	global $txt_cfg_path_conf_title;
-	global $txt_cfg_name_zonefileconf_title;
-	global $txt_cfg_payconf_title;
-	global $lang;
-
-	global $txt_cfg_general_menu_entry;
-	global $txt_cfg_ip_and_network;
-	global $txt_cfg_backup_and_mx_menu_entry;
-	global $txt_cfg_registryapi_menu_entry;
-	
-
-	if(!isset($_REQUEST["sousrub"])){
-		$sousrub = "general";
-        }else{
-          $sousrub = $_REQUEST["sousrub"];
-        }
-
-	$out = "<br><table><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "general")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
-	$out .= $txt_cfg_general_menu_entry[$lang];
-	if($sousrub != "general")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "ip")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ip\">";
-	$out .= $txt_cfg_ip_and_network[$lang];
-	if($sousrub != "ip")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "sslip")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=sslip\">";
-	$out .= "SSL IPs";
-	if($sousrub != "sslip")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "zonefile")
-		$out .= " <a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=zonefile\">";
-	$out .= $txt_cfg_name_zonefileconf_title[$lang];
-	if($sousrub != "zonefile")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "backup")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=backup\">";
-	$out .= $txt_cfg_backup_and_mx_menu_entry[$lang];
-	if($sousrub != "backup")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "registryapi")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=registryapi\">";
-	$out .=  $txt_cfg_registryapi_menu_entry[$lang];
-	if($sousrub != "registryapi")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "payconf")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=payconf\">";
-	$out .=  $txt_cfg_payconf_title[$lang];
-	if($sousrub != "payconf")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "radius")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=radius\">";
-	$out .=  "radius";
-	if($sousrub != "radius")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "ftpbackup")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ftpbackup\">";
-	$out .=  "ftpbackup";
-	if($sousrub != "ftpbackup")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "path")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=path\">";
-	$out .= $txt_cfg_path_conf_title[$lang];
-	if($sousrub != "path")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "renewals")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=renewals\">";
-	$out .= "Renewals";
-	if($sousrub != "renewals")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "ticket")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ticket\">";
-	$out .= "Support tickets";
-	if($sousrub != "ticket")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "vps")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=vps\">";
-	$out .= "VPS servers";
-	if($sousrub != "vps")
-		$out .= "</a>";
-
-	$out .= "</td></tr></table>";
 	return $out;
 }
 
@@ -1181,6 +1080,238 @@ function drawDTCpathConfig(){
 	return $out;
 }
 
+function drawCompaniesConfig(){
+	global $pro_mysql_companies_table;
+	global $cc_code_array;
+
+	$out = "";
+
+	$country_codes = array_keys($cc_code_array);
+	$country_fullnames = array_values($cc_code_array);
+	$dsc = array(
+		"title" => "List of your companies:",
+		"new_item_title" => "Add a new company:",
+		"new_item_link" => "Add a new company",
+		"edit_item_title" => "Edit a company:",
+		"table_name" => $pro_mysql_companies_table,
+		"action" => "hosting_company_editor",
+		"forward" => array("rub","sousrub"),
+		"id_fld" => "id",
+		"list_fld_show" => "name",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"name" => array(
+				"type" => "text",
+				"size" => "30",
+				"legend" => "Name:"),
+			"address" => array(
+				"type" => "textarea",
+				"cols" => "50",
+				"rows" => "5",
+				"legend" => "Address:"),
+			"country" => array(
+				"type" => "popup",
+				"legend" => "Country:",
+				"values" => $country_codes,
+				"display_replace" => $country_fullnames),
+			"registration_number" => array(
+				"type" => "text",
+				"size" => "30",
+				"legend" => "Registration number:"),
+			"vat_number" => array(
+				"type" => "text",
+				"size" => "30",
+				"legend" => "VAT number:")));
+	$out .= dtcListItemsEdit($dsc);
+	return $out;
+}
+
+function drawInvoicingConfig(){
+	global $pro_mysql_companies_table;
+	global $pro_mysql_invoicing_table;
+	global $cc_code_array;
+	$out = "";
+
+	$q = "SELECT * FROM $pro_mysql_companies_table WHERE 1;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$comp_names = array("Please select");
+	$comp_ids = array(0);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$comp_names[] = $a["name"];
+		$comp_ids[] = $a["id"];
+	}
+
+	$dsc = array(
+		"title" => "Default company invoicing:",
+		"action" => "default_company_invoicing_editor",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"default_company_invoicing" => array(
+				"legend" => "Default company invoicing:",
+				"type" => "popup",
+				"values" => $comp_ids,
+				"display_replace" => $comp_names)));
+	$out .= configEditorTemplate ($dsc);
+
+	$country_codes = array_keys($cc_code_array);
+	$country_fullnames = array_values($cc_code_array);
+	$country_codes = array_reverse($country_codes);
+	$country_fullnames = array_reverse($country_fullnames);
+	$country_codes[] = "00";
+	$country_fullnames[] = "none";
+	$country_codes = array_reverse($country_codes);
+	$country_fullnames = array_reverse($country_fullnames);
+
+	$dsc = array(
+		"table_name" => $pro_mysql_invoicing_table,
+		"title" => "Customer and service country vs company:",
+		"action" => "cust_and_serv_country_vs_comp",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"customer_country_code" => array(
+				"type" => "popup",
+				"legend" => "Customer country",
+				"values" => $country_codes,
+				"display_replace" => $country_fullnames),
+			"service_country_code" => array(
+				"type" => "popup",
+				"legend" => "Service country",
+				"values" => $country_codes,
+				"display_replace" => $country_fullnames),
+			"company_id" => array(
+				"type" => "popup",
+				"legend" => "Company name",
+				"values" => $comp_ids,
+				"display_replace" => $comp_names)
+			)
+		);
+	$out .= dtcDatagrid($dsc);
+
+	return $out;
+}
+
+function drawDTCConfigMenu(){
+	global $txt_cfg_path_conf_title;
+	global $txt_cfg_name_zonefileconf_title;
+	global $txt_cfg_payconf_title;
+	global $lang;
+
+	global $txt_cfg_general_menu_entry;
+	global $txt_cfg_ip_and_network;
+	global $txt_cfg_backup_and_mx_menu_entry;
+	global $txt_cfg_registryapi_menu_entry;
+	
+
+	if(!isset($_REQUEST["sousrub"])){
+		$sousrub = "general";
+        }else{
+          $sousrub = $_REQUEST["sousrub"];
+        }
+
+	$out = "<br><table><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "general")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
+	$out .= $txt_cfg_general_menu_entry[$lang];
+	if($sousrub != "general")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "ip")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ip\">";
+	$out .= $txt_cfg_ip_and_network[$lang];
+	if($sousrub != "ip")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "sslip")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=sslip\">";
+	$out .= "SSL IPs";
+	if($sousrub != "sslip")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "zonefile")
+		$out .= " <a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=zonefile\">";
+	$out .= $txt_cfg_name_zonefileconf_title[$lang];
+	if($sousrub != "zonefile")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "backup")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=backup\">";
+	$out .= $txt_cfg_backup_and_mx_menu_entry[$lang];
+	if($sousrub != "backup")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "registryapi")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=registryapi\">";
+	$out .=  $txt_cfg_registryapi_menu_entry[$lang];
+	if($sousrub != "registryapi")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "payconf")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=payconf\">";
+	$out .=  $txt_cfg_payconf_title[$lang];
+	if($sousrub != "payconf")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "companies")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=companies\">";
+	$out .=  "Companies";
+	if($sousrub != "companies")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "invoicing")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=invoicing\">";
+	$out .=  "Invoicing";
+	if($sousrub != "invoicing")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "radius")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=radius\">";
+	$out .=  "radius";
+	if($sousrub != "radius")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "ftpbackup")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ftpbackup\">";
+	$out .=  "ftpbackup";
+	if($sousrub != "ftpbackup")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "path")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=path\">";
+	$out .= $txt_cfg_path_conf_title[$lang];
+	if($sousrub != "path")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "renewals")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=renewals\">";
+	$out .= "Renewals";
+	if($sousrub != "renewals")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "ticket")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ticket\">";
+	$out .= "Support tickets";
+	if($sousrub != "ticket")
+		$out .= "</a>";
+	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
+	if($sousrub != "vps")
+		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=vps\">";
+	$out .= "VPS servers";
+	if($sousrub != "vps")
+		$out .= "</a>";
+
+	$out .= "</td></tr></table>";
+	return $out;
+}
+
 function drawDTCConfigForm(){
 	if(!isset($_REQUEST["sousrub"])){
 		$sousrub = "general";
@@ -1204,6 +1335,10 @@ function drawDTCConfigForm(){
 		return drawRegistryApiConfig();
         case "payconf":
                 return drawDTCpayConfig();
+	case "companies":
+		return drawCompaniesConfig();
+	case "invoicing":
+		return drawInvoicingConfig();
         case "radius":
                 return drawDTCradiusConfig();
         case "ftpbackup":

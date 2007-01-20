@@ -63,6 +63,10 @@ function createCreditCardPaiementID($amount_paid,$client_id,$label,$new_account=
 	return $n;
 }
 
+function createCommandEntry($id_client,$price_devise,$price,$product_id,$payment_id){
+	return;
+}
+
 function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none",$secpay_custom_id="0",$total_payed=-1){
 	global $pro_mysql_pay_table;
 	global $conf_webmaster_email_addr;
@@ -108,9 +112,7 @@ Country: ".$a["country"]."";
 		$added_comments = "";
 	}
 
-	$txt_mail = "DTC hosting account opened!
-
-Hello,
+	$txt_mail = "Hello,
 
 This is Domain Technologie Control panel robot.
 A \$".$amount_paid." payment has just occured.
