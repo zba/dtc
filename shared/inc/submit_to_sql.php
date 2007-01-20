@@ -127,6 +127,7 @@ function validateWaitingUser($waiting_login){
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_command_table;
 
 	global $txt_userwaiting_account_activated_subject;
 	global $txt_userwaiting_account_activated_text_header;
@@ -304,9 +305,15 @@ http://www.gplhost.com
 	mail($a["email"],$txt_userwaiting_account_activated_subject,
 		$txt_userwaiting_account_activated_text_header,$headers);
 
-	// Delete the user from the userwaiting table
+	// Now add a command to the user so we keep tracks of payments
+	$q = "INSERT INTO $pro_mysql_command_table (id,id_client,domain_name,quantity,price_devise,price,paiement_method,date,product_id,payment_id)
+	VALUES ('','$cid','".$a["domain_name"]."','1','USD','0','cb','".date("Y-m-d")."','".$a["product_id"]."','".$a["paiement_id"]."');";
+	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+
+	// Finaly delete the user from the userwaiting table
 	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE reqadm_login='$waiting_login';";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+
 }
 
 // Get the path of a mailbox. pass_check_email() MUST have been called prior to call this function !!!
