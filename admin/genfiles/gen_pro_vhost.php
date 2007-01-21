@@ -198,7 +198,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	DocumentRoot $path_404/html
 	ScriptAlias /cgi-bin $path_404/cgi-bin
 	ErrorLog $path_404/logs/error.log
-	LogSQLTransferLogTable ".str_replace(".","_",$conf_main_domain).'$'.$conf_404_subdomain.'$'."xfer
+	LogSQLTransferLogTable ".str_replace("-","A",str_replace(".","_",$conf_main_domain)).'$'.$conf_404_subdomain.'$'."xfer
 	LogSQLScoreDomain $conf_main_domain
 	LogSQLScoreSubdomain $conf_404_subdomain
 	LogSQLScoreTable dtc.http_accounting
@@ -234,7 +234,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
         DocumentRoot $path_404/html
         ScriptAlias /cgi-bin $path_404/cgi-bin
         ErrorLog $path_404/logs/error.log
-        LogSQLTransferLogTable ".str_replace(".","_",$conf_main_domain).'$'.$conf_404_subdomain.'$'."xfer
+        LogSQLTransferLogTable ".str_replace("-","A",str_replace(".","_",$conf_main_domain)).'$'.$conf_404_subdomain.'$'."xfer
         LogSQLScoreDomain $conf_main_domain
         LogSQLScoreSubdomain $conf_404_subdomain
         LogSQLScoreTable dtc.http_accounting
@@ -366,7 +366,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$gen_iterations++;
 			}
 			for ($k = 0; $k < $gen_iterations; $k++){
-				$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
+				$log_tablename = str_replace("-","A",str_replace(".","_",$web_name)).'$'.str_replace("-","A",str_replace(".","_",$web_subname));
 				if($conf_use_ssl == "yes" && $k == 0){
 					# add the directive for SSL here
 					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":443", $vhost_file_listen))
@@ -477,7 +477,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
-					$log_tablename = str_replace(".","_",$web_name).'$'.str_replace(".","_",$web_subname);
+					$log_tablename = str_replace("-","A",str_replace(".","_",$web_name)).'$'.str_replace("-","A",str_replace(".","_",$web_subname));
 					$vhost_more_conf = "";
 					if($subdomain["register_globals"] == "yes"){
 						$vhost_more_conf .= "	php_admin_value register_globals 1\n";
