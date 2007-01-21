@@ -64,7 +64,11 @@ function createCreditCardPaiementID($amount_paid,$client_id,$label,$new_account=
 }
 
 function createCommandEntry($id_client,$price_devise,$price,$product_id,$payment_id){
-	
+	global $pro_mysql_command_table;
+
+	$q = "INSERT INTO $pro_mysql_command_table (id,id_client,price_devise,price,date,product_id)
+	VALUES ('','$id_client','$price_devise','$price','".date("Y-m-d")."',$product_id);";
+	$r = mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
 	return;
 }
 
@@ -91,7 +95,7 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 		$total = $amount_paid;
 	}
 	$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$paiement_type',
-		secpay_site='$secpay_site',paiement_cost='$cost',paiement_total='$amount_paid',
+		secpay_site='$secpay_site',paiement_cost='$cost',paiement_total='$total',
 		valid_date='".date("Y-m-j")."', valid_time='".date("H:i:s")."',
 		secpay_custom_id='$secpay_custom_id',valid='yes' WHERE id='$pay_id';";
 	logPay($q);
