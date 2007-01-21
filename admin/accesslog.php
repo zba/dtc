@@ -27,7 +27,7 @@ function make_stats(){
 		$a = mysql_fetch_array($r);
 		$fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/logs";
 		$html_fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/html";
-		$table_name = str_replace(".","_",$a["name"].'$'.$a["subdomain_name"].'$'."xfer");
+		$table_name = str_replace("-","A",str_replace(".","_",$a["name"].'$'.$a["subdomain_name"].'$'."xfer"));
 
 		echo "Checking $table_name ... ";
 		if(mysql_table_exists("apachelogs",$table_name)){
