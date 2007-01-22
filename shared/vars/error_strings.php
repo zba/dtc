@@ -1,13 +1,16 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.16 2007/01/18 06:19:28 thomas Exp $
+ * @version $Id: error_strings.php,v 1.17 2007/01/22 21:11:49 thomas Exp $
  * 
  * --------------------------------------------------------
  * For all translators check in new array is new data - se 
  * In plan add swedish language to DTC 
  * --------------------------------------------------------
  * $Log: error_strings.php,v $
+ * Revision 1.17  2007/01/22 21:11:49  thomas
+ * Added chinese strings.
+ *
  * Revision 1.16  2007/01/18 06:19:28  thomas
  * Some engly corrections thanks to Andrew McGill <andrewm@intoweb.co.za>
  *
@@ -38,7 +41,7 @@ $txt_err_dtc_login_format = array(
 	"nl" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"ru" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"de" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
-	"zh" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"zh" => "´íÎóµÄ¹ÜÀíÔ±µÇÂ½Ãû£ºËüÓ¦¸Ã½öÓĞĞ¡Ğ´×ÖÄ¸»òÕßÊı×Ö»òÕß\"-\"×é³É£¬²¢ÇÒ³¤¶ÈÔÚ4µ½16¸ö×Ö·ûÖ®¼ä¡£<br>\n",
 	"pl" => "B³êdny format loginu lub has³a: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus) i musi zawieraæ miêdzy 4 a 16 znaków.<br>\n",
 	"se" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"es" => "Formato del login del administrador incorrecto: S&oacute;lo deben usarse letras min&uacute;sculas o numeros o el signo &quot;-&quot; y debe tener entre 4 y 16 caracteres de longitud.<br>\n",
@@ -65,7 +68,7 @@ $txt_err_payment_not_valid=array(
 	"nl" => "NOT VALIDATED",
 	"ru" => "NOT VALIDATED",
 	"de" => "NOT VALIDATED",
-	"zh" => "NOT VALIDATED",
+	"zh" => "ÎŞĞ§µÄ",
 	"pl" => "P£ATNO¦Æ NIESPRAWDZONA",
 	"se" => "TRANS SVENSKA",
 	"es" => "NO VALIDADO",
@@ -79,7 +82,7 @@ $txt_err_payment_finish_approved=array(
 	"nl" => "TRANSACTION FINISHED AND APPROVED",
 	"ru" => "TRANSACTION FINISHED AND APPROVED",
 	"de" => "TRANSACTION FINISHED AND APPROVED",
-	"zh" => "TRANSACTION FINISHED AND APPROVED",
+	"zh" => "½»Ò×ÒÑ³É¹¦Íê³É",
 	"pl" => "TRANZAKCJA ZAKOÑCZONA I ZAAKCEPTOWANA",
 	"se" => "TRANS SVENSKA",
 	"es" => "TRANSACCION FINALIZADA Y APROBADA",
@@ -93,7 +96,7 @@ $txt_err_payment_cancel=array(
 	"nl" => "PAYMENT CANCELLED",
 	"ru" => "PAYMENT CANCELLED",
 	"de" => "PAYMENT CANCELLED",
-	"zh" => "PAYMENT CANCELLED",
+	"zh" => "¸¶¿î±»È¡Ïû",
 	"pl" => "P£ATNO¦Æ ANULOWANA",
 	"se" => "TRANS SVENSKA",
 	"es" => "PAGO CANCELADO",
@@ -108,7 +111,7 @@ $txt_err_payment_failed=array(
 	"nl" => "PAYMENT FAILED",
 	"ru" => "PAYMENT FAILED",
 	"de" => "PAYMENT FAILED",
-	"zh" => "PAYMENT FAILED",
+	"zh" => "¸¶¿îÊ§°Ü",
 	"pl" => "P£ATNO¦Æ NIEUDANA",
 	"se" => "TRANS SVENSKA",
 	"es" => "PAGO FALLIDO",
@@ -124,7 +127,7 @@ $txt_err_register_cant_reselect_trans=array(
 	"nl" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"ru" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"de" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
-	"zh" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"zh" => "½»Ò×ºÅ $extapi_pay_id: ²»ÄÜÖØĞÂÑ¡Ôñ½»Ò×£¬×¢²áÊ§°Ü£¡",
 	"pl" => "Nie mogê ponownie wybraæ transakcji dla ID $extapi_pay_id: Rejestracja nieudana!",
 	"se" => "TRANS SVENSKA",
 	"es" => "Imposible reseleccionar la transacci&oacute;n n&uacute;mero $extapi_pay_id: registro fallido!",
@@ -140,7 +143,7 @@ $txt_err_register_cant_reselect_user=array(
 	"nl" => "Cannot reselect user: registration failed!",
 	"ru" => "Cannot reselect user: registration failed!",
 	"de" => "Cannot reselect user: registration failed!",
-	"zh" => "Cannot reselect user: registration failed!",
+	"zh" => "²»ÄÜÖØĞÂÑ¡ÔñÓµ»¤£º×¢²áÊ§°Ü£¡",
 	"pl" => "Nie mogê ponownie wybraæ u¿ytkownika: Rejestracja nieudana!",
 	"se" => "TRANS SVENSKA",
 	"es" => "Imposible reseleccionar usuario: registro fallido!",
@@ -154,7 +157,7 @@ $txt_err_register_cant_reselect_product=array(
 	"nl" => "Cannot reselect product: registration failed!",
 	"ru" => "Cannot reselect product: registration failed!",
 	"de" => "Cannot reselect product: registration failed!",
-	"zh" => "Cannot reselect product: registration failed!",
+	"zh" => "²»ÄÜÖØĞÂÑ¡Ôñ²úÆ·£º×¢²áÊ§°Ü£¡",
 	"pl" => "Nie mogê ponownie wybraæ produktu: Rejestracja nieudana!",
 	"se" => "TRANS SVENSKA",
 	"es" => "Imposible reseleccionar producto: registro fallido!",
@@ -169,7 +172,7 @@ $txt_err_register_succ=array (
 	"nl" => "Registration successful!",
 	"ru" => "Registration successful!",
 	"de" => "Registration successful!",
-	"zh" => "Registration successful!",
+	"zh" => "×¢²á³É¹¦£¡",
 	"pl" => "Rejestracja przebieg³a pomy¶nie",
 	"se" => "TRANS SVENSKA",
 	"es" => "Registro exitoso!",
@@ -184,7 +187,7 @@ $txt_err_email_format = array(
   "nl" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "ru" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "de" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
-  "zh" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "zh" => "´íÎóµÃÓÊÏäµÇÂ½Ãû£ºËüÓ¦¸Ã½öÓĞĞ¡Ğ´×ÖÄ¸»òÕßÊı×Ö»òÕß\"-\"×é³É¡£<br>\n",
   "pl" => "B³êdny format maila lub loginu: mo¿esz u¿yæ ma³ych liter, cyfr lub znaku \"-\" (minus).<br>\n",
   "se" => "TRANS SVENSKA",
   "es" => "Formato de mail login incorrecto: S&oacute;lo deben usarse letras min&uacute;sculas o numeros o el signo &quot;-&quot;.<br>\n",
@@ -198,7 +201,7 @@ $txt_err_mailbox_does_not_exists_in_db = array(
   "nl" => "TRANS Mailbox does no exists in database!<br>\n",
   "ru" => "TRANS Mailbox does no exists in database!<br>\n",
   "de" => "TRANS Mailbox does no exists in database!<br>\n",
-  "zh" => "TRANS Mailbox does no exists in database!<br>\n",
+  "zh" => "ÓÊÏäµØÖ·²»´æÔÚ£¡<br>\n",
   "pl" => "Nie ma takiej skrzynki!<br>\n",
   "se" => "TRANS SVENSKA",
   "es" => "Mailbox inexistente en la base de datos!<br>\n",
@@ -212,7 +215,7 @@ $txt_err_email_exists_as_mailinglist = array(
   "nl" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "ru" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "de" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
-  "zh" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
+  "zh" => "ÓÊÏäµØÖ·ÒÑ¾­±»×÷ÎªÓÊ¼şÁĞ±í´æÔÚÊı¾İ¿âÖĞ£¡<br>\n",
   "pl" => "Taka skrzynka ju¿ istnieje na liscie mailingowej!<br>\n",
   "se" => "TRANS SVENSKA",
   "es" => "Mailbox existente en la base de datos como Lista de Correo!<br>\n",
@@ -226,7 +229,7 @@ $txt_err_password_format = array(
   "nl" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "ru" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "de" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
-  "zh" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
+  "zh" => "ÃÜÂëÓ¦¸Ã½öÓÉ×ÖÄ¸ºÍÊı×Ö×é³É(a-zA-Z0-9)£¬²¢ÇÒ³¤¶ÈÔÚ6µ½16¸ö×Ö·ûÖ®¼ä¡£<br>\n",
   "pl" => "Has³o jest tworzone ze standardowego zestawu znaków (a-zA-Z0-9) i jego d³ugo¶æ mo¿e siê zawieraæ miêdzy 6 a 16 znaków.<br>\n",
   "se" => "TRANS SVENSKA",
   "es" => "La contrase&ntilde;a debe estar formada con caracteres estandar y numeros (a-zA-Z0-9) y tener entre 6 y 16 caracteres de longitud.<br>\n",
