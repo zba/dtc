@@ -198,7 +198,7 @@ class zPDF extends FPDF{
 			
 			$this->SetX(130);
 			$this->SetFont('Arial','B',12);
-			$this->Cell(50,7,"Total payd:","1",0,"L");
+			$this->Cell(50,7,"Total paid:","1",0,"L");
 			$this->SetFont('Arial','',12);
 			$this->Cell(20,7,$pay["paiement_total"],"1",0,"L");
 			$this->Ln();
