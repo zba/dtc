@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS clients (
   id int(9) NOT NULL auto_increment,
   is_company enum('yes','no') NOT NULL default 'no',
   company_name varchar(64) default NULL,
+  vat_num varchar(128) default NULL,
   familyname varchar(64) NOT NULL default '',
   christname varchar(64) NOT NULL default '',
   addr1 varchar(100) NOT NULL default '',
