@@ -30,6 +30,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	global $txt_login_pass;
 	global $txt_path;
 	global $conf_hide_password;
+	global $conf_domain_based_ftp_logins;
 
 	global $txt_number_of_active_ftp;
 	global $txt_maxnumber_of_ftp_account_reached;
@@ -79,7 +80,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 				"legend" => "id"),
 			"login" => array(
 				"type" => "text",
-				"check" => "dtc_login",
+				"check" => "dtc_login_or_email",
 				"legend" => $txt_login_login[$lang]),
 			"password" => array(
 				"type" => "password",
@@ -92,6 +93,9 @@ function drawAdminTools_Ftp($domain,$adm_path){
 				"legend" => $txt_path[$lang])
 			)
 		);
+	if($conf_domain_based_ftp_logins == "yes"){
+		$dsc["cols"]["login"]["happen_domain"] = "@".$domain["name"];
+	}
 	$txt .= dtcListItemsEdit($dsc);
 	return $txt;
 
