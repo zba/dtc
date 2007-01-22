@@ -1,5 +1,10 @@
 <?php
 
+// List of all contries member of the European Union (used for VAT billing)
+$cc_europe = array(
+  "AT","BE","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","SK","SI","ES","SE","GB"
+);
+
 $cc_code_array = array(
 "AF"=>'Afghanistan',
 "AL"=>'Albania',
