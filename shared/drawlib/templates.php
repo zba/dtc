@@ -610,6 +610,16 @@ function dtcListItemsEdit($dsc){
 						}
 					}
 					break;
+				case "dtc_login_or_email":
+					if( !isFtpLogin($_REQUEST[ $keys[$i] ]) && !isValidEmail($_REQUEST[ $keys[$i] ])){
+						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+									|| $_REQUEST[ $keys[$i] ] != ""){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": not a correct login format.<br>";
+						}
+					}
+					break;
 				case "dtc_pass":
 					if( !isDTCPassword($_REQUEST[ $keys[$i] ]) ){
 						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
@@ -787,7 +797,17 @@ function dtcListItemsEdit($dsc){
 					}
 					break;
 				case "dtc_login":
-					if( !isFtpLogin($_REQUEST[ $keys[$i] ]) ){
+					if( !isFtpLogin($_REQUEST[ $keys[$i] ])){
+						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+									|| $_REQUEST[ $keys[$i] ] != ""){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": not a correct login format.<br>";
+						}
+					}
+					break;
+				case "dtc_login_or_email":
+					if( !isFtpLogin($_REQUEST[ $keys[$i] ])  && !isValidEmail($_REQUEST[ $keys[$i] ])){
 						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
@@ -1095,7 +1115,7 @@ function dtcListItemsEdit($dsc){
 					}else{
 						$ctrl_rows = "";
 					}
-					$ctrl = "<textarea $ctrl_cols $ctrl_rows name=\"".$keys[$j]."\">".$a[ $keys[$j] ]."</textarea>";
+					$ctrl = "<textarea $ctrl_cols $ctrl_rows name=\"".$keys[$j]."\">".stripslashes($a[ $keys[$j] ])."</textarea>";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
 					break;
 				case "password":
@@ -1124,7 +1144,7 @@ function dtcListItemsEdit($dsc){
 						$genpass = "";
 						$input_disp_type = "text";
 					}
-					$ctrl = "<input type=\"$input_disp_type\" $size name=\"".$keys[$j]."\" value=\"$input_disp_value\" $disabled>$genpass$happen";
+					$ctrl = "<input type=\"$input_disp_type\" $size name=\"".$keys[$j]."\" value=\"".stripslashes($input_disp_value)."\" $disabled>$genpass$happen";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
 					break;
 				case "radio":
