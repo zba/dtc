@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.83 2007/01/20 09:10:34 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.84 2007/01/22 05:48:04 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -107,7 +107,7 @@ function configEditorTemplate ($dsc,$conftype="config"){
 		}
 		$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$control);
 	}
-	$out .= dtcFromOkDraw()."</table>";
+	$out .= dtcFromOkDraw()."</form></table>";
 	return $out;
 }
 
@@ -1083,6 +1083,7 @@ function drawDTCpathConfig(){
 function drawCompaniesConfig(){
 	global $pro_mysql_companies_table;
 	global $cc_code_array;
+	global $conf_generated_file_path;
 
 	$out = "";
 
@@ -1109,7 +1110,7 @@ function drawCompaniesConfig(){
 				"legend" => "Name:"),
 			"address" => array(
 				"type" => "textarea",
-				"cols" => "50",
+				"cols" => "70",
 				"rows" => "5",
 				"legend" => "Address:"),
 			"country" => array(
@@ -1124,7 +1125,25 @@ function drawCompaniesConfig(){
 			"vat_number" => array(
 				"type" => "text",
 				"size" => "30",
-				"legend" => "VAT number:")));
+				"legend" => "VAT number:"),
+			"vat_rate" => array(
+				"type" => "text",
+				"size" => "10",
+				"legend" => "VAT rate:"),
+			"logo_path" => array(
+				"type" => "text",
+                                "size" => "30",
+                                "legend" => "Logo path relative to<br>$conf_generated_file_path/invoice_pics/:"),
+			"text_after" => array(
+				"type" => "textarea",
+				"cols" => "70",
+				"rows" => "5",
+				"legend" => "Invoice free text:"),
+			"footer" => array(
+				"type" => "textarea",
+				"cols" => "70",
+				"rows" => "5",
+				"legend" => "Invoice footer:")));
 	$out .= dtcListItemsEdit($dsc);
 	return $out;
 }
