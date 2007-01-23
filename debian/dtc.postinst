@@ -27,7 +27,7 @@ DTCinstallPackage
 
 #DEBHELPER#
 
-echo "Your configuration has been saved in: /root/.dtc_saved_config"
+echo "Your configuration has been saved in: /var/lib/dtc/saved_install_config"
 echo "To finish the installation: cd /usr/share/dtc/admin/install ; ./install"
 echo "More about it in /usr/share/doc/dtc and online at:"
 echo "                               http://www.gplhost.com/software-dtc.html"
