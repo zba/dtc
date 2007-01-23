@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.44 2006/12/31 04:59:51 fournier Exp $
+ * @version $Id: email.php,v 1.45 2007/01/23 05:27:16 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -615,6 +615,7 @@ function drawAdminTools_Emails($domain){
 </form>";
 	
 	$out .= $list_items;
+	$out .= helpLink("PmWiki/Email-Accounts");
 	return $out;
 
 

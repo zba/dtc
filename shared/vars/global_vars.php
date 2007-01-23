@@ -4,7 +4,7 @@
 // are global variables.
 
 if(isset($_REQUEST["rub"])){
-	if(!ereg("^([a-z0-9]+)([.a-z_0-9-]*)([a-z0-9]+)\$",$_REQUEST["rub"])){
+	if(!ereg("^([a-z0-9]+)([.a-z_0-9-]*)([a-z0-9]+)\$",$_REQUEST["rub"]) && $_REQUEST["rub"] != ""){
 		die("Rub parameter not correct: XSS attempt?");
 	}
 	$rub = $_REQUEST["rub"];

@@ -342,6 +342,7 @@ if(sizeof($addrlink) == 1){
 }else{
 	switch($addrlink[1]){
 	case "stats":
+	case "invoices":
 		$icon_im = imagecreatefrompng("stats.png");
 		break;
 	case "subdomains":

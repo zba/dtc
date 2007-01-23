@@ -39,5 +39,5 @@ $pro_mysql_ssl_ips_table = "ssl_ips";
 $pro_mysql_dedicated_table = "dedicated";
 $pro_mysql_companies_table = "companies";
 $pro_mysql_invoicing_table = "invoicing";
-
+$pro_mysql_completedorders_table = "completedorders";
 ?>

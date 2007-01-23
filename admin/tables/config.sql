@@ -79,5 +79,6 @@ user_mysql_type enum('localhost','distant') NOT NULL default 'localhost',
 user_mysql_host varchar (255) NOT NULL default 'none',
 user_mysql_root_login varchar (255) NOT NULL default 'none',
 user_mysql_root_pass varchar (255) NOT NULL default 'none',
+this_server_country_code varchar (4) NOT NULL default 'US',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM

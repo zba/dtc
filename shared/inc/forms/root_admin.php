@@ -11,6 +11,7 @@ function drawEditAdmin($admin){
 	global $pro_mysql_vps_table;
 	global $pro_mysql_product_table;
 	global $pro_mysql_dedicated_table;
+	global $cc_code_popup;
 
 	global $txt_password;
 
@@ -261,9 +262,11 @@ function drawEditAdmin($admin){
 	<input type=\"hidden\" name=\"action\" value=\"add_dedicated_to_user\">
 	<table border=\"0\">
 	<tr><td style=\"text-align: right; white-space: nowrap;\">Product:</td>
-	<td><select name=\"product_id\">$server_prods</select></td></tr>
+		<td><select name=\"product_id\">$server_prods</select></td></tr>
 	<tr><td style=\"text-align: right; white-space: nowrap;\">Hostname:</td>
-	<td><input type=\"text\" name=\"server_hostname\" value=\"\"></td>
+		<td><input type=\"text\" name=\"server_hostname\" value=\"\"></td>
+	<tr><td style=\"text-align: right; white-space: nowrap;\">Country:</td>
+		<td><select name=\"country\">$cc_code_popup</select></td>
 	<tr><td></td><td><input type=\"submit\" value=\"Add server\"></td></tr></table></form>";
 
 	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/skin/frame/border_2.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
@@ -285,6 +288,7 @@ function drawDomainConfig($admin){
 	global $txt_domain_tbl_config_ip;
 	global $txt_domain_tbl_config_backup_ip;
 	global $txt_domain_tbl_config_max_lists;
+	global $cc_code_array;
 
 	global $pro_mysql_product_table;
 	global $pro_mysql_domain_table;
@@ -466,7 +470,7 @@ function drawDomainConfig($admin){
 					"legend" => "id"),
 				"server_hostname" => array(
 					"type" => "info",
-					"legend" => "VPS Server"),
+					"legend" => "Server name"),
 				"start_date" => array(
 					"type" => "text",
 					"size" => "10",
@@ -483,6 +487,11 @@ function drawDomainConfig($admin){
 					"type" => "text",
 					"size" => "5",
 					"legend" => "RAM"),
+				"country_code" => array(
+					"type" => "popup",
+					"legend" => "Country",
+					"values" => array_keys($cc_code_array),
+					"display_replace" => array_values($cc_code_array)),
 				"product_id" => array(
 					"type" => "popup",
 					"legend" => "Product",

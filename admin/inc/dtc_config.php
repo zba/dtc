@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.84 2007/01/22 05:48:04 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.85 2007/01/23 05:27:16 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -281,7 +281,7 @@ function drawVPSServerConfig(){
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_server_table;
 	global $rub;
-
+	global $cc_code_array;
 
 	$out = "<h3>VPS Server registry edition</h3>";
 	$dsc = array(
@@ -300,18 +300,25 @@ function drawVPSServerConfig(){
 				"text" => "Edit IPs"),
 			"hostname" => array(
 				"type" => "text",
+				"size" => "15",
 				"legend" => "Hostname"),
 			"location" => array(
 				"type" => "text",
+				"size" => "10",
 				"legend" => "Location"),
 			"soap_login" => array(
 				"type" => "text",
-				"size" => "10",
+				"size" => "7",
 				"legend" => "Soap login"),
 			"soap_pass" => array(
 				"type" => "text",
-				"size" => "10",
-				"legend" => "Soam password"),
+				"size" => "7",
+				"legend" => "Soap password"),
+			"country_code" => array(
+				"type" => "popup",
+				"legend" => "Country",
+				"values" => array_keys($cc_code_array),
+				"display_replace" => array_values($cc_code_array)),
 			"lvmenable" => array(
 				"type" => "radio",
 				"legend" => "Use LVM backend",
@@ -382,6 +389,8 @@ function drawGeneralConfig(){
 	global $txt_no;
 	global $lang;
 
+	global $cc_code_array;
+
 	global $conf_skin;
 	global $dtcshared_path;
 	$dir = $dtcshared_path."/gfx/skin/";
@@ -412,6 +421,11 @@ function drawGeneralConfig(){
 				"legend" => $txt_cfg_session_expir_time[$lang],
 				"type" => "text",
 				"size" => "10"),
+			"this_server_country_code" => array(
+				"type" => "popup",
+				"legend" => "This server location:",
+				"values" => array_keys($cc_code_array),
+				"display_replace" => array_values($cc_code_array)),
 			"selling_conditions_url" => array(
 				"legend" => "Selling condition URL:",
 				"type" => "text",
@@ -1196,14 +1210,14 @@ function drawInvoicingConfig(){
 				"type" => "id",
 				"display" => "no",
 				"legend" => "id"),
-			"customer_country_code" => array(
-				"type" => "popup",
-				"legend" => "Customer country",
-				"values" => $country_codes,
-				"display_replace" => $country_fullnames),
 			"service_country_code" => array(
 				"type" => "popup",
 				"legend" => "Service country",
+				"values" => $country_codes,
+				"display_replace" => $country_fullnames),
+			"customer_country_code" => array(
+				"type" => "popup",
+				"legend" => "Customer country",
 				"values" => $country_codes,
 				"display_replace" => $country_fullnames),
 			"company_id" => array(

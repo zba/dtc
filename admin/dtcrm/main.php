@@ -127,6 +127,7 @@ function DTCRMeditClients(){
 		$row["familyname"] = "";
 		$row["christname"] = "";
 		$row["company_name"] = "";
+		$row["vat_num"] = "";
 		$row["addr1"] = "";
 		$row["addr2"] = "";
 		$row["addr3"] = "";
@@ -157,6 +158,7 @@ function DTCRMeditClients(){
 yes<input type=\"radio\" name=\"ed_is_company\" value=\"yes\" $iscomp_yes >
 no<input type=\"radio\" name=\"ed_is_company\" value=\"no\" $iscomp_no >
 <tr><td align=\"right\">".$txt_draw_client_info_comp_name[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_company_name\" value=\"".$row["company_name"]."\"></td></tr>
+<tr><td align=\"right\">VAT num:</td><td><input size=\"40\" type=\"text\" name=\"ed_vat_num\" value=\"".$row["vat_num"]."\"></td></tr>
 <tr><td align=\"right\">".$txt_draw_client_info_addr[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_addr1\" value=\"".$row["addr1"]."\"></td></tr>
 <tr><td align=\"right\">2:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr2\" value=\"".$row["addr2"]."\"></td></tr>
 <tr><td align=\"right\">3:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr3\" value=\"".$row["addr3"]."\"></td></tr>

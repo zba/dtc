@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS `pending_renewal` (
   `renew_id` int(11) NOT NULL default '0',
   `heb_type` enum('shared', 'ssl', 'vps', 'server') NOT NULL default 'shared',
   `pay_id` int(11) NOT NULL default '0',
+  `country_code` varchar(4) NOT NULL default 'US',
   PRIMARY KEY  (id)
 ) TYPE=MyISAM;

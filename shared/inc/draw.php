@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.84 2007/01/15 06:33:55 thomas Exp $
+ * @version $Id: draw.php,v 1.85 2007/01/23 05:27:16 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -15,6 +15,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/ssh.php");
         require("$dtcshared_path/inc/forms/packager.php");
 	require("$dtcshared_path/inc/forms/admin_stats.php");
+	require("$dtcshared_path/inc/forms/invoices.php");
 	require("$dtcshared_path/inc/forms/domain_stats.php");
 	require("$dtcshared_path/inc/forms/dns.php");
 	require("$dtcshared_path/inc/forms/subdomain.php");
@@ -168,6 +169,10 @@ function drawAdminTools($admin){
 		"text" => $txt_cmenu_myaccount_stats[$lang],
 		"type" => "link",
 		"link" => "stats");
+	$user_ZEmenu[] = array(
+		"text" => "Past payments",
+		"type" => "link",
+		"link" => "invoices");
 	if(file_exists($dtcshared_path."/dtcrm") && $nbr_domain > 0){
 		$user_ZEmenu[] = array(
 			"text" => $txt_cmenu_add_domain[$lang],
@@ -383,13 +388,17 @@ function drawAdminTools($admin){
                         $web_editor .= "<img src=\"inc/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_nameservers[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
 			$title = $txt_DNS_config_of[$lang].": ".$edit_domain;
+		}else if(@$add_array[1] == "invoices"){
+			$web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>Invoices:</u></b><br></font>";
+			$web_editor .= drawAdminTools_Invoices($admin);
+			$title = "Invoices";
 		}else if(@$add_array[1] == "stats"){
 			if($add_array[0] == "myaccount"){
-			  $web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_myaccount_stats[$lang]:</u></b><br></font>";
+				$web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_myaccount_stats[$lang]:</u></b><br></font>";
 				$web_editor .= drawAdminTools_AdminStats($admin);
 				$title = $txt_my_account_global_stats_title[$lang];
 			}else{
-			  $web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_myaccount_stats[$lang]:</u></b><br></font>";
+				$web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_myaccount_stats[$lang]:</u></b><br></font>";
 				$web_editor .= drawAdminTools_DomainStats($admin,$eddomain);
 				$title = $txt_Statistics_of_domain[$lang].":".$edit_domain;
 			}

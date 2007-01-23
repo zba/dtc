@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS `dedicated` (
   `ramsize` int(9) NOT NULL default '48',
   `product_id` int(9) NOT NULL default '0',
   `operatingsystem` varchar(64) NOT NULL default 'debian',
+  `country_code` varchar(4) NOT NULL default 'US',
   PRIMARY KEY  (id),
   UNIQUE KEY `server_hostname` (server_hostname)
 ) TYPE=MyISAM;

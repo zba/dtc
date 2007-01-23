@@ -26,6 +26,8 @@ function validateRenewal($renew_id){
 	global $pro_mysql_vps_table;
 	global $pro_mysql_admin_table;
 	global $pro_mysql_dedicated_table;
+	global $pro_mysql_completedorders_table;
+	global $pro_mysql_client_table;
 
 	global $commit_flag;
 	global $submit_err;
@@ -114,6 +116,20 @@ Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
 	$headers = "From: ".$conf_webmaster_email_addr;
 	mail($conf_webmaster_email_addr,"[DTC] Renewal approved!",$txt_renewal_approved,$headers);
 
+	$q = "SELECT id_client FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."'";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		echo "Cannot find admin line ".__LINE__." file ".__FILE__;
+	}
+	$admin = mysql_fetch_array($r);
+	$cid = $admin["id_client"];
+
+	// Now add a command to the user so we keep tracks of payments
+	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code)
+	VALUES ('','$cid','','1','".date("Y-m-d")."','".$product["id"]."','".$renew_entry["pay_id"]."','".$renew_entry["country_code"]."');";
+	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+
 	$q = "DELETE FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	return true;
@@ -127,7 +143,8 @@ function validateWaitingUser($waiting_login){
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
-	global $pro_mysql_command_table;
+	global $pro_mysql_vps_server_table;
+	global $pro_mysql_completedorders_table;
 
 	global $txt_userwaiting_account_activated_subject;
 	global $txt_userwaiting_account_activated_text_header;
@@ -136,6 +153,7 @@ function validateWaitingUser($waiting_login){
 	global $conf_demo_version;
 	global $conf_use_ssl;
 	global $conf_webmaster_email_addr;
+	global $conf_this_server_country_code;
 	global $console;
 
 	// Check if there is a user by that name
@@ -214,7 +232,7 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 
 			$r = $soap_client->call("setupLVMDisks",array("vpsname" => $vps_xen_name, "hddsize" => $a2["quota_disk"], "swapsize" => $a2["memory_size"], "imagetype" => $image_type),"","","");
 			$qvps = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$a["vps_location"]."' AND vps_xen_name='$vps_xen_name' LIMIT 1;";
-			$rvps = mysql_query($qvps)or die("Cannot execute query \"qvps\" line ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+			$rvps = mysql_query($qvps)or die("Cannot execute query \"$qvps\" line ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$nvps = mysql_num_rows($rvps);
 			if($nvps != 1){
 				echo "Cannot find VPS IP: wont be able to setup the os, please get in touch with the administrator!";
@@ -226,6 +244,16 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 					"hddsize" => $a2["quota_disk"],
 					"ramsize" => $a2["memory_size"],
 					"ipaddr" => $avps["ip_addr"]),"","","");
+				$qcountry = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$a["vps_location"]."';";
+				$rcountry = mysql_query($qcountry)or die("Cannot execute query \"$qcountry\" line ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$ncountry = mysql_num_rows($rcountry);
+				if($ncountry != 1){
+					echo "Cannot find VPS server country!";
+					$country = 'US';
+				}else{
+					$acountry = mysql_fetch_array($rcountry);
+					$country = $acountry["country_code"];
+				}
 			}
 		}
 		$txt_welcome_message = "The Virtual Server hosting account you have ordered
@@ -247,6 +275,8 @@ panel on your VPS, you need to get in touch with us.
 
 Here is your login information in the DTC control panel:";
 	}else if($a2["heb_type"] == "server"){
+		// As there is currently no dedicated server provision system, we just do this:
+		$country = $conf_this_server_country_code;
 		addDedicatedToUser($waiting_login,$a["domain_name"],$a2["id"]);
 		$txt_welcome_message = "The dedicated server you have ordered is now
 validated. Note that there is a delay when ordering a
@@ -257,6 +287,7 @@ From now on, you can login to our control panel for doing
 the renewals of your contract. Here is the login information
 you will need:";
         }else{
+        	$country = $conf_this_server_country_code;
 		addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
 		$txt_welcome_message = "The shared hosting account you have ordered is now
 ready to be used. Note that it can take up to 10 minutes
@@ -306,8 +337,8 @@ http://www.gplhost.com
 		$txt_userwaiting_account_activated_text_header,$headers);
 
 	// Now add a command to the user so we keep tracks of payments
-	$q = "INSERT INTO $pro_mysql_command_table (id,id_client,domain_name,quantity,price_devise,price,paiement_method,date,product_id,payment_id)
-	VALUES ('','$cid','".$a["domain_name"]."','1','USD','0','cb','".date("Y-m-d")."','".$a["product_id"]."','".$a["paiement_id"]."');";
+	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code)
+	VALUES ('','$cid','".$a["domain_name"]."','1','".date("Y-m-d")."','".$a["product_id"]."','".$a["paiement_id"]."','$country');";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	// Finaly delete the user from the userwaiting table

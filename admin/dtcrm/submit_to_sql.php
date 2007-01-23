@@ -75,7 +75,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "remove_admin_from_clien
 //ed_disk_quota_mb=&ed_gw_quota_per_month_gb=
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_client"){
 	$q = "INSERT INTO $pro_mysql_client_table(
-id,is_company,company_name,
+id,is_company,company_name,vat_num
 familyname,christname,
 addr1,addr2,addr3,
 city,zipcode,state,
@@ -83,7 +83,7 @@ country,phone,fax,
 email,special_note,dollar,
 disk_quota_mb,bw_quota_per_month_gb
 )VALUES(
-'','".$_REQUEST["ed_is_company"]."','".$_REQUEST["ed_company_name"]."',
+'','".$_REQUEST["ed_is_company"]."','".$_REQUEST["ed_company_name"]."','".$_REQUEST["ed_vat_num"]."',
 '".$_REQUEST["ed_familyname"]."','".$_REQUEST["ed_christname"]."',
 '".$_REQUEST["ed_addr1"]."','".$_REQUEST["ed_addr2"]."','".$_REQUEST["ed_addr3"]."',
 '".$_REQUEST["ed_city"]."','".$_REQUEST["ed_zipcode"]."','".$_REQUEST["ed_state"]."',
@@ -106,6 +106,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_client"){
 		$q = "UPDATE $pro_mysql_client_table SET
 is_company='".$_REQUEST["ed_is_company"]."',
 company_name='".$_REQUEST["ed_company_name"]."',
+vat_num='".$_REQUEST["ed_vat_num"]."',
 familyname='".$_REQUEST["ed_familyname"]."',
 christname='".$_REQUEST["ed_christname"]."',
 addr1='".$_REQUEST["ed_addr1"]."',

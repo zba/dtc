@@ -155,6 +155,12 @@ function register_user(){
 		$esc_compname = $_REQUEST["compname"];
 	}
 
+	if (!get_magic_quotes_gpc()){
+		$esc_vat_num = addslashes($_REQUEST["vat_num"]);
+	}else{
+		$esc_compname = $_REQUEST["vat_num"];
+	}
+
 	if(!isset($_REQUEST["address1"]) || $_REQUEST["address1"]==""){
 		$ret["err"] = 2;
 		$ret["mesg"] = "Required field address missing.";
@@ -273,6 +279,7 @@ domain_name,
 family_name,
 first_name,
 comp_name,
+vat_num,
 iscomp,
 email,
 phone,
@@ -293,6 +300,7 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 '$esc_familyname',
 '$esc_firstname',
 '$esc_compname',
+'$esc_vat_num',
 '$esc_comp',
 '".$_REQUEST["email"]."',
 '$esc_phone',
@@ -451,6 +459,9 @@ function registration_form(){
 	if(isset($_REQUEST["compname"]))	$frm_compname = $_REQUEST["compname"];
 	else	$frm_compname = "";
 
+	if(isset($_REQUEST["vat_num"]))	$frm_compname = $_REQUEST["vat_num"];
+	else	$frm_vat_num = "";
+
 	if(isset($_REQUEST["email"]))	$frm_email = $_REQUEST["email"];
 	else	$frm_email = "";
 
@@ -551,6 +562,9 @@ function registration_form(){
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_comp_name[$lang]."</td>
 	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>
+</tr><tr>
+	<td style=\"white-space: nowrap;text-align: right;\">VAT Number:</td>
+	<td><input type=\"text\" name=\"vat_num\" value=\"$frm_vat_num\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_email[$lang]."</td>
 	<td><input type=\"text\" name=\"email\" value=\"$frm_email\"></td>

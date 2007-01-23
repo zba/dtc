@@ -2,7 +2,31 @@
 
 // List of all contries member of the European Union (used for VAT billing)
 $cc_europe = array(
-  "AT","BE","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","SK","SI","ES","SE","GB"
+  "AT" => 1,
+  "BE" => 1,
+  "CY" => 1,
+  "CZ" => 1,
+  "DK" => 1,
+  "EE" => 1,
+  "FI" => 1,
+  "FR" => 1,
+  "DE" => 1,
+  "GR" => 1,
+  "HU" => 1,
+  "IE" => 1,
+  "IT" => 1,
+  "LV" => 1,
+  "LT" => 1,
+  "LU" => 1,
+  "MT" => 1,
+  "NL" => 1,
+  "PL" => 1,
+  "PT" => 1,
+  "SK" => 1,
+  "SI" => 1,
+  "ES" => 1,
+  "SE" => 1,
+  "UK" => 1
 );
 
 $cc_code_array = array(
