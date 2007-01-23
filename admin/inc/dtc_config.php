@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.85 2007/01/23 05:27:16 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.86 2007/01/23 05:33:51 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -414,6 +414,11 @@ function drawGeneralConfig(){
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"domain_based_ftp_logins" => array(
 				"legend" => $txt_cfg_use_domain_based_ftp_logins[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"domain_based_ssh_logins" => array(
+				"legend" => "Domain based ssh logins:"
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
