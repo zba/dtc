@@ -30,7 +30,7 @@ function drawAdminTools_SSH($domain,$adm_path){
 	global $txt_login_pass;
 	global $txt_path;
 	global $conf_hide_password;
-	global global $conf_domain_based_ssh_logins;
+	global $conf_domain_based_ssh_logins;
 
 	global $txt_number_of_active_ssh;
 	global $txt_maxnumber_of_ssh_account_reached;
@@ -76,7 +76,6 @@ function drawAdminTools_SSH($domain,$adm_path){
 			"login" => array(
 				"type" => "text",
 				"check" => "dtc_login_or_email",
-				"happen_domain" => "@".$domain["name"],
 				"legend" => $txt_login_login[$lang]),
 			"password" => array(
 				"type" => "password",
@@ -89,7 +88,7 @@ function drawAdminTools_SSH($domain,$adm_path){
 				"legend" => $txt_path[$lang])
 			)
 		);
-	if($conf_domain_based_ftp_logins == "yes"){
+	if($conf_domain_based_ssh_logins == "yes"){
 		$dsc["cols"]["logins"]["happen_domain"] = "@".$domain["name"];
 	}
 	$txt .= dtcListItemsEdit($dsc);
