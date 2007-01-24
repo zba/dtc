@@ -583,6 +583,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 				$ret["err"] = 8;
 				$ret["mesg"] = "Cannot fetch subdomain";
 			}
+			$subdomain["id"] = $row2["id"];
 			$subdomain["name"] = $row2["subdomain_name"];
 			$subdomain["safe_mode"] = $row2["safe_mode"];
 			$subdomain["sbox_protect"] = $row2["sbox_protect"];
@@ -601,6 +602,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 			} else {
 				$subdomain["generate_vhost"] = "yes";
 			}
+			$subdomain["ssl_ip"] = $row2["ssl_ip"];
 
 			// if we want to generate a NS entry with this subdomain as the nameserver
 			if (isset($row2["nameserver_for"])){

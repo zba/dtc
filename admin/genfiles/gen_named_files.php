@@ -388,10 +388,14 @@ $more_mx_server
                                 }
 				// Check if it's an IP or not, to know if it's a CNAME record or a A record
 				if(isIP($subdomain["ip"]) || $subdomain["ip"] == "default"){
-					if($subdomain["ip"] == "default"){
-						$the_ip_writed = "A\t".$ip_to_write;
+					if($subdomain["ssl_ip"] != "none"){
+						$the_ip_writed = "A\t".$subdomain["ssl_ip"];
 					}else{
-						$the_ip_writed = "A\t".$subdomain["ip"];
+						if($subdomain["ip"] == "default"){
+							$the_ip_writed = "A\t".$ip_to_write;
+						}else{
+							$the_ip_writed = "A\t".$subdomain["ip"];
+						}
 					}
 				}else{
 					$the_ip_writed = "CNAME\t".$subdomain["ip"].".";
@@ -416,18 +420,16 @@ $more_mx_server
 					$is_list_subdomain_set = "yes";
 				}
 				// write TTL values into subdomain
-				if ($conf_use_cname_for_subdomains == "yes")
-				{
+				if ($conf_use_cname_for_subdomains == "yes"){
 					$this_site_file .= "$web_subname	$sub_ttl	IN	CNAME	@\n";
 
-				} else {
+				}else{
 					$this_site_file .= "$web_subname	$sub_ttl	IN	$the_ip_writed\n";
 				}
 				if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
 					$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
 				}
-				if(isset($subdomain["nameserver_for"]) && $subdomain["nameserver_for"] != "")
-				{
+				if(isset($subdomain["nameserver_for"]) && $subdomain["nameserver_for"] != ""){
 					// add support for creating NS records
 					$nameserver_for = $subdomain["nameserver_for"];
 					$this_site_file .= "$nameserver_for	IN	NS	$web_subname.$web_name.\n";

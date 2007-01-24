@@ -28,6 +28,7 @@ function validateRenewal($renew_id){
 	global $pro_mysql_dedicated_table;
 	global $pro_mysql_completedorders_table;
 	global $pro_mysql_client_table;
+	global $pro_mysql_ssl_ips_table;
 
 	global $commit_flag;
 	global $submit_err;
@@ -70,7 +71,6 @@ function validateRenewal($renew_id){
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
 	case "shared":
-	case "ssl":
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
@@ -82,6 +82,28 @@ function validateRenewal($renew_id){
 		$admin = mysql_fetch_array($r);
 		$date_expire = calculateExpirationDate($admin["expire"],$product["period"]);
 		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire' WHERE adm_login='".$renew_entry["adm_login"]."'";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		break;
+	case "ssl":
+		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find admin login in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$admin = mysql_fetch_array($r);
+		$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE available='yes' LIMIT 1;";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find any free IP for adding SSL.";
+			return false;
+		}
+		$ssl_token = mysql_fetch_array($r);
+		$date_expire = calculateExpirationDate(date("Y-m-d"),$product["period"]);
+		$q = "UPDATE $pro_mysql_ssl_ips_table SET available='no',adm_login='".$admin["adm_login"]."',expire='$date_expire' WHERE id='".$ssl_token["id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
 	case "server":

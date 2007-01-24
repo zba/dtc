@@ -38,6 +38,31 @@ fi
 ";
 }
 
+function checkCertificate($cert_path,$common_name){
+	global $conf_dtc_system_username;
+	global $conf_dtc_system_groupname;
+	global $conf_dtcadmin_path;
+
+	if(!is_dir($cert_path)){
+		mkdir($cert_path);
+	}
+	if(		   !file_exists("$cert_path/$common_name".".cert.csr")
+			&& !file_exists("$cert_path/privkey.pem")
+			&& !file_exists("$cert_path/$common_name".".cert.key")
+			&& !file_exists("$cert_path/$common_name".".cert.cert")){
+		$cmd = "$conf_dtcadmin_path/genfiles/gen_customer_ssl_cert.sh $cert_path $common_name";
+		$return_string = exec ($cmd, $output, $return_var);
+	}
+	if(		   file_exists("$cert_path/$common_name".".cert.csr")
+			&& file_exists("$cert_path/privkey.pem")
+			&& file_exists("$cert_path/$common_name".".cert.key")
+			&& file_exists("$cert_path/$common_name".".cert.cert")){
+		return "yes";
+	}else{
+		return "no";
+	}
+}
+
 function test_valid_local_ip($address){
 	global $console;
 	global $panel_type;
@@ -477,6 +502,22 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
+					$iteration_table = array();
+					$iteration_table[] = "normal";
+					$ssl_cert_folder_path = "$web_path/$web_name/subdomains/$web_subname/ssl";
+					if($subdomain["ssl_ip"] != none){
+						$ssl_returns = checkCertificate($ssl_cert_folder_path,$web_subname.".".$web_name);
+						if($ssl_returns == "yes"){
+							$iteration_table[] = "ssl";
+						}
+					}
+
+					// if we want to generate a backup IP (transitional)
+					// need to loop through this one
+					if (isset($backup_ip_addr)){
+						$iteration_table[] = "backup";
+					}
+
 					$log_tablename = str_replace("-","A",str_replace(".","_",$web_name)).'$'.str_replace("-","A",str_replace(".","_",$web_subname));
 					$vhost_more_conf = "";
 					if($subdomain["register_globals"] == "yes"){
@@ -484,13 +525,6 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					}
 					if($web_subname == "$web_default_subdomain"){
 						$vhost_more_conf .= "	ServerAlias $web_name\n";
-					}
-
-					// if we want to generate a backup IP (transitional)
-					// need to loop through this one
-					$gen_iterations = 1;
-					if (isset($backup_ip_addr)){
-						$gen_iterations++;
 					}
 
 					// Sbox and safe mode protection values
@@ -505,12 +539,22 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						$cgi_directive = "RewriteEngine on
 	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]";
 					}
-
+					$gen_iterations = sizeof($iteration_table);
 					for ($k = 0; $k < $gen_iterations; $k++){
-						if ($k == 0 && isset($backup_ip_addr)) {
+						switch($iteration_table[$k]){
+						case "backup":
 							$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
-						} else {
+							break;
+						case "normal":
 							$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
+							break;
+						case "ssl":
+							$vhost_file .= "Listen ".$subdomain["ssl_ip"].":443\n";
+							$vhost_file .= "<VirtualHost ".$subdomain["ssl_ip"].":443>\n";
+							$vhost_file .= "	SSLEngine on\n";
+							$vhost_file .= "	SSLCertificateFile $ssl_cert_folder_path/".$web_subname.".".$web_name.".cert.cert\n";
+							$vhost_file .= "	SSLCertificateKeyFile $ssl_cert_folder_path/".$web_subname.".".$web_name.".cert.key\n";
+							break;
 						}
 						$vhost_file .= "	ServerName $web_subname.$web_name
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs\n";

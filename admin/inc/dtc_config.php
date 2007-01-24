@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.87 2007/01/23 05:42:07 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.88 2007/01/24 09:04:33 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -170,6 +170,10 @@ function drawSSLIPConfig(){
 			"adm_login" => array(
 				"type" => "text",
 				"legend" => "Admin login"),
+			"expire" => array(
+				"type" => "text",
+				"size" => "14",
+				"legend" => "Expire"),
 			"available" => array(
 				"type" => "radio",
 				"legend" => "Available",

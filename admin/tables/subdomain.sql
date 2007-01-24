@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS subdomain (
   w3_alias enum('yes','no') NOT NULL default 'no',
   associated_txt_record varchar(128) NOT NULL default '',
   generate_vhost enum('yes','no') NOT NULL default 'yes',
+  ssl_ip varchar(16) NOT NULL default 'none',
   PRIMARY KEY  (id),
   UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
 ) TYPE=MyISAM

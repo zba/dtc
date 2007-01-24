@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.19 2007/01/11 06:39:48 thomas Exp $
+ * @version $Id: subdomain.php,v 1.20 2007/01/24 09:04:33 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
@@ -81,7 +81,7 @@ function subdomainEditCallBack($id){
 /////////////////////////////////////////////////////
 // Draw the form for editing a domain's subdomains //
 /////////////////////////////////////////////////////
-function drawAdminTools_Subdomain($domain){
+function drawAdminTools_Subdomain($admin,$domain){
 
 	global $adm_login;
 	global $adm_pass;
@@ -127,6 +127,7 @@ function drawAdminTools_Subdomain($domain){
 	global $dtcshared_path;
 	global $pro_mysql_nameservers_table;
 	global $pro_mysql_subdomain_table;
+	global $pro_mysql_ssl_ips_table;
 
 	$txt = "";
 
@@ -221,6 +222,48 @@ function drawAdminTools_Subdomain($domain){
 				"values" => array("yes","no"),
 				"legend" => "Sbox cgi-bin protection: ");
 	}
+
+	// Get all SSL IPs asigned to this customer
+	$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE adm_login='$adm_login' AND available='no';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 0){
+		$ssl_ips = array();
+		$ssl_ips[] = "none";
+		// Check if some SSL certs are free, or used by current subdomain
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$nbr_domains = sizeof($admin["data"]);
+			$used_by = "none";
+			for($j=0;$j<$nbr_domains;$j++){
+				$nbr_subdomains = sizeof($admin["data"][$j]["subdomains"]);
+				for($k=0;$k<$nbr_subdomains;$k++){
+					if($admin["data"][$j]["subdomains"][$k]["ssl_ip"] == $a["ip_addr"]){
+						// The cert is used by current subdomain
+						if(isset($_REQUEST["item"]) && isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "subdomain_editor_edit_item" && $_REQUEST["item"] == $admin["data"][$j]["subdomains"][$k]["id"]){
+							$ssl_ips[] = $a["ip_addr"];
+						// The cert is used by another subdomain, don't show it...
+						}else{
+							$used_by = $admin["data"][$j]["name"].$admin["data"][$j]["subdomains"][$k]["name"];
+						}
+					}
+				}
+			}
+			if($used_by == "none"){
+				$ssl_ips[] = $a["ip_addr"];
+			}
+		}
+		$dsc["cols"]["ssl_ip"] = array(
+			"type" => "popup",
+			"values" => $ssl_ips,
+			"legend" => "Use an SSL vhost using this IP:"
+			);
+	}
+
+	// Check to see if there is some SSL IPs for that customer
+	$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE adm_login='$adm_login' AND available='no';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
 	$dsc["cols"]["login"] = array(
 				"type" => "text",
 				"check" => "dtc_login",

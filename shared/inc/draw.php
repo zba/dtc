@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.85 2007/01/23 05:27:16 thomas Exp $
+ * @version $Id: draw.php,v 1.86 2007/01/24 09:04:33 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -408,7 +408,7 @@ function drawAdminTools($admin){
 			$title = $txt_Whois_editor_of[$lang].": ".$edit_domain;
 		}else if(@$add_array[1] == "subdomains"){
                         $web_editor .= "<img src=\"inc/subdomains.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_subdomains[$lang]:</u></b><br></font>";
-			$web_editor .= drawAdminTools_Subdomain($eddomain);
+			$web_editor .= drawAdminTools_Subdomain($admin,$eddomain);
 			$title = $txt_title_subdomain_form[$lang].$edit_domain;
 		}else if(@$add_array[1] == "ftp-accounts"){
                         $web_editor .= "<img src=\"inc/ftp-accounts.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_ftpaccounts[$lang]:</u></b><br></font>";

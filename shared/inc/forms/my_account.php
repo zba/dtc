@@ -8,6 +8,9 @@ function drawAdminTools_MyAccount($admin){
 	global $pro_mysql_pay_table;
 	global $dtcshared_path;
 
+	global $pro_mysql_ssl_ips_table;
+	global $pro_mysql_product_table;
+
 	global $cc_code_array;
 
 	global $lang;
@@ -123,6 +126,7 @@ function drawAdminTools_MyAccount($admin){
 	<td>".smartByte($du_quota)."</td><td>".smartByte($bw_quota)."</td><td>".$admin["info"]["expire"]."</td>
 </tr>
 </table>";
+
 			if(file_exists($dtcshared_path."/dtcrm")){
 				$out .= "<br><center>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
 <input type=\"submit\" value=\"".$txt_upgrade_my_account_button[$lang]."\">
@@ -135,6 +139,57 @@ function drawAdminTools_MyAccount($admin){
 <input type=\"hidden\" name=\"client_id\" value=\"$id_client\">
 <input type=\"submit\" value=\"".$txt_renew_my_account_button[$lang]."\">
 </form></center><br>";
+			}
+
+			$out .= "<b><u>SSL tokens</u></b><br>";
+			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE adm_login='$adm_login' AND available='no';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			if($n == 0){
+				$out .= "You currently don't have any SSL tokens.<br><br>";
+			}else{
+				$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">";
+				$out .= "<tr><td>IP address</td><td>Used by</td><td>Expire</td><td>Action</td></tr>";
+				for($i=0;$i<$n;$i++){
+					$a = mysql_fetch_array($r);
+					$nbr_domains = sizeof($admin["data"]);
+					$used_by = "Not used";
+					for($j=0;$j<$nbr_domains;$j++){
+						$nbr_subdomains = sizeof($admin["data"][$j]["subdomains"]);
+						for($k=0;$k<$nbr_subdomains;$k++){
+							if($admin["data"][$j]["subdomains"][$k]["ssl_ip"] == $a["ip_addr"]){
+								$used_by = $admin["data"][$j]["subdomains"][$k]["name"].".".$admin["data"][$j]["name"];
+							}
+//							echo "<pre>"; print_r($admin["data"][$j]["subdomains"][$k]); echo "</pre>";
+						}
+					}
+
+					$out .= "<tr><td>".$a["ip_addr"]."</td><td>$used_by</td><td>".$a["expire"]."</td><td><input type=\"submit\" value=\"Renew SSL IP\"></td></tr>";
+				}
+				$out .= "</table><br><br>";
+			}
+			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE available='yes';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			if($n == 0){
+				$out .= "No SSL token available: contact your administrator to request it.<br><br>";
+			}else{
+				$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='ssl';";
+				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n = mysql_num_rows($r);
+				if($n != 1){
+					$out .= "No ssl product defined.";
+				}else{
+					$prod = mysql_fetch_array($r);
+					$out .= "<form action=\"/dtc/new_account.php\">
+<input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
+<input type=\"hidden\" name=\"renew_type\" value=\"ssl\">
+<input type=\"hidden\" name=\"product_id\" value=\"".$prod["id"]."\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"client_id\" value=\"$id_client\">
+<input type=\"submit\" value=\"Buy an SSL IP\">
+</form></center><br>";
+				}
 			}
 
 			$out .=  "<b><u>".$txt_remaining_money[$lang]."</u></b><br>

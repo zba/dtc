@@ -29,18 +29,21 @@ function renew_form(){
 		return $ret;
 	}
 
-	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".addslashes($_REQUEST["product_id"])."';";
+	if(isset($_REQUEST["renew_type"]) && $_REQUEST["renew_type"] == "ssl_token"){
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type ='ssl';";
+	}else{
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".addslashes($_REQUEST["product_id"])."';";
+	}
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
 		$ret["err"] = 3;
 		$ret["mesg"] = "<font color=\"red\">Cannot find product id!</font>";
 		return $ret;
-	}else{
-		$a = mysql_fetch_array($r);
-		$the_prod = $a["name"]." (".$a["price_dollar"]." USD)";
 	}
-
+	$a = mysql_fetch_array($r);
+	$the_prod = $a["name"]." (".$a["price_dollar"]." USD)";
+	$prod_id = $a["id"];
 
 	$form = "<b><u>Renewal for login:</u></b> ".$_REQUEST["adm_login"]."<br>";
 	$form .= "<b><u>Product to renew:</u></b> ".$a["name"]." (".$a["price_dollar"]." USD)<br><br>";
@@ -112,11 +115,11 @@ Service country: $country
 
 	// Save the values in SQL and process the paynow buttons
 	$q = "INSERT INTO $pro_mysql_pending_renewal_table (id,adm_login,renew_date,renew_time,product_id,renew_id,heb_type,country_code)
-	VALUES ('','".$_REQUEST["adm_login"]."',now(),now(),'".$_REQUEST["product_id"]."','".$client_id."','".$_REQUEST["renew_type"]."','$country');";
+	VALUES ('','".$_REQUEST["adm_login"]."',now(),now(),'".$prod_id."','".$client_id."','".$_REQUEST["renew_type"]."','$country');";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$renew_id = mysql_insert_id();
 
-	$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"],"no",$_REQUEST["product_id"]);
+	$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"],"no",$prod_id);
 
 	$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
