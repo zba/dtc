@@ -238,6 +238,15 @@ function restartApache () {
 	// Now this echo is in the script itself!
 	system("chmod +x \"$conf_generated_file_path/vhost_check_dir\"");
 	system("$conf_generated_file_path/vhost_check_dir");
+	echo "Checking SSL certificates...";
+	$return_string = exec("$conf_generated_file_path/vhost_check_ssl_cert",$output,$return_val);
+	if($return_val == 0){
+	  echo "ok!\n";
+        }else{
+          echo "problem with a certificate, please start $conf_generated_file_path/vhost_check_ssl_cert manualy\n";
+          echo "Will not restart apache!\n";
+          return;
+        }
 	echo "Testing apache conf\n";
 	exec ("$APACHECTL configtest", $plop, $return_var);
 	if($return_var == false){

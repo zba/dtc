@@ -38,6 +38,20 @@ fi
 ";
 }
 
+$chk_certs_script = "#!/bin/sh
+
+echo \"Checking certificates validity...\"
+EXIT_VAL=0\n";
+function check_certs_sh($cert_path,$common_name){
+	global $chk_certs_script;
+	$chk_certs_script .= "if openssl x509 -in $cert_path/$common_name.cert.cert -subject ; then
+	echo \"$common_name checked\"
+else
+	echo \"$common_name is not a valid cert: will not start apache\"
+	EXIT_VAL=1
+fi\n";
+}
+
 function checkCertificate($cert_path,$common_name){
 	global $conf_dtc_system_username;
 	global $conf_dtc_system_groupname;
@@ -52,11 +66,16 @@ function checkCertificate($cert_path,$common_name){
 			&& !file_exists("$cert_path/$common_name".".cert.cert")){
 		$cmd = "$conf_dtcadmin_path/genfiles/gen_customer_ssl_cert.sh $cert_path $common_name";
 		$return_string = exec ($cmd, $output, $return_var);
+		chown("$cert_path/$common_name".".cert.csr","$conf_dtc_system_username:$conf_dtc_system_groupname");
+		chown("$cert_path/$common_name".".cert.key","$conf_dtc_system_username:$conf_dtc_system_groupname");
+		chown("$cert_path/$common_name".".cert.cert","$conf_dtc_system_username:$conf_dtc_system_groupname");
+		chown("$cert_path/privkey.pem","$conf_dtc_system_username:$conf_dtc_system_groupname");
 	}
 	if(		   file_exists("$cert_path/$common_name".".cert.csr")
 			&& file_exists("$cert_path/privkey.pem")
 			&& file_exists("$cert_path/$common_name".".cert.key")
 			&& file_exists("$cert_path/$common_name".".cert.cert")){
+		check_certs_sh($cert_path,$common_name);
 		return "yes";
 	}else{
 		return "no";
@@ -151,6 +170,7 @@ function pro_vhost_generate(){
 
 	global $console;
 	global $chk_dir_script;
+	global $chk_certs_script;
 
 	global $conf_main_domain;
 	global $conf_404_subdomain;
@@ -601,11 +621,21 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 
 	$filep = fopen("$conf_generated_file_path/vhost_check_dir","w+");
 	if( $filep == NULL){
-		die("Cannot open $conf_generated_file_path/vhost_check_dir.sh file for writting");
+		die("Cannot open $conf_generated_file_path/vhost_check_dir file for writting");
 	}
 	fwrite($filep,$chk_dir_script);
 	fclose($filep);
 	$console .= "vhost_check_dir.sh script written !<br>";
+
+	$chk_certs_script .= "exit \$EXIT_VAL";
+	$filep = fopen("$conf_generated_file_path/vhost_check_ssl_cert","w+");
+	if( $filep == NULL){
+		die("Cannot open $conf_generated_file_path/vhost_check_ssl_cert file for writting");
+	}
+	fwrite($filep,$chk_certs_script);
+	fclose($filep);
+	chmod("$conf_generated_file_path/vhost_check_ssl_cert",0700);
+	$console .= "vhost_check_ssl_cert script written !<br>";
 
 	return true;
 }
