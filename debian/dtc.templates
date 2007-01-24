@@ -100,7 +100,7 @@ _Description: Main domain admin password:
 
 Template: dtc/conf_mta_type
 Type: select
-Choices: qmail, postfix
+Choices: postfix, qmail
 _Description: Mail Transfer Agent Type:
  Select the type of MTA that planed to use with DTC. Please not that this
  software must be installed BEFORE installing DTC otherwise some of the
@@ -118,7 +118,7 @@ _Description: Use cyrus mail system?
 
 Template: dtc/conf_apache_version
 Type: select
-Choices: 1, 2
+Choices: 2, 1
 _Description: Apache version to configure:
  DTC now supports both Apache and Apache2, but you need to tell which of
  them you want to use/configure, as both could be run at the same time
