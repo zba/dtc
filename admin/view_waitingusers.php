@@ -47,7 +47,7 @@ if($n != 1){
 	$newu_infos .= "<b>State:</b> ".$a["state"]."<br>";
 	$newu_infos .= "<b>City:</b> ".$a["city"]."<br>";
 	$newu_infos .= "<b>Country:</b> ".$cc_code_array[$a["country"]]."<br>";
-	$newu_infos .= "<b>Customer notes:</b> ".$a["custom_notes"]."<br>";
+	$newu_infos .= "<b>Customer notes:</b> ".nl2br($a["custom_notes"])."<br>";
 	$newu_infos .= "";
 	$q2 = "SELECT * FROM product WHERE id='".$a["product_id"]."';";
 	$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
