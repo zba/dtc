@@ -9,7 +9,7 @@ mkdir -p $PATH_DTC_SHARED
 cp -prf ./ $PATH_DTC_SHARED
 
 . /usr/share/dtc/admin/install/gentoo_config
-. /usr/sharedtc/admin/install/interactive_installer
+. /usr/share/dtc/admin/install/interactive_installer
 . /usr/share/dtc/admin/install/functions
 
 interactiveInstaller
