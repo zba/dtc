@@ -75,7 +75,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "remove_admin_from_clien
 //ed_disk_quota_mb=&ed_gw_quota_per_month_gb=
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_client"){
 	$q = "INSERT INTO $pro_mysql_client_table(
-id,is_company,company_name,vat_num
+id,is_company,company_name,vat_num,
 familyname,christname,
 addr1,addr2,addr3,
 city,zipcode,state,
