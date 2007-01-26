@@ -16,7 +16,7 @@ PATH_SASL_PASSWD2="/usr/sbin/saslpasswd2"
 PATH_USERDB_BIN="/usr/sbin/userdb"
 PATH_MAILDROP_BIN="/usr/bin/maildrop"
 PATH_COURIER_CONF_PATH="/etc/courier"
-PATH_COURIER_AUTHD_CONF_PATH="/etc/courier"
+PATH_COURIER_AUTHD_CONF_PATH="/etc/courier/authlib"
 if [ ! -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc ]; then
         if [ -f /etc/authlib/authdaemonrc ]; then
                 PATH_COURIER_AUTHD_CONF_PATH="/etc/authlib"
