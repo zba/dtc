@@ -1,5 +1,10 @@
 Version 0.25.0:
 ---------------
+- Added invoicing system using FPDF. Each time someone
+makes a succesful payment, an entry in "completedorders"
+table is added, so the invoice can be generated.
+- Added SSL vhosts for customers with SSL IP provision
+table.
 - Added a (customizable) link to selling conditions when
 people register. Of course, the checkbox has to be checked
 to be able to register. If the link is not customized
