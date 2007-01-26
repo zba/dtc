@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.88 2007/01/24 09:04:33 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.89 2007/01/26 12:34:02 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -152,7 +152,7 @@ function drawSSLIPConfig(){
 	global $sousrub;
 
 	$out = "<h3>Manage IPs for SSL (https):</h3>";
-	$out .= "<font color=\"#FF0000\">NOT AVAILABLE YET: STILL IN DEVELOPMENT</font><br><i>Take care not to add the control panel IP if you don't want to have conflicts</i><br>";
+	$out .= "<i>Take care not to add the control panel SSL IP itself if you don't want to have conflicts (and prevent apache from restarting)!</i><br>";
 
 	$dsc = array(
 		"table_name" => $pro_mysql_ssl_ips_table,
