@@ -164,7 +164,13 @@ function drawAdminTools_MyAccount($admin){
 						}
 					}
 
-					$out .= "<tr><td>".$a["ip_addr"]."</td><td>$used_by</td><td>".$a["expire"]."</td><td><input type=\"submit\" value=\"Renew SSL IP\"></td></tr>";
+					$out .= "<tr><td>".$a["ip_addr"]."</td><td>$used_by</td><td>".$a["expire"]."</td><td><form action=\"/dtc/new_account.php\">
+<input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
+<input type=\"hidden\" name=\"renew_type\" value=\"ssl_renew\">
+<input type=\"hidden\" name=\"product_id\" value=\"".$prod["id"]."\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"client_id\" value=\"$id_client\">
+<input type=\"submit\" value=\"Renew SSL IP\"></form></td></tr>";
 				}
 				$out .= "</table><br><br>";
 			}
