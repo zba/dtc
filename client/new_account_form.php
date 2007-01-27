@@ -158,7 +158,7 @@ function register_user(){
 	if (!get_magic_quotes_gpc()){
 		$esc_vat_num = addslashes($_REQUEST["vat_num"]);
 	}else{
-		$esc_compname = $_REQUEST["vat_num"];
+		$esc_vat_num = $_REQUEST["vat_num"];
 	}
 
 	if(!isset($_REQUEST["address1"]) || $_REQUEST["address1"]==""){

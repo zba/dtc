@@ -49,55 +49,63 @@ function renew_form(){
 	$form .= "<b><u>Product to renew:</u></b> ".$a["name"]." (".$a["price_dollar"]." USD)<br><br>";
 
 	switch($_REQUEST["renew_type"]){
-		case "vps":
-			if(!isRandomNum($_REQUEST["vps_id"])){
-				$ret["err"] = 3;
-				$ret["mesg"] = "<font color=\"red\">VPS id is not a valid number!</font>";
-				return $ret;
-			}
-			$client_id = $_REQUEST["vps_id"];
-			$q = "SELECT country_code  FROM $pro_mysql_vps_table,$pro_mysql_vps_server_table
-			WHERE $pro_mysql_vps_table.id='".$_REQUEST["vps_id"]."' AND $pro_mysql_vps_server_table.hostname = $pro_mysql_vps_table.vps_server_hostname";
-			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
-			$n = mysql_num_rows($r);
-			if($n != 1){
-				$ret["err"] = 3;
-				$ret["mesg"] = "<font color=\"red\">Cannot find vps server country</font>";
-				return $ret;
-			}
-			$a = mysql_fetch_array($r);
-			$country = $a["country_code"];
-			break;
-		case "shared":
-		case "ssl":
-			if(!isRandomNum($_REQUEST["client_id"])){
-				$ret["err"] = 3;$ret["mesg"] = "<font color=\"red\">Client id is not a valid number!</font>";
-				return $ret;
-			}
-			$client_id = $_REQUEST["client_id"];
-			$country = $conf_this_server_country_code;
-			break;
-		case "server":
-			if(!isRandomNum($_REQUEST["server_id"])){
-				$ret["err"] = 3;
-				$ret["mesg"] = "<font color=\"red\">Server id is not a valid number!</font>";
-				return $ret;
-			}
-			$client_id = $_REQUEST["server_id"];
-			$q = "SELECT country_code FROM $pro_mysql_dedicated_table WHERE id='".$_REQUEST["server_id"]."';";
-			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
-			$n = mysql_num_rows($r);
-			if($n != 1){
-				$ret["err"] = 3;
-				$ret["mesg"] = "<font color=\"red\">Cannot find dedicated server country</font>";
-				return $ret;
-			}
-			$a = mysql_fetch_array($r);
-			$country = $a["country_code"];
-			break;
-		default:
-			die("Renew type unknown line ".__LINE__." file ".__FILE__);	// To be implemented for other means!
-			break;
+	case "vps":
+		if(!isRandomNum($_REQUEST["vps_id"])){
+			$ret["err"] = 3;
+			$ret["mesg"] = "<font color=\"red\">VPS id is not a valid number!</font>";
+			return $ret;
+		}
+		$client_id = $_REQUEST["vps_id"];
+		$q = "SELECT country_code  FROM $pro_mysql_vps_table,$pro_mysql_vps_server_table
+		WHERE $pro_mysql_vps_table.id='".$_REQUEST["vps_id"]."' AND $pro_mysql_vps_server_table.hostname = $pro_mysql_vps_table.vps_server_hostname";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$ret["err"] = 3;
+			$ret["mesg"] = "<font color=\"red\">Cannot find vps server country</font>";
+			return $ret;
+		}
+		$a = mysql_fetch_array($r);
+		$country = $a["country_code"];
+		break;
+	case "shared":
+	case "ssl":
+		if(!isRandomNum($_REQUEST["client_id"])){
+			$ret["err"] = 3;$ret["mesg"] = "<font color=\"red\">Client id is not a valid number!</font>";
+			return $ret;
+		}
+		$client_id = $_REQUEST["client_id"];
+		$country = $conf_this_server_country_code;
+		break;
+	case "ssl_renew":
+		if(!isRandomNum($_REQUEST["ssl_ip_id"])){
+			$ret["err"] = 3;$ret["mesg"] = "<font color=\"red\">ssl_ip_id is not a valid number!</font>";
+			return $ret;
+		}
+		$client_id = $_REQUEST["ssl_ip_id"];
+		$country = $conf_this_server_country_code;
+		break;
+	case "server":
+		if(!isRandomNum($_REQUEST["server_id"])){
+			$ret["err"] = 3;
+			$ret["mesg"] = "<font color=\"red\">Server id is not a valid number!</font>";
+			return $ret;
+		}
+		$client_id = $_REQUEST["server_id"];
+		$q = "SELECT country_code FROM $pro_mysql_dedicated_table WHERE id='".$_REQUEST["server_id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$ret["err"] = 3;
+			$ret["mesg"] = "<font color=\"red\">Cannot find dedicated server country</font>";
+			return $ret;
+		}
+		$a = mysql_fetch_array($r);
+		$country = $a["country_code"];
+		break;
+	default:
+		die("Renew type unknown line ".__LINE__." file ".__FILE__);	// To be implemented for other means!
+		break;
 	}
 
 	$mail_content = "
@@ -107,7 +115,6 @@ login: ".$_REQUEST["adm_login"]."
 Product name: $the_prod
 Renew product type: ".$_REQUEST["renew_type"]."
 Service country: $country
-
 ";
 
 	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
