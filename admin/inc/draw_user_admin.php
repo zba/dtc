@@ -334,6 +334,12 @@ dtcFromOkDraw()."
 			case "ssl":
 				$heb_type = "Shared";
 				break;
+			case "ssl":
+				$heb_type = "SSL Token purchase";
+				break;
+			case "ssl_renew":
+				$heb_type = "SSL Token renewal";
+				break;
 			case "server":
 				$q2 = "SELECT * FROM $pro_mysql_dedicated_table WHERE id='".$a["renew_id"]."'";
 				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
@@ -343,6 +349,9 @@ dtcFromOkDraw()."
 					$a2 = mysql_fetch_array($r2);
 					$heb_type = "Server: ".$a2["server_hostname"];
 				}
+				break;
+			default:
+				echo "Renew type ".$a["heb_type"]." not implemented line ".__LINE__." file ".__FILE__;
 				break;
 			}
 			$waiting_new_users .= "<td>$heb_type</td>";
