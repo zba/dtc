@@ -16,6 +16,7 @@ function mail_account_generate_maildrop(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
 	global $pro_mysql_subdomain_table;
+	global $pro_mysql_pop_table;
 	global $conf_nobody_user_id;
 	global $conf_nobody_group_id;
 	global $conf_nobody_user_name;
@@ -30,6 +31,43 @@ function mail_account_generate_maildrop(){
 	global $conf_generated_file_path;
 	global $conf_addr_mail_server;
 
+	// This is a rewrite of this function that should be faster and better.
+	$q = "SELECT $pro_mysql_admin_table.path,$pro_mysql_domain_table.name,$pro_mysql_pop_table.id,$pro_mysql_pop_table.uid,$pro_mysql_pop_table.gid
+	FROM $pro_mysql_admin_table,$pro_mysql_domain_table,$pro_mysql_pop_table
+	WHERE $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner
+	AND $pro_mysql_domain_table.name=$pro_mysql_pop_table.mbox_host
+	ORDER BY $pro_mysql_domain_table.name, $pro_mysql_pop_table.id";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$userdb_file = "";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$boxpath = $a["path"]."/".$a["name"]."/Mailboxs/".$a["id"];
+		$userdb_file .= $a["id"]."@".$a["name"]."\t"."uid=".$a["uid"].'|guid='.$a["gid"].'|mail='.$boxpath.'|home='.$boxpath."\n";
+	}
+
+	// Write the file
+	$path_userdb = "/etc/courier/userdb";
+	if(!is_writable($path_userdb)){
+		echo "$path_userdb is not writable: please fix!";
+		return;
+	}
+	$fp = fopen($path_userdb,"w+");
+	if(!$fp){
+		echo "Could not open $path_userdb in line ".__LINE__." file ".__FILE__;
+		return;
+	}
+	if(fwrite($fp,$userdb_file) === FALSE){
+		echo "Could not write $path_userdb in line ".__LINE__." file ".__FILE__;
+		return;
+	}
+	fclose($fp);
+
+	// Create the binary database
+	system("/usr/sbin/makeuserdb");
+	return;
+
+/*
 	// check to see if we have maildrop installed
 	// if we don't yet, don't run this
 
@@ -62,6 +100,7 @@ function mail_account_generate_maildrop(){
 		chown("/etc/courier/userdb/", $conf_dtc_system_username);
 	}
 
+	$userdb_file = "";
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user-admin");
 		$user_admin_name = $row["adm_login"];
@@ -72,8 +111,7 @@ function mail_account_generate_maildrop(){
 		}
 		$info = $admin["info"];
 		$nbr_domain = 0;
-		if (isset($admin["data"]))
-                {
+		if (isset($admin["data"])){
                         $data = $admin["data"];
                         $nbr_domain = sizeof($data);
                 }
@@ -83,11 +121,10 @@ function mail_account_generate_maildrop(){
 			$domain_full_name = $domain["name"];
 			//if we are primary mx, add to userdb
 			//else add to relay
-			if (!($domain["primary_mx"] == "" || $domain["primary_mx"] == "default"))
-			{
+			if (!($domain["primary_mx"] == "" || $domain["primary_mx"] == "default"){
 				continue;
-			} 
-			
+			}
+
 			if(isset($domain["emails"])){
 				$emails = $domain["emails"];
 				$nbr_boites = sizeof($emails);
@@ -132,6 +169,7 @@ function mail_account_generate_maildrop(){
 	chown("/etc/courier/userdb/", "$conf_dtc_system_username");
 //	recurse_chown_chgrp("/etc/courier/userdb/", "$conf_nobody_user_name", $conf_nobody_group_id);
 	recurse_chown_chgrp("/etc/courier/userdb/", "$conf_dtc_system_username", $conf_dtc_system_gid);
+	*/
 }
 
 ?>
