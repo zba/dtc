@@ -163,14 +163,24 @@ function drawAdminTools_MyAccount($admin){
 //							echo "<pre>"; print_r($admin["data"][$j]["subdomains"][$k]); echo "</pre>";
 						}
 					}
-
-					$out .= "<tr><td>".$a["ip_addr"]."</td><td>$used_by</td><td>".$a["expire"]."</td><td><form action=\"/dtc/new_account.php\">
+					$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='ssl';";
+					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+					$n = mysql_num_rows($r);
+					if($n != 1){
+						$ssl_renew_form = "No ssl product defined.";
+					}else{
+						$prod = mysql_fetch_array($r);
+						$ssl_renew_form = "<form action=\"/dtc/new_account.php\">
 <input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
 <input type=\"hidden\" name=\"renew_type\" value=\"ssl_renew\">
+<input type=\"hidden\" name=\"ssl_ip_id\" value=\"".$a["id"]."\">
 <input type=\"hidden\" name=\"product_id\" value=\"".$prod["id"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"client_id\" value=\"$id_client\">
-<input type=\"submit\" value=\"Renew SSL IP\"></form></td></tr>";
+<input type=\"submit\" value=\"Renew SSL IP\"></form>";
+					}
+
+					$out .= "<tr><td>".$a["ip_addr"]."</td><td>$used_by</td><td>".$a["expire"]."</td><td>$ssl_renew_form</td></tr>";
 				}
 				$out .= "</table><br><br>";
 			}

@@ -212,10 +212,10 @@ function validateWaitingUser($waiting_login){
 
 	// Add customer's info to production table
 	$adm_query = "INSERT INTO $pro_mysql_client_table
-(id,is_company,company_name,familyname,christname,addr1,addr2,addr3,
+(id,is_company,company_name,vat_num,familyname,christname,addr1,addr2,addr3,
 city,zipcode,state,country,phone,fax,email,
 disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
-'".addslashes($a["comp_name"])."','".addslashes($a["family_name"])."','".addslashes($a["first_name"])."',
+'".addslashes($a["comp_name"])."','".addslashes($a["vat_num"])."','".addslashes($a["family_name"])."','".addslashes($a["first_name"])."',
 '".addslashes($a["addr1"])."','".addslashes($a["addr2"])."','".addslashes($a["addr3"])."','".addslashes($a["city"])."',
 '".addslashes($a["zipcode"])."','".addslashes($a["state"])."','".addslashes($a["country"])."','".addslashes($a["phone"])."',
 '".addslashes($a["fax"])."','".addslashes($a["email"])."','".$a2["quota_disk"]."','". $a2["bandwidth"]/1024 ."',
