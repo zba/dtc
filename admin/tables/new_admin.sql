@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS new_admin (
   first_name varchar(64) NOT NULL default '',
   comp_name varchar(64) NOT NULL default '',
   iscomp enum('yes','no') NOT NULL default 'yes',
+  vat_num varchar(128) NOT NULL default '',
   email varchar(255) NOT NULL default '',
   phone varchar(20) NOT NULL default '',
   fax varchar(20) NOT NULL default '',
