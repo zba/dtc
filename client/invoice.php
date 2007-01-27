@@ -131,7 +131,7 @@ class zPDF extends FPDF{
 		$this->Cell(30,20,$first_line);
 		// Company logo
 		$this->SetXY(10,20);
-		if($company["logo_path"] != "none"){
+		if($company["logo_path"] != "none" && $company["logo_path"] != ""){
 			$this->Image("$conf_generated_file_path/invoice_pics/".$company["logo_path"],10,22,80);
 		}
 		$this->SetXY(130,20);
