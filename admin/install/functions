@@ -2567,7 +2567,7 @@ modifyNSSConfig () {
 		PATH_NSSWITCH_CONF=/etc/nsswitch.conf
 	fi
 
-	if -f [ $PATH_NSSWITCH_CONF ] ; then
+	if [ -f $PATH_NSSWITCH_CONF ] ; then
 		if grep "Configured by DTC" $PATH_NSSWITCH_CONF >/dev/null
 		then
 			echoIfVerbose "$PATH_NSSWITCH_CONF has been configured before..."
