@@ -1,5 +1,7 @@
 Version 0.25.0:
 ---------------
+- Rewrote the userdb (courier) generation. Should be
+safer, faster and more clean.
 - Added invoicing system using FPDF. Each time someone
 makes a succesful payment, an entry in "completedorders"
 table is added, so the invoice can be generated.
