@@ -1126,7 +1126,7 @@ generateOpenSSLApacheCert () {
 createCyrusAuthPhp () {
 	echoIfVerbose "===> Creating cyrus.php"
 	cyrus_auth_php="$PATH_DTC_SHARED/shared/cyrus.php"
-	if [ ""$conf_cyrus_enable = "true" ] ; then
+	if [ ""$conf_use_cyrus = "true" ] ; then
 		echo "<?php
 \$CYRUS = array(
 'HOST'  => 'localhost',
@@ -1145,7 +1145,7 @@ createCyrusAuthPhp () {
 }
 
 modifyCyrusImapdConf () {
-	if [ ""$conf_cyrus_enable = "true" ]; then
+	if [ ""$conf_use_cyrus = "true" ]; then
 		if [ ""$UNIX_TYPE = "freebsd" ] ;then
 			echo "configdirectory: /var/spool/imap
 partition-default: /var/spool/mail
@@ -1242,7 +1242,7 @@ sql_verbose: yes" >${PATH_AUTH_SMTP}
 				fi
 				touch $PATH_PAMD_SMTP
 				echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
-				if [ ""$conf_cyrus_enable = "true" ]; then
+				if [ ""$conf_use_cyrus = "true" ]; then
 					echo "account sufficient pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host=localhost db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1
 
 auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host=localhost db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1" >$PATH_PAMD_SMTP
@@ -1645,7 +1645,7 @@ ln /var/run/saslauthd/mux /var/spool/postfix/var/run/saslauthd/mux"
 			fi
 		fi
 	else
-		if [ ""$conf_cyrus_enable = "true" ]; then
+		if [ ""$conf_use_cyrus = "true" ]; then
 			echo "Big Problem: Cyrus install selected bo no saslauthd startup file";
 			echo "Workaround: make saslauth start with -r -c -a pam";
 		fi
@@ -1693,7 +1693,7 @@ modifyPostfixConfig () {
 			# for mailname to be mx.$main_domain_name
 			echo "mx.$main_domain_name" > /etc/mailname
 			echo "# DTC virtual configuration" >> $TMP_FILE
-			if [ ""$conf_cyrus_enable != "true" ]; then
+			if [ ""$conf_use_cyrus != "true" ]; then
 				echo "myhostname = mx.$main_domain_name" >> $TMP_FILE
 			fi
 			echo "# disable the following functionality by default (otherwise can't match subdomains correctly)
@@ -1718,7 +1718,7 @@ content_filter=smtp-amavis:[127.0.0.1]:10024
 echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 " >> $TMP_FILE
 
-			if [ ""$conf_cyrus_enable = "true" ]; then
+			if [ ""$conf_use_cyrus = "true" ]; then
 				echo "virtual_transport = cyrus
 mailbox_transport = lmtp:unix:/var/run/socket/lmtp
 # local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
@@ -1788,7 +1788,7 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 				SASLTMP_FILE=`${MKTEMP} DTC_install.postfix_sasl.XXXXXX` || exit 1
 				echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
 				# CL: for cyrus use saslauthd instead of auxprop!
-				if [ ""$conf_cyrus_enable = "true" ]; then
+				if [ ""$conf_use_cyrus = "true" ]; then
 					echo "pwcheck_method: saslauthd
 mech_list: login plain" >> $SASLTMP_FILE
 				else
@@ -1835,7 +1835,7 @@ smtpd_tls_auth_only = no
 " >> $TMP_FILE2
 				fi
 				# CL do we use cyrus? 
-				if [ ""$conf_cyrus_enable = "true" ]; then
+				if [ ""$conf_use_cyrus = "true" ]; then
 					echo "cyrus     unix  -       n       n       -       -       pipe
   flags=R user=cyrus argv=/usr/sbin/cyrdeliver -e -m \${extension} \${recipient}"  >> $TMP_FILE2
 			fi
@@ -3741,7 +3741,7 @@ conf_mysql_pass=${conf_mysql_pass}
 conf_mysql_db=${conf_mysql_db}
 conf_mysql_change_root=${conf_mysql_change_root}
 conf_mta_type=${conf_mta_type}
-conf_cyrus_enable=${conf_cyrus_enable}
+conf_use_cyrus=${conf_use_cyrus}
 conf_cyrus_pass=${conf_cyrus_pass}
 dtc_admin_subdomain=${dtc_admin_subdomain}
 main_domain_name=${main_domain_name}
