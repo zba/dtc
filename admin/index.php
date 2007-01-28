@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.64 2007/01/19 09:24:41 thomas Exp $
+	* @version  $Id: index.php,v 1.65 2007/01/28 16:51:10 thomas Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -52,6 +52,7 @@ case "crm": // CRM TOOL
 
 case "renewal":
 	$out = "<h3>Total recurring</h3>";
+	// Monthly recurring for shared hosting:
 	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
 	FROM $pro_mysql_product_table,$pro_mysql_admin_table
 	WHERE $pro_mysql_product_table.id = $pro_mysql_admin_table.prod_id
@@ -73,6 +74,7 @@ case "renewal":
 		}
 	}
 
+	// Monthly recurring for VPS:
 	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
 	FROM $pro_mysql_product_table,$pro_mysql_vps_table
 	WHERE $pro_mysql_product_table.id = $pro_mysql_vps_table.product_id";
@@ -92,9 +94,30 @@ case "renewal":
 		}
 	}
 
+	// Monthly recurring for dedicated servers:
+	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
+	FROM $pro_mysql_product_table,$pro_mysql_dedicated_table
+	WHERE $pro_mysql_product_table.id = $pro_mysql_dedicated_table.product_id";
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
+	$n = mysql_num_rows($r);
+	$total_dedicated = 0;
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$period = $a["period"];
+		$price = $a["price_dollar"];
+		if($period == '0001-00-00'){
+			$total_shared += $price / 12;
+		}else{
+			$papoum = explode('-',$period);
+			$months = $papoum[1];
+			$total_dedicated += $price / $months;
+		}
+	}
+
 	$out .= "Shared hosting: ".round($total_shared,2)." USD<br>";
 	$out .= "VPS: ".round($total_vps,2)." USD<br>";
-	$big_total = $total_shared + $total_vps;
+	$out .= "Dedicated servers: ".round($total_dedicated,2)." USD<br>";
+	$big_total = $total_shared + $total_vps + $total_dedicated;
 	$out .= "Total: ".round($big_total,2)." USD";
 
 	$out .= "<h3>Shared renewals</h3>";
