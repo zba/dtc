@@ -1958,7 +1958,7 @@ smtp-amavis unix -      -       -       -       2  smtp
 				echo "## Set to 1 because Maildrop only delivers one message at a time.
 maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 				# rm the userdb because it could be a folder in previous installs...
-				rm -r /etc/courier/userdb
+				rm -rf /etc/courier/userdb
 				# Then touch the userdb so it's a file and chown it to dtc's UID
 				touch /etc/courier/userdb
 				chown dtc /etc/courier/userdb
