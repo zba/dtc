@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.52 2007/01/22 21:11:49 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.53 2007/01/28 16:37:24 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	* 
@@ -914,18 +914,18 @@ $txt_cfg_primary_dns_server_addr =array(
 	);
 
 $txt_cfg_secondary_dns_server_addr =array(
-	"fr" => "Adresse du serveur DNS secondaire :",
-	"en" => "Secondary DNS server address:",
-	"hu" => "A másodlagos dns szerver címe:",
-	"it" => "Indirizzo server DNS secondario:",
-	"nl" => "Secundaire DNS serveradres:",
-	"ru" => "÷ÔÏÒÉÞÎÙÊ ÁÄÒÅÓ äîó :",
-	"de" => "Adresse des sekundären DNS Servers:",
-	"zh" => "´ÓDNS·þÎñÆ÷µØÖ·£º",
-	"pl" => "Nazwa serwera Secondary DNS :",
-	"se" => "TRANS Secondary dns server addr:",
-	"es" => "Servidor DNS secundario:",
-	"pt" => "Nome do servidor de DNS secundário :"
+	"fr" => "Adresse des serveurs DNS secondaires (séparés par un &quot;|&quot; (pipe) si il y en a plusieurs) :",
+	"en" => "Secondary DNS servers address (separated by &quot;|&quot; (pipe) if more than one):",
+	"hu" => "TRANS A másodlagos dns szerver címe (separated by &quot;|&quot; (pipe) if more than one):",
+	"it" => "TRANS Indirizzo server DNS secondario (separated by &quot;|&quot; (pipe) if more than one):",
+	"nl" => "TRANS Secundaire DNS serveradres (separated by &quot;|&quot; (pipe) if more than one):",
+	"ru" => "TRANS ÷ÔÏÒÉÞÎÙÊ ÁÄÒÅÓ äîó (separated by &quot;|&quot; (pipe) if more than one) :",
+	"de" => "TRANS Adresse des sekundären DNS Servers (separated by &quot;|&quot; (pipe) if more than one):",
+	"zh" => "TRANS ´ÓDNS·þÎñÆ÷µØÖ·£º(separated by &quot;|&quot; (pipe) if more than one)",
+	"pl" => "TRANS Nazwa serwera Secondary DNS (separated by &quot;|&quot; (pipe) if more than one) :",
+	"se" => "TRANS Secondary dns server addr (separated by &quot;|&quot; (pipe) if more than one):",
+	"es" => "TRANS Servidor DNS secundario (separated by &quot;|&quot; (pipe) if more than one):",
+	"pt" => "TRANS Nome do servidor de DNS secundário (separated by &quot;|&quot; (pipe) if more than one) :"
 	);
 
 $txt_cfg_slave_dns_ip =array(
