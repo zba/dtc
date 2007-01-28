@@ -1957,11 +1957,6 @@ smtp-amavis unix -      -       -       -       2  smtp
 				echo "virtual_transport = maildrop" >> $TMP_FILE
 				echo "## Set to 1 because Maildrop only delivers one message at a time.
 maildrop_destination_recipient_limit = 1" >> $TMP_FILE
-				# rm the userdb because it could be a folder in previous installs...
-				rm -rf /etc/courier/userdb
-				# Then touch the userdb so it's a file and chown it to dtc's UID
-				touch /etc/courier/userdb
-				chown dtc /etc/courier/userdb
 			fi
 
 			echo "# End of DTC configuration v0.12 : please don't touch this line !" >> $TMP_FILE
@@ -1982,6 +1977,17 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			cat $SASLTMP_FILE > $PATH_POSTFIX_ETC/sasl/smtpd.conf
 		fi 
 		rm $SASLTMP_FILE
+	fi
+	if [ -d /etc/courier ] ; then
+		if [ -d /etc/courier/userdb ] ; then
+			# rm the userdb because it could be a folder in previous installs...
+			rm -rf /etc/courier/userdb
+		fi
+		if [ ! -e /etc/courier/userdb ] ; then
+			# Then touch the userdb so it's a file and chown it to dtc's UID
+			touch /etc/courier/userdb
+			chown dtc /etc/courier/userdb
+		fi
 	fi
 }
 
