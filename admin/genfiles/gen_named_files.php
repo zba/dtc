@@ -218,28 +218,22 @@ function named_generate(){
 		}
 		$more_dns_server = "";
 		if($row["other_dns"] == "default"){
-			$thisdomain_dns2 = $conf_addr_secondary_dns;
-			$temp_ip = gethostbyname($thisdomain_dns2);
-			if(isIP($temp_ip)){
-				$all_ip = "$temp_ip;";
-			}else{
-				$all_ip = "";
-			}
+			$all_dns = explode("|",$conf_addr_secondary_dns);
 		}else{
 			$all_dns = explode("|",$row["other_dns"]);
-			$thisdomain_dns2 = $all_dns[0];
-			$nbr_other_dns = sizeof($all_dns);
-			$all_ip = "";
-			$temp_ip = gethostbyname($thisdomain_dns2);
+		}
+		$thisdomain_dns2 = $all_dns[0];
+		$nbr_other_dns = sizeof($all_dns);
+		$all_ip = "";
+		$temp_ip = gethostbyname($thisdomain_dns2);
+		if(isIP($temp_ip)){
+			$all_ip .= $temp_ip."; ";
+		}
+		for($z=1;$z<$nbr_other_dns;$z++){
+			$more_dns_server .= "@	IN	NS	".$all_dns[$z].".\n";
+			$temp_ip = gethostbyname($all_dns[$z]);
 			if(isIP($temp_ip)){
 				$all_ip .= $temp_ip."; ";
-			}
-			for($z=1;$z<$nbr_other_dns;$z++){
-				$more_dns_server .= "@	IN	NS	".$all_dns[$z].".\n";
-				$temp_ip = gethostbyname($all_dns[$z]);
-				if(isIP($temp_ip)){
-					$all_ip .= $temp_ip."; ";
-				}
 			}
 		}
 
