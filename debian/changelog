@@ -15,7 +15,7 @@ dtc (0.25.1-1) unstable; urgency=low
       configuration files of the daemons this package (dtc or it's
       brother dtc-postfix-courier) uses.
     - The postinst script saves the values answered in debconf in
-      /root/.dtc_install as they are needed for the 2nd stage as
+      /var/lib/dtc as they are needed for the 2nd stage as
       well (like path for hosted files, domain name, mysql password
       and so on) as otherwise it would raise a "debconf is not a
       registry" error in Lintian.
@@ -24,7 +24,9 @@ dtc (0.25.1-1) unstable; urgency=low
     suggestions, but consider that it's not nice to ask twice the
     same thing to the user to the package, and that splitting the
     setup script in 2 parts (because touching other package config
-    file) is not a very nice feature already. (Closes: #402834).
+    file) is not a very nice feature already. Also, this is what
+    have been advised me to do in different channels in IRC, by
+    people in mentors (Closes: #402834).
 
  -- Thomas Goirand <thomas@goirand.fr>  Sat, 16 Dec 2006 03:11:17 +0800
 
