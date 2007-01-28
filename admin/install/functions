@@ -1911,7 +1911,7 @@ smtpd_tls_auth_only = no
 				TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
 				echo "# Configured by DTC v0.17 : Please don't touch this line !" > $TMP_FILE2
 				# if we have maildrop, we should use it!
-				if [ -n ""$PATH_USERDB_BIN -a -f "$PATH_USERDB_BIN" -a -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
+				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
 					echo "maildrop  unix  -       n       n       -       -       pipe
     flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
 " >> $TMP_FILE2
@@ -1983,11 +1983,12 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			# rm the userdb because it could be a folder in previous installs...
 			rm -rf /etc/courier/userdb
 		fi
-		if [ ! -e /etc/courier/userdb ] ; then
+		if ! [ -f /etc/courier/userdb ] ; then
 			# Then touch the userdb so it's a file and chown it to dtc's UID
 			touch /etc/courier/userdb
-			chown dtc /etc/courier/userdb
 		fi
+		chown dtc /etc/courier/userdb
+		chmod +w /etc/courier/userdb
 	fi
 }
 
