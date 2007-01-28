@@ -34,7 +34,7 @@ dtc (0.24.6-1.1) unstable; urgency=low
   * Non-maintainer upload from the sponsor :)
   * Disabled maintainer scripts:
     - The maintainer scripts are currently way too intrusive.
-      They need to be carefully rewritten. Until this is done, I disable them
+      They need to be carefully rewritten. Until this is done, I disabled them
       (they are shipped in /usr/share/doc/{dtc,dtc-postfix}/ though).
     - disabled postinst check in rules.
 
