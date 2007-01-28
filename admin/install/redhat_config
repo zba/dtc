@@ -41,6 +41,9 @@ PATH_DTC_ADMIN=/usr/share/dtc/admin
 PATH_DTC_CLIENT=/usr/share/dtc/client
 PATH_CGIBIN=/var/www/cgi-bin
 
+PATH_SASLLIB=/usr/lib/sasl2
+
+
 if [ -e /var/lib/php/session ] ; then
 	chgrp -R nobody /var/lib/php/session
 fi

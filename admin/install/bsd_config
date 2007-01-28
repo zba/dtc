@@ -44,6 +44,8 @@ PATH_AWSTATS_ETC=${LOCALBASE}/etc/awstats
 MYSQL_DB_SOCKET_PATH="/tmp/mysql.sock"
 PATH_CGIBIN="${LOCALBASE}/www/cgi-bin"
 
+PATH_SASLLIB=/usr/local/lib/sasl2
+
 PATH_SUDOERS_CONF="${LOCALBASE}/etc/sudoers"
 PATH_RRDTOOL="${LOCALBASE}/bin/rrdtool"
 

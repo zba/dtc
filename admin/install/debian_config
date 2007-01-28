@@ -111,6 +111,8 @@ PATH_AMAVISD_CONF=/etc/amavis/amavisd.conf
 PATH_CLAMAV_CONF=/etc/clamav/clamd.conf
 PATH_CGIBIN=/usr/lib/cgi-bin
 
+PATH_SASLLIB=/usr/lib/sasl2
+
 USER_ADD_CMD=useradd
 USER_ADD_CMD=groupadd
 USER_MOD_CMD=usermod

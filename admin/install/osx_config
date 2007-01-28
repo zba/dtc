@@ -12,6 +12,8 @@ PATH_POSTFIX_ETC="/etc/postfix"
 PATH_AWSTATS_ETC="/etc/awstats"
 PATH_CGIBIN="/usr/lib/cgi-bin"
 
+PATH_SASLLIB=/usr/lib/sasl2
+
 PATH_APACHE_PID_FILE="/var/run/httpd.pid"
 # Copy default conf if no conf exists (BSD specific)
 if [ ! -f ${LOCALBASE}/etc/proftpd.conf ] ; then

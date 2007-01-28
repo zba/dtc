@@ -89,7 +89,7 @@ searchPATH_PHP_CGI () {
 				if [ -e "/usr/local/bin/php" ] ; then
 					PATH_PHP_CGI="/usr/local/bin/php"
 				else
-					echo "Could not found the php cli binary!!!"
+					echo "Could not find the php cli binary!!!"
 					exit 0
 				fi
 			fi
@@ -700,12 +700,11 @@ setupDTCDatabase () {
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_ssl='yes'"
 	fi
 
-	# Insert the cyrus user so we can use cyradm
-	if [ ""$UNIX_TYPE = "freebsd" ] ; then
-		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@"${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
-	else
-		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+	if [ -z ""$conf_cyrus_pass ] ; then
+		conf_cyrus_pass=${MYSQL_DTCDAEMONS_PASS};
 	fi
+	# Insert the cyrus user so we can use cyradm
+		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@"${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
 }
 
 generateMySQLConfigPHPfile () {
@@ -1130,8 +1129,13 @@ generateOpenSSLApacheCert () {
 
 createCyrusAuthPhp () {
 	echoIfVerbose "===> Creating cyrus.php"
+	
 	cyrus_auth_php="$PATH_DTC_SHARED/shared/cyrus.php"
+	
 	if [ ""$conf_use_cyrus = "true" ] ; then
+		if [ -z ""$conf_cyrus_pass ] ; then
+			conf_cyrus_pass=${MYSQL_DTCDAEMONS_PASS};
+		fi	
 		echo "<?php
 \$CYRUS = array(
 'HOST'  => 'localhost',
@@ -1150,11 +1154,27 @@ createCyrusAuthPhp () {
 }
 
 modifyCyrusImapdConf () {
+
 	if [ ""$conf_use_cyrus = "true" ]; then
+	    echoIfVerbose "===> Cyrus enabled"
+
 		if [ ""$UNIX_TYPE = "freebsd" ] ;then
+			cyrus_etc_path='/usr/local/etc'
+		else
+			cyrus_etc_path='/etc'
+		fi # [ ""$UNIX_TYPE = "freebsd" ]
+		# CL: OSX seems to use cyrusimap instead of cyrus
+		if [ ""$UNIX_TYPE = "osx" ] ;then
+			cyrus_admin='cyrusimap'
+		else
+			cyrus_admin='cyrus'
+		fi # [ ""$UNIX_TYPE = "freebsd" ]
+
+        # CL: Please, if you do changes here, think about the linx part also, thanks :)
+		if [ ""$UNIX_TYPE = "freebsd" -o $UNIX_TYPE"" = "osx" ] ;then
 			echo "configdirectory: /var/spool/imap
 partition-default: /var/spool/mail
-admins: cyrus
+admins: ${cyrus_admin}
 defaultdomain: mx.${main_domain_name}
 duplicatesuppression: 1
 sievedir: /var/spool/sieve
@@ -1172,68 +1192,97 @@ sasl_sql_hostnames: localhost
 sasl_sql_database: ${conf_mysql_db}
 sasl_sql_user: dtcdaemons
 sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
-" > /usr/local/etc/imapd.conf
+" > $cyrus_etc_path/imapd.conf
 
-			if [ ! -z ${MYSQL_DTCDAEMONS_PASS} ]; then
-				echo "sasl_sql_passwd: ${MYSQL_DTCDAEMONS_PASS}" >> /usr/local/etc/imapd.conf
+			# CL: ok this looks like bsd only, so I will not touch this.
+			# except for the mkimap, I will use that one for mac also in the else part.
+			if [ ""$UNIX_TYPE = "freebsd" -o $UNIX_TYPE"" = "osx" ] ;then
+				if [ ! -z ${MYSQL_DTCDAEMONS_PASS} ]; then
+					echo "sasl_sql_passwd: ${MYSQL_DTCDAEMONS_PASS}" >> $cyrus_etc_path/imapd.conf
+				fi #MYSQL_DTCDAEMONS_PASS
+
+				if [ ""$UNIX_TYPE = "freebsd" ] ;then
+					/usr/local/cyrus/bin/mkimap
+				else
+					su cyrusimap /usr/bin/cyrus/tools/mkimap
+					# restart cyrus
+					launchctl stop edu.cmu.andrew.cyrus.master
+				fi
 			fi
+			if [ ""$UNIX_TYPE = "freebsd" ] ;then
+			        named=`grep  cyrus_imapd_enable /etc/rc.conf`
+				if [ "$named" = "" ] || [ "$nonamed" != "" ]; then
+					echo "===> FreeBSD: Backing up /etc/rc.conf and inserting cyrus_imapd_enable=YES"
+					cp /etc/rc.conf /etc/rc.conf.old
+					echo "/etc/rc.conf /etc/rc.conf.old saved"
+					cat /etc/rc.conf | grep -v "cyrus_imapd_enable" >> /etc/rc.tmp
+					echo 'cyrus_imapd_enable="YES"'
+					mv /etc/rc.tmp /etc/rc.conf
+					echo "cyrus imapd /etc/rc.conf injected"
+				else
+			                echo "===> /etc/rc.conf is already configured: leaving..."
+				fi #[ "$named" = "" ] || [ "$nonamed" != "" ]
 
-			/usr/local/cyrus/bin/mkimap
+				if [ ! -d /var/imap/socket ]; then
+					mkdir -p /var/imap/socket
+				fi #[ ! -d /var/imap/socket ]
 
-		        named=`grep  cyrus_imapd_enable /etc/rc.conf`
-			if [ "$named" = "" ] || [ "$nonamed" != "" ]; then
-				echo "===> FreeBSD: Backing up /etc/rc.conf and inserting cyrus_imapd_enable=YES"
-				cp /etc/rc.conf /etc/rc.conf.old
-				echo "/etc/rc.conf /etc/rc.conf.old saved"
-				cat /etc/rc.conf | grep -v "cyrus_imapd_enable" >> /etc/rc.tmp
-				echo 'cyrus_imapd_enable="YES"'
-				mv /etc/rc.tmp /etc/rc.conf
-				echo "cyrus imapd /etc/rc.conf injected"
-			else
-		                echo "===> /etc/rc.conf is already configured: leaving..."
-			fi
+				/usr/local/etc/rc.d/imapd restart
 
-			if [ ! -d /var/imap/socket ]; then
-				mkdir -p /var/imap/socket
-			fi
-
-			/usr/local/etc/rc.d/imapd restart
-
+			fi #if [ ""$UNIX_TYPE = "freebsd" ]
+			
+		    if [ -z ""$conf_cyrus_pass ] ; then
+				conf_cyrus_pass=${MYSQL_DTCDAEMONS_PASS};
+			fi			
 			$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,mbox_host,fullemail,passwd,crypt) VALUES('root','"${main_domain_name}"','root@"${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
 
-                        sleep 10 
-			php -f $PATH_DTC_ADMIN/install/mk_root_mailbox.php ${main_domain_name}
-		fi
+             sleep 10 
+			 echo "===> calling $PATH_DTC_ADMIN/install/mk_root_mailbox.php ${main_domain_name}"
+			 php -f $PATH_DTC_ADMIN/install/mk_root_mailbox.php ${main_domain_name}
+		fi # [ ""$UNIX_TYPE = "freebsd" -o $UNIX_TYPE"" = "osx" ]
+		# CL: For mac os and debian (probably also other linux) the conf for smtp must go in /usr/lib/sasl2/...
+		# deffined in $PATH_SASLLIB
 
-		if [ ""$UNIX_TYPE = "freebsd" -a -f /usr/local/lib/sasl2/libsql.so ] ;then
-			PATH_AUTH_SMTP=/usr/local/lib/sasl2/smtpd.conf
-			PATH_AUTH_SASLPASSWD=/usr/local/lib/sasl2/saslpasswd.conf
-			echoIfVerbose "===> Adding configuration inside /usr/local/lib/sasl2"
+		# check if libsql is installed for sasl, else use PAM 
+		if [ -f $PATH_SASLLIB/libsql.so ] ;then
+			echoIfVerbose "===> found $PATH_SASLLIB/libsql.so using sasl with sql"
+			PATH_AUTH_SMTP=$PATH_SASLLIB/smtpd.conf
+			PATH_AUTH_SASLPASSWD=$PATH_SASLLIB/saslpasswd.conf
+			echoIfVerbose "===> Adding configuration inside $PATH_SASLLIB"
 			if [ -f $PATH_AUTH_SMTP ]; then
 				if ! [ -f $PATH_AUTH_SMTP.DTC.backup ]; then
 					cp -f $PATH_AUTH_SMTP $PATH_AUTH_SMTP.DTC.backup
-				fi
-			fi
-			echo "pwcheck_method: auxprop
+				fi #[ -f $PATH_AUTH_SMTP.DTC.backup ];
+			fi #[ -f $PATH_AUTH_SMTP ];
+			echo "# Configured by DTC v0.25 : Please don't touch this line !
+pwcheck_method: auxprop
 auxprop_plugin: sql
 sql_engine: mysql
 sql_hostnames: localhost
 sql_user: dtcdaemons
-sql_pass: ${MYSQL_DTCDAEMONS_PASS}
+sql_passwd: ${MYSQL_DTCDAEMONS_PASS}
 sql_database: ${conf_mysql_db}
-password_format: crypt
-sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
-sql_update: UPDATE pop_access SET crypt = '%v' WHERE fullemail = '%u@%r'
-sql_verbose: yes" >${PATH_AUTH_SMTP}
+#password_format: crypt
+#sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
+#sql_update: UPDATE pop_access SET crypt = '%v' WHERE fullemail = '%u@%r'
+sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
+sql_update: UPDATE pop_access SET passwd = '%v' WHERE fullemail = '%u@%r'
+sql_verbose: yes
+# End of DTC configuration v0.25 : please don't touch this line !" >${PATH_AUTH_SMTP}
 
 			if [ -f $PATH_AUTH_SASLPASSWD ]; then
 				if ! [ -f $PATH_AUTH_SASLPASSWD.DTC.backup ]; then
 					cp -f $PATH_AUTH_SASLPASSWD $PATH_AUTH_SASLPASSWD.DTC.backup
-				fi
-			fi
+				fi #[ -f $PATH_AUTH_SASLPASSWD.DTC.backup ]
+			fi #[ -f $PATH_AUTH_SASLPASSWD ];
  
 			cp -f $PATH_AUTH_SMTP $PATH_AUTH_SASLPASSWD
+			if [ $UNIX_TYPE"" = "debian" ] ; then
+				mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
+				ln -s $PATH_SASLLIB/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf 
+			fi
 		else
+			echoIfVerbose "===> $PATH_SASLLIB/libsql.so NOT found, using pam_mysql"
 			PATH_PAMD_SMTP=/etc/pam.d/smtp
 			PATH_PAMD_IMAP=/etc/pam.d/imap
 			PATH_PAMD_SIEVE=/etc/pam.d/sieve
@@ -1243,8 +1292,8 @@ sql_verbose: yes" >${PATH_AUTH_SMTP}
 				if [ -f $PATH_PAMD_SMTP ]; then
 					if ! [ -f $PATH_PAMD_SMTP.DTC.backup ]; then
 						cp -f $PATH_PAMD_SMTP $PATH_PAMD_SMTP.DTC.backup
-					fi
-				fi
+					fi #[ -f $PATH_PAMD_SMTP.DTC.backup ]
+				fi # [ -f $PATH_PAMD_SMTP ]
 				touch $PATH_PAMD_SMTP
 				echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
 				if [ ""$conf_use_cyrus = "true" ]; then
@@ -1255,25 +1304,25 @@ auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" hos
 					if [ -f $PATH_PAMD_IMAP ]; then
 						if ! [ -f $PATH_PAMD_IMAP.DTC.backup ]; then
 							cp -f $PATH_PAMD_IMAP $PATH_PAMD_IMAP.DTC.backup
-						fi
-					fi
+						fi #[ -f $PATH_PAMD_IMAP.DTC.backup ]
+					fi #[ -f $PATH_PAMD_IMAP ]
 					cp -f $PATH_PAMD_SMTP $PATH_PAMD_IMAP
 
 					if [ -f $PATH_PAMD_SIEVE ]; then
 						if ! [ -f $PATH_PAMD_SIEVE.DTC.backup ]; then
 							cp -f $PATH_PAMD_SIEVE $PATH_PAMD_SIEVE.DTC.backup
-						fi
-					fi
+						fi # [ -f $PATH_PAMD_SIEVE.DTC.backup ]
+					fi #[ -f $PATH_PAMD_SIEVE ]
 					cp -f $PATH_PAMD_SMTP $PATH_PAMD_SIEVE
 	
 					if [ -f $PATH_PAMD_POP ]; then
 						if ! [ -f $PATH_PAMD_POP.DTC.backup ]; then
 							cp -f $PATH_PAMD_POP $PATH_PAMD_POP.DTC.backup
-						fi
-					fi
+						fi #[ -f $PATH_PAMD_POP.DTC.backup ];
+					fi #[ -f $PATH_PAMD_POP ];
 					cp -f $PATH_PAMD_SMTP $PATH_PAMD_POP
-				fi
-			fi
+				fi #if [ ""$conf_cyrus_enable = "true" ];
+			fi #if [ -e /etc/pam.d/ ]
 		fi
 	fi
 }
@@ -1392,7 +1441,7 @@ linkQmailFilesToGenerated () {
 		touch $PATH_DTC_ETC/poppasswd
 		ln -s $PATH_DTC_ETC/poppasswd /etc/poppasswd
 	else
-		echoIfVerbose "Could not found qmail directory: skipping"
+		echoIfVerbose "Could not find qmail directory: skipping"
 	fi
 }
 
@@ -1587,22 +1636,43 @@ modifyCyrusPath () {
 	#
 	# Modify the cyrus imapd.conf 
 	#
-	if [ -f "$PATH_CYRUS_CONF" -a  ""$UNIX_TYPE != "freebsd" ] ; then
+	if [ -f "$PATH_CYRUS_CONF" -a  ""$UNIX_TYPE != "freebsd" -a ""$UNIX_TYPE != "osx" ] ; then
 		echoIfVerbose "===> modifying cyrus config"
 		if grep "Configured by DTC" "$PATH_CYRUS_CONF" >/dev/null
 		then
 			echoIfVerbose "Cyrus imapd.conf has been configured before"
 		else
 			searchAndReplace $PATH_CYRUS_CONF unixhierarchysep:\ no no/unixhierarchysep:\ yes
-			searchAndReplace $PATH_CYRUS_CONF sasl_pwcheck_method:\ auxprop sasl_pwcheck_method:\ saslauthd
+
+			# replace auxprop sith saslauthd only if we are using sasl instead of PAM
+			if [ !-f $PATH_SASLLIB/libsql.so ] ;then
+				searchAndReplace $PATH_CYRUS_CONF sasl_pwcheck_method:\ auxprop sasl_pwcheck_method:\ saslauthd
+				echoIfVerbose "configuring Cyrus for pam_mysql"
+			else
+				echoIfVerbose "configuring Cyrus for sasl_sql"
+			fi
 			echoIfVerbose "Inserting DTC configuration inside $PATH_CYRUS_CONF"
 
 			TMP_FILE=`${MKTEMP} DTC_install.imapd.conf.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.20 : Please don't touch this line !" > $TMP_FILE
-			echo "virtdomains: yes
+			echo "#virtdomains: yes
 quotawarn: 90
 admins: cyrus
-sasl_mech_list: PLAIN LOGIN" >> $TMP_FILE
+# sasl_mech_list: PLAIN LOGIN
+
+defaultdomain: mx.${main_domain_name}
+duplicatesuppression: 1
+virtdomains: userid
+
+auxprop_plugin: sql
+
+sasl_sql_engine: mysql
+sasl_sql_hostnames: localhost
+sasl_sql_database: ${conf_mysql_db}
+sasl_sql_user: dtcdaemons
+sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
+sasl_sql_passwd: ${MYSQL_DTCDAEMONS_PASS}
+" >> $TMP_FILE
 			echo "# End of DTC configuration v0.20 : Please don't touch this line !" >> $TMP_FILE
 		# now to insert it at the end of the actual imapd.conf
 		cat < $TMP_FILE >>$PATH_CYRUS_CONF
@@ -1630,29 +1700,36 @@ PARAMS=\"-r -c \"" >> $TMP_FILE
 		fi
 		if [ -f $PATH_SASL_STARTUP ] ; then
 			echoIfVerbose "modifying saslatuhd startup file"
-			# create the direcotry for postfix to access SASL socket
-			mkdir -p $PATH_SASL_SOCKET
+			if grep "Configured by DTC" $PATH_SASL_STARTUP >/dev/null ; then
+				echoIfVerbose "Already configured: skipping"
+			else
+				# create the direcotry for postfix to access SASL socket
+				mkdir -p $PATH_SASL_SOCKET
 
-			# get the md5sum of the file, if it's original do the change
-			# else we have a problem and report it to do the change manualy
-			sasl_start_md5sum=`md5sum $PATH_SASL_STARTUP|cut -d " " -f1`
-			# ### CL find a better place for this !
-			sasl_orginal_m5="6307086733ad29bbd57f81b6c38334a1";
-			if [ ""$sasl_orginal_m5 = "$sasl_start_md5sum" ] ; then
-				# ok file is original so we can "patch" it.
-				patch $PATH_SASL_STARTUP <$PATH_DTC_ADMIN/patch_saslatuhd_startup
-			else 
-				echo "Can not modify the saslauthd startupfile"
-				echo "Please edit $PATH_SASL_STARTUP by hand and add folowing after startup:"
-				echo "rm -f /var/spool/postfix/var/run/saslauthd/mux
-ln /var/run/saslauthd/mux /var/spool/postfix/var/run/saslauthd/mux"
-				echo "for more informations contact DTC development and DTC forums"
+				# get the md5sum of the file, if it's original do the change
+				# else we have a problem and report it to do the change manualy
+				sasl_start_md5sum=`md5sum $PATH_SASL_STARTUP|cut -d " " -f1`
+				# ### CL find a better place for this !
+				sasl_orginal_m5="6307086733ad29bbd57f81b6c38334a1";
+				if [ ""$sasl_orginal_m5 = "$sasl_start_md5sum" ] ; then
+					# ok file is original so we can "patch" it.
+					patch $PATH_SASL_STARTUP <$PATH_DTC_ADMIN/patch_saslatuhd_startup
+					echo "# Configured by DTC v0.20 : Please don't touch this line !" >> $PATH_SASL_STARTUP				
+				else 
+					echo "Can not modify the saslauthd startupfile, don't Panic!"
+					echo "this is only needed if you want to use pam_mysql, if you want to use sasl_mysql ignore this"
+					echo "Please edit $PATH_SASL_STARTUP by hand and add folowing after startup:"
+					echo "rm -f /var/spool/postfix/var/run/saslauthd/mux
+	ln /var/run/saslauthd/mux /var/spool/postfix/var/run/saslauthd/mux"
+					echo "for more informations contact DTC development and DTC forums"
+				fi
 			fi
 		fi
 	else
 		if [ ""$conf_use_cyrus = "true" ]; then
-			echo "Big Problem: Cyrus install selected bo no saslauthd startup file";
-			echo "Workaround: make saslauth start with -r -c -a pam";
+			echo "Cyrus install selected bo no saslauthd startup file";
+			echo "If you plan to use pam_mysql then do this workaround: make saslauth start with -r -c -a pam";
+			echo "if you plan to use sasl_mysql just ignore this";
 		fi
 	fi
 }
@@ -1874,6 +1951,7 @@ smtp-amavis unix -      -       -       -       2  smtp
 				cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
 				rm $TMP_FILE2
 			fi
+			
 			# if we have maildrop, we should use it!
 			if [ -n ""$PATH_USERDB_BIN -a -f "$PATH_USERDB_BIN" -a -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
 				echo "virtual_transport = maildrop" >> $TMP_FILE
@@ -1891,12 +1969,19 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			# now to insert it at the end of the actual main.cf
 			cat < $TMP_FILE >>$PATH_POSTFIX_CONF
 			rm $TMP_FILE
-			# over-write the configuration for SASL
-			if [ -e $SASLTMP_FILE ]; then
-				cat $SASLTMP_FILE > $PATH_POSTFIX_ETC/sasl/smtpd.conf
-				rm $SASLTMP_FILE
-			fi
 		fi
+	fi
+
+	# over-write the configuration for SASL
+	# if sasl with sql is used then just link to the file being created during cyrus installation
+	if [ -e $SASLTMP_FILE ]; then
+		if [ -f $PATH_SASLLIB/libsql.so ]; then
+			mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
+			ln -s $PATH_SASLLIB/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf 
+		else
+			cat $SASLTMP_FILE > $PATH_POSTFIX_ETC/sasl/smtpd.conf
+		fi 
+		rm $SASLTMP_FILE
 	fi
 }
 
@@ -2613,7 +2698,7 @@ shadow:         compat mysql
 					then
 						mv ${PATH_NSS_CONF} ${PATH_NSS_CONF}.before.dtc
 						touch ${PATH_NSS_CONF}
-			                fi
+			        fi
 				else
 					touch ${PATH_NSS_CONF}
 				fi

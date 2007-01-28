@@ -35,6 +35,8 @@ PATH_CLAMAV_CONF=/etc/clamd.conf
 PATH_CRONTAB_CONF=/etc/crontab
 PATH_CGIBIN=/usr/lib/cgi-bin
 
+PATH_SASLLIB=/usr/lib/sasl2
+
 USER_ADD_CMD=useradd
 USER_ADD_CMD=groupadd
 USER_MOD_CMD=usermod
