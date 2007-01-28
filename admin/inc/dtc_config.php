@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: dtc_config.php,v 1.89 2007/01/26 12:34:02 thomas Exp $
+ * @version $Id: dtc_config.php,v 1.90 2007/01/28 09:43:39 thomas Exp $
  * @todo intrenationalize menus
  * @return forms
  * 
@@ -450,6 +450,11 @@ function drawGeneralConfig(){
 				"legend" => "MTA (Mail Transport Agent):",
 				"type" => "radio",
 				"values" => array("qmail","postfix")),
+			"use_cyrus" => array(
+				"type" => "radio",
+				"legend" => "Use cyrus:",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"webalizer_country_graph" => array(
 				"legend" => "Webalizer contry graph:",
 				"type" => "radio",
