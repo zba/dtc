@@ -7,6 +7,7 @@ require("genfiles/gen_maildrop_userdb.php");
 
 function mail_account_generate(){
 	global $conf_mta_type;
+	global $conf_use_cyrus;
 
 	switch($conf_mta_type){
 	case "postfix":
@@ -20,8 +21,9 @@ function mail_account_generate(){
 
 	// always generate maildrop
 	// this will allow qmail to use maildrop along with postfix
-	mail_account_generate_maildrop();
-
+	if($conf_use_cyrus != "yes"){
+		mail_account_generate_maildrop();
+	}
 }
 
 ?>
