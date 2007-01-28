@@ -7,9 +7,8 @@ dtc (0.25.1-1) unstable; urgency=low
   * The postinst doesn't modify other package config files anymore
     this is now done in a script to be launched manualy after the
     setup of the package (Closes: #402432).
-  * Full review of the install procedure:
-    - All forbidden (by debian policy) things are removed from the
-      postinst.
+  * Many changes to be debian policy compliant as requested in the BTS:
+    - All things forbidden by debian policy removed from the postinst.
     - The user has to cd into /usr/share/dtc/admin/install and run
       ./install in order to have the install script modify the
       configuration files of the daemons this package (dtc or it's
@@ -35,8 +34,7 @@ dtc (0.24.6-1.1) unstable; urgency=low
   * Non-maintainer upload from the sponsor :)
   * Disabled maintainer scripts:
     - The maintainer scripts are currently way too intrusive.
-      They need to be carefully rewritten. Until this is done, I disabled
-      them
+      They need to be carefully rewritten. Until this is done, I disable them
       (they are shipped in /usr/share/doc/{dtc,dtc-postfix}/ though).
     - disabled postinst check in rules.
 
