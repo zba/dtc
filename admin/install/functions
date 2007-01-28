@@ -1978,18 +1978,6 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 		fi 
 		rm $SASLTMP_FILE
 	fi
-	if [ -d /etc/courier ] ; then
-		if [ -d /etc/courier/userdb ] ; then
-			# rm the userdb because it could be a folder in previous installs...
-			rm -rf /etc/courier/userdb
-		fi
-		if ! [ -f /etc/courier/userdb ] ; then
-			# Then touch the userdb so it's a file and chown it to dtc's UID
-			touch /etc/courier/userdb
-		fi
-		chown dtc /etc/courier/userdb
-		chmod +w /etc/courier/userdb
-	fi
 }
 
 prepareMlmmjSpool () {
@@ -2016,10 +2004,19 @@ prepareMlmmjSpool () {
 }
 
 modifyCourierConfig () {
-	# check to see if we have a userdb FILE, rather than a directory
+	# check to see if we have a userdb FOLDER, rather than a FILE, rm -r if any folder...
 	# move it out of the way, if so
-	if [ -f "$PATH_COURIER_AUTHD_CONF_PATH/userdb" ]; then
-		mv $PATH_COURIER_AUTHD_CONF_PATH/userdb $PATH_COURIER_AUTHD_CONF_PATH/userdb.existing
+	if [ -d /etc/courier ] ; then
+		if [ -d /etc/courier/userdb ] ; then
+			# rm the userdb because it could be a folder in previous installs...
+			rm -rf /etc/courier/userdb
+		fi
+		if ! [ -f /etc/courier/userdb ] ; then
+			# Then touch the userdb so it's a file and chown it to dtc's UID
+			touch /etc/courier/userdb
+		fi
+		chown dtc /etc/courier/userdb
+		chmod 600 /etc/courier/userdb
 	fi
 
 	#
