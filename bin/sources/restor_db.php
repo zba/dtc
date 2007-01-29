@@ -224,6 +224,10 @@ if($n > 0){
 $q = "ALTER TABLE `product` CHANGE `period` `period` VARCHAR( 12 ) NOT NULL DEFAULT '0001-00-00';";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+// Adding a new field in pending_renewal
+$q = "ALTER TABLE `pending_renewal` CHANGE `heb_type` `heb_type` enum('shared', 'ssl', 'vps', 'server','ssl_renew') NOT NULL default 'shared'";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 //////////////////////////////////////////
 // Repair the bad http_accounting table //
 //////////////////////////////////////////

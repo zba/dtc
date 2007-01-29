@@ -29,7 +29,7 @@ function renew_form(){
 		return $ret;
 	}
 
-	if(isset($_REQUEST["renew_type"]) && $_REQUEST["renew_type"] == "ssl_token"){
+	if(isset($_REQUEST["renew_type"]) && ($_REQUEST["renew_type"] == "ssl" || $_REQUEST["renew_type"] == "ssl_renew")){
 		$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type ='ssl';";
 	}else{
 		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".addslashes($_REQUEST["product_id"])."';";

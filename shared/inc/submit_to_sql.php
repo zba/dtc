@@ -120,6 +120,29 @@ function validateRenewal($renew_id){
 		$q = "UPDATE $pro_mysql_dedicated_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
+	case "ssl_renew":
+		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find admin login in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$admin = mysql_fetch_array($r);
+		$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE available='no' AND id='".$renew_entry["renew_id"]."' LIMIT 1;";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find the SSL IP to renew (id: ".$renew_entry["renew_id"].").";
+			$commit_flag = "no";
+			return false;
+		}
+		$ssl_ip = mysql_fetch_array($r);
+		$date_expire = calculateExpirationDate($ssl_ip["expire"],$product["period"]);
+		$q = "UPDATE $pro_mysql_ssl_ips_table SET expire='$date_expire' WHERE  id='".$ssl_ip["id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		break;
 	default:
 		die("Unknown heb type line ".__LINE__." file ".__FILE__);
 		break;
