@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo internationalize menu and/or options
-	* @version  $Id: index.php,v 1.65 2007/01/28 16:51:10 thomas Exp $
+	* @version  $Id: index.php,v 1.66 2007/01/29 05:01:37 thomas Exp $
 	* @see dtc/shared/vars/strings.php
 	**/
 	
@@ -51,14 +51,14 @@ case "crm": // CRM TOOL
 	break;
 
 case "renewal":
-	$out = "<h3>Total recurring</h3>";
+	$out = "<h3>Total recurring incomes per month:</h3>";
 	// Monthly recurring for shared hosting:
 	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
 	FROM $pro_mysql_product_table,$pro_mysql_admin_table
 	WHERE $pro_mysql_product_table.id = $pro_mysql_admin_table.prod_id
 	AND $pro_mysql_product_table.heb_type='shared'
 	AND $pro_mysql_admin_table.expire != '0000-00-00'";
-	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$total_shared = 0;
 	for($i=0;$i<$n;$i++){
@@ -74,11 +74,27 @@ case "renewal":
 		}
 	}
 
+	// Calculate how much SSL IPs have been taken
+	$q = "SELECT count(id) as num_ssl FROM $pro_mysql_ssl_ips_table WHERE available='no'";
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$total_ssl = 0;
+	if($n != 0){
+		$a = mysql_fetch_array($r);
+		$q = "SELECT price_dollar FROM $pro_mysql_product_table WHERE heb_type='ssl'";
+		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 0){
+			$b = mysql_fetch_array($r);
+			$total_ssl = $a["num_ssl"] * $b["price_dollar"] / 12;
+		}
+	}
+
 	// Monthly recurring for VPS:
 	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
 	FROM $pro_mysql_product_table,$pro_mysql_vps_table
 	WHERE $pro_mysql_product_table.id = $pro_mysql_vps_table.product_id";
-	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$total_vps = 0;
 	for($i=0;$i<$n;$i++){
@@ -98,7 +114,7 @@ case "renewal":
 	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
 	FROM $pro_mysql_product_table,$pro_mysql_dedicated_table
 	WHERE $pro_mysql_product_table.id = $pro_mysql_dedicated_table.product_id";
-	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$total_dedicated = 0;
 	for($i=0;$i<$n;$i++){
@@ -115,10 +131,11 @@ case "renewal":
 	}
 
 	$out .= "Shared hosting: ".round($total_shared,2)." USD<br>";
+	$out .= "SSL IP: ".round($total_ssl,2)." USD<br>";
 	$out .= "VPS: ".round($total_vps,2)." USD<br>";
 	$out .= "Dedicated servers: ".round($total_dedicated,2)." USD<br>";
-	$big_total = $total_shared + $total_vps + $total_dedicated;
-	$out .= "Total: ".round($big_total,2)." USD";
+	$big_total = $total_shared + $total_vps + $total_dedicated + $total_ssl;
+	$out .= "<b>Total: ".round($big_total,2)." USD</b>";
 
 	$out .= "<h3>Shared renewals</h3>";
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' ORDER BY expire;";
