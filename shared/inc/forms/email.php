@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.46 2007/01/30 05:16:14 thomas Exp $
+ * @version $Id: email.php,v 1.47 2007/01/30 05:19:37 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -434,7 +434,7 @@ function emailAccountsEditCallback ($id){
 	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass' WHERE autoinc='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 
-	writeDotQmailFile($a["login"],$a["mbox_host"]);
+	writeDotQmailFile($a["id"],$a["mbox_host"]);
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 
 	if ($cyrus_used){
