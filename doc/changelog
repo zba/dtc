@@ -1,5 +1,10 @@
 Version 0.25.0:
 ---------------
+- Now using a template system that draws all the forms
+in a common way, so they all look like the same (with
+currently blue background). This is a preparation for
+the new upcomming graphics. This includes all forms in
+the user interface and in the config part of the panel.
 - Rewrote the userdb (courier) generation. Should be
 safer, faster and more clean.
 - Added invoicing system using FPDF. Each time someone
