@@ -7,6 +7,7 @@ Standards-Version: 3.7.2
 
 Package: dtc-common
 Architecture: all
+Conflicts: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
 Suggests: dtc-postfix-courier
 Description: Config files in /etc for both dtc and dtc-postfix-courier
  Domain Technologie Control (DTC) is a control panel for hosting.
