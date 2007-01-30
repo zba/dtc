@@ -2884,38 +2884,32 @@ modifyCrontab () {
 		then
 			cp -f $PATH_CRONTAB_CONF $PATH_CRONTAB_CONF.DTC.backup
 		fi
-		# Under Debian, we use cron.d in the rules file as much as possible
-		# (unfortunatly, I don't know if it's possible to make it dynamic)
+		# Now using a single rrdtool.sh script instead of multiple to help reduce the load
+		# and also to make it dynamic (if using postfix or qmail)
+		echo "#!/bin/sh
+
+nice -n+20 cpugraph/get_cpu_load.sh     $PATH_DTC_ETC >>/var/log/dtc.log
+nice -n+20 netusegraph/get_net_usage.sh $PATH_DTC_ETC >>/var/log/dtc.log
+nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC >>/var/log/dtc.log
+" >$PATH_DTC_ADMIN/rrdtool.sh
+		if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ]; then
+			echo "nice -n+20 queuegraph/count_postfix.sh $PATH_DTC_ETC >>/var/log/dtc.log" >>$PATH_DTC_ADMIN/rrdtool.sh
+		fi
+		if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ]; then
+			echo "nice -n+20 queuegraph/count_qmail.sh $PATH_DTC_ETC >>/var/log/dtc.log" >>$PATH_DTC_ADMIN/rrdtool.sh
+		fi
+		chmod 700 $PATH_DTC_ADMIN/rrdtool.sh
+
+		# If not using Debian, install this directly
 		if [ ! ""$UNIX_TYPE = "debian" ] ; then
 			TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 			echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
 			echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
-			if [ ! ""$UNIX_TYPE = "freebsd" ]; then
-				echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-				echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC \"$conf_eth2monitor\" >>/var/log/dtc.log" >> $TMP_FILE
-				echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/memgraph/get_meminfo.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-			else 
-				echo "#* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/cpugraph/get_cpu_load.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-				echo "#* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/netusegraph/get_net_usage.sh $PATH_DTC_ETC \"$conf_eth2monitor\" >>/var/log/dtc.log" >> $TMP_FILE
-				echo "#* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/memgraph/get_meminfo.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-			fi
+			echo "* * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
 			echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
-			if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ]; then
-				echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_postfix.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-			fi
-			if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ]; then
-				echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/queuegraph/count_qmail.sh $PATH_DTC_ETC >>/var/log/dtc.log" >> $TMP_FILE
-			fi
 			cat < $TMP_FILE >>/etc/crontab
 			rm $TMP_FILE
-		else
-			if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ]; then
-				echo "* * * * * root cd $PATH_DTC_ADMIN; $PATH_DTC_ADMIN/queuegraph/count_postfix.sh $PATH_DTC_ETC >>/var/log/dtc.log" > /etc/cron.d/dtc-mail-queue-graph
-			fi
-			if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ]; then
-				echo "* * * * * root cd $PATH_DTC_ADMIN; nice -n+20 $PATH_DTC_ADMIN/queuegraph/count_qmail.sh $PATH_DTC_ETC >>/var/log/dtc.log" > /etc/cron.d/dtc-mail-queue-graph
-			fi
 		fi
 
 	fi

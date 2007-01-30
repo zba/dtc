@@ -10,6 +10,10 @@ db_version 2.0
 
 #DEBHELPER#
 
+if [ "$1" = purge ] ; then
+	rm -f /var/lib/dtc/saved_install_config
+fi
+
 db_get dtc/conf_apache_version
 conf_apache_version=$RET
 if [ ""$conf_apache_version = "2" ] ; then

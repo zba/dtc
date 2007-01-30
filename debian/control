@@ -5,9 +5,33 @@ Maintainer: Thomas Goirand <thomas@goirand.fr>
 Build-Depends: debhelper (>= 4), po-debconf
 Standards-Version: 3.7.2
 
+Package: dtc-common
+Architecture: all
+Suggests: dtc-postfix-courier
+Description: Config files in /etc for both dtc and dtc-postfix-courier
+ Domain Technologie Control (DTC) is a control panel for hosting.
+ Using a web GUI for admin and accounting all hosting services, DTC
+ can delegate the task of creating subdomains, email, and FTP accounts
+ to users for the domain names they own. DTC manages a MySQL database
+ containing all the hosting informations.
+ .
+ It has support for many programs (bind 8 and 9 and compatibles, MySQL,
+ Apache 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin,
+ courier 2, cyrus, dovecot, proftpd, webalizer, mod-log-sql, etc...)
+ using config files and/or MySQL plugin (when service is non-critical).
+ It can also generates backup scripts, calculation scripts, and config
+ files. All this using a single system UID/GID.
+ .
+ It does as well monitoring of all trafic accounting per user and per
+ service (and globaly using RRDTools).
+ Since version 0.12, DTC is fully skinable and translated in several
+ languages.
+ .
+ See homepage for more details: http://www.gplhost.com/software-dtc.html
+
 Package: dtc
 Architecture: all
-Depends: apache2 | apache, amavisd-new, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam, courier-maildrop | cyrus-imapd-2.2, debconf, file, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache-mod-php5 | libapache-mod-php4 | libapache2-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql | libsasl2-modules-sql, librrds-perl, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, patch, php5 | php4, php5-cli | php4-cli, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, php-pear | php4-pear, php-fpdf, php-crypt-cbc, php5-curl | php4-curl, pure-ftpd-mysql | proftpd-mysql, rrdtool, sasl2-bin, sbox-dtc, spamassassin, spamc, ssh, sudo, unzip, webalizer, zip
+Depends: dtc-common, apache2 | apache, amavisd-new, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam, courier-maildrop | cyrus-imapd-2.2, debconf, file, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache-mod-php5 | libapache-mod-php4 | libapache2-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql | libsasl2-modules-sql, librrds-perl, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, patch, php5 | php4, php5-cli | php4-cli, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, php-pear | php4-pear, php-fpdf, php-crypt-cbc, php5-curl | php4-curl, pure-ftpd-mysql | proftpd-mysql, rrdtool, sasl2-bin, sbox-dtc, spamassassin, spamc, ssh, sudo, unzip, webalizer, zip
 Suggests: courier-authmysql, courier-authlib-mysql, dovecot, postfix, qmail, postfix-tls, libsasl2, libsasl2-modules, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2, msttcorefonts
 Replaces: dtc-postfix-courier
 Description: A web control panel for admin and accounting hosting services
@@ -33,7 +57,7 @@ Description: A web control panel for admin and accounting hosting services
 
 Package: dtc-postfix-courier
 Architecture: all
-Depends: apache2 | apache, amavisd-new, awstats, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, file, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache2-mod-php4 | libapache-mod-php5 | libapache-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql, librrds-perl, libsasl2, libsasl2-modules, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, patch, php-pear | php4-pear, php-fpdf, php-crypt-cbc, php5 | php4, php5-cli | php4-cli, php5-curl | php4-curl, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, phpmyadmin, pure-ftpd-mysql | proftpd-mysql, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10), rrdtool, sasl2-bin, sbox-dtc (>= 1.07), spamassassin, spamc, squirrelmail, ssh, sudo, unzip, webalizer, zip
+Depends: dtc-common, apache2 | apache, amavisd-new, awstats, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, file, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache2-mod-php4 | libapache-mod-php5 | libapache-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql, librrds-perl, libsasl2, libsasl2-modules, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, patch, php-pear | php4-pear, php-fpdf, php-crypt-cbc, php5 | php4, php5-cli | php4-cli, php5-curl | php4-curl, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, phpmyadmin, pure-ftpd-mysql | proftpd-mysql, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10), rrdtool, sasl2-bin, sbox-dtc (>= 1.07), spamassassin, spamc, squirrelmail, ssh, sudo, unzip, webalizer, zip
 Replaces: dtc
 Suggests: mysqmail, msttcorefonts
 Provides: dtc

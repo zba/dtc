@@ -1,5 +1,10 @@
 dtc (0.25.1-1) unstable; urgency=low
 
+  * Now using a dtc-common package to avoid conflicts between
+    config files in /etc/cron.d and /etc/logrotate.d if someday
+    a user switch between dtc and dtc-postfix-courier. Also,
+    this makes both 2 packages (being in only dtc-common) having
+    less files and reduce the overall size.
   * The chroot template is now built in /var/lib/dtc as default.
   * Now using a2enmod for enabling apache2 rewrite and ssl.
   * Long desc split in parts. (Closes: #403504).

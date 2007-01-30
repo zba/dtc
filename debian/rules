@@ -20,8 +20,7 @@ install:
 	dh_clean -k 
 	dh_installdirs
 
-	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc/usr/share/dtc/shared/dtc_version.php
-	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc-postfix-courier/usr/share/dtc/shared/dtc_version.php
+	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc-common/usr/share/dtc/shared/dtc_version.php
 	install -D -m 0644 debian/lintian/dtc debian/dtc/usr/share/lintian/overrides/dtc
 	install -D -m 0644 debian/lintian/dtc-postfix-courier debian/dtc-postfix-courier/usr/share/lintian/overrides/dtc-postfix-courier
 
