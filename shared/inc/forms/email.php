@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.45 2007/01/23 05:27:16 thomas Exp $
+ * @version $Id: email.php,v 1.46 2007/01/30 05:16:14 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -420,6 +420,7 @@ function emailAccountsCreateCallback ($id){
 }
 function emailAccountsEditCallback ($id){
 	global $cyrus_used;
+	global $pro_mysql_pop_table;
 
 	$q = "SELECT * FROM $pro_mysql_pop_table WHERE autoinc='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
