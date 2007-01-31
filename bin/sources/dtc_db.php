@@ -196,7 +196,6 @@ $dtc_database = array(
 			"use_cyrus" => "enum('yes','no') NOT NULL default 'no' "
 			),
 		"keys" => array(
-			"unicrow2" => "(unicrow2)",
 			"unicrow" => "(unicrow)"
 			)
 		),
