@@ -525,7 +525,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					$iteration_table = array();
 					$iteration_table[] = "normal";
 					$ssl_cert_folder_path = "$web_path/$web_name/subdomains/$web_subname/ssl";
-					if($subdomain["ssl_ip"] != none){
+					if($subdomain["ssl_ip"] != "none"){
 						$ssl_returns = checkCertificate($ssl_cert_folder_path,$web_subname.".".$web_name);
 						if($ssl_returns == "yes"){
 							$iteration_table[] = "ssl";
