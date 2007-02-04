@@ -167,6 +167,8 @@ function skin_LayoutAdminPage (){
 	case "adminedit":
 	default: // No rub selected
 
+		$bwoup_user_edit = bwoupUserEditForms($adm_login,$adm_pass);
+
 		if(isset($adm_random_pass)){
 			$rand = $adm_random_pass;
 		}else{
@@ -175,8 +177,6 @@ function skin_LayoutAdminPage (){
 			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
 		}
-		$user_edit = userEditForms($adm_login,$adm_pass);
-
 		$zemain_content = '<div id="content">
 
 	<table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
@@ -198,13 +198,8 @@ Admin list</div></div></div>
 	<div class="box_wnb_content_container">
 
 	  <h2>User administration</h2>
-';
-
-
-	  $zemain_content .= bwoupUserEditForms($adm_login,$adm_pass);
-
-
-	  $zemain_content .= '<table cellpadding="0" cellspacing="0" class="console">
+'.$bwoup_user_edit.'
+	<table cellpadding="0" cellspacing="0" class="console">
 	  <tr>
 		<td class="console_title">Console output :</td>
 	  </tr>
