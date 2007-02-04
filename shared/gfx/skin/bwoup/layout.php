@@ -116,6 +116,7 @@ function skin_LayoutAdminPage (){
 	global $confirm_javascript;
 	global $java_script;
 	global $skinCssString;
+	global $console;
 
 	///////////////////////
 	// Make All the page //
@@ -187,7 +188,7 @@ function skin_LayoutAdminPage (){
 
 		<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">
 Admin list</div></div></div>
-<div class="box_wnb_nb_content">'.adminList($rand).'</div>
+<div class="box_wnb_nb_content">'.adminList($rand).'
 			<div class="voider"></div>
 
 		  <br /><br />
@@ -206,7 +207,7 @@ Admin list</div></div></div>
 		<td class="console_title">Console output :</td>
 	  </tr>
 	  <tr>		
-		<td class="console_output"><pre>dtc.xen650402.gplhost.com:&gt;<br></pre></td>
+		<td class="console_output"><pre>'.$_SERVER['SERVER_NAME'].':&gt;'.$console.'<br></pre></td>
 
 	  </tr>
 	  </table>
