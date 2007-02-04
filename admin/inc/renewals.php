@@ -10,6 +10,7 @@ function drawRenewalTables (){
 	global $pro_mysql_dedicated_table;
 	global $pro_mysql_ssl_ips_table;
 	global $pro_mysql_client_table;
+	global $pro_mysql_domain_table;
 
 	$out = "<h3>Total recurring incomes per month:</h3>";
 	// Monthly recurring for shared hosting:

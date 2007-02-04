@@ -231,7 +231,7 @@ function adminList($password=""){
 				$row2 = mysql_fetch_array($result2);
 				$linkadm_login = $row2["adm_login"];
 				$linkadm_pass = $row2["adm_pass"];
-				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$domain_name</a><br>";
+				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$domain_name</a><br>";
 			}
 		}
 		$query7 = "SELECT * FROM $pro_mysql_vps_table ORDER BY vps_server_hostname,vps_xen_name";
@@ -250,7 +250,7 @@ function adminList($password=""){
 				$row2 = mysql_fetch_array($result2);
 				$linkadm_login = $row2["adm_login"];
 				$linkadm_pass = $row2["adm_pass"];
-				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$vps_name</a><br>";
+				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$vps_name</a><br>";
 			}
 		}
 	}
