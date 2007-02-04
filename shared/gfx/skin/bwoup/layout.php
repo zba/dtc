@@ -166,25 +166,87 @@ function skin_LayoutAdminPage (){
 	case "domain_config":
 	case "adminedit":
 	default: // No rub selected
+
+		if(isset($adm_random_pass)){
+			$rand = $adm_random_pass;
+		}else{
+			$rand = getRandomValue();
+			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
+			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
+			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
+		}
+		$user_edit = userEditForms($adm_login,$adm_pass);
+
+		$zemain_content = '<div id="content">
+
+	<table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+	<td class="box_wnb_nb" valign="top">
+
+		<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">
+Admin list</div></div></div>
+<div class="box_wnb_nb_content">'.adminList($rand).'</div>
+			<div class="voider"></div>
+
+		  <br /><br />
+
+		</div>
+		<div class="voider"></div>
+	  		
+	</td>
+	<td class="box_wnb_content" valign="top">
+	<div class="box_wnb_content_container">
+
+	  <h2>User administration</h2>
+';
+
+
+	  $zemain_content .= bwoupUserEditForms($adm_login,$adm_pass);
+
+
+	  $zemain_content .= '<table cellpadding="0" cellspacing="0" class="console">
+	  <tr>
+		<td class="console_title">Console output :</td>
+	  </tr>
+	  <tr>		
+		<td class="console_output"><pre>dtc.xen650402.gplhost.com:&gt;<br></pre></td>
+
+	  </tr>
+	  </table>
+
+
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td class="box_wnb_nb_bottom"></td>
+	<td class="box_wnb_content_bottom" valign="top"></td>
+
+	</tr>
+	</table></div>';
+		break;
+
+
+		// Our list of admins
+		// If random password was not set before this, we have to calculate it now!
+		if(isset($adm_random_pass)){
+			$rand = $adm_random_pass;
+		}else{
+			$rand = getRandomValue();
+			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
+			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
+			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
+		}
+
+		$leftFrameCells[] = skin($conf_skin,adminList($rand),$txt_virtual_admin_list[$lang]);
+		$leftFrame = makeVerticalFrame($leftFrameCells);
+
 		// A virtual admin edition
 		// We have to call it first, in case it will generate a random pass (edition of an admin with inclusion of user's panel)
 		$rightFrameCells[] = userEditForms($adm_login,$adm_pass);
 		$rightFrameCells[] = skinConsole();
 		$rightFrame = makeVerticalFrame($rightFrameCells);
 
-		// Our list of admins
-		// If random password was not set before this, we have to calculate it now!
-		if(isset($adm_random_pass)){
-			$leftFrameCells[] = skin($conf_skin,adminList($adm_pass),$txt_virtual_admin_list[$lang]);
-		}else{
-			$rand = getRandomValue();
-			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
-			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
-			$leftFrameCells[] = skin($conf_skin,adminList($rand),$txt_virtual_admin_list[$lang]);
-		}
-		// Make the frame
-		$leftFrame = makeVerticalFrame($leftFrameCells);
 
 		$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);
 		break;
@@ -220,6 +282,133 @@ $skinCssString
 <div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
 </html>";
 
+}
+
+function bwoupUserEditForms($adm_login,$adm_pass){
+	global $txt_general_virtual_admin_edition;
+	global $txt_domains_configuration_title;
+	global $txt_add_user_title;
+
+	global $txt_client_interface;
+	global $txt_domain_config;
+	global $txt_admin_editor;
+	global $lang;
+	// added by seeb
+	global $txt_user_administration;
+	global $txt_user_administration_domains_for;
+
+	global $adm_random_pass;
+
+	// end added
+	global $conf_skin;
+	global $lang;
+	global $addrlink;
+	global $rub;
+
+	$ret["err"] = 0;
+	$ret["mesg"] = "No error";
+
+	if(isset($adm_login) && $adm_login != "" && isset($adm_pass) && $adm_pass != ""){
+		// Fetch all the selected user informations, Print a nice error message if failure.
+		$admin = fetchAdmin($adm_login,$adm_pass);
+
+		if(isset($adm_random_pass)){
+			$pass = $adm_random_pass;
+		}else{
+			$pass = $adm_pass;
+		}
+
+		if(($error = $admin["err"]) != 0){
+			echo("Error fetching admin : $error");
+			$ret["err"] = $admin["err"];
+			$ret["mesg"] = $admin["mesg"];
+			return $ret;
+		}
+
+		//fix up the $adm_login in case it changed because of session vars:
+		//in case users play silly bugger with the "GET" variables
+		$adm_login = $admin["info"]["adm_login"];
+
+		// Draw the html forms
+		if(isset($rub) && $rub == "adminedit"){
+			$HTML_admin_edit_info = drawEditAdmin($admin);
+			$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
+//			return $user_config;
+		}else if(isset($rub) && $rub == "domain_config"){
+			$HTML_admin_domain_config = drawDomainConfig($admin);
+			$user_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
+		}else{
+			$HTML_admin_edit_data = drawAdminTools($admin);
+			$user_config = skin($conf_skin,$HTML_admin_edit_data,$txt_user_administration_domains_for[$lang]." ".$adm_login);
+//			return $user_tools;
+		}
+
+		$iface_select = "<table height=\"1\" border=\"0\" width=\"100%\">";
+		$iface_select .= "<tr><td width=\"33%\" valign=\"top\"><center>";
+		if($rub != "user" && $rub != ""){
+			$iface_select .= "<a href=\"?rub=user&adm_login=$adm_login&adm_pass=$pass\">";
+		}
+		$iface_select .= "<img src=\"gfx/menu/client-interface.png\" width=\"48\" height=\"48\" border=\"0\"><br>
+".$txt_client_interface[$lang];
+		if($rub != "user" && $rub != ""){
+			$iface_select .= "</a>";
+		}
+		$iface_select .= "</center></td><td width=\"33%\" valign=\"top\"><center>";
+		if($rub != "domain_config"){
+			$iface_select .= "<a href=\"?rub=domain_config&adm_login=$adm_login&adm_pass=$pass\">";
+		}
+		$iface_select .= "<img src=\"gfx/menu/domain-config.png\" width=\"48\" height=\"48\" border=\"0\"><br>
+".$txt_domain_config[$lang];
+		if($rub != "domain_config"){
+			$iface_select .= "</a>";
+		}
+		$iface_select .= "</center></td><td width=\"33%\" valign=\"top\"><center>";
+		if($rub != "adminedit"){
+			$iface_select .= "<a href=\"?rub=adminedit&adm_login=$adm_login&adm_pass=$pass\">";
+		}
+		$iface_select .= "<img src=\"gfx/menu/user-editor.png\" width=\"48\" height=\"48\" border=\"0\"><br>
+".$txt_admin_editor[$lang];
+		if($rub != "adminedit"){
+			$iface_select .= "</a>";
+		}
+		$iface_select .= "</center></td></tr></table>";
+
+		$iface_skined = skin($conf_skin,$iface_select,$txt_user_administration[$lang]);
+
+		$iface_skined = '<ul class="box_wnb_content_nb">';
+		if($rub != "user" && $rub != ""){
+			$iface_skined .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=user\">client interface</a></li>";
+		}else{
+			$iface_skined .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=user\">client interface</a></li>";
+		}
+		$iface_skined .= "<li class="box_wnb_content_nb_item_vsep"></li>";
+		if($rub != "domain_config"){
+			$iface_skined .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
+		}else{
+			$iface_skined .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
+		}
+		$iface_skined .= "<li class="box_wnb_content_nb_item_vsep"></li>";
+		if($rub != "adminedit"){
+			$iface_skined .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=adminedit\">".$txt_domain_config[$lang]."</a></li>";
+		}else{
+			$iface_skined .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=adminedit\">".$txt_domain_config[$lang]."</a></li>";
+		}
+		$iface_skined .= "</ul>";
+
+		// All thoses tools in a simple table
+		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
+	<tr>
+		<tr><td width=\"100%\">$iface_skined</td></tr>
+		<tr><td width=\"100%\">$user_config</td></tr>
+		<tr><td height=\"100%\">&nbsp;</td></tr>
+	</tr>
+</table>
+";
+	}else{
+		// If no user is in edition, draw a tool for adding an admin
+		$add_a_user = drawNewAdminForm();
+		return skin($conf_skin,$add_a_user,$txt_add_user_title[$lang]);
+	}
 }
 
 ?>
