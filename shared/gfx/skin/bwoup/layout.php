@@ -309,15 +309,33 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 	$ret["mesg"] = "No error";
 
 	if(isset($adm_login) && $adm_login != "" && isset($adm_pass) && $adm_pass != ""){
+		$out = '<ul class="box_wnb_content_nb">';
+		if($rub != "user" && $rub != ""){
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=user\">client interface</a></li>";
+		}else{
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=user\">client interface</a></li>";
+		}
+		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
+		if($rub != "domain_config"){
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
+		}else{
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
+		}
+		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
+		if($rub != "adminedit"){
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=adminedit\">".$txt_domain_config[$lang]."</a></li>";
+		}else{
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=adminedit\">".$txt_domain_config[$lang]."</a></li>";
+		}
+		$out .= "</ul>";
+
 		// Fetch all the selected user informations, Print a nice error message if failure.
 		$admin = fetchAdmin($adm_login,$adm_pass);
-
 		if(isset($adm_random_pass)){
 			$pass = $adm_random_pass;
 		}else{
 			$pass = $adm_pass;
 		}
-
 		if(($error = $admin["err"]) != 0){
 			echo("Error fetching admin : $error");
 			$ret["err"] = $admin["err"];
@@ -331,83 +349,16 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 
 		// Draw the html forms
 		if(isset($rub) && $rub == "adminedit"){
-			$HTML_admin_edit_info = drawEditAdmin($admin);
-			$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
-//			return $user_config;
+			$out .= drawEditAdmin($admin);
 		}else if(isset($rub) && $rub == "domain_config"){
-			$HTML_admin_domain_config = drawDomainConfig($admin);
-			$user_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
+			$out .= drawDomainConfig($admin);
 		}else{
-			$HTML_admin_edit_data = drawAdminTools($admin);
-			$user_config = skin($conf_skin,$HTML_admin_edit_data,$txt_user_administration_domains_for[$lang]." ".$adm_login);
-//			return $user_tools;
+			$user_config = drawAdminTools($admin);
 		}
-
-		$iface_select = "<table height=\"1\" border=\"0\" width=\"100%\">";
-		$iface_select .= "<tr><td width=\"33%\" valign=\"top\"><center>";
-		if($rub != "user" && $rub != ""){
-			$iface_select .= "<a href=\"?rub=user&adm_login=$adm_login&adm_pass=$pass\">";
-		}
-		$iface_select .= "<img src=\"gfx/menu/client-interface.png\" width=\"48\" height=\"48\" border=\"0\"><br>
-".$txt_client_interface[$lang];
-		if($rub != "user" && $rub != ""){
-			$iface_select .= "</a>";
-		}
-		$iface_select .= "</center></td><td width=\"33%\" valign=\"top\"><center>";
-		if($rub != "domain_config"){
-			$iface_select .= "<a href=\"?rub=domain_config&adm_login=$adm_login&adm_pass=$pass\">";
-		}
-		$iface_select .= "<img src=\"gfx/menu/domain-config.png\" width=\"48\" height=\"48\" border=\"0\"><br>
-".$txt_domain_config[$lang];
-		if($rub != "domain_config"){
-			$iface_select .= "</a>";
-		}
-		$iface_select .= "</center></td><td width=\"33%\" valign=\"top\"><center>";
-		if($rub != "adminedit"){
-			$iface_select .= "<a href=\"?rub=adminedit&adm_login=$adm_login&adm_pass=$pass\">";
-		}
-		$iface_select .= "<img src=\"gfx/menu/user-editor.png\" width=\"48\" height=\"48\" border=\"0\"><br>
-".$txt_admin_editor[$lang];
-		if($rub != "adminedit"){
-			$iface_select .= "</a>";
-		}
-		$iface_select .= "</center></td></tr></table>";
-
-		$iface_skined = skin($conf_skin,$iface_select,$txt_user_administration[$lang]);
-
-		$iface_skined = '<ul class="box_wnb_content_nb">';
-		if($rub != "user" && $rub != ""){
-			$iface_skined .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=user\">client interface</a></li>";
-		}else{
-			$iface_skined .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=user\">client interface</a></li>";
-		}
-		$iface_skined .= "<li class="box_wnb_content_nb_item_vsep"></li>";
-		if($rub != "domain_config"){
-			$iface_skined .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
-		}else{
-			$iface_skined .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
-		}
-		$iface_skined .= "<li class="box_wnb_content_nb_item_vsep"></li>";
-		if($rub != "adminedit"){
-			$iface_skined .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=adminedit\">".$txt_domain_config[$lang]."</a></li>";
-		}else{
-			$iface_skined .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=adminedit\">".$txt_domain_config[$lang]."</a></li>";
-		}
-		$iface_skined .= "</ul>";
-
-		// All thoses tools in a simple table
-		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
-	<tr>
-		<tr><td width=\"100%\">$iface_skined</td></tr>
-		<tr><td width=\"100%\">$user_config</td></tr>
-		<tr><td height=\"100%\">&nbsp;</td></tr>
-	</tr>
-</table>
-";
+		return $out;
 	}else{
 		// If no user is in edition, draw a tool for adding an admin
-		$add_a_user = drawNewAdminForm();
-		return skin($conf_skin,$add_a_user,$txt_add_user_title[$lang]);
+		return drawNewAdminForm();
 	}
 }
 
