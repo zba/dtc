@@ -106,6 +106,8 @@ function skin_LayoutAdminPage (){
 	global $txt_customer_bw_consumption;
 	global $txt_client_addr_title;
 	global $txt_client_list_title;
+	global $txt_client_admins_title;
+	global $txt_client_commands_title;
 
 	global $page_metacontent;
 	global $meta;
@@ -348,7 +350,7 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 		}else if(isset($rub) && $rub == "domain_config"){
 			$out .= drawDomainConfig($admin);
 		}else{
-			$user_config = drawAdminTools($admin);
+			$out .= drawAdminTools($admin);
 		}
 		return $out;
 	}else{

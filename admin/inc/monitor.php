@@ -11,6 +11,7 @@ function drawAdminMonitor (){
 	global $txt_domain_tbl_config_quota;
 	global $txt_server_total_bp;
 	global $txt_bw_quota;
+	global $conf_mysql_db;
 
 	$out = "";
 	// For each clients
@@ -30,7 +31,7 @@ function drawAdminMonitor (){
 		// make sure we are selecting the correct DB
 		// there is a condition where we have lost the link to the main DB
 		// this may hide another bug, but at least it will show things to the user
-                mysql_select_db($conf_mysql_db);
+		mysql_select_db($conf_mysql_db);
 		// For each of it's admins
 		$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$ar["id"]."';";
 		$r2 = mysql_query($q2)or die("Cannot query: \"$q2\" !".mysql_error()." line ".__LINE__." in file ".__FILE__);
