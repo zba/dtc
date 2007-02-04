@@ -5,7 +5,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.124 2007/01/22 21:11:49 thomas Exp $
+	* @version  $Id: strings.php,v 1.125 2007/02/04 11:47:37 thomas Exp $
 	* 
 	**/
 	
@@ -832,6 +832,22 @@ $txt_mainmenu_title_server_monitor = array(
   "se" => "TRANS SVENSKA",
   "es" => "Monitor del servidor",
   "pt" => "TRANS Server monitor"
+  );
+
+$txt_mainmenu_title_renewals = array(
+  "fr" => "Gestion des renouvellements",
+  "en" => "Renewals management",
+  "hu" => "TRANS Renewals management",
+  "it" => "TRANS Renewals management",
+  "nl" => "TRANS Renewals management",
+  "ru" => "TRANS Renewals management",
+  "de" => "TRANS Renewals management",
+  "ro" => "TRANS Renewals management",
+  "zh" => "TRANS Renewals management",
+  "pl" => "TRANS Renewals management",
+  "se" => "TRANS Renewals management",
+  "es" => "TRANS Renewals management",
+  "pt" => "TRANS Renewals management"
   );
 
 $txt_admin_editor = array(
@@ -2156,18 +2172,18 @@ $txt_server_total_bp = array(
 	"pt" => "Total de contas tranferidas neste m阺 : "
 	);
 $txt_mainmenu_title_deamonfile_generation = array(
-	"fr" => "G閚閞ation des fichiers de configuration des demons",
-	"en" => "Daemons configuration files generation",
-	"hu" => "A d閙onok konfigur醕i髎 f醞ljainak gener醠醩a ",
-	"it" => "Configurazione della generazione dei files di configurazione dei demoni",
-	"nl" => "Genereren van daemon configuratie files",
-	"ru" => "TRANSDaemons configuration files generation",
-	"de" => "Konfiguationsdateien f黵 Daemons erstellen",
+	"fr" => "G閚閞ation des configurations",
+	"en" => "Configuration generation",
+	"hu" => "Konfigur醕i髎 gener醠醩a ",
+	"it" => "Generazione di configurazione",
+	"nl" => "Genereren van configuratie",
+	"ru" => "TRANS Configuration generation",
+	"de" => "Konfiguationsdateien erstellen",
 	"zh" => "生成后台配置文件",
 	"pl" => "Konfiguracja demon體 serwera",
 	"se" => "TRANS SVENSKA",
-	"es" => "Generaci&oacute;n de ficheros de configuraci&oacute;n de los demonios",
-	"pt" => "Configura玢o da gera玢o autom醫ica dos ficheiros dos servi鏾s"
+	"es" => "Generaci&oacute;n configuraci&oacute;n",
+	"pt" => "Configura玢o da gera玢o"
 	);
 $txt_mainmenu_title_dtc_config = array(
 	"fr" => "Configuration g閚閞ale de DTC",
