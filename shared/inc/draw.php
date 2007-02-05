@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.86 2007/01/24 09:04:33 thomas Exp $
+ * @version $Id: draw.php,v 1.87 2007/02/05 17:57:20 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -339,6 +339,13 @@ function drawAdminTools($admin){
 
 	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass","addrlink");
 //	$mymenu = makeTreeMenu2($user_menu);
+	$mymenu .= "<div align=\"center\"><a href=\"".$_SERVER["PHP_SELF"]."?\">".$txt_logout[$lang]."</a>";
+	if($dtc_use_text_menu == "no"){
+		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">".$txt_use_text_menu[$lang]."</a>";
+	}else{
+		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=no\">".$txt_use_images_menu[$lang]."</a>";
+	}
+	$mymenu .= "</div>";
 
 
 
@@ -465,31 +472,14 @@ function drawAdminTools($admin){
 		}
 		$edition = skin($conf_skin,$web_editor,$title);
 	}else{
-	  $edition = "";
+		$edition = "";
+		$title = "";
 	}
-
-	$mymenu .= "<div align=\"center\"><a href=\"".$_SERVER["PHP_SELF"]."?\">".$txt_logout[$lang]."</a>";
-	if($dtc_use_text_menu == "no"){
-		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">".$txt_use_text_menu[$lang]."</a>";
+	if( function_exists("skin_LayoutClientPage") ){
+		return skin_LayoutClientPage ($mymenu,$web_editor,$title);
 	}else{
-		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=no\">".$txt_use_images_menu[$lang]."</a>";
+		return skin_LayoutClientPage_Default ($mymenu,$web_editor,$title);
 	}
-	$mymenu .= "</div>";
-
-	$domain_list = skin($conf_skin,"<br>$mymenu",$txt_left_menu_title[$lang]);
-
-	$out = "
-<table width=\"100%\" height=\"100%\">
-<tr><td valign=\"top\" width=\"220\" height=\"1\">
-	<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\"><tr><td>$domain_list</td></tr><tr><td>&nbsp</td></tr></table>
-</td><td height=\"100%\">&nbsp;
-</td><td align=\"left\" valign=\"top\" height=\"100%\">
-	$edition
-</td></tr>
-</table>
-";
-
-	return $out;
 }
 
 // require("$dtcshared_path/strings.php");
@@ -561,7 +551,5 @@ function drawAdminTools($admin){
 //            ["du"]
 // ["total_db_du"]
 // ["total_du"]
-
-
 
 ?>

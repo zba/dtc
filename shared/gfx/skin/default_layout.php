@@ -1,4 +1,27 @@
 <?php
+
+function skin_LayoutClientPage_Default ($menu_content,$main_content,$main_content_title){
+	global $conf_skin;
+	global $txt_left_menu_title;
+	global $lang;
+
+	$domain_list = skin($conf_skin,$menu_content,$txt_left_menu_title[$lang]);
+	if($main_content != ""){
+		$main = skin($conf_skin,$main_content,$main_content_title);
+	}else{
+		$main = "";
+	}
+	return "
+<table width=\"100%\" height=\"100%\">
+<tr><td valign=\"top\" width=\"220\" height=\"1\">
+        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\"><tr><td>$domain_list</td></tr><tr><td>&nbsp</td></tr></table>
+</td><td height=\"100%\">&nbsp;
+</td><td align=\"left\" valign=\"top\" height=\"100%\">
+        $main
+</td></tr>
+</table>
+";
+}
 	
 function skin_LayoutAdminPage_Default (){
 	global $rub;

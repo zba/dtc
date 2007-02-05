@@ -1,5 +1,49 @@
 <?
 
+function skin_LayoutClientPage ($menu_content,$main_content,$main_content_title){
+	global $conf_skin;
+	global $txt_left_menu_title;
+	global $lang;
+
+	if($main_content == ""){
+		$main_content = "&nbsp;";
+		$main_content_title = "&nbsp;";
+	}
+
+	return '
+  <table class="box_wnb_content_clientimport_box_wnb" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td class="box_wnb_nb" valign="top">
+	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$txt_left_menu_title[$lang].'</div></div></div></div>
+	<div class="box_wnb_tv_container">
+	'.$menu_content.'
+	</div>
+      </td>
+      <td class="box_wnb_content" valign="top">
+	<div class="box_wnb_content_container">
+	  <h2>'.$main_content_title.'</h2>
+	  '.$main_content.'
+	</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="box_wnb_nb_bottom"></td>
+      <td class="box_wnb_content_bottom"></td>
+    </tr>
+  </table>
+';
+	return "
+<table width=\"100%\" height=\"100%\">
+<tr><td valign=\"top\" width=\"220\" height=\"1\">
+        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\"><tr><td>$domain_list</td></tr><tr><td>&nbsp</td></tr></table>
+</td><td height=\"100%\">&nbsp;
+</td><td align=\"left\" valign=\"top\" height=\"100%\">
+        $main
+</td></tr>
+</table>
+";
+}
+
 function skin_Navbar (){
 	global $rub;
 	global $txt_mainmenu_title_useradmin;
@@ -277,7 +321,7 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 		}else if(isset($rub) && $rub == "domain_config"){
 			$out .= drawDomainConfig($admin);
 		}else{
-			$out .= drawAdminTools($admin);
+			$out .= '<table class="box_wnb_content_clientimport"><tr><td>'.drawAdminTools($admin).'</td></tr></table>';
 		}
 		return $out;
 	}else{
