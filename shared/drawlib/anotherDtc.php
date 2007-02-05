@@ -1,12 +1,15 @@
 <?php
 /**
  * @package DTC
- * @version $Id: anotherDtc.php,v 1.37 2006/08/07 20:53:00 thomas Exp $
+ * @version $Id: anotherDtc.php,v 1.38 2007/02/05 06:46:39 thomas Exp $
  * @abstract language chose link/images
  * 
  * Added swedish to project languages
  * if posible translate to swedish.
  * $Log: anotherDtc.php,v $
+ * Revision 1.38  2007/02/05 06:46:39  thomas
+ * Better drawings on IE too. Work still in progress...
+ *
  * Revision 1.37  2006/08/07 20:53:00  thomas
  * Added VPS renewal. Still have to validate payment by hand, but working
  * well appart from that.
@@ -74,7 +77,7 @@ function anotherLanguageSelection(){
 }
 
 $confirm_javascript="
-<script language=\"JavaScript\">
+<script language=\"JavaScript\" type=\"text/javascript\">
 
 function dtc_js_confirm(text,url){
 	if(window.confirm(text)){

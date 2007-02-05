@@ -1,34 +1,5 @@
 <?
 
-function layoutAdminPanel($title,$meta,$java_script,$onloads,$banner,$menu,$content,$footer){
-	global $page_metacontent;
-	global $confirm_javascript;
-	global $skinCssString;
-	global $body_tag;
-
-	return "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
-<html>
-<head>
-<title>DTC: $title ".$_SERVER['SERVER_NAME']."</title>
-$page_metacontent
-$meta
-</head>
-
-$onloads
-$confirm_javascript
-$java_script
-$skinCssString
-
-$body_tag
-
-$banner
-$menu
-<div id=\"content\">$content</div>
-$footer
-</html>";
-
-}
-
 function skin_Navbar (){
 	global $rub;
 	global $txt_mainmenu_title_useradmin;
@@ -44,44 +15,44 @@ function skin_Navbar (){
 	$out = '<div id="navbar"><div id="navbar_left"></div><ul id="navbar_items">';
 
 	if(!isset($rub) || $rub == "" || $rub == "user" || $rub == "domain_config" || $rub == "adminedit"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif"><br />'.$txt_mainmenu_title_useradmin[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'.$txt_mainmenu_title_useradmin[$lang].'"><br />'.$txt_mainmenu_title_useradmin[$lang].'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=user"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif"><br />'.$txt_mainmenu_title_useradmin[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=user"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'.$txt_mainmenu_title_useradmin[$lang].'"><br />'.$txt_mainmenu_title_useradmin[$lang].'</a></li>';
 	}
 	if(isset($rub) && $rub == "crm"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif"><br />'.$txt_mainmenu_title_client_management[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'.$txt_mainmenu_title_client_management[$lang].'"><br />'.$txt_mainmenu_title_client_management[$lang].'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=crm"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif"><br />'.$txt_mainmenu_title_client_management[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=crm"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'.$txt_mainmenu_title_client_management[$lang].'"><br />'.$txt_mainmenu_title_client_management[$lang].'</a></li>';
 	}
 	if(isset($rub) && $rub == "monitor"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif"><br />'.$txt_mainmenu_title_bandwidth_monitor[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'.$txt_mainmenu_title_bandwidth_monitor[$lang].'"><br />'.$txt_mainmenu_title_bandwidth_monitor[$lang].'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=monitor"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif"><br />'.$txt_mainmenu_title_bandwidth_monitor[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=monitor"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'.$txt_mainmenu_title_bandwidth_monitor[$lang].'"><br />'.$txt_mainmenu_title_bandwidth_monitor[$lang].'</a></li>';
 	}
 	if(isset($rub) && $rub == "graph"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif"><br />'.$txt_mainmenu_title_server_monitor[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'.$txt_mainmenu_title_server_monitor[$lang].'"><br />'.$txt_mainmenu_title_server_monitor[$lang].'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=graph"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif"><br />'.$txt_mainmenu_title_server_monitor[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=graph"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'.$txt_mainmenu_title_server_monitor[$lang].'"><br />'.$txt_mainmenu_title_server_monitor[$lang].'</a></li>';
 	}
 	if(isset($rub) && $rub == "renewal"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif"><br />'.$txt_mainmenu_title_renewals[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'.$txt_mainmenu_title_renewals[$lang].'"><br />'.$txt_mainmenu_title_renewals[$lang].'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=renewal"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif"><br />'.$txt_mainmenu_title_renewals[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=renewal"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'.$txt_mainmenu_title_renewals[$lang].'"><br />'.$txt_mainmenu_title_renewals[$lang].'</a></li>';
 	}
 	if(isset($rub) && $rub == "product"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif"><br />'.$txt_product_manager[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'.$txt_product_manager[$lang].'"><br />'.$txt_product_manager[$lang].'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=product"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif"><br />'.$txt_product_manager[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=product"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'.$txt_product_manager[$lang].'"><br />'.$txt_product_manager[$lang].'</a></li>';
 	}
 	if(isset($rub) && $rub == "generate"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif"><br />'.$txt_mainmenu_title_deamonfile_generation[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'.$txt_mainmenu_title_deamonfile_generation[$lang].'"><br />'.$txt_mainmenu_title_deamonfile_generation[$lang].'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=generate"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif"><br />'.$txt_mainmenu_title_deamonfile_generation[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=generate"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'.$txt_mainmenu_title_deamonfile_generation[$lang].'"><br />'.$txt_mainmenu_title_deamonfile_generation[$lang].'</a></li>';
 	}
 	if(isset($rub) && $rub == "config"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif"><br />'.$txt_mainmenu_title_dtc_config[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'.$txt_mainmenu_title_dtc_config[$lang].'"><br />'.$txt_mainmenu_title_dtc_config[$lang].'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=config"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif"><br />'.$txt_mainmenu_title_dtc_config[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=config"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'.$txt_mainmenu_title_dtc_config[$lang].'"><br />'.$txt_mainmenu_title_dtc_config[$lang].'</a></li>';
 	}
 
 	$out .= '</ul><div id="navbar_right"></div></div>';
@@ -108,6 +79,8 @@ function skin_LayoutAdminPage (){
 	global $txt_client_list_title;
 	global $txt_client_admins_title;
 	global $txt_client_commands_title;
+
+	global $adm_random_pass;
 
 	global $page_metacontent;
 	global $meta;
@@ -180,101 +153,53 @@ function skin_LayoutAdminPage (){
 			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
 		}
-		$zemain_content = '<div id="content">
+		$skinedConsole = '<table cellpadding="0" cellspacing="0" class="console">
+	  <tr><td class="console_title">Console output :</td>
+	  </tr><tr>		<td class="console_output"><pre>'.$_SERVER['SERVER_NAME'].':&gt;_'.$console.'<br></pre></td></tr></table>';
 
-	<table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-	<td class="box_wnb_nb" valign="top">
+	  $adm_list = adminList($rand).'
+	  <div class="voider"></div>
+	  <br /><br />
+		<div class="voider"></div>';
 
-		<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">
-Admin list</div></div></div>
-<div class="box_wnb_nb_content">'.adminList($rand).'
-			<div class="voider"></div>
-
-		  <br /><br />
-
-		</div>
-		<div class="voider"></div>
-	  		
-	</td>
-	<td class="box_wnb_content" valign="top">
-	<div class="box_wnb_content_container">
-
+		$zemain_content = '
+<table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="box_wnb_nb" valign="top">
+    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$adm_list.'</div></div></div></div>
+    </td>
+    <td class="box_wnb_content" valign="top">
 	  <h2>User administration</h2>
-'.$bwoup_user_edit.'
-	<table cellpadding="0" cellspacing="0" class="console">
-	  <tr>
-		<td class="console_title">Console output :</td>
-	  </tr>
-	  <tr>		
-		<td class="console_output"><pre>'.$_SERVER['SERVER_NAME'].':&gt;'.$console.'<br></pre></td>
-
-	  </tr>
-	  </table>
-
-
+'.$bwoup_user_edit.$skinedConsole.'
 	</div>
-	</td>
-	</tr>
-	<tr>
-	<td class="box_wnb_nb_bottom"></td>
-	<td class="box_wnb_content_bottom" valign="top"></td>
-
-	</tr>
-	</table></div>';
-		break;
-
-
-		// Our list of admins
-		// If random password was not set before this, we have to calculate it now!
-		if(isset($adm_random_pass)){
-			$rand = $adm_random_pass;
-		}else{
-			$rand = getRandomValue();
-			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
-			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
-		}
-
-		$leftFrameCells[] = skin($conf_skin,adminList($rand),$txt_virtual_admin_list[$lang]);
-		$leftFrame = makeVerticalFrame($leftFrameCells);
-
-		// A virtual admin edition
-		// We have to call it first, in case it will generate a random pass (edition of an admin with inclusion of user's panel)
-		$rightFrameCells[] = userEditForms($adm_login,$adm_pass);
-		$rightFrameCells[] = skinConsole();
-		$rightFrame = makeVerticalFrame($rightFrameCells);
-
-
-		$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);
+    </td>
+  </tr>
+  <tr>
+    <td class="box_wnb_nb_bottom"></td>
+    <td class="box_wnb_content_bottom" valign="top"></td>
+  </tr>
+</table>';
 		break;
 	}
 
 	$dtc_main_menu = skin_Navbar();
-	$the_page[] = skin($conf_skin,$dtc_main_menu,$txt_root_adm_title[$lang]);
-	$the_page[] = $zemain_content;
-	$pageContent = makeVerticalFrame($the_page);
 	$anotherFooter = anotherFooter("Footer content<br><br>");
 
-	if(!isset($anotherHilight))	$anotherHilight = "";
-	if(!isset($anotherMenu))	$anotherMenu = "";
-
-//	anotherPage($title,$meta,$java_script,$onloads,$banner,$menu,$content,$footer);
-//	echo anotherPage("admin:","",$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$pageContent,$anotherFooter);
-echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
+	echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
 <html>
 <head>
 <title>DTC: Admin: ".$_SERVER['SERVER_NAME']."</title>
 $page_metacontent
 $meta
 </head>
+<body id=\"page\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">
 
 ".makePreloads()."
 $confirm_javascript
 $java_script
+<link rel=\"stylesheet\" href=\"gfx/skin/bwoup/skin.css\" type=\"text/css\">
 $skinCssString
 
-<body id=\"page\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">
 ".anotherTopBanner("DTC","yes").$dtc_main_menu."
 <div id=\"content\">".$zemain_content."</div>
 <div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
@@ -307,26 +232,6 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 	$ret["mesg"] = "No error";
 
 	if(isset($adm_login) && $adm_login != "" && isset($adm_pass) && $adm_pass != ""){
-		$out = '<ul class="box_wnb_content_nb">';
-		if($rub != "user" && $rub != ""){
-			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=user\">client interface</a></li>";
-		}else{
-			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=user\">client interface</a></li>";
-		}
-		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
-		if($rub != "domain_config"){
-			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
-		}else{
-			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
-		}
-		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
-		if($rub != "adminedit"){
-			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=adminedit\">".$txt_domain_config[$lang]."</a></li>";
-		}else{
-			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=adminedit\">".$txt_domain_config[$lang]."</a></li>";
-		}
-		$out .= "</ul>";
-
 		// Fetch all the selected user informations, Print a nice error message if failure.
 		$admin = fetchAdmin($adm_login,$adm_pass);
 		if(isset($adm_random_pass)){
@@ -340,6 +245,26 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 			$ret["mesg"] = $admin["mesg"];
 			return $ret;
 		}
+
+		$out = '<ul class="box_wnb_content_nb">';
+		if($rub != "user" && $rub != ""){
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\">client interface</a></li>";
+		}else{
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\">client interface</a></li>";
+		}
+		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
+		if($rub != "domain_config"){
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
+		}else{
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
+		}
+		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
+		if($rub != "adminedit"){
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\">".$txt_admin_editor[$lang]."</a></li>";
+		}else{
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\">".$txt_admin_editor[$lang]."</a></li>";
+		}
+		$out .= "</ul>";
 
 		//fix up the $adm_login in case it changed because of session vars:
 		//in case users play silly bugger with the "GET" variables

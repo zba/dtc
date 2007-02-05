@@ -159,7 +159,7 @@ function makePreloads(){
 	global $preloads;
 	global $nbrPreloadedImage;
 	global $imagePrefix;
-	$java_script = "<SCRIPT LANGUAGE=\"JavaScript\">
+	$java_script = "<script language=\"JavaScript\" type=\"text/javascript\">
 <!-- Begin\n";
 	for($i=0;$i<$nbrPreloadedImage;$i++){
 		$imgNum = $i+1;
