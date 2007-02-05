@@ -166,7 +166,8 @@ function skin_LayoutAdminPage (){
 <table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="box_wnb_nb" valign="top">
-    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$adm_list.'</div></div></div></div>
+    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">Admin list</div></div></div></div>
+    	'.$adm_list.'
     </td>
     <td class="box_wnb_content" valign="top">
 	  <h2>User administration</h2>
