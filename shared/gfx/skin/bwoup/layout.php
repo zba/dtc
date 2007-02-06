@@ -1,5 +1,29 @@
 <?
 
+function skin_DTCConfigMenu ($dsc){
+	if(!isset($_REQUEST["sousrub"])){
+		$sousrub = "general";
+        }else{
+          $sousrub = $_REQUEST["sousrub"];
+        }
+
+		
+		
+        $out = '<ul class="box_wnb_nb_items">';
+
+        $keys = array_keys($dsc);
+        $nbr_entry = sizeof($dsc);
+        for($i=0;$i<$nbr_entry;$i++){
+        	if($keys[$i] == $sousrub){
+			$out .= '<li><div class="box_wnb_nb_item_select"><a href="?rub=config&sousrub='.$keys[$i].'"><img src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
+		}else{
+			$out .= '<li><div class="box_wnb_nb_item" onMouseOver="this.className=\'box_wnb_nb_item-hover\';" onMouseOut="this.className=\'box_wnb_nb_item\';"><a href="?rub=config&sousrub='.$keys[$i].'"><img src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
+		}
+        }
+        $out .= "</ul>";
+        return $out;
+}
+
 function skin_LayoutClientPage ($menu_content,$main_content,$main_content_title){
 	global $conf_skin;
 	global $txt_left_menu_title;
@@ -171,13 +195,24 @@ function skin_LayoutAdminPage (){
 		$zemain_content = makeVerticalFrame($mainFrameCells);
 		break;
 	case "config": // Global Config
-		$chooser_menu = drawDTCConfigMenu();
-		$leftFrameCells[] = skin($conf_skin,$chooser_menu,"Menu");
-		$leftFrame = makeVerticalFrame($leftFrameCells);
-		$rightFrameCells[] = skin($conf_skin,drawDTCConfigForm(),$txt_dtc_configuration[$lang]);
-		$rightFrame = makeVerticalFrame($rightFrameCells);
-
-		$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);
+		$zemain_content = '
+<table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="box_wnb_nb" valign="top">
+    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'."Menu".'</div></div></div></div>
+    	'.drawDTCConfigMenu().'
+    </td>
+    <td class="box_wnb_content" valign="top">
+	  <h2>'.$txt_dtc_configuration[$lang].'</h2>
+'.drawDTCConfigForm().'
+	</div>
+    </td>
+  </tr>
+  <tr>
+    <td class="box_wnb_nb_bottom"></td>
+    <td class="box_wnb_content_bottom" valign="top"></td>
+  </tr>
+</table>';
 		break;
 	case "product":
 		$bla = productManager();
