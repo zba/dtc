@@ -254,7 +254,8 @@ function restartApache () {
 		echo "$APACHECTL stop\n";
 		system("$APACHECTL stop");
 		sleep(1);
-		while( is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 15){
+		$ctl_retry = 0;
+		while( is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 12){
 			echo "Warning: apache not stoped, will check and maybe retry in 2 seconds...";
 			echo "2...";sleep(1);echo "1...";sleep(1);echo "0";
 			clearstatcache();
@@ -269,10 +270,11 @@ function restartApache () {
 
 		$ctl_return = system("$APACHECTL start");
 		clearstatcache();
+		$ctl_retry = 0;
 		// Check that apache is really started, because experience showed sometimes it's not !!!
 		//while( strstr($ctl_return,"httpd started") == false && $ctl_retry++ < 15){
 		// This new version should work on OS where apachectl start is quiet
-		while( !is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 15){
+		while( !is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 12){
 			echo "Warning: apache not started, will check and maybe retry in 2 seconds...";
 			echo "2...";sleep(1);echo "1...";sleep(1);echo "0";
 			clearstatcache();
