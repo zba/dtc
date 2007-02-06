@@ -104,14 +104,14 @@ function skin_LayoutAdminPage_Default (){
 		// Our list of admins
 		// If random password was not set before this, we have to calculate it now!
 		if(isset($adm_random_pass)){
-			$leftFrameCells[] = skin($conf_skin,adminList($adm_pass),$txt_virtual_admin_list[$lang]);
+			$rand = $adm_pass;
 		}else{
 			$rand = getRandomValue();
 			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
 			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
-			$leftFrameCells[] = skin($conf_skin,adminList($rand),$txt_virtual_admin_list[$lang]);
 		}
+		$leftFrameCells[] = skin($conf_skin,adminList($rand),$txt_virtual_admin_list[$lang]);
 		// Make the frame
 		$leftFrame = makeVerticalFrame($leftFrameCells);
 

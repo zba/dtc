@@ -123,6 +123,7 @@ function skin_LayoutAdminPage (){
 	global $txt_client_list_title;
 	global $txt_client_admins_title;
 	global $txt_client_commands_title;
+	global $txt_user_administration;
 
 	global $adm_random_pass;
 
@@ -210,11 +211,11 @@ function skin_LayoutAdminPage (){
 <table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="box_wnb_nb" valign="top">
-    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">Admin list</div></div></div></div>
+    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$txt_virtual_admin_list[$lang].'</div></div></div></div>
     	'.$adm_list.'
     </td>
     <td class="box_wnb_content" valign="top">
-	  <h2>User administration</h2>
+	  <h2>'.$txt_user_administration[$lang].'</h2>
 '.$bwoup_user_edit.$skinedConsole.'
 	</div>
     </td>
@@ -293,9 +294,9 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 
 		$out = '<ul class="box_wnb_content_nb">';
 		if($rub != "user" && $rub != ""){
-			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\">client interface</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\">".$txt_client_interface[$lang]."</a></li>";
 		}else{
-			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\">client interface</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\">".$txt_client_interface[$lang]."</a></li>";
 		}
 		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
 		if($rub != "domain_config"){
