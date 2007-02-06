@@ -1,5 +1,50 @@
 <?php
 
+function skin_ClientPage_Default (){
+	global $lang;
+	global $txt_select_lang_title;
+	global $adm_pass;
+	global $adm_login;
+	global $txt_error;
+	global $txt_fetching_admin;
+	global $txt_client_panel_title;
+	global $txt_login_title;
+	global $conf_skin;
+
+	////////////////////////////////////
+	// Create the top banner and menu //
+	////////////////////////////////////
+	$anotherTopBanner = anotherTopBanner("DTC");
+	//$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
+
+	$anotherLanguageSelection = anotherLanguageSelection();
+	$lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
+
+	if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass)){
+	        // Fetch all the user informations, Print a nice error message if failure.
+	        $admin = fetchAdmin($adm_login,$adm_pass);
+	        if(($error = $admin["err"]) != 0){
+	                $mesg = $admin["mesg"];
+	                $login_txt = $txt_error[$lang]." $error ".$txt_fetching_admin[$lang]."<font color=\"red\">$mesg</font><br>";
+	                $login_txt .= login_form();
+	                $login_skined = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
+	                $mypage = layout_login_and_languages($login_skined,$lang_sel);
+	        }else{
+	                // Draw the html forms
+	                $HTML_admin_edit_data = drawAdminTools($admin);
+	                $mypage = $HTML_admin_edit_data;
+	        }
+	}else{
+	        $login_txt = login_form();
+	        $login_skined = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
+	        $mypage = layout_login_and_languages($login_skined,$lang_sel);
+	}
+	// Output the result !
+	if(!isset($anotherHilight)) $anotherHilight = "";
+
+	echo anotherPage("Client:","",$anotherHilight,makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
+}
+
 function skin_LayoutClientPage_Default ($menu_content,$main_content,$main_content_title){
 	global $conf_skin;
 	global $txt_left_menu_title;

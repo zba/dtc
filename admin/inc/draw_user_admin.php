@@ -291,7 +291,7 @@ dtcFromOkDraw()."
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<br><b>No pending renewals!</b><br>";
+		$waiting_new_users .= "<b>No pending renewals!</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
 	<tr><td>".$txt_login_title[$lang]."</td><td>Product</td><td>Payment date</td><td>Bank validated</td><td>Type</td><td>Action</td></tr>";
@@ -365,7 +365,7 @@ dtcFromOkDraw()."
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<br><b>No pending support tickets!</b><br>";
+		$waiting_new_users .= "<b>No pending support tickets!</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
 	<tr><td>".$txt_login_title[$lang]."</td><td>Age</td><td>Type</td><td>Subject</td></tr>";
@@ -388,10 +388,9 @@ dtcFromOkDraw()."
 	}
 	return "<table>
 <tr>
-	<td valign=\"top\">".
-skin("frame",$add_a_user,"")."</td>
-	<td valign=\"top\">".
-skin("frame",$waiting_new_users,"")."</td>
+	<td valign=\"top\">".$add_a_user."</td>
+	<td background=\"gfx/skin/frame/border_2.gif\">&nbsp;</td>
+	<td valign=\"top\">".$waiting_new_users."</td>
 </tr></table>";
 }
 
