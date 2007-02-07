@@ -3041,6 +3041,12 @@ createChrootTemplate () {
 	if [ -e /usr/bin/groups ] ; then
 		cp -pf /usr/bin/groups usr/bin
 	fi
+	if [ -e /usr/bin/id ] ; then
+		cp -pf /usr/bin/id usr/bin
+	fi
+	if [ -e /bin/mkdir ] ; then
+		cp -pf /bin/mkdir bin
+	fi
 
 	# copy zip and unzip if they are present
 	if [ -e /usr/bin/zip ] ; then
