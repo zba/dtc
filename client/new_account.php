@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: new_account.php,v 1.28 2006/08/08 17:53:40 thomas Exp $
+ * @version $Id: new_account.php,v 1.29 2007/02/07 14:27:53 thomas Exp $
  * @abstract Localization must go on ... ;) seeb
  * @todo repair bug for 
  * "Cannot reselect transaction for id $extapi_pay_id: registration failed!" 
@@ -61,9 +61,12 @@ $anotherLanguageSelection = anotherLanguageSelection();
 $lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
 
 $form = "";
+
+// Renew a contact (or buy SSL token)
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "contract_renewal"){
 	$ret = renew_form();
 	$form = $ret["mesg"];
+// Return from payment API (and maybe validate the payment)
 }else if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_REQUEST["action"] == "enets-success")){
 	// Here are paypal return parameters:
 	// [action] => return_from_pay
@@ -163,17 +166,22 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "contract_renewal"){
 			}
 		}
 	}
+// A cancel occured (currently only from eNETS)
 }else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-cancel"){
 	$form .= "<h3><font color=\"red\">".$txt_err_payment_cancel[$lang]."<!-- PAYMENT CANCELED --></font></h3>
 You have canceled the payment, your account wont be validated.
 To start again the registration procedure, follow the link here:<br>
 <a href=\"new_account.php\">".$txt_register_new_account[$lang]."</a>";
+// The transaction have failed (currently only eNETS)
 }else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-failed"){
 	$form .= "<h3><font color=\"red\">".$txt_err_payment_failed[$lang]."<!-- PAYMENT FAILED --></font></h3>
 The payment gateway have reported that your payment has failed. Contact us,
 we also accept checks and wire transfers.";
+// This is a new user registration
 }else{
+	// Register form
 	$reguser = register_user();
+	// If err=0 then it's already in the new_admin form!
 	if($reguser["err"] == 0){
 		$form = "";
 		$form .= "Your registration has been recorded in our database.<br>";
@@ -183,6 +191,7 @@ we also accept checks and wire transfers.";
 		if($n != 1){
 			$form .= $txt_err_register_cant_reselect_user[$lang];//"Cannot reselect user: registration failed!";
 		}else{
+			// Get the recorded new admin in the new_admin table, and process the display of payment buttons
 			$newadmin = mysql_fetch_array($r);
 			$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$newadmin["product_id"]."';";
 			$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
