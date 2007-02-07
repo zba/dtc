@@ -11,6 +11,13 @@ function skin_ClientPage (){
 	global $txt_login_title;
 	global $conf_skin;
 
+	global $page_metacontent;
+	global $meta;
+	global $confirm_javascript;
+	global $java_script;
+	global $skinCssString;
+	global $console;
+
 	////////////////////////////////////
 	// Create the top banner and menu //
 	////////////////////////////////////
@@ -36,13 +43,31 @@ function skin_ClientPage (){
 		}
 	}else{
 		$login_txt = login_form();
-                $login_skined = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
-                $mypage = layout_login_and_languages($login_skined,$lang_sel);
+                $mypage = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
         }
         // Output the result !
-        if(!isset($anotherHilight)) $anotherHilight = "";
+//        if(!isset($anotherHilight)) $anotherHilight = "";
 
-        echo anotherPage("Client:","",$anotherHilight,makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
+//        echo anotherPage("Client:","",$anotherHilight,makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
+	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+<html>
+<head>
+<title>DTC: Admin: ".$_SERVER['SERVER_NAME']."</title>
+$page_metacontent
+$meta
+</head>
+<body id=\"page\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">
+
+".makePreloads()."
+$confirm_javascript
+$java_script
+<link rel=\"stylesheet\" href=\"gfx/skin/bwoup/skin.css\" type=\"text/css\">
+$skinCssString
+
+".anotherTopBanner("DTC","yes")."<div id=\"navbar\"><div id=\"navbar_left\"></div><ul id=\"navbar_items\"></ul><div id=\"navbar_right\"></div></div>
+<div id=\"content\">".$mypage."</div>
+<div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
+</html>";
 }
 
 
@@ -180,6 +205,7 @@ function skin_LayoutAdminPage (){
 	global $conf_session_expir_minute;
 	global $pro_mysql_config_table;
 	global $conf_skin;
+
 	global $lang;
 	global $txt_virtual_admin_list;
 	global $txt_root_adm_title;
@@ -199,8 +225,6 @@ function skin_LayoutAdminPage (){
 
 	global $page_metacontent;
 	global $meta;
-
-
 	global $confirm_javascript;
 	global $java_script;
 	global $skinCssString;
