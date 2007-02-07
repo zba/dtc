@@ -1,3 +1,9 @@
+Version 0.25.1:
+---------------
+- Added a system that makes it possible to totaly customize
+the control panel look, not only a "skin". Now also the layout
+of everything can be redesigned.
+- Added the bwoup skin using the above system.
 Version 0.25.0:
 ---------------
 - Now using a template system that draws all the forms
