@@ -64,7 +64,7 @@ $java_script
 <link rel=\"stylesheet\" href=\"gfx/skin/bwoup/skin.css\" type=\"text/css\">
 $skinCssString
 
-".anotherTopBanner("DTC","yes")."<div id=\"navbar\"><div id=\"navbar_left\"></div><ul id=\"navbar_items\"></ul><div id=\"navbar_right\"></div></div>
+".anotherTopBanner("DTC","yes")."<div id=\"usernavbarreplacement\"><div id=\"navbar_left\"></div><ul id=\"navbar_items\"></ul><div id=\"navbar_right\"></div></div>
 <div id=\"content\">".$mypage."</div>
 <div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
 </html>";
