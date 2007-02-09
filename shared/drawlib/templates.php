@@ -536,7 +536,7 @@ function dtcListItemsEdit($dsc){
 	}
 
 
-	$out = "<b><u>".$dsc["title"]."</u></b><br><br>";
+	$out = "<h3>".$dsc["title"]."</u></b></h3>";
 
 	// Calculate the forwards parameters for links and forms
 	$nbr_forwards = sizeof($dsc["forward"]);
@@ -1024,7 +1024,7 @@ function dtcListItemsEdit($dsc){
 	// Creation of new items
 	if( !isset($_REQUEST["subaction"]) || $_REQUEST["subaction"] != $dsc["action"]."_edit_item"){
 		$out .= $dsc["new_item_link"]."<br><br>";
-		$out .= "<u><b>".$dsc["new_item_title"]."</u></b><br>";
+		$out .= "<h3>".$dsc["new_item_title"]."</h3><br>";
 		if(isset($dsc["max_item"]) && $current_num_items >= $dsc["max_item"]){
 			$out .= "<font color=\"red\">Maximum number reached!</font><br>";
 		}else{
@@ -1140,7 +1140,7 @@ function dtcListItemsEdit($dsc){
 	// Edition of existing items
 	}else{
 		$out .= "<a href=\"$fw_link&subaction=".$dsc["action"]."_new_item\">New item</a><br><br>";
-		$out .= "<b><u>".$dsc["edit_item_title"]."</u></b><br>";
+		$out .= "<h3>".$dsc["edit_item_title"]."</h3><br>";
 		$q = "SELECT * FROM ".$dsc["table_name"]." $where AND ".$dsc["id_fld"]."='".addslashes($_REQUEST["item"])."';";
 		$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
