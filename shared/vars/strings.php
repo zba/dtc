@@ -5,7 +5,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.125 2007/02/04 11:47:37 thomas Exp $
+	* @version  $Id: strings.php,v 1.126 2007/02/09 19:37:24 thomas Exp $
 	* 
 	**/
 	
@@ -1907,18 +1907,18 @@ $txt_mainmenu_title_useradmin = array(
 	"pt" => "Gest鉶 de utilizadores"
 );
 $txt_mainmenu_title_client_management = array(
-	"fr" => "Gestion relation client",
-	"en" => "Customer Relation Management",
+	"fr" => "Gestion client",
+	"en" => "Customer management",
 	"hu" => "躦yf閘kapcsolat-kezel閟",
-	"it" => "Amministrazione relazioni clienti",
-	"nl" => "Customer Relation Management",
-	"ru" => "TRANSClient relationship management",
-	"de" => "Client Relationship Management",
+	"it" => "Amministrazione clienti",
+	"nl" => "Customer Management",
+	"ru" => "TRANSClient management",
+	"de" => "Client Management",
 	"zh" => "客户管理",
 	"pl" => "Dane klient體 CRM",
 	"se" => "TRANS SVENSKA",
-	"es" => "Gestor de Relaciones de clientes",
-	"pt" => "CRM - Customer Relation Management" 
+	"es" => "Gestor de clientes",
+	"pt" => "Customer management" 
 	);
 $txt_client_list_title = array(
 	"fr" => "Liste des clients",
