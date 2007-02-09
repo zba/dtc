@@ -38,7 +38,7 @@ function skin_ClientPage (){
 			$mypage = layout_login_and_languages($login_skined,$lang_sel);
 		}else{
 			// Draw the html forms
-			$HTML_admin_edit_data = drawAdminTools($admin);
+			$HTML_admin_edit_data = '<div class="box_wnb_content_container">'.drawAdminTools($admin).'</div>';
 			$mypage = $HTML_admin_edit_data;
 		}
 	}else{
