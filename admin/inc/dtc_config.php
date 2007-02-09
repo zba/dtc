@@ -131,7 +131,7 @@ function configEditorTemplate ($dsc,$conftype="config"){
 		get_secpay_conf();
 	}
 
-	$out .= "<h3><u>".$dsc["title"]."</u></h3>";
+	$out .= "<h3>".$dsc["title"]."</h3>";
 	if( isset($dsc["desc"]) ){
 		$out .= $dsc["desc"]."<br><br>";
 	}
@@ -255,9 +255,7 @@ function drawSSLIPConfig(){
 	global $txt_no;
 	global $txt_cfg_take_care_not_to_add_the_control_panel_ip;
 
-	$out = "<h3>".$txt_cfg_manage_ips_for_ssl[$lang]."</h3>";
-	$out .= "<i>".$txt_cfg_take_care_not_to_add_the_control_panel_ip[$lang]."</i><br>";
-
+	$out = "";
 	$dsc = array(
 		"table_name" => $pro_mysql_ssl_ips_table,
 		"title" => $txt_cfg_ssl_dedicated_ips[$lang],
@@ -286,6 +284,7 @@ function drawSSLIPConfig(){
 			)
 		);
 	$out .= dtcDatagrid($dsc);
+	$out .= "<i>".$txt_cfg_take_care_not_to_add_the_control_panel_ip[$lang]."</i><br>";
 	return $out;
 
 }

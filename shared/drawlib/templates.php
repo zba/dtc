@@ -22,8 +22,8 @@ function dtcFormLineDraw($text,$control){
 		$incolor = " bgcolor=\"#FFFFFF\" ";
 	}
 	$out = "<tr><td $bgcolor class=\"box_formtable_libelle\" style=\"text-align:right;white-space:nowrap;\">$text</td>
-	<td $bgcolor><table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" $incolor width=\"100%\">
-<tr><td class=\"box_formtable_inputz\" style=\"white-space:nowrap;vertical-valign:bottom;\">$control</td></tr></table></td></tr>";
+	<td $bgcolor><table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" $incolor width=\"100%\" height=\"100%\">
+<tr><td class=\"box_formtable_inputz\" style=\"white-space:nowrap;vertical-valign:bottom;\" height=\"100%\">$control</td></tr></table></td></tr>";
 	return $out;
 }
 
@@ -100,7 +100,7 @@ function dtcDatagrid($dsc){
 	}else{
 		$add = "gfx/stock_add_24.png";
 	}
-	$out = "<b><u>".$dsc["title"]."</u></b>";
+	$out = "<h3>".$dsc["title"]."</h3>";
 
 	$nbr_forwards = sizeof($dsc["forward"]);
 	$keys_fw = array_keys($dsc["forward"]);

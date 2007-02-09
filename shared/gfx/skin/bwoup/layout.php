@@ -273,6 +273,7 @@ function skin_LayoutAdminPage (){
     	'.drawDTCConfigMenu().'
     </td>
     <td class="box_wnb_content" valign="top">
+    	 <div class="box_wnb_content_container">
 	  <h2>'.$txt_dtc_configuration[$lang].'</h2>
 '.drawDTCConfigForm().'
 	</div>

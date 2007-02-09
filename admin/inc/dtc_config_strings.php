@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.54 2007/02/09 17:49:16 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.55 2007/02/09 19:59:07 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	* 
@@ -658,21 +658,6 @@ $txt_cfg_ssl_dedicated_ips = array(
 "se" => "TRANS SSL dedicated IPs: ",
 "es" => "TRANS SSL dedicated IPs: ",
 "pt" => "TRANS SSL dedicated IPs: "
-);
-
-$txt_cfg_manage_ips_for_ssl = array(
-"fr" => "Gestion des adresses IPs pour le SSL (https):",
-"en" => "Manage IPs for SSL (https):",
-"hu" => "TRANS Manage IPs for SSL (https):",
-"it" => "TRANS Manage IPs for SSL (https):",
-"nl" => "TRANS Manage IPs for SSL (https):",
-"ru" => "TRANS Manage IPs for SSL (https):",
-"de" => "TRANS Manage IPs for SSL (https):",
-"zh" => "TRANS Manage IPs for SSL (https):",
-"pl" => "TRANS Manage IPs for SSL (https):",
-"se" => "TRANS Manage IPs for SSL (https):",
-"es" => "TRANS Manage IPs for SSL (https):",
-"pt" => "TRANS Manage IPs for SSL (https):"
 );
 
 $txt_cfg_ip_addr = array(
@@ -1561,20 +1546,15 @@ $txt_cfg_new_account_defaultpath =array(
 	);
 
 $txt_cfg_generated_file_path =array(
-	"fr" => "Chemin ou DTC va être restreint pour générer ses fichiers
-de configuration pour les daemons.
-Chacun des chemin ci-après (qmail, apache et named) seront concaténés à
-celui-ci :",
-	"en" => "Path where will DTC will be restricted for generating it's
-configuration files for daemons.
-Each of the following (qmail, apache and named) path will be concatened to
-this:",
-	"hu" => "Az elérési út ahol a DTC a démonok konfigurációs fájljait elkészítheti.
+	"fr" => "Chemin ou DTC va être restreint pour générer ses fichiers de configuration pour les daemons.<br>
+Chacun des chemin ci-après (qmail, apache et named) seront concaténés à celui-ci :",
+	"en" => "Path where will DTC will be restricted for generating it's configuration files for daemons.<br>
+Each of the following (qmail, apache and named) path will be concatened to this:",
+	"hu" => "Az elérési út ahol a DTC a démonok konfigurációs fájljait elkészítheti.<br>
 A (qmail, apache és named) az elérési útja hozzá lesz fûzve a következõhöz:",
-	"it" => "Path dove DTC verrà protetto per generare i suoi
-file di configurazione per i demoni.
+	"it" => "Path dove DTC verrà protetto per generare i suoi file di configurazione per i demoni.<br>
 Ognuna delle seguenti path (qmail, apache and named) sarà concatenata a questa:",
-	"nl" => "Paden waarin DTC binnen word opgesloten voor het opslaan
+	"nl" => "Paden waarin DTC binnen word opgesloten voor het opslaan<br>
 van z'n configuratie bestanden voor de daemons.",
 	"ru" => "ðÕÔØ ÇÄÅ DTC ÐÏÚ×ÏÌÉÔ ÇÅÎÅÒÉÒÏ×ÁÔØ ÜÔÉ ËÏÎÆÉÇÕÒÁÃÉÏÎÎÙÅ
 ÆÁÊÌÙ ÄÌÑ ÄÅÍÏÎÏ×. ëÁÖÄÙÊ ÉÚ ÓÌÅÄÕÀÝÉÈ (qmail, apache and named) ÐÕÔÅÊ ÂÕÄÅÔ ÓÏÐÏÓÔÁ×ÉÍ Ó
@@ -1582,12 +1562,11 @@ van z'n configuratie bestanden voor de daemons.",
 	"de" => "Eingeschränkter Pfad zur Speicherung aller Daemon Konfigurationsdateien durch DTC",
 	"zh" => "DTCÅäÖÃÎÄ¼þÂ·¾¶¡£qmail¡¢apache¡¢named µÈ·þÎñ¶¼»áÊ¹ÓÃÕâ¸öÄ¿Â¼£º",
 	"pl" => "¦cie¿ka do katalogu z plikami konfiguracyjnymi hostingu :",
-	"se" => "TRANS Path where will DTC will be restricted for generating it's
-configuration files for daemons.
-Each of the following (qmail, apache and named) path will be concatened to
-this:",
-	"es" => "Directorio donde DTC podr&aacute; generar los ficheros de configuraci&oacute;n para los demonios. Cada una de las siguientes rutas (qmail, apache y named) ser&aacute; enlazada a:",
-    "pt" => "Directório onde DTC deverá gerar os ficheiros de configuração para os serviços.
+	"se" => "TRANS Path where will DTC will be restricted for generating it's configuration files for daemons.<br>
+Each of the following (qmail, apache and named) path will be concatened to this:",
+	"es" => "Directorio donde DTC podr&aacute; generar los ficheros de configuraci&oacute;n para los demonios.<br>
+Cada una de las siguientes rutas (qmail, apache y named) ser&aacute; enlazada a:",
+    "pt" => "Directório onde DTC deverá gerar os ficheiros de configuração para os serviços.<br>
 Em cada um dos seguintes (qmail, apache e named) o caminho será concatenado para :"	
 );
     
