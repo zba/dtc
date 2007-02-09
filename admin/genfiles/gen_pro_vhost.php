@@ -580,10 +580,10 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs\n";
 						// Disable the site if expired
 						if($site_expired == "yes"){
-							$document_root = $conf_generated_file_path."/expired_site/";
+							$document_root = $conf_generated_file_path."/expired_site";
 							$vhost_file .= "	DocumentRoot $document_root\n";
 						}else{
-							$document_root = "$web_path/$web_name/subdomains/$web_subname/html/";
+							$document_root = "$web_path/$web_name/subdomains/$web_subname/html";
 							$vhost_file .= "	DocumentRoot $document_root
 $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	php_admin_value sendmail_from webmaster@$web_name
