@@ -87,6 +87,8 @@ function skin_LayoutAdminPage_Default (){
 	global $txt_client_addr_title;
 	global $txt_client_list_title;
 
+	global $adm_random_pass;
+
 	$anotherTopBanner = anotherTopBanner("DTC","yes");
 
 	///////////////////////
@@ -336,9 +338,9 @@ function userEditForms($adm_login,$adm_pass){
 	$ret["mesg"] = "No error";
 
 	if(isset($adm_login) && $adm_login != "" && isset($adm_pass) && $adm_pass != ""){
+
 		// Fetch all the selected user informations, Print a nice error message if failure.
 		$admin = fetchAdmin($adm_login,$adm_pass);
-
 		if(isset($adm_random_pass)){
 			$pass = $adm_random_pass;
 		}else{
@@ -354,28 +356,10 @@ function userEditForms($adm_login,$adm_pass){
 			//foreach ($input as $k => $v) { 
 			//	echo "$k - $input[$k]\n";	
 			//}
-			echo("Error fetching admin : $error");
+			echo("Error fetching admin : $error line ".__LINE__." file ".__FILE__);
 			$ret["err"] = $admin["err"];
 			$ret["mesg"] = $admin["mesg"];
 			return $ret;
-		}
-
-		//fix up the $adm_login in case it changed because of session vars:
-		//in case users play silly bugger with the "GET" variables
-		$adm_login = $admin["info"]["adm_login"];
-
-		// Draw the html forms
-		if(isset($rub) && $rub == "adminedit"){
-			$HTML_admin_edit_info = drawEditAdmin($admin);
-			$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
-//			return $user_config;
-		}else if(isset($rub) && $rub == "domain_config"){
-			$HTML_admin_domain_config = drawDomainConfig($admin);
-			$user_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
-		}else{
-			$HTML_admin_edit_data = drawAdminTools($admin);
-			$user_config = skin($conf_skin,$HTML_admin_edit_data,$txt_user_administration_domains_for[$lang]." ".$adm_login);
-//			return $user_tools;
 		}
 
 		$iface_select = "<table height=\"1\" border=\"0\" width=\"100%\">";
@@ -409,6 +393,25 @@ function userEditForms($adm_login,$adm_pass){
 		$iface_select .= "</center></td></tr></table>";
 
 		$iface_skined = skin($conf_skin,$iface_select,$txt_user_administration[$lang]);
+
+		//fix up the $adm_login in case it changed because of session vars:
+		//in case users play silly bugger with the "GET" variables
+		$adm_login = $admin["info"]["adm_login"];
+
+		// Draw the html forms
+		if(isset($rub) && $rub == "adminedit"){
+			$HTML_admin_edit_info = drawEditAdmin($admin);
+			$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
+//			return $user_config;
+		}else if(isset($rub) && $rub == "domain_config"){
+			$HTML_admin_domain_config = drawDomainConfig($admin);
+			$user_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
+		}else{
+			$HTML_admin_edit_data = drawAdminTools($admin);
+			$user_config = skin($conf_skin,$HTML_admin_edit_data,$txt_user_administration_domains_for[$lang]." ".$adm_login);
+//			return $user_tools;
+		}
+
 
 		// All thoses tools in a simple table
 		return "<table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
