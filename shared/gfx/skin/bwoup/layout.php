@@ -399,23 +399,28 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 
 		$out = '<ul class="box_wnb_content_nb">';
 		if($rub != "user" && $rub != ""){
-			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\">".$txt_client_interface[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\"  align=\"absmiddle\" border=\"0\"> ".$txt_client_interface[$lang]."</a></li>";
 		}else{
-			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\">".$txt_client_interface[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\" align=\"absmiddle\" border=\"0\"> ".$txt_client_interface[$lang]."</a></li>";
 		}
 		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
 		if($rub != "domain_config"){
-			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_domainconfig.gif\" align=\"absmiddle\" border=\"0\">".$txt_domain_config[$lang]."</a></li>";
 		}else{
-			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\">".$txt_domain_config[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_domainconfig.gif\" align=\"absmiddle\" border=\"0\">".$txt_domain_config[$lang]."</a></li>";
 		}
 		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
-		if($rub != "adminedit"){
+/*		if($rub != "adminedit"){
 			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\">".$txt_admin_editor[$lang]."</a></li>";
 		}else{
 			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\">".$txt_admin_editor[$lang]."</a></li>";
+		}*/
+		if($rub != "adminedit"){
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">".$txt_admin_editor[$lang]."</a></li>";
+		}else{
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">".$txt_admin_editor[$lang]."</a></li>";
 		}
-		$out .= "</ul>";
+		$out .= "</ul></div>";
 
 		//fix up the $adm_login in case it changed because of session vars:
 		//in case users play silly bugger with the "GET" variables

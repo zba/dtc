@@ -24,16 +24,23 @@ function skin_DTCConfigMenu_Default ($dsc){
 
 
 function drawDTCConfigMenu(){
+	global $lang;
 	global $txt_cfg_path_conf_title;
 	global $txt_cfg_name_zonefileconf_title;
 	global $txt_cfg_payconf_title;
-	global $lang;
 
 	global $txt_cfg_general_menu_entry;
 	global $txt_cfg_ip_and_network;
 	global $txt_cfg_backup_and_mx_menu_entry;
 	global $txt_cfg_registryapi_menu_entry;
-	
+	global $txt_cfg_companies_menu_entry;
+	global $txt_cfg_invoicing_menu_entry;
+	global $txt_cfg_ftp_backup_menu_entry;
+	global $txt_cfg_renewals_menu_entry;
+	global $txt_cfg_support_ticket_menu_entry;
+	global $txt_cfg_vps_servers_menu_entry;
+	global $txt_cfg_ssl_ips_addr_menu_entry;
+
 	$dsc = array(
 		"general" => array(
 			"text" => $txt_cfg_general_menu_entry[$lang],
@@ -42,7 +49,7 @@ function drawDTCConfigMenu(){
 			"text" => $txt_cfg_ip_and_network[$lang],
 			"icon" => "box_wnb_nb_picto-ipaddresses.gif"),
 		"sslip" => array(
-			"text" => "SSL IPs",
+			"text" => $txt_cfg_ssl_ips_addr_menu_entry[$lang],
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"zonefile" => array(
 			"text" => $txt_cfg_name_zonefileconf_title[$lang],
@@ -50,141 +57,43 @@ function drawDTCConfigMenu(){
 		"backup" => array(
 			"text" => $txt_cfg_backup_and_mx_menu_entry[$lang],
 			"icon" => "box_wnb_nb_picto-mxnsservers.gif"),
-		"registryapi" => array(
-			"text" => $txt_cfg_registryapi_menu_entry[$lang],
-			"icon" => "box_wnb_nb_picto-domainnamereg.gif"),
-		"payconf" => array(
-			"text" => $txt_cfg_payconf_title[$lang],
-			"icon" => "box_wnb_nb_picto-payementgateway.gif"),
-		"companies" => array(
-			"text" => "Companies",
-			"icon" => "box_wnb_nb_picto-companies.gif"),
-		"invoicing" => array(
-			"text" => "Invoicing",
-			"icon" => "box_wnb_nb_picto-invoicing.gif"),
+		"ftpbackup" => array(
+			"text" => $txt_cfg_ftp_backup_menu_entry[$lang],
+			"icon" => "box_wnb_nb_picto-ftpbackup.gif"),
+		"ticket" => array(
+			"text" => $txt_cfg_support_ticket_menu_entry[$lang],
+			"icon" => "box_wnb_nb_picto-supportickets.gif"),
+		"vps" => array(
+			"text" => $txt_cfg_vps_servers_menu_entry[$lang],
+			"icon" => "box_wnb_nb_picto-vpsservers.gif"),
 		"radius" => array(
 			"text" => "Radius",
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
-		"ftpbackup" => array(
-			"text" => "FTP backup",
-			"icon" => "box_wnb_nb_picto-ftpbackup.gif"),
 		"path" => array(
 			"text" => $txt_cfg_path_conf_title[$lang],
 			"icon" => "box_wnb_nb_picto-paths.gif"),
+		"payconf" => array(
+			"text" => $txt_cfg_payconf_title[$lang],
+			"icon" => "box_wnb_nb_picto-payementgateway.gif"),
 		"renewals" => array(
-			"text" => "Renewals",
+			"text" => $txt_cfg_renewals_menu_entry[$lang],
 			"icon" => "box_wnb_nb_picto-renewals.gif"),
-		"ticket" => array(
-			"text" => "Support ticket",
-			"icon" => "box_wnb_nb_picto-supportickets.gif"),
-		"vps" => array(
-			"text" => "VPS Servers",
-			"icon" => "box_wnb_nb_picto-vpsservers.gif")
+		"registryapi" => array(
+			"text" => $txt_cfg_registryapi_menu_entry[$lang],
+			"icon" => "box_wnb_nb_picto-domainnamereg.gif"),
+
+		"companies" => array(
+			"text" => $txt_cfg_companies_menu_entry[$lang],
+			"icon" => "box_wnb_nb_picto-companies.gif"),
+		"invoicing" => array(
+			"text" => $txt_cfg_invoicing_menu_entry[$lang],
+			"icon" => "box_wnb_nb_picto-invoicing.gif")
 	);
 	if(function_exists("skin_DTCConfigMenu")){
 		return skin_DTCConfigMenu ($dsc);
 	}else{
 		return skin_DTCConfigMenu_Default ($dsc);
 	}
-
-/*	if(!isset($_REQUEST["sousrub"])){
-		$sousrub = "general";
-        }else{
-          $sousrub = $_REQUEST["sousrub"];
-        }
-
-	$out = "<br><table><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "general")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
-	$out .= $txt_cfg_general_menu_entry[$lang];
-	if($sousrub != "general")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "ip")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ip\">";
-	$out .= $txt_cfg_ip_and_network[$lang];
-	if($sousrub != "ip")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "sslip")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=sslip\">";
-	$out .= "SSL IPs";
-	if($sousrub != "sslip")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "zonefile")
-		$out .= " <a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=zonefile\">";
-	$out .= $txt_cfg_name_zonefileconf_title[$lang];
-	if($sousrub != "zonefile")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "backup")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=backup\">";
-	$out .= $txt_cfg_backup_and_mx_menu_entry[$lang];
-	if($sousrub != "backup")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "registryapi")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=registryapi\">";
-	$out .=  $txt_cfg_registryapi_menu_entry[$lang];
-	if($sousrub != "registryapi")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "payconf")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=payconf\">";
-	$out .=  $txt_cfg_payconf_title[$lang];
-	if($sousrub != "payconf")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "companies")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=companies\">";
-	$out .=  "Companies";
-	if($sousrub != "companies")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "invoicing")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=invoicing\">";
-	$out .=  "Invoicing";
-	if($sousrub != "invoicing")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "radius")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=radius\">";
-	$out .=  "radius";
-	if($sousrub != "radius")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "ftpbackup")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ftpbackup\">";
-	$out .=  "ftpbackup";
-	if($sousrub != "ftpbackup")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "path")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=path\">";
-	$out .= $txt_cfg_path_conf_title[$lang];
-	if($sousrub != "path")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "renewals")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=renewals\">";
-	$out .= "Renewals";
-	if($sousrub != "renewals")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "ticket")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=ticket\">";
-	$out .= "Support tickets";
-	if($sousrub != "ticket")
-		$out .= "</a>";
-	$out .= "</td></tr><tr><td style=\"white-space:nowrap\" nowrap>";
-	if($sousrub != "vps")
-		$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config&sousrub=vps\">";
-	$out .= "VPS servers";
-	if($sousrub != "vps")
-		$out .= "</a>";
-	$out .= "</td></tr></table>";
-	return $out;*/
 }
 
 function configEditorTemplate ($dsc,$conftype="config"){
@@ -292,32 +201,37 @@ function configEditorTemplate ($dsc,$conftype="config"){
 }
 
 function drawRenewalsConfig(){
+	global $lang;
+	global $txt_cfg_vps_renewal_email_reminders_period;
+	global $txt_cfg_explanation_what_are_renewals_numbers;
+	global $txt_cfg_warnings_before_expiration;
+	global $txt_cfg_warnings_after_expiration;
+	global $txt_cfg_last_warning;
+	global $txt_cfg_shutdown_warning;
+
 	global $conf_dtcadmin_path;
 	$out = "";
 
 	$dsc = array(
-		"title" => "VPS renewal email reminders periodicity",
+		"title" => $txt_cfg_vps_renewal_email_reminders_period[$lang],
 		"action" => "vps_renewal_period",
 		"forward" => array("rub","sousrub"),
-		"desc" => "These numbers represent the days before and after expiration.
-Warnings before and after expiration can be listed separated by |,
-while others are made of a unique value. The message templates
-are stored in: ".$conf_dtcadmin_path."/reminders_msg/",
+		"desc" => $txt_cfg_explanation_what_are_renewals_numbers[$lang].$conf_dtcadmin_path."/reminders_msg/",
 		"cols" => array(
 			"vps_renewal_before" => array(
-				"legend" => "Warnings before expiration:",
+				"legend" => $txt_cfg_warnings_before_expiration[$lang],
 				"type" => "text",
 				"size" => "16"),
 			"vps_renewal_after" => array(
-				"legend" => "Warnings after expiration:",
+				"legend" => $txt_cfg_warnings_after_expiration[$lang],
                                 "type" => "text",
                                 "size" => "16"),
 			"vps_renewal_lastwarning" => array(
-				"legend" => "Last Warnings:",
+				"legend" => $txt_cfg_last_warning[$lang],
                                 "type" => "text",
                                 "size" => "16"),
 			"vps_renewal_shutdown" => array(
-				"legend" => "Shutdown warnings:",
+				"legend" => $txt_cfg_shutdown_warning[$lang],
                                 "type" => "text",
                                 "size" => "16")
 			)
@@ -331,12 +245,22 @@ function drawSSLIPConfig(){
 	global $rub;
 	global $sousrub;
 
-	$out = "<h3>Manage IPs for SSL (https):</h3>";
-	$out .= "<i>Take care not to add the control panel SSL IP itself if you don't want to have conflicts (and prevent apache from restarting)!</i><br>";
+	global $txt_cfg_login;
+	global $txt_cfg_ssl_dedicated_ips;
+	global $txt_cfg_manage_ips_for_ssl;
+	global $txt_cfg_ip_addr;
+	global $txt_cfg_expire;
+	global $txt_cfg_available;
+	global $txt_yes;
+	global $txt_no;
+	global $txt_cfg_take_care_not_to_add_the_control_panel_ip;
+
+	$out = "<h3>".$txt_cfg_manage_ips_for_ssl[$lang]."</h3>";
+	$out .= "<i>".$txt_cfg_take_care_not_to_add_the_control_panel_ip[$lang]."</i><br>";
 
 	$dsc = array(
 		"table_name" => $pro_mysql_ssl_ips_table,
-		"title" => "SSL dedicated IPs:",
+		"title" => $txt_cfg_ssl_dedicated_ips[$lang],
 		"action" => "ssl_ip_list",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -346,18 +270,19 @@ function drawSSLIPConfig(){
 				"legend" => "id"),
 			"ip_addr" => array(
 				"type" => "text",
-				"legend" => "IP addr"),
+				"legend" => $txt_cfg_ip_addr[$lang]),
 			"adm_login" => array(
 				"type" => "text",
-				"legend" => "Admin login"),
+				"legend" => $txt_cfg_login[$lang]),
 			"expire" => array(
 				"type" => "text",
 				"size" => "14",
-				"legend" => "Expire"),
+				"legend" => $txt_cfg_expire[$lang]),
 			"available" => array(
 				"type" => "radio",
-				"legend" => "Available",
-				"values" => array("yes","no"))
+				"legend" => $txt_cfg_available[$lang],
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]))
 			)
 		);
 	$out .= dtcDatagrid($dsc);
@@ -371,11 +296,22 @@ function drawTicketConfig(){
 	global $pro_mysql_tik_cats_table;
 	global $rub;
 	global $sousrub;
+	global $txt_cfg_support_ticket_configuration;
+	global $txt_cfg_support_ticket_administrator_list;
+	global $txt_cfg_nick_name;
+	global $txt_cfg_real_name;
+	global $txt_cfg_email_addr;
+	global $txt_cfg_tik_available;
+	global $txt_cfg_ticket_categories;
+	global $txt_cfg_nick_name;
+	global $txt_cfg_real_name;
+	global $txt_yes;
+	global $txt_no;
 
-	$out = "<h3>Support ticket configuration</h3>";
+	$out = "<h3>".$txt_cfg_support_ticket_configuration[$lang]."</h3>";
 	$dsc = array(
 		"table_name" => "$pro_mysql_tik_admins_table",
-		"title" => "Suport ticket administrator list:",
+		"title" => $txt_cfg_support_ticket_administrator_list[$lang],
 		"action" => "tik_admins",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -385,24 +321,25 @@ function drawTicketConfig(){
 				"legend" => "id"),
 			"pseudo" => array(
 				"type" => "text",
-				"legend" => "Nick name"),
+				"legend" => $txt_cfg_nick_name[$lang]),
 			"realname" => array(
 				"type" => "text",
-				"legend" => "Real name"),
+				"legend" => $txt_cfg_real_name[$lang]),
 			"email" => array(
 				"type" => "text",
-				"legend" => "Email addr"),
+				"legend" => $txt_cfg_email_addr[$lang]),
 			"available" => array(
 				"type" => "radio",
-				"legend" => "Available",
-				"values" => array("yes","no"))
+				"legend" => $txt_cfg_tik_available[$lang],
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]))
 			)
 		);
 	$out .= dtcDatagrid($dsc);
 
 	$dsc = array(
 		"table_name" => $pro_mysql_tik_cats_table,
-		"title" => "Ticket categories:",
+		"title" => $txt_cfg_ticket_categories[$lang],
 		"action" => "tik_cats",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -412,11 +349,11 @@ function drawTicketConfig(){
 				"legend" => "id"),
 			"catname" => array(
 				"type" => "text",
-				"legend" => "Nick name"),
+				"legend" => $txt_cfg_nick_name[$lang]),
 			"catdescript" => array(
 				"type" => "text",
 				"size" => "50",
-				"legend" => "Real name")));
+				"legend" => $txt_cfg_real_name[$lang])));
 	$out .= dtcDatagrid($dsc);
 	return $out;
 }

@@ -51,23 +51,7 @@ if($n != 1){
 $client = mysql_fetch_array($r);
 
 // Guess the company ID depending on the service location, then client country
-$q = "SELECT * FROM $pro_mysql_invoicing_table WHERE service_country_code='".$completedorder["country_code"]."';";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-$n = mysql_num_rows($r);
-if($n > 0){
-	$a = mysql_fetch_array($r);
-	$company_id = $a["company_id"];
-}else{
-	$q = "SELECT * FROM $pro_mysql_invoicing_table WHERE customer_country_code='".$client["country"]."';";
-	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-	if($n > 0){
-		$a = mysql_fetch_array($r);
-		$company_id = $a["company_id"];
-	}else{
-		$company_id = $conf_default_company_invoicing;
-	}	
-}
+$company_id = findInvoicingCompany ($completedorder["country_code"],$client["country"]);
 
 // Get the company information
 $q = "SELECT * FROM $pro_mysql_companies_table WHERE id='$company_id' LIMIT 1";

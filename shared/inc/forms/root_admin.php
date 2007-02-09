@@ -269,10 +269,16 @@ function drawEditAdmin($admin){
 		<td><select name=\"country\">$cc_code_popup</select></td>
 	<tr><td></td><td><input type=\"submit\" value=\"Add server\"></td></tr></table></form>";
 
-	$conf_user = "<font size=\"-1\"><table><tr><td>$domain_conf</td><td background=\"gfx/skin/frame/border_2.gif\">&nbsp;</td><td>$user_data</td></tr></table>";
-	$conf_user .= "</b></font> ";
-
-	return $conf_user;
+	$out = "<font size=\"-1\">
+<table>
+ <tr>
+  <td>$domain_conf</td><td background=\"gfx/skin/frame/border_2.gif\">&nbsp;</td>
+  <td>$user_data</td>
+ </tr>
+</table>
+</font>
+";
+	return $out;
 }
 /////////////////////////////////////////////////////////////////
 // Generate a tool for configuring all domain of one sub-admin //

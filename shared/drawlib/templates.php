@@ -11,16 +11,30 @@ function dtcFormTableAttrs(){
 }
 
 function dtcFormLineDraw($text,$control){
-	$bgcolor = "#AAAAFF";
-	$incolor = "#FFFFFF";
-	$out = "<tr><td bgcolor=\"$bgcolor\" style=\"text-align:right;white-space:nowrap;\">$text</td>
-	<td bgcolor=\"$bgcolor\"><table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" bgcolor=\"$incolor\" width=\"100%\">
-<tr><td style=\"white-space:nowrap;vertical-valign:bottom;\">$control</td></tr></table></td></tr>";
+	global $gfx_from_entry_label_background;
+	global $gfx_from_entry_label_control_background;
+
+	if(isset($gfx_from_entry_label_background)){
+		$bgcolor = $gfx_from_entry_label_background;
+		$incolor = $gfx_from_entry_label_control_background;
+	}else{
+		$bgcolor = " bgcolor=\"#AAAAFF\" ";
+		$incolor = " bgcolor=\"#FFFFFF\" ";
+	}
+	$out = "<tr><td $bgcolor class=\"box_formtable_libelle\" style=\"text-align:right;white-space:nowrap;\">$text</td>
+	<td $bgcolor><table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" $incolor width=\"100%\">
+<tr><td class=\"box_formtable_inputz\" style=\"white-space:nowrap;vertical-valign:bottom;\">$control</td></tr></table></td></tr>";
 	return $out;
 }
 
 function dtcFromOkDraw($delete_form=""){
-	$out = "<tr><td>&nbsp;</td><td><input type=\"image\" src=\"gfx/stock_apply_20.png\">$delete_form</td></tr>";
+	global $gfx_icn_path_ok;
+	if(isset($gfx_icn_path_ok)){
+		$apply = $gfx_icn_path_ok;
+	}else{
+		$apply = "gfx/stock_apply_20.png";
+	}
+	$out = "<tr><td>&nbsp;</td><td><input type=\"image\" src=\"$apply\">$delete_form</td></tr>";
 	return $out;
 }
 
@@ -67,6 +81,25 @@ function dtcFromOkDraw($delete_form=""){
 function dtcDatagrid($dsc){
 	global $adm_pass;
 
+	global $gfx_icn_path_ok;
+	global $gfx_icn_path_delete;
+	global $gfx_icn_path_add;
+
+	if(isset($gfx_icn_path_ok)){
+		$apply = $gfx_icn_path_ok;
+	}else{
+		$apply = "gfx/stock_apply_20.png";
+	}
+	if(isset($gfx_icn_path_delete)){
+		$delete = $gfx_icn_path_delete;
+	}else{
+		$delete = "gfx/stock_trash_24.png";
+	}
+	if(isset($gfx_icn_path_add)){
+		$add = $gfx_icn_path_add;
+	}else{
+		$add = "gfx/stock_add_24.png";
+	}
 	$out = "<b><u>".$dsc["title"]."</u></b>";
 
 	$nbr_forwards = sizeof($dsc["forward"]);
@@ -270,7 +303,11 @@ function dtcDatagrid($dsc){
 						$selected = "";
 					}
 					$out .= " <input type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
-					$out .= $dsc["cols"][ $keys[$j] ]["values"][$x];
+					if( isset($dsc["cols"][ $keys[$j] ]["display_replace"][$x]) ){
+						$out .= $dsc["cols"][ $keys[$j] ]["display_replace"][$x];
+					}else{
+						$out .= $dsc["cols"][ $keys[$j] ]["values"][$x];
+					}
 				}
 				$out .= "</td>";
 				break;
@@ -344,12 +381,12 @@ function dtcDatagrid($dsc){
 				break;
 			}
 		}
-		$out .= "<td class=\"dtcDatagrid_table_flds\"><input type=\"image\" src=\"gfx/stock_apply_20.png\"></form></td>";
+		$out .= "<td class=\"dtcDatagrid_table_flds\"><input type=\"image\" src=\"$apply\"></form></td>";
 		if(isset($dsc["skip_deletion"]) && $dsc["skip_deletion"] == "yes"){
 			$out .= "<td class=\"dtcDatagrid_table_flds\"></td></tr>";
 		}else{
 			$out .= "<td class=\"dtcDatagrid_table_flds\"><form action=\"".$_SERVER["PHP_SELF"]."\">$fw$id_hidden
-			<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete\"><input type=\"image\" src=\"gfx/stock_trash_24.png\"></form></td>";
+			<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete\"><input type=\"image\" src=\"$delete\"></form></td>";
 			$out .= "</form></tr>";
 		}
 	}
@@ -387,7 +424,11 @@ function dtcDatagrid($dsc){
 						}
 					}
 					$out .= "<input type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
-					$out .= $dsc["cols"][ $keys[$j] ]["values"][$x];
+					if( isset($dsc["cols"][ $keys[$j] ]["display_replace"][$x]) ){
+						$out .= $dsc["cols"][ $keys[$j] ]["display_replace"][$x];
+					}else{
+						$out .= $dsc["cols"][ $keys[$j] ]["values"][$x];
+					}
 				}
 				$out .= "</td>";
 				break;
@@ -429,7 +470,7 @@ function dtcDatagrid($dsc){
 				break;
 			}
 		}
-		$out .= "<td class=\"dtcDatagrid_table_flds\" colspan=\"2\"><input type=\"image\" src=\"gfx/stock_add_24.png\"></form></td></tr>";
+		$out .= "<td class=\"dtcDatagrid_table_flds\" colspan=\"2\"><input type=\"image\" src=\"$add\"></form></td></tr>";
 	}
 	$out .= "</table>";
 	return $out;
@@ -480,6 +521,20 @@ function dtcDatagrid($dsc){
 
 function dtcListItemsEdit($dsc){
 	global $adm_pass;
+
+	global $gfx_icn_path_ok;
+	global $gfx_icn_path_delete;
+	if(isset($gfx_icn_path_ok)){
+		$apply = $gfx_icn_path_ok;
+	}else{
+		$apply = "gfx/stock_apply_20.png";
+	}
+	if(isset($gfx_icn_path_delete)){
+		$delete = $gfx_icn_path_delete;
+	}else{
+		$delete = "gfx/stock_trash_24.png";
+	}
+
 
 	$out = "<b><u>".$dsc["title"]."</u></b><br><br>";
 
@@ -1197,10 +1252,10 @@ function dtcListItemsEdit($dsc){
 			$delete_button = "<form action=\"".$_SERVER["PHP_SELF"]."\">$fw
 			<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete_item"."\">
 			<input type=\"hidden\" name=\"$id_fldname\" value=\"$id_fld_value\">
-			<input type=\"image\" src=\"gfx/stock_trash_24.png\"></form>";
+			<input type=\"image\" src=\"$delete\"></form>";
 
 			$out .= "<tr><td>&nbsp;</td><td><table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
-			<tr><td><input type=\"image\" src=\"gfx/stock_apply_20.png\"></form></td><td>$delete_button</td></tr></table></td></tr>";
+			<tr><td><input type=\"image\" src=\"$apply\"></form></td><td>$delete_button</td></tr></table></td></tr>";
 
 			$out .= "</table>";
 		}else{

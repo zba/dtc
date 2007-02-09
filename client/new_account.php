@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: new_account.php,v 1.29 2007/02/07 14:27:53 thomas Exp $
+ * @version $Id: new_account.php,v 1.30 2007/02/09 17:49:16 thomas Exp $
  * @abstract Localization must go on ... ;) seeb
  * @todo repair bug for 
  * "Cannot reselect transaction for id $extapi_pay_id: registration failed!" 
@@ -179,6 +179,7 @@ The payment gateway have reported that your payment has failed. Contact us,
 we also accept checks and wire transfers.";
 // This is a new user registration
 }else{
+	$print_form = "yes";
 	// Register form
 	$reguser = register_user();
 	// If err=0 then it's already in the new_admin form!
@@ -198,16 +199,56 @@ we also accept checks and wire transfers.";
 			$n = mysql_num_rows($r);
 			if($n != 1){
 				$form = $txt_err_register_cant_reselect_product[$lang];//"Cannot reselect product: registration failed!";
+				$print_form = "no";
+				$service_location = $conf_this_server_country_code;
+			}else{
+				$product = mysql_fetch_array($r);
 			}
-			$product = mysql_fetch_array($r);
-			$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"],"yes");
-			$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='".$reguser["id"]."';";
-			$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-			$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
-			$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"],$return_url);
-			$form = $reguser["mesg"]."<br><h4>".$txt_err_register_succ[$lang]."<!--Registration successfull!--></h4>
+			switch($product["heb_type"]){
+			default:
+			case "shared":	// -> Something has to be done to select dedicated servers location in the form !!!
+			case "server":
+				$service_location = $conf_this_server_country_code;
+				break;
+			case "vps":
+				$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$newadmin["vps_location"]."'";
+				$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				if($n != 1){
+					$form = $txt_err_register_cant_reselect_product[$lang];//"Cannot reselect product: registration failed!";
+					$print_form = "no";
+					$service_location = $conf_this_server_country_code;
+				}else{
+					$vps_server = mysql_fetch_array($r);
+					$service_location = $vps_server["country_code"];
+				}
+				break;
+			}
+			if($print_form == "yes"){
+				$company_invoicing_id = findInvoicingCompany ($service_location,$newadmin["country"]);
+				$q = "SELECT * FROM $pro_mysql_companies_table WHERE id='$company_invoicing_id';";
+				$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				if($n != 1){
+					$form = "Cannot find company invoicing line ".__LINE__." file ".__FILE__;
+					$print_form = "no";
+				}else{
+					$company_invoicing = mysql_fetch_array($r);
+					if($company_invoicing["vat_rate"] != 0 && $company_invoicing["vat_number"] != ""){
+						$vat_rate = $company_invoicing["vat_rate"];
+					}else{
+						$vat_rate = 0;
+					}
+					$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"],"yes",$product["id"],$vat_rate);
+					$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='".$reguser["id"]."';";
+					$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+					$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
+					$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"],$return_url,$vat_rate);
+				}
+				if($print_form == "yes"){
+					$form = $reguser["mesg"]."<br><h4>".$txt_err_register_succ[$lang]."<!--Registration successfull!--></h4>
 Please now click on the following button to go for paiment:<br>
 <br>$paybutton";
+				}
+			}
 		}
 	}else if($reguser["err"] == 1){
 		$form = registration_form();

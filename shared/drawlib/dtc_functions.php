@@ -1,5 +1,29 @@
 <?php
 
+function findInvoicingCompany ($service_location,$client_country_code){
+	global $pro_mysql_invoicing_table;
+	global $conf_default_company_invoicing;
+
+	$q = "SELECT * FROM $pro_mysql_invoicing_table WHERE service_country_code='$service_location';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		$a = mysql_fetch_array($r);
+		$company_id = $a["company_id"];
+	}else{
+		$q = "SELECT * FROM $pro_mysql_invoicing_table WHERE customer_country_code='$client_country_code';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n > 0){
+			$a = mysql_fetch_array($r);
+			$company_id = $a["company_id"];
+		}else{
+			$company_id = $conf_default_company_invoicing;
+		}	
+	}
+	return $company_id;
+}
+
 function mdpauto(){
 	srand((double) microtime()*1000000);
 	//This pools grant no mistake between 0, o or O for example...
@@ -12,6 +36,8 @@ function mdpauto(){
 }
 
 function autoGeneratePassButton($form_name,$field_name){
+	global $gfx_icn_path_generate_pass;
+	global $gfx_icn_path_seepass;
 	global $jscript_gen_autopass;
 	$mdp = mdpauto();
 	$out = "";
@@ -28,8 +54,18 @@ function dtc_see_password(frm_name,fld_name){
 }
 </script>";
 	}
-	$out .= "<img src=\"gfx/generate_pass.png\" onClick=\"dtc_gen_passwd('".$form_name."','".$field_name."');\" alt=\"GENPASS\">
-<img src=\"gfx/see_password.png\" onClick=\"dtc_see_password('".$form_name."','".$field_name."');\" alt=\"SEEPASS\">";
+	if(isset($gfx_icn_path_generate_pass)){
+		$genpath_img = $gfx_icn_path_generate_pass;
+	}else{
+		$genpath_img = "gfx/generate_pass.png";
+	}
+	if(isset($gfx_icn_path_seepass)){
+		$seepath_img = $gfx_icn_path_seepass;
+	}else{
+		$seepath_img = "gfx/see_password.png";
+	}
+	$out .= "<img src=\"$genpath_img\" onClick=\"dtc_gen_passwd('".$form_name."','".$field_name."');\" alt=\"GENPASS\">
+<img src=\"$seepath_img\" onClick=\"dtc_see_password('".$form_name."','".$field_name."');\" alt=\"SEEPASS\">";
 	return $out;
 }
 

@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.53 2007/01/28 16:37:24 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.54 2007/02/09 17:49:16 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	* 
@@ -399,6 +399,548 @@ $txt_cfg_general_menu_entry = array(
 "pt" => "Geral"
 );
 
+$txt_cfg_companies_menu_entry = array(
+"fr" => "Sociétés",
+"en" => "Companies",
+"hu" => "TRANS Companies",
+"it" => "TRANS Companies",
+"nl" => "TRANS Companies",
+"ru" => "TRANS Companies",
+"de" => "TRANS Companies",
+"zh" => "TRANS Companies",
+"pl" => "TRANS Companies",
+"se" => "TRANS Companies",
+"es" => "TRANS Companies",
+"pt" => "TRANS Companies"
+);
+
+$txt_cfg_invoicing_menu_entry = array(
+"fr" => "Facturation",
+"en" => "Invoicing",
+"hu" => "TRANS Invoicing",
+"it" => "TRANS Invoicing",
+"nl" => "TRANS Invoicing",
+"ru" => "TRANS Invoicing",
+"de" => "TRANS Invoicing",
+"zh" => "TRANS Invoicing",
+"pl" => "TRANS Invoicing",
+"se" => "TRANS Invoicing",
+"es" => "TRANS Invoicing",
+"pt" => "TRANS Invoicing"
+);
+
+$txt_cfg_ftp_backup_menu_entry = array(
+"fr" => "Backup FTP",
+"en" => "FTP backup",
+"hu" => "TRANS FTP backup",
+"it" => "TRANS FTP backup",
+"nl" => "TRANS FTP backup",
+"ru" => "TRANS FTP backup",
+"de" => "TRANS FTP backup",
+"zh" => "TRANS FTP backup",
+"pl" => "TRANS FTP backup",
+"se" => "TRANS FTP backup",
+"es" => "TRANS FTP backup",
+"pt" => "TRANS FTP backup"
+);
+
+$txt_cfg_renewals_menu_entry = array(
+"fr" => "Renouvellements",
+"en" => "Renewals",
+"hu" => "TRANS Renewals",
+"it" => "TRANS Renewals",
+"nl" => "TRANS Renewals",
+"ru" => "TRANS Renewals",
+"de" => "TRANS Renewals",
+"zh" => "TRANS Renewals",
+"pl" => "TRANS Renewals",
+"se" => "TRANS Renewals",
+"es" => "TRANS ",
+"pt" => "TRANS "
+);
+
+$txt_cfg_support_ticket_menu_entry = array(
+"fr" => "Ticket de support",
+"en" => "Support ticket",
+"hu" => "TRANS Support ticket",
+"it" => "TRANS Support ticket",
+"nl" => "TRANS Support ticket",
+"ru" => "TRANS Support ticket",
+"de" => "TRANS Support ticket",
+"zh" => "TRANS Support ticket",
+"pl" => "TRANS Support ticket",
+"se" => "TRANS Support ticket",
+"es" => "TRANS Support ticket",
+"pt" => "TRANS Support ticket"
+);
+
+$txt_cfg_vps_servers_menu_entry = array(
+"fr" => "Serveurs de VPS",
+"en" => "VPS servers",
+"hu" => "TRANS VPS servers",
+"it" => "TRANS VPS servers",
+"nl" => "TRANS VPS servers",
+"ru" => "TRANS VPS servers",
+"de" => "TRANS VPS servers",
+"zh" => "TRANS VPS servers",
+"pl" => "TRANS VPS servers",
+"se" => "TRANS VPS servers",
+"es" => "TRANS VPS servers",
+"pt" => "TRANS VPS servers"
+);
+
+$txt_cfg_ssl_ips_addr_menu_entry = array(
+"fr" => "Adresses IPs SSL",
+"en" => "SSL IPs addresses",
+"hu" => "TRANS SSL IPs addresses",
+"it" => "TRANS SSL IPs addresses",
+"nl" => "TRANS SSL IPs addresses",
+"ru" => "TRANS SSL IPs addresses",
+"de" => "TRANS SSL IPs addresses",
+"zh" => "TRANS SSL IPs addresses",
+"pl" => "TRANS SSL IPs addresses",
+"se" => "TRANS SSL IPs addresses",
+"es" => "TRANS SSL IPs addresses",
+"pt" => "TRANS SSL IPs addresses"
+);
+
+$txt_cfg_vps_renewal_email_reminders_period = array(
+"fr" => "Périodicité des messages de rappel des VPS:",
+"en" => "VPS renewal email reminders periodicity",
+"hu" => "TRANS VPS renewal email reminders periodicity",
+"it" => "TRANS VPS renewal email reminders periodicity",
+"nl" => "TRANS VPS renewal email reminders periodicity",
+"ru" => "TRANS VPS renewal email reminders periodicity",
+"de" => "TRANS VPS renewal email reminders periodicity",
+"zh" => "TRANS VPS renewal email reminders periodicity",
+"pl" => "TRANS VPS renewal email reminders periodicity",
+"se" => "TRANS VPS renewal email reminders periodicity",
+"es" => "TRANS VPS renewal email reminders periodicity",
+"pt" => "TRANS VPS renewal email reminders periodicity"
+);
+
+$txt_cfg_explanation_what_are_renewals_numbers = array(
+"fr" => "Ces nombres représente le nombre de jours avant et après
+expiration. Les rappels avant et après expiration peuvent etre listé
+séparé par un |, les autres valeurs sont des valeurs unique. Les messages
+envoyés par défault sont stoqué dans : ",
+"en" => "These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"hu" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"it" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"nl" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"ru" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"de" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"zh" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"pl" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"se" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"es" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: ",
+"pt" => "TRANS These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in: "
+);
+
+$txt_cfg_warnings_before_expiration = array(
+"fr" => "Rappels avant expiration : ",
+"en" => "Warnings before expiration: ",
+"hu" => "TRANS Warnings before expiration: ",
+"it" => "TRANS Warnings before expiration: ",
+"nl" => "TRANS Warnings before expiration: ",
+"ru" => "TRANS Warnings before expiration: ",
+"de" => "TRANS Warnings before expiration: ",
+"zh" => "TRANS Warnings before expiration: ",
+"pl" => "TRANS Warnings before expiration: ",
+"se" => "TRANS Warnings before expiration: ",
+"es" => "TRANS Warnings before expiration: ",
+"pt" => "TRANS Warnings before expiration: "
+);
+
+$txt_cfg_warnings_after_expiration = array(
+"fr" => "Rappels après expiration : ",
+"en" => "Warnings after expiration: ",
+"hu" => "TRAINS Warnings after expiration: ",
+"it" => "TRANS Warnings after expiration: ",
+"nl" => "TRANS Warnings after expiration: ",
+"ru" => "TRANS Warnings after expiration: ",
+"de" => "TRANS Warnings after expiration: ",
+"zh" => "TRANS Warnings after expiration: ",
+"pl" => "TRANS Warnings after expiration: ",
+"se" => "TRANS Warnings after expiration: ",
+"es" => "TRANS Warnings after expiration: ",
+"pt" => "TRANS Warnings after expiration: "
+);
+
+$txt_cfg_last_warning = array(
+"fr" => "Dernier rappel:",
+"en" => "Last Warnings: ",
+"hu" => "TRANS Last Warnings: ",
+"it" => "TRANS Last Warnings: ",
+"nl" => "TRANS Last Warnings: ",
+"ru" => "TRANS Last Warnings: ",
+"de" => "TRANS Last Warnings: ",
+"zh" => "TRANS Last Warnings: ",
+"pl" => "TRANS Last Warnings: ",
+"se" => "TRANS Last Warnings: ",
+"es" => "TRANS Last Warnings: ",
+"pt" => "TRANS Last Warnings: "
+);
+
+$txt_cfg_shutdown_warning = array(
+"fr" => "Rappel avant fermeture : ",
+"en" => "Shutdown warning: ",
+"hu" => "TRANS Shutdown warning: ",
+"it" => "TRANS Shutdown warning: ",
+"nl" => "TRANS Shutdown warning: ",
+"ru" => "TRANS Shutdown warning: ",
+"de" => "TRANS Shutdown warning: ",
+"zh" => "TRANS Shutdown warning: ",
+"pl" => "TRANS Shutdown warning: ",
+"se" => "TRANS Shutdown warning: ",
+"es" => "TRANS Shutdown warning: ",
+"pt" => "TRANS Shutdown warning: "
+);
+
+$txt_cfg_login = array(
+"fr" => "Utilisateur",
+"en" => "Login",
+"hu" => "TRANS Login",
+"it" => "TRANS Login",
+"nl" => "TRANS Login",
+"ru" => "TRANS Login",
+"de" => "TRANS Login",
+"zh" => "TRANS Login",
+"pl" => "TRANS Login",
+"se" => "TRANS Login",
+"es" => "TRANS Login",
+"pt" => "TRANS Login"
+);
+
+$txt_cfg_ssl_dedicated_ips = array(
+"fr" => "Adresses IPs dédiés au SSL : ",
+"en" => "SSL dedicated IP addresses: ",
+"hu" => "TRANS SSL dedicated IPs: ",
+"it" => "TRANS SSL dedicated IPs: ",
+"nl" => "TRANS SSL dedicated IPs: ",
+"ru" => "TRANS SSL dedicated IPs: ",
+"de" => "TRANS SSL dedicated IPs: ",
+"zh" => "TRANS SSL dedicated IPs: ",
+"pl" => "TRANS SSL dedicated IPs: ",
+"se" => "TRANS SSL dedicated IPs: ",
+"es" => "TRANS SSL dedicated IPs: ",
+"pt" => "TRANS SSL dedicated IPs: "
+);
+
+$txt_cfg_manage_ips_for_ssl = array(
+"fr" => "Gestion des adresses IPs pour le SSL (https):",
+"en" => "Manage IPs for SSL (https):",
+"hu" => "TRANS Manage IPs for SSL (https):",
+"it" => "TRANS Manage IPs for SSL (https):",
+"nl" => "TRANS Manage IPs for SSL (https):",
+"ru" => "TRANS Manage IPs for SSL (https):",
+"de" => "TRANS Manage IPs for SSL (https):",
+"zh" => "TRANS Manage IPs for SSL (https):",
+"pl" => "TRANS Manage IPs for SSL (https):",
+"se" => "TRANS Manage IPs for SSL (https):",
+"es" => "TRANS Manage IPs for SSL (https):",
+"pt" => "TRANS Manage IPs for SSL (https):"
+);
+
+$txt_cfg_ip_addr = array(
+"fr" => "Adr IP",
+"en" => "IP addr",
+"hu" => "TRANS IP addr",
+"it" => "TRANS IP addr",
+"nl" => "TRANS IP addr",
+"ru" => "TRANS IP addr",
+"de" => "TRANS IP addr",
+"zh" => "TRANS IP addr",
+"pl" => "TRANS IP addr",
+"se" => "TRANS IP addr",
+"es" => "TRANS IP addr",
+"pt" => "TRANS IP addr"
+);
+
+$txt_cfg_expire = array(
+"fr" => "Expiration",
+"en" => "Expire",
+"hu" => "TRANS Expire",
+"it" => "TRANS Expire",
+"nl" => "TRANS Expire",
+"ru" => "TRANS Expire",
+"de" => "TRANS Expire",
+"zh" => "TRANS Expire",
+"pl" => "TRANS Expire",
+"se" => "TRANS Expire",
+"es" => "TRANS Expire",
+"pt" => "TRANS Expire"
+);
+
+$txt_cfg_available = array(
+"fr" => "Disponible",
+"en" => "Available",
+"hu" => "TRANS Available",
+"it" => "TRANS Available",
+"nl" => "TRANS Available",
+"ru" => "TRANS Available",
+"de" => "TRANS Available",
+"zh" => "TRANS Available",
+"pl" => "TRANS Available",
+"se" => "TRANS Available",
+"es" => "TRANS Available",
+"pt" => "TRANS Available"
+);
+
+$txt_cfg_take_care_not_to_add_the_control_panel_ip = array(
+"fr" => "Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"en" => "Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"hu" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"it" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"nl" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"ru" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"de" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"zh" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"pl" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"se" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"es" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!",
+"pt" => "TRANS Take care not to add the control panel SSL IP itself if you don't
+want to have conflicts (and prevent apache from restarting)!"
+);
+
+$txt_cfg_support_ticket_configuration = array(
+"fr" => "Configuration des tiquets de support",
+"en" => "Support ticket configuration",
+"hu" => "TRANS Support ticket configuration",
+"it" => "TRANS Support ticket configuration",
+"nl" => "TRANS Support ticket configuration",
+"ru" => "TRANS Support ticket configuration",
+"de" => "TRANS Support ticket configuration",
+"zh" => "TRANS Support ticket configuration",
+"pl" => "TRANS Support ticket configuration",
+"se" => "TRANS Support ticket configuration",
+"es" => "TRANS Support ticket configuration",
+"pt" => "TRANS Support ticket configuration"
+);
+
+$txt_cfg_support_ticket_administrator_list = array(
+"fr" => "Liste des administrateurs recevant les demmandes de support :",
+"en" => "List of the administrators receiving request for support messages:",
+"hu" => "TRANS List of the administrators receiving request for support messages:",
+"it" => "TRANS List of the administrators receiving request for support messages:",
+"nl" => "TRANS List of the administrators receiving request for support messages:",
+"ru" => "TRANS List of the administrators receiving request for support messages:",
+"de" => "TRANS List of the administrators receiving request for support messages:",
+"zh" => "TRANS List of the administrators receiving request for support messages:",
+"pl" => "TRANS List of the administrators receiving request for support messages:",
+"se" => "TRANS List of the administrators receiving request for support messages:",
+"es" => "TRANS List of the administrators receiving request for support messages:",
+"pt" => "TRANS List of the administrators receiving request for support messages:"
+);
+
+$txt_cfg_nick_name = array(
+"fr" => "Pseudonyme",
+"en" => "Nick name",
+"hu" => "TRANS Nick name",
+"it" => "TRANS Nick name",
+"nl" => "TRANS Nick name",
+"ru" => "TRANS Nick name",
+"de" => "TRANS Nick name",
+"zh" => "TRANS Nick name",
+"pl" => "TRANS Nick name",
+"se" => "TRANS Nick name",
+"es" => "TRANS Nick name",
+"pt" => "TRANS Nick name"
+);
+
+$txt_cfg_real_name = array(
+"fr" => "Nom réel",
+"en" => "Real name",
+"hu" => "TRANS Real name",
+"it" => "TRANS Real name",
+"nl" => "TRANS Real name",
+"ru" => "TRANS Real name",
+"de" => "TRANS Real name",
+"zh" => "TRANS Real name",
+"pl" => "TRANS Real name",
+"se" => "TRANS Real name",
+"es" => "TRANS Real name",
+"pt" => "TRANS Real name"
+);
+
+$txt_cfg_email_addr = array(
+"fr" => "Adr email",
+"en" => "Email addr",
+"hu" => "TRANS Email addr",
+"it" => "TRANS Email addr",
+"nl" => "TRANS Email addr",
+"ru" => "TRANS Email addr",
+"de" => "TRANS Email addr",
+"zh" => "TRANS Email addr",
+"pl" => "TRANS Email addr",
+"se" => "TRANS Email addr",
+"es" => "TRANS Email addr",
+"pt" => "TRANS Email addr"
+);
+
+$txt_cfg_tik_available = array(
+"fr" => "Disponible",
+"en" => "Available",
+"hu" => "TRANS Available",
+"it" => "TRANS Available",
+"nl" => "TRANS Available",
+"ru" => "TRANS Available",
+"de" => "TRANS Available",
+"zh" => "TRANS Available",
+"pl" => "TRANS Available",
+"se" => "TRANS Available",
+"es" => "TRANS Available",
+"pt" => "TRANS Available"
+);
+
+$txt_cfg_ticket_categories = array(
+"fr" => "Categories de tiquets :",
+"en" => "Ticket categories:",
+"hu" => "TRANS Ticket categories:",
+"it" => "TRANS Ticket categories:",
+"nl" => "TRANS Ticket categories:",
+"ru" => "TRANS Ticket categories:",
+"de" => "TRANS Ticket categories:",
+"zh" => "TRANS Ticket categories:",
+"pl" => "TRANS Ticket categories:",
+"se" => "TRANS Ticket categories:",
+"es" => "TRANS Ticket categories:",
+"pt" => "TRANS Ticket categories:"
+);
+
+$txt_cfg_nick_name = array(
+"fr" => "Pseudonyme",
+"en" => "Nick name",
+"hu" => "TRANS Nick name",
+"it" => "TRANS Nick name",
+"nl" => "TRANS Nick name",
+"ru" => "TRANS Nick name",
+"de" => "TRANS Nick name",
+"zh" => "TRANS Nick name",
+"pl" => "TRANS Nick name",
+"se" => "TRANS Nick name",
+"es" => "TRANS Nick name",
+"pt" => "TRANS Nick name"
+);
+
+$txt_cfg_real_name = array(
+"fr" => "Nom réel",
+"en" => "Real name",
+"hu" => "TRANS Real name",
+"it" => "TRANS Real name",
+"nl" => "TRANS Real name",
+"ru" => "TRANS Real name",
+"de" => "TRANS Real name",
+"zh" => "TRANS Real name",
+"pl" => "TRANS Real name",
+"se" => "TRANS Real name",
+"es" => "TRANS Real name",
+"pt" => "TRANS Real name"
+);
+
+$txt_cfg_ = array(
+"fr" => "",
+"en" => "",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"se" => "TRANS ",
+"es" => "TRANS ",
+"pt" => "TRANS "
+);
+
+$txt_cfg_ = array(
+"fr" => "",
+"en" => "",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"se" => "TRANS ",
+"es" => "TRANS ",
+"pt" => "TRANS "
+);
+
+$txt_cfg_ = array(
+"fr" => "",
+"en" => "",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"se" => "TRANS ",
+"es" => "TRANS ",
+"pt" => "TRANS "
+);
+
+$txt_cfg_ = array(
+"fr" => "",
+"en" => "",
+"hu" => "TRANS ",
+"it" => "TRANS ",
+"nl" => "TRANS ",
+"ru" => "TRANS ",
+"de" => "TRANS ",
+"zh" => "TRANS ",
+"pl" => "TRANS ",
+"se" => "TRANS ",
+"es" => "TRANS ",
+"pt" => "TRANS "
+);
 
 $txt_cfg_paypal_use_sandbox = array(
 	"fr" => "Utiliser le serveur de test sandbox :",

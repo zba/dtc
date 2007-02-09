@@ -63,5 +63,8 @@ function skin($skinpath,$content,$title){
 if(file_exists("$dtcshared_path/$skinGeneralPath/$conf_skin/layout.php")){
 	require("$dtcshared_path/$skinGeneralPath/$conf_skin/layout.php");
 }
+if(file_exists("$dtcshared_path/$skinGeneralPath/$conf_skin/gfx_defaults.php")){
+	require("$dtcshared_path/$skinGeneralPath/$conf_skin/gfx_defaults.php");
+}
 
 ?>
