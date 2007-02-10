@@ -22,7 +22,7 @@ $ZeContent = '<table width="100%" height="100%">
 <img src="dtc_logo.gif" alt="DTC web control panel" border="0"></a><br><br>
 <h1><u>Welcome to '.$_SERVER["HTTP_HOST"].'!</u></h1>
 This is a place holder to show you how to create your client tool page.<br>
-Please edit '.__FILE__.' to customise this page.<br><br>
+Please edit '.__FILE__.' to customize this page.<br><br>
 </center></font><br><br><br></td></tr>
 
 <tr><td width="100%" height="1"><center><font face="Arial" size="-2">

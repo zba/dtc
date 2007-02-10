@@ -4,8 +4,8 @@
 <center>
 <table width="90%" height="100%">
 <tr><td width="100%" height="100%">
-<center><h1><u>Error: this site hosting contract has expired</u></h1>
-<font face="Arial">You have reach this page because the requested
+<center><h1><u>Error: this site's hosting contract has expired</u></h1>
+<font face="Arial">You have reached this page because the requested
 document is hosted on a website with an expired hosting contract.
 If you are the owner of the site, you should renew your contract
 using the control panel immediatly in order to have your site

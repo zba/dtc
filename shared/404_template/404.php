@@ -4,11 +4,11 @@
 <center>
 <table width="90%" height="100%">
 <tr><td width="100%" height="100%">
-<center><h1><u>404 Error: requested document does not exists!</u></h1>
+<center><h1><u>404 Error: the requested document does not exist!</u></h1>
 <font face="Verdana" size="-2"><?php echo "URL: http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 ?></font><br><br>
-<font face="Arial">You have reach this page because the requested
-document does not exists on this server. Please check that the URL
+<font face="Arial">You have reached this page because the requested
+document does not exist on this server. Please check that the URL
 is correct or inform the webmaster of the website of an incorrect
 link.<br><br><a href="<?php echo "http://".$_SERVER["SERVER_NAME"]?>">Go to
 website home page</a></font><br><br><br></td></tr>

@@ -10,7 +10,7 @@
 <img src="dtc_logo.gif"
 border="0"></a><br><br>
 <h1><u>Welcome to <?php echo $_SERVER["HTTP_HOST"]; ?>!</u></h1>
-This site content will be ready
+This site's content will be ready
 soon.<br>
 Please be back later to check this web site.<br><br>
 </center></font><br><br><br></td></tr>
