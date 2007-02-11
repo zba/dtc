@@ -323,10 +323,11 @@ function getCacheImageURL($text,$color,$arbo,$addrlink){
 	global $lang;
 	$cache = str_replace("/","_",$lang."_".$text.$color.$arbo) . ".png";
 	if(file_exists("../shared/imgcache/$cache")){
-		return "imgcache/$cache";
+		$url = "imgcache/$cache";
 	}else{
-		return "inc/img.php?text=$text&color=$color&link=$arbo&addrlink=$addrlink&lang=$lang";
+		$url = "inc/img.php?text=$text&color=$color&link=$arbo&addrlink=$addrlink&lang=$lang";
 	}
+	return $url;
 }
 
 function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
@@ -349,12 +350,18 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 	for($i=0;$i<$nbr_menu_entry;$i++){
 		$entry = $menu[$i];
 		$text = $entry["text"];
+		if(isset($entry["icon"])){
+			$icon = $entry["icon"];
+		}else{
+			$icon = "";
+		}
 
 		// Calculate current addresse
 		$entrylink = calculateCurEntryAddr($entry);
 
 		// Calculate the href link that the menu entry point to
-		$alink = "<a href=\"$self_link&$link_name=$entrylink\">";
+		$url_link = "$self_link&$link_name=$entrylink";
+		$alink = "<a href=\"$url_link\">";
 
 		// Is it a drop down entry with plus/minus lign ?
 		if($entry["type"] == "menu"){
@@ -363,7 +370,11 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 				$arbo = makeTreeGfxUrl($treesign_array,$ietype_menu_recurs_level);
 				$image_source = getCacheImageURL($text,1,$arbo,$entrylink);
 				if($dtc_use_text_menu == "no"){
-					$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><br>";
+					if(function_exists("skin_AlternateTreeView")){
+						$ret .= skin_AlternateTreeView($url_link,$text,1,$arbo,$entrylink,0,$icon);
+					}else{
+						$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" alt=\"-".$entry["text"]."\" src=\"$image_source\"></a><br>";
+					}
 				}else{
 					$ret .= $alink." -".$entry["text"]."</a><br>";
 				}
@@ -383,9 +394,13 @@ function makeIetypeMenu($menu,$curent_addr,$self_link,$link_name){
 				$image_rolover = getCacheImageURL($text,1,$arbo,$entrylink);
 				if($dtc_use_text_menu == "no"){
 					$rolovered = addImageToPreloads($image_rolover);
-					$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" name=\"$rolovered\"
+					if(function_exists("skin_AlternateTreeView")){
+						$ret .= skin_AlternateTreeView($url_link,$text,0,$arbo,$entrylink,1,$icon);
+					}else{
+						$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
+					}
 				}else{
 					$ret .= "$alink".$alt_signs.$entry["text"]."</a><br>";
 				}
@@ -414,7 +429,11 @@ onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$im
 			if($entry["link"] == @$selected[$ietype_menu_recurs_level]){
 				$image_source = getCacheImageURL($text,1,$arbo,$entrylink);
 				if($dtc_use_text_menu == "no"){
-					$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
+					if(function_exists("skin_AlternateTreeView")){
+						$ret .= skin_AlternateTreeView($url_link,$text,1,$arbo,$entrylink,0,$icon);
+					}else{
+						$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" alt=\"$alt_signs".$entry["text"]."\" src=\"$image_source\"></a><br>";
+					}
 				}else{
 					$ret .= "$alink".$alt_signs.$entry["text"]."</a><br>";
 				}
@@ -422,10 +441,14 @@ onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$im
 				$image_source = getCacheImageURL($text,0,$arbo,$entrylink);
 				$image_rolover = getCacheImageURL($text,1,$arbo,$entrylink);
 				if($dtc_use_text_menu == "no"){
-					$rolovered = addImageToPreloads($image_rolover);
-					$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" name=\"$rolovered\"
+					if(function_exists("skin_AlternateTreeView")){
+						$ret .= skin_AlternateTreeView($url_link,$text,0,$arbo,$entrylink,1,$icon);
+					}else{
+						$rolovered = addImageToPreloads($image_rolover);
+						$ret .= "$alink<img width=\"220\" height=\"32\" border=\"0\" name=\"$rolovered\"
 src=\"$image_source\" alt=\"$alt_signs".$entry["text"]."\" 
 onmouseover=\"$rolovered.src='$image_rolover'\" onmouseout=\"$rolovered.src='$image_source'\"></a><br>";
+					}
 				}else{
 					$ret .= "$alink".$alt_signs.$entry["text"]."</a><br>";
 				}
@@ -457,7 +480,11 @@ function makeTreeMenu($menu,$selected,$self_link,$link_name){
 	if($dtc_use_text_menu == "yes"){
 		$ret .= "<pre><b><font size=\"+1\">";
 	}
-	$ret .= makeIetypeMenu($menu,$selected,$self_link,$link_name);
+	if(function_exists("skin_AliternateTreeViewContainer")){
+		$ret .= skin_AliternateTreeViewContainer(makeIetypeMenu($menu,$selected,$self_link,$link_name));
+	}else{
+		$ret .= makeIetypeMenu($menu,$selected,$self_link,$link_name);
+	}
 	if($dtc_use_text_menu == "yes"){
 		$ret .= "</font></b></pre>";
 	}

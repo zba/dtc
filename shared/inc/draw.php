@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.87 2007/02/05 17:57:20 thomas Exp $
+ * @version $Id: draw.php,v 1.88 2007/02/11 18:30:06 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -167,15 +167,18 @@ function drawAdminTools($admin){
 	unset($user_ZEmenu);
 	$user_ZEmenu[] = array(
 		"text" => $txt_cmenu_myaccount_stats[$lang],
+		"icon" => "box_wnb_nb_picto-statistics.gif",
 		"type" => "link",
 		"link" => "stats");
 	$user_ZEmenu[] = array(
 		"text" => "Past payments",
+		"icon" => "box_wnb_nb_picto-pastpayments.gif",
 		"type" => "link",
 		"link" => "invoices");
 	if(file_exists($dtcshared_path."/dtcrm") && $nbr_domain > 0){
 		$user_ZEmenu[] = array(
 			"text" => $txt_cmenu_add_domain[$lang],
+			"icon" => "box_wnb_nb_picto-addadomainname.gif",
 			"type" => "link",
 			"link" => "adddomain");
         }
@@ -190,14 +193,16 @@ function drawAdminTools($admin){
 			"link" => "nameservers");
 	}
 	if($nbr_domain > 0){
-	  $user_menu[] = array(
-		"text" => $txt_cmenu_myaccount[$lang],
-		"type" => "menu",
-		"link" => "myaccount",
-		"sub" => $user_ZEmenu);
+		$user_menu[] = array(
+			"text" => $txt_cmenu_myaccount[$lang],
+			"icon" => "box_wnb_nb_picto-general.gif",
+			"type" => "menu",
+			"link" => "myaccount",
+			"sub" => $user_ZEmenu);
 	}else{
 		$user_menu[] = array(
 			"text" => $txt_cmenu_myaccount[$lang],
+			"icon" => "box_wnb_nb_picto-general.gif",
 			"type" => "link",
 			"link" => "myaccount");
 	}
@@ -206,6 +211,7 @@ function drawAdminTools($admin){
 	for($i=0;$i<$nbr_vps;$i++){
 		$user_menu[] = array(
 			"text" => $admin_vps[$i]["vps_server_hostname"].":".$admin_vps[$i]["vps_xen_name"],
+			"icon" => "box_wnb_nb_picto-vpsservers.gif",
 			"type" => "link",
 			"link" => "vps:".$admin_vps[$i]["vps_server_hostname"].":".$admin_vps[$i]["vps_xen_name"]);
 	}
@@ -214,6 +220,7 @@ function drawAdminTools($admin){
 	for($i=0;$i<$nbr_dedicated;$i++){
 		$user_menu[] = array(
 			"text" => $admin_dedicated[$i]["server_hostname"],
+			"icon" => "box_wnb_nb_picto-dedicatedservers.gif",
 			"type" => "link",
 			"link" => "server:".$admin_dedicated[$i]["server_hostname"]);
 	}
@@ -238,11 +245,13 @@ function drawAdminTools($admin){
 
 		$domain_conf_submenu[] = array(
 			"text" => $txt_cmenu_myaccount_stats[$lang],
+			"icon" => "box_wnb_nb_picto-statistics.gif",
 			"type" => "link",
 			"link" => "stats");
 
 		$domain_conf_submenu[] = array(
 			"text" => $txt_cmenu_dns[$lang],
+			"icon" => "box_wnb_nb_picto-mxnsservers.gif",
 			"type" => "link",
 			"link" => "dns");
 
@@ -250,10 +259,12 @@ function drawAdminTools($admin){
 		  if($domain_parking == "no-parking"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_subdomains[$lang],
+				"icon" => "box_wnb_nb_picto-subdomains.gif",
 				"type" => "link",
 				"link" => "subdomains");
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_ftpaccounts[$lang],
+				"icon" => "box_wnb_nb_picto-ftpaccounts.gif",
 				"type" => "link",
 				"link" => "ftp-accounts");
                         if($ssh_login_flag == "yes"){
@@ -264,6 +275,7 @@ function drawAdminTools($admin){
                         }
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_packageinstaller[$lang],
+				"icon" => "box_wnb_nb_picto-packageinstaller.gif",
 				"type" => "link",
 				"link" => "package-installer");
                   }
@@ -271,12 +283,14 @@ function drawAdminTools($admin){
 		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_mailboxs[$lang],
+				"icon" => "box_wnb_nb_picto-mailboxes.gif",
 				"type" => "link",
 				"link" => "mailboxs");
 		}
 		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_mailinglists[$lang],
+				"icon" => "box_wnb_nb_picto-mailboxes.gif",
 				"type" => "link",
 				"link" => "mailing-lists");
 		}
@@ -292,12 +306,14 @@ function drawAdminTools($admin){
 		if($add_array[0] == $dom){
 		  $selected_domain = array(
 			"text" => "$dom",
+			"icon" => "box_wnb_nb_picto-servers.gif",
 			"type" => "menu",
 			"link" => "$dom",
 			"sub" => $domain_conf_submenu);
 		}else{
 		  $not_selected_domains[] = array(
 			"text" => "$dom",
+			"icon" => "box_wnb_nb_picto-servers.gif",
 			"type" => "menu",
 			"link" => "$dom",
 			"sub" => $domain_conf_submenu);
@@ -315,6 +331,7 @@ function drawAdminTools($admin){
 	if($nbr_domain > 0){
 	  $user_menu[] = array(
 		"text" => $txt_cmenu_database[$lang],
+		"icon" => "box_wnb_nb_picto-database.gif",
 		"type" => "link",
 		"link" => "database");
         }
@@ -326,20 +343,23 @@ function drawAdminTools($admin){
         }
 	$user_menu[] = array(
 		"text" => $txt_cmenu_password[$lang],
+		"icon" => "box_wnb_nb_picto-passwords.gif",
 		"type" => "link",
 		"link" => "password");
 	$user_menu[] = array(
 		"text" => "Support tickets",
+		"icon" => "box_wnb_nb_picto-supporttickets.gif",
 		"type" => "link",
 		"link" => "ticket");
 	$user_menu[] = array(
 		"text" => $txt_cmenu_help[$lang],
+		"icon" => "box_wnb_nb_picto-help.gif",
 		"type" => "link",
 		"link" => "help");
 
 	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass","addrlink");
 //	$mymenu = makeTreeMenu2($user_menu);
-	$mymenu .= "<div align=\"center\"><a href=\"".$_SERVER["PHP_SELF"]."?\">".$txt_logout[$lang]."</a>";
+	$mymenu .= "<div align=\"center\" class=\"box_wnb_tv_container\"><a href=\"".$_SERVER["PHP_SELF"]."?\">".$txt_logout[$lang]."</a>";
 	if($dtc_use_text_menu == "no"){
 		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">".$txt_use_text_menu[$lang]."</a>";
 	}else{

@@ -82,6 +82,57 @@ $top_commands = "
 $browse_files_button</font></b>";
 
 
+function listTypePopup(){
+	global $admlist_type;
+	global $cur_admlist_type;
+	global $panel_type;
+
+	global $txt_admlist_sort_by_legend;
+	global $lang;
+
+	if($panel_type!="cronjob"){
+		$_SESSION["cur_admlist_type"] = "";
+		if(isset($_REQUEST["admlist_type"]) && $_REQUEST["admlist_type"] != ""){
+			$_SESSION["cur_admlist_type"] = $_REQUEST["admlist_type"];
+			$admlist_type = $_REQUEST["admlist_type"];
+		}else{
+			if(isset($_SESSION["cur_admlist_type"]) && $_SESSION["cur_admlist_type"] != ""){
+				$admlist_type = $_SESSION["cur_admlist_type"];
+			}else{
+				$admlist_type = "Logins";
+				$_SESSION["cur_admlist_type"] = "Logins";
+			}
+		}
+	}
+	$selectedlist_logins = "";
+	$selectedlist_name = "";
+	$selectedlist_domain = "";
+	if($admlist_type == "Logins"){
+		$selectedlist_logins = " selected";
+	}else if($admlist_type == "Names"){
+		$selectedlist_name = " selected";
+	}else if($admlist_type == "Domains"){
+        	$selectedlist_domain = " selected";
+	}
+
+	$txt_sort_by = $txt_admlist_sort_by_legend[$lang];
+	$admins = "<div class=\"box_wnb_nb_content\">
+<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">$txt_sort_by<br>
+<select class=\"box_wnb_nb_input\" name=\"admlist_type\">
+<option value=\"Logins\"$selectedlist_logins>Logins
+<option value=\"Names\"$selectedlist_name>Names
+<option value=\"Domains\"$selectedlist_domain>Domains
+</select>
+<div class=\"box_wnb_nb_input_btn_container\" onMouseOver=\"this.className='box_wnb_nb_input_btn_container-hover';\" onMouseOut=\"this.className='box_wnb_nb_input_btn_container';\">
+ <div class=\"box_wnb_nb_input_btn_left\"></div>
+ <div class=\"box_wnb_nb_input_btn_mid\"><input class=\"box_wnb_nb_input_btn\" type=\"submit\" value=\"Ok\"></div>
+ <div class=\"box_wnb_nb_input_btn_right\"></div>
+</div></form><br></div>
+<div class=\"voider\"></div>
+</div>
+";
+	return $admins;
+}
 
 function adminList($password=""){
 	global $lang;
@@ -110,48 +161,30 @@ function adminList($password=""){
 	if($panel_type!="cronjob"){
 		// Find the current display type
 		// Depreacted: session_register("cur_admlist_type");
-		$_SESSION["cur_admlist_type"] = "";
-		if(isset($_REQUEST["admlist_type"]) && $_REQUEST["admlist_type"] != ""){
-			$_SESSION["cur_admlist_type"] = $_REQUEST["admlist_type"];
-			$admlist_type = $_REQUEST["admlist_type"];
-		}else{
-			if(isset($_SESSION["cur_admlist_type"]) && $_SESSION["cur_admlist_type"] != ""){
-				$admlist_type = $_SESSION["cur_admlist_type"];
-			}else{
-				$admlist_type = "Logins";
-				$_SESSION["cur_admlist_type"] = "Logins";
-			}
-		}
 	}
-
-	$selectedlist_logins = "";
-	$selectedlist_name = "";
-	$selectedlist_domain = "";
-	if($admlist_type == "Logins"){
-		$selectedlist_logins = " selected";
-	}else if($admlist_type == "Names"){
-		$selectedlist_name = " selected";
-	}else if($admlist_type == "Domains"){
-        	$selectedlist_domain = " selected";
-	}
-
-	$txt_sort_by = $txt_admlist_sort_by_legend[$lang];
-	$admins = "<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">$txt_sort_by<br>
-<select name=\"admlist_type\">
-<option value=\"Logins\"$selectedlist_logins>Logins
-<option value=\"Names\"$selectedlist_name>Names
-<option value=\"Domains\"$selectedlist_domain>Domains
-</select><input type=\"submit\" value=\"Ok\"></form><br>
-";
-
+	$list_popup = listTypePopup();
 	$txt_new_admin = $txt_admlist_new_admin[$lang];
-	$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?\">$txt_new_admin</a><br>";
+
+	$dsc = array(
+		"text_new_admin" => $txt_admlist_new_admin[$lang],
+		"list_type" => $admlist_type,
+		"admins" => array(
+			));
+	$dsc["admins"][] = array(
+		"text" => "$txt_new_admin",
+		"adm_login" => "",
+		"adm_pass" => "");
+
+	$admins = "<a href=\"".$_SERVER["PHP_SELF"]."?\">$txt_new_admin</a><br>";
 	if(isset($rub)){
 		$added_rub = "&rub=".$_REQUEST["rub"];
 	}else{
 		$added_rub = "";
 	}
-	if($admlist_type == "Logins"){
+	switch($admlist_type){
+	default:
+	case "Logins":
+		$dsc["rub"] = "user";
 		mysql_select_db($conf_mysql_db);
 		// Fetch a list of all name admins
 		$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login";
@@ -163,17 +196,20 @@ function adminList($password=""){
 			$admin_login = $admin["adm_login"];
 			$admin_pass = $admin["adm_pass"];
 			$admin_owner = $admin["ob_next"];
-			if (isset($admin_owner) && strlen($admin_owner) > 0)
-			{
+			if (isset($admin_owner) && strlen($admin_owner) > 0){
 				$admin_owner = "[ $admin_owner ]";
 			} else {
 				$admin_owner = "";
 			}
 			$admins .= "<br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$admin_login&adm_pass=$zepass$added_rub\">$admin_login $admin_owner</a>";
+			$dsc["admins"][] = array(
+				"text" => $admin_login,
+				"adm_login" => $admin["adm_login"],
+				"adm_pass" => "$zepass");
 		}
-	}else if($admlist_type == "Names"){
+		break;
+	case "Names":
 		$admins .= "<br>";
-
 		// Display all admins wich has no login.
 		$query2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='0';";
 		$result2 = mysql_query($query2) or die("Cannot execute query : \"$query2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
@@ -212,7 +248,8 @@ function adminList($password=""){
 				}
 			}
 		}
-	}else if($admlist_type == "Domains"){
+		break;
+	case "Domains":
 		$admins .= "<br>";
 		$query7 = "SELECT * FROM $pro_mysql_domain_table ORDER BY name";
 		$result7 = mysql_query($query7) or die("Cannot execute query : \"$query7\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
@@ -253,9 +290,13 @@ function adminList($password=""){
 				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$vps_name</a><br>";
 			}
 		}
+		break;
 	}
-	$admins .= "</font></div>";
-	return $admins;
+	if(function_exists("skin_displayAdminList")){
+		return $list_popup.skin_displayAdminList($dsc);
+	}else{
+		return $list_popup.$admins;
+	}
 }
 
 ?>

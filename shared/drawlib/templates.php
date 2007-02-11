@@ -1139,7 +1139,7 @@ function dtcListItemsEdit($dsc){
 		}
 	// Edition of existing items
 	}else{
-		$out .= "<a href=\"$fw_link&subaction=".$dsc["action"]."_new_item\">New item</a><br><br>";
+		$out .= "<a href=\"$fw_link&subaction=".$dsc["action"]."_new_item\">".$dsc["new_item_link"]."</a><br><br>";
 		$out .= "<h3>".$dsc["edit_item_title"]."</h3><br>";
 		$q = "SELECT * FROM ".$dsc["table_name"]." $where AND ".$dsc["id_fld"]."='".addslashes($_REQUEST["item"])."';";
 		$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());

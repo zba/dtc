@@ -592,7 +592,7 @@ input,select,textarea {
 .box_wnb_tv_leaf {
 	padding: 1px 0 0 5px;
 	height: 21px;
-	background-image: url(gfx/box_wnb_tv_leaf-2s.gif);
+	background-image: url(gfx/treeview/box_wnb_tv_leaf-2s.gif);
 	background-position: top left;
 	background-repeat: no-repeat; 
 	cursor: pointer;
@@ -610,7 +610,7 @@ input,select,textarea {
 .box_wnb_tv_leaf-hover {
 	padding: 1px 0 0 5px;
 	height: 21px;
-	background-image: url(gfx/box_wnb_tv_leaf-2s.gif);
+	background-image: url(gfx/treeview/box_wnb_tv_leaf-2s.gif);
 	background-position: bottom left;
 	background-repeat: no-repeat; 
 	cursor: pointer;
@@ -621,7 +621,7 @@ input,select,textarea {
 .box_wnb_tv_leaf_select {
 	padding: 0px 0 0 5px;
 	height: 21px;
-	background-image: url(gfx/box_wnb_tv_leaf_select_left.gif);
+	background-image: url(gfx/treeview/box_wnb_tv_leaf_select_left.gif);
 	background-position: top left;
 	background-repeat: no-repeat; 
 	background-color: #F6F6F2;
@@ -641,7 +641,7 @@ input,select,textarea {
 .box_wnb_tv_leaf_open {
 	padding: 0px 0 0 5px;
 	height: 21px;
-	background-image: url(gfx/box_wnb_tv_leaf_open.gif);
+	background-image: url(gfx/treeview/box_wnb_tv_leaf_open.gif);
 	background-position: top left;
 	background-repeat: no-repeat; 
 	cursor: pointer;
@@ -660,7 +660,7 @@ input,select,textarea {
 
 .box_wnb_tv_leaf_openbottom {
 	height: 5px;
-	background-image: url(gfx/box_wnb_tv_leaf_openbottom.gif);
+	background-image: url(gfx/treeview/box_wnb_tv_leaf_openbottom.gif);
 	background-position: top left;
 	background-repeat: no-repeat;
 	font-size: 0px;
@@ -689,7 +689,7 @@ input,select,textarea {
 	padding: 1px 0 0 10px;
 	height: 19px;
 	background-color: #277193;
-	background-image: url(gfx/box_wnb_tv_leaf_leaf-2s.gif);
+	background-image: url(gfx/treeview/box_wnb_tv_leaf_leaf-2s.gif);
 	background-position: left top;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -709,7 +709,7 @@ input,select,textarea {
 	padding: 1px 0 0 10px;
 	height: 19px;
 	background-color: #3F91AF;
-	background-image: url(gfx/box_wnb_tv_leaf_leaf-2s.gif);
+	background-image: url(gfx/treeview/box_wnb_tv_leaf_leaf-2s.gif);
 	background-position: left bottom;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -721,7 +721,7 @@ input,select,textarea {
 	height: 20px;
 	padding-left: 10px;
 	background-color: #C0DBE5;
-	background-image: url(gfx/box_wnb_tv_leaf_leaf_select.gif);
+	background-image: url(gfx/treeview/box_wnb_tv_leaf_leaf_select.gif);
 	background-position: right;
 	background-repeat: repeat-y;
 	font-weight: bold;

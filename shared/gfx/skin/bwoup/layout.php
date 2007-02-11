@@ -1,5 +1,108 @@
 <?
 
+function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_rollover,$icon){
+	global $addrlink;
+
+	$level = sizeof( explode("/",$addrlink));
+	$arbo_tree = explode("/",$arbo);
+
+	$onclick = 'onClick="self.location=\''.$url_link.'\';"';
+
+	$end_tree = "";
+//	echo "Called skin_AlternateTreeView arbo: $arbo text: arbo0: ".$arbo_tree[0]." text: $text entrylink: $entrylink<br>\n"; 
+	switch($arbo_tree[0]){
+	default:
+	case "none":
+		$icone_tree = "";
+		if($selected == 1){
+			$class = "box_wnb_tv_leaf_select";
+		}else{
+			$class = "box_wnb_tv_leaf";
+		}
+		$mouseover_class = "box_wnb_tv_leaf-hover";
+		$text = "&nbsp;$text";
+		break;
+	case "tree":
+		$icone_tree = '<a href="'.$url_link.'"><img src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_leaf_tree-branch.gif" /></a>';
+		if($selected == 1){
+			$class = "box_wnb_tv_leaf_leaf_select";
+		}else{
+			$class = "box_wnb_tv_leaf_leaf";
+		}
+		$mouseover_class = "box_wnb_tv_leaf_leaf-hover";
+		$text = "&nbsp;&nbsp;$text";
+		break;
+	case "endtree":
+		$icone_tree = '<a href="'.$url_link.'"><img src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_leaf_tree-finalbranch.gif" /></a>';
+		if($selected == 1){
+			$class = "box_wnb_tv_leaf_leaf_select";
+		}else{
+			$class = "box_wnb_tv_leaf_leaf";
+		}
+		$end_tree = '<tr><td class="box_wnb_tv_leaf_openbottom" colspan="2"></td></tr>';
+		$mouseover_class = "box_wnb_tv_leaf_leaf-hover";
+		$text = "&nbsp;&nbsp;$text";
+		break;
+	case "plus":
+		$icone_tree = '<a href="'.$url_link.'"><img src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_tree_plus.gif" /></a>';
+		$class = "box_wnb_tv_leaf";
+		$mouseover_class = "box_wnb_tv_leaf-hover";
+		$text = "&nbsp;$text";
+		break;
+	case "minus":
+		$icone_tree = '<a href="'.$url_link.'"><img src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_tree_minus.gif" /></a>';
+		if($selected == 1){
+			if($level > 1){
+				$class = "box_wnb_tv_leaf_open";
+			}else{
+				$class = "box_wnb_tv_leaf_select";
+			}
+		}else{
+			$class = "box_wnb_tv_open";
+		}
+		$mouseover_class = "box_wnb_tv_leaf-hover";
+		$text = "&nbsp;$text";
+		break;
+	}
+	
+	$mouseover_stuff= "onMouseOver=\"this.className='$mouseover_class';\" onMouseOut=\"this.className='$class';\"";
+	$onclick = " onClick=\"document.location='$url_link'\" ";
+
+//	echo "Icone tree: $icone_tree<br>\n";
+	$out = "
+<tr>
+	<td class=\"box_wnb_tv_tree\" $onclick style=\"this.style.cursor='pointer';\">".$icone_tree."</td>
+	<td class=\"$class\" $mouseover_stuff $onclick style=\"this.style.cursor='pointer';\"><a href=\"".$url_link."\"><img src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">".$text."</a></td>
+</tr>$end_tree";
+	return $out;
+}
+
+function skin_AliternateTreeViewContainer($tree_view){
+	return '<div class="box_wnb_tv_container">
+<table class="box_wnb_tv" border="0" cellpadding="0" cellspacing="0">'.$tree_view.'</table>';
+}
+
+function skin_displayAdminList($dsc){
+	global $adm_login;
+	global $adm_pass;
+	global $rub;
+
+	$out = '<br><br><div class=\"box_wnb_nb_content\"><ul class="box_wnb_nb_items">';
+
+	
+	$nbr = sizeof($dsc["admins"]);
+	for($i=0;$i<$nbr;$i++){
+//		echo "<pre>"; print_r($dsc["admins"][$i]); echo "</pre>";
+		if($dsc["admins"][$i]["adm_login"] == $adm_login){
+			$out .= "<li onclick=\"document.location='?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub'\"><div class=\"box_wnb_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub\" class=\"box_wnb_nb_item_link\">".$dsc["admins"][$i]["text"]."</a></div></li>";
+		}else{
+			$out .= "<li onclick=\"document.location='?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\"><div class=\"box_wnb_nb_item\" onMouseOver=\"this.className='box_wnb_nb_item-hover';\" onMouseOut=\"this.className='box_wnb_nb_item';\"><a href=\"?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub\" class=\"box_wnb_nb_item_link\">".$dsc["admins"][$i]["text"]."</a></div></li>";
+		}
+	}
+	$out .= "</ul></div>";
+	return $out;
+}
+
 function skin_ClientPage (){
 	global $lang;
 	global $txt_select_lang_title;
@@ -64,8 +167,8 @@ $java_script
 <link rel=\"stylesheet\" href=\"gfx/skin/bwoup/skin.css\" type=\"text/css\">
 $skinCssString
 
-".anotherTopBanner("DTC","yes")."<div id=\"usernavbarreplacement\"><div id=\"navbar_left\"></div><ul id=\"navbar_items\"></ul><div id=\"navbar_right\"></div></div>
-<div id=\"content\">".$mypage."</div>
+".anotherTopBanner("DTC","yes")."<div id=\"usernavbarreplacement\"></div>
+<div id=\"content\"><div class=\"box_wnb_content_container\">".$mypage."</div></div>
 <div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
 </html>";
 }
