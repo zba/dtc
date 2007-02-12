@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.88 2007/02/11 18:30:06 thomas Exp $
+ * @version $Id: draw.php,v 1.89 2007/02/12 05:03:25 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -185,10 +185,12 @@ function drawAdminTools($admin){
         if(file_exists($dtcshared_path."/dtcrm") && $conf_use_registrar_api == "yes"){
 		$user_ZEmenu[] = array(
 			"text" => $txt_cmenu_nickhandles[$lang],
+			"icon" => "box_wnb_nb_picto-nickhandles.gif",
 			"type" => "link",
 			"link" => "nickhandles");
 		$user_ZEmenu[] = array(
 			"text" => $txt_cmenu_nameservers[$lang],
+			"icon" => "box_wnb_nb_picto-nameservers.gif",
 			"type" => "link",
 			"link" => "nameservers");
 	}
@@ -239,6 +241,7 @@ function drawAdminTools($admin){
 		if(file_exists($dtcshared_path."/dtcrm") && $conf_use_registrar_api == "yes"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_whois[$lang],
+				"icon" => "box_wnb_nb_picto-whois.gif",
 				"type" => "link",
 				"link" => "whois");
 		}
@@ -270,6 +273,7 @@ function drawAdminTools($admin){
                         if($ssh_login_flag == "yes"){
 			  $domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_sshaccounts[$lang],
+				"icon" => "box_wnb_nb_picto-sshaccounts.gif",
 				"type" => "link",
 				"link" => "ssh-accounts");
                         }
@@ -338,6 +342,7 @@ function drawAdminTools($admin){
         if($resseller_flag == "yes"){
         	$user_menu[] = array(
 	        	"text" => $txt_cmenu_reseller[$lang],
+	        	"icon" => "box_wnb_nb_picto-resellers.gif",
 	        	"type" => "link",
 	        	"link" => "reseller");
         }
