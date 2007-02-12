@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.90 2007/02/12 05:47:48 thomas Exp $
+ * @version $Id: draw.php,v 1.91 2007/02/12 11:40:52 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -364,7 +364,7 @@ function drawAdminTools($admin){
 
 	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass","addrlink");
 //	$mymenu = makeTreeMenu2($user_menu);
-	$mymenu .= "<div align=\"center\" class=\"box_wnb_tv_container\"><a href=\"".$_SERVER["PHP_SELF"]."?\">".$txt_logout[$lang]."</a>";
+	$mymenu .= "<div align=\"center\" class=\"box_wnb_nb_content\"><a href=\"".$_SERVER["PHP_SELF"]."?\">".$txt_logout[$lang]."</a>";
 	if($dtc_use_text_menu == "no"){
 		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">".$txt_use_text_menu[$lang]."</a>";
 	}else{
