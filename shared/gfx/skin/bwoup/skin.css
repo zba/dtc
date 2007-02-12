@@ -468,6 +468,10 @@ input,select,textarea {
 	background-position: top left;
 	background-repeat: no-repeat;
 	cursor: pointer;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+	cursor: pointer;
 	}
 
 .box_wnb_nb_item-hover {
@@ -478,6 +482,7 @@ input,select,textarea {
 	background-position: bottom left;
 	background-repeat: no-repeat; 
 	cursor: pointer;
+	font-weight: bold;
 	}
 
 .box_wnb_nb_items li .box_wnb_nb_item a { color: #EFF6F8; }
@@ -493,8 +498,10 @@ input,select,textarea {
 	background-position: left;
 	background-repeat: no-repeat; 
 	background-color: #F6F6F2;
+	font-size: 14px;
 	font-weight: bold;
 	color: #000000;
+	cursor: pointer;
 	}
 
 .box_wnb_nb_items li .box_wnb_nb_item_select a { color: #083658; }
@@ -598,6 +605,7 @@ input,select,textarea {
 	cursor: pointer;
 	font-size: 14px;
 	font-weight: bold;
+	color: #FFFFFF;
 	}
 
 .box_wnb_txttv_leaf {
@@ -958,7 +966,7 @@ input,select,textarea {
 }
 
 .dtcDatagrid_table_flds_alt {
-	background-color: #dbe9ed;
+	background-color: #FFFFFF;
 }
 
 .dtcDatagrid_table_titles {

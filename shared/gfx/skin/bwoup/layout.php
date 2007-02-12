@@ -72,7 +72,7 @@ function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_r
 	$out = "
 <tr>
 	<td class=\"box_wnb_tv_tree\" $onclick style=\"this.style.cursor='pointer';\">".$icone_tree."</td>
-	<td class=\"$class\" $mouseover_stuff $onclick style=\"this.style.cursor='pointer';\"><a href=\"".$url_link."\"><img src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">".$text."</a></td>
+	<td class=\"$class\" $mouseover_stuff $onclick style=\"this.style.cursor='pointer';\"><img src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">".$text."</td>
 </tr>$end_tree";
 	return $out;
 }
@@ -94,9 +94,9 @@ function skin_displayAdminList($dsc){
 	for($i=0;$i<$nbr;$i++){
 //		echo "<pre>"; print_r($dsc["admins"][$i]); echo "</pre>";
 		if($dsc["admins"][$i]["adm_login"] == $adm_login){
-			$out .= "<li onclick=\"document.location='?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub'\"><div class=\"box_wnb_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub\" class=\"box_wnb_nb_item_link\">".$dsc["admins"][$i]["text"]."</a></div></li>";
+			$out .= "<li onclick=\"document.location='?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub'\"><div class=\"box_wnb_nb_item_select\">".$dsc["admins"][$i]["text"]."</div></li>";
 		}else{
-			$out .= "<li onclick=\"document.location='?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\"><div class=\"box_wnb_nb_item\" onMouseOver=\"this.className='box_wnb_nb_item-hover';\" onMouseOut=\"this.className='box_wnb_nb_item';\"><a href=\"?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub\" class=\"box_wnb_nb_item_link\">".$dsc["admins"][$i]["text"]."</a></div></li>";
+			$out .= "<li onclick=\"document.location='?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\"><div class=\"box_wnb_nb_item\" onMouseOver=\"this.className='box_wnb_nb_item-hover';\" onMouseOut=\"this.className='box_wnb_nb_item';\">".$dsc["admins"][$i]["text"]."</div></li>";
 		}
 	}
 	$out .= "</ul></div>";
@@ -189,9 +189,9 @@ function skin_DTCConfigMenu ($dsc){
         $nbr_entry = sizeof($dsc);
         for($i=0;$i<$nbr_entry;$i++){
         	if($keys[$i] == $sousrub){
-			$out .= '<li><div class="box_wnb_nb_item_select"><a href="?rub=config&sousrub='.$keys[$i].'"><img src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
+			$out .= '<li><div style="this.style.cursor=\'pointer\';" class="box_wnb_nb_item_select" onClick="document.location=\'?rub=config&sousrub='.$keys[$i].'\'"><a href="?rub=config&sousrub='.$keys[$i].'"><img src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
 		}else{
-			$out .= '<li><div class="box_wnb_nb_item" onMouseOver="this.className=\'box_wnb_nb_item-hover\';" onMouseOut="this.className=\'box_wnb_nb_item\';"><a href="?rub=config&sousrub='.$keys[$i].'"><img src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
+			$out .= '<li><div style="this.style.cursor=\'pointer\';" onClick="document.location=\'?rub=config&sousrub='.$keys[$i].'\'" class="box_wnb_nb_item" onMouseOver="this.className=\'box_wnb_nb_item-hover\';" onMouseOut="this.className=\'box_wnb_nb_item\';"><a href="?rub=config&sousrub='.$keys[$i].'"><img src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
 		}
         }
         $out .= "</ul>";
