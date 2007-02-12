@@ -2,6 +2,7 @@
 
 function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_rollover,$icon){
 	global $addrlink;
+	global $conf_use_javascript;
 
 	$level = sizeof( explode("/",$addrlink));
 	$arbo_tree = explode("/",$arbo);
@@ -68,11 +69,20 @@ function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_r
 	$mouseover_stuff= "onMouseOver=\"this.className='$mouseover_class';\" onMouseOut=\"this.className='$class';\"";
 	$onclick = " onClick=\"document.location='$url_link'\" ";
 
-//	echo "Icone tree: $icone_tree<br>\n";
+	if($conf_use_javascript == "yes"){
+		$added_style = "$onclick style=\"this.style.cursor='pointer';\"";
+		$ahref = "";
+		$aend = "";
+	}else{
+		$added_style = "";
+		$ahref = "<a href=\"\">";
+		$aend = "</a>";
+	}
+
 	$out = "
 <tr>
-	<td class=\"box_wnb_tv_tree\" $onclick style=\"this.style.cursor='pointer';\">".$icone_tree."</td>
-	<td class=\"$class\" $mouseover_stuff $onclick style=\"this.style.cursor='pointer';\"><img src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">".$text."</td>
+	<td class=\"box_wnb_tv_tree\" $added_style>".$icone_tree."</td>
+	<td class=\"$class\" $mouseover_stuff $added_style><img src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">$ahref".$text."$aend</td>
 </tr>$end_tree";
 	return $out;
 }
@@ -87,16 +97,26 @@ function skin_displayAdminList($dsc){
 	global $adm_pass;
 	global $rub;
 
+	global $conf_use_javascript;
+
 	$out = '<br><br><div class=\"box_wnb_nb_content\"><ul class="box_wnb_nb_items">';
 
 	
 	$nbr = sizeof($dsc["admins"]);
 	for($i=0;$i<$nbr;$i++){
-//		echo "<pre>"; print_r($dsc["admins"][$i]); echo "</pre>";
-		if($dsc["admins"][$i]["adm_login"] == $adm_login){
-			$out .= "<li onclick=\"document.location='?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub'\"><div class=\"box_wnb_nb_item_select\">".$dsc["admins"][$i]["text"]."</div></li>";
+		if($conf_use_javascript == "yes"){
+			$dhtml = " onclick=\"document.location='?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\" ";
+			$ahref= " ";
+			$aend = " ";
 		}else{
-			$out .= "<li onclick=\"document.location='?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\"><div class=\"box_wnb_nb_item\" onMouseOver=\"this.className='box_wnb_nb_item-hover';\" onMouseOut=\"this.className='box_wnb_nb_item';\">".$dsc["admins"][$i]["text"]."</div></li>";
+			$dhtml = " ";
+			$ahref= "<a href=\"?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\">";
+			$aend = "</a>";
+		}
+		if($dsc["admins"][$i]["adm_login"] == $adm_login){
+			$out .= "<li $dhtml><div class=\"box_wnb_nb_item_select\">$ahref".$dsc["admins"][$i]["text"]."$aend</div></li>";
+		}else{
+			$out .= "<li $dhtml><div class=\"box_wnb_nb_item\" onMouseOver=\"this.className='box_wnb_nb_item-hover';\" onMouseOut=\"this.className='box_wnb_nb_item';\">$ahref".$dsc["admins"][$i]["text"]."$aend</div></li>";
 		}
 	}
 	$out .= "</ul></div>";
