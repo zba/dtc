@@ -24,7 +24,7 @@ function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_r
 		$text = "&nbsp;$text";
 		break;
 	case "tree":
-		$icone_tree = '<a href="'.$url_link.'"><img src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_leaf_tree-branch.gif" /></a>';
+		$icone_tree = '<a href="'.$url_link.'"><img align="absbottom" src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_leaf_tree-branch.gif" /></a>';
 		if($selected == 1){
 			$class = "box_wnb_tv_leaf_leaf_select";
 		}else{
@@ -34,7 +34,7 @@ function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_r
 		$text = "&nbsp;&nbsp;$text";
 		break;
 	case "endtree":
-		$icone_tree = '<a href="'.$url_link.'"><img src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_leaf_tree-finalbranch.gif" /></a>';
+		$icone_tree = '<a href="'.$url_link.'"><img align="absbottom" src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_leaf_tree-finalbranch.gif" /></a>';
 		if($selected == 1){
 			$class = "box_wnb_tv_leaf_leaf_select";
 		}else{
@@ -45,13 +45,13 @@ function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_r
 		$text = "&nbsp;&nbsp;$text";
 		break;
 	case "plus":
-		$icone_tree = '<a href="'.$url_link.'"><img src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_tree_plus.gif" /></a>';
+		$icone_tree = '<a href="'.$url_link.'"><img align="absbottom" src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_tree_plus.gif" /></a>';
 		$class = "box_wnb_tv_leaf";
 		$mouseover_class = "box_wnb_tv_leaf-hover";
 		$text = "&nbsp;$text";
 		break;
 	case "minus":
-		$icone_tree = '<a href="'.$url_link.'"><img src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_tree_minus.gif" /></a>';
+		$icone_tree = '<a href="'.$url_link.'"><img align="absbottom" src="gfx/skin/bwoup/gfx/treeview/box_wnb_tv_tree_minus.gif" /></a>';
 		if($selected == 1){
 			if($level > 1){
 				$class = "box_wnb_tv_leaf_open";
@@ -82,7 +82,7 @@ function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_r
 	$out = "
 <tr>
 	<td class=\"box_wnb_tv_tree\" $added_style>".$icone_tree."</td>
-	<td class=\"$class\" $mouseover_stuff $added_style><img src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">$ahref".$text."$aend</td>
+	<td class=\"$class\" $mouseover_stuff $added_style><img align=\"absbottom\" src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">$ahref".$text."$aend</td>
 </tr>$end_tree";
 	return $out;
 }

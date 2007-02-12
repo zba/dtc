@@ -198,7 +198,7 @@ input,select,textarea {
 
 #hdr_dtctext {
 	padding: 7px 0 12px 0; 
-	font-size: 16px;
+	font-size: 12px;
 	font-style: italic;
 	}
 
@@ -896,7 +896,7 @@ input,select,textarea {
 	margin: 0;
 	padding: 7px 7px 0 7px;
 	height: 23px;
-	background-image: url(gfx/box_wnb_content_nb_item_select.gif);
+	background-image: url(gfx/tabs/box_wnb_content_nb_item_select.gif);
 	background-position: top;
 	background-repeat: repeat-x;
 	background-color: #FFF;
