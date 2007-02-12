@@ -1,7 +1,13 @@
 <?php
 
 function helpLink($link){
-	$out = "<a target=\"_blank\" href=\"http://dtcsupport.gplhost.com/pmwiki/$link\"><img border=\"0\" src=\"gfx/help.png\"</a>";
+	global $gfx_icn_path_help;
+	if(isset($gfx_icn_path_help)){
+		$helpimg_src = $gfx_icn_path_help;
+	}else{
+		$helpimg_src = "gfx/help.png";
+	}
+	$out = "<a target=\"_blank\" href=\"http://dtcsupport.gplhost.com/pmwiki/$link\"><img border=\"0\" src=\"$helpimg_src\"</a>";
 	return $out;
 }
 
@@ -96,6 +102,8 @@ function dtcDatagrid($dsc){
 	global $gfx_icn_path_ok;
 	global $gfx_icn_path_delete;
 	global $gfx_icn_path_add;
+
+	global $gfx_from_entry_label_background;
 
 	if(isset($gfx_icn_path_ok)){
 		$apply = $gfx_icn_path_ok;
@@ -248,7 +256,7 @@ function dtcDatagrid($dsc){
 	}
 
 	// Display of all the titles of the table
-	$out .= "<table class=\"dtcDatagrid_table_props\">";
+	$out .= "<table class=\"dtcDatagrid_table_props\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">";
 	$out .= "<tr>";
 	for($i=0;$i<$nbr_fld;$i++){
 		if($dsc["cols"][ $keys[$i] ]["type"] == "id"){
@@ -261,7 +269,7 @@ function dtcDatagrid($dsc){
 			$do_display = "yes";
 		}
 		if($do_display == "yes"){
-			$out .= "<td class=\"dtcDatagrid_table_titles\"><b>".$dsc["cols"][ $keys[$i] ]["legend"]."</b></td>";
+			$out .= "<td class=\"dtcDatagrid_table_titles\">".$dsc["cols"][ $keys[$i] ]["legend"]."</td>";
 		}
 	}
 	$out .= "<td class=\"dtcDatagrid_table_titles\" colspan=\"2\"><b>Action</b></td>";
@@ -292,6 +300,11 @@ function dtcDatagrid($dsc){
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$out .= "<tr><form action=\"".$_SERVER["PHP_SELF"]."\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_edit\">";
+		if(($i % 2) == 1 && isset($gfx_from_entry_label_background)){
+			$tdclass = "dtcDatagrid_table_flds_alt";
+		}else{
+			$tdclass = "dtcDatagrid_table_flds";
+		}
 		for($j=0;$j<$nbr_fld;$j++){
 			$the_fld = $dsc["cols"][ $keys[$j] ];
 			switch($the_fld["type"]){
@@ -301,12 +314,12 @@ function dtcDatagrid($dsc){
 				}else{
 					$size = "";
 				}
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$out .= "<input type=\"text\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\">";
 				$out .= "</td>";
 				break;
 			case "radio":
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$nbr_choices = sizeof( $dsc["cols"][ $keys[$j] ]["values"] );
 				for($x=0;$x<$nbr_choices;$x++){
 					if($a[ $keys[$j] ] == $dsc["cols"][ $keys[$j] ]["values"][$x]){
@@ -324,7 +337,7 @@ function dtcDatagrid($dsc){
 				$out .= "</td>";
 				break;
 			case "checkbox":
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				if($a[ $keys[$j] ] == $dsc["cols"][ $keys[$j] ]["values"][0]){
 					$selected = " checked ";
 				}else{
@@ -344,23 +357,23 @@ function dtcDatagrid($dsc){
 				}else{
 					$rows = "";
 				}
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$out .= "<textarea $cols $rows name=\"".$keys[$j]."\">".$a[ $keys[$j] ]."</textarea>";
 				$out .= "</td>";
 				break;
 			case "hyperlink":
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$out .= "<a href=\"$fw_link&".$keys[$j]."=".$id."\">";
 				$out .= $dsc["cols"][ $keys[$j] ]["text"]."</a>";
 				$out .= "</td>";
 				break;
 			case "info":
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$out .= $a[ $keys[$j] ];
 				$out .= "</td>";
 				break;
 			case "popup":
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$out .= "<select name=\"".$keys[$j]."\">";
 				$nbr_values = sizeof($dsc["cols"][ $keys[$j] ]["values"]);
 				for($x=0;$x<$nbr_values;$x++){
@@ -383,7 +396,7 @@ function dtcDatagrid($dsc){
 				$id = $a[ $keys[$j] ];
 				$id_hidden = "<input type=\"hidden\" name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\">";
 				if($dsc["cols"][ $keys[$j] ]["display"] == "yes"){
-					$out .= "<td class=\"dtcDatagrid_table_flds\">";
+					$out .= "<td class=\"$tdclass\">";
 					$out .= $id_hidden;
 					$out .= $a[ $keys[$j] ];
 					$out .= "</td>";
@@ -393,16 +406,21 @@ function dtcDatagrid($dsc){
 				break;
 			}
 		}
-		$out .= "<td class=\"dtcDatagrid_table_flds\"><input type=\"image\" src=\"$apply\"></form></td>";
+		$out .= "<td class=\"$tdclass\"><input type=\"image\" src=\"$apply\"></form></td>";
 		if(isset($dsc["skip_deletion"]) && $dsc["skip_deletion"] == "yes"){
-			$out .= "<td class=\"dtcDatagrid_table_flds\"></td></tr>";
+			$out .= "<td class=\"$tdclass\">&nbsp;</td></tr>";
 		}else{
-			$out .= "<td class=\"dtcDatagrid_table_flds\"><form action=\"".$_SERVER["PHP_SELF"]."\">$fw$id_hidden
+			$out .= "<td class=\"$tdclass\"><form action=\"".$_SERVER["PHP_SELF"]."\">$fw$id_hidden
 			<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete\"><input type=\"image\" src=\"$delete\"></form></td>";
 			$out .= "</form></tr>";
 		}
 	}
 	if(!isset($dsc["skip_creation"]) || $dsc["skip_deletion"] != "yes"){
+		if(($i % 2) == 1 && isset($gfx_from_entry_label_background)){
+			$tdclass = "dtcDatagrid_table_flds_alt";
+		}else{
+			$tdclass = "dtcDatagrid_table_flds";
+		}
 		// Write the NEW stuff...
 		$out .= "<tr><form action=\"".$_SERVER["PHP_SELF"]."\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_new\">";
 		for($j=0;$j<$nbr_fld;$j++){
@@ -414,12 +432,12 @@ function dtcDatagrid($dsc){
 				}else{
 					$size = "";
 				}
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$out .= "<input type=\"text\" $size name=\"".$keys[$j]."\" value=\"\">";
 				$out .= "</td>";
 				break;
 			case "radio":
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$nbr_choices = sizeof( $dsc["cols"][ $keys[$j] ]["values"] );
 				for($x=0;$x<$nbr_choices;$x++){
 					if( isset($dsc["cols"][ $keys[$j] ]["default"]) ){
@@ -445,17 +463,17 @@ function dtcDatagrid($dsc){
 				$out .= "</td>";
 				break;
 			case "checkbox":
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$out .= " <input type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" selected> ";
 				$out .= "</td>";
 				break;
 			case "textaera":
 				break;
 			case "hyperlink":
-				$out .= "<td class=\"dtcDatagrid_table_flds\"></td>";
+				$out .= "<td class=\"$tdclass\">&nbsp;</td>";
 				break;
 			case "popup":
-				$out .= "<td class=\"dtcDatagrid_table_flds\">";
+				$out .= "<td class=\"$tdclass\">";
 				$out .= "<select name=\"".$keys[$j]."\">";
 				$nbr_values = sizeof($dsc["cols"][ $keys[$j] ]["values"]);
 				for($x=0;$x<$nbr_values;$x++){
@@ -472,7 +490,7 @@ function dtcDatagrid($dsc){
 			case "id":
 //				$id = $a[ $keys[$j] ];
 				if($dsc["cols"][ $keys[$j] ]["display"] == "yes"){
-					$out .= "<td class=\"dtcDatagrid_table_flds\">";
+					$out .= "<td class=\"tdclass\">";
 					$out .= "<input type=\"hidden\" name=\"".$keys[$j]."\" value=\"\">";
 //					$out .= $a[ $keys[$j] ];
 					$out .= "</td>";
@@ -482,7 +500,7 @@ function dtcDatagrid($dsc){
 				break;
 			}
 		}
-		$out .= "<td class=\"dtcDatagrid_table_flds\" colspan=\"2\"><input type=\"image\" src=\"$add\"></form></td></tr>";
+		$out .= "<td class=\"$tdclass\" colspan=\"2\"><input type=\"image\" src=\"$add\"></form></td></tr>";
 	}
 	$out .= "</table>";
 	return $out;

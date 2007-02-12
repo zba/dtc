@@ -952,3 +952,17 @@ input,select,textarea {
 .alternatecolorline {
 	background-color: #E3E5D8;
 	}
+
+.dtcDatagrid_table_flds {
+	background-color: #E3E5D8;
+}
+
+.dtcDatagrid_table_flds_alt {
+	background-color: #dbe9ed;
+}
+
+.dtcDatagrid_table_titles {
+	background-color: #dbe9ed;
+	font-weight: bold;
+}
+
