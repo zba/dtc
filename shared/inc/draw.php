@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.89 2007/02/12 05:03:25 thomas Exp $
+ * @version $Id: draw.php,v 1.90 2007/02/12 05:47:48 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -294,7 +294,7 @@ function drawAdminTools($admin){
 		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_mailinglists[$lang],
-				"icon" => "box_wnb_nb_picto-mailboxes.gif",
+				"icon" => "box_wnb_nb_picto-mailinglists.gif",
 				"type" => "link",
 				"link" => "mailing-lists");
 		}

@@ -16,14 +16,26 @@ function dtcFormLineDraw($text,$control){
 
 	if(isset($gfx_from_entry_label_background)){
 		$bgcolor = $gfx_from_entry_label_background;
+	}else{
+		$bgcolor = " bgcolor=\"#AAAAFF\" class=\"box_formtable_libelle\" ";
+	}
+	if(isset($gfx_from_entry_label_control_background)){
 		$incolor = $gfx_from_entry_label_control_background;
 	}else{
-		$bgcolor = " bgcolor=\"#AAAAFF\" ";
-		$incolor = " bgcolor=\"#FFFFFF\" ";
+		$incolor = " bgcolor=\"#FFFFFF\" class=\"box_formtable_inputz\" ";
 	}
-	$out = "<tr><td $bgcolor class=\"box_formtable_libelle\" style=\"text-align:right;white-space:nowrap;\">$text</td>
-	<td $bgcolor><table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" $incolor width=\"100%\" height=\"100%\">
-<tr><td class=\"box_formtable_inputz\" style=\"white-space:nowrap;vertical-valign:bottom;\" height=\"100%\">$control</td></tr></table></td></tr>";
+	
+	$out = "
+  <tr>
+    <th $bgcolor style=\"text-align:right;white-space:nowrap;\">$text</th>
+    <td $bgcolor>
+      <table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" width=\"100%\" height=\"100%\">
+        <tr>
+          <td $incolor style=\"white-space:nowrap;vertical-valign:bottom;\" height=\"100%\">$control</td>
+        </tr>
+      </table>
+    </td>
+  </tr>";
 	return $out;
 }
 
