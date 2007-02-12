@@ -232,6 +232,8 @@ function adminList($password=""){
 			$id_client = $row7["id"];
 			$lastname = $row7["familyname"];
 			$firstname = $row7["christname"];
+			$company = $row7["company_name"];
+			$is_company = $row7["is_company"];
 
 			$query2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='$id_client';";
 			$result2 = mysql_query($query2) or die("Cannot execute query : \"$query2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
@@ -245,6 +247,16 @@ function adminList($password=""){
 					$linkadm_login = $row2["adm_login"];
 					$linkadm_pass = $row2["adm_pass"];
 					$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$linkadm_login</a><br>";
+					if($is_company){
+						$text = $company.": ";
+					}else{
+						$text = "";
+					}
+					$text .= $firstname.", ".$lastname." (".$linkadm_login.")";
+					$dsc["admins"][] = array(
+						"text" => $text,
+						"adm_login" => $linkadm_login,
+						"adm_pass" => "$zepass");
 				}
 			}
 		}
