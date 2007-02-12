@@ -903,3 +903,52 @@ input,select,textarea {
 .box_wnb_content_nb_item_select a, .box_wnb_content_nb_item_select a:visited { color: #1C3135; }
 .box_wnb_content_nb_item_select a:hover, .box_wnb_content_nb_item_select a:active { color: #000; text-decoration: none; }
 
+/* -- Boite Blanche seule -- */
+
+.box {
+	clear: both;
+	float: left;
+	margin: 10px 2% 10px 2%;
+	padding: 0;
+	width: 94%;	
+	background-color: #F6F6F2;
+	}
+
+.box_bottomleft { background: url(gfx/box_bottomleft.gif) bottom left no-repeat; }
+.box_bottomright { background: url(gfx/box_bottomright.gif) bottom right no-repeat; }
+.box_topleft { background: url(gfx/box_topleft.gif) top left no-repeat; }
+.box_topright { background: url(gfx/box_topright.gif) top right no-repeat; }
+
+.box_content {
+	padding: 5px 1% 5px 1%;
+	width: 98%
+	}
+
+.box form table, .box_wnb_content_container form table {
+	background-color: #F6F6F2;
+	}
+
+.box form table tr, .box_wnb_content_container form table tr { 
+	border-bottom: 1px solid #BAC0A2;
+	}
+
+.box form table th, .box_wnb_content_container form table th {
+	padding: 2px 5px 2px 5px;
+	color: #547074;
+	font-weight: normal;
+	text-align: right;
+	font-size: 12px;
+	}
+
+.box form table td, .box_wnb_content_container form table td {
+	padding: 1px 0 1px 0;
+	}
+
+.box form table tr td table { 
+	background-color: transparent;
+	border: none;
+	}
+
+.alternatecolorline {
+	background-color: #E3E5D8;
+	}
