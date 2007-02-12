@@ -209,9 +209,9 @@ function skin_DTCConfigMenu ($dsc){
         $nbr_entry = sizeof($dsc);
         for($i=0;$i<$nbr_entry;$i++){
         	if($keys[$i] == $sousrub){
-			$out .= '<li><div style="this.style.cursor=\'pointer\';" class="box_wnb_nb_item_select" onClick="document.location=\'?rub=config&sousrub='.$keys[$i].'\'"><a href="?rub=config&sousrub='.$keys[$i].'"><img src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
+			$out .= '<li><div style="this.style.cursor=\'pointer\';" class="box_wnb_nb_item_select" onClick="document.location=\'?rub=config&sousrub='.$keys[$i].'\'"><a href="?rub=config&sousrub='.$keys[$i].'"><img width="16" height="16" src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
 		}else{
-			$out .= '<li><div style="this.style.cursor=\'pointer\';" onClick="document.location=\'?rub=config&sousrub='.$keys[$i].'\'" class="box_wnb_nb_item" onMouseOver="this.className=\'box_wnb_nb_item-hover\';" onMouseOut="this.className=\'box_wnb_nb_item\';"><a href="?rub=config&sousrub='.$keys[$i].'"><img src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
+			$out .= '<li><div style="this.style.cursor=\'pointer\';" onClick="document.location=\'?rub=config&sousrub='.$keys[$i].'\'" class="box_wnb_nb_item" onMouseOver="this.className=\'box_wnb_nb_item-hover\';" onMouseOut="this.className=\'box_wnb_nb_item\';"><a href="?rub=config&sousrub='.$keys[$i].'"><img width="16" height="16" src="gfx/skin/bwoup/gfx/config-icon/'.$dsc[ $keys[$i] ]["icon"].'" align="top"> '.$dsc[ $keys[$i] ]["text"].'</a></div></li>';
 		}
         }
         $out .= "</ul>";

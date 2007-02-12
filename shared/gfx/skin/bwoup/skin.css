@@ -877,7 +877,7 @@ input,select,textarea {
 	padding: 0;
 	width: 1px;
 	height: 30px;
-	background-image: url(gfx/box_wnb_content_nb_item_vsep.gif);
+	background-image: url(gfx/tabs/box_wnb_content_nb_item_vsep.gif);
 	background-position: bottom;
 	background-repeat: no-repeat;
 	background-color: #DADDCB;
