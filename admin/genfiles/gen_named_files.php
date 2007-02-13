@@ -463,7 +463,8 @@ $more_mx_server
 				$console .= "Updating zone file for domain $web_name using serial : $todays_serial, ipaddr : $ip_to_write<br>";
 				$filep = fopen("$conf_generated_file_path/$conf_named_zonefiles_path/$web_name", "w+");
 				if( $filep == NULL){
-					die("Cannot open file for writting");
+					print("Cannot open file $conf_generated_file_path/$conf_named_zonefiles_path/$web_name for writting");
+					continue;
 				}
 				fwrite($filep,$this_site_file);
 				fclose($filep);
