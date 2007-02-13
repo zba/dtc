@@ -307,6 +307,11 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
 		$web_name = $row["name"];
+		if ($web_name == "")
+		{
+			print("No name specified for domain, skipping...");
+			continue;
+		}
 		$web_owner = $row["owner"];
 		$ip_addr = $row["ip_addr"];
 		$domain_safe_mode = $row["safe_mode"];
