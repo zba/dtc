@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.91 2007/02/12 11:40:52 thomas Exp $
+ * @version $Id: draw.php,v 1.92 2007/02/15 08:58:20 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -132,7 +132,9 @@ function drawAdminTools($admin){
 	global $txt_Manage_my_name_servers;
 	global $txt_My_Account_information;
 	global $txt_resseller_child_accounts;
-	
+	global $txt_cmenu_past_payments;
+	global $txt_cmenu_support_tickets;
+
 	$add_array = explode("/",$addrlink);
         $doms_txt = "";
 
@@ -171,7 +173,7 @@ function drawAdminTools($admin){
 		"type" => "link",
 		"link" => "stats");
 	$user_ZEmenu[] = array(
-		"text" => "Past payments",
+		"text" => $txt_cmenu_past_payments[$lang],
 		"icon" => "box_wnb_nb_picto-pastpayments.gif",
 		"type" => "link",
 		"link" => "invoices");
@@ -352,7 +354,7 @@ function drawAdminTools($admin){
 		"type" => "link",
 		"link" => "password");
 	$user_menu[] = array(
-		"text" => "Support tickets",
+		"text" => $txt_cmenu_support_tickets[$lang],
 		"icon" => "box_wnb_nb_picto-supporttickets.gif",
 		"type" => "link",
 		"link" => "ticket");
@@ -363,7 +365,6 @@ function drawAdminTools($admin){
 		"link" => "help");
 
 	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass","addrlink");
-//	$mymenu = makeTreeMenu2($user_menu);
 	$mymenu .= "<div align=\"center\" class=\"box_wnb_nb_content\"><a href=\"".$_SERVER["PHP_SELF"]."?\">".$txt_logout[$lang]."</a>";
 	if($dtc_use_text_menu == "no"){
 		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">".$txt_use_text_menu[$lang]."</a>";
@@ -380,7 +381,7 @@ function drawAdminTools($admin){
 		if (isset($admin_data)){
 			$num_domain = AdminTool_findDomainNum($edit_domain,$admin_data);
 			$eddomain = @$admin_data[$num_domain];
-		} else {
+		}else{
 			$num_domain = 0;
 		}
 		if(isset($vps_node)){

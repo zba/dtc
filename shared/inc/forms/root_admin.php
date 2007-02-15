@@ -1,4 +1,5 @@
 <?php
+require("$dtcshared_path/inc/forms/root_admin_strings.php");
 
 ////////////////////////////////////////////////////////////////////////////
 // Draw the form for configuring global admin account info (path, etc...) //
@@ -34,11 +35,25 @@ function drawEditAdmin($admin){
 	global $txt_import_a_domain_for_this_user;
 	global $txt_import_button;
 
+	global $txt_root_admin_no_product;
+	global $txt_root_admin_configuration_of_the_vpses;
+
 	global $adm_login;
 	global $adm_pass;
+	global $txt_no;
+	global $txt_yes;
 	global $rub;
 
 	global $conf_hide_password;
+	global $txt_root_admin_vps_server_hostname;
+	global $txt_root_admin_delete_one_of_the_admin_vps;
+	global $txt_root_admin_to_add_a_vps_you_have_to;
+	global $txt_root_admin_delete_one_of_the_admin_dedicated_server;
+	global $txt_root_admin_add_a_dedicated_server_to_admin;
+
+	global $txt_root_admin_country;
+	global $txt_root_admin_hostname;
+	global $txt_root_admin_product;
 
 	$info = $admin["info"];
 	if(isset($admin["data"])){
@@ -66,8 +81,8 @@ function drawEditAdmin($admin){
 		$resflag_yes = " ";
 		$resflag_no = " checked ";
 	}
-	$res_selector = "<input type=\"radio\" name=\"resseller_flag\" value=\"yes\"$resflag_yes> Yes
-	<input type=\"radio\" name=\"resseller_flag\" value=\"no\"$resflag_no> No";
+	$res_selector = "<input type=\"radio\" name=\"resseller_flag\" value=\"yes\"$resflag_yes> ".$txt_yes[$lang]."
+	<input type=\"radio\" name=\"resseller_flag\" value=\"no\"$resflag_no> ".$txt_no[$lang];
 
 	if($ssh_login_flag == "yes"){
 		$sshlogin_yes = " checked ";
@@ -76,8 +91,8 @@ function drawEditAdmin($admin){
 		$sshlogin_yes = "";
 		$sshlogin_no = " checked ";
 	}
-	$sshlog_selector = "<input type=\"radio\" name=\"ssh_login_flag\" value=\"yes\"$sshlogin_yes> Yes
-	<input type=\"radio\" name=\"ssh_login_flag\" value=\"no\"$sshlogin_no> No";
+	$sshlog_selector = "<input type=\"radio\" name=\"ssh_login_flag\" value=\"yes\"$sshlogin_yes> ".$txt_yes[$lang]."
+	<input type=\"radio\" name=\"ssh_login_flag\" value=\"no\"$sshlogin_no> ".$txt_no[$lang];
 
 	if($allow_add_domain == "yes")	$adyes = "selected";	else $adyes = "";
 	if($allow_add_domain == "check")$adcheck = "selected";	else $adcheck = "";
@@ -110,7 +125,7 @@ function drawEditAdmin($admin){
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$prodsid = "";
-	$prodsid .= "<select name=\"heb_prod_id\"><option value=\"0\">No product</option>";
+	$prodsid .= "<select name=\"heb_prod_id\"><option value=\"0\">".$txt_root_admin_no_product[$lang]."</option>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		if($a["id"] == $prod_id){
@@ -180,7 +195,7 @@ function drawEditAdmin($admin){
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){
-		$domain_conf .= "<b><u>Delete one of the admin VPS:</u></b><br>";
+		$domain_conf .= "<b><u>".$txt_root_admin_delete_one_of_the_admin_vps[$lang]."</u></b><br>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			if($i > 0){
@@ -211,14 +226,14 @@ function drawEditAdmin($admin){
 		$vps_srvs .= "<option value=\"".$a["ip_addr"]."\">".$a["vps_server_hostname"].":".$a["vps_xen_name"]." (".$a["ip_addr"].")</option>";
 	}
 	if($n > 0 && $num_prods_vps > 0){
-		$domain_conf .= "<b><u>Add a VPS for this admin</u></b>
+		$domain_conf .= "<h3>".$txt_root_admin_add_a_vps_for_this_admin[$lang]."</h3>
 		<form action=\"?\">
 		<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		<input type=\"hidden\" name=\"action\" value=\"add_vps_to_user\">
 		<table border=\"0\">
-		<tr><td style=\"text-align: right; white-space: nowrap;\">VPS Server hostname:</td>
+		<tr><td style=\"text-align: right; white-space: nowrap;\">".$txt_root_admin_vps_server_hostname[$lang]."</td>
 		<td><select name=\"vps_server_ip\">$vps_srvs</select></td></tr>
 		<tr><td style=\"text-align: right; white-space: nowrap;\">Product:</td>
 		<td><select name=\"product_id\">$vps_prods</select></td></tr>
@@ -227,7 +242,7 @@ function drawEditAdmin($admin){
 		<input type=\"radio\" name=\"physical_setup\" value=\"no\" checked>No</td></tr>
 		<tr><td></td><td><input type=\"submit\" value=\"Add VPS\"></td></tr></table></form>";
 	}else{
-		$domain_conf .= "To add a VPS, you need to setup some free IPs VPS in the general config and setup some VPS products.";
+		$domain_conf .= $txt_root_admin_to_add_a_vps_you_have_to[$lang];
 	}
 
 	// Deletion of dedicated
@@ -235,7 +250,7 @@ function drawEditAdmin($admin){
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){
-		$domain_conf .= "<br><br><b><u>Delete one of the admin dedicated server:</u></b><br>";
+		$domain_conf .= "<br><br><h3>".$txt_root_admin_delete_one_of_the_admin_dedicated_server[$lang]."</h3><br>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			if($i > 0){
@@ -254,20 +269,20 @@ function drawEditAdmin($admin){
 		$a = mysql_fetch_array($r);
 		$server_prods .= "<option value=\"".$a["id"]."\">".$a["name"]."</option>";
 	}
-	$domain_conf .= "<br><br><b><u>Add a dedicated server for this admin:</u></b>
+	$domain_conf .= "<br><br><h3>".$txt_root_admin_add_a_dedicated_server_to_admin[$lang]."</h3>
 	<form action=\"?\">
 	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"action\" value=\"add_dedicated_to_user\">
 	<table border=\"0\">
-	<tr><td style=\"text-align: right; white-space: nowrap;\">Product:</td>
+	<tr><td style=\"text-align: right; white-space: nowrap;\">".$txt_root_admin_product[$lang]."</td>
 		<td><select name=\"product_id\">$server_prods</select></td></tr>
-	<tr><td style=\"text-align: right; white-space: nowrap;\">Hostname:</td>
+	<tr><td style=\"text-align: right; white-space: nowrap;\">".$txt_root_admin_hostname[$lang]."</td>
 		<td><input type=\"text\" name=\"server_hostname\" value=\"\"></td>
-	<tr><td style=\"text-align: right; white-space: nowrap;\">Country:</td>
+	<tr><td style=\"text-align: right; white-space: nowrap;\">".$txt_root_admin_country[$lang]."</td>
 		<td><select name=\"country\">$cc_code_popup</select></td>
-	<tr><td></td><td><input type=\"submit\" value=\"Add server\"></td></tr></table></form>";
+	<tr><td></td><td><input type=\"image\" src=\"".dtcApplyButtonSrc()."\"></td></tr></table></form>";
 
 	$out = "<font size=\"-1\">
 <table>
@@ -307,6 +322,21 @@ function drawDomainConfig($admin){
 
 	global $adm_login;
 	global $adm_pass;
+	global $txt_yes;
+	global $txt_no;
+	global $txt_root_admin_max_ssh;
+	global $txt_root_admin_cgi_bin_protection;
+	global $txt_root_admin_configuration_of_the_vpses;
+
+	global $txt_root_admin_product;
+	global $txt_root_admin_domain_config_table_title;
+	global $txt_root_admin_country;
+	global $txt_root_admin_vps_name;
+	global $txt_root_admin_vps_server;
+	global $txt_root_admin_registration;
+	global $txt_root_admin_expiration;
+	global $txt_root_admin_configuration_of_the_dedicated_servers;
+	global $txt_root_admin_server_name;
 
 	$ret = "";
 
@@ -326,7 +356,7 @@ function drawDomainConfig($admin){
 
 		$dsc = array(
 			"table_name" => $pro_mysql_domain_table,
-			"title" => "Configuration of the domains",
+			"title" => $txt_root_admin_domain_config_table_title[$lang],
 			"action" => "change_domain_config",
 			"forward" => array("rub","adm_login","adm_pass"),
 			"skip_deletion" => "yes",
@@ -339,12 +369,14 @@ function drawDomainConfig($admin){
 					"legend" => $txt_domain_tbl_config_dom_name[$lang]),
 				"safe_mode" => array(
 					"type" => "checkbox",
-					"legend" => "Safe mode",
-					"values" => array("yes","no")),
+					"legend" => "PHP safe_mode",
+					"values" => array("yes","no"),
+					"display_replace" => array($txt_no[$lang],$txt_yes[$lang])),
 				"sbox_protect" => array(
 					"type" => "checkbox",
-					"legend" => "Sbox protection",
-					"values" => array("yes","no")),
+					"legend" => $txt_root_admin_cgi_bin_protection[$lang],
+					"values" => array("yes","no"),
+					"display_replace" => array($txt_no[$lang],$txt_yes[$lang])),
 				"quota" => array(
 					"type" => "text",
 					"legend" => $txt_domain_tbl_config_quota[$lang],
@@ -367,7 +399,7 @@ function drawDomainConfig($admin){
 					"size" => "3"),
 				"max_ssh" => array(
 					"type" => "text",
-					"legend" => "Max ssh",
+					"legend" => $txt_root_admin_max_ssh[$lang],
 					"size" => "3"),
 				"ip_addr" => array(
 					"type" => "popup",
@@ -376,7 +408,7 @@ function drawDomainConfig($admin){
 				"backup_ip_addr" => array(
 					"type" => "text",
 					"legend" => $txt_domain_tbl_config_backup_ip[$lang],
-					"size" => "14"),
+					"size" => "14")
 				)
 			);
 		$ret .= dtcDatagrid($dsc);
@@ -402,7 +434,7 @@ function drawDomainConfig($admin){
 		}
 		$dsc = array(
 			"table_name" => $pro_mysql_vps_table,
-			"title" => "Configuration of the VPSes",
+			"title" => $txt_root_admin_configuration_of_the_vpses[$lang],
 			"action" => "change_vps_config",
 			"forward" => array("rub","adm_login","adm_pass"),
 			"skip_deletion" => "yes",
@@ -415,18 +447,18 @@ function drawDomainConfig($admin){
 					"legend" => "id"),
 				"vps_server_hostname" => array(
 					"type" => "info",
-					"legend" => "VPS Server"),
+					"legend" => $txt_root_admin_vps_server[$lang]),
 				"vps_xen_name" => array(
 					"type" => "info",
-					"legend" => "VPS Name"),
+					"legend" => $txt_root_admin_vps_name[$lang]),
 				"start_date" => array(
 					"type" => "text",
 					"size" => "10",
-					"legend" => "Registration"),
+					"legend" => $txt_root_admin_registration[$lang]),
 				"expire_date" => array(
 					"type" => "text",
 					"size" => "10",
-					"legend" => "Expiration"),
+					"legend" => $txt_root_admin_expiration[$lang]),
 				"hddsize" => array(
 					"type" => "text",
 					"size" => "5",
@@ -437,7 +469,7 @@ function drawDomainConfig($admin){
 					"legend" => "RAM"),
 				"product_id" => array(
 					"type" => "popup",
-					"legend" => "Product",
+					"legend" => $txt_root_admin_product[$lang],
 					"values" => $prod_id,
 					"display_replace" => $prod_name)
 				));
@@ -463,8 +495,8 @@ function drawDomainConfig($admin){
 
 		$dsc = array(
 			"table_name" => $pro_mysql_dedicated_table,
-			"title" => "Configuration of the dedicated servers",
-			"action" => "change_dedicated_config",
+			"title" => "",
+			"action" => $txt_root_admin_configuration_of_the_dedicated_servers[$lang],
 			"forward" => array("rub","adm_login","adm_pass"),
 			"skip_deletion" => "yes",
 			"skip_creation" => "yes",
@@ -476,15 +508,15 @@ function drawDomainConfig($admin){
 					"legend" => "id"),
 				"server_hostname" => array(
 					"type" => "info",
-					"legend" => "Server name"),
+					"legend" => $txt_root_admin_server_name[$lang]),
 				"start_date" => array(
 					"type" => "text",
 					"size" => "10",
-					"legend" => "Registration"),
+					"legend" => $txt_root_admin_registration[$lang]),
 				"expire_date" => array(
 					"type" => "text",
 					"size" => "10",
-					"legend" => "Expiration"),
+					"legend" => $txt_root_admin_expiration[$lang]),
 				"hddsize" => array(
 					"type" => "text",
 					"size" => "5",
@@ -495,12 +527,12 @@ function drawDomainConfig($admin){
 					"legend" => "RAM"),
 				"country_code" => array(
 					"type" => "popup",
-					"legend" => "Country",
+					"legend" => $txt_root_admin_country2[$lang],
 					"values" => array_keys($cc_code_array),
 					"display_replace" => array_values($cc_code_array)),
 				"product_id" => array(
 					"type" => "popup",
-					"legend" => "Product",
+					"legend" => $txt_root_admin_product[$lang],
 					"values" => $prod_id,
 					"display_replace" => $prod_name)
 				));

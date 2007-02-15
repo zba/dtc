@@ -1,13 +1,16 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.17 2007/01/22 21:11:49 thomas Exp $
+ * @version $Id: error_strings.php,v 1.18 2007/02/15 08:58:20 thomas Exp $
  * 
  * --------------------------------------------------------
  * For all translators check in new array is new data - se 
  * In plan add swedish language to DTC 
  * --------------------------------------------------------
  * $Log: error_strings.php,v $
+ * Revision 1.18  2007/02/15 08:58:20  thomas
+ * Some strings in NL and some internationalizations.
+ *
  * Revision 1.17  2007/01/22 21:11:49  thomas
  * Added chinese strings.
  *
@@ -38,7 +41,7 @@ $txt_err_dtc_login_format = array(
 	"en" => "Incorect admin login format: it should consist of only lowercase letters or numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n",
 	"hu" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"it" => "TRANS Formato del login email errato: dovrebbe essere composto solo da lettere minuscole o numeri o dal simbolo \"-\" and should be between 4 and 16 chars long.<br>\n",
-	"nl" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
+	"nl" => "Incorrect admin login formaat: Login dient alleen lowercase letters, nummers of het \"-\" teken te bevatten and moet tussen de 4 en 16 tekens lang zijn.<br>\n",
 	"ru" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"de" => "TRANS Incorect admin login format: it should be made only with lowercase letters or numbers or the \"-\" sign and should be between 4 and 16 chars long.<br>\n",
 	"zh" => "´íÎóµÄ¹ÜÀíÔ±µÇÂ½Ãû£ºËüÓ¦¸Ã½öÓĞĞ¡Ğ´×ÖÄ¸»òÕßÊı×Ö»òÕß\"-\"×é³É£¬²¢ÇÒ³¤¶ÈÔÚ4µ½16¸ö×Ö·ûÖ®¼ä¡£<br>\n",
@@ -65,7 +68,7 @@ $txt_err_payment_not_valid=array(
 	"en" => "NOT VALIDATED",
 	"hu" => "NOT VALIDATED",
 	"it" => "NOT VALIDATED",
-	"nl" => "NOT VALIDATED",
+	"nl" => "NIET GEVALIDEERD",
 	"ru" => "NOT VALIDATED",
 	"de" => "NOT VALIDATED",
 	"zh" => "ÎŞĞ§µÄ",
@@ -79,7 +82,7 @@ $txt_err_payment_finish_approved=array(
 	"en" => "TRANSACTION FINISHED AND APPROVED",
 	"hu" => "TRANSACTION FINISHED AND APPROVED",
 	"it" => "TRANSACTION FINISHED AND APPROVED",
-	"nl" => "TRANSACTION FINISHED AND APPROVED",
+	"nl" => "TRANSACTIE AFGEROND EN GOEDGEKEURD",
 	"ru" => "TRANSACTION FINISHED AND APPROVED",
 	"de" => "TRANSACTION FINISHED AND APPROVED",
 	"zh" => "½»Ò×ÒÑ³É¹¦Íê³É",
@@ -93,7 +96,7 @@ $txt_err_payment_cancel=array(
 	"en" => "PAYMENT CANCELLED",
 	"hu" => "PAYMENT CANCELLED",
 	"it" => "PAYMENT CANCELLED",
-	"nl" => "PAYMENT CANCELLED",
+	"nl" => "BETALING GEANNULEERD",
 	"ru" => "PAYMENT CANCELLED",
 	"de" => "PAYMENT CANCELLED",
 	"zh" => "¸¶¿î±»È¡Ïû",
@@ -108,7 +111,7 @@ $txt_err_payment_failed=array(
 	"en" => "PAYMENT FAILED",
 	"hu" => "PAYMENT FAILED",
 	"it" => "PAYMENT FAILED",
-	"nl" => "PAYMENT FAILED",
+	"nl" => "BETALING GEFAALD",
 	"ru" => "PAYMENT FAILED",
 	"de" => "PAYMENT FAILED",
 	"zh" => "¸¶¿îÊ§°Ü",
@@ -124,7 +127,7 @@ $txt_err_register_cant_reselect_trans=array(
 	"en" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"hu" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"it" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
-	"nl" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
+	"nl" => "Kan transactie voor id $extapi_pay_id niet opnieuw selecteren: registratie gefaalt!",
 	"ru" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"de" => "Cannot reselect transaction for id $extapi_pay_id: registration failed!",
 	"zh" => "½»Ò×ºÅ $extapi_pay_id: ²»ÄÜÖØĞÂÑ¡Ôñ½»Ò×£¬×¢²áÊ§°Ü£¡",
@@ -140,7 +143,7 @@ $txt_err_register_cant_reselect_user=array(
 	"en" => "Cannot reselect user: registration failed!",
 	"hu" => "Cannot reselect user: registration failed!",
 	"it" => "Cannot reselect user: registration failed!",
-	"nl" => "Cannot reselect user: registration failed!",
+	"nl" => "Kan gebruiker niet opnieuw selecteren: registratie gefaald!",
 	"ru" => "Cannot reselect user: registration failed!",
 	"de" => "Cannot reselect user: registration failed!",
 	"zh" => "²»ÄÜÖØĞÂÑ¡ÔñÓµ»¤£º×¢²áÊ§°Ü£¡",
@@ -154,7 +157,7 @@ $txt_err_register_cant_reselect_product=array(
 	"en" => "Cannot reselect product: registration failed!",
 	"hu" => "Cannot reselect product: registration failed!",
 	"it" => "Cannot reselect product: registration failed!",
-	"nl" => "Cannot reselect product: registration failed!",
+	"nl" => "Kan product niet opnieuw selecteren: registratie gefaald!",
 	"ru" => "Cannot reselect product: registration failed!",
 	"de" => "Cannot reselect product: registration failed!",
 	"zh" => "²»ÄÜÖØĞÂÑ¡Ôñ²úÆ·£º×¢²áÊ§°Ü£¡",
@@ -169,7 +172,7 @@ $txt_err_register_succ=array (
 	"en" => "Registration successful!",
 	"hu" => "Registration successful!",
 	"it" => "Registration successful!",
-	"nl" => "Registration successful!",
+	"nl" => "Registratie succesvol!",
 	"ru" => "Registration successful!",
 	"de" => "Registration successful!",
 	"zh" => "×¢²á³É¹¦£¡",
@@ -184,7 +187,7 @@ $txt_err_email_format = array(
   "en" => "Incorect mail login format: it should consist of only lowercase letters, numbers, or the \"-\" sign.<br>\n",
   "hu" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "it" => "Formato del login email errato: dovrebbe essere composto solo da lettere minuscole o numeri o dal simbolo \"-\".<br>\n",
-  "nl" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
+  "nl" => "Incorect mail login formaat: login dient alleen lowercase letters, nummers of het \"-\" teken te bevatten.<br>\n",
   "ru" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "de" => "TRANS Incorect mail login format: it should be made only with lowercase letters or numbers or the \"-\" sign.<br>\n",
   "zh" => "´íÎóµÃÓÊÏäµÇÂ½Ãû£ºËüÓ¦¸Ã½öÓĞĞ¡Ğ´×ÖÄ¸»òÕßÊı×Ö»òÕß\"-\"×é³É¡£<br>\n",
@@ -198,7 +201,7 @@ $txt_err_mailbox_does_not_exists_in_db = array(
   "en" => "Mailbox does not exists in database!<br>\n",
   "hu" => "TRANS Mailbox does no exists in database!<br>\n",
   "it" => "La Mailbox non esiste nel database!<br>\n",
-  "nl" => "TRANS Mailbox does no exists in database!<br>\n",
+  "nl" => "Mailbox bestaat niet in database!<br>\n",
   "ru" => "TRANS Mailbox does no exists in database!<br>\n",
   "de" => "TRANS Mailbox does no exists in database!<br>\n",
   "zh" => "ÓÊÏäµØÖ·²»´æÔÚ£¡<br>\n",
@@ -212,7 +215,7 @@ $txt_err_email_exists_as_mailinglist = array(
   "en" => "Mailbox allready exist in the database as a mailing list!<br>\n",
   "hu" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "it" => "La Mailbox esiste già nel database come mailing list!<br>\n",
-  "nl" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
+  "nl" => "Mailbox bestaat al in database als mailing list!<br>\n",
   "ru" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "de" => "TRANS Mailbox allready exist in database as a mailing list!<br>\n",
   "zh" => "ÓÊÏäµØÖ·ÒÑ¾­±»×÷ÎªÓÊ¼şÁĞ±í´æÔÚÊı¾İ¿âÖĞ£¡<br>\n",
@@ -226,7 +229,7 @@ $txt_err_password_format = array(
   "en" => "Password consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "hu" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "it" => "La password è costituita solo da caratteri standard e numeri (a-zA-Z0-9) e dovrebbe essere di lunghezza compresa fra i 6 e i 16 caratteri.<br>\n",
-  "nl" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
+  "nl" => "Password dient alleen letters en nummers te bevatten ( a-zA-Z0-9) en moet tussen de 6 en 16 tekens lang zijn.<br>\n",
   "ru" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "de" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n",
   "zh" => "ÃÜÂëÓ¦¸Ã½öÓÉ×ÖÄ¸ºÍÊı×Ö×é³É(a-zA-Z0-9)£¬²¢ÇÒ³¤¶ÈÔÚ6µ½16¸ö×Ö·ûÖ®¼ä¡£<br>\n",

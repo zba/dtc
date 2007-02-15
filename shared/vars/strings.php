@@ -1,19 +1,379 @@
 <?php
 
+$txt_err_not_registering = array (
+	"fr" => "Pas d'enregistrement",
+	"en" => "Not registering",
+	"hu" => "TRANS Not registering",
+	"it" => "TRANS Not registering",
+	"nl" => "TRANS Not registering",
+	"ru" => "TRANS Not registering",
+	"de" => "TRANS Not registering",
+	"zh" => "TRANS Not registering",
+	"pl" => "TRANS Not registering",
+	"se" => "TRANS Not registering",
+	"es" => "TRANS Not registering",
+	"pt" => "TRANS Not registering"
+	);
 
+$txt_product_id_not_valid = array (
+	"fr" => "ID produit non valide !",
+	"en" => "Product ID not valid!",
+	"hu" => "TRANS Product ID not valid!",
+	"it" => "TRANS Product ID not valid!",
+	"nl" => "TRANS Product ID not valid!",
+	"ru" => "TRANS Product ID not valid!",
+	"de" => "TRANS Product ID not valid!",
+	"zh" => "TRANS Product ID not valid!",
+	"pl" => "TRANS Product ID not valid!",
+	"se" => "TRANS Product ID not valid!",
+	"es" => "TRANS Product ID not valid!",
+	"pt" => "TRANS Product ID not valid!"
+	);
 
-	/**
-	* @package DTC
-	* @todo translate to any others language
-	* @version  $Id: strings.php,v 1.126 2007/02/09 19:37:24 thomas Exp $
-	* 
-	**/
-	
-/**
- * new localization for new account
- * @see dtc/client/new_account.php
- * 
- */
+$txt_user_login_incorrect = array (
+	"fr" => "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"en" => "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"hu" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"it" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"nl" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"ru" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"de" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"zh" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"pl" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"se" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"es" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"pt" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars."
+	);
+
+$txt_username_invalid_root_or_debian = array (
+	"fr" => "Username invalid: please pickup something else than root or debian-sys-maint",
+	"en" => "Username invalid: please pickup something else than root or debian-sys-maint",
+	"hu" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
+	"it" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
+	"nl" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
+	"ru" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
+	"de" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
+	"zh" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
+	"pl" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
+	"se" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
+	"es" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
+	"pt" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint"
+	);
+
+$txt_password_format_incorrect = array (
+	"fr" => "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"en" => "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"hu" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"it" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"nl" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"ru" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"de" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"zh" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"pl" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"se" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"es" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"pt" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars."
+	);
+
+$txt_passwords_do_not_match = array (
+	"fr" => "Les mots de passe 1 et 2 ne correspondent pas !",
+	"en" => "Passwords 1 and 2 do not match!",
+	"hu" => "TRANS Passwords 1 and 2 does not match!",
+	"it" => "TRANS Passwords 1 and 2 does not match!",
+	"nl" => "TRANS Passwords 1 and 2 does not match!",
+	"ru" => "TRANS Passwords 1 and 2 does not match!",
+	"de" => "TRANS Passwords 1 and 2 does not match!",
+	"zh" => "TRANS Passwords 1 and 2 does not match!",
+	"pl" => "TRANS Passwords 1 and 2 does not match!",
+	"se" => "TRANS Passwords 1 and 2 does not match!",
+	"es" => "TRANS Passwords 1 and 2 does not match!",
+	"pt" => "TRANS Passwords 1 and 2 does not match!"
+	);
+
+$txt_domain_name_does_not_look_like_correct = array (
+	"fr" => "Le nom de domaine ne parrait pas correct.",
+	"en" => "Domain name does not look like to be a correct hostname.",
+	"hu" => "TRANS Domain name does not look like to be a correct hostname.",
+	"it" => "TRANS Domain name does not look like to be a correct hostname.",
+	"nl" => "TRANS Domain name does not look like to be a correct hostname.",
+	"ru" => "TRANS Domain name does not look like to be a correct hostname.",
+	"de" => "TRANS Domain name does not look like to be a correct hostname.",
+	"zh" => "TRANS Domain name does not look like to be a correct hostname.",
+	"pl" => "TRANS Domain name does not look like to be a correct hostname.",
+	"se" => "TRANS Domain name does not look like to be a correct hostname.",
+	"es" => "TRANS Domain name does not look like to be a correct hostname.",
+	"pt" => "TRANS Domain name does not look like to be a correct hostname."
+	);
+
+$txt_vps_location_not_selected = array (
+	"fr" => "Localisation du VDS non sélectionné !",
+	"en" => "VPS location not selected!",
+	"hu" => "TRANS VPS location not selected!",
+	"it" => "TRANS VPS location not selected!",
+	"nl" => "TRANS VPS location not selected!",
+	"ru" => "TRANS VPS location not selected!",
+	"de" => "TRANS VPS location not selected!",
+	"zh" => "TRANS VPS location not selected!",
+	"pl" => "TRANS VPS location not selected!",
+	"se" => "TRANS VPS location not selected!",
+	"es" => "TRANS VPS location not selected!",
+	"pt" => "TRANS VPS location not selected!"
+	);
+
+$txt_email_does_not_look_like_correct = array (
+	"fr" => "Email does not look like to be a correct address format.",
+	"en" => "Email does not look like to be a correct address format.",
+	"hu" => "TRANS Email does not look like to be a correct address format.",
+	"it" => "TRANS Email does not look like to be a correct address format.",
+	"nl" => "TRANS Email does not look like to be a correct address format.",
+	"ru" => "TRANS Email does not look like to be a correct address format.",
+	"de" => "TRANS Email does not look like to be a correct address format.",
+	"zh" => "TRANS Email does not look like to be a correct address format.",
+	"pl" => "TRANS Email does not look like to be a correct address format.",
+	"se" => "TRANS Email does not look like to be a correct address format.",
+	"es" => "TRANS Email does not look like to be a correct address format.",
+	"pt" => "TRANS Email does not look like to be a correct address format."
+	);
+
+$txt_required_field_family_name_missing = array (
+	"fr" => "Champ nom de famille manquant.",
+	"en" => "Required field family name missing.",
+	"hu" => "TRANS Required field family name missing.",
+	"it" => "TRANS Required field family name missing.",
+	"nl" => "TRANS Required field family name missing.",
+	"ru" => "TRANS Required field family name missing.",
+	"de" => "TRANS Required field family name missing.",
+	"zh" => "TRANS Required field family name missing.",
+	"pl" => "TRANS Required field family name missing.",
+	"se" => "TRANS Required field family name missing.",
+	"es" => "TRANS Required field family name missing.",
+	"pt" => "TRANS Required field family name missing."
+	);
+
+$txt_required_field_first_name_missing = array (
+	"fr" => "Champ prénom manquant.",
+	"en" => "Required field first name missing.",
+	"hu" => "TRANS Required field first name missing.",
+	"it" => "TRANS Required field first name missing.",
+	"nl" => "TRANS Required field first name missing.",
+	"ru" => "TRANS Required field first name missing.",
+	"de" => "TRANS Required field first name missing.",
+	"zh" => "TRANS Required field first name missing.",
+	"pl" => "TRANS Required field first name missing.",
+	"se" => "TRANS Required field first name missing.",
+	"es" => "TRANS Required field first name missing.",
+	"pt" => "TRANS Required field first name missing."
+	);
+
+$txt_could_not_find_vps_server_in_db = array (
+	"fr" => "Impossible de trouver le serveur VDS dans la base de donnée",
+	"en" => "Could not find the VPS server in database",
+	"hu" => "TRANS Could not find the VPS server in database",
+	"it" => "TRANS Could not find the VPS server in database",
+	"nl" => "TRANS Could not find the VPS server in database",
+	"ru" => "TRANS Could not find the VPS server in database",
+	"de" => "TRANS Could not find the VPS server in database",
+	"zh" => "TRANS Could not find the VPS server in database",
+	"pl" => "TRANS Could not find the VPS server in database",
+	"se" => "TRANS Could not find the VPS server in database",
+	"es" => "TRANS Could not find the VPS server in database",
+	"pt" => "TRANS Could not find the VPS server in database"
+	);
+
+$txt_country_code_seems_incorrect = array (
+	"fr" => "Country code seems incorrect.",
+	"en" => "Country code seems incorrect.",
+	"hu" => "TRANS Country code seems incorrect.",
+	"it" => "TRANS Country code seems incorrect.",
+	"nl" => "TRANS Country code seems incorrect.",
+	"ru" => "TRANS Country code seems incorrect.",
+	"de" => "TRANS Country code seems incorrect.",
+	"zh" => "TRANS Country code seems incorrect.",
+	"pl" => "TRANS Country code seems incorrect.",
+	"se" => "TRANS Country code seems incorrect.",
+	"es" => "TRANS Country code seems incorrect.",
+	"pt" => "TRANS Country code seems incorrect."
+	);
+
+$txt_is_company_radio_button_wrong = array (
+	"fr" => "Le bouton radio de société n'est pas bon!",
+	"en" => "Is company radio button is wrong!",
+	"hu" => "TRANS Is company radio button is wrong!",
+	"it" => "TRANS Is company radio button is wrong!",
+	"nl" => "TRANS Is company radio button is wrong!",
+	"ru" => "TRANS Is company radio button is wrong!",
+	"de" => "TRANS Is company radio button is wrong!",
+	"zh" => "TRANS Is company radio button is wrong!",
+	"pl" => "TRANS Is company radio button is wrong!",
+	"se" => "TRANS Is company radio button is wrong!",
+	"es" => "TRANS Is company radio button is wrong!",
+	"pt" => "TRANS Is company radio button is wrong!"
+	);
+
+$txt_required_field_zipcode_missing = array (
+	"fr" => "Champ code postal manquant.",
+	"en" => "Required field zipcode missing.",
+	"hu" => "TRANS Required field zipcode missing.",
+	"it" => "TRANS Required field zipcode missing.",
+	"nl" => "TRANS Required field zipcode missing.",
+	"ru" => "TRANS Required field zipcode missing.",
+	"de" => "TRANS Required field zipcode missing.",
+	"zh" => "TRANS Required field zipcode missing.",
+	"pl" => "TRANS Required field zipcode missing.",
+	"se" => "TRANS Required field zipcode missing.",
+	"es" => "TRANS Required field zipcode missing.",
+	"pt" => "TRANS Required field zipcode missing."
+	);
+
+$txt_required_field_city_missing = array (
+	"fr" => "Required field city missing.",
+	"en" => "Required field city missing.",
+	"hu" => "TRANS Required field city missing.",
+	"it" => "TRANS Required field city missing.",
+	"nl" => "TRANS Required field city missing.",
+	"ru" => "TRANS Required field city missing.",
+	"de" => "TRANS Required field city missing.",
+	"zh" => "TRANS Required field city missing.",
+	"pl" => "TRANS Required field city missing.",
+	"se" => "TRANS Required field city missing.",
+	"es" => "TRANS Required field city missing.",
+	"pt" => "TRANS Required field city missing."
+	);
+
+$txt_selling_conditions_not_accepted = array (
+	"fr" => "Conditions de ventes non acceptés!",
+	"en" => "Selling conditions not accepted!",
+	"hu" => "TRANS Selling conditions not accepted!",
+	"it" => "TRANS Selling conditions not accepted!",
+	"nl" => "TRANS Selling conditions not accepted!",
+	"ru" => "TRANS Selling conditions not accepted!",
+	"de" => "TRANS Selling conditions not accepted!",
+	"zh" => "TRANS Selling conditions not accepted!",
+	"pl" => "TRANS Selling conditions not accepted!",
+	"se" => "TRANS Selling conditions not accepted!",
+	"es" => "TRANS Selling conditions not accepted!",
+	"pt" => "TRANS Selling conditions not accepted!"
+	);
+
+$txt_username_already_taken_try_again = array (
+	"fr" => "Nom d'utilisateur déjà pris! Essayez encore.",
+	"en" => "Username already taken! Try again.",
+	"hu" => "TRANS Username already taken! Try again.",
+	"it" => "TRANS Username already taken! Try again.",
+	"nl" => "TRANS Username already taken! Try again.",
+	"ru" => "TRANS Username already taken! Try again.",
+	"de" => "TRANS Username already taken! Try again.",
+	"zh" => "TRANS Username already taken! Try again.",
+	"pl" => "TRANS Username already taken! Try again.",
+	"se" => "TRANS Username already taken! Try again.",
+	"es" => "TRANS Username already taken! Try again.",
+	"pt" => "TRANS Username already taken! Try again."
+	);
+
+$txt_vat_number = array (
+	"fr" => "Numéro de TVA : ",
+	"en" => "VAT Number:",
+	"hu" => "TRANS VAT Number: ",
+	"it" => "TRANS VAT Number: ",
+	"nl" => "TRANS VAT Number: ",
+	"ru" => "TRANS VAT Number: ",
+	"de" => "TRANS VAT Number: ",
+	"zh" => "TRANS VAT Number: ",
+	"pl" => "TRANS VAT Number: ",
+	"se" => "TRANS VAT Number: ",
+	"es" => "TRANS VAT Number: ",
+	"pt" => "TRANS VAT Number: "
+	);
+
+$txt_i_agree_to_the = array (
+	"fr" => "J'accepte les",
+	"en" => "I agree to the",
+	"hu" => "TRANS I agree to the",
+	"it" => "TRANS I agree to the",
+	"nl" => "TRANS I agree to the",
+	"ru" => "TRANS I agree to the",
+	"de" => "TRANS I agree to the",
+	"zh" => "TRANS I agree to the",
+	"pl" => "TRANS I agree to the",
+	"se" => "TRANS I agree to the",
+	"es" => "TRANS I agree to the",
+	"pt" => "TRANS I agree to the"
+	);
+
+$txt_selling_conditions = array (
+	"fr" => "conditions de ventes",
+	"en" => "selling conditions",
+	"hu" => "TRANS selling conditions",
+	"it" => "TRANS selling conditions",
+	"nl" => "TRANS selling conditions",
+	"ru" => "TRANS selling conditions",
+	"de" => "TRANS selling conditions",
+	"zh" => "TRANS selling conditions",
+	"pl" => "TRANS selling conditions",
+	"se" => "TRANS selling conditions",
+	"es" => "TRANS selling conditions",
+	"pt" => "TRANS selling conditions"
+	);
+
+$txt_vps_location = array (
+	"fr" => "Localisation du VDS : ",
+	"en" => "VPS location: ",
+	"hu" => "TRANS VPS location: ",
+	"it" => "TRANS VPS location: ",
+	"nl" => "TRANS VPS location: ",
+	"ru" => "TRANS VPS location: ",
+	"de" => "TRANS VPS location: ",
+	"zh" => "TRANS VPS location: ",
+	"pl" => "TRANS VPS location: ",
+	"se" => "TRANS VPS location: ",
+	"es" => "TRANS VPS location: ",
+	"pt" => "TRANS VPS location: "
+	);
+
+$txt_vps_operating_system = array (
+	"fr" => "VPS operating system : ",
+	"en" => "VPS operating system: ",
+	"hu" => "TRANS VPS operating system: ",
+	"it" => "TRANS VPS operating system: ",
+	"nl" => "TRANS VPS operating system: ",
+	"ru" => "TRANS VPS operating system: ",
+	"de" => "TRANS VPS operating system: ",
+	"zh" => "TRANS VPS operating system: ",
+	"pl" => "TRANS VPS operating system: ",
+	"se" => "TRANS VPS operating system: ",
+	"es" => "TRANS VPS operating system: ",
+	"pt" => "TRANS VPS operating system:"
+	);
+
+$txt_ = array (
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_action = array(
+	"fr" => "Action",
+	"en" => "Action",
+	"hu" => "TRANS Action",
+	"it" => "TRANS Action",
+	"nl" => "TRANS Action",
+	"ru" => "TRANS Action",
+	"de" => "TRANS Action",
+	"zh" => "TRANS Action",
+	"pl" => "TRANS Action",
+	"se" => "TRANS Action",
+	"es" => "TRANS Action",
+	"pt" => "TRANS Action"
+	);
 
 $txt_import_button = array(
 	"fr" => "Importer",
@@ -1509,6 +1869,20 @@ $txt_cmenu_myaccount = array(
 	"es" => "Mi cuenta",
 	"pt" => "A minha conta"
 	);
+$txt_cmenu_past_payments = array(
+	"fr" => "Paiement effectués",
+	"en" => "Past payments",
+	"hu" => "TRANS Past payments",
+	"it" => "TRANS Past payments",
+	"nl" => "TRANS Past payments",
+	"ru" => "TRANS Past payments",
+	"de" => "TRANS Past payments",
+	"zh" => "TRANS Past payments",
+	"pl" => "TRANS Past payments",
+	"se" => "TRANS Past payments",
+	"es" => "TRANS Past payments",
+	"pt" => "TRANS Past payments"
+	);
 $txt_cmenu_myaccount_stats = array(
 	"fr" => "Statistiques",
 	"en" => "Statistics",
@@ -1722,6 +2096,20 @@ $txt_cmenu_password = array(
 	"es" => "Contrase&ntilde;a",
 	"pt" => "Palavra chave"
 	);
+$txt_cmenu_support_tickets = array(
+	"fr" => "Tiquets de support",
+	"en" => "Support tickets",
+	"hu" => "TRANS Support tickets",
+	"it" => "TRANS Support tickets",
+	"nl" => "TRANS Support tickets",
+	"ru" => "TRANS Support tickets",
+	"de" => "TRANS Support tickets",
+	"zh" => "TRANS Support tickets",
+	"pl" => "TRANS Support tickets",
+	"se" => "TRANS Support tickets",
+	"es" => "TRANS Support tickets",
+	"pt" => "TRANS Support tickets"
+	);
 $txt_cmenu_help = array(
 	"fr" => "Aide",
 	"en" => "Help",
@@ -1872,7 +2260,7 @@ $txt_pagetop_zesubtitle = array(
 	"nl" => "TRANS Take the control of your domain name",
 	"ru" => "TRANS Take the control of your domain name",
 	"de" => "Kontrollieren Sie Ihren Domain Name selbst",
-	"zh" => "<b>ÇáËÉ¹ÜÀíÄúµÄÖ÷»ú</b>",
+	"zh" => "ÇáËÉ¹ÜÀíÄúµÄÖ÷»ú",
 	"pl" => "System zarz±dzania Twoj± domen±",
 	"se" => "TRANS SVENSKA",
 	"es" => "Controle su nombre de dominio",

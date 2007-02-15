@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.17 2006/11/27 10:24:54 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.18 2007/02/15 08:58:20 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -17,6 +17,11 @@ function productManager(){
         global $txt_product_action;
         global $txt_product_adddomain;
         global $txt_product_period;
+
+	global $txt_no;
+	global $txt_yes;
+	global $txt_product_editor_product_list_editor;
+
         // end of modyfication ;)
 
 	// Build the product ID popup
@@ -32,7 +37,7 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => "Product list editor",
+        	"title" => $txt_product_editor_product_list_editor[$lang],
         	"action" => "hosting_product_list",
         	"forward" => array("rub"),
         	"cols" => array(
@@ -43,7 +48,7 @@ function productManager(){
 				),
 			"renew_prod_id" => array(
 				"type" => "popup",
-				"legend" => "Renewal-ID",
+				"legend" => $txt_product_editor_renewal_id[$lang],
 				"values" => $renew_id_popup,
 				"display_replace" => array("No-renew")
 				),
@@ -54,7 +59,7 @@ function productManager(){
 				),
 			"heb_type" => array(
 				"type" => "popup",
-				"legend" => "Type",
+				"legend" => $txt_product_editor_type[$lang],
 				"values" => array("shared","ssl","vps","server")
 				),
 			"period" => array(
@@ -84,7 +89,7 @@ function productManager(){
 				),
 			"nbr_database" => array(
 				"type" => "text",
-				"legend" => "DB",
+				"legend" => $txt_product_editor_db[$lang],
 				"size" => "2"
 				),
 			"bandwidth" => array(
@@ -99,15 +104,16 @@ function productManager(){
 				),
 			"private" => array(
 				"type" => "checkbox",
-				"legend" => "Private",
+				"legend" => $txt_product_editor_private[$lang],
 				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]),
 				"default" => "no")
         		)
         	);
 	$out = dtcDatagrid($dsc);
 	$out .= helpLink("PmWiki/HostingProductManager");
 	return $out;
-        $q = "SELECT * FROM $pro_mysql_product_table ORDER BY id";
+/*        $q = "SELECT * FROM $pro_mysql_product_table ORDER BY id";
         $r = mysql_query($q)or die("Cannot query \"$q\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
         $n = mysql_num_rows($r);
 // modification by seeb 7th may 2006
@@ -230,7 +236,7 @@ function productManager(){
 		$out .= "</tr>";
 	}
 	$out .= "</table>";
-	return $out;
+	return $out;*/
 }
 
 ?>

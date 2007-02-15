@@ -6,6 +6,25 @@ function register_user(){
 // fax=state&address1=1&address2=2&address3=3&zipcode=75991&city=paris&
 // state=state&country=US&Login=Register
 
+	global $txt_err_not_registering;
+	global $txt_product_id_not_valid;
+	global $txt_user_login_incorrect;
+	global $txt_username_invalid_root_or_debian;
+	global $txt_password_format_incorrect;
+	global $txt_passwords_do_not_match;
+	global $txt_vps_location_not_selected;
+	global $txt_email_does_not_look_like_correct;
+	global $txt_required_field_family_name_missing;
+	global $txt_required_field_first_name_missing;
+	global $txt_could_not_find_vps_server_in_db;
+	global $txt_country_code_seems_incorrect;
+	global $txt_is_company_radio_button_wrong;
+	global $txt_required_field_zipcode_missing;
+	global $txt_required_field_city_missing;
+	global $txt_selling_conditions_not_accepted;
+	global $txt_username_already_taken_try_again;
+	global $lang;
+
 	global $pro_mysql_admin_table;
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_product_table;
@@ -27,7 +46,7 @@ function register_user(){
 	&& (!isset($_REQUEST["city"]) || $_REQUEST["city"] == "")
 	&& (!isset($_REQUEST["firstname"]) || $_REQUEST["firstname"] == "")){
 		$ret["err"] = 1;
-		$ret["mesg"] = "Not registering";
+		$ret["mesg"] = $txt_err_not_registering[$lang];
 		return $ret;
 	}
 
@@ -37,7 +56,7 @@ function register_user(){
 
 	if(!isRandomNum($esc_product_id)){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Product ID not valid!";
+		$ret["mesg"] = $txt_product_id_not_valid[$lang];
 		return $ret;
 	}
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='$esc_product_id';";
@@ -53,43 +72,43 @@ function register_user(){
 	// Do field format checking and escaping for all fields
 	if(!isFtpLogin($_REQUEST["reqadm_login"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.";
+		$ret["mesg"] = $txt_user_login_incorrect[$lang];
 		return $ret;
 	}
 	if($_REQUEST["reqadm_login"] == "root" || $_REQUEST["reqadm_login"] == "debian-sys-maint"){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Username invalid: please pickup something else than root or debian-sys-maint";
+		$ret["mesg"] = $txt_username_invalid_root_or_debian[$lang];
 		return $ret;
 	}
 	if(!isDTCPassword($_REQUEST["reqadm_pass"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.";
+		$ret["mesg"] = $txt_password_format_incorrect[$lang];
 		return $ret;
 	}
 	if($_REQUEST["reqadm_pass"] != $_REQUEST["reqadm_pass2"]){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Passwords 1 and 2 does not match!";
+		$ret["mesg"] = $txt_passwords_do_not_match[$lang];
 		return $ret;
 	}
 	// If shared or ssl hosting, we MUST do type checkings
 	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl"){
 		if(!isHostnameOrIP($_REQUEST["domain_name"])){
 			$ret["err"] = 2;
-			$ret["mesg"] = "Domain name does not look like to be a correct hostname.";
+			$ret["mesg"] = $txt_domain_name_does_not_look_like_correct[$lang];
 			return $ret;
 		}
 	// If not a shared or ssl account, we don't care if it's umpty, but we take care of mysql insertion anyway
 	}else{
 		if($_REQUEST["domain_name"] != "" && (!isHostnameOrIP($_REQUEST["domain_name"]))){
 			$ret["err"] = 2;
-			$ret["mesg"] = "Domain name does not look like to be a correct hostname.";
+			$ret["mesg"] = $txt_domain_name_does_not_look_like_correct[$lang];
 			return $ret;
 		}
 	}
 	if($db_product["heb_type"] == "vps"){
 		if($_REQUEST["vps_server_hostname"] == "-1"){
 			$ret["err"] = 2;
-			$ret["mesg"] = "VPS location not selected!";
+			$ret["mesg"] = $txt_vps_location_not_selected[$lang];
 			return $ret;
 		}
 		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".addslashes($_REQUEST["vps_server_hostname"])."';";
@@ -97,19 +116,19 @@ function register_user(){
 		$n = mysql_num_rows($r);
 		if($n != 1){
 			$ret["err"] = 2;
-			$ret["mesg"] = "Could not find the VPS server in database";
+			$ret["mesg"] = $txt_could_not_find_vps_server_in_db[$lang];
 			return $ret;
 		}
 	}
 	if(!isValidEmail($_REQUEST["email"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Email does not look like to be a correct address format.";
+		$ret["mesg"] = $txt_email_does_not_look_like_correct[$lang];
 		return $ret;
 	}
 
 	if(!isset($_REQUEST["familyname"]) || $_REQUEST["familyname"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Required field family name missing.";
+		$ret["mesg"] = $txt_required_field_family_name_missing[$lang];
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -121,7 +140,7 @@ function register_user(){
 
 	if(!isset($_REQUEST["firstname"]) || $_REQUEST["firstname"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Required field first name missing.";
+		$ret["mesg"] = $txt_required_field_first_name_missing[$lang];
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -187,7 +206,7 @@ function register_user(){
 
 	if(!isset($_REQUEST["zipcode"]) || $_REQUEST["zipcode"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Required field zipcode missing.";
+		$ret["mesg"] = $txt_required_field_zipcode_missing[$lang];
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -199,7 +218,7 @@ function register_user(){
 
 	if(!isset($_REQUEST["city"]) || $_REQUEST["city"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Required field city missing.";
+		$ret["mesg"] = $txt_required_field_city_missing[$lang];
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -223,7 +242,7 @@ function register_user(){
 
 	if(!ereg("^([A-Z])([A-Z])\$",$_REQUEST["country"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Country code seems incorrect.";
+		$ret["mesg"] = $txt_country_code_seems_incorrect[$lang];
 		return $ret;
 	}
 
@@ -233,13 +252,13 @@ function register_user(){
 		$esc_comp = "no";
 	}else{
 		$ret["err"] = 2;
-		$ret["mesg"] = "Is company radio button is wrong!";
+		$ret["mesg"] = $txt_is_company_radio_button_wrong[$lang];
 		return $ret;
 	}
 
 	if($conf_selling_conditions_url != "none" && (!isset($_REQUEST["condition"]) || $_REQUEST["condition"] != "yes")){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Selling conditions not accepted!";
+		$ret["mesg"] = $txt_selling_conditions_not_accepted[$lang];
 		return $ret;
 	}
 
@@ -248,7 +267,7 @@ function register_user(){
 	$n = mysql_num_rows($r);
 	if($n > 0){
 		$ret["err"] = 3;
-		$ret["mesg"] = "Username already taken! Try again.";
+		$ret["mesg"] = $txt_username_already_taken_try_again[$lang];
 		return $ret;
 	}
 	$q = "SELECT reqadm_login FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
@@ -256,7 +275,7 @@ function register_user(){
 	$n = mysql_num_rows($r);
 	if($n > 0){
 		$ret["err"] = 3;
-		$ret["mesg"] = "Username already tried to be taken! Try again.";
+		$ret["mesg"] = $txt_username_already_taken_try_again[$lang];
 		return $ret;
 	}
 	$vps_add1 = "";
@@ -388,6 +407,11 @@ function registration_form(){
 	global $txt_draw_client_info_state;
 	global $txt_draw_client_info_country;
 	global $txt_register_custom_message_title;
+	global $txt_vat_number;
+	global $txt_selling_conditions;
+	global $txt_i_agree_to_the;
+	global $txt_vps_operating_system;
+	global $txt_vps_location;
 
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
@@ -529,10 +553,10 @@ function registration_form(){
 	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"domname_text\" id=\"domname_text\" $domname_hidden>".$txt_desired_domain_name[$lang].":</div></td>
 	<td><div name=\"domname_field\" id=\"domname_field\" $domname_hidden>www.<input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></div></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_popup_text\" id=\"vps_popup_text\" $vps_hidden>VPS location:</div></td>
+	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_popup_text\" id=\"vps_popup_text\" $vps_hidden>".$txt_vps_location[$lang]."</div></td>
 	<td><div name=\"vps_popup_field\" id=\"vps_popup_field\" $vps_hidden><select name=\"vps_server_hostname\">$vps_location_popup</select></div></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_ospopup_text\" id=\"vps_ospopup_text\" $vps_hidden>VPS operating system:</div></td>
+	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_ospopup_text\" id=\"vps_ospopup_text\" $vps_hidden></div></td>
 	<td><div name=\"vps_ospopup_field\" id=\"vps_ospopup_field\" $vps_hidden><select name=\"vps_os\">
 		<option value=\"debian\" $debian_selected>Debian</option>
 		<option value=\"centos\" $centos_selected>CentOS</option>
@@ -563,7 +587,7 @@ function registration_form(){
 	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_comp_name[$lang]."</td>
 	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">VAT Number:</td>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_vat_number[$lang]."</td>
 	<td><input type=\"text\" name=\"vat_num\" value=\"$frm_vat_num\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_email[$lang]."</td>
@@ -603,7 +627,7 @@ function registration_form(){
 	$addr_skined = skin("frame",$client_addr,"");
 
 	if($conf_selling_conditions_url != "none"){
-		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> I agree to the <a href=\"$conf_selling_conditions_url\">selling conditions</a>";
+		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> ".$txt_i_agree_to_the[$lang]." <a href=\"$conf_selling_conditions_url\">".$txt_selling_conditions[$lang]."</a>";
 	}else{
 		$conditions = "";
 	}

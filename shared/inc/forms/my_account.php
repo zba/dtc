@@ -141,7 +141,7 @@ function drawAdminTools_MyAccount($admin){
 </form></center><br>";
 			}
 
-			$out .= "<b><u>SSL tokens</u></b><br>";
+			$out .= "<h3>SSL tokens</h3><br>";
 			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE adm_login='$adm_login' AND available='no';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);

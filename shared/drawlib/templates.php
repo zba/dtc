@@ -30,7 +30,6 @@ function dtcFormLineDraw($text,$control){
 	}else{
 		$incolor = " bgcolor=\"#FFFFFF\" class=\"box_formtable_inputz\" ";
 	}
-	
 	$out = "
   <tr>
     <th $bgcolor style=\"text-align:right;white-space:nowrap;\">$text</th>
@@ -45,6 +44,16 @@ function dtcFormLineDraw($text,$control){
 	return $out;
 }
 
+function dtcApplyButtonSrc(){
+	global $gfx_icn_path_ok;
+	if(isset($gfx_icn_path_ok)){
+		$apply = $gfx_icn_path_ok;
+	}else{
+		$apply = "gfx/stock_apply_20.png";
+	}
+	return $apply;
+}
+
 function dtcFromOkDraw($delete_form=""){
 	global $gfx_icn_path_ok;
 	if(isset($gfx_icn_path_ok)){
@@ -52,7 +61,7 @@ function dtcFromOkDraw($delete_form=""){
 	}else{
 		$apply = "gfx/stock_apply_20.png";
 	}
-	$out = "<tr><td>&nbsp;</td><td><input type=\"image\" src=\"$apply\">$delete_form</td></tr>";
+	$out = "<tr><td>&nbsp;</td><td><input type=\"image\" src=\"".dtcApplyButtonSrc()."\">$delete_form</td></tr>";
 	return $out;
 }
 

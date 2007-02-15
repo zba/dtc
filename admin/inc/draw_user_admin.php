@@ -104,26 +104,65 @@ function drawNewAdminForm(){
 	global $txt_login_title;
 	global $txt_domain_tbl_config_dom_name;
 
+
+	global $txt_dua_no_pending_renewals;
+	global $txt_dua_product;
+	global $txt_dua_payment_date;
+	global $txt_dua_type;
+	global $txt_action;
+	global $txt_cannot_find_payment;
+
+	global $txt_dua_cannot_find_vps_in_db;
+	global $txt_dua_shared;
+	global $txt_dua_ssl_token_purchase;
+	global $txt_dua_ssl_token_renewal;
+	global $txt_dua_cannot_find_server;
+	global $txt_dua_server;
+	global $txt_dua_no_pending_support_tickets;
+	global $txt_dua_age;
+	global $txt_dua_subject;
+	global $txt_dua_cannot_find_ticket;
+
+	global $txt_dua_cannot_find_ticket;
+	global $txt_dua_subject2;
+	global $txt_dua_type2;
+	global $txt_dua_ticket_type_not_found;
+	global $txt_dua_request_to_close_the_ticket;
+	global $txt_yes;
+	global $txt_no;
+	global $txt_dua_back_to_pending_requests;
+	global $txt_dua_domain_name_vps_server_hostname;
+	global $txt_dua_name;	
+
+	global $txt_dua_send_reply;
+	global $txt_dua_send_reply_and_close_ticket;
+	global $txt_dua_close_without_reply;
+	global $txt_dua_cannot_find_product_in_db;
+
+	global $txt_dua_del;
+	global $txt_dua_add;
+	global $txt_dua_view_details;
 	$out = "";
 	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "resolv_ticket"){
 		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='".$_REQUEST["tik_id"]."';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
-			return "Cannot find ticket!";
+			return $txt_dua_cannot_find_ticket[$lang];
 		}
 		$a = mysql_fetch_array($r);
-		$out .= "Subject: ".stripslashes($a["subject"])."<br>";
-		
+		$out .= $txt_dua_subject2[$lang].stripslashes($a["subject"])."<br>";
+
 		$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a["cat_id"]."';";
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		if($n2 != 1){
-			$out .= "Type: type not found!";
+			$tmp = $txt_dua_ticket_type_not_found[$lang];
 		}else{
 			$a2 = mysql_fetch_array($r2);
-			$out .= "Type: ".$a2["catdescript"]."<br>";
+			$tmp = $a2["catdescript"]."<br>";
 		}
+		$out .= $txt_dua_type2.$tmp;
 		$out .= "First query date: ".$a["date"]." ".$a["time"]."<br>";
 		$out .= "Server hostname related: ".$a["server_hostname"]."<br>";
 		
@@ -135,7 +174,7 @@ function drawNewAdminForm(){
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n != 1){
-				$out .= "Ticket not found!!!";
+				$out .= $txt_dua_cannot_find_ticket[$lang];
 				break;
 			}
 			$a = mysql_fetch_array($r);
@@ -152,20 +191,20 @@ function drawNewAdminForm(){
 			}
 		}
 		$out .= "</table>";
-		$out .= "Request to close the ticket: ";
+		$out .= $txt_dua_request_to_close_the_ticket[$lang];
 		if($close_request == "yes"){
-			$out .= "<font color=\"#FF0000\">No</font><br>";
+			$out .= "<font color=\"#FF0000\">".$txt_no[$lang]."</font><br>";
 		}else{
-			$out .= "<font color=\"#FF0000\">Yes</font><br>";
+			$out .= "<font color=\"#FF0000\">".$txt_yes[$lang]."</font><br>";
 		}
 		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 		<input type=\"hidden\" name=\"subaction\" value=\"ticket_reply\">
 		<textarea cols=\"60\" rows=\"10\" wrap=\"physical\" name=\"ticketbody\"></textarea><br>
 		<input type=\"hidden\" name=\"tik_id\" value=\"".$_REQUEST["tik_id"]."\">
 		<input type=\"hidden\" name=\"last_tik_id\" value=\"$last_tik\">
-		<input type=\"submit\" name=\"answer\" value=\"Send reply\">
-		<input type=\"submit\" name=\"answer_close\" value=\"Send reply and close ticket\">
-		<input type=\"submit\" name=\"close\" value=\"Close without reply\">
+		<input type=\"submit\" name=\"answer\" value=\"".$txt_dua_send_reply[$lang]."\">
+		<input type=\"submit\" name=\"answer_close\" value=\"".$txt_dua_send_reply_and_close_ticket[$lang]."\">
+		<input type=\"submit\" name=\"close\" value=\"".$txt_dua_close_without_reply[$lang]."\">
 		</form>";
 		return $out;
 	}
@@ -174,7 +213,7 @@ function drawNewAdminForm(){
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
-			return "Cannot find ticket!";
+			return $txt_dua_cannot_find_ticket[$lang];
 		}
 		$a = mysql_fetch_array($r);
 		if(isset($_REQUEST["answer"])){
@@ -191,7 +230,7 @@ function drawNewAdminForm(){
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$out .= "Ticket reply sent!<br>
 				<form action=\"".$_SERVER["PHP_SELF"]."\">
-				<input type=\"submit\" name=\"submit\" value=\"Back to pending requests\">
+				<input type=\"submit\" name=\"submit\" value=\"".$txt_dua_back_to_pending_requests[$lang]."\">
 				</form>";
 			mailUserTicketReply($a["adm_login"],$a["subject"],$_REQUEST["ticketbody"],$closed);
 		}
@@ -225,7 +264,7 @@ dtcFromOkDraw()."
 		$waiting_new_users .= "<b>".$txt_no_user_waiting[$lang]."</b>";
 	}else{
 		$waiting_new_users .= "<table width=\"100%\"border=\"1\">
-	<tr><td>Name</td><td>".$txt_login_title[$lang]."</td><td>Domain name / VPS server hostname</td><td>Product</td><td>Bank</td><td>Action</td></tr>";
+<tr><td>".$txt_dua_name[$lang]."</td><td>".$txt_login_title[$lang]."</td><td>".$txt_dua_domain_name_vps_server_hostname[$lang]."</td><td>".$txt_dua_product[$lang]."</td><td>".$txt_dua_bank_validated[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".$a["comp_name"].":</u><br>";
@@ -236,8 +275,8 @@ dtcFromOkDraw()."
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$dom_name = "Cannot find product in db!";
-				$prod_name = "Cannot find product in db!";
+				$dom_name = $txt_dua_cannot_find_product_in_db[$lang];
+				$prod_name = $txt_dua_cannot_find_product_in_db[$lang];
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$prod_name = $a2["name"];
@@ -257,12 +296,14 @@ dtcFromOkDraw()."
 				if($n2 != 1)	echo "Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__." : problems with sql tables !";
 				$a2 = mysql_fetch_array($r2);
 				if($a2["valid"] == "yes"){
-					$waiting_new_users .= "<td><font color=\"green\">YES</font></td>";
+					$waiting_new_users .= "<td><font color=\"green\">".$txt_yes[$lang]."</font></td>";
 				}else{
-					$waiting_new_users .= "<td><font color=\"red\">NO</font></td>";
+					$waiting_new_users .= "<td><font color=\"red\">".$txt_no[$lang]."</font></td>";
 				}
 			}
-			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">View details</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Add</a> - <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">Del</a></td>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">".$txt_dua_view_details[$lang]."</a> -
+			<a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">".$txt_dua_add[$lang]."</a> -
+			<a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">".$txt_dua_del[$lang]."</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";
@@ -281,8 +322,8 @@ dtcFromOkDraw()."
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<td>".$a["adm_login"]."</td>";
 			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
-			$waiting_new_users .= "<td><a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_domain_to_user&reqid=".$a["id"]."\">Add</a>
-- <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_domain_to_user&reqid=".$a["id"]."\">Del</a></td></tr>";
+			$waiting_new_users .= "<td><a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_domain_to_user&reqid=".$a["id"]."\">".$txt_dua_add[$lang]."</a>
+- <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_domain_to_user&reqid=".$a["id"]."\">".$txt_dua_del[$lang]."</a></td></tr>";
 		}
 		$waiting_new_users .= "</table>";
 	}
@@ -291,10 +332,10 @@ dtcFromOkDraw()."
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<b>No pending renewals!</b><br>";
+		$waiting_new_users .= "<b>".$txt_dua_no_pending_renewals[$lang]."</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
-	<tr><td>".$txt_login_title[$lang]."</td><td>Product</td><td>Payment date</td><td>Bank validated</td><td>Type</td><td>Action</td></tr>";
+<tr><td>".$txt_login_title[$lang]."</td><td>".$txt_dua_product[$lang]."</td><td>".$txt_dua_payment_date[$lang]."</td><td>".$txt_dua_bank_validated[$lang]."</td><td>".$txt_dua_type[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td>".$a["adm_login"]."</td>";
@@ -313,7 +354,7 @@ dtcFromOkDraw()."
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$bank = "Cannot find payment!";
+				$bank = $txt_dua_cannot_find_payment[$lang];
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$bank = $a2["valid"];
@@ -324,7 +365,7 @@ dtcFromOkDraw()."
 				$q2 = "SELECT * FROM $pro_mysql_vps_table WHERE id='".$a["renew_id"]."'";
 				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 				if($n2 != 1){
-					$heb_type = "VPS: Cannot find VPS in db!";
+					$heb_type = $txt_dua_cannot_find_vps_in_db[$lang];
 				}else{
 					$a2 = mysql_fetch_array($r2);
 					$heb_type = "VPS: ".$a2["vps_xen_name"]."@".$a2["vps_server_hostname"];
@@ -332,23 +373,24 @@ dtcFromOkDraw()."
 				break;
 			case "shared":
 			case "ssl":
-				$heb_type = "Shared";
+				$heb_type = $txt_dua_shared[$lang];
 				break;
 			case "ssl":
-				$heb_type = "SSL Token purchase";
+				$heb_type = $txt_dua_ssl_token_purchase[$lang];
 				break;
 			case "ssl_renew":
-				$heb_type = "SSL Token renewal";
+				$heb_type = $txt_dua_ssl_token_renewal[$lang];
 				break;
 			case "server":
 				$q2 = "SELECT * FROM $pro_mysql_dedicated_table WHERE id='".$a["renew_id"]."'";
 				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 				if($n2 != 1){
-					$heb_type = "Server: Cannot find server in db!";
+					$tmp = $txt_dua_cannot_find_server[$lang];
 				}else{
 					$a2 = mysql_fetch_array($r2);
-					$heb_type = "Server: ".$a2["server_hostname"];
+					$tmp = $a2["server_hostname"];
 				}
+				$heb_type = $txt_dua_server[$lang].$tmp;
 				break;
 			default:
 				echo "Renew type ".$a["heb_type"]." not implemented line ".__LINE__." file ".__FILE__;
@@ -365,10 +407,10 @@ dtcFromOkDraw()."
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<b>No pending support tickets!</b><br>";
+		$waiting_new_users .= "<b>".$txt_dua_no_pending_support_tickets[$lang]."</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
-	<tr><td>".$txt_login_title[$lang]."</td><td>Age</td><td>Type</td><td>Subject</td></tr>";
+<tr><td>".$txt_login_title[$lang]."</td><td>".$txt_dua_age[$lang]."</td><td>".$txt_dua_type[$lang]."</td><td>".$txt_dua_subject[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td>".$a["adm_login"]."</td>";
@@ -376,7 +418,7 @@ dtcFromOkDraw()."
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$cat = "Type not found!";
+				$cat = $txt_dua_ticket_type_not_found[$lang];
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$cat = $a2["catname"];
