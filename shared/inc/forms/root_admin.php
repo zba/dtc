@@ -137,7 +137,7 @@ function drawEditAdmin($admin){
 	}
 	$prodsid .= "</select>";
 
-	$user_data .= dtcFormLineDraw($txt_password[$lang],"<input type=\"text\" name=\"changed_path\" value=\"$adm_path\">");
+	$user_data .= dtcFormLineDraw($txt_path[$lang],"<input type=\"text\" name=\"changed_path\" value=\"$adm_path\">");
 	$user_data .= dtcFormLineDraw($txt_id_client[$lang],"<input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a>");
 	$user_data .= dtcFormLineDraw($txt_domain_tbl_config_quotaMB[$lang],"<input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">");
 	$user_data .= dtcFormLineDraw($txt_allowed_data_transferMB[$lang],"<input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\">");
