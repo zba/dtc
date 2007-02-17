@@ -194,7 +194,7 @@ function configEditorTemplate ($dsc,$conftype="config"){
 			$control = "<input $size type=\"text\" name=\"".$keys[$i]."\" value=\"".$$fld."\">";
 			break;
 		}
-		$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$control);
+		$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$control,!($i%2));
 	}
 	$out .= dtcFromOkDraw()."</form></table>";
 	return $out;

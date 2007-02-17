@@ -16,20 +16,37 @@ function dtcFormTableAttrs(){
 	return $out;
 }
 
-function dtcFormLineDraw($text,$control){
-	global $gfx_from_entry_label_background;
-	global $gfx_from_entry_label_control_background;
+function dtcFormLineDraw($text,$control,$alternate_color=1){
+	global $gfx_form_entry_label_background;
+	global $gfx_form_entry_label_control_background;
+	global $gfx_form_entry_label_alt_background;
+	global $gfx_form_entry_label_alt_control_background;
 
-	if(isset($gfx_from_entry_label_background)){
-		$bgcolor = $gfx_from_entry_label_background;
+	if($alternate_color == 1){
+		if(isset($gfx_form_entry_label_background)){
+			$bgcolor = $gfx_form_entry_label_background;
+		}else{
+			$bgcolor = " bgcolor=\"#AAAAFF\" class=\"box_formtable_libelle\" ";
+		}
+		if(isset($gfx_form_entry_label_control_background)){
+			$incolor = $gfx_form_entry_label_control_background;
+		}else{
+			$incolor = " bgcolor=\"#FFFFFF\" class=\"box_formtable_inputz\" ";
+		}
 	}else{
-		$bgcolor = " bgcolor=\"#AAAAFF\" class=\"box_formtable_libelle\" ";
+		if(isset($gfx_form_entry_label_alt_background)){
+			$bgcolor = $gfx_form_entry_label_alt_background;
+		}else{
+			$bgcolor = " ";
+		}
+		if(isset($gfx_form_entry_label_alt_control_background)){
+			$incolor = $gfx_form_entry_label_alt_control_background;
+		}else{
+			$incolor = " ";
+		}
 	}
-	if(isset($gfx_from_entry_label_control_background)){
-		$incolor = $gfx_from_entry_label_control_background;
-	}else{
-		$incolor = " bgcolor=\"#FFFFFF\" class=\"box_formtable_inputz\" ";
-	}
+
+
 	$out = "
   <tr>
     <th $bgcolor style=\"text-align:right;white-space:nowrap;\">$text</th>
@@ -112,7 +129,7 @@ function dtcDatagrid($dsc){
 	global $gfx_icn_path_delete;
 	global $gfx_icn_path_add;
 
-	global $gfx_from_entry_label_background;
+	global $gfx_form_entry_label_background;
 
 	if(isset($gfx_icn_path_ok)){
 		$apply = $gfx_icn_path_ok;
@@ -309,7 +326,7 @@ function dtcDatagrid($dsc){
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$out .= "<tr><form action=\"".$_SERVER["PHP_SELF"]."\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_edit\">";
-		if(($i % 2) == 1 && isset($gfx_from_entry_label_background)){
+		if(($i % 2) == 1 && isset($gfx_form_entry_label_background)){
 			$tdclass = "dtcDatagrid_table_flds_alt";
 		}else{
 			$tdclass = "dtcDatagrid_table_flds";
@@ -425,7 +442,7 @@ function dtcDatagrid($dsc){
 		}
 	}
 	if(!isset($dsc["skip_creation"]) || $dsc["skip_deletion"] != "yes"){
-		if(($i % 2) == 1 && isset($gfx_from_entry_label_background)){
+		if(($i % 2) == 1 && isset($gfx_form_entry_label_background)){
 			$tdclass = "dtcDatagrid_table_flds_alt";
 		}else{
 			$tdclass = "dtcDatagrid_table_flds";
@@ -1077,7 +1094,7 @@ function dtcListItemsEdit($dsc){
 				case "password":
 					$genpass = autoGeneratePassButton($dsc["action"]."_new_item_frm",$keys[$i]);
 					$ctrl = "<input type=\"password\" name=\"".$keys[$i]."\" value=\"\">$genpass";
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2);
 					break;
 				case "text":
 					if( isset($dsc["cols"][ $keys[$i] ]["happen_domain"]) ){
@@ -1094,7 +1111,7 @@ function dtcListItemsEdit($dsc){
 						$ctrl_value = "";
 					}
 					$ctrl = "<input type=\"text\" name=\"".$keys[$i]."\" value=\"$ctrl_value\">$happen";
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2);
 					break;
 				case "textarea":
 					if( isset($dsc["cols"][ $keys[$i] ]["cols"]) ){
@@ -1108,7 +1125,7 @@ function dtcListItemsEdit($dsc){
 						$ctrl_rows = "";
 					}
 					$ctrl = "<textarea $ctrl_cols $ctrl_rows name=\"".$keys[$i]."\"></textarea>";
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2);
 					break;
 				case "radio":
 					$nbr_choices = sizeof( $dsc["cols"][ $keys[$i] ]["values"] );
@@ -1135,7 +1152,7 @@ function dtcListItemsEdit($dsc){
 						$ctrl .= "<input type=\"radio\" name=\"".$keys[$i]."\" value=\"".$dsc["cols"][ $keys[$i] ]["values"][$x]."\" $selected> ";
 						$ctrl .= $display_val;
 					}
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2);
 					break;
 				case "checkbox":
 					if( !isset($dsc["cols"][ $keys[$i] ]["default"]) ){
@@ -1144,7 +1161,7 @@ function dtcListItemsEdit($dsc){
 						$checked = " ";
 					}
 					$ctrl = "<input type=\"checkbox\" name=\"".$keys[$i]."\" value=\"yes\" $checked>";
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2);
 					break;
 				case "popup":
 					$nbr_choices = sizeof( $dsc["cols"][ $keys[$i] ]["values"] );
@@ -1165,11 +1182,11 @@ function dtcListItemsEdit($dsc){
 						}
 						$ctrl .= " <option value=\"".$dsc["cols"][ $keys[$i] ]["values"][$x]."\" $selected>$display_val</option>";
 					}
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2);
 					break;
 				default:
 					$ctrl = "Not implemented yet!!!";
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2);
 					break;
 				}
 			}
@@ -1210,7 +1227,7 @@ function dtcListItemsEdit($dsc){
 						$ctrl_rows = "";
 					}
 					$ctrl = "<textarea $ctrl_cols $ctrl_rows name=\"".$keys[$j]."\">".stripslashes($a[ $keys[$j] ])."</textarea>";
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl,$j%2);
 					break;
 				case "password":
 				case "text":
@@ -1239,7 +1256,7 @@ function dtcListItemsEdit($dsc){
 						$input_disp_type = "text";
 					}
 					$ctrl = "<input type=\"$input_disp_type\" $size name=\"".$keys[$j]."\" value=\"".stripslashes($input_disp_value)."\" $disabled>$genpass$happen";
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl,$j%2);
 					break;
 				case "radio":
 					$nbr_choices = sizeof( $dsc["cols"][ $keys[$j] ]["values"] );
@@ -1253,7 +1270,7 @@ function dtcListItemsEdit($dsc){
 						$ctrl .= " <input type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
 						$ctrl .= $dsc["cols"][ $keys[$j] ]["values"][$x];
 					}
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl,$j%2);
 					break;
 				case "checkbox":
 					if($dsc["cols"][ $keys[$j] ]["values"][0] == $a[ $keys[$j] ]){
@@ -1262,7 +1279,7 @@ function dtcListItemsEdit($dsc){
 						$selected = " ";
 					}
 					$ctrl = "<input type=\"checkbox\" name=\"".$keys[$j]."\" value=\"yes\" ".$selected.">";
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl,$j%2);
 					break;
 				case "popup":
 					$nbr_choices = sizeof( $dsc["cols"][ $keys[$j] ]["values"] );
@@ -1280,11 +1297,11 @@ function dtcListItemsEdit($dsc){
 						}
 						$ctrl .= " <option value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected>$display_val</option>";
 					}
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl,$j%2);
 					break;
 				default:
 					$ctrl = "Not implemented yet!!!";
-					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl);
+					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl,$j%2);
 					break;
 				}
 			}

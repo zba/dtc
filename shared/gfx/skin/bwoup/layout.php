@@ -358,15 +358,39 @@ function skin_LayoutAdminPage (){
 	///////////////////////
 	switch($rub){
 	case "crm": // CRM TOOL
-		$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(),$txt_client_addr_title[$lang]);
-			if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
+/*		$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(),$txt_client_addr_title[$lang]);
+		if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
 			$rightFrameCells[] = skin($conf_skin,DTCRMclientAdmins(),$txt_client_admins_title[$lang]);
 			$rightFrameCells[] = skin($conf_skin,DTCRMshowClientCommands($_REQUEST["id"]),$txt_client_commands_title[$lang]);
 		}
 		$rightFrame = makeVerticalFrame($rightFrameCells);
 		$leftFrameCells[] = skin($conf_skin,DTCRMlistClients(),$txt_client_list_title[$lang]);
 		$leftFrame = makeVerticalFrame($leftFrameCells);
-		$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);
+		$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);*/
+		$admin_list = DTCRMlistClients();
+		$client_editor = DTCRMeditClients();
+		if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
+			$client_editor .= DTCRMclientAdmins();
+		}
+		$zemain_content = '
+<table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="box_wnb_nb" valign="top">
+    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$txt_client_list_title[$lang].'</div></div></div></div>
+    	'.$admin_list.'
+    </td>
+    <td class="box_wnb_content" valign="top">
+      <div class="box_wnb_content_container">
+      <h2>'.$txt_client_addr_title[$lang].'</h2>
+      '.$client_editor.'
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="box_wnb_nb_bottom"></td>
+    <td class="box_wnb_content_bottom" valign="top"></td>
+  </tr>
+</table>';
 		break;
 	case "renewal":
 		$out = drawRenewalTables();

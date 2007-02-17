@@ -7,8 +7,11 @@ $tmp_path = "gfx/skin/$conf_skin/gfx";
 $gfx_content_background = ' bgcolor="#9FC8D7" ';
 
 // This is the colors of the fields
-$gfx_from_entry_label_background = " class=\"alternatecolorline\" ";
-$gfx_from_entry_label_control_background = " class=\"alternatecolorline\" ";
+$gfx_form_entry_label_background = " class=\"alternatecolorline\" ";
+$gfx_form_entry_label_control_background = " class=\"alternatecolorline\" ";
+
+$gfx_form_entry_label_alt_background = " ";
+$gfx_form_entry_label_alt_control_background = " ";
 
 // These are paths to icons
 $gfx_icn_path_generate_pass = "$tmp_path/buttons/btn_generatepass.gif";
