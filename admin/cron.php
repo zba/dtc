@@ -406,6 +406,8 @@ function checkOtherServerTriggers () {
 
 function checkNamedCronService () {
 	global $conf_generated_file_path;
+	global $conf_dtc_system_username;
+	global $conf_dtc_system_groupname;
 	global $keep_dns_generate_flag;
 	$cronjob_table_content = getCronFlags();
 	///////////////////////////////////////////////////////
@@ -414,9 +416,9 @@ function checkNamedCronService () {
 	if($cronjob_table_content["gen_named"] == "yes"){
 		echo "Generating Named zonefile\n";
 		named_generate();
-		system("chgrp dtcgrp \"$conf_generated_file_path/named.*\"");
+		system("chgrp $conf_dtc_system_groupname \"$conf_generated_file_path/named.*\"");
 		system("chmod 660 \"$conf_generated_file_path/named.*\"");
-		system("chgrp -R dtcgrp \"$conf_generated_file_path/zones\"");
+		system("chgrp -R $conf_dtc_system_groupname \"$conf_generated_file_path/zones\"");
 		system("chmod 660 \"$conf_generated_file_path/zones\"");
 		system("./checkbind.sh $conf_generated_file_path");
 		if($keep_dns_generate_flag == "no"){
@@ -442,11 +444,12 @@ function checkSSHCronService () {
 }
 
 function checkApacheCronService () {
+	global $conf_dtc_system_groupname;
 	$cronjob_table_content = getCronFlags();
 	if($cronjob_table_content["gen_vhosts"] == "yes"){
 		echo "Generating Apache vhosts\n";
 		pro_vhost_generate();
-		system("chgrp dtcgrp \"$conf_generated_file_path/vhosts*\"");
+		system("chgrp $conf_dtc_system_groupname \"$conf_generated_file_path/vhosts*\"");
 		system("chmod 660 \"$conf_generated_file_path/vhosts*\"");
 		markCronflagOk ("gen_vhosts='no'");
 	}
