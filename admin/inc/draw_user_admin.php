@@ -248,7 +248,7 @@ function drawNewAdminForm(){
 <input type=\"hidden\" name=\"newadminuser\" value=\"Ok\">
 ".dtcFormTableAttrs().
 dtcFormLineDraw($txt_login_login[$lang],"<input type=\"text\" name=\"newadmin_login\" value=\"\">").
-dtcFormLineDraw($txt_login_pass[$lang],"<input type=\"password\" name=\"newadmin_pass\" value=\"\">".autoGeneratePassButton("addnewuser_frm","newadmin_pass")).
+dtcFormLineDraw($txt_login_pass[$lang],"<input type=\"password\" name=\"newadmin_pass\" value=\"\">".autoGeneratePassButton("addnewuser_frm","newadmin_pass"),0).
 dtcFormLineDraw($txt_login_path[$lang],"<input type=\"text\" name=\"newadmin_path\" value=\"$conf_site_root_host_path\">").
 dtcFromOkDraw()."
 </form>

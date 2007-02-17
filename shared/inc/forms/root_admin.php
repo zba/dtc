@@ -137,15 +137,15 @@ function drawEditAdmin($admin){
 	}
 	$prodsid .= "</select>";
 
-	$user_data .= dtcFormLineDraw($txt_path[$lang],"<input type=\"text\" name=\"changed_path\" value=\"$adm_path\">");
+	$user_data .= dtcFormLineDraw($txt_path[$lang],"<input type=\"text\" name=\"changed_path\" value=\"$adm_path\">",0);
 	$user_data .= dtcFormLineDraw($txt_id_client[$lang],"<input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a>");
-	$user_data .= dtcFormLineDraw($txt_domain_tbl_config_quotaMB[$lang],"<input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">");
+	$user_data .= dtcFormLineDraw($txt_domain_tbl_config_quotaMB[$lang],"<input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">",0);
 	$user_data .= dtcFormLineDraw($txt_allowed_data_transferMB[$lang],"<input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\">");
-	$user_data .= dtcFormLineDraw($txt_expiration_date[$lang],"<input type=\"text\" name=\"expire\" value=\"$expire\">");
+	$user_data .= dtcFormLineDraw($txt_expiration_date[$lang],"<input type=\"text\" name=\"expire\" value=\"$expire\">",0);
 	$user_data .= dtcFormLineDraw($txt_heb_prod_id[$lang],$prodsid);
-	$user_data .= dtcFormLineDraw($txt_number_of_database[$lang],"<input type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\">");
+	$user_data .= dtcFormLineDraw($txt_number_of_database[$lang],"<input type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\">",0);
 	$user_data .= dtcFormLineDraw($txt_allow_to_add_domains[$lang],$aldom_popup);
-	$user_data .= dtcFormLineDraw($txt_can_have_subadmins_reseller[$lang],$res_selector);
+	$user_data .= dtcFormLineDraw($txt_can_have_subadmins_reseller[$lang],$res_selector,0);
 	$user_data .= dtcFormLineDraw($txt_can_have_ssh_login_for_vhosts[$lang],$sshlog_selector);
 	$user_data .= dtcFromOkDraw()."</table></form>";
 /*	$user_data .= "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
