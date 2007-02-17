@@ -145,21 +145,21 @@ input,select,textarea {
 
 
 
-.btn_p_container {
+.btn_p_container input {
 	float: left;
 	width: 22px;
 	height: 22px;
-	background-image: url(gfx/btn_p_background-2s.gif);
+	background-image: url(gfx/buttons/btn_p_background-2s.gif);
 	background-position: top;
 	background-repeat: no-repeat;
 	font-size: 0px;
 	}
 
-.btn_p_container-hover {
+.btn_p_container-hover input {
 	float: left;
 	width: 22px;
 	height: 22px;
-	background-image: url(gfx/btn_p_background-2s.gif);
+	background-image: url(gfx/buttons/btn_p_background-2s.gif);
 	background-position: bottom;
 	background-repeat: no-repeat;
 	font-size: 0px;

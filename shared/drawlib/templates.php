@@ -61,24 +61,42 @@ function dtcFormLineDraw($text,$control,$alternate_color=1){
 	return $out;
 }
 
-function dtcApplyButtonSrc(){
+function dtcApplyButton(){
 	global $gfx_icn_path_ok;
 	if(isset($gfx_icn_path_ok)){
-		$apply = $gfx_icn_path_ok;
+		$apply = "<div class=\"btn_p_container\" onMouseOver=\"this.className='btn_p_container-hover';\" onMouseOut=\"this.className='btn_p_container';\">
+		<input type=\"image\" src=\"".$gfx_icn_path_ok."\"></div>";
+//		<img src=\"".$gfx_icn_path_ok."\"></div>";
 	}else{
-		$apply = "gfx/stock_apply_20.png";
+		$apply = "<input type=\"image\" src=\"gfx/stock_apply_20.png\">";
 	}
 	return $apply;
 }
 
-function dtcFromOkDraw($delete_form=""){
-	global $gfx_icn_path_ok;
-	if(isset($gfx_icn_path_ok)){
-		$apply = $gfx_icn_path_ok;
+function dtcDeleteButton(){
+	global $gfx_icn_path_delete;
+
+	if(isset($gfx_icn_path_delete)){
+		$delete = "<div class=\"btn_p_container\" onMouseOver=\"this.className='btn_p_container-hover';\" onMouseOut=\"this.className='btn_p_container';\"><input type=\"image\" src=\"".$gfx_icn_path_delete."\"></div>";
 	}else{
-		$apply = "gfx/stock_apply_20.png";
+		$delete = "<input type=\"image\" src=\"gfx/stock_trash_24.png\">";
 	}
-	$out = "<tr><td>&nbsp;</td><td><input type=\"image\" src=\"".dtcApplyButtonSrc()."\">$delete_form</td></tr>";
+	return $delete;
+}
+
+function dtcAddButton(){
+	global $gfx_icn_path_add;
+
+	if(isset($gfx_icn_path_add)){
+		$delete = "<div class=\"btn_p_container\" onMouseOver=\"this.className='btn_p_container-hover';\" onMouseOut=\"this.className='btn_p_container';\"><input type=\"image\" src=\"".$gfx_icn_path_add."\"></div>";
+	}else{
+		$delete = "<input type=\"image\" src=\"gfx/stock_add_24.png\">";
+	}
+	return $delete;
+}
+
+function dtcFromOkDraw($delete_form=""){
+	$out = "<tr><td>&nbsp;</td><td>".dtcApplyButton()."$delete_form</td></tr>";
 	return $out;
 }
 
@@ -125,22 +143,10 @@ function dtcFromOkDraw($delete_form=""){
 function dtcDatagrid($dsc){
 	global $adm_pass;
 
-	global $gfx_icn_path_ok;
-	global $gfx_icn_path_delete;
 	global $gfx_icn_path_add;
 
 	global $gfx_form_entry_label_background;
 
-	if(isset($gfx_icn_path_ok)){
-		$apply = $gfx_icn_path_ok;
-	}else{
-		$apply = "gfx/stock_apply_20.png";
-	}
-	if(isset($gfx_icn_path_delete)){
-		$delete = $gfx_icn_path_delete;
-	}else{
-		$delete = "gfx/stock_trash_24.png";
-	}
 	if(isset($gfx_icn_path_add)){
 		$add = $gfx_icn_path_add;
 	}else{
@@ -432,12 +438,12 @@ function dtcDatagrid($dsc){
 				break;
 			}
 		}
-		$out .= "<td class=\"$tdclass\"><input type=\"image\" src=\"$apply\"></form></td>";
+		$out .= "<td class=\"$tdclass\">".dtcApplyButton()."</form></td>";
 		if(isset($dsc["skip_deletion"]) && $dsc["skip_deletion"] == "yes"){
 			$out .= "<td class=\"$tdclass\">&nbsp;</td></tr>";
 		}else{
 			$out .= "<td class=\"$tdclass\"><form action=\"".$_SERVER["PHP_SELF"]."\">$fw$id_hidden
-			<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete\"><input type=\"image\" src=\"$delete\"></form></td>";
+			<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete\">".dtcDeleteButton()."</form></td>";
 			$out .= "</form></tr>";
 		}
 	}
@@ -526,7 +532,7 @@ function dtcDatagrid($dsc){
 				break;
 			}
 		}
-		$out .= "<td class=\"$tdclass\" colspan=\"2\"><input type=\"image\" src=\"$add\"></form></td></tr>";
+		$out .= "<td class=\"$tdclass\" colspan=\"2\">".dtcAddButton()."</form></td></tr>";
 	}
 	$out .= "</table>";
 	return $out;
@@ -577,20 +583,6 @@ function dtcDatagrid($dsc){
 
 function dtcListItemsEdit($dsc){
 	global $adm_pass;
-
-	global $gfx_icn_path_ok;
-	global $gfx_icn_path_delete;
-	if(isset($gfx_icn_path_ok)){
-		$apply = $gfx_icn_path_ok;
-	}else{
-		$apply = "gfx/stock_apply_20.png";
-	}
-	if(isset($gfx_icn_path_delete)){
-		$delete = $gfx_icn_path_delete;
-	}else{
-		$delete = "gfx/stock_trash_24.png";
-	}
-
 
 	$out = "<h3>".$dsc["title"]."</u></b></h3>";
 
@@ -1308,10 +1300,10 @@ function dtcListItemsEdit($dsc){
 			$delete_button = "<form action=\"".$_SERVER["PHP_SELF"]."\">$fw
 			<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete_item"."\">
 			<input type=\"hidden\" name=\"$id_fldname\" value=\"$id_fld_value\">
-			<input type=\"image\" src=\"$delete\"></form>";
+			".dtcDeleteButton()."</form>";
 
 			$out .= "<tr><td>&nbsp;</td><td><table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
-			<tr><td><input type=\"image\" src=\"$apply\"></form></td><td>$delete_button</td></tr></table></td></tr>";
+			<tr><td>".dtcApplyButton()."</form></td><td>$delete_button</td></tr></table></td></tr>";
 
 			$out .= "</table>";
 		}else{
