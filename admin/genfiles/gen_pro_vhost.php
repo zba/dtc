@@ -176,6 +176,22 @@ function pro_vhost_generate(){
 	global $conf_404_subdomain;
 
 	$vhost_file = "";
+
+$vhost_file .= "# WARNING ! This file is automatically edited by the dtc cron
+# daemon: do not edit. All manual changes to hosts that are configured within
+# the dtc panel will be removed with the next cron job. It's the same for all
+# files in this folder exept the ssl, the 404 and the template folder.
+#
+# If you feel an option is missing, feel free to edit the script that generate
+# this file in dtc/admin/genfiles/gen_pro_vhosts.php. Best is to send us your
+# patch if you feel it's good enough to share.
+#
+# All non dtc hosts should be added in a SEPARATE file that you should include
+# in your httpd.conf or apache.conf See your distribution manual to know where
+# to find this file (somewhere in /etc/httpd or /etc/apache2 or even in
+# /usr/local/etc/apache/httpd.conf ...).
+";
+
 	$vhost_file_listen = "";
 
 	if($conf_unix_type == "gentoo"){
