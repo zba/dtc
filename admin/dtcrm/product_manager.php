@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.18 2007/02/15 08:58:20 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.19 2007/02/17 11:31:05 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -21,6 +21,10 @@ function productManager(){
 	global $txt_no;
 	global $txt_yes;
 	global $txt_product_editor_product_list_editor;
+	global $txt_product_editor_renewal_id;
+	global $txt_product_editor_type;
+	global $txt_product_editor_db;
+	global $txt_product_editor_private;
 
         // end of modyfication ;)
 
