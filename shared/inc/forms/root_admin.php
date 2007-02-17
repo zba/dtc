@@ -282,7 +282,7 @@ function drawEditAdmin($admin){
 		<td><input type=\"text\" name=\"server_hostname\" value=\"\"></td>
 	<tr><td style=\"text-align: right; white-space: nowrap;\">".$txt_root_admin_country[$lang]."</td>
 		<td><select name=\"country\">$cc_code_popup</select></td>
-	<tr><td></td><td><input type=\"image\" src=\"".dtcApplyButtonSrc()."\"></td></tr></table></form>";
+	<tr><td></td><td>".dtcApplyButton()."</td></tr></table></form>";
 
 	$out = "<font size=\"-1\">
 <table>
