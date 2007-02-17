@@ -241,11 +241,11 @@ function restartApache () {
 	echo "Checking SSL certificates...";
 	$return_string = exec("$conf_generated_file_path/vhost_check_ssl_cert",$output,$return_val);
 	if($return_val == 0){
-	  echo "ok!\n";
+		echo "ok!\n";
         }else{
-          echo "problem with a certificate, please start $conf_generated_file_path/vhost_check_ssl_cert manualy\n";
-          echo "Will not restart apache!\n";
-          return;
+		echo "problem with a certificate, please start $conf_generated_file_path/vhost_check_ssl_cert manualy\n";
+		echo "Will not restart apache!\n";
+		return;
         }
 	echo "Testing apache conf\n";
 	exec ("$APACHECTL configtest", $plop, $return_var);
@@ -414,6 +414,10 @@ function checkNamedCronService () {
 	if($cronjob_table_content["gen_named"] == "yes"){
 		echo "Generating Named zonefile\n";
 		named_generate();
+		system("chgrp dtcgrp \"$conf_generated_file_path/named.*\"");
+		system("chmod 660 \"$conf_generated_file_path/named.*\"");
+		system("chgrp -R dtcgrp \"$conf_generated_file_path/zones\"");
+		system("chmod 660 \"$conf_generated_file_path/zones\"");
 		system("./checkbind.sh $conf_generated_file_path");
 		if($keep_dns_generate_flag == "no"){
 			markCronflagOk ("gen_named='no'");
@@ -442,6 +446,8 @@ function checkApacheCronService () {
 	if($cronjob_table_content["gen_vhosts"] == "yes"){
 		echo "Generating Apache vhosts\n";
 		pro_vhost_generate();
+		system("chgrp dtcgrp \"$conf_generated_file_path/vhosts*\"");
+		system("chmod 660 \"$conf_generated_file_path/vhosts*\"");
 		markCronflagOk ("gen_vhosts='no'");
 	}
 	if($cronjob_table_content["restart_apache"] == "yes"){
