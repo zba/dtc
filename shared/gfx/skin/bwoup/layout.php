@@ -175,7 +175,7 @@ function skin_ClientPage (){
 	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
 <html>
 <head>
-<title>DTC: Admin: ".$_SERVER['SERVER_NAME']."</title>
+<title>DTC: Client: ".$_SERVER['SERVER_NAME']."</title>
 $page_metacontent
 $meta
 </head>
@@ -193,6 +193,34 @@ $skinCssString
 </html>";
 }
 
+function skin_NewAccountPage ($form){
+	global $conf_skin;
+	global $page_metacontent;
+	global $meta;
+	global $confirm_javascript;
+	global $java_script;
+	global $skinCssString;
+
+	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+<html>
+<head>
+<title>DTC: Client: ".$_SERVER['SERVER_NAME']."</title>
+$page_metacontent
+$meta
+</head>
+<body id=\"page\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">
+
+".makePreloads()."
+$confirm_javascript
+$java_script
+<link rel=\"stylesheet\" href=\"gfx/skin/bwoup/skin.css\" type=\"text/css\">
+$skinCssString
+
+".anotherTopBanner("DTC","yes")."<div id=\"usernavbarreplacement\"></div>
+<div id=\"content\"><div class=\"box_wnb_content_container\">".$form."</div></div>
+<div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
+</html>";
+}
 
 function skin_DTCConfigMenu ($dsc){
 	if(!isset($_REQUEST["sousrub"])){
@@ -234,6 +262,7 @@ function skin_LayoutClientPage ($menu_content,$main_content,$main_content_title)
       <td class="box_wnb_nb" valign="top">
 	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$txt_left_menu_title[$lang].'</div></div></div></div>
 	<div class="box_wnb_tv_container">
+	<img src="gfx/skin/bwoup/gfx/spacer.gif" width="220" height="1">
 	'.$menu_content.'
 	</div>
       </td>

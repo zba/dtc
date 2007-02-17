@@ -974,3 +974,27 @@ input,select,textarea {
 	font-weight: bold;
 }
 
+.dtcDatagrid_input_alt_color {
+	float: left;
+	padding: 1px 0 0 0;
+	margin: 0;
+	height: 20px;
+	font-family: arial;
+	font-size: 12px;
+	color: #000000;
+	background-color: #FFFFFF;
+	border: 1px solid #000000;
+}
+
+.dtcDatagrid_input_color {
+	float: left;
+	padding: 1px 0 0 0;
+	margin: 0;
+	height: 20px;
+	font-family: arial;
+	font-size: 12px;
+	color: #000000;
+	background-color: #E3E5D8;
+	border: 1px solid #000000;
+}
+

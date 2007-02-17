@@ -82,7 +82,7 @@ function drawEditAdmin($admin){
 		$resflag_no = " checked ";
 	}
 	$res_selector = "<input type=\"radio\" name=\"resseller_flag\" value=\"yes\"$resflag_yes> ".$txt_yes[$lang]."
-	<input type=\"radio\" name=\"resseller_flag\" value=\"no\"$resflag_no> ".$txt_no[$lang];
+	<input type=\"radio\" name=\"resseller_flag\" value=\"no\"$resflag_no> ".$txt_no[$lang]."</div>";
 
 	if($ssh_login_flag == "yes"){
 		$sshlogin_yes = " checked ";
@@ -97,7 +97,7 @@ function drawEditAdmin($admin){
 	if($allow_add_domain == "yes")	$adyes = "selected";	else $adyes = "";
 	if($allow_add_domain == "check")$adcheck = "selected";	else $adcheck = "";
 	if($allow_add_domain == "no")	$adno = "selected";	else $adno = "";
-	$aldom_popup = "<select name=\"allow_add_domain\">
+	$aldom_popup = "<select class=\"dtcDatagrid_input_color\" name=\"allow_add_domain\">
 <option name=\"yes\" $adyes>Yes</option>
 <option name=\"check\" $adcheck>Check</option>
 <option name=\"no\" $adno>No</option>
@@ -114,7 +114,7 @@ function drawEditAdmin($admin){
 ".dtcFormTableAttrs();
 	$genpass = autoGeneratePassButton("admattrbfrm","changed_pass");
 	if ($conf_hide_password == "yes"){
-		$ctrl = "<input type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass";
+		$ctrl = "<input class=\"dtcDatagrid_input_color\" type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass";
 	} else {
 		$ctrl = "<input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass";
 	}
@@ -125,7 +125,7 @@ function drawEditAdmin($admin){
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$prodsid = "";
-	$prodsid .= "<select name=\"heb_prod_id\"><option value=\"0\">".$txt_root_admin_no_product[$lang]."</option>";
+	$prodsid .= "<select class=\"dtcDatagrid_input_color\" name=\"heb_prod_id\"><option value=\"0\">".$txt_root_admin_no_product[$lang]."</option>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		if($a["id"] == $prod_id){
@@ -137,13 +137,13 @@ function drawEditAdmin($admin){
 	}
 	$prodsid .= "</select>";
 
-	$user_data .= dtcFormLineDraw($txt_path[$lang],"<input type=\"text\" name=\"changed_path\" value=\"$adm_path\">",0);
-	$user_data .= dtcFormLineDraw($txt_id_client[$lang],"<input type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a>");
-	$user_data .= dtcFormLineDraw($txt_domain_tbl_config_quotaMB[$lang],"<input type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">",0);
-	$user_data .= dtcFormLineDraw($txt_allowed_data_transferMB[$lang],"<input type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\">");
-	$user_data .= dtcFormLineDraw($txt_expiration_date[$lang],"<input type=\"text\" name=\"expire\" value=\"$expire\">",0);
+	$user_data .= dtcFormLineDraw($txt_path[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"changed_path\" value=\"$adm_path\">",0);
+	$user_data .= dtcFormLineDraw($txt_id_client[$lang],"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a>");
+	$user_data .= dtcFormLineDraw($txt_domain_tbl_config_quotaMB[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">",0);
+	$user_data .= dtcFormLineDraw($txt_allowed_data_transferMB[$lang],"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\">");
+	$user_data .= dtcFormLineDraw($txt_expiration_date[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"expire\" value=\"$expire\">",0);
 	$user_data .= dtcFormLineDraw($txt_heb_prod_id[$lang],$prodsid);
-	$user_data .= dtcFormLineDraw($txt_number_of_database[$lang],"<input type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\">",0);
+	$user_data .= dtcFormLineDraw($txt_number_of_database[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\">",0);
 	$user_data .= dtcFormLineDraw($txt_allow_to_add_domains[$lang],$aldom_popup);
 	$user_data .= dtcFormLineDraw($txt_can_have_subadmins_reseller[$lang],$res_selector,0);
 	$user_data .= dtcFormLineDraw($txt_can_have_ssh_login_for_vhosts[$lang],$sshlog_selector);

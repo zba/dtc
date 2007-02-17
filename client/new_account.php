@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: new_account.php,v 1.30 2007/02/09 17:49:16 thomas Exp $
+ * @version $Id: new_account.php,v 1.31 2007/02/17 19:27:12 thomas Exp $
  * @abstract Localization must go on ... ;) seeb
  * @todo repair bug for 
  * "Cannot reselect transaction for id $extapi_pay_id: registration failed!" 
@@ -259,9 +259,11 @@ Please now click on the following button to go for paiment:<br>
 }
 $login_skined = skin($conf_skin,$form,$txt_register_new_account[$lang]);
 $mypage = layout_login_and_languages($login_skined,$lang_sel);
-// Output the result !
-
-//echo anotherPage($txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
-echo anotherPage("Client:","","",makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
+if(function_exists("skin_NewAccountPage")){
+	skin_NewAccountPage($login_skined);
+}else{
+	//echo anotherPage($skin_txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
+	echo anotherPage("Client:","","",makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
+}
 
 ?>

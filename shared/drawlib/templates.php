@@ -142,16 +142,11 @@ function dtcFromOkDraw($delete_form=""){
 // Note: this function has no field validation checks, do not use for the user panel, only for the root one !!!
 function dtcDatagrid($dsc){
 	global $adm_pass;
-
-	global $gfx_icn_path_add;
+	global $txt_action;
+	global $lang;
 
 	global $gfx_form_entry_label_background;
 
-	if(isset($gfx_icn_path_add)){
-		$add = $gfx_icn_path_add;
-	}else{
-		$add = "gfx/stock_add_24.png";
-	}
 	$out = "<h3>".$dsc["title"]."</h3>";
 
 	$nbr_forwards = sizeof($dsc["forward"]);
@@ -304,7 +299,7 @@ function dtcDatagrid($dsc){
 			$out .= "<td class=\"dtcDatagrid_table_titles\">".$dsc["cols"][ $keys[$i] ]["legend"]."</td>";
 		}
 	}
-	$out .= "<td class=\"dtcDatagrid_table_titles\" colspan=\"2\"><b>Action</b></td>";
+	$out .= "<td class=\"dtcDatagrid_table_titles\" colspan=\"2\"><b>".$txt_action[$lang]."</b></td>";
 	$out .= "</tr>";
 
 	// Display the existing entries of the table (edition and deletion)
@@ -331,11 +326,13 @@ function dtcDatagrid($dsc){
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$out .= "<tr><form action=\"".$_SERVER["PHP_SELF"]."\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_edit\">";
+		$out .= "<tr><form name=\"".$dsc["action"]."_edit_frm_$i\" action=\"".$_SERVER["PHP_SELF"]."\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_edit\">";
 		if(($i % 2) == 1 && isset($gfx_form_entry_label_background)){
 			$tdclass = "dtcDatagrid_table_flds_alt";
+			$input_class = "dtcDatagrid_input_alt_color";
 		}else{
 			$tdclass = "dtcDatagrid_table_flds";
+			$input_class = "dtcDatagrid_input_color";
 		}
 		for($j=0;$j<$nbr_fld;$j++){
 			$the_fld = $dsc["cols"][ $keys[$j] ];
@@ -347,7 +344,18 @@ function dtcDatagrid($dsc){
 					$size = "";
 				}
 				$out .= "<td class=\"$tdclass\">";
-				$out .= "<input type=\"text\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\">";
+				$out .= "<input class=\"$input_class\" type=\"text\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\">";
+				$out .= "</td>";
+				break;
+			case "password":
+				if( isset($dsc["cols"][ $keys[$j] ]["size"])){
+					$size = " size=\"".$dsc["cols"][ $keys[$j] ]["size"]."\" ";
+				}else{
+					$size = "";
+				}
+				$out .= "<td class=\"$tdclass\" style=\"white-space:nowrap;\">";
+				$genpass = autoGeneratePassButton($dsc["action"]."_edit_frm_$i",$keys[$j]);
+				$out .= "<input class=\"$input_class\" type=\"password\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\">$genpass";
 				$out .= "</td>";
 				break;
 			case "radio":
@@ -450,11 +458,13 @@ function dtcDatagrid($dsc){
 	if(!isset($dsc["skip_creation"]) || $dsc["skip_deletion"] != "yes"){
 		if(($i % 2) == 1 && isset($gfx_form_entry_label_background)){
 			$tdclass = "dtcDatagrid_table_flds_alt";
+			$input_class = "dtcDatagrid_input_alt_color";
 		}else{
 			$tdclass = "dtcDatagrid_table_flds";
+			$input_class = "dtcDatagrid_input_color";
 		}
 		// Write the NEW stuff...
-		$out .= "<tr><form action=\"".$_SERVER["PHP_SELF"]."\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_new\">";
+		$out .= "<tr><form name=\"".$dsc["action"]."_new_frm\" id=\"".$dsc["action"]."_new_frm\" action=\"".$_SERVER["PHP_SELF"]."\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_new\">";
 		for($j=0;$j<$nbr_fld;$j++){
 			$the_fld = $dsc["cols"][ $keys[$j] ];
 			switch($the_fld["type"]){
@@ -465,7 +475,18 @@ function dtcDatagrid($dsc){
 					$size = "";
 				}
 				$out .= "<td class=\"$tdclass\">";
-				$out .= "<input type=\"text\" $size name=\"".$keys[$j]."\" value=\"\">";
+				$out .= "<input class=\"$input_class\" type=\"text\" $size name=\"".$keys[$j]."\" value=\"\">";
+				$out .= "</td>";
+				break;
+			case "password":
+				if( isset($dsc["cols"][ $keys[$j] ]["size"])){
+					$size = " size=\"".$dsc["cols"][ $keys[$j] ]["size"]."\" ";
+				}else{
+					$size = "";
+				}
+				$out .= "<td class=\"$tdclass\" style=\"white-space:nowrap;\">";
+				$genpass = autoGeneratePassButton($dsc["action"]."_new_frm",$keys[$j]);
+				$out .= "<input class=\"$input_class\" type=\"password\" $size name=\"".$keys[$j]."\" value=\"\">$genpass";
 				$out .= "</td>";
 				break;
 			case "radio":
@@ -485,7 +506,7 @@ function dtcDatagrid($dsc){
 							$selected = "";
 						}
 					}
-					$out .= "<input type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
+					$out .= "<input class=\"$input_class\" type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
 					if( isset($dsc["cols"][ $keys[$j] ]["display_replace"][$x]) ){
 						$out .= $dsc["cols"][ $keys[$j] ]["display_replace"][$x];
 					}else{
@@ -496,7 +517,7 @@ function dtcDatagrid($dsc){
 				break;
 			case "checkbox":
 				$out .= "<td class=\"$tdclass\">";
-				$out .= " <input type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" selected> ";
+				$out .= " <input class=\"$input_class\" type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" selected> ";
 				$out .= "</td>";
 				break;
 			case "textaera":
@@ -506,7 +527,7 @@ function dtcDatagrid($dsc){
 				break;
 			case "popup":
 				$out .= "<td class=\"$tdclass\">";
-				$out .= "<select name=\"".$keys[$j]."\">";
+				$out .= "<select class=\"$input_class\" name=\"".$keys[$j]."\">";
 				$nbr_values = sizeof($dsc["cols"][ $keys[$j] ]["values"]);
 				for($x=0;$x<$nbr_values;$x++){
 					if( isset($dsc["cols"][ $keys[$j] ]["display_replace"][$x]) ){
@@ -770,8 +791,26 @@ function dtcListItemsEdit($dsc){
 		$added_one = "no";
 		for($i=0;$i<$nbr_fld;$i++){
 			switch($dsc["cols"][ $keys[$i] ]["type"]){
-			case "text":
 			case "password":
+				if($added_one == "yes"){
+					$fld_names .= ",";
+					$values .= ",";
+				}
+				$fld_names .= $keys[$i];
+				if( isset($dsc["cols"][ $keys[$i] ]["empty_makes_sql_null"]) && $dsc["cols"][ $keys[$i] ]["empty_makes_sql_null"] == "yes" && $_REQUEST[ $keys[$i] ] == ""){
+					$values .= "NULL";
+				}else if( isset($dsc["cols"][ $keys[$i] ]["empty_makes_default"]) && $dsc["cols"][ $keys[$i] ]["empty_makes_default"] == "yes" && $_REQUEST[ $keys[$i] ] == ""){
+					$values .= "'default'";
+				}else{
+					if(isset($dsc["cols"][ $keys[$i] ]["happen_domain"])){
+						$values .= "'".addslashes($_REQUEST[ $keys[$i] ]).$dsc["cols"][ $keys[$i] ]["happen_domain"]."'";
+					}else{
+						$values .= "'".addslashes($_REQUEST[ $keys[$i] ])."'";
+					}
+				}
+				$added_one = "yes";
+				break;
+			case "text":
 			case "textarea":
 				if($added_one == "yes"){
 					$fld_names .= ",";

@@ -64,8 +64,8 @@ function dtc_see_password(frm_name,fld_name){
 	}else{
 		$seepath_img = "gfx/see_password.png";
 	}
-	$out .= "<img src=\"$genpath_img\" onClick=\"dtc_gen_passwd('".$form_name."','".$field_name."');\" alt=\"GENPASS\">
-<img src=\"$seepath_img\" onClick=\"dtc_see_password('".$form_name."','".$field_name."');\" alt=\"SEEPASS\">";
+	$out .= "<img src=\"$genpath_img\" align=\"absmiddle\" onClick=\"dtc_gen_passwd('".$form_name."','".$field_name."');\" alt=\"GENPASS\">
+<img src=\"$seepath_img\" align=\"absmiddle\" onClick=\"dtc_see_password('".$form_name."','".$field_name."');\" alt=\"SEEPASS\">";
 	return $out;
 }
 

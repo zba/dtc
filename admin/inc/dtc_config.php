@@ -148,6 +148,11 @@ function configEditorTemplate ($dsc,$conftype="config"){
 	for($i=0;$i<$n;$i++){
 		$fld = $prefix.$keys[$i];
 		global $$fld;
+		if($i%2 == 1){
+			$input_class = "dtcDatagrid_input_alt_color";
+		}else{
+			$input_class = "dtcDatagrid_input_color";
+		}
 		switch($dsc["cols"][ $keys[$i] ]["type"]){
 		case "radio":
 			$nb_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
@@ -182,7 +187,7 @@ function configEditorTemplate ($dsc,$conftype="config"){
 				}
 				$control .= "<option value=\"".$dsc["cols"][ $keys[$i] ]["values"][$j]."\" $selected>$text</option>";
 			}
-			$control = "<select name=\"".$keys[$i]."\">".$control."</select>";
+			$control = "<select class=\"$input_class\" name=\"".$keys[$i]."\">".$control."</select>";
 			break;
 		case "text":
 		default:
@@ -191,7 +196,7 @@ function configEditorTemplate ($dsc,$conftype="config"){
 			}else{
 				$size = "";
 			}
-			$control = "<input $size type=\"text\" name=\"".$keys[$i]."\" value=\"".$$fld."\">";
+			$control = "<input class=\"$input_class\" $size type=\"text\" name=\"".$keys[$i]."\" value=\"".$$fld."\">";
 			break;
 		}
 		$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$control,!($i%2));
@@ -431,7 +436,7 @@ function drawVPSServerConfig(){
 				"size" => "7",
 				"legend" => "Soap login"),
 			"soap_pass" => array(
-				"type" => "text",
+				"type" => "password",
 				"size" => "7",
 				"legend" => "Soap password"),
 			"country_code" => array(
@@ -767,12 +772,13 @@ function drawBackupConfig(){
 				"legend" => "id"),
 			"server_addr" => array(
 				"type" => "text",
+				"size" => "14",
 				"legend" => $txt_domain_tbl_config_ip[$lang]),
 			"server_login" => array(
 				"type" => "text",
 				"legend" => "Login"),
 			"server_pass" => array(
-				"type" => "text",
+				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
 			)
 		);
@@ -793,13 +799,13 @@ function drawBackupConfig(){
 				"legend" => "id"),
 			"server_addr" => array(
 				"type" => "text",
-				"size" => "50",
+				"size" => "35",
 				"legend" => "Server address"),
 			"server_login" => array(
 				"type" => "text",
 				"legend" => "Login"),
 			"server_pass" => array(
-				"type" => "text",
+				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
 			)
 		);
@@ -818,13 +824,13 @@ function drawBackupConfig(){
 				"legend" => "id"),
 			"server_addr" => array(
 				"type" => "text",
-				"size" => "50",
+				"size" => "35",
 				"legend" => "Server address"),
 			"server_login" => array(
 				"type" => "text",
 				"legend" => "Login"),
 			"server_pass" => array(
-				"type" => "text",
+				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
 			)
 		);
@@ -835,7 +841,7 @@ function drawBackupConfig(){
 	$dsc = array(
 		"table_name" => $pro_mysql_backup_table,
 		"title" => $txt_cfg_act_as_backup_mail_server[$lang],
-		"action" => "trigger_mx_update_editor",
+		"action" => "act_as_backup_mail",
 		"forward" => array("rub","sousrub"),
 		"where_condition" => "type='mail_backup'",
 		"cols" => array(
@@ -845,13 +851,13 @@ function drawBackupConfig(){
 				"legend" => "id"),
 			"server_addr" => array(
 				"type" => "text",
-				"size" => "50",
+				"size" => "35",
 				"legend" => "Server address"),
 			"server_login" => array(
 				"type" => "text",
 				"legend" => "Login"),
 			"server_pass" => array(
-				"type" => "text",
+				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
 			)
 		);
@@ -860,7 +866,7 @@ function drawBackupConfig(){
 	$dsc = array(
 		"table_name" => $pro_mysql_backup_table,
 		"title" => $txt_cfg_act_as_backup_dns_server[$lang],
-		"action" => "trigger_mx_update_editor",
+		"action" => "act_as_backup_dns",
 		"forward" => array("rub","sousrub"),
 		"where_condition" => "type='dns_backup'",
 		"cols" => array(
@@ -870,13 +876,13 @@ function drawBackupConfig(){
 				"legend" => "id"),
 			"server_addr" => array(
 				"type" => "text",
-				"size" => "50",
+				"size" => "35",
 				"legend" => "Server address"),
 			"server_login" => array(
 				"type" => "text",
 				"legend" => "Login"),
 			"server_pass" => array(
-				"type" => "text",
+				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
 			)
 		);
