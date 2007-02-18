@@ -367,7 +367,7 @@ function dtcDatagrid($dsc){
 					}else{
 						$selected = "";
 					}
-					$out .= " <input type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
+					$out .= " <input class=\"$input_class\" type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
 					if( isset($dsc["cols"][ $keys[$j] ]["display_replace"][$x]) ){
 						$out .= $dsc["cols"][ $keys[$j] ]["display_replace"][$x];
 					}else{
@@ -383,7 +383,7 @@ function dtcDatagrid($dsc){
 				}else{
 					$selected = "";
 				}
-				$out .= " <input type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" $selected> ";
+				$out .= " <input class=\"$input_class\" type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" $selected> ";
 				$out .= "</td>";
 				break;
 			case "textaera":
@@ -414,7 +414,7 @@ function dtcDatagrid($dsc){
 				break;
 			case "popup":
 				$out .= "<td class=\"$tdclass\">";
-				$out .= "<select name=\"".$keys[$j]."\">";
+				$out .= "<select class=\"$input_class\" name=\"".$keys[$j]."\">";
 				$nbr_values = sizeof($dsc["cols"][ $keys[$j] ]["values"]);
 				for($x=0;$x<$nbr_values;$x++){
 					if($dsc["cols"][ $keys[$j] ]["values"][$x] == $a[ $keys[$j] ]){

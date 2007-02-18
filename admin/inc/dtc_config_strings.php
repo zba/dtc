@@ -2,7 +2,7 @@
 	/**
 	* @package DTC
 	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.56 2007/02/15 08:58:20 thomas Exp $
+	* @version  $Id: dtc_config_strings.php,v 1.57 2007/02/18 08:46:14 thomas Exp $
 	* New arrays for translate menage_products
 	* @see /dtc/admin/dtcrm/product_manager.php
 	* 
@@ -193,20 +193,28 @@ $txt_user_menu_email = array (
   );
 
 $txt_cfg_allowed_dns_transfer_list = array(
-	"fr" => "Listez ici les IPs des serveurs DNS abilité a faire des zone transfer séparé par des &quot;|&quot; (pipe)<br>
-	        (laissez vide si vous n'avez pas de serveur DNS de backup) :",
-        "en" => "List the DNS server IPs allowed to do zone transfers separated by &quot;|&quot; (pipe)<br>
-	        (leave blank if you don't have backup DNS server):",
-        "hu" => "TRANS List here DNS server IPs allowed to do zone transfers &quot;|&quot;-al elválasztva
-	        <br>(hagyja üresen, ha nincs tartalék DNS szervere)",
-        "it" => "Lista qui gli indirizzi IP dei servers DNS abilitati 
-a fare zone transfers separati da &quot;|&quot; (pipe)<br> (lasciare 
+	"fr" => "Listez ici les IPs des serveurs DNS abilité a faire<br>
+des zone transfer séparé par des &quot;|&quot; (pipe)<br>
+(laissez vide si vous n'avez pas de serveur DNS de backup) :",
+        "en" => "List the DNS server IPs allowed to do zone<br>
+transfers separated by &quot;|&quot; (pipe)<br>
+(leave blank if you don't have backup DNS server):",
+        "hu" => "TRANS List here DNS server IPs allowed to do zone transfers<br>
+&quot;|&quot;-al elválasztva<br>
+(hagyja üresen, ha nincs tartalék DNS szervere)",
+        "it" => "
+Lista qui gli indirizzi IP dei servers DNS abilitati a fare<br>
+zone transfers separati da &quot;|&quot; (pipe)<br> (lasciare 
 vuoto se non si hanno server DNS di backup):",
-        "nl" => "Vul hier de IP adressen in van servers die toestemming hebben om zone transfers te doen, gescheiden door &quot;|&quot; (pipe)<br>
-                (Laat veld leeg indien je niet beschikt over backup DNS servers):",
-        "ru" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
-                (leave blank if you don't have backup MX server):",
-        "de" => "TRANS List here your backup MX servers separated by &quot;|&quot; (pipe)<br>
+        "nl" => "Vul hier de IP adressen in van servers die toestemming hebben<br>
+om zone transfers te doen, gescheiden door &quot;|&quot; (pipe)<br>
+(Laat veld leeg indien je niet beschikt over backup DNS servers):",
+        "ru" => "TRANS List the DNS server IPs allowed to do zone<br>
+        transfers separated by &quot;|&quot; (pipe)<br>
+        (leave blank if you don't have backup DNS server):",
+        "de" => "TRANS List the DNS server IPs allowed to do zone<br>
+        transfers separated by &quot;|&quot; (pipe)<br>
+        (leave blank if you don't have backup DNS server):<br>
                 (leave blank if you don't have backup MX server):",
         "zh" => "ÁĞ³öËùÓĞµÄ±¸ÓÃMX·şÎñÆ÷(ÓÃ\"|\"¸ô¿ª)<br>
                 (Èç¹ûÃ»ÓĞÔòÁô¿Õ)£º",
@@ -214,10 +222,12 @@ vuoto se non si hanno server DNS di backup):",
 	        (Pozostaw puste je¶li nie masz zapasowych serwerów DNS):",
         "se" => "TRANS List here DNS server IPs allowed to do zone transfers separated by &quot;|&quot; (pipe)<br>
 	        (leave blank if you don't have backup DNS server):",
-        "es" => "Escriba las IP de los servidores DNS habilitados para transferencias de zona separados por &quot;|&quot; (pipeline)<br>
-                (Dejar en blanco si no tiene servidores DNS de respaldo):",
-        "pt" => "Lista de IPs dos servidores de DNS com permissões para transferir zonas, separados  por  &quot;|&quot; (pipe)<br>
-		(deixe em branco se não tem nenhum servidor de DNS secundário) :"
+        "es" => "Escriba las IP de los servidores DNS habilitados para transferencias<br>
+de zona separados por &quot;|&quot; (pipeline)<br>
+(Dejar en blanco si no tiene servidores DNS de respaldo):",
+        "pt" => "Lista de IPs dos servidores de DNS com permissões para transferir<br>
+zonas, separados  por  &quot;|&quot; (pipe)<br>
+(deixe em branco se não tem nenhum servidor de DNS secundário) :"
 	);
 
 $txt_backup_mx_servers = array(
@@ -961,7 +971,7 @@ $txt_cfg_paypal_sandbox_email = array(
 
 $txt_cfg_allow_following_servers_to_list = array(
 	"fr" => "Autoriser les servers suivant a lister les domaines pour les backuper : ",
-	"en" => "Allow those servers to list this server's domain names for doing backup:¡¡",
+	"en" => "Allow those servers to list this server's domain names for doing backup: ",
 	"hu" => "A következõ szerverek backup céljából hozzáférhetnek az ezen a szerveren létezõ domain nevekhez:",
 	"it" => "Autorizza i seguenti servers i nomi a dominio di questo server per effettuare backup: ",
 	"nl" => "Geef de volgende servers toestemming om een lijst te maken van domeinnamen van deze server voor een backup: ",
@@ -1441,18 +1451,30 @@ $txt_cfg_primary_dns_server_addr =array(
 	);
 
 $txt_cfg_secondary_dns_server_addr =array(
-	"fr" => "Adresse des serveurs DNS secondaires (séparés par un &quot;|&quot; (pipe) si il y en a plusieurs) :",
-	"en" => "Secondary DNS servers address (separated by &quot;|&quot; (pipe) if more than one):",
-	"hu" => "TRANS A másodlagos dns szerver címe (separated by &quot;|&quot; (pipe) if more than one):",
-	"it" => "TRANS Indirizzo server DNS secondario (separated by &quot;|&quot; (pipe) if more than one):",
-	"nl" => "Secundair DNS serveradres (gescheiden door &quot;|&quot; (pipe) wanneer meer dan 1 gebruikt worden):",
-	"ru" => "TRANS ÷ÔÏÒÉŞÎÙÊ ÁÄÒÅÓ äîó (separated by &quot;|&quot; (pipe) if more than one) :",
-	"de" => "TRANS Adresse des sekundären DNS Servers (separated by &quot;|&quot; (pipe) if more than one):",
-	"zh" => "TRANS ´ÓDNS·şÎñÆ÷µØÖ·£º(separated by &quot;|&quot; (pipe) if more than one)",
-	"pl" => "TRANS Nazwa serwera Secondary DNS (separated by &quot;|&quot; (pipe) if more than one) :",
-	"se" => "TRANS Secondary dns server addr (separated by &quot;|&quot; (pipe) if more than one):",
-	"es" => "TRANS Servidor DNS secundario (separated by &quot;|&quot; (pipe) if more than one):",
-	"pt" => "TRANS Nome do servidor de DNS secundário (separated by &quot;|&quot; (pipe) if more than one) :"
+	"fr" => "Adresse des serveurs DNS secondaires<br>
+(séparés par un &quot;|&quot; (pipe) si il y en a plusieurs) :",
+	"en" => "Secondary DNS servers address<br>
+(separated by &quot;|&quot; (pipe) if more than one):",
+	"hu" => "TRANS A másodlagos dns szerver címe<br>
+(separated by &quot;|&quot; (pipe) if more than one):",
+	"it" => "TRANS Indirizzo server DNS secondario<br>
+(separated by &quot;|&quot; (pipe) if more than one):",
+	"nl" => "Secundair DNS serveradres<br>
+(gescheiden door &quot;|&quot; (pipe) wanneer meer dan 1 gebruikt worden):",
+	"ru" => "TRANS ÷ÔÏÒÉŞÎÙÊ ÁÄÒÅÓ äîó<br>
+(separated by &quot;|&quot; (pipe) if more than one) :",
+	"de" => "TRANS Adresse des sekundären DNS Servers<br>
+(separated by &quot;|&quot; (pipe) if more than one):",
+	"zh" => "TRANS ´ÓDNS·şÎñÆ÷µØÖ·£º<br>
+(separated by &quot;|&quot; (pipe) if more than one)",
+	"pl" => "TRANS Nazwa serwera Secondary DNS<br>
+(separated by &quot;|&quot; (pipe) if more than one) :",
+	"se" => "TRANS Secondary dns server addr<br>
+(separated by &quot;|&quot; (pipe) if more than one):",
+	"es" => "TRANS Servidor DNS secundario<br>
+(separated by &quot;|&quot; (pipe) if more than one):",
+	"pt" => "TRANS Nome do servidor de DNS secundário<br>
+(separated by &quot;|&quot; (pipe) if more than one) :"
 	);
 
 $txt_cfg_slave_dns_ip =array(
@@ -1602,33 +1624,57 @@ $txt_cfg_vhost_file_path =array(
 	);
 
 $txt_cfg_phplib_path = array(
-	"fr" => "Librairies PHP open_basedir (séparés par des \":\", initialisé à l'installation de dtc) :",
-	"en" => "Php libraries open_basedir (separated by \":\", reset on each dtc install):",
-	"hu" => "TRANS LPhp könyvtárak open_basedir (\":\" elválasztva, reset on each dtc install):",
-	"it" => "TRANS LLibrerie PHP open_basedir (separate da \":\", reset on each dtc install):",
-	"nl" => "PHP libraries open_basedir (gescheiden met een \":\", reset bij iedere dtc install):",
-	"ru" => "TRANS LPhp ÂÉÂÌÉÏÔÅËÉ open_basedir (ÒÁÚÄÅÌÅÎÎÙÅ \":\", reset on each dtc install):",
-	"de" => "TRANS LPHP Bibliotheken open_basedir (getrennt durch \":\", reset on each dtc install):",
-	"zh" => "PHP¿âÎÄ¼şÂ·¾¶(ÓÃ\":\"·Ö¸ô<br>ĞÂ°²×°µÄDTC¿ØÖÆÃæ°åĞëÖØĞÂÉèÖÃ)£º",
-	"pl" => "Biblioteki PHP open_basedir (oddzielone \":\", zresetuj pozosta³e podczas instalacji dtc) :",
-	"se" => "TRANS Php libraries open_basedir (separated by \":\", reset on each dtc install):",
-	"es" => "Librerias PHP open_basedir (separadas por &quot;:&quot;, se resetean en cada instalaci&oacute;n de dtc):",
-	"pt" => "TRANS Librarias PHP open_basedir (separadas por \":\", reset on each dtc install) :"
+	"fr" => "Librairies PHP open_basedir<br>
+(séparés par des \":\", initialisé à l'installation de dtc) :",
+	"en" => "Php libraries open_basedir<br>
+(separated by \":\", reset on each dtc install):",
+	"hu" => "TRANS LPhp könyvtárak open_basedir<br>
+(\":\" elválasztva, reset on each dtc install):",
+	"it" => "TRANS LLibrerie PHP open_basedir<br>
+(separate da \":\", reset on each dtc install):",
+	"nl" => "PHP libraries open_basedir<br>
+(gescheiden met een \":\", reset bij iedere dtc install):",
+	"ru" => "TRANS LPhp ÂÉÂÌÉÏÔÅËÉ open_basedir<br>
+(ÒÁÚÄÅÌÅÎÎÙÅ \":\", reset on each dtc install):",
+	"de" => "TRANS LPHP Bibliotheken open_basedir<br>
+(getrennt durch \":\", reset on each dtc install):",
+	"zh" => "PHP¿âÎÄ¼şÂ·¾¶(ÓÃ\":\"·Ö¸ô<br>
+ĞÂ°²×°µÄDTC¿ØÖÆÃæ°åĞëÖØĞÂÉèÖÃ)£º",
+	"pl" => "Biblioteki PHP open_basedir<br>
+(oddzielone \":\", zresetuj pozosta³e podczas instalacji dtc) :",
+	"se" => "TRANS Php libraries open_basedir<br>
+(separated by \":\", reset on each dtc install):",
+	"es" => "Librerias PHP open_basedir<br>
+(separadas por &quot;:&quot;, se resetean en cada instalaci&oacute;n de dtc):",
+	"pt" => "TRANS Librarias PHP open_basedir<br>
+(separadas por \":\", reset on each dtc install) :"
 	);
 
 $txt_cfg_phplib2_path =array(
-	"fr" => "Librairies PHP additionnelles open_basedir (conservé a la réinstallation):",
-	"en" => "Php open_basedir additional libraries path (survives reinstallation):",
-	"hu" => "További php könyvtárak elérési útja open_basedir (keeped uppon reinstallation):",
-	"it" => "Path librerie addizionali PHP open_basedir (keeped uppon reinstallation):",
-	"nl" => "Additionele php library paden open_basedir (bewaard bij herinstallatie):",
-	"ru" => "ğÕÔØ Ë ÄÏĞÏÌÎÉÔÅÌØÎÙÍ ÂÉÂÌÉÏÔÅËÁÍ PHP open_basedir (keeped uppon reinstallation):",
-	"de" => "Zusätzliche PHP Bibliotheken open_basedir (keeped uppon reinstallation):",
-	"zh" => "PHP¸½¼Ó¿âÎÄ¼şÂ·¾¶(ÓÃ\":\"·Ö¸ô<br>ĞÂ°²×°µÄDTC¿ØÖÆÃæ°åÎŞĞëÖØĞÂÉèÖÃ)£º",
-	"pl" => "Dodatkowe biblioteki PHP w open_basedir (zachowaj przed reinstalacja) :",
-	"se" => "TRANS Php open_basedir additional libraries path (keeped uppon reinstallation):",
-	"es" => "Librerias adicionales PHP open_basedir (son mantenidas en una reinstalaci&oacute;n):",
-	"pt" => "Librarias adicionais de PHP open_basedir (keeped uppon reinstallation):"
+	"fr" => "Librairies PHP additionnelles open_basedir<br>
+(conservé a la réinstallation):",
+	"en" => "Php open_basedir additional libraries path<br>
+(survives reinstallation):",
+	"hu" => "További php könyvtárak elérési útja open_basedir<br>
+(keeped uppon reinstallation):",
+	"it" => "Path librerie addizionali PHP open_basedir<br>
+(keeped uppon reinstallation):",
+	"nl" => "Additionele php library paden open_basedir<br>
+(bewaard bij herinstallatie):",
+	"ru" => "ğÕÔØ Ë ÄÏĞÏÌÎÉÔÅÌØÎÙÍ ÂÉÂÌÉÏÔÅËÁÍ PHP open_basedir<br>
+(keeped uppon reinstallation):",
+	"de" => "Zusätzliche PHP Bibliotheken open_basedir<br>
+(keeped uppon reinstallation):",
+	"zh" => "PHP¸½¼Ó¿âÎÄ¼şÂ·¾¶(ÓÃ\":\"·Ö¸ô<br>
+ĞÂ°²×°µÄDTC¿ØÖÆÃæ°åÎŞĞëÖØĞÂÉèÖÃ)£º",
+	"pl" => "Dodatkowe biblioteki PHP w open_basedir<br>
+(zachowaj przed reinstalacja) :",
+	"se" => "TRANS Php open_basedir additional libraries path<br>
+(keeped uppon reinstallation):",
+	"es" => "Librerias adicionales PHP open_basedir<br>
+(son mantenidas en una reinstalaci&oacute;n):",
+	"pt" => "Librarias adicionais de PHP open_basedir<br>
+(keeped uppon reinstallation):"
 	);
 
 $txt_cfg_named_filenames_title =array(

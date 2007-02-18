@@ -1260,7 +1260,7 @@ function drawCompaniesConfig(){
 				"legend" => "Name:"),
 			"address" => array(
 				"type" => "textarea",
-				"cols" => "70",
+				"cols" => "60",
 				"rows" => "5",
 				"legend" => "Address:"),
 			"country" => array(
@@ -1286,12 +1286,12 @@ function drawCompaniesConfig(){
                                 "legend" => "Logo path relative to<br>$conf_generated_file_path/invoice_pics/:"),
 			"text_after" => array(
 				"type" => "textarea",
-				"cols" => "70",
+				"cols" => "60",
 				"rows" => "5",
 				"legend" => "Invoice free text:"),
 			"footer" => array(
 				"type" => "textarea",
-				"cols" => "70",
+				"cols" => "60",
 				"rows" => "5",
 				"legend" => "Invoice footer:")));
 	$out .= dtcListItemsEdit($dsc);

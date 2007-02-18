@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.19 2007/02/17 11:31:05 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.20 2007/02/18 08:46:14 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -25,8 +25,6 @@ function productManager(){
 	global $txt_product_editor_type;
 	global $txt_product_editor_db;
 	global $txt_product_editor_private;
-
-        // end of modyfication ;)
 
 	// Build the product ID popup
         $qp = "SELECT id FROM $pro_mysql_product_table WHERE renew_prod_id='0'";
