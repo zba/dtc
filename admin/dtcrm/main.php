@@ -16,10 +16,25 @@ function DTCRMlistClients(){
 	$query = "SELECT * FROM $pro_mysql_client_table ORDER BY familyname";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
+	$client_list = array();
+	if(isset($id_client) && $_REQUEST["id"] == 0){
+		$selected = "yes";
+	}else{
+		$selected = "no";
+	}
+	$client_list[] = array(
+		"text" => $txt_new_customer_link[$lang],
+		"link" => $_SERVER["PHP_SELF"]."?rub=crm&id=0",
+		"selected" => $selected);
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result);
 		if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
 			$text .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"]."\">";
+			$url = $_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"];
+			$selected = "no";
+		}else{
+			$url = $_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"];
+			$selected = "yes";
 		}
 		if($row["is_company"] == "yes"){
 			if(strlen($row["company_name"]) > 15){
@@ -35,9 +50,17 @@ function DTCRMlistClients(){
 			$text .= "</a>";
 		}
 		$text .= "<br>";
+		$client_list[] = array(
+			"text" => $company.$row["familyname"].", ".$row["christname"],
+			"link" => $url,
+			"selected" => $selected);
 	}
 	$text .= "</div>";
-	return $text;
+	if(function_exists("skin_DisplayClientList")){
+		return skin_DisplayClientList($client_list);
+	}else{
+		return $text;
+	}
 }
 
 function DTCRMclientAdmins(){

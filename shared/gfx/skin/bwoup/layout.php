@@ -1,5 +1,28 @@
 <?
 
+function skin_DisplayClientList($client_list){
+	global $conf_use_javascript;
+
+	$n = sizeof($client_list);
+	$out = '<br><br><div class=\"box_wnb_nb_content\"><ul class="box_wnb_nb_items">';
+	for($i=0;$i<$n;$i++){
+		if($conf_use_javascript == "yes"){
+			$dhtml = " onclick=\"document.location='".$client_list[$i]["link"]."'\" ";
+		}else{
+			$dhtml = " ";
+		}
+		$ahref= "<a href=\"".$client_list[$i]["link"]."\">";
+		$aend = "</a>";
+		if($client_list[$i]["selected"] == "yes"){
+			$out .= "<li $dhtml><div class=\"box_wnb_nb_item_select\">$ahref".$client_list[$i]["text"]."$aend</div></li>";
+		}else{
+			$out .= "<li $dhtml><div class=\"box_wnb_nb_item\" onMouseOver=\"this.className='box_wnb_nb_item-hover';\" onMouseOut=\"this.className='box_wnb_nb_item';\">$ahref".$client_list[$i]["text"]."$aend</div></li>";
+		}
+	}
+	$out .= "</ul></div>";
+	return $out;
+}
+
 function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_rollover,$icon){
 	global $addrlink;
 	global $conf_use_javascript;
