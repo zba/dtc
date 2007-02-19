@@ -69,7 +69,7 @@ dtcFormLineDraw($txt_primari_dns_ip[$lang],"<input type=\"text\" name=\"new_dns_
 	$domain_dns_mx_conf_form .= dtcFromOkDraw();
 	$domain_dns_mx_conf_form .= "</form></table>";
 
-	return "<b><u>".$txt_confirurate_your_domain_name[$lang]."</b></u><br><br>
+	return "<h3>".$txt_confirurate_your_domain_name[$lang]."</h3><br><br>
 	$txt_comment_confirurate_your_domain_name[$lang]<br>
 	$domain_dns_mx_conf_form";
 }

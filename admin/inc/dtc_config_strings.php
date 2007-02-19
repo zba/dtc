@@ -1,16 +1,1115 @@
 <?php
-	/**
-	* @package DTC
-	* @todo translate to any others language
-	* @version  $Id: dtc_config_strings.php,v 1.57 2007/02/18 08:46:14 thomas Exp $
-	* New arrays for translate menage_products
-	* @see /dtc/admin/dtcrm/product_manager.php
-	* 
-	* Swedish supported
-	*  
-	**/
 
-	// added by seeb 8th may 2006 
+$txt_cfg_vps_server_and_ip_addresses_registry = array(
+	"fr" => "Edition de la liste des serveur VDS et de leurs IPs",
+	"en" => "VPS Server and IP addresses registry edition",
+	"hu" => "TRANS VPS Server and IP addresses registry edition",
+	"it" => "TRANS VPS Server and IP addresses registry edition",
+	"nl" => "TRANS VPS Server and IP addresses registry edition",
+	"ru" => "TRANS VPS Server and IP addresses registry edition",
+	"de" => "TRANS VPS Server and IP addresses registry edition",
+	"zh" => "TRANS VPS Server and IP addresses registry edition",
+	"pl" => "TRANS VPS Server and IP addresses registry edition",
+	"se" => "TRANS VPS Server and IP addresses registry edition",
+	"es" => "TRANS VPS Server and IP addresses registry edition",
+	"pt" => "TRANS VPS Server and IP addresses registry edition"
+	);
+
+$txt_cfg_vps_server_list = array(
+	"fr" => "Liste des serveurs de VDS:",
+	"en" => "VPS Server list:",
+	"hu" => "TRANS VPS Server list:",
+	"it" => "TRANS VPS Server list:",
+	"nl" => "TRANS VPS Server list:",
+	"ru" => "TRANS VPS Server list:",
+	"de" => "TRANS VPS Server list:",
+	"zh" => "TRANS VPS Server list:",
+	"pl" => "TRANS VPS Server list:",
+	"se" => "TRANS VPS Server list:",
+	"es" => "TRANS VPS Server list:",
+	"pt" => "TRANS VPS Server list:"
+	);
+
+$txt_cfg_ip_addrs = array(
+	"fr" => "Addr IPs",
+	"en" => "IPs addrs",
+	"hu" => "TRANS IPs addrs",
+	"it" => "TRANS IPs addrs",
+	"nl" => "TRANS IPs addrs",
+	"ru" => "TRANS IPs addrs",
+	"de" => "TRANS IPs addrs",
+	"zh" => "TRANS IPs addrs",
+	"pl" => "TRANS IPs addrs",
+	"se" => "TRANS IPs addrs",
+	"es" => "TRANS IPs addrs",
+	"pt" => "TRANS IPs addrs"
+	);
+
+$txt_cfg_hostname = array(
+	"fr" => "Nom d'hote",
+	"en" => "Hostname",
+	"hu" => "TRANS Hostname",
+	"it" => "TRANS Hostname",
+	"nl" => "TRANS Hostname",
+	"ru" => "TRANS Hostname",
+	"de" => "TRANS Hostname",
+	"zh" => "TRANS Hostname",
+	"pl" => "TRANS Hostname",
+	"se" => "TRANS Hostname",
+	"es" => "TRANS Hostname",
+	"pt" => "TRANS Hostname"
+	);
+
+$txt_cfg_location = array(
+	"fr" => "Emplacement",
+	"en" => "Location",
+	"hu" => "TRANS Location",
+	"it" => "TRANS Location",
+	"nl" => "TRANS Location",
+	"ru" => "TRANS Location",
+	"de" => "TRANS Location",
+	"zh" => "TRANS Location",
+	"pl" => "TRANS Location",
+	"se" => "TRANS Location",
+	"es" => "TRANS Location",
+	"pt" => "TRANS Location"
+	);
+
+$txt_cfg_soap_login = array(
+	"fr" => "Utilisateur SOAP",
+	"en" => "Soap login",
+	"hu" => "TRANS Soap login",
+	"it" => "TRANS Soap login",
+	"nl" => "TRANS Soap login",
+	"ru" => "TRANS Soap login",
+	"de" => "TRANS Soap login",
+	"zh" => "TRANS Soap login",
+	"pl" => "TRANS Soap login",
+	"se" => "TRANS Soap login",
+	"es" => "TRANS Soap login",
+	"pt" => "TRANS Soap login"
+	);
+
+$txt_cfg_soap_password = array(
+	"fr" => "Mot de passe SOAP",
+	"en" => "SOAP password",
+	"hu" => "TRANS SOAP password",
+	"it" => "TRANS SOAP password",
+	"nl" => "TRANS SOAP password",
+	"ru" => "TRANS SOAP password",
+	"de" => "TRANS SOAP password",
+	"zh" => "TRANS SOAP password",
+	"pl" => "TRANS SOAP password",
+	"se" => "TRANS SOAP password",
+	"es" => "TRANS SOAP password",
+	"pt" => "TRANS SOAP password"
+	);
+
+$txt_cfg_use_lvm_backend = array(
+	"fr" => "Utilise LVM",
+	"en" => "Use LVM backend",
+	"hu" => "TRANS Use LVM backend",
+	"it" => "TRANS Use LVM backend",
+	"nl" => "TRANS Use LVM backend",
+	"ru" => "TRANS Use LVM backend",
+	"de" => "TRANS Use LVM backend",
+	"zh" => "TRANS Use LVM backend",
+	"pl" => "TRANS Use LVM backend",
+	"se" => "TRANS Use LVM backend",
+	"es" => "TRANS Use LVM backend",
+	"pt" => "TRANS Use LVM backend"
+	);
+
+$txt_cfg_vps_ips_for = array(
+	"fr" => "IPs VPS de ",
+	"en" => "VPS IPs for ",
+	"hu" => "TRANS VPS IPs for ",
+	"it" => "TRANS VPS IPs for ",
+	"nl" => "TRANS VPS IPs for ",
+	"ru" => "TRANS VPS IPs for ",
+	"de" => "TRANS VPS IPs for ",
+	"zh" => "TRANS VPS IPs for ",
+	"pl" => "TRANS VPS IPs for ",
+	"se" => "TRANS VPS IPs for ",
+	"es" => "TRANS VPS IPs for ",
+	"pt" => "TRANS VPS IPs for "
+	);
+
+$txt_cfg_vps_xen_number = array(
+	"fr" => "Numéro de VDS Xen",
+	"en" => "VPS xen number",
+	"hu" => "TRANS VPS xen number",
+	"it" => "TRANS VPS xen number",
+	"nl" => "TRANS VPS xen number",
+	"ru" => "TRANS VPS xen number",
+	"de" => "TRANS VPS xen number",
+	"zh" => "TRANS VPS xen number",
+	"pl" => "TRANS VPS xen number",
+	"se" => "TRANS VPS xen number",
+	"es" => "TRANS VPS xen number",
+	"pt" => "TRANS VPS xen number"
+	);
+
+$txt_cfg_ip_addr = array(
+	"fr" => "Adr IP",
+	"en" => "IP addr",
+	"hu" => "TRANS IP addr",
+	"it" => "TRANS IP addr",
+	"nl" => "TRANS IP addr",
+	"ru" => "TRANS IP addr",
+	"de" => "TRANS IP addr",
+	"zh" => "TRANS IP addr",
+	"pl" => "TRANS IP addr",
+	"se" => "TRANS IP addr",
+	"es" => "TRANS IP addr",
+	"pt" => "TRANS IP addr"
+	);
+
+$txt_cfg_available = array(
+	"fr" => "Disponible",
+	"en" => "Available",
+	"hu" => "TRANS Available",
+	"it" => "TRANS Available",
+	"nl" => "TRANS Available",
+	"ru" => "TRANS Available",
+	"de" => "TRANS Available",
+	"zh" => "TRANS Available",
+	"pl" => "TRANS Available",
+	"se" => "TRANS Available",
+	"es" => "TRANS Available",
+	"pt" => "TRANS Available"
+	);
+
+$txt_cfg_this_server_location = array(
+	"fr" => "Eplacement de ce serveur :",
+	"en" => "This server location:",
+	"hu" => "TRANS This server location:",
+	"it" => "TRANS This server location:",
+	"nl" => "TRANS This server location:",
+	"ru" => "TRANS This server location:",
+	"de" => "TRANS This server location:",
+	"zh" => "TRANS This server location:",
+	"pl" => "TRANS This server location:",
+	"se" => "TRANS This server location:",
+	"es" => "TRANS This server location:",
+	"pt" => "TRANS This server location:"
+	);
+
+$txt_cfg_selling_conditions_url = array(
+	"fr" => "URL des conditions de ventes :",
+	"en" => "Selling conditions URL:",
+	"hu" => "TRANS Selling condition URL:",
+	"it" => "TRANS Selling condition URL:",
+	"nl" => "TRANS Selling condition URL:",
+	"ru" => "TRANS Selling condition URL:",
+	"de" => "TRANS Selling condition URL:",
+	"zh" => "TRANS Selling condition URL:",
+	"pl" => "TRANS Selling condition URL:",
+	"se" => "TRANS Selling condition URL:",
+	"es" => "TRANS Selling condition URL:",
+	"pt" => "TRANS Selling condition URL:"
+	);
+
+$txt_cfg_mta_mail_transport_agent = array(
+	"fr" => "MTA (Mail Transport Agent):",
+	"en" => "MTA (Mail Transport Agent):",
+	"hu" => "TRANS MTA (Mail Transport Agent):",
+	"it" => "TRANS MTA (Mail Transport Agent):",
+	"nl" => "TRANS MTA (Mail Transport Agent):",
+	"ru" => "TRANS MTA (Mail Transport Agent):",
+	"de" => "TRANS MTA (Mail Transport Agent):",
+	"zh" => "TRANS MTA (Mail Transport Agent):",
+	"pl" => "TRANS MTA (Mail Transport Agent):",
+	"se" => "TRANS MTA (Mail Transport Agent):",
+	"es" => "TRANS MTA (Mail Transport Agent):",
+	"pt" => "TRANS MTA (Mail Transport Agent):"
+	);
+
+$txt_cfg_use_cyrus = array(
+	"fr" => "Utiliser Cyrus",
+	"en" => "Use cyrus:",
+	"hu" => "TRANS Use cyrus:",
+	"it" => "TRANS Use cyrus:",
+	"nl" => "TRANS Use cyrus:",
+	"ru" => "TRANS Use cyrus:",
+	"de" => "TRANS Use cyrus:",
+	"zh" => "TRANS Use cyrus:",
+	"pl" => "TRANS Use cyrus:",
+	"se" => "TRANS Use cyrus:",
+	"es" => "TRANS Use cyrus:",
+	"pt" => "TRANS Use cyrus:"
+	);
+
+$txt_cfg_webalizer_country_graph = array(
+	"fr" => "Graphique de pays pour Webalizer : ",
+	"en" => "Webalizer country graph:",
+	"hu" => "TRANS Webalizer country graph:",
+	"it" => "TRANS Webalizer country graph:",
+	"nl" => "TRANS Webalizer country graph:",
+	"ru" => "TRANS Webalizer country graph:",
+	"de" => "TRANS Webalizer country graph:",
+	"zh" => "TRANS Webalizer country graph:",
+	"pl" => "TRANS Webalizer country graph:",
+	"se" => "TRANS Webalizer country graph:",
+	"es" => "TRANS Webalizer country graph:",
+	"pt" => "TRANS Webalizer country graph:"
+	);
+
+$txt_cfg_location_of_users_database = array(
+	"fr" => "Emplacement des base utilisateurs :",
+	"en" => "Location of user's database:",
+	"hu" => "TRANS Location of user's database:",
+	"it" => "TRANS Location of user's database:",
+	"nl" => "TRANS Location of user's database:",
+	"ru" => "TRANS Location of user's database:",
+	"de" => "TRANS Location of user's database:",
+	"zh" => "TRANS Location of user's database:",
+	"pl" => "TRANS Location of user's database:",
+	"se" => "TRANS Location of user's database:",
+	"es" => "TRANS Location of user's database:",
+	"pt" => "TRANS Location of user's database:"
+	);
+
+$txt_cfg_same_as_for_dtc = array(
+	"fr" => "Pareil que pour DTC",
+	"en" => "Same as for DTC",
+	"hu" => "TRANS Same as for DTC",
+	"it" => "TRANS Same as for DTC",
+	"nl" => "TRANS Same as for DTC",
+	"ru" => "TRANS Same as for DTC",
+	"de" => "TRANS Same as for DTC",
+	"zh" => "TRANS Same as for DTC",
+	"pl" => "TRANS Same as for DTC",
+	"se" => "TRANS Same as for DTC",
+	"es" => "TRANS Same as for DTC",
+	"pt" => "TRANS Same as for DTC"
+	);
+
+$txt_cfg_another_location = array(
+	"fr" => "Un autre emplacement",
+	"en" => "Another location",
+	"hu" => "TRANS Another location",
+	"it" => "TRANS Another location",
+	"nl" => "TRANS Another location",
+	"ru" => "TRANS Another location",
+	"de" => "TRANS Another location",
+	"zh" => "TRANS Another location",
+	"pl" => "TRANS Another location",
+	"se" => "TRANS Another location",
+	"es" => "TRANS Another location",
+	"pt" => "TRANS Another location"
+	);
+
+$txt_cfg_user_mysql_host = array(
+	"fr" => "Hote MySQL pour les utilisateurs :",
+	"en" => "User MySQL host:",
+	"hu" => "TRANS User MySQL host:",
+	"it" => "TRANS User MySQL host:",
+	"nl" => "TRANS User MySQL host:",
+	"ru" => "TRANS User MySQL host:",
+	"de" => "TRANS User MySQL host:",
+	"zh" => "TRANS User MySQL host:",
+	"pl" => "TRANS User MySQL host:",
+	"se" => "TRANS User MySQL host:",
+	"es" => "TRANS User MySQL host:",
+	"pt" => "TRANS User MySQL host:"
+	);
+
+$txt_cfg_user_mysql_root_login = array(
+	"fr" => "Utilisateur root MySQL distant :",
+	"en" => "User MySQL root login:",
+	"hu" => "TRANS User MySQL root login:",
+	"it" => "TRANS User MySQL root login:",
+	"nl" => "TRANS User MySQL root login:",
+	"ru" => "TRANS User MySQL root login:",
+	"de" => "TRANS User MySQL root login:",
+	"zh" => "TRANS User MySQL root login:",
+	"pl" => "TRANS User MySQL root login:",
+	"se" => "TRANS User MySQL root login:",
+	"es" => "TRANS User MySQL root login:",
+	"pt" => "TRANS User MySQL root login:"
+	);
+
+$txt_cfg_user_mysql_root_password = array(
+	"fr" => "Mot de passe root MySQL distant:",
+	"en" => "User MySQL root password:",
+	"hu" => "TRANS User MySQL root password:",
+	"it" => "TRANS User MySQL root password:",
+	"nl" => "TRANS User MySQL root password:",
+	"ru" => "TRANS User MySQL root password:",
+	"de" => "TRANS User MySQL root password:",
+	"zh" => "TRANS User MySQL root password:",
+	"pl" => "TRANS User MySQL root password:",
+	"se" => "TRANS User MySQL root password:",
+	"es" => "TRANS User MySQL root password:",
+	"pt" => "TRANS User MySQL root password:"
+	);
+
+$txt_cfg_server_address = array(
+	"fr" => "Adresse serveur",
+	"en" => "Server address",
+	"hu" => "TRANS Server address",
+	"it" => "TRANS Server address",
+	"nl" => "TRANS Server address",
+	"ru" => "TRANS Server address",
+	"de" => "TRANS Server address",
+	"zh" => "TRANS Server address",
+	"pl" => "TRANS Server address",
+	"se" => "TRANS Server address",
+	"es" => "TRANS Server address",
+	"pt" => "TRANS Server address"
+	);
+
+$txt_cfg_password = array(
+	"fr" => "Mot de passe",
+	"en" => "Password",
+	"hu" => "TRANS Password",
+	"it" => "TRANS Password",
+	"nl" => "TRANS Password",
+	"ru" => "TRANS Password",
+	"de" => "TRANS Password",
+	"zh" => "TRANS Password",
+	"pl" => "TRANS Password",
+	"se" => "TRANS Password",
+	"es" => "TRANS Password",
+	"pt" => "TRANS Password"
+	);
+
+$txt_cfg_test_server = array(
+	"fr" => "Serveur de teste",
+	"en" => "Test server",
+	"hu" => "TRANS Test server",
+	"it" => "TRANS Test server",
+	"nl" => "TRANS Test server",
+	"ru" => "TRANS Test server",
+	"de" => "TRANS Test server",
+	"zh" => "TRANS Test server",
+	"pl" => "TRANS Test server",
+	"se" => "TRANS Test server",
+	"es" => "TRANS Test server",
+	"pt" => "TRANS Test server"
+	);
+
+$txt_cfg_production_server = array(
+	"fr" => "Serveur de production",
+	"en" => "Production server",
+	"hu" => "TRANS Production server",
+	"it" => "TRANS Production server",
+	"nl" => "TRANS Production server",
+	"ru" => "TRANS Production server",
+	"de" => "TRANS Production server",
+	"zh" => "TRANS Production server",
+	"pl" => "TRANS Production server",
+	"se" => "TRANS Production server",
+	"es" => "TRANS Production server",
+	"pt" => "TRANS Production server"
+	);
+
+$txt_cfg_country = array(
+	"fr" => "Pays :",
+	"en" => "Country:",
+	"hu" => "Ország:",
+	"it" => "Nazione:",
+	"nl" => "Land:",
+	"ru" => "óÔÒÁÎÁ",
+	"de" => "Land:",
+	"zh" => "¹ú¼Ò£º",
+	"pl" => "Kraj :",
+	"se" => "TRANS SVENSKA",
+	"es" => "Pais:",
+	"pt" => "País :"
+);
+
+$txt_cfg_registration_number = array(
+	"fr" => "Numéro d'enregistrement :",
+	"en" => "Registration number:",
+	"hu" => "TRANS Registration number:",
+	"it" => "TRANS Registration number:",
+	"nl" => "TRANS Registration number:",
+	"ru" => "TRANS Registration number:",
+	"de" => "TRANS Registration number:",
+	"zh" => "TRANS Registration number:",
+	"pl" => "TRANS Registration number:",
+	"se" => "TRANS Registration number:",
+	"es" => "TRANS Registration number:",
+	"pt" => "TRANS Registration number:"
+	);
+
+$txt_cfg_addr = array(
+	"fr" => "Adresse :",
+	"en" => "Address:",
+	"hu" => "Cím:",
+	"it" => "Indirizzo:",
+	"nl" => "Adres:",
+	"ru" => "áÄÒÅ?",
+	"de" => "Adresse:",
+	"zh" => "µØÖ·£º",
+	"pl" => "Adres :",
+	"se" => "TRANS SVENSKA",
+	"es" => "Direcci&oacute;n:",
+	"pt" => "Morada ;"
+);
+
+$txt_cfg_comp_name = array(
+	"fr" => "Nom société :",
+	"en" => "Company name:",
+	"hu" => "Cégnév:",
+	"it" => "Società:",
+	"nl" => "Bedrijfsnaam:",
+	"ru" => "îÁÚ×ÁÎÉÅ ËÏÍÐÁÎÉÉ:",
+	"de" => "Firmenname:",
+	"zh" => "¹«Ë¾Ãû³Æ£º",
+	"pl" => "Nazwa Firmy :",
+	"se" => "TRANS SVENSKA",
+	"es" => "Empresa:",
+	"pt" => "Nome da base de dados"
+);
+
+$txt_cfg_vat_number = array(
+	"fr" => "Numéro de TVA :",
+	"en" => "VAT number:",
+	"hu" => "TRANS VAT number:",
+	"it" => "TRANS VAT number:",
+	"nl" => "TRANS VAT number:",
+	"ru" => "TRANS VAT number:",
+	"de" => "TRANS VAT number:",
+	"zh" => "TRANS VAT number:",
+	"pl" => "TRANS VAT number:",
+	"se" => "TRANS VAT number:",
+	"es" => "TRANS VAT number:",
+	"pt" => "TRANS VAT number:"
+	);
+
+$txt_cfg_vat_rate = array(
+	"fr" => "Taux de TVA :",
+	"en" => "VAT rate:",
+	"hu" => "TRANS VAT rate:",
+	"it" => "TRANS VAT rate:",
+	"nl" => "TRANS VAT rate:",
+	"ru" => "TRANS VAT rate:",
+	"de" => "TRANS VAT rate:",
+	"zh" => "TRANS VAT rate:",
+	"pl" => "TRANS VAT rate:",
+	"se" => "TRANS VAT rate:",
+	"es" => "TRANS VAT rate:",
+	"pt" => "TRANS VAT rate:"
+	);
+
+$txt_cfg_logo_path_relative_to = array(
+	"fr" => "Chemin du logo relatif à",
+	"en" => "Logo path relative to",
+	"hu" => "TRANS Logo path relative to",
+	"it" => "TRANS Logo path relative to",
+	"nl" => "TRANS Logo path relative to",
+	"ru" => "TRANS Logo path relative to",
+	"de" => "TRANS Logo path relative to",
+	"zh" => "TRANS Logo path relative to",
+	"pl" => "TRANS Logo path relative to",
+	"se" => "TRANS Logo path relative to",
+	"es" => "TRANS Logo path relative to",
+	"pt" => "TRANS Logo path relative to"
+	);
+
+$txt_cfg_invoice_free_text = array(
+	"fr" => "Text libre des factures :",
+	"en" => "Invoice free text:",
+	"hu" => "TRANS Invoice free text:",
+	"it" => "TRANS Invoice free text:",
+	"nl" => "TRANS Invoice free text:",
+	"ru" => "TRANS Invoice free text:",
+	"de" => "TRANS Invoice free text:",
+	"zh" => "TRANS Invoice free text:",
+	"pl" => "TRANS Invoice free text:",
+	"se" => "TRANS Invoice free text:",
+	"es" => "TRANS Invoice free text:",
+	"pt" => "TRANS Invoice free text:"
+	);
+
+$txt_cfg_invoice_footer = array(
+	"fr" => "Pied de page des factures :",
+	"en" => "Invoice footer:",
+	"hu" => "TRANS Invoice footer:",
+	"it" => "TRANS Invoice footer:",
+	"nl" => "TRANS Invoice footer:",
+	"ru" => "TRANS Invoice footer:",
+	"de" => "TRANS Invoice footer:",
+	"zh" => "TRANS Invoice footer:",
+	"pl" => "TRANS Invoice footer:",
+	"se" => "TRANS Invoice footer:",
+	"es" => "TRANS Invoice footer:",
+	"pt" => "TRANS Invoice footer:"
+	);
+
+$txt_cfg_default_company_invoicing = array(
+	"fr" => "Companie facturante par défaut :",
+	"en" => "Default company invoicing:",
+	"hu" => "TRANS Default company invoicing:",
+	"it" => "TRANS Default company invoicing:",
+	"nl" => "TRANS Default company invoicing:",
+	"ru" => "TRANS Default company invoicing:",
+	"de" => "TRANS Default company invoicing:",
+	"zh" => "TRANS Default company invoicing:",
+	"pl" => "TRANS Default company invoicing:",
+	"se" => "TRANS Default company invoicing:",
+	"es" => "TRANS Default company invoicing:",
+	"pt" => "TRANS Default company invoicing:"
+	);
+
+$txt_cfg_customer_and_serv_contry_vs_company = array(
+	"fr" => "société utilisé par client et par service",
+	"en" => "Customer and service country vs company:",
+	"hu" => "TRANS Customer and service country vs company:",
+	"it" => "TRANS Customer and service country vs company:",
+	"nl" => "TRANS Customer and service country vs company:",
+	"ru" => "TRANS Customer and service country vs company:",
+	"de" => "TRANS Customer and service country vs company:",
+	"zh" => "TRANS Customer and service country vs company:",
+	"pl" => "TRANS Customer and service country vs company:",
+	"se" => "TRANS Customer and service country vs company:",
+	"es" => "TRANS Customer and service country vs company:",
+	"pt" => "TRANS Customer and service country vs company:"
+	);
+
+$txt_cfg_service_country = array(
+	"fr" => "Pays du service",
+	"en" => "Service country",
+	"hu" => "TRANS Service country",
+	"it" => "TRANS Service country",
+	"nl" => "TRANS Service country",
+	"ru" => "TRANS Service country",
+	"de" => "TRANS Service country",
+	"zh" => "TRANS Service country",
+	"pl" => "TRANS Service country",
+	"se" => "TRANS Service country",
+	"es" => "TRANS Service country",
+	"pt" => "TRANS Service country"
+	);
+
+$txt_cfg_customer_country = array(
+	"fr" => "Pays du client",
+	"en" => "Customer country",
+	"hu" => "TRANS Customer country",
+	"it" => "TRANS Customer country",
+	"nl" => "TRANS Customer country",
+	"ru" => "TRANS Customer country",
+	"de" => "TRANS Customer country",
+	"zh" => "TRANS Customer country",
+	"pl" => "TRANS Customer country",
+	"se" => "TRANS Customer country",
+	"es" => "TRANS Customer country",
+	"pt" => "TRANS Customer country"
+	);
+
+$txt_cfg_company_name2 = array(
+	"fr" => "Nom société",
+	"en" => "Company name",
+	"hu" => "TRANS Company name",
+	"it" => "TRANS Company name",
+	"nl" => "TRANS Company name",
+	"ru" => "TRANS Company name",
+	"de" => "TRANS Company name",
+	"zh" => "TRANS Company name",
+	"pl" => "TRANS Company name",
+	"se" => "TRANS Company name",
+	"es" => "TRANS Company name",
+	"pt" => "TRANS Company name"
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
+$txt_cfg_ = array(
+	"fr" => "",
+	"en" => "",
+	"hu" => "TRANS ",
+	"it" => "TRANS ",
+	"nl" => "TRANS ",
+	"ru" => "TRANS ",
+	"de" => "TRANS ",
+	"zh" => "TRANS ",
+	"pl" => "TRANS ",
+	"se" => "TRANS ",
+	"es" => "TRANS ",
+	"pt" => "TRANS "
+	);
+
 $txt_cfg_server_address =array(
 	"fr" => "Address serveur:",
 	"en" => "Server address :",
@@ -25,7 +1124,6 @@ $txt_cfg_server_address =array(
 	"es" => "Direcci&oacute;n del servidor:",
 	"pt" => "TRANS Server address :"
 	);
-	
 	
 $txt_cfg_daemon = array (
   "fr" => "Daemon",
@@ -877,66 +1975,6 @@ $txt_cfg_real_name = array(
 "pt" => "TRANS Real name"
 );
 
-$txt_cfg_ = array(
-"fr" => "",
-"en" => "",
-"hu" => "TRANS ",
-"it" => "TRANS ",
-"nl" => "",
-"ru" => "TRANS ",
-"de" => "TRANS ",
-"zh" => "TRANS ",
-"pl" => "TRANS ",
-"se" => "TRANS ",
-"es" => "TRANS ",
-"pt" => "TRANS "
-);
-
-$txt_cfg_ = array(
-"fr" => "",
-"en" => "",
-"hu" => "TRANS ",
-"it" => "TRANS ",
-"nl" => "",
-"ru" => "TRANS ",
-"de" => "TRANS ",
-"zh" => "TRANS ",
-"pl" => "TRANS ",
-"se" => "TRANS ",
-"es" => "TRANS ",
-"pt" => "TRANS "
-);
-
-$txt_cfg_ = array(
-"fr" => "",
-"en" => "",
-"hu" => "TRANS ",
-"it" => "TRANS ",
-"nl" => "",
-"ru" => "TRANS ",
-"de" => "TRANS ",
-"zh" => "TRANS ",
-"pl" => "TRANS ",
-"se" => "TRANS ",
-"es" => "TRANS ",
-"pt" => "TRANS "
-);
-
-$txt_cfg_ = array(
-"fr" => "",
-"en" => "",
-"hu" => "TRANS ",
-"it" => "TRANS ",
-"nl" => "",
-"ru" => "TRANS ",
-"de" => "TRANS ",
-"zh" => "TRANS ",
-"pl" => "TRANS ",
-"se" => "TRANS ",
-"es" => "TRANS ",
-"pt" => "TRANS "
-);
-
 $txt_cfg_paypal_use_sandbox = array(
 	"fr" => "Utiliser le serveur de test sandbox :",
 	"en" => "Use the sandbox test server:",
@@ -1313,6 +2351,21 @@ $txt_cfg_hide_password = array(
 	"se" => "TRANS Hide passwords within DTC:",
 	"es" => "Ocultar contrase&ntilde;as dentro de DTC:",
 	"pt" => "Ofuscar as palavras chave no DTC:"
+	);
+
+$txt_cfg_use_domain_based_ssh_logins = array(
+	"fr" => "Utiliser des logins ftp @domain.com :",
+	"en" => "Use @domain.com ssh logins:",
+	"hu" => "TRANS Use @domain.com ssh logins:",
+	"it" => "TRANS Use @domain.com ssh logins:",
+	"nl" => "TRANS Use @domain.com ssh logins:",
+	"ru" => "TRANS Use @domain.com ssh logins:",
+	"de" => "TRANS Use @domain.com ssh logins:",
+	"zh" => "TRANS Use @domain.com ssh logins:",
+	"pl" => "TRANS Use @domain.com ssh logins:",
+	"se" => "TRANS Use @domain.com ssh logins:",
+	"es" => "TRANS Use @domain.com ssh logins:",
+	"pt" => "TRANS Use @domain.com ssh logins:"
 	);
 
 $txt_cfg_use_domain_based_ftp_logins = array(

@@ -4041,7 +4041,7 @@ $txt_delete_this_mysql_user_and_db = array(
 	"pt" => "Apagar o utilizador MySQL e todas as suas base de dados"
 );
 $txt_draw_client_info_comp_name = array(
-	"fr" => "Société :",
+	"fr" => "Nom société :",
 	"en" => "Company name:",
 	"hu" => "Cégnév:",
 	"it" => "Società:",

@@ -103,7 +103,7 @@ input,select,textarea {
 .input_btn_container {
 	float: left;
 	height: 22px;
-	background-image: url(gfx/input_btn_background-2s.gif);
+	background-image: url(gfx/buttons/input_btn_background-2s.gif);
 	background-position: top;
 	background-repeat: repeat-x;
 	}
@@ -111,7 +111,7 @@ input,select,textarea {
 .input_btn_container-hover {
 	float: left;
 	height: 22px;
-	background-image: url(gfx/input_btn_background-2s.gif);
+	background-image: url(gfx/buttons/input_btn_background-2s.gif);
 	background-position: bottom;
 	background-repeat: repeat-x;
 	}
@@ -120,7 +120,7 @@ input,select,textarea {
 	float: left;
 	width: 5px;
 	height: 22px;
-	background-image: url(gfx/input_btn_left.gif);
+	background-image: url(gfx/buttons/input_btn_left.gif);
 	background-position: top right;
 	background-repeat: no-repeat;
 	}
@@ -129,7 +129,7 @@ input,select,textarea {
 	float: left;
 	width: 5px;
 	height: 22px;
-	background-image: url(gfx/input_btn_right.gif);
+	background-image: url(gfx/buttons/input_btn_right.gif);
 	background-position: top left;
 	background-repeat: no-repeat;
 	}
@@ -138,7 +138,7 @@ input,select,textarea {
 	float: left;
 	padding: 0;
 	height: 22px;
-	background-image: url(gfx/input_btn_mid.gif);
+	background-image: url(gfx/buttons/input_btn_mid.gif);
 	background-position: top;
 	background-repeat: repeat-x;
 	}

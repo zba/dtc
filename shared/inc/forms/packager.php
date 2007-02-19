@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: packager.php,v 1.17 2006/05/21 22:39:26 seeb Exp $
+ * @version $Id: packager.php,v 1.18 2007/02/19 09:08:37 thomas Exp $
  * @param unknown_type $domain
  * @param unknown_type $adm_path
  * @return unknown
@@ -132,7 +132,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		}
 
 		// Print the results
-		$txt .= "<b><u>Installation of ".$pkg_info["name"].":</u></b><br><pre>".$x.$package_installer_console."</pre>";
+		$txt .= "<h3>Installation of ".$pkg_info["name"].":</h3><br><pre>".$x.$package_installer_console."</pre>";
 		return $txt;
 	}
 
@@ -140,7 +140,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 //		echo "<pre>";
 //		print_r($pkg_info);
 //		echo "</pre>";
-		$txt = "<b><u>You are about to install ".$pkg_info["name"].":</u></b><br>
+		$txt = "<h3>You are about to install ".$pkg_info["name"].":</h3><br>
 		<u>Description:</u> ".$pkg_info["long_desc"]."<br>
 		<u>Version:</u> ".$pkg_info["version"]."<br><br>";
 
@@ -149,7 +149,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
 		if($pkg_info["need_database"] == "yes"){
-			$txt .= "<b><u>Choose a database name for setup:</u></b><br>";
+			$txt .= "<h3>Choose a database name for setup:</h3><br>";
 			mysql_select_db("mysql")or die ("Cannot select db: mysql");
 			$q = "SELECT db.Db,db.User FROM user,db
 			WHERE user.dtcowner='$adm_login'
@@ -173,12 +173,12 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		}
 
 		if($pkg_info["need_admin_email"] == "yes"){
-			$txt .= "<b><u>Enter email for the admin of this package:</u></b><br>";
+			$txt .= "<h3>Enter email for the admin of this package:</h3><br>";
 			$txt .= "Email: <input type=\"text\" name=\"dtcpkg_email\" value=\"\"><br><br>";
 		}
 
 		if($pkg_info["need_admin_login"] == "yes"){
-			$txt .= "<b><u>Enter login informations for the admin of this package:</u></b><br>";
+			$txt .= "<h3>Enter login informations for the admin of this package:</h3><br>";
 			$txt .= "Login: <input type=\"text\" name=\"dtcpkg_login\" value=\"\"><br>";
 			if($pkg_info["need_admin_pass"] == "yes"){
 				$txt .= "Pass: <input type=\"text\" name=\"dtcpkg_pass\" value=\"\"><br>";
@@ -187,7 +187,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		}
 
 
-		$txt .= "<b><u>Choose the subdomain and install :</u></b><br>";
+		$txt .= "<h3>Choose the subdomain and install :</h3><br>";
 		$txt .= "<input type=\"hidden\" name=\"action\" value=\"do_install\">
 		<input type=\"hidden\" name=\"pkg\" value=\"".$_REQUEST["pkg"]."\">
 		Subdomain: <select name=\"subdomain\">";
@@ -201,7 +201,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		$txt .= "</select><br><br>";
 
 		if($pkg_info["can_select_directory"] == "yes"){
-			$txt .= "<b><u>Enter the directory where you want to install this package:</u></b><br>";
+			$txt .= "<h3>Enter the directory where you want to install this package:</h3><br>";
 			$txt .= "Directory (blank for /): <input type=\"text\" name=\"dtcpkg_directory\" value=\"\"><br><br>";
 		}
 
@@ -209,7 +209,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		$txt .= "</form>";
 		return $txt;
 	}
-	$txt = "<b><u>".$txt_choose_package_install[$lang].":</u></b>";
+	$txt = "<h3>".$txt_choose_package_install[$lang].":</h3>";
 
 	$txt .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"1\">";
 	$txt .= "<tr><td>".$txt_package_name[$lang]."</td><td>".$txt_description[$lang]."</td><td>".$txt_package_version[$lang]."</td><td>".$txt_package_need_db[$lang]."</td><td>".$txt_package_un_size[$lang]."</td><td>".$txt_install[$lang]."</td></tr>";

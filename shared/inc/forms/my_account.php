@@ -86,7 +86,7 @@ function drawAdminTools_MyAccount($admin){
 	}
 
 	if(isset($admin["data"])){
-		$out .= "<b><u>".$txt_transfer_du[$lang]."</u></b>";
+		$out .= "<h3>".$txt_transfer_du[$lang]."</h3>";
 		// Draw overall this month usage
 		// if there is no usage, set to 0
 		if (!isset($stats["total_transfer"]))
@@ -117,7 +117,7 @@ function drawAdminTools_MyAccount($admin){
 
 		// If the customer has domains (he could have only a VPS...).
 		if(isset($admin["data"])){
-			$out .= "<br><b><u>".$txt_your_hosting_account[$lang]."</u></b>";
+			$out .= "<br><h3>".$txt_your_hosting_account[$lang]."</h3>";
 			$out .= "<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"1\">
 <tr>
 	<td><b>".$txt_storage_space[$lang]."</b></td><td><b>".$txt_allowed_data_transfer[$lang]."</b></td><td><b>".$txt_expiration_date[$lang]."</b></td>
@@ -208,7 +208,7 @@ function drawAdminTools_MyAccount($admin){
 				}
 			}
 
-			$out .=  "<b><u>".$txt_remaining_money[$lang]."</u></b><br>
+			$out .=  "<h3>".$txt_remaining_money[$lang]."</h3><br>
 <table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"0\">
 <tr>
 	<td><font size=\"+1\">\$".$client["dollar"]."</font></td>

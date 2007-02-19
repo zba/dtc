@@ -132,10 +132,14 @@ Request to close the issue:<input type=\"radio\" name=\"request_to_close\" value
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"subaction\" value=\"new_ticket\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-<input type=\"submit\" value=\"Submit new support issue\">
+<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Submit new support issue\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
 </form>
 ";
-		$out .= "<b><u>Old tickets:</u></b>";
+		$out .= "<br><br><h3>Old tickets:</h3>";
 		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE adm_login='$adm_login' AND in_reply_of_id='0' ORDER BY date,time DESC;";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);

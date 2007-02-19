@@ -71,7 +71,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	$total_smtp_transfer = fetchSMTPInfo($webname);
 	$total_transfer = smartByte($total_http_transfer + $total_ftp_transfer + $total_smtp_transfer + $total_pop_transfer + $total_imap_transfer);
 
-	$out .= "<b><u>".$txt_your_domain[$lang]."</u></b><br>
+	$out .= "<h3>".$txt_your_domain[$lang]."</h3><br>
 	".$txt_total_transfered_bytes_this_month[$lang]." $total_transfer<br>
 	".$txt_are_disk_usage[$lang]." ".smartByte($du)." / $quota MBytes<br>
 	".$txt_your_domain_email[$lang]." $email_nbr / $max_email<br>
@@ -79,7 +79,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	".$txt_your_domain_subdomain[$lang]." $subdomain_nbr /
 	$max_subdomain<br><br>";
 
-	$out .= "<b><u>".$txt_your_domain[$lang]."</u></b><br>
+	$out .= "<h3>".$txt_your_domain[$lang]."</h3>
 	".$txt_use[$lang]." http(s)://".$conf_administrative_site."/www.".$_REQUEST["addrlink"]." ".$txt_aliasing[$lang].":";
 
 	if($eddomain["gen_unresolved_domain_alias"] == "yes"){

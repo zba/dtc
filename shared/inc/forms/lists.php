@@ -39,7 +39,7 @@ function drawAdminTools_MailingLists($domain){
 	$nbrtxt = $txt_number_of_active_lists[$lang];
 	$txt .= "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\">". $nbr_email ."</font> / <font size=\"-1\">" . $max_email . "</font><br><br>";
 
-	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><b><u>".$txt_list_liste_of_your_ml[$lang]."</u><br>";
+	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><h3>".$txt_list_liste_of_your_ml[$lang]."</h3>";
 	if (isset($domain["mailinglists"]))
 	{
 		$lists = $domain["mailinglists"];
@@ -65,7 +65,7 @@ function drawAdminTools_MailingLists($domain){
 
 	if(isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
 		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">".$txt_mail_new_mailbox_link[$lang]."</a> ";
-		$txt .= "<br><br><u>".$txt_mail_edit[$lang]."</u><br><br>";
+		$txt .= "<br><br><h3>".$txt_mail_edit[$lang]."</h3><br><br>";
 
 		$list_name = $_REQUEST["edit_mailbox"];
 		if (isset($_REQUEST["list_owner"])){
@@ -99,7 +99,7 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 		$txt .= subscribers_list($list_path);
 	}else{
 		$txt .= "<br><br>".$txt_mail_new_mailbox_link[$lang];
-		$txt .= "<br><br><u>".$txt_list_new_list[$lang]."</u><br>";
+		$txt .= "<br><br><h3>".$txt_list_new_list[$lang]."</h3><br>";
 
 		if($nbr_email < $max_email){
 			$txt .= "
@@ -137,7 +137,7 @@ function subscribers_list($list_path){
 	global $addrlink;
 	global $edit_domain;
 
-	$out = "<br><u><b>Subscriber list (click to unsubscribe):</b></u><br><br>";
+	$out = "<br><h3>Subscriber list (click to unsubscribe):</h3><br><br>";
 
 	$path = $list_path."/subscribers.d";
 
@@ -167,7 +167,7 @@ function subscribers_list($list_path){
 		}
 		$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails&edit_mailbox=".$_REQUEST["edit_mailbox"]."&action=unsubscribe_user&subscriber_email=".$subs[$i]."\">".$subs[$i]."</a>";
 	}
-	$out .= "<br><br><u><b>Subscribe a new user:</b></u><br><br>";
+	$out .= "<br><br><h3>Subscribe a new user:</h3><br><br>";
 	$out .= "<form action=\"?\" method=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">

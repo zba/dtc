@@ -46,7 +46,7 @@ function drawAdminTools_AdminStats($admin){
 	$id_client = $admin["info"]["id_client"];
 
 	// Print the transfer overall total for this month
-	$out .= "<u><b>".$txt_total_transfered_bytes_this_month[$lang]."</b></u>";
+	$out .= "<h3>".$txt_total_transfered_bytes_this_month[$lang]."</h3>";
 	if (!isset($stats["total_http"]))
 	{
 		$stats["total_http"] = 0;
@@ -75,7 +75,7 @@ function drawAdminTools_AdminStats($admin){
 	}
 
 	// Print disk usage
-	$out .= "<br><u><b>".$txt_are_disk_usage[$lang]."</b></u>";
+	$out .= "<br><h3>".$txt_are_disk_usage[$lang]."</h3>";
 	if (!isset($stats["total_du_domains"]))
 	{
 		$stats["total_du_domains"] = 0;
@@ -94,7 +94,7 @@ function drawAdminTools_AdminStats($admin){
 		$out .= drawPercentBar($stats["total_du"],$du_quota);
 	}
 
-	$out .= "<br><br><u><b>".$txt_databases_disk_usage[$lang]."</b></u>";
+	$out .= "<br><br><h3>".$txt_databases_disk_usage[$lang]."</h3>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
 	$out .= "<tr><td$nowrap><b>".$txt_database_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></tr>";
 	if(isset($stats["db"])){
@@ -115,7 +115,7 @@ function drawAdminTools_AdminStats($admin){
 	}
 	$out .= '</table>';
 
-	$out .= "<br><br><u><b>".$txt_domain_name_trafic_du[$lang]."</b></u>";
+	$out .= "<br><br><h3>".$txt_domain_name_trafic_du[$lang]."</h3>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
 	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td>
 	<td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td>

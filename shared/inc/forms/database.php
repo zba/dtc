@@ -33,7 +33,7 @@ function drawDataBase($database){
 	if($n != 1)	die("Cannot find user !");
 	$admin_param = mysql_fetch_array($r);
 
-	$txt = "<br><b><u>".$txt_your_users[$lang]."</u></b>";
+	$txt = "<br><h3>".$txt_your_users[$lang]."</h3>";
 	$q = "SELECT * FROM mysql.user WHERE dtcowner='$adm_login' ORDER BY User;";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -69,7 +69,7 @@ function drawDataBase($database){
 	<td><input type=\"submit\" value=\"".$txt_create[$lang]."\"></form></td><td></td></tr>";
 	$txt .= "</table>";
 
-	$txt .= "<br><b><u>".$txt_draw_tatabase_your_list[$lang]."</u></b><br>";
+	$txt .= "<br><h3>".$txt_draw_tatabase_your_list[$lang]."</h3><br>";
 
 	if($conf_demo_version == "no" && $num_users > 0){
 		mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");

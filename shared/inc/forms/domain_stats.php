@@ -48,7 +48,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 		$pop_trafic = 0;
 		$imap_trafic = 0;
 	}
-	$out .= "<u><b>".$txt_total_transfered_bytes_this_month[$lang]."</b></u>";
+	$out .= "<h3>".$txt_total_transfered_bytes_this_month[$lang]."</h3>";
 	$out .= "<br>HTTP: ".smartByte($http_amount);
 	$out .= "<br>FTP:  ".smartByte($ftp_amount);
 	$out .= "<br>SMTP:  ".smartByte($smtp_trafic);
@@ -56,7 +56,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	$out .= "<br>IMAP:  ".smartByte($imap_trafic);
 	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount + $pop_trafic + $smtp_trafic + $imap_trafic);
 
-	$out .= "<br><br><b><u>".$txt_stats_http_subdom[$lang]."</u></b><br>";
+	$out .= "<br><br><h3>".$txt_stats_http_subdom[$lang]."</h3><br>";
 	for($i=0;$i<sizeof($eddomain["subdomains"]);$i++){
 		if($i != 0)	$out .= " - ";
 		$out .= "<a target=\"_blank\" href=\"http://".

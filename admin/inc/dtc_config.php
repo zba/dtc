@@ -407,11 +407,24 @@ function drawVPSServerConfig(){
 	global $pro_mysql_vps_server_table;
 	global $rub;
 	global $cc_code_array;
+	global $lang;
+	global $txt_cfg_vps_server_and_ip_addresses_registry;
+	global $txt_cfg_vps_server_list;
+	global $txt_cfg_ip_addrs;
+	global $txt_cfg_hostname;
+	global $txt_cfg_location;
+	global $txt_cfg_soap_login;
+	global $txt_cfg_soap_password;
+	global $txt_cfg_use_lvm_backend;
+	global $txt_cfg_vps_ips_for;
+	global $txt_cfg_vps_xen_number;
+	global $txt_cfg_ip_addr;
+	global $txt_cfg_available;
 
-	$out = "<h3>VPS Server registry edition</h3>";
+	$out = "<h3>".$txt_cfg_vps_server_and_ip_addresses_registry[$lang]."</h3>";
 	$dsc = array(
 		"table_name" => $pro_mysql_vps_server_table,
-		"title" => "VPS Server list:",
+		"title" => $txt_cfg_vps_server_list[$lang],
 		"action" => "vps_server_list",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -421,24 +434,24 @@ function drawVPSServerConfig(){
 				"legend" => "id"),
 			"edithost" => array(
 				"type" => "hyperlink",
-				"legend" => "IPs addrs",
+				"legend" => $txt_cfg_ip_addrs[$lang],
 				"text" => "Edit IPs"),
 			"hostname" => array(
 				"type" => "text",
 				"size" => "15",
-				"legend" => "Hostname"),
+				"legend" => $txt_cfg_hostname[$lang]),
 			"location" => array(
 				"type" => "text",
 				"size" => "10",
-				"legend" => "Location"),
+				"legend" => $txt_cfg_location[$lang]),
 			"soap_login" => array(
 				"type" => "text",
 				"size" => "7",
-				"legend" => "Soap login"),
+				"legend" => $txt_cfg_soap_login[$lang]),
 			"soap_pass" => array(
 				"type" => "password",
 				"size" => "7",
-				"legend" => "Soap password"),
+				"legend" => $txt_cfg_soap_password[$lang]),
 			"country_code" => array(
 				"type" => "popup",
 				"legend" => "Country",
@@ -446,7 +459,7 @@ function drawVPSServerConfig(){
 				"display_replace" => array_values($cc_code_array)),
 			"lvmenable" => array(
 				"type" => "radio",
-				"legend" => "Use LVM backend",
+				"legend" => $txt_cfg_use_lvm_backend[$lang],
 				"values" => array("yes","no"))));
 	$vps_server_list = dtcDatagrid($dsc);
 	$out .= $vps_server_list;
@@ -457,7 +470,7 @@ function drawVPSServerConfig(){
 		$a = mysql_fetch_array($r);
 		$dsc = array(
 			"table_name" => $pro_mysql_vps_ip_table,
-			"title" => "VPS IPs for ".$a["hostname"].":",
+			"title" => $txt_cfg_vps_ips_for[$lang].$a["hostname"].":",
 			"where_condition" => "vps_server_hostname='".$a["hostname"]."'",
 			"action" => "vps_server_ip_list",
 			"forward" => array("rub","sousrub","edithost"),
@@ -468,13 +481,13 @@ function drawVPSServerConfig(){
 					"legend" => "id"),
 				"vps_xen_name" => array(
 					"type" => "text",
-					"legend" => "VPS xen number"),
+					"legend" => $txt_cfg_vps_xen_number[$lang]),
 				"ip_addr" => array(
 					"type" => "text",
-					"legend" => "IP addr"),
+					"legend" => $txt_cfg_ip_addr[$lang]),
 				"available" => array(
 					"type" => "radio",
-					"legend" => "available",
+					"legend" => $txt_cfg_available[$lang],
 					"values" => array("yes","no")))
 			);
 		$out .= dtcDatagrid($dsc);
@@ -486,7 +499,7 @@ function drawRegistrySelection(){
 	global $pro_mysql_registry_table;
 	global $txt_registry_selection;
 	global $lang;
-	$out = "<b><u>".$txt_registry_selection[$lang]."</u></b>";
+	$out = "<h3>".$txt_registry_selection[$lang]."</h3>";
 	$out .= "";
 	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
@@ -512,6 +525,18 @@ function drawGeneralConfig(){
 	global $txt_cfg_skin_chooser;
 	global $txt_yes;
 	global $txt_no;
+	global $txt_cfg_this_server_location;
+	global $txt_cfg_selling_conditions_url;
+	global $txt_cfg_use_domain_based_ssh_logins;
+	global $txt_cfg_mta_mail_transport_agent;
+	global $txt_cfg_use_cyrus;
+	global $txt_cfg_webalizer_country_graph;
+	global $txt_cfg_location_of_users_database;
+	global $txt_cfg_same_as_for_dtc;
+	global $txt_cfg_another_location;
+	global $txt_cfg_user_mysql_host;
+	global $txt_cfg_user_mysql_root_login;
+	global $txt_cfg_user_mysql_root_password;
 	global $lang;
 
 	global $cc_code_array;
@@ -543,7 +568,7 @@ function drawGeneralConfig(){
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"domain_based_ssh_logins" => array(
-				"legend" => "Domain based ssh logins:",
+				"legend" => $txt_cfg_use_domain_based_ssh_logins[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
@@ -553,11 +578,11 @@ function drawGeneralConfig(){
 				"size" => "10"),
 			"this_server_country_code" => array(
 				"type" => "popup",
-				"legend" => "This server location:",
+				"legend" => $txt_cfg_this_server_location[$lang],
 				"values" => array_keys($cc_code_array),
 				"display_replace" => array_values($cc_code_array)),
 			"selling_conditions_url" => array(
-				"legend" => "Selling condition URL:",
+				"legend" => $txt_cfg_selling_conditions_url[$lang],
 				"type" => "text",
 				"size" => "40")));
 	$out .= configEditorTemplate ($dsc);
@@ -568,32 +593,32 @@ function drawGeneralConfig(){
 		"forward" => array("rub"),
 		"cols" => array (
 			"mta_type" => array(
-				"legend" => "MTA (Mail Transport Agent):",
+				"legend" => $txt_cfg_mta_mail_transport_agent[$lang],
 				"type" => "radio",
 				"values" => array("qmail","postfix")),
 			"use_cyrus" => array(
 				"type" => "radio",
-				"legend" => "Use cyrus:",
+				"legend" => $txt_cfg_use_cyrus[$lang],
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"webalizer_country_graph" => array(
-				"legend" => "Webalizer contry graph:",
+				"legend" => $txt_cfg_webalizer_country_graph[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"user_mysql_type" => array(
-				"legend" => "Location of user's database:",
+				"legend" => $txt_cfg_location_of_users_database[$lang],
 				"type" => "radio",
 				"values" => array("localhost","distant"),
-				"display_replace" => array("Same as for DTC","Another location")),
+				"display_replace" => array($txt_cfg_same_as_for_dtc[$lang],$txt_cfg_another_location[$lang])),
 			"user_mysql_host" => array(
-				"legend" => "User MySQL host:",
+				"legend" => $txt_cfg_user_mysql_host[$lang],
 				"type" => "text"),
 			"user_mysql_root_login" => array(
-				"legend" => "User MySQL root login:",
+				"legend" => $txt_cfg_user_mysql_root_login[$lang],
 				"type" => "text"),
 			"user_mysql_root_pass" => array(
-				"legend" => "User MySQL root password:",
+				"legend" => $txt_cfg_user_mysql_root_password[$lang],
 				"type" => "text")));
 	$out .= configEditorTemplate ($dsc);
 
@@ -754,8 +779,8 @@ function drawBackupConfig(){
         global $txt_cmenu_password;
 	global $txt_action;
 	global $txt_domain_tbl_config_ip;
-        global $txt_cfg_server_address;		
-
+        global $txt_cfg_server_address;
+	global $txt_cfg_login;
 
 	$out = "";
 
@@ -800,10 +825,10 @@ function drawBackupConfig(){
 			"server_addr" => array(
 				"type" => "text",
 				"size" => "35",
-				"legend" => "Server address"),
+				"legend" => $txt_cfg_server_address[$lang]"Server address"),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => "Login"),
+				"legend" => $txt_cfg_login[$lang]),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
@@ -828,7 +853,7 @@ function drawBackupConfig(){
 				"legend" => "Server address"),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => "Login"),
+				"legend" => $txt_cfg_login[$lang]),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
@@ -855,7 +880,7 @@ function drawBackupConfig(){
 				"legend" => "Server address"),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => "Login"),
+				"legend" => $txt_cfg_login[$lang]),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
@@ -880,7 +905,7 @@ function drawBackupConfig(){
 				"legend" => "Server address"),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => "Login"),
+				"legend" => $txt_cfg_login[$lang]),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
@@ -963,6 +988,9 @@ function drawDTCpayConfig(){
 	global $txt_cfg_paypal_sandbox_email;
 	global $txt_cfg_paypal_use_sandbox;
 
+	global $txt_cfg_test_server;
+	global $txt_cfg_production_server;
+
 	global $pro_mysql_secpayconf_table;
 
 	$out = "";
@@ -1034,7 +1062,7 @@ function drawDTCpayConfig(){
 				"legend" => "eNETS server:",
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array("Test server","Production server")),
+				"display_replace" => array($txt_cfg_test_server[$lang],$txt_cfg_production_server[$lang])),
 			"enets_mid_id" => array(
 				"legend" => "eNETS mid:",
 				"type" => "text",
@@ -1167,15 +1195,15 @@ function drawDTCpathConfig(){
 				"type" => "text",
 				"size" => "26"),
 			"qmail_virtualdomains_path" => array(
-				"legend" => "eNETS test mid:",
+				"legend" => "virtualdomains:",
 				"type" => "text",
 				"size" => "26"),
 			"qmail_assign_path" => array(
-				"legend" => "eNETS test mid:",
+				"legend" => "assign:",
 				"type" => "text",
 				"size" => "26"),
 			"qmail_poppasswd_path" => array(
-				"legend" => "eNETS rate:",
+				"legend" => "poppasswd:",
 				"type" => "text",
 				"size" => "26")));
 	$out .= configEditorTemplate ($dsc);
@@ -1235,6 +1263,17 @@ function drawCompaniesConfig(){
 	global $cc_code_array;
 	global $conf_generated_file_path;
 
+	global $txt_cfg_registration_number;
+	global $txt_cfg_country;
+	global $txt_cfg_addr;
+	global $txt_cfg_comp_name;
+	global $txt_cfg_vat_number;
+	global $txt_cfg_vat_rate;
+	global $txt_cfg_logo_path_relative_to;
+	global $txt_cfg_invoice_free_text;
+	global $txt_cfg_invoice_footer;
+	global $lang;
+
 	$out = "";
 
 	$country_codes = array_keys($cc_code_array);
@@ -1257,43 +1296,43 @@ function drawCompaniesConfig(){
 			"name" => array(
 				"type" => "text",
 				"size" => "30",
-				"legend" => "Name:"),
+				"legend" => $txt_cfg_comp_name[$lang]),
 			"address" => array(
 				"type" => "textarea",
 				"cols" => "60",
 				"rows" => "5",
-				"legend" => "Address:"),
+				"legend" => $txt_cfg_addr[$lang]),
 			"country" => array(
 				"type" => "popup",
-				"legend" => "Country:",
+				"legend" => $txt_cfg_country[$lang],
 				"values" => $country_codes,
 				"display_replace" => $country_fullnames),
 			"registration_number" => array(
 				"type" => "text",
 				"size" => "30",
-				"legend" => "Registration number:"),
+				"legend" => $txt_cfg_registration_number[$lang]),
 			"vat_number" => array(
 				"type" => "text",
 				"size" => "30",
-				"legend" => "VAT number:"),
+				"legend" => $txt_cfg_vat_number[$lang]),
 			"vat_rate" => array(
 				"type" => "text",
 				"size" => "10",
-				"legend" => "VAT rate:"),
+				"legend" => $txt_cfg_vat_rate[$lang]),
 			"logo_path" => array(
 				"type" => "text",
                                 "size" => "30",
-                                "legend" => "Logo path relative to<br>$conf_generated_file_path/invoice_pics/:"),
+                                "legend" => $txt_cfg_logo_path_relative_to[$lang]."<br>$conf_generated_file_path/invoice_pics/:"),
 			"text_after" => array(
 				"type" => "textarea",
 				"cols" => "60",
 				"rows" => "5",
-				"legend" => "Invoice free text:"),
+				"legend" => $txt_cfg_invoice_free_text[$lang]),
 			"footer" => array(
 				"type" => "textarea",
 				"cols" => "60",
 				"rows" => "5",
-				"legend" => "Invoice footer:")));
+				"legend" => $txt_cfg_invoice_footer[$lang])));
 	$out .= dtcListItemsEdit($dsc);
 	return $out;
 }
@@ -1302,6 +1341,14 @@ function drawInvoicingConfig(){
 	global $pro_mysql_companies_table;
 	global $pro_mysql_invoicing_table;
 	global $cc_code_array;
+
+	global $lang;
+	global $txt_cfg_default_company_invoicing;
+	global $txt_cfg_customer_and_serv_contry_vs_company;
+	global $txt_cfg_service_country;
+	global $txt_cfg_customer_country;
+	global $txt_cfg_company_name2;
+
 	$out = "";
 
 	$q = "SELECT * FROM $pro_mysql_companies_table WHERE 1;";
@@ -1316,12 +1363,12 @@ function drawInvoicingConfig(){
 	}
 
 	$dsc = array(
-		"title" => "Default company invoicing:",
+		"title" => $txt_cfg_default_company_invoicing[$lang],
 		"action" => "default_company_invoicing_editor",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"default_company_invoicing" => array(
-				"legend" => "Default company invoicing:",
+				"legend" => $txt_cfg_default_company_invoicing[$lang],
 				"type" => "popup",
 				"values" => $comp_ids,
 				"display_replace" => $comp_names)));
@@ -1338,7 +1385,7 @@ function drawInvoicingConfig(){
 
 	$dsc = array(
 		"table_name" => $pro_mysql_invoicing_table,
-		"title" => "Customer and service country vs company:",
+		"title" => $txt_cfg_customer_and_serv_contry_vs_company[$lang],
 		"action" => "cust_and_serv_country_vs_comp",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -1348,17 +1395,17 @@ function drawInvoicingConfig(){
 				"legend" => "id"),
 			"service_country_code" => array(
 				"type" => "popup",
-				"legend" => "Service country",
+				"legend" => $txt_cfg_service_country[$lang],
 				"values" => $country_codes,
 				"display_replace" => $country_fullnames),
 			"customer_country_code" => array(
 				"type" => "popup",
-				"legend" => "Customer country",
+				"legend" => $txt_cfg_customer_country[$lang],
 				"values" => $country_codes,
 				"display_replace" => $country_fullnames),
 			"company_id" => array(
 				"type" => "popup",
-				"legend" => "Company name",
+				"legend" => $txt_cfg_company_name2[$lang],
 				"values" => $comp_ids,
 				"display_replace" => $comp_names)
 			)
