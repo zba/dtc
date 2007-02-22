@@ -825,7 +825,7 @@ function drawBackupConfig(){
 			"server_addr" => array(
 				"type" => "text",
 				"size" => "35",
-				"legend" => $txt_cfg_server_address[$lang]"Server address"),
+				"legend" => $txt_cfg_server_address[$lang]),
 			"server_login" => array(
 				"type" => "text",
 				"legend" => $txt_cfg_login[$lang]),
