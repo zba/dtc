@@ -311,6 +311,8 @@ function drawTicketConfig(){
 	global $txt_cfg_real_name;
 	global $txt_yes;
 	global $txt_no;
+	global $txt_cfg_category_description;
+	global $txt_cfg_ticket_category;
 
 	$out = "<h3>".$txt_cfg_support_ticket_configuration[$lang]."</h3>";
 	$dsc = array(
@@ -353,11 +355,11 @@ function drawTicketConfig(){
 				"legend" => "id"),
 			"catname" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_nick_name[$lang]),
+				"legend" => $txt_cfg_ticket_category[$lang]),
 			"catdescript" => array(
 				"type" => "text",
 				"size" => "50",
-				"legend" => $txt_cfg_real_name[$lang])));
+				"legend" => $txt_cfg_category_description[$lang])));
 	$out .= dtcDatagrid($dsc);
 	return $out;
 }

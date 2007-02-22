@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.92 2007/02/15 08:58:20 thomas Exp $
+ * @version $Id: draw.php,v 1.93 2007/02/22 05:40:08 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -50,16 +50,16 @@ function drawPasswordChange(){
 	global $txt_retype_new_password;
 	global $lang;
 
-	$out = "<b><u>".$txt_change_your_password[$lang]."</u></b><br>
+	$out = "<h3>".$txt_change_your_password[$lang]."</h3><br>
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+".dtcFormTableAttrs()."
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"action\" value=\"change_adm_pass\">
-".$txt_type_new_password[$lang]." <input type=\"password\" name=\"new_pass1\" value=\"\"><br>
-".$txt_retype_new_password[$lang]." <input type=\"password\" name=\"new_pass2\" value=\"\">
-<input type=\"submit\" value=\"Ok\">
-</form>";
+".dtcFormLineDraw($txt_type_new_password[$lang],"<input type=\"password\" name=\"new_pass1\" value=\"\">").
+dtcFormLineDraw($txt_retype_new_password[$lang],"<input type=\"password\" name=\"new_pass2\" value=\"\">",1).
+dtcFromOkDraw()."</form></table>";
 	return $out;
 }
 

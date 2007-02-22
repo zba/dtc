@@ -186,25 +186,37 @@ function drawNewAdminForm(){
 				$bg = " bgcolor=\"#FFFFAA\" ";
 			}
 			$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
-			if($a["request_close"]){
+			if($a["request_close"] == "yes"){
 				$close_request = "yes";
 			}
 		}
 		$out .= "</table>";
 		$out .= $txt_dua_request_to_close_the_ticket[$lang];
 		if($close_request == "yes"){
-			$out .= "<font color=\"#FF0000\">".$txt_no[$lang]."</font><br>";
+			$out .= "<font color=\"#00FF00\">".$txt_yes[$lang]."</font><br>";
 		}else{
-			$out .= "<font color=\"#FF0000\">".$txt_yes[$lang]."</font><br>";
+			$out .= "<font color=\"#FF0000\">".$txt_no[$lang]."</font><br>";
 		}
 		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 		<input type=\"hidden\" name=\"subaction\" value=\"ticket_reply\">
 		<textarea cols=\"60\" rows=\"10\" wrap=\"physical\" name=\"ticketbody\"></textarea><br>
 		<input type=\"hidden\" name=\"tik_id\" value=\"".$_REQUEST["tik_id"]."\">
 		<input type=\"hidden\" name=\"last_tik_id\" value=\"$last_tik\">
-		<input type=\"submit\" name=\"answer\" value=\"".$txt_dua_send_reply[$lang]."\">
-		<input type=\"submit\" name=\"answer_close\" value=\"".$txt_dua_send_reply_and_close_ticket[$lang]."\">
-		<input type=\"submit\" name=\"close\" value=\"".$txt_dua_close_without_reply[$lang]."\">
+		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"answer\" value=\"".$txt_dua_send_reply[$lang]."\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
+		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"answer_close\" value=\"".$txt_dua_send_reply_and_close_ticket[$lang]."\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
+		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"close\" value=\"".$txt_dua_close_without_reply[$lang]."\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
 		</form>";
 		return $out;
 	}
@@ -424,7 +436,7 @@ dtcFromOkDraw()."
 				$cat = $a2["catname"];
 			}
 			$age = calculateAge($a["date"],$a["time"]);
-			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".$a["subject"]."</a></td></tr>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".stripslashes($a["subject"])."</a></td></tr>";
 		}
 		$waiting_new_users .= "</table>";
 	}

@@ -615,24 +615,24 @@ $txt_cfg_company_name2 = array(
 	"pt" => "TRANS Company name"
 	);
 
-$txt_cfg_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+$txt_cfg_ticket_category = array(
+	"fr" => "Categorie",
+	"en" => "Category",
+	"hu" => "TRANS Category",
+	"it" => "TRANS Category",
+	"nl" => "TRANS Category",
+	"ru" => "TRANS Category",
+	"de" => "TRANS Category",
+	"zh" => "TRANS Category",
+	"pl" => "TRANS Category",
+	"se" => "TRANS Category",
+	"es" => "TRANS Category",
+	"pt" => "TRANS Category"
 	);
 
-$txt_cfg_ = array(
-	"fr" => "",
-	"en" => "",
+$txt_cfg_category_description = array(
+	"fr" => "Description de la catégorie",
+	"en" => "Category description",
 	"hu" => "TRANS ",
 	"it" => "TRANS ",
 	"nl" => "TRANS ",
