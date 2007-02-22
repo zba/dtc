@@ -3955,6 +3955,7 @@ DTCsetupDaemons () {
 	modifyCourierConfig
 	modifyDovecotConfig
 	modifyPureFtpdMySQLConfig
+	configProftpd
 	configFreeRadius
 	modifyAWStatsConfig
 	modifySSHDConfig
