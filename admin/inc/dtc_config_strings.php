@@ -1,5 +1,110 @@
 <?php
 
+$txt_cfg_ftp_backup_ftp_backup_config = array(
+	"fr" => "Configuration du backup FTP",
+	"en" => "FTP backup configuration",
+	"hu" => "TRANS FTP backup configuration",
+	"it" => "TRANS FTP backup configuration",
+	"nl" => "TRANS FTP backup configuration",
+	"ru" => "TRANS FTP backup configuration",
+	"de" => "TRANS FTP backup configuration",
+	"zh" => "TRANS FTP backup configuration",
+	"pl" => "TRANS FTP backup configuration",
+	"se" => "TRANS FTP backup configuration",
+	"es" => "TRANS FTP backup configuration",
+	"pt" => "TRANS FTP backup configuration"
+	);
+
+$txt_cfg_ftp_backup_activate_ftp_backup = array(
+	"fr" => "Activer le backup FTP :",
+	"en" => "Activate FTP backups:",
+	"hu" => "TRANS Activate FTP backups:",
+	"it" => "TRANS Activate FTP backups:",
+	"nl" => "TRANS Activate FTP backups:",
+	"ru" => "TRANS Activate FTP backups:",
+	"de" => "TRANS Activate FTP backups:",
+	"zh" => "TRANS Activate FTP backups:",
+	"pl" => "TRANS Activate FTP backups:",
+	"se" => "TRANS Activate FTP backups:",
+	"es" => "TRANS Activate FTP backups:",
+	"pt" => "TRANS Activate FTP backups:"
+	);
+
+$txt_cfg_ftp_backup_hostname = array(
+	"fr" => "Nom d'hote :",
+	"en" => "Hostname:",
+	"hu" => "TRANS Hostname:",
+	"it" => "TRANS Hostname:",
+	"nl" => "TRANS Hostname:",
+	"ru" => "TRANS Hostname:",
+	"de" => "TRANS Hostname:",
+	"zh" => "TRANS Hostname:",
+	"pl" => "TRANS Hostname:",
+	"se" => "TRANS Hostname:",
+	"es" => "TRANS Hostname:",
+	"pt" => "TRANS Hostname:"
+	);
+
+$txt_cfg_ftp_backup_ftp_login = array(
+	"fr" => "Login FTP :",
+	"en" => "FTP login:",
+	"hu" => "TRANS FTP login:",
+	"it" => "TRANS FTP login:",
+	"nl" => "TRANS FTP login:",
+	"ru" => "TRANS FTP login:",
+	"de" => "TRANS FTP login:",
+	"zh" => "TRANS FTP login:",
+	"pl" => "TRANS FTP login:",
+	"se" => "TRANS FTP login:",
+	"es" => "TRANS FTP login:",
+	"pt" => "TRANS FTP login:"
+	);
+
+$txt_cfg_ftp_backup_ftp_password = array(
+	"fr" => "Mot de passe FTP :",
+	"en" => "FTP password:",
+	"hu" => "TRANS FTP password:",
+	"it" => "TRANS FTP password:",
+	"nl" => "TRANS FTP password:",
+	"ru" => "TRANS FTP password:",
+	"de" => "TRANS FTP password:",
+	"zh" => "TRANS FTP password:",
+	"pl" => "TRANS FTP password:",
+	"se" => "TRANS FTP password:",
+	"es" => "TRANS FTP password:",
+	"pt" => "TRANS FTP password:"
+	);
+
+$txt_cfg_ftp_backup_backup_frequency = array(
+	"fr" => "Fréquence des sauvegardes :",
+	"en" => "Backup frequency:",
+	"hu" => "TRANS Backup frequency:",
+	"it" => "TRANS Backup frequency:",
+	"nl" => "TRANS Backup frequency:",
+	"ru" => "TRANS Backup frequency:",
+	"de" => "TRANS Backup frequency:",
+	"zh" => "TRANS Backup frequency:",
+	"pl" => "TRANS Backup frequency:",
+	"se" => "TRANS Backup frequency:",
+	"es" => "TRANS Backup frequency:",
+	"pt" => "TRANS Backup frequency:"
+	);
+
+$txt_cfg_ftp_backup_destination_folder = array(
+	"fr" => "Dossier de destination :",
+	"en" => "Destination folder:",
+	"hu" => "TRANS Destination folder:",
+	"it" => "TRANS Destination folder:",
+	"nl" => "TRANS Destination folder:",
+	"ru" => "TRANS Destination folder:",
+	"de" => "TRANS Destination folder:",
+	"zh" => "TRANS Destination folder:",
+	"pl" => "TRANS Destination folder:",
+	"se" => "TRANS Destination folder:",
+	"es" => "TRANS Destination folder:",
+	"pt" => "TRANS Destination folder:"
+	);
+
 $txt_cfg_vps_server_and_ip_addresses_registry = array(
 	"fr" => "Edition de la liste des serveur VDS et de leurs IPs",
 	"en" => "VPS Server and IP addresses registry edition",

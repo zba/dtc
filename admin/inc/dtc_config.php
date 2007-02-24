@@ -369,35 +369,44 @@ function drawFTPBacupConfig(){
 	global $txt_yes;
 	global $txt_no;
 	global $lang;
+
+	global $txt_cfg_ftp_backup_ftp_backup_config;
+	global $txt_cfg_ftp_backup_activate_ftp_backup;
+	global $txt_cfg_ftp_backup_hostname;
+	global $txt_cfg_ftp_backup_ftp_login;
+	global $txt_cfg_ftp_backup_ftp_password;
+	global $txt_cfg_ftp_backup_backup_frequency;
+	global $txt_cfg_ftp_backup_destination_folder;
+
 	$dsc = array(
-		"title" => "FTP backup configuration",
+		"title" => $txt_cfg_ftp_backup_ftp_backup_config[$lang],
 		"action" => "ftp_backup_configuration",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"ftp_backup_activate" => array(
-				"legend" => "Activate FTP backups:",
+				"legend" => $txt_cfg_ftp_backup_activate_ftp_backup[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"ftp_backup_host" => array(
-				"legend" => "Hostname:",
+				"legend" => $txt_cfg_ftp_backup_hostname[$lang],
 				"type" => "text",
 				"size" => "30"),
 			"ftp_backup_login" => array(
-				"legend" => "FTP login:",
+				"legend" => $txt_cfg_ftp_backup_ftp_login[$lang],
 				"type" => "text",
 				"size" => "30"),
 			"ftp_backup_pass" => array(
-				"legend" => "FTP password:",
+				"legend" => $txt_cfg_ftp_backup_ftp_password[$lang],
 				"type" => "text",
 				"size" => "30"),
 			"ftp_backup_frequency" => array(
-				"legend" => "Backup frequency:",
+				"legend" => $txt_cfg_ftp_backup_backup_frequency[$lang],
 				"type" => "popup",
 				"values" => array("day","week","month"),
 				"display_replace" => array("daily","weekly","monthly")),
 			"ftp_backup_dest_folder" => array(
-				"legend" => "Destination folder:",
+				"legend" => $txt_cfg_ftp_backup_destination_folder[$lang],
 				"type" => "text",
 				"size" => "30")));
 	return configEditorTemplate ($dsc);
