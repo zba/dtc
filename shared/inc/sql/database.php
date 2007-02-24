@@ -31,7 +31,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 	}
 	if($commit_flag == "yes"){
 		$q = "INSERT INTO mysql.user (Host,User,Password,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Reload_priv,Shutdown_priv,Process_priv,File_priv,Grant_priv,References_priv,Index_priv,Alter_priv,dtcowner)
-			VALUES ('localhost','".$_REQUEST["dbuser"]."',Password('".$_REQUEST["db_pass"]."'),'N','N','N','N','N','N','N','N','N','N','N','N','N','N','$adm_login');";
+			VALUES ('%','".$_REQUEST["dbuser"]."',Password('".$_REQUEST["db_pass"]."'),'N','N','N','N','N','N','N','N','N','N','N','N','N','N','$adm_login');";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
 }
@@ -67,7 +67,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 		$q = "CREATE DATABASE ".$_REQUEST["newdb_name"].";";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "INSERT INTO mysql.db ( Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,References_priv,Index_priv,Alter_priv,Lock_tables_priv)
-		VALUES ('localhost','".$_REQUEST["newdb_name"]."','".$_REQUEST["dbuser"]."','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y');";
+		VALUES ('%','".$_REQUEST["newdb_name"]."','".$_REQUEST["dbuser"]."','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y');";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
