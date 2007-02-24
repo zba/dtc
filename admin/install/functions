@@ -292,15 +292,15 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 	echoIfVerbose "===> Chgrp /var/lib/squirrelmail/data/ /var/spool/squirrelmail/attach and /var/lib/apache2/fastcgi"
 	# Search for Squirrelmail folder to change it's GID so it works directly
 	if [ -e /var/lib/squirrelmail/data/ ]; then
-		chgrp nogroup /var/lib/squirrelmail/data/
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/squirrelmail/data/
 	fi
 
 	if [ -e /var/spool/squirrelmail/attach ] ; then
-		chgrp nogroup /var/spool/squirrelmail/attach
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/squirrelmail/attach
 	fi
 
 	if [ -e /var/lib/apache2/fastcgi ] ; then
-		chown -R ${CONF_DTC_SYSTEM_USERNAME}:nogroup /var/lib/apache2/fastcgi
+		chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/apache2/fastcgi
 	fi
 }
 
