@@ -46,7 +46,7 @@ $txt_product_id_not_valid = array (
 	);
 
 $txt_user_login_incorrect = array (
-	"fr" => "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"fr" => "Format de nom d'utilisateur incorrect. Utilisez uniquement des lettres, des chiffres, et entre 4 et 16 charactères.",
 	"en" => "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
 	"hu" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
 	"it" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
@@ -61,22 +61,22 @@ $txt_user_login_incorrect = array (
 	);
 
 $txt_username_invalid_root_or_debian = array (
-	"fr" => "Username invalid: please pickup something else than root or debian-sys-maint",
-	"en" => "Username invalid: please pickup something else than root or debian-sys-maint",
-	"hu" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
-	"it" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
-	"nl" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
-	"ru" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
-	"de" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
-	"zh" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
-	"pl" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
-	"se" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
-	"es" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint",
-	"pt" => "TRANS Username invalid: please pickup something else than root or debian-sys-maint"
+	"fr" => "Nom d'utilisateur incorrect. Utilisez autre chose que root ou debian-sys-maint",
+	"en" => "Username invalid: please choose something else other than root or debian-sys-maint",
+	"hu" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"it" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"nl" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"ru" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"de" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"zh" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"pl" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"se" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"es" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"pt" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint"
 	);
 
 $txt_password_format_incorrect = array (
-	"fr" => "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"fr" => "Mot de passe incorrect. Merci d'utiliser uniquement des lettres et des chiffres, entre 4 et 16 caractères.",
 	"en" => "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
 	"hu" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
 	"it" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
@@ -92,32 +92,32 @@ $txt_password_format_incorrect = array (
 
 $txt_passwords_do_not_match = array (
 	"fr" => "Les mots de passe 1 et 2 ne correspondent pas !",
-	"en" => "Passwords 1 and 2 do not match!",
-	"hu" => "TRANS Passwords 1 and 2 does not match!",
-	"it" => "TRANS Passwords 1 and 2 does not match!",
-	"nl" => "TRANS Passwords 1 and 2 does not match!",
-	"ru" => "TRANS Passwords 1 and 2 does not match!",
-	"de" => "TRANS Passwords 1 and 2 does not match!",
-	"zh" => "TRANS Passwords 1 and 2 does not match!",
-	"pl" => "TRANS Passwords 1 and 2 does not match!",
-	"se" => "TRANS Passwords 1 and 2 does not match!",
-	"es" => "TRANS Passwords 1 and 2 does not match!",
-	"pt" => "TRANS Passwords 1 and 2 does not match!"
+	"en" => "Password 1 and 2 do not match!",
+	"hu" => "TRANS Password 1 and 2 do not match!",
+	"it" => "TRANS Password 1 and 2 do not match!",
+	"nl" => "TRANS Password 1 and 2 do not match!",
+	"ru" => "TRANS Password 1 and 2 do not match!",
+	"de" => "TRANS Password 1 and 2 do not match!",
+	"zh" => "TRANS Password 1 and 2 do not match!",
+	"pl" => "TRANS Password 1 and 2 do not match!",
+	"se" => "TRANS Password 1 and 2 do not match!",
+	"es" => "TRANS Password 1 and 2 do not match!",
+	"pt" => "TRANS Password 1 and 2 do not match!"
 	);
 
 $txt_domain_name_does_not_look_like_correct = array (
 	"fr" => "Le nom de domaine ne parrait pas correct.",
-	"en" => "Domain name does not look like to be a correct hostname.",
-	"hu" => "TRANS Domain name does not look like to be a correct hostname.",
-	"it" => "TRANS Domain name does not look like to be a correct hostname.",
-	"nl" => "TRANS Domain name does not look like to be a correct hostname.",
-	"ru" => "TRANS Domain name does not look like to be a correct hostname.",
-	"de" => "TRANS Domain name does not look like to be a correct hostname.",
-	"zh" => "TRANS Domain name does not look like to be a correct hostname.",
-	"pl" => "TRANS Domain name does not look like to be a correct hostname.",
-	"se" => "TRANS Domain name does not look like to be a correct hostname.",
-	"es" => "TRANS Domain name does not look like to be a correct hostname.",
-	"pt" => "TRANS Domain name does not look like to be a correct hostname."
+	"en" => "Domain name seems to be incorrect.",
+	"hu" => "TRANS Domain name seems to be incorrect.",
+	"it" => "TRANS Domain name seems to be incorrect.",
+	"nl" => "TRANS Domain name seems to be incorrect.",
+	"ru" => "TRANS Domain name seems to be incorrect.",
+	"de" => "TRANS Domain name seems to be incorrect.",
+	"zh" => "TRANS Domain name seems to be incorrect.",
+	"pl" => "TRANS Domain name seems to be incorrect.",
+	"se" => "TRANS Domain name seems to be incorrect.",
+	"es" => "TRANS Domain name seems to be incorrect.",
+	"pt" => "TRANS Domain name seems to be incorrect."
 	);
 
 $txt_vps_location_not_selected = array (
@@ -136,18 +136,18 @@ $txt_vps_location_not_selected = array (
 	);
 
 $txt_email_does_not_look_like_correct = array (
-	"fr" => "Email does not look like to be a correct address format.",
-	"en" => "Email does not look like to be a correct address format.",
-	"hu" => "TRANS Email does not look like to be a correct address format.",
-	"it" => "TRANS Email does not look like to be a correct address format.",
-	"nl" => "TRANS Email does not look like to be a correct address format.",
-	"ru" => "TRANS Email does not look like to be a correct address format.",
-	"de" => "TRANS Email does not look like to be a correct address format.",
-	"zh" => "TRANS Email does not look like to be a correct address format.",
-	"pl" => "TRANS Email does not look like to be a correct address format.",
-	"se" => "TRANS Email does not look like to be a correct address format.",
-	"es" => "TRANS Email does not look like to be a correct address format.",
-	"pt" => "TRANS Email does not look like to be a correct address format."
+	"fr" => "L'adresse email n'a pas un format correct.",
+	"en" => "Email address seems to be incorrect format.",
+	"hu" => "TRANS Email address seems to be incorrect format.",
+	"it" => "TRANS Email address seems to be incorrect format.",
+	"nl" => "TRANS Email address seems to be incorrect format.",
+	"ru" => "TRANS Email address seems to be incorrect format.",
+	"de" => "TRANS Email address seems to be incorrect format.",
+	"zh" => "TRANS Email address seems to be incorrect format.",
+	"pl" => "TRANS Email address seems to be incorrect format.",
+	"se" => "TRANS Email address seems to be incorrect format.",
+	"es" => "TRANS Email address seems to be incorrect format.",
+	"pt" => "TRANS Email address seems to be incorrect format."
 	);
 
 $txt_required_field_family_name_missing = array (
@@ -358,21 +358,6 @@ $txt_vps_operating_system = array (
 	"se" => "TRANS VPS operating system: ",
 	"es" => "TRANS VPS operating system: ",
 	"pt" => "TRANS VPS operating system:"
-	);
-
-$txt_ = array (
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
 	);
 
 $txt_action = array(
