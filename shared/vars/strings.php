@@ -1,5 +1,20 @@
 <?php
 
+$txt_server_statistic_graphs = array (
+	"fr" => "Graph des statistiques du serveur",
+	"en" => "Server statistic graphs",
+	"hu" => "TRANS Server statistic graphs",
+	"it" => "TRANS Server statistic graphs",
+	"nl" => "TRANS Server statistic graphs",
+	"ru" => "TRANS Server statistic graphs",
+	"de" => "TRANS Server statistic graphs",
+	"zh" => "TRANS Server statistic graphs",
+	"pl" => "TRANS Server statistic graphs",
+	"se" => "TRANS Server statistic graphs",
+	"es" => "TRANS Server statistic graphs",
+	"pt" => "TRANS Server statistic graphs"
+	);
+
 $txt_err_not_registering = array (
 	"fr" => "Pas d'enregistrement",
 	"en" => "Not registering",
@@ -1353,18 +1368,18 @@ $txt_yes = array(
 	);
 
 $txt_is_company = array(
-	"fr" => "Est-ce une sociét?",
-	"en" => "Is company",
-	"hu" => "Céges elõfizetés",
-	"it" => "E' una società",
-	"nl" => "TRANS",
-	"ru" => "TRANS",
-	"de" => "Ist Firma",
-	"zh" => "ÊÇ¹«Ë¾Âð?",
-	"pl" => "Firma ",
+	"fr" => "Est-ce une sociét :",
+	"en" => "Is it a company:",
+	"hu" => "Céges elõfizetés:",
+	"it" => "E' una società:",
+	"nl" => "TRANS Is it a company:",
+	"ru" => "TRANS Is it a company:",
+	"de" => "Ist Firma:",
+	"zh" => "ÊÇ¹«Ë¾Âð:",
+	"pl" => "Firma :",
 	"se" => "TRANS SVENSKA",
-	"es" => "Es una empresa",
-	"pt" => "Pertence a uma empresa?"
+	"es" => "Es una empresa:",
+	"pt" => "Pertence a uma empresa:"
 	);
 
 $txt_desired_domain_name = array(
@@ -4393,8 +4408,8 @@ $txt_subdom_newname = array(
 	"en" => "Subdomain name: ",
 	"hu" => "Aldomain neve: ",
 	"it" => "Nome sottodominio: ",
-	"nl" => "TRANSSubdomain name: ",
-	"ru" => "TRANSSubdomain name:",
+	"nl" => "TRANS Subdomain name: ",
+	"ru" => "TRANS Subdomain name:",
 	"de" => "Sub-Domänen Name:",
 	"zh" => "×ÓÓòÃû£º",
 	"pl" => "Nazwa subdomeny : ",
@@ -4403,22 +4418,20 @@ $txt_subdom_newname = array(
 	"pt" => "Nome do subdominio : "
 );
 $txt_subdom_ip = array(
-	"fr" => "IP du sous-domaine (laissez vide pour utiliser votre compte
-de hosting, rentrez l'IP du serveur sinon) : ",
-	"en" => "IP of the subdomain (leave blank otherwise): ",
-	"hu" => "Az aldomain IP címe (hagyja üresen egyébként): ",
-	"it" => "IP del sottodominio (lasciare vuote per usare l'hosting di default",
-	"nl" => "TRANS IP of the subdomain (leave blank to use default web
-hosting area, set server IP otherwise): ",
-	"ru" => "TRANS IP of the subdomain (leave blank to use default web
-hosting area, set server IP otherwise): ",
-	"de" => "IP der Subdomaine (bitte freilassen zur Nutzung der Standard Web Hosting area, ansonsten geben Sie die IP des Servers an): ",
-	"zh" => "×ÓÓòÃûÖ¸ÏòµÄIPµØÖ·(Èç¹ûÊ¹ÓÃWEBÕ¾µãµÄÄ¬ÈÏÅäÖÃ¾ÍÁô¿Õ£¬·ñÔòÇëÊäÈëIPµØÖ·)£º",
-	"pl" => "Adres IP subdomeny ( je¶li nie wiesz co wpisaæ - pozostaw puste ) : ",
-	"es" => "IP del subdominio (dejar en blanco para usar su cuenta de hosting 
-por defecto, indicar la IP de otro servidor en cualquier otro caso):",
-	"pt" => "IP do subdominio (deixe em branco para usar o servidor web pre-definido) : "
+	"fr" => "Adresse IP ou CNAME : ",
+	"en" => "IP address or CNAME: ",
+	"hu" => "TRANS IP address or CNAME: ",
+	"it" => "TRANS IP address or CNAME: ",
+	"nl" => "TRANS IP address or CNAME: ",
+	"ru" => "TRANS IP address or CNAME: ",
+	"de" => "TRANS IP address or CNAME: ",
+	"zh" => "TRANS IP address or CNAME: ",
+	"pl" => "TRANS IP address or CNAME: ",
+	"se" => "TRANS IP address or CNAME: ",
+	"es" => "TRANS IP address or CNAME: ",
+	"pt" => "TRANS IP address or CNAME: "
 );
+
 $txt_subdom_dynip_logpass = array(
 	"fr" => "Si vous en avez besoin, il est possible de définir l'adresse
 IP a distance, par exemple si vous dispose d'une IP dynamyque et que vous
@@ -4755,8 +4768,39 @@ $txt_mail_deliver_localy = array(
 	"es" => "Entregar mensajes localmente: ",
 	"pt" => "Enviar mensagens localmente: "
 );
+
+$txt_mail_check_to_send_bounce_msg = array(
+	"fr" => "Cocher pour envoyer un message automatique : ",
+	"en" => "Check to send a bounce message: ",
+	"hu" => "TRANS Check to send a bounce message: ",
+	"it" => "TRANS Check to send a bounce message: ",
+	"nl" => "TRANS Check to send a bounce message: ",
+	"ru" => "TRANS Check to send a bounce message: ",
+	"de" => "TRANS Check to send a bounce message: ",
+	"zh" => "TRANS Check to send a bounce message: ",
+	"pl" => "TRANS Check to send a bounce message: ",
+	"se" => "TRANS Check to send a bounce message: ",
+	"es" => "TRANS Check to send a bounce message: ",
+	"pt" => "TRANS Check to send a bounce message: "
+);
+
+$txt_mail_bounce_msg_content = array(
+	"fr" => "Contenu du message : ",
+	"en" => "Bounce message content: ",
+	"hu" => "TRANS Bounce message content: ",
+	"it" => "TRANS Bounce message content: ",
+	"nl" => "TRANS Bounce message content: ",
+	"ru" => "TRANS Bounce message content: ",
+	"de" => "TRANS Bounce message content: ",
+	"zh" => "TRANS Bounce message content: ",
+	"pl" => "TRANS Bounce message content: ",
+	"se" => "TRANS Bounce message content: ",
+	"es" => "TRANS Bounce message content: ",
+	"pt" => "TRANS Bounce message content: "
+);
+
 $txt_mail_quota = array(
-	"fr" => "TRANS: quota: ",
+	"fr" => "Quota email: ",
 	"en" => "Mailbox quota: ",
 	"hu" => "TRANS: quota: ",
 	"it" => "TRANS: quota: ",
@@ -4772,7 +4816,7 @@ $txt_mail_quota = array(
 );
 
 $txt_used_quota = array(
-	"fr" => "TRANS: Used quota: ",
+	"fr" => "Quota utilisé: ",
 	"en" => "Used quota: ",
 	"hu" => "TRANS: Used quota: ",
 	"it" => "TRANS: Used quota: ",
@@ -4846,6 +4890,22 @@ $txt_ftp_new_account = array(
 	"es" => "Nueva cuenta FTP",
 	"pt" => "Nova conta de ftp"
 );
+
+$txt_ftp_new_account_link = array(
+	"fr" => "Nouveau compte FTP",
+	"en" => "New FTP account",
+	"hu" => "Új FTP hozzáférés",
+	"it" => "Nuovo account FTP",
+	"nl" => "Nieuw FTP account",
+	"ru" => "îÏ×ÙÊ ÁËËÁÕÎÔ",
+	"de" => "Neuer FTP Account",
+	"zh" => "ÐÂµÄFTPÕÊ»§£º",
+	"pl" => "Nowe konto FTP",
+	"se" => "TRANS SVENSKA",
+	"es" => "Nueva cuenta FTP",
+	"pt" => "Nova conta de ftp"
+);
+
 $txt_ftp_account_edit = array(
 	"fr" => "Edition d'un compte FTP : ",
 	"en" => "FTP account configuration: ",
@@ -4860,6 +4920,7 @@ $txt_ftp_account_edit = array(
 	"es" => "Edici&oacute;n de cuenta FTP",
 	"pt" => "Configuração das contas de ftp"
 );
+
 $txt_ftp_new_account_link = array(
 	"fr" => "Nouveau compte ftp",
 	"en" => "New ftp account",

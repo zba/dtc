@@ -29,6 +29,8 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	global $txt_login_login;
 	global $txt_login_pass;
 	global $txt_path;
+	global $txt_ftp_new_account_link;
+
 	global $conf_hide_password;
 	global $conf_domain_based_ftp_logins;
 
@@ -61,7 +63,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	$dsc = array(
 		"title" => $txt_ftp_account_list[$lang],
 		"new_item_title" => $txt_ftp_new_account[$lang],
-		"new_item_link" => "New ftp login",
+		"new_item_link" => $txt_ftp_new_account_link[$lang],
 		"edit_item_title" => $txt_ftp_account_edit[$lang],
 		"table_name" => $pro_mysql_ftp_table,
 		"action" => "ftp_access_editor",

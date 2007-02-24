@@ -98,6 +98,7 @@ input,select,textarea {
 	color: #000000;
 	background-color: transparent;
 	border: 0;
+	cursor: pointer;
 	}
 
 .input_btn_container {

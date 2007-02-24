@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.47 2007/01/30 05:19:37 thomas Exp $
+ * @version $Id: email.php,v 1.48 2007/02/24 06:05:53 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -504,6 +504,9 @@ function drawAdminTools_Emails($domain){
 	global $txt_mail_catch_all_deliver;
 	global $txt_mail_quota;
 	global $txt_used_quota;
+	global $txt_mail_check_to_send_bounce_msg;
+	global $txt_mail_bounce_msg_content;
+
 	global $cyrus_used;
 	global $cyrus_default_quota;
 	global $CYRUS;
@@ -582,10 +585,10 @@ function drawAdminTools_Emails($domain){
 			"type" => "checkbox",
 			"values" => array( "yes","no"),
 			"default" => "no",
-			"legend" => "Check to send a bounce message.");
+			"legend" => $txt_mail_check_to_send_bounce_msg[$lang]);
 		$dsc["cols"]["vacation_text"] = array(
 			"type" => "textarea",
-			"legend" => "Bounce message content:",
+			"legend" => $txt_mail_bounce_msg_content[$lang],
 			"cols" => "40",
 			"rows" => "7");
 	}

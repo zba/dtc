@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.20 2007/01/24 09:04:33 thomas Exp $
+ * @version $Id: subdomain.php,v 1.21 2007/02/24 06:05:53 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
@@ -190,7 +190,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"check" => "subdomain_or_ip",
 				"can_be_empty" => "yes",
 				"empty_makes_default" => "yes",
-				"legend" => "IP address or CNAME: "),
+				"legend" => $txt_subdom_ip[$lang]),
 			"generate_vhost" => array(
 				"type" => "radio",
 				"values" => array("yes","no"),

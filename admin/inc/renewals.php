@@ -12,7 +12,30 @@ function drawRenewalTables (){
 	global $pro_mysql_client_table;
 	global $pro_mysql_domain_table;
 
-	$out = "<h3>Total recurring incomes per month:</h3>";
+	global $lang;
+	global $txt_renew_total_recurring_incomes_per_month;
+	global $txt_renew_total;
+	global $txt_renew_dedicated_servers;
+	global $txt_renew_vps;
+	global $txt_renew_ssl_ip;
+	global $txt_renew_shared_hosting;
+	global $txt_renew_shared_renewals;
+	global $txt_renew_no_shared_account_expired;
+	global $txt_renew_expiration_date;
+	global $txt_login_title;
+	global $txt_client;
+	global $txt_renew_email;
+	global $txt_renew_vps_title;
+	global $txt_renew_server_title;
+	global $txt_renew_client_name_not_found;
+	global $txt_renew_no_ssl_ip_expired;
+	global $txt_renew_vps_renewals;
+	global $txt_renew_no_vps_expired;
+	global $txt_renew_dedicated_servers_renewals;
+	global $txt_renew_no_dedicated_server_expired;
+	global $txt_renew_ssl_ips_renewals;
+
+	$out = "<h3>".$txt_renew_total_recurring_incomes_per_month[$lang]."</h3>";
 	// Monthly recurring for shared hosting:
 	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
 	FROM $pro_mysql_product_table,$pro_mysql_admin_table
@@ -91,29 +114,29 @@ function drawRenewalTables (){
 		}
 	}
 
-	$out .= "Shared hosting: ".round($total_shared,2)." USD<br>";
-	$out .= "SSL IP: ".round($total_ssl,2)." USD<br>";
-	$out .= "VPS: ".round($total_vps,2)." USD<br>";
-	$out .= "Dedicated servers: ".round($total_dedicated,2)." USD<br>";
+	$out .= $txt_renew_shared_hosting[$lang].round($total_shared,2)." USD<br>";
+	$out .= $txt_renew_ssl_ip[$lang].round($total_ssl,2)." USD<br>";
+	$out .= $txt_renew_vps[$lang].round($total_vps,2)." USD<br>";
+	$out .= $txt_renew_dedicated_servers[$lang].round($total_dedicated,2)." USD<br>";
 	$big_total = $total_shared + $total_vps + $total_dedicated + $total_ssl;
-	$out .= "<b>Total: ".round($big_total,2)." USD</b>";
+	$out .= "<b>".$txt_renew_total[$lang].round($big_total,2)." USD</b>";
 
-	$out .= "<h3>Shared renewals</h3>";
+	$out .= "<h3>".$txt_renew_shared_renewals[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' ORDER BY expire;";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$out .= "No shared account expired<br>";
+		$out .= $txt_renew_no_shared_account_expired[$lang]."<br>";
 	}else{
 		$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-		<tr><td>Login</td><td>Client</td><td>Email</td><td>Expiration date</td></tr>";
+		<tr><td>".$txt_login_title[$lang]."</td><td>".$txt_client[$lang]."</td><td>".$txt_renew_email[$lang]."</td><td>".$txt_renew_expiration_date[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$q2 = "SELECT * FROM $pro_mysql_client_table WHERE id='".$a["id_client"]."';";
 			$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$client_name = "Client name not found!";
+				$client_name = $txt_renew_client_name_not_found[$lang];
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
@@ -128,15 +151,15 @@ function drawRenewalTables (){
 		$out .= "</table>";
 	}
 
-	$out .= "<h3>SSL IPs</h3>";
+	$out .= "<h3>".$txt_renew_ssl_ips_renewals[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE expire < '".date("Y-m-d")."' AND available='no' ORDER BY expire";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$out .= "No SSL IPs expired<br>";
+		$out .= $txt_renew_no_ssl_ip_expired[$lang]."<br>";
 	}else{
 		$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-		<tr><td>Login</td><td>Client</td><td>Email</td><td>Expiration date</td></tr>";
+		<tr><td>".$txt_login_title[$lang]."</td><td>".$txt_client[$lang]."</td><td>".$txt_renew_email[$lang]."</td><td>".$txt_renew_expiration_date[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["adm_login"]."';";
@@ -151,7 +174,7 @@ function drawRenewalTables (){
 			$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$client_name = "Client name not found!";
+				$client_name = $txt_renew_client_name_not_found[$lang];
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
@@ -161,15 +184,15 @@ function drawRenewalTables (){
 		$out .= "</table>";
 	}
 
-	$out .= "<h3>VPS renewals</h3>";
+	$out .= "<h3>".$txt_renew_vps_renewals[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE expire_date < '".date("Y-m-d")."' ORDER BY expire_date";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$out .= "No VPS expired<br>";
+		$out .= $txt_renew_no_vps_expired[$lang]."<br>";
 	}else{
 		$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-		<tr><td>Login</td><td>VPS</td><td>Client</td><td>Email</td><td>Expiration date</td></tr>";
+		<tr><td>".$a["adm_login"]."</td><td>".$txt_renew_vps_title[$lang]."</td><td>".$txt_client[$lang]."</td><td>".$txt_renew_email[$lang]."</td><td>".$txt_renew_expiration_date[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 
@@ -185,7 +208,7 @@ function drawRenewalTables (){
 			$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$client_name = "Client name not found!";
+				$client_name = $txt_renew_client_name_not_found[$lang];
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
@@ -195,15 +218,15 @@ function drawRenewalTables (){
 		$out .= "</table>";
 	}
 
-	$out .= "<h3>Dedicated servers renewals</h3>";
+	$out .= "<h3>".$txt_renew_dedicated_servers_renewals[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE expire_date < '".date("Y-m-d")."' ORDER BY expire_date";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$out .= "No dedicated server expired<br>";
+		$out .= $txt_renew_no_dedicated_server_expired[$lang]."<br>";
 	}else{
 		$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-		<tr><td>Login</td><td>Server</td><td>Client</td><td>Email</td><td>Expiration date</td></tr>";
+		<tr><td>".$a["adm_login"]."</td><td>".$txt_renew_server_title[$lang]."</td><td>".$txt_client[$lang]."</td><td>".$txt_renew_email[$lang]."</td><td>".$txt_renew_expiration_date[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["owner"]."';";
@@ -218,7 +241,7 @@ function drawRenewalTables (){
 			$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$client_name = "Client name not found!";
+				$client_name = $txt_renew_client_name_not_found[$lang];
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];

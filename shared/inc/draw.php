@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.93 2007/02/22 05:40:08 thomas Exp $
+ * @version $Id: draw.php,v 1.94 2007/02/24 06:05:53 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -240,7 +240,7 @@ function drawAdminTools($admin){
 
 		unset($domain_conf_submenu);
 
-		if(file_exists($dtcshared_path."/dtcrm") && $conf_use_registrar_api == "yes"){
+		if($conf_use_registrar_api == "yes"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_whois[$lang],
 				"icon" => "box_wnb_nb_picto-whois.gif",

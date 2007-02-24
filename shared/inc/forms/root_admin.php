@@ -173,22 +173,32 @@ function drawEditAdmin($admin){
 	// Creation of domains :
 	$domain_conf .= "<b><u>".$txt_new_domain_for_user[$lang]."</u></b>";
 
-	$domain_conf .= "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	$domain_conf .= "<form action=\"?\"><table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
+<tr><td><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-	<input type=\"text\" name=\"newdomain_name\" value=\"\">
-	<input type=\"submit\" name=\"newdomain\" value=\"Ok\">
+	<input type=\"text\" name=\"newdomain_name\" value=\"\"></td>
+	<td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"newdomain\" value=\"Ok\"></div>
+ <div class=\"input_btn_right\"></div>
+</div></td></tr></table>
 	</form>";
 
 	$domain_conf .= "<b><u>".$txt_import_a_domain_for_this_user[$lang]."</u></b>
 	<form action=\"?\" enctype=\"multipart/form-data\" method=\"post\">
-	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+	<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
+	<tr><td><input type=\"hidden\" name=\"rub\" value=\"$rub\">
 	<input type=\"hidden\" name=\"action\" value=\"import_domain\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"30000000\">
-	<input type=\"file\" name=\"domain_import_file\" size=\"40\">
-	<input type=\"submit\" value=\"".$txt_import_button[$lang]."\"></form>";
+	<input type=\"file\" name=\"domain_import_file\" size=\"30\"></td>
+	<td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"".$txt_import_button[$lang]."\"></div>
+ <div class=\"input_btn_right\"></div>
+</div></td></tr></table></form>";
 
 	// Deletion of VPS
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login';";
@@ -240,7 +250,11 @@ function drawEditAdmin($admin){
 		<tr><td style=\"text-align: right; white-space: nowrap;\">Setup physical VPS (LVM):</td>
 		<td><input type=\"radio\" name=\"physical_setup\" value=\"yes\">Yes
 		<input type=\"radio\" name=\"physical_setup\" value=\"no\" checked>No</td></tr>
-		<tr><td></td><td><input type=\"submit\" value=\"Add VPS\"></td></tr></table></form>";
+		<tr><td></td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Add VPS\"></div>
+ <div class=\"input_btn_right\"></div>
+</div></td></tr></table></form>";
 	}else{
 		$domain_conf .= $txt_root_admin_to_add_a_vps_you_have_to[$lang];
 	}

@@ -18,6 +18,7 @@ if(file_exists("dtcrm")){
 	include("dtcrm/main.php");
 	include("dtcrm/product_manager_strings.php");
 	include("dtcrm/product_manager.php");
+	include("inc/renewals_strings.php");
 	include("inc/renewals.php");
 	include("inc/graphs.php");
 	include("inc/monitor.php");

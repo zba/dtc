@@ -242,7 +242,11 @@ function drawNewAdminForm(){
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$out .= "Ticket reply sent!<br>
 				<form action=\"".$_SERVER["PHP_SELF"]."\">
-				<input type=\"submit\" name=\"submit\" value=\"".$txt_dua_back_to_pending_requests[$lang]."\">
+				<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"submit\" value=\"".$txt_dua_back_to_pending_requests[$lang]."\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
 				</form>";
 			mailUserTicketReply($a["adm_login"],$a["subject"],$_REQUEST["ticketbody"],$closed);
 		}
@@ -494,7 +498,11 @@ function drawMySqlAccountManger(){
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		".$txt_mysqlmang_db_name[$lang]."<input type=\"text\" name=\"new_mysql_database_name\" value=\"\">
-		<input type=\"submit\" name=\"new_mysql_database\" value=\"Ok\">
+		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"new_mysql_database\" value=\"Ok\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
 		</form>";
 			return $out;
 		}

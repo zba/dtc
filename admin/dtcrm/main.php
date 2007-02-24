@@ -74,7 +74,7 @@ function DTCRMclientAdmins(){
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$_REQUEST["id"]."'";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
         $n = mysql_num_rows($r);
-	$text = "<br><b><u>".$txt_remove_admin_from_client[$lang]."</u></b><br>";
+	$text = "<br><h3>".$txt_remove_admin_from_client[$lang]."</h3><br>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		if($i > 0)
@@ -85,9 +85,9 @@ function DTCRMclientAdmins(){
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='0'";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
         $n = mysql_num_rows($r);
-	$text .= "<br><br><b><u>".$txt_add_admin_to_client[$lang]."</u></b><br>";
+	$text .= "<br><br><h3>".$txt_add_admin_to_client[$lang]."</h3><br>";
 	$text .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
+<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr><td><input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
 <input type=\"hidden\" name=\"id\" value=\"".$_REQUEST["id"]."\">
 <input type=\"hidden\" name=\"action\" value=\"add_admin_to_client\">
 <select name=\"adm_name\">";
@@ -97,7 +97,11 @@ function DTCRMclientAdmins(){
 			$text .= " - ";
 		$text .= "<option value=\"".$a["adm_login"]."\">".$a["adm_login"]."</option>";
 	}
-	$text .= "</select><input type=\"submit\" value=\"Ok\"></form>";
+	$text .= "</select></td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Ok\"></div>
+ <div class=\"input_btn_right\"></div>
+</div></td></tr></table></form>";
 
 	return $text;
 }
@@ -118,10 +122,14 @@ function DTCRMeditClients(){
 	global $txt_draw_client_info_phone;
 	global $txt_draw_client_info_fax;
 	global $txt_draw_client_info_email;
+	global $txt_vat_number;
+	global $txt_is_company;
 	global $txt_allowed_data_transferGB;	
 	global $txt_notes;
 	global $txt_money_remaining;
 	global $txt_select_a_new;
+	global $txt_yes;
+	global $txt_no;
 
 	if(isset($_REQUEST["id"])){
 		$cid = $_REQUEST["id"];	// current customer id
@@ -172,32 +180,43 @@ function DTCRMeditClients(){
 		$specnot = "";
 	}
 	$text = "<form action=\"".$_SERVER["PHP_SELF"]."\">
-<table cellspacin=\"0\" cellpadding=\"0\">
 <input type=\"hidden\" name=\"rub\" value=\"crm\">
 <input type=\"hidden\" name=\"id\" value=\"$cid\">$hidden_inputs
-<tr><td align=\"right\">".$txt_draw_client_info_familyname[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_familyname\"value=\"".$row["familyname"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_draw_client_info_firstname[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_christname\" value=\"".$row["christname"]."\"></td></tr>
-<tr><td align=\"right\">Is company:</td><td>
-yes<input type=\"radio\" name=\"ed_is_company\" value=\"yes\" $iscomp_yes >
-no<input type=\"radio\" name=\"ed_is_company\" value=\"no\" $iscomp_no >
-<tr><td align=\"right\">".$txt_draw_client_info_comp_name[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_company_name\" value=\"".$row["company_name"]."\"></td></tr>
-<tr><td align=\"right\">VAT num:</td><td><input size=\"40\" type=\"text\" name=\"ed_vat_num\" value=\"".$row["vat_num"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_draw_client_info_addr[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_addr1\" value=\"".$row["addr1"]."\"></td></tr>
-<tr><td align=\"right\">2:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr2\" value=\"".$row["addr2"]."\"></td></tr>
-<tr><td align=\"right\">3:</td><td><input size=\"40\" type=\"text\" name=\"ed_addr3\" value=\"".$row["addr3"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_draw_client_info_city[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_city\" value=\"".$row["city"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_draw_client_info_zipcode[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_zipcode\" value=\"".$row["zipcode"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_draw_client_info_state[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_state\" value=\"".$row["state"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_draw_client_info_country[$lang]."</td><td><select name=\"ed_country\">".
-cc_code_popup($row["country"])."</select></td></tr>
-<tr><td align=\"right\">".$txt_draw_client_info_phone[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_phone\" value=\"".$row["phone"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_draw_client_info_fax[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_fax\" value=\"".$row["fax"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_draw_client_info_email[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_email\" value=\"".$row["email"]."\"></td></tr>
-<tr><td align=\"right\">".$txt_notes[$lang]."</td><td><textarea cols=\"40\" rows=\"5\" name=\"ed_special_note\">".$specnot."</textarea></td></tr>
-<tr><td align=\"right\">".$txt_money_remaining[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_dollar\" value=\"".$row["dollar"]."\"></td></tr>
-<tr><td align=\"right\" style=\"white-space: nowrap\" nowrap>".$txt_domain_tbl_config_quotaMB[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_disk_quota_mb\" value=\"".$row["disk_quota_mb"]."\"></td></tr>
-<tr><td align=\"right\" style=\"white-space: nowrap\" nowrap>".$txt_allowed_data_transferGB[$lang]."</td><td><input size=\"40\" type=\"text\" name=\"ed_bw_quota_per_month_gb\" value=\"".$row["bw_quota_per_month_gb"]."\"></td></tr>
-<tr><td align=\"right\"></td><td><input type=\"submit\" value=\"Save\"><input type=\"submit\" name=\"del\" value=\"Del\"></td></tr>
+";
+	$text .= dtcFormTableAttrs();
+	$text .= dtcFormLineDraw($txt_draw_client_info_familyname[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_familyname\"value=\"".$row["familyname"]."\">");
+	$text .= dtcFormLineDraw($txt_draw_client_info_firstname[$lang],"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_christname\" value=\"".$row["christname"]."\">",0);
+	$text .= dtcFormLineDraw($txt_is_company[$lang],"<input type=\"radio\" name=\"ed_is_company\" value=\"yes\" $iscomp_yes > ".$txt_yes[$lang]."
+<input type=\"radio\" name=\"ed_is_company\" value=\"no\" $iscomp_no > ".$txt_no[$lang]);
+	$text .= dtcFormLineDraw($txt_draw_client_info_comp_name[$lang],"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_company_name\" value=\"".$row["company_name"]."\">",0);
+	$text .= dtcFormLineDraw($txt_vat_number[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_vat_num\" value=\"".$row["vat_num"]."\">");
+	$text .= dtcFormLineDraw($txt_draw_client_info_addr[$lang],"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_addr1\" value=\"".$row["addr1"]."\">",0);
+	$text .= dtcFormLineDraw("2:","<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_addr2\" value=\"".$row["addr2"]."\">");
+	$text .= dtcFormLineDraw("3:","<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_addr3\" value=\"".$row["addr3"]."\">",0);
+	$text .= dtcFormLineDraw($txt_draw_client_info_city[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_city\" value=\"".$row["city"]."\">");
+	$text .= dtcFormLineDraw($txt_draw_client_info_zipcode[$lang],"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_zipcode\" value=\"".$row["zipcode"]."\">",0);
+	$text .= dtcFormLineDraw($txt_draw_client_info_state[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_state\" value=\"".$row["state"]."\">");
+	$text .= dtcFormLineDraw($txt_draw_client_info_country[$lang],"<select class=\"dtcDatagrid_input_alt_color\" name=\"ed_country\">".
+cc_code_popup($row["country"])."</select>",0);
+	$text .= dtcFormLineDraw($txt_draw_client_info_phone[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_phone\" value=\"".$row["phone"]."\">");
+	$text .= dtcFormLineDraw($txt_draw_client_info_fax[$lang],"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_fax\" value=\"".$row["fax"]."\">",0);
+	$text .= dtcFormLineDraw($txt_draw_client_info_email[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_email\" value=\"".$row["email"]."\">");
+	$text .= dtcFormLineDraw($txt_notes[$lang],"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"ed_special_note\">".$specnot."</textarea>",0);
+	$text .= dtcFormLineDraw($txt_money_remaining[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_dollar\" value=\"".$row["dollar"]."\">");
+	$text .= dtcFormLineDraw($txt_domain_tbl_config_quotaMB[$lang],"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_disk_quota_mb\" value=\"".$row["disk_quota_mb"]."\">",0);
+	$text .= dtcFormLineDraw($txt_allowed_data_transferGB[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_bw_quota_per_month_gb\" value=\"".$row["bw_quota_per_month_gb"]."\">");
+
+	$text .= "
+<tr><td align=\"right\"></td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Save\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
+<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"del\" value=\"Del\"></div>
+ <div class=\"input_btn_right\"></div>
+</div></td></tr>
 </table>
 </form>";
 	return $text;
