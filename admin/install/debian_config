@@ -86,7 +86,12 @@ CONF_DTC_SYSTEM_USERNAME=dtc
 CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
-PATH_PROFTPD_CONF=/etc/proftpd.conf
+# This is needed to support Etch and newer
+if [ -f /etc/proftpd/proftpd.conf ] ; then
+	PATH_PROFTPD_CONF=/etc//proftpd/proftpd.conf
+else
+	PATH_PROFTPD_CONF=/etc/proftpd.conf
+fi
 PATH_DOVECOT_CONF=/etc/dovecot.conf
 PATH_CRONTAB_CONF=/etc/crontab
 if [ -f /etc/dovecot/dovecot.conf ] ; then
