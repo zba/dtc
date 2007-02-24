@@ -55,11 +55,18 @@ function mail_account_generate_maildrop(){
 		$a2 = mysql_fetch_array($r2);
 		$name = $a2["name"];
 
+		// This handles domain parking delivery
+		if($a["domain_parking"] != "no-parking"){
+			$query_dom_name = $a["domain_parking"];
+		}else{
+			$query_dom_name = $name;
+		}
+
 		$q = "SELECT $pro_mysql_admin_table.path,$pro_mysql_domain_table.name,$pro_mysql_pop_table.id,$pro_mysql_pop_table.uid,$pro_mysql_pop_table.gid
 		FROM $pro_mysql_admin_table,$pro_mysql_pop_table,$pro_mysql_domain_table
 		WHERE $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner
 		AND $pro_mysql_domain_table.name=$pro_mysql_pop_table.mbox_host
-		AND $pro_mysql_domain_table.name='$name'
+		AND $pro_mysql_domain_table.name='$query_dom_name'
 		ORDER BY $pro_mysql_pop_table.id";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);

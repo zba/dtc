@@ -177,13 +177,12 @@ function mail_account_generate_postfix(){
 					if ($id == "postmaster"){
 						$postmaster_address++; 
 					}
-					# first try and see if we have postfix in a chroot, else just put it in it's default location
+					// first try and see if we have postfix in a chroot, else just put it in it's default location
 					if ($localdeliver == "yes" || $localdeliver == "true"){
-						# only generate sasl logins for local accounts
+						// only generate sasl logins for local accounts
 						system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
-						# setup the catch_all for locally delivered email addresses
-						if ($id == $catch_all_id)
-						{
+						// setup the catch_all for locally delivered email addresses
+						if ($id == $catch_all_id){
 							//$store_catch_all_md .= "@$domain_full_name        $home/Maildir/\n";
 							$store_catch_all .= "@$domain_full_name	$id@$domain_full_name\n";
 						} 
@@ -226,22 +225,20 @@ function mail_account_generate_postfix(){
 						if ($store_catch_all == "" && ($id == "*" || $id == $catch_all_id)){
 							if(isset($extra_redirects)){
 								$store_catch_all .= "@$domain_full_name        $extra_redirects\n";
-}	
+							}
 						} else if (isset($extra_redirects)) {
 							$domains_postmasters_file .= "$id@$domain_full_name	$extra_redirects\n";
 						}
 						unset($extra_redirects);
 					} 
 					//if we haven't added the spam mailbox yet, do it here
-					if ($spam_stuff_done == 0)
-					{
+					if ($spam_stuff_done == 0){
 						system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox");
 					}
 				}
 			}
 			//add support for creation of mailing lists
-			if(isset($domain["mailinglists"]) && $primary_mx)
-			{
+			if(isset($domain["mailinglists"]) && $primary_mx){
 				$lists = $domain["mailinglists"];
 				$nbr_boites = sizeof($lists);
 				// go through each of these lists and add to virtual maps and normal aliases
@@ -249,12 +246,10 @@ function mail_account_generate_postfix(){
 					$list = $lists[$k];
 					$list_id = $list["id"];
 					$list_name = $list["name"];
-					if ($list_name == "abuse")
-					{
+					if ($list_name == "abuse"){
 						$abuse_address++;
 					}
-					else if ($list_name == "postmaster")
-					{
+					else if ($list_name == "postmaster"){
 						$postmaster_address++;
 					}
 					$list_owner = $list["owner"];
@@ -262,8 +257,7 @@ function mail_account_generate_postfix(){
 			
 					$list_path = "$admin_path/$list_domain/lists";
 					$name = $list_domain . "_" . $list_name;
-					if (!ereg("\@", $list_owner))
-                                        {
+					if (!ereg("\@", $list_owner)){
 						$owner = $list_owner . "@" . $list_domain;
                                         } else {
 						$owner = $list_owner;
@@ -274,8 +268,7 @@ function mail_account_generate_postfix(){
 				}
 			}
 			// if an abuse@ email hasn't been set, set one here to go to postmaster
-			if ($abuse_address == 0 && $primary_mx)
-			{
+			if ($abuse_address == 0 && $primary_mx){
 				$domains_postmasters_file .= "abuse@$domain_full_name postmaster\n";
 			}
 			if ($postmaster_address == 0 && $primary_mx){
@@ -297,10 +290,8 @@ function mail_account_generate_postfix(){
 
 	//check to see if the domain is in our local recipients first before adding to allowed relay domains
 	$relay_domains_file_temp_list = explode("\n", get_remote_mail_domains());
-	foreach($relay_domains_file_temp_list as $domain)
-	{
-		if (isset($domain) && strlen($domain) > 0)
-		{
+	foreach($relay_domains_file_temp_list as $domain){
+		if (isset($domain) && strlen($domain) > 0){
 			if (!preg_match("/^$domain\s/", $domains_file))
 			{
 				$relay_domains_file .= "$domain\n";
@@ -310,8 +301,7 @@ function mail_account_generate_postfix(){
 
 	$relay_recipients_list = explode("\n", get_remote_mail_recipients());
 
-	foreach($relay_recipients_list as $email)
-	{
+	foreach($relay_recipients_list as $email){
 		if (isset($email) && strlen($email) > 0){
 			// echo "Stage 1 - adding $email";
 			$relay_recipients_file .= $email . " OK\n";
@@ -320,11 +310,9 @@ function mail_account_generate_postfix(){
 
 	// if we haven't added the following domains to the $relay_recipients_file, then we need to add a wildcard, bad, but necessary for domains we don't have email lists for
 	$relay_recipients_all_domains_list  = explode("\n", $relay_recipients_all_domains);
-	foreach($relay_recipients_all_domains_list as $domain)
-	{
+	foreach($relay_recipients_all_domains_list as $domain){
 		// if the $domain isn't set here, keep going
-		if (!(isset($domain) && strlen($domain) >0))
-		{
+		if (!(isset($domain) && strlen($domain) >0)){
 			continue;
 		}
 		//$console .= "$domain is being backed up\n";
@@ -334,8 +322,7 @@ function mail_account_generate_postfix(){
 			//check to see if we have already got this domain... 
 			//if we do, then it means that we have a rogue $domain file, and it should be deleted! :)
 
-			if (preg_match("/\@$domain\s+OK/", $relay_recipients_file))
-			{
+			if (preg_match("/\@$domain\s+OK/", $relay_recipients_file)){
 				unlink("$conf_postfix_recipient_lists_path/$domain");
 			} else {
 				// echo "Reading $domain from recip file...";
@@ -348,14 +335,12 @@ function mail_account_generate_postfix(){
 			}
 		}
 		//finally check to see if we haven't got any entries for this domain
-		if (!preg_match("/\@$domain\s+OK/", $relay_recipients_file))
-		{
+		if (!preg_match("/\@$domain\s+OK/", $relay_recipients_file)){
 			//$console .= "Faking domain entry for $domain...\n";
 			$relay_recipients_file .= "@$domain OK\n";
 			// echo "Stage 3 - adding $domain OK";
 			//write this to a file, so admin/users can edit later
-			if (!file_exists("$conf_postfix_recipient_lists_path"))
-			{
+			if (!file_exists("$conf_postfix_recipient_lists_path")){
 				//make a directory here if it doesn't exist yet
 				mkdir("$conf_postfix_recipient_lists_path");
 			}
