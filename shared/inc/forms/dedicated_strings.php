@@ -75,259 +75,49 @@ $txt_ded_your_ded_will_expire_on_the = array(
 	"pt" => "TRANS Your dedicated server will expire on the: "
 );
 
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+$txt_ded_server_not_found = array(
+	"fr" => "Serveur non trouvé !",
+	"en" => "Server not found!",
+	"hu" => "TRANS Server not found!",
+	"it" => "TRANS Server not found!",
+	"nl" => "TRANS Server not found!",
+	"ru" => "TRANS Server not found!",
+	"de" => "TRANS Server not found!",
+	"zh" => "TRANS Server not found!",
+	"pl" => "TRANS Server not found!",
+	"se" => "TRANS Server not found!",
+	"es" => "TRANS Server not found!",
+	"pt" => "TRANS Server not found!"
 );
 
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+$txt_ded_not_found = array(
+	"fr" => "Non trouvé !",
+	"en" => "Not found!",
+	"hu" => "TRANS Not found!",
+	"it" => "TRANS Not found!",
+	"nl" => "TRANS Not found!",
+	"ru" => "TRANS Not found!",
+	"de" => "TRANS Not found!",
+	"zh" => "TRANS Not found!",
+	"pl" => "TRANS Not found!",
+	"se" => "TRANS Not found!",
+	"es" => "TRANS Not found!",
+	"pt" => "TRANS Not found!"
 );
 
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
-);
-
-$txt_ded_ = array(
-	"fr" => "",
-	"en" => "",
-	"hu" => "TRANS ",
-	"it" => "TRANS ",
-	"nl" => "TRANS ",
-	"ru" => "TRANS ",
-	"de" => "TRANS ",
-	"zh" => "TRANS ",
-	"pl" => "TRANS ",
-	"se" => "TRANS ",
-	"es" => "TRANS ",
-	"pt" => "TRANS "
+$txt_ded_your_ded_has_expired_on_the = array(
+	"fr" => "Votre serveur dédié a expiré le : ",
+	"en" => "Your dedicated server has expired on the: ",
+	"hu" => "TRANS Your dedicated server has expired on the: ",
+	"it" => "TRANS Your dedicated server has expired on the: ",
+	"nl" => "TRANS Your dedicated server has expired on the: ",
+	"ru" => "TRANS Your dedicated server has expired on the: ",
+	"de" => "TRANS Your dedicated server has expired on the: ",
+	"zh" => "TRANS Your dedicated server has expired on the: ",
+	"pl" => "TRANS Your dedicated server has expired on the: ",
+	"se" => "TRANS Your dedicated server has expired on the: ",
+	"es" => "TRANS Your dedicated server has expired on the: ",
+	"pt" => "TRANS Your dedicated server has expired on the: "
 );
 
 ?>
