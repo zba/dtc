@@ -31,8 +31,18 @@ function mail_account_generate_maildrop(){
 	global $conf_generated_file_path;
 	global $conf_addr_mail_server;
 
+	global $panel_type;
+
+	if($panel_type == "cronjob"){
+		echo "Making maildrop userdb file\n";
+	}
+
 	if( ! is_file("/etc/courier/userdb") ){
-		$console .= "Maildrop /etc/courier/userdb is not a file: cannot generate!";
+		if($panel_type == "cronjob"){
+			echo "Maildrop /etc/courier/userdb is not a file: cannot generate!\n";
+		}else{
+			$console .= "Maildrop /etc/courier/userdb is not a file: cannot generate!";
+		}
 		return false;
 	}
 
