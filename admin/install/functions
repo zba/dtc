@@ -2013,7 +2013,7 @@ modifyCourierConfig () {
 		rm -rf /etc/courier/userdb
 		mkdir /etc/courier/userdb
 		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /etc/courier/userdb
-		chmod 700 /etc/courier/userdb
+		chmod 600 /etc/courier/userdb
 	fi
 
 	#

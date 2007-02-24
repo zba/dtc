@@ -31,18 +31,16 @@ function mail_account_generate_maildrop(){
 	global $conf_generated_file_path;
 	global $conf_addr_mail_server;
 
-
-	if( ! is_dir("/etc/courier/userdb") ){
-		$console .= "Maildrop /etc/courier/userdb is not a directory: cannot generate!";
+	if( ! is_file("/etc/courier/userdb") ){
+		$console .= "Maildrop /etc/courier/userdb is not a file: cannot generate!";
 		return false;
 	}
-	$outstring = exec("rm -rf /etc/courier/userdb/* ",$output,$return_val);
-	$console .= implode("\n",$output);
 
 	// This is a rewrite of this function that should be faster and better.
 	$q2 = "SELECT name FROM $pro_mysql_domain_table";
 	$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n2 = mysql_num_rows($r2);
+	$userdb_file = "";
 	for($j=0;$j<$n2;$j++){
 		$a2 = mysql_fetch_array($r2);
 		$name = $a2["name"];
@@ -55,35 +53,32 @@ function mail_account_generate_maildrop(){
 		ORDER BY $pro_mysql_pop_table.id";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
-		$userdb_file = "";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$boxpath = $a["path"]."/".$a["name"]."/Mailboxs/".$a["id"];
-			$userdb_file .= $a["id"]."@".$a["name"]."\t"."uid=".$a["uid"].'|guid='.$a["gid"].'|mail='.$boxpath.'|home='.$boxpath."\n";
+			$userdb_file .= $a["id"]."@".$a["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"]."\n";
 		}
 
-		// Write the file
-		$path_lock_file = "/etc/courier/userdb/.lock.".$name;
-		$path_userdb = "/etc/courier/userdb/".$name;
-		touch ( $path_lock_file );
-		$chmod_return = chmod ( $path_lock_file , 0600 );
-
-/*		if(!is_writable($path_userdb)){
-			$console .= "$path_userdb is not writable: please fix!";
-			return;
-		}*/
-		$fp = fopen($path_userdb,"w+");
-		if(!$fp){
-			$console .= "Could not open $path_userdb in line ".__LINE__." file ".__FILE__;
-			return;
-		}
-		if(fwrite($fp,$userdb_file) === FALSE){
-			$console .= "Could not write $path_userdb in line ".__LINE__." file ".__FILE__;
-			return;
-		}
-		$chmod_return = chmod ( $path_userdb, 0600 );
-		fclose($fp);
 	}
+
+	// Write the file
+	$path_userdb = "/etc/courier/userdb";
+
+	if(!is_writable($path_userdb)){
+		$console .= "$path_userdb is not writable: please fix!";
+		return;
+	}
+	$fp = fopen($path_userdb,"w+");
+	if(!$fp){
+		$console .= "Could not open $path_userdb in line ".__LINE__." file ".__FILE__;
+		return;
+	}
+	if(fwrite($fp,$userdb_file) === FALSE){
+		$console .= "Could not write $path_userdb in line ".__LINE__." file ".__FILE__;
+		return;
+	}
+	$chmod_return = chmod ( $path_userdb, 0600 );
+	fclose($fp);
 
 	// Create the binary database
 	system("/usr/sbin/makeuserdb");
