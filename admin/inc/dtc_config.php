@@ -378,6 +378,10 @@ function drawFTPBacupConfig(){
 	global $txt_cfg_ftp_backup_backup_frequency;
 	global $txt_cfg_ftp_backup_destination_folder;
 
+	global $txt_cfg_ftp_backup_daily;
+	global $txt_cfg_ftp_backup_weekly;
+	global $txt_cfg_ftp_backup_monthly;
+
 	$dsc = array(
 		"title" => $txt_cfg_ftp_backup_ftp_backup_config[$lang],
 		"action" => "ftp_backup_configuration",
@@ -404,7 +408,7 @@ function drawFTPBacupConfig(){
 				"legend" => $txt_cfg_ftp_backup_backup_frequency[$lang],
 				"type" => "popup",
 				"values" => array("day","week","month"),
-				"display_replace" => array("daily","weekly","monthly")),
+				"display_replace" => array($txt_cfg_ftp_backup_daily[$lang],$txt_cfg_ftp_backup_weekly[$lang],$txt_cfg_ftp_backup_monthly[$lang])),
 			"ftp_backup_dest_folder" => array(
 				"legend" => $txt_cfg_ftp_backup_destination_folder[$lang],
 				"type" => "text",
@@ -812,7 +816,7 @@ function drawBackupConfig(){
 				"legend" => $txt_domain_tbl_config_ip[$lang]),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => "Login"),
+				"legend" => $txt_cfg_login[$lang]),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
@@ -861,7 +865,7 @@ function drawBackupConfig(){
 			"server_addr" => array(
 				"type" => "text",
 				"size" => "35",
-				"legend" => "Server address"),
+				"legend" => $txt_cfg_server_address[$lang]),
 			"server_login" => array(
 				"type" => "text",
 				"legend" => $txt_cfg_login[$lang]),
@@ -888,7 +892,7 @@ function drawBackupConfig(){
 			"server_addr" => array(
 				"type" => "text",
 				"size" => "35",
-				"legend" => "Server address"),
+				"legend" => $txt_cfg_server_address[$lang]),
 			"server_login" => array(
 				"type" => "text",
 				"legend" => $txt_cfg_login[$lang]),
@@ -913,7 +917,7 @@ function drawBackupConfig(){
 			"server_addr" => array(
 				"type" => "text",
 				"size" => "35",
-				"legend" => "Server address"),
+				"legend" => $txt_cfg_server_address[$lang]),
 			"server_login" => array(
 				"type" => "text",
 				"legend" => $txt_cfg_login[$lang]),

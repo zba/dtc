@@ -1,5 +1,50 @@
 <?php
 
+$txt_cfg_ftp_backup_daily = array(
+	"fr" => "tous les jours",
+	"en" => "daily",
+	"hu" => "TRANS daily",
+	"it" => "TRANS daily",
+	"nl" => "TRANS daily",
+	"ru" => "TRANS daily",
+	"de" => "TRANS daily",
+	"zh" => "TRANS daily",
+	"pl" => "TRANS daily",
+	"se" => "TRANS daily",
+	"es" => "TRANS daily",
+	"pt" => "TRANS daily"
+	);
+
+$txt_cfg_ftp_backup_weekly = array(
+	"fr" => "toutes les semaines",
+	"en" => "weekly",
+	"hu" => "TRANS weekly",
+	"it" => "TRANS weekly",
+	"nl" => "TRANS weekly",
+	"ru" => "TRANS weekly",
+	"de" => "TRANS weekly",
+	"zh" => "TRANS weekly",
+	"pl" => "TRANS weekly",
+	"se" => "TRANS weekly",
+	"es" => "TRANS weekly",
+	"pt" => "TRANS weekly"
+	);
+
+$txt_cfg_ftp_backup_monthly = array(
+	"fr" => "tous les mois",
+	"en" => "monthly",
+	"hu" => "TRANS monthly",
+	"it" => "TRANS monthly",
+	"nl" => "TRANS monthly",
+	"ru" => "TRANS monthly",
+	"de" => "TRANS monthly",
+	"zh" => "TRANS monthly",
+	"pl" => "TRANS monthly",
+	"se" => "TRANS monthly",
+	"es" => "TRANS monthly",
+	"pt" => "TRANS monthly"
+	);
+
 $txt_cfg_ftp_backup_ftp_backup_config = array(
 	"fr" => "Configuration du backup FTP",
 	"en" => "FTP backup configuration",
