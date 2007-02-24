@@ -1,5 +1,7 @@
 <?php
 
+require("$dtcshared_path/inc/forms/dedicated_strings.php");
+
 function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 	global $adm_login;
 	global $adm_pass;
@@ -8,6 +10,13 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 
 	global $pro_mysql_product_table;
 	global $pro_mysql_dedicated_table;
+
+	global $lang;
+	global $txt_ded_dedicated_server_contract;
+	global $txt_ded_dedicated_server_expiration_date;
+	global $txt_ded_your_dedicated_was_first_registred_on_the;
+	global $txt_ded_please_renew_it_with_one_of_the_following_options;
+	global $txt_ded_your_ded_will_expire_on_the;
 
 	global $lang;
 
@@ -33,18 +42,18 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 	}else{
 		$contact = "not found!";
 	}
-	$out .= "<b><u>"."Dedicated server contract:"."</u></b><br>$contract<br><br>";
+	$out .= "<h3>".$txt_ded_dedicated_server_contract[$lang]."</h3><br>$contract<br><br>";
 
 	$ar = explode("-",$dedicated["expire_date"]);
-	$out .= "<b><u>"."Dedicated server expiration dates:"."</u></b><br>";
-	$out .= "Your dedicated server was first registered on the: ".$dedicated["start_date"]."<br>";
+	$out .= "<b><u>".$txt_ded_dedicated_server_expiration_date[$lang]."</u></b><br>";
+	$out .= $txt_ded_your_dedicated_was_first_registred_on_the[$lang].$dedicated["start_date"]."<br>";
 	if(date("Y") > $ar[0] ||
 			(date("Y") == $ar[0] && date("m") > $ar[1]) ||
 			(date("Y") == $ar[0] && date("m") == $ar[1] && date("d") > $ar[2])){
 		$out .= "<font color=\"red\">"."Your dedicated server has expired on the: ".$dedicated["expire_date"]."</font>"
-		."<br>"."Please renew it with one of the following options"."<br>";
+		."<br>".$txt_ded_please_renew_it_with_one_of_the_following_options[$lang]."<br>";
 	}else{
-		$out .= "Your dedicated server will expire on the: ".$dedicated["expire_date"];
+		$out .= $txt_ded_your_ded_will_expire_on_the[$lang].$dedicated["expire_date"];
 	}
 
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE renew_prod_id='".$dedicated["product_id"]."';";
