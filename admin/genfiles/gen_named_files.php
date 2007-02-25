@@ -199,6 +199,12 @@ function named_generate(){
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
 		$web_name = $row["name"];
+		// for empty web_names, we need to skip
+		// this is especially true for dedicated servers
+		if (!isset($web_name) || $web_name=="")
+		{
+			continue;
+		}
 		$web_owner = $row["owner"];
 		$web_serial_flag = $row["generate_flag"];
 		$ip_addr = $row["ip_addr"];
