@@ -125,7 +125,7 @@ function configEditorTemplate ($dsc,$conftype="config"){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 	}
 
-	if(isset($dsc["edit_callback"]){
+	if(isset($dsc["edit_callback"])){
 		$dsc["edit_callback"]();
 	}
 
@@ -727,7 +727,7 @@ function namedEditionCallback(){
 	global $pro_mysql_cronjob_table;
 	$q = "UPDATE $pro_mysql_domain_table SET generate_flag='yes';";
 	$r = mysql_query($r)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	$q = "UPDATE $pro_mysql_cronjob_table SET reload_named='yes', gen_named='yes';"
+	$q = "UPDATE $pro_mysql_cronjob_table SET reload_named='yes', gen_named='yes';";
 	$r = mysql_query($r)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 }
 
