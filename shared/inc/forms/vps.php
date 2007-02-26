@@ -67,6 +67,10 @@ function drawAdminTools_VPS($admin,$vps){
 	global $txt_new_ssh_key;
 	global $txt_to_access_to_your_console_first_setup_a_ssh_password;
 
+	global $secpayconf_currency_letters;
+
+	get_secpay_conf();
+
 	$out = "";
 
 	$checker = checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name);
@@ -183,7 +187,7 @@ function drawAdminTools_VPS($admin,$vps){
 <input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
 <input type=\"hidden\" name=\"vps_id\" value=\"".$vps["id"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"submit\" value=\"".$a["name"]." (".$a["price_dollar"]." USD)"."\">
+<input type=\"submit\" value=\"".$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)"."\">
 </form>";
 	}
 

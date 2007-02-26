@@ -60,8 +60,8 @@ if (!$fp) {
 				logPay("Status is not completed !");
 				die("Status not completed...");
 			}
-			if($_REQUEST["mc_currency"] != "USD"){
-				logPay("Currency is not USD !");
+			if($_REQUEST["mc_currency"] != $secpayconf_currency_letters){
+				logPay("Currency is not $secpayconf_currency_letters !");
 				die("Incorrect currency!");
 			}
 			logPay("Calling validate()");

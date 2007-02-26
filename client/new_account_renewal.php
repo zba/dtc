@@ -13,6 +13,10 @@ function renew_form(){
 	global $conf_webmaster_email_addr;
 	global $conf_this_server_country_code;
 
+	global $secpayconf_currency_letters;
+
+	get_secpay_conf();
+
 	// Do field format checking and escaping for all fields
 	if(!isFtpLogin($_REQUEST["adm_login"])){
 		$ret["err"] = 2;
@@ -42,11 +46,11 @@ function renew_form(){
 		return $ret;
 	}
 	$a = mysql_fetch_array($r);
-	$the_prod = $a["name"]." (".$a["price_dollar"]." USD)";
+	$the_prod = $a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)";
 	$prod_id = $a["id"];
 
 	$form = "<b><u>Renewal for login:</u></b> ".$_REQUEST["adm_login"]."<br>";
-	$form .= "<b><u>Product to renew:</u></b> ".$a["name"]." (".$a["price_dollar"]." USD)<br><br>";
+	$form .= "<b><u>Product to renew:</u></b> ".$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)<br><br>";
 
 	switch($_REQUEST["renew_type"]){
 	case "vps":

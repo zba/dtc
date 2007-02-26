@@ -32,6 +32,11 @@ function register_user(){
 	global $conf_webmaster_email_addr;
 	global $conf_selling_conditions_url;
 
+
+	global $secpayconf_currency_letters;
+
+	get_secpay_conf();
+
 	// Check if all fields are blank, in wich case don't display error
 	if((!isset($_REQUEST["reqadm_login"]) || $_REQUEST["reqadm_login"] == "")
 	&& (!isset($_REQUEST["reqadm_pass"]) || $_REQUEST["reqadm_pass"] == "" )
@@ -344,10 +349,10 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 	$n = mysql_num_rows($r);
 	if($n != 1){
 		echo "<font color=\"red\">Cannot find product id!</font>";
-		$the_prod = $esc_product_id." (0 USD)";
+		$the_prod = $esc_product_id." (0 $secpayconf_currency_letters)";
 	}else{
 		$a = mysql_fetch_array($r);
-		$the_prod = $a["name"]." (".$a["price_dollar"]." USD)";
+		$the_prod = $a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)";
 	}
 
 	$mail_content = "

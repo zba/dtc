@@ -22,6 +22,10 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 
 	global $lang;
 
+	global $secpayconf_currency_letters;
+
+	get_secpay_conf();
+
 	$out = "";
 
 	// Check owner and fetch!
@@ -69,7 +73,7 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 		<input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
 		<input type=\"hidden\" name=\"server_id\" value=\"".$dedicated["id"]."\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-		<input type=\"submit\" value=\"".$a["name"]." (".$a["price_dollar"]." USD)"."\">
+		<input type=\"submit\" value=\"".$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)"."\">
 		</form>";
 	}
 
