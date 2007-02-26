@@ -2272,7 +2272,7 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 			if [ -e $PURE_FTPD_ETC/db/ ] ;then
 				echo "# Configured by DTC v0.10 : Please don't touch this line !
 
-MYSQLSocket /var/run/mysqld/mysqld.sock
+MYSQLServer $conf_mysql_host
 MYSQLUser dtcdaemons
 MYSQLPassword ${MYSQL_DTCDAEMONS_PASS}
 MYSQLDatabase dtc
