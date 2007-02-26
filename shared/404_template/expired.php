@@ -19,7 +19,7 @@ h1{text-decoration:none; text-align:center;}
 #wrapper {padding-bottom: 32px;}
 .top{padding:25% 0 0 0 ; text-align:center;}
 .message{padding:1% 5% 1% 5%; text-align:center;}
-.footer{width:100%; text-align:center; position:absolute; bottom:0;}
+.footer{width:98%; text-align:center; position:absolute; bottom:0; padding:1%; }
 .italics{font-style:italic;}
 </style>
 </head>

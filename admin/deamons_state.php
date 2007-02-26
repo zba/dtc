@@ -323,10 +323,10 @@ function drawServerStatus(){
 
 	$out = "<br><table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" height=\"1\">
 <tr>
-	<td width=\"25%\" align=\"center\">SMTP</td>
-	<td width=\"25%\" align=\"center\">POP3</td>
-	<td width=\"25%\" align=\"center\">DNS</td>
-	<td width=\"25%\" align=\"center\">FTP</td>
+	<td width=\"25%\" align=\"center\"><font color=\"#FFFFFF\">SMTP</font></td>
+	<td width=\"25%\" align=\"center\"><font color=\"#FFFFFF\">POP3</font></td>
+	<td width=\"25%\" align=\"center\"><font color=\"#FFFFFF\">DNS</font></td>
+	<td width=\"25%\" align=\"center\"><font color=\"#FFFFFF\">FTP</font></td>
 </tr><tr>
 	<td align=\"center\">$smtp_status</td>
 	<td align=\"center\">$pop3_status</td>
