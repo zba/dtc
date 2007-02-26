@@ -726,9 +726,9 @@ function namedEditionCallback(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_cronjob_table;
 	$q = "UPDATE $pro_mysql_domain_table SET generate_flag='yes';";
-	$r = mysql_query($r)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$q = "UPDATE $pro_mysql_cronjob_table SET reload_named='yes', gen_named='yes';";
-	$r = mysql_query($r)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 }
 
 function drawNamedConfig(){
