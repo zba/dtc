@@ -1973,7 +1973,9 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 	# if sasl with sql is used then just link to the file being created during cyrus installation
 	if [ -e $SASLTMP_FILE ]; then
 		if [ -f $PATH_SASLLIB/libsql.so ]; then
-			mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
+			if [ -f $PATH_POSTFIX_ETC/sasl/smtpd.conf ]; then
+				mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
+			fi
 			ln -s $PATH_SASLLIB/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf 
 		else
 			cat $SASLTMP_FILE > $PATH_POSTFIX_ETC/sasl/smtpd.conf
