@@ -18,6 +18,8 @@ if(file_exists("dtcrm")){
 	include("dtcrm/product_manager.php");
 }
 
+get_secpay_conf();
+
 $DONOT_USE_ROTATING_PASS="yes";
 
 ////////////////////////////////////
@@ -56,7 +58,7 @@ if($n != 1){
 		$newu_infos .= "<font color=\"red\">Product not found!</font><br>";
 	}else{
 		$a2 = mysql_fetch_array($r2);
-		$newu_infos .= "<b>Product:</b> ".$a2["name"]." (".$a2["price_dollar"]."USD)<br>";
+		$newu_infos .= "<b>Product:</b> ".$a2["name"]." (".$a2["price_dollar"]." $secpayconf_currency_letters)<br>";
 	}
 	$q3 = "SELECT * FROM paiement WHERE id='".$a["paiement_id"]."';";
 	$r3 = mysql_query($q3)or die("Cannot query \"$q3\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());

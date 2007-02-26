@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS commande (
   id_client varchar(100) NOT NULL default '0',
   domain_name varchar(255) NOT NULL default '',
   quantity varchar(10) NOT NULL default '',
-  price_devise enum('EUR','USD') NOT NULL default 'EUR',
+  price_devise varchar(64) NOT NULL default 'USD',
   price varchar(255) NOT NULL default '',
   paiement_method enum('cb','cheque','wire','other','free') NOT NULL default 'cb',
   date date NOT NULL default '0000-00-00',

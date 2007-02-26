@@ -35,6 +35,10 @@ function drawRenewalTables (){
 	global $txt_renew_no_dedicated_server_expired;
 	global $txt_renew_ssl_ips_renewals;
 
+	global $secpayconf_currency_letters;
+
+	get_secpay_conf();
+
 	$out = "<h3>".$txt_renew_total_recurring_incomes_per_month[$lang]."</h3>";
 	// Monthly recurring for shared hosting:
 	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
@@ -114,12 +118,12 @@ function drawRenewalTables (){
 		}
 	}
 
-	$out .= $txt_renew_shared_hosting[$lang].round($total_shared,2)." USD<br>";
-	$out .= $txt_renew_ssl_ip[$lang].round($total_ssl,2)." USD<br>";
-	$out .= $txt_renew_vps[$lang].round($total_vps,2)." USD<br>";
-	$out .= $txt_renew_dedicated_servers[$lang].round($total_dedicated,2)." USD<br>";
+	$out .= $txt_renew_shared_hosting[$lang].round($total_shared,2)." $secpayconf_currency_letters<br>";
+	$out .= $txt_renew_ssl_ip[$lang].round($total_ssl,2)." $secpayconf_currency_letters<br>";
+	$out .= $txt_renew_vps[$lang].round($total_vps,2)." $secpayconf_currency_letters<br>";
+	$out .= $txt_renew_dedicated_servers[$lang].round($total_dedicated,2)." $secpayconf_currency_letters<br>";
 	$big_total = $total_shared + $total_vps + $total_dedicated + $total_ssl;
-	$out .= "<b>".$txt_renew_total[$lang].round($big_total,2)." USD</b>";
+	$out .= "<b>".$txt_renew_total[$lang].round($big_total,2)." $secpayconf_currency_letters</b>";
 
 	$out .= "<h3>".$txt_renew_shared_renewals[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' ORDER BY expire;";

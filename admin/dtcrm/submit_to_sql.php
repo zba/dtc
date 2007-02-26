@@ -128,6 +128,8 @@ WHERE id='".$_REQUEST["id"]."' LIMIT 1;";
 	}
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_cmd_to_client"){
+	get_secpay_conf();
+
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["add_new_command"]."';";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -140,7 +142,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_cmd_to_client"){
 	$exp_date = date("Y-m-d",time() + $y*$exp[0] + $m*$exp[1] + $d*$exp[2] );
 	$q = "INSERT INTO $pro_mysql_command_table (id,
 id_client,domain_name,quantity,price_devise,price,paiement_method,date,expir,product_id
-)VALUES('','".$_REQUEST["id"]."','".$_REQUEST["add_newcmd_domain_name"]."','1','USD','".$a["price_dollar"]."','free','".date("Y-m-d")."','$exp_date','".$_REQUEST["add_new_command"]."');";
+)VALUES('','".$_REQUEST["id"]."','".$_REQUEST["add_newcmd_domain_name"]."','1','$secpayconf_currency_letters','".$a["price_dollar"]."','free','".date("Y-m-d")."','$exp_date','".$_REQUEST["add_new_command"]."');";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 }
 

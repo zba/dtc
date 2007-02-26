@@ -142,6 +142,11 @@ function drawNewAdminForm(){
 	global $txt_dua_del;
 	global $txt_dua_add;
 	global $txt_dua_view_details;
+
+	global $secpayconf_currency_letters;
+
+	get_secpay_conf();
+
 	$out = "";
 	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "resolv_ticket"){
 		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='".$_REQUEST["tik_id"]."';";
@@ -362,7 +367,7 @@ dtcFromOkDraw()."
 				$prod_name = "Cannot find product!";
 			}else{
 				$a2 = mysql_fetch_array($r2);
-				$prod_name = $a2["name"]." (".$a2["price_dollar"]." USD: ".$a2["period"].")";
+				$prod_name = $a2["name"]." (".$a2["price_dollar"]." $secpayconf_currency_letters: ".$a2["period"].")";
 			}
 			$waiting_new_users .= "<td>$prod_name</td>";
 			$waiting_new_users .= "<td>".$a["renew_date"]." ".$a["renew_time"]."</td>";
