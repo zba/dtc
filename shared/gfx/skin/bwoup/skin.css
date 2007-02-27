@@ -243,10 +243,13 @@ input,select,textarea {
 #footer {
 	clear: both;
 	min-width: 760px;
-	width: 100%;
 	text-align: center;
 	font-size: 10px;
 	color: #277193;
+	width:98%;
+	position:absolute;
+	bottom:0;
+	padding:1%;
 	}
 
 
