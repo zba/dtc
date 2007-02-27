@@ -190,6 +190,7 @@ function validateWaitingUser($waiting_login){
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_server_table;
 	global $pro_mysql_completedorders_table;
+	global $pro_mysql_domain_table;
 
 	global $txt_userwaiting_account_activated_subject;
 	global $txt_userwaiting_account_activated_text_header;
@@ -352,6 +353,8 @@ first part of the path, so it will be relative to:
 
 You can login to the control
 panel using the following informations:";
+		$q = "UPDATE $pro_mysql_domain_table SET max_email='".$a2["nbr_email"]."',quota='".$a2["quota_disk"]."' WHERE name='".$a["domain_name"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
         }
 
 	// Send a mail to user with how to login and use interface.
