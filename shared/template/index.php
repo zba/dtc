@@ -4,7 +4,7 @@
 <head>
 <title><?php echo $_SERVER["HTTP_HOST"]; ?> powered by Domain Technologie Control (DTC)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<meta name="title" content="Domain Name or URL Not Found" />
+<meta name="title" content="<?php echo $_SERVER["HTTP_HOST"]; ?> powered by Domain Technologie Control (DTC)" />
 <meta name="robots" content="NOINDEX, FOLLOW" />
 <meta name="cache-control" content="no-cache" />
 <style type="text/css">

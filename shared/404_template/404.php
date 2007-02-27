@@ -4,7 +4,7 @@
 <head>
 <title>Error 404: file not found</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<meta name="title" content="Domain Name or URL Not Found" />
+<meta name="title" content="Error 404: file not found" />
 <meta name="robots" content="NOINDEX, FOLLOW" />
 <meta name="cache-control" content="no-cache" />
 <style type="text/css">
