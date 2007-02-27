@@ -2019,11 +2019,11 @@ modifyCourierConfig () {
 	if [ -d "$COURIER_FOLDER" ] ; then
 		if [ ! -f /etc/courier/userdb ] ; then
 			# rm the userdb because it could be a folder in previous installs...
-			rm -rf /etc/courier/userdb
-			touch /etc/courier/userdb
+			rm -rf $COURIER_FOLDER/userdb
+			touch $COURIER_FOLDER/userdb
 		fi
-		chown ${CONF_DTC_SYSTEM_USERNAME} /etc/courier/userdb
-		chmod 600 /etc/courier/userdb
+		chown ${CONF_DTC_SYSTEM_USERNAME} $COURIER_FOLDER/userdb
+		chmod 600 $COURIER_FOLDER/userdb
 	fi
 
 	#
