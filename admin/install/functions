@@ -2008,21 +2008,28 @@ prepareMlmmjSpool () {
 }
 
 modifyCourierConfig () {
-	# check to see if we have a userdb FOLDER, rather than a FILE, rm -r if any folder...
-	# move it out of the way, if so
-	if [ ! -f /etc/courier ] ; then
-		# rm the userdb because it could be a folder in previous installs...
-		rm -rf /etc/courier/userdb
-		touch /etc/courier/userdb
+	# check to see if we have a userdb FILE, rather than a FOLDER, rm -r if any folder...
+	if [ -d "/etc/courier" ] ; then
+		COURIER_FOLDER="/etc/courier"
 	fi
-	chown ${CONF_DTC_SYSTEM_USERNAME} /etc/courier/userdb
-	chmod 600 /etc/courier/userdb
+	if [ -d "/usr/local/etc/courier" ] ; then
+		COURIER_FOLDER="/usr/local/etc/courier"
+	fi
+
+	if [ -d "$COURIER_FOLDER" ] ; then
+		if [ ! -f /etc/courier/userdb ] ; then
+			# rm the userdb because it could be a folder in previous installs...
+			rm -rf /etc/courier/userdb
+			touch /etc/courier/userdb
+		fi
+		chown ${CONF_DTC_SYSTEM_USERNAME} /etc/courier/userdb
+		chmod 600 /etc/courier/userdb
+	fi
 
 	#
 	# Install courier mysql authenticaion
 	#
-	if [ -f "$PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc" ]
-	then
+	if [ -f "$PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc" ] ; then
 		echoIfVerbose "===> Adding directives to Courier authdaemonrc"
 		if grep "Configured by DTC" $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc >/dev/null
 		then
