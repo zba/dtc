@@ -203,6 +203,8 @@ $page_metacontent
 $meta
 </head>
 <body id=\"page\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">
+	  <div id=\"outerwrapper\">
+    <div id=\"wrapper\">
 
 ".makePreloads()."
 $confirm_javascript
@@ -213,6 +215,9 @@ $skinCssString
 ".anotherTopBanner("DTC","yes")."<div id=\"usernavbarreplacement\"></div>
 <div id=\"content\"><div class=\"box_wnb_content_container\">".$mypage."</div></div>
 <div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
+    </div>
+</div>
+</body>
 </html>";
 }
 
@@ -232,6 +237,8 @@ $page_metacontent
 $meta
 </head>
 <body id=\"page\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">
+	  <div id=\"outerwrapper\">
+    <div id=\"wrapper\">
 
 ".makePreloads()."
 $confirm_javascript
@@ -242,6 +249,9 @@ $skinCssString
 ".anotherTopBanner("DTC","yes")."<div id=\"usernavbarreplacement\"></div>
 <div id=\"content\"><div class=\"box_wnb_content_container\">".$form."</div></div>
 <div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
+    </div>
+</div>
+</body>
 </html>";
 }
 
@@ -548,6 +558,8 @@ $page_metacontent
 $meta
 </head>
 <body id=\"page\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">
+	  <div id=\"outerwrapper\">
+    <div id=\"wrapper\">
 
 ".makePreloads()."
 $confirm_javascript
@@ -558,6 +570,9 @@ $skinCssString
 ".anotherTopBanner("DTC","yes").$dtc_main_menu."
 <div id=\"content\">".$zemain_content."</div>
 <div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
+    </div>
+</div>
+</body>
 </html>";
 
 }
