@@ -675,7 +675,7 @@ fi
 
 # Remove all the directives for mod_log_sql that we setup already in the main httpd.conf
 # Removes: "LogSQLLoginInfo", "LogSQLMassVirtualHosting" and "LogSQLTransferLogFormat"
-MOD_SQL_CONF="/etc/apache2/modules.d/42_mod_log_sql.conf"
+MOD_SQL_CONF="/etc/apache2/modules.d/*_mod_log_sql.conf"
 if [ -e ${MOD_SQL_CONF} ] ; then
 	TMP_FILE=`${MKTEMP} DTC_configure_mod_log_sql.conf.XXXXXX` || exit 1
 	grep -v "LogSQLLoginInfo" ${MOD_SQL_CONF} >${TMP_FILE}
