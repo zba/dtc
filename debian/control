@@ -2,7 +2,7 @@ Source: dtc
 Section: admin
 Priority: optional
 Maintainer: Thomas Goirand <thomas@goirand.fr>
-Build-Depends: debhelper (>= 4), po-debconf
+Build-Depends: debhelper (>= 5), po-debconf
 Standards-Version: 3.7.2
 
 Package: dtc-common
