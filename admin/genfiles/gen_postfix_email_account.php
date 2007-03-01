@@ -46,6 +46,8 @@ function mail_account_generate_postfix(){
 
 	global $conf_nobody_user_id;
 
+	global $conf_use_cyrus;
+
 	//global $conf_postfix_virtual_mailbox_domains_path;
 	//global $conf_postfix_virtual_path;
 	//global $conf_postfix_vmailbox_path;
@@ -198,11 +200,13 @@ function mail_account_generate_postfix(){
 						unset($extra_redirects);
 						if ($localdeliver == "yes" || $localdeliver == "true"){
 							//need to generate .mailfilter file with "cc" and also local delivery
-							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1");
-							if($vacation_flag == "yes"){
-								$vac_fp = fopen("$home/.vacation.msg","w+");
-								fwrite($vac_fp,$vacation_text);
-								fclose($vac_fp);
+							if($conf_use_cyrus != "no"){
+								system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1");
+								if($vacation_flag == "yes"){
+									$vac_fp = fopen("$home/.vacation.msg","w+");
+									fwrite($vac_fp,$vacation_text);
+									fclose($vac_fp);
+								}
 							}
 							$spam_stuff_done = 1;
 						} else {
@@ -211,11 +215,13 @@ function mail_account_generate_postfix(){
 						if ($redirect2 != "" && isset($redirect2)){
 							if ($localdeliver == "yes" || $localdeliver == "true"){
 								//need to generate .mailfilter file with "cc" and also local delivery
-								system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1 $redirect2");
-								if($vacation_flag == "yes"){
-									$vac_fp = fopen("$home/.vacation.msg","w+");
-									fwrite($vac_fp,$vacation_text);
-									fclose($vac_fp);
+								if($conf_use_cyrus != "no"){
+									system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1 $redirect2");
+									if($vacation_flag == "yes"){
+										$vac_fp = fopen("$home/.vacation.msg","w+");
+										fwrite($vac_fp,$vacation_text);
+										fclose($vac_fp);
+									}
 								}
 								$spam_stuff_done = 1;
 							} else if (isset($extra_redirects)) {
@@ -233,7 +239,9 @@ function mail_account_generate_postfix(){
 					} 
 					//if we haven't added the spam mailbox yet, do it here
 					if ($spam_stuff_done == 0){
-						system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox");
+						if($conf_use_cyrus != "no"){
+							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox");
+						}
 					}
 				}
 			}
