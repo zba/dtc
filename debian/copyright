@@ -11,13 +11,15 @@ Upstream Authors:
 
 	Plus minor contributions and translators from arround the world
 	as follow (hoping nobody has been forgotten):
-	* Christian Livadaru <cristian@livadaru.net>: Cyrus support
-	* Luca Franceschini <lupin3rd@gmx.it>: MLMMJ support
-	* Brian Freemans <admin@udns.us>: Protected apache directories.
-	* Many thanks to all the translators : Jelle Kalf (Dutch),
-	Igor Trofimov (partial Russian), Feher Sandor (Hungarian),
-	Jose Toscano and Jorge Mendez (Espanol), Andrea Polte (Deutsch),
-	Luca Franceschini (Italiano), my lovely wife Cao Wei (Chinese).
+
+	  * Christian Livadaru <cristian@livadaru.net>: Cyrus support
+	  * Luca Franceschini <lupin3rd@gmx.it>: MLMMJ support
+	  * Brian Freemans <admin@udns.us>: Protected apache directories.
+
+	Many thanks to all the translators : Jelle Kalf (Dutch), Igor Trofimov
+	(partial Russian), Feher Sandor (Hungarian), Jose Toscano and Jorge
+	Mendez (Espanol), Andrea Polte (Deutsch), Luca Franceschini (Italiano),
+	and my lovely wife Cao Wei (Chinese).
 
 License (admin/*.cgi):
 
@@ -35,12 +37,13 @@ License (admin/*.cgi):
 
         You should have received a copy of the GNU General Public License
         along with this program; if not, write to the Free Software
-        Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 License (shared/dtcrm/srs/*):
 
-	Copyright (C) 2000-2003 Colin Viebrock and easyDNS Technologies Inc.
-	Copyright (C) Copyright 2000, Tuwcows Inc.
+	Copyright (C) 2000-2003 Colin Viebrock
+	Copyright (C) 2000-2003 easyDNS Technologies, Inc.
+	Copyright (C) 2000 Tuwcows, Inc.
 
         This program is free software; you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -58,7 +61,8 @@ License (shared/dtcrm/srs/*):
 
 License (shared/inc/nusoap.php):
 
-	Copyright (C) 2002 NuSphere Corporation Dietrich Ayala <dietrich@ganx4.com>
+	Copyright (C) 2002 NuSphere Corporation
+	Copyright (C) 2002 Dietrich Ayala <dietrich@ganx4.com>
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -72,11 +76,11 @@ License (shared/inc/nusoap.php):
 
 	You should have received a copy of the GNU Lesser General Public
 	License along with this library; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 License (bin/sources/redhat/RPM-build-tree.sh):
 
-	Copyright (C) 2002 Owl River Company - Columbus OH info@owlriver.com
+	Copyright (C) 2002 Owl River Company <info@owlriver.com>
 
         This program is free software; you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -94,7 +98,7 @@ License (bin/sources/redhat/RPM-build-tree.sh):
 
 License (shared/gfx/wz_tooltip.js):
 
-	Copyright (C) 2002-2005 Walter Zorn. <walter2615@gmx.de>
+	Copyright (C) 2002-2005 Walter Zorn <walter2615@gmx.de>
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -108,7 +112,7 @@ License (shared/gfx/wz_tooltip.js):
 
 	You should have received a copy of the GNU Lesser General Public
 	License along with this library; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 License (shared/cyradm.php):
 
@@ -126,12 +130,12 @@ License (shared/cyradm.php):
 
 	You should have received a copy of the GNU Lesser General Public
 	License along with this library; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 License (bin/sources/osx/Crypt/*):
 
-	Copyright (c) 2001 The PHP Group Manon Goo <manon@passionet.de> &
-	Chuck Hagenbuch <chuck@horde.org>
+	Copyright (C) 2001 The PHP Group Manon Goo <manon@passionet.de>
+	Copyright (C) 2001 Chuck Hagenbuch <chuck@horde.org>
 
 	This source file is subject to version 2.02 of the PHP license,
 	that is bundled with this package in the file LICENSE, and is

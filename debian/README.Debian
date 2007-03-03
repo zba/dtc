@@ -1,18 +1,18 @@
 dtc web hosting control panel for Debian
 ----------------------------------------
 
-To be policy compliant a package cannot modify another package config file. So
-configuring all the daemons within the installer is forbidden by debian. Even
-I don't feel it's right, this is the way it is, and there is nothing I can do
+To be policy compliant, a package cannot modify another package config file. So
+configuring all the daemons within the installer is forbidden on Debian. Even
+if I don't feel it's right, this is the way it is, and there is nothing I can do
 about it.
 
-The only way to have everything ready is to launch the install script by hand
-after the setup of the package:
+The only way to have everything ready is to launch the install script as root
+manually after the installation of the package:
 
-	* cd /usr/share/dtc/admin/install ; ./install
+  # ./usr/share/dtc/admin/install/install
 
 You can uninstall the same way:
 
-	* cd /usr/share/dtc/admin/install ; ./uninstall
+  # ./usr/share/dtc/admin/install/uninstall
 
  -- Thomas Goirand <thomas@goirand.fr>  Sat, 16 Dec 2006 03:11:17 +0800

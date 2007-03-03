@@ -9,24 +9,13 @@ Package: dtc-common
 Architecture: all
 Conflicts: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
 Suggests: dtc-postfix-courier
-Description: Config files in /etc for both dtc and dtc-postfix-courier
- Domain Technologie Control (DTC) is a control panel for hosting.
- Using a web GUI for admin and accounting all hosting services, DTC
- can delegate the task of creating subdomains, email, and FTP accounts
- to users for the domain names they own. DTC manages a MySQL database
- containing all the hosting informations.
+Description: web control panel for admin and accounting hosting services (common files)
+ Domain Technologie Control (DTC) is a control panel for hosting. Using a web
+ GUI for admin and accounting all hosting services, DTC can delegate the task of
+ creating subdomains, email, and FTP accounts to users for the domain names they
+ own. DTC manages a MySQL database containing all the hosting informations.
  .
- It has support for many programs (bind 8 and 9 and compatibles, MySQL,
- Apache 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin,
- courier 2, cyrus, dovecot, proftpd, webalizer, mod-log-sql, etc...)
- using config files and/or MySQL plugin (when service is non-critical).
- It can also generates backup scripts, calculation scripts, and config
- files. All this using a single system UID/GID.
- .
- It does as well monitoring of all trafic accounting per user and per
- service (and globaly using RRDTools).
- Since version 0.12, DTC is fully skinable and translated in several
- languages.
+ This package contains the common files.
  .
   Homepage: <http://www.gplhost.com/software-dtc.html>
 
@@ -36,23 +25,20 @@ Depends: dtc-common, apache2 | apache, amavisd-new, bind | bind9, bzip2, ca-cert
 Suggests: courier-authmysql, courier-authlib-mysql, dovecot, postfix, qmail, postfix-tls, libsasl2, libsasl2-modules, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2, msttcorefonts
 Conflicts: dtc-postfix-courier
 Replaces: dtc-postfix-courier
-Description: A web control panel for admin and accounting hosting services
- Domain Technologie Control (DTC) is a control panel for hosting.
- Using a web GUI for admin and accounting all hosting services, DTC
- can delegate the task of creating subdomains, email, and FTP accounts
- to users for the domain names they own. DTC manages a MySQL database
- containing all the hosting informations.
+Description: web control panel for admin and accounting hosting services
+ Domain Technologie Control (DTC) is a control panel for hosting. Using a web
+ GUI for admin and accounting all hosting services, DTC can delegate the task of
+ creating subdomains, email, and FTP accounts to users for the domain names they
+ own. DTC manages a MySQL database containing all the hosting informations.
  .
- It has support for many programs (bind 8 and 9 and compatibles, MySQL,
- Apache 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin,
- courier 2, cyrus, dovecot, proftpd, webalizer, mod-log-sql, etc...)
- using config files and/or MySQL plugin (when service is non-critical).
- It can also generates backup scripts, calculation scripts, and config
- files. All this using a single system UID/GID.
+ It has support for many programs (bind 8 and 9 and compatibles, MySQL, Apache
+ 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin, courier 2, cyrus,
+ dovecot, proftpd, webalizer, mod-log-sql, etc.) using config files and/or MySQL
+ plugin (when service is non-critical). It can also generates backup scripts,
+ calculation scripts, and config files. All this using a single system UID/GID.
  .
- It does as well monitoring of all trafic accounting per user and per
- service (and globaly using RRDTools).
- Since version 0.12, DTC is fully skinable and translated in several
+ It does as well monitoring of all trafic accounting per user and per service
+ (and globaly using RRDTools). DTC is fully skinable and translated in several
  languages.
  .
   Homepage: <http://www.gplhost.com/software-dtc.html>
@@ -64,30 +50,15 @@ Conflicts: dtc
 Replaces: dtc
 Suggests: mysqmail, msttcorefonts
 Provides: dtc
-Description: A web control panel for admin and accounting hosting services
- Domain Technologie Control (DTC) is a control panel for hosting.
- Using a web GUI for admin and accounting all hosting services, DTC
- can delegate the task of creating subdomains, email, and FTP accounts
- to users for the domain names they own. DTC manages a MySQL database
- containing all the hosting informations.
+Description: web control panel for admin and accounting hosting services (daemon meta package)
+ Domain Technologie Control (DTC) is a control panel for hosting. Using a web
+ GUI for admin and accounting all hosting services, DTC can delegate the task of
+ creating subdomains, email, and FTP accounts to users for the domain names they
+ own. DTC manages a MySQL database containing all the hosting informations.
  .
- It has support for many programs (bind 8 and 9 and compatibles, MySQL,
- Apache 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin,
- courier 2, cyrus, dovecot, proftpd, webalizer, mod-log-sql, etc...)
- using config files and/or MySQL plugin (when service is non-critical).
- It can also generates backup scripts, calculation scripts, and config
- files. All this using a single system UID/GID.
- .
- It does as well monitoring of all trafic accounting per user and per
- service (and globaly using RRDTools).
- Since version 0.12, DTC is fully skinable and translated in several
- languages.
- .
- This specific package has dependencies to setup postfix, courier,
- phpmyadmin and other apps in once, so you don't have to setup all the
- dependencies by hand. The counter part is that you can't use this
- package when using Cyrus, Dovecot and others (for that, you need to
- use the package dtc which has a lot less dependencies).
+ This meta package has dependencies to setup postfix, courier, and others so you
+ don't have to select them by hand. If you want to use other daemons, use the
+ dtc package which has a lot less dependencies.
  .
   Homepage: <http://www.gplhost.com/software-dtc.html>
 
@@ -95,10 +66,13 @@ Package: dtc-toaster
 Architecture: all
 Depends: dtc-postfix-courier, ttf-arphic-ukai, ttf-bitstream-vera
 Suggests: msttcorefonts
-Description: A meta package to setup all necessary DTC package
- This is a meta package that will setup every package
- that you need when you want to use DTC web hosting control
- panel. If you want more information, have a look to the
- dtc package itself.
+Description: web control panel for admin and accounting hosting services (meta package)
+ Domain Technologie Control (DTC) is a control panel for hosting. Using a web
+ GUI for admin and accounting all hosting services, DTC can delegate the task of
+ creating subdomains, email, and FTP accounts to users for the domain names they
+ own. DTC manages a MySQL database containing all the hosting informations.
+ .
+ This is a meta package depending on every package that you need to use the DTC
+ web hosting control.
  .
   Homepage: <http://www.gplhost.com/software-dtc.html>
