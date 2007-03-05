@@ -1,6 +1,6 @@
 Source: dtc
 Section: admin
-Priority: optional
+Priority: extra
 Maintainer: Thomas Goirand <thomas@goirand.fr>
 Build-Depends: debhelper (>= 5), po-debconf
 Standards-Version: 3.7.2
