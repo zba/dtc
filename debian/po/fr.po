@@ -88,7 +88,7 @@ msgstr ""
 #. Description
 #: ../dtc.templates:27 ../dtc-postfix-courier.templates:27
 msgid "DTC database name:"
-msgstr "Nom de la base de donnée DTC :"
+msgstr "Nom de la base de données DTC :"
 
 #. Type: string
 #. Description
