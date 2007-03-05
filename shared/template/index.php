@@ -29,7 +29,7 @@ h1{text-decoration:none; text-align:center;}
     <div class="top">
 
 
-<a href="http://www.gplhost.com/software-dtc.html">	   <img src="logo_dtc.gif" border="0" width="50" height="75" alt="Domain Technologie Control (DTC)" /></a>
+<a href="http://www.gplhost.com/software-dtc.html">	   <img src="dtclogo.png" border="0" width="85" height="128" alt="Domain Technologie Control (DTC)" /></a>
 
 
 <h1>Welcome to <?php echo $_SERVER["HTTP_HOST"]; ?></h1>
