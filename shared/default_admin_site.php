@@ -1,48 +1,56 @@
 <?php
 
-$theTopsIcons = '<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%">
-<tr>
-	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?"><font face="Arial"><b>Home</b></font></a></center></td>
-	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtcadmin"><font face="Arial"><b>DTC Admin Panel</b></font></a></center></td>
-	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtc"><font face="Arial"><b>DTC Client Panel</b></font></a></center></td>
-	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtcemail"><font face="Arial"><b>DTC Email Panel</b></font></a></center></td>
-	<td width="14%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=squirrelmail"><font face="Arial"><b>SquirrelMail</b></font></a></center></td>
-	<td width="15%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=phpmyadmin"><font face="Arial"><b>PhpMyAdmin</b></font></a></center></td>
-	<td width="15%" valign="bottom"><center><a href="'.$_SERVER["PHP_SELF"].'?sousrub=register"><font face="Arial"><b>New account</b></font></a></center></td>
-</tr>
-</table>';
+$theTopsIcons = '
+<div class="nav">
+	<a href="'.$_SERVER["PHP_SELF"].'?">Home</a>
+	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtcadmin">DTC Admin Panel</a>
+	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtc">DTC Client Panel</a>
+	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtcemail">DTC Email Panel</a>
+	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=squirrelmail">SquirrelMail</a>
+	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=phpmyadmin">PhpMyAdmin</a>
+	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=register">New account</a>
+</div>	';
 
 $ZeContentWindowTitle = "General Server News And Infos|gplhost.gif";
-$ZeContent = '<table width="100%" height="100%">
-<tr><td width="100%" height="100%">
-<center>
-
-<b><font face="Arial"><center>
-<a href="http://www.gplhost.com/software-dtc.html">
-<img src="dtc_logo.gif" alt="DTC web control panel" border="0"></a><br><br>
-<h1><u>Welcome to '.$_SERVER["HTTP_HOST"].'!</u></h1>
-This is a place holder to show you how to create your client tool page.<br>
-Please edit '.__FILE__.' to customize this page.<br><br>
-</center></font><br><br><br></td></tr>
-
-<tr><td width="100%" height="1"><center><font face="Arial" size="-2">
-This website server is powered by Domain Technologie Control (DTC),
-an open-source control panel<br>
-<i>Most of code done by:
-<a target="_blank" href="http://thomas.goirand.fr">Thomas GOIRAND</a>, under
-<a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit <a
-target="_blank" href="http://gplhost.com">GPLHost</a> and <a
-target="_blank" href="http://gplhost.com/software-dtc.html">DTC web control panel</a> for more infos.</i></font>
-</center></td></tr></table>';
+$ZeContent = '<div class="top">
+            <a href="http://www.gplhost.com/software-dtc.html"><img src="dtclogo.png" alt="DTC web control panel" border="0" /></a>
+</div>
+        <div class="message">
+            <h1>
+            Welcome to '.$_SERVER["HTTP_HOST"].'!
+            </h1>
+            <p>
+            This is a place holder to show you how to create your
+            client tool page.
+            <br />
+            Please edit
+             '.__FILE__.'
+            to customize this page.
+            </p>
+</div>
+        <div class="footer">
+            This website server is powered by Domain Technologie
+            Control (DTC), an open-source control panel
+            <br />
+            <span class="italics">Most of code done by:
+                <a target= "_blank" href="http://thomas.goirand.fr">Thomas GOIRAND</a>, under
+                <a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit
+                <a target="_blank" href="http://gplhost.com/hosting-vps.html">GPLHost
+                hosting VPS services</a> and
+                <a target="_blank" href="http://gplhost.com/software-dtc.html">DTC GPL control panel home</a> for more info.
+</span>
+        </div> ';
 
 $sousrub = $_REQUEST["sousrub"];
 
 if($sousrub == "register"){
 	$ZeContentWindowTitle = "Register an account|gplhost.gif";
-	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php?product_id='.$_REQUEST["product_id"].'" width="100%" height="100%" scrolling="auto" frameborder="1">
-  [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="https://'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php" target="_blank">the related document.</A>]
-  </IFRAME>
+	$ZeContent = '
+	
+<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php?product_id='.$_REQUEST["product_id"].'" width="100%">  </iframe>
+      </div>
+
 ';
 }
 
@@ -53,60 +61,96 @@ if($sousrub == "register"){
 
 if($sousrub == "dtc"){
 	$ZeContentWindowTitle = "DTC Client interface|dtc.gif";
-	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtc" width="100%" height="100%" scrolling="auto" frameborder="1">
-  [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="https://'.$_SERVER["HTTP_HOST"].'/dtc/" target="_blank">the related document.</A>]
-  </IFRAME>
+	$ZeContent = '
+<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtc" width="100%">  </iframe>
+      </div>
 ';
 }
 
 if($sousrub == "squirrelmail"){
 	$ZeContentWindowTitle = "SquirrelMail|squirrel.gif";
-	$ZeContent = '<IFRAME border="0" src="http://'.$_SERVER["HTTP_HOST"].'/squirrelmail/src/" width="100%" height="100%" scrolling="auto" frameborder="1">
-  [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="https://'.$_SERVER["HTTP_HOST"].'/squirrelmail" target="_blank">the related document.</A>]
-  </IFRAME>
+	$ZeContent = '
+	<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="http://'.$_SERVER["HTTP_HOST"].'/squirrelmail/src/" width="100%">  </iframe>
+      </div>
 ';
 }
 
 if($sousrub == "dtcadmin"){
 	$ZeContentWindowTitle = "DTC Client interface|dtc.gif";
-	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtcadmin" width="100%" height="100%" scrolling="auto" frameborder="1">
-  [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="https://'.$_SERVER["HTTP_HOST"].'/dtc" target="_blank">the related document.</A>]
-  </IFRAME>
+	$ZeContent = '<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtcadmin" width="100%">  </iframe>
+      </div>
 ';
 }
 
 if($sousrub == "dtcemail"){
 	$ZeContentWindowTitle = "DTC Email interface|dtc.gif";
-	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtcemail" width="100%" height="100%" scrolling="auto" frameborder="1">
-  [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="https://'.$_SERVER["HTTP_HOST"].'/dtcemail" target="_blank">the related document.</A>]
-  </IFRAME>
+	$ZeContent = '<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtcemail" width="100%">  </iframe>
+      </div>
 ';
 }
 
 if($sousrub == "phpmyadmin"){
 	$ZeContentWindowTitle = "PhpMyAdmin|mysql.png";
-	$ZeContent = '<IFRAME border="0" src="https://'.$_SERVER["HTTP_HOST"].'/phpmyadmin" width="100%" height="100%" scrolling="auto" frameborder="1">
-  [Your user agent does not support frames or is currently configured not to display frames. However, you may visit
-  <A href="https://'.$_SERVER["HTTP_HOST"].'/phpmyadmin" target="_blank">the related document.</A>]
-  </IFRAME>
+	$ZeContent = '<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/phpmyadmin" width="100%">  </iframe>
+      </div>
 ';
 }
 
 $insideContent = $ZeContent;
 
-$content = '<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%">
-<tr>
-	<td width="100%" height="1">'.$theTopsIcons.'</td>
-</tr><tr>
-	<td width="100%" height="100%">'.$insideContent.'</td>
-</tr></table>';
+$content = $theTopsIcons . $insideContent;
 
-echo "<html>
-<body leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">$content
+echo "
+
+<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"
+\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
+<html xmlns=\"http://www.w3.org/1999/xhtml\"
+xml:lang=\"en\"
+lang=\"en\">
+<head>
+<title>
+Domain Technologie Control (DTC)
+</title>
+<meta http-equiv=\"Content-Type\" content=\"text/html; charset=us-ascii\" />
+<meta name=\"title\" content=\"Domain Technologie Control (DTC)\" />
+<style type=\"text/css\">
+* {margin: 0;	padding: 0;}
+html{height:100%; margin:0;}
+body{height:100%;margin:0;	font: 12px Arial, Helvetica, sans-serif; color: #000000;}
+html>body #container {height: auto;	}
+a { color: #105278; }
+a:hover { color: #000000; }
+h1{text-decoration:none; text-align:center;}
+#container {position: relative;min-height: 100%; height: 100%;	voice-family: inherit;height: auto;}
+#wrapper {padding-bottom: 32px;}
+.nav{text-align:center; padding:1%; }
+.nav a:link,.nav a:visited,.nav a:hover, .nav a:active  {margin:2% 2% 2% 2%; }
+.top{padding:15% 0 0 0 ; text-align:center;}
+.message{padding:1% 5% 1% 5%; text-align:center;}
+.footer{width:98%; text-align:center; position:absolute; bottom:0; padding:1%; }
+.italics{font-style:italic;}
+</style>
+<script>
+function setFrmHeight(){
+frheight=(document.documentElement.offsetHeight);
+document.getElementById(\"FRAME_ID\").style.height=(frheight+\"px\");
+document.getElementById(\"FRAMEDIV_ID\").style.display=\"block\";
+}
+</script>
+</head>
+<body onload=\"setFrmHeight();\" onresize=\"setFrmHeight();\">
+<div id=\"container\">
+    <div id=\"wrapper\">
+$content
+    
+	
+	</div>
+</div>
 </body>
 </html>";
 
