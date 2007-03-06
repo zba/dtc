@@ -142,6 +142,7 @@ function drawNewAdminForm(){
 	global $txt_dua_del;
 	global $txt_dua_add;
 	global $txt_dua_view_details;
+	global $txt_dua_bank_validated;
 
 	global $secpayconf_currency_letters;
 
