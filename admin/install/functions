@@ -357,10 +357,10 @@ createHostingDirAndFiles () {
 	createSubdomainDirAndFiles www
 	createSubdomainDirAndFiles 404
 	ADMIN_HOME=$DOMAIN_FOLDER"/subdomains/"$dtc_admin_subdomain"/html"
-	if ! [ -e $ADMIN_HOME/index.* ] ;then
+	if ! [ -e ""$ADMIN_HOME/index.* ] ;then
 		cp $PATH_DTC_SHARED"/shared/default_admin_site.php" $ADMIN_HOME"/index.php"
-		if ! [ -f $ADMIN_HOME"/dtc_logo.gif" ] ;then
-			cp $PATH_DTC_SHARED"/shared/template/dtc_logo.gif" $ADMIN_HOME
+		if ! [ -f $ADMIN_HOME"/dtclogo.png" ] ;then
+			cp $PATH_DTC_SHARED"/shared/template/dtclogo.png" $ADMIN_HOME
 		fi
 		if ! [ -f $ADMIN_HOME"/favicon.ico" ] ;then
 			cp $PATH_DTC_SHARED"/shared/template/favicon.ico" $ADMIN_HOME
