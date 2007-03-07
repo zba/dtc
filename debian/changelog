@@ -1,3 +1,9 @@
+dtc (0.25.2-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- root Thomas Goirand <thomas@goirand.fr>  Wed,  7 Mar 2007 09:19:42 +0000
+
 dtc (0.25.1-1) unstable; urgency=low
 
   * Now using a dtc-common package to avoid conflicts between
