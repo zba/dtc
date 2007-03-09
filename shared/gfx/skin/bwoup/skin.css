@@ -200,8 +200,6 @@ input,select,textarea {
 
 	border: 0;
 
-	cursor: pointer;
-
 	}
 
 
@@ -1065,6 +1063,8 @@ input,select,textarea {
 	background-color: transparent;
 
 	border: 0;
+
+	cursor: pointer;
 
 	}
 
