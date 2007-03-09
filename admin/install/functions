@@ -302,6 +302,9 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 	if [ -e /var/lib/apache2/fastcgi ] ; then
 		chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/apache2/fastcgi
 	fi
+	if [ -f /etc/phpmyadmin/blowfish_secret.inc.php ] ; then
+		chgrp /etc/phpmyadmin/blowfish_secret.inc.php
+	fi
 }
 
 # Do a search and replace in a file using sh
