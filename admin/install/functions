@@ -2964,14 +2964,14 @@ echoEndMessage () {
 	echo ""
 	echo "Browse to: \"http://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/\""
 	echo "    or to: \"https://"$dtc_admin_subdomain"."$main_domain_name"/dtcadmin/\""
-	echo "with login: ${conf_adm_login} of the main domain admin."
-	echo "the password has been generated in ${conf_hosting_path}/.htpasswd"
-	echo "Remember to relaunch this installer if you"
-	echo "install some other mail servers, whatever"
-	echo "it is (qmail, postfix, courier, etc...)."
-	echo "NOTE: please check sshd_config and then restart ssh"
-	echo "Visit DTC Home page:"
-	echo "http://www.gplhost.com/software-dtc.html"
+	echo "with login: ${conf_adm_login}"
+	echo "The password file has been generated in:"
+	echo "${conf_hosting_path}/.htpasswd"
+	echo "Remember to relaunch this installer if you install some other mail servers,"
+	echo "whatever it is (qmail, postfix, courier, amavis, cyrus, etc...), as this"
+	echo "script tries to guess what's installed in your system. Please check sshd_config"
+	echo "and then restart ssh. Visit DTC web site:"
+	echo "  Homepage: <http://www.gplhost.com/software-dtc.html>"
 }
 
 createChrootTemplate () {
