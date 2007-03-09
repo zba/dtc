@@ -1,3 +1,7 @@
+Version 0.25.2:
+---------------
+- Implemented courier maildrop Maildir quota.
+
 Version 0.25.1:
 ---------------
 - Added a system that makes it possible to totaly customize
