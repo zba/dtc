@@ -449,8 +449,8 @@ function checkApacheCronService () {
 	if($cronjob_table_content["gen_vhosts"] == "yes"){
 		echo "Generating Apache vhosts\n";
 		pro_vhost_generate();
-		system("chgrp $conf_dtc_system_groupname \"$conf_generated_file_path/vhosts*\"");
-		system("chmod 660 \"$conf_generated_file_path/vhosts*\"");
+		system("chgrp $conf_dtc_system_groupname \"$conf_generated_file_path/vhosts.conf\"");
+		system("chmod 660 \"$conf_generated_file_path/vhosts.conf\"");
 		markCronflagOk ("gen_vhosts='no'");
 	}
 	if($cronjob_table_content["restart_apache"] == "yes"){
