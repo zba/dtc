@@ -47,7 +47,7 @@ function mail_account_generate_maildrop(){
 	}
 
 	// This is a rewrite of this function that should be faster and better.
-	$q2 = "SELECT name FROM $pro_mysql_domain_table";
+	$q2 = "SELECT name,domain_parking FROM $pro_mysql_domain_table";
 	$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n2 = mysql_num_rows($r2);
 	$userdb_file = "";
@@ -56,13 +56,13 @@ function mail_account_generate_maildrop(){
 		$name = $a2["name"];
 
 		// This handles domain parking delivery
-		if($a["domain_parking"] != "no-parking"){
-			$query_dom_name = $a["domain_parking"];
+		if($a2["domain_parking"] != "no-parking"){
+			$query_dom_name = $a2["domain_parking"];
 		}else{
 			$query_dom_name = $name;
 		}
 
-		$q = "SELECT $pro_mysql_admin_table.path,$pro_mysql_domain_table.name,$pro_mysql_pop_table.id,$pro_mysql_pop_table.uid,$pro_mysql_pop_table.gid
+		$q = "SELECT $pro_mysql_admin_table.path,$pro_mysql_domain_table.name,$pro_mysql_pop_table.id,$pro_mysql_pop_table.uid,$pro_mysql_pop_table.gid,$pro_mysql_pop_table.quota_couriermaildrop
 		FROM $pro_mysql_admin_table,$pro_mysql_pop_table,$pro_mysql_domain_table
 		WHERE $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner
 		AND $pro_mysql_domain_table.name=$pro_mysql_pop_table.mbox_host
@@ -73,7 +73,7 @@ function mail_account_generate_maildrop(){
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$boxpath = $a["path"]."/".$a["name"]."/Mailboxs/".$a["id"];
-			$userdb_file .= $a["id"]."@".$a["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"]."\n";
+			$userdb_file .= $a["id"]."@".$a["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"].'|quota='.$a["quota_couriermaildrop"]."\n";
 		}
 
 	}

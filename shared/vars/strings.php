@@ -4800,6 +4800,22 @@ $txt_mail_quota = array(
 	"pt" => "TRANS: quota: "
 );
 
+$txt_mail_quota_files = array(
+	"fr" => "Quota nombre de fichiers : ",
+	"en" => "Mailbox max files quota: ",
+	"hu" => "TRANS quota max files: ",
+	"it" => "TRANS quota max files: ",
+	"nl" => "TRANS quota max files: ",
+	"ru" => "TRANS quota max files: ",
+	"de" => "Mailbox Quota max files: ",
+	"ro" => "Mailbox Quota max files: ",
+	"zh" => "TRANS ÓÊÏä¿Õ¼ä£º max files",
+	"pl" => "TRANS quota max files: ",
+	"se" => "TRANS quota max files: ",
+	"es" => "TRANS quota max files: ",
+	"pt" => "TRANS quota max files: "
+);
+
 $txt_used_quota = array(
 	"fr" => "Quota utilisé: ",
 	"en" => "Used quota: ",

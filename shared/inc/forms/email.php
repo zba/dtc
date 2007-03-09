@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.48 2007/02/24 06:05:53 thomas Exp $
+ * @version $Id: email.php,v 1.49 2007/03/09 10:06:03 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -400,7 +400,7 @@ function emailAccountsCreateCallback ($id){
 	writeDotQmailFile($a["id"],$a["mbox_host"]);
 	$admin_path = getAdminPath($adm_login);
 	$box_path = "$admin_path/$edit_domain/Mailboxs/".$a["id"];
-	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid',fullemail='".$a["id"].'@'.$a["mbox_host"]."' WHERE autoinc='$id';";
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid',fullemail='".$a["id"].'@'.$a["mbox_host"]."',quota_couriermaildrop=CONCAT(quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
 	$r2 = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	triggerMXListUpdate();
 	if ($cyrus_used){
@@ -431,7 +431,7 @@ function emailAccountsEditCallback ($id){
 	$a = mysql_fetch_array($r);
 
 	$crypted_pass = crypt($a["passwd"], dtc_makesalt());
-	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass' WHERE autoinc='$id';";
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',quota_couriermaildrop=CONCAT(quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 
 	writeDotQmailFile($a["id"],$a["mbox_host"]);
@@ -503,6 +503,7 @@ function drawAdminTools_Emails($domain){
 	global $txt_mail_catch_no;
 	global $txt_mail_catch_all_deliver;
 	global $txt_mail_quota;
+	global $txt_mail_quota_files;
 	global $txt_used_quota;
 	global $txt_mail_check_to_send_bounce_msg;
 	global $txt_mail_bounce_msg_content;
@@ -565,6 +566,16 @@ function drawAdminTools_Emails($domain){
 			"default" => "0",
 			"legend" => $txt_mail_quota[$lang]);
 	} else {
+		$dsc["cols"]["quota_size"] = array(
+			"type" => "text",
+			"check" => "number",
+			"default" => "0",
+			"legend" => $txt_mail_quota[$lang]);
+		$dsc["cols"]["quota_files"] = array(
+			"type" => "text",
+			"check" => "number",
+			"default" => "0",
+			"legend" => $txt_mail_quota_files[$lang]);
 		$dsc["cols"]["redirect1"] = array(
 			"type" => "text",
 			"check" => "email",
