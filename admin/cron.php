@@ -445,6 +445,8 @@ function checkSSHCronService () {
 
 function checkApacheCronService () {
 	global $conf_dtc_system_groupname;
+	global $conf_generated_file_path;
+
 	$cronjob_table_content = getCronFlags();
 	if($cronjob_table_content["gen_vhosts"] == "yes"){
 		echo "Generating Apache vhosts\n";
