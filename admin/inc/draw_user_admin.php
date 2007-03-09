@@ -265,7 +265,7 @@ function drawNewAdminForm(){
 	}
 
 	// Draw the form for making a new admin
-	$add_a_user = "<h4>".$txt_add_a_new_user[$lang]."</h4>
+	$add_a_user = "<h3>".$txt_add_a_new_user[$lang]."</h3>
 <form name=\"addnewuser_frm\" action=\"?\" method=\"post\">
 <input type=\"hidden\" name=\"newadminuser\" value=\"Ok\">
 ".dtcFormTableAttrs().
@@ -278,7 +278,7 @@ dtcFromOkDraw()."
 ";
 
 	// Draw the list of users awaiting for an account
-	$waiting_new_users = "<h4>".$txt_userndomain_waiting_for_addition[$lang]."</h4>";
+	$waiting_new_users = "<h3>".$txt_userndomain_waiting_for_addition[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_new_admin_table";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
