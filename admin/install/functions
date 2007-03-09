@@ -303,7 +303,10 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 		chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/apache2/fastcgi
 	fi
 	if [ -f /etc/phpmyadmin/blowfish_secret.inc.php ] ; then
-		chgrp /etc/phpmyadmin/blowfish_secret.inc.php
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /etc/phpmyadmin/blowfish_secret.inc.php
+	fi
+	if [ -f /etc/phpmyadmin/htpasswd.setup ] ; then
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /etc/phpmyadmin/htpasswd.setup
 	fi
 }
 
