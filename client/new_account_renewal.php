@@ -69,8 +69,8 @@ function renew_form(){
 			$ret["mesg"] = "<font color=\"red\">Cannot find vps server country</font>";
 			return $ret;
 		}
-		$a = mysql_fetch_array($r);
-		$country = $a["country_code"];
+		$ax = mysql_fetch_array($r);
+		$country = $ax["country_code"];
 		break;
 	case "shared":
 	case "ssl":
@@ -104,8 +104,8 @@ function renew_form(){
 			$ret["mesg"] = "<font color=\"red\">Cannot find dedicated server country</font>";
 			return $ret;
 		}
-		$a = mysql_fetch_array($r);
-		$country = $a["country_code"];
+		$ax = mysql_fetch_array($r);
+		$country = $ax["country_code"];
 		break;
 	default:
 		die("Renew type unknown line ".__LINE__." file ".__FILE__);	// To be implemented for other means!
