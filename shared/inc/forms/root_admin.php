@@ -157,7 +157,7 @@ function drawEditAdmin($admin){
 	$confirmed_url = dtcJavascriptConfirmLink($txt_del_user_confirm[$lang],$url);
 	$domain_conf = "<a href=\"$confirmed_url\"><b>".$txt_del_user[$lang]."</b></a><br><br>";
 	if(isset($data)){
-		$domain_conf .= "<b><u>".$txt_del_user_domain[$lang]."</u><br>";
+		$domain_conf .= "<h3>".$txt_del_user_domain[$lang]."</h3><br>";
 		$nbr_domain = sizeof($data);
 		for($i=0;$i<$nbr_domain;$i++){
 			$dom = $data[$i]["name"];
@@ -171,7 +171,7 @@ function drawEditAdmin($admin){
 		$domain_conf .= "</b><br><br>";
 	}
 	// Creation of domains :
-	$domain_conf .= "<b><u>".$txt_new_domain_for_user[$lang]."</u></b>";
+	$domain_conf .= "<h3>".$txt_new_domain_for_user[$lang]."</h3>";
 
 	$domain_conf .= "<form action=\"?\"><table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
 <tr><td><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
@@ -185,7 +185,7 @@ function drawEditAdmin($admin){
 </div></td></tr></table>
 	</form>";
 
-	$domain_conf .= "<b><u>".$txt_import_a_domain_for_this_user[$lang]."</u></b>
+	$domain_conf .= "<h3>".$txt_import_a_domain_for_this_user[$lang]."<h3></b>
 	<form action=\"?\" enctype=\"multipart/form-data\" method=\"post\">
 	<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
 	<tr><td><input type=\"hidden\" name=\"rub\" value=\"$rub\">
@@ -205,7 +205,7 @@ function drawEditAdmin($admin){
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){
-		$domain_conf .= "<b><u>".$txt_root_admin_delete_one_of_the_admin_vps[$lang]."</u></b><br>";
+		$domain_conf .= "<h3>".$txt_root_admin_delete_one_of_the_admin_vps[$lang]."</h3><br>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			if($i > 0){
@@ -323,6 +323,7 @@ function drawDomainConfig($admin){
 	global $txt_domain_tbl_config_ip;
 	global $txt_domain_tbl_config_backup_ip;
 	global $txt_domain_tbl_config_max_lists;
+	global $txt_root_admin_country2;
 	global $cc_code_array;
 
 	global $pro_mysql_product_table;
