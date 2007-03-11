@@ -1,6 +1,8 @@
 dtc (0.25.2-1) unstable; urgency=low
 
-  * New upstream version
+  * New upstream version.
+  * set -e removed from master.config until discovered why it fails
+    with it.
 
  -- Thomas Goirand <thomas@goirand.fr>  Wed,  7 Mar 2007 09:19:42 +0000
 
