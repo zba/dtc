@@ -505,7 +505,7 @@ function drawDomainConfig($admin){
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$prod_name[] = $a["name"];
-			$prod_id = $a["id"];			
+			$prod_id[] = $a["id"];
 		}
 
 		$dsc = array(
