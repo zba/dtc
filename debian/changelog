@@ -1,8 +1,8 @@
 dtc (0.25.2-1) unstable; urgency=low
 
   * New upstream version.
-  * set -e removed from master.config until discovered why it fails
-    with it.
+  * All the db_input calls uses now || true so it also works with the
+    set -e directive in the config script (see master.config).
 
  -- Thomas Goirand <thomas@goirand.fr>  Wed,  7 Mar 2007 09:19:42 +0000
 
