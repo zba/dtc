@@ -1,6 +1,6 @@
 dtc (0.25.2-1) unstable; urgency=low
 
-  * New upstream version.
+  * New upstream version (including minor bugs removal).
   * All the db_input calls uses now || true so it also works with the
     set -e directive in the config script (see master.config).
   * createChrootTemplate is not called durring the postinst anymore,
@@ -16,6 +16,11 @@ dtc (0.25.2-1) unstable; urgency=low
     needed instead (Closes: #414479)
   * Not using ""$var but "$var" in the config script as it could be confusing
     some people reading the script not used to read it (Closes: #414478)
+  * dtc-chroot-shell is now setup in the package itself, not generated
+    anymore by the installer (Closes: #414475)
+  * Now using lsb-release to check for debian release name (Closes: #414476)
+    to check if the package is using Sarge so it should ask for changing the
+    MySQL root password (Closes: #414484)
 
  -- Thomas Goirand <thomas@goirand.fr>  Wed,  7 Mar 2007 09:19:42 +0000
 
