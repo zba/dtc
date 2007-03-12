@@ -46,8 +46,8 @@ Type: string
 Default: example.com
 _Description: Domain name:
  Enter the first domain name you want DTC to administrate. This domain name will
- be used for installing the root admin and customer web control panel of DTC (on
- one of this domain subdomains).
+ be used for installing the root admin and customer web control panel of DTC
+ (on one of this domain subdomains).
 
 Template: dtc/dtc_adminsubdomain
 Type: string

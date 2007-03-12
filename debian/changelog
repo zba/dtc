@@ -3,6 +3,19 @@ dtc (0.25.2-1) unstable; urgency=low
   * New upstream version.
   * All the db_input calls uses now || true so it also works with the
     set -e directive in the config script (see master.config).
+  * createChrootTemplate is not called durring the postinst anymore,
+    but now done in the userland install script (Closes: #414465)
+  * README.Debian is less agressive about the policy (Closes: #414469)
+  * Postinst checks for existance of /proc/net/dev before using it to
+    check the interface names (Closes: #414468)
+  * conf_report_setup is set to false as default (Closes: #414467)
+  * Now searches for htpasswd or htpasswd2 with which instead of using
+    cascading if [ -e /path (Closes: #414466)
+  * Finish install script reduced to one unique line (Closes: #414474)
+  * The installer doesn't use set +e anymore and uses || true when it's
+    needed instead (Closes: #414479)
+  * Not using ""$var but "$var" in the config script as it could be confusing
+    some people reading the script not used to read it (Closes: #414478)
 
  -- Thomas Goirand <thomas@goirand.fr>  Wed,  7 Mar 2007 09:19:42 +0000
 

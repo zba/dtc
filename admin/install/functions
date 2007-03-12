@@ -446,12 +446,10 @@ createHostingDirAndFiles () {
 	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/client/imgcache
 	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/client/gfx
 	chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}
-	set +e
 
 	echoIfVerbose "chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path"
-	chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path
+	chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path || true
 
-	set -e
 }
 
 setDtcdbPassword () {
@@ -924,20 +922,17 @@ createApacheAdminProtectedDir () {
 		echoIfVerbose "OK, you have your "$conf_hosting_path"/.htpasswd setup already!"
 	else 
 		echoIfVerbose "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
-		if [ -e "/usr/local/bin/htpasswd" ] ;then
-			HTPASSWD="/usr/local/bin/htpasswd"
-		else
-			if [ -e "/usr/bin/htpasswd" ] ;then
-				HTPASSWD="/usr/bin/htpasswd"
+		HTPASSWD=`which htpasswd 2>/dev/null`
+		if [ -z "$HTPASSWD" ] ; then
+			HTPASSWD=`which htpasswd2 2>/dev/null`;
+		fi
+		# This might be needed for FreeBSD if /usr/local/bin is not in the path
+		if [ -z "$HTPASSWD" ] ; then
+			if [ -e "/usr/local/bin/htpasswd" ] ;then
+				HTPASSWD="/usr/local/bin/htpasswd"
 			else
-				if [ -e "/usr/sbin/htpasswd" ] ;then
-					HTPASSWD="/usr/sbin/htpasswd"
-				else
-					if [ -e "/usr/sbin/htpasswd2" ] ;then
-						HTPASSWD="/usr/sbin/htpasswd2"
-					else
-						HTPASSWD="htpasswd"
-					fi
+				if [ -e "/usr/local/bin/htpasswd2" ] ;then
+					HTPASSWD="/usr/local/bin/htpasswd2"
 				fi
 			fi
 		fi
@@ -1479,21 +1474,19 @@ setupAmavisConf () {
 		echoIfVerbose "===> Checking user and group configuration for amavisd..."
 
 	        # make sure our users exist for amavis
-	        set +e
 	        # turn back on error handling, these users probably exist already
-	        $GROUP_ADD_CMD amavis > /dev/null 2>&1
+	        $GROUP_ADD_CMD amavis > /dev/null 2>&1 || true
 	        if [ $? -ne 0 ]; then
 			echoIfVerbose "-> Group amavis already exists..."
 	        fi
-	        $USER_ADD_CMD -g amavis amavis > /dev/null 2>&1
+	        $USER_ADD_CMD -g amavis amavis > /dev/null 2>&1 || true
 	        if [ $? -ne 0 ]; then
 			echoIfVerbose "-> User amavis already exists..."
 	        fi
-	        $PASSWD_CMD -l amavis > /dev/null 2>&1
+	        $PASSWD_CMD -l amavis > /dev/null 2>&1 || true
 	        if [ $? -ne 0 ]; then
 			echoIfVerbose "Change password failed for amavis user"
 	        fi
-	        set -e
 
 	        if grep "Configured by DTC" "$PATH_AMAVISD_CONF" >/dev/null; then
 			echoIfVerbose "$PATH_AMAVISD_CONF already configured..."
@@ -1577,31 +1570,29 @@ modifyClamavConf () {
                 echoIfVerbose "===> Checking user and group configuration for clamav..."
 
 	        # make sure our users exist for amavis
-	        set +e
 	        # turn back on error handling, these users probably exist already
-	        $GROUP_ADD_CMD clamav > /dev/null 2>&1
+	        $GROUP_ADD_CMD clamav > /dev/null 2>&1 || true
 	        if [ $? -ne 0 ]; then
 			echoIfVerbose "-> Group clamav already exists..."
 	        fi
-	        $USER_ADD_CMD -g clamav clamav > /dev/null 2>&1
+	        $USER_ADD_CMD -g clamav clamav > /dev/null 2>&1 || true
 	        if [ $? -ne 0 ]; then
 			echoIfVerbose "-> User clamav already exists..."
 	        fi
-	        $PASSWD_CMD -l clamav > /dev/null 2>&1
+	        $PASSWD_CMD -l clamav > /dev/null 2>&1 || true
 	        if [ $? -ne 0 ]; then
 			echoIfVerbose "-> Change password failed for clamav user"
 	        fi
 		# now add amavisd to the clamav group and vice versa
-		$USER_MOD_CMD -G clamav,amavis clamav > /dev/null 2>&1
+		$USER_MOD_CMD -G clamav,amavis clamav > /dev/null 2>&1 || true
 	        if [ $? -ne 0 ]; then
 			echoIfVerbose "-> Change group failed for clamav user"
 		fi
-		$USER_MOD_CMD -G amavis,clamav amavis > /dev/null 2>&1
+		$USER_MOD_CMD -G amavis,clamav amavis > /dev/null 2>&1 || true
 	        if [ $? -ne 0 ]; then
 			echoIfVerbose "-> Change group failed for amavis user"
 		fi
 		
-		set -e
 		# need to add the following to the config file:
 		# AllowSupplementaryGroups
 		# LocalSocket /var/run/clamav/clamd.ctl
@@ -3130,29 +3121,27 @@ createChrootTemplate () {
 
 	# generate /etc/passwd and /etc/group
 	# ignore errors
-	set +e
-	grep daemon /etc/passwd > etc/passwd
-	grep bin /etc/passwd >> etc/passwd
-	grep sys /etc/passwd >> etc/passwd
-	grep man /etc/passwd >> etc/passwd
-	grep lp /etc/passwd >> etc/passwd
-	grep mail /etc/passwd >> etc/passwd
-	grep news /etc/passwd >> etc/passwd
-	grep uucp /etc/passwd >> etc/passwd
-	grep www-data /etc/passwd >> etc/passwd
+	grep daemon /etc/passwd > etc/passwd || true
+	grep bin /etc/passwd >> etc/passwd || true
+	grep sys /etc/passwd >> etc/passwd || true
+	grep man /etc/passwd >> etc/passwd || true
+	grep lp /etc/passwd >> etc/passwd || true
+	grep mail /etc/passwd >> etc/passwd || true
+	grep news /etc/passwd >> etc/passwd || true
+	grep uucp /etc/passwd >> etc/passwd || true
+	grep www-data /etc/passwd >> etc/passwd || true
 	# generate this one manually: grep nobody /etc/passwd >> etc/passwd
-	grep daemon /etc/group > etc/group
-	grep bin /etc/group >> etc/group
-	grep sys /etc/group >> etc/group
-	grep man /etc/group >> etc/group
-	grep lp /etc/group >> etc/group
-	grep mail /etc/group >> etc/group
-	grep news /etc/group >> etc/group
-	grep uucp /etc/group >> etc/group
-	grep www-data /etc/group >> etc/group
-	grep ${CONF_DTC_SYSTEM_GROUPNAME} /etc/group >> etc/group
-	grep ${CONF_DTC_SYSTEM_USERNAME} /etc/group >> etc/group
-	set -e
+	grep daemon /etc/group > etc/group || true
+	grep bin /etc/group >> etc/group || true
+	grep sys /etc/group >> etc/group || true
+	grep man /etc/group >> etc/group || true
+	grep lp /etc/group >> etc/group || true
+	grep mail /etc/group >> etc/group || true
+	grep news /etc/group >> etc/group || true
+	grep uucp /etc/group >> etc/group || true
+	grep www-data /etc/group >> etc/group || true
+	grep ${CONF_DTC_SYSTEM_GROUPNAME} /etc/group >> etc/group || true
+	grep ${CONF_DTC_SYSTEM_USERNAME} /etc/group >> etc/group || true
 
 	# fix entry for nobody in /etc/passwd
 	echo "${CONF_DTC_SYSTEM_USERNAME}:x:${CONF_DTC_SYSTEM_UID}:${CONF_DTC_SYSTEM_GID}:${CONF_DTC_SYSTEM_USERNAME}:/html:/bin/bash" >> etc/passwd
@@ -3906,9 +3895,7 @@ DTCinstallPackage () {
 		fi
 	fi
 	saveConfig
-	createChrootTemplate
 	createHostingDirAndFiles
-#	setupDTCDatabase
 	generateMySQLConfigPHPfile
 	createDTCRootShellScript
 	createApachePIDSymLink
@@ -3953,6 +3940,7 @@ DTCsetupDaemons () {
 	. ${DTC_SAVED_INSTALL_CONFIG}
 
 	modifyResolvConf
+	createChrootTemplate
 	setupDTCDatabase
 	chownSquirrelAndFastcgiToDtcUserAndGroup
 	modifySUODERS_DOT_CONF
