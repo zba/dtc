@@ -119,7 +119,6 @@ if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 fi
 chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains
 
-# if we have a sudo binary around, then use it to create our chroot shell
 # check for some path defaults... 
 if [ -z "$PATH_SUDO" ]; then
 	PATH_SUDO=`which sudo`
@@ -137,12 +136,18 @@ if [ -n "$PATH_SUDO" ] ; then
 	if [ ""$VERBOSE_INSTALL = "yes" ]; then
 		echo "Creating chroot shell..."
 	fi
-        # create a chroot shell script
-        CHROOT_SHELL=/bin/dtc-chroot-shell
-        echo '#!/bin/sh' > $CHROOT_SHELL
-	echo "# This shell script is used by DTC, please do not remove" >> $CHROOT_SHELL
-        echo "$PATH_SUDO -H $PATH_CHROOT \$HOME \$USER" /bin/bash \"\$@\" >> $CHROOT_SHELL
-        chmod 755 $CHROOT_SHELL
+	
+	# for debian, we use an already compiled shell script, because we already know the paths
+	# for everyone else we generate it automatically
+	if [ "$UNIX_TYPE" != "debian" ]; then
+		# if we have a sudo binary around, then use it to create our chroot shell
+		# create a chroot shell script
+		CHROOT_SHELL=/bin/dtc-chroot-shell
+		echo '#!/bin/sh' > $CHROOT_SHELL
+		echo "# This shell script is used by DTC, please do not remove" >> $CHROOT_SHELL
+		echo "$PATH_SUDO -H $PATH_CHROOT \$HOME \$USER" /bin/bash \"\$@\" >> $CHROOT_SHELL
+		chmod 755 $CHROOT_SHELL
+	fi
         # fix sudoers
 	if grep "Configured by DTC" $PATH_SUDOERS_CONF >/dev/null
 	then
