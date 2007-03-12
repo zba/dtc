@@ -149,8 +149,6 @@ searchDebianVersion () {
 	if [ -f /etc/debian_version ] ; then
 		echoIfVerbose "-> Searching for debian version"
 		DEBIAN_VERSION=`cat /etc/debian_version`
-		DEBIAN_VERSION_MINOR=`echo ${DEBIAN_VERSION} | cut -f2 -d"."`
-		DEBIAN_VERSION_MAJOR=`echo ${DEBIAN_VERSION} | cut -f1 -d"."`
 	fi
 }
 
@@ -224,7 +222,7 @@ searchPATH_SUDO () {
 # Adding support for mysql for phpX-cgi
 modifyPHP_INI_EXTENSIONS () {
 	# Unactived in new debian (eg newer than sarge)
-	if [ $DEBIAN_VERSION_MAJOR -lt 4 ] ; then
+	if [ "$DEBIAN_VERSION" = "3.1" ] ; then
 		echoIfVerbose "===> Modifying php.ini extensions"
 		# The following is a code for sarge. Will be removed when Etch is out, not before.
 		if [ -f ${PATH_PHP_INI_CLI} ] ; then
@@ -3883,14 +3881,14 @@ DTCinstallPackage () {
 	DTCsearchConfigFiles
 
 	if [ $UNIX_TYPE"" = "debian" ] ; then
-		if [ ""$DEBIAN_VERSION_MAJOR -lt 4 ] ; then
+		if [ "$DEBIAN_VERSION" = "3.1" ] ; then
 			modifyPHP_INI_EXTENSIONS
 		fi
 	fi
 	if [ ! $UNIX_TYPE"" = "debian" ] ; then
 		changeMySQLPassword
 	else
-		if [ ""$DEBIAN_VERSION_MAJOR -lt 4 ] ; then
+		if [ "$DEBIAN_VERSION" = "3.1" ] ; then
 			changeMySQLPassword
 		fi
 	fi
