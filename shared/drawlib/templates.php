@@ -192,6 +192,7 @@ function dtcDatagrid($dsc){
 				case "radio":
 				case "popup":
 				case "textarea":
+				case "password":
 					if($added_one == "yes"){
 						$vals .= ", ";
 						$qflds .= ", ";
