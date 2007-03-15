@@ -1,8 +1,6 @@
 dtc (0.25.2-1) unstable; urgency=low
 
   * New upstream version (including minor bugs removal).
-  * Added pt.po portuguese translation for debconf messages thanks to
-    Ricardo Silva <ardoric@gmail.com> (Closes: #415074).
   * All the db_input calls uses now || true so it also works with the
     set -e directive in the config script (see master.config).
   * createChrootTemplate is not called durring the postinst anymore,
