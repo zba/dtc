@@ -5,7 +5,7 @@ $txt_vpsql_could_not_connect_to_vps_server = array(
 	"en" => "Could not connect to VPS server!",
 	"hu" => "TRANS Could not connect to VPS server!",
 	"it" => "TRANS Could not connect to VPS server!",
-	"nl" => "TRANS Could not connect to VPS server!",
+	"nl" => "Kon geen verbinding maken met de VPS server!",
 	"ru" => "TRANS Could not connect to VPS server!",
 	"de" => "TRANS Could not connect to VPS server!",
 	"zh" => "无法连接到VPS服务器!",
@@ -20,7 +20,7 @@ $txt_vpsql_access_not_granted = array(
 	"en" => "Access not granted line ",
 	"hu" => "TRANS Access not granted line ",
 	"it" => "TRANS Access not granted line ",
-	"nl" => "TRANS Access not granted line ",
+	"nl" => "Toegang geweigerd regel",
 	"ru" => "TRANS Access not granted line ",
 	"de" => "TRANS Access not granted line ",
 	"zh" => "未授权的操作",
@@ -61,7 +61,7 @@ $txt_vpsql_cannot_not_get_vps_informations = array(
 );
 
 $txt_vpsql_cannot_get_vps_ip_addr_infos_line = array(
-	"fr" => "Cannot get VPS IP addresses informations line ",
+	"fr" => "Impossible de r閏up閞er l'adresse IP ligne  " ,
 	"en" => "Cannot get VPS IP addresses information line ",
 	"hu" => "TRANS Cannot get VPS IP addresses information line ",
 	"it" => "TRANS Cannot get VPS IP addresses information line ",
