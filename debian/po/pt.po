@@ -1,0 +1,231 @@
+# Portuguese translation of dtc-xen's debconf messages.
+# Copyright (C) 2007
+# This file is distributed under the same license as the dtc-xen package.
+# Ricardo Silva <ardoric@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dtc-xen 0.2.6-5\n"
+"Report-Msgid-Bugs-To: thomas@goirand.fr\n"
+"POT-Creation-Date: 2006-12-17 09:42+0000\n"
+"PO-Revision-Date: 2007-03-14 18:53+0000\n"
+"Last-Translator: Ricardo Silva <ardoric@gmail.com>\n"
+"Language-Team: Portuguese <traduz@debianpt.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid "Server hostname:"
+msgstr "Nome da máquina do servidor:"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+#, fuzzy
+msgid ""
+"What will be the hostname for this dtc-xen server? This will be used as a "
+"part of the URL by the SOAP dtc panel client."
+msgstr ""
+"Qual será o nome da máquina deste servidor dtc-xen? Será usado como parte "
+"do URL pelo cliente painel do SOAP."
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid "Server port:"
+msgstr "Porto do servidor:"
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid "What port should it bind to? Default is 8089."
+msgstr "A que porto se deve ligar? Por omissão será o 8089."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "SOAP server login:"
+msgstr "Login do servidor SOAP:"
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"dtc-xen will bind a SOAP python server on which a dtc panel can connect to "
+"in order to start, stop create and destroy a VPS. What login do you want to "
+"create on that server."
+msgstr ""
+"O dtc-xen irá ligar um servidor SOAP python no qual um painel dtc se poderá "
+"ligar para iniciar, parar, criar e destruir uma VPS. Que login deseja criar "
+"nesse servidor."
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "SOAP server pass:"
+msgstr "Palavra-chave do servidor SOAP:"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"dtc-xen will generate a password (in a .htpasswd file) that will hold the "
+"password for the login you have just configured. What password do you want "
+"to have generated in it?"
+msgstr ""
+"O dtc-xen irá gerar uma palavra-chave (num ficheiro .htpasswd) que irá guardar "
+"a palavra-chave do login que acabou de configurar. Que palavra-chave gostaria "
+"que fosse gerada?"
+
+#. Type: string
+#. Description
+#: ../templates:5001
+msgid "VPS Server node number:"
+msgstr "Número do nó do Servidor VPS:"
+
+#. Type: string
+#. Description
+#: ../templates:5001
+msgid ""
+"dtc-xen will use that number as a VPS Server number and will make your VPS "
+"numbering using xenXXXXYY with X being the server number (what it's are "
+"asking you at the moment) and Y being the VPS number itself (xenYY). Note "
+"that this node number has to be between 4 and 5 chars."
+msgstr ""
+"O dtc-xen usará esse número como o número de um Servidor VPS e irá criar "
+"a numeração dos seus VPS usando xenXXXXYY sendo X o número do servidor (o que "
+"lhe estamos a perguntar agora) e Y o número do VPS (xenYY). Note que este "
+"número de nó tem de ter entre 4 e 5 caracteres."
+
+#. Type: string
+#. Description
+#: ../templates:6001
+msgid "Debian repository for setting-up VPSes:"
+msgstr "Repositório Debian para configurar VPS's:"
+
+#. Type: string
+#. Description
+#: ../templates:6001
+# during, not durring
+msgid ""
+"dtc-xen will use that repository for creating VPSes, and will copy your /etc/"
+"apt/sources.list inside your VPS (so this will be used ONLY durring the "
+"debootstrap stage of the VPS creation)."
+msgstr ""
+"O dtc-xen irá usar este repositório para criar VPS's, e irá copiar o seu "
+"/etc/apt/sources.list para dentro da sua VPS (que será usado APENAS durante "
+"a fase debootstrap da criação da VPS)."
+
+#. Type: string
+#. Description
+#: ../templates:7001
+msgid "Netmask to be setup in the VPSes:"
+msgstr "Máscara net a configurar nas VPS's:"
+
+#. Type: string
+#. Description
+#: ../templates:7001
+msgid ""
+"Please enter the Netmask to use when doing the VPS network customization "
+"when dtc-xen creates a VPS."
+msgstr ""
+"Por favor introduza a máscara net a usar aquando da costumização da rede quando "
+"o dtc-xen cria uma VPS."
+
+#. Type: string
+#. Description
+#: ../templates:8001
+msgid "Network to be setup in the VPSes:"
+msgstr "Rede a ser configurada nas VPS's:"
+
+#. Type: string
+#. Description
+#: ../templates:8001
+msgid ""
+"Please enter the Network address to use when doing the VPS network "
+"customization when dtc-xen creates a VPS."
+msgstr ""
+"Por favor introduza o endereço rede a usar aquando da costumização da "
+"rede quando o dtc-xen cria uma VPS."
+
+#. Type: string
+#. Description
+#: ../templates:9001
+msgid "Broadcast to be setup in the VPSes:"
+msgstr "Endereço de Difusão (Broadcast) a configurar nas VPS's:"
+
+#. Type: string
+#. Description
+#: ../templates:9001
+msgid ""
+"Please enter the network broadcast address to use when doing the VPS network "
+"customization when dtc-xen creates a VPS."
+msgstr ""
+"Por favor introduza o endereço de difusão da rede a usar aquando da costumização "
+"da rede quando o dtc-xen cria uma VPS."
+
+#. Type: string
+#. Description
+#: ../templates:10001
+msgid "Gateway to be setup in the VPSes:"
+msgstr "Gateway a configurar nas VPS's:"
+
+#. Type: string
+#. Description
+#: ../templates:10001
+msgid ""
+"Please enter the network gateway address to use when doing the VPS network "
+"customization when dtc-xen creates a VPS."
+msgstr ""
+"Por favor introduza o endereço da gateway da rede a usar aquando da costumização "
+"da rede quando o dtc-xen cria uma VPS."
+
+#. Type: string
+#. Description
+#: ../templates:11001
+msgid "Xen Kernel release name:"
+msgstr "Nome da versão do Kernel Xen:"
+
+#. Type: string
+#. Description
+#: ../templates:11001
+msgid ""
+"Enter here the kernel version number as it appears in the uname -a. A kernel "
+"domU with that name must be located in /boot (example: vmlinuz-2.6.16.27-"
+"xenU) and it's corresponding modules must be in /lib/modules."
+msgstr ""
+"Introduza aqui o número de versão do kernel tal como aparece em uname -a. Um "
+"kernel domU com aquele nome deve estar localizado no /boot (exemplo: "
+"vmlinuz-2.6.16.27-xenU) e os módulos correspondentes em /lib/modules."
+
+#. Type: note
+#. Description
+#: ../templates:12001
+msgid "How to finish the install"
+msgstr "Como terminar a instalação"
+
+#. Type: note
+#. Description
+#: ../templates:12001
+msgid ""
+"To finish the installation, you need to launch /usr/sbin/dtc-"
+"xen_finish_install. This script will remove port forwarding from your "
+"sshd_config and add the grant of xm console to the group xenusers so your "
+"users can loggin to the physical console. It will then try to download the "
+"files needed to setup Gentoo and CentOS into your VMs. Note that the system "
+"is currently safe (nobody can connect to a physical console as xenXX, they "
+"will be rejected because the /etc/sudoers is not changed), but a basic user "
+"wont be able to log into his physical console using ssh."
+msgstr ""
+"Para terminar a instalação, precisa de correr o /usr/sbin/dtc-xen_finish_install. "
+"Este script irá remover o reencaminhamento de portos do seu sshd_config e adicionar "
+"a permissão de xm console ao grupo xenusers para que os seus utilizadores se possam "
+"ligar à consola física. Tentará depois descarregar os ficheiros necessários para "
+"poder configurar Gentto e CentOS nas suas VM's. Note que o sistema de momento "
+"está seguro (ninguém se pode ligar a uma consola física como xenXX, será rejeitado "
+"porque  o /etc/sudoers não mudou), mas um utilizador básico não será capaz de se "
+"ligar à sua consola física usando ssh."
+
