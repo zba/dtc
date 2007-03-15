@@ -3893,7 +3893,6 @@ DTCinstallPackage () {
 		fi
 	fi
 	saveConfig
-	createHostingDirAndFiles
 	generateMySQLConfigPHPfile
 	createDTCRootShellScript
 	createApachePIDSymLink
@@ -3940,6 +3939,7 @@ DTCsetupDaemons () {
 	modifyResolvConf
 	createChrootTemplate
 	setupDTCDatabase
+	createHostingDirAndFiles
 	chownSquirrelAndFastcgiToDtcUserAndGroup
 	modifySUODERS_DOT_CONF
 	increasePhpIniMemAndExecTime
