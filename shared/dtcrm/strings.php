@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: strings.php,v 1.21 2007/03/08 00:23:20 indivision Exp $
+ * @version $Id: strings.php,v 1.22 2007/03/18 12:40:32 indivision Exp $
  * @abstract Arrays for translations admin panel to many laguages
  * 
  * adedd swedish to array by seeb <seeb@seeb.net.pl>
@@ -110,7 +110,7 @@ $txt_dtcrm_edit_a_name_server = array(
 "en" => "Edit a name server:",
 "hu" => "Szerkeszti a névszerver adatait:",
 "it" => "Edita un name server:",
-"nl" => "Bewerk een Nameserver ",
+"nl" => "Bewerk een Nameserver: ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "±à¼­ÓòÃû·þÎñÆ÷ÐÅÏ¢",
@@ -125,7 +125,7 @@ $txt_dtcrm_name_server_hostname = array(
 "en" => "Name server hostname: ",
 "hu" => "Névszerver gazdanév: ",
 "it" => "Hostname del name server:",
-"nl" => "Hostname van de server ",
+"nl" => "Hostname van de server: ",
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "ÓòÃû·þÎñÆ÷µÄÓòÃû(²»ÊÇIP)",
@@ -140,7 +140,7 @@ $txt_wrong_user_or_password_or_timeout_expire = array(
 "en" => "Wrong user or password, or timeout expired!",
 "hu" => "Hibás felhasználó vagy jelszó vagy idõtúllépés!",
 "it" => "Utente o password errati, o tempo scaduto!",
-"nl" => "Verkeerde login of timeout expired ",
+"nl" => "Verkeerde login of timeout expired!",
 "ru" => "TRANS ",
 "de" => "TRANS ",
 "zh" => "ÓÃ»§Ãû»òÃÜÂë´íÎó£¬»òÕßÁ¬½Ó³¬Ê±£¡",
