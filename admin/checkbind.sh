@@ -18,9 +18,9 @@ fi
 
 if [ -n "$bindgroup" ]; then
 	echo "Changing $conf_generated_file_path/zones permissions to 770 $bindgroup:$nobodygroup"
-        chown -R $bindgroup:$nobodygroup $conf_generated_file_path/zones
+        chown -R $bindgroup:dtcgrp $conf_generated_file_path/zones
 	chmod -R 0770 $conf_generated_file_path/zones
-        chown -R $bindgroup:$nobodygroup $conf_generated_file_path/slave_zones
+        chown -R $bindgroup:dtcgrp $conf_generated_file_path/slave_zones
 	chmod -R 0770 $conf_generated_file_path/slave_zones
 else
 	echo "Didn't find named groups, it must be running as root: keeping permissions"
