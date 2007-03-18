@@ -929,11 +929,19 @@ createApacheAdminProtectedDir () {
 		fi
 		# This might be needed for FreeBSD if /usr/local/bin is not in the path
 		if [ -z "$HTPASSWD" ] ; then
-			if [ -e "/usr/local/bin/htpasswd" ] ;then
-				HTPASSWD="/usr/local/bin/htpasswd"
+			if [ -e "/usr/bin/htpasswd" ] ;then
+				HTPASSWD="/usr/bin/htpasswd"
 			else
-				if [ -e "/usr/local/bin/htpasswd2" ] ;then
-					HTPASSWD="/usr/local/bin/htpasswd2"
+				if [ -e "/usr/bin/htpasswd2" ] ; then
+					HTPASSWD="/usr/bin/htpasswd2"
+				else
+					if [ -e "/usr/local/bin/htpasswd" ] ;then
+						HTPASSWD="/usr/local/bin/htpasswd"
+					else
+						if [ -e "/usr/local/bin/htpasswd2" ] ;then
+							HTPASSWD="/usr/local/bin/htpasswd2"
+						fi
+					fi
 				fi
 			fi
 		fi
