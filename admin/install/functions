@@ -915,8 +915,8 @@ enableApache2Modules () {
 
 createApacheAdminProtectedDir () {
 	echoIfVerbose "-> Creating htpasswd and htaccess"
-	if [ -e $conf_hosting_path ] ; then
-		mkdir -p $conf_hosting_path
+	if [ -e "$conf_hosting_path" ] ; then
+		mkdir -p "$conf_hosting_path"
 	fi
 	# add the default password to .htpasswd if it doesn't exist already
 	if [ -e $conf_hosting_path/.htpasswd ]; then 
