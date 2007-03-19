@@ -22,9 +22,11 @@ install:
 	cp debian/master.postinst debian/dtc.postinst
 	cp debian/master.config debian/dtc.config
 	cp debian/master.prerm debian/dtc.prerm
+	cp debian/master.manpages debian/dtc.manpages
 	cp debian/master.postinst debian/dtc-postfix-courier.postinst
 	cp debian/master.config debian/dtc-postfix-courier.config
 	cp debian/master.prerm debian/dtc-postfix-courier.prerm
+	cp debian/master.manpages debian/dtc-postfix-courier.manpages
 
 	dh_installdirs
 
@@ -42,7 +44,8 @@ binary-arch: install
 	dh_install
 	dh_link
 	dh_installmenu -n
-	dh_installdebconf	
+	dh_installdebconf
+	dh_installman
 	dh_installlogrotate --name=dtc
 	dh_installcron --name=dtc
 	dh_installman
