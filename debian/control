@@ -50,13 +50,13 @@ Conflicts: dtc
 Replaces: dtc
 Suggests: mysqmail, msttcorefonts
 Provides: dtc
-Description: web control panel for admin and accounting hosting services (daemon meta package)
+Description: web control panel for admin and accounting hosting services (more depends)
  Domain Technologie Control (DTC) is a control panel for hosting. Using a web
  GUI for admin and accounting all hosting services, DTC can delegate the task of
  creating subdomains, email, and FTP accounts to users for the domain names they
  own. DTC manages a MySQL database containing all the hosting informations.
  .
- This meta package has dependencies to setup postfix, courier, and others so you
+ This package has more dependencies to setup postfix, courier, and others so you
  don't have to select them by hand. If you want to use other daemons, use the
  dtc package which has a lot less dependencies.
  .

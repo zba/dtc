@@ -1,4 +1,5 @@
 Here is the todo in unsorted order:
+- Have the panel generate files in /var/lib/dtc/etc not in /usr/share/dtc/etc
 - Add integration of a billing software (freeside?)
 - Add support for moving domains with one click (save of a domain conf in
 one flat file)
