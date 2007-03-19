@@ -218,7 +218,7 @@ _Description: Update pear installation?
 
 Template: dtc/conf_dnsbl_list
 Type: string
-Default: sbl-xbl.spamhaus.org,list.dsbl.org,relays.ordb.org
+Default: sbl-xbl.spamhaus.org,list.dsbl.org
 _Description: DNSBL (DNS BlackList) list:
  Please enter the list of preferred DNSBL servers to add to your Postfix mail
  server configuration.
