@@ -1,17 +1,10 @@
 Here is the todo in unsorted order:
 - Have the panel generate files in /var/lib/dtc/etc not in /usr/share/dtc/etc
-- Add integration of a billing software (freeside?)
 - Add support for moving domains with one click (save of a domain conf in
 one flat file)
-- Add SSL support for customers
-- Notice: Undefined variable:  last_run_st in
-/usr/share/dtc/shared/inc/accounting.php on line 427
-- Add all the fields of TLD, refresh and all to be able to configure
-each type of extensions
 - Make some function to enable loading/saving of an admin's config in a
 conveinient .dtc file. Import from other (commercial) control panels.
 - Add support for wildcard DNS & Apache ServerAlias entries
-- Make the user deletion delete new type of database (recursively)
 - Add support for DNS wildcard
 - Add support for Freeradius: now only need to write the user interface
 - Finish resseller interface (enable quota and flag edition of subadmins)
@@ -19,6 +12,7 @@ conveinient .dtc file. Import from other (commercial) control panels.
 - Finish tucows API integration: working in Tucows test server, transfer
 of domain names to be finished using the bulk_transfer() function
 - Make a windows port for cygwin using NDIS scriptable installer.
-- Create IP manager, which deals with SSL (need to fix ns1 generate vhost, and also add text to subdomain edit)
 
-If you think you can help in one of those, please contact thomas [ at ] goirand . fr
+If you think you can help in one of those, please register the developer
+mailing list by sending a mail to: dtcdev-subscribe@gplhost.sg
+
