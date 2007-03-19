@@ -20,9 +20,10 @@ dtc (0.25.2-1) unstable; urgency=low
     some people reading the script not used to read it (Closes: #414478)
   * dtc-chroot-shell is now setup in the package itself, not generated
     anymore by the installer (Closes: #414475)
-  * Now using lsb-release to check for debian release name (Closes: #414476)
-    to check if the package is using Sarge so it should ask for changing the
-    MySQL root password (Closes: #414484)
+  * Now using lsb-release to check for debian release name (Closes: #414476).
+    to check if the package is using Sarge (this part is now commented, but
+    will stay in the code as it's more easy to for us to manage it). It does
+    not ask for changing the MySQL root password any more (Closes: #414484).
 
  -- Thomas Goirand <thomas@goirand.fr>  Wed,  7 Mar 2007 09:19:42 +0000
 
