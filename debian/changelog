@@ -1,6 +1,8 @@
 dtc (0.25.2-1) unstable; urgency=low
 
   * New upstream version (including minor bugs removal).
+  * Changed priority from optional to extra as this was producing
+    some warning in the debian tracking system.
   * Added pt.po portuguese translation for debconf messages thanks to
     Ricardo Silva <ardoric@gmail.com> (Closes: #415071).
   * All the db_input calls uses now || true so it also works with the
