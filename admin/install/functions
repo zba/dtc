@@ -1621,7 +1621,12 @@ modifyClamavConf () {
 
 	                TMP_FILE=`${MKTEMP} dtc_install.clamav.conf.XXXXXX` || exit 1
 	                echo "# Configured by DTC $VERSION" >> $TMP_FILE
-			echo "AllowSupplementaryGroups" >> $TMP_FILE
+			if [ "$UNIX_TYPE" = "debian" ] ; then
+				DEBIAN_VERSION=`lsb_release -c -s`
+				if [ "$DEBIAN_VERSION" = "sarge" ] ; then
+					echo "AllowSupplementaryGroups" >> $TMP_FILE
+				fi
+			fi
 			echo "LocalSocket /var/run/clamav/clamd.ctl" >> $TMP_FILE
 	                echo "# End of DTC configuration $VERSION" >> $TMP_FILE
 
