@@ -73,7 +73,7 @@ function mail_account_generate_maildrop(){
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$boxpath = $a["path"]."/".$a["name"]."/Mailboxs/".$a["id"];
-			$userdb_file .= $a["id"]."@".$a["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"].'|quota='.$a["quota_couriermaildrop"]."\n";
+			$userdb_file .= $a["id"]."@".$a2["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"].'|quota='.$a["quota_couriermaildrop"]."\n";
 		}
 
 	}
