@@ -2,12 +2,6 @@
 # generate mailfilter stuff
 # gen_mailfilter.sh <home> <id> <domain_full_name> <spam mailbox enable> <spam mailbox> <redirection> <redirection2> <vacation:yes|no>
 
-# Using cyrus? then we don't need all of this! Just exit
-if [ ""$conf_use_cyrus = "true" ]; then
-	echo "Using cyrus, skipping mailfilter"
-	exit
-fi
-
 home=$1
 id=$2
 domain_full_name=$3
