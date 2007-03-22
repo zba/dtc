@@ -2,10 +2,14 @@ dtc (0.25.2-2) unstable; urgency=low
 
   * Updated the template reviewed by Christian Perrier (Closes: #415231)
     which works for the debian-l10n-english group (Closes: #402657)
+  * Added Galician debconf template translation for the package thanks to
+    Jacobo Tarrio <jtarrio@debian.org> (Closes: #415629)
+  * Added Portuguese debconf template translation for the package thanks to
+    Ricardo Silva <ardoric@gmail.com> (Closes: #415814)
+  * Updated german debconf template translation for the package thanks to
+    Cristian Livadaru
   * dtc/conf_mysql_change_root is set to false as per default, as the
     previous release didn't close #414484 as written before
-  * Added Galician debconf template translation for the package thanks to
-    Jacobo Tarrio <jtarrio@debian.org>
   * There has never been saveConfig saving to /root, but I'm writting an
     entry in there in order to close this bug (Closes: #414470)
 
