@@ -169,8 +169,11 @@ function mail_account_generate_postfix(){
 					$vacation_text = stripslashes($email["vacation_text"]);
 
 					$spam_stuff_done = 0;
-
-					system("/bin/mkdir -p $home");
+					$homedir_created = 0;
+					if(! is_dir($home) ){
+						system("/bin/mkdir -p $home");
+						$homedir_created = 1;
+					}
 
 					// if we have a $id equal to abuse
 					if ($id == "abuse"){
@@ -242,6 +245,9 @@ function mail_account_generate_postfix(){
 						if($conf_use_cyrus != "no"){
 							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox");
 						}
+					}
+					if(is_dir($home) && $homedir_created == 1){
+						system("chow -R $conf_nobody_user_id $home");
 					}
 				}
 			}
