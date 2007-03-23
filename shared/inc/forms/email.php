@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.49 2007/03/09 10:06:03 thomas Exp $
+ * @version $Id: email.php,v 1.50 2007/03/23 11:03:49 dracula Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -444,12 +444,11 @@ function emailAccountsEditCallback ($id){
 		if ($error!=0){
 			die ("imap_login Error $error");
 		}
-		if (!$_REQUEST["cyrus_quota"]){
-			die ("invalid quota");
-		}
-		$quota=$_REQUEST["cyrus_quota"];
-		$result = $cyr_conn->setmbquota("user/" . $_REQUEST["edit_mailbox"]."@".$edit_domain, $a["quota_used"]
-		);
+		if (!$a["quota_size"]){
+                        die ("invalid quota");
+                }
+                $result = $cyr_conn->setmbquota("user/" . $_REQUEST["edit_mailbox"]."@".$edit_domain, $a["quota_size"]
+                );
 	}
 	return "";
 }
