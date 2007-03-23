@@ -2504,7 +2504,7 @@ $txt_cfg_hide_password = array(
 	);
 
 $txt_cfg_use_domain_based_ssh_logins = array(
-	"fr" => "Utiliser des logins ftp @domain.com :",
+	"fr" => "Utiliser des logins ssh @domain.com :",
 	"en" => "Use @domain.com ssh logins:",
 	"hu" => "TRANS Use @domain.com ssh logins:",
 	"it" => "TRANS Use @domain.com ssh logins:",
