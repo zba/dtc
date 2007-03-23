@@ -1991,7 +1991,7 @@ want to have conflicts (and prevent apache from restarting)!"
 );
 
 $txt_cfg_support_ticket_configuration = array(
-"fr" => "Configuration des tiquets de support",
+"fr" => "Configuration des tickets de support",
 "en" => "Support ticket configuration",
 "hu" => "TRANS Support ticket configuration",
 "it" => "TRANS Support ticket configuration",
@@ -2081,7 +2081,7 @@ $txt_cfg_tik_available = array(
 );
 
 $txt_cfg_ticket_categories = array(
-"fr" => "Categories de tiquets :",
+"fr" => "Categories de tickets :",
 "en" => "Ticket categories:",
 "hu" => "TRANS Ticket categories:",
 "it" => "TRANS Ticket categories:",
