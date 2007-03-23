@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-03-23 23:36+0100\n"
+"PO-Revision-Date: 2007-03-24 00:21+0100\n"
 "Last-Translator: Dwayne Meertins <meertins@indivision.nl>\n"
 "Language-Team:  <meertins@indivision.nl>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "MySQL hostname:"
 #: ../dtc.templates:4
 #: ../dtc-postfix-courier.templates:4
 msgid "Please enter the hostname or IP address of the MySQL server."
-msgstr "Vul de Hostname of het IP adres in van de MySQL server"
+msgstr "Vul de Hostname of het IP adres in van de MySQL server."
 
 #. Type: string
 #. Description
@@ -121,7 +121,7 @@ msgstr "Primaire IP addres:"
 #: ../dtc.templates:53
 #: ../dtc-postfix-courier.templates:53
 msgid "Please enter this host's primary IP address. This address will be used for the domain name you just provided, and will be used as the default for most DTC variables.  If you are using Network Address Translation (NAT), please enter your external IP address."
-msgstr ""
+msgstr "Vul AUB het primaire IP addres in van de host. Dit addres wordt gebruikt voor de domein naam die is opgegeven en wordt gebruikt voor de meeste DTC variabelen. Wanneer Network Address Translation (NAT) wordt gebruikt vul dan het externe IP addres in."
 
 #. Type: string
 #. Description
@@ -135,14 +135,14 @@ msgstr "Pad voor de gehostte domeinen:"
 #: ../dtc.templates:62
 #: ../dtc-postfix-courier.templates:62
 msgid "Please enter the directory to be used by DTC to store files for all hosted domains."
-msgstr ""
+msgstr "Vul de directory in die door DTC gebruikt dient te worden om alle bestanden van gehostte domeinen op te slaan."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:62
 #: ../dtc-postfix-courier.templates:62
 msgid "If you choose /var/www, which is Apache's default document root, all files hosted in that directory may become publicly accessible. It is therefore recommended to change the DocumentRoot setting in Apache configuration if you choose /var/www as path for hosted domains."
-msgstr ""
+msgstr "Wanneer /var/www/ wordt gkozen , wat Apache's default document root is, kunnen alle bestanden die zich in die directory bevinden publiekelijk toegangbaar worden. Het is daarom aanbevolen om de DocumentRoot in de Apache configuratie te veranderen wanneer /var/www/ wordt gekozen als pad voor de gehostte domeinen."
 
 #. Type: string
 #. Description
@@ -184,7 +184,7 @@ msgstr "Hoofd domein admin password:"
 #: ../dtc.templates:89
 #: ../dtc-postfix-courier.templates:89
 msgid "Please choose the main domain administrator's password. Access to the control panel must be managed manually through a .htpasswd file in the root path."
-msgstr ""
+msgstr "Geef het password op van de hoofd domein administrator. Toegang tot het control panel dient handmatig gemanaged te wroden door een .htpasswd bestand in de root directory."
 
 #. Type: select
 #. Description
@@ -198,7 +198,7 @@ msgstr "Mail Transfer Agent (MTA) type:"
 #: ../dtc.templates:97
 #: ../dtc-postfix-courier.templates:97
 msgid "Please select the MTA that will be used with DTC. It should be installed on the system already. If no such MTA is currently installed, please complete the setup of DTC, install a MTA package, then run \"dpkg-reconfigure dtc\"."
-msgstr ""
+msgstr "Kies de MTA die gebruikt zal worden met DTC. Deze dient al geinstalleerd te zijn op het systeem. Als geen MTA al geinstalleerd is, ga verder met de setup van DTC, installeer een MTA package en voer daarna \"dpkg-reconfigure dtc\" uit."
 
 #. Type: boolean
 #. Description
@@ -226,7 +226,7 @@ msgstr "Apache versie om te configureren:"
 #: ../dtc.templates:113
 #: ../dtc-postfix-courier.templates:113
 msgid "DTC supports both Apache and Apache2. Please enter the version which DTC should use."
-msgstr ""
+msgstr "DTC ondersteund zowel Apache als Apache2. Geef aan welke versie DTC dient te gebruiken."
 
 #. Type: boolean
 #. Description
@@ -240,14 +240,14 @@ msgstr "Gebruik \"NAT\" vhosts?"
 #: ../dtc.templates:120
 #: ../dtc-postfix-courier.templates:120
 msgid "DTC can configure Apache to use one of your IP addresses. If the server is firewalled with NAT and port redirections of public IP(s) address(es), a \"NATed\" vhost configuration can be generated."
-msgstr ""
+msgstr "DTC kan apache configureren om een van jouw ip adressen te gebruiken. Wanneer de server gefirewalled is met NAT en  port redirections van publieke IP adres(sen), kan een \" NAT\" vhost configuratie worden gegenereerd."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:120
 #: ../dtc-postfix-courier.templates:120
 msgid "This option should be chosen only if the server is not connected to the Internet directly, but through a firewall doing network address translation (NAT). If the server uses a dynamic public IP address, NAT and port forwarding are mandatory for DTC."
-msgstr ""
+msgstr "Deze optie dient alleen gekozen te worden wanneer de server niet direct met het internet verbonden is maar door een firewall die network address translation (NAT) gebruikt. Wanneer de server een dyamisch public IP addres gebruikt zijn NAT en portforwarding verplicht."
 
 #. Type: string
 #. Description
@@ -261,7 +261,7 @@ msgstr "NAT LAN IP address:"
 #: ../dtc.templates:133
 #: ../dtc-postfix-courier.templates:133
 msgid "Please enter the IP address of the server for DTC to generate all vhosts that will be used by Apache."
-msgstr ""
+msgstr "Vul het IP addres in van de server voor DTC om alle vhosts te genereren die gebruikt zullen worden door Apache."
 
 #. Type: boolean
 #. Description
@@ -275,21 +275,21 @@ msgstr "Genereer een SSL certificaat voor DTC?"
 #: ../dtc.templates:140
 #: ../dtc-postfix-courier.templates:140
 msgid "If you choose this option, DTC will generate a self-signed SSL certificate and will use SSL to browse the panel. SSL will also be activated and the generated Apache configuration will activate HTTPS URLs for the control panel."
-msgstr ""
+msgstr "Waneer deze optie wordt gekozen zal DTC een self-signed SSL certificate genereren en SSL gebruiken om naar het panel te browsen. SSL zal ook worden geactiveerd en de genereerde apache configuratie zal HTTPS URLs voor het control panel activeren."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:140
 #: ../dtc-postfix-courier.templates:140
 msgid "This certificate can be changed for a root CA certificate later."
-msgstr ""
+msgstr "Dit certificaat kan later veranderd worden voor een root CA ."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:140
 #: ../dtc-postfix-courier.templates:140
 msgid "Previously-generated certificates will never be overwritten. To regenerate the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
-msgstr ""
+msgstr "Eerder gegenereerde certificaten zullen nooit worden overschreven. Om het certificaat opnieuw te genereren dienen alle bestanden in /usr/share/dtc/etc/ssl verwijderdt te worden."
 
 #. Type: password
 #. Description
@@ -303,7 +303,7 @@ msgstr "DTC certificaat passphrase:"
 #: ../dtc.templates:154
 #: ../dtc-postfix-courier.templates:154
 msgid "Please choose a passphrase to protect the generated SSL certificate."
-msgstr ""
+msgstr "Kies AUB een passphrase om het gegenereerde SSL certificaat te beschermen."
 
 #. Type: string
 #. Description
@@ -317,7 +317,7 @@ msgstr "Land code voor het DTC SSL certificaat:"
 #: ../dtc.templates:160
 #: ../dtc-postfix-courier.templates:160
 msgid "Please enter the 2-letter country code for the generated certificate. This should usually be the code for the country the server is located in."
-msgstr ""
+msgstr "Vul de 2-letter landcode in voor het te genereren certificaat. Dit dient meestal de landcode te zijn voor het land waar de server zich bevindt."
 
 #. Type: string
 #. Description
@@ -366,7 +366,7 @@ msgstr "Update PEAR ?"
 #: ../dtc.templates:191
 #: ../dtc-postfix-courier.templates:191
 msgid "DTC can check the PEAR installation during its own installation process. This requires your server to be connected to the network. If you can't do so here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-to-date. The relevant files are located in /usr/share/php."
-msgstr ""
+msgstr "DTC kan PEAR controleren tijdens het installatie process. Dit vereist dat de server een actieve netwerk verbinding heeft. Indien dit niet mogelijk is, controleer dan of de Crypt_CBC en Auth_SASL PEAR modules up to date zijn. De relevante bestanden bevinden zich in /usr/share/php."
 
 #. Type: string
 #. Description
@@ -380,7 +380,7 @@ msgstr "DNSBL (DNS BlackList) lijst:"
 #: ../dtc.templates:201
 #: ../dtc-postfix-courier.templates:201
 msgid "Please enter the list of preferred DNSBL servers to add to your Postfix mail server configuration."
-msgstr "Vul AUB de lijst van gewenste DNSBL serverst in om toe te voegen aan de postfix configuratie."
+msgstr "Vul AUB de lijst van gewenste DNSBL servers in om toe te voegen aan de postfix configuratie."
 
 #. Type: string
 #. Description
