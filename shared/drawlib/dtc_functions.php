@@ -210,6 +210,9 @@ function isIP($ip){
 
 // The subdomain string allowed to be hosted by DTC
 function checkSubdomainFormat($name){
+	if($name == ""){
+		return false;
+	}
 	if(ereg("^([a-z0-9]+)([.a-z0-9-]*)([a-z0-9]+)\$",$name))
 		return true;
 	else{
