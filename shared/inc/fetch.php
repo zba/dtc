@@ -651,7 +651,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 //                                         ["generate_vhost"]
 //                                         ["associated_txt_record"]
 // Now Can add emails to all thoses domains !
-		$query4 = "SELECT * FROM $pro_mysql_pop_table WHERE mbox_host='$name' ORDER BY id LIMIT 800;";
+		$query4 = "SELECT * FROM $pro_mysql_pop_table WHERE mbox_host='$name' ORDER BY id;";
 		$result4 = mysql_query ($query4);
 		if (!$result4)
 		{
@@ -692,7 +692,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 		}
 
 		//now to add all the mailing lists
-		$query4 = "SELECT * FROM $pro_mysql_list_table WHERE domain='$name' ORDER BY id LIMIT 800;";
+		$query4 = "SELECT * FROM $pro_mysql_list_table WHERE domain='$name' ORDER BY id;";
 		$result4 = mysql_query ($query4);
 		if (!$result4)
 		{
@@ -721,7 +721,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 			$domain["mailinglists"] = $mailinglists;
 		}
 
-		$query4 = "SELECT * FROM $pro_mysql_ftp_table WHERE hostname='$name' ORDER BY login LIMIT 800";
+		$query4 = "SELECT * FROM $pro_mysql_ftp_table WHERE hostname='$name' ORDER BY login";
 		$result4 = mysql_query($query4);
 		if (!$result4)
 		{
@@ -748,7 +748,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 			$domain["ftps"] = $ftps;
 		}
 
-		$query4 = "SELECT * FROM $pro_mysql_ssh_table WHERE hostname='$name' ORDER BY login LIMIT 800";
+		$query4 = "SELECT * FROM $pro_mysql_ssh_table WHERE hostname='$name' ORDER BY login";
 		$result4 = mysql_query($query4);
 		if (!$result4)
 		{
