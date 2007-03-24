@@ -692,7 +692,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 		}
 
 		//now to add all the mailing lists
-		$query4 = "SELECT * FROM $pro_mysql_list_table WHERE domain='$name' ORDER BY id;";
+		$query4 = "SELECT * FROM $pro_mysql_list_table WHERE domain='$name' ORDER BY name;";
 		$result4 = mysql_query ($query4);
 		if (!$result4)
 		{
