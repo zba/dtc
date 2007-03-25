@@ -1,5 +1,50 @@
 <?php
 
+////////////////////////////////////
+// Create the top banner and menu //
+////////////////////////////////////
+function skin_EmailPage_Default (){
+	global $conf_skin;
+	global $lang;
+	global $txt_select_lang_title;
+	global $adm_email_login;
+	global $txt_login_title;
+
+	global $adm_email_login;
+	global $adm_email_pass;
+	$anotherTopBanner = anotherTopBanner("DTC");
+	//$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
+
+	$anotherLanguageSelection = anotherLanguageSelection();
+	$lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
+
+	if($adm_email_login != "" && isset($adm_email_login) && $adm_email_pass != "" && isset($adm_email_pass)){
+		$error = pass_check_email();
+		// Fetch all the user informations, Print a nice error message if failure.
+		if($error == false){
+			$mesg = $admin["mesg"];
+			$login_txt = "<font color=\"red\">Wrong login or password !</font><br>";
+			$login_txt .= login_emailpanel_form();
+			$login_skined = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
+			$mypage = layout_login_and_languages($login_skined,$lang_sel);
+		}else{
+			// Draw the html forms, login is successfull
+			$admin = fetchMailboxInfos($adm_email_login,$adm_email_pass);
+			$content = drawAdminTools_emailPanel($admin);
+			$mypage = $content;
+		}
+	}else{
+		$login_txt = login_emailpanel_form();
+		$login_skined = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
+		$mypage = layout_login_and_languages($login_skined,$lang_sel);
+	}
+	// Output the result !
+
+	//echo anotherPage($txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
+	echo anotherPage("Email:","","",makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
+}
+
+
 function skin_ClientPage_Default (){
 	global $lang;
 	global $txt_select_lang_title;

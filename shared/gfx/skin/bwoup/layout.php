@@ -1,5 +1,73 @@
 <?
 
+function skin_EmailPage(){
+	global $conf_skin;
+	global $lang;
+	global $txt_select_lang_title;
+	global $adm_email_login;
+	global $txt_login_title;
+
+	global $page_metacontent;
+	global $meta;
+	global $confirm_javascript;
+	global $java_script;
+	global $skinCssString;
+	
+	global $adm_email_login;
+	global $adm_email_pass;
+	////////////////////////////////////
+	// Create the top banner and menu //
+	////////////////////////////////////
+	$anotherTopBanner = anotherTopBanner("DTC");
+	//$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
+
+	if($adm_email_login != "" && isset($adm_email_login) && $adm_email_pass != "" && isset($adm_email_pass)){
+		$error = pass_check_email();
+		// Fetch all the user informations, Print a nice error message if failure.
+		if($error == false){
+			$mesg = $admin["mesg"];
+			$login_txt = "<font color=\"red\">Wrong login or password !</font><br>";
+			$login_txt .= login_emailpanel_form();
+			$mypage = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
+		}else{
+			// Draw the html forms, login is successfull
+			$admin = fetchMailboxInfos($adm_email_login,$adm_email_pass);
+			$mypage = drawAdminTools_emailPanel($admin);
+		}
+	}else{
+		$login_txt = login_emailpanel_form();
+		$mypage = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
+	}
+	// Output the result !
+
+	//echo anotherPage($txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
+#	echo anotherPage("Email:","","",makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
+	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+<html>
+<head>
+<title>DTC: Client: ".$_SERVER['SERVER_NAME']."</title>
+$page_metacontent
+$meta
+</head>
+<body id=\"page\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">
+	  <div id=\"outerwrapper\">
+    <div id=\"wrapper\">
+
+".makePreloads()."
+$confirm_javascript
+$java_script
+<link rel=\"stylesheet\" href=\"gfx/skin/bwoup/skin.css\" type=\"text/css\">
+$skinCssString
+
+".anotherTopBanner("DTC","yes")."<div id=\"usernavbarreplacement\"></div>
+<div id=\"content\"><div class=\"box_wnb_content_container\">".$mypage."</div></div>
+<div id=\"footer\">".anotherFooter("Footer content<br><br>")."</div>
+    </div>
+</div>
+</body>
+</html>";
+}
+
 function skin_DisplayClientList($client_list){
 	global $conf_use_javascript;
 
@@ -191,10 +259,6 @@ function skin_ClientPage (){
 		$login_txt = login_form();
                 $mypage = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
         }
-        // Output the result !
-//        if(!isset($anotherHilight)) $anotherHilight = "";
-
-//        echo anotherPage("Client:","",$anotherHilight,makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
 	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
 <html>
 <head>

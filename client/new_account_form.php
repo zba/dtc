@@ -417,6 +417,7 @@ function registration_form(){
 	global $txt_i_agree_to_the;
 	global $txt_vps_operating_system;
 	global $txt_vps_location;
+	global $txt_client_addr_title;
 
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
@@ -454,6 +455,7 @@ function registration_form(){
 			$prod_popup .= "<option value=\"".$a["id"]."\">".$a["name"]." / ".$a["price_dollar"]."\$</option>\n";
 		}
 	}
+	$prod_popup = "<select onChange=\"hostingProductChanged();\" name=\"product_id\">".$prod_popup."</select>";
 
 	$q = "SELECT $pro_mysql_vps_server_table.hostname,$pro_mysql_vps_server_table.location
 	FROM $pro_mysql_vps_ip_table,$pro_mysql_vps_server_table
@@ -544,17 +546,11 @@ function registration_form(){
 	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "centos")	$centos_selected = " selected ";
 	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "gentoo")	$gentoo_selected = " selected ";
 	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "netbsd")	$netbsd_selected = " selected ";
-	$login_info = "<table>
+
+	$prod_popup = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_login_login[$lang]."</td>
-	<td><input type=\"text\" name=\"reqadm_login\" value=\"$frm_login\"></td>
-</tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_login_pass[$lang]."</td>
-	<td><input type=\"password\" name=\"reqadm_pass\" value=\"\"></td>
-</tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">$txt_confirm_pass[$lang]:</td>
-	<td><input type=\"password\" name=\"reqadm_pass2\" value=\"\"></td>
-</tr><tr>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_product[$lang].": </td><td>".$prod_popup."</td>
+</td><tr>
 	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"domname_text\" id=\"domname_text\" $domname_hidden>".$txt_desired_domain_name[$lang].":</div></td>
 	<td><div name=\"domname_field\" id=\"domname_field\" $domname_hidden>www.<input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></div></td>
 </tr><tr>
@@ -568,7 +564,20 @@ function registration_form(){
 		<option value=\"gentoo\" $gentoo_selected>Gentoo</option>
 		<option value=\"netbsd\" $netbsd_selected>NetBSD</option></select></div></td>
 </tr></table>";
-	$login_skined = skin("frame",$login_info,"");
+
+	$login_info = "<table>
+<tr>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_login_login[$lang]."</td>
+	<td><input type=\"text\" name=\"reqadm_login\" value=\"$frm_login\"></td>
+</tr><tr>
+	<td style=\"white-space: nowrap;text-align: right;\">".$txt_login_pass[$lang]."</td>
+	<td><input type=\"password\" name=\"reqadm_pass\" value=\"\"></td>
+</tr><tr>
+	<td style=\"white-space: nowrap;text-align: right;\">$txt_confirm_pass[$lang]:</td>
+	<td><input type=\"password\" name=\"reqadm_pass2\" value=\"\"></td>
+</tr></table>";
+#	$login_skined = skin("frame",$login_info,"");
+	$login_skined = $login_info;
 
 	$compyes = "";
 	$compno = "";
@@ -604,7 +613,8 @@ function registration_form(){
 	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_fax[$lang]."</td>
 	<td><input type=\"text\" name=\"fax\" value=\"$frm_fax\"></td>
 </tr></table>";
-	$client_skined = skin("frame",$client_info,"");
+//	$client_skined = skin("frame",$client_info,"");
+	$client_skined = $client_info;
 
 	$client_addr = "<table>
 <tr>
@@ -629,7 +639,8 @@ function registration_form(){
 	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_country[$lang]."</td>
 	<td><select name=\"country\">".cc_code_popup($frm_country)."</select></td>
 </tr></table>";
-	$addr_skined = skin("frame",$client_addr,"");
+#	$addr_skined = skin("frame",$client_addr,"");
+	$addr_skined = $client_addr;
 
 	if($conf_selling_conditions_url != "none"){
 		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> ".$txt_i_agree_to_the[$lang]." <a href=\"$conf_selling_conditions_url\">".$txt_selling_conditions[$lang]."</a>";
@@ -704,10 +715,13 @@ function hostingProductChanged(){
 <input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>
 <tr>
-	<td>$txt_product[$lang]: <select onChange=\"hostingProductChanged();\" name=\"product_id\">$prod_popup</select><br>
-$txt_login_info[$lang]:$login_skined</td>
-	<td>$txt_client_info[$lang] $client_skined</td>
-	<td>$txt_client_info[$lang] $addr_skined</td>
+	<td valign=\"top\"><h3>".$txt_product[$lang]."</h3>
+	$prod_popup<br>
+<h3>".$txt_login_info[$lang].":</h3> ".$login_skined."</td>
+	<td width=\"4\" background=\"gfx/skin/frame/border_2.gif\"></td>
+	<td valign=\"top\"><h3>".$txt_client_info[$lang]."</h3> $client_skined</td>
+	<td width=\"4\" background=\"gfx/skin/frame/border_2.gif\"></td>
+	<td valign=\"top\"><h3>".$txt_client_addr_title[$lang]."</h3> $addr_skined</td>
 </tr></table>
 $conditions
 <table border=\"0\">
