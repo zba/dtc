@@ -50,6 +50,7 @@ function drawEditAdmin($admin){
 	global $txt_root_admin_to_add_a_vps_you_have_to;
 	global $txt_root_admin_delete_one_of_the_admin_dedicated_server;
 	global $txt_root_admin_add_a_dedicated_server_to_admin;
+	global $txt_root_admin_add_a_vps_for_this_admin;
 
 	global $txt_root_admin_country;
 	global $txt_root_admin_hostname;
