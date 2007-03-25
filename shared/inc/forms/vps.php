@@ -158,7 +158,7 @@ function drawAdminTools_VPS($admin,$vps){
 		$vps_prod = mysql_fetch_array($r);
 		$contract = $vps_prod["name"];
 	}else{
-		$contact = "not found!";
+		$contract = "not found!";
 	}
 	$out .= "<b><u>".$txt_current_vps_contract[$lang]."</u></b><br>$contract<br><br>";
 
