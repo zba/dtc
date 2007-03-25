@@ -418,6 +418,7 @@ function registration_form(){
 	global $txt_vps_operating_system;
 	global $txt_vps_location;
 	global $txt_client_addr_title;
+	global $txt_vat_number;
 
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
@@ -490,7 +491,7 @@ function registration_form(){
 	if(isset($_REQUEST["compname"]))	$frm_compname = $_REQUEST["compname"];
 	else	$frm_compname = "";
 
-	if(isset($_REQUEST["vat_num"]))	$frm_compname = $_REQUEST["vat_num"];
+	if(isset($_REQUEST["vat_num"]))	$frm_vat_num = $_REQUEST["vat_num"];
 	else	$frm_vat_num = "";
 
 	if(isset($_REQUEST["email"]))	$frm_email = $_REQUEST["email"];

@@ -271,8 +271,7 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 			echo "Could not connect to the VPS server for doing the setup: please contact the administrator!";
 		}else{
 			$image_type = "lvm";
-                        if (isVPSNodeLVMEnabled($vps_node) == "no")
-                        {
+			if (isVPSNodeLVMEnabled($vps_node) == "no"){
                                 $image_type = "vbd";
                         }
 

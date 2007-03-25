@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.94 2007/02/24 06:05:53 thomas Exp $
+ * @version $Id: draw.php,v 1.95 2007/03/25 17:45:44 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -167,24 +167,26 @@ function drawAdminTools($admin){
 	$ssh_login_flag = $admin_info["ssh_login_flag"];
 
 	unset($user_ZEmenu);
-	$user_ZEmenu[] = array(
-		"text" => $txt_cmenu_myaccount_stats[$lang],
-		"icon" => "box_wnb_nb_picto-statistics.gif",
-		"type" => "link",
-		"link" => "stats");
+	if($nbr_domain > 0){
+		$user_ZEmenu[] = array(
+ 			"text" => $txt_cmenu_myaccount_stats[$lang],
+			"icon" => "box_wnb_nb_picto-statistics.gif",
+			"type" => "link",
+			"link" => "stats");
+	}
 	$user_ZEmenu[] = array(
 		"text" => $txt_cmenu_past_payments[$lang],
 		"icon" => "box_wnb_nb_picto-pastpayments.gif",
 		"type" => "link",
 		"link" => "invoices");
-	if(file_exists($dtcshared_path."/dtcrm") && $nbr_domain > 0){
+	if($nbr_domain > 0){
 		$user_ZEmenu[] = array(
 			"text" => $txt_cmenu_add_domain[$lang],
 			"icon" => "box_wnb_nb_picto-addadomainname.gif",
 			"type" => "link",
 			"link" => "adddomain");
-        }
-        if(file_exists($dtcshared_path."/dtcrm") && $conf_use_registrar_api == "yes"){
+	}
+	if($conf_use_registrar_api == "yes" && $nbr_domain > 0){
 		$user_ZEmenu[] = array(
 			"text" => $txt_cmenu_nickhandles[$lang],
 			"icon" => "box_wnb_nb_picto-nickhandles.gif",
@@ -196,20 +198,20 @@ function drawAdminTools($admin){
 			"type" => "link",
 			"link" => "nameservers");
 	}
-	if($nbr_domain > 0){
+//	if($nbr_domain > 0){
 		$user_menu[] = array(
 			"text" => $txt_cmenu_myaccount[$lang],
 			"icon" => "box_wnb_nb_picto-general.gif",
 			"type" => "menu",
 			"link" => "myaccount",
 			"sub" => $user_ZEmenu);
-	}else{
-		$user_menu[] = array(
-			"text" => $txt_cmenu_myaccount[$lang],
-			"icon" => "box_wnb_nb_picto-general.gif",
-			"type" => "link",
-			"link" => "myaccount");
-	}
+//	}else{
+//		$user_menu[] = array(
+//			"text" => $txt_cmenu_myaccount[$lang],
+//			"icon" => "box_wnb_nb_picto-general.gif",
+//			"type" => "link",
+//			"link" => "myaccount");
+//	}
 
 	// Draw all vps
 	for($i=0;$i<$nbr_vps;$i++){
