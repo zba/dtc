@@ -138,7 +138,11 @@ function mail_account_generate_postfix(){
 			if($domain["domain_parking"] != "no-parking"){
 				for($b=0;$b<$nbr_domain;$b++){
 					if($data[$b]["name"] == $domain["domain_parking"]){
-						$domain["emails"] = $data[$b]["emails"];
+						if(isset($data[$b]["emails"])){
+							$domain["emails"] = $data[$b]["emails"];
+						}else{
+							unset($domain["emails"]);
+						}
 					}
 				}
 			}
