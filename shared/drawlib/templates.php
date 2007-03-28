@@ -1280,6 +1280,9 @@ function dtcListItemsEdit($dsc){
 						$input_disp_value = $a[ $keys[$j] ];
 						$happen = "";
 					}
+					if( isset($dsc["cols"][ $keys[$j] ]["happen"]) ){
+						$happen .= $dsc["cols"][ $keys[$j] ]["happen"];
+					}
 					if($the_fld["type"] == "password"){
 						$genpass = autoGeneratePassButton($dsc["action"]."_save_item_frm",$keys[$j]);
 						$input_disp_type = "password";
