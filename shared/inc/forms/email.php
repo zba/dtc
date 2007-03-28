@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.50 2007/03/23 11:03:49 dracula Exp $
+ * @version $Id: email.php,v 1.51 2007/03/28 13:06:36 dracula Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -367,6 +367,41 @@ function drawAdminTools_emailPanel($mailbox){
 }
 
 /////////////////////////////////////////
+// Check the used quota for cyrus      //
+/////////////////////////////////////////
+function getCyrusUsedQuota ($id) {
+	global $pro_mysql_pop_table;
+
+	$q = "SELECT fullemail FROM $pro_mysql_pop_table WHERE autoinc='$id';";
+	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		 die("Cannot find created email line ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+	$fullemail = $a["fullemail"];
+	// login to cyradm
+	$cyr_conn = new cyradm;
+	$error=$cyr_conn -> imap_login();
+	if ($error!=0){
+		die ("imap_login Error $error");
+	}
+	// get the quota used
+	$cyrus_quota=$cyr_conn->getquota("user/" . $fullemail);
+	/*
+	$max_quota=$cyrus_quota['qmax'];
+	$quota_used=$cyrus_quota['used'];
+	$percent=100*$quota_used/$max_quota;
+	*/
+	$value=$cyrus_quota['used'];
+	$happen="/ ".$cyrus_quota['qmax']. " (" . round(100 * $cyrus_quota['used'] / $cyrus_quota['qmax'],2) . "%)";
+	$cyrq = array(
+		"value" => $value,
+		"happen" => $happen);
+	return $cyrq;
+}
+
+/////////////////////////////////////////
 // One domain email collection edition //
 /////////////////////////////////////////
 function emailAccountsCreateCallback ($id){
@@ -438,7 +473,7 @@ function emailAccountsEditCallback ($id){
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 
 	if ($cyrus_used){
-		# login to cyradm
+		// login to cyradm
 		$cyr_conn = new cyradm;
 		$error=$cyr_conn -> imap_login();
 		if ($error!=0){
@@ -447,8 +482,7 @@ function emailAccountsEditCallback ($id){
 		if (!$a["quota_size"]){
                         die ("invalid quota");
                 }
-                $result = $cyr_conn->setmbquota("user/" . $_REQUEST["edit_mailbox"]."@".$edit_domain, $a["quota_size"]
-                );
+                $result = $cyr_conn->setmbquota("user/" . $a["fullemail"], $a["quota_size"]);
 	}
 	return "";
 }
@@ -562,8 +596,13 @@ function drawAdminTools_Emails($domain){
 		$dsc["cols"]["quota_size"] = array(
 			"type" => "text",
 			"check" => "number",
-			"default" => "0",
+			"default" => "$cyrus_default_quota",
 			"legend" => $txt_mail_quota[$lang]);
+		$dsc["cols"]["quota_used"] = array(
+			"type" => "readonly",
+			"hide_create" => "yes",
+			"callback" => "getCyrusUsedQuota",
+			"legend" => $txt_used_quota[$lang]);
 	} else {
 		$dsc["cols"]["quota_size"] = array(
 			"type" => "text",

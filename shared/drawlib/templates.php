@@ -584,13 +584,19 @@ function dtcDatagrid($dsc){
 // "legend" => "id" -> Text to display in the left side of the field
 //
 // "type" => "text" -> The HTML control is a TEXT field
+// "type" => "readonly" -> The HTML control is a READONLY TEXT field
 // "type" => "password" -> The HTML control is a PASSWORD field with the random pass generation button
-// Both types text and password understands the following (not mandatory) fields:
+// Both types text, password and readonly understands the following (not mandatory) fields:
 //   [disable_edit] => "yes" -> Can be used to disable the edition of a field in the edit mode (will still be editable in creation of items)
+//   [hide_create] => "yes"  -> Can be used to hide a field in creation mode, it will only be displayed in edit mode 
 //   [check] => "subdomain", -> Check against the format of the field content before allowing creation or edition
 //                            Currently can have the follwing values: subdomain, subdomain_or_ip, domain_or_ip, dtc_login, dtc_pass
 //   [can_be_empty] => "yes" -> Allow the field to be empty even with a check value
 //   [empty_makes_sql_null] => "yes" -> Makes a SQL query with NULL as parametter wheneger a field is empty
+//   [callback] -> this routine will be called to get further data it will need to display. The id (autoinc) will be passed to the routine and it is expected that an array will be returned: 
+// 	array(
+//		"value" => $value,
+//		"happen" => $happen);
 
 // "type" => "radio" -> The control is a radio button
 // "type" => "checkbox" -> The control is a checkbox. Checkboxes have only 2 values (the possible ones in the db) and is not implemented yet
@@ -1005,6 +1011,8 @@ function dtcListItemsEdit($dsc){
 				$id_fldname = $keys[$i];
 				$id_fld_value = addslashes($_REQUEST[ $keys[$i] ]);
 				break;
+			case "readonly":
+				break;
 			case "text":
 			case "textarea":
 			case "password":
@@ -1129,6 +1137,10 @@ function dtcListItemsEdit($dsc){
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2);
 					break;
 				case "text":
+				case "readonly":
+					if (isset($dsc["cols"][ $keys[$i] ]["hide_create"]) && $dsc["cols"][ $keys[$i] ]["hide_create"]=="yes")
+					{ break; }
+
 					if( isset($dsc["cols"][ $keys[$i] ]["happen_domain"]) ){
 						$happen = $dsc["cols"][ $keys[$i] ]["happen_domain"];
 					}else{
@@ -1142,7 +1154,14 @@ function dtcListItemsEdit($dsc){
 					}else{
 						$ctrl_value = "";
 					}
-					$ctrl = "<input type=\"text\" name=\"".$keys[$i]."\" value=\"$ctrl_value\">$happen";
+					if ($dsc["cols"][ $keys[$i] ]["type"]=="readonly")
+					{
+						$ctrl = "<input type=\"text\" name=\"".$keys[$i]."\" value=\"$ctrl_value\" READONLY>$happen";
+					}
+					else
+					{
+						$ctrl = "<input type=\"text\" name=\"".$keys[$i]."\" value=\"$ctrl_value\">$happen";
+					}
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2);
 					break;
 				case "textarea":
@@ -1263,6 +1282,7 @@ function dtcListItemsEdit($dsc){
 					break;
 				case "password":
 				case "text":
+				case "readonly":
 					if( isset($dsc["cols"][ $keys[$j] ]["disable_edit"]) && $dsc["cols"][ $keys[$j] ]["disable_edit"] == "yes"){
 						$disabled = " disabled ";
 					}else{
@@ -1277,7 +1297,10 @@ function dtcListItemsEdit($dsc){
 						$input_disp_value = substr($a[ $keys[$j] ],0,strlen($a[ $keys[$j] ]) - strlen($dsc["cols"][ $keys[$j] ]["happen_domain"]));
 						$happen = $dsc["cols"][ $keys[$j] ]["happen_domain"];
 					}else{
-						$input_disp_value = $a[ $keys[$j] ];
+						if ($dsc["cols"][ $keys[$j] ]["type"]!="readonly")
+						{
+							$input_disp_value = $a[ $keys[$j] ];
+						}
 						$happen = "";
 					}
 					if( isset($dsc["cols"][ $keys[$j] ]["happen"]) ){
@@ -1290,6 +1313,20 @@ function dtcListItemsEdit($dsc){
 						$genpass = "";
 						$input_disp_type = "text";
 					}
+					// Do this only for readonly
+					if ($dsc["cols"][ $keys[$j] ]["type"]=="readonly")
+					{
+						$disabled = " READONLY";
+						isset($dsc["cols"][ $keys[$j] ]["default"]) ? $input_disp_value = $dsc["cols"][ $keys[$j] ]["default"] : $input_disp_value ='';
+						isset($dsc["cols"][ $keys[$j] ]["happen"]) ? $happen = $dsc["cols"][ $keys[$j] ]["happen"] : $happen = '';;
+					}
+					if (isset($dsc["cols"][ $keys[$j] ]["callback"]))
+					{
+						$retArray=$dsc["cols"][ $keys[$j] ]["callback"]($id_fld_value);
+						$input_disp_value = $retArray["value"];
+						$happen = $retArray["happen"];
+					}
+
 					$ctrl = "<input type=\"$input_disp_type\" $size name=\"".$keys[$j]."\" value=\"".stripslashes($input_disp_value)."\" $disabled>$genpass$happen";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$j] ]["legend"],$ctrl,$j%2);
 					break;
