@@ -103,7 +103,7 @@ $form_start";
 		// Simply add the domain.
 		if($admin["info"]["allow_add_domain"] == "no"){
 			return $txt_dtcrm_not_enough_privileges[$lang]."<br>".
-"<a href=\"$conf_webmaster_email_addr?subject=[DTC] More domains\">$conf_webmaster_email_addr</a>.";
+"<a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC] More domains\">$conf_webmaster_email_addr</a>.";
 		}
 		if(!isset($_REQUEST["domain_name"]) || $_REQUEST["domain_name"] == ""){
 			return "<br><b><u>".$txt_dtcrm_enter_domain_to_add[$lang]."</u></b><br>
