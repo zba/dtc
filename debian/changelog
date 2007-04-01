@@ -1,5 +1,8 @@
 dtc (0.25.3-1) unstable; urgency=low
 
+  * Added Duch template by Bart Cornelis (Closes: #416987)
+  * Added Czech template by Miroslav Kure (Closes: #416938)
+  * Added french template by Christian Perrier (Closes: #416734)
   * Updated the template reviewed by Christian Perrier (Closes: #415231)
     which works for the debian-l10n-english group (Closes: #402657)
   * Added Galician debconf template translation for the package thanks to

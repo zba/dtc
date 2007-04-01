@@ -251,7 +251,7 @@ function mail_account_generate_postfix(){
 						}
 					}
 					if(is_dir($home) && $homedir_created == 1){
-						system("chow -R $conf_nobody_user_id $home");
+						system("chown -R $conf_nobody_user_id $home");
 					}
 				}
 			}
