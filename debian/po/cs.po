@@ -1,48 +1,37 @@
-# translation of fr.po to French
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#    Translators, if you are not familiar with the PO format, gettext
-#    documentation is worth reading, especially sections dedicated to
-#    this format, e.g. by running:
-#         info -n '(gettext)PO Files'
-#         info -n '(gettext)Header Entry'
-#
-#    Some information specific to po-debconf are available at
-#            /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
-#
-#    Developers do not need to manually edit POT or PO files.
-#
-# Christian Perrier <bubulle@debian.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: fr\n"
+"Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
 "POT-Creation-Date: 2007-03-20 17:58+0100\n"
-"PO-Revision-Date: 2007-03-23 18:59+0100\n"
-"Last-Translator: Christian Perrier <bubulle@debian.org>\n"
-"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
+"PO-Revision-Date: 2007-03-31 15:20+0200\n"
+"Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
+"Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid "MySQL hostname:"
-msgstr "Nom de l'hôte MySQL :"
+msgstr "Jméno MySQL serveru:"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid "Please enter the hostname or IP address of the MySQL server."
-msgstr "Veuillez indiquer le nom d'hôte ou l'adresse IP du serveur MySQL."
+msgstr "Zadejte prosím jméno nebo IP adresu MySQL serveru:"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:2001 ../dtc-postfix-courier.templates:2001
 msgid "MySQL administrator:"
-msgstr "Administrateur de MySQL :"
+msgstr "Správce MySQL:"
 
 #. Type: string
 #. Description
@@ -51,27 +40,26 @@ msgid ""
 "Please enter the login name of a MySQL user with administrative privileges. "
 "DTC will use it to grant privileges for the tables to its users."
 msgstr ""
-"Veuillez indiquer l'identifiant d'un utilisateur MySQL qui possède les "
-"privilèges d'administration du serveur. DTC s'en servira pour attribuer les "
-"privilèges sur les tables à ses utilisateurs."
+"Zadejte prosím přihlašovací jméno MySQL uživatele se správcovskými "
+"oprávněními. DTC ho využije k udělování práv k tabulkám."
 
 #. Type: password
 #. Description
 #: ../dtc.templates:3001 ../dtc-postfix-courier.templates:3001
 msgid "MySQL administrator password:"
-msgstr "Mot de passe de l'administrateur de MySQL :"
+msgstr "Správcovské heslo k MySQL:"
 
 #. Type: password
 #. Description
 #: ../dtc.templates:3001 ../dtc-postfix-courier.templates:3001
 msgid "Please enter the password of the MySQL administrator."
-msgstr "Veuillez indiquer le mot de passe de l'administrateur de MySQL."
+msgstr "Zadejte prosím heslo pro správce MySQL."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:4001 ../dtc-postfix-courier.templates:4001
 msgid "DTC database name:"
-msgstr "Nom de la base de données de DTC :"
+msgstr "Jméno DTC databáze:"
 
 #. Type: string
 #. Description
@@ -80,15 +68,14 @@ msgid ""
 "Please enter the name of the database to use for storing all DTC hosting "
 "information."
 msgstr ""
-"Veuillez indiquer le nom de la base de données dont DTC se servira pour "
-"conserver ses informations d'hébergement."
+"Zadejte prosím jméno databáze, která se má použít pro uložení všech informací "
+"o hostingu."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:5001 ../dtc-postfix-courier.templates:5001
 msgid "Change MySQL root password?"
-msgstr ""
-"Faut-il changer le mot de passe du superutilisateur (« root ») de MySQL ?"
+msgstr "Změnit heslo MySQL uživatele root?"
 
 #. Type: boolean
 #. Description
@@ -98,15 +85,14 @@ msgid ""
 "MySQL root user. This can be changed during the configuration of the DTC "
 "package."
 msgstr ""
-"Par défaut, le paquet mysql-server n'impose pas de mot de passe pour le "
-"superutilisateur du serveur de bases de données. Ce mot de passe peut être "
-"mis en place pendant la configuration du paquet de DTC."
+"Balík mysql-server implicitně nevyžaduje heslo ke správcovskému účtu MySQL "
+"(root). To můžete změnit během nastavení balíku DTC."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:6001 ../dtc-postfix-courier.templates:6001
 msgid "Domain name:"
-msgstr "Nom de domaine :"
+msgstr "Doménové jméno:"
 
 #. Type: string
 #. Description
@@ -116,30 +102,27 @@ msgid ""
 "will be used to install the root admin and customer web control panel of DTC "
 "(under one of this domain's subdomains)."
 msgstr ""
-"Veuillez indiquer le premier domaine que vous voulez administrer avec DTC. "
-"Ce domaine sera utilisé pour installer le panneau de contrôle web général "
-"pour l'administration et la gestion des clients (dans un sous-domaine de ce "
-"domaine principal)."
+"Zadejte prosím první doménu, kterou má DTC spravovat. Toto doménové jméno "
+"se použije pro instalaci správcovského a zákaznického webového ovládacího "
+"panelu DTC (jako poddoména této domény)."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:7001 ../dtc-postfix-courier.templates:7001
 msgid "DTC root panel subdomain:"
-msgstr "Sous-domaine du panneau de contrôle principal de DTC :"
+msgstr "Poddoména hlavního panelu DTC:"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:7001 ../dtc-postfix-courier.templates:7001
 msgid "Please enter the subdomain to be used by the DTC control panel."
-msgstr ""
-"Veuillez indiquer le sous-domaine qu'utilisera DTC pour son panneau de "
-"contrôle principal."
+msgstr "Zadejte prosím poddoménu, která se použije pro řídící panel DTC."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:8001 ../dtc-postfix-courier.templates:8001
 msgid "Primary IP address:"
-msgstr "Adresse IP primaire :"
+msgstr "Primární IP adresa:"
 
 #. Type: string
 #. Description
@@ -150,17 +133,16 @@ msgid ""
 "DTC variables.  If you are using Network Address Translation (NAT), please "
 "enter your external IP address."
 msgstr ""
-"Veuillez indiquer l'adresse IP principale du serveur. Cette adresse sera "
-"utilisée pour le nom de domaine principal et sera la valeur par défaut de la "
-"plupart des variables du programme. Si vous utilisez la traduction "
-"d'adresses réseau (NAT : « Network Address Translation »), vous devriez "
-"indiquer l'adresse externe du serveur."
+"Zadejte prosím primární IP adresu tohoto počítače. Zadaná adresa se použije "
+"pro doménové jméno, které jste právě zadali, a také bude výchozí hodnotou "
+"pro většinu DTC proměnných. Používáte-li překlad adres (NAT), zadejte prosím "
+"svou externí IP adresu."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:9001 ../dtc-postfix-courier.templates:9001
 msgid "Path for hosted domains:"
-msgstr "Chemin d'accès des domaines hébergés :"
+msgstr "Cesta k hostovaným doménám:"
 
 #. Type: string
 #. Description
@@ -169,8 +151,8 @@ msgid ""
 "Please enter the directory to be used by DTC to store files for all hosted "
 "domains."
 msgstr ""
-"Veuillez indiquer le répertoire qu'utilisera DTC pour les fichiers relatifs "
-"aux domaines hébergés."
+"Zadejte prosím adresář, který má DTC použít pro ukládání souborů všech "
+"hostovaných domén."
 
 #. Type: string
 #. Description
@@ -181,17 +163,16 @@ msgid ""
 "recommended to change the DocumentRoot setting in Apache configuration if "
 "you choose /var/www as path for hosted domains."
 msgstr ""
-"Si vous choisissez le répertoire /var/www qui est la racine par défaut pour "
-"le serveur web Apache, tous les fichiers de ce répertoire pourraient devenir "
-"accessibles publiquement. Il est donc recommandé de changer le réglage "
-"« DocumentRoot » d'Apache si vous souhaitez utiliser /var/www pour les "
-"domaines hébergés."
+"Zvolíte-li /var/www, což je v Apache výchozí kořen pro dokumenty, stanou se "
+"všechny zde hostované soubory veřejně přístupné. Jestliže tedy zvolíte pro "
+"hostované domény cestu /var/www, doporučujeme v nastavení Apache změnit "
+"proměnnou DocumentRoot."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:10001 ../dtc-postfix-courier.templates:10001
 msgid "Path for the chroot environment template:"
-msgstr "Chemin pour l'environnement fermé d'exécution (« chroot ») :"
+msgstr "Cesta k šabloně chrootovaného prostředí:"
 
 #. Type: string
 #. Description
@@ -200,14 +181,14 @@ msgid ""
 "Please enter the directory to be used by DTC to build the cgi-bin chroot "
 "environment template."
 msgstr ""
-"Veuillez indiquer le répertoire qu'utilisera DTC pour construire le canevas "
-"de l'environnement fermé d'exécution des programmes CGI."
+"Zadejte prosím adresář, který má DTC použít jako šablonu pro vytvoření "
+"cgi-bin chrootu."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:11001 ../dtc-postfix-courier.templates:11001
 msgid "Main domain admin name:"
-msgstr "Identifiant de l'administrateur du domaine principal :"
+msgstr "Jméno správce hlavní domény:"
 
 #. Type: string
 #. Description
@@ -217,15 +198,14 @@ msgid ""
 "the administrator for the domain name containing the control panel "
 "installation."
 msgstr ""
-"Chaque nom de domaine DTC doit avoir un administrateur. Veuillez indiquer "
-"l'identifiant de l'administrateur du domaine qui hébergera le panneau de "
-"contrôle principal."
+"Každá DTC doména musí mít správce. Zadejte prosím přihlašovací jméno správce "
+"k doméně, která obsahuje instalaci řídícího panelu."
 
 #. Type: password
 #. Description
 #: ../dtc.templates:12001 ../dtc-postfix-courier.templates:12001
 msgid "Main domain admin password:"
-msgstr "Mot de passe de l'administrateur du domaine principal :"
+msgstr "Heslo správce hlavní domény:"
 
 #. Type: password
 #. Description
@@ -235,15 +215,14 @@ msgid ""
 "control panel must be managed manually through a .htpasswd file in the root "
 "path."
 msgstr ""
-"Veuillez choisir un mot de passe pour l'administrateur du domaine principal. "
-"L'accès au panneau de contrôle est géré par un fichier .htpasswd à la racine "
-"du serveur."
+"Zadejte prosím heslo správce hlavní domény. Přístup k řídícímu panelu musí "
+"být spravován ručně skrze soubor .htpasswd."
 
 #. Type: select
 #. Description
 #: ../dtc.templates:13001 ../dtc-postfix-courier.templates:13001
 msgid "Mail Transfer Agent (MTA) type:"
-msgstr "Type du serveur de courriel (MTA : « Mail Transfer Agent ») :"
+msgstr "Typ poštovního serveru (MTA):"
 
 #. Type: select
 #. Description
@@ -253,16 +232,15 @@ msgid ""
 "the system already. If no such MTA is currently installed, please complete "
 "the setup of DTC, install a MTA package, then run \"dpkg-reconfigure dtc\"."
 msgstr ""
-"Veuillez indiquer le serveur de courriel qui sera utilisé avec DTC. Ce "
-"serveur doit déjà être installé sur le système. Si aucun serveur n'est "
-"installé, veuillez terminer la configuration de DTC, installer le paquet "
-"d'un serveur de courriel puis utiliser la commande « dpkg-reconfigure dtc »."
+"Vyberte prosím MTA, který má DTC používat. MTA by již měl být na systému "
+"nainstalován. Pokud tomu tak není, dokončete nastavení DTC, nainstalujte "
+"balík s MTA a poté spusťte \"dpkg-reconfigure dtc\"."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:14001 ../dtc-postfix-courier.templates:14001
 msgid "Use Cyrus mail system?"
-msgstr "Souhaitez-vous utiliser le système de courriel Cyrus ?"
+msgstr "Používat poštovní systém Cyrus?"
 
 #. Type: boolean
 #. Description
@@ -271,15 +249,14 @@ msgid ""
 "Please choose this option if you are using Cyrus for mail delivery, IMAP and "
 "MTA. This option is only compatible with Postfix."
 msgstr ""
-"Veuillez choisir cette option si Cyrus est utilisé pour la distribution des "
-"courriels, le service IMAP ou comme serveur de courriel. Cette option n'est "
-"compatible qu'avec Postfix."
+"Pokud jako poštovní a IMAP server používáte Cyrus, vyberte tuto možnost. "
+"Tato možnost je kompatibilní pouze s Postfixem."
 
 #. Type: select
 #. Description
 #: ../dtc.templates:15001 ../dtc-postfix-courier.templates:15001
 msgid "Apache version to configure:"
-msgstr "Version d'Apache à configurer :"
+msgstr "Verze Apache, která se má nastavit:"
 
 #. Type: select
 #. Description
@@ -288,13 +265,13 @@ msgid ""
 "DTC supports both Apache and Apache2. Please enter the version which DTC "
 "should use."
 msgstr ""
-"DTC gère à la fois Apache et Apache2. Veuillez choisir la version à utiliser."
+"DTC podporuje jak Apache, tak Apache2. Zadejte verzi, kterou má DTC používat."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid "Use \"NATed\" vhosts?"
-msgstr "Faut-il utiliser des hôtes virtuels avec traduction d'adresses ?"
+msgstr "Použít \"NATované\" vhosty?"
 
 #. Type: boolean
 #. Description
@@ -304,11 +281,9 @@ msgid ""
 "firewalled with NAT and port redirections of public IP(s) address(es), a "
 "\"NATed\" vhost configuration can be generated."
 msgstr ""
-"DTC peut configurer Apache pour utiliser une des adresses publiques du "
-"serveur. Si celui-ci est protégé par un pare-feu avec traduction d'adresses "
-"(NAT) et redirection de port depuis une ou des adresses publiques, une "
-"configuration utilisant des hôtes virtuels avec traduction d'adresses "
-"(« NATed vhosts ») peut être créée."
+"DTC může nastavit Apache tak, aby používal některou z vašich IP adres. Pokud "
+"se server nachází za NATem a jsou na něj přesměrovány porty z veřejné IP "
+"adresy (nebo adres), je možné vytvořit \"NATovanou\" konfiguraci vhostu."
 
 #. Type: boolean
 #. Description
@@ -319,17 +294,16 @@ msgid ""
 "(NAT). If the server uses a dynamic public IP address, NAT and port "
 "forwarding are mandatory for DTC."
 msgstr ""
-"Cette option ne doit être activée que si le serveur n'est pas connecté "
-"directement sur l'Internet mais est accessible via un pare-feu avec "
-"traduction d'adresses. Si le serveur utilise une adresse IP publique "
-"dynamique, la traduction d'adresses et la redirection de ports sont "
-"obligatoires pour utiliser DTC."
+"Tuto možnost byste měli vybrat pouze v případech, kdy server není připojen "
+"k Internetu přímo, ale skrze firewall provádějící překlad síťových adres "
+"(NAT). Pokud server používá dynamickou veřejnou IP adresu, DTC vyžaduje "
+"použití NAT a přesměrování portů."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:17001 ../dtc-postfix-courier.templates:17001
 msgid "NATed LAN IP address:"
-msgstr "Adresse IP traduite (avec NAT) sur le réseau local :"
+msgstr "NATovaná IP adresa:"
 
 #. Type: string
 #. Description
@@ -338,14 +312,14 @@ msgid ""
 "Please enter the IP address of the server for DTC to generate all vhosts "
 "that will be used by Apache."
 msgstr ""
-"Veuillez indiquer l'adresse IP du serveur, qui sera utilisée pour créer tous "
-"les hôtes virtuels utilisés par Apache."
+"Zadejte prosím IP adresu serveru, aby mohl DTC vygenerovat všechny vhosty, "
+"které bude Apache používat."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:18001 ../dtc-postfix-courier.templates:18001
 msgid "Generate an SSL certificate for DTC?"
-msgstr "Faut-il créer un certificat SSL pour DTC ?"
+msgstr "Vygenerovat pro DTC SSL certifikát?"
 
 #. Type: boolean
 #. Description
@@ -356,18 +330,17 @@ msgid ""
 "generated Apache configuration will activate HTTPS URLs for the control "
 "panel."
 msgstr ""
-"Si vous choisissez cette option, DTC créera un certificat SSL auto-signé et "
-"l'accès au panneau de contrôle se fera avec chiffrement SSL. La gestion de "
-"SSL sera également activée et la configuration créée pour Apache activera "
-"les URL HTTPS pour le panneau de contrôle."
+"Zvolíte-li tuto možnost, DTC vygeneruje SSL certifikát (podepsaný sám sebou) "
+"a pro brouzdání panelem použije SSL. SSL bude také povoleno v konfiguraci "
+"Apache, čímž se pro řídící panel povolí HTTPS adresy."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:18001 ../dtc-postfix-courier.templates:18001
 msgid "This certificate can be changed for a root CA certificate later."
 msgstr ""
-"Ce certificat peut être remplacé ultérieurement par un certificat signé par "
-"une autorité de certification."
+"Tento certifikát může být později vyměněn za certifikát od kořenové "
+"certifikační autority."
 
 #. Type: boolean
 #. Description
@@ -376,29 +349,26 @@ msgid ""
 "Previously-generated certificates will never be overwritten. To regenerate "
 "the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
 msgstr ""
-"En aucun cas, un certificat créé précédemment ne sera remplacé. Pour créer "
-"un nouveau certificat, tous les fichiers présents dans /usr/share/dtc/etc/"
-"ssl doivent préalablement être supprimés."
+"Dříve vygenerované certifikáty nebudou nikdy přepsány. Pro znovuvytvoření "
+"certifikátu musíte z /usr/share/dtc/etc/ssl odstranit všechny soubory."
 
 #. Type: password
 #. Description
 #: ../dtc.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid "DTC certificate passphrase:"
-msgstr "Phrase secrète pour le certificat de DTC :"
+msgstr "Přístupová fráze k DTC certifikátu:"
 
 #. Type: password
 #. Description
 #: ../dtc.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid "Please choose a passphrase to protect the generated SSL certificate."
-msgstr ""
-"Veuillez choisir une phrase secrète qui servira à protéger le certificat SSL "
-"créé."
+msgstr "Zvolte si prosím frázi, která bude chránit vytvořený SSL certifikát."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:20001 ../dtc-postfix-courier.templates:20001
 msgid "Country code for the DTC SSL certificate:"
-msgstr "Code du pays pour le certificat SSL de DTC :"
+msgstr "Kód země pro SSL certifikát DTC:"
 
 #. Type: string
 #. Description
@@ -407,45 +377,44 @@ msgid ""
 "Please enter the 2-letter country code for the generated certificate. This "
 "should usually be the code for the country the server is located in."
 msgstr ""
-"Veuillez indiquer le code à deux lettres du pays qui sera utilisé pour le "
-"certificat SSL créé. Il est conseillé d'utiliser le code du pays où est "
-"situé le serveur."
+"Pro vytvořený certifikát prosím zadejte dvoupísmenný kód země. Měl by to být "
+"kód země, ve které je umístěn server."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:21001 ../dtc-postfix-courier.templates:21001
 msgid "City name for the DTC SSL certificate:"
-msgstr "Nom de ville pour le certificat SSL de DTC :"
+msgstr "Jméno města pro SSL certifikát DTC:"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:22001 ../dtc-postfix-courier.templates:22001
 msgid "Organization name for the DTC SSL certificate:"
-msgstr "Organisme pour le certificat SSL de DTC :"
+msgstr "Jméno organizace pro SSL certifikát DTC:"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:23001 ../dtc-postfix-courier.templates:23001
 msgid "Organizational unit for the DTC SSL certificate:"
-msgstr "Unité organisationnelle pour le certificat SSL de DTC :"
+msgstr "Organizační jednotka pro SSL certifikát DTC:"
 
 #. Type: string
 #. Description
 #: ../dtc.templates:24001 ../dtc-postfix-courier.templates:24001
 msgid "Email address for the DTC SSL certificate:"
-msgstr "Adresse électronique pour le certificat SSL de DTC :"
+msgstr "Emailová adresa pro SSL certifikát DTC:"
 
 #. Type: password
 #. Description
 #: ../dtc.templates:25001 ../dtc-postfix-courier.templates:25001
 msgid "DTC SSL certificate challenge password:"
-msgstr "Mot de passe pour le certificat SSL de DTC :"
+msgstr "Heslo pro SSL certifikát DTC:"
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:26001 ../dtc-postfix-courier.templates:26001
 msgid "Update PEAR installation?"
-msgstr "Faut-il mettre a jour votre installation PEAR ?"
+msgstr "Aktualizovat instalaci PEARu?"
 
 #. Type: boolean
 #. Description
@@ -456,17 +425,16 @@ msgid ""
 "here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-"
 "to-date. The relevant files are located in /usr/share/php."
 msgstr ""
-"DTC peut vérifier l'installation PEAR pendant son installation. Pour cela, "
-"une connexion réseau est indispensable. Si cette opération n'est pas "
-"possible maintenant, vous devez vérifier que les modules PEAR Crypt_CBC et "
-"Auth_SASL sont bien installés. Les fichiers correspondants sont situés dans "
-"le répertoire /usr/share/php."
+"DTC může během své vlastní instalace zkontrolovat instalaci PEARu. To ovšem "
+"vyžaduje, aby byl server připojený k síti. Jestliže nemůžete nebo nechcete "
+"kontrolu provést automaticky, podívejte se prosím, zda jsou PEAR moduly "
+"Crypt_CBC a Auth_SASL aktuální. Příslušné soubory naleznete v /usr/share/php."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid "DNSBL (DNS BlackList) list:"
-msgstr "Liste de serveurs DNSBL :"
+msgstr "Seznam DNSBL (DNS BlackList):"
 
 #. Type: string
 #. Description
@@ -475,14 +443,14 @@ msgid ""
 "Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
 msgstr ""
-"Veuillez indiquer la liste des serveur de listes noires DNSBL qui doivent "
-"être ajoutés à la configuration du serveur de messagerie Postfix."
+"Zadejte prosím seznam preferovaných DNSBL serverů, které se přidají k vašemu "
+"nastavení Postfixu."
 
 #. Type: string
 #. Description
 #: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid "Network devices to monitor:"
-msgstr "Interfaces réseaux à surveiller :"
+msgstr "Síťová zařízení, která sledovat:"
 
 #. Type: string
 #. Description
@@ -491,14 +459,14 @@ msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
 msgstr ""
-"Veuillez indiquer les interfaces réseau qui seront surveillées avec "
-"l'utilitaire de représentation graphique RRDTool."
+"Zadejte prosím všechna síťová zařízení, která mají být sledována nástrojem "
+"pro vykreslování grafů - RRDTool."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Allow to report anonymous statistics to GPLHost?"
-msgstr "Faut-il envoyer des statistiques (anonymes) à GPLHost ?"
+msgstr "Povolit zasílání anonymních statistik GPLHostu?"
 
 #. Type: boolean
 #. Description
@@ -509,19 +477,16 @@ msgid ""
 "(used as a unique identifier only). An Internet connection and the wget "
 "binary are required to report the statistics."
 msgstr ""
-"Les installations de DTC peuvent être signalées au site web de GPLHost. Les "
-"seules données relevées sont le nom du système d'exploitation (Debian) et "
-"l'adresse IP (qui ne sert que de clé d'unicité). Une connexion à l'Internet "
-"ainsi que l'utilitaire wget sont indispensables pour envoyer ces "
-"informations."
+"Instalace DTC se může ohlásit na webové stránky GPLHostu. Jediná odesílaná "
+"data jsou název operačního systému (Debian) a IP adresa (používá se pouze "
+"pro jednoznačnou identifikaci). Pro odeslání statistiky je vyžadováno "
+"internetové připojení a program wget."
 
 #. Type: boolean
 #. Description
 #: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Skip mknod calls when building the chroot template?"
-msgstr ""
-"Omettre les appels à mknod lors de la création de l'environnement fermé "
-"d'exécution ?"
+msgstr "Přeskočit při vytváření šablony pro chroot volání mknod?"
 
 #. Type: boolean
 #. Description
@@ -531,7 +496,6 @@ msgid ""
 "option allows skipping the creation of the null, random and urandom devices "
 "during the chroot template creation."
 msgstr ""
-"Dans certains environnements comme Linux vServer, mknod ne peut pas être "
-"exécuté. Pour cette raison, il est possible d'omettre la création des "
-"fichiers de périphériques « null », « random » et « urandom » pendant la "
-"création du canevas de l'environnement fermé d'exécution (« chroot »)."
+"V některých prostředích, např. Linux VServer, není možné používat program "
+"mknod. Povolením této volby se při vytváření šablony pro chroot přeskočí "
+"vytvoření zařízení null, random a urandom."

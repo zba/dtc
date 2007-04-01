@@ -1,426 +1,431 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-03-24 00:21+0100\n"
-"Last-Translator: Dwayne Meertins <meertins@indivision.nl>\n"
-"Language-Team:  <meertins@indivision.nl>\n"
+"Project-Id-Version: dtc\n"
+"Report-Msgid-Bugs-To: thomas@goirand.fr\n"
+"POT-Creation-Date: 2007-03-20 17:58+0100\n"
+"PO-Revision-Date: 2007-03-27 22:26+0100\n"
+"Last-Translator: Bart Cornelis <cobaco@skolelinux.no>\n"
+"Language-Team: debian-l10n-dutch <debian-l10n-dutch@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Dutch\n"
-"X-Poedit-Country: NETHERLANDS\n"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:4
-#: ../dtc-postfix-courier.templates:4
+#: ../dtc.templates:1001
+#: ../dtc-postfix-courier.templates:1001
 msgid "MySQL hostname:"
-msgstr "MySQL hostname:"
+msgstr "MySQL-servernaam:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:4
-#: ../dtc-postfix-courier.templates:4
+#: ../dtc.templates:1001
+#: ../dtc-postfix-courier.templates:1001
 msgid "Please enter the hostname or IP address of the MySQL server."
-msgstr "Vul de Hostname of het IP adres in van de MySQL server."
+msgstr "Wat is de computernaam (of het ip-adres) van de MySQL-server?"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:10
-#: ../dtc-postfix-courier.templates:10
+#: ../dtc.templates:2001
+#: ../dtc-postfix-courier.templates:2001
 msgid "MySQL administrator:"
-msgstr "MySQL administrator:"
+msgstr "MySQL-beheerder:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:10
-#: ../dtc-postfix-courier.templates:10
+#: ../dtc.templates:2001
+#: ../dtc-postfix-courier.templates:2001
 msgid "Please enter the login name of a MySQL user with administrative privileges. DTC will use it to grant privileges for the tables to its users."
-msgstr "Vul AUB de login naam in van de MySQ root gebruiker.DTC zal deze gebruiken om toestemming te geven tot de tabellen voor haar gebruikers."
+msgstr "Welke MySQL-gebruiker heeft beheerdersrechten? DTC heeft dit nodig om rechten op tabellen toe te kennen voor zijn gebruikers."
 
 #. Type: password
 #. Description
-#: ../dtc.templates:17
-#: ../dtc-postfix-courier.templates:17
+#: ../dtc.templates:3001
+#: ../dtc-postfix-courier.templates:3001
 msgid "MySQL administrator password:"
-msgstr "MySQL administrator password:"
+msgstr "MySQL-beheerderswachtwoord:"
 
 #. Type: password
 #. Description
-#: ../dtc.templates:17
-#: ../dtc-postfix-courier.templates:17
+#: ../dtc.templates:3001
+#: ../dtc-postfix-courier.templates:3001
 msgid "Please enter the password of the MySQL administrator."
-msgstr "Vul AUB de password in van de  MySQL administrator."
+msgstr "Wat is het wachtwoord van de MySQL-beheerder?"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:23
-#: ../dtc-postfix-courier.templates:23
+#: ../dtc.templates:4001
+#: ../dtc-postfix-courier.templates:4001
 msgid "DTC database name:"
-msgstr "DTC database naam:"
+msgstr "DTC-databasenaam:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:23
-#: ../dtc-postfix-courier.templates:23
+#: ../dtc.templates:4001
+#: ../dtc-postfix-courier.templates:4001
 msgid "Please enter the name of the database to use for storing all DTC hosting information."
-msgstr "Vul AUB de naam in van de databse om te gebruiken voor opslag van DTC hosting gegevens."
+msgstr "Wat is de naam van de database waarin DTC alle 'hosting'-informatie dient op te slaan?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:30
-#: ../dtc-postfix-courier.templates:30
+#: ../dtc.templates:5001
+#: ../dtc-postfix-courier.templates:5001
 msgid "Change MySQL root password?"
-msgstr "Verander MySQL root password?"
+msgstr "Wilt u het MySQL-root-wachtwoord veranderen?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:30
-#: ../dtc-postfix-courier.templates:30
+#: ../dtc.templates:5001
+#: ../dtc-postfix-courier.templates:5001
 msgid "By default, the mysql-server package does not require a password for the MySQL root user. This can be changed during the configuration of the DTC package."
-msgstr "Mysq-server gebruikt standaard geen password voor de MySQL root gebruiker. Dit kan aangepast worden tijdens de configuratie van DTC."
+msgstr "Standaard vereist het 'mysql-server'-pakket geen wachtwoord voor de MySQL-root-gebruiker. Dit kan tijdens de configuratie van het DTC-pakket aangepast worden."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:38
-#: ../dtc-postfix-courier.templates:38
+#: ../dtc.templates:6001
+#: ../dtc-postfix-courier.templates:6001
 msgid "Domain name:"
-msgstr "Domein naam:"
+msgstr "Domeinnaam:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:38
-#: ../dtc-postfix-courier.templates:38
+#: ../dtc.templates:6001
+#: ../dtc-postfix-courier.templates:6001
 msgid "Please enter the first domain which you want DTC to manage. This domain name will be used to install the root admin and customer web control panel of DTC (under one of this domain's subdomains)."
-msgstr "Vul AUB de eerste domein die DTC dient te managen. Dit domein wordt gebruikt voor de installatie van het root admin en customer web control panel van DTC (onder een een subdomein van het domein.)"
+msgstr "Wat is de eerste domeinnaam die u door DTC wilt laten beheren? Deze domeinnaam wordt gebruikt om de beheerder en klant web-controlepanelen van DTC te installeren (in een van de sub-domeinen van dit domein)."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:47
-#: ../dtc-postfix-courier.templates:47
+#: ../dtc.templates:7001
+#: ../dtc-postfix-courier.templates:7001
 msgid "DTC root panel subdomain:"
-msgstr "DTC root panel subdomein:"
+msgstr "Sub-domein voor het DTC-basispaneel:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:47
-#: ../dtc-postfix-courier.templates:47
+#: ../dtc.templates:7001
+#: ../dtc-postfix-courier.templates:7001
 msgid "Please enter the subdomain to be used by the DTC control panel."
-msgstr "Vul AUB het subdomein in dat door DTC gebruikt dient te worden."
+msgstr "Wat is het subdomein dat door het DTC-controlepaneel gebruikt dient te worden?"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:53
-#: ../dtc-postfix-courier.templates:53
+#: ../dtc.templates:8001
+#: ../dtc-postfix-courier.templates:8001
 msgid "Primary IP address:"
-msgstr "Primaire IP addres:"
+msgstr "Primair IP-adres:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:53
-#: ../dtc-postfix-courier.templates:53
+#: ../dtc.templates:8001
+#: ../dtc-postfix-courier.templates:8001
 msgid "Please enter this host's primary IP address. This address will be used for the domain name you just provided, and will be used as the default for most DTC variables.  If you are using Network Address Translation (NAT), please enter your external IP address."
-msgstr "Vul AUB het primaire IP addres in van de host. Dit addres wordt gebruikt voor de domein naam die is opgegeven en wordt gebruikt voor de meeste DTC variabelen. Wanneer Network Address Translation (NAT) wordt gebruikt vul dan het externe IP addres in."
+msgstr "Wat is het primaire IP-adres van deze computer? Dit adres wordt gebruikt voor de zojuist door u opgegeven domeinnaam, en als standaardwaarde voor de meeste DTC-variabelen. Als u gebruik maakt van NAT (Network Address Translation) dient u hier het externe IP-adres aan te geven."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:62
-#: ../dtc-postfix-courier.templates:62
+#: ../dtc.templates:9001
+#: ../dtc-postfix-courier.templates:9001
 msgid "Path for hosted domains:"
-msgstr "Pad voor de gehostte domeinen:"
+msgstr "Pad voor gehoste domeinen:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:62
-#: ../dtc-postfix-courier.templates:62
+#: ../dtc.templates:9001
+#: ../dtc-postfix-courier.templates:9001
 msgid "Please enter the directory to be used by DTC to store files for all hosted domains."
-msgstr "Vul de directory in die door DTC gebruikt dient te worden om alle bestanden van gehostte domeinen op te slaan."
+msgstr "In welke map dient DTC de bestanden van de gehoste domeinen op te slaan?"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:62
-#: ../dtc-postfix-courier.templates:62
+#: ../dtc.templates:9001
+#: ../dtc-postfix-courier.templates:9001
 msgid "If you choose /var/www, which is Apache's default document root, all files hosted in that directory may become publicly accessible. It is therefore recommended to change the DocumentRoot setting in Apache configuration if you choose /var/www as path for hosted domains."
-msgstr "Wanneer /var/www/ wordt gkozen , wat Apache's default document root is, kunnen alle bestanden die zich in die directory bevinden publiekelijk toegangbaar worden. Het is daarom aanbevolen om de DocumentRoot in de Apache configuratie te veranderen wanneer /var/www/ wordt gekozen als pad voor de gehostte domeinen."
+msgstr "Als u /var/www (de standaard document-basismap van Apache) kiest kan het zijn dat alle in deze map gehoste bestanden publiek toegankelijk worden. Het is dan ook aan te raden om de 'DocumentRoot'-instelling in de Apache-configuratie aan te passen wanneer u /var/www als pad voor gehoste domeinen gebruikt."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:74
-#: ../dtc-postfix-courier.templates:74
+#: ../dtc.templates:10001
+#: ../dtc-postfix-courier.templates:10001
 msgid "Path for the chroot environment template:"
-msgstr "Pad tot de chroot omgeving template:"
+msgstr "Pad voor de chroot-omgeving sjabloon:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:74
-#: ../dtc-postfix-courier.templates:74
+#: ../dtc.templates:10001
+#: ../dtc-postfix-courier.templates:10001
 msgid "Please enter the directory to be used by DTC to build the cgi-bin chroot environment template."
-msgstr "Vul AUB de directory naam in die door DTC gebruikt dient te worden om de cgi-bin chroot omgeving template aan te maken."
+msgstr "In welke map dient DTC de sjabloon voor de cgi-bin chroot omgeving op te bouwen?"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:81
-#: ../dtc-postfix-courier.templates:81
+#: ../dtc.templates:11001
+#: ../dtc-postfix-courier.templates:11001
 msgid "Main domain admin name:"
-msgstr "Hoofd domein admin gebruikersnaam:"
+msgstr "Beheerder van het hoofddomein:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:81
-#: ../dtc-postfix-courier.templates:81
+#: ../dtc.templates:11001
+#: ../dtc-postfix-courier.templates:11001
 msgid "Each DTC domain must have an administrator. Please enter the login name of the administrator for the domain name containing the control panel installation."
-msgstr "Elk DTC domein dient een administrator the hebben. Vul de login naam van de administrator in voor de domein naam die het control panel bevat."
+msgstr "Elk DTC-domein dient een beheerder te hebben. Wat is de gebruikersnaam van de beheerder voor de domeinnaam die de installatie van het controlepaneel bevat?"
 
 #. Type: password
 #. Description
-#: ../dtc.templates:89
-#: ../dtc-postfix-courier.templates:89
+#: ../dtc.templates:12001
+#: ../dtc-postfix-courier.templates:12001
 msgid "Main domain admin password:"
-msgstr "Hoofd domein admin password:"
+msgstr "Wachtwoord van de beheerder van het hoofddomein:"
 
 #. Type: password
 #. Description
-#: ../dtc.templates:89
-#: ../dtc-postfix-courier.templates:89
+#: ../dtc.templates:12001
+#: ../dtc-postfix-courier.templates:12001
 msgid "Please choose the main domain administrator's password. Access to the control panel must be managed manually through a .htpasswd file in the root path."
-msgstr "Geef het password op van de hoofd domein administrator. Toegang tot het control panel dient handmatig gemanaged te wroden door een .htpasswd bestand in de root directory."
+msgstr "Wat is het wachtwoord van de beheerder van het hoofddomein? Toegang tot het controlepaneel dient handmatig via een '.htpasswd'-bestand in de pad-wortel geregeld te worden."
 
 #. Type: select
 #. Description
-#: ../dtc.templates:97
-#: ../dtc-postfix-courier.templates:97
+#: ../dtc.templates:13001
+#: ../dtc-postfix-courier.templates:13001
 msgid "Mail Transfer Agent (MTA) type:"
-msgstr "Mail Transfer Agent (MTA) type:"
+msgstr "Type MTA (Mail Transfer Agent):"
 
 #. Type: select
 #. Description
-#: ../dtc.templates:97
-#: ../dtc-postfix-courier.templates:97
+#: ../dtc.templates:13001
+#: ../dtc-postfix-courier.templates:13001
 msgid "Please select the MTA that will be used with DTC. It should be installed on the system already. If no such MTA is currently installed, please complete the setup of DTC, install a MTA package, then run \"dpkg-reconfigure dtc\"."
-msgstr "Kies de MTA die gebruikt zal worden met DTC. Deze dient al geinstalleerd te zijn op het systeem. Als geen MTA al geinstalleerd is, ga verder met de setup van DTC, installeer een MTA package en voer daarna \"dpkg-reconfigure dtc\" uit."
+msgstr "Welke MTA dient DTC te gebruiken? Deze dient reeds op het systeem geïnstalleerd te zijn, als dit niet het geval is dient u na het installeren van het MTA-pakket de configuratie van DTC af te maken via het commando 'dpkg-reconfigure dtc'."
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:106
-#: ../dtc-postfix-courier.templates:106
+#: ../dtc.templates:14001
+#: ../dtc-postfix-courier.templates:14001
 msgid "Use Cyrus mail system?"
-msgstr "Gebruik Cyrus mail systeem?"
+msgstr "Wilt u het Cyrus e-mailsysteem gebruiken?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:106
-#: ../dtc-postfix-courier.templates:106
+#: ../dtc.templates:14001
+#: ../dtc-postfix-courier.templates:14001
 msgid "Please choose this option if you are using Cyrus for mail delivery, IMAP and MTA. This option is only compatible with Postfix."
-msgstr "Kies deze optie wanneer Cyrus wordt gebruikt voor mail delivery, IMAP en MTA. Deze optie is alleen compatible met Postfix"
+msgstr "U dient deze optie te kiezen indien u Cyrus gebruikt voor e-mailbezorging, IMAP en MTA. DEze optie is enkel compatibel met Postfix."
 
 #. Type: select
 #. Description
-#: ../dtc.templates:113
-#: ../dtc-postfix-courier.templates:113
+#: ../dtc.templates:15001
+#: ../dtc-postfix-courier.templates:15001
 msgid "Apache version to configure:"
-msgstr "Apache versie om te configureren:"
+msgstr "Te configureren Apache-versie:"
 
 #. Type: select
 #. Description
-#: ../dtc.templates:113
-#: ../dtc-postfix-courier.templates:113
+#: ../dtc.templates:15001
+#: ../dtc-postfix-courier.templates:15001
 msgid "DTC supports both Apache and Apache2. Please enter the version which DTC should use."
-msgstr "DTC ondersteund zowel Apache als Apache2. Geef aan welke versie DTC dient te gebruiken."
+msgstr "DTC ondersteund Apache en Apache2. Welke versie wilt u DTC laten gebruiken?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:120
-#: ../dtc-postfix-courier.templates:120
+#: ../dtc.templates:16001
+#: ../dtc-postfix-courier.templates:16001
 msgid "Use \"NATed\" vhosts?"
-msgstr "Gebruik \"NAT\" vhosts?"
+msgstr "Wilt u via 'NAT' lopende vhosts gebruiken?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:120
-#: ../dtc-postfix-courier.templates:120
+#: ../dtc.templates:16001
+#: ../dtc-postfix-courier.templates:16001
 msgid "DTC can configure Apache to use one of your IP addresses. If the server is firewalled with NAT and port redirections of public IP(s) address(es), a \"NATed\" vhost configuration can be generated."
-msgstr "DTC kan apache configureren om een van jouw ip adressen te gebruiken. Wanneer de server gefirewalled is met NAT en  port redirections van publieke IP adres(sen), kan een \" NAT\" vhost configuratie worden gegenereerd."
+msgstr "DTC kan Apache instelllen om een van uw IP-adressen te gebruiken. Als uw server zich achter een firewall met NAT en poort-omleiding van publieke IP-adressen bevindt, kan een via 'NAT' lopende vhost configuratie aangemaakt worden."
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:120
-#: ../dtc-postfix-courier.templates:120
+#: ../dtc.templates:16001
+#: ../dtc-postfix-courier.templates:16001
 msgid "This option should be chosen only if the server is not connected to the Internet directly, but through a firewall doing network address translation (NAT). If the server uses a dynamic public IP address, NAT and port forwarding are mandatory for DTC."
-msgstr "Deze optie dient alleen gekozen te worden wanneer de server niet direct met het internet verbonden is maar door een firewall die network address translation (NAT) gebruikt. Wanneer de server een dyamisch public IP addres gebruikt zijn NAT en portforwarding verplicht."
+msgstr "Enkel wanneer de server niet rechstreeks met internet verbonden is, maar via een firewall die NAT (Network Adress Translation) uitvoert dient u deze optie te kiezen. Als de server een dynamisch publiek IP-adres gebruikt zijn NAT en poort-omleiding verplicht voor DTC."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:133
-#: ../dtc-postfix-courier.templates:133
+#: ../dtc.templates:17001
+#: ../dtc-postfix-courier.templates:17001
 msgid "NATed LAN IP address:"
-msgstr "NAT LAN IP address:"
+msgstr "Via NAT toegankelijk IP-netwerkadres:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:133
-#: ../dtc-postfix-courier.templates:133
+#: ../dtc.templates:17001
+#: ../dtc-postfix-courier.templates:17001
 msgid "Please enter the IP address of the server for DTC to generate all vhosts that will be used by Apache."
-msgstr "Vul het IP addres in van de server voor DTC om alle vhosts te genereren die gebruikt zullen worden door Apache."
+msgstr "Welk IP-adres dient de DTC-server te gebruiken voor het aanmaken van de door Apache te gebruiken vhosts?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:140
-#: ../dtc-postfix-courier.templates:140
+#: ../dtc.templates:18001
+#: ../dtc-postfix-courier.templates:18001
 msgid "Generate an SSL certificate for DTC?"
-msgstr "Genereer een SSL certificaat voor DTC?"
+msgstr "Wil u een SSL-certificaat aanmaken voor DTC?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:140
-#: ../dtc-postfix-courier.templates:140
+#: ../dtc.templates:18001
+#: ../dtc-postfix-courier.templates:18001
 msgid "If you choose this option, DTC will generate a self-signed SSL certificate and will use SSL to browse the panel. SSL will also be activated and the generated Apache configuration will activate HTTPS URLs for the control panel."
-msgstr "Waneer deze optie wordt gekozen zal DTC een self-signed SSL certificate genereren en SSL gebruiken om naar het panel te browsen. SSL zal ook worden geactiveerd en de genereerde apache configuratie zal HTTPS URLs voor het control panel activeren."
+msgstr "Als u deze optie kiest maakt DTC een zelf-ondertekend SSL-certificaat aan, en wordt SSL gebruikt bij het benaderen van het controlepaneel (SSL wordt geactiveerd en de apache-configuratie maakt https-URL's aan voor het controlepaneel)."
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:140
-#: ../dtc-postfix-courier.templates:140
+#: ../dtc.templates:18001
+#: ../dtc-postfix-courier.templates:18001
 msgid "This certificate can be changed for a root CA certificate later."
-msgstr "Dit certificaat kan later veranderd worden voor een root CA ."
+msgstr "Dit certificaat kan later vervangen worden door een root-CA-certificaat."
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:140
-#: ../dtc-postfix-courier.templates:140
+#: ../dtc.templates:18001
+#: ../dtc-postfix-courier.templates:18001
 msgid "Previously-generated certificates will never be overwritten. To regenerate the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
-msgstr "Eerder gegenereerde certificaten zullen nooit worden overschreven. Om het certificaat opnieuw te genereren dienen alle bestanden in /usr/share/dtc/etc/ssl verwijderdt te worden."
+msgstr "Eerder aangemaakte certificaten worden nooit overschreven. Om een certificaat opnieuw aan te maken dient u alle bestanden in /usr/share/dtc/etc/ssl te verwijderen."
 
 #. Type: password
 #. Description
-#: ../dtc.templates:154
-#: ../dtc-postfix-courier.templates:154
+#: ../dtc.templates:19001
+#: ../dtc-postfix-courier.templates:19001
 msgid "DTC certificate passphrase:"
-msgstr "DTC certificaat passphrase:"
+msgstr "Wachtzin voor het DTC-certificaat:"
 
 #. Type: password
 #. Description
-#: ../dtc.templates:154
-#: ../dtc-postfix-courier.templates:154
+#: ../dtc.templates:19001
+#: ../dtc-postfix-courier.templates:19001
 msgid "Please choose a passphrase to protect the generated SSL certificate."
-msgstr "Kies AUB een passphrase om het gegenereerde SSL certificaat te beschermen."
+msgstr "Wat is de wachtzin waarmee het aangemaakte SSL-certificaat beveiligd wordt?"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:160
-#: ../dtc-postfix-courier.templates:160
+#: ../dtc.templates:20001
+#: ../dtc-postfix-courier.templates:20001
 msgid "Country code for the DTC SSL certificate:"
-msgstr "Land code voor het DTC SSL certificaat:"
+msgstr "Landcode voor het DTC SSL-certificaat:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:160
-#: ../dtc-postfix-courier.templates:160
+#: ../dtc.templates:20001
+#: ../dtc-postfix-courier.templates:20001
 msgid "Please enter the 2-letter country code for the generated certificate. This should usually be the code for the country the server is located in."
-msgstr "Vul de 2-letter landcode in voor het te genereren certificaat. Dit dient meestal de landcode te zijn voor het land waar de server zich bevindt."
+msgstr "Wat is de 2-letterige landcode voor het aangemaakte certificaat? Gewoonlijk is dit de code voor het land waar de server zich bevind."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:168
-#: ../dtc-postfix-courier.templates:168
+#: ../dtc.templates:21001
+#: ../dtc-postfix-courier.templates:21001
 msgid "City name for the DTC SSL certificate:"
-msgstr "Plaatsnaam voor DTC SSL certificaat:"
+msgstr "Plaatsnaam voor het DTC SSL-certificaat:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:173
-#: ../dtc-postfix-courier.templates:173
+#: ../dtc.templates:22001
+#: ../dtc-postfix-courier.templates:22001
 msgid "Organization name for the DTC SSL certificate:"
-msgstr "Organisatie naam voor het DTC SSL certificaat:"
+msgstr "Organisatienaam voor het DTC SSL-certificaat:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:178
-#: ../dtc-postfix-courier.templates:178
+#: ../dtc.templates:23001
+#: ../dtc-postfix-courier.templates:23001
 msgid "Organizational unit for the DTC SSL certificate:"
-msgstr "Afdeling/divisie voor het DTC SSL certificaat:"
+msgstr "Organisatorische Afdeling voor het DTC SSL-certificaat:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:182
-#: ../dtc-postfix-courier.templates:182
+#: ../dtc.templates:24001
+#: ../dtc-postfix-courier.templates:24001
 msgid "Email address for the DTC SSL certificate:"
-msgstr "Email addres voor DTC SSL certificaat:"
+msgstr "E-mailadres voor het DTC SSL-certificaat:"
 
 #. Type: password
 #. Description
-#: ../dtc.templates:186
-#: ../dtc-postfix-courier.templates:186
+#: ../dtc.templates:25001
+#: ../dtc-postfix-courier.templates:25001
 msgid "DTC SSL certificate challenge password:"
-msgstr "DTC SSL certificate challenge password:"
+msgstr "Uitdagingswachtwoord voor het DTC SSL-certificaat:"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:191
-#: ../dtc-postfix-courier.templates:191
+#: ../dtc.templates:26001
+#: ../dtc-postfix-courier.templates:26001
 msgid "Update PEAR installation?"
-msgstr "Update PEAR ?"
+msgstr "Wilt u de PEAR-installatie opwaarderen?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:191
-#: ../dtc-postfix-courier.templates:191
+#: ../dtc.templates:26001
+#: ../dtc-postfix-courier.templates:26001
 msgid "DTC can check the PEAR installation during its own installation process. This requires your server to be connected to the network. If you can't do so here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-to-date. The relevant files are located in /usr/share/php."
-msgstr "DTC kan PEAR controleren tijdens het installatie process. Dit vereist dat de server een actieve netwerk verbinding heeft. Indien dit niet mogelijk is, controleer dan of de Crypt_CBC en Auth_SASL PEAR modules up to date zijn. De relevante bestanden bevinden zich in /usr/share/php."
+msgstr "DTC kan de PEAR-installatie controleren tijdens het DTC-installatieproces. Dit vereist dat uw server verbonden is met het netwerk. Als u hier niet voor kiest gelieve dan te controleren of de Crypt_CBC en Auth_SASL PEAR-modules up-to-date zijn. De relevante bestanden vindt u in /usr/share/php ."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:201
-#: ../dtc-postfix-courier.templates:201
+#: ../dtc.templates:27001
+#: ../dtc-postfix-courier.templates:27001
 msgid "DNSBL (DNS BlackList) list:"
-msgstr "DNSBL (DNS BlackList) lijst:"
+msgstr "DNS Zwarte lijst (DNSBL):"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:201
-#: ../dtc-postfix-courier.templates:201
+#: ../dtc.templates:27001
+#: ../dtc-postfix-courier.templates:27001
 msgid "Please enter the list of preferred DNSBL servers to add to your Postfix mail server configuration."
-msgstr "Vul AUB de lijst van gewenste DNSBL servers in om toe te voegen aan de postfix configuratie."
+msgstr "Gelieve hier de lijst van DNSBL-servers die u aan uw Postfix-mailserver configuratie wilt toevoegen op te geven."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:207
-#: ../dtc-postfix-courier.templates:207
+#: ../dtc.templates:28001
+#: ../dtc-postfix-courier.templates:28001
 msgid "Network devices to monitor:"
-msgstr "Netwerkkaarten die gemonitored dienen te worden:"
+msgstr "Te controleren netwerkapparaten:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:207
-#: ../dtc-postfix-courier.templates:207
+#: ../dtc.templates:28001
+#: ../dtc-postfix-courier.templates:28001
 msgid "Please enter all the network devices you wish to be monitored by the RRDTool graphing utility."
-msgstr "Vul AUB de netwerkapparaten in die door de RRDTool graphing utility gemonitored dienen te worden."
+msgstr "Gelieve hier alle netwerkapparaten die u door het RRDTool grafiek-hulpprogramma wilt laten controleren op te geven."
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:214
-#: ../dtc-postfix-courier.templates:214
+#: ../dtc.templates:29001
+#: ../dtc-postfix-courier.templates:29001
 msgid "Allow to report anonymous statistics to GPLHost?"
-msgstr "Geef toestemming om anonieme statistieken aan GPLHost te rapporteren."
+msgstr "Wilt u het rapporteren van anonieme statistieken aan GPLhost toelaten?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:214
-#: ../dtc-postfix-courier.templates:214
+#: ../dtc.templates:29001
+#: ../dtc-postfix-courier.templates:29001
 msgid "DTC installations can be reported to the GPLHost web site. The only collected data are the operating system name (Debian) and the IP address (used as a unique identifier only). An Internet connection and the wget binary are required to report the statistics."
-msgstr "DTC installaties kunnen gerapporteerd worden aan de GPLHost website. De enige verzamelde data is de naam van het bestuurings systeem (Debian) en het ip adress (alleen gebruikt als unieke identifier). Een internet verbinding en de wget binary zijn nodig om statistieken te rapporteren."
+msgstr "DTC-installaties kunnen rapporten insturen naar de GPLHost website. De enige informatie die gerapporteerd wordt zijn de OS-naam (Debian) en het IP-adres (enkel gebruikt als unieke identifier). Een Internetverbinding en het programma wget zijn vereist om de statistieken te kunnen rapporteren."
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:223
-#: ../dtc-postfix-courier.templates:223
+#: ../dtc.templates:30001
+#: ../dtc-postfix-courier.templates:30001
 msgid "Skip mknod calls when building the chroot template?"
-msgstr "Sla mknod calls over wanneer chroot template wordt aangemaakt?"
+msgstr "Wilt u mknod-aanroepen overslaan bij het opbouwen van de chroot-sjabloon?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:223
-#: ../dtc-postfix-courier.templates:223
+#: ../dtc.templates:30001
+#: ../dtc-postfix-courier.templates:30001
 msgid "In some environments, such as Linux vServer, mknod cannot be executed. This option allows skipping the creation of the null, random and urandom devices during the chroot template creation."
-msgstr "In sommige omgevingen zoals Linux vServer, kan mknod niet worden uitgevoerd. Deze optie geeft de mogelijkheid om het aanmaken van null, random en urandom devices over te slaan tijdens het aanmaken van de chroot template."
+msgstr "In sommige omgevingen, zoals een Linux vServer, kan mknod niet uitgevoerd worden. Deze optie laat toe om het aanmaken van de null, random, en urandom apparaatbestanden over te slaan tijdens het aanmaken van de chroot sjabloon."
 
