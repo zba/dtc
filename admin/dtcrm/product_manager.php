@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.20 2007/02/18 08:46:14 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.21 2007/04/02 21:10:57 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -39,9 +39,77 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => $txt_product_editor_product_list_editor[$lang],
+        	"title" => $txt_product_editor_product_list_editor[$lang]." (shared)",
         	"action" => "hosting_product_list",
         	"forward" => array("rub"),
+        	"where_condition" => "heb_type='shared'",
+        	"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "yes",
+				"legend" => "Id"
+				),
+			"name" => array(
+				"type" => "text",
+				"legend" => $txt_product_name[$lang],
+				"size" => "30"
+				),
+			"heb_type" => array(
+				"type" => "popup",
+				"legend" => $txt_product_editor_type[$lang],
+				"values" => array("shared","ssl","vps","server")
+				),
+			"period" => array(
+				"type" => "text",
+				"legend" => $txt_product_period[$lang],
+				"size" => "10"
+				),
+			"price_dollar" => array(
+				"type" => "text",
+				"legend" => $txt_product_price[$lang],
+				"size" => "4"
+				),
+			"quota_disk" => array(
+				"type" => "text",
+				"legend" => $txt_product_disk[$lang],
+				"size" => "4"
+				),
+			"nbr_email" => array(
+				"type" => "text",
+				"legend" => $txt_product_mail[$lang],
+				"size" => "2"
+				),
+			"nbr_database" => array(
+				"type" => "text",
+				"legend" => $txt_product_editor_db[$lang],
+				"size" => "2"
+				),
+			"bandwidth" => array(
+				"type" => "text",
+				"legend" => $txt_product_traffic[$lang],
+				"size" => "5"
+				),
+			"allow_add_domain" => array(
+				"type" => "popup",
+				"legend" => $txt_product_adddomain[$lang],
+				"values" => array("check","no","yes")
+				),
+			"private" => array(
+				"type" => "checkbox",
+				"legend" => $txt_product_editor_private[$lang],
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]),
+				"default" => "no")
+        		)
+        	);
+	$out = dtcDatagrid($dsc);
+
+        $dsc = array(
+        	"table_name" => $pro_mysql_product_table,
+        	"title" => $txt_product_editor_product_list_editor[$lang]." (VPS)",
+        	"action" => "hosting_product_list",
+        	"forward" => array("rub"),
+        	"where_condition" => "heb_type='vps'",
         	"cols" => array(
 			"id" => array(
 				"type" => "id",
@@ -84,25 +152,10 @@ function productManager(){
 				"legend" => "RAM",
 				"size" => "4"
 				),
-			"nbr_email" => array(
-				"type" => "text",
-				"legend" => $txt_product_mail[$lang],
-				"size" => "2"
-				),
-			"nbr_database" => array(
-				"type" => "text",
-				"legend" => $txt_product_editor_db[$lang],
-				"size" => "2"
-				),
 			"bandwidth" => array(
 				"type" => "text",
 				"legend" => $txt_product_traffic[$lang],
 				"size" => "5"
-				),
-			"allow_add_domain" => array(
-				"type" => "popup",
-				"legend" => $txt_product_adddomain[$lang],
-				"values" => array("check","no","yes")
 				),
 			"private" => array(
 				"type" => "checkbox",
@@ -112,7 +165,119 @@ function productManager(){
 				"default" => "no")
         		)
         	);
-	$out = dtcDatagrid($dsc);
+	$out .= dtcDatagrid($dsc);
+
+        $dsc = array(
+        	"table_name" => $pro_mysql_product_table,
+        	"title" => $txt_product_editor_product_list_editor[$lang]." (Dedicated servers)",
+        	"action" => "hosting_product_list",
+        	"forward" => array("rub"),
+        	"where_condition" => "heb_type='server'",
+        	"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "yes",
+				"legend" => "Id"
+				),
+			"renew_prod_id" => array(
+				"type" => "popup",
+				"legend" => $txt_product_editor_renewal_id[$lang],
+				"values" => $renew_id_popup,
+				"display_replace" => array("No-renew")
+				),
+			"name" => array(
+				"type" => "text",
+				"legend" => $txt_product_name[$lang],
+				"size" => "30"
+				),
+			"heb_type" => array(
+				"type" => "popup",
+				"legend" => $txt_product_editor_type[$lang],
+				"values" => array("shared","ssl","vps","server")
+				),
+			"period" => array(
+				"type" => "text",
+				"legend" => $txt_product_period[$lang],
+				"size" => "10"
+				),
+			"price_dollar" => array(
+				"type" => "text",
+				"legend" => $txt_product_price[$lang],
+				"size" => "4"
+				),
+			"quota_disk" => array(
+				"type" => "text",
+				"legend" => $txt_product_disk[$lang],
+				"size" => "4"
+				),
+			"memory_size" => array(
+				"type" => "text",
+				"legend" => "RAM",
+				"size" => "4"
+				),
+			"bandwidth" => array(
+				"type" => "text",
+				"legend" => $txt_product_traffic[$lang],
+				"size" => "5"
+				),
+			"private" => array(
+				"type" => "checkbox",
+				"legend" => $txt_product_editor_private[$lang],
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]),
+				"default" => "no")
+        		)
+        	);
+	$out .= dtcDatagrid($dsc);
+
+        $dsc = array(
+        	"table_name" => $pro_mysql_product_table,
+        	"title" => $txt_product_editor_product_list_editor[$lang]." (SSL IPs)",
+        	"action" => "hosting_product_list",
+        	"forward" => array("rub"),
+        	"where_condition" => "heb_type='ssl'",
+        	"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "yes",
+				"legend" => "Id"
+				),
+			"renew_prod_id" => array(
+				"type" => "popup",
+				"legend" => $txt_product_editor_renewal_id[$lang],
+				"values" => $renew_id_popup,
+				"display_replace" => array("No-renew")
+				),
+			"name" => array(
+				"type" => "text",
+				"legend" => $txt_product_name[$lang],
+				"size" => "30"
+				),
+			"heb_type" => array(
+				"type" => "popup",
+				"legend" => $txt_product_editor_type[$lang],
+				"values" => array("shared","ssl","vps","server")
+				),
+			"period" => array(
+				"type" => "text",
+				"legend" => $txt_product_period[$lang],
+				"size" => "10"
+				),
+			"price_dollar" => array(
+				"type" => "text",
+				"legend" => $txt_product_price[$lang],
+				"size" => "4"
+				),
+			"private" => array(
+				"type" => "checkbox",
+				"legend" => $txt_product_editor_private[$lang],
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]),
+				"default" => "no")
+        		)
+        	);
+	$out .= dtcDatagrid($dsc);
+
 	$out .= helpLink("PmWiki/HostingProductManager");
 	return $out;
 /*        $q = "SELECT * FROM $pro_mysql_product_table ORDER BY id";
