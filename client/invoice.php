@@ -125,9 +125,11 @@ class zPDF extends FPDF{
 		$this->SetFont('Arial','I',12);
 		$ze_date = explode("-",$completedorder["date"]);
 		$pt_date = $ze_date[0].$ze_date[1].$ze_date[2];
-		$pt_date = $pt_date * 10000000;
-		$pt_date += $completedorder["id"];
-		$this->Cell(40,22,"Number: $pt_date");
+//		$pt_date = $pt_date * 10000;
+//		$pt_date += $completedorder["id"];
+		$pt_date_plus = 100000000 + $completedorder["id"];
+		$text_number = $pt_date . $pt_date_plus;
+		$this->Cell(40,22,"Number: $text_number");
 		$this->SetXY(130,34);
 		$this->Cell(40,22,"Payid: ".$pay["id"]);
 		// From:
