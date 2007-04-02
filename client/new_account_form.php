@@ -425,6 +425,9 @@ function registration_form(){
 	global $pro_mysql_vps_server_table;
 
 	global $conf_selling_conditions_url;
+	global $secpayconf_currency_symbol;
+
+	get_secpay_conf();
 
 	if(isset($_REQUEST["product_id"]) && isRandomNum($_REQUEST["product_id"])){
 		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["product_id"]."';";
@@ -451,9 +454,9 @@ function registration_form(){
 		$a = mysql_fetch_array($r);
 		$p_jscript .= " prod_popup_htype[".$a["id"]."] = '".$a["heb_type"]."';\n";
 		if(isset($_REQUEST["product_id"]) && $a["id"] == $_REQUEST["product_id"]){
-			$prod_popup .= "<option value=\"".$a["id"]."\" selected>".$a["name"]." / ".$a["price_dollar"]."\$</option>\n";
+			$prod_popup .= "<option value=\"".$a["id"]."\" selected>".$a["name"]." / ".$a["price_dollar"]."$secpayconf_currency_symbol</option>\n";
 		}else{
-			$prod_popup .= "<option value=\"".$a["id"]."\">".$a["name"]." / ".$a["price_dollar"]."\$</option>\n";
+			$prod_popup .= "<option value=\"".$a["id"]."\">".$a["name"]." / ".$a["price_dollar"]."$secpayconf_currency_symbol</option>\n";
 		}
 	}
 	$prod_popup = "<select onChange=\"hostingProductChanged();\" name=\"product_id\">".$prod_popup."</select>";
