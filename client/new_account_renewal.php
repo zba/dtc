@@ -5,7 +5,8 @@ function renew_form(){
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_product_table;
 	global $pro_mysql_pending_renewal_table;
-
+	global $pro_mysql_client_table;
+	global $pro_mysql_companies_table;
 	global $pro_mysql_vps_table;
 	global $pro_mysql_dedicated_table;
 	global $pro_mysql_vps_server_table;
@@ -24,13 +25,15 @@ function renew_form(){
 		return $ret;
 	}
 
-	$q = "SELECT adm_login FROM $pro_mysql_admin_table WHERE adm_login='".addslashes($_REQUEST["adm_login"])."';";
+	$q = "SELECT adm_login,id_client FROM $pro_mysql_admin_table WHERE adm_login='".addslashes($_REQUEST["adm_login"])."';";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
 		$ret["err"] = 3;
 		$ret["mesg"] = "Username not found in database! Try again.";
 		return $ret;
+	}else{
+		$admin = mysql_fetch_array($r);
 	}
 
 	if(isset($_REQUEST["renew_type"]) && ($_REQUEST["renew_type"] == "ssl" || $_REQUEST["renew_type"] == "ssl_renew")){
@@ -46,6 +49,7 @@ function renew_form(){
 		return $ret;
 	}
 	$a = mysql_fetch_array($r);
+	$product = $a;
 	$the_prod = $a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)";
 	$prod_id = $a["id"];
 
@@ -120,6 +124,39 @@ Product name: $the_prod
 Renew product type: ".$_REQUEST["renew_type"]."
 Service country: $country
 ";
+	if($admin["id_client"] == 0){
+		$ret["err"] = 3;
+		$ret["mesg"] = "Admin does not link to a client.";
+		return $ret;
+	}
+
+	// Get the client ID so we can get the country
+	$q = "SELECT * FROM $pro_mysql_client_table WHERE id='".$admin["id_client"]."'";
+	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$ret["err"] = 3;
+		$ret["mesg"] = "Client not found in database! Try again.";
+		return $ret;
+	}else{
+		$client = mysql_fetch_array($r);
+	}
+
+	// Get the VAT from the invoicing company
+	$company_invoicing_id = findInvoicingCompany ($country,$client["country"]);
+	$q = "SELECT * FROM $pro_mysql_companies_table WHERE id='$company_invoicing_id';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	if($n != 1){
+		$ret["err"] = 3;
+		$ret["mesg"] = "Cannot find company for invoicing.";
+		return $ret;
+	}
+	$company_invoicing = mysql_fetch_array($r);
+	if($company_invoicing["vat_rate"] != 0 && $company_invoicing["vat_number"] != ""){
+		$vat_rate = $company_invoicing["vat_rate"];
+	}else{
+		$vat_rate = 0;
+	}
 
 	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
 	mail($conf_webmaster_email_addr, "[DTC] Somebody tried to renew", $mail_content, $headers);
@@ -130,13 +167,13 @@ Service country: $country
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$renew_id = mysql_insert_id();
 
-	$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"],"no",$prod_id);
+	$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"],"no",$prod_id,$vat_rate);
 
 	$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
-	$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"],$return_url);
+	$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"],$return_url,$vat_rate);
 	$form .= "Please click on the button below to send money in your acount:<br><br>$paybutton";
 
 	$ret["err"] = 0;
