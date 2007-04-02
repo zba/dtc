@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.21 2007/04/02 21:10:57 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.22 2007/04/02 21:12:30 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -40,7 +40,7 @@ function productManager(){
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
         	"title" => $txt_product_editor_product_list_editor[$lang]." (shared)",
-        	"action" => "hosting_product_list",
+        	"action" => "hosting_product_list_shared",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='shared'",
         	"cols" => array(
@@ -107,7 +107,7 @@ function productManager(){
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
         	"title" => $txt_product_editor_product_list_editor[$lang]." (VPS)",
-        	"action" => "hosting_product_list",
+        	"action" => "hosting_product_list_vps",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='vps'",
         	"cols" => array(
@@ -170,7 +170,7 @@ function productManager(){
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
         	"title" => $txt_product_editor_product_list_editor[$lang]." (Dedicated servers)",
-        	"action" => "hosting_product_list",
+        	"action" => "hosting_product_list_dedicated",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='server'",
         	"cols" => array(
@@ -233,7 +233,7 @@ function productManager(){
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
         	"title" => $txt_product_editor_product_list_editor[$lang]." (SSL IPs)",
-        	"action" => "hosting_product_list",
+        	"action" => "hosting_product_list_ssl",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='ssl'",
         	"cols" => array(
