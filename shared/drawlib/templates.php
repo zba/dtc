@@ -689,7 +689,7 @@ function dtcListItemsEdit($dsc){
 			default:
 				break;
 			}
-			if( isset($dsc["cols"][ $keys[$i] ]["check"]) && (!isset($dsc["cols"][ $keys[$i] ]["disable_edit"]) || $dsc["cols"][ $keys[$i] ]["disable_edit"] != "yes") ){
+			if( isset($dsc["cols"][ $keys[$i] ]["check"])){
 				switch($dsc["cols"][ $keys[$i] ]["check"]){
 				case "subdomain":
 					if( !checkSubdomainFormat($_REQUEST[ $keys[$i] ]) ){
