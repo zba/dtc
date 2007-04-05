@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS subdomain (
   associated_txt_record varchar(128) NOT NULL default '',
   generate_vhost enum('yes','no') NOT NULL default 'yes',
   ssl_ip varchar(16) NOT NULL default 'none',
+  nameserver_for varchar(64) default NULL,
+  srv_record varchar(64) default NULL,
   PRIMARY KEY  (id),
   UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
 ) TYPE=MyISAM

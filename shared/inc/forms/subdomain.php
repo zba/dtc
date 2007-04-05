@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.21 2007/02/24 06:05:53 thomas Exp $
+ * @version $Id: subdomain.php,v 1.22 2007/04/05 14:29:26 tusker Exp $
  * @param unknown_type $domain
  * @return unknown
  */
@@ -117,6 +117,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 	global $txt_subdom_generate_webalizer;
 	global $txt_subdom_generate_vhost;
 	global $txt_subdom_nameserver_for;
+	global $txt_subdom_srv_record;
 	global $txt_subdom_edit_one;
 	global $txt_subdom_new;
 	global $txt_yes;
@@ -195,6 +196,10 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"legend" => $txt_subdom_generate_vhost[$lang]),
+			"srv_record" => array(
+				"type" => "text",
+				"can_be_empty" => "yes",
+				"legend" => $txt_subdom_srv_record[$lang]),
 			"register_globals" => array(
 				"type" => "radio",
 				"values" => array("yes","no"),

@@ -419,12 +419,18 @@ $more_mx_server
 				if($web_subname == "list"){
 					$is_list_subdomain_set = "yes";
 				}
-				// write TTL values into subdomain
-				if ($conf_use_cname_for_subdomains == "yes"){
-					$this_site_file .= "$web_subname	$sub_ttl	IN	CNAME	@\n";
+				// if we have a srv_record here (ie a port, then we don't write the normal subdomain entry, just the SRV record
+			 	if (isset($subdomain["srv_record"]) && $subdomain["srv_record"] != "")
+				{
+					$this_site_file .= "$web_subname	$sub_ttl	SRV	0	10	".$subdomain["srv_record"]."	".$subdomain["ip"]."\n";
+				} else {	
+					// write TTL values into subdomain
+					if ($conf_use_cname_for_subdomains == "yes"){
+						$this_site_file .= "$web_subname	$sub_ttl	IN	CNAME	@\n";
 
-				}else{
-					$this_site_file .= "$web_subname	$sub_ttl	IN	$the_ip_writed\n";
+					}else{
+						$this_site_file .= "$web_subname	$sub_ttl	IN	$the_ip_writed\n";
+					}
 				}
 				if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
 					$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";

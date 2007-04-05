@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.136 2007/03/28 13:34:55 seeb Exp $
+ * @version $Id: strings.php,v 1.137 2007/04/05 14:29:26 tusker Exp $
  * $Log: strings.php,v $
+ * Revision 1.137  2007/04/05 14:29:26  tusker
+ * Add support for SRV records
+ *
  * Revision 1.136  2007/03/28 13:34:55  seeb
  * New Polish translations
  *
@@ -4567,6 +4570,23 @@ $txt_subdom_nameserver_for = array(
 	"es" => "Este subdominio es una entrada del nameserver (NS)<br>para el subdominio siguiente: ",
 	"pt" => "Este subdomain 茅 uma entrada do nameserver (NS)<br>para o seguinte subdomain: ",
 );
+
+$txt_subdom_srv_record = array(
+	"fr" => "Ce subdomain est une entr茅e du service (SRV)<br>pour le port suivant  ",
+	"en" => "This subdomain is a service (SRV)<br>entry for the following port: ",
+	"hu" => "TRANS This subdomain is a service (SRV)<br>entry for the following port: ",
+	"it" => "Questo subdomain 猫 un'entrata del service (SRV)<br>per il seguente port: ",
+	"nl" => "Dit subdomain is een service(srv)<br>ingang voor volgende port: ",
+	"ru" => "协褌懈屑 subdomain 斜褍写械褌 胁褏芯写 service (srv)<br>写谢褟 following port: ",
+	"de" => "Diese Subdomain ist eine service (SRV)<br>Eintragung f眉r das folgende port: ",
+	"zh" => "这个子域名是下列子域名的入口：",
+	"pl" => "TRANS This subdomain is a service (SRV)<br>entry for the following port: ",
+	"se" => "TRANS This subdomain is a service (SRV)<br>entry for the following port: ",
+	"es" => "Este subdominio es una entrada del service (SRV)<br>para el subdominio port: ",
+	"pt" => "Este subdomain 茅 uma entrada do service (SRV)<br>para o seguinte port: ",
+);
+
+
 $txt_subdom_scriptadvice = array(
 	"fr" => "Ensuite, ajouter simplement le script suivant a
 votre crontab Unix (vous avez besoin de lynx-ssl). Nous recommandons

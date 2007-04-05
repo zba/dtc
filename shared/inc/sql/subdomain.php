@@ -99,6 +99,15 @@ if(isset($_REQUEST["edit_one_subdomain"]) && $_REQUEST["edit_one_subdomain"] == 
 		$add_vals .= ", nameserver_for=NULL ";
 	}
 
+	// check to see if we want to add a SRV record
+	if ( isset($_REQUEST["srv_record"]) && $_REQUEST["srv_record"] != "" ){
+		$add_vals .= ", srv_record='".$_REQUEST["srv_record"]."' ";
+	} else {
+		$add_vals .= ", srv_record=NULL ";
+	}
+
+	
+
 	if(isFtpLogin($_REQUEST["subdomain_dynlogin"]) && isDTCPassword($_REQUEST["subdomain_dynpass"])){
 		$add_vals .= ", login='".$_REQUEST["subdomain_dynlogin"]."', pass='".$_REQUEST["subdomain_dynpass"]."'";
 	}else{

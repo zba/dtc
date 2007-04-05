@@ -213,7 +213,7 @@ function checkSubdomainFormat($name){
 	if($name == ""){
 		return false;
 	}
-	if(ereg("^([a-z0-9]+)([.a-z0-9-]*)([a-z0-9]+)\$",$name))
+	if(ereg("^([a-z0-9\_]+)([.a-z0-9\-\_]*)([.a-z0-9]+)\$",$name))
 		return true;
 	else{
 		if(ereg("^([a-z0-9])\$",$name))
@@ -238,6 +238,7 @@ function isValidEmail($email){
 }
 
 function isHostnameOrIP($hostname){
+	echo $hostname;
 	$reg = '^((([a-z0-9]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$';
 	if(!ereg($reg,$hostname) && !isIP($hostname))	return false;
 	else			return true;
