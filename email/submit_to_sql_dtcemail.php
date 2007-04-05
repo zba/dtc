@@ -151,6 +151,8 @@ case "dtcemail_change_pass":
 	$crypted_pass = crypt($_REQUEST["newpass1"]);
 	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass', passwd='".$_REQUEST["newpass1"]."' WHERE id='$user' AND mbox_host='$host';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$q = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',gen_qmail='yes',restart_qmail='yes' WHERE 1";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$adm_email_pass = $_REQUEST["newpass1"];
 	$_REQUEST["adm_email_pass"] = $_REQUEST["newpass1"];
 	break;
