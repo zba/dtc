@@ -2125,6 +2125,21 @@ $txt_cfg_real_name = array(
 "pt" => "TRANS Real name"
 );
 
+$txt_cfg_paypal_use_recuring = array(
+"fr" => "Utiliser le payment récurent paypal :",
+"en" => "Use paypal recuring:",
+"hu" => "TRANS Use paypal recuring:",
+"it" => "TRANS Use paypal recuring:",
+"nl" => "TRANS Use paypal recuring:",
+"ru" => "TRANS Use paypal recuring:",
+"de" => "TRANS Use paypal recuring:",
+"zh" => "TRANS Use paypal recuring:",
+"pl" => "TRANS Use paypal recuring:",
+"se" => "TRANS Use paypal recuring:",
+"es" => "TRANS Use paypal recuring:",
+"pt" => "TRANS Use paypal recuring:"
+);
+
 $txt_cfg_paypal_use_sandbox = array(
 	"fr" => "Utiliser le serveur de test sandbox :",
 	"en" => "Use the sandbox test server:",

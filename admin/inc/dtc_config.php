@@ -1016,6 +1016,7 @@ function drawDTCpayConfig(){
 	global $txt_cfg_paypal_autovalid;
 	global $txt_cfg_paypal_sandbox_email;
 	global $txt_cfg_paypal_use_sandbox;
+	global $txt_cfg_paypal_use_recuring;
 
 	global $txt_cfg_test_server;
 	global $txt_cfg_production_server;
@@ -1068,6 +1069,11 @@ function drawDTCpayConfig(){
 				"size" => "6"),
 			"paypal_sandbox" => array(
 				"legend" => $txt_cfg_paypal_use_sandbox[$lang],
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"use_paypal_recurring" => array(
+				"legend" => $txt_cfg_paypal_use_recuring[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
