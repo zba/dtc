@@ -1913,7 +1913,7 @@ smtpd_tls_auth_only = no
 			if [ -f $PATH_DTC_ETC/postfix_config_snippets ]; then
 				cat $PATH_DTC_ETC/postfix_config_snippets >> $TMP_FILE
 			else
-				echo "# /usr/share/dtc/etc/postfix_config_snippets
+				echo "# /var/lib/dtc/etc/postfix_config_snippets
 # this file is appended to the postfix configure, in case you need to override some configure parameters in the postfix main.cf" > $PATH_DTC_ETC/postfix_config_snippets
 			fi
 

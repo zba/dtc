@@ -88,7 +88,7 @@ PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_CTRL=/etc/qmail
 # This is needed to support Etch and newer
 if [ -f /etc/proftpd/proftpd.conf ] ; then
-	PATH_PROFTPD_CONF=/etc//proftpd/proftpd.conf
+	PATH_PROFTPD_CONF=/etc/proftpd/proftpd.conf
 else
 	PATH_PROFTPD_CONF=/etc/proftpd.conf
 fi
@@ -123,7 +123,7 @@ USER_ADD_CMD=groupadd
 USER_MOD_CMD=usermod
 PASSWD_CMD=passwd
 
-PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
+PATH_DTC_ETC="/var/lib/dtc/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
