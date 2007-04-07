@@ -9,7 +9,7 @@ function calculateVATtotal ($amount,$vat_rate){
 	return $big_total;
 }
 
-function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0){
+function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_recurring = "no"){
 	global $conf_use_worldpay;
 
 	global $secpayconf_use_enets;
@@ -17,6 +17,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0){
 	global $secpayconf_paypal_rate;
 	global $secpayconf_paypal_flat;
 	global $secpayconf_enets_rate;
+	global $secpayconf_use_paypal_recurring;
 
 	if(!isset($secpayconf_use_paypal) || ( $secpayconf_use_paypal != "no" && $secpayconf_use_paypal != "yes" )){
 		get_secpay_conf();
@@ -42,6 +43,20 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0){
 			$vat_total = "";
 		}
 		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url)."</td>";
+		$out .= "<td>\$$amount</td><td>\$$cost</td>$vat_total<td>\$$total</td><td>Yes</td></tr>\n";
+	}
+	if($secpayconf_use_paypal == "yes" && $secpayconf_use_paypal_recurring == "yes" && $use_recurring == "yes"){
+		$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
+		$cost = $total - $amount;
+		if($vat_rate != 0){
+			$big_total = calculateVATtotal ($total,$vat_rate);
+			$vat = $big_total - $total;
+			$vat_total = "<td>".$vat."</td>";
+			$total = $big_total;
+		}else{
+			$vat_total = "";
+		}
+		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url,"yes")."</td>";
 		$out .= "<td>\$$amount</td><td>\$$cost</td>$vat_total<td>\$$total</td><td>Yes</td></tr>\n";
 	}
 	if($secpayconf_use_enets == "yes"){

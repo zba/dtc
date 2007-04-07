@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: new_account.php,v 1.31 2007/02/17 19:27:12 thomas Exp $
+ * @version $Id: new_account.php,v 1.32 2007/04/07 07:58:37 thomas Exp $
  * @abstract Localization must go on ... ;) seeb
  * @todo repair bug for 
  * "Cannot reselect transaction for id $extapi_pay_id: registration failed!" 
@@ -241,7 +241,7 @@ we also accept checks and wire transfers.";
 					$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='".$reguser["id"]."';";
 					$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 					$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
-					$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"],$return_url,$vat_rate);
+					$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"],$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
 				}
 				if($print_form == "yes"){
 					$form = $reguser["mesg"]."<br><h4>".$txt_err_register_succ[$lang]."<!--Registration successfull!--></h4>
