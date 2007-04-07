@@ -2625,6 +2625,18 @@ createRRDFiles () {
 			chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/memgraph.cgi
 		fi
 	fi
+	if [ -d /tmp/queuegraph ] ; then
+		rm -rf /tmp/queuegraph
+	fi
+	if [ -d /tmp/netusegraph ] ; then
+		rm -rf /tmp/netusegraph
+	fi
+	if [ -d /tmp/memusage ] ; then
+		rm -rf /tmp/memusage
+	fi
+	if [ -d /tmp/cpugraph ] ; then
+		rm -rf /tmp/cpugraph
+	fi
 }
 
 modifySSHDConfig () {
