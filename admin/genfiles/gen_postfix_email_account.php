@@ -3,30 +3,30 @@
 /********************************************************
  * This will generate the appropriate files for postfix *
  * Generate the following files:              ***********
- * /usr/share/dtc/etc/postfix_virtual_mailbox_domains       *
- * domain.com	virtual                       *
- *                                            *
- * /usr/share/dtc/etc/postfix_virtual                       *
- * postmaster@domain.com	postmaster    *
- *                                            *
- * /usr/share/dtc/etc/postfix_vmailbox                      *
+ * $conf_generated_file_path/postfix_virtual_mailbox_domains
+ * domain.com	virtual
+ *
+ * $conf_generated_file_path/postfix_virtual
+ * postmaster@domain.com	postmaster
+ *
+ * $conf_generated_file_path/postfix_vmailbox
  * emailaddress@domain.com	dtc/domain/Mailboxs/<emailaddress>/Maildir/
  *                                            *
- * /usr/share/dtc/etc/postfix_virtual_uid_mapping           
+ * $conf_generated_file_path/postfix_virtual_uid_mapping           
  * emailaddress@domain.com	65534         
  *
- * /usr/share/dtc/etc/postfix_relay_domains
+ * $conf_generated_file_path/postfix_relay_domains
  * domain.name
  * domain2.name
  *
- * /usr/share/dtc/etc/postfix_relay_recipients
+ * $conf_generated_file_path/postfix_relay_recipients
  * emailaddress@domain.com	OK
  * emailaddress2@domain.com	OK
  *
- * /usr/share/dtc/etc/postfix_aliases
+ * $conf_generated_file_path/postfix_aliases
  * mailinglist:		"|/usr/bin/mlmmj-recieve"
  *
- * /usr/share/dtc/etc/recipient_lists/$domain
+ * $conf_generated_file_path/recipient_lists/$domain
  * ($conf_postfix_recipient_lists_path/$domain)
  * email@$domain	OK
  *
