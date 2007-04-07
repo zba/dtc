@@ -1,4 +1,5 @@
 /usr/share/doc/dtc
 /usr/share/dtc/etc/zones
 /usr/share/dtc/shared/imgcache
-/var/lib/dtc
+/var/lib/dtc/etc/zones
+/var/lib/dtc/etc/slave_zones
