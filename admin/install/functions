@@ -3850,6 +3850,7 @@ saveConfig () {
 	if [ -z ""$DTC_SAVED_INSTALL_CONFIG ] ; then
 		DTC_SAVED_INSTALL_CONFIG="/root/.dtc_saved_config"
 	fi
+	umask 0700
         echo "
 conf_mysql_host=\"${conf_mysql_host}\"
 conf_mysql_login=\"${conf_mysql_login}\"
@@ -3881,6 +3882,7 @@ conf_cert_unit=\"${conf_cert_unit}\"
 conf_cert_email=\"${conf_cert_email}\"
 conf_cert_challenge_pass=\"${conf_cert_challenge_pass}\"
 " >${DTC_SAVED_INSTALL_CONFIG}
+	chmod 0700 ${DTC_SAVED_INSTALL_CONFIG}
 }
 
 DTCsearchConfigFiles () {
