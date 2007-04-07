@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.51 2007/03/28 13:06:36 dracula Exp $
+ * @version $Id: email.php,v 1.52 2007/04/07 08:33:11 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -273,8 +273,9 @@ function drawAdminTools_emailAccount($mailbox){
 
 	$out = "<table width=\"100%\" heigh=\"1\">
 <tr>
-	<td width=\"50%\">".skin("frame",$change_pass_form,"")."</td>
-	<td>".skin("frame",$redirect_form,"")."</td>
+	<td width=\"50%\">".$change_pass_form."</td>
+	<td width=\"4\" background=\"gfx/skin/frame/border_2.gif\"></td>
+	<td>".$redirect_form."</td>
 </tr>
 </table>
 ";
@@ -302,41 +303,34 @@ function drawAdminTools_emailPanel($mailbox){
 		"type" => "link",
 		"link" => "My Email");
 	$user_menu[] = array(
-		"text" => $txt_user_menu_fetchmail[$lang],
-		"type" => "link",
-		"link" => "fetchmail");
-	$user_menu[] = array(
 		"text" => $txt_user_menu_antispam[$lang],
 		"type" => "link",
 		"link" => "antispam");
 	$user_menu[] = array(
+		"text" => $txt_user_menu_fetchmail[$lang],
+		"type" => "link",
+		"link" => "fetchmail");
+/*	$user_menu[] = array(
 		"text" => $txt_user_menu_quarantine[$lang],
 		"type" => "link",
-		"link" => "quarantine");
+		"link" => "quarantine");*/
 
 	$logout = "<a href=\"".$_SERVER["PHP_SELF"]."?action=logout\">".$txt_logout[$lang]."</a>";
 
 	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass","addrlink");
-	$left_menu = skin($conf_skin,"<br>".$mymenu."<center>$logout</center>",$adm_email_login);
-
-	$left_menu = "<table width=\"1\" height=\"100%\"><tr>
-		<td width=\"1\" height=\"1\">$left_menu</td>
-</tr><tr>
-		<td height=\"100%\">&nbsp;</td>
-</tr></table>";
 
 	switch($addrlink){
 	case "My Email":
 		$title = $txt_mail_edit[$lang];
 		$panel = drawAdminTools_emailAccount($mailbox);
 		break;
-	case "fetchmail":
-		$title = "Your list of imported mail";
-		$panel = drawImportedMail($mailbox);
-		break;
 	case "antispam":
 		$title = "Protect your mailbox with efficient tools:";
 		$panel = drawAntispamRules($mailbox);
+		break;
+	case "fetchmail":
+		$title = "Your list of imported mail";
+		$panel = drawImportedMail($mailbox);
 		break;
 	case "quarantine":
 		$title = "Those mail are in quarantine, and were not delivered to your pop account:";
@@ -348,22 +342,31 @@ function drawAdminTools_emailPanel($mailbox){
 		break;
 	}
 
-	$right = skin($conf_skin,$panel,$title);
+	if(function_exists("layoutEmailPanel")){
+		$content = layoutEmailPanel($adm_email_login,"<br>".$mymenu."<center>$logout</center>",$title,$panel);
+	}else{
+		$mymenu_skin = skin($conf_skin,"<br>".$mymenu."<center>$logout</center>",$adm_email_login);
+		$left = "<table width=\"1\" height=\"100%\"><tr>
+		<td width=\"1\" height=\"1\">$mymenu_skin</td>
+</tr><tr>
+		<td height=\"100%\">&nbsp;</td>
+</tr></table>";
 
-	$right = "<table width=\"100%\" height=\"100%\"><tr>
+		$right = skin($conf_skin,$panel,$title);
+
+		$right = "<table width=\"100%\" height=\"100%\"><tr>
 		<td width=\"100%\" height=\"100%\">$right</td>
 </tr><tr>
 	<td height=\"1\">&nbsp;</td>
 </tr></table>";
 
-	$content = "<table width=\"100%\" height=\"100%\"><tr>
+		$content = "<table width=\"100%\" height=\"100%\"><tr>
 		<td width=\"1\"  height=\"100%\">$left_menu</td>
 		<td width=\"100%\" height=\"100%\">$right</td>
 </tr></table>";
-
+	}
 	return $content;
-
-	return drawAdminTools_emailAccount($mailbox);
+//	return drawAdminTools_emailAccount($mailbox);
 }
 
 /////////////////////////////////////////

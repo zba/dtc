@@ -1,5 +1,31 @@
 <?
 
+function layoutEmailPanel($menu_title,$menu_content,$main_title,$main_content){
+	return '
+  <table class="box_wnb_content_clientimport_box_wnb" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td class="box_wnb_nb" valign="top">
+	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$menu_title.'</div></div></div></div>
+	<div class="box_wnb_tv_container">
+	<img src="gfx/skin/bwoup/gfx/spacer.gif" width="220" height="1">
+	'.$menu_content.'
+	</div>
+      </td>
+      <td class="box_wnb_content" valign="top">
+	<div class="box_wnb_content_container">
+	  <h2>'.$main_title.'</h2>
+	  '.$main_content.'
+	</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="box_wnb_nb_bottom"></td>
+      <td class="box_wnb_content_bottom"></td>
+    </tr>
+  </table>
+';
+}
+
 function skin_EmailPage(){
 	global $conf_skin;
 	global $lang;

@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.137 2007/04/05 14:29:26 tusker Exp $
+ * @version $Id: strings.php,v 1.138 2007/04/07 08:33:11 thomas Exp $
  * $Log: strings.php,v $
+ * Revision 1.138  2007/04/07 08:33:11  thomas
+ * Some layout work for the email panel.
+ *
  * Revision 1.137  2007/04/05 14:29:26  tusker
  * Add support for SRV records
  *
@@ -12,6 +15,21 @@
  * New Polish translations
  *
  */
+
+$txt_recurring_payment = array(
+	"fr" => "Paiement récurent",
+	"en" => "Recurring payment",
+	"hu" => "TRANS Recurring payment",
+	"it" => "TRANS Recurring payment",
+	"nl" => "TRANS Recurring payment",
+	"ru" => "TRANS Recurring payment",
+	"de" => "TRANS Recurring payment",
+	"zh" => "TRANS Recurring payment",
+	"pl" => "TRANS Recurring payment",
+	"se" => "TRANS Recurring payment",
+	"es" => "TRANS Recurring payment",
+	"pt" => "TRANS Recurring payment"
+);
 
 $txt_server_statistic_graphs = array (
 	"fr" => "Graph des statistiques du serveur",

@@ -19,6 +19,9 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 	global $secpayconf_enets_rate;
 	global $secpayconf_use_paypal_recurring;
 
+	global $txt_recurring_payment;
+	global $lang;
+
 	if(!isset($secpayconf_use_paypal) || ( $secpayconf_use_paypal != "no" && $secpayconf_use_paypal != "yes" )){
 		get_secpay_conf();
 	}
@@ -56,7 +59,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 		}else{
 			$vat_total = "";
 		}
-		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url,"yes")."</td>";
+		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url,"yes")."<br><i>".$txt_recurring_payment[$lang]."</i></td>";
 		$out .= "<td>\$$amount</td><td>\$$cost</td>$vat_total<td>\$$total</td><td>Yes</td></tr>\n";
 	}
 	if($secpayconf_use_enets == "yes"){
