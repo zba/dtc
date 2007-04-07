@@ -62,7 +62,7 @@ function paypalNotifyPostbackScript(){
 	}
 }
 
-function paypalButton($product_id,$amount,$item_name,$return_url){
+function paypalButton($product_id,$amount,$item_name,$return_url,$use_recurring = "no"){
 	global $paypal_account;
 	global $conf_administrative_site;
 
@@ -71,6 +71,7 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 	global $secpayconf_paypal_sandbox;
 	global $secpayconf_paypal_sandbox_email;
 	global $secpayconf_currency_letters;
+	global $secpayconf_use_paypal_recurring;
 	global $conf_use_ssl;
 
 	if($secpayconf_paypal_sandbox == "yes"){
@@ -96,15 +97,24 @@ function paypalButton($product_id,$amount,$item_name,$return_url){
 		$goback_start = "http://";
 	}
 
+	if($secpayconf_use_paypal_recurring == "yes" && $use_recurring == "yes"){
+		$add_to_form = '<input type="hidden" name="a3" value="'.$amount.'">
+		<input type="hidden" name="p3" value="1">
+		<input type="hidden" name="t3" value="M">
+		<input type="hidden" name="src" value="1">
+		<input type="hidden" name="sra" value="1">';
+	}else{
+		$add_to_form = '<input type="hidden" name="amount" value="'.$amount.'">';
+	}
 	$out = '<form action="https://'.$paypal_host.$paypal_cgi.'" method="post">
 <input type="hidden" name="cmd" value="_xclick">
 <input type="hidden" name="business" value="'.$ze_paypal_email.'">
 <input type="hidden" name="item_name" value="'.$item_name.'">
 <input type="hidden" name="item_number" value="'.$product_id.'">
-<input type="hidden" name="amount" value="'.$amount.'">
 <input type="hidden" name="currency_code" value="'.$secpayconf_currency_letters.'">
 <input type="hidden" name="no_shipping" value="1">
 <input type="hidden" name="no_note" value="1">
+'.$add_to_form.'
 <input type="hidden" name="return" value="'.$goback_start.$conf_administrative_site.$return_url.'">
 <input type="hidden" name="notify_url" value="'.$goback_start.$conf_administrative_site.'/dtc/paypal.php">
 <input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but01.gif" border="0"
