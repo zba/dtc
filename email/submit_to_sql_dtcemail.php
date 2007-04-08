@@ -24,7 +24,9 @@ function pass_check_email(){
 
 
 if(isset($_REQUEST["action"])){
-if(pass_check_email()==false)   die("User not found!");
+if($_REQUEST["action"] != "logout"){
+	if(pass_check_email()==false)   die("User not found!");
+}
 switch($_REQUEST["action"]){
 
 case "activate_antispam":
