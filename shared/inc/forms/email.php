@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.52 2007/04/07 08:33:11 thomas Exp $
+ * @version $Id: email.php,v 1.53 2007/04/08 09:51:09 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -239,24 +239,51 @@ function drawAdminTools_emailAccount($mailbox){
 <input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
 
-	$change_pass_form = "<br><b><u>".$txt_change_your_password_title[$lang]."</b></u><br><br><br>
+	// Draw the form for changing the password
+	$left = "<h3>".$txt_change_your_password_title[$lang]."</h3>
 <table cellpadding=\"0\" cellspacing=\"0\">
 <tr>
 	<td align=\"right\">".$form_start.$txt_password[$lang]."</td>
 	<td><input type=\"hidden\" name=\"action\" value=\"dtcemail_change_pass\"><input type=\"password\" name=\"newpass1\" value=\"\"></td>
 </tr><tr>
 	<td align=\"right\">".$txt_repeate_password[$lang]."</td>
-	<td><input type=\"password\" name=\"newpass2\" value=\"\"> <input type=\"submit\" name=\"submit\" value=\"Ok\"></form></td>
+	<td><input type=\"password\" name=\"newpass2\" value=\"\"></td>
+</tr><tr>
+	<td></td><td>
+<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"submit\" value=\"Ok\"></div>
+ <div class=\"input_btn_right\"></div>
+</div></form></td>
 </tr></table>
 <br><br>";
+
+	if($mailbox["data"]["vacation_flag"] == "yes"){
+		$use_vacation_msg_yes_checked = " checked ";
+		$use_vacation_msg_no_checked = " ";
+	}else{
+		$use_vacation_msg_yes_checked = " ";
+		$use_vacation_msg_no_checked = " checked ";
+	}
+
+	$left .= "<h3>Vacation message</h3>
+	".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_vacation_msg\">
+<input type=\"radio\" name=\"use_vacation_msg\" value=\"yes\" $use_vacation_msg_yes_checked>".$txt_yes[$lang]."<input type=\"radio\" name=\"use_vacation_msg\" value=\"no\" $use_vacation_msg_no_checked>".$txt_no[$lang]."
+<br>
+<textarea cols=\"40\" rows=\"7\" name=\"vacation_msg_txt\">".$mailbox["data"]["vacation_text"]."</textarea><br>
+<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"submit\" value=\"Ok\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
+</form>";
 
 	if($mailbox["data"]["localdeliver"] == "yes"){
 		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=no\"><font color=\"green\">".$txt_yes[$lang]."</font></a>";
 	}else{
 		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=yes\"><font color=\"red\">".$txt_no[$lang]."</font></a>";
 	}
-
-	$redirect_form = "<br><b><u>".$txt_mailbox_redirection_edition[$lang]."</b></u><br><br>
+	$right = "<h3>".$txt_mailbox_redirection_edition[$lang]."</h3>
 ".$txt_mail_deliver_localy[$lang]." $deliverUrl
 <table cellpadding=\"0\" cellspacing=\"0\">
 <tr>
@@ -264,18 +291,44 @@ function drawAdminTools_emailAccount($mailbox){
 	<td><input type=\"hidden\" name=\"action\" value=\"dtcemail_edit_redirect\"><input type=\"text\" name=\"redirect1\" value=\"".$mailbox["data"]["redirect1"]."\"></td>
 </tr><tr>
 	<td>".$txt_mail_redirection2[$lang]."</td>
-	<td><input type=\"text\" name=\"redirect2\" value=\"".$mailbox["data"]["redirect2"]."\"><input type=\"submit\" name=\"submit\" value=\"Ok\"></form></td>
+	<td><input type=\"text\" name=\"redirect2\" value=\"".$mailbox["data"]["redirect2"]."\"></td>
+</tr><tr>
+	<td></td><td>
+	<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"submit\" value=\"Ok\"></div>
+ <div class=\"input_btn_right\"></div>
+</div></form></td>
 </tr></table><br><br>";
 
-
-	if($mailbox["data"]["iwall_protect"] == "yes"){
+	if($mailbox["data"]["spam_mailbox_enable"] == "yes"){
+		$spambox_yes_checked = " checked ";
+		$spambox_no_checked = " ";
+	}else{
+		$spambox_yes_checked = " ";
+		$spambox_no_checked = " checked ";
 	}
 
+	$right .= "<h3>Anti-SPAM control</h3>
+<table cellpadding=\"0\" cellspacing=\"0\">
+<tr>
+	<td align=\"right\">Deliver spam to spambox:</td><td>".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_spambox\">
+<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"yes\" $spambox_yes_checked>".$txt_yes[$lang]."<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"no\" $spambox_no_checked>".$txt_no[$lang]."</td>
+</tr><tr>
+	<td align=\"right\">SPAM box name:</td><td><input type=\"text\" name=\"spam_mailbox\" value=\"".$mailbox["data"]["spam_mailbox"]."\"></td>
+</tr><tr>
+	<td></td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"submit\" value=\"Ok\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
+</form></td></tr></table>";
+	// Output the form
 	$out = "<table width=\"100%\" heigh=\"1\">
 <tr>
-	<td width=\"50%\">".$change_pass_form."</td>
+	<td width=\"50%\" valign=\"top\">".$left."</td>
 	<td width=\"4\" background=\"gfx/skin/frame/border_2.gif\"></td>
-	<td>".$redirect_form."</td>
+	<td valign=\"top\">".$right."</td>
 </tr>
 </table>
 ";
@@ -298,19 +351,23 @@ function drawAdminTools_emailPanel($mailbox){
 	global $txt_user_menu_quarantine;
 	global $txt_logout;
 
+//	echo "<pre>";print_r($mailbox);echo "</pre>";
+
 	$user_menu[] = array(
 		"text" => $txt_user_menu_email[$lang],
+		"icon" => "box_wnb_nb_picto-mailboxes.gif",
 		"type" => "link",
 		"link" => "My Email");
 	$user_menu[] = array(
+		"text" => $txt_user_menu_fetchmail[$lang],
+		"icon" => "box_wnb_nb_picto-mailinglists.gif",
+		"type" => "link",
+		"link" => "fetchmail");
+/*	$user_menu[] = array(
 		"text" => $txt_user_menu_antispam[$lang],
 		"type" => "link",
 		"link" => "antispam");
 	$user_menu[] = array(
-		"text" => $txt_user_menu_fetchmail[$lang],
-		"type" => "link",
-		"link" => "fetchmail");
-/*	$user_menu[] = array(
 		"text" => $txt_user_menu_quarantine[$lang],
 		"type" => "link",
 		"link" => "quarantine");*/
