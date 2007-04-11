@@ -1657,10 +1657,10 @@ modifyCyrusPath () {
 		then
 			echoIfVerbose "Cyrus imapd.conf has been configured before"
 		else
-			searchAndReplace $PATH_CYRUS_CONF unixhierarchysep:\ no no/unixhierarchysep:\ yes
+			searchAndReplace $PATH_CYRUS_CONF unixhierarchysep:\ no unixhierarchysep:\ yes
 
 			# replace auxprop sith saslauthd only if we are using sasl instead of PAM
-			if [ !-f $PATH_SASLLIB/libsql.so ] ;then
+			if [ ! -f $PATH_SASLLIB/libsql.so ] ;then
 				searchAndReplace $PATH_CYRUS_CONF sasl_pwcheck_method:\ auxprop sasl_pwcheck_method:\ saslauthd
 				echoIfVerbose "configuring Cyrus for pam_mysql"
 			else
