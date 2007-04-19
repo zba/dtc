@@ -26,6 +26,11 @@ case "list_dns":
 	$out .= "// $n domain(s) installed\n";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
+		// check for empty "name" fields
+		if (!isset($a["name"]) || $a["name"] == "")
+		{
+			continue;	
+		}
 		$out .= 'zone "'.$a["name"].'" {
 	type slave;
 	masters { ';
