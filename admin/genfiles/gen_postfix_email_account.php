@@ -174,6 +174,10 @@ function mail_account_generate_postfix(){
 
 					$spam_stuff_done = 0;
 					$homedir_created = 0;
+					if (!isset($home) || $home=="")
+					{
+						$console .= "Missing home variable for $id";
+					}
 					if(! is_dir($home) ){
 						system("/bin/mkdir -p $home");
 						$homedir_created = 1;
