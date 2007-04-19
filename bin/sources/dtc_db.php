@@ -873,6 +873,7 @@ $dtc_database = array(
 			"associated_txt_record" => "varchar(128) NOT NULL ",
 			"generate_vhost" => "enum('yes','no') NOT NULL default 'yes' ",
 			"nameserver_for" => "varchar(64) NULL ",
+			"srv_record" => "varchar(64) NULL ",
 			"ttl" => "int(11) NULL default '7200' ",
 			"ssl_ip" => "varchar(16) NOT NULL default 'none'"
 			),
