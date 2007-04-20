@@ -430,7 +430,7 @@ function dtcDatagrid($dsc){
 					}
 					$out .= "<option value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected>".$display_value_popup."</option>";
 				}
-				$out .= "<select>";
+				$out .= "</select>";
 				$out .= "</td>";
 				break;
 			case "id":
@@ -538,7 +538,7 @@ function dtcDatagrid($dsc){
 					}
 					$out .= "<option value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\">".$display_value_popup."</option>";
 				}
-				$out .= "<select>";
+				$out .= "</select>";
 				$out .= "</td>";
 				break;
 			case "id":
