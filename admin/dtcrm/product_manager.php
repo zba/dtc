@@ -1,7 +1,7 @@
 <?php
 	/**
 	* @package DTC
-	* @version  $Id: product_manager.php,v 1.22 2007/04/02 21:12:30 thomas Exp $
+	* @version  $Id: product_manager.php,v 1.23 2007/04/20 10:15:08 thomas Exp $
 	* New arrays for translate menage_products
 	* @see dtc/admin/inc/dtc_config_strings.php
 	**/
@@ -54,11 +54,11 @@ function productManager(){
 				"legend" => $txt_product_name[$lang],
 				"size" => "30"
 				),
-			"heb_type" => array(
+/*			"heb_type" => array(
 				"type" => "popup",
 				"legend" => $txt_product_editor_type[$lang],
 				"values" => array("shared","ssl","vps","server")
-				),
+				),*/
 			"period" => array(
 				"type" => "text",
 				"legend" => $txt_product_period[$lang],
@@ -127,11 +127,11 @@ function productManager(){
 				"legend" => $txt_product_name[$lang],
 				"size" => "30"
 				),
-			"heb_type" => array(
+/*			"heb_type" => array(
 				"type" => "popup",
 				"legend" => $txt_product_editor_type[$lang],
 				"values" => array("shared","ssl","vps","server")
-				),
+				),*/
 			"period" => array(
 				"type" => "text",
 				"legend" => $txt_product_period[$lang],
@@ -190,11 +190,11 @@ function productManager(){
 				"legend" => $txt_product_name[$lang],
 				"size" => "30"
 				),
-			"heb_type" => array(
+/*			"heb_type" => array(
 				"type" => "popup",
 				"legend" => $txt_product_editor_type[$lang],
 				"values" => array("shared","ssl","vps","server")
-				),
+				),*/
 			"period" => array(
 				"type" => "text",
 				"legend" => $txt_product_period[$lang],
@@ -253,11 +253,11 @@ function productManager(){
 				"legend" => $txt_product_name[$lang],
 				"size" => "30"
 				),
-			"heb_type" => array(
+/*			"heb_type" => array(
 				"type" => "popup",
 				"legend" => $txt_product_editor_type[$lang],
 				"values" => array("shared","ssl","vps","server")
-				),
+				),*/
 			"period" => array(
 				"type" => "text",
 				"legend" => $txt_product_period[$lang],
