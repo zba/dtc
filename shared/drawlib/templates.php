@@ -279,7 +279,7 @@ function dtcDatagrid($dsc){
 			break;
 		}
 		if($q != ""){
-			$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_query());
+			$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
 		}
 	}
 
