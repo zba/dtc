@@ -109,6 +109,7 @@ function dtcFromOkDraw($delete_form=""){
 //   [skip_deletion] => "yes" -> Do not display the deletion option
 //   [skip_creation] => "yes" -> Do not display the new item line
 //   [where_condition] => "blabla='hop' AND titi='toto'" -> Condition of the display of the table
+//   [order_by] => "fldname_1" -> Condition pour le order by
 //   cols => array(
 //		"field0" => array(	-> Note this will be use as a WHERE blabla='titi' for the UPDATE statement
 //			type => "id",
@@ -322,7 +323,12 @@ function dtcDatagrid($dsc){
 	}else{
 		$where = "";
 	}
-	$q = "SELECT $sql_fld_list FROM ".$dsc["table_name"]." $where;";
+	if(isset($dsc["order_by"])){
+		$order_by = " ORDER BY ".$dsc["order_by"]." ";
+	}else{
+		$order_by = "";
+	}
+	$q = "SELECT $sql_fld_list FROM ".$dsc["table_name"]." $where $order_by;";
 	$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){

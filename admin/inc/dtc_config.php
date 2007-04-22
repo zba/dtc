@@ -446,6 +446,7 @@ function drawVPSServerConfig(){
 		"title" => $txt_cfg_vps_server_list[$lang],
 		"action" => "vps_server_list",
 		"forward" => array("rub","sousrub"),
+		"order_by" => "hostname",
 		"cols" => array(
 			"id" => array(
 				"type" => "id",
@@ -491,6 +492,7 @@ function drawVPSServerConfig(){
 			"table_name" => $pro_mysql_vps_ip_table,
 			"title" => $txt_cfg_vps_ips_for[$lang].$a["hostname"].":",
 			"where_condition" => "vps_server_hostname='".$a["hostname"]."'",
+			"order_by" => "vps_xen_name",
 			"action" => "vps_server_ip_list",
 			"forward" => array("rub","sousrub","edithost"),
 			"cols" => array(
