@@ -1,6 +1,7 @@
 dtc (0.25.4-1) unstable; urgency=low
 
   * Added pt_BR template by Felipe Augusto van de Wiel (Closes: #417248)
+  * Updated depends to libsasl2-2 instead of libsasl2 (Closes: #420253)
 
  -- Thomas Goirand <thomas@goirand.fr>  Mon,  2 Apr 2007 18:56:20 +0800
 
