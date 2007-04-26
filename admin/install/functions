@@ -3001,6 +3001,7 @@ createChrootTemplate () {
 
 	echoIfVerbose "===> Creating chroot tree in "$conf_chroot_path" for unix type: "$UNIX_TYPE
 	# set our umask so things are created with the correct group perms
+	oldumask=`umask`
 	umask 022
 
 	# now onto the creation
@@ -3394,6 +3395,7 @@ createChrootTemplate () {
 		fi
 	fi
 	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} etc dev bin lib tmp var sbin libexec usr
+	umask $oldumask
 	echoIfVerbose "-> Done chroot template!"
 }
 
@@ -3862,6 +3864,7 @@ saveConfig () {
 	if [ -z ""$DTC_SAVED_INSTALL_CONFIG ] ; then
 		DTC_SAVED_INSTALL_CONFIG="/root/.dtc_saved_config"
 	fi
+	oldumask=`umask`
 	umask 0700
         echo "
 conf_mysql_host=\"${conf_mysql_host}\"
@@ -3895,6 +3898,7 @@ conf_cert_email=\"${conf_cert_email}\"
 conf_cert_challenge_pass=\"${conf_cert_challenge_pass}\"
 " >${DTC_SAVED_INSTALL_CONFIG}
 	chmod 0600 ${DTC_SAVED_INSTALL_CONFIG}
+	umask $oldumask
 }
 
 DTCsearchConfigFiles () {
