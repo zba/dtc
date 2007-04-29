@@ -255,6 +255,20 @@ function dtcDatagrid($dsc){
 					$vals .= " ".$keys[$i]."='".$dsc["cols"][ $keys[$i] ]["values"][$index_val]."' ";
 					$added_one = "yes";
 					break;
+				case "password":
+					if($added_one == "yes"){
+                                                $vals .= ", ";
+                                        }
+                                        $vals .= " ".$keys[$i]."='".$_REQUEST[ $keys[$i] ]."' ";
+                                        $added_one = "yes";
+					// if the crypt field is set, then we use this as the SQL field to populate the crypted password into
+					if(isset($dsc["cols"][ $keys[$i] ]["cryptfield"])){
+						if($added_one == "yes"){
+							$vals .= ", ";
+						}
+						$vals .= " ".$dsc["cols"][ $keys[$i] ]["cryptfield"]."='".crypt($_REQUEST[ $keys[$i] ], dtc_makesalt())."' ";
+					}
+                                        break;
 				default:
 					if($added_one == "yes"){
 						$vals .= ", ";
@@ -820,6 +834,15 @@ function dtcListItemsEdit($dsc){
 					}else{
 						$values .= "'".addslashes($_REQUEST[ $keys[$i] ])."'";
 					}
+					// if the crypt field is set, then we use this as the SQL field to populate the crypted password into
+					if(isset($dsc["cols"][ $keys[$i] ]["cryptfield"])){
+						if($added_one == "yes"){
+							$fld_names .= ",";
+							$values .= ",";
+						}
+						$fld_names .= $dsc["cols"][ $keys[$i] ]["cryptfield"];
+						$values .= "'".crypt($_REQUEST[ $keys[$i] ], dtc_makesalt())."'";
+					}
 				}
 				$added_one = "yes";
 				break;
@@ -1037,6 +1060,13 @@ function dtcListItemsEdit($dsc){
 						$reqs .= $keys[$i]."='default'";
 					}else{
 						$reqs .= $keys[$i]."='".addslashes($_REQUEST[ $keys[$i] ]).$happen."'";
+						// if the crypt field is set, then we use this as the SQL field to populate the crypted password into
+						if(isset($dsc["cols"][ $keys[$i] ]["cryptfield"])){
+							if($added_one == "yes"){
+								$reqs .= ", ";
+							}
+							$reqs .= " ".$dsc["cols"][ $keys[$i] ]["cryptfield"]."='".crypt($_REQUEST[ $keys[$i] ], dtc_makesalt())."' ";
+						}
 					}
 					$added_one = "yes";
 				}
