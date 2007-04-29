@@ -80,6 +80,7 @@ function drawAdminTools_SSH($domain,$adm_path){
 			"password" => array(
 				"type" => "password",
 				"check" => "dtc_pass",
+				"cryptfield" => "crypt",
 				"legend" => $txt_login_pass[$lang]),
 			"homedir" => array(
 				"type" => "popup",
@@ -89,7 +90,7 @@ function drawAdminTools_SSH($domain,$adm_path){
 			)
 		);
 	if($conf_domain_based_ssh_logins == "yes"){
-		$dsc["cols"]["logins"]["happen_domain"] = "@".$domain["name"];
+		$dsc["cols"]["login"]["happen_domain"] = "@".$domain["name"];
 	}
 	$txt .= dtcListItemsEdit($dsc);
 	$txt .= helpLink("PmWiki/Ssh-Accounts");
