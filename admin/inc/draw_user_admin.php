@@ -168,7 +168,7 @@ function drawNewAdminForm(){
 			$a2 = mysql_fetch_array($r2);
 			$tmp = $a2["catdescript"]."<br>";
 		}
-		$out .= $txt_dua_type2.$tmp;
+		$out .= $txt_dua_type2[$lang].$tmp;
 		$out .= "First query date: ".$a["date"]." ".$a["time"]."<br>";
 		$out .= "Server hostname related: ".$a["server_hostname"]."<br>";
 		
