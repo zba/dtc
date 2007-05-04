@@ -62,6 +62,15 @@ Description: web control panel for admin and accounting hosting services (more d
  .
   Homepage: <http://www.gplhost.com/software-dtc.html>
 
+Package: dtc-stats-daemon
+Architecture: all
+Depends: dtc | dtc-postfix-courier
+Description: dtc-xen VM statistics for the dtc web control panel
+ Domain Technologie Control (DTC) is a control panel for hosting. This small
+ daemon will query all the dtc-xen servers that you have configured in DTC and
+ fetch the statistics from them: I/O stats, network and CPU. This  information
+ is then stored in DTC for your customer accounting.
+
 Package: dtc-toaster
 Architecture: all
 Depends: dtc-postfix-courier, ttf-arphic-ukai, ttf-bitstream-vera
