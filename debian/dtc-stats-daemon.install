@@ -1,1 +1,2 @@
-admin/dtc-stats-daemon.php /usr/share/dtc/admin
+admin/dtc-stats-daemon.php	/usr/share/dtc/admin
+admin/dtc-stats-daemon		/usr/share/dtc/admin

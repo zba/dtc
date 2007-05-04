@@ -1,9 +1,14 @@
 <?php
+
+$panel_type="cronjob";
+require("../shared/autoSQLconfig.php"); // Our main configuration file
+require_once("$dtcshared_path/dtc_lib.php");
+
 // Daemon for pulling stats from dtc-xen servers
 // Damien Mascord <damien@gplhost.com>
 
-include "/usr/share/dtc/shared/inc/nusoap.php";
-include "/usr/share/dtc/shared/inc/vps.php";
+//include "/usr/share/dtc/shared/inc/nusoap.php";
+//include "/usr/share/dtc/shared/inc/vps.php";
 
 /**
  * Run the current script as a daemon.  Used mostly (always?) for command line scripts.
@@ -42,7 +47,7 @@ $conf_time_delay_in_seconds=60;
 $pro_mysql_vps_server_table="vps_server";
 $pro_myslq_vps_stats_table="vps_stats";
 
-function connect2base(){
+/*function connect2base(){
 	global $conf_mysql_host;
 	global $conf_mysql_login;
 	global $conf_mysql_pass;
@@ -60,7 +65,7 @@ if (!connect2base())
 	echo "Could not connect to DB!";
 	exit (1);
 } else {
-	
+*/
 	$last_loop = 0;
 	// loop until we want to shutdown... 
 	$shutdown = false;
@@ -266,7 +271,7 @@ if (!connect2base())
 		}
 	
 	}
-}
+//}
 	
 
 ?> 

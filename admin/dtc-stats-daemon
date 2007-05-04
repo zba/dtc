@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /usr/share/dtc/admin
+php dtc-stats-daemon.php
