@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.53 2007/04/08 09:51:09 thomas Exp $
+ * @version $Id: email.php,v 1.54 2007/05/13 19:29:26 dracula Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -600,6 +600,7 @@ function drawAdminTools_Emails($domain){
 	global $txt_used_quota;
 	global $txt_mail_check_to_send_bounce_msg;
 	global $txt_mail_bounce_msg_content;
+	global $txt_name;
 
 	global $cyrus_used;
 	global $cyrus_default_quota;
@@ -638,6 +639,9 @@ function drawAdminTools_Emails($domain){
 				"disable_edit" => "yes",
 				"happen" => "@".$domain["name"],
 				"legend" => $txt_login_login[$lang]),
+			"memo" => array (
+				"type" => "text",
+				"legend" => "$txt_name[$lang]"),
 			"passwd" => array(
 				"type" => "password",
 				"check" => "dtc_pass",

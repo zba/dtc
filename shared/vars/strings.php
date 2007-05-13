@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.139 2007/04/19 04:57:26 thomas Exp $
+ * @version $Id: strings.php,v 1.140 2007/05/13 19:29:26 dracula Exp $
  * $Log: strings.php,v $
+ * Revision 1.140  2007/05/13 19:29:26  dracula
+ * Added Name for email account
+ *
  * Revision 1.139  2007/04/19 04:57:26  thomas
  * Added chinese patch.
  *
@@ -19,6 +22,23 @@
  *
  */
 
+$txt_name = array(
+	"fr" => "TRANS NAME",
+	"en" => "Name:",
+	"hu" => "TRANS NAME",
+	"it" => "TRANS NAME",
+	"nl" => "TRANS NAME",
+	"ru" => "TRANS NAME",
+	"de" => "Name:",
+	"ro" => "Nume:",
+	"zh" => "TRANS NAME",
+	"pl" => "TRANS NAME",
+	"se" => "TRANS NAME",
+	"es" => "TRANS NAME",
+	"pt" => "TRANS NAME"
+);
+
+
 $txt_recurring_payment = array(
 	"fr" => "Paiement récurent",
 	"en" => "Recurring payment",
@@ -26,7 +46,7 @@ $txt_recurring_payment = array(
 	"it" => "TRANS Recurring payment",
 	"nl" => "TRANS Recurring payment",
 	"ru" => "TRANS Recurring payment",
-	"de" => "TRANS Recurring payment",
+	"de" => "Wiederkehrende Zahlungen",
 	"zh" => "Ñ­»·¸¶¿î",
 	"pl" => "TRANS Recurring payment",
 	"se" => "TRANS Recurring payment",
