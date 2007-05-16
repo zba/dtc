@@ -5,8 +5,8 @@
 # please do not ship with you packages
 # this is only a small coder tool...
 # $Source: /var/lib/cvs/dtc/bin/prepareDebianTree,v $
-# $Date: 2006/12/16 08:52:10 $
-# $Revision: 1.12 $
+# $Date: 2007/05/16 19:14:58 $
+# $Revision: 1.13 $
 
 DSTDIR=..
 
@@ -21,7 +21,7 @@ fi
 VERSION=$VERS"-"$RELS
 UNIX_TYPE=debian
 
-echo " --- Updating DTC debian source package tree --- "
+echo " --- This script is deprecated and doesn't do anything now... --- "
 
 # Make the config file directory and script using standard
 # plus debian specific scripts
