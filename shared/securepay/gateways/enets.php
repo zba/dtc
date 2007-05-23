@@ -71,10 +71,12 @@ function enetsButton($payid,$amount,$item_name,$return_url){
 	if($secpayconf_use_enets_test == "yes"){
 		// This is test server URL
 		$enets_url = "http://ezpayd.consumerconnect.com.sg/masterMerchant/collectionPage.jsp";
+		$enets_url = "https://test.enets.sg/enets2/enps.do";
 		$enets_mid = $secpayconf_enets_test_mid_id;
 	}else{
 		// This is production website
 		$enets_url = "https://www.enetspayments.com.sg/masterMerchant/collectionPage.jsp";
+		$enets_url = "https://www.enets.sg/enets2/enps.do";
 		$enets_mid = $secpayconf_enets_mid_id;
 	}
 
