@@ -13,7 +13,6 @@ admin/patch_saslatuhd_startup	/usr/share/dtc/admin
 admin/rrdtool.sh		/usr/share/dtc/admin
 admin/accesslog.php		/usr/share/dtc/admin
 admin/cpugraph.cgi		/usr/share/dtc/admin
-admin/dtc-stats-daemon		/usr/share/dtc/admin
 admin/inc			/usr/share/dtc/admin
 admin/memgraph			/usr/share/dtc/admin
 admin/queuegraph		/usr/share/dtc/admin
