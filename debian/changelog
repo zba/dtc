@@ -1,3 +1,9 @@
+dtc (0.25.5-1) unstable; urgency=low
+
+  * Added dtc-stats-daemon package to the build.
+
+ -- Thomas Goirand <thomas@goirand.fr>  Fri, 25 May 2007 08:19:31 +0000
+
 dtc (0.25.4-1) unstable; urgency=low
 
   * This source package now builds dtc-stats-daemon.
