@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.140 2007/05/13 19:29:26 dracula Exp $
+ * @version $Id: strings.php,v 1.141 2007/05/26 03:49:16 thomas Exp $
  * $Log: strings.php,v $
+ * Revision 1.141  2007/05/26 03:49:16  thomas
+ * Hop!
+ *
  * Revision 1.140  2007/05/13 19:29:26  dracula
  * Added Name for email account
  *
@@ -23,7 +26,7 @@
  */
 
 $txt_name = array(
-	"fr" => "TRANS NAME",
+	"fr" => "Nom:",
 	"en" => "Name:",
 	"hu" => "TRANS NAME",
 	"it" => "TRANS NAME",
