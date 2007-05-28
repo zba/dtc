@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.54 2007/05/13 19:29:26 dracula Exp $
+ * @version $Id: email.php,v 1.55 2007/05/28 21:40:05 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -637,6 +637,7 @@ function drawAdminTools_Emails($domain){
 			"id" => array(
 				"type" => "text",
 				"disable_edit" => "yes",
+				"check" => "dtc_login_or_email",
 				"happen" => "@".$domain["name"],
 				"legend" => $txt_login_login[$lang]),
 			"memo" => array (
