@@ -2267,7 +2267,7 @@ modifyPureFtpdMySQLConfig () {
 MYSQLSocket /tmp/mysql.sock
 MYSQLUser dtcdaemons
 MYSQLPassword ${MYSQL_DTCDAEMONS_PASS}
-MYSQLDatabase dtc
+MYSQLDatabase $conf_mysql_db
 MYSQLCrypt cleartext
 MYSQLGetPW      SELECT password FROM ftp_access WHERE login=\"\L\"
 MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
