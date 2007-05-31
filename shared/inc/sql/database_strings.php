@@ -56,7 +56,7 @@ $txt_dbsql_a_user_by_that_name_exists_in_the_db = array(
 	"zh" => "Êý¾Ý¿âÖÐÒÑ´æÔÚÕâ¸öÓÃ»§Ãû£¬ÇëÖØÐÂÑ¡ÔñÒ»¸ö¡£",
 	"pl" => "TRANS Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom.",
 	"se" => "TRANS Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom.",
-	"es" => "Ya existe un usuario con este nombre en la base de datos. Por favor, use un nombre diferente.";
+	"es" => "Ya existe un usuario con este nombre en la base de datos. Por favor, use un nombre diferente.",
 	"pt" => "TRANS Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom."
 );
 

@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.142 2007/05/31 14:02:12 thomas Exp $
+ * @version $Id: strings.php,v 1.143 2007/05/31 18:19:33 thomas Exp $
  * $Log: strings.php,v $
+ * Revision 1.143  2007/05/31 18:19:33  thomas
+ * Some syntaxe errors.
+ *
  * Revision 1.142  2007/05/31 14:02:12  thomas
  * Hop!
  *
@@ -177,7 +180,7 @@ $txt_domain_name_does_not_look_like_correct = array (
 	"zh" => "ÓòÃûÃ²ËÆ²»ÕýÈ·¡£",
 	"pl" => "Nazwa domeny wygl±da na nieprawid³ow±.",
 	"se" => "TRANS Domain name seems to be incorrect.",
-	"es" => "El nombre del dominio parece ser incorrecto";
+	"es" => "El nombre del dominio parece ser incorrecto",
 	"pt" => "TRANS Domain name seems to be incorrect."
 	);
 
