@@ -34,7 +34,7 @@ function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
 		return "Admin not found!";
 	}
 	$a = mysql_fetch_array($r);
-	$headers = "From: ".$conf_webmaster_email_addr;
+	$headers = "From: NO-REPLY-USE-DTC <no-reply@no-reply.com>";
 
 	$content = "Subject: ".stripslashes($subject)."
 
@@ -48,7 +48,7 @@ $body
 **********
 
 Please DO NOT reply to this mail. In order to keep a history,
-and enable us to reply faster and share the support work with
+reply faster, and enable us to share the support work with
 all the members of our team, use the control panel support
 ticket tab to reply.
 
