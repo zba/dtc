@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.141 2007/05/26 03:49:16 thomas Exp $
+ * @version $Id: strings.php,v 1.142 2007/05/31 14:02:12 thomas Exp $
  * $Log: strings.php,v $
+ * Revision 1.142  2007/05/31 14:02:12  thomas
+ * Hop!
+ *
  * Revision 1.141  2007/05/26 03:49:16  thomas
  * Hop!
  *
@@ -37,7 +40,7 @@ $txt_name = array(
 	"zh" => "TRANS NAME",
 	"pl" => "TRANS NAME",
 	"se" => "TRANS NAME",
-	"es" => "TRANS NAME",
+	"es" => "Nombre:",
 	"pt" => "TRANS NAME"
 );
 
@@ -53,7 +56,7 @@ $txt_recurring_payment = array(
 	"zh" => "Ñ­»·¸¶¿î",
 	"pl" => "TRANS Recurring payment",
 	"se" => "TRANS Recurring payment",
-	"es" => "TRANS Recurring payment",
+	"es" => "Pago Recurrente",
 	"pt" => "TRANS Recurring payment"
 );
 
@@ -68,7 +71,7 @@ $txt_server_statistic_graphs = array (
 	"zh" => "·þÎñÆ÷Í³¼ÆÍ¼",
 	"pl" => "TRANS Server statistic graphs",
 	"se" => "TRANS Server statistic graphs",
-	"es" => "TRANS Server statistic graphs",
+	"es" => "gráficos de estadísticas del servidor",
 	"pt" => "TRANS Server statistic graphs"
 	);
 
@@ -83,7 +86,7 @@ $txt_err_not_registering = array (
 	"zh" => "Ã»ÓÐ×¢²á",
 	"pl" => "Niezarejestrowana",
 	"se" => "TRANS Not registering",
-	"es" => "TRANS Not registering",
+	"es" => "Sin registrar",
 	"pt" => "TRANS Not registering"
 	);
 
@@ -98,7 +101,7 @@ $txt_product_id_not_valid = array (
 	"zh" => "²úÆ·ID²»´æÔÚ£¡",
 	"pl" => "Nieprawid³owy ID produktu!",
 	"se" => "TRANS Product ID not valid!",
-	"es" => "TRANS Product ID not valid!",
+	"es" => "ID de producto no válido",
 	"pt" => "TRANS Product ID not valid!"
 	);
 
@@ -113,7 +116,8 @@ $txt_user_login_incorrect = array (
 	"zh" => "ÓÃ»§µÇÂ½Ãû¸ñÊ½²»ÕýÈ·¡£ÇëÊ¹ÓÃÊý×Ö»ò×ÖÄ¸£¬²¢ÇÒÊÇ4µ½16¸ö×Ö·ûÊýÖ®¼ä¡£",
 	"pl" => "Format loginu jest nieprawid³owy. Proszê u¿yæ tylko liter i cyfr od 4 do 16 znaków.",
 	"se" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
-	"es" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"es" => "Formato de nombre de usuario incorrecto. Por favor, use sólo letras y números y una extensión de entre 4 y 16 
+caracteres",
 	"pt" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars."
 	);
 
@@ -128,7 +132,7 @@ $txt_username_invalid_root_or_debian = array (
 	"zh" => "ÓÃ»§Ãû²»¿ÉÓÃ£ºÇëÑ¡ÓÃÆäËüµÇÂ¼Ãû£¬²»ÒªÊ¹ÓÃroot»òÕßdebian-sys-maint",
 	"pl" => "Nieprawid³owa nazwa u¿ytkownika: proszê wybrac inn± nazwe niz root lub debian-sys-maint",
 	"se" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
-	"es" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"es" => "Nombre de usuario incorrecto: Por favor, escoja algo diferente de root o debian-sys-maint",
 	"pt" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint"
 	);
 
@@ -143,7 +147,7 @@ $txt_password_format_incorrect = array (
 	"zh" => "ÃÜÂë¸ñÊ½²»ÕýÈ·¡£ÇëÊ¹ÓÃÊý×Ö»ò×ÖÄ¸£¬²¢ÇÒÊÇ4µ½16¸ö×Ö·ûÊýÖ®¼ä¡£",
 	"pl" => "Format has³a jest nieprawid³owy. Proszê u¿yæ tylko liter i cyfr, od 4 do 16 znaków.",
 	"se" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
-	"es" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"es" => "Formato de contraseña incorrecto. Por favor, use sólo letras y números y una extensión de entre 4 y 16 caracteres",
 	"pt" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars."
 	);
 
@@ -158,7 +162,7 @@ $txt_passwords_do_not_match = array (
 	"zh" => "Á½´ÎÊäÈëµÄÃÜÂë²»Æ¥Åä£¡",
 	"pl" => "Has³a 1 i 2 nie s± zgodne. Proszê upewniæ siê, ¿e wprowadzane has³a s± identyczne.",
 	"se" => "TRANS Password 1 and 2 do not match!",
-	"es" => "TRANS Password 1 and 2 do not match!",
+	"es" => "Password 1 y 2 no coinciden",
 	"pt" => "TRANS Password 1 and 2 do not match!"
 	);
 
@@ -173,7 +177,7 @@ $txt_domain_name_does_not_look_like_correct = array (
 	"zh" => "ÓòÃûÃ²ËÆ²»ÕýÈ·¡£",
 	"pl" => "Nazwa domeny wygl±da na nieprawid³ow±.",
 	"se" => "TRANS Domain name seems to be incorrect.",
-	"es" => "TRANS Domain name seems to be incorrect.",
+	"es" => "El nombre del dominio parece ser incorrecto";
 	"pt" => "TRANS Domain name seems to be incorrect."
 	);
 
@@ -188,7 +192,7 @@ $txt_vps_location_not_selected = array (
 	"zh" => "Ã»ÓÐÑ¡ÔñVPSËùÔÚµÄÎ»ÖÃ£¡",
 	"pl" => "Nie wybrano lokalizacji dla VPS!",
 	"se" => "TRANS VPS location not selected!",
-	"es" => "TRANS VPS location not selected!",
+	"es" => "Localización del VPS no seleccionada",
 	"pt" => "TRANS VPS location not selected!"
 	);
 
@@ -203,7 +207,7 @@ $txt_email_does_not_look_like_correct = array (
 	"zh" => "Ã²ËÆÓÊÏäµØÖ·¸ñÊ½²»ÕýÈ·¡£",
 	"pl" => "Format adresu e-mail wygl±da na nieprawid³owy.",
 	"se" => "TRANS Email address seems to be incorrect format.",
-	"es" => "TRANS Email address seems to be incorrect format.",
+	"es" => "El formato de email parece ser incorrecto",
 	"pt" => "TRANS Email address seems to be incorrect format."
 	);
 
@@ -218,7 +222,7 @@ $txt_required_field_family_name_missing = array (
 	"zh" => "±ØÌîµÄÐÕÊÏÒ»ÏîÃ»ÓÐÌîÐ´¡£",
 	"pl" => "Pole wymagane. Nie podano nazwiska.",
 	"se" => "TRANS Required field family name missing.",
-	"es" => "TRANS Required field family name missing.",
+	"es" => "Falta el campo obligatorio apellido.",
 	"pt" => "TRANS Required field family name missing."
 	);
 
@@ -233,7 +237,7 @@ $txt_required_field_first_name_missing = array (
 	"zh" => "±ØÌîµÄÃû×ÖÒ»ÏîÃ»ÓÐÌîÐ´¡£",
 	"pl" => "Pole wymagane. Nie podano imienia.",
 	"se" => "TRANS Required field first name missing.",
-	"es" => "TRANS Required field first name missing.",
+	"es" => "Falta el campo obligatorio nombre",
 	"pt" => "TRANS Required field first name missing."
 	);
 
@@ -248,7 +252,7 @@ $txt_could_not_find_vps_server_in_db = array (
 	"zh" => "ÔÚÊý¾Ý¿âÖÐÃ»ÓÐÕÒµ½VPSµÄÏà¹ØÅäÖÃ",
 	"pl" => "Nie mozna odnale¼æ serwera VPS w bazie danych",
 	"se" => "TRANS Could not find the VPS server in database",
-	"es" => "TRANS Could not find the VPS server in database",
+	"es" => "No se ha podido encontrar el servidor VPS en la base de datos",
 	"pt" => "TRANS Could not find the VPS server in database"
 	);
 
@@ -263,7 +267,7 @@ $txt_country_code_seems_incorrect = array (
 	"zh" => "¹ú¼Ò´úÂëÃ²ËÆ²»ÕýÈ·¡£",
 	"pl" => "Kod kraju wygl±da na nieprawid³owy",
 	"se" => "TRANS Country code seems incorrect.",
-	"es" => "TRANS Country code seems incorrect.",
+	"es" => "El código del pais parece incorrecto.",
 	"pt" => "TRANS Country code seems incorrect."
 	);
 
@@ -278,7 +282,7 @@ $txt_is_company_radio_button_wrong = array (
 	"zh" => "ÇëÑ¡ÔñÊÇ²»ÊÇ¹«Ë¾¿Í»§£¡",
 	"pl" => "TRANS Is company radio button is wrong!",
 	"se" => "TRANS Is company radio button is wrong!",
-	"es" => "TRANS Is company radio button is wrong!",
+	"es" => "El selector de compañia es incorrecto",
 	"pt" => "TRANS Is company radio button is wrong!"
 	);
 
@@ -293,7 +297,7 @@ $txt_required_field_zipcode_missing = array (
 	"zh" => "±ØÌîµÄÓÊÕþ±àÂëÒ»ÏîÃ»ÓÐÌîÐ´¡£",
 	"pl" => "Pole wymagane. Nie podanu kodu pocztowego.",
 	"se" => "TRANS Required field zipcode missing.",
-	"es" => "TRANS Required field zipcode missing.",
+	"es" => "Falta el campo requerido código postal",
 	"pt" => "TRANS Required field zipcode missing."
 	);
 
@@ -308,7 +312,7 @@ $txt_required_field_city_missing = array (
 	"zh" => "±ØÌîµÄ³ÇÊÐÒ»ÏîÃ»ÓÐÌîÐ´¡£",
 	"pl" => "Pole wymagane. Nie podanu miasta.",
 	"se" => "TRANS Required field city missing.",
-	"es" => "TRANS Required field city missing.",
+	"es" => "Falta el campo requerido ciudad",
 	"pt" => "TRANS Required field city missing."
 	);
 
@@ -323,7 +327,7 @@ $txt_selling_conditions_not_accepted = array (
 	"zh" => "ÏúÊÛ×´Ì¬²»½ÓÊÜ£¡",
 	"pl" => "TRANS Selling conditions not accepted!",
 	"se" => "TRANS Selling conditions not accepted!",
-	"es" => "TRANS Selling conditions not accepted!",
+	"es" => "Condiciones de venta no aceptadas.",
 	"pt" => "TRANS Selling conditions not accepted!"
 	);
 
@@ -338,7 +342,7 @@ $txt_username_already_taken_try_again = array (
 	"zh" => "ÓÃ»§ÃûÒÑ±»Õ¼ÓÃ£¡ÇëÖØÐÂÌîÐ´¡£",
 	"pl" => "Nazwa u¿ytkownika ju¿ istnieje! Spróbuj ponownie. ",
 	"se" => "TRANS Username already taken! Try again.",
-	"es" => "TRANS Username already taken! Try again.",
+	"es" => "Nombre de usuario no disponible. Pruebe otro.",
 	"pt" => "TRANS Username already taken! Try again."
 	);
 
@@ -353,7 +357,7 @@ $txt_vat_number = array (
 	"zh" => "VATºÅÂë£º",
 	"pl" => "NIP: ",
 	"se" => "TRANS VAT Number: ",
-	"es" => "TRANS VAT Number: ",
+	"es" => "CIF: ",
 	"pt" => "TRANS VAT Number: "
 	);
 
@@ -368,7 +372,7 @@ $txt_i_agree_to_the = array (
 	"zh" => "ÎÒ½ÓÊÜ",
 	"pl" => "Akceptujê",
 	"se" => "TRANS I agree to the",
-	"es" => "TRANS I agree to the",
+	"es" => "Acepto",
 	"pt" => "TRANS I agree to the"
 	);
 
@@ -383,7 +387,7 @@ $txt_selling_conditions = array (
 	"zh" => "ÏúÊÛ×´Ì¬",
 	"pl" => "TRANS selling conditions",
 	"se" => "TRANS selling conditions",
-	"es" => "TRANS selling conditions",
+	"es" => "Acepto las condiciones de compra.",
 	"pt" => "TRANS selling conditions"
 	);
 
@@ -398,7 +402,7 @@ $txt_vps_location = array (
 	"zh" => "VPSÎ»ÖÃ£º",
 	"pl" => "Lokalizacja VPS: ",
 	"se" => "TRANS VPS location: ",
-	"es" => "TRANS VPS location: ",
+	"es" => "Localización del VPS: ",
 	"pt" => "TRANS VPS location: "
 	);
 
@@ -413,7 +417,7 @@ $txt_vps_operating_system = array (
 	"zh" => "VPS²Ù×÷ÏµÍ³£º",
 	"pl" => "System operacyjny VPS: ",
 	"se" => "TRANS VPS operating system: ",
-	"es" => "TRANS VPS operating system: ",
+	"es" => "Sistema operativo del VPS: ",
 	"pt" => "TRANS VPS operating system:"
 	);
 
@@ -428,7 +432,7 @@ $txt_action = array(
 	"zh" => "²Ù×÷",
 	"pl" => "TRANS Action",
 	"se" => "TRANS Action",
-	"es" => "TRANS Action",
+	"es" => "Acción",
 	"pt" => "TRANS Action"
 	);
 
@@ -522,7 +526,7 @@ $txt_iframe_cpu=array(
 	"zh" => "CPUÆ½¾ù¸ºÔØ",
 	"pl" => "Obci±¿enie procesora",
 	"se" => "TRANS CPU Load Average SVENSKA",
-	"es" => "Carga promedio del CPU ",
+	"es" => "Carga promedio de CPU ",
 	"pt" => "TRANS CPU Load Average "
 );
 $txt_iframe_msu=array(
@@ -788,7 +792,7 @@ $txt_domain_tools =array(
         "zh" => "Ö÷»ú¹¤¾ß",
         "pl" => "TRANS Domain Tools",
         "se" => "TRANS Domain Tools",
-        "es" => "TRANS Domain Tools",
+        "es" => "Herramientas del dominio.",
         "pt" => "TRANS Domain Tools"
 );
 
@@ -1263,7 +1267,7 @@ $txt_mainmenu_title_renewals = array(
   "zh" => "Ë¢ÐÂ¹ÜÀíÐÅÏ¢",
   "pl" => "TRANS Renewals management",
   "se" => "TRANS Renewals management",
-  "es" => "TRANS Renewals management",
+  "es" => "Manejo de renovaciones.",
   "pt" => "TRANS Renewals management"
   );
 
@@ -1937,7 +1941,7 @@ $txt_cmenu_past_payments = array(
 	"zh" => "ÒÑÖ§¸¶µÄ¿îÏî",
 	"pl" => "TRANS Past payments",
 	"se" => "TRANS Past payments",
-	"es" => "TRANS Past payments",
+	"es" => "Pagos realizados",
 	"pt" => "TRANS Past payments"
 	);
 $txt_cmenu_myaccount_stats = array(

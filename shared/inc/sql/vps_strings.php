@@ -11,7 +11,7 @@ $txt_vpsql_could_not_connect_to_vps_server = array(
 	"zh" => "无法连接到VPS服务器!",
 	"pl" => "TRANS Could not connect to VPS server!",
 	"se" => "TRANS Could not connect to VPS server!",
-	"es" => "TRANS Could not connect to VPS server!",
+	"es" => "No se ha podido conectar con el servidor VPS!",
 	"pt" => "TRANS Could not connect to VPS server!"
 );
 
@@ -26,7 +26,7 @@ $txt_vpsql_access_not_granted = array(
 	"zh" => "未授权的操作",
 	"pl" => "TRANS Access not granted line ",
 	"se" => "TRANS Access not granted line ",
-	"es" => "TRANS Access not granted line ",
+	"es" => "Acceso no autorizado ",
 	"pt" => "TRANS Access not granted line "
 );
 
@@ -41,7 +41,7 @@ $txt_vpsql_the_password_you_have_submited_is_not_valid = array(
 	"zh" => "您提交的密码不正确",
 	"pl" => "TRANS The password you have submited is not a valid password",
 	"se" => "TRANS The password you have submited is not a valid password",
-	"es" => "TRANS The password you have submited is not a valid password",
+	"es" => "La contrase馻 proporcionada no es correcta",
 	"pt" => "TRANS The password you have submited is not a valid password"
 );
 
@@ -56,7 +56,7 @@ $txt_vpsql_cannot_not_get_vps_informations = array(
 	"zh" => "无法得到VPS信息",
 	"pl" => "TRANS Cannot get VPS information line ",
 	"se" => "TRANS Cannot get VPS information line ",
-	"es" => "TRANS Cannot get VPS information line ",
+	"es" => "No se ha podido obtener la linea de informaci髇 del VPS",
 	"pt" => "TRANS Cannot get VPS information line "
 );
 
@@ -71,7 +71,7 @@ $txt_vpsql_cannot_get_vps_ip_addr_infos_line = array(
 	"zh" => "无法得到VPS的IP地址信息",
 	"pl" => "TRANS Cannot get VPS IP addresses information line ",
 	"se" => "TRANS Cannot get VPS IP addresses information line ",
-	"es" => "TRANS Cannot get VPS IP addresses information line ",
+	"es" => "No se ha podido obtener la direcci髇 IP del VPS ",
 	"pt" => "TRANS Cannot get VPS IP addresses information line "
 );
 
@@ -86,7 +86,7 @@ $txt_vpsql_bsd_kernel_type_not_correct = array(
 	"zh" => "BSD内核类型不正确",
 	"pl" => "TRANS BSD kernel type is not correct line ",
 	"se" => "TRANS BSD kernel type is not correct line ",
-	"es" => "TRANS BSD kernel type is not correct line ",
+	"es" => "La linea del kernel BSD es incorrecta ",
 	"pt" => "TRANS BSD kernel type is not correct line "
 );
 

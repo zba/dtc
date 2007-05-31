@@ -11,7 +11,7 @@ $txt_sshsql_you_dont_have_the_ssh_login = array(
 	"zh" => "Äú²»ÄÜ½øÐÐSSHµÇÂ½£¡",
 	"pl" => "TRANS You don't have the SSH login flag!",
 	"se" => "TRANS You don't have the SSH login flag!",
-	"es" => "TRANS You don't have the SSH login flag!",
+	"es" => "No tiene el marcador de acceso por SSH!",
 	"pt" => "TRANS You don't have the SSH login flag!"
 );
 
@@ -26,7 +26,7 @@ $txt_sshsql_your_path_is_restricted_to = array(
 	"zh" => "ÄúµÄÄ¿Â¼±»ÏÞ¶¨ÔÚ",
 	"pl" => "TRANS Your path is restricted to ",
 	"se" => "TRANS Your path is restricted to ",
-	"es" => "TRANS Your path is restricted to ",
+	"es" => "Su ruta está limitada a ",
 	"pt" => "TRANS Your path is restricted to "
 );
 

@@ -46,17 +46,18 @@ while (!$shutdown){
 
 		// if the time elapsed is less than 10 minutes, sleep until it is
 		if ($time_elapsed_since_last_run < $conf_time_delay_in_seconds){
-			echo "Sleeping for " . ($conf_time_delay_in_seconds - $time_elapsed_since_last_run) . " seconds...\n";
-			sleep ($conf_time_delay_in_seconds - $time_elapsed_since_last_run);
+			$time_to_sleep = $conf_time_delay_in_seconds - $time_elapsed_since_last_run;
+			echo "Sleeping for " . $time_to_sleep . " seconds...\n";
+			sleep ($time_to_sleep);
 		}
 	}
 	$last_loop = time();
-		
-	$vps_query = "SELECT * FROM vps;";
+
+	$vps_query = "SELECT * FROM $pro_mysql_vps_table;";
 	$vps_result = mysql_query($vps_query)or die("Cannot query $query !!!".mysql_error());
 	$vps_num_rows = mysql_num_rows($vps_result);
 	echo "We have to process $vps_num_rows VPS accounts...\n";
-	for ($i = 0; $i < $vps_num_rows; $i++){
+	for ($i=0;$i<$vps_num_rows;$i++){
 		// sleep 5 seconds between every soap call, we don't want to kill the soap servers
 		sleep (5);
 		echo "$i/$vps_num_rows\n";

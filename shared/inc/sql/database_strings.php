@@ -11,7 +11,7 @@ $txt_dbsql_incorrect_mysql_login_form_please_try_again = array(
 	"zh" => "MySQLµÇÂ½Ãû´íÎó£ºÇëÖØÐÂÊäÈëµÇÂ½ÃûÔÙÊÔÒ»´Î¡£",
 	"pl" => "TRANS Incorrect MySQL login form: please enter another login and try again.",
 	"se" => "TRANS Incorrect MySQL login form: please enter another login and try again.",
-	"es" => "TRANS Incorrect MySQL login form: please enter another login and try again.",
+	"es" => "Formato de usuario incorrecto, Por favor, introduzca otro y vuelva a intentarlo.",
 	"pt" => "TRANS Incorrect MySQL login form: please enter another login and try again."
 );
 
@@ -26,7 +26,7 @@ $txt_dbsql_incorrect_mysql_login_root_or_debiansysmaint = array(
 	"zh" => "MySQLµÇÂ½Ãû´íÎó£ºÇë²»ÒªÊ¹ÓÃroot»ò²Ù×÷ÏµÍ³ÕËºÅ",
 	"pl" => "TRANS Incorrect MySQL login form: please don't enter root or debian-sys-maint",
 	"se" => "TRANS Incorrect MySQL login form: please don't enter root or debian-sys-maint",
-	"es" => "TRANS Incorrect MySQL login form: please don't enter root or debian-sys-maint",
+	"es" => "Formato incorrecto de usuario de MySQL. Por favor, no use root o debian-sys-maint",
 	"pt" => "TRANS Incorrect MySQL login form: please don't enter root or debian-sys-maint"
 );
 
@@ -41,13 +41,13 @@ $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size = ar
 	"zh" => "ÃÜÂëÓ¦¸Ã½öÓÐ×ÖÄ¸ºÍÊý×Ö×é³É(a-zA-Z0-9)£¬²¢ÇÒ³¤¶ÈÓ¦¸ÃÔÚ6µ½16¸ö×Ö·ûÖ®¼ä¡£",
 	"pl" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.",
 	"se" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.",
-	"es" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.",
+	"es" => "La contraseña sólo puede contener caracteres números (a-zA-Z0-9) y contener entre 6 y 16 caracteres.",
 	"pt" => "TRANS Password are made only with standards chars and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long."
 );
 
 $txt_dbsql_a_user_by_that_name_exists_in_the_db = array(
 	"fr" => "Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom.",
-	"en" => "A user by that name exists in the database, please select a new one.",
+	"en" => "A user with that name exists in the database, please select a new one.",
 	"hu" => "TRANS Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom.",
 	"it" => "TRANS Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom.",
 	"nl" => "Een gebruiker met die naam bestaat al in de database, kies alsjeblieft een ander.",
@@ -56,7 +56,7 @@ $txt_dbsql_a_user_by_that_name_exists_in_the_db = array(
 	"zh" => "Êý¾Ý¿âÖÐÒÑ´æÔÚÕâ¸öÓÃ»§Ãû£¬ÇëÖØÐÂÑ¡ÔñÒ»¸ö¡£",
 	"pl" => "TRANS Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom.",
 	"se" => "TRANS Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom.",
-	"es" => "TRANS Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom.",
+	"es" => "Ya existe un usuario con este nombre en la base de datos. Por favor, use un nombre diferente.";
 	"pt" => "TRANS Un utilisateur avec ce nom existe déjà dans la base de donnée, essayez de choisir un autre nom."
 );
 
@@ -71,7 +71,7 @@ $txt_dbsql_this_is_not_a_valid_db_name = array(
 	"zh" => "Êý¾Ý¿âÃûÎÞÐ§£¡ÇëÖØÐÂÑ¡ÔñÒ»¸ö¡£",
 	"pl" => "TRANS This is not a valid database name! Please choose another one.",
 	"se" => "TRANS This is not a valid database name! Please choose another one.",
-	"es" => "TRANS This is not a valid database name! Please choose another one.",
+	"es" => "Nombre de base de datos no válido. Por favor escoja otro.",
 	"pt" => "TRANS This is not a valid database name! Please choose another one."
 );
 
@@ -86,7 +86,7 @@ $txt_dbsql_a_db_by_that_name_exists = array(
 	"zh" => "ÒÑ´æÔÚÍ¬ÃûµÄÊý¾Ý¿â£¬ÇëÖØÐÂÑ¡ÔñÒ»¸öÃû×Ö¡£",
 	"pl" => "TRANS A database by that name exists, please select a new one.",
 	"se" => "TRANS A database by that name exists, please select a new one.",
-	"es" => "TRANS A database by that name exists, please select a new one.",
+	"es" => "Este nombre de base de datos ya existe. Por favor, escoja otro.",
 	"pt" => "TRANS A database by that name exists, please select a new one."
 );
 
@@ -101,7 +101,7 @@ $txt_dbsql_incorrect_db_login_form = array(
 	"zh" => "´íÎóµÄÊý¾Ý¿âµÇÂ½Ãû£ºÇë¸ü¸ÄµÇÂ½ÃûÔÙÊÔÒ»´Î¡£",
 	"pl" => "TRANS Incorrect db login form: please enter another login and try again.",
 	"se" => "TRANS Incorrect db login form: please enter another login and try again.",
-	"es" => "TRANS Incorrect db login form: please enter another login and try again.",
+	"es" => "Formato de login incorrecto. Introduzca otro login y vuelva a intentarlo.",
 	"pt" => "TRANS Incorrect db login form: please enter another login and try again."
 );
 
@@ -116,7 +116,7 @@ $txt_dbsql_no_db_user_by_that_name_exists_in_the_db = array(
 	"zh" => "¸ÃÓÃ»§²»´æÔÚ£¬»òÕßÕâ¸öÓÃ»§²»¹éÄúËùÓÐ£¬ÇëÖØÐÂÊäÈëÒ»¸ö¡£",
 	"pl" => "TRANS No user by that name exists in the database, or you don't own this db user, please select a new one.",
 	"se" => "TRANS No user by that name exists in the database, or you don't own this db user, please select a new one.",
-	"es" => "TRANS No user by that name exists in the database, or you don't own this db user, please select a new one.",
+	"es" => "NO existe ningún usuario con este nombre en la base de datos o usted no posee este usuario. Por favor, seleccione otro.",
 	"pt" => "TRANS No user by that name exists in the database, or you don't own this db user, please select a new one."
 );
 
@@ -131,7 +131,7 @@ $txt_dbsql_that_user_owns_some_db_please_remove_them = array(
 	"zh" => "¸ÃÓÃ»§ÈÔÈ»ÓµÓÐ²¿·ÖÊý¾Ý¿â£¬ÇëÏÈÉ¾³ýÕâÐ©Êý¾Ý¿â»òÕß¸Ä±äËüÃÇµÄÊôÖ÷¡£",
 	"pl" => "TRANS That user sill owns some databases. Please remove them or change the owner first.",
 	"se" => "TRANS That user sill owns some databases. Please remove them or change the owner first.",
-	"es" => "TRANS That user sill owns some databases. Please remove them or change the owner first.",
+	"es" => "Este usuario aún tiene bases de datos. Por favor, eliminelas o cambie antes el propietario.",
 	"pt" => "TRANS That user sill owns some databases. Please remove them or change the owner first."
 );
 
@@ -146,7 +146,7 @@ $txt_dbsql_incorrect_mysql_db_name = array(
 	"zh" => "MySQLÊý¾Ý¿âÃû´íÎó£ºÇëÖØÐÂÊäÈëÒ»¸öÊý¾Ý¿âÃûÔÙÊÔÒ»´Î¡£",
 	"pl" => "TRANS Incorrect MySQL db name format: please enter another and try again.",
 	"se" => "TRANS Incorrect MySQL db name format: please enter another and try again.",
-	"es" => "TRANS Incorrect MySQL db name format: please enter another and try again.",
+	"es" => "Formato de nombre de BD MySQL incorrecto: Por favor, introduzca otro y vuelva a intentarlo.",
 	"pt" => "TRANS Incorrect MySQL db name format: please enter another and try again."
 );
 
@@ -161,7 +161,7 @@ $txt_dbsql_cannot_reselect_mysql_db_name = array(
 	"zh" => "²»ÄÜÑ¡ÔñMySQLÊý¾Ý¿âÃû£ºÇëÖØÐÂÌîÈëÒ»¸öÔÙÊÔÒ»´Î¡£",
 	"pl" => "TRANS Cannot reselect MySQL db name: please enter another and try again.",
 	"se" => "TRANS Cannot reselect MySQL db name: please enter another and try again.",
-	"es" => "TRANS Cannot reselect MySQL db name: please enter another and try again.",
+	"es" => "No se puede volver a seleccionar el nombre de la BD MySQL. Por favor, introduzca otro y vuelva a intentarlo.",
 	"pt" => "TRANS Cannot reselect MySQL db name: please enter another and try again."
 );
 
@@ -176,7 +176,7 @@ $txt_dbsql_mysql_db_ownership_not_valid_i_wont_del_because_you_dont_own_it = arr
 	"zh" => "MySQLÊý¾Ý¿âÊôÖ÷¹ØÏµ´íÎó£ºÎÒ²»ÄÜÈÃÄãÉ¾µôÕâ¸öÊý¾Ý¿â£¬Ëü¿´ÆðÀ´²¢²»ÊôÓÚÄã¡£",
 	"pl" => "TRANS ",
 	"se" => "TRANS ",
-	"es" => "TRANS ",
+	"es" => "Propietario de la base de datos incorrecto. No puede eliminar esta base de datos si no es usted el propietario",
 	"pt" => "TRANS "
 );
 
@@ -191,7 +191,7 @@ $txt_dbsql_mysql_db_ownership_not_valid_i_wont_change_owner_because_you_dont_own
 	"zh" => "MySQLÊý¾Ý¿âÊôÖ÷¹ØÏµ´íÎó£ºÎÒ²»ÄÜÈÃÄã¸ü¸ÄÕâ¸öÊý¾Ý¿âµÄÊôÖ÷£¬Ëü¿´ÆðÀ´²¢²»ÊôÓÚÄã¡£",
 	"pl" => "TRANS ",
 	"se" => "TRANS ",
-	"es" => "TRANS ",
+	"es" => "Propietario de la base de datos incorrecto. No puede eliminar esta base de datos si no es usted el propietario",
 	"pt" => "TRANS "
 );
 
@@ -206,7 +206,7 @@ $txt_dbsql_user_or_password_incorrect = array(
 	"zh" => "ÓÃ»§Ãû»òÃÜÂë´íÎó£¡",
 	"pl" => "TRANS User or password is incorrect !",
 	"se" => "TRANS User or password is incorrect !",
-	"es" => "TRANS User or password is incorrect !",
+	"es" => "Nombre de usuario o contraseña incorrectos !",
 	"pt" => "TRANS User or password is incorrect !"
 );
 

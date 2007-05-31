@@ -11,7 +11,7 @@ $txt_subdomsql_incorrect_subdomain_format = array(
 	"zh" => "错误的二级域名格式。",
 	"pl" => "TRANS Incorrect sub-domain format.",
 	"se" => "TRANS Incorrect sub-domain format.",
-	"es" => "TRANS Incorrect sub-domain format.",
++	"es" => "Formato incorrecto de subdominio.",
 	"pt" => "TRANS Incorrect sub-domain format."
 );
 

@@ -11,7 +11,7 @@ $txt_ftpsql_your_login_must_be_in_the_form_login_at_domain = array(
 	"zh" => "µÇÂ½Ãû±ØÐëÊÇ login@domain.com ÕâÑùµÄ¸ñÊ½",
 	"pl" => "TRANS Your login must be in the form login@domain.com",
 	"se" => "TRANS Your login must be in the form login@domain.com",
-	"es" => "TRANS Your login must be in the form login@domain.com",
+	"es" => "Su nombre debe tener la forma login@dominio.com",
 	"pt" => "TRANS Your login must be in the form login@domain.com"
 );
 
@@ -26,7 +26,7 @@ $txt_ftpsql_incorrect_ftp_login_form_please_enter_another = array(
 	"zh" => "µÇÂ½Ãû¸ñÊ½´íÎó£ºÇëÖØÐÂÊäÈëµÇÂ½ÃûÔÙÊÔÒ»´Î¡£",
 	"pl" => "TRANS Incorrect FTP login format: please enter another login and try again.",
 	"se" => "TRANS Incorrect FTP login format: please enter another login and try again.",
-	"es" => "TRANS Incorrect FTP login format: please enter another login and try again.",
+	"es" => "Formato de login incorrecto. Por favor, inctroduzca otro login e intentelo de nuevo.",
 	"pt" => "TRANS Incorrect FTP login format: please enter another login and try again."
 );
 
@@ -41,7 +41,7 @@ $txt_ftpsql_incorrect_ftp_password_form = array(
 	"zh" => "FTP µÇÂ½ÃÜÂë´íÎó£ºÇëÈ·ÈÏÃÜÂë¹²6µ½16¸ö×Ö·û£¬²¢ÇÒ½ö°üº¬ a-z A-Z 0-9",
 	"pl" => "TRANS Incorrect FTP password: from 6 to 16 chars, made only with a-z A-Z 0-9",
 	"se" => "TRANS Incorrect FTP password: from 6 to 16 chars, made only with a-z A-Z 0-9",
-	"es" => "TRANS Incorrect FTP password: from 6 to 16 chars, made only with a-z A-Z 0-9",
+	"es" => "TRANS Password de FTP incorrecto: de 6 a 16 caracteres, sólo se aceptan a-z A-Z 0-9",
 	"pt" => "TRANS Incorrect FTP password: from 6 to 16 chars, made only with a-z A-Z 0-9"
 );
 
@@ -56,7 +56,7 @@ $txt_ftpsql_your_ftp_login_path_is_restricted_to = array(
 	"zh" => "ÄúµÄFTP¸ùÂ·¾¶±»ÏÞÖÆÔÚ",
 	"pl" => "TRANS ",
 	"se" => "TRANS ",
-	"es" => "TRANS ",
+	"es" => "Su ruta de acceso por FTP está restringida a ",
 	"pt" => "TRANS "
 );
 
@@ -71,7 +71,7 @@ $txt_ftpsql_incorrect_ftp_login_form_this_is_not_good = array(
 	"zh" => "´íÎóµÄµÇÂ½Ãû£ºÇëÖØÐÂÊäÈëÒ»¸ö¡£",
 	"pl" => "TRANS Incorrect ftp login : this is not a good string for a ftp login, please enter a new one.",
 	"se" => "TRANS Incorrect ftp login : this is not a good string for a ftp login, please enter a new one.",
-	"es" => "TRANS Incorrect ftp login : this is not a good string for a ftp login, please enter a new one.",
+	"es" => "Login de ftp incorrecto: Cadena incorrecta para in login ftp, por favor introduzca una nueva.",
 	"pt" => "TRANS Incorrect ftp login : this is not a good string for a ftp login, please enter a new one."
 );
 

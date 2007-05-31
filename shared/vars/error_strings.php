@@ -1,13 +1,16 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.18 2007/02/15 08:58:20 thomas Exp $
+ * @version $Id: error_strings.php,v 1.19 2007/05/31 14:02:12 thomas Exp $
  * 
  * --------------------------------------------------------
  * For all translators check in new array is new data - se 
  * In plan add swedish language to DTC 
  * --------------------------------------------------------
  * $Log: error_strings.php,v $
+ * Revision 1.19  2007/05/31 14:02:12  thomas
+ * Hop!
+ *
  * Revision 1.18  2007/02/15 08:58:20  thomas
  * Some strings in NL and some internationalizations.
  *
@@ -178,7 +181,7 @@ $txt_err_register_succ=array (
 	"zh" => "×¢²á³É¹¦£¡",
 	"pl" => "Rejestracja przebieg³a pomy¶nie",
 	"se" => "TRANS SVENSKA",
-	"es" => "Registro exitoso!",
+	"es" => "Registro correcto!",
 	"pt" => "Registration successful!"
 );
 /** end new arrays **/
