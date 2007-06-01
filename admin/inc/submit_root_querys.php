@@ -307,7 +307,6 @@ if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 	if(!isFtpLogin($_REQUEST["newadmin_login"])){
 		$submit_err .= $txt_err_dtc_login_format[$lang];
 		$commit_flag = "no";
-		die("Username not valid: it should be only made of letters and numbers");
 	}
 	if(!isDTCPassword($_REQUEST["newadmin_pass"])){
 		$submit_err .= $txt_err_password_format[$lang];
@@ -329,6 +328,8 @@ if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 (adm_login        ,adm_pass         ,path            )VALUES
 ('".$_REQUEST["newadmin_login"]."', '".$_REQUEST["newadmin_pass"]."','$newadmin_path') ";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}else{
+		echo $submit_err;
 	}
 }
 
