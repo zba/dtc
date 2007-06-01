@@ -728,14 +728,18 @@ generateMySQLConfigPHPfile () {
 
 createDTCRootShellScript () {
 	echoIfVerbose "-> Creating dtc-chroot-shell script"
-	if [ -n "$PATH_SUDO" -a ! "$UNIX_TYPE" = "debian" ] ; then
-		echoIfVerbose "Creating chroot shell..."
-	        # create a chroot shell script
-	        CHROOT_SHELL=/bin/dtc-chroot-shell
-	        echo '#!/bin/sh' > $CHROOT_SHELL
-		echo "# This shell script is used by DTC, please do not remove" >> $CHROOT_SHELL
-	        echo "$PATH_SUDO -H $PATH_CHROOT \$HOME \$USER" /bin/bash \"\$@\" >> $CHROOT_SHELL
-	        chmod 755 $CHROOT_SHELL
+	if [ -n "$PATH_SUDO" ] ; then
+		if [ ! $UNIX_TYPE"" = "debian" ] ; then
+			echoIfVerbose "Creating chroot shell..."
+		        # create a chroot shell script
+		        CHROOT_SHELL=/bin/dtc-chroot-shell
+		        echo '#!/bin/sh' > $CHROOT_SHELL
+			echo "# This shell script is used by DTC, please do not remove" >> $CHROOT_SHELL
+		        echo "$PATH_SUDO -H $PATH_CHROOT \$HOME \$USER" /bin/bash \"\$@\" >> $CHROOT_SHELL
+		        chmod 755 $CHROOT_SHELL
+		else
+			echoIfVerbose "Skiping under Debian..."
+		fi
 	fi
 }
 
@@ -3367,11 +3371,13 @@ createChrootTemplate () {
 	SUDO=`which sudo`
 	if [ -n "$SUDO" ] ; then
 		# create a chroot shell script
-		echoIfVerbose "Creating chroot shell script..."
-		SHELL=/bin/dtc-chroot-shell
-		echo '#!/bin/sh' > $SHELL
-		echo "`which sudo` -H `which chroot` \$HOME /bin/su - \$USER" \"\$@\" >> $SHELL
-		chmod 755 $SHELL
+# This script seems buggy, and anyway,
+# it seems it has been done elsewhere already!!!
+#		echoIfVerbose "Creating chroot shell script..."
+#		SHELL=/bin/dtc-chroot-shell
+#		echo '#!/bin/sh' > $SHELL
+#		echo "`which sudo` -H `which chroot` \$HOME /bin/su - \$USER" \"\$@\" >> $SHELL
+#		chmod 755 $SHELL
 		# fix sudoers
 		# fix /etc/shells
 	fi
