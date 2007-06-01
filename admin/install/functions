@@ -728,7 +728,7 @@ generateMySQLConfigPHPfile () {
 
 createDTCRootShellScript () {
 	echoIfVerbose "-> Creating dtc-chroot-shell script"
-	if [ -n "$PATH_SUDO" ] ; then
+	if [ -n "$PATH_SUDO" -a ! "$UNIX_TYPE" = "debian"] ; then
 		echoIfVerbose "Creating chroot shell..."
 	        # create a chroot shell script
 	        CHROOT_SHELL=/bin/dtc-chroot-shell
