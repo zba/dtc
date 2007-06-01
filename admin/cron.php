@@ -348,6 +348,8 @@ function checkTimeAndLaunchNetBackupScript () {
 function cronMailSystem () {
 	global $keep_mail_generate_flag;
 	global $conf_mta_type;
+	global $conf_dtc_system_username;
+	global $conf_generated_file_path;
 
 	$cronjob_table_content = getCronFlags();
 	if($cronjob_table_content["gen_qmail"] == "yes"){
@@ -355,6 +357,30 @@ function cronMailSystem () {
 		mail_account_generate();
 		if($keep_mail_generate_flag == "no"){
 			markCronflagOk ("gen_qmail='no'");
+		}
+		if( file_exists($conf_generated_file_path."/postfix_virtual_mailbox_domains") ){
+			system("chown $conf_dtc_system_username $conf_generated_file_path/postfix_virtual_mailbox_domains");
+		}
+		if( file_exists($conf_generated_file_path."/local_domains") ){
+			system("chown $conf_dtc_system_username $conf_generated_file_path/local_domains");
+		}
+		if( file_exists($conf_generated_file_path."/postfix_virtual") ){
+			system("chown $conf_dtc_system_username $conf_generated_file_path/postfix_virtual");
+		}
+		if( file_exists($conf_generated_file_path."/postfix_aliases") ){
+			system("chown $conf_dtc_system_username $conf_generated_file_path/postfix_aliases");
+		}
+		if( file_exists($conf_generated_file_path."/postfix_vmailbox") ){
+			system("chown $conf_dtc_system_username $conf_generated_file_path/postfix_vmailbox");
+		}
+		if( file_exists($conf_generated_file_path."/postfix_virtual_uid_mapping") ){
+			system("chown $conf_dtc_system_username $conf_generated_file_path/postfix_virtual_uid_mapping");
+		}
+		if( file_exists($conf_generated_file_path."/postfix_relay_domains") ){
+			system("chown $conf_dtc_system_username $conf_generated_file_path/postfix_relay_domains");
+		}
+		if( file_exists($conf_generated_file_path."/postfix_relay_recipients") ){
+			system("chown $conf_dtc_system_username $conf_generated_file_path/postfix_relay_recipients");
 		}
 	}
 	if($cronjob_table_content["qmail_newu"] == "yes"){
