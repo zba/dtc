@@ -2568,6 +2568,9 @@ createRRDFiles () {
 		if [ -e $PATH_CGIBIN/queuegraph.cgi ]; then
 			chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/queuegraph.cgi
 		fi
+		if [ -e $PATH_DTC_ETC/mailqueues.rrd ] ; then
+			chmod 770 $PATH_DTC_ETC/mailqueues.rrd
+		fi
 		# fix path for mailqueues.rrd
 		echoIfVerbose "-> Fixking paths in queuegraph.cgi"
 		perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/queuegraph.cgi
@@ -2590,6 +2593,9 @@ createRRDFiles () {
 				perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/netusegraph.cgi
 				chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/netusegraph.cgi
 			fi
+			if [ -e $PATH_DTC_ETC/netusage.rrd ] ; then
+				chmod 770 $PATH_DTC_ETC/netusage.rrd
+			fi
 		fi
 		#
 		# create the rrd file for cpugraph.cgi
@@ -2607,6 +2613,9 @@ createRRDFiles () {
 			perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/cpugraph.cgi
 			chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/cpugraph.cgi
 		fi
+		if [ -e $PATH_DTC_ETC/cpu.rrd ] ; then
+			chmod 770 $PATH_DTC_ETC/cpu.rrd
+		fi
 
 		#
 		# Create the rrd file for memgraph.cgi
@@ -2623,6 +2632,9 @@ createRRDFiles () {
 			# fix path for memgraph.cgi
 			perl -i -p -e "s|/etc/postfix|$PATH_DTC_ETC|" $PATH_DTC_ADMIN/memgraph.cgi
 			chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_CGIBIN/memgraph.cgi
+		fi
+		if [ -e $PATH_DTC_ETC/memusage.rrd ] ; then
+			chmod 770 $PATH_DTC_ETC/memusage.rrd
 		fi
 	fi
 	if [ -d /tmp/queuegraph ] ; then
