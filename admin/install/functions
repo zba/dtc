@@ -3374,10 +3374,10 @@ createChrootTemplate () {
 # This script seems buggy, and anyway,
 # it seems it has been done elsewhere already!!!
 #		echoIfVerbose "Creating chroot shell script..."
-#		SHELL=/bin/dtc-chroot-shell
+		SHELL=/bin/dtc-chroot-shell
 #		echo '#!/bin/sh' > $SHELL
 #		echo "`which sudo` -H `which chroot` \$HOME /bin/su - \$USER" \"\$@\" >> $SHELL
-#		chmod 755 $SHELL
+		chmod 755 $SHELL
 		# fix sudoers
 		# fix /etc/shells
 #	fi
@@ -3493,8 +3493,10 @@ deleteGeneratedFiles () {
 	rm -f ${PATH_DTC_ADMIN}/.htaccess
 	rm -f ${PATH_DTC_SHARED}/shared/cyrus.php
 	rm -f ${PATH_DTC_SHARED}/shared/mysql_config.php
-	if [ -e /bin/dtc-chroot-shell ] ; then
-		rm /bin/dtc-chroot-shell
+	if [ ! $UNIX_TYPE"" = "debian" ] ; then
+		if [ -e /bin/dtc-chroot-shell ] ; then
+			rm /bin/dtc-chroot-shell
+		fi
 	fi
 	rm -f ${PATH_DTC_SHARED}/etc/apache.pid
 }
@@ -3948,7 +3950,7 @@ DTCinstallPackage () {
 	fi
 	saveConfig
 	generateMySQLConfigPHPfile
-	createDTCRootShellScript
+#	createDTCRootShellScript
 	createApachePIDSymLink
 	enableApache2Modules
 	createApacheAdminProtectedDir
