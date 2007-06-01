@@ -1,6 +1,9 @@
 dtc (0.25.5-1) unstable; urgency=low
 
   * Added dtc-stats-daemon package to the build.
+  * Repaired the debian dtc-chroot-shell that was previously broken
+  * Repaired the debconf NAT question priority + others (minor) things
+  * Fixed some perms after install (minor)
 
  -- Thomas Goirand <thomas@goirand.fr>  Fri, 25 May 2007 08:19:31 +0000
 
