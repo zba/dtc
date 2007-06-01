@@ -3369,7 +3369,7 @@ createChrootTemplate () {
 
 	# if we have a sudo binary around, then use it to create our chroot shell
 	SUDO=`which sudo`
-	if [ -n "$SUDO" ] ; then
+#	if [ -n "$SUDO" ] ; then
 		# create a chroot shell script
 # This script seems buggy, and anyway,
 # it seems it has been done elsewhere already!!!
@@ -3380,7 +3380,7 @@ createChrootTemplate () {
 #		chmod 755 $SHELL
 		# fix sudoers
 		# fix /etc/shells
-	fi
+#	fi
 
 	# set protections
 	echoIfVerbose "-> Fixup rights"
