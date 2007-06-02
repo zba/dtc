@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.144 2007/06/02 06:38:12 thomas Exp $
+ * @version $Id: strings.php,v 1.145 2007/06/02 06:56:25 thomas Exp $
  * $Log: strings.php,v $
+ * Revision 1.145  2007/06/02 06:56:25  thomas
+ * Added unique checking for login fld of ssh & ftp.
+ *
  * Revision 1.144  2007/06/02 06:38:12  thomas
  * Added error checking when there is a mailbox by that name. Integrates
  * with the template system.
@@ -35,6 +38,38 @@
  *
  */
 
+$txt_there_is_a_ssh_login_by_that_name = array(
+	"fr" => "Il existe déjà un compte ssh avec ce nom",
+	"en" => "There is already a ssh login by that name",
+	"hu" => "TRANS There is already a ssh login by that name",
+	"it" => "TRANS There is already a ssh login by that name",
+	"nl" => "TRANS There is already a ssh login by that name",
+	"ru" => "TRANS There is already a ssh login by that name",
+	"de" => "TRANS There is already a ssh login by that name",
+	"ro" => "TRANS There is already a ssh login by that name",
+	"zh" => "TRANS There is already a ssh login by that name",
+	"pl" => "TRANS There is already a ssh login by that name",
+	"se" => "TRANS There is already a ssh login by that name",
+	"es" => "TRANS There is already a ssh login by that name",
+	"pt" => "TRANS There is already a ssh login by that name"
+);	
+
+$txt_there_is_a_ftp_login_by_that_name = array(
+	"fr" => "Il existe déjà un compte ftp avec ce nom",
+	"en" => "There is already a ftp login by that name",
+	"hu" => "TRANS There is already a ftp login by that name",
+	"it" => "TRANS There is already a ftp login by that name",
+	"nl" => "TRANS There is already a ftp login by that name",
+	"ru" => "TRANS There is already a ftp login by that name",
+	"de" => "TRANS There is already a ftp login by that name",
+	"ro" => "TRANS There is already a ftp login by that name",
+	"zh" => "TRANS There is already a ftp login by that name",
+	"pl" => "TRANS There is already a ftp login by that name",
+	"se" => "TRANS There is already a ftp login by that name",
+	"es" => "TRANS There is already a ftp login by that name",
+	"pt" => "TRANS There is already a ftp login by that name"
+);	
+
 $txt_there_is_a_mailbox_by_that_name = array(
 	"fr" => "Il existe déjà une boite avec ce nom",
 	"en" => "There is already a mailbox by that name",
@@ -49,7 +84,7 @@ $txt_there_is_a_mailbox_by_that_name = array(
 	"se" => "TRANS There is already a mailbox by that name",
 	"es" => "TRANS There is already a mailbox by that name",
 	"pt" => "TRANS There is already a mailbox by that name"
-);	
+);
 
 $txt_name = array(
 	"fr" => "Nom:",

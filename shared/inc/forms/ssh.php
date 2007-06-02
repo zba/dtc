@@ -29,6 +29,8 @@ function drawAdminTools_SSH($domain,$adm_path){
 	global $txt_login_login;
 	global $txt_login_pass;
 	global $txt_path;
+	global $txt_there_is_a_ssh_login_by_that_name;
+
 	global $conf_hide_password;
 	global $conf_domain_based_ssh_logins;
 
@@ -68,6 +70,9 @@ function drawAdminTools_SSH($domain,$adm_path){
 		"create_item_callback" => "sshAccountsCallback",
 		"where_list" => array(
 			"hostname" => $domain["name"]),
+		"check_unique" => array( "login" ),
+		"check_unique_msg" => $txt_there_is_a_ssh_login_by_that_name[$lang],
+		"check_unique_use_where_list" => "no",
 		"cols" => array(
 			"id" => array(
 				"type" => "id",

@@ -819,12 +819,18 @@ function dtcListItemsEdit($dsc){
 				if($i != 0){
 					$where_clause .= " AND ";
 				}
-				$where_clause .= $dsc["check_unique"][$i] . "='".$_REQUEST[ $dsc["check_unique"][$i] ]."' ";
+				if( isset ($dsc["cols"][ $dsc["check_unique"][$i] ]["happen_domain"]) ){
+					$where_clause .= $dsc["check_unique"][$i] . "='".$_REQUEST[ $dsc["check_unique"][$i] ]  .  $dsc["cols"][ $dsc["check_unique"][$i] ]["happen_domain"]."' ";
+				}else{
+					$where_clause .= $dsc["check_unique"][$i] . "='".$_REQUEST[ $dsc["check_unique"][$i] ]."' ";
+				}
 			}
-			$nbr_where_list_fld = sizeof($dsc["where_list"]);
-			$where_list_keys_fld = array_keys($dsc["where_list"]);
-			for($i=0;$i<$nbr_where_list_fld;$i++){
-				$where_clause .= " AND ".$where_list_keys_fld[$i]."='".$dsc["where_list"][ $where_list_keys_fld[$i] ]."'";
+			if( !isset($dsc["check_unique_use_where_list"]) || $dsc["check_unique_use_where_list"] == "yes"){
+				$nbr_where_list_fld = sizeof($dsc["where_list"]);
+				$where_list_keys_fld = array_keys($dsc["where_list"]);
+				for($i=0;$i<$nbr_where_list_fld;$i++){
+					$where_clause .= " AND ".$where_list_keys_fld[$i]."='".$dsc["where_list"][ $where_list_keys_fld[$i] ]."'";
+				}
 			}
 			$q = "SELECT * FROM ".$dsc["table_name"]." WHERE $where_clause ";
 			$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -926,7 +932,7 @@ function dtcListItemsEdit($dsc){
 				$out .= "<font color=\"red\">Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error()."</font>";
 			}
 		}else{
-			$out .= "<font color=\"red\">Could not commit the changes because of an error in field format: <br>$commit_err</font>";
+			$out .= "<font color=\"red\">Could not commit the changes because of an error in field format: <br>$commit_err</font><br>";
 		}
 	}else if( isset($_REQUEST["action"]) && $_REQUEST["action"] == $dsc["action"]."_save_item" ){
 		// Todo: do the fields checkings
