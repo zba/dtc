@@ -812,6 +812,28 @@ function dtcListItemsEdit($dsc){
 			$commit_flag = "no";
 			$commit_err = "Max number of items reached!";
 		}
+		if(isset($dsc["check_unique"])){
+			$nbr_unique_check = sizeof($dsc["check_unique"]);
+			$where_clause = "";
+			for($i=0;$i<$nbr_unique_check;$i++){
+				if($i != 0){
+					$where_clause .= " AND ";
+				}
+				$where_clause .= $dsc["check_unique"][$i] . "='".$_REQUEST[ $dsc["check_unique"][$i] ]."' ";
+			}
+			$nbr_where_list_fld = sizeof($dsc["where_list"]);
+			$where_list_keys_fld = array_keys($dsc["where_list"]);
+			for($i=0;$i<$nbr_where_list_fld;$i++){
+				$where_clause .= " AND ".$where_list_keys_fld[$i]."='".$dsc["where_list"][ $where_list_keys_fld[$i] ]."'";
+			}
+			$q = "SELECT * FROM ".$dsc["table_name"]." WHERE $where_clause ";
+			$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			if($n > 0){
+				$commit_flag = "no";
+				$commit_err = $dsc["check_unique_msg"];
+			}
+		}
 		// Build the request
 		$fld_names = "";
 		$values = "";

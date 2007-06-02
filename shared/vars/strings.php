@@ -3,8 +3,12 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.143 2007/05/31 18:19:33 thomas Exp $
+ * @version $Id: strings.php,v 1.144 2007/06/02 06:38:12 thomas Exp $
  * $Log: strings.php,v $
+ * Revision 1.144  2007/06/02 06:38:12  thomas
+ * Added error checking when there is a mailbox by that name. Integrates
+ * with the template system.
+ *
  * Revision 1.143  2007/05/31 18:19:33  thomas
  * Some syntaxe errors.
  *
@@ -30,6 +34,22 @@
  * New Polish translations
  *
  */
+
+$txt_there_is_a_mailbox_by_that_name = array(
+	"fr" => "Il existe déjà une boite avec ce nom",
+	"en" => "There is already a mailbox by that name",
+	"hu" => "TRANS There is already a mailbox by that name",
+	"it" => "TRANS There is already a mailbox by that name",
+	"nl" => "TRANS There is already a mailbox by that name",
+	"ru" => "TRANS There is already a mailbox by that name",
+	"de" => "TRANS There is already a mailbox by that name",
+	"ro" => "TRANS There is already a mailbox by that name",
+	"zh" => "TRANS There is already a mailbox by that name",
+	"pl" => "TRANS There is already a mailbox by that name",
+	"se" => "TRANS There is already a mailbox by that name",
+	"es" => "TRANS There is already a mailbox by that name",
+	"pt" => "TRANS There is already a mailbox by that name"
+);	
 
 $txt_name = array(
 	"fr" => "Nom:",

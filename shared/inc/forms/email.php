@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.55 2007/05/28 21:40:05 thomas Exp $
+ * @version $Id: email.php,v 1.56 2007/06/02 06:38:12 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -601,6 +601,7 @@ function drawAdminTools_Emails($domain){
 	global $txt_mail_check_to_send_bounce_msg;
 	global $txt_mail_bounce_msg_content;
 	global $txt_name;
+	global $txt_there_is_a_mailbox_by_that_name;
 
 	global $cyrus_used;
 	global $cyrus_default_quota;
@@ -629,6 +630,8 @@ function drawAdminTools_Emails($domain){
 		"edit_item_callback" => "emailAccountsEditCallback",
 		"where_list" => array(
 			"mbox_host" => $domain["name"]),
+		"check_unique" => array( "id" ),
+		"check_unique_msg" => $txt_there_is_a_mailbox_by_that_name[$lang],
 		"cols" => array(
 			"autoinc" => array(
 				"type" => "id",
