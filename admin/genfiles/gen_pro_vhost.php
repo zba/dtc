@@ -534,6 +534,13 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			} else {
 				// Generate a permanet redirect for all subdomains of target if using a domain parking
 				if($domain_parking != "no-parking"){
+					if($j == 0){
+						$console .= "Making domain parking for $web_name\n";
+						$vhost_file .= "<VirtualHost ".$ip_to_write.":80>
+	ServerName $web_name
+	Redirect permanent / http://$domain_parking/
+</VirtualHost>\n\n";
+					}
 					$console .= "Making domain parking for $web_subname.$web_name\n";
 					$vhost_file .= "<VirtualHost ".$ip_to_write.":80>
 	ServerName $web_subname.$web_name
