@@ -19,13 +19,13 @@ PHP=/usr/bin/php
 case "$1" in
 	start)
 		echo -n "Starting dtc-xen statistic daemon: dtc-stats-daemon"
-		start-stop-daemon --start -b --quiet --pidfile /var/run/dtc-stats-daemon.pid --make-pidfile --exec "/usr/share/dtc/admin/dtc-stats-daemon"
+		start-stop-daemon --start -b --quiet --pidfile /var/run/dtc-stats-daemon.pid --make-pidfile --exec "/usr/share/dtc/admin/dtc-stats-daemon.php"
 		echo "."
         ;;
 
 	stop)
 		echo -n "Stoping dtc-xen statistic daemon: dtc-stats-daemon"
-		start-stop-daemon --stop --oknodo --pidfile /var/run/dtc-xen-stats-daemon.pid
+		start-stop-daemon --stop --oknodo --pidfile /var/run/dtc-stats-daemon.pid
 		echo "."
 	;;
 

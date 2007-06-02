@@ -1,4 +1,8 @@
+#!/usr/bin/env php
+
 <?php
+
+chdir(dirname(__FILE__));
 
 $panel_type="cronjob";
 require("../shared/autoSQLconfig.php"); // Our main configuration file
