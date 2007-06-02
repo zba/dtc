@@ -291,7 +291,9 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 		expire='".$_REQUEST["expire"]."',allow_add_domain='".$_REQUEST["allow_add_domain"]."',
 		nbrdb='".$_REQUEST["nbrdb"]."',prod_id='".$_REQUEST["heb_prod_id"]."',
 		resseller_flag='".$_REQUEST["resseller_flag"]."',
-		ssh_login_flag='".$_REQUEST["ssh_login_flag"]."'
+		ssh_login_flag='".$_REQUEST["ssh_login_flag"]."',
+		ftp_login_flag='".$_REQUEST["ftp_login_flag"]."',
+		pkg_install_flag='".$_REQUEST["pkg_install_flag"]."'
 		WHERE adm_login='$adm_login';";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." ".mysql_error());
 

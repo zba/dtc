@@ -30,6 +30,8 @@ function drawEditAdmin($admin){
 	global $txt_heb_prod_id;
 	global $txt_can_have_subadmins_reseller;
 	global $txt_can_have_ssh_login_for_vhosts;
+	global $txt_can_have_package_installer;
+	global $txt_can_have_ftp_login_for_vhosts;
 	global $txt_allow_to_add_domains;
 	global $txt_number_of_database;
 	global $txt_import_a_domain_for_this_user;
@@ -74,6 +76,8 @@ function drawEditAdmin($admin){
 	$allow_add_domain = $info["allow_add_domain"];
 	$resseller_flag = $info["resseller_flag"];
 	$ssh_login_flag = $info["ssh_login_flag"];
+	$ftp_login_flag = $info["ftp_login_flag"];
+	$pkg_install_flag = $info["pkg_install_flag"];
 
 	if($resseller_flag == "yes"){
 		$resflag_yes = " checked ";
@@ -94,6 +98,26 @@ function drawEditAdmin($admin){
 	}
 	$sshlog_selector = "<input type=\"radio\" name=\"ssh_login_flag\" value=\"yes\"$sshlogin_yes> ".$txt_yes[$lang]."
 	<input type=\"radio\" name=\"ssh_login_flag\" value=\"no\"$sshlogin_no> ".$txt_no[$lang];
+
+	if($ftp_login_flag == "yes"){
+		$ftplogin_yes = " checked ";
+		$ftplogin_no = "";
+	}else{
+		$ftplogin_yes = "";
+		$ftplogin_no = " checked ";
+	}
+	$ftplog_selector = "<input type=\"radio\" name=\"ftp_login_flag\" value=\"yes\"$ftplogin_yes> ".$txt_yes[$lang]."
+	<input type=\"radio\" name=\"ftp_login_flag\" value=\"no\"$ftplogin_no> ".$txt_no[$lang];
+
+	if($pkg_install_flag == "yes"){
+		$pkg_install_yes = " checked ";
+		$pkg_install_no = "";
+	}else{
+		$pkg_install_yes = "";
+		$pkg_install_no = " checked ";
+	}
+	$pkg_install_selector = "<input type=\"radio\" name=\"pkg_install_flag\" value=\"yes\"$pkg_install_yes> ".$txt_yes[$lang]."
+	<input type=\"radio\" name=\"pkg_install_flag\" value=\"no\"$pkg_install_no> ".$txt_no[$lang];
 
 	if($allow_add_domain == "yes")	$adyes = "selected";	else $adyes = "";
 	if($allow_add_domain == "check")$adcheck = "selected";	else $adcheck = "";
@@ -148,6 +172,8 @@ function drawEditAdmin($admin){
 	$user_data .= dtcFormLineDraw($txt_allow_to_add_domains[$lang],$aldom_popup);
 	$user_data .= dtcFormLineDraw($txt_can_have_subadmins_reseller[$lang],$res_selector,0);
 	$user_data .= dtcFormLineDraw($txt_can_have_ssh_login_for_vhosts[$lang],$sshlog_selector);
+	$user_data .= dtcFormLineDraw($txt_can_have_ftp_login_for_vhosts[$lang],$ftplog_selector,0);
+	$user_data .= dtcFormLineDraw($txt_can_have_package_installer[$lang],$pkg_install_selector);
 	$user_data .= dtcFromOkDraw()."</table></form>";
 /*	$user_data .= "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
 </td></tr></table></form>";*/

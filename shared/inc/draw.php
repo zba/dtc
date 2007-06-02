@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.95 2007/03/25 17:45:44 thomas Exp $
+ * @version $Id: draw.php,v 1.96 2007/06/02 12:42:17 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -165,6 +165,8 @@ function drawAdminTools($admin){
 	$adm_path 	= $admin_info["path"];
 	$resseller_flag = $admin_info["resseller_flag"];
 	$ssh_login_flag = $admin_info["ssh_login_flag"];
+	$ftp_login_flag = $admin_info["ftp_login_flag"];
+	$pkg_install_flag = $admin_info["pkg_install_flag"];
 
 	unset($user_ZEmenu);
 	if($nbr_domain > 0){
@@ -269,23 +271,27 @@ function drawAdminTools($admin){
 				"icon" => "box_wnb_nb_picto-subdomains.gif",
 				"type" => "link",
 				"link" => "subdomains");
-			$domain_conf_submenu[] = array(
-				"text" => $txt_cmenu_ftpaccounts[$lang],
-				"icon" => "box_wnb_nb_picto-ftpaccounts.gif",
-				"type" => "link",
-				"link" => "ftp-accounts");
-                        if($ssh_login_flag == "yes"){
-			  $domain_conf_submenu[] = array(
-				"text" => $txt_cmenu_sshaccounts[$lang],
-				"icon" => "box_wnb_nb_picto-sshaccounts.gif",
-				"type" => "link",
-				"link" => "ssh-accounts");
+                        if($ftp_login_flag == "yes"){
+				$domain_conf_submenu[] = array(
+					"text" => $txt_cmenu_ftpaccounts[$lang],
+					"icon" => "box_wnb_nb_picto-ftpaccounts.gif",
+					"type" => "link",
+					"link" => "ftp-accounts");
+			}
+			if($ssh_login_flag == "yes"){
+				$domain_conf_submenu[] = array(
+					"text" => $txt_cmenu_sshaccounts[$lang],
+					"icon" => "box_wnb_nb_picto-sshaccounts.gif",
+					"type" => "link",
+					"link" => "ssh-accounts");
                         }
-			$domain_conf_submenu[] = array(
-				"text" => $txt_cmenu_packageinstaller[$lang],
-				"icon" => "box_wnb_nb_picto-packageinstaller.gif",
-				"type" => "link",
-				"link" => "package-installer");
+			if($pkg_install_flag == "yes"){
+				$domain_conf_submenu[] = array(
+					"text" => $txt_cmenu_packageinstaller[$lang],
+					"icon" => "box_wnb_nb_picto-packageinstaller.gif",
+					"type" => "link",
+					"link" => "package-installer");
+			}
                   }
 		}
 		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){

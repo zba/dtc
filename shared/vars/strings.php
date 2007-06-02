@@ -3,8 +3,12 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.145 2007/06/02 06:56:25 thomas Exp $
+ * @version $Id: strings.php,v 1.146 2007/06/02 12:42:17 thomas Exp $
  * $Log: strings.php,v $
+ * Revision 1.146  2007/06/02 12:42:17  thomas
+ * Added a patch to be able to desactivate FTP or package-installer tab
+ * in the user interface (configurable in the admin editor section).
+ *
  * Revision 1.145  2007/06/02 06:56:25  thomas
  * Added unique checking for login fld of ssh & ftp.
  *
@@ -1684,6 +1688,36 @@ $txt_can_have_subadmins_reseller = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Autorizar el agregado de sub-cuenta (revendedor)",
 	"pt" => "Privilégios para gerir contas secundárias (revendedor) :"
+	);
+
+$txt_can_have_package_installer = array(
+	"fr" => "Autoriser l'utilisation de l'installateur de paquet :",
+	"en" => "Allow the use of the package installer:",
+	"hu" => "TRANS Allow the use of the package installer:",
+	"it" => "TRANS Allow the use of the package installer:",
+	"nl" => "TRANS Allow the use of the package installer:",
+	"ru" => "TRANS Allow the use of the package installer:",
+	"de" => "TRANS Allow the use of the package installer:",
+	"zh" => "TRANS Allow the use of the package installer:",
+	"pl" => "TRANS Allow the use of the package installer:",
+	"se" => "TRANS Allow the use of the package installer:",
+	"es" => "TRANS Allow the use of the package installer:",
+	"pt" => "TRANS Allow the use of the package installer:"
+	);
+
+$txt_can_have_ftp_login_for_vhosts = array(
+	"fr" => "Autoriser l'ajout de comptes vhosts FTP :",
+	"en" => "Allow addition of FTP logins:",
+	"hu" => "TRANS Allow addition of FTP vhosts logins:",
+	"it" => "Permetti l'aggiunta di logins FTP vhosts:",
+	"nl" => "Geef toestemming om FTP logins toe te voegen:",
+	"ru" => "TRANS Allow addition of FTP vhosts logins:",
+	"de" => "Erlaube hinzufügen von FTP Logins:",
+	"zh" => "TRANS Allow addition of FTP vhosts logins:",
+	"pl" => "Dostêp dodatkowy do FTP przez logowanie do vhostów:",
+	"se" => "TRANS Allow addition of FTP vhosts logins:",
+	"es" => "Autorizar la adici&oacute;n de accesos vhosts FTP:",
+	"pt" => "TRANS Allow addition of FTP vhosts logins:"
 	);
 
 $txt_can_have_ssh_login_for_vhosts = array(

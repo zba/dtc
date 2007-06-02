@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS admin (
   nbrdb int(9) NOT NULL default '1',
   resseller_flag enum('yes','no') NOT NULL default 'no',
   ssh_login_flag enum('yes','no') NOT NULL default 'no',
+  ftp_login_flag enum('yes','no') NOT NULL default 'yes',
+  pkg_install_flag enum('yes','no') NOT NULL default 'yes',
   ob_head varchar(64) NOT NULL default '',
   ob_tail varchar(64) NOT NULL default '',
   ob_next varchar(64) NOT NULL default '',
