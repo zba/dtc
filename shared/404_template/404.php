@@ -28,7 +28,7 @@ h1{text-decoration:none; text-align:center;}
     <div id="wrapper">
         <div class="top">
             <h1>404 Error: the requested document does not exist</h1>
-            <?php echo "URL: http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>
+            <?php echo "URL: http://".$_SERVER["SERVER_NAME"].htmlspecialchars($_SERVER["REQUEST_URI"]); ?>
 </div>
         <div class="message">
             <p>

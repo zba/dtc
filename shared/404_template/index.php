@@ -28,7 +28,7 @@ h1{text-decoration:none; text-align:center;}
     <div id="wrapper">
         <div class="top">
             <h1>ERROR<br />
-            http://<?php echo $_SERVER["HTTP_HOST"]; ?></h1>
+            http://<?php echo htmlspecialchars($_SERVER["HTTP_HOST"]); ?></h1>
             <h3>is not an active URL or configured web site on this server.</h3>
 </div>
         <div class="message">
