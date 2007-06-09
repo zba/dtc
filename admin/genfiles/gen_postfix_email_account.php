@@ -251,7 +251,12 @@ function mail_account_generate_postfix(){
 					//if we haven't added the spam mailbox yet, do it here
 					if ($spam_stuff_done == 0){
 						if($conf_use_cyrus != "yes"){
-							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox");
+							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag");
+							if($vacation_flag == "yes"){
+								$vac_fp = fopen("$home/.vacation.msg","w+");
+								fwrite($vac_fp,$vacation_text);
+								fclose($vac_fp);
+							}
 						}
 					}
 					if(is_dir($home) && $homedir_created == 1){
