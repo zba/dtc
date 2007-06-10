@@ -73,6 +73,11 @@ createDTCuserAndGroup () {
 		echo "No dtc system group: exiting"
 		exit 1
 	fi
+	# Add the bind user to the dtcgrp group, and allow failure (if bind8, then there is no bind user,
+	# and the operation might have been done before)
+	if [ $UNIX_TYPE"" = "debian" ] ; then
+		adduser bind dtcgrp  || true
+	fi
 }
 
 searchPATH_PHP_CGI () {
@@ -90,7 +95,7 @@ searchPATH_PHP_CGI () {
 					PATH_PHP_CGI="/usr/local/bin/php"
 				else
 					echo "Could not find the php cli binary!!!"
-					exit 0
+					exit 1
 				fi
 			fi
 		fi
@@ -2087,7 +2092,7 @@ MYSQL_CRYPT_PWFIELD     crypt
 MYSQL_HOME_FIELD        home
 MYSQL_UID_FIELD         uid
 MYSQL_GID_FIELD         gid
-MYSQL_QUOTA_FIELD       quota_size
+MYSQL_QUOTA_FIELD       quota_couriermaildrop
 MYSQL_DEFAULT_DOMAIN    $main_domain_name
 
 # use the experimental query
