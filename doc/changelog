@@ -1,8 +1,11 @@
 Version 0.25.8:
 ---------------
+- The script to build SASL2 db and .mailfilter are now rewrote in php, so
+it's not spawning process and so makes it a lot faster to generate the mail
+accounts.
 - Fixed MANY rights problems
-- Fixed the vacation message system when there is no
-redirection (was not working)
+- Fixed the vacation message system when there is no redirection (was not
+working)
 - Fixed many other little but anoying bugs
 - Fixed XSS (in fact pisshing) hole in the 404.php file
 

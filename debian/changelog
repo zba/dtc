@@ -4,6 +4,9 @@ dtc (0.25.8-1) unstable; urgency=low
   * Repaired the debian dtc-chroot-shell that was previously broken
   * Repaired the debconf NAT question priority + others (minor) things
   * Fixed some perms after install (minor)
+  * [v0.25.4] This source package now builds dtc-stats-daemon.
+  * [v0.25.4] Added pt_BR template by Felipe Augusto van de Wiel
+    (Closes: #417248)
   * This source package now builds dtc-stats-daemon.
   * Added pt_BR template by Felipe Augusto van de Wiel (Closes: #417248)
 
