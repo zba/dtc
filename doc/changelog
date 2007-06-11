@@ -1,3 +1,11 @@
+Version 0.25.8:
+---------------
+- Fixed MANY rights problems
+- Fixed the vacation message system when there is no
+redirection (was not working)
+- Fixed many other little but anoying bugs
+- Fixed XSS (in fact pisshing) hole in the 404.php file
+
 Version 0.25.2:
 ---------------
 - Implemented courier maildrop Maildir quota.
