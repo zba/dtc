@@ -141,7 +141,7 @@ function test_valid_local_ip($address){
 }
 
 function get_defaultCharsetDirective($db_entry){
-	if($db_entry == "dtc-wont-add"){
+	if(!isset($db_entry) || $db_entry == "dtc-wont-add" || $db_entry == ""){
 		return "";
 	}else{
 		if($db_entry == "Off"){
