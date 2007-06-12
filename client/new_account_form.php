@@ -316,7 +316,8 @@ city,
 state,
 country,
 product_id,
-custom_notes$vps_add1
+custom_notes,
+shopper_ip$vps_add1
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
@@ -337,7 +338,8 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 '$esc_state',
 '".$_REQUEST["country"]."',
 '$esc_product_id',
-'$esc_custom_notes'$vps_add2)";
+'$esc_custom_notes',
+'".$_SERVER["REMOTE_ADDR"]."'$vps_add2)";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$id = mysql_insert_id();
 	$ret["err"] = 0;
@@ -372,6 +374,7 @@ Zipcode: $esc_zipcode
 City: ".$_REQUEST["city"]."
 State: ".$_REQUEST["state"]."
 Contry: ".$_REQUEST["country"]."
+Shopper ip: ".$_SERVER["REMOTE_ADDR"]."
 Product id: $the_prod
 Customer note: ".$_REQUEST["custom_notes"]."
 $vps_mail_add1
