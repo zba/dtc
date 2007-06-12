@@ -49,6 +49,7 @@ function mail_account_generate_postfix(){
 	global $conf_dtc_system_username;
 
 	global $conf_use_cyrus;
+	global $conf_use_mail_alias_group;
 
 	//global $conf_postfix_virtual_mailbox_domains_path;
 	//global $conf_postfix_virtual_path;
@@ -150,7 +151,46 @@ function mail_account_generate_postfix(){
 					}
 				}
 			}
-			if(isset($domain["emails"]) && $primary_mx){
+//Mail Group Aliases Start
+			if ( $conf_use_mail_alias_group == "yes" )
+			{
+				if ( $domain["domain_parking"] != "no-parking" )
+				{
+					// @domain1 -> @domain2
+					$domains_postmasters_file.= "# Mail Alias Groups for ".$domain["name"]."\n";
+					$domains_postmasters_file.= "@".$domain["name"]." @".$domain["domain_parking"]."\n";
+					$domains_postmasters_file.= "#\n";
+				}
+				elseif ( $primary_mx && isset($domain["aliases"]) )
+				{
+					// name@domain1 -> othername@domain1,user@domain2,etc.
+					$aliases = $domain["aliases"];
+					$nbr_boites = sizeof($aliases);
+					// go through each of these emails and build the vmailbox file
+					//also create our sasldb2 if we have a saslpasswd2 exe
+					for($k=0;$k<$nbr_boites;$k++){
+						$alias = $aliases[$k];
+						$id = $alias["id"];
+						$domain_parent = $alias["domain_parent"];
+						$ainc = $alias["autoinc"];
+						$mailbox_cleanup1 = str_replace("\r\n", "\n", $alias["delivery_group"]);
+						$mailbox_cleanup2 = split("\n", $mailbox_cleanup1);
+						$deliver_mailbox = '';
+						if ( $k==0 ) $domains_postmasters_file.= "# Mail Alias Groups for : ".$domain_parent."\n";
+						for($x=0;$x<count($mailbox_cleanup2);$x++)
+						{
+							if ( $x<count($mailbox_cleanup2)-1 )
+								$deliver_mailbox.=trim($mailbox_cleanup2[$x]).",";
+							else
+								$deliver_mailbox.=trim($mailbox_cleanup2[$x]);
+						}
+						$domains_postmasters_file.=$id."@".$domain_parent." ".$deliver_mailbox."\n";
+						if ( $k==$nbr_boites-1 ) $domains_postmasters_file.= "#\n";
+					}
+				}
+			}
+//Mail Group Aliases End
+			if(isset($domain["emails"]) && $primary_mx && $domain["domain_parking"] == "no-parking" ){
 				$emails = $domain["emails"];
 				$nbr_boites = sizeof($emails);
 				// go through each of these emails and build the vmailbox file
@@ -175,6 +215,7 @@ function mail_account_generate_postfix(){
 					$vacation_flag = $email["vacation_flag"];
 					$vacation_text = stripslashes($email["vacation_text"]);
 
+					if ( $k==0 ) $domains_postmasters_file.= "# Mailboxes for : ".$domain_full_name."\n";
 					$spam_stuff_done = 0;
 					$homedir_created = 0;
 					if (!isset($home) || $home==""){
@@ -271,6 +312,7 @@ function mail_account_generate_postfix(){
 					if(is_dir($home) && $homedir_created == 1){
 						system("chown -R $conf_dtc_system_username $home");
 					}
+					if ( $k==$nbr_boites-1 ) $domains_postmasters_file.= "#\n";
 				}
 			}
 			//add support for creation of mailing lists

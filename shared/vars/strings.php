@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.146 2007/06/02 12:42:17 thomas Exp $
+ * @version $Id: strings.php,v 1.147 2007/06/12 05:22:51 thomas Exp $
  * $Log: strings.php,v $
+ * Revision 1.147  2007/06/12 05:22:51  thomas
+ * Added the mailgroup patch from George.
+ *
  * Revision 1.146  2007/06/02 12:42:17  thomas
  * Added a patch to be able to desactivate FTP or package-installer tab
  * in the user interface (configurable in the admin editor section).
@@ -41,6 +44,115 @@
  * New Polish translations
  *
  */
+
+// Mail Alias Group
+$txt_cmenu_mail_aliases = array(
+	"fr" => "Boites groupées",
+	"en" => "Mail Groups",
+	"hu" => "TRANS Mail Groups",
+	"it" => "TRANS Mail Groups",
+	"nl" => "TRANS Mail Groups",
+	"ru" => "TRANS Mail Groups",
+	"de" => "TRANS Mail Groups",
+	"ro" => "TRANS Mail Groups",
+	"zh" => "TRANS Mail Groups",
+	"pl" => "TRANS Mail Groups",
+	"se" => "TRANS Mail Groups",
+	"es" => "TRANS Mail Groups",
+	"pt" => "TRANS Mail Groups"
+
+);
+$txt_title_mail_aliases_of = array(
+	"fr" => "Boites groupées de ",
+	"en" => "Mail groups of ",
+	"hu" => "TRANS Mail groups of ",
+	"it" => "TRANS Mail groups of ",
+	"nl" => "TRANS Mail groups of ",
+	"ru" => "TRANS Mail groups of ",
+	"de" => "TRANS Mail groups of ",
+	"ro" => "TRANS Mail groups of ",
+	"zh" => "TRANS Mail groups of ",
+	"pl" => "TRANS Mail groups of ",
+	"se" => "TRANS Mail groups of ",
+	"es" => "TRANS Mail groups of ",
+	"pt" => "TRANS Mail groups of "
+);
+$txt_mail_alias_delivery_group = array(
+	"fr" => "Groupes d'envois:",
+	"en" => "Delivery Group:",
+	"hu" => "TRANS Delivery Groups:",
+	"it" => "TRANS Delivery Groups:",
+	"nl" => "TRANS Delivery Groups:",
+	"ru" => "TRANS Delivery Groups:",
+	"de" => "TRANS Delivery Groups:",
+	"ro" => "TRANS Delivery Groups:",
+	"zh" => "TRANS Delivery Groups:",
+	"pl" => "TRANS Delivery Groups:",
+	"se" => "TRANS Delivery Groups:",
+	"es" => "TRANS Delivery Groups:",
+	"pt" => "TRANS Delivery Groups:"
+);
+$txt_mail_alias_new_item_title = array(
+	"fr" => "Nouvelle boite groupée",
+	"en" => "Create New Mail Group",
+	"hu" => "TRANS Create New Mail Group",
+	"it" => "TRANS Create New Mail Group",
+	"nl" => "TRANS Create New Mail Group",
+	"ru" => "TRANS Create New Mail Group",
+	"de" => "TRANS Create New Mail Group",
+	"ro" => "TRANS Create New Mail Group",
+	"zh" => "TRANS Create New Mail Group",
+	"pl" => "TRANS Create New Mail Group",
+	"se" => "TRANS Create New Mail Group",
+	"es" => "TRANS Create New Mail Group",
+	"pt" => "TRANS Create New Mail Group",
+);
+$txt_mail_alias_new_item_link = array(
+	"fr" => "Nouvelle boite groupée",
+	"en" => "Create Mail Group",
+	"hu" => "TRANS Create Mail Group",
+	"it" => "TRANS Create Mail Group",
+	"nl" => "TRANS Create Mail Group",
+	"ru" => "TRANS Create Mail Group",
+	"de" => "TRANS Create Mail Group",
+	"ro" => "TRANS Create Mail Group",
+	"zh" => "TRANS Create Mail Group",
+	"pl" => "TRANS Create Mail Group",
+	"se" => "TRANS Create Mail Group",
+	"es" => "TRANS Create Mail Group",
+	"pt" => "TRANS Create Mail Group"
+);
+$txt_mail_alias_edit_item_title = array(
+	"fr" => "Editer une boite groupé",
+	"en" => "Edit Mail Group",
+	"hu" => "TRANS Edit Mail Group",
+	"it" => "TRANS Edit Mail Group",
+	"nl" => "TRANS Edit Mail Group",
+	"ru" => "TRANS Edit Mail Group",
+	"de" => "TRANS Edit Mail Group",
+	"ro" => "TRANS Edit Mail Group",
+	"zh" => "TRANS Edit Mail Group",
+	"pl" => "TRANS Edit Mail Group",
+	"se" => "TRANS Edit Mail Group",
+	"es" => "TRANS Edit Mail Group",
+	"pt" => "TRANS Edit Mail Group"
+);
+$txt_mail_alias_list_current_aliases = array(
+	"fr" => "Liste de vos boites groupés",
+	"en" => "List of your mail groups",
+	"hu" => "TRANS List of your mail groups",
+	"it" => "TRANS List of your mail groups",
+	"nl" => "TRANS List of your mail groups",
+	"ru" => "TRANS List of your mail groups",
+	"de" => "TRANS List of your mail groups",
+	"ro" => "TRANS List of your mail groups",
+	"zh" => "TRANS List of your mail groups",
+	"pl" => "TRANS List of your mail groups",
+	"se" => "TRANS List of your mail groups",
+	"es" => "TRANS List of your mail groups",
+"pt" => "TRANS List of your mail groups"
+);
+// End of mailgroup patch
 
 $txt_there_is_a_ssh_login_by_that_name = array(
 	"fr" => "Il existe déjà un compte ssh avec ce nom",

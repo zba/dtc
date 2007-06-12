@@ -197,6 +197,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_waiting_domain_t
 function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directories = false){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_pop_table;
+	global $pro_mysql_mailaliasgroup_table;
 	global $pro_mysql_ftp_table;
 	global $pro_mysql_subdomain_table;
 	global $pro_mysql_domain_table;
@@ -215,6 +216,10 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	if($num_rows != 1) die("User not found for deletion of domain $deluserdomain !!!");
 	$row = mysql_fetch_array($result);
 	$the_admin_path = $row["path"];
+
+	// Delete all mail groups
+	$adm_query = "DELETE FROM $pro_mysql_mailaliasgroup_table WHERE domain_parent='$deluserdomain';";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 
 	// Delete all mail accounts
 	$adm_query = "DELETE FROM $pro_mysql_pop_table WHERE mbox_host='$deluserdomain';";

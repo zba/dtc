@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: draw.php,v 1.96 2007/06/02 12:42:17 thomas Exp $
+ * @version $Id: draw.php,v 1.97 2007/06/12 05:22:50 thomas Exp $
  * 
  */
 if($panel_type !="email"){
@@ -29,6 +29,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/dedicated.php");
 }
 require("$dtcshared_path/inc/forms/email.php");
+require("$dtcshared_path/inc/forms/aliases.php");
 
 function AdminTool_findDomainNum($name,$domains){
 	$num_domains = sizeof($domains);
@@ -114,6 +115,7 @@ function drawAdminTools($admin){
 
 	global $conf_skin;
 	global $conf_use_registrar_api;
+	global $conf_use_mail_alias_group;
 
 	global $vps_node;
 	global $vps_name;
@@ -134,6 +136,8 @@ function drawAdminTools($admin){
 	global $txt_resseller_child_accounts;
 	global $txt_cmenu_past_payments;
 	global $txt_cmenu_support_tickets;
+	global $txt_cmenu_mail_aliases;
+	global $txt_title_mail_aliases_of;
 
 	$add_array = explode("/",$addrlink);
         $doms_txt = "";
@@ -301,6 +305,13 @@ function drawAdminTools($admin){
 				"type" => "link",
 				"link" => "mailboxs");
 		}
+		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking" && $conf_use_mail_alias_group == "yes"){
+			$domain_conf_submenu[] = array(
+				"text" => "Mail Groups",
+				"icon" => "box_wnb_nb_picto-mailgroups.gif",
+				"type" => "link",
+				"link" => "mailaliases");
+		}
 		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
 			$domain_conf_submenu[] = array(
 				"text" => $txt_cmenu_mailinglists[$lang],
@@ -414,6 +425,10 @@ function drawAdminTools($admin){
                         $web_editor .= "<img src=\"inc/mailboxs.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_mailboxs[$lang]:</u></b><br></font>";
                         $web_editor .= drawAdminTools_Emails($eddomain);
                   	$title = $txt_title_mailbox_form[$lang].$edit_domain;
+		}else if(@$add_array[1] == "mailaliases"){
+                        $web_editor .= "<img src=\"inc/mailaliasgroup.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_mail_aliases[$lang]:</u></b><br></font>";
+                        $web_editor .= drawAdminTools_Aliases($eddomain);
+                  	$title = $txt_title_mail_aliases_of[$lang].$edit_domain;
 		}else if(@$add_array[1] == "mailing-lists"){
                         $web_editor .= "<img src=\"inc/mailing-lists.png\" align=\"left\"><font size=\"+2\"><b><u>$txt_cmenu_mailinglists[$lang]:</u></b><br></font>";
 			$web_editor .= drawAdminTools_MailingLists($eddomain);

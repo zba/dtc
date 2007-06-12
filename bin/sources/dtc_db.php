@@ -147,6 +147,7 @@ $dtc_database = array(
 			"bakcup_path" => "varchar(255) NOT NULL default '/mnt/backup' ",
 			"webalizer_stats_script_path" => "varchar(255) NOT NULL default 'webalizer.bash' ",
 			"use_javascript" => "enum('yes','no') NOT NULL default 'yes' ",
+			"use_mail_alias_group" => "enum('yes','no') NOT NULL default 'yes'",
 			"use_ssl" => "enum('yes','no') NOT NULL default 'no' ",
 			"use_nated_vhost" => "enum('yes','no') NOT NULL default 'no' ",
 			"nated_vhost_ip" => "varchar(16) NOT NULL default '192.168.0.2' ",

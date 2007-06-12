@@ -411,19 +411,20 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 }
 
 function fetchAdminData($adm_login,$adm_input_pass){
-        global $pro_mysql_domain_table;
-        global $pro_mysql_admin_table;
-        global $pro_mysql_list_table;
-        global $pro_mysql_pop_table;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_admin_table;
+	global $pro_mysql_list_table;
+	global $pro_mysql_pop_table;
+	global $pro_mysql_mailaliasgroup_table;
 	global $pro_mysql_ftp_table;
 	global $pro_mysql_ssh_table;
-        global $pro_mysql_subdomain_table;
-        global $pro_mysql_config_table;
-        global $pro_mysql_vps_table;
-        global $pro_mysql_vps_ip_table;
-        global $pro_mysql_vps_server_table;
-        global $pro_mysql_dedicated_table;
-        global $panel_type;
+	global $pro_mysql_subdomain_table;
+	global $pro_mysql_config_table;
+	global $pro_mysql_vps_table;
+	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_vps_server_table;
+	global $pro_mysql_dedicated_table;
+	global $panel_type;
 
 	global $conf_session_expir_minute;
 
@@ -689,6 +690,40 @@ function fetchAdminData($adm_login,$adm_input_pass){
 		}	
 		if(isset($emails)){
 			$domain["emails"] = $emails;
+		}
+
+// Now Can add alias emails to all thoses domains !
+		$query5 = "SELECT * FROM $pro_mysql_mailaliasgroup_table WHERE domain_parent='$name' ORDER BY id;";
+		$result5 = mysql_query ($query5);
+		if (!$result5)
+		{
+			$ret["err"] = 9;
+			$ret["mesg"] = "Cannot execute query \"$query5\"";
+			return $ret;
+		}
+		$num_rows4 = mysql_num_rows($result5);
+		unset($aliases);
+		for($j=0;$j<$num_rows4;$j++){
+			$row5 = mysql_fetch_array($result5);
+			if (!$row5)
+			{
+				$ret["err"] = 10;
+				$ret["mesg"] = "Cannot fetch mailbox";
+				return $ret;
+			}
+			unset($alias);
+			$alias["autoinc"] = $row5["autoinc"];
+			$alias["id"] = $row5["id"];
+			$alias["domain_parent"] = $row5["domain_parent"];
+			$alias["delivery_group"] = $row5["delivery_group"];
+			$alias["active"] = $row5["active"];
+			$alias["start_date"] = $row5["start_date"];
+			$alias["expire_date"] = $row5["expire_date"];
+			$alias["bounce_msg"] = $row5["bounce_msg"];
+			$aliases[] = $alias;
+		}	
+		if(isset($aliases)){
+			$domain["aliases"] = $aliases;
 		}
 
 		//now to add all the mailing lists

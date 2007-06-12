@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: email.php,v 1.56 2007/06/02 06:38:12 thomas Exp $
+ * @version $Id: email.php,v 1.57 2007/06/12 05:22:51 thomas Exp $
  * @param unknown_type $mailbox
  * @return unknown
  */
@@ -472,7 +472,7 @@ function emailAccountsCreateCallback ($id){
 	global $adm_login;
 	global $edit_domain;
 	global $cyrus_used;
-
+	global $pro_mysql_mailaliasgroup_table;
 	global $CYRUS;
 
 	$q = "SELECT * FROM $pro_mysql_pop_table WHERE autoinc='$id';";
@@ -490,6 +490,14 @@ function emailAccountsCreateCallback ($id){
 		$q = "DELETE FROM $pro_mysql_pop_table WHERE autoinc='$id';";
 		$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 		return "<font color=\"red\">Error: a mailing list already exists with this name!</font>";
+	}
+	$test_query = "SELECT * FROM $pro_mysql_mailaliasgroup_table WHERE id='".$a["id"]."' AND domain_parent='$edit_domain'";
+	$test_result = mysql_query ($test_query) or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
+	$testnum_rows = mysql_num_rows($test_result);
+	if($testnum_rows >= 1){
+		$q = "DELETE FROM $pro_mysql_pop_table WHERE autoinc='$id';";
+		$r = mysql_query($q) or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+		return "<font color=\"red\">Error: Email address already exists with this name!</font><br />";
 	}
 	$crypted_pass = crypt($a["passwd"], dtc_makesalt());
 	writeDotQmailFile($a["id"],$a["mbox_host"]);

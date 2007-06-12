@@ -771,6 +771,19 @@ function dtcListItemsEdit($dsc){
 						}
 					}
 					break;
+				case "mail_alias_group":
+					$mail_alias_group_raw = trim($_REQUEST[ $keys[$i] ],"\r\n");
+					$mail_alias_nocr = str_replace("\r", "", $mail_alias_group_raw);
+					$mail_alias_array = split("\n", $mail_alias_nocr);
+					for($x=0;$x<count($mail_alias_array);$x++)
+					{
+						if ( ! isValidEmail($mail_alias_array[$x]) )
+						{
+							$commit_flag = "no";
+							$commit_err .= $mail_alias_array[$x].": not a valid email format.<br>";
+						}
+					}
+					break;
 				case "dtc_pass":
 					if( !isDTCPassword($_REQUEST[ $keys[$i] ]) ){
 						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
@@ -1019,6 +1032,19 @@ function dtcListItemsEdit($dsc){
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
 							$commit_err .= $keys[$i].": not a correct login format.<br>";
+						}
+					}
+					break;
+				case "mail_alias_group":
+					$mail_alias_group_raw = trim($_REQUEST[ $keys[$i] ],"\r\n");
+					$mail_alias_nocr = str_replace("\r", "", $mail_alias_group_raw);
+					$mail_alias_array = split("\n", $mail_alias_nocr);
+					for($x=0;$x<count($mail_alias_array);$x++)
+					{
+						if ( ! isValidEmail($mail_alias_array[$x]) )
+						{
+							$commit_flag = "no";
+							$commit_err .= $mail_alias_array[$x].": not a valid email format.<br>";
 						}
 					}
 					break;

@@ -121,14 +121,22 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 		die("Owner is not a valid email !");
 	}
 
-	// Check if mail exists...
+	// Check if mail exists in mailbox database...
 	$test_query = "SELECT * FROM $pro_mysql_pop_table WHERE id='".$_REQUEST["newlist_name"]."' AND mbox_host='$edit_domain'";
 	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
 	$testnum_rows = mysql_num_rows($test_result);
 	if($testnum_rows != 0){
-		die("Mailbox allready exist in database then you can't use it for mailing list!");
+		die("Email address already exists in 'mailbox' database, it can't be used for the mailing list!");
 	}
 	
+	// Check if mail exists in mailalias database...
+	$test_query = "SELECT * FROM $pro_mysql_mailaliasgroup_table WHERE id='".$_REQUEST["newlist_name"]."' AND domain_parent='$edit_domain'";
+	$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
+	$testnum_rows = mysql_num_rows($test_result);
+	if($testnum_rows != 0){
+		die("Email address already exists in 'mail alias' database, it can't be used for the mailing list!");
+	}
+
 	//Check if list exists...
 	$test_query = "SELECT * FROM $pro_mysql_list_table
 				WHERE name='".$_REQUEST["newlist_name"]."' AND domain='$edit_domain'";
@@ -136,7 +144,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 				.__LINE__." file ".__FILE__. " sql said ".mysql_error());
 	$testnum_rows = mysql_num_rows($test_result);
 	if($testnum_rows != 0){
-		die("Mailing list already exist in database !");
+		die("Mailing list already exist in database!");
 	}
 
 	//Path of user's mailing lists
