@@ -1,4 +1,9 @@
-Version 0.25.8:
+Version 0.26:
+-------------
+- Added Mail Alias Group patch from George
+- Added AddDefaultCharset option for each subdomains (by default does nothing)
+
+Version 0.25.9:
 ---------------
 - The script to build SASL2 db and .mailfilter are now rewrote in php, so
 it's not spawning process and so makes it a lot faster to generate the mail
