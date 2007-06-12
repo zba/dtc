@@ -881,7 +881,8 @@ $dtc_database = array(
 			"nameserver_for" => "varchar(64) NULL ",
 			"srv_record" => "varchar(64) NULL ",
 			"ttl" => "int(11) NULL default '7200' ",
-			"ssl_ip" => "varchar(16) NOT NULL default 'none'"
+			"ssl_ip" => "varchar(16) NOT NULL default 'none'",
+			"add_default_charset" => "varchar(255) deafult 'dtc-wont-add'"
 			),
 		"primary" => "(id)",
 		"keys" => array(

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package DTC
- * @version $Id: subdomain.php,v 1.22 2007/04/05 14:29:26 tusker Exp $
+ * @version $Id: subdomain.php,v 1.23 2007/06/12 08:42:00 thomas Exp $
  * @param unknown_type $domain
  * @return unknown
  */
@@ -196,6 +196,10 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"legend" => $txt_subdom_generate_vhost[$lang]),
+			"generate_vhost" => array(
+				"type" => "radio",
+				"values" => array("dtc-wont-add","Off","ISO-8859-1","ISO-8859-2","ISO-8859-3","ISO-8859-4","ISO-8859-5","ISO-8859-6","ISO-8859-7","ISO-8859-8","ISO-8859-9","ISO-8859-10","ISO-8859-11","ISO-8859-12","ISO-8859-13","ISO-8859-14","ISO-8859-15","ISO-8859-16","ISO-2022-JP","ISO-2022-KR","ISO-2022-CN","Big5","cn-Big5","WINDOWS-1251","CP866","KOI8","KOI8-E","KOI8-r","KOI8-U","KOI8-ru","ISO-10646-UCS-2","ISO-10646-UCS-4","UTF-7","UTF-8","UTF-16","UTF-16BE","UTF-16LE","UTF-32","UTF-32BE","UTF-32LE","euc-cn","euc-gb","euc-jp","euc-kr","EUC-TW","gb2312","iso-10646-ucs-2","iso-10646-ucs-4","shift_jis"),
+				"legend" => "AddDefaultCharset"),
 			"srv_record" => array(
 				"type" => "text",
 				"can_be_empty" => "yes",

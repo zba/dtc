@@ -317,7 +317,9 @@ state,
 country,
 product_id,
 custom_notes,
-shopper_ip$vps_add1
+shopper_ip,
+date,
+time$vps_add1
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
@@ -339,7 +341,9 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["country"]."',
 '$esc_product_id',
 '$esc_custom_notes',
-'".$_SERVER["REMOTE_ADDR"]."'$vps_add2)";
+'".$_SERVER["REMOTE_ADDR"]."',
+'".date("Y-m-d")."',
+'".date("H:i:s")."'$vps_add2)";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$id = mysql_insert_id();
 	$ret["err"] = 0;
