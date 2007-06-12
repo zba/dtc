@@ -5,7 +5,7 @@ require("genfiles/gen_qmail_email_account.php");
 require("genfiles/gen_postfix_email_account.php");
 require("genfiles/gen_maildrop_userdb.php");
 
-function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$spam_mailbox,$vacation_flag="no",$redirection="",$redirection2=""){
+function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$spam_mailbox,$vacation_flag="no",$vacation_text="",$redirection="",$redirection2=""){
 	global $conf_dtc_system_username;
 	global $conf_dtc_system_groupname;
 	$MAILFILTER_FILE="$home/.mailfilter";
@@ -20,8 +20,7 @@ function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$
 
 	// Set a lock file so we don't have 2 process writting the file at the same time
 	// I'm removing it, since we don't open the file durring it's content creation...
-/*
-	$MAILFILTER_LOCK="$home/.mailfilter.lock";
+/*	$MAILFILTER_LOCK="$home/.mailfilter.lock";
 	if(file_exists($MAILFILTER_LOCK)){
 		echo "Mailfilter already working on $MAILFILTER_FILE, exitting\n";
 		return false;
@@ -30,7 +29,6 @@ function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$
 	if(!file_exists($MAILFILTER_FILE)){
 		touch($MAILFILTER_FILE);
 	}*/
-	$COUNT=0;
 
 	// Setup the anti-loop system
 	$mlfilter_content = <<<MAILFILTER_EOF
@@ -107,6 +105,9 @@ MAILDIR=\$DEFAULT\n");
 
 	if($vacation_flag == "yes"){
 		$mlfilter_content .= "\n".implode("\n",file("genfiles/mailfilter_vacation_template"))."\n";
+		$vac_fp = fopen("$home/.vacation.msg","w+");
+		fwrite($vac_fp,$vacation_text);
+		fclose($vac_fp);
 	}
 	$mlfilter_content .= <<<MAILFILTER_EOF
 \`[ -d \$DEFAULT ] || maildirmake \$DEFAULT\`
@@ -128,6 +129,28 @@ MAILFILTER_EOF;
 	return true;
 }
 
+function genSasl2PasswdDBStart(){
+	// Note that this function is REALLY problematic as it will keep SASL accounts forever:
+	// how can we delete an account from SASL? Currently DTC simply don't do it...
+	global $conf_dtc_system_username;
+	global $conf_dtc_system_groupname;
+	global $conf_generated_file_path;
+
+	if(is_dir("/var/spool/postfix/etc")){
+		$fpath = "/var/spool/postfix/etc/sasldb2";
+	}else{
+		if(is_dir("/etc/sasl2")){
+			$fpath = "/etc/sasl2/sasldb2";
+		}else{
+			$fpath = "/etc/sasldb2";
+		}
+	}
+	system("cat $fpath > $conf_generated_file_path/sasldb2");
+	chmod("$conf_generated_file_path/sasldb2",0664);
+	chown("$conf_generated_file_path/sasldb2","postfix");
+	chgrp("$conf_generated_file_path/sasldb2",$conf_dtc_system_groupname);
+}
+
 // This is here so we don't have to do that at each function call
 $genSaslDatabaseEntry_SASLPWD2 = "";
 if(file_exists("/usr/sbin/saslpasswd2")){
@@ -138,31 +161,11 @@ if(file_exists("/usr/sbin/saslpasswd2")){
 	}
 }
 
-function genSasl2PasswdDBStart(){
-	global $conf_dtc_system_username;
-	global $conf_dtc_system_groupname;
-	global $conf_generated_file_path;
-
-	if(is_dir("/var/spool/postfix/etc")){
-		$fpath = "/var/spool/postfix/etc/sasl2/sasldb2";
-	}else{
-		if(is_dir("/etc/sasl2")){
-			$fpath = "/etc/sasl2/sasldb2";
-		}else{
-			$fpath = "/etc/sasldb2";
-		}
-	}
-	system("cat $fpath > $conf_generated_file_path/sasldb2");
-	chmod($conf_generated_file_path/sasldb2,0664);
-	chown($conf_generated_file_path/sasldb2,"postfix");
-	chgrp($conf_generated_file_path/sasldb2,$conf_dtc_system_groupname);
-}
-
 function genSasl2PasswdDBEntry($domain_full_name,$id,$passwdtemp,$mailname){
 	global $genSaslDatabaseEntry_SASLPWD2;
 	global $conf_generated_file_path;
 
-	if($genSaslDatabaseEntry_SASLPWD2 = ""){
+	if($genSaslDatabaseEntry_SASLPWD2 == ""){
 		return false;
 	}
 	system("echo $passwdtemp | $genSaslDatabaseEntry_SASLPWD2 -c -p -f $conf_generated_file_path/sasldb2 -u $mailname $id\@$domain_full_name");
@@ -176,7 +179,7 @@ function genSaslFinishConfigAndRights(){
 
 	chmod("$conf_generated_file_path/sasldb2",0664);
 	if(is_dir("/var/spool/postfix/etc")){
-		$fpath = "/var/spool/postfix/etc/sasl2/sasldb2";
+		$fpath = "/var/spool/postfix/etc/sasldb2";
 	}else{
 		if(is_dir("/etc/sasl2")){
 			$fpath = "/etc/sasl2/sasldb2";

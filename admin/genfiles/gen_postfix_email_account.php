@@ -45,6 +45,8 @@ function mail_account_generate_postfix(){
 	global $conf_unix_type;
 
 	global $conf_nobody_user_id;
+	global $conf_dtc_system_uid;
+	global $conf_dtc_system_username;
 
 	global $conf_use_cyrus;
 
@@ -81,6 +83,8 @@ function mail_account_generate_postfix(){
 	$relay_recipients_all_domains = "";
 
 	$data = ""; // init var for use later on
+
+	genSasl2PasswdDBStart();
 
 	// go through each admin login and find the domains associated 
 	$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login;";
@@ -156,10 +160,9 @@ function mail_account_generate_postfix(){
 					$id = $email["id"];
 					$uid = $email["uid"];
 					// if our uid is 65534, make sure it's the correct uid as per the OS (99 for redhat)
-					if ($uid == 65534)
-					{
+/*					if ($uid == 65534){
 						$uid = $conf_nobody_user_id;	
-					}
+					}*/
 					$localdeliver = $email["localdeliver"];
 					$redirect1 = $email["redirect1"];
 					$redirect2 = $email["redirect2"];
@@ -174,12 +177,11 @@ function mail_account_generate_postfix(){
 
 					$spam_stuff_done = 0;
 					$homedir_created = 0;
-					if (!isset($home) || $home=="")
-					{
+					if (!isset($home) || $home==""){
 						$console .= "Missing home variable for $id";
 					}
 					if(! is_dir($home) ){
-						system("/bin/mkdir -p $home");
+						system("/bin/mkdir -p $home && maildirmake $home");
 						$homedir_created = 1;
 					}
 
@@ -190,10 +192,14 @@ function mail_account_generate_postfix(){
 					if ($id == "postmaster"){
 						$postmaster_address++; 
 					}
+					// Previously: only generate sasl logins for local accounts
+					// In fact, there is no reason to do so. We might want to create a mail account ONLY for sending
+					// some mail, and not receiving.
+					genSasl2PasswdDBEntry($domain_full_name,$id,$passwdtemp,$conf_addr_mail_server);
+					// system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
+
 					// first try and see if we have postfix in a chroot, else just put it in it's default location
 					if ($localdeliver == "yes" || $localdeliver == "true"){
-						// only generate sasl logins for local accounts
-						system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
 						// setup the catch_all for locally delivered email addresses
 						if ($id == $catch_all_id){
 							//$store_catch_all_md .= "@$domain_full_name        $home/Maildir/\n";
@@ -201,23 +207,24 @@ function mail_account_generate_postfix(){
 						} 
 						$vmailboxes_file .= "$id@$domain_full_name $home/Maildir/\n";
 						$uid_mappings_file .= "$id@$domain_full_name $uid\n";				
-						if (isset($catch_all_id) || $catch_all_id != "")
-						{
+						if (isset($catch_all_id) || $catch_all_id != ""){
 							//just so we can deliver to our vmailboxs if we have set a catch-all (otherwise postfix gets confused, and delivers all mail to the catch all)
 							$domains_postmasters_file .= "$id@$domain_full_name $id@$domain_full_name\n";
 						}
 					}
+
 					if(isset($redirect1) && $redirect1 != ""){
 						unset($extra_redirects);
 						if ($localdeliver == "yes" || $localdeliver == "true"){
-							//need to generate .mailfilter file with "cc" and also local delivery
-							if($conf_use_cyrus != "yes"){
-								system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1");
+							// need to generate .mailfilter file with "cc" and also local delivery
+							if($conf_use_cyrus != "yes" && (!isset($redirect2) || $redirect2 == "" )){
+								genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$spam_mailbox,$vacation_flag,$vacation_text,$redirect1);
+								/*system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1");
 								if($vacation_flag == "yes"){
 									$vac_fp = fopen("$home/.vacation.msg","w+");
 									fwrite($vac_fp,$vacation_text);
 									fclose($vac_fp);
-								}
+								}*/
 							}
 							$spam_stuff_done = 1;
 						} else {
@@ -227,12 +234,13 @@ function mail_account_generate_postfix(){
 							if ($localdeliver == "yes" || $localdeliver == "true"){
 								//need to generate .mailfilter file with "cc" and also local delivery
 								if($conf_use_cyrus != "yes"){
-									system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1 $redirect2");
+									genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$spam_mailbox,$vacation_flag,$vacation_text,$redirect1,$redirect2);
+									/*system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag $redirect1 $redirect2");
 									if($vacation_flag == "yes"){
 										$vac_fp = fopen("$home/.vacation.msg","w+");
 										fwrite($vac_fp,$vacation_text);
 										fclose($vac_fp);
-									}
+									}*/
 								}
 								$spam_stuff_done = 1;
 							} else if (isset($extra_redirects)) {
@@ -251,16 +259,17 @@ function mail_account_generate_postfix(){
 					//if we haven't added the spam mailbox yet, do it here
 					if ($spam_stuff_done == 0){
 						if($conf_use_cyrus != "yes"){
-							system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag");
+							genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$spam_mailbox,$vacation_flag,$vacation_text,$redirect1,$redirect2);
+							/* system("./genfiles/gen_mailfilter.sh $home $id $domain_full_name $spam_mailbox_enable $spam_mailbox $vacation_flag");
 							if($vacation_flag == "yes"){
 								$vac_fp = fopen("$home/.vacation.msg","w+");
 								fwrite($vac_fp,$vacation_text);
 								fclose($vac_fp);
-							}
+							}*/
 						}
 					}
 					if(is_dir($home) && $homedir_created == 1){
-						system("chown -R $conf_nobody_user_id $home");
+						system("chown -R $conf_dtc_system_username $home");
 					}
 				}
 			}
@@ -426,7 +435,7 @@ function mail_account_generate_postfix(){
 	system("$POSTMAP_BIN $conf_postfix_vmailbox_path");
 	system("$POSTMAP_BIN $conf_postfix_virtual_uid_mapping_path");
 	system("$POSTMAP_BIN $conf_postfix_relay_recipients_path");
-
+	genSaslFinishConfigAndRights();
 	//in case our relay_domains file hasn't been created correctly, we should touch it
 	system("touch $conf_postfix_relay_domains_path");
 }

@@ -192,7 +192,6 @@ if [ "$vacation_flag" = "yes" ] ; then
 	echo <genfiles/mailfilter_vacation_template >>$TMP_FILE
 fi
 
-
 echo "# End of DTC configuration" >> $TMP_FILE
 
 # now that we have our temp file with the cc and optionally SPAM additions, append our existing mailfilter to it
@@ -207,9 +206,8 @@ echo "# If the destination maildir doesn't exist, create it.
 
 # if we have one OR two redirections, we need a default "to"
 if [ -n ""$redirection -o -n ""$redirection2 ]; then
-echo "to \$DEFAULT" >> $TMP_FILE
+	echo "to \$DEFAULT" >> $TMP_FILE
 fi
-
 
 echo "# End of DTC configuration" >> $TMP_FILE
 

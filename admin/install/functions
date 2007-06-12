@@ -433,6 +433,13 @@ createHostingDirAndFiles () {
 		cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC/dtc404/
 	fi
 
+	# Repair the original 404 page from old versions against XSS attack
+	dtc404md5sum=`md5sum $PATH_DTC_ETC/dtc404/404.php|cut -d " " -f1`
+	dtcOrigianMD5sum="14285fd356b0bfdef4cfd7579da161c0"
+	if [ $dtcOrigianMD5sum = $dtc404md5sum ] ; then
+		cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC/dtc404/
+	fi
+
 	# copy the template directory from shared to etc, so we can edit it without worry of being purged on each install
 	# only copy the directory, if it doesn't already exist in the etc path
 	if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
