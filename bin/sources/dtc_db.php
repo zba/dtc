@@ -583,7 +583,8 @@ $dtc_database = array(
 			"product_id" => "int(9) NOT NULL default '0' ",
 			"custom_notes" => "text NOT NULL",
 			"vps_location" => "varchar(255) NOT NULL default ''",
-			"vps_os" => "varchar(255) NOT NULL default ''"
+			"vps_os" => "varchar(255) NOT NULL default ''",
+			"shopper_ip" => "varchar(16) NOT NULL default ''"
 			),
 		"primary" => "(id)"
 		),

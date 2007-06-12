@@ -23,5 +23,6 @@ CREATE TABLE IF NOT EXISTS new_admin (
   custom_notes text NOT NULL,
   vps_location varchar(255) NOT NULL default '',
   vps_os varchar(255) NOT NULL default '',
+  shopper_ip varchar(16) NOT NULL default '',
   PRIMARY KEY  (id)
 ) TYPE=MyISAM;
