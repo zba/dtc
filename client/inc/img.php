@@ -374,6 +374,9 @@ if(sizeof($addrlink) == 1){
 	case "package-installer":
 		$icon_im = imagecreatefrompng("package-installer.png");
 		break;
+	case "mailaliases":
+		$icon_im = imagecreatefrompng("mailaliasgroup.png");
+		break;
 	case "mailing-lists":
 		$icon_im = imagecreatefrompng("mailing-lists.png");
 		break;
