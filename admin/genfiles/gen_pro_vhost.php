@@ -140,6 +140,18 @@ function test_valid_local_ip($address){
 	error_reporting($old_error_reporting);
 }
 
+function get_defaultCharsetDirective($db_entry){
+	if($db_entry == "dtc-wont-add"){
+		return "";
+	}else{
+		if($db_entry == "Off"){
+			return "\tAddDefaultCharset Off\n";
+		}else{
+			return "\tAddDefaultCharset ".$db_entry."\n";
+		}
+	}
+}
+
 function pro_vhost_generate(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
@@ -619,7 +631,7 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	<Location />
 		php_admin_value open_basedir \"$web_path:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>
-	$cgi_directive\n";
+	$cgi_directive\n".get_defaultCharsetDirective($subdomain["add_default_charset"]);
 						}
 						$vhost_file .= "	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename\$xfer
