@@ -40,6 +40,10 @@ if (!class_exists("nusoapclient")){
 	require_once("$dtcshared_path/inc/nusoap.php");
 }
 
+// The maxmind API
+require("$dtcshared_path/maxmind/HTTPBase.php");
+require("$dtcshared_path/maxmind/CreditCardFraudDetection.php");
+
 /////////////////////////////////////////
 // The secure paiement buttons and api //
 /////////////////////////////////////////
