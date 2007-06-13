@@ -63,6 +63,7 @@ else
 {
         xfilter "reformail -I 'X-DTC-Counter: X'"
 }
+
 MAILFILTER_EOF;
 	// Manage the redirections
 	if($redirection2 == ""){
@@ -84,6 +85,7 @@ if (/^X-Spam-Flag: .*YES.*/)
 		to \$DEFAULT/.$spam_mailbox/
 	}
 }
+
 MAILFILTER_EOF;
 	}
 	// Manage the silly sqwebmail stuff for Damien
@@ -110,11 +112,13 @@ MAILDIR=\$DEFAULT\n");
 		fclose($vac_fp);
 	}
 	$mlfilter_content .= <<<MAILFILTER_EOF
-\`[ -d \$DEFAULT ] || maildirmake \$DEFAULT\`
+`[ -d \$DEFAULT ] || maildirmake \$DEFAULT`
+
 MAILFILTER_EOF;
 	if($redirection != "" && $redirection2 == ""){
 		$mlfilter_content .= <<<MAILFILTER_EOF
 to \$DEFAULT
+
 MAILFILTER_EOF;
 	}
 
