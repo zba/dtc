@@ -1368,6 +1368,12 @@ auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" hos
 }
 
 modifyNamedConf () {
+	# Change the rights of the zones folder, in case it was wrong like before
+	mkdir -p $PATH_DTC_ETC/zones
+	mkdir -p $PATH_DTC_ETC/slave_zones
+	chmod 777 $PATH_DTC_ETC/zones
+	chmod 777 $PATH_DTC_ETC/slave_zones
+
 	#
 	# include $PATH_DTC_ETC/named.zones in $PATH_NAMED_CONF
 	#
