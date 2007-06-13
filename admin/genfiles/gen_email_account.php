@@ -90,16 +90,16 @@ MAILFILTER_EOF;
 	}
 
 	// Manage the silly sqwebmail stuff for Damien
-	if(file_exists("$home/.mailfilter.sqwebmail")){
-		if(! file_exists("$home/Maildir/maildirfilterconfig")){
-			$fp = fopen("$home/Maildir/maildirfilterconfig","w+");
-			fwrite($fp,"MAILDIRFILTER=../.mailfilter.sqwebmail
+	if(! file_exists("$home/Maildir/maildirfilterconfig")){
+		$fp = fopen("$home/Maildir/maildirfilterconfig","w+");
+		fwrite($fp,"MAILDIRFILTER=../.mailfilter.sqwebmail
 MAILDIR=\$DEFAULT\n");
-			fclose($fp);
-			chmod("$home/Maildir/maildirfilterconfig",0550);
-			chown("$home/Maildir/maildirfilterconfig","dtc");
-			$mlfilter_content .= "include \".mailfilter.sqwebmail\"\n";
-		}
+		fclose($fp);
+		chmod("$home/Maildir/maildirfilterconfig",0550);
+		chown("$home/Maildir/maildirfilterconfig","dtc");
+	}
+	if(file_exists("$home/.mailfilter.sqwebmail")){
+		$mlfilter_content .= "include \".mailfilter.sqwebmail\"\n";
 	}
 
 	$mlfilter_content .= "# If you want to customize this file and include custom directives
