@@ -1114,6 +1114,26 @@ function drawDTCpayConfig(){
 				"size" => "6")));
 	$out .= configEditorTemplate ($dsc,"secpay");
 
+	$dsc = array(
+		"title" => "Maxmind API:",
+		"action" => "maxmind_api_conf_edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"use_maxmind" => array(
+				"legend" => "Use Maxmind API:",
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"maxmind_login" => array(
+				"legend" => "Maxmind login:",
+				"type" => "text",
+				"size" => "30"),
+			"maxmind_license_key" => array(
+				"legend" => "Maxmind license key:",
+				"type" => "text",
+				"size" => "30")));
+	$out .= configEditorTemplate ($dsc,"secpay");
+
 	return $out;
 }
 

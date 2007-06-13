@@ -15,5 +15,8 @@ CREATE TABLE IF NOT EXISTS secpayconf (
   enets_mid_id varchar(255) NOT NULL default '',
   enets_test_mid_id varchar(255) NOT NULL default '',
   enets_rate float(6,2) NOT NULL default '0.00',
+  use_maxmind enum('yes','no') NOT NULL default 'no',
+  maxmind_login varchar(255) NOT NULL default '',
+  maxmind_license_key varchar(255) NOT NULL default '',
   UNIQUE KEY unicrow (unicrow)
 ) TYPE=MyISAM

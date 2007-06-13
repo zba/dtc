@@ -834,7 +834,10 @@ $dtc_database = array(
 			"use_enets_test" => "enum('yes','no') NOT NULL default 'yes'",
 			"enets_mid_id" => "varchar(255) NOT NULL default ''",
 			"enets_test_mid_id" => "varchar(255) NOT NULL default ''",
-			"enets_rate" => "float(6,2) NOT NULL default '0.00'"
+			"enets_rate" => "float(6,2) NOT NULL default '0.00'",
+			"use_maxmind" => "enum('yes','no') NOT NULL default 'no'",
+			"maxmind_login" => "varchar(255) NOT NULL default ''",
+			"maxmind_license_key" => "varchar(255) NOT NULL default ''"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"
