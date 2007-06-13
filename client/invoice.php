@@ -93,6 +93,7 @@ if($company["vat_number"] != "" && $company["vat_rate"] != "0.00"){
 }else{
 	$use_vat = "no";
 }
+get_secpay_conf();
 
 class zPDF extends FPDF{
 	function Header (){
@@ -105,6 +106,7 @@ class zPDF extends FPDF{
 		global $pay;
 		global $eu_vat_warning;
 		global $use_vat;
+		global $secpayconf_currency_letters;
 
 		// First line
 		$first_line = $company["name"];
@@ -219,9 +221,9 @@ class zPDF extends FPDF{
 		$this->Cell(20,7,$completedorder["date"],"1",0,"L");
 		$date_expire = calculateExpirationDate($completedorder["date"],$product["period"]);
 		$this->Cell(20,7,$date_expire,"1",0,"L");
-		$this->Cell(15,7,$product["price_dollar"],"1",0,"L");
-		$this->Cell(25,7,$pay["paiement_cost"],"1",0,"L");
-		$this->Cell(30,7,$pay["paiement_total"],"1",0,"L");
+		$this->Cell(15,7,$product["price_dollar"]." ".$secpayconf_currency_letters,"1",0,"L");
+		$this->Cell(25,7,$pay["paiement_cost"]." ".$secpayconf_currency_letters,"1",0,"L");
+		$this->Cell(30,7,$pay["paiement_total"]." ".$secpayconf_currency_letters,"1",0,"L");
 		$this->Ln();
 
 		// VAT calculation
@@ -233,21 +235,21 @@ class zPDF extends FPDF{
 			$this->SetFont('Arial','B',12);
 			$this->Cell(50,7,"Total VAT:","1",0,"L");
 			$this->SetFont('Arial','',12);
-			$this->Cell(30,7,$vat,"1",0,"L");
+			$this->Cell(30,7,$vat." ".$secpayconf_currency_letters,"1",0,"L");
 			$this->Ln();
 			
 			$this->SetX(120);
 			$this->SetFont('Arial','B',12);
 			$this->Cell(50,7,"Total excluding VAT:","1",0,"L");
 			$this->SetFont('Arial','',12);
-			$this->Cell(30,7,$without_vat,"1",0,"L");
+			$this->Cell(30,7,$without_vat." ".$secpayconf_currency_letters,"1",0,"L");
 			$this->Ln();
 			
 			$this->SetX(120);
 			$this->SetFont('Arial','B',12);
 			$this->Cell(50,7,"Total paid:","1",0,"L");
 			$this->SetFont('Arial','',12);
-			$this->Cell(30,7,$pay["paiement_total"],"1",0,"L");
+			$this->Cell(30,7,$pay["paiement_total"]." ".$secpayconf_currency_letters,"1",0,"L");
 			$this->Ln();
 		}
 
