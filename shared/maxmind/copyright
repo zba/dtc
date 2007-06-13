@@ -1,0 +1,17 @@
+For the people that might worry about the license of the maxmind API,
+here's what I got in my mail today:
+
+Subject: Re: minFraud Trial Account
+From: "Edward Lin" <edlin@maxmind.com>
+Date: Thu, June 14, 2007 1:33 am
+To: thomas@gplhost.com
+
+Hi Thomas,
+
+We are okay with re-licensing under LGPL for the PHP api.
+
+However, rather than build a new release, would it be okay if we just 
+confirm via e-mail that we are licensing the PHP API to you under LGPL? 
+Saves us some time.
+
+Ed
