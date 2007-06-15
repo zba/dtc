@@ -1,13 +1,16 @@
 <?php
 /**
  * @package DTC
- * @version $Id: error_strings.php,v 1.19 2007/05/31 14:02:12 thomas Exp $
+ * @version $Id: error_strings.php,v 1.20 2007/06/15 17:23:49 seeb Exp $
  * 
  * --------------------------------------------------------
  * For all translators check in new array is new data - se 
  * In plan add swedish language to DTC 
  * --------------------------------------------------------
  * $Log: error_strings.php,v $
+ * Revision 1.20  2007/06/15 17:23:49  seeb
+ * Deleted info for me :)
+ *
  * Revision 1.19  2007/05/31 14:02:12  thomas
  * Hop!
  *
@@ -59,12 +62,7 @@ $txt_err_dtc_login_format = array(
  * 
  */
 
-// TG remark to Seeb: This didn't work as the code that makes this variable is called AFTER this file...
-// That code is now moved before the include. We don't need the global here as it's not in a function.
-// When you see this text, please just delete it, together with that global variable.
-//global $extapi_pay_id; // bug in my script - seeb
 
-/** I read any comment ofcourse this global was only for tests but show error **/
 
 $txt_err_payment_not_valid=array(
 	"fr" => "NON VALIDE",
