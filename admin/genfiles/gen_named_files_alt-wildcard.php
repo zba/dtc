@@ -4,11 +4,15 @@
  * @package DTC
  * @copyright LGPL
  * @author seeb <seeb@seeb.net.pl>
- * @version $Id: gen_named_files_alt-wildcard.php,v 1.1 2007/06/15 21:47:39 seeb Exp $
+ * @version $Id: gen_named_files_alt-wildcard.php,v 1.2 2007/06/15 21:49:32 seeb Exp $
+ * @see gen_pro_vhost_alt-wildcard.php
  * $Log: gen_named_files_alt-wildcard.php,v $
- * Revision 1.1  2007/06/15 21:47:39  seeb
+ * Revision 1.2  2007/06/15 21:49:32  seeb
  * start alt project for wildcard domains support
  *
+ * Revision 1.1  2007/06/15 21:47:39  seeb
+ * start alt project for wildcard domains support
+ * 
  **/
 
 
