@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * Don't remove this comment for control version
+ * @package DTC
+ * @copyright LGPL
+ * @version $Id: gen_named_files.php,v 1.57 2007/06/15 21:39:10 seeb Exp $
+ * $Log: gen_named_files.php,v $
+ * Revision 1.57  2007/06/15 21:39:10  seeb
+ * add head to file
+ *
+ **/
 function get_remote_ns($a){
 	global $console;
 	global $keep_dns_generate_flag;

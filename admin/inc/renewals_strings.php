@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * Don't remove this comment for control version
+ * @package DTC
+ * @copyright LGPL
+ * @version $Id: renewals_strings.php,v 1.6 2007/06/15 21:38:30 seeb Exp $
+ * $Log: renewals_strings.php,v $
+ * Revision 1.6  2007/06/15 21:38:30  seeb
+ * add head to file
+ *
+ **/
 $txt_renew_total_recurring_incomes_per_month = array(
 	"fr" => "Total du récurent mensuel:",
 	"en" => "Total recurring incomes per month:",
