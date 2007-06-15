@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: strings.php,v 1.147 2007/06/12 05:22:51 thomas Exp $
+ * @version $Id: strings.php,v 1.148 2007/06/15 17:19:10 seeb Exp $
  * $Log: strings.php,v $
+ * Revision 1.148  2007/06/15 17:19:10  seeb
+ * new polish trans
+ *
  * Revision 1.147  2007/06/12 05:22:51  thomas
  * Added the mailgroup patch from George.
  *
@@ -56,7 +59,7 @@ $txt_cmenu_mail_aliases = array(
 	"de" => "TRANS Mail Groups",
 	"ro" => "TRANS Mail Groups",
 	"zh" => "TRANS Mail Groups",
-	"pl" => "TRANS Mail Groups",
+	"pl" => "Aliasy pocztowe",
 	"se" => "TRANS Mail Groups",
 	"es" => "TRANS Mail Groups",
 	"pt" => "TRANS Mail Groups"
@@ -72,7 +75,7 @@ $txt_title_mail_aliases_of = array(
 	"de" => "TRANS Mail groups of ",
 	"ro" => "TRANS Mail groups of ",
 	"zh" => "TRANS Mail groups of ",
-	"pl" => "TRANS Mail groups of ",
+	"pl" => "Grupy aliasów ",
 	"se" => "TRANS Mail groups of ",
 	"es" => "TRANS Mail groups of ",
 	"pt" => "TRANS Mail groups of "
@@ -87,7 +90,7 @@ $txt_mail_alias_delivery_group = array(
 	"de" => "TRANS Delivery Groups:",
 	"ro" => "TRANS Delivery Groups:",
 	"zh" => "TRANS Delivery Groups:",
-	"pl" => "TRANS Delivery Groups:",
+	"pl" => "Listy dystrybucyjne:",
 	"se" => "TRANS Delivery Groups:",
 	"es" => "TRANS Delivery Groups:",
 	"pt" => "TRANS Delivery Groups:"
@@ -102,7 +105,7 @@ $txt_mail_alias_new_item_title = array(
 	"de" => "TRANS Create New Mail Group",
 	"ro" => "TRANS Create New Mail Group",
 	"zh" => "TRANS Create New Mail Group",
-	"pl" => "TRANS Create New Mail Group",
+	"pl" => "Tworzenie grup dystrybucyjnych",
 	"se" => "TRANS Create New Mail Group",
 	"es" => "TRANS Create New Mail Group",
 	"pt" => "TRANS Create New Mail Group",
@@ -117,7 +120,7 @@ $txt_mail_alias_new_item_link = array(
 	"de" => "TRANS Create Mail Group",
 	"ro" => "TRANS Create Mail Group",
 	"zh" => "TRANS Create Mail Group",
-	"pl" => "TRANS Create Mail Group",
+	"pl" => "Tworzenie aliasów",
 	"se" => "TRANS Create Mail Group",
 	"es" => "TRANS Create Mail Group",
 	"pt" => "TRANS Create Mail Group"
@@ -132,7 +135,7 @@ $txt_mail_alias_edit_item_title = array(
 	"de" => "TRANS Edit Mail Group",
 	"ro" => "TRANS Edit Mail Group",
 	"zh" => "TRANS Edit Mail Group",
-	"pl" => "TRANS Edit Mail Group",
+	"pl" => "Edytuj listê dystrybucyjn±",
 	"se" => "TRANS Edit Mail Group",
 	"es" => "TRANS Edit Mail Group",
 	"pt" => "TRANS Edit Mail Group"
@@ -147,7 +150,7 @@ $txt_mail_alias_list_current_aliases = array(
 	"de" => "TRANS List of your mail groups",
 	"ro" => "TRANS List of your mail groups",
 	"zh" => "TRANS List of your mail groups",
-	"pl" => "TRANS List of your mail groups",
+	"pl" => "Listy aliasów",
 	"se" => "TRANS List of your mail groups",
 	"es" => "TRANS List of your mail groups",
 "pt" => "TRANS List of your mail groups"
@@ -164,7 +167,7 @@ $txt_there_is_a_ssh_login_by_that_name = array(
 	"de" => "TRANS There is already a ssh login by that name",
 	"ro" => "TRANS There is already a ssh login by that name",
 	"zh" => "TRANS There is already a ssh login by that name",
-	"pl" => "TRANS There is already a ssh login by that name",
+	"pl" => "Istnieje ju¿ login ssh o takiej nazwie",
 	"se" => "TRANS There is already a ssh login by that name",
 	"es" => "TRANS There is already a ssh login by that name",
 	"pt" => "TRANS There is already a ssh login by that name"
@@ -180,7 +183,7 @@ $txt_there_is_a_ftp_login_by_that_name = array(
 	"de" => "TRANS There is already a ftp login by that name",
 	"ro" => "TRANS There is already a ftp login by that name",
 	"zh" => "TRANS There is already a ftp login by that name",
-	"pl" => "TRANS There is already a ftp login by that name",
+	"pl" => "Istnieje ju¿ login ftp o takiej nazwie",
 	"se" => "TRANS There is already a ftp login by that name",
 	"es" => "TRANS There is already a ftp login by that name",
 	"pt" => "TRANS There is already a ftp login by that name"
@@ -196,7 +199,7 @@ $txt_there_is_a_mailbox_by_that_name = array(
 	"de" => "TRANS There is already a mailbox by that name",
 	"ro" => "TRANS There is already a mailbox by that name",
 	"zh" => "TRANS There is already a mailbox by that name",
-	"pl" => "TRANS There is already a mailbox by that name",
+	"pl" => "Istnieje ju¿ login pocztowy o takiej nazwie",
 	"se" => "TRANS There is already a mailbox by that name",
 	"es" => "TRANS There is already a mailbox by that name",
 	"pt" => "TRANS There is already a mailbox by that name"
@@ -212,7 +215,7 @@ $txt_name = array(
 	"de" => "Name:",
 	"ro" => "Nume:",
 	"zh" => "TRANS NAME",
-	"pl" => "TRANS NAME",
+	"pl" => "Nazwa",
 	"se" => "TRANS NAME",
 	"es" => "Nombre:",
 	"pt" => "TRANS NAME"
@@ -228,7 +231,7 @@ $txt_recurring_payment = array(
 	"ru" => "TRANS Recurring payment",
 	"de" => "Wiederkehrende Zahlungen",
 	"zh" => "Ñ­»·¸¶¿î",
-	"pl" => "TRANS Recurring payment",
+	"pl" => "P³atno¶æ czêsciowa",
 	"se" => "TRANS Recurring payment",
 	"es" => "Pago Recurrente",
 	"pt" => "TRANS Recurring payment"
@@ -243,7 +246,7 @@ $txt_server_statistic_graphs = array (
 	"ru" => "TRANS Server statistic graphs",
 	"de" => "TRANS Server statistic graphs",
 	"zh" => "·þÎñÆ÷Í³¼ÆÍ¼",
-	"pl" => "TRANS Server statistic graphs",
+	"pl" => "Graficzne statystyki serwera",
 	"se" => "TRANS Server statistic graphs",
 	"es" => "gráficos de estadísticas del servidor",
 	"pt" => "TRANS Server statistic graphs"
