@@ -80,7 +80,7 @@ MAILFILTER_EOF;
 		$mlfilter_content .= <<<MAILFILTER_EOF
 if (/^X-Spam-Flag: .*YES.*/)
 {
-	\`[ -d \$DEFAULT ] || maildirmake \$DEFAULT && [ -d \$DEFAULT/.$spam_mailbox ] || maildirmake -f $spam_mailbox \$DEFAULT\`
+	`[ -d \$DEFAULT ] || maildirmake \$DEFAULT && [ -d \$DEFAULT/.$spam_mailbox ] || maildirmake -f $spam_mailbox \$DEFAULT`
 	exception {
 		to \$DEFAULT/.$spam_mailbox/
 	}
