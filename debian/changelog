@@ -1,9 +1,11 @@
-dtc (0.26.0-1) unstable; urgency=low
+dtc (0.26.1-1) unstable; urgency=low
 
-  * Added dtc-stats-daemon package to the build.
-  * Repaired the debian dtc-chroot-shell that was previously broken
-  * Repaired the debconf NAT question priority + others (minor) things
-  * Fixed some perms after install (minor)
+  * Upgraded embed a copy of wz_tooltip (Closes: #429214)
+  * [v0.25.9] Added dtc-stats-daemon package to the build.
+  * [v0.25.9] Repaired the debian dtc-chroot-shell that was previously broken
+  * [v0.25.9] Repaired the debconf NAT question priority + others (minor)
+    things
+  * [v0.25.9] Fixed some perms after install (minor)
   * [v0.25.4] This source package now builds dtc-stats-daemon.
   * [v0.25.4] Added pt_BR template by Felipe Augusto van de Wiel
     (Closes: #417248)
