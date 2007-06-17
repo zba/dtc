@@ -76,7 +76,7 @@ createDTCuserAndGroup () {
 	# Add the bind user to the dtcgrp group, and allow failure (if bind8, then there is no bind user,
 	# and the operation might have been done before)
 	if [ $UNIX_TYPE"" = "debian" ] ; then
-		adduser --quiet bind dtcgrp  || true
+		adduser bind dtcgrp >/dev/null 2>&1  || true
 	fi
 }
 
