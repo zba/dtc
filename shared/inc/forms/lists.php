@@ -217,7 +217,7 @@ function getListOptionsBoolean($ctrl_path,$tunable_name){
 		$check_option = "";
 	}
 	return "<tr>
-                <td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+                <td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".getTunableTitle($tunable_name)."</td>
                 <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
 }
 
@@ -230,7 +230,7 @@ function getListOptionsValue($ctrl_path,$tunable_name){
 		$value = $a[0];
 	}
 	return "<tr>
-			<td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+			<td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".getTunableTitle($tunable_name)."</td>
 			<td><input size=\"40\" type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td></tr>";
 }
 
@@ -244,7 +244,7 @@ function getListOptionsTextarea($ctrl_path,$tunable_name){
 		}
 	}
 	return "<tr>
-	<td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+	<td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
 	<td><textarea rows=\"5\" cols=\"60\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
 }
 
@@ -263,7 +263,7 @@ function getListOptionsList($ctrl_path,$tunable_name){
           $start=0;
         }
 
-        $mouseover = "onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\"";
+        $mouseover = "onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\"";
 	$out = "<tr>";
 	
 	for($i=$start;$i<sizeof($values);$i++){
@@ -295,7 +295,7 @@ function getListOptionsWABoolean($tunable_name){
 	}else{
 		$check_option = "";
 	}
-	return "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+	return "<tr><td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".getTunableTitle($tunable_name)."</td>
                 <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
 }
 
@@ -309,12 +309,12 @@ function getListOptionsWATextarea($ctrl_path,$tunable_name){
 		}
 	}
 	return "<tr>
-    <td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+    <td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
     <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
 }
 
 function getListOptionsWABooleanActions($tunable_name){
-	return "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".getTunableHelp($tunable_name)."')\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+	return "<tr><td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".getTunableTitle($tunable_name)."</td>
                 <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"></td></tr>";
 }
 
@@ -380,9 +380,9 @@ function list_options(){
 	$output .= getListOptionsTextarea($list_path,"access");
 
 	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_subunsub[$lang]."</b></td></tr>";
-	$output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_sub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_sub[$lang]."</td>
+	$output .= "<tr><td onmouseover=\"Tip('".$txt_lists_hlp_sub[$lang]."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".$txt_lists_title_sub[$lang]."</td>
     <td><input size=\"40\" type=\"text\" value=\"\" name=\"sub\"></td></tr>";
-	$output .= "<tr><td onmouseover=\"this.T_STICKY=true;return escape('".$txt_lists_hlp_unsub[$lang]."')\" valign=\"top\" align=\"right\">".$txt_lists_title_unsub[$lang]."</td>
+	$output .= "<tr><td onmouseover=\"Tip('".$txt_lists_hlp_unsub[$lang]."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".$txt_lists_title_unsub[$lang]."</td>
     <td><input size=\"40\" type=\"text\" value=\"\" name=\"unsub\"></td></tr>";
 
 	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_webarchive[$lang]."</b></td></tr>";
