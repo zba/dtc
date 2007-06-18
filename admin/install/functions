@@ -3550,9 +3550,6 @@ uninstallCrontab () {
 	if [ -f "/etc/cron.d/dtc-postfix-courier" ] ; then
 		rm -f /etc/cron.d/dtc-postfix-courier
 	fi
-	if [ -f "/etc/cron.d/dtc" ] ; then
-		rm -f /etc/cron.d/dtc
-	fi
 }
 
 uninstallNamed () {
