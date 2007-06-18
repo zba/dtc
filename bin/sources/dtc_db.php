@@ -586,8 +586,8 @@ $dtc_database = array(
 			"vps_os" => "varchar(255) NOT NULL default ''",
 			"shopper_ip" => "varchar(16) NOT NULL default ''",
 			"date" => "date NOT NULL default '0000-00-00'",
-			"maxmind_output" => "text NOT NULL",
-			"date" => "date NOT NULL default '0000-00-00'"
+			"time" => "time NOT NULL default '00:00:00'",
+			"maxmind_output" => "text NOT NULL"
 			),
 		"primary" => "(id)"
 		),

@@ -297,30 +297,35 @@ function register_user(){
 		$vps_mail_add1 = "VPS hostname: ".$_REQUEST["vps_server_hostname"];
 	}
 
-// MaxMind: Rudd-O
-require_once("../shared/maxmind/HTTPBase.php");
-require_once("../shared/maxmind/CreditCardFraudDetection.php");
-$hash = array();
-$hash["i"] = $_SERVER["REMOTE_ADDR"];
-$hash["city"] = $_REQUEST["city"];
-$hash["postal"] = $_REQUEST["zipcode"];
-$hash["country"] = $REQUEST["country"];
-$maildomain = split("@",$_REQUEST["email"],2);
-$hash["domain"] = $maildomain[1];
-$hash["custPhone"] = $_REQUEST["phone"];
-get_secpay_conf();
-global $secpayconf_maxmind_license_key;
-$hash["license_key"] = $secpayconf_maxmind_license_key;
-if (isset($_SERVER["X_HTTP_FORWARDED_FOR"]))
-	$hash["forwardedIP"] = $_SERVER["X_HTTP_FORWARDED_FOR"];
-$hash["emailMD5"] = md5($_REQUEST["email"]);
-$hash["usernameMD5"] = md5(["reqadm_login"]);
-$hash["passwordMD5"] = md5(["reqadm_pass"]);
-trigger_error("MaxMind input: ".serialize($hash),E_USER_NOTICE);
-$ccfs = new CreditCardFraudDetection; $ccfs->isSecure = 1;
-$ccfs->input($hash); $ccfs->query(); $maxmind_output = $ccfs->output();
-trigger_error("MaxMind output: ".serialize($maxmind_output),E_USER_NOTICE);
-// end MaxMind
+	// MaxMind: Rudd-O
+	get_secpay_conf();
+	global $secpayconf_maxmind_license_key;
+	global $secpayconf_use_maxmind;
+	if ($secpayconf_use_maxmind) {
+		require_once("../shared/maxmind/HTTPBase.php");
+		require_once("../shared/maxmind/CreditCardFraudDetection.php");
+		$hash = array();
+		$hash["i"] = $_SERVER["REMOTE_ADDR"];
+		$hash["city"] = $_REQUEST["city"];
+		$hash["postal"] = $_REQUEST["zipcode"];
+		$hash["country"] = $_REQUEST["country"];
+		$maildomain = split("@",$_REQUEST["email"],2);
+		$hash["domain"] = $maildomain[1];
+		$hash["custPhone"] = $_REQUEST["phone"];
+		$hash["license_key"] = $secpayconf_maxmind_license_key;
+		if (isset($_SERVER["X_HTTP_FORWARDED_FOR"]))
+			$hash["forwardedIP"] = $_SERVER["X_HTTP_FORWARDED_FOR"];
+		$hash["emailMD5"] = md5($_REQUEST["email"]);
+		$hash["usernameMD5"] = md5($_REQUEST["reqadm_login"]);
+		$hash["passwordMD5"] = md5($_REQUEST["reqadm_pass"]);
+		trigger_error("MaxMind input: ".serialize($hash),E_USER_NOTICE);
+		$ccfs = new CreditCardFraudDetection; $ccfs->isSecure = 1;
+		$ccfs->input($hash); $ccfs->query(); $maxmind_output = $ccfs->output();
+		trigger_error("MaxMind output: ".serialize($maxmind_output),E_USER_NOTICE);
+	} else {
+		$maxmind_output = "";
+	}
+	// end MaxMind
 
 	$q = "INSERT INTO $pro_mysql_new_admin_table
 (reqadm_login,

@@ -286,7 +286,7 @@ dtcFromOkDraw()."
 		$waiting_new_users .= "<b>".$txt_no_user_waiting[$lang]."</b>";
 	}else{
 		$waiting_new_users .= "<table width=\"100%\"border=\"1\">
-<tr><td>".$txt_dua_name[$lang]."</td><td>".$txt_login_title[$lang]."</td><td>".$txt_dua_domain_name_vps_server_hostname[$lang]."</td><td>".$txt_dua_product[$lang]."</td><td>".$txt_dua_bank_validated[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
+<tr><td>".$txt_dua_name[$lang]."</td><td>".$txt_login_title[$lang]."</td><td>".$txt_dua_domain_name_vps_server_hostname[$lang]."</td><td>".$txt_dua_product[$lang]."</td><td>".$txt_dua_bank_validated[$lang]."</td><td>MaxMind says</td><td>".$txt_action[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".$a["comp_name"].":</u><br>";
@@ -323,8 +323,10 @@ dtcFromOkDraw()."
 					$waiting_new_users .= "<td><font color=\"red\">".$txt_no[$lang]."</font></td>";
 				}
 			}
-			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">".$txt_dua_view_details[$lang]."</a> -
-			<a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">".$txt_dua_add[$lang]."</a> -
+			$waiting_new_users .= "<td><pre style='width: 200px; height: 100px; overflow: scroll;'>".htmlspecialchars(
+				print_r(unserialize($a["maxmind_output"]),true))."</pre></td>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">".$txt_dua_view_details[$lang]."</a><br/>
+			<a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">".$txt_dua_add[$lang]."</a><br/>
 			<a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">".$txt_dua_del[$lang]."</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
@@ -339,12 +341,11 @@ dtcFromOkDraw()."
 		$waiting_new_users .= "<br><b>".$txt_no_domain_waiting[$lang]."</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
-	<tr><td>".$txt_login_title[$lang]."</td><td>".$txt_domain_tbl_config_dom_name[$lang]."</td><td>MaxMind says</td><td>Action</td></tr>";
+	<tr><td>".$txt_login_title[$lang]."</td><td>".$txt_domain_tbl_config_dom_name[$lang]."</td><td>Action</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<td>".$a["adm_login"]."</td>";
 			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
-			$waiting_new_users .= "<td><pre style='width: 300px; height: 100px; overflow: scroll;'>".htmlspecialchars(print_r(unserialize($a["maxmind_output"]),true))."</pre></td>";
 			$waiting_new_users .= "<td><a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_domain_to_user&reqid=".$a["id"]."\">".$txt_dua_add[$lang]."</a>
 - <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_domain_to_user&reqid=".$a["id"]."\">".$txt_dua_del[$lang]."</a></td></tr>";
 		}
