@@ -15,7 +15,6 @@
 #                    is then stored in DTC for your customer accounting.
 ### END INIT INFO
 
-PHP=/usr/bin/php
 case "$1" in
 	start)
 		echo -n "Starting dtc-xen statistic daemon: dtc-stats-daemon"
@@ -36,7 +35,7 @@ case "$1" in
 	;;
 
 	*)
-		echo 'Usage: /etc/init.d/dtc-xen {start|stop|restart|reload}'
+		echo 'Usage: /etc/init.d/dtc-stats-daemon {start|stop|restart|reload}'
 		exit 1
 
 esac
