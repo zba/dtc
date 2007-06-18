@@ -3543,7 +3543,8 @@ uninstallCrontab () {
 		cat < $TMP_FILE2 >> $PATH_CRONTAB_CONF
 		rm -f $TMP_FILE $TMP_FILE2
 	fi
-	# Those are for debian
+	# Those are for debian, removing the old version that was wrong
+	# and conflicting (many messages sent to root).
 	if [ -f "/etc/cron.d/dtc-mail-queue-graph" ] ; then
 		rm -f /etc/cron.d/dtc-mail-queue-graph
 	fi
