@@ -296,6 +296,32 @@ function register_user(){
 		$vps_add2 = ",'".$_REQUEST["vps_server_hostname"]."','$esc_vps_os'";
 		$vps_mail_add1 = "VPS hostname: ".$_REQUEST["vps_server_hostname"];
 	}
+
+// MaxMind: Rudd-O
+require_once("../shared/maxmind/HTTPBase.php");
+require_once("../shared/maxmind/CreditCardFraudDetection.php");
+$hash = array();
+$hash["i"] = $_SERVER["REMOTE_ADDR"];
+$hash["city"] = $_REQUEST["city"];
+$hash["postal"] = $_REQUEST["zipcode"];
+$hash["country"] = $REQUEST["country"];
+$maildomain = split("@",$_REQUEST["email"],2);
+$hash["domain"] = $maildomain[1];
+$hash["custPhone"] = $_REQUEST["phone"];
+get_secpay_conf();
+global $secpayconf_maxmind_license_key;
+$hash["license_key"] = $secpayconf_maxmind_license_key;
+if (isset($_SERVER["X_HTTP_FORWARDED_FOR"]))
+	$hash["forwardedIP"] = $_SERVER["X_HTTP_FORWARDED_FOR"];
+$hash["emailMD5"] = md5($_REQUEST["email"]);
+$hash["usernameMD5"] = md5(["reqadm_login"]);
+$hash["passwordMD5"] = md5(["reqadm_pass"]);
+trigger_error("MaxMind input: ".serialize($hash),E_USER_NOTICE);
+$ccfs = new CreditCardFraudDetection; $ccfs->isSecure = 1;
+$ccfs->input($hash); $ccfs->query(); $maxmind_output = $ccfs->output();
+trigger_error("MaxMind output: ".serialize($maxmind_output),E_USER_NOTICE);
+// end MaxMind
+
 	$q = "INSERT INTO $pro_mysql_new_admin_table
 (reqadm_login,
 reqadm_pass,
@@ -319,7 +345,8 @@ product_id,
 custom_notes,
 shopper_ip,
 date,
-time$vps_add1
+time,
+maxmind_output$vps_add1
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
@@ -343,7 +370,8 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 '$esc_custom_notes',
 '".$_SERVER["REMOTE_ADDR"]."',
 '".date("Y-m-d")."',
-'".date("H:i:s")."'$vps_add2)";
+'".date("H:i:s")."',
+'".mysql_real_escape_string(serialize($maxmind_output))."'$vps_add2)";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$id = mysql_insert_id();
 	$ret["err"] = 0;
