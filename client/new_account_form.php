@@ -301,7 +301,9 @@ function register_user(){
 	get_secpay_conf();
 	global $secpayconf_maxmind_license_key;
 	global $secpayconf_use_maxmind;
-	if ($secpayconf_use_maxmind) {
+	if ($secpayconf_use_maxmind == "yes"){
+		// This has been done in dtc/shared/dtc_lib.php
+		// but could be removed from there... As you like!
 		require_once("../shared/maxmind/HTTPBase.php");
 		require_once("../shared/maxmind/CreditCardFraudDetection.php");
 		$hash = array();
