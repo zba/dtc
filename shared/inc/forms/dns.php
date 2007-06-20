@@ -71,19 +71,24 @@ dtcFormLineDraw($txt_primari_dns_ip[$lang],"<input type=\"text\" name=\"new_dns_
 	$domain_dns_mx_conf_form .= dtcFromOkDraw();
 	$domain_dns_mx_conf_form .= "</form></table>";
 
+	$zonefile_content = "";
+	if($eddomain["generate_flag"] == "yes"){
+		$zonefile_content .= "<font color=\"#FF0000\">Zone file will be regenerated at next cron job.</font><br>";
+	}
+
 	$handle = @fopen($conf_generated_file_path."/zones/".$eddomain["name"], "r");
 	if ($handle) {
 		while (!feof($handle)) {
 			$lines[] = fgets($handle, 4096);
 		}
 		fclose($handle);
-		$zonefile_content = "<pre>";
+		$zonefile_content .= "<pre>";
 		foreach ($lines as $line_num => $line) {
 			$zonefile_content .= '<b>' . $line_num . '</b>: ' . htmlspecialchars($line);
 		}
 		$zonefile_content .= "</pre>";
 	}else{
-		$zonefile_content = "Could not load zonefile: permission denied or file not existant?";
+		$zonefile_content .= "Could not load zonefile: permission denied or file not existant?";
 	}
 
 	return "<h3>".$txt_confirurate_your_domain_name[$lang]."</h3><br><br>

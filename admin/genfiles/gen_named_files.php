@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: gen_named_files.php,v 1.57 2007/06/15 21:39:10 seeb Exp $
+ * @version $Id: gen_named_files.php,v 1.58 2007/06/20 19:29:07 thomas Exp $
  * $Log: gen_named_files.php,v $
+ * Revision 1.58  2007/06/20 19:29:07  thomas
+ * Hop!
+ *
  * Revision 1.57  2007/06/15 21:39:10  seeb
  * add head to file
  *
@@ -192,6 +195,8 @@ function named_generate(){
 	global $conf_named_slavefile_path;
 	global $conf_named_slavezonefiles_path;
 	global $conf_ip_allowed_dns_transfer;
+	global $conf_dtc_system_username;
+	global $conf_dtc_system_groupname;
 
 	$slave_file = "";
 	$todays_serial = date("YmdH");
@@ -489,6 +494,8 @@ $more_mx_server
 				}
 				fwrite($filep,$this_site_file);
 				fclose($filep);
+				chown("$conf_generated_file_path/$conf_named_zonefiles_path/$web_name",$conf_dtc_system_username);
+				chgrp("$conf_generated_file_path/$conf_named_zonefiles_path/$web_name",$conf_dtc_system_groupname);
 				$query_serial = "UPDATE $pro_mysql_domain_table SET generate_flag='no' WHERE name='$web_name' LIMIT 1;";
 				$result_serial = mysql_query ($query_serial)or die("Cannot execute query \"$query_serial\"");
 			}
