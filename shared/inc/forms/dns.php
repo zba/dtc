@@ -14,6 +14,8 @@ function drawAdminTools_DomainDNS($admin,$eddomain){
 	global $adm_pass;
 	global $addrlink;
 
+	global $conf_generated_file_path;
+
 	// The domain DNS configuration
 	$domain_dns_mx_conf_form = "
 <form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -69,9 +71,26 @@ dtcFormLineDraw($txt_primari_dns_ip[$lang],"<input type=\"text\" name=\"new_dns_
 	$domain_dns_mx_conf_form .= dtcFromOkDraw();
 	$domain_dns_mx_conf_form .= "</form></table>";
 
+	$handle = @fopen($conf_generated_file_path."/zones/".$eddomain["name"], "r");
+	if ($handle) {
+		while (!feof($handle)) {
+			$lines[] = fgets($handle, 4096);
+		}
+		fclose($handle);
+		$zonefile_content = "<pre>";
+		foreach ($lines as $line_num => $line) {
+			$zonefile_content .= '<b>' . $line_num . '</b>: ' . htmlspecialchars($line);
+		}
+		$zonefile_content .= "</pre>";
+	}else{
+		$zonefile_content = "Could not load zonefile: permission denied or file not existant?";
+	}
+
 	return "<h3>".$txt_confirurate_your_domain_name[$lang]."</h3><br><br>
 	$txt_comment_confirurate_your_domain_name[$lang]<br>
-	$domain_dns_mx_conf_form";
+	$domain_dns_mx_conf_form<br>
+	<h3>Named zonefile:</h3>
+	$zonefile_content";
 }
 
 ?>
