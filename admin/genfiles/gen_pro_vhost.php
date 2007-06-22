@@ -246,6 +246,10 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	{
 		$a = mysql_fetch_array($result2);
 		$path_404 = $a["path"]."/$conf_main_domain/subdomains/$conf_404_subdomain";
+		// make sure the vhost_chk_dir script has the 404 entries
+                vhost_chk_dir_sh("$path_404/html");
+                vhost_chk_dir_sh("$path_404/logs");
+                vhost_chk_dir_sh("$path_404/cgi-bin");
 	}
 
 	if($conf_use_multiple_ip == "yes" && $conf_use_nated_vhost == "no"){
