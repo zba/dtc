@@ -1,12 +1,22 @@
 <?php
  /**
  * Don't remove this comment for control version
+ * Usage as gen_named_files.php 
+ * !!!!!!!!!!!!!!!!
+ * wildcard subdomain name is protected to 
+ * generate wildcars domain like *.example.com 
+ * !!!!!!!!!!!!!!!!
  * @package DTC
  * @copyright LGPL
  * @author seeb <seeb@seeb.net.pl>
- * @version $Id: gen_named_files_alt-wildcard.php,v 1.2 2007/06/15 21:49:32 seeb Exp $
+ * @version $Id: gen_named_files_alt-wildcard.php,v 1.3 2007/06/22 20:03:55 seeb Exp $
  * @see gen_pro_vhost_alt-wildcard.php
  * $Log: gen_named_files_alt-wildcard.php,v $
+ * Revision 1.3  2007/06/22 20:03:55  seeb
+ * Fully supported wildcard domains
+ * w3_alias support for domain
+ * Thomas patch 1.58 added
+ *
  * Revision 1.2  2007/06/15 21:49:32  seeb
  * start alt project for wildcard domains support
  *
@@ -14,7 +24,6 @@
  * start alt project for wildcard domains support
  * 
  **/
-
 
 function get_remote_ns($a){
 	global $console;
@@ -199,6 +208,8 @@ function named_generate(){
 	global $conf_named_slavefile_path;
 	global $conf_named_slavezonefiles_path;
 	global $conf_ip_allowed_dns_transfer;
+	global $conf_dtc_system_username;
+	global $conf_dtc_system_groupname;
 
 	$slave_file = "";
 	$todays_serial = date("YmdH");
@@ -416,25 +427,44 @@ $more_mx_server
 				}else{
 					$the_ip_writed = "CNAME\t".$subdomain["ip"].".";
 				}
+// patch by seeb w3_alias
+if ($subdomain['w3_alias'] =="yes" && $subdomain['subdomain_name']!="www"){
+             $sub_alias="www.".$subdomain['subdomain_name'];
+  $console.="Generated w3alias: ".$seeb_alias.".".$subdomain['domain_name']."<br/>";
+     $this_site_file .= "$seeb_alias\tIN\tCNAME      ".$subdomain['subdomain_name'].".".$subdomain['domain_name'].".\n";
+}				
+// end of patch 3w_alias
 
-				if($web_subname == "pop"){
-					$is_pop_subdomain_set = "yes";
-				}
-				if($web_subname == "imap"){
-					$is_imap_subdomain_set = "yes";
-				}
-				if($web_subname == "mail"){
-					$is_mail_subdomain_set = "yes";
-				}
-				if($web_subname == "smtp"){
-					$is_smtp_subdomain_set = "yes";
-				}
-				if($web_subname == "ftp"){
-					$is_ftp_subdomain_set = "yes";
-				}
-				if($web_subname == "list"){
-					$is_list_subdomain_set = "yes";
-				}
+
+// patch wildcard
+// wildcard changes by seeb
+                                if ($web_subname == "wildcard")
+                                {
+                                        $this_site_file .= "*   IN      CNAME   @\n";
+                                }
+                    else {
+                    	// we generate only when $web_subname != wildcard
+                                if($web_subname == "pop"){
+                                        $is_pop_subdomain_set = "yes";
+                                }
+                                if($web_subname == "imap"){
+                                        $is_imap_subdomain_set = "yes";
+                                }
+                                if($web_subname == "mail"){
+                                        $is_mail_subdomain_set = "yes";
+                                }
+                                if($web_subname == "smtp"){
+                                        $is_smtp_subdomain_set = "yes";
+                                }
+                                if($web_subname == "ftp"){
+                                        $is_ftp_subdomain_set = "yes";
+                                }
+                                if($web_subname == "list"){
+                                        $is_list_subdomain_set = "yes";
+                }
+}//end else
+
+// end of patch #1
 				// if we have a srv_record here (ie a port, then we don't write the normal subdomain entry, just the SRV record
 			 	if (isset($subdomain["srv_record"]) && $subdomain["srv_record"] != "")
 				{
@@ -496,6 +526,8 @@ $more_mx_server
 				}
 				fwrite($filep,$this_site_file);
 				fclose($filep);
+				chown("$conf_generated_file_path/$conf_named_zonefiles_path/$web_name",$conf_dtc_system_username);
+				chgrp("$conf_generated_file_path/$conf_named_zonefiles_path/$web_name",$conf_dtc_system_groupname);
 				$query_serial = "UPDATE $pro_mysql_domain_table SET generate_flag='no' WHERE name='$web_name' LIMIT 1;";
 				$result_serial = mysql_query ($query_serial)or die("Cannot execute query \"$query_serial\"");
 			}
