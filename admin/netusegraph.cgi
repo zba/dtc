@@ -17,7 +17,7 @@ my $xpoints = 800;
 my $points_per_sample = 3;
 my $ypoints = 160;
 my $ypoints_err = 80;
-my $rrd = '/etc/postfix/netusage.rrd'; # path to where the RRD database is
+my $rrd = '/var/lib/dtc/etc/netusage.rrd'; # path to where the RRD database is
 my $tmp_dir = '/tmp/netusegraph'; # temporary directory where to store the images
 my $rrdtool_1_0 = ($RRDs::VERSION < 1.199908);
 
