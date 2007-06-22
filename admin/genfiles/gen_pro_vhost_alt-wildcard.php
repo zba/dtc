@@ -4,14 +4,19 @@
  * @package DTC
  * @copyright LGPL
  * @author seeb <seeb@seeb.net.pl>
- * @version $Id: gen_pro_vhost_alt-wildcard.php,v 1.1 2007/06/15 21:49:06 seeb Exp $
+ * @version $Id: gen_pro_vhost_alt-wildcard.php,v 1.2 2007/06/22 20:32:02 seeb Exp $
  * @see gen_named_files_alt-wildcard.php
  * $Log: gen_pro_vhost_alt-wildcard.php,v $
+ * Revision 1.2  2007/06/22 20:32:02  seeb
+ * Fully supported wildcard domains
+ * w3_alias support for domain
+ * If you want add *.somedomain.com add in panel subdomain like
+ * wildcard.somedomain.com
+ *
  * Revision 1.1  2007/06/15 21:49:06  seeb
  * start alt project for wildcard domains support
  *
  **/
-
 
 // This script is launched before restarting apache
 // to check if a bastard has deleted his directories
@@ -557,6 +562,11 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 // --- Start of the conf of server users subdomain ---
 // ---------------------------------------------------
 			} else {
+// patch wildcard by seeb part 1
+			if ($web_subname="wildcard"){
+			$web_subname="www";
+			}
+// end of patch part 1
 				// Generate a permanet redirect for all subdomains of target if using a domain parking
 				if($domain_parking != "no-parking"){
 					if($j == 0){
@@ -596,10 +606,21 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					if($subdomain["register_globals"] == "yes"){
 						$vhost_more_conf .= "	php_admin_value register_globals 1\n";
 					}
+// patch wildcard by seeb part 2
+	if ($subdomain["subdomain_name"]==="wildcard")
+	{
+	$vhost_more_conf.="	ServerAlias *.$web_name\n";
+	}
+// end of patch part 2
+
 					if($web_subname == "$web_default_subdomain"){
 						$vhost_more_conf .= "	ServerAlias $web_name\n";
 					}
-
+// patch by seeb support for w3_alias					
+					if($subdomain["w3_alias"] == "yes"){
+						$vhost_more_conf .= "	ServerAlias www.$web_subname.$web_name\n";
+					}
+// end of patch support w3_alias					
 					// Sbox and safe mode protection values
 					if($domain_safe_mode == "no" && $subdomain["safe_mode"] == "no"){
 						$safe_mode_value = "0";
@@ -692,7 +713,5 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 
 	return true;
 }
-
-
 
 ?>
