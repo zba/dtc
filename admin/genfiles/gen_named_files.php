@@ -3,8 +3,11 @@
  * Don't remove this comment for control version
  * @package DTC
  * @copyright LGPL
- * @version $Id: gen_named_files.php,v 1.58 2007/06/20 19:29:07 thomas Exp $
+ * @version $Id: gen_named_files.php,v 1.59 2007/06/22 19:46:23 seeb Exp $
  * $Log: gen_named_files.php,v $
+ * Revision 1.59  2007/06/22 19:46:23  seeb
+ * w3_alias support for domain
+ *
  * Revision 1.58  2007/06/20 19:29:07  thomas
  * Hop!
  *
@@ -414,7 +417,13 @@ $more_mx_server
 				}else{
 					$the_ip_writed = "CNAME\t".$subdomain["ip"].".";
 				}
-
+// patch by seeb w3_alias
+if ($subdomain['w3_alias'] =="yes" && $subdomain['subdomain_name']!="www"){
+             $sub_alias="www.".$subdomain['subdomain_name'];
+  $console.="Generated w3alias: ".$seeb_alias.".".$subdomain['domain_name']."<br/>";
+     $this_site_file .= "$seeb_alias\tIN\tCNAME      ".$subdomain['subdomain_name'].".".$subdomain['domain_name'].".\n";
+}				
+// end of patch 3w_alias				
 				if($web_subname == "pop"){
 					$is_pop_subdomain_set = "yes";
 				}
