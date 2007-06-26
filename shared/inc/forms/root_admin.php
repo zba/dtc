@@ -80,48 +80,48 @@ function drawEditAdmin($admin){
 	$pkg_install_flag = $info["pkg_install_flag"];
 
 	if($resseller_flag == "yes"){
-		$resflag_yes = " checked ";
+		$resflag_yes = " checked='checked' ";
 		$resflag_no = "";
 	}else{
 		$resflag_yes = " ";
-		$resflag_no = " checked ";
+		$resflag_no = " checked='checked' ";
 	}
 	$res_selector = "<input type=\"radio\" name=\"resseller_flag\" value=\"yes\"$resflag_yes> ".$txt_yes[$lang]."
 	<input type=\"radio\" name=\"resseller_flag\" value=\"no\"$resflag_no> ".$txt_no[$lang]."</div>";
 
 	if($ssh_login_flag == "yes"){
-		$sshlogin_yes = " checked ";
+		$sshlogin_yes = " checked='checked' ";
 		$sshlogin_no = "";
 	}else{
 		$sshlogin_yes = "";
-		$sshlogin_no = " checked ";
+		$sshlogin_no = " checked='checked' ";
 	}
 	$sshlog_selector = "<input type=\"radio\" name=\"ssh_login_flag\" value=\"yes\"$sshlogin_yes> ".$txt_yes[$lang]."
 	<input type=\"radio\" name=\"ssh_login_flag\" value=\"no\"$sshlogin_no> ".$txt_no[$lang];
 
 	if($ftp_login_flag == "yes"){
-		$ftplogin_yes = " checked ";
+		$ftplogin_yes = " checked='checked' ";
 		$ftplogin_no = "";
 	}else{
 		$ftplogin_yes = "";
-		$ftplogin_no = " checked ";
+		$ftplogin_no = " checked='checked' ";
 	}
 	$ftplog_selector = "<input type=\"radio\" name=\"ftp_login_flag\" value=\"yes\"$ftplogin_yes> ".$txt_yes[$lang]."
 	<input type=\"radio\" name=\"ftp_login_flag\" value=\"no\"$ftplogin_no> ".$txt_no[$lang];
 
 	if($pkg_install_flag == "yes"){
-		$pkg_install_yes = " checked ";
+		$pkg_install_yes = " checked='checked' ";
 		$pkg_install_no = "";
 	}else{
 		$pkg_install_yes = "";
-		$pkg_install_no = " checked ";
+		$pkg_install_no = " checked='checked' ";
 	}
 	$pkg_install_selector = "<input type=\"radio\" name=\"pkg_install_flag\" value=\"yes\"$pkg_install_yes> ".$txt_yes[$lang]."
 	<input type=\"radio\" name=\"pkg_install_flag\" value=\"no\"$pkg_install_no> ".$txt_no[$lang];
 
-	if($allow_add_domain == "yes")	$adyes = "selected";	else $adyes = "";
-	if($allow_add_domain == "check")$adcheck = "selected";	else $adcheck = "";
-	if($allow_add_domain == "no")	$adno = "selected";	else $adno = "";
+	if($allow_add_domain == "yes")	$adyes = "selected='selected'";	else $adyes = "";
+	if($allow_add_domain == "check")$adcheck = "selected='selected'";	else $adcheck = "";
+	if($allow_add_domain == "no")	$adno = "selected='selected'";	else $adno = "";
 	$aldom_popup = "<select class=\"dtcDatagrid_input_color\" name=\"allow_add_domain\">
 <option value=\"yes\" $adyes>Yes</option>
 <option value=\"check\" $adcheck>Check</option>
@@ -276,7 +276,7 @@ function drawEditAdmin($admin){
 		<td><select name=\"product_id\">$vps_prods</select></td></tr>
 		<tr><td style=\"text-align: right; white-space: nowrap;\">Setup physical VPS (LVM):</td>
 		<td><input type=\"radio\" name=\"physical_setup\" value=\"yes\">Yes
-		<input type=\"radio\" name=\"physical_setup\" value=\"no\" checked>No</td></tr>
+		<input type=\"radio\" name=\"physical_setup\" value=\"no\" checked='checked'>No</td></tr>
 		<tr><td></td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Add VPS\"></div>
