@@ -148,12 +148,13 @@ function validateRenewal($renew_id){
 		break;
 	}
 
+	global secpayconf_currency_letters;
 	$txt_renewal_approved = "
 
 A renewal have been paid! Here is the details of the renewal:
 
 login: ".$renew_entry["adm_login"]."
-Product: ".$product["name"]."(".$product["price_dollar"]." USD)
+Product: ".$product["name"]."(".$product["price_dollar"]." ".$secpayconf_currency_letters.")
 Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
 
 ";
