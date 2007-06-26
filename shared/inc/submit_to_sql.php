@@ -260,8 +260,8 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
         	$admtbl_added2 = ",'$expires','".$a2["id"]."'";
         }
 	$adm_query = "INSERT INTO $pro_mysql_admin_table
-(adm_login        ,adm_pass         ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,max_email$admtbl_added1) VALUES
-('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["nbr_email"]."'$admtbl_added2);";
+(adm_login        ,adm_pass         ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_email$admtbl_added1) VALUES
+('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["nbr_email"]."'$admtbl_added2);";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
         if($a2["heb_type"] == "vps"){
