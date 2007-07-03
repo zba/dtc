@@ -217,6 +217,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	mail($owner, $subject, $msg, $headers);
 	
 	updateUsingCron("qmail_newu='yes',gen_qmail='yes'");
+	triggerMXListUpdate();
 }
 
 function tunablesBooleanRequestCheck($ctrl_path,$tunable_name){
