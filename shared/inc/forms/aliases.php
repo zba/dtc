@@ -3,7 +3,7 @@
 /**
  * 
  * @package DTC
- * @version $Id: aliases.php,v 1.1 2007/06/12 05:24:57 thomas Exp $
+ * @version $Id: aliases.php,v 1.2 2007/07/03 13:24:10 thomas Exp $
  * @param unknown_type $mailalias
  * @return unknown
  */
@@ -147,7 +147,7 @@ function drawAdminTools_Aliases($domain){
 				"disable_edit" => "yes",
 				"happen" => "@".$domain["name"],
 				"legend" => $txt_draw_client_info_email[$lang]),
-		    "delivery_group" => array(
+			"delivery_group" => array(
 				"type" => "textarea",
 				"check" => "mail_alias_group",
 				"legend" => $txt_mail_alias_delivery_group[$lang],

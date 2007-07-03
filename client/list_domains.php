@@ -82,31 +82,38 @@ case "list_mx_recipients":
 	$r = mysql_query($q)or die("Cannot query $q ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$out .= "<dtc_backup_mx_recipient_list>\n";
-	for($i=0;$i<$n;$i++)
-	{
+	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$domain = $a["name"];
 		$catchall_email = $a["catchall_email"];
 		$q_email = "SELECT fullemail FROM `pop_access` WHERE mbox_host='$domain';";
 		$r_email = mysql_query($q_email)or die("Cannot query $q_email ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n_email = mysql_num_rows($r_email);
-		for ($j=0; $j < $n_email; $j++) 
-		{
+		for ($j=0; $j < $n_email; $j++) {
 			$a_email = mysql_fetch_array($r_email);
 			$out .= $a_email["fullemail"] . "\n";
 		}
+
 		//add the mailing lists as well
 		$q_mailinglist = "SELECT name FROM `mailinglist` WHERE domain='$domain';";
 		$r_mailinglist =  mysql_query($q_mailinglist)or die("Cannot query $q_mailinglist ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n_mailinglist = mysql_num_rows($r_mailinglist);
-		for ($j=0; $j < $n_mailinglist; $j++)
-		{
+		for ($j=0; $j < $n_mailinglist; $j++){
 			$a_mailinglist = mysql_fetch_array($r_mailinglist);
-			if (isset($domain) && isset($a_mailinglist["name"]))
-			{
+			if (isset($domain) && isset($a_mailinglist["name"])){
 				$out .= $a_mailinglist["name"] . "@" . $domain . "\n";
 			}
 		}
+
+		// Now add the list of mailaliasgroup accounts
+		$q_groups = "SELECT id FROM $pro_mysql_mailaliasgroup_table WHERE domain_parent='$domain';";
+		$r_groups = msyql_query($q_groups)or die ("Cannot query $q_groups line: ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n_groups = mysql_num_rows($r_groups);
+		for ($j=0; $j < $n_groups; $j++){
+			$a_groups = mysql_fetch_array($r_groups);
+			$out .= $a_groups["id"] . "@" . $domain . "\n";
+		}
+
 		//now make sure we have abuse@ and postmaster@
 		if (!preg_match("/abuse\@$domain$/", $out)){
 			$out .= "abuse@" . $domain . "\n";

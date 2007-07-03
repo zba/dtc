@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `mailalias` (
   `autoinc` int(12) NOT NULL auto_increment,
-  `id` varchar(32) collate latin1_bin NOT NULL default '',
+  `id` varchar(32) NOT NULL default '',
   `domain_parent` varchar(50) collate latin1_bin NOT NULL,
   `delivery_group` blob NOT NULL,
   `active` int(11) NOT NULL default '1',
