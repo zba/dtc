@@ -107,7 +107,7 @@ case "list_mx_recipients":
 
 		// Now add the list of mailaliasgroup accounts
 		$q_groups = "SELECT id FROM $pro_mysql_mailaliasgroup_table WHERE domain_parent='$domain';";
-		$r_groups = msyql_query($q_groups)or die ("Cannot query $q_groups line: ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$r_groups = mysql_query($q_groups)or die ("Cannot query $q_groups line: ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n_groups = mysql_num_rows($r_groups);
 		for ($j=0; $j < $n_groups; $j++){
 			$a_groups = mysql_fetch_array($r_groups);
