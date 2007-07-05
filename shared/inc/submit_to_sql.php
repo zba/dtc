@@ -148,7 +148,7 @@ function validateRenewal($renew_id){
 		break;
 	}
 
-	global secpayconf_currency_letters;
+	global $secpayconf_currency_letters;
 	$txt_renewal_approved = "
 
 A renewal have been paid! Here is the details of the renewal:
