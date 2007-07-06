@@ -2,9 +2,9 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Error 404: file not found</title>
+<title>Visitors statistics</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<meta name="title" content="Error 404: file not found" />
+<meta name="title" content="Visitors statistics" />
 <meta name="robots" content="NOINDEX, FOLLOW" />
 <meta name="cache-control" content="no-cache" />
 <style type="text/css">
@@ -24,7 +24,7 @@ h1{text-decoration:none; text-align:center;}
 </style>
 </head>
 <body>
-<div>
+<div align="center">
 <h1>DTC Visitors stats</h1>
 <ul>
 <?php
@@ -32,11 +32,9 @@ if ($handle = opendir ('.'))
 {
         while ($file = readdir($handle))
         { 
-                if (preg_match("/^(\d{4})\.(\d{2})\.report.html/", $file, $match
-es))
+                if (preg_match("/^(\d{4})\.(\d{2})\.report.html/", $file, $matches))
                 {
-                        $month_stats = date("F Y", mktime (0,0,0,$matches[2],0, 
-$matches[1]));
+                        $month_stats = date("F Y", mktime (0,0,0,$matches[2],0, $matches[1]));
                         echo "<li><a href=\"$file\">$month_stats</a>";
                 }
         }
