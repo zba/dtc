@@ -102,11 +102,16 @@ function make_stats(){
 						echo "$webalizer_cmd\n";
 						exec ($webalizer_cmd);
 
-						// demo code for visitor
-                                                // echo "Calculating visitor stats...\n";
-                                                // $visitor_cmd = "nice -n+20 visitors -A -m 30 $dump_folder/access_*.log -o html > $fullpath/$year.$month.report.html";
-                                                // echo "$visitor_cmd\n";
-                                                // exec ($visitor_cmd);
+                        echo "Calculating visitor stats...\n";
+                        $visitor_cmd = "nice -n+20 visitors -A -m 30 $dump_folder/access_*.log -o html > $fullpath/$year.$month.report.html";
+                        echo "$visitor_cmd\n";
+                        exec ($visitor_cmd);
+                        
+                        // copy the template file
+						if (!file_exists("$fullpath/visitors.php"))
+                        {
+                        	copy("$dtcshared_path/visitors_template/visitors.php", $fullpath);
+                        }
 
 						// disable AWSTATS for now, it's too slow
 						/*
