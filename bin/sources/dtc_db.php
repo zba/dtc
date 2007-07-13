@@ -231,6 +231,7 @@ $dtc_database = array(
 			"expire_date" => "date NOT NULL default '0000-00-00' ",
 			"hddsize" => "int(9) NOT NULL default '1' ",
 			"ramsize" => "int(9) NOT NULL default '48' ",
+			"bandwidth_per_month_gb" => "int(9) NOT NULL default '10'",
 			"product_id" => "int(9) NOT NULL default '0' ",
 			"operatingsystem" => "varchar(64) NOT NULL default 'debian' ",
 			"country_code" => "varchar(4) NOT NULL default 'US' "
@@ -933,6 +934,28 @@ $dtc_database = array(
 			"UserName" => "(UserName)"
 			)
 		),
+	"vps" => array(
+		"vars" => array(
+			"id" => "int(11) unsigned NOT NULL auto_increment",
+			"owner" => "varchar(64) NOT NULL default ''",
+			"vps_server_hostname" => "varchar(255) NOT NULL default ''",
+			"vps_xen_name" => "varchar(64) NOT NULL default ''",
+			"start_date" => "date NOT NULL default '0000-00-00'",
+			"expire_date" => "date NOT NULL default '0000-00-00'",
+			"hddsize" => "int(9) NOT NULL default '1'",
+			"ramsize" => "int(9) NOT NULL default '48'",
+			"bandwidth_per_month_gb" => "int(9) NOT NULL default '1'",
+			"product_id" => "int(9) NOT NULL default '0'",
+			"operatingsystem" => "varchar(64) NOT NULL default 'debian'",
+			"bsdkernel" => "enum('normal','install') NOT NULL default 'normal'"
+			),
+		"unique" => array(
+			"vps_server_hostname" => "(vps_server_hostname,vps_xen_name)"
+			),
+		"index" => array(
+			"ownerindex" => "(owner)"
+			)
+		),
         "vps_server" => array(
                 "vars" => array(
                         "id" => "int(11) NOT NULL auto_increment",
@@ -943,10 +966,7 @@ $dtc_database = array(
 			"lvmenable" => "enum('yes','no') NOT NULL default 'yes' ",
 			"country_code" => "varchar(4) NOT NULL default 'US' "
                         ),
-                "primary" => "(id)",
-                "keys" => array(
-                        "hostname" => "(hostname)"
-                        )
+                "primary" => "(id)"
                 ),
 	"whitelist" => array(
 		"vars" => array(
