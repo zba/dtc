@@ -379,7 +379,7 @@ function drawDomainConfig($admin){
 	global $txt_root_admin_expiration;
 	global $txt_root_admin_configuration_of_the_dedicated_servers;
 	global $txt_root_admin_server_name;
-
+	global $txt_product_traffic;
 	$ret = "";
 
 	if(isset($admin["data"])){
@@ -389,6 +389,7 @@ function drawDomainConfig($admin){
 		$nbr_domain = 0;
 	}
 
+	// Shared hosting domain configuration
 	if($nbr_domain > 0){
 		if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_domain_config_edit"){
 			$q = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='".$_REQUEST["name"]."';";
@@ -456,6 +457,7 @@ function drawDomainConfig($admin){
 		$ret .= dtcDatagrid($dsc);
 	}
 
+	// VPS configuration
 	if(isset($admin["vps"])){
 		$vpses = $admin["vps"];
 		$nbr_vps = sizeof($vpses);
@@ -509,6 +511,10 @@ function drawDomainConfig($admin){
 					"type" => "text",
 					"size" => "5",
 					"legend" => "RAM"),
+				"bandwidth_per_month_gb" => array(
+					"type" => "text",
+					"size" => "5",
+					"legend" => $txt_product_traffic[$lang]),
 				"product_id" => array(
 					"type" => "popup",
 					"legend" => $txt_root_admin_product[$lang],
@@ -517,6 +523,8 @@ function drawDomainConfig($admin){
 				));
 		$ret .= dtcDatagrid($dsc);
 	}
+
+	// Dedicated servers configuration
 	if(isset($admin["dedicated"])){
 		$servers = $admin["dedicated"];
 		$nbr_server = sizeof($servers);
@@ -567,6 +575,10 @@ function drawDomainConfig($admin){
 					"type" => "text",
 					"size" => "5",
 					"legend" => "RAM"),
+				"bandwidth_per_month_gb" => array(
+					"type" => "text",
+					"size" => "5",
+					"legend" => $txt_product_traffic[$lang]),
 				"country_code" => array(
 					"type" => "popup",
 					"legend" => $txt_root_admin_country2[$lang],

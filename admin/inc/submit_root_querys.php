@@ -402,7 +402,23 @@ if(isset($_REQUEST["delete_admin_user"]) && $_REQUEST["delete_admin_user"] != ""
 
 	deleteMysqlUserAndDB($_REQUEST["delete_admin_user"]);
 
-	// Tell the cron job to activate the changes
+	// Delete all VPS of the user, and set all its IPs as available
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='".$_REQUEST["delete_admin_user"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$vps = mysql_fetch_array($r);
+		$q2 = "UPDATE $pro_mysql_vps_ip_table SET available='yes' WHERE vps_server_hostname='".$vps["vps_server_hostname"]."' AND vps_xen_name='".$vps["vps_xen_name"]."';";
+		$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	}
+	$q = "DELETE FROM $pro_mysql_vps_table WHERE owner='".$_REQUEST["delete_admin_user"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	// Delete all dedicated servers of the admin
+	$q = "DELETE FROM $pro_mysql_dedicated_table WHERE owner='".$_REQUEST["delete_admin_user"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	// Tell the cron job to activate the changes (in case there was some shared accounts. Todo: check if there is some...)
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
 	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes' WHERE 1;";
 	mysql_query($adm_query);
