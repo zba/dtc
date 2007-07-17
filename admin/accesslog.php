@@ -95,9 +95,9 @@ function make_stats(){
 						fclose($handle);
 						echo "Calculating webalizer stats for ".$day." ".$month." ".$year."\n";
 						if($conf_webalizer_country_graph != "yes"){
-							$webalizer_cmd = "nice -n+20 webalizer -R 50 -Y -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
+							$webalizer_cmd = "nice -n+20 webalizer -p -R 50 -Y -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
 						}else{
-							$webalizer_cmd = "nice -n+20 webalizer -R 50 -D ".$a["subdomain_name"].".".$a["name"].".dnscache -N 20 -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
+							$webalizer_cmd = "nice -n+20 webalizer -p -R 50 -D ".$a["subdomain_name"].".".$a["name"].".dnscache -N 20 -n ".$a["subdomain_name"].".".$a["name"]." -o $fullpath $dump_filename";
 						}
 						echo "$webalizer_cmd\n";
 						exec ($webalizer_cmd);
