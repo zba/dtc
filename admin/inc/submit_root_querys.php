@@ -237,6 +237,10 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	$adm_query = "DELETE FROM $pro_mysql_domain_table WHERE name='$deluserdomain' LIMIT 1;";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 
+	// Delete all mailing lists
+	$adm_query = "DELETE FROM $pro_mysql_list_table WHERE domain='$deluserdomain';";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+
 	// Delete the files of the domain name
 	if($delete_directories == true && $conf_demo_version == "no"){
 		system("rm -rf $the_admin_path/$deluserdomain");
@@ -416,6 +420,10 @@ if(isset($_REQUEST["delete_admin_user"]) && $_REQUEST["delete_admin_user"] != ""
 
 	// Delete all dedicated servers of the admin
 	$q = "DELETE FROM $pro_mysql_dedicated_table WHERE owner='".$_REQUEST["delete_admin_user"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	// Delete all support tickets of the admin
+	$q = "DELETE FROM $pro_mysql_tik_queries_table WHERE adm_login='".$_REQUEST["delete_admin_user"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	// Tell the cron job to activate the changes (in case there was some shared accounts. Todo: check if there is some...)
