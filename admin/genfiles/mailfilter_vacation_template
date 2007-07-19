@@ -1,14 +1,7 @@
+
 cc $DEFAULT
-xfilter "reformail -r -t -I 'From: $LOGNAME'"
-/^To:.*/
-getaddr{$MATCH}=~ /^.*/;
-MATH=tolower${MATCH}
-flock "vacation.lock" {
-	`fgrep -iqx "$MATCH" vacation.lst 2>/dev/null || { \
-	echo "$MATCH" >>vacation.lst ; \  
-	exit 1 ; \
-	} `
-}
-if ( $RETURNCODE == 0 )
-        exit
-to "| (cat - ; echo ''; cat ~/.vacation.msg) | $SENDMAIL -t" 
+RECIPIENT=$LOGNAME
+RESPOND="~/.vacation.msg"
+RESPONDDB="~/.vacation.db"
+cc "| mailbot -t $RESPOND -d $RESPONDDB -D 1 -A 'From: $RECIPIENT' -s 'Auto Response: from $RECIPIENT' /usr/sbin/sendmail -t"
+
