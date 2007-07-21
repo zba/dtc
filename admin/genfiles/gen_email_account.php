@@ -92,11 +92,13 @@ MAILFILTER_EOF;
 	// Manage the silly sqwebmail stuff for Damien
 	if(! file_exists("$home/Maildir/maildirfilterconfig")){
 		$fp = fopen("$home/Maildir/maildirfilterconfig","w+");
-		fwrite($fp,"MAILDIRFILTER=../.mailfilter.sqwebmail
+		if($fp != FALSE){
+			fwrite($fp,"MAILDIRFILTER=../.mailfilter.sqwebmail
 MAILDIR=\$DEFAULT\n");
-		fclose($fp);
-		chmod("$home/Maildir/maildirfilterconfig",0550);
-		chown("$home/Maildir/maildirfilterconfig","dtc");
+			fclose($fp);
+		}
+		@chmod("$home/Maildir/maildirfilterconfig",0550);
+		@chown("$home/Maildir/maildirfilterconfig",$conf_dtc_system_username);
 	}
 	if(file_exists("$home/.mailfilter.sqwebmail")){
 		$mlfilter_content .= "include \".mailfilter.sqwebmail\"\n";
@@ -111,8 +113,12 @@ MAILDIR=\$DEFAULT\n");
 	if($vacation_flag == "yes"){
 		$mlfilter_content .= "\n".implode("\n",file("genfiles/mailfilter_vacation_template"))."\n";
 		$vac_fp = fopen("$home/.vacation.msg","w+");
-		fwrite($vac_fp,$vacation_text);
-		fclose($vac_fp);
+		if($vac_fp != FALSE){
+			fwrite($vac_fp,$vacation_text);
+			fclose($vac_fp);
+		}
+		@chmod("$home/.vacation.msg",0550);
+		@chown("$home/.vacation.msg",$conf_dtc_system_username);
 	}
 	$mlfilter_content .= <<<MAILFILTER_EOF
 `[ -d \$DEFAULT ] || maildirmake \$DEFAULT`
@@ -127,10 +133,12 @@ MAILFILTER_EOF;
 
 	// Write the file and manage rights
 	$fp = fopen($MAILFILTER_FILE,"w+");
-	fwrite($fp, $mlfilter_content);
-	fclose($fp);
-	chmod($MAILFILTER_FILE,0500);
-	chown($MAILFILTER_FILE,$conf_dtc_system_username);
+	if($fp != FALSE){
+		fwrite($fp, $mlfilter_content);
+		fclose($fp);
+	}
+	@chmod($MAILFILTER_FILE,0500);
+	@chown($MAILFILTER_FILE,$conf_dtc_system_username);
 	// This shouldn't be needed as we set 500 in the chmod anyway
 	// chgrp($MAILFILTER_FILE,$conf_dtc_system_groupname);
 	return true;
@@ -153,9 +161,9 @@ function genSasl2PasswdDBStart(){
 		}
 	}
 	system("cat $fpath > $conf_generated_file_path/sasldb2");
-	chmod("$conf_generated_file_path/sasldb2",0664);
-	chown("$conf_generated_file_path/sasldb2","postfix");
-	chgrp("$conf_generated_file_path/sasldb2",$conf_dtc_system_groupname);
+	@chmod("$conf_generated_file_path/sasldb2",0664);
+	@chown("$conf_generated_file_path/sasldb2","postfix");
+	@chgrp("$conf_generated_file_path/sasldb2",$conf_dtc_system_groupname);
 }
 
 // This is here so we don't have to do that at each function call
@@ -195,9 +203,9 @@ function genSaslFinishConfigAndRights(){
 		}
 	}
 	system("cat $conf_generated_file_path/sasldb2 > $fpath");
-	chmod($fpath,0664);
-	chown($fpath,"postfix");
-	chgrp($fpath,$conf_dtc_system_groupname);
+	@chmod($fpath,0664);
+	@chown($fpath,"postfix");
+	@chgrp($fpath,$conf_dtc_system_groupname);
 }
 
 function mail_account_generate(){
