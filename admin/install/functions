@@ -2138,11 +2138,25 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 					/etc/init.d/courier-imap restart
 				fi
 			fi
+			if [ -x "/etc/init.d/courier-imap-ssl" ] ; then
+				if [ -x /usr/sbin/invoke-rc.d ]; then
+					/usr/sbin/invoke-rc.d courier-imap-ssl restart
+				else
+					/etc/init.d/courier-imap-ssl restart
+				fi
+			fi
 			if [ -x "/etc/init.d/courier-pop" ] ; then
 				if [ -x /usr/sbin/invoke-rc.d ]; then
 					/usr/sbin/invoke-rc.d courier-pop restart
 				else
 					/etc/init.d/courier-pop restart
+				fi
+			fi
+			if [ -x "/etc/init.d/courier-pop-ssl" ] ; then
+				if [ -x /usr/sbin/invoke-rc.d ]; then
+					/usr/sbin/invoke-rc.d courier-pop-ssl restart
+				else
+					/etc/init.d/courier-pop-ssl restart
 				fi
 			fi
 			if [ -x "/etc/init.d/courier" ]; then
