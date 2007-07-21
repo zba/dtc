@@ -7,6 +7,7 @@
 // Simply drop this file in the dtc/admin folder and run it with this command:
 // php reassing_bandwidth_for_vps_and_dedicated.php
 
+$panel_type="cronjob";
 require_once("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 // Admin include files
@@ -32,15 +33,16 @@ for($i=0;$i<$n;$i++){
 	$r2 = mysql_query($q2)or die("Cannot query ".$q2." line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 	$n2 = mysql_num_rows($r2);
 	for($j=0;$j<$n2;$j++){
-		$a2 = mysql_fetch_array($a2);
+		$a2 = mysql_fetch_array($r2);
 		$q3 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$a2["product_id"]."';";
 		$r3 = mysql_query($q3)or die("Cannot query ".$q3." line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 		$n3 = mysql_num_rows($r3);
 		if($n3 != 1){
-			die("No product for the VPS of admin ".$a["adm_login"];
+			die("No product for the VPS of admin ".$a["adm_login"]);
 		}
-		$a3 = mysql_fetch_array($a3);
-		$q4 = "UPDATE $pro_mysql_vps_table SET bandwidth_per_month_gb='".$a3["bandwidth"]."'";
+		$a3 = mysql_fetch_array($r3);
+		$q4 = "UPDATE $pro_mysql_vps_table SET bandwidth_per_month_gb='".$a3["bandwidth"]."' WHERE id='".$a2["id"]."';";
+		echo $q4."\n";
 	}
 
 	// Check the admin's Dedicated
@@ -48,15 +50,16 @@ for($i=0;$i<$n;$i++){
 	$r2 = mysql_query($q2)or die("Cannot query ".$q2." line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 	$n2 = mysql_num_rows($r2);
 	for($j=0;$j<$n2;$j++){
-		$a2 = mysql_fetch_array($a2);
+		$a2 = mysql_fetch_array($r2);
 		$q3 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$a2["product_id"]."';";
 		$r3 = mysql_query($q3)or die("Cannot query ".$q3." line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 		$n3 = mysql_num_rows($r3);
 		if($n3 != 1){
-			die("No product for the dedicated of admin ".$a["adm_login"];
+			die("No product for the dedicated of admin ".$a["adm_login"]);
 		}
-		$a3 = mysql_fetch_array($a3);
-		$q4 = "UPDATE $pro_mysql_dedicated_table SET bandwidth_per_month_gb='".$a3["bandwidth"]."'";
+		$a3 = mysql_fetch_array($r3);
+		$q4 = "UPDATE $pro_mysql_dedicated_table SET bandwidth_per_month_gb='".$a3["bandwidth"]."' WHERE id='".$a2["id"]."';";
+		echo $q4."\n";
 	}
 }
 
