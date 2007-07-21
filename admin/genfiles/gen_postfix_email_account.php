@@ -478,6 +478,7 @@ function mail_account_generate_postfix(){
 	system("$POSTMAP_BIN $conf_postfix_virtual_uid_mapping_path");
 	system("$POSTMAP_BIN $conf_postfix_relay_recipients_path");
 	genSaslFinishConfigAndRights();
+	system("chown  ".$conf_dtc_system_username.":postfix ".$conf_generated_file_path."/postfix_*");
 	//in case our relay_domains file hasn't been created correctly, we should touch it
 	system("touch $conf_postfix_relay_domains_path");
 }
