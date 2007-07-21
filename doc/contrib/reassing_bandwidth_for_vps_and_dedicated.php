@@ -42,6 +42,7 @@ for($i=0;$i<$n;$i++){
 		}
 		$a3 = mysql_fetch_array($r3);
 		$q4 = "UPDATE $pro_mysql_vps_table SET bandwidth_per_month_gb='".$a3["bandwidth"]."' WHERE id='".$a2["id"]."';";
+		$r4 = mysql_query($q4)or die("Cannot query ".$q4." line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 		echo $q4."\n";
 	}
 
@@ -59,6 +60,7 @@ for($i=0;$i<$n;$i++){
 		}
 		$a3 = mysql_fetch_array($r3);
 		$q4 = "UPDATE $pro_mysql_dedicated_table SET bandwidth_per_month_gb='".$a3["bandwidth"]."' WHERE id='".$a2["id"]."';";
+		$r4 = mysql_query($q4)or die("Cannot query ".$q4." line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 		echo $q4."\n";
 	}
 }
