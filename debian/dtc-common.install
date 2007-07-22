@@ -30,6 +30,7 @@ admin/install			/usr/share/dtc/admin
 admin/netusegraph		/usr/share/dtc/admin
 admin/reminders.php		/usr/share/dtc/admin
 admin/view_waitingusers.php	/usr/share/dtc/admin
+admin/vps_stats_network.php	/usr/share/dtc/admin
 client				/usr/share/dtc
 email				/usr/share/dtc
 bin/sources/dtc_db.php		/usr/share/dtc/admin

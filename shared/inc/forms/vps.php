@@ -78,10 +78,16 @@ function drawAdminTools_VPS($admin,$vps){
 		return $txt_credential_not_correct[$lang].__FILE__." line ".__LINE__;
 	}
 
+	$vps_out = "";
+
+	// Display the stats of the VPS
+	$vps_out .= "<b><u>VPS statistics:</u></b><br>";
+	$vps_out .= "Network:<br>";
+	$vps_out .= "<img src=\"vps_stats_network.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"><br><br>";
+
 	// VPS (remote SOAP) Status
 	$soap_client = connectToVPSServer($vps_node);
 
-	$vps_out = "";
 	if($soap_client != false){
 		$vps_remote_info = getVPSInfo($vps_node,$vps_name,$soap_client);
 
