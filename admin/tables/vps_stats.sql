@@ -13,6 +13,6 @@ CREATE TABLE IF NOT EXISTS vps_stats (
   diskio_last bigint(22) default NULL,
   diskio_count bigint(22) default NULL,
   swapio_last bigint(22) default NULL,
-  swapio_count bitint(22) default NULL,
-  PRIMARY KEY  (`month`,`year`,vps_server_hostname,vps_xen_name)
+  swapio_count bigint(22) default NULL,
+  PRIMARY KEY (`month`,`year`,vps_server_hostname,vps_xen_name)
 )TYPE=MyISAM;
