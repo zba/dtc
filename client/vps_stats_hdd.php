@@ -62,7 +62,7 @@ for($m=0;$m<12;$m++){
 		$year = $cur_year-1;
 	}
 
-	$q = "SELECT network_in_count,network_out_count FROM $pro_mysql_vps_stats_table
+	$q = "SELECT diskio_count FROM $pro_mysql_vps_stats_table
 	WHERE vps_server_hostname='".$_REQUEST["vps_node"]."'
 	AND vps_xen_name='".$_REQUEST["vps_name"]."'
 	AND month='$month'
@@ -71,11 +71,8 @@ for($m=0;$m<12;$m++){
 	$n = mysql_num_rows($r);
 	if($n == 1){
 		$a = mysql_fetch_array($r);
-		if(isset($a["network_in_count"])){
-			$tr_tbl[$m] += $a["network_in_count"];
-		}
-		if(isset($a["network_out_count"])){
-			$tr_tbl[$m] += $a["network_out_count"];
+		if(isset($a["diskio_count"])){
+			$tr_tbl[$m] += $a["diskio_count"];
 		}
 	}
 }
@@ -88,7 +85,7 @@ for($m=0;$m<12;$m++){
 	}
 }
 
-$max = $bpquota;
+$max = 20000000000;	// 20 T seems a good value
 if($foundmax > $bpquota)
 	$max = $foundmax;
 $max *= 1.05;

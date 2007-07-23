@@ -85,6 +85,15 @@ function drawAdminTools_VPS($admin,$vps){
 	$vps_out .= "Network:<br>";
 	$vps_out .= "<img src=\"vps_stats_network.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"><br><br>";
 
+	$vps_out .= "Swap I/O:<br>";
+	$vps_out .= "<img src=\"vps_stats_swap.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"><br><br>";
+
+	$vps_out .= "HDD I/O:<br>";
+	$vps_out .= "<img src=\"vps_stats_hdd.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"><br><br>";
+
+	$vps_out .= "CPU Time:<br>";
+	$vps_out .= "<img src=\"vps_stats_cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"><br><br>";
+
 	// VPS (remote SOAP) Status
 	$soap_client = connectToVPSServer($vps_node);
 

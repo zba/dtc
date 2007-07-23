@@ -6,6 +6,13 @@ $panel_type = "none";
 require_once("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
+if(!isHostnameOrIP($_REQUEST["vps_node"])){
+	die("VPS node name has wrong format: dying.");
+}
+if(!checkSubdomainFormat($_REQUEST["vps_name"])){
+	die("VPS name has wrong format: dying.");
+}
+
 session_name("wallid");
 header ("Content-type: image/png");
 
