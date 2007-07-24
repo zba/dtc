@@ -66,7 +66,7 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 		}
 		$admin = mysql_fetch_array($r2);
 		if($admin["id_client"] == 0){
-			sendAdminWarning("Admin has no client id (".$admin["id_client"].") line ".__LINE__." file ".__FILE__);
+			sendAdminWarning("Admin ".$vps["owner"]." has no client id (".$admin["id_client"].") line ".__LINE__." file ".__FILE__);
 			continue;
 		}
 
@@ -75,7 +75,7 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		if($n2 != 1){
-			sendAdminWarning("Could not find id client ".$admin["id_client"]." line ".__LINE__." file ".__FILE__);
+			sendAdminWarning("Could not find id client ".$admin["id_client"]." for admin ".$vps["owner"]." line ".__LINE__." file ".__FILE__);
 			continue;
 		}
 		$client = mysql_fetch_array($r2);
@@ -147,7 +147,7 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 		}
 		$admin = mysql_fetch_array($r2);
 		if($admin["id_client"] == 0){
-			sendAdminWarning("Admin has no client id (".$admin["id_client"].") line ".__LINE__." file ".__FILE__);
+			sendAdminWarning("Admin ".$vps["owner"]." has no client id (".$admin["id_client"].") line ".__LINE__." file ".__FILE__);
 			continue;
 		}
 
@@ -156,7 +156,7 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		if($n2 != 1){
-			sendAdminWarning("Could not find id client ".$admin["id_client"]." line ".__LINE__." file ".__FILE__);
+			sendAdminWarning("Could not find id client ".$admin["id_client"]." for admin ".$vps["owner"]." line ".__LINE__." file ".__FILE__);
 			continue;
 		}
 		$client = mysql_fetch_array($r2);
@@ -232,7 +232,7 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		if($n2 != 1){
-			sendAdminWarning("Could not find id client ".$admin["id_client"]." line ".__LINE__." file ".__FILE__);
+			sendAdminWarning("Could not find id client ".$admin["id_client"]." for admin ".$vps["owner"]." line ".__LINE__." file ".__FILE__);
 			continue;
 		}
 		$client = mysql_fetch_array($r2);
