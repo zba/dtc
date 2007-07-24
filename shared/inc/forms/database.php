@@ -73,7 +73,7 @@ function drawDataBase($database){
 
 	if($conf_demo_version == "no" && $num_users > 0){
 		mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
-		$query = "SELECT Db,User FROM db WHERE $dblist_clause;";
+		$query = "SELECT DISTINCT Db,User FROM db WHERE $dblist_clause;";
 		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 		$num_rows = mysql_num_rows($result);
 		$dblist = "<table cellpadding=\"2\" cellspacing=\"2\">";
