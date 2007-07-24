@@ -15,15 +15,6 @@ do
 	# remove un-needed directories
 	rm -rf $i/etc/pam.d
 	rm -rf $i/etc/security
-	# chown back to all nobody (should some be root?)
-	nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nobody`
-	# if we can't find the nobody group, try nogroup
-	if [ -z ""$nobodygroup ]; then
-		nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nogroup`
-	fi
 	# if we can't find nogroup, then set to 65534
-	if [ -z ""$nobodygroup ]; then
-		nobodygroup=65534
-	fi
-	chown -R nobody:$nobodygroup $i
+	chown -R dtc:dtcgrp $i
 done
