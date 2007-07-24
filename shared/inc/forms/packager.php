@@ -104,7 +104,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		}
 
 		// Get the database infos beffore calling the custom package installer
-		$q = "SELECT db.Db,db.User FROM mysql.user,mysql.db WHERE user.dtcowner='$adm_login' AND db.User=user.User AND db.Db='".$_REQUEST["database_name"]."';";
+		$q = "SELECT DISTINCT db.Db,db.User FROM mysql.user,mysql.db WHERE user.dtcowner='$adm_login' AND db.User=user.User AND db.Db='".$_REQUEST["database_name"]."';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1)die("Cannot find database line ".__LINE__." file ".__FILE__);

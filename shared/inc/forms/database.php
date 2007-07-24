@@ -34,7 +34,7 @@ function drawDataBase($database){
 	$admin_param = mysql_fetch_array($r);
 
 	$txt = "<br><h3>".$txt_your_users[$lang]."</h3>";
-	$q = "SELECT * FROM mysql.user WHERE dtcowner='$adm_login' ORDER BY User;";
+	$q = "SELECT DISTINCT User FROM mysql.user WHERE dtcowner='$adm_login' ORDER BY User;";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	$num_users = $n;
