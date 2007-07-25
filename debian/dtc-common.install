@@ -51,4 +51,5 @@ shared/template			/usr/share/dtc/shared
 shared/upgrade_sql.php		/usr/share/dtc/shared
 shared/vars			/usr/share/dtc/shared
 shared/maxmind			/usr/share/dtc/shared
+shared/visitors_template	/usr/share/dtc/shared
 admin/dtc-chroot-shell		/bin
