@@ -149,6 +149,7 @@ function drawNewAdminForm(){
 	get_secpay_conf();
 
 	$out = "";
+	// Resolve support ticket stuff
 	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "resolv_ticket"){
 		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='".$_REQUEST["tik_id"]."';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
@@ -226,6 +227,7 @@ function drawNewAdminForm(){
 		</form>";
 		return $out;
 	}
+	// Reply to support ticket stuff
 	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "ticket_reply"){
 		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='".$_REQUEST["tik_id"]."';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
@@ -279,14 +281,14 @@ dtcFromOkDraw()."
 
 	// Draw the list of users awaiting for an account
 	$waiting_new_users = "<h3>".$txt_userndomain_waiting_for_addition[$lang]."</h3>";
-	$q = "SELECT * FROM $pro_mysql_new_admin_table";
+	$q = "SELECT * FROM $pro_mysql_new_admin_table ORDER BY date,time";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
 		$waiting_new_users .= "<b>".$txt_no_user_waiting[$lang]."</b>";
 	}else{
 		$waiting_new_users .= "<table width=\"100%\"border=\"1\">
-<tr><td>".$txt_dua_name[$lang]."</td><td>".$txt_login_title[$lang]."</td><td>".$txt_dua_domain_name_vps_server_hostname[$lang]."</td><td>".$txt_dua_product[$lang]."</td><td>".$txt_dua_bank_validated[$lang]."</td><td>MaxMind says</td><td>".$txt_action[$lang]."</td></tr>";
+<tr><td>".$txt_dua_name[$lang]."</td><td>".$txt_login_title[$lang]."</td><td>".$txt_dua_domain_name_vps_server_hostname[$lang]."</td><td>".$txt_dua_product[$lang]."</td><td>Date</td><td>".$txt_dua_bank_validated[$lang]."</td><td>MaxMind says</td><td>".$txt_action[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".$a["comp_name"].":</u><br>";
@@ -309,6 +311,7 @@ dtcFromOkDraw()."
 				}
 			}
 			$waiting_new_users .= "<td>$dom_name</td><td>$prod_name</td>";
+			$waiting_new_users .= "<td>".$a["date"]." ".$a["time"]."<br>".calculateAge($a["date"],$a["time"])."</td>";
 			if($a["paiement_id"] == 0){
 				$waiting_new_users .= "<td>No pay ID!</td>";
 			}else{
@@ -352,7 +355,7 @@ dtcFromOkDraw()."
 		$waiting_new_users .= "</table>";
 	}
 
-	$q = "SELECT * FROM $pro_mysql_pending_renewal_table";
+	$q = "SELECT * FROM $pro_mysql_pending_renewal_table ORDER BY renew_date,renew_time";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
