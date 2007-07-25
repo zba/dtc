@@ -210,9 +210,9 @@ date\n";
 	global $conf_ftp_backup_pass;
 	global $conf_ftp_backup_frequency;
 
-	$ftp_login_cfg = "host    $conf_ftp_backup_host
-user    $conf_ftp_backup_login
-pass    $conf_ftp_backup_pass
+	$ftp_login_cfg = "host $conf_ftp_backup_host
+user $conf_ftp_backup_login
+pass $conf_ftp_backup_pass
 ";
 
 	$filep = fopen("$conf_generated_file_path/ncftpput_login.cfg", "w+");
