@@ -148,6 +148,8 @@ function adminList($password=""){
 	global $pro_mysql_client_table;
 	global $pro_mysql_domain_table;
 	global $pro_mysql_vps_table;
+	global $pro_mysql_dedicated_table;
+
 	global $panel_type;
 	global $cur_admlist_type;
 	global $conf_mysql_db;
@@ -295,7 +297,7 @@ function adminList($password=""){
 			$vps_name = $row7["vps_server_hostname"].":".$row7["vps_xen_name"];
 			$owner = $row7["owner"];
 			$query2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$owner';";
-			$result2 = mysql_query($query2) or die("Cannot execute query : \"$query2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$result2 = mysql_query($query2) or die("Cannot execute query : \"".$query2."\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$num_rows2 = mysql_num_rows($result2);
 			if($num_rows2 != 1){
 				$admins .= "$vps_name<br>&nbsp;&nbsp;&nbsp;<font color=\"red\">VPS without owner !</font><br>";
@@ -306,6 +308,29 @@ function adminList($password=""){
 				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$vps_name</a><br>";
 				$dsc["admins"][] = array(
 					"text" => $vps_name,
+					"adm_login" => $linkadm_login,
+					"adm_pass" => "$zepass");
+			}
+		}
+		$query7 = "SELECT * FROM $pro_mysql_dedicated_table ORDER BY server_hostname";
+		$result7 = mysql_query($query7) or die("Cannot execute query : \"$query7\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$num_rows7 = mysql_num_rows($result7);
+		for($i=0;$i<$num_rows7;$i++){
+			$row7 = mysql_fetch_array($result7);
+			$server_hostname = $row7["server_hostname"];
+			$owner = $row7["owner"];
+			$query2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$owner';";
+			$result2 = mysql_query($query2) or die("Cannot execute query : \"".$query2."\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$num_rows2 = mysql_num_rows($result2);
+			if($num_rows2 != 1){
+				$admins .= "$vps_name<br>&nbsp;&nbsp;&nbsp;<font color=\"red\">Dedicated without owner !</font><br>";
+			}else{
+				$row2 = mysql_fetch_array($result2);
+				$linkadm_login = $row2["adm_login"];
+				$linkadm_pass = $row2["adm_pass"];
+				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$server_hostname</a><br>";
+				$dsc["admins"][] = array(
+					"text" => $server_hostname,
 					"adm_login" => $linkadm_login,
 					"adm_pass" => "$zepass");
 			}
