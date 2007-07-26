@@ -7,3 +7,7 @@ Once the operating system will be setup, you will have to click on the control p
 http://dtcsupport.gplhost.com/pmwiki/PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It
 
 Here is your login information in the DTC control panel:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

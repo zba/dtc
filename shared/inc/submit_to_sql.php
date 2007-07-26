@@ -193,6 +193,8 @@ function validateWaitingUser($waiting_login){
 	global $pro_mysql_completedorders_table;
 	global $pro_mysql_domain_table;
 
+	global $dtcshared_path;
+
 	global $txt_userwaiting_account_activated_subject;
 	global $txt_userwaiting_account_activated_text_header;
 
@@ -201,6 +203,7 @@ function validateWaitingUser($waiting_login){
 	global $conf_use_ssl;
 	global $conf_webmaster_email_addr;
 	global $conf_this_server_country_code;
+	global $conf_message_subject_header;
 	global $console;
 
 	// Check if there is a user by that name
@@ -302,87 +305,84 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 				}
 			}
 		}
-		$txt_welcome_message = "The Virtual Server hosting account you have ordered
-has been validated. It's currently setting-up your
-operating system. You can login in the control panel
-using the information following.
 
-Once the operating system will be setup, you will have
-to click on the control panel to bootup your VPS. Once
-it boots up, you need to login on the physical console
-using ssh (after you have setup your password).
-
-Once you are logged on the physica console of your VPS,
-login as root, and change the root password. Then, you
-can install ssh on it and finish the installation.
-
-Note that if you need our team to setup DTC control
-panel on your VPS, you need to get in touch with us.
-
-Here is your login information in the DTC control panel:";
+		// Read the (customizable) registration message to send
+		if(file_exists("/etc/dtc/registration_msg/vps_open.txt")){
+			$fname = "/etc/dtc/registration_msg/vps_open.txt";
+		}else{
+			$fname = "$dtcshared_path/registration_msg/vps_open.txt";
+		}
+		$fp = fopen($fname,"r");
+		$txt_welcome_message = fread($fp,filesize($fname));
+		fclose($fp);
 	}else if($a2["heb_type"] == "server"){
 		// As there is currently no dedicated server provision system, we just do this:
 		$country = $conf_this_server_country_code;
 		addDedicatedToUser($waiting_login,$a["domain_name"],$a2["id"]);
-		$txt_welcome_message = "The dedicated server you have ordered is now
-validated. Note that there is a delay when ordering a
-dedicated server with us. Please get in touch to know
-how long it can take to have it online.
 
-From now on, you can login to our control panel for doing
-the renewals of your contract. Here is the login information
-you will need:";
+		// Read the (customizable) registration message to send
+		if(file_exists("/etc/dtc/registration_msg/dedicated_open.txt")){
+			$fname = "/etc/dtc/registration_msg/dedicated_open.txt";
+		}else{
+			$fname = "$dtcshared_path/registration_msg/dedicated_open.txt";
+		}
+		$fp = fopen($fname,"r");
+		$txt_welcome_message = fread($fp,filesize($fname));
+		fclose($fp);
         }else{
         	$country = $conf_this_server_country_code;
 		addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
-		$txt_welcome_message = "The shared hosting account you have ordered is now
-ready to be used. Note that it can take up to 10 minutes
-until your domain name is setup on our DNS and apache
-server (a cron job runs each 10 minutes for new mail,
-domains and subdomains, but you don't need to wait
-for your ftp accounts).
 
-Note that your files should be uploaded in:
+		// Read the (customizable) registration message to send
+		if(file_exists("/etc/dtc/registration_msg/shared_open.txt")){
+			$fname = "/etc/dtc/registration_msg/shared_open.txt";
+		}else{
+			$fname = "$dtcshared_path/registration_msg/shared_open.txt";
+		}
+		$fp = fopen($fname,"r");
+		$txt_welcome_message = fread($fp,filesize($fname));
+		fclose($fp);
 
-/var/www/sites/YOU-USERNAME/your-domain.com/subdomains/www/html
-
-And when creating a new ftp account, you wont see the
-first part of the path, so it will be relative to:
-
-/var/www/sites/YOU-USERNAME
-
-You can login to the control
-panel using the following informations:";
 		$q = "UPDATE $pro_mysql_domain_table SET max_email='".$a2["nbr_email"]."',quota='".$a2["quota_disk"]."' WHERE name='".$a["domain_name"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
         }
 
 	// Send a mail to user with how to login and use interface.
-	$txt_userwaiting_account_activated_subject = "GPLHost:>_ Account $waiting_login has been activated!";
+	$txt_userwaiting_account_activated_subject = "$conf_message_subject_header Account $waiting_login has been activated!";
+
+	// Manage the signature of all registration messages
+	if(file_exists("/etc/dtc/signature.txt")){
+		$fp = fopen($fname,"r");
+		$signature = fread($fp,filesize($fname));
+		fclose($fp);
+	}else{
+		$signature = "";
+	}
+	$msg_2_send = str_replace("%%%SIGNATURE%%%",$signature,$txt_welcome_message);
+
+	// Manage the login info part of the message
 	if($conf_use_ssl == "yes"){
 		$surl = "s";
 	}else{
 		$surl = "";
 	}
-	$txt_userwaiting_account_activated_text_header = "DTC hosting account opened!
-
-Hello,
-
-This is a message sent automaticaly by the Domain
-Technologie Control panel robot.
-
-$txt_welcome_message
-
-URL: http$surl://$conf_administrative_site/dtc/
+	$dtc_login_info = "URL: http$surl://$conf_administrative_site/dtc/
 Login: $waiting_login
-Password: ".$a["reqadm_pass"]."
+Password: ".$a["reqadm_pass"];
+	$msg_2_send = str_replace("%%%DTC_LOGIN_INFO%%%",$dtc_login_info,$msg_2_send);
 
-GPLHost:>_ Open-source hosting worldwide.
-http://www.gplhost.com
-";
+	// Manage the header of the messages
+	if(file_exists("/etc/dtc/messages_header.txt")){
+		$fp = fopen($fname,"r");
+		$head = fread($fp,filesize($fname));
+		fclose($fp);
+	}else{
+		$head = "";
+	}
+	$msg_2_send = $head.$msg_2_send;
+
 	$headers = "From: ".$conf_webmaster_email_addr;
-	mail($a["email"],$txt_userwaiting_account_activated_subject,
-		$txt_userwaiting_account_activated_text_header,$headers);
+	mail($a["email"],$txt_userwaiting_account_activated_subject,$msg_2_send,$headers);
 
 	// Now add a command to the user so we keep tracks of payments
 	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code)

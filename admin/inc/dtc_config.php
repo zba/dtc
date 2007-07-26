@@ -242,6 +242,10 @@ function drawRenewalsConfig(){
 			"vps_renewal_shutdown" => array(
 				"legend" => $txt_cfg_shutdown_warning[$lang],
                                 "type" => "text",
+                                "size" => "16"),
+			"message_subject_header" => array(
+				"legend" => "Reminders and registration message subject header:",
+                                "type" => "text",
                                 "size" => "16")
 			)
 		);

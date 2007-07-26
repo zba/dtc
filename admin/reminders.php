@@ -33,6 +33,26 @@ function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$ad
 		$surl = "";
 	}
 	$msg_2_send = str_replace("%%%DTC_CLIENT_URL%%%","http".$surl."://".$conf_administrative_site."/dtc/",$msg_2_send);
+
+	if(file_exists("/etc/dtc/signature.txt")){
+		$fp = fopen($fname,"r");
+		$signature = fread($fp,filesize($fname));
+		fclose($fp);
+	}else{
+		$signature = "";
+	}
+	$msg_2_send = str_replace("%%%SIGNATURE%%%",$signature,$msg_2_send);
+
+	// Manage the header of the messages
+	if(file_exists("/etc/dtc/messages_header.txt")){
+		$fp = fopen($fname,"r");
+		$head = fread($fp,filesize($fname));
+		fclose($fp);
+	}else{
+		$head = "";
+	}
+	$msg_2_send = $head.$msg_2_send;
+
 	return $msg_2_send;
 }
 

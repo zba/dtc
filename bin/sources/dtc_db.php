@@ -196,7 +196,8 @@ $dtc_database = array(
 			"user_mysql_root_pass" => "varchar (255) NOT NULL default 'none'",
 			"default_company_invoicing" => "int (12) NOT NULL default '0' ",
 			"this_server_country_code" => "varchar (4) NOT NULL default 'US' ",
-			"use_cyrus" => "enum('yes','no') NOT NULL default 'no' "
+			"use_cyrus" => "enum('yes','no') NOT NULL default 'no' ",
+			"message_subject_header" => "varchar (255) NOT NULL default '[DTC]'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

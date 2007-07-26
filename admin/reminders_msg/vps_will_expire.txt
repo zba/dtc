@@ -3,9 +3,6 @@ Subject: Your VPS server will expire soon
 
 Hello %%%FIRST_NAME%%%,
 
-This is an automated message sent by the Domain Technologie
-Control (DTC) robot.
-
 Your Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
 will expire in %%%REMAINING_DAYS%%% days, on the: %%%EXPIRATION_DATE%%%.
 
@@ -23,10 +20,4 @@ Best regards,
 
 	GPLHost billing department
 
---
-Phone: +1-302-213-1611
-Web: http://www.gplhost.com
-GPLHost:>_ Open source hosing worldwide
-Web spaces featuring GPL control panel and Xen VPS
-Locations in Singapore, Sydney, Los Angeles, Florida, Paris and Israel
-
+%%%SIGNATURE%%%

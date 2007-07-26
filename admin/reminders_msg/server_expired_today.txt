@@ -3,9 +3,6 @@ Subject: Your dedicated server expires today
 
 Hello %%%FIRST_NAME%%%,
 
-This is an automated message sent by the Domain Technologie
-Control (DTC) robot.
-
 Your dedicated server %%%SERVER_HOSTNAME%%%
 has expired today, on the: %%%EXPIRATION_DATE%%%.
 
@@ -23,10 +20,4 @@ Best regards,
 
 	GPLHost billing department
 
---
-Phone: +1-302-213-1611
-Web: http://www.gplhost.com
-GPLHost:>_ Open source hosing worldwide
-Web spaces featuring GPL control panel and Xen VPS
-Locations in Singapore, Sydney, Los Angeles, Florida, Paris and Israel
-
+%%%SIGNATURE%%%

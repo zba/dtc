@@ -4,7 +4,6 @@ admin/deamons_state_strings.php	/usr/share/dtc/admin
 admin/favicon.ico		/usr/share/dtc/admin
 admin/ip_change.sh		/usr/share/dtc/admin
 admin/netusegraph.cgi		/usr/share/dtc/admin
-admin/reminders_msg		/etc/dtc
 admin/cpugraph			/usr/share/dtc/admin
 admin/dtc-chroot-shell		/usr/share/dtc/admin
 admin/genfiles			/usr/share/dtc/admin
@@ -33,6 +32,9 @@ admin/view_waitingusers.php	/usr/share/dtc/admin
 admin/vps_stats_hdd.php		/usr/share/dtc/admin
 admin/vps_stats_swap.php	/usr/share/dtc/admin
 admin/vps_stats_cpu.php		/usr/share/dtc/admin
+admin/dtc-chroot-shell		/bin
+admin/reminders_msg		/etc/dtc
+admin/signature.txt		/etc/dtc
 client				/usr/share/dtc
 email				/usr/share/dtc
 bin/sources/dtc_db.php		/usr/share/dtc/admin
@@ -53,4 +55,4 @@ shared/vars			/usr/share/dtc/shared
 shared/maxmind			/usr/share/dtc/shared
 shared/visitors_template	/usr/share/dtc/shared
 shared/registration_msg		/etc/dtc
-admin/dtc-chroot-shell		/bin
+shared/messages_header.txt	/etc/dtc
