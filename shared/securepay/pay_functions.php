@@ -118,6 +118,12 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	global $conf_webmaster_email_addr;
 	global $pro_mysql_new_admin_table;
 
+	global $secpayconf_currency_letters;
+
+	if(!isset($secpayconf_currency_letters)){
+		get_secpay_conf();
+	}
+
 	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$pay_id';";
 	logPay("Querying: $q");
 	$r = mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
@@ -142,7 +148,7 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	logPay($q);
 	mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
 
-	$txt_userwaiting_account_activated_subject = "GPLHost:>_ \$".$amount_paid." payment";
+	$txt_userwaiting_account_activated_subject = "[DTC] ".$amount_paid." $secpayconf_currency_letters payment occured";
 
 	if($ar["new_account"] == "yes"){
 		$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE paiement_id='".$ar["id"]."';";
@@ -161,7 +167,7 @@ Country: ".$a["country"]."";
 	$txt_mail = "Hello,
 
 This is Domain Technologie Control panel robot.
-A \$".$amount_paid." payment has just occured.
+A ".$amount_paid." $secpayconf_currency_letters payment has just occured.
 
 Payid: ".$pay_id."
 $added_comments
