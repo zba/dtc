@@ -20,6 +20,8 @@ function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
 	global $conf_webmaster_email_addr;
 	global $conf_administrative_site;
 
+	global $conf_message_subject_header;
+
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -76,7 +78,7 @@ with your login $adm_login, then go in the support
 ticket tab and type your reply.
 ";
 	}
-	mail($a["email"],"[DTC] An administrator replied to your support ticket",$content,$headers);
+	mail($a["email"],"$conf_message_subject_header An administrator replied to your support ticket",$content,$headers);
 }
 
 function drawNewAdminForm(){

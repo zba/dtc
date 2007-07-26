@@ -32,6 +32,7 @@ function register_user(){
 	global $conf_webmaster_email_addr;
 	global $conf_selling_conditions_url;
 
+	global $conf_message_subject_header;
 
 	global $secpayconf_currency_letters;
 
@@ -420,7 +421,7 @@ $vps_mail_add1
 ";
 
 	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
-	mail($conf_webmaster_email_addr, "[DTC] Somebody tried to register an account", $mail_content, $headers);
+	mail($conf_webmaster_email_addr, "$conf_message_subject_header Somebody tried to register an account", $mail_content, $headers);
 
 	return $ret;
 }

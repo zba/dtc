@@ -119,6 +119,7 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	global $pro_mysql_new_admin_table;
 
 	global $secpayconf_currency_letters;
+	global $conf_message_subject_header;
 
 	if(!isset($secpayconf_currency_letters)){
 		get_secpay_conf();
@@ -148,7 +149,7 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	logPay($q);
 	mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
 
-	$txt_userwaiting_account_activated_subject = "[DTC] ".$amount_paid." $secpayconf_currency_letters payment occured";
+	$txt_userwaiting_account_activated_subject = "$conf_message_subject_header ".$amount_paid." $secpayconf_currency_letters payment occured";
 
 	if($ar["new_account"] == "yes"){
 		$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE paiement_id='".$ar["id"]."';";

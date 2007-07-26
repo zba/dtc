@@ -4,6 +4,8 @@ function mailTicketToAllAdmins($subject,$body){
 	global $pro_mysql_tik_admins_table;
 	global $conf_webmaster_email_addr;
 
+	global $conf_message_subject_header;
+
 	$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE available='yes';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -19,7 +21,7 @@ Subject: ".stripslashes($subject)."
 **********
 ";
 		$headers = "From: ".$conf_webmaster_email_addr;
-		mail($a["email"],"[DTC] A customer has submitted a support ticket",$content,$headers);
+		mail($a["email"],"$conf_message_subject_header A customer has submitted a support ticket",$content,$headers);
 	}
 }
 

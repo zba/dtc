@@ -8,8 +8,11 @@ require_once("$dtcshared_path/dtc_lib.php");
 // Send a mail to the admin with the error message
 function sendAdminWarning($message){
 	global $conf_webmaster_email_addr;
+
+	global $conf_message_subject_header;
+
 	$headers = "From: ".$conf_webmaster_email_addr;
-	mail($conf_webmaster_email_addr,"[DTC] Reminder warning message!",$message,$headers);
+	mail($conf_webmaster_email_addr,"$conf_message_subject_header Reminder warning message!",$message,$headers);
 }
 
 function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$adm_login){
@@ -63,6 +66,8 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 	global $pro_mysql_vps_table;
 	global $conf_webmaster_email_addr;
 
+	global $conf_message_subject_header;
+
 	// Using Debian, the files in /etc will be marked as conf files and then will be updated
 	// only if the admin asks for it. We just let Debian manage them...
 	if(file_exists("/etc/dtc/reminders_msg/".$file)){
@@ -113,9 +118,9 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 		$msg_2_send = str_replace("%%%VPS_NODE%%%",$vps["vps_server_hostname"],$msg_2_send);
 
 		$headers = "From: ".$conf_webmaster_email_addr;
-		mail($client["email"],"[DTC] Your VPS expiration",$msg_2_send,$headers);
+		mail($client["email"],"$conf_message_subject_header Your VPS expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			mail($conf_webmaster_email_addr,"[DTC] A VPS has expired",$msg_2_send,$headers);
+			mail($conf_webmaster_email_addr,"$conf_message_subject_header A VPS has expired",$msg_2_send,$headers);
 		}
 	}
 }
@@ -149,6 +154,8 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 	global $pro_mysql_client_table;
 	global $pro_mysql_dedicated_table;
 	global $conf_webmaster_email_addr;
+
+	global $conf_message_subject_header;
 
 	$fname = "reminders_msg/".$file;
 	$fp = fopen($fname,"r");
@@ -193,9 +200,9 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 		$msg_2_send = str_replace("%%%SERVER_HOSTNAME%%%",$dedicated["server_hostname"],$msg_2_send);
 
 		$headers = "From: ".$conf_webmaster_email_addr;
-		mail($client["email"],"[DTC] Your dedicated server expiration",$msg_2_send,$headers);
+		mail($client["email"],"$conf_message_subject_header Your dedicated server expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			mail($conf_webmaster_email_addr,"[DTC] A dedicated has expired",$msg_2_send,$headers);
+			mail($conf_webmaster_email_addr,"$conf_message_subject_header A dedicated has expired",$msg_2_send,$headers);
 		}
 	}
 }
@@ -232,6 +239,7 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 	global $pro_mysql_client_table;
 
 	global $conf_webmaster_email_addr;
+	global $conf_message_subject_header;
 
 	$fname = "reminders_msg/".$file;
 	$fp = fopen($fname,"r");
@@ -268,9 +276,9 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 		$msg_2_send = getCustomizedReminder($msg_2_send,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
 
 		$headers = "From: ".$conf_webmaster_email_addr;
-		mail($client["email"],"[DTC] Your shared hosting expiration",$msg_2_send,$headers);
+		mail($client["email"],"$conf_message_subject_header Your shared hosting expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			mail($conf_webmaster_email_addr,"[DTC] A shared hosting account has expired",$msg_2_send,$headers);
+			mail($conf_webmaster_email_addr,"$conf_message_subject_header A shared hosting account has expired",$msg_2_send,$headers);
 		}
 	}
 }
