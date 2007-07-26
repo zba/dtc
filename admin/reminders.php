@@ -43,7 +43,13 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 	global $pro_mysql_vps_table;
 	global $conf_webmaster_email_addr;
 
-	$fname = "reminders_msg/".$file;
+	// Using Debian, the files in /etc will be marked as conf files and then will be updated
+	// only if the admin asks for it. We just let Debian manage them...
+	if(file_exists("/etc/dtc/reminders_msg/".$file)){
+		$fname = "/etc/dtc/reminders_msg/".$file;
+	}else{
+		$fname = "reminders_msg/".$file;
+	}
 	$fp = fopen($fname,"r");
 	$mesg = fread($fp,filesize($fname));
 	fclose($fp);

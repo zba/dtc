@@ -4,7 +4,7 @@ admin/deamons_state_strings.php	/usr/share/dtc/admin
 admin/favicon.ico		/usr/share/dtc/admin
 admin/ip_change.sh		/usr/share/dtc/admin
 admin/netusegraph.cgi		/usr/share/dtc/admin
-admin/reminders_msg		/usr/share/dtc/admin
+admin/reminders_msg		/etc/dtc
 admin/cpugraph			/usr/share/dtc/admin
 admin/dtc-chroot-shell		/usr/share/dtc/admin
 admin/genfiles			/usr/share/dtc/admin
