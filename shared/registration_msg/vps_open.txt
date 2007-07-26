@@ -1,0 +1,9 @@
+The Virtual Server hosting account you have ordered has been validated. It's currently setting-up your operating system. You can login in the control panel using the information following.
+
+If you want our team to install DTC inside your VPS, please open a support ticket within this new account. On that case, once DTC is setup, please do not mistake between the 2 control panels: the one in your VPS, and the one with your client login within our company. These are 2 control panel with different purposes. For example, do not send support ticket inside the control panel of your VPS, because it will never reach us. Us your client control panel login of our company instead.
+
+Once the operating system will be setup, you will have to click on the control panel to bootup your VPS. Once it boots up, you need to login on the physical console using ssh (after you have setup your password). Once you are logged on the physica console of your VPS, login as root, and change the root password. Then, you can install ssh on it and finish the installation. A full detail of the procedure can be read here:
+
+http://dtcsupport.gplhost.com/pmwiki/PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It
+
+Here is your login information in the DTC control panel:
