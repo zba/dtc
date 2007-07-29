@@ -201,6 +201,7 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	global $pro_mysql_ftp_table;
 	global $pro_mysql_subdomain_table;
 	global $pro_mysql_domain_table;
+	global $pro_mysql_list_table;
 	global $conf_demo_version;
 
 	global $conf_root_admin_random_pass;

@@ -1,4 +1,5 @@
 Version 0.26.3:
+- Added customizability of the registration messages.
 - Added date of registration for new users
 - Added bandwidth field for dedicated servers and vps.
 - Added deletion of VPS and dedicated servers when deleting a user account.
