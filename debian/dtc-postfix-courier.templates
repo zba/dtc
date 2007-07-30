@@ -106,6 +106,12 @@ Default: false
 _Description: Use Cyrus mail system?
  Please choose this option if you are using Cyrus for mail
  delivery, IMAP and MTA. This option is only compatible with Postfix.
+ .
+ Cyrus is a replacement for the Maildir delivery and storage. You must know
+ what you are doing if you want to activate the use of Cyrus. If you are
+ using dtc-toaster or dtc-postfix-courier, you have to answer not to use
+ Cyrus here. Cyrus is only usable with the dtc package and NOT if you are
+ using dtc-postfix-courier instead.
 
 Template: dtc/conf_apache_version
 Type: select
