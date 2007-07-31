@@ -3,15 +3,12 @@ admin/checkbind.sh		/usr/share/dtc/admin
 admin/deamons_state_strings.php	/usr/share/dtc/admin
 admin/favicon.ico		/usr/share/dtc/admin
 admin/ip_change.sh		/usr/share/dtc/admin
-admin/netusegraph.cgi		/usr/share/dtc/admin
 admin/cpugraph			/usr/share/dtc/admin
 admin/dtc-chroot-shell		/usr/share/dtc/admin
 admin/genfiles			/usr/share/dtc/admin
-admin/mailgraph.cgi		/usr/share/dtc/admin
 admin/patch_saslatuhd_startup	/usr/share/dtc/admin
 admin/rrdtool.sh		/usr/share/dtc/admin
 admin/accesslog.php		/usr/share/dtc/admin
-admin/cpugraph.cgi		/usr/share/dtc/admin
 admin/inc			/usr/share/dtc/admin
 admin/memgraph			/usr/share/dtc/admin
 admin/queuegraph		/usr/share/dtc/admin
@@ -19,8 +16,6 @@ admin/tables			/usr/share/dtc/admin
 admin/awstats.dtc.conf		/usr/share/dtc/admin
 admin/cron.php			/usr/share/dtc/admin
 admin/index.php			/usr/share/dtc/admin
-admin/memgraph.cgi		/usr/share/dtc/admin
-admin/queuegraph.cgi		/usr/share/dtc/admin
 admin/updateChroot.sh		/usr/share/dtc/admin
 admin/bw_per_month.php		/usr/share/dtc/admin
 admin/deamons_state.php		/usr/share/dtc/admin
