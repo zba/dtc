@@ -1,9 +1,9 @@
 <?php
 
-$rrd = '/var/lib/dtc/etc/netusage.rrd';
+$rrd = '/var/lib/dtc/etc/cpu.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = "Network transfer";
+$vert_label = "CPU Load average";
 
 if( isset($_REQUEST["graph"]) ){
 
@@ -33,12 +33,10 @@ if( isset($_REQUEST["graph"]) ){
 			break;
 	}
 	$range = - $steps;
-	$filename = "/tmp/network_usage_".$_REQUEST["graph"].".png";
+	$filename = "/tmp/cpu_load_".$_REQUEST["graph"].".png";
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
-	$cmd .= "DEF:bytesin=$rrd:bytesin:AVERAGE DEF:bytesout=$rrd:bytesout:AVERAGE ";
-	$cmd .= "'LINE2:bytesin#00ff00:Incoming network traffic in bytes:' 'GPRINT:bytesin:MAX:Maximum\: %0.0lf' 'GPRINT:bytesin:AVERAGE:Average\: %0.0lf/min\\n' ";
-	$cmd .= "'LINE1:bytesout#0000ff:Outgoing network traffic in bytes:' 'GPRINT:bytesout:MAX:Maximum\: %0.0lf' 'GPRINT:bytesout:AVERAGE:Average\: %0.0lf/min\l' ";
-	$cmd;
+	$cmd .= "DEF:loadaverage=$rrd:loadaverage:AVERAGE ";
+	$cmd .= "'LINE1:loadaverage#ff0000:CPU Load average*100:' 'GPRINT:loadaverage:MAX:Maximum\: %0.0lf' 'GPRINT:loadaverage:AVERAGE:Average\: %0.0lf/min\\n' ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);
@@ -61,7 +59,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>Network usage statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>CPU load average statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;
@@ -77,13 +75,13 @@ h1 {
 </style>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
-<H1>Network Usage Statistics for '.$_SERVER["SERVER_NAME"].'</H1>
+<H1>CPU load average Statistics for '.$_SERVER["SERVER_NAME"].'</H1>
 <center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="Hour Netusage Graph"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="Day Netusage Graph"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="Week Netusage Graph"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="Month Netusage Graph"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="Year Netusage Graph">
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="Hour CPU Load Graph" width="897" height="239"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="Day CPU Load Graph" width="897" height="239"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="Week CPU Load Graph" width="897" height="239"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="Month CPU Load Graph" width="897" height="239"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="Year CPU Load Graph" width="897" height="239">
 </center>
 </body>
 </html>';
