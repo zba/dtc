@@ -9,13 +9,13 @@ function drawRrdtoolGraphs (){
 
 	$out = "<center><table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"920\">
 <tr><td><h3>".$txt_iframe_nts[$lang]."</h3></td><tr>
-<tr><td><IFRAME src=\"/cgi-bin/netusegraph.cgi\" width=\"100%\" height=\"318\"></iframe></td></tr>
+<tr><td><IFRAME src=\"netusegraph.php\" width=\"100%\" height=\"318\"></iframe></td></tr>
 <tr><td><h3>".$txt_iframe_cpu[$lang]."</h3></td><tr>
-<tr><td><IFRAME src=\"/cgi-bin/cpugraph.cgi\" width=\"100%\" height=\"318\"></iframe></td></tr>
+<tr><td><IFRAME src=\"cpugraph.php\" width=\"100%\" height=\"318\"></iframe></td></tr>
 <tr><td><h3>".$txt_iframe_msu[$lang]."</h3></td><tr>
-<tr><td><IFRAME src=\"/cgi-bin/memgraph.cgi\" width=\"100%\" height=\"318\"></iframe></td></tr>
+<tr><td><IFRAME src=\"memgraph.php\" width=\"100%\" height=\"318\"></iframe></td></tr>
 <tr><td><h3>".$txt_iframe_mqg[$lang]."</h3></td><tr>
-<tr><td><IFRAME src=\"/cgi-bin/queuegraph.cgi\" width=\"100%\" height=\"318\"></iframe></td></tr>
+<tr><td><IFRAME src=\"mailgraph.php\" width=\"100%\" height=\"318\"></iframe></td></tr>
 </table></center>
 ";
 	return $out;
