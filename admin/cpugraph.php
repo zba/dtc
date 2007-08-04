@@ -33,6 +33,7 @@ if( isset($_REQUEST["graph"]) ){
 			break;
 	}
 	$range = - $steps;
+	$filename = tempnam("/tmp","dtc_cpugraph");
 	$filename = "/tmp/cpu_load_".$_REQUEST["graph"].".png";
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:loadaverage=$rrd:loadaverage:AVERAGE ";
@@ -54,6 +55,7 @@ if( isset($_REQUEST["graph"]) ){
 		}
 		fclose($fp);
 	}
+	unlink($filename);
 }else{
 	echo '
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
