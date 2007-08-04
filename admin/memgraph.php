@@ -65,7 +65,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>Network usage statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>Memory and swap usage statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;
@@ -81,7 +81,7 @@ h1 {
 </style>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
-<H1>Network Usage Statistics for '.$_SERVER["SERVER_NAME"].'</H1>
+<H1>Memory and swap usage statistics usage for '.$_SERVER["SERVER_NAME"].'</H1>
 <center>
 <IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="Hour Netusage Graph" width="897" height="253"><br>
 <IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="Day Netusage Graph" width="897" height="253"><br>
