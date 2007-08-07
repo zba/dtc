@@ -21,6 +21,7 @@ function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
 	global $conf_administrative_site;
 
 	global $conf_message_subject_header;
+	global $conf_main_domain;
 
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
@@ -36,7 +37,7 @@ function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
 		return "Admin not found!";
 	}
 	$a = mysql_fetch_array($r);
-	$headers = "From: NO-REPLY-USE-DTC <no-reply@no-reply.com>";
+	$headers = "From: NO-REPLY-USE-DTC <no-reply@$conf_main_domain>";
 
 	$content = "Subject: ".stripslashes($subject)."
 
