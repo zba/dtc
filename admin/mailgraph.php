@@ -1,9 +1,9 @@
 <?php
 
-$rrd = '/var/lib/dtc/etc/netusage.rrd';
+$rrd = '/var/lib/dtc/etc/mailqueues.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = "Network transfer";
+$vert_label = "Mail queue statistics";
 
 if( isset($_REQUEST["graph"]) ){
 
@@ -33,13 +33,12 @@ if( isset($_REQUEST["graph"]) ){
 			break;
 	}
 	$range = - $steps;
-	$filename = tempnam("/tmp","dtc_netgraph");
-//	$filename = "/tmp/network_usage_".$_REQUEST["graph"].".png";
+	$filename = tempnam("/tmp","dtc_mailgraph");
+//	$filename = "/tmp/mail_queue_usage_".$_REQUEST["graph"].".png";
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
-	$cmd .= "DEF:bytesin=$rrd:bytesin:AVERAGE DEF:bytesout=$rrd:bytesout:AVERAGE ";
-	$cmd .= "'LINE2:bytesin#00ff00:Incoming network traffic in bytes:' 'GPRINT:bytesin:MAX:Maximum\: %0.0lf' 'GPRINT:bytesin:AVERAGE:Average\: %0.0lf/min\\n' ";
-	$cmd .= "'LINE1:bytesout#0000ff:Outgoing network traffic in bytes:' 'GPRINT:bytesout:MAX:Maximum\: %0.0lf' 'GPRINT:bytesout:AVERAGE:Average\: %0.0lf/min\l' ";
-	$cmd;
+	$cmd .= "DEF:active=$rrd:active:AVERAGE DEF:deferred=$rrd:deferred:AVERAGE ";
+	$cmd .= "'LINE2:active#00ff00:Active+incoming+maildrop:' 'GPRINT:active:MAX:Maximum\: %0.0lf' 'GPRINT:active:AVERAGE:Average\: %0.0lf/min\\n' ";
+	$cmd .= "'LINE1:deferred#ff0000:Deferred:' 'GPRINT:deferred:MAX:Maximum\: %0.0lf' 'GPRINT:deferred:AVERAGE:Average\: %0.0lf/min\l' ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);
@@ -63,7 +62,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>Network usage statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>Mail queue statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;
@@ -79,13 +78,13 @@ h1 {
 </style>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
-<H1>Network Usage Statistics for '.$_SERVER["SERVER_NAME"].'</H1>
+<H1>Mail queue Statistics for '.$_SERVER["SERVER_NAME"].'</H1>
 <center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="Hour Netusage Graph" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="Day Netusage Graph" width="897" height="253><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="Week Netusage Graph" width="897" height="253><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="Month Netusage Graph" width="897" height="253><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="Year Netusage Graph" width="897" height="253>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="Hour Mail Queue Graph" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="Day Mail Queue Graph" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="Week Mail Queue Graph" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="Month Mail Queue Graph" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="Year Mail Queue Graph" width="897" height="253">
 </center>
 </body>
 </html>';

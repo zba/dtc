@@ -329,12 +329,14 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 <Directory $conf_dtcemail_path>
 	Options FollowSymLinks
 </Directory>\n";
-	if($conf_unix_type == "debian"){
-		$vhost_file .= "ScriptAlias /cgi-bin /usr/lib/cgi-bin
-<Directory /usr/lib/cgi-bin>
-	Options FollowSymLinks
-</Directory>\n";
-	}
+//	This is not needed anymore as we don't use cgi-bin for the rrdtool graphing anymore
+//	If you need it for your specific config, then add it in the main apache config
+//	if($conf_unix_type == "debian"){
+//		$vhost_file .= "ScriptAlias /cgi-bin /usr/lib/cgi-bin
+//<Directory /usr/lib/cgi-bin>
+//	Options FollowSymLinks
+//</Directory>\n";
+//	}
 
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");

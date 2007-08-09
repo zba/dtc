@@ -2345,7 +2345,7 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 MYSQLServer $conf_mysql_host
 MYSQLUser dtcdaemons
 MYSQLPassword ${MYSQL_DTCDAEMONS_PASS}
-MYSQLDatabase dtc
+MYSQLDatabase $conf_mysql_db
 MYSQLCrypt cleartext
 MYSQLGetPW      SELECT password FROM ftp_access WHERE login=\"\L\"
 MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
@@ -2946,15 +2946,15 @@ modifyCrontab () {
 		# and also to make it dynamic (if using postfix or qmail)
 		echo "#!/bin/sh
 
-nice -n+20 cpugraph/get_cpu_load.sh     $PATH_DTC_ETC >>/var/log/dtc.log
-nice -n+20 netusegraph/get_net_usage.sh $PATH_DTC_ETC \"${conf_eth2monitor}\" >>/var/log/dtc.log
-nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC >>/var/log/dtc.log
+nice -n+20 cpugraph/get_cpu_load.sh     $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
+nice -n+20 netusegraph/get_net_usage.sh $PATH_DTC_ETC \"${conf_eth2monitor}\" 2>&1 >>/var/log/dtc.log
+nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 " >$PATH_DTC_ADMIN/rrdtool.sh
 		if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ]; then
-			echo "nice -n+20 queuegraph/count_postfix.sh $PATH_DTC_ETC >>/var/log/dtc.log" >>$PATH_DTC_ADMIN/rrdtool.sh
+			echo "nice -n+20 queuegraph/count_postfix.sh $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log" >>$PATH_DTC_ADMIN/rrdtool.sh
 		fi
 		if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ]; then
-			echo "nice -n+20 queuegraph/count_qmail.sh $PATH_DTC_ETC >>/var/log/dtc.log" >>$PATH_DTC_ADMIN/rrdtool.sh
+			echo "nice -n+20 queuegraph/count_qmail.sh $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log" >>$PATH_DTC_ADMIN/rrdtool.sh
 		fi
 		chmod 700 $PATH_DTC_ADMIN/rrdtool.sh
 
