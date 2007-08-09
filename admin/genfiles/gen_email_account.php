@@ -183,7 +183,9 @@ function genSasl2PasswdDBEntry($domain_full_name,$id,$passwdtemp,$mailname){
 	if($genSaslDatabaseEntry_SASLPWD2 == ""){
 		return false;
 	}
-	system("echo $passwdtemp | $genSaslDatabaseEntry_SASLPWD2 -c -p -f $conf_generated_file_path/sasldb2 -u $mailname $id\@$domain_full_name");
+	if(isset($passwdtemp) && $passwdtemp != "" && $passwdtemp != NULL){
+		system("echo $passwdtemp | $genSaslDatabaseEntry_SASLPWD2 -c -p -f $conf_generated_file_path/sasldb2 -u $mailname $id\@$domain_full_name");
+	}
 	return true;
 }
 
