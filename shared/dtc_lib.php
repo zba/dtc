@@ -58,6 +58,7 @@ require("$dtcshared_path/inc/domain_export.php");
 // THE USER TOOLS FOR THEY'RE ACCOUNT //
 ////////////////////////////////////////
 // SQL FORM SUBMITION
+require("$dtcshared_path/inc/delete_user.php");
 require("$dtcshared_path/inc/submit_to_sql.php");		// Submit all user actions, could be used by user's scripts...
 if(file_exists($dtcshared_path."/dtcrm")){
 	include("$dtcshared_path/dtcrm/submit_to_sql.php");	// Some domain name registrations sql submition (most are included in draw module...)

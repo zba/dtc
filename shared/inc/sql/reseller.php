@@ -76,68 +76,6 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_child_account"){
 	}
 }
 
-function deleteAllMySQLAccounts($adm_login){
-
-	echo "<!-- deleteAllMySQLAccounts($adm_login) -->";
-
-	$q = "SELECT * FROM mysql.user WHERE dtcowner='$adm_login';";
-	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-	for($i=0;$i<$n;$i++){
-		$a = mysql_fetch_array($r);
-		$q2 = "SELECT * FROM mysql.db WHERE user='".$a["User"]."';";
-		$r2 = mysql_query($q)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-		$n2 = mysql_num_rows($r2);
-		for($j=0;$j<$n2;$j++){
-			$a2 = mysql_fetch_array($r2);
-			$q3 = "DROP DATABASE ".$a2["Db"].";";
-			$r3 = mysql_query($q3)or die("Cannot execute query \"$q3\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-		}
-		$q2 = "DELETE FROM mysql.db WHERE user='".$a["User"]."';";
-		$r2 = mysql_query($q)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	}
-	$q2 = "DELETE FROM mysql.user WHERE dtcowner='$adm_login';";
-	$r2 = mysql_query($q)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	$q2 = "FLUSH PRIVILEGES;";
-	$r2 = mysql_query($q)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-}
-
-function realDeleteAdmin($adm_login){
-	global $pro_mysql_admin_table;
-	global $pro_mysql_domain_table;
-
-	echo "<!-- realDeleteAdmin($adm_login) -->";
-
-	$adm_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login'";
-	$result = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
-	$num_rows = mysql_num_rows($result);
-	if($num_rows != 1) die("User not found for deletion of domain $deluserdomain !!!");
-	$row_virtual_admin = mysql_fetch_array($result);
-	$the_admin_path = $row_virtual_admin["path"];
-
-	// Delete all domains of the user (that includes also mailboxs, ftp accounts, domains subdomains and files)
-	$query = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
-	echo "<!-- $query -->";
-	$result = mysql_query($query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	echo "<!-- $result -->";
-	$num_rows = mysql_num_rows($result);
-	for($i=0;$i<$num_rows;$i++){
-		$row = mysql_fetch_array($result);
-		echo "<!-- About to deleteUserDomain -->";
-		deleteUserDomain($adm_login,$row_virtual_admin["adm_pass"],$row["name"]);
-	}
-
-	// Delete all databases used by this user (using the new DTC 0.18 2005 Mysql manager table structures)
-	deleteAllMySQLAccounts($adm_login);
-
-	// Inform the other servers that the list of domain have changed
-	triggerDomainListUpdate();
-
-	// finally remove the admin account from the table
-        $adm_query = "DELETE FROM $pro_mysql_admin_table WHERE adm_login='$adm_login'";
-        mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
-}
-
 function recursiveDeleteAdmin($adm_login){
 	global $pro_mysql_admin_table;
 
@@ -166,7 +104,7 @@ function recursiveDeleteAdmin($adm_login){
 		}
 	}
 	// Now do the real delete
-	realDeleteAdmin($adm_login);
+	DTCdeleteAdmin($adm_login);
 }
 
 // Check if $adm_login_to_delete is a direct child of $adm_login_father
