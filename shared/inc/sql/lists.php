@@ -106,6 +106,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	global $conf_mta_type;
 	global $conf_webmaster_email_addr;
 	global $lang;
+	global $conf_recipient_delimiter;
 
 	// This has to be done BEFORE any other sql requests using login/pass or edit_domain !!!
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
@@ -167,7 +168,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	$symlink = "ln -s ".$list_path."/".$folder_name." /var/spool/mlmmj/".$folder_name;
 	exec($symlink);
 
-	$cmd = "echo \"-\" > ".$list_path."/".$folder_name."/control/delimiter";
+	$cmd = "echo \"$conf_recipient_delimiter\" > ".$list_path."/".$folder_name."/control/delimiter";
         exec($cmd);
 
 	$fileName3 = $list_path.'/'.$folder_name.'/control/listaddress';

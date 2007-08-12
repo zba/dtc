@@ -195,6 +195,7 @@ $dtc_database = array(
 			"user_mysql_host" => "varchar (255) NOT NULL default 'none'",
 			"user_mysql_root_login" => "varchar (255) NOT NULL default 'none'",
 			"user_mysql_root_pass" => "varchar (255) NOT NULL default 'none'",
+			"recipient_delimiter" => "varchar(4) NOT NULL default '\+'",
 			"default_company_invoicing" => "int (12) NOT NULL default '0' ",
 			"this_server_country_code" => "varchar (4) NOT NULL default 'US' ",
 			"use_cyrus" => "enum('yes','no') NOT NULL default 'no' ",
