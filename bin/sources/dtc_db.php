@@ -125,6 +125,7 @@ $dtc_database = array(
 			"main_domain" => "varchar(128) NOT NULL default 'gplhost.com' ",
 			"404_subdomain" => "varchar(128) NOT NULL default '404' ",
 			"administrative_site" => "varchar(255) NOT NULL default 'dtc.example.com' ",
+			"administrative_ssl_port" => "varchar(16) NOT NULL default '443'",
 			"site_root_host_path" => "varchar(255) NOT NULL default '/var/www' ",
 			"generated_file_path" => "varchar(255) NOT NULL default '/usr/share/dtc/etc' ",
 			"dtcshared_path" => "varchar(255) NOT NULL default '/usr/share/dtc/shared' ",

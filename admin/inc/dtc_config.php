@@ -724,7 +724,11 @@ function drawNetworkConfig(){
 			"administrative_site" => array(
 				"legend" => $txt_cfg_full_hostname[$lang],
 				"type" => "text",
-				"size" => "50")));
+				"size" => "50"),
+			"administrative_ssl_port" => array(
+				"legend" => "SSL Port:",
+				"type" => "text",
+				"size" => "10")));
 	return configEditorTemplate ($dsc);
 }
 

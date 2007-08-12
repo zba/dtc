@@ -173,6 +173,7 @@ function pro_vhost_generate(){
 	global $conf_php_library_path;
 	global $conf_php_additional_library_path;
 	global $conf_administrative_site;
+	global $conf_administrative_ssl_port;
 	global $conf_use_ssl;
 
 	global $conf_shared_renewal_shutdown;
@@ -453,13 +454,13 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$log_tablename = str_replace("-","A",str_replace(".","_",$web_name)).'$'.str_replace("-","A",str_replace(".","_",$web_subname));
 				if($conf_use_ssl == "yes" && $k == 0){
 					# add the directive for SSL here
-					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":443", $vhost_file_listen))
+					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":".$conf_administrative_ssl_port, $vhost_file_listen))
 					{
-						$vhost_file_listen .= "Listen ".$ip_to_write.":443\n";
+						$vhost_file_listen .= "Listen ".$ip_to_write.":".$conf_administrative_ssl_port."\n";
 					} else {
-						$vhost_file_listen .= "#Listen ".$ip_to_write.":443\n";
+						$vhost_file_listen .= "#Listen ".$ip_to_write.":".$conf_administrative_ssl_port."\n";
 					}
-					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
+					$vhost_file .= "<VirtualHost ".$ip_to_write.":".$conf_administrative_ssl_port.">\n";
 				} else if ($k == 1 && isset($backup_ip_addr) || ($conf_use_ssl != "yes" && $k == 0 && isset($backup_ip_addr))) {
 					$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
 				}else {
