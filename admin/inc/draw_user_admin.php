@@ -175,6 +175,7 @@ function drawNewAdminForm(){
 		$out .= $txt_dua_type2[$lang].$tmp;
 		$out .= "First query date: ".$a["date"]." ".$a["time"]."<br>";
 		$out .= "Server hostname related: ".$a["server_hostname"]."<br>";
+		$out .= "Admin login: ".$a["adm_login"]."<br><br>";
 		
 		$out .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"0\">";
 		$next_tikq = $_REQUEST["tik_id"];
@@ -251,22 +252,23 @@ function drawNewAdminForm(){
 			$ins_id = mysql_insert_id();
 			$q2 = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$ins_id' WHERE id='".$_REQUEST["last_tik_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			$out .= "Ticket reply sent!<br>
+			$out .= "Ticket reply sent!<br>";
+			mailUserTicketReply($a["adm_login"],$a["subject"],$_REQUEST["ticketbody"],$closed);
+/*			$out .= "Ticket reply sent!<br>
 				<form action=\"".$_SERVER["PHP_SELF"]."\">
 				<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"submit\" value=\"".$txt_dua_back_to_pending_requests[$lang]."\"></div>
  <div class=\"input_btn_right\"></div>
 </div>
-				</form>";
-			mailUserTicketReply($a["adm_login"],$a["subject"],$_REQUEST["ticketbody"],$closed);
+				</form>";*/
 		}
 		if($closed == "yes"){
 			$q2 = "UPDATE $pro_mysql_tik_queries_table SET closed='yes' WHERE id='".$_REQUEST["tik_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			mailUserTicketReply($a["adm_login"],"The ticket has been closed (without text reply)","yes");
 		}
-		return $out;
+//		return $out;
 	}
 
 	// Draw the form for making a new admin
