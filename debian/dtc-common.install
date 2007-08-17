@@ -51,7 +51,12 @@ shared/securepay		/usr/share/dtc/shared
 shared/template			/usr/share/dtc/shared
 shared/upgrade_sql.php		/usr/share/dtc/shared
 shared/vars			/usr/share/dtc/shared
-shared/maxmind			/usr/share/dtc/shared
+
+shared/maxmind/CreditCardFraudDetection.php	/usr/share/dtc/shared/maxmind/CreditCardFraudDetection.php
+shared/maxmind/HTTPBase.php			/usr/share/dtc/shared/maxmind/HTTPBase.php
+shared/maxmind/LocationVerification.php		/usr/share/dtc/shared/maxmind/LocationVerification.php
+shared/maxmind/TelephoneVerification.php	/usr/share/dtc/shared/maxmind/TelephoneVerification.php
+
 shared/visitors_template	/usr/share/dtc/shared
 shared/registration_msg		/etc/dtc
 shared/messages_header.txt	/etc/dtc
