@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
-"POT-Creation-Date: 2007-03-20 17:58+0100\n"
+"POT-Creation-Date: 2007-08-17 17:10+0800\n"
 "PO-Revision-Date: 2007-03-23 18:59+0100\n"
 "Last-Translator: Christian Perrier <bubulle@debian.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -478,15 +478,29 @@ msgstr ""
 "Veuillez indiquer la liste des serveur de listes noires DNSBL qui doivent "
 "être ajoutés à la configuration du serveur de messagerie Postfix."
 
-#. Type: string
+#. Type: select
 #. Description
 #: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid "Local address extension character:"
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid ""
+"Please choose the character that will be used to define a local address "
+"extension. This MUST match what you have set in your postfix or qmail setup."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Network devices to monitor:"
 msgstr "Interfaces réseaux à surveiller :"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
@@ -496,13 +510,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Allow to report anonymous statistics to GPLHost?"
 msgstr "Faut-il envoyer des statistiques (anonymes) à GPLHost ?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid ""
 "DTC installations can be reported to the GPLHost web site. The only "
 "collected data are the operating system name (Debian) and the IP address "
@@ -517,7 +531,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Skip mknod calls when building the chroot template?"
 msgstr ""
 "Omettre les appels à mknod lors de la création de l'environnement fermé "
@@ -525,7 +539,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid ""
 "In some environments, such as Linux vServer, mknod cannot be executed. This "
 "option allows skipping the creation of the null, random and urandom devices "
@@ -535,3 +549,14 @@ msgstr ""
 "exécuté. Pour cette raison, il est possible d'omettre la création des "
 "fichiers de périphériques « null », « random » et « urandom » pendant la "
 "création du canevas de l'environnement fermé d'exécution (« chroot »)."
+
+#. Type: boolean
+#. Description
+#: ../dtc-postfix-courier.templates:14001
+msgid ""
+"Cyrus is a replacement for the Maildir delivery and storage. You must know "
+"what you are doing if you want to activate the use of Cyrus. If you are "
+"using dtc-toaster or dtc-postfix-courier, you have to answer not to use "
+"Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
+"using dtc-postfix-courier instead."
+msgstr ""
