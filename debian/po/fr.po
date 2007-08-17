@@ -152,7 +152,7 @@ msgid ""
 msgstr ""
 "Veuillez indiquer l'adresse IP principale du serveur. Cette adresse sera "
 "utilisée pour le nom de domaine principal et sera la valeur par défaut de la "
-"plupart des variables du programme. Si vous utilisez la traduction "
+"plupart des variables du programme. Si vous utilisez la translation "
 "d'adresses réseau (NAT : « Network Address Translation »), vous devriez "
 "indiquer l'adresse externe du serveur."
 
@@ -294,7 +294,7 @@ msgstr ""
 #. Description
 #: ../dtc.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid "Use \"NATed\" vhosts?"
-msgstr "Faut-il utiliser des hôtes virtuels avec traduction d'adresses ?"
+msgstr "Faut-il utiliser des hôtes virtuels avec translation d'adresses ?"
 
 #. Type: boolean
 #. Description
@@ -305,9 +305,9 @@ msgid ""
 "\"NATed\" vhost configuration can be generated."
 msgstr ""
 "DTC peut configurer Apache pour utiliser une des adresses publiques du "
-"serveur. Si celui-ci est protégé par un pare-feu avec traduction d'adresses "
+"serveur. Si celui-ci est protégé par un pare-feu avec translation d'adresses "
 "(NAT) et redirection de port depuis une ou des adresses publiques, une "
-"configuration utilisant des hôtes virtuels avec traduction d'adresses "
+"configuration utilisant des hôtes virtuels avec translation d'adresses "
 "(« NATed vhosts ») peut être créée."
 
 #. Type: boolean
@@ -321,8 +321,8 @@ msgid ""
 msgstr ""
 "Cette option ne doit être activée que si le serveur n'est pas connecté "
 "directement sur l'Internet mais est accessible via un pare-feu avec "
-"traduction d'adresses. Si le serveur utilise une adresse IP publique "
-"dynamique, la traduction d'adresses et la redirection de ports sont "
+"translation d'adresses. Si le serveur utilise une adresse IP publique "
+"dynamique, la translation d'adresses et la redirection de ports sont "
 "obligatoires pour utiliser DTC."
 
 #. Type: string
@@ -560,3 +560,9 @@ msgid ""
 "Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
 "using dtc-postfix-courier instead."
 msgstr ""
+"Cyrus est un remplacement pour le system de stockage et de livraison "
+"Maildir. Vous devez savoir ce que vous faites si vous voulez activer "
+"l'utilisation et l'usage de Cyrus. Si vous utilisez dtc-toaster ou "
+"dtc-postfix-courier, vous devez r�pondre de ne pas utiliser Cyrus ici. Cyrus "
+"n'est utilisable qu'avec le paquet dtc et ne l'est pas si vous utilisez "
+"dtc-postfix-courier a la place."
