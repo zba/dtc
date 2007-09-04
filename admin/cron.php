@@ -457,7 +457,11 @@ function checkNamedCronService () {
 	}
 	if($cronjob_table_content["reload_named"] == "yes"){
 		echo "Reloading name-server\n";
-		system("killall -HUP named");
+		if(file_exists("/usr/sbin/rndc")){
+			system("/usr/sbin/rndc reload");
+		}else{
+			system("killall -HUP named");
+		}
 		if($keep_dns_generate_flag == "no"){
 			markCronflagOk ("reload_named='no'");
 		}
