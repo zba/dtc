@@ -418,7 +418,7 @@ function drawAdminTools_emailPanel($mailbox){
 </tr></table>";
 
 		$content = "<table width=\"100%\" height=\"100%\"><tr>
-		<td width=\"1\"  height=\"100%\">$left_menu</td>
+		<td width=\"1\"  height=\"100%\">$left</td>
 		<td width=\"100%\" height=\"100%\">$right</td>
 </tr></table>";
 	}
