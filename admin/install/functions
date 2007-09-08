@@ -2384,7 +2384,9 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 				echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
 			fi
 
-			PURE_SQL_CONFIG="# Configured by DTC v0.10 : Please don't touch this line !
+			
+			if [ -e $PURE_FTPD_ETC/db/ ] ;then
+				echo "# Configured by DTC v0.10 : Please don't touch this line !
 
 MYSQLServer $conf_mysql_host
 MYSQLUser dtcdaemons
@@ -2396,9 +2398,7 @@ MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
-"
-			if [ -e $PURE_FTPD_ETC/db/ ] ;then
-				echo ${PURE_SQL_CONFIG} >$PURE_FTPD_ETC/db/mysql.conf;
+" >$PURE_FTPD_ETC/db/mysql.conf;
 				# Retart after we did the config
 				if [ -x /usr/sbin/invoke-rc.d ]; then
 					/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
@@ -2409,7 +2409,19 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 				fi
 			# This works for slackware
 			else
-				echo ${PURE_SQL_CONFIG} >$PURE_FTPD_ETC/pureftpd-mysql-dtc.conf;
+				echo "# Configured by DTC v0.10 : Please don't touch this line !
+
+MYSQLServer $conf_mysql_host
+MYSQLUser dtcdaemons
+MYSQLPassword ${MYSQL_DTCDAEMONS_PASS}
+MYSQLDatabase $conf_mysql_db
+MYSQLCrypt cleartext
+MYSQLGetPW      SELECT password FROM ftp_access WHERE login=\"\L\"
+MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
+MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
+MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
+
+" >$PURE_FTPD_ETC/pureftpd-mysql-dtc.conf;
 				if [ -x /etc/rc.d/rc.pure-ftpd ] ;then
 					/etc/rc.d/rc.pure-ftpd restart
 				fi
