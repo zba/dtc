@@ -32,7 +32,7 @@ fi
 	$chk_dir_script .= "
 if [ ! -d $dir ] ; then
 	mkdir -p $dir
-	chown $conf_dtc_system_username:$conf_dtc_system_groupname
+	chown $conf_dtc_system_username:$conf_dtc_system_groupname $dir
 	echo \"Directory $dir was missing and has been created.\"
 fi
 ";
@@ -323,12 +323,18 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 
 	$vhost_file .= "<Directory $conf_dtcadmin_path>
 	Options FollowSymLinks
+	Order Deny,Allow
+	Allow from all
 </Directory>
 <Directory $conf_dtcclient_path>
 	Options FollowSymLinks
+	Order Deny,Allow
+	Allow from all
 </Directory>
 <Directory $conf_dtcemail_path>
 	Options FollowSymLinks
+	Order Deny,Allow
+	Allow from all
 </Directory>\n";
 //	This is not needed anymore as we don't use cgi-bin for the rrdtool graphing anymore
 //	If you need it for your specific config, then add it in the main apache config

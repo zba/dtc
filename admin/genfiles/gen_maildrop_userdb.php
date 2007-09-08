@@ -33,15 +33,21 @@ function mail_account_generate_maildrop(){
 
 	global $panel_type;
 
+	if( file_exists("/etc/courier/userdb") ){
+		$path_userdb="/etc/courier/userdb";
+	}else{
+		$path_userdb="/etc/authlib/userdb";
+	}
+
 	if($panel_type == "cronjob"){
 		echo "Making maildrop userdb file\n";
 	}
 
-	if( ! is_file("/etc/courier/userdb") ){
+	if( ! is_file($path_userdb) ){
 		if($panel_type == "cronjob"){
-			echo "Maildrop /etc/courier/userdb is not a file: cannot generate!\n";
+			echo "Maildrop $path_userdb is not a file: cannot generate!\n";
 		}else{
-			$console .= "Maildrop /etc/courier/userdb is not a file: cannot generate!";
+			$console .= "Maildrop $path_userdb is not a file: cannot generate!";
 		}
 		return false;
 	}
@@ -79,8 +85,6 @@ function mail_account_generate_maildrop(){
 	}
 
 	// Write the file
-	$path_userdb = "/etc/courier/userdb";
-
 	if(!is_writable($path_userdb)){
 		$console .= "$path_userdb is not writable: please fix!";
 		return;
@@ -100,110 +104,6 @@ function mail_account_generate_maildrop(){
 	// Create the binary database
 	system("/usr/sbin/makeuserdb");
 	return;
-
-/*
-	// check to see if we have maildrop installed
-	// if we don't yet, don't run this
-
-	if(!file_exists("/usr/sbin/userdb")){
-		echo "/usr/sbin/userdb exists as a file! Please remove...";
-		return;
-	}
-
-
-	// now for our variables to write out the db info to
-
-	$data = ""; // init var for use later on
-
-	// go through each admin login and find the domains associated 
-	$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login;";
-	$result = mysql_query ($query)or die("Cannot execute query : \"$query\"");
-	$num_rows = mysql_num_rows($result);
-
-	if($num_rows < 1){
-// This is TOTALY forbidden to die in the cron script!!!
-// I know there should always be an admin, but still...
-// Damien, did you write this one???
-//		die("No account to generate");
-	}
-
-	if (!file_exists("/etc/courier/userdb/")){
-		mkdir("/etc/courier/userdb/",0700);
-		// (from thomas) I'm not sure about this one, so I first leave it commented with corrections...
-		// chown("/etc/courier/userdb/", "nobody");
-		chown("/etc/courier/userdb/", $conf_dtc_system_username);
-	}
-
-	$userdb_file = "";
-	for($i=0;$i<$num_rows;$i++){
-		$row = mysql_fetch_array($result) or die ("Cannot fetch user-admin");
-		$user_admin_name = $row["adm_login"];
-		$user_admin_pass = $row["adm_pass"];
-		$admin = fetchAdmin($user_admin_name,$user_admin_pass);
-		if(($error = $admin["err"]) != 0){
-			die("Error fetching admin : $error");
-		}
-		$info = $admin["info"];
-		$nbr_domain = 0;
-		if (isset($admin["data"])){
-                        $data = $admin["data"];
-                        $nbr_domain = sizeof($data);
-                }
-
-		for($j=0;$j<$nbr_domain;$j++){
-			$domain = $data[$j];
-			$domain_full_name = $domain["name"];
-			//if we are primary mx, add to userdb
-			//else add to relay
-			if (!($domain["primary_mx"] == "" || $domain["primary_mx"] == "default"){
-				continue;
-			}
-
-			if(isset($domain["emails"])){
-				$emails = $domain["emails"];
-				$nbr_boites = sizeof($emails);
-				// go through each of these emails and build the vmailbox file
-				//also create our sasldb2 if we have a saslpasswd2 exe
-				$catch_all = $domain["catchall_email"];
-				for($k=0;$k<$nbr_boites;$k++){
-					$email = $emails[$k];
-					$id = $email["id"];
-					$uid = $email["uid"];
-
-					// if our uid is 65534, make sure it's the correct uid as per the OS (99 for redhat)
-                                        if ($uid == 65534)
-                                        {
-                                                $uid = $conf_nobody_user_id;
-                                        }
-
-					$localdeliver = $email["localdeliver"];
-					$redirect1 = $email["redirect1"];
-					$redirect2 = $email["redirect2"];
-					$_id = strtr($id,".",":");
-					$home = $email["home"];
-					$passwdtemp = $email["passwd"];
-					$passwd = crypt($passwdtemp, dtc_makesalt());
-
-					if ($localdeliver == "yes"){
-//						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");
-						system("/usr/sbin/userdb \"$domain_full_name/$id@$domain_full_name\" set home=$home mail=$home uid=$conf_dtc_system_uid gid=$conf_dtc_system_gid");
-						//if ($id == $catch_all)
-						//{
-						//	system("/usr/sbin/userdb \"$domain_full_name/@$domain_full_name\" set home=$home mail=$home uid=$conf_nobody_user_id gid=$conf_nobody_group_id");
-						//}
-					} 
-				}
-			}
-		}
-	}
-
-	//after we have added all the users to the userdb
-	system("/usr/sbin/makeuserdb");
-//	chown("/etc/courier/userdb/", "$conf_nobody_user_name");
-	chown("/etc/courier/userdb/", "$conf_dtc_system_username");
-//	recurse_chown_chgrp("/etc/courier/userdb/", "$conf_nobody_user_name", $conf_nobody_group_id);
-	recurse_chown_chgrp("/etc/courier/userdb/", "$conf_dtc_system_username", $conf_dtc_system_gid);
-	*/
 }
 
 ?>

@@ -8,6 +8,9 @@ require("$dtcshared_path/inc/sql/database_strings.php");
 // action=add_dbuser&dbuser=zigo2&db_pass=toto
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 	checkLoginPass($adm_login,$adm_pass);
+	if($conf_user_mysql_type=="distant"){
+		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
+	}
 	if(!isFtpLogin($_REQUEST["dbuser"])){
 		$submit_err .= $txt_dbsql_incorrect_mysql_login_form_please_try_again[$lang]."<br>\n";
 		$commit_flag = "no";
@@ -37,11 +40,18 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 			VALUES ('localhost','".$_REQUEST["dbuser"]."',Password('".$_REQUEST["db_pass"]."'),'N','N','N','N','N','N','N','N','N','N','N','N','N','N','$adm_login');";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
+	if($conf_user_mysql_type=="distant"){
+		mysql_close($newid) or die("Cannot disconnect to user database");
+		connect2base();
+	}
 }
 
 // action=add_dbuser&newdb_name=blabla&dbuser=zigo
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 	checkLoginPass($adm_login,$adm_pass);
+	if($conf_user_mysql_type=="distant"){
+		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
+	}
 	if(!isDatabase($_REQUEST["newdb_name"])){
 		$submit_err .= $txt_dbsql_this_is_not_a_valid_db_name[$lang]."<br>\n";
 		$commit_flag = "no";
@@ -78,10 +88,17 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
+	if($conf_user_mysql_type=="distant"){
+		mysql_close($newid) or die("Cannot disconnect to user database");
+		connect2base();
+	}
 }
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_dbuser_pass"){
 	checkLoginPass($adm_login,$adm_pass);
+	if($conf_user_mysql_type=="distant"){
+		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
+	}
 	// action=modify_dbuser_pass&dbuser=zigo&db_pass=bla
 	if(!isFtpLogin($_REQUEST["dbuser"])){
 		$submit_err .= $txt_dbsql_incorrect_db_login_form[$lang]."<br>\n";
@@ -106,9 +123,16 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_dbuser_pass"){
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
+	if($conf_user_mysql_type=="distant"){
+		mysql_close($newid) or die("Cannot disconnect to user database");
+		connect2base();
+	}
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "del_dbuser"){
 	checkLoginPass($adm_login,$adm_pass);
+	if($conf_user_mysql_type=="distant"){
+		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
+	}
 	// action=del_dbuser&dbuser=zigo
 	if(!isFtpLogin($_REQUEST["dbuser"])){
 		$submit_err .= $txt_dbsql_incorrect_db_login_form[$lang]."<br>\n";
@@ -128,9 +152,16 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "del_dbuser"){
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
+	if($conf_user_mysql_type=="distant"){
+		mysql_close($newid) or die("Cannot disconnect to user database");
+		connect2base();
+	}
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_user_db"){
 	checkLoginPass($adm_login,$adm_pass);
+	if($conf_user_mysql_type=="distant"){
+		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
+	}
 	// action=delete_user_db&dbname=clem
 	if(!isDatabase($_REQUEST["dbname"])){
 		$submit_err .= $txt_dbsql_incorrect_mysql_db_name[$lang]."<br>\n";
@@ -161,10 +192,16 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_user_db"){
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
-
+	if($conf_user_mysql_type=="distant"){
+		mysql_close($newid) or die("Cannot disconnect to user database");
+		connect2base();
+	}
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 	checkLoginPass($adm_login,$adm_pass);
+	if($conf_user_mysql_type=="distant"){
+		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
+	}
 	// action=change_db_owner&dbname=clem&dbuser=zigo
 	if(!isFtpLogin($_REQUEST["dbuser"])){
 		$submit_err .= $txt_dbsql_incorrect_db_login_form[$lang]."<br>\n";
@@ -197,10 +234,17 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
+	if($conf_user_mysql_type=="distant"){
+		mysql_close($newid) or die("Cannot disconnect to user database");
+		connect2base();
+	}
 }
 
 if(isset($_REQUEST["change_mysql_password"]) && $_REQUEST["change_mysql_password"] == "Ok"){
 	checkLoginPass($adm_login,$adm_pass);
+	if($conf_user_mysql_type=="distant"){
+		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
+	}
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
@@ -222,6 +266,10 @@ if(isset($_REQUEST["change_mysql_password"]) && $_REQUEST["change_mysql_password
 		mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 		mysql_query("FLUSH PRIVILEGES");
 		mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\" !!!");
+	}
+	if($conf_user_mysql_type=="distant"){
+		mysql_close($newid) or die("Cannot disconnect to user database");
+		connect2base();
 	}
 }
 

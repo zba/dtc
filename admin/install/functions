@@ -4,6 +4,10 @@ if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
 fi
 
+if [ -z "$MX_MAIL" ] ; then
+	MX_MAIL="mx"
+fi
+
 echoIfVerbose () {
 	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
 		echo $1
@@ -142,6 +146,8 @@ searchPATH_PHP_INI_CLI () {
 	else
 		if [ -f /etc/php5/cli/php.ini ] ; then
 			PATH_PHP_INI_CLI=/etc/php5/cli/php.ini
+		elif [ -f "$PATH_PHP_INI" ]; then
+			PATH_PHP_INI_CLI=$PATH_PHP_INI
 		else
 			echo "Cannot find php.ini path!"
 			exit 1
@@ -159,8 +165,11 @@ searchDebianVersion () {
 
 searchPATH_PHP_INI_APACHE () {
 	echoIfVerbose "-> Searching for php.ini for the apache $conf_apache_version module and php ${PHPMAJOR}"
+	# This one is for slackware
+	if [ -f "$PATH_PHP_INI" ]; then
+		PATH_PHP_INI_APACHE=$PATH_PHP_INI
 	# This one is for FreeBSD
-	if [ -f /usr/local/etc/php.ini ] ; then
+	elif [ -f /usr/local/etc/php.ini ] ; then
 		PATH_PHP_INI_APACHE=/usr/local/etc/php.ini
 	# This one for RedHat and Centos, and osx !
 	elif [ -f /etc/php.ini -o -f /etc/php.ini.default ] ; then
@@ -584,9 +593,9 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','www','www')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','404','404')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','ns1','$conf_ip_addr')"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','mx','$conf_ip_addr')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','"${MX_MAIL}"','$conf_ip_addr')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','"$dtc_admin_subdomain"','www')"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO config (unicrow,demo_version,main_site_ip,site_addrs,addr_mail_server,webmaster_email_addr,addr_primary_dns,administrative_site,site_root_host_path,generated_file_path,dtcshared_path,dtcadmin_path,dtcclient_path,mta_type,main_domain,404_subdomain) VALUES('1','no','"$conf_ip_addr"','"$conf_ip_addr"','mx."$main_domain_name"','webmaster@"$main_domain_name"','ns1."$main_domain_name"','"$dtc_admin_subdomain"."$main_domain_name"','"$conf_hosting_path"','"$PATH_DTC_ETC"','"$PATH_DTC_SHARED"','"$PATH_DTC_ADMIN"','"$PATH_DTC_CLIENT"','"$conf_mta_type"','"$main_domain_name"','404')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO config (unicrow,demo_version,main_site_ip,site_addrs,addr_mail_server,webmaster_email_addr,addr_primary_dns,administrative_site,site_root_host_path,generated_file_path,dtcshared_path,dtcadmin_path,dtcclient_path,mta_type,main_domain,404_subdomain) VALUES('1','no','"$conf_ip_addr"','"$conf_ip_addr"','"${MX_MAIL}"."$main_domain_name"','webmaster@"$main_domain_name"','ns1."$main_domain_name"','"$dtc_admin_subdomain"."$main_domain_name"','"$conf_hosting_path"','"$PATH_DTC_ETC"','"$PATH_DTC_SHARED"','"$PATH_DTC_ADMIN"','"$PATH_DTC_CLIENT"','"$conf_mta_type"','"$main_domain_name"','404')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO cron_job (unicrow,reload_named,restart_apache,gen_vhosts,gen_named) VALUES ('1','yes','yes','yes','yes')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO secpayconf (unicrow,use_paypal,paypal_rate,paypal_flat,paypal_autovalidate,paypal_email) VALUES ('1','yes','3.21','0.50','no','webmaster@"$main_domain_name"')"
 
@@ -650,6 +659,7 @@ setupDTCDatabase () {
 
 
 	# Inserting the user
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.user (Host, User, Password, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Reload_priv, Shutdown_priv, Process_priv, File_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('%', 'dtcdaemons', PASSWORD('"${MYSQL_DTCDAEMONS_PASS}"'), 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.user (Host, User, Password, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Reload_priv, Shutdown_priv, Process_priv, File_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('localhost', 'dtcdaemons', PASSWORD('"${MYSQL_DTCDAEMONS_PASS}"'), 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N')"
 
 	# Update the password in case of (bad) reinstallation case
@@ -657,24 +667,32 @@ setupDTCDatabase () {
 
 	# grant Select,Insert,Update,Delete,References,Index to ftp_access
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'ftp_access', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', 'Select')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'ftp_access', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', 'Select')"
 
-	# grant Select,Insert,Update,Delete,References,Index to ftp_access
+	# grant Select,Insert,Update,Delete,References,Index to groups
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'groups', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', 'Select')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'groups', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', 'Select')"
 
 	# grant Select,Insert,Update,Delete,References,Index to ftp_logs
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'ftp_logs', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'ftp_logs', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
 
 	# grant Select,Insert,Update,Delete,References,Index to ftp_accounting
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'ftp_accounting', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'ftp_accounting', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
 
 	# grant Select,Insert,Update,Delete,References,Index to http_accounting
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'http_accounting', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'http_accounting', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
 
 	# grant all to apachelogs
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.db (Host, Db, User, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('%', 'apachelogs', 'dtcdaemons', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'Y', 'Y', 'Y')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.db (Host, Db, User, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('localhost', 'apachelogs', 'dtcdaemons', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'N', 'Y', 'Y', 'Y')"
 
 	# grant select to pop_access 
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'pop_access', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'pop_access', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+
 	# update in case of old installations
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE IGNORE mysql.tables_priv SET Timestamp = NOW(NULL) , Table_priv = 'Select,Update', Column_priv = 'Select,Update' WHERE Host = 'localhost' AND Db = '"$conf_mysql_db"' AND User = 'dtcdaemons' AND Table_name = 'pop_access' LIMIT 1 "
 
@@ -682,19 +700,26 @@ setupDTCDatabase () {
 
 	# grant select to ssh_access 
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'ssh_access', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'ssh_access', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+
 	# grant select to ssh_groups
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'ssh_groups', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'ssh_groups', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+
 	# grant select to ssh_user_group
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'ssh_user_group', '', NOW(NULL), 'Select,Update', 'Select,Update')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'ssh_user_group', '', NOW(NULL), 'Select,Update', 'Select,Update')"
 
 	# populate some data into the ssh_groups table, so that it works correctly
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO ssh_groups (group_id, group_name, status, group_password, gid) VALUES (NULL, 'root', 'A', 'x', 0), (NULL, 'nobody', 'A', 'x', 99), (NULL, 'nobody', 'A', 'x', 65534);"
 
 	# grant Select,Insert,Update,Delete,References,Index to smtp_logs
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'smtp_logs', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'smtp_logs', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', '')"
 
 	# grant select to whitelist
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'whitelist', '', NOW(NULL), 'Select', 'Select')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('localhost', '"$conf_mysql_db"', 'dtcdaemons', 'whitelist', '', NOW(NULL), 'Select', 'Select')"
 
 	# grant select to fetchmail
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'fetchmail', '', NOW(NULL), 'Select', 'Select')"
@@ -1068,11 +1093,15 @@ Listen ${conf_ip_addr}:443" >>$PATH_HTTPD_CONF
 		fi
 
 		if [ -z ${MYSQL_DTCDAEMONS_PASS} ]; then
-			echo "LogSQLLoginInfo mysql://dtcdaemons@${conf_mysql_host} " >>$PATH_HTTPD_CONF
+			echo "LogSQLLoginInfo mysql://dtcdaemons@${conf_mysql_host}/apachelogs " >>$PATH_HTTPD_CONF
 		else
-			echo "LogSQLLoginInfo mysql://dtcdaemons:${MYSQL_DTCDAEMONS_PASS}@${conf_mysql_host} " >>$PATH_HTTPD_CONF
+			echo "LogSQLLoginInfo mysql://dtcdaemons:${MYSQL_DTCDAEMONS_PASS}@${conf_mysql_host}/apachelogs " >>$PATH_HTTPD_CONF
 		fi
-		echo "LogSQLSocketFile ${MYSQL_DB_SOCKET_PATH}" >>$PATH_HTTPD_CONF
+		if [ "${conf_mysql_host}" = "localhost" ] ; then
+			echo "LogSQLSocketFile ${MYSQL_DB_SOCKET_PATH}" >>$PATH_HTTPD_CONF
+		else
+			echo "LogSQLDBParam port 3306" >>$PATH_HTTPD_CONF
+		fi
 		echo "LogSQLDatabase apachelogs
 LogSQLCreateTables On
 LogSQLTransferLogFormat IAbhRrSsU
@@ -1183,7 +1212,7 @@ createCyrusAuthPhp () {
 \$CYRUS = array(
 'HOST'  => 'localhost',
 'PORT'  => 143,
-'ADMIN' => 'cyrus@mx.${main_domain_name}',
+'ADMIN' => 'cyrus@"${MX_MAIL}".${main_domain_name}',
 'PASS'  => '${conf_cyrus_pass}'
 );
 \$cyrus_used=1;
@@ -1218,7 +1247,7 @@ modifyCyrusImapdConf () {
 			echo "configdirectory: /var/spool/imap
 partition-default: /var/spool/mail
 admins: ${cyrus_admin}
-defaultdomain: mx.${main_domain_name}
+defaultdomain: "${MX_MAIL}".${main_domain_name}
 duplicatesuppression: 1
 sievedir: /var/spool/sieve
 sendmail: /usr/sbin/sendmail
@@ -1231,7 +1260,7 @@ sasl_pwcheck_method: auxprop
 auxprop_plugin: sql
 
 sasl_sql_engine: mysql
-sasl_sql_hostnames: localhost
+sasl_sql_hostnames: ${conf_mysql_host}
 sasl_sql_database: ${conf_mysql_db}
 sasl_sql_user: dtcdaemons
 sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
@@ -1301,7 +1330,7 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 pwcheck_method: auxprop
 auxprop_plugin: sql
 sql_engine: mysql
-sql_hostnames: localhost
+sql_hostnames: ${conf_mysql_host}
 sql_user: dtcdaemons
 sql_passwd: ${MYSQL_DTCDAEMONS_PASS}
 sql_database: ${conf_mysql_db}
@@ -1340,9 +1369,9 @@ sql_verbose: yes
 				touch $PATH_PAMD_SMTP
 				echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
 				if [ ""$conf_use_cyrus = "true" ]; then
-					echo "account sufficient pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host=localhost db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1
+					echo "account sufficient pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host="${conf_mysql_host}" db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1
 
-auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host=localhost db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1" >$PATH_PAMD_SMTP
+auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host="${conf_mysql_host}" db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1" >$PATH_PAMD_SMTP
 	
 					if [ -f $PATH_PAMD_IMAP ]; then
 						if ! [ -f $PATH_PAMD_IMAP.DTC.backup ]; then
@@ -1710,14 +1739,14 @@ quotawarn: 90
 admins: cyrus
 # sasl_mech_list: PLAIN LOGIN
 
-defaultdomain: mx.${main_domain_name}
+defaultdomain: "${MX_MAIL}".${main_domain_name}
 duplicatesuppression: 1
 virtdomains: userid
 
 auxprop_plugin: sql
 
 sasl_sql_engine: mysql
-sasl_sql_hostnames: localhost
+sasl_sql_hostnames: ${conf_mysql_host}
 sasl_sql_database: ${conf_mysql_db}
 sasl_sql_user: dtcdaemons
 sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
@@ -1835,10 +1864,10 @@ modifyPostfixConfig () {
 			echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
 			# CL: this is general config, for courier and cyrus
 			# for mailname to be mx.$main_domain_name
-			echo "mx.$main_domain_name" > /etc/mailname
+			echo ""${MX_MAIL}".$main_domain_name" > /etc/mailname
 			echo "# DTC virtual configuration" >> $TMP_FILE
 			if [ ""$conf_use_cyrus != "true" ]; then
-				echo "myhostname = mx.$main_domain_name" >> $TMP_FILE
+				echo "myhostname = "${MX_MAIL}".$main_domain_name" >> $TMP_FILE
 			fi
 			echo "# disable the following functionality by default (otherwise can't match subdomains correctly)
 parent_domain_matches_subdomains=
@@ -1975,7 +2004,7 @@ smtpd_tls_auth_only = no
 				# if we have maildrop, we should use it!
 				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
 					echo "maildrop  unix  -       n       n       -       -       pipe
-    flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
+    flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -w 90 -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
 " >> $TMP_FILE2
 				fi
 				# CL do we use cyrus? 
@@ -2069,10 +2098,11 @@ prepareMlmmjSpool () {
 
 modifyCourierConfig () {
 	# check to see if we have a userdb FILE, rather than a FOLDER, rm -r if any folder...
-	if [ -d "/etc/courier" ] ; then
+	if [ -d "/etc/authlib" ] ; then
+		COURIER_FOLDER="/etc/authlib"
+	elif [ -d "/etc/courier" ] ; then
 		COURIER_FOLDER="/etc/courier"
-	fi
-	if [ -d "/usr/local/etc/courier" ] ; then
+	elif [ -d "/usr/local/etc/courier" ] ; then
 		COURIER_FOLDER="/usr/local/etc/courier"
 	fi
 
@@ -2174,13 +2204,12 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 					/etc/init.d/courier-pop-ssl restart
 				fi
 			fi
-			if [ -x "/etc/init.d/courier" ]; then
-				if [ -x /usr/sbin/invoke-rc.d ]; then
-					/usr/sbin/invoke-rc.d courier stop
-				else
-					/etc/init.d/courier stop
-				fi
+
+			# Restart courier for slackware
+			if [ -x "/etc/rc.d/rc.courier" ]; then
+				/etc/rc.d/rc.courier restart
 			fi
+			
 
 			# try to disable courierd using chkconfig (for redhat based distro)
 			if [ -x /sbin/chkconfig ]; then
@@ -2354,8 +2383,8 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 			if [ -e /etc/pure-ftpd/conf/ ] ;then
 				echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
 			fi
-			if [ -e $PURE_FTPD_ETC/db/ ] ;then
-				echo "# Configured by DTC v0.10 : Please don't touch this line !
+
+			PURE_SQL_CONFIG="# Configured by DTC v0.10 : Please don't touch this line !
 
 MYSQLServer $conf_mysql_host
 MYSQLUser dtcdaemons
@@ -2367,7 +2396,9 @@ MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
-" >$PURE_FTPD_ETC/db/mysql.conf;
+"
+			if [ -e $PURE_FTPD_ETC/db/ ] ;then
+				echo ${PURE_SQL_CONFIG} >$PURE_FTPD_ETC/db/mysql.conf;
 				# Retart after we did the config
 				if [ -x /usr/sbin/invoke-rc.d ]; then
 					/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
@@ -2375,6 +2406,12 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 					if [ -x /etc/init.d/pure-ftpd-mysql ] ;then
 						/etc/init.d/pure-ftpd-mysql restart
 					fi
+				fi
+			# This works for slackware
+			else
+				echo ${PURE_SQL_CONFIG} >$PURE_FTPD_ETC/pureftpd-mysql-dtc.conf;
+				if [ -x /etc/rc.d/rc.pure-ftpd ] ;then
+					/etc/rc.d/rc.pure-ftpd restart
 				fi
 			fi
 		fi
@@ -2828,7 +2865,7 @@ shadow:         compat mysql
 			echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
 			if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
 				echo "
-users.host = inet:localhost:3306;
+users.host = inet:${conf_mysql_host}:3306;
 users.database = ${conf_mysql_db};
 users.db_user = dtcdaemons;
 users.db_password = ${MYSQL_DTCDAEMONS_PASS};
@@ -2870,7 +2907,7 @@ getspnam    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_acce
 getspent    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access
 
 [server]
-host localhost
+host ${conf_mysql_host}
 port 3306
 database ${conf_mysql_db}
 username dtcdaemons
@@ -2897,7 +2934,7 @@ password ${MYSQL_DTCDAEMONS_PASS}
 			echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
 			if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
 			echo "
-shadow.host = inet:localhost:3306;
+shadow.host = inet:${conf_mysql_host}:3306;
 shadow.database = ${conf_mysql_db};
 shadow.db_user = dtcdaemons;
 shadow.db_password = ${MYSQL_DTCDAEMONS_PASS};
@@ -2918,7 +2955,7 @@ shadow.expire_column = -1;
 			else
 				# libnss version
 				echo "[server]
-host localhost
+host ${conf_mysql_host}
 port 3306
 database ${conf_mysql_db}
 username dtcdaemons
@@ -2981,7 +3018,7 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 			echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
 			echo "* * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
 			echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
-			cat < $TMP_FILE >>/etc/crontab
+			cat < $TMP_FILE >>$PATH_CRONTAB_CONF
 			rm $TMP_FILE
 		fi
 
@@ -3155,6 +3192,10 @@ createChrootTemplate () {
 	# the sftp-server binary can be in /usr/lib or /lib, so check both places
 	if [ -e /usr/lib/sftp-server ]; then
 		cp -pf /usr/lib/sftp-server usr/lib/
+	fi
+
+	if [ -e /usr/libexec/sftp-server ]; then
+		cp -pf /usr/libexec/sftp-server usr/libexec/
 	fi
 
 	if [ -e /lib/sftp-server ]; then
@@ -3974,7 +4015,7 @@ DTCinstallPackage () {
 	fi
 	saveConfig
 	generateMySQLConfigPHPfile
-#	createDTCRootShellScript
+	createDTCRootShellScript
 	createApachePIDSymLink
 	enableApache2Modules
 	createApacheAdminProtectedDir
