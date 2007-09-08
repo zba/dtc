@@ -1,0 +1,186 @@
+#!/bin/sh
+
+UNIX_TYPE=slackware
+VERBOSE_INSTALL=yes
+
+CONF_DTC_SYSTEM_USERNAME=dtc
+CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
+
+conf_apache_version=2
+PATH_HTTPD_CONF="/etc/httpd/httpd.conf"
+PATH_APACHE_PID_FILE="/var/run/httpd/httpd.pid"
+
+PATH_PHP_CGI="/usr/bin/php-cgi"
+PATH_PHP_INI="/etc/httpd/php.ini"
+
+
+PATH_NAMED_CONF="/etc/named.conf"
+
+
+PATH_PROFTPD_CONF="/etc/proftpd.conf"
+
+PATH_DOVECOT_CONF="/etc/dovecot.conf"
+
+PATH_COURIER_CONF_PATH="/etc/courier"
+PATH_COURIER_AUTHD_CONF_PATH="/etc/authlib"
+PATH_USERDB_BIN="/usr/sbin/userdb"
+
+PATH_POSTFIX_CONF="/etc/postfix/main.cf"
+PATH_POSTFIX_ETC="/etc/postfix"
+
+PATH_SASL_PASSWD2="/usr/sbin/saslpasswd2"
+
+PATH_MAILDROP_BIN="/usr/bin/maildrop"
+
+PATH_QMAIL_CTRL=""
+
+PATH_CYRUS_CONF="/usr/local/etc/imapd.conf"
+
+
+FREERADIUS_ETC="/etc/raddb"
+
+PATH_CRONTAB_CONF="/var/spool/cron/crontabs/root"
+
+PATH_AWSTATS_ETC="/etc/awstats"
+PATH_AMAVISD_CONF="/etc/amavisd.conf"
+PATH_CLAMAV_CONF="/etc/clamd.conf"
+
+PATH_CGIBIN="/var/www/cgi-bin"
+
+PATH_SASLLIB="/usr/lib/sasl2"
+
+PATH_SUDOERS_CONF="/etc/sudoers"
+
+PATH_RRDTOOL="/usr/bin/rrdtool"
+
+PATH_DTC_SHARED="/usr/share/dtc"
+PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
+PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
+PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
+
+USER_ADD_CMD=useradd
+USER_ADD_CMD=groupadd
+USER_MOD_CMD=usermod
+PASSWD_CMD=passwd
+
+MYSQL_DB_SOCKET_PATH="/var/run/mysql/mysql.sock"
+MYSQL_SERVER="myadm.formosahost.com"
+MYSQL_CLIENT='spider%.formosahost.com'
+MX_MAIL="postman"
+SQ_DATA="/var/lib/squirrelmail/data"
+SQ_ATTACH="/var/lib/squirrelmail/attach"
+
+
+
+
+\ No newline at end of file
+diff --git a/bin/makeSlackware b/bin/makeSlackware
+new file mode 100755
+index 0000000..73ce22f
+--- /dev/null
++++ b/bin/makeSlackware
+@@ -0,0 +1,35 @@
++#!/bin/bash
++#
++# Welcome to the DTC install maker !
++# This will produce the tarball package
++# Maintainer: Thomas GOIRAND <thomas [ at ] goirand.fr>
++# please do not ship with your packages
++# this is only a small coder tool...
++#
++VERS=`cat version`
++RELS=`cat release`
++VERSION=$VERS"-"$RELS
++UNIX_TYPE=slackware
++BUILD_DIR=dtc
++DEST_DIR="dtc_"$VERSION"-slackware"
++ARCH_NAME=$DEST_DIR"_all.tar.gz"
++
++./buildRelease $UNIX_TYPE $BUILD_DIR
++
++chown -R root:root $BUILD_DIR
++chown nobody:nogroup $BUILD_DIR/client/imgcache $BUILD_DIR/admin/imgcache $BUILD_DIR/email/imgcache $BUILD_DIR/shared/imgcache
++chown nobody:nogroup $BUILD_DIR/client/gfx $BUILD_DIR/admin/gfx $BUILD_DIR/email/gfx $BUILD_DIR/shared/gfx $BUILD_DIR/admin/*.cgi
++
++# Specific tarball package actions :
++mv $BUILD_DIR $DEST_DIR
++cp sources/slackware/install.sh $DEST_DIR
++cat sources/create_chroot.sh >>$DEST_DIR"/install.sh"
++cat sources/setup_mysql_db.sh >>$DEST_DIR"/install.sh"
++cat sources/configure_deamons.sh >>$DEST_DIR"/install.sh"
++
++cp sources/slackware/uninstall.sh $DEST_DIR
++cat sources/uninstall_deamons.sh >>$DEST_DIR"/uninstall.sh"
++echo "===> Packaging"
++tar -czf $ARCH_NAME $DEST_DIR
++
++echo " -- Succesfully made $ARCH_NAME ---"
+diff --git a/bin/sources/create_chroot.sh b/bin/sources/create_chroot.sh
+index edc380f..68f39d8 100755
+--- a/bin/sources/create_chroot.sh
++++ b/bin/sources/create_chroot.sh
+@@ -125,6 +125,10 @@ if [ -e /usr/lib/sftp-server ]; then
+ 	cp -pf /usr/lib/sftp-server usr/lib/
+ fi
+ 
++if [ -e /usr/libexec/sftp-server ]; then
++	cp -pf /usr/libexec/sftp-server usr/lib/
++fi
++
+ if [ -e /lib/sftp-server ]; then
+ 	cp -pf /lib/sftp-server lib/
+ fi
+diff --git a/bin/sources/slackware/install.sh b/bin/sources/slackware/install.sh
+new file mode 100755
+index 0000000..224fbde
+--- /dev/null
++++ b/bin/sources/slackware/install.sh
+@@ -0,0 +1,35 @@
++#!/bin/sh
++
++# This is the modification of DTC's BSD interactive install configuration script
++# called by the make install
++# made by Thomas Goirand <thomas@goirand.fr> and Frederic Cambus
++# ver 0.0.1
++
++LOCALBASE=/usr/share
++
++# DATABASE CONFIGURATION
++echo "### MYSQL CONFIGURATION ###"
++echo ""
++echo "WARNING: Your MySQL Server MUST be running."
++echo "If not, please issue the following cmd:"
++echo "/etc/rc.d/rc.mysql start"
++echo ""
++
++#/bin/sh
++
++echo "Copying DTC's php scripts to /usr/share..."
++PATH_DTC_SHARED="/usr/share/dtc"
++if [ -e $PATH_DTC_SHARED ] ; then
++	rm -rf $PATH_DTC_SHARED/admin $PATH_DTC_SHARED/client $PATH_DTC_SHARED/shared $PATH_DTC_SHARED/email $PATH_DTC_SHARED/doc
++fi
++mkdir -p $PATH_DTC_SHARED
++cp -prf ./ $PATH_DTC_SHARED
++
++. ${LOCALBASE}/dtc/admin/install/slack_config
++. ${LOCALBASE}/dtc/admin/install/interactive_installer
++. ${LOCALBASE}/dtc/admin/install/functions
++
++
++interactiveInstaller
++DTCinstallPackage
++DTCsetupDaemons
+diff --git a/bin/sources/slackware/uninstall.sh b/bin/sources/slackware/uninstall.sh
+new file mode 100755
+index 0000000..5f95159
+--- /dev/null
++++ b/bin/sources/slackware/uninstall.sh
+@@ -0,0 +1,7 @@
++#!/bin/sh
++
++. ${LOCALBASE}/www/dtc/admin/install/slack_config
++. ${LOCALBASE}/www/dtc/admin/install/functions
++
++DTCsearchConfigFiles
++DTCuninstallPackage
