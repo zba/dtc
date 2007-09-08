@@ -1,5 +1,7 @@
 Version 0.26.3:
 ---------------
+- feature: User databases can be on a different host now. Also, remote SQL
+is fully working for DTC as well.
 - feature: Fixed some of the problems of the ticket system (root panel side)
 - feature: Recipient delimiter now configurable
 - feature: The port of the panel for SSL is not configurable
