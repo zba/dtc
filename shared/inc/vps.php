@@ -19,7 +19,7 @@ function connectToVPSServer($vps_node){
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		die("Cannot find hostname of VPS server line ".__LINE__." file ".__FILE__);
+		die("Cannot find hostname $vps_node of VPS server line ".__LINE__." file ".__FILE__);
 	}
 	$a = mysql_fetch_array($r);
 	$port = 8089;
@@ -124,6 +124,18 @@ function getVPSInfo($vps_node,$vps_name,$soap_client){
 			}
 		}
 		return $out;
+	}
+}
+
+function getInstallableOS($soap_client){
+	global $vps_soap_err;
+	$r = $soap_client->call("getInstallableOS",array(),"","","");
+	$err = $soap_client->getError();
+	if($err){
+		$vps_soap_err = "Could not get installable OS data. Error: ".$err;
+		return false;
+	}else{
+		return $r;
 	}
 }
 

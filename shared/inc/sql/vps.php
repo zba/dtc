@@ -106,7 +106,12 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 		$submit_err = $txt_vpsql_access_not_granted[$lang].__LINE__." file ".__FILE__;
 		$commit_flag = "no";
 	}
-	switch($_REQUEST["os_type"]){
+	// Os name checking is now more relaxed as this is customizable by the dtc-xen server
+	if(!isFtpLogin($_REQUEST["os_type"])){
+		$submit_err = "OS type is not corret ".__LINE__." file ".__FILE__;
+		$commit_flag = "no";
+	}
+/*	switch($_REQUEST["os_type"]){
 	case "debian":
 	case "gentoo":
 	case "centos":
@@ -117,7 +122,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 		$commit_flag = "no";
 		break;
 	}
-
+*/
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
