@@ -127,7 +127,7 @@ date\n";
 	$backup_net .= "echo -n \"===> Backuping database dtc: \"\n";
 	$dbfilename = "dtcdb.sql";
 	$backup_net .= "echo -n \" dumping...\"\n";
-	$backup_net .= "mysqldump -h$conf_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases dtc >".$dbfilename."\n";
+	$backup_net .= "mysqldump -h$conf_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases $conf_mysql_db >".$dbfilename."\n";
 	$backup_net .= "echo -n \" compressing...\"\n";
 	$backup_net .= "gzip $dbfilename\n";
 	$backup_net .= "echo \" Done! Starting upload!\"\n";

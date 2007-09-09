@@ -188,6 +188,8 @@ function pro_vhost_generate(){
 	global $conf_main_domain;
 	global $conf_404_subdomain;
 
+	global $conf_mysql_db;
+
 	$vhost_file = "";
 
 $vhost_file .= "# WARNING ! This file is automatically edited by the dtc cron
@@ -279,7 +281,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	LogSQLTransferLogTable ".str_replace("-","A",str_replace(".","_",$conf_main_domain)).'$'.$conf_404_subdomain.'$'."xfer
 	LogSQLScoreDomain $conf_main_domain
 	LogSQLScoreSubdomain $conf_404_subdomain
-	LogSQLScoreTable dtc.http_accounting
+	LogSQLScoreTable $conf_mysql_db.http_accounting
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>\n";
 				}
@@ -315,7 +317,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
         LogSQLTransferLogTable ".str_replace("-","A",str_replace(".","_",$conf_main_domain)).'$'.$conf_404_subdomain.'$'."xfer
         LogSQLScoreDomain $conf_main_domain
         LogSQLScoreSubdomain $conf_404_subdomain
-        LogSQLScoreTable dtc.http_accounting
+        LogSQLScoreTable $conf_mysql_db.http_accounting
         DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>\n";
 		}
@@ -546,7 +548,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	LogSQLTransferLogTable $log_tablename\$xfer
 	LogSQLScoreDomain $web_name
 	LogSQLScoreSubdomain $web_subname
-	LogSQLScoreTable dtc.http_accounting
+	LogSQLScoreTable $conf_mysql_db.http_accounting
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
@@ -650,7 +652,7 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	LogSQLTransferLogTable $log_tablename\$xfer
 	LogSQLScoreDomain $web_name
 	LogSQLScoreSubdomain $web_subname
-	LogSQLScoreTable dtc.http_accounting
+	LogSQLScoreTable $conf_mysql_db.http_accounting
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
