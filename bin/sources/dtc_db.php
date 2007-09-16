@@ -133,6 +133,7 @@ $dtc_database = array(
 			"dtcclient_path" => "varchar(255) NOT NULL default '/usr/share/dtc/client' ",
 			"dtcdoc_path" => "varchar(255) NOT NULL default '/usr/share/dtc/doc' ",
 			"dtcemail_path" => "varchar(255) NOT NULL default '/usr/share/dtc/email' ",
+			"htpasswd_path" => "varchar(255) NOT NULL default '/usr/sbin/htpasswd' ",
 			"qmail_rcpthost_path" => "varchar(255) NOT NULL default 'rcpthosts' ",
 			"qmail_virtualdomains_path" => "varchar(255) NOT NULL default 'virtualdomains' ",
 			"qmail_assign_path" => "varchar(255) NOT NULL default 'assign' ",
@@ -276,6 +277,9 @@ $dtc_database = array(
 			"domain_parking" => "varchar(255) NOT NULL default 'no-parking' ",
 			"registrar_password" => "varchar(255) NOT NULL ",
 			"ttl" => "int NULL default '7200' ",
+			"stats_login" => "varchar(32) NOT NULL default ''",
+  			"stats_pass" => "varchar(16) NOT NULL default ''",
+  			"stats_subdomain" => " enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)",
 		"keys" => array(

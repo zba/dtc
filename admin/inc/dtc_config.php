@@ -1218,6 +1218,8 @@ function drawDTCpathConfig(){
 	global $conf_webalizer_stats_script_path;
 
 	global $conf_chroot_path;
+	
+	global $conf_htpasswd_path;
 
 	global $lang;
 
@@ -1246,6 +1248,9 @@ function drawDTCpathConfig(){
 				"type" => "text"),
 			"generated_file_path" => array(
 				"legend" => $txt_cfg_generated_file_path[$lang],
+				"type" => "text"),
+			"htpasswd_path" => array(
+				"legend" => "Apache htpasswd path",
 				"type" => "text")));
 	$out .= configEditorTemplate ($dsc);
 
