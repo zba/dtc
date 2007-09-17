@@ -255,7 +255,7 @@ function drawAdminTools_VPS($admin,$vps){
 		// OS reinstall
 		$out .= "<h3>".$txt_reinstall_operating_system[$lang]."</h3><br>";
 		$out .= $txt_currently_installed_operating_system[$lang].$vps["operatingsystem"]."<br>";
-		$installable_os = getInstallableOS($soap_client);
+/*		$installable_os = getInstallableOS($soap_client);
 		if($installable_os != false){
 			$nbr_os = sizeof($installable_os);
 			$out .= $frm_start."<select name=\"os_type\">";
@@ -273,7 +273,7 @@ function drawAdminTools_VPS($admin,$vps){
 		}else{
 			$out .= "<font color=\"red\">Could not get remote installable OS: ask administrator to upgrade this
 dtc-xen server to a higher version.</font><br>";
-			$deb_selected = " ";
+*/			$deb_selected = " ";
 			$cent_selected = " ";
 			$gen_selected = " ";
 			$bsd_selected = " ";
@@ -303,7 +303,7 @@ dtc-xen server to a higher version.</font><br>";
 </select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
 <input type=\"submit\" value=\"".$txt_reinstall_operating_system_button[$lang]."\">
 </form>";
-		}
+//		}
 
   		// BSD kernel change popup
 		if($vps["operatingsystem"] == "netbsd"){
