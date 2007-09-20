@@ -84,6 +84,32 @@ createDTCuserAndGroup () {
 	fi
 }
 
+findHtpasswdBinary () {
+	HTPASSWD=`which htpasswd 2>/dev/null`
+	if [ -z "$HTPASSWD" ] ; then
+		HTPASSWD=`which htpasswd2 2>/dev/null`;
+	fi
+	# This might be needed for FreeBSD if /usr/local/bin is not in the path
+	if [ -z "$HTPASSWD" ] ; then
+		if [ -e "/usr/bin/htpasswd" ] ;then
+			HTPASSWD="/usr/bin/htpasswd"
+		else
+			if [ -e "/usr/bin/htpasswd2" ] ; then
+				HTPASSWD="/usr/bin/htpasswd2"
+			else
+				if [ -e "/usr/local/bin/htpasswd" ] ;then
+					HTPASSWD="/usr/local/bin/htpasswd"
+				else
+					if [ -e "/usr/local/bin/htpasswd2" ] ;then
+						HTPASSWD="/usr/local/bin/htpasswd2"
+					fi
+				fi
+			fi
+		fi
+	fi
+}
+
+
 searchPATH_PHP_CGI () {
 	echoIfVerbose "===> Seaching for php binary"
 	if [ -e /usr/bin/php ] ; then
@@ -442,6 +468,11 @@ createHostingDirAndFiles () {
 		cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC/dtc404/
 	fi
 
+	# copy the dtc_stats_index.php
+	if ! [ -e $PATH_DTC_ETC/dtc_stats_index.php ] ; then
+		cp $PATH_DTC_SHARED/shared/dtc_stats_index.php $PATH_DTC_ETC/dtc_stats_index.php
+	fi
+
 	# Repair the original 404 page from old versions against XSS attack
 	dtc404md5sum=`md5sum $PATH_DTC_ETC/dtc404/404.php|cut -d " " -f1`
 	dtcOrigianMD5sum="14285fd356b0bfdef4cfd7579da161c0"
@@ -615,6 +646,9 @@ setupDTCDatabase () {
 
 	# Fix the recipient_delimiter value
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET recipient_delimiter='\\${conf_recipient_delim}' WHERE 1"
+
+	# Fix the path of the htpasswd binary
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET htpasswd_path='"$HTPASSWD"' WHERE 1"
 
 	# Fix the rights for the UIDs in tables
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE ftp_access SET uid='$CONF_DTC_SYSTEM_UID',gid='$CONF_DTC_SYSTEM_GID' WHERE 1"
@@ -979,28 +1013,6 @@ createApacheAdminProtectedDir () {
 		echoIfVerbose "OK, you have your "$conf_hosting_path"/.htpasswd setup already!"
 	else 
 		echoIfVerbose "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
-		HTPASSWD=`which htpasswd 2>/dev/null`
-		if [ -z "$HTPASSWD" ] ; then
-			HTPASSWD=`which htpasswd2 2>/dev/null`;
-		fi
-		# This might be needed for FreeBSD if /usr/local/bin is not in the path
-		if [ -z "$HTPASSWD" ] ; then
-			if [ -e "/usr/bin/htpasswd" ] ;then
-				HTPASSWD="/usr/bin/htpasswd"
-			else
-				if [ -e "/usr/bin/htpasswd2" ] ; then
-					HTPASSWD="/usr/bin/htpasswd2"
-				else
-					if [ -e "/usr/local/bin/htpasswd" ] ;then
-						HTPASSWD="/usr/local/bin/htpasswd"
-					else
-						if [ -e "/usr/local/bin/htpasswd2" ] ;then
-							HTPASSWD="/usr/local/bin/htpasswd2"
-						fi
-					fi
-				fi
-			fi
-		fi
 		$HTPASSWD -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" $conf_adm_pass
 	fi
 
@@ -4030,6 +4042,7 @@ DTCinstallPackage () {
 	createDTCRootShellScript
 	createApachePIDSymLink
 	enableApache2Modules
+	findHtpasswdBinary
 	createApacheAdminProtectedDir
 	generateOpenSSLApacheCert
 	createCyrusAuthPhp
@@ -4071,6 +4084,7 @@ DTCsetupDaemons () {
 
 	modifyResolvConf
 	createChrootTemplate
+	findHtpasswdBinary
 	setupDTCDatabase
 	createHostingDirAndFiles
 	chownSquirrelAndFastcgiToDtcUserAndGroup

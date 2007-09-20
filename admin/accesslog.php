@@ -10,7 +10,8 @@ function make_stats(){
 	global $conf_mysql_db;
 	global $conf_webalizer_country_graph;
 	global $pro_mysql_domain_table;
-	global $dtcshared_path;
+	global $conf_dtcshared_path;
+	global $conf_generated_file_path;
 
 	global $conf_use_webalizer;
 	global $conf_use_awstats;
@@ -30,6 +31,11 @@ function make_stats(){
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/logs";
+
+		if(!file_exists("$fullpath/index.php")){
+			copy("$conf_generated_file_path/dtc_stats_index.php","$fullpath/index.php");
+		}
+
 		$html_fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/html";
 		$table_name = str_replace("-","A",str_replace(".","_",$a["name"].'$'.$a["subdomain_name"].'$'."xfer"));
 
@@ -114,7 +120,7 @@ function make_stats(){
 
 							// copy the template file
 							if (!file_exists("$fullpath/visitors.php")){
-								copy("$dtcshared_path/visitors_template/visitors.php", "$fullpath/visitors.php");
+								copy("$conf_dtcshared_path/visitors_template/visitors.php", "$fullpath/visitors.php");
 							}
 						}
 
@@ -204,7 +210,7 @@ fi
 function make_log_archive (){
 	global $conf_mysql_db;
 	global $pro_mysql_domain_table;
-	global $dtcshared_path;
+	global $conf_dtcshared_path;
 
 	$today_midnight = mktime(0,0,0);
 

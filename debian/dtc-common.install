@@ -51,6 +51,7 @@ shared/securepay		/usr/share/dtc/shared
 shared/template			/usr/share/dtc/shared
 shared/upgrade_sql.php		/usr/share/dtc/shared
 shared/vars			/usr/share/dtc/shared
+shared/dtc_stats_index.php	/usr/share/dtc/shared
 
 shared/maxmind/CreditCardFraudDetection.php	/usr/share/dtc/shared/maxmind/
 shared/maxmind/HTTPBase.php			/usr/share/dtc/shared/maxmind/
