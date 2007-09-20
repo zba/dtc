@@ -12,6 +12,10 @@ function make_stats(){
 	global $pro_mysql_domain_table;
 	global $dtcshared_path;
 
+	global $conf_use_webalizer;
+	global $conf_use_awstats;
+	global $conf_use_visitors;
+
 	$today_midnight = mktime(0,0,0);
 
 	$q = "SELECT admin.adm_login,admin.path,subdomain.subdomain_name,domain.name
@@ -102,17 +106,28 @@ function make_stats(){
 						echo "$webalizer_cmd\n";
 						exec ($webalizer_cmd);
 
-                        echo "Calculating visitor stats...\n";
-                        $visitor_cmd = "nice -n+20 visitors -A -m 30 $dump_folder/access_*.log -o html > $fullpath/$year.$month.report.html";
-                        echo "$visitor_cmd\n";
-                        exec ($visitor_cmd);
-                        
-                        // copy the template file
-						if (!file_exists("$fullpath/visitors.php"))
-                        {
-                        	copy("$dtcshared_path/visitors_template/visitors.php", $fullpath);
-                        }
+						if($conf_use_visitors == "yes"){
+							echo "Calculating visitor stats...\n";
+							$visitor_cmd = "nice -n+20 visitors -A -m 30 $dump_folder/access_*.log -o html > $fullpath/$year.$month.report.html";
+							echo "$visitor_cmd\n";
+							exec ($visitor_cmd);
 
+							// copy the template file
+							if (!file_exists("$fullpath/visitors.php")){
+								copy("$dtcshared_path/visitors_template/visitors.php", "$fullpath/visitors.php");
+							}
+						}
+
+						if($conf_use_awstats == "yes" && file_exists("/usr/lib/cgi-bin/awstats.pl")){
+							if(!file_exists("$fullpath/awstats")){
+								mkdir("$fullpath/awstats");
+							}
+							$fqdn = $a["subdomain_name"].".".$a["name"];
+							if(file_exists("/usr/share/doc/awstats/examples/awstats_buildstaticpages.pl")){
+								$aw_cmd = "export AWSTATS_FULL_DOMAIN=\"".$a["subdomain_name"].".".$a["name"]."\" ; export AWSTATS_DIR_DATA=\"$fullpath/awstats\" ; export AWSTATS_LOG_FILE=\"$dump_filename\" ; nice -n+20 /usr/share/doc/awstats/examples/awstats_buildstaticpages.pl -config=dtc -update -awstatsprog=/usr/lib/cgi-bin/awstats.pl -dir=$fullpath/awstats";
+								exec($aw_cmd);
+							}
+						}
 						// disable AWSTATS for now, it's too slow
 						/*
 						$stat_script = "#!/bin/sh

@@ -201,6 +201,9 @@ $dtc_database = array(
 			"default_company_invoicing" => "int (12) NOT NULL default '0' ",
 			"this_server_country_code" => "varchar (4) NOT NULL default 'US' ",
 			"use_cyrus" => "enum('yes','no') NOT NULL default 'no' ",
+			"use_webalizer" => "enum('yes','no') NOT NULL default 'yes'",
+			"use_awstats" => "enum('yes','no') NOT NULL default 'no'",
+			"use_visitors" => "enum('yes','no') NOT NULL default 'no'",
 			"message_subject_header" => "varchar (255) NOT NULL default '[DTC]'"
 			),
 		"keys" => array(
