@@ -53,7 +53,7 @@ $txt_cmenu_mail_aliases = array(
 	"fr" => "Boites groupées",
 	"en" => "Mail Groups",
 	"hu" => "TRANS Mail Groups",
-	"it" => "TRANS Mail Groups",
+	"it" => "Alias di posta",
 	"nl" => "TRANS Mail Groups",
 	"ru" => "TRANS Mail Groups",
 	"de" => "TRANS Mail Groups",
@@ -69,7 +69,7 @@ $txt_title_mail_aliases_of = array(
 	"fr" => "Boites groupées de ",
 	"en" => "Mail groups of ",
 	"hu" => "TRANS Mail groups of ",
-	"it" => "TRANS Mail groups of ",
+	"it" => "Alias di posta di ",
 	"nl" => "TRANS Mail groups of ",
 	"ru" => "TRANS Mail groups of ",
 	"de" => "TRANS Mail groups of ",
@@ -99,7 +99,7 @@ $txt_mail_alias_new_item_title = array(
 	"fr" => "Nouvelle boite groupée",
 	"en" => "Create New Mail Group",
 	"hu" => "TRANS Create New Mail Group",
-	"it" => "TRANS Create New Mail Group",
+	"it" => "Crea alias di posta",
 	"nl" => "TRANS Create New Mail Group",
 	"ru" => "TRANS Create New Mail Group",
 	"de" => "TRANS Create New Mail Group",
@@ -114,7 +114,7 @@ $txt_mail_alias_new_item_link = array(
 	"fr" => "Nouvelle boite groupée",
 	"en" => "Create Mail Group",
 	"hu" => "TRANS Create Mail Group",
-	"it" => "TRANS Create Mail Group",
+	"it" => "Crea alias di posta",
 	"nl" => "TRANS Create Mail Group",
 	"ru" => "TRANS Create Mail Group",
 	"de" => "TRANS Create Mail Group",
@@ -129,7 +129,7 @@ $txt_mail_alias_edit_item_title = array(
 	"fr" => "Editer une boite groupé",
 	"en" => "Edit Mail Group",
 	"hu" => "TRANS Edit Mail Group",
-	"it" => "TRANS Edit Mail Group",
+	"it" => "Modifica alias di posta",
 	"nl" => "TRANS Edit Mail Group",
 	"ru" => "TRANS Edit Mail Group",
 	"de" => "TRANS Edit Mail Group",
@@ -144,7 +144,7 @@ $txt_mail_alias_list_current_aliases = array(
 	"fr" => "Liste de vos boites groupés",
 	"en" => "List of your mail groups",
 	"hu" => "TRANS List of your mail groups",
-	"it" => "TRANS List of your mail groups",
+	"it" => "Elenco dei tuoi alias di posta",
 	"nl" => "TRANS List of your mail groups",
 	"ru" => "TRANS List of your mail groups",
 	"de" => "TRANS List of your mail groups",
@@ -161,7 +161,7 @@ $txt_there_is_a_ssh_login_by_that_name = array(
 	"fr" => "Il existe déjà un compte ssh avec ce nom",
 	"en" => "There is already a ssh login by that name",
 	"hu" => "TRANS There is already a ssh login by that name",
-	"it" => "TRANS There is already a ssh login by that name",
+	"it" => "Esiste già un profilo ssh con questo nome",
 	"nl" => "TRANS There is already a ssh login by that name",
 	"ru" => "TRANS There is already a ssh login by that name",
 	"de" => "TRANS There is already a ssh login by that name",
@@ -177,7 +177,7 @@ $txt_there_is_a_ftp_login_by_that_name = array(
 	"fr" => "Il existe déjà un compte ftp avec ce nom",
 	"en" => "There is already a ftp login by that name",
 	"hu" => "TRANS There is already a ftp login by that name",
-	"it" => "TRANS There is already a ftp login by that name",
+	"it" => "Esiste già un profilo ftp con questo nome",
 	"nl" => "TRANS There is already a ftp login by that name",
 	"ru" => "TRANS There is already a ftp login by that name",
 	"de" => "TRANS There is already a ftp login by that name",
@@ -193,7 +193,7 @@ $txt_there_is_a_mailbox_by_that_name = array(
 	"fr" => "Il existe déjà une boite avec ce nom",
 	"en" => "There is already a mailbox by that name",
 	"hu" => "TRANS There is already a mailbox by that name",
-	"it" => "TRANS There is already a mailbox by that name",
+	"it" => "Esiste già una casella di posta con questo nome",
 	"nl" => "TRANS There is already a mailbox by that name",
 	"ru" => "TRANS There is already a mailbox by that name",
 	"de" => "TRANS There is already a mailbox by that name",
@@ -209,7 +209,7 @@ $txt_name = array(
 	"fr" => "Nom:",
 	"en" => "Name:",
 	"hu" => "TRANS NAME",
-	"it" => "TRANS NAME",
+	"it" => "Nome:",
 	"nl" => "TRANS NAME",
 	"ru" => "TRANS NAME",
 	"de" => "Name:",
@@ -226,7 +226,7 @@ $txt_recurring_payment = array(
 	"fr" => "Paiement récurent",
 	"en" => "Recurring payment",
 	"hu" => "TRANS Recurring payment",
-	"it" => "TRANS Recurring payment",
+	"it" => "Pagamento ricorrente",
 	"nl" => "TRANS Recurring payment",
 	"ru" => "TRANS Recurring payment",
 	"de" => "Wiederkehrende Zahlungen",
@@ -241,7 +241,7 @@ $txt_server_statistic_graphs = array (
 	"fr" => "Graph des statistiques du serveur",
 	"en" => "Server statistic graphs",
 	"hu" => "TRANS Server statistic graphs",
-	"it" => "TRANS Server statistic graphs",
+	"it" => "Grafico delle statistiche del server",
 	"nl" => "Grafieken statistieken server",
 	"ru" => "TRANS Server statistic graphs",
 	"de" => "TRANS Server statistic graphs",
@@ -256,7 +256,7 @@ $txt_err_not_registering = array (
 	"fr" => "Pas d'enregistrement",
 	"en" => "Not registering",
 	"hu" => "TRANS Not registering",
-	"it" => "TRANS Not registering",
+	"it" => "Nessuna registrazione",
 	"nl" => "Geen registeratie",
 	"ru" => "TRANS Not registering",
 	"de" => "TRANS Not registering",
@@ -271,7 +271,7 @@ $txt_product_id_not_valid = array (
 	"fr" => "ID produit non valide !",
 	"en" => "Product ID not valid!",
 	"hu" => "TRANS Product ID not valid!",
-	"it" => "TRANS Product ID not valid!",
+	"it" => "ID prodotto non valido!",
 	"nl" => "Ongeldig Product ID!",
 	"ru" => "TRANS Product ID not valid!",
 	"de" => "TRANS Product ID not valid!",
@@ -286,7 +286,7 @@ $txt_user_login_incorrect = array (
 	"fr" => "Format de nom d'utilisateur incorrect. Utilisez uniquement des lettres, des chiffres, et entre 4 et 16 charactères.",
 	"en" => "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
 	"hu" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
-	"it" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"it" => "Il formato del login utente non è corretto: inserisci solo lettere e numero (min. 4 max. 16 caratteri).",
 	"nl" => "User login formaat incorrect. Gebruik alsjeblieft alleen letters en cijfers en 4 tot 16 tekens.",
 	"ru" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
 	"de" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
@@ -302,7 +302,7 @@ $txt_username_invalid_root_or_debian = array (
 	"fr" => "Nom d'utilisateur incorrect. Utilisez autre chose que root ou debian-sys-maint",
 	"en" => "Username invalid: please choose something else other than root or debian-sys-maint",
 	"hu" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
-	"it" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
+	"it" => "Nome utente non valido: utilizza altri nomi rispetto a root o debian-sys-maint",
 	"nl" => "Gebruikersnaam ongeldig: kies iets anders dan root of debian-sys-maint",
 	"ru" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
 	"de" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
@@ -317,7 +317,7 @@ $txt_password_format_incorrect = array (
 	"fr" => "Mot de passe incorrect. Merci d'utiliser uniquement des lettres et des chiffres, entre 4 et 16 caractères.",
 	"en" => "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
 	"hu" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
-	"it" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
+	"it" => "Il formato della password non è corretto: inserisci solo lettere e numero (min. 4 max. 16 caratteri).",
 	"nl" => "Password formaat incorrect. Gebruik alsjeblieft alleen letters en cijfers en 4 tot 16 tekens.",
 	"ru" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
 	"de" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
@@ -332,7 +332,7 @@ $txt_passwords_do_not_match = array (
 	"fr" => "Les mots de passe 1 et 2 ne correspondent pas !",
 	"en" => "Password 1 and 2 do not match!",
 	"hu" => "TRANS Password 1 and 2 do not match!",
-	"it" => "TRANS Password 1 and 2 do not match!",
+	"it" => "Le due password non coincidono!",
 	"nl" => "Password 1 en 2 komen niet overeen!",
 	"ru" => "TRANS Password 1 and 2 do not match!",
 	"de" => "TRANS Password 1 and 2 do not match!",
@@ -347,7 +347,7 @@ $txt_domain_name_does_not_look_like_correct = array (
 	"fr" => "Le nom de domaine ne parrait pas correct.",
 	"en" => "Domain name seems to be incorrect.",
 	"hu" => "TRANS Domain name seems to be incorrect.",
-	"it" => "TRANS Domain name seems to be incorrect.",
+	"it" => "Il nome del dominio non sembra corretto.",
 	"nl" => "Domeinnaam is kennelijk incorrect.",
 	"ru" => "TRANS Domain name seems to be incorrect.",
 	"de" => "TRANS Domain name seems to be incorrect.",
@@ -362,7 +362,7 @@ $txt_vps_location_not_selected = array (
 	"fr" => "Localisation du VDS non sélectionné !",
 	"en" => "VPS location not selected!",
 	"hu" => "TRANS VPS location not selected!",
-	"it" => "TRANS VPS location not selected!",
+	"it" => "Non hai selezionato una destinazione VPS!",
 	"nl" => "VPS locatie niet geselecteerd!",
 	"ru" => "TRANS VPS location not selected!",
 	"de" => "TRANS VPS location not selected!",
@@ -377,7 +377,7 @@ $txt_email_does_not_look_like_correct = array (
 	"fr" => "L'adresse email n'a pas un format correct.",
 	"en" => "Email address seems to be incorrect format.",
 	"hu" => "TRANS Email address seems to be incorrect format.",
-	"it" => "TRANS Email address seems to be incorrect format.",
+	"it" => "Il formato dell'indirizzo email non sembra corretto.",
 	"nl" => "Email addres heeft verkeerd formaat.",
 	"ru" => "TRANS Email address seems to be incorrect format.",
 	"de" => "TRANS Email address seems to be incorrect format.",
@@ -392,7 +392,7 @@ $txt_required_field_family_name_missing = array (
 	"fr" => "Champ nom de famille manquant.",
 	"en" => "Required field family name missing.",
 	"hu" => "TRANS Required field family name missing.",
-	"it" => "TRANS Required field family name missing.",
+	"it" => "Non hai compilato il campo cognome.",
 	"nl" => "Verplicht veld achternaam ontbreekt.",
 	"ru" => "TRANS Required field family name missing.",
 	"de" => "TRANS Required field family name missing.",
@@ -407,7 +407,7 @@ $txt_required_field_first_name_missing = array (
 	"fr" => "Champ prénom manquant.",
 	"en" => "Required field first name missing.",
 	"hu" => "TRANS Required field first name missing.",
-	"it" => "TRANS Required field first name missing.",
+	"it" => "Non hai compilato il campo nome.",
 	"nl" => "Verplicht veld voornaam ontbreekt.",
 	"ru" => "TRANS Required field first name missing.",
 	"de" => "TRANS Required field first name missing.",
@@ -422,7 +422,7 @@ $txt_could_not_find_vps_server_in_db = array (
 	"fr" => "Impossible de trouver le serveur VDS dans la base de donnée",
 	"en" => "Could not find the VPS server in database",
 	"hu" => "TRANS Could not find the VPS server in database",
-	"it" => "TRANS Could not find the VPS server in database",
+	"it" => "Impossibile trovare il server VPS nel database",
 	"nl" => "Kon VPS niet in database vinden",
 	"ru" => "TRANS Could not find the VPS server in database",
 	"de" => "TRANS Could not find the VPS server in database",
@@ -437,7 +437,7 @@ $txt_country_code_seems_incorrect = array (
 	"fr" => "Country code seems incorrect.",
 	"en" => "Country code seems incorrect.",
 	"hu" => "TRANS Country code seems incorrect.",
-	"it" => "TRANS Country code seems incorrect.",
+	"it" => "Il codice paese sembra errato.",
 	"nl" => "Land code incorrect.",
 	"ru" => "TRANS Country code seems incorrect.",
 	"de" => "TRANS Country code seems incorrect.",
@@ -452,7 +452,7 @@ $txt_is_company_radio_button_wrong = array (
 	"fr" => "Le bouton radio de société n'est pas bon!",
 	"en" => "Is company radio button is wrong!",
 	"hu" => "TRANS Is company radio button is wrong!",
-	"it" => "TRANS Is company radio button is wrong!",
+	"it" => "Il campo azienda non è corretto!",
 	"nl" => "Is bedrijf radio button is verkeerd!",
 	"ru" => "TRANS Is company radio button is wrong!",
 	"de" => "TRANS Is company radio button is wrong!",
@@ -467,7 +467,7 @@ $txt_required_field_zipcode_missing = array (
 	"fr" => "Champ code postal manquant.",
 	"en" => "Required field zipcode missing.",
 	"hu" => "TRANS Required field zipcode missing.",
-	"it" => "TRANS Required field zipcode missing.",
+	"it" => "Non hai compilato il campo codice postale.",
 	"nl" => "Verplicht veld postcode ontbreekt.",
 	"ru" => "TRANS Required field zipcode missing.",
 	"de" => "TRANS Required field zipcode missing.",
@@ -482,7 +482,7 @@ $txt_required_field_city_missing = array (
 	"fr" => "Required field city missing.",
 	"en" => "Required field city missing.",
 	"hu" => "TRANS Required field city missing.",
-	"it" => "TRANS Required field city missing.",
+	"it" => "Non hai compilato il campo città.",
 	"nl" => "Verplicht veld plaats ontbreekt.",
 	"ru" => "TRANS Required field city missing.",
 	"de" => "TRANS Required field city missing.",
@@ -497,7 +497,7 @@ $txt_selling_conditions_not_accepted = array (
 	"fr" => "Conditions de ventes non acceptés!",
 	"en" => "Selling conditions not accepted!",
 	"hu" => "TRANS Selling conditions not accepted!",
-	"it" => "TRANS Selling conditions not accepted!",
+	"it" => "Le condizioni di vendita non sono valide!",
 	"nl" => "Verkoop voorwaarden niet geaccepteerd!",
 	"ru" => "TRANS Selling conditions not accepted!",
 	"de" => "TRANS Selling conditions not accepted!",
@@ -512,7 +512,7 @@ $txt_username_already_taken_try_again = array (
 	"fr" => "Nom d'utilisateur déjà pris! Essayez encore.",
 	"en" => "Username already taken! Try again.",
 	"hu" => "TRANS Username already taken! Try again.",
-	"it" => "TRANS Username already taken! Try again.",
+	"it" => "Nome utente già presente, scegline un altro.",
 	"nl" => "Gebruikersnaam is bezet! Probeer Opnieuw.",
 	"ru" => "TRANS Username already taken! Try again.",
 	"de" => "TRANS Username already taken! Try again.",
@@ -527,7 +527,7 @@ $txt_vat_number = array (
 	"fr" => "Numéro de TVA : ",
 	"en" => "VAT Number:",
 	"hu" => "TRANS VAT Number: ",
-	"it" => "TRANS VAT Number: ",
+	"it" => "Codice Partita Iva: ",
 	"nl" => "BTW Nummer: ",
 	"ru" => "TRANS VAT Number: ",
 	"de" => "TRANS VAT Number: ",
@@ -542,7 +542,7 @@ $txt_i_agree_to_the = array (
 	"fr" => "J'accepte les",
 	"en" => "I agree to the",
 	"hu" => "TRANS I agree to the",
-	"it" => "TRANS I agree to the",
+	"it" => "Accetto le",
 	"nl" => "Ik ga akkoord met de",
 	"ru" => "TRANS I agree to the",
 	"de" => "TRANS I agree to the",
@@ -557,7 +557,7 @@ $txt_selling_conditions = array (
 	"fr" => "conditions de ventes",
 	"en" => "selling conditions",
 	"hu" => "TRANS selling conditions",
-	"it" => "TRANS selling conditions",
+	"it" => "condizioni di vendita",
 	"nl" => "verkoop voorwaarden",
 	"ru" => "TRANS selling conditions",
 	"de" => "TRANS selling conditions",
@@ -572,7 +572,7 @@ $txt_vps_location = array (
 	"fr" => "Localisation du VDS : ",
 	"en" => "VPS location: ",
 	"hu" => "TRANS VPS location: ",
-	"it" => "TRANS VPS location: ",
+	"it" => "Destinazione del server VPS: ",
 	"nl" => "VPS locatie: ",
 	"ru" => "TRANS VPS location: ",
 	"de" => "TRANS VPS location: ",
@@ -587,7 +587,7 @@ $txt_vps_operating_system = array (
 	"fr" => "VPS operating system : ",
 	"en" => "VPS operating system: ",
 	"hu" => "TRANS VPS operating system: ",
-	"it" => "TRANS VPS operating system: ",
+	"it" => "Sistema operativo: ",
 	"nl" => "VPS operating system: ",
 	"ru" => "TRANS VPS operating system: ",
 	"de" => "TRANS VPS operating system: ",
@@ -602,7 +602,7 @@ $txt_action = array(
 	"fr" => "Action",
 	"en" => "Action",
 	"hu" => "TRANS Action",
-	"it" => "TRANS Action",
+	"it" => "Azione",
 	"nl" => "Aktie",
 	"ru" => "TRANS Action",
 	"de" => "TRANS Action",
@@ -617,7 +617,7 @@ $txt_import_button = array(
 	"fr" => "Importer",
 	"en" => "Import",
 	"hu" => "TRANS Import",
-	"it" => "TRANS Import",
+	"it" => "Importa",
 	"nl" => "Importeer",
 	"ru" => "TRANS Import",
 	"de" => "Import",
@@ -633,7 +633,7 @@ $txt_import_a_domain_for_this_user = array(
 	"fr" => "Importer un fichier de domaine pour cet utilisateur :",
 	"en" => "Import a domain file for this user:",
 	"hu" => "TRANS Import a domain file for this user:",
-	"it" => "TRANS Import a domain file for this user:",
+	"it" => "Importa un dominio per l'utente:",
 	"nl" => "Importeer een domein bestand voor deze gebruiker:",
 	"ru" => "TRANS Import a domain file for this user:",
 	"de" => "Importiere eine Domaindatei fuer diesen Benutzer:",
@@ -649,7 +649,7 @@ $txt_export_domain_to_file = array(
 	"fr" => "Exporter ce domaine dans un fichier",
 	"en" => "Export this domain to a file",
 	"hu" => "TRANS Export this domain to a file",
-	"it" => "TRANS Export this domain to a file",
+	"it" => "Esporta il dominio in un file",
 	"nl" => "Exporteer dit domein tot een bestand",
 	"ru" => "TRANS Export this domain to a file",
 	"de" => "Exportiere diese Domain in eine Datei",
@@ -665,7 +665,7 @@ $txt_iframe_ds=array(
 	"fr" => "Etat des daemons",
 	"en" => "Deamons states",
 	"hu" => "TRANS Deamons states ",
-	"it" => "TRANS Deamons states ",
+	"it" => "Stato daemon ",
 	"nl" => "Deamon status ",
 	"ru" => "TRANS Deamons states ",
 	"de" => "Deamonen Status ",
@@ -680,7 +680,7 @@ $txt_iframe_nts=array(
 	"fr" => "Statistiques du trafic réseau",
 	"en" => "Network Traffic Statistics ",
 	"hu" => "TRANS Network Traffic Statistics ",
-	"it" => "TRANS Network Traffic Statistics ",
+	"it" => "Statistiche di traffico di rete ",
 	"nl" => "Netwerk Verkeer Statistieken ",
 	"ru" => "TRANS Network Traffic Statistics ",
 	"de" => "Netzwerkverkehr Statistiken ",
@@ -695,7 +695,7 @@ $txt_iframe_cpu=array(
 	"fr" => "Charge moyenne processeur ",
 	"en" => "CPU Load Average ",
 	"hu" => "TRANS CPU Load Average ",
-	"it" => "TRANS CPU Load Average ",
+	"it" => "Consumo medio CPU ",
 	"nl" => "CPU Load Average ",
 	"ru" => "TRANS CPU Load Average ",
 	"de" => "Durschnitts CPU Last ",
@@ -710,7 +710,7 @@ $txt_iframe_msu=array(
 	"fr" => "Utilisation mémoire et swap ",
 	"en" => "Memory and Swap Usage ",
 	"hu" => "TRANS Memory and Swap Usage ",
-	"it" => "TRANS Memory and Swap Usage ",
+	"it" => "Utilizzo memoria e swap ",
 	"nl" => "Memory and Swap Gebruik ",
 	"ru" => "TRANS Memory and Swap Usage ",
 	"de" => "Speicher und Swap nutzung ",
@@ -725,7 +725,7 @@ $txt_iframe_mqg=array(
 	"fr" => "Graphique de la file d'attente mail ",
 	"en" => "Mail Queue graph ",
 	"hu" => "TRANS Mail Queue graph ",
-	"it" => "TRANS Mail Queue graph ",
+	"it" => "Grafico posta in attesa ",
 	"nl" => "Mail Queue graph ",
 	"ru" => "TRANS Mail Queue graph ",
 	"de" => "Mail Queue Grafik ",
@@ -740,7 +740,7 @@ $txt_mail_catch_no=array(
 	"fr" => "Pas de catch-all ",
 	"en" => "No catch-all",
 	"hu" => "TRANS No catch-all ",
-	"it" => "TRANS No catch-all ",
+	"it" => "Nessuna catch-all ",
 	"nl" => "Geen catch-all ",
 	"ru" => "TRANS No catch-all ",
 	"de" => "Kein catch-all ",
@@ -756,7 +756,7 @@ $txt_mail_catch_all_deliver=array(
 	"fr" => "Le catch-all email est positionner pour délivrer à",
 	"en" => "Catch-all email set to deliver to",
 	"hu" => "TRANS Catch-all email set to deliver to ",
-	"it" => "TRANS Catch-all email set to deliver to ",
+	"it" => "Il messaggio catch-all è da inviare a ",
 	"nl" => "Catch-all email wordt afgeleverd op ",
 	"ru" => "TRANS Catch-all email set to deliver to ",
 	"de" => "Catch-all email gesetzt ",
@@ -772,7 +772,7 @@ $txt_package_version=array(
 	"fr" => "Version du package",
 	"en" => "Package version",
 	"hu" => "TRANS Package version ",
-	"it" => "TRANS Package version ",
+	"it" => "Versione pacchetto ",
 	"nl" => "Package versie ",
 	"ru" => "TRANS Package version ",
 	"de" => "Package Version ",
@@ -787,7 +787,7 @@ $txt_package_need_db=array(
 	"fr" => "Besion d'une base de donnée ",
 	"en" => "Need a database",
 	"hu" => "TRANS Need a database ",
-	"it" => "TRANS Need a database ",
+	"it" => "E' necessario un database ",
 	"nl" => "Database nodig",
 	"ru" => "TRANS Need a database ",
 	"de" => "Benoetige eine Datenbank ",
@@ -802,7 +802,7 @@ $txt_package_un_size=array(
 	"fr" => "Taille décompressée ",
 	"en" => "TRANS Unpack size ",
 	"hu" => "TRANS Unpack size ",
-	"it" => "TRANS Unpack size ",
+	"it" => "Dimensione scompattata ",
 	"nl" => "Uitgepakte grootte ",
 	"ru" => "TRANS Unpack size ",
 	"de" => "Entpackte groesse ",
@@ -818,7 +818,7 @@ $txt_install=array(
 	"fr" => "Installer ",
 	"en" => "Install",
 	"hu" => "TRANS Install ",
-	"it" => "TRANS Install ",
+	"it" => "Installa ",
 	"nl" => "Installeer ",
 	"ru" => "TRANS Install ",
 	"de" => "Installiere ",
@@ -834,7 +834,7 @@ $txt_package_name=array(
 	"fr" => "Nom du package ",
 	"en" => "Package name ",
 	"hu" => "TRANS Package name ",
-	"it" => "TRANS Package name ",
+	"it" => "Nome pacchetto ",
 	"nl" => "Package naam ",
 	"ru" => "TRANS Package name ",
 	"de" => "Package Name ",
@@ -850,7 +850,7 @@ $txt_description=array(
 	"fr" => "Description ",
 	"en" => "Description",
 	"hu" => "TRANS Description ",
-	"it" => "TRANS Description ",
+	"it" => "Descrizione ",
 	"nl" => "Omschrijving ",
 	"ru" => "TRANS Description ",
 	"de" => "Beschreibung ",
@@ -865,7 +865,7 @@ $txt_choose_package_install =array (
 	"fr" => "Choisissez un package à installer",
 	"en" => "Choose a package to install",
 	"hu" => "TRANS Choose a package to install",
-	"it" => "TRANS Choose a package to install",
+	"it" => "Scegli un pacchetto da installare",
 	"nl" => "Kies een package om te installeren",
 	"ru" => "TRANS Choose a package to install",
 	"de" => "Waehle ein zu Installierendes Package aus",
@@ -881,7 +881,7 @@ $txt_subdom_new=array (
 	"fr" => "Nouveau sous-domain",
 	"en" => "New subdomain",
 	"hu" => "TRANS New subdomain",
-	"it" => "TRANS New subdomain",
+	"it" => "Nuovo sottodominio",
 	"nl" => "Nieuw subdomein",
 	"ru" => "TRANS New subdomain",
 	"de" => "Neue Subdomain",
@@ -897,7 +897,7 @@ $txt_subdom_edit_one= array (
 	"fr" => "Editer l'un de vos sous-domaines",
 	"en" => "Edit one of your subdomains",
 	"hu" => "TRANS Edit one of your subdomains",
-	"it" => "TRANS Edit one of your subdomains",
+	"it" => "Modifica il sottodominio",
 	"nl" => "Bewerk een van je subdomeinen",
 	"ru" => "TRANS Edit one of your subdomains",
 	"ro" => "Prelucreaza un subdomeniu de-al tau",
@@ -914,7 +914,7 @@ $txt_use=array(
 	"fr" => "Utiliser: ",
 	"en" => "Use :",
 	"hu" => "TRANS Use",
-	"it" => "TRANS Use",
+	"it" => "Utilizza:",
 	"nl" => "Gebruik",
 	"ru" => "TRANS Use",
 	"de" => "Benutze",
@@ -929,7 +929,7 @@ $txt_aliasing=array(
 	"fr" => "Alias",
 	"en" => "aliasing",
 	"hu" => "TRANS aliasing",
-	"it" => "TRANS aliasing",
+	"it" => "Alias",
 	"nl" => "Aliasing",
 	"ru" => "TRANS aliasing",
 	"de" => "Alias",
@@ -945,7 +945,7 @@ $txt_DNS_config_of =array(
 	"fr" => "Configuration DNS de : ",
 	"en" => "DNS config of:",
 	"hu" => "TRANS DNS_config of",
-	"it" => "TRANS DNS_config of",
+	"it" => "Configura DNS di:",
 	"nl" => "DNS config van",
 	"ru" => "TRANS DNS_config of",
 	"de" => "DNS Konfiguration von:",
@@ -961,7 +961,7 @@ $txt_domain_tools =array(
 	"fr" => "Domain Tools",
         "en" => "Domain Tools",
         "hu" => "TRANS Domain Tools",
-        "it" => "TRANS Domain Tools",
+        "it" => "Strumenti dominio",
         "nl" => "Domein Tools",
         "ru" => "TRANS Domain Tools",
         "de" => "Domain Werkzeuge",
@@ -977,7 +977,7 @@ $txt_Statistics_of_domain =array(
 	"fr" => "Statistiques du domaine : ",
 	"en" => "Statistics of domain:",
 	"hu" => "TRANS Statistics of domain",
-	"it" => "TRANS Statistics of domain",
+	"it" => "Statistiche dominio:",
 	"nl" => "Statistieken van domein",
 	"ru" => "TRANS Statistics of domain",
 	"de" => "Statistik der Domain",
@@ -992,7 +992,7 @@ $txt_Whois_editor_of =array(
 	"fr" => "Vos sous-comptes: ",
 	"en" => "Your child accounts:",
 	"hu" => "TRANS ",
-	"it" => "Tuoi sotto-account ",
+	"it" => "Tuoi sotto-profili ",
 	"nl" => "Jouw sub accounts ",
 	"ru" => "TRANS ",
 	"de" => "Deine unterkonten ",
@@ -1007,7 +1007,7 @@ $txt_Whois_editor_of =array(
 	"fr" => "Package",
 	"en" => "Package",
 	"hu" => "TRANS Package",
-	"it" => "TRANS Package ",
+	"it" => "Pacchetto ",
 	"nl" => "Package",
 	"ru" => "TRANS Package",
 	"de" => "Package",
@@ -1022,7 +1022,7 @@ $txt_Whois_editor_of =array(
 	"fr" => "Configuration des nick handles internet des whois internet",
 	"en" => "Internet Whois Nick Handles management:",
 	"hu" => "TRANS Internet Whois Nick Handles management",
-	"it" => "TRANS Internet Whois Nick Handles management ",
+	"it" => "Gestione nick whois ",
 	"nl" => "Internet Whois Nick Handles management",
 	"ru" => "TRANS Internet Whois Nick Handles management",
 	"de" => "TRANS Internet Whois Nick Handles management",
@@ -1037,7 +1037,7 @@ $txt_Whois_editor_of =array(
 	"fr" => "Ajouter un nom de domaine à mon compte",
 	"en" => "Add a domain name to my account:",
 	"hu" => "TRANS Add a domain name to my account",
-	"it" => "TRANS Add a domain name to my account",
+	"it" => "Aggiungi dominio al mio profilo",
 	"nl" => "Voeg een domeinnaam toe aan mijn account",
 	"ru" => "TRANS Add a domain name to my account",
 	"de" => "Fuege einen Domainnamen zu meinem Konto hinzu",
@@ -1052,7 +1052,7 @@ $txt_Whois_editor_of =array(
 	"fr" => "Configurer mes serveurs de noms",
 	"en" => "Manage my name servers:",
 	"hu" => "TRANS Manage my name servers",
-	"it" => "TRANS Manage my name servers",
+	"it" => "Gestisci miei name server",
 	"nl" => "Manage mijn name servers",
 	"ru" => "TRANS Manage my name servers",
 	"de" => "Verwalte meine Nameserver",
@@ -1067,7 +1067,7 @@ $txt_Whois_editor_of =array(
 	"fr" => "Informations de mon compte: ",
 	"en" => "My Account information:",
 	"hu" => "TRANS My Account information:",
-	"it" => "TRANS My Account information:",
+	"it" => "Informazioni sul mio profilo:",
 	"nl" => "Mijn Account informatie:",
 	"ru" => "TRANS My Account information:",
 	"de" => "Meine Konto Informationen:",
@@ -1082,7 +1082,7 @@ $txt_Whois_editor_of =array(
 	"fr" => "Sous-comptes revendeur",
 	"en" => "Resseller child accounts",
 	"hu" => "TRANS Resseller child accounts",
-	"it" => "TRANS Resseller child accounts",
+	"it" => "Profili rivenditori",
 	"nl" => "Reseller sub accounts",
 	"ru" => "TRANS Resseller child accounts",
 	"de" => "Wiederverkaeufer unterkonten",
@@ -1099,7 +1099,7 @@ $txt_edit_mailing_lists_of_domain = array(
 	"fr" => "Editer les liste de publipostage de mon domaine :",
 	"en" => "Edit mailing lists of domain:",
 	"hu" => "TRANS Edit mailing lists of domain",
-	"it" => "TRANS Edit mailing lists of domain",
+	"it" => "Modifica mailing list del dominio",
 	"nl" => "Bewerk mailing lists van domein",
 	"ru" => "TRANS Edit mailing lists of domain",
 	"de" => "Bearbeite mailinglisten einer Domain",
@@ -1115,7 +1115,7 @@ $txt_documentation = array(
 	"fr" => "Documentation",
 	"en" => "Documentation:",
 	"hu" => "TRANS Documentation",
-	"it" => "TRANS Documentation",
+	"it" => "Manuale uso",
 	"nl" => "Documentatie",
 	"ru" => "TRANS Documentation",
 	"de" => "Dokumentation",
@@ -1132,7 +1132,7 @@ $txt_your_child_accounts = array(
 	"fr" => "Vos sous-comptes: ",
 	"en" => "Your child accounts:",
 	"hu" => "TRANS ",
-	"it" => "Tuoi sotto-account ",
+	"it" => "Tuoi sotto-profili ",
 	"nl" => "Jouw sub accounts ",
 	"ru" => "TRANS ",
 	"de" => "Deine Unterkonten:",
@@ -5864,157 +5864,103 @@ Opensource driven| hosting worldwide  /_____/ 			|HOST.  </pre>
 ",
 
 	"it" => "
-<font face=\"Arial, Verdana\">
-<center><font size=\"+2\"><u><b>ONLINE DTC
-HELP</b></u></font></center><br><br>
-<div align=\"justify\">
-<font size=\"+1\"><u>1. What is DTC</u></font><br><br>
-DTC is a tool we made especialy for you. With it, you can take the
-control of your domain administration : you can
-manage all your subdomains, emails, and ftp accounts.<br><br>
-All this tool had been release under the <a
-href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence),
-which means that you can have a copy of this interface source
-code, modify it and use it as you wish, as long as you redistribute
-all thoses changes. We (at GPLHost) believe in the Free
-Software effort, and we hope this participation will encourage
-other developpements. We consider that because we use only
-open-source software for our hosting service, it is normal
-to redistribute our developpements.<br><br>
-<font size=\"+1\"><u>2. Emails</u></font><br>
-<u>2.1. What will it do ?</u><br><br>
-You can add, delete or modify a mailbox with this tool.<br><br>
-<u>2.2. Redirection and local delivery</u><br><br>
-Each mailbox can be redirected to one or more email addresse, which
-means that when a message is recieved, it is forwared to one
-or tow email adresse(s). The \"deliver locally\" checkbox
-tells wether or not all message for this mailbox will be
-written on our hard disk, so thenafter you will be able to
-read your message using a mail client, connecting to
-our server. Don't forget to checkup your mails often if
-you have trafic, because the mailbox are included in the
-quota<br><br>
-<u>2.3. Delay when adding / deleting accounts</u><br><br>
-When you add or delete a mail account, don't expect it to
-work immediatly : we will have to validate the changes in
-the system in order to have your new accounts changes to
-take effect : we have to tell Qmail (our mail server) to
-reload it's user database.<br><br>
-Most of the time, we validate all changes at the end of
-each working days, but if you need an immediate validation,
-click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
-validation\">here</a>.<br><br>
-<font size=\"+1\"><u>3. Subdomains</u></font><br>
-<u>3.1. What will it do ?</u><br><br>
-This part of the interface is for configurating your
-somain's sites, which means that you will be able
-to populate your web site with url of the form :
-<pre>
-http://anything.u.want.mydomain.com
-</pre>
-<u>3.2. What is the default subdomain ?</u><br><br>
-Whe someone trys to contact your web site with an
-URL without a subdomain, he is redirected to the
-subdomain you said it was the default. In other
-words, if you tell that:
-<pre>
-www
-</pre>
-is the default subdomain, someone that trys to
-connect using an url starting with:
-<pre>
-http://mydomain.com
-</pre>
-will be redirected to:
-<pre>
-http://www.mydomain.com
-</pre>
-In fact, the URL is kept, and no URL redirection
-in a HTML page has been created, but simply, a
-website with that URL has been configurated to
-the same location of the \"www\" subdomain, so
-it accesses the same html (or php) files, and
-shares the same log file.<br><br>
-<u>3.3. Forbidden subdomains</u><br><br>
-Because we have configurated those subdomains for
-other services than web, you cannot use the following
-subdomains for apache web sites :
-<ul><li>ftp</li>
-<li>pop</li>
-<li>smtp</li>
-</ul>
-<u>3.4. Deleting subdomains</u><br><br>
-It is up to you to delete the files used by your subdomain.
-You can delete all the files using a standard ftp client.
-But PLEASE take realy care not to delete a subdomain files
-without deleting it using DTC. Indeed, the Apache web server
-will complain if the directory does not exist but a web site
-is configurated for it, and this will be anoying when restarting
-apache.<br><br>
-<u>3.5. Delay when adding / deleting subdomain</u><br><br>
-We will have to restart our Apache web server in order
-to have your changes taking effect. Most of the time, we validate all
-changes at the end of
-each working days, but if you need an immediate validation,
-click <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain creation
-: please restart apache now !\">here</a>.<br><br>
-<u>3.6. Trafic statistics for your subdomains</u><br><br>
-Because all your trafic is loged, we calculate the overall
-last 12 month statistics using <a href=\"http://www.mrunix.net/webalizer/\">
-webalizer</a>. The statistics are calculated each days at
-4 in the morning (this is when there is less trafic), and
-can be reach under the \"/stats\" directory on each
-subdomains. That means that if you have registerd :
-<pre>
-http://www.mydomain.com
-</pre>
-all statistics will be generated under :
-<pre>
-http://www.mydomain.com/stats/
-</pre>
-<font size=\"+1\"><u>4. FTP accounts</u></font><br>
-<u>4.1. What will it do ?</u><br><br>
-To have your page working and running, you have to upload
-them. But because you may not be only one to work on your
-web site, you may want to have more that one FTP account
-for accessing your web site. DTC will be the tool for
-managing thoses accounts and passwords.<br><br>
-<u>4.2. Delay when adding / deleting FTP accounts</u><br><br>
-Because we use ProFTP with a special module for handling accounts in
-our MySql database, all changes to your FTP accounts take effect
-in realtime.<br><br>
-<u>4.3. Limiting user to specified path</u><br><br>
-For the moment you cannont limit one user to access to only
-a part of your web site. But we (the administrators) can
-do it if you ask sending an <a
-href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]Ask for a
-user path change in FTP\">email</a>, telling what user
-and what path you need.<br><br>
-<u>4.4. No piracy or file exchange on our servers please !</u><br><br>
-If we provide a user space on our ftp servers, this is
-for you to upload HTML content. This means no binary
-files you don't own the rights ! Take care if you abuse,
-we could close your accounts without notification.<br><br>
-<font size=\"+1\"><u>5. Why ftp or pop is slow, sometimes ?</u></font><br><br>
-There are many reasons for that. The first one is because
-we don't have many band with for uploading, and sometimes,
-there are realy a lot of people uploading. The one that
-are closer to our servers take most of the time all that
-band width, so one user has most of it, and some have
-not. There is nothing we can do about that...<br><br>
-Another reason is because we have decided to limit the
-band width for pop, smtp, and ftp, so that web browsing
-on our server is faster.<br><br><br>
+<div align=\"center\" >
+  <p>DTC &egrave; un'applicazione opensource su licenza GPL che ti permette di amministrare con semplicit&agrave; il tuo dominio: profili ftp, caselle di posta, sottodomini, reindirizzamenti, database, ecc. Qui di seguito trovi una guida passo passo per usare il tuo pannello.</p>
+  </div>
+<div align=\"justify\" >
+<ul>
+<li><a href=\" #posta\" >Caselle di posta</a></li>
+<li><a href=\" #sottodomini\" >Sottodomini</a></li>
+<li><a href=\" #statistiche\" >Statistiche sottodomini</a></li>
+<li><a href=\" #dns\" >Preferenze DNS</a> </li>
+<li><a href=\" #ftp\" >Profili FTP</a></li>
+<li><a href=\" #database\" >Database</a></li>
+<li><a href=\" #mailing\" >Mailing list</a> </li>
+<li> <a href=\" #pacchetti\" >Installazione pacchetti</a></li>
+</ul>  <h3><a name=\"posta\" id=\"posta\" ></a>1. Caselle di posta </h3>
+  <p>
+  Per creare una nuova casella di posta clicca sul nome del tuo dominio e quindi su Caselle di posta. Configura la tua casella come indicato nella seguente schermata:</p>
+  <p><img src=\"http://itcs.areaserver.it/posta.png\" alt=\"Casella di posta\" width=\"844\" height=\"728\" > </p>
+  <p>Tieni spuntata l'opzione &quot;Copia messaggi in locale&quot; per scaricare i messaggi sul tuo programma di posta. Configura il tuo programma di posta elettronica come di seguito:</p>
+  <ol>
+    <li>Nome utente &raquo;  tuaemail@tuodominio.xx </li>
+    <li>Password &raquo; tuapassword </li>
+    <li>Server di posta in entrata (POPMAIL o IMAP) &raquo;  mail.tuodominio.xx</li>
+    <li>Server di posta in uscita (SMTP) &raquo;  mail.tuodominio.xx</li>
+  </ol>
+  <p>Nelle preferenze del tuo programma di posta spunta l'opzione &quot;Cancella copia messaggi sul server&quot; per non occupare lo spazio della casella.  Ricorda infine di controllare periodicamente  la posta per non occupare tutto lo spazio della casella. Le modifiche alle caselle email sono pressoch&eacute; immediate: se noti dei rallentamenti o problemi di connessione alla posta puoi <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]email account 
+validation\" >comunque segnalarcelo. </a></p>
+  <p>&nbsp;</p>
+  <h3><a name=\"sottodomini\" id=\"sottodomini\" ></a>2. Sottodomini</h3>
+<p>
+    Per creare un sottodominio del tipo <strong>http://nome.tuodominio.xx</strong> clicca alla voce sottodominio e 
+  configura i parametri come indicato nella seguente schermata:</p>
+  <p><img src=\"http://itcs.areaserver.it/sottodominio.png\" alt=\"Sottodomini\" width=\"796\" height=\"636\" > </p>
+  <p><br>
+    Per ogni dominio da te attivato esiste un sottodominio predefinito del tipo <strong>www</strong> per permettere agli utenti di collegarsi al tuo sito anche senza specificare l'indirizzo completo. Pertanto digitando <strong>http://tuodominio.it</strong> si verr&agrave; reindirizzati su <strong>http://www.tuodominio.xx</strong><br>
+    Non &egrave; possibile attivare sottodomini con le estensioni <strong>ftp, smtp, pop</strong> perch&eacute; vengono usate dal server Apache per gestire la posta e la connessione ftp.</p>
+  <p>    Per modificare un sottodominio clicca sul suo nome e apporta le modifiche necessarie.
+  Da qui puoi anche cancellare il sottodominio: <strong>non rimuovere via ftp le cartelle del sottodominio senza prima averlo cancellato dal pannello di controllo. </strong></p>
+  <p> Le modifiche ai sottodomini avvengono al riavvio del server Apache: se noti dei rallentamenti o ritardi  nell'attivazione dei sottodomini puoi <a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC]subdomain account 
+validation\" >comunque segnalarcelo. </a></p>
+  <p>&nbsp;</p>
+  <h3><a name=\"statistiche\" id=\"statistiche\" ></a>3. Statistiche sottodomini </h3>
+  <p>
+    Tutto il traffico sul tuo dominio viene tracciato dal server attraverso  <a href=\"http://www.mrunix.net/webalizer/\" >
+  webalizer</a>. Le statistiche dei vari sottodomini sono raggiungibili  cliccando su &quot;Statistiche&quot; o collegandosi alla cartella &quot;/stats&quot; dei tuoi sottodomini. Ad esempio se vuoi leggere le statistiche del dominio <strong>www.tuodominio.xx</strong> dovrai collegarti all'indirizzo <strong>http://www.tuodominio.xx/stats</strong></p>
+  <p><img src=\"http://itcs.areaserver.it/statistiche.png\" alt=\"Statistiche\" width=\"844\" height=\"383\" /> </p>
+  <p>&nbsp;</p>
+  <h3><a name=\"dns\" id=\"dns\" ></a>4. Preferenze DNS </h3>
+  <p>Se vuoi che il dominio sia ospitato su un altro server devi specificare gli indirizzi DNS primario e secondario del server (chiedi al tuo amministratore):</p>
+  <p><img src=\"http://itcs.areaserver.it/dns.png\" alt=\"Indirizzi DNS\" width=\"844\" height=\"534\" /> </p>
+  <p>&nbsp;</p>
+  <h3><a name=\"ftp\" id=\"ftp\" ></a>5.  Profili FTP</h3>
+  <p>Dal pannello puoi creare/modificare uno o pi&ugrave; profili ftp per caricare/prelevare file nei tuoi sottodomini:</p>
+  <p><img src=\"http://itcs.areaserver.it/ftp.png\" alt=\"profili FTP\" width=\"844\" height=\"405\" /></p>
+  <p>Configura il tuo programma FTP  come di seguito:</p>
+  <ol>
+    <li>Hostname/Server name  &raquo;  www.tuodominio.xx </li>
+    <li>Username &raquo; tuonome@tuodominio.xx </li>
+    <li>Password &raquo; tuapassword  </li>
+    <li>Remote path  &raquo;  /tuodominio.xx/subdomains/www/    </li>
+  </ol> 
+  <p>&nbsp;</p>
+  <h3><a name=\"database\" id=\"database\" ></a>6. Database  </h3>
+      <p>Dal pannello puoi creare/modificare fino a 5 database:</p>
+      <p><img src=\"http://itcs.areaserver.it/db.png\" alt=\"database\" width=\"844\" height=\"412\" /></p>
+   
+      <p>Dal pannello di controllo puoi accedere a <a href=\"https://itcs.areaserver.it/index.php?sousrub=phpmyadmin\" >phpMyAdmin</a> con il tuo nome utente e password per gestire in piena libert&agrave; i tuoi database (eseguire query, modificare tabelle, importare file sql, ecc.):</p>
+      <p><img src=\"http://itcs.areaserver.it/phpMyAdmin.png\" alt=\"database\" width=\"646\" height=\"485\" /></p>
+      <p>&nbsp;</p>
+      <h3><a name=\"mailing\" id=\"mailing\" ></a>7. Mailing list </h3>
+      <p>Dal pannello puoi creare/modificare fino a 10 mailing list (o liste di distribuzione):</p>
+      <p><img src=\"http://itcs.areaserver.it/mailing-list.png\" alt=\"mailing-list\" width=\"844\" height=\"401\" /></p>
+      <p><br />
+        La mailing list pu&ograve; essere controllata via email o tramite il pannello di controllo.<br />
+      Di seguito gli indirizzi ai quali puoi inviare una email per eseguire il rispettivo comando:</p>
+      <p> tuamailing-help@www.tuodominio.xx -&gt; restituisce la lista dei comandi pi&ugrave; comuni<br />
+        tuamailing-list@www.tuodominio.xx -&gt; restituisce la lista degli iscritti alla lista<br />
+        tuamailing-get-N@www.tuodominio.xx -&gt; restituisce il messaggio N della lista<br />
+        tuamailing-owner@www.tuodominio.xx -&gt; permette di inviare una email al proprietario della lista<br />
+        tuamailing-unsubscribe@www.tuodominio.xx -&gt; elimina l'indirizzo email del mittente dalla lista<br />
+        tuamailing-subscribe@www.tuodominio.xx -&gt; iscrive l'indirizzo email del mittente alla lista<br />
+        tuamailing-subscribe-digest@www.tuodominio.xx -&gt; iscrive l'indirizzo email del mittente alla versione digest della lista<br />
+        tuamailing-subscribe-nomail@www.tuodominio.xx -&gt; iscrive l'indirizzo email del mittente alla versione nomail della lista</p>
+      <p>Per ulteriori informazioni visita il sito ufficiale di mlmmj all'indirizzo <a href=\"http://mlmmj.mmj.dk\" >http://mlmmj.mmj.dk</a></p>
+      <p>&nbsp;</p>
+      <h3><a name=\"pacchetti\" id=\"pacchetti\" ></a>8. Installazione pacchetti </h3>
+      <p>Dal pannello puoi installare diverse applicazioni web: cms (content management system), newsletter, carrelli elettronici, forum di discussione, ecc.:</p>
+      <p><img src=\"http://itcs.areaserver.it/pacchetti.png\" alt=\"pacchetti\" width=\"844\" height=\"782\" /></p>
+      <p> La procedura di installazione &egrave; molto semplice:</p>
+      <ol>
+        <li>seleziona il database e la password per il pacchetto</li>
+        <li>inserisci una email, login e password per l'amministratore          </li>
+      </ol>
+      <p><img src=\"http://itcs.areaserver.it/pacchetti2.png\" alt=\"pacchetti\" width=\"844\" height=\"663\" /></p>
+      <p><br>
+    <br>
+  </p>
 </div>
-<center>For the GPLHost team,</center><br>
-<div align=\"right\"><i><a href=\"mailto:NOSPAMthomas[ at ] gplhost [ dot ] com\">Thomas GOIRAND</a></i></div><br>
-<pre>   _____       _____________   (c) 2oo3.2oo4     _____  s!   ____  ___|    .___
- _( ___/______(____     /  |______|    |________(    /______(  _/__\___    ___/
-|   \___   \_    |/    /   |\    \_    ___   \_    ___   \________   \|    |   
-|    |/     /    _____/    |/     /    |/     /    |/     /    |/     /    |   
-|___________\    |    |__________/|____|     /|___________\___________\GPL |   
-Opensource driven| hosting worldwide  /_____/ 			|HOST.  </pre>
-</font>
 ",
 	"nl" => "
 <font face=\"Arial, Verdana\">
