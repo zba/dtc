@@ -31,6 +31,7 @@ admin/view_waitingusers.php	/usr/share/dtc/admin
 admin/vps_stats_hdd.php		/usr/share/dtc/admin
 admin/vps_stats_swap.php	/usr/share/dtc/admin
 admin/vps_stats_cpu.php		/usr/share/dtc/admin
+admin/vps_stats_network.php	/usr/share/dtc/admin
 admin/dtc-chroot-shell		/bin
 admin/reminders_msg		/etc/dtc
 admin/signature.txt		/etc/dtc
