@@ -384,10 +384,12 @@ createSubdomainDirAndFiles () {
 	mkdir -p $TMP_PATH"/logs"
 	mkdir -p $TMP_PATH"/cgi-bin"
 
+	# As this sometimes fails (rarely) when files exists, we happen a || true
+	# as this is not 100% needed when files are already there...
 	if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
-		cp -fpR  $conf_chroot_path/* $TMP_PATH"/"
+		cp -fpR  $conf_chroot_path/* $TMP_PATH"/" || true
 	else
-		cp -fupR  $conf_chroot_path/* $TMP_PATH"/"
+		cp -fupR  $conf_chroot_path/* $TMP_PATH"/" || true
 	fi
 }
 
