@@ -2365,7 +2365,7 @@ $txt_cmenu_password = array(
 	"pt" => "Palavra chave"
 	);
 $txt_cmenu_support_tickets = array(
-	"fr" => "Tiquets de support",
+	"fr" => "Tickets de support",
 	"en" => "Support tickets",
 	"hu" => "TRANS Support tickets",
 	"it" => "TRANS Support tickets",
