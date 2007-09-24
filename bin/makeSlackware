@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Welcome to the DTC install maker !
+# This will produce the tarball package
+# Maintainer: Thomas GOIRAND <thomas [ at ] goirand.fr>
+# please do not ship with your packages
+# this is only a small coder tool...
+#
+VERS=`cat version`
+RELS=`cat release`
+VERSION=$VERS"-"$RELS
+UNIX_TYPE=slackware
+BUILD_DIR=dtc
+DEST_DIR="dtc_"$VERSION"-slackware"
+ARCH_NAME=$DEST_DIR"_all.tar.gz"
+
+./buildRelease $UNIX_TYPE $BUILD_DIR
+
+chown -R root:root $BUILD_DIR
+chown dtc:dtcgrp $BUILD_DIR/client/imgcache $BUILD_DIR/admin/imgcache $BUILD_DIR/email/imgcache $BUILD_DIR/shared/imgcache
+chown dtc:dtcgrp $BUILD_DIR/client/gfx $BUILD_DIR/admin/gfx $BUILD_DIR/email/gfx $BUILD_DIR/shared/gfx $BUILD_DIR/admin/*.cgi
+
+# Specific tarball package actions :
+mv $BUILD_DIR $DEST_DIR
+cp sources/slackware/install.sh $DEST_DIR
+cat sources/create_chroot.sh >>$DEST_DIR"/install.sh"
+cat sources/setup_mysql_db.sh >>$DEST_DIR"/install.sh"
+cat sources/configure_deamons.sh >>$DEST_DIR"/install.sh"
+
+cp sources/slackware/uninstall.sh $DEST_DIR
+cat sources/uninstall_deamons.sh >>$DEST_DIR"/uninstall.sh"
+echo "===> Packaging"
+tar -czf $ARCH_NAME $DEST_DIR
+
+echo " -- Succesfully made $ARCH_NAME ---"
