@@ -1,3 +1,13 @@
+Version 0.26.4:
+---------------
+- VPS stat page for network was missing in the .deb
+- Added password protection patch from <krystian@ezpear.com> for the /stats
+folder of all domains.
+- Many improvements to use a remote database for users
+- Some patch to make it work for Slackware (from Krystian).
+- Restarts bind9 with "rndc reload"
+- Some support tickets improvements
+
 Version 0.26.3:
 ---------------
 - feature: User databases can be on a different host now. Also, remote SQL
