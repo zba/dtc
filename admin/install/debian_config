@@ -67,9 +67,9 @@ debianGetDebconfValues () {
 	conf_cert_challenge_pass=$RET
 	db_get dtc/conf_omit_dev_mknod
 	if [ ""$RET = "true" -o ""$RET = "yes" ] ; then
-		omit_dev_mknod="yes"
+		conf_omit_dev_mknod="true"
 	else
-		omit_dev_mknod="no"
+		conf_omit_dev_mknod="false"
 	fi
 	db_get dtc/conf_dnsbl_list
 	conf_dnsbl_list=$RET
