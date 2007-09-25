@@ -75,6 +75,8 @@ debianGetDebconfValues () {
 	conf_dnsbl_list=$RET
 	db_get dtc/conf_recipient_delim
 	conf_recipient_delim=$RET
+	db_get dtc/conf_mx_mail
+	conf_mx_mail=$RET
 	db_get dtc/conf_eth2monitor
 	conf_eth2monitor=$RET
 	db_get dtc/conf_report_setup_stat

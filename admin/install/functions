@@ -5,7 +5,11 @@ if [ -z "$MKTEMP" ] ; then
 fi
 
 if [ -z "$MX_MAIL" ] ; then
-	MX_MAIL="mx"
+	if ! [ -z "$conf_mx_mail" ] ; then
+		MX_MAIL=${conf_mx_mail}
+	else
+		MX_MAIL="mx"
+	fi
 fi
 
 echoIfVerbose () {

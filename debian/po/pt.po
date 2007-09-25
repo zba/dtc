@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc 0.25.1-1\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
-"POT-Creation-Date: 2007-08-17 17:10+0800\n"
+"POT-Creation-Date: 2007-09-25 23:24+0800\n"
 "PO-Revision-Date: 2007-03-15 00:27+0000\n"
 "Last-Translator: Ricardo Silva <ardoric@gmail.com>\n"
 "Language-Team: Portuguese <traduz@debianpt.org>\n"
@@ -473,12 +473,27 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
+msgid "Subdomain name for the MX server:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
+msgid ""
+"Your mail server will need to use a subdomain name to accept mail. This "
+"subdomain will be configured in your mail server and your domain name server "
+"by DTC. Any name is ok here."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Network devices to monitor:"
 msgstr "Dispositivos rede a monitorizar:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
@@ -488,13 +503,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Allow to report anonymous statistics to GPLHost?"
 msgstr "Permitir envio de estatísticas anónimas para GPLHost?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid ""
 "DTC installations can be reported to the GPLHost web site. The only "
 "collected data are the operating system name (Debian) and the IP address "
@@ -508,13 +523,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid "Skip mknod calls when building the chroot template?"
 msgstr "Saltar chamadas ao mknod durante a construção do template chroot?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid ""
 "In some environments, such as Linux vServer, mknod cannot be executed. This "
 "option allows skipping the creation of the null, random and urandom devices "

@@ -215,6 +215,14 @@ _Description: Local address extension character:
  Please choose the character that will be used to define a local address
  extension. This MUST match what you have set in your postfix or qmail setup.
 
+Template: dtc/conf_mx_mail
+Type: string
+Default: mx
+_Description: Subdomain name for the MX server:
+ Your mail server will need to use a subdomain name to accept mail. This
+ subdomain will be configured in your mail server and your domain name server
+ by DTC. Any name is ok here.
+
 Template: dtc/conf_eth2monitor
 Type: string
 _Description: Network devices to monitor:
