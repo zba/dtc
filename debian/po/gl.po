@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
-"POT-Creation-Date: 2007-09-25 23:24+0800\n"
+"POT-Creation-Date: 2007-09-25 23:45+0800\n"
 "PO-Revision-Date: 2007-03-20 22:29+0100\n"
 "Last-Translator: Jacobo Tarrio <jtarrio@debian.org>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -462,6 +462,18 @@ msgstr ""
 msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid ""
+"The recipient delimiter will be used for your mailing lists. Let's say you "
+"use the + char as delimiter, then your users will have to send a mail to list"
+"+subscribe@example.com. The drawback when choosing + is that some MTA don't "
+"allow to send mail with this char in the recipient (namely some bad qmail "
+"patches are incompatibles), but when using - as delimiter, you will not be "
+"able to use an email of the form john-doe@example.com as - is the delimiter."
 msgstr ""
 
 #. Type: string

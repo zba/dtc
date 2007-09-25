@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
-"POT-Creation-Date: 2007-09-25 23:24+0800\n"
+"POT-Creation-Date: 2007-09-25 23:45+0800\n"
 "PO-Revision-Date: 2007-03-23 18:59+0100\n"
 "Last-Translator: Christian Perrier <bubulle@debian.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -152,7 +152,7 @@ msgid ""
 msgstr ""
 "Veuillez indiquer l'adresse IP principale du serveur. Cette adresse sera "
 "utilisée pour le nom de domaine principal et sera la valeur par défaut de la "
-"plupart des variables du programme. Si vous utilisez la translation "
+"plupart des variables du programme. Si vous utilisez la traduction "
 "d'adresses réseau (NAT : « Network Address Translation »), vous devriez "
 "indiquer l'adresse externe du serveur."
 
@@ -294,7 +294,7 @@ msgstr ""
 #. Description
 #: ../dtc.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid "Use \"NATed\" vhosts?"
-msgstr "Faut-il utiliser des hôtes virtuels avec translation d'adresses ?"
+msgstr "Faut-il utiliser des hôtes virtuels avec traduction d'adresses ?"
 
 #. Type: boolean
 #. Description
@@ -305,9 +305,9 @@ msgid ""
 "\"NATed\" vhost configuration can be generated."
 msgstr ""
 "DTC peut configurer Apache pour utiliser une des adresses publiques du "
-"serveur. Si celui-ci est protégé par un pare-feu avec translation d'adresses "
+"serveur. Si celui-ci est protégé par un pare-feu avec traduction d'adresses "
 "(NAT) et redirection de port depuis une ou des adresses publiques, une "
-"configuration utilisant des hôtes virtuels avec translation d'adresses "
+"configuration utilisant des hôtes virtuels avec traduction d'adresses "
 "(« NATed vhosts ») peut être créée."
 
 #. Type: boolean
@@ -315,14 +315,14 @@ msgstr ""
 #: ../dtc.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid ""
 "This option should be chosen only if the server is not connected to the "
-"Internet directly, but through a firewall doing network address translation "
+"Internet directly, but through a firewall doing network address traduction "
 "(NAT). If the server uses a dynamic public IP address, NAT and port "
 "forwarding are mandatory for DTC."
 msgstr ""
 "Cette option ne doit être activée que si le serveur n'est pas connecté "
 "directement sur l'Internet mais est accessible via un pare-feu avec "
-"translation d'adresses. Si le serveur utilise une adresse IP publique "
-"dynamique, la translation d'adresses et la redirection de ports sont "
+"traduction d'adresses. Si le serveur utilise une adresse IP publique "
+"dynamique, la traduction d'adresses et la redirection de ports sont "
 "obligatoires pour utiliser DTC."
 
 #. Type: string
@@ -492,11 +492,31 @@ msgid ""
 "extension. This MUST match what you have set in your postfix or qmail setup."
 msgstr ""
 
+#. Type: select
+#. Description
+#: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid ""
+"The recipient delimiter will be used for your mailing lists. Let's say you "
+"use the + char as delimiter, then your users will have to send a mail to list"
+"+subscribe@example.com. The drawback when choosing + is that some MTA don't "
+"allow to send mail with this char in the recipient (namely some bad qmail "
+"patches are incompatibles), but when using - as delimiter, you will not be "
+"able to use an email of the form john-doe@example.com as - is the delimiter."
+msgstr ""
+"Le caractere de delimitatation du destinataire sera utilise pour vos list "
+"de diffusion. Si par exemple vous utilisez le caracter + comme delimiteur, "
+"alors vos utilisateurs devront s'enregistrer avec "
+"maliste+subscribe@example.com. Le probleme en choisissant + c'est que "
+"certains MTA refuse d'envoyer des couriels a ce genre d'adresse (notament "
+"certains mauvais patchs pour qmail), mais si vous utilisez - comme "
+"delimiteur, alors vous ne pourrez pas utiliser jean-paul@example.com car le "
+"caractere - est le delimiteur."
+
 #. Type: string
 #. Description
 #: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Subdomain name for the MX server:"
-msgstr ""
+msgstr "Nom du sous-domaine pour le serveur MX:"
 
 #. Type: string
 #. Description
@@ -506,6 +526,10 @@ msgid ""
 "subdomain will be configured in your mail server and your domain name server "
 "by DTC. Any name is ok here."
 msgstr ""
+"Votre serveur de messagerie a besoin d'utiliser un sous-domaine pour "
+"accepter des messages. Ce sous-domaine sera configure par DTC dans votre "
+serveur de messagerie et dans votre serveur de nom. N'importe quel nom est "
+"possible."
 
 #. Type: string
 #. Description
