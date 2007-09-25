@@ -31,6 +31,8 @@ function backup_by_ftp(){
 
 	global $conf_user_mysql_host;
 
+	global $conf_mysql_host;
+
 	$num_generated_vhosts=0;
 	$num_generated_db=0;
 
