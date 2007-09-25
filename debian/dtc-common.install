@@ -31,6 +31,7 @@ admin/view_waitingusers.php	/usr/share/dtc/admin
 admin/vps_stats_hdd.php		/usr/share/dtc/admin
 admin/vps_stats_swap.php	/usr/share/dtc/admin
 admin/vps_stats_cpu.php		/usr/share/dtc/admin
+admin/vps_stats_network.php	/usr/share/dtc/admin
 admin/dtc-chroot-shell		/bin
 admin/reminders_msg		/etc/dtc
 admin/signature.txt		/etc/dtc
@@ -51,7 +52,13 @@ shared/securepay		/usr/share/dtc/shared
 shared/template			/usr/share/dtc/shared
 shared/upgrade_sql.php		/usr/share/dtc/shared
 shared/vars			/usr/share/dtc/shared
-shared/maxmind			/usr/share/dtc/shared
+shared/dtc_stats_index.php	/usr/share/dtc/shared
+
+shared/maxmind/CreditCardFraudDetection.php	/usr/share/dtc/shared/maxmind/
+shared/maxmind/HTTPBase.php			/usr/share/dtc/shared/maxmind/
+shared/maxmind/LocationVerification.php		/usr/share/dtc/shared/maxmind/
+shared/maxmind/TelephoneVerification.php	/usr/share/dtc/shared/maxmind/
+
 shared/visitors_template	/usr/share/dtc/shared
 shared/registration_msg		/etc/dtc
 shared/messages_header.txt	/etc/dtc

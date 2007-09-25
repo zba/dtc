@@ -32,7 +32,7 @@ fi
 	$chk_dir_script .= "
 if [ ! -d $dir ] ; then
 	mkdir -p $dir
-	chown $conf_dtc_system_username:$conf_dtc_system_groupname
+	chown $conf_dtc_system_username:$conf_dtc_system_groupname $dir
 	echo \"Directory $dir was missing and has been created.\"
 fi
 ";
@@ -173,6 +173,7 @@ function pro_vhost_generate(){
 	global $conf_php_library_path;
 	global $conf_php_additional_library_path;
 	global $conf_administrative_site;
+	global $conf_administrative_ssl_port;
 	global $conf_use_ssl;
 
 	global $conf_shared_renewal_shutdown;
@@ -186,6 +187,8 @@ function pro_vhost_generate(){
 
 	global $conf_main_domain;
 	global $conf_404_subdomain;
+
+	global $conf_mysql_db;
 
 	$vhost_file = "";
 
@@ -278,7 +281,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	LogSQLTransferLogTable ".str_replace("-","A",str_replace(".","_",$conf_main_domain)).'$'.$conf_404_subdomain.'$'."xfer
 	LogSQLScoreDomain $conf_main_domain
 	LogSQLScoreSubdomain $conf_404_subdomain
-	LogSQLScoreTable dtc.http_accounting
+	LogSQLScoreTable $conf_mysql_db.http_accounting
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>\n";
 				}
@@ -314,7 +317,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
         LogSQLTransferLogTable ".str_replace("-","A",str_replace(".","_",$conf_main_domain)).'$'.$conf_404_subdomain.'$'."xfer
         LogSQLScoreDomain $conf_main_domain
         LogSQLScoreSubdomain $conf_404_subdomain
-        LogSQLScoreTable dtc.http_accounting
+        LogSQLScoreTable $conf_mysql_db.http_accounting
         DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>\n";
 		}
@@ -322,12 +325,18 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 
 	$vhost_file .= "<Directory $conf_dtcadmin_path>
 	Options FollowSymLinks
+	Order Deny,Allow
+	Allow from all
 </Directory>
 <Directory $conf_dtcclient_path>
 	Options FollowSymLinks
+	Order Deny,Allow
+	Allow from all
 </Directory>
 <Directory $conf_dtcemail_path>
 	Options FollowSymLinks
+	Order Deny,Allow
+	Allow from all
 </Directory>\n";
 //	This is not needed anymore as we don't use cgi-bin for the rrdtool graphing anymore
 //	If you need it for your specific config, then add it in the main apache config
@@ -453,13 +462,13 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$log_tablename = str_replace("-","A",str_replace(".","_",$web_name)).'$'.str_replace("-","A",str_replace(".","_",$web_subname));
 				if($conf_use_ssl == "yes" && $k == 0){
 					# add the directive for SSL here
-					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":443", $vhost_file_listen))
+					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":".$conf_administrative_ssl_port, $vhost_file_listen))
 					{
-						$vhost_file_listen .= "Listen ".$ip_to_write.":443\n";
+						$vhost_file_listen .= "Listen ".$ip_to_write.":".$conf_administrative_ssl_port."\n";
 					} else {
-						$vhost_file_listen .= "#Listen ".$ip_to_write.":443\n";
+						$vhost_file_listen .= "#Listen ".$ip_to_write.":".$conf_administrative_ssl_port."\n";
 					}
-					$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
+					$vhost_file .= "<VirtualHost ".$ip_to_write.":".$conf_administrative_ssl_port.">\n";
 				} else if ($k == 1 && isset($backup_ip_addr) || ($conf_use_ssl != "yes" && $k == 0 && isset($backup_ip_addr))) {
 					$vhost_file .= "<VirtualHost ".$backup_ip_addr.":80>\n";
 				}else {
@@ -539,7 +548,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	LogSQLTransferLogTable $log_tablename\$xfer
 	LogSQLScoreDomain $web_name
 	LogSQLScoreSubdomain $web_subname
-	LogSQLScoreTable dtc.http_accounting
+	LogSQLScoreTable $conf_mysql_db.http_accounting
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 
@@ -643,7 +652,7 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	LogSQLTransferLogTable $log_tablename\$xfer
 	LogSQLScoreDomain $web_name
 	LogSQLScoreSubdomain $web_subname
-	LogSQLScoreTable dtc.http_accounting
+	LogSQLScoreTable $conf_mysql_db.http_accounting
 	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
 </VirtualHost>
 

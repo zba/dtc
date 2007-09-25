@@ -34,7 +34,6 @@ if( isset($_REQUEST["graph"]) ){
 	}
 	$range = - $steps;
 	$filename = tempnam("/tmp","dtc_cpugraph");
-	$filename = "/tmp/cpu_load_".$_REQUEST["graph"].".png";
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:loadaverage=$rrd:loadaverage:AVERAGE ";
 	$cmd .= "'LINE1:loadaverage#ff0000:CPU Load average*100:' 'GPRINT:loadaverage:MAX:Maximum\: %0.0lf' 'GPRINT:loadaverage:AVERAGE:Average\: %0.0lf/min\\n' ";

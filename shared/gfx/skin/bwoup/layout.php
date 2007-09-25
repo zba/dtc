@@ -1,4 +1,4 @@
-<?
+<?php
 
 function layoutEmailPanel($menu_title,$menu_content,$main_title,$main_content){
 	return '

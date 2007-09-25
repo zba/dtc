@@ -250,6 +250,56 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 $q = "ALTER TABLE vps_stats CHANGE `diskio_last` `diskio_last` bigint(22) default NULL";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+$q = "SELECT * FROM config";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$n = mysql_num_rows($r);
+if($n != 1){
+	die("Cannot read config table: not one and only one row...");
+}
+$config_vals = mysql_fetch_array($r);
+
+// Iterate on all mailing lists to set the correct recipient delimiter
+echo "-> Changing all recipient delimiter for mailing lists: ";
+$q = "SELECT * FROM mailinglist";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$n = mysql_num_rows($r);
+for($i=0;$i<$n;$i++){
+	$a = mysql_fetch_array($r);
+
+	echo $a["name"];
+	$q2 = "SELECT * FROM domain WHERE name='".$a["domain"]."';";
+	$r2 = mysql_query($q2)or die("Cannot query ".$q2." line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n2 = mysql_num_rows($r2);
+	if($n2 != 1){
+		echo "Could not found domain of list ".$a["name"]."@".$a["domain"]."\n";
+		break;
+	}
+	$a2 = mysql_fetch_array($r2);
+
+	$q3 = "SELECT * FROM admin WHERE adm_login='".$a2["owner"]."'";
+	$r3 = mysql_query($q3)or die("Cannot query ".$q3." line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n3 = mysql_num_rows($r3);
+	if($n3 != 1){
+		echo "Could not found owner of list ".$a["name"]."@".$a["domain"]."\n";
+	}
+	$a3 = mysql_fetch_array($r3);
+
+	$path = $a3["path"]."/".$a["domain"]."/lists/".$a["domain"]."_".$a["name"]."/control/delimiter";
+	if(file_exists($path)){
+		$fp = fopen($path,"wb");
+		if($fp != NULL){
+			fwrite($fp,$config_vals["recipient_delimiter"]);
+			fclose($fp);
+		}else{
+			echo "Could not open file: ".$path." to change the recipient delimiter!\n";
+		}
+	}else{
+		echo "Could not find file: ".$path." to change the recipient delimiter!\n";
+	}
+}
+echo "\n";
+
+
 //////////////////////////////////////////
 // Repair the bad http_accounting table //
 //////////////////////////////////////////
@@ -303,8 +353,7 @@ echo "Remove indexes...";
 $q = "SHOW INDEX FROM http_accounting_tmp;";
 $r_indexes = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 $n_indexes = mysql_num_rows($r_indexes);
-for ($i = 0; $i < $n_indexes; $i++)
-{
+for ($i = 0; $i < $n_indexes; $i++){
 	$a_indexes = mysql_fetch_array($r_indexes);
 	$table_name = $a_indexes[0];
 	$index_name = $a_indexes[2];

@@ -29,6 +29,8 @@ function backup_by_ftp(){
 
 	global $console;
 
+	global $conf_user_mysql_host;
+
 	$num_generated_vhosts=0;
 	$num_generated_db=0;
 
@@ -125,7 +127,7 @@ date\n";
 	$backup_net .= "echo -n \"===> Backuping database dtc: \"\n";
 	$dbfilename = "dtcdb.sql";
 	$backup_net .= "echo -n \" dumping...\"\n";
-	$backup_net .= "mysqldump -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases dtc >".$dbfilename."\n";
+	$backup_net .= "mysqldump -h$conf_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases $conf_mysql_db >".$dbfilename."\n";
 	$backup_net .= "echo -n \" compressing...\"\n";
 	$backup_net .= "gzip $dbfilename\n";
 	$backup_net .= "echo \" Done! Starting upload!\"\n";
@@ -138,14 +140,14 @@ date\n";
 	$restor_net .= "echo \"Ungziping...\"\n";
 	$restor_net .= "gzip -d ".$dbfilename.".gz\n";
 	$restor_net .= "echo \"Restoring SQL...\"\n";
-	$restor_net .= "mysql -u$conf_mysql_login -p$conf_mysql_pass <".$dbfilename."\n";
+	$restor_net .= "mysql -h$conf_mysql_host -u$conf_mysql_login -p$conf_mysql_pass <".$dbfilename."\n";
 	$restor_net .= "echo \" deleting archive\"\n";
 	$restor_net .= "rm -f ".$dbfilename."\n";
 
 	$backup_net .= "echo -n \"===> Backuping database mysql: \"\n";
 	$dbfilename = "mysqldb.sql";
 	$backup_net .= "echo -n \" dumping...\"\n";
-	$backup_net .= "mysqldump -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases mysql >".$dbfilename."\n";
+	$backup_net .= "mysqldump -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -c --add-drop-table --databases mysql >".$dbfilename."\n";
 	$backup_net .= "echo -n \" compressing...\"\n";
 	$backup_net .= "gzip $dbfilename\n";
 	$backup_net .= "echo \" Done! Starting upload!\"\n";
@@ -158,14 +160,17 @@ date\n";
 	$restor_net .= "echo \"Ungziping...\"\n";
 	$restor_net .= "gzip -d ".$dbfilename.".gz\n";
 	$restor_net .= "echo \"Restoring SQL...\"\n";
-	$restor_net .= "mysql -u$conf_mysql_login -p$conf_mysql_pass <".$dbfilename."\n";
+	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass <".$dbfilename."\n";
 	$restor_net .= "echo \" deleting archive\"\n";
 	$restor_net .= "rm -f ".$dbfilename."\n";
 	$restor_net .= "date\n";
 
 	$backup_net .= "ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder $conf_generated_file_path/net_restor.sh\n";
-	$backup_net .= "if [ -e /etcapache/httpd.conf ] ; then\n";
+	$backup_net .= "if [ -e /etc/apache/httpd.conf ] ; then\n";
 	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/apache/httpd.conf\n";
+	$backup_net .= "fi\n";
+	$backup_net .= "if [ -e /etc/httpd/httpd.conf ] ; then\n";
+	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/httpd/httpd.conf\n";
 	$backup_net .= "fi\n";
 	$backup_net .= "if [ -e /etc/apache2/apache2.conf ] ; then\n";
 	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/apache2/apache2.conf\n";
@@ -177,13 +182,19 @@ date\n";
 	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/php4/apache2/php.ini\n";
 	$backup_net .= "fi\n";
 	$backup_net .= "if [ -e /etc/php5/apache/php.ini ] ; then\n";
-	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/php4/apache/php.ini\n";
+	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/php5/apache/php.ini\n";
 	$backup_net .= "fi\n";
 	$backup_net .= "if [ -e /etc/php5/apache2/php.ini ] ; then\n";
-	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/php4/apache2/php.ini\n";
+	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/php5/apache2/php.ini\n";
+	$backup_net .= "fi\n";
+	$backup_net .= "if [ -e /etc/httpd/php.ini ] ; then\n";
+	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/httpd/php.ini\n";
 	$backup_net .= "fi\n";
 	$backup_net .= "if [ -e /etc/crontab ] ; then\n";
 	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /etc/crontab\n";
+	$backup_net .= "fi\n";
+	$backup_net .= "if [ -e /var/spool/root/crontab ] ; then\n";
+	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -T tmp. -E $conf_ftp_backup_dest_folder /var/spool/root/crontab\n";
 	$backup_net .= "fi\n";
 
 	$backup_net .= "date\n";

@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `vps` (
   `bandwidth_per_month_gb` int(9) NOT NULL default '1',
   `product_id` int(9) NOT NULL default '0',
   `operatingsystem` varchar(64) NOT NULL default 'debian',
+  `installed` enum('yes','no') NOT NULL default 'no',
   `bsdkernel` enum('normal','install') NOT NULL default 'normal',
   PRIMARY KEY  (id),
   UNIQUE KEY `vps_server_hostname` (vps_server_hostname,vps_xen_name)

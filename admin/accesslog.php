@@ -10,7 +10,12 @@ function make_stats(){
 	global $conf_mysql_db;
 	global $conf_webalizer_country_graph;
 	global $pro_mysql_domain_table;
-	global $dtcshared_path;
+	global $conf_dtcshared_path;
+	global $conf_generated_file_path;
+
+	global $conf_use_webalizer;
+	global $conf_use_awstats;
+	global $conf_use_visitors;
 
 	$today_midnight = mktime(0,0,0);
 
@@ -26,6 +31,11 @@ function make_stats(){
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/logs";
+
+		if(!file_exists("$fullpath/index.php")){
+			copy("$conf_generated_file_path/dtc_stats_index.php","$fullpath/index.php");
+		}
+
 		$html_fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/html";
 		$table_name = str_replace("-","A",str_replace(".","_",$a["name"].'$'.$a["subdomain_name"].'$'."xfer"));
 
@@ -102,17 +112,28 @@ function make_stats(){
 						echo "$webalizer_cmd\n";
 						exec ($webalizer_cmd);
 
-                        echo "Calculating visitor stats...\n";
-                        $visitor_cmd = "nice -n+20 visitors -A -m 30 $dump_folder/access_*.log -o html > $fullpath/$year.$month.report.html";
-                        echo "$visitor_cmd\n";
-                        exec ($visitor_cmd);
-                        
-                        // copy the template file
-						if (!file_exists("$fullpath/visitors.php"))
-                        {
-                        	copy("$dtcshared_path/visitors_template/visitors.php", $fullpath);
-                        }
+						if($conf_use_visitors == "yes"){
+							echo "Calculating visitor stats...\n";
+							$visitor_cmd = "nice -n+20 visitors -A -m 30 $dump_folder/access_*.log -o html > $fullpath/$year.$month.report.html";
+							echo "$visitor_cmd\n";
+							exec ($visitor_cmd);
 
+							// copy the template file
+							if (!file_exists("$fullpath/visitors.php")){
+								copy("$conf_dtcshared_path/visitors_template/visitors.php", "$fullpath/visitors.php");
+							}
+						}
+
+						if($conf_use_awstats == "yes" && file_exists("/usr/lib/cgi-bin/awstats.pl")){
+							if(!file_exists("$fullpath/awstats")){
+								mkdir("$fullpath/awstats");
+							}
+							$fqdn = $a["subdomain_name"].".".$a["name"];
+							if(file_exists("/usr/share/doc/awstats/examples/awstats_buildstaticpages.pl")){
+								$aw_cmd = "export AWSTATS_FULL_DOMAIN=\"".$a["subdomain_name"].".".$a["name"]."\" ; export AWSTATS_DIR_DATA=\"$fullpath/awstats\" ; export AWSTATS_LOG_FILE=\"$dump_filename\" ; nice -n+20 /usr/share/doc/awstats/examples/awstats_buildstaticpages.pl -config=dtc -update -awstatsprog=/usr/lib/cgi-bin/awstats.pl -dir=$fullpath/awstats";
+								exec($aw_cmd);
+							}
+						}
 						// disable AWSTATS for now, it's too slow
 						/*
 						$stat_script = "#!/bin/sh
@@ -189,7 +210,7 @@ fi
 function make_log_archive (){
 	global $conf_mysql_db;
 	global $pro_mysql_domain_table;
-	global $dtcshared_path;
+	global $conf_dtcshared_path;
 
 	$today_midnight = mktime(0,0,0);
 

@@ -1,10 +1,45 @@
-Version 0.26.3:
-- Added customizability of the registration messages.
-- Added date of registration for new users
-- Added bandwidth field for dedicated servers and vps.
-- Added deletion of VPS and dedicated servers when deleting a user account.
+Version 0.26.5:
+---------------
+Nothing yet...
 
-Version 0.26:
+Version 0.26.4:
+---------------
+- VPS stat page for network was missing in the .deb
+- Added password protection patch from <krystian@ezpear.com> for the /stats
+folder of all domains.
+- Many improvements to use a remote database for users
+- Some patch to make it work for Slackware (from Krystian).
+- Restarts bind9 with "rndc reload"
+- Some support tickets improvements
+
+Version 0.26.3:
+---------------
+- feature: User databases can be on a different host now. Also, remote SQL
+is fully working for DTC as well.
+- feature: Fixed some of the problems of the ticket system (root panel side)
+- feature: Recipient delimiter now configurable
+- feature: The port of the panel for SSL is not configurable
+- feature: Shuts down and delete an admin VPS when deleting
+- feature: rewrote the rrdtool graphs in PHP, not using librrd-perl and a
+cgi-bin anymore
+- feature: ALL types of email messages sent by the panel are now
+configurable in /etc/dtc
+- feature: Now supports "Visitor" stats
+- feature: dedicated are now showed on "domain" view of the admin list
+- feature: graphs the xen disk I/O, network and CPU usage in the client
+interface, for each VPS.
+- feature: shows the registration date for the new admin waiting list
+- bugfix: management of sasl2passwd when no password set (to support older
+version of dtc)
+- bugfix: the no-reply @ is now using the correct domain ($conf_main_domain)
+and not no-reply.com
+- bugfix: the debian cron script checks for the panel to be installed
+- bugfix: the mysql user accounts are now added with both % and localhost
+- missing code: now deleting mailing lists when deleting an admin, also
+deletes VPS & dedicated servers
+- missing code: now also restarts courier-pop-ssl and courier-imap-ssl
+
+Version 0.26.2:
 -------------
 - Added Mail Alias Group patch from George
 - Added AddDefaultCharset option for each subdomains (by default does nothing)

@@ -23,15 +23,26 @@ function drawDataBase($database){
 	global $txt_delete;
 	global $txt_create;
 
+	global $conf_user_mysql_type;
+	global $conf_user_mysql_host;
+	global $conf_user_mysql_root_login;
+	global $conf_user_mysql_root_pass;
+
 	global $lang;
 
 	global $conf_demo_version;
 
-	$q = "SELECT * FROM admin WHERE adm_login='$adm_login';";
+	global $pro_mysql_admin_table;
+
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1)	die("Cannot find user !");
 	$admin_param = mysql_fetch_array($r);
+
+	if($conf_user_mysql_type=="distant"){
+		$newid = mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass)or die("Cannot connect to user SQL host");
+	}
 
 	$txt = "<br><h3>".$txt_your_users[$lang]."</h3>";
 	$q = "SELECT DISTINCT User FROM mysql.user WHERE dtcowner='$adm_login' ORDER BY User;";
@@ -119,14 +130,13 @@ function drawDataBase($database){
 		$dblist .= "</table>";
 		$txt .= $dblist;
 		$txt .= "<br>".$txt_total_database_number[$lang]." $num_rows/".$admin_param["nbrdb"]."<br>";
+
+		if($conf_user_mysql_type=="distant"){
+			mysql_close($newid)or die("Cannot disconnect to user database");
+			connect2base();
+		}
 		mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\" !!!");
 
-/*		$txt .= "<br><br><b><u>".$txt_draw_database_chpass[$lang]."</u></b><br>
-		<form action=\"".$_SERVER["PHP_SELF"]."\">".$txt_password[$lang]."<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-		<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
-		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-		<input type=\"text\" name=\"new_mysql_password\" value=\"\">
-		<input type=\"submit\" name=\"change_mysql_password\" value=\"Ok\"></form>";*/
 		return $txt;
 	}else{
 		$txt .= $txt_please_create_mysql_user_to_create_database[$lang];

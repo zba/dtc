@@ -394,6 +394,28 @@ installerQuestions () {
 		conf_report_setup="false"
 	fi
 
+
+	echo ""
+	echo "Choose the recpient delimiter character. This MUST match what"
+	echo "you have setup in Qmail or Postfix."
+	if [ "${conf_recipient_delim}" = "+" ] ; then
+		echo -n "MTA recipient delimiter (default +) [+/-]:"
+		read answer
+		if [ -z "$answer" ] ; then
+			conf_recipient_delim="+"
+		else
+			conf_recipient_delim="-"
+		fi
+	else
+		echo -n "MTA recipient delimiter (default -) [+/-]:"
+		read answer
+		if [ -z "$answer" ] ; then
+			conf_recipient_delim="-"
+		else
+			conf_recipient_delim="+"
+		fi
+	fi
+
 	echo ""
 	echo "In some environment, like FreeBSD Jail or Linux vServer,"
 	echo "mknod is not allowed to be executed. For that reason, it's possible"

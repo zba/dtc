@@ -208,6 +208,13 @@ _Description: DNSBL (DNS BlackList) list:
  Please enter the list of preferred DNSBL servers to add to your Postfix mail
  server configuration.
 
+Template: dtc/conf_recipient_delim
+Type: select
+Choices: +, -
+_Description: Local address extension character:
+ Please choose the character that will be used to define a local address
+ extension. This MUST match what you have set in your postfix or qmail setup.
+
 Template: dtc/conf_eth2monitor
 Type: string
 _Description: Network devices to monitor:

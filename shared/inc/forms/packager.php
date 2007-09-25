@@ -23,6 +23,11 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 
 	global $conf_mysql_db;
 
+	global $conf_user_mysql_type;
+	global $conf_user_mysql_host;
+	global $conf_user_mysql_root_login;
+	global $conf_user_mysql_root_pass;
+
 	global $package_installer_console;
 	global $dtcpkg_db_login;
 
@@ -103,6 +108,9 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 			}
 		}
 
+		if($conf_user_mysql_type=="distant"){
+			$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user host");
+		}
 		// Get the database infos beffore calling the custom package installer
 		$q = "SELECT DISTINCT db.Db,db.User FROM mysql.user,mysql.db WHERE user.dtcowner='$adm_login' AND db.User=user.User AND db.Db='".$_REQUEST["database_name"]."';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -110,6 +118,11 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		if($n != 1)die("Cannot find database line ".__LINE__." file ".__FILE__);
 		$a = mysql_fetch_array($r);
 		$dtcpkg_db_login = $a["User"];
+
+		if($conf_user_mysql_type=="distant"){
+			mysql_close($newid) or die("Cannot disconnect to user database");
+			connect2base();
+		}
 
 		// Call the package specific installer php script
 		$install_ret = do_package_install();
@@ -137,9 +150,6 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 	}
 
 	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "prepareinstall"){
-//		echo "<pre>";
-//		print_r($pkg_info);
-//		echo "</pre>";
 		$txt = "<h3>You are about to install ".$pkg_info["name"].":</h3><br>
 		<u>Description:</u> ".$pkg_info["long_desc"]."<br>
 		<u>Version:</u> ".$pkg_info["version"]."<br><br>";
@@ -148,8 +158,13 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
+
 		if($pkg_info["need_database"] == "yes"){
 			$txt .= "<h3>Choose a database name for setup:</h3><br>";
+
+			if($conf_user_mysql_type=="distant"){
+				$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
+			}
 			mysql_select_db("mysql")or die ("Cannot select db: mysql");
 			$q = "SELECT db.Db,db.User FROM user,db
 			WHERE user.dtcowner='$adm_login'
@@ -159,6 +174,10 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 			if($n < 1){
 				$txt .= "You don't have any database yet. Please create one using the database tool
 				(click database in the menu, then create a user and a database for this user).";
+				if($conf_user_mysql_type=="distant"){
+					mysql_close($newid) or die("Cannot disconnect to user database");
+					connect2base();
+				}
 				mysql_select_db($conf_mysql_db);
 				return $txt;
 			}
@@ -169,6 +188,10 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 			}
 			$txt .= "</select><br>
 				Database password: <input type=\"password\" name=\"dtcpkg_db_pass\" value=\"\"><br><br>";
+			if($conf_user_mysql_type=="distant"){
+				mysql_close($newid) or die("Cannot disconnect to user database");
+				connect2base();
+			}
 			mysql_select_db($conf_mysql_db)or die ("Cannot select db: $conf_mysql_db line ".__LINE__." file ".__FILE__);
 		}
 

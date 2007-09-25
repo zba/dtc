@@ -403,6 +403,8 @@ function cronMailSystem () {
 				$PATH_POSTFIX_SCRIPT = "/etc/init.d/postfix";
 			}else if( file_exists("/usr/local/etc/rc.d/postfix")){
 				$PATH_POSTFIX_SCRIPT = "/usr/local/etc/rc.d/postfix";
+			}else if( file_exists("/etc/rc.d/rc.postfix")){
+				$PATH_POSTFIX_SCRIPT = "/etc/rc.d/rc.postfix";
 			}
 			system("$PATH_POSTFIX_SCRIPT reload");
 			echo "Reloading amavis\n";
@@ -411,6 +413,9 @@ function cronMailSystem () {
 			}else if( file_exists ("/etc/init.d/amavisd") ){
 				// Seems a restart is best (gentoo needs it)
 				system("/etc/init.d/amavisd restart");
+			// This one seems ok for slackware
+			}else if(file_exists("/etc/rc.d/rc.amavisd")){
+				system("/etc/rc.d/rc.amavisd restart");
 			}
 			break;
 		case "qmail":
@@ -457,7 +462,11 @@ function checkNamedCronService () {
 	}
 	if($cronjob_table_content["reload_named"] == "yes"){
 		echo "Reloading name-server\n";
-		system("killall -HUP named");
+		if(file_exists("/usr/sbin/rndc")){
+			system("/usr/sbin/rndc reload");
+		}else{
+			system("killall -HUP named");
+		}
 		if($keep_dns_generate_flag == "no"){
 			markCronflagOk ("reload_named='no'");
 		}

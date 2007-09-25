@@ -1,0 +1,183 @@
+<?php
+
+function deleteMysqlUserAndDB($mysql_user){
+	global $conf_mysql_db;
+	mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
+
+	$query = "SELECT * FROM db WHERE User='$mysql_user';";
+	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+	$num_rows = mysql_num_rows($result);
+	for($i=0;$i<$num_rows;$i++){
+		$row = mysql_fetch_array($result);
+		$db = $row["Db"];
+		// Prevent system db from deletion
+		if($db != $conf_mysql_db && $db != "mysql"){
+			$query2 = "DROP DATABASE $db";
+			mysql_query($query2)or die("Cannot execute query \"$query\" !!!");
+		}
+	}
+
+	// Prevent system user from deletion
+	if($mysql_user != "mysql" && $mysql_user != "root"){
+		$query = "DELETE FROM db WHERE User='$mysql_user';";
+		mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+		$query = "DELETE FROM user WHERE User='$mysql_user';";
+		mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+	}
+	$query = "FLUSH PRIVILEGES";
+	mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+	mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\" in deleteMysqlUserAndDB() !!!");
+}
+
+function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directories = false){
+	global $pro_mysql_admin_table;
+	global $pro_mysql_pop_table;
+	global $pro_mysql_mailaliasgroup_table;
+	global $pro_mysql_ftp_table;
+	global $pro_mysql_subdomain_table;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_list_table;
+	global $conf_demo_version;
+
+	global $conf_root_admin_random_pass;
+	global $conf_pass_expire;
+
+	if($conf_root_admin_random_pass == $adm_pass &&  $conf_pass_expire > mktime()){
+		$adm_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+	}else{
+		$adm_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	}
+	$result = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__."sql said ".mysql_error());
+	$num_rows = mysql_num_rows($result);
+	if($num_rows != 1) die("User not found for deletion of domain $deluserdomain !!!");
+	$row = mysql_fetch_array($result);
+	$the_admin_path = $row["path"];
+
+	// Delete all mail groups
+	$adm_query = "DELETE FROM $pro_mysql_mailaliasgroup_table WHERE domain_parent='$deluserdomain';";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+
+	// Delete all mail accounts
+	$adm_query = "DELETE FROM $pro_mysql_pop_table WHERE mbox_host='$deluserdomain';";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+
+	// Delete all mailboxs
+	$adm_query = "DELETE FROM $pro_mysql_ftp_table WHERE hostname='$deluserdomain';";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+	
+	// Delete all subdomains
+	$domupdate_query = "DELETE FROM $pro_mysql_subdomain_table WHERE domain_name='$deluserdomain';";
+	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
+
+	// Delete the domain
+	$adm_query = "DELETE FROM $pro_mysql_domain_table WHERE name='$deluserdomain' LIMIT 1;";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+
+	// Delete all mailing lists
+	$adm_query = "DELETE FROM $pro_mysql_list_table WHERE domain='$deluserdomain';";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+
+	// Delete the files of the domain name
+	if($delete_directories == true && $conf_demo_version == "no"){
+		system("rm -rf $the_admin_path/$deluserdomain");
+	}
+	triggerDomainListUpdate();
+}
+
+function DTCdeleteAdmin ($adm_to_del) {
+	global $pro_mysql_admin_table;
+	global $pro_mysql_domain_table;
+
+	global $pro_mysql_vps_table;
+	global $pro_mysql_dedicated_table;
+	global $pro_mysql_tik_queries_table;
+	global $pro_mysql_cronjob_table;
+
+	global $conf_mysql_db;
+	if( !isFtpLogin($adm_to_del)){
+		echo "Admin to delete is not in correct format line ".__LINE__." file ".__FILE__;
+		die();
+	}
+	
+	$adm_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_to_del'";
+	$result = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+	$num_rows = mysql_num_rows($result);
+	if($num_rows != 1)
+		die("User not found for deletion of $adm_to_del !!!");
+	$row_virtual_admin = mysql_fetch_array($result);
+	$the_admin_path = $row_virtual_admin["path"];
+
+	// delete the user also mailboxs, ftp accounts, domains and subdomains in database
+	$query = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_to_del';";
+	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+	$num_rows = mysql_num_rows($result);
+	for($i=0;$i<$num_rows;$i++){
+		$row = mysql_fetch_array($result);
+		//echo "Deleting ".$_REQUEST["delete_admin_user"]." / ".$row_virtual_admin["adm_pass"].$row["name"];
+		deleteUserDomain($_REQUEST["delete_admin_user"],$row_virtual_admin["adm_pass"],$row["name"]);
+	}
+
+	if($conf_demo_version == "no"){
+		system("rm -rf $the_admin_path");
+
+		// Delete all databases of the user
+		mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
+		$query = "SELECT Host,Db,User FROM db WHERE User='$adm_to_del';";
+		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+		$num_rows = mysql_num_rows($result);
+		for($i=0;$i<$num_rows;$i++){
+			$row = mysql_fetch_array($result);
+			echo $row["Db"];
+			$db_name[] = $row["Db"];
+		}
+		for($i=0;$i<$num_rows;$i++){
+			$query = "DROP DATABASE ".$db_name[$i];
+			mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+		}
+
+		$query = "DELETE FROM db WHERE User='$adm_to_del';";
+		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+		$query = "DELETE FROM user WHERE User='$adm_to_del'";
+		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+	        mysql_query("FLUSH PRIVILEGES");
+		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+		mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\"	!!!");
+	}
+
+	deleteMysqlUserAndDB($adm_to_del);
+
+	// Delete all VPS of the user, and set all its IPs as available
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_to_del';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$vps = mysql_fetch_array($r);
+		$q2 = "UPDATE $pro_mysql_vps_ip_table SET available='yes' WHERE vps_server_hostname='".$vps["vps_server_hostname"]."' AND vps_xen_name='".$vps["vps_xen_name"]."';";
+		$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		
+		// Unload (eg: destroy) the VPS directly
+		remoteVPSAction($vps["vps_server_hostname"],$vps["vps_xen_name"],"destroy_vps");
+	}
+
+	$q = "DELETE FROM $pro_mysql_vps_table WHERE owner='$adm_to_del';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	// Delete all dedicated servers of the admin
+	$q = "DELETE FROM $pro_mysql_dedicated_table WHERE owner='$adm_to_del';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	// Delete all support tickets of the admin
+	$q = "DELETE FROM $pro_mysql_tik_queries_table WHERE adm_login='$adm_to_del';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	$adm_query = "DELETE FROM $pro_mysql_admin_table WHERE adm_login='$adm_to_del'";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+
+	// Tell the cron job to activate the changes (in case there was some shared accounts. Todo: check if there is some...)
+	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
+	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes' WHERE 1;";
+	mysql_query($adm_query);
+	triggerDomainListUpdate();
+}
+
+?>

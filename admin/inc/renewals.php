@@ -230,7 +230,7 @@ function drawRenewalTables (){
 		$out .= $txt_renew_no_dedicated_server_expired[$lang]."<br>";
 	}else{
 		$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-		<tr><td>".$a["adm_login"]."</td><td>".$txt_renew_server_title[$lang]."</td><td>".$txt_client[$lang]."</td><td>".$txt_renew_email[$lang]."</td><td>".$txt_renew_expiration_date[$lang]."</td></tr>";
+		<tr><td>Login:</td><td>".$txt_renew_server_title[$lang]."</td><td>".$txt_client[$lang]."</td><td>".$txt_renew_email[$lang]."</td><td>".$txt_renew_expiration_date[$lang]."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["owner"]."';";

@@ -1796,46 +1796,46 @@ envoyés par défault sont stoqué dans : ",
 "en" => "These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while others are made of a unique value. The message templates
-are stored in: ",
+are stored in /etc/dtc, and if not present in: ",
 "hu" => "TRANS These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while others are made of a unique value. The message templates
-are stored in: ",
+are stored in /etc/dtc, and if not present in: ",
 "it" => "TRANS These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while others are made of a unique value. The message templates
-are stored in: ",
+are stored in /etc/dtc, and if not present in: ",
 "nl" => "Deze nummers vertegenwoordigen het aantal dagen voor en na expiratie.
 Waarschuwingen voor en na expiratie kunnen  worden vermeld gescheiden door |,
 terwijl anderen uit een unieke waarde bestaan. De bericht sjablonen
-worden opgeslagen in: ",
+worden opgeslagen in /etc/dtc, and if not present in: ",
 "ru" => "TRANS These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while others are made of a unique value. The message templates
-are stored in: ",
+are stored in /etc/dtc, and if not present in: ",
 "de" => "TRANS These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while others are made of a unique value. The message templates
-are stored in: ",
-"zh" => "ÕâÐ©Êý×ÖÌáÊ¾ÁË¾àÀë¹ýÆÚ£¨»òÒÑ¾­¹ýÆÚ£©µÄÌìÊý¡£
+are stored in /etc/dtc, and if not present in: ",
+"zh" => "TRANSÕâÐ©Êý×ÖÌáÊ¾ÁË¾àÀë¹ýÆÚ£¨»òÒÑ¾­¹ýÆÚ£©µÄÌìÊý¡£
 ¼´½«£¨»òÒÑ¾­£©¹ýÆÚµÄÊ±¼ä¾¯¸æÊ¹ÓÃ | ·Ö¸ô¿ªÀ´£¬
-Ò²¿ÉÒÔÊÇÎ¨Ò»µÄÖµ¡£¾¯¸æÐÅÏ¢µÄÄ£°åÎÄ¼þ´æ·ÅÔÚ£º",
+Ò²¿ÉÒÔÊÇÎ¨Ò»µÄÖµ¡£¾¯¸æÐÅÏ¢µÄÄ£°åÎÄ¼þ´æ·ÅÔÚ£º /etc/dtc, and if not present in:",
 "pl" => "TRANS These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while others are made of a unique value. The message templates
-are stored in: ",
+are stored in /etc/dtc, and if not present in: ",
 "se" => "TRANS These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while others are made of a unique value. The message templates
-are stored in: ",
+are stored in /etc/dtc, and if not present in: ",
 "es" => "TRANS These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while others are made of a unique value. The message templates
-are stored in: ",
+are stored in /etc/dtc, and if not present in: ",
 "pt" => "TRANS These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while others are made of a unique value. The message templates
-are stored in: "
+are stored in /etc/dtc, and if not present in: "
 );
 
 $txt_cfg_warnings_before_expiration = array(

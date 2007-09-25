@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
-"POT-Creation-Date: 2007-03-20 17:58+0100\n"
+"POT-Creation-Date: 2007-08-17 17:10+0800\n"
 "PO-Revision-Date: 2007-03-31 15:20+0200\n"
 "Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
 "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
@@ -68,8 +68,8 @@ msgid ""
 "Please enter the name of the database to use for storing all DTC hosting "
 "information."
 msgstr ""
-"Zadejte prosím jméno databáze, která se má použít pro uložení všech informací "
-"o hostingu."
+"Zadejte prosím jméno databáze, která se má použít pro uložení všech "
+"informací o hostingu."
 
 #. Type: boolean
 #. Description
@@ -102,8 +102,8 @@ msgid ""
 "will be used to install the root admin and customer web control panel of DTC "
 "(under one of this domain's subdomains)."
 msgstr ""
-"Zadejte prosím první doménu, kterou má DTC spravovat. Toto doménové jméno "
-"se použije pro instalaci správcovského a zákaznického webového ovládacího "
+"Zadejte prosím první doménu, kterou má DTC spravovat. Toto doménové jméno se "
+"použije pro instalaci správcovského a zákaznického webového ovládacího "
 "panelu DTC (jako poddoména této domény)."
 
 #. Type: string
@@ -181,8 +181,8 @@ msgid ""
 "Please enter the directory to be used by DTC to build the cgi-bin chroot "
 "environment template."
 msgstr ""
-"Zadejte prosím adresář, který má DTC použít jako šablonu pro vytvoření "
-"cgi-bin chrootu."
+"Zadejte prosím adresář, který má DTC použít jako šablonu pro vytvoření cgi-"
+"bin chrootu."
 
 #. Type: string
 #. Description
@@ -294,8 +294,8 @@ msgid ""
 "(NAT). If the server uses a dynamic public IP address, NAT and port "
 "forwarding are mandatory for DTC."
 msgstr ""
-"Tuto možnost byste měli vybrat pouze v případech, kdy server není připojen "
-"k Internetu přímo, ale skrze firewall provádějící překlad síťových adres "
+"Tuto možnost byste měli vybrat pouze v případech, kdy server není připojen k "
+"Internetu přímo, ale skrze firewall provádějící překlad síťových adres "
 "(NAT). Pokud server používá dynamickou veřejnou IP adresu, DTC vyžaduje "
 "použití NAT a přesměrování portů."
 
@@ -446,15 +446,29 @@ msgstr ""
 "Zadejte prosím seznam preferovaných DNSBL serverů, které se přidají k vašemu "
 "nastavení Postfixu."
 
-#. Type: string
+#. Type: select
 #. Description
 #: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid "Local address extension character:"
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid ""
+"Please choose the character that will be used to define a local address "
+"extension. This MUST match what you have set in your postfix or qmail setup."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Network devices to monitor:"
 msgstr "Síťová zařízení, která sledovat:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
@@ -464,13 +478,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Allow to report anonymous statistics to GPLHost?"
 msgstr "Povolit zasílání anonymních statistik GPLHostu?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid ""
 "DTC installations can be reported to the GPLHost web site. The only "
 "collected data are the operating system name (Debian) and the IP address "
@@ -484,13 +498,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Skip mknod calls when building the chroot template?"
 msgstr "Přeskočit při vytváření šablony pro chroot volání mknod?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid ""
 "In some environments, such as Linux vServer, mknod cannot be executed. This "
 "option allows skipping the creation of the null, random and urandom devices "
@@ -499,3 +513,14 @@ msgstr ""
 "V některých prostředích, např. Linux VServer, není možné používat program "
 "mknod. Povolením této volby se při vytváření šablony pro chroot přeskočí "
 "vytvoření zařízení null, random a urandom."
+
+#. Type: boolean
+#. Description
+#: ../dtc-postfix-courier.templates:14001
+msgid ""
+"Cyrus is a replacement for the Maildir delivery and storage. You must know "
+"what you are doing if you want to activate the use of Cyrus. If you are "
+"using dtc-toaster or dtc-postfix-courier, you have to answer not to use "
+"Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
+"using dtc-postfix-courier instead."
+msgstr ""

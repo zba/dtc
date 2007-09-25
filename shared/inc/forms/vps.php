@@ -83,16 +83,16 @@ function drawAdminTools_VPS($admin,$vps){
 	// Display the stats of the VPS
 	$vps_out .= "<table cellspacing=\"2\" cellpaddig=\"2\" border=\"0\">";
 	$vps_out .= "<tr><td>Network:<br>";
-	$vps_out .= "<img src=\"vps_stats_network.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
+	$vps_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_network.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
 
 	$vps_out .= "<td>CPU Time:<br>";
-	$vps_out .= "<img src=\"vps_stats_cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr>";
+	$vps_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr>";
 
 	$vps_out .= "<tr><td>Swap I/O:<br>";
-	$vps_out .= "<img src=\"vps_stats_swap.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
+	$vps_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_swap.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
 
 	$vps_out .= "<td>HDD I/O:<br>";
-	$vps_out .= "<img src=\"vps_stats_hdd.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr></table>";
+	$vps_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_hdd.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr></table>";
 
 	// VPS (remote SOAP) Status
 	$soap_client = connectToVPSServer($vps_node);
@@ -175,11 +175,11 @@ function drawAdminTools_VPS($admin,$vps){
 	}else{
 		$contract = "not found!";
 	}
-	$out .= "<b><u>".$txt_current_vps_contract[$lang]."</u></b><br>$contract<br><br>";
+	$out .= "<h3>".$txt_current_vps_contract[$lang]."</h3><br>$contract<br><br>";
 
 	// Expiration management !
 	$ar = explode("-",$vps["expire_date"]);
-	$out .= "<b><u>".$txt_vps_expiration_date[$lang]."</u></b><br>";
+	$out .= "<h3>".$txt_vps_expiration_date[$lang]."</h3><br>";
 	$out .= $txt_your_vps_was_first_registered_on_the[$lang].$vps["start_date"]."<br>";
 	if(date("Y") > $ar[0] ||
 			(date("Y") == $ar[0] && date("m") > $ar[1]) ||
@@ -206,7 +206,7 @@ function drawAdminTools_VPS($admin,$vps){
 </form>";
 	}
 
-	$out .= "<b><u>".$txt_cpu_and_network_usage[$lang]."</u></b><br>
+	$out .= "<h3>".$txt_cpu_and_network_usage[$lang]."</h3><br>
 <a target=\"_blank\" href=\"http://".$vps["vps_server_hostname"]."/dtc-xen/\">http://".$vps["vps_server_hostname"]."/dtc-xen/</a><br>";
 
 	// The ip address(es)
@@ -226,11 +226,11 @@ function drawAdminTools_VPS($admin,$vps){
 	$out .= "<br><br>";
 
 	// VPS status
-	$out .= "<b><u>".$txt_current_vps_status[$lang]."</b></u><br>";
+	$out .= "<h3>".$txt_current_vps_status[$lang]."</h3><br>";
 	$out .= $vps_out;
 
 	// Start / stop VPS
-	$out .= "<b><u>".$txt_start_stop_vps[$lang]."</u></b><br>";
+	$out .= "<h3>".$txt_start_stop_vps[$lang]."</h3><br>";
 	if($vps_remote_info == "fsck"){
 		$out .= $txt_please_wait_until_fsck_finished[$lang]."<br><br>";
 	}else if($vps_remote_info == "mkos"){
@@ -248,43 +248,63 @@ function drawAdminTools_VPS($admin,$vps){
 <input type=\"submit\" value=\"".$txt_boot_up_xm_start[$lang]."\">
 </form>";
 		// FSCK
-		$out .= "<b><u>".$txt_file_system_check[$lang]."</u></b><br>";
+		$out .= "<h3>".$txt_file_system_check[$lang]."</h3><br>";
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"fsck_vps\">
 <input type=\"submit\" value=\"".$txt_file_system_check_fsck[$lang]."\">
 </form>";
 		// OS reinstall
-		$out .= "<b><u>".$txt_reinstall_operating_system[$lang]."</u></b><br>";
+		$out .= "<h3>".$txt_reinstall_operating_system[$lang]."</h3><br>";
 		$out .= $txt_currently_installed_operating_system[$lang].$vps["operatingsystem"]."<br>";
-		$deb_selected = " ";
-		$cent_selected = " ";
-		$gen_selected = " ";
-		$bsd_selected = " ";
-		switch($vps["operatingsystem"]){
-		case "debian":
-			$deb_selected = " selected ";
-			break;
-		case "centos":
-			$cent_selected = " selected ";
-			break;
-		case "gentoo":
-			$gen_selected = " selected ";
-			break;
-		case "netbsd":
-			$bsd_selected = " selected ";
-			break;
-		default:
-			die($txt_operating_system_type_not_supported[$lang]);
-			break;
-		}
-		// Operating system selection popup and reinstallation button
-		$out .= $frm_start."<select name=\"os_type\">
-    <option value=\"debian\" $deb_selected>Debian</option>
-    <option value=\"centos\" $cent_selected>CentOS</option>
-    <option value=\"gentoo\" $gen_selected>Gentoo</option>
-    <option value=\"netbsd\" $bsd_selected>NetBSD</option>
-    </select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
-  <input type=\"submit\" value=\"".$txt_reinstall_operating_system_button[$lang]."\">
-  </form>";
+/*		$installable_os = getInstallableOS($soap_client);
+		if($installable_os != false){
+			$nbr_os = sizeof($installable_os);
+			$out .= $frm_start."<select name=\"os_type\">";
+			for($i=0;$i<$nbr_os;$i++){
+				if($vps["operatingsystem"] == $installable_os[$i]){
+					$selected = " selected";
+				}else{
+					$selected = "";
+				}
+				$out .= "<option value=\"".$installable_os[$i]."\"$selected>".$installable_os[$i]."</option>";
+			}
+			$out .= "</select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
+<input type=\"submit\" value=\"".$txt_reinstall_operating_system_button[$lang]."\">
+</form>";
+		}else{
+			$out .= "<font color=\"red\">Could not get remote installable OS: ask administrator to upgrade this
+dtc-xen server to a higher version.</font><br>";
+*/			$deb_selected = " ";
+			$cent_selected = " ";
+			$gen_selected = " ";
+			$bsd_selected = " ";
+			switch($vps["operatingsystem"]){
+			case "debian":
+				$deb_selected = " selected ";
+				break;
+			case "centos":
+				$cent_selected = " selected ";
+				break;
+			case "gentoo":
+				$gen_selected = " selected ";
+				break;
+			case "netbsd":
+				$bsd_selected = " selected ";
+				break;
+			default:
+				die($txt_operating_system_type_not_supported[$lang]);
+				break;
+			}
+			// Operating system selection popup and reinstallation button
+			$out .= $frm_start."<select name=\"os_type\">
+<option value=\"debian\" $deb_selected>Debian</option>
+<option value=\"centos\" $cent_selected>CentOS</option>
+<option value=\"gentoo\" $gen_selected>Gentoo</option>
+<option value=\"netbsd\" $bsd_selected>NetBSD</option>
+</select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
+<input type=\"submit\" value=\"".$txt_reinstall_operating_system_button[$lang]."\">
+</form>";
+//		}
+
   		// BSD kernel change popup
 		if($vps["operatingsystem"] == "netbsd"){
 			if($vps["bsdkernel"] == "install"){
@@ -304,7 +324,7 @@ function drawAdminTools_VPS($admin,$vps){
 	}
 
 	// SSH Physical console password changing
-	$out .= "<b><u>".$txt_physical_console_last_display_and_ssh_access[$lang]."</u></b><br>";
+	$out .= "<h3>".$txt_physical_console_last_display_and_ssh_access[$lang]."</h3><br>";
 
 	$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_passwd\">
 ".$txt_new_ssh_password[$lang]."<input type=\"text\" name=\"new_password\" value=\"\"><input type=\"submit\" value=\"Ok\">

@@ -9,6 +9,15 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	global $txt_total_transfered_bytes_this_month;
 	global $txt_stats_http_subdom;
 	global $lang;
+	
+	global $txt_password;
+	global $txt_user;
+	
+	global $adm_login;
+	global $adm_pass;
+	global $addrlink;
+	
+	global $conf_htpasswd_path;
 
 	$out = "";
 
@@ -64,8 +73,48 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 		$out .= $eddomain["subdomains"][$i]["name"];
 		$out .= "</a>";
 	}
-
+	
+	$q = "SELECT stats_login,stats_pass,stats_subdomain FROM $pro_mysql_domain_table  WHERE name='".$eddomain["name"]."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	$a = mysql_fetch_array($r);
+	$out .= "<br><br><strong>Protect your logs and stats</strong><br>";
+	
+	$out .= "<table>";
+	$hidden = "<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+		<input type=\"hidden\" name=\"addrlink\" value=\"".$addrlink."\">
+		<input type=\"hidden\" name=\"edit_domain\" value=\"".$eddomain["name"]."\">";
+	
+	if(empty($a["stats_login"])){
+		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+		<input type=\"hidden\" name=\"action\" value=\"add_stats_login\">
+		Login: <input type=\"text\" name=\"stats_login\" value=\"\"> Password: 
+		<input type=\"text\" name=\"stats_pass\" value=\"\"></td></tr>
+		<tr><td>Copy to subdomains: <input type=\"checkbox\" name=\"stats_subdomain\" value=\"\"></td></tr>
+		<tr><td><input type=\"submit\" value=\""."SUBMIT"."\"></form></td></tr>";
+	}else{
+		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+		<input type=\"hidden\" name=\"action\" value=\"modify_stats_login_pass\">
+		Login: <input type=\"text\" name=\"stats_login\" value=\"".$a["stats_login"]."\">
+		Password: <input type=\"password\" name=\"stats_pass\" value=\"".$a["stats_pass"]."\"></td></tr>
+		<tr><td>Copy to subdomains: <input type=\"checkbox\" name=\"stats_subdomain\" value=\"\" ";
+		if($a["stats_subdomain"]=='yes')
+			$out .= "checked";
+		$out .= "></td></tr>
+		<tr><td><input type=\"submit\" value=\""."SAVE"."\"></form>
+		<form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+		<input type=\"hidden\" name=\"action\" value=\"del_stats_login\">
+		<input type=\"hidden\" name=\"stats_login\" value=\"".$a["stats_login"]."\">
+		<input type=\"hidden\" name=\"stats_pass\" value=\"".$a["stats_pass"]."\">
+		<input type=\"hidden\" name=\"stats_subdomain\" value=\" ".$a["stats_subdomain"]."\">
+		<input type=\"submit\" value=\""."DELETE"."\"></form></td></tr>";
+		
+	}
+	
+	$out .= "</table>";
 	return $out;
+	
 }
 
 

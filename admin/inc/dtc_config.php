@@ -626,9 +626,24 @@ function drawGeneralConfig(){
 				"legend" => $txt_cfg_use_cyrus[$lang],
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"use_webalizer" => array(
+				"type" => "radio",
+				"legend" => "Use webalizer",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"webalizer_country_graph" => array(
 				"legend" => $txt_cfg_webalizer_country_graph[$lang],
 				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"use_awstats" => array(
+				"type" => "radio",
+				"legend" => "Use awstats",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"use_visitors" => array(
+				"type" => "radio",
+				"legend" => "Use visitors",
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"user_mysql_type" => array(
@@ -724,7 +739,11 @@ function drawNetworkConfig(){
 			"administrative_site" => array(
 				"legend" => $txt_cfg_full_hostname[$lang],
 				"type" => "text",
-				"size" => "50")));
+				"size" => "50"),
+			"administrative_ssl_port" => array(
+				"legend" => "SSL Port:",
+				"type" => "text",
+				"size" => "10")));
 	return configEditorTemplate ($dsc);
 }
 
@@ -1214,6 +1233,8 @@ function drawDTCpathConfig(){
 	global $conf_webalizer_stats_script_path;
 
 	global $conf_chroot_path;
+	
+	global $conf_htpasswd_path;
 
 	global $lang;
 
@@ -1242,6 +1263,9 @@ function drawDTCpathConfig(){
 				"type" => "text"),
 			"generated_file_path" => array(
 				"legend" => $txt_cfg_generated_file_path[$lang],
+				"type" => "text"),
+			"htpasswd_path" => array(
+				"legend" => "Apache htpasswd path",
 				"type" => "text")));
 	$out .= configEditorTemplate ($dsc);
 

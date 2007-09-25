@@ -26,5 +26,8 @@ CREATE TABLE IF NOT EXISTS domain (
   catchall_email varchar(128) NOT NULL default '',
   domain_parking varchar(255) NOT NULL default 'no-parking',
   registrar_password varchar(255) NOT NULL default '',
+  stats_login varchar(32) NOT NULL default '',
+  stats_pass varchar(16) NOT NULL default '',
+  stats_subdomain enum('yes','no') NOT NULL default 'no',
   UNIQUE KEY name (name)
 ) TYPE=MyISAM
