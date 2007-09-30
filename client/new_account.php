@@ -232,10 +232,23 @@ we also accept checks and wire transfers.";
 					$print_form = "no";
 				}else{
 					$company_invoicing = mysql_fetch_array($r);
-					if($company_invoicing["vat_rate"] != 0 && $company_invoicing["vat_number"] != ""){
-						$vat_rate = $company_invoicing["vat_rate"];
-					}else{
+					// If VAT is set, use it.
+					if($company_invoicing["vat_rate"] == 0 || $company_invoicing["vat_number"] == ""){
 						$vat_rate = 0;
+						$use_vat = "no";
+					}else{
+					        // Both companies are in europe, in different countries, and customer as a VAT number,
+					        // then there is no VAT and the customer shall pay the VAT in it's own country
+						// These are the VAT rules in the European Union...
+						if($newadmin["iscomp"] == "yes" && $newadmin["vat_num"] != ""
+								&& isset($cc_europe[ $newadmin["country"] ]) && isset($cc_europe[ $company_invoicing["country"] ])
+								&& $newadmin["country"] != $company_invoicing["country"]){
+							$vat_rate = 0;
+							$use_vat = "no";
+						}else{
+				        	        $use_vat = "yes";
+							$vat_rate = $company_invoicing["vat_rate"];
+						}
 					}
 					$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"],"yes",$product["id"],$vat_rate);
 					$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='".$reguser["id"]."';";
