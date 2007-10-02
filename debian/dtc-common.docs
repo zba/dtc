@@ -7,4 +7,4 @@ shared/maxmind
 doc/dtc-chroot-shell.8
 doc/README.gentoo
 doc/contrib
-dns_transfer.sh
+doc/dns_transfer.sh
