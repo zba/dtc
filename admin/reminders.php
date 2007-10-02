@@ -38,9 +38,12 @@ function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$ad
 	$msg_2_send = str_replace("%%%DTC_CLIENT_URL%%%","http".$surl."://".$conf_administrative_site."/dtc/",$msg_2_send);
 
 	if(file_exists("/etc/dtc/signature.txt")){
-		$fp = fopen($fname,"r");
-		$signature = fread($fp,filesize($fname));
-		fclose($fp);
+		$fp = fopen("/etc/dtc/signature.txt","r");
+		if($fp != NULL){
+			$signature = fread($fp,filesize($fname));
+			fclose($fp);
+		}else
+			$signature = "";
 	}else{
 		$signature = "";
 	}
@@ -48,9 +51,13 @@ function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$ad
 
 	// Manage the header of the messages
 	if(file_exists("/etc/dtc/messages_header.txt")){
-		$fp = fopen($fname,"r");
-		$head = fread($fp,filesize($fname));
-		fclose($fp);
+		$fp = fopen("/etc/dtc/messages_header.txt","r");
+		if($fp != NULL){
+			$head = fread($fp,filesize($fname));
+			fclose($fp);
+		}else{
+			$head = "";
+		}
 	}else{
 		$head = "";
 	}
@@ -157,10 +164,14 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 
 	global $conf_message_subject_header;
 
-	$fname = "reminders_msg/".$file;
-	$fp = fopen($fname,"r");
-	$mesg = fread($fp,filesize($fname));
-	fclose($fp);
+	$fname = "/etc/dtc/reminders_msg/".$file;
+	if($fp != NULL){
+		$fp = fopen($fname,"r");
+		$mesg = fread($fp,filesize($fname));
+		fclose($fp);
+	}else
+		$msg = "";
+	}
 
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;
@@ -241,10 +252,14 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 	global $conf_webmaster_email_addr;
 	global $conf_message_subject_header;
 
-	$fname = "reminders_msg/".$file;
-	$fp = fopen($fname,"r");
-	$mesg = fread($fp,filesize($fname));
-	fclose($fp);
+	$fname = "/etc/dtc/reminders_msg/".$file;
+	if($fp != NULL){
+		$fp = fopen($fname,"r");
+		$mesg = fread($fp,filesize($fname));
+		fclose($fp);
+	}else
+		$msg = "";
+	}
 
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;
