@@ -169,7 +169,7 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 		$fp = fopen($fname,"r");
 		$mesg = fread($fp,filesize($fname));
 		fclose($fp);
-	}else
+	}else{
 		$msg = "";
 	}
 
@@ -257,7 +257,7 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 		$fp = fopen($fname,"r");
 		$mesg = fread($fp,filesize($fname));
 		fclose($fp);
-	}else
+	}else{
 		$msg = "";
 	}
 
