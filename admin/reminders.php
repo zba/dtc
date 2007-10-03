@@ -165,8 +165,8 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 	global $conf_message_subject_header;
 
 	$fname = "/etc/dtc/reminders_msg/".$file;
+	$fp = fopen($fname,"r");
 	if($fp != NULL){
-		$fp = fopen($fname,"r");
 		$mesg = fread($fp,filesize($fname));
 		fclose($fp);
 	}else{
@@ -253,8 +253,8 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 	global $conf_message_subject_header;
 
 	$fname = "/etc/dtc/reminders_msg/".$file;
+	$fp = fopen($fname,"r");
 	if($fp != NULL){
-		$fp = fopen($fname,"r");
 		$mesg = fread($fp,filesize($fname));
 		fclose($fp);
 	}else{
