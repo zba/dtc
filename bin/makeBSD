@@ -29,7 +29,6 @@ echo "<?php
 chown -R root:0 $PKG_BUILD
 chown nobody:65534 $PKG_BUILD/client/imgcache $PKG_BUILD/admin/imgcache $PKG_BUILD/shared/imgcache $PKG_BUILD/email/imgcache
 chown nobody:65534 $PKG_BUILD/client/gfx $PKG_BUILD/admin/gfx $PKG_BUILD/shared/gfx $PKG_BUILD/email/gfx
-chown nobody:65534 $PKG_BUILD/admin/*.cgi
 
 # Specific BSD package actions :
 echo "all:" >$PKG_BUILD"/Makefile"
