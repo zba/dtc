@@ -26,7 +26,6 @@ rm -rf $BUILD_DIR/shared/imgcache
 mkdir -p $BUILD_DIR/shared/imgcache
 
 # Remove bad files from package
-find $BUILD_DIR/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
 find $BUILD_DIR/ -iname '*~' -exec rm -rf {} \; &>/dev/null
 rm -rf $BUILD_DIR/shared/mysql_config.php
 

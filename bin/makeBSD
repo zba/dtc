@@ -16,6 +16,7 @@ PORT_BUILD=dtcBSDportBuild
 ARCH_NAME=$PKG_BUILD".tar.gz"
 
 ./buildRelease $UNIX_TYPE $PKG_BUILD
+mkdir -p $PKG_BUILD/usr/local/etc/dtc/etc
 
 kernel=`uname -a | awk '{print $1}'`;
 
@@ -27,10 +28,11 @@ echo "<?php
 ?>" > $PKG_BUILD/shared/dtc_version.php
 
 chown -R root:0 $PKG_BUILD
-chown nobody:65534 $PKG_BUILD/client/imgcache $PKG_BUILD/admin/imgcache $PKG_BUILD/shared/imgcache $PKG_BUILD/email/imgcache
-chown nobody:65534 $PKG_BUILD/client/gfx $PKG_BUILD/admin/gfx $PKG_BUILD/shared/gfx $PKG_BUILD/email/gfx
+#chown nobody:65534 $PKG_BUILD/client/imgcache $PKG_BUILD/admin/imgcache $PKG_BUILD/shared/imgcache $PKG_BUILD/email/imgcache
+#chown nobody:65534 $PKG_BUILD/client/gfx $PKG_BUILD/admin/gfx $PKG_BUILD/shared/gfx $PKG_BUILD/email/gfx
 
 # Specific BSD package actions :
+# Create an empty Makefile in the "sources" of DTC so nothing is to be built
 echo "all:" >$PKG_BUILD"/Makefile"
 echo "===> Packaging files"
 tar -czf $ARCH_NAME $PKG_BUILD
@@ -47,7 +49,7 @@ cp sources/bsd/pkg-descr $PORT_BUILD
 # Create Makefile with correct port version
 echo "# Ports collection makefile for:        dtc
 # Date created:                 1 December 2003
-# Whom:                         Frederic Cambus & Thomas Goirand
+# Whom:                         Frederic Cambus & Thomas Goirand & Marc G. Fournier
 #
 # \$FreeBSD\$
 #

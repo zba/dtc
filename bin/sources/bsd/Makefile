@@ -1,5 +1,7 @@
 CATEGORIES=	sysutils
-MASTER_SITES=	ftp://ftp.gplhost.com/pub/dtc/bsd/
+MASTER_SITES=	ftp://ftp.gplhost.com/pub/dtc/bsd/ \
+		ftp://ftp.gplhost.fr/pub/dtc/bsd/ \
+		ftp://ftp.gplhost.sg/pub/dtc/bsd/
 
 MAINTAINER=	thomas@goirand.fr
 COMMENT=	A hosting web GUI for admin and accounting all hosting services
