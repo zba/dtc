@@ -40,7 +40,7 @@ function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$ad
 	if(file_exists("/etc/dtc/signature.txt")){
 		$fp = fopen("/etc/dtc/signature.txt","r");
 		if($fp != NULL){
-			$signature = fread($fp,filesize($fname));
+			$signature = fread($fp,filesize("/etc/dtc/signature.txt"));
 			fclose($fp);
 		}else
 			$signature = "";
@@ -53,7 +53,7 @@ function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$ad
 	if(file_exists("/etc/dtc/messages_header.txt")){
 		$fp = fopen("/etc/dtc/messages_header.txt","r");
 		if($fp != NULL){
-			$head = fread($fp,filesize($fname));
+			$head = fread($fp,filesize("/etc/dtc/messages_header.txt"));
 			fclose($fp);
 		}else{
 			$head = "";
