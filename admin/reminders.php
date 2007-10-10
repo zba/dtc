@@ -42,8 +42,9 @@ function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$ad
 		if($fp != NULL){
 			$signature = fread($fp,filesize("/etc/dtc/signature.txt"));
 			fclose($fp);
-		}else
+		}else{
 			$signature = "";
+		}
 	}else{
 		$signature = "";
 	}
@@ -83,8 +84,12 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 		$fname = "reminders_msg/".$file;
 	}
 	$fp = fopen($fname,"r");
-	$mesg = fread($fp,filesize($fname));
-	fclose($fp);
+	if($fp != NULL){
+		$mesg = fread($fp,filesize($fname));
+		fclose($fp);
+	}else{
+		$mesg = "Could not load reminder message: please contact your administrator";
+	}
 
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;
