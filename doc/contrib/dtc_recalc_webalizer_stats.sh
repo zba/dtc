@@ -39,6 +39,7 @@ recalc_stats (){
 	rm daily_usage_* hourly_usage_* index.html usage* webalizer.*
 	webalizer -p -R 50 -Y -n ${SUBDOMAIN}.${DOMAIN_NAME} -o . plop
 	rm plop
+	chown -R dtc:dtcgrp *
 }
 
 
