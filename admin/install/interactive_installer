@@ -416,6 +416,16 @@ installerQuestions () {
 		fi
 	fi
 
+	if [ -z "${conf_mx_mail}" ] ; then
+		conf_mx_mail="mx"
+	fi
+	echo ""
+	echo -n "Choose your MX server subdomain [${conf_mx_mail}]:"
+	read answer
+	if [ ! -z "$answer" ] ; then
+		conf_mx_mail=${answer}
+	fi
+
 	echo ""
 	echo "In some environment, like FreeBSD Jail or Linux vServer,"
 	echo "mknod is not allowed to be executed. For that reason, it's possible"
@@ -462,30 +472,45 @@ installerQuestions () {
 			conf_cert_passphrase=$answer
 		fi
 
+		if [ -z "${conf_cert_countrycode}" ] ; then
+			conf_cert_countrycode="US"
+		fi
 		echo -n "Certificate 2 letter country code [${conf_cert_countrycode}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
 			conf_cert_countrycode=$answer
 		fi
 
+		if [ -z "${conf_cert_locality}" ] ; then
+			conf_cert_locality="Paris"
+		fi
 		echo -n "Certificate locality [${conf_cert_locality}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
 			conf_cert_locality=$answer
 		fi
 
+		if [ -z "${conf_cert_organization}" ] ; then
+			conf_cert_organization="N/A"
+		fi
 		echo -n "Certificate organization [${conf_cert_organization}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
 			conf_cert_organization=$answer
 		fi
 
+		if [ -z "${conf_cert_unit}" ] ; then
+			conf_cert_unit="No-unit"
+		fi
 		echo -n "Organization unit [${conf_cert_unit}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
 			conf_cert_unit=$answer
 		fi
 
+		if [ -z "${conf_cert_email}" ] ; then
+			conf_cert_email="changeme@example.com"
+		fi
 		echo -n "Certificate email [${conf_cert_email}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
