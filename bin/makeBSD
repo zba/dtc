@@ -99,7 +99,9 @@ share/dtc/shared/mysql_config.php
 share/dtc/client/gfx
 share/dtc/client/imgcache
 sbin/dtc-install
-sbin/dtc-deinstall" >>$PORT_BUILD/pkg-plist.tmp
+sbin/dtc-deinstall
+share/dtc/email/gfx
+share/dtc/email/imgcache" >>$PORT_BUILD/pkg-plist.tmp
 find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>$PORT_BUILD/pkg-plist.tmp
 NBR_LINE=`cat $PORT_BUILD/pkg-plist.tmp | wc -l`
 cat $PORT_BUILD/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >$PORT_BUILD/pkg-plist.tmp2

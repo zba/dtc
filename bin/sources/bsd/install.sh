@@ -13,8 +13,9 @@ QMAIL_DIR=%%QMAIL_DIR%%
 echo "### MYSQL CONFIGURATION ###"
 echo ""
 echo "WARNING: Your MySQL Server MUST be running."
-echo "If not, please issue the following cmd:"
-echo "/usr/local/etc/rc.d/mysql-server.sh start"
+echo "If not, please add mysql_enable=\"YES\" in your"
+echo "/etc/rc.conf and issue the following cmd:"
+echo "/usr/local/etc/rc.d/mysql-server start"
 echo ""
 
 . ${LOCALBASE}/www/dtc/admin/install/bsd_config
