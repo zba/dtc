@@ -35,10 +35,6 @@ USE_PHP+=	bz2 gd mbstring mcrypt mysql mysqli openssl pcre \
 		session sockets xml zlib
 .endif
 
-.if defined(WITH_MAILDROP)
-RUN_DEPENDS+=  ${LOCALBASE}/bin/maildrop:${PORTSDIR}/mail/maildrop
-.endif
-
 .if defined(WITH_WEBALIZER)
 RUN_DEPENDS+=	${LOCALBASE}/bin/webalizer:${PORTSDIR}/www/webalizer
 .endif
@@ -47,6 +43,9 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/webalizer:${PORTSDIR}/www/webalizer
 RUN_DEPENDS+=	${LOCALBASE}/www/awstats:${PORTSDIR}/www/awstats
 .endif
 
+.if defined(WITH_VISITORS)
+RUN_DEPENDS+=	${LOCALBASE}/bin/visitors:${PORTSDIR}/www/visitors
+.endif
 
 .if defined(WITH_PUREFTPD)
 RUN_DEPENDS+=	${LOCALBASE}/sbin/pure-ftpd:${PORTSDIR}/ftp/pure-ftpd
@@ -64,12 +63,24 @@ RUN_DEPENDS+=	${LOCALBASE}/sbin/pop3login:${PORTSDIR}/mail/courier-imap \
 		${LOCALBASE}lib/courier-authlib/libauthmysql.a:${PORTSDIR}/databases/courier-authlib-mysql
 .endif
 
+.if defined(WITH_MAILDROP)
+RUN_DEPENDS+=  ${LOCALBASE}/bin/maildrop:${PORTSDIR}/mail/maildrop
+.endif
+
 .if defined(WITH_CYRUS_SASL2)
 RUN_DEPENDS+=	${LOCALBASE}/lib/sasl2/libcrammd5.so:${PORTSDIR}/security/cyrus-sasl2
 .endif
 
 .if defined(WITH_SPAMASSASSIN)
 RUN_DEPENDS+=	${LOCALBASE}/bin/spamd:${PORTSDIR}/mail/p5-Mail-SpamAssassin
+.endif
+
+.if defined(WITH_CLAMAV)
+RUN_DEPENDS+=	${LOCALBASE}/bin/clamdscan:${PORTSDIR}/security/clamav
+.endif
+
+.if defined(WITH_AMAVIS)
+RUN_DEPENDS+=	${LOCALBASE}/sbin/amavisd:${PORTSDIR}/security/amavisd-new
 .endif
 
 .if defined(WITH_SQUIRRELMAIL)

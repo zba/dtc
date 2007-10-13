@@ -114,6 +114,12 @@ rm -r share
 
 mkdir -p sysutils/dtc
 mv $PORT_BUILD/* sysutils/dtc/
+mkdir -p sysutils/dtc-postfix-courier
+cp sources/bsd/dtc-postfix-courier/Makefile sysutils/dtc-postfix-courier
+cp sources/bsd/dtc-postfix-courier/pkg-descr sysutils/dtc-postfix-courier
+mkdir -p sysutils/dtc-toaster
+cp sources/bsd/dtc-toaster/Makefile sysutils/dtc-toaster
+cp sources/bsd/dtc-toaster/pkg-descr sysutils/dtc-toaster
 # Those are slave ports, and is to be activatd in case of changes inside DTC's needs
 
 #mkdir -p lang/php4-dtc
