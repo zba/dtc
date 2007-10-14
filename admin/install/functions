@@ -1822,7 +1822,7 @@ PARAMS=\"-r -c \"" >> $TMP_FILE
 		fi
 	else
 		if [ ""$conf_use_cyrus = "true" ]; then
-			echo "Cyrus install selected bo no saslauthd startup file";
+			echo "Cyrus install selected but no saslauthd startup file";
 			echo "If you plan to use pam_mysql then do this workaround: make saslauth start with -r -c -a pam";
 			echo "if you plan to use sasl_mysql just ignore this";
 		fi
@@ -3012,15 +3012,19 @@ if [ -z ""$PATH_CRONTAB_CONF ]; then
 fi
 
 modifyCrontab () {
-	echoIfVerbose "===> Installing cron script in "$PATH_CRONTAB_CONF
-	if grep "Configured by DTC " $PATH_CRONTAB_CONF >/dev/null
-	then
-			echoIfVerbose "/etc/crontab has been configured before : skinping include inssertion"
+	echoIfVerbose "===> Installing cron script"
+	if [ $UNIX_TYPE"" = "freebsd" -a "0`crontab -l | grep 'Configured by DTC '`" != "0" ] ; then
+		echoIfVerbose "root crontab has been configured before : skinping include inssertion"
+	elif grep "Configured by DTC " $PATH_CRONTAB_CONF >/dev/null ; then
+		echoIfVerbose "/etc/crontab has been configured before : skinping include inssertion"
 	else
-		echoIfVerbose "Inserting DTC cronjob in "$PATH_CRONTAB_CONF
-		if ! [ -f $PATH_CRONTAB_CONF.DTC.backup ]
-		then
-			cp -f $PATH_CRONTAB_CONF $PATH_CRONTAB_CONF.DTC.backup
+		if [ $UNIX_TYPE"" = "freebsd" ] ; then
+			echoIfVerbose "Inserting DTC cronjob in root's crontab"
+		else
+			echoIfVerbose "Inserting DTC cronjob in "$PATH_CRONTAB_CONF
+			if ! [ -f $PATH_CRONTAB_CONF.DTC.backup ] ; then
+				cp -f $PATH_CRONTAB_CONF $PATH_CRONTAB_CONF.DTC.backup
+			fi
 		fi
 		# Now using a single rrdtool.sh script instead of multiple to help reduce the load
 		# and also to make it dynamic (if using postfix or qmail)
@@ -3046,6 +3050,11 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 			echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
 			echo "* * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
 			echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
+			if [ $UNIX_TYPE"" != "freebsd" ] ; then
+				cat < $TMP_FILE >>$PATH_CRONTAB_CONF
+			else
+				crontab $TMP_FILE
+			fi
 			cat < $TMP_FILE >>$PATH_CRONTAB_CONF
 			rm $TMP_FILE
 		fi
