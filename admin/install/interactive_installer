@@ -136,7 +136,7 @@ installerQuestions () {
 		conf_mta_type=qmail
 	fi
 
-	# conf_cyrus_enable
+	# conf_use_cyrus
 	if [ -z ""$conf_use_cyrus ] ; then
 		conf_use_cyrus="true"
 	fi
@@ -160,7 +160,7 @@ installerQuestions () {
 		conf_use_cyrus="true"
 	fi
 
-	if [ ""$conf_cyrus_enable = "true" ]; then
+	if [ ""$conf_use_cyrus = "true" ]; then
 		if [ -z ""$conf_cyrus_pass ] ; then
 			conf_cyrus_pass=${conf_mysql_pass}
 		fi
@@ -549,8 +549,8 @@ printVariables () {
 
 	echo "### Mail ###"
 	echo "MTA type: $conf_mta_type"
-	echo "Cyrus enable: $conf_cyrus_enable"
-	if [ $conf_cyrus_enable = "true" ]; then
+	echo "Cyrus enable: $conf_use_cyrus"
+	if [ $conf_use_cyrus = "true" ]; then
 		echo "Cyrus pass: $conf_cyrus_pass"
 	fi
 
