@@ -19,7 +19,7 @@ if [ -f /etc/debian_version ] ; then
 	uninstallHttpdConfig
 fi
 
-if [ "`uname -s`" -eq "FreeBSD" ]; then
+if [ "`uname -s`" = "FreeBSD" ]; then
 	. /usr/local/www/dtc/admin/install/bsd_config
 	. /usr/local/www/dtc/admin/install/functions
 	. ${DTC_SAVED_INSTALL_CONFIG}

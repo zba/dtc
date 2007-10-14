@@ -16,7 +16,7 @@ if [ -f /etc/debian_version ] ; then
 	. /usr/share/dtc/admin/install/functions
 fi
 
-if [ "`uname -s`" -eq "FreeBSD" ]; then
+if [ "`uname -s`" = "FreeBSD" ]; then
 	echo "FreeBSD detected"
 	. /usr/local/www/dtc/admin/install/functions
 fi

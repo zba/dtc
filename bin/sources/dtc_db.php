@@ -909,6 +909,19 @@ $dtc_database = array(
 			"domain_name_index" => "(domain_name)"
 			)
 		),
+	"ssl_ips" => array (
+		"vars" => array(
+			"id" => "int(12) NOT NULL auto_increment",
+			"ip_addr" => "varchar(16) NOT NULL default ''",
+			"adm_login" => "varchar(64) NOT NULL default ''",
+			"available" => "enum('yes','no') NOT NULL default 'yes'",
+			"expire" => "date NOT NULL default '0000-00-00'",
+			),
+		"primary" => "(id)",
+		"keys" => array(
+			"p_addr" => "(ip_addr)"
+			),
+		),
 	"tik_queries" => array (
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
