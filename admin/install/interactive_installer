@@ -109,6 +109,35 @@ installerQuestions () {
 		if [ -z ""$conf_mta_type ] ; then
 			conf_mta_type=postfix
 		fi
+		echo ""
+		echo "Both Qmail and Postfix have been found on your system"
+		echo "and DTC needs to work with one of them."
+		echo "What MTA (Mail Tranport Agent, the one that"
+		echo "will route and deliver your incoming mail) do"
+		echo "you wish to use with DTC ? Type q for qmail"
+		echo "or type p for postfix."
+		if [ ""$conf_mta_type = "postfix" ] ; then
+			echo -n 'MTA type (Qmail or Postfix) [q/P]: '
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_mta_type=postfix
+			fi
+		else
+			echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_mta_type=qmail
+			fi
+		fi
+		if [ ""$answer = "Q" -o ""$answer = "q" ]; then
+			conf_mta_type=qmail
+		fi
+		if [ ""$answer = "P" -o ""$answer = "p" ]; then
+			conf_mta_type=postfix
+		fi
+		if [ ! ""$conf_mta_type = "postfix" ] ; then
+			conf_mta_type=qmail
+		fi
 	elif [ -f $PATH_POSTFIX_CONF ]; then
 		conf_mta_type=postfix
 	elif [ -f $PATH_QMAIL_NEWU ]; then
@@ -116,33 +145,6 @@ installerQuestions () {
 	else
 		echo "No MTA Available"
 		exit;
-	fi
-	echo ""
-	echo "What MTA (Mail Tranport Agent, the one that"
-	echo "will route and deliver your incoming mail) do"
-	echo "you wish to use with DTC ? Type q for qmail"
-	echo "or type p for postfix."
-	if [ ""$conf_mta_type = "postfix" ] ; then
-		echo -n 'MTA type (Qmail or Postfix) [q/P]: '
-		read answer
-		if [ -z ""$answer ] ; then
-			conf_mta_type=postfix
-		fi
-	else
-		echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
-		read answer
-		if [ -z ""$answer ] ; then
-			conf_mta_type=qmail
-		fi
-	fi
-	if [ ""$answer = "Q" -o ""$answer = "q" ]; then
-		conf_mta_type=qmail
-	fi
-	if [ ""$answer = "P" -o ""$answer = "p" ]; then
-		conf_mta_type=postfix
-	fi
-	if [ ! ""$conf_mta_type = "postfix" ] ; then
-		conf_mta_type=qmail
 	fi
 
 	# conf_use_cyrus
@@ -189,6 +191,30 @@ installerQuestions () {
 		if [ -z "$conf_ftp_type" ] ; then
 			conf_ftp_type=pureftpd
 		fi
+		echo ""
+		echo "Both pure-ftpd and pro-ftpd have been found on your system"
+		echo "What FTP Server do you wish to use with DTC ?"
+		if [ $conf_ftp_type = "pureftpd" ] ; then
+			echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [1]"
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_ftp_type=pureftpd
+				answer="1"
+			fi
+		else
+			echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [2]"
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_ftp_type=proftpd
+				answer="2"
+			fi
+		fi
+		if [ ""$answer = "1" ]; then
+			conf_ftp_type=pureftpd
+		fi
+		if [ ""$answer = "2" ]; then
+			conf_ftp_type=proftpd
+		fi
 	elif [ -f $PATH_PUREFTPD_CONF ]; then
 		conf_ftp_type=pureftpd
 	elif [ -f $PATH_PROFTPD_CONF ]; then
@@ -200,30 +226,6 @@ installerQuestions () {
 	if [ -z ""$conf_ftp_type ] ; then
 		conf_ftp_type=pureftpd
 	fi
-	echo ""
-	echo "What FTP Server do you wish to use with DTC ?"
-	if [ $conf_ftp_type = "pureftpd" ] ; then
-		echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [1]"
-		read answer
-		if [ -z ""$answer ] ; then
-			conf_ftp_type=pureftpd
-			answer="1"
-		fi
-	else
-		echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [2]"
-		read answer
-		if [ -z ""$answer ] ; then
-			conf_ftp_type=proftpd
-			answer="2"
-		fi
-	fi
-	if [ ""$answer = "1" ]; then
-		conf_ftp_type=pureftpd
-	fi
-	if [ ""$answer = "2" ]; then
-		conf_ftp_type=proftpd
-	fi
-
 	# Host configuration
 	if [ -z ""${main_domain_name} ] ; then
 		main_domain_name="example.com"
