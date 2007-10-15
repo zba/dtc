@@ -105,8 +105,17 @@ installerQuestions () {
 	fi
 
 	# conf_mta_type
-	if [ -z ""$conf_mta_type ] ; then
+	if [ -f $PATH_POSTFIX_CONF -a -f $PATH_QMAIL_NEWU ]; then
+		if [ -z ""$conf_mta_type ] ; then
+			conf_mta_type=postfix
+		fi
+	elif [ -f $PATH_POSTFIX_CONF ]; then
 		conf_mta_type=postfix
+	elif [ -f $PATH_QMAIL_NEWU ]; then
+		conf_mta_type=qmail
+	else
+		echo "No MTA Available"
+		exit;
 	fi
 	echo ""
 	echo "What MTA (Mail Tranport Agent, the one that"
@@ -137,54 +146,80 @@ installerQuestions () {
 	fi
 
 	# conf_use_cyrus
-	if [ -z ""$conf_use_cyrus ] ; then
-		conf_use_cyrus="true"
-	fi
-	if [ ""$conf_use_cyrus = "true" ] ; then
-		echo -n 'Are you using Cyrus IMAPd? [Y/n]: '
-		read answer
-		if [ -z ""$answer ] ; then
+	if [ $conf_mta_type = "postfix" ] ; then
+		if [ -z ""$conf_use_cyrus -a -f $PATH_CYRUS_CONF ] ; then
 			conf_use_cyrus="true"
 		fi
-	else
-		echo -n 'Are you using Cyrus IMAPd? [y/N]: '
-		read answer
-		if [ -z ""$answer ] ; then
+		if [ ""$conf_use_cyrus = "true" ] ; then
+			echo -n 'Are you using Cyrus IMAPd? [Y/n]: '
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_use_cyrus="true"
+			fi
+		else
+			echo -n 'Are you using Cyrus IMAPd? [y/N]: '
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_use_cyrus="false"
+			fi
+		fi
+		if [ ""$answer = "n" -o ""$conf_use_cyrus = "N" ]; then
 			conf_use_cyrus="false"
 		fi
-	fi
-	if [ ""$answer = "n" -o ""$conf_use_cyrus = "N" ]; then
-		conf_use_cyrus="false"
-	fi
-	if [ ""$answer = "y" -o ""$conf_use_cyrus = "Y" ]; then
-		conf_use_cyrus="true"
-	fi
+		if [ ""$answer = "y" -o ""$conf_use_cyrus = "Y" ]; then
+			conf_use_cyrus="true"
+		fi
 
-	if [ ""$conf_use_cyrus = "true" ]; then
-		if [ -z ""$conf_cyrus_pass ] ; then
+		if [ "$conf_use_cyrus" = "true" ]; then
+			if [ -z ""$conf_cyrus_pass ] ; then
+				conf_cyrus_pass=${conf_mysql_pass}
+			fi
+			echo "Cyrus IMAPd will be used"
+			echo ""
+			echo -n "Password for Mail Administrator? [${conf_cyrus_pass}]: "
+			read answer
+			if [ ! -z $answer ]; then
+				conf_cyrus_pass=${answer}
+			fi
+		else
 			conf_cyrus_pass=${conf_mysql_pass}
 		fi
-		echo "Cyrus IMAPd will be used"
-		echo ""
-		echo -n "Password for Mail Administrator? [${conf_cyrus_pass}]: "
-		read answer
-		if [ ! -z $answer ]; then
-			conf_cyrus_pass=${answer}
-		fi
 	else
+		conf_use_cyrus="false"
 		conf_cyrus_pass=${conf_mysql_pass}
 	fi
-
 	# FTP configuration
+	if [ -f $PATH_PUREFTPD_CONF -a -f $PATH_PROFTPD_CONF ] ; then
+		if [ -z "$conf_ftp_type" ] ; then
+			conf_ftp_type=pureftpd
+		fi
+	elif [ -f $PATH_PUREFTPD_CONF ]; then
+		conf_ftp_type=pureftpd
+	elif [ -f $PATH_PROFTPD_CONF ]; then
+		conf_ftp_type=proftpd
+	else
+		echo "No FTP Server Available"
+		exit;
+	fi
 	if [ -z ""$conf_ftp_type ] ; then
 		conf_ftp_type=pureftpd
 	fi
 	echo ""
 	echo "What FTP Server do you wish to use with DTC ?"
-	echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [1]"
-	read answer
-	if [ -z ""$answer ] ; then
-		conf_ftp_type=pureftpd
+	if [ $conf_ftp_type = "pureftpd" ] ; then
+		echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [1]"
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_ftp_type=pureftpd
+			answer="1"
+		fi
+	else
+		echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [2]"
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_ftp_type=proftpd
+			answer="2"
+		fi
 	fi
 	if [ ""$answer = "1" ]; then
 		conf_ftp_type=pureftpd
@@ -529,9 +564,11 @@ printVariables () {
 	echo "### Daemon path ###"
 	echo "httpd.conf: "$PATH_HTTPD_CONF
 	echo "named.conf: "$PATH_NAMED_CONF
-	echo "proftpd.conf: "$PATH_PROFTPD_CONF
-	echo "dovecot.conf: "$PATH_DOVECOT_CONF
-	echo "Courier config path: "$PATH_COURIER_CONF_PATH
+	if [ "$conf_ftp_type" = "pureftpd" ]; then
+		echo "pure-ftpd.conf: "$PATH_PUREFTPD_CONF
+	else
+		echo "proftpd.conf: "$PATH_PROFTPD_CONF
+	fi
         if [ $conf_mta_type = "postfix" ]; then
                 echo "postfix/main.cf: "$PATH_POSTFIX_CONF
         else   
@@ -550,7 +587,11 @@ printVariables () {
 	echo "### Mail ###"
 	echo "MTA type: $conf_mta_type"
 	echo "Cyrus enable: $conf_use_cyrus"
-	if [ $conf_use_cyrus = "true" ]; then
+	if [ $conf_use_cyrus != "true" ]; then
+		echo "dovecot.conf: "$PATH_DOVECOT_CONF
+		echo "Courier config path: "$PATH_COURIER_CONF_PATH
+	else
+		echo "Cyrus IMAPd config path: "$PATH_CYRUS_CONF
 		echo "Cyrus pass: $conf_cyrus_pass"
 	fi
 

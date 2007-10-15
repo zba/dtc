@@ -134,6 +134,7 @@ $dtc_database = array(
 			"dtcdoc_path" => "varchar(255) NOT NULL default '/usr/share/dtc/doc' ",
 			"dtcemail_path" => "varchar(255) NOT NULL default '/usr/share/dtc/email' ",
 			"htpasswd_path" => "varchar(255) NOT NULL default '/usr/sbin/htpasswd' ",
+			"qmail_newu_path" => "varchar(255) NOT NULL default '/var/qmail/bin/qmail-newu'",
 			"qmail_rcpthost_path" => "varchar(255) NOT NULL default 'rcpthosts' ",
 			"qmail_virtualdomains_path" => "varchar(255) NOT NULL default 'virtualdomains' ",
 			"qmail_assign_path" => "varchar(255) NOT NULL default 'assign' ",

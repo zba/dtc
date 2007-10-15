@@ -387,7 +387,8 @@ function cronMailSystem () {
 		echo "Starting qmail-newu\n";
 		switch($conf_mta_type){
 		case "qmail":
-			system("/var/qmail/bin/qmail-newu");
+			//system("/var/qmail/bin/qmail-newu");
+			system("$conf_qmail_newu_path");
 			break;
 		case "postfix":
 			//not sure what newu equiv in postfix
