@@ -146,48 +146,44 @@ installerQuestions () {
 	fi
 
 	# conf_use_cyrus
-	if [ $conf_mta_type = "postfix" ] ; then
-		if [ -z ""$conf_use_cyrus -a -f $PATH_CYRUS_CONF ] ; then
+	if [ -z ""$conf_use_cyrus -a -f $PATH_CYRUS_CONF ] ; then
+		conf_use_cyrus="true"
+	fi
+	if [ ""$conf_use_cyrus = "true" ] ; then
+		echo -n 'Are you using Cyrus IMAPd? [Y/n]: '
+		read answer
+		if [ -z ""$answer ] ; then
 			conf_use_cyrus="true"
-		fi
-		if [ ""$conf_use_cyrus = "true" ] ; then
-			echo -n 'Are you using Cyrus IMAPd? [Y/n]: '
-			read answer
-			if [ -z ""$answer ] ; then
-				conf_use_cyrus="true"
-			fi
-		else
-			echo -n 'Are you using Cyrus IMAPd? [y/N]: '
-			read answer
-			if [ -z ""$answer ] ; then
-				conf_use_cyrus="false"
-			fi
-		fi
-		if [ ""$answer = "n" -o ""$conf_use_cyrus = "N" ]; then
-			conf_use_cyrus="false"
-		fi
-		if [ ""$answer = "y" -o ""$conf_use_cyrus = "Y" ]; then
-			conf_use_cyrus="true"
-		fi
-
-		if [ "$conf_use_cyrus" = "true" ]; then
-			if [ -z ""$conf_cyrus_pass ] ; then
-				conf_cyrus_pass=${conf_mysql_pass}
-			fi
-			echo "Cyrus IMAPd will be used"
-			echo ""
-			echo -n "Password for Mail Administrator? [${conf_cyrus_pass}]: "
-			read answer
-			if [ ! -z $answer ]; then
-				conf_cyrus_pass=${answer}
-			fi
-		else
-			conf_cyrus_pass=${conf_mysql_pass}
 		fi
 	else
+		echo -n 'Are you using Cyrus IMAPd? [y/N]: '
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_use_cyrus="false"
+		fi
+	fi
+	if [ ""$answer = "n" -o ""$conf_use_cyrus = "N" ]; then
 		conf_use_cyrus="false"
+	fi
+	if [ ""$answer = "y" -o ""$conf_use_cyrus = "Y" ]; then
+		conf_use_cyrus="true"
+	fi
+
+	if [ "$conf_use_cyrus" = "true" ]; then
+		if [ -z ""$conf_cyrus_pass ] ; then
+			conf_cyrus_pass=${conf_mysql_pass}
+		fi
+		echo "Cyrus IMAPd will be used"
+		echo ""
+		echo -n "Password for Mail Administrator? [${conf_cyrus_pass}]: "
+		read answer
+		if [ ! -z $answer ]; then
+			conf_cyrus_pass=${answer}
+		fi
+	else
 		conf_cyrus_pass=${conf_mysql_pass}
 	fi
+
 	# FTP configuration
 	if [ -f $PATH_PUREFTPD_CONF -a -f $PATH_PROFTPD_CONF ] ; then
 		if [ -z "$conf_ftp_type" ] ; then
