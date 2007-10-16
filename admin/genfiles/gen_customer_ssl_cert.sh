@@ -18,11 +18,34 @@ fi
 # TODO: find a way to detect the version with MKTEMP="mktemp -p /tmp"
 MKTEMP="/bin/mktemp -t"
 
-if [ -z "$SSL_PASSPHRASE" ] ; then
-	SSL_PASSPHRASE=$RANDOM$RANDOM
+
+if [ "`uname -s`" = "FreeBSD" ]; then
+	UNIX_TYPE=freebsd
+elif [ -f /etc/debian_version ] ; then
+	UNIX_TYPE=debian
+else
+	UNIX_TYPE=others
 fi
 
-CHALLENGE_PASS=$RANDOM$RANDOM
+if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
+	gen_pass=`mktemp -t "" | cut -d'.' -f2`
+	gen_pass=${gen_pass}`mktemp -t "" | cut -d'.' -f2`
+else
+	# This new one works as well with sh!
+	gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+fi
+if [ -z "$SSL_PASSPHRASE" ] ; then
+	SSL_PASSPHRASE=$gen_pass
+fi
+
+if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
+	gen_pass=`mktemp -t "" | cut -d'.' -f2`
+	gen_pass=${gen_pass}`mktemp -t "" | cut -d'.' -f2`
+else
+	# This new one works as well with sh!
+	gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+fi
+CHALLENGE_PASS=$gen_pass
 
 echo "Checking dirs"
 
