@@ -462,9 +462,9 @@ dtcFromOkDraw()."
 	}
 	return "<table>
 <tr>
-	<td valign=\"top\">".$add_a_user."</td>
-	<td background=\"gfx/skin/frame/border_2.gif\">&nbsp;</td>
 	<td valign=\"top\">".$waiting_new_users."</td>
+	</tr><tr>
+	<td valign=\"top\">".$add_a_user."</td>
 </tr></table>";
 }
 
