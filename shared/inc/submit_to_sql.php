@@ -352,7 +352,8 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 	$txt_userwaiting_account_activated_subject = "$conf_message_subject_header Account $waiting_login has been activated!";
 
 	// Manage the signature of all registration messages
-	if(file_exists("/etc/dtc/signature.txt")){
+	$fname = "/etc/dtc/signature.txt";
+	if(file_exists($fname)){
 		$fp = fopen($fname,"r");
 		$signature = fread($fp,filesize($fname));
 		fclose($fp);
@@ -373,14 +374,16 @@ Password: ".$a["reqadm_pass"];
 	$msg_2_send = str_replace("%%%DTC_LOGIN_INFO%%%",$dtc_login_info,$msg_2_send);
 
 	// Manage the header of the messages
-	if(file_exists("/etc/dtc/messages_header.txt")){
+	$fname = "/etc/dtc/messages_header.txt";
+	if(file_exists($fname)){
 		$fp = fopen($fname,"r");
 		$head = fread($fp,filesize($fname));
 		fclose($fp);
 	}else{
 		$head = "";
 	}
-	$msg_2_send = $head.$msg_2_send;
+	$msg_2_send = $head."
+".$msg_2_send;
 
 	$headers = "From: ".$conf_webmaster_email_addr;
 	mail($a["email"],$txt_userwaiting_account_activated_subject,$msg_2_send,$headers);
