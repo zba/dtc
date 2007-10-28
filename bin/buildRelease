@@ -22,6 +22,7 @@ mkdir $BUILD_DIR
 mkdir -p $BUILD_DIR/etc/zones
 # echo cp -rf ../admin ../client ../shared ../email ../doc $BUILD_DIR
 cp -rf ../admin ../client ../shared ../email ../doc $BUILD_DIR
+cp ../admin/signature.txt ../shared/messages_header.txt $BUILD_DIR/etc
 rm -rf $BUILD_DIR/shared/imgcache
 mkdir -p $BUILD_DIR/shared/imgcache
 
