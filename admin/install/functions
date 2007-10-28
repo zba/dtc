@@ -1044,8 +1044,6 @@ modifyHTTPD_CONF () {
 	#
 	# Include $PATH_DTC_ETC/vhosts.conf in $PATH_HTTPD_CONF
 	#
-
-
 	echoIfVerbose "===> Modifying httpd.conf"
 
 	if grep "Configured by DTC" $PATH_HTTPD_CONF >/dev/null
@@ -1141,6 +1139,8 @@ ErrorDocument 404 /dtc404/404.php
 		fi
 		echo "" >/etc/apache2/ports.conf
 	fi
+	touch ${PATH_DTC_ETC}/logrotate
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}/logrotate
 }
 
 # need to make sure we are loading LOG_SQL in the /etc/conf.d/apache2 if that file exists
