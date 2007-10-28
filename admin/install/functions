@@ -3263,7 +3263,7 @@ createChrootTemplate () {
 
 	# copy ldconfig from sbin to $conf_chroot_path/sbin
 	if ! [ $UNIX_TYPE"" = "osx" ] ; then
-		cp -pf /sbin/ldconfig sbin/
+		cp -pf /sbin/ldconfig* sbin/
 	fi
 
 	echoIfVerbose "-> Creating /etc template"
