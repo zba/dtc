@@ -19,7 +19,6 @@ Below is a copy of his message:
 Subject: ".stripslashes($subject)."
 Admin login: $adm_login
 Server hostingame: ".$_REQUEST["server_hostname"]."
-Request close: ".$_REQUEST["request_to_close"]."
 
 ".stripslashes($body)."
 **********
