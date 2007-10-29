@@ -462,6 +462,7 @@ dtcFromOkDraw()."
 			$last_message_date = $a["date"];
 			$last_message_time = $a["time"];
 			$loop_num = 0;
+			$last_guy_replied = "user";
 			while($next_reply_id != 0 && $loop_num < 49){
 				$loop_num++;
 				$q2 = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='$next_reply_id';";
@@ -474,12 +475,17 @@ dtcFromOkDraw()."
 				$a3 = mysql_fetch_array($r2);
 				$last_message_date = $a3["date"];
 				$last_message_time = $a3["time"];
+				if($a3["admin_or_user"] == "user"){
+					$last_guy_replied = "user";
+				}else{
+					$last_guy_replied = "admin";
+				}
 				$next_reply_id = $a3["reply_id"];
 				if($loop_num >= 49){
 					echo "Warning: loop_num exeeded 50, not displaying last ticket reply from line".__LINE__." file ".__FILE__;
 				}
 			}
-			if($a3["admin_or_user"] == "user"){
+			if($last_guy_replied == "user"){
 				$last_reply_text = "<font color=\"red\">User</font>";
 			}
 			$waiting_new_users .= "<td>$last_reply_text</td>";
