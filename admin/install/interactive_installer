@@ -220,7 +220,7 @@ installerQuestions () {
 	elif [ -f $PATH_PROFTPD_CONF ]; then
 		conf_ftp_type=proftpd
 	else
-		echo "No FTP Server Available"
+		echo "No FTP Server Available: please install either pure-ftpd or proftpd."
 		exit;
 	fi
 	if [ -z ""$conf_ftp_type ] ; then
