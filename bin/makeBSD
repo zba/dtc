@@ -17,6 +17,7 @@ ARCH_NAME=$PKG_BUILD".tar.gz"
 
 ./buildRelease $UNIX_TYPE $PKG_BUILD
 mkdir -p $PKG_BUILD/usr/local/etc/dtc/etc
+cp ../etc/* $PKG_BUILD/usr/local/etc/dtc
 
 kernel=`uname -a | awk '{print $1}'`;
 
