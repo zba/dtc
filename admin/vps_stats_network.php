@@ -64,7 +64,7 @@ for($m=0;$m<12;$m++){
 
 	$q = "SELECT network_in_count,network_out_count FROM $pro_mysql_vps_stats_table
 	WHERE vps_server_hostname='".$_REQUEST["vps_node"]."'
-	AND vps_xen_name='".$_REQUEST["vps_name"]."'
+	AND vps_xen_name='xen".$_REQUEST["vps_name"]."'
 	AND month='$month'
 	AND year='$year';";
 	$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." MySql said: ".mysql_error());
