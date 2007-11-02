@@ -112,6 +112,10 @@ $popup_cats
 			}
 			$out .= "First query date: ".$a_t["date"]." ".$a_t["time"]."<br>";
 			$out .= "Server hostname related: ".$a_t["server_hostname"]."<br>";
+
+			if($a_t["closed"] == "yes"){
+				$out .= "<font color=\"red\">Replying to an already closed ticket will reopen it.</font><br>";
+			}
 			
 			$out .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"0\">";
 			$next_tikq = $_REQUEST["tik_id"];

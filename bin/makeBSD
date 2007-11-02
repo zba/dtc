@@ -16,6 +16,8 @@ PORT_BUILD=dtcBSDportBuild
 ARCH_NAME=$PKG_BUILD".tar.gz"
 
 ./buildRelease $UNIX_TYPE $PKG_BUILD
+mkdir -p $PKG_BUILD/usr/local/etc/dtc/etc
+cp ../etc/* $PKG_BUILD/usr/local/etc/dtc
 
 kernel=`uname -a | awk '{print $1}'`;
 
@@ -27,11 +29,11 @@ echo "<?php
 ?>" > $PKG_BUILD/shared/dtc_version.php
 
 chown -R root:0 $PKG_BUILD
-chown nobody:65534 $PKG_BUILD/client/imgcache $PKG_BUILD/admin/imgcache $PKG_BUILD/shared/imgcache $PKG_BUILD/email/imgcache
-chown nobody:65534 $PKG_BUILD/client/gfx $PKG_BUILD/admin/gfx $PKG_BUILD/shared/gfx $PKG_BUILD/email/gfx
-chown nobody:65534 $PKG_BUILD/admin/*.cgi
+#chown nobody:65534 $PKG_BUILD/client/imgcache $PKG_BUILD/admin/imgcache $PKG_BUILD/shared/imgcache $PKG_BUILD/email/imgcache
+#chown nobody:65534 $PKG_BUILD/client/gfx $PKG_BUILD/admin/gfx $PKG_BUILD/shared/gfx $PKG_BUILD/email/gfx
 
 # Specific BSD package actions :
+# Create an empty Makefile in the "sources" of DTC so nothing is to be built
 echo "all:" >$PKG_BUILD"/Makefile"
 echo "===> Packaging files"
 tar -czf $ARCH_NAME $PKG_BUILD
@@ -48,7 +50,7 @@ cp sources/bsd/pkg-descr $PORT_BUILD
 # Create Makefile with correct port version
 echo "# Ports collection makefile for:        dtc
 # Date created:                 1 December 2003
-# Whom:                         Frederic Cambus & Thomas Goirand
+# Whom:                         Frederic Cambus & Thomas Goirand & Marc G. Fournier
 #
 # \$FreeBSD\$
 #
@@ -98,7 +100,9 @@ share/dtc/shared/mysql_config.php
 share/dtc/client/gfx
 share/dtc/client/imgcache
 sbin/dtc-install
-sbin/dtc-deinstall" >>$PORT_BUILD/pkg-plist.tmp
+sbin/dtc-deinstall
+share/dtc/email/gfx
+share/dtc/email/imgcache" >>$PORT_BUILD/pkg-plist.tmp
 find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>$PORT_BUILD/pkg-plist.tmp
 NBR_LINE=`cat $PORT_BUILD/pkg-plist.tmp | wc -l`
 cat $PORT_BUILD/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >$PORT_BUILD/pkg-plist.tmp2
@@ -111,6 +115,12 @@ rm -r share
 
 mkdir -p sysutils/dtc
 mv $PORT_BUILD/* sysutils/dtc/
+mkdir -p sysutils/dtc-postfix-courier
+cp sources/bsd/dtc-postfix-courier/Makefile sysutils/dtc-postfix-courier
+cp sources/bsd/dtc-postfix-courier/pkg-descr sysutils/dtc-postfix-courier
+mkdir -p sysutils/dtc-toaster
+cp sources/bsd/dtc-toaster/Makefile sysutils/dtc-toaster
+cp sources/bsd/dtc-toaster/pkg-descr sysutils/dtc-toaster
 # Those are slave ports, and is to be activatd in case of changes inside DTC's needs
 
 #mkdir -p lang/php4-dtc

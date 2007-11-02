@@ -10,6 +10,7 @@ CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
 conf_apache_version=1
 PATH_NAMED_CONF=/etc/named.conf
 PATH_QMAIL_CTRL=/var/qmail/control
+PATH_QMAIL_NEWU="/var/qmail/bin/qmail-newu"
 PATH_PHP_CGI=/usr/bin/php
 PATH_PHP_INI_APACHE=/etc/php.ini
 PATH_PROFTPD_CONF=/etc/proftpd.conf

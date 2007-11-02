@@ -2,7 +2,7 @@ This package was debianized by Thomas Goirand <thomas@goirand.fr> on
 Sat,  9 Apr 2005 21:54:10 +0200.
 
 It was downloaded from:
-cvs -d :pserver:anonymous@gplhost.com:/var/lib/cvs export -D today dtc
+git clone http://git.gplhost.com/dtc.git
 
 Upstream Authors:
 

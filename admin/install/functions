@@ -480,7 +480,11 @@ createHostingDirAndFiles () {
 	fi
 
 	# Repair the original 404 page from old versions against XSS attack
-	dtc404md5sum=`md5sum $PATH_DTC_ETC/dtc404/404.php|cut -d " " -f1`
+	if [ $UNIX_TYPE"" = "freebsd" ] ; then
+		dtc404md5sum=`md5 $PATH_DTC_ETC/dtc404/404.php|cut -d " " -f4`
+	else
+		dtc404md5sum=`md5sum $PATH_DTC_ETC/dtc404/404.php|cut -d " " -f1`
+	fi
 	dtcOrigianMD5sum="14285fd356b0bfdef4cfd7579da161c0"
 	if [ $dtcOrigianMD5sum = $dtc404md5sum ] ; then
 		cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC/dtc404/
@@ -655,6 +659,9 @@ setupDTCDatabase () {
 
 	# Fix the path of the htpasswd binary
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET htpasswd_path='"$HTPASSWD"' WHERE 1"
+
+	# Fix the path of the qmail-newu binary
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET qmail_newu_path='"$PATH_QMAIL_NEWU"' WHERE 1"
 
 	# Fix the rights for the UIDs in tables
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE ftp_access SET uid='$CONF_DTC_SYSTEM_UID',gid='$CONF_DTC_SYSTEM_GID' WHERE 1"
@@ -1037,8 +1044,6 @@ modifyHTTPD_CONF () {
 	#
 	# Include $PATH_DTC_ETC/vhosts.conf in $PATH_HTTPD_CONF
 	#
-
-
 	echoIfVerbose "===> Modifying httpd.conf"
 
 	if grep "Configured by DTC" $PATH_HTTPD_CONF >/dev/null
@@ -1134,6 +1139,8 @@ ErrorDocument 404 /dtc404/404.php
 		fi
 		echo "" >/etc/apache2/ports.conf
 	fi
+	touch ${PATH_DTC_ETC}/logrotate
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}/logrotate
 }
 
 # need to make sure we are loading LOG_SQL in the /etc/conf.d/apache2 if that file exists
@@ -1300,7 +1307,7 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 					cp /etc/rc.conf /etc/rc.conf.old
 					echo "/etc/rc.conf /etc/rc.conf.old saved"
 					cat /etc/rc.conf | grep -v "cyrus_imapd_enable" >> /etc/rc.tmp
-					echo 'cyrus_imapd_enable="YES"'
+					echo 'cyrus_imapd_enable="YES"' >> /etc/rc.tmp
 					mv /etc/rc.tmp /etc/rc.conf
 					echo "cyrus imapd /etc/rc.conf injected"
 				else
@@ -1818,7 +1825,7 @@ PARAMS=\"-r -c \"" >> $TMP_FILE
 		fi
 	else
 		if [ ""$conf_use_cyrus = "true" ]; then
-			echo "Cyrus install selected bo no saslauthd startup file";
+			echo "Cyrus install selected but no saslauthd startup file";
 			echo "If you plan to use pam_mysql then do this workaround: make saslauth start with -r -c -a pam";
 			echo "if you plan to use sasl_mysql just ignore this";
 		fi
@@ -1981,10 +1988,15 @@ mech_list: login plain" >> $SASLTMP_FILE
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
 				fi
 				echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
-				echo "smtpd_recipient_restrictions = permit_mynetworks, 
-                               permit_sasl_authenticated,
-			       $dnsbl_list
-                               reject_unauth_destination" >> $TMP_FILE
+				echo "smtpd_recipient_restrictions = permit_mynetworks,
+				permit_sasl_authenticated,
+				reject_invalid_hostname,
+				reject_non_fqdn_sender,
+				reject_non_fqdn_recipient,
+				reject_unknown_sender_domain,
+				reject_unknown_recipient_domain,
+				$dnsbl_list
+				reject_unauth_destination" >> $TMP_FILE
 				echo "smtp_sasl_auth_enable = no
 smtpd_sasl_security_options = noanonymous
 smtpd_sasl_local_domain = /etc/mailname
@@ -3008,15 +3020,19 @@ if [ -z ""$PATH_CRONTAB_CONF ]; then
 fi
 
 modifyCrontab () {
-	echoIfVerbose "===> Installing cron script in "$PATH_CRONTAB_CONF
-	if grep "Configured by DTC " $PATH_CRONTAB_CONF >/dev/null
-	then
-			echoIfVerbose "/etc/crontab has been configured before : skinping include inssertion"
+	echoIfVerbose "===> Installing cron script"
+	if [ $UNIX_TYPE"" = "freebsd" -a "0`crontab -l | grep 'Configured by DTC '`" != "0" ] ; then
+		echoIfVerbose "root crontab has been configured before : skinping include inssertion"
+	elif grep "Configured by DTC " $PATH_CRONTAB_CONF >/dev/null ; then
+		echoIfVerbose "/etc/crontab has been configured before : skinping include inssertion"
 	else
-		echoIfVerbose "Inserting DTC cronjob in "$PATH_CRONTAB_CONF
-		if ! [ -f $PATH_CRONTAB_CONF.DTC.backup ]
-		then
-			cp -f $PATH_CRONTAB_CONF $PATH_CRONTAB_CONF.DTC.backup
+		if [ $UNIX_TYPE"" = "freebsd" ] ; then
+			echoIfVerbose "Inserting DTC cronjob in root's crontab"
+		else
+			echoIfVerbose "Inserting DTC cronjob in "$PATH_CRONTAB_CONF
+			if ! [ -f $PATH_CRONTAB_CONF.DTC.backup ] ; then
+				cp -f $PATH_CRONTAB_CONF $PATH_CRONTAB_CONF.DTC.backup
+			fi
 		fi
 		# Now using a single rrdtool.sh script instead of multiple to help reduce the load
 		# and also to make it dynamic (if using postfix or qmail)
@@ -3042,6 +3058,11 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 			echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
 			echo "* * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
 			echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
+			if [ $UNIX_TYPE"" != "freebsd" ] ; then
+				cat < $TMP_FILE >>$PATH_CRONTAB_CONF
+			else
+				crontab $TMP_FILE
+			fi
 			cat < $TMP_FILE >>$PATH_CRONTAB_CONF
 			rm $TMP_FILE
 		fi
@@ -3247,7 +3268,7 @@ createChrootTemplate () {
 
 	# copy ldconfig from sbin to $conf_chroot_path/sbin
 	if ! [ $UNIX_TYPE"" = "osx" ] ; then
-		cp -pf /sbin/ldconfig sbin/
+		cp -pf /sbin/ldconfig* sbin/
 	fi
 
 	echoIfVerbose "-> Creating /etc template"
@@ -3995,6 +4016,7 @@ conf_hosting_path=\"${conf_hosting_path}\"
 conf_chroot_path=\"${conf_chroot_path}\"
 conf_eth2monitor=\"${conf_eth2monitor}\"
 conf_recipient_delim=\"${conf_recipient_delim}\"
+conf_mx_mail=\"${conf_mx_mail}\"
 conf_report_setup=${conf_report_setup}
 conf_omit_dev_mknod=${conf_omit_dev_mknod}
 conf_gen_ssl_cert=${conf_gen_ssl_cert}

@@ -35,6 +35,7 @@ admin/vps_stats_network.php	/usr/share/dtc/admin
 admin/dtc-chroot-shell		/bin
 admin/reminders_msg		/etc/dtc
 admin/signature.txt		/etc/dtc
+etc/logrotate.template		/etc/dtc
 client				/usr/share/dtc
 email				/usr/share/dtc
 bin/sources/dtc_db.php		/usr/share/dtc/admin

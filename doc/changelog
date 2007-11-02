@@ -1,6 +1,28 @@
+Version 0.26.8:
+---------------
+- Added support for rotating the error.log of all vhosts using logrotate
+- Now deletes files older than 7 days in the tmp folder of all vhosts
+- Welcome message corrected
+- Ticket support list is improved with last reply from admin or client shown
+- The panel now detects the default IP to use
+- Sent lots of questions to low priority
+- A lot of FreeBSD twicks so it runs better for it.
+- A lot of minor bugfix
+
+Version 0.26.7:
+---------------
+- Some grave problems in the reminders.php fixed (parse error, wrong file, etc.)
+- Some FreeBSD improvements
+
+Version 0.26.6:
+---------------
+- Some VAT problems fixed: it's now correctly adding VAT within EU rules
+
 Version 0.26.5:
 ---------------
-Nothing yet...
+- Some slackware compatibility improvements
+- The omit_kdev_mknod was not working correctly
+- Now prompting for the mx subdomain in debconf
 
 Version 0.26.4:
 ---------------

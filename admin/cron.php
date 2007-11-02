@@ -3,6 +3,9 @@
 $script_start_time = time();
 $start_stamps = mktime();
 $panel_type="cronjob";
+
+chdir(dirname(__FILE__));
+
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
@@ -387,7 +390,8 @@ function cronMailSystem () {
 		echo "Starting qmail-newu\n";
 		switch($conf_mta_type){
 		case "qmail":
-			system("/var/qmail/bin/qmail-newu");
+			//system("/var/qmail/bin/qmail-newu");
+			system("$conf_qmail_newu_path");
 			break;
 		case "postfix":
 			//not sure what newu equiv in postfix

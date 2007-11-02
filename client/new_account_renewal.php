@@ -16,6 +16,8 @@ function renew_form(){
 
 	global $secpayconf_currency_letters;
 
+	global $cc_europe;
+
 	get_secpay_conf();
 
 	// Do field format checking and escaping for all fields
@@ -152,10 +154,24 @@ Service country: $country
 		return $ret;
 	}
 	$company_invoicing = mysql_fetch_array($r);
-	if($company_invoicing["vat_rate"] != 0 && $company_invoicing["vat_number"] != ""){
-		$vat_rate = $company_invoicing["vat_rate"];
-	}else{
+
+	// If VAT is set, use it.
+	if($company_invoicing["vat_rate"] == 0 || $company_invoicing["vat_number"] == ""){
 		$vat_rate = 0;
+		$use_vat = "no";
+	}else{
+		// Both companies are in europe, in different countries, and customer as a VAT number,
+		// then there is no VAT and the customer shall pay the VAT in it's own country
+		// These are the VAT rules in the European Union...
+		if($client["is_company"] == "yes" && $client["vat_num"] != ""
+			&& isset($cc_europe[ $client["country"] ]) && isset($cc_europe[ $company_invoicing["country"] ])
+			&& $client["country"] != $company_invoicing["country"]){
+				$vat_rate = 0;
+				$use_vat = "no";
+		}else{
+			$use_vat = "yes";
+			$vat_rate = $company_invoicing["vat_rate"];
+		}
 	}
 
 	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";

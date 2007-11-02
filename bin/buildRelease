@@ -22,11 +22,11 @@ mkdir $BUILD_DIR
 mkdir -p $BUILD_DIR/etc/zones
 # echo cp -rf ../admin ../client ../shared ../email ../doc $BUILD_DIR
 cp -rf ../admin ../client ../shared ../email ../doc $BUILD_DIR
+cp ../admin/signature.txt ../shared/messages_header.txt $BUILD_DIR/etc
 rm -rf $BUILD_DIR/shared/imgcache
 mkdir -p $BUILD_DIR/shared/imgcache
 
 # Remove bad files from package
-find $BUILD_DIR/ -iname 'CVS' -exec rm -rf {} \; &>/dev/null
 find $BUILD_DIR/ -iname '*~' -exec rm -rf {} \; &>/dev/null
 rm -rf $BUILD_DIR/shared/mysql_config.php
 

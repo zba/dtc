@@ -435,14 +435,14 @@ dtcFromOkDraw()."
 		$waiting_new_users .= "</table>";
 	}
 	// Ticket manager
-	$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE closed='no' AND initial_ticket='yes';";
+	$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE closed='no' AND initial_ticket='yes' ORDER BY `date`,`time`;";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
 		$waiting_new_users .= "<b>".$txt_dua_no_pending_support_tickets[$lang]."</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
-<tr><td>".$txt_login_title[$lang]."</td><td>".$txt_dua_age[$lang]."</td><td>".$txt_dua_type[$lang]."</td><td>".$txt_dua_subject[$lang]."</td></tr>";
+<tr><td>".$txt_login_title[$lang]."</td><td>".$txt_dua_age[$lang]."</td><td>".$txt_dua_type[$lang]."</td><td>".$txt_dua_subject[$lang]."</td><td>Last message from</td><td>Last message age</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td>".$a["adm_login"]."</td>";
@@ -456,15 +456,50 @@ dtcFromOkDraw()."
 				$cat = $a2["catname"];
 			}
 			$age = calculateAge($a["date"],$a["time"]);
-			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".stripslashes($a["subject"])."</a></td></tr>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".stripslashes($a["subject"])."</a></td>";
+			$next_reply_id = $a["reply_id"];
+			$last_reply_text = "<font color=\"green\">Admin</font>";
+			$last_message_date = $a["date"];
+			$last_message_time = $a["time"];
+			$loop_num = 0;
+			$last_guy_replied = "user";
+			while($next_reply_id != 0 && $loop_num < 49){
+				$loop_num++;
+				$q2 = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='$next_reply_id';";
+				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 != 1){
+					echo "Warning: couldn't find tik query $next_reply_id in last reply detection!";
+					break;
+				}
+				$a3 = mysql_fetch_array($r2);
+				$last_message_date = $a3["date"];
+				$last_message_time = $a3["time"];
+				if($a3["admin_or_user"] == "user"){
+					$last_guy_replied = "user";
+				}else{
+					$last_guy_replied = "admin";
+				}
+				$next_reply_id = $a3["reply_id"];
+				if($loop_num >= 49){
+					echo "Warning: loop_num exeeded 50, not displaying last ticket reply from line".__LINE__." file ".__FILE__;
+				}
+			}
+			if($last_guy_replied == "user"){
+				$last_reply_text = "<font color=\"red\">User</font>";
+			}
+			$waiting_new_users .= "<td>$last_reply_text</td>";
+			$age2 = calculateAge($last_message_date,$last_message_time);
+			$waiting_new_users .= "<td>".$age2."</td>";
+			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";
 	}
 	return "<table>
 <tr>
-	<td valign=\"top\">".$add_a_user."</td>
-	<td background=\"gfx/skin/frame/border_2.gif\">&nbsp;</td>
 	<td valign=\"top\">".$waiting_new_users."</td>
+	</tr><tr>
+	<td valign=\"top\">".$add_a_user."</td>
 </tr></table>";
 }
 

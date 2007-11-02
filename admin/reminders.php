@@ -38,9 +38,20 @@ function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$ad
 	$msg_2_send = str_replace("%%%DTC_CLIENT_URL%%%","http".$surl."://".$conf_administrative_site."/dtc/",$msg_2_send);
 
 	if(file_exists("/etc/dtc/signature.txt")){
+		$fname = "/etc/dtc/signature.txt";
+	}else if(file_exists("/usr/local/www/dtc/etc/signature.txt")){
+		$fname = "/usr/local/www/dtc/etc/signature.txt";
+	}else{
+		$fname = "/usr/share/dtc/etc/signature.txt";
+	}
+	if(file_exists($fname)){
 		$fp = fopen($fname,"r");
-		$signature = fread($fp,filesize($fname));
-		fclose($fp);
+		if($fp != NULL){
+			$signature = fread($fp,filesize($fname));
+			fclose($fp);
+		}else{
+			$signature = "";
+		}
 	}else{
 		$signature = "";
 	}
@@ -48,9 +59,20 @@ function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$ad
 
 	// Manage the header of the messages
 	if(file_exists("/etc/dtc/messages_header.txt")){
+		$fname = "/etc/dtc/messages_header.txt";
+	}else if(file_exists("/usr/local/www/dtc/etc/messages_header.txt")){
+		$fname = "/usr/local/www/dtc/etc/messages_header.txt";
+	}else{
+		$fname = "/usr/share/dtc/messages_header.txt";
+	}
+	if(file_exists($fname)){
 		$fp = fopen($fname,"r");
-		$head = fread($fp,filesize($fname));
-		fclose($fp);
+		if($fp != NULL){
+			$head = fread($fp,filesize($fname));
+			fclose($fp);
+		}else{
+			$head = "";
+		}
 	}else{
 		$head = "";
 	}
@@ -67,17 +89,22 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 	global $conf_webmaster_email_addr;
 
 	global $conf_message_subject_header;
+	global $dtcshared_path;
 
 	// Using Debian, the files in /etc will be marked as conf files and then will be updated
 	// only if the admin asks for it. We just let Debian manage them...
 	if(file_exists("/etc/dtc/reminders_msg/".$file)){
 		$fname = "/etc/dtc/reminders_msg/".$file;
 	}else{
-		$fname = "reminders_msg/".$file;
+		$fname = $dtcshared_path."/reminders_msg/".$file;
 	}
 	$fp = fopen($fname,"r");
-	$mesg = fread($fp,filesize($fname));
-	fclose($fp);
+	if($fp != NULL){
+		$mesg = fread($fp,filesize($fname));
+		fclose($fp);
+	}else{
+		$mesg = "Could not load reminder message: please contact your administrator";
+	}
 
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;
@@ -156,11 +183,20 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 	global $conf_webmaster_email_addr;
 
 	global $conf_message_subject_header;
+	global $dtcshared_path;
 
-	$fname = "reminders_msg/".$file;
+	if(file_exists("/etc/dtc/reminders_msg/".$file)){
+		$fname = "/etc/dtc/reminders_msg/".$file;
+	}else{
+		$fname = "$dtcshared_path/registration_msg/".$file;
+	}
 	$fp = fopen($fname,"r");
-	$mesg = fread($fp,filesize($fname));
-	fclose($fp);
+	if($fp != NULL){
+		$mesg = fread($fp,filesize($fname));
+		fclose($fp);
+	}else{
+		$msg = "";
+	}
 
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;
@@ -240,11 +276,20 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 
 	global $conf_webmaster_email_addr;
 	global $conf_message_subject_header;
+	global $dtcshared_path;
 
-	$fname = "reminders_msg/".$file;
+	if(file_exists("/etc/dtc/reminders_msg/".$file)){
+		$fname = "/etc/dtc/reminders_msg/".$file;
+	}else{
+		$fname = "$dtcshared_path/registration_msg/".$file;
+	}
 	$fp = fopen($fname,"r");
-	$mesg = fread($fp,filesize($fname));
-	fclose($fp);
+	if($fp != NULL){
+		$mesg = fread($fp,filesize($fname));
+		fclose($fp);
+	}else{
+		$msg = "";
+	}
 
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;

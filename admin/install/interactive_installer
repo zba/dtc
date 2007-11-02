@@ -105,39 +105,50 @@ installerQuestions () {
 	fi
 
 	# conf_mta_type
-	if [ -z ""$conf_mta_type ] ; then
-		conf_mta_type=postfix
-	fi
-	echo ""
-	echo "What MTA (Mail Tranport Agent, the one that"
-	echo "will route and deliver your incoming mail) do"
-	echo "you wish to use with DTC ? Type q for qmail"
-	echo "or type p for postfix."
-	if [ ""$conf_mta_type = "postfix" ] ; then
-		echo -n 'MTA type (Qmail or Postfix) [q/P]: '
-		read answer
-		if [ -z ""$answer ] ; then
+	if [ -f $PATH_POSTFIX_CONF -a -f $PATH_QMAIL_NEWU ]; then
+		if [ -z ""$conf_mta_type ] ; then
 			conf_mta_type=postfix
 		fi
-	else
-		echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
-		read answer
-		if [ -z ""$answer ] ; then
+		echo ""
+		echo "Both Qmail and Postfix have been found on your system"
+		echo "and DTC needs to work with one of them."
+		echo "What MTA (Mail Tranport Agent, the one that"
+		echo "will route and deliver your incoming mail) do"
+		echo "you wish to use with DTC ? Type q for qmail"
+		echo "or type p for postfix."
+		if [ ""$conf_mta_type = "postfix" ] ; then
+			echo -n 'MTA type (Qmail or Postfix) [q/P]: '
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_mta_type=postfix
+			fi
+		else
+			echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_mta_type=qmail
+			fi
+		fi
+		if [ ""$answer = "Q" -o ""$answer = "q" ]; then
 			conf_mta_type=qmail
 		fi
-	fi
-	if [ ""$answer = "Q" -o ""$answer = "q" ]; then
-		conf_mta_type=qmail
-	fi
-	if [ ""$answer = "P" -o ""$answer = "p" ]; then
+		if [ ""$answer = "P" -o ""$answer = "p" ]; then
+			conf_mta_type=postfix
+		fi
+		if [ ! ""$conf_mta_type = "postfix" ] ; then
+			conf_mta_type=qmail
+		fi
+	elif [ -f $PATH_POSTFIX_CONF ]; then
 		conf_mta_type=postfix
-	fi
-	if [ ! ""$conf_mta_type = "postfix" ] ; then
+	elif [ -f $PATH_QMAIL_NEWU ]; then
 		conf_mta_type=qmail
+	else
+		echo "No MTA Available"
+		exit;
 	fi
 
-	# conf_cyrus_enable
-	if [ -z ""$conf_use_cyrus ] ; then
+	# conf_use_cyrus
+	if [ -z ""$conf_use_cyrus -a -f $PATH_CYRUS_CONF ] ; then
 		conf_use_cyrus="true"
 	fi
 	if [ ""$conf_use_cyrus = "true" ] ; then
@@ -160,7 +171,7 @@ installerQuestions () {
 		conf_use_cyrus="true"
 	fi
 
-	if [ ""$conf_cyrus_enable = "true" ]; then
+	if [ "$conf_use_cyrus" = "true" ]; then
 		if [ -z ""$conf_cyrus_pass ] ; then
 			conf_cyrus_pass=${conf_mysql_pass}
 		fi
@@ -176,23 +187,45 @@ installerQuestions () {
 	fi
 
 	# FTP configuration
+	if [ -f $PATH_PUREFTPD_CONF -a -f $PATH_PROFTPD_CONF ] ; then
+		if [ -z "$conf_ftp_type" ] ; then
+			conf_ftp_type=pureftpd
+		fi
+		echo ""
+		echo "Both pure-ftpd and pro-ftpd have been found on your system"
+		echo "What FTP Server do you wish to use with DTC ?"
+		if [ $conf_ftp_type = "pureftpd" ] ; then
+			echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [1]"
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_ftp_type=pureftpd
+				answer="1"
+			fi
+		else
+			echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [2]"
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_ftp_type=proftpd
+				answer="2"
+			fi
+		fi
+		if [ ""$answer = "1" ]; then
+			conf_ftp_type=pureftpd
+		fi
+		if [ ""$answer = "2" ]; then
+			conf_ftp_type=proftpd
+		fi
+	elif [ -f $PATH_PUREFTPD_CONF ]; then
+		conf_ftp_type=pureftpd
+	elif [ -f $PATH_PROFTPD_CONF ]; then
+		conf_ftp_type=proftpd
+	else
+		echo "No FTP Server Available: please install either pure-ftpd or proftpd."
+		exit;
+	fi
 	if [ -z ""$conf_ftp_type ] ; then
 		conf_ftp_type=pureftpd
 	fi
-	echo ""
-	echo "What FTP Server do you wish to use with DTC ?"
-	echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [1]"
-	read answer
-	if [ -z ""$answer ] ; then
-		conf_ftp_type=pureftpd
-	fi
-	if [ ""$answer = "1" ]; then
-		conf_ftp_type=pureftpd
-	fi
-	if [ ""$answer = "2" ]; then
-		conf_ftp_type=proftpd
-	fi
-
 	# Host configuration
 	if [ -z ""${main_domain_name} ] ; then
 		main_domain_name="example.com"
@@ -416,6 +449,16 @@ installerQuestions () {
 		fi
 	fi
 
+	if [ -z "${conf_mx_mail}" ] ; then
+		conf_mx_mail="mx"
+	fi
+	echo ""
+	echo -n "Choose your MX server subdomain [${conf_mx_mail}]:"
+	read answer
+	if [ ! -z "$answer" ] ; then
+		conf_mx_mail=${answer}
+	fi
+
 	echo ""
 	echo "In some environment, like FreeBSD Jail or Linux vServer,"
 	echo "mknod is not allowed to be executed. For that reason, it's possible"
@@ -462,30 +505,45 @@ installerQuestions () {
 			conf_cert_passphrase=$answer
 		fi
 
+		if [ -z "${conf_cert_countrycode}" ] ; then
+			conf_cert_countrycode="US"
+		fi
 		echo -n "Certificate 2 letter country code [${conf_cert_countrycode}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
 			conf_cert_countrycode=$answer
 		fi
 
+		if [ -z "${conf_cert_locality}" ] ; then
+			conf_cert_locality="Paris"
+		fi
 		echo -n "Certificate locality [${conf_cert_locality}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
 			conf_cert_locality=$answer
 		fi
 
+		if [ -z "${conf_cert_organization}" ] ; then
+			conf_cert_organization="N/A"
+		fi
 		echo -n "Certificate organization [${conf_cert_organization}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
 			conf_cert_organization=$answer
 		fi
 
+		if [ -z "${conf_cert_unit}" ] ; then
+			conf_cert_unit="No-unit"
+		fi
 		echo -n "Organization unit [${conf_cert_unit}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
 			conf_cert_unit=$answer
 		fi
 
+		if [ -z "${conf_cert_email}" ] ; then
+			conf_cert_email="changeme@example.com"
+		fi
 		echo -n "Certificate email [${conf_cert_email}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then
@@ -504,9 +562,11 @@ printVariables () {
 	echo "### Daemon path ###"
 	echo "httpd.conf: "$PATH_HTTPD_CONF
 	echo "named.conf: "$PATH_NAMED_CONF
-	echo "proftpd.conf: "$PATH_PROFTPD_CONF
-	echo "dovecot.conf: "$PATH_DOVECOT_CONF
-	echo "Courier config path: "$PATH_COURIER_CONF_PATH
+	if [ "$conf_ftp_type" = "pureftpd" ]; then
+		echo "pure-ftpd.conf: "$PATH_PUREFTPD_CONF
+	else
+		echo "proftpd.conf: "$PATH_PROFTPD_CONF
+	fi
         if [ $conf_mta_type = "postfix" ]; then
                 echo "postfix/main.cf: "$PATH_POSTFIX_CONF
         else   
@@ -524,8 +584,12 @@ printVariables () {
 
 	echo "### Mail ###"
 	echo "MTA type: $conf_mta_type"
-	echo "Cyrus enable: $conf_cyrus_enable"
-	if [ $conf_cyrus_enable = "true" ]; then
+	echo "Cyrus enable: $conf_use_cyrus"
+	if [ $conf_use_cyrus != "true" ]; then
+		echo "dovecot.conf: "$PATH_DOVECOT_CONF
+		echo "Courier config path: "$PATH_COURIER_CONF_PATH
+	else
+		echo "Cyrus IMAPd config path: "$PATH_CYRUS_CONF
 		echo "Cyrus pass: $conf_cyrus_pass"
 	fi
 

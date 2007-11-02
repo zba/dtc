@@ -31,6 +31,7 @@ if [ ! -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc ]; then
 		PATH_COURIER_AUTHD_CONF_PATH="${LOCALBASE}/etc/authlib"
 	fi
 fi
+PATH_QMAIL_NEWU="/var/qmail/bin/qmail-newu"
 PATH_POSTFIX_CONF="/etc/postfix/main.cf"
 PATH_POSTFIX_ETC="/etc/postfix"
 PATH_SASL_PASSWD2="/sbin/saslpasswd2"

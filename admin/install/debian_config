@@ -27,6 +27,12 @@ debianGetDebconfValues () {
 	dtc_admin_subdomain=$RET
 	db_get dtc/conf_ipaddr
 	conf_ip_addr=$RET
+	# If running in non-interactive mode, maybe the IP is not set,
+	# so we try to guess it with default gateway interface
+	if [ -z "${conf_ip_addr}" ] ; then
+		IF=`/sbin/route | grep default |awk -- '{ print $8 }'`
+		conf_ip_addr=`ifconfig ${IF} | grep 'inet adr' | sed 's/.\+inet adr:\([0-9.]\+\).\+/\1/'`
+	fi
 	db_get dtc/conf_use_nated_vhosts
 	conf_use_nated_vhosts=$RET
 	if [ ""$conf_use_nated_vhosts = "true" -o ""$conf_use_nated_vhosts = "yes" ] ; then
@@ -89,6 +95,7 @@ debianGetDebconfValues () {
 CONF_DTC_SYSTEM_USERNAME=dtc
 CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
 PATH_NAMED_CONF=/etc/bind/named.conf
+PATH_QMAIL_NEWU=/var/qmail/bin/qmail-newu
 PATH_QMAIL_CTRL=/etc/qmail
 # This is needed to support Etch and newer
 if [ -f /etc/proftpd/proftpd.conf ] ; then

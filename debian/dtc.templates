@@ -49,7 +49,6 @@ _Description: DTC root panel subdomain:
 
 Template: dtc/conf_ipaddr
 Type: string
-Default: 192.168.0.2
 _Description: Primary IP address:
  Please enter this host's primary IP address. This address will be
  used for the domain name you just provided, and will be used as the
@@ -179,6 +178,7 @@ _Description: Organizational unit for the DTC SSL certificate:
 
 Template: dtc/conf_cert_email
 Type: string
+Default: example@example.com
 _Description: Email address for the DTC SSL certificate:
 
 Template: dtc/conf_cert_challenge_pass

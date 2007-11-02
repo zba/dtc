@@ -22,6 +22,7 @@ if [ ! -f ${LOCALBASE}/etc/proftpd.conf ] ; then
 fi
 conf_apache_version=2
 PATH_PROFTPD_CONF="${LOCALBASE}/etc/proftpd.conf"
+PATH_PUREFTPD_CONF="${LOCALBASE}/etc/pure-ftpd.conf"
 PATH_DOVECOT_CONF="${LOCALBASE}/etc/dovecot.conf"
 PATH_COURIER_CONF_PATH="${LOCALBASE}/etc/courier"
 PATH_COURIER_AUTHD_CONF_PATH="${LOCALBASE}/etc/courier"
@@ -35,6 +36,7 @@ PATH_POSTFIX_ETC="${LOCALBASE}/etc/postfix"
 PATH_SASL_PASSWD2="${LOCALBASE}/sbin/saslpasswd2"
 PATH_MAILDROP_BIN="${LOCALBASE}/bin/maildrop"
 PATH_USERDB_BIN="${LOCALBASE}/sbin/userdb"
+PATH_QMAIL_NEWU="${LOCALBASE}/bin/qmail-newu"
 PATH_QMAIL_CTRL="${QMAIL_DIR}/control"
 PATH_PHP_CGI="${LOCALBASE}/bin/php"
 FREERADIUS_ETC="${LOCALBASE}/etc/raddb"
@@ -59,3 +61,4 @@ USER_ADD_CMD=useradd
 USER_ADD_CMD=groupadd
 USER_MOD_CMD=usermod
 PASSWD_CMD=passwd
+DTC_SAVED_INSTALL_CONFIG=/usr/local/www/dtc/saved_install_config

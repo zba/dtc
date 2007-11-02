@@ -353,6 +353,11 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 
 	// Manage the signature of all registration messages
 	if(file_exists("/etc/dtc/signature.txt")){
+		$fname = "/etc/dtc/signature.txt";
+	}else{
+		$fname = "/usr/local/www/dtc/etc/signature.txt";
+	}
+	if(file_exists($fname)){
 		$fp = fopen($fname,"r");
 		$signature = fread($fp,filesize($fname));
 		fclose($fp);
@@ -374,13 +379,19 @@ Password: ".$a["reqadm_pass"];
 
 	// Manage the header of the messages
 	if(file_exists("/etc/dtc/messages_header.txt")){
+		$fname = "/etc/dtc/messages_header.txt";
+	}else{
+		$fname = "/usr/local/www/dtc/etc/messages_header.txt";
+	}
+	if(file_exists($fname)){
 		$fp = fopen($fname,"r");
 		$head = fread($fp,filesize($fname));
 		fclose($fp);
 	}else{
 		$head = "";
 	}
-	$msg_2_send = $head.$msg_2_send;
+	$msg_2_send = $head."
+".$msg_2_send;
 
 	$headers = "From: ".$conf_webmaster_email_addr;
 	mail($a["email"],$txt_userwaiting_account_activated_subject,$msg_2_send,$headers);

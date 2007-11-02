@@ -25,6 +25,7 @@ fi
 PATH_DOVECOT_CONF="/etc/dovecot.conf"
 PATH_PROFTPD_CONF="/etc/proftpd/proftpd.conf"
 PATH_QMAIL_CTRL="/var/qmail/control"
+PATH_QMAIL_NEWU="/var/qmail/bin/qmail-newu"
 PATH_PHP_CGI="/usr/bin/php"
 PATH_DTC_SHARED="/usr/share/dtc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"

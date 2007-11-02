@@ -93,6 +93,7 @@ function DTCdeleteAdmin ($adm_to_del) {
 	global $pro_mysql_tik_queries_table;
 	global $pro_mysql_cronjob_table;
 
+	global $conf_demo_version;
 	global $conf_mysql_db;
 	if( !isFtpLogin($adm_to_del)){
 		echo "Admin to delete is not in correct format line ".__LINE__." file ".__FILE__;

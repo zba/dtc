@@ -1,21 +1,27 @@
 CATEGORIES=	sysutils
-MASTER_SITES=	ftp://ftp.gplhost.com/pub/dtc/bsd/
+MASTER_SITES=	ftp://ftp.gplhost.com/pub/dtc/bsd/ \
+		ftp://ftp.gplhost.fr/pub/dtc/bsd/ \
+		ftp://ftp.gplhost.sg/pub/dtc/bsd/
 
 MAINTAINER=	thomas@goirand.fr
 COMMENT=	A hosting web GUI for admin and accounting all hosting services
 
-RUN_DEPENDS=	${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
+RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
 		${LOCALBASE}/libexec/apache22/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2-dtc \
+		${LOCALBASE}/libexec/apache22/libphp5.so:${PORTSDIR}/www/php5-session \
+		${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
 		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc \
 		${LOCALBASE}/bin/sudo:${PORTSDIR}/security/sudo \
 		${LOCALBASE}/lib/nss_mysql.so:${PORTSDIR}/net/libnss-mysql \
 		${LOCALBASE}/sbin/chrootuid:${PORTSDIR}/security/chrootuid \
-		${LOCALBASE}/bin/rrdtool:${PORTSDIR}/net/rrdtool \
 		${LOCALBASE}/bin/wget:${PORTSDIR}/ftp/wget \
 		${LOCALBASE}/share/fpdf/fpdf.php:${PORTSDIR}/print/fpdf \
 		${X11BASE}/lib/X11/fonts/bitstream-vera/Vera.ttf:${PORTSDIR}/x11-fonts/bitstream-vera \
 		${X11BASE}/lib/X11/fonts/webfonts/verdana.ttf:${PORTSDIR}/x11-fonts/webfonts \
-		${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server
+		${LOCALBASE}/bin/mhonarc:${PORTSDIR}/www/mhonarc \
+		${LOCALBASE}/bin/mlmmj-list:${PORTSDIR}/mail/mlmmj \
+		${LOCALBASE}/bin/ncftpput:${PORTSDIR}/ftp/ncftp3 \
+		${LOCALBASE}/bin/rrdtool:${PORTSDIR}/databases/rrdtool
 
 NO_BUILD=	yes
 USE_PHP=	mysql pcre session
@@ -36,12 +42,8 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/webalizer:${PORTSDIR}/www/webalizer
 RUN_DEPENDS+=	${LOCALBASE}/www/awstats:${PORTSDIR}/www/awstats
 .endif
 
-.if defined(WITH_MHONARC)
-RUN_DEPENDS+=	${LOCALBASE}/bin/mhonarc:${PORTSDIR}/www/mhonarc
-.endif
-
-.if defined(WITH_MLMMJ)
-RUN_DEPENDS+=	${LOCALBASE}/bin/mlmmj-list:${PORTSDIR}/mail/mlmmj
+.if defined(WITH_VISITORS)
+RUN_DEPENDS+=	${LOCALBASE}/bin/visitors:${PORTSDIR}/www/visitors
 .endif
 
 .if defined(WITH_PUREFTPD)
@@ -55,9 +57,37 @@ RUN_DEPENDS+=	${LOCALBASE}/libexec/postfix/smtpd:${PORTSDIR}/mail/postfix
 .if defined(WITH_CYRUS_IMAPD)
 RUN_DEPENDS+=	${LOCALBASE}/cyrus/bin/deliver:${PORTSDIR}/mail/cyrus-imapd23
 .endif
-.elif defined(WITH_COURIER)
-RUN_DEPENDS+=	${LOCALBASE}/libexec/courier/courierd:${PORTSDIR}/mail/courier \
-		${LOCALBASE}/lib/pam_mysql.so:${PORTSDIR}/security/pam-mysql
+.elif defined(WITH_COURIER_IMAP)
+RUN_DEPENDS+=	${LOCALBASE}/sbin/pop3login:${PORTSDIR}/mail/courier-imap \
+		${LOCALBASE}lib/courier-authlib/libauthmysql.a:${PORTSDIR}/databases/courier-authlib-mysql
+.endif
+
+.if defined(WITH_MAILDROP)
+RUN_DEPENDS+=  ${LOCALBASE}/bin/maildrop:${PORTSDIR}/mail/maildrop
+.endif
+
+.if defined(WITH_CYRUS_SASL2)
+RUN_DEPENDS+=	${LOCALBASE}/lib/sasl2/libcrammd5.so:${PORTSDIR}/security/cyrus-sasl2
+.endif
+
+.if defined(WITH_SPAMASSASSIN)
+RUN_DEPENDS+=	${LOCALBASE}/bin/spamd:${PORTSDIR}/mail/p5-Mail-SpamAssassin
+.endif
+
+.if defined(WITH_CLAMAV)
+RUN_DEPENDS+=	${LOCALBASE}/bin/clamdscan:${PORTSDIR}/security/clamav
+.endif
+
+.if defined(WITH_AMAVIS)
+RUN_DEPENDS+=	${LOCALBASE}/sbin/amavisd:${PORTSDIR}/security/amavisd-new
+.endif
+
+.if defined(WITH_SQUIRRELMAIL)
+RUN_DEPENDS+=	${LOCALBASE}/www/squirrelmail/src/login.php:${PORTSDIR}/mail/squirrelmail
+.endif
+
+.if defined(WITH_PHPMYADMIN)
+RUN_DEPENDS+=	${LOCALBASE}/www/phpMyAdmin/index.html:${PORTSDIR}/databases/phpmyadmin
 .endif
 
 .if defined(WITH_APACHE2)
