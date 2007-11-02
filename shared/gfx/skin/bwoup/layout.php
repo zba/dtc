@@ -221,15 +221,11 @@ function skin_displayAdminList($dsc){
 	
 	$nbr = sizeof($dsc["admins"]);
 	for($i=0;$i<$nbr;$i++){
-		if($conf_use_javascript == "yes"){
-			$dhtml = " onclick=\"document.location='?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\" ";
-			$ahref= " ";
-			$aend = " ";
-		}else{
+
 			$dhtml = " ";
-			$ahref= "<a href=\"?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\">";
+			$ahref= "<a href=\"?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\" style='display:block'>";
 			$aend = "</a>";
-		}
+
 		if($dsc["admins"][$i]["adm_login"] == $adm_login){
 			$out .= "<li $dhtml><div class=\"box_wnb_nb_item_select\">$ahref".$dsc["admins"][$i]["text"]."$aend</div></li>";
 		}else{
