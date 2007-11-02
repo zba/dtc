@@ -223,7 +223,7 @@ function skin_displayAdminList($dsc){
 	for($i=0;$i<$nbr;$i++){
 
 			$dhtml = " ";
-			$ahref= "<a href=\"?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub'\" style='display:block'>";
+			$ahref= "<a href='?adm_login=".$dsc["admins"][$i]["adm_login"]."&adm_pass=".$dsc["admins"][$i]["adm_pass"]."&rub=$rub' style='display:block'>";
 			$aend = "</a>";
 
 		if($dsc["admins"][$i]["adm_login"] == $adm_login){
