@@ -216,7 +216,7 @@ function skin_displayAdminList($dsc){
 
 	global $conf_use_javascript;
 
-	$out = '<br><br><div class=\"box_wnb_nb_content\"><ul class="box_wnb_nb_items">';
+	$out = '<br><br><div class="box_wnb_nb_content"><ul class="box_wnb_nb_items">';
 
 	
 	$nbr = sizeof($dsc["admins"]);
