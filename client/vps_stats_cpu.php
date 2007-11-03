@@ -49,7 +49,6 @@ $r = mysql_query($q)or die("Cannot query $q !");
 $n = mysql_num_rows($r);
 if($n != 1)die("Client not found!");
 $c = mysql_fetch_array($r);
-$bpquota = $c["bandwidth_per_month_gb"] * 1024 * 1024 * 1024;
 
 $cur_month = date("m");
 $cur_year = date("Y");
@@ -85,7 +84,8 @@ for($m=0;$m<12;$m++){
 	}
 }
 
-$max = 10000000;	// 10 M seems a good value
+$max = 5000000;	// 10 M seems a good value
+$bpquota = 5000000;
 if($foundmax > $bpquota)
 	$max = $foundmax;
 $max *= 1.05;
