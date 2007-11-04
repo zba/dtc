@@ -74,6 +74,7 @@ Delete the request: http://".$_SERVER["HTTP_HOST"]."/".$deletion_script."?id=".$
 Company: ".stripslashes($_REQUEST["comp_name"])."
 URL: ".$_REQUEST["addr_web"]."
 Date: ".date("H:i w j-M-Y")."
+Host: ".$_SERVER["REMOTE_ADDR"]."
 
 --- MESSAGE ---
 ".stripslashes($_REQUEST["comment"])."
