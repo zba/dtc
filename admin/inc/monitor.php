@@ -41,13 +41,11 @@ function drawAdminMonitor (){
 
 			$admin = fetchAdmin($ar2["adm_login"],$ar2["adm_pass"]);
 			$admin_stats = fetchAdminStats($admin);
-			if (isset($admin_stats["total_transfer"]))
-			{
+			if (isset($admin_stats["total_transfer"])){
 				$transfer += $admin_stats["total_transfer"];
 			}
 			$du += $admin_stats["total_du"];
-			if (isset($admin_stats["total_hit"]))
-			{
+			if (isset($admin_stats["total_hit"])){
 				$hits = $admin_stats["total_hit"];
 				$total_hits += $hits;
 			}
@@ -57,13 +55,50 @@ function drawAdminMonitor (){
 		}else{
 			$back = " style=\"white-space:nowrap;\" nowrap";
 		}
-		$out .= "<tr><td$back><u>".$ar["company_name"].":</u><br>
+
+		$nbr_row = 0;
+		$nbr_vps = sizeof($admin["vps"]);
+		if( isset($admin["data"])){
+			$nbr_row += 1;
+		}
+		if( isset($admin["vps"])){
+			$nbr_row += $nbr_vps;
+		}
+		if($nbr_row > 1){
+			$rowspan_entry = "rowspan=\"$nbr_row\"";
+		}else{
+			$rowspan_entry = "";
+		}
+		// Admin name
+		$out .= "<tr><td$back $rowspan_entry><u>".$ar["company_name"].":</u><br>
 ".$ar["familyname"].", ".$ar["christname"]."</td>";
-		$out .= "<td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024,"no")."<br>
+		if( isset($admin["data"])){
+			// Transfer this month
+			$out .= "<td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024,"no")."<br>
 ".smartByte($transfer)." / ".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)." ($total_hits hits)</td>";
-		$out .= "<td$back><img width=\"120\" height=\"48\" src=\"bw_per_month.php?cid=".$ar["id"]."\"></td>";
-		$out .= "<td$back>".drawPercentBar($du,$ar["disk_quota_mb"]*1024*1024,"no")."<br>
-".smartByte($du)." / ".smartByte($ar["disk_quota_mb"]*1024*1024)."</td>";
+			// Per month transfer graph
+			$out .= "<td$back><img width=\"120\" height=\"48\" src=\"bw_per_month.php?cid=".$ar["id"]."\"></td>";
+			// Share hosing hard disk space
+			$out .= "<td$back>".drawPercentBar($du,$ar["disk_quota_mb"]*1024*1024,"no")."<br>
+".smartByte($du)." / ".smartByte($ar["disk_quota_mb"]*1024*1024)."</td></tr>";
+		}
+		for($j=0;$j<$nbr_vps;$j++){
+			if( isset($admin["data"]) || $j > 1){
+				$out .= "<tr>";
+			}
+			$out .= "<td $back colspan=\"3\">".$admin["vps"][$j]["vps_server_hostname"].":".$admin["vps"][$j]["vps_xen_name"];
+			
+			$out .= "<table border=\"1\" width=\"100%\" height=\"1\" cellpadding=\"1\" cellspacing=\"1\">";
+			$out .= "<tr><td $back>Network</td><td>HDD</td><td>Swap</td><td>CPU</td></tr>";
+			$out .= "<tr><td $back><img width=\"120\" height=\"48\" src=\"vps_stats_network.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
+<td $back><img width=\"120\" height=\"48\" src=\"vps_stats_hdd.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
+<td $back><img width=\"120\" height=\"48\" src=\"vps_stats_swap.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
+<td $back><img width=\"120\" height=\"48\" src=\"vps_stats_cpu.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
+</tr>";
+			$out .= "</table>";
+
+			$out .= "</td></tr>";
+		}
 		$total_box_transfer += $transfer;
 		$total_box_hits += $total_hits;
 //fetchAdminStats($admin)
