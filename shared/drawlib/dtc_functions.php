@@ -491,6 +491,9 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 		exec("if [ ! -e $admin_path/$domain_name/usr ]; then ln -s subdomains/www/usr  $admin_path/$domain_name/usr; fi");
 		exec("if [ ! -e $admin_path/$domain_name/dev ]; then ln -s subdomains/www/dev  $admin_path/$domain_name/dev; fi");
 		exec("if [ ! -e $admin_path/$domain_name/etc ]; then ln -s subdomains/www/etc  $admin_path/$domain_name/etc; fi");
+
+		exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/$domain_name/lib64 ] ; then ln -s subdomains/www/lib $admin_path/$domain_name/lib64 ; fi ; fi");
+
 		// now for the admin user chroot links
 		exec("if [ ! -e $admin_path/bin ]; then ln -s $domain_name/subdomains/www/bin  $admin_path/bin; fi");
 		exec("if [ ! -e $admin_path/var ]; then ln -s $domain_name/subdomains/www/var  $admin_path/var; fi");
@@ -501,6 +504,8 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 		exec("if [ ! -e $admin_path/usr ]; then ln -s $domain_name/subdomains/www/usr  $admin_path/usr; fi");
 		exec("if [ ! -e $admin_path/dev ]; then ln -s $domain_name/subdomains/www/dev  $admin_path/dev; fi");
 		exec("if [ ! -e $admin_path/etc ]; then ln -s $domain_name/subdomains/www/etc  $admin_path/etc; fi");
+
+		exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/lib64 ] ; then ln -s subdomains/www/lib $admin_path/lib64 ; fi ; fi");
 
 		system ("cp -rup $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
 	}

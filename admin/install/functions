@@ -445,6 +445,10 @@ createHostingDirAndFiles () {
 	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/dev ]; then ln -s subdomains/www/dev  $conf_hosting_path/$conf_adm_login/$main_domain_name/dev; fi
 	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/etc ]; then ln -s subdomains/www/etc  $conf_hosting_path/$conf_adm_login/$main_domain_name/etc; fi
 
+	if [ `uname -m` = "x86_64" ] ; then
+		if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64 ]; then ln -s $conf_hosting_path/$conf_adm_login/$main_domain_name/lib $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64; fi
+	fi
+
 
 	# copy the 404 index.php file if none is found.
 	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/index.* ]; then
