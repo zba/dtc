@@ -2013,6 +2013,17 @@ smtpd_tls_auth_only = no
                                $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
 			fi
+
+			if [ -x /usr/sbin/spamd -o -x /usr/local/bin/spamd ] ; then
+				echo "spam.spam       sa-spam:
+ham.ham         sa-ham:
+" >$PATH_POSTFIX_ETC/transport
+				postmap $PATH_POSTFIX_ETC/transport
+				echo "# spam learning transport maps
+transport_maps = hash:$PATH_POSTFIX_ETC/transport
+" >> $TMP_FILE
+			fi
+
 			# this adds supports for "config" snippets to append to main.cf
 			if [ -f $PATH_DTC_ETC/postfix_config_snippets ]; then
 				cat $PATH_DTC_ETC/postfix_config_snippets >> $TMP_FILE
@@ -2029,6 +2040,13 @@ smtpd_tls_auth_only = no
 
 				TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
 				echo "# Configured by DTC v0.17 : Please don't touch this line !" > $TMP_FILE2
+
+				# Insert the sa-learn stuff if spamd is found
+				if [ -x /usr/sbin/spamd -o -x /usr/local/bin/spamd ] ; then
+					echo "# Adds support for the sa-learn script
+					sa-spam unix    -       n       n       -       -       pipe user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper spam ${sender}
+					sa-ham  unix    -       n       n       -       -       pipe user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  ${sender}" >> $TMP_FILE2
+				fi
 				# if we have maildrop, we should use it!
 				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
 					echo "maildrop  unix  -       n       n       -       -       pipe
