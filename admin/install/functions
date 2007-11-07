@@ -1845,8 +1845,7 @@ modifyPostfixConfig () {
 	# works if you don't have SASL
 
 	SASLTMP_FILE="/thisfiledoesnotexists"
-	if [ -f "$PATH_POSTFIX_CONF" ]
-	then
+	if [ -f "$PATH_POSTFIX_CONF" ] ; then
 		echoIfVerbose "===> Linking postfix control files to DTC generated files"
 		touch $PATH_DTC_ETC/postfix_virtual.db
 		touch $PATH_DTC_ETC/postfix_aliases.db
@@ -2112,6 +2111,7 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			cat < $TMP_FILE >>$PATH_POSTFIX_CONF
 			rm $TMP_FILE
 		fi
+		newaliases
 	fi
 
 	# over-write the configuration for SASL
