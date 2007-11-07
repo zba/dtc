@@ -6,18 +6,55 @@
 # CONFIG_DIR=/etc DTC_DOC_DIR=/usr/share/doc \
 # MANUAL_DIR=/usr/share/man
 
-# /usr/share/dtc
+ifndef $(DTC_APP_DIR)
+	DTC_APP_DIR=/usr/share
+endif
+ifndef $(DTC_GEN_DIR)
+	DTC_GEN_DIR=/var/lib
+endif
+ifndef $(CONFIG_DIR)
+	CONFIG_DIR=/etc
+endif
+ifndef $(DTC_DOC_DIR)
+	DTC_DOC_DIR=/usr/share/doc
+endif
+ifndef $(MANUAL_DIR)
+	MANUAL_DIR=/usr/share/man
+endif
+ifndef $(BIN_DIR)
+	BIN_DIR=/bin
+endif
+
+# /usr/share
 APP_INST_DIR = $(DESTDIR)$(DTC_APP_DIR)/dtc
-# /var/lib/dtc/etc
+# /var/lib
 GENFILES_DIRECTORY = $(DESTDIR)$(DTC_GEN_DIR)/dtc
-# /etc/dtc
+# /etc
 ETC_DIRECTORY = $(DESTDIR)$(CONFIG_DIR)/dtc
-# /usr/share/doc/dtc
+# /usr/share/doc
 DOC_DIR = $(DESTDIR)$(DTC_DOC_DIR)/dtc
 # /usr/share/man
-MAN_DIR = $(DESTDIR)$(MANUAL_DIR)/man
+MAN_DIR = $(DESTDIR)$(MANUAL_DIR)
+# /usr/bin
+BINARY_DIR = $(DESTDIR)$(BIN_DIR)
 
 INSTALL = install
+
+default:
+	@echo ""
+	@echo "*** Error: there is no default target in this Makefile! ***"
+	@echo "Please select one of the following targets:"
+	@echo "installstatsdaemon, install-dtc-common"
+	@echo "and don't forget to set the following variables:"
+	@echo "DESTDIR="$(DESTDIR)
+	@echo "DTC_APP_DIR="$(DTC_APP_DIR)
+	@echo "DTC_GEN_DIR="$(DTC_GEN_DIR)
+	@echo "CONFIG_DIR="$(CONFIG_DIR)
+	@echo "DTC_DOC_DIR="$(DTC_DOC_DIR)
+	@echo "MANUAL_DIR="$(MANUAL_DIR)
+	@echo "BIN_DIR="$(BIN_DIR)
+	@echo ""
+	@exit 1
 
 installstatsdaemon:
 	install -D -m 0644 admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin
@@ -33,6 +70,7 @@ install-dtc-common:
 	install -D -m 0644 admin/cpugraph.php			$(APP_INST_DIR)/admin/cpugraph.php
 	install -D -m 0644 admin/mailgraph.php			$(APP_INST_DIR)/admin/mailgraph.php
 	install -D -m 0644 admin/deamons_state.php		$(APP_INST_DIR)/admin/deamons_state.php
+	install -D -m 0644 admin/deamons_state_strings.php	$(APP_INST_DIR)/admin/deamons_state_strings.php
 	install -D -m 0644 admin/view_waitingusers.php		$(APP_INST_DIR)/admin/view_waitingusers.php
 	install -D -m 0644 admin/memgraph.php			$(APP_INST_DIR)/admin/memgraph.php
 	install -D -m 0644 admin/netusegraph.php		$(APP_INST_DIR)/admin/netusegraph.php
@@ -52,8 +90,8 @@ install-dtc-common:
 	install -D -m 0764 admin/checkbind.sh		$(APP_INST_DIR)/admin/checkbind.sh
 	install -D -m 0764 admin/updateChroot.sh	$(APP_INST_DIR)/admin/updateChroot.sh
 	install -D -m 0764 admin/ip_change.sh		$(APP_INST_DIR)/admin/ip_change.sh
-	install -D -m 0764 admin/dtc-chroot-shell	$(APP_INST_DIR)/admin/dtc-chroot-shell
 	install -D -m 0764 admin/sa-wrapper		$(APP_INST_DIR)/admin/sa-wrapper
+	install -D -m 0764 admin/dtc-chroot-shell	$(BINARY_DIR)/dtc-chroot-shell
 
 	# sh scripts for rrdtool stuffs
 	install -D -m 0764 admin/queuegraph/count_postfix.sh	$(APP_INST_DIR)/admin/queuegraph/count_postfix.sh
@@ -143,53 +181,53 @@ install-dtc-common:
 	install -D -m 0744 admin/install/redhat_config		$(APP_INST_DIR)/admin/install/redhat_config
 
 	# The SQL table scripts
-	install -D -m 0644 admin/tables/admin.sql		$(APP_INST_DIR)/admin/install/admin.sql
-	install -D -m 0644 admin/tables/backup.sql		$(APP_INST_DIR)/admin/install/backup.sql
-	install -D -m 0644 admin/tables/clients.sql		$(APP_INST_DIR)/admin/install/clients.sql
-	install -D -m 0644 admin/tables/commande.sql		$(APP_INST_DIR)/admin/install/commande.sql
-	install -D -m 0644 admin/tables/companies.sql		$(APP_INST_DIR)/admin/install/companies.sql
-	install -D -m 0644 admin/tables/completedorders.sql	$(APP_INST_DIR)/admin/install/completedorders.sql
-	install -D -m 0644 admin/tables/config.sql		$(APP_INST_DIR)/admin/install/config.sql
-	install -D -m 0644 admin/tables/cron_job.sql		$(APP_INST_DIR)/admin/install/cron_job.sql
-	install -D -m 0644 admin/tables/dedicated.sql		$(APP_INST_DIR)/admin/install/dedicated.sql
-	install -D -m 0644 admin/tables/domain.sql		$(APP_INST_DIR)/admin/install/domain.sql
-	install -D -m 0644 admin/tables/email_accouting.sql	$(APP_INST_DIR)/admin/install/email_accouting.sql
-	install -D -m 0644 admin/tables/fetchmail.sql		$(APP_INST_DIR)/admin/install/fetchmail.sql
-	install -D -m 0644 admin/tables/freeradius.sql		$(APP_INST_DIR)/admin/install/freeradius.sql
-	install -D -m 0644 admin/tables/ftp_access.sql		$(APP_INST_DIR)/admin/install/ftp_access.sql
-	install -D -m 0644 admin/tables/ftp_accounting.sql	$(APP_INST_DIR)/admin/install/ftp_accounting.sql
-	install -D -m 0644 admin/tables/ftp_logs.sql		$(APP_INST_DIR)/admin/install/ftp_logs.sql
-	install -D -m 0644 admin/tables/groups.sql		$(APP_INST_DIR)/admin/install/groups.sql
-	install -D -m 0644 admin/tables/handle.sql		$(APP_INST_DIR)/admin/install/handle.sql
-	install -D -m 0644 admin/tables/http_accounting.sql	$(APP_INST_DIR)/admin/install/http_accounting.sql
-	install -D -m 0644 admin/tables/invoicing.sql		$(APP_INST_DIR)/admin/install/invoicing.sql
-	install -D -m 0644 admin/tables/ip_port_service.sql	$(APP_INST_DIR)/admin/install/ip_port_service.sql
-	install -D -m 0644 admin/tables/mailaliasgroup.sql	$(APP_INST_DIR)/admin/install/mailaliasgroup.sql
-	install -D -m 0644 admin/tables/mailinglist.sql		$(APP_INST_DIR)/admin/install/mailinglist.sql
-	install -D -m 0644 admin/tables/nameservers.sql		$(APP_INST_DIR)/admin/install/nameservers.sql
-	install -D -m 0644 admin/tables/new_admin.sql		$(APP_INST_DIR)/admin/install/new_admin.sql
-	install -D -m 0644 admin/tables/paiement.sql		$(APP_INST_DIR)/admin/install/paiement.sql
-	install -D -m 0644 admin/tables/pending_queries.sql	$(APP_INST_DIR)/admin/install/pending_queries.sql
-	install -D -m 0644 admin/tables/pending_renewal.sql	$(APP_INST_DIR)/admin/install/pending_renewal.sql
-	install -D -m 0644 admin/tables/pop_access.sql		$(APP_INST_DIR)/admin/install/pop_access.sql
-	install -D -m 0644 admin/tables/product.sql		$(APP_INST_DIR)/admin/install/product.sql
-	install -D -m 0644 admin/tables/scheduled_updates.sql	$(APP_INST_DIR)/admin/install/scheduled_updates.sql
-	install -D -m 0644 admin/tables/secpayconf.sql		$(APP_INST_DIR)/admin/install/secpayconf.sql
-	install -D -m 0644 admin/tables/smtp_logs.sql		$(APP_INST_DIR)/admin/install/smtp_logs.sql
-	install -D -m 0644 admin/tables/ssh_access.sql		$(APP_INST_DIR)/admin/install/ssh_access.sql
-	install -D -m 0644 admin/tables/ssh_groups.sql		$(APP_INST_DIR)/admin/install/ssh_groups.sql
-	install -D -m 0644 admin/tables/ssh_user_group.sql	$(APP_INST_DIR)/admin/install/ssh_user_group.sql
-	install -D -m 0644 admin/tables/ssl_ips.sql		$(APP_INST_DIR)/admin/install/ssl_ips.sql
-	install -D -m 0644 admin/tables/subdomain.sql		$(APP_INST_DIR)/admin/install/subdomain.sql
-	install -D -m 0644 admin/tables/tik_admins.sql		$(APP_INST_DIR)/admin/install/tik_admins.sql
-	install -D -m 0644 admin/tables/tik_cats.sql		$(APP_INST_DIR)/admin/install/tik_cats.sql
-	install -D -m 0644 admin/tables/tik_queries.sql		$(APP_INST_DIR)/admin/install/tik_queries.sql
-	install -D -m 0644 admin/tables/vps_ip.sql		$(APP_INST_DIR)/admin/install/vps_ip.sql
-	install -D -m 0644 admin/tables/vps_server.sql		$(APP_INST_DIR)/admin/install/vps_server.sql
-	install -D -m 0644 admin/tables/vps.sql			$(APP_INST_DIR)/admin/install/vps.sql
-	install -D -m 0644 admin/tables/vps_stats.sql		$(APP_INST_DIR)/admin/install/vps_stats.sql
-	install -D -m 0644 admin/tables/whitelist.sql		$(APP_INST_DIR)/admin/install/whitelist.sql
-	install -D -m 0644 admin/tables/whois.sql		$(APP_INST_DIR)/admin/install/whois.sql
+	install -D -m 0644 admin/tables/admin.sql		$(APP_INST_DIR)/admin/tables/admin.sql
+	install -D -m 0644 admin/tables/backup.sql		$(APP_INST_DIR)/admin/tables/backup.sql
+	install -D -m 0644 admin/tables/clients.sql		$(APP_INST_DIR)/admin/tables/clients.sql
+	install -D -m 0644 admin/tables/commande.sql		$(APP_INST_DIR)/admin/tables/commande.sql
+	install -D -m 0644 admin/tables/companies.sql		$(APP_INST_DIR)/admin/tables/companies.sql
+	install -D -m 0644 admin/tables/completedorders.sql	$(APP_INST_DIR)/admin/tables/completedorders.sql
+	install -D -m 0644 admin/tables/config.sql		$(APP_INST_DIR)/admin/tables/config.sql
+	install -D -m 0644 admin/tables/cron_job.sql		$(APP_INST_DIR)/admin/tables/cron_job.sql
+	install -D -m 0644 admin/tables/dedicated.sql		$(APP_INST_DIR)/admin/tables/dedicated.sql
+	install -D -m 0644 admin/tables/domain.sql		$(APP_INST_DIR)/admin/tables/domain.sql
+	install -D -m 0644 admin/tables/email_accouting.sql	$(APP_INST_DIR)/admin/tables/email_accouting.sql
+	install -D -m 0644 admin/tables/fetchmail.sql		$(APP_INST_DIR)/admin/tables/fetchmail.sql
+	install -D -m 0644 admin/tables/freeradius.sql		$(APP_INST_DIR)/admin/tables/freeradius.sql
+	install -D -m 0644 admin/tables/ftp_access.sql		$(APP_INST_DIR)/admin/tables/ftp_access.sql
+	install -D -m 0644 admin/tables/ftp_accounting.sql	$(APP_INST_DIR)/admin/tables/ftp_accounting.sql
+	install -D -m 0644 admin/tables/ftp_logs.sql		$(APP_INST_DIR)/admin/tables/ftp_logs.sql
+	install -D -m 0644 admin/tables/groups.sql		$(APP_INST_DIR)/admin/tables/groups.sql
+	install -D -m 0644 admin/tables/handle.sql		$(APP_INST_DIR)/admin/tables/handle.sql
+	install -D -m 0644 admin/tables/http_accounting.sql	$(APP_INST_DIR)/admin/tables/http_accounting.sql
+	install -D -m 0644 admin/tables/invoicing.sql		$(APP_INST_DIR)/admin/tables/invoicing.sql
+	install -D -m 0644 admin/tables/ip_port_service.sql	$(APP_INST_DIR)/admin/tables/ip_port_service.sql
+	install -D -m 0644 admin/tables/mailaliasgroup.sql	$(APP_INST_DIR)/admin/tables/mailaliasgroup.sql
+	install -D -m 0644 admin/tables/mailinglist.sql		$(APP_INST_DIR)/admin/tables/mailinglist.sql
+	install -D -m 0644 admin/tables/nameservers.sql		$(APP_INST_DIR)/admin/tables/nameservers.sql
+	install -D -m 0644 admin/tables/new_admin.sql		$(APP_INST_DIR)/admin/tables/new_admin.sql
+	install -D -m 0644 admin/tables/paiement.sql		$(APP_INST_DIR)/admin/tables/paiement.sql
+	install -D -m 0644 admin/tables/pending_queries.sql	$(APP_INST_DIR)/admin/tables/pending_queries.sql
+	install -D -m 0644 admin/tables/pending_renewal.sql	$(APP_INST_DIR)/admin/tables/pending_renewal.sql
+	install -D -m 0644 admin/tables/pop_access.sql		$(APP_INST_DIR)/admin/tables/pop_access.sql
+	install -D -m 0644 admin/tables/product.sql		$(APP_INST_DIR)/admin/tables/product.sql
+	install -D -m 0644 admin/tables/scheduled_updates.sql	$(APP_INST_DIR)/admin/tables/scheduled_updates.sql
+	install -D -m 0644 admin/tables/secpayconf.sql		$(APP_INST_DIR)/admin/tables/secpayconf.sql
+	install -D -m 0644 admin/tables/smtp_logs.sql		$(APP_INST_DIR)/admin/tables/smtp_logs.sql
+	install -D -m 0644 admin/tables/ssh_access.sql		$(APP_INST_DIR)/admin/tables/ssh_access.sql
+	install -D -m 0644 admin/tables/ssh_groups.sql		$(APP_INST_DIR)/admin/tables/ssh_groups.sql
+	install -D -m 0644 admin/tables/ssh_user_group.sql	$(APP_INST_DIR)/admin/tables/ssh_user_group.sql
+	install -D -m 0644 admin/tables/ssl_ips.sql		$(APP_INST_DIR)/admin/tables/ssl_ips.sql
+	install -D -m 0644 admin/tables/subdomain.sql		$(APP_INST_DIR)/admin/tables/subdomain.sql
+	install -D -m 0644 admin/tables/tik_admins.sql		$(APP_INST_DIR)/admin/tables/tik_admins.sql
+	install -D -m 0644 admin/tables/tik_cats.sql		$(APP_INST_DIR)/admin/tables/tik_cats.sql
+	install -D -m 0644 admin/tables/tik_queries.sql		$(APP_INST_DIR)/admin/tables/tik_queries.sql
+	install -D -m 0644 admin/tables/vps_ip.sql		$(APP_INST_DIR)/admin/tables/vps_ip.sql
+	install -D -m 0644 admin/tables/vps_server.sql		$(APP_INST_DIR)/admin/tables/vps_server.sql
+	install -D -m 0644 admin/tables/vps.sql			$(APP_INST_DIR)/admin/tables/vps.sql
+	install -D -m 0644 admin/tables/vps_stats.sql		$(APP_INST_DIR)/admin/tables/vps_stats.sql
+	install -D -m 0644 admin/tables/whitelist.sql		$(APP_INST_DIR)/admin/tables/whitelist.sql
+	install -D -m 0644 admin/tables/whois.sql		$(APP_INST_DIR)/admin/tables/whois.sql
 
 	# The database upgrade scripts
 	install -D -m 0644 bin/sources/dtc_db.php	$(APP_INST_DIR)/admin/dtc_db.php
@@ -226,7 +264,19 @@ install-dtc-common:
 	install -D -m 0640 admin/inc/adddomain.png		$(APP_INST_DIR)/client/inc/adddomain.png
 	install -D -m 0640 admin/inc/package-installer.png	$(APP_INST_DIR)/client/inc/package-installer.png
 	install -D -m 0640 admin/inc/databases.png		$(APP_INST_DIR)/client/inc/databases.png
+	install -D -m 0640 client/inc/database.png		$(APP_INST_DIR)/client/inc/database.png
+	install -D -m 0640 client/inc/dns.png			$(APP_INST_DIR)/client/inc/dns.png
+	install -D -m 0640 client/inc/domain.png		$(APP_INST_DIR)/client/inc/domain.png
+	install -D -m 0640 client/inc/domains.png		$(APP_INST_DIR)/client/inc/domains.png
+	install -D -m 0640 client/inc/floppy.png		$(APP_INST_DIR)/client/inc/floppy.png
+	install -D -m 0640 client/inc/folder.png		$(APP_INST_DIR)/client/inc/folder.png
+	install -D -m 0640 client/inc/home.png			$(APP_INST_DIR)/client/inc/home.png
 	install -D -m 0640 admin/inc/imglong.png		$(APP_INST_DIR)/client/inc/imglong.png
+	install -D -m 0640 client/inc/imgshort.png		$(APP_INST_DIR)/client/inc/imgshort.png
+	install -D -m 0640 client/inc/mail.png			$(APP_INST_DIR)/client/inc/mail.png
+	install -D -m 0640 client/inc/man.png			$(APP_INST_DIR)/client/inc/man.png
+	install -D -m 0640 client/inc/stat.png			$(APP_INST_DIR)/client/inc/stat.png
+	install -D -m 0640 client/inc/tools.png			$(APP_INST_DIR)/client/inc/tools.png
 	install -D -m 0640 admin/inc/password.png		$(APP_INST_DIR)/client/inc/password.png
 	install -D -m 0640 admin/inc/dedic-server.png		$(APP_INST_DIR)/client/inc/dedic-server.png
 	install -D -m 0640 admin/inc/domains.png		$(APP_INST_DIR)/client/inc/domains.png
@@ -264,7 +314,7 @@ install-dtc-common:
 	install -D -m 0640 email/inc/domains.png		$(APP_INST_DIR)/email/inc/domains.png
 
 	### the shared folder ###
-	install -D -m 0640 doc/dtc-chroot-shell.8 $(MAN_DIR)/man8
+	install -D -m 0640 doc/dtc-chroot-shell.8		$(MAN_DIR)/man8/dtc-chroot-shell.8
 	install -D -m 0640 shared/autoSQLconfig.php		$(APP_INST_DIR)/shared/autoSQLconfig.php
 	install -D -m 0640 shared/cyradm.php			$(APP_INST_DIR)/shared/cyradm.php
 	install -D -m 0640 shared/default_admin_site.php	$(APP_INST_DIR)/shared/default_admin_site.php
@@ -320,9 +370,9 @@ install-dtc-common:
 
 	# Copy all the graphics...
 	cp -rf shared/gfx	$(APP_INST_DIR)/shared
-	ln -s ../shared/gfx	$(APP_INST_DIR)/admin/gfx
-	ln -s ../shared/gfx	$(APP_INST_DIR)/client/gfx
-	ln -s ../shared/gfx	$(APP_INST_DIR)/email/gfx
+	[ -h $(APP_INST_DIR)/admin/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/admin/gfx
+	[ -h $(APP_INST_DIR)/client/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/client/gfx
+	[ -h $(APP_INST_DIR)/email/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/email/gfx
 
 	install -D -m 0640 shared/inc/accounting.php		$(APP_INST_DIR)/shared/inc/accounting.php
 	install -D -m 0640 shared/inc/dbconect.php		$(APP_INST_DIR)/shared/inc/dbconect.php
@@ -415,9 +465,9 @@ install-dtc-common:
 	install -D -m 0640 shared/visitors_template/visitors.php	$(APP_INST_DIR)/shared/visitors_template/visitors.php
 
 	mkdir -p $(APP_INST_DIR)/shared/imgcache
-	ln -s ../shared/imgcache $(APP_INST_DIR)/admin/imgcache
-	ln -s ../shared/imgcache $(APP_INST_DIR)/client/imgcache
-	ln -s ../shared/imgcache $(APP_INST_DIR)/email/imgcache
+	[ -h $(APP_INST_DIR)/admin/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/admin/imgcache
+	[ -h $(APP_INST_DIR)/client/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/client/imgcache
+	[ -h $(APP_INST_DIR)/email/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/email/imgcache
 
 	# Create the variables directory
 	mkdir -p $(GENFILES_DIRECTORY)/etc/zones
@@ -427,12 +477,15 @@ install-dtc-common:
 
 	# Create the configuration folder
 	mkdir -p $(ETC_DIRECTORY)
-	cp -rfv admin/reminders_msg $(ETC_DIRECTORY)
+	cp -rf admin/reminders_msg $(ETC_DIRECTORY)
 	cp shared/messages_header.txt $(ETC_DIRECTORY)
-	install -D -m 0644 admin/signature.txt $(ETC_DIRECTORY)
-	install -D -m 0644 etc/logrotate.template $(ETC_DIRECTORY)
+	install -D -m 0640 shared/registration_msg/dedicated_open.txt	$(ETC_DIRECTORY)/registration_msg/dedicated_open.txt
+	install -D -m 0640 shared/registration_msg/shared_open.txt	$(ETC_DIRECTORY)/registration_msg/shared_open.txt
+	install -D -m 0640 shared/registration_msg/vps_open.txt		$(ETC_DIRECTORY)/registration_msg/vps_open.txt
+	install -D -m 0644 admin/signature.txt 				$(ETC_DIRECTORY)/signature.txt
+	install -D -m 0644 etc/logrotate.template			$(ETC_DIRECTORY)/logrotate.template
 
 	# Doc dir
 	mkdir -p $(DOC_DIR)
-	ln -s $(DOC_DIR) $(APP_INST_DIR)/doc
-	cp -rfv doc/* $(APP_INST_DIR)/doc
+	[ -h $(APP_INST_DIR)/doc ] || ln -s $(DOC_DIR) $(APP_INST_DIR)/doc
+	cp -rf doc/* $(APP_INST_DIR)/doc

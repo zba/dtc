@@ -51,7 +51,6 @@ shared/gfx			/usr/share/dtc/shared
 shared/inc			/usr/share/dtc/shared
 shared/securepay		/usr/share/dtc/shared
 shared/template			/usr/share/dtc/shared
-shared/upgrade_sql.php		/usr/share/dtc/shared
 shared/vars			/usr/share/dtc/shared
 shared/dtc_stats_index.php	/usr/share/dtc/shared
 
