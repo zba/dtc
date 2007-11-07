@@ -2032,6 +2032,16 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 # this file is appended to the postfix configure, in case you need to override some configure parameters in the postfix main.cf" > $PATH_DTC_ETC/postfix_config_snippets
 			fi
 
+			if grep "Configured by DTC" /etc/aliases >/dev/null; then
+				echoIfVerbose "/etc/aliases configured before, not adding ham/spam aliases"
+			else
+				echo "# Configured by DTC v0.26 : Please don't touch this line !" >>/etc/aliases
+				echo "# auto-spam-learning" >>/etc/aliases
+				echo "spam:	spam@spam.spam" >>/etc/aliases
+				echo "ham:	ham@ham.ham" >>/etc/aliases
+				echo "notspam:	ham@ham.ham" >>/etc/aliases
+				echo "# End of DTC configuration v0.26 : please don't touch this line !" >>/etc/aliases
+			fi
 
 			if grep "Configured by DTC 0.21" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
 				echoIfVerbose "Postfix master.cf has been configured before, not adding maildrop options"
@@ -3792,6 +3802,23 @@ uninstallPostfix () {
 		cp -f ${PATH_POSTFIX_ETC}/master.cf ${PATH_POSTFIX_ETC}/master.cf.DTC.removed
 		echo -n > ${PATH_POSTFIX_ETC}/master.cf
 		cat < $TMP_FILE >> ${PATH_POSTFIX_ETC}/master.cf
+		rm $TMP_FILE
+	fi
+
+	#
+	# uninstall /etc/aliases
+	#
+	echoIfVerbose "===> Uninstalling aliases from /etc/aliases"
+	if grep "Configured by DTC" /etc/aliases >/dev/null 2>&1
+	then
+		start_line=`grep -n "Configured by DTC" /etc/aliases | cut -d":" -f1`
+		end_line=`grep -n "End of DTC configuration" /etc/aliases | cut -d":" -f1`
+		nbr_line=`cat /etc/aliases | wc -l`
+		TMP_FILE=`${MKTEMP} DTC_uninstall.aliases.XXXXXX` || exit 1
+		cat /etc/aliases | head -n $(($start_line - 1 )) > $TMP_FILE
+		cat /etc/aliases | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
+		echo -n > /etc/aliases
+		cat < $TMP_FILE >>/etc/aliases
 		rm $TMP_FILE
 	fi
 

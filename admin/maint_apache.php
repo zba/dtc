@@ -1,13 +1,15 @@
+#!/usr/bin/env php
+
 <?php
 
 $script_start_time = time();
 $start_stamps = mktime();
 $panel_type="cronjob";
+
+chdir(dirname(__FILE__));
+
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
-
-function rotateErrorLog ($subdomain_path){
-}
 
 function cleanTempFolder ($subdomain_path){
 	if( is_dir("$subdomain_path/tmp") ){
