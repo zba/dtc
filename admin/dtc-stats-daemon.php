@@ -74,7 +74,7 @@ while (!$shutdown){
 		$io_usage_swap = 0;
 		$network_usage_in = 0;
 		$network_usage_out = 0;
-			
+
 		echo "Fetching stats from $vps_server for $vps_name...\n";
 		$soap_client = connectToVPSServer($vps_server);
 		$r = $soap_client->call("getCPUUsage",array("vpsname" => $vps_name),"","","");
@@ -138,6 +138,13 @@ while (!$shutdown){
 			$vps_last_network_out = $last_row['network_out_last'];
 			$vps_last_diskio = $last_row['diskio_last'];
 			$vps_last_swapio = $last_row['swapio_last'];
+			echo "Last values are as follows:\n";
+			echo " - CPU Usage: $vps_last_cpu\n";
+			echo " - Network Incoming: $vps_last_network_in\n";
+			echo " - Network Outgoing: $vps_last_network_out\n";
+			echo " - Disk IO Usage: $vps_last_diskio\n";
+			echo " - Swap IO Usage: $vps_last_swapio\n";
+
 		}else{
 			echo "Corrupt vps_stats table, please check...\n";
 		}
@@ -158,7 +165,7 @@ while (!$shutdown){
 			if ($vps_last_cpu > 0){
 				if ($vps_last_cpu < $cpu_usage){
 					$cpu_diff = $cpu_usage - $vps_last_cpu;
-				} else {
+				} elseif ($vps_last_cpu != $cpu_usage) {
 					$cpu_diff = $cpu_usage;
 				}
 			}
@@ -171,7 +178,7 @@ while (!$shutdown){
 			if ($vps_last_network_in > 0){
 				if ($vps_last_network_in < $network_usage_in){
 					$network_in_diff = $network_usage_in - $vps_last_network_in;
-				} else {
+				} elseif ($vps_last_network_in != $network_usage_in) {
 					$network_in_diff = $network_usage_in;
 				}
 			}
@@ -182,7 +189,7 @@ while (!$shutdown){
 			if ($vps_last_network_out > 0){
 				if ($vps_last_network_out < $network_usage_out){
 					$network_out_diff = $network_usage_out - $vps_last_network_out;
-				} else {
+				} elseif ($vps_last_network_out != $network_usage_out) {
 					$network_out_diff = $network_usage_out;
 				}
 			}
@@ -194,7 +201,7 @@ while (!$shutdown){
 			if ($vps_last_diskio > 0){
 				if ($vps_last_diskio < $io_usage_disk){
 					$diskio_diff = $io_usage_disk - $vps_last_diskio;
-				} else {
+				} elseif ($vps_last_diskio != $io_usage_disk) {
 					$diskio_diff = $io_usage_disk;
 				}
 			}
@@ -204,7 +211,7 @@ while (!$shutdown){
 			if ($vps_last_swapio > 0){
 				if ($vps_last_swapio < $io_usage_swap){
 					$swapio_diff = $io_usage_swap - $vps_last_swapio;
-				} else {
+				} elseif ($vps_last_swapio != $io_usage_swap) {
 					$swapio_diff = $io_usage_swap;
 				}
 			}
