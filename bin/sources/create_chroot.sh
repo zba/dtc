@@ -266,9 +266,9 @@ else
 		then
 			cp -pf /usr/lib/libmagic.so.1 lib/
 		fi
-		if [ $UNIX_TYPE"" = "gentoo" ] ; then
+		if [ -e /lib/libz.so.1 ] ; then
 			cp -pf /lib/libz.so.1 lib/
-		else
+		elif [ -e /usr/lib/libz.so.1 ] ; then
 			cp -pf /usr/lib/libz.so.1 lib/
 		fi
 
