@@ -2053,8 +2053,10 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 				# Insert the sa-learn stuff if spamd is found
 				if [ -x /usr/sbin/spamd -o -x /usr/local/bin/spamd ] ; then
 					echo "# Adds support for the sa-learn script
-					sa-spam unix    -       n       n       -       -       pipe user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper spam ${sender}
-					sa-ham  unix    -       n       n       -       -       pipe user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  ${sender}" >> $TMP_FILE2
+					sa-spam unix    -       n       n       -       -       pipe
+    -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper spam ${sender}
+					sa-ham  unix    -       n       n       -       -       pipe
+    -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  ${sender}" >> $TMP_FILE2
 				fi
 				# if we have maildrop, we should use it!
 				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
