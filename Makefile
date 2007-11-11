@@ -243,7 +243,6 @@ install-dtc-common:
 	install -D -m 0644 client/bw_per_month.php		$(APP_INST_DIR)/client/bw_per_month.php
 	install -D -m 0644 client/dynip.php			$(APP_INST_DIR)/client/dynip.php
 	install -D -m 0644 client/enets-notify.php		$(APP_INST_DIR)/client/enets-notify.php
-	install -D -m 0644 client/img2.php			$(APP_INST_DIR)/client/img2.php
 	install -D -m 0644 client/index.php			$(APP_INST_DIR)/client/index.php
 	install -D -m 0644 client/invoice.php			$(APP_INST_DIR)/client/invoice.php
 	install -D -m 0644 client/list_domains.php		$(APP_INST_DIR)/client/list_domains.php
@@ -434,9 +433,6 @@ install-dtc-common:
 	install -D -m 0640 shared/maxmind/Changes			$(APP_INST_DIR)/shared/maxmind/Changes
 	install -D -m 0640 shared/maxmind/copyright			$(APP_INST_DIR)/shared/maxmind/copyright
 	install -D -m 0640 shared/maxmind/CreditCardFraudDetection.php	$(APP_INST_DIR)/shared/maxmind/CreditCardFraudDetection.php
-	install -D -m 0640 shared/maxmind/Example_locv.php		$(APP_INST_DIR)/shared/maxmind/Example_locv.php
-	install -D -m 0640 shared/maxmind/Example.php			$(APP_INST_DIR)/shared/maxmind/Example.php
-	install -D -m 0640 shared/maxmind/Example_telv.php		$(APP_INST_DIR)/shared/maxmind/Example_telv.php
 	install -D -m 0640 shared/maxmind/HTTPBase.php			$(APP_INST_DIR)/shared/maxmind/HTTPBase.php
 	install -D -m 0640 shared/maxmind/LocationVerification.php	$(APP_INST_DIR)/shared/maxmind/LocationVerification.php
 	install -D -m 0640 shared/maxmind/README			$(APP_INST_DIR)/shared/maxmind/README
@@ -488,4 +484,4 @@ install-dtc-common:
 	# Doc dir
 	mkdir -p $(DOC_DIR)
 	[ -h $(APP_INST_DIR)/doc ] || ln -s $(DOC_DIR) $(APP_INST_DIR)/doc
-	cp -rf doc/* $(APP_INST_DIR)/doc
+	cp -rf doc/* $(DOC_DIR)

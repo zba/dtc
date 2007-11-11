@@ -8,6 +8,7 @@ Homepage: <http://www.gplhost.com/software-dtc.html>
 
 Package: dtc-common
 Architecture: all
+Depends: php5-cli | php4-cli
 Conflicts: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
 Suggests: dtc-postfix-courier
 Description: web control panel for admin and accounting hosting services (common files)
