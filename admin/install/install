@@ -16,6 +16,18 @@ if [ -f /etc/debian_version ] ; then
 	. /usr/share/dtc/admin/install/functions
 fi
 
+if rpm -q coreutils >/dev/null ; then
+	# Prepare everything
+	/usr/share/dtc/admin/install/uninstall
+	. /usr/share/dtc/admin/install/redhat_config
+	. /usr/share/dtc/admin/install/interactive_installer
+	interactiveInstaller
+	/usr/share/dtc/admin/install/functions
+	# Then call the installer!
+	DTCinstallPackage
+	DTCsetupDaemons
+fi
+
 if [ "`uname -s`" = "FreeBSD" ]; then
 	echo "FreeBSD detected"
 	. /usr/local/www/dtc/admin/install/functions
