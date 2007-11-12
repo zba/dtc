@@ -4113,16 +4113,6 @@ DTCinstallPackage () {
 		fi
 	fi
 	saveConfig
-	generateMySQLConfigPHPfile
-	createDTCRootShellScript
-	createApachePIDSymLink
-	enableApache2Modules
-	findHtpasswdBinary
-	createApacheAdminProtectedDir
-	generateOpenSSLApacheCert
-	createCyrusAuthPhp
-	createRRDFiles
-	reportingInstall
 }
 
 DTCuninstallPackage () {
@@ -4156,6 +4146,18 @@ DTCsetupDaemons () {
 	fi
 
 	. ${DTC_SAVED_INSTALL_CONFIG}
+
+	# These are moved from install package to setup daemons
+	generateMySQLConfigPHPfile
+	createDTCRootShellScript
+	createApachePIDSymLink
+	enableApache2Modules
+	findHtpasswdBinary
+	createApacheAdminProtectedDir
+	generateOpenSSLApacheCert
+	createCyrusAuthPhp
+	createRRDFiles
+	reportingInstall
 
 	modifyResolvConf
 	createChrootTemplate

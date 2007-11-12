@@ -20,12 +20,12 @@ if rpm -q coreutils >/dev/null ; then
 	# Prepare everything
 	. /usr/share/dtc/admin/install/redhat_config
 	. /usr/share/dtc/admin/install/interactive_installer
+	interactiveInstaller
+	DTCinstallPackage
 	/usr/share/dtc/admin/install/uninstall
 	. ${DTC_SAVED_INSTALL_CONFIG}
-	interactiveInstaller
 	/usr/share/dtc/admin/install/functions
 	# Then call the installer!
-	DTCinstallPackage
 	DTCsetupDaemons
 fi
 
