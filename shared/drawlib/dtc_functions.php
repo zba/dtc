@@ -213,7 +213,7 @@ function checkSubdomainFormat($name){
 	if($name == ""){
 		return false;
 	}
-	if(ereg("^([a-z0-9\_]+)([.a-z0-9\-\_]*)([.a-z0-9]+)\$",$name))
+	if(ereg("^([a-z0-9\_]+)([.a-z0-9\_-]*)([.a-z0-9]+)\$",$name))
 		return true;
 	else{
 		if(ereg("^([a-z0-9])\$",$name))
