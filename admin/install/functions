@@ -877,7 +877,7 @@ modifySUODERS_DOT_CONF () {
 			fi
 			TMP_FILE=`${MKTEMP} DTC_install.shells.XXXXXX` || exit 1
 			echo "# Configured by DTC 0.21 : please do not touch this line !" >> $TMP_FILE
-			echo "/bin/dtc-chroot-shell" >> $TMP_FILE
+			echo "/usr/bin/dtc-chroot-shell" >> $TMP_FILE
 			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 			cat <$TMP_FILE >>$PATH_SHELLS_CONF
 			rm $TMP_FILE

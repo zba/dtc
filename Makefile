@@ -22,7 +22,7 @@ ifndef $(MANUAL_DIR)
 	MANUAL_DIR=/usr/share/man
 endif
 ifndef $(BIN_DIR)
-	BIN_DIR=/bin
+	BIN_DIR=/usr/bin
 endif
 
 # /usr/share
@@ -179,37 +179,55 @@ admin/tables/ssh_groups.sql admin/tables/ssh_user_group.sql admin/tables/ssl_ips
 admin/tables/tik_admins.sql admin/tables/tik_cats.sql admin/tables/tik_queries.sql admin/tables/vps_ip.sql admin/tables/vps_server.sql \
 admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql admin/tables/whois.sql
 
+##################### ETC FILES #########################
+TEXT_MESSAGES=reminders_msg/server_expired_already.txt reminders_msg/server_expired_last_warning.txt \
+reminders_msg/server_expired_shutdown.txt reminders_msg/server_expired_today.txt reminders_msg/server_will_expire.txt \
+reminders_msg/shared_expired_already.txt reminders_msg/shared_expired_last_warning.txt reminders_msg/shared_expired_shutdown.txt \
+reminders_msg/shared_expired_today.txt reminders_msg/shared_will_expire.txt reminders_msg/vps_expired_already.txt \
+reminders_msg/vps_expired_last_warning.txt reminders_msg/vps_expired_shutdown.txt reminders_msg/vps_expired_today.txt \
+reminders_msg/vps_will_expire.txt \
+registration_msg/dedicated_open.txt registration_msg/shared_open.txt registration_msg/vps_open.txt \
+signature.txt messages_header.txt \
+logrotate.template
+
+PHP_RIGHTS="0644"
+ROOT_SCRIPTS_RIGHTS="0750"
+DTC_SCRIPTS_RIGHTS="0755"
+ROOT_ONLY_READ="0640"
+NORMAL_FOLDER="0755"
+MANPAGE_RIGHTS="0644"
+
 install-dtc-common:
 	# PHP scripts files served by web server
-	for i in $(WEB_SCRIPT_FILES) ; do install -D -m 0644 $$i $(APP_INST_DIR)/$$i ; done
+	for i in $(WEB_SCRIPT_FILES) ; do install -D -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 
 	# Management scripts that are executed
-	for i in $(ROOT_ONLY) ; do install -D -m 0750 $$i $(APP_INST_DIR)/$$i ; done
-	for i in $(USER_ALSO) ; do install -D -m 0755 $$i $(APP_INST_DIR)/$$i ; done
-	for i in $(INSTALL_FOLDER_SCRIPTS) ; do install -D -m 0750 $$i $(APP_INST_DIR)/$$i ; done
-
-	# inc png files
-	for i in $(ADMIN_INC_PNG_FILES) ; do install -D -m 0644 admin/inc/$$i $(APP_INST_DIR)/admin/inc/$$i ; done
-	# Client and email inc png files
-	for i in $(ADMIN_INC_PNG_FILES) ; do install -D -m 0644 admin/inc/$$i $(APP_INST_DIR)/client/inc/$$i ; done
-	for i in $(ALL_PICS) ; do install -D -m 0644 $$i $(APP_INST_DIR)/$$i ; done
+	for i in $(ROOT_ONLY) ; do install -D -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	for i in $(USER_ALSO) ; do install -D -m $(DTC_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	for i in $(INSTALL_FOLDER_SCRIPTS) ; do install -D -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 
 	# The SQL table scripts
-	for i in $(INSTALL_SQL_TABLES) ; do install -D -m 0640 $$i $(APP_INST_DIR)/$$i ; done
+	for i in $(INSTALL_SQL_TABLES) ; do install -D -m $(ROOT_ONLY_READ) $$i $(APP_INST_DIR)/$$i ; done
 
 	# The database upgrade scripts
-	install -D -m 0644 bin/sources/dtc_db.php	$(APP_INST_DIR)/admin/dtc_db.php
-	install -D -m 0644 bin/sources/restor_db.php	$(APP_INST_DIR)/admin/restor_db.php
+	install -D -m $(PHP_RIGHTS) bin/sources/dtc_db.php	$(APP_INST_DIR)/admin/dtc_db.php
+	install -D -m $(PHP_RIGHTS) bin/sources/restor_db.php	$(APP_INST_DIR)/admin/restor_db.php
 
 	### email panel ###
-	install -D -m 0640 admin/inc/img_alt.php		$(APP_INST_DIR)/email/inc/img_alt.php
-	install -D -m 0640 admin/inc/img_alt_skin.php		$(APP_INST_DIR)/email/inc/img_alt_skin.php
-	install -D -m 0640 admin/inc/img.php			$(APP_INST_DIR)/email/inc/img.php
-	install -D -m 0640 email/inc/domain.png			$(APP_INST_DIR)/email/inc/domain.png
-	install -D -m 0640 email/inc/domains.png		$(APP_INST_DIR)/email/inc/domains.png
+	install -D -m $(PHP_RIGHTS) admin/inc/img_alt.php		$(APP_INST_DIR)/email/inc/img_alt.php
+	install -D -m $(PHP_RIGHTS) admin/inc/img_alt_skin.php		$(APP_INST_DIR)/email/inc/img_alt_skin.php
+	install -D -m $(PHP_RIGHTS) admin/inc/img.php			$(APP_INST_DIR)/email/inc/img.php
 
 	# The man pages
-	install -D -m 0640 doc/dtc-chroot-shell.8		$(MAN_DIR)/man8/dtc-chroot-shell.8
+	install -D -m $(MANPAGE_RIGHTS) doc/dtc-chroot-shell.8		$(MAN_DIR)/man8/dtc-chroot-shell.8
+
+	# inc png files
+	for i in $(ADMIN_INC_PNG_FILES) ; do install -D -m $(PHP_RIGHTS) admin/inc/$$i $(APP_INST_DIR)/admin/inc/$$i ; done
+	# Client and email inc png files
+	for i in $(ADMIN_INC_PNG_FILES) ; do install -D -m $(PHP_RIGHTS) admin/inc/$$i $(APP_INST_DIR)/client/inc/$$i ; done
+	for i in $(ALL_PICS) ; do install -D -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	install -D -m $(PHP_RIGHTS) email/inc/domain.png	$(APP_INST_DIR)/email/inc/domain.png
+	install -D -m $(PHP_RIGHTS) email/inc/domains.png $(APP_INST_DIR)/email/inc/domains.png
 
 	# Copy all the graphics...
 	cp -rf shared/gfx	$(APP_INST_DIR)/shared
@@ -217,30 +235,18 @@ install-dtc-common:
 	[ -h $(APP_INST_DIR)/client/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/client/gfx
 	[ -h $(APP_INST_DIR)/email/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/email/gfx
 
-
-
 	mkdir -p $(APP_INST_DIR)/shared/imgcache
 	[ -h $(APP_INST_DIR)/admin/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/admin/imgcache
 	[ -h $(APP_INST_DIR)/client/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/client/imgcache
 	[ -h $(APP_INST_DIR)/email/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/email/imgcache
 
 	# Create the variables directory
-	mkdir -p $(GENFILES_DIRECTORY)/etc/zones
-	chmod 755 $(GENFILES_DIRECTORY)/etc/zones
-	mkdir -p $(GENFILES_DIRECTORY)/etc/slave_zones
-	chmod 755 $(GENFILES_DIRECTORY)/etc/slave_zones
+	install -m $(NORMAL_FOLDER) -d $(GENFILES_DIRECTORY)/etc/zones $(GENFILES_DIRECTORY)/etc/slave_zones 
 
 	# Create the configuration folder
-	mkdir -p $(ETC_DIRECTORY)
-	cp -rf admin/reminders_msg $(ETC_DIRECTORY)
-	cp shared/messages_header.txt $(ETC_DIRECTORY)
-	install -D -m 0640 shared/registration_msg/dedicated_open.txt	$(ETC_DIRECTORY)/registration_msg/dedicated_open.txt
-	install -D -m 0640 shared/registration_msg/shared_open.txt	$(ETC_DIRECTORY)/registration_msg/shared_open.txt
-	install -D -m 0640 shared/registration_msg/vps_open.txt		$(ETC_DIRECTORY)/registration_msg/vps_open.txt
-	install -D -m 0644 admin/signature.txt 				$(ETC_DIRECTORY)/signature.txt
-	install -D -m 0644 etc/logrotate.template			$(ETC_DIRECTORY)/logrotate.template
+	for i in $(TEXT_MESSAGES) ; do install -D -m $(PHP_RIGHTS) etc/$$i $(ETC_DIRECTORY)/$$i ; done
 
 	# Doc dir
-	mkdir -p $(DOC_DIR)
+	install -m $(NORMAL_FOLDER) -d $(DOC_DIR)
 	[ -h $(APP_INST_DIR)/doc ] || ln -s $(DOC_DIR) $(APP_INST_DIR)/doc
 	cp -rf doc/* $(DOC_DIR)
