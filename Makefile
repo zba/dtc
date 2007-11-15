@@ -230,7 +230,10 @@ install-dtc-common:
 	install -D -m $(PHP_RIGHTS) email/inc/domains.png $(APP_INST_DIR)/email/inc/domains.png
 
 	# Copy all the graphics...
-	cp -rf shared/gfx	$(APP_INST_DIR)/shared
+	find shared/gfx -iname '*.png' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
+	find shared/gfx -iname '*.gif' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
+	find shared/gfx -iname '*.js' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
+	find shared/gfx -iname '*.php' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
 	[ -h $(APP_INST_DIR)/admin/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/admin/gfx
 	[ -h $(APP_INST_DIR)/client/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/client/gfx
 	[ -h $(APP_INST_DIR)/email/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/email/gfx
