@@ -1,6 +1,8 @@
+#!/usr/bin/env php
+
 <?php
 
-        $base_path = dirname($_SERVER["PHP_SELF"]);
+        $base_path = dirname(__FILE__);
 
 	if ($_SERVER["argc"] < 1) {
 		print "Syntax Error: ".$_SERVER["argv"][0]." <root domain>\n";
