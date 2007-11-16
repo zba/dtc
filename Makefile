@@ -6,6 +6,10 @@
 # CONFIG_DIR=/etc DTC_DOC_DIR=/usr/share/doc \
 # MANUAL_DIR=/usr/share/man
 
+VERS=$(shell echo `cat bin/version`)
+RELS=$(shell echo `cat bin/release`)
+VERSION=$(VERS)"-"$(RELS)
+
 ifndef $(DTC_APP_DIR)
 	DTC_APP_DIR=/usr/share
 endif
@@ -202,6 +206,7 @@ install-dtc-stats-daemon:
 install-dtc-common:
 	# PHP scripts files served by web server
 	for i in $(WEB_SCRIPT_FILES) ; do install -D -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >$(APP_INST_DIR)/shared/dtc_version.php
 
 	# Management scripts that are executed
 	for i in $(ROOT_ONLY) ; do install -D -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
@@ -246,19 +251,19 @@ install-dtc-common:
 	[ -h $(APP_INST_DIR)/email/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/email/imgcache
 
 	# Set the stuffs for the logrotate
-	install -m 0644 etc/logrotate.d/dtc $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc
+	install -D -m 0644 etc/logrotate.d/dtc $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc
 	[ -h $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc-vhosts ] || ln -s /var/lib/dtc/etc/logrotate $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc-vhosts
 
 	# Setup the cron
-	install -m 0644 etc/cron.d/dtc $(DESTDIR)$(CONFIG_DIR)/cron.d/dtc
+	install -D -m 0644 etc/cron.d/dtc $(DESTDIR)$(CONFIG_DIR)/cron.d/dtc
 
 	# Create the variables directory
-	install -m $(NORMAL_FOLDER) -d $(GENFILES_DIRECTORY)/etc/zones $(GENFILES_DIRECTORY)/etc/slave_zones 
+	install -D -m $(NORMAL_FOLDER) -d $(GENFILES_DIRECTORY)/etc/zones $(GENFILES_DIRECTORY)/etc/slave_zones 
 
 	# Create the configuration folder
 	for i in $(TEXT_MESSAGES) ; do install -D -m $(PHP_RIGHTS) etc/dtc/$$i $(DTC_ETC_DIRECTORY)/$$i ; done
 
 	# Doc dir
 	install -m $(NORMAL_FOLDER) -d $(DOC_DIR)
-	[ -h $(APP_INST_DIR)/doc ] || ln -s $(DOC_DIR) $(APP_INST_DIR)/doc
+	[ -h $(APP_INST_DIR)/doc ] || ln -s $(DTC_DOC_DIR) $(APP_INST_DIR)/doc
 	cp -rf doc/* $(DOC_DIR)
