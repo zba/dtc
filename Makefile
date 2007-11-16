@@ -30,7 +30,7 @@ APP_INST_DIR = $(DESTDIR)$(DTC_APP_DIR)/dtc
 # /var/lib
 GENFILES_DIRECTORY = $(DESTDIR)$(DTC_GEN_DIR)/dtc
 # /etc
-ETC_DIRECTORY = $(DESTDIR)$(CONFIG_DIR)/dtc
+DTC_ETC_DIRECTORY = $(DESTDIR)$(CONFIG_DIR)/dtc
 # /usr/share/doc
 DOC_DIR = $(DESTDIR)$(DTC_DOC_DIR)/dtc
 # /usr/share/man
@@ -197,7 +197,7 @@ MANPAGE_RIGHTS="0644"
 
 install-dtc-stats-daemon:
 	install -D -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
-	install -D -m 0644 etc/init.d/dtc-stats-daemon $(DESTDIR)/etc/init.d/dtc-stats-daemon
+	install -D -m 0644 etc/init.d/dtc-stats-daemon $(DESTDIR)$(CONFIG_DIR)/init.d/dtc-stats-daemon
 
 install-dtc-common:
 	# PHP scripts files served by web server
@@ -246,17 +246,17 @@ install-dtc-common:
 	[ -h $(APP_INST_DIR)/email/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/email/imgcache
 
 	# Set the stuffs for the logrotate
-	install -m 0644 etc/logrotate.d/dtc $(DESTDIR)/etc/logrotate.d/dtc
-	[ -h $(DESTDIR)/etc/logrotate.d/dtc-vhosts ] || ln -s /var/lib/dtc/etc/logrotate $(DESTDIR)/etc/logrotate.d/dtc-vhosts
+	install -m 0644 etc/logrotate.d/dtc $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc
+	[ -h $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc-vhosts ] || ln -s /var/lib/dtc/etc/logrotate $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc-vhosts
 
 	# Setup the cron
-	install -m 0644 etc/cron.d/dtc $(DESTDIR)/etc/cron.d/dtc
+	install -m 0644 etc/cron.d/dtc $(DESTDIR)$(CONFIG_DIR)/cron.d/dtc
 
 	# Create the variables directory
 	install -m $(NORMAL_FOLDER) -d $(GENFILES_DIRECTORY)/etc/zones $(GENFILES_DIRECTORY)/etc/slave_zones 
 
 	# Create the configuration folder
-	for i in $(TEXT_MESSAGES) ; do install -D -m $(PHP_RIGHTS) etc/dtc/$$i $(ETC_DIRECTORY)/$$i ; done
+	for i in $(TEXT_MESSAGES) ; do install -D -m $(PHP_RIGHTS) etc/dtc/$$i $(DTC_ETC_DIRECTORY)/$$i ; done
 
 	# Doc dir
 	install -m $(NORMAL_FOLDER) -d $(DOC_DIR)
