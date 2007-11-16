@@ -34,7 +34,6 @@ _Description: Change MySQL root password?
 
 Template: dtc/main_domainname
 Type: string
-Default: example.com
 _Description: Domain name:
  Please enter the first domain which you want DTC to
  manage. This domain name will be used to install the root
