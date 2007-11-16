@@ -1,9 +1,1 @@
-doc/dtc_storefront
-doc/html
-doc/iglobalwall
-doc/todo
-doc/update_stable_rtag.sh
-shared/maxmind
-doc/dtc-chroot-shell.8
-doc/contrib
-doc/dns_transfer.sh
+debian/README.Debian

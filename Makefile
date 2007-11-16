@@ -44,7 +44,7 @@ default:
 	@echo ""
 	@echo "*** Error: there is no default target in this Makefile! ***"
 	@echo "Please select one of the following targets:"
-	@echo "installstatsdaemon, install-dtc-common"
+	@echo "install-dtc-stats-daemon, install-dtc-common"
 	@echo "and don't forget to set the following variables:"
 	@echo "DESTDIR="$(DESTDIR)
 	@echo "DTC_APP_DIR="$(DTC_APP_DIR)
@@ -195,8 +195,9 @@ ROOT_ONLY_READ="0640"
 NORMAL_FOLDER="0755"
 MANPAGE_RIGHTS="0644"
 
-installstatsdaemon:
+install-dtc-stats-daemon:
 	install -D -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
+	install -D -m 0644 etc/init.d/dtc-stats-daemon $(DESTDIR)/etc/init.d/dtc-stats-daemon
 
 install-dtc-common:
 	# PHP scripts files served by web server
@@ -244,11 +245,18 @@ install-dtc-common:
 	[ -h $(APP_INST_DIR)/client/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/client/imgcache
 	[ -h $(APP_INST_DIR)/email/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/email/imgcache
 
+	# Set the stuffs for the logrotate
+	install -m 0644 etc/logrotate.d/dtc $(DESTDIR)/etc/logrotate.d/dtc
+	[ -h $(DESTDIR)/etc/logrotate.d/dtc-vhosts ] || ln -s /var/lib/dtc/etc/logrotate $(DESTDIR)/etc/logrotate.d/dtc-vhosts
+
+	# Setup the cron
+	install -m 0644 etc/cron.d/dtc $(DESTDIR)/etc/cron.d/dtc
+
 	# Create the variables directory
 	install -m $(NORMAL_FOLDER) -d $(GENFILES_DIRECTORY)/etc/zones $(GENFILES_DIRECTORY)/etc/slave_zones 
 
 	# Create the configuration folder
-	for i in $(TEXT_MESSAGES) ; do install -D -m $(PHP_RIGHTS) etc/$$i $(ETC_DIRECTORY)/$$i ; done
+	for i in $(TEXT_MESSAGES) ; do install -D -m $(PHP_RIGHTS) etc/dtc/$$i $(ETC_DIRECTORY)/$$i ; done
 
 	# Doc dir
 	install -m $(NORMAL_FOLDER) -d $(DOC_DIR)

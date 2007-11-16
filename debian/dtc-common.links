@@ -1,9 +1,0 @@
-/usr/share/doc/dtc-common	/usr/share/dtc/doc
-/usr/share/doc/dtc		/usr/share/dtc/doc
-/usr/share/dtc/shared/gfx	/usr/share/dtc/admin/gfx
-/usr/share/dtc/shared/gfx	/usr/share/dtc/client/gfx
-/usr/share/dtc/shared/gfx	/usr/share/dtc/email/gfx
-/usr/share/dtc/shared/imgcache	/usr/share/dtc/admin/imgcache
-/usr/share/dtc/shared/imgcache	/usr/share/dtc/client/imgcache
-/usr/share/dtc/shared/imgcache	/usr/share/dtc/email/imgcache
-/var/lib/dtc/etc/logrotate	/etc/logrotate.d/dtc-vhosts
