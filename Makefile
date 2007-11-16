@@ -56,8 +56,6 @@ default:
 	@echo ""
 	@exit 1
 
-installstatsdaemon:
-	install -D -m 0644 admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin
 
 ############# PHP SCRIPTS ##############
 # Owned by root, but executable by dtc user (ran by apache)
@@ -197,6 +195,9 @@ ROOT_ONLY_READ="0640"
 NORMAL_FOLDER="0755"
 MANPAGE_RIGHTS="0644"
 
+installstatsdaemon:
+	install -D -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
+
 install-dtc-common:
 	# PHP scripts files served by web server
 	for i in $(WEB_SCRIPT_FILES) ; do install -D -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
@@ -238,7 +239,7 @@ install-dtc-common:
 	[ -h $(APP_INST_DIR)/client/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/client/gfx
 	[ -h $(APP_INST_DIR)/email/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/email/gfx
 
-	mkdir -p $(APP_INST_DIR)/shared/imgcache
+	install -m $(NORMAL_FOLDER) -d $(APP_INST_DIR)/shared/imgcache
 	[ -h $(APP_INST_DIR)/admin/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/admin/imgcache
 	[ -h $(APP_INST_DIR)/client/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/client/imgcache
 	[ -h $(APP_INST_DIR)/email/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/email/imgcache
