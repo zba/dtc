@@ -65,7 +65,7 @@ default:
 # Owned by root, but executable by dtc user (ran by apache)
 ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES=admin/404.php admin/bw_per_month.php admin/index.php admin/cpugraph.php admin/mailgraph.php admin/deamons_state.php \
 admin/deamons_state_strings.php admin/view_waitingusers.php admin/memgraph.php admin/netusegraph.php admin/vps_stats_cpu.php \
-admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup
+admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup dtc_db.php
 
 ADMIN_GENFILE_PHP_SCRIPT_FILES=admin/genfiles/gen_awstats.php admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_perso_vhost.php \
 admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_backup_script.php admin/genfiles/gen_pro_vhost.php \
@@ -145,7 +145,7 @@ CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico
 ALL_PICS=$(CLIENT_INC_PNG_FILES) $(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
 ################# EXECUTABLE SCRIPTS #################
 # Owned by root, ran by root
-ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php
+ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php admin/restor_db.php admin/backup_db.php
 # Owned by root, executed as DTC
 DTC_CRON_PHP_SCRIPT_FILES=admin/accesslog.php admin/maint_apache.php
 # Owned by root, executed by root
@@ -215,10 +215,6 @@ install-dtc-common:
 
 	# The SQL table scripts
 	for i in $(INSTALL_SQL_TABLES) ; do install -D -m $(ROOT_ONLY_READ) $$i $(APP_INST_DIR)/$$i ; done
-
-	# The database upgrade scripts
-	install -D -m $(PHP_RIGHTS) bin/sources/dtc_db.php	$(APP_INST_DIR)/admin/dtc_db.php
-	install -D -m $(PHP_RIGHTS) bin/sources/restor_db.php	$(APP_INST_DIR)/admin/restor_db.php
 
 	### email panel ###
 	install -D -m $(PHP_RIGHTS) admin/inc/img_alt.php		$(APP_INST_DIR)/email/inc/img_alt.php

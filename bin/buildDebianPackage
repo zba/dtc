@@ -1,4 +1,0 @@
-#!/bin/sh
-chown -R root:root ${1}/usr/share/dtc
-chown nobody:nogroup ${1}/usr/share/dtc/shared/gfx ${1}/usr/share/dtc/admin/gfx ${1}/usr/share/dtc/client/gfx ${1}/usr/share/dtc/email/gfx ${1}/usr/share/dtc/client/imgcache ${1}/usr/share/dtc/admin/imgcache ${1}/usr/share/dtc/shared/imgcache ${1}/usr/share/dtc/email/imgcache ${1}/usr/share/dtc/admin/*.cgi
-dpkg-deb --build ${1}
