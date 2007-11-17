@@ -134,6 +134,8 @@ class zPDF extends FPDF{
 		$this->Cell(40,22,"Number: $text_number");
 		$this->SetXY(130,34);
 		$this->Cell(40,22,"Payid: ".$pay["id"]);
+		$this->SetXY(130,40);
+		$this->Cell(40,22,"Payment date: ".$pt_date);
 		// From:
 		$this->SetXY(10,50);
 		$this->SetFont('Arial','BU',12);
@@ -218,8 +220,8 @@ class zPDF extends FPDF{
 		$this->Ln();
 		$this->SetFont('Arial','',10);
 		$this->Cell(80,7,$product["name"],"1",0,"L");
-		$this->Cell(20,7,$completedorder["date"],"1",0,"L");
-		$date_expire = calculateExpirationDate($completedorder["date"],$product["period"]);
+		$this->Cell(20,7,$completedorder["last_expiry_date"],"1",0,"L");
+		$date_expire = calculateExpirationDate($completedorder["last_expiry_date"],$product["period"]);
 		$this->Cell(20,7,$date_expire,"1",0,"L");
 		$this->Cell(15,7,$product["price_dollar"]." ".$secpayconf_currency_letters,"1",0,"L");
 		$this->Cell(25,7,$pay["paiement_cost"]." ".$secpayconf_currency_letters,"1",0,"L");

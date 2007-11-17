@@ -107,6 +107,21 @@ $dtc_database = array(
 			"id_2" => "(id)"
 			)
 		),
+	"completedorders" => array(
+		"vars" => array(
+			"id" => "int(12) NOT NULL auto_increment",
+			"id_client" => "int(12) NOT NULL default '0'",
+			"domain_name" => "varchar(255) NOT NULL default ''",
+			"quantity" => "int(12) NOT NULL default '0'",
+			"date" => "date NOT NULL default '0000-00-00'",
+			"product_id" => "int(12) NOT NULL default '0'",
+			"payment_id" => "int(12) NOT NULL default '0'",
+			"download_pass" => "varchar(64) NOT NULL default 'none'",
+			"country_code" => "varchar(4) NOT NULL default 'US'",
+			"last_expiry_date" => "date NOT NULL"
+			),
+		"primary" => "(id)"
+		),
 	"config" => array(
 		"vars" => array(
 			"db_version" => "int(11) NOT NULL default '10002' ",
