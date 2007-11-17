@@ -358,6 +358,7 @@ function drawDomainConfig($admin){
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_table;
 	global $pro_mysql_dedicated_table;
+	global $pro_mysql_subdomain_table;
 
 	global $conf_site_addrs;
 	$site_addrs = explode("|",$conf_site_addrs);
@@ -410,6 +411,10 @@ function drawDomainConfig($admin){
 					"type" => "id",
 					"display" => "yes",
 					"legend" => $txt_domain_tbl_config_dom_name[$lang]),
+				"edithost" => array(
+					"type" => "hyperlink",
+					"legend" => "Vhost",
+					"text" => "Customize"),
 				"safe_mode" => array(
 					"type" => "checkbox",
 					"legend" => "PHP safe_mode",
@@ -455,6 +460,47 @@ function drawDomainConfig($admin){
 				)
 			);
 		$ret .= dtcDatagrid($dsc);
+		if( isset($_REQUEST["edithost"]) && isHostname($_REQUEST["edithost"]) ){
+			$ret .= "<h3>Custom Apache directives for ".$_REQUEST["edithost"]."</h3>";
+			$q = "SELECT subdomain_name FROM $pro_mysql_subdomain_table WHERE domain_name='".$_REQUEST["edithost"]."';";
+			$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			for($j=0;$j<$n;$j++){
+				$a = mysql_fetch_array($r);
+				if($j != 0){
+					$ret .= " - ";
+				}
+				$subname = $a["subdomain_name"];
+				$ret .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub&edithost=".$_REQUEST["edithost"]."&subdomain=$subname\">$subname</a>";
+			}
+			$ret .= "<br><br>";
+			if( isset($_REQUEST["subdomain"]) && isHostname($_REQUEST["subdomain"]) ){
+				$ret .= "<u>Subdomain: ".$_REQUEST["subdomain"].":</u><br>";
+				$ret .= "Take care: no syntax checkings are done on your custom directives, doing a mistake here could lead to your web server not being able to restart!<br>";
+				$q = "SELECT customize_vhost FROM $pro_mysql_subdomain_table WHERE subdomain_name='".$_REQUEST["subdomain"]."' AND domain_name='".$_REQUEST["edithost"]."';";
+				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$n = mysql_num_rows($r);
+				if($n != 1){
+					die("Domain name not found line ".__LINE__." file ".__FILE__);
+				}
+				$ze_dom = mysql_fetch_array($r);
+				$customization = $ze_dom["customize_vhost"];
+				$ret .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+				<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+				<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+				<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+				<input type=\"hidden\" name=\"edithost\" value=\"".$_REQUEST["edithost"]."\">
+				<input type=\"hidden\" name=\"subdomain\" value=\"".$_REQUEST["subdomain"]."\">
+				<input type=\"hidden\" name=\"action\" value=\"set_vhost_custom_directives\">
+				<textarea cols=\"120\" rows=\"10\" name=\"custom_directives\">$customization</textarea><br>
+<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Ok\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
+				</form><br><br><br>";
+			}
+		}
 	}
 
 	// VPS configuration

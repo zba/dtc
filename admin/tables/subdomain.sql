@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS subdomain (
   nameserver_for varchar(64) default NULL,
   srv_record varchar(64) default NULL,
   add_default_charset varchar(32) NOT NULL default 'dtc-wont-add',
+  customize_vhost text NOT NULL,
   PRIMARY KEY  (id),
   UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
 ) TYPE=MyISAM

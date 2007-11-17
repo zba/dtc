@@ -160,6 +160,13 @@ if(isset($_REQUEST["modify_domain_config"]) && $_REQUEST["modify_domain_config"]
 /////////////////////////////////////
 // Domain name database management //
 /////////////////////////////////////
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_vhost_custom_directives"){
+	$q = "UPDATE $pro_mysql_subdomain_table SET customize_vhost='".$_REQUEST["custom_directives"]."' WHERE domain_name='".$_REQUEST["edithost"]."' AND subdomain_name='".$_REQUEST["subdomain"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$adm_query = "UPDATE $pro_mysql_cronjob_table SET gen_vhosts='yes',restart_apache='yes' WHERE 1;";
+	mysql_query($adm_query);
+}
+
 if(isset($_REQUEST["newdomain"]) && $_REQUEST["newdomain"] == "Ok"){
 	if(isHostname($_REQUEST["newdomain_name"])){
 		addDomainToUser($adm_login,$adm_pass,$_REQUEST["newdomain_name"]);
