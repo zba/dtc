@@ -1,5 +1,4 @@
 #!/usr/bin/env php
-
 <?php
 
 $pro_mysql_host="localhost";

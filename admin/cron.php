@@ -1,5 +1,4 @@
 #!/usr/bin/env php
-
 <?php
 
 $script_start_time = time();

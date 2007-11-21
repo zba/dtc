@@ -1,5 +1,4 @@
 #!/usr/bin/env php
-
 <?php
 
 chdir(dirname(__FILE__));
