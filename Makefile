@@ -265,7 +265,7 @@ install-dtc-common:
 	install -m $(NORMAL_FOLDER) -d $(DOC_DIR)
 	if [ $(DTC_DOC_DIR) = "/usr/share/doc" -a $(DTC_APP_DIR) = "/usr/share" ] ; then \
 		if [ ! -h $(APP_INST_DIR)/doc ] ; then \
-			ln -s ../../doc/dtc $(APP_INST_DIR)/doc ; \
+			ln -s ../doc/dtc $(APP_INST_DIR)/doc ; \
 		else \
 			if [ -h $(APP_INST_DIR)/doc ] ; then \
 				ln -s $(DOC_DIR) $(APP_INST_DIR)/doc ; \
