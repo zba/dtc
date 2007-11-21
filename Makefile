@@ -263,5 +263,13 @@ install-dtc-common:
 
 	# Doc dir
 	install -m $(NORMAL_FOLDER) -d $(DOC_DIR)
-	[ -h $(APP_INST_DIR)/doc ] || ln -s $(DTC_DOC_DIR) $(APP_INST_DIR)/doc
+	if [ $(DTC_DOC_DIR) = "/usr/share/doc" -a $(DTC_APP_DIR) = "/usr/share" ] ; then \
+		if [ ! -h $(APP_INST_DIR)/doc ] ; then \
+			ln -s ../../doc/dtc $(APP_INST_DIR)/doc ; \
+		else \
+			if [ -h $(APP_INST_DIR)/doc ] ; then \
+				ln -s $(DOC_DIR) $(APP_INST_DIR)/doc ; \
+			fi ; \
+		fi ; \
+	fi
 	cp -rf doc/* $(DOC_DIR)
