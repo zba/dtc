@@ -112,6 +112,7 @@ MAILDIR=\$DEFAULT\n");
 
 	if($vacation_flag == "yes"){
 		$mlfilter_content .= "\n".implode("\n",file("genfiles/mailfilter_vacation_template"))."\n";
+		@chmod("$home/.vacation.msg",0660);
 		$vac_fp = fopen("$home/.vacation.msg","w+");
 		if($vac_fp != FALSE){
 			fwrite($vac_fp,$vacation_text);
@@ -132,6 +133,7 @@ MAILFILTER_EOF;
 	}
 
 	// Write the file and manage rights
+	@chmod($MAILFILTER_FILE,0660);
 	$fp = fopen($MAILFILTER_FILE,"w+");
 	if($fp != FALSE){
 		fwrite($fp, $mlfilter_content);
@@ -194,7 +196,7 @@ function genSaslFinishConfigAndRights(){
 	global $conf_dtc_system_groupname;
 	global $conf_generated_file_path;
 
-	chmod("$conf_generated_file_path/sasldb2",0664);
+	@chmod("$conf_generated_file_path/sasldb2",0664);
 	if(is_dir("/var/spool/postfix/etc")){
 		$fpath = "/var/spool/postfix/etc/sasldb2";
 	}else{

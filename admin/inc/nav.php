@@ -17,7 +17,7 @@ if(isset($_REQUEST["gen_pro_vhost"]) && $_REQUEST["gen_pro_vhost"]==1){
 
 if(isset($_REQUEST["gen_email_account"]) && $_REQUEST["gen_email_account"] == 1){
 	mail_account_generate();
-	$console .= "Qmail user and domain files generated !";
+	$console .= "Email user and domain files generated !";
 }
 
 if(isset($_REQUEST["gen_backup_script"]) && $_REQUEST["gen_backup_script"] == 1){
