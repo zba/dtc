@@ -39,6 +39,7 @@ binary-arch: install
 	dh_installdocs
 	dh_installmenu -n
 	dh_installdebconf
+	dh_installinit
 	dh_compress
 	dh_fixperms
 	dh_installdeb

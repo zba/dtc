@@ -273,3 +273,5 @@ install-dtc-common:
 		fi ; \
 	fi
 	cp -rf doc/* $(DOC_DIR)
+	rm -rf $(DOC_DIR)/LICENSE
+	rm -rf $(DOC_DIR)/LICENSE.gz
