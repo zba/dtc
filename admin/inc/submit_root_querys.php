@@ -95,8 +95,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_vps_to_user"){
 
 	$exp_date = calculateExpirationDate(date("Y-m-d"),$prod["period"]);
 
-	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,product_id)
-	VALUES('','$adm_login','".$a["vps_server_hostname"]."','".$a["vps_xen_name"]."','".date("Y-m-d")."','$exp_date','".$prod["quota_disk"]."','".$prod["memory_size"]."','".$_REQUEST["product_id"]."');";
+	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,bandwidth_per_month_gb,product_id)
+	VALUES('','$adm_login','".$a["vps_server_hostname"]."','".$a["vps_xen_name"]."','".date("Y-m-d")."','$exp_date','".$prod["quota_disk"]."','".$prod["memory_size"]."','".$prod["bandwidth"]."','".$_REQUEST["product_id"]."');";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	// Setup the physical VPS (do the lvcreate remotly)
@@ -160,6 +160,13 @@ if(isset($_REQUEST["modify_domain_config"]) && $_REQUEST["modify_domain_config"]
 /////////////////////////////////////
 // Domain name database management //
 /////////////////////////////////////
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_vhost_custom_directives"){
+	$q = "UPDATE $pro_mysql_subdomain_table SET customize_vhost='".$_REQUEST["custom_directives"]."' WHERE domain_name='".$_REQUEST["edithost"]."' AND subdomain_name='".$_REQUEST["subdomain"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$adm_query = "UPDATE $pro_mysql_cronjob_table SET gen_vhosts='yes',restart_apache='yes' WHERE 1;";
+	mysql_query($adm_query);
+}
+
 if(isset($_REQUEST["newdomain"]) && $_REQUEST["newdomain"] == "Ok"){
 	if(isHostname($_REQUEST["newdomain_name"])){
 		addDomainToUser($adm_login,$adm_pass,$_REQUEST["newdomain_name"]);

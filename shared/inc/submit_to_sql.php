@@ -67,7 +67,8 @@ function validateRenewal($renew_id){
 			return false;
 		}
 		$vps_entry = mysql_fetch_array($r);
-		$date_expire = calculateExpirationDate($vps_entry["expire_date"],$product["period"]);
+		$old_expire = $vps_entry["expire_date"];
+		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
 		$q = "UPDATE $pro_mysql_vps_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
@@ -81,7 +82,8 @@ function validateRenewal($renew_id){
 			return false;
 		}
 		$admin = mysql_fetch_array($r);
-		$date_expire = calculateExpirationDate($admin["expire"],$product["period"]);
+		$old_expire = $admin["expire"];
+		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
 		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire' WHERE adm_login='".$renew_entry["adm_login"]."'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
@@ -103,6 +105,7 @@ function validateRenewal($renew_id){
 			return false;
 		}
 		$ssl_token = mysql_fetch_array($r);
+		$old_expire = date("Y-m-d");
 		$date_expire = calculateExpirationDate(date("Y-m-d"),$product["period"]);
 		$q = "UPDATE $pro_mysql_ssl_ips_table SET available='no',adm_login='".$admin["adm_login"]."',expire='$date_expire' WHERE id='".$ssl_token["id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -117,7 +120,8 @@ function validateRenewal($renew_id){
 			return false;
 		}
 		$dedicated_entry = mysql_fetch_array($r);
-		$date_expire = calculateExpirationDate($dedicated_entry["expire_date"],$product["period"]);
+		$old_expire = $dedicated_entry["expire_date"];
+		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
 		$q = "UPDATE $pro_mysql_dedicated_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
@@ -140,7 +144,8 @@ function validateRenewal($renew_id){
 			return false;
 		}
 		$ssl_ip = mysql_fetch_array($r);
-		$date_expire = calculateExpirationDate($ssl_ip["expire"],$product["period"]);
+		$old_expire = $ssl_ip["expire"];
+		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
 		$q = "UPDATE $pro_mysql_ssl_ips_table SET expire='$date_expire' WHERE  id='".$ssl_ip["id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
@@ -173,8 +178,8 @@ Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
 	$cid = $admin["id_client"];
 
 	// Now add a command to the user so we keep tracks of payments
-	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code)
-	VALUES ('','$cid','','1','".date("Y-m-d")."','".$product["id"]."','".$renew_entry["pay_id"]."','".$renew_entry["country_code"]."');";
+	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code,last_expiry_date)
+	VALUES ('','$cid','','1','".date("Y-m-d")."','".$product["id"]."','".$renew_entry["pay_id"]."','".$renew_entry["country_code"]."','$old_expire');";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	$q = "DELETE FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";

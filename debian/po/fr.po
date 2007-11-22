@@ -528,7 +528,7 @@ msgid ""
 msgstr ""
 "Votre serveur de messagerie a besoin d'utiliser un sous-domaine pour "
 "accepter des messages. Ce sous-domaine sera configure par DTC dans votre "
-serveur de messagerie et dans votre serveur de nom. N'importe quel nom est "
+"serveur de messagerie et dans votre serveur de nom. N'importe quel nom est "
 "possible."
 
 #. Type: string

@@ -49,7 +49,7 @@ $r = mysql_query($q)or die("Cannot query $q !");
 $n = mysql_num_rows($r);
 if($n != 1)die("Client not found!");
 $c = mysql_fetch_array($r);
-$bpquota = $c["bandwidth_per_month_gb"] * 1024 * 1024 * 1024;
+$bpquota = $c["bandwidth_per_month_gb"] * 1024 * 1024;
 
 $cur_month = date("m");
 $cur_year = date("Y");

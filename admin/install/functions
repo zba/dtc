@@ -638,7 +638,14 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','www','www')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','404','404')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','ns1','$conf_ip_addr')"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain(domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','"${MX_MAIL}"','$conf_ip_addr')"
+	# If mx == subdomain for the panel, then we still want to create a vhost for that entry
+	# so we can't set the IP for the MX (which would avoid generating the vhost, and then
+	# make the panel URL not working)
+	if [ "${MX_MAIL}" = "$dtc_admin_subdomain" ] ; then
+		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name) VALUES ('"$main_domain_name"','"${MX_MAIL}"')"
+	else
+		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,ip) VALUES ('"$main_domain_name"','"${MX_MAIL}"','default')"
+	fi
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO subdomain (domain_name,subdomain_name,path) VALUES ('"$main_domain_name"','"$dtc_admin_subdomain"','www')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO config (unicrow,demo_version,main_site_ip,site_addrs,addr_mail_server,webmaster_email_addr,addr_primary_dns,administrative_site,site_root_host_path,generated_file_path,dtcshared_path,dtcadmin_path,dtcclient_path,mta_type,main_domain,404_subdomain) VALUES('1','no','"$conf_ip_addr"','"$conf_ip_addr"','"${MX_MAIL}"."$main_domain_name"','webmaster@"$main_domain_name"','ns1."$main_domain_name"','"$dtc_admin_subdomain"."$main_domain_name"','"$conf_hosting_path"','"$PATH_DTC_ETC"','"$PATH_DTC_SHARED"','"$PATH_DTC_ADMIN"','"$PATH_DTC_CLIENT"','"$conf_mta_type"','"$main_domain_name"','404')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO cron_job (unicrow,reload_named,restart_apache,gen_vhosts,gen_named) VALUES ('1','yes','yes','yes','yes')"
@@ -877,7 +884,7 @@ modifySUODERS_DOT_CONF () {
 			fi
 			TMP_FILE=`${MKTEMP} DTC_install.shells.XXXXXX` || exit 1
 			echo "# Configured by DTC 0.21 : please do not touch this line !" >> $TMP_FILE
-			echo "/bin/dtc-chroot-shell" >> $TMP_FILE
+			echo "/usr/bin/dtc-chroot-shell" >> $TMP_FILE
 			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 			cat <$TMP_FILE >>$PATH_SHELLS_CONF
 			rm $TMP_FILE
@@ -1845,8 +1852,7 @@ modifyPostfixConfig () {
 	# works if you don't have SASL
 
 	SASLTMP_FILE="/thisfiledoesnotexists"
-	if [ -f "$PATH_POSTFIX_CONF" ]
-	then
+	if [ -f "$PATH_POSTFIX_CONF" ] ; then
 		echoIfVerbose "===> Linking postfix control files to DTC generated files"
 		touch $PATH_DTC_ETC/postfix_virtual.db
 		touch $PATH_DTC_ETC/postfix_aliases.db
@@ -2013,6 +2019,17 @@ smtpd_tls_auth_only = no
                                $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
 			fi
+
+			if [ -x /usr/sbin/spamd -o -x /usr/local/bin/spamd ] ; then
+				echo "spam.spam       sa-spam:
+ham.ham         sa-ham:
+" >$PATH_POSTFIX_ETC/transport
+				postmap $PATH_POSTFIX_ETC/transport
+				echo "# spam learning transport maps
+transport_maps = hash:$PATH_POSTFIX_ETC/transport
+" >> $TMP_FILE
+			fi
+
 			# this adds supports for "config" snippets to append to main.cf
 			if [ -f $PATH_DTC_ETC/postfix_config_snippets ]; then
 				cat $PATH_DTC_ETC/postfix_config_snippets >> $TMP_FILE
@@ -2021,6 +2038,16 @@ smtpd_tls_auth_only = no
 # this file is appended to the postfix configure, in case you need to override some configure parameters in the postfix main.cf" > $PATH_DTC_ETC/postfix_config_snippets
 			fi
 
+			if grep "Configured by DTC" /etc/aliases >/dev/null; then
+				echoIfVerbose "/etc/aliases configured before, not adding ham/spam aliases"
+			else
+				echo "# Configured by DTC v0.26 : Please don't touch this line !" >>/etc/aliases
+				echo "# auto-spam-learning" >>/etc/aliases
+				echo "spam:	spam@spam.spam" >>/etc/aliases
+				echo "ham:	ham@ham.ham" >>/etc/aliases
+				echo "notspam:	ham@ham.ham" >>/etc/aliases
+				echo "# End of DTC configuration v0.26 : please don't touch this line !" >>/etc/aliases
+			fi
 
 			if grep "Configured by DTC 0.21" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
 				echoIfVerbose "Postfix master.cf has been configured before, not adding maildrop options"
@@ -2029,6 +2056,17 @@ smtpd_tls_auth_only = no
 
 				TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
 				echo "# Configured by DTC v0.17 : Please don't touch this line !" > $TMP_FILE2
+
+				# Insert the sa-learn stuff if spamd is found
+				if [ -x /usr/sbin/spamd -o -x /usr/local/bin/spamd ] ; then
+					echo "# Adds support for the sa-learn script
+					sa-spam unix    -       n       n       -       -       pipe
+    -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
+    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper spam ${sender}
+					sa-ham  unix    -       n       n       -       -       pipe
+    -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
+    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  ${sender}" >> $TMP_FILE2
+				fi
 				# if we have maildrop, we should use it!
 				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
 					echo "maildrop  unix  -       n       n       -       -       pipe
@@ -2084,6 +2122,7 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			cat < $TMP_FILE >>$PATH_POSTFIX_CONF
 			rm $TMP_FILE
 		fi
+		newaliases
 	fi
 
 	# over-write the configuration for SASL
@@ -3407,9 +3446,9 @@ createChrootTemplate () {
 			then
 				cp -pf /usr/lib/libmagic.so.1 lib/
 			fi
-			if [ $UNIX_TYPE"" = "gentoo" ] ; then
+			if [ -e /lib/libz.so.1 ] ; then
 				cp -pf /lib/libz.so.1 lib/
-			else
+			elif [ -e /usr/lib/libz.so.1 ] ; then
 				cp -pf /usr/lib/libz.so.1 lib/
 			fi
 
@@ -3778,6 +3817,23 @@ uninstallPostfix () {
 	fi
 
 	#
+	# uninstall /etc/aliases
+	#
+	echoIfVerbose "===> Uninstalling aliases from /etc/aliases"
+	if grep "Configured by DTC" /etc/aliases >/dev/null 2>&1
+	then
+		start_line=`grep -n "Configured by DTC" /etc/aliases | cut -d":" -f1`
+		end_line=`grep -n "End of DTC configuration" /etc/aliases | cut -d":" -f1`
+		nbr_line=`cat /etc/aliases | wc -l`
+		TMP_FILE=`${MKTEMP} DTC_uninstall.aliases.XXXXXX` || exit 1
+		cat /etc/aliases | head -n $(($start_line - 1 )) > $TMP_FILE
+		cat /etc/aliases | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
+		echo -n > /etc/aliases
+		cat < $TMP_FILE >>/etc/aliases
+		rm $TMP_FILE
+	fi
+
+	#
 	# uninstall postfix/sasl/smtpd.conf
 	#
 	echoIfVerbose "===> Uninstalling inclusion from postfix/sasl/smtpd.conf"
@@ -4064,16 +4120,6 @@ DTCinstallPackage () {
 		fi
 	fi
 	saveConfig
-	generateMySQLConfigPHPfile
-	createDTCRootShellScript
-	createApachePIDSymLink
-	enableApache2Modules
-	findHtpasswdBinary
-	createApacheAdminProtectedDir
-	generateOpenSSLApacheCert
-	createCyrusAuthPhp
-	createRRDFiles
-	reportingInstall
 }
 
 DTCuninstallPackage () {
@@ -4107,6 +4153,18 @@ DTCsetupDaemons () {
 	fi
 
 	. ${DTC_SAVED_INSTALL_CONFIG}
+
+	# These are moved from install package to setup daemons
+	generateMySQLConfigPHPfile
+	createDTCRootShellScript
+	createApachePIDSymLink
+	enableApache2Modules
+	findHtpasswdBinary
+	createApacheAdminProtectedDir
+	generateOpenSSLApacheCert
+	createCyrusAuthPhp
+	createRRDFiles
+	reportingInstall
 
 	modifyResolvConf
 	createChrootTemplate

@@ -1,3 +1,5 @@
+#!/usr/bin/env php
+
 <?php
 
 # This script updates the strutures of the database of the control

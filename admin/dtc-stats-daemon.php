@@ -1,5 +1,4 @@
 #!/usr/bin/env php
-
 <?php
 
 chdir(dirname(__FILE__));
@@ -11,8 +10,12 @@ require_once("$dtcshared_path/dtc_lib.php");
 // Daemon for pulling stats from dtc-xen servers
 // Damien Mascord <damien@gplhost.com>
 
-//include "/usr/share/dtc/shared/inc/nusoap.php";
-//include "/usr/share/dtc/shared/inc/vps.php";
+// setup syslog params
+define_syslog_variables();
+// open syslog, include the process ID and also send
+// the log to standard error, and use a user defined
+// logging mechanism
+openlog("dtc-stats-daemon", LOG_PID | LOG_PERROR, LOG_LOCAL0);
 
 /**
  * Run the current script as a daemon.  Used mostly (always?) for command line scripts.
@@ -40,6 +43,8 @@ error_reporting(E_ALL);
 
 $conf_time_delay_in_seconds=60;
 
+syslog(LOG_INFO, "dtc-stats-daemon starting up...");
+
 $last_loop = 0;
 // loop until we want to shutdown... 
 $shutdown = false;
@@ -56,6 +61,12 @@ while (!$shutdown){
 		}
 	}
 	$last_loop = time();
+
+	if (!mysql_ping()) {
+	    echo 'Lost connection to DB!';
+            syslog(LOG_WARNING, "Lost connection to DB! Will retry later...");
+	    continue;
+	}
 
 	$vps_query = "SELECT * FROM $pro_mysql_vps_table;";
 	$vps_result = mysql_query($vps_query)or die("Cannot query $query !!!".mysql_error());
@@ -74,7 +85,7 @@ while (!$shutdown){
 		$io_usage_swap = 0;
 		$network_usage_in = 0;
 		$network_usage_out = 0;
-			
+
 		echo "Fetching stats from $vps_server for $vps_name...\n";
 		$soap_client = connectToVPSServer($vps_server);
 		$r = $soap_client->call("getCPUUsage",array("vpsname" => $vps_name),"","","");
@@ -138,6 +149,13 @@ while (!$shutdown){
 			$vps_last_network_out = $last_row['network_out_last'];
 			$vps_last_diskio = $last_row['diskio_last'];
 			$vps_last_swapio = $last_row['swapio_last'];
+			echo "Last values are as follows:\n";
+			echo " - CPU Usage: $vps_last_cpu\n";
+			echo " - Network Incoming: $vps_last_network_in\n";
+			echo " - Network Outgoing: $vps_last_network_out\n";
+			echo " - Disk IO Usage: $vps_last_diskio\n";
+			echo " - Swap IO Usage: $vps_last_swapio\n";
+
 		}else{
 			echo "Corrupt vps_stats table, please check...\n";
 		}
@@ -158,7 +176,7 @@ while (!$shutdown){
 			if ($vps_last_cpu > 0){
 				if ($vps_last_cpu < $cpu_usage){
 					$cpu_diff = $cpu_usage - $vps_last_cpu;
-				} else {
+				} elseif ($vps_last_cpu != $cpu_usage) {
 					$cpu_diff = $cpu_usage;
 				}
 			}
@@ -171,7 +189,7 @@ while (!$shutdown){
 			if ($vps_last_network_in > 0){
 				if ($vps_last_network_in < $network_usage_in){
 					$network_in_diff = $network_usage_in - $vps_last_network_in;
-				} else {
+				} elseif ($vps_last_network_in != $network_usage_in) {
 					$network_in_diff = $network_usage_in;
 				}
 			}
@@ -182,7 +200,7 @@ while (!$shutdown){
 			if ($vps_last_network_out > 0){
 				if ($vps_last_network_out < $network_usage_out){
 					$network_out_diff = $network_usage_out - $vps_last_network_out;
-				} else {
+				} elseif ($vps_last_network_out != $network_usage_out) {
 					$network_out_diff = $network_usage_out;
 				}
 			}
@@ -194,7 +212,7 @@ while (!$shutdown){
 			if ($vps_last_diskio > 0){
 				if ($vps_last_diskio < $io_usage_disk){
 					$diskio_diff = $io_usage_disk - $vps_last_diskio;
-				} else {
+				} elseif ($vps_last_diskio != $io_usage_disk) {
 					$diskio_diff = $io_usage_disk;
 				}
 			}
@@ -204,7 +222,7 @@ while (!$shutdown){
 			if ($vps_last_swapio > 0){
 				if ($vps_last_swapio < $io_usage_swap){
 					$swapio_diff = $io_usage_swap - $vps_last_swapio;
-				} else {
+				} elseif ($vps_last_swapio != $io_usage_swap) {
 					$swapio_diff = $io_usage_swap;
 				}
 			}
@@ -227,5 +245,6 @@ while (!$shutdown){
 	}
 	
 }
+syslog(LOG_INFO, "dtc-stats-daemon shutting down...");
 
 ?> 

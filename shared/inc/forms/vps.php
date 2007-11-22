@@ -67,6 +67,7 @@ function drawAdminTools_VPS($admin,$vps){
 	global $txt_new_ssh_key;
 	global $txt_to_access_to_your_console_first_setup_a_ssh_password;
 
+	global $pro_mysql_vps_stats_table;
 	global $secpayconf_currency_letters;
 
 	get_secpay_conf();
@@ -80,19 +81,88 @@ function drawAdminTools_VPS($admin,$vps){
 
 	$vps_out = "";
 
+	$vps_out_net_stats = "";
+	$vps_out_hdd_stats = "";
+	$vps_out_swap_stats = "";
+	$vps_out_cpu_stats = "";
+
+
+	// Calculate last month
+	$cur_year = date("Y");
+	$cur_month = date("m");
+
+	$last_month = $cur_month - 1;
+	if($last_month == 0){
+		$last_month_year = $cur_year - 1;
+		$last_month = 12;
+	}else{
+		$last_month_year = $cur_year;
+	}
+
+	$tow_month_ago = $last_month - 1;
+	if($tow_month_ago == 0){
+		$tow_month_ago = 12;
+		$tow_month_ago_year = $last_month_year - 1;
+	}else{
+		$tow_month_ago_year = $last_month_year;
+	}
+	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
+	AND year='$tow_month_ago_year' AND month='$tow_month_ago';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		$a = mysql_fetch_array($r);
+		$net_total = $a["network_in_count"] + $a["network_out_count"];
+		$vps_out_net_stats .= "2 months ago: ". smartByte($net_total)."<br>";
+		$vps_out_cpu_stats .= "2 months ago: ".$a["cpu_usage"]." CPU seconds<br>";
+		$vps_out_swap_stats .= "2 months ago: ". smartByte( $a["swapio_count"] )."<br>";
+		$vps_out_hdd_stats .= "2 months ago: ". smartByte( $a["diskio_count"] )."<br>";
+	}
+
+	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
+	AND year='$last_month_year' AND month='$last_month';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		$a = mysql_fetch_array($r);
+		$net_total = $a["network_in_count"] + $a["network_out_count"];
+		$vps_out_net_stats .= "Last month: ". smartByte($net_total)."<br>";
+		$vps_out_cpu_stats .= "Last month: ".$a["cpu_usage"]." CPU seconds<br>";
+		$vps_out_swap_stats .= "Last month: ". smartByte( $a["swapio_count"] )."<br>";
+		$vps_out_hdd_stats .= "Last month: ". smartByte( $a["diskio_count"] )."<br>";
+	}
+
+	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
+	AND year='$cur_year' AND month='$cur_month';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		$a = mysql_fetch_array($r);
+		$net_total = $a["network_in_count"] + $a["network_out_count"];
+		$vps_out_net_stats .= "This month: ". smartByte($net_total);
+		$vps_out_cpu_stats .= "This month: ".$a["cpu_usage"]." CPU seconds";
+		$vps_out_swap_stats .= "This month: ". smartByte( $a["swapio_count"] );
+		$vps_out_hdd_stats .= "This month: ". smartByte( $a["diskio_count"] );
+	}
+
 	// Display the stats of the VPS
-	$vps_out .= "<table cellspacing=\"2\" cellpaddig=\"2\" border=\"0\">";
-	$vps_out .= "<tr><td>Network:<br>";
-	$vps_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_network.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
+	$vps_stat_out = "";
+	$vps_stat_out .= "<table cellspacing=\"2\" cellpaddig=\"2\" border=\"0\">";
+	$vps_stat_out .= "<tr><td>Network:<br>";
+	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_network.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
 
-	$vps_out .= "<td>CPU Time:<br>";
-	$vps_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr>";
+	$vps_stat_out .= "<td>CPU Time:<br>";
+	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr>";
 
-	$vps_out .= "<tr><td>Swap I/O:<br>";
-	$vps_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_swap.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
+	$vps_stat_out .= "<tr><td>".$vps_out_net_stats."</td><td>$vps_out_cpu_stats</td></tr>";
 
-	$vps_out .= "<td>HDD I/O:<br>";
-	$vps_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_hdd.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr></table>";
+	$vps_stat_out .= "<tr><td>Swap I/O:<br>";
+	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_swap.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
+
+	$vps_stat_out .= "<td>HDD I/O:<br>";
+	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_hdd.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr>";
+
+	$vps_stat_out .= "<tr><td>".$vps_out_swap_stats."</td><td>".$vps_out_hdd_stats."</td></tr></table>";
 
 	// VPS (remote SOAP) Status
 	$soap_client = connectToVPSServer($vps_node);
@@ -226,6 +296,7 @@ function drawAdminTools_VPS($admin,$vps){
 	$out .= "<br><br>";
 
 	// VPS status
+	$out .= $vps_stat_out;
 	$out .= "<h3>".$txt_current_vps_status[$lang]."</h3><br>";
 	$out .= $vps_out;
 

@@ -8,5 +8,6 @@ CREATE TABLE IF NOT EXISTS completedorders (
   payment_id int(12) NOT NULL default '0',
   download_pass varchar(64) NOT NULL default 'none',
   country_code varchar(4) NOT NULL default 'US',
+  last_expiry_date date NOT NULL,
   PRIMARY KEY  (id)
 ) TYPE=MyISAM;

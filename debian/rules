@@ -3,10 +3,6 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-VERS=$(shell echo `cat bin/version`)
-RELS=$(shell echo `cat bin/release`)
-VERSION=$(VERS)"-"$(RELS)
-
 build:
 
 clean:
@@ -28,26 +24,22 @@ install:
 
 	dh_installdirs
 
-	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >debian/dtc-common/usr/share/dtc/shared/dtc_version.php
 	install -D -m 0644 debian/lintian/dtc debian/dtc/usr/share/lintian/overrides/dtc
 	install -D -m 0644 debian/lintian/dtc-postfix-courier debian/dtc-postfix-courier/usr/share/lintian/overrides/dtc-postfix-courier
+	$(MAKE) install-dtc-common DESTDIR=$(CURDIR)/debian/dtc-common
+	rm -f $(CURDIR)/debian/dtc-common/usr/share/doc/dtc/LICENSE.gz
+	rm -f $(CURDIR)/debian/dtc-common/usr/share/doc/dtc/README.gentoo
+	$(MAKE) install-dtc-stats-daemon DESTDIR=$(CURDIR)/debian/dtc-stats-daemon
 
 binary-indep: install
 binary-arch: install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs doc/changelog
-	dh_installinit
 	dh_installdocs
-	dh_installdirs
-	dh_install
-	dh_link
 	dh_installmenu -n
 	dh_installdebconf
-	dh_installman
-	dh_installlogrotate --name=dtc
-	dh_installcron --name=dtc
-	dh_installman
+	dh_installinit
 	dh_compress
 	dh_fixperms
 	dh_installdeb

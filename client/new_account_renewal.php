@@ -183,13 +183,13 @@ Service country: $country
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$renew_id = mysql_insert_id();
 
-	$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"],"no",$prod_id,$vat_rate);
+	$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"]." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate);
 
 	$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
-	$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"],$return_url,$vat_rate);
+	$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate);
 	$form .= "Please click on the button below to send money in your acount:<br><br>$paybutton";
 
 	$ret["err"] = 0;

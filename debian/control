@@ -4,10 +4,14 @@ Priority: extra
 Maintainer: Thomas Goirand <thomas@goirand.fr>
 Build-Depends: debhelper (>= 5), po-debconf
 Standards-Version: 3.7.2
+Dm-Upload-Allowed: yes
+Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
+Vcs-Git: http://git.gplhost.com/dtc.git
 Homepage: <http://www.gplhost.com/software-dtc.html>
 
 Package: dtc-common
 Architecture: all
+Depends: php5-cli | php4-cli
 Conflicts: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
 Suggests: dtc-postfix-courier
 Description: web control panel for admin and accounting hosting services (common files)

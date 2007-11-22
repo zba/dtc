@@ -438,6 +438,14 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		for($j=0;$j<$num_rows2;$j++){
 			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
+			if( $subdomain["customize_vhost"] == ""){
+				$custom_directives = "";
+			}else{
+				$custom_directives = "
+	# Start of custom directives
+	".$subdomain["customize_vhost"]."
+	# End of custom directives";
+			}
 
 //			$console .= "Working on $web_subname.$web_name\n";
 
@@ -521,7 +529,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						}
 						$vhost_file .= "\tAlias /$subdomx.$web_nameX $web_pathX/$web_nameX/subdomains/$subdomx/html
 	<Location /$subdomx.$web_nameX>
-		$safex
+		".$safex.$custom_directives."
 		php_admin_value open_basedir \"$web_pathX/$web_nameX/:$conf_php_library_path:$conf_php_additional_library_path:\"
 		$gblx
 	</Location>\n";
@@ -554,7 +562,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	LogSQLScoreDomain $web_name
 	LogSQLScoreSubdomain $web_subname
 	LogSQLScoreTable $conf_mysql_db.http_accounting
-	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
+	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4$custom_directives
 </VirtualHost>
 
 ";
@@ -659,7 +667,7 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	LogSQLScoreDomain $web_name
 	LogSQLScoreSubdomain $web_subname
 	LogSQLScoreTable $conf_mysql_db.http_accounting
-	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4
+	DirectoryIndex index.php index.cgi index.pl index.htm index.html index.php4$custom_directives
 </VirtualHost>
 
 ";
