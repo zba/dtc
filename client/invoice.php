@@ -235,7 +235,7 @@ class zPDF extends FPDF{
 
 			$this->SetX(120);
 			$this->SetFont('Arial','B',12);
-			$this->Cell(50,7,"Total VAT:","1",0,"L");
+			$this->Cell(50,7,"Total VAT (".$company["vat_rate"]."%):","1",0,"L");
 			$this->SetFont('Arial','',12);
 			$this->Cell(30,7,$vat." ".$secpayconf_currency_letters,"1",0,"L");
 			$this->Ln();

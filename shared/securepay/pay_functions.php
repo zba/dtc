@@ -18,6 +18,8 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 	global $secpayconf_paypal_flat;
 	global $secpayconf_enets_rate;
 	global $secpayconf_use_paypal_recurring;
+	global $secpayconf_currency_symbol;
+	global $secpayconf_currency_letters;
 
 	global $txt_recurring_payment;
 	global $lang;
@@ -27,7 +29,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 	}
 
 	if($vat_rate != 0){
-		$vat_legend = "<td>Taxes (VAT or GST)</td>";
+		$vat_legend = "<td>Taxes (VAT or GST) $vat_rate%</td>";
 	}else{
 		$vat_legend = "";
 	}
@@ -40,13 +42,14 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 		if($vat_rate != 0){
 			$big_total = calculateVATtotal ($total,$vat_rate);
 			$vat = $big_total - $total;
-			$vat_total = "<td>".$vat."</td>";
+			$vat_total = "<td>".$vat." ".$secpayconf_currency_letters."</td>";
 			$total = $big_total;
 		}else{
 			$vat_total = "";
 		}
 		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url)."</td>";
-		$out .= "<td>\$$amount</td><td>\$$cost</td>$vat_total<td>\$$total</td><td>Yes</td></tr>\n";
+		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total."<td>".$total." ".$secpayconf_currency_letters."</td>
+		<td>Yes</td></tr>\n";
 	}
 	if($secpayconf_use_paypal == "yes" && $secpayconf_use_paypal_recurring == "yes" && $use_recurring == "yes"){
 		$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
@@ -54,13 +57,13 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 		if($vat_rate != 0){
 			$big_total = calculateVATtotal ($total,$vat_rate);
 			$vat = $big_total - $total;
-			$vat_total = "<td>".$vat."</td>";
+			$vat_total = "<td>".$vat." ".$secpayconf_currency_letters."</td>";
 			$total = $big_total;
 		}else{
 			$vat_total = "";
 		}
 		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url,"yes")."<br><i>".$txt_recurring_payment[$lang]."</i></td>";
-		$out .= "<td>\$$amount</td><td>\$$cost</td>$vat_total<td>\$$total</td><td>Yes</td></tr>\n";
+		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total."<td>".$total." ".$secpayconf_currency_letters."</td><td>Yes</td></tr>\n";
 	}
 	if($secpayconf_use_enets == "yes"){
 		$total = round(($amount / (1 - ($secpayconf_enets_rate/100))+0.005),2);
@@ -74,7 +77,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 			$vat_total = "";
 		}
 		$out .= "<tr><td>".enetsButton($pay_id,$total,$item_name,$return_url)."</td>";
-		$out .= "<td>\$$amount</td><td>\$$cost</td>$vat_total<td>\$$total</td><td>Yes</td></tr>\n";
+		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total." ".$secpayconf_currency_letters."<td>".$total." ".$secpayconf_currency_letters."</td><td>Yes</td></tr>\n";
 	}
 
 	if($conf_use_worldpay == "yes"){
