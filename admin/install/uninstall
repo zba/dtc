@@ -19,13 +19,16 @@ if [ -f /etc/debian_version ] ; then
 	uninstallHttpdConfig
 fi
 
-if rpm -q coreutils >/dev/null ; then
-	# Prepare things
-        . /usr/share/dtc/admin/install/redhat_config
-        /usr/share/dtc/admin/install/functions
-	. ${DTC_SAVED_INSTALL_CONFIG}
-        # Then call the uninstaller!
-	DTCuninstallDaemons
+RPM=`which rpm`
+if [ -x "$RPM" ] ; then
+	if rpm -q coreutils >/dev/null ; then
+		# Prepare things
+	        . /usr/share/dtc/admin/install/redhat_config
+	        /usr/share/dtc/admin/install/functions
+		. ${DTC_SAVED_INSTALL_CONFIG}
+	        # Then call the uninstaller!
+		DTCuninstallDaemons
+	fi
 fi
 
 if [ "`uname -s`" = "FreeBSD" ]; then
