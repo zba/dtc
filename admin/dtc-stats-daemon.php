@@ -10,8 +10,12 @@ require_once("$dtcshared_path/dtc_lib.php");
 // Daemon for pulling stats from dtc-xen servers
 // Damien Mascord <damien@gplhost.com>
 
-//include "/usr/share/dtc/shared/inc/nusoap.php";
-//include "/usr/share/dtc/shared/inc/vps.php";
+// setup syslog params
+define_syslog_variables();
+// open syslog, include the process ID and also send
+// the log to standard error, and use a user defined
+// logging mechanism
+openlog("dtc-stats-daemon", LOG_PID | LOG_PERROR, LOG_LOCAL0);
 
 /**
  * Run the current script as a daemon.  Used mostly (always?) for command line scripts.
@@ -39,6 +43,8 @@ error_reporting(E_ALL);
 
 $conf_time_delay_in_seconds=60;
 
+syslog(LOG_INFO, "dtc-stats-daemon starting up...");
+
 $last_loop = 0;
 // loop until we want to shutdown... 
 $shutdown = false;
@@ -55,6 +61,12 @@ while (!$shutdown){
 		}
 	}
 	$last_loop = time();
+
+	if (!mysql_ping()) {
+	    echo 'Lost connection to DB!';
+            syslog(LOG_WARNING, "Lost connection to DB! Will retry later...");
+	    continue;
+	}
 
 	$vps_query = "SELECT * FROM $pro_mysql_vps_table;";
 	$vps_result = mysql_query($vps_query)or die("Cannot query $query !!!".mysql_error());
@@ -233,5 +245,6 @@ while (!$shutdown){
 	}
 	
 }
+syslog(LOG_INFO, "dtc-stats-daemon shutting down...");
 
 ?> 
