@@ -250,11 +250,11 @@ we also accept checks and wire transfers.";
 							$vat_rate = $company_invoicing["vat_rate"];
 						}
 					}
-					$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"],"yes",$product["id"],$vat_rate);
+					$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"]." (login: ".$newadmin["reqadm_login"].")","yes",$product["id"],$vat_rate);
 					$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='".$reguser["id"]."';";
 					$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 					$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
-					$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"],$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
+					$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"]." (login: ".$newadmin["reqadm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
 				}
 				if($print_form == "yes"){
 					$form = $reguser["mesg"]."<br><h4>".$txt_err_register_succ[$lang]."<!--Registration successfull!--></h4>
