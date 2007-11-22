@@ -68,7 +68,7 @@ if (!$fp) {
 			// validatePaiement($item_number,$refund_amount,"online","paypal",$txn_id,$_POST["payment_gross"]);
 			// This should work better:
 			$refund_amount = $_REQUEST["mc_gross"] - $_REQUEST["mc_fee"];
-			validatePaiement($item_number,$amount_paid,"online","paypal",$txn_id,$_REQUEST["mc_gross"]);
+			validatePaiement($item_number,$refund_amount,"online","paypal",$txn_id,$_REQUEST["mc_gross"]);
 		}
 		else if (strcmp ($res, "INVALID") == 0) {
 			// log for manual investigation
