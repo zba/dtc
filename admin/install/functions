@@ -1998,15 +1998,14 @@ mech_list: login plain" >> $SASLTMP_FILE
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
 				fi
 				echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
-				echo "smtpd_recipient_restrictions = permit_mynetworks,
-				permit_sasl_authenticated,
-				reject_invalid_hostname,
-				reject_non_fqdn_sender,
-				reject_non_fqdn_recipient,
-				reject_unknown_sender_domain,
-				reject_unknown_recipient_domain,
-				$dnsbl_list
-				reject_unauth_destination" >> $TMP_FILE
+				$permit_sasl_authenticated="
+				permit_sasl_authenticated,"
+				$sasl_main_dot_cf_rules="
+smtp_sasl_auth_enable = no
+smtpd_sasl_security_options = noanonymous
+smtpd_sasl_local_domain = /etc/mailname
+smtpd_sasl_auth_enable = yes
+smtpd_tls_auth_only = no"
 				echo "smtp_sasl_auth_enable = no
 smtpd_sasl_security_options = noanonymous
 smtpd_sasl_local_domain = /etc/mailname
@@ -2018,8 +2017,25 @@ smtpd_tls_auth_only = no
 				echo "smtpd_recipient_restrictions = permit_mynetworks,
                                $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
+                               $permit_sasl_authenticated=""
+                               $sasl_main_dot_cf_rules=""
 			fi
+			echo "smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
+			permit_sasl_authenticated,
+			reject_invalid_hostname,
+			reject_non_fqdn_sender,
+			reject_non_fqdn_recipient,
+			reject_unknown_sender_domain,
+			reject_unknown_recipient_domain,
+			$dnsbl_list
+			reject_unauth_destination,
+			permit${sasl_main_dot_cf_rules}" >> $TMP_FILE
 
+			if [ -x /usr/bin/tumgreyspf ] ; then
+				echo "smtpd_sender_restrictions = check_policy_service unix:private/tumgreyspf,
+				permit
+" >> $TMP_FILE
+			fi
 			if [ -x /usr/sbin/spamd -o -x /usr/local/bin/spamd ] ; then
 				echo "spam.spam       sa-spam:
 ham.ham         sa-ham:
@@ -2060,12 +2076,19 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 				# Insert the sa-learn stuff if spamd is found
 				if [ -x /usr/sbin/spamd -o -x /usr/local/bin/spamd ] ; then
 					echo "# Adds support for the sa-learn script
-					sa-spam unix    -       n       n       -       -       pipe
+sa-spam unix    -       n       n       -       -       pipe
     -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
     user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper spam ${sender}
-					sa-ham  unix    -       n       n       -       -       pipe
+sa-ham  unix    -       n       n       -       -       pipe
     -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
-    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  ${sender}" >> $TMP_FILE2
+    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  ${sender}
+" >> $TMP_FILE2
+				fi
+				if [ -x /usr/bin/tumgreyspf ] ; then
+					echo "# Adds support for tumgreyspf
+tumgreyspf unix  -      n       n       -       -       spawn
+    user=tumgreyspf argv=/usr/bin/tumgreyspf
+" >> $TMP_FILE2
 				fi
 				# if we have maildrop, we should use it!
 				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
