@@ -4102,6 +4102,7 @@ conf_chroot_path=\"${conf_chroot_path}\"
 conf_eth2monitor=\"${conf_eth2monitor}\"
 conf_recipient_delim=\"${conf_recipient_delim}\"
 conf_mx_mail=\"${conf_mx_mail}\"
+conf_dnsbl_list=\"${conf_dnsbl_list}\"
 conf_report_setup=${conf_report_setup}
 conf_omit_dev_mknod=${conf_omit_dev_mknod}
 conf_gen_ssl_cert=${conf_gen_ssl_cert}
