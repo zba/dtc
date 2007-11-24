@@ -1998,9 +1998,9 @@ mech_list: login plain" >> $SASLTMP_FILE
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
 				fi
 				echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
-				$permit_sasl_authenticated="
+				permit_sasl_authenticated="
 				permit_sasl_authenticated,"
-				$sasl_main_dot_cf_rules="
+				sasl_main_dot_cf_rules="
 smtp_sasl_auth_enable = no
 smtpd_sasl_security_options = noanonymous
 smtpd_sasl_local_domain = /etc/mailname
@@ -2017,8 +2017,8 @@ smtpd_tls_auth_only = no
 				echo "smtpd_recipient_restrictions = permit_mynetworks,
                                $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
-                               $permit_sasl_authenticated=""
-                               $sasl_main_dot_cf_rules=""
+                               permit_sasl_authenticated=""
+                               sasl_main_dot_cf_rules=""
 			fi
 			echo "smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
 			permit_sasl_authenticated,
