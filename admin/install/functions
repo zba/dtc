@@ -2032,7 +2032,9 @@ smtpd_tls_auth_only = no
 			permit${sasl_main_dot_cf_rules}" >> $TMP_FILE
 
 			if [ -x /usr/bin/tumgreyspf ] ; then
-				echo "smtpd_sender_restrictions = check_policy_service unix:private/tumgreyspf,
+				echo "smtpd_sender_restrictions = permit_mynetworks,
+				permit_sasl_authenticated,
+				check_policy_service unix:private/tumgreyspf,
 				permit
 " >> $TMP_FILE
 			fi
