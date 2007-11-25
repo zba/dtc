@@ -1590,6 +1590,21 @@ $txt_yes = array(
 	"pt" => "Sim"
 	);
 
+$txt_pending = array(
+	"fr" => "En suspens",
+	"en" => "Pending",
+	"hu" => "TRANS Pending",
+	"it" => "TRANS Pending",
+	"nl" => "TRANS Pending",
+	"ru" => "TRANS Pending",
+	"de" => "TRANS Pending",
+	"zh" => "TRANS Pending",
+	"pl" => "TRANS Pending",
+	"se" => "TRANS Pending",
+	"es" => "TRANS Pending",
+	"pt" => "TRANS Pending"
+	);
+
 $txt_is_company = array(
 	"fr" => "Est-ce une sociét :",
 	"en" => "Is it a company:",

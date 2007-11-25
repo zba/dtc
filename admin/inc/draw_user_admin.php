@@ -133,6 +133,7 @@ function drawNewAdminForm(){
 	global $txt_dua_request_to_close_the_ticket;
 	global $txt_yes;
 	global $txt_no;
+	global $txt_pending;
 	global $txt_dua_back_to_pending_requests;
 	global $txt_dua_domain_name_vps_server_hostname;
 	global $txt_dua_name;	
@@ -394,17 +395,16 @@ dtcFromOkDraw()."
 				$a2 = mysql_fetch_array($r2);
 				switch($a2["valid"]){
 				case "yes":
-					$bank = "<font color=\"green\">".$txt_yes[$lang]."</font>";
+					$bank = "<font color=\"green\">test2".$txt_yes[$lang]."</font>";
 					break;
 				default:
 				case "no":
 					$bank = "<font color=\"red\">".$txt_no[$lang]."</font>";
 					break;
 				case "pending":
-					$bank = "<font color=\"#FF8800\">pending</font>";
+					$bank = "<font color=\"#FF8800\">".$txt_pending[$lang].": ".$a2["pending_reason"]."</font>";
 					break;
 				}
-				$bank = $a2["valid"];
 			}
 			$waiting_new_users .= "<td>$bank</td>";
 			switch($a["heb_type"]){

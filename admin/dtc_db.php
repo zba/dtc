@@ -635,6 +635,7 @@ $dtc_database = array(
 			"shopper_ip" => "varchar(16) NOT NULL default '0.0.0.0' ",
 			"date" => "date NOT NULL default '0000-00-00' ",
 			"valid" => "enum('yes','no','pending') NOT NULL default 'no' ",
+			"pending_reason" => "varchar(128) NOT NULL default ''",
 			"time" => "time NOT NULL default '00:00:00' ",
 			"valid_date" => "date NOT NULL default '0000-00-00' ",
 			"valid_time" => "time NOT NULL default '00:00:00' ",

@@ -125,7 +125,7 @@ function setPaiemntAsPending($pay_id,$reason,$paiement_type="online",$secpay_sit
 	$ar = mysql_fetch_array($r);
 	if($ar["valid"] != "no" && $ar["valid"] != "pending")die(logPay("Paiement already validated or pending in file ".__FILE__." line ".__LINE__));
 	logPay("Setting item $pay_id as pending");
-	$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$paiement_type',secpay_site='$secpay_site',valid='pending' WHERE id='$pay_id';";
+	$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$paiement_type',secpay_site='$secpay_site',valid='pending',pending_reason='$reason' WHERE id='$pay_id';";
 	logPay($q);
 	mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
 }

@@ -231,7 +231,7 @@ $q = "ALTER TABLE `pending_renewal` CHANGE `heb_type` `heb_type` enum('shared', 
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Add the pending flag for payments
-$q = "ALTER TALBE `paiement` CHANGE `valid` `valid` enum('yes','no','pending') NOT NULL default 'no';";
+$q = "ALTER TABLE `paiement` CHANGE `valid` `valid` enum('yes','no','pending') NOT NULL default 'no';";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Fill the new quota_couriermaildrop with values

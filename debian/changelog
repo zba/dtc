@@ -1,4 +1,4 @@
-dtc (0.26.9-1) unstable; urgency=low
+dtc (0.27.1-1) unstable; urgency=low
 
   * [v0.26.3] Upgraded embed a copy of wz_tooltip (Closes: #429214)
   * [v0.25.9] Added dtc-stats-daemon package to the build.

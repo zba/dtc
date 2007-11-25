@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS paiement (
   valid_date varchar(10) NOT NULL default '0000-00-00',
   valid_time varchar(8) NOT NULL default '00:00:00',
   valid enum('yes','no','pending') NOT NULL default 'no',
-  pending_reason varchar(10) NOT NULL default '',
+  pending_reason varchar(128) NOT NULL default '',
   new_account enum('yes','no') NOT NULL default 'yes',
   product_id int(11) NOT NULL default '0',
   vat_rate int(11) NOT NULL default '0',
