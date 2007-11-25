@@ -115,6 +115,20 @@ function createCreditCardPaiementID($amount_paid,$client_id,$label,$new_account=
 	$n = mysql_insert_id();
 	return $n;
 }
+function setPaiemntAsPending($pay_id,$reason,$paiement_type="online",$secpay_site="paypal"){
+	global $pro_mysql_pay_table;
+	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$pay_id';";
+	logPay("Querying: $q");
+	$r = mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
+	$n = mysql_num_rows($r);
+	if($n != 1)die(logPay("Pay id $pay_id not found in file ".__FILE__." line ".__LINE__));
+	$ar = mysql_fetch_array($r);
+	if($ar["valid"] != "no" && $ar["valid"] != "pending")die(logPay("Paiement already validated or pending in file ".__FILE__." line ".__LINE__));
+	logPay("Setting item $pay_id as pending");
+	$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$paiement_type',secpay_site='$secpay_site',valid='pending' WHERE id='$pay_id';";
+	logPay($q);
+	mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
+}
 
 function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none",$secpay_custom_id="0",$total_payed=-1){
 	global $pro_mysql_pay_table;

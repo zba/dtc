@@ -230,6 +230,10 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 $q = "ALTER TABLE `pending_renewal` CHANGE `heb_type` `heb_type` enum('shared', 'ssl', 'vps', 'server','ssl_renew') NOT NULL default 'shared'";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+// Add the pending flag for payments
+$q = "ALTER TALBE `paiement` CHANGE `valid` `valid` enum('yes','no','pending') NOT NULL default 'no';";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 // Fill the new quota_couriermaildrop with values
 $q = "UPDATE pop_access SET quota_couriermaildrop=CONCAT(quota_size,'S,',quota_files,'C')";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());

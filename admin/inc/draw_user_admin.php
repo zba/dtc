@@ -327,6 +327,8 @@ dtcFromOkDraw()."
 				$a2 = mysql_fetch_array($r2);
 				if($a2["valid"] == "yes"){
 					$waiting_new_users .= "<td><font color=\"green\">".$txt_yes[$lang]."</font></td>";
+				}elseif($a2["valid"] == "pending"){
+					$waiting_new_users .= "<td><font color=\"#FF8800\">pending</font></td>";
 				}else{
 					$waiting_new_users .= "<td><font color=\"red\">".$txt_no[$lang]."</font></td>";
 				}
@@ -360,6 +362,7 @@ dtcFromOkDraw()."
 		$waiting_new_users .= "</table>";
 	}
 
+	// Draw the list of pending renewals
 	$q = "SELECT * FROM $pro_mysql_pending_renewal_table ORDER BY renew_date,renew_time";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -389,6 +392,18 @@ dtcFromOkDraw()."
 				$bank = $txt_dua_cannot_find_payment[$lang];
 			}else{
 				$a2 = mysql_fetch_array($r2);
+				switch($a2["valid"]){
+				case "yes":
+					$bank = "<font color=\"green\">".$txt_yes[$lang]."</font>";
+					break;
+				default:
+				case "no":
+					$bank = "<font color=\"red\">".$txt_no[$lang]."</font>";
+					break;
+				case "pending":
+					$bank = "<font color=\"#FF8800\">pending</font>";
+					break;
+				}
 				$bank = $a2["valid"];
 			}
 			$waiting_new_users .= "<td>$bank</td>";
