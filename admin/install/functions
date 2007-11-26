@@ -2081,27 +2081,33 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 sa-spam unix    -       n       n       -       -       pipe
     -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
     user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper spam ${sender}
+
 sa-ham  unix    -       n       n       -       -       pipe
     -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
     user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  ${sender}
+
 " >> $TMP_FILE2
 				fi
 				if [ -x /usr/bin/tumgreyspf ] ; then
 					echo "# Adds support for tumgreyspf
 tumgreyspf unix  -      n       n       -       -       spawn
     user=tumgreyspf argv=/usr/bin/tumgreyspf
+
 " >> $TMP_FILE2
 				fi
 				# if we have maildrop, we should use it!
 				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
 					echo "maildrop  unix  -       n       n       -       -       pipe
     flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -w 90 -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
+
 " >> $TMP_FILE2
 				fi
 				# CL do we use cyrus? 
 				if [ ""$conf_use_cyrus = "true" ]; then
 					echo "cyrus     unix  -       n       n       -       -       pipe
-  flags=R user=cyrus argv=/usr/sbin/cyrdeliver -e -m \${extension} \${recipient}"  >> $TMP_FILE2
+  flags=R user=cyrus argv=/usr/sbin/cyrdeliver -e -m \${extension} \${recipient}"
+
+>> $TMP_FILE2
 			fi
 
 				# Insert our amavis stuff inside the master.cf
@@ -2128,6 +2134,7 @@ smtp-amavis unix -      -       -       -       2  smtp
     -o smtpd_client_connection_count_limit=0
     -o smtpd_client_connection_rate_limit=0
     -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks
+
 " >> $TMP_FILE2
 				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
 				cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
