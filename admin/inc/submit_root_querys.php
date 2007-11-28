@@ -55,6 +55,25 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
 
 	$q = "DELETE FROM $pro_mysql_vps_table WHERE id='".$_REQUEST["id"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	VPS_Server_Subscribe_To_Lists($vps["vps_server_hostname"]);
+}
+
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "vps_server_list_remove"){
+	$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE id='".$_REQUEST["edithost"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());;
+	$a = mysql_fetch_array($r);
+	$q = "DELETE FROM $pro_mysql_vps_server_lists_table WHERE hostname='".$a["hostname"]."' AND list_name='".$_REQUEST["list_name"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	resubscribe_VPS_server_list_users($_REQUEST["list_name"]);
+}
+
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "vps_server_list_add"){
+	$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE id='".$_REQUEST["edithost"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());;
+	$a = mysql_fetch_array($r);
+	$q = "INSERT INTO $pro_mysql_vps_server_lists_table (id,hostname,list_name) VALUES ('','".$a["hostname"]."','".$_REQUEST["name"]."');";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	resubscribe_VPS_server_list_users($_REQUEST["name"]);
 }
 
 /////////////////////////

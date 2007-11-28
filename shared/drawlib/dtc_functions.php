@@ -420,6 +420,93 @@ function addDedicatedToUser($adm_login,$server_hostname,$product_id){
 ////////////////////////////
 // Add a VPS to one admin //
 ////////////////////////////
+// Redo the list of subscriber to a list: to be called when adding / removing a VPS user
+function resubscribe_VPS_server_list_users($list_name){
+	global $pro_mysql_vps_server_lists_table;
+	global $pro_mysql_vps_table;
+	global $pro_mysql_admin_table;
+	global $pro_mysql_client_table;
+	global $pro_mysql_list_table;
+	global $pro_mysql_domain_table;
+
+	global $conf_main_domain;
+
+	$q = "SELECT * FROM $pro_mysql_list_table WHERE domain='$conf_main_domain' AND name='$list_name';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());;
+	$n = mysql_num_rows($r);
+	if($n != 1)	die("Mailing list not found line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$a = mysql_fetch_array($r);
+
+	$q = "SELECT $pro_mysql_admin_table.path FROM $pro_mysql_admin_table,$pro_mysql_domain_table
+	WHERE $pro_mysql_domain_table.name='$conf_main_domain'
+	AND $pro_mysql_admin_table.adm_login = $pro_mysql_domain_table.owner";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());;
+	$n = mysql_num_rows($r);
+	if($n != 1)	die("Admin of main domain not found line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$a = mysql_fetch_array($r);
+	$path = $a["path"]."/$conf_main_domain/lists/".$conf_main_domain."_".$list_name."/subscribers.d";
+
+	$file_list = array();
+	if (is_dir($path)) {
+		if ($dh = opendir($path)) {
+			while (($file = readdir($dh)) !== false) {
+				$fullpath = $path . "/" . $file;
+				if(filetype($fullpath) != "dir"){
+					$file_list[] = $fullpath;
+				}
+			}
+			closedir($dh);
+		}
+	}
+	$nbr_file = sizeof($file_list);
+	for($i=0;$i<$nbr_file;$i++){
+		unlink($file_list[$i]);
+	}
+
+	$q = "SELECT $pro_mysql_client_table.email
+	FROM $pro_mysql_vps_server_lists_table,$pro_mysql_vps_table,$pro_mysql_admin_table,$pro_mysql_client_table
+	WHERE $pro_mysql_vps_server_lists_table.list_name = '$list_name'
+	AND $pro_mysql_vps_server_lists_table.hostname = $pro_mysql_vps_table.vps_server_hostname
+	AND $pro_mysql_admin_table.adm_login = $pro_mysql_vps_table.owner
+	AND $pro_mysql_client_table.id = $pro_mysql_admin_table.id_client
+	GROUP BY $pro_mysql_client_table.email ORDER BY $pro_mysql_client_table.email;";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());;
+	$n = mysql_num_rows($r);
+	$old_file = "";
+	$addr_list = "";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$fname = substr($a["email"],0,1);
+		if($fname == $old_file || $old_file == ""){
+			$addr_list .= $a["email"]."\n";
+		}else{
+			$fullpath = $path."/".$old_file;
+			$fp = fopen($fullpath,"w+");
+			fwrite($fp,$addr_list);
+			fclose($fp);
+			$addr_list = $a["email"]."\n";
+		}
+		$old_file = $fname;
+	}
+	if($n > 0){
+		$fullpath = $path."/".substr($a["email"],0,1);
+		$fp = fopen($fullpath,"w+");
+		fwrite($fp,$addr_list);
+		fclose($fp);
+	}
+}
+
+function VPS_Server_Subscribe_To_Lists($vps_server_hostname){
+	global $pro_mysql_vps_server_lists_table;
+	$q = "SELECT * FROM $pro_mysql_list_table WHERE hostname='$vps_server_hostname';";
+	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		resubscribe_VPS_server_list_users($a["list_name"]);
+	}
+}
+
 function addVPSToUser($adm_login,$vps_server_hostname,$product_id){
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
@@ -445,8 +532,14 @@ function addVPSToUser($adm_login,$vps_server_hostname,$product_id){
 	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,product_id,bandwidth_per_month_gb)
 	VALUES('','$adm_login','".$vps_ip["vps_server_hostname"]."','".$vps_ip["vps_xen_name"]."','".date("Y-m-d")."','$exp_date','".$product["quota_disk"]."','".$product["memory_size"]."','$product_id','".$product["bandwidth"]."');";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
+	// Subscribe user to the lists of the VPS
+	VPS_Server_Subscribe_To_Lists($vps_server_hostname);
+
 	return $vps_ip["vps_xen_name"];
 }
+
+
 ///////////////////////////////
 // Add a domain to one admin //
 ///////////////////////////////

@@ -158,6 +158,7 @@ function DTCdeleteAdmin ($adm_to_del) {
 		
 		// Unload (eg: destroy) the VPS directly
 		remoteVPSAction($vps["vps_server_hostname"],$vps["vps_xen_name"],"destroy_vps");
+		VPS_Server_Subscribe_To_Lists($vps["vps_server_hostname"]);
 	}
 
 	$q = "DELETE FROM $pro_mysql_vps_table WHERE owner='$adm_to_del';";

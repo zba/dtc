@@ -428,7 +428,10 @@ function drawVPSServerConfig(){
 	global $pro_mysql_vps_table;
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_server_table;
+	global $pro_mysql_list_table;
+	global $pro_mysql_vps_server_lists_table;
 	global $rub;
+	global $sousrub;
 	global $cc_code_array;
 	global $lang;
 	global $txt_cfg_vps_server_and_ip_addresses_registry;
@@ -443,6 +446,8 @@ function drawVPSServerConfig(){
 	global $txt_cfg_vps_xen_number;
 	global $txt_cfg_ip_addr;
 	global $txt_cfg_available;
+
+	global $conf_main_domain;
 
 	$out = "<h3>".$txt_cfg_vps_server_and_ip_addresses_registry[$lang]."</h3>";
 	$dsc = array(
@@ -516,6 +521,41 @@ function drawVPSServerConfig(){
 					"values" => array("yes","no")))
 			);
 		$out .= dtcDatagrid($dsc);
+		$out .= "<br><br>";
+		$q = "SELECT name FROM $pro_mysql_list_table WHERE domain='$conf_main_domain';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n == 0){
+			$out .= "Create a mailing list @".$conf_main_domain." if you want to write to all users of this VPS server.";
+		}else{
+			$out .= "<h3>Owners of the VPS of <i>".$a["hostname"]."</i> are subscribed automatically to the following mailing list:</h3>";
+			$q2 = "SELECT * FROM $pro_mysql_vps_server_lists_table WHERE hostname='".$a["hostname"]."';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n2 = mysql_num_rows($r2);
+			$out .= "Click on the list name to remove the list from the server:<br><br>";
+			$conditions = "";
+			for($i=0;$i<$n2;$i++){
+				$a2 = mysql_fetch_array($r2);
+				if($i != 0){
+					$out .= " - ";
+					$conditions .= " AND name NOT LIKE '".$a2["list_name"]."'";
+				}
+				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?action=vps_server_list_remove&rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&edithost=".$_REQUEST["edithost"]."&list_name=".$a2["list_name"]."\">".$a2["list_name"]."</a>";
+			}
+			$out .= "<br><br>";
+			$q = "SELECT * FROM $pro_mysql_list_table WHERE domain='$conf_main_domain' $conditions;";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			$out .= "Click on the list name to add the list to the server:<br><br>";
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				if($i != 0){
+					$out .= " - ";
+					$conditions .= " AND name NOT LIKE '".$a["name"]."'";
+				}
+				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?action=vps_server_list_add&rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&edithost=".$_REQUEST["edithost"]."&name=".$a["name"]."\">".$a["name"]."</a>";
+			}
+		}
 	}
 	return $out;
 }

@@ -136,7 +136,7 @@ function drawRenewalTables (){
 	$p_history = "";
 	$p_history .= "<table cellspacing=\"1\" cellpadding=\"1\" border=\"1\">
 	<tr><td>Period</td><td>Amount</td></tr>";
-	for($i=0;$i<12;$i++){
+	for($i=0;$i<13;$i++){
 		$q2 = "SELECT sum(refund_amount) as refund_amount FROM $pro_mysql_completedorders_table,$pro_mysql_pay_table
 		WHERE $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."%'
 		AND $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id";

@@ -33,6 +33,7 @@ $pro_mysql_vps_table = "vps";
 $pro_mysql_vps_ip_table = "vps_ip";
 $pro_mysql_vps_server_table = "vps_server";
 $pro_mysql_vps_stats_table = "vps_stats";
+$pro_mysql_vps_server_lists_table = "vps_server_lists";
 $pro_mysql_pending_renewal_table = "pending_renewal";
 $pro_mysql_tik_admins_table = "tik_admins";
 $pro_mysql_tik_queries_table = "tik_queries";
