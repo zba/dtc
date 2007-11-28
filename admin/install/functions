@@ -2080,11 +2080,11 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 					echo "# Adds support for the sa-learn script
 sa-spam unix    -       n       n       -       -       pipe
     -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
-    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper spam ${sender}
+    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper spam \${sender}
 
 sa-ham  unix    -       n       n       -       -       pipe
     -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
-    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  ${sender}
+    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  \${sender}
 
 " >> $TMP_FILE2
 				fi
