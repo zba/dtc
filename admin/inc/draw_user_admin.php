@@ -395,7 +395,7 @@ dtcFromOkDraw()."
 				$a2 = mysql_fetch_array($r2);
 				switch($a2["valid"]){
 				case "yes":
-					$bank = "<font color=\"green\">test2".$txt_yes[$lang]."</font>";
+					$bank = "<font color=\"green\">".$txt_yes[$lang]."</font>";
 					break;
 				default:
 				case "no":
