@@ -529,7 +529,7 @@ function drawVPSServerConfig(){
 			$out .= "Create a mailing list @".$conf_main_domain." if you want to write to all users of this VPS server.";
 		}else{
 			$out .= "<h3>Owners of the VPS of <i>".$a["hostname"]."</i> are subscribed automatically to the following mailing list:</h3>";
-			$q2 = "SELECT * FROM $pro_mysql_vps_server_lists_table WHERE hostname='".$a["hostname"]."';";
+			$q2 = "SELECT * FROM $pro_mysql_vps_server_lists_table WHERE hostname='".$a["hostname"]."' ORDER BY list_name;";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			$out .= "Click on the list name to remove the list from the server:<br><br>";
@@ -543,7 +543,7 @@ function drawVPSServerConfig(){
 				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?action=vps_server_list_remove&rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&edithost=".$_REQUEST["edithost"]."&list_name=".$a2["list_name"]."\">".$a2["list_name"]."</a>";
 			}
 			$out .= "<br><br>";
-			$q = "SELECT * FROM $pro_mysql_list_table WHERE domain='$conf_main_domain' $conditions;";
+			$q = "SELECT * FROM $pro_mysql_list_table WHERE domain='$conf_main_domain' $conditions ORDER BY name;";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			$out .= "Click on the list name to add the list to the server:<br><br>";
