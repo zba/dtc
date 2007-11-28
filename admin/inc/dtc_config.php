@@ -538,8 +538,8 @@ function drawVPSServerConfig(){
 				$a2 = mysql_fetch_array($r2);
 				if($i != 0){
 					$out .= " - ";
-					$conditions .= " AND name NOT LIKE '".$a2["list_name"]."'";
 				}
+				$conditions .= " AND name!='".$a2["list_name"]."'";
 				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?action=vps_server_list_remove&rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&edithost=".$_REQUEST["edithost"]."&list_name=".$a2["list_name"]."\">".$a2["list_name"]."</a>";
 			}
 			$out .= "<br><br>";
@@ -551,7 +551,6 @@ function drawVPSServerConfig(){
 				$a = mysql_fetch_array($r);
 				if($i != 0){
 					$out .= " - ";
-					$conditions .= " AND name NOT LIKE '".$a["name"]."'";
 				}
 				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?action=vps_server_list_add&rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&edithost=".$_REQUEST["edithost"]."&name=".$a["name"]."\">".$a["name"]."</a>";
 			}
