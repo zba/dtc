@@ -469,6 +469,7 @@ function resubscribe_VPS_server_list_users($list_name){
 	AND $pro_mysql_vps_server_lists_table.hostname = $pro_mysql_vps_table.vps_server_hostname
 	AND $pro_mysql_admin_table.adm_login = $pro_mysql_vps_table.owner
 	AND $pro_mysql_client_table.id = $pro_mysql_admin_table.id_client
+	AND $pro_mysql_client_table.email!=''
 	GROUP BY $pro_mysql_client_table.email ORDER BY $pro_mysql_client_table.email;";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());;
 	$n = mysql_num_rows($r);
