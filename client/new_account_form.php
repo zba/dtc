@@ -522,55 +522,55 @@ function registration_form(){
 		$vps_location_popup .= "<option value=\"".$a["hostname"]."\" $selected>".$a["location"]."</optioon>";
 	}
 
-	if(isset($_REQUEST["reqadm_login"]))	$frm_login = $_REQUEST["reqadm_login"];
+	if(isset($_REQUEST["reqadm_login"]))	$frm_login = htmlspecialchars($_REQUEST["reqadm_login"]);
 	else	$frm_login = "";
 
-	if(isset($_REQUEST["domain_name"]))	$frm_domain_name = $_REQUEST["domain_name"];
+	if(isset($_REQUEST["domain_name"]))	$frm_domain_name = htmlspecialchars($_REQUEST["domain_name"]);
 	else	$frm_domain_name = "";
 
-	if(isset($_REQUEST["firstname"]))	$frm_firstname = $_REQUEST["firstname"];
+	if(isset($_REQUEST["firstname"]))	$frm_firstname = htmlspecialchars($_REQUEST["firstname"]);
 	else	$frm_firstname = "";
 
-	if(isset($_REQUEST["familyname"]))	$frm_family_name = $_REQUEST["familyname"];
+	if(isset($_REQUEST["familyname"]))	$frm_family_name = htmlspecialchars($_REQUEST["familyname"]);
 	else	$frm_family_name = "";
 
-	if(isset($_REQUEST["compname"]))	$frm_compname = $_REQUEST["compname"];
+	if(isset($_REQUEST["compname"]))	$frm_compname = htmlspecialchars($_REQUEST["compname"]);
 	else	$frm_compname = "";
 
-	if(isset($_REQUEST["vat_num"]))	$frm_vat_num = $_REQUEST["vat_num"];
+	if(isset($_REQUEST["vat_num"]))	$frm_vat_num = htmlspecialchars($_REQUEST["vat_num"]);
 	else	$frm_vat_num = "";
 
-	if(isset($_REQUEST["email"]))	$frm_email = $_REQUEST["email"];
+	if(isset($_REQUEST["email"]))	$frm_email = htmlspecialchars($_REQUEST["email"]);
 	else	$frm_email = "";
 
-	if(isset($_REQUEST["phone"]))	$frm_phone = $_REQUEST["phone"];
+	if(isset($_REQUEST["phone"]))	$frm_phone = htmlspecialchars($_REQUEST["phone"]);
 	else	$frm_phone = "";
 
-	if(isset($_REQUEST["fax"]))	$frm_fax = $_REQUEST["fax"];
+	if(isset($_REQUEST["fax"]))	$frm_fax = htmlspecialchars($_REQUEST["fax"]);
 	else	$frm_fax = "";
 
-	if(isset($_REQUEST["address1"]))	$frm_addr1 = $_REQUEST["address1"];
+	if(isset($_REQUEST["address1"]))	$frm_addr1 = htmlspecialchars($_REQUEST["address1"]);
 	else	$frm_addr1 = "";
 
-	if(isset($_REQUEST["address2"]))	$frm_addr2 = $_REQUEST["address2"];
+	if(isset($_REQUEST["address2"]))	$frm_addr2 = htmlspecialchars($_REQUEST["address2"]);
 	else	$frm_addr2 = "";
 
-	if(isset($_REQUEST["address3"]))	$frm_addr3 = $_REQUEST["address3"];
+	if(isset($_REQUEST["address3"]))	$frm_addr3 = htmlspecialchars($_REQUEST["address3"]);
 	else	$frm_addr3 = "";
 
-	if(isset($_REQUEST["zipcode"]))		$frm_zipcode = $_REQUEST["zipcode"];
+	if(isset($_REQUEST["zipcode"]))		$frm_zipcode = htmlspecialchars($_REQUEST["zipcode"]);
 	else	$frm_zipcode = "";
 
-	if(isset($_REQUEST["city"]))	$frm_city = $_REQUEST["city"];
+	if(isset($_REQUEST["city"]))	$frm_city = htmlspecialchars($_REQUEST["city"]);
 	else	$frm_city = "";
 
-	if(isset($_REQUEST["state"]))	$frm_state = $_REQUEST["state"];
+	if(isset($_REQUEST["state"]))	$frm_state = htmlspecialchars($_REQUEST["state"]);
 	else	$frm_state = "";
 
-	if(isset($_REQUEST["country"]))	$frm_country = $_REQUEST["country"];
+	if(isset($_REQUEST["country"]))	$frm_country = htmlspecialchars($_REQUEST["country"]);
 	else	$frm_country = "";
 
-	if(isset($_REQUEST["custom_notes"]))	$frm_custom_notes = $_REQUEST["custom_notes"];
+	if(isset($_REQUEST["custom_notes"]))	$frm_custom_notes = htmlspecialchars($_REQUEST["custom_notes"]);
 	else	$frm_custom_notes = "";
 
 	if($heb_type == "all" || $heb_type == "shared" || $heb_type == "ssl"){
