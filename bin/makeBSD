@@ -16,14 +16,13 @@ PORT_BUILD=dtcBSDportBuild
 ARCH_NAME=$PKG_BUILD".tar.gz"
 
 CURDIR=`pwd`
-make -C .. install-dtc-common DESTDIR=$CURDIR/$PKG_BUILD DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
-DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=$UNIX_TYPE
 
 # Specific BSD package actions :
 # Create an empty Makefile in the "sources" of DTC so nothing is to be built
-echo "all:" >$PKG_BUILD"/Makefile"
 echo "===> Packaging files"
-tar -czf $ARCH_NAME $PKG_BUILD
+cd ..
+tar -czf bin/$ARCH_NAME admin client doc email etc Makefile shared
+cd $CURDIR
 
 echo " --- Succesfully made BSD $ARCH_NAME ---"
 echo " --- Making BSD port for version "$VERSION" ---"
@@ -73,28 +72,31 @@ fi
 
 echo "===> Creating package list file"
 # Make the pkg-plist file
-mkdir -p share/dtc
-cp -rf $PKG_BUILD/* share/dtc
+#PKG_PLIST_BUILD=$CURDIR/PKG_PLIST_BUILD
+#mkdir -p 
+#make -C .. install-dtc-common DESTDIR=$PKG_PLIST_BUILD DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
+#	DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd
 
-find share -type f >$PORT_BUILD/pkg-plist.tmp
-echo "share/dtc/admin/gfx
-share/dtc/admin/imgcache
-share/dtc/shared/mysql_config.php
-share/dtc/client/gfx
-share/dtc/client/imgcache
-sbin/dtc-install
-sbin/dtc-deinstall
-share/dtc/email/gfx
-share/dtc/email/imgcache" >>$PORT_BUILD/pkg-plist.tmp
-find share -type d -printf "@dirrm %h/%f\n" | grep -v "share/dtc/etc" | sort -r >>$PORT_BUILD/pkg-plist.tmp
-NBR_LINE=`cat $PORT_BUILD/pkg-plist.tmp | wc -l`
-cat $PORT_BUILD/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >$PORT_BUILD/pkg-plist.tmp2
-sed "s/share\/dtc/%%DTCROOT%%/" $PORT_BUILD/pkg-plist.tmp2 | grep -v "mysql_config.php" >$PORT_BUILD/pkg-plist
-echo "@dirrm %%DTCROOT%%/etc/zones
-@dirrm %%DTCROOT%%/etc
-@dirrm %%DTCROOT%%" >>$PORT_BUILD/pkg-plist
-rm $PORT_BUILD/pkg-plist.tmp $PORT_BUILD/pkg-plist.tmp2
-rm -r share
+#find $PKG_PLIST_BUILD -type f >$PORT_BUILD/pkg-plist.tmp
+#echo "$PKG_PLIST_BUILD/www/dtc/admin/gfx
+#$PKG_PLIST_BUILD/www/dtc/admin/imgcache
+#$PKG_PLIST_BUILD/www/dtc/shared/mysql_config.php
+#$PKG_PLIST_BUILD/www/dtc/client/gfx
+#$PKG_PLIST_BUILD/www/dtc/client/imgcache
+#sbin/dtc-install
+#sbin/dtc-deinstall
+#$PKG_PLIST_BUILD/dtc/email/gfx
+#$PKG_PLIST_BUILD/dtc/email/imgcache" >>$PORT_BUILD/pkg-plist.tmp
+#find $PKG_PLIST_BUILD -type d -printf "@dirrm %h/%f\n" | grep -v "$PKG_PLIST_BUILD/etc" | sort -r >>$PORT_BUILD/pkg-plist.tmp
+#NBR_LINE=`cat $PORT_BUILD/pkg-plist.tmp | wc -l`
+#cat $PORT_BUILD/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >$PORT_BUILD/pkg-plist.tmp2
+#sed "s/$PKG_PLIST_BUILD/%%DTCROOT%%/" $PORT_BUILD/pkg-plist.tmp2 | grep -v "mysql_config.php" >$PORT_BUILD/pkg-plist
+#echo "@dirrm %%DTCROOT%%/etc/zones
+#@dirrm %%DTCROOT%%/etc
+#@dirrm %%DTCROOT%%" >>$PORT_BUILD/pkg-plist
+#rm $PORT_BUILD/pkg-plist.tmp $PORT_BUILD/pkg-plist.tmp2
+#rm -r $PKG_PLIST_BUILD
+touch $PORT_BUILD/pkg-plist
 
 mkdir -p sysutils/dtc
 mv $PORT_BUILD/* sysutils/dtc/

@@ -64,6 +64,9 @@ default:
 	@echo ""
 	@exit 1
 
+all:
+	@echo There is nothing to build: dtc is an arch independant package!!!
+	exit 0
 
 ############# PHP SCRIPTS ##############
 # Owned by root, but executable by dtc user (ran by apache)
