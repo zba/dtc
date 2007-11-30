@@ -499,7 +499,7 @@ function resubscribe_VPS_server_list_users($list_name){
 
 function VPS_Server_Subscribe_To_Lists($vps_server_hostname){
 	global $pro_mysql_vps_server_lists_table;
-	$q = "SELECT * FROM $pro_mysql_list_table WHERE hostname='$vps_server_hostname';";
+	$q = "SELECT * FROM $pro_mysql_vps_server_lists_table WHERE hostname='$vps_server_hostname';";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
