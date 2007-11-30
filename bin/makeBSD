@@ -15,22 +15,9 @@ PKG_BUILD="dtc-"$VERSION
 PORT_BUILD=dtcBSDportBuild
 ARCH_NAME=$PKG_BUILD".tar.gz"
 
-./buildRelease $UNIX_TYPE $PKG_BUILD
-mkdir -p $PKG_BUILD/usr/local/etc/dtc/etc
-cp ../etc/* $PKG_BUILD/usr/local/etc/dtc
-
-kernel=`uname -a | awk '{print $1}'`;
-
-echo "<?php
-\$conf_dtc_version= \""$VERS"\";
-\$conf_dtc_release= \""$RELS"\";
-\$conf_unix_type= \""$UNIX_TYPE"\";
-\$conf_kernel_type= \""$kernel"\";
-?>" > $PKG_BUILD/shared/dtc_version.php
-
-chown -R root:0 $PKG_BUILD
-#chown nobody:65534 $PKG_BUILD/client/imgcache $PKG_BUILD/admin/imgcache $PKG_BUILD/shared/imgcache $PKG_BUILD/email/imgcache
-#chown nobody:65534 $PKG_BUILD/client/gfx $PKG_BUILD/admin/gfx $PKG_BUILD/shared/gfx $PKG_BUILD/email/gfx
+CURDIR=`pwd`
+make -C .. install-dtc-common DESTDIR=$CURDIR/$PKG_BUILD DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
+DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=$UNIX_TYPE
 
 # Specific BSD package actions :
 # Create an empty Makefile in the "sources" of DTC so nothing is to be built
@@ -61,10 +48,6 @@ cat sources/bsd/Makefile >>$PORT_BUILD/Makefile
 
 # Create package install script
 cp sources/bsd/install.sh $PORT_BUILD/files/dtc-install.in
-#cat sources/interactive_installer.sh >>$PORT_BUILD/files/dtc-install.in
-#cat sources/setup_mysql_db.sh >>$PORT_BUILD/files/dtc-install.in
-#cat sources/create_chroot.sh >>$PORT_BUILD/files/dtc-install.in
-#cat sources/configure_deamons.sh >>$PORT_BUILD/files/dtc-install.in
 chmod 644 $PORT_BUILD/files/dtc-install.in
 
 # Create package uninstall script

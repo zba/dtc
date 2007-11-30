@@ -28,6 +28,9 @@ endif
 ifndef $(BIN_DIR)
 	BIN_DIR=/usr/bin
 endif
+ifndef $(UNIX_TYPE)
+	UNIX_TYPE=debian
+endif
 
 # /usr/share
 APP_INST_DIR = $(DESTDIR)$(DTC_APP_DIR)/dtc
@@ -57,6 +60,7 @@ default:
 	@echo "DTC_DOC_DIR="$(DTC_DOC_DIR)
 	@echo "MANUAL_DIR="$(MANUAL_DIR)
 	@echo "BIN_DIR="$(BIN_DIR)
+	@echo "UNIX_TYPE="$(UNIX_TYPE)
 	@echo ""
 	@exit 1
 
@@ -206,7 +210,7 @@ install-dtc-stats-daemon:
 install-dtc-common:
 	# PHP scripts files served by web server
 	for i in $(WEB_SCRIPT_FILES) ; do install -D -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
-	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""debian"\"; ?>" >$(APP_INST_DIR)/shared/dtc_version.php
+	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""$(UNIX_TYPE)"\"; ?>" >$(APP_INST_DIR)/shared/dtc_version.php
 
 	# Management scripts that are executed
 	for i in $(ROOT_ONLY) ; do install -D -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
