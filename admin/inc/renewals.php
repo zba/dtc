@@ -154,6 +154,7 @@ function drawRenewalTables (){
 		if($cur_month < 10)	$cur_month = "0".$cur_month;
 	}
 	$p_history .= "</table>";
+	
 
 	# Layout the recuring stat and the effective payment statistics
 	$out .= "<table cellspacing=\"1\" cellpadding=\"4\" border=\"0\">

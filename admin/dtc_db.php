@@ -641,7 +641,7 @@ $dtc_database = array(
 			"valid_time" => "time NOT NULL default '00:00:00' ",
 			"new_account" => "enum('yes','no') NOT NULL default 'no' ",
 			"product_id" => "int(11) NOT NULL default '0'",
-			"vat_rate" => "int(11) NOT NULL default '0'",
+			"vat_rate" => "decimal(9,2) NOT NULL default '0.00'",
 			"vat_total" => "int(11) NOT NULL default '0'"
 			),
 		"primary" => "(id)",

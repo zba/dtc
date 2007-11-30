@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS paiement (
   pending_reason varchar(128) NOT NULL default '',
   new_account enum('yes','no') NOT NULL default 'yes',
   product_id int(11) NOT NULL default '0',
-  vat_rate int(11) NOT NULL default '0',
+  vat_rate decimal(9,2) NOT NULL default '0.00',
   vat_total int(11) NOT NULL default '0',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
