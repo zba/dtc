@@ -12,7 +12,7 @@ RELS=`cat release`
 VERSION=$VERS"."$RELS
 UNIX_TYPE=bsd
 PKG_BUILD="dtc-"$VERSION
-PORT_BUILD=dtcBSDportBuild
+PORT_BUILD=sysutils/dtc
 ARCH_NAME=$PKG_BUILD".tar.gz"
 
 CURDIR=`pwd`
@@ -71,43 +71,44 @@ fi
 
 
 echo "===> Creating package list file"
+echo "-> Calling make install-dtc-common to calculate list"
 # Make the pkg-plist file
-#PKG_PLIST_BUILD=$CURDIR/PKG_PLIST_BUILD
-#mkdir -p 
-#make -C .. install-dtc-common DESTDIR=$PKG_PLIST_BUILD DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
-#	DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd
+PKG_PLIST_BUILD=$CURDIR/PKG_PLIST_BUILD
+make -C .. install-dtc-common DESTDIR=$PKG_PLIST_BUILD DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
+	DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd 2>&1 >/dev/null
+echo "-> Building list of files"
+cd $PKG_PLIST_BUILD
+find . -type f | sed "s/\.\/usr\/local/%%LOCALBASE%%/" >$CURDIR/$PORT_BUILD/pkg-plist.tmp
+echo "%%LOCALBASE%%/www/dtc/admin/gfx
+%%LOCALBASE%%/www/dtc/admin/imgcache
+%%LOCALBASE%%/www/dtc/shared/mysql_config.php
+%%LOCALBASE%%/www/dtc/client/gfx
+%%LOCALBASE%%/www/dtc/client/imgcache
+sbin/dtc-install
+sbin/dtc-deinstall
+%%LOCALBASE%%/dtc/email/gfx
+%%LOCALBASE%%/dtc/email/imgcache" >>$CURDIR/$PORT_BUILD/pkg-plist.tmp
+find usr/local -type d -printf "@dirrm %h/%f\n" | grep -v "/etc" | sed "s/usr\/local/%%LOCALBASE%%/" | sort -r >>$CURDIR/$PORT_BUILD/pkg-plist.tmp
+NBR_LINE=`cat $CURDIR/$PORT_BUILD/pkg-plist.tmp | wc -l`
+cat $CURDIR/$PORT_BUILD/pkg-plist.tmp | head -n $(( $NBR_LINE - 2 )) >$CURDIR/$PORT_BUILD/pkg-plist.tmp2
+cat $CURDIR/$PORT_BUILD/pkg-plist.tmp2 | grep -v "mysql_config.php" >$CURDIR/$PORT_BUILD/pkg-plist
+echo "@dirrm %%DTCROOT%%/etc/zones
+@dirrm %%DTCROOT%%/etc
+@dirrm %%DTCROOT%%" >>$CURDIR/$PORT_BUILD/pkg-plist
+echo "-> Deleting temp files"
+rm $CURDIR/$PORT_BUILD/pkg-plist.tmp $CURDIR/$PORT_BUILD/pkg-plist.tmp2
+rm -r $PKG_PLIST_BUILD
+cd $CURDIR
 
-#find $PKG_PLIST_BUILD -type f >$PORT_BUILD/pkg-plist.tmp
-#echo "$PKG_PLIST_BUILD/www/dtc/admin/gfx
-#$PKG_PLIST_BUILD/www/dtc/admin/imgcache
-#$PKG_PLIST_BUILD/www/dtc/shared/mysql_config.php
-#$PKG_PLIST_BUILD/www/dtc/client/gfx
-#$PKG_PLIST_BUILD/www/dtc/client/imgcache
-#sbin/dtc-install
-#sbin/dtc-deinstall
-#$PKG_PLIST_BUILD/dtc/email/gfx
-#$PKG_PLIST_BUILD/dtc/email/imgcache" >>$PORT_BUILD/pkg-plist.tmp
-#find $PKG_PLIST_BUILD -type d -printf "@dirrm %h/%f\n" | grep -v "$PKG_PLIST_BUILD/etc" | sort -r >>$PORT_BUILD/pkg-plist.tmp
-#NBR_LINE=`cat $PORT_BUILD/pkg-plist.tmp | wc -l`
-#cat $PORT_BUILD/pkg-plist.tmp | head -n $(($NBR_LINE - 2 )) >$PORT_BUILD/pkg-plist.tmp2
-#sed "s/$PKG_PLIST_BUILD/%%DTCROOT%%/" $PORT_BUILD/pkg-plist.tmp2 | grep -v "mysql_config.php" >$PORT_BUILD/pkg-plist
-#echo "@dirrm %%DTCROOT%%/etc/zones
-#@dirrm %%DTCROOT%%/etc
-#@dirrm %%DTCROOT%%" >>$PORT_BUILD/pkg-plist
-#rm $PORT_BUILD/pkg-plist.tmp $PORT_BUILD/pkg-plist.tmp2
-#rm -r $PKG_PLIST_BUILD
-touch $PORT_BUILD/pkg-plist
-
-mkdir -p sysutils/dtc
-mv $PORT_BUILD/* sysutils/dtc/
+echo "-> Adding slave ports to the archive"
 mkdir -p sysutils/dtc-postfix-courier
 cp sources/bsd/dtc-postfix-courier/Makefile sysutils/dtc-postfix-courier
 cp sources/bsd/dtc-postfix-courier/pkg-descr sysutils/dtc-postfix-courier
 mkdir -p sysutils/dtc-toaster
 cp sources/bsd/dtc-toaster/Makefile sysutils/dtc-toaster
 cp sources/bsd/dtc-toaster/pkg-descr sysutils/dtc-toaster
-# Those are slave ports, and is to be activatd in case of changes inside DTC's needs
 
+# Slave ports for php & proftpd
 #mkdir -p lang/php4-dtc
 #cp sources/bsd/php4-dtc-slave lang/php4-dtc/Makefile
 #mkdir -p ftp/proftpd-mysql
