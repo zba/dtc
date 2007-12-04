@@ -2011,7 +2011,7 @@ smtpd_sasl_security_options = noanonymous
 smtpd_sasl_local_domain = /etc/mailname
 smtpd_sasl_auth_enable = yes
 smtpd_tls_auth_only = no
-" >> $TMP_FILE
+"
 			else
 				echoIfVerbose "No saslpasswd2 found"
 				echo "smtpd_recipient_restrictions = permit_mynetworks,
@@ -2020,7 +2020,11 @@ smtpd_tls_auth_only = no
                                permit_sasl_authenticated=""
                                sasl_main_dot_cf_rules=""
 			fi
-			echo "smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
+			echo "smtpd_delay_reject = yes
+smtpd_helo_required = yes
+disable_vrfy_command = yes
+
+smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
 			permit_sasl_authenticated,
 			reject_invalid_hostname,
 			reject_non_fqdn_sender,
