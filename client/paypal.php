@@ -61,7 +61,7 @@ if (!$fp) {
 				die("Incorrect currency!");
 			}
 			if($_REQUEST["payment_status"] != "Completed"){
-				if($_REQUEST["payment_status"] != "Pending"){
+				if($_REQUEST["payment_status"] == "Pending"){
 					setPaiemntAsPending(mysql_escape_string($item_number),mysql_escape_string($_REQUEST["pending_reason"]));
 				}else{
 					logPay("Status is not completed or pending !");
