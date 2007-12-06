@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATH=$1
+MY_PATH=$1
 COMMON_NAME=$2
 SSL_PASSPHRASE=$3
 
@@ -10,8 +10,8 @@ else
 	OPENSSL=openssl
 fi
 
-if [ ! -d ""$PATH ] ; then
-	echo "Cannot find directory $PATH !"
+if [ ! -d ""$MY_PATH ] ; then
+	echo "Cannot find directory $MY_PATH !"
 	exit 1
 fi
 
@@ -49,9 +49,9 @@ CHALLENGE_PASS=$gen_pass
 
 echo "Checking dirs"
 
-if [ ! -e $PATH/$COMMON_NAME.cert.new ] ; then
-	if [ ! -e $PATH/$COMMON_NAME.cert.key ] ; then	
-		pushd $PATH
+if [ ! -e $MY_PATH/$COMMON_NAME.cert.new ] ; then
+	if [ ! -e $MY_PATH/$COMMON_NAME.cert.key ] ; then	
+		pushd $MY_PATH
 		echo $pwd
 		CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
 		echo  $SSL_PASSPHRASE >$CERTPASS_TMP_FILE
