@@ -15,8 +15,11 @@ function drawRrdtoolGraphs (){
 <tr><td><h3>".$txt_iframe_msu[$lang]."</h3></td><tr>
 <tr><td><IFRAME src=\"memgraph.php\" width=\"100%\" height=\"318\"></iframe></td></tr>
 <tr><td><h3>".$txt_iframe_mqg[$lang]."</h3></td><tr>
-<tr><td><IFRAME src=\"mailgraph.php\" width=\"100%\" height=\"318\"></iframe></td></tr>
-</table></center>
+<tr><td><IFRAME src=\"mailgraph.php\" width=\"100%\" height=\"318\"></iframe></td></tr>";
+	if( file_exists("/usr/sbin/mailgraph")){
+		$out .= "<tr><td><IFRAME src=\"/cgi-bin/mailgraph.cgi\" width=\"100%\" height=\"388\"></iframe></td></tr>";
+	}
+	$out .= "</table></center>
 ";
 	return $out;
 /*	$the_iframe = "<IFRAME src=\"/cgi-bin/netusegraph.cgi\" width=\"100%\" height=\"318\"></iframe>";
