@@ -1,3 +1,5 @@
+#!/usr/bin
+
 # Makefile for dtc-common
 
 # Example call parameters:
@@ -9,27 +11,35 @@
 VERS=$(shell echo `cat bin/version`)
 RELS=$(shell echo `cat bin/release`)
 VERSION=$(VERS)"-"$(RELS)
+INSTALL=install -D
+INSTALL_DIR=install -d
 
 ifndef $(DTC_APP_DIR)
-	DTC_APP_DIR=/usr/share
+DTC_APP_DIR=/usr/share
 endif
+
 ifndef $(DTC_GEN_DIR)
-	DTC_GEN_DIR=/var/lib
+DTC_GEN_DIR=/var/lib
 endif
+
 ifndef $(CONFIG_DIR)
-	CONFIG_DIR=/etc
+CONFIG_DIR=/etc
 endif
+
 ifndef $(DTC_DOC_DIR)
-	DTC_DOC_DIR=/usr/share/doc
+DTC_DOC_DIR=/usr/share/doc
 endif
+
 ifndef $(MANUAL_DIR)
-	MANUAL_DIR=/usr/share/man
+MANUAL_DIR=/usr/share/man
 endif
+
 ifndef $(BIN_DIR)
-	BIN_DIR=/usr/bin
+BIN_DIR=/usr/bin
 endif
+
 ifndef $(UNIX_TYPE)
-	UNIX_TYPE=debian
+UNIX_TYPE=debian
 endif
 
 # /usr/share
@@ -216,70 +226,91 @@ ROOT_ONLY_READ="0640"
 NORMAL_FOLDER="0755"
 MANPAGE_RIGHTS="0644"
 
+CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install admin/tables \
+shared/gfx/menu shared/gfx/bar shared/gfx/skin/green2 shared/gfx/skin/muedgrey shared/gfx/skin/green_gpl/icons \
+shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/iglobal shared/gfx/skin/frame shared/gfx/skin/green shared/gfx/dtc shared/gfx/pagetop \
+shared/gfx/securepay shared/gfx/language/en/pub shared/gfx/language/fr/pub shared/gfx/language/ru/pub shared/gfx/language/nl/pub \
+shared/gfx/skin/tex shared/gfx/skin/ruffdogs_mozilla shared/gfx/skin/darkblue shared/gfx/skin/bwoup/gfx/config-icon \
+shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar \
+shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
+shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc
+
 install-dtc-stats-daemon:
-	install -D -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
-	install -D -m 0644 etc/init.d/dtc-stats-daemon $(DESTDIR)$(CONFIG_DIR)/init.d/dtc-stats-daemon
+	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/admin
+	$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
+	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(DESTDIR)$(CONFIG_DIR)/init.d
+	$(INSTALL) -m 0644 etc/init.d/dtc-stats-daemon $(DESTDIR)$(CONFIG_DIR)/init.d/dtc-stats-daemon
 
 install-dtc-common:
 	# PHP scripts files served by web server
-	for i in $(WEB_SCRIPT_FILES) ; do install -D -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
-	echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""$(UNIX_TYPE)"\"; ?>" >$(APP_INST_DIR)/shared/dtc_version.php
+	@echo "-> Creating detination folders"
+	for i in $(CREATE_DIRS) ; do $(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/$$i ; done
+	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(MAN_DIR)/man8
+
+	@ echo "-> Intalling scripts"
+	@for i in $(WEB_SCRIPT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	@echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""$(UNIX_TYPE)"\"; ?>" >$(APP_INST_DIR)/shared/dtc_version.php
 
 	# Management scripts that are executed
-	for i in $(ROOT_ONLY) ; do install -D -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
-	for i in $(USER_ALSO) ; do install -D -m $(DTC_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
-	for i in $(INSTALL_FOLDER_SCRIPTS) ; do install -D -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	@for i in $(ROOT_ONLY) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	@for i in $(USER_ALSO) ; do $(INSTALL) -m $(DTC_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	@for i in $(INSTALL_FOLDER_SCRIPTS) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 
 	# The SQL table scripts
-	for i in $(INSTALL_SQL_TABLES) ; do install -D -m $(ROOT_ONLY_READ) $$i $(APP_INST_DIR)/$$i ; done
+	@for i in $(INSTALL_SQL_TABLES) ; do $(INSTALL) -m $(ROOT_ONLY_READ) $$i $(APP_INST_DIR)/$$i ; done
 
 	### email panel ###
-	install -D -m $(PHP_RIGHTS) admin/inc/img_alt.php		$(APP_INST_DIR)/email/inc/img_alt.php
-	install -D -m $(PHP_RIGHTS) admin/inc/img_alt_skin.php		$(APP_INST_DIR)/email/inc/img_alt_skin.php
-	install -D -m $(PHP_RIGHTS) admin/inc/img.php			$(APP_INST_DIR)/email/inc/img.php
+	@$(INSTALL) -m $(PHP_RIGHTS) admin/inc/img_alt.php		$(APP_INST_DIR)/email/inc/img_alt.php
+	@$(INSTALL) -m $(PHP_RIGHTS) admin/inc/img_alt_skin.php		$(APP_INST_DIR)/email/inc/img_alt_skin.php
+	@$(INSTALL) -m $(PHP_RIGHTS) admin/inc/img.php			$(APP_INST_DIR)/email/inc/img.php
 
 	# The man pages
-	install -D -m $(MANPAGE_RIGHTS) doc/dtc-chroot-shell.8		$(MAN_DIR)/man8/dtc-chroot-shell.8
+	$(INSTALL) -m $(MANPAGE_RIGHTS) doc/dtc-chroot-shell.8		$(MAN_DIR)/man8/dtc-chroot-shell.8
 
 	# inc png files
-	for i in $(ADMIN_INC_PNG_FILES) ; do install -D -m $(PHP_RIGHTS) admin/inc/$$i $(APP_INST_DIR)/admin/inc/$$i ; done
+	@for i in $(ADMIN_INC_PNG_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/inc/$$i $(APP_INST_DIR)/admin/inc/$$i ; done
 	# Client and email inc png files
-	for i in $(ADMIN_INC_PNG_FILES) ; do install -D -m $(PHP_RIGHTS) admin/inc/$$i $(APP_INST_DIR)/client/inc/$$i ; done
-	for i in $(ALL_PICS) ; do install -D -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
-	install -D -m $(PHP_RIGHTS) email/inc/domain.png	$(APP_INST_DIR)/email/inc/domain.png
-	install -D -m $(PHP_RIGHTS) email/inc/domains.png $(APP_INST_DIR)/email/inc/domains.png
+	@for i in $(ADMIN_INC_PNG_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/inc/$$i $(APP_INST_DIR)/client/inc/$$i ; done
+	@for i in $(ALL_PICS) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	@$(INSTALL) -m $(PHP_RIGHTS) email/inc/domain.png	$(APP_INST_DIR)/email/inc/domain.png
+	@$(INSTALL) -m $(PHP_RIGHTS) email/inc/domains.png $(APP_INST_DIR)/email/inc/domains.png
 
 	# Copy all the graphics...
-	find shared/gfx -iname '*.png' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
-	find shared/gfx -iname '*.gif' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
-	find shared/gfx -iname '*.js' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
-	find shared/gfx -iname '*.php' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
-	find shared/gfx -iname '*.html' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
-	find shared/gfx -iname '*.css' -exec install -D -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
+	find shared/gfx -iname '*.png' -exec $(INSTALL) -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
+	find shared/gfx -iname '*.gif' -exec $(INSTALL) -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
+	find shared/gfx -iname '*.js' -exec $(INSTALL) -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
+	find shared/gfx -iname '*.php' -exec $(INSTALL) -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
+	find shared/gfx -iname '*.html' -exec $(INSTALL) -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
+	find shared/gfx -iname '*.css' -exec $(INSTALL) -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
 	[ -h $(APP_INST_DIR)/admin/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/admin/gfx
 	[ -h $(APP_INST_DIR)/client/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/client/gfx
 	[ -h $(APP_INST_DIR)/email/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/email/gfx
 
-	install -m $(NORMAL_FOLDER) -d $(APP_INST_DIR)/shared/imgcache
+	mkdir -p $(APP_INST_DIR)/shared/imgcache
+	chmod $(NORMAL_FOLDER) $(APP_INST_DIR)/shared/imgcache
 	[ -h $(APP_INST_DIR)/admin/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/admin/imgcache
 	[ -h $(APP_INST_DIR)/client/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/client/imgcache
 	[ -h $(APP_INST_DIR)/email/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/email/imgcache
 
 	# Set the stuffs for the logrotate
-	install -D -m 0644 etc/logrotate.d/dtc $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc
+	mkdir -p $(DESTDIR)$(CONFIG_DIR)/logrotate.d
+	$(INSTALL) -m 0644 etc/logrotate.d/dtc $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc
 	[ -h $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc-vhosts ] || ln -s $(DTC_GEN_DIR)/dtc/etc/logrotate $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc-vhosts
 
 	# Setup the cron
-	install -D -m 0644 etc/cron.d/dtc $(DESTDIR)$(CONFIG_DIR)/cron.d/dtc
+	mkdir -p $(DESTDIR)$(CONFIG_DIR)/cron.d
+	$(INSTALL) -m 0644 etc/cron.d/dtc $(DESTDIR)$(CONFIG_DIR)/cron.d/dtc
 
 	# Create the variables directory
-	install -D -m $(NORMAL_FOLDER) -d $(GENFILES_DIRECTORY)/etc/zones $(GENFILES_DIRECTORY)/etc/slave_zones 
+	$(INSTALL) -m $(NORMAL_FOLDER) -d $(GENFILES_DIRECTORY)/etc/zones $(GENFILES_DIRECTORY)/etc/slave_zones 
 
 	# Create the configuration folder
-	for i in $(TEXT_MESSAGES) ; do install -D -m $(PHP_RIGHTS) etc/dtc/$$i $(DTC_ETC_DIRECTORY)/$$i ; done
+	mkdir -p $(DTC_ETC_DIRECTORY)/reminders_msg
+	mkdir -p $(DTC_ETC_DIRECTORY)/registration_msg
+	for i in $(TEXT_MESSAGES) ; do $(INSTALL) -m $(PHP_RIGHTS) etc/dtc/$$i $(DTC_ETC_DIRECTORY)/$$i ; done
 
 	# Doc dir
-	install -m $(NORMAL_FOLDER) -d $(DOC_DIR)
+	$(INSTALL) -m $(NORMAL_FOLDER) -d $(DOC_DIR)
 	if [ $(DTC_DOC_DIR) = "/usr/share/doc" -a $(DTC_APP_DIR) = "/usr/share" ] ; then \
 		if [ ! -h $(APP_INST_DIR)/doc ] ; then \
 			ln -s ../doc/dtc $(APP_INST_DIR)/doc ; \
