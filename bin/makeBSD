@@ -15,14 +15,17 @@ PKG_BUILD="dtc-"$VERSION
 PORT_BUILD=sysutils/dtc
 ARCH_NAME=$PKG_BUILD".tar.gz"
 
+set -e
+
 CURDIR=`pwd`
 
 # Specific BSD package actions :
 # Create an empty Makefile in the "sources" of DTC so nothing is to be built
 echo "===> Packaging files"
-cd ..
-tar -czf bin/$ARCH_NAME admin client doc email etc Makefile shared
-cd $CURDIR
+echo make -C .. source-copy DESTFOLDER=$CURDIR/dtc_${VERSION}
+make -C .. source-copy DESTFOLDER=$CURDIR/dtc_${VERSION}
+echo "-> Creating archive"
+tar -czf $ARCH_NAME dtc_${VERSION}
 
 echo " --- Succesfully made BSD $ARCH_NAME ---"
 echo " --- Making BSD port for version "$VERSION" ---"

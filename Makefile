@@ -68,6 +68,16 @@ all:
 	@echo There is nothing to build: dtc is an arch independant package!!!
 	exit 0
 
+BIN_FOLDER_CONTENT=bin/buildGentoo bin/makeDebian bin/makeGentoo bin/makeSlackware bin/README.how_to_build_a_pachage bin/version \
+bin/buildRelease bin/makeBSD bin/makeDebianSource bin/makeOsx bin/makeTarball bin/release bin/clean bin/makeDTC \
+bin/makeRedhat bin/prepareDebianTree bin/sources
+source-copy:
+	if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
+	@echo "-> Copying sources"
+	@mkdir -p $(DESTFOLDER)/bin
+	@cp -rf admin client debian doc email etc Makefile shared $(DESTFOLDER)
+	@cp -rf $(BIN_FOLDER_CONTENT) $(DESTFOLDER)/bin
+
 ############# PHP SCRIPTS ##############
 # Owned by root, but executable by dtc user (ran by apache)
 ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES=admin/404.php admin/bw_per_month.php admin/index.php admin/cpugraph.php admin/mailgraph.php admin/deamons_state.php \
