@@ -104,7 +104,7 @@ SUB_LIST+=	QMAIL_DIR="${QMAIL_DIR}"
 do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-install ${PREFIX}/sbin/dtc-install
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-deinstall ${PREFIX}/sbin/dtc-deinstall
-	@${MAKE} -C ${WRKDIR} install-dtc-common DTC_APP_DIR=${LOCALBASE}/www DTC_GEN_DIR=${LOCALBASE}/var CONFIG_DIR=${LOCALBASE}/etc \
+	@${MAKE} -C ${WRKDIR}/dtc-0.27.2.1 install-dtc-common DTC_APP_DIR=${LOCALBASE}/www DTC_GEN_DIR=${LOCALBASE}/var CONFIG_DIR=${LOCALBASE}/etc \
 		DTC_DOC_DIR=${LOCALBASE}/share/doc MANUAL_DIR=${LOCALBASE}/man BIN_DIR=${LOCALBASE}/bin UNIX_TYPE=bsd
 	@${CAT} ${PKGMESSAGE}
 

@@ -22,10 +22,10 @@ CURDIR=`pwd`
 # Specific BSD package actions :
 # Create an empty Makefile in the "sources" of DTC so nothing is to be built
 echo "===> Packaging files"
-echo make -C .. source-copy DESTFOLDER=$CURDIR/dtc_${VERSION}
-make -C .. source-copy DESTFOLDER=$CURDIR/dtc_${VERSION}
+echo make -C .. source-copy DESTFOLDER=$CURDIR/dtc-${VERSION}
+make -C .. source-copy DESTFOLDER=$CURDIR/dtc-${VERSION}
 echo "-> Creating archive"
-tar -czf $ARCH_NAME dtc_${VERSION}
+tar -czf $ARCH_NAME dtc-${VERSION}
 
 echo " --- Succesfully made BSD $ARCH_NAME ---"
 echo " --- Making BSD port for version "$VERSION" ---"
