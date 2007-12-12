@@ -82,7 +82,7 @@ BIN_FOLDER_CONTENT=bin/buildGentoo bin/makeDebian bin/makeGentoo bin/makeSlackwa
 bin/buildRelease bin/makeBSD bin/makeDebianSource bin/makeOsx bin/makeTarball bin/release bin/clean bin/makeDTC \
 bin/makeRedhat bin/prepareDebianTree bin/sources
 source-copy:
-	if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
+	@if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
 	@echo "-> Copying sources"
 	@mkdir -p $(DESTFOLDER)/bin
 	@cp -rf admin client debian doc email etc Makefile shared $(DESTFOLDER)
