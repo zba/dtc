@@ -503,7 +503,7 @@ function emailAccountsCreateCallback ($id){
 	writeDotQmailFile($a["id"],$a["mbox_host"]);
 	$admin_path = getAdminPath($adm_login);
 	$box_path = "$admin_path/$edit_domain/Mailboxs/".$a["id"];
-	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid',fullemail='".$a["id"].'@'.$a["mbox_host"]."',quota_couriermaildrop=CONCAT(quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid',fullemail='".$a["id"].'@'.$a["mbox_host"]."',quota_couriermaildrop=CONCAT(1024000*quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
 	$r2 = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	triggerMXListUpdate();
 	if ($cyrus_used){
@@ -534,7 +534,7 @@ function emailAccountsEditCallback ($id){
 	$a = mysql_fetch_array($r);
 
 	$crypted_pass = crypt($a["passwd"], dtc_makesalt());
-	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',quota_couriermaildrop=CONCAT(quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',quota_couriermaildrop=CONCAT(1024000*quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 
 	writeDotQmailFile($a["id"],$a["mbox_host"]);

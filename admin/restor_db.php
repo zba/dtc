@@ -239,7 +239,7 @@ $q = "ALTER TABLE `paiement` CHANGE `vat_rate` `vat_rate` decimal(9,2) NOT NULL 
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Fill the new quota_couriermaildrop with values
-$q = "UPDATE pop_access SET quota_couriermaildrop=CONCAT(quota_size,'S,',quota_files,'C')";
+$q = "UPDATE pop_access SET quota_couriermaildrop=CONCAT(1024000*quota_size,'S,',quota_files,'C')";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Update the VPS stats table

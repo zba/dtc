@@ -262,6 +262,7 @@ function drawSSLIPConfig(){
 	global $txt_cfg_ssl_dedicated_ips;
 	global $txt_cfg_manage_ips_for_ssl;
 	global $txt_cfg_ip_addr;
+	global $txt_cfg_port;
 	global $txt_cfg_expire;
 	global $txt_cfg_available;
 	global $txt_yes;
@@ -282,6 +283,9 @@ function drawSSLIPConfig(){
 			"ip_addr" => array(
 				"type" => "text",
 				"legend" => $txt_cfg_ip_addr[$lang]),
+			"port" => array(
+				"type" => "text",
+				"legend" => $txt_cfg_port[$lang]),
 			"adm_login" => array(
 				"type" => "text",
 				"legend" => $txt_cfg_login[$lang]),
@@ -738,6 +742,7 @@ function drawNetworkConfig(){
 	global $txt_cfg_general;
 	global $txt_cfg_use_nated_vhost;
 	global $txt_cfg_nated_vhost_ip;
+	global $txt_cfg_ssl_port_range;
 	global $txt_cfg_use_multiple_ip;
 	global $txt_cfg_full_hostname;
 	global $txt_cfg_main_site_ip;

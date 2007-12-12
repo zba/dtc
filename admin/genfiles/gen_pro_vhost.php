@@ -85,8 +85,10 @@ function checkCertificate($cert_path,$common_name){
 function test_valid_local_ip($address){
 	global $console;
 	global $panel_type;
+	global $conf_nated_vhost_ip;
+
 	$port = 80;
-	
+
         if (!function_exists('socket_create')) {
 		if($panel_type=="cronjob"){
 			echo("The socket_create function does not exist or is not enabled, please ensure you have a php_sockets.so or php_sockets.dll, or have the sockets compiled into PHP.  No IP checks can be done, so assuming all IPs configured are valid.\n");
@@ -98,9 +100,11 @@ function test_valid_local_ip($address){
 	$console .= "Checking IP $address:";
 	$old_error_reporting = error_reporting('E_NONE');
 
-	if (($sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) < 0) {
-		echo "socket_create() failed: reason: " . socket_strerror($sock) . "\n";
-		return false;
+	if($conf_nated_vhost_ip != '*'){
+		if (($sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) < 0) {
+			echo "socket_create() failed: reason: " . socket_strerror($sock) . "\n";
+			return false;
+		}
 	}
 
 	if (!($ret = socket_bind($sock, $address, $port))) {
@@ -156,6 +160,7 @@ function pro_vhost_generate(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
 	global $pro_mysql_subdomain_table;
+	global $pro_mysql_ssl_ips_table;
 
 	global $conf_db_version;
 	global $conf_unix_type;
@@ -598,6 +603,24 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						$ssl_returns = checkCertificate($ssl_cert_folder_path,$web_subname.".".$web_name);
 						if($ssl_returns == "yes"){
 							$iteration_table[] = "ssl";
+							// Start of <krystian@ezpear.com> patch
+							if($conf_use_nated_vhost=="yes"){
+								$q="select port from $pro_mysql_ssl_ips_table where ip_addr='${subdomain["ssl_ip"]}' and available='no';";
+								$r=mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+								$n = mysql_num_rows($r);
+								if($n > 0){
+									$row=mysql_fetch_array($r);
+									$port=$row["port"];
+									$ip_vhost=$ip_to_write;
+									if(empty($port)){
+										$port=443;
+									}
+								}else{
+									$port=443;
+									$ip_vhost = $subdomain["ssl_ip"];
+								 }
+							}
+							// End of <krystian@ezpear.com> patch
 						}
 					}
 
@@ -638,8 +661,11 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 							$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
 							break;
 						case "ssl":
-							$vhost_file .= "Listen ".$subdomain["ssl_ip"].":443\n";
-							$vhost_file .= "<VirtualHost ".$subdomain["ssl_ip"].":443>\n";
+							if($conf_use_nated_vhost=="no"){
+								$vhost_file .= "Listen ".$ip_vhost.":$port\n";
+							}
+							$vhost_file .= "Listen ".$subdomain["ssl_ip"].":$port\n";
+							$vhost_file .= "<VirtualHost ".$subdomain["ssl_ip"].":$port>\n";
 							$vhost_file .= "	SSLEngine on\n";
 							$vhost_file .= "	SSLCertificateFile $ssl_cert_folder_path/".$web_subname.".".$web_name.".cert.cert\n";
 							$vhost_file .= "	SSLCertificateKeyFile $ssl_cert_folder_path/".$web_subname.".".$web_name.".cert.key\n";

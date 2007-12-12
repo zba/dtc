@@ -206,6 +206,20 @@ $txt_cfg_ip_addrs = array(
 	"pt" => "TRANS IPs addrs"
 	);
 
+$txt_cfg_port = array(
+	"fr" => "Port NAT",
+	"en" => "NAT Port",
+	"hu" => "TRANS NAT Port",
+	"nl" => "TRANS NAT Port",
+	"ru" => "TRANS NAT Port",
+	"de" => "TRANS NAT Port",
+	"zh" => "TRANS NAT Port",
+	"pl" => "TRANS NAT Port",
+	"se" => "TRANS NAT Port",
+	"es" => "TRANS NAT Port",
+	"pt" => "TRANS NAT Port"
+	);
+
 $txt_cfg_hostname = array(
 	"fr" => "Nom d'hote",
 	"en" => "Hostname",
@@ -2481,6 +2495,21 @@ $txt_cfg_nated_vhost_ip = array(
 	"se" => "TRANS Local network area ip adress of the vhost using NAT",
 	"es" => "Direcci&oacute;n IP de red local del vhost que usa NAT",
 	"pt" => "Endereço IP de rede local para vhost que usam NAT"
+	);
+
+$txt_cfg_ssl_port_range = array(
+	"fr" => "SSL Port Range only for NAT",
+	"en" => "SSL Port Range only for NAT",
+	"hu" => "TRANS SSL Port Range only for NAT",
+	"it" => "TRANS SSL Port Range only for NAT",
+	"nl" => "TRANS SSL Port Range only for NAT",
+	"ru" => "TRANS SSL Port Range only for NAT",
+	"de" => "TRANS SSL Port Range only for NAT",
+	"zh" => "TRANS SSL Port Range only for NAT",
+	"pl" => "TRANS SSL Port Range only for NAT",
+	"se" => "TRANS SSL Port Range only for NAT",
+	"es" => "TRANS SSL Port Range only for NAT",
+	"pt" => "TRANS SSL Port Range only for NAT"
 	);
 
 $txt_cfg_use_javascript = array(

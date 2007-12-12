@@ -466,11 +466,21 @@ createHostingDirAndFiles () {
 			cp $PATH_DTC_SHARED/shared/404_template/index.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
 		fi
 	fi
+	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/logo.png ] ; then
+		if [ -e $PATH_DTC_SHARED/shared/404_template/logo.png ] ; then
+			cp $PATH_DTC_SHARED/shared/404_template/logo.png $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
+		fi
+	fi
 
 	# copy the Error 404 document
 	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/www/html/404.* ]; then
 		if [ -e $PATH_DTC_SHARED/shared/404_template/404.php ]; then 
 			cp $PATH_DTC_SHARED/shared/404_template/404.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/"
+		fi
+	fi
+	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/www/html/logo.png ] ; then
+		if [ -e $PATH_DTC_SHARED/shared/404_template/logo.png ] ; then
+			cp $PATH_DTC_SHARED/shared/404_template/logo.png $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/"
 		fi
 	fi
 
@@ -481,11 +491,17 @@ createHostingDirAndFiles () {
 	if ! [ -e $PATH_DTC_ETC/expired_site/index.* ] ; then
 		cp $PATH_DTC_SHARED/shared/404_template/expired.php $PATH_DTC_ETC/expired_site/index.php
 	fi
+	if ! [ -e $PATH_DTC_ETC"/expired_site/logo.png" ] ; then
+		cp $PATH_DTC_SHARED/shared/404_template/logo.png $PATH_DTC_ETC"/expired_site/"
+	fi
 
 	# also copy it to the dtc404 directory
 	if ! [ -e $PATH_DTC_ETC/dtc404/404.php ]; then
 		mkdir -p $PATH_DTC_ETC/dtc404/
-		cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC/dtc404/
+		cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC"/dtc404/"
+	fi
+	if ! [ -e $PATH_DTC_ETC"/dtc404/logo.png" ]; then
+		cp $PATH_DTC_SHARED/shared/404_template/logo.png $PATH_DTC_ETC"/dtc404/"
 	fi
 
 	# copy the dtc_stats_index.php
@@ -798,7 +814,7 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET dtcadmin_path='${PATH_DTC_ADMIN}', dtcclient_path='${PATH_DTC_CLIENT}', dtcdoc_path='${PATH_DTC_SHARED}/doc', dtcemail_path='${PATH_DTC_SHARED}/email' WHERE 1"
 
 	# Add the config for nated vhosts if needed
-	if [ ""$conf_use_nated_vhosts = "yes" ] ; then
+	if [ "$conf_use_nated_vhosts" = "yes" -o "$conf_use_nated_vhosts" = "true" ] ; then
 		echoIfVerbose "Setting-up values in MySQL for using NAT"
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET use_nated_vhost='yes'"
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET nated_vhost_ip='"${conf_nated_vhosts_ip}"'"
@@ -3104,6 +3120,76 @@ password ${MYSQL_DTCDAEMONS_PASS}
 		echo "-> Didn't find libnss nsswitch.conf: configuration of libnssmysql aborded"
 	fi
 }
+#
+# Install mysqmailconfig in the $PATH_MYSQMAIL_CONF
+#
+
+if [ -z ""$PATH_MYSQMAIL_CONF ]; then
+	PATH_MYSQMAIL_CONF=/etc/mysqmail.conf
+fi
+if [ -z ""$SYSLOG_CONF ]; then
+	SYSLOG_CONF=/etc/syslog.conf
+fi 
+
+modifyMysqmail () {
+	#
+	# Generate default config file for awstats (if we have it installed)
+	#
+	if [ -f $PATH_MYSQMAIL_CONF ]; then
+		echoIfVerbose "===> Configuring mysqmail.conf"
+		if grep "Configured by DTC 0.22" $PATH_MYSQMAIL_CONF >/dev/null
+		then
+			echoIfVerbose "$PATH_MYSQMAIL_CONF has been configured before..."
+		else
+			if ! [ -f $PATH_MYSQMAIL_CONF.DTC.backup ]; then
+				echoIfVerbose "===> Moving $PATH_MYSQMAIL_CONF to $PATH_MYSQMAIL_CONF.DTC.backup"
+				mv -f "$PATH_MYSQMAIL_CONF" "$PATH_MYSQMAIL_CONF.DTC.backup"
+			fi
+			TMP_FILE=/tmp/mysqmail.tmp
+			echo "# Configured by DTC 0.22 : please do not touch this line !" > $TMP_FILE
+			echo "mysql_hostname ${conf_mysql_host}" >> $TMP_FILE
+			echo "mysql_user dtcdaemons" >> $TMP_FILE
+			echo "mysql_pass ${MYSQL_DTCDAEMONS_PASS};" >> $TMP_FILE
+			echo "mysql_db ${conf_mysql_db}" >> $TMP_FILE
+			echo "mysql_table_smtp_logs smtp_logs" >> $TMP_FILE
+			echo "mysql_table_pop_access pop_access" >> $TMP_FILE
+			echo "mysql_table_scoreboard email_accounting" >> $TMP_FILE
+			echo "mysql_table_domain domain" >> $TMP_FILE
+			echo "" >> $TMP_FILE
+			cat < $TMP_FILE >>$PATH_MYSQMAIL_CONF
+			rm $TMP_FILE	
+		fi
+		if [ -f $SYSLOG_CONF ]; then
+			if grep "Configured by DTC 0.22" $SYSLOG_CONF >/dev/null
+			then
+				echoIfVerbose "$SYSLOG_CONF has been configured before..."
+			else
+				if ! [ -f $SYSLOG_CONF.DTC.backup ]
+				then
+					echoIfVerbose "===> Backuping "$SYSLOG_CONF
+					cp -f "$SYSLOG_CONF" "$SYSLOG_CONF.DTC.backup"
+				fi
+				TMP_FILE=/tmp/mysqmail.tmp
+				echo "# Configured by DTC 0.22 : please do not touch this line !" > $TMP_FILE
+				echo "mail.*					|/var/log/mail.fifo" >> $TMP_FILE
+				echo "mail.*					|/var/log/courier.fifo" >> $TMP_FILE
+		#	echo "ftp.*						|/var/log/pure-ftpd.fifo" >> $TMP_FILE
+				cat < $TMP_FILE >> $SYSLOG_CONF;
+				rm $TMP_FILE
+				if ! [ -f /var/log/mail.fifo ]; then
+					mkfifo /var/log/mail.fifo
+				fi
+				if ! [ -f /var/log/courier.fifo ]; then
+					mkfifo /var/log/courier.fifo
+				fi
+				if ! [ -f /var/log/pure-ftpd.fifo ]; then
+					mkfifo /var/log/pure-ftpd.fifo
+				fi
+				echoIfVerbose "Do not forget restart syslog daemon and mysqmail-loggers"
+			fi
+		fi
+	fi
+}
 
 #
 # Install the cron php4 scripts in the $PATH_CRONTAB_CONF
@@ -3116,7 +3202,7 @@ fi
 
 modifyCrontab () {
 	echoIfVerbose "===> Installing cron script"
-	if [ "$UNIX_TYPE" = "freebsd" -a "0`crontab -l | grep 'Configured by DTC '`" != "0" ] ; then
+	if [ "$UNIX_TYPE" = "freebsd" -a "0` crontab -l | grep 'Configured by DTC '`" != "0" ] ; then
 		echoIfVerbose "root crontab has been configured before : skinping include inssertion"
 	elif grep "Configured by DTC " $PATH_CRONTAB_CONF >/dev/null ; then
 		echoIfVerbose "/etc/crontab has been configured before : skinping include inssertion"
@@ -3618,6 +3704,17 @@ createChrootTemplate () {
 			/sbin/ldconfig
 		fi
 	fi
+
+	# Adds the possibility to customize the chroot and helps upgrading between versions
+	if [ -d $conf_chroot_path.custom ] ; then
+		cp -fpR $conf_chroot_path.custom/* $conf_chroot_path/
+	else
+		# Create the directory to show to the user he can use it
+		if ! [ -e $conf_chroot_path.custom ] ; then
+			mkdir -p $conf_chroot_path.custom
+		fi
+	fi
+
 	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} etc dev bin lib tmp var sbin libexec usr
 	umask $oldumask
 	echoIfVerbose "-> Done chroot template!"
@@ -4247,6 +4344,7 @@ DTCsetupDaemons () {
 	modifyAWStatsConfig
 	modifySSHDConfig
 	modifyNSSConfig
+	modifyMysqmail
 	modifyCrontab
 
 	startPhpCronScript
