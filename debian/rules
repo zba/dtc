@@ -9,15 +9,15 @@ clean:
 	dh_testdir
 	dh_testroot
 	dh_clean
-	rm -f debian/dtc.postinst debian/dtc.config debian/dtc.prerm debian/dtc-postfix-courier.postinst debian/dtc-postfix-courier.config debian/dtc-postfix-courier.prerm
+	rm -f debian/dtc-core.postinst debian/dtc-core.config debian/dtc-core.prerm debian/dtc-postfix-courier.postinst debian/dtc-postfix-courier.config debian/dtc-postfix-courier.prerm
 
 install:
 	dh_testdir
 	dh_testroot
 	dh_clean -k 
-	cp debian/master.postinst debian/dtc.postinst
-	cp debian/master.config debian/dtc.config
-	cp debian/master.prerm debian/dtc.prerm
+	cp debian/master.postinst debian/dtc-core.postinst
+	cp debian/master.config debian/dtc-core.config
+	cp debian/master.prerm debian/dtc-core.prerm
 	cp debian/master.postinst debian/dtc-postfix-courier.postinst
 	cp debian/master.config debian/dtc-postfix-courier.config
 	cp debian/master.prerm debian/dtc-postfix-courier.prerm
