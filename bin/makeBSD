@@ -52,9 +52,6 @@ cat sources/bsd/Makefile >>$PORT_BUILD/Makefile
 cp sources/bsd/install.sh $PORT_BUILD/files/dtc-install.in
 chmod 644 $PORT_BUILD/files/dtc-install.in
 
-# Add the makefile patch for FreeBSD make
-cp patch-Makefile $PORT_BUILD/files
-
 # Create package uninstall script
 cp sources/bsd/uninstall.sh $PORT_BUILD/files/dtc-deinstall.in
 #cat sources/uninstall_deamons.sh >>$PORT_BUILD"/files/dtc-deinstall.in"

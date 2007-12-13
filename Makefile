@@ -14,33 +14,13 @@ VERSION=$(VERS)"-"$(RELS)
 INSTALL=install -D
 INSTALL_DIR=install -d
 
-ifndef $(DTC_APP_DIR)
-DTC_APP_DIR=/usr/share
-endif
-
-ifndef $(DTC_GEN_DIR)
-DTC_GEN_DIR=/var/lib
-endif
-
-ifndef $(CONFIG_DIR)
-CONFIG_DIR=/etc
-endif
-
-ifndef $(DTC_DOC_DIR)
-DTC_DOC_DIR=/usr/share/doc
-endif
-
-ifndef $(MANUAL_DIR)
-MANUAL_DIR=/usr/share/man
-endif
-
-ifndef $(BIN_DIR)
-BIN_DIR=/usr/bin
-endif
-
-ifndef $(UNIX_TYPE)
-UNIX_TYPE=debian
-endif
+DTC_APP_DIR ?= /usr/share
+DTC_GEN_DIR ?= /var/lib
+CONFIG_DIR ?= /etc
+DTC_DOC_DIR ?= /usr/share/doc
+MANUAL_DIR ?= /usr/share/man
+BIN_DIR ?= /usr/bin
+UNIX_TYPE ?= debian
 
 # /usr/share
 APP_INST_DIR = $(DESTDIR)$(DTC_APP_DIR)/dtc
