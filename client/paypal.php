@@ -23,6 +23,7 @@ if($secpayconf_paypal_sandbox == "no"){
 $paypal_server_script = "/cgi-bin/webscr";
 
 // post back to PayPal system to validate
+$header = "";
 $header .= "POST $paypal_server_script HTTP/1.0\r\n";
 $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 $header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
@@ -72,7 +73,7 @@ if (!$fp) {
 			// validatePaiement($item_number,$refund_amount,"online","paypal",$txn_id,$_POST["payment_gross"]);
 			// This should work better:
 			$refund_amount = $_REQUEST["mc_gross"] - $_REQUEST["mc_fee"];
-			validatePaiement(mysql_escape_string($item_number),$refund_amount,"online","paypal",mysql_escape_string($txn_id),mysql_escape_string($_REQUEST["mc_gross"]));
+			validatePaiement(mysql_escape_string($item_number),$refund_amount,"online","paypal",mysql_escape_string($_REQUEST["txn_id"]),mysql_escape_string($_REQUEST["mc_gross"]));
 		}elseif (strcmp ($res, "INVALID") == 0) {
 			// log for manual investigation
 			logPay("Recieved INVALID: sending mail to webmaster !!");
