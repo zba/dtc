@@ -1,0 +1,32 @@
+To: FreeBSD-gnats-submit@freebsd.org
+From: Thomas GOIRAND <thomas@gplhost.com>
+Reply-To: Thomas GOIRAND <thomas@gplhost.com>
+Cc: 
+X-send-pr-version: 3.113
+X-GNATS-Notify: 
+
+Originator:    Thomas GOIRAND
+Organization:  GPLHost
+Confidential:  no
+Category:      port
+Class:         change-request
+
+Descrption:
+New port:
+        A hosting web GUI for admin and accounting
+        apache/named/proftpd/qmail Domain Technologie Control
+        (DTC) is a set of PHP scripts and a web interface that
+        manage a MySQL database that handles all the host
+        information. It generates backup scripts, statistic
+        calculation scripts, and config files for bind, Apache,
+        qmail, and proftpd, using a single system UID/GID. With
+        DTC, you can delegate the task of creating subdomains,
+        email, and FTP accounts to users for the domain names
+        they own, and monitor bandwidth per user and service.
+
+        WWW: http://www.gplhost.com/?rub=software&sousrub=dtc
+
+        See also ftp://gplhost.com/pub/dtc/bsd
+
+        - Thomas GOIRAND
+        thomas@goirand.fr
