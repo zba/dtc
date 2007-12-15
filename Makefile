@@ -11,9 +11,23 @@
 VERS=$(shell echo `cat bin/version`)
 RELS=$(shell echo `cat bin/release`)
 VERSION=$(VERS)"-"$(RELS)
+CURDIR=$(shell echo `pwd`)
+
+# BSD stuffs
+BSD_VERSION=$(VERS).$(RELS)
+PKG_BUILD=dtc-$(BSD_VERSION)
+BSD_ARCH_NAME=$(PKG_BUILD).tar.gz
+BSD_DEST_DIR?=..
+BSD_SOURCE_DIR=src/bsd
+BSD_BUILD_DIR?=$(BSD_SOURCE_DIR)/tmp
+PORT_BUILD=$(BSD_BUILD_DIR)/sysutils/dtc
+SRC_COPY_DIR=$(CURDIR)/$(BSD_BUILD_DIR)/$(PKG_BUILD)
+PKG_PLIST_BUILD=$(CURDIR)/${BSD_BUILD_DIR}/PKG_PLIST_BUILD
+
 INSTALL=install -D
 INSTALL_DIR=install -d
 
+# Set defaults (as for Debian as normal platform)
 DTC_APP_DIR?=/usr/share
 DTC_GEN_DIR?=/var/lib
 CONFIG_DIR?=/etc
@@ -57,6 +71,68 @@ default:
 all:
 	@echo There is nothing to build: dtc is an arch independant package!!!
 	exit 0
+
+
+bsd-ports-packages:
+	@echo "--- Making source snapshot $(BSD_ARCH_NAME) ---"
+	@mkdir -p $(BSD_BUILD_DIR)
+	@echo "-> Copying source package files with make source-copy DESTFOLDER=$(SRC_COPY_DIR)"
+	@make source-copy DESTFOLDER=$(SRC_COPY_DIR)
+	@cd $(BSD_BUILD_DIR) && tar -czf $(BSD_ARCH_NAME) $(PKG_BUILD) && cd $(CURDIR)
+	@if ! [ $(BSD_DEST_DIR) = . -o $(BSD_DEST_DIR) = ./ -o $(BSD_DEST_DIR) = $(CURDIR) ] ; then mv $(BSD_BUILD_DIR)/$(BSD_ARCH_NAME) $(BSD_DEST_DIR)/ ; fi
+	@echo " --- Succesfully made BSD source snapshot ${BSD_DEST_DIR}/${BSD_ARCH_NAME} ---"
+
+	@echo " --- Making BSD port tree for version "$BSD_VERSION" ---"
+	@echo "===> Creating port files in $(PORT_BUILD)"
+	@mkdir -p $(PORT_BUILD)/files						# Make  dtc port dir and copy static files in it
+	@sed "s/__VERSION__/$(BSD_VERSION)/" $(BSD_SOURCE_DIR)/dtc/Makefile >$(PORT_BUILD)/Makefile	# Create Makefile with correct port version
+	@cp $(BSD_SOURCE_DIR)/dtc/install.sh $(PORT_BUILD)/files/dtc-install.in		# Create package install script
+	@chmod 644 $(PORT_BUILD)/files/dtc-install.in
+	@cp $(BSD_SOURCE_DIR)/dtc/uninstall.sh $(PORT_BUILD)/files/dtc-deinstall.in		# Create package uninstall script
+	@chmod 644 $(PORT_BUILD)/files/dtc-deinstall.in
+	@cp $(BSD_SOURCE_DIR)/dtc/pkg-message $(PORT_BUILD)
+	@cp $(BSD_SOURCE_DIR)/dtc/pkg-descr $(PORT_BUILD)
+	@echo "MD5 ($(BSD_ARCH_NAME)) = "`if [ -e /sbin/md5 ] ; then md5 $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) ; else md5sum $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; fi` >$(PORT_BUILD)/distinfo
+	@echo "SIZE ($(BSD_ARCH_NAME)) = "`ls -ALln $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | awk '{print $$5}'` >>$(PORT_BUILD)/distinfo
+
+	@mkdir -p $(PKG_PLIST_BUILD)
+	@echo "-> Calling make install-dtc-common to calculate list in $(PKG_PLIST_BUILD)"
+	@make install-dtc-common DESTDIR=$(PKG_PLIST_BUILD) DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
+		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd 2>&1 >/dev/null
+	@echo "-> Building list of files"
+	@cd $(PKG_PLIST_BUILD) && find . -type f | sed "s/\.\/usr\/local/%%LOCALBASE%%/" >$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp && cd $(CURDIR)
+	@echo "%%LOCALBASE%%/www/dtc/admin/gfx" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/www/dtc/admin/imgcache" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/www/dtc/shared/mysql_config.php" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/www/dtc/client/gfx" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/www/dtc/client/imgcache" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	@echo "sbin/dtc-install" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	@echo "sbin/dtc-deinstall" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/dtc/email/gfx" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/dtc/email/imgcache" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	@cd $(PKG_PLIST_BUILD) && find usr/local -type d -printf "@dirrm %h/%f\n" | grep -v "/etc" | sed "s/usr\/local/%%LOCALBASE%%/" | sort -r >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp && cd $(CURDIR)
+	@NBR_LINE=`cat $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp | wc -l` && cat $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp | head -n $$(( $$NBR_LINE - 2 )) >$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp2
+	@cat $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp2 | grep -v "mysql_config.php" >$(CURDIR)/$(PORT_BUILD)/pkg-plist
+	@echo "@dirrm %%DTCROOT%%/etc/zones" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist
+	@echo "@dirrm %%DTCROOT%%/etc" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist
+	@echo "@dirrm %%DTCROOT%%" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist
+	@rm $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp2
+	@rm -r $(PKG_PLIST_BUILD)
+
+	@echo "-> Adding slave ports to the archive"
+	@mkdir -p $(BSD_BUILD_DIR)/sysutils/dtc-postfix-courier
+	@cp $(BSD_SOURCE_DIR)/dtc-postfix-courier/Makefile $(BSD_BUILD_DIR)/sysutils/dtc-postfix-courier
+	@cp $(BSD_SOURCE_DIR)/dtc-postfix-courier/pkg-descr $(BSD_BUILD_DIR)/sysutils/dtc-postfix-courier
+	@mkdir -p $(BSD_BUILD_DIR)/sysutils/dtc-toaster
+	@cp $(BSD_SOURCE_DIR)/dtc-toaster/Makefile $(BSD_BUILD_DIR)/sysutils/dtc-toaster
+	@cp $(BSD_SOURCE_DIR)/dtc-toaster/pkg-descr $(BSD_BUILD_DIR)/sysutils/dtc-toaster
+
+	@echo "===> Creating archive file"
+	cd $(BSD_BUILD_DIR) && tar -czf dtcBSDport-$(BSD_VERSION).tar.gz sysutils && cd $(CURDIR)
+	@mv $(BSD_BUILD_DIR)/dtcBSDport-"$(BSD_VERSION)".tar.gz $(BSD_DEST_DIR)
+	@echo "--- Successfully made BSD port tree $(BSD_DEST_DIR)/dtcBSDport-$(BSD_VERSION).tar.gz ---"
+	@echo "===> Deleting temp files"
+	rm -r $(BSD_BUILD_DIR)
 
 BIN_FOLDER_CONTENT=bin/buildGentoo bin/makeDebian bin/makeGentoo bin/makeSlackware bin/README.how_to_build_a_pachage bin/version \
 bin/buildRelease bin/makeBSD bin/makeDebianSource bin/makeOsx bin/makeTarball bin/release bin/clean bin/makeDTC \
