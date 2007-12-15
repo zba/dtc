@@ -113,5 +113,6 @@ cd $CURDIR
 
 mv ${BUILD_DIR}/dtcBSDport-"$VERSION".tar.gz $DEST_DIR
 
+echo "--- Successfully made BSD port tree ${DEST_DIR}/dtcBSDport-${VERSION}.tar.gz ---"
 echo "===> Deleting temp files"
 rm -r ${BUILD_DIR}
