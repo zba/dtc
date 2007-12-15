@@ -84,7 +84,7 @@ function mail_account_generate_maildrop(){
 
 			system("maildirmake -q  $quota_maildrop $boxpath/Maildir");
 			if($quota_maildrop==0){
-				if(file_exists("$boxpath/Maildir/maildirsize"){
+				if(file_exists("$boxpath/Maildir/maildirsize")){
 					system("rm $boxpath/Maildir/maildirsize");
 				}
 			}else{

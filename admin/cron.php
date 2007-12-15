@@ -559,7 +559,7 @@ $cronjob_table_content = getCronFlags();
 checkTimeAndLaunchNetBackupScript();
 // Echo the console:
 echo("Report for this job:\n");
-echo($console);
+echo( mixed str_replace("<br>","\n",$console));
 printEndTime();
 exit();
 
