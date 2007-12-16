@@ -115,8 +115,7 @@ debian-packages:
 	@echo "-> Deleting temp file"
 	@rm -r debian/tmp
 	@echo "-> Building the package"
-	@dpkg-buildpackage -rfakeroot
-                                                                                
+	@dpkg-buildpackage -rfakeroot -sa                                                                                
 
 bsd-ports-packages:
 	@echo "--- Making source snapshot $(BSD_ARCH_NAME) ---"
