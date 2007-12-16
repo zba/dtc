@@ -49,14 +49,23 @@ MAN_DIR = $(DESTDIR)$(MANUAL_DIR)
 # /usr/bin
 BINARY_DIR = $(DESTDIR)$(BIN_DIR)
 
-INSTALL = install
+INSTALL = install -D
+INSTALL_DIR = install -d
 
-PHP_RIGHTS="0644"
-ROOT_SCRIPTS_RIGHTS="0750"
-DTC_SCRIPTS_RIGHTS="0755"
-ROOT_ONLY_READ="0640"
-NORMAL_FOLDER="0755"
-MANPAGE_RIGHTS="0644"
+PHP_RIGHTS=0644
+ROOT_SCRIPTS_RIGHTS=0750
+DTC_SCRIPTS_RIGHTS=0755
+ROOT_ONLY_READ=0640
+NORMAL_FOLDER=0755
+MANPAGE_RIGHTS=0644
+
+BIN_FOLDER_CONTENT=bin/buildGentoo bin/makeGentoo bin/makeSlackware bin/README.how_to_build_a_pachage bin/version \
+bin/buildRelease bin/makeDebianSource bin/makeOsx bin/makeTarball bin/release bin/clean bin/makeDTC bin/makeRedhat bin/prepareDebianTree bin/sources
+
+BSD_MAKE_PKG_SOURCES=$(BSD_SOURCE_DIR)/php4-dtc-slave  $(BSD_SOURCE_DIR)/proftpd-dtc-slave  $(BSD_SOURCE_DIR)/README.html  \
+$(BSD_SOURCE_DIR)/sendpr.template $(BSD_SOURCE_DIR)/dtc/install.sh $(BSD_SOURCE_DIR)/dtc/Makefile $(BSD_SOURCE_DIR)/dtc/pkg-descr  \
+$(BSD_SOURCE_DIR)/dtc/pkg-message $(BSD_SOURCE_DIR)/dtc/uninstall.sh $(BSD_SOURCE_DIR)/dtc-postfix-courier/Makefile \
+$(BSD_SOURCE_DIR)/dtc-postfix-courier/pkg-descr $(BSD_SOURCE_DIR)/dtc-toaster/Makefile  $(BSD_SOURCE_DIR)/dtc-toaster/pkg-descr
 
 default:
 	@echo "******************************************************************"
@@ -83,6 +92,15 @@ all:
 
 clean:
 	rm -r $(BSD_BUILD_DIR)
+
+source-copy:
+	@if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
+	@echo "-> Copying sources"
+	@mkdir -p $(DESTFOLDER)/bin
+	@cp -rf admin client debian doc email etc Makefile shared $(DESTFOLDER)
+	mkdir -p $(DESTFOLDER)/src/bsd/tmp/$(PKG_BUILD)
+	for i in $(BSD_MAKE_PKG_SOURCES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(DESTFOLDER)/$$i ; done
+	@cp -rf $(BIN_FOLDER_CONTENT) $(DESTFOLDER)/bin
 
 bsd-ports-packages:
 	@echo "--- Making source snapshot $(BSD_ARCH_NAME) ---"
@@ -145,21 +163,7 @@ bsd-ports-packages:
 	@echo "===> Deleting temp files"
 	rm -r $(BSD_BUILD_DIR)
 
-BIN_FOLDER_CONTENT=bin/buildGentoo bin/makeDebian bin/makeGentoo bin/makeSlackware bin/README.how_to_build_a_pachage bin/version \
-bin/buildRelease bin/makeDebianSource bin/makeOsx bin/makeTarball bin/release bin/clean bin/makeDTC bin/makeRedhat bin/prepareDebianTree bin/sources
 
-BSD_MAKE_PKG_SOURCES=$(BSD_SOURCE_DIR)/php4-dtc-slave  $(BSD_SOURCE_DIR)/proftpd-dtc-slave  $(BSD_SOURCE_DIR)/README.html  \
-$(BSD_SOURCE_DIR)/sendpr.template $(BSD_SOURCE_DIR)/dtc/install.sh $(BSD_SOURCE_DIR)/dtc/Makefile $(BSD_SOURCE_DIR)/dtc/pkg-descr  \
-$(BSD_SOURCE_DIR)/dtc/pkg-message $(BSD_SOURCE_DIR)/dtc/uninstall.sh $(BSD_SOURCE_DIR)/dtc-postfix-courier/Makefile \
-$(BSD_SOURCE_DIR)/dtc-postfix-courier/pkg-descr $(BSD_SOURCE_DIR)/dtc-toaster/Makefile  $(BSD_SOURCE_DIR)/dtc-toaster/pkg-descr
-
-source-copy:
-	@if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
-	@echo "-> Copying sources"
-	@mkdir -p $(DESTFOLDER)/bin
-	@cp -rf admin client debian doc email etc Makefile shared $(DESTFOLDER)
-	@for i in $(BSD_MAKE_PKG_SOURCES) ; do $(INSTALL) -m PHP_RIGHTS $(DESTFOLDER)/$$i ; done
-	@cp -rf $(BIN_FOLDER_CONTENT) $(DESTFOLDER)/bin
 
 ############# PHP SCRIPTS ##############
 # Owned by root, but executable by dtc user (ran by apache)
