@@ -51,12 +51,21 @@ BINARY_DIR = $(DESTDIR)$(BIN_DIR)
 
 INSTALL = install
 
+PHP_RIGHTS="0644"
+ROOT_SCRIPTS_RIGHTS="0750"
+DTC_SCRIPTS_RIGHTS="0755"
+ROOT_ONLY_READ="0640"
+NORMAL_FOLDER="0755"
+MANPAGE_RIGHTS="0644"
+
 default:
-	@echo ""
-	@echo "*** Error: there is no default target in this Makefile! ***"
-	@echo "Please select one of the following targets:"
-	@echo "install-dtc-stats-daemon, install-dtc-common"
-	@echo "and don't forget to set the following variables:"
+	@echo "******************************************************************"
+	@echo "******* Error: there is no default target in this Makefile! ******"
+	@echo "******************************************************************"
+	@echo "*Please select one of the following targets:                     *"
+	@echo "*install-dtc-stats-daemon, install-dtc-common, bsd-ports-packages*"
+	@echo "******************************************************************"
+	@echo "and don't forget that you can set the following variables:"
 	@echo "DESTDIR="$(DESTDIR)
 	@echo "DTC_APP_DIR="$(DTC_APP_DIR)
 	@echo "DTC_GEN_DIR="$(DTC_GEN_DIR)
@@ -72,6 +81,8 @@ all:
 	@echo There is nothing to build: dtc is an arch independant package!!!
 	exit 0
 
+clean:
+	rm -r $(BSD_BUILD_DIR)
 
 bsd-ports-packages:
 	@echo "--- Making source snapshot $(BSD_ARCH_NAME) ---"
@@ -135,13 +146,19 @@ bsd-ports-packages:
 	rm -r $(BSD_BUILD_DIR)
 
 BIN_FOLDER_CONTENT=bin/buildGentoo bin/makeDebian bin/makeGentoo bin/makeSlackware bin/README.how_to_build_a_pachage bin/version \
-bin/buildRelease bin/makeBSD bin/makeDebianSource bin/makeOsx bin/makeTarball bin/release bin/clean bin/makeDTC \
-bin/makeRedhat bin/prepareDebianTree bin/sources
+bin/buildRelease bin/makeDebianSource bin/makeOsx bin/makeTarball bin/release bin/clean bin/makeDTC bin/makeRedhat bin/prepareDebianTree bin/sources
+
+BSD_MAKE_PKG_SOURCES=$(BSD_SOURCE_DIR)/php4-dtc-slave  $(BSD_SOURCE_DIR)/proftpd-dtc-slave  $(BSD_SOURCE_DIR)/README.html  \
+$(BSD_SOURCE_DIR)/sendpr.template $(BSD_SOURCE_DIR)/dtc/install.sh $(BSD_SOURCE_DIR)/dtc/Makefile $(BSD_SOURCE_DIR)/dtc/pkg-descr  \
+$(BSD_SOURCE_DIR)/dtc/pkg-message $(BSD_SOURCE_DIR)/dtc/uninstall.sh $(BSD_SOURCE_DIR)/dtc-postfix-courier/Makefile \
+$(BSD_SOURCE_DIR)/dtc-postfix-courier/pkg-descr $(BSD_SOURCE_DIR)/dtc-toaster/Makefile  $(BSD_SOURCE_DIR)/dtc-toaster/pkg-descr
+
 source-copy:
 	@if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
 	@echo "-> Copying sources"
 	@mkdir -p $(DESTFOLDER)/bin
 	@cp -rf admin client debian doc email etc Makefile shared $(DESTFOLDER)
+	@for i in $(BSD_MAKE_PKG_SOURCES) ; do $(INSTALL) -m PHP_RIGHTS $(DESTFOLDER)/$$i ; done
 	@cp -rf $(BIN_FOLDER_CONTENT) $(DESTFOLDER)/bin
 
 ############# PHP SCRIPTS ##############
@@ -274,13 +291,6 @@ reminders_msg/vps_will_expire.txt \
 registration_msg/dedicated_open.txt registration_msg/shared_open.txt registration_msg/vps_open.txt \
 signature.txt messages_header.txt \
 logrotate.template
-
-PHP_RIGHTS="0644"
-ROOT_SCRIPTS_RIGHTS="0750"
-DTC_SCRIPTS_RIGHTS="0755"
-ROOT_ONLY_READ="0640"
-NORMAL_FOLDER="0755"
-MANPAGE_RIGHTS="0644"
 
 CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install admin/tables \
 shared/gfx/menu shared/gfx/bar shared/gfx/skin/green2 shared/gfx/skin/muedgrey shared/gfx/skin/green_gpl/icons \
