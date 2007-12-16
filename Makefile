@@ -102,6 +102,22 @@ source-copy:
 	@for i in $(BSD_MAKE_PKG_SOURCES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(DESTFOLDER)/$$i ; done
 	@cp -rf $(BIN_FOLDER_CONTENT) $(DESTFOLDER)/bin
 
+debian-packages:
+	@echo "--- Making debian source package dtc_$(VERS).orig.tar.gz ---"
+	@mkdir -p debian/tmp/dtc-$(VERS)
+	@echo "-> Copying source package files with make source-copy DESTFOLDER=debian/tmp/dtc-$(VERS)"
+	@make source-copy DESTFOLDER=debian/tmp/dtc-$(VERS)
+	@echo "-> Creating archive with tar -czf ../../../dtc_$(VERS).orig.tar.gz dtc-$(VERS)"
+	@echo "-> --------------------------------"
+	@echo "-> Uncomment this to make a release"
+	@echo "-> --------------------------------"
+	#@cd debian/tmp && tar -czf ../../../dtc_$(VERS).orig.tar.gz dtc-$(VERS) && cd $(CURDIR)
+	@echo "-> Deleting temp file"
+	@rm -r debian/tmp
+	@echo "-> Building the package"
+	@dpkg-buildpackage -rfakeroot
+                                                                                
+
 bsd-ports-packages:
 	@echo "--- Making source snapshot $(BSD_ARCH_NAME) ---"
 	@mkdir -p $(BSD_BUILD_DIR)
