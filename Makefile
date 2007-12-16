@@ -98,8 +98,8 @@ source-copy:
 	@echo "-> Copying sources"
 	@mkdir -p $(DESTFOLDER)/bin
 	@cp -rf admin client debian doc email etc Makefile shared $(DESTFOLDER)
-	mkdir -p $(DESTFOLDER)/src/bsd/tmp/$(PKG_BUILD)
-	for i in $(BSD_MAKE_PKG_SOURCES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(DESTFOLDER)/$$i ; done
+	@mkdir -p $(DESTFOLDER)/src/bsd/tmp/$(PKG_BUILD)
+	@for i in $(BSD_MAKE_PKG_SOURCES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(DESTFOLDER)/$$i ; done
 	@cp -rf $(BIN_FOLDER_CONTENT) $(DESTFOLDER)/bin
 
 bsd-ports-packages:
