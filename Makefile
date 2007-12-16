@@ -73,6 +73,7 @@ default:
 	@echo "******************************************************************"
 	@echo "*Please select one of the following targets:                     *"
 	@echo "*install-dtc-stats-daemon, install-dtc-common, bsd-ports-packages*"
+	@echo "*or make debian-pacakges                                         *"
 	@echo "******************************************************************"
 	@echo "and don't forget that you can set the following variables:"
 	@echo "DESTDIR="$(DESTDIR)
