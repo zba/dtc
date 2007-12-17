@@ -204,7 +204,7 @@ CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-no
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
 client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php \
 client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php \
-client/vps_stats_cpu.php client/vps_stats_hdd.php client/vps_stats_network.php client/vps_stats_swap.php
+client/vps_stats_cpu.php client/vps_stats_hdd.php client/vps_stats_network.php client/vps_stats_swap.php client/get_vps_location_status.php
 
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
 
