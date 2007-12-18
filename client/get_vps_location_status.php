@@ -68,6 +68,8 @@ body, h2, h3, h4, h5, h6, td {
 	color: #000000;
 }
 </style>
-".displayAvailableSpace()."";
+".displayAvailableSpace()."<br><br>
+
+<a target=\"_top\" href=\"https://".$_SERVER["HTTP_HOST"]."/dtc/new_account.php\">Register for a VPS hosting here</a>";
 
 ?>

@@ -1,5 +1,12 @@
 dtc (0.27.3-1) unstable; urgency=low
 
+  * New upstream release
+  * Lot's of requests in debconf are now guessed (like hostname and IP),
+    also lot's of them have now very low priority.
+  * The postinst now does less things, it's done by dtc's install script now
+  * The debian/rules now uses the provided "make install" from upstream to
+    build the binary packages.
+  * Bumped Standards-Version to 3.7.3
   * [v0.26.3] Upgraded embed a copy of wz_tooltip (Closes: #429214)
   * [v0.25.9] Added dtc-stats-daemon package to the build.
   * [v0.25.9] Repaired the debian dtc-chroot-shell that was previously broken
