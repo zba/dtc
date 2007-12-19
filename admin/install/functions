@@ -3707,7 +3707,7 @@ createChrootTemplate () {
 
 	# Adds the possibility to customize the chroot and helps upgrading between versions
 	if [ -d $conf_chroot_path.custom ] ; then
-		cp -fpR $conf_chroot_path.custom/* $conf_chroot_path/
+		cp -fpR $conf_chroot_path.custom/* $conf_chroot_path/ || true # Make it possible to fail if the directory is empty
 	else
 		# Create the directory to show to the user he can use it
 		if ! [ -e $conf_chroot_path.custom ] ; then
