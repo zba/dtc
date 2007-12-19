@@ -739,11 +739,22 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 
 	// Writing the logrotate configuration file
 	if($logrotate_file != ""){
-			$fname = "logrotate.template";
-			$fp = fopen($fname,"r");
-			if($fp != NULL){
-				$logrotate_template = fread($fp,filesize($fname));
-				fclose($fp);
+			$fname = "";
+			if( file_exists("/etc/dtc/logrotate.template") ){
+				$fname "/etc/dtc/logrotate.template";
+			}else if( file_exists("/usr/local/etc/dtc/logrotate.template") ){
+				$fname = "/usr/local/etc/dtc/logrotate.template";
+			}
+			if($fname != ""){
+				$fp = fopen($fname,"r");
+				if($fp != NULL){
+					$logrotate_template = fread($fp,filesize($fname));
+					fclose($fp);
+				}else{
+					$logrotate_template = "";
+				}
+			}else{
+					$logrotate_template = "";
 			}
 			$logrotate_file .= " {
 $logrotate_template
