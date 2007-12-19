@@ -7,7 +7,7 @@ Standards-Version: 3.7.3
 Dm-Upload-Allowed: yes
 Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
 Vcs-Git: http://git.gplhost.com/dtc.git
-Homepage: <http://www.gplhost.com/software-dtc.html>
+Homepage: http://www.gplhost.com/software-dtc.html
 
 Package: dtc-common
 Architecture: all
