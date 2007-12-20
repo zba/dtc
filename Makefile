@@ -104,6 +104,7 @@ source-copy:
 	@mkdir -p $(DESTFOLDER)/bin
 	@cp -rf admin client doc email etc Makefile shared $(DESTFOLDER)
 	@mkdir -p $(DESTFOLDER)/src/bsd/tmp/$(PKG_BUILD)
+	@mkdir -p $(DESTFOLDER)/src/bsd/dtc  $(DESTFOLDER)/src/bsd/dtc-postfix-courier $(DESTFOLDER)/src/bsd/dtc-toaster
 	@for i in $(BSD_MAKE_PKG_SOURCES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(DESTFOLDER)/$$i ; done
 	@cp -rf $(BIN_FOLDER_CONTENT) $(DESTFOLDER)/bin
 
