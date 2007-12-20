@@ -13,7 +13,7 @@ VERS=0.27.3
 RELS=1
 
 VERSION=$(VERS)"-"$(RELS)
-CURDIR=`pwd`
+CURDIR?=`pwd`
 
 # BSD stuffs
 BSD_VERSION=$(VERS).$(RELS)
@@ -148,24 +148,24 @@ bsd-ports-packages:
 	@echo "-> Calling make install-dtc-common to calculate list in $(PKG_PLIST_BUILD)"
 	@make install-dtc-common DESTDIR=$(PKG_PLIST_BUILD) DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
 		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd 2>&1 >/dev/null
-	@echo "-> Building list of files"
-	@cd $(PKG_PLIST_BUILD) && find . -type f | sed "s/\.\/usr\/local/%%LOCALBASE%%/" >$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp && cd $(CURDIR)
-	@echo "%%LOCALBASE%%/www/dtc/admin/gfx" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/www/dtc/admin/imgcache" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/www/dtc/shared/mysql_config.php" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/www/dtc/client/gfx" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/www/dtc/client/imgcache" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
-	@echo "sbin/dtc-install" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
-	@echo "sbin/dtc-deinstall" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/dtc/email/gfx" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/dtc/email/imgcache" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp
+	echo "-> Building list of files"
+	cd $(PKG_PLIST_BUILD) && find . -type f | sed "s/\.\/usr\/local/%%LOCALBASE%%/" >$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp && cd $(CURDIR)
+	@echo "%%LOCALBASE%%/www/dtc/admin/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/www/dtc/admin/imgcache" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/www/dtc/shared/mysql_config.php" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/www/dtc/client/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/www/dtc/client/imgcache" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "sbin/dtc-install" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "sbin/dtc-deinstall" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/dtc/email/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "%%LOCALBASE%%/dtc/email/imgcache" >>$(PORT_BUILD)/pkg-plist.tmp
 	@cd $(PKG_PLIST_BUILD) && find usr/local -type d -printf "@dirrm %h/%f\n" | grep -v "/etc" | sed "s/usr\/local/%%LOCALBASE%%/" | sort -r >>$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp && cd $(CURDIR)
-	@NBR_LINE=`cat $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp | wc -l` && cat $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp | head -n $$(( $$NBR_LINE - 2 )) >$(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp2
-	@cat $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp2 | grep -v "mysql_config.php" >$(CURDIR)/$(PORT_BUILD)/pkg-plist
-	@echo "@dirrm %%DTCROOT%%/etc/zones" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist
-	@echo "@dirrm %%DTCROOT%%/etc" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist
-	@echo "@dirrm %%DTCROOT%%" >>$(CURDIR)/$(PORT_BUILD)/pkg-plist
-	@rm $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp $(CURDIR)/$(PORT_BUILD)/pkg-plist.tmp2
+	@NBR_LINE=`cat $(PORT_BUILD)/pkg-plist.tmp | wc -l` && cat $(PORT_BUILD)/pkg-plist.tmp | head -n $$(( $$NBR_LINE - 2 )) >$(PORT_BUILD)/pkg-plist.tmp2
+	@cat $(PORT_BUILD)/pkg-plist.tmp2 | grep -v "mysql_config.php" >$(PORT_BUILD)/pkg-plist
+	@echo "@dirrm %%DTCROOT%%/etc/zones" >>$(PORT_BUILD)/pkg-plist
+	@echo "@dirrm %%DTCROOT%%/etc" >>$(PORT_BUILD)/pkg-plist
+	@echo "@dirrm %%DTCROOT%%" >>$(PORT_BUILD)/pkg-plist
+	@rm $(PORT_BUILD)/pkg-plist.tmp $(PORT_BUILD)/pkg-plist.tmp2
 	@rm -r $(PKG_PLIST_BUILD)
 
 	@echo "-> Adding slave ports to the archive"
