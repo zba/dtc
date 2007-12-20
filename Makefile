@@ -86,6 +86,7 @@ default:
 	@echo "MANUAL_DIR="$(MANUAL_DIR)
 	@echo "BIN_DIR="$(BIN_DIR)
 	@echo "UNIX_TYPE="$(UNIX_TYPE)
+	@echo "CURDIR="$(CURDIR)
 	@echo ""
 	@exit 1
 
