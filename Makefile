@@ -13,7 +13,7 @@ VERS=0.27.3
 RELS=1
 
 VERSION=$(VERS)"-"$(RELS)
-CURDIR?=$(shell echo `pwd`)
+CURDIR=`pwd`
 
 # BSD stuffs
 BSD_VERSION=$(VERS).$(RELS)
