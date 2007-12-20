@@ -8,10 +8,12 @@
 # CONFIG_DIR=/etc DTC_DOC_DIR=/usr/share/doc \
 # MANUAL_DIR=/usr/share/man
 
-VERS=$(shell echo `cat bin/version`)
-RELS=$(shell echo `cat bin/release`)
+# Version and release are set here:
+VERS=0.27.3
+RELS=1
+
 VERSION=$(VERS)"-"$(RELS)
-CURDIR=$(shell echo `pwd`)
+CURDIR?=$(shell echo `pwd`)
 
 # BSD stuffs
 BSD_VERSION=$(VERS).$(RELS)
@@ -24,7 +26,7 @@ PORT_BUILD=$(BSD_BUILD_DIR)/sysutils/dtc
 SRC_COPY_DIR=$(CURDIR)/$(BSD_BUILD_DIR)/$(PKG_BUILD)
 PKG_PLIST_BUILD=$(CURDIR)/${BSD_BUILD_DIR}/PKG_PLIST_BUILD
 
-INSTALL=install -D
+INSTALL?=install -D
 INSTALL_DIR=install -d
 
 # Set defaults (as for Debian as normal platform)
