@@ -87,6 +87,7 @@ default:
 	@echo "BIN_DIR="$(BIN_DIR)
 	@echo "UNIX_TYPE="$(UNIX_TYPE)
 	@echo "CURDIR="$(CURDIR)
+	@echo "INSTALL="$(INSTALL)
 	@echo ""
 	@exit 1
 
