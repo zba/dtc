@@ -741,7 +741,7 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	if($logrotate_file != ""){
 			$fname = "";
 			if( file_exists("/etc/dtc/logrotate.template") ){
-				$fname "/etc/dtc/logrotate.template";
+				$fname = "/etc/dtc/logrotate.template";
 			}else if( file_exists("/usr/local/etc/dtc/logrotate.template") ){
 				$fname = "/usr/local/etc/dtc/logrotate.template";
 			}

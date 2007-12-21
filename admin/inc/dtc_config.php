@@ -859,6 +859,11 @@ function drawNamedConfig(){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+			"autogen_default_subdomains" => array(
+				"legend" => "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):",
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"ip_allowed_dns_transfer" => array(
 				"legend" => $txt_cfg_allowed_dns_transfer_list[$lang],
 				"type" => "text",
