@@ -440,8 +440,6 @@ function registration_form(){
         global $txt_desired_domain_name;	
         global $conf_skin;
         global $txt_is_company;
-        global $txt_yes;
-        global $txt_no;
 	global $lang;
 	global $txt_draw_client_info_familyname;
 	global $txt_draw_client_info_firstname;
@@ -642,8 +640,8 @@ function registration_form(){
 	<td><input type=\"text\" name=\"firstname\" value=\"$frm_firstname\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">$txt_is_company[$lang]?</td>
-	<td><input type=\"radio\" name=\"iscomp\" value=\"yes\"$compyes>$txt_yes[$lang]
-<input type=\"radio\" name=\"iscomp\" value=\"no\"$compno>$txt_no[$lang]</td>
+	<td><input type=\"radio\" name=\"iscomp\" value=\"yes\"$compyes>"._("Yes")."
+<input type=\"radio\" name=\"iscomp\" value=\"no\"$compno>"._("No")."</td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_comp_name[$lang]."</td>
 	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>

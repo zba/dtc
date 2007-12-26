@@ -1560,36 +1560,6 @@ $txt_go_to_client_panel = array(
 	"pt" => "Ir para a área de clientes"
 	);
 
-$txt_no = array(
-	"fr" => "Non",
-	"en" => "No",
-	"hu" => "Nem",
-	"it" => "No",
-	"nl" => "Nee",
-	"ru" => "TRANS",
-	"de" => "nein",
-	"zh" => "·ñ",
-	"pl" => "Nie",
-	"se" => "TRANS SVENSKA",
-	"es" => "No",
-	"pt" => "Não"
-	);
-
-$txt_yes = array(
-	"fr" => "Oui",
-	"en" => "Yes",
-	"hu" => "Igen",
-	"it" => "Sì",
-	"nl" => "Ja",
-	"ru" => "TRANS",
-	"de" => "ja",
-	"zh" => "ÊÇ",
-	"pl" => "Tak",
-	"se" => "TRANS SVENSKA",
-	"es" => "S&iacute;",
-	"pt" => "Sim"
-	);
-
 $txt_pending = array(
 	"fr" => "En suspens",
 	"en" => "Pending",

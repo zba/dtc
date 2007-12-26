@@ -24,82 +24,50 @@ function skin_DTCConfigMenu_Default ($dsc){
 
 
 function drawDTCConfigMenu(){
-	global $lang;
-	global $txt_cfg_path_conf_title;
-	global $txt_cfg_name_zonefileconf_title;
-	global $txt_cfg_payconf_title;
-
-	global $txt_cfg_general_menu_entry;
-	global $txt_cfg_ip_and_network;
-	global $txt_cfg_backup_and_mx_menu_entry;
-	global $txt_cfg_registryapi_menu_entry;
-	global $txt_cfg_companies_menu_entry;
-	global $txt_cfg_invoicing_menu_entry;
-	global $txt_cfg_ftp_backup_menu_entry;
-	global $txt_cfg_renewals_menu_entry;
-	global $txt_cfg_support_ticket_menu_entry;
-	global $txt_cfg_vps_servers_menu_entry;
-	global $txt_cfg_ssl_ips_addr_menu_entry;
-
 	$dsc = array(
 		"general" => array(
-			// $txt_cfg_general_menu_entry[$lang]
-			"text" => _("General"),
+			"text" => gettext("General"),
 			"icon" => "box_wnb_nb_picto-general.gif"),
 		"ip" => array(
-			// $txt_cfg_ip_and_network[$lang],
-			"text" => _("IP addresses and network"),
+			"text" => gettext("IP addresses and network"),
 			"icon" => "box_wnb_nb_picto-ipaddresses.gif"),
 		"sslip" => array(
-			// $txt_cfg_ssl_ips_addr_menu_entry[$lang]
-			"text" => _("SSL IPs addresses"),
+			"text" => gettext("SSL IPs addresses"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"zonefile" => array(
-			// $txt_cfg_name_zonefileconf_title[$lang]
-			"text" => _("Named zonefiles"),
+			"text" => gettext("Named zonefiles"),
 			"icon" => "box_wnb_nb_picto-namedzonefiles.gif"),
 		"backup" => array(
-			// $txt_cfg_backup_and_mx_menu_entry[$lang]
-			"text" => _("MX and NS backup servers"),
+			"text" => gettext("MX and NS backup servers"),
 			"icon" => "box_wnb_nb_picto-mxnsservers.gif"),
 		"ftpbackup" => array(
-			// $txt_cfg_ftp_backup_menu_entry[$lang]
-			"text" => _("FTP backup"),
+			"text" => gettext("FTP backup"),
 			"icon" => "box_wnb_nb_picto-ftpbackup.gif"),
 		"ticket" => array(
-			// $txt_cfg_support_ticket_menu_entry[$lang]
-			"text" => _("Support ticket"),
+			"text" => gettext("Support ticket"),
 			"icon" => "box_wnb_nb_picto-supportickets.gif"),
 		"vps" => array(
-			// $txt_cfg_vps_servers_menu_entry[$lang]
-			"text" => _("VPS servers"),
+			"text" => gettext("VPS servers"),
 			"icon" => "box_wnb_nb_picto-vpsservers.gif"),
 		"radius" => array(
 			"text" => "Radius",
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"path" => array(
-			// $txt_cfg_path_conf_title[$lang]
-			"text" => _("Paths"),
+			"text" => gettext("Paths"),
 			"icon" => "box_wnb_nb_picto-paths.gif"),
 		"payconf" => array(
-			// $txt_cfg_payconf_title[$lang]
-			"text" => _("Payment gateway"),
+			"text" => gettext("Payment gateway"),
 			"icon" => "box_wnb_nb_picto-payementgateway.gif"),
 		"renewals" => array(
-			// $txt_cfg_renewals_menu_entry[$lang]
 			"text" => _("Renewals"),
 			"icon" => "box_wnb_nb_picto-renewals.gif"),
 		"registryapi" => array(
-			// $txt_cfg_registryapi_menu_entry[$lang]
 			"text" => _("Domain name registration"),
 			"icon" => "box_wnb_nb_picto-domainnamereg.gif"),
-
 		"companies" => array(
-			// $txt_cfg_companies_menu_entry[$lang]
 			"text" => _("Companies"),
 			"icon" => "box_wnb_nb_picto-companies.gif"),
 		"invoicing" => array(
-			// $txt_cfg_invoicing_menu_entry[$lang]
 			"text" => _("Invoicing"),
 			"icon" => "box_wnb_nb_picto-invoicing.gif")
 	);
@@ -224,37 +192,33 @@ function configEditorTemplate ($dsc,$conftype="config"){
 }
 
 function drawRenewalsConfig(){
-	global $lang;
-	global $txt_cfg_vps_renewal_email_reminders_period;
-	global $txt_cfg_explanation_what_are_renewals_numbers;
-	global $txt_cfg_warnings_before_expiration;
-	global $txt_cfg_warnings_after_expiration;
-	global $txt_cfg_last_warning;
-	global $txt_cfg_shutdown_warning;
 
 	global $conf_dtcadmin_path;
 	$out = "";
 
 	$dsc = array(
-		"title" => $txt_cfg_vps_renewal_email_reminders_period[$lang],
+		"title" => _("VPS renewal email reminders periodicity"),
 		"action" => "vps_renewal_period",
 		"forward" => array("rub","sousrub"),
-		"desc" => $txt_cfg_explanation_what_are_renewals_numbers[$lang].$conf_dtcadmin_path."/reminders_msg/",
+		"desc" => _("These numbers represent the days before and after expiration.
+Warnings before and after expiration can be listed separated by |,
+while others are made of a unique value. The message templates
+are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminders_msg/",
 		"cols" => array(
 			"vps_renewal_before" => array(
-				"legend" => $txt_cfg_warnings_before_expiration[$lang],
+				"legend" => _("Warnings before expiration: "),
 				"type" => "text",
 				"size" => "16"),
 			"vps_renewal_after" => array(
-				"legend" => $txt_cfg_warnings_after_expiration[$lang],
+				"legend" => _("Warnings after expiration: "),
                                 "type" => "text",
                                 "size" => "16"),
 			"vps_renewal_lastwarning" => array(
-				"legend" => $txt_cfg_last_warning[$lang],
+				"legend" => _("Last warning: "),
                                 "type" => "text",
                                 "size" => "16"),
 			"vps_renewal_shutdown" => array(
-				"legend" => $txt_cfg_shutdown_warning[$lang],
+				"legend" => _("Shutdown warning: "),
                                 "type" => "text",
                                 "size" => "16"),
 			"message_subject_header" => array(
@@ -267,26 +231,14 @@ function drawRenewalsConfig(){
 }
 
 function drawSSLIPConfig(){
-	global $lang;
 	global $pro_mysql_ssl_ips_table;
 	global $rub;
 	global $sousrub;
 
-	global $txt_cfg_login;
-	global $txt_cfg_ssl_dedicated_ips;
-	global $txt_cfg_manage_ips_for_ssl;
-	global $txt_cfg_ip_addr;
-	global $txt_cfg_port;
-	global $txt_cfg_expire;
-	global $txt_cfg_available;
-	global $txt_yes;
-	global $txt_no;
-	global $txt_cfg_take_care_not_to_add_the_control_panel_ip;
-
 	$out = "";
 	$dsc = array(
 		"table_name" => $pro_mysql_ssl_ips_table,
-		"title" => $txt_cfg_ssl_dedicated_ips[$lang],
+		"title" => _("SSL dedicated IP addresses: "),
 		"action" => "ssl_ip_list",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -296,28 +248,27 @@ function drawSSLIPConfig(){
 				"legend" => "id"),
 			"ip_addr" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_ip_addr[$lang]),
+				"legend" => _("IPs addrs")),
 			"port" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_port[$lang]),
+				"legend" => _("NAT Port")),
 			"adm_login" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_login[$lang]),
+				"legend" => _("Login")),
 			"expire" => array(
 				"type" => "text",
 				"size" => "14",
-				"legend" => $txt_cfg_expire[$lang]),
+				"legend" => _("Expire")),
 			"available" => array(
 				"type" => "radio",
-				"legend" => $txt_cfg_available[$lang],
+				"legend" => _("Available"),
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]))
+				"display_replace" => array(_("Yes"),_("No")))
 			)
 		);
 	$out .= dtcDatagrid($dsc);
-	$out .= "<i>".$txt_cfg_take_care_not_to_add_the_control_panel_ip[$lang]."</i><br>";
+	$out .= "<i>"._("Take care not to add the control panel SSL IP itself if you don't want to have conflicts (and prevent apache from restarting)!")."</i><br>";
 	return $out;
-
 }
 
 function drawTicketConfig(){
@@ -326,24 +277,11 @@ function drawTicketConfig(){
 	global $pro_mysql_tik_cats_table;
 	global $rub;
 	global $sousrub;
-	global $txt_cfg_support_ticket_configuration;
-	global $txt_cfg_support_ticket_administrator_list;
-	global $txt_cfg_nick_name;
-	global $txt_cfg_real_name;
-	global $txt_cfg_email_addr;
-	global $txt_cfg_tik_available;
-	global $txt_cfg_ticket_categories;
-	global $txt_cfg_nick_name;
-	global $txt_cfg_real_name;
-	global $txt_yes;
-	global $txt_no;
-	global $txt_cfg_category_description;
-	global $txt_cfg_ticket_category;
 
-	$out = "<h3>".$txt_cfg_support_ticket_configuration[$lang]."</h3>";
+	$out = "<h3>"._("Support ticket configuration")."</h3>";
 	$dsc = array(
-		"table_name" => "$pro_mysql_tik_admins_table",
-		"title" => $txt_cfg_support_ticket_administrator_list[$lang],
+		"table_name" => $pro_mysql_tik_admins_table,
+		"title" => _("List of the administrators receiving request for support messages:"),
 		"action" => "tik_admins",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -353,25 +291,25 @@ function drawTicketConfig(){
 				"legend" => "id"),
 			"pseudo" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_nick_name[$lang]),
+				"legend" => _("Nick name")),
 			"realname" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_real_name[$lang]),
+				"legend" => _("Real name")),
 			"email" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_email_addr[$lang]),
+				"legend" => _("Email addr")),
 			"available" => array(
 				"type" => "radio",
-				"legend" => $txt_cfg_tik_available[$lang],
+				"legend" => _("Available"),
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]))
+				"display_replace" => array(_("Yes"),_("No")))
 			)
 		);
 	$out .= dtcDatagrid($dsc);
 
 	$dsc = array(
 		"table_name" => $pro_mysql_tik_cats_table,
-		"title" => $txt_cfg_ticket_categories[$lang],
+		"title" => _("Ticket categories:"),
 		"action" => "tik_cats",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -381,62 +319,47 @@ function drawTicketConfig(){
 				"legend" => "id"),
 			"catname" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_ticket_category[$lang]),
+				"legend" => _("Category")),
 			"catdescript" => array(
 				"type" => "text",
 				"size" => "50",
-				"legend" => $txt_cfg_category_description[$lang])));
+				"legend" => _("Category description"))));
 	$out .= dtcDatagrid($dsc);
 	return $out;
 }
 
-
 function drawFTPBacupConfig(){
-	global $txt_yes;
-	global $txt_no;
 	global $lang;
 
-	global $txt_cfg_ftp_backup_ftp_backup_config;
-	global $txt_cfg_ftp_backup_activate_ftp_backup;
-	global $txt_cfg_ftp_backup_hostname;
-	global $txt_cfg_ftp_backup_ftp_login;
-	global $txt_cfg_ftp_backup_ftp_password;
-	global $txt_cfg_ftp_backup_backup_frequency;
-	global $txt_cfg_ftp_backup_destination_folder;
-
-	global $txt_cfg_ftp_backup_daily;
-	global $txt_cfg_ftp_backup_weekly;
-	global $txt_cfg_ftp_backup_monthly;
-
 	$dsc = array(
-		"title" => $txt_cfg_ftp_backup_ftp_backup_config[$lang],
+		"title" => _("FTP backup configuration"),
 		"action" => "ftp_backup_configuration",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"ftp_backup_activate" => array(
-				"legend" => $txt_cfg_ftp_backup_activate_ftp_backup[$lang],
+				"legend" => _("Activate FTP backups:"),
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"ftp_backup_host" => array(
-				"legend" => $txt_cfg_ftp_backup_hostname[$lang],
+				"legend" => _("Hostname:"),
 				"type" => "text",
 				"size" => "30"),
 			"ftp_backup_login" => array(
-				"legend" => $txt_cfg_ftp_backup_ftp_login[$lang],
+				"legend" => _("FTP login:"),
 				"type" => "text",
 				"size" => "30"),
 			"ftp_backup_pass" => array(
-				"legend" => $txt_cfg_ftp_backup_ftp_password[$lang],
+				"legend" => _("FTP password:"),
 				"type" => "text",
 				"size" => "30"),
 			"ftp_backup_frequency" => array(
-				"legend" => $txt_cfg_ftp_backup_backup_frequency[$lang],
+				"legend" => _("Backup frequency:"),
 				"type" => "popup",
 				"values" => array("day","week","month"),
-				"display_replace" => array($txt_cfg_ftp_backup_daily[$lang],$txt_cfg_ftp_backup_weekly[$lang],$txt_cfg_ftp_backup_monthly[$lang])),
+				"display_replace" => array(_("Daily"),_("Weekly"),_("Monthly"))),
 			"ftp_backup_dest_folder" => array(
-				"legend" => $txt_cfg_ftp_backup_destination_folder[$lang],
+				"legend" => _("Destination folder:"),
 				"type" => "text",
 				"size" => "30")));
 	return configEditorTemplate ($dsc);
@@ -451,26 +374,13 @@ function drawVPSServerConfig(){
 	global $rub;
 	global $sousrub;
 	global $cc_code_array;
-	global $lang;
-	global $txt_cfg_vps_server_and_ip_addresses_registry;
-	global $txt_cfg_vps_server_list;
-	global $txt_cfg_ip_addrs;
-	global $txt_cfg_hostname;
-	global $txt_cfg_location;
-	global $txt_cfg_soap_login;
-	global $txt_cfg_soap_password;
-	global $txt_cfg_use_lvm_backend;
-	global $txt_cfg_vps_ips_for;
-	global $txt_cfg_vps_xen_number;
-	global $txt_cfg_ip_addr;
-	global $txt_cfg_available;
 
 	global $conf_main_domain;
 
-	$out = "<h3>".$txt_cfg_vps_server_and_ip_addresses_registry[$lang]."</h3>";
+	$out = "<h3>"._("VPS Server and IP addresses registry edition")."</h3>";
 	$dsc = array(
 		"table_name" => $pro_mysql_vps_server_table,
-		"title" => $txt_cfg_vps_server_list[$lang],
+		"title" => _("VPS Server list:"),
 		"action" => "vps_server_list",
 		"forward" => array("rub","sousrub"),
 		"order_by" => "hostname",
@@ -481,32 +391,33 @@ function drawVPSServerConfig(){
 				"legend" => "id"),
 			"edithost" => array(
 				"type" => "hyperlink",
-				"legend" => $txt_cfg_ip_addrs[$lang],
+				"legend" => _("IPs addrs"),
 				"text" => "Edit IPs"),
 			"hostname" => array(
 				"type" => "text",
 				"size" => "15",
-				"legend" => $txt_cfg_hostname[$lang]),
+				"legend" => _("Hostname")),
 			"location" => array(
 				"type" => "text",
 				"size" => "10",
-				"legend" => $txt_cfg_location[$lang]),
+				"legend" => _("Location")),
 			"soap_login" => array(
 				"type" => "text",
 				"size" => "7",
-				"legend" => $txt_cfg_soap_login[$lang]),
+				"legend" => _("Soap login")),
 			"soap_pass" => array(
 				"type" => "password",
 				"size" => "7",
-				"legend" => $txt_cfg_soap_password[$lang]),
+				"legend" => _("SOAP password")),
 			"country_code" => array(
 				"type" => "popup",
-				"legend" => "Country",
+				"legend" => _("Country"),
 				"values" => array_keys($cc_code_array),
 				"display_replace" => array_values($cc_code_array)),
 			"lvmenable" => array(
 				"type" => "radio",
-				"legend" => $txt_cfg_use_lvm_backend[$lang],
+				"legend" => _("Use LVM backend"),
+				"display_replace" => array(_("Yes"),_("No")),
 				"values" => array("yes","no"))));
 	$vps_server_list = dtcDatagrid($dsc);
 	$out .= $vps_server_list;
@@ -517,7 +428,7 @@ function drawVPSServerConfig(){
 		$a = mysql_fetch_array($r);
 		$dsc = array(
 			"table_name" => $pro_mysql_vps_ip_table,
-			"title" => $txt_cfg_vps_ips_for[$lang].$a["hostname"].":",
+			"title" => _("VPS IPs for ").$a["hostname"].":",
 			"where_condition" => "vps_server_hostname='".$a["hostname"]."'",
 			"order_by" => "vps_xen_name",
 			"action" => "vps_server_ip_list",
@@ -529,13 +440,14 @@ function drawVPSServerConfig(){
 					"legend" => "id"),
 				"vps_xen_name" => array(
 					"type" => "text",
-					"legend" => $txt_cfg_vps_xen_number[$lang]),
+					"legend" => _("VPS xen number")),
 				"ip_addr" => array(
 					"type" => "text",
-					"legend" => $txt_cfg_ip_addr[$lang]),
+					"legend" => _("IPs addrs")),
 				"available" => array(
 					"type" => "radio",
-					"legend" => $txt_cfg_available[$lang],
+					"legend" => _("Available"),
+					"display_replace" => array(_("Yes"),_("No")),
 					"values" => array("yes","no")))
 			);
 		$out .= dtcDatagrid($dsc);
@@ -596,19 +508,13 @@ function drawRegistrySelection(){
 }
 
 function drawGeneralConfig(){
-	global $txt_cfg_general;
 	global $txt_cfg_demo_version;
-	global $txt_cfg_use_javascript;
-	global $txt_cfg_use_ssl;
 	global $txt_cfg_use_domain_based_ftp_logins;
 	global $txt_cfg_session_expir_time;
 	global $txt_cfg_select_type_of_skin;
 	global $txt_cfg_daemon;
 	global $txt_cfg_skin_chooser;
-	global $txt_yes;
-	global $txt_no;
 	global $txt_cfg_this_server_location;
-	global $txt_cfg_selling_conditions_url;
 	global $txt_cfg_use_domain_based_ssh_logins;
 	global $txt_cfg_mta_mail_transport_agent;
 	global $txt_cfg_use_cyrus;
@@ -630,41 +536,41 @@ function drawGeneralConfig(){
 	$out = "";
 
 	$dsc = array(
-		"title" => $txt_cfg_general[$lang],
+		"title" => _("General"),
 		"action" => "general_config_editor",
 		"forward" => array("rub"),
 		"cols" => array(
 			"use_javascript" => array(
-				"legend" => $txt_cfg_use_javascript[$lang],
+				"legend" => _("Use javascript:"),
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"use_ssl" => array(
-				"legend" => $txt_cfg_use_ssl[$lang],
+				"legend" => _("Use SSL:"),
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"domain_based_ftp_logins" => array(
 				"legend" => $txt_cfg_use_domain_based_ftp_logins[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"domain_based_ssh_logins" => array(
 				"legend" => $txt_cfg_use_domain_based_ssh_logins[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"session_expir_minute" => array(
 				"legend" => $txt_cfg_session_expir_time[$lang],
 				"type" => "text",
 				"size" => "10"),
 			"this_server_country_code" => array(
 				"type" => "popup",
-				"legend" => $txt_cfg_this_server_location[$lang],
+				"legend" => _("This server location:"),
 				"values" => array_keys($cc_code_array),
 				"display_replace" => array_values($cc_code_array)),
 			"selling_conditions_url" => array(
-				"legend" => $txt_cfg_selling_conditions_url[$lang],
+				"legend" => _("Selling conditions URL:"),
 				"type" => "text",
 				"size" => "40")));
 	$out .= configEditorTemplate ($dsc);
@@ -682,27 +588,27 @@ function drawGeneralConfig(){
 				"type" => "radio",
 				"legend" => $txt_cfg_use_cyrus[$lang],
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"use_webalizer" => array(
 				"type" => "radio",
 				"legend" => "Use webalizer",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"webalizer_country_graph" => array(
 				"legend" => $txt_cfg_webalizer_country_graph[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"use_awstats" => array(
 				"type" => "radio",
 				"legend" => "Use awstats",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"use_visitors" => array(
 				"type" => "radio",
 				"legend" => "Use visitors",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"user_mysql_type" => array(
 				"legend" => $txt_cfg_location_of_users_database[$lang],
 				"type" => "radio",
@@ -764,8 +670,6 @@ function drawNetworkConfig(){
 	global $txt_cfg_main_software_config;
 
 	global $lang;
-	global $txt_yes;
-	global $txt_no;
 
 	$dsc = array(
 		"title" => $txt_cfg_main_software_config[$lang],
@@ -784,12 +688,12 @@ function drawNetworkConfig(){
 				"legend" => $txt_cfg_use_multiple_ip[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"use_nated_vhost" => array(
 				"legend" => $txt_cfg_use_nated_vhost[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"nated_vhost_ip" => array(
 				"legend" => $txt_cfg_nated_vhost_ip[$lang],
 				"type" => "text",
@@ -824,11 +728,7 @@ function drawNamedConfig(){
 	global $conf_ip_allowed_dns_transfer;
 	global $conf_use_cname_for_subdomains;
 	global $lang;
-	global $txt_yes;
-	global $txt_no;
 
-	
-	global $txt_cfg_name_zonefileconf_title;
 	global $txt_cfg_main_mx_addr;
 	global $txt_cfg_mail_addr_webmaster;
 	global $txt_cfg_primary_dns_server_addr;
@@ -839,7 +739,7 @@ function drawNamedConfig(){
 	global $txt_cfg_use_cname_for_subdomains;
 
 	$dsc = array(
-		"title" => $txt_cfg_name_zonefileconf_title[$lang],
+		"title" => _("Named zonefiles"),
 		"action" => "named_zonefile_config_editor",
 		"forward" => array("rub","sousrub"),
 		"edit_callback" => "namedEditionCallback",
@@ -872,12 +772,12 @@ function drawNamedConfig(){
 				"legend" => $txt_cfg_use_cname_for_subdomains[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"autogen_default_subdomains" => array(
 				"legend" => _("Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"),
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"ip_allowed_dns_transfer" => array(
 				"legend" => $txt_cfg_allowed_dns_transfer_list[$lang],
 				"type" => "text",
@@ -1035,8 +935,6 @@ function drawBackupConfig(){
 
 function drawRegistryApiConfig(){
 	global $lang;
-	global $txt_yes;
-	global $txt_no;
 
 	global $pro_mysql_config_table;
 
@@ -1064,7 +962,7 @@ function drawRegistryApiConfig(){
 				"legend" => "Use registrar API:",
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"srs_crypt" => array(
 				"legend" => $txt_cfg_use_des_or_blowfish[$lang],
 				"type" => "radio",
@@ -1090,8 +988,6 @@ function drawRegistryApiConfig(){
 
 function drawDTCpayConfig(){
 	global $lang;
-  	global $txt_yes;
-  	global $txt_no;
 	global $txt_currency;
 	global $txt_currency_symbol;
 	global $txt_currency_ltr;
@@ -1137,12 +1033,12 @@ function drawDTCpayConfig(){
 				"legend" => $txt_cfg_use_paypal[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"paypal_autovalidate" => array(
 				"legend" => $txt_cfg_paypal_autovalid[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"paypal_email" => array(
 				"legend" => $txt_cfg_paypal_email[$lang],
 				"type" => "text",
@@ -1159,12 +1055,12 @@ function drawDTCpayConfig(){
 				"legend" => $txt_cfg_paypal_use_sandbox[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"use_paypal_recurring" => array(
 				"legend" => $txt_cfg_paypal_use_recuring[$lang],
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"paypal_sandbox_email" => array(
 				"legend" => $txt_cfg_paypal_sandbox_email[$lang],
 				"type" => "text",
@@ -1180,7 +1076,7 @@ function drawDTCpayConfig(){
 				"legend" => "Use eNETS:",
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"use_enets_test" => array(
 				"legend" => "eNETS server:",
 				"type" => "radio",
@@ -1209,7 +1105,7 @@ function drawDTCpayConfig(){
 				"legend" => "Use Maxmind API:",
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"maxmind_login" => array(
 				"legend" => "Maxmind login:",
 				"type" => "text",
@@ -1301,7 +1197,6 @@ function drawDTCpathConfig(){
 
 	global $lang;
 
-	global $txt_cfg_path_conf_title;
 	global $txt_cfg_mainpath_conf_title;
 	global $txt_cfg_dtc_shared_folder;
 	global $txt_cfg_new_account_defaultpath;
@@ -1311,7 +1206,7 @@ function drawDTCpathConfig(){
 	$out = "";
 
 	$dsc = array(
-		"title" => $txt_cfg_path_conf_title[$lang],
+		"title" => _("Paths"),
 		"action" => "main_path_editor",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(

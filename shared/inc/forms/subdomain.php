@@ -120,8 +120,6 @@ function drawAdminTools_Subdomain($admin,$domain){
 	global $txt_subdom_srv_record;
 	global $txt_subdom_edit_one;
 	global $txt_subdom_new;
-	global $txt_yes;
-	global $txt_no;
 	
 	global $edit_a_subdomain;
 

@@ -18,8 +18,6 @@ function productManager(){
         global $txt_product_adddomain;
         global $txt_product_period;
 
-	global $txt_no;
-	global $txt_yes;
 	global $txt_product_editor_product_list_editor;
 	global $txt_product_editor_renewal_id;
 	global $txt_product_editor_type;
@@ -98,7 +96,7 @@ function productManager(){
 				"type" => "checkbox",
 				"legend" => $txt_product_editor_private[$lang],
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]),
+				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
         		)
         	);
@@ -161,7 +159,7 @@ function productManager(){
 				"type" => "checkbox",
 				"legend" => $txt_product_editor_private[$lang],
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]),
+				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
         		)
         	);
@@ -224,7 +222,7 @@ function productManager(){
 				"type" => "checkbox",
 				"legend" => $txt_product_editor_private[$lang],
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]),
+				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
         		)
         	);
@@ -272,7 +270,7 @@ function productManager(){
 				"type" => "checkbox",
 				"legend" => $txt_product_editor_private[$lang],
 				"values" => array("yes","no"),
-				"display_replace" => array($txt_yes[$lang],$txt_no[$lang]),
+				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
         		)
         	);

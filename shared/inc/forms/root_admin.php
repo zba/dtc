@@ -42,8 +42,6 @@ function drawEditAdmin($admin){
 
 	global $adm_login;
 	global $adm_pass;
-	global $txt_no;
-	global $txt_yes;
 	global $rub;
 
 	global $conf_hide_password;
@@ -86,8 +84,8 @@ function drawEditAdmin($admin){
 		$resflag_yes = " ";
 		$resflag_no = " checked='checked' ";
 	}
-	$res_selector = "<input type=\"radio\" name=\"resseller_flag\" value=\"yes\"$resflag_yes> ".$txt_yes[$lang]."
-	<input type=\"radio\" name=\"resseller_flag\" value=\"no\"$resflag_no> ".$txt_no[$lang]."</div>";
+	$res_selector = "<input type=\"radio\" name=\"resseller_flag\" value=\"yes\"$resflag_yes> "._("Yes")."
+	<input type=\"radio\" name=\"resseller_flag\" value=\"no\"$resflag_no> "._("No")."</div>";
 
 	if($ssh_login_flag == "yes"){
 		$sshlogin_yes = " checked='checked' ";
@@ -96,8 +94,8 @@ function drawEditAdmin($admin){
 		$sshlogin_yes = "";
 		$sshlogin_no = " checked='checked' ";
 	}
-	$sshlog_selector = "<input type=\"radio\" name=\"ssh_login_flag\" value=\"yes\"$sshlogin_yes> ".$txt_yes[$lang]."
-	<input type=\"radio\" name=\"ssh_login_flag\" value=\"no\"$sshlogin_no> ".$txt_no[$lang];
+	$sshlog_selector = "<input type=\"radio\" name=\"ssh_login_flag\" value=\"yes\"$sshlogin_yes> "._("Yes")."
+	<input type=\"radio\" name=\"ssh_login_flag\" value=\"no\"$sshlogin_no> "._("No");
 
 	if($ftp_login_flag == "yes"){
 		$ftplogin_yes = " checked='checked' ";
@@ -106,8 +104,8 @@ function drawEditAdmin($admin){
 		$ftplogin_yes = "";
 		$ftplogin_no = " checked='checked' ";
 	}
-	$ftplog_selector = "<input type=\"radio\" name=\"ftp_login_flag\" value=\"yes\"$ftplogin_yes> ".$txt_yes[$lang]."
-	<input type=\"radio\" name=\"ftp_login_flag\" value=\"no\"$ftplogin_no> ".$txt_no[$lang];
+	$ftplog_selector = "<input type=\"radio\" name=\"ftp_login_flag\" value=\"yes\"$ftplogin_yes> "._("Yes")."
+	<input type=\"radio\" name=\"ftp_login_flag\" value=\"no\"$ftplogin_no> "._("No");
 
 	if($pkg_install_flag == "yes"){
 		$pkg_install_yes = " checked='checked' ";
@@ -116,8 +114,8 @@ function drawEditAdmin($admin){
 		$pkg_install_yes = "";
 		$pkg_install_no = " checked='checked' ";
 	}
-	$pkg_install_selector = "<input type=\"radio\" name=\"pkg_install_flag\" value=\"yes\"$pkg_install_yes> ".$txt_yes[$lang]."
-	<input type=\"radio\" name=\"pkg_install_flag\" value=\"no\"$pkg_install_no> ".$txt_no[$lang];
+	$pkg_install_selector = "<input type=\"radio\" name=\"pkg_install_flag\" value=\"yes\"$pkg_install_yes> "._("Yes")."
+	<input type=\"radio\" name=\"pkg_install_flag\" value=\"no\"$pkg_install_no> "._("No");
 
 	if($allow_add_domain == "yes")	$adyes = "selected='selected'";	else $adyes = "";
 	if($allow_add_domain == "check")$adcheck = "selected='selected'";	else $adcheck = "";
@@ -365,8 +363,6 @@ function drawDomainConfig($admin){
 
 	global $adm_login;
 	global $adm_pass;
-	global $txt_yes;
-	global $txt_no;
 	global $txt_root_admin_max_ssh;
 	global $txt_root_admin_cgi_bin_protection;
 	global $txt_root_admin_configuration_of_the_vpses;
@@ -413,18 +409,18 @@ function drawDomainConfig($admin){
 					"legend" => $txt_domain_tbl_config_dom_name[$lang]),
 				"edithost" => array(
 					"type" => "hyperlink",
-					"legend" => "Vhost",
+					"legend" => _("Vhost"),
 					"text" => "Customize"),
 				"safe_mode" => array(
 					"type" => "checkbox",
-					"legend" => "PHP safe_mode",
+					"legend" => _("PHP safe_mode"),
 					"values" => array("yes","no"),
-					"display_replace" => array($txt_no[$lang],$txt_yes[$lang])),
+					"display_replace" => array(_("No"),_("Yes"))),
 				"sbox_protect" => array(
 					"type" => "checkbox",
 					"legend" => $txt_root_admin_cgi_bin_protection[$lang],
 					"values" => array("yes","no"),
-					"display_replace" => array($txt_no[$lang],$txt_yes[$lang])),
+					"display_replace" => array(_("No"),_("Yes"))),
 				"quota" => array(
 					"type" => "text",
 					"legend" => $txt_domain_tbl_config_quota[$lang],

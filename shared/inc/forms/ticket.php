@@ -30,8 +30,6 @@ function drawTickets($admin){
 	global $txt_ticket_type2;
 	global $txt_ticket_hostname;
 	global $txt_ticket_subject;
-	global $txt_yes;
-	global $txt_no;
 	global $txt_ticket_open;
 	global $txt_ticket_closed;
 
@@ -150,8 +148,8 @@ $popup_cats
 <input type=\"hidden\" name=\"cat_id\" value=\"".$a_t["cat_id"]."\">
 <input type=\"hidden\" name=\"server_hostname\" value=\"".$a_t["server_hostname"]."\">
 <textarea name=\"ticketbody\" cols=\"60\" rows=\"10\" wrap=\"physical\"></textarea><br>
-".$txt_ticket_request_to_close_the_ticket[$lang]."<input type=\"radio\" name=\"request_to_close\" value=\"yes\" checked> ".$txt_yes[$lang]."
-<input type=\"radio\" name=\"request_to_close\" value=\"no\"> ".$txt_no[$lang]."<br>
+".$txt_ticket_request_to_close_the_ticket[$lang]."<input type=\"radio\" name=\"request_to_close\" value=\"yes\" checked> "._("Yes")."
+<input type=\"radio\" name=\"request_to_close\" value=\"no\"> "._("No")."<br>
 <div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"".$txt_ticket_submit_new_support_issue[$lang]."\"></div>

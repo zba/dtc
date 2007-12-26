@@ -131,8 +131,6 @@ function drawNewAdminForm(){
 	global $txt_dua_type2;
 	global $txt_dua_ticket_type_not_found;
 	global $txt_dua_request_to_close_the_ticket;
-	global $txt_yes;
-	global $txt_no;
 	global $txt_pending;
 	global $txt_dua_back_to_pending_requests;
 	global $txt_dua_domain_name_vps_server_hostname;
@@ -205,9 +203,9 @@ function drawNewAdminForm(){
 		$out .= "</table>";
 		$out .= $txt_dua_request_to_close_the_ticket[$lang];
 		if($close_request == "yes"){
-			$out .= "<font color=\"#00FF00\">".$txt_yes[$lang]."</font><br>";
+			$out .= "<font color=\"#00FF00\">"._("Yes")."</font><br>";
 		}else{
-			$out .= "<font color=\"#FF0000\">".$txt_no[$lang]."</font><br>";
+			$out .= "<font color=\"#FF0000\">"._("No")."</font><br>";
 		}
 		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 		<input type=\"hidden\" name=\"subaction\" value=\"ticket_reply\">
@@ -327,11 +325,11 @@ dtcFromOkDraw()."
 				if($n2 != 1)	echo "Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__." : problems with sql tables !";
 				$a2 = mysql_fetch_array($r2);
 				if($a2["valid"] == "yes"){
-					$waiting_new_users .= "<td><font color=\"green\">".$txt_yes[$lang]."</font></td>";
+					$waiting_new_users .= "<td><font color=\"green\">"._("Yes")."</font></td>";
 				}elseif($a2["valid"] == "pending"){
 					$waiting_new_users .= "<td><font color=\"#FF8800\">pending</font></td>";
 				}else{
-					$waiting_new_users .= "<td><font color=\"red\">".$txt_no[$lang]."</font></td>";
+					$waiting_new_users .= "<td><font color=\"red\">"._("No")."</font></td>";
 				}
 			}
 			$waiting_new_users .= "<td><pre style='width: 200px; height: 100px; overflow: scroll;'>".htmlspecialchars(
@@ -395,11 +393,11 @@ dtcFromOkDraw()."
 				$a2 = mysql_fetch_array($r2);
 				switch($a2["valid"]){
 				case "yes":
-					$bank = "<font color=\"green\">".$txt_yes[$lang]."</font>";
+					$bank = "<font color=\"green\">"._("Yes")."</font>";
 					break;
 				default:
 				case "no":
-					$bank = "<font color=\"red\">".$txt_no[$lang]."</font>";
+					$bank = "<font color=\"red\">"._("No")."</font>";
 					break;
 				case "pending":
 					$bank = "<font color=\"#FF8800\">".$txt_pending[$lang].": ".$a2["pending_reason"]."</font>";

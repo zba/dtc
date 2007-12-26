@@ -25,13 +25,15 @@ Upstream Authors:
 	Thomas Morgan.
 
 	Many thanks to all the translators :
-	- Jelle Kalf (Dutch)
+	- Jelle Kalf (Dutch) <JKalf@uno.nl>
 	- Igor Trofimov (partial Russian)
-	- Feher Sandor (Hungarian)
-	- Jose Toscano and Jorge Mendez (Espanol)
-	- Andrea Polte (Deutsch)
-	- Luca Franceschini (Italiano)
-	- Jan-Claas Dirks (German) <dirks@jcdit.net>
+	- Feher Sandor (Hungarian) <sfeher@bluesystem.hu>
+	- Jose Toscano <josetg81wireless@yahoo.es> and
+	  Jorge Mendez <solutions@todoimporta.com> (Espanol)
+	- Seeb <seeb@seeb.net.pl> (Polish)
+	- Andrea Polte <andreapolte@gmx.de> and
+	  Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net> (German)
+	- Luca Franceschini <info@atw.it> (Italiano)
 	and my lovely wife Cao Wei (Chinese).
 
 Files: admin/sa-learn

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 15:28+0800\n"
-"PO-Revision-Date: 2007-12-26 04:51+0800\n"
+"POT-Creation-Date: 2007-12-26 22:49+0800\n"
+"PO-Revision-Date: 2007-12-26 23:51+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -17,67 +17,321 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: admin/inc/draw_user_admin.php:276
+#: admin/inc/dtc_config.php:340
+msgid "Activate FTP backups:"
+msgstr "Activer le backup FTP :"
+
+#: admin/inc/draw_user_admin.php:274
 msgid "Add a new user"
 msgstr "Ajouter un nouvel utilisateur"
 
-#: admin/inc/dtc_config.php:877
+#: admin/inc/dtc_config.php:777
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
 msgstr ""
 "Générer les sous-domaines par défaut (mail, pop, imap, smtp, ftp, list) :"
 
-#: admin/inc/dtc_config.php:99
+#: admin/inc/dtc_config.php:264 admin/inc/dtc_config.php:303
+#: admin/inc/dtc_config.php:449
+msgid "Available"
+msgstr "Disponible"
+
+#: admin/inc/dtc_config.php:357
+msgid "Backup frequency:"
+msgstr "Fréquence des sauvegardes :"
+
+#: admin/inc/dtc_config.php:322
+msgid "Category"
+msgstr "Categorie"
+
+#: admin/inc/dtc_config.php:326
+msgid "Category description"
+msgstr "Description de la catégorie"
+
+#: admin/inc/dtc_config.php:68
 msgid "Companies"
 msgstr "Sociétés"
 
-#: admin/inc/dtc_config.php:94
+#: admin/inc/dtc_config.php:414
+msgid "Country"
+msgstr "Pays"
+
+#: admin/inc/dtc_config.php:360
+msgid "Daily"
+msgstr "Tous les jours"
+
+#: admin/inc/dtc_config.php:362
+msgid "Destination folder:"
+msgstr "Dossier de destination :"
+
+#: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
 msgstr "Enregistrement de domaines"
 
-#: admin/inc/dtc_config.php:67
+#: admin/inc/dtc_config.php:300
+msgid "Email addr"
+msgstr "Adr email"
+
+#: admin/inc/dtc_config.php:261
+msgid "Expire"
+msgstr "Expiration"
+
+#: admin/inc/dtc_config.php:44
 msgid "FTP backup"
 msgstr "Sauvegardes FTP"
 
-#: admin/inc/dtc_config.php:47
+#: admin/inc/dtc_config.php:335
+msgid "FTP backup configuration"
+msgstr "Configuration du backup FTP"
+
+#: admin/inc/dtc_config.php:349
+msgid "FTP login:"
+msgstr "Login FTP :"
+
+#: admin/inc/dtc_config.php:353
+msgid "FTP password:"
+msgstr "Mot de passe FTP :"
+
+#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:539
 msgid "General"
 msgstr "Générale"
 
-#: admin/inc/dtc_config.php:51
+#: admin/inc/dtc_config.php:399
+msgid "Hostname"
+msgstr "Nom d'hote"
+
+#: admin/inc/dtc_config.php:345
+msgid "Hostname:"
+msgstr "Nom d'hote :"
+
+#: admin/inc/dtc_config.php:32
 msgid "IP addresses and network"
 msgstr "Adresses IPs et réseaux"
 
-#: admin/inc/dtc_config.php:103
+#: admin/inc/dtc_config.php:251 admin/inc/dtc_config.php:394
+#: admin/inc/dtc_config.php:446
+msgid "IPs addrs"
+msgstr "Addr IPs"
+
+#: admin/inc/dtc_config.php:71
 msgid "Invoicing"
 msgstr "Factures"
 
-#: admin/inc/dtc_config.php:63
-msgid "MX and NS backup servers"
-msgstr "Serveur secondaire MX et NS"
+#: admin/inc/dtc_config.php:217
+msgid "Last warning: "
+msgstr "Dernier rappel : "
 
-#: admin/inc/dtc_config.php:59
+#: admin/inc/dtc_config.php:284
+msgid "List of the administrators receiving request for support messages:"
+msgstr "Liste des administrateurs recevant les demmandes de support :"
+
+#: admin/inc/dtc_config.php:403
+msgid "Location"
+msgstr "Emplacement"
+
+#: admin/inc/dtc_config.php:257
+msgid "Login"
+msgstr "Utilisateur"
+
+#: admin/inc/dtc_config.php:41
+msgid "MX and NS backup servers"
+msgstr "Serveurs MX et NS de secours"
+
+#: admin/inc/dtc_config.php:360
+msgid "Monthly"
+msgstr "Tous les mois"
+
+#: admin/inc/dtc_config.php:254
+msgid "NAT Port"
+msgstr "Port NAT"
+
+#: admin/inc/dtc_config.php:38 admin/inc/dtc_config.php:742
 msgid "Named zonefiles"
 msgstr "Zonefiles named"
 
-#: admin/inc/dtc_config.php:82
+#: admin/inc/dtc_config.php:294
+msgid "Nick name"
+msgstr "Pseudonyme"
+
+#: admin/inc/draw_user_admin.php:208 admin/inc/draw_user_admin.php:332
+#: admin/inc/draw_user_admin.php:400 admin/inc/dtc_config.php:266
+#: admin/inc/dtc_config.php:305 admin/inc/dtc_config.php:343
+#: admin/inc/dtc_config.php:420 admin/inc/dtc_config.php:450
+#: admin/inc/dtc_config.php:547 admin/inc/dtc_config.php:552
+#: admin/inc/dtc_config.php:557 admin/inc/dtc_config.php:562
+#: admin/inc/dtc_config.php:591 admin/inc/dtc_config.php:596
+#: admin/inc/dtc_config.php:601 admin/inc/dtc_config.php:606
+#: admin/inc/dtc_config.php:611 admin/inc/dtc_config.php:691
+#: admin/inc/dtc_config.php:696 admin/inc/dtc_config.php:775
+#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:965
+#: admin/inc/dtc_config.php:1036 admin/inc/dtc_config.php:1041
+#: admin/inc/dtc_config.php:1058 admin/inc/dtc_config.php:1063
+#: admin/inc/dtc_config.php:1079 admin/inc/dtc_config.php:1108
+#: admin/dtcrm/main.php:188 admin/dtcrm/product_manager.php:99
+#: admin/dtcrm/product_manager.php:162 admin/dtcrm/product_manager.php:225
+#: admin/dtcrm/product_manager.php:273 client/new_account_form.php:644
+#: shared/inc/forms/domain_info.php:96 shared/inc/forms/email.php:261
+#: shared/inc/forms/email.php:274 shared/inc/forms/email.php:306
+#: shared/inc/forms/root_admin.php:88 shared/inc/forms/root_admin.php:98
+#: shared/inc/forms/root_admin.php:108 shared/inc/forms/root_admin.php:118
+#: shared/inc/forms/root_admin.php:418 shared/inc/forms/root_admin.php:423
+#: shared/inc/forms/ticket.php:152
+msgid "No"
+msgstr "Non"
+
+#: shared/inc/forms/root_admin.php:416
+msgid "PHP safe_mode"
+msgstr "safe_mode PHP"
+
+#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1209
 msgid "Paths"
 msgstr "Chemins"
 
-#: admin/inc/dtc_config.php:86
+#: admin/inc/dtc_config.php:59
 msgid "Payment gateway"
 msgstr "Portail de paiement"
 
-#: admin/inc/dtc_config.php:90
+#: admin/inc/dtc_config.php:297
+msgid "Real name"
+msgstr "Nom réel"
+
+#: admin/inc/dtc_config.php:62
 msgid "Renewals"
 msgstr "Renouvellement"
 
-#: admin/inc/dtc_config.php:55
+#: admin/inc/dtc_config.php:411
+msgid "SOAP password"
+msgstr "Mot de passe SOAP"
+
+#: admin/inc/dtc_config.php:35
 msgid "SSL IPs addresses"
 msgstr "Adresses IPs SSL"
 
-#: admin/inc/dtc_config.php:71
+#: admin/inc/dtc_config.php:241
+msgid "SSL dedicated IP addresses: "
+msgstr "Adresses IPs dédiés au SSL : "
+
+#: admin/inc/dtc_config.php:573
+msgid "Selling conditions URL:"
+msgstr "URL des conditions de ventes :"
+
+#: admin/inc/dtc_config.php:221
+msgid "Shutdown warning: "
+msgstr "Rappel avant fermeture : "
+
+#: admin/inc/dtc_config.php:407
+msgid "Soap login"
+msgstr "Login SOAP"
+
+#: admin/inc/dtc_config.php:47
 msgid "Support ticket"
 msgstr "Ticket de support"
 
-#: admin/inc/dtc_config.php:75
+#: admin/inc/dtc_config.php:281
+msgid "Support ticket configuration"
+msgstr "Configuration des tickets de support"
+
+#: admin/inc/dtc_config.php:270
+msgid ""
+"Take care not to add the control panel SSL IP itself if you don't want to "
+"have conflicts (and prevent apache from restarting)!"
+msgstr ""
+"Attention a ne pas ajouter l'ip du control panel lui-meme pour éviter un "
+"conflict (qui empecherait un redémarrage)!"
+
+#: admin/inc/dtc_config.php:203
+msgid ""
+"These numbers represent the days before and after expiration.\n"
+"Warnings before and after expiration can be listed separated by |,\n"
+"while others are made of a unique value. The message templates\n"
+"are stored in /etc/dtc, and if not present in: "
+msgstr ""
+"Ces nombres représente le nombre de jours avant et aprèsexpiration. Les "
+"rappels avant et après expiration peuvent etre listéséparé par un |, les "
+"autres valeurs sont des valeurs unique. Les messagesenvoyés par défault sont "
+"stoqué dans : "
+
+#: admin/inc/dtc_config.php:569
+msgid "This server location:"
+msgstr "Eplacement de ce serveur :"
+
+#: admin/inc/dtc_config.php:312
+msgid "Ticket categories:"
+msgstr "Categories de tickets :"
+
+#: admin/inc/dtc_config.php:419
+msgid "Use LVM backend"
+msgstr "Utiliser LVM"
+
+#: admin/inc/dtc_config.php:549
+msgid "Use SSL:"
+msgstr "Utiliser le SSL :"
+
+#: admin/inc/dtc_config.php:544
+msgid "Use javascript:"
+msgstr "Utiliser le javascript :"
+
+#: admin/inc/dtc_config.php:431
+msgid "VPS IPs for "
+msgstr "IPs VPS de "
+
+#: admin/inc/dtc_config.php:380
+msgid "VPS Server and IP addresses registry edition"
+msgstr "Edition de la liste des serveur VDS et de leurs IPs"
+
+#: admin/inc/dtc_config.php:383
+msgid "VPS Server list:"
+msgstr "Liste des serveurs de VDS:"
+
+#: admin/inc/dtc_config.php:200
+msgid "VPS renewal email reminders periodicity"
+msgstr "Périodicité des messages de rappel des VPS"
+
+#: admin/inc/dtc_config.php:50
 msgid "VPS servers"
 msgstr "Serveurs VPS"
+
+#: admin/inc/dtc_config.php:443
+msgid "VPS xen number"
+msgstr "Numéro de VDS Xen"
+
+#: shared/inc/forms/root_admin.php:412
+msgid "Vhost"
+msgstr "Vhost"
+
+#: admin/inc/dtc_config.php:213
+msgid "Warnings after expiration: "
+msgstr "Rappels après expiration : "
+
+#: admin/inc/dtc_config.php:209
+msgid "Warnings before expiration: "
+msgstr "Rappels avant expiration : "
+
+#: admin/inc/dtc_config.php:360
+msgid "Weekly"
+msgstr "Toutes les semaines"
+
+#: admin/inc/draw_user_admin.php:206 admin/inc/draw_user_admin.php:328
+#: admin/inc/draw_user_admin.php:396 admin/inc/dtc_config.php:266
+#: admin/inc/dtc_config.php:305 admin/inc/dtc_config.php:343
+#: admin/inc/dtc_config.php:420 admin/inc/dtc_config.php:450
+#: admin/inc/dtc_config.php:547 admin/inc/dtc_config.php:552
+#: admin/inc/dtc_config.php:557 admin/inc/dtc_config.php:562
+#: admin/inc/dtc_config.php:591 admin/inc/dtc_config.php:596
+#: admin/inc/dtc_config.php:601 admin/inc/dtc_config.php:606
+#: admin/inc/dtc_config.php:611 admin/inc/dtc_config.php:691
+#: admin/inc/dtc_config.php:696 admin/inc/dtc_config.php:775
+#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:965
+#: admin/inc/dtc_config.php:1036 admin/inc/dtc_config.php:1041
+#: admin/inc/dtc_config.php:1058 admin/inc/dtc_config.php:1063
+#: admin/inc/dtc_config.php:1079 admin/inc/dtc_config.php:1108
+#: admin/dtcrm/main.php:187 admin/dtcrm/product_manager.php:99
+#: admin/dtcrm/product_manager.php:162 admin/dtcrm/product_manager.php:225
+#: admin/dtcrm/product_manager.php:273 client/new_account_form.php:643
+#: shared/inc/forms/domain_info.php:95 shared/inc/forms/email.php:261
+#: shared/inc/forms/email.php:272 shared/inc/forms/email.php:306
+#: shared/inc/forms/root_admin.php:87 shared/inc/forms/root_admin.php:97
+#: shared/inc/forms/root_admin.php:107 shared/inc/forms/root_admin.php:117
+#: shared/inc/forms/root_admin.php:418 shared/inc/forms/root_admin.php:423
+#: shared/inc/forms/ticket.php:151
+msgid "Yes"
+msgstr "Oui"

@@ -169,9 +169,20 @@ default:
 	$gettext_lang = "en_US";
 	break;
 }
-putenv("LC_ALL=$gettext_lang");
-setlocale(LC_ALL, $gettext_lang);
+if(FALSE === putenv("LC_ALL=$gettext_lang")){
+	echo "Failed to putenv LC_ALL=$gettext_lang<br>";
+}
+if(FALSE === putenv("LANG=$gettext_lang")){
+	echo "Failed to putenv LANG=$gettext_lang<br>";
+}
+if(FALSE === setlocale(LC_ALL, $gettext_lang)){
+	echo "Failed to setlocale(LC_ALL,$gettext_lang)<br>";
+}
 
-bindtextdomain("messages", "$dtcshared_path/vars/locale"); 
-textdomain("messages");
+//echo "gettext() lang: $gettext_lang<br>";
+$pathname = bindtextdomain("messages", "$dtcshared_path/vars/locale"); 
+//echo "Pathname = $pathname<br>";
+$message_domain = textdomain("messages");
+//echo "Message domain = $message_domain";
+
 ?>
