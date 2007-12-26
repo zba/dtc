@@ -797,7 +797,6 @@ function drawBackupConfig(){
 	global $txt_action;
 	global $txt_domain_tbl_config_ip;
         global $txt_cfg_server_address;
-	global $txt_cfg_login;
 
 	$out = "";
 
@@ -818,7 +817,7 @@ function drawBackupConfig(){
 				"legend" => $txt_domain_tbl_config_ip[$lang]),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_login[$lang]),
+				"legend" => _("Login")),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
@@ -845,7 +844,7 @@ function drawBackupConfig(){
 				"legend" => $txt_cfg_server_address[$lang]),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_login[$lang]),
+				"legend" => _("Login")),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
@@ -870,7 +869,7 @@ function drawBackupConfig(){
 				"legend" => $txt_cfg_server_address[$lang]),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_login[$lang]),
+				"legend" => _("Login")),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
@@ -897,7 +896,7 @@ function drawBackupConfig(){
 				"legend" => $txt_cfg_server_address[$lang]),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_login[$lang]),
+				"legend" => _("Login")),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
@@ -922,7 +921,7 @@ function drawBackupConfig(){
 				"legend" => $txt_cfg_server_address[$lang]),
 			"server_login" => array(
 				"type" => "text",
-				"legend" => $txt_cfg_login[$lang]),
+				"legend" => _("Login")),
 			"server_pass" => array(
 				"type" => "password",
 				"legend" => $txt_cmenu_password[$lang])
