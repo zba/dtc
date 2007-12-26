@@ -7,13 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-26 22:49+0800\n"
+"POT-Creation-Date: 2007-12-27 04:33+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Luca Franceschini <info@atw.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: shared/inc/forms/vps.php:117 shared/inc/forms/vps.php:130
+#: shared/inc/forms/vps.php:143
+msgid " CPU seconds"
+msgstr ""
+
+#: shared/inc/forms/vps.php:116 shared/inc/forms/vps.php:117
+#: shared/inc/forms/vps.php:118 shared/inc/forms/vps.php:119
+msgid "2 months ago: "
+msgstr ""
 
 #: admin/inc/dtc_config.php:340
 msgid "Activate FTP backups:"
@@ -34,6 +44,10 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:357
 msgid "Backup frequency:"
+msgstr ""
+
+#: shared/inc/forms/vps.php:154
+msgid "CPU Time:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:322
@@ -92,6 +106,10 @@ msgstr ""
 msgid "General"
 msgstr "Generale"
 
+#: shared/inc/forms/vps.php:162
+msgid "HDD I/O:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:399
 msgid "Hostname"
 msgstr ""
@@ -113,6 +131,11 @@ msgstr ""
 msgid "Invoicing"
 msgstr ""
 
+#: shared/inc/forms/vps.php:129 shared/inc/forms/vps.php:130
+#: shared/inc/forms/vps.php:131 shared/inc/forms/vps.php:132
+msgid "Last month: "
+msgstr ""
+
 #: admin/inc/dtc_config.php:217
 msgid "Last warning: "
 msgstr ""
@@ -125,13 +148,19 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: admin/inc/dtc_config.php:257
+#: admin/inc/dtc_config.php:257 admin/inc/dtc_config.php:820
+#: admin/inc/dtc_config.php:847 admin/inc/dtc_config.php:872
+#: admin/inc/dtc_config.php:899 admin/inc/dtc_config.php:924
 msgid "Login"
 msgstr ""
 
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "Servers MX e NS di backup"
+
+#: shared/inc/forms/vps.php:174
+msgid "Method getVPSState failed"
+msgstr ""
 
 #: admin/inc/dtc_config.php:360
 msgid "Monthly"
@@ -144,6 +173,10 @@ msgstr ""
 #: admin/inc/dtc_config.php:38 admin/inc/dtc_config.php:742
 msgid "Named zonefiles"
 msgstr "Zonefiles Named"
+
+#: shared/inc/forms/vps.php:151
+msgid "Network:"
+msgstr ""
 
 #: admin/inc/dtc_config.php:294
 msgid "Nick name"
@@ -159,10 +192,10 @@ msgstr ""
 #: admin/inc/dtc_config.php:601 admin/inc/dtc_config.php:606
 #: admin/inc/dtc_config.php:611 admin/inc/dtc_config.php:691
 #: admin/inc/dtc_config.php:696 admin/inc/dtc_config.php:775
-#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:965
-#: admin/inc/dtc_config.php:1036 admin/inc/dtc_config.php:1041
-#: admin/inc/dtc_config.php:1058 admin/inc/dtc_config.php:1063
-#: admin/inc/dtc_config.php:1079 admin/inc/dtc_config.php:1108
+#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:964
+#: admin/inc/dtc_config.php:1035 admin/inc/dtc_config.php:1040
+#: admin/inc/dtc_config.php:1057 admin/inc/dtc_config.php:1062
+#: admin/inc/dtc_config.php:1078 admin/inc/dtc_config.php:1107
 #: admin/dtcrm/main.php:188 admin/dtcrm/product_manager.php:99
 #: admin/dtcrm/product_manager.php:162 admin/dtcrm/product_manager.php:225
 #: admin/dtcrm/product_manager.php:273 client/new_account_form.php:644
@@ -179,7 +212,7 @@ msgstr "No"
 msgid "PHP safe_mode"
 msgstr ""
 
-#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1209
+#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1208
 msgid "Paths"
 msgstr "Paths"
 
@@ -227,6 +260,10 @@ msgstr ""
 msgid "Support ticket configuration"
 msgstr ""
 
+#: shared/inc/forms/vps.php:159
+msgid "Swap I/O:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:270
 msgid ""
 "Take care not to add the control panel SSL IP itself if you don't want to "
@@ -239,6 +276,11 @@ msgid ""
 "Warnings before and after expiration can be listed separated by |,\n"
 "while others are made of a unique value. The message templates\n"
 "are stored in /etc/dtc, and if not present in: "
+msgstr ""
+
+#: shared/inc/forms/vps.php:142 shared/inc/forms/vps.php:143
+#: shared/inc/forms/vps.php:144 shared/inc/forms/vps.php:145
+msgid "This month: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:569
@@ -311,10 +353,10 @@ msgstr ""
 #: admin/inc/dtc_config.php:601 admin/inc/dtc_config.php:606
 #: admin/inc/dtc_config.php:611 admin/inc/dtc_config.php:691
 #: admin/inc/dtc_config.php:696 admin/inc/dtc_config.php:775
-#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:965
-#: admin/inc/dtc_config.php:1036 admin/inc/dtc_config.php:1041
-#: admin/inc/dtc_config.php:1058 admin/inc/dtc_config.php:1063
-#: admin/inc/dtc_config.php:1079 admin/inc/dtc_config.php:1108
+#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:964
+#: admin/inc/dtc_config.php:1035 admin/inc/dtc_config.php:1040
+#: admin/inc/dtc_config.php:1057 admin/inc/dtc_config.php:1062
+#: admin/inc/dtc_config.php:1078 admin/inc/dtc_config.php:1107
 #: admin/dtcrm/main.php:187 admin/dtcrm/product_manager.php:99
 #: admin/dtcrm/product_manager.php:162 admin/dtcrm/product_manager.php:225
 #: admin/dtcrm/product_manager.php:273 client/new_account_form.php:643
@@ -326,3 +368,7 @@ msgstr ""
 #: shared/inc/forms/ticket.php:151
 msgid "Yes"
 msgstr "Si"
+
+#: shared/inc/forms/vps.php:176
+msgid "couldn't connect to host"
+msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-27 03:31+0800\n"
+"POT-Creation-Date: 2007-12-27 04:33+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,10 +26,10 @@ msgstr ""
 #: admin/inc/dtc_config.php:601 admin/inc/dtc_config.php:606
 #: admin/inc/dtc_config.php:611 admin/inc/dtc_config.php:691
 #: admin/inc/dtc_config.php:696 admin/inc/dtc_config.php:775
-#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:965
-#: admin/inc/dtc_config.php:1036 admin/inc/dtc_config.php:1041
-#: admin/inc/dtc_config.php:1058 admin/inc/dtc_config.php:1063
-#: admin/inc/dtc_config.php:1079 admin/inc/dtc_config.php:1108
+#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:964
+#: admin/inc/dtc_config.php:1035 admin/inc/dtc_config.php:1040
+#: admin/inc/dtc_config.php:1057 admin/inc/dtc_config.php:1062
+#: admin/inc/dtc_config.php:1078 admin/inc/dtc_config.php:1107
 #: admin/dtcrm/main.php:187 admin/dtcrm/product_manager.php:99
 #: admin/dtcrm/product_manager.php:162 admin/dtcrm/product_manager.php:225
 #: admin/dtcrm/product_manager.php:273 client/new_account_form.php:643
@@ -52,10 +52,10 @@ msgstr ""
 #: admin/inc/dtc_config.php:601 admin/inc/dtc_config.php:606
 #: admin/inc/dtc_config.php:611 admin/inc/dtc_config.php:691
 #: admin/inc/dtc_config.php:696 admin/inc/dtc_config.php:775
-#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:965
-#: admin/inc/dtc_config.php:1036 admin/inc/dtc_config.php:1041
-#: admin/inc/dtc_config.php:1058 admin/inc/dtc_config.php:1063
-#: admin/inc/dtc_config.php:1079 admin/inc/dtc_config.php:1108
+#: admin/inc/dtc_config.php:780 admin/inc/dtc_config.php:964
+#: admin/inc/dtc_config.php:1035 admin/inc/dtc_config.php:1040
+#: admin/inc/dtc_config.php:1057 admin/inc/dtc_config.php:1062
+#: admin/inc/dtc_config.php:1078 admin/inc/dtc_config.php:1107
 #: admin/dtcrm/main.php:188 admin/dtcrm/product_manager.php:99
 #: admin/dtcrm/product_manager.php:162 admin/dtcrm/product_manager.php:225
 #: admin/dtcrm/product_manager.php:273 client/new_account_form.php:644
@@ -104,7 +104,7 @@ msgstr ""
 msgid "VPS servers"
 msgstr ""
 
-#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1209
+#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1208
 msgid "Paths"
 msgstr ""
 
@@ -169,7 +169,9 @@ msgstr ""
 msgid "NAT Port"
 msgstr ""
 
-#: admin/inc/dtc_config.php:257
+#: admin/inc/dtc_config.php:257 admin/inc/dtc_config.php:820
+#: admin/inc/dtc_config.php:847 admin/inc/dtc_config.php:872
+#: admin/inc/dtc_config.php:899 admin/inc/dtc_config.php:924
 msgid "Login"
 msgstr ""
 
@@ -326,4 +328,48 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:416
 msgid "PHP safe_mode"
+msgstr ""
+
+#: shared/inc/forms/vps.php:116 shared/inc/forms/vps.php:117
+#: shared/inc/forms/vps.php:118 shared/inc/forms/vps.php:119
+msgid "2 months ago: "
+msgstr ""
+
+#: shared/inc/forms/vps.php:117 shared/inc/forms/vps.php:130
+#: shared/inc/forms/vps.php:143
+msgid " CPU seconds"
+msgstr ""
+
+#: shared/inc/forms/vps.php:129 shared/inc/forms/vps.php:130
+#: shared/inc/forms/vps.php:131 shared/inc/forms/vps.php:132
+msgid "Last month: "
+msgstr ""
+
+#: shared/inc/forms/vps.php:142 shared/inc/forms/vps.php:143
+#: shared/inc/forms/vps.php:144 shared/inc/forms/vps.php:145
+msgid "This month: "
+msgstr ""
+
+#: shared/inc/forms/vps.php:151
+msgid "Network:"
+msgstr ""
+
+#: shared/inc/forms/vps.php:154
+msgid "CPU Time:"
+msgstr ""
+
+#: shared/inc/forms/vps.php:159
+msgid "Swap I/O:"
+msgstr ""
+
+#: shared/inc/forms/vps.php:162
+msgid "HDD I/O:"
+msgstr ""
+
+#: shared/inc/forms/vps.php:174
+msgid "Method getVPSState failed"
+msgstr ""
+
+#: shared/inc/forms/vps.php:176
+msgid "couldn't connect to host"
 msgstr ""

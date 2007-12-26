@@ -113,10 +113,10 @@ function drawAdminTools_VPS($admin,$vps){
 	if($n == 1){
 		$a = mysql_fetch_array($r);
 		$net_total = $a["network_in_count"] + $a["network_out_count"];
-		$vps_out_net_stats .= "2 months ago: ". smartByte($net_total)."<br>";
-		$vps_out_cpu_stats .= "2 months ago: ".$a["cpu_usage"]." CPU seconds<br>";
-		$vps_out_swap_stats .= "2 months ago: ". smartByte( $a["swapio_count"] )."<br>";
-		$vps_out_hdd_stats .= "2 months ago: ". smartByte( $a["diskio_count"] )."<br>";
+		$vps_out_net_stats .= _("2 months ago: "). smartByte($net_total)."<br>";
+		$vps_out_cpu_stats .= _("2 months ago: ").$a["cpu_usage"]._(" CPU seconds")."<br>";
+		$vps_out_swap_stats .= _("2 months ago: "). smartByte( $a["swapio_count"] )."<br>";
+		$vps_out_hdd_stats .= _("2 months ago: "). smartByte( $a["diskio_count"] )."<br>";
 	}
 
 	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
@@ -126,10 +126,10 @@ function drawAdminTools_VPS($admin,$vps){
 	if($n == 1){
 		$a = mysql_fetch_array($r);
 		$net_total = $a["network_in_count"] + $a["network_out_count"];
-		$vps_out_net_stats .= "Last month: ". smartByte($net_total)."<br>";
-		$vps_out_cpu_stats .= "Last month: ".$a["cpu_usage"]." CPU seconds<br>";
-		$vps_out_swap_stats .= "Last month: ". smartByte( $a["swapio_count"] )."<br>";
-		$vps_out_hdd_stats .= "Last month: ". smartByte( $a["diskio_count"] )."<br>";
+		$vps_out_net_stats .= _("Last month: "). smartByte($net_total)."<br>";
+		$vps_out_cpu_stats .= _("Last month: ").$a["cpu_usage"]._(" CPU seconds")."<br>";
+		$vps_out_swap_stats .= _("Last month: "). smartByte( $a["swapio_count"] )."<br>";
+		$vps_out_hdd_stats .= _("Last month: "). smartByte( $a["diskio_count"] )."<br>";
 	}
 
 	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
@@ -139,27 +139,27 @@ function drawAdminTools_VPS($admin,$vps){
 	if($n == 1){
 		$a = mysql_fetch_array($r);
 		$net_total = $a["network_in_count"] + $a["network_out_count"];
-		$vps_out_net_stats .= "This month: ". smartByte($net_total);
-		$vps_out_cpu_stats .= "This month: ".$a["cpu_usage"]." CPU seconds";
-		$vps_out_swap_stats .= "This month: ". smartByte( $a["swapio_count"] );
-		$vps_out_hdd_stats .= "This month: ". smartByte( $a["diskio_count"] );
+		$vps_out_net_stats .= _("This month: "). smartByte($net_total);
+		$vps_out_cpu_stats .= _("This month: ").$a["cpu_usage"]._(" CPU seconds");
+		$vps_out_swap_stats .= _("This month: "). smartByte( $a["swapio_count"] );
+		$vps_out_hdd_stats .= _("This month: "). smartByte( $a["diskio_count"] );
 	}
 
 	// Display the stats of the VPS
 	$vps_stat_out = "";
 	$vps_stat_out .= "<table cellspacing=\"2\" cellpaddig=\"2\" border=\"0\">";
-	$vps_stat_out .= "<tr><td>Network:<br>";
+	$vps_stat_out .= "<tr><td>"._("Network:")."<br>";
 	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_network.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
 
-	$vps_stat_out .= "<td>CPU Time:<br>";
+	$vps_stat_out .= "<td>"._("CPU Time:")."<br>";
 	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr>";
 
 	$vps_stat_out .= "<tr><td>".$vps_out_net_stats."</td><td>$vps_out_cpu_stats</td></tr>";
 
-	$vps_stat_out .= "<tr><td>Swap I/O:<br>";
+	$vps_stat_out .= "<tr><td>"._("Swap I/O:")."<br>";
 	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_swap.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";
 
-	$vps_stat_out .= "<td>HDD I/O:<br>";
+	$vps_stat_out .= "<td>"._("HDD I/O:")."<br>";
 	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_hdd.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr>";
 
 	$vps_stat_out .= "<tr><td>".$vps_out_swap_stats."</td><td>".$vps_out_hdd_stats."</td></tr></table>";
@@ -171,9 +171,9 @@ function drawAdminTools_VPS($admin,$vps){
 		$vps_remote_info = getVPSInfo($vps_node,$vps_name,$soap_client);
 
 		if($vps_remote_info == false){
-			if(strstr($vps_soap_err,"Method getVPSState failed")){
+			if(strstr($vps_soap_err,_("Method getVPSState failed"))){
 				$vps_out .= $txt_method_getvpsstate_failed_not_running[$lang]."<br><br>";
-			}else if(strstr($vps_soap_err,"couldn't connect to host")){
+			}else if(strstr($vps_soap_err,_("couldn't connect to host"))){
 				$vps_out .= $txt_couldnot_connect_to_soap_server_http_error[$lang]."<br><br>";
 			}else{
 				$vps_out .= $txt_couldnot_connect_unknown_error[$lang]."$vps_soap_err<br><br>";
