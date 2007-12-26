@@ -43,50 +43,64 @@ function drawDTCConfigMenu(){
 
 	$dsc = array(
 		"general" => array(
-			"text" => $txt_cfg_general_menu_entry[$lang],
+			// $txt_cfg_general_menu_entry[$lang]
+			"text" => _("General"),
 			"icon" => "box_wnb_nb_picto-general.gif"),
 		"ip" => array(
-			"text" => $txt_cfg_ip_and_network[$lang],
+			// $txt_cfg_ip_and_network[$lang],
+			"text" => _("IP addresses and network"),
 			"icon" => "box_wnb_nb_picto-ipaddresses.gif"),
 		"sslip" => array(
-			"text" => $txt_cfg_ssl_ips_addr_menu_entry[$lang],
+			// $txt_cfg_ssl_ips_addr_menu_entry[$lang]
+			"text" => _("SSL IPs addresses"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"zonefile" => array(
-			"text" => $txt_cfg_name_zonefileconf_title[$lang],
+			// $txt_cfg_name_zonefileconf_title[$lang]
+			"text" => _("Named zonefiles"),
 			"icon" => "box_wnb_nb_picto-namedzonefiles.gif"),
 		"backup" => array(
-			"text" => $txt_cfg_backup_and_mx_menu_entry[$lang],
+			// $txt_cfg_backup_and_mx_menu_entry[$lang]
+			"text" => _("MX and NS backup servers"),
 			"icon" => "box_wnb_nb_picto-mxnsservers.gif"),
 		"ftpbackup" => array(
-			"text" => $txt_cfg_ftp_backup_menu_entry[$lang],
+			// $txt_cfg_ftp_backup_menu_entry[$lang]
+			"text" => _("FTP backup"),
 			"icon" => "box_wnb_nb_picto-ftpbackup.gif"),
 		"ticket" => array(
-			"text" => $txt_cfg_support_ticket_menu_entry[$lang],
+			// $txt_cfg_support_ticket_menu_entry[$lang]
+			"text" => _("Support ticket"),
 			"icon" => "box_wnb_nb_picto-supportickets.gif"),
 		"vps" => array(
-			"text" => $txt_cfg_vps_servers_menu_entry[$lang],
+			// $txt_cfg_vps_servers_menu_entry[$lang]
+			"text" => _("VPS servers"),
 			"icon" => "box_wnb_nb_picto-vpsservers.gif"),
 		"radius" => array(
 			"text" => "Radius",
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"path" => array(
-			"text" => $txt_cfg_path_conf_title[$lang],
+			// $txt_cfg_path_conf_title[$lang]
+			"text" => _("Paths"),
 			"icon" => "box_wnb_nb_picto-paths.gif"),
 		"payconf" => array(
-			"text" => $txt_cfg_payconf_title[$lang],
+			// $txt_cfg_payconf_title[$lang]
+			"text" => _("Payment gateway"),
 			"icon" => "box_wnb_nb_picto-payementgateway.gif"),
 		"renewals" => array(
-			"text" => $txt_cfg_renewals_menu_entry[$lang],
+			// $txt_cfg_renewals_menu_entry[$lang]
+			"text" => _("Renewals"),
 			"icon" => "box_wnb_nb_picto-renewals.gif"),
 		"registryapi" => array(
-			"text" => $txt_cfg_registryapi_menu_entry[$lang],
+			// $txt_cfg_registryapi_menu_entry[$lang]
+			"text" => _("Domain name registration"),
 			"icon" => "box_wnb_nb_picto-domainnamereg.gif"),
 
 		"companies" => array(
-			"text" => $txt_cfg_companies_menu_entry[$lang],
+			// $txt_cfg_companies_menu_entry[$lang]
+			"text" => _("Companies"),
 			"icon" => "box_wnb_nb_picto-companies.gif"),
 		"invoicing" => array(
-			"text" => $txt_cfg_invoicing_menu_entry[$lang],
+			// $txt_cfg_invoicing_menu_entry[$lang]
+			"text" => _("Invoicing"),
 			"icon" => "box_wnb_nb_picto-invoicing.gif")
 	);
 	if(function_exists("skin_DTCConfigMenu")){
@@ -860,7 +874,7 @@ function drawNamedConfig(){
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),
 			"autogen_default_subdomains" => array(
-				"legend" => "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):",
+				"legend" => _("Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"),
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array($txt_yes[$lang],$txt_no[$lang])),

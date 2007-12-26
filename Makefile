@@ -215,7 +215,7 @@ client/vps_stats_cpu.php client/vps_stats_hdd.php client/vps_stats_network.php c
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
 
 SHARED_PHP_SCRIPT_FILES=shared/autoSQLconfig.php shared/cyradm.php shared/default_admin_site.php shared/dtc_lib.php \
-shared/dtc_stats_index.php shared/404_template/404.php shared/404_template/logo.png shared/404_template/expired.php \
+shared/dtc_stats_index.php shared/404_template/404.php shared/404_template/expired.php \
 shared/404_template/index.php shared/drawlib/anotherDtc.php shared/drawlib/cc_code_popup.php shared/drawlib/dtc_functions.php \
 shared/drawlib/skinLib.php shared/drawlib/skin.php shared/drawlib/templates.php shared/drawlib/tree_menu.php \
 shared/dtcrm/draw_adddomain.php shared/dtcrm/draw_handle.php shared/dtcrm/draw_nameservers.php shared/dtcrm/draw.php shared/dtcrm/draw_register_forms.php \
@@ -327,6 +327,18 @@ shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin
 shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
 shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc
 
+LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU.KOI8-R de_DE zh_CN pl_PL se_NO pt_PT es_ES
+
+i18n:
+	@echo "===> Managing internationalizations and localizations"
+	@echo "=> Extracting strings from sources"
+	@xgettext --output-dir=shared/vars $(WEB_SCRIPT_FILES) -o templates.pot
+	@echo "=> Merging in every language .po file: "
+	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgmerge -s -U $$i.po templates.pot ; done && cd ../..
+	@for i in $(LOCALE_TRANS) ; do mkdir -p shared/vars/locale/$$i/LC_MESSAGES ; done && cd ../..
+	@echo "=> Creating binary formats of language files: "
+	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgfmt -c -v -o locale/$$i/LC_MESSAGES/messages.mo $$i.po ; done && cd ../..
+
 install-dtc-stats-daemon:
 	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/admin
 	$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
@@ -368,6 +380,7 @@ install-dtc-common:
 	@$(INSTALL) -m $(PHP_RIGHTS) email/inc/domains.png $(APP_INST_DIR)/email/inc/domains.png
 
 	# Copy all the graphics...
+	@$(INSTALL) -m $(PHP_RIGHTS) shared/404_template/logo.png $(APP_INST_DIR)/shared/404_template/logo.png
 	find shared/gfx -iname '*.png' -exec $(INSTALL) -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
 	find shared/gfx -iname '*.gif' -exec $(INSTALL) -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
 	find shared/gfx -iname '*.js' -exec $(INSTALL) -m $(PHP_RIGHTS) {} $(APP_INST_DIR)/{} \;
@@ -413,5 +426,10 @@ install-dtc-common:
 		fi ; \
 	fi
 	cp -rf doc/* $(DOC_DIR)
+
+	# Copy the internationnalization stuff
+	make i18n
+	cd shared/vars && cp -rf locale $(APP_INST_DIR)/shared/vars && cd ../..
+
 	rm -rf $(DOC_DIR)/LICENSE
 	rm -rf $(DOC_DIR)/LICENSE.gz

@@ -119,4 +119,59 @@ $charset = $txt_langname[$lang];
 $page_metacontent = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">";
 header("Content-type: text/html; charset=$charset");
 
+switch($lang){
+case "fr_FR":
+case "fr":
+	$gettext_lang = "fr_FR";
+	break;
+case "hu_HU":
+case "hu":
+	$gettext_lang = "hu_HU";
+	break;
+case "it_IT":
+case "it":
+	$gettext_lang = "it_IT";
+	break;
+case "nl_NL":
+case "nl":
+	$gettext_lang = "nl_NL";
+	break;
+case "ru_RU.KOI8-R":
+case "ru_RU":
+case "ru":
+	$gettext_lang = "ru_RU.KOI8-R";
+	break;
+case "de_DE":
+case "de":
+	$gettext_lang = "de_DE";
+	break;
+case "zh_CN":
+case "zh":
+	$gettext_lang = "zh_CN";
+	break;
+case "pl_PL":
+case "pl":
+	$gettext_lang = "pl_PL";
+	break;
+case "se_NO":
+case "se":
+	$gettext_lang = "se_NO";
+	break;
+case "pt_PT":
+case "pt":
+	$gettext_lang = "pt_PT";
+	break;
+case "es_ES":
+case "es":
+	$gettext_lang = "es_ES";
+	break;
+default:
+	$gettext_lang = "en_US";
+	break;
+}
+putenv("LC_ALL=$gettext_lang");
+setlocale(LC_ALL, $gettext_lang);
+
+bindtextdomain("messages", "$dtcshared_path/vars/locale"); 
+textdomain("messages");
 ?>

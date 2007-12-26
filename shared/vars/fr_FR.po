@@ -1,0 +1,83 @@
+# French translations for PACKAGE package
+# Traductions françaises du paquet PACKAGE.
+# Copyright (C) 2007 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Thomas Goirand <zigo@mx.example.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.27.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 15:28+0800\n"
+"PO-Revision-Date: 2007-12-26 04:51+0800\n"
+"Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
+"Language-Team: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: admin/inc/draw_user_admin.php:276
+msgid "Add a new user"
+msgstr "Ajouter un nouvel utilisateur"
+
+#: admin/inc/dtc_config.php:877
+msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
+msgstr ""
+"Générer les sous-domaines par défaut (mail, pop, imap, smtp, ftp, list) :"
+
+#: admin/inc/dtc_config.php:99
+msgid "Companies"
+msgstr "Sociétés"
+
+#: admin/inc/dtc_config.php:94
+msgid "Domain name registration"
+msgstr "Enregistrement de domaines"
+
+#: admin/inc/dtc_config.php:67
+msgid "FTP backup"
+msgstr "Sauvegardes FTP"
+
+#: admin/inc/dtc_config.php:47
+msgid "General"
+msgstr "Générale"
+
+#: admin/inc/dtc_config.php:51
+msgid "IP addresses and network"
+msgstr "Adresses IPs et réseaux"
+
+#: admin/inc/dtc_config.php:103
+msgid "Invoicing"
+msgstr "Factures"
+
+#: admin/inc/dtc_config.php:63
+msgid "MX and NS backup servers"
+msgstr "Serveur secondaire MX et NS"
+
+#: admin/inc/dtc_config.php:59
+msgid "Named zonefiles"
+msgstr "Zonefiles named"
+
+#: admin/inc/dtc_config.php:82
+msgid "Paths"
+msgstr "Chemins"
+
+#: admin/inc/dtc_config.php:86
+msgid "Payment gateway"
+msgstr "Portail de paiement"
+
+#: admin/inc/dtc_config.php:90
+msgid "Renewals"
+msgstr "Renouvellement"
+
+#: admin/inc/dtc_config.php:55
+msgid "SSL IPs addresses"
+msgstr "Adresses IPs SSL"
+
+#: admin/inc/dtc_config.php:71
+msgid "Support ticket"
+msgstr "Ticket de support"
+
+#: admin/inc/dtc_config.php:75
+msgid "VPS servers"
+msgstr "Serveurs VPS"

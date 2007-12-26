@@ -273,7 +273,7 @@ function drawNewAdminForm(){
 	}
 
 	// Draw the form for making a new admin
-	$add_a_user = "<h3>".$txt_add_a_new_user[$lang]."</h3>
+	$add_a_user = "<h3>".gettext("Add a new user")."</h3>
 <form name=\"addnewuser_frm\" action=\"?\" method=\"post\">
 <input type=\"hidden\" name=\"newadminuser\" value=\"Ok\">
 ".dtcFormTableAttrs().

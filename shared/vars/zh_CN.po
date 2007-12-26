@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Thomas Goirand <thomas@goirand.fr>, 2002-2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.27.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-26 15:28+0800\n"
+"PO-Revision-Date: 2007-12-26 14:40+0800\n"
+"Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
+"Language-Team: Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=GB2312\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin/inc/draw_user_admin.php:276
+msgid "Add a new user"
+msgstr ""
+
+#: admin/inc/dtc_config.php:877
+msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
+msgstr ""
+
+#: admin/inc/dtc_config.php:99
+msgid "Companies"
+msgstr ""
+
+#: admin/inc/dtc_config.php:94
+msgid "Domain name registration"
+msgstr ""
+
+#: admin/inc/dtc_config.php:67
+msgid "FTP backup"
+msgstr ""
+
+#: admin/inc/dtc_config.php:47
+msgid "General"
+msgstr ""
+
+#: admin/inc/dtc_config.php:51
+msgid "IP addresses and network"
+msgstr ""
+
+#: admin/inc/dtc_config.php:103
+msgid "Invoicing"
+msgstr ""
+
+#: admin/inc/dtc_config.php:63
+msgid "MX and NS backup servers"
+msgstr ""
+
+#: admin/inc/dtc_config.php:59
+msgid "Named zonefiles"
+msgstr ""
+
+#: admin/inc/dtc_config.php:82
+msgid "Paths"
+msgstr ""
+
+#: admin/inc/dtc_config.php:86
+msgid "Payment gateway"
+msgstr ""
+
+#: admin/inc/dtc_config.php:90
+msgid "Renewals"
+msgstr ""
+
+#: admin/inc/dtc_config.php:55
+msgid "SSL IPs addresses"
+msgstr ""
+
+#: admin/inc/dtc_config.php:71
+msgid "Support ticket"
+msgstr ""
+
+#: admin/inc/dtc_config.php:75
+msgid "VPS servers"
+msgstr ""
