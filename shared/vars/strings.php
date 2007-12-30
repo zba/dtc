@@ -1158,37 +1158,7 @@ $txt_currency = array(
 	"es" => "Moneda ",
 	"pt" => "TRANS "
 	);
-$txt_currency_symbol=array (
-	"fr" => "Symbole de devise: ",
-	"en" => "Currency symbol:",
-	"hu" => "TRANS ",
-	"it" => "Simbolo valuta: ",
-	"nl" => "Valuta symbool: ",
-	"ru" => "TRANS ",
-	"de" => "W鋒rungssymbol ",
-	"ro" => "Simbol de valuta ",
-	"zh" => "货币标记：",
-	"pl" => "Symbol waluty:",
-	"es" => "S&iacute;mbolo de moneda: ",
-	"se" => "TRANS SVENSKA",
-	"pt" => "TRANS "
-	);
-$txt_currency_ltr= array (
-	"fr" => "Devise en toutes lettres: ",
-	"en" => "Currency letters:",
-	"hu" => "TRANS ",
-	"it" => "Lettere valuta: ",
-	"nl" => "Afkorting Valuta ",
-	"ru" => "TRANS ",
-	"de" => "W鋒rungsbuchstabe: ",
-	"ro" => "Litera de valuta: ",
-	"zh" => "货币字符：",
-	"pl" => "Oznaczenie literowe:",
-	"se" => "TRANS SVENSKA",
-	"es" => "Moneda en letras: ",
-	"pt" => "TRANS "
-	);
-	
+
 $txt_registry_selection=array (
 	"fr" => "Selection du registre: ",
 	"en" => "Registry selection:",

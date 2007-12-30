@@ -83,9 +83,6 @@ ticket tab and type your reply.
 }
 
 function drawNewAdminForm(){
-	global $txt_login_login;
-	global $txt_login_pass;
-	global $txt_login_path;
 	global $conf_site_root_host_path;
 	global $lang;
 
@@ -100,7 +97,6 @@ function drawNewAdminForm(){
 	global $pro_mysql_tik_cats_table;
 	global $pro_mysql_dedicated_table;
 
-	global $txt_add_a_new_user;
 	global $txt_userndomain_waiting_for_addition;
 	global $txt_no_user_waiting;
 	global $txt_no_domain_waiting;
@@ -275,9 +271,9 @@ function drawNewAdminForm(){
 <form name=\"addnewuser_frm\" action=\"?\" method=\"post\">
 <input type=\"hidden\" name=\"newadminuser\" value=\"Ok\">
 ".dtcFormTableAttrs().
-dtcFormLineDraw($txt_login_login[$lang],"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"newadmin_login\" value=\"\">").
-dtcFormLineDraw($txt_login_pass[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"password\" name=\"newadmin_pass\" value=\"\">".autoGeneratePassButton("addnewuser_frm","newadmin_pass"),0).
-dtcFormLineDraw($txt_login_path[$lang],"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"newadmin_path\" value=\"$conf_site_root_host_path\">").
+dtcFormLineDraw(_("Login:"),"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"newadmin_login\" value=\"\">").
+dtcFormLineDraw(_("Password:"),"<input class=\"dtcDatagrid_input_alt_color\" type=\"password\" name=\"newadmin_pass\" value=\"\">".autoGeneratePassButton("addnewuser_frm","newadmin_pass"),0).
+dtcFormLineDraw(_("Path:"),"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"newadmin_path\" value=\"$conf_site_root_host_path\">").
 dtcFromOkDraw()."
 </form>
 </table>
