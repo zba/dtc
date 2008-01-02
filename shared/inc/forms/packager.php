@@ -1,12 +1,4 @@
 <?php
-/**
- * @package DTC
- * @version $Id: packager.php,v 1.18 2007/02/19 09:08:37 thomas Exp $
- * @param unknown_type $domain
- * @param unknown_type $adm_path
- * @return unknown
- */
-
 
 ////////////////////////////////////////////////////
 // One domain name ftp account collection edition //
@@ -33,8 +25,6 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 
 	global $pkg_info;
 	
-	global $txt_yes;
-	global $txt_no;
 	global $txt_choose_package_install;
 	global $txt_description;
 	global $txt_package_name;

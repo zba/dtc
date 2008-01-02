@@ -22,6 +22,11 @@ if [ ! -f ${LOCALBASE}/etc/proftpd.conf ] ; then
 fi
 conf_apache_version=2
 PATH_PROFTPD_CONF="${LOCALBASE}/etc/proftpd.conf"
+if [ ! -f ${LOCALBASE}/etc/pure-ftpd.conf ] ; then
+	if [ -f ${LOCALBASE}/etc/pure-ftpd.conf.sample ] ; then
+		cp ${LOCALBASE}/etc/pure-ftpd.conf.sample ${LOCALBASE}/etc/pure-ftpd.conf
+	fi
+fi
 PATH_PUREFTPD_CONF="${LOCALBASE}/etc/pure-ftpd.conf"
 PATH_DOVECOT_CONF="${LOCALBASE}/etc/dovecot.conf"
 PATH_COURIER_CONF_PATH="${LOCALBASE}/etc/courier"
@@ -53,7 +58,7 @@ PATH_RRDTOOL="${LOCALBASE}/bin/rrdtool"
 
 PATH_CYRUS_CONF=/usr/local/etc/imapd.conf
 
-PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
+PATH_DTC_ETC=${LOCALBASE}"/var/dtc/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 

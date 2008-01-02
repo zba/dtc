@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
-"POT-Creation-Date: 2007-09-25 23:45+0800\n"
+"POT-Creation-Date: 2007-12-19 16:56+0800\n"
 "PO-Revision-Date: 2007-03-31 15:20+0200\n"
 "Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
 "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
@@ -17,25 +17,25 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:1001 ../dtc-postfix-courier.templates:1001
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid "MySQL hostname:"
 msgstr "Jméno MySQL serveru:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:1001 ../dtc-postfix-courier.templates:1001
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid "Please enter the hostname or IP address of the MySQL server."
 msgstr "Zadejte prosím jméno nebo IP adresu MySQL serveru:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:2001 ../dtc-postfix-courier.templates:2001
+#: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
 msgid "MySQL administrator:"
 msgstr "Správce MySQL:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:2001 ../dtc-postfix-courier.templates:2001
+#: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
 msgid ""
 "Please enter the login name of a MySQL user with administrative privileges. "
 "DTC will use it to grant privileges for the tables to its users."
@@ -45,25 +45,25 @@ msgstr ""
 
 #. Type: password
 #. Description
-#: ../dtc.templates:3001 ../dtc-postfix-courier.templates:3001
+#: ../dtc-core.templates:3001 ../dtc-postfix-courier.templates:3001
 msgid "MySQL administrator password:"
 msgstr "Správcovské heslo k MySQL:"
 
 #. Type: password
 #. Description
-#: ../dtc.templates:3001 ../dtc-postfix-courier.templates:3001
+#: ../dtc-core.templates:3001 ../dtc-postfix-courier.templates:3001
 msgid "Please enter the password of the MySQL administrator."
 msgstr "Zadejte prosím heslo pro správce MySQL."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:4001 ../dtc-postfix-courier.templates:4001
+#: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
 msgid "DTC database name:"
 msgstr "Jméno DTC databáze:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:4001 ../dtc-postfix-courier.templates:4001
+#: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
 msgid ""
 "Please enter the name of the database to use for storing all DTC hosting "
 "information."
@@ -73,13 +73,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:5001 ../dtc-postfix-courier.templates:5001
+#: ../dtc-core.templates:5001 ../dtc-postfix-courier.templates:5001
 msgid "Change MySQL root password?"
 msgstr "Změnit heslo MySQL uživatele root?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:5001 ../dtc-postfix-courier.templates:5001
+#: ../dtc-core.templates:5001 ../dtc-postfix-courier.templates:5001
 msgid ""
 "By default, the mysql-server package does not require a password for the "
 "MySQL root user. This can be changed during the configuration of the DTC "
@@ -90,13 +90,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:6001 ../dtc-postfix-courier.templates:6001
+#: ../dtc-core.templates:6001 ../dtc-postfix-courier.templates:6001
 msgid "Domain name:"
 msgstr "Doménové jméno:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:6001 ../dtc-postfix-courier.templates:6001
+#: ../dtc-core.templates:6001 ../dtc-postfix-courier.templates:6001
 msgid ""
 "Please enter the first domain which you want DTC to manage. This domain name "
 "will be used to install the root admin and customer web control panel of DTC "
@@ -108,25 +108,25 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:7001 ../dtc-postfix-courier.templates:7001
+#: ../dtc-core.templates:7001 ../dtc-postfix-courier.templates:7001
 msgid "DTC root panel subdomain:"
 msgstr "Poddoména hlavního panelu DTC:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:7001 ../dtc-postfix-courier.templates:7001
+#: ../dtc-core.templates:7001 ../dtc-postfix-courier.templates:7001
 msgid "Please enter the subdomain to be used by the DTC control panel."
 msgstr "Zadejte prosím poddoménu, která se použije pro řídící panel DTC."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:8001 ../dtc-postfix-courier.templates:8001
+#: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
 msgid "Primary IP address:"
 msgstr "Primární IP adresa:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:8001 ../dtc-postfix-courier.templates:8001
+#: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
 msgid ""
 "Please enter this host's primary IP address. This address will be used for "
 "the domain name you just provided, and will be used as the default for most "
@@ -140,13 +140,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:9001 ../dtc-postfix-courier.templates:9001
+#: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
 msgid "Path for hosted domains:"
 msgstr "Cesta k hostovaným doménám:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:9001 ../dtc-postfix-courier.templates:9001
+#: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
 msgid ""
 "Please enter the directory to be used by DTC to store files for all hosted "
 "domains."
@@ -156,7 +156,7 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:9001 ../dtc-postfix-courier.templates:9001
+#: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
 msgid ""
 "If you choose /var/www, which is Apache's default document root, all files "
 "hosted in that directory may become publicly accessible. It is therefore "
@@ -170,13 +170,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:10001 ../dtc-postfix-courier.templates:10001
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
 msgid "Path for the chroot environment template:"
 msgstr "Cesta k šabloně chrootovaného prostředí:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:10001 ../dtc-postfix-courier.templates:10001
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
 msgid ""
 "Please enter the directory to be used by DTC to build the cgi-bin chroot "
 "environment template."
@@ -186,13 +186,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:11001 ../dtc-postfix-courier.templates:11001
+#: ../dtc-core.templates:11001 ../dtc-postfix-courier.templates:11001
 msgid "Main domain admin name:"
 msgstr "Jméno správce hlavní domény:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:11001 ../dtc-postfix-courier.templates:11001
+#: ../dtc-core.templates:11001 ../dtc-postfix-courier.templates:11001
 msgid ""
 "Each DTC domain must have an administrator. Please enter the login name of "
 "the administrator for the domain name containing the control panel "
@@ -203,13 +203,13 @@ msgstr ""
 
 #. Type: password
 #. Description
-#: ../dtc.templates:12001 ../dtc-postfix-courier.templates:12001
+#: ../dtc-core.templates:12001 ../dtc-postfix-courier.templates:12001
 msgid "Main domain admin password:"
 msgstr "Heslo správce hlavní domény:"
 
 #. Type: password
 #. Description
-#: ../dtc.templates:12001 ../dtc-postfix-courier.templates:12001
+#: ../dtc-core.templates:12001 ../dtc-postfix-courier.templates:12001
 msgid ""
 "Please choose the main domain administrator's password. Access to the "
 "control panel must be managed manually through a .htpasswd file in the root "
@@ -220,13 +220,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc.templates:13001 ../dtc-postfix-courier.templates:13001
+#: ../dtc-core.templates:13001 ../dtc-postfix-courier.templates:13001
 msgid "Mail Transfer Agent (MTA) type:"
 msgstr "Typ poštovního serveru (MTA):"
 
 #. Type: select
 #. Description
-#: ../dtc.templates:13001 ../dtc-postfix-courier.templates:13001
+#: ../dtc-core.templates:13001 ../dtc-postfix-courier.templates:13001
 msgid ""
 "Please select the MTA that will be used with DTC. It should be installed on "
 "the system already. If no such MTA is currently installed, please complete "
@@ -238,13 +238,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:14001 ../dtc-postfix-courier.templates:14001
+#: ../dtc-core.templates:14001 ../dtc-postfix-courier.templates:14001
 msgid "Use Cyrus mail system?"
 msgstr "Používat poštovní systém Cyrus?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:14001 ../dtc-postfix-courier.templates:14001
+#: ../dtc-core.templates:14001 ../dtc-postfix-courier.templates:14001
 msgid ""
 "Please choose this option if you are using Cyrus for mail delivery, IMAP and "
 "MTA. This option is only compatible with Postfix."
@@ -254,13 +254,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc.templates:15001 ../dtc-postfix-courier.templates:15001
+#: ../dtc-core.templates:15001 ../dtc-postfix-courier.templates:15001
 msgid "Apache version to configure:"
 msgstr "Verze Apache, která se má nastavit:"
 
 #. Type: select
 #. Description
-#: ../dtc.templates:15001 ../dtc-postfix-courier.templates:15001
+#: ../dtc-core.templates:15001 ../dtc-postfix-courier.templates:15001
 msgid ""
 "DTC supports both Apache and Apache2. Please enter the version which DTC "
 "should use."
@@ -269,13 +269,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:16001 ../dtc-postfix-courier.templates:16001
+#: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid "Use \"NATed\" vhosts?"
 msgstr "Použít \"NATované\" vhosty?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:16001 ../dtc-postfix-courier.templates:16001
+#: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid ""
 "DTC can configure Apache to use one of your IP addresses. If the server is "
 "firewalled with NAT and port redirections of public IP(s) address(es), a "
@@ -287,7 +287,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:16001 ../dtc-postfix-courier.templates:16001
+#: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid ""
 "This option should be chosen only if the server is not connected to the "
 "Internet directly, but through a firewall doing network address translation "
@@ -301,13 +301,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:17001 ../dtc-postfix-courier.templates:17001
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
 msgid "NATed LAN IP address:"
 msgstr "NATovaná IP adresa:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:17001 ../dtc-postfix-courier.templates:17001
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
 msgid ""
 "Please enter the IP address of the server for DTC to generate all vhosts "
 "that will be used by Apache."
@@ -317,13 +317,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:18001 ../dtc-postfix-courier.templates:18001
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
 msgid "Generate an SSL certificate for DTC?"
 msgstr "Vygenerovat pro DTC SSL certifikát?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:18001 ../dtc-postfix-courier.templates:18001
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
 msgid ""
 "If you choose this option, DTC will generate a self-signed SSL certificate "
 "and will use SSL to browse the panel. SSL will also be activated and the "
@@ -336,7 +336,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:18001 ../dtc-postfix-courier.templates:18001
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
 msgid "This certificate can be changed for a root CA certificate later."
 msgstr ""
 "Tento certifikát může být později vyměněn za certifikát od kořenové "
@@ -344,7 +344,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:18001 ../dtc-postfix-courier.templates:18001
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
 msgid ""
 "Previously-generated certificates will never be overwritten. To regenerate "
 "the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
@@ -354,25 +354,25 @@ msgstr ""
 
 #. Type: password
 #. Description
-#: ../dtc.templates:19001 ../dtc-postfix-courier.templates:19001
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid "DTC certificate passphrase:"
 msgstr "Přístupová fráze k DTC certifikátu:"
 
 #. Type: password
 #. Description
-#: ../dtc.templates:19001 ../dtc-postfix-courier.templates:19001
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid "Please choose a passphrase to protect the generated SSL certificate."
 msgstr "Zvolte si prosím frázi, která bude chránit vytvořený SSL certifikát."
 
 #. Type: string
 #. Description
-#: ../dtc.templates:20001 ../dtc-postfix-courier.templates:20001
+#: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
 msgid "Country code for the DTC SSL certificate:"
 msgstr "Kód země pro SSL certifikát DTC:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:20001 ../dtc-postfix-courier.templates:20001
+#: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
 msgid ""
 "Please enter the 2-letter country code for the generated certificate. This "
 "should usually be the code for the country the server is located in."
@@ -382,43 +382,43 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:21001 ../dtc-postfix-courier.templates:21001
+#: ../dtc-core.templates:21001 ../dtc-postfix-courier.templates:21001
 msgid "City name for the DTC SSL certificate:"
 msgstr "Jméno města pro SSL certifikát DTC:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:22001 ../dtc-postfix-courier.templates:22001
+#: ../dtc-core.templates:22001 ../dtc-postfix-courier.templates:22001
 msgid "Organization name for the DTC SSL certificate:"
 msgstr "Jméno organizace pro SSL certifikát DTC:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:23001 ../dtc-postfix-courier.templates:23001
+#: ../dtc-core.templates:23001 ../dtc-postfix-courier.templates:23001
 msgid "Organizational unit for the DTC SSL certificate:"
 msgstr "Organizační jednotka pro SSL certifikát DTC:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:24001 ../dtc-postfix-courier.templates:24001
+#: ../dtc-core.templates:24001 ../dtc-postfix-courier.templates:24001
 msgid "Email address for the DTC SSL certificate:"
 msgstr "Emailová adresa pro SSL certifikát DTC:"
 
 #. Type: password
 #. Description
-#: ../dtc.templates:25001 ../dtc-postfix-courier.templates:25001
+#: ../dtc-core.templates:25001 ../dtc-postfix-courier.templates:25001
 msgid "DTC SSL certificate challenge password:"
 msgstr "Heslo pro SSL certifikát DTC:"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:26001 ../dtc-postfix-courier.templates:26001
+#: ../dtc-core.templates:26001 ../dtc-postfix-courier.templates:26001
 msgid "Update PEAR installation?"
 msgstr "Aktualizovat instalaci PEARu?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:26001 ../dtc-postfix-courier.templates:26001
+#: ../dtc-core.templates:26001 ../dtc-postfix-courier.templates:26001
 msgid ""
 "DTC can check the PEAR installation during its own installation process. "
 "This requires your server to be connected to the network. If you can't do so "
@@ -432,13 +432,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:27001 ../dtc-postfix-courier.templates:27001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid "DNSBL (DNS BlackList) list:"
 msgstr "Seznam DNSBL (DNS BlackList):"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:27001 ../dtc-postfix-courier.templates:27001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid ""
 "Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
@@ -448,13 +448,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid "Local address extension character:"
 msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
@@ -462,7 +462,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "The recipient delimiter will be used for your mailing lists. Let's say you "
 "use the + char as delimiter, then your users will have to send a mail to list"
@@ -474,13 +474,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Subdomain name for the MX server:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid ""
 "Your mail server will need to use a subdomain name to accept mail. This "
 "subdomain will be configured in your mail server and your domain name server "
@@ -489,13 +489,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Network devices to monitor:"
 msgstr "Síťová zařízení, která sledovat:"
 
 #. Type: string
 #. Description
-#: ../dtc.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
@@ -505,13 +505,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Allow to report anonymous statistics to GPLHost?"
 msgstr "Povolit zasílání anonymních statistik GPLHostu?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid ""
 "DTC installations can be reported to the GPLHost web site. The only "
 "collected data are the operating system name (Debian) and the IP address "
@@ -525,13 +525,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid "Skip mknod calls when building the chroot template?"
 msgstr "Přeskočit při vytváření šablony pro chroot volání mknod?"
 
 #. Type: boolean
 #. Description
-#: ../dtc.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid ""
 "In some environments, such as Linux vServer, mknod cannot be executed. This "
 "option allows skipping the creation of the null, random and urandom devices "

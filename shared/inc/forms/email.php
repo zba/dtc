@@ -1,13 +1,5 @@
 <?php
 
-/**
- * 
- * @package DTC
- * @version $Id: email.php,v 1.57 2007/06/12 05:22:51 thomas Exp $
- * @param unknown_type $mailbox
- * @return unknown
- */
-
 function drawImportedMail($mailbox){
 	global $adm_email_login;
 	global $adm_email_pass;
@@ -18,7 +10,6 @@ function drawImportedMail($mailbox){
 	global $txt_login_pass;
 	global $txt_use;
 	global $txt_action;
-	global $txt_cfg_server_address;
 	global $txt_login_title;
 	global $lang;
 	
@@ -40,7 +31,7 @@ function drawImportedMail($mailbox){
 	$out .= "<table border=\"1\">
 	
 	<!-- to translate -->
-<tr><td>Address email</td><td>Mailbox type</td><td>".$txt_cfg_server_address[$lang]."</td><td>".$txt_login_title[$lang]."</td><td>".$txt_login_pass[$lang]."</td><td>".$txt_use[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
+<tr><td>Address email</td><td>Mailbox type</td><td>". _("Server address :") . "</td><td>".$txt_login_title[$lang]."</td><td>".$txt_login_pass[$lang]."</td><td>".$txt_use[$lang]."</td><td>".$txt_action[$lang]."</td></tr>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$pop3_selected = "";
@@ -227,8 +218,6 @@ function drawAdminTools_emailAccount($mailbox){
 	global $txt_mail_edit;
 	global $txt_mailbox_redirection_edition;
 	global $lang;
-	global $txt_yes;
-	global $txt_no;
 	
 	global $adm_email_login;
 	global $adm_email_pass;
@@ -268,7 +257,7 @@ function drawAdminTools_emailAccount($mailbox){
 
 	$left .= "<h3>Vacation message</h3>
 	".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_vacation_msg\">
-<input type=\"radio\" name=\"use_vacation_msg\" value=\"yes\" $use_vacation_msg_yes_checked>".$txt_yes[$lang]."<input type=\"radio\" name=\"use_vacation_msg\" value=\"no\" $use_vacation_msg_no_checked>".$txt_no[$lang]."
+<input type=\"radio\" name=\"use_vacation_msg\" value=\"yes\" $use_vacation_msg_yes_checked>"._("Yes")."<input type=\"radio\" name=\"use_vacation_msg\" value=\"no\" $use_vacation_msg_no_checked>"._("No")."
 <br>
 <textarea cols=\"40\" rows=\"7\" name=\"vacation_msg_txt\">".$mailbox["data"]["vacation_text"]."</textarea><br>
 <div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
@@ -279,9 +268,9 @@ function drawAdminTools_emailAccount($mailbox){
 </form>";
 
 	if($mailbox["data"]["localdeliver"] == "yes"){
-		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=no\"><font color=\"green\">".$txt_yes[$lang]."</font></a>";
+		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=no\"><font color=\"green\">"._("Yes")."</font></a>";
 	}else{
-		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=yes\"><font color=\"red\">".$txt_no[$lang]."</font></a>";
+		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=yes\"><font color=\"red\">"._("No")."</font></a>";
 	}
 	$right = "<h3>".$txt_mailbox_redirection_edition[$lang]."</h3>
 ".$txt_mail_deliver_localy[$lang]." $deliverUrl
@@ -313,7 +302,7 @@ function drawAdminTools_emailAccount($mailbox){
 <table cellpadding=\"0\" cellspacing=\"0\">
 <tr>
 	<td align=\"right\">Deliver spam to spambox:</td><td>".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_spambox\">
-<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"yes\" $spambox_yes_checked>".$txt_yes[$lang]."<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"no\" $spambox_no_checked>".$txt_no[$lang]."</td>
+<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"yes\" $spambox_yes_checked>"._("Yes")."<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"no\" $spambox_no_checked>"._("No")."</td>
 </tr><tr>
 	<td align=\"right\">SPAM box name:</td><td><input type=\"text\" name=\"spam_mailbox\" value=\"".$mailbox["data"]["spam_mailbox"]."\"></td>
 </tr><tr>
@@ -503,7 +492,7 @@ function emailAccountsCreateCallback ($id){
 	writeDotQmailFile($a["id"],$a["mbox_host"]);
 	$admin_path = getAdminPath($adm_login);
 	$box_path = "$admin_path/$edit_domain/Mailboxs/".$a["id"];
-	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid',fullemail='".$a["id"].'@'.$a["mbox_host"]."',quota_couriermaildrop=CONCAT(quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',home='$box_path',uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid',fullemail='".$a["id"].'@'.$a["mbox_host"]."',quota_couriermaildrop=CONCAT(1024000*quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
 	$r2 = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	triggerMXListUpdate();
 	if ($cyrus_used){
@@ -534,7 +523,7 @@ function emailAccountsEditCallback ($id){
 	$a = mysql_fetch_array($r);
 
 	$crypted_pass = crypt($a["passwd"], dtc_makesalt());
-	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',quota_couriermaildrop=CONCAT(quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
+	$q = "UPDATE $pro_mysql_pop_table SET crypt='$crypted_pass',quota_couriermaildrop=CONCAT(1024000*quota_size,'S,',quota_files,'C') WHERE autoinc='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 
 	writeDotQmailFile($a["id"],$a["mbox_host"]);

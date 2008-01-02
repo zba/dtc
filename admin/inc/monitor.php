@@ -93,8 +93,8 @@ function drawAdminMonitor (){
 			$out .= "<tr><td $back><img width=\"120\" height=\"48\" src=\"vps_stats_network.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
 <td $back><img width=\"120\" height=\"48\" src=\"vps_stats_hdd.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
 <td $back><img width=\"120\" height=\"48\" src=\"vps_stats_swap.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
-<td $back><img width=\"120\" height=\"48\" src=\"vps_stats_cpu.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
-</tr>";
+<td $back><img width=\"120\" height=\"48\" src=\"vps_stats_cpu.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>";
+			$out .= "</tr>";
 			$out .= "</table>";
 
 			$out .= "</td></tr>";

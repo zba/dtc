@@ -11,7 +11,7 @@ pushd $MAIN_DIR
 for i in */*/subdomains/*/
 do 
 	echo "=> Updating chroot in $i..."
-	cp -fulpRv $CHROOT_PATH/* $i 
+	cp -fupRv $CHROOT_PATH/* $i
 	# remove un-needed directories
 	rm -rf $i/etc/pam.d
 	rm -rf $i/etc/security

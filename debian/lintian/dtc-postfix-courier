@@ -1,3 +1,0 @@
-dtc-postfix-courier: debconf-is-not-a-registry ./usr/share/dtc/admin/ip_change.sh
-dtc-postfix-courier: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_domain.sh
-dtc-postfix-courier: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_ip.sh

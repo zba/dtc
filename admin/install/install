@@ -16,7 +16,9 @@ if [ -f /etc/debian_version ] ; then
 	. /usr/share/dtc/admin/install/functions
 fi
 
-RPM=`which rpm`
+# Find the rpm exec: it can be not present, thus the || to avoid
+# that this script fails
+RPM=`which rpm || true`
 if [ -x "$RPM" ] ; then
 	if rpm -q coreutils >/dev/null ; then
 		# Prepare everything
@@ -35,6 +37,18 @@ fi
 if [ "`uname -s`" = "FreeBSD" ]; then
 	echo "FreeBSD detected"
 	. /usr/local/www/dtc/admin/install/functions
+fi
+
+if [ -e /etc/gentoo-release ] ; then
+	echo "Gentoo detected"
+	. /usr/share/dtc/admin/install/gentoo_config
+	. /usr/share/dtc/admin/install/interactive_installer
+	interactiveInstaller
+	DTCinstallPackage
+	/usr/share/dtc/admin/install/uninstall
+	. ${DTC_SAVED_INSTALL_CONFIG}
+	/usr/share/dtc/admin/install/functions
+	DTCsetupDaemons
 fi
 
 DTCsetupDaemons

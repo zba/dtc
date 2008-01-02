@@ -500,6 +500,11 @@ if(isset($_REQUEST["dellist"]) && $_REQUEST["dellist"] == "Del"){
 	unset($edit_mailbox);
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
+	if($edit_domain == $conf_main_domain){
+		$adm_query = "DELETE FROM $pro_mysql_vps_server_lists_table WHERE list_name='$name';";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	}
+
 	triggerMXListUpdate();
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
 }

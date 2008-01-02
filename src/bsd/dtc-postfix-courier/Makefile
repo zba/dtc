@@ -1,6 +1,6 @@
 # New ports collection makefile for:    dtc-postfix-courier
 # Date created:                         13 October 2007
-# Whom:                                 Thomas Goirand <thomas@goirand.fr
+# Whom:                                 Thomas Goirand <thomas@goirand.fr>
 #
 # $FreeBSD$
 #

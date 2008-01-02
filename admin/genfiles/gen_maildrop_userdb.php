@@ -68,7 +68,7 @@ function mail_account_generate_maildrop(){
 			$query_dom_name = $name;
 		}
 
-		$q = "SELECT $pro_mysql_admin_table.path,$pro_mysql_domain_table.name,$pro_mysql_pop_table.id,$pro_mysql_pop_table.uid,$pro_mysql_pop_table.gid,$pro_mysql_pop_table.quota_couriermaildrop
+		$q = "SELECT $pro_mysql_admin_table.path,$pro_mysql_domain_table.name,$pro_mysql_pop_table.id,$pro_mysql_pop_table.uid,$pro_mysql_pop_table.gid,$pro_mysql_pop_table.quota_size,$pro_mysql_pop_table.quota_couriermaildrop
 		FROM $pro_mysql_admin_table,$pro_mysql_pop_table,$pro_mysql_domain_table
 		WHERE $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner
 		AND $pro_mysql_domain_table.name=$pro_mysql_pop_table.mbox_host
@@ -79,7 +79,20 @@ function mail_account_generate_maildrop(){
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$boxpath = $a["path"]."/".$a["name"]."/Mailboxs/".$a["id"];
-			$userdb_file .= $a["id"]."@".$a2["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"].'|quota='.$a["quota_couriermaildrop"]."\n";
+			$userdb_file .= $a["id"]."@".$a2["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"].'|quota='.$a["quota_size"]."\n";
+			$quota_maildrop=$a["quota_couriermaildrop"];
+
+			system("maildirmake -q  $quota_maildrop $boxpath/Maildir");
+			if($quota_maildrop==0){
+				if(file_exists("$boxpath/Maildir/maildirsize")){
+					system("rm $boxpath/Maildir/maildirsize");
+				}
+			}else{
+				if($panel_type == "cronjob"){
+					chown("$boxpath/Maildir/maildirsize",$conf_dtc_system_username);
+				}
+			}
+
 		}
 
 	}

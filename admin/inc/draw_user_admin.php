@@ -83,9 +83,6 @@ ticket tab and type your reply.
 }
 
 function drawNewAdminForm(){
-	global $txt_login_login;
-	global $txt_login_pass;
-	global $txt_login_path;
 	global $conf_site_root_host_path;
 	global $lang;
 
@@ -100,7 +97,6 @@ function drawNewAdminForm(){
 	global $pro_mysql_tik_cats_table;
 	global $pro_mysql_dedicated_table;
 
-	global $txt_add_a_new_user;
 	global $txt_userndomain_waiting_for_addition;
 	global $txt_no_user_waiting;
 	global $txt_no_domain_waiting;
@@ -131,8 +127,7 @@ function drawNewAdminForm(){
 	global $txt_dua_type2;
 	global $txt_dua_ticket_type_not_found;
 	global $txt_dua_request_to_close_the_ticket;
-	global $txt_yes;
-	global $txt_no;
+	global $txt_pending;
 	global $txt_dua_back_to_pending_requests;
 	global $txt_dua_domain_name_vps_server_hostname;
 	global $txt_dua_name;	
@@ -204,9 +199,9 @@ function drawNewAdminForm(){
 		$out .= "</table>";
 		$out .= $txt_dua_request_to_close_the_ticket[$lang];
 		if($close_request == "yes"){
-			$out .= "<font color=\"#00FF00\">".$txt_yes[$lang]."</font><br>";
+			$out .= "<font color=\"#00FF00\">"._("Yes")."</font><br>";
 		}else{
-			$out .= "<font color=\"#FF0000\">".$txt_no[$lang]."</font><br>";
+			$out .= "<font color=\"#FF0000\">"._("No")."</font><br>";
 		}
 		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 		<input type=\"hidden\" name=\"subaction\" value=\"ticket_reply\">
@@ -272,13 +267,13 @@ function drawNewAdminForm(){
 	}
 
 	// Draw the form for making a new admin
-	$add_a_user = "<h3>".$txt_add_a_new_user[$lang]."</h3>
+	$add_a_user = "<h3>".gettext("Add a new user")."</h3>
 <form name=\"addnewuser_frm\" action=\"?\" method=\"post\">
 <input type=\"hidden\" name=\"newadminuser\" value=\"Ok\">
 ".dtcFormTableAttrs().
-dtcFormLineDraw($txt_login_login[$lang],"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"newadmin_login\" value=\"\">").
-dtcFormLineDraw($txt_login_pass[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"password\" name=\"newadmin_pass\" value=\"\">".autoGeneratePassButton("addnewuser_frm","newadmin_pass"),0).
-dtcFormLineDraw($txt_login_path[$lang],"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"newadmin_path\" value=\"$conf_site_root_host_path\">").
+dtcFormLineDraw(_("Login:"),"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"newadmin_login\" value=\"\">").
+dtcFormLineDraw(_("Password:"),"<input class=\"dtcDatagrid_input_alt_color\" type=\"password\" name=\"newadmin_pass\" value=\"\">".autoGeneratePassButton("addnewuser_frm","newadmin_pass"),0).
+dtcFormLineDraw(_("Path:"),"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"newadmin_path\" value=\"$conf_site_root_host_path\">").
 dtcFromOkDraw()."
 </form>
 </table>
@@ -326,9 +321,11 @@ dtcFromOkDraw()."
 				if($n2 != 1)	echo "Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__." : problems with sql tables !";
 				$a2 = mysql_fetch_array($r2);
 				if($a2["valid"] == "yes"){
-					$waiting_new_users .= "<td><font color=\"green\">".$txt_yes[$lang]."</font></td>";
+					$waiting_new_users .= "<td><font color=\"green\">"._("Yes")."</font></td>";
+				}elseif($a2["valid"] == "pending"){
+					$waiting_new_users .= "<td><font color=\"#FF8800\">pending</font></td>";
 				}else{
-					$waiting_new_users .= "<td><font color=\"red\">".$txt_no[$lang]."</font></td>";
+					$waiting_new_users .= "<td><font color=\"red\">"._("No")."</font></td>";
 				}
 			}
 			$waiting_new_users .= "<td><pre style='width: 200px; height: 100px; overflow: scroll;'>".htmlspecialchars(
@@ -360,6 +357,7 @@ dtcFromOkDraw()."
 		$waiting_new_users .= "</table>";
 	}
 
+	// Draw the list of pending renewals
 	$q = "SELECT * FROM $pro_mysql_pending_renewal_table ORDER BY renew_date,renew_time";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -389,7 +387,18 @@ dtcFromOkDraw()."
 				$bank = $txt_dua_cannot_find_payment[$lang];
 			}else{
 				$a2 = mysql_fetch_array($r2);
-				$bank = $a2["valid"];
+				switch($a2["valid"]){
+				case "yes":
+					$bank = "<font color=\"green\">"._("Yes")."</font>";
+					break;
+				default:
+				case "no":
+					$bank = "<font color=\"red\">"._("No")."</font>";
+					break;
+				case "pending":
+					$bank = "<font color=\"#FF8800\">".$txt_pending[$lang].": ".$a2["pending_reason"]."</font>";
+					break;
+				}
 			}
 			$waiting_new_users .= "<td>$bank</td>";
 			switch($a["heb_type"]){

@@ -18,7 +18,6 @@ mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/RPMS"
 mkdir -p $FTP_ROOT_LOCATION"/home/pub/dtc/generic"
 
 ./clean
-./makeCVSsnap
 ./makeDebian
 ./makeTarball
 ./makeBSD
@@ -39,5 +38,4 @@ cp -fv "dtc-"$BSDVERSION".tar.gz" $FTP_PUB_LOCATION"/bsd/"
 cp -fv "dtcBSDport-"$BSDVERSION".tar.gz" $FTP_PUB_LOCATION"/bsd/"
 cp -fv "dtc_"$VERSION"-generic_all.tar.gz" $FTP_PUB_LOCATION"/generic"
 cp -fv "/root/rpmbuild/RPMS/noarch/dtc-"$VERS"-"$RELS".noarch.rpm" $FTP_PUB_LOCATION"/RPMS"
-cp -fv "CVS_dtc_"$VERSION"_all.tar.gz" $FTP_PUB_LOCATION"/cvs"
 cp -fv "dtc_"$VERSION"-gentoo_all.tar.gz" $FTP_PUB_LOCATION"/gentoo"

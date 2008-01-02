@@ -1,7 +1,7 @@
 This package was debianized by Thomas Goirand <thomas@goirand.fr> on
 Sat,  9 Apr 2005 21:54:10 +0200.
 
-It was downloaded from:
+Original source may be found at:
 git clone http://git.gplhost.com/dtc.git
 
 Upstream Authors:
@@ -24,13 +24,21 @@ Upstream Authors:
 	then released in GPL. See http://www.bwoup.com to get in touch with
 	Thomas Morgan.
 
-	Many thanks to all the translators : Jelle Kalf (Dutch), Igor Trofimov
-	(partial Russian), Feher Sandor (Hungarian), Jose Toscano and Jorge
-	Mendez (Espanol), Andrea Polte (Deutsch), Luca Franceschini (Italiano),
+	Many thanks to all the translators :
+	- Jelle Kalf (Dutch) <JKalf@uno.nl>
+	- Igor Trofimov (partial Russian)
+	- Feher Sandor (Hungarian) <sfeher@bluesystem.hu>
+	- Jose Toscano <josetg81wireless@yahoo.es> and
+	  Jorge Mendez <solutions@todoimporta.com> (Espanol)
+	- Seeb <seeb@seeb.net.pl> (Polish)
+	- Andrea Polte <andreapolte@gmx.de> and
+	  Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net> (German)
+	- Luca Franceschini <info@atw.it> (Italiano)
 	and my lovely wife Cao Wei (Chinese).
 
-License (admin/sa-learn):
-	Copyright (C) Alexandre Jousset, 2004
+Files: admin/sa-learn
+Copyright: (C) 2004, Alexandre Jousset
+License: GPL-2
 
         This program is free software; you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -46,11 +54,11 @@ License (admin/sa-learn):
         along with this program; if not, write to the Free Software
         Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
-License (shared/dtcrm/srs/*):
-
-	Copyright (C) 2000-2003 Colin Viebrock
-	Copyright (C) 2000-2003 easyDNS Technologies, Inc.
-	Copyright (C) 2000 Tuwcows, Inc.
+Files: shared/dtcrm/srs/*
+Copyright: (C) 2000-2003 Colin Viebrock
+	(C) 2000-2003 easyDNS Technologies, Inc.
+	(C) 2000 Tuwcows, Inc.
+License: GPL-2
 
         This program is free software; you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -66,10 +74,10 @@ License (shared/dtcrm/srs/*):
         along with this program; if not, write to the Free Software
         Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
-License (shared/inc/nusoap.php):
-
-	Copyright (C) 2002 NuSphere Corporation
-	Copyright (C) 2002 Dietrich Ayala <dietrich@ganx4.com>
+Files: shared/inc/nusoap.php
+Copyright: (C) 2002 NuSphere Corporation
+	(C) 2002 Dietrich Ayala <dietrich@ganx4.com>
+License: LGPL-2.1
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -85,9 +93,9 @@ License (shared/inc/nusoap.php):
 	License along with this library; if not, write to the Free Software
         Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
-License (shared/maxmind/*):
-
-	Copyright (C) 2002 2005 MaxMind LLC
+Files: shared/maxmind/*
+Copyright: (C) 2002 2005 MaxMind LLC
+License: LGPL-2
 
 	Note: we receive a mail from MaxMind saying this is REALLY licensed
 	under LGPL despite the fact that the files of the library are saying
@@ -108,7 +116,9 @@ License (shared/maxmind/*):
 	License along with this library; if not, write to the Free Software
         Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
-License (bin/sources/redhat/RPM-build-tree.sh):
+Files: bin/sources/redhat/RPM-build-tree.sh
+Copyright: (C) 2002 Owl River Company <info@owlriver.com>
+License: GPL-2 or later
 
 	Copyright (C) 2002 Owl River Company <info@owlriver.com>
 
@@ -126,27 +136,9 @@ License (bin/sources/redhat/RPM-build-tree.sh):
         along with this program; if not, write to the Free Software
         Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
-License (shared/gfx/wz_tooltip.js):
-
-	Copyright (C) 2002-2005 Walter Zorn <walter2615@gmx.de>
-
-	This library is free software; you can redistribute it and/or
-	modify it under the terms of the GNU Lesser General Public
-	License as published by the Free Software Foundation; either
-	version 2.1 of the License, or (at your option) any later version.
-
-	This library is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	Lesser General Public License for more details.
-
-	You should have received a copy of the GNU Lesser General Public
-	License along with this library; if not, write to the Free Software
-        Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
-
-License (shared/cyradm.php):
-
-	Copyright (C) 2000 Gernot Stocker <muecketb@sbox.tu-graz.ac.at>
+Files: shared/gfx/wz_tooltip.js
+Copyright: (C) 2002-2005 Walter Zorn <walter2615@gmx.de>
+License: LGPL-2.1
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -162,10 +154,28 @@ License (shared/cyradm.php):
 	License along with this library; if not, write to the Free Software
         Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
-License (bin/sources/osx/Crypt/*):
+Files: shared/cyradm.php
+Copyright: (C) 2000 Gernot Stocker <muecketb@sbox.tu-graz.ac.at>
+License: LGPL-2.1
 
-	Copyright (C) 2001 The PHP Group Manon Goo <manon@passionet.de>
-	Copyright (C) 2001 Chuck Hagenbuch <chuck@horde.org>
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Lesser General Public
+	License as published by the Free Software Foundation; either
+	version 2.1 of the License, or (at your option) any later version.
+
+	This library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	Lesser General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public
+	License along with this library; if not, write to the Free Software
+        Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+
+Files: bin/sources/osx/Crypt/*
+Copyright: (C) 2001 The PHP Group Manon Goo <manon@passionet.de>
+	(C) 2001 Chuck Hagenbuch <chuck@horde.org>
+License: PHP 2.02
 
 	This source file is subject to version 2.02 of the PHP license,
 	that is bundled with this package in the file LICENSE, and is
@@ -175,11 +185,11 @@ License (bin/sources/osx/Crypt/*):
 	obtain it through the world-wide-web, please send a note to
 	license@php.net so we can mail you a copy immediately.
 
-License (everything else):
-
-	Copyright (C) Thomas Goirand <thomas@goirand.fr>
-	Copyright (C) Damien Mascord <tusker@tusker.org>
-	Copyright (C) GPLHost LLC <info@gplhost.com>
+Files: *
+Copyright: (C) 2001-2008, Thomas Goirand <thomas@goirand.fr>
+	(C) 2001-2008, Damien Mascord <tusker@tusker.org>
+	(C) 2003-2008, GPLHost LLC <info@gplhost.com>
+License: LGPL-2
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public

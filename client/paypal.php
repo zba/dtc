@@ -23,6 +23,7 @@ if($secpayconf_paypal_sandbox == "no"){
 $paypal_server_script = "/cgi-bin/webscr";
 
 // post back to PayPal system to validate
+$header = "";
 $header .= "POST $paypal_server_script HTTP/1.0\r\n";
 $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 $header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
@@ -56,21 +57,24 @@ if (!$fp) {
 				logPay("Business paypal email do not match !");
 				die("This is not our business paypal email!");
 			}
-			if($_REQUEST["payment_status"] != "Completed"){
-				logPay("Status is not completed !");
-				die("Status not completed...");
-			}
 			if($_REQUEST["mc_currency"] != $secpayconf_currency_letters){
 				logPay("Currency is not $secpayconf_currency_letters !");
 				die("Incorrect currency!");
+			}
+			if($_REQUEST["payment_status"] != "Completed"){
+				if($_REQUEST["payment_status"] == "Pending"){
+					setPaiemntAsPending(mysql_escape_string($item_number),mysql_escape_string($_REQUEST["pending_reason"]));
+				}else{
+					logPay("Status is not completed or pending !");
+					die("Status not completed or pending...");
+				}
 			}
 			logPay("Calling validate()");
 			// validatePaiement($item_number,$refund_amount,"online","paypal",$txn_id,$_POST["payment_gross"]);
 			// This should work better:
 			$refund_amount = $_REQUEST["mc_gross"] - $_REQUEST["mc_fee"];
-			validatePaiement($item_number,$refund_amount,"online","paypal",$txn_id,$_REQUEST["mc_gross"]);
-		}
-		else if (strcmp ($res, "INVALID") == 0) {
+			validatePaiement(mysql_escape_string($item_number),$refund_amount,"online","paypal",mysql_escape_string($_REQUEST["txn_id"]),mysql_escape_string($_REQUEST["mc_gross"]));
+		}elseif (strcmp ($res, "INVALID") == 0) {
 			// log for manual investigation
 			logPay("Recieved INVALID: sending mail to webmaster !!");
 			die("Invalid!");

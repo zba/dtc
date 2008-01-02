@@ -15,10 +15,11 @@ CREATE TABLE IF NOT EXISTS paiement (
   time time NOT NULL default '00:00:00',
   valid_date varchar(10) NOT NULL default '0000-00-00',
   valid_time varchar(8) NOT NULL default '00:00:00',
-  valid enum('yes','no') NOT NULL default 'no',
+  valid enum('yes','no','pending') NOT NULL default 'no',
+  pending_reason varchar(128) NOT NULL default '',
   new_account enum('yes','no') NOT NULL default 'yes',
   product_id int(11) NOT NULL default '0',
-  vat_rate int(11) NOT NULL default '0',
+  vat_rate decimal(9,2) NOT NULL default '0.00',
   vat_total int(11) NOT NULL default '0',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)

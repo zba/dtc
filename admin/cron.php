@@ -557,6 +557,9 @@ if(($start_stamps%(60*60))< 60*10){	updateAllListWebArchive();	}
 checkWebalizerCronService();
 $cronjob_table_content = getCronFlags();
 checkTimeAndLaunchNetBackupScript();
+// Echo the console:
+echo("Report for this job:\n");
+echo( str_replace("<br>","\n",$console));
 printEndTime();
 exit();
 

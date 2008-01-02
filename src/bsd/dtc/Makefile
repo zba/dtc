@@ -1,3 +1,12 @@
+# Ports collection makefile for:	dtc
+# Date created:				1 December 2003
+# Whom:					Frederic Cambus & Thomas Goirand & Marc G. Fournier
+#
+# $FreeBSD$
+#
+
+PORTNAME=	dtc
+PORTVERSION=	__VERSION__
 CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.gplhost.com/pub/dtc/bsd/ \
 		ftp://ftp.gplhost.fr/pub/dtc/bsd/ \
@@ -104,8 +113,8 @@ SUB_LIST+=	QMAIL_DIR="${QMAIL_DIR}"
 do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-install ${PREFIX}/sbin/dtc-install
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-deinstall ${PREFIX}/sbin/dtc-deinstall
-	@${MKDIR} ${DTCDIR}
-	@cd ${WRKSRC} ; ${TAR} cfp - . | ${TAR} xfp - -C ${DTCDIR}
+	@${MAKE} -C ${WRKDIR}/dtc-__VERSION__ install-dtc-common INSTALL=install DTC_APP_DIR=${LOCALBASE}/www DTC_GEN_DIR=${LOCALBASE}/var CONFIG_DIR=${LOCALBASE}/etc \
+		DTC_DOC_DIR=${LOCALBASE}/share/doc MANUAL_DIR=${LOCALBASE}/man BIN_DIR=${LOCALBASE}/bin UNIX_TYPE=bsd
 	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>

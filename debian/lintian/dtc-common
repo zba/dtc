@@ -1,0 +1,4 @@
+dtc-common: debconf-is-not-a-registry ./usr/share/dtc/admin/ip_change.sh
+dtc-common: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_domain.sh
+dtc-common: debconf-is-not-a-registry ./usr/share/dtc/admin/genfiles/change_debconf_ip.sh
+dtc-common: package-contains-empty-directory usr/share/dtc/shared/imgcache/

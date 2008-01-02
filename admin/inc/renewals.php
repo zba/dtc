@@ -11,6 +11,8 @@ function drawRenewalTables (){
 	global $pro_mysql_ssl_ips_table;
 	global $pro_mysql_client_table;
 	global $pro_mysql_domain_table;
+	global $pro_mysql_completedorders_table;
+	global $pro_mysql_pay_table;
 
 	global $lang;
 	global $txt_renew_total_recurring_incomes_per_month;
@@ -118,12 +120,46 @@ function drawRenewalTables (){
 		}
 	}
 
-	$out .= $txt_renew_shared_hosting[$lang].round($total_shared,2)." $secpayconf_currency_letters<br>";
-	$out .= $txt_renew_ssl_ip[$lang].round($total_ssl,2)." $secpayconf_currency_letters<br>";
-	$out .= $txt_renew_vps[$lang].round($total_vps,2)." $secpayconf_currency_letters<br>";
-	$out .= $txt_renew_dedicated_servers[$lang].round($total_dedicated,2)." $secpayconf_currency_letters<br>";
+	$p_renewal = "";
+	$p_renewal .= $txt_renew_shared_hosting[$lang].round($total_shared,2)." $secpayconf_currency_letters<br>";
+	$p_renewal .= $txt_renew_ssl_ip[$lang].round($total_ssl,2)." $secpayconf_currency_letters<br>";
+	$p_renewal .= $txt_renew_vps[$lang].round($total_vps,2)." $secpayconf_currency_letters<br>";
+	$p_renewal .= $txt_renew_dedicated_servers[$lang].round($total_dedicated,2)." $secpayconf_currency_letters<br>";
 	$big_total = $total_shared + $total_vps + $total_dedicated + $total_ssl;
-	$out .= "<b>".$txt_renew_total[$lang].round($big_total,2)." $secpayconf_currency_letters</b>";
+	$p_renewal .= "<b>".$txt_renew_total[$lang].round($big_total,2)." $secpayconf_currency_letters</b>";
+
+	# Show a quick history of payments
+	$year = date("Y");
+	$month = date("m");
+	$cur_year = $year - 1;
+	$cur_month = $month;
+	$p_history = "";
+	$p_history .= "<table cellspacing=\"1\" cellpadding=\"1\" border=\"1\">
+	<tr><td>Period</td><td>Amount</td></tr>";
+	for($i=0;$i<13;$i++){
+		$q2 = "SELECT sum(refund_amount) as refund_amount FROM $pro_mysql_completedorders_table,$pro_mysql_pay_table
+		WHERE $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."%'
+		AND $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id";
+		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		if($n2 > 0){
+			$a2 = mysql_fetch_array($r2);
+			$p_history .= "<tr><td>".$cur_year."-".$cur_month."</td><td>".$a2["refund_amount"]." $secpayconf_currency_letters</td></tr>";
+		}
+		$cur_month++;
+		if($cur_month > 12){
+			$cur_month = 1;
+			$cur_year++;
+		}
+		if($cur_month < 10)	$cur_month = "0".$cur_month;
+	}
+	$p_history .= "</table>";
+	
+
+	# Layout the recuring stat and the effective payment statistics
+	$out .= "<table cellspacing=\"1\" cellpadding=\"4\" border=\"0\">
+	<tr><td>$p_history</td>
+	<td valign=\"top\">$p_renewal</td></tr></table>";
 
 	$out .= "<h3>".$txt_renew_shared_renewals[$lang]."</h3>";
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' ORDER BY expire;";

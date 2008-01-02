@@ -3,82 +3,107 @@ Section: admin
 Priority: extra
 Maintainer: Thomas Goirand <thomas@goirand.fr>
 Build-Depends: debhelper (>= 5), po-debconf
-Standards-Version: 3.7.2
+Standards-Version: 3.7.3
 Dm-Upload-Allowed: yes
 Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
 Vcs-Git: http://git.gplhost.com/dtc.git
-Homepage: <http://www.gplhost.com/software-dtc.html>
+Homepage: http://www.gplhost.com/software-dtc.html
 
 Package: dtc-common
 Architecture: all
-Depends: php5-cli | php4-cli
+Depends: apache2 | apache, amavisd-new, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam,  courier-maildrop | cyrus-imapd-2.2, file, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache-mod-php5 | libapache-mod-php4 | libapache2-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql | libsasl2-modules-sql, lsb-release, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, net-tools, openssl, patch, php5 | php4, php5-cli | php4-cli, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, php-pear | php4-pear, php-fpdf, php-crypt-cbc, php5-curl | php4-curl, pure-ftpd-mysql | proftpd-mysql, rrdtool, sasl2-bin, sbox-dtc, spamassassin, spamc, ssh, sudo, unzip, webalizer, zip
 Conflicts: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
 Suggests: dtc-postfix-courier
 Description: web control panel for admin and accounting hosting services (common files)
- Domain Technologie Control (DTC) is a control panel for hosting. Using a web
- GUI for admin and accounting all hosting services, DTC can delegate the task of
- creating subdomains, email, and FTP accounts to users for the domain names they
- own. DTC manages a MySQL database containing all the hosting informations.
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. Using a web GUI for the administration and accounting all hosting
+ services, DTC can delegate the task of creating subdomains, email, ssh,
+ database, mailing lists, and FTP accounts to users for the domain names they
+ own.
+ .
+ DTC manages a MySQL database containing all the hosting informations,
+ and configure your server's services and apllication for doing virtual hosting
+ (DTC is compabible with a huge list of applications). It also connects to
+ dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+ does the billing in general (including billing of dedicated servers), has
+ integrated support tickets and more.
  .
  This package contains the common files.
 
-Package: dtc
+Package: dtc-core
 Architecture: all
-Depends: dtc-common, apache2 | apache, amavisd-new, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam, courier-maildrop | cyrus-imapd-2.2, debconf, file, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache-mod-php5 | libapache-mod-php4 | libapache2-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql | libsasl2-modules-sql, lsb-release, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, net-tools, openssl, patch, php5 | php4, php5-cli | php4-cli, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, php-pear | php4-pear, php-fpdf, php-crypt-cbc, php5-curl | php4-curl, pure-ftpd-mysql | proftpd-mysql, rrdtool, sasl2-bin, sbox-dtc, spamassassin, spamc, ssh, sudo, unzip, webalizer, zip, visitors
+Depends: dtc-common, debconf, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1
 Suggests: courier-authmysql, courier-authlib-mysql, dovecot, postfix, qmail, postfix-tls, libsasl2-2, libsasl2-modules, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2, msttcorefonts
 Conflicts: dtc-postfix-courier
 Replaces: dtc-postfix-courier
 Description: web control panel for admin and accounting hosting services
- Domain Technologie Control (DTC) is a control panel for hosting. Using a web
- GUI for admin and accounting all hosting services, DTC can delegate the task of
- creating subdomains, email, and FTP accounts to users for the domain names they
- own. DTC manages a MySQL database containing all the hosting informations.
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. Using a web GUI for the administration and accounting all hosting
+ services, DTC can delegate the task of creating subdomains, email, ssh,
+ database, mailing lists, and FTP accounts to users for the domain names they
+ own.
  .
- It has support for many programs (bind 8 and 9 and compatibles, MySQL, Apache
- 1.3, php4, qmail, postfix 2, amavis, clamav, spamassassin, courier 2, cyrus,
- dovecot, proftpd, webalizer, mod-log-sql, etc.) using config files and/or MySQL
- plugin (when service is non-critical). It can also generates backup scripts,
- calculation scripts, and config files. All this using a single system UID/GID.
+ DTC manages a MySQL database containing all the hosting informations,
+ and configure your server's services and apllication for doing virtual hosting
+ (DTC is compabible with a huge list of applications). It also connects to
+ dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+ does the billing in general (including billing of dedicated servers), has
+ integrated support tickets and more.
  .
- It does as well monitoring of all trafic accounting per user and per service
- (and globaly using RRDTools). DTC is fully skinable and translated in several
- languages.
+ This package contains as few dependencies as possible to let you choose what
+ daemon you want to use.
 
 Package: dtc-postfix-courier
 Architecture: all
-Depends: dtc-common, apache2 | apache, amavisd-new, awstats, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, file, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache2-mod-php4 | libapache-mod-php5 | libapache-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql, libsasl2-2, libsasl2-modules, lsb-release, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, net-tools, openssl, patch, php-pear | php4-pear, php-fpdf, php-crypt-cbc, php5 | php4, php5-cli | php4-cli, php5-curl | php4-curl, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, pure-ftpd-mysql | proftpd-mysql, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10), rrdtool, sasl2-bin, sbox-dtc (>= 1.07), spamassassin, spamc, ssh, sudo, unzip, webalizer, zip
+Depends: dtc-common, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, lsb-release, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, openssl, patch, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10)
 Conflicts: dtc
 Replaces: dtc
 Suggests: mysqmail, msttcorefonts
 Provides: dtc
 Description: web control panel for admin and accounting hosting services (more depends)
- Domain Technologie Control (DTC) is a control panel for hosting. Using a web
- GUI for admin and accounting all hosting services, DTC can delegate the task of
- creating subdomains, email, and FTP accounts to users for the domain names they
- own. DTC manages a MySQL database containing all the hosting informations.
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. Using a web GUI for the administration and accounting all hosting
+ services, DTC can delegate the task of creating subdomains, email, ssh,
+ database, mailing lists, and FTP accounts to users for the domain names they
+ own.
+ .
+ DTC manages a MySQL database containing all the hosting informations,
+ and configure your server's services and apllication for doing virtual hosting
+ (DTC is compabible with a huge list of applications). It also connects to
+ dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+ does the billing in general (including billing of dedicated servers), has
+ integrated support tickets and more.
  .
  This package has more dependencies to setup postfix, courier, and others so you
  don't have to select them by hand. If you want to use other daemons, use the
- dtc package which has a lot less dependencies.
+ dtc-core package which has a lot less dependencies.
 
 Package: dtc-stats-daemon
 Architecture: all
-Depends: dtc | dtc-postfix-courier, lsb-base, php5-cli
+Depends: dtc-core | dtc-postfix-courier, lsb-base, php5-cli
 Description: dtc-xen VM statistics for the dtc web control panel
- Domain Technologie Control (DTC) is a control panel for hosting. This small
- daemon will query all the dtc-xen servers that you have configured in DTC and
- fetch the statistics from them: I/O stats, network and CPU. This  information
- is then stored in DTC for your customer accounting.
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. This small daemon will query all the dtc-xen servers that you have
+ configured in DTC and fetch the statistics from them: I/O stats, network and
+ CPU. This  information is then stored in DTC for your customer accounting.
 
 Package: dtc-toaster
 Architecture: all
-Depends: dtc-postfix-courier, ttf-arphic-ukai, ttf-bitstream-vera, phpmyadmin, squirrelmail
+Depends: awstats, dtc-postfix-courier, mailgraph, phpmyadmin, squirrelmail, ttf-arphic-ukai, ttf-bitstream-vera, tumgreyspf, visitors
 Suggests: msttcorefonts
 Description: web control panel for admin and accounting hosting services (meta package)
- Domain Technologie Control (DTC) is a control panel for hosting. Using a web
- GUI for admin and accounting all hosting services, DTC can delegate the task of
- creating subdomains, email, and FTP accounts to users for the domain names they
- own. DTC manages a MySQL database containing all the hosting informations.
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. Using a web GUI for the administration and accounting all hosting
+ services, DTC can delegate the task of creating subdomains, email, ssh,
+ database, mailing lists, and FTP accounts to users for the domain names they
+ own.
+ .
+ DTC manages a MySQL database containing all the hosting informations,
+ and configure your server's services and apllication for doing virtual hosting
+ (DTC is compabible with a huge list of applications). It also connects to
+ dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+ does the billing in general (including billing of dedicated servers), has
+ integrated support tickets and more.
  .
  This is a meta package depending on every package that you need to use the DTC
- web hosting control.
+ web hosting control panel, like a webmail, phpmyadmin and so on.

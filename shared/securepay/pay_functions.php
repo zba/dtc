@@ -109,11 +109,25 @@ function isPayIDValidated($pay_id){
 function createCreditCardPaiementID($amount_paid,$client_id,$label,$new_account="yes",$product_id=0,$vat_rate=0){
 	global $secpayconf_currency_letters;
 	global $pro_mysql_pay_table;
-	$q = "INSERT INTO $pro_mysql_pay_table (id,id_client,label,currency,refund_amount,paiement_type,date,time,valid,new_account,shopper_ip,product_id,paiement_total)
-		VALUES ('','$client_id','label','{$secpayconf_currency_letters}','$amount_paid','online','".date("Y-m-j")."','".date("H:i:s")."','no','$new_account','".$_SERVER["REMOTE_ADDR"]."','$product_id','$amount_paid');";
+	$q = "INSERT INTO $pro_mysql_pay_table (id,id_client,label,currency,refund_amount,paiement_type,date,time,valid,new_account,shopper_ip,product_id,paiement_total,vat_rate)
+		VALUES ('','$client_id','label','{$secpayconf_currency_letters}','$amount_paid','online','".date("Y-m-j")."','".date("H:i:s")."','no','$new_account','".$_SERVER["REMOTE_ADDR"]."','$product_id','$amount_paid','$vat_rate');";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__);
 	$n = mysql_insert_id();
 	return $n;
+}
+function setPaiemntAsPending($pay_id,$reason,$paiement_type="online",$secpay_site="paypal"){
+	global $pro_mysql_pay_table;
+	$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='$pay_id';";
+	logPay("Querying: $q");
+	$r = mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
+	$n = mysql_num_rows($r);
+	if($n != 1)die(logPay("Pay id $pay_id not found in file ".__FILE__." line ".__LINE__));
+	$ar = mysql_fetch_array($r);
+	if($ar["valid"] != "no" && $ar["valid"] != "pending")die(logPay("Paiement already validated or pending in file ".__FILE__." line ".__LINE__));
+	logPay("Setting item $pay_id as pending");
+	$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$paiement_type',secpay_site='$secpay_site',valid='pending',pending_reason='$reason' WHERE id='$pay_id';";
+	logPay($q);
+	mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
 }
 
 function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none",$secpay_custom_id="0",$total_payed=-1){
@@ -135,7 +149,7 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	if($n != 1)die(logPay("Pay id $pay_id not found in file ".__FILE__." line ".__LINE__));
 	$ar = mysql_fetch_array($r);
 
-	if($ar["valid"] != "no")die(logPay("Paiement already validated in file ".__FILE__." line ".__LINE__));
+	if($ar["valid"] != "no" && $ar["valid"] != "pending")die(logPay("Paiement already validated in file ".__FILE__." line ".__LINE__));
 	logPay("Ammount paid: $amount_paid");
 	if($amount_paid < $ar["refund_amount"])die(logPay("Amount paid on gateway lower than refund ammount file ".__FILE__." line ".__LINE__));
 	if($total_payed != -1){

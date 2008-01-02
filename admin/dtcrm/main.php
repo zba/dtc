@@ -128,8 +128,6 @@ function DTCRMeditClients(){
 	global $txt_notes;
 	global $txt_money_remaining;
 	global $txt_select_a_new;
-	global $txt_yes;
-	global $txt_no;
 
 	if(isset($_REQUEST["id"])){
 		$cid = $_REQUEST["id"];	// current customer id
@@ -186,8 +184,8 @@ function DTCRMeditClients(){
 	$text .= dtcFormTableAttrs();
 	$text .= dtcFormLineDraw($txt_draw_client_info_familyname[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_familyname\"value=\"".$row["familyname"]."\">");
 	$text .= dtcFormLineDraw($txt_draw_client_info_firstname[$lang],"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_christname\" value=\"".$row["christname"]."\">",0);
-	$text .= dtcFormLineDraw($txt_is_company[$lang],"<input type=\"radio\" name=\"ed_is_company\" value=\"yes\" $iscomp_yes > ".$txt_yes[$lang]."
-<input type=\"radio\" name=\"ed_is_company\" value=\"no\" $iscomp_no > ".$txt_no[$lang]);
+	$text .= dtcFormLineDraw($txt_is_company[$lang],"<input type=\"radio\" name=\"ed_is_company\" value=\"yes\" $iscomp_yes > "._("Yes")."
+<input type=\"radio\" name=\"ed_is_company\" value=\"no\" $iscomp_no > "._("No"));
 	$text .= dtcFormLineDraw($txt_draw_client_info_comp_name[$lang],"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_company_name\" value=\"".$row["company_name"]."\">",0);
 	$text .= dtcFormLineDraw($txt_vat_number[$lang],"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_vat_num\" value=\"".$row["vat_num"]."\">");
 	$text .= dtcFormLineDraw($txt_draw_client_info_addr[$lang],"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_addr1\" value=\"".$row["addr1"]."\">",0);
