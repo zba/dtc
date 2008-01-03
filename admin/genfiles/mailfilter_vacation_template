@@ -1,5 +1,4 @@
 
-cc $DEFAULT
 RECIPIENT=$LOGNAME
 RESPOND="~/.vacation.msg"
 RESPONDDB="~/.vacation.db"
