@@ -11,7 +11,7 @@ function drawRrdtoolGraphs (){
 <tr><td><h3>". _("Mail Queue graph") ."</h3></td><tr>
 <tr><td><IFRAME src=\"mailgraph.php\" width=\"100%\" height=\"318\"></iframe></td></tr>";
 	if( file_exists("/usr/sbin/mailgraph")){
-		out .= "<tr><td><h3>". _("Mail Queue statistics") ."</h3></td><tr>"
+		$out .= "<tr><td><h3>". _("Mail Queue statistics") ."</h3></td><tr>";
 		$out .= "<tr><td><IFRAME src=\"/cgi-bin/mailgraph.cgi\" width=\"100%\" height=\"388\"></iframe></td></tr>";
 	}
 	$out .= "</table></center>";
