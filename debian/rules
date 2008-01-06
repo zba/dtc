@@ -31,7 +31,6 @@ install:
 	$(MAKE) install-dtc-stats-daemon DESTDIR=$(CURDIR)/debian/dtc-stats-daemon
 
 binary-indep: install
-binary-arch: install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs doc/changelog
@@ -45,6 +44,8 @@ binary-arch: install
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
+
+binary-arch: install
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install

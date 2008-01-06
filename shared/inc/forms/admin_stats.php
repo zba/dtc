@@ -9,8 +9,6 @@ function drawAdminTools_AdminStats($admin){
 
 	global $lang;
 
-	global $txt_total_transfered_bytes_this_month;
-	global $txt_total_trafic;
 	global $txt_disk_usage;
 	global $txt_domain_name;
 	global $txt_domain_name_trafic_du;
@@ -21,7 +19,6 @@ function drawAdminTools_AdminStats($admin){
 	global $txt_database_files;
 	global $txt_domain_name_files;
 	global $txt_are_disk_usage;
-	global $txt_total_transfered_bytes_this_month;
 
 	$out = "";
 	$nowrap = " style=\"white-space:nowrap\" nowrap";
@@ -46,7 +43,7 @@ function drawAdminTools_AdminStats($admin){
 	$id_client = $admin["info"]["id_client"];
 
 	// Print the transfer overall total for this month
-	$out .= "<h3>".$txt_total_transfered_bytes_this_month[$lang]."</h3>";
+	$out .= "<h3>". _("Total transfered bytes this month:") ."</h3>";
 	if (!isset($stats["total_http"]))
 	{
 		$stats["total_http"] = 0;
@@ -120,7 +117,7 @@ function drawAdminTools_AdminStats($admin){
 	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td>
 	<td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td>
 	<td$nowrap><b>HTTP HITS</b></td>
-	<td$nowrap><b>".$txt_total_trafic[$lang]."</b></td></tr>";
+	<td$nowrap><b>". _("Total trafic") ."</b></td></tr>";
 	if (isset($stats["domains"]))
 	{
 		for($ad=0;$ad<sizeof($stats["domains"]);$ad++){

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-29 10:54+0800\n"
+"POT-Creation-Date: 2007-12-31 00:04+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -33,10 +33,20 @@ msgstr "对下列服务器作为备份DNS服务器:"
 msgid "Act as backup mail server for the following servers:"
 msgstr "对下列服务器作为备份邮件服务器:"
 
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
+#: admin/inc/draw_user_admin.php:314
+#, fuzzy
+msgid "Action"
+msgstr "位置"
+
 #: admin/inc/dtc_config.php:339
 #, fuzzy
 msgid "Activate FTP backups:"
 msgstr "有效的FTP备份："
+
+#: admin/inc/draw_user_admin.php:280 admin/inc/draw_user_admin.php:300
+msgid "Add"
+msgstr "添加"
 
 #: admin/inc/dtc_config.php:1210
 msgid "Add a new company"
@@ -46,7 +56,7 @@ msgstr ""
 msgid "Add a new company:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:270
+#: admin/inc/draw_user_admin.php:216
 msgid "Add a new user"
 msgstr ""
 
@@ -59,10 +69,27 @@ msgstr "主MX服务器的地址："
 msgid "Address:"
 msgstr "地址："
 
+#: admin/inc/draw_user_admin.php:416
+msgid "Admin"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:128
+#, fuzzy
+msgid "Admin login: "
+msgstr "FTP登陆账号："
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Age"
+msgstr "年龄"
+
 #: admin/inc/dtc_config.php:743
 msgid ""
 "Allow those servers to list this server's domain names for doing backup:"
 msgstr "允许下列服务器备份本服务器的域名："
+
+#: admin/inc/renewals.php:118
+msgid "Amount"
+msgstr ""
 
 #: admin/inc/dtc_config.php:598
 msgid "Another location"
@@ -70,6 +97,10 @@ msgstr "另一处位置"
 
 #: admin/inc/dtc_config.php:1156
 msgid "Apache file names"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1127
+msgid "Apache htpasswd path"
 msgstr ""
 
 #: admin/inc/dtc_config.php:723
@@ -85,9 +116,39 @@ msgstr "可用"
 msgid "Backup frequency:"
 msgstr "备份频率："
 
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
+msgid "Bank validated"
+msgstr "支持的银行"
+
+#: admin/inc/graphs.php:7
+msgid "CPU Load Average"
+msgstr ""
+
 #: shared/inc/forms/vps.php:154
 msgid "CPU Time:"
 msgstr ""
+
+#: admin/inc/draw_user_admin.php:333
+msgid "Cannot find payment!"
+msgstr "没有找到付款记录"
+
+#: admin/inc/draw_user_admin.php:248 admin/inc/draw_user_admin.php:249
+msgid "Cannot find product in db!"
+msgstr "在数据库中没有发现该款产品！"
+
+#: admin/inc/draw_user_admin.php:322
+#, fuzzy
+msgid "Cannot find product!"
+msgstr "在数据库中没有发现该款产品！"
+
+#: admin/inc/draw_user_admin.php:375
+msgid "Cannot find server in db!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:111 admin/inc/draw_user_admin.php:138
+#: admin/inc/draw_user_admin.php:190
+msgid "Cannot find ticket!"
+msgstr "没有找到相应的主题！"
 
 #: admin/inc/dtc_config.php:321
 msgid "Category"
@@ -96,6 +157,21 @@ msgstr "类别"
 #: admin/inc/dtc_config.php:325
 msgid "Category description"
 msgstr "类别描述"
+
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:215 admin/inc/renewals.php:249
+msgid "Client"
+msgstr ""
+
+#: admin/inc/renewals.php:159 admin/inc/renewals.php:197
+#: admin/inc/renewals.php:231 admin/inc/renewals.php:264
+#, fuzzy
+msgid "Client name not found!"
+msgstr "没有找到相关的客户名称！"
+
+#: admin/inc/draw_user_admin.php:178
+msgid "Close without reply"
+msgstr "立即关闭"
 
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
@@ -110,6 +186,10 @@ msgstr "公司名称："
 #, fuzzy
 msgid "Company name:"
 msgstr "公司名称："
+
+#: admin/inc/draw_user_admin.php:470
+msgid "Console output"
+msgstr ""
 
 #: admin/inc/dtc_config.php:413
 msgid "Country"
@@ -136,6 +216,11 @@ msgstr "业务延伸到的国家和地区"
 msgid "Customer country"
 msgstr "客户国别"
 
+#: shared/gfx/skin/default_layout.php:157 shared/gfx/skin/bwoup/layout.php:550
+#, fuzzy
+msgid "Customer renewals"
+msgstr "Customer 更新"
+
 #: admin/inc/dtc_config.php:623
 msgid "DTC Skin chooser"
 msgstr "更换DTC控制面板的皮肤"
@@ -148,9 +233,26 @@ msgstr "请选择需要使用的守护进程"
 msgid "Daily"
 msgstr "每日"
 
+#: admin/inc/draw_user_admin.php:237
+#, fuzzy
+msgid "Date"
+msgstr "请选择需要使用的守护进程"
+
+#: admin/inc/renewals.php:241
+msgid "Dedicated servers renewals"
+msgstr "独立主机更新"
+
+#: admin/inc/renewals.php:107
+msgid "Dedicated servers: "
+msgstr "独立主机："
+
 #: admin/inc/dtc_config.php:1285 admin/inc/dtc_config.php:1290
 msgid "Default company invoicing:"
 msgstr "公司的默认发票："
+
+#: admin/inc/draw_user_admin.php:281 admin/inc/draw_user_admin.php:301
+msgid "Delete"
+msgstr "删除"
 
 #: admin/inc/dtc_config.php:1072
 #, fuzzy
@@ -160,6 +262,14 @@ msgstr "类别描述"
 #: admin/inc/dtc_config.php:361
 msgid "Destination folder:"
 msgstr "目标文件夹："
+
+#: admin/inc/draw_user_admin.php:295
+msgid "Domain name"
+msgstr "域名"
+
+#: admin/inc/draw_user_admin.php:237
+msgid "Domain name / VPS server hostname"
+msgstr "域名/VPS主机名"
 
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
@@ -173,6 +283,12 @@ msgstr "配置域名注册接口参数"
 msgid "Edit a company:"
 msgstr ""
 
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:215 admin/inc/renewals.php:249
+#, fuzzy
+msgid "Email"
+msgstr "邮箱地址"
+
 #: admin/inc/dtc_config.php:299
 msgid "Email addr"
 msgstr "邮箱地址"
@@ -180,6 +296,11 @@ msgstr "邮箱地址"
 #: admin/inc/dtc_config.php:701
 msgid "Email address of your webmaster:"
 msgstr "网站管理员邮箱："
+
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:215 admin/inc/renewals.php:249
+msgid "Expiration date"
+msgstr "过期时间"
 
 #: admin/inc/dtc_config.php:261
 msgid "Expire"
@@ -200,6 +321,10 @@ msgstr "FTP登陆账号："
 #: admin/inc/dtc_config.php:352
 msgid "FTP password:"
 msgstr "FTP登陆密码："
+
+#: admin/inc/draw_user_admin.php:126
+msgid "First query date: "
+msgstr ""
 
 #: admin/inc/dtc_config.php:665
 msgid "Full hostname of DTC admin panel:"
@@ -260,6 +385,14 @@ msgstr "发票抬头："
 msgid "Invoicing"
 msgstr "开具发票"
 
+#: admin/inc/draw_user_admin.php:400
+msgid "Last message age"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Last message from"
+msgstr ""
+
 #: shared/inc/forms/vps.php:129 shared/inc/forms/vps.php:130
 #: shared/inc/forms/vps.php:131 shared/inc/forms/vps.php:132
 #, fuzzy
@@ -308,11 +441,19 @@ msgstr "位置"
 msgid "Location of user's database:"
 msgstr "用户数据库的位置："
 
-#: admin/inc/draw_user_admin.php:274 admin/inc/dtc_config.php:257
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:249 admin/inc/draw_user_admin.php:237
+#: admin/inc/draw_user_admin.php:295 admin/inc/draw_user_admin.php:314
+#: admin/inc/draw_user_admin.php:400 admin/inc/dtc_config.php:257
 #: admin/inc/dtc_config.php:758 admin/inc/dtc_config.php:785
 #: admin/inc/dtc_config.php:810 admin/inc/dtc_config.php:837
 #: admin/inc/dtc_config.php:862
 msgid "Login"
+msgstr "登陆"
+
+#: admin/inc/draw_user_admin.php:220
+#, fuzzy
+msgid "Login:"
 msgstr "登陆"
 
 #: admin/inc/dtc_config.php:1251
@@ -323,6 +464,14 @@ msgstr "Logo 相对路径"
 msgid "MX and NS backup servers"
 msgstr "MX 与 NS备份服务器"
 
+#: admin/inc/graphs.php:11
+msgid "Mail Queue graph"
+msgstr ""
+
+#: admin/inc/graphs.php:14
+msgid "Mail Queue statistics"
+msgstr ""
+
 #: admin/inc/dtc_config.php:643
 msgid "Main ip address of the server:"
 msgstr "本服务器的主IP："
@@ -330,6 +479,18 @@ msgstr "本服务器的主IP："
 #: admin/inc/dtc_config.php:638
 msgid "Main software configuration of DTC"
 msgstr "设置网络参数"
+
+#: admin/inc/dtc_config.php:1020
+msgid "Maxmind license key:"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1016
+msgid "Maxmind login:"
+msgstr ""
+
+#: admin/inc/graphs.php:9
+msgid "Memory and Swap Usage "
+msgstr ""
 
 #: shared/inc/forms/vps.php:174
 msgid "Method getVPSState failed"
@@ -346,6 +507,11 @@ msgstr ""
 #: admin/inc/dtc_config.php:254
 msgid "NAT Port"
 msgstr ""
+
+#: admin/inc/draw_user_admin.php:237
+#, fuzzy
+msgid "Name"
+msgstr "昵称"
 
 #: admin/inc/dtc_config.php:1051
 msgid "Name:"
@@ -374,6 +540,10 @@ msgstr "设置DNS参数"
 msgid "Named zonefiles"
 msgstr "设置DNS参数"
 
+#: admin/inc/graphs.php:5
+msgid "Network Traffic Statistics"
+msgstr ""
+
 #: shared/inc/forms/vps.php:151
 msgid "Network:"
 msgstr ""
@@ -382,8 +552,8 @@ msgstr ""
 msgid "Nick name"
 msgstr "昵称"
 
-#: admin/inc/draw_user_admin.php:204 admin/inc/draw_user_admin.php:328
-#: admin/inc/draw_user_admin.php:396 admin/inc/dtc_config.php:266
+#: admin/inc/draw_user_admin.php:159 admin/inc/draw_user_admin.php:274
+#: admin/inc/draw_user_admin.php:342 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
 #: admin/inc/dtc_config.php:419 admin/inc/dtc_config.php:449
 #: admin/inc/dtc_config.php:529 admin/inc/dtc_config.php:534
@@ -407,6 +577,43 @@ msgstr "昵称"
 #: shared/inc/forms/ticket.php:152
 msgid "No"
 msgstr "否"
+
+#: admin/inc/renewals.php:179
+#, fuzzy
+msgid "No SSL IP expired"
+msgstr "没有已过期的SSL IP"
+
+#: admin/inc/renewals.php:212
+msgid "No VPS expired"
+msgstr "没有已过期的VPS"
+
+#: admin/inc/renewals.php:246
+msgid "No dedicated server expired"
+msgstr "没有已过期的独立主机"
+
+#: admin/inc/draw_user_admin.php:292
+msgid "No domain waiting!"
+msgstr "没有待添加的域名！"
+
+#: admin/inc/draw_user_admin.php:262
+msgid "No pay ID!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:311
+msgid "No pending renewals!"
+msgstr "没有发现需要保存的更改！"
+
+#: admin/inc/draw_user_admin.php:397
+msgid "No pending support tickets!"
+msgstr "没有未决的？！"
+
+#: admin/inc/renewals.php:149
+msgid "No shared account expired."
+msgstr "没有已过期的共享主机账号。"
+
+#: admin/inc/draw_user_admin.php:234
+msgid "No user waiting!"
+msgstr "没有待添加的用户！"
 
 #: admin/inc/dtc_config.php:1165
 msgid ""
@@ -435,7 +642,7 @@ msgstr ""
 msgid "Password"
 msgstr "FTP登陆密码："
 
-#: admin/inc/draw_user_admin.php:275 admin/inc/dtc_config.php:1065
+#: admin/inc/draw_user_admin.php:221 admin/inc/dtc_config.php:1065
 #, fuzzy
 msgid "Password:"
 msgstr "FTP登陆密码："
@@ -456,7 +663,7 @@ msgid ""
 "this:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:276
+#: admin/inc/draw_user_admin.php:222
 #, fuzzy
 msgid "Path:"
 msgstr "设置路径"
@@ -482,9 +689,22 @@ msgstr "月租："
 msgid "PayPal test account email (sandbox):"
 msgstr "贝宝测试服务器账号(邮件地址形式)："
 
+#: admin/inc/draw_user_admin.php:314
+msgid "Payment date"
+msgstr "付款日期"
+
 #: admin/inc/dtc_config.php:59
 msgid "Payment gateway"
 msgstr "设置付款接口"
+
+#: admin/inc/draw_user_admin.php:272 admin/inc/draw_user_admin.php:345
+msgid "Pending"
+msgstr ""
+
+#: admin/inc/renewals.php:118
+#, fuzzy
+msgid "Period"
+msgstr "产品"
 
 #: admin/inc/dtc_config.php:1061
 #, fuzzy
@@ -494,6 +714,10 @@ msgstr "VPS 在xen中的编号 "
 #: admin/inc/dtc_config.php:705
 msgid "Primary DNS server address:"
 msgstr "主DNS服务器地址："
+
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
+msgid "Product"
+msgstr "产品"
 
 #: admin/inc/dtc_config.php:990
 msgid "Production server"
@@ -507,9 +731,17 @@ msgstr "真实姓名"
 msgid "Registration number:"
 msgstr "注册的号码："
 
+#: admin/inc/dtc_config.php:225
+msgid "Reminders and registration message subject header:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:62
 msgid "Renewals"
 msgstr "更新"
+
+#: admin/inc/draw_user_admin.php:155
+msgid "Request to close the ticket: "
+msgstr "关闭主题："
 
 #: admin/inc/dtc_config.php:410
 msgid "SOAP password"
@@ -519,9 +751,26 @@ msgstr "SOAP密码"
 msgid "SSL IPs addresses"
 msgstr "SSL IP地址"
 
+#: admin/inc/renewals.php:174
+#, fuzzy
+msgid "SSL IPs renewals"
+msgstr "SSL IPs 更新："
+
+#: admin/inc/renewals.php:105
+msgid "SSL IPs renewals: "
+msgstr "SSL IPs 更新："
+
 #: admin/inc/dtc_config.php:669
 msgid "SSL Port:"
 msgstr ""
+
+#: admin/inc/draw_user_admin.php:366
+msgid "SSL Token purchase"
+msgstr "购买SSL证书"
+
+#: admin/inc/draw_user_admin.php:369
+msgid "SSL Token renewal"
+msgstr "更新SSL证书"
 
 #: admin/inc/dtc_config.php:241
 msgid "SSL dedicated IP addresses: "
@@ -551,14 +800,46 @@ msgstr "请选择皮肤类型："
 msgid "Selling conditions URL:"
 msgstr "点此链接查看销售情况："
 
-#: shared/inc/forms/email.php:34
+#: admin/inc/draw_user_admin.php:168
+msgid "Send reply"
+msgstr "提交答案"
+
+#: admin/inc/draw_user_admin.php:173
+msgid "Send reply and close ticket"
+msgstr "提交并关闭通行证"
+
+#: admin/inc/renewals.php:249
 #, fuzzy
+msgid "Server"
+msgstr "主机"
+
+#: shared/inc/forms/email.php:34
 msgid "Server address :"
-msgstr "主DNS服务器地址："
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:127
+msgid "Server hostname related: "
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:380
+msgid "Server:"
+msgstr "主机："
 
 #: admin/inc/dtc_config.php:1317
 msgid "Service country"
 msgstr ""
+
+#: admin/inc/draw_user_admin.php:363
+msgid "Shared"
+msgstr "共享"
+
+#: admin/inc/renewals.php:144
+msgid "Shared hosting renewals:"
+msgstr "共享主机更新："
+
+#: admin/inc/renewals.php:104
+msgid "Shared hosting: "
+msgstr "共享主机："
 
 #: admin/inc/dtc_config.php:1054
 #, fuzzy
@@ -573,6 +854,14 @@ msgstr "关闭警告信息："
 #: admin/inc/dtc_config.php:406
 msgid "Soap login"
 msgstr "Soap登陆"
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Subject"
+msgstr "主题"
+
+#: admin/inc/draw_user_admin.php:114
+msgid "Subject: "
+msgstr "主题："
 
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
@@ -630,11 +919,36 @@ msgstr "本服务器的位置："
 msgid "Ticket categories:"
 msgstr "Ticket 分类："
 
+#: admin/inc/renewals.php:24
+msgid "Total recurring incomes per month:"
+msgstr "每月循环收益总数："
+
+#: shared/inc/forms/admin_stats.php:120
+#, fuzzy
+msgid "Total trafic"
+msgstr "总流量"
+
+#: shared/inc/forms/admin_stats.php:46
+msgid "Total transfered bytes this month:"
+msgstr "已传输的总数据量："
+
+#: admin/inc/renewals.php:109
+msgid "Total: "
+msgstr "总计："
+
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
+msgid "Type"
+msgstr "类型"
+
+#: admin/inc/draw_user_admin.php:120 admin/inc/draw_user_admin.php:408
+msgid "Type not found!"
+msgstr "没有找到相关的类型！"
+
 #: admin/inc/dtc_config.php:888
 msgid "Type of encryption for connecting to Tucows server:"
 msgstr "连接到Tucows服务器的加密方式："
 
-#: admin/inc/dtc_config.php:1057
+#: admin/inc/draw_user_admin.php:125 admin/inc/dtc_config.php:1057
 msgid "Type:"
 msgstr ""
 
@@ -660,9 +974,17 @@ msgstr "二级域名使用CNAME而不使用A记录："
 msgid "Use LVM backend"
 msgstr "使用LVM"
 
+#: admin/inc/dtc_config.php:1011
+msgid "Use Maxmind API:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:531
 msgid "Use SSL:"
 msgstr "是否使用SSL："
+
+#: admin/inc/dtc_config.php:586
+msgid "Use awstats"
+msgstr ""
 
 #: admin/inc/dtc_config.php:571
 msgid "Use cyrus:"
@@ -689,6 +1011,10 @@ msgstr "使用贝宝："
 msgid "Use paypal:"
 msgstr "使用贝宝："
 
+#: admin/inc/dtc_config.php:883
+msgid "Use registrar API:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:892
 msgid "Use the LIVE server (and not the test one) :"
 msgstr "LIVE- oder Testbetrieb:"
@@ -696,6 +1022,18 @@ msgstr "LIVE- oder Testbetrieb:"
 #: admin/inc/dtc_config.php:961
 msgid "Use the sandbox test server:"
 msgstr "使用测试服务器："
+
+#: admin/inc/dtc_config.php:591
+msgid "Use visitors"
+msgstr ""
+
+#: admin/inc/dtc_config.php:576
+msgid "Use webalizer"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:444
+msgid "User"
+msgstr ""
 
 #: admin/inc/dtc_config.php:600
 msgid "User MySQL host:"
@@ -709,6 +1047,10 @@ msgstr "使用root登陆用户MySql数据库："
 msgid "User MySQL root password:"
 msgstr "用户MySql数据库root密码："
 
+#: admin/inc/draw_user_admin.php:229
+msgid "User and domain waiting for addition:"
+msgstr "待添加的用户和域名："
+
 #: admin/inc/dtc_config.php:546
 msgid "User session expire time (min):"
 msgstr "超时操作（分钟）："
@@ -720,6 +1062,10 @@ msgstr "VAT（增值税）号码："
 #: admin/inc/dtc_config.php:1247
 msgid "VAT rate:"
 msgstr "VAT（增值税）税率："
+
+#: admin/inc/renewals.php:215
+msgid "VPS"
+msgstr ""
 
 #: admin/inc/dtc_config.php:430
 msgid "VPS IPs for "
@@ -738,6 +1084,11 @@ msgstr "VPS列表："
 msgid "VPS renewal email reminders periodicity"
 msgstr "设定VPS更新的邮件提醒的周期"
 
+#: admin/inc/renewals.php:207
+#, fuzzy
+msgid "VPS renewals:"
+msgstr "VPS 更新："
+
 #: admin/inc/dtc_config.php:50
 msgid "VPS servers"
 msgstr "VPS 服务器"
@@ -746,6 +1097,14 @@ msgstr "VPS 服务器"
 msgid "VPS xen number"
 msgstr "VPS 在xen中的编号 "
 
+#: admin/inc/renewals.php:106
+msgid "VPS: "
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:355
+msgid "VPS: Cannot find VPS in db!"
+msgstr "在数据库中没有找到VPS的相关配置"
+
 #: admin/inc/dtc_config.php:944
 msgid "Validate new account if paid:"
 msgstr "已付款账户实时生效："
@@ -753,6 +1112,10 @@ msgstr "已付款账户实时生效："
 #: shared/inc/forms/root_admin.php:412
 msgid "Vhost"
 msgstr ""
+
+#: admin/inc/draw_user_admin.php:279
+msgid "View details"
+msgstr "查看详情"
 
 #: admin/inc/dtc_config.php:1161
 msgid "Virtual host config-file:"
@@ -775,8 +1138,8 @@ msgstr "Webalizer 按国家分布图："
 msgid "Weekly"
 msgstr "每周"
 
-#: admin/inc/draw_user_admin.php:202 admin/inc/draw_user_admin.php:324
-#: admin/inc/draw_user_admin.php:392 admin/inc/dtc_config.php:266
+#: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
+#: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
 #: admin/inc/dtc_config.php:419 admin/inc/dtc_config.php:449
 #: admin/inc/dtc_config.php:529 admin/inc/dtc_config.php:534

@@ -678,7 +678,7 @@ $txt_iframe_ds=array(
 );
 $txt_iframe_nts=array(
 	"fr" => "Statistiques du trafic réseau",
-	"en" => "Network Traffic Statistics ",
+	"en" => "Network Traffic Statistics",
 	"hu" => "TRANS Network Traffic Statistics ",
 	"it" => "Statistiche di traffico di rete ",
 	"nl" => "Netwerk Verkeer Statistieken ",
@@ -1223,21 +1223,6 @@ $txt_user_administration_domains_for=array(
 	"es" => "Dominios para ",
 	"pt" => "TRANS "
 	);
-$txt_console_output=array(
-	"fr" => "Sortie console",
-	"en" => "Console output",
-	"hu" => "TRANS ",
-	"it" => "Output della console",
-	"nl" => "Console output ",
-	"ru" => "TRANS ",
-	"de" => "Konsolenausgabe",
-	"ro" => "Consola zice",
-	"zh" => "¿ØÖÆÌ¨Êä³ö",
-	"pl" => "Wynik dzia³ania konsoli",
-	"se" => "TRANS SVENSKA",
-	"es" => "Salida de consola ",
-	"pt" => "TRANS "
-	);
 // end arrays
 
 $txt_client_interface = array(
@@ -1528,21 +1513,6 @@ $txt_go_to_client_panel = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Ir al panel de cliente",
 	"pt" => "Ir para a área de clientes"
-	);
-
-$txt_pending = array(
-	"fr" => "En suspens",
-	"en" => "Pending",
-	"hu" => "TRANS Pending",
-	"it" => "TRANS Pending",
-	"nl" => "TRANS Pending",
-	"ru" => "TRANS Pending",
-	"de" => "anstehend",
-	"zh" => "TRANS Pending",
-	"pl" => "TRANS Pending",
-	"se" => "TRANS Pending",
-	"es" => "TRANS Pending",
-	"pt" => "TRANS Pending"
 	);
 
 $txt_is_company = array(
@@ -2405,48 +2375,7 @@ $txt_change_your_password_title = array(
 	"es" => "Cambiar contrase&ntilde;a",
 	"pt" => "Alterar palavra chave"
   );
-$txt_no_user_waiting = array(
-	"fr" => "Pas d'utilisateur en attente !",
-	"en" => "No user waiting!",
-	"hu" => "Nincs várakozó felhasználó:",
-	"it" => "Nessun utente in attesa!",
-	"nl" => "Geen gebruikers wachtende!",
-	"ru" => "TRANS No user waiting!",
-	"de" => "Kein Benutzer in Warteschleife!",
-	"zh" => "Ã»ÓĞ´ıÌí¼ÓµÄÓÃ»§£¡",
-	"pl" => "Brak nowego u¿ytkownika!",
-	"se" => "TRANS SVENSKA",
-	"es" => "¡Ning&uacute;n usuario a la espera!",
-	"pt" => "Nenhum utilizador pendente!"
-  );
-$txt_no_domain_waiting = array(
-	"fr" => "Pas de domaine en attente !",
-	"en" => "No domain waiting!",
-	"hu" => "Nincs várakozó domain!:",
-	"it" => "Nessun dominio in attesa!",
-	"nl" => "Geen domeinnaam wachtende!",
-	"ru" => "TRANS No domain waiting!",
-	"de" => "Keine Domain in Warteschleife!",
-	"zh" => "Ã»ÓĞ´ıÌí¼ÓµÄÓòÃû£¡",
-	"pl" => "Brak oczekuj±cych domen!",
-	"se" => "TRANS SVENSKA",
-	"es" => "¡Ning&uacute;n dominio a la espera!",
-	"pt" => "Nenhum dominio pendente !"
-  );
-$txt_userndomain_waiting_for_addition = array(
-	"fr" => "Utilisateurs et domaines en attente : ",
-	"en" => "User and domain waiting for addition: ",
-	"hu" => "A következõ felhasználók illetve domainek várnak jóváhagyásra:",
-	"it" => "Utenti e domini in attesa: ",
-	"nl" => "Gebruiker en domein wachtende voor toevoeging: ",
-	"ru" => "TRANS User and domain waiting for addition: ",
-	"de" => "Benutzer und Domains in Warteschleife: ",
-	"zh" => "´ıÌí¼ÓµÄÓÃ»§ºÍÓòÃû£º",
-	"pl" => "Nowe zadania do wykonania : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Usuario y domino a la espera de ser a&ntilde;adidos: ",
-	"pt" => "Utilizador e dominio pendentes para serem adicionados :"
-  );
+
 $txt_add_a_new_user = array(
 	"fr" => "Ajouter un nouvel utilisateur : ",
 	"en" => "Add a new user: ",
@@ -3290,20 +3219,7 @@ $txt_new_domain_for_user = array(
 	"es" => "A&ntilde;adir un dominio para este usuario:",
 	"pt" => "Adicionar um dominio para este utilizador :"
 	);
-$txt_domain_tbl_config_dom_name = array(
-	"fr" => "Nom de domaine",
-	"en" => "Domain name",
-	"hu" => "Domain név:",
-	"it" => "Nome a dominio",
-	"nl" => "Domein naam",
-	"ru" => "TRANS Domain name",
-	"de" => "Domainname",
-	"zh" => "ÓòÃû",
-	"pl" => "Nazwa domeny",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nombre de dominio",
-	"pt" => "Nome do dominio"
-	);
+
 $txt_domain_tbl_config_quotaMB = array(
 	"fr" => "Quota disque (Mo) :",
 	"en" => "Disk quota (MB):",
@@ -3781,20 +3697,6 @@ $txt_my_account_global_stats_title = array(
 	"es" => "Estad&iacute;sticas globales de mi cuenta",
 	"pt" => "Estatisticas gerais da minha conta"
 	);
-$txt_total_transfered_bytes_this_month = array(
-	"fr" => "Total des données transférées ce mois-ci :",
-	"en" => "Total transfered bytes this month:",
-	"hu" => "Ehavi összes átvitel (byte):",
-	"it" => "Bytes trasferiti in totale questo mese:",
-	"nl" => "Totaal verbruikte bytes deze maand:",
-	"ru" => "TRANSTotal transfered bytes this month:",
-	"de" => "Gesamttransfer Bytes diesen Monat:",
-	"zh" => "ÒÑ´«ÊäµÄ×ÜÊı¾İÁ¿£º",
-    "pl" => "Ca³kowity transfer miesiêczny w bajtach :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Transferencia total de bytes este mes:",
-	"pt" => "Tráfego total usado este mês (byte)"
-	);
 $txt_stats_http_subdom = array(
 	"fr" => "Statistiques HTTP webalizer de vos sous-domaines :",
 	"en" => "Detailed webalizer statistics (HTTP) of your subdomains:",
@@ -3946,20 +3848,6 @@ $txt_disk_usage = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Uso de disco",
 	"pt" => "Espaço em disco"
-	);
-$txt_total_trafic = array(
-	"fr" => "Traffic total",
-	"en" => "Total trafic",
-	"hu" => "Összes forgalom",
-	"it" => "Traffico totale",
-	"nl" => "Totaal verkeer",
-	"ru" => "TRANSTotal trafic",
-	"de" => "Gesamttransfer",
-	"zh" => "×ÜÁ÷Á¿",
-	"pl" => "Ca³kowity transfer",
-	"se" => "TRANS SVENSKA",
-	"es" => "Tr&aacute;fico total",
-	"pt" => "Tráfego total"
 	);
 $txt_comment_confirurate_your_domain_name = array(
 	"fr" => "Attention ! Si vous rentrez de
@@ -4135,133 +4023,7 @@ $txt_draw_database_chpass = array(
 	"es" => "Cambiar la contrase&ntilde;a de MySQL:",
 	"pt" => "Alterar palavra chave de MySQL :"
 	);
-$txt_mysqlmang_nouser_by_that_name = array(
-	"fr" => "Il n'y a pas d'utilisateur ayant ce nom dans
-la table User de la base de donnie mysql. Cliquez <a
-href=\"".
-$_SERVER["PHP_SELF"].
-"?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">
-ici</a>
-pour ajouter cet utilisateur comme compte mysql (même mot de passe que pour
-DTC).",
-	"en" => "There is no user by that name in the mysql database.
-Click <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
-for adding this user as a mysql account (same login / pass as for DTC).",
-	"hu" => "Nincs ilyen nevû felhasználó a  mysql adatbázisban.
-Kattintson <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">ide</a>
-hogy hozzáadja ezt a felhasználót mint mysql felhasználót (hasonló login/jelszó párossal, mint a DTC-nek).",
-	"it" => "Non c'è alcun utente con questo nome nel database mysql.
-Clicca <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">qui</a>
-per aggiungere questo utente come account mysql (stesso login / pass di DTC).",
-	"nl" => "Er is geen gebruiker met die naam in de mysql database.
-Klik <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">hier</a>
-om de gebruiker toe te voegen als mysql account. (Zelfde naam / wachtwoord als voor DTC).",
-	"ru" => "There is no user by that name in the mysql database.
-Click <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">here</a>
-for adding this user as a mysql account (same login / pass as for DTC).",
- 	"de" => "Es gibt keinen Benutzer mit diesem Namen in der Datenbank.
-Klicken Sie <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">hier</a>,
-um einen Benutzer für MySQL anzulegen  (gleicher Benutzername/Passwort wie für DTC).",
- 	"zh" => "mysqlÊı¾İ¿âÖĞÃ»ÓĞÕâ¸öÓÃ»§Ãû£¬µã»÷<a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">ÕâÀï</a>½«Õâ¸öÓÃ»§Ìí¼ÓÎªmysqlÓÃ»§(ÓëDTCµÄÕËºÅÃÜÂëÏàÍ¬)¡£",
-	"pl" => "Brak u¿ytkownika bazy danych o takiej nazwie.
-Kliknij <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\"> tutaj </a>
-aby dodaæ konto u¿ytkownika MySQL ( takie samo jak login / has³o dostêpu do DTC).",
-	"se" => "TRANS SVENSKA",
-	
-	"es" => "No existe un usuario con ese nombre en la base de datos de mysql.
-Pulsar <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">aqui</a>
-para añadir este usuario como usuario mysql (la misma contraseña que para DTC).",
-		"pt" => "Esse utilizador não existe na base de dados MySQL
-Clique <a
-href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&action=create_mysql_account\">aqui</a>
-para adicionar este utilizador como uma conta MySQL (Utilizador e Palavra chave igual ai DTC)."
-);
-$txt_mysqlmang_delete_a_db = array(
-	"fr" => "Effacer l'une des bases de donnies pour cet utilisateur :",
-	"en" => "Delete one of MySQL database for that user:",
-	"hu" => "Ennek a felhasználónak töröli egy MySQL adatbázisát:",
-	"it" => "Cancella uno dei database MySql di questo utente:",
-	"nl" => "Wis een van de databases voor deze gebruiker:",
-	"ru" => "Delete one of MySQL database for that user:",
-	"de" => "Löschen einer MySQL Datenbank für diesen Benutzer",
-	"zh" => "É¾³ıÕâ¸öÓÃ»§µÄÒ»¸öMysqlÊı¾İ¿â£º",
-	"pl" => "Usuñ swoj± bazê danych MySQL :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Eliminar una de las bases de datos del usuario:",
-	"pt" => "Apagar uma base de dados deste utilizador :"
-);
-$txt_mysqlmang_add_a_db = array(
-	"fr" => "Ajouter une base de donnie a l'utilisateur :",
-	"en" => "Add a database for that user:",
-	"hu" => "Hozzáad egy adatbázist ennek a felhasználónak:",
-	"it" => "Aggiungi un database per questo utente:",
-	"nl" => "Voeg een database toe voor deze gebruiker:",
-	"ru" => "Add a database for that user:",
-	"de" => "Anlegen einer Datenbank für diesen Benutzer",
-	"zh" => "ÎªÕâ¸öÓÃ»§Ìí¼ÓÒ»¸öÊı¾İ¿â£º",
-	"pl" => "Dodaj swoj± bazê danych MySQL :",
-	"es" => "A&ntilde;adir una base de datos al usuario:",
-	"pt" => "Adicionar uma base de dados para esse utlizador"
-);
-$txt_mysqlmang_db_name = array(
-	"fr" => "Nom de la base de donnies :",
-	"en" => "Database name:",
-	"hu" => "Adatbázis név:",
-	"it" => "Nome database:",
-	"nl" => "Database naam:",  
-	"ru" => "Database name:",
-	"de" => "Datenbank Name:",
-	"zh" => "Êı¾İ¿âÃû£º",
-	"pl" => "Nazwa bazy danych : ",
-	"es" => "Nombre de la base de datos:",
-	"pt" => "Nome da base de dados :"
-);
-$txt_mysqlmang_not_in_demo = array(
-	"fr" => "Il n'y a pas de mysql-manager dans la version de dimo,
-car celui-ci require le mot de passe root pour accider  la base de donnie.",
-	"en" => "No mysql account manager in demo version (because I don't
-have root access to the MySQL
-database).",
-	"hu" => "Nincs  mysql számla menedzser a demo verzióban (azért mert
-nincs root hozzáférése a MySQL adatbázishoz).",
-	"it" => "Nella vesrione demo non c'è alcun MySql account manager (perchè non ho
-accesso root al database MySql).",
-	"nl" => "Geen MySQL account beheerder in demo versie (Omdat ik 
-in demo mode geen root toegang heb tot de mysql database).",
-	"ru" => "TRANSNo mysql account manager in demo version (because I don't
-have root access to the MySQL
-database).",
-	"de" => "Kein MySQL-Account-Manager in der Demoversion verfügbar (da kein Rootzugang zur MySQL-Datenbank vorhanden ist).",
-	"zh" => "Ã»ÓĞmysqlÕÊ»§¹ÜÀí³ÌĞòµÄÊÔÓÃ°æ±¾(ÒòÎªÎÒÃ»ÓĞMySQLÊı¾İ¿âµÄrootÈ¨ÏŞ)¡£",
-	"pl" => "W wersji demo brak mo¿liwo¶ci administrowania kontami MySQL.",
-	"se" => "TRANS SVENSKA",
-	"es" => "No hay administraci&oacute;n de cuentas mysql en la version de demostraci&oacute;n (porque no
-tengo acceso de root a MySQL).",
-		"pt" => "Na versão demo não existe gestor de contas MySQL.
-(Falta de permissões root para aceder a base de dados) "
-);
-$txt_delete_this_mysql_user_and_db = array(
-	"fr" => "Effacer l'utilisateur mysql ainsi que toutes ses bases de données",
-	"en" => "Delete the mysql user and all his databases",
-	"hu" => "Törli a mysql felhasználót és annak az összes adatbázisát",
-	"it" => "Cancella l'utente mysql e tutti i suoi database",
-	"nl" => "Wis MySQL gebruiker en al bijbehorende databases",
-	"ru" => "Delete the mysql user and all his databases",
-	"de" => "Löschen des MySQL-Benutzers und all seiner Datenbanken.",
-	"zh" => "É¾³ımysqlÓÃ»§¼°ÆäÈ«²¿Ïà¹ØÊı¾İ¿â",
-	"pl" => "Usuñ konto U¿ytkownika bazy danych i wszystkie jego bazy.",
-	"se" => "TRANS SVENSKA",
-	"es" => "Eliminar usuario MYSQL y todas sus bases de datos",
-	"pt" => "Apagar o utilizador MySQL e todas as suas base de dados"
-);
+
 $txt_draw_client_info_comp_name = array(
 	"fr" => "Nom société :",
 	"en" => "Company name:",

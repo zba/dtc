@@ -131,7 +131,6 @@ function skin_LayoutAdminPage_Default (){
 	global $txt_customer_bw_consumption;
 	global $txt_client_addr_title;
 	global $txt_client_list_title;
-	global $txt_renew_customer_renewals;
 	global $txt_server_statistic_graphs;
 
 	global $adm_random_pass;
@@ -155,7 +154,7 @@ function skin_LayoutAdminPage_Default (){
 		break;
 	case "renewal":
 		$out = drawRenewalTables();
-		$zemain_content = skin($conf_skin,$out,$txt_renew_customer_renewals[$lang]);
+		$zemain_content = skin($conf_skin,$out, _("Customer renewals") );
 		break;
 	case "monitor": // Monitor button
 		$out = drawAdminMonitor();
