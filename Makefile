@@ -98,6 +98,7 @@ all:
 
 clean:
 	rm -r $(BSD_BUILD_DIR)
+	rm -r shared/vars/locale
 
 source-copy:
 	@if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
