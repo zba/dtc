@@ -1916,21 +1916,6 @@ $txt_user = array(
 
 );
 
-$txt_database_name = array(
-	"fr" => "Nom de base de donn閑",
-	"en" => "Database Name",
-	"hu" => "Adatb醶is n関",
-	"it" => "Nome database",
-	"nl" => "Database naam ",
-	"ru" => "TRANS ",
-	"de" => "Name der Datenbank",
-	"zh" => "数据库名",
-	"pl" => "Nazwa bazy danych",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nombre de la base de datos",
-	"pt" => "Nome da base de dados"
-);
-
 $txt_total_database_number = array(
 	"fr" => "Nombre total de base de donn閑 :",
 	"en" => "Total database number:",
@@ -3486,20 +3471,6 @@ $txt_transfer = array(
 	"es" => "Transferencia",
 	"pt" => "Tr醘ego"
 	);
-$txt_total_disk_usage = array(
-	"fr" => "Total de l'utilisation disque :",
-	"en" => "Total disk usage:",
-	"hu" => "謘szes felhaszn醠t t醨hely:",
-	"it" => "Totale uso disco",
-	"nl" => "Totale hardeschijf gebruik:",
-	"ru" => "TRANSTotal disk usage:",
-	"de" => "Disk-Nutzung gesamt:",
-	"zh" => "总空间使用率：",
-	"pl" => "Ca砶owite u縴cie dysku :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Uso total de disco:",
-	"pt" => "Uso total de disco :"
-	);
 $txt_your_hosting_account = array(
 	"fr" => "Votre contrat d'h閎ergement :",
 	"en" => "Your hosting account:",
@@ -3724,131 +3695,6 @@ $txt_are_disk_usage = array(
 	"es" => "Espacio de disco usado:",
 	"pt" => "Espa鏾 de disco usado :"
 );
-$txt_domain_name_files = array(
-	"fr" => "Fichiers des noms de domaines :",
-	"en" => "Domain name files:",
-	"hu" => "Domain n関 f醞lok:",
-	"it" => "Files nome a dominio:",
-	"nl" => "Domeinnaam bestanden:",
-	"ru" => "TRANSDomain name files:",
-	"de" => "Domain Name Dateien: ",
-	"zh" => "域名文件：",
-	"pl" => "Spis twoich domen :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Ficheros de nombres de dominio:",
-	"pt" => "Ficheiros de nomes de dominios :"
-	);
-$txt_database_files = array(
-	"fr" => "Fichiers des bases de donn閑s :",
-	"en" => "Database files:",
-	"hu" => "Adatb醶is f醞lok:",
-	"it" => "Files database:",
-	"nl" => "Database bestanden:",
-	"ru" => "TRANSDomain name files:",
-	"de" => "Datenbanken Dateien:",
-	"zh" => "数据库文件：",
-	"pl" => "Spis twoich baz danych :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Ficheros de bases de datos:",
-	"pt" => "Ficheiros de base de dados :"
-	);
-$txt_total_disk_usage = array(
-	"fr" => "Total de l'utilisation disque :",
-	"en" => "Total disk usage:",
-	"hu" => "謘szes lemezter黮et felhaszn醠醩:",
-	"it" => "Utilizzo disco totale:",
-	"nl" => "Totaal hardeschijf gebruik:",
-	"ru" => "TRANSTotal disk usage:",
-	"de" => "Gesamtnutzung Festplatte:",
-	"zh" => "总的磁盘使用率：",
-	"pl" => "Ca砶owie u縴cie dysku :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Uso total de disco:",
-	"pt" => "Total de disco usado :"
-	);
-$txt_databases_disk_usage = array(
-	"fr" => "Utilisation disque des bases de donn閑s :",
-	"en" => "Databases disk usage:",
-	"hu" => "Az adatb醶isok lemezter黮et felhaszn醠醩a:",
-	"it" => "Uso disco database:",
-	"nl" => "Hardeschijf verbruik databases:",
-	"ru" => "TRANSDatabases disk usage:",
-	"de" => "Datenbank Disk Nutzung:",
-	"zh" => "数据库使用的磁盘空间：",
-	"pl" => "U縴cie dysku dla baz danych : ",
-	"es" => "Uso de disco en bases de datos:",
-	"pt" => "Total em disco das base de dados :"
-	);
-$txt_database_name = array(
-	"fr" => "Nom de la base de donn閑s",
-	"en" => "Database name",
-	"hu" => "Adatb醶is n関",
-	"it" => "Nome database",
-	"nl" => "Database naam",
-	"ru" => "TRANSDatabase name",
-	"de" => "Name der Datenbank",
-	"zh" => "数据库名",
-	"pl" => "Nazwa bazy danych",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nombre de la base de datos",
-	"pt" => "Nome da base de dados"
-	);
-$txt_disk_usage = array(
-	"fr" => "Utilisation disque",
-	"en" => "Disk usage",
-	"hu" => "Lemezter黮et haszn醠at",
-	"it" => "Uso del disco",
-	"nl" => "Hardeschijf gebruik",
-	"ru" => "TRANSDisk usage",
-	"de" => "Disk Nutzung",
-	"zh" => "磁盘使用率",
-	"pl" => "U縴cie dysku",
-	"se" => "TRANS SVENSKA",
-	"es" => "Uso de disco",
-	"pt" => "Utiliza玢o de disco"
-	);
-$txt_domain_name_trafic_du = array(
-	"fr" => "Nom de domaine, traffic et utilisation disque :",
-	"en" => "Domain name trafic and disk usage:",
-	"hu" => "Domain n関 forgalom 閟 lemezter黮et haszn醠at:",
-	"it" => "Traffico e utilizzo disco dominio:",
-	"nl" => "Domeinnaam verkeer en hardeschijf gebruik:",
-	"ru" => "TRANSDomain name trafic and disk usage:",
-	"de" => "Domain Name, Traffik und Disk Nutzung:",
-	"zh" => "域名，流量，磁盘使用率：",
-    "pl" => "Nazwa domeny, u縴cie dla niej dysku i transfer :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Nombre de dominio, tr&aacute;fico y uso de disco:",
-	"pt" => "Nome do dominio, tr閒ego e espa鏾 em disco usado :" 
-	);
-$txt_domain_name = array(
-	"fr" => "Nom de domaine",
-	"en" => "Domain name",
-	"hu" => "Domain n関",
-	"it" => "Nome a dominio",
-	"nl" => "Domein naam",
-	"ru" => "TRANSDomain name",
-	"de" => "Domain Name",
-	"zh" => "域名",
-	"pl" => "Nazwa domeny",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nombre de dominio",
-	"pt" => "Nome do dominio"
-	);
-$txt_disk_usage = array(
-	"fr" => "Utilisation disque",
-	"en" => "Disk usage",
-	"hu" => "Lemezter黮et haszn醠at",
-	"it" => "Uso disco",
-	"nl" => "Hardeschijf gebruik",
-	"ru" => "TRANSDisk usage",
-	"de" => "Disk Nutzung",
-	"zh" => "磁盘使用率",
-	"pl" => "U縴cie dysku",
-	"se" => "TRANS SVENSKA",
-	"es" => "Uso de disco",
-	"pt" => "Espa鏾 em disco"
-	);
 $txt_comment_confirurate_your_domain_name = array(
 	"fr" => "Attention ! Si vous rentrez de
 mauvaises valeurs dans les champs suivants cela

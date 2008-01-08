@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:05+0800\n"
+"POT-Creation-Date: 2008-01-06 17:33+0800\n"
 "PO-Revision-Date: 2007-12-30 22:30+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: French\n"
@@ -227,6 +227,18 @@ msgstr "Démon"
 msgid "Daily"
 msgstr "Tous les jours"
 
+#: shared/inc/forms/admin_stats.php:83
+msgid "Database Name"
+msgstr "Nom de base de donnée"
+
+#: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
+msgid "Database files:"
+msgstr "Fichiers des bases de données :"
+
+#: shared/inc/forms/admin_stats.php:81
+msgid "Databases disk usage:"
+msgstr "Utilisation disque des bases de données :"
+
 #: admin/inc/draw_user_admin.php:237
 msgid "Date"
 msgstr "Date"
@@ -255,13 +267,21 @@ msgstr "Description:"
 msgid "Destination folder:"
 msgstr "Dossier de destination :"
 
-#: admin/inc/draw_user_admin.php:295
+#: shared/inc/forms/admin_stats.php:83 shared/inc/forms/admin_stats.php:104
+msgid "Disk usage"
+msgstr "Utilisation disque"
+
+#: admin/inc/draw_user_admin.php:295 shared/inc/forms/admin_stats.php:104
 msgid "Domain name"
 msgstr "Nom de domaine"
 
 #: admin/inc/draw_user_admin.php:237
 msgid "Domain name / VPS server hostname"
 msgstr "Nom de domaine / Nom d'hote du serveur VPS"
+
+#: shared/inc/forms/admin_stats.php:67
+msgid "Domain name files:"
+msgstr "Fichiers des noms de domaines :"
 
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
@@ -270,6 +290,10 @@ msgstr "Enregistrement de domaines"
 #: admin/inc/dtc_config.php:877
 msgid "Domain name registry API configuraiton"
 msgstr "Configuration de l'API d'enregistrement de domaines"
+
+#: shared/inc/forms/admin_stats.php:102
+msgid "Domain name trafic and disk usage:"
+msgstr "Nom de domaine, traffic et utilisation disque :"
 
 #: admin/inc/dtc_config.php:1211
 msgid "Edit a company:"
@@ -897,15 +921,19 @@ msgstr "Emplacement de ce serveur :"
 msgid "Ticket categories:"
 msgstr "Categories de tickets :"
 
+#: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
+msgid "Total disk usage:"
+msgstr "Total de l'utilisation disque :"
+
 #: admin/inc/renewals.php:24
 msgid "Total recurring incomes per month:"
 msgstr "Total du récurent mensuel:"
 
-#: shared/inc/forms/admin_stats.php:120
+#: shared/inc/forms/admin_stats.php:107
 msgid "Total trafic"
 msgstr "Traffic total"
 
-#: shared/inc/forms/admin_stats.php:46
+#: shared/inc/forms/admin_stats.php:33
 msgid "Total transfered bytes this month:"
 msgstr "Total des données transférées ce mois-ci :"
 

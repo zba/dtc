@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:04+0800\n"
+"POT-Creation-Date: 2008-01-06 17:33+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -236,6 +236,18 @@ msgstr ""
 msgid "Daily"
 msgstr "Täglich"
 
+#: shared/inc/forms/admin_stats.php:83
+msgid "Database Name"
+msgstr "Name der Datenbank"
+
+#: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
+msgid "Database files:"
+msgstr "Datenbanken Dateien:"
+
+#: shared/inc/forms/admin_stats.php:81
+msgid "Databases disk usage:"
+msgstr "Datenbank Disk Nutzung:"
+
 #: admin/inc/draw_user_admin.php:237
 msgid "Date"
 msgstr "Datum"
@@ -264,7 +276,11 @@ msgstr "Beschreibung:"
 msgid "Destination folder:"
 msgstr "Zielverzeichnis:"
 
-#: admin/inc/draw_user_admin.php:295
+#: shared/inc/forms/admin_stats.php:83 shared/inc/forms/admin_stats.php:104
+msgid "Disk usage"
+msgstr "Disk Nutzung"
+
+#: admin/inc/draw_user_admin.php:295 shared/inc/forms/admin_stats.php:104
 #, fuzzy
 msgid "Domain name"
 msgstr "Domainname"
@@ -273,6 +289,10 @@ msgstr "Domainname"
 msgid "Domain name / VPS server hostname"
 msgstr "Name der Domain bzw. des VPS"
 
+#: shared/inc/forms/admin_stats.php:67
+msgid "Domain name files:"
+msgstr "Domain Name Dateien:"
+
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
 msgstr "Domain-Registrierung"
@@ -280,6 +300,10 @@ msgstr "Domain-Registrierung"
 #: admin/inc/dtc_config.php:877
 msgid "Domain name registry API configuraiton"
 msgstr "API des Domain-Registrars"
+
+#: shared/inc/forms/admin_stats.php:102
+msgid "Domain name trafic and disk usage:"
+msgstr "Domain Name, Traffik und Disk Nutzung:"
 
 #: admin/inc/dtc_config.php:1211
 msgid "Edit a company:"
@@ -934,15 +958,19 @@ msgstr "Standort dieses Servers:"
 msgid "Ticket categories:"
 msgstr "Kategorien:"
 
+#: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
+msgid "Total disk usage:"
+msgstr "Disk-Nutzung gesamt:"
+
 #: admin/inc/renewals.php:24
 msgid "Total recurring incomes per month:"
 msgstr "Gesamtumsatz aus Abonnements pro Monat:"
 
-#: shared/inc/forms/admin_stats.php:120
+#: shared/inc/forms/admin_stats.php:107
 msgid "Total trafic"
 msgstr "Gesamttransfer"
 
-#: shared/inc/forms/admin_stats.php:46
+#: shared/inc/forms/admin_stats.php:33
 msgid "Total transfered bytes this month:"
 msgstr "Gesamttransfer Bytes diesen Monat:"
 

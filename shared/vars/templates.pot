@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-06 13:26+0800\n"
+"POT-Creation-Date: 2008-01-09 03:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -292,7 +292,7 @@ msgstr ""
 msgid "No domain waiting!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:295
+#: admin/inc/draw_user_admin.php:295 shared/inc/forms/admin_stats.php:104
 msgid "Domain name"
 msgstr ""
 
@@ -1079,11 +1079,39 @@ msgstr ""
 msgid "Mail Queue statistics"
 msgstr ""
 
-#: shared/inc/forms/admin_stats.php:46
+#: shared/inc/forms/admin_stats.php:33
 msgid "Total transfered bytes this month:"
 msgstr ""
 
-#: shared/inc/forms/admin_stats.php:120
+#: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
+msgid "Total disk usage:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:67
+msgid "Domain name files:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
+msgid "Database files:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:81
+msgid "Databases disk usage:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:83
+msgid "Database Name"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:83 shared/inc/forms/admin_stats.php:104
+msgid "Disk usage"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:102
+msgid "Domain name trafic and disk usage:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:107
 msgid "Total trafic"
 msgstr ""
 

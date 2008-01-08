@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:04+0800\n"
+"POT-Creation-Date: 2008-01-06 17:33+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -228,6 +228,18 @@ msgstr ""
 msgid "Daily"
 msgstr ""
 
+#: shared/inc/forms/admin_stats.php:83
+msgid "Database Name"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
+msgid "Database files:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:81
+msgid "Databases disk usage:"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:237
 msgid "Date"
 msgstr ""
@@ -256,7 +268,11 @@ msgstr ""
 msgid "Destination folder:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:295
+#: shared/inc/forms/admin_stats.php:83 shared/inc/forms/admin_stats.php:104
+msgid "Disk usage"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:295 shared/inc/forms/admin_stats.php:104
 #, fuzzy
 msgid "Domain name"
 msgstr "Название компании:"
@@ -265,12 +281,21 @@ msgstr "Название компании:"
 msgid "Domain name / VPS server hostname"
 msgstr ""
 
+#: shared/inc/forms/admin_stats.php:67
+#, fuzzy
+msgid "Domain name files:"
+msgstr "Название компании:"
+
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
 msgstr ""
 
 #: admin/inc/dtc_config.php:877
 msgid "Domain name registry API configuraiton"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:102
+msgid "Domain name trafic and disk usage:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1211
@@ -889,15 +914,19 @@ msgstr ""
 msgid "Ticket categories:"
 msgstr ""
 
+#: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
+msgid "Total disk usage:"
+msgstr ""
+
 #: admin/inc/renewals.php:24
 msgid "Total recurring incomes per month:"
 msgstr ""
 
-#: shared/inc/forms/admin_stats.php:120
+#: shared/inc/forms/admin_stats.php:107
 msgid "Total trafic"
 msgstr ""
 
-#: shared/inc/forms/admin_stats.php:46
+#: shared/inc/forms/admin_stats.php:33
 msgid "Total transfered bytes this month:"
 msgstr ""
 

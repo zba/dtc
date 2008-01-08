@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 00:04+0800\n"
+"POT-Creation-Date: 2008-01-06 17:33+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jelle Kalf <thomas@goirand.fr>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -233,6 +233,18 @@ msgstr ""
 msgid "Daily"
 msgstr "Dagelijks"
 
+#: shared/inc/forms/admin_stats.php:83
+msgid "Database Name"
+msgstr "Database naam"
+
+#: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
+msgid "Database files:"
+msgstr "Database bestanden:"
+
+#: shared/inc/forms/admin_stats.php:81
+msgid "Databases disk usage:"
+msgstr "Hardeschijf verbruik databases:"
+
 #: admin/inc/draw_user_admin.php:237
 #, fuzzy
 msgid "Date"
@@ -263,13 +275,21 @@ msgstr "Omschrijving van de categorie"
 msgid "Destination folder:"
 msgstr "Destination folder:"
 
-#: admin/inc/draw_user_admin.php:295
+#: shared/inc/forms/admin_stats.php:83 shared/inc/forms/admin_stats.php:104
+msgid "Disk usage"
+msgstr "Hardeschijf gebruik"
+
+#: admin/inc/draw_user_admin.php:295 shared/inc/forms/admin_stats.php:104
 msgid "Domain name"
 msgstr "Domein naam"
 
 #: admin/inc/draw_user_admin.php:237
 msgid "Domain name / VPS server hostname"
 msgstr "Domein naam / VPS server hostname"
+
+#: shared/inc/forms/admin_stats.php:67
+msgid "Domain name files:"
+msgstr "Domeinnaam bestanden:"
 
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
@@ -278,6 +298,10 @@ msgstr "Domeinnaam registratie"
 #: admin/inc/dtc_config.php:877
 msgid "Domain name registry API configuraiton"
 msgstr "Configuratie Domeinnaam registratie API"
+
+#: shared/inc/forms/admin_stats.php:102
+msgid "Domain name trafic and disk usage:"
+msgstr "Domeinnaam verkeer en hardeschijf gebruik:"
 
 #: admin/inc/dtc_config.php:1211
 msgid "Edit a company:"
@@ -923,15 +947,19 @@ msgstr "Locatie van deze server:"
 msgid "Ticket categories:"
 msgstr "Ticket categorieen"
 
+#: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
+msgid "Total disk usage:"
+msgstr "Totale hardeschijf gebruik:"
+
 #: admin/inc/renewals.php:24
 msgid "Total recurring incomes per month:"
 msgstr "Totaal aantal terugkerende inkomens per maand:"
 
-#: shared/inc/forms/admin_stats.php:120
+#: shared/inc/forms/admin_stats.php:107
 msgid "Total trafic"
 msgstr "Totaal verkeer"
 
-#: shared/inc/forms/admin_stats.php:46
+#: shared/inc/forms/admin_stats.php:33
 msgid "Total transfered bytes this month:"
 msgstr "Totaal verbruikte bytes deze maand:"
 

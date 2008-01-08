@@ -7,19 +7,6 @@ function drawAdminTools_AdminStats($admin){
 	global $pro_mysql_acc_http_table;
 	global $pro_mysql_acc_ftp_table;
 
-	global $lang;
-
-	global $txt_disk_usage;
-	global $txt_domain_name;
-	global $txt_domain_name_trafic_du;
-	global $txt_disk_usage;
-	global $txt_database_name;
-	global $txt_databases_disk_usage;
-	global $txt_total_disk_usage;
-	global $txt_database_files;
-	global $txt_domain_name_files;
-	global $txt_are_disk_usage;
-
 	$out = "";
 	$nowrap = " style=\"white-space:nowrap\" nowrap";
 
@@ -72,18 +59,18 @@ function drawAdminTools_AdminStats($admin){
 	}
 
 	// Print disk usage
-	$out .= "<br><h3>".$txt_are_disk_usage[$lang]."</h3>";
+	$out .= "<br><h3>". _("Total disk usage:") ."</h3>";
 	if (!isset($stats["total_du_domains"]))
 	{
 		$stats["total_du_domains"] = 0;
 	}
-	$out .= "<br>".$txt_domain_name_files[$lang]." ".smartByte($stats["total_du_domains"]);
+	$out .= "<br>". _("Domain name files:") ." ".smartByte($stats["total_du_domains"]);
 	if(isset($stats["total_du_db"])){
-		$out .= "<br>".$txt_database_files[$lang]." ".smartByte($stats["total_du_db"]);
+		$out .= "<br>". _("Database files:") ." ".smartByte($stats["total_du_db"]);
 	}else{
-		$out .= "<br>".$txt_database_files[$lang]." ".smartByte(0);
+		$out .= "<br>". _("Database files:") ." ".smartByte(0);
 	}
-	$out .= "<br>".$txt_total_disk_usage[$lang]." ".smartByte($stats["total_du"]);
+	$out .= "<br>". _("Total disk usage:") ." ".smartByte($stats["total_du"]);
 
 	if($id_client != 0){
 		$du_quota = $admin["info"]["quota"]*1024*1024;
@@ -91,9 +78,9 @@ function drawAdminTools_AdminStats($admin){
 		$out .= drawPercentBar($stats["total_du"],$du_quota);
 	}
 
-	$out .= "<br><br><h3>".$txt_databases_disk_usage[$lang]."</h3>";
+	$out .= "<br><br><h3>". _("Databases disk usage:") ."</h3>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
-	$out .= "<tr><td$nowrap><b>".$txt_database_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></tr>";
+	$out .= "<tr><td$nowrap><b>"._("Database Name")."</b></td><td$nowrap><b>"._("Disk usage")."</b></tr>";
 	if(isset($stats["db"])){
 		$n = sizeof($stats["db"]);
 	}else{
@@ -112,9 +99,9 @@ function drawAdminTools_AdminStats($admin){
 	}
 	$out .= '</table>';
 
-	$out .= "<br><br><h3>".$txt_domain_name_trafic_du[$lang]."</h3>";
+	$out .= "<br><br><h3>"._("Domain name trafic and disk usage:")."</h3>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
-	$out .= "<tr><td><b>".$txt_domain_name[$lang]."</b></td><td$nowrap><b>".$txt_disk_usage[$lang]."</b></td>
+	$out .= "<tr><td><b>"._("Domain name")."</b></td><td$nowrap><b>"._("Disk usage")."</b></td>
 	<td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td>
 	<td$nowrap><b>HTTP HITS</b></td>
 	<td$nowrap><b>". _("Total trafic") ."</b></td></tr>";
