@@ -18,12 +18,12 @@ msgstr ""
 #: shared/inc/forms/vps.php:117 shared/inc/forms/vps.php:130
 #: shared/inc/forms/vps.php:143
 msgid " CPU seconds"
-msgstr ""
+msgstr "CPU-Sekunden"
 
 #: shared/inc/forms/vps.php:116 shared/inc/forms/vps.php:117
 #: shared/inc/forms/vps.php:118 shared/inc/forms/vps.php:119
 msgid "2 months ago: "
-msgstr ""
+msgstr "vor 2 Monaten: "
 
 #: admin/inc/dtc_config.php:847
 #, fuzzy
@@ -38,7 +38,7 @@ msgstr "Für folgende Server als Backup-Mail-Server bereitstehen:"
 #: admin/inc/draw_user_admin.php:314
 #, fuzzy
 msgid "Action"
-msgstr "Standort"
+msgstr "Aktion"
 
 #: admin/inc/dtc_config.php:339
 msgid "Activate FTP backups:"
