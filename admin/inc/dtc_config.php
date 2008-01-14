@@ -222,7 +222,7 @@ are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminder
                                 "type" => "text",
                                 "size" => "16"),
 			"message_subject_header" => array(
-				"legend" => "Reminders and registration message subject header:",
+				"legend" => _("Reminders and registration message subject header:"),
                                 "type" => "text",
                                 "size" => "16")
 			)
@@ -563,7 +563,7 @@ function drawGeneralConfig(){
 		"forward" => array("rub"),
 		"cols" => array (
 			"mta_type" => array(
-				"legend" => "MTA<a href=\"http://pl.wikipedia.org/wiki/MTA\" target=\"_blank\">*</a>:",
+				"legend" => "MTA <a href=\"http://pl.wikipedia.org/wiki/MTA\" target=\"_blank\">*</a> :",
 				"type" => "radio",
 				"values" => array("qmail","postfix")),
 			"use_cyrus" => array(
@@ -880,7 +880,7 @@ function drawRegistryApiConfig(){
 		"desc" => "<img src=\"gfx/tucows.jpg\"><br>Note: you must have a Tucows reseller account.",
 		"cols" => array(
 			"use_registrar_api" => array(
-				"legend" => "Use registrar API:",
+				"legend" => _("Use registrar API:"),
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
@@ -1008,16 +1008,16 @@ function drawDTCpayConfig(){
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"use_maxmind" => array(
-				"legend" => "Use Maxmind API:",
+				"legend" => _("Use Maxmind API:"),
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
 			"maxmind_login" => array(
-				"legend" => "Maxmind login:",
+				"legend" => _("Maxmind login:"),
 				"type" => "text",
 				"size" => "30"),
 			"maxmind_license_key" => array(
-				"legend" => "Maxmind license key:",
+				"legend" => _("Maxmind license key:"),
 				"type" => "text",
 				"size" => "30")));
 	$out .= configEditorTemplate ($dsc,"secpay");
@@ -1124,7 +1124,7 @@ function drawDTCpathConfig(){
 Each of the following (qmail, apache and named) path will be concatened to this:"),
 				"type" => "text"),
 			"htpasswd_path" => array(
-				"legend" => "Apache htpasswd path",
+				"legend" => _("Apache htpasswd path"),
 				"type" => "text")));
 	$out .= configEditorTemplate ($dsc);
 

@@ -9,8 +9,8 @@
 # MANUAL_DIR=/usr/share/man
 
 # Version and release are set here:
-VERS=0.27.4
-RELS=2
+VERS=0.27.5
+RELS=1
 
 VERSION=$(VERS)"-"$(RELS)
 CURDIR?=`pwd`
@@ -97,7 +97,8 @@ all:
 	exit 0
 
 clean:
-	rm -r $(BSD_BUILD_DIR)
+	rm -fr $(BSD_BUILD_DIR)
+	rm -fr shared/vars/locale
 
 source-copy:
 	@if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
@@ -200,8 +201,8 @@ admin/genfiles/gen_ssh_account.php admin/genfiles/gen_maildrop_userdb.php admin/
 admin/genfiles/gen_named_files_alt-wildcard.php admin/genfiles/remote_mail_list.php admin/genfiles/gen_named_files.php \
 admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_pro_vhost_alt-wildcard.php
 
-ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/img_alt_skin.php admin/inc/img.php admin/inc/renewals.php admin/inc/renewals_strings.php \
-admin/inc/draw_user_admin.php admin/inc/draw_user_admin_strings.php admin/inc/dtc_config.php admin/inc/dtc_config_strings.php \
+ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/img_alt_skin.php admin/inc/img.php admin/inc/renewals.php \
+admin/inc/draw_user_admin.php admin/inc/dtc_config.php admin/inc/dtc_config_strings.php \
 admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admin/inc/nav.php admin/inc/img_alt.php \
 admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/product_manager_strings.php admin/dtcrm/submit_to_sql.php
 
@@ -243,6 +244,8 @@ shared/inc/sql/domain_info_strings.php shared/inc/sql/domain_stats.php shared/in
 shared/inc/sql/ftp.php shared/inc/sql/ftp_strings.php shared/inc/sql/lists.php shared/inc/sql/reseller.php shared/inc/sql/ssh.php \
 shared/inc/sql/ssh_strings.php shared/inc/sql/subdomain.php shared/inc/sql/subdomain_strings.php shared/inc/sql/ticket.php \
 shared/inc/sql/vps.php shared/inc/sql/vps_strings.php
+
+SKIN_STUFF=shared/gfx/skin/default_layout.php shared/gfx/skin/bwoup/layout.php
 
 PAYMENT_API_PHP_SCRIPT_FILES=shared/maxmind/CreditCardFraudDetection.php shared/maxmind/HTTPBase.php \
 shared/maxmind/LocationVerification.php shared/maxmind/TelephoneVerification.php \
@@ -332,7 +335,7 @@ LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU.KOI8-R de_DE zh_CN pl_PL se_NO pt_PT 
 i18n:
 	@echo "===> Managing internationalizations and localizations"
 	@echo "=> Extracting strings from sources"
-	@xgettext --output-dir=shared/vars $(WEB_SCRIPT_FILES) -o templates.pot
+	@xgettext --output-dir=shared/vars $(WEB_SCRIPT_FILES) $(SKIN_STUFF) -o templates.pot
 	@echo "=> Merging in every language .po file: "
 	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgmerge -s -U $$i.po templates.pot ; done && cd ../..
 	@for i in $(LOCALE_TRANS) ; do mkdir -p shared/vars/locale/$$i/LC_MESSAGES ; done && cd ../..

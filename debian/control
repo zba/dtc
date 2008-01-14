@@ -2,7 +2,8 @@ Source: dtc
 Section: admin
 Priority: extra
 Maintainer: Thomas Goirand <thomas@goirand.fr>
-Build-Depends: debhelper (>= 5), po-debconf
+Build-Depends: debhelper (>= 5)
+Build-Depends-Indep: po-debconf
 Standards-Version: 3.7.3
 Dm-Upload-Allowed: yes
 Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
@@ -85,7 +86,7 @@ Description: dtc-xen VM statistics for the dtc web control panel
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. This small daemon will query all the dtc-xen servers that you have
  configured in DTC and fetch the statistics from them: I/O stats, network and
- CPU. This  information is then stored in DTC for your customer accounting.
+ CPU. This information is then stored in DTC for your customer accounting.
 
 Package: dtc-toaster
 Architecture: all

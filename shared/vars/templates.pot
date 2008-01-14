@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-30 13:13+0800\n"
+"POT-Creation-Date: 2008-01-09 03:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,8 +16,143 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin/inc/draw_user_admin.php:202 admin/inc/draw_user_admin.php:324
-#: admin/inc/draw_user_admin.php:392 admin/inc/dtc_config.php:266
+#: admin/inc/renewals.php:24
+msgid "Total recurring incomes per month:"
+msgstr ""
+
+#: admin/inc/renewals.php:104
+msgid "Shared hosting: "
+msgstr ""
+
+#: admin/inc/renewals.php:105
+msgid "SSL IPs renewals: "
+msgstr ""
+
+#: admin/inc/renewals.php:106
+msgid "VPS: "
+msgstr ""
+
+#: admin/inc/renewals.php:107
+msgid "Dedicated servers: "
+msgstr ""
+
+#: admin/inc/renewals.php:109
+msgid "Total: "
+msgstr ""
+
+#: admin/inc/renewals.php:118
+msgid "Period"
+msgstr ""
+
+#: admin/inc/renewals.php:118
+msgid "Amount"
+msgstr ""
+
+#: admin/inc/renewals.php:144
+msgid "Shared hosting renewals:"
+msgstr ""
+
+#: admin/inc/renewals.php:149
+msgid "No shared account expired."
+msgstr ""
+
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:249 admin/inc/draw_user_admin.php:237
+#: admin/inc/draw_user_admin.php:295 admin/inc/draw_user_admin.php:314
+#: admin/inc/draw_user_admin.php:400 admin/inc/dtc_config.php:257
+#: admin/inc/dtc_config.php:758 admin/inc/dtc_config.php:785
+#: admin/inc/dtc_config.php:810 admin/inc/dtc_config.php:837
+#: admin/inc/dtc_config.php:862
+msgid "Login"
+msgstr ""
+
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:215 admin/inc/renewals.php:249
+msgid "Client"
+msgstr ""
+
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:215 admin/inc/renewals.php:249
+msgid "Email"
+msgstr ""
+
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:215 admin/inc/renewals.php:249
+msgid "Expiration date"
+msgstr ""
+
+#: admin/inc/renewals.php:159 admin/inc/renewals.php:197
+#: admin/inc/renewals.php:231 admin/inc/renewals.php:264
+msgid "Client name not found!"
+msgstr ""
+
+#: admin/inc/renewals.php:174
+msgid "SSL IPs renewals"
+msgstr ""
+
+#: admin/inc/renewals.php:179
+msgid "No SSL IP expired"
+msgstr ""
+
+#: admin/inc/renewals.php:207
+msgid "VPS renewals:"
+msgstr ""
+
+#: admin/inc/renewals.php:212
+msgid "No VPS expired"
+msgstr ""
+
+#: admin/inc/renewals.php:215
+msgid "VPS"
+msgstr ""
+
+#: admin/inc/renewals.php:241
+msgid "Dedicated servers renewals"
+msgstr ""
+
+#: admin/inc/renewals.php:246
+msgid "No dedicated server expired"
+msgstr ""
+
+#: admin/inc/renewals.php:249
+msgid "Server"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:111 admin/inc/draw_user_admin.php:138
+#: admin/inc/draw_user_admin.php:190
+msgid "Cannot find ticket!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:114
+msgid "Subject: "
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:120 admin/inc/draw_user_admin.php:408
+msgid "Type not found!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:125 admin/inc/dtc_config.php:1057
+msgid "Type:"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:126
+msgid "First query date: "
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:127
+msgid "Server hostname related: "
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:128
+msgid "Admin login: "
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:155
+msgid "Request to close the ticket: "
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
+#: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
 #: admin/inc/dtc_config.php:419 admin/inc/dtc_config.php:449
 #: admin/inc/dtc_config.php:529 admin/inc/dtc_config.php:534
@@ -42,8 +177,8 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:204 admin/inc/draw_user_admin.php:328
-#: admin/inc/draw_user_admin.php:396 admin/inc/dtc_config.php:266
+#: admin/inc/draw_user_admin.php:159 admin/inc/draw_user_admin.php:274
+#: admin/inc/draw_user_admin.php:342 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
 #: admin/inc/dtc_config.php:419 admin/inc/dtc_config.php:449
 #: admin/inc/dtc_config.php:529 admin/inc/dtc_config.php:534
@@ -68,23 +203,173 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:270
+#: admin/inc/draw_user_admin.php:168
+msgid "Send reply"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:173
+msgid "Send reply and close ticket"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:178
+msgid "Close without reply"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:216
 msgid "Add a new user"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:274 admin/inc/dtc_config.php:257
-#: admin/inc/dtc_config.php:758 admin/inc/dtc_config.php:785
-#: admin/inc/dtc_config.php:810 admin/inc/dtc_config.php:837
-#: admin/inc/dtc_config.php:862
-msgid "Login"
+#: admin/inc/draw_user_admin.php:220
+msgid "Login:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:275 admin/inc/dtc_config.php:1065
+#: admin/inc/draw_user_admin.php:221 admin/inc/dtc_config.php:1065
 msgid "Password:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:276
+#: admin/inc/draw_user_admin.php:222
 msgid "Path:"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:229
+msgid "User and domain waiting for addition:"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:234
+msgid "No user waiting!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:237
+msgid "Name"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:237
+msgid "Domain name / VPS server hostname"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
+msgid "Product"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:237
+msgid "Date"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
+msgid "Bank validated"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
+#: admin/inc/draw_user_admin.php:314
+msgid "Action"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:248 admin/inc/draw_user_admin.php:249
+msgid "Cannot find product in db!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:262
+msgid "No pay ID!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:272 admin/inc/draw_user_admin.php:345
+msgid "Pending"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:279
+msgid "View details"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:280 admin/inc/draw_user_admin.php:300
+msgid "Add"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:281 admin/inc/draw_user_admin.php:301
+msgid "Delete"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:292
+msgid "No domain waiting!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:295 shared/inc/forms/admin_stats.php:104
+msgid "Domain name"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:311
+msgid "No pending renewals!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:314
+msgid "Payment date"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
+msgid "Type"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:322
+msgid "Cannot find product!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:333
+msgid "Cannot find payment!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:355
+msgid "VPS: Cannot find VPS in db!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:363
+msgid "Shared"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:366
+msgid "SSL Token purchase"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:369
+msgid "SSL Token renewal"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:375
+msgid "Cannot find server in db!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:380
+msgid "Server:"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:397
+msgid "No pending support tickets!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Age"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Subject"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Last message from"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Last message age"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:416
+msgid "Admin"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:444
+msgid "User"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:470
+msgid "Console output"
 msgstr ""
 
 #: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:521
@@ -169,6 +454,10 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:221
 msgid "Shutdown warning: "
+msgstr ""
+
+#: admin/inc/dtc_config.php:225
+msgid "Reminders and registration message subject header:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:241
@@ -347,8 +636,20 @@ msgstr ""
 msgid "Use cyrus:"
 msgstr ""
 
+#: admin/inc/dtc_config.php:576
+msgid "Use webalizer"
+msgstr ""
+
 #: admin/inc/dtc_config.php:580
 msgid "Webalizer country graph:"
+msgstr ""
+
+#: admin/inc/dtc_config.php:586
+msgid "Use awstats"
+msgstr ""
+
+#: admin/inc/dtc_config.php:591
+msgid "Use visitors"
 msgstr ""
 
 #: admin/inc/dtc_config.php:595
@@ -498,6 +799,10 @@ msgstr ""
 msgid "Domain name registry API configuraiton"
 msgstr ""
 
+#: admin/inc/dtc_config.php:883
+msgid "Use registrar API:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:888
 msgid "Type of encryption for connecting to Tucows server:"
 msgstr ""
@@ -590,6 +895,18 @@ msgstr ""
 msgid "eNETS rate:"
 msgstr ""
 
+#: admin/inc/dtc_config.php:1011
+msgid "Use Maxmind API:"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1016
+msgid "Maxmind login:"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1020
+msgid "Maxmind license key:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1034
 msgid "NAS config"
 msgstr ""
@@ -600,10 +917,6 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1054
 msgid "Short name:"
-msgstr ""
-
-#: admin/inc/dtc_config.php:1057
-msgid "Type:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1061
@@ -632,6 +945,10 @@ msgid ""
 "for daemons.<br>\n"
 "Each of the following (qmail, apache and named) path will be concatened to "
 "this:"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1127
+msgid "Apache htpasswd path"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1156
@@ -742,6 +1059,62 @@ msgstr ""
 msgid "Company name"
 msgstr ""
 
+#: admin/inc/graphs.php:5
+msgid "Network Traffic Statistics"
+msgstr ""
+
+#: admin/inc/graphs.php:7
+msgid "CPU Load Average"
+msgstr ""
+
+#: admin/inc/graphs.php:9
+msgid "Memory and Swap Usage "
+msgstr ""
+
+#: admin/inc/graphs.php:11
+msgid "Mail Queue graph"
+msgstr ""
+
+#: admin/inc/graphs.php:14
+msgid "Mail Queue statistics"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:33
+msgid "Total transfered bytes this month:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
+msgid "Total disk usage:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:67
+msgid "Domain name files:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
+msgid "Database files:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:81
+msgid "Databases disk usage:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:83
+msgid "Database Name"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:83 shared/inc/forms/admin_stats.php:104
+msgid "Disk usage"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:102
+msgid "Domain name trafic and disk usage:"
+msgstr ""
+
+#: shared/inc/forms/admin_stats.php:107
+msgid "Total trafic"
+msgstr ""
+
 #: shared/inc/forms/email.php:34
 msgid "Server address :"
 msgstr ""
@@ -796,4 +1169,8 @@ msgstr ""
 
 #: shared/inc/forms/vps.php:176
 msgid "couldn't connect to host"
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:157 shared/gfx/skin/bwoup/layout.php:550
+msgid "Customer renewals"
 msgstr ""

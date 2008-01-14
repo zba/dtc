@@ -1,4 +1,4 @@
-dtc (0.27.4-1) unstable; urgency=low
+dtc (0.27.5-1) unstable; urgency=low
 
   * New upstream release
   * Lot's of requests in debconf are now guessed (like hostname and IP),

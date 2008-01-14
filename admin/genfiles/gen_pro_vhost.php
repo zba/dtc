@@ -613,12 +613,14 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 									$port=$row["port"];
 									$ip_vhost=$ip_to_write;
 									if(empty($port)){
-										$port=443;
+										$port = "443";
 									}
 								}else{
-									$port=443;
+									$port = "443";
 									$ip_vhost = $subdomain["ssl_ip"];
 								 }
+							}else{
+								$port = "443";
 							}
 							// End of <krystian@ezpear.com> patch
 						}
@@ -661,9 +663,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 							$vhost_file .= "<VirtualHost ".$ip_to_write.":80>\n";
 							break;
 						case "ssl":
-							if($conf_use_nated_vhost=="no"){
-								$vhost_file .= "Listen ".$ip_vhost.":$port\n";
-							}
+							//if($conf_use_nated_vhost=="no"){
+							//	$vhost_file .= "Listen ".$ip_vhost.":$port\n";
+							//}
 							$vhost_file .= "Listen ".$subdomain["ssl_ip"].":$port\n";
 							$vhost_file .= "<VirtualHost ".$subdomain["ssl_ip"].":$port>\n";
 							$vhost_file .= "	SSLEngine on\n";

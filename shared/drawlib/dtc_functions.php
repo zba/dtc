@@ -254,7 +254,7 @@ function isHostname($hostname){
 // Check for email addr we allow to create using DTC
 function isFtpLogin($mailbox){
 	if(isValidEmail($mailbox))	return true;
-	$reg = "^([a-z0-9]+)([.a-z0-9-]+)\$";
+	$reg = "^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)\$";
 	if(!ereg($reg,$mailbox))	return false;
 	else			return true;
 }
