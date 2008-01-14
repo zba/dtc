@@ -233,12 +233,12 @@ shared/vars/lang.php shared/vars/strings.php shared/vars/table_names.php shared/
 SHARED_INC_PHP_SCRIPT_FILES=shared/inc/accounting.php shared/inc/dbconect.php shared/inc/delete_user.php shared/inc/domain_export.php \
 shared/inc/draw.php shared/inc/fetchmail.php shared/inc/fetch.php shared/inc/nusoap.php shared/inc/skin.class.php \
 shared/inc/submit_to_sql.php shared/inc/tree_mem_to_db.php shared/inc/vps.php shared/inc/forms/admin_stats.php \
-shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedicated.php shared/inc/forms/dedicated_strings.php \
+shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedicated.php \
 shared/inc/forms/dns.php shared/inc/forms/domain_info.php shared/inc/forms/domain_stats.php shared/inc/forms/email.php \
 shared/inc/forms/ftp.php shared/inc/forms/invoices.php shared/inc/forms/lists.php shared/inc/forms/lists_strings.php \
 shared/inc/forms/my_account.php shared/inc/forms/packager.php shared/inc/forms/reseller.php shared/inc/forms/root_admin.php \
 shared/inc/forms/root_admin_strings.php shared/inc/forms/ssh.php shared/inc/forms/subdomain.php shared/inc/forms/ticket.php \
-shared/inc/forms/ticket_strings.php shared/inc/forms/tools.php shared/inc/forms/vps.php shared/inc/forms/vps_strings.php \
+shared/inc/forms/tools.php shared/inc/forms/vps.php \
 shared/inc/sql/database.php shared/inc/sql/database_strings.php shared/inc/sql/dns.php shared/inc/sql/domain_info.php \
 shared/inc/sql/domain_info_strings.php shared/inc/sql/domain_stats.php shared/inc/sql/email.php shared/inc/sql/email_strings.php \
 shared/inc/sql/ftp.php shared/inc/sql/ftp_strings.php shared/inc/sql/lists.php shared/inc/sql/reseller.php shared/inc/sql/ssh.php \

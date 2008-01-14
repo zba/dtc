@@ -1,33 +1,12 @@
 <?php
 
 function drawAdminTools_DomainInfo($admin,$eddomain){
-	global $lang;
-	global $txt_your_domain;
-	global $txt_your_domain_quota;
-	global $txt_your_domain_email;
-	global $txt_your_domain_ftp;
-	global $txt_your_domain_subdomain;
-
-	global $txt_other_mx_servers;
-	global $txt_primary_mx_server;
-	global $txt_other_dns_ip;
-	global $txt_primari_dns_ip;
-	global $txt_comment_confirurate_your_domain_name;
-	global $txt_confirurate_your_domain_name;
-	global $txt_total_transfered_bytes_this_month;
-	global $txt_are_disk_usage;
-	global $txt_no_parking_popup_text;
-	global $txt_parking_popup_legend;
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
 	global $dtcshared_path;
 	global $conf_administrative_site;
-	global $txt_export_domain_to_file;
-
 	global $pro_mysql_domain_table;
-	global $txt_use;
-	global $txt_aliasing;
 	$out = "";
 
 	// TODO : fetch the expiration in the database
@@ -69,16 +48,15 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	$total_smtp_transfer = fetchSMTPInfo($webname);
 	$total_transfer = smartByte($total_http_transfer + $total_ftp_transfer + $total_smtp_transfer + $total_pop_transfer + $total_imap_transfer);
 
-	$out .= "<h3>".$txt_your_domain[$lang]."</h3><br>
-	".$txt_total_transfered_bytes_this_month[$lang]." $total_transfer<br>
-	".$txt_are_disk_usage[$lang]." ".smartByte($du)." / $quota MBytes<br>
-	".$txt_your_domain_email[$lang]." $email_nbr / $max_email<br>
-	".$txt_your_domain_ftp[$lang]." $ftp_nbr / $max_ftp<br>
-	".$txt_your_domain_subdomain[$lang]." $subdomain_nbr /
-	$max_subdomain<br><br>";
+	$out .= "<h3>". _("Your domain:") ."</h3><br>
+	". _("Total transfered bytes this month:") ." $total_transfer<br>
+	". _("Your area disk usage:") ." ".smartByte($du)." / $quota MBytes<br>
+	". _("Mailboxes:") ." $email_nbr / $max_email<br>
+	". _("FTP accounts:") ." $ftp_nbr / $max_ftp<br>
+	". _("Subdomains:") ." $subdomain_nbr / $max_subdomain<br><br>";
 
-	$out .= "<h3>".$txt_your_domain[$lang]."</h3>
-	".$txt_use[$lang]." http(s)://".$conf_administrative_site."/www.".$_REQUEST["addrlink"]." ".$txt_aliasing[$lang].":";
+	$out .= "<h3>". _("Your domain") ."</h3>
+	". _("Use") ." http(s)://".$conf_administrative_site."/www.".$_REQUEST["addrlink"]." ". _("aliasing") .":";
 
 	if($eddomain["gen_unresolved_domain_alias"] == "yes"){
 		$radio_yes = " checked";
@@ -97,14 +75,14 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 <input type=\"hidden\" name=\"change_unresolv_alias\" value=\"Ok\">
 <input type=\"image\" src=\"gfx/stock_apply_20.png\"></form><br>";
 
-	$out .= $txt_parking_popup_legend[$lang];
+	$out .= _("This domain will be the alias of the following domain (domain parking):");
 	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"set_domain_parcking\" value=\"Ok\">
 <select name=\"domain_parking_value\">
-<option value=\"no-parking\">".$txt_no_parking_popup_text[$lang]."</option>
+<option value=\"no-parking\">". _("No parking") ."</option>
 ";
 	$q = "SELECT name FROM $pro_mysql_domain_table WHERE owner='$adm_login' AND domain_parking='no-parking' AND name NOT LIKE '".$_REQUEST["addrlink"]."';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." in file ".__FILE__." sql said: ".mysql_error());
@@ -120,18 +98,8 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	}
 
 	$out .= "</select><input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
-
-	$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&action=export_domain&addrlink=".$_REQUEST["addrlink"]."\" target=\"_blank\">".$txt_export_domain_to_file[$lang]."</a>";
-
-/*	if(file_exists($dtcshared_path."/dtcrm")){
-		$out .= "<b><u>Domain registration info:</u></b><br><br>";
-		if($eddomain["whois"] = "away"){
-			$out .= "Domain has been registred using another registrar.<br>
-			Click <a href=\"\">here</a> to order transfere";
-		}else if($eddomain["whois"] == "linked"){
-		}
-	}
-*/	return $out;
+	$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&action=export_domain&addrlink=".$_REQUEST["addrlink"]."\" target=\"_blank\">". _("Export this domain to a file") ."</a>";
+	return $out;
 }
 
 ?>

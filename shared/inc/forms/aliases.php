@@ -1,96 +1,5 @@
 <?php
 
-/**
- * 
- * @package DTC
- * @version $Id: aliases.php,v 1.2 2007/07/03 13:24:10 thomas Exp $
- * @param unknown_type $mailalias
- * @return unknown
- */
-/*
-function drawAdminTools_AliasPanel($mailbox){
-	global $conf_skin;
-	global $addrlink;
-
-	global $txt_mail_edit;
-	global $lang;
-
-	global $adm_email_login;
-	global $adm_email_pass;
-
-	global $txt_user_menu_email;
-	global $txt_user_menu_fetchmail;
-	global $txt_logout;
-	global $pro_mysql_mailaliasgroup_table;
-
-	echo "<pre>";print_r($mailbox);echo "</pre>";
-
-	$user_menu[] = array(
-		"text" => $txt_user_menu_email[$lang],
-		"icon" => "box_wnb_nb_picto-mailboxes.gif",
-		"type" => "link",
-		"link" => "My Email");
-	$user_menu[] = array(
-		"text" => $txt_user_menu_fetchmail[$lang],
-		"icon" => "box_wnb_nb_picto-mailinglists.gif",
-		"type" => "link",
-		"link" => "fetchmail");
-
-	$logout = "<a href=\"".$_SERVER["PHP_SELF"]."?action=logout\">".$txt_logout[$lang]."</a>";
-
-	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass","addrlink");
-
-	switch($addrlink){
-	case "My Email":
-		$title = $txt_mail_edit[$lang];
-		$panel = drawAdminTools_emailAccount($mailbox);
-		break;
-	case "antispam":
-		$title = "Protect your mailbox with efficient tools:";
-		$panel = drawAntispamRules($mailbox);
-		break;
-	case "fetchmail":
-		$title = "Your list of imported mail";
-		$panel = drawImportedMail($mailbox);
-		break;
-	case "quarantine":
-		$title = "Those mail are in quarantine, and were not delivered to your pop account:";
-		$panel = drawQuarantine($mailbox);
-		break;
-	default:
-		$title = "Welcom to the email panel!";
-		$panel = "Login successfull. Please select a menu entry on the left...";
-		break;
-	}
-
-	if(function_exists("layoutEmailPanel")){
-		$content = layoutEmailPanel($adm_email_login,"<br>".$mymenu."<center>$logout</center>",$title,$panel);
-	}else{
-		$mymenu_skin = skin($conf_skin,"<br>".$mymenu."<center>$logout</center>",$adm_email_login);
-		$left = "<table width=\"1\" height=\"100%\"><tr>
-		<td width=\"1\" height=\"1\">$mymenu_skin</td>
-</tr><tr>
-		<td height=\"100%\">&nbsp;</td>
-</tr></table>";
-
-		$right = skin($conf_skin,$panel,$title);
-
-		$right = "<table width=\"100%\" height=\"100%\"><tr>
-		<td width=\"100%\" height=\"100%\">$right</td>
-</tr><tr>
-	<td height=\"1\">&nbsp;</td>
-</tr></table>";
-
-		$content = "<table width=\"100%\" height=\"100%\"><tr>
-		<td width=\"1\"  height=\"100%\">$left_menu</td>
-		<td width=\"100%\" height=\"100%\">$right</td>
-</tr></table>";
-	}
-	return $content;
-//	return drawAdminTools_emailAccount($mailbox);
-}
-*/
-
 //
 // Main panel
 //
@@ -102,35 +11,24 @@ function drawAdminTools_Aliases($domain){
 	global $edit_mailbox;
 	global $addrlink;
 
-	global $lang;
-	global $txt_login_login;
-	global $txt_login_pass;
-	global $txt_number_of_active_mailbox;
-	global $txt_mail_alias_delivery_group;
-	global $txt_draw_client_info_email;
-
 	global $pro_mysql_pop_table;
 	global $pro_mysql_mailaliasgroup_table;
-	global $txt_mail_alias_list_current_aliases;
-	global $txt_mail_alias_new_item_title;
-	global $txt_mail_alias_new_item_link;
-	global $txt_mail_alias_edit_item_title;
-	
+
 	checkLoginPassAndDomain($adm_login,$adm_pass,$domain["name"]);
 
 	$out = "";
 	$dsc = array(
-		"title" => $txt_mail_alias_list_current_aliases[$lang],
-		"new_item_title" => $txt_mail_alias_new_item_title[$lang],
-		"new_item_link" => $txt_mail_alias_new_item_link[$lang],
-		"edit_item_title" => $txt_mail_alias_edit_item_title[$lang],
+		"title" => _("List of your mail groups") ,
+		"new_item_title" => _("Create New Mail Group") ,
+		"new_item_link" => _("Create Mail Group") ,
+		"edit_item_title" => _("Edit Mail Group") ,
 		"table_name" => $pro_mysql_mailaliasgroup_table,
 		"action" => "aliasgroup",
 		"forward" => array("adm_login","adm_pass","addrlink"),
 		"id_fld" => "autoinc",
 		"list_fld_show" => "id",
 		"max_item" => $domain["max_email"],
-		"num_item_txt" => $txt_number_of_active_mailbox[$lang],
+		"num_item_txt" => _("Number of active mailboxes:"),
 		"create_item_callback" => "emailAliasesCreateCallback",
 		"delete_item_callback" => "emailAliasesDeleteCallback",
 		"edit_item_callback" => "emailAliasesEditCallback",
@@ -140,22 +38,22 @@ function drawAdminTools_Aliases($domain){
 			"autoinc" => array(
 				"type" => "id",
 				"display" => "no",
-				"legend" => $txt_login_login[$lang]),
+				"legend" => _("Login:") ),
 			"id" => array(
 				"type" => "text",
 				"check" => "dtc_login_or_email",
 				"disable_edit" => "yes",
 				"happen" => "@".$domain["name"],
-				"legend" => $txt_draw_client_info_email[$lang]),
+				"legend" => _("Email:") ,
 			"delivery_group" => array(
 				"type" => "textarea",
 				"check" => "mail_alias_group",
-				"legend" => $txt_mail_alias_delivery_group[$lang],
+				"legend" => _("Delivery Group:") ,
 				"cols" => "40",
 				"rows" => "7")
 			),
 		"check_unique" => array( "id"),
-		"check_unique_msg" => "Email address is already in use!"
+		"check_unique_msg" => _("Email address is already in use!"))
 		);
         $list_items = dtcListItemsEdit($dsc);
 
@@ -169,6 +67,10 @@ function drawAdminTools_Aliases($domain){
 	return $out;
 
 }
+
+///////////////////
+// Few callbacks //
+///////////////////
 
 function emailAliasesEditCallback ($id){
 	global $pro_mysql_pop_table;

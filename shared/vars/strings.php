@@ -1,85 +1,6 @@
 <?php
-/**
- * Don't remove this comment for control version
- * @package DTC
- * @copyright LGPL
- * @version $Id: strings.php,v 1.148 2007/06/15 17:19:10 seeb Exp $
- * $Log: strings.php,v $
- * Revision 1.148  2007/06/15 17:19:10  seeb
- * new polish trans
- *
- * Revision 1.147  2007/06/12 05:22:51  thomas
- * Added the mailgroup patch from George.
- *
- * Revision 1.146  2007/06/02 12:42:17  thomas
- * Added a patch to be able to desactivate FTP or package-installer tab
- * in the user interface (configurable in the admin editor section).
- *
- * Revision 1.145  2007/06/02 06:56:25  thomas
- * Added unique checking for login fld of ssh & ftp.
- *
- * Revision 1.144  2007/06/02 06:38:12  thomas
- * Added error checking when there is a mailbox by that name. Integrates
- * with the template system.
- *
- * Revision 1.143  2007/05/31 18:19:33  thomas
- * Some syntaxe errors.
- *
- * Revision 1.142  2007/05/31 14:02:12  thomas
- * Hop!
- *
- * Revision 1.141  2007/05/26 03:49:16  thomas
- * Hop!
- *
- * Revision 1.140  2007/05/13 19:29:26  dracula
- * Added Name for email account
- *
- * Revision 1.139  2007/04/19 04:57:26  thomas
- * Added chinese patch.
- *
- * Revision 1.138  2007/04/07 08:33:11  thomas
- * Some layout work for the email panel.
- *
- * Revision 1.137  2007/04/05 14:29:26  tusker
- * Add support for SRV records
- *
- * Revision 1.136  2007/03/28 13:34:55  seeb
- * New Polish translations
- *
- */
 
 // Mail Alias Group
-$txt_cmenu_mail_aliases = array(
-	"fr" => "Boites groupées",
-	"en" => "Mail Groups",
-	"hu" => "TRANS Mail Groups",
-	"it" => "Alias di posta",
-	"nl" => "TRANS Mail Groups",
-	"ru" => "TRANS Mail Groups",
-	"de" => "E-Mail-Gruppen",
-	"ro" => "TRANS Mail Groups",
-	"zh" => "TRANS Mail Groups",
-	"pl" => "Aliasy pocztowe",
-	"se" => "TRANS Mail Groups",
-	"es" => "TRANS Mail Groups",
-	"pt" => "TRANS Mail Groups"
-
-);
-$txt_title_mail_aliases_of = array(
-	"fr" => "Boites groupées de ",
-	"en" => "Mail groups of ",
-	"hu" => "TRANS Mail groups of ",
-	"it" => "Alias di posta di ",
-	"nl" => "TRANS Mail groups of ",
-	"ru" => "TRANS Mail groups of ",
-	"de" => "E-Mail-Gruppen von ",
-	"ro" => "TRANS Mail groups of ",
-	"zh" => "TRANS Mail groups of ",
-	"pl" => "Grupy aliasów ",
-	"se" => "TRANS Mail groups of ",
-	"es" => "TRANS Mail groups of ",
-	"pt" => "TRANS Mail groups of "
-);
 $txt_mail_alias_delivery_group = array(
 	"fr" => "Groupes d'envois:",
 	"en" => "Delivery Group:",
@@ -94,36 +15,6 @@ $txt_mail_alias_delivery_group = array(
 	"se" => "TRANS Delivery Groups:",
 	"es" => "TRANS Delivery Groups:",
 	"pt" => "TRANS Delivery Groups:"
-);
-$txt_mail_alias_new_item_title = array(
-	"fr" => "Nouvelle boite groupée",
-	"en" => "Create New Mail Group",
-	"hu" => "TRANS Create New Mail Group",
-	"it" => "Crea alias di posta",
-	"nl" => "TRANS Create New Mail Group",
-	"ru" => "TRANS Create New Mail Group",
-	"de" => "neue E-Mail-Gruppe einrichten",
-	"ro" => "TRANS Create New Mail Group",
-	"zh" => "TRANS Create New Mail Group",
-	"pl" => "Tworzenie grup dystrybucyjnych",
-	"se" => "TRANS Create New Mail Group",
-	"es" => "TRANS Create New Mail Group",
-	"pt" => "TRANS Create New Mail Group",
-);
-$txt_mail_alias_new_item_link = array(
-	"fr" => "Nouvelle boite groupée",
-	"en" => "Create Mail Group",
-	"hu" => "TRANS Create Mail Group",
-	"it" => "Crea alias di posta",
-	"nl" => "TRANS Create Mail Group",
-	"ru" => "TRANS Create Mail Group",
-	"de" => "E-Mail-Gruppe einrichten",
-	"ro" => "TRANS Create Mail Group",
-	"zh" => "TRANS Create Mail Group",
-	"pl" => "Tworzenie aliasów",
-	"se" => "TRANS Create Mail Group",
-	"es" => "TRANS Create Mail Group",
-	"pt" => "TRANS Create Mail Group"
 );
 $txt_mail_alias_edit_item_title = array(
 	"fr" => "Editer une boite groupé",
@@ -156,71 +47,6 @@ $txt_mail_alias_list_current_aliases = array(
 "pt" => "TRANS List of your mail groups"
 );
 // End of mailgroup patch
-
-$txt_there_is_a_ssh_login_by_that_name = array(
-	"fr" => "Il existe déjà un compte ssh avec ce nom",
-	"en" => "There is already a ssh login by that name",
-	"hu" => "TRANS There is already a ssh login by that name",
-	"it" => "Esiste già un profilo ssh con questo nome",
-	"nl" => "TRANS There is already a ssh login by that name",
-	"ru" => "TRANS There is already a ssh login by that name",
-	"de" => "Es gibt bereits ein SSH-Login mit diesem Namen",
-	"ro" => "TRANS There is already a ssh login by that name",
-	"zh" => "TRANS There is already a ssh login by that name",
-	"pl" => "Istnieje ju¿ login ssh o takiej nazwie",
-	"se" => "TRANS There is already a ssh login by that name",
-	"es" => "TRANS There is already a ssh login by that name",
-	"pt" => "TRANS There is already a ssh login by that name"
-);	
-
-$txt_there_is_a_ftp_login_by_that_name = array(
-	"fr" => "Il existe déjà un compte ftp avec ce nom",
-	"en" => "There is already a ftp login by that name",
-	"hu" => "TRANS There is already a ftp login by that name",
-	"it" => "Esiste già un profilo ftp con questo nome",
-	"nl" => "TRANS There is already a ftp login by that name",
-	"ru" => "TRANS There is already a ftp login by that name",
-	"de" => "Es gibt bereits ein FTP-Login mit diesem Namen",
-	"ro" => "TRANS There is already a ftp login by that name",
-	"zh" => "TRANS There is already a ftp login by that name",
-	"pl" => "Istnieje ju¿ login ftp o takiej nazwie",
-	"se" => "TRANS There is already a ftp login by that name",
-	"es" => "TRANS There is already a ftp login by that name",
-	"pt" => "TRANS There is already a ftp login by that name"
-);	
-
-$txt_there_is_a_mailbox_by_that_name = array(
-	"fr" => "Il existe déjà une boite avec ce nom",
-	"en" => "There is already a mailbox by that name",
-	"hu" => "TRANS There is already a mailbox by that name",
-	"it" => "Esiste già una casella di posta con questo nome",
-	"nl" => "TRANS There is already a mailbox by that name",
-	"ru" => "TRANS There is already a mailbox by that name",
-	"de" => "Es gibt bereits eine Mailbox mit diesem Namen",
-	"ro" => "TRANS There is already a mailbox by that name",
-	"zh" => "TRANS There is already a mailbox by that name",
-	"pl" => "Istnieje ju¿ login pocztowy o takiej nazwie",
-	"se" => "TRANS There is already a mailbox by that name",
-	"es" => "TRANS There is already a mailbox by that name",
-	"pt" => "TRANS There is already a mailbox by that name"
-);
-
-$txt_name = array(
-	"fr" => "Nom:",
-	"en" => "Name:",
-	"hu" => "TRANS NAME",
-	"it" => "Nome:",
-	"nl" => "TRANS NAME",
-	"ru" => "TRANS NAME",
-	"de" => "Name:",
-	"ro" => "Nume:",
-	"zh" => "TRANS NAME",
-	"pl" => "Nazwa",
-	"se" => "TRANS NAME",
-	"es" => "Nombre:",
-	"pt" => "TRANS NAME"
-);
-
 
 $txt_recurring_payment = array(
 	"fr" => "Paiement récurent",
@@ -612,55 +438,6 @@ $txt_action = array(
 	"es" => "Acción",
 	"pt" => "TRANS Action"
 	);
-
-$txt_import_button = array(
-	"fr" => "Importer",
-	"en" => "Import",
-	"hu" => "TRANS Import",
-	"it" => "Importa",
-	"nl" => "Importeer",
-	"ru" => "TRANS Import",
-	"de" => "Importieren",
-	"ro" => "Import",
-	"zh" => "µ¼Èë",
-	"pl" => "Import",
-	"se" => "TRANS Import",
-	"es" => "Importar",
-	"pt" => "TRANS Import"
-);
-
-$txt_import_a_domain_for_this_user = array(
-	"fr" => "Importer un fichier de domaine pour cet utilisateur :",
-	"en" => "Import a domain file for this user:",
-	"hu" => "TRANS Import a domain file for this user:",
-	"it" => "Importa un dominio per l'utente:",
-	"nl" => "Importeer een domein bestand voor deze gebruiker:",
-	"ru" => "TRANS Import a domain file for this user:",
-	"de" => "Wine Domain-Datei fuer diesen Benutzer importieren:",
-	"ro" => "Importeza un fisier de domeniu pentru acest utilizator:",
-	"zh" => "ÎªÕâ¸öÓÃ»§µ¼ÈëÒ»¸öÓòÎÄ¼ş£º",
-	"pl" => "Zaimportuj domenê z pliku dla tego u¿ytkownika:",
-	"se" => "TRANS Import a domain file for this user:",
-	"es" => "Importar un archivo de dominio para este usuario:",
-	"pt" => "TRANS Import a domain file for this user:"
-);
-
-$txt_export_domain_to_file = array(
-	"fr" => "Exporter ce domaine dans un fichier",
-	"en" => "Export this domain to a file",
-	"hu" => "TRANS Export this domain to a file",
-	"it" => "Esporta il dominio in un file",
-	"nl" => "Exporteer dit domein tot een bestand",
-	"ru" => "TRANS Export this domain to a file",
-	"de" => "Diese Domain in eine Datei exportieren",
-	"ro" => "Exporteaza acest domeniu ”n un fi&#351;ier",
-	"zh" => "½«Õâ¸öÓòµ¼³öµ½Ò»¸öÎÄ¼ş",
-	"pl" => "Wyeksportuj t± domenê do pliku",
-	"se" => "TRANS Export this domain to a file",
-	"es" => "Exportar este dominio a un archivo",
-	"pt" => "TRANS Export this domain to a file"
-);
-
 $txt_iframe_ds=array(
 	"fr" => "Etat des daemons",
 	"en" => "Deamons states",
@@ -736,146 +513,6 @@ $txt_iframe_mqg=array(
 	"es" => "Gr&aacute;fico de la cola de correo ",
 	"pt" => "TRANS Mail Queue graph "
 );
-$txt_mail_catch_no=array(
-	"fr" => "Pas de catch-all ",
-	"en" => "No catch-all",
-	"hu" => "TRANS No catch-all ",
-	"it" => "Nessuna catch-all ",
-	"nl" => "Geen catch-all ",
-	"ru" => "TRANS No catch-all ",
-	"de" => "Kein Catch-All",
-	"ro" => "F&#462;r&#462; catch-all ",
-	"zh" => "½ûÖ¹Ê¹ÓÃÎŞÏŞ±ğÃû¹¦ÄÜ",
-	"pl" => "Nie. Przekazuj wszystkie odbiorcom",
-	"se" => "TRANS No catch-all SVENSKA",
-	"es" => "No catch-all ",
-	"pt" => "TRANS No catch-all "
-);
-
-$txt_mail_catch_all_deliver=array(
-	"fr" => "Le catch-all email est positionner pour délivrer à",
-	"en" => "Catch-all email set to deliver to",
-	"hu" => "TRANS Catch-all email set to deliver to ",
-	"it" => "Il messaggio catch-all è da inviare a ",
-	"nl" => "Catch-all email wordt afgeleverd op ",
-	"ru" => "TRANS Catch-all email set to deliver to ",
-	"de" => "Catch-All-E-Mail gesetzt auf ",
-	"ro" => "Catch-all email setat s&#462; livreze la ",
-	"zh" => "ÎŞÏŞ±ğÃûµÄÓÊ¼şÍ¶µİµ½",
-	"pl" => "Przeka¿ wszystkie wiadomo¶ci do",
-	"se" => "TRANS Catch-all email set to deliver to SVENSKA",
-	"es" => "Cuenta Catch-all configurada para entregar a ",
-	"pt" => "TRANS Catch-all email set to deliver to "
-);
-
-$txt_package_version=array(
-	"fr" => "Version du package",
-	"en" => "Package version",
-	"hu" => "TRANS Package version ",
-	"it" => "Versione pacchetto ",
-	"nl" => "Package versie ",
-	"ru" => "TRANS Package version ",
-	"de" => "Package Version ",
-	"ro" => "Versiunea pachetului ",
-	"zh" => "Èí¼ş°ü°æ±¾",
-	"pl" => "Wersja pakietu",
-	"se" => "TRANS Package version SVENSKA",
-	"es" => "Versi&oacute;n del paquete ",
-	"pt" => "TRANS Package version "
-);
-$txt_package_need_db=array(
-	"fr" => "Besion d'une base de donnée ",
-	"en" => "Need a database",
-	"hu" => "TRANS Need a database ",
-	"it" => "E' necessario un database ",
-	"nl" => "Database nodig",
-	"ru" => "TRANS Need a database ",
-	"de" => "Datenbank benötigt",
-	"ro" => "necisita baza de date ",
-	"zh" => "ĞèÒªÒ»¸öÊı¾İ¿â",
-	"pl" => "Wymagana baza danych",
-	"se" => "TRANS Need a database SVENSKA",
-	"es" => "Necesito una base de datos ",
-	"pt" => "TRANS Need a database "
-);
-$txt_package_un_size=array(
-	"fr" => "Taille décompressée ",
-	"en" => "TRANS Unpack size ",
-	"hu" => "TRANS Unpack size ",
-	"it" => "Dimensione scompattata ",
-	"nl" => "Uitgepakte grootte ",
-	"ru" => "TRANS Unpack size ",
-	"de" => "Entpackte Größe ",
-	"ro" => "Marimea despachetata ",
-	"zh" => "½âÑ¹ËõºóµÄ´óĞ¡",
-	"pl" => "Wielko¶æ po instalacji",
-	"se" => "TRANS Unpack size SVENSKA",
-	"es" => "Tama&ntilde;o descomprimido ",
-	"pt" => "TRANS Unpack size "
-);//[$lang]."Unpack size</td><td>".
-
-$txt_install=array(
-	"fr" => "Installer ",
-	"en" => "Install",
-	"hu" => "TRANS Install ",
-	"it" => "Installa ",
-	"nl" => "Installeer ",
-	"ru" => "TRANS Install ",
-	"de" => "Installiere ",
-	"ro" => "Instaleaza ",
-	"zh" => "°²×°",
-	"pl" => "Instalacja",
-	"se" => "TRANS Install SVENSKA",
-	"es" => "Instalar ",
-	"pt" => "TRANS Install "
-);//Install
-	
-$txt_package_name=array(
-	"fr" => "Nom du package ",
-	"en" => "Package name ",
-	"hu" => "TRANS Package name ",
-	"it" => "Nome pacchetto ",
-	"nl" => "Package naam ",
-	"ru" => "TRANS Package name ",
-	"de" => "Package Name ",
-	"ro" => "numele pachetului ",
-	"zh" => "Èí¼ş°üÃèÊö",
-	"pl" => "Nazwa pakietu",
-	"se" => "TRANS Package name SVENSKA",
-	"es" => "Nombre del paquete ",
-	"pt" => "TRANS Package name "
-);
-
-$txt_description=array(
-	"fr" => "Description ",
-	"en" => "Description",
-	"hu" => "TRANS Description ",
-	"it" => "Descrizione ",
-	"nl" => "Omschrijving ",
-	"ru" => "TRANS Description ",
-	"de" => "Beschreibung ",
-	"ro" => "Descriptie ",
-	"zh" => "ÃèÊö",
-	"pl" => "Opis",
-	"se" => "TRANS Description SVENSKA",
-	"es" => "Descripci&oacute;n ",
-	"pt" => "TRANS Description "
-);
-$txt_choose_package_install =array (
-	"fr" => "Choisissez un package à installer",
-	"en" => "Choose a package to install",
-	"hu" => "TRANS Choose a package to install",
-	"it" => "Scegli un pacchetto da installare",
-	"nl" => "Kies een package om te installeren",
-	"ru" => "TRANS Choose a package to install",
-	"de" => "Wähle ein zu installierendes Paket aus",
-	"ro" => "alege un pachet de instalat",
-	"zh" => "ÇëÑ¡ÔñÒª°²×°µÄÈí¼ş°ü",
-	"pl" => "Wybierz pakiet do instalacji",
-	"se" => "TRANS Choose a package to install",
-	"es" => "Seleccione un paquete a instalar",
-	"pt" => "TRANS Choose a package to install"
-);
 
 $txt_subdom_new=array (
 	"fr" => "Nouveau sous-domain",
@@ -892,24 +529,7 @@ $txt_subdom_new=array (
 	"es" => "Nuevo subdominio",
 	"pt" => "TRANS New subdomain"
 );
-/** end new arrays **/
-$txt_subdom_edit_one= array (
-	"fr" => "Editer l'un de vos sous-domaines",
-	"en" => "Edit one of your subdomains",
-	"hu" => "TRANS Edit one of your subdomains",
-	"it" => "Modifica il sottodominio",
-	"nl" => "Bewerk een van je subdomeinen",
-	"ru" => "TRANS Edit one of your subdomains",
-	"ro" => "Prelucreaza un subdomeniu de-al tau",
-	"de" => "Bearbeiten einer Subdomain",
-	"zh" => "±à¼­ÄúµÄÒ»¸ö×ÓÓò",
-	"pl" => "Edytuj jedn± ze swoich subdomen",
-	"se" => "TRANS Edit one of your subdomains",
-	"es" => "Edite uno de sus subdominios",
-	"pt" => "TRANS Edit one of your subdomains"
-);
 
-	// see line 3602 and translate
 $txt_use=array(
 	"fr" => "Utiliser: ",
 	"en" => "Use :",
@@ -924,69 +544,6 @@ $txt_use=array(
 	"se" => "TRANS Use",
 	"es" => "Utilizar:",
 	"pt" => "TRANS Use"
-);
-$txt_aliasing=array(	
-	"fr" => "Alias",
-	"en" => "aliasing",
-	"hu" => "TRANS aliasing",
-	"it" => "Alias",
-	"nl" => "Aliasing",
-	"ru" => "TRANS aliasing",
-	"de" => "Alias",
-	"ro" => "Alias",
-	"zh" => "±ğÃû",
-	"pl" => "jako alias",
-	"se" => "TRANS aliasing",
-	"es" => "Alias",
-	"pt" => "TRANS aliasing"
-);
-
-$txt_DNS_config_of =array(	
-	"fr" => "Configuration DNS de : ",
-	"en" => "DNS config of:",
-	"hu" => "TRANS DNS_config of",
-	"it" => "Configura DNS di:",
-	"nl" => "DNS config van",
-	"ru" => "TRANS DNS_config of",
-	"de" => "DNS-Konfiguration von:",
-	"ro" => "Configuratie DNS de :",
-	"zh" => "DNSµÄÅäÖÃ£º",
-	"pl" => "Konfiguracja DNS dla",
-	"se" => "TRANS DNS_config of",
-	"es" => "Configuraci&oacute;n DNS de :",
-	"pt" => "TRANS DNS_config of"
-);
-
-$txt_domain_tools =array(
-	"fr" => "Domain Tools",
-        "en" => "Domain Tools",
-        "hu" => "TRANS Domain Tools",
-        "it" => "Strumenti dominio",
-        "nl" => "Domein Tools",
-        "ru" => "TRANS Domain Tools",
-        "de" => "Domain-Werkzeuge",
-        "ro" => "Unelte pentru domenii",
-        "zh" => "Ö÷»ú¹¤¾ß",
-        "pl" => "TRANS Domain Tools",
-        "se" => "TRANS Domain Tools",
-        "es" => "Herramientas del dominio.",
-        "pt" => "TRANS Domain Tools"
-);
-
-$txt_Statistics_of_domain =array(	
-	"fr" => "Statistiques du domaine : ",
-	"en" => "Statistics of domain:",
-	"hu" => "TRANS Statistics of domain",
-	"it" => "Statistiche dominio:",
-	"nl" => "Statistieken van domein",
-	"ru" => "TRANS Statistics of domain",
-	"de" => "Statistik der Domain",
-	"ro" => "Statistica domeniului",
-	"zh" => "Ö÷»úÍ³¼ÆĞÅÏ¢£º",
-	"pl" => "Statystyki dla",
-	"se" => "TRANS Statistics of domain",
-	"es" => "Estad&iacute;sticas del dominio",
-	"pt" => "TRANS Statistics of domain"
 );
 $txt_Whois_editor_of =array(
 	"fr" => "Vos sous-comptes: ",
@@ -1003,37 +560,7 @@ $txt_Whois_editor_of =array(
 	"es" => "Sus sub-cuentas",
 	"pt" => "TRANS "
 );
-	$txt_Package =array(	
-	"fr" => "Package",
-	"en" => "Package",
-	"hu" => "TRANS Package",
-	"it" => "Pacchetto ",
-	"nl" => "Package",
-	"ru" => "TRANS Package",
-	"de" => "Paket",
-	"ro" => "Pachet",
-	"zh" => "Èí¼ş°ü",
-	"pl" => "Pakiety instalacyjne",
-	"se" => "TRANS SVENSKA Package",
-	"es" => "Paquete",
-	"pt" => "TRANS Package"
-);
-	$txt_Internet_Whois_Nick_Handles_management =array(	
-	"fr" => "Configuration des nick handles internet des whois internet",
-	"en" => "Internet Whois Nick Handles management:",
-	"hu" => "TRANS Internet Whois Nick Handles management",
-	"it" => "Gestione nick whois ",
-	"nl" => "Internet Whois Nick Handles management",
-	"ru" => "TRANS Internet Whois Nick Handles management",
-	"de" => "Internet-Whois Handle-Verwaltung",
-	"ro" => "TRANS Internet Whois Nick Handles management",
-	"zh" => "»¥ÁªÍøWhoisĞÅÏ¢¹ÜÀí£º",
-	"pl" => "Zarz±dzanie danymi Whois:",
-	"se" => "TRANS SVENSKA",
-	"es" => "Manejo de Internet Whois Nick Handles:",
-	"pt" => "TRANS "
-);
-	$txt_Add_a_domain_name_to_my_account =array(	
+$txt_Add_a_domain_name_to_my_account =array(	
 	"fr" => "Ajouter un nom de domaine à mon compte",
 	"en" => "Add a domain name to my account:",
 	"hu" => "TRANS Add a domain name to my account",
@@ -1048,69 +575,6 @@ $txt_Whois_editor_of =array(
 	"es" => "Agregar un dominio a mi cuenta",
 	"pt" => "TRANS Add a domain name to my account"
 );
-	$txt_Manage_my_name_servers =array(	
-	"fr" => "Configurer mes serveurs de noms",
-	"en" => "Manage my name servers:",
-	"hu" => "TRANS Manage my name servers",
-	"it" => "Gestisci miei name server",
-	"nl" => "Manage mijn name servers",
-	"ru" => "TRANS Manage my name servers",
-	"de" => "Verwaltung der Nameserver:",
-	"ro" => "TRANS Manage my name servers",
-	"zh" => "¹ÜÀíÎÒµÄÓòÃû·şÎñÆ÷£º",
-	"pl" => "Zarz±dzaj serwerami nazw:",
-	"se" => "TRANS Manage my name servers",
-	"es" => "Configurar mis servidores de nombres",
-	"pt" => "TRANS Manage my name servers"
-);
-	$txt_My_Account_information =array(	
-	"fr" => "Informations de mon compte: ",
-	"en" => "My Account information:",
-	"hu" => "TRANS My Account information:",
-	"it" => "Informazioni sul mio profilo:",
-	"nl" => "Mijn Account informatie:",
-	"ru" => "TRANS My Account information:",
-	"de" => "Konto-Informationen:",
-	"ro" => "Informatia contului meu:",
-	"zh" => "ÎÒµÄÕË»§ĞÅÏ¢£º",
-	"pl" => "Informacje o Twoim koncie:",
-	"se" => "TRANS My Account information:",
-	"es" => "Informaci&oacute;n de mi cuenta:",
-	"pt" => "TRANS My Account information:"
-);
-	$txt_resseller_child_accounts =array(	
-	"fr" => "Sous-comptes revendeur",
-	"en" => "Resseller child accounts",
-	"hu" => "TRANS Resseller child accounts",
-	"it" => "Profili rivenditori",
-	"nl" => "Reseller sub accounts",
-	"ru" => "TRANS Resseller child accounts",
-	"de" => "Wiederverkäufer Unterkonten",
-	"ro" => "Subconturi ###reseller",
-	"zh" => "×ÓÕË»§",
-	"pl" => "Subkonta resellerskie:",
-	"se" => "TRANS SVENSKA",
-	"es" => "Sub-cuentas de revendedor",
-	"pt" => "TRANS Resseller child accounts"
-);
-
-
-$txt_edit_mailing_lists_of_domain = array(
-	"fr" => "Editer les liste de publipostage de mon domaine :",
-	"en" => "Edit mailing lists of domain:",
-	"hu" => "TRANS Edit mailing lists of domain",
-	"it" => "Modifica mailing list del dominio",
-	"nl" => "Bewerk mailing lists van domein",
-	"ru" => "TRANS Edit mailing lists of domain",
-	"de" => "Mailinglisten der Domain bearbeiten:",
-	"ro" => "Prelucreaza listele de mailuri unui domeniu",
-	"zh" => "±à¼­ÓÊ¼şÁĞ±í£º",
-	"pl" => "Edytuj listy mailingowe dla domeny",
-	"se" => "TRANS SVENSKA Edit mailing lists of domain",
-	"es" => "Editar listas de correo",
-	"pt" => "TRANS Edit mailing lists of domain"
-	); 
-	
 $txt_documentation = array(
 	"fr" => "Documentation",
 	"en" => "Documentation:",
@@ -1127,22 +591,6 @@ $txt_documentation = array(
 	"pt" => "TRANS Documentation"
 	); 
 	
-	
-$txt_your_child_accounts = array(
-	"fr" => "Vos sous-comptes: ",
-	"en" => "Your child accounts:",
-	"hu" => "TRANS ",
-	"it" => "Tuoi sotto-profili ",
-	"nl" => "Jouw sub accounts ",
-	"ru" => "TRANS ",
-	"de" => "Unterkonten:",
-	"ro" => "Subconturile tale:",
-	"zh" => "ÄúµÄ×ÓÕË»§£º",
-	"pl" => "Twoje subkonta:",
-	"se" => "TRANS SVENSKA",
-	"es" => "Sus sub-cuentas",
-	"pt" => "TRANS "
-	); 
 $txt_currency = array(
 	"fr" => "Devise",
 	"en" => "Currency",
@@ -1257,21 +705,6 @@ $txt_domain_config = array(
 	"pt" => "TRANS "
 	);
 
-$txt_user_menu_email = array (
-  "fr" => "Mon e-mail",
-  "en" => "My e-mail",
-  "hu" => "TRANS ",
-  "it" => "Mia e-mail ",
-  "nl" => "Mijn e-mail ",
-  "ru" => "TRANS ",
-  "de" => "Meine E-Mail-Adresse",
-  "ro" => "e-mailu meu",
-  "zh" => "ÎÒµÄÓÊ¼ş",
-  "pl" => "Mój e-mail",
-  "se" => "Min e-post",
-  "es" => "Mi correo ",
-  "pt" => "TRANS "
-  );
 
 $txt_user_menu_fetchmail = array (
   "fr" => "Fetchmail",
@@ -1338,22 +771,6 @@ $txt_email_pass_error = array (
   "pt" => "TRANS "
 
   );
-
-$txt_logout = array (
-  "fr" => "Déconnexion",
-  "en" => "Logout",
-  "hu" => "TRANS ",
-  "it" => "Disconnetti ",
-  "nl" => "Logout ",
-  "ru" => "TRANS ",
-  "de" => "Abmelden",
-  "ro" => "Iesire",
-  "zh" => "×¢Ïú",
-  "pl" => "Wyloguj siê",
-  "se" => "TRANS SVENSKA",
-  "es" => "Desconectar",
-  "pt" => "TRANS "
-);
 
 $txt_goto_client_panel = array(
   "fr" => "Allez au panneau client",
@@ -1437,21 +854,6 @@ $txt_product_manager = array(
   "pt" => "TRANS Hosting product manager"
   );
 
-$txt_parking_popup_legend = array(
-  "fr" => "Ce domaine sera l'alias du domaine suivant (parking de domaine) :",
-  "en" => "This domain will be the alias of the following domain (domain parking):",
-  "hu" => "TRANS This domain will be the alias of the following domain (domain parking):",
-  "it" => "Questo dominio sarà l'alias del seguente dominio (parking di dominio):",
-  "nl" => "Dit domein wordt de alias voor het volgende domein (domain parking):",
-  "ru" => "TRANS This domain will be the alias of the following domain (domain parking):",
-  "de" => "Diese Domain als Alias folgender Domain benutzen (Domain Parking):",
-  "ro" => "Acest domeniu va fi alias urmatorului domeniu (domain parking):",
-  "zh" => "Õâ¸öÓòÃûÊÇÏÂÁĞÓòÃûµÄ±ğÃû(ÓòÃûÍ£·Å)£º",
-  "pl" => "Domena ma byæ aliasem do istniejacej domeny (parkowanie domeny):",
-  "se" => "TRANS SVENSKA",
-  "es" => "Este dominio ser&aacute; un alias del siguiente dominio (dominio en parking):",
-  "pt" => "TRANS This domain will be the alias of the following domain (domain parking):");
-
 $txt_mainmenu_title_server_monitor = array(
   "fr" => "Moniteur serveur",
   "en" => "Server monitor",
@@ -1468,20 +870,6 @@ $txt_mainmenu_title_server_monitor = array(
   "pt" => "TRANS "
   );
 
-$txt_no_parking_popup_text = array(
-	"fr" => "Pas de parking",
-	"en" => "No parking",
-	"hu" => "TRANS No parking",
-	"it" => "Nessun parking",
-	"nl" => "Geen parking",
-	"ru" => "TRANS No parking",
-	"de" => "Kein Parking",
-	"ro" => "### No parking",
-	"zh" => "½ûÖ¹ÓòÃûÍ£·Å",
-	"pl" => "Nie parkuj",
-	"se" => "TRANS SVENSKA",
-	"es" => "Sin parking",
-	"pt" => "TRANS No parking");
 
 /* #### CL continue here
 */
@@ -1620,38 +1008,6 @@ $txt_client_info = array(
 	"pt" => "Informação do cliente"
 	);
 
-$txt_list_name = array(
-	"fr" => "Nom de la liste",
-	"en" => "List name",
-	"hu" => "Lista neve",
-	"it" => "Nome lista",
-	"nl" => "Lijst naam",
-	"ru" => "TRANS List name",
-	"de" => "Name der Liste",
-	"zh" => "Ãû³Æ",
-	"pl" => "Nazwa listy",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nombre de la lista",
-	"pt" => "Nome da Lista de distribuição"
-
-	);
-
-$txt_list_owner = array(
-	"fr" => "Propriétaire de la liste",
-	"en" => "List owner",
-	"hu" => "Lista tulajdonosa",
-	"it" => "Proprietario lista",
-	"nl" => "Lijst eigenaar",
-	"ru" => "TRANS List owner",
-	"de" => "Listenbesitzer",
-	"zh" => "¹ÜÀíÔ±",
-	"pl" => "W³a¶ciciel listy",
-	"se" => "TRANS SVENSKA",
-	"es" => "Propietario de la lista",
-	"pt" => "Propriatário da lista"
-
-	);
-
 $txt_list_liste_of_your_ml = array(
 	"fr" => "Liste de vos mailing lists:",
 	"en" => "List of your mailing lists:",
@@ -1681,53 +1037,6 @@ $txt_list_new_list = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Nueva lista de correo:",
 	"pt" => "Nova lista de distribuição:"
-
-	);
-
-$txt_number_of_database = array(
-	"fr" => "Nombre de base de données :",
-	"en" => "Number of databases:",
-	"hu" => "Az adatbázisok száma:",
-	"it" => "Numero di database:",
-	"nl" => "Aantal databases ",
-	"ru" => "TRANS ",
-	"de" => "Anzahl der Datenbanken:",
-	"zh" => "Êı¾İ¿âµÄÊıÄ¿£º",
-	"pl" => "Ilo¶æ baz danych",
-	"se" => "TRANS SVENSKA",
-	"es" => "N&uacute;mero de bases de datos",
-	"pt" => "Número de base de dados"
-	);
-
-$txt_allow_to_add_domains = array(
-	"fr" => "Autoriser l'ajout de domaines :",
-	"en" => "Allow to add domains:",
-	"hu" => "Engedélyezi a domainek hozzáadását:",
-	"it" => "Autorizza ad aggiungere domini:",
-	"nl" => "Geeft toestemming om domeinen toe te voegen :",
-	"ru" => "TRANS ",
-	"de" => "Hinzufügen von Domains erlauben:",
-	"zh" => "ÔÊĞíÌí¼ÓÓòÃû£º",
-	"pl" => "Prawo do dodawania domen ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Permitir a&ntilde;adir dominios",
-	"pt" => "Permitir adicionar dominios"
-
-	);
-
-$txt_can_have_subadmins_reseller = array(
-	"fr" => "Autoriser l'ajout de sous-comptes (revendeur) :",
-	"en" => "Grant sub-account addition rights (reseller):",
-	"hu" => "Engedélyezi az al-hozzáférések hozzáadását (viszonteladó): ",
-	"it" => "Autorizza l'aggiunta di sotto-account (rivenditori):",
-	"nl" => "Geef sub-account toevoegings rechtten (reseller) ",
-	"ru" => "TRANS ",
-	"de" => "Rechte zum Hinzufügen von Unterkonten vergeben (Wiederverkäufer)",
-	"zh" => "ÔÊĞíÌí¼Ó×ÓÕÊ»§(×ªÊÛ)£º",
-	"pl" => "Dodaj Resselera",
-	"se" => "TRANS SVENSKA",
-	"es" => "Autorizar el agregado de sub-cuenta (revendedor)",
-	"pt" => "Privilégios para gerir contas secundárias (revendedor) :"
 	);
 
 $txt_can_have_package_installer = array(
@@ -1744,85 +1053,6 @@ $txt_can_have_package_installer = array(
 	"es" => "TRANS Allow the use of the package installer:",
 	"pt" => "TRANS Allow the use of the package installer:"
 	);
-
-$txt_can_have_ftp_login_for_vhosts = array(
-	"fr" => "Autoriser l'ajout de comptes vhosts FTP :",
-	"en" => "Allow addition of FTP logins:",
-	"hu" => "TRANS Allow addition of FTP vhosts logins:",
-	"it" => "Permetti l'aggiunta di logins FTP vhosts:",
-	"nl" => "Geef toestemming om FTP logins toe te voegen:",
-	"ru" => "TRANS Allow addition of FTP vhosts logins:",
-	"de" => "Hinzufügen von FTP-Logins erlauben:",
-	"zh" => "TRANS Allow addition of FTP vhosts logins:",
-	"pl" => "Dostêp dodatkowy do FTP przez logowanie do vhostów:",
-	"se" => "TRANS Allow addition of FTP vhosts logins:",
-	"es" => "Autorizar la adici&oacute;n de accesos vhosts FTP:",
-	"pt" => "TRANS Allow addition of FTP vhosts logins:"
-	);
-
-$txt_can_have_ssh_login_for_vhosts = array(
-	"fr" => "Autoriser l'ajout de comptes vhosts SSH :",
-	"en" => "Allow addition of SSH logins:",
-	"hu" => "TRANS Allow addition of SSH vhosts logins:",
-	"it" => "Permetti l'aggiunta di logins SSH vhosts:",
-	"nl" => "Geef toestemming om SSH logins toe te voegen:",
-	"ru" => "TRANS Allow addition of SSH vhosts logins:",
-	"de" => "Hinzufügen von SSH-Logins erlauben:",
-	"zh" => "ÔÊĞíÌí¼ÓSSHÕË»§£º",
-	"pl" => "Dostêp dodatkowy do SSH przez logowanie do vhostów:",
-	"se" => "TRANS SVENSKA",
-	"es" => "Autorizar la adici&oacute;n de accesos vhosts SSH:",
-	"pt" => "TRANS Allow addition of SSH vhosts logins:"
-	);
-
-$txt_heb_prod_id = array(
-	"fr" => "Numéro de produit :",
-	"en" => "Product ID:",
-	"hu" => "Termék azonosító:",
-	"it" => "ID prodotto:",
-	"nl" => "Product ID:",
-	"ru" => "TRANS Product ID:",
-	"de" => "Produktnr.:",
-	"zh" => "²úÆ·ID£º",
-	"pl" => "ID produktu",
-	"se" => "TRANS SVENSKA",
-	"es" => "ID de producto",
-	"pt" => "ID do produto"
-
- 	);
-
-$txt_change_your_password = array(
-	"fr" => "Changer votre mot de passe :",
-	"en" => "Change your password:",
-	"hu" => "Jelszóváltás:",
-	"it" => "Cambia la tua password: ",
-	"nl" => "Verander jouw password: ",
-	"ru" => "TRANS ",
-	"de" => "Ändern Sie Ihr Passwort:",
-	"zh" => "¸ü¸ÄÃÜÂë£º",
-	"pl" => "Zmieñ has³o",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cambiar contrase&ntilde;a",
-	"pt" => "Modificar palavra chave :"
-
-	);
-
-$txt_type_new_password = array(
-	"fr" => "Nouveau mot de passe :",
-	"en" => "New password:",
-	"hu" => "Új jelszó:",
-	"it" => "Nuova password:",
-	"nl" => "Nieuw password: ",
-	"ru" => "TRANS ",
-	"de" => "Neues Passwort:",
-	"zh" => "ĞÂÃÜÂë£º",
-	"pl" => "Nowe has³o",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nueva contrase&ntilde;a",
-	"pt" => "Nova palavra chave"
-
-	);
-
 $txt_retype_new_password = array(
 	"fr" => "Retapper le nouveau mot de passe :",
 	"en" => "Retype new password:",
@@ -1899,53 +1129,6 @@ $txt_your_users = array(
 	"es" => "Sus usuarios",
 	"pt" => "Seus utilizadores"
 );
-
-$txt_user = array(
-	"fr" => "Utilisateur",
-	"en" => "User",
-	"hu" => "Felhasználó",
-	"it" => "Utente",
-	"nl" => "Gebruiker ",
-	"ru" => "TRANS ",
-	"de" => "Benutzer",
-	"zh" => "ÓÃ»§",
-	"pl" => "U¿ytkownik ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Usuario",
-	"pt" => "Utilizador"
-
-);
-
-$txt_total_database_number = array(
-	"fr" => "Nombre total de base de donnée :",
-	"en" => "Total database number:",
-	"hu" => "Adatbázisok száma:",
-	"it" => "Numero totale database:",
-	"nl" => "Totaal aantal databases: ",
-	"ru" => "TRANS ",
-	"de" => "Gesamtanzahl Datenbanken:",
-	"zh" => "Êı¾İ¿âµÄ×ÜÊı",
-	"pl" => "Suma baz danych ",
-	"se" => "TRANS SVENSKA",
-	"es" => "N&uacute;mero total de bases de datos",
-	"pt" => "Número total de base de dados"
-);
-
-$txt_please_create_mysql_user_to_create_database = array(
-	"fr" => "Veuillez créer un utilisateur MySQL pour pouvoir fabriquer des bases de données.",
-	"en" => "Please create a MySQL user in order to be able to create a database.",
-	"hu" => "Hozzon létre egy MySQL felhasználót, különben nem tud adatbázist létrehozni.",
-	"it" => "Per favore crea prima un utente mysql se vuoi poter creare database",
-	"nl" => "Creëer eerst een MySQL gebruiker om een database aan te maken",
-	"ru" => "TRANS ",
-	"de" => "Bitte erstellen Sie einen MySQL-Benutzer, um eine Datenbank erstellen zu können.",
-	"zh" => "Èç¹ûÒª´´½¨Ò»¸öÊı¾İ¿â,ÇëÏÈ´´½¨Ò»¸öMySQLÓÃ»§¡£",
-	"pl" => "Utwórz u¿ytkownika MySQL w kolejnosci w jakiej bêd± oni tworzyæ bazy danych ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Debe crear un usuario MYSQL para luego poder crear una base de datos",
-	"pt" => "Deverá criar um utilizador MySQL para poder criar base de dados."
-);
-
 
 $txt_wrong_user_or_password_or_timeout_expire = array(
 	"fr" => "Mauvais utilisateur ou mot de passe, ou temps d'expiration atteint !",
@@ -2033,275 +1216,6 @@ $txt_client_panel_title = array(
 	"pt" => "Área de clientes :"
 	);
 // The client dropdown menu entries
-$txt_cmenu_myaccount = array(
-	"fr" => "Mon compte",
-	"en" => "My account",
-	"hu" => "Hozzáférésem",
-	"it" => "Il Mio Account",
-	"nl" => "Mijn account",
-	"ru" => "TRANS My account",
-	"de" => "Mein Konto",
-	"zh" => "ÎÒµÄÕÊ»§",
-	"pl" => "Moje konto",
-	"se" => "TRANS SVENSKA",
-	"es" => "Mi cuenta",
-	"pt" => "A minha conta"
-	);
-$txt_cmenu_past_payments = array(
-	"fr" => "Paiement effectués",
-	"en" => "Past payments",
-	"hu" => "TRANS Past payments",
-	"it" => "TRANS Past payments",
-	"nl" => "Vorige betalingen",
-	"ru" => "TRANS Past payments",
-	"de" => "erfolgte Zahlungen",
-	"zh" => "ÒÑÖ§¸¶µÄ¿îÏî",
-	"pl" => "TRANS Past payments",
-	"se" => "TRANS Past payments",
-	"es" => "Pagos realizados",
-	"pt" => "TRANS Past payments"
-	);
-$txt_cmenu_myaccount_stats = array(
-	"fr" => "Statistiques",
-	"en" => "Statistics",
-	"hu" => "Statisztika",
-	"it" => "Statistiche",
-	"nl" => "Statistieken",
-	"ru" => "TRANS Statistics",
-	"de" => "Statistiken",
-	"zh" => "Í³¼Æ",
-	"pl" => "Statystyki",
-	"se" => "TRANS SVENSKA",
-	"es" => "Estad&iacute;sticas",
-	"pt" => "Estatísticas"
-	);
-$txt_cmenu_add_domain = array(
-	"fr" => "Ajouter un domaine",
-	"en" => "Add a domain",
-	"hu" => "Hozzáad egy domaint",
-	"it" => "Aggiungi Un Dominio",
-	"nl" => "Voeg domein toe",
-	"ru" => "TRANS Add a domain",
-	"de" => "Domain hinzufügen",
-	"zh" => "Ìí¼ÓÓòÃû",
-	"pl" => "Dodaj domenê",
-	"se" => "TRANS SVENSKA",
-	"es" => "A&ntilde;adir un dominio",
-	"pt" => "Adicionar um dominio"
-	);
-$txt_cmenu_nickhandles = array(
-	"fr" => "Responsables DNS",
-	"en" => "DNS Nick handles",
-	"hu" => "DNS álnevek",
-	"it" => "DNS Nick handles",
-	"nl" => "DNS Nick handles",
-	"ru" => "TRANS DNS Nick handles",
-	"de" => "DNS Handle",
-	"zh" => "DNS¡¡¸ºÔğÈË",
-	"pl" => "Odpowiedzi DNS",
-	"se" => "TRANS SVENSKA",
-	"es" => "Responsables DNS",
-	"pt" => "Gerir Entidades / contactos DNS"
-	);
-
-$txt_cmenu_nameservers = array(
-	"fr" => "Serveurs de noms",
-	"en" => "Name servers",
-	"hu" => "Névszerverek",
-	"it" => "Name servers",
-	"nl" => "Domain Name servers",
-	"ru" => "TRANS Name servers",
-	"de" => "Nameserver",
-	"zh" => "ÓòÃû·şÎñÆ÷",
-	"pl" => "Serwery nazw",
-	"se" => "TRANS SVENSKA",
-	"es" => "Servidores de nombres",
-	"pt" => "Servidores de DNS"
-
-	);
-
-$txt_cmenu_whois = array(
-	"fr" => "Whois",
-	"en" => "Whois",
-	"hu" => "Whois",
-	"it" => "Whois",
-	"nl" => "Whois",
-	"ru" => "Whois",
-	"de" => "Whois",
-	"zh" => "Whois",
-	"pl" => "Kim jeste¶",
-	"se" => "Vem ar du",
-	"es" => "Whois",
-	"pt" => "Whois"
-	);
-$txt_cmenu_dns = array(
-	"fr" => "DNS et MX",
-	"en" => "DNS and MX",
-	"hu" => "DNS és MX",
-	"it" => "DNS e MX",
-	"nl" => "DNS en MX",
-	"ru" => "TRANS DNS and MX",
-	"de" => "DNS und MX",
-	"zh" => "DNS ºÍ MX",
-	"pl" => "DNS i MX",
-	"se" => "DNS och MX",
-	"es" => "DNS y MX",
-	"pt" => "DNS e MX"
-	);
-$txt_cmenu_subdomains = array(
-	"fr" => "Sous-domaines",
-	"en" => "Sub-domains",
-	"hu" => "Aldomainek",
-	"it" => "Sotto-Domini",
-	"nl" => "Subdomeinen",
-	"ru" => "TRANS Sub-domains",
-	"de" => "Subdomains",
-	"zh" => "×ÓÓòÃû",
-	"pl" => "Subdomeny",
-	"se" => "TRANS SVENSKA",
-	"es" => "Subdominios",
-	"pt" => "Subdominios"
-	);
-$txt_cmenu_ftpaccounts = array(
-	"fr" => "Comptes FTP",
-	"en" => "FTP accounts",
-	"hu" => "FTP hozzáférések",
-	"it" => "Account FTP",
-	"nl" => "FTP accounts",
-	"ru" => "TRANS FTP accounts",
-	"de" => "FTP-Konto",
-	"zh" => "FTPÕÊ»§",
-	"pl" => "Konta FTP",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cuentas FTP",
-	"pt" => "Conta de FTP"
-	);
-$txt_cmenu_sshaccounts = array(
-	"fr" => "Comptes SSH",
-	"en" => "SSH accounts",
-	"hu" => "SSH hozzáférések",
-	"it" => "Account SSH",
-	"nl" => "SSH accounts",
-	"ru" => "TRANS SSH accounts",
-	"de" => "SSH-Konto",
-	"zh" => "SSHÕÊ»§",
-	"pl" => "Konta SSH",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cuentas SSH",
-	"pt" => "Conta de SSH"
-	);
-$txt_cmenu_packageinstaller = array(
-	"fr" => "Installateur de paquets",
-	"en" => "Package installer",
-	"hu" => "Csomag telepítõ",
-	"it" => "Installazione Pacchetti",
-	"nl" => "Package installer",
-	"ru" => "TRANS Package installer",
-	"de" => "Paket Installer",
-	"zh" => "°²×°³ÌĞò",
-	"pl" => "Instalator pakietów",
-	"se" => "TRANS SVENSKA",
-	"es" => "Instalador de paquetes",
-	"pt" => "Instalador de pacotes"
-	);
-$txt_cmenu_mailboxs = array(
-	"fr" => "Boites emails",
-	"en" => "Mailboxes",
-	"hu" => "Levelesládák",
-	"it" => "Mailboxes",
-	"nl" => "Mailboxen",
-	"ru" => "TRANS Mailboxes",
-	"de" => "Mailboxen",
-	"zh" => "ÓÊÏä",
-	"pl" => "Skrzynki pocztowe",
-	"se" => "TRANS SVENSKA",
-	"es" => "Buzones",
-	"pt" => "Caixas de correio"
-	);
-$txt_cmenu_mailinglists = array(
-	"fr" => "Liste de publication",
-	"en" => "Mailinglists",
-	"hu" => "Levelezõlisták",
-	"it" => "Mailinglists",
-	"nl" => "e-maillijsten",
-	"ru" => "TRANS Mailinglists",
-	"de" => "Mailing-Liste",
-	"zh" => "ÓÊ¼şÁĞ±í",
-	"pl" => "Listy mailingowe",
-	"se" => "TRANS SVENSKA",
-	"es" => "Listas de correo",
-	"pt" => "Listas de distribuição"
-	);
-$txt_cmenu_database = array(
-	"fr" => "Base de données",
-	"en" => "Databases",
-	"hu" => "Adatbázisok",
-	"it" => "Database",
-	"nl" => "Databases",
-	"ru" => "TRANS Databases",
-	"de" => "Datenbanken",
-	"zh" => "Êı¾İ¿â",
-	"pl" => "Bazy danych",
-	"se" => "TRANS SVENSKA",
-	"es" => "Bases de datos",
-	"pt" => "Base de dados"
-	);
-$txt_cmenu_reseller = array(
-	"fr" => "Sous comptes (revendeur)",
-	"en" => "Sub-accounts (reseller)",
-	"hu" => "Alhozzáférések (viszonteladó)",
-	"it" => "Sotto-account (rivenditori)",
-	"nl" => "sub-accounts (wederverkoper)",
-	"ru" => "TRANS Sub-accounts (reseller)",
-	"de" => "Unterkonten (Wiederverkäufer)",
-	"zh" => "×ÓÕË»§(×ªÊÛ)",
-	"pl" => "Subkonta (reseller)",
-	"se" => "TRANS SVENSKA",
-	"es" => "Sub-cuentas (reseller)",
-	"pt" => "Contas secundárias (Revendedor)"
-	);
-$txt_cmenu_password = array(
-	"fr" => "Mot de passe",
-	"en" => "Password",
-	"hu" => "Jelszó",
-	"it" => "Password",
-	"nl" => "wachtwoord",
-	"ru" => "TRANS Password",
-	"de" => "Passwort",
-	"zh" => "ÃÜÂë",
-	"pl" => "Has³o",
-	"se" => "TRANS SVENSKA",
-	"es" => "Contrase&ntilde;a",
-	"pt" => "Palavra chave"
-	);
-$txt_cmenu_support_tickets = array(
-	"fr" => "Tickets de support",
-	"en" => "Support tickets",
-	"hu" => "TRANS Support tickets",
-	"it" => "TRANS Support tickets",
-	"nl" => "Support tickets",
-	"ru" => "TRANS Support tickets",
-	"de" => "Support Tickets",
-	"zh" => "Support tickets",
-	"pl" => "TRANS Support tickets",
-	"se" => "TRANS Support tickets",
-	"es" => "TRANS Support tickets",
-	"pt" => "TRANS Support tickets"
-	);
-$txt_cmenu_help = array(
-	"fr" => "Aide",
-	"en" => "Help",
-	"hu" => "Súgó",
-	"it" => "Aiuto",
-	"nl" => "Help",
-	"ru" => "TRANS Help",
-	"de" => "Hilfe",
-	"zh" => "°ïÖú",
-	"pl" => "Pomoc",
-	"se" => "TRANS SVENSKA",
-	"es" => "Ayuda",
-	"pt" => "Ajuda"
-	);
 $txt_select_lang_title = array(
 	"fr" => "Langue",
 	"en" => "Language",
@@ -2317,20 +1231,6 @@ $txt_select_lang_title = array(
 	"pt" => "Linguagem"
 	);
 
-$txt_mailbox_redirection_edition = array(
-	"fr" => "Edition des redirections de votre boite :",
-	"en" => "Edit your mailbox redirections:",
-	"hu" => "E-mail átirányítások:",
-	"it" => "Edita i reindirizzamenti della tua mailbox:",
-	"nl" => "Betwerk mailbox redirections:",
-	"ru" => "TRANS Edit your mailbox redirections:",
-	"de" => "Weiterleitung zu Ihrer Mailbox einrichten:",
-	"zh" => "±à¼­ÄúµÄÓÊ¼ş×ª·¢£º",
-	"pl" => "Edytuj przekierowanie swojej poczty :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Edite las redirecciones de su e-mail:",
-	"pt" => "Editar redireccionamentos de e-mail :"
-  );
 $txt_repeate_password = array(
 	"fr" => "Répéter votre mot de passe :",
 	"en" => "Repeat password:",
@@ -2344,21 +1244,6 @@ $txt_repeate_password = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Repetir la contrase&ntilde;a:",
 	"pt" => "Confirmar a palavra chave"
-  );
-$txt_change_your_password_title = array(
-	"fr" => "Changer votre mot de passe :",
-	"en" => "Change your password:",
-	"hu" => "Változtassa meg a jelszavát:",
-	"it" => "Cambia la tua password:",
-	"nl" => "Verander jouw password:",
-	"ru" => "TRANS Change your password:",
-	"de" => "Passwort ändern:",
-	"zh" => "ĞŞ¸ÄÄúµÄÃÜÂë£º",
-	"de" => "Passwort ändern:",
-	"pl" => "Zmieñ has³o :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cambiar contrase&ntilde;a",
-	"pt" => "Alterar palavra chave"
   );
 
 $txt_add_a_new_user = array(
@@ -2851,20 +1736,6 @@ $txt_subdom_limit_reach = array(
 	"es" => "N&uacute;mero m&aacute;ximo de subdominios alcanzado. No es posible a&ntilde;adir un nuevo subdominio.",
 	"pt" => "Não é possivel adiconar novos subdominios, máximo permitido alcançado"
 	);
-$txt_number_of_active_subdomains = array(
-	"fr" => "Nombre de sous-domaines actifs :",
-	"en" => "Number of active subdomains:",
-	"hu" => "Az aktív aldomain-ek száma:",
-	"it" => "Número sottodomini attivi:",
-	"nl" => "Aantal active subdomeinen:",
-	"ru" => "Number of active subdomaines:",
-	"de" => "Anzahl aktiver Subdomains:",
-	"zh" => "ÏÖÓĞ×ÓÓòÃûÊıÁ¿£º",
-	"pl" => "Ilo¶æ aktywnych subdomen:",
-	"se" => "TRANS SVENSKA",
-	"es" => "N&uacute;mero de subdominios activos:",
-	"pt" => "Número de subdominios activos :"
-	);
 $txt_maxnumber_of_ftp_account_reached = array(
 	"fr" => "Nombre maximum de comptes ftp atteint. Impossible d'ajouter un nouveau compte.",
 	"en" => "Maximum number of ftp account reached. Cannot add a new account.",
@@ -2918,20 +1789,6 @@ $txt_number_of_active_ssh = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "N&uacute;mero de cuentas SSH activas:",
 	"pt" => "Número de contas SSH activas :"
-	);
-$txt_number_of_active_mailbox = array(
-	"fr" => "Nombre de boites actives :",
-	"en" => "Number of active mailboxes:",
-	"hu" => "Az aktív levelesládák száma:",
-	"it" => "Número mailboxes attive:",
-	"nl" => "Aantal actieve e-mail accounts :",
-	"ru" => "Number of active mailboxs:",
-	"de" => "Anzahl aktiver E-Mail-Konten:",
-	"zh" => "ÏÖÓĞÓÊÏäÊıÁ¿£º",
-	"pl" => "Ilo¶æ aktywnych kont pocztowych:",
-	"se" => "TRANS SVENSKA",
-	"es" => "N&uacute;mero de cuentas de correo activas:",
-	"pt" => "Número de contas de correio activas :"
 	);
 $txt_maximum_mailbox_reach = array(
 	"fr" => "Nombre maximum de boites email atteint. Impossible d'ajouter un nouveau compte.",
@@ -3046,36 +1903,6 @@ $txt_admlist_new_admin = array(
 	"es" => "Nuevo administrador virtual",
 	"pt" => "Novo administrador"
 	);
-$txt_path = array(
-	"fr" => "Chemin :",
-	"en" => "Path:",
-	"hu" => "Elérési út:",
-	"it" => "Path:",
-	"nl" => "Pad :",
-	"ru" => "ğÕÔØ:",
-	"de" => "Pfad:",
-	"zh" => "Â·¾¶£º",
-	"pl" => "Katalog :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Ruta:",
-	"pt" => "Caminho"
-	);
-
-$txt_use_text_menu = array(
-	"fr" => "Utiliser du texte pour le menu :",
-	"en" => "Use text menu:",
-	"hu" => "A szöveges menüt használja:",
-	"it" => "Usa menu a testo:",
-	"nl" => "Gebruik tekst menu:",
-	"ru" => "TRANS Use text menu:",
-	"de" => "Textmenü verwenden:",
-	"zh" => "Ê¹ÓÃÎÄ±¾²Ëµ¥",
-	"pl" => "Menu tekstowe",
-	"se" => "Text menu",
-	"es" => "Usar men&uacute; de texto:",
-	"pt" => "Utilizar menu de texto"
-	);
-
 $txt_use_images_menu = array(
 	"fr" => "Menu en images",
 	"en" => "Use image menu",
@@ -3106,20 +1933,6 @@ $txt_password = array(
 	"es" => "Contrase&ntilde;a:",
 	"pt" => "Palavra chave"
 	);
-$txt_id_client = array(
-	"fr" => "Id client :",
-	"en" => "Client ID:",
-	"hu" => "Ügyfél azon.:",
-	"it" => "ID cliente:",
-	"nl" => "Klant id :",
-	"ru" => "ID ËÌÉÅÎÔ?",
-	"de" => "Kundennr.",
-	"zh" => "¿Í»§ID£º",
-	"pl" => "ID Klienta :",
-	"se" => "Kund ID",
-	"es" => "ID de cliente",
-	"pt" => "ID de Cliente" 
-	);
 $txt_client = array(
 	"fr" => "Client",
 	"en" => "Client",
@@ -3133,48 +1946,6 @@ $txt_client = array(
 	"se" => "Kund",
 	"es" => "Cliente",
 	"pt" => "Cliente"
-	);
-$txt_del_user = array(
-	"fr" => "Effacer l'utilisateur",
-	"en" => "Delete the user",
-	"hu" => "Felhasználó törlése",
-	"it" => "Cancella utente",
-	"nl" => "Wis de gebruiker",
-	"ru" => "õÄÁÌÉÔØ ĞÏÌØÚÏ×ÁÔÅÌÑ",
-	"de" => "Benutzer löschen",
-	"zh" => "É¾³ıÓÃ»§",
-	"pl" => "Usuñ U¿ytkownika",
-	"se" => "TRANS SVENSKA",
-	"es" => "Borrar usuario",
-	"pt" => "Eliminar cliente"
-	);
-$txt_del_user_confirm = array(
-	"fr" => "Etes-vous sûr de vouloir effacer cet utilisateur ? Ceci effacera tous ses noms de domaines, ses fichiers et ses bases de données !!!",
-	"en" => "Are your sure you want to delete this user? This will erase all his hosted domain names, files, and databases !!!",
-	"hu" => "Biztos benne hogy törölni akarja ezt a felhasználót ? Ez a mûvelet törli a felhasználó összes domain nevét, fájljait és adatbázisait!!!",
-	"it" => "Sei sicuro di voler cancellare questo utente? In questo modo cancellerai tutti i suoi domini, files e database !!!",
-	"nl" => "Weet je zeker dat je deze gebruiker wilt wissen? Als je hier op JA klikt, wis je DEFINITIEF alle domeinnamen, bestanden en databases gekoppeld aan deze gebruiker !!!",
-	"ru" => "Are your sure you want to delete this user ? This will erase all his hosted domain names, files, and databases !!!",
-	"de" => "Sind Sie sicher, dass Sie diesen Benutzer löschen wollen? Alle Domains, Dateien und Datenbanken werden gelöscht!",
-	"zh" => "ÄãÈ·¶¨ÒªÉ¾³ıÕâ¸öÓÃ»§Âğ£¿ÕâÏî²Ù×÷½«É¾³ı¸ÃÓÃ»§ËùÓĞµÄÓòÃû£¬ÎÄ¼ş£¬Êı¾İ¿âµÈµÈ£¡£¡£¡",
-	"pl" => "Czy napewno usun±æ U¿ytkownika ? Zostan± usuniête wszystkie jego domeny, konta i bazy danych !!!",
-	"se" => "TRANS SVENSKA",
-	"es" => "¿Est&aacute; seguro de querer eliminar este usuario?. Esto borrar&aacute; todos sus dominios, archivos y bases de datos !!!",
-	"pt" => "Tem a certeza que quer APAGAR este utilizador ? Serão eliminados todos os seus dominios, ficheiros e base de dados !!!"
-	);
-$txt_del_user_domain = array(
-	"fr" => "Effacer un domaine de l'utilisateur :",
-	"en" => "Delete a user domain:",
-	"hu" => "Egy felhasználó domain-jének törlése:",
-	"it" => "Cancella un dominio utente:",
-	"nl" => "Wis een gebruikersdomein :",
-	"ru" => "õÄÁÌÉÔØ ÄÏÍÅÎ ĞÏÌØÚÏ×ÁÔÅÌÑ:",
-	"de" => "Löschen einer Benutzerdomain",
-	"zh" => "É¾³ıÒ»¸öÓÃ»§ÓòÃû£º",
-	"pl" => "Usuniêcie domeny U¿ytkownika:",
-	"se" => "TRANS SVENSKA",
-	"es" => "Borrar un dominio de usuario",
-	"pt" => "Eliminar um utilizador de dominio :"
 	);
 $txt_del_user_domain_confirm = array(
 	"fr" => "Etes vous sure de vouloir effacer ce nom de domaine ? Ceci effacera tous les fichiers hébergés pour ce domaine !!!",
@@ -3190,63 +1961,6 @@ $txt_del_user_domain_confirm = array(
 	"es" => "¿Est&aacute; seguro de eliminar este nombre de dominio?. Esto borrar&aacute; todos los ficheros de este dominio !!!",
 	"pt" => "Tem a certeza que quer APAGAR este dominio ? Serão eliminados toso os ficheiros alojados neste dominio !!!"
 	);
-$txt_new_domain_for_user = array(
-	"fr" => "Ajouter un domaine pour l'utilisateur :",
-	"en" => "Add a domain for this user:",
-	"hu" => "Hozzáad egy domain-t ehhez a felhasználóhoz:",
-	"it" => "Aggiungi un dominio per questo utente:",
-	"nl" => "Voeg een gebruiker toe aan dit domein:",
-	"ru" => "äÏÂÁ×ÉÔØ ÄÏÍÅÎ ÄÌÑ ÜÔÏÇÏ ĞÏÌØÚÏ×ÁÔÅÌÑ:",
-	"de" => "Domain für diesen Benutzer hinzufügen:",
-	"zh" => "ÎªÕâ¸öÓÃ»§Ìí¼ÓÒ»¸öÓòÃû£º",
-	"pl" => "Dodanie nowej domeny U¿ytkownika :",
-	"se" => "TRANS SVENSKA",
-	"es" => "A&ntilde;adir un dominio para este usuario:",
-	"pt" => "Adicionar um dominio para este utilizador :"
-	);
-
-$txt_domain_tbl_config_quotaMB = array(
-	"fr" => "Quota disque (Mo) :",
-	"en" => "Disk quota (MB):",
-	"hu" => "Tárhely kvóta (MB):",
-	"it" => "Quota disco (MB):",
-	"nl" => "Schijf quota (MB):",
-	"ru" => "äÉÓËÏ×ÁÑ Ë×ÏÔ (MB):",
-	"de" => "Disk Quota (MB):",
-	"zh" => "´ÅÅÌÅä¶î(MB)£º",
-	"pl" => "Wielko¶æ dysku (MB) :",
-	"se" => "TRANS SVENSKA (MB)",
-	"es" => "Cuota de disco (MB):",
-	"pt" => "Quota de disco (MB) :"
-);
-$txt_domain_tbl_config_quota = array(
-	"fr" => "Quota disque",
-	"en" => "Disk quota",
-	"hu" => "Tárhely kvóta",
-	"it" => "Quota disco",
-	"nl" => "Schijf quota",
-	"ru" => "äÉÓËÏ×ÁÑ Ë×ÏÔ",
-	"de" => "Disk Quota",
-	"zh" => "´ÅÅÌÅä¶î",
-	"pl" => "Wielko¶æ dysku",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cuota de disco",
-	"pt" => "Quota de disco"
-);
-$txt_domain_tbl_config_max_ftp = array(
-	"fr" => "Ftp max",
-	"en" => "Max FTP",
-	"hu" => "Max ftp",
-	"it" => "Max ftp",
-	"nl" => "Max ftp",
-	"ru" => "æôğ ÍÁËÓ",
-	"de" => "max. FTP",
-	"zh" => "FTPÕË»§ÊıÁ¿ÉÏÏŞ",
-	"pl" => "Ftp max",
-	"se" => "TRANS SVENSKA",
-	"es" => "Max ftp",
-	"pt" => "Max. FTP"
-	);
 $txt_domain_tbl_config_max_ssh = array(
 	"fr" => "SSH max",
 	"en" => "Max SSH",
@@ -3260,117 +1974,6 @@ $txt_domain_tbl_config_max_ssh = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Max SSH",
 	"pt" => "Max. FTP"
-	);
-$txt_domain_tbl_config_max_email = array(
-	"fr" => "Email max",
-	"en" => "Email max",
-	"hu" => "Max email",
-	"it" => "Email max",
-	"nl" => "E-mail max",
-	"ru" => "ğÏŞÔÁ ÍÁËÓ",
-	"de" => "max. E-Mail",
-	"zh" => "ÓÊÏäÊıÁ¿ÉÏÏŞ",
-	"pl" => "E-mail max",
-	"se" => "TRANS SVENSKA",
-	"es" => "Max Emails",
-	"pt" => "Max. E-mail"
-	);
-$txt_domain_tbl_config_max_lists = array(
-	"fr" => "Listes max",
-	"en" => "Lists max",
-	"hu" => "TRANS Max lists",
-	"it" => "Lists max",
-	"nl" => "Lijsten max",
-	"ru" => "TRANS lists ÍÁËÓ",
-	"de" => "max. Listen",
-	"zh" => "ÓÊ¼şÁĞ±íÉÏÏŞ",
-	"pl" => "Maksymalnie list",
-	"se" => "TRANS SVENSKA",
-	"es" => "Max listas de correo",
-	"pt" => "TRANS Max. E-mail"
-	);
-$txt_domain_tbl_config_max_subdomain = array(
-	"fr" => "Subdomain max",
-	"en" => "Subdomain max",
-	"hu" => "Aldomain max",
-	"it" => "Sottodomini max",
-	"nl" => "Subdomeinen max",
-	"ru" => "óÕÂÄÏÍÅÎÙ ÍÁËÓ",
-	"de" => "max. Subdomains",
-	"zh" => "×ÓÓòÃûÊıÁ¿ÉÏÏŞ",
-	"pl" => "Subdomeny max",
-	"se" => "TRANS SVENSKA",
-	"es" => "Max Subdominios",
-	"pt" => "Max. Subdominios");
-$txt_domain_tbl_config_ip = array(
-	"fr" => "Adresse IP",
-	"en" => "IP address",
-	"hu" => "IP cím",
-	"it" => "Indirizzo IP",
-	"nl" => "IP adres",
-	"ru" => "IP ÁÄÒÅÓÁ",
-	"de" => "IP-Adresse",
-	"zh" => "IPµØÖ·",
-	"pl" => "Adres IP",
-	"se" => "TRANS SVENSKA",
-	"es" => "Direcci&oacute;n IP",
-	"pt" => "Endereço IP"
-	);
-$txt_domain_tbl_config_backup_ip = array(
-	"fr" => "Backup Vhost Adresse IP",
-	"en" => "Backup Vhost IP address",
-	"hu" => "Backup Vhost IP cím",
-	"it" => "Backup Vhost Indirizzo IP",
-	"nl" => "Backup Vhost IP adres",
-	"ru" => "Backup Vhost IP ÁÄÒÅÓÁ",
-	"de" => "Backup Vhost IP-Adresse",
-	"zh" => "±¸ÓÃĞéÄâÖ÷»úIPµØÖ·",
-	"pl" => "Backup Vhost Adres IP",
-	"se" => "TRANS SVENSKA",
-	"es" => "Direcci&oacute;n IP del backup de vhost ",
-	"pt" => "Backup Vhost Endereço IP"
-	);
-$txt_your_domain = array(
-	"fr" => "Votre domaine :",
-	"en" => "Your domain:",
-	"hu" => "Az ön domainje:",
-	"it" => "Tuo dominio:",
-	"nl" => "Jouw domein:",
-	"ru" => "÷ÁÛ ÄÏÍÅÎ:",
-	"de" => "Ihre Domain:",
-	"zh" => "ÄúµÄÓòÃû£º",
-	"pl" => "Twoja domena :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Su dominio:",
-	"pt" => "O seu dominio :"
-	);
-$txt_your_domain_email = array(
-	"fr" => "Boites emails :",
-	"en" => "Mailboxes:",
-	"hu" => "Levelesládák",
-	"it" => "Mailboxes:",
-	"nl" => "E-mail accounts:",
-	"ru" => "ğÏŞÔÏ×ÙÅ ÑİÉËÉ:",
-	"de" => "E-Mail-Konten:",
-	"zh" => "ÓÊÏä£º",
-	"pl" => "Skrzynki pocztowe :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cuentas de correo:",
-	"pt" => "Contas de correio :"
-	);
-$txt_your_domain_ftp = array(
-	"fr" => "Comptes FTP :",
-	"en" => "FTP accounts:",
-	"hu" => "Ftp hozzáférések:",
-	"it" => "Accounts FTP:",
-	"nl" => "Ftp accounts:",
-	"ru" => "æôğ ÁËËÁÕÎÔÙ:",
-	"de" => "FTP-Konten:",
-	"zh" => "FTPÕÊ»§£º",
-	"pl" => "Konta FTP :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cuentas FTP:",
-	"pt" => "Contas de ftp :"
 	);
 $txt_your_domain_ssh = array(
 	"fr" => "Comptes ssh :",
@@ -3386,63 +1989,8 @@ $txt_your_domain_ssh = array(
 	"es" => "Cuentas SSH:",
 	"pt" => "Contas de ssh :"
 	);
-$txt_your_domain_subdomain = array(
-	"fr" => "Sous-domaines :",
-	"en" => "Subdomains:",
-	"hu" => "Aldomain-ek:",
-	"it" => "Sottodomini:",
-	"nl" => "Subdomeinen:",
-	"ru" => "óÕÂÄÏÍÅÎÙ:",
-	"de" => "Subdomains:",
-	"zh" => "×ÓÓòÃû£º",
-    "pl" => "Subdomeny :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Subdominios:",
-	"pt" => "Subdominios :"
-	);
-$txt_confirurate_your_domain_name = array(
-	"fr" => "Configurer son domaine :",
-	"en" => "Configure your domain name:",
-	"hu" => "Állítsa be a domain nevét:",
-	"it" => "Configura il tuo nome a dominio:",
-	"nl" => "Configureer je domein naam:",
-	"ru" => "TRANSConfigurate your domain name:",
-	"de" => "Konfiguration des Domain Namens:",
-	"zh" => "ÅäÖÃÄúµÄÓòÃû£º",
-    "pl" => "Konfiguracja twojej domeny :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Configure su nombre de dominio",
-	"pt" => "Configurar o seu dominio"
-	);
+
 // MY ACCOUNT STRINGS
-$txt_transfer_du = array(
-	"fr" => "Transfert et utilisation disque :",
-	"en" => "Transfer and disk usage:",
-	"hu" => "Forgalom és tárhely használat:",
-	"it" => "Trasferimento e uso disco:",
-	"nl" => "Bandbreedte en hardeschijf verbruik:",
-	"ru" => "TRANSTransfere and disk usage:",
-	"de" => "Transfer und Disk-Nutzung:",
-	"zh" => "Á÷Á¿Óë´ÅÅÌÊ¹ÓÃÂÊ£º",
-	"pl" => "Transfer i u¿ycie dysku :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Transferencia y uso de disco:",
-	"pt" => "Tráfego e utilização de disco"
-	);
-$txt_transfer_this_month = array(
-	"fr" => "Transfert ce mois-ci :",
-	"en" => "Transfer this month:",
-	"hu" => "Ehavi forgalom:",
-	"it" => "Trasferimento per questo mese:",
-	"nl" => "Bandbreedte deze maand:",
-	"ru" => "TRANSTransfer this month:",
-	"de" => "Transfer diesen Monat:",
-	"zh" => "±¾ÔÂÁ÷Á¿£º",
-	"pl" => "Transfer w tym m-cu :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Transferencia mes actual:",
-	"pt" => "Tráfego neste mês"
-	);
 $txt_transfer_per_month = array(
 	"fr" => "Transfert par mois",
 	"en" => "Transfer per month ",
@@ -3471,62 +2019,6 @@ $txt_transfer = array(
 	"es" => "Transferencia",
 	"pt" => "Tráfego"
 	);
-$txt_your_hosting_account = array(
-	"fr" => "Votre contrat d'hébergement :",
-	"en" => "Your hosting account:",
-	"hu" => "Az ön hosting hozzáférése:",
-	"it" => "Tuo account hosting:",
-	"nl" => "Uw hosting account:",
-	"ru" => "TRANSYour hosting account:",
-	"de" => "Ihr Hosting-Konto:",
-	"zh" => "ÄúµÄÕË»§£º",
-    "pl" => "Twoje konto hostingowe:",
-    "se" => "TRANS SVENSKA",
-	"es" => "Su cuenta de hosting:",
-	"pt" => "Sua conta de alojamento :"
-	);
-$txt_storage_space = array(
-	"fr" => "Espace disque",
-	"en" => "Storage space",
-	"hu" => "Tárhely",
-	"it" => "Spazio disco",
-	"nl" => "Opslagruimte",
-	"ru" => "TRANSStorage space",
-	"de" => "Speicherplatz",
-	"zh" => "´æ´¢¿Õ¼ä",
-    "pl" => "Powierzchnia dysku",
-    "se" => "TRANS SVENSKA",
-	"es" => "Espacio de disco",
-	"pt" => "Espaço em disco"
-	);
-$txt_allowed_data_transfer = array(
-	"fr" => "Bande passante mensuelle autorisée",
-	"en" => "Allowed bandwidth per month",
-	"hu" => "Havi engedélyezett forgalom",
-	"it" => "Banda disponibile per mese",
-	"nl" => "Toegestane bandbreedte deze maand",
-	"ru" => "TRANSAllowed bandwidth per month",
-	"de" => "Zulässige Bandbreite pro Monat",
-	"zh" => "Ã¿ÔÂ×î´óÊı¾İ´«ÊäÁ¿",
-    "pl" => "Miesiêczny transfer",
-    "se" => "TRANS SVENSKA",
-	"es" => "Ancho de Banda permitido por mes",
-    "pt" => "Tráfego permitido por mês"
-);
-$txt_allowed_data_transferMB = array(
-	"fr" => "Bande passante mensuelle autorisée (Mo) :",
-	"en" => "Allowed bandwidth per month (MB):",
-	"hu" => "Havi engedélyezett forgalom (MB):",
-	"it" => "Banda disponibile per mese (MB):",
-	"nl" => "Toegestane bandbreedte deze maand (MB):",
-	"ru" => "TRANSAllowed bandwidth per month (MB):",
-	"de" => "Zulässige Bandbreite pro Monat (MB):",
-	"zh" => "Ã¿ÔÂ×î´óÊı¾İ´«ÊäÁ¿(GB)£º",
-    "pl" => "Miesiêczny transfer (MB) :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Ancho de Banda permitido por mes (MB):",
-	"pt" => "Tráfego permitido por mês (MB)"
-);
 $txt_allowed_data_transferGB = array(
 	"fr" => "Bande passante mensuelle autorisée (Go) :",
 	"en" => "Allowed bandwidth per month (GB):",
@@ -3541,20 +2033,6 @@ $txt_allowed_data_transferGB = array(
 	"es" => "Ancho de Banda permitido por mes (GB):",
 	"pt" => "Tráfego permitido por mês (GB)"
 );
-$txt_expiration_date = array(
-	"fr" => "Date d'expiration",
-	"en" => "Expiry date",
-	"hu" => "Lejárat dátuma",
-	"it" => "Data scadenza",
-	"nl" => "Eind datum",
-	"ru" => "TRANSExpiration date",
-	"de" => "Ablaufdatum",
-	"zh" => "¹ıÆÚÈÕÆÚ",
-    "pl" => "Data wa¿no¶ci abonamentu :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Fecha de caducidad",
-	"pt" => "Data de expiração"
-	);
 $txt_date = array(
 	"fr" => "Date",
 	"en" => "Date",
@@ -3569,461 +2047,7 @@ $txt_date = array(
 	"es" => "Fecha",
 	"pt" => "Data"
 	);
-$txt_action = array(
-	"fr" => "Action",
-	"en" => "Action",
-	"hu" => "Mûvelet",
-	"it" => "Azione",
-	"nl" => "Actie",
-	"ru" => "TRANS Action",
-	"de" => "Aktion",
-	"zh" => "²Ù×÷",
-    "pl" => "Wykonaj",
-    "se" => "TRANS SVENSKA",
-	"es" => "Acci&oacute;n",
-	"pt" => "Accão"
-	);
-$txt_upgrade_my_account_button = array(
-	"fr" => "Upgrader mon compte",
-	"en" => "Upgrade my account",
-	"hu" => "Frissítse a hozzáférésem",
-	"it" => "Aggiorna il mio account",
-	"nl" => "Mijn account opwaarderen",
-	"ru" => "TRANSUpgrade my account",
-	"de" => "Mein Konto upgraden",
-	"zh" => "ÕË»§Éı¼¶",
-    "pl" => "Aktualizuj moje konto",
-    "se" => "TRANS SVENSKA",
-	"es" => "Actualizar mi cuenta",
-	"pt" => "Actualizar a minha conta"
-	);
-$txt_renew_my_account_button = array(
-	"fr" => "Renouveller mon abonnement",
-	"en" => "Renew my account",
-	"hu" => "Újítsa meg a hozzáférésem",
-	"it" => "Rinnova il mio account",
-	"nl" => "Vernieuw mijn account",
-	"ru" => "TRANSRenew my account",
-	"de" => "Mein Konto erneuern",
-	"zh" => "ÕË»§³äÖµ",
-    "pl" => "Odnów abonament",
-    "se" => "TRANS SVENSKA",
-	"es" => "Renovar mi cuenta",
-	"pt" => "Renovar a minha conta"
-	);
-$txt_remaining_money = array(
-	"fr" => "Argent restant sur mon compte :",
-	"en" => "Remaining money on my account:",
-	"hu" => "A számlámon lévõ pénz:",
-	"it" => "Denaro rimanente nel mio account:",
-	"nl" => "Beschikbare tegoeden op mijn account:",
-	"ru" => "TRANSRemaining money on my account:",
-	"de" => "Verbleibendes Guthaben auf meinem Konto:",
-	"zh" => "ÎÒµÄÕÊ»§Óà¶î£º",
-    "pl" => "Pozosta³o na koncie :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Dinero restante en mi cuenta:",
-	"pt" => "Crédito restante na minha conta :"
-	);
-$txt_refund_my_account = array(
-	"fr" => "Mettre de l'argent sur mon compte :",
-	"en" => "Refund my account:",
-	"hu" => "Adja vissza a hozzáférésemet:",
-	"it" => "Ricarica il mio account",
-	"nl" => "Mijn tegoeden terugstorten::",
-	"ru" => "TRANSRefund my account:",
-	"de" => "Guthaben auf mein Konto übertragen:",
-	"zh" => "ÎÒµÄÍË¿î£º",
-    "pl" => "Zasil swoje konto :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Acreditar dinero a mi cuenta:",
-	"pt" => "Recarregar a minha conta"
-	);
-$txt_please_tell_if_info_not_ok = array(
-	"fr" => "Merci de nous avertir si les informations ci-dessous n'étaient pas correctes :",
-	"en" => "Please tell us if the following is not correct:",
-	"hu" => "Kérem jelezze felénk, ha az alábbiak nem stimmelnek:",
-	"it" => "Per favore informaci se le informazioni seguenti non sono corrette:",
-	"nl" => "Laat ons weten of het volgende niet correct is:",
-	"ru" => "TRANSPlease tell us if the following is not correct:",
-	"de" => "Bitte informieren Sie uns, wenn die folgenden Angaben nicht korrekt sind:",
-	"zh" => "Çë¸æËßÎÒÃÇÏÂÁĞĞÅÏ¢ÊÇ·ñÕıÈ·£º",
-    "pl" => "Proszê powiadomiæ nas gdy dane bêd± niepoprawne :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Por favor d&iacute;ganos si la informaci&oacute;n siguiente no es correcta:",
-	"pt" => "Por favor verifique se os seguintes dados não estão correctos :"
-	);
 // Myaccount/stats strings
-$txt_my_account_global_stats_title = array(
-	"fr" => "Statistiques globales de mon compte",
-	"en" => "My account global statistics",
-	"hu" => "A hozzáférésem globális statisztikái",
-	"it" => "Statistiche globali del mio account",
-	"nl" => "Mijn globale account statistieken",
-	"ru" => "TRANSMy account global statistics",
-	"de" => "Gesamtübersicht über mein Konto",
-	"zh" => "ÕÊ»§Í³¼ÆĞÅÏ¢",
-    "pl" => "Ca³kowite statystyki konta",
-    "se" => "TRANS SVENSKA",
-	"es" => "Estad&iacute;sticas globales de mi cuenta",
-	"pt" => "Estatisticas gerais da minha conta"
-	);
-$txt_stats_http_subdom = array(
-	"fr" => "Statistiques HTTP webalizer de vos sous-domaines :",
-	"en" => "Detailed webalizer statistics (HTTP) of your subdomains:",
-	"hu" => "Részletes webalizer statisztika (HTTP) az aldomainekrõl:",
-	"it" => "Statistiche dettagliate webalizer (HTTP) dei tuoi sottodomini:",
-	"nl" => "Gedetaileerde webalizer HTTP statistieken van jouw subdomains:",
-	"ru" => "TRANS Detailed webalizer HTTP statistics of your subdomains:",
-	"de" => "Detaillierte Webalizer Statistiken (HTTP) Ihrer Subdomains:",
-	"zh" => "×ÓÓòÃûµÄwebalizerÏêÏ¸Í³¼Æ½á¹û£º",
-    "pl" => "Szczegó³owe statystyki Webalizera twoich subdomen :",
-    "se" => "TRANS SVENSKA",
-	"es" => "Estad&iacute;sticas HTTP detalladas de webalizer sobre sus subdominios:",
-	"pt" => "Estatistícas detalhadas HTTP dos seus dominios (Webalizer) :"
-);
-$txt_are_disk_usage = array(
-	"fr" => "Votre espace disque :",
-	"en" => "Your area disk usage:",
-	"hu" => "Az ön területének lemezterület használata:",
-	"it" => "Tuo utilizzo disco:",
-	"nl" => "Je hardeschijf gebruik:",
-	"ru" => "TRANSYour area disk usage:",
-	"de" => "Ihre Festplattennutzung:",
-	"zh" => "ÄúµÄ´ÅÅÌÊ¹ÓÃÂÊ£º",
-	"pl" => "U¿ycie dysku :",
-	"es" => "Espacio de disco usado:",
-	"pt" => "Espaço de disco usado :"
-);
-$txt_comment_confirurate_your_domain_name = array(
-	"fr" => "Attention ! Si vous rentrez de
-mauvaises valeurs dans les champs suivants cela
-peut provoquer une coupure de votre site (web
-ou messagerie).<br>
-Placer quelquechose d'autre que \"default\" en tant
-que serveur DNS signifie que vous voulez que le
-domaine soit hébergé ailleurs.<br>
-Le paramêtre MX dit ou se trouve le serveur de
-courrier (celui qui récupère et stocke tous vos
-courriers). La valeur \"default\" signifie que vous
-désirez utiliser le serveur actuel.",
-	
-	"en" => "Take care ! Setting a wrong value
-in the following fields can lead to
-your site services stopping (web or mail).<br>
-Putting something else than \"default\" in the DNS
-fields means that you want your site to be
-hosted elsewhere.<br>
-The MX parameter determines the address of the mail server
-that receives all your mail when somebody sends
-your a message. The value \"default\" means that
-you want to use the current server.",
-	
-	"hu" => "Figyelem ! Hibás értékek megadása az alábbi mezõkben
-a szolgáltatások (web, levelezés) leállásához vezethet.<br>
-A \"default\" értéktõl eltérõ beállítás a DNS mezõkben
-azt jelenti, hogy az ön oldala máshol van elhelyezve.<br>
-Az MX paraméter megadja az e-mail szerver címét
-(az amelyik tárolja az összes levelet, ha valaki küld önnek egyet).
-A \"default\" beállítás azt jelenti, hogy az aktuális szervert szeretné erre a
-célra használni.",
-	
-	"it" => "Attenzione ! Settando in maniera sbagliata i 
-valori nei seguenti campi potrebbe causare lo stop dei servizi (web o mail).<br>
-Inserendo qualcosa di diverso da \"default\" nei campi DNS significa che 
-tu vuoi che il tuo sito sia hostato da qualche parte.<br>
-Il parametro MX indica l'indirizzo del mail server
-(quello che salva tutte le email quando qualcuno ti invia un 
-messaggio). Il valore \"default\" significa che vuoi utilizzare il 
-server corrente.",
-	
-	"nl" => "PAS OP ! Verkeerd instellen van de volgende
-gegevens kan leiden tot het niet meer functioneren van uw domein diensten
-(web of e-mail).<br>
-Indien u iets anders instelt dan \"default\" in de domeinnaam velden
-betekent dat u de website of email ergens anders wilt hosten.<br>
-Het MX parameter geeft het ipadres van de mailserver weer.
-Als u hier iets anders dan \"default\" instelt, dan komt de e-mail
-niet meer op deze server aan, maar op het punt dat u aangeeft.",
-
-	"ru" => "TRANSTake care ! Setting wrong value
-in the following fields can lead to the stop of
-your site services (web or mail).<br>
-Put something else than \"default\" in the DNS
-fields means that you want your site to be
-hosted elsewhere.<br>
-The MX parameter tells the addresse of the mail server
-(the one that stores all your mail when somebody sends
-your a message). The value \"default\" means that
-you want to use the current server.",
-	"de" => "Achtung! Wenn Sie in den folgenden Feldern falsche Angaben machen, kann dies dazu führen, dass Ihre Webseiten oder E-Mail-Adressen nicht mehr erreichbar sind.<br>
-Eine andere Angabe als \"default\" im DNS Feld bedeutet, dass Ihre Seite anderswo gehostet wird.
-Die MX-Parameter geben die Adresse des Mailservers an (auf dem Ihre E-Mails gespeichert werden, wenn Ihnen jemand eine Nachricht schickt).
-Die Angabe \"default\" bedeutet, dass Sie diesen Server nutzen wollen.",
-	"zh" => "µ±ĞÄ£¡Ç§Íò²»Òª½«ÏÂÁĞÑ¡ÏîÉèÖÃÎª´íÎóµÄÖµ£¬·ñÔò£¬ÄúµÄÄ³Ğ©·şÎñ¿ÉÄÜ»áÍ£Ö¹(ÀıÈç:ÓÊ¼ş·şÎñ»òwww·şÎñ)<br>
-Èç¹ûÄúÔÚDNSÖĞÊäÈë\"default\"ÒÔÍâµÄÖµ£¬Õâ½«ÒâÎ¶×ÅÄúÏ£ÍûÊ¹ÓÃÆäËü·şÎñÆ÷À´½âÎöÄúµÄÓòÃû<br>
-MX²ÎÊıÉùÃ÷ÁËÄúµÄÓÊ¼ş·şÎñÆ÷µÄµØÖ·(µ±ÓĞÈË¸øÄú·¢ËÍÓÊ¼şÊ±Ëü½«´¢´æËùÓĞÄúÊÕµ½µÄÓÊ¼ş)<br>
-Èç¹ûÄú±£ÁôÊäÈë¿òÖĞµÄ\"default\"½«ÒâÎ¶×ÅÄúÏ£ÍûÊ¹ÓÃµ±Ç°µÄ·şÎñÆ÷",
-	"pl" => "Sprawd¼ dane ! Z³e dane spowoduj± niepoprawne dzia³anie twojego serwera (web i mail).<br>Je¶li nie jeste¶ pewien, pozostaw <b>\"default\"</b> w polu DNS i MX.<br>Wpis <b>\"default\"</b> wskazuje na ten serwer.",
-	"se" => "TRANS SVENSKA",
-	"es" => "¡Atención! La configuraci&oacute;n incorrecta 
-de las siguientes opciones puede hacer parar 
-sus servicios (web o mail).<br>
-Poniendo algo distinto a &quot;default&quot; en las opciones de
-DNS significa que Ud. desea alojar su sitio en otra parte.<br>
-El par&aacute;metro MX nos indica la direcci&oacute;n del servidor de 
-correo (el que almacena todo su correo cuando alguien le envia
-un mensaje). El valor &quot;default&quot; indica que se quiere
-usar este servidor.",
-	
-	"pt" => "!! ATENÇÃO !! 
-Esta operação poderá para os serviços de Web e Mail
-caso os parametros indicados estejam errados.<br>
-Se definir algo diferente de \"default\" no campo de DNS 
-quer dizer que os seu site é alojado noutro local.<br>
-O parametro MX é o endereço do servidor de email, se definir
-o valor \"default\" o serviço de correio será tratado neste servidor."
-);
-$txt_primari_dns_ip = array(
-	"fr" => "Addresse IP du serveur DNS primaire :",
-	"en" => "IP address of the primary DNS server:",
-	"hu" => "Az elsõdleges DNS szerver IP címe:",
-	"it" => "Indirizzo IP del server DNS primario:",
-	"nl" => "IP adres van de primaire DNS server:",
-	"ru" => "TRANSIP address of the primary DNS server:",
-	"de" => "IP-Adresse des primären DNS-Servers:",
-	"zh" => "Ö÷DNS·şÎñÆ÷µÄIPµØÖ·£º",
-	"pl" => "Adres IP serwera Primary DNS :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Direcci&oacute;n IP del servidor DNS primario:",
-	"pt" => "Endereço IP do servidor de DNS primário :"
-	);
-$txt_other_dns_ip = array(
-	"fr" => "Autres serveurs DNS :",
-	"en" => "Other DNS servers:",
-	"hu" => "Más DNS szerverek:",
-	"it" => "Altri server DNS:",
-	"nl" => "Andere DNS servers:",
-	"ru" => "TRANSOther DNS servers:",
-	"de" => "Weitere DNS-Server:",
-	"zh" => "ÆäËûDNS·şÎñÆ÷£º",
-	"pl" => "Serwery zapasowe DNS :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Otros servidores DNS:",
-	"pt" => "Outros servidores de DNS"
-	);
-$txt_primary_mx_server = array(
-	"fr" => "Addresse du MX primaire :",
-	"en" => "Primary MX address:",
-	"hu" => "Elsõdleges MX cím:",
-	"it" => "Indirizzo MX primario:",
-	"nl" => "Primaire MX record:",
-	"ru" => "Primary MX address:",
-	"de" => "Primäre MX-Adresse",
-	"zh" => "Ö÷MXµØÖ·£º",
-	"pl" => "Adres IP serwera Primary MX :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Direcci&oacute;n MX primaria:",
-	"pt" => "Endereço de Servidor MX primário :"
-	);
-$txt_other_mx_servers = array(
-	"fr" => "Autres serveurs MX (secondaire) :",
-	"en" => "Other MX (backup) servers:",
-	"hu" => "Más MX (backup) szerverek:",
-	"it" => "Altri server MX (secondari):",
-	"nl" => "Andere MX (backup) servers:",
-	"ru" => "TRANSOther MX (backup) servers:",
-	"de" => "Weitere MX- (Backup-) Server:",
-	"zh" => "ÆäËüMX(±¸ÓÃ)·şÎñÆ÷£º",
-	"pl" => "Inne serwery zapasowe MX :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Otros servidores MX (backup):",
-	"pt" => "Outros servidores MX (backup) :"
-	);
- 
-$txt_draw_tatabase_your_list = array(
-	"fr" => "Liste de vos bases de données :",
-	"en" => "List of your databases:",
-	"hu" => "Az adatbázisai listája:",
-	"it" => "Lista dei tuoi database:",
-	"nl" => "Lijst van jouw databases:",
-	"ru" => "óĞÉÓÏË ×ÁÛÉÈ âä:",
-	"de" => "Liste der Datenbanken",
-	"zh" => "Êı¾İ¿âÁĞ±í£º",
-	"pl" => "Spis twoich baz danych :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Lista de sus bases de datos:",
-	"pt" => "Lista de base de dados"
-	);
-$txt_draw_database_chpass = array(
-	"fr" => "Changer mon mot de passe MySql :",
-	"en" => "Change your MySQL password:",
-	"hu" => "MySQL jelszóváltás:",
-	"it" => "Cambia la tua password MySql:",
-	"nl" => "Verander MySQL password:",
-	"ru" => "TRANS Change your MySQL password:",
-	"de" => "MySQL Passwort ändern:",
-	"zh" => "¸ü¸ÄMySQLÃÜÂë£º",
-	"pl" => "Zmieñ has³o dostêpu do serwera MySQL :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cambiar la contrase&ntilde;a de MySQL:",
-	"pt" => "Alterar palavra chave de MySQL :"
-	);
-
-$txt_draw_client_info_comp_name = array(
-	"fr" => "Nom société :",
-	"en" => "Company name:",
-	"hu" => "Cégnév:",
-	"it" => "Società:",
-	"nl" => "Bedrijfsnaam:",
-	"ru" => "îÁÚ×ÁÎÉÅ ËÏÍĞÁÎÉÉ:",
-	"de" => "Firmenname:",
-	"zh" => "¹«Ë¾Ãû³Æ£º",
-	"pl" => "Nazwa Firmy :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Empresa:",
-	"pt" => "Nome da base de dados"
-);
-$txt_draw_client_info_firstname = array(
-	"fr" => "Prénom :",
-	"en" => "First name:",
-	"hu" => "Keresztnév:",
-	"it" => "Nome:",
-	"nl" => "Voornaam:",
-	"ru" => "TRANS First name:",
-	"de" => "Vorname:",
-	"zh" => "Ãû£º",
-	"pl" => "Imiê :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nombre:",
-	"pt" => "Primeiro Nome ;"
-);
-$txt_draw_client_info_familyname = array(
-	"fr" => "Nom de famille :",
-	"en" => "Family name:",
-	"hu" => "Vezetéknév:",
-	"it" => "Cognome:",
-	"nl" => "Achternaam:",
-	"ru" => "TRANSFamily name:",
-	"de" => "Nachname:",
-	"zh" => "ĞÕ£º",
-	"pl" => "Nazwisko :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Apellido:",
-	"pt" => "Apelido ;"
-);
-$txt_draw_client_info_addr = array(
-	"fr" => "Adresse :",
-	"en" => "Address:",
-	"hu" => "Cím:",
-	"it" => "Indirizzo:",
-	"nl" => "Adres:",
-	"ru" => "áÄÒÅ?",
-	"de" => "Adresse:",
-	"zh" => "µØÖ·£º",
-	"pl" => "Adres :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Direcci&oacute;n:",
-	"pt" => "Morada ;"
-);
-$txt_draw_client_info_zipcode = array(
-	"fr" => "Code postal :",
-	"en" => "Zipcode:",
-	"hu" => "Irányítószám:",
-	"it" => "CAP:",
-	"nl" => "Postcode:",
-	"ru" => "éÎÄÅËÓ:",
-	"de" => "PLZ:",
-	"zh" => "ÓÊ±à£º",
-	"pl" => "Kod pocztowy :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Codigo postal:",
-	"pt" => "Codigo Postal :" 
-);
-$txt_draw_client_info_country = array(
-	"fr" => "Pays :",
-	"en" => "Country:",
-	"hu" => "Ország:",
-	"it" => "Nazione:",
-	"nl" => "Land:",
-	"ru" => "óÔÒÁÎÁ",
-	"de" => "Land:",
-	"zh" => "¹ú¼Ò£º",
-	"pl" => "Kraj :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Pais:",
-	"pt" => "País :"
-);
-$txt_draw_client_info_city = array(
-	"fr" => "Ville :",
-	"en" => "City:",
-	"hu" => "Város:",
-	"it" => "Città:",
-	"nl" => "Woonplaats:",
-	"ru" => "çÏÒÏ:",
-	"de" => "Stadt:",
-	"zh" => "³ÇÊĞ£º",
-	"pl" => "Miejscowo¶æ :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Ciudad:",
-	"pt" => "Cidade :"
-);
-$txt_draw_client_info_state = array(
-	"fr" => "Etat :",
-	"en" => "State:",
-	"hu" => "Megye:",
-	"it" => "Provincia:",
-	"nl" => "Provincie:",
-	"ru" => "TRANS State:",
-	"de" => "Bundesland:",
-	"zh" => "Ê¡·Ö£º",
-	"pl" => "Województwo a dla firm NIP :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Provincia:",
-	"pt" => "Destrito"
-);
-$txt_draw_client_info_phone = array(
-	"fr" => "Téléphone :",
-	"en" => "Phone number:",
-	"hu" => "Telefonszám:",
-	"it" => "Tel:",
-	"nl" => "Telefoonnummer:",
-	"ru" => "îÏÍÅÒ ÔÅÌÅÆÏÎÁ:",
-	"de" => "Telefon:",
-	"zh" => "µç»°ºÅÂë£º",
-	"pl" => "Telefon :",
-	"se" => "Telefon",
-	"es" => "N&uacute;mero de tel&eacute;fono:",
-	"pt" => "Numero de telefone :"
-);
-$txt_draw_client_info_fax = array(
-	"fr" => "Fax :",
-	"en" => "Fax:",
-	"hu" => "Fax:",
-	"it" => "Fax:",
-	"nl" => "Faxnummer:",
-	"ru" => "æÁËÓ:",
-	"de" => "Fax:",
-	"zh" => "´«Õæ£º",
-	"pl" => "Fax :",
-	"se" => "Fax:",
-	"es" => "Fax:",
-	"pt" => "FAX"
-);
-$txt_draw_client_info_email = array(
-	"fr" => "Email :",
-	"en" => "Email:",
-	"hu" => "E-mail:",
-	"it" => "E-mail:",
-	"nl" => "E-mail adres:",
-	"ru" => "ğÏŞÔÁ:",
-	"de" => "E-Mail:",
-	"zh" => "µç×ÓÓÊ¼ş£º",
-	"pl" => "E-mail :",
-	"se" => "E-post:",
-	"es" => "Email:",
-	"pt" => "E-mail"
-);
 $domain_conf_submenu =array(
 	array(
 		"text" => "subdomains",
@@ -4117,20 +2141,6 @@ $txt_left_menu_title = array(
 	"pt" => "Os seus dominios"
 );
 	
-$txt_title_geninfo_form = array(
-	"fr" => "Informations générales de ",
-	"en" => "General information of ",
-	"hu" => "Általános információk ",
-	"it" => "Informazioni generali su ",
-	"nl" => "Algemene informatie over ",
-	"ru" => "ïÓÎÏ×ÎÁÑ ÉÎÆÏÒÍÁÃÉÑ ",
-	"de" => "allgemeine Informationen",
-	"zh" => "³£¹æĞÅÏ¢",
-	"pl" => "G³ówne informacje o ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Informaci&oacute;n general de ",
-	"pt" => "Informação Geral de "
-);
 ///////////////
 // SUBDOMAIN //
 ///////////////
@@ -4148,48 +2158,6 @@ $txt_title_subdomain_form = array(
 	"es" => "Subdominios de ",
 	"pt" => "Subdominios de "
 );
-$txt_subdom_list = array(
-	"fr" => "Liste de vos sous-domaines : ",
-	"en" => "List of your subdomains: ",
-	"hu" => "Lista az aldomain-jeirõl: ",
-	"it" => "Lista dei tuoi sottodomini: ",
-	"nl" => "Lijst met jouw subdomeinen: ",
-	"ru" => "óĞÉÓÏË ×ÁÛÉÈ ÓÕÂÄÏÍÅÎÏ×:",
-	"de" => "Liste der Subdomains: ",
-	"zh" => "×ÓÓòÃûÁĞ±í£º",
-	"pl" => "Lista twoich subdomen : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Lista de subdominios: ",
-	"pt" => "Lista de subdominios : "
-);
-$txt_subdom_txtrec = array(
-	"fr" => "Champ TXT du sousdomaine : ",
-	"en" => "TXT field of the subdomain: ",
-	"hu" => "Az aldomain TXT mezõje: ",
-	"it" => "Campo TXT del sottodominio: ",
-	"nl" => "TXT veld van subdomain: ",
-	"ru" => "TRANS TXT field of the subdomain: ",
-	"de" => "TXT-Feld der Subdomain: ",
-	"zh" => "ÔÚÕâÀïÊäÈë×ÓÓòÃû£º",
-	"pl" => "Pole TXT dla DNS subdomeny : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Campo TXT del subdominio: ",
-	"pt" => "Campo TXT do subdominio : "
-);
-$txt_subdom_default_sub = array(
-	"fr" => "Sous-domaine par défaut : ",
-	"en" => "Default subdomain: ",
-	"hu" => "Alapértelmezett aldomain: ",
-	"it" => "Sottodominio di default: ",
-	"nl" => "Standaard subdomein: ",
-	"ru" => "óÕÂÄÏÍÅÎ ĞÏ ÕÍÏÌŞÁÎÉÀ:",
-	"de" => "Standard Subdomain",
-	"zh" => "Ä¬ÈÏ×ÓÓòÃû£º",
-	"pl" => "Subdomena domy¶lna : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Subdominio por defecto",
-	"pt" => "Subdominio pre-definido"
-);
 $txt_subdom_errase = array(
 	"fr" => "Effacer un sous-domaine: ",
 	"en" => "Delete a subdomain: ",
@@ -4204,49 +2172,6 @@ $txt_subdom_errase = array(
 	"es" => "Eliminar un subdominio",
 	"pt" => "Eliminar um subdominio"
 );
-$txt_subdom_create = array(
-	"fr" => "Créer un sous-domaine: ",
-	"en" => "Create a subdomain: ",
-	"hu" => "Aldomain létrehozása: ",
-	"it" => "Crea un sottodominio: ",
-	"nl" => "Creeer een subdomein: ",
-	"ru" => "óÏÚÄÁÔØ ÓÕÂÄÏÍÅÎ:",
-	"de" => "Anlegen einer Subdomain",
-	"zh" => "½¨Á¢×ÓÓòÃû£º",
-	"pl" => "Zak³adanie subdomeny : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Crear un subdominio",
-	"pt" => "Criar um subdominio: "
-);
-$txt_subdom_newname = array(
-	"fr" => "Nom du sous-domaine : ",
-	"en" => "Subdomain name: ",
-	"hu" => "Aldomain neve: ",
-	"it" => "Nome sottodominio: ",
-	"nl" => "Subdomein naam: ",
-	"ru" => "TRANS Subdomain name:",
-	"de" => "Name der Subdomain:",
-	"zh" => "×ÓÓòÃû£º",
-	"pl" => "Nazwa subdomeny : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nombre del subdominio:",
-	"pt" => "Nome do subdominio : "
-);
-$txt_subdom_ip = array(
-	"fr" => "Adresse IP ou CNAME : ",
-	"en" => "IP address or CNAME: ",
-	"hu" => "TRANS IP address or CNAME: ",
-	"it" => "TRANS IP address or CNAME: ",
-	"nl" => "IP addres of CNAME: ",
-	"ru" => "TRANS IP address or CNAME: ",
-	"de" => "IP-Adresse oder CNAME: ",
-	"zh" => "IPµØÖ·»òCNAME: ",
-	"pl" => "TRANS IP address or CNAME: ",
-	"se" => "TRANS IP address or CNAME: ",
-	"es" => "TRANS IP address or CNAME: ",
-	"pt" => "TRANS IP address or CNAME: "
-);
-
 $txt_subdom_dynip_logpass = array(
 	"fr" => "Si vous en avez besoin, il est possible de définir l'adresse
 IP a distance, par exemple si vous dispose d'une IP dynamyque et que vous
@@ -4289,20 +2214,6 @@ $txt_subdom_dynip_login = array(
 	"es" => "Login IP din&aacute;mica: ",
 	"pt" => "Utilizador DDNS : " 
 );
-$txt_subdom_dynip_pass = array(
-	"fr" => "Mot de pass IP dynamique :",
-	"en" => "Dynamic IP update password: ",
-	"hu" => "Dinamikus IP frissítés jelszó: ",
-	"it" => "Modifica password IP dinamico: ",
-	"nl" => "Dynamisch IP update password: ",
-	"ru" => "TRANS Dynamic IP update password: ",
-	"de" => "Dynamic-IP Passwort: ",
-	"zh" => "¶¯Ì¬IP¸üĞÂÃÜÂë£º",
-	"pl" => "Has³o do dynamicznej aktualizacji adresu IP : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Contrase&ntilde;a IP din&aacute;mica: ",
-	"pt" => "Palavra chave DDNS :"
-);
 $txt_subdom_register_global = array(
 	"fr" => "Utiliser register_globals=1:",
 	"en" => "Use register_globals=1: ",
@@ -4330,20 +2241,6 @@ $txt_subdom_edita = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Editar un subdominio:",
 	"pt" => "Editar um subdominio :"
-);
-$txt_subdom_generate_vhost = array(
-	"fr" => "Produisez d'une entrÃ©e de vhost pour ce subdomain:",
-	"en" => "Generate a vhost entry for this subdomain:",
-	"hu" => "TRANS: Generate a vhost entry for this subdomain:",
-	"it" => "Generi un'entrata del vhost per questo subdomain:",
-	"nl" => "Genereer een vhostingang voor dit subdomain:",
-	"ru" => "ĞŸÑ€Ğ¾Ğ¸Ğ·Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ²Ñ…Ğ¾Ğ´ vhost Ğ´Ğ»Ñ ÑÑ‚Ğ¾Ğ³Ğ¾ subdomain:",
-	"de" => "Erzeugen Sie einen VHost-Eintrag für diese Subdomain:",
-	"zh" => "Éú³ÉÕâ¸ö×ÓÓòÃûµÄĞéÄâÖ÷»úÈë¿Ú£º",
-	"pl" => "Wygeneruj virtualne hosty dla swojej domeny(dodaj subdowmeny):",
-	"se" => "TRANS SVENSKA",
-	"es" => "Generar una entrada vhost para este subdominio:",
-	"pt" => "TRANS: Generate a vhost entry for this subdomain:",
 );
 $txt_subdom_generate_webalizer = array(
 	"fr" => "Generer les stats webalizer tous les mois :",
@@ -4373,21 +2270,6 @@ $txt_subdom_wwwalias = array(
 	"es" => "Crear un alias ",
 	"pt" => "Criar um apontador (alias)"
 );
-$txt_subdom_nameserver_for = array(
-	"fr" => "Ce subdomain est une entrÃ©e du nameserver (NS)<br>pour le subdomain suivant  ",
-	"en" => "This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
-	"hu" => "TRANS This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
-	"it" => "Questo subdomain Ã¨ un'entrata del nameserver (NS)<br>per il seguente subdomain: ",
-	"nl" => "Dit subdomain is een nameserver(ns)<br>ingang voor volgende subdomain: ",
-	"ru" => "Ğ­Ñ‚Ğ¸Ğ¼ subdomain Ğ±ÑƒĞ´ĞµÑ‚ Ğ²Ñ…Ğ¾Ğ´ nameserver (ns)<br>Ğ´Ğ»Ñ following subdomain: ",
-	"de" => "Diese Subdomain ist ein Nameserver- (NS-)<br>Eintrag für die folgende Subdomain: ",
-	"zh" => "Õâ¸ö×ÓÓòÃûÊÇÏÂÁĞ×ÓÓòÃûµÄÈë¿Ú£º",
-	"pl" => "TRANS This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
-	"se" => "TRANS This subdomain is a nameserver (NS)<br>entry for the following subdomain: ",
-	"es" => "Este subdominio es una entrada del nameserver (NS)<br>para el subdominio siguiente: ",
-	"pt" => "Este subdomain Ã© uma entrada do nameserver (NS)<br>para o seguinte subdomain: ",
-);
-
 $txt_subdom_srv_record = array(
 	"fr" => "Ce subdomain est une entrÃ©e du service (SRV)<br>pour le port suivant  ",
 	"en" => "This subdomain is a service (SRV)<br>entry for the following port: ",
@@ -4469,62 +2351,6 @@ $txt_subdom_windowsusers = array(
 /////////////
 // MAILBOX //
 /////////////
-$txt_title_mailbox_form = array(
-	"fr" => "Boites emails de ",
-	"en" => "Mailboxes of ",
-	"hu" => "Levelesládái a(z)",
-	"it" => "Mailboxes di ",
-	"nl" => "E-mail account van ",
-	"ru" => "ğÏŞÔÏ×ÙÅ ÑİÉËÉ",
-	"de" => "E-Mail-Konten von ",
-	"zh" => "ÓÊÏä",
-	"pl" => "Skrzynki pocztowe ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cuentas de correo de ",
-	"pt" => "Contas de correio de "
-);
-$txt_mail_liste_of_your_box = array(
-	"fr" => "Liste de vos boites emails : ",
-	"en" => "List of your mailboxes: ",
-	"hu" => "A levelesládák listája: ",
-	"it" => "Lista delle tua mailboxes: ",
-	"nl" => "Lijst met jouw E-mail accounts:",
-	"ru" => "óĞÉÓÏË ×ÁÛÉÈ ÑİÉËÏ×:",
-	"de" => "Liste Ihrer E-Mail-Konten",
-	"zh" => "ÓÊÏäÁĞ±í£º",
-	"pl" => "Spis twoich skrzynek pocztowych : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Listado de sus cuentas de correo",
-	"pt" => "Lista de contas de correio : "
-);
-$txt_mail_new_mailbox = array(
-	"fr" => "Nouvelle boite aux lettres : ",
-	"en" => "New mailbox: ",
-	"hu" => "Új levelesláda: ",
-	"it" => "Nuova mailbox: ",
-	"nl" => "Nieuw e-mail account: ",
-	"ru" => "îÏ×ÙÊ ÑİÉË:",
-	"de" => "Neues E-Mail-Konto: ",
-	"zh" => "ĞÂÓÊÏä£º",
-	"pl" => "Nowa skrzynka pocztowa : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nueva cuenta de correo: ",
-	"pt" => "Nova conta de correio : "
-);
-$txt_mail_new_mailbox_link = array(
-	"fr" => "Nouvelle boite",
-	"en" => "New mailbox",
-	"hu" => "Új levelesláda",
-	"it" => "Nuova mailbox",
-	"nl" => "Nieuw e-mail account",
-	"ru" => "îÏ×ÙÊ ÑİÉË",
-	"de" => "Neues E-Mail-Konto",
-	"zh" => "ĞÂÓÊÏä",
-	"pl" => "Nowa skrzynka pocztowa",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nueva cuenta de correo",
-	"pt" => "Nova conta de correio" 
-);
 $txt_mail_redirection1 = array(
 	"fr" => "Redirection 1: ",
 	"en" => "Redirection 1: ",
@@ -4538,34 +2364,6 @@ $txt_mail_redirection1 = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Redireccion 1: ",
 	"pt" => "Redirecionar 1:"
-);
-$txt_mail_spam_mailbox_enable = array(
-	"fr" => "Activer le filtrage des SPAMs: ",
-	"en" => "Enable SPAM filtering: ",
-	"hu" => "Enable SPAM filtering: ",
-	"it" => "Abilita filtraggio SPAM: ",
-	"nl" => "Enable SPAM filtering: ",
-	"ru" => "Enable SPAM filtering: ",
-	"de" => "SPAM-Filter aktivieren: ",
-	"zh" => "¿ªÆôÀ¬»øÓÊ¼ş¹ıÂË¹¦ÄÜ£º",
-	"pl" => "W³±czenie filtra SPAMu: ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Habilitar filtrado de SPAM: ",
-	"pt" => "Activar filtro de SPAN: "
-);
-$txt_mail_spam_mailbox = array(
-	"fr" => "Boite destination des SPAMs: ",
-	"en" => "SPAM mailbox destination: ",
-	"hu" => "SPAM mailbox destination: ",
-	"it" => "Destinazione SPAM della mailbox: ",
-	"nl" => "SPAM mailbox destination: ",
-	"ru" => "SPAM mailbox destination: ",
-	"de" => "Zielordner für SPAM: ",
-	"zh" => "À¬»øÓÊ¼ş×ª·¢µ½£º",
-	"pl" => "Przekierowanie spamu do : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Buzón de destino para el SPAM: ",
-	"pt" => "Conta de correio de destino para SPAM: "
 );
 $txt_mail_redirection2 = array(
 	"fr" => "Redirection 2: ",
@@ -4581,144 +2379,10 @@ $txt_mail_redirection2 = array(
 	"es" => "Redireccion 2: ",
 	"pt" => "Redirecionar 2:"
 );
-$txt_mail_deliver_localy = array(
-	"fr" => "Délivrer les messages en local: ",
-	"en" => "Deliver messages locally: ",
-	"hu" => "Helyileg kézbesíti az üzeneteket: ",
-	"it" => "TRANS Deliver localmente: ",
-	"nl" => "Lokaal afleveren: ",
-	"ru" => "TRANS äÏÓÔÁ×ËÁ ÌÏËÁÌØÎÏ:",
-	"de" => "Nachrichten lokal zustellen: ",
-	"zh" => "½«ÓÊ¼ş´æ´¢µ½±¾µØ£º",
-	"pl" => "Dostarczanie lokalne <br>(odznacz&nbsp;je¶li&nbsp;adres&nbsp; jest przekierowywany) : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Entregar mensajes localmente: ",
-	"pt" => "Enviar mensagens localmente: "
-);
 
-$txt_mail_check_to_send_bounce_msg = array(
-	"fr" => "Cocher pour envoyer un message automatique : ",
-	"en" => "Check to send a bounce message: ",
-	"hu" => "TRANS Check to send a bounce message: ",
-	"it" => "TRANS Check to send a bounce message: ",
-	"nl" => "Vink aan om een bounce bericht te sturen: ",
-	"ru" => "TRANS Check to send a bounce message: ",
-	"de" => "automatische Antwort aktivieren: ",
-	"zh" => "¼ì²éÊÇ·ñ·¢ËÍÒ»·âµ¯»ØÓÊ¼ş£º",
-	"pl" => "TRANS Check to send a bounce message: ",
-	"se" => "TRANS Check to send a bounce message: ",
-	"es" => "TRANS Check to send a bounce message: ",
-	"pt" => "TRANS Check to send a bounce message: "
-);
-
-$txt_mail_bounce_msg_content = array(
-	"fr" => "Contenu du message : ",
-	"en" => "Bounce message content: ",
-	"hu" => "TRANS Bounce message content: ",
-	"it" => "TRANS Bounce message content: ",
-	"nl" => "Inhoud bounce bericht: ",
-	"ru" => "TRANS Bounce message content: ",
-	"de" => "Inhalt der automatischen Antwort: ",
-	"zh" => "µ¯»ØÓÊ¼şµÄÄÚÈİ£º",
-	"pl" => "TRANS Bounce message content: ",
-	"se" => "TRANS Bounce message content: ",
-	"es" => "TRANS Bounce message content: ",
-	"pt" => "TRANS Bounce message content: "
-);
-
-$txt_mail_quota = array(
-	"fr" => "Quota email: ",
-	"en" => "Mailbox quota: ",
-	"hu" => "TRANS: quota: ",
-	"it" => "TRANS: quota: ",
-	"nl" => "Mailbox quota: ",
-	"ru" => "TRANS: quota: ",
-	"de" => "Mailbox Quota: ",
-	"ro" => "Mailbox Quota: ",
-	"zh" => "ÓÊÏä¿Õ¼ä£º",
-	"pl" => "TRANS: quota: ",
-	"se" => "TRANS: quota: ",
-	"es" => "TRANS: quota: ",
-	"pt" => "TRANS: quota: "
-);
-
-$txt_mail_quota_files = array(
-	"fr" => "Quota nombre de fichiers : ",
-	"en" => "Mailbox max files quota: ",
-	"hu" => "TRANS quota max files: ",
-	"it" => "TRANS quota max files: ",
-	"nl" => "Quota max bestanden: ",
-	"ru" => "TRANS quota max files: ",
-	"de" => "Mailbox Quota max. Dateien: ",
-	"ro" => "Mailbox Quota max files: ",
-	"zh" => "×î´óÎÄ¼şÊı£º",
-	"pl" => "TRANS quota max files: ",
-	"se" => "TRANS quota max files: ",
-	"es" => "TRANS quota max files: ",
-	"pt" => "TRANS quota max files: "
-);
-
-$txt_used_quota = array(
-	"fr" => "Quota utilisé: ",
-	"en" => "Used quota: ",
-	"hu" => "TRANS: Used quota: ",
-	"it" => "TRANS: Used quota: ",
-	"nl" => "Gebruik quota: ",
-	"ru" => "TRANS: Used quota: ",
-	"de" => "Benutzte Quota: ",
-	"ro" => "Quota folosita: ",
-	"zh" => "´ÅÅÌ¿Õ¼ä£º",
-	"pl" => "TRANS: quota: ",
-	"se" => "TRANS: quota: ",
-	"es" => "TRANS: quota: ",
-	"pt" => "TRANS: quota: "
-);
-
-$txt_mail_edit = array(
-	"fr" => "Edition d'une boite aux lettres: ",
-	"en" => "Mailbox configuration: ",
-	"hu" => "Levelesláda konfiguráció: ",
-	"it" => "Configurazione mailbox: ",
-	"nl" => "E-mail account configuratie:",
-	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ ĞÏŞÔÏ×ÏÇÏ ÑİÉËÁ:",
-	"de" => "Konfiguration des E-Mail-Kontos",
-	"zh" => "ÓÊÏäÅäÖÃ£º",
-	"pl" => "Konfiguracja skrzynki pocztowej: ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Configuraci&oacute;n de la cuenta de correo:",
-	"pt" => "Configurar as contas de correio: "
-);
 //////////////////
 // FTP accounts //
 //////////////////
-$txt_title_ftp_form = array(
-	"fr" => "Comptes FTP de ",
-	"en" => "FTP accounts of ",
-	"hu" => "FTP hozzáférései a(z) ",
-	"it" => "Accounts FTP di ",
-	"nl" => "FTP accounts van ",
-	"ru" => "õŞÅÔÎÙÅ ÚÁĞÉÓÉ æôğ",
-	"de" => "FTP-Konten von ",
-	"zh" => "±¾Õ¾µãµÄFTPÕÊ»§",
-	"pl" => "Konta FTP ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cuentas FTP de ",
-	"pt" => "Contas de FTP"
-);
-$txt_ftp_account_list = array(
-	"fr" => "Liste de vos comptes FTP: ",
-	"en" => "List of your FTP accounts: ",
-	"hu" => "Az ön FTP hozzáférései: ",
-	"it" => "Lista dei tuoi accounts FTP: ",
-	"nl" => "Lijst van jouw FTP accounts:",
-	"ru" => "óĞÉÓÏË ×ÁÛÉÈ æôğ ÁËËÁÕÎÔÏ×:",
-	"de" => "Liste Ihrer FTP-Konten:",
-	"zh" => "ÄúµÄFTPÕÊ»§ÁĞ±í£º",
-	"pl" => "Spis twoich kont FTP : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Listado de sus cuentas FTP:",
-	"pt" => "Lista de contas de ftp"
-);
 $txt_ftp_new_account = array(
 	"fr" => "Nouveau compte FTP : ",
 	"en" => "New FTP account: ",
@@ -4749,21 +2413,6 @@ $txt_ftp_new_account_link = array(
 	"pt" => "Nova conta de ftp"
 );
 
-$txt_ftp_account_edit = array(
-	"fr" => "Edition d'un compte FTP : ",
-	"en" => "FTP account configuration: ",
-	"hu" => "FTP hozzáférés konfigurálása: ",
-	"it" => "Configurazione account FTP: ",
-	"nl" => "FTP account configuratie : ",
-	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ æôğ-ÁËËÁÕÎÔÁ:",
-	"de" => "Konfiguration des FTP-Kontos",
-	"zh" => "FTPÕÊ»§ÅäÖÃ£º",
-	"pl" => "Konfiguracja konta FTP : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Edici&oacute;n de cuenta FTP",
-	"pt" => "Configuração das contas de ftp"
-);
-
 $txt_ftp_new_account_link = array(
 	"fr" => "Nouveau compte ftp",
 	"en" => "New ftp account",
@@ -4778,81 +2427,6 @@ $txt_ftp_new_account_link = array(
 	"es" => "Nueva cuenta FTP",
 	"pt" => "Nova conta de ftp"
 );
-//////////////////
-// SSH ACCOUNTS //
-//////////////////
-$txt_title_ssh_form = array(
-	"fr" => "Comptes SSH de ",
-	"en" => "SSH accounts of ",
-	"hu" => "SSH hozzáférései a(z) ",
-	"it" => "Accounts SSH di ",
-	"nl" => "Ssh accounts van ",
-	"ru" => "õŞÅÔÎÙÅ ÚÁĞÉÓÉ æôğ",
-	"de" => "SSH-Konten von ",
-	"zh" => "±¾Õ¾µãµÄSSHÕÊ»§ ",
-	"pl" => "Konta SSH ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Cuentas SSH de ",
-	"pt" => "Contas de SSH"
-);
-$txt_ssh_account_list = array(
-	"fr" => "Liste de vos comptes SSH: ",
-	"en" => "List of your SSH accounts: ",
-	"hu" => "Az ön SSH hozzáférései: ",
-	"it" => "Lista dei tuoi accounts SSH: ",
-	"nl" => "Lijst van jouw SSH accounts:",
-	"ru" => "óĞÉÓÏË ×ÁÛÉÈ æôğ ÁËËÁÕÎÔÏ×:",
-	"de" => "Liste Ihrer SSH-Konten:",
-	"zh" => "ÄúµÄSSHÕÊ»§ÁĞ±í£º",
-	"pl" => "Spis twoich kont SSH : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Lista de sus cuentas SSH:",
-	"pt" => "Lista de contas de ssh"
-);
-$txt_ssh_new_account = array(
-	"fr" => "Nouveau compte SSH : ",
-	"en" => "New SSH account: ",
-	"hu" => "Új SSH hozzáférés: ",
-	"it" => "Nuovo account SSH: ",
-	"nl" => "Nieuw SSH account: ",
-	"ru" => "îÏ×ÙÊ ÁËËÁÕÎÔ:",
-	"de" => "Neues SSH-Konto",
-	"zh" => "ĞÂµÄSSHÕÊ»§£º",
-	"pl" => "Nowe konto SSH : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nueva cuenta SSH",
-	"pt" => "Nova conta de ssh"
-);
-$txt_ssh_account_edit = array(
-	"fr" => "Edition d'un compte SSH : ",
-	"en" => "SSH account configuration: ",
-	"hu" => "SSH hozzáférés konfigurálása: ",
-	"it" => "Configurazione account SSH: ",
-	"nl" => "SSH account configuratie : ",
-	"ru" => "ëÏÎÆÉÇÕÒÁÃÉÑ æôğ-ÁËËÁÕÎÔÁ:",
-	"de" => "Konfiguration des SSH-Kontos",
-	"zh" => "SSHÕÊ»§ÅäÖÃ£º",
-	"pl" => "Konfiguracja konta SSH : ",
-	"se" => "TRANS SVENSKA",
-	"es" => "Edici&oacute;n de cuenta SSH",
-	"pt" => "Configuração das contas de ssh"
-);
-
-$txt_ssh_new_account_link = array(
-	"fr" => "Nouveau compte SSH",
-	"en" => "New SSH account",
-	"hu" => "Új SSH hozzáférés",
-	"it" => "Nuovo account SSH",
-	"nl" => "Nieuw ssh account",
-	"ru" => "îÏ×ÙÊ æôğ ÁËËÁÕÎÔ",
-	"de" => "Neues SSH-Konto",
-	"zh" => "ĞÂµÄSSHÕÊ»§",
-	"pl" => "Nowe konto SSH",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nueva cuenta SSH",
-	"pt" => "Nova conta de ssh"
-);
-
 ///////////////
 // DATABASES //
 ///////////////
@@ -4870,38 +2444,6 @@ $txt_new_password = array(
 	"se" => "TRANS SVENSKA",
 	"es" => "Nueva cuenta FTP",
 	"pt" => "Nova conta de ftp"
-
-);
-
-$txt_title_database_form = array(
-	"fr" => "Vos bases de données",
-	"en" => "Your databases",
-	"hu" => "Az ön adatbázisai",
-	"it" => "Tuoi databases",
-	"nl" => "Jouw databases",
-	"ru" => "÷ÁÛÉ ÂÁÚÙ ÄÁÎÎÙÈ",
-	"de" => "Ihre Datenbanken",
-	"zh" => "ÄúµÄÊı¾İ¿â",
-	"pl" => "Twoje bazy danych",
-	"se" => "TRANS SVENSKA",
-	"es" => "Sus bases de datos",
-	"pt" => "As suas base de dados"
-
-);
-
-$txt_title_help_form = array(
-	"fr" => "Aide en ligne de DTC",
-	"en" => "Online DTC help",
-	"hu" => "Online DTC súgó",
-	"it" => "Aiuto in linea DTC",
-	"nl" => "On-line DTC help",
-	"ru" => "ïÎÌÁÊÎ ĞÏÍÏİØ DTC",
-	"de" => "DTC Online-Hilfe",
-	"zh" => "DTCÔÚÏß°ïÖúÎÄµµ",
-	"pl" => "Pomoc Online",
-	"se" => "TRANS SVENSKA",
-	"es" => "Ayuda en linea para DTC",
-	"pt" => "Ajuda on-line para DTC"
 
 );
 

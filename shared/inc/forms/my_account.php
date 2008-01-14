@@ -13,32 +13,6 @@ function drawAdminTools_MyAccount($admin){
 
 	global $cc_code_array;
 
-	global $lang;
-
-	global $txt_please_tell_if_info_not_ok;
-	global $txt_refund_my_account;
-	global $txt_remaining_money;
-	global $txt_renew_my_account_button;
-	global $txt_upgrade_my_account_button;
-	global $txt_expiration_date;
-	global $txt_allowed_data_transfer;
-	global $txt_storage_space;
-	global $txt_your_hosting_account;
-	global $txt_total_disk_usage;
-	global $txt_transfer_this_month;
-	global $txt_transfer_du;
-	global $txt_draw_client_info_familyname;
-	global $txt_draw_client_info_firstname;
-	global $txt_draw_client_info_comp_name;
-	global $txt_draw_client_info_addr;
-	global $txt_draw_client_info_zipcode;
-	global $txt_draw_client_info_country;
-	global $txt_draw_client_info_city;
-	global $txt_draw_client_info_state;
-	global $txt_draw_client_info_phone;
-	global $txt_draw_client_info_fax;
-	global $txt_draw_client_info_email;
-
 	$frm_start = "<form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -86,20 +60,20 @@ function drawAdminTools_MyAccount($admin){
 	}
 
 	if(isset($admin["data"])){
-		$out .= "<h3>".$txt_transfer_du[$lang]."</h3>";
+		$out .= "<h3>". _("Transfer and disk usage:") ."</h3>";
 		// Draw overall this month usage
 		// if there is no usage, set to 0
 		if (!isset($stats["total_transfer"]))
 		{
 			$stats["total_transfer"] = 0;
 		}
-		$overall = "<br>".$txt_transfer_this_month[$lang].smartByte($stats["total_transfer"]);
+		$overall = "<br>". _("Transfer this month:") .smartByte($stats["total_transfer"]);
 		if($id_client != 0){
 			$bw_quota = $admin["info"]["bandwidth_per_month_mb"]*1024*1024;
 			$overall .= " / ".smartByte($bw_quota)."<br>";
 			$overall .= drawPercentBar($stats["total_transfer"],$bw_quota);
 		}
-		$overall .= $txt_total_disk_usage[$lang].smartByte($stats["total_du"]);
+		$overall .= _("Total disk usage:").smartByte($stats["total_du"]);
 		if($id_client != 0 && isset($admin["data"])){
 			$du_quota = $admin["info"]["quota"]*1024*1024;
 			$overall .= " / ".smartByte($du_quota)."<br>";
@@ -117,10 +91,10 @@ function drawAdminTools_MyAccount($admin){
 
 		// If the customer has domains (he could have only a VPS...).
 		if(isset($admin["data"])){
-			$out .= "<br><h3>".$txt_your_hosting_account[$lang]."</h3>";
+			$out .= "<br><h3>". _("Your hosting account:") ."</h3>";
 			$out .= "<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"1\">
 <tr>
-	<td><b>".$txt_storage_space[$lang]."</b></td><td><b>".$txt_allowed_data_transfer[$lang]."</b></td><td><b>".$txt_expiration_date[$lang]."</b></td>
+	<td><b>". _("Storage space") ."</b></td><td><b>". _("Allowed bandwidth per month") ."</b></td><td><b>". _("Expiry date") ."</b></td>
 </tr>
 <tr>
 	<td>".smartByte($du_quota)."</td><td>".smartByte($bw_quota)."</td><td>".$admin["info"]["expire"]."</td>
@@ -129,7 +103,7 @@ function drawAdminTools_MyAccount($admin){
 
 			if(file_exists($dtcshared_path."/dtcrm")){
 				$out .= "<br><center>$frm_start<input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
-<input type=\"submit\" value=\"".$txt_upgrade_my_account_button[$lang]."\">
+<input type=\"submit\" value=\"". _("Upgrade my account") ."\">
 </form>";
 				$out .= "<form action=\"/dtc/new_account.php\">
 <input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
@@ -137,7 +111,7 @@ function drawAdminTools_MyAccount($admin){
 <input type=\"hidden\" name=\"product_id\" value=\"".$admin["info"]["prod_id"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"client_id\" value=\"$id_client\">
-<input type=\"submit\" value=\"".$txt_renew_my_account_button[$lang]."\">
+<input type=\"submit\" value=\"". _("Renew my account") ."\">
 </form></center><br>";
 			}
 
@@ -208,11 +182,11 @@ function drawAdminTools_MyAccount($admin){
 				}
 			}
 
-			$out .=  "<h3>".$txt_remaining_money[$lang]."</h3><br>
+			$out .=  "<h3>". _("Remaining money on my account:") ."</h3><br>
 <table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"0\">
 <tr>
 	<td><font size=\"+1\">\$".$client["dollar"]."</font></td>
-	<td><font size=\"-1\">".$txt_refund_my_account[$lang]."</font><br>
+	<td><font size=\"-1\">". _("Refund my account:") ."</font><br>
 $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 \$<input size=\"8\" type=\"text\" name=\"refund_amount\" value=\"\">
 <input type=\"submit\" value=\"Ok\">
@@ -223,26 +197,25 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 		}
 
 
-		$out .= "<center><b>".$txt_please_tell_if_info_not_ok[$lang]."</b></center>";
+		$out .= "<center><b>". _("Please tell us if the following is not correct:") ."</b></center>";
 
 		if($client["is_company"] == "yes"){
-			$out .= $txt_draw_client_info_comp_name[$lang].$client["company_name"]."<br>";
+			$out .= _("Company name:") .$client["company_name"]."<br>";
 		}
 
-		$out .= $txt_draw_client_info_firstname[$lang].$client["christname"]."<br>";
-		$out .= $txt_draw_client_info_familyname[$lang].$client["familyname"]."<br>";
-		$out .= $txt_draw_client_info_addr[$lang].$client["addr1"]."<br>";
+		$out .= _("First name:")	.$client["christname"]."<br>";
+		$out .= _("Family name:")	.$client["familyname"]."<br>";
+		$out .= _("Address:")		.$client["addr1"]."<br>";
 		$out .= $client["addr2"]."<br>";
-		$out .= $txt_draw_client_info_zipcode[$lang].$client["zipcode"]."<br>";
-		$out .= $txt_draw_client_info_city[$lang].$client["city"]."<br>";
-		$out .= $txt_draw_client_info_state[$lang].$client["state"]."<br>";
-		$out .= $txt_draw_client_info_country[$lang].$cc_code_array[ $client["country"] ] ."<br>";
-		$out .= $txt_draw_client_info_phone[$lang].$client["phone"]."<br>";
-		$out .= $txt_draw_client_info_fax[$lang].$client["fax"]."<br>";
-		$out .= $txt_draw_client_info_email[$lang].$client["email"]."<br>";
+		$out .= _("Zipcode:")		.$client["zipcode"]."<br>";
+		$out .= _("City:")		.$client["city"]."<br>";
+		$out .= _("State:")		.$client["state"]."<br>";
+		$out .= _("Country:")		.$cc_code_array[ $client["country"] ] ."<br>";
+		$out .= _("Phone number:")	.$client["phone"]."<br>";
+		$out .= _("Fax:")		.$client["fax"]."<br>";
+		$out .= _("Email:")		.$client["email"]."<br>";
 	}else{
-		$out .= "You do not have a client account, so there
-is no money in your account.";
+		$out .= _("You do not have a client account, so there is no money in your account.");
 	}
 	return $out;
 

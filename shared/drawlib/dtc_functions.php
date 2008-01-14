@@ -617,6 +617,14 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 	mysql_query($adm_query);
 }
 
+function drawSubmitButton($text){
+	return "<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"submit\" value=\"". $text. "\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>";
+}
+
 function drawPercentBar($value,$max,$double="yes"){
 	$alts = "";
 	$altn = "";

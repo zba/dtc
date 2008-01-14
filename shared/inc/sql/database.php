@@ -1,7 +1,5 @@
 <?php
 
-require("$dtcshared_path/inc/sql/database_strings.php");
-
 ///////////////////////////
 // MySQL password change //
 ///////////////////////////
@@ -12,15 +10,15 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
 	}
 	if(!isFtpLogin($_REQUEST["dbuser"])){
-		$submit_err .= $txt_dbsql_incorrect_mysql_login_form_please_try_again[$lang]."<br>\n";
+		$submit_err .= _("Incorrect MySQL login format: please enter another login and try again.") ."<br>\n";
 		$commit_flag = "no";
 	}
 	if($_REQUEST["dbuser"] == "root" || $_REQUEST["dbuser"] == "debian-sys-maint"){
-		$submit_err .= $txt_dbsql_incorrect_mysql_login_root_or_debiansysmaint[$lang]."<br>\n";
+		$submit_err .= _("Incorrect MySQL login format: please don't enter root or debian-sys-maint") ."<br>\n";
 		$commit_flag = "no";
 	}
 	if(!isDTCPassword($_REQUEST["db_pass"])){
-		$submit_err .= $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size[$lang]."<br>\n";
+		$submit_err .= _("Password must consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.") ."<br>\n";
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){
@@ -28,7 +26,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 		$result = mysql_query($query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$num_rows = mysql_num_rows($result);
 		if($num_rows > 0){
-			$submit_err .= $txt_dbsql_a_user_by_that_name_exists_in_the_db[$lang]."<br>\n";
+			$submit_err .= _("A user with that name exists in the database, please select a new one.") ."<br>\n";
 			$commit_flag = "no";
 		}
 	}
@@ -41,7 +39,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
 	if($conf_user_mysql_type=="distant"){
-		mysql_close($newid) or die("Cannot disconnect to user database");
+		mysql_close($newid) or die( _("Cannot close user database") );
 		connect2base();
 	}
 }
@@ -53,26 +51,26 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
 	}
 	if(!isDatabase($_REQUEST["newdb_name"])){
-		$submit_err .= $txt_dbsql_this_is_not_a_valid_db_name[$lang]."<br>\n";
+		$submit_err .= _("This is not a valid database name! Please choose another one.") ."<br>\n";
 		$commit_flag = "no";
 	}else{
 		$q = "SELECT * FROM mysql.db WHERE Db='".$_REQUEST["newdb_name"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$num_rows = mysql_num_rows($r);
 		if($num_rows > 0){
-			$submit_err .= $txt_dbsql_a_db_by_that_name_exists[$lang]."<br>\n";
+			$submit_err .= _("A database by that name exists, please choose another name.") ."<br>\n";
 			$commit_flag = "no";
 		}
 	}
 	if(!isFtpLogin($_REQUEST["dbuser"])){
-		$submit_err .= $txt_dbsql_incorrect_db_login_form[$lang]."<br>\n";
+		$submit_err .= _("Incorrect db login format: please enter another login and try again.") ."<br>\n";
 		$commit_flag = "no";
 	}else{
 		$query = "SELECT * FROM mysql.user WHERE User='".$_REQUEST["dbuser"]."';";
 		$result = mysql_query($query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$num_rows = mysql_num_rows($result);
 		if($num_rows < 1){
-			$submit_err .= $txt_dbsql_no_db_user_by_that_name_exists_in_the_db[$lang]."<br>\n";
+			$submit_err .= _("No user by that name exists in the database, or you don't own this db user. Please select a new one.") ."<br>\n";
 			$commit_flag = "no";
 		}
 	}
@@ -142,7 +140,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "del_dbuser"){
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$num_rows = mysql_num_rows($r);
 		if($num_rows > 0){
-			$submit_err .= $txt_dbsql_that_user_owns_some_db_please_remove_them[$lang]."<br>\n";
+			$submit_err .= _("That user still owns some databases. Please remove them or change the owner first.") ."<br>\n";
 			$commit_flag = "no";
 		}
 	}
@@ -164,14 +162,14 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_user_db"){
 	}
 	// action=delete_user_db&dbname=clem
 	if(!isDatabase($_REQUEST["dbname"])){
-		$submit_err .= $txt_dbsql_incorrect_mysql_db_name[$lang]."<br>\n";
+		$submit_err .= _("Incorrect MySQL db name format: please enter another and try again.") ."<br>\n";
 		$commit_flag = "no";
 	}else{
 		$q = "SELECT User FROM mysql.db WHERE Db='".$_REQUEST["dbname"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n < 1){
-			$submit_err .= $txt_dbsql_cannot_reselect_mysql_db_name[$lang]."<br>\n";
+			$submit_err .= _("Cannot reselect MySQL db name: please enter another and try again.") ."<br>\n";
 			$commit_flag = "no";
 		}else{
 			$a = mysql_fetch_array($r);
@@ -179,7 +177,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_user_db"){
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n < 1){
-				$submit_err .= $txt_dbsql_mysql_db_ownership_not_valid_i_wont_del_because_you_dont_own_it[$lang]."<br>\n";
+				$submit_err .= _("MySql database ownership not valid: I will not let you delete this database because it doesn't seem to be owned by you.")."<br>\n";
 				$commit_flag = "no";
 			}
 		}
@@ -208,7 +206,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 		$commit_flag = "no";
 	}
 	if(!isDatabase($_REQUEST["dbname"])){
-		$submit_err .= $txt_dbsql_incorrect_mysql_db_name[$lang]."<br>\n";
+		$submit_err .= _("Incorrect MySQL db name format: please enter another and try again.") ."<br>\n";
 		$commit_flag = "no";
 	}else{
 		$q = "SELECT User FROM mysql.db WHERE Db='".$_REQUEST["dbname"]."';";
@@ -223,7 +221,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n < 1){
-				$submit_err .= $txt_dbsql_mysql_db_ownership_not_valid_i_wont_change_owner_because_you_dont_own_it[$lang]."<br>\n";
+				$submit_err .= _("MySql database ownership not valid: I will not let you change owner of this database because it doesn't seems to be owned by you.")."<br>\n";
 				$commit_flag = "no";
 			}
 		}
@@ -249,7 +247,7 @@ if(isset($_REQUEST["change_mysql_password"]) && $_REQUEST["change_mysql_password
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1){
-		$submit_err .= $txt_dbsql_user_or_password_incorrect[$lang]."<br>\n";
+		$submit_err .= _("User or password is incorrect!") ."<br>\n";
 		$commit_flag = "no";
 	}
 
