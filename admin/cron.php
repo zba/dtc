@@ -412,6 +412,20 @@ function cronMailSystem () {
 				$PATH_POSTFIX_SCRIPT = "/etc/rc.d/rc.postfix";
 			}
 			system("$PATH_POSTFIX_SCRIPT reload");
+
+			$PATH_POSTSUPER = "/usr/sbin/postsuper";
+                        if( file_exists("/usr/sbin/postsuper")){
+                                $PATH_POSTSUPER = "/usr/sbin/postsuper";
+                        }else if( file_exists("/usr/local/sbin/postsuper")){
+                                $PATH_POSTSUPER = "/usr/local/sbin/postsuper";
+                        }else if( file_exists("/usr/bin/postsuper")){
+                                $PATH_POSTSUPER = "/usr/bin/postsuper";
+                        }
+
+                        // first stop queue processing in postfix
+                        echo "Stopping postfix queue...\n";
+                        system("$PATH_POSTSUPER -h ALL");
+
 			echo "Reloading amavis\n";
 			if( file_exists ("/etc/init.d/amavis") ){
 				system("/etc/init.d/amavis force-reload");
@@ -422,6 +436,10 @@ function cronMailSystem () {
 			}else if(file_exists("/etc/rc.d/rc.amavisd")){
 				system("/etc/rc.d/rc.amavisd restart");
 			}
+			
+			echo "Starting postfix queue...\n";
+                        system("$PATH_POSTSUPER -H ALL");
+
 			break;
 		case "qmail":
 		default:
