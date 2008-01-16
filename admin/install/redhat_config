@@ -36,7 +36,9 @@ PATH_HTTPD_CONF=/etc/httpd/conf/httpd.conf
 PATH_AWSTATS_ETC=/etc/awstats
 PATH_AMAVISD_CONF=/etc/amavisd.conf
 PATH_CLAMAV_CONF=/etc/clamd.conf
-PATH_DTC_ETC=/usr/share/dtc/etc
+PATH_PUREFTPD_CONF="/etc/pure-ftpd.conf"
+
+PATH_DTC_ETC=/var/lib/dtc/etc
 PATH_DTC_SHARED=/usr/share/dtc
 PATH_DTC_ADMIN=/usr/share/dtc/admin
 PATH_DTC_CLIENT=/usr/share/dtc/client
@@ -51,3 +53,4 @@ fi
 
 MKTEMP="mktemp -p /tmp"
 MYSQL_DB_SOCKET_PATH="/var/lib/mysql/mysql.sock"
+DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config

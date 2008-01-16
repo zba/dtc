@@ -12,19 +12,6 @@ function drawAdminTools_MailingLists($domain){
 	global $edit_mailbox;
 	global $addrlink;
 
-	global $lang;
-	global $txt_list_name;
-	global $txt_list_owner;
-	global $txt_list_liste_of_your_ml;
-	global $txt_list_new_list;
-	global $txt_mail_edit;
-	global $txt_mail_new_mailbox_link;
-	global $txt_number_of_active_lists;
-	global $txt_maximum_mailbox_reach;
-	global $txt_lists_hlp_main_owner;
-	global $txt_lists_hlp_list_name;
-
-
 	$txt = "";
 //	$nbr_email = sizeof($domain["emails"]);
 	if (isset($domain["mailinglists"])){
@@ -36,10 +23,10 @@ function drawAdminTools_MailingLists($domain){
 	if($nbr_email >= $max_email){
 		$max_color = "color=\"#440000\"";
 	}
-	$nbrtxt = $txt_number_of_active_lists[$lang];
+	$nbrtxt = _("Number of active mailing lists");
 	$txt .= "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\">". $nbr_email ."</font> / <font size=\"-1\">" . $max_email . "</font><br><br>";
 
-	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><h3>".$txt_list_liste_of_your_ml[$lang]."</h3>";
+	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><h3>". _("List of your mailing lists") ."</h3>";
 	if (isset($domain["mailinglists"]))
 	{
 		$lists = $domain["mailinglists"];
@@ -64,8 +51,8 @@ function drawAdminTools_MailingLists($domain){
 	}
 
 	if(isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
-		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">".$txt_mail_new_mailbox_link[$lang]."</a> ";
-		$txt .= "<br><br><h3>".$txt_mail_edit[$lang]."</h3><br><br>";
+		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">". _("New mailing list") ."</a> ";
+		$txt .= "<br><br><h3>". _("Edit mailing list") ."</h3><br><br>";
 
 		$list_name = $_REQUEST["edit_mailbox"];
 		if (isset($_REQUEST["list_owner"])){
@@ -83,9 +70,9 @@ function drawAdminTools_MailingLists($domain){
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
 	<input type=\"hidden\" name=\"edit_mailbox\" value=\"".$_REQUEST["edit_mailbox"]."\">
-	<div onmouseover=\"return escape('".$txt_lists_hlp_list_name[$lang]."')\">".$txt_list_name[$lang]."</div></td>
+	<div onmouseover=\"return escape('". _("Name of the list.") ."')\">". _("List name") ."</div></td>
 	<td><b>$list_name</b>@$edit_domain</td></tr>
-	<tr><td align=\"right\"><div onmouseover=\"return escape('".$txt_lists_hlp_main_owner[$lang]."')\">".$txt_list_owner[$lang]."</div></td>
+	<tr><td align=\"right\"><div onmouseover=\"return escape('". _("This is the main owner of the list.") ."')\">". _("List owner") ."</div></td>
 	<td><input type=\"text\" name=\"editmail_owner\" value=\"$list_owner\"></td></tr>";
 $txt .= list_options();
 $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" value=\"Ok\">&nbsp;
@@ -98,8 +85,8 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 		$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
 		$txt .= subscribers_list($list_path);
 	}else{
-		$txt .= "<br><br>".$txt_mail_new_mailbox_link[$lang];
-		$txt .= "<br><br><h3>".$txt_list_new_list[$lang]."</h3><br>";
+		$txt .= "<br><br>". _("new mailing list");
+		$txt .= "<br><br><h3>". _("New mailing list") ."</h3><br>";
 
 		if($nbr_email < $max_email){
 			$txt .= "
@@ -110,9 +97,9 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
-	<div onmouseover=\"return escape('".$txt_lists_hlp_list_name[$lang]."')\">".$txt_list_name[$lang]."</div></td>
+	<div onmouseover=\"return escape('"._("List name") ."')\">". _("List owner") ."</div></td>
 	<td><input type=\"text\" name=\"newlist_name\" value=\"\"></td></tr>
-	<tr><td align=\"right\"><div onmouseover=\"return escape('".$txt_lists_hlp_main_owner[$lang]."')\">".$txt_list_owner[$lang]."</div></td>
+	<tr><td align=\"right\"><div onmouseover=\"return escape('". _("This is the main owner of the list.") ."')\">". _("List owner") ."</div></td>
 	<td><input type=\"text\" name=\"newlist_owner\" value=\"\">";
 $txt .= "</td></tr>
 <tr><td>&nbsp;</td>
@@ -122,7 +109,7 @@ $txt .= "</td></tr>
 </form>
 ";
 		}else{
-			$txt .= $txt_maximum_mailbox_reach[$lang]."<br>";
+			$txt .= _("Maximum number of lists reached") ."<br>";
 		}
 	}
 	$txt .= "</b></font></font>";
@@ -323,24 +310,11 @@ function list_options(){
 
 	global $edit_domain;
 	global $adm_login;
-	global $txt_lists_main_title_rights;
-	global $txt_lists_main_title_header;
-	global $txt_lists_main_title_archive;
-	global $txt_lists_main_title_digest;
-	global $txt_lists_main_title_notification;
-	global $txt_lists_main_title_smtp_config;
-	global $txt_lists_main_title_subunsub;
-	global $txt_lists_main_title_webarchive;
-	global $txt_lists_title_sub;
-	global $txt_lists_title_unsub;
-	global $txt_lists_hlp_sub;
-	global $txt_lists_hlp_unsub;
-	global $lang;
 	$admin_path = getAdminPath($adm_login);
 	$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
 
 	$output = "";
-	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_rights[$lang]."</b></td></tr>";
+	$output .= "<tr><td colspan=\"2\"><b>". _("Rights") ."</b></td></tr>";
 	$output .= getListOptionsBoolean($list_path,"subonlypost");
 	$output .= getListOptionsBoolean($list_path,"closedlist");
 	$output .= getListOptionsList($list_path,"owner");
@@ -348,7 +322,7 @@ function list_options(){
 	$output .= getListOptionsList($list_path,"moderators");
 	$output .= getListOptionsBoolean($list_path,"nosubconfirm");
 
-	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_header[$lang]."</b></td></tr>";
+	$output .= "<tr><td colspan=\"2\"><b>". _("Header") ."</b></td></tr>";
 	$output .= getListOptionsValue($list_path,"prefix");
 	$output .= getListOptionsList($list_path,"delheaders");
 	$output .= getListOptionsBoolean($list_path,"addtohdr");
@@ -356,22 +330,22 @@ function list_options(){
 	$output .= getListOptionsTextarea($list_path,"customheaders");
 	$output .= getListOptionsTextarea($list_path,"footer");
 
-	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_archive[$lang]."</b></td></tr>";
+	$output .= "<tr><td colspan=\"2\"><b>". _("Archive") ."</b></td></tr>";
 	$output .= getListOptionsBoolean($list_path,"noarchive");
 	$output .= getListOptionsBoolean($list_path,"noget");
 	$output .= getListOptionsBoolean($list_path,"subonlyget");
 
-	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_digest[$lang]."</b></td></tr>";
+	$output .= "<tr><td colspan=\"2\"><b>". _("Digest") ."</b></td></tr>";
 	$output .= getListOptionsValue($list_path,"digestinterval");
 	$output .= getListOptionsValue($list_path,"digestmaxmails");
 
-	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_notification[$lang]."</b></td></tr>";
+	$output .= "<tr><td colspan=\"2\"><b>". _("Notifications") ."</b></td></tr>";
 	$output .= getListOptionsBoolean($list_path,"notifysub");
 	$output .= getListOptionsBoolean($list_path,"nosubonlydenymails");
 	$output .= getListOptionsBoolean($list_path,"notoccdenymails");
 	$output .= getListOptionsBoolean($list_path,"noaccessdenymails");
 
-	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_smtp_config[$lang]."</b></td></tr>";
+	$output .= "<tr><td colspan=\"2\"><b>". _("SMTP configuration") ."</b></td></tr>";
 	$output .= getListOptionsValue($list_path,"memorymailsize");
 	$output .= getListOptionsValue($list_path,"relayhost");
 	$output .= getListOptionsValue($list_path,"verp");
@@ -379,13 +353,13 @@ function list_options(){
 	$output .= getListOptionsValue($list_path,"delimiter");
 	$output .= getListOptionsTextarea($list_path,"access");
 
-	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_subunsub[$lang]."</b></td></tr>";
-	$output .= "<tr><td onmouseover=\"Tip('".$txt_lists_hlp_sub[$lang]."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".$txt_lists_title_sub[$lang]."</td>
+	$output .= "<tr><td colspan=\"2\"><b>". _("Subscribe/Unsubscribe an email address") ."</b></td></tr>";
+	$output .= "<tr><td onmouseover=\"Tip('". _("Insert here an email address to subscribe it.") ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">". _("Subscribe:") ."</td>
     <td><input size=\"40\" type=\"text\" value=\"\" name=\"sub\"></td></tr>";
-	$output .= "<tr><td onmouseover=\"Tip('".$txt_lists_hlp_unsub[$lang]."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".$txt_lists_title_unsub[$lang]."</td>
+	$output .= "<tr><td onmouseover=\"Tip('". _("Insert here an email address to unsubscribe it.") ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">". _("Unsubscribe:") ."</td>
     <td><input size=\"40\" type=\"text\" value=\"\" name=\"unsub\"></td></tr>";
 
-	$output .= "<tr><td colspan=\"2\"><b>".$txt_lists_main_title_webarchive[$lang]."</b></td></tr>";
+	$output .= "<tr><td colspan=\"2\"><b>". _("Web archive") ."</b></td></tr>";
 	$output .= getListOptionsWABoolean("webarchive");
 	$output .= getListOptionsWATextarea($list_path,"rcfile");
 	$output .= getListOptionsWABooleanActions("recreatewa");

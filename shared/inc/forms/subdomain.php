@@ -1,10 +1,4 @@
 <?php
-/**
- * @package DTC
- * @version $Id: subdomain.php,v 1.24 2007/06/12 09:01:33 thomas Exp $
- * @param unknown_type $domain
- * @return unknown
- */
 
 function setZoneToGenerate($id){
 	global $pro_mysql_subdomain_table;
@@ -88,39 +82,9 @@ function drawAdminTools_Subdomain($admin,$domain){
 	global $edit_domain;
 	global $addrlink;
 
-	global $lang;
-	global $txt_subdom_list;
-	global $txt_subdom_default_sub;
-	global $txt_subdom_errase;
-	global $txt_subdom_create;
-
-	global $txt_subdom_newname;
-	global $txt_subdom_ip;
-
 	global $conf_administrative_site;
 	global $conf_hide_password;
 
-	global $txt_number_of_active_subdomains;
-	global $txt_subdom_limit_reach;
-
-	global $txt_subdom_newname;
-	global $txt_subdom_txtrec;
-	global $txt_subdom_dynip_logpass;
-	global $txt_subdom_dynip_logpass;
-	global $txt_subdom_dynip_login;
-	global $txt_subdom_dynip_pass;
-	global $txt_subdom_register_global;
-	global $txt_subdom_edita;
-	global $txt_subdom_scriptadvice;
-	global $txt_subdom_windowsusers;
-	global $txt_subdom_wwwalias;
-	global $txt_subdom_generate_webalizer;
-	global $txt_subdom_generate_vhost;
-	global $txt_subdom_nameserver_for;
-	global $txt_subdom_srv_record;
-	global $txt_subdom_edit_one;
-	global $txt_subdom_new;
-	
 	global $edit_a_subdomain;
 
 	global $dtcshared_path;
@@ -146,7 +110,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 	// Popup for choosing default subdomain.
 	$subdomains = $domain["subdomains"];
 	$txt .= "<table><tr><td align=\"right\">";
-	$txt .= $txt_subdom_default_sub[$lang]."</td><td><select name=\"subdomaindefault_name\">";
+	$txt .= _("Default subdomain: ") ."</td><td><select name=\"subdomaindefault_name\">";
 	for($i=0;$i<$nbr_subdomain;$i++){
 		$sub = $subdomains[$i]["name"];
 		if($domain["default_subdomain"] == "$sub"){
@@ -158,17 +122,17 @@ function drawAdminTools_Subdomain($admin,$domain){
 	$txt .= "</select></td><td><input type=\"hidden\" name=\"subdomaindefault\" value=\"Ok\"><input type=\"image\" src=\"gfx/stock_apply_20.png\"></td></tr></table></form>";
 
 	$dsc = array(
-		"title" => $txt_subdom_list[$lang],
-		"new_item_title" => $txt_subdom_create[$lang],
-		"new_item_link" => $txt_subdom_new[$lang],
-		"edit_item_title" => $txt_subdom_edit_one[$lang],
+		"title" => _("List of your subdomains: ") ,
+		"new_item_title" => _("Create a subdomain: ") ,
+		"new_item_link" => _("New subdomain") ,
+		"edit_item_title" => _("Edit one of your subdomains") ,
 		"table_name" => $pro_mysql_subdomain_table,
 		"action" => "subdomain_editor",
 		"forward" => array("adm_login","adm_pass","addrlink"),
 		"id_fld" => "id",
 		"list_fld_show" => "subdomain_name",
 		"max_item" => $max_subdomain,
-		"num_item_txt" => $txt_number_of_active_subdomains[$lang],
+		"num_item_txt" => _("Number of active subdomains:") ,
 		"create_item_callback" => "subdomainCreateDirsCallBack",
 		"delete_item_callback" => "subdomainDeleteDirsCallBack",
 		"edit_item_callback" => "subdomainEditCallBack",
@@ -183,17 +147,18 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"type" => "text",
 				"check" => "subdomain",
 				"disable_edit" => "yes",
-				"legend" => $txt_subdom_newname[$lang]),
+				"legend" => _("Subdomain name: ") ),
 			"ip" => array(
 				"type" => "text",
 				"check" => "subdomain_or_ip",
 				"can_be_empty" => "yes",
 				"empty_makes_default" => "yes",
-				"legend" => $txt_subdom_ip[$lang]),
+				"legend" => _("IP address or CNAME: ") ),
 			"generate_vhost" => array(
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"legend" => $txt_subdom_generate_vhost[$lang]),
+				"display_replace" => array ( _("Yes") , _("No") ),
+				"legend" => _("Generate a vhost entry for this subdomain:") ),
 			"add_default_charset" => array(
 				"type" => "popup",
 				"values" => array("dtc-wont-add","Off","ISO-8859-1","ISO-8859-2","ISO-8859-3","ISO-8859-4","ISO-8859-5","ISO-8859-6","ISO-8859-7","ISO-8859-8","ISO-8859-9","ISO-8859-10","ISO-8859-11","ISO-8859-12","ISO-8859-13","ISO-8859-14","ISO-8859-15","ISO-8859-16","ISO-2022-JP","ISO-2022-KR","ISO-2022-CN","Big5","cn-Big5","WINDOWS-1251","CP866","KOI8","KOI8-E","KOI8-r","KOI8-U","KOI8-ru","ISO-10646-UCS-2","ISO-10646-UCS-4","UTF-7","UTF-8","UTF-16","UTF-16BE","UTF-16LE","UTF-32","UTF-32BE","UTF-32LE","euc-cn","euc-gb","euc-jp","euc-kr","EUC-TW","gb2312","iso-10646-ucs-2","iso-10646-ucs-4","shift_jis"),
@@ -201,20 +166,21 @@ function drawAdminTools_Subdomain($admin,$domain){
 			"srv_record" => array(
 				"type" => "text",
 				"can_be_empty" => "yes",
-				"legend" => $txt_subdom_srv_record[$lang]),
+				"legend" => _("This subdomain is a service (SRV)<br>entry for the following port: ") ),
 			"register_globals" => array(
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"default" => "no",
-				"legend" => $txt_subdom_register_global[$lang]),
+				"display_replace" => array ( _("Yes") , _("No") ),
+				"legend" => _("Use register_globals=1: ") ),
 			"associated_txt_record" => array(
 				"type" => "text",
-				"legend" => $txt_subdom_txtrec[$lang]),
+				"legend" => _("TXT field of the subdomain: ") ),
 			"nameserver_for" => array(
 				"type" => "text",
 				"check" => "domain_or_ip",
 				"can_be_empty" => "yes",
-				"legend" => $txt_subdom_nameserver_for[$lang])
+				"legend" => _("This subdomain is a nameserver (NS)<br>entry for the following subdomain: ") )
 			)
 		);
 	if($domain["safe_mode"] == "no"){
@@ -276,13 +242,13 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"check" => "dtc_login",
 				"empty_makes_sql_null" => "yes",
 				"can_be_empty" => "yes",
-				"legend" => $txt_subdom_dynip_login[$lang]);
+				"legend" => _("Dynamic IP update login: ") );
 	$dsc["cols"]["pass"] = array(
 				"type" => "password",
 				"check" => "dtc_pass",
 				"empty_makes_sql_null" => "yes",
 				"can_be_empty" => "yes",
-				"legend" => $txt_subdom_dynip_pass[$lang]);
+				"legend" => _("Dynamic IP update password: ") );
 
 	$txt .= dtcListItemsEdit($dsc);
 	$txt .= helpLink("PmWiki/Subdomains");

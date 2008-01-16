@@ -1,12 +1,17 @@
-dtc (0.27.4-1) unstable; urgency=low
+dtc (0.27.6-1) unstable; urgency=low
 
-  * New upstream release
-  * Lot's of requests in debconf are now guessed (like hostname and IP),
-    also lot's of them have now very low priority.
-  * The postinst now does less things, it's done by dtc's install script now
-  * The debian/rules now uses the provided "make install" from upstream to
-    build the binary packages.
-  * Bumped Standards-Version to 3.7.3
+  * New upstream release.
+  * [v0.27] Renamed the dtc package to dtc-core in order not to conflict with
+    the "device tree compiler".
+  * [v0.27] Fixed some non-arch-dependent debian/rules & debian/control
+    problems.
+  * [v0.27] Lot's of requests in debconf are now guessed (like hostname and
+    IP), also lot's of them have now very low priority.
+  * [v0.27] The postinst now does less things, it's done by dtc's install
+    script now
+  * [v0.27] The debian/rules now uses the provided "make install" from upstream
+    to build the binary packages.
+  * [v0.27] Bumped Standards-Version to 3.7.3
   * [v0.26.3] Upgraded embed a copy of wz_tooltip (Closes: #429214)
   * [v0.25.9] Added dtc-stats-daemon package to the build.
   * [v0.25.9] Repaired the debian dtc-chroot-shell that was previously broken

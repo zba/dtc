@@ -9,8 +9,8 @@
 # MANUAL_DIR=/usr/share/man
 
 # Version and release are set here:
-VERS=0.27.4
-RELS=2
+VERS=0.27.6
+RELS=1
 
 VERSION=$(VERS)"-"$(RELS)
 CURDIR?=`pwd`
@@ -97,7 +97,8 @@ all:
 	exit 0
 
 clean:
-	rm -r $(BSD_BUILD_DIR)
+	rm -fr $(BSD_BUILD_DIR)
+	rm -fr shared/vars/locale
 
 source-copy:
 	@if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
@@ -200,8 +201,8 @@ admin/genfiles/gen_ssh_account.php admin/genfiles/gen_maildrop_userdb.php admin/
 admin/genfiles/gen_named_files_alt-wildcard.php admin/genfiles/remote_mail_list.php admin/genfiles/gen_named_files.php \
 admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_pro_vhost_alt-wildcard.php
 
-ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/img_alt_skin.php admin/inc/img.php admin/inc/renewals.php admin/inc/renewals_strings.php \
-admin/inc/draw_user_admin.php admin/inc/draw_user_admin_strings.php admin/inc/dtc_config.php admin/inc/dtc_config_strings.php \
+ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/img_alt_skin.php admin/inc/img.php admin/inc/renewals.php \
+admin/inc/draw_user_admin.php admin/inc/dtc_config.php admin/inc/dtc_config_strings.php \
 admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admin/inc/nav.php admin/inc/img_alt.php \
 admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/product_manager_strings.php admin/dtcrm/submit_to_sql.php
 
@@ -232,17 +233,19 @@ shared/vars/lang.php shared/vars/strings.php shared/vars/table_names.php shared/
 SHARED_INC_PHP_SCRIPT_FILES=shared/inc/accounting.php shared/inc/dbconect.php shared/inc/delete_user.php shared/inc/domain_export.php \
 shared/inc/draw.php shared/inc/fetchmail.php shared/inc/fetch.php shared/inc/nusoap.php shared/inc/skin.class.php \
 shared/inc/submit_to_sql.php shared/inc/tree_mem_to_db.php shared/inc/vps.php shared/inc/forms/admin_stats.php \
-shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedicated.php shared/inc/forms/dedicated_strings.php \
+shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedicated.php \
 shared/inc/forms/dns.php shared/inc/forms/domain_info.php shared/inc/forms/domain_stats.php shared/inc/forms/email.php \
 shared/inc/forms/ftp.php shared/inc/forms/invoices.php shared/inc/forms/lists.php shared/inc/forms/lists_strings.php \
 shared/inc/forms/my_account.php shared/inc/forms/packager.php shared/inc/forms/reseller.php shared/inc/forms/root_admin.php \
 shared/inc/forms/root_admin_strings.php shared/inc/forms/ssh.php shared/inc/forms/subdomain.php shared/inc/forms/ticket.php \
-shared/inc/forms/ticket_strings.php shared/inc/forms/tools.php shared/inc/forms/vps.php shared/inc/forms/vps_strings.php \
+shared/inc/forms/tools.php shared/inc/forms/vps.php \
 shared/inc/sql/database.php shared/inc/sql/database_strings.php shared/inc/sql/dns.php shared/inc/sql/domain_info.php \
 shared/inc/sql/domain_info_strings.php shared/inc/sql/domain_stats.php shared/inc/sql/email.php shared/inc/sql/email_strings.php \
 shared/inc/sql/ftp.php shared/inc/sql/ftp_strings.php shared/inc/sql/lists.php shared/inc/sql/reseller.php shared/inc/sql/ssh.php \
 shared/inc/sql/ssh_strings.php shared/inc/sql/subdomain.php shared/inc/sql/subdomain_strings.php shared/inc/sql/ticket.php \
 shared/inc/sql/vps.php shared/inc/sql/vps_strings.php
+
+SKIN_STUFF=shared/gfx/skin/default_layout.php shared/gfx/skin/bwoup/layout.php
 
 PAYMENT_API_PHP_SCRIPT_FILES=shared/maxmind/CreditCardFraudDetection.php shared/maxmind/HTTPBase.php \
 shared/maxmind/LocationVerification.php shared/maxmind/TelephoneVerification.php \
@@ -332,7 +335,7 @@ LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU.KOI8-R de_DE zh_CN pl_PL se_NO pt_PT 
 i18n:
 	@echo "===> Managing internationalizations and localizations"
 	@echo "=> Extracting strings from sources"
-	@xgettext --output-dir=shared/vars $(WEB_SCRIPT_FILES) -o templates.pot
+	@xgettext --output-dir=shared/vars $(WEB_SCRIPT_FILES) $(SKIN_STUFF) -o templates.pot
 	@echo "=> Merging in every language .po file: "
 	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgmerge -s -U $$i.po templates.pot ; done && cd ../..
 	@for i in $(LOCALE_TRANS) ; do mkdir -p shared/vars/locale/$$i/LC_MESSAGES ; done && cd ../..

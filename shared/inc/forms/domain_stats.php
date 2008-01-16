@@ -5,13 +5,6 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	global $pro_mysql_acc_http_table;
 	global $pro_mysql_acc_ftp_table;
 	global $pro_mysql_acc_email_table;
-
-	global $txt_total_transfered_bytes_this_month;
-	global $txt_stats_http_subdom;
-	global $lang;
-	
-	global $txt_password;
-	global $txt_user;
 	
 	global $adm_login;
 	global $adm_pass;
@@ -57,7 +50,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 		$pop_trafic = 0;
 		$imap_trafic = 0;
 	}
-	$out .= "<h3>".$txt_total_transfered_bytes_this_month[$lang]."</h3>";
+	$out .= "<h3>". _("Total transfered bytes this month") ."</h3>";
 	$out .= "<br>HTTP: ".smartByte($http_amount);
 	$out .= "<br>FTP:  ".smartByte($ftp_amount);
 	$out .= "<br>SMTP:  ".smartByte($smtp_trafic);
@@ -65,7 +58,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	$out .= "<br>IMAP:  ".smartByte($imap_trafic);
 	$out .= "<br>Total: ". smartByte($http_amount + $ftp_amount + $pop_trafic + $smtp_trafic + $imap_trafic);
 
-	$out .= "<br><br><h3>".$txt_stats_http_subdom[$lang]."</h3><br>";
+	$out .= "<br><br><h3>"._("Detailed web statistics (HTTP) of your subdomains:") ."</h3><br>";
 	for($i=0;$i<sizeof($eddomain["subdomains"]);$i++){
 		if($i != 0)	$out .= " - ";
 		$out .= "<a target=\"_blank\" href=\"http://".
@@ -78,7 +71,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	$a = mysql_fetch_array($r);
-	$out .= "<br><br><strong>Protect your logs and stats</strong><br>";
+	$out .= "<br><br><strong>". _("Protect your logs and stats folder with a password") ."</strong><br>";
 	
 	$out .= "<table>";
 	$hidden = "<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
@@ -89,32 +82,31 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	if(empty($a["stats_login"])){
 		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"add_stats_login\">
-		Login: <input type=\"text\" name=\"stats_login\" value=\"\"> Password: 
+		". _("Login:") ." <input type=\"text\" name=\"stats_login\" value=\"\"> ". _("Password:"). " 
 		<input type=\"text\" name=\"stats_pass\" value=\"\"></td></tr>
-		<tr><td>Copy to subdomains: <input type=\"checkbox\" name=\"stats_subdomain\" value=\"\"></td></tr>
-		<tr><td><input type=\"submit\" value=\""."SUBMIT"."\"></form></td></tr>";
+		<tr><td>". _("Copy to subdomains:") ." <input type=\"checkbox\" name=\"stats_subdomain\" value=\"\"></td></tr>
+		<tr><td><input type=\"submit\" value=\"". _("Ok") ."\"></form></td></tr>";
 	}else{
 		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"modify_stats_login_pass\">
-		Login: <input type=\"text\" name=\"stats_login\" value=\"".$a["stats_login"]."\">
-		Password: <input type=\"password\" name=\"stats_pass\" value=\"".$a["stats_pass"]."\"></td></tr>
-		<tr><td>Copy to subdomains: <input type=\"checkbox\" name=\"stats_subdomain\" value=\"\" ";
+		". _("Login:") ." <input type=\"text\" name=\"stats_login\" value=\"".$a["stats_login"]."\">
+		". _("Password:") ." <input type=\"password\" name=\"stats_pass\" value=\"".$a["stats_pass"]."\"></td></tr>
+		<tr><td>". _("Copy to subdomains:") ." <input type=\"checkbox\" name=\"stats_subdomain\" value=\"\" ";
 		if($a["stats_subdomain"]=='yes')
 			$out .= "checked";
 		$out .= "></td></tr>
-		<tr><td><input type=\"submit\" value=\""."SAVE"."\"></form>
+		<tr><td><input type=\"submit\" value=\"". _("Save") ."\"></form>
 		<form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"del_stats_login\">
 		<input type=\"hidden\" name=\"stats_login\" value=\"".$a["stats_login"]."\">
 		<input type=\"hidden\" name=\"stats_pass\" value=\"".$a["stats_pass"]."\">
 		<input type=\"hidden\" name=\"stats_subdomain\" value=\" ".$a["stats_subdomain"]."\">
-		<input type=\"submit\" value=\""."DELETE"."\"></form></td></tr>";
+		<input type=\"submit\" value=\"". _("Delete") ."\"></form></td></tr>";
 		
 	}
 	
 	$out .= "</table>";
 	return $out;
-	
 }
 
 

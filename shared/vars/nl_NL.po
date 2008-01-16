@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-29 10:54+0800\n"
+"POT-Creation-Date: 2008-01-15 00:19+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jelle Kalf <thomas@goirand.fr>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -15,15 +15,26 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: shared/inc/forms/vps.php:117 shared/inc/forms/vps.php:130
-#: shared/inc/forms/vps.php:143
+#: shared/inc/forms/vps.php:64 shared/inc/forms/vps.php:77
+#: shared/inc/forms/vps.php:90
 msgid " CPU seconds"
 msgstr ""
 
-#: shared/inc/forms/vps.php:116 shared/inc/forms/vps.php:117
-#: shared/inc/forms/vps.php:118 shared/inc/forms/vps.php:119
+#: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
+#: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
 msgid "2 months ago: "
 msgstr ""
+
+#: shared/inc/sql/database.php:61
+msgid "A database by that name exists, please choose another name."
+msgstr ""
+"Er bestaat al een andere database met die naam, kies alsjeblieft een ander."
+
+#: shared/inc/sql/database.php:29
+msgid "A user with that name exists in the database, please select a new one."
+msgstr ""
+"Een gebruiker met die naam bestaat al in de database, kies alsjeblieft een "
+"ander."
 
 #: admin/inc/dtc_config.php:847
 #, fuzzy
@@ -34,9 +45,46 @@ msgstr "Fungeer als een backup DNS server voor de volgende servers:"
 msgid "Act as backup mail server for the following servers:"
 msgstr "Fungeer als een backup mail server voor de volgende servers:"
 
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
+#: admin/inc/draw_user_admin.php:314 shared/inc/forms/database.php:37
+#: shared/inc/forms/database.php:76 shared/inc/forms/email.php:27
+#: shared/inc/forms/reseller.php:24
+msgid "Action"
+msgstr "Actie"
+
 #: admin/inc/dtc_config.php:339
 msgid "Activate FTP backups:"
 msgstr "Activeer FTP backups:"
+
+#: admin/inc/draw_user_admin.php:280 admin/inc/draw_user_admin.php:300
+msgid "Add"
+msgstr "Voeg toe"
+
+#: shared/inc/forms/root_admin.php:223
+msgid "Add a VPS for this admin:"
+msgstr "Voeg een VPS toe voor deze admin:"
+
+#: shared/inc/forms/root_admin.php:270
+msgid "Add a dedicated server for this admin:"
+msgstr "Voeg een dedicated server toe voor deze admin:"
+
+#: shared/inc/draw.php:128
+#, fuzzy
+msgid "Add a domain"
+msgstr "Voeg een gebruiker toe aan dit domein:"
+
+#: shared/inc/forms/root_admin.php:158
+msgid "Add a domain for this user:"
+msgstr "Voeg een gebruiker toe aan dit domein:"
+
+#: shared/inc/draw.php:418
+#, fuzzy
+msgid "Add a domain name to my account"
+msgstr "Beschikbare tegoeden op mijn account:"
+
+#: shared/inc/draw.php:416
+msgid "Add a domain:"
+msgstr "Voeg domein toe:"
 
 #: admin/inc/dtc_config.php:1210
 msgid "Add a new company"
@@ -46,17 +94,48 @@ msgstr ""
 msgid "Add a new company:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:270
+#: admin/inc/draw_user_admin.php:216
 msgid "Add a new user"
 msgstr ""
+
+#: shared/inc/forms/email.php:27
+#, fuzzy
+msgid "Address email"
+msgstr "Adres:"
 
 #: admin/inc/dtc_config.php:692
 msgid "Address of your main MX server:"
 msgstr "Hostname van primaire MX record"
 
-#: admin/inc/dtc_config.php:1230
+#: admin/inc/dtc_config.php:1230 shared/inc/forms/my_account.php:208
 msgid "Address:"
 msgstr "Adres:"
+
+#: admin/inc/draw_user_admin.php:416
+msgid "Admin"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:128
+#, fuzzy
+msgid "Admin login: "
+msgstr "FTP login:"
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Age"
+msgstr "Leeftijd"
+
+#: shared/inc/forms/root_admin.php:134
+msgid "Allow addition of FTP logins:"
+msgstr "Geef toestemming om FTP logins toe te voegen:"
+
+#: shared/inc/forms/root_admin.php:133
+msgid "Allow addition of SSH logins:"
+msgstr "Geef toestemming om SSH logins toe te voegen:"
+
+#: shared/inc/forms/root_admin.php:135
+#, fuzzy
+msgid "Allow the use of the package installer:"
+msgstr "Kies een package om te installeren"
 
 #: admin/inc/dtc_config.php:743
 msgid ""
@@ -65,6 +144,23 @@ msgstr ""
 "Geef de volgende servers toestemming om een lijst te maken van domeinnamen "
 "van deze servervoor een backup:"
 
+#: shared/inc/forms/root_admin.php:131
+msgid "Allow to add domains:"
+msgstr "Geeft toestemming om domeinen toe te voegen :"
+
+#: shared/inc/forms/my_account.php:97
+msgid "Allowed bandwidth per month"
+msgstr "Toegestane bandbreedte deze maand"
+
+#: shared/inc/forms/root_admin.php:127
+msgid "Allowed bandwidth per month (MB):"
+msgstr "Toegestane bandbreedte deze maand (MB):"
+
+#: admin/inc/renewals.php:118
+#, fuzzy
+msgid "Amount"
+msgstr "Land"
+
 #: admin/inc/dtc_config.php:598
 msgid "Another location"
 msgstr "Andere locatie"
@@ -72,6 +168,29 @@ msgstr "Andere locatie"
 #: admin/inc/dtc_config.php:1156
 msgid "Apache file names"
 msgstr ""
+
+#: admin/inc/dtc_config.php:1127
+msgid "Apache htpasswd path"
+msgstr ""
+
+#: shared/inc/forms/lists.php:333
+msgid "Archive"
+msgstr "Archief"
+
+#: shared/inc/forms/root_admin.php:152
+msgid ""
+"Are you sure you want to delete this domain name ? This will erase all "
+"hosted files for this domain!!!"
+msgstr ""
+
+#: shared/inc/forms/root_admin.php:141
+msgid ""
+"Are your sure you want to delete this user? This will erase all his hosted "
+"domain names, files, and databases !!!"
+msgstr ""
+"Weet je zeker dat je deze gebruiker wilt wissen? Als je hier op JA klikt, "
+"wis je DEFINITIEF alle domeinnamen, bestanden en databases gekoppeld aan "
+"deze gebruiker !!!"
 
 #: admin/inc/dtc_config.php:723
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
@@ -82,13 +201,83 @@ msgstr ""
 msgid "Available"
 msgstr "Beschikbaar"
 
+#: shared/inc/forms/root_admin.php:389
+msgid "Backup Vhost IP address"
+msgstr "Backup Vhost IP adres"
+
 #: admin/inc/dtc_config.php:356
 msgid "Backup frequency:"
 msgstr "Backup regelmaat:"
 
-#: shared/inc/forms/vps.php:154
+#: shared/inc/forms/root_admin.php:494 shared/inc/forms/root_admin.php:558
+#, fuzzy
+msgid "Bandwidth per month"
+msgstr "Toegestane bandbreedte deze maand"
+
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
+msgid "Bank validated"
+msgstr "Bank gevalideerd"
+
+#: shared/inc/forms/vps.php:266
+msgid "Boot up (xm start)"
+msgstr ""
+
+#: shared/inc/forms/email.php:621
+msgid "Bounce message content: "
+msgstr "Inhoud bounce bericht: "
+
+#: shared/inc/forms/root_admin.php:356
+msgid "CGI-BIN protection"
+msgstr "CGI-BIN bescherming"
+
+#: admin/inc/graphs.php:7
+msgid "CPU Load Average"
+msgstr ""
+
+#: shared/inc/forms/vps.php:101
 msgid "CPU Time:"
 msgstr ""
+
+#: shared/inc/forms/vps.php:226
+msgid "CPU and Network usage:"
+msgstr "CPU en Netwerk verbruik:"
+
+#: shared/inc/sql/database.php:42
+#, fuzzy
+msgid "Cannot close user database"
+msgstr "Locatie van de database van gebruiker:"
+
+#: admin/inc/draw_user_admin.php:333
+msgid "Cannot find payment!"
+msgstr "Kan betaling niet vinden !"
+
+#: admin/inc/draw_user_admin.php:248 admin/inc/draw_user_admin.php:249
+msgid "Cannot find product in db!"
+msgstr "Kan product niet in de database vinden!"
+
+#: admin/inc/draw_user_admin.php:322
+#, fuzzy
+msgid "Cannot find product!"
+msgstr "Kan product niet in de database vinden!"
+
+#: admin/inc/draw_user_admin.php:375
+msgid "Cannot find server in db!"
+msgstr "Kan server niet in de database vinden!"
+
+#: admin/inc/draw_user_admin.php:111 admin/inc/draw_user_admin.php:138
+#: admin/inc/draw_user_admin.php:190
+msgid "Cannot find ticket!"
+msgstr "Kan ticket niet vinden!"
+
+#: shared/inc/sql/database.php:172
+msgid "Cannot reselect MySQL db name: please enter another and try again."
+msgstr ""
+"Kan MySQL db naam niet opnieuw selecteren: vul alsjeblieft een ander in en "
+"probeer opnieuw."
+
+#: shared/inc/forms/email.php:641
+msgid "Catch-all email set to deliver to"
+msgstr "Catch-all email wordt afgeleverd op"
 
 #: admin/inc/dtc_config.php:321
 msgid "Category"
@@ -97,6 +286,52 @@ msgstr "Categorie"
 #: admin/inc/dtc_config.php:325
 msgid "Category description"
 msgstr "Omschrijving van de categorie"
+
+#: shared/inc/forms/vps.php:339
+msgid "Change NetBSD kernel"
+msgstr "Wijzig NetBSD kernel"
+
+#: shared/inc/draw.php:45 shared/inc/forms/email.php:213
+msgid "Change your password:"
+msgstr "Verander jouw password:"
+
+#: shared/inc/forms/email.php:618
+msgid "Check to send a bounce message (vacation): "
+msgstr "Vink aan om een bounce bericht te sturen: "
+
+#: shared/inc/forms/vps.php:129
+msgid "Checking filesystem..."
+msgstr "Checking filesystem..."
+
+#: shared/inc/forms/packager.php:215
+msgid "Choose a package to install"
+msgstr "Kies een package om te installeren"
+
+#: shared/inc/forms/my_account.php:211
+msgid "City:"
+msgstr "Woonplaats:"
+
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:215 admin/inc/renewals.php:249
+msgid "Client"
+msgstr ""
+
+#: shared/inc/forms/root_admin.php:125
+msgid "Client ID:"
+msgstr "Klant id :"
+
+#: admin/inc/renewals.php:159 admin/inc/renewals.php:197
+#: admin/inc/renewals.php:231 admin/inc/renewals.php:264
+msgid "Client name not found!"
+msgstr "Klant naam Niet gevonden!"
+
+#: admin/inc/draw_user_admin.php:178
+msgid "Close without reply"
+msgstr "Sluit zonder antwoord"
+
+#: shared/inc/forms/ticket.php:163
+msgid "Closed"
+msgstr "Gesloten"
 
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
@@ -107,17 +342,90 @@ msgstr "Bedrijven"
 msgid "Company name"
 msgstr "Bedrijfsnaam:"
 
-#: admin/inc/dtc_config.php:1225
+#: admin/inc/dtc_config.php:1225 shared/inc/forms/my_account.php:203
 msgid "Company name:"
 msgstr "Bedrijfsnaam:"
 
-#: admin/inc/dtc_config.php:413
+#: shared/inc/forms/root_admin.php:458
+msgid "Configuration of the VPSes"
+msgstr ""
+
+#: shared/inc/forms/root_admin.php:526
+msgid "Configuration of the dedicated servers"
+msgstr "Configuratie van de dedicated servers"
+
+#: shared/inc/forms/root_admin.php:334
+msgid "Configuration of the domains"
+msgstr "Configuratie van de domeinen"
+
+#: shared/inc/forms/dns.php:85
+msgid "Configure your domain name:"
+msgstr "Configureer je domein naam:"
+
+#: admin/inc/draw_user_admin.php:470
+msgid "Console output"
+msgstr ""
+
+#: shared/inc/forms/domain_stats.php:87 shared/inc/forms/domain_stats.php:94
+#, fuzzy
+msgid "Copy to subdomains:"
+msgstr "Subdomeinen:"
+
+#: shared/inc/forms/vps.php:177
+msgid "Could not connect to the VPS SOAP Server."
+msgstr "Kon geen verbinding maken met de VPS SOAP Server."
+
+#: shared/inc/forms/vps.php:122
+msgid ""
+"Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
+"not running?"
+msgstr ""
+"kon remote status niet verkrijgen (Method getVPSState() failed). Misschien is de vps niet actief..."
+
+#: shared/inc/forms/vps.php:126
+msgid "Could not get remote status. Unkown error: "
+msgstr "kon remote status niet verkrijgen Unkown error: "
+
+#: shared/inc/forms/vps.php:124
+msgid ""
+"Could not get remote status: could not connect to the SOAP server (HTTP "
+"error)."
+msgstr ""
+"kon remote status niet verkrijgen: kon geen verbinding maken met de SOAP server (HTTP error)."
+
+#: admin/inc/dtc_config.php:413 shared/inc/forms/root_admin.php:561
 msgid "Country"
 msgstr "Land"
 
-#: admin/inc/dtc_config.php:1233
+#: admin/inc/dtc_config.php:1233 shared/inc/forms/my_account.php:213
 msgid "Country:"
 msgstr "Land:"
+
+#: shared/inc/forms/root_admin.php:281
+#, fuzzy
+msgid "Country: "
+msgstr "Land:"
+
+#: shared/inc/forms/database.php:65 shared/inc/forms/database.php:113
+#, fuzzy
+msgid "Create"
+msgstr "Verwijder"
+
+#: shared/inc/forms/aliases.php:23
+msgid "Create Mail Group"
+msgstr ""
+
+#: shared/inc/forms/aliases.php:22
+msgid "Create New Mail Group"
+msgstr ""
+
+#: shared/inc/forms/subdomain.php:126
+msgid "Create a subdomain: "
+msgstr "Creeer een subdomein: "
+
+#: shared/inc/forms/vps.php:26
+msgid "Credential not correct: can't display in file "
+msgstr "Gegevens niet correct: Kan niet in bestand weergeven "
 
 #: admin/inc/dtc_config.php:928
 #, fuzzy
@@ -128,6 +436,18 @@ msgstr "Afkorting Valuta:"
 msgid "Currency symbol:"
 msgstr "Valuta symbool:"
 
+#: shared/inc/forms/vps.php:247
+msgid "Current VPS status:"
+msgstr "Huidige VPS status:"
+
+#: shared/inc/forms/vps.php:195
+msgid "Current contract: "
+msgstr "Huidig contract: "
+
+#: shared/inc/forms/vps.php:275
+msgid "Currently installed operating system: "
+msgstr ""
+
 #: admin/inc/dtc_config.php:1307
 msgid "Customer and service country vs company:"
 msgstr "Klant en service land versus bedrijf:"
@@ -136,6 +456,26 @@ msgstr "Klant en service land versus bedrijf:"
 #, fuzzy
 msgid "Customer country"
 msgstr "Land van herkomst klant"
+
+#: shared/gfx/skin/default_layout.php:157 shared/gfx/skin/bwoup/layout.php:550
+msgid "Customer renewals"
+msgstr "Klant vernieuwingen"
+
+#: shared/inc/forms/root_admin.php:348
+msgid "Customize"
+msgstr ""
+
+#: shared/inc/draw.php:135 shared/inc/draw.php:412
+msgid "DNS Nick handles"
+msgstr "DNS Nick handles"
+
+#: shared/inc/draw.php:196
+msgid "DNS and MX"
+msgstr "DNS en MX"
+
+#: shared/inc/draw.php:376
+msgid "DNS config of:"
+msgstr ""
 
 #: admin/inc/dtc_config.php:623
 msgid "DTC Skin chooser"
@@ -149,9 +489,95 @@ msgstr ""
 msgid "Daily"
 msgstr "Dagelijks"
 
+#: shared/inc/forms/admin_stats.php:83
+msgid "Database Name"
+msgstr "Database naam"
+
+#: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
+msgid "Database files:"
+msgstr "Database bestanden:"
+
+#: shared/inc/forms/database.php:76
+#, fuzzy
+msgid "Database name"
+msgstr "Database naam"
+
+#: shared/inc/draw.php:288
+msgid "Databases"
+msgstr "Database"
+
+#: shared/inc/forms/admin_stats.php:81
+msgid "Databases disk usage:"
+msgstr "Hardeschijf verbruik databases:"
+
+#: shared/inc/draw.php:428
+#, fuzzy
+msgid "Databases:"
+msgstr "Database bestanden:"
+
+#: admin/inc/draw_user_admin.php:237 shared/inc/forms/invoices.php:23
+#: shared/inc/forms/ticket.php:158
+msgid "Date"
+msgstr "Datum"
+
+#: shared/inc/forms/dedicated.php:38
+#, fuzzy
+msgid "Dedicated server contract:"
+msgstr "Dedicated servers contract: "
+
+#: shared/inc/forms/dedicated.php:41
+msgid "Dedicated server expiration dates:"
+msgstr "Dedicated server verloop datums:"
+
+#: admin/inc/renewals.php:241
+msgid "Dedicated servers renewals"
+msgstr "Dedicated server Vernieuwingen"
+
+#: admin/inc/renewals.php:107
+msgid "Dedicated servers: "
+msgstr "Dedicated servers: "
+
 #: admin/inc/dtc_config.php:1285 admin/inc/dtc_config.php:1290
 msgid "Default company invoicing:"
 msgstr "Standaard bedrijf offertes:"
+
+#: shared/inc/forms/subdomain.php:113
+msgid "Default subdomain: "
+msgstr "Standaard subdomein: "
+
+#: admin/inc/draw_user_admin.php:281 admin/inc/draw_user_admin.php:301
+#: shared/inc/forms/database.php:53 shared/inc/forms/database.php:99
+#: shared/inc/forms/domain_stats.php:104
+msgid "Delete"
+msgstr "Verwijder"
+
+#: shared/inc/forms/root_admin.php:144
+msgid "Delete a user domain:"
+msgstr "Wis een gebruikersdomein :"
+
+#: shared/inc/forms/root_admin.php:192
+msgid "Delete one of the admin VPS: "
+msgstr "Verwijder een van de admin VPS: "
+
+#: shared/inc/forms/root_admin.php:251
+msgid "Delete one of the admin dedicated server:"
+msgstr "Verwijder een van de admin dedicated server:"
+
+#: shared/inc/forms/root_admin.php:142
+msgid "Delete the user"
+msgstr "Wis de gebruiker"
+
+#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:613
+msgid "Deliver messages locally in INBOX: "
+msgstr "Lokaal afleveren INBOX: "
+
+#: shared/inc/forms/aliases.php:51
+msgid "Delivery Group:"
+msgstr ""
+
+#: shared/inc/forms/packager.php:218
+msgid "Description"
+msgstr "Omschrijving"
 
 #: admin/inc/dtc_config.php:1072
 #, fuzzy
@@ -162,6 +588,44 @@ msgstr "Omschrijving van de categorie"
 msgid "Destination folder:"
 msgstr "Destination folder:"
 
+#: shared/inc/forms/domain_stats.php:61
+msgid "Detailed web statistics (HTTP) of your subdomains:"
+msgstr "Gedetaileerde web (HTTP) statistieken van jouw subdomains:"
+
+#: shared/inc/forms/lists.php:338
+msgid "Digest"
+msgstr "Digest"
+
+#: shared/inc/forms/root_admin.php:361
+msgid "Disk quota"
+msgstr "Schijf quota"
+
+#: shared/inc/forms/root_admin.php:126
+msgid "Disk quota (MB):"
+msgstr "Schijf quota (MB):"
+
+#: shared/inc/forms/admin_stats.php:83 shared/inc/forms/admin_stats.php:104
+msgid "Disk usage"
+msgstr "Hardeschijf gebruik"
+
+#: shared/inc/draw.php:371
+#, fuzzy
+msgid "Domain Tools"
+msgstr "Domein naam"
+
+#: admin/inc/draw_user_admin.php:295 shared/inc/forms/admin_stats.php:104
+#: shared/inc/forms/root_admin.php:344
+msgid "Domain name"
+msgstr "Domein naam"
+
+#: admin/inc/draw_user_admin.php:237
+msgid "Domain name / VPS server hostname"
+msgstr "Domein naam / VPS server hostname"
+
+#: shared/inc/forms/admin_stats.php:67
+msgid "Domain name files:"
+msgstr "Domeinnaam bestanden:"
+
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
 msgstr "Domeinnaam registratie"
@@ -170,22 +634,116 @@ msgstr "Domeinnaam registratie"
 msgid "Domain name registry API configuraiton"
 msgstr "Configuratie Domeinnaam registratie API"
 
+#: shared/inc/forms/admin_stats.php:102
+msgid "Domain name trafic and disk usage:"
+msgstr "Domeinnaam verkeer en hardeschijf gebruik:"
+
+#: shared/inc/forms/subdomain.php:245
+msgid "Dynamic IP update login: "
+msgstr ""
+
+#: shared/inc/forms/subdomain.php:251
+msgid "Dynamic IP update password: "
+msgstr "Dynamisch IP update password: "
+
+#: shared/inc/forms/aliases.php:24
+msgid "Edit Mail Group"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1211
 msgid "Edit a company:"
 msgstr ""
 
+#: shared/inc/forms/lists.php:55
+msgid "Edit mailing list"
+msgstr ""
+
+#: shared/inc/draw.php:365
+msgid "Edit mailing lists of domain:"
+msgstr "Bewerk mailing lists van domein:"
+
+#: shared/inc/forms/subdomain.php:128
+msgid "Edit one of your subdomains"
+msgstr "Bewerk een van je subdomeinen"
+
+#: shared/inc/forms/email.php:246
+msgid "Edit your mailbox redirections:"
+msgstr "Betwerk mailbox redirections:"
+
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:215 admin/inc/renewals.php:249
+#, fuzzy
+msgid "Email"
+msgstr "Email addr"
+
 #: admin/inc/dtc_config.php:299
 msgid "Email addr"
 msgstr "Email addr"
+
+#: shared/inc/forms/aliases.php:56
+#, fuzzy
+msgid "Email address is already in use!"
+msgstr "Email adres van de webmaster:"
 
 #: admin/inc/dtc_config.php:701
 #, fuzzy
 msgid "Email address of your webmaster:"
 msgstr "Email adres van de webmaster:"
 
+#: shared/inc/forms/root_admin.php:365
+msgid "Email max"
+msgstr "E-mail max"
+
+#: shared/inc/forms/aliases.php:47 shared/inc/forms/my_account.php:216
+#, fuzzy
+msgid "Email:"
+msgstr "Email addr"
+
+#: shared/inc/forms/email.php:569
+msgid "Enable SPAM filtering: "
+msgstr "Enable SPAM filtering: "
+
+#: shared/inc/forms/root_admin.php:482 shared/inc/forms/root_admin.php:546
+msgid "Expiration"
+msgstr "Expiratie"
+
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:215 admin/inc/renewals.php:249
+msgid "Expiration date"
+msgstr "Vervaldatum"
+
 #: admin/inc/dtc_config.php:261
 msgid "Expire"
 msgstr "Expiratie"
+
+#: shared/inc/forms/my_account.php:97
+msgid "Expiry date"
+msgstr "Eind datum"
+
+#: shared/inc/forms/root_admin.php:128 shared/inc/forms/vps.php:199
+#, fuzzy
+msgid "Expiry date:"
+msgstr "Eind datum"
+
+#: shared/inc/forms/domain_info.php:101
+msgid "Export this domain to a file"
+msgstr "Exporteer dit domein tot een bestand"
+
+#: shared/inc/forms/ftp.php:54
+msgid "FTP account configuration: "
+msgstr "FTP account configuratie : "
+
+#: shared/inc/draw.php:210 shared/inc/draw.php:400
+msgid "FTP accounts"
+msgstr "FTP accounts"
+
+#: shared/inc/draw.php:402
+msgid "FTP accounts of "
+msgstr "FTP accounts van "
+
+#: shared/inc/forms/domain_info.php:55
+msgid "FTP accounts:"
+msgstr "FTP accounts:"
 
 #: admin/inc/dtc_config.php:44
 msgid "FTP backup"
@@ -203,6 +761,38 @@ msgstr "FTP login:"
 msgid "FTP password:"
 msgstr "FTP password:"
 
+#: shared/inc/forms/my_account.php:207
+msgid "Family name:"
+msgstr "Achternaam:"
+
+#: shared/inc/forms/my_account.php:215
+msgid "Fax:"
+msgstr "Faxnummer:"
+
+#: shared/inc/forms/email.php:301
+msgid "Fetchmail"
+msgstr ""
+
+#: shared/inc/forms/vps.php:271
+msgid "File system check (fsck)"
+msgstr ""
+
+#: shared/inc/forms/vps.php:269
+msgid "File-system check:"
+msgstr ""
+
+#: shared/inc/forms/my_account.php:206
+msgid "First name:"
+msgstr "Voornaam:"
+
+#: admin/inc/draw_user_admin.php:126
+msgid "First query date: "
+msgstr ""
+
+#: shared/inc/forms/ticket.php:57
+msgid "Full description of the trouble:"
+msgstr "Volledige omschrijving van het probleem:"
+
 #: admin/inc/dtc_config.php:665
 msgid "Full hostname of DTC admin panel:"
 msgstr "Volledige Hostnaam van DTC admin panel:"
@@ -211,19 +801,47 @@ msgstr "Volledige Hostnaam van DTC admin panel:"
 msgid "General"
 msgstr ""
 
+#: shared/inc/draw.php:450
+msgid "General information of "
+msgstr "Algemene informatie over "
+
+#: shared/inc/forms/subdomain.php:161
+msgid "Generate a vhost entry for this subdomain:"
+msgstr "Genereer een vhostingang voor dit subdomain:"
+
 #: admin/inc/dtc_config.php:656
 msgid "Generate all apache vhosts on local network ip (NAT)"
 msgstr "Genereer alle apache vhosts op locaal netwerk ip (NAT)"
 
-#: shared/inc/forms/vps.php:162
+#: shared/inc/forms/vps.php:258
+msgid "Gracefully shutdown (xm shutdown)"
+msgstr "Gracefully shutdown (xm shutdown)"
+
+#: shared/inc/forms/root_admin.php:132
+msgid "Grant sub-account addition rights (reseller):"
+msgstr "Geef sub-account toevoegings rechtten (reseller):"
+
+#: shared/inc/forms/vps.php:109
 msgid "HDD I/O:"
 msgstr ""
+
+#: shared/inc/forms/lists.php:325
+msgid "Header"
+msgstr "Header"
+
+#: shared/inc/draw.php:311
+msgid "Help"
+msgstr "Help"
+
+#: shared/inc/draw.php:444
+msgid "Help:"
+msgstr "Help:"
 
 #: admin/inc/dtc_config.php:647
 msgid "Host IP addresses (separated by \"|\"):"
 msgstr "Host IP addressen (separated by \"|\"):"
 
-#: admin/inc/dtc_config.php:398
+#: admin/inc/dtc_config.php:398 shared/inc/forms/ticket.php:158
 #, fuzzy
 msgid "Hostname"
 msgstr "Hostname:"
@@ -232,14 +850,34 @@ msgstr "Hostname:"
 msgid "Hostname:"
 msgstr "Hostname:"
 
-#: admin/inc/dtc_config.php:755
+#: shared/inc/forms/root_admin.php:279
 #, fuzzy
+msgid "Hostname: "
+msgstr "Hostname:"
+
+#: admin/inc/dtc_config.php:755 shared/inc/forms/root_admin.php:385
 msgid "IP address"
-msgstr "IPs addrs"
+msgstr "IP adres"
+
+#: shared/inc/forms/dns.php:19
+msgid "IP address of the primary DNS server:"
+msgstr "IP adres van de primaire DNS server:"
+
+#: shared/inc/forms/subdomain.php:156
+msgid "IP address or CNAME: "
+msgstr "IP addres of CNAME: "
+
+#: shared/inc/forms/vps.php:235
+msgid "IP address: "
+msgstr "IP addres: "
 
 #: admin/inc/dtc_config.php:32
 msgid "IP addresses and network"
 msgstr "IP addressen en netwerk"
+
+#: shared/inc/forms/vps.php:233
+msgid "IP addresses: "
+msgstr "IP addressen: "
 
 #: admin/inc/dtc_config.php:714
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
@@ -249,6 +887,63 @@ msgstr "Tertiaire dns server ip adres:"
 #: admin/inc/dtc_config.php:445
 msgid "IPs addrs"
 msgstr "IPs addrs"
+
+#: shared/inc/forms/vps.php:261
+msgid "Immediate kill (xm destroy)"
+msgstr ""
+
+#: shared/inc/forms/root_admin.php:183
+msgid "Import"
+msgstr "Importeer"
+
+#: shared/inc/forms/root_admin.php:172
+msgid "Import a domain file for this user:"
+msgstr "Importeer een domein bestand voor deze gebruiker:"
+
+#: shared/inc/sql/database.php:165 shared/inc/sql/database.php:209
+msgid "Incorrect MySQL db name format: please enter another and try again."
+msgstr ""
+"Incorrect MySQL db naam formaat: vul alsjeblieft een ander in en probeer "
+"opnieuw."
+
+#: shared/inc/sql/database.php:17
+msgid ""
+"Incorrect MySQL login format: please don't enter root or debian-sys-maint"
+msgstr ""
+"Incorrect MySQL login formaat: gebruik alsjeblieft niet root of debian-sys-"
+"maint"
+
+#: shared/inc/sql/database.php:13
+msgid "Incorrect MySQL login format: please enter another login and try again."
+msgstr ""
+"Incorrect MySQL login formaat: vul alsjeblieft een ander in en probeer "
+"opnieuw."
+
+#: shared/inc/sql/database.php:66
+msgid "Incorrect db login format: please enter another login and try again."
+msgstr ""
+"Incorrect db login formaat:  vul alsjeblieft een ander in en probeer opnieuw."
+
+#: shared/inc/forms/lists.php:357
+msgid "Insert here an email address to subscribe it."
+msgstr "Voeg hier een email adres toe om het te abbonneren."
+
+#: shared/inc/forms/lists.php:359
+msgid "Insert here an email address to unsubscribe it."
+msgstr "Voeg hier een email adres toe om het te deabbonneren."
+
+#: shared/inc/forms/packager.php:218 shared/inc/forms/packager.php:230
+msgid "Install"
+msgstr "Installeer"
+
+#: shared/inc/draw.php:414
+msgid "Internet Whois Nick Handles management:"
+msgstr ""
+
+#: shared/inc/forms/invoices.php:23
+#, fuzzy
+msgid "Invoice"
+msgstr "Offertes"
 
 #: admin/inc/dtc_config.php:1261
 msgid "Invoice footer:"
@@ -262,8 +957,20 @@ msgstr "Offerte eigen text:"
 msgid "Invoicing"
 msgstr "Offertes"
 
-#: shared/inc/forms/vps.php:129 shared/inc/forms/vps.php:130
-#: shared/inc/forms/vps.php:131 shared/inc/forms/vps.php:132
+#: shared/inc/forms/vps.php:172
+msgid "Last boot date: "
+msgstr "Laatste boot datum: "
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Last message age"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:400
+msgid "Last message from"
+msgstr ""
+
+#: shared/inc/forms/vps.php:76 shared/inc/forms/vps.php:77
+#: shared/inc/forms/vps.php:78 shared/inc/forms/vps.php:79
 #, fuzzy
 msgid "Last month: "
 msgstr "Laatste Waarschuwingen: "
@@ -272,14 +979,53 @@ msgstr "Laatste Waarschuwingen: "
 msgid "Last warning: "
 msgstr "Laatste Waarschuwingen: "
 
+#: shared/inc/forms/lists.php:73 shared/inc/forms/lists.php:100
+msgid "List name"
+msgstr "Lijst naam"
+
 #: admin/inc/dtc_config.php:283
 msgid "List of the administrators receiving request for support messages:"
 msgstr ""
 "Lijst van de administrators die request for support messages ontvangen:"
 
+#: shared/inc/forms/ftp.php:51
+msgid "List of your FTP accounts: "
+msgstr "Lijst van jouw FTP accounts:"
+
+#: shared/inc/forms/ssh.php:45
+msgid "List of your SSH accounts:"
+msgstr "Lijst van jouw SSH accounts:"
+
 #: admin/inc/dtc_config.php:1208
 msgid "List of your companies:"
 msgstr ""
+
+#: shared/inc/forms/database.php:68
+msgid "List of your databases:"
+msgstr "Lijst van jouw databases:"
+
+#: shared/inc/forms/aliases.php:21
+msgid "List of your mail groups"
+msgstr ""
+
+#: shared/inc/forms/email.php:530
+#, fuzzy
+msgid "List of your mailboxes:"
+msgstr "Lijst van jouw databases:"
+
+#: shared/inc/forms/lists.php:29
+#, fuzzy
+msgid "List of your mailing lists"
+msgstr "Lijst van jouw databases:"
+
+#: shared/inc/forms/subdomain.php:125
+msgid "List of your subdomains: "
+msgstr "Lijst met jouw subdomeinen: "
+
+#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:100
+#: shared/inc/forms/lists.php:102
+msgid "List owner"
+msgstr "Lijst eigenaar"
 
 #: admin/inc/dtc_config.php:728
 msgid ""
@@ -299,6 +1045,10 @@ msgstr ""
 "Vul hier je backup MX servers in, gescheiden door &quot;|&quot; (pipe)<br>\n"
 "(laat veld leeg indien je niet beschikt over backup MX servers):"
 
+#: shared/inc/forms/root_admin.php:369
+msgid "Lists max"
+msgstr "Lijsten max"
+
 #: admin/inc/dtc_config.php:661
 msgid "Local network area ip adress of the vhost using NAT"
 msgstr "Lan ip adress voor de vhost die NAT gebruikt"
@@ -311,20 +1061,105 @@ msgstr "Locatie"
 msgid "Location of user's database:"
 msgstr "Locatie van de database van gebruiker:"
 
-#: admin/inc/draw_user_admin.php:274 admin/inc/dtc_config.php:257
+#: admin/inc/renewals.php:152 admin/inc/renewals.php:182
+#: admin/inc/renewals.php:249 admin/inc/draw_user_admin.php:237
+#: admin/inc/draw_user_admin.php:295 admin/inc/draw_user_admin.php:314
+#: admin/inc/draw_user_admin.php:400 admin/inc/dtc_config.php:257
 #: admin/inc/dtc_config.php:758 admin/inc/dtc_config.php:785
 #: admin/inc/dtc_config.php:810 admin/inc/dtc_config.php:837
-#: admin/inc/dtc_config.php:862
+#: admin/inc/dtc_config.php:862 shared/inc/forms/email.php:27
+#: shared/inc/forms/reseller.php:24
 msgid "Login"
+msgstr "Login"
+
+#: shared/inc/forms/email.php:328
+msgid "Login successfull. Please select a menu entry on the left..."
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:220 shared/inc/forms/aliases.php:41
+#: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:92
+#: shared/inc/forms/email.php:552 shared/inc/forms/email.php:558
+#: shared/inc/forms/ssh.php:70
+#, fuzzy
+msgid "Login:"
+msgstr "Login"
+
+#: shared/inc/forms/ftp.php:76
+#, fuzzy
+msgid "Login: "
 msgstr "Login"
 
 #: admin/inc/dtc_config.php:1251
 msgid "Logo path relative to"
 msgstr "Logo pad relatief tot"
 
+#: shared/inc/draw.php:317 shared/inc/forms/email.php:306
+msgid "Logout"
+msgstr "Logout"
+
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "MX en NS backup servers"
+
+#: shared/inc/draw.php:359
+#, fuzzy
+msgid "Mail Groups:"
+msgstr "E-mail accounts:"
+
+#: admin/inc/graphs.php:11
+msgid "Mail Queue graph"
+msgstr ""
+
+#: admin/inc/graphs.php:14
+msgid "Mail Queue statistics"
+msgstr ""
+
+#: shared/inc/draw.php:361
+msgid "Mail groups of "
+msgstr "E-Mail-Gruppen von "
+
+#: shared/inc/forms/email.php:533
+#, fuzzy
+msgid "Mailbox configuration:"
+msgstr "FTP backup configuratie"
+
+#: shared/inc/forms/email.php:311
+msgid "Mailbox configuration: "
+msgstr "E-mail account configuratie:"
+
+#: shared/inc/forms/email.php:597
+msgid "Mailbox max files quota: "
+msgstr "Quota max bestanden: "
+
+#: shared/inc/forms/email.php:581 shared/inc/forms/email.php:592
+msgid "Mailbox quota: "
+msgstr "Mailbox quota: "
+
+#: shared/inc/forms/email.php:27
+#, fuzzy
+msgid "Mailbox type"
+msgstr "E-mail accounts:"
+
+#: shared/inc/draw.php:233
+msgid "Mailboxes"
+msgstr "Mailboxen"
+
+#: shared/inc/draw.php:357
+msgid "Mailboxes of "
+msgstr "E-mail account van "
+
+#: shared/inc/draw.php:355 shared/inc/forms/domain_info.php:54
+msgid "Mailboxes:"
+msgstr "E-mail accounts:"
+
+#: shared/inc/draw.php:247
+#, fuzzy
+msgid "Mailing lists"
+msgstr "Lijst van jouw databases:"
+
+#: shared/inc/draw.php:363
+msgid "Mailing lists:"
+msgstr "E-maillijsten:"
 
 #: admin/inc/dtc_config.php:643
 msgid "Main ip address of the server:"
@@ -334,13 +1169,81 @@ msgstr "Primaire ip-adres van de server"
 msgid "Main software configuration of DTC"
 msgstr "Belangrijke software configuratie"
 
-#: shared/inc/forms/vps.php:174
+#: shared/inc/draw.php:422
+msgid "Manage my name servers:"
+msgstr "Manage mijn name servers"
+
+#: shared/inc/forms/root_admin.php:373
+msgid "Max FTP"
+msgstr "Max ftp"
+
+#: shared/inc/forms/root_admin.php:381
+msgid "Max SSH"
+msgstr "Max SSH"
+
+#: shared/inc/forms/vps.php:146
+msgid "Max memory: "
+msgstr "Max geheugen: "
+
+#: shared/inc/forms/lists.php:112
+msgid "Maximum number of lists reached"
+msgstr ""
+
+#: shared/inc/forms/vps.php:148
+msgid "Maxmem: cannot fetch (maybe boot in progress?)"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1020
+msgid "Maxmind license key:"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1016
+msgid "Maxmind login:"
+msgstr ""
+
+#: admin/inc/graphs.php:9
+msgid "Memory and Swap Usage "
+msgstr ""
+
+#: shared/inc/forms/vps.php:143
+msgid "Memory: "
+msgstr ""
+
+#: shared/inc/forms/vps.php:121
 msgid "Method getVPSState failed"
 msgstr ""
 
 #: admin/inc/dtc_config.php:359
 msgid "Monthly"
 msgstr "Maandelijks"
+
+#: shared/inc/draw.php:426
+msgid "My Account information:"
+msgstr "Mijn Account informatie:"
+
+#: shared/inc/draw.php:385
+msgid "My account global statistics"
+msgstr "Mijn globale account statistieken"
+
+#: shared/inc/forms/email.php:296
+msgid "My e-mail"
+msgstr "Mijn e-mail"
+
+#: shared/inc/sql/database.php:224
+msgid ""
+"MySql database ownership not valid: I will not let you change owner of this "
+"database because it doesn't seems to be owned by you."
+msgstr ""
+"MySql database eigendom niet correct: eigenaar niet gewijzigd want je bent "
+"kennelijk zelf niet de eigenaar van deze database."
+
+#: shared/inc/sql/database.php:180
+msgid ""
+"MySql database ownership not valid: I will not let you delete this database "
+"because it doesn't seem to be owned by you."
+msgstr ""
+"MySql database eigendom niet correct: eigenaar niet gewijzigd want je bent "
+"kennelijk zelf niet de eigenaar van deze database."
 
 #: admin/inc/dtc_config.php:1034
 msgid "NAS config"
@@ -350,9 +1253,32 @@ msgstr ""
 msgid "NAT Port"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1051
+#: admin/inc/draw_user_admin.php:237
+#, fuzzy
+msgid "Name"
+msgstr "Nick name"
+
+#: shared/inc/forms/lists.php:73
+msgid "Name of the list."
+msgstr ""
+
+#: shared/inc/draw.php:140
+#, fuzzy
+msgid "Name servers"
+msgstr "Test server"
+
+#: shared/inc/draw.php:374 shared/inc/draw.php:420
+msgid "Name servers:"
+msgstr "Name servers:"
+
+#: admin/inc/dtc_config.php:1051 shared/inc/forms/email.php:561
 msgid "Name:"
 msgstr ""
+
+#: shared/inc/forms/vps.php:139
+#, fuzzy
+msgid "Name: "
+msgstr "Nick name"
 
 #: admin/inc/dtc_config.php:1177
 msgid "Named file names"
@@ -370,20 +1296,66 @@ msgstr ""
 msgid "Named slave file:"
 msgstr ""
 
+#: shared/inc/forms/dns.php:99
+msgid "Named zonefile:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:38 admin/inc/dtc_config.php:686
 msgid "Named zonefiles"
 msgstr ""
 
-#: shared/inc/forms/vps.php:151
+#: shared/inc/forms/packager.php:218
+msgid "Need a database"
+msgstr "Database nodig"
+
+#: admin/inc/graphs.php:5
+msgid "Network Traffic Statistics"
+msgstr ""
+
+#: shared/inc/forms/vps.php:98
 msgid "Network:"
 msgstr ""
+
+#: shared/inc/forms/ftp.php:52
+#, fuzzy
+msgid "New FTP account: "
+msgstr "FTP accounts:"
+
+#: shared/inc/forms/ssh.php:46
+msgid "New SSH account:"
+msgstr "Nieuw SSH account:"
+
+#: shared/inc/forms/vps.php:351
+msgid "New SSH key: "
+msgstr "Nieuwe SSH key: "
+
+#: shared/inc/forms/vps.php:348
+msgid "New SSH password: "
+msgstr "Nieuw SSH password: "
+
+#: shared/inc/forms/email.php:531
+msgid "New mailbox"
+msgstr "Nieuw e-mail account"
+
+#: shared/inc/forms/lists.php:54 shared/inc/forms/lists.php:89
+msgid "New mailing list"
+msgstr ""
+
+#: shared/inc/draw.php:52
+msgid "New password:"
+msgstr "Nieuw password:"
+
+#: shared/inc/forms/subdomain.php:127
+#, fuzzy
+msgid "New subdomain"
+msgstr "Subdomeinen:"
 
 #: admin/inc/dtc_config.php:293
 msgid "Nick name"
 msgstr "Nick name"
 
-#: admin/inc/draw_user_admin.php:204 admin/inc/draw_user_admin.php:328
-#: admin/inc/draw_user_admin.php:396 admin/inc/dtc_config.php:266
+#: admin/inc/draw_user_admin.php:159 admin/inc/draw_user_admin.php:274
+#: admin/inc/draw_user_admin.php:342 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
 #: admin/inc/dtc_config.php:419 admin/inc/dtc_config.php:449
 #: admin/inc/dtc_config.php:529 admin/inc/dtc_config.php:534
@@ -399,14 +1371,150 @@ msgstr "Nick name"
 #: admin/dtcrm/main.php:188 admin/dtcrm/product_manager.php:99
 #: admin/dtcrm/product_manager.php:162 admin/dtcrm/product_manager.php:225
 #: admin/dtcrm/product_manager.php:273 client/new_account_form.php:644
-#: shared/inc/forms/domain_info.php:96 shared/inc/forms/email.php:260
-#: shared/inc/forms/email.php:273 shared/inc/forms/email.php:305
-#: shared/inc/forms/root_admin.php:88 shared/inc/forms/root_admin.php:98
-#: shared/inc/forms/root_admin.php:108 shared/inc/forms/root_admin.php:118
-#: shared/inc/forms/root_admin.php:418 shared/inc/forms/root_admin.php:423
-#: shared/inc/forms/ticket.php:152
+#: shared/inc/forms/domain_info.php:74 shared/inc/forms/email.php:236
+#: shared/inc/forms/email.php:244 shared/inc/forms/email.php:271
+#: shared/inc/forms/root_admin.php:49 shared/inc/forms/root_admin.php:59
+#: shared/inc/forms/root_admin.php:69 shared/inc/forms/root_admin.php:79
+#: shared/inc/forms/root_admin.php:353 shared/inc/forms/root_admin.php:358
+#: shared/inc/forms/subdomain.php:160 shared/inc/forms/subdomain.php:174
+#: shared/inc/forms/ticket.php:130
 msgid "No"
 msgstr "Nee"
+
+#: admin/inc/renewals.php:179
+msgid "No SSL IP expired"
+msgstr "Geen SSL IP verlopen"
+
+#: admin/inc/renewals.php:212
+msgid "No VPS expired"
+msgstr "Geen VPS verlopen"
+
+#: shared/inc/forms/email.php:631
+msgid "No catch-all"
+msgstr "Geen catch-all"
+
+#: shared/inc/forms/invoices.php:52
+msgid "No completed orders found."
+msgstr ""
+
+#: admin/inc/renewals.php:246
+msgid "No dedicated server expired"
+msgstr "Geen dedicated server verlopen"
+
+#: admin/inc/draw_user_admin.php:292
+msgid "No domain waiting!"
+msgstr "Geen domeinnaam wachtende!"
+
+#: shared/inc/forms/domain_info.php:85
+msgid "No parking"
+msgstr "Geen parking"
+
+#: admin/inc/draw_user_admin.php:262
+msgid "No pay ID!"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:311
+msgid "No pending renewals!"
+msgstr "Geen aankomende vernieuwingen!"
+
+#: admin/inc/draw_user_admin.php:397
+msgid "No pending support tickets!"
+msgstr "Geen openstaande support tickets!"
+
+#: shared/inc/forms/root_admin.php:112
+msgid "No product"
+msgstr "Geen product"
+
+#: admin/inc/renewals.php:149
+msgid "No shared account expired."
+msgstr "Geen shared account verlopen."
+
+#: shared/inc/sql/database.php:73
+msgid ""
+"No user by that name exists in the database, or you don't own this db user. "
+"Please select a new one."
+msgstr ""
+"Geen gebruiker met die naam bestaat in de database, of  je bent niet de "
+"eigenaar van deze db gebruiker, kies alsjeblieft een ander."
+
+#: admin/inc/draw_user_admin.php:234
+msgid "No user waiting!"
+msgstr "Geen gebruikers wachtende!"
+
+#: shared/inc/forms/dedicated.php:36 shared/inc/forms/invoices.php:39
+#: shared/inc/forms/invoices.php:40 shared/inc/forms/invoices.php:41
+msgid "Not found!"
+msgstr "Niet gevonden!"
+
+#: shared/inc/forms/lists.php:342
+msgid "Notifications"
+msgstr "Notificaties"
+
+#: shared/inc/forms/vps.php:151
+msgid "Number of CPU: "
+msgstr "Aantal CPUs: "
+
+#: shared/inc/forms/vps.php:153
+msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
+msgstr ""
+
+#: shared/inc/forms/ftp.php:61
+#, fuzzy
+msgid "Number of active ftp accounts:"
+msgstr "Aantal actieve e-mail accounts :"
+
+#: shared/inc/forms/aliases.php:31 shared/inc/forms/email.php:540
+msgid "Number of active mailboxes:"
+msgstr "Aantal actieve e-mail accounts :"
+
+#: shared/inc/forms/lists.php:26
+#, fuzzy
+msgid "Number of active mailing lists"
+msgstr "Aantal actieve e-mail accounts :"
+
+#: shared/inc/forms/ssh.php:55
+#, fuzzy
+msgid "Number of active ssh accounts:"
+msgstr "Aantal actieve e-mail accounts :"
+
+#: shared/inc/forms/subdomain.php:135
+msgid "Number of active subdomains:"
+msgstr "Aantal active subdomeinen:"
+
+#: shared/inc/forms/root_admin.php:130
+msgid "Number of databases:"
+msgstr "Aantal databases :"
+
+#: shared/inc/forms/domain_stats.php:88 shared/inc/forms/email.php:127
+#: shared/inc/forms/email.php:179 shared/inc/forms/email.php:222
+#: shared/inc/forms/email.php:239 shared/inc/forms/email.php:256
+#: shared/inc/forms/email.php:275
+msgid "Ok"
+msgstr ""
+
+#: shared/inc/forms/ticket.php:153
+msgid "Old tickets:"
+msgstr "Oude tickets:"
+
+#: shared/inc/draw.php:446
+msgid "Online DTC help"
+msgstr "On-line DTC help"
+
+#: shared/inc/forms/ticket.php:165
+msgid "Open"
+msgstr "Open"
+
+#: shared/inc/forms/vps.php:312
+msgid "Operating system type not supported"
+msgstr "Operating system type niet ondersteund"
+
+#: shared/inc/forms/dns.php:28
+msgid "Other DNS servers:"
+msgstr "Andere DNS servers:"
+
+#: shared/inc/forms/dns.php:44 shared/inc/forms/dns.php:53
+msgid "Other MX (backup) servers:"
+msgstr "Andere MX (backup) servers:"
 
 #: admin/inc/dtc_config.php:1165
 msgid ""
@@ -424,20 +1532,64 @@ msgstr ""
 "Additionele php library paden open_basedir<br>\n"
 "(bewaard bij herinstallatie):"
 
-#: shared/inc/forms/root_admin.php:416
+#: shared/inc/forms/root_admin.php:351
 msgid "PHP safe_mode"
 msgstr ""
 
+#: shared/inc/draw.php:410
+msgid "Package"
+msgstr "Package"
+
+#: shared/inc/draw.php:224
+msgid "Package installer"
+msgstr "Package installer"
+
+#: shared/inc/draw.php:408
+#, fuzzy
+msgid "Package installer:"
+msgstr "Package naam"
+
+#: shared/inc/forms/packager.php:218
+msgid "Package name"
+msgstr "Package naam"
+
+#: shared/inc/forms/packager.php:218
+msgid "Package version"
+msgstr "Package versie"
+
 #: admin/inc/dtc_config.php:761 admin/inc/dtc_config.php:788
 #: admin/inc/dtc_config.php:813 admin/inc/dtc_config.php:840
-#: admin/inc/dtc_config.php:865
+#: admin/inc/dtc_config.php:865 shared/inc/draw.php:301
+#: shared/inc/draw.php:438 shared/inc/forms/reseller.php:24
 #, fuzzy
 msgid "Password"
 msgstr "FTP password:"
 
-#: admin/inc/draw_user_admin.php:275 admin/inc/dtc_config.php:1065
+#: shared/inc/sql/database.php:21
+msgid ""
+"Password must consist of only letters and numbers (a-zA-Z0-9) and should be "
+"between 6 and 16 chars long."
+msgstr ""
+"Passwords dienen alleen standaard letters en cijfers te bevatten (a-zA-Z0-9) "
+"en dienen tussen de 6 en 16 tekens lang te zijn ."
+
+#: admin/inc/draw_user_admin.php:221 admin/inc/dtc_config.php:1065
+#: shared/inc/draw.php:436 shared/inc/forms/database.php:37
+#: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
+#: shared/inc/forms/email.php:27 shared/inc/forms/email.php:216
+#: shared/inc/forms/email.php:565 shared/inc/forms/root_admin.php:105
+#: shared/inc/forms/ssh.php:75
 msgid "Password:"
+msgstr "Wachtwoord:"
+
+#: shared/inc/forms/ftp.php:80
+#, fuzzy
+msgid "Password: "
 msgstr "Password:"
+
+#: shared/inc/draw.php:122
+msgid "Past payments"
+msgstr "Vorige betalingen"
 
 #: admin/inc/dtc_config.php:1120
 msgid "Path of the cgi-wrapper disk template (chroot for SBOX):"
@@ -455,9 +1607,14 @@ msgid ""
 "this:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:276
-#, fuzzy
+#: admin/inc/draw_user_admin.php:222 shared/inc/forms/root_admin.php:124
+#: shared/inc/forms/ssh.php:80
 msgid "Path:"
+msgstr "Pad :"
+
+#: shared/inc/forms/ftp.php:85
+#, fuzzy
+msgid "Path: "
 msgstr "Paden"
 
 #: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1109
@@ -481,47 +1638,241 @@ msgstr "PayPal flat rate:"
 msgid "PayPal test account email (sandbox):"
 msgstr "PayPal test account email (sandbox):"
 
+#: admin/inc/draw_user_admin.php:314
+msgid "Payment date"
+msgstr "Datum Betaling"
+
 #: admin/inc/dtc_config.php:59
 msgid "Payment gateway"
 msgstr "Betalings gateway"
+
+#: shared/inc/forms/invoices.php:23
+#, fuzzy
+msgid "Payment gateway cost"
+msgstr "Betalings gateway"
+
+#: admin/inc/draw_user_admin.php:272 admin/inc/draw_user_admin.php:345
+msgid "Pending"
+msgstr ""
+
+#: admin/inc/renewals.php:118
+#, fuzzy
+msgid "Period"
+msgstr "Period"
+
+#: shared/inc/forms/my_account.php:214
+msgid "Phone number:"
+msgstr "Telefoonnummer:"
+
+#: shared/inc/forms/vps.php:345
+msgid "Physical console last display and ssh access:"
+msgstr "Physieke console laatste scherm en SSH toegang:"
+
+#: shared/inc/forms/database.php:127
+msgid "Please create a MySQL user in order to be able to create a database."
+msgstr "Creëer eerst een MySQL gebruiker om een database aan te maken."
+
+#: shared/inc/forms/dedicated.php:47
+msgid "Please renew it with one of the following options"
+msgstr "Vernieuw het met een van de volgende opties"
+
+#: shared/inc/forms/vps.php:205
+msgid "Please renew with one of the following options: "
+msgstr "Vernieuw alsjeblieft met een van de volgende opties: "
+
+#: shared/inc/forms/my_account.php:200
+msgid "Please tell us if the following is not correct:"
+msgstr "Laat ons weten of het volgende niet correct is:"
+
+#: shared/inc/forms/vps.php:253
+msgid "Please wait until file system check is finished first."
+msgstr "Wacht alsjeblieft tot file system check is klaar is."
+
+#: shared/inc/forms/vps.php:255
+msgid "Please wait until operating system reinstallation has completed."
+msgstr "Wacht alsjeblieft tot de herinstallatie van het operating system reinstallation klaar is."
 
 #: admin/inc/dtc_config.php:1061
 #, fuzzy
 msgid "Port number:"
 msgstr "VPS xen nummer"
 
+#: shared/inc/forms/invoices.php:23
+msgid "Price"
+msgstr ""
+
 #: admin/inc/dtc_config.php:705
 msgid "Primary DNS server address:"
 msgstr "Primair DNS serveradres:"
+
+#: shared/inc/forms/dns.php:42
+msgid "Primary MX address:"
+msgstr "Primaire MX record:"
+
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
+#: shared/inc/forms/invoices.php:23 shared/inc/forms/root_admin.php:566
+msgid "Product"
+msgstr "Product"
+
+#: shared/inc/forms/root_admin.php:497
+#, fuzzy
+msgid "Product ID"
+msgstr "Product"
+
+#: shared/inc/forms/root_admin.php:129
+msgid "Product ID:"
+msgstr "Product ID:"
+
+#: shared/inc/forms/root_admin.php:277
+#, fuzzy
+msgid "Product: "
+msgstr "Product"
 
 #: admin/inc/dtc_config.php:990
 msgid "Production server"
 msgstr "Productie server"
 
+#: shared/inc/forms/domain_stats.php:74
+msgid "Protect your logs and stats folder with a password"
+msgstr ""
+
+#: shared/inc/forms/email.php:315
+msgid "Protect your mailbox with efficient tools:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:296
 msgid "Real name"
 msgstr "Echte naam"
+
+#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:603
+#: shared/inc/forms/email.php:609
+msgid "Redirection 1: "
+msgstr ""
+
+#: shared/inc/forms/email.php:253
+msgid "Redirection 2: "
+msgstr ""
+
+#: shared/inc/forms/my_account.php:189
+msgid "Refund my account:"
+msgstr "Mijn tegoeden terugstorten:"
+
+#: shared/inc/forms/root_admin.php:478 shared/inc/forms/root_admin.php:542
+msgid "Registration"
+msgstr "Registratie"
 
 #: admin/inc/dtc_config.php:1239
 msgid "Registration number:"
 msgstr "Registratie nummer:"
 
+#: shared/inc/forms/vps.php:322
+msgid "Reinstall operating system"
+msgstr "Herinstalleer operating system"
+
+#: shared/inc/forms/vps.php:274
+msgid "Reinstall operating system:"
+msgstr "Herinstalleer operating system:"
+
+#: shared/inc/forms/vps.php:131
+msgid "Reinstalling operating system..."
+msgstr "Herinstallatie operating system..."
+
+#: shared/inc/forms/my_account.php:185
+msgid "Remaining money on my account:"
+msgstr "Beschikbare tegoeden op mijn account:"
+
+#: admin/inc/dtc_config.php:225
+msgid "Reminders and registration message subject header:"
+msgstr ""
+
+#: shared/inc/forms/my_account.php:114
+msgid "Renew my account"
+msgstr "Vernieuw mijn account"
+
 #: admin/inc/dtc_config.php:62
 msgid "Renewals"
 msgstr "Renewals"
+
+#: shared/inc/forms/email.php:219
+#, fuzzy
+msgid "Repeat password:"
+msgstr "FTP password:"
+
+#: shared/inc/forms/ticket.php:129
+msgid "Request to close the issue:"
+msgstr "Vraag ticket te sluiten:"
+
+#: admin/inc/draw_user_admin.php:155
+msgid "Request to close the ticket: "
+msgstr "Vraag ticket af te sluiten: "
+
+#: shared/inc/draw.php:434
+msgid "Resseller child accounts"
+msgstr "Reseller sub accounts"
+
+#: shared/inc/draw.php:53
+#, fuzzy
+msgid "Retype new password:"
+msgstr "FTP password:"
+
+#: shared/inc/forms/lists.php:317
+msgid "Rights"
+msgstr "Permissies"
+
+#: shared/inc/forms/lists.php:348
+msgid "SMTP configuration"
+msgstr "Configuratie SMTP"
 
 #: admin/inc/dtc_config.php:410
 #, fuzzy
 msgid "SOAP password"
 msgstr "Soap password"
 
+#: shared/inc/forms/email.php:573
+msgid "SPAM mailbox destination: "
+msgstr ""
+
+#: shared/inc/forms/ssh.php:48
+msgid "SSH account configuration:"
+msgstr "SSH account configuratie :"
+
+#: shared/inc/draw.php:217
+msgid "SSH accounts"
+msgstr "SSH accounts"
+
+#: shared/inc/draw.php:406
+msgid "SSH accounts of "
+msgstr "SSH accounts van "
+
+#: shared/inc/draw.php:404
+#, fuzzy
+msgid "SSH accounts:"
+msgstr "FTP accounts:"
+
 #: admin/inc/dtc_config.php:35
 msgid "SSL IPs addresses"
 msgstr "SSL IP addressen"
 
+#: admin/inc/renewals.php:174
+#, fuzzy
+msgid "SSL IPs renewals"
+msgstr "SSL IPs vernieuwingen: "
+
+#: admin/inc/renewals.php:105
+msgid "SSL IPs renewals: "
+msgstr "SSL IPs vernieuwingen: "
+
 #: admin/inc/dtc_config.php:669
 msgid "SSL Port:"
 msgstr ""
+
+#: admin/inc/draw_user_admin.php:366
+msgid "SSL Token purchase"
+msgstr "Schaf SSL Token aan"
+
+#: admin/inc/draw_user_admin.php:369
+msgid "SSL Token renewal"
+msgstr "Vernieuw SSL Token"
 
 #: admin/inc/dtc_config.php:241
 msgid "SSL dedicated IP addresses: "
@@ -530,6 +1881,12 @@ msgstr "SSL dedicated IPs: "
 #: admin/inc/dtc_config.php:598
 msgid "Same as for DTC"
 msgstr "Zelfde als voor DTC"
+
+#: shared/inc/forms/database.php:49 shared/inc/forms/database.php:95
+#: shared/inc/forms/domain_stats.php:98
+#, fuzzy
+msgid "Save"
+msgstr "Server"
 
 #: admin/inc/dtc_config.php:709
 msgid ""
@@ -551,15 +1908,59 @@ msgstr "Selecteer skin:"
 msgid "Selling conditions URL:"
 msgstr "Verkoop voorwaarden URL:"
 
-#: shared/inc/forms/email.php:34
+#: admin/inc/draw_user_admin.php:168
+msgid "Send reply"
+msgstr "Stuur antwoord"
+
+#: admin/inc/draw_user_admin.php:173
+msgid "Send reply and close ticket"
+msgstr "Stuur antwoord en sluit ticket"
+
+#: shared/inc/forms/ticket.php:62
+msgid "Send trouble ticket"
+msgstr "Stuur Probleem ticket"
+
+#: admin/inc/renewals.php:249
+msgid "Server"
+msgstr "Server"
+
+#: shared/inc/forms/email.php:27
 #, fuzzy
 msgid "Server address :"
 msgstr "Primair DNS serveradres:"
+
+#: admin/inc/draw_user_admin.php:127
+msgid "Server hostname related: "
+msgstr ""
+
+#: shared/inc/forms/root_admin.php:538
+msgid "Server name"
+msgstr "Server naam"
+
+#: shared/inc/forms/dedicated.php:24
+msgid "Server not found!"
+msgstr "Server niet gevonden!"
+
+#: admin/inc/draw_user_admin.php:380
+msgid "Server:"
+msgstr "Server:"
 
 #: admin/inc/dtc_config.php:1317
 #, fuzzy
 msgid "Service country"
 msgstr "Service Land"
+
+#: admin/inc/draw_user_admin.php:363
+msgid "Shared"
+msgstr ""
+
+#: admin/inc/renewals.php:144
+msgid "Shared hosting renewals:"
+msgstr "Shared hosting Vernieuwingen:"
+
+#: admin/inc/renewals.php:104
+msgid "Shared hosting: "
+msgstr "Shared hosting: "
 
 #: admin/inc/dtc_config.php:1054
 msgid "Short name:"
@@ -573,6 +1974,93 @@ msgstr "Sluitings Waarschuwing: "
 msgid "Soap login"
 msgstr "Soap login:"
 
+#: shared/inc/forms/vps.php:251
+msgid "Start and stop of your VPS:"
+msgstr "Start en stop jouw VPS:"
+
+#: shared/inc/forms/my_account.php:212
+msgid "State:"
+msgstr "Provincie:"
+
+#: shared/inc/forms/vps.php:158
+msgid "State: cannot fetch (maybe boot in progress?)"
+msgstr "State: cannot fetch (maybe boot in progress?)"
+
+#: shared/inc/draw.php:116 shared/inc/draw.php:146 shared/inc/draw.php:190
+msgid "Statistics"
+msgstr "Statistieken"
+
+#: shared/inc/draw.php:389
+msgid "Statistics of domain:"
+msgstr "Statistieken van domein"
+
+#: shared/inc/draw.php:383 shared/inc/draw.php:387 shared/inc/draw.php:424
+msgid "Statistics:"
+msgstr ""
+
+#: shared/inc/forms/ticket.php:158
+msgid "Status"
+msgstr "Status"
+
+#: shared/inc/forms/my_account.php:97
+msgid "Storage space"
+msgstr "Opslagruimte"
+
+#: shared/inc/draw.php:295
+msgid "Sub-accounts (reseller)"
+msgstr "sub-accounts (wederverkoper)"
+
+#: shared/inc/draw.php:432
+#, fuzzy
+msgid "Sub-accounts (reseller):"
+msgstr "Geef sub-account toevoegings rechtten (reseller):"
+
+#: shared/inc/draw.php:204
+msgid "Sub-domains"
+msgstr "Subdomeinen"
+
+#: shared/inc/forms/root_admin.php:377
+msgid "Subdomain max"
+msgstr "Subdomeinen max"
+
+#: shared/inc/forms/subdomain.php:150
+msgid "Subdomain name: "
+msgstr "Subdomein naam: "
+
+#: shared/inc/draw.php:398
+#, fuzzy
+msgid "Subdomains of "
+msgstr "Subdomeinen:"
+
+#: shared/inc/draw.php:396 shared/inc/forms/domain_info.php:56
+msgid "Subdomains:"
+msgstr "Subdomeinen:"
+
+#: admin/inc/draw_user_admin.php:400 shared/inc/forms/ticket.php:45
+#: shared/inc/forms/ticket.php:158
+msgid "Subject"
+msgstr "Onderwerp"
+
+#: shared/inc/forms/ticket.php:78
+msgid "Subject:"
+msgstr "Onderwerp:"
+
+#: admin/inc/draw_user_admin.php:114
+msgid "Subject: "
+msgstr "Onderwerp: "
+
+#: shared/inc/forms/ticket.php:133 shared/inc/forms/ticket.php:148
+msgid "Submit new support issue"
+msgstr "Voeg een nieuwe support ticket toe"
+
+#: shared/inc/forms/lists.php:356
+msgid "Subscribe/Unsubscribe an email address"
+msgstr ""
+
+#: shared/inc/forms/lists.php:357
+msgid "Subscribe:"
+msgstr "Abonneer:"
+
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
 msgstr "Support ticket"
@@ -581,9 +2069,38 @@ msgstr "Support ticket"
 msgid "Support ticket configuration"
 msgstr "Support ticket configuratie"
 
-#: shared/inc/forms/vps.php:159
+#: shared/inc/draw.php:306
+msgid "Support tickets"
+msgstr "Support tickets"
+
+#: shared/inc/forms/vps.php:106
 msgid "Swap I/O:"
 msgstr ""
+
+#: shared/inc/forms/subdomain.php:178
+msgid "TXT field of the subdomain: "
+msgstr "TXT veld van subdomain: "
+
+#: shared/inc/forms/dns.php:86
+msgid ""
+"Take care ! Setting a wrong value\n"
+"in the following fields can lead to\n"
+"your site services stopping (web or mail).<br>\n"
+"Putting something else than \"default\" in the DNS\n"
+"fields means that you want your site to be\n"
+"hosted elsewhere.<br>\n"
+"The MX parameter determines the address of the mail server\n"
+"that receives all your mail when somebody sends\n"
+"your a message. The value \"default\" means that\n"
+"you want to use the current server."
+msgstr ""
+"PAS OP ! Verkeerd instellen van de volgendegegevens kan leiden tot het niet "
+"meer functioneren van uw domein diensten(web of e-mail).<br>Indien u iets "
+"anders instelt dan \"default\" in de domeinnaam veldenbetekent dat u de "
+"website of email ergens anders wilt hosten.<br>Het MX parameter geeft het "
+"ipadres van de mailserver weer.Als u hier iets anders dan \"default\" "
+"instelt, dan komt de e-mailniet meer op deze server aan, maar op het punt "
+"dat u aangeeft."
 
 #: admin/inc/dtc_config.php:270
 msgid ""
@@ -611,6 +2128,26 @@ msgstr ""
 msgid "Test server"
 msgstr "Test server"
 
+#: shared/inc/sql/database.php:143
+msgid ""
+"That user still owns some databases. Please remove them or change the owner "
+"first."
+msgstr ""
+"Deze gebruiker is nog steeds eigenaar van enkele databases. Verwijder of "
+"wijzig de eigenaar van deze eerst."
+
+#: shared/inc/forms/ftp.php:66
+msgid "There is already a ftp login by that name"
+msgstr ""
+
+#: shared/inc/forms/email.php:547
+msgid "There is already a mailbox by that name"
+msgstr ""
+
+#: shared/inc/forms/ssh.php:60
+msgid "There is already a ssh login by that name"
+msgstr ""
+
 #: admin/inc/dtc_config.php:203
 msgid ""
 "These numbers represent the days before and after expiration.\n"
@@ -623,8 +2160,20 @@ msgstr ""
 "terwijl anderen uit een unieke waarde bestaan. De bericht sjablonenworden "
 "opgeslagen in /etc/dtc, and if not present in: "
 
-#: shared/inc/forms/vps.php:142 shared/inc/forms/vps.php:143
-#: shared/inc/forms/vps.php:144 shared/inc/forms/vps.php:145
+#: shared/inc/forms/domain_info.php:78
+msgid "This domain will be the alias of the following domain (domain parking):"
+msgstr "Dit domein wordt de alias voor het volgende domein (domain parking):"
+
+#: shared/inc/sql/database.php:54
+msgid "This is not a valid database name! Please choose another one."
+msgstr "Dit is geen geldige databasenaam! Kies alsjeblieft een ander."
+
+#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:102
+msgid "This is the main owner of the list."
+msgstr "Dit is de hoofd eigenaar van de lijst."
+
+#: shared/inc/forms/vps.php:89 shared/inc/forms/vps.php:90
+#: shared/inc/forms/vps.php:91 shared/inc/forms/vps.php:92
 msgid "This month: "
 msgstr ""
 
@@ -632,21 +2181,145 @@ msgstr ""
 msgid "This server location:"
 msgstr "Locatie van deze server:"
 
+#: shared/inc/forms/subdomain.php:183
+msgid ""
+"This subdomain is a nameserver (NS)<br>entry for the following subdomain: "
+msgstr "Dit subdomain is een nameserver(ns)<br>ingang voor volgende subdomain: "
+
+#: shared/inc/forms/subdomain.php:169
+msgid "This subdomain is a service (SRV)<br>entry for the following port: "
+msgstr ""
+
+#: shared/inc/forms/email.php:323
+msgid ""
+"Those mail are in quarantine, and were not delivered to your pop account:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:311
 msgid "Ticket categories:"
 msgstr "Ticket categorieen"
+
+#: shared/inc/forms/ticket.php:75 shared/inc/forms/ticket.php:103
+msgid "Ticket not found!"
+msgstr "Ticket niet gevonden!"
+
+#: shared/inc/forms/ticket.php:158
+msgid "Time"
+msgstr "Tijd"
+
+#: shared/inc/forms/vps.php:353
+msgid ""
+"To access to your console, first enter a ssh password or key above, and then "
+"ssh to:"
+msgstr ""
+"Om toegang te krijgen tot de console, zet eerst een ssh password of key op, en ssh daarna naar:"
+
+#: shared/inc/forms/root_admin.php:243
+msgid ""
+"To add a VPS, you need to setup some free IPs VPS in the general config and "
+"setup some VPS products."
+msgstr ""
+"Om een vps server toe te voegen dien je een aantal vrije IPs op te zetten in "
+"de algemene configuratie en een aantal VPS producten op te zetten."
+
+#: shared/inc/forms/vps.php:263
+msgid ""
+"To do a file system check or an operating system reinstallation, you need to "
+"shutdown or destroy your server first."
+msgstr ""
+"Om een filesystem check of herinstallatie van een besturings systeem te doen dien je eerst je server uit te schakelen of vernietigd te worden"
+
+#: shared/inc/forms/invoices.php:23
+#, fuzzy
+msgid "Total Price"
+msgstr "Totaal verkeer"
+
+#: shared/inc/forms/database.php:117
+msgid "Total database number:"
+msgstr "Totaal aantal databases:"
+
+#: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
+#: shared/inc/forms/my_account.php:76
+msgid "Total disk usage:"
+msgstr "Totale hardeschijf gebruik:"
+
+#: admin/inc/renewals.php:24
+msgid "Total recurring incomes per month:"
+msgstr "Totaal aantal terugkerende inkomens per maand:"
+
+#: shared/inc/forms/admin_stats.php:107
+msgid "Total trafic"
+msgstr "Totaal verkeer"
+
+#: shared/inc/forms/domain_stats.php:53
+#, fuzzy
+msgid "Total transfered bytes this month"
+msgstr "Totaal verbruikte bytes deze maand:"
+
+#: shared/inc/forms/admin_stats.php:33 shared/inc/forms/domain_info.php:52
+msgid "Total transfered bytes this month:"
+msgstr "Totaal verbruikte bytes deze maand:"
+
+#: admin/inc/renewals.php:109
+msgid "Total: "
+msgstr "Totaal: "
+
+#: shared/inc/forms/my_account.php:63
+msgid "Transfer and disk usage:"
+msgstr "Bandbreedte en hardeschijf verbruik:"
+
+#: shared/inc/forms/my_account.php:70
+msgid "Transfer this month:"
+msgstr "Bandbreedte deze maand:"
+
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
+#: shared/inc/forms/ticket.php:158
+msgid "Type"
+msgstr "Type"
+
+#: admin/inc/draw_user_admin.php:120 admin/inc/draw_user_admin.php:408
+msgid "Type not found!"
+msgstr "Type niet gevonden!"
 
 #: admin/inc/dtc_config.php:888
 msgid "Type of encryption for connecting to Tucows server:"
 msgstr "Soort encryptie voor verbinding met Tucows server:"
 
-#: admin/inc/dtc_config.php:1057
+#: shared/inc/forms/ticket.php:52 shared/inc/forms/ticket.php:87
+msgid "Type of problem:"
+msgstr "Type probleem:"
+
+#: admin/inc/draw_user_admin.php:125 admin/inc/dtc_config.php:1057
 msgid "Type:"
-msgstr ""
+msgstr "Type:"
+
+#: shared/inc/forms/ticket.php:84
+msgid "Type: type not found!"
+msgstr "Type: type niet gevonden!"
 
 #: admin/inc/dtc_config.php:782 admin/inc/dtc_config.php:807
 #: admin/inc/dtc_config.php:834 admin/inc/dtc_config.php:859
 msgid "URL"
+msgstr ""
+
+#: shared/inc/forms/packager.php:218
+msgid "Unpack size"
+msgstr "Uitgepakte grootte"
+
+#: shared/inc/forms/lists.php:359
+msgid "Unsubscribe:"
+msgstr "Deabboneer:"
+
+#: shared/inc/forms/vps.php:171
+msgid "Up time: "
+msgstr "Up time: "
+
+#: shared/inc/forms/my_account.php:106
+msgid "Upgrade my account"
+msgstr "Mijn account opwaarderen"
+
+#: shared/inc/forms/domain_info.php:59 shared/inc/forms/email.php:27
+msgid "Use"
 msgstr ""
 
 #: admin/inc/dtc_config.php:536
@@ -666,9 +2339,17 @@ msgstr "Gebruik CNAME in plaats van A RECORD  voor subdomains:"
 msgid "Use LVM backend"
 msgstr "Gebruik LVM"
 
+#: admin/inc/dtc_config.php:1011
+msgid "Use Maxmind API:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:531
 msgid "Use SSL:"
 msgstr "Gebruik SSL"
+
+#: admin/inc/dtc_config.php:586
+msgid "Use awstats"
+msgstr ""
 
 #: admin/inc/dtc_config.php:571
 msgid "Use cyrus:"
@@ -678,6 +2359,10 @@ msgstr "Gebruik cyrus:"
 #, fuzzy
 msgid "Use eNETS:"
 msgstr "Gebruik SSL"
+
+#: shared/inc/draw.php:321
+msgid "Use image menu"
+msgstr ""
 
 #: admin/inc/dtc_config.php:526
 msgid "Use javascript:"
@@ -696,6 +2381,18 @@ msgstr "Gebruik paypal:"
 msgid "Use paypal:"
 msgstr "Gebruik paypal:"
 
+#: shared/inc/forms/subdomain.php:175
+msgid "Use register_globals=1: "
+msgstr ""
+
+#: admin/inc/dtc_config.php:883
+msgid "Use registrar API:"
+msgstr ""
+
+#: shared/inc/draw.php:319
+msgid "Use text menu"
+msgstr "Gebruik tekst menu"
+
 #: admin/inc/dtc_config.php:892
 msgid "Use the LIVE server (and not the test one) :"
 msgstr "Gebruik LIVE server ( Niet de test server ) :"
@@ -703,6 +2400,23 @@ msgstr "Gebruik LIVE server ( Niet de test server ) :"
 #: admin/inc/dtc_config.php:961
 msgid "Use the sandbox test server:"
 msgstr "Gebruik de sandbox test server:"
+
+#: admin/inc/dtc_config.php:591
+msgid "Use visitors"
+msgstr ""
+
+#: admin/inc/dtc_config.php:576
+msgid "Use webalizer"
+msgstr ""
+
+#: shared/inc/forms/email.php:586
+msgid "Used quota: "
+msgstr "Gebruik quota: "
+
+#: admin/inc/draw_user_admin.php:444 shared/inc/forms/database.php:37
+#: shared/inc/forms/database.php:76
+msgid "User"
+msgstr ""
 
 #: admin/inc/dtc_config.php:600
 msgid "User MySQL host:"
@@ -716,6 +2430,14 @@ msgstr "MySQL root gebruiker login:"
 msgid "User MySQL root password:"
 msgstr "MySQL root gebruiker password:"
 
+#: admin/inc/draw_user_admin.php:229
+msgid "User and domain waiting for addition:"
+msgstr "Gebruiker en domein wachtende voor toevoeging:"
+
+#: shared/inc/sql/database.php:250
+msgid "User or password is incorrect!"
+msgstr "Gebruiker of password is incorrect !"
+
 #: admin/inc/dtc_config.php:546
 msgid "User session expire time (min):"
 msgstr "Tijd voor expiratie gebruikers sessie  (min):"
@@ -728,21 +2450,51 @@ msgstr "BTW number:"
 msgid "VAT rate:"
 msgstr "BTW percentage:"
 
+#: shared/inc/forms/vps.php:135
+msgid "VM id: "
+msgstr "VM id: "
+
+#: admin/inc/renewals.php:215
+msgid "VPS"
+msgstr ""
+
 #: admin/inc/dtc_config.php:430
 msgid "VPS IPs for "
 msgstr "VPS IPs voor "
+
+#: shared/inc/forms/root_admin.php:474
+msgid "VPS Name"
+msgstr "VPS Naam"
+
+#: shared/inc/forms/root_admin.php:471
+msgid "VPS Server"
+msgstr "VPS Server"
 
 #: admin/inc/dtc_config.php:379
 msgid "VPS Server and IP addresses registry edition"
 msgstr "VPS Server en IP addres register editie"
 
+#: shared/inc/forms/root_admin.php:230
+msgid "VPS Server hostname: "
+msgstr "VPS Server hostname: "
+
 #: admin/inc/dtc_config.php:382
 msgid "VPS Server list:"
 msgstr "VPS Server lijst:"
 
+#: shared/inc/forms/vps.php:156
+#, fuzzy
+msgid "VPS State: "
+msgstr "Provincie:"
+
 #: admin/inc/dtc_config.php:200
 msgid "VPS renewal email reminders periodicity"
 msgstr "Periode VPS renewal email Herinnering"
+
+#: admin/inc/renewals.php:207
+#, fuzzy
+msgid "VPS renewals:"
+msgstr "Renewals"
 
 #: admin/inc/dtc_config.php:50
 msgid "VPS servers"
@@ -752,13 +2504,25 @@ msgstr ""
 msgid "VPS xen number"
 msgstr "VPS xen nummer"
 
+#: admin/inc/renewals.php:106
+msgid "VPS: "
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:355
+msgid "VPS: Cannot find VPS in db!"
+msgstr "VPS: Kan VPS niet in de database vinden!"
+
 #: admin/inc/dtc_config.php:944
 msgid "Validate new account if paid:"
 msgstr "Valideer nieuwe account wanneer betaald:"
 
-#: shared/inc/forms/root_admin.php:412
+#: shared/inc/forms/root_admin.php:347
 msgid "Vhost"
 msgstr ""
+
+#: admin/inc/draw_user_admin.php:279
+msgid "View details"
+msgstr "Bekijk details"
 
 #: admin/inc/dtc_config.php:1161
 msgid "Virtual host config-file:"
@@ -773,6 +2537,10 @@ msgstr "Waarschuwingen na expiratie: "
 msgid "Warnings before expiration: "
 msgstr "Waarschuwingen voor expiratie: "
 
+#: shared/inc/forms/lists.php:362
+msgid "Web archive"
+msgstr "Web archief"
+
 #: admin/inc/dtc_config.php:580
 msgid "Webalizer country graph:"
 msgstr "Webalizer landen grafiek:"
@@ -781,8 +2549,28 @@ msgstr "Webalizer landen grafiek:"
 msgid "Weekly"
 msgstr "Wekelijks"
 
-#: admin/inc/draw_user_admin.php:202 admin/inc/draw_user_admin.php:324
-#: admin/inc/draw_user_admin.php:392 admin/inc/dtc_config.php:266
+#: shared/inc/forms/email.php:327
+msgid "Welcom to the email panel!"
+msgstr ""
+
+#: shared/inc/forms/ticket.php:47
+msgid "What is your server hostname:"
+msgstr "Wat is jouw server hostname:"
+
+#: shared/inc/draw.php:183
+msgid "Whois"
+msgstr ""
+
+#: shared/inc/draw.php:394
+msgid "Whois of:"
+msgstr ""
+
+#: shared/inc/draw.php:392
+msgid "Whois:"
+msgstr ""
+
+#: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
+#: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
 #: admin/inc/dtc_config.php:419 admin/inc/dtc_config.php:449
 #: admin/inc/dtc_config.php:529 admin/inc/dtc_config.php:534
@@ -798,22 +2586,76 @@ msgstr "Wekelijks"
 #: admin/dtcrm/main.php:187 admin/dtcrm/product_manager.php:99
 #: admin/dtcrm/product_manager.php:162 admin/dtcrm/product_manager.php:225
 #: admin/dtcrm/product_manager.php:273 client/new_account_form.php:643
-#: shared/inc/forms/domain_info.php:95 shared/inc/forms/email.php:260
-#: shared/inc/forms/email.php:271 shared/inc/forms/email.php:305
-#: shared/inc/forms/root_admin.php:87 shared/inc/forms/root_admin.php:97
-#: shared/inc/forms/root_admin.php:107 shared/inc/forms/root_admin.php:117
-#: shared/inc/forms/root_admin.php:418 shared/inc/forms/root_admin.php:423
-#: shared/inc/forms/ticket.php:151
+#: shared/inc/forms/domain_info.php:73 shared/inc/forms/email.php:236
+#: shared/inc/forms/email.php:242 shared/inc/forms/email.php:271
+#: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
+#: shared/inc/forms/root_admin.php:68 shared/inc/forms/root_admin.php:78
+#: shared/inc/forms/root_admin.php:353 shared/inc/forms/root_admin.php:358
+#: shared/inc/forms/subdomain.php:160 shared/inc/forms/subdomain.php:174
+#: shared/inc/forms/ticket.php:129
 msgid "Yes"
 msgstr "Ja"
+
+#: shared/inc/forms/my_account.php:218
+msgid "You do not have a client account, so there is no money in your account."
+msgstr ""
 
 #: admin/inc/dtc_config.php:896
 msgid "Your SRS username:"
 msgstr "SRS Gebruikersnaam:"
 
+#: shared/inc/forms/vps.php:204
+msgid "Your VPS has expired on the: "
+msgstr "Jouw VPS was verlopen op: "
+
+#: shared/inc/forms/vps.php:200
+msgid "Your VPS was first registered on the: "
+msgstr "Jouw VPS was voor het eerst geregistreerd op: "
+
+#: shared/inc/forms/vps.php:207
+msgid "Your VPS will expire on the: "
+msgstr "Jouw VPS verloopt op: "
+
+#: shared/inc/forms/domain_info.php:53
+msgid "Your area disk usage:"
+msgstr "Je hardeschijf gebruik:"
+
+#: shared/inc/forms/reseller.php:22
+#, fuzzy
+msgid "Your child accounts:"
+msgstr "Uw hosting account:"
+
+#: shared/inc/draw.php:430
+msgid "Your databases"
+msgstr "Jouw databases"
+
+#: shared/inc/forms/dedicated.php:46
+msgid "Your dedicated server has expired on the: "
+msgstr "Jouw dedicated server is verlopen op: "
+
+#: shared/inc/forms/dedicated.php:42
+msgid "Your dedicated server was first registered on the:"
+msgstr "Jouw dedicated server was voor het eerst geregistreerd op:"
+
+#: shared/inc/forms/dedicated.php:49
+msgid "Your dedicated server will expire on the: "
+msgstr "Jouw dedicated server Verloopt op: "
+
 #: admin/inc/dtc_config.php:1117
 msgid "Your default new account directory:"
 msgstr ""
+
+#: shared/inc/forms/domain_info.php:58
+msgid "Your domain"
+msgstr ""
+
+#: shared/inc/forms/domain_info.php:51
+msgid "Your domain:"
+msgstr "Jouw domein:"
+
+#: shared/inc/forms/my_account.php:94
+msgid "Your hosting account:"
+msgstr "Uw hosting account:"
 
 #: admin/inc/dtc_config.php:904
 msgid "Your key to access the LIVE server:"
@@ -823,7 +2665,24 @@ msgstr "Key voor toegang tot de LIVE server:"
 msgid "Your key to access the test server:"
 msgstr "Key voor toegang tot de test server:"
 
-#: shared/inc/forms/vps.php:176
+#: shared/inc/forms/email.php:319
+msgid "Your list of imported mail"
+msgstr ""
+
+#: shared/inc/forms/database.php:32
+#, fuzzy
+msgid "Your users"
+msgstr "SRS Gebruikersnaam:"
+
+#: shared/inc/forms/my_account.php:210
+msgid "Zipcode:"
+msgstr "Postcode:"
+
+#: shared/inc/forms/domain_info.php:59
+msgid "aliasing"
+msgstr "aliasing"
+
+#: shared/inc/forms/vps.php:123
 msgid "couldn't connect to host"
 msgstr ""
 
@@ -842,3 +2701,21 @@ msgstr ""
 #: admin/inc/dtc_config.php:996
 msgid "eNETS test merchant ID:"
 msgstr ""
+
+#: shared/inc/forms/ftp.php:53
+#, fuzzy
+msgid "new FTP account"
+msgstr "FTP accounts:"
+
+#: shared/inc/forms/ssh.php:47
+msgid "new SSH account"
+msgstr "Nieuw ssh account"
+
+#: shared/inc/forms/email.php:532
+msgid "new mailbox"
+msgstr ""
+
+#: shared/inc/forms/lists.php:88
+#, fuzzy
+msgid "new mailing list"
+msgstr "Lijst van jouw databases:"

@@ -254,7 +254,7 @@ function isHostname($hostname){
 // Check for email addr we allow to create using DTC
 function isFtpLogin($mailbox){
 	if(isValidEmail($mailbox))	return true;
-	$reg = "^([a-z0-9]+)([.a-z0-9-]+)\$";
+	$reg = "^([a-zA-Z0-9]+)([.a-zA-Z0-9-]+)\$";
 	if(!ereg($reg,$mailbox))	return false;
 	else			return true;
 }
@@ -615,6 +615,14 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 	// Tell the cron job to activate the changes
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes' WHERE 1;";
 	mysql_query($adm_query);
+}
+
+function drawSubmitButton($text){
+	return "<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"submit\" value=\"". $text. "\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>";
 }
 
 function drawPercentBar($value,$max,$double="yes"){

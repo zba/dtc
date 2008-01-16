@@ -10,7 +10,6 @@ include("inc/submit_root_querys.php");
 include("inc/nav.php");
 include("inc/dtc_config_strings.php");
 include("inc/dtc_config.php");
-include("inc/draw_user_admin_strings.php");
 include("inc/draw_user_admin.php");
 
 if(file_exists("dtcrm")){
@@ -18,7 +17,6 @@ if(file_exists("dtcrm")){
 	include("dtcrm/main.php");
 	include("dtcrm/product_manager_strings.php");
 	include("dtcrm/product_manager.php");
-	include("inc/renewals_strings.php");
 	include("inc/renewals.php");
 	include("inc/graphs.php");
 	include("inc/monitor.php");

@@ -10,6 +10,7 @@ clean:
 	dh_testroot
 	dh_clean
 	rm -f debian/dtc-core.postinst debian/dtc-core.config debian/dtc-core.prerm debian/dtc-postfix-courier.postinst debian/dtc-postfix-courier.config debian/dtc-postfix-courier.prerm
+	$(MAKE) clean
 
 install:
 	dh_testdir
@@ -31,7 +32,6 @@ install:
 	$(MAKE) install-dtc-stats-daemon DESTDIR=$(CURDIR)/debian/dtc-stats-daemon
 
 binary-indep: install
-binary-arch: install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs doc/changelog
@@ -45,6 +45,8 @@ binary-arch: install
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
+
+binary-arch: install
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install

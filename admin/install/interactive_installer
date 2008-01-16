@@ -423,7 +423,7 @@ installerQuestions () {
 	if [ ""$answer = "y" -o ""$answer = "Y" ] ; then
 		conf_report_setup="true"
 	fi
-	if [ ""$answer = "n" -o ""$answer = "N"] ; then
+	if [ ""$answer = "n" -o ""$answer = "N" ] ; then
 		conf_report_setup="false"
 	fi
 

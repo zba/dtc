@@ -23,6 +23,7 @@ if [ -x "$RPM" ] ; then
 	if rpm -q coreutils >/dev/null ; then
 		# Prepare everything
 		. /usr/share/dtc/admin/install/redhat_config
+		. /usr/share/dtc/admin/install/functions
 		. /usr/share/dtc/admin/install/interactive_installer
 		interactiveInstaller
 		DTCinstallPackage
@@ -42,6 +43,7 @@ fi
 if [ -e /etc/gentoo-release ] ; then
 	echo "Gentoo detected"
 	. /usr/share/dtc/admin/install/gentoo_config
+	. /usr/share/dtc/admin/install/functions
 	. /usr/share/dtc/admin/install/interactive_installer
 	interactiveInstaller
 	DTCinstallPackage

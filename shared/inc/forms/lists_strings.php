@@ -1,92 +1,5 @@
 <?php
 
-global $txt_lists_main_title_rights;
-global $txt_lists_main_title_header;
-global $txt_lists_main_title_archive;
-global $txt_lists_main_title_digest;
-global $txt_lists_main_title_notification;
-global $txt_lists_main_title_smtp_config;
-global $txt_lists_main_title_subunsub;
-global $txt_lists_main_title_webarchive;
-global $txt_lists_main_title_spammode;
-
-$txt_lists_main_title_rights = array (
-  "fr" => "Droits",
-  "en" => "Rights",
-  "hu" => "TRANS Rights",
-  "it" => "Permessi",
-  "nl" => "Permissies",
-  "ru" => "TRANS Rights",
-  "de" => "Rechte",
-  "zh" => "È¨ÏÞ",
-  "pl" => "Uprawnienia",
-  "es" => "Derechos",
-  "pt" => "TRANS Rights");
-
-$txt_lists_main_title_header = array (
-  "fr" => "Entête",
-  "en" => "Header",
-  "hu" => "TRANS Header",
-  "it" => "Header",
-  "nl" => "Header",
-  "ru" => "TRANS Header",
-  "de" => "Header",
-  "zh" => "Ò³Í·",
-  "pl" => "Nag³ówek",
-  "es" => "Cabecera",
-  "pt" => "TRANS Header");
-
-$txt_lists_main_title_archive = array (
-  "fr" => "Archive",
-  "en" => "Archive",
-  "hu" => "TRANS Archive",
-  "it" => "Archivio",
-  "nl" => "Archief",
-  "ru" => "TRANS Archive",
-  "de" => "Archiv",
-  "zh" => "´æµµ",
-  "pl" => "Archiwum",
-  "es" => "Archivo",
-  "pt" => "TRANS Archive");
-
-$txt_lists_main_title_digest = array (
-  "fr" => "Digest",
-  "en" => "Digest",
-  "hu" => "TRANS Digest",
-  "it" => "Digest",
-  "nl" => "Digest",
-  "ru" => "TRANS Digest",
-  "de" => "Zusammenfassung",
-  "zh" => "ÕªÒª",
-  "pl" => "TRANS Digest",
-  "es" => "Recopilaci&oacute;n",
-  "pt" => "TRANS Digest");
-
-$txt_lists_main_title_notification = array (
-  "fr" => "Alertes",
-  "en" => "Notifications",
-  "hu" => "TRANS Notifications",
-  "it" => "Notifiche",
-  "nl" => "Notificaties",
-  "ru" => "TRANS Notifications",
-  "de" => "Benachrichtigungen",
-  "zh" => "×¢ÒâÊÂÏî",
-  "pl" => "Opis",
-  "es" => "Notificaciones",
-  "pt" => "TRANS Notifications");
-
-$txt_lists_main_title_smtp_config = array (
-  "fr" => "Configuration SMTP",
-  "en" => "SMTP configuration",
-  "hu" => "TRANS SMTP configuration",
-  "it" => "Configurazione SMTP",
-  "nl" => "Configuratie SMTP",
-  "ru" => "TRANS SMTP configuration",
-  "de" => "SMTP-Konfiguration",
-  "zh" => "ÅäÖÃSMTP",
-  "pl" => "Konfguracja SMTP",
-  "es" => "Configuraci&oacute;n SMTP",
-  "pt" => "TRANS SMTP configuration");
 
 $txt_lists_main_title_subunsub = array (
   "fr" => "Abonner/désabonner une adresse email",
@@ -101,18 +14,6 @@ $txt_lists_main_title_subunsub = array (
   "es" => "Suscribir/desuscribir una direcci&oacute;n de correo",
   "pt" => "Subscribe/Unsubscribe an email address");
 
-$txt_lists_main_title_webarchive = array (
-  "fr" => "Archive web",
-  "en" => "Web archive",
-  "hu" => "TRANS Web archive",
-  "it" => "Archivio web",
-  "nl" => "Web archief",
-  "ru" => "TRANS Web archive",
-  "de" => "Web-Archiv",
-  "zh" => "Web´æµµ",
-  "pl" => "Archiwum przez WWW",
-  "es" => "Archivo web",
-  "pt" => "TRANS Web archive");
 
 $txt_lists_main_title_spammode = array (
   "fr" => "Spam mode",
@@ -504,31 +405,6 @@ $txt_lists_title_footer = array (
   "es" => "Pie de mensaje adicional:",
   "pt" => "");
 
-$txt_lists_title_sub = array (
-  "fr" => "",
-  "en" => "Subscribe:",
-  "hu" => "",
-  "it" => "Iscrivi:",
-  "nl" => "Abonneer:",
-  "ru" => "",
-  "de" => "Benutzer Hinzufügen",
-  "zh" => "¶©ÔÄ£º",
-  "pl" => "",
-  "es" => "Suscribir:",
-  "pt" => "");
-
-$txt_lists_title_unsub = array (
-  "fr" => "",
-  "en" => "Unsubscribe:",
-  "hu" => "",
-  "it" => "Elimina:",
-  "nl" => "Deabboneer",
-  "ru" => "",
-  "de" => "Benutzer entfernen",
-  "zh" => "ÍË¶©£º",
-  "pl" => "",
-  "es" => "Desuscribir:",
-  "pt" => "");
 
 $txt_lists_title_spammode = array (
   "fr" => "Caché les adresse emails (spammode) :",
@@ -607,19 +483,6 @@ $txt_lists_hlp_list_name = array (
   "zh" => "ÓÊ¼þÁÐ±íµÄÃû³Æ£º",
   "pl" => "",
   "es" => "Nombre de la lista:",
-  "pt" => "");
-
-$txt_lists_hlp_main_owner = array (
-  "fr" => "Ce champ contient l\'adresse de l\'administrateur principal de la liste.",
-  "en" => "This is the main owner of the list.",
-  "hu" => "",
-  "it" => "Il propietario principale della lista.",
-  "nl" => "Dit is de hoofd eigenaar van de lijst.",
-  "ru" => "",
-  "de" => "Dies ist der Hauptbesitzer der Mailingliste.",
-  "zh" => "ÕâÊÇ¸ÃÓÊ¼þÁÐ±íµÄÖ÷ÒªÓµÓÐÕß£º",
-  "pl" => "",
-  "es" => "Direcci&oacute;n administrador principal de la lista",
   "pt" => "");
 
 $txt_lists_hlp_listaddress = array (
@@ -997,32 +860,6 @@ $txt_lists_hlp_relayhost = array (
   "zh" => "·¢ËÍÕâ·âÓÊ¼þµÄ·þÎñÆ÷¡£",
   "pl" => "",
   "es" => "Servidor de correo utilizado para enviar mensajes.",
-  "pt" => "");
-  
-$txt_lists_hlp_sub = array (
-  "fr" => "",
-  "en" => "Insert here an email address to subscribe it.",
-  "hu" => "",
-  "it" => "Inserisci qui un indirizzo email da inscrivere alla mailing list.",
-  "nl" => "Voeg hier een email adres toe om het te abbonneren.",
-  "ru" => "",
-  "de" => "Zum Hinzufügen einer Email-Adresse zur Mailingliste, diese hier eintragen:",
-  "zh" => "ÊäÈëÓÊ¼þµØÖ·²¢¶©ÔÄ¡£",
-  "pl" => "",
-  "es" => "Ingrese una direcci&oacute;n para suscribir.",
-  "pt" => "");
-
-$txt_lists_hlp_unsub = array (
-  "fr" => "",
-  "en" => "Insert here an email address to unsubscribe it.",
-  "hu" => "",
-  "it" => "Inserisci qui un indirizzo email da eliminare dalla mailing list.",
-  "nl" => "Voeg hier een email adres toe om het te deabbonneren.",
-  "ru" => "",
-  "de" => "Von der Mailingliste zu löschende Email-Adressen hier eintragen:",
-  "zh" => "ÊäÈëÓÊ¼þµØÖ·È¡Ïû¶©ÔÄ¡£",
-  "pl" => "",
-  "es" => "Ingrese una direcci&oacute;n para desuscribir.",
   "pt" => "");
   
 $txt_lists_hlp_webarchive = array (

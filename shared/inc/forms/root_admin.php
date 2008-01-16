@@ -5,8 +5,6 @@ require("$dtcshared_path/inc/forms/root_admin_strings.php");
 // Draw the form for configuring global admin account info (path, etc...) //
 ////////////////////////////////////////////////////////////////////////////
 function drawEditAdmin($admin){
-	global $lang;
-
 	global $pro_mysql_vps_server_table;
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_table;
@@ -14,47 +12,10 @@ function drawEditAdmin($admin){
 	global $pro_mysql_dedicated_table;
 	global $cc_code_popup;
 
-	global $txt_password;
-
-	global $txt_path;
-	global $txt_id_client;
-	global $txt_del_user;
-	global $txt_del_user_confirm;
-	global $txt_del_user_domain;
-	global $txt_del_user_domain_confirm;
-	global $txt_new_domain_for_user;
-	global $txt_allowed_data_transferMB;
-	global $txt_domain_tbl_config_quotaMB;
-	global $txt_allowed_data_transferMB;
-	global $txt_expiration_date;
-	global $txt_heb_prod_id;
-	global $txt_can_have_subadmins_reseller;
-	global $txt_can_have_ssh_login_for_vhosts;
-	global $txt_can_have_package_installer;
-	global $txt_can_have_ftp_login_for_vhosts;
-	global $txt_allow_to_add_domains;
-	global $txt_number_of_database;
-	global $txt_import_a_domain_for_this_user;
-	global $txt_import_button;
-
-	global $txt_root_admin_no_product;
-	global $txt_root_admin_configuration_of_the_vpses;
-
 	global $adm_login;
 	global $adm_pass;
 	global $rub;
-
 	global $conf_hide_password;
-	global $txt_root_admin_vps_server_hostname;
-	global $txt_root_admin_delete_one_of_the_admin_vps;
-	global $txt_root_admin_to_add_a_vps_you_have_to;
-	global $txt_root_admin_delete_one_of_the_admin_dedicated_server;
-	global $txt_root_admin_add_a_dedicated_server_to_admin;
-	global $txt_root_admin_add_a_vps_for_this_admin;
-
-	global $txt_root_admin_country;
-	global $txt_root_admin_hostname;
-	global $txt_root_admin_product;
 
 	$info = $admin["info"];
 	if(isset($admin["data"])){
@@ -141,14 +102,14 @@ function drawEditAdmin($admin){
 	} else {
 		$ctrl = "<input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass";
 	}
-	$user_data .= dtcFormLineDraw($txt_password[$lang],$ctrl);
+	$user_data .= dtcFormLineDraw( _("Password:") ,$ctrl);
 
 	// The product popup
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE (heb_type='shared' OR heb_type='ssl') AND renew_prod_id='0' ORDER BY id;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$prodsid = "";
-	$prodsid .= "<select class=\"dtcDatagrid_input_color\" name=\"heb_prod_id\"><option value=\"0\">".$txt_root_admin_no_product[$lang]."</option>";
+	$prodsid .= "<select class=\"dtcDatagrid_input_color\" name=\"heb_prod_id\"><option value=\"0\">". _("No product") ."</option>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		if($a["id"] == $prod_id){
@@ -160,29 +121,27 @@ function drawEditAdmin($admin){
 	}
 	$prodsid .= "</select>";
 
-	$user_data .= dtcFormLineDraw($txt_path[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"changed_path\" value=\"$adm_path\">",0);
-	$user_data .= dtcFormLineDraw($txt_id_client[$lang],"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a>");
-	$user_data .= dtcFormLineDraw($txt_domain_tbl_config_quotaMB[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">",0);
-	$user_data .= dtcFormLineDraw($txt_allowed_data_transferMB[$lang],"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\">");
-	$user_data .= dtcFormLineDraw($txt_expiration_date[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"expire\" value=\"$expire\">",0);
-	$user_data .= dtcFormLineDraw($txt_heb_prod_id[$lang],$prodsid);
-	$user_data .= dtcFormLineDraw($txt_number_of_database[$lang],"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\">",0);
-	$user_data .= dtcFormLineDraw($txt_allow_to_add_domains[$lang],$aldom_popup);
-	$user_data .= dtcFormLineDraw($txt_can_have_subadmins_reseller[$lang],$res_selector,0);
-	$user_data .= dtcFormLineDraw($txt_can_have_ssh_login_for_vhosts[$lang],$sshlog_selector);
-	$user_data .= dtcFormLineDraw($txt_can_have_ftp_login_for_vhosts[$lang],$ftplog_selector,0);
-	$user_data .= dtcFormLineDraw($txt_can_have_package_installer[$lang],$pkg_install_selector);
+	$user_data .= dtcFormLineDraw( _("Path:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"changed_path\" value=\"$adm_path\">",0);
+	$user_data .= dtcFormLineDraw( _("Client ID:") ,"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a>");
+	$user_data .= dtcFormLineDraw( _("Disk quota (MB):") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">",0);
+	$user_data .= dtcFormLineDraw( _("Allowed bandwidth per month (MB):") ,"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\">");
+	$user_data .= dtcFormLineDraw( _("Expiry date:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"expire\" value=\"$expire\">",0);
+	$user_data .= dtcFormLineDraw( _("Product ID:") ,$prodsid);
+	$user_data .= dtcFormLineDraw( _("Number of databases:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\">",0);
+	$user_data .= dtcFormLineDraw( _("Allow to add domains:") ,$aldom_popup);
+	$user_data .= dtcFormLineDraw( _("Grant sub-account addition rights (reseller):") ,$res_selector,0);
+	$user_data .= dtcFormLineDraw( _("Allow addition of SSH logins:") ,$sshlog_selector);
+	$user_data .= dtcFormLineDraw( _("Allow addition of FTP logins:") ,$ftplog_selector,0);
+	$user_data .= dtcFormLineDraw( _("Allow the use of the package installer:") ,$pkg_install_selector);
 	$user_data .= dtcFromOkDraw()."</table></form>";
-/*	$user_data .= "<tr><td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"updateuserinfo\" value=\"Ok\">
-</td></tr></table></form>";*/
 
 	// Generate the admin tool configuration module
 	// Deletion of domains :
 	$url = "".$_SERVER["PHP_SELF"]."?delete_admin_user=$adm_login&rub=$rub";
-	$confirmed_url = dtcJavascriptConfirmLink($txt_del_user_confirm[$lang],$url);
-	$domain_conf = "<a href=\"$confirmed_url\"><b>".$txt_del_user[$lang]."</b></a><br><br>";
+	$confirmed_url = dtcJavascriptConfirmLink( _("Are your sure you want to delete this user? This will erase all his hosted domain names, files, and databases !!!") ,$url);
+	$domain_conf = "<a href=\"$confirmed_url\"><b>". _("Delete the user") ."</b></a><br><br>";
 	if(isset($data)){
-		$domain_conf .= "<h3>".$txt_del_user_domain[$lang]."</h3><br>";
+		$domain_conf .= "<h3>". _("Delete a user domain:") ."</h3><br>";
 		$nbr_domain = sizeof($data);
 		for($i=0;$i<$nbr_domain;$i++){
 			$dom = $data[$i]["name"];
@@ -190,13 +149,13 @@ function drawEditAdmin($admin){
 				$domain_conf .= " - ";
 			}
 			$url = "?adm_login=$adm_login&adm_pass=$adm_pass&deluserdomain=$dom&rub=$rub";
-			$js_url = dtcJavascriptConfirmLink($txt_del_user_domain_confirm[$lang],$url);
+			$js_url = dtcJavascriptConfirmLink( _("Are you sure you want to delete this domain name ? This will erase all hosted files for this domain!!!") ,$url);
 			$domain_conf .= "<a href=\"$js_url\">$dom</a>";
 		}
 		$domain_conf .= "</b><br><br>";
 	}
 	// Creation of domains :
-	$domain_conf .= "<h3>".$txt_new_domain_for_user[$lang]."</h3>";
+	$domain_conf .= "<h3>". _("Add a domain for this user:") ."</h3>";
 
 	$domain_conf .= "<form action=\"?\"><table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
 <tr><td><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
@@ -210,7 +169,7 @@ function drawEditAdmin($admin){
 </div></td></tr></table>
 	</form>";
 
-	$domain_conf .= "<h3>".$txt_import_a_domain_for_this_user[$lang]."<h3></b>
+	$domain_conf .= "<h3>". _("Import a domain file for this user:") ."<h3></b>
 	<form action=\"?\" enctype=\"multipart/form-data\" method=\"post\">
 	<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
 	<tr><td><input type=\"hidden\" name=\"rub\" value=\"$rub\">
@@ -221,7 +180,7 @@ function drawEditAdmin($admin){
 	<input type=\"file\" name=\"domain_import_file\" size=\"30\"></td>
 	<td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
- <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"".$txt_import_button[$lang]."\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"". _("Import") ."\"></div>
  <div class=\"input_btn_right\"></div>
 </div></td></tr></table></form>";
 
@@ -230,7 +189,7 @@ function drawEditAdmin($admin){
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){
-		$domain_conf .= "<h3>".$txt_root_admin_delete_one_of_the_admin_vps[$lang]."</h3><br>";
+		$domain_conf .= "<h3>". _("Delete one of the admin VPS: ") ."</h3><br>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			if($i > 0){
@@ -261,14 +220,14 @@ function drawEditAdmin($admin){
 		$vps_srvs .= "<option value=\"".$a["ip_addr"]."\">".$a["vps_server_hostname"].":".$a["vps_xen_name"]." (".$a["ip_addr"].")</option>";
 	}
 	if($n > 0 && $num_prods_vps > 0){
-		$domain_conf .= "<h3>".$txt_root_admin_add_a_vps_for_this_admin[$lang]."</h3>
+		$domain_conf .= "<h3>". _("Add a VPS for this admin:") ."</h3>
 		<form action=\"?\">
 		<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		<input type=\"hidden\" name=\"action\" value=\"add_vps_to_user\">
 		<table border=\"0\">
-		<tr><td style=\"text-align: right; white-space: nowrap;\">".$txt_root_admin_vps_server_hostname[$lang]."</td>
+		<tr><td style=\"text-align: right; white-space: nowrap;\">". _("VPS Server hostname: ") ."</td>
 		<td><select name=\"vps_server_ip\">$vps_srvs</select></td></tr>
 		<tr><td style=\"text-align: right; white-space: nowrap;\">Product:</td>
 		<td><select name=\"product_id\">$vps_prods</select></td></tr>
@@ -281,7 +240,7 @@ function drawEditAdmin($admin){
  <div class=\"input_btn_right\"></div>
 </div></td></tr></table></form>";
 	}else{
-		$domain_conf .= $txt_root_admin_to_add_a_vps_you_have_to[$lang];
+		$domain_conf .= _("To add a VPS, you need to setup some free IPs VPS in the general config and setup some VPS products.");
 	}
 
 	// Deletion of dedicated
@@ -289,7 +248,7 @@ function drawEditAdmin($admin){
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){
-		$domain_conf .= "<br><br><h3>".$txt_root_admin_delete_one_of_the_admin_dedicated_server[$lang]."</h3><br>";
+		$domain_conf .= "<br><br><h3>". _("Delete one of the admin dedicated server:") ."</h3><br>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			if($i > 0){
@@ -308,18 +267,18 @@ function drawEditAdmin($admin){
 		$a = mysql_fetch_array($r);
 		$server_prods .= "<option value=\"".$a["id"]."\">".$a["name"]."</option>";
 	}
-	$domain_conf .= "<br><br><h3>".$txt_root_admin_add_a_dedicated_server_to_admin[$lang]."</h3>
+	$domain_conf .= "<br><br><h3>". _("Add a dedicated server for this admin:") ."</h3>
 	<form action=\"?\">
 	<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"action\" value=\"add_dedicated_to_user\">
 	<table border=\"0\">
-	<tr><td style=\"text-align: right; white-space: nowrap;\">".$txt_root_admin_product[$lang]."</td>
+	<tr><td style=\"text-align: right; white-space: nowrap;\">". _("Product: ")."</td>
 		<td><select name=\"product_id\">$server_prods</select></td></tr>
-	<tr><td style=\"text-align: right; white-space: nowrap;\">".$txt_root_admin_hostname[$lang]."</td>
+	<tr><td style=\"text-align: right; white-space: nowrap;\">". _("Hostname: ") ."</td>
 		<td><input type=\"text\" name=\"server_hostname\" value=\"\"></td>
-	<tr><td style=\"text-align: right; white-space: nowrap;\">".$txt_root_admin_country[$lang]."</td>
+	<tr><td style=\"text-align: right; white-space: nowrap;\">". _("Country: ") ."</td>
 		<td><select name=\"country\">$cc_code_popup</select></td>
 	<tr><td></td><td>".dtcApplyButton()."</td></tr></table></form>";
 
@@ -338,17 +297,7 @@ function drawEditAdmin($admin){
 // Generate a tool for configuring all domain of one sub-admin //
 /////////////////////////////////////////////////////////////////
 function drawDomainConfig($admin){
-	global $lang;
 	global $rub;
-	global $txt_domain_tbl_config_dom_name;
-	global $txt_domain_tbl_config_quota;
-	global $txt_domain_tbl_config_max_email;
-	global $txt_domain_tbl_config_max_ftp;
-	global $txt_domain_tbl_config_max_subdomain;
-	global $txt_domain_tbl_config_ip;
-	global $txt_domain_tbl_config_backup_ip;
-	global $txt_domain_tbl_config_max_lists;
-	global $txt_root_admin_country2;
 	global $cc_code_array;
 
 	global $pro_mysql_product_table;
@@ -363,20 +312,7 @@ function drawDomainConfig($admin){
 
 	global $adm_login;
 	global $adm_pass;
-	global $txt_root_admin_max_ssh;
-	global $txt_root_admin_cgi_bin_protection;
-	global $txt_root_admin_configuration_of_the_vpses;
 
-	global $txt_root_admin_product;
-	global $txt_root_admin_domain_config_table_title;
-	global $txt_root_admin_country;
-	global $txt_root_admin_vps_name;
-	global $txt_root_admin_vps_server;
-	global $txt_root_admin_registration;
-	global $txt_root_admin_expiration;
-	global $txt_root_admin_configuration_of_the_dedicated_servers;
-	global $txt_root_admin_server_name;
-	global $txt_product_traffic;
 	$ret = "";
 
 	if(isset($admin["data"])){
@@ -393,10 +329,9 @@ function drawDomainConfig($admin){
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
 		}
-
 		$dsc = array(
 			"table_name" => $pro_mysql_domain_table,
-			"title" => $txt_root_admin_domain_config_table_title[$lang],
+			"title" => _("Configuration of the domains"),
 			"action" => "change_domain_config",
 			"forward" => array("rub","adm_login","adm_pass"),
 			"skip_deletion" => "yes",
@@ -406,52 +341,52 @@ function drawDomainConfig($admin){
 				"name" => array(
 					"type" => "id",
 					"display" => "yes",
-					"legend" => $txt_domain_tbl_config_dom_name[$lang]),
+					"legend" => _("Domain name")),
 				"edithost" => array(
 					"type" => "hyperlink",
 					"legend" => _("Vhost"),
-					"text" => "Customize"),
+					"text" => _("Customize") ),
 				"safe_mode" => array(
 					"type" => "checkbox",
 					"legend" => _("PHP safe_mode"),
 					"values" => array("yes","no"),
-					"display_replace" => array(_("No"),_("Yes"))),
+					"display_replace" => array( _("No") , _("Yes") )),
 				"sbox_protect" => array(
 					"type" => "checkbox",
-					"legend" => $txt_root_admin_cgi_bin_protection[$lang],
+					"legend" => _("CGI-BIN protection") ,
 					"values" => array("yes","no"),
 					"display_replace" => array(_("No"),_("Yes"))),
 				"quota" => array(
 					"type" => "text",
-					"legend" => $txt_domain_tbl_config_quota[$lang],
+					"legend" => _("Disk quota") ,
 					"size" => "6"),
 				"max_email" => array(
 					"type" => "text",
-					"legend" => $txt_domain_tbl_config_max_email[$lang],
+					"legend" => _("Email max") ,
 					"size" => "3"),
 				"max_lists" => array(
 					"type" => "text",
-					"legend" => $txt_domain_tbl_config_max_lists[$lang],
+					"legend" => _("Lists max") ,
 					"size" => "3"),
 				"max_ftp" => array(
 					"type" => "text",
-					"legend" => $txt_domain_tbl_config_max_ftp[$lang],
+					"legend" => _("Max FTP") ,
 					"size" => "3"),
 				"max_subdomain" => array(
 					"type" => "text",
-					"legend" => $txt_domain_tbl_config_max_subdomain[$lang],
+					"legend" => _("Subdomain max") ,
 					"size" => "3"),
 				"max_ssh" => array(
 					"type" => "text",
-					"legend" => $txt_root_admin_max_ssh[$lang],
+					"legend" => _("Max SSH") ,
 					"size" => "3"),
 				"ip_addr" => array(
 					"type" => "popup",
-					"legend" => $txt_domain_tbl_config_ip[$lang],
+					"legend" => _("IP address") ,
 					"values" => $site_addrs),
 				"backup_ip_addr" => array(
 					"type" => "text",
-					"legend" => $txt_domain_tbl_config_backup_ip[$lang],
+					"legend" => _("Backup Vhost IP address") ,
 					"size" => "14")
 				)
 			);
@@ -520,7 +455,7 @@ function drawDomainConfig($admin){
 		}
 		$dsc = array(
 			"table_name" => $pro_mysql_vps_table,
-			"title" => $txt_root_admin_configuration_of_the_vpses[$lang],
+			"title" => _("Configuration of the VPSes") ,
 			"action" => "change_vps_config",
 			"forward" => array("rub","adm_login","adm_pass"),
 			"skip_deletion" => "yes",
@@ -533,18 +468,18 @@ function drawDomainConfig($admin){
 					"legend" => "id"),
 				"vps_server_hostname" => array(
 					"type" => "info",
-					"legend" => $txt_root_admin_vps_server[$lang]),
+					"legend" => _("VPS Server") ),
 				"vps_xen_name" => array(
 					"type" => "info",
-					"legend" => $txt_root_admin_vps_name[$lang]),
+					"legend" => _("VPS Name") ),
 				"start_date" => array(
 					"type" => "text",
 					"size" => "10",
-					"legend" => $txt_root_admin_registration[$lang]),
+					"legend" => _("Registration") ),
 				"expire_date" => array(
 					"type" => "text",
 					"size" => "10",
-					"legend" => $txt_root_admin_expiration[$lang]),
+					"legend" => _("Expiration") ),
 				"hddsize" => array(
 					"type" => "text",
 					"size" => "5",
@@ -556,10 +491,10 @@ function drawDomainConfig($admin){
 				"bandwidth_per_month_gb" => array(
 					"type" => "text",
 					"size" => "5",
-					"legend" => $txt_product_traffic[$lang]),
+					"legend" => _("Bandwidth per month") ),
 				"product_id" => array(
 					"type" => "popup",
-					"legend" => $txt_root_admin_product[$lang],
+					"legend" => _("Product ID") ,
 					"values" => $prod_id,
 					"display_replace" => $prod_name)
 				));
@@ -588,7 +523,7 @@ function drawDomainConfig($admin){
 		$dsc = array(
 			"table_name" => $pro_mysql_dedicated_table,
 			"title" => "",
-			"action" => $txt_root_admin_configuration_of_the_dedicated_servers[$lang],
+			"action" => _("Configuration of the dedicated servers") ,
 			"forward" => array("rub","adm_login","adm_pass"),
 			"skip_deletion" => "yes",
 			"skip_creation" => "yes",
@@ -600,15 +535,15 @@ function drawDomainConfig($admin){
 					"legend" => "id"),
 				"server_hostname" => array(
 					"type" => "info",
-					"legend" => $txt_root_admin_server_name[$lang]),
+					"legend" => _("Server name") ),
 				"start_date" => array(
 					"type" => "text",
 					"size" => "10",
-					"legend" => $txt_root_admin_registration[$lang]),
+					"legend" => _("Registration") ),
 				"expire_date" => array(
 					"type" => "text",
 					"size" => "10",
-					"legend" => $txt_root_admin_expiration[$lang]),
+					"legend" => _("Expiration") ),
 				"hddsize" => array(
 					"type" => "text",
 					"size" => "5",
@@ -620,15 +555,15 @@ function drawDomainConfig($admin){
 				"bandwidth_per_month_gb" => array(
 					"type" => "text",
 					"size" => "5",
-					"legend" => $txt_product_traffic[$lang]),
+					"legend" => _("Bandwidth per month") ),
 				"country_code" => array(
 					"type" => "popup",
-					"legend" => $txt_root_admin_country2[$lang],
+					"legend" => _("Country") ,
 					"values" => array_keys($cc_code_array),
 					"display_replace" => array_values($cc_code_array)),
 				"product_id" => array(
 					"type" => "popup",
-					"legend" => $txt_root_admin_product[$lang],
+					"legend" => _("Product") ,
 					"values" => $prod_id,
 					"display_replace" => $prod_name)
 				));

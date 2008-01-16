@@ -20,7 +20,7 @@ function drawAdminTools_Invoices($admin){
 		$r2 = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 		$out .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"1\">
-<tr><td>Date</td><td>Product</td><td>Refund amount</td><td>Payment gateway cost</td><td>Total Price</td><td>Invoice</td></tr>";
+<tr><td>". _("Date") ."</td><td>". _("Product") ."</td><td>" ._("Price"). "</td><td>". _("Payment gateway cost") ."</td><td>". _("Total Price") ."</td><td>". _("Invoice") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."';";
@@ -36,9 +36,9 @@ function drawAdminTools_Invoices($admin){
 			$r2 = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$total = "Not found!";
-				$gate = "Not found";
-				$refund = "Not found!";
+				$total = _("Not found!");
+				$gate = _("Not found!");
+				$refund = _("Not found!");
 			}else{
 				$pay = mysql_fetch_array($r2);
 				$refund = $pay["refund_amount"];
@@ -49,7 +49,7 @@ function drawAdminTools_Invoices($admin){
 		}
 		$out .= "</table>";
 	}else{
-		$out .= "No completed orders found.";
+		$out .= _("No completed orders found.") ;
 	}
 	return $out;
 }

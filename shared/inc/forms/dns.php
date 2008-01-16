@@ -1,15 +1,6 @@
 <?php
 
 function drawAdminTools_DomainDNS($admin,$eddomain){
-	global $lang;
-
-	global $txt_other_mx_servers;
-	global $txt_primary_mx_server;
-	global $txt_other_dns_ip;
-	global $txt_primari_dns_ip;
-	global $txt_comment_confirurate_your_domain_name;
-	global $txt_confirurate_your_domain_name;
-
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
@@ -25,7 +16,7 @@ function drawAdminTools_DomainDNS($admin,$eddomain){
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"new_dns_and_mx_config\" value=\"Ok\">".
 dtcFormTableAttrs().
-dtcFormLineDraw($txt_primari_dns_ip[$lang],"<input type=\"text\" name=\"new_dns_1\" value=\"".$eddomain["primary_dns"]."\">");
+dtcFormLineDraw( _("IP address of the primary DNS server:") ,"<input type=\"text\" name=\"new_dns_1\" value=\"".$eddomain["primary_dns"]."\">");
 	if($eddomain["other_dns"] != "default"){
 		$other_dns = explode("|",$eddomain["other_dns"]);
 		$dns2 = $other_dns[0];
@@ -34,7 +25,7 @@ dtcFormLineDraw($txt_primari_dns_ip[$lang],"<input type=\"text\" name=\"new_dns_
 		$dns2 = "default";
 		$nbr_other_dns = 1;
 	}
-	$domain_dns_mx_conf_form .= dtcFormLineDraw($txt_other_dns_ip[$lang],"<input type=\"text\" name=\"new_dns_2\" value=\"$dns2\">");
+	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Other DNS servers:") ,"<input type=\"text\" name=\"new_dns_2\" value=\"$dns2\">");
 
 	$new_dns_num = 3;
 	for($z=1;$z<$nbr_other_dns;$z++){
@@ -48,9 +39,9 @@ dtcFormLineDraw($txt_primari_dns_ip[$lang],"<input type=\"text\" name=\"new_dns_
 //	$domain_dns_mx_conf_form .= "<tr><td></td><td><input type=\"text\" name=\"new_dns_$new_dns_num\" value=\"\"><br><br></td></tr>";
 
 	// The domain MX configuration
-	$domain_dns_mx_conf_form .= dtcFormLineDraw($txt_primary_mx_server[$lang],"<input type=\"text\" name=\"new_mx_1\" value=\"".$eddomain["primary_mx"]."\">");
+	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Primary MX address:"),"<input type=\"text\" name=\"new_mx_1\" value=\"".$eddomain["primary_mx"]."\">");
 	if($eddomain["other_mx"] == "default" && $eddomain["primary_dns"] == "default"){
-		$domain_dns_mx_conf_form .= dtcFormLineDraw($txt_other_mx_servers[$lang],"<input type=\"text\" name=\"new_mx_2\" value=\"\">");
+		$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Other MX (backup) servers:") ,"<input type=\"text\" name=\"new_mx_2\" value=\"\">");
 	}else{
 		$new_mx_num = 2;
 		$other_mx = explode("|",$eddomain["other_mx"]);
@@ -59,7 +50,7 @@ dtcFormLineDraw($txt_primari_dns_ip[$lang],"<input type=\"text\" name=\"new_dns_
 			if($z != 0){
 				$domain_dns_mx_conf_form .= dtcFormLineDraw("","<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".$other_mx[$z]."\">");
 			}else{
-				$domain_dns_mx_conf_form .= dtcFormLineDraw($txt_other_mx_servers[$lang],"<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".$other_mx[$z]."\">");
+				$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Other MX (backup) servers:"),"<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".$other_mx[$z]."\">");
 			}
 			$new_mx_num += 1;
 		}
@@ -91,10 +82,21 @@ dtcFormLineDraw($txt_primari_dns_ip[$lang],"<input type=\"text\" name=\"new_dns_
 		$zonefile_content .= "Could not load zonefile: permission denied or file not existant?";
 	}
 
-	return "<h3>".$txt_confirurate_your_domain_name[$lang]."</h3><br><br>
-	$txt_comment_confirurate_your_domain_name[$lang]<br>
+	return "<h3>". _("Configure your domain name:") ."</h3><br><br>"
+	. _("Take care ! Setting a wrong value
+in the following fields can lead to
+your site services stopping (web or mail).<br>
+Putting something else than \"default\" in the DNS
+fields means that you want your site to be
+hosted elsewhere.<br>
+The MX parameter determines the address of the mail server
+that receives all your mail when somebody sends
+your a message. The value \"default\" means that
+you want to use the current server.")
+	
+	."<br>
 	$domain_dns_mx_conf_form<br>
-	<h3>Named zonefile:</h3>
+	<h3>". _("Named zonefile:") ."</h3>
 	$zonefile_content";
 }
 
