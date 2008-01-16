@@ -1,5 +1,4 @@
 <?php
-require("$dtcshared_path/inc/forms/root_admin_strings.php");
 
 ////////////////////////////////////////////////////////////////////////////
 // Draw the form for configuring global admin account info (path, etc...) //

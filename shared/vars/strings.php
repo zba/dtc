@@ -1,5 +1,113 @@
 <?php
 
+$txt_product_editor_private =array(
+	"fr" => "Private",
+	"en" => "Private",
+	"nl" => "Prive",
+	"de" => "privat",
+	"zh" => "Ë½ÓÐ"
+	);
+$txt_product_editor_product_list_editor =array(
+	"fr" => "Editeur de liste de produit",
+	"en" => "Product list editor",
+	"nl" => "Product lijst editor",
+	"de" => "Produkte bearbeiten",
+	"zh" => "±à¼­²úÆ·ÁÐ±í"
+	);
+$txt_product_price = array (
+	"fr" => "Prix ",
+	"en" => "Price ",
+	"it" => "Prezzo ",
+	"nl" => "Prijs ",
+	"de" => "Preis ",
+	"zh" => "¼Û¸ñ",
+	"pl" => "Cena w ",
+	"se" => "Pris",
+	"es" => "Precio "
+);
+$txt_product_name = array (
+  "fr" => "Nom ",
+  "en" => "Name ",
+  "it" => "Nome ",
+  "nl" => "Naam ",
+  "de" => "Name ",
+  "zh" => "Ãû³Æ",
+  "pl" => "Nazwa ",
+  "se" => "Name ",
+  "es" => "Nombre "
+  );
+$txt_product_traffic = array (
+  "fr" => "Trafic",
+  "en" => "Traffic",
+  "it" => "Traffico",
+  "nl" => "Traffic",
+  "de" => "Traffic",
+  "zh" => "Á÷Á¿",
+  "pl" => "Transfer",
+  "se" => "Trafik",
+  "es" => "Tr&aacute;fico"
+  );
+$txt_product_disk= array (
+  "fr" => "Disque",
+  "en" => "Disk",
+  "it" => "Disco",
+  "nl" => "Disk",
+  "ru" => "Disk",
+  "de" => "Disk",
+  "zh" => "´ÅÅÌ¿Õ¼ä",
+  "pl" => "Pojemno¶æ",
+  "es" => "Disco",
+  "pt" => "Disk"
+  );
+$txt_product_adddomain= array (
+  "fr" => "Ajout de domaine ",
+  "en" => "Add domain",
+  "it" => "Aggiungi dominio ",
+  "nl" => "Voeg domein toe ",
+  "de" => "Domain hinzufügen",
+  "zh" => "ÊÇ·ñÌí¼ÓÓòÃû",
+  "pl" => "Dodaj domenê",
+  "es" => "Agregar dominio "
+  );
+$txt_product_period = array (
+  "fr" => "Periode ",
+  "en" => "Period ",
+  "it" => "Periodo ",
+  "nl" => "Periode ",
+  "de" => "Zeitraum",
+  "zh" => "Ê¹ÓÃÆÚÏÞ",
+  "pl" => "Okres ",
+  "es" => "Per&iacute;odo "
+  );         
+$txt_user_menu_email = array (
+  "fr" => "Mon e-mail",
+  "en" => "My e-mail",
+  "it" => "Mia e-mail ",
+  "nl" => "Mijn e-mail",
+  "de" => "Meine E-Mail",
+  "zh" => "ÎÒµÄÓÊÏä",
+  "pl" => "Mój e-mail",
+  "se" => "Min e-post ",
+  "es" => "Mi e-mail"
+  );
+$txt_product_editor_renewal_id =array(
+	"fr" => "ID renouvellement",
+	"en" => "Renewal-ID",
+	"nl" => "Vernieuwings-ID",
+	"de" => "Verlängerung für",
+	"zh" => "ÖØÖÃID"
+	);
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+////////////////////       END OF TO BE REMOVED STRINGS        ////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+
 // Mail Alias Group
 $txt_mail_alias_delivery_group = array(
 	"fr" => "Groupes d'envois:",
@@ -77,68 +185,6 @@ $txt_server_statistic_graphs = array (
 	"es" => "gráficos de estadísticas del servidor",
 	"pt" => "TRANS Server statistic graphs"
 	);
-
-$txt_err_not_registering = array (
-	"fr" => "Pas d'enregistrement",
-	"en" => "Not registering",
-	"hu" => "TRANS Not registering",
-	"it" => "Nessuna registrazione",
-	"nl" => "Geen registeratie",
-	"ru" => "TRANS Not registering",
-	"de" => "nicht registriert",
-	"zh" => "Ã»ÓÐ×¢²á",
-	"pl" => "Niezarejestrowana",
-	"se" => "TRANS Not registering",
-	"es" => "Sin registrar",
-	"pt" => "TRANS Not registering"
-	);
-
-$txt_product_id_not_valid = array (
-	"fr" => "ID produit non valide !",
-	"en" => "Product ID not valid!",
-	"hu" => "TRANS Product ID not valid!",
-	"it" => "ID prodotto non valido!",
-	"nl" => "Ongeldig Product ID!",
-	"ru" => "TRANS Product ID not valid!",
-	"de" => "Die Produkt-ID ist ungültig!",
-	"zh" => "²úÆ·ID²»´æÔÚ£¡",
-	"pl" => "Nieprawid³owy ID produktu!",
-	"se" => "TRANS Product ID not valid!",
-	"es" => "ID de producto no válido",
-	"pt" => "TRANS Product ID not valid!"
-	);
-
-$txt_user_login_incorrect = array (
-	"fr" => "Format de nom d'utilisateur incorrect. Utilisez uniquement des lettres, des chiffres, et entre 4 et 16 charactères.",
-	"en" => "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
-	"hu" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
-	"it" => "Il formato del login utente non è corretto: inserisci solo lettere e numero (min. 4 max. 16 caratteri).",
-	"nl" => "User login formaat incorrect. Gebruik alsjeblieft alleen letters en cijfers en 4 tot 16 tekens.",
-	"ru" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
-	"de" => "ungültiges Format des Benutzer-Logins. Bitte benutzen Sie nur Buchstaben und Ziffern und zwischen 4 und 16 Zeichen.",
-	"zh" => "ÓÃ»§µÇÂ½Ãû¸ñÊ½²»ÕýÈ·¡£ÇëÊ¹ÓÃÊý×Ö»ò×ÖÄ¸£¬²¢ÇÒÊÇ4µ½16¸ö×Ö·ûÊýÖ®¼ä¡£",
-	"pl" => "Format loginu jest nieprawid³owy. Proszê u¿yæ tylko liter i cyfr od 4 do 16 znaków.",
-	"se" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
-	"es" => "Formato de nombre de usuario incorrecto. Por favor, use sólo letras y números y una extensión de entre 4 y 16 
-caracteres",
-	"pt" => "TRANS User login format incorrect. Please use letters and numbers only and from 4 to 16 chars."
-	);
-
-$txt_username_invalid_root_or_debian = array (
-	"fr" => "Nom d'utilisateur incorrect. Utilisez autre chose que root ou debian-sys-maint",
-	"en" => "Username invalid: please choose something else other than root or debian-sys-maint",
-	"hu" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
-	"it" => "Nome utente non valido: utilizza altri nomi rispetto a root o debian-sys-maint",
-	"nl" => "Gebruikersnaam ongeldig: kies iets anders dan root of debian-sys-maint",
-	"ru" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
-	"de" => "Benutzername ungültig: Bitte wählen Sie einen anderen Namen als \"root\" oder \"debian-sys-maint\".",
-	"zh" => "ÓÃ»§Ãû²»¿ÉÓÃ£ºÇëÑ¡ÓÃÆäËüµÇÂ¼Ãû£¬²»ÒªÊ¹ÓÃroot»òÕßdebian-sys-maint",
-	"pl" => "Nieprawid³owa nazwa u¿ytkownika: proszê wybrac inn± nazwe niz root lub debian-sys-maint",
-	"se" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint",
-	"es" => "Nombre de usuario incorrecto: Por favor, escoja algo diferente de root o debian-sys-maint",
-	"pt" => "TRANS Username invalid: please choose something else other than root or debian-sys-maint"
-	);
-
 $txt_password_format_incorrect = array (
 	"fr" => "Mot de passe incorrect. Merci d'utiliser uniquement des lettres et des chiffres, entre 4 et 16 caractères.",
 	"en" => "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.",
@@ -153,262 +199,6 @@ $txt_password_format_incorrect = array (
 	"es" => "Formato de contraseña incorrecto. Por favor, use sólo letras y números y una extensión de entre 4 y 16 caracteres",
 	"pt" => "TRANS Password format incorrect. Please use letters and numbers only and from 4 to 16 chars."
 	);
-
-$txt_passwords_do_not_match = array (
-	"fr" => "Les mots de passe 1 et 2 ne correspondent pas !",
-	"en" => "Password 1 and 2 do not match!",
-	"hu" => "TRANS Password 1 and 2 do not match!",
-	"it" => "Le due password non coincidono!",
-	"nl" => "Password 1 en 2 komen niet overeen!",
-	"ru" => "TRANS Password 1 and 2 do not match!",
-	"de" => "Die beiden Passwörter waren nicht identisch!",
-	"zh" => "Á½´ÎÊäÈëµÄÃÜÂë²»Æ¥Åä£¡",
-	"pl" => "Has³a 1 i 2 nie s± zgodne. Proszê upewniæ siê, ¿e wprowadzane has³a s± identyczne.",
-	"se" => "TRANS Password 1 and 2 do not match!",
-	"es" => "Password 1 y 2 no coinciden",
-	"pt" => "TRANS Password 1 and 2 do not match!"
-	);
-
-$txt_domain_name_does_not_look_like_correct = array (
-	"fr" => "Le nom de domaine ne parrait pas correct.",
-	"en" => "Domain name seems to be incorrect.",
-	"hu" => "TRANS Domain name seems to be incorrect.",
-	"it" => "Il nome del dominio non sembra corretto.",
-	"nl" => "Domeinnaam is kennelijk incorrect.",
-	"ru" => "TRANS Domain name seems to be incorrect.",
-	"de" => "Der Domainname sieht inkorrekt aus.",
-	"zh" => "ÓòÃûÃ²ËÆ²»ÕýÈ·¡£",
-	"pl" => "Nazwa domeny wygl±da na nieprawid³ow±.",
-	"se" => "TRANS Domain name seems to be incorrect.",
-	"es" => "El nombre del dominio parece ser incorrecto",
-	"pt" => "TRANS Domain name seems to be incorrect."
-	);
-
-$txt_vps_location_not_selected = array (
-	"fr" => "Localisation du VDS non sélectionné !",
-	"en" => "VPS location not selected!",
-	"hu" => "TRANS VPS location not selected!",
-	"it" => "Non hai selezionato una destinazione VPS!",
-	"nl" => "VPS locatie niet geselecteerd!",
-	"ru" => "TRANS VPS location not selected!",
-	"de" => "Kein VPS Standort ausgewählt!",
-	"zh" => "Ã»ÓÐÑ¡ÔñVPSËùÔÚµÄÎ»ÖÃ£¡",
-	"pl" => "Nie wybrano lokalizacji dla VPS!",
-	"se" => "TRANS VPS location not selected!",
-	"es" => "Localización del VPS no seleccionada",
-	"pt" => "TRANS VPS location not selected!"
-	);
-
-$txt_email_does_not_look_like_correct = array (
-	"fr" => "L'adresse email n'a pas un format correct.",
-	"en" => "Email address seems to be incorrect format.",
-	"hu" => "TRANS Email address seems to be incorrect format.",
-	"it" => "Il formato dell'indirizzo email non sembra corretto.",
-	"nl" => "Email addres heeft verkeerd formaat.",
-	"ru" => "TRANS Email address seems to be incorrect format.",
-	"de" => "Die E-Mail-Adresse scheint ungültig zu sein.",
-	"zh" => "Ã²ËÆÓÊÏäµØÖ·¸ñÊ½²»ÕýÈ·¡£",
-	"pl" => "Format adresu e-mail wygl±da na nieprawid³owy.",
-	"se" => "TRANS Email address seems to be incorrect format.",
-	"es" => "El formato de email parece ser incorrecto",
-	"pt" => "TRANS Email address seems to be incorrect format."
-	);
-
-$txt_required_field_family_name_missing = array (
-	"fr" => "Champ nom de famille manquant.",
-	"en" => "Required field family name missing.",
-	"hu" => "TRANS Required field family name missing.",
-	"it" => "Non hai compilato il campo cognome.",
-	"nl" => "Verplicht veld achternaam ontbreekt.",
-	"ru" => "TRANS Required field family name missing.",
-	"de" => "Das Pflichtfeld \"Familienname\" ist leer.",
-	"zh" => "±ØÌîµÄÐÕÊÏÒ»ÏîÃ»ÓÐÌîÐ´¡£",
-	"pl" => "Pole wymagane. Nie podano nazwiska.",
-	"se" => "TRANS Required field family name missing.",
-	"es" => "Falta el campo obligatorio apellido.",
-	"pt" => "TRANS Required field family name missing."
-	);
-
-$txt_required_field_first_name_missing = array (
-	"fr" => "Champ prénom manquant.",
-	"en" => "Required field first name missing.",
-	"hu" => "TRANS Required field first name missing.",
-	"it" => "Non hai compilato il campo nome.",
-	"nl" => "Verplicht veld voornaam ontbreekt.",
-	"ru" => "TRANS Required field first name missing.",
-	"de" => "DasPflichtfeld \"Vorname\ ist leer.",
-	"zh" => "±ØÌîµÄÃû×ÖÒ»ÏîÃ»ÓÐÌîÐ´¡£",
-	"pl" => "Pole wymagane. Nie podano imienia.",
-	"se" => "TRANS Required field first name missing.",
-	"es" => "Falta el campo obligatorio nombre",
-	"pt" => "TRANS Required field first name missing."
-	);
-
-$txt_could_not_find_vps_server_in_db = array (
-	"fr" => "Impossible de trouver le serveur VDS dans la base de donnée",
-	"en" => "Could not find the VPS server in database",
-	"hu" => "TRANS Could not find the VPS server in database",
-	"it" => "Impossibile trovare il server VPS nel database",
-	"nl" => "Kon VPS niet in database vinden",
-	"ru" => "TRANS Could not find the VPS server in database",
-	"de" => "Konnte den VPS-Server nicht finden",
-	"zh" => "ÔÚÊý¾Ý¿âÖÐÃ»ÓÐÕÒµ½VPSµÄÏà¹ØÅäÖÃ",
-	"pl" => "Nie mozna odnale¼æ serwera VPS w bazie danych",
-	"se" => "TRANS Could not find the VPS server in database",
-	"es" => "No se ha podido encontrar el servidor VPS en la base de datos",
-	"pt" => "TRANS Could not find the VPS server in database"
-	);
-
-$txt_country_code_seems_incorrect = array (
-	"fr" => "Country code seems incorrect.",
-	"en" => "Country code seems incorrect.",
-	"hu" => "TRANS Country code seems incorrect.",
-	"it" => "Il codice paese sembra errato.",
-	"nl" => "Land code incorrect.",
-	"ru" => "TRANS Country code seems incorrect.",
-	"de" => "Der Ländercode scheint ungültig zu sein.",
-	"zh" => "¹ú¼Ò´úÂëÃ²ËÆ²»ÕýÈ·¡£",
-	"pl" => "Kod kraju wygl±da na nieprawid³owy",
-	"se" => "TRANS Country code seems incorrect.",
-	"es" => "El código del pais parece incorrecto.",
-	"pt" => "TRANS Country code seems incorrect."
-	);
-
-$txt_is_company_radio_button_wrong = array (
-	"fr" => "Le bouton radio de société n'est pas bon!",
-	"en" => "Is company radio button is wrong!",
-	"hu" => "TRANS Is company radio button is wrong!",
-	"it" => "Il campo azienda non è corretto!",
-	"nl" => "Is bedrijf radio button is verkeerd!",
-	"ru" => "TRANS Is company radio button is wrong!",
-	"de" => "Die Firmen-Auswahl ist ungültig!",
-	"zh" => "ÇëÑ¡ÔñÊÇ²»ÊÇ¹«Ë¾¿Í»§£¡",
-	"pl" => "TRANS Is company radio button is wrong!",
-	"se" => "TRANS Is company radio button is wrong!",
-	"es" => "El selector de compañia es incorrecto",
-	"pt" => "TRANS Is company radio button is wrong!"
-	);
-
-$txt_required_field_zipcode_missing = array (
-	"fr" => "Champ code postal manquant.",
-	"en" => "Required field zipcode missing.",
-	"hu" => "TRANS Required field zipcode missing.",
-	"it" => "Non hai compilato il campo codice postale.",
-	"nl" => "Verplicht veld postcode ontbreekt.",
-	"ru" => "TRANS Required field zipcode missing.",
-	"de" => "Das Pflichtfeld \"PLZ\" ist leer.",
-	"zh" => "±ØÌîµÄÓÊÕþ±àÂëÒ»ÏîÃ»ÓÐÌîÐ´¡£",
-	"pl" => "Pole wymagane. Nie podanu kodu pocztowego.",
-	"se" => "TRANS Required field zipcode missing.",
-	"es" => "Falta el campo requerido código postal",
-	"pt" => "TRANS Required field zipcode missing."
-	);
-
-$txt_required_field_city_missing = array (
-	"fr" => "Required field city missing.",
-	"en" => "Required field city missing.",
-	"hu" => "TRANS Required field city missing.",
-	"it" => "Non hai compilato il campo città.",
-	"nl" => "Verplicht veld plaats ontbreekt.",
-	"ru" => "TRANS Required field city missing.",
-	"de" => "Das Plichtfeld \"Stadt\ ist leer.",
-	"zh" => "±ØÌîµÄ³ÇÊÐÒ»ÏîÃ»ÓÐÌîÐ´¡£",
-	"pl" => "Pole wymagane. Nie podanu miasta.",
-	"se" => "TRANS Required field city missing.",
-	"es" => "Falta el campo requerido ciudad",
-	"pt" => "TRANS Required field city missing."
-	);
-
-$txt_selling_conditions_not_accepted = array (
-	"fr" => "Conditions de ventes non acceptés!",
-	"en" => "Selling conditions not accepted!",
-	"hu" => "TRANS Selling conditions not accepted!",
-	"it" => "Le condizioni di vendita non sono valide!",
-	"nl" => "Verkoop voorwaarden niet geaccepteerd!",
-	"ru" => "TRANS Selling conditions not accepted!",
-	"de" => "Die AGB wurden nicht akzepiert!",
-	"zh" => "ÏúÊÛ×´Ì¬²»½ÓÊÜ£¡",
-	"pl" => "TRANS Selling conditions not accepted!",
-	"se" => "TRANS Selling conditions not accepted!",
-	"es" => "Condiciones de venta no aceptadas.",
-	"pt" => "TRANS Selling conditions not accepted!"
-	);
-
-$txt_username_already_taken_try_again = array (
-	"fr" => "Nom d'utilisateur déjà pris! Essayez encore.",
-	"en" => "Username already taken! Try again.",
-	"hu" => "TRANS Username already taken! Try again.",
-	"it" => "Nome utente già presente, scegline un altro.",
-	"nl" => "Gebruikersnaam is bezet! Probeer Opnieuw.",
-	"ru" => "TRANS Username already taken! Try again.",
-	"de" => "Der Benutzername wurde bereits vergeben! Bitte wählen Sie einen anderen Benutzernamen.",
-	"zh" => "ÓÃ»§ÃûÒÑ±»Õ¼ÓÃ£¡ÇëÖØÐÂÌîÐ´¡£",
-	"pl" => "Nazwa u¿ytkownika ju¿ istnieje! Spróbuj ponownie. ",
-	"se" => "TRANS Username already taken! Try again.",
-	"es" => "Nombre de usuario no disponible. Pruebe otro.",
-	"pt" => "TRANS Username already taken! Try again."
-	);
-
-$txt_vat_number = array (
-	"fr" => "Numéro de TVA : ",
-	"en" => "VAT Number:",
-	"hu" => "TRANS VAT Number: ",
-	"it" => "Codice Partita Iva: ",
-	"nl" => "BTW Nummer: ",
-	"ru" => "TRANS VAT Number: ",
-	"de" => "Steuernr.: ",
-	"zh" => "VATºÅÂë£º",
-	"pl" => "NIP: ",
-	"se" => "TRANS VAT Number: ",
-	"es" => "CIF: ",
-	"pt" => "TRANS VAT Number: "
-	);
-
-$txt_i_agree_to_the = array (
-	"fr" => "J'accepte les",
-	"en" => "I agree to the",
-	"hu" => "TRANS I agree to the",
-	"it" => "Accetto le",
-	"nl" => "Ik ga akkoord met de",
-	"ru" => "TRANS I agree to the",
-	"de" => "Ich erkläre meine Zustimmung zu den",
-	"zh" => "ÎÒ½ÓÊÜ",
-	"pl" => "Akceptujê",
-	"se" => "TRANS I agree to the",
-	"es" => "Acepto",
-	"pt" => "TRANS I agree to the"
-	);
-
-$txt_selling_conditions = array (
-	"fr" => "conditions de ventes",
-	"en" => "selling conditions",
-	"hu" => "TRANS selling conditions",
-	"it" => "condizioni di vendita",
-	"nl" => "verkoop voorwaarden",
-	"ru" => "TRANS selling conditions",
-	"de" => "AGB",
-	"zh" => "ÏúÊÛ×´Ì¬",
-	"pl" => "TRANS selling conditions",
-	"se" => "TRANS selling conditions",
-	"es" => "Acepto las condiciones de compra.",
-	"pt" => "TRANS selling conditions"
-	);
-
-$txt_vps_location = array (
-	"fr" => "Localisation du VDS : ",
-	"en" => "VPS location: ",
-	"hu" => "TRANS VPS location: ",
-	"it" => "Destinazione del server VPS: ",
-	"nl" => "VPS locatie: ",
-	"ru" => "TRANS VPS location: ",
-	"de" => "VPS Standort: ",
-	"zh" => "VPSÎ»ÖÃ£º",
-	"pl" => "Lokalizacja VPS: ",
-	"se" => "TRANS VPS location: ",
-	"es" => "Localización del VPS: ",
-	"pt" => "TRANS VPS location: "
-	);
-
 $txt_vps_operating_system = array (
 	"fr" => "VPS operating system : ",
 	"en" => "VPS operating system: ",
@@ -423,7 +213,6 @@ $txt_vps_operating_system = array (
 	"es" => "Sistema operativo del VPS: ",
 	"pt" => "TRANS VPS operating system:"
 	);
-
 $txt_action = array(
 	"fr" => "Action",
 	"en" => "Action",
@@ -869,25 +658,6 @@ $txt_mainmenu_title_server_monitor = array(
   "es" => "Monitor del servidor",
   "pt" => "TRANS "
   );
-
-
-/* #### CL continue here
-*/
-$txt_register_custom_message_title = array(
-	"fr" => "Laisser un message a l'administrateur pour indiquer des eventuels specificités pour votre compte:",
-	"en" => "Leave a message describing any specific requirements you might have for your account:",
-	"hu" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
-	"it" => "Per favore lascia un messaggio per richieste specifiche:",
-	"nl" => "Laat een bericht achter voor enkele specifieke benodigdheden voor jouw account:",
-	"ru" => "TRANS Leave a message to tell any specific requirements you might have for your account:",
-	"de" => "Schicken Sie eine Nachricht, wenn sie spezielle Anforderungen für Ihren Account haben:",
-	"zh" => "Èç¹ûÄúÓÐÊ²Ã´ÌØÊâµÄÒªÇó£¬Çë¸øÎÒÃÇÁôÑÔ£º",
-	"pl" => "Napisz nam jakich szczegó³owych uprawnieñ <br/>potrzebujesz dla swojego konta:",
-	"se" => "TRANS SVENSKA",
-	"es" => "Deje un mensaje al administrador sobre cualquier requerimiento espec&iacute;fico que pueda tener para su cuenta:",
-	"pt" => "TRANS Leave a message to tell any specific requirements you might have for your account:"
-	);
-
 $txt_go_to_client_panel = array(
 	"fr" => "Aller vers l'interface client",
 	"en" => "Go to client panel",
@@ -902,52 +672,6 @@ $txt_go_to_client_panel = array(
 	"es" => "Ir al panel de cliente",
 	"pt" => "Ir para a área de clientes"
 	);
-
-$txt_is_company = array(
-	"fr" => "Est-ce une sociét :",
-	"en" => "Is it a company:",
-	"hu" => "Céges elõfizetés:",
-	"it" => "E' una società:",
-	"nl" => "Is dit een bedrijf:",
-	"ru" => "TRANS Is it a company:",
-	"de" => "ist Firma:",
-	"zh" => "ÊÇ¹«Ë¾Âð:",
-	"pl" => "Firma :",
-	"se" => "TRANS SVENSKA",
-	"es" => "Es una empresa:",
-	"pt" => "Pertence a uma empresa:"
-	);
-
-$txt_desired_domain_name = array(
-	"fr" => "Nom de domaine desire",
-	"en" => "Desired domain name",
-	"hu" => "Igényelt domain név",
-	"it" => "Nome dominio desiderato",
-	"nl" => "Gewenste domeinnaam",
-	"ru" => "TRANS ru",
-	"de" => "Gewünschter Domain-Name",
-	"zh" => "ÓûÑ¡ÔñµÄÓòÃû",
-	"pl" => "Nazwa domeny",
-	"se" => "TRANS SVENSKA",
-	"es" => "Nombre de dominio deseado",
-	"pt" => "Nome do dominio pretendido"
-	);
-
-$txt_confirm_pass = array(
-	"fr" => "Confirmer le mot de passe",
-	"en" => "Confirm pass",
-	"hu" => "Jelszó megerõsítése",
-	"it" => "Conferma password",
-	"nl" => "Bevestig password",
-	"ru" => "TRANS",
-	"de" => "Passwort bestätigen",
-	"zh" => "È·ÈÏÃÜÂë",
-	"pl" => "Powtórz has³o",
-	"se" => "TRANS SVENSKA",
-	"es" => "Confirmar contrase&ntilde;a",
-	"pt" => "Confirmação da palavra chave"
-	);
-
 $txt_login_info = array(
 	"fr" => "Information de login",
 	"en" => "Login info",
@@ -962,37 +686,6 @@ $txt_login_info = array(
 	"es" => "informaci&oacute;n de acceso (login)",
 	"pt" => "Informação do utilizador para acesso"
 	);
-
-$txt_product = array(
-	"fr" => "Produit",
-	"en" => "Product",
-	"hu" => "Csomag",
-	"it" => "Prodotto",
-	"nl" => "Product",
-	"ru" => "TRANS",
-	"de" => "Produkt",
-	"zh" => "²úÆ·",
-	"pl" => "Produkt",
-	"se" => "TRANS SVENSKA",
-	"es" => "producto",
-	"pt" => "produto"
-	);
-
-$txt_go_to_login = array(
-	"fr" => "Aller au login",
-	"en" => "Go to login",
-	"hu" => "Belépés",
-	"it" => "Vai al login",
-	"nl" => "Ga naar login",
-	"ru" => "TRANS",
-	"de" => "zur Anmeldung an der Kundenoberfläche",
-	"zh" => "µÇÂ½",
-	"pl" => "Zaloguj siê",
-	"se" => "TRANS SVENSKA",
-	"es" => "Ir al acceso",
-	"pt" => "Ir para o login"
-	);
-
 $txt_client_info = array(
 	"fr" => "Info client :",
 	"en" => "Client info:",

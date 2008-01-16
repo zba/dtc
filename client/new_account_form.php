@@ -1,30 +1,6 @@
 <?php
 
 function register_user(){
-// adm_login=aaa&reqadm_pass=&reqadm_pass2=&domain_name=toto&familyname=nymous&
-// firstname=ano&compname=testsoc&email=toto@toto.com&phone=PARIS&
-// fax=state&address1=1&address2=2&address3=3&zipcode=75991&city=paris&
-// state=state&country=US&Login=Register
-
-	global $txt_err_not_registering;
-	global $txt_product_id_not_valid;
-	global $txt_user_login_incorrect;
-	global $txt_username_invalid_root_or_debian;
-	global $txt_password_format_incorrect;
-	global $txt_passwords_do_not_match;
-	global $txt_vps_location_not_selected;
-	global $txt_email_does_not_look_like_correct;
-	global $txt_required_field_family_name_missing;
-	global $txt_required_field_first_name_missing;
-	global $txt_could_not_find_vps_server_in_db;
-	global $txt_country_code_seems_incorrect;
-	global $txt_is_company_radio_button_wrong;
-	global $txt_required_field_zipcode_missing;
-	global $txt_required_field_city_missing;
-	global $txt_selling_conditions_not_accepted;
-	global $txt_username_already_taken_try_again;
-	global $lang;
-
 	global $pro_mysql_admin_table;
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_product_table;
@@ -52,7 +28,7 @@ function register_user(){
 	&& (!isset($_REQUEST["city"]) || $_REQUEST["city"] == "")
 	&& (!isset($_REQUEST["firstname"]) || $_REQUEST["firstname"] == "")){
 		$ret["err"] = 1;
-		$ret["mesg"] = $txt_err_not_registering[$lang];
+		$ret["mesg"] = _("Not registering") ;
 		return $ret;
 	}
 
@@ -62,7 +38,7 @@ function register_user(){
 
 	if(!isRandomNum($esc_product_id)){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_product_id_not_valid[$lang];
+		$ret["mesg"] = _("Product ID not valid!");
 		return $ret;
 	}
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='$esc_product_id';";
@@ -70,7 +46,7 @@ function register_user(){
 	$n = mysql_num_rows($r);
 	if($n != 1){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Product not found in database";
+		$ret["mesg"] = _("Product not found in database") ;
 	}else{
 		$db_product = mysql_fetch_array($r);
 	}
@@ -78,43 +54,43 @@ function register_user(){
 	// Do field format checking and escaping for all fields
 	if(!isFtpLogin($_REQUEST["reqadm_login"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_user_login_incorrect[$lang];
+		$ret["mesg"] = _("User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.") ;
 		return $ret;
 	}
 	if($_REQUEST["reqadm_login"] == "root" || $_REQUEST["reqadm_login"] == "debian-sys-maint"){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_username_invalid_root_or_debian[$lang];
+		$ret["mesg"] = _("Username invalid: please choose something else other than root or debian-sys-maint") ;
 		return $ret;
 	}
 	if(!isDTCPassword($_REQUEST["reqadm_pass"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_password_format_incorrect[$lang];
+		$ret["mesg"] = _("Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.") ;
 		return $ret;
 	}
 	if($_REQUEST["reqadm_pass"] != $_REQUEST["reqadm_pass2"]){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_passwords_do_not_match[$lang];
+		$ret["mesg"] = _("Password 1 and 2 do not match!") ;
 		return $ret;
 	}
 	// If shared or ssl hosting, we MUST do type checkings
 	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl"){
 		if(!isHostnameOrIP($_REQUEST["domain_name"])){
 			$ret["err"] = 2;
-			$ret["mesg"] = $txt_domain_name_does_not_look_like_correct[$lang];
+			$ret["mesg"] = _("Domain name seems to be incorrect.") ;
 			return $ret;
 		}
 	// If not a shared or ssl account, we don't care if it's umpty, but we take care of mysql insertion anyway
 	}else{
 		if($_REQUEST["domain_name"] != "" && (!isHostnameOrIP($_REQUEST["domain_name"]))){
 			$ret["err"] = 2;
-			$ret["mesg"] = $txt_domain_name_does_not_look_like_correct[$lang];
+			$ret["mesg"] = _("Domain name seems to be incorrect.") ;
 			return $ret;
 		}
 	}
 	if($db_product["heb_type"] == "vps"){
 		if($_REQUEST["vps_server_hostname"] == "-1"){
 			$ret["err"] = 2;
-			$ret["mesg"] = $txt_vps_location_not_selected[$lang];
+			$ret["mesg"] = _("VPS location not selected!") ;
 			return $ret;
 		}
 		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".addslashes($_REQUEST["vps_server_hostname"])."';";
@@ -122,19 +98,19 @@ function register_user(){
 		$n = mysql_num_rows($r);
 		if($n != 1){
 			$ret["err"] = 2;
-			$ret["mesg"] = $txt_could_not_find_vps_server_in_db[$lang];
+			$ret["mesg"] = _("Could not find the VPS server in database") ;
 			return $ret;
 		}
 	}
 	if(!isValidEmail($_REQUEST["email"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_email_does_not_look_like_correct[$lang];
+		$ret["mesg"] = _("Email address seems to be incorrect format.") ;
 		return $ret;
 	}
 
 	if(!isset($_REQUEST["familyname"]) || $_REQUEST["familyname"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_required_field_family_name_missing[$lang];
+		$ret["mesg"] = _("Required field family name missing.") ;
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -146,7 +122,7 @@ function register_user(){
 
 	if(!isset($_REQUEST["firstname"]) || $_REQUEST["firstname"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_required_field_first_name_missing[$lang];
+		$ret["mesg"] = _("Required field first name missing.") ;
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -158,7 +134,7 @@ function register_user(){
 
 	if(!isset($_REQUEST["phone"]) || $_REQUEST["phone"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Required field phone missing.";
+		$ret["mesg"] = _("Required field phone missing.") ;
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -188,7 +164,7 @@ function register_user(){
 
 	if(!isset($_REQUEST["address1"]) || $_REQUEST["address1"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = "Required field address missing.";
+		$ret["mesg"] = _("Required field address (line 1) missing.") ;
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -212,7 +188,7 @@ function register_user(){
 
 	if(!isset($_REQUEST["zipcode"]) || $_REQUEST["zipcode"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_required_field_zipcode_missing[$lang];
+		$ret["mesg"] = _("Required field zipcode missing.") ;
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -224,7 +200,7 @@ function register_user(){
 
 	if(!isset($_REQUEST["city"]) || $_REQUEST["city"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_required_field_city_missing[$lang];
+		$ret["mesg"] = _("Required field city missing.") ;
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -248,7 +224,7 @@ function register_user(){
 
 	if(!ereg("^([A-Z])([A-Z])\$",$_REQUEST["country"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_country_code_seems_incorrect[$lang];
+		$ret["mesg"] = _("Country code seems incorrect.") ;
 		return $ret;
 	}
 
@@ -258,13 +234,13 @@ function register_user(){
 		$esc_comp = "no";
 	}else{
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_is_company_radio_button_wrong[$lang];
+		$ret["mesg"] = _("Is company radio button is wrong!") ;
 		return $ret;
 	}
 
 	if($conf_selling_conditions_url != "none" && (!isset($_REQUEST["condition"]) || $_REQUEST["condition"] != "yes")){
 		$ret["err"] = 2;
-		$ret["mesg"] = $txt_selling_conditions_not_accepted[$lang];
+		$ret["mesg"] = _("Selling conditions not accepted!") ;
 		return $ret;
 	}
 
@@ -273,7 +249,7 @@ function register_user(){
 	$n = mysql_num_rows($r);
 	if($n > 0){
 		$ret["err"] = 3;
-		$ret["mesg"] = $txt_username_already_taken_try_again[$lang];
+		$ret["mesg"] = _("Username already taken! Try again.") ;
 		return $ret;
 	}
 	$q = "SELECT reqadm_login FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
@@ -281,7 +257,7 @@ function register_user(){
 	$n = mysql_num_rows($r);
 	if($n > 0){
 		$ret["err"] = 3;
-		$ret["mesg"] = $txt_username_already_taken_try_again[$lang];
+		$ret["mesg"] = _("Username already taken! Try again.") ;
 		return $ret;
 	}
 	$vps_add1 = "";
@@ -390,7 +366,7 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		echo "<font color=\"red\">Cannot find product id!</font>";
+		echo "<font color=\"red\">". _("Cannot find product id!") ."</font>";
 		$the_prod = $esc_product_id." (0 $secpayconf_currency_letters)";
 	}else{
 		$a = mysql_fetch_array($r);
@@ -427,39 +403,7 @@ $vps_mail_add1
 }
 
 function registration_form(){
-	global $txt_login_login;
-	global $txt_login_pass;
-	global $txt_use_text_menu;
-	global $txt_login_title;
-        global $txt_client_info;
-        global $txt_register_new_account;
-        global $txt_go_to_login;
-        global $txt_product;
-        global $txt_login_info;
-        global $txt_confirm_pass;
-        global $txt_desired_domain_name;	
         global $conf_skin;
-        global $txt_is_company;
-	global $lang;
-	global $txt_draw_client_info_familyname;
-	global $txt_draw_client_info_firstname;
-	global $txt_draw_client_info_comp_name;
-	global $txt_draw_client_info_addr;
-	global $txt_draw_client_info_email;
-	global $txt_draw_client_info_fax;
-	global $txt_draw_client_info_phone;
-	global $txt_draw_client_info_zipcode;
-	global $txt_draw_client_info_city;
-	global $txt_draw_client_info_state;
-	global $txt_draw_client_info_country;
-	global $txt_register_custom_message_title;
-	global $txt_vat_number;
-	global $txt_selling_conditions;
-	global $txt_i_agree_to_the;
-	global $txt_vps_operating_system;
-	global $txt_vps_location;
-	global $txt_client_addr_title;
-	global $txt_vat_number;
 
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
@@ -594,12 +538,12 @@ function registration_form(){
 
 	$prod_popup = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_product[$lang].": </td><td>".$prod_popup."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Product") .": </td><td>".$prod_popup."</td>
 </td><tr>
-	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"domname_text\" id=\"domname_text\" $domname_hidden>".$txt_desired_domain_name[$lang].":</div></td>
+	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"domname_text\" id=\"domname_text\" $domname_hidden>". _("Desired domain name") .":</div></td>
 	<td><div name=\"domname_field\" id=\"domname_field\" $domname_hidden>www.<input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></div></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_popup_text\" id=\"vps_popup_text\" $vps_hidden>".$txt_vps_location[$lang]."</div></td>
+	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_popup_text\" id=\"vps_popup_text\" $vps_hidden>". _("VPS location: ") ."</div></td>
 	<td><div name=\"vps_popup_field\" id=\"vps_popup_field\" $vps_hidden><select name=\"vps_server_hostname\">$vps_location_popup</select></div></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_ospopup_text\" id=\"vps_ospopup_text\" $vps_hidden></div></td>
@@ -612,13 +556,13 @@ function registration_form(){
 
 	$login_info = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_login_login[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">"._("Login: ") ."</td>
 	<td><input type=\"text\" name=\"reqadm_login\" value=\"$frm_login\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_login_pass[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Password: ") ."</td>
 	<td><input type=\"password\" name=\"reqadm_pass\" value=\"\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">$txt_confirm_pass[$lang]:</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Confirm pass: ") ."</td>
 	<td><input type=\"password\" name=\"reqadm_pass2\" value=\"\"></td>
 </tr></table>";
 #	$login_skined = skin("frame",$login_info,"");
@@ -633,67 +577,67 @@ function registration_form(){
 	}
 	$client_info = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_familyname[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Familly name: ") ."</td>
 	<td><input type=\"text\" name=\"familyname\" value=\"$frm_family_name\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_firstname[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("First name: ") ."</td>
 	<td><input type=\"text\" name=\"firstname\" value=\"$frm_firstname\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">$txt_is_company[$lang]?</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Is it a company: ") ."</td>
 	<td><input type=\"radio\" name=\"iscomp\" value=\"yes\"$compyes>"._("Yes")."
 <input type=\"radio\" name=\"iscomp\" value=\"no\"$compno>"._("No")."</td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_comp_name[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Company name: ") ."</td>
 	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_vat_number[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("VAT Number: ") ."</td>
 	<td><input type=\"text\" name=\"vat_num\" value=\"$frm_vat_num\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_email[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Email: ") ."</td>
 	<td><input type=\"text\" name=\"email\" value=\"$frm_email\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_phone[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Phone number: ") ."</td>
 	<td><input type=\"text\" name=\"phone\" value=\"$frm_phone\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_fax[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Fax: ") ."</td>
 	<td><input type=\"text\" name=\"fax\" value=\"$frm_fax\"></td>
 </tr></table>";
-//	$client_skined = skin("frame",$client_info,"");
+
 	$client_skined = $client_info;
 
 	$client_addr = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_addr[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Addresse (line1): ") ."</td>
 	<td><input type=\"text\" name=\"address1\" value=\"$frm_addr1\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_addr[$lang]." 2</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Addresse (line2): ") ."</td>
 	<td><input type=\"text\" name=\"address2\" value=\"$frm_addr2\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_addr[$lang]." 3</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Addresse (line3): ") ."</td>
 	<td><input type=\"text\" name=\"address3\" value=\"$frm_addr3\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_zipcode[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Zipcode: ") ."</td>
 	<td><input type=\"text\" name=\"zipcode\" value=\"$frm_zipcode\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_city[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("City: ") ."</td>
 	<td><input type=\"text\" name=\"city\" value=\"$frm_city\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_state[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("State: ") ."</td>
 	<td><input type=\"text\" name=\"state\" value=\"$frm_state\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">".$txt_draw_client_info_country[$lang]."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Country: ") ."</td>
 	<td><select name=\"country\">".cc_code_popup($frm_country)."</select></td>
 </tr></table>";
 #	$addr_skined = skin("frame",$client_addr,"");
 	$addr_skined = $client_addr;
 
 	if($conf_selling_conditions_url != "none"){
-		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> ".$txt_i_agree_to_the[$lang]." <a href=\"$conf_selling_conditions_url\">".$txt_selling_conditions[$lang]."</a>";
+		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> ". _("I agree to the") ." <a href=\"$conf_selling_conditions_url\">". _("selling conditions") ."</a>";
 	}else{
 		$conditions = "";
 	}
 
-	$HTML_admin_edit_data = "<a href=\"/dtc\">$txt_go_to_login[$lang]</a>
+	$HTML_admin_edit_data = "<a href=\"/dtc\">". _("Go to login") ."</a>
 <script language=\"javascript\">
 
 $p_jscript
@@ -760,18 +704,18 @@ function hostingProductChanged(){
 <input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>
 <tr>
-	<td valign=\"top\"><h3>".$txt_product[$lang]."</h3>
+	<td valign=\"top\"><h3>". _("Product:") ."</h3>
 	$prod_popup<br>
-<h3>".$txt_login_info[$lang].":</h3> ".$login_skined."</td>
+<h3>". _("Login info") .":</h3> ".$login_skined."</td>
 	<td width=\"4\" background=\"gfx/skin/frame/border_2.gif\"></td>
-	<td valign=\"top\"><h3>".$txt_client_info[$lang]."</h3> $client_skined</td>
+	<td valign=\"top\"><h3>". _("Client info") ."</h3> $client_skined</td>
 	<td width=\"4\" background=\"gfx/skin/frame/border_2.gif\"></td>
-	<td valign=\"top\"><h3>".$txt_client_addr_title[$lang]."</h3> $addr_skined</td>
+	<td valign=\"top\"><h3>". _("Customer's address") ."</h3> $addr_skined</td>
 </tr></table>
 $conditions
 <table border=\"0\">
 <tr>
-	<td>".$txt_register_custom_message_title[$lang]."</td>
+	<td>". _("Leave a message describing any specific requirements you might have for your account:") ."</td>
 	<td><textarea name=\"custom_notes\" cols=\"50\" rows=\"5\">$frm_custom_notes</textarea></td>
 	<td><input type=\"submit\" name=\"Login\" value=\"Register\"></td>
 </tr>

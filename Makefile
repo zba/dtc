@@ -59,7 +59,7 @@ PHP_RIGHTS=0644
 ROOT_SCRIPTS_RIGHTS=0750
 DTC_SCRIPTS_RIGHTS=0755
 ROOT_ONLY_READ=0640
-NORMAL_FOLDER=0755
+NORMAL_FOLDER=0775
 MANPAGE_RIGHTS=0644
 
 BIN_FOLDER_CONTENT=bin/buildGentoo bin/makeGentoo bin/makeSlackware bin/README.how_to_build_a_pachage \
@@ -191,7 +191,7 @@ bsd-ports-packages:
 ############# PHP SCRIPTS ##############
 # Owned by root, but executable by dtc user (ran by apache)
 ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES=admin/404.php admin/bw_per_month.php admin/index.php admin/cpugraph.php admin/mailgraph.php admin/deamons_state.php \
-admin/deamons_state_strings.php admin/view_waitingusers.php admin/memgraph.php admin/netusegraph.php admin/vps_stats_cpu.php \
+admin/view_waitingusers.php admin/memgraph.php admin/netusegraph.php admin/vps_stats_cpu.php \
 admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup admin/dtc_db.php
 
 ADMIN_GENFILE_PHP_SCRIPT_FILES=admin/genfiles/gen_awstats.php admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_perso_vhost.php \
@@ -202,9 +202,9 @@ admin/genfiles/gen_named_files_alt-wildcard.php admin/genfiles/remote_mail_list.
 admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_pro_vhost_alt-wildcard.php
 
 ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/img_alt_skin.php admin/inc/img.php admin/inc/renewals.php \
-admin/inc/draw_user_admin.php admin/inc/dtc_config.php admin/inc/dtc_config_strings.php \
+admin/inc/draw_user_admin.php admin/inc/dtc_config.php \
 admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admin/inc/nav.php admin/inc/img_alt.php \
-admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/product_manager_strings.php admin/dtcrm/submit_to_sql.php
+admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.php
 
 # Todo: have the client/vps_stats_* be taken from the admin folder!
 CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-notify.php client/index.php \
@@ -237,7 +237,7 @@ shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedi
 shared/inc/forms/dns.php shared/inc/forms/domain_info.php shared/inc/forms/domain_stats.php shared/inc/forms/email.php \
 shared/inc/forms/ftp.php shared/inc/forms/invoices.php shared/inc/forms/lists.php shared/inc/forms/lists_strings.php \
 shared/inc/forms/my_account.php shared/inc/forms/packager.php shared/inc/forms/reseller.php shared/inc/forms/root_admin.php \
-shared/inc/forms/root_admin_strings.php shared/inc/forms/ssh.php shared/inc/forms/subdomain.php shared/inc/forms/ticket.php \
+shared/inc/forms/ssh.php shared/inc/forms/subdomain.php shared/inc/forms/ticket.php \
 shared/inc/forms/tools.php shared/inc/forms/vps.php \
 shared/inc/sql/database.php shared/inc/sql/database_strings.php shared/inc/sql/dns.php shared/inc/sql/domain_info.php \
 shared/inc/sql/domain_info_strings.php shared/inc/sql/domain_stats.php shared/inc/sql/email.php shared/inc/sql/email_strings.php \
