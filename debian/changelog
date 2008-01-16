@@ -1,4 +1,4 @@
-dtc (0.27.6-1) unstable; urgency=low
+dtc (0.27.7-1) unstable; urgency=low
 
   * New upstream release.
   * [v0.27] Renamed the dtc package to dtc-core in order not to conflict with
