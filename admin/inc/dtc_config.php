@@ -507,8 +507,6 @@ function drawRegistrySelection(){
 }
 
 function drawGeneralConfig(){
-	global $txt_cfg_demo_version;
-
 	global $cc_code_array;
 
 	global $conf_skin;

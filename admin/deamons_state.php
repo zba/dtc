@@ -4,8 +4,6 @@ $panel_type = "none";
 require("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
-require("deamons_state_strings.php");                 // Contain all the translated string
-
 Function DateDiff ($interval, $date1,$date2) {
 
 	// get the number of seconds between the two dates
@@ -81,14 +79,6 @@ function javascriptClock($minutes,$seconds){
 }
 
 function drawClock($last_cronjob_epoch){
-/*	$next_cron = DateAdd("n",10,$last_cronjob_epoch);
-	$curdate = time();
-	$seconds = DateDiff ("s", $curdate, $next_cron);
-	$minutes = DateDiff ("n", $curdate, $next_cron);
-	$seconds = $seconds - $minutes*60;
-	if($minutes < 0) $minutes = 0;
-	if($seconds <= 0)$seconds = 1;
-*/
 	$minute=date("i");
 	$seconds=date("s");
 	$minute=10-($minute%10);
@@ -99,8 +89,8 @@ function drawClock($last_cronjob_epoch){
 function drawDeamonStates(){
 	global $pro_mysql_cronjob_table;
 
-	$pen = '<font color="#FF0000">PENDING</font>';
-	$done = '<font color="#00FF00">OK</font>';
+	$pen = '<font color="#FF0000">' ._("Pending") .'</font>';
+	$done = '<font color="#00FF00">' ._("Ok") .'</font>';
 
 	// Fetch the cron_job table to see what's going on ! :)
 	$query = "SELECT * FROM $pro_mysql_cronjob_table WHERE 1;";
@@ -138,13 +128,13 @@ function drawDeamonStates(){
  
 	$out = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"1\" id=\"skinSimpleGreen2Content\">
 <tr>
-	<td align=\"center\" height=\"1\" width=\"16%\"><font color=\"#FFFFFF\">Mail restart</font></td>
-	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">Mail-newu</font></td>
-	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">Mail gen files</font></td>
-	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">Apache restart</font></td>
-	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">Bind reload</font></td>
-	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">SSH gen pass</font></td>
-	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">Next cronjob</font></td>
+	<td align=\"center\" height=\"1\" width=\"16%\"><font color=\"#FFFFFF\">". _("Mail restart") ."</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Mail-newu") ."</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Mail gen files") ."</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Apache restart") ."</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Bind reload") ."</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("SSH gen pass") ."</font></td>
+	<td align=\"center\" width=\"16%\"><font color=\"#FFFFFF\">". _("Next cronjob") ."</font></td>
 </tr><tr>
 	<td height=\"1\" align=\"center\">$state_qm_restart</td>
 	<td align=\"center\">$state_qm_newu</td>
@@ -164,30 +154,30 @@ function checkSMTP(){
 	$server = "localhost";
 	// echo "Checking POP3<br>";
 	if(($server_ip = gethostbynameFalse($server)) == false){
-		$errTxt = "Cannot resolv your $server SMTP server.";
+		$errTxt = _("Cannot resolv your") ." ".$server." ". _("SMTP server") .".";
 		return false;
 	}
 
 	$soc = fsockopen($server_ip,25,$erno,$errstring,10);
 	if($soc == false){
-		$errTxt = "Could not connect to SMTP server (timed out): $server";
+		$errTxt = _("Could not connect to SMTP server (timed out): ") .$server;
 		return false;
 	}
 	// echo "Checking ok after connect<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"220")){
-		$errTxt = "Server did not send OK after connect, maybe wrong server or server is down: $popline";
+		$errTxt = _("Server did not send OK after connect, maybe wrong server or server is down: ") .$popline;
 		return false;
 	}
 	// echo "Sending login<br>";
 	if(!fwrite($soc,"HELO dtc-check@gplhost.com\n")){
-		$errTxt = "Could not write HELLO to server";
+		$errTxt = _("Could not write HELLO to server");
 		return false;
 	}
 	// echo "Checking ok after login<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"250")){
-		$errTxt = "Server did not send OK after HELO: $popline";
+		$errTxt = _("Server did not send OK after HELO: ") .$popline;
 		return false;
 	}
 	//echo "Closing socket<br>";
@@ -215,38 +205,38 @@ function checkFTP(){
 
 	$soc = fsockopen($server_ip,21,$erno,$errstring,10);
 	if($soc == false){
-		$errTxt = "Could not connect to FTP server (timed out): $server";
+		$errTxt = ("Could not connect to FTP server (timed out): ") .$server;
 		return false;
 	}
 	// echo "Checking ok after connect<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"220")){
-		$errTxt = "Server did not send 220 after connect, maybe wrong server or server is down: $popline";
+		$errTxt = ("Server did not send 220 after connect, maybe wrong server or server is down: ") .$popline;
 		return false;
 	}
 	// echo "Sending login<br>";
 	if(!fwrite($soc,"USER ".$a["login"]."\n")){
-		$errTxt = "Could not write USER to server";
+		$errTxt = _("Could not write USER to server");
 		return false;
 	}
 	// echo "Checking ok after login<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"331")){
 		if(!strstr($popline,"220")){
-			$errTxt = "Server did not send 331 or 220 after USER: $popline";
+			$errTxt = _("Server did not send 331 or 220 after USER: ") .$popline;
 			return false;
 		}
 	}
 	// echo "Sending pass<br>";
 	if(!fwrite($soc,"PASS ".$a["password"]."\n")){
-		$errTxt = "Could not write PASS to server";
+		$errTxt = _("Could not write PASS to server");
 		return false;
 	}
 	// echo "Checking ok after login<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"230")){
 		if(!strstr($popline,"220")){
-			$errTxt = "Server did not send 230 after PASS: $popline. If no ftp user, please make one!";
+			$errTxt = _("Server did not send 230 after PASS: ") .$popline." ". _("If no POP user was created, please make at least one!");
 			return false;
 		}
 	}
@@ -273,7 +263,7 @@ function checkDNS(){
 	}
 	$server_ip_db = $a["ip_addr"];
 	if($server_ip_db != $server_ip){
-		$errTxt = "$server IP Resolved [$server_ip] is not same as the one I have in the database [$server_ip_db]!";
+		$errTxt = "$server ". _("IP Resolved") ." [$server_ip] ". _("is not same as the one I have in the database"). " [$server_ip_db]!";
 		return false;
 	}
 	return true;

@@ -1,7 +1,6 @@
 <?php
 
 function drawRenewalTables (){	
-	global $lang;
 	global $pro_mysql_product_table;
 	global $pro_mysql_admin_table;
 	global $pro_mysql_ssl_ips_table;
@@ -13,9 +12,6 @@ function drawRenewalTables (){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_completedorders_table;
 	global $pro_mysql_pay_table;
-
-	global $lang;
-	global $txt_renew_ssl_ips_renewals;
 
 	global $secpayconf_currency_letters;
 
