@@ -38,7 +38,7 @@ PATH_AMAVISD_CONF=/etc/amavisd.conf
 PATH_CLAMAV_CONF=/etc/clamd.conf
 PATH_PUREFTPD_CONF="/etc/pure-ftpd.conf"
 
-PATH_DTC_ETC=/usr/share/dtc/etc
+PATH_DTC_ETC=/var/lib/dtc/etc
 PATH_DTC_SHARED=/usr/share/dtc
 PATH_DTC_ADMIN=/usr/share/dtc/admin
 PATH_DTC_CLIENT=/usr/share/dtc/client
