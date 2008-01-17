@@ -115,15 +115,15 @@ function drawAdminTools_MyAccount($admin){
 </form></center><br>";
 			}
 
-			$out .= "<h3>SSL tokens</h3><br>";
+			$out .= "<h3>". _("SSL tokens") ."</h3><br>";
 			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE adm_login='$adm_login' AND available='no';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n == 0){
-				$out .= "You currently don't have any SSL tokens.<br><br>";
+				$out .= _("You currently don't have any SSL tokens.") ."<br><br>";
 			}else{
 				$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">";
-				$out .= "<tr><td>IP address</td><td>Used by</td><td>Expire</td><td>Action</td></tr>";
+				$out .= "<tr><td>". _("IP address") ."</td><td>". _("Used by") ."</td><td>". _("Expire"). "</td><td>". _("Action") ."</td></tr>";
 				for($i=0;$i<$n;$i++){
 					$a = mysql_fetch_array($r);
 					$nbr_domains = sizeof($admin["data"]);
@@ -134,14 +134,13 @@ function drawAdminTools_MyAccount($admin){
 							if($admin["data"][$j]["subdomains"][$k]["ssl_ip"] == $a["ip_addr"]){
 								$used_by = $admin["data"][$j]["subdomains"][$k]["name"].".".$admin["data"][$j]["name"];
 							}
-//							echo "<pre>"; print_r($admin["data"][$j]["subdomains"][$k]); echo "</pre>";
 						}
 					}
 					$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='ssl';";
 					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 					$n = mysql_num_rows($r);
 					if($n != 1){
-						$ssl_renew_form = "No ssl product defined.";
+						$ssl_renew_form = _("No ssl product defined.") ;
 					}else{
 						$prod = mysql_fetch_array($r);
 						$ssl_renew_form = "<form action=\"/dtc/new_account.php\">
@@ -162,13 +161,13 @@ function drawAdminTools_MyAccount($admin){
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n == 0){
-				$out .= "No SSL token available: contact your administrator to request it.<br><br>";
+				$out .= _("No SSL token available: contact your administrator to request it.") ."<br><br>";
 			}else{
 				$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='ssl';";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$n = mysql_num_rows($r);
 				if($n != 1){
-					$out .= "No ssl product defined.";
+					$out .= _("No ssl product defined.") ;
 				}else{
 					$prod = mysql_fetch_array($r);
 					$out .= "<form action=\"/dtc/new_account.php\">
@@ -189,7 +188,7 @@ function drawAdminTools_MyAccount($admin){
 	<td><font size=\"-1\">". _("Refund my account:") ."</font><br>
 $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 \$<input size=\"8\" type=\"text\" name=\"refund_amount\" value=\"\">
-<input type=\"submit\" value=\"Ok\">
+<input type=\"submit\" value=\"". _("Ok") ."\">
 </form></td></tr>
 </table>
 <hr width=\"90%\">

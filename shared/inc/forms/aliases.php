@@ -44,7 +44,7 @@ function drawAdminTools_Aliases($domain){
 				"check" => "dtc_login_or_email",
 				"disable_edit" => "yes",
 				"happen" => "@".$domain["name"],
-				"legend" => _("Email:") ,
+				"legend" => _("Email:") ),
 			"delivery_group" => array(
 				"type" => "textarea",
 				"check" => "mail_alias_group",
@@ -53,7 +53,7 @@ function drawAdminTools_Aliases($domain){
 				"rows" => "7")
 			),
 		"check_unique" => array( "id"),
-		"check_unique_msg" => _("Email address is already in use!"))
+		"check_unique_msg" => _("Email address is already in use!")
 		);
         $list_items = dtcListItemsEdit($dsc);
 

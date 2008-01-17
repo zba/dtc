@@ -57,14 +57,14 @@ dtcFormLineDraw( _("IP address of the primary DNS server:") ,"<input type=\"text
 		$domain_dns_mx_conf_form .= dtcFormLineDraw("","<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"\">");
 	}
 
-	$domain_dns_mx_conf_form .= dtcFormLineDraw("Domain root TXT record:","<input type=\"text\" name=\"txt_root_entry\" value=\"".$eddomain["txt_root_entry"]."\">");
-	$domain_dns_mx_conf_form .= dtcFormLineDraw("Domain root TXT record2:","<input type=\"text\" name=\"txt_root_entry2\" value=\"".$eddomain["txt_root_entry2"]."\">");
+	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Domain root TXT record: ") ,"<input type=\"text\" name=\"txt_root_entry\" value=\"".$eddomain["txt_root_entry"]."\">");
+	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Domain root TXT record2: ") ,"<input type=\"text\" name=\"txt_root_entry2\" value=\"".$eddomain["txt_root_entry2"]."\">");
 	$domain_dns_mx_conf_form .= dtcFromOkDraw();
 	$domain_dns_mx_conf_form .= "</form></table>";
 
 	$zonefile_content = "";
 	if($eddomain["generate_flag"] == "yes"){
-		$zonefile_content .= "<font color=\"#FF0000\">Zone file will be regenerated at next cron job.</font><br>";
+		$zonefile_content .= "<font color=\"#FF0000\">". _("Zone file will be regenerated at next cron job.") ."</font><br>";
 	}
 
 	$handle = @fopen($conf_generated_file_path."/zones/".$eddomain["name"], "r");
@@ -79,7 +79,7 @@ dtcFormLineDraw( _("IP address of the primary DNS server:") ,"<input type=\"text
 		}
 		$zonefile_content .= "</pre>";
 	}else{
-		$zonefile_content .= "Could not load zonefile: permission denied or file not existant?";
+		$zonefile_content .= _("Could not load zonefile: permission denied or file not existant?") ;
 	}
 
 	return "<h3>". _("Configure your domain name:") ."</h3><br><br>"

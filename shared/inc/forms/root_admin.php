@@ -228,11 +228,11 @@ function drawEditAdmin($admin){
 		<table border=\"0\">
 		<tr><td style=\"text-align: right; white-space: nowrap;\">". _("VPS Server hostname: ") ."</td>
 		<td><select name=\"vps_server_ip\">$vps_srvs</select></td></tr>
-		<tr><td style=\"text-align: right; white-space: nowrap;\">Product:</td>
+		<tr><td style=\"text-align: right; white-space: nowrap;\">". _("Product: ") ."</td>
 		<td><select name=\"product_id\">$vps_prods</select></td></tr>
-		<tr><td style=\"text-align: right; white-space: nowrap;\">Setup physical VPS (LVM):</td>
-		<td><input type=\"radio\" name=\"physical_setup\" value=\"yes\">Yes
-		<input type=\"radio\" name=\"physical_setup\" value=\"no\" checked='checked'>No</td></tr>
+		<tr><td style=\"text-align: right; white-space: nowrap;\">". _("Setup physical VPS (LVM): ") ."</td>
+		<td><input type=\"radio\" name=\"physical_setup\" value=\"yes\">". _("Yes") ."
+		<input type=\"radio\" name=\"physical_setup\" value=\"no\" checked='checked'>". _("No") ."</td></tr>
 		<tr><td></td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Add VPS\"></div>

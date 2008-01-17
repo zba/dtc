@@ -8,7 +8,7 @@ function setZoneToGenerate($id){
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		echo "<font color=\"red\">Could not found subdomain in table for folder deletion</font>";
+		echo "<font color=\"red\">". _("Could not found subdomain in table for folder deletion") ."</font>";
 	}else{
 		$a = mysql_fetch_array($r);
 		$q = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='".$a["domain_name"]."';";
@@ -57,7 +57,7 @@ function subdomainDeleteDirsCallBack($id){
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		echo "<font color=\"red\">Could not found subdomain in table for folder deletion</font>";
+		echo "<font color=\"red\">". _("Could not found subdomain in table for folder deletion") ."</font>";
 	}else{
 		$a = mysql_fetch_array($r);
 		$subdom_name = $a["subdomain_name"];
@@ -193,7 +193,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 		$dsc["cols"]["sbox_protect"] = array(
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"legend" => "Sbox cgi-bin protection: ");
+				"legend" => _("Sbox cgi-bin protection: ") );
 	}
 
 	// Get all SSL IPs asigned to this customer
@@ -229,7 +229,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 		$dsc["cols"]["ssl_ip"] = array(
 			"type" => "popup",
 			"values" => $ssl_ips,
-			"legend" => "Use an SSL vhost using this IP:"
+			"legend" => _("Use an SSL vhost using this IP: ")
 			);
 	}
 
