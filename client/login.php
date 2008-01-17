@@ -1,42 +1,25 @@
 <?php
-/**
- * Enter description here...
- * @package DTC
- * @version $Id: login.php,v 1.4 2006/05/20 23:37:12 seeb Exp $
- * @return unknown
- */
 
 function login_form(){
-	global $txt_login_login;
-	global $txt_login_pass;
-	global $txt_use_text_menu;
-	global $txt_login_title;
-	global $txt_register_new_account;
-	global $txt_go_to_email_panel;
-
 	global $conf_skin;
 
-	global $lang;
-
-	$HTML_admin_edit_data = "<a href=\"/dtcemail\">".$txt_go_to_email_panel[$lang]."</a> - <a href=\"new_account.php\">".$txt_register_new_account[$lang]."</a>
+	$HTML_admin_edit_data = "<a href=\"/dtcemail\">". _("Go to email panel") ."</a> - <a href=\"new_account.php\">". _("Register a new account") ."</a>
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <table>
 <tr>
-	<td align=\"right\">".$txt_login_login[$lang]."</td>
+	<td align=\"right\">". _("Login: ") ."</td>
 	<td><input type=\"text\" name=\"adm_login\" value=\"\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_login_pass[$lang]."</td>
+	<td align=\"right\">". _("Password:") ."</td>
 	<td><input type=\"password\" name=\"adm_pass\" value=\"\"></td>
 </tr><tr>
-	<td align=\"right\">".$txt_use_text_menu[$lang]."</td>
+	<td align=\"right\">". _("Use text menu: ") ."</td>
 	<td><input type=\"checkbox\" name=\"use_text_menu\" value=\"yes\"></td>
 </tr><tr>
 	<td></td><td><input type=\"submit\" name=\"Login\" value=\"login\">
 </td></tr>
 </table></form>";
 
-//	$login_skined = skin($conf_skin,$HTML_admin_edit_data,$txt_login_title[$lang]);
-//	return $login_skined;
 	return $HTML_admin_edit_data;
 }
 

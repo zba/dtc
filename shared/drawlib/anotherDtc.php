@@ -118,18 +118,15 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	global $conf_dtc_release;
 	global $conf_unix_type;
 	
-	global $txt_pagetop_zesubtitle;
-	global $lang;
 	global $conf_skin;
 	global $dtcshared_path;
-	global $txt_documentation;
 	
 	$nowrap = " style=\"white-space:nowrap\" valign=\"top\" nowrap ";
 	if($drawLanguageSelect=="yes"){
 		$zeLanguage = "
 	<td valign=\"top\">&nbsp;</td>
 	<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
-		$links = "<a target=\"_blank\" href=\"/dtcdoc/\">".$txt_documentation[$lang]."</a> <a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a>";
+		$links = "<a target=\"_blank\" href=\"/dtcdoc/\">". _("Documentation") ."</a> <a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a>";
 	}else{
 		$links = "";
 		$zeLanguage = "";
@@ -141,7 +138,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$fp = fopen($pagetop_filename,"r");
 		$inside = fread($fp,filesize($pagetop_filename));
 		fclose($fp);
-		$inside = str_replace("__DTC_SUBTITLE__",$txt_pagetop_zesubtitle[$lang],$inside);
+		$inside = str_replace("__DTC_SUBTITLE__", _("Take control of your domain name") ,$inside);
 		$inside = str_replace("__DTC_LANGUAGES_LINKS__",$zeLanguage,$inside);
 		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);
 		$inside = str_replace("__DTC_LINK__",$links,$inside);
@@ -153,7 +150,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	<td $nowrap><center><a href=\"http://www.gplhost.com/software-dtc.html\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
 <font size=\"-2\" face=\"Arial\">V$conf_dtc_version R$conf_dtc_release - $conf_unix_type</font></center></td>
 	<td $nowrap><center><b><font size=\"+1\" face=\"Verdana\">Domain Technologie Control</font></b><br>
-<font size=\"-1\"><i>".$txt_pagetop_zesubtitle[$lang]."</i></font><br>$links</center></td>
+<font size=\"-1\"><i>". _("Take control of your domain name") ."</i></font><br>$links</center></td>
 	<td $nowrap width=\"100%\">&nbsp;</td>".$zeLanguage."
 </tr>
 </table>

@@ -490,9 +490,7 @@ function drawVPSServerConfig(){
 
 function drawRegistrySelection(){
 	global $pro_mysql_registry_table;
-	global $txt_registry_selection;
-	global $lang;
-	$out = "<h3>".$txt_registry_selection[$lang]."</h3>";
+	$out = "<h3>". _("Registry selection") ."</h3>";
 	$out .= "";
 	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
@@ -906,9 +904,6 @@ function drawRegistryApiConfig(){
 }
 
 function drawDTCpayConfig(){
-	global $lang;
-	global $txt_currency;
-
 	global $pro_mysql_secpayconf_table;
 
 	$out = "";

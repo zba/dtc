@@ -475,7 +475,7 @@ if(isset($_REQUEST["dellist"]) && $_REQUEST["dellist"] == "Del"){
 	
 	// Verify strings given
 	if(!isMailbox($_REQUEST["edit_mailbox"])){
-		die($_REQUEST["edit_mailbox"]." does not look like a mailbox login...");
+		die($_REQUEST["edit_mailbox"]. _(" does not look like a mailbox login...") );
 	}
 	
 	//Some vars

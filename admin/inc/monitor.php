@@ -3,14 +3,6 @@
 function drawAdminMonitor (){
 	global $pro_mysql_client_table;
 	global $pro_mysql_admin_table;
-	global $lang;
-	global $txt_user;
-	global $txt_transfer;
-	global $txt_transfer_per_month;
-	global $txt_disk_usage;
-	global $txt_domain_tbl_config_quota;
-	global $txt_server_total_bp;
-	global $txt_bw_quota;
 	global $conf_mysql_db;
 
 	$out = "";
@@ -20,7 +12,7 @@ function drawAdminMonitor (){
 	$nr = mysql_num_rows($r);
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="1" cellspacing="1">';
 	$out .=
-"<tr><td><b>".$txt_user[$lang]."</b></td><td><b>".$txt_transfer[$lang]." / ".$txt_bw_quota[$lang]."</b></td><td><b>".$txt_transfer_per_month[$lang]."</b></td><td><b>".$txt_disk_usage[$lang]." / ".$txt_domain_tbl_config_quota[$lang]."</b></td></tr>";
+"<tr><td><b>". _("User") ."</b></td><td><b>". _("Transfer") ." / ". _("BW Quota") ."</b></td><td><b>". _("Transfer per month") ."</b></td><td><b>". _("Disk usage") ." / ". _("Quota") ."</b></td></tr>";
 	$total_box_transfer = 0;
 	$total_box_hits = 0;
 	for($i=0;$i<$nr;$i++){
@@ -104,7 +96,7 @@ function drawAdminMonitor (){
 //fetchAdminStats($admin)
 	}
 	$out .= "</table>";
-	$out .= $txt_server_total_bp[$lang].smartByte($total_box_transfer)." ($total_box_hits hits)";
+	$out .= _("Server accounted transfers this month: ").smartByte($total_box_transfer)." ($total_box_hits hits)";
 	return $out;
 }
 

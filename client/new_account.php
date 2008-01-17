@@ -1,30 +1,5 @@
 <?php
-/**
- * @package DTC
- * @version $Id: new_account.php,v 1.32 2007/04/07 07:58:37 thomas Exp $
- * @abstract Localization must go on ... ;) seeb
- * @todo repair bug for 
- * "Cannot reselect transaction for id $extapi_pay_id: registration failed!" 
- * ".$txt_err_register_cant_reselect_trans[$lang]."
- * now $extapi_pay_id must be 
- * global $extapi_pay_id;
- */
 
-	/*
-	chages:
-	NOT VALIDATED $txt_err_payment_not_valid[$lang]
-	TRANSACTION FINISHED AND APPROVED moved to $txt_err_payment_finish_approved[$lang]
-	PAYMENT CANCELED moved to $txt_err_payment_cancel[$lang]
-	PAYMENT FAILED moved to $txt_err_payment_failed[$lang]
-
-	"Cannot reselect transaction for id $extapi_pay_id: registration failed!" moved to $txt_err_register_cant_reselect_trans[$lang]
-	"Cannot reselect user: registration failed!" moved to $txt_err_register_cant_reselect_user[$lang]
-	"Cannot reselect product: registration failed!" moved to  $txt_err_register_cant_reselect_product[$lang]
-	"Registration Succes...!" moved to ".$txt_err_register_succ[$lang]."
-	*/
-
-
-global $txt_register_new_account;
 
 // This one is moved before the includes so we can use $extapi_pay_id in the string files.
 if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_REQUEST["action"] == "enets-success")){
@@ -58,7 +33,7 @@ if(isset($txt_top_menu_entrys)){
 	$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 }
 $anotherLanguageSelection = anotherLanguageSelection();
-$lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
+$lang_sel = skin($conf_skin,$anotherLanguageSelection, _("Language") );
 
 $form = "";
 
@@ -120,23 +95,23 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "contract_renewal"){
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		$form .= $txt_err_register_cant_reselect_trans[$lang];//"Cannot reselect transaction for id $extapi_pay_id: registration failed!";
+		$form .= _("Cannot reselect transaction: registration failed!") ;//"Cannot reselect transaction for id $extapi_pay_id: registration failed!";
 	}else{
 		$a = mysql_fetch_array($r);
 		$form .= "<h2>Your transaction status is now:</h2>";
 		if($a["valid"] != "yes"){
-			$form .= "<h3><font color=\"red\">".$txt_err_payment_not_valid[$lang]."<!-- NOT VALIDATED --></font></h3>
+			$form .= "<h3><font color=\"red\">". _("NOT VALIDATED") ."<!-- NOT VALIDATED --></font></h3>
 			That might need that your payment has been canceled or that it is still being proceed.
 			If you have confirmed the payment then check a bit later here.<br><br>
 			If the payment status was to stay like that, please contact customer support.";
 		}else{
-			$form .= "<h3><font color=\"green\">".$txt_err_payment_finish_approved[$lang]."<!-- TRANSACTION FINISHED AND APPROVED--></font></h3>";
+			$form .= "<h3><font color=\"green\">". _("TRANSACTION FINISHED AND APPROVED") ."<!-- TRANSACTION FINISHED AND APPROVED--></font></h3>";
 			if($a["new_account"] == "yes"){
 				$q2 = "SELECT * FROM $pro_mysql_new_admin_table WHERE paiement_id='$extapi_pay_id';";
 				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 				$n2 = mysql_num_rows($r2);
 				if($n2 != 1){
-					$form .= $txt_err_register_cant_reselect_user[$lang];//"Cannot reselect user: registration failed!";
+					$form .= _("Cannot reselect user: registration failed!") ;//"Cannot reselect user: registration failed!";
 				}else{
 					$a2 = mysql_fetch_array($r2);
 					validateWaitingUser($a2["reqadm_login"]);
@@ -168,15 +143,13 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "contract_renewal"){
 	}
 // A cancel occured (currently only from eNETS)
 }else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-cancel"){
-	$form .= "<h3><font color=\"red\">".$txt_err_payment_cancel[$lang]."<!-- PAYMENT CANCELED --></font></h3>
-You have canceled the payment, your account wont be validated.
-To start again the registration procedure, follow the link here:<br>
-<a href=\"new_account.php\">".$txt_register_new_account[$lang]."</a>";
+	$form .= "<h3><font color=\"red\">". _("PAYMENT CANCELLED") ."<!-- PAYMENT CANCELED --></font></h3>".
+_("You have canceled the payment, your account wont be validated. To start again the registration procedure, follow the link here:") ."<br>
+<a href=\"new_account.php\">". _("Register a new account") ."</a>";
 // The transaction have failed (currently only eNETS)
 }else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-failed"){
-	$form .= "<h3><font color=\"red\">".$txt_err_payment_failed[$lang]."<!-- PAYMENT FAILED --></font></h3>
-The payment gateway have reported that your payment has failed. Contact us,
-we also accept checks and wire transfers.";
+	$form .= "<h3><font color=\"red\">". _("PAYMENT FAILED") ."<!-- PAYMENT FAILED --></font></h3>".
+_("The payment gateway have reported that your payment has failed. Contact us, we also accept checks and wire transfers.");
 // This is a new user registration
 }else{
 	$print_form = "yes";
@@ -190,7 +163,7 @@ we also accept checks and wire transfers.";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
-			$form .= $txt_err_register_cant_reselect_user[$lang];//"Cannot reselect user: registration failed!";
+			$form .= _("Cannot reselect user: registration failed!") ;//"Cannot reselect user: registration failed!";
 		}else{
 			// Get the recorded new admin in the new_admin table, and process the display of payment buttons
 			$newadmin = mysql_fetch_array($r);
@@ -198,7 +171,7 @@ we also accept checks and wire transfers.";
 			$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n != 1){
-				$form = $txt_err_register_cant_reselect_product[$lang];//"Cannot reselect product: registration failed!";
+				$form = _("Cannot reselect product: registration failed!") ;//"Cannot reselect product: registration failed!";
 				$print_form = "no";
 				$service_location = $conf_this_server_country_code;
 			}else{
@@ -214,7 +187,7 @@ we also accept checks and wire transfers.";
 				$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$newadmin["vps_location"]."'";
 				$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 				if($n != 1){
-					$form = $txt_err_register_cant_reselect_product[$lang];//"Cannot reselect product: registration failed!";
+					$form = _("Cannot reselect product: registration failed!") ;//"Cannot reselect product: registration failed!";
 					$print_form = "no";
 					$service_location = $conf_this_server_country_code;
 				}else{
@@ -257,7 +230,7 @@ we also accept checks and wire transfers.";
 					$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"]." (login: ".$newadmin["reqadm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
 				}
 				if($print_form == "yes"){
-					$form = $reguser["mesg"]."<br><h4>".$txt_err_register_succ[$lang]."<!--Registration successfull!--></h4>
+					$form = $reguser["mesg"]."<br><h4>". _("Registration successful!") ."<!--Registration successfull!--></h4>
 Please now click on the following button to go for paiment:<br>
 <br>$paybutton";
 				}
@@ -270,12 +243,11 @@ Please now click on the following button to go for paiment:<br>
 		.registration_form();
 	}
 }
-$login_skined = skin($conf_skin,$form,$txt_register_new_account[$lang]);
+$login_skined = skin($conf_skin,$form, _("Register a new account") );
 $mypage = layout_login_and_languages($login_skined,$lang_sel);
 if(function_exists("skin_NewAccountPage")){
 	skin_NewAccountPage($login_skined);
 }else{
-	//echo anotherPage($skin_txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
 	echo anotherPage("Client:","","",makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
 }
 

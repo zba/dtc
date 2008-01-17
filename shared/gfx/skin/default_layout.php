@@ -5,18 +5,14 @@
 ////////////////////////////////////
 function skin_EmailPage_Default (){
 	global $conf_skin;
-	global $lang;
-	global $txt_select_lang_title;
 	global $adm_email_login;
-	global $txt_login_title;
 
 	global $adm_email_login;
 	global $adm_email_pass;
 	$anotherTopBanner = anotherTopBanner("DTC");
-	//$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 
 	$anotherLanguageSelection = anotherLanguageSelection();
-	$lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
+	$lang_sel = skin($conf_skin,$anotherLanguageSelection, _("Language") );
 
 	if($adm_email_login != "" && isset($adm_email_login) && $adm_email_pass != "" && isset($adm_email_pass)){
 		$error = pass_check_email();
@@ -25,7 +21,7 @@ function skin_EmailPage_Default (){
 			$mesg = $admin["mesg"];
 			$login_txt = "<font color=\"red\">Wrong login or password !</font><br>";
 			$login_txt .= login_emailpanel_form();
-			$login_skined = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
+			$login_skined = skin($conf_skin,$login_txt, _("Email panel: ") . _("Login") );
 			$mypage = layout_login_and_languages($login_skined,$lang_sel);
 		}else{
 			// Draw the html forms, login is successfull
@@ -35,44 +31,36 @@ function skin_EmailPage_Default (){
 		}
 	}else{
 		$login_txt = login_emailpanel_form();
-		$login_skined = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
+		$login_skined = skin($conf_skin,$login_txt, _("Email panel: ") . _("Login") );
 		$mypage = layout_login_and_languages($login_skined,$lang_sel);
 	}
 	// Output the result !
 
-	//echo anotherPage($txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
 	echo anotherPage("Email:","","",makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
 }
 
 
 function skin_ClientPage_Default (){
-	global $lang;
-	global $txt_select_lang_title;
 	global $adm_pass;
 	global $adm_login;
-	global $txt_error;
-	global $txt_fetching_admin;
-	global $txt_client_panel_title;
-	global $txt_login_title;
 	global $conf_skin;
 
 	////////////////////////////////////
 	// Create the top banner and menu //
 	////////////////////////////////////
 	$anotherTopBanner = anotherTopBanner("DTC");
-	//$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 
 	$anotherLanguageSelection = anotherLanguageSelection();
-	$lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
+	$lang_sel = skin($conf_skin,$anotherLanguageSelection, _("Language") );
 
 	if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass)){
 	        // Fetch all the user informations, Print a nice error message if failure.
 	        $admin = fetchAdmin($adm_login,$adm_pass);
 	        if(($error = $admin["err"]) != 0){
 	                $mesg = $admin["mesg"];
-	                $login_txt = $txt_error[$lang]." $error ".$txt_fetching_admin[$lang]."<font color=\"red\">$mesg</font><br>";
+	                $login_txt = _("Error") ." $error ". _("fetching admin: ") ."<font color=\"red\">$mesg</font><br>";
 	                $login_txt .= login_form();
-	                $login_skined = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
+	                $login_skined = skin($conf_skin,$login_txt, _("Client panel:") ." ". _("Login") );
 	                $mypage = layout_login_and_languages($login_skined,$lang_sel);
 	        }else{
 	                // Draw the html forms
@@ -81,7 +69,7 @@ function skin_ClientPage_Default (){
 	        }
 	}else{
 	        $login_txt = login_form();
-	        $login_skined = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
+	        $login_skined = skin($conf_skin,$login_txt, _("Client panel:") ." ". _("Login") );
 	        $mypage = layout_login_and_languages($login_skined,$lang_sel);
 	}
 	// Output the result !
@@ -92,10 +80,8 @@ function skin_ClientPage_Default (){
 
 function skin_LayoutClientPage_Default ($menu_content,$main_content,$main_content_title){
 	global $conf_skin;
-	global $txt_left_menu_title;
-	global $lang;
 
-	$domain_list = skin($conf_skin,$menu_content,$txt_left_menu_title[$lang]);
+	$domain_list = skin($conf_skin,$menu_content, _("Your domains") );
 	if($main_content != ""){
 		$main = skin($conf_skin,$main_content,$main_content_title);
 	}else{
@@ -120,18 +106,7 @@ function skin_LayoutAdminPage_Default (){
 	global $conf_session_expir_minute;
 	global $pro_mysql_config_table;
 	global $conf_skin;
-	global $lang;
-	global $txt_virtual_admin_list;
-	global $txt_root_adm_title;
-	global $txt_dtc_configuration;
 	global $top_commands;
-	global $txt_generate_buttons_title;
-	global $txt_iframe_ds;
-	global $txt_product_manager;
-	global $txt_customer_bw_consumption;
-	global $txt_client_addr_title;
-	global $txt_client_list_title;
-	global $txt_server_statistic_graphs;
 
 	global $adm_random_pass;
 
@@ -142,13 +117,12 @@ function skin_LayoutAdminPage_Default (){
 	///////////////////////
 	switch($rub){
 	case "crm": // CRM TOOL
-		$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(),$txt_client_addr_title[$lang]);
+		$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(), _("Customer's address") );
 			if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
-			$rightFrameCells[] = skin($conf_skin,DTCRMclientAdmins(),$txt_client_admins_title[$lang]);
-//			$rightFrameCells[] = skin($conf_skin,DTCRMshowClientCommands($_REQUEST["id"]),$txt_client_commands_title[$lang]);
+			$rightFrameCells[] = skin($conf_skin,DTCRMclientAdmins(), _("Customer's administrators") );
 		}
 		$rightFrame = makeVerticalFrame($rightFrameCells);
-		$leftFrameCells[] = skin($conf_skin,DTCRMlistClients(),$txt_client_list_title[$lang]);
+		$leftFrameCells[] = skin($conf_skin,DTCRMlistClients(), _("Customers list") );
 		$leftFrame = makeVerticalFrame($leftFrameCells);
 		$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);
 		break;
@@ -158,15 +132,15 @@ function skin_LayoutAdminPage_Default (){
 		break;
 	case "monitor": // Monitor button
 		$out = drawAdminMonitor();
-		$zemain_content = skin($conf_skin,$out,$txt_customer_bw_consumption[$lang]);
+		$zemain_content = skin($conf_skin,$out, _("Customer's bandwidth consumption") );
 		break;
 	case "graph":
-		$zemain_content = skin($conf_skin,drawRrdtoolGraphs (),$txt_server_statistic_graphs[$lang]);
+		$zemain_content = skin($conf_skin,drawRrdtoolGraphs (), _("Server statistic graphs") );
 		break;
 	case "generate": // Gen Config Files
-		$mainFrameCells[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
+		$mainFrameCells[] = skin($conf_skin,$top_commands, _("Launching the configuration files generation") );
 		$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
-		$mainFrameCells[] = skin($conf_skin,$the_iframe,$txt_iframe_ds[$lang]); // fixed bug by seeb
+		$mainFrameCells[] = skin($conf_skin,$the_iframe, _("Deamons states") ); // fixed bug by seeb
 		// The console
 		$mainFrameCells[] = skinConsole();
 		$zemain_content = makeVerticalFrame($mainFrameCells);
@@ -175,14 +149,14 @@ function skin_LayoutAdminPage_Default (){
 		$chooser_menu = drawDTCConfigMenu();
 		$leftFrameCells[] = skin($conf_skin,$chooser_menu,"Menu");
 		$leftFrame = makeVerticalFrame($leftFrameCells);
-		$rightFrameCells[] = skin($conf_skin,drawDTCConfigForm(),$txt_dtc_configuration[$lang]);
+		$rightFrameCells[] = skin($conf_skin,drawDTCConfigForm(), _("DTC Configuration") );
 		$rightFrame = makeVerticalFrame($rightFrameCells);
 
 		$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);
 		break;
 	case "product":
 		$bla = productManager();
-		$zemain_content = skin($conf_skin,$bla,$txt_product_manager[$lang]);
+		$zemain_content = skin($conf_skin,$bla, _("Hosting product manager") );
 		break;
 	case "user": // User Config
 	case "domain_config":
@@ -204,7 +178,7 @@ function skin_LayoutAdminPage_Default (){
 			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
 		}
-		$leftFrameCells[] = skin($conf_skin,adminList($rand),$txt_virtual_admin_list[$lang]);
+		$leftFrameCells[] = skin($conf_skin,adminList($rand), _("Admins list") );
 		// Make the frame
 		$leftFrame = makeVerticalFrame($leftFrameCells);
 
@@ -217,7 +191,7 @@ function skin_LayoutAdminPage_Default (){
 		$dtc_main_menu = skin_Navbar_Default();
 	}
 
-	$the_page[] = skin($conf_skin,$dtc_main_menu,$txt_root_adm_title[$lang]);
+	$the_page[] = skin($conf_skin,$dtc_main_menu, _("Domain Technologie Control : root admin console") );
 
 	$the_page[] = $zemain_content;
 	$pageContent = makeVerticalFrame($the_page);
@@ -237,15 +211,6 @@ function skin_Navbar_Default() {
 
 	global $pro_mysql_admin_table;
 
-	global $txt_mainmenu_title_client_management;
-	global $txt_mainmenu_title_bandwidth_monitor;
-	global $txt_mainmenu_title_server_monitor;
-	global $txt_product_manager;
-	global $txt_mainmenu_title_deamonfile_generation;
-	global $txt_mainmenu_title_dtc_config;
-	global $txt_mainmenu_title_useradmin;
-	global $lang;
-
 	if(isset($adm_login) && isset($adm_pass)){
 		$added_logpass = "&adm_login=$adm_login&adm_pass=$adm_pass";
 	}else{
@@ -258,7 +223,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=user$added_logpass\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/admins.png\"><br>".
-		$txt_mainmenu_title_useradmin[$lang];
+		 _("Users administration") ;
 	if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "" && $_REQUEST["rub"] != "user"){
 		$menu .= "</a>";
 	}
@@ -278,7 +243,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&admlist_type=Names".$url_addon."\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/crm.png\"><br>".
-		$txt_mainmenu_title_client_management[$lang];
+		 _("Customer management") ;
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "crm"){
 		$menu .= "</a>";
 	}
@@ -289,7 +254,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=monitor\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
-		$txt_mainmenu_title_bandwidth_monitor[$lang];
+		 _("Bandwidth monitor") ;
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "monitor"){
 		$menu .= "</a>";
 	}
@@ -301,7 +266,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=graph\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
-		$txt_mainmenu_title_server_monitor[$lang];
+		 _("Server monitor") ;
 	if(!isset($rub) || $rub != "graph"){
 		$menu .= "</a>";
 	}
@@ -311,7 +276,8 @@ function skin_Navbar_Default() {
 	if(!isset($rub) || $rub != "renewal"){
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=renewal\">";
 	}
-	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/renewals.png\"><br>"."Renewals";
+	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/renewals.png\"><br>".
+		 _("Renewals management") ;
 
 	if(!isset($rub) || $rub != "renewal"){
 		$menu .= "</a>";
@@ -325,7 +291,7 @@ function skin_Navbar_Default() {
 			$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=product\">";
 		}
 		$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/product_manager.png\"><br>
-	".$txt_product_manager[$lang];
+	". _("Hosting product manager") ;
 		if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "product"){
 			$menu .= "</a>";
 		}
@@ -338,7 +304,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/daemons.png\"><br>".
-		$txt_mainmenu_title_deamonfile_generation[$lang];
+		 _("Configuration generation") ;
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "generate"){
 		$menu .= "</a>";
 	}
@@ -350,7 +316,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/config_panel.png\"><br>".
-		$txt_mainmenu_title_dtc_config[$lang];
+		 _("DTC general configuration") ;
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "config"){
 		$menu .= "</a>";
 	}
@@ -360,23 +326,9 @@ function skin_Navbar_Default() {
 }
 
 function userEditForms($adm_login,$adm_pass){
-	global $txt_general_virtual_admin_edition;
-	global $txt_domains_configuration_title;
-	global $txt_add_user_title;
-
-	global $txt_client_interface;
-	global $txt_domain_config;
-	global $txt_admin_editor;
-	global $lang;
-	// added by seeb
-	global $txt_user_administration;
-	global $txt_user_administration_domains_for;
-
 	global $adm_random_pass;
 
-	// end added
 	global $conf_skin;
-	global $lang;
 	global $addrlink;
 	global $rub;
 
@@ -414,7 +366,7 @@ function userEditForms($adm_login,$adm_pass){
 			$iface_select .= "<a href=\"?rub=user&adm_login=$adm_login&adm_pass=$pass\">";
 		}
 		$iface_select .= "<img src=\"gfx/menu/client-interface.png\" width=\"48\" height=\"48\" border=\"0\"><br>
-".$txt_client_interface[$lang];
+". _("Client interface") ;
 		if($rub != "user" && $rub != ""){
 			$iface_select .= "</a>";
 		}
@@ -423,7 +375,7 @@ function userEditForms($adm_login,$adm_pass){
 			$iface_select .= "<a href=\"?rub=domain_config&adm_login=$adm_login&adm_pass=$pass\">";
 		}
 		$iface_select .= "<img src=\"gfx/menu/domain-config.png\" width=\"48\" height=\"48\" border=\"0\"><br>
-".$txt_domain_config[$lang];
+". _("Domain config") ;
 		if($rub != "domain_config"){
 			$iface_select .= "</a>";
 		}
@@ -432,13 +384,13 @@ function userEditForms($adm_login,$adm_pass){
 			$iface_select .= "<a href=\"?rub=adminedit&adm_login=$adm_login&adm_pass=$pass\">";
 		}
 		$iface_select .= "<img src=\"gfx/menu/user-editor.png\" width=\"48\" height=\"48\" border=\"0\"><br>
-".$txt_admin_editor[$lang];
+". _("Admin editor") ;
 		if($rub != "adminedit"){
 			$iface_select .= "</a>";
 		}
 		$iface_select .= "</center></td></tr></table>";
 
-		$iface_skined = skin($conf_skin,$iface_select,$txt_user_administration[$lang]);
+		$iface_skined = skin($conf_skin,$iface_select, _("User administration") );
 
 		//fix up the $adm_login in case it changed because of session vars:
 		//in case users play silly bugger with the "GET" variables
@@ -447,14 +399,14 @@ function userEditForms($adm_login,$adm_pass){
 		// Draw the html forms
 		if(isset($rub) && $rub == "adminedit"){
 			$HTML_admin_edit_info = drawEditAdmin($admin);
-			$user_config = skin($conf_skin,$HTML_admin_edit_info,$txt_general_virtual_admin_edition[$lang]);
+			$user_config = skin($conf_skin,$HTML_admin_edit_info, _("Configuration of the virtual administrator") ."<i>\"$adm_login\"</i>");
 //			return $user_config;
 		}else if(isset($rub) && $rub == "domain_config"){
 			$HTML_admin_domain_config = drawDomainConfig($admin);
-			$user_config = skin($conf_skin,$HTML_admin_domain_config,$txt_domains_configuration_title[$lang]);
+			$user_config = skin($conf_skin,$HTML_admin_domain_config, _("Configuration of domains for") ." <i>\"$adm_login\"</i>");
 		}else{
 			$HTML_admin_edit_data = drawAdminTools($admin);
-			$user_config = skin($conf_skin,$HTML_admin_edit_data,$txt_user_administration_domains_for[$lang]." ".$adm_login);
+			$user_config = skin($conf_skin,$HTML_admin_edit_data, _("Domains for") ." ".$adm_login);
 //			return $user_tools;
 		}
 
@@ -471,7 +423,7 @@ function userEditForms($adm_login,$adm_pass){
 	}else{
 		// If no user is in edition, draw a tool for adding an admin
 		$add_a_user = drawNewAdminForm();
-		return skin($conf_skin,$add_a_user,$txt_add_user_title[$lang]);
+		return skin($conf_skin, _("Add a virtual administrator") );
 	}
 }
 

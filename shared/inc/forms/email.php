@@ -213,10 +213,10 @@ function drawAdminTools_emailAccount($mailbox){
 	$left = "<h3>". _("Change your password:") ."</h3>
 <table cellpadding=\"0\" cellspacing=\"0\">
 <tr>
-	<td align=\"right\">".$form_start. _("Password:") ."</td>
+	<td align=\"right\">".$form_start. _("Password: ") ."</td>
 	<td><input type=\"hidden\" name=\"action\" value=\"dtcemail_change_pass\"><input type=\"password\" name=\"newpass1\" value=\"\"></td>
 </tr><tr>
-	<td align=\"right\">". _("Repeat password:") ."</td>
+	<td align=\"right\">". _("Confirm password: ") ."</td>
 	<td><input type=\"password\" name=\"newpass2\" value=\"\"></td>
 </tr><tr>
 	<td></td><td>". drawSubmitButton( _("Ok") ) ."</form></td>
