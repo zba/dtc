@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 15:48+0800\n"
+"POT-Creation-Date: 2008-01-18 23:56+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jelle Kalf <thomas@goirand.fr>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid " CPU seconds"
 msgstr ""
 
-#: shared/inc/sql/lists.php:478
+#: shared/inc/sql/lists.php:490
 msgid " does not look like a mailbox login..."
 msgstr " dit lijkt niet op een mailbox login..."
 
@@ -57,6 +57,10 @@ msgstr "ALLE BESTANDEN EN SCRIPTS"
 msgid "APACHE VHOST"
 msgstr "APACHE VHOST"
 
+#: shared/inc/forms/lists.php:433
+msgid "Access list:"
+msgstr "Toegangs lijst:"
+
 #: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
 #: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
 #: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:166
@@ -87,6 +91,10 @@ msgstr "Activeer FTP backups:"
 #: admin/inc/draw_user_admin.php:280 admin/inc/draw_user_admin.php:300
 msgid "Add"
 msgstr "Voeg toe"
+
+#: shared/inc/forms/lists.php:406
+msgid "Add To: header:"
+msgstr "voeg toe: header:"
 
 #: shared/inc/forms/root_admin.php:222
 msgid "Add a VPS for this admin:"
@@ -137,6 +145,10 @@ msgstr "Voeg administrator toe voor deze klant:"
 #: admin/dtcrm/product_manager.php:66
 msgid "Add domain"
 msgstr "Voeg domein toe"
+
+#: shared/inc/forms/lists.php:409
+msgid "Added footer:"
+msgstr "Toegevoegde footer:"
 
 #: admin/dtcrm/main.php:165
 #, fuzzy
@@ -248,6 +260,10 @@ msgstr "Land"
 msgid "Another location"
 msgstr "Andere locatie"
 
+#: shared/inc/forms/lists.php:446
+msgid "Anti-spam mode:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1149
 msgid "Apache file names"
 msgstr ""
@@ -268,7 +284,7 @@ msgstr ""
 msgid "Apache vhost file generated !"
 msgstr ""
 
-#: shared/inc/forms/lists.php:333
+#: shared/inc/forms/lists.php:411
 msgid "Archive"
 msgstr "Archief"
 
@@ -342,6 +358,10 @@ msgstr ""
 
 #: shared/inc/forms/vps.php:266
 msgid "Boot up (xm start)"
+msgstr ""
+
+#: shared/inc/forms/lists.php:432
+msgid "Bounce life:"
 msgstr ""
 
 #: shared/inc/forms/email.php:621
@@ -509,6 +529,10 @@ msgstr "Sluit zonder antwoord"
 #: shared/inc/forms/ticket.php:163
 msgid "Closed"
 msgstr "Gesloten"
+
+#: shared/inc/forms/lists.php:397
+msgid "Closed list:"
+msgstr "Gesloten lijst:"
 
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
@@ -693,6 +717,10 @@ msgstr "Huidig contract: "
 msgid "Currently installed operating system: "
 msgstr ""
 
+#: shared/inc/forms/lists.php:408
+msgid "Custom headers:"
+msgstr "Persoonlijke headers:"
+
 #: admin/inc/dtc_config.php:1300
 msgid "Customer and service country vs company:"
 msgstr "Klant en service land versus bedrijf:"
@@ -835,6 +863,18 @@ msgstr "Verwijder"
 msgid "Delete a user domain:"
 msgstr "Wis een gebruikersdomein :"
 
+#: shared/inc/forms/lists.php:265
+msgid ""
+"Delete all messages of webarchive. NOTE: this works only if you have &quot;"
+"web archive&quot; not checked."
+msgstr ""
+"Verwijder alle berichtten in het webarchief. LET OP: Dit werkt alleen "
+"wanneer je &quot;web archief&quot; niet hebt aangevinkt"
+
+#: shared/inc/forms/lists.php:405
+msgid "Delete headers:"
+msgstr "Verwijder headers:"
+
 #: shared/inc/forms/root_admin.php:191
 msgid "Delete one of the admin VPS: "
 msgstr "Verwijder een van de admin VPS: "
@@ -847,6 +887,15 @@ msgstr "Verwijder een van de admin dedicated server:"
 msgid "Delete the user"
 msgstr "Wis de gebruiker"
 
+#: shared/inc/forms/lists.php:445
+#, fuzzy
+msgid "Delete:"
+msgstr "Verwijder"
+
+#: shared/inc/forms/lists.php:431
+msgid "Delimiter:"
+msgstr "Delimiter:"
+
 #: shared/inc/forms/email.php:247 shared/inc/forms/email.php:613
 msgid "Deliver messages locally in INBOX: "
 msgstr "Lokaal afleveren INBOX: "
@@ -854,6 +903,10 @@ msgstr "Lokaal afleveren INBOX: "
 #: shared/inc/forms/aliases.php:51
 msgid "Delivery Group:"
 msgstr ""
+
+#: shared/inc/forms/lists.php:423
+msgid "Deny if no To: or Cc::"
+msgstr "Weiger wanneer geen To: of Cc::"
 
 #: shared/inc/forms/packager.php:218
 msgid "Description"
@@ -876,9 +929,17 @@ msgstr "Destination folder:"
 msgid "Detailed web statistics (HTTP) of your subdomains:"
 msgstr "Gedetaileerde web (HTTP) statistieken van jouw subdomains:"
 
-#: shared/inc/forms/lists.php:338
+#: shared/inc/forms/lists.php:416
 msgid "Digest"
 msgstr "Digest"
+
+#: shared/inc/forms/lists.php:417
+msgid "Digest interval:"
+msgstr "Digest interval:"
+
+#: shared/inc/forms/lists.php:418
+msgid "Digest max mails:"
+msgstr "Digest Maximaal aantal berichten:"
 
 #: admin/dtcrm/product_manager.php:46 admin/dtcrm/product_manager.php:114
 #: admin/dtcrm/product_manager.php:172
@@ -902,6 +963,10 @@ msgstr "Hardeschijf gebruik"
 #: admin/inc/nav.php:116
 msgid "Display and sort by:"
 msgstr "Weergeven en sorteren op:"
+
+#: shared/inc/forms/lists.php:250
+msgid "Do not change unless you really know what you are doing."
+msgstr "Verander dit niet tenzij je weet waar je mee bezig bent."
 
 #: shared/drawlib/anotherDtc.php:129
 msgid "Documentation"
@@ -982,7 +1047,7 @@ msgstr ""
 msgid "Edit a company:"
 msgstr ""
 
-#: shared/inc/forms/lists.php:55
+#: shared/inc/forms/lists.php:52
 msgid "Edit mailing list"
 msgstr ""
 
@@ -1049,6 +1114,18 @@ msgstr "Email addr"
 #: shared/inc/forms/email.php:569
 msgid "Enable SPAM filtering: "
 msgstr "Enable SPAM filtering: "
+
+#: shared/inc/forms/lists.php:241
+msgid "Enable VERP support."
+msgstr "Activeer VERP ondersteuning."
+
+#: shared/inc/forms/lists.php:256
+msgid "Enable webarchive."
+msgstr "Activeer web archief."
+
+#: shared/inc/forms/lists.php:442
+msgid "Enable webarchive:"
+msgstr "Activeer webarchief:"
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:262
 msgid "Error"
@@ -1147,6 +1224,12 @@ msgstr ""
 msgid "File-system check:"
 msgstr ""
 
+#: shared/inc/forms/lists.php:205
+msgid ""
+"Fill this if you want every mail to have something like:<br>--<br>To "
+"unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
+msgstr ""
+
 #: shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "Voornaam:"
@@ -1213,7 +1296,7 @@ msgstr "Geef sub-account toevoegings rechtten (reseller):"
 msgid "HDD I/O:"
 msgstr ""
 
-#: shared/inc/forms/lists.php:325
+#: shared/inc/forms/lists.php:403
 msgid "Header"
 msgstr "Header"
 
@@ -1221,9 +1304,35 @@ msgstr "Header"
 msgid "Help"
 msgstr "Help"
 
+#: shared/inc/forms/lists.php:232
+msgid "Help missing for noaccessdenymails"
+msgstr ""
+
+#: shared/inc/forms/lists.php:226
+msgid "Help missing for nosubonlydenymails"
+msgstr ""
+
 #: shared/inc/draw.php:444
 msgid "Help:"
 msgstr "Help:"
+
+#: shared/inc/forms/lists.php:244
+msgid ""
+"Here is specified for how long time in seconds an address can bounce before "
+"it\\'s unsubscribed. Defaults to 432000 seconds, which is 5 days."
+msgstr ""
+
+#: shared/inc/forms/lists.php:235
+msgid ""
+"Here is specified in bytes how big a mail can be and still be prepared for "
+"sending in memory. It\\'s greatly reducing the amount of write system calls "
+"to prepare it in memory before sending it, but can also lead to denial of "
+"service attacks. Default is 16k (16384 bytes)."
+msgstr ""
+
+#: shared/inc/forms/lists.php:268
+msgid "Hide email addresses to avoid spam."
+msgstr "Verberg email adressen om spam te vermijden."
 
 #: admin/inc/dtc_config.php:643
 msgid "Host IP addresses (separated by \"|\"):"
@@ -1248,6 +1357,11 @@ msgstr "Hostname:"
 #, fuzzy
 msgid "Hostname: "
 msgstr "Hostname:"
+
+#: shared/inc/forms/lists.php:247
+msgid ""
+"How many recipients pr. mail delivered to the smtp server. Defaults to 100."
+msgstr ""
 
 #: client/new_account_form.php:635
 msgid "I agree to the"
@@ -1295,6 +1409,61 @@ msgstr "IPs addrs"
 msgid "If no POP user was created, please make at least one!"
 msgstr ""
 
+#: shared/inc/forms/lists.php:253
+msgid ""
+"If this file exists, all headers of a post to the list is matched against "
+"the rules. The first rule to match wins. NOTE: the default action is to deny "
+"access (reject the mail) so take care if you write something here"
+msgstr ""
+
+#: shared/inc/forms/lists.php:211
+msgid ""
+"If this file exists, then retrieving old posts with -get-N (for exemple "
+"mylist-get-12@my-domain.tld) is disabled"
+msgstr ""
+
+#: shared/inc/forms/lists.php:214
+msgid ""
+"If this file exists, then retrieving old posts with -get-N is only possible "
+"for subscribers. The above mentioned \\'noget\\' have precedence."
+msgstr ""
+
+#: shared/inc/forms/lists.php:187
+msgid ""
+"If this flag exists, no mail confirmation is needed to subscribe to the "
+"list. This should in principle never ever be used, but there is times on "
+"local lists etc. where this is useful. HANDLE WITH CARE!"
+msgstr ""
+
+#: shared/inc/forms/lists.php:208
+msgid ""
+"If this flag exists, the mail won\\'t be saved in the archive but simply "
+"deleted."
+msgstr ""
+
+#: shared/inc/forms/lists.php:223
+msgid ""
+"If this flag is present, the owner(s) will get a mail with the address of "
+"someone sub/unsubscribing to a mailinglist."
+msgstr ""
+
+#: shared/inc/forms/lists.php:181
+msgid ""
+"If this flag is set, the email addresses in the field moderators will act as "
+"moderators for the list."
+msgstr ""
+"Wanneer aangevinkt, worden de email adressen in het veld moderators gezien "
+"als moderators voor de lijst."
+
+#: shared/inc/forms/lists.php:199
+msgid ""
+"If this flag is set, the list address does not have to be in the To: or Cc: "
+"header of the email to the list (interesting for aliases addressing multiple "
+"lists)."
+msgstr ""
+"Wanneer aangevinkt, hoeft de lijst van adressen niet in te To: of Cc: header "
+"van de email lijst te staan ( voor aliassen voor meerdere lijsten)"
+
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
 msgstr ""
@@ -1306,6 +1475,14 @@ msgstr "Importeer"
 #: shared/inc/forms/root_admin.php:171
 msgid "Import a domain file for this user:"
 msgstr "Importeer een domein bestand voor deze gebruiker:"
+
+#: shared/inc/forms/lists.php:193
+msgid ""
+"In those fields is specified *ONE* headertoken to match per line. If the "
+"fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all "
+"occurences of these headers in incoming list mail will be deleted. From: and "
+"Return-Path: are deleted no matter what."
+msgstr ""
 
 #: admin/inc/submit_root_querys.php:259
 #, fuzzy
@@ -1374,13 +1551,25 @@ msgstr ""
 msgid "Incorrect sub-domain format."
 msgstr ""
 
-#: shared/inc/forms/lists.php:357
+#: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
 msgstr "Voeg hier een email adres toe om het te abbonneren."
 
-#: shared/inc/forms/lists.php:359
+#: shared/inc/forms/lists.php:438
 msgid "Insert here an email address to unsubscribe it."
 msgstr "Voeg hier een email adres toe om het te deabbonneren."
+
+#: shared/inc/forms/lists.php:259
+msgid ""
+"Insert here the template\\'s code that you want use for your web archive. "
+"Read <a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' "
+"target=\\'_blank\\'>documentation</a> and see <a href=\\'http://www.mhonarc."
+"org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
+msgstr ""
+"Geef hier de code in voor het template voor het webarchief. Zie <a href="
+"\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' target="
+"\\'_blank\\'>documentatie</a> en zie voor<a href=\\'http://www.mhonarc.org/"
+"MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>voorbeelden</a>."
 
 #: shared/inc/forms/packager.php:218 shared/inc/forms/packager.php:230
 msgid "Install"
@@ -1419,6 +1608,14 @@ msgstr "Is bedrijf radio button is verkeerd!"
 #: admin/dtcrm/main.php:161 client/new_account_form.php:586
 msgid "Is it a company: "
 msgstr "Is dit een bedrijf: "
+
+#: shared/inc/forms/lists.php:175
+msgid ""
+"Is the list is open or closed. If it\\'s closed subscribtion and "
+"unsubscription via mail is disabled."
+msgstr ""
+"Is de lijst open of gesloten Wanneer gesloten is abbonneren en deabbonneren "
+"via mail gedeactiveerd."
 
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
 #: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:255
@@ -1459,8 +1656,17 @@ msgstr ""
 "Laat een bericht achter voor enkele specifieke benodigdheden voor jouw "
 "account:"
 
-#: shared/inc/forms/lists.php:73 shared/inc/forms/lists.php:100
+#: shared/inc/sql/lists.php:211
+msgid "List #name#@#domain# successfully created!"
+msgstr "Lijst #name#@#domain# succesvol gecreeerd!"
+
+#: shared/inc/forms/lists.php:97
 msgid "List name"
+msgstr "Lijst naam"
+
+#: shared/inc/forms/lists.php:70
+#, fuzzy
+msgid "List name:"
 msgstr "Lijst naam"
 
 #: admin/inc/dtc_config.php:283
@@ -1493,7 +1699,7 @@ msgstr ""
 msgid "List of your mailboxes:"
 msgstr "Lijst van jouw databases:"
 
-#: shared/inc/forms/lists.php:29
+#: shared/inc/forms/lists.php:27
 #, fuzzy
 msgid "List of your mailing lists"
 msgstr "Lijst van jouw databases:"
@@ -1502,9 +1708,13 @@ msgstr "Lijst van jouw databases:"
 msgid "List of your subdomains: "
 msgstr "Lijst met jouw subdomeinen: "
 
-#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:100
-#: shared/inc/forms/lists.php:102
+#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:97
 msgid "List owner"
+msgstr "Lijst eigenaar"
+
+#: shared/inc/forms/lists.php:99
+#, fuzzy
+msgid "List owner:"
 msgstr "Lijst eigenaar"
 
 #: admin/inc/dtc_config.php:724
@@ -1616,6 +1826,10 @@ msgstr "E-Mail-Gruppen von "
 msgid "Mail restart"
 msgstr ""
 
+#: shared/inc/forms/lists.php:238
+msgid "Mail server used to send the messages."
+msgstr "Mail server om berichten mee te versturen."
+
 #: admin/deamons_state.php:132
 msgid "Mail-newu"
 msgstr ""
@@ -1687,6 +1901,10 @@ msgstr "Max ftp"
 msgid "Max SSH"
 msgstr "Max SSH"
 
+#: shared/inc/forms/lists.php:430
+msgid "Max VERP recipients:"
+msgstr "Max VERP ontvangers:"
+
 #: admin/dtcrm/product_manager.php:56
 #, fuzzy
 msgid "Max database"
@@ -1697,11 +1915,15 @@ msgstr "Database nodig"
 msgid "Max email"
 msgstr "Mijn e-mail"
 
+#: shared/inc/forms/lists.php:427
+msgid "Max mail memory size:"
+msgstr "Max Mail geheugen:"
+
 #: shared/inc/forms/vps.php:146
 msgid "Max memory: "
 msgstr "Max geheugen: "
 
-#: shared/inc/forms/lists.php:112
+#: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
 msgstr ""
 
@@ -1728,6 +1950,14 @@ msgstr ""
 #: shared/inc/forms/vps.php:121
 msgid "Method getVPSState failed"
 msgstr ""
+
+#: shared/inc/forms/lists.php:399
+msgid "Moderated:"
+msgstr "Gemodereerd:"
+
+#: shared/inc/forms/lists.php:400
+msgid "Moderators:"
+msgstr "Moderators:"
 
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
@@ -1786,9 +2016,9 @@ msgstr "NIET GEVALIDEERD"
 msgid "Name"
 msgstr "Naam"
 
-#: shared/inc/forms/lists.php:73
+#: shared/inc/forms/lists.php:70
 msgid "Name of the list."
-msgstr ""
+msgstr "Naam van de lijst."
 
 #: shared/inc/draw.php:140
 #, fuzzy
@@ -1872,9 +2102,10 @@ msgstr "Nieuwe klant"
 msgid "New mailbox"
 msgstr "Nieuw e-mail account"
 
-#: shared/inc/forms/lists.php:54 shared/inc/forms/lists.php:89
-msgid "New mailing list"
-msgstr ""
+#: shared/inc/forms/lists.php:86
+#, fuzzy
+msgid "New mailing list:"
+msgstr "Lijst van jouw databases:"
 
 #: shared/inc/draw.php:52
 msgid "New password:"
@@ -1936,6 +2167,10 @@ msgstr ""
 msgid "No VPS expired"
 msgstr "Geen VPS verlopen"
 
+#: shared/inc/forms/lists.php:412
+msgid "No archives:"
+msgstr "Geen archieven:"
+
 #: shared/inc/forms/email.php:631
 msgid "No catch-all"
 msgstr "Geen catch-all"
@@ -1951,6 +2186,10 @@ msgstr "Geen dedicated server verlopen"
 #: admin/inc/draw_user_admin.php:292
 msgid "No domain waiting!"
 msgstr "Geen domeinnaam wachtende!"
+
+#: shared/inc/forms/lists.php:413
+msgid "No get-N function:"
+msgstr "Schakel get-N uit:"
 
 #: shared/inc/forms/domain_info.php:85
 msgid "No parking"
@@ -1981,6 +2220,10 @@ msgstr "Geen shared account verlopen."
 msgid "No ssl product defined."
 msgstr "Geen product"
 
+#: shared/inc/forms/lists.php:401
+msgid "No subscribtion confirmation:"
+msgstr "Geen confirmatie abonnering:"
+
 #: shared/inc/sql/database.php:73
 msgid ""
 "No user by that name exists in the database, or you don't own this db user. "
@@ -2006,9 +2249,21 @@ msgstr "Geen registeratie"
 msgid "Notes: "
 msgstr "Notities: "
 
-#: shared/inc/forms/lists.php:342
+#: shared/inc/forms/lists.php:420
 msgid "Notifications"
 msgstr "Notificaties"
+
+#: shared/inc/forms/lists.php:421
+msgid "Notify new subscribtions:"
+msgstr "Notificatie nieuwe geabboneerden:"
+
+#: shared/inc/forms/lists.php:424
+msgid "Notify when post and no access:"
+msgstr "Notificatie bij mailing en geen toegang:"
+
+#: shared/inc/forms/lists.php:422
+msgid "Notify when post and not subscribed:"
+msgstr "Notificatie bij mailing en geen toegang:"
 
 #: shared/inc/forms/vps.php:151
 msgid "Number of CPU: "
@@ -2027,7 +2282,7 @@ msgstr "Aantal actieve e-mail accounts :"
 msgid "Number of active mailboxes:"
 msgstr "Aantal actieve e-mail accounts :"
 
-#: shared/inc/forms/lists.php:26
+#: shared/inc/forms/lists.php:24
 #, fuzzy
 msgid "Number of active mailing lists"
 msgstr "Aantal actieve e-mail accounts :"
@@ -2076,6 +2331,14 @@ msgstr "Andere DNS servers:"
 #: shared/inc/forms/dns.php:44 shared/inc/forms/dns.php:53
 msgid "Other MX (backup) servers:"
 msgstr "Andere MX (backup) servers:"
+
+#: shared/inc/forms/lists.php:443
+msgid "Own template:"
+msgstr "Persoonlijk template:"
+
+#: shared/inc/forms/lists.php:398
+msgid "Owner:"
+msgstr "Eigenaar:"
 
 #: client/new_account.php:146
 msgid "PAYMENT CANCELLED"
@@ -2401,6 +2664,20 @@ msgstr "HERLAAD DNS ZONES"
 msgid "Real name"
 msgstr "Echte naam"
 
+#: shared/inc/forms/lists.php:262
+msgid ""
+"Recreate all messages of webarchive. Use this only if you have changed the "
+"webarchive\\'s template. NOTE: this works only if you have &quot;web "
+"archive&quot; checked."
+msgstr ""
+"Recreeer alle berichten van webarchief. Gebruik dit alleen wanneer je de "
+"template van het webarchief hebt gewijzigd. LET OP: dit werkt alleen "
+"waanneer je &quot;web archive&quot; hebt aangevinkt"
+
+#: shared/inc/forms/lists.php:444
+msgid "Recreate:"
+msgstr "Hercreer:"
+
 #: shared/securepay/pay_functions.php:62
 msgid "Recurring payment"
 msgstr ""
@@ -2450,6 +2727,10 @@ msgstr "Herinstalleer operating system:"
 #: shared/inc/forms/vps.php:131
 msgid "Reinstalling operating system..."
 msgstr "Herinstallatie operating system..."
+
+#: shared/inc/forms/lists.php:229
+msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
+msgstr "Weiger mails die niet het addres van de lijst in To: of Cc: bevatten."
 
 #: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
@@ -2521,13 +2802,17 @@ msgstr "Reseller sub accounts"
 msgid "Retype new password:"
 msgstr "Voer password opnieuw in:"
 
-#: shared/inc/forms/lists.php:317
+#: shared/inc/forms/lists.php:395
 msgid "Rights"
 msgstr "Permissies"
 
-#: shared/inc/forms/lists.php:348
+#: shared/inc/forms/lists.php:426
 msgid "SMTP configuration"
 msgstr "Configuratie SMTP"
+
+#: shared/inc/forms/lists.php:428
+msgid "SMTP relay server:"
+msgstr "SMTP Relay Server:"
 
 #: admin/deamons_state.php:157
 #, fuzzy
@@ -2816,6 +3101,10 @@ msgstr "Subdomeinen:"
 msgid "Subject"
 msgstr "Onderwerp"
 
+#: shared/inc/forms/lists.php:404
+msgid "Subject prefix:"
+msgstr "Prefix onderwerp:"
+
 #: shared/inc/forms/ticket.php:78
 msgid "Subject:"
 msgstr "Onderwerp:"
@@ -2828,13 +3117,21 @@ msgstr "Onderwerp: "
 msgid "Submit new support issue"
 msgstr "Voeg een nieuwe support ticket toe"
 
-#: shared/inc/forms/lists.php:356
+#: shared/inc/forms/lists.php:435
 msgid "Subscribe/Unsubscribe an email address"
 msgstr ""
 
-#: shared/inc/forms/lists.php:357
+#: shared/inc/forms/lists.php:436
 msgid "Subscribe:"
 msgstr "Abonneer:"
+
+#: shared/inc/forms/lists.php:124
+msgid "Subscriber list (click to unsubscribe):"
+msgstr ""
+
+#: shared/inc/forms/lists.php:396
+msgid "Subscribers only post:"
+msgstr "Post alleen voor geabboneerden:"
 
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
@@ -2923,6 +3220,14 @@ msgstr ""
 "Deze gebruiker is nog steeds eigenaar van enkele databases. Verwijder of "
 "wijzig de eigenaar van deze eerst."
 
+#: shared/inc/forms/lists.php:178
+msgid ""
+"The email addresses in this fields (1 per line) will get mails to listname-"
+"owner@listdomain.tld"
+msgstr ""
+"De email adressen in dit veld (1 per regel) zullen mail gestuurd naar "
+"listnaam-eigenaar@lijstdomein.tld ontvangen."
+
 #: shared/inc/sql/vps.php:40
 msgid "The password you have submited is not a valid password"
 msgstr "Het door jouw opgegeven password is niet een geldig password"
@@ -2932,6 +3237,15 @@ msgid ""
 "The payment gateway have reported that your payment has failed. Contact us, "
 "we also accept checks and wire transfers."
 msgstr ""
+
+#: shared/inc/forms/lists.php:190
+msgid ""
+"The prefix for the Subject: line of mails to the list. This will alter the "
+"Subject: line, and add a prefix if it\\'s not present elsewhere."
+msgstr ""
+"Prefix voor de onderwerp: regel voor berichten naar de lijst. Dit zal de "
+"Subject: regel veranderen en een prefix toevoegen als deze elders nog niet "
+"aanwezig is."
 
 #: shared/inc/forms/ftp.php:66
 msgid "There is already a ftp login by that name"
@@ -2944,6 +3258,14 @@ msgstr ""
 #: shared/inc/forms/ssh.php:60
 msgid "There is already a ssh login by that name"
 msgstr ""
+
+#: shared/inc/forms/lists.php:202
+msgid ""
+"These headers are added to every mail coming through. This is the place you "
+"want to add Reply-To: header in case you want such."
+msgstr ""
+"Deze headers worden toegevoegd aan ieder bericht dat langskomt. Dit is de de "
+"plaats waar je Reply-To: wilt toevoegen in mocht je dat willen."
 
 #: admin/inc/dtc_config.php:203
 msgid ""
@@ -2961,11 +3283,22 @@ msgstr ""
 msgid "This domain will be the alias of the following domain (domain parking):"
 msgstr "Dit domein wordt de alias voor het volgende domein (domain parking):"
 
+#: shared/inc/forms/lists.php:220
+msgid ""
+"This file specifies how many mails can accumulate before digest sending is "
+"triggered. Defaults to 50 mails, meaning that if 50 mails arrive to the list "
+"before digestinterval have passed, the digest is delivered."
+msgstr ""
+
 #: shared/inc/sql/database.php:54
 msgid "This is not a valid database name! Please choose another one."
 msgstr "Dit is geen geldige databasenaam! Kies alsjeblieft een ander."
 
-#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:102
+#: shared/inc/forms/lists.php:184
+msgid "This is the list of moderators."
+msgstr "Dit is de lijst van moderators."
+
+#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:99
 msgid "This is the main owner of the list."
 msgstr "Dit is de hoofd eigenaar van de lijst."
 
@@ -2987,6 +3320,12 @@ msgstr ""
 #: shared/inc/forms/subdomain.php:169
 msgid "This subdomain is a service (SRV)<br>entry for the following port: "
 msgstr "Dit subdomain is een service(srv)<br>ingang voor volgende port: "
+
+#: shared/inc/forms/lists.php:217
+msgid ""
+"This value specifies how many seconds will pass before the next digest is "
+"sent. Defaults to 604800 seconds, which is 7 days."
+msgstr ""
 
 #: shared/inc/forms/email.php:323
 msgid ""
@@ -3028,6 +3367,10 @@ msgid ""
 msgstr ""
 "Om een filesystem check of herinstallatie van een besturings systeem te doen "
 "dien je eerst je server uit te schakelen of vernietigd te worden"
+
+#: shared/inc/forms/lists.php:407
+msgid "To: or Cc: not mandatory:"
+msgstr "To: of Cc: niet verplicht:"
 
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
@@ -3125,7 +3468,7 @@ msgstr ""
 msgid "Unpack size"
 msgstr "Uitgepakte grootte"
 
-#: shared/inc/forms/lists.php:359
+#: shared/inc/forms/lists.php:438
 msgid "Unsubscribe:"
 msgstr "Deabboneer:"
 
@@ -3320,6 +3663,10 @@ msgstr "BTW number:"
 msgid "VAT rate:"
 msgstr "BTW percentage:"
 
+#: shared/inc/forms/lists.php:429
+msgid "VERP:"
+msgstr "VERP:"
+
 #: shared/inc/forms/vps.php:135
 msgid "VM id: "
 msgstr "VM id: "
@@ -3415,7 +3762,7 @@ msgstr "Waarschuwingen na expiratie: "
 msgid "Warnings before expiration: "
 msgstr "Waarschuwingen voor expiratie: "
 
-#: shared/inc/forms/lists.php:362
+#: shared/inc/forms/lists.php:441
 msgid "Web archive"
 msgstr "Web archief"
 
@@ -3438,6 +3785,23 @@ msgstr "Wat"
 #: shared/inc/forms/ticket.php:47
 msgid "What is your server hostname:"
 msgstr "Wat is jouw server hostname:"
+
+#: shared/inc/forms/lists.php:196
+msgid ""
+"When this flag is present, a To: header including the recipients "
+"emailaddress will be added to outgoing mail. Recommended usage is to remove "
+"existing To: headers with delheaders (see above) first."
+msgstr ""
+
+#: shared/inc/forms/lists.php:173
+msgid ""
+"When this flag is set, only people who are subscribed to the list, are "
+"allowed to post to it. The check is made against the &quot;From:&quot; "
+"header."
+msgstr ""
+"Wanneer aangevinkt, alleen mensen die geabboneerd zijn op de lijst hebben "
+"permissie om posts erin te maken. Deze check wordt gedaan door middel van de "
+"&quot;From:&quot; header."
 
 #: shared/inc/draw.php:183
 msgid "Whois"
@@ -3481,6 +3845,45 @@ msgstr "Verkeerde gebruiker of password of timeout verlopen!"
 #: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:129
 msgid "Yes"
 msgstr "Ja"
+
+#: shared/inc/sql/lists.php:213
+msgid ""
+"You can control your mailing list by email or by control panel.\n"
+"You can send a email to the following addresses to execute the listed "
+"command:\n"
+"  \n"
+"  #name#-help@#domain# -> return the most common list's commands\n"
+"  #name#-list@#domain# -> return the subscribers's list\n"
+"  #name#-get-N@#domain# -> return the N list's message\n"
+"  #name#-owner@#domain# -> you can contact the list's owner by this address\n"
+"  #name#-unsubscribe@#domain# -> unsubscribe the email's sender from the "
+"list\n"
+"  #name#-subscribe@#domain# -> subscribe the email's sender to the list\n"
+"  #name#-subscribe-digest@#domain# -> subscribe the email's sender to the "
+"list's digest version\n"
+"  #name#-subscribe-nomail@#domain# -> subscribe the email's sender to the "
+"list's nomail version\n"
+"  \n"
+"For more informations go to mlmmj official web site at http://mlmmj.mmj.dk"
+msgstr ""
+"You can control your mailing list by email or by control panel.\n"
+"Je kan een email naar het volgende adres om de opdracht uit te voeren:\n"
+"\n"
+"  #name#-help@#domain# ->toon de meest voorkomende opdrachten\n"
+"  #name#-list@#domain# -> toon de lijst van abonnees\n"
+"  #name#-get-N@#domain# -> toon  N list's bericht\n"
+"  #name#-owner@#domain# -> neem contact op met de eigenaar van de lijst van "
+"dit adress.\n"
+"  #name#-unsubscribe@#domain# -> deabbonneer het email adress van de "
+"afzender van de lijst\n"
+"  #name#-subscribe@#domain# -> abonneer de afzender van het bericht tot de "
+"lijst\n"
+"  #name#-subscribe-digest@#domain# -> abonneer de afzender van het email "
+"bericht tot de digest versie van de lijst\n"
+"  #name#-subscribe-nomail@#domain# -> abonneer de afzender van het email "
+"bericht tot de digest versie van de lijst \n"
+"\n"
+"Voor meer informatie bezoek de officiele mlmmj website http://mlmmj.mmj.dk"
 
 #: shared/inc/forms/my_account.php:123
 msgid "You currently don't have any SSL tokens."
@@ -3623,6 +4026,10 @@ msgstr ""
 msgid "fetching admin: "
 msgstr "admin opgevraagd: "
 
+#: shared/inc/forms/lists.php:414
+msgid "get-N function only for subscribers:"
+msgstr ""
+
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
 msgstr ""
@@ -3639,7 +4046,7 @@ msgstr "Nieuw ssh account"
 msgid "new mailbox"
 msgstr ""
 
-#: shared/inc/forms/lists.php:88
+#: shared/inc/forms/lists.php:51 shared/inc/forms/lists.php:85
 #, fuzzy
 msgid "new mailing list"
 msgstr "Lijst van jouw databases:"

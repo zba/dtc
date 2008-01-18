@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 15:48+0800\n"
+"POT-Creation-Date: 2008-01-18 23:56+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2326,93 +2326,428 @@ msgstr ""
 msgid "No completed orders found."
 msgstr ""
 
-#: shared/inc/forms/lists.php:26
+#: shared/inc/forms/lists.php:24
 msgid "Number of active mailing lists"
 msgstr ""
 
-#: shared/inc/forms/lists.php:29
+#: shared/inc/forms/lists.php:27
 msgid "List of your mailing lists"
 msgstr ""
 
-#: shared/inc/forms/lists.php:54 shared/inc/forms/lists.php:89
-msgid "New mailing list"
-msgstr ""
-
-#: shared/inc/forms/lists.php:55
-msgid "Edit mailing list"
-msgstr ""
-
-#: shared/inc/forms/lists.php:73
-msgid "Name of the list."
-msgstr ""
-
-#: shared/inc/forms/lists.php:73 shared/inc/forms/lists.php:100
-msgid "List name"
-msgstr ""
-
-#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:102
-msgid "This is the main owner of the list."
-msgstr ""
-
-#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:100
-#: shared/inc/forms/lists.php:102
-msgid "List owner"
-msgstr ""
-
-#: shared/inc/forms/lists.php:88
+#: shared/inc/forms/lists.php:51 shared/inc/forms/lists.php:85
 msgid "new mailing list"
 msgstr ""
 
-#: shared/inc/forms/lists.php:112
+#: shared/inc/forms/lists.php:52
+msgid "Edit mailing list"
+msgstr ""
+
+#: shared/inc/forms/lists.php:70
+msgid "Name of the list."
+msgstr ""
+
+#: shared/inc/forms/lists.php:70
+msgid "List name:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:99
+msgid "This is the main owner of the list."
+msgstr ""
+
+#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:97
+msgid "List owner"
+msgstr ""
+
+#: shared/inc/forms/lists.php:86
+msgid "New mailing list:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:97
+msgid "List name"
+msgstr ""
+
+#: shared/inc/forms/lists.php:99
+msgid "List owner:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
 msgstr ""
 
-#: shared/inc/forms/lists.php:317
+#: shared/inc/forms/lists.php:124
+msgid "Subscriber list (click to unsubscribe):"
+msgstr ""
+
+#: shared/inc/forms/lists.php:173
+msgid ""
+"When this flag is set, only people who are subscribed to the list, are "
+"allowed to post to it. The check is made against the &quot;From:&quot; "
+"header."
+msgstr ""
+
+#: shared/inc/forms/lists.php:175
+msgid ""
+"Is the list is open or closed. If it\\'s closed subscribtion and "
+"unsubscription via mail is disabled."
+msgstr ""
+
+#: shared/inc/forms/lists.php:178
+msgid ""
+"The email addresses in this fields (1 per line) will get mails to listname-"
+"owner@listdomain.tld"
+msgstr ""
+
+#: shared/inc/forms/lists.php:181
+msgid ""
+"If this flag is set, the email addresses in the field moderators will act as "
+"moderators for the list."
+msgstr ""
+
+#: shared/inc/forms/lists.php:184
+msgid "This is the list of moderators."
+msgstr ""
+
+#: shared/inc/forms/lists.php:187
+msgid ""
+"If this flag exists, no mail confirmation is needed to subscribe to the "
+"list. This should in principle never ever be used, but there is times on "
+"local lists etc. where this is useful. HANDLE WITH CARE!"
+msgstr ""
+
+#: shared/inc/forms/lists.php:190
+msgid ""
+"The prefix for the Subject: line of mails to the list. This will alter the "
+"Subject: line, and add a prefix if it\\'s not present elsewhere."
+msgstr ""
+
+#: shared/inc/forms/lists.php:193
+msgid ""
+"In those fields is specified *ONE* headertoken to match per line. If the "
+"fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all "
+"occurences of these headers in incoming list mail will be deleted. From: and "
+"Return-Path: are deleted no matter what."
+msgstr ""
+
+#: shared/inc/forms/lists.php:196
+msgid ""
+"When this flag is present, a To: header including the recipients "
+"emailaddress will be added to outgoing mail. Recommended usage is to remove "
+"existing To: headers with delheaders (see above) first."
+msgstr ""
+
+#: shared/inc/forms/lists.php:199
+msgid ""
+"If this flag is set, the list address does not have to be in the To: or Cc: "
+"header of the email to the list (interesting for aliases addressing multiple "
+"lists)."
+msgstr ""
+
+#: shared/inc/forms/lists.php:202
+msgid ""
+"These headers are added to every mail coming through. This is the place you "
+"want to add Reply-To: header in case you want such."
+msgstr ""
+
+#: shared/inc/forms/lists.php:205
+msgid ""
+"Fill this if you want every mail to have something like:<br>--<br>To "
+"unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
+msgstr ""
+
+#: shared/inc/forms/lists.php:208
+msgid ""
+"If this flag exists, the mail won\\'t be saved in the archive but simply "
+"deleted."
+msgstr ""
+
+#: shared/inc/forms/lists.php:211
+msgid ""
+"If this file exists, then retrieving old posts with -get-N (for exemple "
+"mylist-get-12@my-domain.tld) is disabled"
+msgstr ""
+
+#: shared/inc/forms/lists.php:214
+msgid ""
+"If this file exists, then retrieving old posts with -get-N is only possible "
+"for subscribers. The above mentioned \\'noget\\' have precedence."
+msgstr ""
+
+#: shared/inc/forms/lists.php:217
+msgid ""
+"This value specifies how many seconds will pass before the next digest is "
+"sent. Defaults to 604800 seconds, which is 7 days."
+msgstr ""
+
+#: shared/inc/forms/lists.php:220
+msgid ""
+"This file specifies how many mails can accumulate before digest sending is "
+"triggered. Defaults to 50 mails, meaning that if 50 mails arrive to the list "
+"before digestinterval have passed, the digest is delivered."
+msgstr ""
+
+#: shared/inc/forms/lists.php:223
+msgid ""
+"If this flag is present, the owner(s) will get a mail with the address of "
+"someone sub/unsubscribing to a mailinglist."
+msgstr ""
+
+#: shared/inc/forms/lists.php:226
+msgid "Help missing for nosubonlydenymails"
+msgstr ""
+
+#: shared/inc/forms/lists.php:229
+msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
+msgstr ""
+
+#: shared/inc/forms/lists.php:232
+msgid "Help missing for noaccessdenymails"
+msgstr ""
+
+#: shared/inc/forms/lists.php:235
+msgid ""
+"Here is specified in bytes how big a mail can be and still be prepared for "
+"sending in memory. It\\'s greatly reducing the amount of write system calls "
+"to prepare it in memory before sending it, but can also lead to denial of "
+"service attacks. Default is 16k (16384 bytes)."
+msgstr ""
+
+#: shared/inc/forms/lists.php:238
+msgid "Mail server used to send the messages."
+msgstr ""
+
+#: shared/inc/forms/lists.php:241
+msgid "Enable VERP support."
+msgstr ""
+
+#: shared/inc/forms/lists.php:244
+msgid ""
+"Here is specified for how long time in seconds an address can bounce before "
+"it\\'s unsubscribed. Defaults to 432000 seconds, which is 5 days."
+msgstr ""
+
+#: shared/inc/forms/lists.php:247
+msgid ""
+"How many recipients pr. mail delivered to the smtp server. Defaults to 100."
+msgstr ""
+
+#: shared/inc/forms/lists.php:250
+msgid "Do not change unless you really know what you are doing."
+msgstr ""
+
+#: shared/inc/forms/lists.php:253
+msgid ""
+"If this file exists, all headers of a post to the list is matched against "
+"the rules. The first rule to match wins. NOTE: the default action is to deny "
+"access (reject the mail) so take care if you write something here"
+msgstr ""
+
+#: shared/inc/forms/lists.php:256
+msgid "Enable webarchive."
+msgstr ""
+
+#: shared/inc/forms/lists.php:259
+msgid ""
+"Insert here the template\\'s code that you want use for your web archive. "
+"Read <a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' "
+"target=\\'_blank\\'>documentation</a> and see <a href=\\'http://www.mhonarc."
+"org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
+msgstr ""
+
+#: shared/inc/forms/lists.php:262
+msgid ""
+"Recreate all messages of webarchive. Use this only if you have changed the "
+"webarchive\\'s template. NOTE: this works only if you have &quot;web "
+"archive&quot; checked."
+msgstr ""
+
+#: shared/inc/forms/lists.php:265
+msgid ""
+"Delete all messages of webarchive. NOTE: this works only if you have &quot;"
+"web archive&quot; not checked."
+msgstr ""
+
+#: shared/inc/forms/lists.php:268
+msgid "Hide email addresses to avoid spam."
+msgstr ""
+
+#: shared/inc/forms/lists.php:395
 msgid "Rights"
 msgstr ""
 
-#: shared/inc/forms/lists.php:325
+#: shared/inc/forms/lists.php:396
+msgid "Subscribers only post:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:397
+msgid "Closed list:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:398
+msgid "Owner:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:399
+msgid "Moderated:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:400
+msgid "Moderators:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:401
+msgid "No subscribtion confirmation:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:403
 msgid "Header"
 msgstr ""
 
-#: shared/inc/forms/lists.php:333
+#: shared/inc/forms/lists.php:404
+msgid "Subject prefix:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:405
+msgid "Delete headers:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:406
+msgid "Add To: header:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:407
+msgid "To: or Cc: not mandatory:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:408
+msgid "Custom headers:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:409
+msgid "Added footer:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:411
 msgid "Archive"
 msgstr ""
 
-#: shared/inc/forms/lists.php:338
+#: shared/inc/forms/lists.php:412
+msgid "No archives:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:413
+msgid "No get-N function:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:414
+msgid "get-N function only for subscribers:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:416
 msgid "Digest"
 msgstr ""
 
-#: shared/inc/forms/lists.php:342
+#: shared/inc/forms/lists.php:417
+msgid "Digest interval:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:418
+msgid "Digest max mails:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:420
 msgid "Notifications"
 msgstr ""
 
-#: shared/inc/forms/lists.php:348
+#: shared/inc/forms/lists.php:421
+msgid "Notify new subscribtions:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:422
+msgid "Notify when post and not subscribed:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:423
+msgid "Deny if no To: or Cc::"
+msgstr ""
+
+#: shared/inc/forms/lists.php:424
+msgid "Notify when post and no access:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:426
 msgid "SMTP configuration"
 msgstr ""
 
-#: shared/inc/forms/lists.php:356
+#: shared/inc/forms/lists.php:427
+msgid "Max mail memory size:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:428
+msgid "SMTP relay server:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:429
+msgid "VERP:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:430
+msgid "Max VERP recipients:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:431
+msgid "Delimiter:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:432
+msgid "Bounce life:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:433
+msgid "Access list:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:435
 msgid "Subscribe/Unsubscribe an email address"
 msgstr ""
 
-#: shared/inc/forms/lists.php:357
+#: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
 msgstr ""
 
-#: shared/inc/forms/lists.php:357
+#: shared/inc/forms/lists.php:436
 msgid "Subscribe:"
 msgstr ""
 
-#: shared/inc/forms/lists.php:359
+#: shared/inc/forms/lists.php:438
 msgid "Insert here an email address to unsubscribe it."
 msgstr ""
 
-#: shared/inc/forms/lists.php:359
+#: shared/inc/forms/lists.php:438
 msgid "Unsubscribe:"
 msgstr ""
 
-#: shared/inc/forms/lists.php:362
+#: shared/inc/forms/lists.php:441
 msgid "Web archive"
+msgstr ""
+
+#: shared/inc/forms/lists.php:442
+msgid "Enable webarchive:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:443
+msgid "Own template:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:444
+msgid "Recreate:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:445
+msgid "Delete:"
+msgstr ""
+
+#: shared/inc/forms/lists.php:446
+msgid "Anti-spam mode:"
 msgstr ""
 
 #: shared/inc/forms/my_account.php:63
@@ -3207,7 +3542,32 @@ msgstr ""
 msgid "Mailbox does not exists in database!<br>\n"
 msgstr ""
 
-#: shared/inc/sql/lists.php:478
+#: shared/inc/sql/lists.php:211
+msgid "List #name#@#domain# successfully created!"
+msgstr ""
+
+#: shared/inc/sql/lists.php:213
+msgid ""
+"You can control your mailing list by email or by control panel.\n"
+"You can send a email to the following addresses to execute the listed "
+"command:\n"
+"  \n"
+"  #name#-help@#domain# -> return the most common list's commands\n"
+"  #name#-list@#domain# -> return the subscribers's list\n"
+"  #name#-get-N@#domain# -> return the N list's message\n"
+"  #name#-owner@#domain# -> you can contact the list's owner by this address\n"
+"  #name#-unsubscribe@#domain# -> unsubscribe the email's sender from the "
+"list\n"
+"  #name#-subscribe@#domain# -> subscribe the email's sender to the list\n"
+"  #name#-subscribe-digest@#domain# -> subscribe the email's sender to the "
+"list's digest version\n"
+"  #name#-subscribe-nomail@#domain# -> subscribe the email's sender to the "
+"list's nomail version\n"
+"  \n"
+"For more informations go to mlmmj official web site at http://mlmmj.mmj.dk"
+msgstr ""
+
+#: shared/inc/sql/lists.php:490
 msgid " does not look like a mailbox login..."
 msgstr ""
 

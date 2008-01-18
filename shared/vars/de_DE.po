@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 15:48+0800\n"
+"POT-Creation-Date: 2008-01-18 23:56+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid " CPU seconds"
 msgstr "CPU-Sekunden"
 
-#: shared/inc/sql/lists.php:478
+#: shared/inc/sql/lists.php:490
 msgid " does not look like a mailbox login..."
 msgstr " scheint kein E-Mail-Login zu sein ..."
 
@@ -57,6 +57,10 @@ msgstr "ALLE DATEIEN UND SCRIPTS"
 msgid "APACHE VHOST"
 msgstr "APACHE VHOST"
 
+#: shared/inc/forms/lists.php:433
+msgid "Access list:"
+msgstr "Zugangsliste:"
+
 #: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
 #: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
 #: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:166
@@ -88,6 +92,10 @@ msgstr "Aktiviere FTP-Backups:"
 #: admin/inc/draw_user_admin.php:280 admin/inc/draw_user_admin.php:300
 msgid "Add"
 msgstr "Voeg toe"
+
+#: shared/inc/forms/lists.php:406
+msgid "Add To: header:"
+msgstr "Den To:-Header hinzufügen"
 
 #: shared/inc/forms/root_admin.php:222
 msgid "Add a VPS for this admin:"
@@ -138,6 +146,10 @@ msgstr "Administrator für diesen Kunden hinzufügen:"
 #: admin/dtcrm/product_manager.php:66
 msgid "Add domain"
 msgstr "Domain hinzufügen"
+
+#: shared/inc/forms/lists.php:409
+msgid "Added footer:"
+msgstr "Benutzerdefinierter zusätzlicher Footer:"
 
 #: admin/dtcrm/main.php:165
 #, fuzzy
@@ -251,6 +263,10 @@ msgstr "Land"
 msgid "Another location"
 msgstr "Anderer Server"
 
+#: shared/inc/forms/lists.php:446
+msgid "Anti-spam mode:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1149
 msgid "Apache file names"
 msgstr ""
@@ -271,7 +287,7 @@ msgstr ""
 msgid "Apache vhost file generated !"
 msgstr ""
 
-#: shared/inc/forms/lists.php:333
+#: shared/inc/forms/lists.php:411
 msgid "Archive"
 msgstr "Archiv"
 
@@ -346,6 +362,10 @@ msgstr ""
 #: shared/inc/forms/vps.php:266
 msgid "Boot up (xm start)"
 msgstr "Hochfahren (xm start)"
+
+#: shared/inc/forms/lists.php:432
+msgid "Bounce life:"
+msgstr ""
 
 #: shared/inc/forms/email.php:621
 msgid "Bounce message content: "
@@ -513,6 +533,10 @@ msgstr "Ohne Antwort schließen"
 #: shared/inc/forms/ticket.php:163
 msgid "Closed"
 msgstr "Geschlossen"
+
+#: shared/inc/forms/lists.php:397
+msgid "Closed list:"
+msgstr "Geschlossene Liste:"
 
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
@@ -698,6 +722,10 @@ msgstr "Aktueller Vertrag: "
 msgid "Currently installed operating system: "
 msgstr ""
 
+#: shared/inc/forms/lists.php:408
+msgid "Custom headers:"
+msgstr "Benutzerdefinierter Header:"
+
 #: admin/inc/dtc_config.php:1300
 msgid "Customer and service country vs company:"
 msgstr ""
@@ -839,6 +867,18 @@ msgstr "Löschen"
 msgid "Delete a user domain:"
 msgstr "Löschen einer Benutzerdomain:"
 
+#: shared/inc/forms/lists.php:265
+msgid ""
+"Delete all messages of webarchive. NOTE: this works only if you have &quot;"
+"web archive&quot; not checked."
+msgstr ""
+"Lösche alle Nachrichten im Webarchiv. INFO: Dies funktioniert nur, wenn "
+"&quot;Web-Archiv&quot; nicht aktiviert ist."
+
+#: shared/inc/forms/lists.php:405
+msgid "Delete headers:"
+msgstr "Zu löschende Header:"
+
 #: shared/inc/forms/root_admin.php:191
 msgid "Delete one of the admin VPS: "
 msgstr "Einen VPS-Server dieses Admins löschen: "
@@ -851,6 +891,15 @@ msgstr "Einen dedizierten Server dieses Kunden löschen:"
 msgid "Delete the user"
 msgstr "Benutzer löschen"
 
+#: shared/inc/forms/lists.php:445
+#, fuzzy
+msgid "Delete:"
+msgstr "Löschen"
+
+#: shared/inc/forms/lists.php:431
+msgid "Delimiter:"
+msgstr "Delimiter:"
+
 #: shared/inc/forms/email.php:247 shared/inc/forms/email.php:613
 msgid "Deliver messages locally in INBOX: "
 msgstr "Nachrichten lokal zustellen INBOX: "
@@ -858,6 +907,10 @@ msgstr "Nachrichten lokal zustellen INBOX: "
 #: shared/inc/forms/aliases.php:51
 msgid "Delivery Group:"
 msgstr ""
+
+#: shared/inc/forms/lists.php:423
+msgid "Deny if no To: or Cc::"
+msgstr "Mailing zurückweisen wenn kein To: oder Cc: vorhanden:"
 
 #: shared/inc/forms/packager.php:218
 msgid "Description"
@@ -879,9 +932,17 @@ msgstr "Zielverzeichnis:"
 msgid "Detailed web statistics (HTTP) of your subdomains:"
 msgstr "Detaillierte Webalizer Statistiken (HTTP) Ihrer Subdomains:"
 
-#: shared/inc/forms/lists.php:338
+#: shared/inc/forms/lists.php:416
 msgid "Digest"
 msgstr "Zusammenfassung"
+
+#: shared/inc/forms/lists.php:417
+msgid "Digest interval:"
+msgstr "Intervall der Zusammenfassungen:"
+
+#: shared/inc/forms/lists.php:418
+msgid "Digest max mails:"
+msgstr "Maximale Zahl der Nachrichten in der Zusammenfassung:"
 
 #: admin/dtcrm/product_manager.php:46 admin/dtcrm/product_manager.php:114
 #: admin/dtcrm/product_manager.php:172
@@ -904,6 +965,10 @@ msgstr "Disk Nutzung"
 #: admin/inc/nav.php:116
 msgid "Display and sort by:"
 msgstr "Zeige und sortiere nach:"
+
+#: shared/inc/forms/lists.php:250
+msgid "Do not change unless you really know what you are doing."
+msgstr "Hier bitte nichts ändern ausser Sie wissen genau, was tun."
 
 #: shared/drawlib/anotherDtc.php:129
 msgid "Documentation"
@@ -985,7 +1050,7 @@ msgstr ""
 msgid "Edit a company:"
 msgstr ""
 
-#: shared/inc/forms/lists.php:55
+#: shared/inc/forms/lists.php:52
 msgid "Edit mailing list"
 msgstr ""
 
@@ -1051,6 +1116,18 @@ msgstr "E-Mail"
 #: shared/inc/forms/email.php:569
 msgid "Enable SPAM filtering: "
 msgstr "SPAM-Filter aktivieren: "
+
+#: shared/inc/forms/lists.php:241
+msgid "Enable VERP support."
+msgstr "Aktiviere die VERP Unterstützung."
+
+#: shared/inc/forms/lists.php:256
+msgid "Enable webarchive."
+msgstr "Web-Archiv aktivieren."
+
+#: shared/inc/forms/lists.php:442
+msgid "Enable webarchive:"
+msgstr "Webarchiv aktivieren:"
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:262
 msgid "Error"
@@ -1149,6 +1226,15 @@ msgstr "Dateisystem-Check (fsck)"
 msgid "File-system check:"
 msgstr "Dateisystem-Check:"
 
+#: shared/inc/forms/lists.php:205
+msgid ""
+"Fill this if you want every mail to have something like:<br>--<br>To "
+"unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
+msgstr ""
+"Tragen Sie hier etwas ein, wenn jede Mail soetwas enthalten soll:<br><br>--"
+"<br>Um sich abzumelden, schicken Sie eine Mail an coollist+unsubscribe@lists."
+"domain.net."
+
 #: shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "Vorname:"
@@ -1216,7 +1302,7 @@ msgstr "Rechte zum Hinzufügen von Unterkonten vergeben (Wiederverkäufer)"
 msgid "HDD I/O:"
 msgstr ""
 
-#: shared/inc/forms/lists.php:325
+#: shared/inc/forms/lists.php:403
 msgid "Header"
 msgstr "Header"
 
@@ -1224,9 +1310,43 @@ msgstr "Header"
 msgid "Help"
 msgstr "Hilfe"
 
+#: shared/inc/forms/lists.php:232
+msgid "Help missing for noaccessdenymails"
+msgstr ""
+
+#: shared/inc/forms/lists.php:226
+msgid "Help missing for nosubonlydenymails"
+msgstr ""
+
 #: shared/inc/draw.php:444
 msgid "Help:"
 msgstr "Hilfe:"
+
+#: shared/inc/forms/lists.php:244
+msgid ""
+"Here is specified for how long time in seconds an address can bounce before "
+"it\\'s unsubscribed. Defaults to 432000 seconds, which is 5 days."
+msgstr ""
+"Dieser Wert spezifiziert, wie lange (in Sekunden) eine Mail bouncen darf, "
+"bevor Sie von der Liste gestrichen wird. Standard ist 432000, was 5 Tagen "
+"entspricht."
+
+#: shared/inc/forms/lists.php:235
+msgid ""
+"Here is specified in bytes how big a mail can be and still be prepared for "
+"sending in memory. It\\'s greatly reducing the amount of write system calls "
+"to prepare it in memory before sending it, but can also lead to denial of "
+"service attacks. Default is 16k (16384 bytes)."
+msgstr ""
+"Hier k&ouml;nnen Sie in Byte spezifizieren, wie gross eine Mail sein darf, "
+"die immer noch im Speicher f&uuml;rs Senden vorbereitet werden soll. Eine "
+"Mail im Speicher vorzubereiten reduziert die Anzahl der write Systemaufrufe "
+"enorm, kann allerdings zu einer Denial of Service Situation f&uuml;hren. "
+"Standard ist 16k (16384 bytes)."
+
+#: shared/inc/forms/lists.php:268
+msgid "Hide email addresses to avoid spam."
+msgstr "Email-Adressen verstecken, um Spam zu verhindern."
 
 #: admin/inc/dtc_config.php:643
 msgid "Host IP addresses (separated by \"|\"):"
@@ -1252,6 +1372,13 @@ msgstr "Hostname:"
 #, fuzzy
 msgid "Hostname: "
 msgstr "Hostname:"
+
+#: shared/inc/forms/lists.php:247
+msgid ""
+"How many recipients pr. mail delivered to the smtp server. Defaults to 100."
+msgstr ""
+"Wie viele Mails sollen auf einmal vom SMTP-Server versendet werden? Standard "
+"ist 100."
 
 #: client/new_account_form.php:635
 msgid "I agree to the"
@@ -1301,6 +1428,78 @@ msgstr "IP-Adressen"
 msgid "If no POP user was created, please make at least one!"
 msgstr ""
 
+#: shared/inc/forms/lists.php:253
+msgid ""
+"If this file exists, all headers of a post to the list is matched against "
+"the rules. The first rule to match wins. NOTE: the default action is to deny "
+"access (reject the mail) so take care if you write something here"
+msgstr ""
+"Wenn dieses File existiert, werden alle Header eines Posts gegen diese "
+"Regeln gechecked. Die erste Regel die zutrifft, gewinnt.<br><br>CAVE: Die "
+"Standardaktion ist es, die Mail abzulehnen. Also Vorsicht was Sie hier "
+"hereinschreiben."
+
+#: shared/inc/forms/lists.php:211
+msgid ""
+"If this file exists, then retrieving old posts with -get-N (for exemple "
+"mylist-get-12@my-domain.tld) is disabled"
+msgstr ""
+"Falls Haken gesetzt ist, ist das Holen alter Posting mittels -get-N "
+"(Beispiel: mylist-get-12@my-domain.tld) nicht m&ouml;glich."
+
+#: shared/inc/forms/lists.php:214
+msgid ""
+"If this file exists, then retrieving old posts with -get-N is only possible "
+"for subscribers. The above mentioned \\'noget\\' have precedence."
+msgstr ""
+"Wenn diese Datei bereits existiert, haben nur Mitglieder der Liste die "
+"Möglichkeit, per -get-N alte Mailings einzusehen. Das oben stehende \\'noget"
+"\\' hat Vorrang."
+
+#: shared/inc/forms/lists.php:187
+msgid ""
+"If this flag exists, no mail confirmation is needed to subscribe to the "
+"list. This should in principle never ever be used, but there is times on "
+"local lists etc. where this is useful. HANDLE WITH CARE!"
+msgstr ""
+"Falls Haken gesetzt ist, ist keine Best&auml;tigung per Mail erforderlich, "
+"um die Liste zu abonnieren. Diese sollte prinzipiell nie benutzt werden, "
+"kann aber in Einzelf&auml;llen sinnvoll sein."
+
+#: shared/inc/forms/lists.php:208
+msgid ""
+"If this flag exists, the mail won\\'t be saved in the archive but simply "
+"deleted."
+msgstr ""
+"Falls Haken gesetzt ist, wird die Mail nicht archiviert, sondern einfach "
+"gel&ouml;scht."
+
+#: shared/inc/forms/lists.php:223
+msgid ""
+"If this flag is present, the owner(s) will get a mail with the address of "
+"someone sub/unsubscribing to a mailinglist."
+msgstr ""
+"Falls dieser Haken geetzt ist, kriegt der Listenbesitzer eine Mail mit der "
+"EMailadresse der Person, die sich an/abmelden will."
+
+#: shared/inc/forms/lists.php:181
+msgid ""
+"If this flag is set, the email addresses in the field moderators will act as "
+"moderators for the list."
+msgstr ""
+"Falls Haken gesetzt ist, wirken die Adressen die als Moderatoren gelistet "
+"sind als Moderatoren f&uuml;r die Liste."
+
+#: shared/inc/forms/lists.php:199
+msgid ""
+"If this flag is set, the list address does not have to be in the To: or Cc: "
+"header of the email to the list (interesting for aliases addressing multiple "
+"lists)."
+msgstr ""
+"Falls Haken gesetzt ist, muss die Listen-Adresse bei Mails an die Liste "
+"nicht im To: oder Cc: Feld stehen (interessant bei Aliasen die mehrere "
+"Listen umfassen)."
+
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
 msgstr "Sofortiges Abschalten (xm destroy)"
@@ -1312,6 +1511,19 @@ msgstr "Importieren"
 #: shared/inc/forms/root_admin.php:171
 msgid "Import a domain file for this user:"
 msgstr "Wine Domain-Datei fuer diesen Benutzer importieren:"
+
+#: shared/inc/forms/lists.php:193
+msgid ""
+"In those fields is specified *ONE* headertoken to match per line. If the "
+"fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all "
+"occurences of these headers in incoming list mail will be deleted. From: and "
+"Return-Path: are deleted no matter what."
+msgstr ""
+"In diesen Feldern k&ouml;nnen sie *EINEN* Header pro Zeile definieren, die "
+"eingehenden Mails entfernt werden sollen. Sieht das Ganze so aus:"
+"<br><br>Received:<br>Message-ID:<br><br>werden alle entsprechenden Header in "
+"eingehenden Mails entfernt. From: und Return-Path: werden so oder so "
+"entfernt."
 
 #: admin/inc/submit_root_querys.php:259
 #, fuzzy
@@ -1381,14 +1593,27 @@ msgstr ""
 msgid "Incorrect sub-domain format."
 msgstr ""
 
-#: shared/inc/forms/lists.php:357
+#: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
 msgstr ""
 "Zum Hinzufügen einer Email-Adresse zur Mailingliste, diese hier eintragen."
 
-#: shared/inc/forms/lists.php:359
+#: shared/inc/forms/lists.php:438
 msgid "Insert here an email address to unsubscribe it."
 msgstr "Von der Mailingliste zu löschende Email-Adressen hier eintragen."
+
+#: shared/inc/forms/lists.php:259
+msgid ""
+"Insert here the template\\'s code that you want use for your web archive. "
+"Read <a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' "
+"target=\\'_blank\\'>documentation</a> and see <a href=\\'http://www.mhonarc."
+"org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
+msgstr ""
+"Füge hier den Code des Templates ein, das Du für das Web-Archiv benutzen "
+"willst. Infos: <a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/"
+"rcfile.html\\' target=\\'_blank\\'>Dokumentation</a> und <a href=\\'http://"
+"www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank"
+"\\'>Beispiele</a>. "
 
 #: shared/inc/forms/packager.php:218 shared/inc/forms/packager.php:230
 msgid "Install"
@@ -1427,6 +1652,14 @@ msgstr "Die Firmen-Auswahl ist ungültig!"
 #: admin/dtcrm/main.php:161 client/new_account_form.php:586
 msgid "Is it a company: "
 msgstr "ist Firma: "
+
+#: shared/inc/forms/lists.php:175
+msgid ""
+"Is the list is open or closed. If it\\'s closed subscribtion and "
+"unsubscription via mail is disabled."
+msgstr ""
+"Offene oder geschlossene Liste. Falls die Liste geschlossen ist, ist keine "
+"An- oder Abmeldung per E-Mail m&ouml;glich"
 
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
 #: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:255
@@ -1467,8 +1700,17 @@ msgstr ""
 "Schicken Sie eine Nachricht, wenn sie spezielle Anforderungen für Ihren "
 "Account haben:"
 
-#: shared/inc/forms/lists.php:73 shared/inc/forms/lists.php:100
+#: shared/inc/sql/lists.php:211
+msgid "List #name#@#domain# successfully created!"
+msgstr "Liste #name#Q#domain# erfolgreich angelegt!"
+
+#: shared/inc/forms/lists.php:97
 msgid "List name"
+msgstr "Name der liste"
+
+#: shared/inc/forms/lists.php:70
+#, fuzzy
+msgid "List name:"
 msgstr "Name der liste"
 
 #: admin/inc/dtc_config.php:283
@@ -1500,7 +1742,7 @@ msgstr ""
 msgid "List of your mailboxes:"
 msgstr "Liste der Datenbanken:"
 
-#: shared/inc/forms/lists.php:29
+#: shared/inc/forms/lists.php:27
 #, fuzzy
 msgid "List of your mailing lists"
 msgstr "Liste der Datenbanken:"
@@ -1509,9 +1751,13 @@ msgstr "Liste der Datenbanken:"
 msgid "List of your subdomains: "
 msgstr "Liste der Subdomains: "
 
-#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:100
-#: shared/inc/forms/lists.php:102
+#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:97
 msgid "List owner"
+msgstr "Listenbesitzer"
+
+#: shared/inc/forms/lists.php:99
+#, fuzzy
+msgid "List owner:"
 msgstr "Listenbesitzer"
 
 #: admin/inc/dtc_config.php:724
@@ -1623,6 +1869,10 @@ msgstr ""
 msgid "Mail restart"
 msgstr ""
 
+#: shared/inc/forms/lists.php:238
+msgid "Mail server used to send the messages."
+msgstr "Der zum Versenden benutzte Mail-Server."
+
 #: admin/deamons_state.php:132
 msgid "Mail-newu"
 msgstr ""
@@ -1694,6 +1944,10 @@ msgstr "Max FTP"
 msgid "Max SSH"
 msgstr "Max. SSH"
 
+#: shared/inc/forms/lists.php:430
+msgid "Max VERP recipients:"
+msgstr "Maximale Empfänger des VERP:"
+
 #: admin/dtcrm/product_manager.php:56
 #, fuzzy
 msgid "Max database"
@@ -1704,11 +1958,15 @@ msgstr "Datenbank benötigt"
 msgid "Max email"
 msgstr "Meine E-Mail-Adresse"
 
+#: shared/inc/forms/lists.php:427
+msgid "Max mail memory size:"
+msgstr "Maximale Grösse des Nachrichtenspeichers:"
+
 #: shared/inc/forms/vps.php:146
 msgid "Max memory: "
 msgstr "Max. RAM: "
 
-#: shared/inc/forms/lists.php:112
+#: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
 msgstr ""
 
@@ -1736,6 +1994,14 @@ msgstr ""
 #: shared/inc/forms/vps.php:121
 msgid "Method getVPSState failed"
 msgstr ""
+
+#: shared/inc/forms/lists.php:399
+msgid "Moderated:"
+msgstr "Moderiert:"
+
+#: shared/inc/forms/lists.php:400
+msgid "Moderators:"
+msgstr "Moderatoren:"
 
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
@@ -1794,9 +2060,9 @@ msgstr "NICHT BESTÄTIGT"
 msgid "Name"
 msgstr "Name"
 
-#: shared/inc/forms/lists.php:73
+#: shared/inc/forms/lists.php:70
 msgid "Name of the list."
-msgstr ""
+msgstr "Name der Mailingliste:"
 
 #: shared/inc/draw.php:140
 #, fuzzy
@@ -1886,9 +2152,10 @@ msgstr "Neuer kunde"
 msgid "New mailbox"
 msgstr ""
 
-#: shared/inc/forms/lists.php:54 shared/inc/forms/lists.php:89
-msgid "New mailing list"
-msgstr ""
+#: shared/inc/forms/lists.php:86
+#, fuzzy
+msgid "New mailing list:"
+msgstr "Liste der Datenbanken:"
 
 #: shared/inc/draw.php:52
 msgid "New password:"
@@ -1950,6 +2217,10 @@ msgstr ""
 msgid "No VPS expired"
 msgstr "Keine VPS abgelaufen"
 
+#: shared/inc/forms/lists.php:412
+msgid "No archives:"
+msgstr "Keine Archive anlegen:"
+
 #: shared/inc/forms/email.php:631
 msgid "No catch-all"
 msgstr "Kein Catch-All"
@@ -1966,6 +2237,10 @@ msgstr "Keine dedizierten Server abgelaufen"
 #: admin/inc/draw_user_admin.php:292
 msgid "No domain waiting!"
 msgstr "Keine Domain in Warteschleife!"
+
+#: shared/inc/forms/lists.php:413
+msgid "No get-N function:"
+msgstr "Keine get-N funktion:"
 
 #: shared/inc/forms/domain_info.php:85
 msgid "No parking"
@@ -1996,6 +2271,10 @@ msgstr "Keine abgelaufenen Shared-Hostings."
 msgid "No ssl product defined."
 msgstr "kein Produkt"
 
+#: shared/inc/forms/lists.php:401
+msgid "No subscribtion confirmation:"
+msgstr "Keine Bestätigung der Mitgliedschaft:"
+
 #: shared/inc/sql/database.php:73
 msgid ""
 "No user by that name exists in the database, or you don't own this db user. "
@@ -2021,9 +2300,21 @@ msgstr "Nicht registriert"
 msgid "Notes: "
 msgstr "Bemerkungen: "
 
-#: shared/inc/forms/lists.php:342
+#: shared/inc/forms/lists.php:420
 msgid "Notifications"
 msgstr "Benachrichtigungen"
+
+#: shared/inc/forms/lists.php:421
+msgid "Notify new subscribtions:"
+msgstr "Bei neuen Mitgliedern benachrichtigen:"
+
+#: shared/inc/forms/lists.php:424
+msgid "Notify when post and no access:"
+msgstr "Benachrichtigung bei Mailing und kein Zugang:"
+
+#: shared/inc/forms/lists.php:422
+msgid "Notify when post and not subscribed:"
+msgstr "Benachrichtigung bei Mailing ohne Mitgliedschaft:"
 
 #: shared/inc/forms/vps.php:151
 msgid "Number of CPU: "
@@ -2043,7 +2334,7 @@ msgstr "Anzahl aktiver E-Mail-Konten:"
 msgid "Number of active mailboxes:"
 msgstr "Anzahl aktiver E-Mail-Konten:"
 
-#: shared/inc/forms/lists.php:26
+#: shared/inc/forms/lists.php:24
 #, fuzzy
 msgid "Number of active mailing lists"
 msgstr "Anzahl aktiver E-Mail-Konten:"
@@ -2092,6 +2383,14 @@ msgstr "Weitere DNS-Server:"
 #: shared/inc/forms/dns.php:44 shared/inc/forms/dns.php:53
 msgid "Other MX (backup) servers:"
 msgstr "Weitere MX- (Backup-) Server:"
+
+#: shared/inc/forms/lists.php:443
+msgid "Own template:"
+msgstr "Benutzerdefiniertes template:"
+
+#: shared/inc/forms/lists.php:398
+msgid "Owner:"
+msgstr "Besitzer:"
 
 #: client/new_account.php:146
 msgid "PAYMENT CANCELLED"
@@ -2418,6 +2717,20 @@ msgstr "NEUEINLESEN DER BIND-ZONEN"
 msgid "Real name"
 msgstr "Realer Name"
 
+#: shared/inc/forms/lists.php:262
+msgid ""
+"Recreate all messages of webarchive. Use this only if you have changed the "
+"webarchive\\'s template. NOTE: this works only if you have &quot;web "
+"archive&quot; checked."
+msgstr ""
+"Wiederherstellen aller Nachrichten im Web-Archiv. Banutzung nur nach "
+"Änderung des Web-Archiv-Templates. INFO: Dies klappt nur, wenn &quot;Web-"
+"Archv&quot; aktiviert ist."
+
+#: shared/inc/forms/lists.php:444
+msgid "Recreate:"
+msgstr "Wiederherstellen:"
+
 #: shared/securepay/pay_functions.php:62
 msgid "Recurring payment"
 msgstr "Wiederkehrende Zahlungen"
@@ -2467,6 +2780,12 @@ msgstr "Neuinstallation des Betriebsystems:"
 #: shared/inc/forms/vps.php:131
 msgid "Reinstalling operating system..."
 msgstr "Betriebssystem wird installiert ..."
+
+#: shared/inc/forms/lists.php:229
+msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
+msgstr ""
+"Emails zurückweisen, die nicht die Adresse der Mailingliste in To: oder Cc: "
+"haben."
 
 #: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
@@ -2538,13 +2857,17 @@ msgstr "Wiederverkäufer Unterkonten"
 msgid "Retype new password:"
 msgstr "Passwort wiederholen:"
 
-#: shared/inc/forms/lists.php:317
+#: shared/inc/forms/lists.php:395
 msgid "Rights"
 msgstr "Rechte"
 
-#: shared/inc/forms/lists.php:348
+#: shared/inc/forms/lists.php:426
 msgid "SMTP configuration"
 msgstr "SMTP-Konfiguration"
+
+#: shared/inc/forms/lists.php:428
+msgid "SMTP relay server:"
+msgstr "SMTP Relay Server:"
 
 #: admin/deamons_state.php:157
 #, fuzzy
@@ -2835,6 +3158,10 @@ msgstr "Subdomains:"
 msgid "Subject"
 msgstr "Betreff"
 
+#: shared/inc/forms/lists.php:404
+msgid "Subject prefix:"
+msgstr "Präfix für den Betreff:"
+
 #: shared/inc/forms/ticket.php:78
 msgid "Subject:"
 msgstr "Betreff:"
@@ -2847,13 +3174,21 @@ msgstr "Betreff: "
 msgid "Submit new support issue"
 msgstr "Neues Ticket öffnen"
 
-#: shared/inc/forms/lists.php:356
+#: shared/inc/forms/lists.php:435
 msgid "Subscribe/Unsubscribe an email address"
 msgstr ""
 
-#: shared/inc/forms/lists.php:357
+#: shared/inc/forms/lists.php:436
 msgid "Subscribe:"
 msgstr "Benutzer Hinzufügen:"
+
+#: shared/inc/forms/lists.php:124
+msgid "Subscriber list (click to unsubscribe):"
+msgstr ""
+
+#: shared/inc/forms/lists.php:396
+msgid "Subscribers only post:"
+msgstr "Nur Mitglieder dürfen senden:"
 
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
@@ -2942,6 +3277,14 @@ msgstr ""
 "Diesem Benutzer gehören noch Datenbanken. Bitte entfernen Sie zunächst die "
 "Datenbanken oder übertragen sie einem anderen Benutzer."
 
+#: shared/inc/forms/lists.php:178
+msgid ""
+"The email addresses in this fields (1 per line) will get mails to listname-"
+"owner@listdomain.tld"
+msgstr ""
+"Die EMailadressen in diesen Feldern (Eine pro Zeile) werden die Mails an "
+"listname-owner@listdomain.tld erhalten."
+
 #: shared/inc/sql/vps.php:40
 msgid "The password you have submited is not a valid password"
 msgstr "Das angegebene Passwort ist nicht gültig"
@@ -2951,6 +3294,15 @@ msgid ""
 "The payment gateway have reported that your payment has failed. Contact us, "
 "we also accept checks and wire transfers."
 msgstr ""
+
+#: shared/inc/forms/lists.php:190
+msgid ""
+"The prefix for the Subject: line of mails to the list. This will alter the "
+"Subject: line, and add a prefix if it\\'s not present elsewhere."
+msgstr ""
+"Das Pr&auml;fix f&uuml;r den Betreff der Mails von der Liste. Dies wird die "
+"Betreffzeile &auml;ndern und das Pr&auml;fix voranstellen, falls es nicht "
+"irgendwo anders vorhanden ist."
 
 #: shared/inc/forms/ftp.php:66
 msgid "There is already a ftp login by that name"
@@ -2963,6 +3315,14 @@ msgstr "Es gibt bereits eine Mailbox mit diesem Namen"
 #: shared/inc/forms/ssh.php:60
 msgid "There is already a ssh login by that name"
 msgstr "Es gibt bereits ein SSH-Login mit diesem Namen"
+
+#: shared/inc/forms/lists.php:202
+msgid ""
+"These headers are added to every mail coming through. This is the place you "
+"want to add Reply-To: header in case you want such."
+msgstr ""
+"Diese Header werden an alle durchgehenden Mails angeh&auml;ngt. Hier w&uuml;"
+"rden Sie Reply-To: Header einf&uuml;gen, falls Sie diese ben&ouml;tigen."
 
 #: admin/inc/dtc_config.php:203
 msgid ""
@@ -2980,13 +3340,27 @@ msgstr ""
 msgid "This domain will be the alias of the following domain (domain parking):"
 msgstr "Diese Domain als Alias folgender Domain benutzen (Domain Parking):"
 
+#: shared/inc/forms/lists.php:220
+msgid ""
+"This file specifies how many mails can accumulate before digest sending is "
+"triggered. Defaults to 50 mails, meaning that if 50 mails arrive to the list "
+"before digestinterval have passed, the digest is delivered."
+msgstr ""
+"Wie viele Mails d&uuml;rfen sich ansammeln, bevor ein Digest versendet wird. "
+"Standard ist 50 Mails, was bedeutet, dass ein Digest gesendet wird sobald 50 "
+"Mails eingegangen sind, auch bevor digestinterval verstrichen ist."
+
 #: shared/inc/sql/database.php:54
 msgid "This is not a valid database name! Please choose another one."
 msgstr ""
 "Dies ist kein gültiger Name für eine Datenbank; bitte wählen Sie einen "
 "anderen Namen."
 
-#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:102
+#: shared/inc/forms/lists.php:184
+msgid "This is the list of moderators."
+msgstr "Dies ist die Liste der Moderatoren."
+
+#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:99
 msgid "This is the main owner of the list."
 msgstr "Dies ist der Hauptbesitzer der Mailingliste."
 
@@ -3010,6 +3384,15 @@ msgstr ""
 msgid "This subdomain is a service (SRV)<br>entry for the following port: "
 msgstr ""
 "Diese Subdomain ist ein Service- (SRV-)<br>Eintrag für den folgenden Port: "
+
+#: shared/inc/forms/lists.php:217
+msgid ""
+"This value specifies how many seconds will pass before the next digest is "
+"sent. Defaults to 604800 seconds, which is 7 days."
+msgstr ""
+"Dieser Wert spezifiziert, wie viel Zeit (in Sekunden)  verstreichen m&uuml;"
+"ssen, bevor der n&auml;chste Digest gesendet wird. Standarf ist 604800 "
+"Sekunden, was 7 Tagen entspricht."
 
 #: shared/inc/forms/email.php:323
 msgid ""
@@ -3053,6 +3436,10 @@ msgstr ""
 "Für eine Überprüfung des Dateisystems oder die Installation eines "
 "Betriebssystems fahren Sie den Server bitte zuerst herunter oder schalten "
 "ihn ab."
+
+#: shared/inc/forms/lists.php:407
+msgid "To: or Cc: not mandatory:"
+msgstr "To: oder Cc: nicht obligatorisch:"
 
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
@@ -3149,7 +3536,7 @@ msgstr ""
 msgid "Unpack size"
 msgstr "Entpackte Größe"
 
-#: shared/inc/forms/lists.php:359
+#: shared/inc/forms/lists.php:438
 msgid "Unsubscribe:"
 msgstr "Benutzer entfernen:"
 
@@ -3346,6 +3733,10 @@ msgstr "Steuernr.:"
 msgid "VAT rate:"
 msgstr "Steuersatz:"
 
+#: shared/inc/forms/lists.php:429
+msgid "VERP:"
+msgstr "VERP:"
+
 #: shared/inc/forms/vps.php:135
 msgid "VM id: "
 msgstr "VM Id: "
@@ -3444,7 +3835,7 @@ msgstr "Warnungen nach Ablauf: "
 msgid "Warnings before expiration: "
 msgstr "Warnungen vor Ablauf: "
 
-#: shared/inc/forms/lists.php:362
+#: shared/inc/forms/lists.php:441
 msgid "Web archive"
 msgstr "Web Archiv"
 
@@ -3467,6 +3858,27 @@ msgstr "Bezeichnung"
 #: shared/inc/forms/ticket.php:47
 msgid "What is your server hostname:"
 msgstr "Der Hostname Ihres Servers:"
+
+#: shared/inc/forms/lists.php:196
+msgid ""
+"When this flag is present, a To: header including the recipients "
+"emailaddress will be added to outgoing mail. Recommended usage is to remove "
+"existing To: headers with delheaders (see above) first."
+msgstr ""
+"Falls Haken gesetzt ist, wird eine To: Zeile, die die EMailadresse des "
+"Empf&auml;ngers enth&auml;lt in jede ausgehende Mail eingef&uuml;gt. Falls "
+"Sie dies in Erw&auml;gung ziehen, sollten sie eventuelle To: Header mittels "
+"delheader (siehe oben) zuerst entfernen."
+
+#: shared/inc/forms/lists.php:173
+msgid ""
+"When this flag is set, only people who are subscribed to the list, are "
+"allowed to post to it. The check is made against the &quot;From:&quot; "
+"header."
+msgstr ""
+"Falls Haken gesetzt ist, d&uuml;rfen nur Leute die die Liste abonniert haben "
+"auf ihr ver&ouml;ffentlichen. Der Check wird gegen den &quot;From:&quot; "
+"durchgef&uuml;hrt."
 
 #: shared/inc/draw.php:183
 msgid "Whois"
@@ -3510,6 +3922,27 @@ msgstr "Falscher Benutzername oder Passwort oder Timeout abgelaufen!"
 #: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:129
 msgid "Yes"
 msgstr "Ja"
+
+#: shared/inc/sql/lists.php:213
+msgid ""
+"You can control your mailing list by email or by control panel.\n"
+"You can send a email to the following addresses to execute the listed "
+"command:\n"
+"  \n"
+"  #name#-help@#domain# -> return the most common list's commands\n"
+"  #name#-list@#domain# -> return the subscribers's list\n"
+"  #name#-get-N@#domain# -> return the N list's message\n"
+"  #name#-owner@#domain# -> you can contact the list's owner by this address\n"
+"  #name#-unsubscribe@#domain# -> unsubscribe the email's sender from the "
+"list\n"
+"  #name#-subscribe@#domain# -> subscribe the email's sender to the list\n"
+"  #name#-subscribe-digest@#domain# -> subscribe the email's sender to the "
+"list's digest version\n"
+"  #name#-subscribe-nomail@#domain# -> subscribe the email's sender to the "
+"list's nomail version\n"
+"  \n"
+"For more informations go to mlmmj official web site at http://mlmmj.mmj.dk"
+msgstr ""
 
 #: shared/inc/forms/my_account.php:123
 msgid "You currently don't have any SSL tokens."
@@ -3653,6 +4086,10 @@ msgstr ""
 msgid "fetching admin: "
 msgstr "hole admin: "
 
+#: shared/inc/forms/lists.php:414
+msgid "get-N function only for subscribers:"
+msgstr "Functie get-N alleen voor geabboneerden:"
+
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
 msgstr ""
@@ -3669,7 +4106,7 @@ msgstr "Neues SSH-Konto"
 msgid "new mailbox"
 msgstr "Neues E-Mail-Konto"
 
-#: shared/inc/forms/lists.php:88
+#: shared/inc/forms/lists.php:51 shared/inc/forms/lists.php:85
 #, fuzzy
 msgid "new mailing list"
 msgstr "Liste der Datenbanken:"

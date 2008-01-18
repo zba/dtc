@@ -1,7 +1,5 @@
 <?php
 
-require("$dtcshared_path/inc/forms/lists_strings.php");
-
 ////////////////////////////////////////////////////
 // One domain name ftp account collection edition //
 ////////////////////////////////////////////////////
@@ -27,8 +25,7 @@ function drawAdminTools_MailingLists($domain){
 	$txt .= "<font size=\"-2\">$nbrtxt</font> <font size=\"-1\">". $nbr_email ."</font> / <font size=\"-1\">" . $max_email . "</font><br><br>";
 
 	$txt .= "<font face=\"Arial, Verdana\"><font size=\"-1\"><h3>". _("List of your mailing lists") ."</h3>";
-	if (isset($domain["mailinglists"]))
-	{
+	if (isset($domain["mailinglists"])){
 		$lists = $domain["mailinglists"];
 	}
 	$nbr_boites = 0;
@@ -51,7 +48,7 @@ function drawAdminTools_MailingLists($domain){
 	}
 
 	if(isset($_REQUEST["edit_mailbox"]) && $_REQUEST["edit_mailbox"] != ""){
-		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">". _("New mailing list") ."</a> ";
+		$txt .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_domain=$edit_domain&whatdoiedit=mails\">". _("new mailing list") ."</a> ";
 		$txt .= "<br><br><h3>". _("Edit mailing list") ."</h3><br><br>";
 
 		$list_name = $_REQUEST["edit_mailbox"];
@@ -70,7 +67,7 @@ function drawAdminTools_MailingLists($domain){
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
 	<input type=\"hidden\" name=\"edit_mailbox\" value=\"".$_REQUEST["edit_mailbox"]."\">
-	<div onmouseover=\"return escape('". _("Name of the list.") ."')\">". _("List name") ."</div></td>
+	<div onmouseover=\"return escape('". _("Name of the list.") ."')\">". _("List name:") ."</div></td>
 	<td><b>$list_name</b>@$edit_domain</td></tr>
 	<tr><td align=\"right\"><div onmouseover=\"return escape('". _("This is the main owner of the list.") ."')\">". _("List owner") ."</div></td>
 	<td><input type=\"text\" name=\"editmail_owner\" value=\"$list_owner\"></td></tr>";
@@ -86,7 +83,7 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 		$txt .= subscribers_list($list_path);
 	}else{
 		$txt .= "<br><br>". _("new mailing list");
-		$txt .= "<br><br><h3>". _("New mailing list") ."</h3><br>";
+		$txt .= "<br><br><h3>". _("New mailing list:") ."</h3><br>";
 
 		if($nbr_email < $max_email){
 			$txt .= "
@@ -99,7 +96,7 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
 	<div onmouseover=\"return escape('"._("List name") ."')\">". _("List owner") ."</div></td>
 	<td><input type=\"text\" name=\"newlist_name\" value=\"\"></td></tr>
-	<tr><td align=\"right\"><div onmouseover=\"return escape('". _("This is the main owner of the list.") ."')\">". _("List owner") ."</div></td>
+	<tr><td align=\"right\"><div onmouseover=\"return escape('". _("This is the main owner of the list.") ."')\">". _("List owner:") ."</div></td>
 	<td><input type=\"text\" name=\"newlist_owner\" value=\"\">";
 $txt .= "</td></tr>
 <tr><td>&nbsp;</td>
@@ -124,7 +121,7 @@ function subscribers_list($list_path){
 	global $addrlink;
 	global $edit_domain;
 
-	$out = "<br><h3>Subscriber list (click to unsubscribe):</h3><br><br>";
+	$out = "<br><h3>". _("Subscriber list (click to unsubscribe):") ."</h3><br><br>";
 
 	$path = $list_path."/subscribers.d";
 
@@ -170,33 +167,114 @@ function subscribers_list($list_path){
 }
 
 function getTunableHelp($tunable_name){
-	global $lang;
-
-	$varname = "txt_lists_hlp_".$tunable_name;
-
-	global $$varname;
-	if(isset($$varname)){
-		$out = $$varname;
-		return "<b>".$tunable_name.": </b>".$out[$lang];
-	}else{
-		return "<b>".$tunable_name."</b>";
+	$hlp = "<b>". $tunable_name.":</b> ";
+	switch($tunable_name){
+	case "subonlypost":
+		$hlp .= _("When this flag is set, only people who are subscribed to the list, are allowed to post to it. The check is made against the &quot;From:&quot; header.") ;
+	case "closedlist":
+		$hlp .= _("Is the list is open or closed. If it\'s closed subscribtion and unsubscription via mail is disabled.") ;
+		break;
+	case "owner":
+		$hlp .= _("The email addresses in this fields (1 per line) will get mails to listname-owner@listdomain.tld") ;
+		break;
+	case "moderated":
+		$hlp .= _("If this flag is set, the email addresses in the field moderators will act as moderators for the list.") ;
+		break;
+	case "moderators":
+		$hlp .= _("This is the list of moderators.") ;
+		break;
+	case "nosubconfirm":
+		$hlp .= _("If this flag exists, no mail confirmation is needed to subscribe to the list. This should in principle never ever be used, but there is times on local lists etc. where this is useful. HANDLE WITH CARE!") ;
+		break;
+	case "prefix":
+		$hlp .= _("The prefix for the Subject: line of mails to the list. This will alter the Subject: line, and add a prefix if it\'s not present elsewhere.") ;
+		break;
+	case "delheaders":
+		$hlp .= _("In those fields is specified *ONE* headertoken to match per line. If the fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all occurences of these headers in incoming list mail will be deleted. From: and Return-Path: are deleted no matter what.") ;
+		break;
+	case "addtohdr":
+		$hlp .= _("When this flag is present, a To: header including the recipients emailaddress will be added to outgoing mail. Recommended usage is to remove existing To: headers with delheaders (see above) first.") ;
+		break;
+	case "tocc":
+		$hlp .= _("If this flag is set, the list address does not have to be in the To: or Cc: header of the email to the list (interesting for aliases addressing multiple lists).") ;
+		break;
+	case "customheaders":
+		$hlp .= _("These headers are added to every mail coming through. This is the place you want to add Reply-To: header in case you want such.") ;
+		break;
+	case "footer":
+		$hlp .= _("Fill this if you want every mail to have something like:<br>--<br>To unsubscribe send a mail to coollist+unsubscribe@lists.domain.net.") ;
+		break;
+	case "noarchive":
+		$hlp .= _("If this flag exists, the mail won\'t be saved in the archive but simply deleted.") ;
+		break;
+	case "noget":
+		$hlp .= _("If this file exists, then retrieving old posts with -get-N (for exemple mylist-get-12@my-domain.tld) is disabled") ;
+		break;
+	case "subonlyget":
+		$hlp .= _("If this file exists, then retrieving old posts with -get-N is only possible for subscribers. The above mentioned \'noget\' have precedence.") ;
+		break;
+	case "digestinterval":
+		$hlp .= _("This value specifies how many seconds will pass before the next digest is sent. Defaults to 604800 seconds, which is 7 days.") ;
+		break;
+	case "digestmaxmails":
+		$hlp .= _("This file specifies how many mails can accumulate before digest sending is triggered. Defaults to 50 mails, meaning that if 50 mails arrive to the list before digestinterval have passed, the digest is delivered.") ;
+		break;
+	case "notifysub":
+		$hlp .= _("If this flag is present, the owner(s) will get a mail with the address of someone sub/unsubscribing to a mailinglist.") ;
+		break;
+	case "nosubonlydenymails":
+		$hlp .= _("Help missing for nosubonlydenymails") ;
+		break;
+	case "notoccdenymails":
+		$hlp .= _("Reject mails that don\'t have the list adress in the To: or Cc:.") ;
+		break;
+	case "noaccessdenymails":
+		$hlp .= _("Help missing for noaccessdenymails") ;
+		break;
+	case "memorymailsize":
+		$hlp .= _("Here is specified in bytes how big a mail can be and still be prepared for sending in memory. It\'s greatly reducing the amount of write system calls to prepare it in memory before sending it, but can also lead to denial of service attacks. Default is 16k (16384 bytes).") ;
+		break;
+	case "relayhost":
+		$hlp .= _("Mail server used to send the messages.") ;
+		break;
+	case "verp":
+		$hlp .= _("Enable VERP support.") ;
+		break;
+	case "bouncelife":
+		$hlp .= _("Here is specified for how long time in seconds an address can bounce before it\'s unsubscribed. Defaults to 432000 seconds, which is 5 days.") ;
+		break;
+	case "maxverprecips":
+		$hlp .= _("How many recipients pr. mail delivered to the smtp server. Defaults to 100.") ;
+		break;
+	case "delimiter":
+		$hlp .= _("Do not change unless you really know what you are doing.") ;
+		break;
+	case "access":
+		$hlp .= _("If this file exists, all headers of a post to the list is matched against the rules. The first rule to match wins. NOTE: the default action is to deny access (reject the mail) so take care if you write something here") ;
+		break;
+	case "webarchive":
+		$hlp .= _("Enable webarchive.") ;
+		break;
+	case "rcfile":
+		$hlp .= _("Insert here the template\'s code that you want use for your web archive. Read <a href=\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\' target=\'_blank\'>documentation</a> and see <a href=\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\' target=\'_blank\'>examples</a>.") ;
+		break;
+	case "recreatewa":
+		$hlp .= _("Recreate all messages of webarchive. Use this only if you have changed the webarchive\'s template. NOTE: this works only if you have &quot;web archive&quot; checked.") ;
+		break;
+	case "deletewa":
+		$hlp .= _("Delete all messages of webarchive. NOTE: this works only if you have &quot;web archive&quot; not checked.") ;
+		break;
+	case "spammode":
+		$hlp .= _("Hide email addresses to avoid spam.") ;
+		break;
+	default:
+		break;
 	}
+
+	return $hlp;
 }
 
-function getTunableTitle($tunable_name){
-	global $lang;
-	$varname = "txt_lists_title_".$tunable_name;
-  
-	global $$varname;
-	if(isset($$varname)){
-		$out = $$varname;
-		return $out[$lang];
-	}else{
-		return "";
-	}
-}
-
-function getListOptionsBoolean($ctrl_path,$tunable_name){
+function getListOptionsBoolean($ctrl_path,$tunable_name,$tunable_title){
 	$option_file = $ctrl_path."/control/".$tunable_name;
 	if (file_exists($option_file)){
 		$check_option = " checked";
@@ -204,11 +282,11 @@ function getListOptionsBoolean($ctrl_path,$tunable_name){
 		$check_option = "";
 	}
 	return "<tr>
-                <td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+                <td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".$tunable_title."</td>
                 <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
 }
 
-function getListOptionsValue($ctrl_path,$tunable_name){
+function getListOptionsValue($ctrl_path,$tunable_name,$tunable_title){
 	$option_file = $ctrl_path."/control/".$tunable_name;
 	if (!file_exists($option_file)){
 		$value = "";
@@ -217,11 +295,11 @@ function getListOptionsValue($ctrl_path,$tunable_name){
 		$value = $a[0];
 	}
 	return "<tr>
-			<td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+			<td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".$tunable_title."</td>
 			<td><input size=\"40\" type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td></tr>";
 }
 
-function getListOptionsTextarea($ctrl_path,$tunable_name){
+function getListOptionsTextarea($ctrl_path,$tunable_name,$tunable_title){
 	$option_file = $ctrl_path."/control/".$tunable_name;
 	$value = "";
 	if (file_exists($option_file)){
@@ -231,12 +309,12 @@ function getListOptionsTextarea($ctrl_path,$tunable_name){
 		}
 	}
 	return "<tr>
-	<td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+	<td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".$tunable_title."</td>
 	<td><textarea rows=\"5\" cols=\"60\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
 }
 
 
-function getListOptionsList($ctrl_path,$tunable_name){
+function getListOptionsList($ctrl_path,$tunable_name,$tunable_title){
 	$option_file = $ctrl_path."/control/".$tunable_name;
 	if (!file_exists($option_file)){
 		$values = array();
@@ -255,22 +333,22 @@ function getListOptionsList($ctrl_path,$tunable_name){
 	
 	for($i=$start;$i<sizeof($values);$i++){
 		if ($i==$start){
-		  $out .= "<td $mouseover align=\"right\" valign=\"top\" rowspan=\"".(sizeof($values) - $start + 1)."\">".getTunableTitle($tunable_name)."</td>";
+		  $out .= "<td $mouseover align=\"right\" valign=\"top\" rowspan=\"".(sizeof($values) - $start + 1)."\">".$tunable_title."</td>";
 		  }else{
 		  $out .= "<tr>";
 		  }
 	$out .= "<td><input size=\"40\" type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td></tr>";
 	}
 	if($start >= sizeof($values)){
-	$out .= "<td $mouseover align=\"right\">".getTunableTitle($tunable_name)."</td>";
+		$out .= "<td $mouseover align=\"right\">".$tunable_title."</td>";
 	}else{
-	$out .= "<tr>";
+		$out .= "<tr>";
 	}
 	$out .="<td><input size=\"40\" type=\"text\" value=\"\" name=\"".$tunable_name."[]\"></td></tr>";
 	return $out;
 }
 
-function getListOptionsWABoolean($tunable_name){
+function getListOptionsWABoolean($tunable_name, $tunable_title){
 	global $pro_mysql_list_table;
 	global $edit_domain;
 	$name = $_REQUEST["edit_mailbox"];
@@ -282,11 +360,11 @@ function getListOptionsWABoolean($tunable_name){
 	}else{
 		$check_option = "";
 	}
-	return "<tr><td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+	return "<tr><td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">". $tunable_title ."</td>
                 <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"".$check_option."></td></tr>";
 }
 
-function getListOptionsWATextarea($ctrl_path,$tunable_name){
+function getListOptionsWATextarea($ctrl_path,$tunable_name,$tunable_title){
 	$option_file = $ctrl_path."/".$tunable_name;
 	$value = "";
 	if (file_exists($option_file)){
@@ -296,12 +374,12 @@ function getListOptionsWATextarea($ctrl_path,$tunable_name){
 		}
 	}
 	return "<tr>
-    <td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+    <td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".$tunable_title."</td>
     <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
 }
 
-function getListOptionsWABooleanActions($tunable_name){
-	return "<tr><td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".getTunableTitle($tunable_name)."</td>
+function getListOptionsWABooleanActions($tunable_name,$tunable_title){
+	return "<tr><td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".$tunable_title."</td>
                 <td><input type=\"checkbox\" value=\"yes\" name=\"".$tunable_name."\"></td></tr>";
 }
 
@@ -315,43 +393,44 @@ function list_options(){
 
 	$output = "";
 	$output .= "<tr><td colspan=\"2\"><b>". _("Rights") ."</b></td></tr>";
-	$output .= getListOptionsBoolean($list_path,"subonlypost");
-	$output .= getListOptionsBoolean($list_path,"closedlist");
-	$output .= getListOptionsList($list_path,"owner");
-	$output .= getListOptionsBoolean($list_path,"moderated");
-	$output .= getListOptionsList($list_path,"moderators");
-	$output .= getListOptionsBoolean($list_path,"nosubconfirm");
+	$output .= getListOptionsBoolean($list_path,"subonlypost", _("Subscribers only post:") );
+	$output .= getListOptionsBoolean($list_path,"closedlist", _("Closed list:") );
+	$output .= getListOptionsList($list_path,"owner", _("Owner:") );
+	$output .= getListOptionsBoolean($list_path,"moderated", _("Moderated:") );
+	$output .= getListOptionsList($list_path,"moderators", _("Moderators:") );
+	$output .= getListOptionsBoolean($list_path,"nosubconfirm", _("No subscribtion confirmation:") );
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("Header") ."</b></td></tr>";
-	$output .= getListOptionsValue($list_path,"prefix");
-	$output .= getListOptionsList($list_path,"delheaders");
-	$output .= getListOptionsBoolean($list_path,"addtohdr");
-	$output .= getListOptionsBoolean($list_path,"tocc");
-	$output .= getListOptionsTextarea($list_path,"customheaders");
-	$output .= getListOptionsTextarea($list_path,"footer");
+	$output .= getListOptionsValue($list_path,"prefix", _("Subject prefix:") );
+	$output .= getListOptionsList($list_path,"delheaders", _("Delete headers:") );
+	$output .= getListOptionsBoolean($list_path,"addtohdr", _("Add To: header:") );
+	$output .= getListOptionsBoolean($list_path,"tocc", _("To: or Cc: not mandatory:") );
+	$output .= getListOptionsTextarea($list_path,"customheaders", _("Custom headers:") );
+	$output .= getListOptionsTextarea($list_path,"footer", _("Added footer:") );
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("Archive") ."</b></td></tr>";
-	$output .= getListOptionsBoolean($list_path,"noarchive");
-	$output .= getListOptionsBoolean($list_path,"noget");
-	$output .= getListOptionsBoolean($list_path,"subonlyget");
+	$output .= getListOptionsBoolean($list_path,"noarchive", _("No archives:") );
+	$output .= getListOptionsBoolean($list_path,"noget", _("No get-N function:") );
+	$output .= getListOptionsBoolean($list_path,"subonlyget", _("get-N function only for subscribers:") );
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("Digest") ."</b></td></tr>";
-	$output .= getListOptionsValue($list_path,"digestinterval");
-	$output .= getListOptionsValue($list_path,"digestmaxmails");
+	$output .= getListOptionsValue($list_path,"digestinterval", _("Digest interval:") );
+	$output .= getListOptionsValue($list_path,"digestmaxmails", _("Digest max mails:") );
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("Notifications") ."</b></td></tr>";
-	$output .= getListOptionsBoolean($list_path,"notifysub");
-	$output .= getListOptionsBoolean($list_path,"nosubonlydenymails");
-	$output .= getListOptionsBoolean($list_path,"notoccdenymails");
-	$output .= getListOptionsBoolean($list_path,"noaccessdenymails");
+	$output .= getListOptionsBoolean($list_path,"notifysub", _("Notify new subscribtions:") );
+	$output .= getListOptionsBoolean($list_path,"nosubonlydenymails", _("Notify when post and not subscribed:") );
+	$output .= getListOptionsBoolean($list_path,"notoccdenymails", _("Deny if no To: or Cc::") );
+	$output .= getListOptionsBoolean($list_path,"noaccessdenymails", _("Notify when post and no access:") );
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("SMTP configuration") ."</b></td></tr>";
-	$output .= getListOptionsValue($list_path,"memorymailsize");
-	$output .= getListOptionsValue($list_path,"relayhost");
-	$output .= getListOptionsValue($list_path,"verp");
-	$output .= getListOptionsValue($list_path,"maxverprecips");
-	$output .= getListOptionsValue($list_path,"delimiter");
-	$output .= getListOptionsTextarea($list_path,"access");
+	$output .= getListOptionsValue($list_path,"memorymailsize", _("Max mail memory size:") );
+	$output .= getListOptionsValue($list_path,"relayhost", _("SMTP relay server:") );
+	$output .= getListOptionsValue($list_path,"verp", _("VERP:") );
+	$output .= getListOptionsValue($list_path,"maxverprecips", _("Max VERP recipients:") );
+	$output .= getListOptionsValue($list_path,"delimiter", _("Delimiter:") );
+	$output .= getListOptionsValue($list_path,"bouncelife", _("Bounce life:") );
+	$output .= getListOptionsTextarea($list_path,"access", _("Access list:") );
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("Subscribe/Unsubscribe an email address") ."</b></td></tr>";
 	$output .= "<tr><td onmouseover=\"Tip('". _("Insert here an email address to subscribe it.") ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">". _("Subscribe:") ."</td>
@@ -360,11 +439,11 @@ function list_options(){
     <td><input size=\"40\" type=\"text\" value=\"\" name=\"unsub\"></td></tr>";
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("Web archive") ."</b></td></tr>";
-	$output .= getListOptionsWABoolean("webarchive");
-	$output .= getListOptionsWATextarea($list_path,"rcfile");
-	$output .= getListOptionsWABooleanActions("recreatewa");
-	$output .= getListOptionsWABooleanActions("deletewa");
-	$output .= getListOptionsWABoolean("spammode");
+	$output .= getListOptionsWABoolean("webarchive", _("Enable webarchive:") );
+	$output .= getListOptionsWATextarea($list_path,"rcfile", _("Own template:") );
+	$output .= getListOptionsWABooleanActions("recreatewa", _("Recreate:") );
+	$output .= getListOptionsWABooleanActions("deletewa", _("Delete:") );
+	$output .= getListOptionsWABoolean("spammode", _("Anti-spam mode:") );
 
 	return $output;
 }

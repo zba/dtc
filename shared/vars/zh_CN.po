@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 15:48+0800\n"
+"POT-Creation-Date: 2008-01-18 23:56+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid " CPU seconds"
 msgstr ""
 
-#: shared/inc/sql/lists.php:478
+#: shared/inc/sql/lists.php:490
 msgid " does not look like a mailbox login..."
 msgstr "这看起来不像是一个邮箱的登陆名..."
 
@@ -54,6 +54,10 @@ msgstr "所有程序与文件"
 msgid "APACHE VHOST"
 msgstr "虚拟Apache主机"
 
+#: shared/inc/forms/lists.php:433
+msgid "Access list:"
+msgstr "权限列表："
+
 #: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
 #: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
 #: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:166
@@ -84,6 +88,10 @@ msgstr "有效的FTP备份："
 #: admin/inc/draw_user_admin.php:280 admin/inc/draw_user_admin.php:300
 msgid "Add"
 msgstr "添加"
+
+#: shared/inc/forms/lists.php:406
+msgid "Add To: header:"
+msgstr "添加到：页头："
 
 #: shared/inc/forms/root_admin.php:222
 msgid "Add a VPS for this admin:"
@@ -134,6 +142,10 @@ msgstr "为这名客户添加一个管理员："
 #: admin/dtcrm/product_manager.php:66
 msgid "Add domain"
 msgstr "是否添加域名"
+
+#: shared/inc/forms/lists.php:409
+msgid "Added footer:"
+msgstr "追加页脚："
 
 #: admin/dtcrm/main.php:165
 #, fuzzy
@@ -243,6 +255,10 @@ msgstr ""
 msgid "Another location"
 msgstr "另一处位置"
 
+#: shared/inc/forms/lists.php:446
+msgid "Anti-spam mode:"
+msgstr "垃圾邮件处理模式"
+
 #: admin/inc/dtc_config.php:1149
 msgid "Apache file names"
 msgstr ""
@@ -263,7 +279,7 @@ msgstr ""
 msgid "Apache vhost file generated !"
 msgstr ""
 
-#: shared/inc/forms/lists.php:333
+#: shared/inc/forms/lists.php:411
 msgid "Archive"
 msgstr "存档"
 
@@ -335,6 +351,10 @@ msgstr ""
 #: shared/inc/forms/vps.php:266
 msgid "Boot up (xm start)"
 msgstr "启动(xm start)"
+
+#: shared/inc/forms/lists.php:432
+msgid "Bounce life:"
+msgstr ""
 
 #: shared/inc/forms/email.php:621
 msgid "Bounce message content: "
@@ -500,6 +520,10 @@ msgstr "立即关闭"
 #: shared/inc/forms/ticket.php:163
 msgid "Closed"
 msgstr "已关闭"
+
+#: shared/inc/forms/lists.php:397
+msgid "Closed list:"
+msgstr "已关闭的邮件列表："
 
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
@@ -682,6 +706,10 @@ msgstr "当前的合同："
 msgid "Currently installed operating system: "
 msgstr ""
 
+#: shared/inc/forms/lists.php:408
+msgid "Custom headers:"
+msgstr "自定义的页头："
+
 #: admin/inc/dtc_config.php:1300
 msgid "Customer and service country vs company:"
 msgstr "业务延伸到的国家和地区"
@@ -823,6 +851,18 @@ msgstr "删除"
 msgid "Delete a user domain:"
 msgstr "删除一个用户域名："
 
+#: shared/inc/forms/lists.php:265
+msgid ""
+"Delete all messages of webarchive. NOTE: this works only if you have &quot;"
+"web archive&quot; not checked."
+msgstr ""
+"删除了所有的归档文件。注意：只有当您拥有&quot归档文件时它才会执行;归档文件"
+"&quot;没有被检查。"
+
+#: shared/inc/forms/lists.php:405
+msgid "Delete headers:"
+msgstr "删除页头："
+
 #: shared/inc/forms/root_admin.php:191
 msgid "Delete one of the admin VPS: "
 msgstr "删除这个管理员账号下的一个VPS："
@@ -835,6 +875,15 @@ msgstr "删除这个管理员账号下的一个独立主机："
 msgid "Delete the user"
 msgstr "删除用户"
 
+#: shared/inc/forms/lists.php:445
+#, fuzzy
+msgid "Delete:"
+msgstr "删除"
+
+#: shared/inc/forms/lists.php:431
+msgid "Delimiter:"
+msgstr "分隔符："
+
 #: shared/inc/forms/email.php:247 shared/inc/forms/email.php:613
 msgid "Deliver messages locally in INBOX: "
 msgstr "将邮件存储到本地INBOX："
@@ -842,6 +891,10 @@ msgstr "将邮件存储到本地INBOX："
 #: shared/inc/forms/aliases.php:51
 msgid "Delivery Group:"
 msgstr ""
+
+#: shared/inc/forms/lists.php:423
+msgid "Deny if no To: or Cc::"
+msgstr "如果没有填写收件人或者抄送对象则不发送："
 
 #: shared/inc/forms/packager.php:218
 msgid "Description"
@@ -864,9 +917,17 @@ msgstr "目标文件夹："
 msgid "Detailed web statistics (HTTP) of your subdomains:"
 msgstr "子域名的webalizer详细统计结果："
 
-#: shared/inc/forms/lists.php:338
+#: shared/inc/forms/lists.php:416
 msgid "Digest"
 msgstr "摘要"
+
+#: shared/inc/forms/lists.php:417
+msgid "Digest interval:"
+msgstr "摘要的选择区间："
+
+#: shared/inc/forms/lists.php:418
+msgid "Digest max mails:"
+msgstr "摘要邮件的最大发送数量："
 
 #: admin/dtcrm/product_manager.php:46 admin/dtcrm/product_manager.php:114
 #: admin/dtcrm/product_manager.php:172
@@ -890,6 +951,10 @@ msgstr "磁盘使用率"
 #: admin/inc/nav.php:116
 msgid "Display and sort by:"
 msgstr "根据什么分类："
+
+#: shared/inc/forms/lists.php:250
+msgid "Do not change unless you really know what you are doing."
+msgstr "不要更改它，除非您知道您正在做什么。"
 
 #: shared/drawlib/anotherDtc.php:129
 msgid "Documentation"
@@ -970,7 +1035,7 @@ msgstr ""
 msgid "Edit a company:"
 msgstr ""
 
-#: shared/inc/forms/lists.php:55
+#: shared/inc/forms/lists.php:52
 msgid "Edit mailing list"
 msgstr ""
 
@@ -1036,6 +1101,18 @@ msgstr "邮箱地址"
 #: shared/inc/forms/email.php:569
 msgid "Enable SPAM filtering: "
 msgstr "开启垃圾邮件过滤功能："
+
+#: shared/inc/forms/lists.php:241
+msgid "Enable VERP support."
+msgstr "启用VERP支持。"
+
+#: shared/inc/forms/lists.php:256
+msgid "Enable webarchive."
+msgstr "启用归档功能。"
+
+#: shared/inc/forms/lists.php:442
+msgid "Enable webarchive:"
+msgstr "使用归档："
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:262
 msgid "Error"
@@ -1134,6 +1211,14 @@ msgstr "文件系统检查(fsck)"
 msgid "File-system check:"
 msgstr "文件系统检查："
 
+#: shared/inc/forms/lists.php:205
+msgid ""
+"Fill this if you want every mail to have something like:<br>--<br>To "
+"unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
+msgstr ""
+"如果你想让所有的邮件都添加类似于这样的内容：<br>--<br>如要退订请发邮件给 "
+"coollist+unsubscribe@lists.domain.net的话，可以在这里填写。"
+
 #: shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "名："
@@ -1200,7 +1285,7 @@ msgstr "允许添加子帐户(转售)："
 msgid "HDD I/O:"
 msgstr ""
 
-#: shared/inc/forms/lists.php:325
+#: shared/inc/forms/lists.php:403
 msgid "Header"
 msgstr "页头"
 
@@ -1208,9 +1293,39 @@ msgstr "页头"
 msgid "Help"
 msgstr "帮助"
 
+#: shared/inc/forms/lists.php:232
+msgid "Help missing for noaccessdenymails"
+msgstr ""
+
+#: shared/inc/forms/lists.php:226
+msgid "Help missing for nosubonlydenymails"
+msgstr ""
+
 #: shared/inc/draw.php:444
 msgid "Help:"
 msgstr "帮助："
+
+#: shared/inc/forms/lists.php:244
+msgid ""
+"Here is specified for how long time in seconds an address can bounce before "
+"it\\'s unsubscribed. Defaults to 432000 seconds, which is 5 days."
+msgstr ""
+"这里指明了需要多长时间一封无法取消订阅的邮件才能够被弹回。默认是432000秒，也"
+"就是5天。"
+
+#: shared/inc/forms/lists.php:235
+msgid ""
+"Here is specified in bytes how big a mail can be and still be prepared for "
+"sending in memory. It\\'s greatly reducing the amount of write system calls "
+"to prepare it in memory before sending it, but can also lead to denial of "
+"service attacks. Default is 16k (16384 bytes)."
+msgstr ""
+"这里用比特标明了多大的邮件在发送之前或发送时可以存放在内存中。该功能可以极大"
+"的降低系统的I/O，但同时可能回导致拒绝服务式攻击。默认16k (16384 bytes)。"
+
+#: shared/inc/forms/lists.php:268
+msgid "Hide email addresses to avoid spam."
+msgstr "隐藏邮件地址。"
 
 #: admin/inc/dtc_config.php:643
 msgid "Host IP addresses (separated by \"|\"):"
@@ -1234,6 +1349,11 @@ msgstr "主机名："
 #: shared/inc/forms/root_admin.php:278
 msgid "Hostname: "
 msgstr "主机名："
+
+#: shared/inc/forms/lists.php:247
+msgid ""
+"How many recipients pr. mail delivered to the smtp server. Defaults to 100."
+msgstr "接收到的邮件的最大群发数量。默认是100。"
 
 #: client/new_account_form.php:635
 msgid "I agree to the"
@@ -1281,6 +1401,67 @@ msgstr "IP地址列表"
 msgid "If no POP user was created, please make at least one!"
 msgstr ""
 
+#: shared/inc/forms/lists.php:253
+msgid ""
+"If this file exists, all headers of a post to the list is matched against "
+"the rules. The first rule to match wins. NOTE: the default action is to deny "
+"access (reject the mail) so take care if you write something here"
+msgstr ""
+"如果存在这个文件，所有发往这个邮件列表的邮件的页头信息都将被过滤。最前面的规"
+"则优先生效。请注意：默认的规则是拒绝所有邮件，所以，当你在这个文件中写下规则"
+"的时候一定要小心。"
+
+#: shared/inc/forms/lists.php:211
+msgid ""
+"If this file exists, then retrieving old posts with -get-N (for exemple "
+"mylist-get-12@my-domain.tld) is disabled"
+msgstr "如果这个文件存在的话，使用-get-N参数恢复到旧邮件列表的功能被禁用。"
+
+#: shared/inc/forms/lists.php:214
+msgid ""
+"If this file exists, then retrieving old posts with -get-N is only possible "
+"for subscribers. The above mentioned \\'noget\\' have precedence."
+msgstr ""
+"如果这个文件存在的话，使用-get-N参数恢复到旧邮件列表的功能仅仅在订阅时有效。"
+"前面的\\'noget\\'优先执行。"
+
+#: shared/inc/forms/lists.php:187
+msgid ""
+"If this flag exists, no mail confirmation is needed to subscribe to the "
+"list. This should in principle never ever be used, but there is times on "
+"local lists etc. where this is useful. HANDLE WITH CARE!"
+msgstr ""
+"如果存在这个标志，添加到邮件列表时不需要确认。尽量不要使用这个功能，虽然有时"
+"它很有用。请谨慎处理这个标志！"
+
+#: shared/inc/forms/lists.php:208
+msgid ""
+"If this flag exists, the mail won\\'t be saved in the archive but simply "
+"deleted."
+msgstr "当这个标志存在的话，邮件会被直接删除，而不会被备份到归档文件中。"
+
+#: shared/inc/forms/lists.php:223
+msgid ""
+"If this flag is present, the owner(s) will get a mail with the address of "
+"someone sub/unsubscribing to a mailinglist."
+msgstr ""
+"如果存在这个参数，当有人订阅/退订这个邮件列表的时候，该邮件列表的所有者会收到"
+"一封提示邮件。"
+
+#: shared/inc/forms/lists.php:181
+msgid ""
+"If this flag is set, the email addresses in the field moderators will act as "
+"moderators for the list."
+msgstr ""
+"如果设置了这个参数，斑竹位置上显示的邮件地址将被视作该邮件列表的管理员。"
+
+#: shared/inc/forms/lists.php:199
+msgid ""
+"If this flag is set, the list address does not have to be in the To: or Cc: "
+"header of the email to the list (interesting for aliases addressing multiple "
+"lists)."
+msgstr "如果设置了这个参数，列出来的邮件地址将不必被填入收件人或抄送栏中："
+
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
 msgstr "立即销毁(xm destroy)"
@@ -1292,6 +1473,17 @@ msgstr "导入"
 #: shared/inc/forms/root_admin.php:171
 msgid "Import a domain file for this user:"
 msgstr "为这个用户导入一个域文件："
+
+#: shared/inc/forms/lists.php:193
+msgid ""
+"In those fields is specified *ONE* headertoken to match per line. If the "
+"fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all "
+"occurences of these headers in incoming list mail will be deleted. From: and "
+"Return-Path: are deleted no matter what."
+msgstr ""
+"在这些区域中标记了一些需要过滤的页头信息。如果这个区域中填写的是这样的内容："
+"<br><br>Received:<br>Message-ID:<br><br>那么所有的包含这些内容的邮件都将被删"
+"除。From: 和 Return-Path:是无论如何都会被删除的。"
 
 #: admin/inc/submit_root_querys.php:259
 #, fuzzy
@@ -1349,13 +1541,25 @@ msgstr ""
 msgid "Incorrect sub-domain format."
 msgstr ""
 
-#: shared/inc/forms/lists.php:357
+#: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
 msgstr "输入邮件地址并订阅。"
 
-#: shared/inc/forms/lists.php:359
+#: shared/inc/forms/lists.php:438
 msgid "Insert here an email address to unsubscribe it."
 msgstr "输入邮件地址取消订阅。"
+
+#: shared/inc/forms/lists.php:259
+msgid ""
+"Insert here the template\\'s code that you want use for your web archive. "
+"Read <a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' "
+"target=\\'_blank\\'>documentation</a> and see <a href=\\'http://www.mhonarc."
+"org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
+msgstr ""
+"在这里输入您要使用的归档文件模板的代码。查看<a href=\\'http://www.mhonarc."
+"org/MHonArc/doc/resources/rcfile.html\\' target=\\'_blank\\'>文档</a>或查看"
+"<a href=\\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\\' target="
+"\\'_blank\\'>示例</a>。"
 
 #: shared/inc/forms/packager.php:218 shared/inc/forms/packager.php:230
 msgid "Install"
@@ -1395,6 +1599,13 @@ msgstr "请选择是不是公司客户！"
 msgid "Is it a company: "
 msgstr "是公司吗:"
 
+#: shared/inc/forms/lists.php:175
+msgid ""
+"Is the list is open or closed. If it\\'s closed subscribtion and "
+"unsubscription via mail is disabled."
+msgstr ""
+"邮件列表的状态是开启还是关闭。如果它关闭了，邮件订阅/退订功能将不能使用。"
+
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
 #: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:255
 msgid "Language"
@@ -1432,8 +1643,17 @@ msgid ""
 "account:"
 msgstr "如果您有什么特殊的要求，请给我们留言："
 
-#: shared/inc/forms/lists.php:73 shared/inc/forms/lists.php:100
+#: shared/inc/sql/lists.php:211
+msgid "List #name#@#domain# successfully created!"
+msgstr "成功创建了#name#@#domain#列表！"
+
+#: shared/inc/forms/lists.php:97
 msgid "List name"
+msgstr "名称"
+
+#: shared/inc/forms/lists.php:70
+#, fuzzy
+msgid "List name:"
 msgstr "名称"
 
 #: admin/inc/dtc_config.php:283
@@ -1465,7 +1685,7 @@ msgstr ""
 msgid "List of your mailboxes:"
 msgstr "数据库列表："
 
-#: shared/inc/forms/lists.php:29
+#: shared/inc/forms/lists.php:27
 #, fuzzy
 msgid "List of your mailing lists"
 msgstr "数据库列表："
@@ -1474,9 +1694,13 @@ msgstr "数据库列表："
 msgid "List of your subdomains: "
 msgstr "子域名列表："
 
-#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:100
-#: shared/inc/forms/lists.php:102
+#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:97
 msgid "List owner"
+msgstr "管理员"
+
+#: shared/inc/forms/lists.php:99
+#, fuzzy
+msgid "List owner:"
 msgstr "管理员"
 
 #: admin/inc/dtc_config.php:724
@@ -1588,6 +1812,10 @@ msgstr ""
 msgid "Mail restart"
 msgstr ""
 
+#: shared/inc/forms/lists.php:238
+msgid "Mail server used to send the messages."
+msgstr "发送这封邮件的服务器。"
+
 #: admin/deamons_state.php:132
 msgid "Mail-newu"
 msgstr ""
@@ -1659,6 +1887,10 @@ msgstr "FTP账户数量上限"
 msgid "Max SSH"
 msgstr "SSH账户数量上限"
 
+#: shared/inc/forms/lists.php:430
+msgid "Max VERP recipients:"
+msgstr "最大VERP收件人数量："
+
 #: admin/dtcrm/product_manager.php:56
 #, fuzzy
 msgid "Max database"
@@ -1669,11 +1901,15 @@ msgstr "需要一个数据库"
 msgid "Max email"
 msgstr "我的邮件"
 
+#: shared/inc/forms/lists.php:427
+msgid "Max mail memory size:"
+msgstr "邮件系统可使用的最大内存空间："
+
 #: shared/inc/forms/vps.php:146
 msgid "Max memory: "
 msgstr "最大内存："
 
-#: shared/inc/forms/lists.php:112
+#: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
 msgstr ""
 
@@ -1700,6 +1936,14 @@ msgstr ""
 #: shared/inc/forms/vps.php:121
 msgid "Method getVPSState failed"
 msgstr ""
+
+#: shared/inc/forms/lists.php:399
+msgid "Moderated:"
+msgstr "适中的："
+
+#: shared/inc/forms/lists.php:400
+msgid "Moderators:"
+msgstr "斑竹："
 
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
@@ -1756,9 +2000,9 @@ msgstr "无效的"
 msgid "Name"
 msgstr "名称"
 
-#: shared/inc/forms/lists.php:73
+#: shared/inc/forms/lists.php:70
 msgid "Name of the list."
-msgstr ""
+msgstr "邮件列表的名称："
 
 #: shared/inc/draw.php:140
 #, fuzzy
@@ -1847,9 +2091,10 @@ msgstr "新添加一名客户"
 msgid "New mailbox"
 msgstr ""
 
-#: shared/inc/forms/lists.php:54 shared/inc/forms/lists.php:89
-msgid "New mailing list"
-msgstr ""
+#: shared/inc/forms/lists.php:86
+#, fuzzy
+msgid "New mailing list:"
+msgstr "数据库列表："
 
 #: shared/inc/draw.php:52
 msgid "New password:"
@@ -1912,6 +2157,10 @@ msgstr ""
 msgid "No VPS expired"
 msgstr "没有已过期的VPS"
 
+#: shared/inc/forms/lists.php:412
+msgid "No archives:"
+msgstr "不存档："
+
 #: shared/inc/forms/email.php:631
 msgid "No catch-all"
 msgstr "禁止使用无限别名功能"
@@ -1927,6 +2176,10 @@ msgstr "没有已过期的独立主机"
 #: admin/inc/draw_user_admin.php:292
 msgid "No domain waiting!"
 msgstr "没有待添加的域名！"
+
+#: shared/inc/forms/lists.php:413
+msgid "No get-N function:"
+msgstr "不使用get-N功能："
 
 #: shared/inc/forms/domain_info.php:85
 msgid "No parking"
@@ -1957,6 +2210,10 @@ msgstr "没有已过期的共享主机账号。"
 msgid "No ssl product defined."
 msgstr "没有产品"
 
+#: shared/inc/forms/lists.php:401
+msgid "No subscribtion confirmation:"
+msgstr "没有需要确认的订阅："
+
 #: shared/inc/sql/database.php:73
 msgid ""
 "No user by that name exists in the database, or you don't own this db user. "
@@ -1980,9 +2237,21 @@ msgstr "没有注册"
 msgid "Notes: "
 msgstr "其它："
 
-#: shared/inc/forms/lists.php:342
+#: shared/inc/forms/lists.php:420
 msgid "Notifications"
 msgstr "注意事项"
+
+#: shared/inc/forms/lists.php:421
+msgid "Notify new subscribtions:"
+msgstr "有新的订阅时提示："
+
+#: shared/inc/forms/lists.php:424
+msgid "Notify when post and no access:"
+msgstr "发送后提示："
+
+#: shared/inc/forms/lists.php:422
+msgid "Notify when post and not subscribed:"
+msgstr "发送后未订阅时提示："
 
 #: shared/inc/forms/vps.php:151
 msgid "Number of CPU: "
@@ -2001,7 +2270,7 @@ msgstr "现有邮箱数量："
 msgid "Number of active mailboxes:"
 msgstr "现有邮箱数量："
 
-#: shared/inc/forms/lists.php:26
+#: shared/inc/forms/lists.php:24
 #, fuzzy
 msgid "Number of active mailing lists"
 msgstr "现有邮箱数量："
@@ -2050,6 +2319,14 @@ msgstr "其他DNS服务器："
 #: shared/inc/forms/dns.php:44 shared/inc/forms/dns.php:53
 msgid "Other MX (backup) servers:"
 msgstr "其它MX(备用)服务器："
+
+#: shared/inc/forms/lists.php:443
+msgid "Own template:"
+msgstr "个人模板："
+
+#: shared/inc/forms/lists.php:398
+msgid "Owner:"
+msgstr "所有者："
 
 #: client/new_account.php:146
 msgid "PAYMENT CANCELLED"
@@ -2368,6 +2645,19 @@ msgstr "域名重置"
 msgid "Real name"
 msgstr "真实姓名"
 
+#: shared/inc/forms/lists.php:262
+msgid ""
+"Recreate all messages of webarchive. Use this only if you have changed the "
+"webarchive\\'s template. NOTE: this works only if you have &quot;web "
+"archive&quot; checked."
+msgstr ""
+"重新创建所有归档文件。请仅仅在您修改了归档文件的模板时才使用这个功能。注意："
+"仅仅当您使用归档模式的时候，该参数才有效。"
+
+#: shared/inc/forms/lists.php:444
+msgid "Recreate:"
+msgstr "重新创建："
+
 #: shared/securepay/pay_functions.php:62
 msgid "Recurring payment"
 msgstr "循环付款"
@@ -2418,6 +2708,10 @@ msgstr "重新安装操作系统："
 #: shared/inc/forms/vps.php:131
 msgid "Reinstalling operating system..."
 msgstr "重新安装操作系统..."
+
+#: shared/inc/forms/lists.php:229
+msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
+msgstr "拒收没有收件(或抄送)人的邮件。"
 
 #: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
@@ -2489,13 +2783,17 @@ msgstr "子账户"
 msgid "Retype new password:"
 msgstr "确认密码："
 
-#: shared/inc/forms/lists.php:317
+#: shared/inc/forms/lists.php:395
 msgid "Rights"
 msgstr "权限"
 
-#: shared/inc/forms/lists.php:348
+#: shared/inc/forms/lists.php:426
 msgid "SMTP configuration"
 msgstr "配置SMTP"
+
+#: shared/inc/forms/lists.php:428
+msgid "SMTP relay server:"
+msgstr "SMTP转发服务器："
 
 #: admin/deamons_state.php:157
 #, fuzzy
@@ -2782,6 +3080,10 @@ msgstr "子域名："
 msgid "Subject"
 msgstr "主题"
 
+#: shared/inc/forms/lists.php:404
+msgid "Subject prefix:"
+msgstr "主题的前缀："
+
 #: shared/inc/forms/ticket.php:78
 msgid "Subject:"
 msgstr "主题："
@@ -2794,13 +3096,21 @@ msgstr "主题："
 msgid "Submit new support issue"
 msgstr "提交一个新的问题"
 
-#: shared/inc/forms/lists.php:356
+#: shared/inc/forms/lists.php:435
 msgid "Subscribe/Unsubscribe an email address"
 msgstr ""
 
-#: shared/inc/forms/lists.php:357
+#: shared/inc/forms/lists.php:436
 msgid "Subscribe:"
 msgstr "订阅："
+
+#: shared/inc/forms/lists.php:124
+msgid "Subscriber list (click to unsubscribe):"
+msgstr ""
+
+#: shared/inc/forms/lists.php:396
+msgid "Subscribers only post:"
+msgstr "仅发送给订阅者："
 
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
@@ -2880,6 +3190,14 @@ msgid ""
 "first."
 msgstr "该用户仍然拥有部分数据库，请先删除这些数据库或者改变它们的属主。"
 
+#: shared/inc/forms/lists.php:178
+msgid ""
+"The email addresses in this fields (1 per line) will get mails to listname-"
+"owner@listdomain.tld"
+msgstr ""
+"在这个区域中的邮件地址（每行一个）将收到发送给listname-owner@listdomain.tld的"
+"邮件"
+
 #: shared/inc/sql/vps.php:40
 msgid "The password you have submited is not a valid password"
 msgstr "您提交的密码不正确"
@@ -2889,6 +3207,14 @@ msgid ""
 "The payment gateway have reported that your payment has failed. Contact us, "
 "we also accept checks and wire transfers."
 msgstr ""
+
+#: shared/inc/forms/lists.php:190
+msgid ""
+"The prefix for the Subject: line of mails to the list. This will alter the "
+"Subject: line, and add a prefix if it\\'s not present elsewhere."
+msgstr ""
+"主题的前缀：邮件列表的大小。这将更改邮件的主题（增加一个行数），如果在别处不"
+"存在这个前缀的话。"
 
 #: shared/inc/forms/ftp.php:66
 msgid "There is already a ftp login by that name"
@@ -2901,6 +3227,14 @@ msgstr ""
 #: shared/inc/forms/ssh.php:60
 msgid "There is already a ssh login by that name"
 msgstr ""
+
+#: shared/inc/forms/lists.php:202
+msgid ""
+"These headers are added to every mail coming through. This is the place you "
+"want to add Reply-To: header in case you want such."
+msgstr ""
+"这些页头将被添加到每封经过的邮件中，如果你想要这样的话，比如添加一个回复地"
+"址，这将是个不错的位置。"
 
 #: admin/inc/dtc_config.php:203
 msgid ""
@@ -2917,11 +3251,24 @@ msgstr ""
 msgid "This domain will be the alias of the following domain (domain parking):"
 msgstr "这个域名是下列域名的别名(域名停放)："
 
+#: shared/inc/forms/lists.php:220
+msgid ""
+"This file specifies how many mails can accumulate before digest sending is "
+"triggered. Defaults to 50 mails, meaning that if 50 mails arrive to the list "
+"before digestinterval have passed, the digest is delivered."
+msgstr ""
+"这个文件标明了在发送周期之前有多少封邮件可以被缓存。默认50封，这意味着，在发"
+"送周期之前，如果有50封邮件到达了，那么就发送。"
+
 #: shared/inc/sql/database.php:54
 msgid "This is not a valid database name! Please choose another one."
 msgstr "数据库名无效！请重新选择一个。"
 
-#: shared/inc/forms/lists.php:75 shared/inc/forms/lists.php:102
+#: shared/inc/forms/lists.php:184
+msgid "This is the list of moderators."
+msgstr "斑竹列表："
+
+#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:99
 msgid "This is the main owner of the list."
 msgstr "这是该邮件列表的主要拥有者："
 
@@ -2942,6 +3289,12 @@ msgstr "这个子域名是下列子域名的入口："
 #: shared/inc/forms/subdomain.php:169
 msgid "This subdomain is a service (SRV)<br>entry for the following port: "
 msgstr "这个子域名是下列子域名的入口(SRV)："
+
+#: shared/inc/forms/lists.php:217
+msgid ""
+"This value specifies how many seconds will pass before the next digest is "
+"sent. Defaults to 604800 seconds, which is 7 days."
+msgstr "这个值标明了摘要的发送周期。默认604800秒，也就是7天。"
 
 #: shared/inc/forms/email.php:323
 msgid ""
@@ -2983,6 +3336,10 @@ msgid ""
 "shutdown or destroy your server first."
 msgstr ""
 "如果要做文件系统检查或者重新安装操作系统，您需要先关闭或者销毁您的VPS。"
+
+#: shared/inc/forms/lists.php:407
+msgid "To: or Cc: not mandatory:"
+msgstr "不强制填写收件人或者抄送对象："
 
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
@@ -3080,7 +3437,7 @@ msgstr "URL"
 msgid "Unpack size"
 msgstr "解压缩后的大小"
 
-#: shared/inc/forms/lists.php:359
+#: shared/inc/forms/lists.php:438
 msgid "Unsubscribe:"
 msgstr "退订："
 
@@ -3271,6 +3628,10 @@ msgstr "VAT号码："
 msgid "VAT rate:"
 msgstr "VAT（增值税）税率："
 
+#: shared/inc/forms/lists.php:429
+msgid "VERP:"
+msgstr ""
+
 #: shared/inc/forms/vps.php:135
 msgid "VM id: "
 msgstr "VM id："
@@ -3367,7 +3728,7 @@ msgstr "已过期警告："
 msgid "Warnings before expiration: "
 msgstr "即将过期警告："
 
-#: shared/inc/forms/lists.php:362
+#: shared/inc/forms/lists.php:441
 msgid "Web archive"
 msgstr "Web存档"
 
@@ -3390,6 +3751,23 @@ msgstr "产品型号"
 #: shared/inc/forms/ticket.php:47
 msgid "What is your server hostname:"
 msgstr "您的主机名是什么："
+
+#: shared/inc/forms/lists.php:196
+msgid ""
+"When this flag is present, a To: header including the recipients "
+"emailaddress will be added to outgoing mail. Recommended usage is to remove "
+"existing To: headers with delheaders (see above) first."
+msgstr ""
+"如果设置了这个选项，所有外发的邮件将被添加一个包含了收件人邮件地址的页头。推"
+"荐的做法是删掉To:header(请参考delheader)。"
+
+#: shared/inc/forms/lists.php:173
+msgid ""
+"When this flag is set, only people who are subscribed to the list, are "
+"allowed to post to it. The check is made against the &quot;From:&quot; "
+"header."
+msgstr ""
+"如果设置了这个参数，仅仅订阅了这个邮件列表的人才能向这个邮件列表发送邮件。"
 
 #: shared/inc/draw.php:183
 msgid "Whois"
@@ -3433,6 +3811,40 @@ msgstr "用户错误或密码错误,或者已过期"
 #: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:129
 msgid "Yes"
 msgstr "是"
+
+#: shared/inc/sql/lists.php:213
+msgid ""
+"You can control your mailing list by email or by control panel.\n"
+"You can send a email to the following addresses to execute the listed "
+"command:\n"
+"  \n"
+"  #name#-help@#domain# -> return the most common list's commands\n"
+"  #name#-list@#domain# -> return the subscribers's list\n"
+"  #name#-get-N@#domain# -> return the N list's message\n"
+"  #name#-owner@#domain# -> you can contact the list's owner by this address\n"
+"  #name#-unsubscribe@#domain# -> unsubscribe the email's sender from the "
+"list\n"
+"  #name#-subscribe@#domain# -> subscribe the email's sender to the list\n"
+"  #name#-subscribe-digest@#domain# -> subscribe the email's sender to the "
+"list's digest version\n"
+"  #name#-subscribe-nomail@#domain# -> subscribe the email's sender to the "
+"list's nomail version\n"
+"  \n"
+"For more informations go to mlmmj official web site at http://mlmmj.mmj.dk"
+msgstr ""
+"您可以通过邮件或者控制面板来管理您的邮件列表。\n"
+"您可以发送邮件到下列邮箱来执行相应的命令：\n"
+"\n"
+"　#name#-help@#domain# -> 返回常用的命令\n"
+"  #name#-list@#domain# -> 返回定阅者列表\n"
+"  #name#-get-N@#domain# -> 返回第N条消息？\n"
+"  #name#-owner@#domain# -> 通过这个地址可以联系到邮件列表的所有者\n"
+"  #name#-unsubscribe@#domain# -> 从邮件列表中删除一个订阅者\n"
+"  #name#-subscribe@#domain# -> 添加一个订阅者到邮件列表\n"
+"  #name#-subscribe-digest@#domain# -> 将订阅者添加到邮件列表的摘要中\n"
+"  #name#-subscribe-nomail@#domain# -> 将订阅者添加到邮件列表中的不发送邮件的"
+"列表中\n"
+"更多信息请访问mlmmj官方网站http://mlmmj.mmj.dk"
 
 #: shared/inc/forms/my_account.php:123
 msgid "You currently don't have any SSL tokens."
@@ -3577,6 +3989,10 @@ msgstr ""
 msgid "fetching admin: "
 msgstr "加载管理员："
 
+#: shared/inc/forms/lists.php:414
+msgid "get-N function only for subscribers:"
+msgstr "仅订阅用户可使用get-N功能："
+
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
 msgstr ""
@@ -3594,7 +4010,7 @@ msgstr "新的SSH帐户"
 msgid "new mailbox"
 msgstr "新邮箱"
 
-#: shared/inc/forms/lists.php:88
+#: shared/inc/forms/lists.php:51 shared/inc/forms/lists.php:85
 #, fuzzy
 msgid "new mailing list"
 msgstr "数据库列表："
