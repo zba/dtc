@@ -477,7 +477,7 @@ function checkNamedCronService () {
 		system("chgrp $conf_dtc_system_groupname $conf_generated_file_path/named.conf $conf_generated_file_path/named.slavezones.conf");
 		system("chmod 660 $conf_generated_file_path/named.conf $conf_generated_file_path/named.slavezones.conf");
 		system("chgrp -R $conf_dtc_system_groupname \"$conf_generated_file_path/zones\"");
-		system("chmod 660 \"$conf_generated_file_path/zones\"");
+		system("chmod 770 \"$conf_generated_file_path/zones\"");
 		system("./checkbind.sh $conf_generated_file_path");
 		if($keep_dns_generate_flag == "no"){
 			markCronflagOk ("gen_named='no'");
