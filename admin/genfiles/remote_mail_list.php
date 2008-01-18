@@ -134,15 +134,15 @@ function get_remote_mail_domains_internal($recipients){
 		if($a["status"] == "pending" || !file_exists($f)){
 			if ($recipients == 1){
 				if( $panel_type == "cronjob"){
-					echo "Getting mail recipient list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk.\n";
+					echo "Getting mail recipient list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk.\n";
 				}else{
-					$console .= "Getting mail recipient list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk.\n";
+					$console .= "Getting mail recipient list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk.\n";
 				}
 			} else {
 				if( $panel_type == "cronjob"){
-					echo "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk.\n";
+					echo "Getting mail domain list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk.\n";
 				}else{
-					$console .= "Getting mail domain list from ".$a["server_addr"]."/dtc/domainlist.php with login ".$a["server_login"]." and writting to disk.<br>";
+					$console .= "Getting mail domain list from ".$a["server_addr"]."/dtc/list_domains.php with login ".$a["server_login"]." and writting to disk.<br>";
 				}
 			}
 			$remote_file = get_remote_mail($a, 0);
