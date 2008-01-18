@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-17 21:38+0800\n"
+"POT-Creation-Date: 2008-01-18 15:48+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jose Toscano <josetg81wireless@yahoo.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -23,6 +23,15 @@ msgstr ""
 #: shared/inc/sql/lists.php:478
 msgid " does not look like a mailbox login..."
 msgstr " no parece un login de correo..."
+
+#: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
+#: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
+#: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:114
+#: shared/inc/sql/vps.php:124 shared/inc/sql/vps.php:166
+#: shared/inc/sql/vps.php:174 shared/inc/sql/vps.php:184
+#: shared/inc/sql/vps.php:194
+msgid " file "
+msgstr ""
 
 #: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
 #: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
@@ -47,6 +56,12 @@ msgstr "TODOS LOS ARCHIVOS Y SCRIPTS"
 msgid "APACHE VHOST"
 msgstr ""
 
+#: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
+#: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
+#: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:166
+msgid "Access not granted line "
+msgstr "Acceso no autorizado "
+
 #: admin/inc/dtc_config.php:843
 msgid "Act as backup DNS server for the following servers:"
 msgstr "Actuar como servidor DNS de respaldo para los siguientes servidores:"
@@ -59,7 +74,8 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:212
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
-#: shared/inc/forms/email.php:27 shared/inc/forms/reseller.php:24
+#: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
+#: shared/inc/forms/reseller.php:24
 msgid "Action"
 msgstr "Acci&oacute;n"
 
@@ -146,7 +162,7 @@ msgstr "Direcci&oacute;n:"
 msgid "Address of your main MX server:"
 msgstr "Direcci&oacute;n IP de su servidor MX principal :"
 
-#: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:208
+#: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:207
 msgid "Address:"
 msgstr "Direcci&oacute;n:"
 
@@ -260,7 +276,8 @@ msgid ""
 "Are you sure you want to delete this domain name ? This will erase all "
 "hosted files for this domain!!!"
 msgstr ""
-"¿Est&aacute; seguro de eliminar este nombre de dominio?. Esto borrar&aacute; todos los ficheros de este dominio !!!"
+"¿Est&aacute; seguro de eliminar este nombre de dominio?. Esto borrar&aacute; "
+"todos los ficheros de este dominio !!!"
 
 #: shared/inc/forms/root_admin.php:140
 msgid ""
@@ -282,6 +299,10 @@ msgstr ""
 #: admin/inc/nav.php:79
 msgid "BACKUP SCRIPTS"
 msgstr "SCRIPTS DE BACKUP"
+
+#: shared/inc/sql/vps.php:174
+msgid "BSD kernel type is not correct line "
+msgstr "La linea del kernel BSD es incorrecta "
 
 #: admin/inc/monitor.php:15
 msgid "BW Quota"
@@ -376,6 +397,14 @@ msgstr ""
 msgid "Cannot find ticket!"
 msgstr ""
 
+#: shared/inc/sql/vps.php:124 shared/inc/sql/vps.php:194
+msgid "Cannot get VPS IP addresses information line "
+msgstr "No se ha podido obtener la dirección IP del VPS "
+
+#: shared/inc/sql/vps.php:114 shared/inc/sql/vps.php:184
+msgid "Cannot get VPS information line "
+msgstr "No se ha podido obtener la linea de información del VPS"
+
 #: shared/inc/sql/database.php:172
 msgid "Cannot reselect MySQL db name: please enter another and try again."
 msgstr ""
@@ -430,7 +459,7 @@ msgstr ""
 msgid "Choose a package to install"
 msgstr "Seleccione un paquete a instalar"
 
-#: shared/inc/forms/my_account.php:211
+#: shared/inc/forms/my_account.php:210
 #, fuzzy
 msgid "City:"
 msgstr "Pais:"
@@ -486,7 +515,7 @@ msgstr ""
 msgid "Company name"
 msgstr "Empresa:"
 
-#: admin/inc/dtc_config.php:1218 shared/inc/forms/my_account.php:203
+#: admin/inc/dtc_config.php:1218 shared/inc/forms/my_account.php:202
 msgid "Company name:"
 msgstr "Empresa:"
 
@@ -547,6 +576,12 @@ msgstr "Subdominios:"
 msgid "Could not connect to SMTP server (timed out): "
 msgstr ""
 
+#: shared/inc/sql/vps.php:6 shared/inc/sql/vps.php:50
+#: shared/inc/sql/vps.php:72 shared/inc/sql/vps.php:92
+#: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:210
+msgid "Could not connect to VPS server!"
+msgstr "No se ha podido conectar con el servidor VPS!"
+
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
 msgstr ""
@@ -554,6 +589,10 @@ msgstr ""
 #: client/new_account_form.php:101
 msgid "Could not find the VPS server in database"
 msgstr "No se ha podido encontrar el servidor VPS en la base de datos"
+
+#: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:60
+msgid "Could not found subdomain in table for folder deletion"
+msgstr ""
 
 #: shared/inc/forms/vps.php:122
 msgid ""
@@ -569,6 +608,10 @@ msgstr ""
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
+msgstr ""
+
+#: shared/inc/forms/dns.php:82
+msgid "Could not load zonefile: permission denied or file not existant?"
 msgstr ""
 
 #: admin/deamons_state.php:174
@@ -591,7 +634,7 @@ msgstr "Pais"
 msgid "Country code seems incorrect."
 msgstr "El código del pais parece incorrecto."
 
-#: admin/inc/dtc_config.php:1226 shared/inc/forms/my_account.php:213
+#: admin/inc/dtc_config.php:1226 shared/inc/forms/my_account.php:212
 msgid "Country:"
 msgstr "Pais:"
 
@@ -857,7 +900,8 @@ msgstr "Documentaci&oacute;n"
 
 #: shared/gfx/skin/default_layout.php:194
 msgid "Domain Technologie Control : root admin console"
-msgstr "Domain Technologie Control : consola de administraci&oacute;n para root"
+msgstr ""
+"Domain Technologie Control : consola de administraci&oacute;n para root"
 
 #: shared/inc/draw.php:371
 #, fuzzy
@@ -897,6 +941,14 @@ msgstr ""
 #: shared/inc/forms/admin_stats.php:102
 msgid "Domain name trafic and disk usage:"
 msgstr "Nombre de dominio, tr&aacute;fico y uso de disco:"
+
+#: shared/inc/forms/dns.php:61
+msgid "Domain root TXT record2: "
+msgstr ""
+
+#: shared/inc/forms/dns.php:60
+msgid "Domain root TXT record: "
+msgstr ""
 
 #: shared/gfx/skin/default_layout.php:409
 msgid "Domains for"
@@ -974,7 +1026,7 @@ msgstr "Max Emails"
 msgid "Email user and domain files generated !"
 msgstr ""
 
-#: shared/inc/forms/aliases.php:47 shared/inc/forms/my_account.php:216
+#: shared/inc/forms/aliases.php:47 shared/inc/forms/my_account.php:215
 msgid "Email:"
 msgstr ""
 
@@ -991,6 +1043,11 @@ msgstr "Habilitar filtrado de SPAM: "
 msgid "Error"
 msgstr "Error"
 
+#: shared/inc/sql/vps.php:57
+#, fuzzy
+msgid "Error: "
+msgstr "Error"
+
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
 #, fuzzy
 msgid "Expiration"
@@ -1001,7 +1058,7 @@ msgstr "Fecha de caducidad"
 msgid "Expiration date"
 msgstr ""
 
-#: admin/inc/dtc_config.php:261
+#: admin/inc/dtc_config.php:261 shared/inc/forms/my_account.php:126
 msgid "Expire"
 msgstr ""
 
@@ -1055,11 +1112,11 @@ msgstr ""
 msgid "Familly name: "
 msgstr "Apellido:"
 
-#: shared/inc/forms/my_account.php:207
+#: shared/inc/forms/my_account.php:206
 msgid "Family name:"
 msgstr "Apellido:"
 
-#: shared/inc/forms/my_account.php:215
+#: shared/inc/forms/my_account.php:214
 msgid "Fax:"
 msgstr ""
 
@@ -1079,7 +1136,7 @@ msgstr ""
 msgid "File-system check:"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:206
+#: shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "Nombre:"
 
@@ -1188,7 +1245,8 @@ msgstr "Acepto las"
 msgid "IP Resolved"
 msgstr ""
 
-#: admin/inc/dtc_config.php:751 shared/inc/forms/root_admin.php:384
+#: admin/inc/dtc_config.php:751 shared/inc/forms/my_account.php:126
+#: shared/inc/forms/root_admin.php:384
 msgid "IP address"
 msgstr "Direcci&oacute;n IP"
 
@@ -1246,14 +1304,17 @@ msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
 "numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
 msgstr ""
-"Formato del login del administrador incorrecto: S&oacute;lo deben usarse letras min&uacute;sculas o numeros o el signo &quot;-&quot; y debe tener entre 4 y 16 caracteres de longitud.<br>\n"
+"Formato del login del administrador incorrecto: S&oacute;lo deben usarse "
+"letras min&uacute;sculas o numeros o el signo &quot;-&quot; y debe tener "
+"entre 4 y 16 caracteres de longitud.<br>\n"
 
 #: shared/inc/sql/email.php:14
 msgid ""
 "Incorect mail login format: it should consist of only lowercase letters, "
 "numbers, or the \"-\" sign.<br>\n"
 msgstr ""
-"Formato de mail login incorrecto: S&oacute;lo deben usarse letras min&uacute;sculas o numeros o el signo &quot;-&quot;.<br>\n"
+"Formato de mail login incorrecto: S&oacute;lo deben usarse letras min&uacute;"
+"sculas o numeros o el signo &quot;-&quot;.<br>\n"
 
 #: shared/inc/sql/database.php:165 shared/inc/sql/database.php:209
 msgid "Incorrect MySQL db name format: please enter another and try again."
@@ -1274,18 +1335,18 @@ msgstr ""
 "Formato de usuario incorrecto, Por favor, introduzca otro y vuelva a "
 "intentarlo."
 
-#: shared/inc/sql/ssh.php:51
+#: shared/inc/sql/ssh.php:49
 #, fuzzy
 msgid ""
 "Incorrect SSH login form: please enter another login and try again.<br>\n"
 msgstr ""
 "Formato de login incorrecto. Introduzca otro login y vuelva a intentarlo."
 
-#: shared/inc/sql/ssh.php:108
+#: shared/inc/sql/ssh.php:106
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9"
 msgstr ""
 
-#: shared/inc/sql/ssh.php:55
+#: shared/inc/sql/ssh.php:53
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n"
 msgstr ""
 
@@ -1294,10 +1355,14 @@ msgid "Incorrect db login format: please enter another login and try again."
 msgstr ""
 "Formato de login incorrecto. Introduzca otro login y vuelva a intentarlo."
 
-#: shared/inc/sql/ssh.php:103
+#: shared/inc/sql/ssh.php:101
 msgid ""
 "Incorrect ssh login : this is not a good string for a ssh login, please "
 "enter a new one."
+msgstr ""
+
+#: shared/inc/sql/subdomain.php:6
+msgid "Incorrect sub-domain format."
 msgstr ""
 
 #: shared/inc/forms/lists.php:357
@@ -1850,14 +1915,18 @@ msgstr ""
 #: shared/inc/forms/email.php:244 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
 #: shared/inc/forms/root_admin.php:68 shared/inc/forms/root_admin.php:78
-#: shared/inc/forms/root_admin.php:352 shared/inc/forms/root_admin.php:357
-#: shared/inc/forms/subdomain.php:160 shared/inc/forms/subdomain.php:174
-#: shared/inc/forms/ticket.php:130
+#: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:352
+#: shared/inc/forms/root_admin.php:357 shared/inc/forms/subdomain.php:160
+#: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:130
 msgid "No"
 msgstr "No"
 
 #: admin/inc/renewals.php:175
 msgid "No SSL IP expired"
+msgstr ""
+
+#: shared/inc/forms/my_account.php:164
+msgid "No SSL token available: contact your administrator to request it."
 msgstr ""
 
 #: admin/inc/renewals.php:208
@@ -1902,6 +1971,10 @@ msgstr ""
 
 #: admin/inc/renewals.php:145
 msgid "No shared account expired."
+msgstr ""
+
+#: shared/inc/forms/my_account.php:143 shared/inc/forms/my_account.php:170
+msgid "No ssl product defined."
 msgstr ""
 
 #: shared/inc/sql/database.php:73
@@ -1973,7 +2046,7 @@ msgstr "N&uacute;mero de bases de datos:"
 #: shared/inc/forms/domain_stats.php:88 shared/inc/forms/email.php:127
 #: shared/inc/forms/email.php:179 shared/inc/forms/email.php:222
 #: shared/inc/forms/email.php:239 shared/inc/forms/email.php:256
-#: shared/inc/forms/email.php:275
+#: shared/inc/forms/email.php:275 shared/inc/forms/my_account.php:191
 msgid "Ok"
 msgstr ""
 
@@ -2065,7 +2138,8 @@ msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"
 msgstr ""
-"La contrase&ntilde;a debe estar formada con caracteres estandar y numeros (a-zA-Z0-9) y tener entre 6 y 16 caracteres de longitud.<br>\n"
+"La contrase&ntilde;a debe estar formada con caracteres estandar y numeros (a-"
+"zA-Z0-9) y tener entre 6 y 16 caracteres de longitud.<br>\n"
 
 #: client/new_account_form.php:67
 #, fuzzy
@@ -2179,7 +2253,7 @@ msgstr ""
 msgid "Period"
 msgstr "Per&iacute;odo"
 
-#: shared/inc/forms/my_account.php:214
+#: shared/inc/forms/my_account.php:213
 msgid "Phone number:"
 msgstr "N&uacute;mero de tel&eacute;fono:"
 
@@ -2206,7 +2280,7 @@ msgid "Please renew with one of the following options: "
 msgstr ""
 "Por favor d&iacute;ganos si la informaci&oacute;n siguiente no es correcta:"
 
-#: shared/inc/forms/my_account.php:200
+#: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
 msgstr ""
 "Por favor d&iacute;ganos si la informaci&oacute;n siguiente no es correcta:"
@@ -2280,7 +2354,7 @@ msgstr ""
 msgid "Product:"
 msgstr "ID de producto:"
 
-#: shared/inc/forms/root_admin.php:276
+#: shared/inc/forms/root_admin.php:231 shared/inc/forms/root_admin.php:276
 msgid "Product: "
 msgstr ""
 
@@ -2334,7 +2408,7 @@ msgstr "Redireccion 1: "
 msgid "Redirection 2: "
 msgstr "Redireccion 2: "
 
-#: shared/inc/forms/my_account.php:189
+#: shared/inc/forms/my_account.php:188
 #, fuzzy
 msgid "Refund my account:"
 msgstr "Acreditar dinero a mi cuenta:"
@@ -2373,7 +2447,7 @@ msgstr ""
 msgid "Reinstalling operating system..."
 msgstr ""
 
-#: shared/inc/forms/my_account.php:185
+#: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
 msgstr "Dinero restante en mi cuenta:"
 
@@ -2513,6 +2587,10 @@ msgstr ""
 msgid "SSL dedicated IP addresses: "
 msgstr ""
 
+#: shared/inc/forms/my_account.php:118
+msgid "SSL tokens"
+msgstr ""
+
 #: admin/inc/dtc_config.php:594
 msgid "Same as for DTC"
 msgstr ""
@@ -2521,6 +2599,10 @@ msgstr ""
 #: shared/inc/forms/domain_stats.php:98
 msgid "Save"
 msgstr "Guardar"
+
+#: shared/inc/forms/subdomain.php:196
+msgid "Sbox cgi-bin protection: "
+msgstr ""
 
 #: admin/inc/dtc_config.php:705
 msgid ""
@@ -2623,6 +2705,10 @@ msgstr "Servidor DNS primario:"
 msgid "Service country"
 msgstr "Pais"
 
+#: shared/inc/forms/root_admin.php:233
+msgid "Setup physical VPS (LVM): "
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:363
 msgid "Shared"
 msgstr ""
@@ -2655,7 +2741,7 @@ msgstr ""
 msgid "Stat script generated !"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:212
+#: shared/inc/forms/my_account.php:211
 msgid "State:"
 msgstr "Provincia:"
 
@@ -2826,6 +2912,10 @@ msgstr ""
 "Este usuario aún tiene bases de datos. Por favor, eliminelas o cambie antes "
 "el propietario."
 
+#: shared/inc/sql/vps.php:40
+msgid "The password you have submited is not a valid password"
+msgstr "La contraseña proporcionada no es correcta"
+
 #: client/new_account.php:152
 msgid ""
 "The payment gateway have reported that your payment has failed. Contact us, "
@@ -2883,7 +2973,8 @@ msgstr ""
 
 #: shared/inc/forms/subdomain.php:169
 msgid "This subdomain is a service (SRV)<br>entry for the following port: "
-msgstr "Este subdominio es una entrada del service (SRV)<br>para el subdominio port: "
+msgstr ""
+"Este subdominio es una entrada del service (SRV)<br>para el subdominio port: "
 
 #: shared/inc/forms/email.php:323
 msgid ""
@@ -3056,6 +3147,10 @@ msgstr ""
 msgid "Use SSL:"
 msgstr "Usar SSL:"
 
+#: shared/inc/forms/subdomain.php:232
+msgid "Use an SSL vhost using this IP: "
+msgstr ""
+
 #: admin/inc/dtc_config.php:582
 msgid "Use awstats"
 msgstr ""
@@ -3121,6 +3216,10 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:572
 msgid "Use webalizer"
+msgstr ""
+
+#: shared/inc/forms/my_account.php:126
+msgid "Used by"
 msgstr ""
 
 #: shared/inc/forms/email.php:586
@@ -3335,7 +3434,9 @@ msgstr ""
 
 #: shared/inc/fetch.php:39 shared/inc/fetch.php:362 shared/inc/fetch.php:367
 msgid "Wrong user or password, or timeout expired!"
-msgstr "Nombre de usuario o contrase&ntilde;a incorrecta o tiempo de ejecuci&oacute;n excedido"
+msgstr ""
+"Nombre de usuario o contrase&ntilde;a incorrecta o tiempo de ejecuci&oacute;"
+"n excedido"
 
 #: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
 #: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
@@ -3358,17 +3459,21 @@ msgstr "Nombre de usuario o contrase&ntilde;a incorrecta o tiempo de ejecuci&oac
 #: shared/inc/forms/email.php:242 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
 #: shared/inc/forms/root_admin.php:67 shared/inc/forms/root_admin.php:77
-#: shared/inc/forms/root_admin.php:352 shared/inc/forms/root_admin.php:357
-#: shared/inc/forms/subdomain.php:160 shared/inc/forms/subdomain.php:174
-#: shared/inc/forms/ticket.php:129
+#: shared/inc/forms/root_admin.php:234 shared/inc/forms/root_admin.php:352
+#: shared/inc/forms/root_admin.php:357 shared/inc/forms/subdomain.php:160
+#: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:129
 msgid "Yes"
 msgstr "S&iacute;"
 
-#: shared/inc/forms/my_account.php:218
+#: shared/inc/forms/my_account.php:123
+msgid "You currently don't have any SSL tokens."
+msgstr ""
+
+#: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
 msgstr ""
 
-#: shared/inc/sql/ssh.php:26
+#: shared/inc/sql/ssh.php:24
 msgid "You don't have the SSH login flag!"
 msgstr "No tiene el marcador de acceso por SSH!"
 
@@ -3451,7 +3556,7 @@ msgstr "Clave de acceso al servidor de pruebas:"
 msgid "Your list of imported mail"
 msgstr ""
 
-#: shared/inc/sql/ssh.php:33 shared/inc/sql/ssh.php:96
+#: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
 msgid "Your path is restricted to "
 msgstr "Su ruta está limitada a "
 
@@ -3460,7 +3565,7 @@ msgstr "Su ruta está limitada a "
 msgid "Your users"
 msgstr "Su nombre SRS:"
 
-#: shared/inc/forms/my_account.php:210
+#: shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
 msgstr "Codigo postal:"
 
@@ -3468,6 +3573,10 @@ msgstr "Codigo postal:"
 #, fuzzy
 msgid "Zipcode: "
 msgstr "Codigo postal:"
+
+#: shared/inc/forms/dns.php:67
+msgid "Zone file will be regenerated at next cron job."
+msgstr ""
 
 #: shared/inc/forms/domain_info.php:59
 msgid "aliasing"

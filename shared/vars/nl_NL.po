@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 03:23+0800\n"
+"POT-Creation-Date: 2008-01-18 15:48+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jelle Kalf <thomas@goirand.fr>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -23,6 +23,15 @@ msgstr ""
 #: shared/inc/sql/lists.php:478
 msgid " does not look like a mailbox login..."
 msgstr " dit lijkt niet op een mailbox login..."
+
+#: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
+#: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
+#: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:114
+#: shared/inc/sql/vps.php:124 shared/inc/sql/vps.php:166
+#: shared/inc/sql/vps.php:174 shared/inc/sql/vps.php:184
+#: shared/inc/sql/vps.php:194
+msgid " file "
+msgstr ""
 
 #: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
 #: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
@@ -48,6 +57,12 @@ msgstr "ALLE BESTANDEN EN SCRIPTS"
 msgid "APACHE VHOST"
 msgstr "APACHE VHOST"
 
+#: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
+#: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
+#: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:166
+msgid "Access not granted line "
+msgstr "Toegang geweigerd regel "
+
 #: admin/inc/dtc_config.php:843
 #, fuzzy
 msgid "Act as backup DNS server for the following servers:"
@@ -60,7 +75,8 @@ msgstr "Fungeer als een backup mail server voor de volgende servers:"
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:212
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
-#: shared/inc/forms/email.php:27 shared/inc/forms/reseller.php:24
+#: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
+#: shared/inc/forms/reseller.php:24
 msgid "Action"
 msgstr "Aktie"
 
@@ -146,7 +162,7 @@ msgstr "Adres:"
 msgid "Address of your main MX server:"
 msgstr "Hostname van primaire MX record"
 
-#: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:208
+#: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:207
 msgid "Address:"
 msgstr "Adres:"
 
@@ -286,6 +302,10 @@ msgstr "Beschikbaar"
 msgid "BACKUP SCRIPTS"
 msgstr "BACKUP SCRIPTS"
 
+#: shared/inc/sql/vps.php:174
+msgid "BSD kernel type is not correct line "
+msgstr "Incorrect BSD kernel type regel "
+
 #: admin/inc/monitor.php:15
 msgid "BW Quota"
 msgstr "Bandbreedte Quota"
@@ -381,6 +401,14 @@ msgstr "Kan server niet in de database vinden!"
 msgid "Cannot find ticket!"
 msgstr "Kan ticket niet vinden!"
 
+#: shared/inc/sql/vps.php:124 shared/inc/sql/vps.php:194
+msgid "Cannot get VPS IP addresses information line "
+msgstr "Kan VPS IP address informatie niet krijgen regel "
+
+#: shared/inc/sql/vps.php:114 shared/inc/sql/vps.php:184
+msgid "Cannot get VPS information line "
+msgstr "Kan VPS informatie niet krijgen regel "
+
 #: shared/inc/sql/database.php:172
 msgid "Cannot reselect MySQL db name: please enter another and try again."
 msgstr ""
@@ -435,7 +463,7 @@ msgstr "Checking filesystem..."
 msgid "Choose a package to install"
 msgstr "Kies een package om te installeren"
 
-#: shared/inc/forms/my_account.php:211
+#: shared/inc/forms/my_account.php:210
 msgid "City:"
 msgstr "Woonplaats:"
 
@@ -491,7 +519,7 @@ msgstr "Bedrijven"
 msgid "Company name"
 msgstr "Bedrijfsnaam:"
 
-#: admin/inc/dtc_config.php:1218 shared/inc/forms/my_account.php:203
+#: admin/inc/dtc_config.php:1218 shared/inc/forms/my_account.php:202
 msgid "Company name:"
 msgstr "Bedrijfsnaam:"
 
@@ -552,6 +580,12 @@ msgstr "Subdomeinen:"
 msgid "Could not connect to SMTP server (timed out): "
 msgstr "Kon geen verbinding maken met de VPS SOAP Server."
 
+#: shared/inc/sql/vps.php:6 shared/inc/sql/vps.php:50
+#: shared/inc/sql/vps.php:72 shared/inc/sql/vps.php:92
+#: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:210
+msgid "Could not connect to VPS server!"
+msgstr "Kon geen verbinding maken met de VPS server!"
+
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "Kon geen verbinding maken met de VPS SOAP Server."
@@ -559,6 +593,10 @@ msgstr "Kon geen verbinding maken met de VPS SOAP Server."
 #: client/new_account_form.php:101
 msgid "Could not find the VPS server in database"
 msgstr "Kon VPS niet in database vinden"
+
+#: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:60
+msgid "Could not found subdomain in table for folder deletion"
+msgstr ""
 
 #: shared/inc/forms/vps.php:122
 msgid ""
@@ -579,6 +617,10 @@ msgid ""
 msgstr ""
 "kon remote status niet verkrijgen: kon geen verbinding maken met de SOAP "
 "server (HTTP error)."
+
+#: shared/inc/forms/dns.php:82
+msgid "Could not load zonefile: permission denied or file not existant?"
+msgstr ""
 
 #: admin/deamons_state.php:174
 msgid "Could not write HELLO to server"
@@ -601,7 +643,7 @@ msgstr "Land"
 msgid "Country code seems incorrect."
 msgstr "Land code incorrect."
 
-#: admin/inc/dtc_config.php:1226 shared/inc/forms/my_account.php:213
+#: admin/inc/dtc_config.php:1226 shared/inc/forms/my_account.php:212
 msgid "Country:"
 msgstr "Land:"
 
@@ -908,6 +950,14 @@ msgstr "Domeinnaam is kennelijk incorrect."
 msgid "Domain name trafic and disk usage:"
 msgstr "Domeinnaam verkeer en hardeschijf gebruik:"
 
+#: shared/inc/forms/dns.php:61
+msgid "Domain root TXT record2: "
+msgstr ""
+
+#: shared/inc/forms/dns.php:60
+msgid "Domain root TXT record: "
+msgstr ""
+
 #: shared/gfx/skin/default_layout.php:409
 msgid "Domains for"
 msgstr "domeinen voor"
@@ -986,7 +1036,7 @@ msgstr "Email addr"
 msgid "Email user and domain files generated !"
 msgstr ""
 
-#: shared/inc/forms/aliases.php:47 shared/inc/forms/my_account.php:216
+#: shared/inc/forms/aliases.php:47 shared/inc/forms/my_account.php:215
 #, fuzzy
 msgid "Email:"
 msgstr "Email addr"
@@ -1004,6 +1054,11 @@ msgstr "Enable SPAM filtering: "
 msgid "Error"
 msgstr "Fout"
 
+#: shared/inc/sql/vps.php:57
+#, fuzzy
+msgid "Error: "
+msgstr "Fout"
+
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
 msgid "Expiration"
 msgstr "Expiratie"
@@ -1013,7 +1068,7 @@ msgstr "Expiratie"
 msgid "Expiration date"
 msgstr "Vervaldatum"
 
-#: admin/inc/dtc_config.php:261
+#: admin/inc/dtc_config.php:261 shared/inc/forms/my_account.php:126
 msgid "Expire"
 msgstr "Expiratie"
 
@@ -1067,11 +1122,11 @@ msgstr "FTP password:"
 msgid "Familly name: "
 msgstr "Achternaam:"
 
-#: shared/inc/forms/my_account.php:207
+#: shared/inc/forms/my_account.php:206
 msgid "Family name:"
 msgstr "Achternaam:"
 
-#: shared/inc/forms/my_account.php:215
+#: shared/inc/forms/my_account.php:214
 msgid "Fax:"
 msgstr "Faxnummer:"
 
@@ -1092,7 +1147,7 @@ msgstr ""
 msgid "File-system check:"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:206
+#: shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "Voornaam:"
 
@@ -1202,7 +1257,8 @@ msgstr "Ik ga akkoord met de"
 msgid "IP Resolved"
 msgstr ""
 
-#: admin/inc/dtc_config.php:751 shared/inc/forms/root_admin.php:384
+#: admin/inc/dtc_config.php:751 shared/inc/forms/my_account.php:126
+#: shared/inc/forms/root_admin.php:384
 msgid "IP address"
 msgstr "IP adres"
 
@@ -1288,18 +1344,18 @@ msgstr ""
 "Incorrect MySQL login formaat: vul alsjeblieft een ander in en probeer "
 "opnieuw."
 
-#: shared/inc/sql/ssh.php:51
+#: shared/inc/sql/ssh.php:49
 #, fuzzy
 msgid ""
 "Incorrect SSH login form: please enter another login and try again.<br>\n"
 msgstr ""
 "Incorrect db login formaat:  vul alsjeblieft een ander in en probeer opnieuw."
 
-#: shared/inc/sql/ssh.php:108
+#: shared/inc/sql/ssh.php:106
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9"
 msgstr ""
 
-#: shared/inc/sql/ssh.php:55
+#: shared/inc/sql/ssh.php:53
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n"
 msgstr ""
 
@@ -1308,10 +1364,14 @@ msgid "Incorrect db login format: please enter another login and try again."
 msgstr ""
 "Incorrect db login formaat:  vul alsjeblieft een ander in en probeer opnieuw."
 
-#: shared/inc/sql/ssh.php:103
+#: shared/inc/sql/ssh.php:101
 msgid ""
 "Incorrect ssh login : this is not a good string for a ssh login, please "
 "enter a new one."
+msgstr ""
+
+#: shared/inc/sql/subdomain.php:6
+msgid "Incorrect sub-domain format."
 msgstr ""
 
 #: shared/inc/forms/lists.php:357
@@ -1858,15 +1918,19 @@ msgstr "Nick name"
 #: shared/inc/forms/email.php:244 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
 #: shared/inc/forms/root_admin.php:68 shared/inc/forms/root_admin.php:78
-#: shared/inc/forms/root_admin.php:352 shared/inc/forms/root_admin.php:357
-#: shared/inc/forms/subdomain.php:160 shared/inc/forms/subdomain.php:174
-#: shared/inc/forms/ticket.php:130
+#: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:352
+#: shared/inc/forms/root_admin.php:357 shared/inc/forms/subdomain.php:160
+#: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:130
 msgid "No"
 msgstr "Nee"
 
 #: admin/inc/renewals.php:175
 msgid "No SSL IP expired"
 msgstr "Geen SSL IP verlopen"
+
+#: shared/inc/forms/my_account.php:164
+msgid "No SSL token available: contact your administrator to request it."
+msgstr ""
 
 #: admin/inc/renewals.php:208
 msgid "No VPS expired"
@@ -1911,6 +1975,11 @@ msgstr "Geen product"
 #: admin/inc/renewals.php:145
 msgid "No shared account expired."
 msgstr "Geen shared account verlopen."
+
+#: shared/inc/forms/my_account.php:143 shared/inc/forms/my_account.php:170
+#, fuzzy
+msgid "No ssl product defined."
+msgstr "Geen product"
 
 #: shared/inc/sql/database.php:73
 msgid ""
@@ -1980,7 +2049,7 @@ msgstr "Aantal databases :"
 #: shared/inc/forms/domain_stats.php:88 shared/inc/forms/email.php:127
 #: shared/inc/forms/email.php:179 shared/inc/forms/email.php:222
 #: shared/inc/forms/email.php:239 shared/inc/forms/email.php:256
-#: shared/inc/forms/email.php:275
+#: shared/inc/forms/email.php:275 shared/inc/forms/my_account.php:191
 msgid "Ok"
 msgstr ""
 
@@ -2189,7 +2258,7 @@ msgstr ""
 msgid "Period"
 msgstr "Periode"
 
-#: shared/inc/forms/my_account.php:214
+#: shared/inc/forms/my_account.php:213
 msgid "Phone number:"
 msgstr "Telefoonnummer:"
 
@@ -2214,7 +2283,7 @@ msgstr "Vernieuw het met een van de volgende opties"
 msgid "Please renew with one of the following options: "
 msgstr "Vernieuw alsjeblieft met een van de volgende opties: "
 
-#: shared/inc/forms/my_account.php:200
+#: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
 msgstr "Laat ons weten of het volgende niet correct is:"
 
@@ -2290,7 +2359,7 @@ msgstr ""
 msgid "Product:"
 msgstr "Product"
 
-#: shared/inc/forms/root_admin.php:276
+#: shared/inc/forms/root_admin.php:231 shared/inc/forms/root_admin.php:276
 #, fuzzy
 msgid "Product: "
 msgstr "Product"
@@ -2345,7 +2414,7 @@ msgstr "Doorsturen naar 1: "
 msgid "Redirection 2: "
 msgstr "Doorsturen naar 2: "
 
-#: shared/inc/forms/my_account.php:189
+#: shared/inc/forms/my_account.php:188
 msgid "Refund my account:"
 msgstr "Mijn tegoeden terugstorten:"
 
@@ -2382,7 +2451,7 @@ msgstr "Herinstalleer operating system:"
 msgid "Reinstalling operating system..."
 msgstr "Herinstallatie operating system..."
 
-#: shared/inc/forms/my_account.php:185
+#: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
 msgstr "Beschikbare tegoeden op mijn account:"
 
@@ -2525,6 +2594,11 @@ msgstr "Vernieuw SSL Token"
 msgid "SSL dedicated IP addresses: "
 msgstr "SSL dedicated IPs: "
 
+#: shared/inc/forms/my_account.php:118
+#, fuzzy
+msgid "SSL tokens"
+msgstr "Schaf SSL Token aan"
+
 #: admin/inc/dtc_config.php:594
 msgid "Same as for DTC"
 msgstr "Zelfde als voor DTC"
@@ -2534,6 +2608,10 @@ msgstr "Zelfde als voor DTC"
 #, fuzzy
 msgid "Save"
 msgstr "Server"
+
+#: shared/inc/forms/subdomain.php:196
+msgid "Sbox cgi-bin protection: "
+msgstr ""
 
 #: admin/inc/dtc_config.php:705
 msgid ""
@@ -2635,6 +2713,10 @@ msgstr "Server:"
 msgid "Service country"
 msgstr "Service Land"
 
+#: shared/inc/forms/root_admin.php:233
+msgid "Setup physical VPS (LVM): "
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:363
 msgid "Shared"
 msgstr ""
@@ -2667,7 +2749,7 @@ msgstr "Start en stop jouw VPS:"
 msgid "Stat script generated !"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:212
+#: shared/inc/forms/my_account.php:211
 msgid "State:"
 msgstr "Provincie:"
 
@@ -2840,6 +2922,10 @@ msgid ""
 msgstr ""
 "Deze gebruiker is nog steeds eigenaar van enkele databases. Verwijder of "
 "wijzig de eigenaar van deze eerst."
+
+#: shared/inc/sql/vps.php:40
+msgid "The password you have submited is not a valid password"
+msgstr "Het door jouw opgegeven password is niet een geldig password"
 
 #: client/new_account.php:152
 msgid ""
@@ -3080,6 +3166,10 @@ msgstr ""
 msgid "Use SSL:"
 msgstr "Gebruik SSL"
 
+#: shared/inc/forms/subdomain.php:232
+msgid "Use an SSL vhost using this IP: "
+msgstr ""
+
 #: admin/inc/dtc_config.php:582
 msgid "Use awstats"
 msgstr ""
@@ -3145,6 +3235,10 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:572
 msgid "Use webalizer"
+msgstr ""
+
+#: shared/inc/forms/my_account.php:126
+msgid "Used by"
 msgstr ""
 
 #: shared/inc/forms/email.php:586
@@ -3382,17 +3476,21 @@ msgstr "Verkeerde gebruiker of password of timeout verlopen!"
 #: shared/inc/forms/email.php:242 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
 #: shared/inc/forms/root_admin.php:67 shared/inc/forms/root_admin.php:77
-#: shared/inc/forms/root_admin.php:352 shared/inc/forms/root_admin.php:357
-#: shared/inc/forms/subdomain.php:160 shared/inc/forms/subdomain.php:174
-#: shared/inc/forms/ticket.php:129
+#: shared/inc/forms/root_admin.php:234 shared/inc/forms/root_admin.php:352
+#: shared/inc/forms/root_admin.php:357 shared/inc/forms/subdomain.php:160
+#: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:129
 msgid "Yes"
 msgstr "Ja"
 
-#: shared/inc/forms/my_account.php:218
+#: shared/inc/forms/my_account.php:123
+msgid "You currently don't have any SSL tokens."
+msgstr ""
+
+#: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
 msgstr ""
 
-#: shared/inc/sql/ssh.php:26
+#: shared/inc/sql/ssh.php:24
 msgid "You don't have the SSH login flag!"
 msgstr "Je hebt geen SSH login flag!"
 
@@ -3475,7 +3573,7 @@ msgstr "Key voor toegang tot de test server:"
 msgid "Your list of imported mail"
 msgstr ""
 
-#: shared/inc/sql/ssh.php:33 shared/inc/sql/ssh.php:96
+#: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
 msgid "Your path is restricted to "
 msgstr "Je pad is gelimiteerd tot "
 
@@ -3484,7 +3582,7 @@ msgstr "Je pad is gelimiteerd tot "
 msgid "Your users"
 msgstr "SRS Gebruikersnaam:"
 
-#: shared/inc/forms/my_account.php:210
+#: shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
 msgstr "Postcode:"
 
@@ -3492,6 +3590,10 @@ msgstr "Postcode:"
 #, fuzzy
 msgid "Zipcode: "
 msgstr "Postcode:"
+
+#: shared/inc/forms/dns.php:67
+msgid "Zone file will be regenerated at next cron job."
+msgstr ""
 
 #: shared/inc/forms/domain_info.php:59
 msgid "aliasing"

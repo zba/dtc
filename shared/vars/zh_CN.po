@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 03:23+0800\n"
+"POT-Creation-Date: 2008-01-18 15:48+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -23,6 +23,15 @@ msgstr ""
 #: shared/inc/sql/lists.php:478
 msgid " does not look like a mailbox login..."
 msgstr "这看起来不像是一个邮箱的登陆名..."
+
+#: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
+#: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
+#: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:114
+#: shared/inc/sql/vps.php:124 shared/inc/sql/vps.php:166
+#: shared/inc/sql/vps.php:174 shared/inc/sql/vps.php:184
+#: shared/inc/sql/vps.php:194
+msgid " file "
+msgstr ""
 
 #: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
 #: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
@@ -45,6 +54,12 @@ msgstr "所有程序与文件"
 msgid "APACHE VHOST"
 msgstr "虚拟Apache主机"
 
+#: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
+#: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
+#: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:166
+msgid "Access not granted line "
+msgstr "未授权的操作"
+
 #: admin/inc/dtc_config.php:843
 msgid "Act as backup DNS server for the following servers:"
 msgstr "对下列服务器作为备份DNS服务器:"
@@ -56,7 +71,8 @@ msgstr "对下列服务器作为备份邮件服务器:"
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:212
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
-#: shared/inc/forms/email.php:27 shared/inc/forms/reseller.php:24
+#: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
+#: shared/inc/forms/reseller.php:24
 msgid "Action"
 msgstr "操作"
 
@@ -143,7 +159,7 @@ msgstr "地址："
 msgid "Address of your main MX server:"
 msgstr "主MX服务器的地址："
 
-#: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:208
+#: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:207
 #, fuzzy
 msgid "Address:"
 msgstr "地址："
@@ -278,6 +294,10 @@ msgstr "可用"
 msgid "BACKUP SCRIPTS"
 msgstr "备份程序"
 
+#: shared/inc/sql/vps.php:174
+msgid "BSD kernel type is not correct line "
+msgstr "BSD内核类型不正确"
+
 #: admin/inc/monitor.php:15
 msgid "BW Quota"
 msgstr "带宽配额"
@@ -373,6 +393,14 @@ msgstr ""
 msgid "Cannot find ticket!"
 msgstr "没有找到相应的主题！"
 
+#: shared/inc/sql/vps.php:124 shared/inc/sql/vps.php:194
+msgid "Cannot get VPS IP addresses information line "
+msgstr "无法得到VPS的IP地址信息"
+
+#: shared/inc/sql/vps.php:114 shared/inc/sql/vps.php:184
+msgid "Cannot get VPS information line "
+msgstr "无法得到VPS信息"
+
 #: shared/inc/sql/database.php:172
 msgid "Cannot reselect MySQL db name: please enter another and try again."
 msgstr "不能选择MySQL数据库名：请重新填入一个再试一次。"
@@ -426,7 +454,7 @@ msgstr "检查文件系统..."
 msgid "Choose a package to install"
 msgstr "请选择要安装的软件包"
 
-#: shared/inc/forms/my_account.php:211
+#: shared/inc/forms/my_account.php:210
 #, fuzzy
 msgid "City:"
 msgstr "国家："
@@ -482,7 +510,7 @@ msgstr "公司"
 msgid "Company name"
 msgstr "公司名称："
 
-#: admin/inc/dtc_config.php:1218 shared/inc/forms/my_account.php:203
+#: admin/inc/dtc_config.php:1218 shared/inc/forms/my_account.php:202
 msgid "Company name:"
 msgstr "公司名称："
 
@@ -543,6 +571,12 @@ msgstr "子域名："
 msgid "Could not connect to SMTP server (timed out): "
 msgstr "无法连接到SOAP服务器。"
 
+#: shared/inc/sql/vps.php:6 shared/inc/sql/vps.php:50
+#: shared/inc/sql/vps.php:72 shared/inc/sql/vps.php:92
+#: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:210
+msgid "Could not connect to VPS server!"
+msgstr "无法连接到VPS服务器!"
+
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "无法连接到SOAP服务器。"
@@ -550,6 +584,10 @@ msgstr "无法连接到SOAP服务器。"
 #: client/new_account_form.php:101
 msgid "Could not find the VPS server in database"
 msgstr "在数据库中没有找到VPS的相关配置"
+
+#: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:60
+msgid "Could not found subdomain in table for folder deletion"
+msgstr ""
 
 #: shared/inc/forms/vps.php:122
 msgid ""
@@ -567,6 +605,10 @@ msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
 msgstr "无法得到远程主机的运行状态：无法连接到SOAP服务器(HTTP error)。"
+
+#: shared/inc/forms/dns.php:82
+msgid "Could not load zonefile: permission denied or file not existant?"
+msgstr ""
 
 #: admin/deamons_state.php:174
 msgid "Could not write HELLO to server"
@@ -589,7 +631,7 @@ msgstr ""
 msgid "Country code seems incorrect."
 msgstr "国家代码貌似不正确。"
 
-#: admin/inc/dtc_config.php:1226 shared/inc/forms/my_account.php:213
+#: admin/inc/dtc_config.php:1226 shared/inc/forms/my_account.php:212
 msgid "Country:"
 msgstr "国家："
 
@@ -896,6 +938,14 @@ msgstr "域名貌似不正确。"
 msgid "Domain name trafic and disk usage:"
 msgstr "域名，流量，磁盘使用率："
 
+#: shared/inc/forms/dns.php:61
+msgid "Domain root TXT record2: "
+msgstr ""
+
+#: shared/inc/forms/dns.php:60
+msgid "Domain root TXT record: "
+msgstr ""
+
 #: shared/gfx/skin/default_layout.php:409
 msgid "Domains for"
 msgstr "主机"
@@ -973,7 +1023,7 @@ msgstr "邮箱地址"
 msgid "Email user and domain files generated !"
 msgstr ""
 
-#: shared/inc/forms/aliases.php:47 shared/inc/forms/my_account.php:216
+#: shared/inc/forms/aliases.php:47 shared/inc/forms/my_account.php:215
 #, fuzzy
 msgid "Email:"
 msgstr "邮箱地址"
@@ -991,6 +1041,11 @@ msgstr "开启垃圾邮件过滤功能："
 msgid "Error"
 msgstr "错误"
 
+#: shared/inc/sql/vps.php:57
+#, fuzzy
+msgid "Error: "
+msgstr "错误"
+
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
 msgid "Expiration"
 msgstr "期满"
@@ -1000,7 +1055,7 @@ msgstr "期满"
 msgid "Expiration date"
 msgstr "过期时间"
 
-#: admin/inc/dtc_config.php:261
+#: admin/inc/dtc_config.php:261 shared/inc/forms/my_account.php:126
 msgid "Expire"
 msgstr "过期"
 
@@ -1054,11 +1109,11 @@ msgstr "FTP登陆密码："
 msgid "Familly name: "
 msgstr "姓："
 
-#: shared/inc/forms/my_account.php:207
+#: shared/inc/forms/my_account.php:206
 msgid "Family name:"
 msgstr "姓："
 
-#: shared/inc/forms/my_account.php:215
+#: shared/inc/forms/my_account.php:214
 msgid "Fax:"
 msgstr "传真："
 
@@ -1079,7 +1134,7 @@ msgstr "文件系统检查(fsck)"
 msgid "File-system check:"
 msgstr "文件系统检查："
 
-#: shared/inc/forms/my_account.php:206
+#: shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "名："
 
@@ -1188,7 +1243,8 @@ msgstr "我接受"
 msgid "IP Resolved"
 msgstr ""
 
-#: admin/inc/dtc_config.php:751 shared/inc/forms/root_admin.php:384
+#: admin/inc/dtc_config.php:751 shared/inc/forms/my_account.php:126
+#: shared/inc/forms/root_admin.php:384
 msgid "IP address"
 msgstr "IP地址"
 
@@ -1265,17 +1321,17 @@ msgstr "MySQL登陆名错误：请不要使用root或操作系统账号"
 msgid "Incorrect MySQL login format: please enter another login and try again."
 msgstr "MySQL登陆名错误：请重新输入登陆名再试一次。"
 
-#: shared/inc/sql/ssh.php:51
+#: shared/inc/sql/ssh.php:49
 #, fuzzy
 msgid ""
 "Incorrect SSH login form: please enter another login and try again.<br>\n"
 msgstr "错误的数据库登陆名：请更改登陆名再试一次。"
 
-#: shared/inc/sql/ssh.php:108
+#: shared/inc/sql/ssh.php:106
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9"
 msgstr ""
 
-#: shared/inc/sql/ssh.php:55
+#: shared/inc/sql/ssh.php:53
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n"
 msgstr ""
 
@@ -1283,10 +1339,14 @@ msgstr ""
 msgid "Incorrect db login format: please enter another login and try again."
 msgstr "错误的数据库登陆名：请更改登陆名再试一次。"
 
-#: shared/inc/sql/ssh.php:103
+#: shared/inc/sql/ssh.php:101
 msgid ""
 "Incorrect ssh login : this is not a good string for a ssh login, please "
 "enter a new one."
+msgstr ""
+
+#: shared/inc/sql/subdomain.php:6
+msgid "Incorrect sub-domain format."
 msgstr ""
 
 #: shared/inc/forms/lists.php:357
@@ -1833,9 +1893,9 @@ msgstr "昵称"
 #: shared/inc/forms/email.php:244 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
 #: shared/inc/forms/root_admin.php:68 shared/inc/forms/root_admin.php:78
-#: shared/inc/forms/root_admin.php:352 shared/inc/forms/root_admin.php:357
-#: shared/inc/forms/subdomain.php:160 shared/inc/forms/subdomain.php:174
-#: shared/inc/forms/ticket.php:130
+#: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:352
+#: shared/inc/forms/root_admin.php:357 shared/inc/forms/subdomain.php:160
+#: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:130
 msgid "No"
 msgstr "否"
 
@@ -1843,6 +1903,10 @@ msgstr "否"
 #, fuzzy
 msgid "No SSL IP expired"
 msgstr "没有已过期的SSL IP"
+
+#: shared/inc/forms/my_account.php:164
+msgid "No SSL token available: contact your administrator to request it."
+msgstr ""
 
 #: admin/inc/renewals.php:208
 msgid "No VPS expired"
@@ -1887,6 +1951,11 @@ msgstr "没有产品"
 #: admin/inc/renewals.php:145
 msgid "No shared account expired."
 msgstr "没有已过期的共享主机账号。"
+
+#: shared/inc/forms/my_account.php:143 shared/inc/forms/my_account.php:170
+#, fuzzy
+msgid "No ssl product defined."
+msgstr "没有产品"
 
 #: shared/inc/sql/database.php:73
 msgid ""
@@ -1954,7 +2023,7 @@ msgstr "数据库的数目："
 #: shared/inc/forms/domain_stats.php:88 shared/inc/forms/email.php:127
 #: shared/inc/forms/email.php:179 shared/inc/forms/email.php:222
 #: shared/inc/forms/email.php:239 shared/inc/forms/email.php:256
-#: shared/inc/forms/email.php:275
+#: shared/inc/forms/email.php:275 shared/inc/forms/my_account.php:191
 msgid "Ok"
 msgstr ""
 
@@ -2157,7 +2226,7 @@ msgstr ""
 msgid "Period"
 msgstr "使用期限"
 
-#: shared/inc/forms/my_account.php:214
+#: shared/inc/forms/my_account.php:213
 msgid "Phone number:"
 msgstr "电话号码："
 
@@ -2182,7 +2251,7 @@ msgstr "请使用下列任意一个选项进行续约"
 msgid "Please renew with one of the following options: "
 msgstr "请使用下面任意一个选项进行续约："
 
-#: shared/inc/forms/my_account.php:200
+#: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
 msgstr "请告诉我们下列信息是否正确："
 
@@ -2257,7 +2326,7 @@ msgstr ""
 msgid "Product:"
 msgstr "产品"
 
-#: shared/inc/forms/root_admin.php:276
+#: shared/inc/forms/root_admin.php:231 shared/inc/forms/root_admin.php:276
 #, fuzzy
 msgid "Product: "
 msgstr "产品"
@@ -2312,7 +2381,7 @@ msgstr "邮件转发1："
 msgid "Redirection 2: "
 msgstr "邮件转发2："
 
-#: shared/inc/forms/my_account.php:189
+#: shared/inc/forms/my_account.php:188
 #, fuzzy
 msgid "Refund my account:"
 msgstr "我的退款："
@@ -2350,7 +2419,7 @@ msgstr "重新安装操作系统："
 msgid "Reinstalling operating system..."
 msgstr "重新安装操作系统..."
 
-#: shared/inc/forms/my_account.php:185
+#: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
 msgstr "我的帐户余额："
 
@@ -2491,6 +2560,11 @@ msgstr "更新SSL证书"
 msgid "SSL dedicated IP addresses: "
 msgstr "SSL 独立IP："
 
+#: shared/inc/forms/my_account.php:118
+#, fuzzy
+msgid "SSL tokens"
+msgstr "购买SSL证书"
+
 #: admin/inc/dtc_config.php:594
 msgid "Same as for DTC"
 msgstr "与DTC相类似"
@@ -2499,6 +2573,10 @@ msgstr "与DTC相类似"
 #: shared/inc/forms/domain_stats.php:98
 msgid "Save"
 msgstr "保存"
+
+#: shared/inc/forms/subdomain.php:196
+msgid "Sbox cgi-bin protection: "
+msgstr ""
 
 #: admin/inc/dtc_config.php:705
 msgid ""
@@ -2599,6 +2677,10 @@ msgstr "主机："
 msgid "Service country"
 msgstr ""
 
+#: shared/inc/forms/root_admin.php:233
+msgid "Setup physical VPS (LVM): "
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:363
 msgid "Shared"
 msgstr "共享"
@@ -2633,7 +2715,7 @@ msgstr "启动或关闭您的VPS："
 msgid "Stat script generated !"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:212
+#: shared/inc/forms/my_account.php:211
 msgid "State:"
 msgstr "省分："
 
@@ -2797,6 +2879,10 @@ msgid ""
 "That user still owns some databases. Please remove them or change the owner "
 "first."
 msgstr "该用户仍然拥有部分数据库，请先删除这些数据库或者改变它们的属主。"
+
+#: shared/inc/sql/vps.php:40
+msgid "The password you have submited is not a valid password"
+msgstr "您提交的密码不正确"
 
 #: client/new_account.php:152
 msgid ""
@@ -3035,6 +3121,10 @@ msgstr ""
 msgid "Use SSL:"
 msgstr "是否使用SSL："
 
+#: shared/inc/forms/subdomain.php:232
+msgid "Use an SSL vhost using this IP: "
+msgstr ""
+
 #: admin/inc/dtc_config.php:582
 msgid "Use awstats"
 msgstr ""
@@ -3099,6 +3189,10 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:572
 msgid "Use webalizer"
+msgstr ""
+
+#: shared/inc/forms/my_account.php:126
+msgid "Used by"
 msgstr ""
 
 #: shared/inc/forms/email.php:586
@@ -3334,17 +3428,21 @@ msgstr "用户错误或密码错误,或者已过期"
 #: shared/inc/forms/email.php:242 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
 #: shared/inc/forms/root_admin.php:67 shared/inc/forms/root_admin.php:77
-#: shared/inc/forms/root_admin.php:352 shared/inc/forms/root_admin.php:357
-#: shared/inc/forms/subdomain.php:160 shared/inc/forms/subdomain.php:174
-#: shared/inc/forms/ticket.php:129
+#: shared/inc/forms/root_admin.php:234 shared/inc/forms/root_admin.php:352
+#: shared/inc/forms/root_admin.php:357 shared/inc/forms/subdomain.php:160
+#: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:129
 msgid "Yes"
 msgstr "是"
 
-#: shared/inc/forms/my_account.php:218
+#: shared/inc/forms/my_account.php:123
+msgid "You currently don't have any SSL tokens."
+msgstr ""
+
+#: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
 msgstr ""
 
-#: shared/inc/sql/ssh.php:26
+#: shared/inc/sql/ssh.php:24
 msgid "You don't have the SSH login flag!"
 msgstr "您不能进行SSH登陆！"
 
@@ -3427,7 +3525,7 @@ msgstr "连接到测试服务器的密钥："
 msgid "Your list of imported mail"
 msgstr ""
 
-#: shared/inc/sql/ssh.php:33 shared/inc/sql/ssh.php:96
+#: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
 #, fuzzy
 msgid "Your path is restricted to "
 msgstr "您的目录被限定在"
@@ -3437,7 +3535,7 @@ msgstr "您的目录被限定在"
 msgid "Your users"
 msgstr "您的SRS用户名："
 
-#: shared/inc/forms/my_account.php:210
+#: shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
 msgstr "邮编："
 
@@ -3445,6 +3543,10 @@ msgstr "邮编："
 #, fuzzy
 msgid "Zipcode: "
 msgstr "邮编："
+
+#: shared/inc/forms/dns.php:67
+msgid "Zone file will be regenerated at next cron job."
+msgstr ""
 
 #: shared/inc/forms/domain_info.php:59
 msgid "aliasing"
