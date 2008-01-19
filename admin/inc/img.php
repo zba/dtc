@@ -95,6 +95,8 @@ if($_REQUEST["lang"] == "zh"){
 		$verdana_path = "../verdana.ttf";
 	}else if(file_exists("../../client/inc/verdana.ttf")){
 		$verdana_path = "../../client/inc/verdana.ttf";
+	}else if(file_exists("/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf")){
+		$verdana_path = "/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf";
 	}
 	if(isset($verdana_path)){
 		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, realpath($verdana_path), $utf );
@@ -123,7 +125,9 @@ if($_REQUEST["lang"] == "zh"){
 		$arial_path = "../arial.ttf";
 	}else if(file_exists("../../client/inc/arial.ttf")){
 		$arial_path = "../../client/inc/arial.ttf";
-	} 
+	}else if(file_exists("/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf")){
+		$arial_path = "/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf";
+	}
 	if(isset($arial_path)){
 		imagettftext ( $im, 9, 0, $gfx_start_pos+$txt_x_pos, $txt_y_pos, $text_color, realpath($arial_path), $_REQUEST["text"] );
 	}else{
