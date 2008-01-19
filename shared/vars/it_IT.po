@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 21:08+0800\n"
+"POT-Creation-Date: 2008-01-19 14:32+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Luca Franceschini <info@atw.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -692,11 +692,12 @@ msgstr "Credenziali non corrette: non posso mostrare il file "
 
 #: admin/inc/dtc_config.php:921
 #, fuzzy
-msgid "Currency letters:"
+msgid "Currency letters: "
 msgstr "Lettere valuta:"
 
 #: admin/inc/dtc_config.php:917
-msgid "Currency symbol:"
+#, fuzzy
+msgid "Currency symbol: "
 msgstr "Simbolo valuta:"
 
 #: shared/inc/forms/vps.php:247
@@ -862,7 +863,8 @@ msgid ""
 "Delete all messages of webarchive. NOTE: this works only if you have &quot;"
 "web archive&quot; not checked."
 msgstr ""
-"Elimina tutto l\\'archivio web. NOTA BENE: funziona solo se hai l\\'&quot;archivio web&quot; disattivato."
+"Elimina tutto l\\'archivio web. NOTA BENE: funziona solo se hai l\\'&quot;"
+"archivio web&quot; disattivato."
 
 #: shared/inc/forms/lists.php:405
 msgid "Delete headers:"
@@ -906,8 +908,9 @@ msgid "Description"
 msgstr "Descrizione"
 
 #: admin/inc/dtc_config.php:1065
-msgid "Description:"
-msgstr ""
+#, fuzzy
+msgid "Description: "
+msgstr "Descrizione"
 
 #: client/new_account_form.php:543
 msgid "Desired domain name"
@@ -1111,7 +1114,9 @@ msgstr "Attiva il supporto VERP."
 #: shared/inc/forms/lists.php:256
 #, fuzzy
 msgid "Enable webarchive."
-msgstr "Selezionando questa opzione si avrà la generazione ogni ora dell\\'archivio web."
+msgstr ""
+"Selezionando questa opzione si avrà la generazione ogni ora dell\\'archivio "
+"web."
 
 #: shared/inc/forms/lists.php:442
 msgid "Enable webarchive:"
@@ -1238,7 +1243,8 @@ msgid "Full description of the trouble:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:661
-msgid "Full hostname of DTC admin panel:"
+#, fuzzy
+msgid "Full hostname of DTC admin panel: "
 msgstr "Hostname completo del pannello admin di DTC:"
 
 #: shared/securepay/pay_functions.php:35
@@ -1259,7 +1265,8 @@ msgid "Generate a vhost entry for this subdomain:"
 msgstr "Generi un'entrata del vhost per questo subdomain:"
 
 #: admin/inc/dtc_config.php:652
-msgid "Generate all apache vhosts on local network ip (NAT)"
+#, fuzzy
+msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "Genera tutti i vhosts apache nell'ip network locale (NAT)"
 
 #: email/login.php:6
@@ -1325,7 +1332,8 @@ msgid "Hide email addresses to avoid spam."
 msgstr ""
 
 #: admin/inc/dtc_config.php:643
-msgid "Host IP addresses (separated by \"|\"):"
+#, fuzzy
+msgid "Host IP addresses (separated by \"|\"): "
 msgstr "Indirizzi IP dell'host (separati da \"|\"):"
 
 #: shared/gfx/skin/default_layout.php:159
@@ -1350,7 +1358,9 @@ msgstr "Nome:"
 #: shared/inc/forms/lists.php:247
 msgid ""
 "How many recipients pr. mail delivered to the smtp server. Defaults to 100."
-msgstr "Hoeveel ontvangers voordat mail wordt afgeleverd tot de smtp server. Standaard is 100."
+msgstr ""
+"Hoeveel ontvangers voordat mail wordt afgeleverd tot de smtp server. "
+"Standaard is 100."
 
 #: client/new_account_form.php:635
 msgid "I agree to the"
@@ -1410,7 +1420,9 @@ msgstr ""
 msgid ""
 "If this file exists, then retrieving old posts with -get-N (for exemple "
 "mylist-get-12@my-domain.tld) is disabled"
-msgstr "Se selezionato la possibilità di recuperare vecchi posts con -get-N è disabilitata."
+msgstr ""
+"Se selezionato la possibilità di recuperare vecchi posts con -get-N è "
+"disabilitata."
 
 #: shared/inc/forms/lists.php:214
 msgid ""
@@ -1429,7 +1441,9 @@ msgstr ""
 msgid ""
 "If this flag exists, the mail won\\'t be saved in the archive but simply "
 "deleted."
-msgstr "Se selezionato le email non verranno salvate nell\\'archivio ma semplicemente cancellate."
+msgstr ""
+"Se selezionato le email non verranno salvate nell\\'archivio ma "
+"semplicemente cancellate."
 
 #: shared/inc/forms/lists.php:223
 msgid ""
@@ -1449,7 +1463,6 @@ msgid ""
 "header of the email to the list (interesting for aliases addressing multiple "
 "lists)."
 msgstr ""
-
 
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
@@ -1543,9 +1556,11 @@ msgid ""
 "target=\\'_blank\\'>documentation</a> and see <a href=\\'http://www.mhonarc."
 "org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
 msgstr ""
-"Inserisci qui il codice del template che desideri usare per il tuo archivio web. Leggi la "
-"<a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' target=\\'_blank\\'>documentazione</a> e "
-"vedi gli <a href=\\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>esempi</a>."
+"Inserisci qui il codice del template che desideri usare per il tuo archivio "
+"web. Leggi la <a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile."
+"html\\' target=\\'_blank\\'>documentazione</a> e vedi gli <a href=\\'http://"
+"www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank"
+"\\'>esempi</a>."
 
 #: shared/inc/forms/packager.php:218 shared/inc/forms/packager.php:230
 msgid "Install"
@@ -1589,7 +1604,8 @@ msgid ""
 "Is the list is open or closed. If it\\'s closed subscribtion and "
 "unsubscription via mail is disabled."
 msgstr ""
-"Se selezionato la lista è chiusa. Le iscrizioni e cancellazioni dalla lista sono disattivate."
+"Se selezionato la lista è chiusa. Le iscrizioni e cancellazioni dalla lista "
+"sono disattivate."
 
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
 #: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:255
@@ -1710,7 +1726,8 @@ msgid "Lists max"
 msgstr "Lists max"
 
 #: admin/inc/dtc_config.php:657
-msgid "Local network area ip adress of the vhost using NAT"
+#, fuzzy
+msgid "Local network area ip adress of the vhost using NAT: "
 msgstr "Indirizzi IP area di rete locale del vhost usando NAT"
 
 #: admin/inc/dtc_config.php:402
@@ -1718,8 +1735,9 @@ msgid "Location"
 msgstr ""
 
 #: admin/inc/dtc_config.php:591
-msgid "Location of user's database:"
-msgstr ""
+#, fuzzy
+msgid "Location of user's database: "
+msgstr "Lista dei tuoi database:"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:245 admin/inc/draw_user_admin.php:237
@@ -1850,7 +1868,8 @@ msgid "Mailing lists:"
 msgstr "Mailinglists:"
 
 #: admin/inc/dtc_config.php:639
-msgid "Main ip address of the server:"
+#, fuzzy
+msgid "Main ip address of the server: "
 msgstr "Indirizzo IP principale del server:"
 
 #: admin/inc/dtc_config.php:634
@@ -1902,11 +1921,11 @@ msgstr ""
 "corso?)"
 
 #: admin/inc/dtc_config.php:1013
-msgid "Maxmind license key:"
+msgid "Maxmind license key: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1009
-msgid "Maxmind login:"
+msgid "Maxmind login: "
 msgstr ""
 
 #: admin/inc/graphs.php:9
@@ -1995,11 +2014,11 @@ msgstr "Altri server DNS:"
 msgid "Name servers:"
 msgstr "Name servers:"
 
-#: admin/inc/dtc_config.php:1044 shared/inc/forms/email.php:561
+#: shared/inc/forms/email.php:561
 msgid "Name:"
 msgstr "Nome:"
 
-#: shared/inc/forms/vps.php:139
+#: admin/inc/dtc_config.php:1044 shared/inc/forms/vps.php:139
 #, fuzzy
 msgid "Name: "
 msgstr "Nome:"
@@ -2392,17 +2411,17 @@ msgstr ""
 "Il formato della password non è corretto: inserisci solo lettere e numero "
 "(min. 4 max. 16 caratteri)."
 
-#: admin/inc/draw_user_admin.php:221 admin/inc/dtc_config.php:1058
-#: client/login.php:13 shared/inc/draw.php:436
-#: shared/inc/forms/database.php:37 shared/inc/forms/domain_stats.php:85
-#: shared/inc/forms/domain_stats.php:93 shared/inc/forms/email.php:27
-#: shared/inc/forms/email.php:565 shared/inc/forms/root_admin.php:104
-#: shared/inc/forms/ssh.php:75
+#: admin/inc/draw_user_admin.php:221 client/login.php:13
+#: shared/inc/draw.php:436 shared/inc/forms/database.php:37
+#: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
+#: shared/inc/forms/email.php:27 shared/inc/forms/email.php:565
+#: shared/inc/forms/root_admin.php:104 shared/inc/forms/ssh.php:75
 msgid "Password:"
 msgstr "Password:"
 
-#: client/new_account_form.php:562 email/login.php:13
-#: shared/inc/forms/email.php:216 shared/inc/forms/ftp.php:80
+#: admin/inc/dtc_config.php:1058 client/new_account_form.php:562
+#: email/login.php:13 shared/inc/forms/email.php:216
+#: shared/inc/forms/ftp.php:80
 msgid "Password: "
 msgstr ""
 
@@ -2441,20 +2460,23 @@ msgid "Paths"
 msgstr "Paths"
 
 #: admin/inc/dtc_config.php:942
-msgid "PayPal business account email:"
+#, fuzzy
+msgid "PayPal business account email: "
 msgstr "Email dell'account business PayPal:"
 
 #: admin/inc/dtc_config.php:946
 #, fuzzy
-msgid "PayPal fee rate:"
+msgid "PayPal fee rate: "
 msgstr "Percentuale commissione PayPal:"
 
 #: admin/inc/dtc_config.php:950
-msgid "PayPal flat fee:"
+#, fuzzy
+msgid "PayPal flat fee: "
 msgstr "Commissione fissa PayPal:"
 
 #: admin/inc/dtc_config.php:964
-msgid "PayPal test account email (sandbox):"
+#, fuzzy
+msgid "PayPal test account email (sandbox): "
 msgstr "Email dell'account di test PayPal (sandbox):"
 
 #: admin/inc/draw_user_admin.php:314
@@ -2526,8 +2548,9 @@ msgstr ""
 "Prima attendi che sia ultimata la reinstallazione del sistema operativo."
 
 #: admin/inc/dtc_config.php:1054
-msgid "Port number:"
-msgstr ""
+#, fuzzy
+msgid "Port number: "
+msgstr "Tel:"
 
 #: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
@@ -2632,7 +2655,9 @@ msgid ""
 "webarchive\\'s template. NOTE: this works only if you have &quot;web "
 "archive&quot; checked."
 msgstr ""
-"Rigenera tutti i messaggi dell\\'archivio web. Usalo solo se sono stati effettuati cambiamenti al file template. NOTA BENE: funziona solo se hai l\\'&quot;archivio web&quot; attivato."
+"Rigenera tutti i messaggi dell\\'archivio web. Usalo solo se sono stati "
+"effettuati cambiamenti al file template. NOTA BENE: funziona solo se hai l"
+"\\'&quot;archivio web&quot; attivato."
 
 #: shared/inc/forms/lists.php:444
 msgid "Recreate:"
@@ -2693,7 +2718,9 @@ msgstr "Reinstallazione del sistema operativo in corso..."
 
 #: shared/inc/forms/lists.php:229
 msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
-msgstr "Rifiuta tutte le email che non contengono l\\'indirizzo della lista su To: o Cc:."
+msgstr ""
+"Rifiuta tutte le email che non contengono l\\'indirizzo della lista su To: o "
+"Cc:."
 
 #: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
@@ -2825,7 +2852,7 @@ msgid "SSL IPs renewals: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:665
-msgid "SSL Port:"
+msgid "SSL Port: "
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:366
@@ -2876,8 +2903,9 @@ msgid "Select the type of skin:"
 msgstr "Scegli il tipo di tema:"
 
 #: admin/inc/dtc_config.php:551
-msgid "Selling conditions URL:"
-msgstr ""
+#, fuzzy
+msgid "Selling conditions URL: "
+msgstr "condizioni di vendita"
 
 #: client/new_account_form.php:243
 msgid "Selling conditions not accepted!"
@@ -2976,8 +3004,9 @@ msgid "Shared hosting: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1047
-msgid "Short name:"
-msgstr ""
+#, fuzzy
+msgid "Short name: "
+msgstr "Nome:"
 
 #: admin/inc/dtc_config.php:221
 msgid "Shutdown warning: "
@@ -3179,7 +3208,8 @@ msgid ""
 "The email addresses in this fields (1 per line) will get mails to listname-"
 "owner@listdomain.tld"
 msgstr ""
-"Questi indirizzi email (1 per linea) riceveranno i messaggi destinati a lista-owner@dominio.tld."
+"Questi indirizzi email (1 per linea) riceveranno i messaggi destinati a "
+"lista-owner@dominio.tld."
 
 #: shared/inc/sql/vps.php:40
 msgid "The password you have submited is not a valid password"
@@ -3252,8 +3282,9 @@ msgid "This month: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:547
-msgid "This server location:"
-msgstr ""
+#, fuzzy
+msgid "This server location: "
+msgstr "Destinazione del server VPS: "
 
 #: shared/inc/forms/subdomain.php:183
 msgid ""
@@ -3429,12 +3460,13 @@ msgid "Use"
 msgstr ""
 
 #: admin/inc/dtc_config.php:532
-msgid "Use @domain.com ftp logins:"
+#, fuzzy
+msgid "Use @domain.com ftp logins: "
 msgstr "Usa logins ftp @domain.com:"
 
 #: admin/inc/dtc_config.php:537
 #, fuzzy
-msgid "Use @domain.com ssh logins:"
+msgid "Use @domain.com ssh logins: "
 msgstr "Usa logins ssh @domain.com:"
 
 #: admin/inc/dtc_config.php:714
@@ -3446,11 +3478,12 @@ msgid "Use LVM backend"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1004
-msgid "Use Maxmind API:"
+msgid "Use Maxmind API: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:527
-msgid "Use SSL:"
+#, fuzzy
+msgid "Use SSL: "
 msgstr "Usa SSL:"
 
 #: shared/inc/forms/subdomain.php:232
@@ -3458,16 +3491,16 @@ msgid "Use an SSL vhost using this IP: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:582
-msgid "Use awstats"
+msgid "Use awstats: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:567
-msgid "Use cyrus:"
+msgid "Use cyrus: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:975
 #, fuzzy
-msgid "Use eNETS:"
+msgid "Use eNETS: "
 msgstr "Usa SSL:"
 
 #: shared/inc/draw.php:321
@@ -3475,20 +3508,23 @@ msgid "Use image menu"
 msgstr ""
 
 #: admin/inc/dtc_config.php:522
-msgid "Use javascript:"
+#, fuzzy
+msgid "Use javascript: "
 msgstr "Usa javascript:"
 
 #: admin/inc/dtc_config.php:647
-msgid "Use multiple IPs:"
+#, fuzzy
+msgid "Use multiple IPs: "
 msgstr "Usa IP multipli:"
 
 #: admin/inc/dtc_config.php:959
 #, fuzzy
-msgid "Use paypal recuring:"
+msgid "Use paypal recuring: "
 msgstr "Usa paypal:"
 
 #: admin/inc/dtc_config.php:932
-msgid "Use paypal:"
+#, fuzzy
+msgid "Use paypal: "
 msgstr "Usa paypal:"
 
 #: shared/inc/forms/subdomain.php:175
@@ -3513,15 +3549,17 @@ msgid "Use the LIVE server (and not the test one) :"
 msgstr "Usa il LIVE server (e non il test):"
 
 #: admin/inc/dtc_config.php:954
-msgid "Use the sandbox test server:"
+#, fuzzy
+msgid "Use the sandbox test server: "
 msgstr "Utilizza il sandbox test server:"
 
 #: admin/inc/dtc_config.php:587
-msgid "Use visitors"
-msgstr ""
+#, fuzzy
+msgid "Use visitors: "
+msgstr "Usa javascript:"
 
 #: admin/inc/dtc_config.php:572
-msgid "Use webalizer"
+msgid "Use webalizer: "
 msgstr ""
 
 #: shared/inc/forms/my_account.php:126
@@ -3538,16 +3576,17 @@ msgid "User"
 msgstr ""
 
 #: admin/inc/dtc_config.php:596
-msgid "User MySQL host:"
+msgid "User MySQL host: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:599
-msgid "User MySQL root login:"
+msgid "User MySQL root login: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:602
-msgid "User MySQL root password:"
-msgstr ""
+#, fuzzy
+msgid "User MySQL root password: "
+msgstr "Nuova password SSH: "
 
 #: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:578
 msgid "User administration"
@@ -3570,7 +3609,8 @@ msgid "User or password is incorrect!"
 msgstr ""
 
 #: admin/inc/dtc_config.php:542
-msgid "User session expire time (min):"
+#, fuzzy
+msgid "User session expire time (min): "
 msgstr "Tempo scadenza della sessione utente (mn):"
 
 #: client/new_account_form.php:252 client/new_account_form.php:260
@@ -3683,7 +3723,8 @@ msgid "VPS: Cannot find VPS in db!"
 msgstr ""
 
 #: admin/inc/dtc_config.php:937
-msgid "Validate new account if paid:"
+#, fuzzy
+msgid "Validate new account if paid: "
 msgstr "Autorizza il nuovo account se ha pagato:"
 
 #: shared/inc/forms/root_admin.php:346
@@ -3711,7 +3752,7 @@ msgid "Web archive"
 msgstr "Archivio web"
 
 #: admin/inc/dtc_config.php:576
-msgid "Webalizer country graph:"
+msgid "Webalizer country graph: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:359
@@ -3743,7 +3784,8 @@ msgid ""
 "allowed to post to it. The check is made against the &quot;From:&quot; "
 "header."
 msgstr ""
-"Quando selezionato, solo gli iscritti potranno postare nella lista. La verifica viene effettuata nel campo &quot;From:&quot; dell\\'header."
+"Quando selezionato, solo gli iscritti potranno postare nella lista. La "
+"verifica viene effettuata nel campo &quot;From:&quot; dell\\'header."
 
 #: shared/inc/draw.php:183
 msgid "Whois"
@@ -3808,19 +3850,27 @@ msgid ""
 "  \n"
 "For more informations go to mlmmj official web site at http://mlmmj.mmj.dk"
 msgstr ""
-"La mailing list può essere controllata via email o tramite il pannello di controllo.\n"
-"Di seguito gli indirizzi ai quali puoi inviare una email per eseguire il rispettivo comando:\n"
+"La mailing list può essere controllata via email o tramite il pannello di "
+"controllo.\n"
+"Di seguito gli indirizzi ai quali puoi inviare una email per eseguire il "
+"rispettivo comando:\n"
 "\n"
 "  #name#-help@#domain# -> restituisce la lista dei comandi più comuni\n"
 "  #name#-list@#domain# -> restituisce la lista degli iscritti alla lista\n"
 "  #name#-get-N@#domain# -> restituisce il messaggio N della lista\n"
-"  #name#-owner@#domain# -> permette di inviare una email al proprietario della lista\n"
-"  #name#-unsubscribe@#domain# -> elimina l'indirizzo email del mittente dalla lista\n"
-"  #name#-subscribe@#domain# -> iscrive l'indirizzo email del mittente alla lista\n"
-"  #name#-subscribe-digest@#domain# -> iscrive l'indirizzo email del mittente alla versione digest della lista\n"
-"  #name#-subscribe-nomail@#domain# -> iscrive l'indirizzo email del mittente alla versione nomail della lista\n"
+"  #name#-owner@#domain# -> permette di inviare una email al proprietario "
+"della lista\n"
+"  #name#-unsubscribe@#domain# -> elimina l'indirizzo email del mittente "
+"dalla lista\n"
+"  #name#-subscribe@#domain# -> iscrive l'indirizzo email del mittente alla "
+"lista\n"
+"  #name#-subscribe-digest@#domain# -> iscrive l'indirizzo email del mittente "
+"alla versione digest della lista\n"
+"  #name#-subscribe-nomail@#domain# -> iscrive l'indirizzo email del mittente "
+"alla versione nomail della lista\n"
 "\n"
-"Per ulteriori informazioni visita il sito ufficiale di mlmmj all'indirizzo http://mlmmj.mmj.dk"
+"Per ulteriori informazioni visita il sito ufficiale di mlmmj all'indirizzo "
+"http://mlmmj.mmj.dk"
 
 #: shared/inc/forms/my_account.php:123
 msgid "You currently don't have any SSL tokens."
@@ -3945,19 +3995,21 @@ msgid "couldn't connect to host"
 msgstr ""
 
 #: admin/inc/dtc_config.php:985
-msgid "eNETS merchant ID:"
+msgid "eNETS merchant ID: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:993
-msgid "eNETS rate:"
-msgstr ""
+#, fuzzy
+msgid "eNETS rate: "
+msgstr "Provincia:"
 
 #: admin/inc/dtc_config.php:980
-msgid "eNETS server:"
-msgstr ""
+#, fuzzy
+msgid "eNETS server: "
+msgstr "Altri server DNS:"
 
 #: admin/inc/dtc_config.php:989
-msgid "eNETS test merchant ID:"
+msgid "eNETS test merchant ID: "
 msgstr ""
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:262

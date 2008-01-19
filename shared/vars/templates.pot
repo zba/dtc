@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 23:56+0800\n"
+"POT-Creation-Date: 2008-01-19 14:43+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -329,12 +329,11 @@ msgstr ""
 msgid "Login:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:221 admin/inc/dtc_config.php:1058
-#: client/login.php:13 shared/inc/draw.php:436
-#: shared/inc/forms/database.php:37 shared/inc/forms/domain_stats.php:85
-#: shared/inc/forms/domain_stats.php:93 shared/inc/forms/email.php:27
-#: shared/inc/forms/email.php:565 shared/inc/forms/root_admin.php:104
-#: shared/inc/forms/ssh.php:75
+#: admin/inc/draw_user_admin.php:221 client/login.php:13
+#: shared/inc/draw.php:436 shared/inc/forms/database.php:37
+#: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
+#: shared/inc/forms/email.php:27 shared/inc/forms/email.php:565
+#: shared/inc/forms/root_admin.php:104 shared/inc/forms/ssh.php:75
 msgid "Password:"
 msgstr ""
 
@@ -726,31 +725,31 @@ msgid "Registry selection"
 msgstr ""
 
 #: admin/inc/dtc_config.php:522
-msgid "Use javascript:"
+msgid "Use javascript: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:527
-msgid "Use SSL:"
+msgid "Use SSL: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:532
-msgid "Use @domain.com ftp logins:"
+msgid "Use @domain.com ftp logins: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:537
-msgid "Use @domain.com ssh logins:"
+msgid "Use @domain.com ssh logins: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:542
-msgid "User session expire time (min):"
+msgid "User session expire time (min): "
 msgstr ""
 
 #: admin/inc/dtc_config.php:547
-msgid "This server location:"
+msgid "This server location: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:551
-msgid "Selling conditions URL:"
+msgid "Selling conditions URL: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:557
@@ -758,27 +757,27 @@ msgid "Daemon"
 msgstr ""
 
 #: admin/inc/dtc_config.php:567
-msgid "Use cyrus:"
+msgid "Use cyrus: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:572
-msgid "Use webalizer"
+msgid "Use webalizer: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:576
-msgid "Webalizer country graph:"
+msgid "Webalizer country graph: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:582
-msgid "Use awstats"
+msgid "Use awstats: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:587
-msgid "Use visitors"
+msgid "Use visitors: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:591
-msgid "Location of user's database:"
+msgid "Location of user's database: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:594
@@ -790,15 +789,15 @@ msgid "Another location"
 msgstr ""
 
 #: admin/inc/dtc_config.php:596
-msgid "User MySQL host:"
+msgid "User MySQL host: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:599
-msgid "User MySQL root login:"
+msgid "User MySQL root login: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:602
-msgid "User MySQL root password:"
+msgid "User MySQL root password: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:619
@@ -814,31 +813,31 @@ msgid "Main software configuration of DTC"
 msgstr ""
 
 #: admin/inc/dtc_config.php:639
-msgid "Main ip address of the server:"
+msgid "Main ip address of the server: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:643
-msgid "Host IP addresses (separated by \"|\"):"
+msgid "Host IP addresses (separated by \"|\"): "
 msgstr ""
 
 #: admin/inc/dtc_config.php:647
-msgid "Use multiple IPs:"
+msgid "Use multiple IPs: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:652
-msgid "Generate all apache vhosts on local network ip (NAT)"
+msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr ""
 
 #: admin/inc/dtc_config.php:657
-msgid "Local network area ip adress of the vhost using NAT"
+msgid "Local network area ip adress of the vhost using NAT: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:661
-msgid "Full hostname of DTC admin panel:"
+msgid "Full hostname of DTC admin panel: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:665
-msgid "SSL Port:"
+msgid "SSL Port: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:688
@@ -955,51 +954,51 @@ msgid "Secure payment configuration"
 msgstr ""
 
 #: admin/inc/dtc_config.php:917
-msgid "Currency symbol:"
+msgid "Currency symbol: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:921
-msgid "Currency letters:"
+msgid "Currency letters: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:932
-msgid "Use paypal:"
+msgid "Use paypal: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:937
-msgid "Validate new account if paid:"
+msgid "Validate new account if paid: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:942
-msgid "PayPal business account email:"
+msgid "PayPal business account email: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:946
-msgid "PayPal fee rate:"
+msgid "PayPal fee rate: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:950
-msgid "PayPal flat fee:"
+msgid "PayPal flat fee: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:954
-msgid "Use the sandbox test server:"
+msgid "Use the sandbox test server: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:959
-msgid "Use paypal recuring:"
+msgid "Use paypal recuring: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:964
-msgid "PayPal test account email (sandbox):"
+msgid "PayPal test account email (sandbox): "
 msgstr ""
 
 #: admin/inc/dtc_config.php:975
-msgid "Use eNETS:"
+msgid "Use eNETS: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:980
-msgid "eNETS server:"
+msgid "eNETS server: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:983
@@ -1011,47 +1010,53 @@ msgid "Production server"
 msgstr ""
 
 #: admin/inc/dtc_config.php:985
-msgid "eNETS merchant ID:"
+msgid "eNETS merchant ID: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:989
-msgid "eNETS test merchant ID:"
+msgid "eNETS test merchant ID: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:993
-msgid "eNETS rate:"
+msgid "eNETS rate: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1004
-msgid "Use Maxmind API:"
+msgid "Use Maxmind API: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1009
-msgid "Maxmind login:"
+msgid "Maxmind login: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1013
-msgid "Maxmind license key:"
+msgid "Maxmind license key: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1027
 msgid "NAS config"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1044 shared/inc/forms/email.php:561
-msgid "Name:"
+#: admin/inc/dtc_config.php:1044 shared/inc/forms/vps.php:139
+msgid "Name: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1047
-msgid "Short name:"
+msgid "Short name: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1054
-msgid "Port number:"
+msgid "Port number: "
+msgstr ""
+
+#: admin/inc/dtc_config.php:1058 client/new_account_form.php:562
+#: email/login.php:13 shared/inc/forms/email.php:216
+#: shared/inc/forms/ftp.php:80
+msgid "Password: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1065
-msgid "Description:"
+msgid "Description: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1107
@@ -1576,11 +1581,6 @@ msgstr ""
 
 #: client/new_account_form.php:546
 msgid "VPS location: "
-msgstr ""
-
-#: client/new_account_form.php:562 email/login.php:13
-#: shared/inc/forms/email.php:216 shared/inc/forms/ftp.php:80
-msgid "Password: "
 msgstr ""
 
 #: client/new_account_form.php:565
@@ -2244,6 +2244,10 @@ msgstr ""
 
 #: shared/inc/forms/email.php:547
 msgid "There is already a mailbox by that name"
+msgstr ""
+
+#: shared/inc/forms/email.php:561
+msgid "Name:"
 msgstr ""
 
 #: shared/inc/forms/email.php:569
@@ -3303,10 +3307,6 @@ msgstr ""
 
 #: shared/inc/forms/vps.php:135
 msgid "VM id: "
-msgstr ""
-
-#: shared/inc/forms/vps.php:139
-msgid "Name: "
 msgstr ""
 
 #: shared/inc/forms/vps.php:143

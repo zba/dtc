@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 23:56+0800\n"
+"POT-Creation-Date: 2008-01-19 14:43+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Seeb <seeb@seeb.net.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -691,11 +691,12 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:921
 #, fuzzy
-msgid "Currency letters:"
+msgid "Currency letters: "
 msgstr "Oznaczenie literowe:"
 
 #: admin/inc/dtc_config.php:917
-msgid "Currency symbol:"
+#, fuzzy
+msgid "Currency symbol: "
 msgstr "Symbol waluty:"
 
 #: shared/inc/forms/vps.php:247
@@ -913,7 +914,7 @@ msgstr "Opis"
 
 #: admin/inc/dtc_config.php:1065
 #, fuzzy
-msgid "Description:"
+msgid "Description: "
 msgstr "Opis kategorii"
 
 #: client/new_account_form.php:543
@@ -1248,7 +1249,8 @@ msgid "Full description of the trouble:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:661
-msgid "Full hostname of DTC admin panel:"
+#, fuzzy
+msgid "Full hostname of DTC admin panel: "
 msgstr "Nazwa hosta do obs³ugi DTC :"
 
 #: shared/securepay/pay_functions.php:35
@@ -1269,7 +1271,8 @@ msgid "Generate a vhost entry for this subdomain:"
 msgstr "Wygeneruj virtualne hosty dla swojej domeny(dodaj subdowmeny):"
 
 #: admin/inc/dtc_config.php:652
-msgid "Generate all apache vhosts on local network ip (NAT)"
+#, fuzzy
+msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "U¿ycie adresów lokalnych za NAT-em :"
 
 #: email/login.php:6
@@ -1335,7 +1338,8 @@ msgid "Hide email addresses to avoid spam."
 msgstr ""
 
 #: admin/inc/dtc_config.php:643
-msgid "Host IP addresses (separated by \"|\"):"
+#, fuzzy
+msgid "Host IP addresses (separated by \"|\"): "
 msgstr "Adresy IP hostów (przedzielone \"|\") :"
 
 #: shared/gfx/skin/default_layout.php:159
@@ -1724,7 +1728,8 @@ msgid "Lists max"
 msgstr "Maksymalnie list"
 
 #: admin/inc/dtc_config.php:657
-msgid "Local network area ip adress of the vhost using NAT"
+#, fuzzy
+msgid "Local network area ip adress of the vhost using NAT: "
 msgstr "Adres lokalny dla vhost za NAT-em :"
 
 #: admin/inc/dtc_config.php:402
@@ -1733,7 +1738,8 @@ msgid "Location"
 msgstr "Lokalizacja"
 
 #: admin/inc/dtc_config.php:591
-msgid "Location of user's database:"
+#, fuzzy
+msgid "Location of user's database: "
 msgstr "Lokalizacja bazy klientów:"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
@@ -1868,7 +1874,8 @@ msgid "Mailing lists:"
 msgstr "Listy mailingowe:"
 
 #: admin/inc/dtc_config.php:639
-msgid "Main ip address of the server:"
+#, fuzzy
+msgid "Main ip address of the server: "
 msgstr "Adres IP serwera :"
 
 #: admin/inc/dtc_config.php:634
@@ -1918,12 +1925,13 @@ msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1013
-msgid "Maxmind license key:"
+msgid "Maxmind license key: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1009
-msgid "Maxmind login:"
-msgstr ""
+#, fuzzy
+msgid "Maxmind login: "
+msgstr "Login FTP :"
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
@@ -2012,11 +2020,11 @@ msgstr "Serwer testowy"
 msgid "Name servers:"
 msgstr "Serwery nazw"
 
-#: admin/inc/dtc_config.php:1044 shared/inc/forms/email.php:561
+#: shared/inc/forms/email.php:561
 msgid "Name:"
 msgstr "Nazwa"
 
-#: shared/inc/forms/vps.php:139
+#: admin/inc/dtc_config.php:1044 shared/inc/forms/vps.php:139
 #, fuzzy
 msgid "Name: "
 msgstr "Nazwa"
@@ -2418,17 +2426,17 @@ msgid ""
 "between 6 and 16 chars long."
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:221 admin/inc/dtc_config.php:1058
-#: client/login.php:13 shared/inc/draw.php:436
-#: shared/inc/forms/database.php:37 shared/inc/forms/domain_stats.php:85
-#: shared/inc/forms/domain_stats.php:93 shared/inc/forms/email.php:27
-#: shared/inc/forms/email.php:565 shared/inc/forms/root_admin.php:104
-#: shared/inc/forms/ssh.php:75
+#: admin/inc/draw_user_admin.php:221 client/login.php:13
+#: shared/inc/draw.php:436 shared/inc/forms/database.php:37
+#: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
+#: shared/inc/forms/email.php:27 shared/inc/forms/email.php:565
+#: shared/inc/forms/root_admin.php:104 shared/inc/forms/ssh.php:75
 msgid "Password:"
 msgstr "Has³o:"
 
-#: client/new_account_form.php:562 email/login.php:13
-#: shared/inc/forms/email.php:216 shared/inc/forms/ftp.php:80
+#: admin/inc/dtc_config.php:1058 client/new_account_form.php:562
+#: email/login.php:13 shared/inc/forms/email.php:216
+#: shared/inc/forms/ftp.php:80
 #, fuzzy
 msgid "Password: "
 msgstr "Has³o FTP:"
@@ -2469,19 +2477,23 @@ msgid "Paths"
 msgstr "¦cie¿ki"
 
 #: admin/inc/dtc_config.php:942
-msgid "PayPal business account email:"
+#, fuzzy
+msgid "PayPal business account email: "
 msgstr "Biznesowe konto p³atno¶ci e-mail :"
 
 #: admin/inc/dtc_config.php:946
-msgid "PayPal fee rate:"
+#, fuzzy
+msgid "PayPal fee rate: "
 msgstr "Procent prowizji PayPal :"
 
 #: admin/inc/dtc_config.php:950
-msgid "PayPal flat fee:"
+#, fuzzy
+msgid "PayPal flat fee: "
 msgstr "Wska¼nik liniowy PayPal :"
 
 #: admin/inc/dtc_config.php:964
-msgid "PayPal test account email (sandbox):"
+#, fuzzy
+msgid "PayPal test account email (sandbox): "
 msgstr "Konto testowe Paypal (sandbox):"
 
 #: admin/inc/draw_user_admin.php:314
@@ -2554,7 +2566,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1054
 #, fuzzy
-msgid "Port number:"
+msgid "Port number: "
 msgstr "Numer port:"
 
 #: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
@@ -2860,7 +2872,7 @@ msgid "SSL IPs renewals: "
 msgstr "Odnowienia IP dla SSL: "
 
 #: admin/inc/dtc_config.php:665
-msgid "SSL Port:"
+msgid "SSL Port: "
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:366
@@ -2914,7 +2926,8 @@ msgid "Select the type of skin:"
 msgstr "Wybierz skórkê :"
 
 #: admin/inc/dtc_config.php:551
-msgid "Selling conditions URL:"
+#, fuzzy
+msgid "Selling conditions URL: "
 msgstr "Domena sprzeda¿y:"
 
 #: client/new_account_form.php:243
@@ -3014,7 +3027,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1047
 #, fuzzy
-msgid "Short name:"
+msgid "Short name: "
 msgstr "Nazwa hosta:"
 
 #: admin/inc/dtc_config.php:221
@@ -3286,7 +3299,8 @@ msgid "This month: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:547
-msgid "This server location:"
+#, fuzzy
+msgid "This server location: "
 msgstr "Lokalizacja serwera:"
 
 #: shared/inc/forms/subdomain.php:183
@@ -3459,12 +3473,13 @@ msgid "Use"
 msgstr ""
 
 #: admin/inc/dtc_config.php:532
-msgid "Use @domain.com ftp logins:"
+#, fuzzy
+msgid "Use @domain.com ftp logins: "
 msgstr "U¿yj loginu ftp @domena.com :"
 
 #: admin/inc/dtc_config.php:537
 #, fuzzy
-msgid "Use @domain.com ssh logins:"
+msgid "Use @domain.com ssh logins: "
 msgstr "U¿yj loginu ssh @domena.com :"
 
 #: admin/inc/dtc_config.php:714
@@ -3476,11 +3491,12 @@ msgid "Use LVM backend"
 msgstr "U¿yj LVM"
 
 #: admin/inc/dtc_config.php:1004
-msgid "Use Maxmind API:"
+msgid "Use Maxmind API: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:527
-msgid "Use SSL:"
+#, fuzzy
+msgid "Use SSL: "
 msgstr "U¿yj SSL :"
 
 #: shared/inc/forms/subdomain.php:232
@@ -3488,16 +3504,17 @@ msgid "Use an SSL vhost using this IP: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:582
-msgid "Use awstats"
+msgid "Use awstats: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:567
-msgid "Use cyrus:"
+#, fuzzy
+msgid "Use cyrus: "
 msgstr "U¿yj Cyrus:"
 
 #: admin/inc/dtc_config.php:975
 #, fuzzy
-msgid "Use eNETS:"
+msgid "Use eNETS: "
 msgstr "U¿yj SSL :"
 
 #: shared/inc/draw.php:321
@@ -3505,20 +3522,23 @@ msgid "Use image menu"
 msgstr "Menu graficzne"
 
 #: admin/inc/dtc_config.php:522
-msgid "Use javascript:"
+#, fuzzy
+msgid "Use javascript: "
 msgstr "U¿yj JavaScript'u :"
 
 #: admin/inc/dtc_config.php:647
-msgid "Use multiple IPs:"
+#, fuzzy
+msgid "Use multiple IPs: "
 msgstr "U¿yj adresu IP w trybie multi :"
 
 #: admin/inc/dtc_config.php:959
 #, fuzzy
-msgid "Use paypal recuring:"
+msgid "Use paypal recuring: "
 msgstr "U¿yj paypal do odnowienia:"
 
 #: admin/inc/dtc_config.php:932
-msgid "Use paypal:"
+#, fuzzy
+msgid "Use paypal: "
 msgstr "U¿yj karty p³atniczej :"
 
 #: shared/inc/forms/subdomain.php:175
@@ -3543,15 +3563,17 @@ msgid "Use the LIVE server (and not the test one) :"
 msgstr "U¿ywaj rzeczywistego serwera (nie testuj niczego)"
 
 #: admin/inc/dtc_config.php:954
-msgid "Use the sandbox test server:"
+#, fuzzy
+msgid "Use the sandbox test server: "
 msgstr "Uzyj sandbox'a do testowania:"
 
 #: admin/inc/dtc_config.php:587
-msgid "Use visitors"
-msgstr ""
+#, fuzzy
+msgid "Use visitors: "
+msgstr "U¿yj JavaScript'u :"
 
 #: admin/inc/dtc_config.php:572
-msgid "Use webalizer"
+msgid "Use webalizer: "
 msgstr ""
 
 #: shared/inc/forms/my_account.php:126
@@ -3568,15 +3590,18 @@ msgid "User"
 msgstr ""
 
 #: admin/inc/dtc_config.php:596
-msgid "User MySQL host:"
+#, fuzzy
+msgid "User MySQL host: "
 msgstr "Host MySQL dla u¿ytkowników:"
 
 #: admin/inc/dtc_config.php:599
-msgid "User MySQL root login:"
+#, fuzzy
+msgid "User MySQL root login: "
 msgstr "Login administratora MySQL:"
 
 #: admin/inc/dtc_config.php:602
-msgid "User MySQL root password:"
+#, fuzzy
+msgid "User MySQL root password: "
 msgstr "Has³o administratora MySQL:"
 
 #: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:578
@@ -3600,7 +3625,8 @@ msgid "User or password is incorrect!"
 msgstr ""
 
 #: admin/inc/dtc_config.php:542
-msgid "User session expire time (min):"
+#, fuzzy
+msgid "User session expire time (min): "
 msgstr "Czas sesji (min) :"
 
 #: client/new_account_form.php:252 client/new_account_form.php:260
@@ -3714,7 +3740,8 @@ msgid "VPS: Cannot find VPS in db!"
 msgstr "VPS: Nie mo¿na znale¼æ VPS w bazie!"
 
 #: admin/inc/dtc_config.php:937
-msgid "Validate new account if paid:"
+#, fuzzy
+msgid "Validate new account if paid: "
 msgstr "Sprawdzanie konta p³atno¶ci :"
 
 #: shared/inc/forms/root_admin.php:346
@@ -3743,7 +3770,8 @@ msgid "Web archive"
 msgstr "Archiwum przez WWW"
 
 #: admin/inc/dtc_config.php:576
-msgid "Webalizer country graph:"
+#, fuzzy
+msgid "Webalizer country graph: "
 msgstr "Statystyki Webalizera wg. pañstw:"
 
 #: admin/inc/dtc_config.php:359
@@ -3991,20 +4019,21 @@ msgid "couldn't connect to host"
 msgstr ""
 
 #: admin/inc/dtc_config.php:985
-msgid "eNETS merchant ID:"
+msgid "eNETS merchant ID: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:993
-msgid "eNETS rate:"
-msgstr ""
+#, fuzzy
+msgid "eNETS rate: "
+msgstr "Serwery VPS"
 
 #: admin/inc/dtc_config.php:980
 #, fuzzy
-msgid "eNETS server:"
+msgid "eNETS server: "
 msgstr "Serwery VPS"
 
 #: admin/inc/dtc_config.php:989
-msgid "eNETS test merchant ID:"
+msgid "eNETS test merchant ID: "
 msgstr ""
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:262

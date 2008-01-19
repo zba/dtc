@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 21:08+0800\n"
+"POT-Creation-Date: 2008-01-19 14:32+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Feher Sandor <sfeher@bluesystem.hu>\n"
 "Language-Team: Hungarian <LL@li.org>\n"
@@ -687,11 +687,11 @@ msgid "Credential not correct: can't display in file "
 msgstr ""
 
 #: admin/inc/dtc_config.php:921
-msgid "Currency letters:"
+msgid "Currency letters: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:917
-msgid "Currency symbol:"
+msgid "Currency symbol: "
 msgstr ""
 
 #: shared/inc/forms/vps.php:247
@@ -905,7 +905,7 @@ msgid "Description"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1065
-msgid "Description:"
+msgid "Description: "
 msgstr ""
 
 #: client/new_account_form.php:543
@@ -1239,7 +1239,8 @@ msgid "Full description of the trouble:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:661
-msgid "Full hostname of DTC admin panel:"
+#, fuzzy
+msgid "Full hostname of DTC admin panel: "
 msgstr "A DTC admin panel teljes gazdaneve:"
 
 #: shared/securepay/pay_functions.php:35
@@ -1260,7 +1261,8 @@ msgid "Generate a vhost entry for this subdomain:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:652
-msgid "Generate all apache vhosts on local network ip (NAT)"
+#, fuzzy
+msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "Az összes apache vhosts fájl generálása helyi hálózati ip-vel(NAT)"
 
 #: email/login.php:6
@@ -1326,7 +1328,8 @@ msgid "Hide email addresses to avoid spam."
 msgstr ""
 
 #: admin/inc/dtc_config.php:643
-msgid "Host IP addresses (separated by \"|\"):"
+#, fuzzy
+msgid "Host IP addresses (separated by \"|\"): "
 msgstr "Gazda IP címek (\"|\" elválasztva):"
 
 #: shared/gfx/skin/default_layout.php:159
@@ -1705,7 +1708,8 @@ msgid "Lists max"
 msgstr "Lista neve"
 
 #: admin/inc/dtc_config.php:657
-msgid "Local network area ip adress of the vhost using NAT"
+#, fuzzy
+msgid "Local network area ip adress of the vhost using NAT: "
 msgstr "A NAT-ot használó vhost helyi hálózati ip címe"
 
 #: admin/inc/dtc_config.php:402
@@ -1713,8 +1717,9 @@ msgid "Location"
 msgstr ""
 
 #: admin/inc/dtc_config.php:591
-msgid "Location of user's database:"
-msgstr ""
+#, fuzzy
+msgid "Location of user's database: "
+msgstr "Az adatbázisai listája:"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:245 admin/inc/draw_user_admin.php:237
@@ -1847,7 +1852,8 @@ msgid "Mailing lists:"
 msgstr "Levelezõlisták:"
 
 #: admin/inc/dtc_config.php:639
-msgid "Main ip address of the server:"
+#, fuzzy
+msgid "Main ip address of the server: "
 msgstr "A szerver fõ ip címe:"
 
 #: admin/inc/dtc_config.php:634
@@ -1897,12 +1903,13 @@ msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1013
-msgid "Maxmind license key:"
+msgid "Maxmind license key: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1009
-msgid "Maxmind login:"
-msgstr ""
+#, fuzzy
+msgid "Maxmind login: "
+msgstr "Dinamikus IP frissítés login neve: "
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
@@ -1991,11 +1998,11 @@ msgstr "Más DNS szerverek:"
 msgid "Name servers:"
 msgstr "Névszerverek:"
 
-#: admin/inc/dtc_config.php:1044 shared/inc/forms/email.php:561
+#: shared/inc/forms/email.php:561
 msgid "Name:"
 msgstr ""
 
-#: shared/inc/forms/vps.php:139
+#: admin/inc/dtc_config.php:1044 shared/inc/forms/vps.php:139
 #, fuzzy
 msgid "Name: "
 msgstr "Keresztnév:"
@@ -2387,17 +2394,17 @@ msgid ""
 "between 6 and 16 chars long."
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:221 admin/inc/dtc_config.php:1058
-#: client/login.php:13 shared/inc/draw.php:436
-#: shared/inc/forms/database.php:37 shared/inc/forms/domain_stats.php:85
-#: shared/inc/forms/domain_stats.php:93 shared/inc/forms/email.php:27
-#: shared/inc/forms/email.php:565 shared/inc/forms/root_admin.php:104
-#: shared/inc/forms/ssh.php:75
+#: admin/inc/draw_user_admin.php:221 client/login.php:13
+#: shared/inc/draw.php:436 shared/inc/forms/database.php:37
+#: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
+#: shared/inc/forms/email.php:27 shared/inc/forms/email.php:565
+#: shared/inc/forms/root_admin.php:104 shared/inc/forms/ssh.php:75
 msgid "Password:"
 msgstr "Jelszó:"
 
-#: client/new_account_form.php:562 email/login.php:13
-#: shared/inc/forms/email.php:216 shared/inc/forms/ftp.php:80
+#: admin/inc/dtc_config.php:1058 client/new_account_form.php:562
+#: email/login.php:13 shared/inc/forms/email.php:216
+#: shared/inc/forms/ftp.php:80
 msgid "Password: "
 msgstr ""
 
@@ -2436,19 +2443,23 @@ msgid "Paths"
 msgstr "Elérési utak"
 
 #: admin/inc/dtc_config.php:942
-msgid "PayPal business account email:"
+#, fuzzy
+msgid "PayPal business account email: "
 msgstr "A PayPal üzleti hozzáférés e-mail címe:"
 
 #: admin/inc/dtc_config.php:946
-msgid "PayPal fee rate:"
+#, fuzzy
+msgid "PayPal fee rate: "
 msgstr "PayPal költség ráta:"
 
 #: admin/inc/dtc_config.php:950
-msgid "PayPal flat fee:"
+#, fuzzy
+msgid "PayPal flat fee: "
 msgstr "PayPal alap ráta:"
 
 #: admin/inc/dtc_config.php:964
-msgid "PayPal test account email (sandbox):"
+#, fuzzy
+msgid "PayPal test account email (sandbox): "
 msgstr "PayPal teszt hozzáférés email címe (sandbox):"
 
 #: admin/inc/draw_user_admin.php:314
@@ -2521,8 +2532,9 @@ msgid "Please wait until operating system reinstallation has completed."
 msgstr ""
 
 #: admin/inc/dtc_config.php:1054
-msgid "Port number:"
-msgstr ""
+#, fuzzy
+msgid "Port number: "
+msgstr "Telefonszám:"
 
 #: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
@@ -2822,7 +2834,7 @@ msgid "SSL IPs renewals: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:665
-msgid "SSL Port:"
+msgid "SSL Port: "
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:366
@@ -2873,7 +2885,7 @@ msgid "Select the type of skin:"
 msgstr "Válasszon témát:"
 
 #: admin/inc/dtc_config.php:551
-msgid "Selling conditions URL:"
+msgid "Selling conditions URL: "
 msgstr ""
 
 #: client/new_account_form.php:243
@@ -2974,8 +2986,9 @@ msgid "Shared hosting: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1047
-msgid "Short name:"
-msgstr ""
+#, fuzzy
+msgid "Short name: "
+msgstr "Keresztnév:"
 
 #: admin/inc/dtc_config.php:221
 msgid "Shutdown warning: "
@@ -3250,8 +3263,9 @@ msgid "This month: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:547
-msgid "This server location:"
-msgstr ""
+#, fuzzy
+msgid "This server location: "
+msgstr "Megye:"
 
 #: shared/inc/forms/subdomain.php:183
 msgid ""
@@ -3421,12 +3435,13 @@ msgid "Use"
 msgstr ""
 
 #: admin/inc/dtc_config.php:532
-msgid "Use @domain.com ftp logins:"
+#, fuzzy
+msgid "Use @domain.com ftp logins: "
 msgstr "A @domain.com formát használja az ftp hozzáféréseknél:"
 
 #: admin/inc/dtc_config.php:537
 #, fuzzy
-msgid "Use @domain.com ssh logins:"
+msgid "Use @domain.com ssh logins: "
 msgstr "A @domain.com formát használja az ssh hozzáféréseknél:"
 
 #: admin/inc/dtc_config.php:714
@@ -3438,11 +3453,12 @@ msgid "Use LVM backend"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1004
-msgid "Use Maxmind API:"
+msgid "Use Maxmind API: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:527
-msgid "Use SSL:"
+#, fuzzy
+msgid "Use SSL: "
 msgstr "SSL-t használ:"
 
 #: shared/inc/forms/subdomain.php:232
@@ -3450,16 +3466,16 @@ msgid "Use an SSL vhost using this IP: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:582
-msgid "Use awstats"
+msgid "Use awstats: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:567
-msgid "Use cyrus:"
+msgid "Use cyrus: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:975
 #, fuzzy
-msgid "Use eNETS:"
+msgid "Use eNETS: "
 msgstr "SSL-t használ:"
 
 #: shared/inc/draw.php:321
@@ -3467,20 +3483,23 @@ msgid "Use image menu"
 msgstr ""
 
 #: admin/inc/dtc_config.php:522
-msgid "Use javascript:"
+#, fuzzy
+msgid "Use javascript: "
 msgstr "Javascriptet használ:"
 
 #: admin/inc/dtc_config.php:647
-msgid "Use multiple IPs:"
+#, fuzzy
+msgid "Use multiple IPs: "
 msgstr "Többszörös IP címet használ:"
 
 #: admin/inc/dtc_config.php:959
 #, fuzzy
-msgid "Use paypal recuring:"
+msgid "Use paypal recuring: "
 msgstr "A paypal-t használja:"
 
 #: admin/inc/dtc_config.php:932
-msgid "Use paypal:"
+#, fuzzy
+msgid "Use paypal: "
 msgstr "A paypal-t használja:"
 
 #: shared/inc/forms/subdomain.php:175
@@ -3505,15 +3524,17 @@ msgid "Use the LIVE server (and not the test one) :"
 msgstr "Az éles szervert használja (nem a tesztet) :"
 
 #: admin/inc/dtc_config.php:954
-msgid "Use the sandbox test server:"
+#, fuzzy
+msgid "Use the sandbox test server: "
 msgstr "A kövezkezõ \"sandbox\" test szervert használja:"
 
 #: admin/inc/dtc_config.php:587
-msgid "Use visitors"
-msgstr ""
+#, fuzzy
+msgid "Use visitors: "
+msgstr "Javascriptet használ:"
 
 #: admin/inc/dtc_config.php:572
-msgid "Use webalizer"
+msgid "Use webalizer: "
 msgstr ""
 
 #: shared/inc/forms/my_account.php:126
@@ -3530,16 +3551,17 @@ msgid "User"
 msgstr ""
 
 #: admin/inc/dtc_config.php:596
-msgid "User MySQL host:"
+msgid "User MySQL host: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:599
-msgid "User MySQL root login:"
+msgid "User MySQL root login: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:602
-msgid "User MySQL root password:"
-msgstr ""
+#, fuzzy
+msgid "User MySQL root password: "
+msgstr "Változtassa meg a jelszavát:"
 
 #: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:578
 #, fuzzy
@@ -3561,7 +3583,8 @@ msgid "User or password is incorrect!"
 msgstr ""
 
 #: admin/inc/dtc_config.php:542
-msgid "User session expire time (min):"
+#, fuzzy
+msgid "User session expire time (min): "
 msgstr "A felhasználói munkamenet lejárati ideje (perc):"
 
 #: client/new_account_form.php:252 client/new_account_form.php:260
@@ -3672,7 +3695,8 @@ msgid "VPS: Cannot find VPS in db!"
 msgstr ""
 
 #: admin/inc/dtc_config.php:937
-msgid "Validate new account if paid:"
+#, fuzzy
+msgid "Validate new account if paid: "
 msgstr "Akkor aktiválja az új hozzáférést, ha az ki van fizetve:"
 
 #: shared/inc/forms/root_admin.php:346
@@ -3700,7 +3724,7 @@ msgid "Web archive"
 msgstr ""
 
 #: admin/inc/dtc_config.php:576
-msgid "Webalizer country graph:"
+msgid "Webalizer country graph: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:359
@@ -3919,19 +3943,21 @@ msgid "couldn't connect to host"
 msgstr ""
 
 #: admin/inc/dtc_config.php:985
-msgid "eNETS merchant ID:"
+msgid "eNETS merchant ID: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:993
-msgid "eNETS rate:"
-msgstr ""
+#, fuzzy
+msgid "eNETS rate: "
+msgstr "Megye:"
 
 #: admin/inc/dtc_config.php:980
-msgid "eNETS server:"
-msgstr ""
+#, fuzzy
+msgid "eNETS server: "
+msgstr "Más DNS szerverek:"
 
 #: admin/inc/dtc_config.php:989
-msgid "eNETS test merchant ID:"
+msgid "eNETS test merchant ID: "
 msgstr ""
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:262

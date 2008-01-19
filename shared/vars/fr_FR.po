@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-18 23:56+0800\n"
+"POT-Creation-Date: 2008-01-19 14:43+0800\n"
 "PO-Revision-Date: 2007-12-30 22:30+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: French\n"
@@ -33,7 +33,7 @@ msgstr " ne ressemble pas a un nom d'utilisateur mail..."
 #: shared/inc/sql/vps.php:174 shared/inc/sql/vps.php:184
 #: shared/inc/sql/vps.php:194
 msgid " file "
-msgstr ""
+msgstr " fichier "
 
 #: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
 #: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
@@ -349,7 +349,7 @@ msgstr "Démarrer (xm start)"
 
 #: shared/inc/forms/lists.php:432
 msgid "Bounce life:"
-msgstr ""
+msgstr "Expiration du bounce:"
 
 #: shared/inc/forms/email.php:621
 msgid "Bounce message content: "
@@ -597,6 +597,7 @@ msgstr "Impossible de trouver le serveur VDS dans la base de donnée"
 #: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:60
 msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
+"Impossible de trouver le sous-domaine dans la table pour effacer les dossier"
 
 #: shared/inc/forms/vps.php:122
 msgid ""
@@ -621,6 +622,8 @@ msgstr ""
 #: shared/inc/forms/dns.php:82
 msgid "Could not load zonefile: permission denied or file not existant?"
 msgstr ""
+"Impossible de charger le fichier de zone : problème de droit ou fichier "
+"inéxistant ?"
 
 #: admin/deamons_state.php:174
 msgid "Could not write HELLO to server"
@@ -672,12 +675,12 @@ msgid "Credential not correct: can't display in file "
 msgstr "Droits incorrect: impossible d'afficher dans le fichier "
 
 #: admin/inc/dtc_config.php:921
-msgid "Currency letters:"
-msgstr "Devise en 3 lettres :"
+msgid "Currency letters: "
+msgstr "Devise en 3 lettres : "
 
 #: admin/inc/dtc_config.php:917
-msgid "Currency symbol:"
-msgstr "Symbole de devise:"
+msgid "Currency symbol: "
+msgstr "Symbole de devise: "
 
 #: shared/inc/forms/vps.php:247
 msgid "Current VPS status:"
@@ -838,6 +841,8 @@ msgid ""
 "Delete all messages of webarchive. NOTE: this works only if you have &quot;"
 "web archive&quot; not checked."
 msgstr ""
+"Effacer tous les message de l'archive web. NOTE: ceci fonctionnera "
+"uniquement si vous avez &quot;archive web&quot; non coché."
 
 #: shared/inc/forms/lists.php:405
 msgid "Delete headers:"
@@ -880,8 +885,8 @@ msgid "Description"
 msgstr "Description"
 
 #: admin/inc/dtc_config.php:1065
-msgid "Description:"
-msgstr "Description:"
+msgid "Description: "
+msgstr "Description : "
 
 #: client/new_account_form.php:543
 msgid "Desired domain name"
@@ -981,11 +986,11 @@ msgstr "Nom de domaine, traffic et utilisation disque :"
 
 #: shared/inc/forms/dns.php:61
 msgid "Domain root TXT record2: "
-msgstr ""
+msgstr "Entrée 2 TXT racine du domaine : "
 
 #: shared/inc/forms/dns.php:60
 msgid "Domain root TXT record: "
-msgstr ""
+msgstr "Entrée TXT racine du domaine : "
 
 #: shared/gfx/skin/default_layout.php:409
 msgid "Domains for"
@@ -1204,8 +1209,8 @@ msgid "Full description of the trouble:"
 msgstr "Description complète du problème :"
 
 #: admin/inc/dtc_config.php:661
-msgid "Full hostname of DTC admin panel:"
-msgstr "Hostname complet de l'administrateur DTC :"
+msgid "Full hostname of DTC admin panel: "
+msgstr "Hostname complet de l'administrateur DTC : "
 
 #: shared/securepay/pay_functions.php:35
 msgid "Gateway cost"
@@ -1224,8 +1229,8 @@ msgid "Generate a vhost entry for this subdomain:"
 msgstr "Produisez d'une entrée de vhost pour ce subdomain :"
 
 #: admin/inc/dtc_config.php:652
-msgid "Generate all apache vhosts on local network ip (NAT)"
-msgstr "Generer toutes les vhost apache sur l'ip du reseau local (NAT)"
+msgid "Generate all apache vhosts on local network ip (NAT): "
+msgstr "Generer toutes les vhost apache sur l'ip du reseau local (NAT) : "
 
 #: email/login.php:6
 msgid "Go to client panel"
@@ -1261,11 +1266,11 @@ msgstr "Aide"
 
 #: shared/inc/forms/lists.php:232
 msgid "Help missing for noaccessdenymails"
-msgstr ""
+msgstr "Aide manquante pour noaccessdenymails"
 
 #: shared/inc/forms/lists.php:226
 msgid "Help missing for nosubonlydenymails"
-msgstr ""
+msgstr "Aide manquante pour nosubonlydenymails"
 
 #: shared/inc/draw.php:444
 msgid "Help:"
@@ -1294,8 +1299,8 @@ msgid "Hide email addresses to avoid spam."
 msgstr "Cache les adresses email pour éviter le spam."
 
 #: admin/inc/dtc_config.php:643
-msgid "Host IP addresses (separated by \"|\"):"
-msgstr "Adresses IPs de votre machine (séparées par des \"|\") :"
+msgid "Host IP addresses (separated by \"|\"): "
+msgstr "Adresses IPs de votre machine (séparées par des \"|\") : "
 
 #: shared/gfx/skin/default_layout.php:159
 #: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:433
@@ -1402,6 +1407,10 @@ msgid ""
 "list. This should in principle never ever be used, but there is times on "
 "local lists etc. where this is useful. HANDLE WITH CARE!"
 msgstr ""
+"Si ce drapeau est positionné, alors aucun message de confirmation ne sera "
+"nécessaire pour s'inscrire à la liste. Ceci ne devrait en principe jamais "
+"etre utilisé, mais il existe des listes locales, etc. où ceci peut etre "
+"utile. A UTILISER AVEC PRECAUTION !"
 
 #: shared/inc/forms/lists.php:208
 msgid ""
@@ -1711,16 +1720,16 @@ msgid "Lists max"
 msgstr "Listes max"
 
 #: admin/inc/dtc_config.php:657
-msgid "Local network area ip adress of the vhost using NAT"
-msgstr "Addrese ip dans le reseau local des vhost utilisant le NAT"
+msgid "Local network area ip adress of the vhost using NAT: "
+msgstr "Addrese ip dans le reseau local des vhost utilisant le NAT : "
 
 #: admin/inc/dtc_config.php:402
 msgid "Location"
 msgstr "Emplacement"
 
 #: admin/inc/dtc_config.php:591
-msgid "Location of user's database:"
-msgstr "Emplacement des base utilisateurs :"
+msgid "Location of user's database: "
+msgstr "Emplacement des base utilisateurs : "
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:245 admin/inc/draw_user_admin.php:237
@@ -1847,8 +1856,8 @@ msgid "Mailing lists:"
 msgstr "Listes de diffusion :"
 
 #: admin/inc/dtc_config.php:639
-msgid "Main ip address of the server:"
-msgstr "IP principale du serveur :"
+msgid "Main ip address of the server: "
+msgstr "IP principale du serveur : "
 
 #: admin/inc/dtc_config.php:634
 msgid "Main software configuration of DTC"
@@ -1897,12 +1906,12 @@ msgstr ""
 "cours ?)"
 
 #: admin/inc/dtc_config.php:1013
-msgid "Maxmind license key:"
-msgstr "Clef de licence Maxmind:"
+msgid "Maxmind license key: "
+msgstr "Clef de licence Maxmind : "
 
 #: admin/inc/dtc_config.php:1009
-msgid "Maxmind login:"
-msgstr "Nom d'utilisateur Maxmind:"
+msgid "Maxmind login: "
+msgstr "Nom d'utilisateur Maxmind : "
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
@@ -1993,11 +2002,11 @@ msgstr "Serveurs de noms"
 msgid "Name servers:"
 msgstr "Serveurs de noms :"
 
-#: admin/inc/dtc_config.php:1044 shared/inc/forms/email.php:561
+#: shared/inc/forms/email.php:561
 msgid "Name:"
 msgstr "Nom:"
 
-#: shared/inc/forms/vps.php:139
+#: admin/inc/dtc_config.php:1044 shared/inc/forms/vps.php:139
 msgid "Name: "
 msgstr "Nom : "
 
@@ -2384,17 +2393,17 @@ msgstr ""
 "Les mots de passes sont fait uniquement de caractères standard (a-zA-Z0-9) "
 "et doivent etre entre 6 et 16 caractère de longueur."
 
-#: admin/inc/draw_user_admin.php:221 admin/inc/dtc_config.php:1058
-#: client/login.php:13 shared/inc/draw.php:436
-#: shared/inc/forms/database.php:37 shared/inc/forms/domain_stats.php:85
-#: shared/inc/forms/domain_stats.php:93 shared/inc/forms/email.php:27
-#: shared/inc/forms/email.php:565 shared/inc/forms/root_admin.php:104
-#: shared/inc/forms/ssh.php:75
+#: admin/inc/draw_user_admin.php:221 client/login.php:13
+#: shared/inc/draw.php:436 shared/inc/forms/database.php:37
+#: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
+#: shared/inc/forms/email.php:27 shared/inc/forms/email.php:565
+#: shared/inc/forms/root_admin.php:104 shared/inc/forms/ssh.php:75
 msgid "Password:"
 msgstr "Mot de passe:"
 
-#: client/new_account_form.php:562 email/login.php:13
-#: shared/inc/forms/email.php:216 shared/inc/forms/ftp.php:80
+#: admin/inc/dtc_config.php:1058 client/new_account_form.php:562
+#: email/login.php:13 shared/inc/forms/email.php:216
+#: shared/inc/forms/ftp.php:80
 msgid "Password: "
 msgstr "Mot de passe : "
 
@@ -2436,20 +2445,20 @@ msgid "Paths"
 msgstr "Chemins"
 
 #: admin/inc/dtc_config.php:942
-msgid "PayPal business account email:"
-msgstr "Email du compte business PayPal :"
+msgid "PayPal business account email: "
+msgstr "Email du compte business PayPal : "
 
 #: admin/inc/dtc_config.php:946
-msgid "PayPal fee rate:"
-msgstr "Pourcentage commissionaire PayPal :"
+msgid "PayPal fee rate: "
+msgstr "Pourcentage commissionaire PayPal : "
 
 #: admin/inc/dtc_config.php:950
-msgid "PayPal flat fee:"
-msgstr "Commission fixe PayPal :"
+msgid "PayPal flat fee: "
+msgstr "Commission fixe PayPal : "
 
 #: admin/inc/dtc_config.php:964
-msgid "PayPal test account email (sandbox):"
-msgstr "Email du compte de test PayPal (sandbox) :"
+msgid "PayPal test account email (sandbox): "
+msgstr "Email du compte de test PayPal (sandbox) : "
 
 #: admin/inc/draw_user_admin.php:314
 msgid "Payment date"
@@ -2520,8 +2529,8 @@ msgstr ""
 "Veuillez attendre la fin de la réinstallation du système d'exploitation."
 
 #: admin/inc/dtc_config.php:1054
-msgid "Port number:"
-msgstr "Numéro de port:"
+msgid "Port number: "
+msgstr "Numéro de port : "
 
 #: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
@@ -2813,8 +2822,8 @@ msgid "SSL IPs renewals: "
 msgstr "Renouvellement des IPs SSL: "
 
 #: admin/inc/dtc_config.php:665
-msgid "SSL Port:"
-msgstr "Port SSL:"
+msgid "SSL Port: "
+msgstr "Port SSL : "
 
 #: admin/inc/draw_user_admin.php:366
 msgid "SSL Token purchase"
@@ -2866,8 +2875,8 @@ msgid "Select the type of skin:"
 msgstr "Selectionner le type d'abillage :"
 
 #: admin/inc/dtc_config.php:551
-msgid "Selling conditions URL:"
-msgstr "URL des conditions de ventes :"
+msgid "Selling conditions URL: "
+msgstr "URL des conditions de ventes : "
 
 #: client/new_account_form.php:243
 msgid "Selling conditions not accepted!"
@@ -2962,8 +2971,8 @@ msgid "Shared hosting: "
 msgstr "Hébergement mutualisé : "
 
 #: admin/inc/dtc_config.php:1047
-msgid "Short name:"
-msgstr "Nom court :"
+msgid "Short name: "
+msgstr "Nom court : "
 
 #: admin/inc/dtc_config.php:221
 msgid "Shutdown warning: "
@@ -3254,8 +3263,8 @@ msgid "This month: "
 msgstr "Ce mois-ci: "
 
 #: admin/inc/dtc_config.php:547
-msgid "This server location:"
-msgstr "Emplacement de ce serveur :"
+msgid "This server location: "
+msgstr "Emplacement de ce serveur : "
 
 #: shared/inc/forms/subdomain.php:183
 msgid ""
@@ -3434,12 +3443,12 @@ msgid "Use"
 msgstr "Utilisater"
 
 #: admin/inc/dtc_config.php:532
-msgid "Use @domain.com ftp logins:"
-msgstr "Utiliser des logins ftp @domain.com :"
+msgid "Use @domain.com ftp logins: "
+msgstr "Utiliser des logins ftp @domain.com : "
 
 #: admin/inc/dtc_config.php:537
-msgid "Use @domain.com ssh logins:"
-msgstr "Utiliser des logins ssh @domain.com :"
+msgid "Use @domain.com ssh logins: "
+msgstr "Utiliser des logins ssh @domain.com : "
 
 #: admin/inc/dtc_config.php:714
 msgid "Use CNAME instead of A record for subdomains:"
@@ -3450,48 +3459,48 @@ msgid "Use LVM backend"
 msgstr "Utiliser LVM"
 
 #: admin/inc/dtc_config.php:1004
-msgid "Use Maxmind API:"
-msgstr "Utiliser l'API Maxmind:"
+msgid "Use Maxmind API: "
+msgstr "Utiliser l'API Maxmind : "
 
 #: admin/inc/dtc_config.php:527
-msgid "Use SSL:"
-msgstr "Utiliser le SSL :"
+msgid "Use SSL: "
+msgstr "Utiliser le SSL : "
 
 #: shared/inc/forms/subdomain.php:232
 msgid "Use an SSL vhost using this IP: "
 msgstr "Utiliser un vhost SSL en utilisant cette IP : "
 
 #: admin/inc/dtc_config.php:582
-msgid "Use awstats"
-msgstr "Utiliser awstats:"
+msgid "Use awstats: "
+msgstr "Utiliser awstats : "
 
 #: admin/inc/dtc_config.php:567
-msgid "Use cyrus:"
-msgstr "Utiliser cyrus:"
+msgid "Use cyrus: "
+msgstr "Utiliser cyrus : "
 
 #: admin/inc/dtc_config.php:975
-msgid "Use eNETS:"
-msgstr "Utiliser eNETS :"
+msgid "Use eNETS: "
+msgstr "Utiliser eNETS : "
 
 #: shared/inc/draw.php:321
 msgid "Use image menu"
 msgstr "Menu en images"
 
 #: admin/inc/dtc_config.php:522
-msgid "Use javascript:"
-msgstr "Utiliser le javascript :"
+msgid "Use javascript: "
+msgstr "Utiliser le javascript : "
 
 #: admin/inc/dtc_config.php:647
-msgid "Use multiple IPs:"
-msgstr "Utiliser plusieurs adresses IP :"
+msgid "Use multiple IPs: "
+msgstr "Utiliser plusieurs adresses IP : "
 
 #: admin/inc/dtc_config.php:959
-msgid "Use paypal recuring:"
-msgstr "Utiliser le payment récurent paypal :"
+msgid "Use paypal recuring: "
+msgstr "Utiliser le payment récurent paypal : "
 
 #: admin/inc/dtc_config.php:932
-msgid "Use paypal:"
-msgstr "Utiliser paypal :"
+msgid "Use paypal: "
+msgstr "Utiliser paypal : "
 
 #: shared/inc/forms/subdomain.php:175
 msgid "Use register_globals=1: "
@@ -3514,16 +3523,16 @@ msgid "Use the LIVE server (and not the test one) :"
 msgstr "Utiliser le serveur LIVE (et non le test) :"
 
 #: admin/inc/dtc_config.php:954
-msgid "Use the sandbox test server:"
-msgstr "Utiliser le serveur de test sandbox :"
+msgid "Use the sandbox test server: "
+msgstr "Utiliser le serveur de test sandbox : "
 
 #: admin/inc/dtc_config.php:587
-msgid "Use visitors"
-msgstr "Utiliser Visitors:"
+msgid "Use visitors: "
+msgstr "Utiliser Visitors : "
 
 #: admin/inc/dtc_config.php:572
-msgid "Use webalizer"
-msgstr "Utiliser Webalizer:"
+msgid "Use webalizer: "
+msgstr "Utiliser Webalizer : "
 
 #: shared/inc/forms/my_account.php:126
 msgid "Used by"
@@ -3539,16 +3548,16 @@ msgid "User"
 msgstr "Utilisateur"
 
 #: admin/inc/dtc_config.php:596
-msgid "User MySQL host:"
-msgstr "Hote MySQL pour les utilisateurs :"
+msgid "User MySQL host: "
+msgstr "Hote MySQL pour les utilisateurs : "
 
 #: admin/inc/dtc_config.php:599
-msgid "User MySQL root login:"
-msgstr "Login root pour les bases utilisateurs :"
+msgid "User MySQL root login: "
+msgstr "Login root pour les bases utilisateurs : "
 
 #: admin/inc/dtc_config.php:602
-msgid "User MySQL root password:"
-msgstr "Mot de passe root pour les bases utilisateurs :"
+msgid "User MySQL root password: "
+msgstr "Mot de passe root pour les bases utilisateurs : "
 
 #: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:578
 msgid "User administration"
@@ -3571,8 +3580,8 @@ msgid "User or password is incorrect!"
 msgstr "Utilisateur ou mot de passe incorrect !"
 
 #: admin/inc/dtc_config.php:542
-msgid "User session expire time (min):"
-msgstr "Expiration des sessions utilisateur (mn):"
+msgid "User session expire time (min): "
+msgstr "Expiration des sessions utilisateur (mn) : "
 
 #: client/new_account_form.php:252 client/new_account_form.php:260
 msgid "Username already taken! Try again."
@@ -3680,8 +3689,8 @@ msgid "VPS: Cannot find VPS in db!"
 msgstr "Impossible de trouver le VDS dans la base !"
 
 #: admin/inc/dtc_config.php:937
-msgid "Validate new account if paid:"
-msgstr "Valider les nouveaux compte si payé :"
+msgid "Validate new account if paid: "
+msgstr "Valider les nouveaux compte si payé : "
 
 #: shared/inc/forms/root_admin.php:346
 msgid "Vhost"
@@ -3708,8 +3717,8 @@ msgid "Web archive"
 msgstr "Archive web"
 
 #: admin/inc/dtc_config.php:576
-msgid "Webalizer country graph:"
-msgstr "Graphique de pays pour Webalizer :"
+msgid "Webalizer country graph: "
+msgstr "Graphique de pays pour Webalizer : "
 
 #: admin/inc/dtc_config.php:359
 msgid "Weekly"
@@ -3950,20 +3959,20 @@ msgid "couldn't connect to host"
 msgstr "impossible de se connecté à l'hote"
 
 #: admin/inc/dtc_config.php:985
-msgid "eNETS merchant ID:"
-msgstr "ID marchant de eNETS:"
+msgid "eNETS merchant ID: "
+msgstr "ID marchant de eNETS : "
 
 #: admin/inc/dtc_config.php:993
-msgid "eNETS rate:"
-msgstr "Taux eNETS:"
+msgid "eNETS rate: "
+msgstr "Taux eNETS : "
 
 #: admin/inc/dtc_config.php:980
-msgid "eNETS server:"
-msgstr "Serveurs eNETS:"
+msgid "eNETS server: "
+msgstr "Serveurs eNETS : "
 
 #: admin/inc/dtc_config.php:989
-msgid "eNETS test merchant ID:"
-msgstr "ID marchant de test de eNETS:"
+msgid "eNETS test merchant ID: "
+msgstr "ID marchant de test de eNETS : "
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:262
 msgid "fetching admin: "
