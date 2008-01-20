@@ -28,6 +28,7 @@ $dtc_database = array(
 			"ob_head" => "varchar(64) NOT NULL ",
 			"ob_tail" => "varchar(64) NOT NULL ",
 			"ob_next" => "varchar(64) NOT NULL ",
+			"last_used_lang" => "varchar(32) NOT NULL default 'en_US'",
 			"max_ssh" => "int(12) NOT NULL default '3' "
 			),
 		"primary" => "(adm_login)",
@@ -618,7 +619,8 @@ $dtc_database = array(
 			"shopper_ip" => "varchar(16) NOT NULL default ''",
 			"date" => "date NOT NULL default '0000-00-00'",
 			"time" => "time NOT NULL default '00:00:00'",
-			"maxmind_output" => "text NOT NULL"
+			"maxmind_output" => "text NOT NULL",
+			"last_used_lang" => "varchar(32) NOT NULL default 'en_US'",
 			),
 		"primary" => "(id)"
 		),
