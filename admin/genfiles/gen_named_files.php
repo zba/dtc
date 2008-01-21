@@ -25,7 +25,7 @@ function get_remote_ns($a){
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"];
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
-		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
+		if($a_vers[0] <= 4 && $a_vers[1] < 3){
 			if( $panel_type == "cronjob"){
 				echo "\nUsing lynx -source on ".$a["server_addr"]." with login ".$a["server_login"].".\n";
 			}else{
@@ -34,11 +34,12 @@ function get_remote_ns($a){
 			$result = exec("lynx -source \"$url\"",$lines,$return_val);
 		}else{
 			if( $panel_type == "cronjob"){
-				echo "\nUsing php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"].".";
+				echo "\nUsing php HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"].".";
 			}else{
-				$console .= "<br>Using php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"].".";
+				$console .= "<br>Using php HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"].".";
 			}
-			$lines = file ($url);
+			$httprequest = new HTTPRequest("$url");
+			$lines = $httprequest->DownloadToStringArray();
 		}
 		$nline = sizeof($lines);
 

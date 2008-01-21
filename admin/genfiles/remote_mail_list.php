@@ -19,7 +19,7 @@ function get_remote_mail($a,$recipients){
 	}
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
-		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
+		if($a_vers[0] <= 4 && $a_vers[1] < 3){
 			// Todo: use exec(lynx -source) because HTTPS will not work !
 			$lines = "";
 			if( $panel_type == "cronjob"){
@@ -58,11 +58,12 @@ function get_remote_mail($a,$recipients){
 //			$rcpthosts_file .= "";
 		}else{
 			if( $panel_type == "cronjob"){
-				echo "\nUsing php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"]."...";
+				echo "\nUsing php HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"]."...";
 			}else{
-				$console .= "<br>Using php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"]."...";
+				$console .= "<br>Using php HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"]."...";
 			}
-			$lines = file ($url);
+			$httprequest = new HTTPRequest("$url");
+			$lines = $httprequest->DownloadToStringArray();
 			$nline = sizeof($lines);
 			if(
 				(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&

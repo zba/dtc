@@ -73,4 +73,7 @@ if(file_exists($dtcshared_path."/dtcrm")){
 #include "$dtcshared_path/cyrus.php";
 require("$dtcshared_path/inc/draw.php");		// Functions that draws all user  forms
 
+# HTTPRequest for use instead of file(URL)
+require_once("$dtcshared_path/inc/HTTPRequestClass.php");
+
 ?>
