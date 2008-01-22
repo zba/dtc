@@ -56,7 +56,7 @@ Description: web control panel for admin and accounting hosting services
 
 Package: dtc-postfix-courier
 Architecture: all
-Depends: dtc-common, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, lsb-release, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, openssl, patch, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10)
+Depends: dtc-common, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, lsb-release, libsasl2-modules, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, openssl, patch, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10)
 Conflicts: dtc
 Replaces: dtc
 Suggests: mysqmail, msttcorefonts
