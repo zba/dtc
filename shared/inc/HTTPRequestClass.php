@@ -1,3 +1,9 @@
+<?php
+// HTTPRequest class adapted from http://sg.php.net/manual/en/function.fopen.php#58099
+//#usage:
+//$r = new HTTPRequest('http://www.php.net');
+//echo $r->DownloadToString();
+
 class HTTPRequest
 {
     var $_fp;        // HTTP socket
@@ -6,6 +12,9 @@ class HTTPRequest
     var $_protocol;    // protocol (HTTP/HTTPS)
     var $_uri;        // request URI
     var $_port;        // port
+    
+    // Timeout in seconds 
+		var $_timeout = 5;
     
     // scan url
     function _scan_url()
@@ -43,6 +52,13 @@ class HTTPRequest
         $this->_scan_url();
     }
     
+    // download URL to string Array
+    function DownloadToStringArray()
+    {
+    	$crlf = "\r\n";
+    	return explode($crlf, DownloadToString());
+    }
+    
     // download URL to string
     function DownloadToString()
     {
@@ -53,11 +69,54 @@ class HTTPRequest
             .    'Host: ' . $this->_host . $crlf
             .    $crlf;
         
-        // fetch
-        $this->_fp = fsockopen(($this->_protocol == 'https' ? 'ssl://' : '') . $this->_host, $this->_port);
+        // store errors in case we need to handle them
+        var $errno;
+        var $errstr;
+        
+        // fetch from URL
+        $this->_fp = fsockopen(($this->_protocol == 'https' ? 'ssl://' : '') . $this->_host, $this->_port, $errno, $errstr, $_timeout);
         fwrite($this->_fp, $req);
-        while(is_resource($this->_fp) && $this->_fp && !feof($this->_fp))
-            $response .= fread($this->_fp, 1024);
+        
+        $a_vers = explode(".",phpversion());
+				$use_stream = TRUE;
+				if($a_vers[0] <= 4 && $a_vers[1] < 3)
+				{
+					// first < 4.3, then we need to use socket rather than stream
+					$use_stream = FALSE;
+				}
+				
+				if ($use_stream)
+				{
+					stream_set_blocking($this->_fp, TRUE); 
+	        stream_set_timeout($this->_fp,$_timeout); 
+				} 
+				else 
+				{
+	        socket_set_blocking($this->_fp, TRUE); 
+	        socket_set_timeout($this->_fp,$_timeout); 
+        }
+        
+        // get the socket status
+        var $info;
+        if ($use_stream)
+        {
+        	$info = stream_get_meta_data($this->_fp);
+        } else {
+        	$info = socket_get_status($this->_fp);
+        }
+        
+        while(is_resource($this->_fp) && $this->_fp && !feof($this->_fp) && (!$info['timed_out']))
+        {
+            $response .= fread($this->_fp, 4096);
+            if ($use_stream)
+            {
+            	$info = stream_get_meta_data($this->_fp);
+            } else {
+            	$info = socket_get_status($this->_fp);
+            }
+            ob_flush(); 
+            flush();
+        }
         fclose($this->_fp);
         
         // split header and body
@@ -86,3 +145,4 @@ class HTTPRequest
         }
     }
 }
+?>
