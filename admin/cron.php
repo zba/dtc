@@ -458,6 +458,9 @@ function cronMailSystem () {
 			echo "Starting postfix queue...\n";
                         system("$PATH_POSTSUPER -H ALL");
 
+			echo "Flushing the queue now, to make sure we have some mail delivery happening after amavisd restart...\n";
+                        system("$PATH_POSTFIX_SCRIPT flush");
+
 			break;
 		case "qmail":
 		default:
