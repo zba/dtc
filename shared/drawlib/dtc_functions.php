@@ -1,5 +1,28 @@
 <?php
 
+function findLastUsedLangByUser($adm_login){
+	global $pro_mysql_admin_table;
+	global $pro_mysql_new_admin_table;
+
+	$q = "SELECT last_used_lang FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		$a = mysql_fetch_array($r);
+		return $a["last_used_lang"];
+	}else{
+		$q = "SELECT last_used_lang FROM $pro_mysql_new_admin_table WHERE reqadm_login='$adm_login';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n > 0){
+			$a = mysql_fetch_array($r);
+			return $a["last_used_lang"];
+		}else{
+			return false;
+		}
+	}
+}
+
 function findInvoicingCompany ($service_location,$client_country_code){
 	global $pro_mysql_invoicing_table;
 	global $conf_default_company_invoicing;

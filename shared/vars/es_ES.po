@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-19 14:32+0800\n"
+"POT-Creation-Date: 2008-01-24 02:43+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jose Toscano <josetg81wireless@yahoo.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -18,6 +18,18 @@ msgstr ""
 #: shared/inc/forms/vps.php:64 shared/inc/forms/vps.php:77
 #: shared/inc/forms/vps.php:90
 msgid " CPU seconds"
+msgstr ""
+
+#: shared/dtcrm/draw.php:63
+msgid " days) for upgrading will be: "
+msgstr ""
+
+#: shared/dtcrm/draw.php:64
+msgid " days), with "
+msgstr ""
+
+#: shared/dtcrm/draw.php:71
+msgid " disk storage and "
 msgstr ""
 
 #: shared/inc/sql/lists.php:490
@@ -31,6 +43,19 @@ msgstr " no parece un login de correo..."
 #: shared/inc/sql/vps.php:174 shared/inc/sql/vps.php:184
 #: shared/inc/sql/vps.php:194
 msgid " file "
+msgstr ""
+
+#: shared/dtcrm/draw.php:72
+#, fuzzy
+msgid " of data transfer each month."
+msgstr "Transferencia total de bytes este mes:"
+
+#: shared/dtcrm/draw.php:64
+msgid " remaining to be paid"
+msgstr ""
+
+#: shared/dtcrm/draw_handle.php:256
+msgid "+1.XXXXXXXXXX format"
 msgstr ""
 
 #: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
@@ -146,23 +171,57 @@ msgstr "A&ntilde;adir administrador para este cliente:"
 msgid "Add domain"
 msgstr "Agregar dominio"
 
+#: shared/dtcrm/draw_handle.php:238
+#, fuzzy
+msgid "Adddress (line2): "
+msgstr "Direcci&oacute;n:"
+
+#: shared/dtcrm/draw_handle.php:241
+#, fuzzy
+msgid "Adddress (line3): "
+msgstr "Direcci&oacute;n:"
+
 #: shared/inc/forms/lists.php:409
 msgid "Added footer:"
 msgstr "Pie de mensaje adicional:"
 
-#: admin/dtcrm/main.php:165
+#: shared/dtcrm/draw_nameservers.php:59
+msgid "Addition of name server failed"
+msgstr ""
+
+#: shared/dtcrm/draw_nameservers.php:50
+msgid "Addition of name server was succesfull"
+msgstr ""
+
+#: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
 #, fuzzy
 msgid "Address (line1): "
 msgstr "Direcci&oacute;n:"
 
-#: admin/dtcrm/main.php:166
+#: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
+#, fuzzy
+msgid "Address (line1: "
+msgstr "Direcci&oacute;n:"
+
+#: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
 #, fuzzy
 msgid "Address (line2): "
 msgstr "Direcci&oacute;n:"
 
-#: admin/dtcrm/main.php:167
+#: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
+#, fuzzy
+msgid "Address (line2: "
+msgstr "Direcci&oacute;n:"
+
+#: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
+#: shared/dtcrm/draw_handle.php:125
 #, fuzzy
 msgid "Address (line3): "
+msgstr "Direcci&oacute;n:"
+
+#: shared/dtcrm/draw_handle.php:93
+#, fuzzy
+msgid "Address (line3: "
 msgstr "Direcci&oacute;n:"
 
 #: shared/inc/forms/email.php:27
@@ -178,7 +237,7 @@ msgstr "Direcci&oacute;n IP de su servidor MX principal :"
 msgid "Address:"
 msgstr "Direcci&oacute;n:"
 
-#: client/new_account_form.php:610
+#: client/new_account_form.php:610 shared/dtcrm/draw_handle.php:235
 #, fuzzy
 msgid "Addresse (line1): "
 msgstr "Direcci&oacute;n:"
@@ -250,10 +309,24 @@ msgstr "Ancho de Banda permitido por mes (MB):"
 msgid "Allowed data transfer (GB): "
 msgstr ""
 
+#: shared/dtcrm/draw_adddomain.php:93
+msgid "Alternatively, you can add another domain name:"
+msgstr ""
+
 #: admin/inc/renewals.php:114 shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Amount"
 msgstr "Pais"
+
+#: shared/dtcrm/draw_adddomain.php:80
+msgid ""
+"An administrator will examine your request shortly, and validate the "
+"addition of this domain name to your account. You curently don't have enough "
+"privileges to add domain names. If you often add domain names, you can ask "
+"the administrator to grant you the privilege of automatic domain name "
+"addition. To request hosting for a new domain name, without administrator "
+"validation or domain name registration, please write to:"
+msgstr ""
 
 #: admin/inc/dtc_config.php:594
 msgid "Another location"
@@ -344,6 +417,11 @@ msgstr "Monitor de Ancho de Banda"
 #: shared/inc/forms/root_admin.php:493 shared/inc/forms/root_admin.php:557
 #, fuzzy
 msgid "Bandwidth per month"
+msgstr "Ancho de Banda permitido por mes"
+
+#: shared/dtcrm/draw.php:79
+#, fuzzy
+msgid "Bandwidth/month"
 msgstr "Ancho de Banda permitido por mes"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
@@ -485,9 +563,15 @@ msgid "City:"
 msgstr "Pais:"
 
 #: admin/dtcrm/main.php:168 client/new_account_form.php:622
+#: shared/dtcrm/draw_handle.php:63 shared/dtcrm/draw_handle.php:95
+#: shared/dtcrm/draw_handle.php:127 shared/dtcrm/draw_handle.php:247
 #, fuzzy
 msgid "City: "
 msgstr "Pais:"
+
+#: shared/dtcrm/draw_adddomain.php:291
+msgid "Click"
+msgstr ""
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
@@ -544,8 +628,15 @@ msgid "Company name:"
 msgstr "Empresa:"
 
 #: admin/dtcrm/main.php:163 client/new_account_form.php:590
+#: shared/dtcrm/draw_handle.php:58
 #, fuzzy
 msgid "Company name: "
+msgstr "Empresa:"
+
+#: shared/dtcrm/draw_handle.php:90 shared/dtcrm/draw_handle.php:122
+#: shared/dtcrm/draw_handle.php:226
+#, fuzzy
+msgid "Company: "
 msgstr "Empresa:"
 
 #: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:438
@@ -606,6 +697,11 @@ msgstr ""
 msgid "Could not connect to VPS server!"
 msgstr "No se ha podido conectar con el servidor VPS!"
 
+#: shared/dtcrm/draw_adddomain.php:128
+msgid ""
+"Could not connect to domain registration server: please try again later!"
+msgstr ""
+
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
 msgstr ""
@@ -663,6 +759,8 @@ msgid "Country:"
 msgstr "Pais:"
 
 #: admin/dtcrm/main.php:171 client/new_account_form.php:628
+#: shared/dtcrm/draw_handle.php:65 shared/dtcrm/draw_handle.php:97
+#: shared/dtcrm/draw_handle.php:129 shared/dtcrm/draw_handle.php:253
 #: shared/inc/forms/root_admin.php:280
 #, fuzzy
 msgid "Country: "
@@ -678,6 +776,14 @@ msgstr ""
 
 #: shared/inc/forms/aliases.php:22
 msgid "Create New Mail Group"
+msgstr ""
+
+#: shared/dtcrm/draw_handle.php:29
+msgid "Create a new handle"
+msgstr ""
+
+#: shared/dtcrm/draw_handle.php:199
+msgid "Create a new nick-handle:"
 msgstr ""
 
 #: shared/inc/forms/subdomain.php:126
@@ -870,6 +976,11 @@ msgstr ""
 msgid "Delete headers:"
 msgstr "Eliminar cabeceras:"
 
+#: shared/dtcrm/draw_nameservers.php:120
+#, fuzzy
+msgid "Delete name server"
+msgstr "Borrar usuario"
+
 #: shared/inc/forms/root_admin.php:191
 msgid "Delete one of the admin VPS: "
 msgstr ""
@@ -886,6 +997,14 @@ msgstr "Borrar usuario"
 #, fuzzy
 msgid "Delete:"
 msgstr "Eliminar"
+
+#: shared/dtcrm/draw_nameservers.php:74
+msgid "Deletion of name server failed"
+msgstr ""
+
+#: shared/dtcrm/draw_nameservers.php:68
+msgid "Deletion of name server was succesful"
+msgstr ""
 
 #: shared/inc/forms/lists.php:431
 msgid "Delimiter:"
@@ -962,6 +1081,10 @@ msgstr "Mostrar y ordenar por:"
 msgid "Do not change unless you really know what you are doing."
 msgstr "No modificar a menos que realmente sepa lo que est&aacute; haciendo."
 
+#: shared/dtcrm/draw_adddomain.php:102
+msgid "Do you want to transfer an existing domain or register a new domain?"
+msgstr ""
+
 #: shared/drawlib/anotherDtc.php:129
 msgid "Documentation"
 msgstr "Documentaci&oacute;n"
@@ -993,6 +1116,10 @@ msgstr ""
 #: shared/inc/forms/admin_stats.php:67
 msgid "Domain name files:"
 msgstr "Ficheros de nombres de dominio:"
+
+#: shared/dtcrm/draw_adddomain.php:68
+msgid "Domain name is not in correct format. Please enter another name."
+msgstr ""
 
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
@@ -1041,6 +1168,11 @@ msgstr ""
 #: admin/inc/dtc_config.php:1204
 msgid "Edit a company:"
 msgstr ""
+
+#: shared/dtcrm/draw_nameservers.php:99
+#, fuzzy
+msgid "Edit a name server:"
+msgstr "Servidores de nombres:"
 
 #: shared/inc/forms/lists.php:52
 msgid "Edit mailing list"
@@ -1099,6 +1231,8 @@ msgid "Email:"
 msgstr ""
 
 #: admin/dtcrm/main.php:175 client/new_account_form.php:596
+#: shared/dtcrm/draw_handle.php:68 shared/dtcrm/draw_handle.php:100
+#: shared/dtcrm/draw_handle.php:132 shared/dtcrm/draw_handle.php:262
 #, fuzzy
 msgid "Email: "
 msgstr "Max Emails"
@@ -1118,6 +1252,10 @@ msgstr "Habilitar archivo web."
 #: shared/inc/forms/lists.php:442
 msgid "Enable webarchive:"
 msgstr "Habilitar archivo web:"
+
+#: shared/dtcrm/draw_adddomain.php:120
+msgid "Enter the domain name you want to register:"
+msgstr ""
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:262
 msgid "Error"
@@ -1188,6 +1326,8 @@ msgid "FTP password:"
 msgstr ""
 
 #: admin/dtcrm/main.php:159 client/new_account_form.php:580
+#: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
+#: shared/dtcrm/draw_handle.php:232
 #, fuzzy
 msgid "Familly name: "
 msgstr "Apellido:"
@@ -1201,6 +1341,8 @@ msgid "Fax:"
 msgstr ""
 
 #: admin/dtcrm/main.php:174 client/new_account_form.php:602
+#: shared/dtcrm/draw_handle.php:67 shared/dtcrm/draw_handle.php:99
+#: shared/dtcrm/draw_handle.php:131 shared/dtcrm/draw_handle.php:259
 msgid "Fax: "
 msgstr ""
 
@@ -1229,6 +1371,7 @@ msgid "First name:"
 msgstr "Nombre:"
 
 #: admin/dtcrm/main.php:160 client/new_account_form.php:583
+#: shared/dtcrm/draw_handle.php:229
 #, fuzzy
 msgid "First name: "
 msgstr "Nombre:"
@@ -1236,6 +1379,12 @@ msgstr "Nombre:"
 #: admin/inc/draw_user_admin.php:126
 msgid "First query date: "
 msgstr ""
+
+#: shared/dtcrm/draw_handle.php:56 shared/dtcrm/draw_handle.php:88
+#: shared/dtcrm/draw_handle.php:120
+#, fuzzy
+msgid "Firstname: "
+msgstr "Nombre:"
 
 #: shared/inc/forms/ticket.php:57
 msgid "Full description of the trouble:"
@@ -1341,6 +1490,15 @@ msgstr "Ocultar direcciones de email para evitar spam."
 msgid "Host IP addresses (separated by \"|\"): "
 msgstr "Direcciones IP del servidor (separadas por &quot;|&quot;):"
 
+#: shared/dtcrm/draw_adddomain.php:42
+#, fuzzy
+msgid "Hosting + domain name registration or transfer"
+msgstr "Registro de dominio"
+
+#: shared/dtcrm/draw_adddomain.php:47
+msgid "Hosting only"
+msgstr ""
+
 #: shared/gfx/skin/default_layout.php:159
 #: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:433
 #: shared/gfx/skin/bwoup/layout.php:435 shared/gfx/skin/bwoup/layout.php:543
@@ -1379,6 +1537,11 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:384
 msgid "IP address"
 msgstr "Direcci&oacute;n IP"
+
+#: shared/dtcrm/draw_nameservers.php:109 shared/dtcrm/draw_nameservers.php:142
+#, fuzzy
+msgid "IP address of name server:"
+msgstr "IP principal del servidor:"
 
 #: shared/inc/forms/dns.php:19
 #, fuzzy
@@ -1483,6 +1646,12 @@ msgid ""
 msgstr ""
 "Si se activa esta opci&oacute;n la lista de direcciones no debe estar en las "
 "cabeceras To: o Cc: del mail a la lista."
+
+#: shared/dtcrm/draw_whois.php:51
+msgid ""
+"If you want to keep your current registrar, you have to make the whois point "
+"to these DNS:"
+msgstr ""
 
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
@@ -1667,6 +1836,11 @@ msgstr ""
 msgid "Last warning: "
 msgstr ""
 
+#: shared/dtcrm/draw_handle.php:121
+#, fuzzy
+msgid "Lastname: "
+msgstr "Nombre:"
+
 #: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:513
 msgid "Launching the configuration files generation"
 msgstr "Lanzando la generaci&oacute;n de archivos de configuraci&oacute;n."
@@ -1724,6 +1898,11 @@ msgstr "Lista de sus bases de datos:"
 #: shared/inc/forms/lists.php:27
 #, fuzzy
 msgid "List of your mailing lists"
+msgstr "Lista de sus bases de datos:"
+
+#: shared/dtcrm/draw_nameservers.php:79
+#, fuzzy
+msgid "List of your registred name-servers:"
 msgstr "Lista de sus bases de datos:"
 
 #: shared/inc/forms/subdomain.php:125
@@ -2043,9 +2222,18 @@ msgstr "NO VALIDADO"
 msgid "Name"
 msgstr "Nombre"
 
+#: shared/dtcrm/draw_handle.php:223
+msgid "Name for this handle: "
+msgstr ""
+
 #: shared/inc/forms/lists.php:70
 msgid "Name of the list."
 msgstr "Nombre de la lista."
+
+#: shared/dtcrm/draw_nameservers.php:107
+#, fuzzy
+msgid "Name server hostname: "
+msgstr "Servidores de nombres:"
 
 #: shared/inc/draw.php:140
 #, fuzzy
@@ -2298,6 +2486,10 @@ msgstr "Notificar post enviados sin acceso:"
 msgid "Notify when post and not subscribed:"
 msgstr "Notificar post de no suscriptos:"
 
+#: shared/dtcrm/draw_adddomain.php:90
+msgid "Now you can go to check its configuration by clicking here:"
+msgstr ""
+
 #: shared/inc/forms/vps.php:151
 #, fuzzy
 msgid "Number of CPU: "
@@ -2472,6 +2664,10 @@ msgstr "Contrase&ntilde;a:"
 msgid "Password: "
 msgstr ""
 
+#: shared/dtcrm/draw.php:35
+msgid "Past account refundal"
+msgstr ""
+
 #: shared/inc/draw.php:122
 msgid "Past payments"
 msgstr "Pagos realizados"
@@ -2527,6 +2723,10 @@ msgstr "Comisi&oacute;n fija de Paypal:"
 msgid "PayPal test account email (sandbox): "
 msgstr "E-mail de la cuenta de prueba PayPal (sandbox):"
 
+#: shared/dtcrm/draw_adddomain.php:241
+msgid "Payment complete. Proceed to checkout"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:314
 #, fuzzy
 msgid "Payment date"
@@ -2554,6 +2754,7 @@ msgstr ""
 #: admin/inc/renewals.php:114 admin/dtcrm/product_manager.php:36
 #: admin/dtcrm/product_manager.php:104 admin/dtcrm/product_manager.php:162
 #: admin/dtcrm/product_manager.php:187 admin/dtcrm/product_manager.php:220
+#: shared/dtcrm/draw.php:80
 msgid "Period"
 msgstr "Per&iacute;odo"
 
@@ -2562,6 +2763,8 @@ msgid "Phone number:"
 msgstr "N&uacute;mero de tel&eacute;fono:"
 
 #: admin/dtcrm/main.php:173 client/new_account_form.php:599
+#: shared/dtcrm/draw_handle.php:66 shared/dtcrm/draw_handle.php:98
+#: shared/dtcrm/draw_handle.php:130 shared/dtcrm/draw_handle.php:256
 #, fuzzy
 msgid "Phone number: "
 msgstr "N&uacute;mero de tel&eacute;fono:"
@@ -2574,6 +2777,15 @@ msgstr ""
 msgid "Please create a MySQL user in order to be able to create a database."
 msgstr "Debe crear un usuario MYSQL para luego poder crear una base de datos."
 
+#: shared/dtcrm/draw_adddomain.php:63
+msgid "Please enter the domain name you wish to add:"
+msgstr ""
+
+#: shared/dtcrm/draw_transferdomain.php:47
+#: shared/dtcrm/draw_transferdomain.php:64
+msgid "Please enter the domain name you wish to transfer:"
+msgstr ""
+
 #: shared/inc/forms/dedicated.php:47
 msgid "Please renew it with one of the following options"
 msgstr ""
@@ -2583,6 +2795,12 @@ msgstr ""
 msgid "Please renew with one of the following options: "
 msgstr ""
 "Por favor d&iacute;ganos si la informaci&oacute;n siguiente no es correcta:"
+
+#: shared/dtcrm/draw_adddomain.php:164
+msgid ""
+"Please select the 3 contact handles you want to use for registering that "
+"domain name."
+msgstr ""
 
 #: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
@@ -2604,12 +2822,18 @@ msgstr "N&uacute;mero de tel&eacute;fono:"
 
 #: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
-#: admin/dtcrm/product_manager.php:225 shared/inc/forms/invoices.php:23
+#: admin/dtcrm/product_manager.php:225 shared/dtcrm/draw.php:80
+#: shared/inc/forms/invoices.php:23
 msgid "Price"
 msgstr "Precio"
 
 #: admin/inc/dtc_config.php:701
 msgid "Primary DNS server address:"
+msgstr "Servidor DNS primario:"
+
+#: shared/dtcrm/draw_whois.php:52
+#, fuzzy
+msgid "Primary DNS:"
 msgstr "Servidor DNS primario:"
 
 #: shared/inc/forms/dns.php:42
@@ -2622,9 +2846,22 @@ msgstr "Direcci&oacute;n MX primaria:"
 msgid "Private"
 msgstr "Demonio"
 
+#: shared/dtcrm/draw.php:160
+msgid "Proceed to account upgrade"
+msgstr ""
+
+#: shared/dtcrm/draw_adddomain.php:251
+#, fuzzy
+msgid "Proceed to name-registration"
+msgstr "Registro de dominio"
+
+#: shared/dtcrm/draw_transferdomain.php:79
+msgid "Proceed to transfer"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
-#: client/new_account_form.php:541 shared/inc/forms/invoices.php:23
-#: shared/inc/forms/root_admin.php:565
+#: client/new_account_form.php:541 shared/dtcrm/draw.php:79
+#: shared/inc/forms/invoices.php:23 shared/inc/forms/root_admin.php:565
 msgid "Product"
 msgstr "Producto"
 
@@ -2727,13 +2964,32 @@ msgstr "Redireccion 1: "
 msgid "Redirection 2: "
 msgstr "Redireccion 2: "
 
+#: shared/dtcrm/draw.php:63
+msgid "Refund"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:188
 #, fuzzy
 msgid "Refund my account:"
 msgstr "Acreditar dinero a mi cuenta:"
 
+#: shared/dtcrm/draw_adddomain.php:116
+#, fuzzy
+msgid "Register a domain name"
+msgstr "Nombre de dominio deseado"
+
 #: client/login.php:6 client/new_account.php:148 client/new_account.php:246
 msgid "Register a new account"
+msgstr "Registrar una nueva cuenta"
+
+#: shared/dtcrm/draw_adddomain.php:104
+#, fuzzy
+msgid "Register a new domain"
+msgstr "Registrar una nueva cuenta"
+
+#: shared/dtcrm/draw_nameservers.php:124
+#, fuzzy
+msgid "Register a new name server:"
 msgstr "Registrar una nueva cuenta"
 
 #: shared/inc/forms/root_admin.php:477 shared/inc/forms/root_admin.php:541
@@ -2741,9 +2997,23 @@ msgstr "Registrar una nueva cuenta"
 msgid "Registration"
 msgstr "Registro de dominio"
 
+#: shared/dtcrm/draw_adddomain.php:264
+#, fuzzy
+msgid "Registration failed"
+msgstr "Registro de dominio"
+
 #: admin/inc/dtc_config.php:1232
 msgid "Registration number:"
 msgstr ""
+
+#: shared/dtcrm/draw_nameservers.php:42
+msgid "Registration of your name server failed"
+msgstr ""
+
+#: shared/dtcrm/draw_nameservers.php:22
+#, fuzzy
+msgid "Registration of your name server was succesful"
+msgstr "Registro correcto!"
 
 #: client/new_account.php:233
 msgid "Registration successful!"
@@ -2774,6 +3044,12 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
+msgstr "Dinero restante en mi cuenta:"
+
+#: shared/dtcrm/draw_adddomain.php:220
+#: shared/dtcrm/draw_transferdomain.php:101
+#, fuzzy
+msgid "Remaining on your account: "
 msgstr "Dinero restante en mi cuenta:"
 
 #: admin/inc/dtc_config.php:225
@@ -2939,6 +3215,10 @@ msgid ""
 "(separated by &quot;|&quot; (pipe) if more than one):"
 msgstr ""
 
+#: shared/dtcrm/draw_whois.php:53
+msgid "Secondary DNS:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:912
 msgid "Secure payment configuration"
 msgstr "Configuraci&oacute;n de pago seguro"
@@ -2946,6 +3226,16 @@ msgstr "Configuraci&oacute;n de pago seguro"
 #: admin/dtcrm/main.php:109
 msgid "Select a customer."
 msgstr "Seleccionar cliente."
+
+#: shared/dtcrm/draw_adddomain.php:167
+msgid "Select how long you want to register this domain name:"
+msgstr ""
+
+#: shared/dtcrm/draw_nameservers.php:135
+msgid ""
+"Select one of your domain-names for registering an additional name server to "
+"the registries:"
+msgstr ""
 
 #: admin/inc/dtc_config.php:624
 msgid "Select the type of skin:"
@@ -3021,6 +3311,15 @@ msgstr "Servidor DNS primario:"
 msgid "Server not found!"
 msgstr ""
 
+#: shared/dtcrm/draw_adddomain.php:265 shared/dtcrm/draw_nameservers.php:23
+#: shared/dtcrm/draw_nameservers.php:43 shared/dtcrm/draw_nameservers.php:51
+#: shared/dtcrm/draw_nameservers.php:60 shared/dtcrm/draw_nameservers.php:69
+#: shared/dtcrm/draw_nameservers.php:75
+#: shared/dtcrm/draw_transferdomain.php:62
+#, fuzzy
+msgid "Server said: "
+msgstr "Servidor DNS primario:"
+
 #: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:510
 msgid "Server statistic graphs"
 msgstr "Gráficos de estadísticas del servidor"
@@ -3064,6 +3363,11 @@ msgstr ""
 msgid "Soap login"
 msgstr ""
 
+#: shared/dtcrm/draw_adddomain.php:135
+#, fuzzy
+msgid "Sorry, the domain name "
+msgstr "Nombre de dominio deseado"
+
 #: shared/inc/forms/vps.php:251
 msgid "Start and stop of your VPS:"
 msgstr ""
@@ -3077,6 +3381,8 @@ msgid "State:"
 msgstr "Provincia:"
 
 #: admin/dtcrm/main.php:170 client/new_account_form.php:625
+#: shared/dtcrm/draw_handle.php:64 shared/dtcrm/draw_handle.php:96
+#: shared/dtcrm/draw_handle.php:128 shared/dtcrm/draw_handle.php:244
 #, fuzzy
 msgid "State: "
 msgstr "Provincia:"
@@ -3101,6 +3407,35 @@ msgstr ""
 #, fuzzy
 msgid "Status"
 msgstr "Provincia:"
+
+#: shared/dtcrm/draw_adddomain.php:117
+msgid "Step 1: Verify availability"
+msgstr ""
+
+#: shared/dtcrm/draw.php:69
+msgid "Step 1: choose your upgrade"
+msgstr ""
+
+#: shared/dtcrm/draw_adddomain.php:146
+msgid "Step 2: Enter whois information"
+msgstr ""
+
+#: shared/dtcrm/draw_transferdomain.php:71
+msgid "Step 2: select contacts for domain transfer"
+msgstr ""
+
+#: shared/dtcrm/draw_adddomain.php:191
+msgid "Step 3: Proceed to registration"
+msgstr ""
+
+#: shared/dtcrm/draw_transferdomain.php:39
+msgid "Step1: check if domain is transferable"
+msgstr ""
+
+#: shared/dtcrm/draw.php:79
+#, fuzzy
+msgid "Storage"
+msgstr "Espacio de disco"
 
 #: shared/inc/forms/my_account.php:97
 msgid "Storage space"
@@ -3172,6 +3507,10 @@ msgstr ""
 msgid "Subscribers only post:"
 msgstr "S&oacute;lo suscriptos pueden postear:"
 
+#: shared/dtcrm/draw_adddomain.php:289
+msgid "Successfully added your domain name to the hosting database"
+msgstr ""
+
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
 msgstr ""
@@ -3191,6 +3530,18 @@ msgstr ""
 #: client/new_account.php:108
 msgid "TRANSACTION FINISHED AND APPROVED"
 msgstr "TRANSACCION FINALIZADA Y APROBADA"
+
+#: shared/dtcrm/draw_transferdomain.php:61
+msgid "TRANSFER CHECK FAILED"
+msgstr ""
+
+#: shared/dtcrm/draw_transferdomain.php:57
+msgid "TRANSFER CHECK FAILED: registry server didn't reply successfuly."
+msgstr ""
+
+#: shared/dtcrm/draw_transferdomain.php:68
+msgid "TRANSFER CHECK SUCCESSFUL"
+msgstr ""
 
 #: shared/inc/forms/subdomain.php:178
 msgid "TXT field of the subdomain: "
@@ -3281,6 +3632,10 @@ msgstr ""
 "Prefijo de la linea &quot;Asunto:&quot; en los mails a la lista. Este "
 "prefijo se agregar&aacute; si no est&aacute; presente en otra parte."
 
+#: shared/dtcrm/draw_transferdomain.php:107
+msgid "The transaction failed, please try again!"
+msgstr ""
+
 #: shared/inc/forms/ftp.php:66
 msgid "There is already a ftp login by that name"
 msgstr ""
@@ -3308,6 +3663,15 @@ msgid ""
 "while others are made of a unique value. The message templates\n"
 "are stored in /etc/dtc, and if not present in: "
 msgstr ""
+
+#: shared/dtcrm/draw_handle.php:262
+msgid "This MUST be a valid address"
+msgstr ""
+
+#: shared/dtcrm/draw_adddomain.php:74
+#, fuzzy
+msgid "This domain name already hosted here, please enter another name."
+msgstr "Nombre de base de datos no válido. Por favor escoja otro."
 
 #: shared/inc/forms/domain_info.php:78
 msgid "This domain will be the alias of the following domain (domain parking):"
@@ -3403,9 +3767,17 @@ msgid ""
 "shutdown or destroy your server first."
 msgstr ""
 
+#: shared/dtcrm/draw.php:73
+msgid "To what capacity would you like to upgrade to?"
+msgstr ""
+
 #: shared/inc/forms/lists.php:407
 msgid "To: or Cc: not mandatory:"
 msgstr "To: o Cc: no obligatorio:"
+
+#: shared/dtcrm/draw.php:37
+msgid "Today is the: "
+msgstr ""
 
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
@@ -3425,6 +3797,12 @@ msgstr "N&uacute;mero total de bases de datos:"
 #: shared/inc/forms/my_account.php:76
 msgid "Total disk usage:"
 msgstr "Uso total de disco:"
+
+#: shared/dtcrm/draw_adddomain.php:221
+#: shared/dtcrm/draw_transferdomain.php:102
+#, fuzzy
+msgid "Total price: "
+msgstr "Tr&aacute;fico total"
 
 #: admin/inc/renewals.php:20
 msgid "Total recurring incomes per month:"
@@ -3456,9 +3834,17 @@ msgstr "Tr&aacute;fico"
 msgid "Transfer"
 msgstr "Transferencia"
 
+#: shared/dtcrm/draw_adddomain.php:105
+msgid "Transfer an existing domain from another registrar"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:63
 msgid "Transfer and disk usage:"
 msgstr "Transferencia y uso de disco:"
+
+#: shared/dtcrm/draw_transferdomain.php:38
+msgid "Transfer from another registrar to this server:"
+msgstr ""
 
 #: admin/inc/monitor.php:15
 msgid "Transfer per month"
@@ -3512,6 +3898,11 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:106
 msgid "Upgrade my account"
+msgstr "Actualizar mi cuenta"
+
+#: shared/dtcrm/draw.php:33
+#, fuzzy
+msgid "Upgrade my account:"
 msgstr "Actualizar mi cuenta"
 
 #: shared/inc/forms/domain_info.php:59 shared/inc/forms/email.php:27
@@ -3826,8 +4217,16 @@ msgstr ""
 msgid "What"
 msgstr "Qu&eacute;"
 
+#: shared/dtcrm/draw_adddomain.php:39
+msgid "What do you want to add:"
+msgstr ""
+
 #: shared/inc/forms/ticket.php:47
 msgid "What is your server hostname:"
+msgstr ""
+
+#: shared/dtcrm/draw_nameservers.php:125
+msgid "What subzone do you want to use (example: ns1):"
 msgstr ""
 
 #: shared/inc/forms/lists.php:196
@@ -3849,6 +4248,19 @@ msgid ""
 msgstr ""
 "Si se activa esta casilla, s&oacute;lo los suscriptos a la lista pueden "
 "postear. Se verificar&aacute; la cabecera &quot;From:&quot;"
+
+#: shared/dtcrm/draw_handle.php:73
+msgid "Who will be contacted for domain renewall (billing contact)?"
+msgstr ""
+
+#: shared/dtcrm/draw_handle.php:105
+msgid ""
+"Who will have the rights for changing the whois information (admin contact)?"
+msgstr ""
+
+#: shared/dtcrm/draw_handle.php:41
+msgid "Who will own the domain name and will be the registrant (domain owner)?"
+msgstr ""
 
 #: shared/inc/draw.php:183
 msgid "Whois"
@@ -3895,6 +4307,11 @@ msgstr ""
 msgid "Yes"
 msgstr "S&iacute;"
 
+#: shared/dtcrm/draw_adddomain.php:83
+#, fuzzy
+msgid "You can add another domain name:"
+msgstr "Configure su nombre de dominio:"
+
 #: shared/inc/sql/lists.php:213
 msgid ""
 "You can control your mailing list by email or by control panel.\n"
@@ -3936,22 +4353,62 @@ msgstr ""
 "Para m&aacute;s informaci&oacute;n vaya al sitio oficial de mlmmj en http://"
 "mlmmj.mmj.df."
 
+#: shared/dtcrm/draw_adddomain.php:59
+msgid ""
+"You curently don't have enough privileges to add domain names. If you often "
+"add domain names, you can ask the administrator to do so. To request hosting "
+"for a new domain without domain name registration, please write to:"
+msgstr ""
+
+#: shared/dtcrm/draw.php:66
+msgid ""
+"You currently don't have a validated account. Please contact customer "
+"support."
+msgstr ""
+
 #: shared/inc/forms/my_account.php:123
 msgid "You currently don't have any SSL tokens."
+msgstr ""
+
+#: shared/dtcrm/draw_adddomain.php:239 shared/dtcrm/draw.php:148
+#: shared/dtcrm/draw_transferdomain.php:135
+msgid ""
+"You currently don't have enough funds on your account. You will be "
+"redirected to our payment system. Please click on the button below to pay."
 msgstr ""
 
 #: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
 msgstr ""
 
+#: shared/dtcrm/draw_adddomain.php:216 shared/dtcrm/draw_transferdomain.php:94
+msgid "You don't have a client ID. Please contact us."
+msgstr ""
+
 #: shared/inc/sql/ssh.php:24
 msgid "You don't have the SSH login flag!"
 msgstr "No tiene el marcador de acceso por SSH!"
+
+#: shared/dtcrm/draw.php:64
+msgid "You have"
+msgstr ""
 
 #: client/new_account.php:147
 msgid ""
 "You have canceled the payment, your account wont be validated. To start "
 "again the registration procedure, follow the link here:"
+msgstr ""
+
+#: shared/dtcrm/draw.php:157
+msgid ""
+"You have enough funds on your account to proceed account upgrade. Press the "
+"confirm button and your order will be proceeded."
+msgstr ""
+
+#: shared/dtcrm/draw_adddomain.php:248
+msgid ""
+"You have enough funds on your account to proceed with registration. Press "
+"the confirm button to proceed."
 msgstr ""
 
 #: admin/inc/dtc_config.php:892
@@ -3970,6 +4427,10 @@ msgstr ""
 msgid "Your VPS will expire on the: "
 msgstr ""
 
+#: shared/dtcrm/draw_transferdomain.php:109
+msgid "Your account has been credited!"
+msgstr ""
+
 #: shared/inc/forms/domain_info.php:53
 msgid "Your area disk usage:"
 msgstr "Espacio de disco usado:"
@@ -3977,6 +4438,11 @@ msgstr "Espacio de disco usado:"
 #: shared/inc/forms/reseller.php:22
 #, fuzzy
 msgid "Your child accounts:"
+msgstr "Su cuenta de hosting:"
+
+#: shared/dtcrm/draw.php:71
+#, fuzzy
+msgid "Your current account is "
 msgstr "Su cuenta de hosting:"
 
 #: shared/inc/draw.php:430
@@ -4003,6 +4469,25 @@ msgstr ""
 msgid "Your domain"
 msgstr ""
 
+#: shared/dtcrm/draw_whois.php:49
+msgid ""
+"Your domain name has been registred elsewhere (i.e. not on this site). To "
+"order its transfer, please click "
+msgstr ""
+
+#: shared/dtcrm/draw_adddomain.php:89
+msgid "Your domain name is now ready:"
+msgstr ""
+
+#: shared/dtcrm/draw_whois.php:95
+#, fuzzy
+msgid "Your domain name whois data:"
+msgstr "Ficheros de nombres de dominio:"
+
+#: shared/dtcrm/draw_adddomain.php:79
+msgid "Your domain name will be soon validated:"
+msgstr ""
+
 #: shared/inc/forms/domain_info.php:51
 msgid "Your domain:"
 msgstr "Su dominio:"
@@ -4023,9 +4508,18 @@ msgstr "Clave de acceso al servidor LIVE:"
 msgid "Your key to access the test server:"
 msgstr "Clave de acceso al servidor de pruebas:"
 
+#: shared/dtcrm/draw.php:36
+msgid "Your last command expire on the: "
+msgstr ""
+
 #: shared/inc/forms/email.php:319
 msgid "Your list of imported mail"
 msgstr ""
+
+#: shared/dtcrm/draw.php:62
+#, fuzzy
+msgid "Your past account was: "
+msgstr "Su cuenta de hosting:"
 
 #: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
 msgid "Your path is restricted to "
@@ -4041,6 +4535,8 @@ msgid "Zipcode:"
 msgstr "Codigo postal:"
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
+#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:126
+#: shared/dtcrm/draw_handle.php:250 shared/dtcrm/draw_handle.php:94
 #, fuzzy
 msgid "Zipcode: "
 msgstr "Codigo postal:"
@@ -4083,8 +4579,25 @@ msgstr "cargando administrador: "
 msgid "get-N function only for subscribers:"
 msgstr "Funci&oacute;n get-N s&oacute;lo para suscriptos:"
 
+#: shared/dtcrm/draw_adddomain.php:291 shared/dtcrm/draw_whois.php:50
+#, fuzzy
+msgid "here"
+msgstr "Servidor DNS primario:"
+
+#: shared/dtcrm/draw_handle.php:244
+msgid "if applicable"
+msgstr ""
+
+#: shared/dtcrm/draw_adddomain.php:135
+msgid "is NOT available for registration. The registration server returned: "
+msgstr ""
+
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
+msgstr ""
+
+#: shared/dtcrm/draw_handle.php:217
+msgid "marked fields are required"
 msgstr ""
 
 #: shared/inc/forms/ftp.php:53
@@ -4105,6 +4618,25 @@ msgstr "nueva cuenta de correo"
 msgid "new mailing list"
 msgstr "Lista de sus bases de datos:"
 
+#: shared/dtcrm/draw_handle.php:238 shared/dtcrm/draw_handle.php:241
+#: shared/dtcrm/draw_handle.php:259
+#, fuzzy
+msgid "optional"
+msgstr "Tr&aacute;fico total"
+
 #: client/new_account_form.php:635
 msgid "selling conditions"
 msgstr "condiciones de compra."
+
+#: shared/dtcrm/draw_adddomain.php:291
+msgid "to refresh the menu or add another domain name."
+msgstr ""
+
+#: shared/dtcrm/draw_adddomain.php:162
+#, fuzzy
+msgid "year"
+msgstr "Cabecera"
+
+#: shared/dtcrm/draw_adddomain.php:163
+msgid "years"
+msgstr ""
