@@ -62,16 +62,17 @@ class HTTPRequest
     // download URL to string
     function DownloadToString()
     {
+    	// store errors in case we need to handle them
+        $errno;
+        $errstr;
+        
         $crlf = "\r\n";
         
         // generate request
-        $req = 'GET ' . $this->_uri . ' HTTP/1.0' . $crlf
-            .    'Host: ' . $this->_host . $crlf
+        $req = 'GET ' . $this->_uri . ' HTTP/1.0' . $crlf 
+            .    'Host: ' . $this->_host . $crlf 
             .    $crlf;
         
-        // store errors in case we need to handle them
-        var $errno;
-        var $errstr;
         
         // fetch from URL
         $this->_fp = fsockopen(($this->_protocol == 'https' ? 'ssl://' : '') . $this->_host, $this->_port, $errno, $errstr, $_timeout);
@@ -97,7 +98,7 @@ class HTTPRequest
         }
         
         // get the socket status
-        var $info;
+        $info;
         if ($use_stream)
         {
         	$info = stream_get_meta_data($this->_fp);

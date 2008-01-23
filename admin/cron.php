@@ -2,15 +2,19 @@
 <?php
 
 // 5 minute timeout for the cron.php run... if it runs longer, then we need to know about it!
-var $_timelimit = 300;
+$_timelimit = 300;
 set_time_limit($_timelimit); 
 
+// keep track whether we have finished script execution or not
+$_inprogress = TRUE;
 register_shutdown_function('clean_shutdown_cron');
 
 function clean_shutdown_cron()
 {
-	echo "WARNING: cron.php execution took longer than $_timelimit minutes\n";
-	printEndTime ();
+	if ($_inprogress){
+		echo "WARNING: cron.php execution took longer than $_timelimit minutes\n";
+		printEndTime ();
+	}
 }
 
 
@@ -593,6 +597,7 @@ checkTimeAndLaunchNetBackupScript();
 echo("Report for this job:\n");
 echo( str_replace("<br>","\n",$console));
 printEndTime();
+$_inprogress = FALSE;
 exit();
 
 ?>
