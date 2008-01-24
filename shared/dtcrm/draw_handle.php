@@ -53,7 +53,7 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= _("Firstname: ") . $infoz["firstname"] ."<br>".
+		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
 _("Familly name: ") . $infoz["lastname"] ."<br>".
 _("Company name: ") . $infoz["company"] ."<br>".
 _("Address (line1): ") . $infoz["addr1"] ."<br>".
@@ -85,13 +85,13 @@ _("Email: ") . $infoz["email"] ."<br>";
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= _("Firstname: ") . $infoz["firstname"] ."<br>".
-_("Familly name: "). $infoz["lastname"] ."<br>".
-_("Company: ") . $infoz["company"] ."<br>".
-_("Address (line1: ") . $infoz["addr1"] ."<br>".
-_("Address (line2: ") . $infoz["addr2"] ."<br>".
-_("Address (line3: ") . $infoz["addr3"] ."<br>".
-_("Zipcode: ". $infoz["zipcode"] ."<br>".
+		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
+_("Familly name: ") . $infoz["lastname"] ."<br>".
+_("Company name: ") . $infoz["company"] ."<br>".
+_("Address (line1): ") . $infoz["addr1"] ."<br>".
+_("Address (line2): ") . $infoz["addr2"] ."<br>".
+_("Address (line3): ") . $infoz["addr3"] ."<br>".
+_("Zipcode: ") . $infoz["zipcode"] ."<br>".
 _("City: ") . $infoz["city"] ."<br>".
 _("State: ") . $infoz["state"] ."<br>".
 _("Country: ") . $infoz["country"] ."<br>".
@@ -117,11 +117,11 @@ _("Email: ") . $infoz["email"] ."<br>";
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= _("Firstname: ") . $infoz["firstname"] ."<br>".
-_("Lastname: ") . $infoz["lastname"] ."<br>".
-_("Company: ") . $infoz["company"] ."<br>".
-_("Address (line1: ") . $infoz["addr1"] ."<br>".
-_("Address (line2: ") . $infoz["addr2"] ."<br>".
+		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
+_("Familly name: ") . $infoz["lastname"] ."<br>".
+_("Company name: ") . $infoz["company"] ."<br>".
+_("Address (line1): ") . $infoz["addr1"] ."<br>".
+_("Address (line2): ") . $infoz["addr2"] ."<br>".
 _("Address (line3): ") . $infoz["addr3"] ."<br>".
 _("Zipcode: ") . $infoz["zipcode"] ."<br>".
 _("City: ") . $infoz["city"] ."<br>".
@@ -223,7 +223,7 @@ function drawAdminTools_NickHandles($admin){
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Name for this handle: ") ."</td>
 	<td>$name_of_hdl</td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Company: ") ."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Company name: ") ."</td>
 	<td><input type=\"text\" name=\"company\" value=\"".$hdlcompany."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("First name: ") ."</td>
@@ -235,10 +235,10 @@ function drawAdminTools_NickHandles($admin){
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Addresse (line1): ") ."</td>
 	<td><input type=\"text\" name=\"addr1\" value=\"".$hdladdr1."\">
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Adddress (line2): ") ."<br><i>". _("optional") ."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Address (line2): ") ."<br><i>". _("optional") ."</i></td>
 	<td><input type=\"text\" name=\"addr2\" value=\"".$hdladdr2."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Adddress (line3): ") ."<br><i>". _("optional") ."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Address (line3): ") ."<br><i>". _("optional") ."</i></td>
 	<td><input type=\"text\" name=\"addr3\" value=\"".$hdladdr3."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("State: ") ."<br><i>". _("if applicable") ."</i></td>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-24 02:43+0800\n"
+"POT-Creation-Date: 2008-01-24 17:03+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1327,12 +1327,13 @@ msgstr ""
 
 #: admin/dtcrm/main.php:159 client/new_account_form.php:580
 #: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
-#: shared/dtcrm/draw_handle.php:232
+#: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
 msgid "Familly name: "
 msgstr ""
 
 #: admin/dtcrm/main.php:160 client/new_account_form.php:583
-#: shared/dtcrm/draw_handle.php:229
+#: shared/dtcrm/draw_handle.php:56 shared/dtcrm/draw_handle.php:88
+#: shared/dtcrm/draw_handle.php:120 shared/dtcrm/draw_handle.php:229
 msgid "First name: "
 msgstr ""
 
@@ -1341,7 +1342,8 @@ msgid "Is it a company: "
 msgstr ""
 
 #: admin/dtcrm/main.php:163 client/new_account_form.php:590
-#: shared/dtcrm/draw_handle.php:58
+#: shared/dtcrm/draw_handle.php:58 shared/dtcrm/draw_handle.php:90
+#: shared/dtcrm/draw_handle.php:122 shared/dtcrm/draw_handle.php:226
 msgid "Company name: "
 msgstr ""
 
@@ -1350,15 +1352,19 @@ msgid "VAT number: "
 msgstr ""
 
 #: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
+#: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
 msgid "Address (line1): "
 msgstr ""
 
 #: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
+#: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
+#: shared/dtcrm/draw_handle.php:238
 msgid "Address (line2): "
 msgstr ""
 
 #: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
-#: shared/dtcrm/draw_handle.php:125
+#: shared/dtcrm/draw_handle.php:93 shared/dtcrm/draw_handle.php:125
+#: shared/dtcrm/draw_handle.php:241
 msgid "Address (line3): "
 msgstr ""
 
@@ -1915,39 +1921,13 @@ msgstr ""
 msgid "Who will own the domain name and will be the registrant (domain owner)?"
 msgstr ""
 
-#: shared/dtcrm/draw_handle.php:56 shared/dtcrm/draw_handle.php:88
-#: shared/dtcrm/draw_handle.php:120
-msgid "Firstname: "
-msgstr ""
-
 #: shared/dtcrm/draw_handle.php:73
 msgid "Who will be contacted for domain renewall (billing contact)?"
-msgstr ""
-
-#: shared/dtcrm/draw_handle.php:90 shared/dtcrm/draw_handle.php:122
-#: shared/dtcrm/draw_handle.php:226
-msgid "Company: "
-msgstr ""
-
-#: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
-msgid "Address (line1: "
-msgstr ""
-
-#: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
-msgid "Address (line2: "
-msgstr ""
-
-#: shared/dtcrm/draw_handle.php:93
-msgid "Address (line3: "
 msgstr ""
 
 #: shared/dtcrm/draw_handle.php:105
 msgid ""
 "Who will have the rights for changing the whois information (admin contact)?"
-msgstr ""
-
-#: shared/dtcrm/draw_handle.php:121
-msgid "Lastname: "
 msgstr ""
 
 #: shared/dtcrm/draw_handle.php:199
@@ -1962,17 +1942,9 @@ msgstr ""
 msgid "Name for this handle: "
 msgstr ""
 
-#: shared/dtcrm/draw_handle.php:238
-msgid "Adddress (line2): "
-msgstr ""
-
 #: shared/dtcrm/draw_handle.php:238 shared/dtcrm/draw_handle.php:241
 #: shared/dtcrm/draw_handle.php:259
 msgid "optional"
-msgstr ""
-
-#: shared/dtcrm/draw_handle.php:241
-msgid "Adddress (line3): "
 msgstr ""
 
 #: shared/dtcrm/draw_handle.php:244
@@ -2410,11 +2382,138 @@ msgstr ""
 msgid "Help:"
 msgstr ""
 
-#: shared/inc/draw.php:446
+#: shared/inc/draw.php:445
+msgid ""
+"<font face=\"Arial, Verdana\">\n"
+"<center><font size=\"+2\"><u><b>ONLINE DTC HELP</b></u></font></"
+"center><br><br>\n"
+"<div align=\"justify\">\n"
+"<font size=\"+1\"><u>1. What is DTC</u></font><br><br>\n"
+"DTC is a tool we made especialy for you. With it, you can take the control "
+"of your domain administration : you can manage all your\n"
+"subdomains, emails, ftp or ssh accounts, and manage your VPS. DTC does also "
+"billing and invoices, plus many other things.<br><br>\n"
+"\n"
+"All this tool and all the software it uses and configure have been release "
+"under the <a href=\"http://www.gnu.org/\">GPL</a>\n"
+"(GNU Public Licence), which means that you can have a copy of this interface "
+"source code, modify it and use it as you wish, as long as\n"
+"you redistribute all thoses changes. We (at GPLHost) believe in the Free "
+"Software effort, and we hope this participation will encourage\n"
+"other developpements. We consider that because we use only open-source "
+"software for our hosting service, it is normal to redistribute\n"
+"our developpements as well.<br><br>\n"
+"\n"
+"If you want to know more about DTC, you can visit this URL: <a href=\"http://"
+"www.gplhost.com/software-dtc.html\">DTC home page</a>.\n"
+"\n"
+"<font size=\"+1\"><u>2. Emails</u></font><br>\n"
+"<u>2.1. What will it do ?</u><br><br>\n"
+"You can add, delete or modify a mailbox with this tool.<br><br>\n"
+"\n"
+"<u>2.2. Redirection and local delivery</u><br><br>\n"
+"Each mailbox can be redirected to one or more email addresses. This means "
+"that when a message is recieved, it is forwared to one\n"
+"or two email adresse(s). The &quote;deliver locally&quote; checkbox tells "
+"wether or not all message for this mailbox will be written on\n"
+"our hard disk, so thenafter you will be able to read your messages using a "
+"mail client, connecting to our server. Don't forget to\n"
+"checkup your mails often if you have trafic, because the mailbox are "
+"included in the quota<br><br>\n"
+"\n"
+"<u>2.3. Delay when adding / deleting accounts</u><br><br>\n"
+"When you add or delete a mail account, don't expect it to work immediatly: "
+"you will have to wait until the next cron job to start, so the\n"
+"mail, ssh or web server reloads it's database.<br><br>\n"
+"\n"
+"<u>2.4. Other tools for email</u><br><br>\n"
+"DTC doesn't only have email accounts. It also handles mailing lists using "
+"MLMMJ and mail alias groups to be able to have one email\n"
+"redirected to many other addresses.\n"
+"\n"
+"<font size=\"+1\"><u>3. Subdomains</u></font><br>\n"
+"<u>3.1. What will it do ?</u><br><br>\n"
+"This part of the interface is for configurating your somain's sites, which "
+"means that you will be able to populate your web site with url\n"
+"of the form:\n"
+"<pre>\n"
+"http://anything.u.want.mydomain.com\n"
+"</pre>\n"
+"\n"
+"<u>3.2. What is the default subdomain ?</u><br><br>\n"
+"Whe someone trys to contact your web site with an URL without a subdomain, "
+"he is redirected to the subdomain you said it was the default.\n"
+"In other words, if you tell that:\n"
+"<pre>\n"
+"www\n"
+"</pre>\n"
+"is the default subdomain, someone that trys to connect using an url starting "
+"with:\n"
+"<pre>\n"
+"http://mydomain.com\n"
+"</pre>\n"
+"will be redirected to:\n"
+"<pre>\n"
+"http://www.mydomain.com\n"
+"</pre>\n"
+"\n"
+"In fact, the URL is kept, and no URL redirection in a HTML page has been "
+"created, but simply, a website with that URL has been configurated\n"
+"to the same location of the &quote;www&quote; subdomain, so it accesses the "
+"same html (or php) files, and shares the same log file.<br><br>\n"
+"\n"
+"<u>3.3. Subdomains generated by default</u><br><br>\n"
+"Because you might expect to have these subdomains for other services than "
+"web already working by default, the following subdomains will\n"
+"resolve to the same IP address as your web site, even if you didn't add "
+"them:\n"
+"<ul><li>ftp</li>\n"
+"<li>pop</li>\n"
+"<li>smtp</li>\n"
+"<li>mail</li>\n"
+"</ul>\n"
+"\n"
+"<u>3.4. Delay when adding / deleting subdomain</u><br><br>\n"
+"Like for mail, any action here will take up to 10 minutes to take effect."
+"<br><br>\n"
+"\n"
+"<u>3.6. Trafic statistics for your subdomains</u><br><br>\n"
+"Because all your trafic is loged, we calculate the overall last 12 month "
+"statistics using <a href=\"http://www.mrunix.net/webalizer/\">\n"
+"webalizer</a>. The statistics are calculated each days (this is when there "
+"is less trafic), and can be reach under the \"/stats\" directory\n"
+"on each subdomains. That means that if you have registerd :\n"
+"<pre>\n"
+"http://www.mydomain.com\n"
+"</pre>\n"
+"all statistics will be generated under :\n"
+"<pre>\n"
+"http://www.mydomain.com/stats/\n"
+"</pre>\n"
+"\n"
+"If you wish, you can protect this address with a login and password.\n"
+"\n"
+"<font size=\"+1\"><u>4. FTP accounts</u></font><br>\n"
+"<u>4.1. What will it do ?</u><br><br>\n"
+"To have your page working and running, you have to upload them. But because "
+"you may not be only one to work on your web site, you may want to\n"
+"have more that one FTP account for accessing your web site. DTC will be the "
+"tool for managing thoses accounts and passwords.<br><br>\n"
+"\n"
+"<u>4.2. Delay when adding / deleting FTP accounts</u><br><br>\n"
+"Because DTC uses ProFTP or pure-ftpd with a special module for handling "
+"accounts in a MySql database, all changes to your FTP accounts take\n"
+"effect in realtime.<br><br>\n"
+"\n"
+"</div>\n"
+"</font>"
+msgstr ""
+
+#: shared/inc/draw.php:549
 msgid "Online DTC help"
 msgstr ""
 
-#: shared/inc/draw.php:450
+#: shared/inc/draw.php:553
 msgid "General information of "
 msgstr ""
 
