@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-24 05:45+0800\n"
+"POT-Creation-Date: 2008-01-26 11:11+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Feher Sandor <sfeher@bluesystem.hu>\n"
 "Language-Team: Hungarian <LL@li.org>\n"
@@ -555,7 +555,11 @@ msgid ""
 "addition. To request hosting for a new domain name, without administrator "
 "validation or domain name registration, please write to:"
 msgstr ""
-"Hamarosan az adminisztrátor ellenõrzi és jóváhagyja ezt a domain nevet. Önnek jelenleg nincs joga új domain neveket hozzáadni. Ha gyakran visz fel új domain neveket, akkor megkérheti az adminisztrátort, hogy adjon önnek ilyen jogok. Új domain név létrehozásához regisztráció nélkül kérjük írjon erre címre:"
+"Hamarosan az adminisztrátor ellenõrzi és jóváhagyja ezt a domain nevet. "
+"Önnek jelenleg nincs joga új domain neveket hozzáadni. Ha gyakran visz fel "
+"új domain neveket, akkor megkérheti az adminisztrátort, hogy adjon önnek "
+"ilyen jogok. Új domain név létrehozásához regisztráció nélkül kérjük írjon "
+"erre címre:"
 
 #: admin/inc/dtc_config.php:594
 msgid "Another location"
@@ -924,7 +928,9 @@ msgstr ""
 #: shared/dtcrm/draw_adddomain.php:128
 msgid ""
 "Could not connect to domain registration server: please try again later!"
-msgstr "Nem tudok csatlakozni a domain regisztrációs szerverhez: kérem próbálja késõbb"
+msgstr ""
+"Nem tudok csatlakozni a domain regisztrációs szerverhez: kérem próbálja "
+"késõbb"
 
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
@@ -1305,7 +1311,8 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:102
 msgid "Do you want to transfer an existing domain or register a new domain?"
-msgstr "Szeretne áttranszferálni egy létezõ domaint vagy újat szeretne regisztrálni ?"
+msgstr ""
+"Szeretne áttranszferálni egy létezõ domaint vagy újat szeretne regisztrálni ?"
 
 #: shared/drawlib/anotherDtc.php:129
 msgid "Documentation"
@@ -1840,7 +1847,9 @@ msgstr ""
 msgid ""
 "If you want to keep your current registrar, you have to make the whois point "
 "to these DNS:"
-msgstr "Ha meg szeretne maradni a jelenlegi regisztrátoránál, akkor a whois rekordnak azok"
+msgstr ""
+"Ha meg szeretne maradni a jelenlegi regisztrátoránál, akkor a whois "
+"rekordnak azok"
 
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
@@ -2333,6 +2342,11 @@ msgstr ""
 #, fuzzy
 msgid "My Account information:"
 msgstr "FTP hozzáférés konfigurálása: "
+
+#: shared/inc/draw.php:146
+#, fuzzy
+msgid "My account"
+msgstr "Ftp hozzáférések"
 
 #: shared/inc/draw.php:385
 msgid "My account global statistics"
@@ -2946,7 +2960,8 @@ msgid ""
 "Please select the 3 contact handles you want to use for registering that "
 "domain name."
 msgstr ""
-"Kérem válasszon 3 kapcsolattartót, akiket az adott domain regisztrációjakor fel kíván tüntetni "
+"Kérem válasszon 3 kapcsolattartót, akiket az adott domain regisztrációjakor "
+"fel kíván tüntetni "
 
 #: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
@@ -3371,8 +3386,7 @@ msgstr "Válassza ki mennyi idõre kívánja regisztrálni a domain nevet:"
 msgid ""
 "Select one of your domain-names for registering an additional name server to "
 "the registries:"
-msgstr ""
-"Válasszon egy domain nevet amit regisztrálni szeretne névszerveren:"
+msgstr "Válasszon egy domain nevet amit regisztrálni szeretne névszerveren:"
 
 #: admin/inc/dtc_config.php:624
 msgid "Select the type of skin:"
@@ -3527,7 +3541,7 @@ msgstr "Megye:"
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
-#: shared/inc/draw.php:116 shared/inc/draw.php:146 shared/inc/draw.php:190
+#: shared/inc/draw.php:116 shared/inc/draw.php:190
 msgid "Statistics"
 msgstr "Statisztika"
 
@@ -4443,7 +4457,10 @@ msgid ""
 "add domain names, you can ask the administrator to do so. To request hosting "
 "for a new domain without domain name registration, please write to:"
 msgstr ""
-"Önnek jelenleg nincs joga új domain neveket hozzáadni. Ha gyakran visz fel új domain neveket, akkor megkérheti az adminisztrátort, hogy adjon önnek ilyen jogok. Új domain név létrehozásához regisztráció nélkül kérjük írjon erre címre:"
+"Önnek jelenleg nincs joga új domain neveket hozzáadni. Ha gyakran visz fel "
+"új domain neveket, akkor megkérheti az adminisztrátort, hogy adjon önnek "
+"ilyen jogok. Új domain név létrehozásához regisztráció nélkül kérjük írjon "
+"erre címre:"
 
 #: shared/dtcrm/draw.php:66
 msgid ""
@@ -4461,7 +4478,8 @@ msgid ""
 "You currently don't have enough funds on your account. You will be "
 "redirected to our payment system. Please click on the button below to pay."
 msgstr ""
-"Önnek nincs elegendõ pénz a számláján. Ön átirányításra kerül a mi fizetési rendszerünkhöz. Fizetéshez kattintson az alábbi gombra."
+"Önnek nincs elegendõ pénz a számláján. Ön átirányításra kerül a mi fizetési "
+"rendszerünkhöz. Fizetéshez kattintson az alábbi gombra."
 
 #: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
@@ -4490,7 +4508,8 @@ msgid ""
 "You have enough funds on your account to proceed account upgrade. Press the "
 "confirm button and your order will be proceeded."
 msgstr ""
-"Önnek megfelelõ mennyiségû pénz van a számláján a regisztrációhoz. Kattintson a jóváhagyás gombra és a megrendelése elindul."
+"Önnek megfelelõ mennyiségû pénz van a számláján a regisztrációhoz. "
+"Kattintson a jóváhagyás gombra és a megrendelése elindul."
 
 #: shared/dtcrm/draw_adddomain.php:248
 msgid ""
@@ -4560,7 +4579,9 @@ msgstr "Az ön domainje"
 msgid ""
 "Your domain name has been registred elsewhere (i.e. not on this site). To "
 "order its transfer, please click "
-msgstr "Az ön domainje valahol másol van regisztrálva (nem ezen a szerveren). Ha szeretné áttranszferáltatni erre a szerverre, kattintson ide."
+msgstr ""
+"Az ön domainje valahol másol van regisztrálva (nem ezen a szerveren). Ha "
+"szeretné áttranszferáltatni erre a szerverre, kattintson ide."
 
 #: shared/dtcrm/draw_adddomain.php:89
 msgid "Your domain name is now ready:"
@@ -4621,8 +4642,8 @@ msgid "Zipcode:"
 msgstr "Irányítószám:"
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
-#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:126
-#: shared/dtcrm/draw_handle.php:250 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
 #, fuzzy
 msgid "Zipcode: "
 msgstr "Irányítószám:"

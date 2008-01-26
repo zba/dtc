@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-24 17:03+0800\n"
+"POT-Creation-Date: 2008-01-26 11:11+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -2334,6 +2334,11 @@ msgstr "每月"
 msgid "My Account information:"
 msgstr "我的账户信息："
 
+#: shared/inc/draw.php:146
+#, fuzzy
+msgid "My account"
+msgstr "FTP帐户"
+
 #: shared/inc/draw.php:385
 msgid "My account global statistics"
 msgstr "帐户统计信息"
@@ -3523,7 +3528,7 @@ msgstr "省分："
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr "状态：无法得知(可能正在起动？)"
 
-#: shared/inc/draw.php:116 shared/inc/draw.php:146 shared/inc/draw.php:190
+#: shared/inc/draw.php:116 shared/inc/draw.php:190
 msgid "Statistics"
 msgstr "统计"
 
@@ -4653,8 +4658,8 @@ msgid "Zipcode:"
 msgstr "邮编："
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
-#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:126
-#: shared/dtcrm/draw_handle.php:250 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
 #, fuzzy
 msgid "Zipcode: "
 msgstr "邮编："

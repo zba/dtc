@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-24 17:03+0800\n"
+"POT-Creation-Date: 2008-01-26 11:11+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1375,8 +1375,8 @@ msgid "City: "
 msgstr ""
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
-#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:126
-#: shared/dtcrm/draw_handle.php:250 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
 msgid "Zipcode: "
 msgstr ""
 
@@ -2178,7 +2178,7 @@ msgstr ""
 msgid "Retype new password:"
 msgstr ""
 
-#: shared/inc/draw.php:116 shared/inc/draw.php:146 shared/inc/draw.php:190
+#: shared/inc/draw.php:116 shared/inc/draw.php:190
 msgid "Statistics"
 msgstr ""
 
@@ -2196,6 +2196,10 @@ msgstr ""
 
 #: shared/inc/draw.php:140
 msgid "Name servers"
+msgstr ""
+
+#: shared/inc/draw.php:146
+msgid "My account"
 msgstr ""
 
 #: shared/inc/draw.php:183

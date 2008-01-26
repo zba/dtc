@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-24 14:16+0800\n"
+"POT-Creation-Date: 2008-01-26 11:11+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jelle Kalf <thomas@goirand.fr>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -586,7 +586,12 @@ msgid ""
 "addition. To request hosting for a new domain name, without administrator "
 "validation or domain name registration, please write to:"
 msgstr ""
-"Een admin zal jouw aanvraag spoedig verwerken en de account valideren. Je hebt op dit moment geen toestemming om automatisch domeinnamen toe te voegen. Wanneer je vaak domeinnamen toevoeget kan je een Administrator vragen voor het privelege om automatisch domeinnamen toe te voegen. Om hosting voor een nieuw domein aan te vragen zonder admin validatie, stuur een bericht naar:"
+"Een admin zal jouw aanvraag spoedig verwerken en de account valideren. Je "
+"hebt op dit moment geen toestemming om automatisch domeinnamen toe te "
+"voegen. Wanneer je vaak domeinnamen toevoeget kan je een Administrator "
+"vragen voor het privelege om automatisch domeinnamen toe te voegen. Om "
+"hosting voor een nieuw domein aan te vragen zonder admin validatie, stuur "
+"een bericht naar:"
 
 #: admin/inc/dtc_config.php:594
 msgid "Another location"
@@ -958,7 +963,9 @@ msgstr "Kon geen verbinding maken met de VPS server!"
 #: shared/dtcrm/draw_adddomain.php:128
 msgid ""
 "Could not connect to domain registration server: please try again later!"
-msgstr "Kon geen verbinding maken met de domein registratie server: probeer aub later!"
+msgstr ""
+"Kon geen verbinding maken met de domein registratie server: probeer aub "
+"later!"
 
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
@@ -1343,7 +1350,9 @@ msgstr "Verander dit niet tenzij je weet waar je mee bezig bent."
 
 #: shared/dtcrm/draw_adddomain.php:102
 msgid "Do you want to transfer an existing domain or register a new domain?"
-msgstr "Wil je een reeds geregistreerde domeinnaame transferen of een nieuwe registreren?"
+msgstr ""
+"Wil je een reeds geregistreerde domeinnaame transferen of een nieuwe "
+"registreren?"
 
 #: shared/drawlib/anotherDtc.php:129
 msgid "Documentation"
@@ -1880,7 +1889,8 @@ msgstr ""
 msgid ""
 "If you want to keep your current registrar, you have to make the whois point "
 "to these DNS:"
-msgstr "Om de huidige registrar te behouden dient de wijs dns naar het volgende adres"
+msgstr ""
+"Om de huidige registrar te behouden dient de wijs dns naar het volgende adres"
 
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
@@ -2396,6 +2406,11 @@ msgstr "Maandelijks"
 #: shared/inc/draw.php:426
 msgid "My Account information:"
 msgstr "Mijn Account informatie:"
+
+#: shared/inc/draw.php:146
+#, fuzzy
+msgid "My account"
+msgstr "FTP accounts"
 
 #: shared/inc/draw.php:385
 msgid "My account global statistics"
@@ -3443,7 +3458,9 @@ msgstr "Selecteer periode van registratie:"
 msgid ""
 "Select one of your domain-names for registering an additional name server to "
 "the registries:"
-msgstr "Selecteer een van je domeinnamen om een nieuwe nameserver to registreren tot de registry:"
+msgstr ""
+"Selecteer een van je domeinnamen om een nieuwe nameserver to registreren tot "
+"de registry:"
 
 #: admin/inc/dtc_config.php:624
 msgid "Select the type of skin:"
@@ -3594,7 +3611,7 @@ msgstr "Provincie:"
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr "State: cannot fetch (maybe boot in progress?)"
 
-#: shared/inc/draw.php:116 shared/inc/draw.php:146 shared/inc/draw.php:190
+#: shared/inc/draw.php:116 shared/inc/draw.php:190
 msgid "Statistics"
 msgstr "Statistieken"
 
@@ -4562,7 +4579,11 @@ msgid ""
 "add domain names, you can ask the administrator to do so. To request hosting "
 "for a new domain without domain name registration, please write to:"
 msgstr ""
-"Je hebt op dit moment geen toestemming om automatisch domeinnamen toe te voegen. Wanneer je vaak domeinnamen toevoeget kan je een Administrator vragen voor het privelege om automatisch domeinnamen toe te voegen. Om hosting voor een nieuw domein aan te vragen zonder admin validatie, stuur een bericht naar: "
+"Je hebt op dit moment geen toestemming om automatisch domeinnamen toe te "
+"voegen. Wanneer je vaak domeinnamen toevoeget kan je een Administrator "
+"vragen voor het privelege om automatisch domeinnamen toe te voegen. Om "
+"hosting voor een nieuw domein aan te vragen zonder admin validatie, stuur "
+"een bericht naar: "
 
 #: shared/dtcrm/draw.php:66
 msgid ""
@@ -4580,7 +4601,9 @@ msgid ""
 "You currently don't have enough funds on your account. You will be "
 "redirected to our payment system. Please click on the button below to pay."
 msgstr ""
-"Je hebt momenteen niet genoeg saldo op je account. Je wordt nu doorverwezen naar ons betaalsysteem. Klik alsjeblieft op de button hieronder om te betalen."
+"Je hebt momenteen niet genoeg saldo op je account. Je wordt nu doorverwezen "
+"naar ons betaalsysteem. Klik alsjeblieft op de button hieronder om te "
+"betalen."
 
 #: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
@@ -4614,7 +4637,9 @@ msgstr ""
 msgid ""
 "You have enough funds on your account to proceed with registration. Press "
 "the confirm button to proceed."
-msgstr "Je hebt voldoende saldo om verder te gaan met de registratie. Klik op de confirm button om verder te gaan."
+msgstr ""
+"Je hebt voldoende saldo om verder te gaan met de registratie. Klik op de "
+"confirm button om verder te gaan."
 
 #: admin/inc/dtc_config.php:892
 msgid "Your SRS username:"
@@ -4678,8 +4703,7 @@ msgstr ""
 msgid ""
 "Your domain name has been registred elsewhere (i.e. not on this site). To "
 "order its transfer, please click "
-msgstr ""
-"Dit domein is elders geregistreerd. Klik voor een transfer "
+msgstr "Dit domein is elders geregistreerd. Klik voor een transfer "
 
 #: shared/dtcrm/draw_adddomain.php:89
 msgid "Your domain name is now ready:"
@@ -4741,8 +4765,8 @@ msgid "Zipcode:"
 msgstr "Postcode:"
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
-#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:126
-#: shared/dtcrm/draw_handle.php:250 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
 #, fuzzy
 msgid "Zipcode: "
 msgstr "Postcode:"
@@ -4795,7 +4819,8 @@ msgstr "wanneer toepasbaar"
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "is NOT available for registration. The registration server returned: "
-msgstr "is niet beschikbaar voor registratie. De registratie server antwoordde: "
+msgstr ""
+"is niet beschikbaar voor registratie. De registratie server antwoordde: "
 
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"

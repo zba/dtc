@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-24 17:03+0800\n"
+"POT-Creation-Date: 2008-01-26 11:11+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Luca Franceschini <info@atw.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -2389,6 +2389,11 @@ msgstr ""
 msgid "My Account information:"
 msgstr "Informazioni sul mio profilo:"
 
+#: shared/inc/draw.php:146
+#, fuzzy
+msgid "My account"
+msgstr "Account FTP"
+
 #: shared/inc/draw.php:385
 msgid "My account global statistics"
 msgstr "Statistiche globali del mio account"
@@ -3587,7 +3592,7 @@ msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr ""
 "Stato: non posso ottenerlo (il processo di boot potrebbe essere in corso?)"
 
-#: shared/inc/draw.php:116 shared/inc/draw.php:146 shared/inc/draw.php:190
+#: shared/inc/draw.php:116 shared/inc/draw.php:190
 msgid "Statistics"
 msgstr "Statistiche"
 
@@ -4726,8 +4731,8 @@ msgid "Zipcode:"
 msgstr "CAP:"
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
-#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:126
-#: shared/dtcrm/draw_handle.php:250 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
 #, fuzzy
 msgid "Zipcode: "
 msgstr "CAP:"

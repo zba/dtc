@@ -143,7 +143,7 @@ function drawAdminTools($admin){
 			"link" => "nameservers");
 	}
 	$user_menu[] = array(
-		"text" => _("Statistics") ,
+		"text" => _("My account") ,
 		"icon" => "box_wnb_nb_picto-general.gif",
 		"type" => "menu",
 		"link" => "myaccount",

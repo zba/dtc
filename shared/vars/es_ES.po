@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-24 16:03+0800\n"
+"POT-Creation-Date: 2008-01-26 11:11+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jose Toscano <josetg81wireless@yahoo.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -574,7 +574,11 @@ msgid ""
 "addition. To request hosting for a new domain name, without administrator "
 "validation or domain name registration, please write to:"
 msgstr ""
-"En breve un administrador atender&aacute; su petici&oacute;n y validar&aacute; el agregado de este dominio a su cuenta. De momento Ud. no tiene suficientes privilegios para a&ntilde;adir nombres de dominio autom&aacute;ticamente. Para poder a&ntilde;adir dominios no validados por el administrador o sin registrar debe escribir a:"
+"En breve un administrador atender&aacute; su petici&oacute;n y "
+"validar&aacute; el agregado de este dominio a su cuenta. De momento Ud. no "
+"tiene suficientes privilegios para a&ntilde;adir nombres de dominio "
+"autom&aacute;ticamente. Para poder a&ntilde;adir dominios no validados por "
+"el administrador o sin registrar debe escribir a:"
 
 #: admin/inc/dtc_config.php:594
 msgid "Another location"
@@ -944,7 +948,8 @@ msgstr "No se ha podido conectar con el servidor VPS!"
 msgid ""
 "Could not connect to domain registration server: please try again later!"
 msgstr ""
-"No se ha podido conectar al servidor de registro de nombres. Int&eacute;ntelo m&aacute;s tarde"
+"No se ha podido conectar al servidor de registro de nombres. Int&eacute;"
+"ntelo m&aacute;s tarde"
 
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
@@ -1362,7 +1367,9 @@ msgstr "Ficheros de nombres de dominio:"
 
 #: shared/dtcrm/draw_adddomain.php:68
 msgid "Domain name is not in correct format. Please enter another name."
-msgstr "El formato del nombre de dominio introducido es incorrecto. Por favor elija uno diferente."
+msgstr ""
+"El formato del nombre de dominio introducido es incorrecto. Por favor elija "
+"uno diferente."
 
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
@@ -1887,7 +1894,8 @@ msgid ""
 "If you want to keep your current registrar, you have to make the whois point "
 "to these DNS:"
 msgstr ""
-"Si desea mantener el registrador actual debe apuntar la informaci&oacute;n WHOIS a estos DNS:"
+"Si desea mantener el registrador actual debe apuntar la informaci&oacute;n "
+"WHOIS a estos DNS:"
 
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
@@ -2407,6 +2415,11 @@ msgstr ""
 msgid "My Account information:"
 msgstr "Informaci&oacute;n de mi cuenta:"
 
+#: shared/inc/draw.php:146
+#, fuzzy
+msgid "My account"
+msgstr "Cuentas FTP"
+
 #: shared/inc/draw.php:385
 msgid "My account global statistics"
 msgstr "Estad&iacute;sticas globales de mi cuenta"
@@ -2717,7 +2730,8 @@ msgstr "Notificar post de no suscriptos:"
 
 #: shared/dtcrm/draw_adddomain.php:90
 msgid "Now you can go to check its configuration by clicking here:"
-msgstr "Ahora puede comprobar su configuraci&oacute;n haciendo click aqu&iacute;:"
+msgstr ""
+"Ahora puede comprobar su configuraci&oacute;n haciendo click aqu&iacute;:"
 
 #: shared/inc/forms/vps.php:151
 #, fuzzy
@@ -2954,8 +2968,7 @@ msgstr "E-mail de la cuenta de prueba PayPal (sandbox):"
 
 #: shared/dtcrm/draw_adddomain.php:241
 msgid "Payment complete. Proceed to checkout"
-msgstr ""
-"Pago realizado. Continuar"
+msgstr "Pago realizado. Continuar"
 
 #: admin/inc/draw_user_admin.php:314
 #, fuzzy
@@ -3030,7 +3043,9 @@ msgstr ""
 msgid ""
 "Please select the 3 contact handles you want to use for registering that "
 "domain name."
-msgstr "Por favor seleccione 3 contactos responsables que quiera usar para registrar el nombre de dominio."
+msgstr ""
+"Por favor seleccione 3 contactos responsables que quiera usar para registrar "
+"el nombre de dominio."
 
 #: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
@@ -3457,7 +3472,9 @@ msgstr "Seleccione la duración del registro del dominio:"
 msgid ""
 "Select one of your domain-names for registering an additional name server to "
 "the registries:"
-msgstr "Seleccione uno de sus nombres de dominio para a&ntilde;adir el servidor de nombres a los registros"
+msgstr ""
+"Seleccione uno de sus nombres de dominio para a&ntilde;adir el servidor de "
+"nombres a los registros"
 
 #: admin/inc/dtc_config.php:624
 msgid "Select the type of skin:"
@@ -3611,7 +3628,7 @@ msgstr "Provincia:"
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
-#: shared/inc/draw.php:116 shared/inc/draw.php:146 shared/inc/draw.php:190
+#: shared/inc/draw.php:116 shared/inc/draw.php:190
 msgid "Statistics"
 msgstr "Estad&iacute;sticas"
 
@@ -3757,7 +3774,9 @@ msgstr "COMPROBACI&Oacute;N DE TRANSFERENCIA FALLIDA"
 
 #: shared/dtcrm/draw_transferdomain.php:57
 msgid "TRANSFER CHECK FAILED: registry server didn't reply successfuly."
-msgstr "COMPROBACI&Oacute;N DE TRANSFERENCIA FALLIDA: El servidor de registros no respondi&oacute; satisfactoriamente"
+msgstr ""
+"COMPROBACI&Oacute;N DE TRANSFERENCIA FALLIDA: El servidor de registros no "
+"respondi&oacute; satisfactoriamente"
 
 #: shared/dtcrm/draw_transferdomain.php:68
 msgid "TRANSFER CHECK SUCCESSFUL"
@@ -3890,7 +3909,8 @@ msgstr "Debe ser una direcci&oacute;n de correo v&aacute;lida"
 
 #: shared/dtcrm/draw_adddomain.php:74
 msgid "This domain name already hosted here, please enter another name."
-msgstr "Este dominio ya se aloja en este servidor. Por favor seleccione otro nombre."
+msgstr ""
+"Este dominio ya se aloja en este servidor. Por favor seleccione otro nombre."
 
 #: shared/inc/forms/domain_info.php:78
 msgid "This domain will be the alias of the following domain (domain parking):"
@@ -4576,7 +4596,9 @@ msgid ""
 "add domain names, you can ask the administrator to do so. To request hosting "
 "for a new domain without domain name registration, please write to:"
 msgstr ""
-"De momento Ud. no tiene suficientes privilegios para a&ntilde;adir nombres de dominio. Si desea alojar un nuevo nombre de dominio sin registrarlo puede pedirle al administrador que lo haga escribiendo a:"
+"De momento Ud. no tiene suficientes privilegios para a&ntilde;adir nombres "
+"de dominio. Si desea alojar un nuevo nombre de dominio sin registrarlo puede "
+"pedirle al administrador que lo haga escribiendo a:"
 
 #: shared/dtcrm/draw.php:66
 msgid ""
@@ -4594,7 +4616,9 @@ msgid ""
 "You currently don't have enough funds on your account. You will be "
 "redirected to our payment system. Please click on the button below to pay."
 msgstr ""
-"Actualmente no tiene suficientes fondos en su cuenta. Se lo redireccionar&aacute; al sistema de pago. Pulse en el bot&oacute;n indicado para pagar."
+"Actualmente no tiene suficientes fondos en su cuenta. Se lo "
+"redireccionar&aacute; al sistema de pago. Pulse en el bot&oacute;n indicado "
+"para pagar."
 
 #: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
@@ -4629,7 +4653,8 @@ msgid ""
 "You have enough funds on your account to proceed with registration. Press "
 "the confirm button to proceed."
 msgstr ""
-"Ud. tiene fondos suficientes en su cuenta para proceder con el registro. Pulse el bot&oacute;n de confirmar para continuar."
+"Ud. tiene fondos suficientes en su cuenta para proceder con el registro. "
+"Pulse el bot&oacute;n de confirmar para continuar."
 
 #: admin/inc/dtc_config.php:892
 msgid "Your SRS username:"
@@ -4694,7 +4719,8 @@ msgid ""
 "Your domain name has been registred elsewhere (i.e. not on this site). To "
 "order its transfer, please click "
 msgstr ""
-"Su dominio ha sido registrado con otro registrador. Para pedir el traslado, click aqu&iacute;"
+"Su dominio ha sido registrado con otro registrador. Para pedir el traslado, "
+"click aqu&iacute;"
 
 #: shared/dtcrm/draw_adddomain.php:89
 msgid "Your domain name is now ready:"
@@ -4755,8 +4781,8 @@ msgid "Zipcode:"
 msgstr "Codigo postal:"
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
-#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:126
-#: shared/dtcrm/draw_handle.php:250 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
 #, fuzzy
 msgid "Zipcode: "
 msgstr "Codigo postal:"
@@ -4809,7 +4835,8 @@ msgstr "si es aplicable"
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "is NOT available for registration. The registration server returned: "
-msgstr "no est&aacute; disponible para registrar. El servidor de registros devolvió: "
+msgstr ""
+"no est&aacute; disponible para registrar. El servidor de registros devolvió: "
 
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
