@@ -545,6 +545,7 @@ function drawAdminTools_Emails($domain){
 			"mbox_host" => $domain["name"]),
 		"check_unique" => array( "id" ),
 		"check_unique_msg" => _("There is already a mailbox by that name") ,
+		"order_by" => "id",
 		"cols" => array(
 			"autoinc" => array(
 				"type" => "id",
