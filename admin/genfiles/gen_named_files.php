@@ -199,6 +199,7 @@ function named_generate(){
 	global $conf_named_slavefile_path;
 	global $conf_named_slavezonefiles_path;
 	global $conf_ip_allowed_dns_transfer;
+	global $conf_domainkey_publickey_filepath;
 	global $conf_dtc_system_username;
 	global $conf_dtc_system_groupname;
 	global $conf_autogen_default_subdomains;
@@ -388,6 +389,20 @@ $more_mx_server
 @	IN	TXT	\"$root_txt_record2\"
 	IN	A	$ip_to_write
 ";
+			// if we have the public.key for DomainKeys, write it into our zone file
+      if (file_exists($conf_domainkey_publickey_filepath)){
+              $key_file_array = file($conf_domainkey_publickey_filepath, FILE_IGNORE_NEW_LINES);
+              // skip the first and last lines (the ---PUBLIC---)
+              $KEY = "";
+              for ($key_file_array_count = 1; $key_file_array_count < count($key_file_array) - 1; $key_file_array_count++)
+              {
+                      $KEY .= $key_file_array[$key_file_array_count];
+              }
+              $SELECTOR="postfix";
+              $DOMAIN=$web_name;
+              $NSRECORD="$SELECTOR._domainkey IN TXT \"k=rsa;p=$KEY; t=y\"";
+              $this_site_file .= "$NSRECORD\n";
+      }
 			// Add all subdomains to it !
 			$is_pop_subdomain_set = "no";
 			$is_imap_subdomain_set = "no";

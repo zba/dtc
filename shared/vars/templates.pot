@@ -884,6 +884,11 @@ msgid ""
 "(leave blank if you don't have backup DNS server):"
 msgstr ""
 
+#: admin/inc/dtc_config.php:730
+msgid ""
+"Full path to location of the public.key file for DomainKey support:"
+msgstr ""
+
 #: admin/inc/dtc_config.php:739
 msgid ""
 "Allow those servers to list this server's domain names for doing backup:"
