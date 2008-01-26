@@ -32,6 +32,7 @@ function drawAdminTools_Aliases($domain){
 		"create_item_callback" => "emailAliasesCreateCallback",
 		"delete_item_callback" => "emailAliasesDeleteCallback",
 		"edit_item_callback" => "emailAliasesEditCallback",
+		"order_by" => "id",
 		"where_list" => array(
 			"domain_parent" => $domain["name"]),
 		"cols" => array(

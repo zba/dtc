@@ -658,6 +658,11 @@ function dtcListItemsEdit($dsc){
 
 	// Condition to add to each queries
 	$where = "WHERE 1";
+	if( isset($dsc["order_by"])){
+		$order_by = " ORDER BY ". $dsc["order_by"];
+	}else{
+		$order_by = "";
+	}
 	$added_insert_names = "";
 	$added_insert_values = "";
 	if(isset($dsc["where_list"])){
@@ -1178,7 +1183,7 @@ function dtcListItemsEdit($dsc){
 	}
 
 	// We have to query it again, in case an insert or a delete has occured!
-	$q = "SELECT ".$dsc["id_fld"].",".$dsc["list_fld_show"]." FROM ".$dsc["table_name"]." $where;";
+	$q = "SELECT ".$dsc["id_fld"].",".$dsc["list_fld_show"]." FROM ".$dsc["table_name"]." $where $order_by;";
 	$r_item_list = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
 	$current_num_items = mysql_num_rows($r_item_list);
 
