@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-19 14:43+0800\n"
+"POT-Creation-Date: 2008-01-26 11:11+0800\n"
 "PO-Revision-Date: 2007-12-30 22:30+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: French\n"
@@ -21,6 +21,18 @@ msgstr ""
 #: shared/inc/forms/vps.php:90
 msgid " CPU seconds"
 msgstr " secondes CPU"
+
+#: shared/dtcrm/draw.php:63
+msgid " days) for upgrading will be: "
+msgstr " jours) pour upgrader sera: "
+
+#: shared/dtcrm/draw.php:64
+msgid " days), with "
+msgstr " jours), avec "
+
+#: shared/dtcrm/draw.php:71
+msgid " disk storage and "
+msgstr " stoquage disque et "
 
 #: shared/inc/sql/lists.php:490
 msgid " does not look like a mailbox login..."
@@ -35,10 +47,238 @@ msgstr " ne ressemble pas a un nom d'utilisateur mail..."
 msgid " file "
 msgstr " fichier "
 
+#: shared/dtcrm/draw.php:72
+msgid " of data transfer each month."
+msgstr " de donnée transférées chaque mois."
+
+#: shared/dtcrm/draw.php:64
+msgid " remaining to be paid"
+msgstr " reste a payer"
+
+#: shared/dtcrm/draw_handle.php:256
+msgid "+1.XXXXXXXXXX format"
+msgstr "format +33.XXXXXXXXX"
+
 #: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
 #: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
 msgid "2 months ago: "
 msgstr "Il y à 2 mois: "
+
+#: shared/inc/draw.php:445
+msgid ""
+"<font face=\"Arial, Verdana\">\n"
+"<center><font size=\"+2\"><u><b>ONLINE DTC HELP</b></u></font></"
+"center><br><br>\n"
+"<div align=\"justify\">\n"
+"<font size=\"+1\"><u>1. What is DTC</u></font><br><br>\n"
+"DTC is a tool we made especialy for you. With it, you can take the control "
+"of your domain administration : you can manage all your\n"
+"subdomains, emails, ftp or ssh accounts, and manage your VPS. DTC does also "
+"billing and invoices, plus many other things.<br><br>\n"
+"\n"
+"All this tool and all the software it uses and configure have been release "
+"under the <a href=\"http://www.gnu.org/\">GPL</a>\n"
+"(GNU Public Licence), which means that you can have a copy of this interface "
+"source code, modify it and use it as you wish, as long as\n"
+"you redistribute all thoses changes. We (at GPLHost) believe in the Free "
+"Software effort, and we hope this participation will encourage\n"
+"other developpements. We consider that because we use only open-source "
+"software for our hosting service, it is normal to redistribute\n"
+"our developpements as well.<br><br>\n"
+"\n"
+"If you want to know more about DTC, you can visit this URL: <a href=\"http://"
+"www.gplhost.com/software-dtc.html\">DTC home page</a>.\n"
+"\n"
+"<font size=\"+1\"><u>2. Emails</u></font><br>\n"
+"<u>2.1. What will it do ?</u><br><br>\n"
+"You can add, delete or modify a mailbox with this tool.<br><br>\n"
+"\n"
+"<u>2.2. Redirection and local delivery</u><br><br>\n"
+"Each mailbox can be redirected to one or more email addresses. This means "
+"that when a message is recieved, it is forwared to one\n"
+"or two email adresse(s). The &quote;deliver locally&quote; checkbox tells "
+"wether or not all message for this mailbox will be written on\n"
+"our hard disk, so thenafter you will be able to read your messages using a "
+"mail client, connecting to our server. Don't forget to\n"
+"checkup your mails often if you have trafic, because the mailbox are "
+"included in the quota<br><br>\n"
+"\n"
+"<u>2.3. Delay when adding / deleting accounts</u><br><br>\n"
+"When you add or delete a mail account, don't expect it to work immediatly: "
+"you will have to wait until the next cron job to start, so the\n"
+"mail, ssh or web server reloads it's database.<br><br>\n"
+"\n"
+"<u>2.4. Other tools for email</u><br><br>\n"
+"DTC doesn't only have email accounts. It also handles mailing lists using "
+"MLMMJ and mail alias groups to be able to have one email\n"
+"redirected to many other addresses.\n"
+"\n"
+"<font size=\"+1\"><u>3. Subdomains</u></font><br>\n"
+"<u>3.1. What will it do ?</u><br><br>\n"
+"This part of the interface is for configurating your somain's sites, which "
+"means that you will be able to populate your web site with url\n"
+"of the form:\n"
+"<pre>\n"
+"http://anything.u.want.mydomain.com\n"
+"</pre>\n"
+"\n"
+"<u>3.2. What is the default subdomain ?</u><br><br>\n"
+"Whe someone trys to contact your web site with an URL without a subdomain, "
+"he is redirected to the subdomain you said it was the default.\n"
+"In other words, if you tell that:\n"
+"<pre>\n"
+"www\n"
+"</pre>\n"
+"is the default subdomain, someone that trys to connect using an url starting "
+"with:\n"
+"<pre>\n"
+"http://mydomain.com\n"
+"</pre>\n"
+"will be redirected to:\n"
+"<pre>\n"
+"http://www.mydomain.com\n"
+"</pre>\n"
+"\n"
+"In fact, the URL is kept, and no URL redirection in a HTML page has been "
+"created, but simply, a website with that URL has been configurated\n"
+"to the same location of the &quote;www&quote; subdomain, so it accesses the "
+"same html (or php) files, and shares the same log file.<br><br>\n"
+"\n"
+"<u>3.3. Subdomains generated by default</u><br><br>\n"
+"Because you might expect to have these subdomains for other services than "
+"web already working by default, the following subdomains will\n"
+"resolve to the same IP address as your web site, even if you didn't add "
+"them:\n"
+"<ul><li>ftp</li>\n"
+"<li>pop</li>\n"
+"<li>smtp</li>\n"
+"<li>mail</li>\n"
+"</ul>\n"
+"\n"
+"<u>3.4. Delay when adding / deleting subdomain</u><br><br>\n"
+"Like for mail, any action here will take up to 10 minutes to take effect."
+"<br><br>\n"
+"\n"
+"<u>3.6. Trafic statistics for your subdomains</u><br><br>\n"
+"Because all your trafic is loged, we calculate the overall last 12 month "
+"statistics using <a href=\"http://www.mrunix.net/webalizer/\">\n"
+"webalizer</a>. The statistics are calculated each days (this is when there "
+"is less trafic), and can be reach under the \"/stats\" directory\n"
+"on each subdomains. That means that if you have registerd :\n"
+"<pre>\n"
+"http://www.mydomain.com\n"
+"</pre>\n"
+"all statistics will be generated under :\n"
+"<pre>\n"
+"http://www.mydomain.com/stats/\n"
+"</pre>\n"
+"\n"
+"If you wish, you can protect this address with a login and password.\n"
+"\n"
+"<font size=\"+1\"><u>4. FTP accounts</u></font><br>\n"
+"<u>4.1. What will it do ?</u><br><br>\n"
+"To have your page working and running, you have to upload them. But because "
+"you may not be only one to work on your web site, you may want to\n"
+"have more that one FTP account for accessing your web site. DTC will be the "
+"tool for managing thoses accounts and passwords.<br><br>\n"
+"\n"
+"<u>4.2. Delay when adding / deleting FTP accounts</u><br><br>\n"
+"Because DTC uses ProFTP or pure-ftpd with a special module for handling "
+"accounts in a MySql database, all changes to your FTP accounts take\n"
+"effect in realtime.<br><br>\n"
+"\n"
+"</div>\n"
+"</font>"
+msgstr ""
+"<font face=\"Arial, Verdana\"> <center><font size=\"+2\"><u><b>AIDE EN LIGNE "
+"DE DTC</b></u></font></center><br><br>\n"
+"<div align=\"justify\"> <font size=\"+1\"><u>1. Qu'est-ce que DTC</u></"
+"font><br><br>\n"
+"DTC est un outil fait spécialement pour vous. Avec DTC, vous pouvez prendre "
+"le contrôle de l'administration de votre domaine : vous pouvez configurer "
+"vos sous-domaines, vos boites emails et vos comptes ftp.<br><br>  Ce "
+"logiciel a été distribué sous licence L<a href=\"http://www.gnu.org/\">GPL</"
+"a> (Gnu Public Licence), ce qui signifie que vous pouvez optenir une copie "
+"des sources de l'interface et les utiliser, les modifier, et faire ce que "
+"vous voulez avec aussi longtemps que vous fassiez profiter des éventuels "
+"ajouts, et que vous ne tiriez pas de profit de cet outil. Nous (chez "
+"GPLHost) croyons en l'effort pour le logiciel libre, et nous espérons que "
+"notre contribution va encourager le developpement d'autres logiciels. Nous "
+"avons aussi considéré le fait que nous n'utilisons que du logiciel libre "
+"pour notre service d'hébergement, il est donc moralement normal de "
+"redistribuer nos efforts de développement à la communauté.<br><br>  <font "
+"size=\"+1\"><u>2. Emails</u></font><br> <u>2.1. A quoi ca sert ?</u><br><br> "
+"Vous pouvez ajouter, supprimer, ou modifier des boites électroniques avec "
+"cet outil.<br><br>  <u>2.2. Redirection et livraison en local</u><br><br> "
+"Chaque boite email peut être redirigée vers au moins une adresse email, ce "
+"qui signifie que lorsqu'un message sera reçu, celui-ci sera retransmit vers "
+"une ou deux adresse(s) de courrier électronique. La case a cocher &quote;"
+"Déliver en local&quote; indique si oui on non les messages pour cette boite "
+"seront écrit sur nos disques durs, pour que vous puissier ensuite lire vos "
+"message sur nos server en utilisant un client mail. Ce client se connectera "
+"ensuite sur nos serveurs pour lire le courrier. N'oubliez pas de lire vos "
+"courriers souvent si vous avez du traffic, puisque les boites sont inclus "
+"dans votre quota disque.<Br><br>  <u>2.3. Delai pour l'ajout / l'effacement "
+"de comptes</u><br><br> Lorsque vous ajoutez, on effacez des boites mails, ne "
+"vous attendez pas à voir cela fonctionner immédiatement : nous devons "
+"valider les changements dans le système pour que vos changements soient "
+"actifs. Nous devons dire a Qmail (notre serveur de messagerie) de recharger "
+"sa liste d'utilisateurs.<br><br> La plus part du temps, nous validons les "
+"changements a la fin de chaque jour ouvrable, mais si vous avez d'une "
+"validation immédiate, veuillez cliquer <a href=\"mailto:"
+"$conf_webmaster_email_addr?subject=[DTC]email account validation\">ici</a>."
+"<br><br>  <u><2.4 Pas de spam !</u><br><br> Attention, si vous utilisez "
+"notre serveur de messagerie de manière abusive (envois de spam, de carte "
+"postales, de liste de diffusion, revente d'email gratuit, etc... (liste non "
+"exhaustive)), les sanctions pourraient être immédiates. Rappelez vous que "
+"nous ne désirons pas que notre serveur de mail soit sur les listes noires !!!"
+"<br><br> Nous réfléchissons a l'ajout de fonction de mailling list avec un "
+"demon spécialisé (sympa, marjodomo, etc...).<br><br>  <font size=\"+1"
+"\"><u>3. Sous-domaines</u></font><br> <u>3.1. A quoi ca sert ?</u><br><br> "
+"Cette partie de l'interface permet la configuration des sous-domaines de "
+"votre site web, ce qui signifie que vous pourrez créer des adresses de la "
+"forme : <pre> http://ce.que.vous.voulez.votre-nom-de-domaine.com </pre> "
+"<u>3.2. Qu'est-ce que le sous-domaine par défaut ?</u><br><br> Lorsque "
+"quelqu'un essaye de contacter votre site web avec une URL sans sous-domaine, "
+"celui-ci sera rédirigé vers le sous-domaine que vous aurez configuré comme "
+"étant celui par défaut. En d'autre termes, si vous configurez : <pre> www </"
+"pre> comme le sous-domaine par défaut, alors si quelqu'un tape : <pre> "
+"http://votre-nom-de-domaine.com </pre> dans son browser web, alors il sera "
+"redirigé vers : <pre> http://www.votre-nom-de-domaine.com </pre> En fait, "
+"l'URL est conservée, et aucune redirection n'est réellement construite dans "
+"une page HTML, plus simplement, un site web pointant vers les répertoires de "
+"votre sous-domaine par défaut à été fabriqué, donc il utilise les memes "
+"pages html (ou php) et utilise les memes fichiers de log.<br><br>  <u>3.3. "
+"Sous-domaines interdits</u><br><br> Puisque nous avont déjà configuré ces "
+"sous-domaines pour d'autres services que le web, vous ne pouvez pas utiliser "
+"ces sous-domaines pour des sites apache : <ul><li>ftp</li> <li>pop</li> "
+"<li>smtp</li> <li>mail</li> </ul>  <u>3.4. Effacement des sous-domaines</"
+"u><br><br> C'est a vous d'effacer les fichiers utilisés par les sous-"
+"domaines que vous voulez effacer. Vous pouvez effacer ces fichiers avec un "
+"clients FTP. Mais s'il vous plaît, faites TRES attention a ne pas effacer "
+"les fichiers d'un sous-domaine que vous n'avez pas effacé dans DTC. En "
+"effet, le serveur web Apache n'est pas content lorsqu'un dossier n'existe "
+"pas tout en étant configuré, et cela posera des problèmes a nos "
+"administrateurs.<br><br>  <u>3.6. Statistiques de votre site</u><br><br> "
+"Puisque votre trafic est en fichier de log, nous calculons le trafic total "
+"pour les 12 derniers mois de statistics en utilisant <a href=\"http://www."
+"mrunix.net/webalizer/\">webalizer</a>. Les statistiques sont calculés "
+"chaques jours, lorsqu'il y a le moins de trafic, et sont accessible dans le "
+"répertoire &quote;stat&quote; de votre site.<br><br>  Si vous avez "
+"enregistré : <pre> http://www.mydomain.com </pre> vos statistiques se "
+"trouverons dans : <pre> http://www.mydomain.com/stats/ </pre>  Attention ! "
+"Si vous faite vraiment beaucoup de trafic, votre fichier de log poura être "
+"effacé et vos statisques remis a zéro. Nous ne garantissons rien pour ces "
+"statistiques, elle sont simplement présente pour vous aider.<br><br>  <font "
+"size=\"+1\"><u>4. Comptes FTP</u></font><br> <u>4.1. A quoi ca sert ?</"
+"u><br><br> Pour avoir des pages qui fonctionne et qui marche, vous devez les "
+"envoyer sur nos serveurs. Mais puisque vous pouvez être plusieurs a "
+"travailler sur votre site, vous pouvez avoir besoin de plusieurs comptes "
+"FTP. DTC est l'outil pour administrer ces comptes et mots de passes."
+"<br><br>  <u>4.2. Delai de l'ajout / l'effacement de comptes FTP</u><br><br> "
+"Puisque nous utilisons ProFTP avec un module spécial pour utiliser une base "
+"de donnée, tous les changements sur vos comptes FTP seront pris en comptes "
+"immédiatement en temps réel.<br><br></div> "
 
 #: shared/inc/sql/database.php:61
 msgid "A database by that name exists, please choose another name."
@@ -149,15 +389,28 @@ msgstr "Ajouter un domaine"
 msgid "Added footer:"
 msgstr "Pied de message aditionnel :"
 
-#: admin/dtcrm/main.php:165
+#: shared/dtcrm/draw_nameservers.php:59
+msgid "Addition of name server failed"
+msgstr "Edition de votre serveur de nom réussit"
+
+#: shared/dtcrm/draw_nameservers.php:50
+msgid "Addition of name server was succesfull"
+msgstr "Edition de votre serveur de nom réussit"
+
+#: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
+#: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
 msgid "Address (line1): "
 msgstr "Adresse (ligne 1): "
 
-#: admin/dtcrm/main.php:166
+#: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
+#: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
+#: shared/dtcrm/draw_handle.php:238
 msgid "Address (line2): "
 msgstr "Adresse (ligne 2): "
 
-#: admin/dtcrm/main.php:167
+#: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
+#: shared/dtcrm/draw_handle.php:93 shared/dtcrm/draw_handle.php:125
+#: shared/dtcrm/draw_handle.php:241
 msgid "Address (line3): "
 msgstr "Adresse (ligne 3): "
 
@@ -173,7 +426,7 @@ msgstr "Adresse de votre serveur MX principal:"
 msgid "Address:"
 msgstr "Adresse:"
 
-#: client/new_account_form.php:610
+#: client/new_account_form.php:610 shared/dtcrm/draw_handle.php:235
 msgid "Addresse (line1): "
 msgstr "Adresse (ligne 1): "
 
@@ -240,9 +493,27 @@ msgstr "Bande passante mensuelle autorisée (Mo) :"
 msgid "Allowed data transfer (GB): "
 msgstr "Transfère de données autorisé (Go) : "
 
+#: shared/dtcrm/draw_adddomain.php:93
+msgid "Alternatively, you can add another domain name:"
+msgstr "Vous pouvez aussi ajouter un autre domaine:"
+
 #: admin/inc/renewals.php:114 shared/securepay/pay_functions.php:35
 msgid "Amount"
 msgstr "Compte"
+
+#: shared/dtcrm/draw_adddomain.php:80
+msgid ""
+"An administrator will examine your request shortly, and validate the "
+"addition of this domain name to your account. You curently don't have enough "
+"privileges to add domain names. If you often add domain names, you can ask "
+"the administrator to grant you the privilege of automatic domain name "
+"addition. To request hosting for a new domain name, without administrator "
+"validation or domain name registration, please write to:"
+msgstr ""
+"Bientot un administrateur validra votre requette d'ajout de nom de domaine "
+"sur votre compte. Vous n'avez pas les droits nécessaire pour l'ajout de nom "
+"de domaine automatique. Pour obtenir l'ajout automatique sans validation, ou "
+"sans enregistrement de nom de domaine veuillez contacter :"
 
 #: admin/inc/dtc_config.php:594
 msgid "Another location"
@@ -334,6 +605,10 @@ msgstr "Moniteur de bande passante"
 #: shared/inc/forms/root_admin.php:493 shared/inc/forms/root_admin.php:557
 msgid "Bandwidth per month"
 msgstr "Bande passante mensuelle"
+
+#: shared/dtcrm/draw.php:79
+msgid "Bandwidth/month"
+msgstr "Bande passante/mois"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
 msgid "Bank validated"
@@ -472,8 +747,14 @@ msgid "City:"
 msgstr "Ville :"
 
 #: admin/dtcrm/main.php:168 client/new_account_form.php:622
+#: shared/dtcrm/draw_handle.php:63 shared/dtcrm/draw_handle.php:95
+#: shared/dtcrm/draw_handle.php:127 shared/dtcrm/draw_handle.php:247
 msgid "City: "
 msgstr "Ville : "
+
+#: shared/dtcrm/draw_adddomain.php:291
+msgid "Click"
+msgstr "Cliquez"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
@@ -528,6 +809,8 @@ msgid "Company name:"
 msgstr "Nom société :"
 
 #: admin/dtcrm/main.php:163 client/new_account_form.php:590
+#: shared/dtcrm/draw_handle.php:58 shared/dtcrm/draw_handle.php:90
+#: shared/dtcrm/draw_handle.php:122 shared/dtcrm/draw_handle.php:226
 msgid "Company name: "
 msgstr "Nom société : "
 
@@ -585,6 +868,13 @@ msgstr "Impossible de se connecter au serveur SMTP (temps d'attente dépassé): "
 #: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:210
 msgid "Could not connect to VPS server!"
 msgstr "Impossible de se connecter au serveur de VDS!"
+
+#: shared/dtcrm/draw_adddomain.php:128
+msgid ""
+"Could not connect to domain registration server: please try again later!"
+msgstr ""
+"Impossible de se connecter a l'API d'enregistrement de nom de domaine : "
+"veuillez essayez ultérieurement !"
 
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
@@ -650,6 +940,8 @@ msgid "Country:"
 msgstr "Pays :"
 
 #: admin/dtcrm/main.php:171 client/new_account_form.php:628
+#: shared/dtcrm/draw_handle.php:65 shared/dtcrm/draw_handle.php:97
+#: shared/dtcrm/draw_handle.php:129 shared/dtcrm/draw_handle.php:253
 #: shared/inc/forms/root_admin.php:280
 msgid "Country: "
 msgstr "Pays : "
@@ -665,6 +957,14 @@ msgstr "Nouvelle boite groupée"
 #: shared/inc/forms/aliases.php:22
 msgid "Create New Mail Group"
 msgstr "Nouvelle boite groupée"
+
+#: shared/dtcrm/draw_handle.php:29
+msgid "Create a new handle"
+msgstr "Créer un nouveau contact"
+
+#: shared/dtcrm/draw_handle.php:199
+msgid "Create a new nick-handle:"
+msgstr "Créer un nouveau contact :"
 
 #: shared/inc/forms/subdomain.php:126
 msgid "Create a subdomain: "
@@ -848,6 +1148,10 @@ msgstr ""
 msgid "Delete headers:"
 msgstr "Effacer les headers :"
 
+#: shared/dtcrm/draw_nameservers.php:120
+msgid "Delete name server"
+msgstr "Effacer le serveur de nom"
+
 #: shared/inc/forms/root_admin.php:191
 msgid "Delete one of the admin VPS: "
 msgstr "Effacer l'un des VPS d'una admin : "
@@ -863,6 +1167,14 @@ msgstr "Effacer l'utilisateur"
 #: shared/inc/forms/lists.php:445
 msgid "Delete:"
 msgstr "Effacer:"
+
+#: shared/dtcrm/draw_nameservers.php:74
+msgid "Deletion of name server failed"
+msgstr "Echec lors de l'effacement du serveur de nom"
+
+#: shared/dtcrm/draw_nameservers.php:68
+msgid "Deletion of name server was succesful"
+msgstr "Effacement de votre serveur de nom réussit"
 
 #: shared/inc/forms/lists.php:431
 msgid "Delimiter:"
@@ -938,6 +1250,11 @@ msgstr "Afficher et trier par :"
 msgid "Do not change unless you really know what you are doing."
 msgstr "Ne pas modifier a moins que vous sachiez vraiment ce que vous faites."
 
+#: shared/dtcrm/draw_adddomain.php:102
+msgid "Do you want to transfer an existing domain or register a new domain?"
+msgstr ""
+"Voulez vous transférer un domaine existant ou en enregistrer un nouveau ?"
+
 #: shared/drawlib/anotherDtc.php:129
 msgid "Documentation"
 msgstr "Documentation"
@@ -967,6 +1284,12 @@ msgstr "Nom de domaine / Nom d'hote du serveur VPS"
 #: shared/inc/forms/admin_stats.php:67
 msgid "Domain name files:"
 msgstr "Fichiers des noms de domaines :"
+
+#: shared/dtcrm/draw_adddomain.php:68
+msgid "Domain name is not in correct format. Please enter another name."
+msgstr ""
+"Le nom de domaine que vous avez entré n'est pas valide. Veuillez essayer a "
+"nouveau."
 
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
@@ -1015,6 +1338,10 @@ msgstr "Editer un email groupé"
 #: admin/inc/dtc_config.php:1204
 msgid "Edit a company:"
 msgstr "Editer une société:"
+
+#: shared/dtcrm/draw_nameservers.php:99
+msgid "Edit a name server:"
+msgstr "Editer un serveur de nom:"
 
 #: shared/inc/forms/lists.php:52
 msgid "Edit mailing list"
@@ -1071,6 +1398,8 @@ msgid "Email:"
 msgstr "Email :"
 
 #: admin/dtcrm/main.php:175 client/new_account_form.php:596
+#: shared/dtcrm/draw_handle.php:68 shared/dtcrm/draw_handle.php:100
+#: shared/dtcrm/draw_handle.php:132 shared/dtcrm/draw_handle.php:262
 msgid "Email: "
 msgstr "Email : "
 
@@ -1089,6 +1418,10 @@ msgstr "Activer l\\'archivage"
 #: shared/inc/forms/lists.php:442
 msgid "Enable webarchive:"
 msgstr "Activé l'archivage web :"
+
+#: shared/dtcrm/draw_adddomain.php:120
+msgid "Enter the domain name you want to register:"
+msgstr "Entrer le nom de domaine que vous souhaitez enregistrer :"
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:262
 msgid "Error"
@@ -1156,6 +1489,8 @@ msgid "FTP password:"
 msgstr "Mot de passe FTP :"
 
 #: admin/dtcrm/main.php:159 client/new_account_form.php:580
+#: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
+#: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
 msgid "Familly name: "
 msgstr "Nom de famille : "
 
@@ -1168,6 +1503,8 @@ msgid "Fax:"
 msgstr "Fax :"
 
 #: admin/dtcrm/main.php:174 client/new_account_form.php:602
+#: shared/dtcrm/draw_handle.php:67 shared/dtcrm/draw_handle.php:99
+#: shared/dtcrm/draw_handle.php:131 shared/dtcrm/draw_handle.php:259
 msgid "Fax: "
 msgstr "Fax : "
 
@@ -1197,6 +1534,8 @@ msgid "First name:"
 msgstr "Prénom :"
 
 #: admin/dtcrm/main.php:160 client/new_account_form.php:583
+#: shared/dtcrm/draw_handle.php:56 shared/dtcrm/draw_handle.php:88
+#: shared/dtcrm/draw_handle.php:120 shared/dtcrm/draw_handle.php:229
 msgid "First name: "
 msgstr "Prénom : "
 
@@ -1220,7 +1559,7 @@ msgstr "Cout du portail de paiement"
 msgid "General"
 msgstr "Générale"
 
-#: shared/inc/draw.php:450
+#: shared/inc/draw.php:553
 msgid "General information of "
 msgstr "Informations générales de "
 
@@ -1302,6 +1641,14 @@ msgstr "Cache les adresses email pour éviter le spam."
 msgid "Host IP addresses (separated by \"|\"): "
 msgstr "Adresses IPs de votre machine (séparées par des \"|\") : "
 
+#: shared/dtcrm/draw_adddomain.php:42
+msgid "Hosting + domain name registration or transfer"
+msgstr "Hébergement + enregistrement ou transfère de nom de domaine"
+
+#: shared/dtcrm/draw_adddomain.php:47
+msgid "Hosting only"
+msgstr "Hébergement seulement"
+
 #: shared/gfx/skin/default_layout.php:159
 #: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:433
 #: shared/gfx/skin/bwoup/layout.php:435 shared/gfx/skin/bwoup/layout.php:543
@@ -1339,6 +1686,10 @@ msgstr "IP résolue"
 #: shared/inc/forms/root_admin.php:384
 msgid "IP address"
 msgstr "Adresse IP"
+
+#: shared/dtcrm/draw_nameservers.php:109 shared/dtcrm/draw_nameservers.php:142
+msgid "IP address of name server:"
+msgstr "Addresse IP de ce serveur de nom :"
 
 #: shared/inc/forms/dns.php:19
 msgid "IP address of the primary DNS server:"
@@ -1444,6 +1795,14 @@ msgid ""
 msgstr ""
 "Si ce drapeau est positionné, la liste ne doit pas forcément être présente "
 "dans les champs To: ou Cc: du header du message."
+
+#: shared/dtcrm/draw_whois.php:51
+msgid ""
+"If you want to keep your current registrar, you have to make the whois point "
+"to these DNS:"
+msgstr ""
+"Si vous voullez garder votre registrar actuel, vous devez faire pointer le "
+"whois vers les DNS suivants :"
 
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
@@ -1684,6 +2043,10 @@ msgstr "Liste de vos boites aux lettres:"
 #: shared/inc/forms/lists.php:27
 msgid "List of your mailing lists"
 msgstr "Liste de vos listes de difusion"
+
+#: shared/dtcrm/draw_nameservers.php:79
+msgid "List of your registred name-servers:"
+msgstr "Liste de vos serveurs de nom enregistrés : "
 
 #: shared/inc/forms/subdomain.php:125
 msgid "List of your subdomains: "
@@ -1945,6 +2308,10 @@ msgstr "Tous les mois"
 msgid "My Account information:"
 msgstr "Informations de mon compte :"
 
+#: shared/inc/draw.php:146
+msgid "My account"
+msgstr "Mon compte"
+
 #: shared/inc/draw.php:385
 msgid "My account global statistics"
 msgstr "Statistiques globales de mon compte"
@@ -1990,9 +2357,17 @@ msgstr "NON VALIDE"
 msgid "Name"
 msgstr "Nom"
 
+#: shared/dtcrm/draw_handle.php:223
+msgid "Name for this handle: "
+msgstr "Nom pour ce contact : "
+
 #: shared/inc/forms/lists.php:70
 msgid "Name of the list."
 msgstr "Nom de la liste."
+
+#: shared/dtcrm/draw_nameservers.php:107
+msgid "Name server hostname: "
+msgstr "Nom d'hote du serveur de nom : "
 
 #: shared/inc/draw.php:140
 msgid "Name servers"
@@ -2236,6 +2611,10 @@ msgstr "Alerte lorsque post et pas d'acces :"
 msgid "Notify when post and not subscribed:"
 msgstr "Alerte lorsque post et pas inscrit :"
 
+#: shared/dtcrm/draw_adddomain.php:90
+msgid "Now you can go to check its configuration by clicking here:"
+msgstr "Vous pouvez maintenant utiliser votre domaine en cliquant ici :"
+
 #: shared/inc/forms/vps.php:151
 msgid "Number of CPU: "
 msgstr "Nombre de CPU : "
@@ -2282,7 +2661,7 @@ msgstr "Ok"
 msgid "Old tickets:"
 msgstr "Ancien tiquets :"
 
-#: shared/inc/draw.php:446
+#: shared/inc/draw.php:549
 msgid "Online DTC help"
 msgstr "Aide en ligne de DTC"
 
@@ -2407,6 +2786,10 @@ msgstr "Mot de passe:"
 msgid "Password: "
 msgstr "Mot de passe : "
 
+#: shared/dtcrm/draw.php:35
+msgid "Past account refundal"
+msgstr "Remboursement ancien compte"
+
 #: shared/inc/draw.php:122
 msgid "Past payments"
 msgstr "Paiement effectués"
@@ -2460,6 +2843,10 @@ msgstr "Commission fixe PayPal : "
 msgid "PayPal test account email (sandbox): "
 msgstr "Email du compte de test PayPal (sandbox) : "
 
+#: shared/dtcrm/draw_adddomain.php:241
+msgid "Payment complete. Proceed to checkout"
+msgstr "Paiement effectué, je veux continuer"
+
 #: admin/inc/draw_user_admin.php:314
 msgid "Payment date"
 msgstr "Date de paiement"
@@ -2484,6 +2871,7 @@ msgstr "En attente"
 #: admin/inc/renewals.php:114 admin/dtcrm/product_manager.php:36
 #: admin/dtcrm/product_manager.php:104 admin/dtcrm/product_manager.php:162
 #: admin/dtcrm/product_manager.php:187 admin/dtcrm/product_manager.php:220
+#: shared/dtcrm/draw.php:80
 msgid "Period"
 msgstr "Période"
 
@@ -2492,6 +2880,8 @@ msgid "Phone number:"
 msgstr "Téléphone :"
 
 #: admin/dtcrm/main.php:173 client/new_account_form.php:599
+#: shared/dtcrm/draw_handle.php:66 shared/dtcrm/draw_handle.php:98
+#: shared/dtcrm/draw_handle.php:130 shared/dtcrm/draw_handle.php:256
 msgid "Phone number: "
 msgstr "Téléphone : "
 
@@ -2505,6 +2895,15 @@ msgstr ""
 "Veuillez créer un utilisateur MySQL pour pouvoir fabriquer des bases de "
 "données."
 
+#: shared/dtcrm/draw_adddomain.php:63
+msgid "Please enter the domain name you wish to add:"
+msgstr "Veuillez entrer le nom de domaine que vous souhaitez ajouter:"
+
+#: shared/dtcrm/draw_transferdomain.php:47
+#: shared/dtcrm/draw_transferdomain.php:64
+msgid "Please enter the domain name you wish to transfer:"
+msgstr "Veuillez entrer le domaine que vous souhaitez transférer :"
+
 #: shared/inc/forms/dedicated.php:47
 msgid "Please renew it with one of the following options"
 msgstr "Merci de le renouveller avec les options suivante"
@@ -2512,6 +2911,14 @@ msgstr "Merci de le renouveller avec les options suivante"
 #: shared/inc/forms/vps.php:205
 msgid "Please renew with one of the following options: "
 msgstr "Merci de le renouveller avec l'une des options suivantes : "
+
+#: shared/dtcrm/draw_adddomain.php:164
+msgid ""
+"Please select the 3 contact handles you want to use for registering that "
+"domain name."
+msgstr ""
+"Veuillez selectionner les 3 contacts responsable que vous voulez utiliser "
+"pour l'enregistrement du nom de domaine."
 
 #: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
@@ -2534,13 +2941,18 @@ msgstr "Numéro de port : "
 
 #: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
-#: admin/dtcrm/product_manager.php:225 shared/inc/forms/invoices.php:23
+#: admin/dtcrm/product_manager.php:225 shared/dtcrm/draw.php:80
+#: shared/inc/forms/invoices.php:23
 msgid "Price"
 msgstr "Prix"
 
 #: admin/inc/dtc_config.php:701
 msgid "Primary DNS server address:"
 msgstr "Adresse du serveur DNS primaire :"
+
+#: shared/dtcrm/draw_whois.php:52
+msgid "Primary DNS:"
+msgstr "DNS primaire :"
 
 #: shared/inc/forms/dns.php:42
 msgid "Primary MX address:"
@@ -2551,9 +2963,21 @@ msgstr "Adresse du serveur MX primaire :"
 msgid "Private"
 msgstr "Privé"
 
+#: shared/dtcrm/draw.php:160
+msgid "Proceed to account upgrade"
+msgstr "Procéder a la mise a jour du compte"
+
+#: shared/dtcrm/draw_adddomain.php:251
+msgid "Proceed to name-registration"
+msgstr "Procéder a l'enregistrement du nom de domaine"
+
+#: shared/dtcrm/draw_transferdomain.php:79
+msgid "Proceed to transfer"
+msgstr "Procéder au transfère"
+
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
-#: client/new_account_form.php:541 shared/inc/forms/invoices.php:23
-#: shared/inc/forms/root_admin.php:565
+#: client/new_account_form.php:541 shared/dtcrm/draw.php:79
+#: shared/inc/forms/invoices.php:23 shared/inc/forms/root_admin.php:565
 msgid "Product"
 msgstr "Produit"
 
@@ -2653,21 +3077,49 @@ msgstr "Redirection 1 : "
 msgid "Redirection 2: "
 msgstr "Redirection 2 : "
 
+#: shared/dtcrm/draw.php:63
+msgid "Refund"
+msgstr "Rajout d'argent"
+
 #: shared/inc/forms/my_account.php:188
 msgid "Refund my account:"
 msgstr "Mettre de l'argent sur mon compte :"
+
+#: shared/dtcrm/draw_adddomain.php:116
+msgid "Register a domain name"
+msgstr "Enregistrer un nom de domaine"
 
 #: client/login.php:6 client/new_account.php:148 client/new_account.php:246
 msgid "Register a new account"
 msgstr "Ouvrir un nouveau compte"
 
+#: shared/dtcrm/draw_adddomain.php:104
+msgid "Register a new domain"
+msgstr "Enregistrer un nouveau domaine"
+
+#: shared/dtcrm/draw_nameservers.php:124
+msgid "Register a new name server:"
+msgstr "Enregistrer un nouveau serveur de nom :"
+
 #: shared/inc/forms/root_admin.php:477 shared/inc/forms/root_admin.php:541
 msgid "Registration"
 msgstr "Enregistrement"
 
+#: shared/dtcrm/draw_adddomain.php:264
+msgid "Registration failed"
+msgstr "L'enregistrement à échoué"
+
 #: admin/inc/dtc_config.php:1232
 msgid "Registration number:"
 msgstr "Numéro d'enregistrement :"
+
+#: shared/dtcrm/draw_nameservers.php:42
+msgid "Registration of your name server failed"
+msgstr "Echec lors de l'enregistrement de votre serveur de nom"
+
+#: shared/dtcrm/draw_nameservers.php:22
+msgid "Registration of your name server was succesful"
+msgstr "Enregistrement de votre serveur de nom réussit"
 
 #: client/new_account.php:233
 msgid "Registration successful!"
@@ -2698,6 +3150,11 @@ msgstr ""
 #: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
 msgstr "Argent restant sur mon compte :"
+
+#: shared/dtcrm/draw_adddomain.php:220
+#: shared/dtcrm/draw_transferdomain.php:101
+msgid "Remaining on your account: "
+msgstr "Restant sur votre compte : "
 
 #: admin/inc/dtc_config.php:225
 msgid "Reminders and registration message subject header:"
@@ -2862,6 +3319,10 @@ msgstr ""
 "Adresse des serveurs DNS secondaires<br>\n"
 "(séparés par un &quot;|&quot; (pipe) si il y en a plusieurs) :"
 
+#: shared/dtcrm/draw_whois.php:53
+msgid "Secondary DNS:"
+msgstr "DNS secondaire :"
+
 #: admin/inc/dtc_config.php:912
 msgid "Secure payment configuration"
 msgstr "Configuration du paiement sécurisé"
@@ -2869,6 +3330,18 @@ msgstr "Configuration du paiement sécurisé"
 #: admin/dtcrm/main.php:109
 msgid "Select a customer."
 msgstr "Selectionner un client."
+
+#: shared/dtcrm/draw_adddomain.php:167
+msgid "Select how long you want to register this domain name:"
+msgstr "Veuillez selectionner la période d'enregistrement pour ce domaine:"
+
+#: shared/dtcrm/draw_nameservers.php:135
+msgid ""
+"Select one of your domain-names for registering an additional name server to "
+"the registries:"
+msgstr ""
+"Selectionner un de vos nom de domaine pour ajouter le serveur de nom a la "
+"registry :"
 
 #: admin/inc/dtc_config.php:624
 msgid "Select the type of skin:"
@@ -2942,6 +3415,14 @@ msgstr "Nom du serveur"
 msgid "Server not found!"
 msgstr "Serveur non trouvé !"
 
+#: shared/dtcrm/draw_adddomain.php:265 shared/dtcrm/draw_nameservers.php:23
+#: shared/dtcrm/draw_nameservers.php:43 shared/dtcrm/draw_nameservers.php:51
+#: shared/dtcrm/draw_nameservers.php:60 shared/dtcrm/draw_nameservers.php:69
+#: shared/dtcrm/draw_nameservers.php:75
+#: shared/dtcrm/draw_transferdomain.php:62
+msgid "Server said: "
+msgstr "Le serveur a répondu : "
+
 #: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:510
 msgid "Server statistic graphs"
 msgstr "Graph des statistiques du serveur"
@@ -2982,6 +3463,10 @@ msgstr "Rappel avant fermeture : "
 msgid "Soap login"
 msgstr "Login SOAP"
 
+#: shared/dtcrm/draw_adddomain.php:135
+msgid "Sorry, the domain name "
+msgstr "Désolé, le nom de domaine "
+
 #: shared/inc/forms/vps.php:251
 msgid "Start and stop of your VPS:"
 msgstr "Démarrage et arret de votre serveur virtuel :"
@@ -2995,6 +3480,8 @@ msgid "State:"
 msgstr "Etat :"
 
 #: admin/dtcrm/main.php:170 client/new_account_form.php:625
+#: shared/dtcrm/draw_handle.php:64 shared/dtcrm/draw_handle.php:96
+#: shared/dtcrm/draw_handle.php:128 shared/dtcrm/draw_handle.php:244
 msgid "State: "
 msgstr "Etat : "
 
@@ -3003,7 +3490,7 @@ msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr ""
 "Etat : impossible de récupéré la valeur (peut-être redémarrage en cours ?)"
 
-#: shared/inc/draw.php:116 shared/inc/draw.php:146 shared/inc/draw.php:190
+#: shared/inc/draw.php:116 shared/inc/draw.php:190
 msgid "Statistics"
 msgstr "Statistiques"
 
@@ -3018,6 +3505,34 @@ msgstr "Statistiques:"
 #: shared/inc/forms/ticket.php:158
 msgid "Status"
 msgstr "Etat"
+
+#: shared/dtcrm/draw_adddomain.php:117
+msgid "Step 1: Verify availability"
+msgstr "Etape 1 : vérifier la disponibilitée"
+
+#: shared/dtcrm/draw.php:69
+msgid "Step 1: choose your upgrade"
+msgstr "Etape 1 : choix de votre mise a niveau"
+
+#: shared/dtcrm/draw_adddomain.php:146
+msgid "Step 2: Enter whois information"
+msgstr "Etape 2 : entrez les informations du whois"
+
+#: shared/dtcrm/draw_transferdomain.php:71
+msgid "Step 2: select contacts for domain transfer"
+msgstr "Etape 2 : selectionner les contacts pour le transfère de domaine"
+
+#: shared/dtcrm/draw_adddomain.php:191
+msgid "Step 3: Proceed to registration"
+msgstr "Etape 3 : procéder a l'enregistrement"
+
+#: shared/dtcrm/draw_transferdomain.php:39
+msgid "Step1: check if domain is transferable"
+msgstr "Etape 1 : vérifier que le domaine est transférable"
+
+#: shared/dtcrm/draw.php:79
+msgid "Storage"
+msgstr "Stoquage"
 
 #: shared/inc/forms/my_account.php:97
 msgid "Storage space"
@@ -3088,6 +3603,10 @@ msgstr "Liste des inscrits (cliquez pour désinscrire) :"
 msgid "Subscribers only post:"
 msgstr "Post inscrits uniquement :"
 
+#: shared/dtcrm/draw_adddomain.php:289
+msgid "Successfully added your domain name to the hosting database"
+msgstr "Nom de domaine ajouté a la base de donnée avec succes"
+
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
 msgstr "Ticket de support"
@@ -3107,6 +3626,19 @@ msgstr "Swap E/S:"
 #: client/new_account.php:108
 msgid "TRANSACTION FINISHED AND APPROVED"
 msgstr "TRANSACTION FINIE ET APPROUVEE"
+
+#: shared/dtcrm/draw_transferdomain.php:61
+msgid "TRANSFER CHECK FAILED"
+msgstr "ECHEC DU TEST DE TRANSFERABILITE"
+
+#: shared/dtcrm/draw_transferdomain.php:57
+msgid "TRANSFER CHECK FAILED: registry server didn't reply successfuly."
+msgstr ""
+"ECHEC DU TRANSFERE : le serveur d'enregistrement n'a pas répondu avec succès."
+
+#: shared/dtcrm/draw_transferdomain.php:68
+msgid "TRANSFER CHECK SUCCESSFUL"
+msgstr "SUCCES DU TEST DE TRANSFERABILITE"
 
 #: shared/inc/forms/subdomain.php:178
 msgid "TXT field of the subdomain: "
@@ -3198,6 +3730,10 @@ msgstr ""
 "Préfixe de la ligne Sujet: (Subject:) des messages de la liste. Ceci va "
 "altéré la ligne Sujet: et ajouter un préfixe si il n\\'est pas déjà présent."
 
+#: shared/dtcrm/draw_transferdomain.php:107
+msgid "The transaction failed, please try again!"
+msgstr "La transaction à échoué, veuillez réessayer"
+
 #: shared/inc/forms/ftp.php:66
 msgid "There is already a ftp login by that name"
 msgstr "Il existe déjà un compte ftp avec ce nom"
@@ -3230,6 +3766,14 @@ msgstr ""
 "rappels avant et après expiration peuvent etre listéséparé par un |, les "
 "autres valeurs sont des valeurs unique. Les messagesenvoyés par défault sont "
 "stoqué dans : "
+
+#: shared/dtcrm/draw_handle.php:262
+msgid "This MUST be a valid address"
+msgstr "Cette addresse DOIT être valide"
+
+#: shared/dtcrm/draw_adddomain.php:74
+msgid "This domain name already hosted here, please enter another name."
+msgstr "Ce nom de domaine est déjà hébergé ici. Veuillez en choisir un autre."
 
 #: shared/inc/forms/domain_info.php:78
 msgid "This domain will be the alias of the following domain (domain parking):"
@@ -3330,9 +3874,17 @@ msgstr ""
 "Pour faire une vérification du système de fichier (fsck), vous devez "
 "d'abbord arreter ou tuer le serveur virtuel."
 
+#: shared/dtcrm/draw.php:73
+msgid "To what capacity would you like to upgrade to?"
+msgstr "Vers quelle capacité voullez-vous mettre a niveau ?"
+
 #: shared/inc/forms/lists.php:407
 msgid "To: or Cc: not mandatory:"
 msgstr "To: ou Cc: non obligatoire:"
+
+#: shared/dtcrm/draw.php:37
+msgid "Today is the: "
+msgstr "Nous somme le: "
 
 #: shared/securepay/pay_functions.php:35
 msgid "Total"
@@ -3350,6 +3902,11 @@ msgstr "Nombre total de base de donnée :"
 #: shared/inc/forms/my_account.php:76
 msgid "Total disk usage:"
 msgstr "Total de l'utilisation disque :"
+
+#: shared/dtcrm/draw_adddomain.php:221
+#: shared/dtcrm/draw_transferdomain.php:102
+msgid "Total price: "
+msgstr "Prix total : "
 
 #: admin/inc/renewals.php:20
 msgid "Total recurring incomes per month:"
@@ -3380,9 +3937,17 @@ msgstr "Trafic"
 msgid "Transfer"
 msgstr "Transfert"
 
+#: shared/dtcrm/draw_adddomain.php:105
+msgid "Transfer an existing domain from another registrar"
+msgstr "Transferer un domaine existant depuis un autre registrar"
+
 #: shared/inc/forms/my_account.php:63
 msgid "Transfer and disk usage:"
 msgstr "Transfert et utilisation disque :"
+
+#: shared/dtcrm/draw_transferdomain.php:38
+msgid "Transfer from another registrar to this server:"
+msgstr "Transfère depuis un autre registrar vers ce serveur :"
 
 #: admin/inc/monitor.php:15
 msgid "Transfer per month"
@@ -3437,6 +4002,10 @@ msgstr "Up time : "
 #: shared/inc/forms/my_account.php:106
 msgid "Upgrade my account"
 msgstr "Upgrader mon compte"
+
+#: shared/dtcrm/draw.php:33
+msgid "Upgrade my account:"
+msgstr "Upgrader mon compte :"
 
 #: shared/inc/forms/domain_info.php:59 shared/inc/forms/email.php:27
 msgid "Use"
@@ -3732,9 +4301,17 @@ msgstr "Bienvenue au paneau email !"
 msgid "What"
 msgstr "Libelle"
 
+#: shared/dtcrm/draw_adddomain.php:39
+msgid "What do you want to add:"
+msgstr "Que voulez vous ajouter :"
+
 #: shared/inc/forms/ticket.php:47
 msgid "What is your server hostname:"
 msgstr "Quel est le nom d'hote de votre serveur :"
+
+#: shared/dtcrm/draw_nameservers.php:125
+msgid "What subzone do you want to use (example: ns1):"
+msgstr "Quel sous-zone voulez vous utiliser (exemple : ns1) :"
 
 #: shared/inc/forms/lists.php:196
 msgid ""
@@ -3755,6 +4332,20 @@ msgid ""
 msgstr ""
 "Quand ce drapeau est positionné, seuls les inscrits peuvent envoyer. La "
 "vérification est faite en fonction du &quot;From:&quot; du header."
+
+#: shared/dtcrm/draw_handle.php:73
+msgid "Who will be contacted for domain renewall (billing contact)?"
+msgstr "Qui sera contacté au moment du renouvellement (billing contact) ?"
+
+#: shared/dtcrm/draw_handle.php:105
+msgid ""
+"Who will have the rights for changing the whois information (admin contact)?"
+msgstr ""
+"Qui aura les droits de changer les informations du whois (admin contact) ?"
+
+#: shared/dtcrm/draw_handle.php:41
+msgid "Who will own the domain name and will be the registrant (domain owner)?"
+msgstr "Qui sera le propriétaire du nom de domaine (domain owner) ?"
 
 #: shared/inc/draw.php:183
 msgid "Whois"
@@ -3799,6 +4390,10 @@ msgstr "Mauvais utilisateur ou mot de passe, ou temps d'expiration atteint !"
 msgid "Yes"
 msgstr "Oui"
 
+#: shared/dtcrm/draw_adddomain.php:83
+msgid "You can add another domain name:"
+msgstr "Vous pouvez ajouter un autre domaine:"
+
 #: shared/inc/sql/lists.php:213
 msgid ""
 "You can control your mailing list by email or by control panel.\n"
@@ -3837,18 +4432,52 @@ msgstr ""
 "Pour plus d'information allez sur le site officiel de MLMMJ: http://mlmmj."
 "mmj.dk"
 
+#: shared/dtcrm/draw_adddomain.php:59
+msgid ""
+"You curently don't have enough privileges to add domain names. If you often "
+"add domain names, you can ask the administrator to do so. To request hosting "
+"for a new domain without domain name registration, please write to:"
+msgstr ""
+"Vous n'avez pas les droits nécessaire a l'ajout de nom de domaine sur votre "
+"compte. Si vous désirez ajouter des domaines sans enregistrement, vous "
+"pouvez demander a l'administrateur de le faire pour vous en écrivant à:"
+
+#: shared/dtcrm/draw.php:66
+msgid ""
+"You currently don't have a validated account. Please contact customer "
+"support."
+msgstr ""
+"Vous n'avez pas de compte valide. Merci de contacter le support client."
+
 #: shared/inc/forms/my_account.php:123
 msgid "You currently don't have any SSL tokens."
 msgstr "Vous n'avez aucun jetton SSL pour le moment."
+
+#: shared/dtcrm/draw_adddomain.php:239 shared/dtcrm/draw.php:148
+#: shared/dtcrm/draw_transferdomain.php:135
+msgid ""
+"You currently don't have enough funds on your account. You will be "
+"redirected to our payment system. Please click on the button below to pay."
+msgstr ""
+"Vous n'avez pas assez d'argent sur votre compte. Vous serez redirigez sur "
+"notre system de paiement. Veuillez cliquer sur le boutou suivant pour payer."
 
 #: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
 msgstr ""
 "Vous n'avez pas de compte client, donc aucun argent n'est sur votre compte."
 
+#: shared/dtcrm/draw_adddomain.php:216 shared/dtcrm/draw_transferdomain.php:94
+msgid "You don't have a client ID. Please contact us."
+msgstr "Vous n'avez pas d'ID client. Veuillez nous contacter"
+
 #: shared/inc/sql/ssh.php:24
 msgid "You don't have the SSH login flag!"
 msgstr "Vous n'avez pas les droits pour le SSH !"
+
+#: shared/dtcrm/draw.php:64
+msgid "You have"
+msgstr "Vous avez"
 
 #: client/new_account.php:147
 msgid ""
@@ -3857,6 +4486,22 @@ msgid ""
 msgstr ""
 "Vous avez annulé le paiement, votre compte ne sera pas validé. Pour "
 "recommencer la procédure d'enregistrement, suivez le lien ici:"
+
+#: shared/dtcrm/draw.php:157
+msgid ""
+"You have enough funds on your account to proceed account upgrade. Press the "
+"confirm button and your order will be proceeded."
+msgstr ""
+"Vous avez assez d'argent sur votre compte pour procéder à l'enregistrement. "
+"Veuillez cliquer sur le bouton suivant pour continuer."
+
+#: shared/dtcrm/draw_adddomain.php:248
+msgid ""
+"You have enough funds on your account to proceed with registration. Press "
+"the confirm button to proceed."
+msgstr ""
+"Vous avez assez d'argent sur votre compte pour faire l'enregistrement. "
+"Cliquez sur le bouton de confirmation pour procéder."
 
 #: admin/inc/dtc_config.php:892
 msgid "Your SRS username:"
@@ -3874,6 +4519,10 @@ msgstr "Votre serveur virtuel à été enregistré le : "
 msgid "Your VPS will expire on the: "
 msgstr "Votre serveur virtuel expire le : "
 
+#: shared/dtcrm/draw_transferdomain.php:109
+msgid "Your account has been credited!"
+msgstr "Votre compte à été crédité!"
+
 #: shared/inc/forms/domain_info.php:53
 msgid "Your area disk usage:"
 msgstr "Utilisation de votre espace disque :"
@@ -3881,6 +4530,10 @@ msgstr "Utilisation de votre espace disque :"
 #: shared/inc/forms/reseller.php:22
 msgid "Your child accounts:"
 msgstr "Vos sous-comptes :"
+
+#: shared/dtcrm/draw.php:71
+msgid "Your current account is "
+msgstr "Votre compte est actuellement "
 
 #: shared/inc/draw.php:430
 msgid "Your databases"
@@ -3906,6 +4559,26 @@ msgstr "Votre dossier par défaut pour les nouveaux comptes:"
 msgid "Your domain"
 msgstr "Votre domaine"
 
+#: shared/dtcrm/draw_whois.php:49
+msgid ""
+"Your domain name has been registred elsewhere (i.e. not on this site). To "
+"order its transfer, please click "
+msgstr ""
+"Votre nom de domaine a été enregistré ailleurs (eg pas sur ce site).Pour "
+"demander un transfère ici, veuillez cliquez "
+
+#: shared/dtcrm/draw_adddomain.php:89
+msgid "Your domain name is now ready:"
+msgstr "Votre nom de domaine est pret :"
+
+#: shared/dtcrm/draw_whois.php:95
+msgid "Your domain name whois data:"
+msgstr "Vos données whois pour ce domaine :"
+
+#: shared/dtcrm/draw_adddomain.php:79
+msgid "Your domain name will be soon validated:"
+msgstr "Votre domaine sera bientot validé:"
+
 #: shared/inc/forms/domain_info.php:51
 msgid "Your domain:"
 msgstr "Votre domaine :"
@@ -3926,9 +4599,17 @@ msgstr "Votre clef d'accès pour le serveur LIVE :"
 msgid "Your key to access the test server:"
 msgstr "Votre clef d'accès pour le serveur de test :"
 
+#: shared/dtcrm/draw.php:36
+msgid "Your last command expire on the: "
+msgstr "Votre dernière commande expire le : "
+
 #: shared/inc/forms/email.php:319
 msgid "Your list of imported mail"
 msgstr "Votre liste d'email importé"
+
+#: shared/dtcrm/draw.php:62
+msgid "Your past account was: "
+msgstr "Votre ancien compte était :"
 
 #: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
 msgid "Your path is restricted to "
@@ -3943,6 +4624,8 @@ msgid "Zipcode:"
 msgstr "Code postal :"
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
+#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
 msgid "Zipcode: "
 msgstr "Code postal : "
 
@@ -3982,9 +4665,25 @@ msgstr "en chargeant l'administrateur : "
 msgid "get-N function only for subscribers:"
 msgstr "Fonction get-N uniquement pour les inscrits :"
 
+#: shared/dtcrm/draw_adddomain.php:291 shared/dtcrm/draw_whois.php:50
+msgid "here"
+msgstr "ici"
+
+#: shared/dtcrm/draw_handle.php:244
+msgid "if applicable"
+msgstr "ci nécessaire"
+
+#: shared/dtcrm/draw_adddomain.php:135
+msgid "is NOT available for registration. The registration server returned: "
+msgstr "n'est PAS disponible, le serveur a retourner : "
+
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
 msgstr "n'est pas la meme chose que ce que j'ai en base de donnée"
+
+#: shared/dtcrm/draw_handle.php:217
+msgid "marked fields are required"
+msgstr "indique un champ requis"
 
 #: shared/inc/forms/ftp.php:53
 msgid "new FTP account"
@@ -4002,9 +4701,23 @@ msgstr "nouvelle boite aux lettres"
 msgid "new mailing list"
 msgstr "nouvelle liste de diffusion"
 
+#: shared/dtcrm/draw_handle.php:238 shared/dtcrm/draw_handle.php:241
+#: shared/dtcrm/draw_handle.php:259
+msgid "optional"
+msgstr "facultatif"
+
 #: client/new_account_form.php:635
 msgid "selling conditions"
 msgstr "conditions de ventes"
 
-#~ msgid "Repeat password:"
-#~ msgstr "Répétez le mot de passe FTP :"
+#: shared/dtcrm/draw_adddomain.php:291
+msgid "to refresh the menu or add another domain name."
+msgstr "pour réafficher le menu ou ajouter un nouveau nom de domaine."
+
+#: shared/dtcrm/draw_adddomain.php:162
+msgid "year"
+msgstr "an"
+
+#: shared/dtcrm/draw_adddomain.php:163
+msgid "years"
+msgstr "ans"

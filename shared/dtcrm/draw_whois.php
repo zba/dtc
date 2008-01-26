@@ -29,8 +29,6 @@ ns1,ns2". $ns_field .")VALUES('$domain_name','$owner_id','$billing_id','$admin_i
 }
 
 function drawAdminTools_Whois($admin,$eddomain){
-	global $lang;
-	global $PHP_SELF; 
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
@@ -41,15 +39,6 @@ function drawAdminTools_Whois($admin,$eddomain){
 	global $conf_addr_primary_dns;
 	global $conf_addr_secondary_dns;
 
-	global $txt_dtcrm_here;
-	global $txt_dtcrm_your_domain_has_been_registred_elsewhere;
-	global $txt_dtcrm_your_domain_name_whois_data;
-	global $txt_dtcrm_secondary_dns;
-	global $txt_dtcrm_primary_dns;
-	global $txt_dtcrm_if_you_want_to_keep_your_current_registrar;
-	global $txt_dtcrm_your_domain_has_been_registred_elsewhere;
-	global $lang;
-
 	$domain_name = $eddomain["name"];
 
 	$out = "";
@@ -57,11 +46,11 @@ function drawAdminTools_Whois($admin,$eddomain){
 		if(isset($_REQUEST["dtcrm_action"]) && $_REQUEST["dtcrm_action"] == "transfer_domain"){
 			$out .= drawNameTransfer($admin,$domain_name);
 		}else{
-			$out .= $txt_dtcrm_your_domain_has_been_registred_elsewhere[$lang]."
-<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&add_domain_type=domregandhosting&dtcrm_action=transfer_domain\">".$txt_dtcrm_here[$lang]."</a>.<br><br>
-".$txt_dtcrm_if_you_want_to_keep_your_current_registrar[$lang]."<br><br>
-".$txt_dtcrm_primary_dns[$lang]."<b>$conf_addr_primary_dns</b><br>
-".$txt_dtcrm_secondary_dns[$lang]."<b>$conf_addr_secondary_dns</b>
+			$out .= _("Your domain name has been registred elsewhere (i.e. not on this site). To order its transfer, please click ") .
+"<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&add_domain_type=domregandhosting&dtcrm_action=transfer_domain\">". _("here") ."</a>.<br><br>
+". _("If you want to keep your current registrar, you have to make the whois point to these DNS:") ."<br><br>
+". _("Primary DNS:") ."<b>$conf_addr_primary_dns</b><br>
+". _("Secondary DNS:") ."<b>$conf_addr_secondary_dns</b>
 ";
 		}
 	}else{
@@ -103,10 +92,10 @@ Server said: <i>" . $regz["response_text"] . "</i><br>
 		$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		if(mysql_num_rows($result) != 1) die("Whois row not found !");
 		$row = mysql_fetch_array($result);
-		$out .= "<b><u>".$txt_dtcrm_your_domain_name_whois_data[$lang]."</u></b><br>
+		$out .= "<b><u>". _("Your domain name whois data:") ."</u></b><br>
 ";
 
-		$out .= "<form action=\"$PHP_SELF\">
+		$out .= "<form action=\"". $_SERVER["PHP_SELF"] ."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">

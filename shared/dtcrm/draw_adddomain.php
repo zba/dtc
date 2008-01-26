@@ -1,8 +1,6 @@
 <?php
 
 function drawAdminTools_AddDomain($admin){
-	global $lang;
-	global $PHP_SELF;
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
@@ -19,52 +17,8 @@ function drawAdminTools_AddDomain($admin){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_client_table;
 
+	global $secpayconf_currency_letters;
 	global $pro_mysql_handle_table;
-
-	global $lang;
-
-	global $txt_dtcrm_what_to_do;
-	global $txt_dtcrm_hosting_and_domain_reg;
-	global $txt_dtcrm_hosting_only;
-	global $txt_dtcrm_enter_domain_to_add;
-	global $txt_dtcrm_your_domain_will_be_soon;
-	global $txt_dtcrm_soon_an_admin_will_have_a_look;
-	global $txt_dtcrm_add_another_domain;
-	global $txt_dtcrm_transfer_existing_or_new;
-	global $txt_dtcrm_register_new_domain;
-	global $txt_dtcrm_transfer_from_another_registrar;
-	global $txt_dtcrm_title_register_a_domain_name;
-	global $txt_dtcrm_register_step1;
-	global $txt_crm_enter_the_domain_name_you_wish_to_register;
-	global $txt_dtcrm_not_enough_privileges;
-	global $txt_dtcrm_not_correct_format;
-	global $txt_domain_name_already_hosted_here;
-	global $txt_dtcrm_domain_name_now_ready;
-	global $txt_dtcrm_you_can_check_config;
-	global $txt_dtcrm_or_you_can_add_another_domain;
-	global $txt_dtcrm_could_not_connect_to_api;
-	global $txt_sorry_domain_name_not_available1;
-	global $txt_sorry_domain_name_not_available2;
-	global $txt_please_select_the_3_contact_handles;
-	global $txt_dtcrm_select_how_long_you_want_to_register;
-	global $txt_dtcrm_year;
-	global $txt_dtcrm_years;
-	global $txt_dtcrm_you_dont_have_a_client_id;
-	global $txt_dtcrm_register_domain_step3;
-	global $txt_dtcrm_remaining_on_your_account;
-	global $txt_dtcrm_total_price;
-	global $txt_dtcrm_you_currently_dont_have_enough_funds;
-	global $txt_dtcrm_you_have_enough_funds_proceed;
-	global $txt_dtcrm_button_paiement_done_checkout;
-	global $txt_dtcrm_button_proceed_to_registration;
-	global $txt_dtcrm_registration_failed;
-	global $txt_dtcrm_registration_succesfull;
-	global $txt_dtcrm_server_said;
-	global $txt_dtcrm_succesfully_added_domain;
-	global $txt_dtcrm_click;
-	global $txt_dtcrm_here;
-	global $txt_dtcrm_to_refresh_the_menu_or_add_another_domain;
-	global $txt_dtcrm_step2_enter_whois_info;
 
 	get_secpay_conf();
 
@@ -82,15 +36,15 @@ $form_start = "
 	if(!isset($_REQUEST["add_domain_type"]) || ($_REQUEST["add_domain_type"] != "domregandhosting" &&
 		$_REQUEST["add_domain_type"] != "domreg" &&
 		$_REQUEST["add_domain_type"] != "hosting")){
-		$out .= "<b><u>".$txt_dtcrm_what_to_do[$lang]."</u></b><br>
+		$out .= "<b><u>". _("What do you want to add:") ."</u></b><br>
 $form_start";
 		if($conf_use_registrar_api == "yes"){
-			$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>".$txt_dtcrm_hosting_and_domain_reg[$lang]."<br>";
+			$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>". _("Hosting + domain name registration or transfer")."<br>";
 			$add_domain_type_checked = " ";
 		}else{
 			$add_domain_type_checked = " checked ";
 		}
-		$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"hosting\" checked>".$txt_dtcrm_hosting_only[$lang]."<br>
+		$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"hosting\" checked>". _("Hosting only") ."<br>
 <input type=\"submit\" value=\"Ok\">
 </form>
 ";
@@ -102,41 +56,41 @@ $form_start";
 		// The don't want name registration or transfer,
 		// Simply add the domain.
 		if($admin["info"]["allow_add_domain"] == "no"){
-			return $txt_dtcrm_not_enough_privileges[$lang]."<br>".
+			return _("You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to do so. To request hosting for a new domain without domain name registration, please write to:")."<br>".
 "<a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC] More domains\">$conf_webmaster_email_addr</a>.";
 		}
 		if(!isset($_REQUEST["domain_name"]) || $_REQUEST["domain_name"] == ""){
-			return "<br><b><u>".$txt_dtcrm_enter_domain_to_add[$lang]."</u></b><br>
+			return "<br><b><u>". _("Please enter the domain name you wish to add:") ."</u></b><br>
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 <input type=\"submit\" value=\"ok\"></form>";
 		}
 		if(!isHostname($_REQUEST["domain_name"])){
-			return $txt_dtcrm_not_correct_format[$lang];
+			return _("Domain name is not in correct format. Please enter another name.") ;
 		}
 		$q = "SELECT * FROM $pro_mysql_domain_table WHERE name='".$_REQUEST["domain_name"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n > 0){
-			return $txt_domain_name_already_hosted_here[$lang];
+			return _("This domain name already hosted here, please enter another name.") ;
 		}
 		if($admin["info"]["allow_add_domain"] == "check"){
 			$q = "INSERT INTO $pro_mysql_pending_queries_table (adm_login,domain_name,date) VALUES ('$adm_login','".$_REQUEST["domain_name"]."','".date("Y-m-d H:i")."');";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-			return "<br><u><b>".$txt_dtcrm_your_domain_will_be_soon[$lang]."</b></u><br>".
-			$txt_dtcrm_soon_an_admin_will_have_a_look[$lang]."<br>
+			return "<br><u><b>". _("Your domain name will be soon validated:") ."</b></u><br>".
+			_("An administrator will examine your request shortly, and validate the addition of this domain name to your account. You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to grant you the privilege of automatic domain name addition. To request hosting for a new domain name, without administrator validation or domain name registration, please write to:") ."<br>
 <a href=\"$conf_webmaster_email_addr?subject=[DTC] More domains\">$conf_webmaster_email_addr</a>.<br>
 <br>
-".$txt_dtcrm_add_another_domain[$lang]."
+". _("You can add another domain name:") ."
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 <input type=\"submit\" value=\"ok\"></form>
 ";
 		}
 		addDomainToUser($adm_login,$adm_pass,$_REQUEST["domain_name"]);
-		return "<br><u><b>".$txt_dtcrm_domain_name_now_ready[$lang]."</b></u><br>
-".$txt_dtcrm_you_can_check_config[$lang]."<br>
+		return "<br><u><b>". _("Your domain name is now ready:") ."</b></u><br>
+". _("Now you can go to check its configuration by clicking here:") ."<br>
 <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=".$_REQUEST["domain_name"]."\">".$_REQUEST["domain_name"]."</a><br>
 <br>
-".$txt_dtcrm_or_you_can_add_another_domain[$lang]."
+". _("Alternatively, you can add another domain name:") ."
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 <input type=\"submit\" value=\"ok\"></form>
 ";
@@ -145,10 +99,10 @@ $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 	// Registration or domain transfer ?
 	if(!isset($_REQUEST["add_regortrans"]) || ($_REQUEST["add_regortrans"] != "register" &&
 		$_REQUEST["add_regortrans"] != "transfer")){
-		$out .= "<b><u>".$txt_dtcrm_transfer_existing_or_new[$lang]."</u></b><br>
+		$out .= "<b><u>". _("Do you want to transfer an existing domain or register a new domain?") ."</u></b><br>
 $form_start
-<input type=\"radio\" name=\"add_regortrans\" value=\"register\" checked>".$txt_dtcrm_register_new_domain[$lang]."<br>
-<input type=\"radio\" name=\"add_regortrans\" value=\"transfer\">".$txt_dtcrm_transfer_from_another_registrar[$lang]."<br>
+<input type=\"radio\" name=\"add_regortrans\" value=\"register\" checked>". _("Register a new domain") ."<br>
+<input type=\"radio\" name=\"add_regortrans\" value=\"transfer\">". _("Transfer an existing domain from another registrar") ."<br>
 <input type=\"submit\" value=\"Ok\">
 </form>
 ";
@@ -159,11 +113,11 @@ $form_start
 
 	// Start registration procedure (with or without hosting)
 
-	$out .= "<b><u>".$txt_dtcrm_title_register_a_domain_name[$lang]."</u></b><br>";
-	$out .= "<i><u>".$txt_dtcrm_register_step1[$lang]."</u></i><br>";
+	$out .= "<b><u>". _("Register a domain name") ."</u></b><br>";
+	$out .= "<i><u>". _("Step 1: Verify availability") ."</u></i><br>";
 	if(!isset($_REQUEST["toreg_domain"]) || $_REQUEST["toreg_domain"] == "" ||
 	!isset($_REQUEST["toreg_extention"]) || $_REQUEST["toreg_extention"] == ""){
-		$out .= "<br>".$txt_crm_enter_the_domain_name_you_wish_to_register[$lang]."<br>
+		$out .= "<br>". _("Enter the domain name you want to register:") ."<br>
 $form_start $form_enter_domain_name</form>";
 		return $out;
 	}
@@ -171,15 +125,14 @@ $form_start $form_enter_domain_name</form>";
 	$fqdn = $_REQUEST["toreg_domain"] . $_REQUEST["toreg_extention"];
 	$domlookup = registry_check_availability($fqdn);
 	if($domlookup["is_success"] != 1){
-		$out .= "<font color=\"red\">".$txt_dtcrm_could_not_connect_to_api[$lang]
+		$out .= "<font color=\"red\">". _("Could not connect to domain registration server: please try again later!") 
 			."</font><br>".$domlookup['response_text'];
 		return $out;
-//		die($txt_dtcrm_could_not_connect_to_api[$lang]);
 	}
 
 	if($domlookup["attributes"]["status"] != "available"){
 		$out .= "<br>
-".$txt_sorry_domain_name_not_available1[$lang]." <b>$fqdn</b> ".$txt_sorry_domain_name_not_available2[$lang]
+". _("Sorry, the domain name ") ." <b>$fqdn</b> ". _("is NOT available for registration. The registration server returned: ") 
 ."<br><font color=\"red\">" . $domlookup["response_text"] . "</font>
 <br><br>
 Have another try:<br>$form_start $form_enter_domain_name</form>";
@@ -190,7 +143,7 @@ Have another try:<br>$form_start $form_enter_domain_name</form>";
 
 	// DOMAIN IS AVAILABLE, PROCEED DO REGISTRATION
 	$out .= "Domain name <b>$fqdn</b> is available for registration.<br><br>
-<i><u>".$txt_dtcrm_step2_enter_whois_info[$lang]."</u></i><br>
+<i><u>". _("Step 2: Enter whois information") ."</u></i><br>
 ";
 //http://dtc.example.com/dtc/index.php?adm_login=dtc&adm_pass=bemybest&
 //addrlink=myaccount%2Fadddomain&
@@ -206,12 +159,12 @@ Have another try:<br>$form_start $form_enter_domain_name</form>";
 		!isset($_REQUEST["toreg_dns2"]) || $_REQUEST["toreg_dns2"] == "" ||
 		$_REQUEST["toreg_period"] < 1 || $_REQUEST["toreg_period"] > 10){
 
-		$year = $txt_dtcrm_year[$lang];
-		$years = $txt_dtcrm_years[$lang];
-		$out .= $txt_please_select_the_3_contact_handles[$lang]."<br><br>$form_start";
+		$year = _("year") ;
+		$years = _("years") ;
+		$out .= _("Please select the 3 contact handles you want to use for registering that domain name.") ."<br><br>$form_start";
 		$out .= whoisHandleSelection($admin);
 		$out .= "<br>$form_enter_dns_infos<br><br>
-".$txt_dtcrm_select_how_long_you_want_to_register[$lang]."<br>
+". _("Select how long you want to register this domain name:") ."<br>
 <select name=\"toreg_period\">
 <option value=\"1\">1 $year</option>
 <option value=\"2\">2 $years</option>
@@ -235,7 +188,7 @@ Have another try:<br>$form_start $form_enter_domain_name</form>";
 	$out .= "Registration for <b>" . $_REQUEST["toreg_period"] . " years</b><br>";
 	$out .= "DNS1: " . $_REQUEST["toreg_dns1"] . "<br>";
 	$out .= "DNS2: " . $_REQUEST["toreg_dns2"] . "<br><br>";
-	$out .= "<i><u>".$txt_dtcrm_register_domain_step3[$lang]."</u></i>
+	$out .= "<i><u>". _("Step 3: Proceed to registration") ."</u></i>
 $form_start
 ";
 
@@ -260,12 +213,12 @@ $form_start
 	if($admin["info"]["id_client"] != 0){
 		$remaining = $admin["client"]["dollar"];
 	}else{
-		$out .= $txt_dtcrm_you_dont_have_a_client_id[$lang]."<br>";
+		$out .= _("You don't have a client ID. Please contact us.") ."<br>";
 		$remaining = 0;
 		return $out;
 	}
-	$out .= $txt_dtcrm_remaining_on_your_account[$lang]." \$" . $remaining . "<br>
-".$txt_dtcrm_total_price[$lang]." \$". $fqdn_price . "<br><br>";
+	$out .= _("Remaining on your account: ") ." $secpayconf_currency_letters" . $remaining . "<br>
+". _("Total price: ") ." \$". $fqdn_price . "<br><br>";
 	if($fqdn_price > $remaining){
 		$to_pay = $fqdn_price - $remaining;
 
@@ -283,19 +236,19 @@ $form_start
 		$paybutton = paynowButton($payid,$to_pay,
 				"Domain name registration ".$_REQUEST["toreg_extention"],$return_url);
 
-		$out .= $txt_dtcrm_you_currently_dont_have_enough_funds[$lang]."<br>
+		$out .= _("You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br>
 <br><br>
-$form_start<input type=\"submit\" value=\"".$txt_dtcrm_button_paiement_done_checkout[$lang]."\">
+$form_start<input type=\"submit\" value=\"". _("Payment complete. Proceed to checkout") ."\">
 </form> $paybutton";
 		return $out;
 	}
 
 	// Check for confirmation
 	if(!isset($_REQUEST["toreg_confirm_register"]) || $_REQUEST["toreg_confirm_register"] != "yes"){
-		$out .= $txt_dtcrm_you_have_enough_funds_proceed[$lang]."<br><br>
+		$out .= _("You have enough funds on your account to proceed with registration. Press the confirm button to proceed.") ."<br><br>
 $form_start
 <input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
-<input type=\"submit\" value=\"".$txt_dtcrm_button_proceed_to_registration[$lang]."\">
+<input type=\"submit\" value=\"". _("Proceed to name-registration") ."\">
 </form>";
 		return $out;
 	}
@@ -308,8 +261,8 @@ $form_start
 	$regz = registry_register_domain($adm_login,$adm_pass,$fqdn,$_REQUEST["toreg_period"],$contacts,$dns_servers);
 
 	if($regz["is_success"] != 1){
-		$out .= "<font color=\"red\"><b>".$txt_dtcrm_registration_failed[$lang]."</b></font><br>
-".$txt_dtcrm_server_said[$lang]."<i>" . $regz["response_text"] . "</i>";
+		$out .= "<font color=\"red\"><b>". _("Registration failed") ."</b></font><br>
+". _("Server said: ") ."<i>" . $regz["response_text"] . "</i>";
 		return $out;
 	}
 	$out .= "<font color=\"green\"><b>Registration succesfull</b></font><br>
@@ -333,9 +286,9 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 		$ns_ar[] = $_REQUEST["toreg_dns6"];
 	newWhois($fqdn,$owner_id,$billing_id,$admin_id,$period,$ns_ar);
 
-	$out .= "<font color=\"green\"><b>".$txt_dtcrm_succesfully_added_domain[$lang]."</b></font><br>";
+	$out .= "<font color=\"green\"><b>". _("Successfully added your domain name to the hosting database") ."</b></font><br>";
 
-	$out .= $txt_dtcrm_click[$lang]."<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">".$txt_dtcrm_here[$lang]."</a>".$txt_dtcrm_to_refresh_the_menu_or_add_another_domain[$lang];
+	$out .= _("Click") ."<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">". _("here") ."</a>". _("to refresh the menu or add another domain name.") ;
 
 // END OF DOMAIN NAME REGISTRATION //
 /////////////////////////////////////

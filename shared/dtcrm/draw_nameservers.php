@@ -1,7 +1,6 @@
 <?php
 
 function drawAdminTools_NameServers($admin){
-	global $PHP_SELF;
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
@@ -9,22 +8,6 @@ function drawAdminTools_NameServers($admin){
 	global $pro_mysql_subdomain_table;
 	global $pro_mysql_nameservers_table;
 	global $pro_mysql_domain_table;
-
-	global $txt_dtcrm_registration_of_name_server_successfull;
-	global $txt_dtcrm_registration_of_name_server_failed;
-	global $txt_dtcrm_deletion_of_name_server_succesfull;
-	global $txt_dtcrm_edition_of_name_server_succesfull;
-	global $txt_dtcrm_edition_of_name_server_failed;
-	global $txt_dtcrm_list_of_registred_name_server;
-	global $txt_dtcrm_register_new_name_server;
-	global $txt_dtcrm_delete_name_server;
-	global $txt_dtcrm_select_your_domain_name_for_adding_name_server;
-	global $txt_dtcrm_what_subzone_do_you_want_to_use;
-	global $txt_dtcrm_ip_addr_of_that_name_server;
-	global $txt_dtcrm_edit_a_name_server;
-	global $txt_dtcrm_name_server_hostname;
-	global $txt_dtcrm_server_said;
-	global $lang;
 
 	$out = "";
 
@@ -36,8 +19,8 @@ function drawAdminTools_NameServers($admin){
 		checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name);
 		$regz = registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip);
 		if($regz["is_success"] == 1){
-			$out .= "<font color=\"green\"><b>".$txt_dtcrm_registration_of_name_server_successfull[$lang]."</b></font><br>
-".$txt_dtcrm_server_said[$lang]."<i>" . $regz["response_text"] . "</i><br>";
+			$out .= "<font color=\"green\"><b>". _("Registration of your name server was succesful") ."</b></font><br>
+". _("Server said: ") ."<i>" . $regz["response_text"] . "</i><br>";
 			$query = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_name' AND subdomain_name='$subdomain';";
 			$result = mysql_query($query)or die("Cannot query \"query\" !!!".mysql_error());
 			$num_rows = mysql_num_rows($result);
@@ -56,16 +39,16 @@ owner,domain_name,subdomain,ip)VALUES(
 '','$adm_login','$domain_name','$subdomain','$ip');";
 			mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		}else{
-			$out .= "<font color=\"red\"><b>".$txt_dtcrm_registration_of_name_server_failed[$lang]."</b></font><br>
-".$txt_dtcrm_server_said[$lang]."<i>" . $regz["response_text"] . "</i><br>";
+			$out .= "<font color=\"red\"><b>". _("Registration of your name server failed") ."</b></font><br>
+". _("Server said: ") ."<i>" . $regz["response_text"] . "</i><br>";
 		}
 	}
 	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_nameserver"){
 		checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name);
 		$regz = registry_modify_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip);
 		if($regz["is_success"] == 1){
-			 $out .= "<font color=\"green\"><b>".$txt_dtcrm_edition_of_name_server_succesfull[$lang]."</b></font><br>
-".$txt_dtcrm_server_said[$lang]."<i>" . $regz["response_text"] . "</i><br>";
+			 $out .= "<font color=\"green\"><b>". _("Addition of name server was succesfull") ."</b></font><br>
+". _("Server said: ") ."<i>" . $regz["response_text"] . "</i><br>";
 			$query = "UPDATE $pro_mysql_subdomain_table SET ip='$ip'
 				WHERE domain_name='$domain_name' AND subdomain_name='$subdomain' LIMIT 1;";
 			mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
@@ -73,8 +56,8 @@ owner,domain_name,subdomain,ip)VALUES(
 				WHERE domain_name='$domain_name' AND subdomain='$subdomain' LIMIT 1;";
 			mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		}else{
-			$out .= "<font color=\"red\"><b>".$txt_dtcrm_edition_of_name_server_failed[$lang]."</b></font><br>
-".$txt_dtcrm_server_said[$lang]."<i>" . $regz["response_text"] . "</i><br>";
+			$out .= "<font color=\"red\"><b>". _("Addition of name server failed") ."</b></font><br>
+". _("Server said: ") ."<i>" . $regz["response_text"] . "</i><br>";
 		}
 	}
  
@@ -82,18 +65,18 @@ owner,domain_name,subdomain,ip)VALUES(
 		checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name);
 		$regz = registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name);
 		if($regz["is_success"] == 1){
-			$out .= "<font color=\"green\"><b>".$txt_dtcrm_deletion_of_name_server_succesfull[$lang]."</b></font><br>
-".$txt_dtcrm_server_said[$lang]."<i>" . $regz["response_text"] . "</i><br>";
+			$out .= "<font color=\"green\"><b>". _("Deletion of name server was succesful") ."</b></font><br>
+". _("Server said: ") ."<i>" . $regz["response_text"] . "</i><br>";
 			$query="DELETE FROM $pro_mysql_nameservers_table
 				WHERE domain_name='$domain_name' AND subdomain='$subdomain' LIMIT 1";
 			mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		}else{
-			$out .= "<font color=\"red\"><b>".$txt_dtcrm_deletion_of_name_server_failed[$lang]."</b></font><br>
-".$txt_dtcrm_server_said[$lang]."<i>" . $regz["response_text"] . "</i><br>";
+			$out .= "<font color=\"red\"><b>". _("Deletion of name server failed") ."</b></font><br>
+". _("Server said: ") ."<i>" . $regz["response_text"] . "</i><br>";
 		}
 	}
 
-	$out .= "<b><u>".$txt_dtcrm_list_of_registred_name_server[$lang]."</u></b><br>";
+	$out .= "<b><u>". _("List of your registred name-servers:") ."</u></b><br>";
 
 	$query = "SELECT * FROM $pro_mysql_nameservers_table WHERE owner='$adm_login';";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
@@ -103,7 +86,7 @@ owner,domain_name,subdomain,ip)VALUES(
 		if($i > 0){
 			$out .= " - ";
 		}
-		$out .= "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_id=" .
+		$out .= "<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_id=" .
 			$row["id"] ."\">" . $row["subdomain"] . "." . $row["domain_name"] . "</a>";
 	}
 
@@ -112,21 +95,21 @@ owner,domain_name,subdomain,ip)VALUES(
 		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 		if(mysql_num_rows($result) != 1) die("Nameserver not found !!!");
 		$row = mysql_fetch_array($result);
-		$out .= "<br><br><a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">New name server</a><br>
-<b><u>".$txt_dtcrm_edit_a_name_server[$lang]."</u></b><br>
-<form action=\"$PHP_SELF\">
+		$out .= "<br><br><a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">New name server</a><br>
+<b><u>". _("Edit a name server:") ."</u></b><br>
+<form action=\"". $_SERVER["PHP_SELF"] ."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\"> 
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">   
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">   
 <input type=\"hidden\" name=\"action\" value=\"edit_nameserver\">
 <input type=\"hidden\" name=\"domain_name\" value=\"". $row["domain_name"] ."\">
 <input type=\"hidden\" name=\"subdomain\" value=\"". $row["subdomain"] ."\">
-".$txt_dtcrm_name_server_hostname[$lang].$row["subdomain"] .".". $row["domain_name"] ."<br>
+". _("Name server hostname: ") .$row["subdomain"] .".". $row["domain_name"] ."<br>
 <input type=\"hidden\" name=\"edit_id\" value=\"". $_REQUEST["edit_id"] ."\">
-".$txt_dtcrm_ip_addr_of_that_name_server[$lang]."<input type=\"text\" name=\"ip\" value=\"". $row["ip"] ."\">
+". _("IP address of name server:") ."<input type=\"text\" name=\"ip\" value=\"". $row["ip"] ."\">
 <input type=\"submit\" value=\"Ok\">
 </form>
-<form action=\"$PHP_SELF\">
+<form action=\"". $_SERVER["PHP_SELF"] ."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\"> 
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">    
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">    
@@ -134,13 +117,13 @@ owner,domain_name,subdomain,ip)VALUES(
 <input type=\"hidden\" name=\"domain_name\" value=\"". $row["domain_name"] ."\">
 <input type=\"hidden\" name=\"subdomain\" value=\"". $row["subdomain"] ."\">
 <input type=\"hidden\" name=\"delete_id\" value=\"". $_REQUEST["edit_id"] ."\">
-<input type=\"submit\" value=\"".$txt_dtcrm_delete_name_server[$lang]."\">
+<input type=\"submit\" value=\"". _("Delete name server") ."\">
 </form>
 ";
 	}else{
-		$out .= "<br><br><b><u>".$txt_dtcrm_register_new_name_server[$lang]."</u></b><br>
-		".$txt_dtcrm_what_subzone_do_you_want_to_use[$lang]."
-<form action=\"$PHP_SELF\">
+		$out .= "<br><br><b><u>". _("Register a new name server:") ."</u></b><br>
+		". _("What subzone do you want to use (example: ns1):") ."
+<form action=\"". $_SERVER["PHP_SELF"] ."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">   
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">   
@@ -149,14 +132,14 @@ owner,domain_name,subdomain,ip)VALUES(
 		$query = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
 		$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		$num_rows = mysql_num_rows($result);
-		$out .= $txt_dtcrm_select_your_domain_name_for_adding_name_server[$lang]."<br>
+		$out .= _("Select one of your domain-names for registering an additional name server to the registries:") ."<br>
 		<select name=\"domain_name\">";
 		for($i=0;$i<$num_rows;$i++){
 			$row = mysql_fetch_array($result);
 			$out .= "<option value=\"" . $row["name"] . "\">" . $row["name"] . "</option>";
 		}
 		$out .= "</select><br>
-			".$txt_dtcrm_ip_addr_of_that_name_server[$lang]."
+			". _("IP address of name server:") ."
 			<input type=\"text\" name=\"ip\" value=\"\"><br>";
 		$out .= "<input type=\"submit\" value=\"Ok\">
 </form>
