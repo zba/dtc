@@ -199,7 +199,7 @@ function checkFTP(){
 	$server = "localhost";
 	// echo "Checking POP3<br>";
 	if(($server_ip = gethostbynameFalse($server)) == false){
-		$errTxt = "Cannot resolv your $server FTP server.";
+		$errTxt = _("Cannot resolv your FTP server: ") .$server;
 		return false;
 	}
 
@@ -236,7 +236,7 @@ function checkFTP(){
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"230")){
 		if(!strstr($popline,"220")){
-			$errTxt = _("Server did not send 230 after PASS: ") .$popline." ". _("If no POP user was created, please make at least one!");
+			$errTxt = _("Server did not send 230 after PASS: ") .$popline." ". _("If no FTP user was created, please make at least one!");
 			return false;
 		}
 	}
@@ -288,27 +288,27 @@ function drawServerStatus(){
 	global $errTxt;
 
 	if(checkPOP3()){
-		$pop3_status = '<font color="#00FF00">Running ok</font>';
+		$pop3_status = '<font color="#00FF00">'. _("Running ok") .'</font>';
 	}else{
-		$pop3_status = '<font color="#FF0000">ERROR! '.$errTxt.'</font>';
+		$pop3_status = '<font color="#FF0000">'. _("ERROR!") .$errTxt.'</font>';
 	}
 
 	if(checkSMTP()){
-		$smtp_status = '<font color="#00FF00">Running ok</font>';
+		$smtp_status = '<font color="#00FF00">'. _("Running ok") .'</font>';
 	}else{
-		$smtp_status = '<font color="#FF0000">ERROR! '.$errTxt.'</font>';
+		$smtp_status = '<font color="#FF0000">'. _("ERROR!") .$errTxt.'</font>';
 	}
 
 	if(checkDNS()){
-		$dns_status = '<font color="#00FF00">Running ok</font>';
+		$dns_status = '<font color="#00FF00">'. _("Running ok") .'</font>';
 	}else{
-		$dns_status = '<font color="#FF0000">ERROR! '.$errTxt.'</font>';
+		$dns_status = '<font color="#FF0000">'. _("ERROR!") .$errTxt.'</font>';
 	}
 
 	if(checkFTP()){
-		$ftp_status = '<font color="#00FF00">Running ok</font>';
+		$ftp_status = '<font color="#00FF00">'. _("Running ok") .'</font>';
 	}else{
-		$ftp_status = '<font color="#FF0000">ERROR! '.$errTxt.'</font>';
+		$ftp_status = '<font color="#FF0000">'. _("ERROR!") .$errTxt.'</font>';
 	}
 
 	$out = "<br><table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" height=\"1\">
