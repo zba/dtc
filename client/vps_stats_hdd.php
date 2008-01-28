@@ -85,8 +85,8 @@ for($m=0;$m<12;$m++){
 	}
 }
 
-$bpquota = 10000000000;
-$max = 10000000000;	// 10 T seems a good value
+$bpquota = 5000000000;
+$max = 5000000000;	// 5 T seems a good value
 if($foundmax > $bpquota)
 	$max = $foundmax;
 $max *= 1.05;

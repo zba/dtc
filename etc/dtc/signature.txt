@@ -4,5 +4,4 @@ Phone: +1-302-213-1611
 Web: http://www.gplhost.com
 GPLHost:>_ Open source hosing worldwide
 Web spaces featuring GPL control panel and Xen VPS
-Hosting available in Singapore, Sydney, Seattle, Florida, London, Paris,
-Israel, Italy and Israel
+Hosting available in Singapore, Sydney, Seattle, Florida, London, Paris, Italy and Israel
