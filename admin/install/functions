@@ -711,7 +711,9 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE crypt crypt VARCHAR(255) DEFAULT '' NOT NULL"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE passwd passwd VARCHAR(255) DEFAULT '' NOT NULL"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE paiement CHANGE secpay_site secpay_site enum('none', 'paypal', 'worldpay','enets') DEFAULT 'none' NOT NULL"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8)))"
+	# CL: Update crypted passwords only if there is a plaintext password present
+	# else sytems runing without plaintext (like mine) will have some big problems
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8))) where passwd <>''"
 	# fix size of accounting variables to store more info
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE http_accounting CHANGE bytes_receive bytes_receive BIGINT(14) UNSIGNED NOT NULL DEFAULT '0'"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE http_accounting CHANGE bytes_sent bytes_sent BIGINT(14) UNSIGNED NOT NULL DEFAULT '0'"
@@ -834,7 +836,9 @@ setupDTCDatabase () {
 		conf_cyrus_pass=${MYSQL_DTCDAEMONS_PASS};
 	fi
 	# Insert the cyrus user so we can use cyradm
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@"${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@"${MX_MAIL}.${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyradm','cyrus','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+
 }
 
 generateMySQLConfigPHPfile () {
@@ -1833,7 +1837,7 @@ modifySaslStartAndSaslStartup () {
 			TMP_FILE=`${MKTEMP} DTC_install.saslauthd.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.20 : Please don't touch this line !" > $TMP_FILE
 			echo "START=yes
-PARAMS=\"-r -c \"" >> $TMP_FILE
+OPTIONS=\"-r -c\"" >> $TMP_FILE
 			echo "# End of DTC configuration v0.20 : Please don't touch this line !" >> $TMP_FILE
 			# now to insert it at the end of the actual saslauthd startup file
 			cat < $TMP_FILE >>$PATH_SASL_START_CONF
@@ -1846,23 +1850,16 @@ PARAMS=\"-r -c \"" >> $TMP_FILE
 			else
 				# create the direcotry for postfix to access SASL socket
 				mkdir -p $PATH_SASL_SOCKET
-
-				# get the md5sum of the file, if it's original do the change
-				# else we have a problem and report it to do the change manualy
-				sasl_start_md5sum=`md5sum $PATH_SASL_STARTUP|cut -d " " -f1`
-				# ### CL find a better place for this !
-				sasl_orginal_m5="6307086733ad29bbd57f81b6c38334a1";
-				if [ ""$sasl_orginal_m5 = "$sasl_start_md5sum" ] ; then
-					# ok file is original so we can "patch" it.
-					patch $PATH_SASL_STARTUP <$PATH_DTC_ADMIN/patch_saslatuhd_startup
-					echo "# Configured by DTC v0.20 : Please don't touch this line !" >> $PATH_SASL_STARTUP				
-				else 
-					echo "Can not modify the saslauthd startupfile, don't Panic!"
-					echo "this is only needed if you want to use pam_mysql, if you want to use sasl_mysql ignore this"
-					echo "Please edit $PATH_SASL_STARTUP by hand and add folowing after startup:"
-					echo "rm -f /var/spool/postfix/var/run/saslauthd/mux
-	ln /var/run/saslauthd/mux /var/spool/postfix/var/run/saslauthd/mux"
-					echo "for more informations contact DTC development and DTC forums"
+				if grep "Configured by DTC" /etc/fstab >/dev/null ; then
+					echoIfVerbose "Already configured: skipping"
+				else
+					echo "# Configured by DTC v0.27 : Please don't touch this line !" >> /etc/fstab
+					echo "/var/run/saslauthd /var/spool/postfix/var/run/saslauthd/        none    bind" >>/etc/fstab
+					# CL: start saslautdh to create directories
+					echoIfVerbose "Starting SASLauthd"
+					/etc/init.d/saslauthd start
+					# now we can mount the SASLauthd directory
+					mount /var/spool/postfix/var/run/saslauthd/
 				fi
 			fi
 		fi
@@ -1870,6 +1867,7 @@ PARAMS=\"-r -c \"" >> $TMP_FILE
 		if [ ""$conf_use_cyrus = "true" ]; then
 			echo "Cyrus install selected but no saslauthd startup file";
 			echo "If you plan to use pam_mysql then do this workaround: make saslauth start with -r -c -a pam";
+			echo "And add /var/run/saslauthd /var/spool/postfix/var/run/saslauthd/        none    bind to yout /etc/fstab"
 			echo "if you plan to use sasl_mysql just ignore this";
 		fi
 	fi
@@ -1953,9 +1951,15 @@ echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domai
 " >> $TMP_FILE
 
 			if [ ""$conf_use_cyrus = "true" ]; then
-				echo "virtual_transport = cyrus
+				if [ "$UNIX_TYPE" = "debian" ] ; then
+					echo "virtual_transport = cyrus
+mailbox_transport = cyrus
+# local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
+				else
+					echo "virtual_transport = cyrus
 mailbox_transport = lmtp:unix:/var/run/socket/lmtp
 # local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
+				fi
 			else
 				# courier/postfix only!
 				echo "virtual_mailbox_base = /
@@ -2022,9 +2026,16 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 				SASLTMP_FILE=`${MKTEMP} DTC_install.postfix_sasl.XXXXXX` || exit 1
 				echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
 				# CL: for cyrus use saslauthd instead of auxprop!
+				# and add postfix to the sasl group
 				if [ ""$conf_use_cyrus = "true" ]; then
 					echo "pwcheck_method: saslauthd
 mech_list: login plain" >> $SASLTMP_FILE
+					if [ "$UNIX_TYPE" = "debian" ] ; then
+						echoIfVerbose "Adding postfix to the sasl group"
+						adduser postfix sasl
+					else
+						echo "*** Please add Postfix to the sasl group so it has access to the saslauthd socket"
+					fi
 				else
 					echo "pwcheck_method: auxprop
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
@@ -2139,12 +2150,11 @@ tumgreyspf unix  -      n       n       -       -       spawn
 " >> $TMP_FILE2
 				fi
 				# CL do we use cyrus? 
-				if [ ""$conf_use_cyrus = "true" ]; then
+				if [ ""$conf_use_cyrus = "true" ] ; then
 					echo "cyrus     unix  -       n       n       -       -       pipe
-  flags=R user=cyrus argv=/usr/sbin/cyrdeliver -e -m \${extension} \${recipient}"
-
->> $TMP_FILE2
-			fi
+  flags=R user=cyrus argv=/usr/sbin/cyrdeliver -e -m \${extension} \${recipient}
+">> $TMP_FILE2
+				fi
 
 				# Insert our amavis stuff inside the master.cf
 				echo "# amavisd-new

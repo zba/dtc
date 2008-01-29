@@ -85,8 +85,11 @@ function mail_account_generate_postfix(){
 
 	$data = ""; // init var for use later on
 
-	genSasl2PasswdDBStart();
-
+	#CL: Don create sasldb password when using cyrus. 
+	if($conf_use_cyrus != "yes")
+	{
+		genSasl2PasswdDBStart();
+	}
 	// go through each admin login and find the domains associated 
 	$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login;";
 	$result = mysql_query ($query)or die("Cannot execute query : \"$query\"");
@@ -236,7 +239,11 @@ function mail_account_generate_postfix(){
 					// Previously: only generate sasl logins for local accounts
 					// In fact, there is no reason to do so. We might want to create a mail account ONLY for sending
 					// some mail, and not receiving.
-					genSasl2PasswdDBEntry($domain_full_name,$id,$passwdtemp,$conf_addr_mail_server);
+					#CL: Not needed for cyrus
+					if($conf_use_cyrus != "yes")
+					{
+						genSasl2PasswdDBEntry($domain_full_name,$id,$passwdtemp,$conf_addr_mail_server);
+					}
 					// system("./genfiles/gen_sasl.sh $domain_full_name $id $passwdtemp $conf_addr_mail_server");
 
 					// first try and see if we have postfix in a chroot, else just put it in it's default location
