@@ -21,21 +21,18 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 	global $secpayconf_currency_symbol;
 	global $secpayconf_currency_letters;
 
-	global $txt_recurring_payment;
-	global $lang;
-
 	if(!isset($secpayconf_use_paypal) || ( $secpayconf_use_paypal != "no" && $secpayconf_use_paypal != "yes" )){
 		get_secpay_conf();
 	}
 
 	if($vat_rate != 0){
-		$vat_legend = "<td>Taxes (VAT or GST) $vat_rate%</td>";
+		$vat_legend = "<td>" ._("Taxes (VAT or GST)") ." $vat_rate%</td>";
 	}else{
 		$vat_legend = "";
 	}
 
 	$out = "<table width=\"100%\" height=\"1\">";
-	$out .= "<tr><td>Payment system</td><td>Amount</td><td>Gateway cost</td>$vat_legend<td>Total</td><td>Instant account</td></tr>\n";
+	$out .= "<tr><td>". _("Payment system") ."</td><td>". _("Amount") ."</td><td>". _("Gateway cost") ."</td>$vat_legend<td>". _("Total") ."</td><td>". _("Instant account") ."</td></tr>\n";
 	if($secpayconf_use_paypal == "yes"){
 		$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
 		$cost = $total - $amount;
@@ -62,7 +59,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 		}else{
 			$vat_total = "";
 		}
-		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url,"yes")."<br><i>".$txt_recurring_payment[$lang]."</i></td>";
+		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url,"yes")."<br><i>". _("Recurring payment") ."</i></td>";
 		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total."<td>".$total." ".$secpayconf_currency_letters."</td><td>Yes</td></tr>\n";
 	}
 	if($secpayconf_use_enets == "yes"){
@@ -85,8 +82,6 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 		$cost = $total - $amount;
 		$out .= "<tr><td>".worldPayButton($pay_id,$total,$button_text,$button_text)."</td>";
 		$out .= "<td>\$$cost</td><td>\$$total</td><td>No</td></tr>\n";
-//		$out .= "<tr><td>".worldPayButton($pay_id,$amount,$button_text,$button_text)."</td>";
-//		$out .= "<td>$cost<td><td>".$amount+$cost."</td><td>Yes</td></tr>\n";
 	}
 	$out .= "</table>";
 	return $out;

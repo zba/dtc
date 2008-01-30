@@ -20,10 +20,6 @@ function draw_UpgradeAccount($admin){
 	global $pro_mysql_client_table;
 	global $pro_mysql_product_table;
 
-	global $lang;
-	global $txt_dtcrm_you_currently_dont_have_enough_funds;
-	global $txt_upgrade_my_account_button;
-
 	$out = "";
 	$nowrap = 'style="white-space:nowrap"';
 
@@ -34,11 +30,11 @@ function draw_UpgradeAccount($admin){
 <input type=\"hidden\" name=\"action\" value=\"upgrade_myaccount\">
 ";
 	$client = $admin["client"];
-	$out .= "<b><u>".$txt_upgrade_my_account_button[$lang].":</u></b><br>";
+	$out .= "<b><u>". _("Upgrade my account:") ."</u></b><br>";
 	if($admin["info"]["prod_id"] != 0){
-		$out .= "<i><u>Past account refundal</u></i><br>";
-		$out .= "Your last command expire on the: ".$admin["info"]["expire"].".<br>";
-		$out .= "Today is the: ".date("Y-m-d")."<br>";
+		$out .= "<i><u>". _("Past account refundal") ."</u></i><br>";
+		$out .= _("Your last command expire on the: ") .$admin["info"]["expire"].".<br>";
+		$out .= _("Today is the: ") .date("Y-m-d")."<br>";
 		$today = mktime (0,0,0,date("m"),date("d"),date("Y"));
 		$ar = explode("-",$admin["info"]["expire"]);
 		$expire = mktime (0,0,0,$ar[1],0,$ar[0]);
@@ -63,25 +59,25 @@ function draw_UpgradeAccount($admin){
 		$refundal = floor($days_remaining * $price_per_days);
 		$owing = floor($days_outstanding * $price_per_days);
 
-		$out .= "Your past account was: \$".$prod["price_dollar"]." for ".smartDate($prod["period"])."<br>";
-		$out .= "Refundal ($days_remaining days) for upgrading will be: \$$refundal<br><br>";
-		$out .= "You have ($days_outstanding days), with \$$owing remaining to be paid<br>";
+		$out .= _("Your past account was: ") ."\$".$prod["price_dollar"]." for ".smartDate($prod["period"])."<br>";
+		$out .= _("Refund")." (". $days_remaining. _(" days) for upgrading will be: "). "\$$refundal<br><br>";
+		$out .= _("You have")." (".$days_outstanding._(" days), with ") ."\$$owing". _(" remaining to be paid") ."<br>";
 	}else{
-		$out .= "You currently don't have a validated account. Please contact customer support.";
+		$out .= _("You currently don't have a validated account. Please contact customer support.") ;
 		return $out;
 	}
-	$out .= "<i><u>Step 1: choose your upgrade</u></i><br>";
+	$out .= "<i><u>". _("Step 1: choose your upgrade") ."</u></i><br>";
 	if(!isset($_REQUEST["prod_id"]) || $_REQUEST["prod_id"] == ""){
-		$out .= "Your current account is ".smartByte($admin["info"]["quota"]*1024*1024)." disk storage
-and ".smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024)." of data transfer each month.<br><br>
-To what capacity would you like to upgrade to?<br>";
+		$out .= _("Your current account is ").smartByte($admin["info"]["quota"]*1024*1024). _(" disk storage and ")
+.smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024). _(" of data transfer each month.") ."<br><br>".
+_("To what capacity would you like to upgrade to?") ."<br>";
 		$q = "SELECT * FROM $pro_mysql_product_table WHERE quota_disk > '".$admin["info"]["quota"]."' OR bandwidth > '".$admin["info"]["bandwidth_per_month_mb"]."';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
 		$n = mysql_num_rows($r);
 		$out .= "$frm_start";
 		$out .= "<table border=\"1\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" height=\"1\">";
-		$out .= "<tr><td></td><td>Product</td><td>Storage</td><td>Bandwidth/month</td>
-			<td>Price</td><td>Periode</td></tr>";
+		$out .= "<tr><td></td><td>". _("Product") ."</td><td>". _("Storage") ."</td><td>". _("Bandwidth/month") ."</td>
+			<td>". _("Price") ."</td><td>". _("Period") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$ro = mysql_fetch_array($r);
 			if($i % 2){
@@ -149,7 +145,7 @@ Total price: \$". $heber_price . "<br>";
 		."&addrlink=$addrlink&action=upgrade_myaccount&prod_id=9&inner_action=return_from_paypal_upgrade_account&payid=$payid";
 		$payButton = paynowButton($payid,$heber_price,"Account upgrade: ".$ro["name"],$return_url);
 
-		$out .= "<br>".$txt_dtcrm_you_currently_dont_have_enough_funds[$lang]."<br><br>".$payButton;
+		$out .= "<br>". _("You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br><br>".$payButton;
 		return $out;
 	}
 
@@ -158,12 +154,10 @@ Total price: \$". $heber_price . "<br>";
 
 	// Check for confirmation
 	if(isset($_REQUEST["toreg_confirm_register"]) && $_REQUEST["toreg_confirm_register"] != "yes"){
-		$out .= "
-You have enough funds on your account to proceed account upgrade. Press
-the confirm button and your order will be proceeded.<br><br>
+		$out .= _("You have enough funds on your account to proceed account upgrade. Press the confirm button and your order will be proceeded.") ."<br><br>
 $frm_start
 <input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
-<input type=\"submit\" value=\"Proceed to account upgrade\">
+<input type=\"submit\" value=\"". _("Proceed to account upgrade") ."\">
 </form>";
 		return $out;
 	}

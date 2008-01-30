@@ -28,10 +28,7 @@ function layoutEmailPanel($menu_title,$menu_content,$main_title,$main_content){
 
 function skin_EmailPage(){
 	global $conf_skin;
-	global $lang;
-	global $txt_select_lang_title;
 	global $adm_email_login;
-	global $txt_login_title;
 
 	global $page_metacontent;
 	global $meta;
@@ -45,7 +42,6 @@ function skin_EmailPage(){
 	// Create the top banner and menu //
 	////////////////////////////////////
 	$anotherTopBanner = anotherTopBanner("DTC");
-	//$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 
 	if($adm_email_login != "" && isset($adm_email_login) && $adm_email_pass != "" && isset($adm_email_pass)){
 		$error = pass_check_email();
@@ -54,7 +50,7 @@ function skin_EmailPage(){
 			$mesg = $admin["mesg"];
 			$login_txt = "<font color=\"red\">Wrong login or password !</font><br>";
 			$login_txt .= login_emailpanel_form();
-			$mypage = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
+			$mypage = skin($conf_skin,$login_txt, _("Email panel: ") . _("Login") );
 		}else{
 			// Draw the html forms, login is successfull
 			$admin = fetchMailboxInfos($adm_email_login,$adm_email_pass);
@@ -62,12 +58,10 @@ function skin_EmailPage(){
 		}
 	}else{
 		$login_txt = login_emailpanel_form();
-		$mypage = skin($conf_skin,$login_txt,"Email panel: ".$txt_login_title[$lang]);
+		$mypage = skin($conf_skin,$login_txt, _("Email panel: ") . _("Login") );
 	}
 	// Output the result !
 
-	//echo anotherPage($txt_page_title[$lang],$txt_page_meta[$lang],$anotherHilight,makePreloads(),$anotherTopBanner,$anotherMenu,$HTML_admin_edit_data,$anotherFooter);
-#	echo anotherPage("Email:","","",makePreloads(),$anotherTopBanner,"",$mypage,anotherFooter(""));
 	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
 <html>
 <head>
@@ -237,14 +231,8 @@ function skin_displayAdminList($dsc){
 }
 
 function skin_ClientPage (){
-	global $lang;
-	global $txt_select_lang_title;
 	global $adm_pass;
 	global $adm_login;
-	global $txt_error;
-	global $txt_fetching_admin;
-	global $txt_client_panel_title;
-	global $txt_login_title;
 	global $conf_skin;
 
 	global $page_metacontent;
@@ -258,19 +246,18 @@ function skin_ClientPage (){
 	// Create the top banner and menu //
 	////////////////////////////////////
 	$anotherTopBanner = anotherTopBanner("DTC");
-	//$anotherMenu = makeHoriMenu($txt_top_menu_entrys[$lang],2);
 
 	$anotherLanguageSelection = anotherLanguageSelection();
-	$lang_sel = skin($conf_skin,$anotherLanguageSelection,$txt_select_lang_title[$lang]);
+	$lang_sel = skin($conf_skin,$anotherLanguageSelection, _("Language") );
 
 	if($adm_login != "" && isset($adm_login) && $adm_pass != "" && isset($adm_pass)){
 		// Fetch all the user informations, Print a nice error message if failure.
 		$admin = fetchAdmin($adm_login,$adm_pass);
 		if(($error = $admin["err"]) != 0){
 			$mesg = $admin["mesg"];
-			$login_txt = $txt_error[$lang]." $error ".$txt_fetching_admin[$lang]."<font color=\"red\">$mesg</font><br>";
+			$login_txt = _("Error") ." $error ". _("fetching admin: ") ."<font color=\"red\">$mesg</font><br>";
 			$login_txt .= login_form();
-			$login_skined = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
+			$login_skined = skin($conf_skin,$login_txt, _("Client panel:") ." ". _("Login") );
 			$mypage = layout_login_and_languages($login_skined,$lang_sel);
 		}else{
 			// Draw the html forms
@@ -279,7 +266,7 @@ function skin_ClientPage (){
 		}
 	}else{
 		$login_txt = login_form();
-                $mypage = skin($conf_skin,$login_txt,$txt_client_panel_title[$lang]." ".$txt_login_title[$lang]);
+                $mypage = skin($conf_skin,$login_txt, _("Client panel:") ." ". _("Login") );
         }
 	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
 <html>
@@ -367,8 +354,6 @@ function skin_DTCConfigMenu ($dsc){
 
 function skin_LayoutClientPage ($menu_content,$main_content,$main_content_title){
 	global $conf_skin;
-	global $txt_left_menu_title;
-	global $lang;
 
 	if($main_content == ""){
 		$main_content = "&nbsp;";
@@ -379,7 +364,7 @@ function skin_LayoutClientPage ($menu_content,$main_content,$main_content_title)
   <table class="box_wnb_content_clientimport_box_wnb" border="0" cellpadding="0" cellspacing="0">
     <tr>
       <td class="box_wnb_nb" valign="top">
-	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$txt_left_menu_title[$lang].'</div></div></div></div>
+	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'. _("Your domains") .'</div></div></div></div>
 	<div class="box_wnb_tv_container">
 	<img src="gfx/skin/bwoup/gfx/spacer.gif" width="220" height="1">
 	'.$menu_content.'
@@ -412,57 +397,48 @@ function skin_LayoutClientPage ($menu_content,$main_content,$main_content_title)
 
 function skin_Navbar (){
 	global $rub;
-	global $txt_mainmenu_title_useradmin;
-	global $txt_mainmenu_title_client_management;
-	global $txt_mainmenu_title_bandwidth_monitor;
-	global $txt_mainmenu_title_server_monitor;
-	global $txt_mainmenu_title_renewals;
-	global $txt_product_manager;
-	global $txt_mainmenu_title_deamonfile_generation;
-	global $txt_mainmenu_title_dtc_config;
-	global $lang;
 
 	$out = '<div id="navbar"><div id="navbar_left"></div><ul id="navbar_items">';
 
 	if(!isset($rub) || $rub == "" || $rub == "user" || $rub == "domain_config" || $rub == "adminedit"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'.$txt_mainmenu_title_useradmin[$lang].'"><br />'.$txt_mainmenu_title_useradmin[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'. _("Users administration") .'"><br />'. _("Users administration") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=user"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'.$txt_mainmenu_title_useradmin[$lang].'"><br />'.$txt_mainmenu_title_useradmin[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=user"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'. _("Users administration") .'"><br />'. _("Users administration") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "crm"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'.$txt_mainmenu_title_client_management[$lang].'"><br />'.$txt_mainmenu_title_client_management[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'. _("Customer management") .'"><br />'. _("Customer management") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=crm"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'.$txt_mainmenu_title_client_management[$lang].'"><br />'.$txt_mainmenu_title_client_management[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=crm"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'. _("Customer management") .'"><br />'. _("Customer management") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "monitor"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'.$txt_mainmenu_title_bandwidth_monitor[$lang].'"><br />'.$txt_mainmenu_title_bandwidth_monitor[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'. _("Bandwidth monitor") .'"><br />'. _("Bandwidth monitor") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=monitor"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'.$txt_mainmenu_title_bandwidth_monitor[$lang].'"><br />'.$txt_mainmenu_title_bandwidth_monitor[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=monitor"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'. _("Bandwidth monitor") .'"><br />'. _("Bandwidth monitor") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "graph"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'.$txt_mainmenu_title_server_monitor[$lang].'"><br />'.$txt_mainmenu_title_server_monitor[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'. _("Server monitor") .'"><br />'. _("Server monitor") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=graph"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'.$txt_mainmenu_title_server_monitor[$lang].'"><br />'.$txt_mainmenu_title_server_monitor[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=graph"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'. _("Server monitor") .'"><br />'. _("Server monitor") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "renewal"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'.$txt_mainmenu_title_renewals[$lang].'"><br />'.$txt_mainmenu_title_renewals[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'. _("Renewals management") .'"><br />'. _("Renewals management") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=renewal"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'.$txt_mainmenu_title_renewals[$lang].'"><br />'.$txt_mainmenu_title_renewals[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=renewal"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'. _("Renewals management") .'"><br />'. _("Renewals management") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "product"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'.$txt_product_manager[$lang].'"><br />'.$txt_product_manager[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'. _("Hosting product manager") .'"><br />'. _("Hosting product manager") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=product"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'.$txt_product_manager[$lang].'"><br />'.$txt_product_manager[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=product"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'. _("Hosting product manager") .'"><br />'. _("Hosting product manager") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "generate"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'.$txt_mainmenu_title_deamonfile_generation[$lang].'"><br />'.$txt_mainmenu_title_deamonfile_generation[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'. _("Configuration generation") .'"><br />'. _("Configuration generation") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=generate"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'.$txt_mainmenu_title_deamonfile_generation[$lang].'"><br />'.$txt_mainmenu_title_deamonfile_generation[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=generate"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'. _("Configuration generation") .'"><br />'. _("Configuration generation") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "config"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'.$txt_mainmenu_title_dtc_config[$lang].'"><br />'.$txt_mainmenu_title_dtc_config[$lang].'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'. _("DTC general configuration") .'"><br />'. _("DTC general configuration") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=config"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'.$txt_mainmenu_title_dtc_config[$lang].'"><br />'.$txt_mainmenu_title_dtc_config[$lang].'</a></li>';
+		$out .= '<li><a href="?rub=config"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'. _("DTC general configuration") .'"><br />'. _("DTC general configuration") .'</a></li>';
 	}
 
 	$out .= '</ul><div id="navbar_right"></div></div>';
@@ -477,21 +453,7 @@ function skin_LayoutAdminPage (){
 	global $pro_mysql_config_table;
 	global $conf_skin;
 
-	global $lang;
-	global $txt_virtual_admin_list;
-	global $txt_root_adm_title;
-	global $txt_dtc_configuration;
 	global $top_commands;
-	global $txt_generate_buttons_title;
-	global $txt_iframe_ds;
-	global $txt_product_manager;
-	global $txt_customer_bw_consumption;
-	global $txt_client_addr_title;
-	global $txt_client_list_title;
-	global $txt_client_admins_title;
-	global $txt_client_commands_title;
-	global $txt_user_administration;
-	global $txt_server_statistic_graphs;
 
 	global $adm_random_pass;
 
@@ -507,15 +469,6 @@ function skin_LayoutAdminPage (){
 	///////////////////////
 	switch($rub){
 	case "crm": // CRM TOOL
-/*		$rightFrameCells[] = skin($conf_skin,DTCRMeditClients(),$txt_client_addr_title[$lang]);
-		if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
-			$rightFrameCells[] = skin($conf_skin,DTCRMclientAdmins(),$txt_client_admins_title[$lang]);
-			$rightFrameCells[] = skin($conf_skin,DTCRMshowClientCommands($_REQUEST["id"]),$txt_client_commands_title[$lang]);
-		}
-		$rightFrame = makeVerticalFrame($rightFrameCells);
-		$leftFrameCells[] = skin($conf_skin,DTCRMlistClients(),$txt_client_list_title[$lang]);
-		$leftFrame = makeVerticalFrame($leftFrameCells);
-		$zemain_content = anotherLeftFrame($leftFrame,$rightFrame);*/
 		$admin_list = DTCRMlistClients();
 		$client_editor = DTCRMeditClients();
 		if(isset($_REQUEST["id"]) && $_REQUEST["id"] != "" && $_REQUEST["id"] != 0){
@@ -525,12 +478,12 @@ function skin_LayoutAdminPage (){
 <table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="box_wnb_nb" valign="top">
-    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$txt_client_list_title[$lang].'</div></div></div></div>
+    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'. _("Customers list") .'</div></div></div></div>
     	'.$admin_list.'
     </td>
     <td class="box_wnb_content" valign="top">
       <div class="box_wnb_content_container">
-      <h2>'.$txt_client_addr_title[$lang].'</h2>
+      <h2>'. _("Customer's address") .'</h2>
       '.$client_editor.'
       </div>
     </td>
@@ -547,15 +500,15 @@ function skin_LayoutAdminPage (){
 		break;
 	case "monitor": // Monitor button
 		$out = drawAdminMonitor();
-		$zemain_content = skin($conf_skin,$out,$txt_customer_bw_consumption[$lang]);
+		$zemain_content = skin($conf_skin,$out, _("Customer's bandwidth consumption") );
 		break;
 	case "graph":
-		$zemain_content = skin($conf_skin,drawRrdtoolGraphs (),$txt_server_statistic_graphs[$lang]);
+		$zemain_content = skin($conf_skin,drawRrdtoolGraphs (), _("Server statistic graphs") );
 		break;
 	case "generate": // Gen Config Files
-		$mainFrameCells[] = skin($conf_skin,$top_commands,$txt_generate_buttons_title[$lang]);
+		$mainFrameCells[] = skin($conf_skin,$top_commands, _("Launching the configuration files generation") );
 		$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
-		$mainFrameCells[] = skin($conf_skin,$the_iframe,$txt_iframe_ds[$lang]); // fixed bug by seeb
+		$mainFrameCells[] = skin($conf_skin,$the_iframe, _("Deamons states") ); // fixed bug by seeb
 		// The console
 		$mainFrameCells[] = skinConsole();
 		$zemain_content = makeVerticalFrame($mainFrameCells);
@@ -570,7 +523,7 @@ function skin_LayoutAdminPage (){
     </td>
     <td class="box_wnb_content" valign="top">
     	 <div class="box_wnb_content_container">
-	  <h2>'.$txt_dtc_configuration[$lang].'</h2>
+	  <h2>'. _("DTC Configuration") .'</h2>
 '.drawDTCConfigForm().'
 	</div>
     </td>
@@ -583,7 +536,7 @@ function skin_LayoutAdminPage (){
 		break;
 	case "product":
 		$bla = productManager();
-		$zemain_content = skin($conf_skin,$bla,$txt_product_manager[$lang]);
+		$zemain_content = skin($conf_skin,$bla, _("Hosting product manager") );
 		break;
 	case "user": // User Config
 	case "domain_config":
@@ -613,12 +566,12 @@ function skin_LayoutAdminPage (){
 <table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="box_wnb_nb" valign="top">
-    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'.$txt_virtual_admin_list[$lang].'</div></div></div></div>
+    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'. _("Admins list") .'</div></div></div></div>
     	'.$adm_list.'
     </td>
     <td class="box_wnb_content" valign="top">
       <div class="box_wnb_content_container">
-      <h2>'.$txt_user_administration[$lang].'</h2>
+      <h2>'. _("User administration") .'</h2>
       '.$bwoup_user_edit
       .$skinedConsole.'
       </div>
@@ -663,23 +616,8 @@ $skinCssString
 }
 
 function bwoupUserEditForms($adm_login,$adm_pass){
-	global $txt_general_virtual_admin_edition;
-	global $txt_domains_configuration_title;
-	global $txt_add_user_title;
-
-	global $txt_client_interface;
-	global $txt_domain_config;
-	global $txt_admin_editor;
-	global $lang;
-	// added by seeb
-	global $txt_user_administration;
-	global $txt_user_administration_domains_for;
-
 	global $adm_random_pass;
-
-	// end added
 	global $conf_skin;
-	global $lang;
 	global $addrlink;
 	global $rub;
 
@@ -703,21 +641,21 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 
 		$out = '<ul class="box_wnb_content_nb">';
 		if($rub != "user" && $rub != ""){
-			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\"  align=\"absmiddle\" border=\"0\"> ".$txt_client_interface[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\"  align=\"absmiddle\" border=\"0\"> ". _("Client interface") ."</a></li>";
 		}else{
-			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\" align=\"absmiddle\" border=\"0\"> ".$txt_client_interface[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=user\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\" align=\"absmiddle\" border=\"0\"> ". _("Client interface") ."</a></li>";
 		}
 		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
 		if($rub != "domain_config"){
-			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_domainconfig.gif\" align=\"absmiddle\" border=\"0\">".$txt_domain_config[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_domainconfig.gif\" align=\"absmiddle\" border=\"0\">". _("Domain config") ."</a></li>";
 		}else{
-			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_domainconfig.gif\" align=\"absmiddle\" border=\"0\">".$txt_domain_config[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=domain_config\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_domainconfig.gif\" align=\"absmiddle\" border=\"0\">". _("Domain config") ."</a></li>";
 		}
 		$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
 		if($rub != "adminedit"){
-			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">".$txt_admin_editor[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">". _("Admin editor") ."</a></li>";
 		}else{
-			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">".$txt_admin_editor[$lang]."</a></li>";
+			$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?adm_login=$adm_login&adm_pass=$pass&rub=adminedit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">". _("Admin editor") ."</a></li>";
 		}
 		$out .= "</ul>";
 

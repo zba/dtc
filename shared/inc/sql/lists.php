@@ -1,5 +1,5 @@
 <?php
-require("$dtcshared_path/inc/forms/lists_strings.php");
+
 /////////////////////////////////////////////////////
 // Subscribe / Unsubscribe users to a mailing list //
 /////////////////////////////////////////////////////
@@ -105,7 +105,6 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "subscribe_new_user"){
 if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == "Ok"){
 	global $conf_mta_type;
 	global $conf_webmaster_email_addr;
-	global $lang;
 	global $conf_recipient_delimiter;
 
 	// This has to be done BEFORE any other sql requests using login/pass or edit_domain !!!
@@ -209,9 +208,21 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	}
 	
 	//dtc send an email to the owner
-	$subject = str_replace("#name#",$name,$txt_lists_email_subject[$lang]);
+	$subject = str_replace("#name#",$name, _("List #name#@#domain# successfully created!") );
 	$subject = str_replace("#domain#",$edit_domain,$subject);
-	$msg = str_replace("#name#",$name,$txt_lists_email_msg[$lang]);
+	$msg = str_replace("#name#",$name, _("You can control your mailing list by email or by control panel.
+You can send a email to the following addresses to execute the listed command:
+  
+  #name#-help@#domain# -> return the most common list's commands
+  #name#-list@#domain# -> return the subscribers's list
+  #name#-get-N@#domain# -> return the N list's message
+  #name#-owner@#domain# -> you can contact the list's owner by this address
+  #name#-unsubscribe@#domain# -> unsubscribe the email's sender from the list
+  #name#-subscribe@#domain# -> subscribe the email's sender to the list
+  #name#-subscribe-digest@#domain# -> subscribe the email's sender to the list's digest version
+  #name#-subscribe-nomail@#domain# -> subscribe the email's sender to the list's nomail version
+  
+For more informations go to mlmmj official web site at http://mlmmj.mmj.dk") );
 	$msg = str_replace("#domain#",$edit_domain,$msg);
 	$headers = "FROM: $conf_webmaster_email_addr\n";
 	$headers .= "Return-Path: $conf_webmaster_email_addr\n";
@@ -454,6 +465,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesValueRequestCheck($ctrl_dir,"verp");
 	tunablesValueRequestCheck($ctrl_dir,"maxverprecips");
 	tunablesValueRequestCheck($ctrl_dir,"delimiter");
+	tunablesValueRequestCheck($ctrl_dir,"bouncelife");
 	tunablesListRequestCheck($ctrl_dir,"owner");
 	tunablesTextareaRequestCheck($ctrl_dir,"customheaders");
 	tunablesListRequestCheck($ctrl_dir,"delheaders");
@@ -475,7 +487,7 @@ if(isset($_REQUEST["dellist"]) && $_REQUEST["dellist"] == "Del"){
 	
 	// Verify strings given
 	if(!isMailbox($_REQUEST["edit_mailbox"])){
-		die($_REQUEST["edit_mailbox"]." does not look like a mailbox login...");
+		die($_REQUEST["edit_mailbox"]. _(" does not look like a mailbox login...") );
 	}
 	
 	//Some vars

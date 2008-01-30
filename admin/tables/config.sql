@@ -13,6 +13,7 @@ addr_primary_dns varchar(255) NOT NULL default 'ns1.example.com',
 addr_secondary_dns varchar(255) NOT NULL default 'ns2.example.com',
 ip_slavezone_dns_server varchar(16) NOT NULL default '192.168.0.3',
 ip_allowed_dns_transfer varchar(255) NOT NULL default '192.168.0.1',
+domainkey_publickey_filepath varchar(255) NOT NULL default '/var/lib/dkfilter/public.key'
 main_domain varchar(128) NOT NULL default 'gplhost.com',
 404_subdomain varchar(128) NOT NULL default '404',
 administrative_site varchar(255) NOT NULL default 'dtc.example.com',

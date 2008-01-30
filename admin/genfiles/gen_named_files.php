@@ -25,7 +25,7 @@ function get_remote_ns($a){
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"];
 	while($retry < 3 && $flag == false){
 		$a_vers = explode(".",phpversion());
-		if(strncmp("https://",$a["server_addr"],strlen("https://")) == 0 && $a_vers[0] <= 4 && $a_vers[1] < 3){
+		if($a_vers[0] <= 4 && $a_vers[1] < 3){
 			if( $panel_type == "cronjob"){
 				echo "\nUsing lynx -source on ".$a["server_addr"]." with login ".$a["server_login"].".\n";
 			}else{
@@ -34,11 +34,12 @@ function get_remote_ns($a){
 			$result = exec("lynx -source \"$url\"",$lines,$return_val);
 		}else{
 			if( $panel_type == "cronjob"){
-				echo "\nUsing php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"].".";
+				echo "\nUsing php HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"].".";
 			}else{
-				$console .= "<br>Using php internal file() function on ".$a["server_addr"]." with login ".$a["server_login"].".";
+				$console .= "<br>Using php HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"].".";
 			}
-			$lines = file ($url);
+			$httprequest = new HTTPRequest("$url");
+			$lines = $httprequest->DownloadToStringArray();
 		}
 		$nline = sizeof($lines);
 
@@ -198,6 +199,7 @@ function named_generate(){
 	global $conf_named_slavefile_path;
 	global $conf_named_slavezonefiles_path;
 	global $conf_ip_allowed_dns_transfer;
+	global $conf_domainkey_publickey_filepath;
 	global $conf_dtc_system_username;
 	global $conf_dtc_system_groupname;
 	global $conf_autogen_default_subdomains;
@@ -387,6 +389,20 @@ $more_mx_server
 @	IN	TXT	\"$root_txt_record2\"
 	IN	A	$ip_to_write
 ";
+			// if we have the public.key for DomainKeys, write it into our zone file
+      if (file_exists($conf_domainkey_publickey_filepath)){
+              $key_file_array = file($conf_domainkey_publickey_filepath, FILE_IGNORE_NEW_LINES);
+              // skip the first and last lines (the ---PUBLIC---)
+              $KEY = "";
+              for ($key_file_array_count = 1; $key_file_array_count < count($key_file_array) - 1; $key_file_array_count++)
+              {
+                      $KEY .= $key_file_array[$key_file_array_count];
+              }
+              $SELECTOR="postfix";
+              $DOMAIN=$web_name;
+              $NSRECORD="$SELECTOR._domainkey IN TXT \"k=rsa;p=$KEY; t=y\"";
+              $this_site_file .= "$NSRECORD\n";
+      }
 			// Add all subdomains to it !
 			$is_pop_subdomain_set = "no";
 			$is_imap_subdomain_set = "no";

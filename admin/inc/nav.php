@@ -2,37 +2,37 @@
 
 if(isset($_REQUEST["gen_named_files"]) && $_REQUEST["gen_named_files"]==1){
 	named_generate();
-	$console .= "Named conf files generated !";
+	$console .= _("Named conf files generated !") ;
 }
 
 // Executes the command liste bellow
 if(isset($_REQUEST["gen_perso_vhost"]) && $_REQUEST["gen_perso_vhost"]==1){
 	perso_vhost_generate();
-	$console .= "Apache vhost file for personal account generated !";
+	$console .= _("Apache vhost file for personal account generated !") ;
 }
 if(isset($_REQUEST["gen_pro_vhost"]) && $_REQUEST["gen_pro_vhost"]==1){
 	pro_vhost_generate();
-	$console .= "Apache vhost file generated !";
+	$console .= _("Apache vhost file generated !") ;
 }
 
 if(isset($_REQUEST["gen_email_account"]) && $_REQUEST["gen_email_account"] == 1){
 	mail_account_generate();
-	$console .= "Email user and domain files generated !";
+	$console .= _("Email user and domain files generated !") ;
 }
 
 if(isset($_REQUEST["gen_backup_script"]) && $_REQUEST["gen_backup_script"] == 1){
 	backup_script_generate();
-	$console .= "Backup script generated !";
+	$console .= _("Backup script generated !") ;
 }
 
 if(isset($_REQUEST["gen_stat_script"]) && $_REQUEST["gen_stat_script"] == 1){
 	stat_script_generate();
-	$console .= "Stat script generated !";
+	$console .= _("Stat script generated !") ;
 }
 
 if($conf_demo_version == "true"){
 	$browse_files_button = "
-<a href=\"../etc\">Browse all generated files</a>";
+<a href=\"../etc\">". _("Browse all generated files") ."</a>";
 }else{
 	$browse_files_button = "";
 }
@@ -46,37 +46,37 @@ $top_commands = "
 <div align=\"center\">
 	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_pro_vhost=1&gen_stat_script=1&gen_named_files=1&gen_backup_script=1&gen_email_account=1\">
 	<img border=\"0\" src=\"gfx/dtc/all_scripts.gif\"><br>
-	<font face=\"Arial\" size=\"-2\">".$txt_icon_all_files_and_scripts[$lang]."</font></a>
+	<font face=\"Arial\" size=\"-2\">". _("ALL FILES AND SCRIPTS") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
 	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_pro_vhost=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_web.gif\"><br>
-	<font face=\"Arial\" size=\"-2\">".$txt_icon_apache_vhost[$lang]."</font></a>
+	<font face=\"Arial\" size=\"-2\">". _("APACHE VHOST") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
 	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_email_account=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_mail.gif\"><br>
-	<font face=\"Arial\" size=\"-2\">".$txt_icon_mailbox_account[$lang]."</font></a>
+	<font face=\"Arial\" size=\"-2\">". _("E-MAIL ACCOUNTS") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
 	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_named_files=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_named.gif\"><br>
-	<font face=\"Arial\" size=\"-2\">".$txt_icon_named_zones[$lang]."</font></a>
+	<font face=\"Arial\" size=\"-2\">". _("NAMED ZONES FILES") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
 	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&reinit_named_zones=1\">
 	<img border=\"0\" src=\"gfx/dtc/reinit_named.gif\"><br>
-	<font face=\"Arial\" size=\"-2\">".$txt_icon_reinit_named_zones[$lang]."</font></a>
+	<font face=\"Arial\" size=\"-2\">". _("REINIT NAMED ZONES") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
 	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_backup_script=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_backup.gif\"><br>
-	<font face=\"Arial\" size=\"-2\">".$txt_icon_backup_scripts[$lang]."</font></a>
+	<font face=\"Arial\" size=\"-2\">". _("BACKUP SCRIPTS") ."</font></a>
 </div>
 </td></tr></table>
 $browse_files_button</font></b>";
@@ -86,9 +86,6 @@ function listTypePopup(){
 	global $admlist_type;
 	global $cur_admlist_type;
 	global $panel_type;
-
-	global $txt_admlist_sort_by_legend;
-	global $lang;
 
 	if($panel_type!="cronjob"){
 		$_SESSION["cur_admlist_type"] = "";
@@ -115,9 +112,8 @@ function listTypePopup(){
         	$selectedlist_domain = " selected";
 	}
 
-	$txt_sort_by = $txt_admlist_sort_by_legend[$lang];
 	$admins = "<div class=\"box_wnb_nb_content\">
-<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">$txt_sort_by<br>
+<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">". _("Display and sort by:")  ."<br>
 <select class=\"box_wnb_nb_input\" name=\"admlist_type\">
 <option value=\"Logins\"$selectedlist_logins>Logins
 <option value=\"Names\"$selectedlist_name>Names
@@ -135,13 +131,9 @@ function listTypePopup(){
 }
 
 function adminList($password=""){
-	global $lang;
 	global $adm_login;
 	global $adm_pass;
-	global $txt_sort_by;
 	global $admlist_type;
-	global $txt_admlist_new_admin;
-	global $txt_admlist_sort_by_legend;
 	global $rub;
 
 	global $pro_mysql_admin_table;
@@ -165,19 +157,18 @@ function adminList($password=""){
 		// Depreacted: session_register("cur_admlist_type");
 	}
 	$list_popup = listTypePopup();
-	$txt_new_admin = $txt_admlist_new_admin[$lang];
 
 	$dsc = array(
-		"text_new_admin" => $txt_admlist_new_admin[$lang],
+		"text_new_admin" => _("New virtual admin") ,
 		"list_type" => $admlist_type,
 		"admins" => array(
 			));
 	$dsc["admins"][] = array(
-		"text" => "$txt_new_admin",
+		"text" => _("New virtual admin") ,
 		"adm_login" => "",
 		"adm_pass" => "");
 
-	$admins = "<a href=\"".$_SERVER["PHP_SELF"]."?\">$txt_new_admin</a><br>";
+	$admins = "<a href=\"".$_SERVER["PHP_SELF"]."?\">". _("New virtual admin")  ."</a><br>";
 	if(isset($rub)){
 		$added_rub = "&rub=".$_REQUEST["rub"];
 	}else{

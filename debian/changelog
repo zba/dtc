@@ -1,6 +1,8 @@
 dtc (0.27.8-1) unstable; urgency=low
 
   * New upstream release.
+  * [v0.27] Now using ttf-dejavu instaed of ttf-bistream-vera because that last
+    one is going to be removed from Debian (Closes: #461259)
   * [v0.27] Renamed the dtc package to dtc-core in order not to conflict with
     the "device tree compiler".
   * [v0.27] Fixed some non-arch-dependent debian/rules & debian/control

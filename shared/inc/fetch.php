@@ -20,8 +20,6 @@ function fetchTable($query){
 
 function fetchMailboxInfos($adm_email_login,$adm_email_pass){
 	global $pro_mysql_pop_table;
-	global $lang;
-	global $txt_wrong_user_or_password_or_timeout_expire;
 
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
@@ -38,7 +36,7 @@ function fetchMailboxInfos($adm_email_login,$adm_email_pass){
 		return $ret;
 	}
 	if(mysql_num_rows($r) != 1){
-		$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
+		$ret["mesg"] = _("Wrong user or password, or timeout expired!") ;
 		$ret["err"] = -1;
 		return $ret;
 	}
@@ -321,8 +319,6 @@ function randomizePassword($adm_login,$adm_input_pass){
 	global $adm_realpass;
 	global $adm_pass;
 	global $adm_random_pass;
-	global $txt_wrong_user_or_password_or_timeout_expire;
-	global $lang;
 	global $conf_session_expir_minute;
 
 	$ret["err"] = 0;
@@ -363,12 +359,12 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$num_rows = mysql_num_rows($result);
 
 			if($num_rows != 1){
-				$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
+				$ret["mesg"] = _("Wrong user or password, or timeout expired!") ;
 				$ret["err"] = -1;
 				return $ret;
 			}
 		}else{
-			$ret["mesg"] = $txt_wrong_user_or_password_or_timeout_expire[$lang];
+			$ret["mesg"] = _("Wrong user or password, or timeout expired!") ;
 			$ret["err"] = -1;
 			return $ret;
 		}
@@ -428,13 +424,9 @@ function fetchAdminData($adm_login,$adm_input_pass){
 
 	global $conf_session_expir_minute;
 
-//	global $adm_login;
 	global $adm_realpass;
 	global $adm_pass;
 	global $adm_random_pass;
-
-	global $txt_wrong_user_or_password_or_timeout_expire;
-	global $lang;
 
 	// This one is used by the root GUI so that you can browse your user
 	// account at the same time as him without destroying his session.

@@ -711,7 +711,9 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE crypt crypt VARCHAR(255) DEFAULT '' NOT NULL"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE passwd passwd VARCHAR(255) DEFAULT '' NOT NULL"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE paiement CHANGE secpay_site secpay_site enum('none', 'paypal', 'worldpay','enets') DEFAULT 'none' NOT NULL"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8)))"
+	# CL: Update crypted passwords only if there is a plaintext password present
+	# else sytems runing without plaintext (like mine) will have some big problems
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8))) where passwd <>''"
 	# fix size of accounting variables to store more info
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE http_accounting CHANGE bytes_receive bytes_receive BIGINT(14) UNSIGNED NOT NULL DEFAULT '0'"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE http_accounting CHANGE bytes_sent bytes_sent BIGINT(14) UNSIGNED NOT NULL DEFAULT '0'"
@@ -834,7 +836,9 @@ setupDTCDatabase () {
 		conf_cyrus_pass=${MYSQL_DTCDAEMONS_PASS};
 	fi
 	# Insert the cyrus user so we can use cyradm
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@"${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@"${MX_MAIL}.${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyradm','cyrus','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
+
 }
 
 generateMySQLConfigPHPfile () {
@@ -1833,7 +1837,7 @@ modifySaslStartAndSaslStartup () {
 			TMP_FILE=`${MKTEMP} DTC_install.saslauthd.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.20 : Please don't touch this line !" > $TMP_FILE
 			echo "START=yes
-PARAMS=\"-r -c \"" >> $TMP_FILE
+OPTIONS=\"-r -c\"" >> $TMP_FILE
 			echo "# End of DTC configuration v0.20 : Please don't touch this line !" >> $TMP_FILE
 			# now to insert it at the end of the actual saslauthd startup file
 			cat < $TMP_FILE >>$PATH_SASL_START_CONF
@@ -1846,23 +1850,16 @@ PARAMS=\"-r -c \"" >> $TMP_FILE
 			else
 				# create the direcotry for postfix to access SASL socket
 				mkdir -p $PATH_SASL_SOCKET
-
-				# get the md5sum of the file, if it's original do the change
-				# else we have a problem and report it to do the change manualy
-				sasl_start_md5sum=`md5sum $PATH_SASL_STARTUP|cut -d " " -f1`
-				# ### CL find a better place for this !
-				sasl_orginal_m5="6307086733ad29bbd57f81b6c38334a1";
-				if [ ""$sasl_orginal_m5 = "$sasl_start_md5sum" ] ; then
-					# ok file is original so we can "patch" it.
-					patch $PATH_SASL_STARTUP <$PATH_DTC_ADMIN/patch_saslatuhd_startup
-					echo "# Configured by DTC v0.20 : Please don't touch this line !" >> $PATH_SASL_STARTUP				
-				else 
-					echo "Can not modify the saslauthd startupfile, don't Panic!"
-					echo "this is only needed if you want to use pam_mysql, if you want to use sasl_mysql ignore this"
-					echo "Please edit $PATH_SASL_STARTUP by hand and add folowing after startup:"
-					echo "rm -f /var/spool/postfix/var/run/saslauthd/mux
-	ln /var/run/saslauthd/mux /var/spool/postfix/var/run/saslauthd/mux"
-					echo "for more informations contact DTC development and DTC forums"
+				if grep "Configured by DTC" /etc/fstab >/dev/null ; then
+					echoIfVerbose "Already configured: skipping"
+				else
+					echo "# Configured by DTC v0.27 : Please don't touch this line !" >> /etc/fstab
+					echo "/var/run/saslauthd /var/spool/postfix/var/run/saslauthd/        none    bind" >>/etc/fstab
+					# CL: start saslautdh to create directories
+					echoIfVerbose "Starting SASLauthd"
+					/etc/init.d/saslauthd start
+					# now we can mount the SASLauthd directory
+					mount /var/spool/postfix/var/run/saslauthd/
 				fi
 			fi
 		fi
@@ -1870,6 +1867,7 @@ PARAMS=\"-r -c \"" >> $TMP_FILE
 		if [ ""$conf_use_cyrus = "true" ]; then
 			echo "Cyrus install selected but no saslauthd startup file";
 			echo "If you plan to use pam_mysql then do this workaround: make saslauth start with -r -c -a pam";
+			echo "And add /var/run/saslauthd /var/spool/postfix/var/run/saslauthd/        none    bind to yout /etc/fstab"
 			echo "if you plan to use sasl_mysql just ignore this";
 		fi
 	fi
@@ -1936,11 +1934,20 @@ parent_domain_matches_subdomains=
 # disable mailbox size limit by default (user can add to postfix_config_snippets)
 mailbox_size_limit = 0
 " >> $TMP_FILE
+			FOUND_DKFILTER=0;
 			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new ] ; then
-				echo "# Amavis has been detected as installed, so this has been activated by default
+				if [ -x /usr/sbin/dkfilter.in -o -x /usr/bin/dkfilter.in -o -x /usr/local/sbin/dkfilter.in -o -x /usr/local/bin/dkfilter.in ] ; then
+					FOUND_DKFILTER=1;
+					echo "# Amavis AND dkfilter.in have been detected as installed, so this has been activated by default
+# if this is not what you want, comment it and restart postfix
+content_filter=dksign:[127.0.0.1]:10026
+" >> $TMP_FILE
+				else
+					echo "# Amavis has been detected as installed, so this has been activated by default
 # if this is not what you want, comment it and restart postfix
 content_filter=smtp-amavis:[127.0.0.1]:10024
 " >> $TMP_FILE
+				fi
 			else
 				echo "# uncomment to enable amavis
 #   - if you do uncomment this, make sure that you
@@ -1953,9 +1960,15 @@ echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domai
 " >> $TMP_FILE
 
 			if [ ""$conf_use_cyrus = "true" ]; then
-				echo "virtual_transport = cyrus
+				if [ "$UNIX_TYPE" = "debian" ] ; then
+					echo "virtual_transport = cyrus
+mailbox_transport = cyrus
+# local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
+				else
+					echo "virtual_transport = cyrus
 mailbox_transport = lmtp:unix:/var/run/socket/lmtp
 # local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
+				fi
 			else
 				# courier/postfix only!
 				echo "virtual_mailbox_base = /
@@ -2022,9 +2035,16 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 				SASLTMP_FILE=`${MKTEMP} DTC_install.postfix_sasl.XXXXXX` || exit 1
 				echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
 				# CL: for cyrus use saslauthd instead of auxprop!
+				# and add postfix to the sasl group
 				if [ ""$conf_use_cyrus = "true" ]; then
 					echo "pwcheck_method: saslauthd
 mech_list: login plain" >> $SASLTMP_FILE
+					if [ "$UNIX_TYPE" = "debian" ] ; then
+						echoIfVerbose "Adding postfix to the sasl group"
+						adduser postfix sasl
+					else
+						echo "*** Please add Postfix to the sasl group so it has access to the saslauthd socket"
+					fi
 				else
 					echo "pwcheck_method: auxprop
 mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
@@ -2139,12 +2159,11 @@ tumgreyspf unix  -      n       n       -       -       spawn
 " >> $TMP_FILE2
 				fi
 				# CL do we use cyrus? 
-				if [ ""$conf_use_cyrus = "true" ]; then
+				if [ ""$conf_use_cyrus = "true" ] ; then
 					echo "cyrus     unix  -       n       n       -       -       pipe
-  flags=R user=cyrus argv=/usr/sbin/cyrdeliver -e -m \${extension} \${recipient}"
-
->> $TMP_FILE2
-			fi
+  flags=R user=cyrus argv=/usr/sbin/cyrdeliver -e -m \${extension} \${recipient}
+">> $TMP_FILE2
+				fi
 
 				# Insert our amavis stuff inside the master.cf
 				echo "# amavisd-new
@@ -2172,6 +2191,58 @@ smtp-amavis unix -      -       -       -       2  smtp
     -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks
 
 " >> $TMP_FILE2
+
+				# apply DKFILTER config if we find dkfilter.in
+				if [ "$FOUND_DKFILTER" -eq 1 ]; then
+					echo "# DomainKeys filter configuration
+#
+# modify the default submission service to specify a content filter
+# and restrict it to local clients and SASL authenticated clients only
+#
+submission  inet  n     -       n       -       -       smtpd
+    -o smtpd_etrn_restrictions=reject
+    -o smtpd_sasl_auth_enable=yes
+    -o content_filter=dksign:[127.0.0.1]:10028
+    -o receive_override_options=no_address_mappings
+    -o smtpd_recipient_restrictions=permit_mynetworks,permit_sasl_authenticated,reject
+
+#
+# specify the location of the DomainKeys signing filter
+#
+dksign    unix  -       -       n       -       5      smtp
+    -o smtp_send_xforward_command=yes
+    -o smtp_discard_ehlo_keywords=8bitmime
+
+#
+# service for accepting messages FROM the DomainKeys signing filter
+#
+127.0.0.1:10029 inet  n  -      n       -       5      smtpd
+    -o content_filter=
+    -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
+    -o smtpd_helo_restrictions=
+    -o smtpd_client_restrictions=
+    -o smtpd_sender_restrictions=
+    -o smtpd_recipient_restrictions=permit_mynetworks,reject
+    -o mynetworks=127.0.0.0/8
+    -o smtpd_authorized_xforward_hosts=127.0.0.0/8
+
+# For Postfix to sign mails sent out using Webmail or other locally delivered mail
+pickup fifo n - n 60 1 pickup
+        -o content_filter=dksign:127.0.0.1:10028
+					
+" >> $TMP_FILE2
+					# We also need to modify the /etc/init.d/dkfilter startup script so that it correctly pulls in the DOMAIN list and modifies port
+					DKFILTER_INIT=/etc/init.d/dkfilter
+					if [ -e $DKFILTER_INIT ]; then 
+						if grep "Configured by DTC" $DKFILTER_INIT >/dev/null; then
+							echoIfVerbose "$DKFILTER_INIT already modifed by DTC installer"
+						else
+							sed -i -e 's#^DOMAIN=#\# Configured by DTC v0.26 : Please do not touch this line !\nDOMAIN=\`cat /var/lib/dtc/etc/local_domains \| tr \\\\\\r\\\\\\n ,,\`\n\# End of DTC configuration v0.26 : please do not touch this line !\n\#DOMAIN=#' $DKFILTER_INIT
+							sed -i -e 's#^DKFILTER_IN_ARGS=#\# Configured by DTC v0.26 : Please do not touch this line !\nDKFILTER_IN_ARGS="--hostname=$HOSTNAME 127.0.0.1:10026 127.0.0.1:10024"\n\# End of DTC configuration v0.26 : please do not touch this line !\n\#DKFILTER_IN_ARGS=#' $DKFILTER_INIT	
+						fi
+					fi					
+				fi
+
 				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
 				cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
 				rm $TMP_FILE2
@@ -3998,6 +4069,26 @@ uninstallPostfix () {
 		echo -n > $PATH_POSTFIX_ETC/sasl/smtpd.conf
 		cat < $TMP_FILE >> $PATH_POSTFIX_ETC/sasl/smtpd.conf
 	        rm $TMP_FILE
+	fi
+	
+	#
+	# uninstall /etc/init.d/dkfilter modifications
+	#
+	if [ -e /etc/init.d/dkfilter ]; then
+		echoIfVerbose "===> Uninstalling inclusion from /etc/init.d/dkfilter"
+		if grep "Configured by DTC" /etc/init.d/dkfilter >/dev/null 2>&1
+		then
+			start_line=`grep -n "Configured by DTC" /etc/init.d/dkfilter | cut -d":" -f1`
+			end_line=`grep -n "End of DTC configuration" /etc/init.d/dkfilter | cut -d":" -f1`
+			nbr_line=`cat /etc/init.d/dkfilter | wc -l`
+			TMP_FILE=`${MKTEMP} DTC_uninstall.dkfilter.init.XXXXXX` || exit 1
+			cat /etc/init.d/dkfilter | head -n $(($start_line - 1 )) > $TMP_FILE
+			cat /etc/init.d/dkfilter | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
+			cp -f /etc/init.d/dkfilter /etc/init.d/dkfilter.DTC.removed
+			echo -n > /etc/init.d/dkfilter
+			cat < $TMP_FILE >> /etc/init.d/dkfilter
+				rm $TMP_FILE
+		fi
 	fi
 }
 

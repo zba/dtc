@@ -1,7 +1,5 @@
 <?php
 
-require("$dtcshared_path/inc/sql/ssh_strings.php");
-
 function hasSSHLoginFlag($adm_login){
 	global $pro_mysql_admin_table;
 
@@ -23,14 +21,14 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 	$adm_path = getAdminPath($adm_login);
 
 	if(!hasSSHLoginFlag($adm_login)){
-		$submit_err .= $txt_sshsql_you_dont_have_the_ssh_login[$lang];
+		$submit_err .= _("You don't have the SSH login flag!") ;
 		$commit_flag = "no";
 	}
 
 	if (ereg("^$adm_path/$edit_domain/$", $_REQUEST["newssh_path"]) || ereg("^$adm_path/$", $_REQUEST["newssh_path"])){
 		// all good here, can go ahead
 	}else if(!ereg("^$adm_path/$edit_domain/subdomains",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
-		$submit_err .= $txt_sshsql_your_path_is_restricted_to[$lang]."$adm_path/$edit_domain/subdomains<br>\n";
+		$submit_err .= _("Your path is restricted to ") ."$adm_path/$edit_domain/subdomains<br>\n";
 		$commit_flag = "no";
 	}
 
@@ -48,11 +46,11 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 		}
 	}
 	if(!isFtpLogin($_REQUEST["newssh_login"])){
-		$submit_err .= "Incorrect SSH login form: please enter another login and try again.<br>\n";
+		$submit_err .= _("Incorrect SSH login form: please enter another login and try again.<br>\n") ;
 		$commit_flag = "no";
 	}
 	if(!isDTCPassword($_REQUEST["newssh_pass"])){
-		$submit_err .= "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n";
+		$submit_err .= _("Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n") ;
 		$commit_flag = "no";
 	}
 	$_REQUEST["newssh_path"] = addslashes($_REQUEST["newssh_path"]);
@@ -93,19 +91,19 @@ if(isset($_REQUEST["update_ssh_account"]) && $_REQUEST["update_ssh_account"] == 
 	}
 
 	if(0 != strncmp($adm_path,$_REQUEST["edssh_path"],strlen($adm_path)-1) || strstr($_REQUEST["edssh_path"],'..') || strstr($_REQUEST["edssh_path"],"'") || strstr($_REQUEST["edssh_path"],"\\")){
-		$submit_err .= "Your path is restricted to &quot;$adm_path/$edit_domain/subdomains&quot;<br>\n";
+		$submit_err .= _("Your path is restricted to ") ."&quot;$adm_path/$edit_domain/subdomains&quot;<br>\n";
 		$commit_flag = "no";
 	}
 
 	$new_path = $_REQUEST["edssh_path"];
 
 	if(!isFtpLogin($_REQUEST["edssh_account"])){
-		$submit_err .= "Incorrect ssh login : this is not a good string for a ssh login, please enter a new one.";
+		$submit_err .= _("Incorrect ssh login : this is not a good string for a ssh login, please enter a new one.") ;
 		$commit_flag = "no";
 	}
 
 	if(!isDTCPassword($_REQUEST["edssh_pass"])){
-		$submit_err .= "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9";
+		$submit_err .= _("Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9") ;
 		$commit_flag = "no";
 	}
 

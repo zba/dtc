@@ -565,7 +565,6 @@ if($panel_type!="email"){
 	require("$dtcshared_path/inc/sql/domain_info.php");
 	require("$dtcshared_path/inc/sql/domain_stats.php");
 	require("$dtcshared_path/inc/sql/subdomain.php");
-	require("$dtcshared_path/inc/sql/ftp.php");
 	require("$dtcshared_path/inc/sql/ssh.php");
 	require("$dtcshared_path/inc/sql/email.php");
 	require("$dtcshared_path/inc/sql/lists.php");

@@ -462,8 +462,7 @@ function skinConsole(){
 	global $HTTP_HOST;
 	global $console;
 	// added by seeb
-	global $lang;
-	global $txt_console_output;
+
 	return "<table bgcolor=\"#000000\" cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"100%\">
 <tr>
 <td>

@@ -59,6 +59,7 @@ function drawAdminTools_SSH($domain,$adm_path){
 		"check_unique" => array( "login" ),
 		"check_unique_msg" => _("There is already a ssh login by that name") ,
 		"check_unique_use_where_list" => "no",
+		"order_by" => "login",
 		"cols" => array(
 			"id" => array(
 				"type" => "id",

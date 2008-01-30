@@ -222,28 +222,27 @@ shared/drawlib/skinLib.php shared/drawlib/skin.php shared/drawlib/templates.php 
 shared/dtcrm/draw_adddomain.php shared/dtcrm/draw_handle.php shared/dtcrm/draw_nameservers.php shared/dtcrm/draw.php shared/dtcrm/draw_register_forms.php \
 shared/dtcrm/draw_transferdomain.php shared/dtcrm/draw_whois.php shared/dtcrm/opensrs.php shared/dtcrm/registry_calls.php \
 shared/dtcrm/RENAME_ME_srs_config.php shared/dtcrm/srs_base.php shared/dtcrm/srs_nameserver.php shared/dtcrm/srs_registernames.php \
-shared/dtcrm/strings.php shared/dtcrm/submit_to_sql.php shared/dtcrm/srs/country_codes.php shared/dtcrm/srs/openSRS_base.php \
+shared/dtcrm/submit_to_sql.php shared/dtcrm/srs/country_codes.php shared/dtcrm/srs/openSRS_base.php \
 shared/dtcrm/srs/openSRS.php shared/dtcrm/srs/ops.dtd shared/dtcrm/srs/OPS.php shared/dtcrm/srs/test.php shared/dtcrm/srs/test.xml \
 shared/dtcrm/webnic.cc/domainQuery.php shared/dtcrm/webnic.cc/domainRegistration.php shared/dtcrm/webnic.cc/test.php \
 shared/dtcrm/webnic.cc/webnic_base.php shared/dtcrm/webnic.cc/webnic_settings.php shared/dtcrm/webnic.cc/webnic_submit.php \
-shared/template/index.php \
-shared/vars/clear_lang_array.php shared/vars/error_strings.php shared/vars/global_vars.php \
-shared/vars/lang.php shared/vars/strings.php shared/vars/table_names.php shared/visitors_template/visitors.php
+shared/template/index.php shared/vars/clear_lang_array.php shared/vars/global_vars.php \
+shared/vars/lang.php shared/vars/table_names.php shared/visitors_template/visitors.php
 
 SHARED_INC_PHP_SCRIPT_FILES=shared/inc/accounting.php shared/inc/dbconect.php shared/inc/delete_user.php shared/inc/domain_export.php \
 shared/inc/draw.php shared/inc/fetchmail.php shared/inc/fetch.php shared/inc/nusoap.php shared/inc/skin.class.php \
 shared/inc/submit_to_sql.php shared/inc/tree_mem_to_db.php shared/inc/vps.php shared/inc/forms/admin_stats.php \
 shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedicated.php \
 shared/inc/forms/dns.php shared/inc/forms/domain_info.php shared/inc/forms/domain_stats.php shared/inc/forms/email.php \
-shared/inc/forms/ftp.php shared/inc/forms/invoices.php shared/inc/forms/lists.php shared/inc/forms/lists_strings.php \
+shared/inc/forms/ftp.php shared/inc/forms/invoices.php shared/inc/forms/lists.php \
 shared/inc/forms/my_account.php shared/inc/forms/packager.php shared/inc/forms/reseller.php shared/inc/forms/root_admin.php \
 shared/inc/forms/ssh.php shared/inc/forms/subdomain.php shared/inc/forms/ticket.php \
 shared/inc/forms/tools.php shared/inc/forms/vps.php \
 shared/inc/sql/database.php shared/inc/sql/dns.php shared/inc/sql/domain_info.php \
-shared/inc/sql/domain_info_strings.php shared/inc/sql/domain_stats.php shared/inc/sql/email.php shared/inc/sql/email_strings.php \
-shared/inc/sql/ftp.php shared/inc/sql/ftp_strings.php shared/inc/sql/lists.php shared/inc/sql/reseller.php shared/inc/sql/ssh.php \
-shared/inc/sql/ssh_strings.php shared/inc/sql/subdomain.php shared/inc/sql/subdomain_strings.php shared/inc/sql/ticket.php \
-shared/inc/sql/vps.php shared/inc/sql/vps_strings.php
+shared/inc/sql/domain_stats.php shared/inc/sql/email.php \
+shared/inc/sql/lists.php shared/inc/sql/reseller.php shared/inc/sql/ssh.php \
+shared/inc/sql/subdomain.php shared/inc/sql/ticket.php \
+shared/inc/sql/vps.php
 
 SKIN_STUFF=shared/gfx/skin/default_layout.php shared/gfx/skin/bwoup/layout.php
 

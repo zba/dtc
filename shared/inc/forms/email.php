@@ -213,10 +213,10 @@ function drawAdminTools_emailAccount($mailbox){
 	$left = "<h3>". _("Change your password:") ."</h3>
 <table cellpadding=\"0\" cellspacing=\"0\">
 <tr>
-	<td align=\"right\">".$form_start. _("Password:") ."</td>
+	<td align=\"right\">".$form_start. _("Password: ") ."</td>
 	<td><input type=\"hidden\" name=\"action\" value=\"dtcemail_change_pass\"><input type=\"password\" name=\"newpass1\" value=\"\"></td>
 </tr><tr>
-	<td align=\"right\">". _("Repeat password:") ."</td>
+	<td align=\"right\">". _("Confirm password: ") ."</td>
 	<td><input type=\"password\" name=\"newpass2\" value=\"\"></td>
 </tr><tr>
 	<td></td><td>". drawSubmitButton( _("Ok") ) ."</form></td>
@@ -419,7 +419,7 @@ function emailAccountsCreateCallback ($id){
 	if($testnum_rows >= 1){
 		$q = "DELETE FROM $pro_mysql_pop_table WHERE autoinc='$id';";
 		$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
-		return "<font color=\"red\">Error: a mailing list already exists with this name!</font>";
+		return "<font color=\"red\">". _("Error: a mailing list already exists with this name!") ."</font>";
 	}
 	$test_query = "SELECT * FROM $pro_mysql_mailaliasgroup_table WHERE id='".$a["id"]."' AND domain_parent='$edit_domain'";
 	$test_result = mysql_query ($test_query) or die("Cannot execute query \"$test_query\" line ".__LINE__." file ".__FILE__. " sql said ".mysql_error());
@@ -427,7 +427,7 @@ function emailAccountsCreateCallback ($id){
 	if($testnum_rows >= 1){
 		$q = "DELETE FROM $pro_mysql_pop_table WHERE autoinc='$id';";
 		$r = mysql_query($q) or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
-		return "<font color=\"red\">Error: Email address already exists with this name!</font><br />";
+		return "<font color=\"red\">". _("Error: Email group alias already exists with this name!") ."</font><br />";
 	}
 	$crypted_pass = crypt($a["passwd"], dtc_makesalt());
 	writeDotQmailFile($a["id"],$a["mbox_host"]);
@@ -545,6 +545,7 @@ function drawAdminTools_Emails($domain){
 			"mbox_host" => $domain["name"]),
 		"check_unique" => array( "id" ),
 		"check_unique_msg" => _("There is already a mailbox by that name") ,
+		"order_by" => "id",
 		"cols" => array(
 			"autoinc" => array(
 				"type" => "id",

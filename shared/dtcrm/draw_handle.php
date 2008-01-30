@@ -20,17 +20,13 @@ function getContactsArrayFromID($owner_id,$billing_id,$admin_id){
 }
 
 function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admin=-1){
-	global $lang;
-	global $PHP_SELF; 
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
 
 	global $pro_mysql_handle_table;
-	global $txt_dtcrm_create_new_handle;
-	global $lang;
 
-	$link_create = "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=nickhandles\">".$txt_dtcrm_create_new_handle[$lang]."</a>";
+	$link_create = "<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=nickhandles\">". _("Create a new handle") ."</a>";
 
 	$query = "SELECT * FROM $pro_mysql_handle_table WHERE owner='$adm_login';";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
@@ -42,7 +38,7 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 
 	$out = "";
 	$pop = "";
-	$out .= "Who will own the domain name and will be the registrant (domain owner)?<br>
+	$out .= _("Who will own the domain name and will be the registrant (domain owner)?") ."<br>
 <select name=\"dtcrm_owner_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -57,26 +53,24 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= "
-Firstname: ". $infoz["firstname"] ."<br>
-Lastname: ". $infoz["lastname"] ."<br>
-Company: ". $infoz["company"] ."<br>
-Address 1: ". $infoz["addr1"] ."<br>
-Address 2: ". $infoz["addr2"] ."<br>
-Address 3: ". $infoz["addr3"] ."<br>
-Zipcode: ". $infoz["zipcode"] ."<br>
-City: ". $infoz["city"] ."<br>
-State: ". $infoz["state"] ."<br>
-Country: ". $infoz["country"] ."<br>
-Phone: ". $infoz["phone_num"] ."<br>
-Fax: ". $infoz["fax_num"] ."<br>
-Email: ". $infoz["email"] ."<br>";
+		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
+_("Familly name: ") . $infoz["lastname"] ."<br>".
+_("Company name: ") . $infoz["company"] ."<br>".
+_("Address (line1): ") . $infoz["addr1"] ."<br>".
+_("Address (line2): ") . $infoz["addr2"] ."<br>".
+_("Address (line3): ") . $infoz["addr3"] ."<br>".
+_("Zipcode: ") . $infoz["zipcode"] ."<br>".
+_("City: ") . $infoz["city"] ."<br>".
+_("State: ") . $infoz["state"] ."<br>".
+_("Country: ") . $infoz["country"] ."<br>".
+_("Phone number: ") . $infoz["phone_num"] ."<br>".
+_("Fax: ") . $infoz["fax_num"] ."<br>".
+_("Email: ") . $infoz["email"] ."<br>";
 	}
 	$out .="
 <br>";
 
-	$out .= "
-Who will be contacted for domain renewall (billing contact)?<br>
+	$out .= _("Who will be contacted for domain renewall (billing contact)?") ."<br>
 <select name=\"dtcrm_billing_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -91,26 +85,24 @@ Who will be contacted for domain renewall (billing contact)?<br>
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= "
-Firstname: ". $infoz["firstname"] ."<br>
-Lastname: ". $infoz["lastname"] ."<br>
-Company: ". $infoz["company"] ."<br>
-Address 1: ". $infoz["addr1"] ."<br>
-Address 2: ". $infoz["addr2"] ."<br>
-Address 3: ". $infoz["addr3"] ."<br>
-Zipcode: ". $infoz["zipcode"] ."<br>
-City: ". $infoz["city"] ."<br>
-State: ". $infoz["state"] ."<br>
-Country: ". $infoz["country"] ."<br>
-Phone: ". $infoz["phone_num"] ."<br>
-Fax: ". $infoz["fax_num"] ."<br>
-Email: ". $infoz["email"] ."<br>";
+		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
+_("Familly name: ") . $infoz["lastname"] ."<br>".
+_("Company name: ") . $infoz["company"] ."<br>".
+_("Address (line1): ") . $infoz["addr1"] ."<br>".
+_("Address (line2): ") . $infoz["addr2"] ."<br>".
+_("Address (line3): ") . $infoz["addr3"] ."<br>".
+_("Zipcode: ") . $infoz["zipcode"] ."<br>".
+_("City: ") . $infoz["city"] ."<br>".
+_("State: ") . $infoz["state"] ."<br>".
+_("Country: ") . $infoz["country"] ."<br>".
+_("Phone number: ") . $infoz["phone_num"] ."<br>".
+_("Fax: ") . $infoz["fax_num"] ."<br>".
+_("Email: ") . $infoz["email"] ."<br>";
 	}
 	$out .="
 <br>";
 
-	$out .= "
-Who will have the rights for changing the whois information (admin contact)?<br>
+	$out .= _("Who will have the rights for changing the whois information (admin contact)?") ."<br>
 <select name=\"dtcrm_admin_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -125,20 +117,19 @@ Who will have the rights for changing the whois information (admin contact)?<br>
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= "
-Firstname: ". $infoz["firstname"] ."<br>
-Lastname: ". $infoz["lastname"] ."<br>
-Company: ". $infoz["company"] ."<br>
-Address 1: ". $infoz["addr1"] ."<br>
-Address 2: ". $infoz["addr2"] ."<br>
-Address 3: ". $infoz["addr3"] ."<br>
-Zipcode: ". $infoz["zipcode"] ."<br>
-City: ". $infoz["city"] ."<br>
-State: ". $infoz["state"] ."<br>
-Country: ". $infoz["country"] ."<br>
-Phone: ". $infoz["phone_num"] ."<br>
-Fax: ". $infoz["fax_num"] ."<br>
-Email: ". $infoz["email"] ."<br>";
+		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
+_("Familly name: ") . $infoz["lastname"] ."<br>".
+_("Company name: ") . $infoz["company"] ."<br>".
+_("Address (line1): ") . $infoz["addr1"] ."<br>".
+_("Address (line2): ") . $infoz["addr2"] ."<br>".
+_("Address (line3): ") . $infoz["addr3"] ."<br>".
+_("Zipcode: ") . $infoz["zipcode"] ."<br>".
+_("City: ") . $infoz["city"] ."<br>".
+_("State: ") . $infoz["state"] ."<br>".
+_("Country: ") . $infoz["country"] ."<br>".
+_("Phone number: ") . $infoz["phone_num"] ."<br>".
+_("Fax: ") . $infoz["fax_num"] ."<br>".
+_("Email: ") . $infoz["email"] ."<br>";
 	}
 	$out .="
 <br>";
@@ -147,8 +138,6 @@ Email: ". $infoz["email"] ."<br>";
 
 
 function drawAdminTools_NickHandles($admin){
-	global $lang;
-	global $PHP_SELF;
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
@@ -157,28 +146,6 @@ function drawAdminTools_NickHandles($admin){
 
 	global $hdl_id;
 	global $pro_mysql_handle_table;
-
-	global $txt_dtcrm_indicate_required_field;
-	global $txt_dtcrm_create_new_handle;
-	global $txt_dtcrm_indicate_required_field;
-	global $txt_dtcrm_name_for_this_handle;
-	global $txt_dtcrm_company;
-	global $txt_dtcrm_firstname;
-	global $txt_dtcrm_lastname;
-	global $txt_dtcrm_street_addr1;
-	global $txt_dtcrm_street_addr2;
-	global $txt_dtcrm_street_addr3;
-	global $txt_dtcrm_optional;
-	global $txt_dtcrm_if_applicable;
-	global $txt_dtcrm_state;
-	global $txt_dtcrm_city;
-	global $txt_dtcrm_zipcode;
-	global $txt_dtcrm_country;
-	global $txt_dtcrm_phone_number;
-	global $txt_dtcrm_phone_formating;
-	global $txt_dtcrm_fax_number;
-	global $txt_dtcrm_email;
-	global $txt_dtcrm_must_be_valid_email;
 
 	$out = "<b><u>List of your whois nick handles:</u></b><br>";
 
@@ -190,7 +157,7 @@ function drawAdminTools_NickHandles($admin){
 		if($i != 0){
 			$out .= " - ";
 		}
-		$out .= "<a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&hdl_id=".$row["id"]."\">".$row["name"]."</a>";
+		$out .= "<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&hdl_id=".$row["id"]."\">".$row["name"]."</a>";
 	}
 
 	if(isset($_REQUEST["hdl_id"]) && $_REQUEST["hdl_id"] != ""){
@@ -199,7 +166,7 @@ function drawAdminTools_NickHandles($admin){
 		$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$hdl_id' AND owner='$adm_login';";
 		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 		$hdl = mysql_fetch_array($result);
-		$out .= "<br><br><a href=\"$PHP_SELF?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">New handle</a><br>
+		$out .= "<br><br><a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">New handle</a><br>
 		<b><u>Edit existing nick-handle ".$hdl["name"].":</u></b><br>";
 		$hidden_inputs = "<input type=\"hidden\" name=\"action\" value=\"update_nickhandle\">";
 		$name_of_hdl = "<input type=\"hidden\" name=\"name\" value=\"".$hdl["name"]."\">".$hdl["name"];
@@ -229,7 +196,7 @@ function drawAdminTools_NickHandles($admin){
 			$hdlfax = "";
 		$hdlemail = $hdl["email"];
 	}else{
-		$out .= "<br><br><b><u>Create a new nick-handle:</u></b><br>";
+		$out .= "<br><br><b><u>". _("Create a new nick-handle:") ."</u></b><br>";
 		$hidden_inputs = "<input type=\"hidden\" name=\"action\" value=\"create_nickhandle\">";
 		$name_of_hdl = "<input type=\"text\" name=\"name\" value=\"\">";
 		$hdlcompany = "";
@@ -247,52 +214,52 @@ function drawAdminTools_NickHandles($admin){
 		$hdlemail = "";
 	}
 	$rf = "<font color=\"red\">*</font>";	// Required field
-	$out .= "($rf ".$txt_dtcrm_indicate_required_field[$lang].")<form action=\"$PHP_SELF\">
+	$out .= "($rf ". _("marked fields are required") .")<form action=\"". $_SERVER["PHP_SELF"] ."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">$hidden_inputs
 <input type=\"hidden\" name=\"hdl_id\" value=\"$hdl_id\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <table width=\"100%\" height=\"1\"><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_name_for_this_handle[$lang]."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Name for this handle: ") ."</td>
 	<td>$name_of_hdl</td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_company[$lang]."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Company name: ") ."</td>
 	<td><input type=\"text\" name=\"company\" value=\"".$hdlcompany."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_firstname[$lang]."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("First name: ") ."</td>
 	<td><input type=\"text\" name=\"firstname\" value=\"".$hdlfirstname."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_lastname[$lang]."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Familly name: ") ."</td>
 	<td><input type=\"text\" name=\"lastname\" value=\"".$hdllastname."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_street_addr1[$lang]."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Addresse (line1): ") ."</td>
 	<td><input type=\"text\" name=\"addr1\" value=\"".$hdladdr1."\">
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_street_addr2[$lang]."<br><i>".$txt_dtcrm_optional[$lang]."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Address (line2): ") ."<br><i>". _("optional") ."</i></td>
 	<td><input type=\"text\" name=\"addr2\" value=\"".$hdladdr2."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_street_addr3[$lang]."<br><i>".$txt_dtcrm_optional[$lang]."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Address (line3): ") ."<br><i>". _("optional") ."</i></td>
 	<td><input type=\"text\" name=\"addr3\" value=\"".$hdladdr3."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_state[$lang]."<br><i>".$txt_dtcrm_if_applicable[$lang]."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("State: ") ."<br><i>". _("if applicable") ."</i></td>
 	<td><input type=\"text\" name=\"state\" value=\"".$hdlstate."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_city[$lang]."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("City: ") ."</td>
 	<td><input type=\"text\" name=\"city\" value=\"".$hdlcity."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_zipcode[$lang]."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Zipcode: ") ."</td>
 	<td><input type=\"text\" name=\"zipcode\" value=\"".$hdlzipcode."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_country[$lang]."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Country: ") ."</td>
 	<td><select name=\"country\">".cc_code_popup($hdlcountry)."</select></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_phone_number[$lang]."<br><i>".$txt_dtcrm_phone_formating[$lang]."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Phone number: ") ."<br><i>". _("+1.XXXXXXXXXX format") ."</i></td>
 	<td><input type=\"text\" name=\"phone_num\" value=\"".$hdlphone."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>".$txt_dtcrm_fax_number[$lang].":<br><i>".$txt_dtcrm_optional[$lang]."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Fax: ") .":<br><i>". _("optional") ."</i></td>
 	<td><input type=\"text\" name=\"fax_num\" value=\"".$hdlfax."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf".$txt_dtcrm_email[$lang]."<br><i>".$txt_dtcrm_must_be_valid_email[$lang]."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Email: ") ."<br><i>". _("This MUST be a valid address") ."</i></td>
 	<td><input type=\"text\" name=\"email\" value=\"".$hdlemail."\"></td>
 </tr><tr>
 	<td></td><td><input type=\"submit\" value=\"Ok\"></td>

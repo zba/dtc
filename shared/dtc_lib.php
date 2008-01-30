@@ -4,9 +4,7 @@
 ////////////////////////////
 require("$dtcshared_path/vars/table_names.php");	// The table names DTC is using
 require("$dtcshared_path/vars/global_vars.php");	// Make basic checks on standard DTC params and set them as global vars
-require("$dtcshared_path/vars/lang.php");			// Setup the $lang global variable (to en, en-us, fr, etc... : whatever is translated !)
-require("$dtcshared_path/vars/strings.php");		// Contain all the translated string
-require("$dtcshared_path/vars/error_strings.php");
+require("$dtcshared_path/vars/lang.php");		// Setup the $lang global variable (to en, en-us, fr, etc... : whatever is translated !)
 
 // CYRUS STUFF
 require("$dtcshared_path/cyradm.php");
@@ -67,11 +65,13 @@ require("$dtcshared_path/drawlib/templates.php");
 // FORMS DRAWING
 require("$dtcshared_path/inc/fetch.php");		// Code that fetch all the data of one admin, to be used for calling draw.php functions
 if(file_exists($dtcshared_path."/dtcrm")){
-	include("$dtcshared_path/dtcrm/strings.php");
 	include("$dtcshared_path/dtcrm/draw.php");	// Functions Draws the forms for domain-name registration and paiement
 }
 #include "$dtcshared_path/cyradm.php";
 #include "$dtcshared_path/cyrus.php";
 require("$dtcshared_path/inc/draw.php");		// Functions that draws all user  forms
+
+# HTTPRequest for use instead of file(URL)
+require_once("$dtcshared_path/inc/HTTPRequestClass.php");
 
 ?>
