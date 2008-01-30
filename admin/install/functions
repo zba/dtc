@@ -1934,11 +1934,20 @@ parent_domain_matches_subdomains=
 # disable mailbox size limit by default (user can add to postfix_config_snippets)
 mailbox_size_limit = 0
 " >> $TMP_FILE
+			FOUND_DKFILTER=0;
 			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new ] ; then
-				echo "# Amavis has been detected as installed, so this has been activated by default
+				if [ -x /usr/sbin/dkfilter.in -o -x /usr/bin/dkfilter.in -o -x /usr/local/sbin/dkfilter.in -o -x /usr/local/bin/dkfilter.in ] ; then
+					FOUND_DKFILTER=1;
+					echo "# Amavis AND dkfilter.in have been detected as installed, so this has been activated by default
+# if this is not what you want, comment it and restart postfix
+content_filter=dksign:[127.0.0.1]:10026
+" >> $TMP_FILE
+				else
+					echo "# Amavis has been detected as installed, so this has been activated by default
 # if this is not what you want, comment it and restart postfix
 content_filter=smtp-amavis:[127.0.0.1]:10024
 " >> $TMP_FILE
+				fi
 			else
 				echo "# uncomment to enable amavis
 #   - if you do uncomment this, make sure that you
@@ -2182,6 +2191,58 @@ smtp-amavis unix -      -       -       -       2  smtp
     -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks
 
 " >> $TMP_FILE2
+
+				# apply DKFILTER config if we find dkfilter.in
+				if [ "$FOUND_DKFILTER" -eq 1 ]; then
+					echo "# DomainKeys filter configuration
+#
+# modify the default submission service to specify a content filter
+# and restrict it to local clients and SASL authenticated clients only
+#
+submission  inet  n     -       n       -       -       smtpd
+    -o smtpd_etrn_restrictions=reject
+    -o smtpd_sasl_auth_enable=yes
+    -o content_filter=dksign:[127.0.0.1]:10028
+    -o receive_override_options=no_address_mappings
+    -o smtpd_recipient_restrictions=permit_mynetworks,permit_sasl_authenticated,reject
+
+#
+# specify the location of the DomainKeys signing filter
+#
+dksign    unix  -       -       n       -       5      smtp
+    -o smtp_send_xforward_command=yes
+    -o smtp_discard_ehlo_keywords=8bitmime
+
+#
+# service for accepting messages FROM the DomainKeys signing filter
+#
+127.0.0.1:10029 inet  n  -      n       -       5      smtpd
+    -o content_filter=
+    -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
+    -o smtpd_helo_restrictions=
+    -o smtpd_client_restrictions=
+    -o smtpd_sender_restrictions=
+    -o smtpd_recipient_restrictions=permit_mynetworks,reject
+    -o mynetworks=127.0.0.0/8
+    -o smtpd_authorized_xforward_hosts=127.0.0.0/8
+
+# For Postfix to sign mails sent out using Webmail or other locally delivered mail
+pickup fifo n - n 60 1 pickup
+        -o content_filter=dksign:127.0.0.1:10028
+					
+" >> $TMP_FILE2
+					# We also need to modify the /etc/init.d/dkfilter startup script so that it correctly pulls in the DOMAIN list and modifies port
+					DKFILTER_INIT=/etc/init.d/dkfilter
+					if [ -e $DKFILTER_INIT ]; then 
+						if grep "Configured by DTC" $DKFILTER_INIT >/dev/null; then
+							echoIfVerbose "$DKFILTER_INIT already modifed by DTC installer"
+						else
+							sed -i -e 's#^DOMAIN=#\# Configured by DTC v0.26 : Please do not touch this line !\nDOMAIN=\`cat /var/lib/dtc/etc/local_domains \| tr \\\\\\r\\\\\\n ,,\`\n\# End of DTC configuration v0.26 : please do not touch this line !\n\#DOMAIN=#' $DKFILTER_INIT
+							sed -i -e 's#^DKFILTER_IN_ARGS=#\# Configured by DTC v0.26 : Please do not touch this line !\nDKFILTER_IN_ARGS="--hostname=$HOSTNAME 127.0.0.1:10026 127.0.0.1:10024"\n\# End of DTC configuration v0.26 : please do not touch this line !\n\#DKFILTER_IN_ARGS=#' $DKFILTER_INIT	
+						fi
+					fi					
+				fi
+
 				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
 				cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
 				rm $TMP_FILE2
@@ -4008,6 +4069,26 @@ uninstallPostfix () {
 		echo -n > $PATH_POSTFIX_ETC/sasl/smtpd.conf
 		cat < $TMP_FILE >> $PATH_POSTFIX_ETC/sasl/smtpd.conf
 	        rm $TMP_FILE
+	fi
+	
+	#
+	# uninstall /etc/init.d/dkfilter modifications
+	#
+	if [ -e /etc/init.d/dkfilter ]; then
+		echoIfVerbose "===> Uninstalling inclusion from /etc/init.d/dkfilter"
+		if grep "Configured by DTC" /etc/init.d/dkfilter >/dev/null 2>&1
+		then
+			start_line=`grep -n "Configured by DTC" /etc/init.d/dkfilter | cut -d":" -f1`
+			end_line=`grep -n "End of DTC configuration" /etc/init.d/dkfilter | cut -d":" -f1`
+			nbr_line=`cat /etc/init.d/dkfilter | wc -l`
+			TMP_FILE=`${MKTEMP} DTC_uninstall.dkfilter.init.XXXXXX` || exit 1
+			cat /etc/init.d/dkfilter | head -n $(($start_line - 1 )) > $TMP_FILE
+			cat /etc/init.d/dkfilter | tail -n $(($nbr_line - $end_line )) >> $TMP_FILE
+			cp -f /etc/init.d/dkfilter /etc/init.d/dkfilter.DTC.removed
+			echo -n > /etc/init.d/dkfilter
+			cat < $TMP_FILE >> /etc/init.d/dkfilter
+				rm $TMP_FILE
+		fi
 	fi
 }
 
