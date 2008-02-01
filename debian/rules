@@ -22,6 +22,9 @@ install:
 	cp debian/master.postinst debian/dtc-postfix-courier.postinst
 	cp debian/master.config debian/dtc-postfix-courier.config
 	cp debian/master.prerm debian/dtc-postfix-courier.prerm
+	cp debian/master.postinst debian/dtc-cyrus.postinst
+	cp debian/master.config debian/dtc-cyrus.config
+	cp debian/master.prerm debian/dtc-cyrus.prerm
 
 	dh_installdirs
 
