@@ -226,7 +226,7 @@ shared/dtcrm/submit_to_sql.php shared/dtcrm/srs/country_codes.php shared/dtcrm/s
 shared/dtcrm/srs/openSRS.php shared/dtcrm/srs/ops.dtd shared/dtcrm/srs/OPS.php shared/dtcrm/srs/test.php shared/dtcrm/srs/test.xml \
 shared/dtcrm/webnic.cc/domainQuery.php shared/dtcrm/webnic.cc/domainRegistration.php shared/dtcrm/webnic.cc/test.php \
 shared/dtcrm/webnic.cc/webnic_base.php shared/dtcrm/webnic.cc/webnic_settings.php shared/dtcrm/webnic.cc/webnic_submit.php \
-shared/template/index.php shared/vars/clear_lang_array.php shared/vars/global_vars.php \
+shared/template/index.php shared/vars/clear_lang_array.php shared/vars/global_vars.php shared/inc/HTTPRequestClass.php \
 shared/vars/lang.php shared/vars/table_names.php shared/visitors_template/visitors.php
 
 SHARED_INC_PHP_SCRIPT_FILES=shared/inc/accounting.php shared/inc/dbconect.php shared/inc/delete_user.php shared/inc/domain_export.php \
