@@ -106,7 +106,7 @@ function paypalButton($product_id,$amount,$item_name,$return_url,$use_recurring 
 	}else{
 		$add_to_form = '<input type="hidden" name="amount" value="'.$amount.'">';
 	}
-	$out = '<form action="https://'.$paypal_host.$paypal_cgi.'" method="post">
+	$out = '<form action="https://'.$paypal_host.$paypal_cgi.'" method="post" target="_top">
 <input type="hidden" name="cmd" value="_xclick">
 <input type="hidden" name="business" value="'.$ze_paypal_email.'">
 <input type="hidden" name="item_name" value="'.$item_name.'">
