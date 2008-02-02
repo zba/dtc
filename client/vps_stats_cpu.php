@@ -84,8 +84,8 @@ for($m=0;$m<12;$m++){
 	}
 }
 
-$max = 5000000;	// 10 M seems a good value
-$bpquota = 5000000;
+$max = 500000;	// 0.5 M seems a good value
+$bpquota = 500000;
 if($foundmax > $bpquota)
 	$max = $foundmax;
 $max *= 1.05;
