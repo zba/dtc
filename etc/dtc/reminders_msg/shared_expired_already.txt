@@ -9,9 +9,9 @@ Please login into your control panel at
 
 %%%DTC_CLIENT_URL%%%
 
-with your login %%%DTC_ADM_LOGIN%%%, click on your VPS tab, and renew it.
+with your login %%%DTC_ADM_LOGIN%%%, click on "my account", and renew it.
 
-We will keep your VPS up few days to give you the time to
+We will keep your shared account up few days to give you the time to
 renew your contract.
 
 Best regards,
