@@ -9,8 +9,8 @@ set_time_limit($_timelimit);
 $_inprogress = TRUE;
 register_shutdown_function('clean_shutdown_cron');
 
-function clean_shutdown_cron()
-{
+function clean_shutdown_cron(){
+	global $_inprogress;
 	if ($_inprogress){
 		echo "WARNING: cron.php execution took longer than $_timelimit minutes\n";
 		printEndTime ();
