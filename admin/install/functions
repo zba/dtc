@@ -1940,8 +1940,14 @@ mailbox_size_limit = 0
 					FOUND_DKFILTER=1;
 					echo "# Amavis AND dkfilter.in have been detected as installed, so this has been activated by default
 # if this is not what you want, comment it and restart postfix
-content_filter=dksign:[127.0.0.1]:10026
+# This is the default action, AKA signing
+# we trigger the other action (scanning via a check_access directive)
+content_filter=dksign:[127.0.0.1]:10028
 " >> $TMP_FILE
+					if [ ! -x $PATH_POSTFIX_ETC/filter_10026_catchall ]; then
+						echo "# use check_access directive to filter all incoming mail
+/^/  FILTER dksign:[127.0.0.1]:10026" > $PATH_POSTFIX_ETC/filter_10026_catchall
+					fi
 				else
 					echo "# Amavis has been detected as installed, so this has been activated by default
 # if this is not what you want, comment it and restart postfix
@@ -2069,6 +2075,9 @@ smtpd_tls_auth_only = no
 				echo "smtpd_recipient_restrictions = permit_mynetworks,
                                $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
+				if [ "$FOUND_DKFILTER" -eq 1 ]; then
+					echo "\t\t\tcheck_sender_access regexp:$PATH_POSTFIX_ETC/filter_10026_catchall" >> $TMP_FILE
+				fi
                                permit_sasl_authenticated=""
                                sasl_main_dot_cf_rules=""
 			fi
@@ -2084,8 +2093,11 @@ smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
 			reject_unknown_sender_domain,
 			reject_unknown_recipient_domain,
 			$dnsbl_list
-			reject_unauth_destination,
-			permit${sasl_main_dot_cf_rules}" >> $TMP_FILE
+			reject_unauth_destination," >> $TMP_FILE
+			if [ -n "$FOUND_DKFILTER" -eq 1 ]; then
+				echo "\t\t\tcheck_sender_access regexp:$PATH_POSTFIX_ETC/filter_10026_catchall" >> $TMP_FILE
+			fi
+			echo "permit${sasl_main_dot_cf_rules}" >> $TMP_FILE
 
 			if [ -x /usr/bin/tumgreyspf ] ; then
 				echo "smtpd_sender_restrictions = permit_mynetworks,
