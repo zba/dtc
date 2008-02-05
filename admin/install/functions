@@ -2094,10 +2094,10 @@ smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
 			reject_unknown_recipient_domain,
 			$dnsbl_list
 			reject_unauth_destination," >> $TMP_FILE
-			if [ -n "$FOUND_DKFILTER" -eq 1 ]; then
+			if [ "$FOUND_DKFILTER" -eq 1 ] ; then
 				echo "\t\t\tcheck_sender_access regexp:$PATH_POSTFIX_ETC/filter_10026_catchall" >> $TMP_FILE
 			fi
-			echo "permit${sasl_main_dot_cf_rules}" >> $TMP_FILE
+			echo "	permit${sasl_main_dot_cf_rules}" >> $TMP_FILE
 
 			if [ -x /usr/bin/tumgreyspf ] ; then
 				echo "smtpd_sender_restrictions = permit_mynetworks,
