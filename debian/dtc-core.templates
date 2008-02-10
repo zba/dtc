@@ -127,7 +127,6 @@ _Description: Use "NATed" vhosts?
 
 Template: dtc/conf_nated_vhosts_ip
 Type: string
-Default: 192.168.0.2
 _Description: NATed LAN IP address:
  Please enter the IP address of the server for DTC to
  generate all vhosts that will be used by Apache.
