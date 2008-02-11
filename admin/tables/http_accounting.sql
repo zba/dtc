@@ -1,6 +1,3 @@
-#
-# Table structure for table `http_accounting`
-#
 CREATE TABLE IF NOT EXISTS http_accounting (
   id int(14) NOT NULL auto_increment,
   vhost varchar(50) NOT NULL default '',
@@ -16,5 +13,5 @@ CREATE TABLE IF NOT EXISTS http_accounting (
   year int(4) NOT NULL default '0',
   domain varchar(50) NOT NULL default '',
   PRIMARY KEY (id),
-  KEY month (month,year,vhost)
+  UNIQUE KEY `vhost` (`vhost`,`month`,`year`,`domain`)
 ) TYPE=MyISAM;
