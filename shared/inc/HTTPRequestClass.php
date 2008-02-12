@@ -14,7 +14,7 @@ class HTTPRequest
     var $_port;        // port
     
     // Timeout in seconds 
-		var $_timeout = 5;
+    var $_timeout = 5;
     
     // scan url
     function _scan_url()
@@ -55,8 +55,10 @@ class HTTPRequest
     // download URL to string Array
     function DownloadToStringArray()
     {
-    	$crlf = "\r\n";
-    	return explode($crlf, DownloadToString());
+    	$crlf = "/[\r\n]+/";
+	$fullresponse = $this->DownloadToString();
+    	$array = preg_split($crlf, $fullresponse);
+	return $array;
     }
     
     // download URL to string
@@ -65,6 +67,7 @@ class HTTPRequest
     	// store errors in case we need to handle them
         $errno;
         $errstr;
+	$response ='';
         
         $crlf = "\r\n";
         
@@ -75,7 +78,7 @@ class HTTPRequest
         
         
         // fetch from URL
-        $this->_fp = fsockopen(($this->_protocol == 'https' ? 'ssl://' : '') . $this->_host, $this->_port, $errno, $errstr, $_timeout);
+        $this->_fp = fsockopen(($this->_protocol == 'https' ? 'ssl://' : '') . $this->_host, $this->_port, $errno, $errstr, $this->_timeout);
         fwrite($this->_fp, $req);
         
         $a_vers = explode(".",phpversion());
@@ -89,12 +92,12 @@ class HTTPRequest
 				if ($use_stream)
 				{
 					stream_set_blocking($this->_fp, TRUE); 
-	        stream_set_timeout($this->_fp,$_timeout); 
+	        stream_set_timeout($this->_fp,$this->_timeout); 
 				} 
 				else 
 				{
 	        socket_set_blocking($this->_fp, TRUE); 
-	        socket_set_timeout($this->_fp,$_timeout); 
+	        socket_set_timeout($this->_fp,$this->_timeout); 
         }
         
         // get the socket status
@@ -105,7 +108,7 @@ class HTTPRequest
         } else {
         	$info = socket_get_status($this->_fp);
         }
-        
+       
         while(is_resource($this->_fp) && $this->_fp && !feof($this->_fp) && (!$info['timed_out']))
         {
             $response .= fread($this->_fp, 4096);
@@ -115,7 +118,7 @@ class HTTPRequest
             } else {
             	$info = socket_get_status($this->_fp);
             }
-            ob_flush(); 
+            @ob_flush(); 
             flush();
         }
         fclose($this->_fp);
