@@ -13,7 +13,7 @@ if [ -z "$MX_MAIL" ] ; then
 fi
 
 echoIfVerbose () {
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ; then
 		echo $1
 	fi
 }
@@ -95,16 +95,16 @@ findHtpasswdBinary () {
 	fi
 	# This might be needed for FreeBSD if /usr/local/bin is not in the path
 	if [ -z "$HTPASSWD" ] ; then
-		if [ -e "/usr/bin/htpasswd" ] ;then
+		if [ -e "/usr/bin/htpasswd" ] ; then
 			HTPASSWD="/usr/bin/htpasswd"
 		else
 			if [ -e "/usr/bin/htpasswd2" ] ; then
 				HTPASSWD="/usr/bin/htpasswd2"
 			else
-				if [ -e "/usr/local/bin/htpasswd" ] ;then
+				if [ -e "/usr/local/bin/htpasswd" ] ; then
 					HTPASSWD="/usr/local/bin/htpasswd"
 				else
-					if [ -e "/usr/local/bin/htpasswd2" ] ;then
+					if [ -e "/usr/local/bin/htpasswd2" ] ; then
 						HTPASSWD="/usr/local/bin/htpasswd2"
 					fi
 				fi
@@ -176,7 +176,7 @@ searchPATH_PHP_INI_CLI () {
 	else
 		if [ -f /etc/php5/cli/php.ini ] ; then
 			PATH_PHP_INI_CLI=/etc/php5/cli/php.ini
-		elif [ -f "$PATH_PHP_INI" ]; then
+		elif [ -f "$PATH_PHP_INI" ] ; then
 			PATH_PHP_INI_CLI=$PATH_PHP_INI
 		else
 			echo "Cannot find php.ini path!"
@@ -196,7 +196,7 @@ searchDebianVersion () {
 searchPATH_PHP_INI_APACHE () {
 	echoIfVerbose "-> Searching for php.ini for the apache $conf_apache_version module and php ${PHPMAJOR}"
 	# This one is for slackware
-	if [ -f "$PATH_PHP_INI" ]; then
+	if [ -f "$PATH_PHP_INI" ] ; then
 		PATH_PHP_INI_APACHE=$PATH_PHP_INI
 	# This one is for FreeBSD
 	elif [ -f /usr/local/etc/php.ini ] ; then
@@ -247,16 +247,16 @@ searchPATH_SUDO () {
 	echoIfVerbose "-> Searching for sudo path"
 	# if we have a sudo binary around, then use it to create our chroot shell
 	# check for some path defaults... 
-	if [ -z "$PATH_SUDO" ]; then
+	if [ -z "$PATH_SUDO" ] ; then
 		PATH_SUDO=`which sudo`
 		fi
-	if [ -z "$PATH_CHROOT" ]; then
+	if [ -z "$PATH_CHROOT" ] ; then
 		PATH_CHROOT=`which chrootuid`
 	fi
-	if [ -z "$PATH_SHELLS_CONF" ]; then
+	if [ -z "$PATH_SHELLS_CONF" ] ; then
 		PATH_SHELLS_CONF=/etc/shells
 	fi
-	if [ -z "$PATH_SUDOERS_CONF" ]; then
+	if [ -z "$PATH_SUDOERS_CONF" ] ; then
 		PATH_SUDOERS_CONF=/etc/sudoers
 	fi
 }
@@ -333,7 +333,7 @@ modifyResolvConf () {
 chownSquirrelAndFastcgiToDtcUserAndGroup () {
 	echoIfVerbose "===> Chgrp /var/lib/squirrelmail/data/ /var/spool/squirrelmail/attach and /var/lib/apache2/fastcgi"
 	# Search for Squirrelmail folder to change it's GID so it works directly
-	if [ -e /var/lib/squirrelmail/data/ ]; then
+	if [ -e /var/lib/squirrelmail/data/ ] ; then
 		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/squirrelmail/data/
 	fi
 
@@ -379,7 +379,7 @@ searchAndReplace () {
 
 searchMYSQL_DB_SOCKET_PATH () {
 	echoIfVerbose "-> Searching for mysql.sock"
-	if [ -z ""$MYSQL_DB_SOCKET_PATH ] ;then
+	if [ -z ""$MYSQL_DB_SOCKET_PATH ] ; then
 		if [ "$UNIX_TYPE" = "freebsd" -o "$UNIX_TYPE" = "osx" ] ; then
 			MYSQL_DB_SOCKET_PATH="/tmp/mysql.sock"
 		else
@@ -417,52 +417,52 @@ createHostingDirAndFiles () {
 	createSubdomainDirAndFiles www
 	createSubdomainDirAndFiles 404
 	ADMIN_HOME=$DOMAIN_FOLDER"/subdomains/"$dtc_admin_subdomain"/html"
-	if ! [ -e "$ADMIN_HOME"/index.php -o -e "$ADMIN_HOME"/index.html ] ;then
+	if ! [ -e "$ADMIN_HOME"/index.php -o -e "$ADMIN_HOME"/index.html ] ; then
 		cp $PATH_DTC_SHARED"/shared/default_admin_site.php" $ADMIN_HOME"/index.php"
-		if ! [ -f $ADMIN_HOME"/dtclogo.png" ] ;then
+		if ! [ -f $ADMIN_HOME"/dtclogo.png" ] ; then
 			cp $PATH_DTC_SHARED"/shared/template/dtclogo.png" $ADMIN_HOME
 		fi
-		if ! [ -f $ADMIN_HOME"/favicon.ico" ] ;then
+		if ! [ -f $ADMIN_HOME"/favicon.ico" ] ; then
 			cp $PATH_DTC_SHARED"/shared/template/favicon.ico" $ADMIN_HOME
 		fi
 	fi
 	# Copy a template site to the new main site
 	MAINSITE_HOME=$DOMAIN_FOLDER"/subdomains/www/html"
-	if ! [ -e $MAINSITE_HOME/index.* ] ;then
+	if ! [ -e $MAINSITE_HOME/index.* ] ; then
 		cp $PATH_DTC_SHARED"/shared/template/index.php" $MAINSITE_HOME
-		if ! [ -e $MAINSITE_HOME"/dtc_logo.gif" ] ;then
+		if ! [ -e $MAINSITE_HOME"/dtc_logo.gif" ] ; then
 			cp $PATH_DTC_SHARED"/shared/template/dtc_logo.gif" $MAINSITE_HOME
 		fi
 	fi
 
 	# symlink directories so that users can login with ssh to the admin account directory
-	if [ ! -e $conf_hosting_path/$conf_adm_login/bin ]; then ln -s $main_domain_name/subdomains/www/bin  $conf_hosting_path/$conf_adm_login/bin; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/var ]; then ln -s $main_domain_name/subdomains/www/var  $conf_hosting_path/$conf_adm_login/var; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/lib ]; then ln -s $main_domain_name/subdomains/www/lib  $conf_hosting_path/$conf_adm_login/lib; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/sbin ]; then ln -s $main_domain_name/subdomains/www/sbin  $conf_hosting_path/$conf_adm_login/sbin; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/tmp ]; then ln -s $main_domain_name/subdomains/www/tmp  $conf_hosting_path/$conf_adm_login/tmp; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/usr ]; then ln -s $main_domain_name/subdomains/www/usr  $conf_hosting_path/$conf_adm_login/usr; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/dev ]; then ln -s $main_domain_name/subdomains/www/dev  $conf_hosting_path/$conf_adm_login/dev; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/etc ]; then ln -s $main_domain_name/subdomains/www/etc  $conf_hosting_path/$conf_adm_login/etc; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/bin ] ; then ln -s $main_domain_name/subdomains/www/bin  $conf_hosting_path/$conf_adm_login/bin; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/var ] ; then ln -s $main_domain_name/subdomains/www/var  $conf_hosting_path/$conf_adm_login/var; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/lib ] ; then ln -s $main_domain_name/subdomains/www/lib  $conf_hosting_path/$conf_adm_login/lib; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/sbin ] ; then ln -s $main_domain_name/subdomains/www/sbin  $conf_hosting_path/$conf_adm_login/sbin; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/tmp ] ; then ln -s $main_domain_name/subdomains/www/tmp  $conf_hosting_path/$conf_adm_login/tmp; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/usr ] ; then ln -s $main_domain_name/subdomains/www/usr  $conf_hosting_path/$conf_adm_login/usr; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/dev ] ; then ln -s $main_domain_name/subdomains/www/dev  $conf_hosting_path/$conf_adm_login/dev; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/etc ] ; then ln -s $main_domain_name/subdomains/www/etc  $conf_hosting_path/$conf_adm_login/etc; fi
 
 	# also, so the user can login to the main domain names base directory
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/bin ]; then ln -s subdomains/www/bin  $conf_hosting_path/$conf_adm_login/$main_domain_name/bin; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/var ]; then ln -s subdomains/www/var  $conf_hosting_path/$conf_adm_login/$main_domain_name/var; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/lib ]; then ln -s subdomains/www/lib  $conf_hosting_path/$conf_adm_login/$main_domain_name/lib; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/sbin ]; then ln -s subdomains/www/sbin  $conf_hosting_path/$conf_adm_login/$main_domain_name/sbin; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp ]; then ln -s subdomains/www/tmp  $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/usr ]; then ln -s subdomains/www/usr  $conf_hosting_path/$conf_adm_login/$main_domain_name/usr; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/dev ]; then ln -s subdomains/www/dev  $conf_hosting_path/$conf_adm_login/$main_domain_name/dev; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/etc ]; then ln -s subdomains/www/etc  $conf_hosting_path/$conf_adm_login/$main_domain_name/etc; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/bin ] ; then ln -s subdomains/www/bin  $conf_hosting_path/$conf_adm_login/$main_domain_name/bin; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/var ] ; then ln -s subdomains/www/var  $conf_hosting_path/$conf_adm_login/$main_domain_name/var; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/lib ] ; then ln -s subdomains/www/lib  $conf_hosting_path/$conf_adm_login/$main_domain_name/lib; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/sbin ] ; then ln -s subdomains/www/sbin  $conf_hosting_path/$conf_adm_login/$main_domain_name/sbin; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp ] ; then ln -s subdomains/www/tmp  $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/usr ] ; then ln -s subdomains/www/usr  $conf_hosting_path/$conf_adm_login/$main_domain_name/usr; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/dev ] ; then ln -s subdomains/www/dev  $conf_hosting_path/$conf_adm_login/$main_domain_name/dev; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/etc ] ; then ln -s subdomains/www/etc  $conf_hosting_path/$conf_adm_login/$main_domain_name/etc; fi
 
 	if [ `uname -m` = "x86_64" ] ; then
-		if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64 ]; then ln -s $conf_hosting_path/$conf_adm_login/$main_domain_name/lib $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64; fi
+		if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64 ] ; then ln -s $conf_hosting_path/$conf_adm_login/$main_domain_name/lib $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64; fi
 	fi
 
 
 	# copy the 404 index.php file if none is found.
-	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/index.* ]; then
-		if [ -e $PATH_DTC_SHARED/shared/404_template/index.php ]; then
+	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/index.* ] ; then
+		if [ -e $PATH_DTC_SHARED/shared/404_template/index.php ] ; then
 			cp $PATH_DTC_SHARED/shared/404_template/index.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
 		fi
 	fi
@@ -473,8 +473,8 @@ createHostingDirAndFiles () {
 	fi
 
 	# copy the Error 404 document
-	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/www/html/404.* ]; then
-		if [ -e $PATH_DTC_SHARED/shared/404_template/404.php ]; then 
+	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/www/html/404.* ] ; then
+		if [ -e $PATH_DTC_SHARED/shared/404_template/404.php ] ; then 
 			cp $PATH_DTC_SHARED/shared/404_template/404.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/"
 		fi
 	fi
@@ -496,11 +496,11 @@ createHostingDirAndFiles () {
 	fi
 
 	# also copy it to the dtc404 directory
-	if ! [ -e $PATH_DTC_ETC/dtc404/404.php ]; then
+	if ! [ -e $PATH_DTC_ETC/dtc404/404.php ] ; then
 		mkdir -p $PATH_DTC_ETC/dtc404/
 		cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC"/dtc404/"
 	fi
-	if ! [ -e $PATH_DTC_ETC"/dtc404/logo.png" ]; then
+	if ! [ -e $PATH_DTC_ETC"/dtc404/logo.png" ] ; then
 		cp $PATH_DTC_SHARED/shared/404_template/logo.png $PATH_DTC_ETC"/dtc404/"
 	fi
 
@@ -522,8 +522,8 @@ createHostingDirAndFiles () {
 
 	# copy the template directory from shared to etc, so we can edit it without worry of being purged on each install
 	# only copy the directory, if it doesn't already exist in the etc path
-	if [ -e "$PATH_DTC_SHARED/shared/template" ]; then
-		if [ ! -e "$PATH_DTC_ETC/template" ]; then
+	if [ -e "$PATH_DTC_SHARED/shared/template" ] ; then
+		if [ ! -e "$PATH_DTC_ETC/template" ] ; then
 			cp -r $PATH_DTC_SHARED/shared/template $PATH_DTC_ETC
 		fi
 		chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_ETC/template
@@ -555,13 +555,13 @@ setDtcdbPassword () {
 #		gen_pass=${RANDOM}${RANDOM}
 	fi
 	PATH_DB_PWD_FILE=${PATH_DTC_ETC}/dtcdb_passwd
-	if ! [ -e ""${PATH_DB_PWD_FILE} ] ;then
+	if ! [ -e ""${PATH_DB_PWD_FILE} ] ; then
 		MYSQL_DTCDAEMONS_PASS=`echo ${gen_pass}`
 		echo ${MYSQL_DTCDAEMONS_PASS} >${PATH_DB_PWD_FILE}
 	else
 		MYSQL_DTCDAEMONS_PASS=`cat <${PATH_DB_PWD_FILE}`
 	fi
-	if [ -z "${MYSQL_DTCDAEMONS_PASS}" ] ;then
+	if [ -z "${MYSQL_DTCDAEMONS_PASS}" ] ; then
 		MYSQL_DTCDAEMONS_PASS=${gen_pass}
 		echo ${MYSQL_DTC_PASS} >${PATH_DB_PWD_FILE}
 	fi
@@ -622,14 +622,14 @@ setupDTCDatabase () {
 			;;
 	esac
 
-	if [ ""$MYSQL_VER -gt 40 ]; then
+	if [ ""$MYSQL_VER -gt 40 ] ; then
 		echoIfVerbose "Modifying character set to latin1..."
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="ALTER DATABASE \`$conf_mysql_db\` DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
 	fi
 
 	echoIfVerbose -n " apachelogs"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
-	if [ ""$MYSQL_VER -gt 40 ]; then
+	if [ ""$MYSQL_VER -gt 40 ] ; then
 			$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="ALTER DATABASE apachelogs DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
 	fi
 
@@ -646,12 +646,12 @@ setupDTCDatabase () {
 	echoIfVerbose "done."
 
 	# fix some tables for 4.1
-	if [ ""$MYSQL_VER -gt 40 ]; then
+	if [ ""$MYSQL_VER -gt 40 ] ; then
 			$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE fetchmail DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
 	fi
 
 	#echo $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db $conf_mysql_pass
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ; then
 		cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass"
 	else
 		cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass" >/dev/null
@@ -721,25 +721,25 @@ setupDTCDatabase () {
 	# Add dtc userspace info to mysql db if it's not there
 	TMP_FILE=`${MKTEMP} dtc_downer_grep.XXXXXXXX`  || exit 1
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -Dmysql --execute="DESCRIBE user dtcowner" >${TMP_FILE}
-	if ! grep dtcowner ${TMP_FILE} >/dev/null 2>&1 ;then
+	if ! grep dtcowner ${TMP_FILE} >/dev/null 2>&1 ; then
 		echoIfVerbose "Adding dtcowner column to mysql.user"
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE mysql.user ADD dtcowner varchar (255) DEFAULT 'none' NOT NULL"
 	fi
-	if [ -e ${TMP_FILE} ] ;then
+	if [ -e ${TMP_FILE} ] ; then
 		rm ${TMP_FILE}
 	fi
 
 	# Add a fullemail field to the pop table if not exists.
 	TMP_FILE=`${MKTEMP} dtc_pop_access_grep.XXXXXXXX`  || exit 1
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="DESCRIBE pop_access fullemail" >${TMP_FILE}
-	if ! grep fullemail ${TMP_FILE} >/dev/null 2>&1 ;then
+	if ! grep fullemail ${TMP_FILE} >/dev/null 2>&1 ; then
 			echoIfVerbose "Adding fullemail column to dtc.pop_access and updating id@mbox_host field."
 		if $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE pop_access ADD fullemail varchar (255) DEFAULT 'none' NOT NULL" ; then
 			echo -n ""
 		fi
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET fullemail = concat( \`id\`,  '@', \`mbox_host\` )"
 	fi
-	if [ -e ${TMP_FILE} ] ;then
+	if [ -e ${TMP_FILE} ] ; then
 		rm ${TMP_FILE}
 	fi
 
@@ -1006,21 +1006,21 @@ createApachePIDSymLink () {
 		PATH_APACHE_PID_FILE=${PATH_APACHE_PID_FILE%%\"}
 	
 		# in case the specified pid file doesn't exist, try and find it
-		if [ ! -e $PATH_APACHE_PID_FILE ]; then
-			if [ -e /etc/httpd/$PATH_APACHE_PID_FILE ]; then
+		if [ ! -e $PATH_APACHE_PID_FILE ] ; then
+			if [ -e /etc/httpd/$PATH_APACHE_PID_FILE ] ; then
 				PATH_APACHE_PID_FILE=/etc/httpd/$PATH_APACHE_PID_FILE	
 			fi
-			if [ -e /var/$PATH_APACHE_PID_FILE ]; then
+			if [ -e /var/$PATH_APACHE_PID_FILE ] ; then
 				PATH_APACHE_PID_FILE=/var/$PATH_APACHE_PID_FILE	
 			fi
-			if [ -e /var/run/$PATH_APACHE_PID_FILE ]; then
+			if [ -e /var/run/$PATH_APACHE_PID_FILE ] ; then
 				PATH_APACHE_PID_FILE=/var/run/$PATH_APACHE_PID_FILE	
 			fi
 		fi
 	fi
 	rm -f $PATH_DTC_ETC/apache.pid
 	ln -s $PATH_APACHE_PID_FILE $PATH_DTC_ETC/apache.pid
-	if [ ! -f $PATH_APACHE_PID_FILE ]; then
+	if [ ! -f $PATH_APACHE_PID_FILE ] ; then
 		if ps -e | grep apache$ > /dev/null; then
 			ps -e | grep apache$ | head -n 1 | cut -f1 -d' ' >> $PATH_APACHE_PID_FILE
 		fi
@@ -1063,14 +1063,14 @@ createApacheAdminProtectedDir () {
 		mkdir -p "$conf_hosting_path"
 	fi
 	# add the default password to .htpasswd if it doesn't exist already
-	if [ -e $conf_hosting_path/.htpasswd ]; then 
+	if [ -e $conf_hosting_path/.htpasswd ] ; then 
 		echoIfVerbose "OK, you have your "$conf_hosting_path"/.htpasswd setup already!"
 	else 
 		echoIfVerbose "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
 		$HTPASSWD -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" $conf_adm_pass
 	fi
 
-	if [ -e $PATH_DTC_ADMIN/.htaccess ]; then
+	if [ -e $PATH_DTC_ADMIN/.htaccess ] ; then
 		echoIfVerbose "OK, you have your "$PATH_DTC_ADMIN"/.htaccess setup already!"
 	else
 		echoIfVerbose "Creating "$PATH_DTC_ADMIN"/.htaccess file."
@@ -1116,7 +1116,7 @@ modifyHTTPD_CONF () {
 		fi
 
 		# if we have a modules.d folder, we need to check to see if there are any Listen or BindAddress there too
-		if [ -e /etc/apache*/modules.d/ ]; then
+		if [ -e /etc/apache*/modules.d/ ] ; then
 			# first Listen
 			for i in `grep -l ^Listen /etc/apache*/modules.d/*`; do
 				perl -i -p -e 's/^Listen/#Listen/' $i	
@@ -1130,14 +1130,14 @@ modifyHTTPD_CONF () {
 
 		# annoyingly redhat has a different Listen for the ssl.conf
 		# comment that out too
-		if [ "$UNIX_TYPE" = "redhat" ] ;then
+		if [ "$UNIX_TYPE" = "redhat" ] ; then
 			perl -i -p -e 's/^Listen/#Listen/' /etc/httpd/conf.d/ssl.conf
 		fi
 
 		echoIfVerbose "-> Adding DTC's directives to httpd.conf end"
 		echo "# Configured by DTC v0.12 : please do not touch this line !
 " >>$PATH_HTTPD_CONF
-		if [ "$UNIX_TYPE" = "freebsd" ] ;then
+		if [ "$UNIX_TYPE" = "freebsd" ] ; then
 			# Insert the missing things as per default in FreeBSD
 			echo "LoadModule log_sql_module libexec/apache22/mod_log_sql.so
 LoadModule log_sql_mysql_module libexec/apache22/mod_log_sql_mysql.so
@@ -1156,7 +1156,7 @@ Include $PATH_DTC_ETC/vhosts.conf
 		echo "Listen 127.0.0.1:80
 Listen 127.0.0.1:443" >>$PATH_HTTPD_CONF
 
-		if [ -z ${MYSQL_DTCDAEMONS_PASS} ]; then
+		if [ -z ${MYSQL_DTCDAEMONS_PASS} ] ; then
 			echo "LogSQLLoginInfo mysql://dtcdaemons@${conf_mysql_host}/apachelogs " >>$PATH_HTTPD_CONF
 		else
 			echo "LogSQLLoginInfo mysql://dtcdaemons:${MYSQL_DTCDAEMONS_PASS}@${conf_mysql_host}/apachelogs " >>$PATH_HTTPD_CONF
@@ -1227,15 +1227,15 @@ modifyETC_CONFD_APACHE2 () {
 generateOpenSSLApacheCert () {
 	echoIfVerbose "===> Generating SSL certificate"
 	# Generate the OpenSSL test certificate if it does not exists
-	if [ ""$conf_gen_ssl_cert = "true" ]; then
-		if [ ! -e $PATH_DTC_ETC"/ssl" ]; then
+	if [ ""$conf_gen_ssl_cert = "true" ] ; then
+		if [ ! -e $PATH_DTC_ETC"/ssl" ] ; then
 			mkdir -p $PATH_DTC_ETC"/ssl"
 		fi
 		cwd=`pwd`
 		cd $PATH_DTC_ETC"/ssl"
-		if [ ! -e "./"new.cert.csr ]; then
-			if [ ! -e "./"new.cert.cert ]; then
-				if [ ! -e "./"new.cert.key ]; then
+		if [ ! -e "./"new.cert.csr ] ; then
+			if [ ! -e "./"new.cert.cert ] ; then
+				if [ ! -e "./"new.cert.key ] ; then
 					CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
 					echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
 					( echo $conf_cert_countrycode;
@@ -1293,23 +1293,23 @@ createCyrusAuthPhp () {
 
 modifyCyrusImapdConf () {
 
-	if [ ""$conf_use_cyrus = "true" ]; then
+	if [ ""$conf_use_cyrus = "true" ] ; then
 	    echoIfVerbose "===> Cyrus enabled"
 
-		if [ "$UNIX_TYPE" = "freebsd" ] ;then
+		if [ "$UNIX_TYPE" = "freebsd" ] ; then
 			cyrus_etc_path='/usr/local/etc'
 		else
 			cyrus_etc_path='/etc'
 		fi # [ ""$UNIX_TYPE = "freebsd" ]
 		# CL: OSX seems to use cyrusimap instead of cyrus
-		if [ "$UNIX_TYPE" = "osx" ] ;then
+		if [ "$UNIX_TYPE" = "osx" ] ; then
 			cyrus_admin='cyrusimap'
 		else
 			cyrus_admin='cyrus'
 		fi # [ ""$UNIX_TYPE = "freebsd" ]
 
         # CL: Please, if you do changes here, think about the linx part also, thanks :)
-		if [ "$UNIX_TYPE" = "freebsd" -o "$UNIX_TYPE" = "osx" ] ;then
+		if [ "$UNIX_TYPE" = "freebsd" -o "$UNIX_TYPE" = "osx" ] ; then
 			echo "configdirectory: /var/spool/imap
 partition-default: /var/spool/mail
 admins: ${cyrus_admin}
@@ -1334,12 +1334,12 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 
 			# CL: ok this looks like bsd only, so I will not touch this.
 			# except for the mkimap, I will use that one for mac also in the else part.
-			if [ "$UNIX_TYPE" = "freebsd" -o "$UNIX_TYPE" = "osx" ] ;then
-				if [ ! -z ${MYSQL_DTCDAEMONS_PASS} ]; then
+			if [ "$UNIX_TYPE" = "freebsd" -o "$UNIX_TYPE" = "osx" ] ; then
+				if [ ! -z ${MYSQL_DTCDAEMONS_PASS} ] ; then
 					echo "sasl_sql_passwd: ${MYSQL_DTCDAEMONS_PASS}" >> $cyrus_etc_path/imapd.conf
 				fi #MYSQL_DTCDAEMONS_PASS
 
-				if [ "$UNIX_TYPE" = "freebsd" ] ;then
+				if [ "$UNIX_TYPE" = "freebsd" ] ; then
 					/usr/local/cyrus/bin/mkimap
 				else
 					su cyrusimap /usr/bin/cyrus/tools/mkimap
@@ -1347,9 +1347,9 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 					launchctl stop edu.cmu.andrew.cyrus.master
 				fi
 			fi
-			if [ "$UNIX_TYPE" = "freebsd" ] ;then
+			if [ "$UNIX_TYPE" = "freebsd" ] ; then
 			        named=`grep  cyrus_imapd_enable /etc/rc.conf`
-				if [ "$named" = "" ] || [ "$nonamed" != "" ]; then
+				if [ "$named" = "" ] || [ "$nonamed" != "" ] ; then
 					echo "===> FreeBSD: Backing up /etc/rc.conf and inserting cyrus_imapd_enable=YES"
 					cp /etc/rc.conf /etc/rc.conf.old
 					echo "/etc/rc.conf /etc/rc.conf.old saved"
@@ -1361,7 +1361,7 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 			                echo "===> /etc/rc.conf is already configured: leaving..."
 				fi #[ "$named" = "" ] || [ "$nonamed" != "" ]
 
-				if [ ! -d /var/imap/socket ]; then
+				if [ ! -d /var/imap/socket ] ; then
 					mkdir -p /var/imap/socket
 				fi #[ ! -d /var/imap/socket ]
 
@@ -1382,16 +1382,16 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 		# deffined in $PATH_SASLLIB
 
 		# check if libsql is installed for sasl, else use PAM 
-		if [ -f $PATH_SASLLIB/libsql.so ] ;then
+		if [ -f $PATH_SASLLIB/libsql.so ] ; then
 			echoIfVerbose "===> found $PATH_SASLLIB/libsql.so using sasl with sql"
 			PATH_AUTH_SMTP=$PATH_SASLLIB/smtpd.conf
 			PATH_AUTH_SASLPASSWD=$PATH_SASLLIB/saslpasswd.conf
 			echoIfVerbose "===> Adding configuration inside $PATH_SASLLIB"
-			if [ -f $PATH_AUTH_SMTP ]; then
-				if ! [ -f $PATH_AUTH_SMTP.DTC.backup ]; then
+			if [ -f $PATH_AUTH_SMTP ] ; then
+				if ! [ -f $PATH_AUTH_SMTP.DTC.backup ] ; then
 					cp -f $PATH_AUTH_SMTP $PATH_AUTH_SMTP.DTC.backup
-				fi #[ -f $PATH_AUTH_SMTP.DTC.backup ];
-			fi #[ -f $PATH_AUTH_SMTP ];
+				fi #[ -f $PATH_AUTH_SMTP.DTC.backup ] ;
+			fi #[ -f $PATH_AUTH_SMTP ] ;
 			echo "# Configured by DTC v0.25 : Please don't touch this line !
 pwcheck_method: auxprop
 auxprop_plugin: sql
@@ -1408,11 +1408,11 @@ sql_update: UPDATE pop_access SET passwd = '%v' WHERE fullemail = '%u@%r'
 sql_verbose: yes
 # End of DTC configuration v0.25 : please don't touch this line !" >${PATH_AUTH_SMTP}
 
-			if [ -f $PATH_AUTH_SASLPASSWD ]; then
-				if ! [ -f $PATH_AUTH_SASLPASSWD.DTC.backup ]; then
+			if [ -f $PATH_AUTH_SASLPASSWD ] ; then
+				if ! [ -f $PATH_AUTH_SASLPASSWD.DTC.backup ] ; then
 					cp -f $PATH_AUTH_SASLPASSWD $PATH_AUTH_SASLPASSWD.DTC.backup
 				fi #[ -f $PATH_AUTH_SASLPASSWD.DTC.backup ]
-			fi #[ -f $PATH_AUTH_SASLPASSWD ];
+			fi #[ -f $PATH_AUTH_SASLPASSWD ] ;
  
 			cp -f $PATH_AUTH_SMTP $PATH_AUTH_SASLPASSWD
 			if [ "$UNIX_TYPE" = "debian" ] ; then
@@ -1425,41 +1425,41 @@ sql_verbose: yes
 			PATH_PAMD_IMAP=/etc/pam.d/imap
 			PATH_PAMD_SIEVE=/etc/pam.d/sieve
 			PATH_PAMD_POP=/etc/pam.d/pop
-			if [ -e /etc/pam.d/ ]; then
+			if [ -e /etc/pam.d/ ] ; then
 				echoIfVerbose "===> Adding configuration inside "$PATH_PAMD_SMTP
-				if [ -f $PATH_PAMD_SMTP ]; then
-					if ! [ -f $PATH_PAMD_SMTP.DTC.backup ]; then
+				if [ -f $PATH_PAMD_SMTP ] ; then
+					if ! [ -f $PATH_PAMD_SMTP.DTC.backup ] ; then
 						cp -f $PATH_PAMD_SMTP $PATH_PAMD_SMTP.DTC.backup
 					fi #[ -f $PATH_PAMD_SMTP.DTC.backup ]
 				fi # [ -f $PATH_PAMD_SMTP ]
 				touch $PATH_PAMD_SMTP
 				echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
-				if [ ""$conf_use_cyrus = "true" ]; then
+				if [ ""$conf_use_cyrus = "true" ] ; then
 					echo "account sufficient pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host="${conf_mysql_host}" db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1
 
 auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host="${conf_mysql_host}" db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1" >$PATH_PAMD_SMTP
 	
-					if [ -f $PATH_PAMD_IMAP ]; then
-						if ! [ -f $PATH_PAMD_IMAP.DTC.backup ]; then
+					if [ -f $PATH_PAMD_IMAP ] ; then
+						if ! [ -f $PATH_PAMD_IMAP.DTC.backup ] ; then
 							cp -f $PATH_PAMD_IMAP $PATH_PAMD_IMAP.DTC.backup
 						fi #[ -f $PATH_PAMD_IMAP.DTC.backup ]
 					fi #[ -f $PATH_PAMD_IMAP ]
 					cp -f $PATH_PAMD_SMTP $PATH_PAMD_IMAP
 
-					if [ -f $PATH_PAMD_SIEVE ]; then
-						if ! [ -f $PATH_PAMD_SIEVE.DTC.backup ]; then
+					if [ -f $PATH_PAMD_SIEVE ] ; then
+						if ! [ -f $PATH_PAMD_SIEVE.DTC.backup ] ; then
 							cp -f $PATH_PAMD_SIEVE $PATH_PAMD_SIEVE.DTC.backup
 						fi # [ -f $PATH_PAMD_SIEVE.DTC.backup ]
 					fi #[ -f $PATH_PAMD_SIEVE ]
 					cp -f $PATH_PAMD_SMTP $PATH_PAMD_SIEVE
 	
-					if [ -f $PATH_PAMD_POP ]; then
-						if ! [ -f $PATH_PAMD_POP.DTC.backup ]; then
+					if [ -f $PATH_PAMD_POP ] ; then
+						if ! [ -f $PATH_PAMD_POP.DTC.backup ] ; then
 							cp -f $PATH_PAMD_POP $PATH_PAMD_POP.DTC.backup
-						fi #[ -f $PATH_PAMD_POP.DTC.backup ];
-					fi #[ -f $PATH_PAMD_POP ];
+						fi #[ -f $PATH_PAMD_POP.DTC.backup ] ;
+					fi #[ -f $PATH_PAMD_POP ] ;
 					cp -f $PATH_PAMD_SMTP $PATH_PAMD_POP
-				fi #if [ ""$conf_cyrus_enable = "true" ];
+				fi #if [ ""$conf_cyrus_enable = "true" ] ;
 			fi #if [ -e /etc/pam.d/ ]
 		fi
 	fi
@@ -1478,43 +1478,43 @@ modifyNamedConf () {
 	echoIfVerbose "===> Adding inclusion to named.conf"
 	# need to detect named chroot for gentoo
 	NAMED_CHROOT=
-	if [ -e /etc/conf.d/named ]; then
+	if [ -e /etc/conf.d/named ] ; then
 		NAMED_CHROOT=`. /etc/conf.d/named; echo -n $CHROOT`
 		echoIfVerbose "named is configured for chroot at $NAMED_CHROOT"
 	fi
 	# check to see if NAMED_CHROOT is / 
 	# if so, then we need not do all this hooha below
-	if [ ""$NAMED_CHROOT = "/" ]; then
+	if [ ""$NAMED_CHROOT = "/" ] ; then
 		NAMED_CHROOT=
 	fi
 
-	if [ -n ""$NAMED_CHROOT ]; then
-		if [ -e ""$NAMED_CHROOT ]; then
+	if [ -n ""$NAMED_CHROOT ] ; then
+		if [ -e ""$NAMED_CHROOT ] ; then
 			mkdir -p $NAMED_CHROOT/$PATH_DTC_ETC/zones
 			mkdir -p $NAMED_CHROOT/$PATH_DTC_ETC/slave_zones
 			touch $NAMED_CHROOT/$PATH_DTC_ETC/named.conf
-			if [ -e $PATH_DTC_ETC/named.conf ]; then
+			if [ -e $PATH_DTC_ETC/named.conf ] ; then
 				if [ ! -L $PATH_DTC_ETC/named.conf -a ! -e $PATH_DTC_ETC/named.conf.moved ] ; then 
 					mv $PATH_DTC_ETC/named.conf $PATH_DTC_ETC/named.conf.moved
 				fi
 			fi
-			if [ -e $PATH_DTC_ETC/zones ]; then 
-				if [ ! -L $PATH_DTC_ETC/zones -a ! -e $PATH_DTC_ETC/zones.moved ]; then
+			if [ -e $PATH_DTC_ETC/zones ] ; then 
+				if [ ! -L $PATH_DTC_ETC/zones -a ! -e $PATH_DTC_ETC/zones.moved ] ; then
 					mv $PATH_DTC_ETC/zones $PATH_DTC_ETC/zones.moved
 				fi
 			fi
-			if [ -e $PATH_DTC_ETC/slave_zones ]; then 
-				if [ ! -L $PATH_DTC_ETC/slave_zones -a ! -e $PATH_DTC_ETC/slave_zones.moved ]; then
+			if [ -e $PATH_DTC_ETC/slave_zones ] ; then 
+				if [ ! -L $PATH_DTC_ETC/slave_zones -a ! -e $PATH_DTC_ETC/slave_zones.moved ] ; then
 					mv $PATH_DTC_ETC/slave_zones $PATH_DTC_ETC/slave_zones.moved
 				fi
 			fi
-			if [ ! -L $PATH_DTC_ETC/named.conf ]; then
+			if [ ! -L $PATH_DTC_ETC/named.conf ] ; then
 				ln -s $NAMED_CHROOT/$PATH_DTC_ETC/named.conf $PATH_DTC_ETC/named.conf
 			fi
-			if [ ! -L $PATH_DTC_ETC/zones ]; then
+			if [ ! -L $PATH_DTC_ETC/zones ] ; then
 				ln -s $NAMED_CHROOT/$PATH_DTC_ETC/zones $PATH_DTC_ETC/zones
 			fi
-			if [ ! -L $PATH_DTC_ETC/slave_zones ]; then
+			if [ ! -L $PATH_DTC_ETC/slave_zones ] ; then
 				ln -s $NAMED_CHROOT/$PATH_DTC_ETC/slave_zones $PATH_DTC_ETC/slave_zones
 			fi
 		fi
@@ -1533,7 +1533,7 @@ modifyNamedConf () {
 		echo "include \"$PATH_DTC_ETC/named.conf\";" >> $TMP_FILE
 		touch $PATH_DTC_ETC/named.conf
 		cat < $TMP_FILE >>$PATH_NAMED_CONF
-		if [ -e $TMP_FILE ]; then
+		if [ -e $TMP_FILE ] ; then
 			rm -f $TMP_FILE
 		fi
 	fi
@@ -1541,7 +1541,7 @@ modifyNamedConf () {
 
 linkQmailFilesToGenerated () {
 	# only try and do qmail stuff if we have qmail installed! (check the control directory)
-	if [ -e "$PATH_QMAIL_CTRL" ] ;then
+	if [ -e "$PATH_QMAIL_CTRL" ] ; then
 		#
 		# Install the qmail links in the /etc/qmail
 		#
@@ -1565,13 +1565,13 @@ linkQmailFilesToGenerated () {
 
 		if ! [ -e /var/qmail/users/assign.DTC.backup ]
 		then
-			if [ -e /var/qmail/users/assign ]; then
+			if [ -e /var/qmail/users/assign ] ; then
 				cp -f /var/qmail/users/assign /var/qmail/users/assign.DTC.backup
 			fi
 		fi
 		rm -f /var/qmail/users/assign
 		touch $PATH_DTC_ETC/assign
-		if ! [ -e /var/qmail/users ]; then
+		if ! [ -e /var/qmail/users ] ; then
 			mkdir -p /var/qmail/users
 		fi
 		ln -s $PATH_DTC_ETC/assign /var/qmail/users/assign
@@ -1597,35 +1597,35 @@ setupAmavisConf () {
 
 	# make sure the amavisd configuration has 'amavis' user and group
 
-	if [ -n ""$PATH_AMAVISD_CONF ]; then
+	if [ -n ""$PATH_AMAVISD_CONF ] ; then
 		PATH_AMAVISD_ETC=`dirname $PATH_AMAVISD_CONF`
 	fi
 	AMAVISD_CONFD=0
 	# CLAMD_CONF is the file we modify that has the clamd.ctl
 	AMAVIS_CLAMD_CONF=$PATH_AMAVISD_CONF
 	# if there is no amavisd conf, but there is a conf.d, create a 99-dtc file
-	if [ ! -f "$PATH_AMAVISD_CONF" -a -e $PATH_AMAVISD_ETC/conf.d ]; then
+	if [ ! -f "$PATH_AMAVISD_CONF" -a -e $PATH_AMAVISD_ETC/conf.d ] ; then
 		touch $PATH_AMAVISD_ETC/conf.d/99-dtc
 		PATH_AMAVISD_CONF=$PATH_AMAVISD_ETC/conf.d/99-dtc
 		AMAVISD_CONFD=1
 		AMAVIS_CLAMD_CONF=`grep -l clamd.ctl $PATH_AMAVISD_ETC/conf.d/*`	
 	fi
 
-	if [ -f "$PATH_AMAVISD_CONF" ]; then
+	if [ -f "$PATH_AMAVISD_CONF" ] ; then
 		echoIfVerbose "===> Checking user and group configuration for amavisd..."
 
 	        # make sure our users exist for amavis
 	        # turn back on error handling, these users probably exist already
 	        $GROUP_ADD_CMD amavis > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ]; then
+	        if [ $? -ne 0 ] ; then
 			echoIfVerbose "-> Group amavis already exists..."
 	        fi
 	        $USER_ADD_CMD -g amavis amavis > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ]; then
+	        if [ $? -ne 0 ] ; then
 			echoIfVerbose "-> User amavis already exists..."
 	        fi
 	        $PASSWD_CMD -l amavis > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ]; then
+	        if [ $? -ne 0 ] ; then
 			echoIfVerbose "Change password failed for amavis user"
 	        fi
 
@@ -1666,7 +1666,7 @@ setupAmavisConf () {
 
 			# if we have a list of postfix relay domains, we may as well check them to virii etc...
 			# If you enable this, it will tag ***SPAM*** twice... not very good looking :)
-	 		# if [ -e "$PATH_DTC_ETC/postfix_relay_domains" ]; then
+	 		# if [ -e "$PATH_DTC_ETC/postfix_relay_domains" ] ; then
 	 		#	echo "my %tmp_relay_domains;" >> $TMP_FILE
 			#	echo "read_hash(\\%tmp_relay_domains, '$PATH_DTC_ETC/postfix_relay_domains');" >> $TMP_FILE
 			#	echo "# now merge the two hashes" >> $TMP_FILE
@@ -1707,30 +1707,30 @@ if (defined @\$ref)
 }
 
 modifyClamavConf () {
-	if [ -f "$PATH_CLAMAV_CONF" ]; then
+	if [ -f "$PATH_CLAMAV_CONF" ] ; then
                 echoIfVerbose "===> Checking user and group configuration for clamav..."
 
 	        # make sure our users exist for amavis
 	        # turn back on error handling, these users probably exist already
 	        $GROUP_ADD_CMD clamav > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ]; then
+	        if [ $? -ne 0 ] ; then
 			echoIfVerbose "-> Group clamav already exists..."
 	        fi
 	        $USER_ADD_CMD -g clamav clamav > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ]; then
+	        if [ $? -ne 0 ] ; then
 			echoIfVerbose "-> User clamav already exists..."
 	        fi
 	        $PASSWD_CMD -l clamav > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ]; then
+	        if [ $? -ne 0 ] ; then
 			echoIfVerbose "-> Change password failed for clamav user"
 	        fi
 		# now add amavisd to the clamav group and vice versa
 		$USER_MOD_CMD -G clamav,amavis clamav > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ]; then
+	        if [ $? -ne 0 ] ; then
 			echoIfVerbose "-> Change group failed for clamav user"
 		fi
 		$USER_MOD_CMD -G amavis,clamav amavis > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ]; then
+	        if [ $? -ne 0 ] ; then
 			echoIfVerbose "-> Change group failed for amavis user"
 		fi
 		
@@ -1766,7 +1766,7 @@ modifyClamavConf () {
 	        fi
 	        # Finaly restart the daemon
 	        if [ -x "/etc/init.d/clamav-daemon" ] ; then
-	        	if [ -x /usr/sbin/invoke-rc.d ]; then
+	        	if [ -x /usr/sbin/invoke-rc.d ] ; then
 	        		/usr/sbin/invoke-rc.d clamav-daemon restart
 	        	else
 	        		if [ -x "/etc/init.d/clamav-daemon" ] ; then
@@ -1790,7 +1790,7 @@ modifyCyrusPath () {
 			searchAndReplace $PATH_CYRUS_CONF unixhierarchysep:\ no unixhierarchysep:\ yes
 
 			# replace auxprop sith saslauthd only if we are using sasl instead of PAM
-			if [ ! -f $PATH_SASLLIB/libsql.so ] ;then
+			if [ ! -f $PATH_SASLLIB/libsql.so ] ; then
 				searchAndReplace $PATH_CYRUS_CONF sasl_pwcheck_method:\ auxprop sasl_pwcheck_method:\ saslauthd
 				echoIfVerbose "configuring Cyrus for pam_mysql"
 			else
@@ -1864,7 +1864,7 @@ OPTIONS=\"-r -c\"" >> $TMP_FILE
 			fi
 		fi
 	else
-		if [ ""$conf_use_cyrus = "true" ]; then
+		if [ ""$conf_use_cyrus = "true" ] ; then
 			echo "Cyrus install selected but no saslauthd startup file";
 			echo "If you plan to use pam_mysql then do this workaround: make saslauth start with -r -c -a pam";
 			echo "And add /var/run/saslauthd /var/spool/postfix/var/run/saslauthd/        none    bind to yout /etc/fstab"
@@ -1925,7 +1925,7 @@ modifyPostfixConfig () {
 			# for mailname to be mx.$main_domain_name
 			echo ""${MX_MAIL}".$main_domain_name" > /etc/mailname
 			echo "# DTC virtual configuration" >> $TMP_FILE
-			if [ ""$conf_use_cyrus != "true" ]; then
+			if [ ""$conf_use_cyrus != "true" ] ; then
 				echo "myhostname = "${MX_MAIL}".$main_domain_name" >> $TMP_FILE
 			fi
 			echo "# disable the following functionality by default (otherwise can't match subdomains correctly)
@@ -1944,7 +1944,7 @@ mailbox_size_limit = 0
 # we trigger the other action (scanning via a check_access directive)
 content_filter=dksign:[127.0.0.1]:10028
 " >> $TMP_FILE
-					if [ ! -x $PATH_POSTFIX_ETC/filter_10026_catchall ]; then
+					if [ ! -x $PATH_POSTFIX_ETC/filter_10026_catchall ] ; then
 						echo "# use check_access directive to filter all incoming mail
 /^/  FILTER dksign:[127.0.0.1]:10026" > $PATH_POSTFIX_ETC/filter_10026_catchall
 					fi
@@ -1965,7 +1965,7 @@ content_filter=smtp-amavis:[127.0.0.1]:10024
 echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 " >> $TMP_FILE
 
-			if [ ""$conf_use_cyrus = "true" ]; then
+			if [ ""$conf_use_cyrus = "true" ] ; then
 				if [ "$UNIX_TYPE" = "debian" ] ; then
 					echo "virtual_transport = cyrus
 mailbox_transport = cyrus
@@ -1989,7 +1989,7 @@ virtual_uid_maps = hash:$PATH_DTC_ETC/postfix_virtual_uid_mapping" >> $TMP_FILE
 alias_maps = hash:/etc/aliases, hash:$PATH_DTC_ETC/postfix_aliases
 relay_domains = $PATH_DTC_ETC/postfix_relay_domains
 relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FILE
-			if [ -n $conf_dnsbl_list ]; then
+			if [ -n $conf_dnsbl_list ] ; then
 				IFS=, 
 				for i in $conf_dnsbl_list; do 
 					dnsbl_list="$dnsbl_list reject_rbl_client $i,"
@@ -1997,30 +1997,30 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 				unset IFS
 			fi
 		
-			if [ "$PATH_SASL_PASSWD2" = "" ]; then
+			if [ "$PATH_SASL_PASSWD2" = "" ] ; then
 				echo -n ""
-			elif [ -f $PATH_SASL_PASSWD2 ]; then
+			elif [ -f $PATH_SASL_PASSWD2 ] ; then
 				echoIfVerbose "Found sasl2passwd at $PATH_SASL_PASSWD2"
 
 				mkdir -p $PATH_POSTFIX_ETC/sasl
 			
-				if [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf ]; then
-					if ! [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup ]; then 
+				if [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf ] ; then
+					if ! [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup ] ; then 
 						cp $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf.dtcbackup
 					fi
 				fi
 
 				# prepare some sasldb2 files, so that our script latter can fix them
 
-				if [ -e /var/spool/postfix/etc ]; then
+				if [ -e /var/spool/postfix/etc ] ; then
 					touch /var/spool/postfix/etc/sasldb2
-					if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
+					if [ ! -e $PATH_DTC_ETC/sasldb2 ] ; then
 						cp /var/spool/postfix/etc/sasldb2 $PATH_DTC_ETC/sasldb2
 					fi
 					chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/postfix/etc/sasldb2
 					chmod 664 /var/spool/postfix/etc/sasldb2
 				else
-					if [ -d /etc/sasl2 ]; then
+					if [ -d /etc/sasl2 ] ; then
 						touch /etc/sasl2/sasldb2
 						chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /etc/sasl2/sasldb2
 						chmod 664 /etc/sasl2/sasldb2
@@ -2029,8 +2029,8 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 						chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /etc/sasldb2
 						chmod 664 /etc/sasldb2
 					fi
-					if [ ! -e $PATH_DTC_ETC/sasldb2 ]; then
-						if [ -d /etc/sasl2 ]; then
+					if [ ! -e $PATH_DTC_ETC/sasldb2 ] ; then
+						if [ -d /etc/sasl2 ] ; then
 							cp /etc/sasl2/sasldb2 $PATH_DTC_ETC/sasldb2
 						else
 							cp /etc/sasldb2 $PATH_DTC_ETC/sasldb2
@@ -2042,7 +2042,7 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 				echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
 				# CL: for cyrus use saslauthd instead of auxprop!
 				# and add postfix to the sasl group
-				if [ ""$conf_use_cyrus = "true" ]; then
+				if [ ""$conf_use_cyrus = "true" ] ; then
 					echo "pwcheck_method: saslauthd
 mech_list: login plain" >> $SASLTMP_FILE
 					if [ "$UNIX_TYPE" = "debian" ] ; then
@@ -2075,7 +2075,7 @@ smtpd_tls_auth_only = no
 				echo "smtpd_recipient_restrictions = permit_mynetworks,
                                $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
-				if [ "$FOUND_DKFILTER" -eq 1 ]; then
+				if [ "$FOUND_DKFILTER" -eq 1 ] ; then
 					echo "			check_sender_access regexp:$PATH_POSTFIX_ETC/filter_10026_catchall" >> $TMP_FILE
 				fi
                                permit_sasl_authenticated=""
@@ -2117,7 +2117,7 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 			fi
 
 			# this adds supports for "config" snippets to append to main.cf
-			if [ -f $PATH_DTC_ETC/postfix_config_snippets ]; then
+			if [ -f $PATH_DTC_ETC/postfix_config_snippets ] ; then
 				cat $PATH_DTC_ETC/postfix_config_snippets >> $TMP_FILE
 			else
 				echo "# /var/lib/dtc/etc/postfix_config_snippets
@@ -2164,7 +2164,7 @@ tumgreyspf unix  -      n       n       -       -       spawn
 " >> $TMP_FILE2
 				fi
 				# if we have maildrop, we should use it!
-				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
+				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ] ; then
 					echo "maildrop  unix  -       n       n       -       -       pipe
     flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -w 90 -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
 
@@ -2205,7 +2205,7 @@ smtp-amavis unix -      -       -       -       2  smtp
 " >> $TMP_FILE2
 
 				# apply DKFILTER config if we find dkfilter.in
-				if [ "$FOUND_DKFILTER" -eq 1 ]; then
+				if [ "$FOUND_DKFILTER" -eq 1 ] ; then
 					echo "# DomainKeys filter configuration
 #
 # modify the default submission service to specify a content filter
@@ -2245,7 +2245,7 @@ pickup fifo n - n 60 1 pickup
 " >> $TMP_FILE2
 					# We also need to modify the /etc/init.d/dkfilter startup script so that it correctly pulls in the DOMAIN list and modifies port
 					DKFILTER_INIT=/etc/init.d/dkfilter
-					if [ -e $DKFILTER_INIT ]; then 
+					if [ -e $DKFILTER_INIT ] ; then 
 						if grep "Configured by DTC" $DKFILTER_INIT >/dev/null; then
 							echoIfVerbose "$DKFILTER_INIT already modifed by DTC installer"
 						else
@@ -2261,7 +2261,7 @@ pickup fifo n - n 60 1 pickup
 			fi
 			
 			# if we have maildrop, we should use it!
-			if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ]; then
+			if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ] ; then
 				echo "virtual_transport = maildrop" >> $TMP_FILE
 				echo "## Set to 1 because Maildrop only delivers one message at a time.
 maildrop_destination_recipient_limit = 1" >> $TMP_FILE
@@ -2278,9 +2278,9 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 
 	# over-write the configuration for SASL
 	# if sasl with sql is used then just link to the file being created during cyrus installation
-	if [ -e $SASLTMP_FILE ]; then
-		if [ -f $PATH_SASLLIB/libsql.so ]; then
-			if [ -f $PATH_POSTFIX_ETC/sasl/smtpd.conf ]; then
+	if [ -e $SASLTMP_FILE ] ; then
+		if [ -f $PATH_SASLLIB/libsql.so ] ; then
+			if [ -f $PATH_POSTFIX_ETC/sasl/smtpd.conf ] ; then
 				mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
 			fi
 			ln -s $PATH_SASLLIB/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf 
@@ -2306,10 +2306,10 @@ prepareMlmmjSpool () {
 		chmod -R g+w /etc/mlmmj/lists
 	fi
 	# create mlmmj spool directory if it doesn't exist yet
-	if [ ! -e /var/spool/mlmmj/ ]; then
+	if [ ! -e /var/spool/mlmmj/ ] ; then
 		mkdir -p /var/spool/mlmmj
 	fi
-	if [ -e /var/spool/mlmmj/ ] ;then
+	if [ -e /var/spool/mlmmj/ ] ; then
 		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/mlmmj/
 	fi
 }
@@ -2377,46 +2377,46 @@ MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, g
 MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(newpass_crypt)' WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1)  AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
 " > $PATH_COURIER_AUTHD_CONF_PATH/authmysqlrc
 			if [ -x "/etc/init.d/courier-authdaemon" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ]; then
+				if [ -x /usr/sbin/invoke-rc.d ] ; then
 					/usr/sbin/invoke-rc.d courier-authdaemon restart
 				else
-					if [ -x /etc/init.d/courier-authdaemon ]; then
+					if [ -x /etc/init.d/courier-authdaemon ] ; then
 						/etc/init.d/courier-authdaemon restart
 					fi
 				fi
 			fi
 			if [ -x "/etc/init.d/courier-authlib" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ]; then
+				if [ -x /usr/sbin/invoke-rc.d ] ; then
 					/usr/sbin/invoke-rc.d courier-authlib restart
 				else
-					if [ -x /etc/init.d/courier-authlib ]; then
+					if [ -x /etc/init.d/courier-authlib ] ; then
 						/etc/init.d/courier-authlib restart
 					fi
 				fi
 			fi
 			if [ -x "/etc/init.d/courier-imap" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ]; then
+				if [ -x /usr/sbin/invoke-rc.d ] ; then
 					/usr/sbin/invoke-rc.d courier-imap restart
 				else
 					/etc/init.d/courier-imap restart
 				fi
 			fi
 			if [ -x "/etc/init.d/courier-imap-ssl" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ]; then
+				if [ -x /usr/sbin/invoke-rc.d ] ; then
 					/usr/sbin/invoke-rc.d courier-imap-ssl restart
 				else
 					/etc/init.d/courier-imap-ssl restart
 				fi
 			fi
 			if [ -x "/etc/init.d/courier-pop" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ]; then
+				if [ -x /usr/sbin/invoke-rc.d ] ; then
 					/usr/sbin/invoke-rc.d courier-pop restart
 				else
 					/etc/init.d/courier-pop restart
 				fi
 			fi
 			if [ -x "/etc/init.d/courier-pop-ssl" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ]; then
+				if [ -x /usr/sbin/invoke-rc.d ] ; then
 					/usr/sbin/invoke-rc.d courier-pop-ssl restart
 				else
 					/etc/init.d/courier-pop-ssl restart
@@ -2424,13 +2424,13 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 			fi
 
 			# Restart courier for slackware
-			if [ -x "/etc/rc.d/rc.courier" ]; then
+			if [ -x "/etc/rc.d/rc.courier" ] ; then
 				/etc/rc.d/rc.courier restart
 			fi
 			
 
 			# try to disable courierd using chkconfig (for redhat based distro)
-			if [ -x /sbin/chkconfig ]; then
+			if [ -x /sbin/chkconfig ] ; then
 				/sbin/chkconfig courier off
 			fi
 		fi	
@@ -2438,11 +2438,11 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 
 	# need to remove the paths for courier in /etc/profile.d/
 	# since the MTA really breaks postfix paths and handling
-	if [ -e /etc/profile.d/courier.sh ]; then
+	if [ -e /etc/profile.d/courier.sh ] ; then
 		mv /etc/profile.d/courier.sh /etc/profile.d/courier.sh.DTC.disabled
 	fi
 
-	if [ -e /etc/profile.d/courier.csh ]; then
+	if [ -e /etc/profile.d/courier.csh ] ; then
 		mv /etc/profile.d/courier.csh /etc/profile.d/courier.csh.DTC.disabled
 	fi
 }
@@ -2471,9 +2471,9 @@ modifyDovecotConfig () {
 		then
 			echoIfVerbose "dovecot.conf has been configure before: skipping include insertion !"
 		else
-			if [ ""$DOVECOT_POSTONE ]; then
+			if [ ""$DOVECOT_POSTONE ] ; then
 				echoIfVerbose "Version 1.x needs a new config file... replacing existing"
-				if ! [ -f $PATH_DOVECOT_CONF.DTC.backup ]; then
+				if ! [ -f $PATH_DOVECOT_CONF.DTC.backup ] ; then
 					cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
 				fi
 				echo "
@@ -2520,7 +2520,7 @@ plugin {
 				cat < $TMP_FILE >> $PATH_DOVECOT_CONF
 				rm  $TMP_FILE
 			fi
-			if [ ""$DOVECOT_POSTONE ]; then
+			if [ ""$DOVECOT_POSTONE ] ; then
 				# there is a new configuration for 1.0.x
 				echo "
 connect = host=$MYSQL_DB_SOCKET_PATH port=3306 dbname=$conf_mysql_db user=dtcdaemons password=${MYSQL_DTCDAEMONS_PASS} client_flags=0
@@ -2549,7 +2549,7 @@ user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host
 			if [ -x "/etc/init.d/dovecot" ] ; then
 	                        /etc/init.d/dovecot restart
 	                else
-	                        if [ -x /usr/sbin/invoke-rc.d ]; then
+	                        if [ -x /usr/sbin/invoke-rc.d ] ; then
 	                                /usr/sbin/invoke-rc.d dovecot restart
 	                        fi
 	                fi
@@ -2565,12 +2565,12 @@ modifyPureFtpdMySQLConfig () {
 	# FreeBSD has a file pure-ftpd.conf to configure pure-ftpd
 	# It has to be tested like that because Debian don't have $conf_ftp_type and it
 	# will never have: it just tests for the directory existance...
-	if [ "$UNIX_TYPE" = "freebsd" -a ""$conf_ftp_type = "pureftpd" ] ;then
-		if [ ! -f "/usr/local/etc/pure-ftpd.conf" ]; then
+	if [ "$UNIX_TYPE" = "freebsd" -a ""$conf_ftp_type = "pureftpd" ] ; then
+		if [ ! -f "/usr/local/etc/pure-ftpd.conf" ] ; then
 			sed -e "/^# MySQLConfigFile/d" /usr/local/etc/pure-ftpd.conf.sample > /usr/local/etc/pure-ftpd.conf
 			echo "MySQLConfigFile		/usr/local/etc/pureftpd-mysql.conf" >> /usr/local/etc/pure-ftpd.conf
 		fi
-		if [ ! -f "/usr/local/etc/pureftpd-mysql.conf" ]; then
+		if [ ! -f "/usr/local/etc/pureftpd-mysql.conf" ] ; then
 			echo "# Configured by DTC v0.10 : Please don't touch this line !
 
 MYSQLSocket /tmp/mysql.sock
@@ -2597,13 +2597,13 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 	# Debian uses a directory structure with many files (and maybe other distro)
 	else	
 		PURE_FTPD_ETC="/etc/pure-ftpd"
-		if [ -e $PURE_FTPD_ETC ] ;then
-			if [ -e /etc/pure-ftpd/conf/ ] ;then
+		if [ -e $PURE_FTPD_ETC ] ; then
+			if [ -e /etc/pure-ftpd/conf/ ] ; then
 				echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
 			fi
 
 			
-			if [ -e $PURE_FTPD_ETC/db/ ] ;then
+			if [ -e $PURE_FTPD_ETC/db/ ] ; then
 				echo "# Configured by DTC v0.10 : Please don't touch this line !
 
 MYSQLServer $conf_mysql_host
@@ -2618,10 +2618,10 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
 " >$PURE_FTPD_ETC/db/mysql.conf;
 				# Retart after we did the config
-				if [ -x /usr/sbin/invoke-rc.d ]; then
+				if [ -x /usr/sbin/invoke-rc.d ] ; then
 					/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
 				else
-					if [ -x /etc/init.d/pure-ftpd-mysql ] ;then
+					if [ -x /etc/init.d/pure-ftpd-mysql ] ; then
 						/etc/init.d/pure-ftpd-mysql restart
 					fi
 				fi
@@ -2640,7 +2640,7 @@ MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
 " >$PURE_FTPD_ETC/pureftpd-mysql-dtc.conf;
-				if [ -x /etc/rc.d/rc.pure-ftpd ] ;then
+				if [ -x /etc/rc.d/rc.pure-ftpd ] ; then
 					/etc/rc.d/rc.pure-ftpd restart
 				fi
 			fi
@@ -2653,7 +2653,7 @@ configProftpd () {
 	#
 	# Install proftpd.conf to access to the database
 	#
-	if [ -f $PATH_PROFTPD_CONF ]; then
+	if [ -f $PATH_PROFTPD_CONF ] ; then
 		echoIfVerbose "===> Adding directives to proftpd.conf"
 		if grep "Configured by DTC" $PATH_PROFTPD_CONF >/dev/null
 		then
@@ -2666,8 +2666,8 @@ configProftpd () {
 			fi
 
 			# Generate the OpenSSL test certificate if it does not exists
-			if [ ""$conf_gen_ssl_cert = "true" ]; then
-				if [ ! -e $PATH_DTC_ETC"/ssl" ]; then
+			if [ ""$conf_gen_ssl_cert = "true" ] ; then
+				if [ ! -e $PATH_DTC_ETC"/ssl" ] ; then
 					mkdir -p $PATH_DTC_ETC"/ssl"
 				fi
 				if [ ! -e $PATH_DTC_ETC"/ssl/proftpd" ] ; then
@@ -2675,9 +2675,9 @@ configProftpd () {
 				fi
 				cwd=`pwd`
 				cd $PATH_DTC_ETC"/ssl/proftpd"
-				if [ ! -e "./"new.cert.csr ]; then
-					if [ ! -e "./"new.cert.cert ]; then
-						if [ ! -e "./"new.cert.key ]; then
+				if [ ! -e "./"new.cert.csr ] ; then
+					if [ ! -e "./"new.cert.cert ] ; then
+						if [ ! -e "./"new.cert.key ] ; then
 							CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
 							echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
 							( echo $conf_cert_countrycode;
@@ -2714,7 +2714,7 @@ configProftpd () {
 			echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >> $TMP_FILE
 			if [ -e $PATH_DTC_ETC"/ssl/proftpd/new.cert.cert" ] ; then
 				if [ -e $PATH_DTC_ETC"/ssl/proftpd/new.cert.key" ] ; then
-					if [ ""$conf_gen_ssl_cert = "true" ]; then
+					if [ ""$conf_gen_ssl_cert = "true" ] ; then
 						echo "# This is the TLS auth support. Thanks to Erwan Gurcuff (gort) for the tip!
 <IfModule mod_tls.c>
 	TLSEngine on
@@ -2762,7 +2762,7 @@ SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ft
 			# This restarts proftpd if under debian like system
 			# work has to be done under other OS to restart the ftp daemon
 			if [ -x "/etc/init.d/proftpd" ] ; then
-				if [ -x "`which /usr/sbin/invoke-rc.d 2>/dev/null`" ]; then
+				if [ -x "`which /usr/sbin/invoke-rc.d 2>/dev/null`" ] ; then
 					invoke-rc.d proftpd restart
 				else
 					/etc/init.d/proftpd restart
@@ -2776,21 +2776,21 @@ configFreeRadius () {
 	#
 	# Install and configuration of FreeRadius 1.0
 	#
-	if [ -e ""$FREERADIUS_ETC ] ;then 
+	if [ -e ""$FREERADIUS_ETC ] ; then 
 		echoIfVerbose "DTC has found you are using Freeradius and it's now configuring it" 
 
 		FREERADIUS_CONF=$FREERADIUS_ETC/radiusd.conf  
 		FREERADIUS_SQL_DOT_CONF=$FREERADIUS_ETC/sql.conf 
 
 		# Backup of freeradius config files
-		if [ -e $FREERADIUS_CONF ] ;then
-			if ! [ -e $FREERADIUS_CONF".DTCbackup" ] ;then
+		if [ -e $FREERADIUS_CONF ] ; then
+			if ! [ -e $FREERADIUS_CONF".DTCbackup" ] ; then
 				cp $FREERADIUS_CONF $FREERADIUS_CONF".DTCbackup"
 			fi
 		fi
 
-		if [ -e $FREERADIUS_SQL_DOT_CONF ] ;then
-			if ! [ -e $FREERADIUS_SQL_DOT_CONF".DTCbackup" ] ;then
+		if [ -e $FREERADIUS_SQL_DOT_CONF ] ; then
+			if ! [ -e $FREERADIUS_SQL_DOT_CONF".DTCbackup" ] ; then
 				cp $FREERADIUS_SQL_DOT_CONF $FREERADIUS_SQL_DOT_CONF".DTCbackup"
 			fi
 		fi
@@ -2802,12 +2802,12 @@ configFreeRadius () {
 		TMP_FILE5=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
 		TMP_FILE6=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
 
-		if [ -e /var/log/radacct ] ;then
+		if [ -e /var/log/radacct ] ; then
 			chown -R ${CONF_DTC_SYSTEM_USERNAME} /var/log/radacct
 		fi
 
 		sed "s/#user = nobody/user = nobody/" $FREERADIUS_CONF >$TMP_FILE
-		if grep "group = nobody" $TMP_FILE >/dev/null ;then
+		if grep "group = nobody" $TMP_FILE >/dev/null ; then
 			sed "s/#group = nobody/group = nobody/" $TMP_FILE >$TMP_FILE2
 		else
 			sed "s/#group = nogroup/group = nogroup/" $TMP_FILE >$TMP_FILE2
@@ -2867,9 +2867,9 @@ modifyAWStatsConfig () {
 	#
 	# Generate default config file for awstats (if we have it installed)
 	#
-	if [ -f $PATH_AWSTATS_ETC/awstats.conf ]; then
+	if [ -f $PATH_AWSTATS_ETC/awstats.conf ] ; then
 		# now if we don't already have a dtc awstats config, create one based on the installed package config
-		if ! [ -f $PATH_AWSTATS_ETC/awstats.dtc.conf ]; then
+		if ! [ -f $PATH_AWSTATS_ETC/awstats.dtc.conf ] ; then
 			# we will use the environment variables while calling awstats...
 			# Parameter="__ENVNAME__"
 			cp $PATH_AWSTATS_ETC/awstats.conf $PATH_AWSTATS_ETC/awstats.dtc.conf
@@ -2888,7 +2888,7 @@ createRRDFiles () {
 	echoIfVerbose "===> Setting up rrdtools and graphs in \"$PATH_CGIBIN\""
 	if [ ! "$UNIX_TYPE" = "osx" ] ; then
 		echoIfVerbose "-> Creating mail queue rrd: $PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC"
-		if [ ! -e $PATH_DTC_ETC/mailqueues.rrd ]; then
+		if [ ! -e $PATH_DTC_ETC/mailqueues.rrd ] ; then
 			$PATH_DTC_ADMIN/queuegraph/createrrd.sh $PATH_DTC_ETC
 		fi
 		if [ -e $PATH_DTC_ETC/mailqueues.rrd ] ; then
@@ -2902,7 +2902,7 @@ createRRDFiles () {
 			#
 			# create the rrd file for netusegraph.cgi
 			#
-			if [ ! -e $PATH_DTC_ETC/netusage.rrd ]; then
+			if [ ! -e $PATH_DTC_ETC/netusage.rrd ] ; then
 				echoIfVerbose "-> Creating network statistics rrd file"
 				$PATH_DTC_ADMIN/netusegraph/createrrd.sh $PATH_DTC_ETC
 			fi
@@ -2915,7 +2915,7 @@ createRRDFiles () {
 		# create the rrd file for cpugraph.cgi
 		#
 		echoIfVerbose "-> Creating cpu load statistics rrd"
-		if [ ! -e $PATH_DTC_ETC/cpu.rrd ]; then
+		if [ ! -e $PATH_DTC_ETC/cpu.rrd ] ; then
 			$PATH_DTC_ADMIN/cpugraph/createrrd.sh $PATH_DTC_ETC
 		fi
 		if [ -e $PATH_DTC_ETC/cpu.rrd ] ; then
@@ -2926,7 +2926,7 @@ createRRDFiles () {
 		# Create the rrd file for memgraph.cgi
 		#
 		echoIfVerbose "-> Creating memory statistics rrd"
-		if [ ! -e $PATH_DTC_ETC/memusage.rrd ]; then
+		if [ ! -e $PATH_DTC_ETC/memusage.rrd ] ; then
 			$PATH_DTC_ADMIN/memgraph/createrrd.sh $PATH_DTC_ETC
 		fi
 		if [ -e $PATH_DTC_ETC/memusage.rrd ] ; then
@@ -2953,7 +2953,7 @@ modifySSHDConfig () {
 	# 
 	echoIfVerbose "===> Modifying your ssh.conf"
 	# default to /etc/ssh/sshd_config if it's not set by the installer
-	if [ -z ""$PATH_SSH_CONF ]; then
+	if [ -z ""$PATH_SSH_CONF ] ; then
 		PATH_SSH_CONF=/etc/ssh/sshd_config
 	fi
 
@@ -3002,7 +3002,7 @@ modifyNSSConfig () {
 	#
 	TMP_FILE=`${MKTEMP} DTC_install.nsswitch.conf.XXXXXX` || exit 1
 
-	if [ -z "$PATH_NSSWITCH_CONF" ]; then
+	if [ -z "$PATH_NSSWITCH_CONF" ] ; then
 		PATH_NSSWITCH_CONF=/etc/nsswitch.conf
 	fi
 
@@ -3033,11 +3033,11 @@ shadow:         compat mysql
 		# 
 		TMP_FILE=`${MKTEMP} DTC_install.nss-mysql.conf.XXXXXX` || exit 1
 
-		if [ -z "$PATH_NSS_CONF" ]; then
-			if [ "$UNIX_TYPE" = "freebsd" ] ;then
+		if [ -z "$PATH_NSS_CONF" ] ; then
+			if [ "$UNIX_TYPE" = "freebsd" ] ; then
 				PATH_NSS_CONF="${LOCALBASE}/etc/libnss-mysql.cfg"
 				NSSMYSQL_VERSION=libnss-mysql
-				if [ -f $PATH_NSS_CONF ]; then
+				if [ -f $PATH_NSS_CONF ] ; then
 					if ! grep "Configured by DTC" $PATH_NSS_CONF >/dev/null
 					then
 						mv ${PATH_NSS_CONF} ${PATH_NSS_CONF}.before.dtc
@@ -3046,7 +3046,7 @@ shadow:         compat mysql
 				else
 					touch ${PATH_NSS_CONF}
 				fi
-		        elif [ -e /etc/libnss-mysql.cfg ]; then
+		        elif [ -e /etc/libnss-mysql.cfg ] ; then
 				PATH_NSS_CONF=/etc/libnss-mysql.cfg	
 				NSSMYSQL_VERSION=libnss-mysql
 				# mv the existing config out of the way
@@ -3058,11 +3058,11 @@ shadow:         compat mysql
 			fi
 		fi
 
-		if [ -z "$PATH_NSS_ROOT_CONF" ]; then
-			if [ "$UNIX_TYPE" = "freebsd" ] ;then
+		if [ -z "$PATH_NSS_ROOT_CONF" ] ; then
+			if [ "$UNIX_TYPE" = "freebsd" ] ; then
 				PATH_NSS_ROOT_CONF="${LOCALBASE}/etc/libnss-mysql-root.cfg"
 				NSSMYSQL_VERSION=libnss-mysql
-				if [ -f $PATH_NSS_ROOT_CONF ]; then
+				if [ -f $PATH_NSS_ROOT_CONF ] ; then
 					if ! grep "Configured by DTC" $PATH_NSS_ROOT_CONF >/dev/null
 					then
 						mv ${PATH_NSS_ROOT_CONF} ${PATH_NSS_ROOT_CONF}.before.dtc
@@ -3071,7 +3071,7 @@ shadow:         compat mysql
 				else
 					touch ${PATH_NSS_ROOT_CONF}
 		                fi
-		        elif [ -e /etc/libnss-mysql-root.cfg ]; then
+		        elif [ -e /etc/libnss-mysql-root.cfg ] ; then
 				PATH_NSS_ROOT_CONF=/etc/libnss-mysql-root.cfg	
 				NSSMYSQL_VERSION=libnss-mysql
 				mv $PATH_NSS_ROOT_CONF $PATH_NSS_ROOT_CONF.before.dtc
@@ -3093,7 +3093,7 @@ shadow:         compat mysql
 			fi
 
 			echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
-			if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
+			if [ ""$NSSMYSQL_VERSION = "nss-mysql" ] ; then
 				echo "
 users.host = inet:${conf_mysql_host}:3306;
 users.database = ${conf_mysql_db};
@@ -3162,7 +3162,7 @@ password ${MYSQL_DTCDAEMONS_PASS}
 				cp -f "$PATH_NSS_ROOT_CONF" "$PATH_NSS_ROOT_CONF.DTC.backup"
 			fi
 			echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
-			if [ ""$NSSMYSQL_VERSION = "nss-mysql" ]; then
+			if [ ""$NSSMYSQL_VERSION = "nss-mysql" ] ; then
 			echo "
 shadow.host = inet:${conf_mysql_host}:3306;
 shadow.database = ${conf_mysql_db};
@@ -3207,10 +3207,10 @@ password ${MYSQL_DTCDAEMONS_PASS}
 # Install mysqmailconfig in the $PATH_MYSQMAIL_CONF
 #
 
-if [ -z ""$PATH_MYSQMAIL_CONF ]; then
+if [ -z ""$PATH_MYSQMAIL_CONF ] ; then
 	PATH_MYSQMAIL_CONF=/etc/mysqmail.conf
 fi
-if [ -z ""$SYSLOG_CONF ]; then
+if [ -z ""$SYSLOG_CONF ] ; then
 	SYSLOG_CONF=/etc/syslog.conf
 fi 
 
@@ -3218,13 +3218,13 @@ modifyMysqmail () {
 	#
 	# Generate default config file for awstats (if we have it installed)
 	#
-	if [ -f $PATH_MYSQMAIL_CONF ]; then
+	if [ -f $PATH_MYSQMAIL_CONF ] ; then
 		echoIfVerbose "===> Configuring mysqmail.conf"
 		if grep "Configured by DTC 0.22" $PATH_MYSQMAIL_CONF >/dev/null
 		then
 			echoIfVerbose "$PATH_MYSQMAIL_CONF has been configured before..."
 		else
-			if ! [ -f $PATH_MYSQMAIL_CONF.DTC.backup ]; then
+			if ! [ -f $PATH_MYSQMAIL_CONF.DTC.backup ] ; then
 				echoIfVerbose "===> Moving $PATH_MYSQMAIL_CONF to $PATH_MYSQMAIL_CONF.DTC.backup"
 				mv -f "$PATH_MYSQMAIL_CONF" "$PATH_MYSQMAIL_CONF.DTC.backup"
 			fi
@@ -3242,7 +3242,7 @@ modifyMysqmail () {
 			cat < $TMP_FILE >>$PATH_MYSQMAIL_CONF
 			rm $TMP_FILE	
 		fi
-		if [ -f $SYSLOG_CONF ]; then
+		if [ -f $SYSLOG_CONF ] ; then
 			if grep "Configured by DTC 0.22" $SYSLOG_CONF >/dev/null
 			then
 				echoIfVerbose "$SYSLOG_CONF has been configured before..."
@@ -3259,13 +3259,13 @@ modifyMysqmail () {
 		#	echo "ftp.*						|/var/log/pure-ftpd.fifo" >> $TMP_FILE
 				cat < $TMP_FILE >> $SYSLOG_CONF;
 				rm $TMP_FILE
-				if ! [ -f /var/log/mail.fifo ]; then
+				if ! [ -f /var/log/mail.fifo ] ; then
 					mkfifo /var/log/mail.fifo
 				fi
-				if ! [ -f /var/log/courier.fifo ]; then
+				if ! [ -f /var/log/courier.fifo ] ; then
 					mkfifo /var/log/courier.fifo
 				fi
-				if ! [ -f /var/log/pure-ftpd.fifo ]; then
+				if ! [ -f /var/log/pure-ftpd.fifo ] ; then
 					mkfifo /var/log/pure-ftpd.fifo
 				fi
 				echoIfVerbose "Do not forget restart syslog daemon and mysqmail-loggers"
@@ -3279,7 +3279,7 @@ modifyMysqmail () {
 #
 
 # just in case we haven't specified PATH_CRONTAB_CONF, default to /etc/crontab
-if [ -z ""$PATH_CRONTAB_CONF ]; then
+if [ -z ""$PATH_CRONTAB_CONF ] ; then
 	PATH_CRONTAB_CONF=/etc/crontab
 fi
 
@@ -3306,10 +3306,10 @@ nice -n+20 cpugraph/get_cpu_load.sh     $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 nice -n+20 netusegraph/get_net_usage.sh $PATH_DTC_ETC \"${conf_eth2monitor}\" 2>&1 >>/var/log/dtc.log
 nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 " >$PATH_DTC_ADMIN/rrdtool.sh
-		if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ]; then
+		if [ ""$conf_mta_type = "postfix" -o ""$conf_mta_type = "p" ] ; then
 			echo "nice -n+20 queuegraph/count_postfix.sh $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log" >>$PATH_DTC_ADMIN/rrdtool.sh
 		fi
-		if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ]; then
+		if [ ""$conf_mta_type = "qmail" -o ""$conf_mta_type = "q" ] ; then
 			echo "nice -n+20 queuegraph/count_qmail.sh $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log" >>$PATH_DTC_ADMIN/rrdtool.sh
 		fi
 		chmod 700 $PATH_DTC_ADMIN/rrdtool.sh
@@ -3349,7 +3349,7 @@ reportingInstall () {
 }
 
 startPhpCronScript () {
-	if [ ""$VERBOSE_INSTALL = "yes" ] ;then
+	if [ ""$VERBOSE_INSTALL = "yes" ] ; then
 		echo "***********************************************************"
 		echo "*** Please wait while DTC configures all the daemons... ***"
 		echo "***********************************************************"
@@ -3481,37 +3481,42 @@ createChrootTemplate () {
 	if [ -e /usr/bin/bash ] ; then
 		cp -pf /usr/bin/bash bin
 	fi
-	if [ -e /usr/bin/tar ]; then
+	if [ -e /usr/bin/tar ] ; then
 		cp -pf /usr/bin/tar bin
 	fi
-	if [ -e /bin/tar ]; then
+	if [ -e /bin/tar ] ; then
 		cp -pf /bin/tar bin
 	fi
-	if [ -e /usr/bin/false ]; then
+	if [ -e /usr/bin/false ] ; then
 		cp -pf /usr/bin/false bin
 	fi
-	if [ -e /bin/false ]; then
+	if [ -e /bin/false ] ; then
 		cp -pf /bin/false bin
 	fi
 
-	if [ -e /usr/bin/sftp ]; then
+	if [ -e /usr/bin/sftp ] ; then
 		cp -pf /usr/bin/sftp bin/
 	fi
 
 	# the sftp-server binary can be in /usr/lib or /lib, so check both places
-	if [ -e /usr/lib/sftp-server ]; then
+	if [ -e /usr/lib/sftp-server ] ; then
 		cp -pf /usr/lib/sftp-server usr/lib/
 	fi
 
-	if [ -e /usr/libexec/sftp-server ]; then
+	if [ -e /usr/libexec/sftp-server ] ; then
 		cp -pf /usr/libexec/sftp-server usr/libexec/
 	fi
 
-	if [ -e /lib/sftp-server ]; then
+	mkdir -p usr/lib/openssh
+	if [ -e /usr/lib/openssh/sftp ] ; then
+		cp -pf /usr/lib/openssh/sftp usr/lib/openssh
+	fi
+
+	if [ -e /lib/sftp-server ] ; then
 		cp -pf /lib/sftp-server lib/
 	fi
 
-	if [ -e /usr/bin/scp ]; then
+	if [ -e /usr/bin/scp ] ; then
 		cp -pf /usr/bin/scp bin/
 	fi
 
@@ -3618,7 +3623,7 @@ createChrootTemplate () {
 		else
 			FOUNDED_ARCH=`uname -m`
 			if [ ""$FOUNDED_ARCH = "x86_64" ] ; then
-				if [ ! -e lib64 ]; then
+				if [ ! -e lib64 ] ; then
 					ln -s lib lib64
 				fi
 			fi
@@ -3637,30 +3642,30 @@ createChrootTemplate () {
 			cp -pf  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 \
 			  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
 	
-			if [ -e /lib/libncurses.so.5 ]; then
+			if [ -e /lib/libncurses.so.5 ] ; then
 			  cp  /lib/libncurses.so.5 lib/
 			fi
 	
-			if [ -e /usr/lib/libncurses.so.5 ]; then
+			if [ -e /usr/lib/libncurses.so.5 ] ; then
 			  cp /usr/lib/libncurses.so.5 lib/
 			fi
 	
-			if [ -e /lib/libacl.so.1 ]; then
+			if [ -e /lib/libacl.so.1 ] ; then
 			  	cp /lib/libacl.so.1 lib/
 			fi
 	
-			if [ -e /lib/libattr.so.1 ]; then
+			if [ -e /lib/libattr.so.1 ] ; then
 				cp /lib/libattr.so.1 lib/
 			fi
 
-			if [ -e /lib/libcap.so.1 ]; then
+			if [ -e /lib/libcap.so.1 ] ; then
 				cp /lib/libcap.so.1 lib/
 			fi
 
-			if [ -e /lib/libbz2.so.1.0 ]; then
+			if [ -e /lib/libbz2.so.1.0 ] ; then
 				cp /lib/libbz2.so.1.0 lib/
 			fi 
-			if [ -e /usr/lib/libbz2.so.1.0 ]; then
+			if [ -e /usr/lib/libbz2.so.1.0 ] ; then
 				cp /usr/lib/libbz2.so.1.0 lib/
 			fi
 			if [ -e /usr/lib/libmagic.so.1 ]
@@ -3674,19 +3679,19 @@ createChrootTemplate () {
 			fi
 
 			# libs for sftp and scp
-			if [ -e /lib/libresolv.so.2 ]; then
+			if [ -e /lib/libresolv.so.2 ] ; then
 				cp -pf /lib/libresolv.so.2 lib/
 			fi
 
-			if [ -e /usr/lib/libcrypto.so.0.9.7 ]; then
+			if [ -e /usr/lib/libcrypto.so.0.9.7 ] ; then
 				cp -pf /usr/lib/libcrypto.so.0.9.7 lib/
 			fi
 
-			if [ -e /usr/lib/libcrypto.so.0.9.8 ]; then
+			if [ -e /usr/lib/libcrypto.so.0.9.8 ] ; then
 				cp -pf /usr/lib/libcrypto.so.0.9.8 lib/
 			fi
 
-			if [ -e /lib/libutil.so.1 ]; then
+			if [ -e /lib/libutil.so.1 ] ; then
 				cp -pf /lib/libutil.so.1 lib/
 			fi
 		fi
@@ -3703,39 +3708,39 @@ createChrootTemplate () {
 	fi
 
 	# No need anymore - fix up pam.d into jail
-	# if [ -e /etc/pam.d ]; then
+	# if [ -e /etc/pam.d ] ; then
 	# 	mkdir -p ./etc/pam.d/
 	# 	cp /etc/pam.d/* ./etc/pam.d/
 	# fi
 	# No need anymore - copy PAM-Modules to jail
-	#if [ -e /lib/security ]; then
+	#if [ -e /lib/security ] ; then
 		#cp -r /lib/security ./lib/
 	#fi
-	#if [ -e /etc/security ]; then 
+	#if [ -e /etc/security ] ; then 
 	#	cp -r /etc/security ./etc/
 	#fi
-	if [ -e /etc/login.defs ]; then
+	if [ -e /etc/login.defs ] ; then
 		cp /etc/login.defs ./etc/
 	fi
 
 	# now we have come this far, make sure our chroot includes enough libs for this environment
 	echoIfVerbose "-> Some ldd things"
 	LDD=`which ldd`
-	if [ -n "$LDD" -a ! "$UNIX_TYPE" = "freebsd" ]; then
+	if [ -n "$LDD" -a ! "$UNIX_TYPE" = "freebsd" ] ; then
 
 		for i in bin/* ; do
 		        for j in `$LDD $i | cut -f 1 -d' '`;
 		        do
-				if [ -e $j ]; then
+				if [ -e $j ] ; then
 					cp -pf $j lib/
 				fi
-		                if [ -e /lib/$j ]; then
+		                if [ -e /lib/$j ] ; then
 		                        cp -pf /lib/$j lib/
 		                fi
-		                if [ -e /usr/lib/$j ]; then
+		                if [ -e /usr/lib/$j ] ; then
 		                        cp -pf /usr/lib/$j lib/
 		                fi
-		                if [ -e /usr/local/lib/$j ]; then
+		                if [ -e /usr/local/lib/$j ] ; then
 		                        cp -pf /usr/local/lib/$j lib/
 		                fi
 		        done
@@ -3770,14 +3775,14 @@ createChrootTemplate () {
 	cp -pf /usr/bin/perl usr/bin/
 
 	echoIfVerbose "-> Managing ldconfig"
-	if [ "$UNIX_TYPE" = "freebsd" ] ;then
+	if [ "$UNIX_TYPE" = "freebsd" ] ; then
 	        # now create our ld.so cache
 	        cp /libexec/ld-elf.so.1 $conf_chroot_path/libexec
 	        chroot $conf_chroot_path ./sbin/ldconfig
 	        # just in case we have wiped our /etc/ld.so.cache (run locally)
 	        /sbin/ldconfig
 	else
-		if ! [ "$UNIX_TYPE" = "osx" ] ;then
+		if ! [ "$UNIX_TYPE" = "osx" ] ; then
 			# now create our ld.so cache
 			mkdir -p $conf_chroot_path/etc
 			touch $conf_chroot_path/etc/ld.so.cache
@@ -3811,12 +3816,10 @@ checkBsdKernel () {
 
 enableBsdBind () {
 	checkBsdKernel
-	if [ $kernel = "FreeBSD" ] || [ $kernel = "NetBSD" ];
-	then
+	if [ $kernel = "FreeBSD" ] || [ $kernel = "NetBSD" ] ; then
 		named=`grep  named_enable /etc/rc.conf`
 		nonamed=`cat /etc/rc.conf | grep named  | awk '{print $1}' | grep NO`
-		if [ "$named" = "" ] || [ "$nonamed" != "" ]; 
-		then
+		if [ "$named" = "" ] || [ "$nonamed" != "" ] ; then
 			echo "===> FreeBSD or NetBSD: Backing up /etc/rc.conf and inserting named_enable=YES"
 			cp /etc/rc.conf /etc/rc.conf.old
 			echo "/etc/rc.conf /etc/rc.conf.old saved"
@@ -3831,12 +3834,10 @@ enableBsdBind () {
 		fi
 	fi
 
-	if [ $kernel = "OpenBSD" ];
-	then
+	if [ $kernel = "OpenBSD" ] ; then
 		flag=`grep named_flags=\"-c /etc/rc.conf`	
 		echo "conf $flag"
-		if [ "$flag" = "" ];
-		then
+		if [ "$flag" = "" ] ; then
 			echo "===> OpenBSD: Backing up /etc/rc.conf and inserting named_flags=\"-c /etc/named.conf\""
 			echo "/etc/rc.conf no named"
 			cp /etc/rc.conf /etc/rc.conf.old
@@ -3845,11 +3846,9 @@ enableBsdBind () {
 			echo 'named_flags="-c /etc/named.conf"' >> /etc/rc.tmp
 			mv /etc/rc.tmp /etc/rc.conf
 			echo "named /etc/rc.conf injected"
-			if [ ! -f /etc/named.conf ];
-			then
+			if [ ! -f /etc/named.conf ] ; then
 				echo "no /etc/named.conf"
-				if ! [ ! -f /var/named/etc/named.conf ];
-				then
+				if ! [ ! -f /var/named/etc/named.conf ] ; then
 					cp /var/named/etc/named.conf /etc/named.conf 
 					echo "/var/named/etc/named.conf /etc/named.conf copied" 
 				else
@@ -3945,7 +3944,7 @@ uninstallHttpdConfig () {
 
 	if [ -e /etc/apache2/ports.conf ] ; then
 		echoIfVerbose "===> Uninstalling ports.conf"
-		if [ -e /etc/apache2/ports.conf.DTC_backup ] ;then
+		if [ -e /etc/apache2/ports.conf.DTC_backup ] ; then
 			cat </etc/apache2/ports.conf.DTC_backup /etc/apache2/ports.conf
 		fi
 	fi
@@ -4086,7 +4085,7 @@ uninstallPostfix () {
 	#
 	# uninstall /etc/init.d/dkfilter modifications
 	#
-	if [ -e /etc/init.d/dkfilter ]; then
+	if [ -e /etc/init.d/dkfilter ] ; then
 		echoIfVerbose "===> Uninstalling inclusion from /etc/init.d/dkfilter"
 		if grep "Configured by DTC" /etc/init.d/dkfilter >/dev/null 2>&1
 		then
@@ -4111,7 +4110,7 @@ uninstallAmavisConf () {
 
 	PATH_AMAVISD_ETC=`dirname $PATH_AMAVISD_CONF`
 	# if there is no amavisd conf, but there is a conf.d, delete a 99-dtc file
-	if [ ! -f "$PATH_AMAVISD_CONF" -a -e $PATH_AMAVISD_ETC/conf.d/99-dtc ]; then
+	if [ ! -f "$PATH_AMAVISD_CONF" -a -e $PATH_AMAVISD_ETC/conf.d/99-dtc ] ; then
 	        rm $PATH_AMAVISD_ETC/conf.d/99-dtc
 	fi
 
@@ -4159,16 +4158,16 @@ uninstallQmail () {
 uninstallSshVhostsConfig () {
 	# Uninstall sudoers and shell
 	# check for some path defaults...
-	if [ -z "$PATH_SUDO" ]; then
+	if [ -z "$PATH_SUDO" ] ; then
 	        PATH_SUDO=`which sudo`
 	fi
-	if [ -z "$PATH_CHROOT" ]; then
+	if [ -z "$PATH_CHROOT" ] ; then
 	        PATH_CHROOT=`which chroot`
 	fi
-	if [ -z "$PATH_SHELLS_CONF" ]; then
+	if [ -z "$PATH_SHELLS_CONF" ] ; then
 	        PATH_SHELLS_CONF=/etc/shells
 	fi
-	if [ -z "$PATH_SUDOERS_CONF" ]; then
+	if [ -z "$PATH_SUDOERS_CONF" ] ; then
 	        PATH_SUDOERS_CONF=/etc/sudoers
 	fi
 	echoIfVerbose "===> Uninstalling inclusion from $PATH_SUDOERS_CONF"
@@ -4201,7 +4200,7 @@ uninstallSshVhostsConfig () {
 	        rm $TMP_FILE
 	fi
 
-	if [ -z "$PATH_SSH_CONF" ]; then
+	if [ -z "$PATH_SSH_CONF" ] ; then
 	        PATH_SSH_CONF=/etc/ssh/sshd_config
 	fi
 	echoIfVerbose "===> Uninstalling inclusion from $PATH_SSH_CONF"
@@ -4221,7 +4220,7 @@ uninstallSshVhostsConfig () {
 
 	# stuff to remove from NSS mysql config / password
 
-	if [ -z "$PATH_NSS_CONF" ]; then
+	if [ -z "$PATH_NSS_CONF" ] ; then
 	        PATH_NSS_CONF=/etc/nss-mysql.conf
 	fi
 	echoIfVerbose "===> Uninstalling inclusion from $PATH_NSS_CONF"
@@ -4241,7 +4240,7 @@ uninstallSshVhostsConfig () {
 
 	# stuff to remove from NSS mysql root config / shadow
 
-	if [ -z "$PATH_NSS_ROOT_CONF" ]; then
+	if [ -z "$PATH_NSS_ROOT_CONF" ] ; then
 	        PATH_NSS_ROOT_CONF=/etc/nss-mysql-root.conf
 	fi
 	echoIfVerbose "===> Uninstalling inclusion from $PATH_NSS_ROOT_CONF"
@@ -4259,7 +4258,7 @@ uninstallSshVhostsConfig () {
 	        rm $TMP_FILE
 	fi
 
-	if [ -z "$PATH_NSSWITCH_CONF" ]; then
+	if [ -z "$PATH_NSSWITCH_CONF" ] ; then
 	        PATH_NSSWITCH_CONF=/etc/nsswitch.conf
 	fi
 
@@ -4282,7 +4281,7 @@ uninstallSshVhostsConfig () {
 
 uninstallETC_CONFD_APACHE2 () {
 	APACHE2_CONFD="/etc/conf.d/apache2"
-	if [ -e ${APACHE2_CONFD} ]; then
+	if [ -e ${APACHE2_CONFD} ] ; then
 		echoIfVerbose "===> Uninstalling inclusion from $APACHE2_CONFD"
 		if grep "Configured by DTC" $APACHE2_CONFD >/dev/null 2>&1
 		then

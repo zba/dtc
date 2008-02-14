@@ -27,6 +27,9 @@ DTCinstallPackage
 
 #DEBHELPER#
 
+echo "************************************************************************"
+echo "* Warning! DTC setup is not completed. The postinst didn't do it all.  *"
 echo "To finish the installation: execute /usr/share/dtc/admin/install/install"
+echo "************************************************************************"
 
 exit 0
