@@ -44,7 +44,7 @@ function get_remote_ns($a){
 		$nline = sizeof($lines);
 
 		if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
-			strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
+			strstr($lines[$nline-2],"// End of DTC generated slave zone file for backuping")){
 			for($j=0;$j<$nline;$j++){
 				$named_file .= $lines[$j]."\n";
 			}

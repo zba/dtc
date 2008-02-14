@@ -31,10 +31,10 @@ function get_remote_mail($a,$recipients){
 			$nline = sizeof($lines);
 			if(
 				(strstr($lines[0],"<dtc_backup_mx_domain_list>") &&
-				strstr($lines[$nline-1],"</dtc_backup_mx_domain_list>")
+				strstr($lines[$nline-2],"</dtc_backup_mx_domain_list>")
 				) ||
 				( $recipients == 1 && strstr($lines[0],"<dtc_backup_mx_recipient_list>") &&
-				strstr($lines[$nline-1],"</dtc_backup_mx_recipient_list>")
+				strstr($lines[$nline-2],"</dtc_backup_mx_recipient_list>")
 				)
 			){
 				for($j=1;$j<$nline-1;$j++){
