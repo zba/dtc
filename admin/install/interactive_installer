@@ -295,7 +295,7 @@ installerQuestions () {
 		conf_use_nated_vhosts="false"
 	fi
 	if [ ! ""$conf_use_nated_vhosts = "false" ] ; then
-		conf_use_nated_vhosts = "true"
+		conf_use_nated_vhosts="true"
 	fi
 	if [ ""$conf_use_nated_vhosts = "true" ] ; then
 		echo ""
