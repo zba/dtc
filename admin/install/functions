@@ -1898,7 +1898,7 @@ modifyPostfixConfig () {
 			echoIfVerbose "Postfix main.cf has been configured before, not adding virtual mailbox options"
 		else
 			if grep "recipient_delimiter = +" "$PATH_POSTFIX_ETC/main.cf" >/dev/null; then
-				if [ "$conf_recipient_delim" == "-" ] ; then
+				if [ "$conf_recipient_delim" = "-" ] ; then
 					echoIfVerbose "Changing recipient delimiter from + to -"
 					TMP_FILE=`${MKTEMP} DTC_install.main.cf.XXXXXX` || exit 1
 					sed "s/recipient_delimiter = +/recipient_delimiter = -/" "$PATH_POSTFIX_ETC/main.cf" >$TMP_FILE
@@ -1908,7 +1908,7 @@ modifyPostfixConfig () {
 			fi
 
 			if grep "recipient_delimiter = -" "$PATH_POSTFIX_ETC/main.cf" >/dev/null; then
-				if [ "$conf_recipient_delim" == "+" ] ; then
+				if [ "$conf_recipient_delim" = "+" ] ; then
 					echoIfVerbose "Changing recipient delimiter from - to +"
 					TMP_FILE=`${MKTEMP} DTC_install.main.cf.XXXXXX` || exit 1
 					sed "s/recipient_delimiter = -/recipient_delimiter = +/" "$PATH_POSTFIX_ETC/main.cf" >$TMP_FILE
