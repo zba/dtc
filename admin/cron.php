@@ -126,7 +126,6 @@ function commitTriggerToRemoteInternal($a, $recipients){
 			$httprequest = new HTTPRequest("$url");
 			$lines = $httprequest->DownloadToStringArray();
 		}
-		$nline = sizeof($lines);
 		if ($recipients == 1){
 			if(strstr($lines[0],"Successfuly recieved trigger for MX!") != false){
 				$flag = true;

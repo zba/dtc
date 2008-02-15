@@ -57,7 +57,7 @@ class HTTPRequest
     {
     	$crlf = "/[\r\n]+/";
 	$fullresponse = $this->DownloadToString();
-    	$array = preg_split($crlf, $fullresponse);
+    	$array = preg_split($crlf, $fullresponse, -1, PREG_SPLIT_NO_EMPTY);
 	return $array;
     }
     
