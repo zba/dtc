@@ -136,10 +136,10 @@ case "nl_NL":
 case "nl":
 	$gettext_lang = "nl_NL";
 	break;
-case "ru_RU.KOI8-R":
+case "ru_RU.UTF-8":
 case "ru_RU":
 case "ru":
-	$gettext_lang = "ru_RU.KOI8-R";
+	$gettext_lang = "ru_RU.UTF-8";
 	break;
 case "de_DE":
 case "de":
