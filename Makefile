@@ -329,7 +329,7 @@ shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin
 shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
 shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc
 
-LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU.KOI8-R de_DE zh_CN pl_PL se_NO pt_PT es_ES
+LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU.UTF-8 de_DE zh_CN pl_PL se_NO pt_PT es_ES
 
 i18n:
 	@echo "===> Managing internationalizations and localizations"
