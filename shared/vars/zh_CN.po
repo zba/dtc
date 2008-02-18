@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=GB2312\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: shared/inc/forms/vps.php:64 shared/inc/forms/vps.php:77
@@ -34,7 +34,7 @@ msgstr ""
 
 #: shared/inc/sql/lists.php:490
 msgid " does not look like a mailbox login..."
-msgstr "Õâ¿´ÆğÀ´²»ÏñÊÇÒ»¸öÓÊÏäµÄµÇÂ½Ãû..."
+msgstr "è¿™çœ‹èµ·æ¥ä¸åƒæ˜¯ä¸€ä¸ªé‚®ç®±çš„ç™»é™†å..."
 
 #: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
 #: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
@@ -48,7 +48,7 @@ msgstr ""
 #: shared/dtcrm/draw.php:72
 #, fuzzy
 msgid " of data transfer each month."
-msgstr "ÒÑ´«ÊäµÄ×ÜÊı¾İÁ¿£º"
+msgstr "å·²ä¼ è¾“çš„æ€»æ•°æ®é‡ï¼š"
 
 #: shared/dtcrm/draw.php:64
 msgid " remaining to be paid"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_handle.php:256
 msgid "+1.XXXXXXXXXX format"
-msgstr "+86.XXXXXX ¸ñÊ½"
+msgstr "+86.XXXXXX æ ¼å¼"
 
 #: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
 #: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
@@ -190,140 +190,140 @@ msgid ""
 "</font>"
 msgstr ""
 "<font face=\"Arial, Verdana\">\n"
-"<center><font size=\"+2\"><u><b> DTC ÔÚÏß°ïÖúÎÄµµ</b></u></font></"
+"<center><font size=\"+2\"><u><b> DTC åœ¨çº¿å¸®åŠ©æ–‡æ¡£</b></u></font></"
 "center><br><br>\n"
 "<div align=\"justify\">\n"
-"<font size=\"+1\"><u>1.Ê²Ã´ÊÇDTC</u></font><br><br>\n"
-"DTC ÊÇÒ»¸öÎÒÃÇÎªÄúÌØ±ğÖÆ×÷µÄÒ»¸ö¹¤¾ß¡£Í¨¹ıËü£¬Äú¿ÉÒÔÇáËÉ¹ÜÀíÄúµÄÕ¾µã£º\n"
-"Äú¿ÉÒÔ¹ÜÀíÄúµÄ¶ş¼¶ÓòÃû£¬µç×ÓÓÊ¼ş£¬ftpÕÊ»§µÈµÈ¡£<br><br>\n"
-"Õâ¸ö¹¤¾ßÒÑ¾­ÔÚ<a href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence)ÉÏ"
-"·¢²¼£¬ Õâ¾ÍÒâÎ¶Äú¿ÉÒÔ¿½±´ÕâÌ×³ÌĞòµÄÔ´ÎÄ¼ş£¬Äú¿ÉÒÔËæÒâĞŞ¸ÄºÍÊ¹ÓÃ£¬Ò²¿ÉÒÔ·¢²¼Äú"
-"ĞŞ¸Ä¹ıµÄ°æ±¾¡£\n"
-"   ÎÒÃÇ(GPLHost)ÖÂÁ¦ÓÚÎª¿ªÔ´Èí¼ş×ö³öÒ»µã¹±Ï×£¬Í¬Ê±ÎÒÃÇÒ²Ï£ÍûÎÒÃÇµÄ¾Ù¶¯ÄÜ¹»¹Ä"
-"Àø¸ü¶àµÄ¿ª·¢ÈËÔ±²ÎÓë½øÀ´¡£ÎÒÃÇ¾õµÃ£¬ÒòÎªÎÒÃÇ½ö½öÊ¹ÓÃ¿ªÔ´Èí¼şÀ´Ìá¹©ĞéÄâÖ÷»ú·ş"
-"Îñ£¬ÎÒÃÇÓ¦¸Ã°ÑÎÒÃÇµÄ¿ª·¢³É¹û¹²Ïí³öÀ´¡£<br><br>\n"
+"<font size=\"+1\"><u>1.ä»€ä¹ˆæ˜¯DTC</u></font><br><br>\n"
+"DTC æ˜¯ä¸€ä¸ªæˆ‘ä»¬ä¸ºæ‚¨ç‰¹åˆ«åˆ¶ä½œçš„ä¸€ä¸ªå·¥å…·ã€‚é€šè¿‡å®ƒï¼Œæ‚¨å¯ä»¥è½»æ¾ç®¡ç†æ‚¨çš„ç«™ç‚¹ï¼š\n"
+"æ‚¨å¯ä»¥ç®¡ç†æ‚¨çš„äºŒçº§åŸŸåï¼Œç”µå­é‚®ä»¶ï¼Œftpå¸æˆ·ç­‰ç­‰ã€‚<br><br>\n"
+"è¿™ä¸ªå·¥å…·å·²ç»åœ¨<a href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence)ä¸Š"
+"å‘å¸ƒï¼Œ è¿™å°±æ„å‘³æ‚¨å¯ä»¥æ‹·è´è¿™å¥—ç¨‹åºçš„æºæ–‡ä»¶ï¼Œæ‚¨å¯ä»¥éšæ„ä¿®æ”¹å’Œä½¿ç”¨ï¼Œä¹Ÿå¯ä»¥å‘å¸ƒæ‚¨"
+"ä¿®æ”¹è¿‡çš„ç‰ˆæœ¬ã€‚\n"
+"   æˆ‘ä»¬(GPLHost)è‡´åŠ›äºä¸ºå¼€æºè½¯ä»¶åšå‡ºä¸€ç‚¹è´¡çŒ®ï¼ŒåŒæ—¶æˆ‘ä»¬ä¹Ÿå¸Œæœ›æˆ‘ä»¬çš„ä¸¾åŠ¨èƒ½å¤Ÿé¼“"
+"åŠ±æ›´å¤šçš„å¼€å‘äººå‘˜å‚ä¸è¿›æ¥ã€‚æˆ‘ä»¬è§‰å¾—ï¼Œå› ä¸ºæˆ‘ä»¬ä»…ä»…ä½¿ç”¨å¼€æºè½¯ä»¶æ¥æä¾›è™šæ‹Ÿä¸»æœºæœ"
+"åŠ¡ï¼Œæˆ‘ä»¬åº”è¯¥æŠŠæˆ‘ä»¬çš„å¼€å‘æˆæœå…±äº«å‡ºæ¥ã€‚<br><br>\n"
 "\n"
 "<font size=\"+1\"><u>2. Emails</u></font><br>\n"
-"<u>2.1.ËüÄÜ×öÊ²Ã´£¿</u><br><br>\n"
-"Ê¹ÓÃÕâ¸ö¹¤¾ß£¬Äú¿ÉÒÔºÜ·½±ãµÃÌí¼Ó¡¢É¾³ı¡¢ĞŞ¸ÄÒ»¸öµç×ÓÓÊ¼şÕË»§¡£<br><br>\n"
+"<u>2.1.å®ƒèƒ½åšä»€ä¹ˆï¼Ÿ</u><br><br>\n"
+"ä½¿ç”¨è¿™ä¸ªå·¥å…·ï¼Œæ‚¨å¯ä»¥å¾ˆæ–¹ä¾¿å¾—æ·»åŠ ã€åˆ é™¤ã€ä¿®æ”¹ä¸€ä¸ªç”µå­é‚®ä»¶è´¦æˆ·ã€‚<br><br>\n"
 "\n"
-"<u>2.2.ÓÊ¼ş×ª·¢Óë±¾µØÍ¶µİ</u><br><br>\n"
-"Ã¿Ò»¸öµç×ÓĞÅÏä¶¼ÄÜ¹»×ª·¢µ½Ò»¸ö»òÕß¶à¸öµç×ÓĞÅÏä£¬Õâ¾ÍÒâÎ¶×Åµ±Ò»·âÓÊ¼şÍ¶µİµ½Õâ"
-"¸öµç×ÓĞÅÏäµÄÊ±ºò£¬Ëü»á±»×ª·¢µ½Ò»¸ö»òÕß¶à¸öµç×ÓĞÅÏä¡£\"Í¶µİµ½±¾µØĞÅÏä\"Ñ¡Ïî»á"
-"¸æËßÏµÍ³Õâ¸öĞÅÏäÊÕµ½µÄËùÓĞÓÊ¼şÊÇ·ñĞ´Èë±¾µØ´ÅÅÌ£¬ÕâÑùÄú²ÅÄÜÍ¨¹ıÓÊ¼ş¿Í»§¶ËµÇÂ½"
-"µ½ÎÒÃÇµÄÓÊ¼ş·şÎñÆ÷ÔÄ¶ÁÄúµÄÓÊ¼ş¡£Èç¹ûÄúµÄÓÊ¼ş±È½Ï¶àµÄ»°£¬²»ÒªÍüÁË¾­³£¼ì²éĞÂÓÊ"
-"¼ş£¬ÒòÎªµç×ÓĞÅÏäÊ¹ÓÃµÄ´æ´¢¿Õ¼äÊÇ°üº¬ÔÚÄúËùÓµÓĞµÄ×Ü¿Õ¼äÖĞµÄ¡£<br><br>\n"
+"<u>2.2.é‚®ä»¶è½¬å‘ä¸æœ¬åœ°æŠ•é€’</u><br><br>\n"
+"æ¯ä¸€ä¸ªç”µå­ä¿¡ç®±éƒ½èƒ½å¤Ÿè½¬å‘åˆ°ä¸€ä¸ªæˆ–è€…å¤šä¸ªç”µå­ä¿¡ç®±ï¼Œè¿™å°±æ„å‘³ç€å½“ä¸€å°é‚®ä»¶æŠ•é€’åˆ°è¿™"
+"ä¸ªç”µå­ä¿¡ç®±çš„æ—¶å€™ï¼Œå®ƒä¼šè¢«è½¬å‘åˆ°ä¸€ä¸ªæˆ–è€…å¤šä¸ªç”µå­ä¿¡ç®±ã€‚\"æŠ•é€’åˆ°æœ¬åœ°ä¿¡ç®±\"é€‰é¡¹ä¼š"
+"å‘Šè¯‰ç³»ç»Ÿè¿™ä¸ªä¿¡ç®±æ”¶åˆ°çš„æ‰€æœ‰é‚®ä»¶æ˜¯å¦å†™å…¥æœ¬åœ°ç£ç›˜ï¼Œè¿™æ ·æ‚¨æ‰èƒ½é€šè¿‡é‚®ä»¶å®¢æˆ·ç«¯ç™»é™†"
+"åˆ°æˆ‘ä»¬çš„é‚®ä»¶æœåŠ¡å™¨é˜…è¯»æ‚¨çš„é‚®ä»¶ã€‚å¦‚æœæ‚¨çš„é‚®ä»¶æ¯”è¾ƒå¤šçš„è¯ï¼Œä¸è¦å¿˜äº†ç»å¸¸æ£€æŸ¥æ–°é‚®"
+"ä»¶ï¼Œå› ä¸ºç”µå­ä¿¡ç®±ä½¿ç”¨çš„å­˜å‚¨ç©ºé—´æ˜¯åŒ…å«åœ¨æ‚¨æ‰€æ‹¥æœ‰çš„æ€»ç©ºé—´ä¸­çš„ã€‚<br><br>\n"
 "\n"
-"<font size=\"+1\"><u>3.×ÓÓòÃû</u></font><br>\n"
-"<u>3.1.ËüÄÜ×öÊ²Ã´£¿</u><br><br>\n"
-"ÔÚÕâ²¿·ÖÒ³ÃæÖĞ£¬Äú¿ÉÒÔÅäÖÃÄúµÄÓòÃûĞÅÏ¢£¬ÕâÑùÄú¾Í¿ÉÒÔÓÃÏÂÃæµÄÕâÖÖURLĞÎÊ½³äÊµÄú"
-"ÍøÕ¾µÄÄÚÈİ£º\n"
+"<font size=\"+1\"><u>3.å­åŸŸå</u></font><br>\n"
+"<u>3.1.å®ƒèƒ½åšä»€ä¹ˆï¼Ÿ</u><br><br>\n"
+"åœ¨è¿™éƒ¨åˆ†é¡µé¢ä¸­ï¼Œæ‚¨å¯ä»¥é…ç½®æ‚¨çš„åŸŸåä¿¡æ¯ï¼Œè¿™æ ·æ‚¨å°±å¯ä»¥ç”¨ä¸‹é¢çš„è¿™ç§URLå½¢å¼å……å®æ‚¨"
+"ç½‘ç«™çš„å†…å®¹ï¼š\n"
 "<pre>\n"
 "http://anything.u.want.mydomain.com\n"
 "</pre>\n"
 "\n"
-"<u>3.2.Ä¬ÈÏµÄ×ÓÓòÃûÊÇÊ²Ã´£¿</u><br><br>\n"
-"µ±ÓĞÈËÊ¹ÓÃ²»´ø×ÓÓòÃûµÄURL·ÃÎÊÄúµÄÍøÕ¾µÄÊ±ºò£¬Ò³Ãæ¾Í»áÌø×ªµ½ÄúËùÉèÖÃµÄÄ¬ÈÏµÄ×Ó"
-"ÓòÃû¡£»»¾ä»°Ëµ£¬Èç¹ûÄúÉèÖÃ£º\n"
+"<u>3.2.é»˜è®¤çš„å­åŸŸåæ˜¯ä»€ä¹ˆï¼Ÿ</u><br><br>\n"
+"å½“æœ‰äººä½¿ç”¨ä¸å¸¦å­åŸŸåçš„URLè®¿é—®æ‚¨çš„ç½‘ç«™çš„æ—¶å€™ï¼Œé¡µé¢å°±ä¼šè·³è½¬åˆ°æ‚¨æ‰€è®¾ç½®çš„é»˜è®¤çš„å­"
+"åŸŸåã€‚æ¢å¥è¯è¯´ï¼Œå¦‚æœæ‚¨è®¾ç½®ï¼š\n"
 "<pre>\n"
 "www\n"
 "</pre>\n"
-"×öÎªÄ¬ÈÏµÄ×ÓÓòÃû£¬µ±ÓĞÈËÊ¹ÓÃÏÂÃæµÄURL·ÃÎÊÄúµÄÍøÕ¾µÄÊ±ºò£º\n"
+"åšä¸ºé»˜è®¤çš„å­åŸŸåï¼Œå½“æœ‰äººä½¿ç”¨ä¸‹é¢çš„URLè®¿é—®æ‚¨çš„ç½‘ç«™çš„æ—¶å€™ï¼š\n"
 "<pre>\n"
 "http://mydomain.com\n"
 "</pre>\n"
-"Ò³Ãæ¾Í»áÌø×ªµ½£º\n"
+"é¡µé¢å°±ä¼šè·³è½¬åˆ°ï¼š\n"
 "<pre>\n"
 "http://www.mydomain.com\n"
 "</pre>\n"
-"ÊÂÊµÉÏ£¬Õâ¸öURLÊÇ±»±£ÁôÏÂÀ´µÄ£¬²¢Ã»ÓĞÔÚHTMLÎÄ¼şÖĞÉèÖÃÌø×ª¡£Êµ¼ÊÉÏºÜ¼òµ¥£¬Õâ¸ö"
-"URLµÄÕ¾µã±»ÅäÖÃÎªÓë\"www\"×ÓÓòÃûÖ¸ÏòÍ¬ÑùµÄÄÚÈİ£¬ËùÒÔ£¬ËüÃÇÖ¸ÏòÁËÍ¬ÑùµÄhtml(»ò"
-"Õßphp)ÎÄ¼ş£¬¶øÇÒ£¬ËüÃÇ¹²ÏíÒ»¸öÈÕÖ¾ÎÄ¼ş¡£<br><br>\n"
+"äº‹å®ä¸Šï¼Œè¿™ä¸ªURLæ˜¯è¢«ä¿ç•™ä¸‹æ¥çš„ï¼Œå¹¶æ²¡æœ‰åœ¨HTMLæ–‡ä»¶ä¸­è®¾ç½®è·³è½¬ã€‚å®é™…ä¸Šå¾ˆç®€å•ï¼Œè¿™ä¸ª"
+"URLçš„ç«™ç‚¹è¢«é…ç½®ä¸ºä¸\"www\"å­åŸŸåæŒ‡å‘åŒæ ·çš„å†…å®¹ï¼Œæ‰€ä»¥ï¼Œå®ƒä»¬æŒ‡å‘äº†åŒæ ·çš„html(æˆ–"
+"è€…php)æ–‡ä»¶ï¼Œè€Œä¸”ï¼Œå®ƒä»¬å…±äº«ä¸€ä¸ªæ—¥å¿—æ–‡ä»¶ã€‚<br><br>\n"
 "\n"
-"<u>3.3.½ûÖ¹Ê¹ÓÃµÄ×ÓÓòÃû</u><br><br>\n"
-"ÒòÎªÎÒÃÇÒÑ½«ÏÂÁĞ×ÓÓòÃûÅäÖÃ¸øÆäËü·şÎñ£¬ËùÒÔÄú²»ÄÜ°ÑÏÂÁĞ×ÓÓòÃûÓÃ×÷Ò»¸öApacheÕ¾"
-"µã£º\n"
+"<u>3.3.ç¦æ­¢ä½¿ç”¨çš„å­åŸŸå</u><br><br>\n"
+"å› ä¸ºæˆ‘ä»¬å·²å°†ä¸‹åˆ—å­åŸŸåé…ç½®ç»™å…¶å®ƒæœåŠ¡ï¼Œæ‰€ä»¥æ‚¨ä¸èƒ½æŠŠä¸‹åˆ—å­åŸŸåç”¨ä½œä¸€ä¸ªApacheç«™"
+"ç‚¹ï¼š\n"
 "<ul><li>ftp</li>\n"
 "<li>pop</li>\n"
 "<li>smtp</li>\n"
 "</ul>\n"
 "\n"
-"<u>3.4.É¾³ı×ÓÓòÃû</u><br><br>\n"
-"ÄúĞèÒª×Ô¼ºÉ¾³ıÄúµÄ×ÓÓòÃûÊ¹ÓÃµÄÎÄ¼ş¡£Äú¿ÉÒÔÊ¹ÓÃ±ê×¼µÄFTP¿Í»§¶ËÀ´É¾³ıÕâĞ©ÎÄ¼ş¡£"
-"µ«ÊÇÇëÇ§ÍòĞ¡ĞÄ²»Òª½ö½öÉ¾³ı×ÓÓòÃûÊ¹ÓÃµÄÎÄ¼ş¶ø²»ÔÚDTC¿ØÖÆÃæ°åÖĞÉ¾³ıÕâ¸ö×ÓÓòÃû¡£"
-"ÊÂÊµÉÏ£¬Èç¹ûÒ»¸ö×ÓÓòµÄÎÄ¼şÒÑ¾­²»´æÔÚ£¬¶øÔÚApache·şÎñÆ÷µÄÅäÖÃÎÄ¼şÖĞÈÔÈ»ÓĞÕâ¸ö"
-"×ÓÓòµÄÅäÖÃµÄ»°£¬Apache·şÎñÆ÷ÈÔÈ»»á½âÎöÕâ¸ö×ÓÓòµÄ¡£¶øÇÒ£¬ÔÚÖØÆğApache·şÎñÆ÷µÄ"
-"Ê±ºò»á±¨´í¡£<br><br>\n"
+"<u>3.4.åˆ é™¤å­åŸŸå</u><br><br>\n"
+"æ‚¨éœ€è¦è‡ªå·±åˆ é™¤æ‚¨çš„å­åŸŸåä½¿ç”¨çš„æ–‡ä»¶ã€‚æ‚¨å¯ä»¥ä½¿ç”¨æ ‡å‡†çš„FTPå®¢æˆ·ç«¯æ¥åˆ é™¤è¿™äº›æ–‡ä»¶ã€‚"
+"ä½†æ˜¯è¯·åƒä¸‡å°å¿ƒä¸è¦ä»…ä»…åˆ é™¤å­åŸŸåä½¿ç”¨çš„æ–‡ä»¶è€Œä¸åœ¨DTCæ§åˆ¶é¢æ¿ä¸­åˆ é™¤è¿™ä¸ªå­åŸŸåã€‚"
+"äº‹å®ä¸Šï¼Œå¦‚æœä¸€ä¸ªå­åŸŸçš„æ–‡ä»¶å·²ç»ä¸å­˜åœ¨ï¼Œè€Œåœ¨ApacheæœåŠ¡å™¨çš„é…ç½®æ–‡ä»¶ä¸­ä»ç„¶æœ‰è¿™ä¸ª"
+"å­åŸŸçš„é…ç½®çš„è¯ï¼ŒApacheæœåŠ¡å™¨ä»ç„¶ä¼šè§£æè¿™ä¸ªå­åŸŸçš„ã€‚è€Œä¸”ï¼Œåœ¨é‡èµ·ApacheæœåŠ¡å™¨çš„"
+"æ—¶å€™ä¼šæŠ¥é”™ã€‚<br><br>\n"
 "\n"
-"<u>3.5.ÄúµÄ×ÓÓòµÄÁ÷Á¿Í³¼Æ</u><br><br>\n"
-"ÄúËùÓĞµÄÁ÷Á¿¶¼ÊÇÓĞ¼ÇÂ¼µÄ£¬ÎÒÃÇÊ¹ÓÃ<a href=\"http://www.mrunix.net/webalizer/"
+"<u>3.5.æ‚¨çš„å­åŸŸçš„æµé‡ç»Ÿè®¡</u><br><br>\n"
+"æ‚¨æ‰€æœ‰çš„æµé‡éƒ½æ˜¯æœ‰è®°å½•çš„ï¼Œæˆ‘ä»¬ä½¿ç”¨<a href=\"http://www.mrunix.net/webalizer/"
 "\">\n"
-"webalizer</a>Í³¼Æ³öÁËÄúËùÓĞµÄ×ÓÓòÔÚ¹ıÈ¥12¸öÔÂÖĞµÄÁ÷Á¿¡£Í³¼Æ»áÔÚÃ¿ÌìÁè³¿4Ê±¿ª"
-"Ê¼½øĞĞ(ÕâÊÇÒ»ÌìÖĞ·şÎñÆ÷¸ºÔØ×îµÍµÄÊ±¿Ì),Äú¿ÉÒÔÍ¨¹ıÃ¿¸ö×ÓÓòµÄ\"/stats\"Ä¿Â¼À´²é"
-"¿´Í³¼Æ½á¹û¡£Õâ¾ÍÊÇËµ£¬Èç¹ûÄú×¢²áÁË£º\n"
+"webalizer</a>ç»Ÿè®¡å‡ºäº†æ‚¨æ‰€æœ‰çš„å­åŸŸåœ¨è¿‡å»12ä¸ªæœˆä¸­çš„æµé‡ã€‚ç»Ÿè®¡ä¼šåœ¨æ¯å¤©å‡Œæ™¨4æ—¶å¼€"
+"å§‹è¿›è¡Œ(è¿™æ˜¯ä¸€å¤©ä¸­æœåŠ¡å™¨è´Ÿè½½æœ€ä½çš„æ—¶åˆ»),æ‚¨å¯ä»¥é€šè¿‡æ¯ä¸ªå­åŸŸçš„\"/stats\"ç›®å½•æ¥æŸ¥"
+"çœ‹ç»Ÿè®¡ç»“æœã€‚è¿™å°±æ˜¯è¯´ï¼Œå¦‚æœæ‚¨æ³¨å†Œäº†ï¼š\n"
 "<pre>\n"
 "http://www.mydomain.com\n"
 "</pre>\n"
-"ËùÓĞµÄÍ³¼Æ½á¹û¶¼»á±»Éú³ÉÔÚÕâ¸öÄ¿Â¼£º\n"
+"æ‰€æœ‰çš„ç»Ÿè®¡ç»“æœéƒ½ä¼šè¢«ç”Ÿæˆåœ¨è¿™ä¸ªç›®å½•ï¼š\n"
 "<pre>\n"
 "http://www.mydomain.com/stats/\n"
 "</pre>\n"
 "\n"
-"<font size=\"+1\"><u>4.FTPÕËºÅ</u></font><br>\n"
-"<u>4.1.ËüÄÜ×öÊ²Ã´£¿</u><br><br>\n"
-"ÎªÁËÈÃÄúµÄÒ³ÃæÄÜ¹»±»·ÃÎÊµ½£¬ÄúÊ×ÏÈĞèÒªÉÏ´«ËüÃÇ¡£¿ÉÄÜÄú²¢ÊÇ²»Î¨Ò»Ê¹ÓÃÄúµÄÕ¾µã"
-"µÄÈË£¬ÕâÑùÄúÒ²Ğí¾Í»áĞèÒª¶à¸öFTPÕËºÅ¡£Ê¹ÓÃDTC¿ØÖÆÃæ°å£¬Äú¾Í¿ÉÒÔÇáËÉ¹ÜÀí¶à¸öÕË"
-"ºÅºÍÃÜÂë¡£<br><br>\n"
+"<font size=\"+1\"><u>4.FTPè´¦å·</u></font><br>\n"
+"<u>4.1.å®ƒèƒ½åšä»€ä¹ˆï¼Ÿ</u><br><br>\n"
+"ä¸ºäº†è®©æ‚¨çš„é¡µé¢èƒ½å¤Ÿè¢«è®¿é—®åˆ°ï¼Œæ‚¨é¦–å…ˆéœ€è¦ä¸Šä¼ å®ƒä»¬ã€‚å¯èƒ½æ‚¨å¹¶æ˜¯ä¸å”¯ä¸€ä½¿ç”¨æ‚¨çš„ç«™ç‚¹"
+"çš„äººï¼Œè¿™æ ·æ‚¨ä¹Ÿè®¸å°±ä¼šéœ€è¦å¤šä¸ªFTPè´¦å·ã€‚ä½¿ç”¨DTCæ§åˆ¶é¢æ¿ï¼Œæ‚¨å°±å¯ä»¥è½»æ¾ç®¡ç†å¤šä¸ªè´¦"
+"å·å’Œå¯†ç ã€‚<br><br>\n"
 "\n"
-"<u>4.2.Ìí¼Ó»òÉ¾³ıÒ»¸öFTPÕËºÅÊ±µÄÑÓÊ±</u><br><br>\n"
-"ÒòÎªÎÒÃÇÅäÖÃProFTPÔËĞĞÔÚÒ»¸öÌØÊâµÄÄ£Ê½ÏÂ£¬Ëü°ÑËùÓĞµÄÕËºÅĞÅÏ¢¶¼´æÔÚÁËMYSQLÊı¾İ"
-"¿âÖĞ¡£Äú¶ÔFTPÕËºÅËù×öµÄÈÎºÎ¸ü¸Ä¶¼ÄÜ¹»ÊµÊ±ÉúĞ§¡£<br><br>\n"
+"<u>4.2.æ·»åŠ æˆ–åˆ é™¤ä¸€ä¸ªFTPè´¦å·æ—¶çš„å»¶æ—¶</u><br><br>\n"
+"å› ä¸ºæˆ‘ä»¬é…ç½®ProFTPè¿è¡Œåœ¨ä¸€ä¸ªç‰¹æ®Šçš„æ¨¡å¼ä¸‹ï¼Œå®ƒæŠŠæ‰€æœ‰çš„è´¦å·ä¿¡æ¯éƒ½å­˜åœ¨äº†MYSQLæ•°æ®"
+"åº“ä¸­ã€‚æ‚¨å¯¹FTPè´¦å·æ‰€åšçš„ä»»ä½•æ›´æ”¹éƒ½èƒ½å¤Ÿå®æ—¶ç”Ÿæ•ˆã€‚<br><br>\n"
 "\n"
-"<u>4.3.Çë²»ÒªÔÚÎÒÃÇµÄ·şÎñÆ÷ÉÏ½øĞĞµÁ°æĞĞÎª»ò´ó¹æÄ£µÄÎÄ¼ş½»»»</u><br><br>\n"
-"µ±ÎÒÃÇ¸øÄúÌá¹©FTP¿Õ¼äµÄÊ±ºò£¬Õâ½ö½öÊ±ÎªÁË·½±ãÄúÉÏ´«HTMLÎÄ¼ş¡£Çë×¢Òâ£¬Èç¹ûÄúÎ¥"
-"·´¹æ¶¨µÄ»°£¬ÎÒÃÇ¿ÉÒÔÔÚ²»ÌáÇ°Í¨ÖªµÄÇé¿öÏÂ¹Ø±ÕÄúµÄÕËºÅ¡£<br><br>\n"
+"<u>4.3.è¯·ä¸è¦åœ¨æˆ‘ä»¬çš„æœåŠ¡å™¨ä¸Šè¿›è¡Œç›—ç‰ˆè¡Œä¸ºæˆ–å¤§è§„æ¨¡çš„æ–‡ä»¶äº¤æ¢</u><br><br>\n"
+"å½“æˆ‘ä»¬ç»™æ‚¨æä¾›FTPç©ºé—´çš„æ—¶å€™ï¼Œè¿™ä»…ä»…æ—¶ä¸ºäº†æ–¹ä¾¿æ‚¨ä¸Šä¼ HTMLæ–‡ä»¶ã€‚è¯·æ³¨æ„ï¼Œå¦‚æœæ‚¨è¿"
+"åè§„å®šçš„è¯ï¼Œæˆ‘ä»¬å¯ä»¥åœ¨ä¸æå‰é€šçŸ¥çš„æƒ…å†µä¸‹å…³é—­æ‚¨çš„è´¦å·ã€‚<br><br>\n"
 "\n"
-"<font size=\"+1\"><u>5.ÎªÊ²Ã´ÓĞÊ±ºòFTP»òÕßPOP»áºÜÂı£¿</u></font><br><br>\n"
-"ÕâÓĞºÜ¶àÔ­Òò¡£Ê×ÏÈÊÇÎÒÃÇ²¢Ã»ÓĞÌ«¶àµÄÉÏ´«´ø¿î£¬ÓĞÊ±ºò£¬Í¬Ê±»áÓĞºÜ¶àÓÃ»§ÉÏ´«ÎÄ"
-"¼ş¡£Àë·şÎñÆ÷±È½Ï½ü(ÍøÂç¾àÀë)µÄÈËÔÚ¶àÊıÊ±¼ä»áÕ¼¾İ±È½Ï¶àµÄ´ø¿î£¬ËùÒÔÁíÍâÒ»Ğ©ÈË"
-"¾ÍÖ»ÓĞ±È½ÏÉÙµÄ´ø¿î¿ÉÒÔÊ¹ÓÃ¡£¶ÔÓÚÕâÑùµÄÇé¿ö£¬ÎÒÃÇÒ²ÎŞÄÜÎªÁ¦...<br><br>\n"
-"ÁíÍâÒ»¸öÔ­ÒòÊÇ£¬ÎÒÃÇÏŞÖÆÁËpop¡¢smtp¡¢ftpµÈ·şÎñµÄ´ø¿î£¬ÕâÑùÎÒÃÇ·şÎñÆ÷ÉÏµÄweb·Ã"
-"ÎÊËÙ¶ÈÄÜ¸ü¿ìÒ»Ğ©¡£<br><br><br>\n"
+"<font size=\"+1\"><u>5.ä¸ºä»€ä¹ˆæœ‰æ—¶å€™FTPæˆ–è€…POPä¼šå¾ˆæ…¢ï¼Ÿ</u></font><br><br>\n"
+"è¿™æœ‰å¾ˆå¤šåŸå› ã€‚é¦–å…ˆæ˜¯æˆ‘ä»¬å¹¶æ²¡æœ‰å¤ªå¤šçš„ä¸Šä¼ å¸¦æ¬¾ï¼Œæœ‰æ—¶å€™ï¼ŒåŒæ—¶ä¼šæœ‰å¾ˆå¤šç”¨æˆ·ä¸Šä¼ æ–‡"
+"ä»¶ã€‚ç¦»æœåŠ¡å™¨æ¯”è¾ƒè¿‘(ç½‘ç»œè·ç¦»)çš„äººåœ¨å¤šæ•°æ—¶é—´ä¼šå æ®æ¯”è¾ƒå¤šçš„å¸¦æ¬¾ï¼Œæ‰€ä»¥å¦å¤–ä¸€äº›äºº"
+"å°±åªæœ‰æ¯”è¾ƒå°‘çš„å¸¦æ¬¾å¯ä»¥ä½¿ç”¨ã€‚å¯¹äºè¿™æ ·çš„æƒ…å†µï¼Œæˆ‘ä»¬ä¹Ÿæ— èƒ½ä¸ºåŠ›...<br><br>\n"
+"å¦å¤–ä¸€ä¸ªåŸå› æ˜¯ï¼Œæˆ‘ä»¬é™åˆ¶äº†popã€smtpã€ftpç­‰æœåŠ¡çš„å¸¦æ¬¾ï¼Œè¿™æ ·æˆ‘ä»¬æœåŠ¡å™¨ä¸Šçš„webè®¿"
+"é—®é€Ÿåº¦èƒ½æ›´å¿«ä¸€äº›ã€‚<br><br><br>\n"
 "</div>"
 
 #: shared/inc/sql/database.php:61
 msgid "A database by that name exists, please choose another name."
-msgstr "ÒÑ´æÔÚÍ¬ÃûµÄÊı¾İ¿â£¬ÇëÖØĞÂÑ¡ÔñÒ»¸öÃû×Ö¡£"
+msgstr "å·²å­˜åœ¨åŒåçš„æ•°æ®åº“ï¼Œè¯·é‡æ–°é€‰æ‹©ä¸€ä¸ªåå­—ã€‚"
 
 #: shared/inc/sql/database.php:29
 msgid "A user with that name exists in the database, please select a new one."
-msgstr "Êı¾İ¿âÖĞÒÑ´æÔÚÕâ¸öÓÃ»§Ãû£¬ÇëÖØĞÂÑ¡ÔñÒ»¸ö¡£"
+msgstr "æ•°æ®åº“ä¸­å·²å­˜åœ¨è¿™ä¸ªç”¨æˆ·åï¼Œè¯·é‡æ–°é€‰æ‹©ä¸€ä¸ªã€‚"
 
 #: admin/inc/nav.php:49
 msgid "ALL FILES AND SCRIPTS"
-msgstr "ËùÓĞ³ÌĞòÓëÎÄ¼ş"
+msgstr "æ‰€æœ‰ç¨‹åºä¸æ–‡ä»¶"
 
 #: admin/inc/nav.php:55
 msgid "APACHE VHOST"
-msgstr "ĞéÄâApacheÖ÷»ú"
+msgstr "è™šæ‹ŸApacheä¸»æœº"
 
 #: shared/inc/forms/lists.php:433
 msgid "Access list:"
-msgstr "È¨ÏŞÁĞ±í£º"
+msgstr "æƒé™åˆ—è¡¨ï¼š"
 
 #: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
 #: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
 #: shared/inc/sql/vps.php:101 shared/inc/sql/vps.php:166
 msgid "Access not granted line "
-msgstr "Î´ÊÚÈ¨µÄ²Ù×÷"
+msgstr "æœªæˆæƒçš„æ“ä½œ"
 
 #: admin/inc/dtc_config.php:848
 msgid "Act as backup DNS server for the following servers:"
-msgstr "¶ÔÏÂÁĞ·şÎñÆ÷×÷Îª±¸·İDNS·şÎñÆ÷:"
+msgstr "å¯¹ä¸‹åˆ—æœåŠ¡å™¨ä½œä¸ºå¤‡ä»½DNSæœåŠ¡å™¨:"
 
 #: admin/inc/dtc_config.php:823
 msgid "Act as backup mail server for the following servers:"
-msgstr "¶ÔÏÂÁĞ·şÎñÆ÷×÷Îª±¸·İÓÊ¼ş·şÎñÆ÷:"
+msgstr "å¯¹ä¸‹åˆ—æœåŠ¡å™¨ä½œä¸ºå¤‡ä»½é‚®ä»¶æœåŠ¡å™¨:"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:212
@@ -331,46 +331,46 @@ msgstr "¶ÔÏÂÁĞ·şÎñÆ÷×÷Îª±¸·İÓÊ¼ş·şÎñÆ÷:"
 #: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/reseller.php:24
 msgid "Action"
-msgstr "²Ù×÷"
+msgstr "æ“ä½œ"
 
 #: admin/inc/dtc_config.php:339
 #, fuzzy
 msgid "Activate FTP backups:"
-msgstr "ÓĞĞ§µÄFTP±¸·İ£º"
+msgstr "æœ‰æ•ˆçš„FTPå¤‡ä»½ï¼š"
 
 #: admin/inc/draw_user_admin.php:280 admin/inc/draw_user_admin.php:300
 msgid "Add"
-msgstr "Ìí¼Ó"
+msgstr "æ·»åŠ "
 
 #: shared/inc/forms/lists.php:406
 msgid "Add To: header:"
-msgstr "Ìí¼Óµ½£ºÒ³Í·£º"
+msgstr "æ·»åŠ åˆ°ï¼šé¡µå¤´ï¼š"
 
 #: shared/inc/forms/root_admin.php:222
 msgid "Add a VPS for this admin:"
-msgstr "ÎªÕâ¸ö¹ÜÀíÔ±ÕËºÅÌí¼ÓÒ»¸öVPS"
+msgstr "ä¸ºè¿™ä¸ªç®¡ç†å‘˜è´¦å·æ·»åŠ ä¸€ä¸ªVPS"
 
 #: shared/inc/forms/root_admin.php:269
 msgid "Add a dedicated server for this admin:"
-msgstr "ÎªÕâ¸ö¹ÜÀíÔ±ÕËºÅÌí¼ÓÒ»¸ö¶ÀÁ¢Ö÷»ú£º"
+msgstr "ä¸ºè¿™ä¸ªç®¡ç†å‘˜è´¦å·æ·»åŠ ä¸€ä¸ªç‹¬ç«‹ä¸»æœºï¼š"
 
 #: shared/inc/draw.php:128
 #, fuzzy
 msgid "Add a domain"
-msgstr "ÎªÕâ¸öÓÃ»§Ìí¼ÓÒ»¸öÓòÃû£º"
+msgstr "ä¸ºè¿™ä¸ªç”¨æˆ·æ·»åŠ ä¸€ä¸ªåŸŸåï¼š"
 
 #: shared/inc/forms/root_admin.php:157
 msgid "Add a domain for this user:"
-msgstr "ÎªÕâ¸öÓÃ»§Ìí¼ÓÒ»¸öÓòÃû£º"
+msgstr "ä¸ºè¿™ä¸ªç”¨æˆ·æ·»åŠ ä¸€ä¸ªåŸŸåï¼š"
 
 #: shared/inc/draw.php:418
 #, fuzzy
 msgid "Add a domain name to my account"
-msgstr "ÎÒµÄÕÊ»§Óà¶î£º"
+msgstr "æˆ‘çš„å¸æˆ·ä½™é¢ï¼š"
 
 #: shared/inc/draw.php:416
 msgid "Add a domain:"
-msgstr "Ìí¼ÓÓòÃû£º"
+msgstr "æ·»åŠ åŸŸåï¼š"
 
 #: admin/inc/dtc_config.php:1208
 msgid "Add a new company"
@@ -386,76 +386,76 @@ msgstr ""
 
 #: shared/gfx/skin/default_layout.php:426
 msgid "Add a virtual administrator"
-msgstr "Ìí¼ÓĞéÄâÖ÷»ú¹ÜÀíÔ±"
+msgstr "æ·»åŠ è™šæ‹Ÿä¸»æœºç®¡ç†å‘˜"
 
 #: admin/dtcrm/main.php:82
 msgid "Add an administrator to this customer:"
-msgstr "ÎªÕâÃû¿Í»§Ìí¼ÓÒ»¸ö¹ÜÀíÔ±£º"
+msgstr "ä¸ºè¿™åå®¢æˆ·æ·»åŠ ä¸€ä¸ªç®¡ç†å‘˜ï¼š"
 
 #: admin/dtcrm/product_manager.php:66
 msgid "Add domain"
-msgstr "ÊÇ·ñÌí¼ÓÓòÃû"
+msgstr "æ˜¯å¦æ·»åŠ åŸŸå"
 
 #: shared/inc/forms/lists.php:409
 msgid "Added footer:"
-msgstr "×·¼ÓÒ³½Å£º"
+msgstr "è¿½åŠ é¡µè„šï¼š"
 
 #: shared/dtcrm/draw_nameservers.php:59
 msgid "Addition of name server failed"
-msgstr "Ìí¼ÓÓòÃû·şÎñÆ÷Ê§°Ü"
+msgstr "æ·»åŠ åŸŸåæœåŠ¡å™¨å¤±è´¥"
 
 #: shared/dtcrm/draw_nameservers.php:50
 msgid "Addition of name server was succesfull"
-msgstr "±à¼­ÓòÃû·şÎñÆ÷ĞÅÏ¢³É¹¦"
+msgstr "ç¼–è¾‘åŸŸåæœåŠ¡å™¨ä¿¡æ¯æˆåŠŸ"
 
 #: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
 #: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
 #, fuzzy
 msgid "Address (line1): "
-msgstr "µØÖ·£º"
+msgstr "åœ°å€ï¼š"
 
 #: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
 #: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
 #: shared/dtcrm/draw_handle.php:238
 #, fuzzy
 msgid "Address (line2): "
-msgstr "µØÖ·£º"
+msgstr "åœ°å€ï¼š"
 
 #: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
 #: shared/dtcrm/draw_handle.php:93 shared/dtcrm/draw_handle.php:125
 #: shared/dtcrm/draw_handle.php:241
 #, fuzzy
 msgid "Address (line3): "
-msgstr "µØÖ·£º"
+msgstr "åœ°å€ï¼š"
 
 #: shared/inc/forms/email.php:27
 #, fuzzy
 msgid "Address email"
-msgstr "µØÖ·£º"
+msgstr "åœ°å€ï¼š"
 
 #: admin/inc/dtc_config.php:688
 msgid "Address of your main MX server:"
-msgstr "Ö÷MX·şÎñÆ÷µÄµØÖ·£º"
+msgstr "ä¸»MXæœåŠ¡å™¨çš„åœ°å€ï¼š"
 
 #: admin/inc/dtc_config.php:1228 shared/inc/forms/my_account.php:207
 #, fuzzy
 msgid "Address:"
-msgstr "µØÖ·£º"
+msgstr "åœ°å€ï¼š"
 
 #: client/new_account_form.php:610 shared/dtcrm/draw_handle.php:235
 #, fuzzy
 msgid "Addresse (line1): "
-msgstr "µØÖ·£º"
+msgstr "åœ°å€ï¼š"
 
 #: client/new_account_form.php:613
 #, fuzzy
 msgid "Addresse (line2): "
-msgstr "µØÖ·£º"
+msgstr "åœ°å€ï¼š"
 
 #: client/new_account_form.php:616
 #, fuzzy
 msgid "Addresse (line3): "
-msgstr "µØÖ·£º"
+msgstr "åœ°å€ï¼š"
 
 #: admin/inc/draw_user_admin.php:416
 msgid "Admin"
@@ -464,20 +464,20 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:656
 #: shared/gfx/skin/bwoup/layout.php:658
 msgid "Admin editor"
-msgstr "±à¼­¹ÜÀíÔ±ĞÅÏ¢"
+msgstr "ç¼–è¾‘ç®¡ç†å‘˜ä¿¡æ¯"
 
 #: admin/inc/draw_user_admin.php:128
 #, fuzzy
 msgid "Admin login: "
-msgstr "FTPµÇÂ½ÕËºÅ£º"
+msgstr "FTPç™»é™†è´¦å·ï¼š"
 
 #: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:569
 msgid "Admins list"
-msgstr "¹ÜÀíÔ±ÁĞ±í"
+msgstr "ç®¡ç†å‘˜åˆ—è¡¨"
 
 #: admin/inc/draw_user_admin.php:400
 msgid "Age"
-msgstr "ÄêÁä"
+msgstr "å¹´é¾„"
 
 #: shared/inc/forms/root_admin.php:133
 msgid "Allow addition of FTP logins:"
@@ -485,29 +485,29 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:132
 msgid "Allow addition of SSH logins:"
-msgstr "ÔÊĞíÌí¼ÓSSHÕË»§£º"
+msgstr "å…è®¸æ·»åŠ SSHè´¦æˆ·ï¼š"
 
 #: shared/inc/forms/root_admin.php:134
 #, fuzzy
 msgid "Allow the use of the package installer:"
-msgstr "ÇëÑ¡ÔñÒª°²×°µÄÈí¼ş°ü"
+msgstr "è¯·é€‰æ‹©è¦å®‰è£…çš„è½¯ä»¶åŒ…"
 
 #: admin/inc/dtc_config.php:744
 msgid ""
 "Allow those servers to list this server's domain names for doing backup:"
-msgstr "ÔÊĞíÏÂÁĞ·şÎñÆ÷±¸·İ±¾·şÎñÆ÷µÄÓòÃû£º"
+msgstr "å…è®¸ä¸‹åˆ—æœåŠ¡å™¨å¤‡ä»½æœ¬æœåŠ¡å™¨çš„åŸŸåï¼š"
 
 #: shared/inc/forms/root_admin.php:130
 msgid "Allow to add domains:"
-msgstr "ÔÊĞíÌí¼ÓÓòÃû£º"
+msgstr "å…è®¸æ·»åŠ åŸŸåï¼š"
 
 #: shared/inc/forms/my_account.php:97
 msgid "Allowed bandwidth per month"
-msgstr "Ã¿ÔÂ×î´óÊı¾İ´«ÊäÁ¿"
+msgstr "æ¯æœˆæœ€å¤§æ•°æ®ä¼ è¾“é‡"
 
 #: shared/inc/forms/root_admin.php:126
 msgid "Allowed bandwidth per month (MB):"
-msgstr "Ã¿ÔÂ×î´óÊı¾İ´«ÊäÁ¿(GB)£º"
+msgstr "æ¯æœˆæœ€å¤§æ•°æ®ä¼ è¾“é‡(GB)ï¼š"
 
 #: admin/dtcrm/main.php:179
 msgid "Allowed data transfer (GB): "
@@ -515,7 +515,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:93
 msgid "Alternatively, you can add another domain name:"
-msgstr "»òÕßÄú¿ÉÒÔÌí¼ÓÁíÍâÒ»¸öÓòÃû£º"
+msgstr "æˆ–è€…æ‚¨å¯ä»¥æ·»åŠ å¦å¤–ä¸€ä¸ªåŸŸåï¼š"
 
 #: admin/inc/renewals.php:114 shared/securepay/pay_functions.php:35
 msgid "Amount"
@@ -530,17 +530,17 @@ msgid ""
 "addition. To request hosting for a new domain name, without administrator "
 "validation or domain name registration, please write to:"
 msgstr ""
-"ºÜ¿ì£¬¹ÜÀíÔ±»áºËÊµÄúµÄĞÅÏ¢¡£Èç¹ûÄúµÄĞÅÏ¢×¼È·ÎŞÎó£¬¹ÜÀíÔ±»á°ÑÄúĞÂÔöµÄÓòÃû¹ØÁª"
-"µ½ÄúµÄÕË»§¡£ÄúÔİÊ±Ã»ÓĞÌí¼ÓÓòÃûµÄÈ¨ÏŞ¡£Èç¹ûÄúĞèÒª¾­³£Ìí¼ÓÓòÃû£¬Äú¿ÉÒÔÒªÇó¹ÜÀí"
-"Ô±ÊÚÓèÄú×Ô¶¯Ìí¼ÓÓòÃûµÄÈ¨ÏŞ¡£Èç¹ûĞèÒª£¬Çë·¢ÓÊ¼şµ½£º"
+"å¾ˆå¿«ï¼Œç®¡ç†å‘˜ä¼šæ ¸å®æ‚¨çš„ä¿¡æ¯ã€‚å¦‚æœæ‚¨çš„ä¿¡æ¯å‡†ç¡®æ— è¯¯ï¼Œç®¡ç†å‘˜ä¼šæŠŠæ‚¨æ–°å¢çš„åŸŸåå…³è”"
+"åˆ°æ‚¨çš„è´¦æˆ·ã€‚æ‚¨æš‚æ—¶æ²¡æœ‰æ·»åŠ åŸŸåçš„æƒé™ã€‚å¦‚æœæ‚¨éœ€è¦ç»å¸¸æ·»åŠ åŸŸåï¼Œæ‚¨å¯ä»¥è¦æ±‚ç®¡ç†"
+"å‘˜æˆäºˆæ‚¨è‡ªåŠ¨æ·»åŠ åŸŸåçš„æƒé™ã€‚å¦‚æœéœ€è¦ï¼Œè¯·å‘é‚®ä»¶åˆ°ï¼š"
 
 #: admin/inc/dtc_config.php:594
 msgid "Another location"
-msgstr "ÁíÒ»´¦Î»ÖÃ"
+msgstr "å¦ä¸€å¤„ä½ç½®"
 
 #: shared/inc/forms/lists.php:446
 msgid "Anti-spam mode:"
-msgstr "À¬»øÓÊ¼ş´¦ÀíÄ£Ê½"
+msgstr "åƒåœ¾é‚®ä»¶å¤„ç†æ¨¡å¼"
 
 #: admin/inc/dtc_config.php:1154
 msgid "Apache file names"
@@ -564,21 +564,21 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:411
 msgid "Archive"
-msgstr "´æµµ"
+msgstr "å­˜æ¡£"
 
 #: shared/inc/forms/root_admin.php:151
 msgid ""
 "Are you sure you want to delete this domain name ? This will erase all "
 "hosted files for this domain!!!"
-msgstr "ÄãÈ·¶¨ÒªÉ¾³ıÕâ¸öÓòÃûÂğ£¿ÕâÏî²Ù×÷½«É¾³ıÕâ¸öÓòÃûÏÂµÄËùÓĞÎÄ¼ş£¡£¡£¡"
+msgstr "ä½ ç¡®å®šè¦åˆ é™¤è¿™ä¸ªåŸŸåå—ï¼Ÿè¿™é¡¹æ“ä½œå°†åˆ é™¤è¿™ä¸ªåŸŸåä¸‹çš„æ‰€æœ‰æ–‡ä»¶ï¼ï¼ï¼"
 
 #: shared/inc/forms/root_admin.php:140
 msgid ""
 "Are your sure you want to delete this user? This will erase all his hosted "
 "domain names, files, and databases !!!"
 msgstr ""
-"ÄãÈ·¶¨ÒªÉ¾³ıÕâ¸öÓÃ»§Âğ£¿ÕâÏî²Ù×÷½«É¾³ı¸ÃÓÃ»§ËùÓĞµÄÓòÃû£¬ÎÄ¼ş£¬Êı¾İ¿âµÈ"
-"µÈ£¡£¡£¡"
+"ä½ ç¡®å®šè¦åˆ é™¤è¿™ä¸ªç”¨æˆ·å—ï¼Ÿè¿™é¡¹æ“ä½œå°†åˆ é™¤è¯¥ç”¨æˆ·æ‰€æœ‰çš„åŸŸåï¼Œæ–‡ä»¶ï¼Œæ•°æ®åº“ç­‰"
+"ç­‰ï¼ï¼ï¼"
 
 #: admin/inc/dtc_config.php:719
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
@@ -587,27 +587,27 @@ msgstr ""
 #: admin/inc/dtc_config.php:264 admin/inc/dtc_config.php:302
 #: admin/inc/dtc_config.php:448
 msgid "Available"
-msgstr "¿ÉÓÃ"
+msgstr "å¯ç”¨"
 
 #: admin/inc/nav.php:79
 msgid "BACKUP SCRIPTS"
-msgstr "±¸·İ³ÌĞò"
+msgstr "å¤‡ä»½ç¨‹åº"
 
 #: shared/inc/sql/vps.php:174
 msgid "BSD kernel type is not correct line "
-msgstr "BSDÄÚºËÀàĞÍ²»ÕıÈ·"
+msgstr "BSDå†…æ ¸ç±»å‹ä¸æ­£ç¡®"
 
 #: admin/inc/monitor.php:15
 msgid "BW Quota"
-msgstr "´ø¿íÅä¶î"
+msgstr "å¸¦å®½é…é¢"
 
 #: shared/inc/forms/root_admin.php:388
 msgid "Backup Vhost IP address"
-msgstr "±¸ÓÃĞéÄâÖ÷»úIPµØÖ·"
+msgstr "å¤‡ç”¨è™šæ‹Ÿä¸»æœºIPåœ°å€"
 
 #: admin/inc/dtc_config.php:356
 msgid "Backup frequency:"
-msgstr "±¸·İÆµÂÊ£º"
+msgstr "å¤‡ä»½é¢‘ç‡ï¼š"
 
 #: admin/inc/nav.php:25
 msgid "Backup script generated !"
@@ -616,21 +616,21 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:414
 #: shared/gfx/skin/bwoup/layout.php:416
 msgid "Bandwidth monitor"
-msgstr "´ø¿í¼à¿Ø"
+msgstr "å¸¦å®½ç›‘æ§"
 
 #: shared/inc/forms/root_admin.php:493 shared/inc/forms/root_admin.php:557
 #, fuzzy
 msgid "Bandwidth per month"
-msgstr "Ã¿ÔÂ×î´óÊı¾İ´«ÊäÁ¿"
+msgstr "æ¯æœˆæœ€å¤§æ•°æ®ä¼ è¾“é‡"
 
 #: shared/dtcrm/draw.php:79
 #, fuzzy
 msgid "Bandwidth/month"
-msgstr "Ã¿ÔÂ×î´óÊı¾İ´«ÊäÁ¿"
+msgstr "æ¯æœˆæœ€å¤§æ•°æ®ä¼ è¾“é‡"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
 msgid "Bank validated"
-msgstr "Ö§³ÖµÄÒøĞĞ"
+msgstr "æ”¯æŒçš„é“¶è¡Œ"
 
 #: admin/deamons_state.php:135
 msgid "Bind reload"
@@ -638,7 +638,7 @@ msgstr ""
 
 #: shared/inc/forms/vps.php:266
 msgid "Boot up (xm start)"
-msgstr "Æô¶¯(xm start)"
+msgstr "å¯åŠ¨(xm start)"
 
 #: shared/inc/forms/lists.php:432
 msgid "Bounce life:"
@@ -646,16 +646,16 @@ msgstr ""
 
 #: shared/inc/forms/email.php:622
 msgid "Bounce message content: "
-msgstr "µ¯»ØÓÊ¼şµÄÄÚÈİ£º"
+msgstr "å¼¹å›é‚®ä»¶çš„å†…å®¹ï¼š"
 
 #: admin/inc/nav.php:35
 #, fuzzy
 msgid "Browse all generated files"
-msgstr "ÓòÃûÎÄ¼ş£º"
+msgstr "åŸŸåæ–‡ä»¶ï¼š"
 
 #: shared/inc/forms/root_admin.php:355
 msgid "CGI-BIN protection"
-msgstr "CGI-BIN °²È«·À»¤"
+msgstr "CGI-BIN å®‰å…¨é˜²æŠ¤"
 
 #: admin/inc/graphs.php:7
 msgid "CPU Load Average"
@@ -667,30 +667,30 @@ msgstr ""
 
 #: shared/inc/forms/vps.php:226
 msgid "CPU and Network usage:"
-msgstr "CPUÓë´ø¿íµÄÊ¹ÓÃÇé¿ö£º"
+msgstr "CPUä¸å¸¦å®½çš„ä½¿ç”¨æƒ…å†µï¼š"
 
 #: shared/inc/sql/database.php:42
 #, fuzzy
 msgid "Cannot close user database"
-msgstr "ÓÃ»§Êı¾İ¿âµÄÎ»ÖÃ£º"
+msgstr "ç”¨æˆ·æ•°æ®åº“çš„ä½ç½®ï¼š"
 
 #: admin/inc/draw_user_admin.php:333
 msgid "Cannot find payment!"
-msgstr "Ã»ÓĞÕÒµ½¸¶¿î¼ÇÂ¼"
+msgstr "æ²¡æœ‰æ‰¾åˆ°ä»˜æ¬¾è®°å½•"
 
 #: client/new_account_form.php:369
 #, fuzzy
 msgid "Cannot find product id!"
-msgstr "ÔÚÊı¾İ¿âÖĞÃ»ÓĞ·¢ÏÖ¸Ã¿î²úÆ·£¡"
+msgstr "åœ¨æ•°æ®åº“ä¸­æ²¡æœ‰å‘ç°è¯¥æ¬¾äº§å“ï¼"
 
 #: admin/inc/draw_user_admin.php:248 admin/inc/draw_user_admin.php:249
 msgid "Cannot find product in db!"
-msgstr "ÔÚÊı¾İ¿âÖĞÃ»ÓĞ·¢ÏÖ¸Ã¿î²úÆ·£¡"
+msgstr "åœ¨æ•°æ®åº“ä¸­æ²¡æœ‰å‘ç°è¯¥æ¬¾äº§å“ï¼"
 
 #: admin/inc/draw_user_admin.php:322
 #, fuzzy
 msgid "Cannot find product!"
-msgstr "ÔÚÊı¾İ¿âÖĞÃ»ÓĞ·¢ÏÖ¸Ã¿î²úÆ·£¡"
+msgstr "åœ¨æ•°æ®åº“ä¸­æ²¡æœ‰å‘ç°è¯¥æ¬¾äº§å“ï¼"
 
 #: admin/inc/draw_user_admin.php:375
 msgid "Cannot find server in db!"
@@ -699,31 +699,31 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:111 admin/inc/draw_user_admin.php:138
 #: admin/inc/draw_user_admin.php:190
 msgid "Cannot find ticket!"
-msgstr "Ã»ÓĞÕÒµ½ÏàÓ¦µÄÖ÷Ìâ£¡"
+msgstr "æ²¡æœ‰æ‰¾åˆ°ç›¸åº”çš„ä¸»é¢˜ï¼"
 
 #: shared/inc/sql/vps.php:124 shared/inc/sql/vps.php:194
 msgid "Cannot get VPS IP addresses information line "
-msgstr "ÎŞ·¨µÃµ½VPSµÄIPµØÖ·ĞÅÏ¢"
+msgstr "æ— æ³•å¾—åˆ°VPSçš„IPåœ°å€ä¿¡æ¯"
 
 #: shared/inc/sql/vps.php:114 shared/inc/sql/vps.php:184
 msgid "Cannot get VPS information line "
-msgstr "ÎŞ·¨µÃµ½VPSĞÅÏ¢"
+msgstr "æ— æ³•å¾—åˆ°VPSä¿¡æ¯"
 
 #: shared/inc/sql/database.php:172
 msgid "Cannot reselect MySQL db name: please enter another and try again."
-msgstr "²»ÄÜÑ¡ÔñMySQLÊı¾İ¿âÃû£ºÇëÖØĞÂÌîÈëÒ»¸öÔÙÊÔÒ»´Î¡£"
+msgstr "ä¸èƒ½é€‰æ‹©MySQLæ•°æ®åº“åï¼šè¯·é‡æ–°å¡«å…¥ä¸€ä¸ªå†è¯•ä¸€æ¬¡ã€‚"
 
 #: client/new_account.php:174 client/new_account.php:190
 msgid "Cannot reselect product: registration failed!"
-msgstr "²»ÄÜÖØĞÂÑ¡Ôñ²úÆ·£º×¢²áÊ§°Ü£¡"
+msgstr "ä¸èƒ½é‡æ–°é€‰æ‹©äº§å“ï¼šæ³¨å†Œå¤±è´¥ï¼"
 
 #: client/new_account.php:98
 msgid "Cannot reselect transaction: registration failed!"
-msgstr "½»Ò×ºÅ: ²»ÄÜÖØĞÂÑ¡Ôñ½»Ò×£¬×¢²áÊ§°Ü£¡"
+msgstr "äº¤æ˜“å·: ä¸èƒ½é‡æ–°é€‰æ‹©äº¤æ˜“ï¼Œæ³¨å†Œå¤±è´¥ï¼"
 
 #: client/new_account.php:114 client/new_account.php:166
 msgid "Cannot reselect user: registration failed!"
-msgstr "²»ÄÜÖØĞÂÑ¡ÔñÓµ»¤£º×¢²áÊ§°Ü£¡"
+msgstr "ä¸èƒ½é‡æ–°é€‰æ‹©æ‹¥æŠ¤ï¼šæ³¨å†Œå¤±è´¥ï¼"
 
 #: admin/deamons_state.php:157
 msgid "Cannot resolv your"
@@ -735,122 +735,122 @@ msgstr ""
 
 #: shared/inc/forms/email.php:642
 msgid "Catch-all email set to deliver to"
-msgstr "ÎŞÏŞ±ğÃûµÄÓÊ¼şÍ¶µİµ½"
+msgstr "æ— é™åˆ«åçš„é‚®ä»¶æŠ•é€’åˆ°"
 
 #: admin/inc/dtc_config.php:321
 msgid "Category"
-msgstr "Àà±ğ"
+msgstr "ç±»åˆ«"
 
 #: admin/inc/dtc_config.php:325
 msgid "Category description"
-msgstr "Àà±ğÃèÊö"
+msgstr "ç±»åˆ«æè¿°"
 
 #: shared/inc/forms/vps.php:339
 msgid "Change NetBSD kernel"
-msgstr "¸ü¸ÄNetBSDÄÚºË"
+msgstr "æ›´æ”¹NetBSDå†…æ ¸"
 
 #: shared/inc/draw.php:45 shared/inc/forms/email.php:213
 msgid "Change your password:"
-msgstr "¸ü¸ÄÃÜÂë£º"
+msgstr "æ›´æ”¹å¯†ç ï¼š"
 
 #: shared/inc/forms/email.php:619
 #, fuzzy
 msgid "Check to send a bounce message (vacation): "
-msgstr "¼ì²éÊÇ·ñ·¢ËÍÒ»·âµ¯»ØÓÊ¼ş£º"
+msgstr "æ£€æŸ¥æ˜¯å¦å‘é€ä¸€å°å¼¹å›é‚®ä»¶ï¼š"
 
 #: shared/inc/forms/vps.php:129
 msgid "Checking filesystem..."
-msgstr "¼ì²éÎÄ¼şÏµÍ³..."
+msgstr "æ£€æŸ¥æ–‡ä»¶ç³»ç»Ÿ..."
 
 #: shared/inc/forms/packager.php:215
 msgid "Choose a package to install"
-msgstr "ÇëÑ¡ÔñÒª°²×°µÄÈí¼ş°ü"
+msgstr "è¯·é€‰æ‹©è¦å®‰è£…çš„è½¯ä»¶åŒ…"
 
 #: shared/inc/forms/my_account.php:210
 #, fuzzy
 msgid "City:"
-msgstr "¹ú¼Ò£º"
+msgstr "å›½å®¶ï¼š"
 
 #: admin/dtcrm/main.php:168 client/new_account_form.php:622
 #: shared/dtcrm/draw_handle.php:63 shared/dtcrm/draw_handle.php:95
 #: shared/dtcrm/draw_handle.php:127 shared/dtcrm/draw_handle.php:247
 #, fuzzy
 msgid "City: "
-msgstr "¹ú¼Ò£º"
+msgstr "å›½å®¶ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:291
 msgid "Click"
-msgstr "µã»÷"
+msgstr "ç‚¹å‡»"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
 msgid "Client"
-msgstr "¿Í»§"
+msgstr "å®¢æˆ·"
 
 #: shared/inc/forms/root_admin.php:124
 msgid "Client ID:"
-msgstr "¿Í»§ID£º"
+msgstr "å®¢æˆ·IDï¼š"
 
 #: client/new_account_form.php:711
 msgid "Client info"
-msgstr "¿Í»§ĞÅÏ¢"
+msgstr "å®¢æˆ·ä¿¡æ¯"
 
 #: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:644
 #: shared/gfx/skin/bwoup/layout.php:646
 msgid "Client interface"
-msgstr "ÓÃ»§½çÃæ"
+msgstr "ç”¨æˆ·ç•Œé¢"
 
 #: admin/inc/renewals.php:155 admin/inc/renewals.php:193
 #: admin/inc/renewals.php:227 admin/inc/renewals.php:260
 #, fuzzy
 msgid "Client name not found!"
-msgstr "Ã»ÓĞÕÒµ½Ïà¹ØµÄ¿Í»§Ãû³Æ£¡"
+msgstr "æ²¡æœ‰æ‰¾åˆ°ç›¸å…³çš„å®¢æˆ·åç§°ï¼"
 
 #: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
 #: shared/gfx/skin/bwoup/layout.php:260 shared/gfx/skin/bwoup/layout.php:269
 msgid "Client panel:"
-msgstr "ÓÃ»§¿ØÖÆÌ¨£º"
+msgstr "ç”¨æˆ·æ§åˆ¶å°ï¼š"
 
 #: admin/inc/draw_user_admin.php:178
 msgid "Close without reply"
-msgstr "Á¢¼´¹Ø±Õ"
+msgstr "ç«‹å³å…³é—­"
 
 #: shared/inc/forms/ticket.php:163
 msgid "Closed"
-msgstr "ÒÑ¹Ø±Õ"
+msgstr "å·²å…³é—­"
 
 #: shared/inc/forms/lists.php:397
 msgid "Closed list:"
-msgstr "ÒÑ¹Ø±ÕµÄÓÊ¼şÁĞ±í£º"
+msgstr "å·²å…³é—­çš„é‚®ä»¶åˆ—è¡¨ï¼š"
 
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
-msgstr "¹«Ë¾"
+msgstr "å…¬å¸"
 
 #: admin/inc/dtc_config.php:1325
 #, fuzzy
 msgid "Company name"
-msgstr "¹«Ë¾Ãû³Æ£º"
+msgstr "å…¬å¸åç§°ï¼š"
 
 #: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:202
 msgid "Company name:"
-msgstr "¹«Ë¾Ãû³Æ£º"
+msgstr "å…¬å¸åç§°ï¼š"
 
 #: admin/dtcrm/main.php:163 client/new_account_form.php:590
 #: shared/dtcrm/draw_handle.php:58 shared/dtcrm/draw_handle.php:90
 #: shared/dtcrm/draw_handle.php:122 shared/dtcrm/draw_handle.php:226
 #, fuzzy
 msgid "Company name: "
-msgstr "¹«Ë¾Ãû³Æ£º"
+msgstr "å…¬å¸åç§°ï¼š"
 
 #: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:434
 #: shared/gfx/skin/bwoup/layout.php:436
 msgid "Configuration generation"
-msgstr "Éú³ÉºóÌ¨ÅäÖÃÎÄ¼ş"
+msgstr "ç”Ÿæˆåå°é…ç½®æ–‡ä»¶"
 
 #: shared/gfx/skin/default_layout.php:406
 msgid "Configuration of domains for"
-msgstr "ÅäÖÃµÄÓò"
+msgstr "é…ç½®çš„åŸŸ"
 
 #: shared/inc/forms/root_admin.php:457
 msgid "Configuration of the VPSes"
@@ -858,28 +858,28 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:525
 msgid "Configuration of the dedicated servers"
-msgstr "¶ÀÁ¢Ö÷»úÏà¹ØÅäÖÃ"
+msgstr "ç‹¬ç«‹ä¸»æœºç›¸å…³é…ç½®"
 
 #: shared/inc/forms/root_admin.php:333
 msgid "Configuration of the domains"
-msgstr "ÓòÃûÏà¹ØÅäÖÃ"
+msgstr "åŸŸåç›¸å…³é…ç½®"
 
 #: shared/gfx/skin/default_layout.php:402
 msgid "Configuration of the virtual administrator"
-msgstr "ĞéÄâÖ÷»ú¹ÜÀíÔ±ÅäÖÃ"
+msgstr "è™šæ‹Ÿä¸»æœºç®¡ç†å‘˜é…ç½®"
 
 #: shared/inc/forms/dns.php:85
 msgid "Configure your domain name:"
-msgstr "ÅäÖÃÄúµÄÓòÃû£º"
+msgstr "é…ç½®æ‚¨çš„åŸŸåï¼š"
 
 #: client/new_account_form.php:565
 msgid "Confirm pass: "
-msgstr "È·ÈÏÃÜÂë£º"
+msgstr "ç¡®è®¤å¯†ç ï¼š"
 
 #: shared/inc/forms/email.php:219
 #, fuzzy
 msgid "Confirm password: "
-msgstr "È·ÈÏÃÜÂë£º"
+msgstr "ç¡®è®¤å¯†ç ï¼š"
 
 #: admin/inc/draw_user_admin.php:469
 msgid "Console output"
@@ -888,31 +888,31 @@ msgstr ""
 #: shared/inc/forms/domain_stats.php:87 shared/inc/forms/domain_stats.php:94
 #, fuzzy
 msgid "Copy to subdomains:"
-msgstr "×ÓÓòÃû£º"
+msgstr "å­åŸŸåï¼š"
 
 #: admin/deamons_state.php:163
 #, fuzzy
 msgid "Could not connect to SMTP server (timed out): "
-msgstr "ÎŞ·¨Á¬½Óµ½SOAP·şÎñÆ÷¡£"
+msgstr "æ— æ³•è¿æ¥åˆ°SOAPæœåŠ¡å™¨ã€‚"
 
 #: shared/inc/sql/vps.php:6 shared/inc/sql/vps.php:50
 #: shared/inc/sql/vps.php:72 shared/inc/sql/vps.php:92
 #: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:210
 msgid "Could not connect to VPS server!"
-msgstr "ÎŞ·¨Á¬½Óµ½VPS·şÎñÆ÷!"
+msgstr "æ— æ³•è¿æ¥åˆ°VPSæœåŠ¡å™¨!"
 
 #: shared/dtcrm/draw_adddomain.php:128
 msgid ""
 "Could not connect to domain registration server: please try again later!"
-msgstr "ÎŞ·¨Á¬½Óµ½ÓòÃû×¢²á·şÎñÆ÷£ºÇëÉÔºòÔÙÊÔ£¡"
+msgstr "æ— æ³•è¿æ¥åˆ°åŸŸåæ³¨å†ŒæœåŠ¡å™¨ï¼šè¯·ç¨å€™å†è¯•ï¼"
 
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
-msgstr "ÎŞ·¨Á¬½Óµ½SOAP·şÎñÆ÷¡£"
+msgstr "æ— æ³•è¿æ¥åˆ°SOAPæœåŠ¡å™¨ã€‚"
 
 #: client/new_account_form.php:101
 msgid "Could not find the VPS server in database"
-msgstr "ÔÚÊı¾İ¿âÖĞÃ»ÓĞÕÒµ½VPSµÄÏà¹ØÅäÖÃ"
+msgstr "åœ¨æ•°æ®åº“ä¸­æ²¡æœ‰æ‰¾åˆ°VPSçš„ç›¸å…³é…ç½®"
 
 #: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:60
 msgid "Could not found subdomain in table for folder deletion"
@@ -923,17 +923,17 @@ msgid ""
 "Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
 "not running?"
 msgstr ""
-"ÎŞ·¨µÃµ½Ô¶³ÌÖ÷»úµÄÔËĞĞ×´Ì¬(º¯ÊıgetVPSState()ÔËĞĞÊ§°Ü)¡£¿ÉÄÜVPSÃ»ÓĞÔËĞĞ..."
+"æ— æ³•å¾—åˆ°è¿œç¨‹ä¸»æœºçš„è¿è¡ŒçŠ¶æ€(å‡½æ•°getVPSState()è¿è¡Œå¤±è´¥)ã€‚å¯èƒ½VPSæ²¡æœ‰è¿è¡Œ..."
 
 #: shared/inc/forms/vps.php:126
 msgid "Could not get remote status. Unkown error: "
-msgstr "ÎŞ·¨µÃµ½Ô¶³ÌÖ÷»úµÄÔËĞĞ×´Ì¬£ºÎ´ÖªµÄ´íÎó¡£"
+msgstr "æ— æ³•å¾—åˆ°è¿œç¨‹ä¸»æœºçš„è¿è¡ŒçŠ¶æ€ï¼šæœªçŸ¥çš„é”™è¯¯ã€‚"
 
 #: shared/inc/forms/vps.php:124
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
-msgstr "ÎŞ·¨µÃµ½Ô¶³ÌÖ÷»úµÄÔËĞĞ×´Ì¬£ºÎŞ·¨Á¬½Óµ½SOAP·şÎñÆ÷(HTTP error)¡£"
+msgstr "æ— æ³•å¾—åˆ°è¿œç¨‹ä¸»æœºçš„è¿è¡ŒçŠ¶æ€ï¼šæ— æ³•è¿æ¥åˆ°SOAPæœåŠ¡å™¨(HTTP error)ã€‚"
 
 #: shared/inc/forms/dns.php:82
 msgid "Could not load zonefile: permission denied or file not existant?"
@@ -946,7 +946,7 @@ msgstr ""
 #: admin/deamons_state.php:232
 #, fuzzy
 msgid "Could not write PASS to server"
-msgstr "ÎŞ·¨Á¬½Óµ½SOAP·şÎñÆ÷¡£"
+msgstr "æ— æ³•è¿æ¥åˆ°SOAPæœåŠ¡å™¨ã€‚"
 
 #: admin/deamons_state.php:219
 msgid "Could not write USER to server"
@@ -958,11 +958,11 @@ msgstr ""
 
 #: client/new_account_form.php:227
 msgid "Country code seems incorrect."
-msgstr "¹ú¼Ò´úÂëÃ²ËÆ²»ÕıÈ·¡£"
+msgstr "å›½å®¶ä»£ç è²Œä¼¼ä¸æ­£ç¡®ã€‚"
 
 #: admin/inc/dtc_config.php:1231 shared/inc/forms/my_account.php:212
 msgid "Country:"
-msgstr "¹ú¼Ò£º"
+msgstr "å›½å®¶ï¼š"
 
 #: admin/dtcrm/main.php:171 client/new_account_form.php:628
 #: shared/dtcrm/draw_handle.php:65 shared/dtcrm/draw_handle.php:97
@@ -970,11 +970,11 @@ msgstr "¹ú¼Ò£º"
 #: shared/inc/forms/root_admin.php:280
 #, fuzzy
 msgid "Country: "
-msgstr "¹ú¼Ò£º"
+msgstr "å›½å®¶ï¼š"
 
 #: shared/inc/forms/database.php:65 shared/inc/forms/database.php:113
 msgid "Create"
-msgstr "´´½¨"
+msgstr "åˆ›å»º"
 
 #: shared/inc/forms/aliases.php:23
 msgid "Create Mail Group"
@@ -986,7 +986,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_handle.php:29
 msgid "Create a new handle"
-msgstr "½¨Á¢Ò»¸öĞÂ¾ä±ú"
+msgstr "å»ºç«‹ä¸€ä¸ªæ–°å¥æŸ„"
 
 #: shared/dtcrm/draw_handle.php:199
 msgid "Create a new nick-handle:"
@@ -994,29 +994,29 @@ msgstr ""
 
 #: shared/inc/forms/subdomain.php:126
 msgid "Create a subdomain: "
-msgstr "½¨Á¢×ÓÓòÃû£º"
+msgstr "å»ºç«‹å­åŸŸåï¼š"
 
 #: shared/inc/forms/vps.php:26
 msgid "Credential not correct: can't display in file "
-msgstr "Ö¤Êé´íÎó£ºÎŞ·¨ÏÔÊ¾ÎÄ¼ş"
+msgstr "è¯ä¹¦é”™è¯¯ï¼šæ— æ³•æ˜¾ç¤ºæ–‡ä»¶"
 
 #: admin/inc/dtc_config.php:926
 #, fuzzy
 msgid "Currency letters: "
-msgstr "»õ±Ò×Ö·û£º"
+msgstr "è´§å¸å­—ç¬¦ï¼š"
 
 #: admin/inc/dtc_config.php:922
 #, fuzzy
 msgid "Currency symbol: "
-msgstr "»õ±Ò±ê¼Ç£º"
+msgstr "è´§å¸æ ‡è®°ï¼š"
 
 #: shared/inc/forms/vps.php:247
 msgid "Current VPS status:"
-msgstr "µ±Ç°VPS×´Ì¬£º"
+msgstr "å½“å‰VPSçŠ¶æ€ï¼š"
 
 #: shared/inc/forms/vps.php:195
 msgid "Current contract: "
-msgstr "µ±Ç°µÄºÏÍ¬£º"
+msgstr "å½“å‰çš„åˆåŒï¼š"
 
 #: shared/inc/forms/vps.php:275
 msgid "Currently installed operating system: "
@@ -1024,42 +1024,42 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:408
 msgid "Custom headers:"
-msgstr "×Ô¶¨ÒåµÄÒ³Í·£º"
+msgstr "è‡ªå®šä¹‰çš„é¡µå¤´ï¼š"
 
 #: admin/inc/dtc_config.php:1305
 msgid "Customer and service country vs company:"
-msgstr "ÒµÎñÑÓÉìµ½µÄ¹ú¼ÒºÍµØÇø"
+msgstr "ä¸šåŠ¡å»¶ä¼¸åˆ°çš„å›½å®¶å’Œåœ°åŒº"
 
 #: admin/inc/dtc_config.php:1320
 msgid "Customer country"
-msgstr "¿Í»§¹ú±ğ"
+msgstr "å®¢æˆ·å›½åˆ«"
 
 #: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:409
 #: shared/gfx/skin/bwoup/layout.php:411
 msgid "Customer management"
-msgstr "¿Í»§¹ÜÀí"
+msgstr "å®¢æˆ·ç®¡ç†"
 
 #: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:499
 #, fuzzy
 msgid "Customer renewals"
-msgstr "Customer ¸üĞÂ"
+msgstr "Customer æ›´æ–°"
 
 #: client/new_account_form.php:713 shared/gfx/skin/default_layout.php:120
 #: shared/gfx/skin/bwoup/layout.php:486
 msgid "Customer's address"
-msgstr "¿Í»§×ÊÁÏ"
+msgstr "å®¢æˆ·èµ„æ–™"
 
 #: shared/gfx/skin/default_layout.php:122
 msgid "Customer's administrators"
-msgstr "¿Í»§µÄ¹ÜÀíÔ±"
+msgstr "å®¢æˆ·çš„ç®¡ç†å‘˜"
 
 #: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:503
 msgid "Customer's bandwidth consumption"
-msgstr "¿Í»§´ø¿íÊ¹ÓÃÁ¿"
+msgstr "å®¢æˆ·å¸¦å®½ä½¿ç”¨é‡"
 
 #: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:481
 msgid "Customers list"
-msgstr "¿Í»§ÁĞ±í"
+msgstr "å®¢æˆ·åˆ—è¡¨"
 
 #: shared/inc/forms/root_admin.php:347
 msgid "Customize"
@@ -1067,11 +1067,11 @@ msgstr ""
 
 #: shared/inc/draw.php:135 shared/inc/draw.php:412
 msgid "DNS Nick handles"
-msgstr "DNS¡¡¸ºÔğÈË"
+msgstr "DNSã€€è´Ÿè´£äºº"
 
 #: shared/inc/draw.php:196
 msgid "DNS and MX"
-msgstr "DNS ºÍ MX"
+msgstr "DNS å’Œ MX"
 
 #: shared/inc/draw.php:376
 msgid "DNS config of:"
@@ -1079,142 +1079,142 @@ msgstr ""
 
 #: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:526
 msgid "DTC Configuration"
-msgstr "ÅäÖÃDTC²ÎÊı"
+msgstr "é…ç½®DTCå‚æ•°"
 
 #: admin/inc/dtc_config.php:619
 msgid "DTC Skin chooser"
-msgstr "¸ü»»DTC¿ØÖÆÃæ°åµÄÆ¤·ô"
+msgstr "æ›´æ¢DTCæ§åˆ¶é¢æ¿çš„çš®è‚¤"
 
 #: shared/gfx/skin/default_layout.php:319 shared/gfx/skin/bwoup/layout.php:439
 #: shared/gfx/skin/bwoup/layout.php:441
 msgid "DTC general configuration"
-msgstr "DTC¿ØÖÆÃæ°å²ÎÊıÉèÖÃ"
+msgstr "DTCæ§åˆ¶é¢æ¿å‚æ•°è®¾ç½®"
 
 #: admin/inc/dtc_config.php:557
 msgid "Daemon"
-msgstr "ÇëÑ¡ÔñĞèÒªÊ¹ÓÃµÄÊØ»¤½ø³Ì"
+msgstr "è¯·é€‰æ‹©éœ€è¦ä½¿ç”¨çš„å®ˆæŠ¤è¿›ç¨‹"
 
 #: admin/inc/dtc_config.php:359
 msgid "Daily"
-msgstr "Ã¿ÈÕ"
+msgstr "æ¯æ—¥"
 
 #: shared/inc/forms/admin_stats.php:83
 msgid "Database Name"
-msgstr "Êı¾İ¿âÃû"
+msgstr "æ•°æ®åº“å"
 
 #: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
 msgid "Database files:"
-msgstr "Êı¾İ¿âÎÄ¼ş£º"
+msgstr "æ•°æ®åº“æ–‡ä»¶ï¼š"
 
 #: shared/inc/forms/database.php:76
 #, fuzzy
 msgid "Database name"
-msgstr "Êı¾İ¿âÃû"
+msgstr "æ•°æ®åº“å"
 
 #: shared/inc/draw.php:288
 msgid "Databases"
-msgstr "Êı¾İ¿â"
+msgstr "æ•°æ®åº“"
 
 #: shared/inc/forms/admin_stats.php:81
 msgid "Databases disk usage:"
-msgstr "Êı¾İ¿âÊ¹ÓÃµÄ´ÅÅÌ¿Õ¼ä£º"
+msgstr "æ•°æ®åº“ä½¿ç”¨çš„ç£ç›˜ç©ºé—´ï¼š"
 
 #: shared/inc/draw.php:428
 #, fuzzy
 msgid "Databases:"
-msgstr "Êı¾İ¿âÎÄ¼ş£º"
+msgstr "æ•°æ®åº“æ–‡ä»¶ï¼š"
 
 #: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:210
 #: shared/inc/forms/invoices.php:23 shared/inc/forms/ticket.php:158
 msgid "Date"
-msgstr "ÈÕÆÚ"
+msgstr "æ—¥æœŸ"
 
 #: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:511
 msgid "Deamons states"
-msgstr "ÊØ»¤½ø³ÌµÄ×´Ì¬"
+msgstr "å®ˆæŠ¤è¿›ç¨‹çš„çŠ¶æ€"
 
 #: shared/inc/forms/dedicated.php:38
 msgid "Dedicated server contract:"
-msgstr "¶ÀÁ¢Ö÷»úºÏÍ¬£º"
+msgstr "ç‹¬ç«‹ä¸»æœºåˆåŒï¼š"
 
 #: shared/inc/forms/dedicated.php:41
 msgid "Dedicated server expiration dates:"
-msgstr "¶ÀÁ¢Ö÷»ú¹ıÆÚÊ±¼ä£º"
+msgstr "ç‹¬ç«‹ä¸»æœºè¿‡æœŸæ—¶é—´ï¼š"
 
 #: admin/inc/renewals.php:237
 msgid "Dedicated servers renewals"
-msgstr "¶ÀÁ¢Ö÷»ú¸üĞÂ"
+msgstr "ç‹¬ç«‹ä¸»æœºæ›´æ–°"
 
 #: admin/inc/renewals.php:103
 msgid "Dedicated servers: "
-msgstr "¶ÀÁ¢Ö÷»ú£º"
+msgstr "ç‹¬ç«‹ä¸»æœºï¼š"
 
 #: admin/inc/dtc_config.php:1283 admin/inc/dtc_config.php:1288
 msgid "Default company invoicing:"
-msgstr "¹«Ë¾µÄÄ¬ÈÏ·¢Æ±£º"
+msgstr "å…¬å¸çš„é»˜è®¤å‘ç¥¨ï¼š"
 
 #: shared/inc/forms/subdomain.php:113
 msgid "Default subdomain: "
-msgstr "Ä¬ÈÏ×ÓÓòÃû£º"
+msgstr "é»˜è®¤å­åŸŸåï¼š"
 
 #: admin/inc/draw_user_admin.php:281 admin/inc/draw_user_admin.php:301
 #: shared/inc/forms/database.php:53 shared/inc/forms/database.php:99
 #: shared/inc/forms/domain_stats.php:104
 msgid "Delete"
-msgstr "É¾³ı"
+msgstr "åˆ é™¤"
 
 #: shared/inc/forms/root_admin.php:143
 msgid "Delete a user domain:"
-msgstr "É¾³ıÒ»¸öÓÃ»§ÓòÃû£º"
+msgstr "åˆ é™¤ä¸€ä¸ªç”¨æˆ·åŸŸåï¼š"
 
 #: shared/inc/forms/lists.php:265
 msgid ""
 "Delete all messages of webarchive. NOTE: this works only if you have &quot;"
 "web archive&quot; not checked."
 msgstr ""
-"É¾³ıÁËËùÓĞµÄ¹éµµÎÄ¼ş¡£×¢Òâ£ºÖ»ÓĞµ±ÄúÓµÓĞ&quot¹éµµÎÄ¼şÊ±Ëü²Å»áÖ´ĞĞ;¹éµµÎÄ¼ş"
-"&quot;Ã»ÓĞ±»¼ì²é¡£"
+"åˆ é™¤äº†æ‰€æœ‰çš„å½’æ¡£æ–‡ä»¶ã€‚æ³¨æ„ï¼šåªæœ‰å½“æ‚¨æ‹¥æœ‰&quotå½’æ¡£æ–‡ä»¶æ—¶å®ƒæ‰ä¼šæ‰§è¡Œ;å½’æ¡£æ–‡ä»¶"
+"&quot;æ²¡æœ‰è¢«æ£€æŸ¥ã€‚"
 
 #: shared/inc/forms/lists.php:405
 msgid "Delete headers:"
-msgstr "É¾³ıÒ³Í·£º"
+msgstr "åˆ é™¤é¡µå¤´ï¼š"
 
 #: shared/dtcrm/draw_nameservers.php:120
 msgid "Delete name server"
-msgstr "É¾³ıÓòÃû·şÎñÆ÷"
+msgstr "åˆ é™¤åŸŸåæœåŠ¡å™¨"
 
 #: shared/inc/forms/root_admin.php:191
 msgid "Delete one of the admin VPS: "
-msgstr "É¾³ıÕâ¸ö¹ÜÀíÔ±ÕËºÅÏÂµÄÒ»¸öVPS£º"
+msgstr "åˆ é™¤è¿™ä¸ªç®¡ç†å‘˜è´¦å·ä¸‹çš„ä¸€ä¸ªVPSï¼š"
 
 #: shared/inc/forms/root_admin.php:250
 msgid "Delete one of the admin dedicated server:"
-msgstr "É¾³ıÕâ¸ö¹ÜÀíÔ±ÕËºÅÏÂµÄÒ»¸ö¶ÀÁ¢Ö÷»ú£º"
+msgstr "åˆ é™¤è¿™ä¸ªç®¡ç†å‘˜è´¦å·ä¸‹çš„ä¸€ä¸ªç‹¬ç«‹ä¸»æœºï¼š"
 
 #: shared/inc/forms/root_admin.php:141
 msgid "Delete the user"
-msgstr "É¾³ıÓÃ»§"
+msgstr "åˆ é™¤ç”¨æˆ·"
 
 #: shared/inc/forms/lists.php:445
 #, fuzzy
 msgid "Delete:"
-msgstr "É¾³ı"
+msgstr "åˆ é™¤"
 
 #: shared/dtcrm/draw_nameservers.php:74
 msgid "Deletion of name server failed"
-msgstr "É¾³ıÓòÃû·şÎñÆ÷Ê§°Ü"
+msgstr "åˆ é™¤åŸŸåæœåŠ¡å™¨å¤±è´¥"
 
 #: shared/dtcrm/draw_nameservers.php:68
 msgid "Deletion of name server was succesful"
-msgstr "É¾³ıÓòÃû·şÎñÆ÷³É¹¦"
+msgstr "åˆ é™¤åŸŸåæœåŠ¡å™¨æˆåŠŸ"
 
 #: shared/inc/forms/lists.php:431
 msgid "Delimiter:"
-msgstr "·Ö¸ô·û£º"
+msgstr "åˆ†éš”ç¬¦ï¼š"
 
 #: shared/inc/forms/email.php:247 shared/inc/forms/email.php:614
 msgid "Deliver messages locally in INBOX: "
-msgstr "½«ÓÊ¼ş´æ´¢µ½±¾µØINBOX£º"
+msgstr "å°†é‚®ä»¶å­˜å‚¨åˆ°æœ¬åœ°INBOXï¼š"
 
 #: shared/inc/forms/aliases.php:52
 msgid "Delivery Group:"
@@ -1222,122 +1222,122 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:423
 msgid "Deny if no To: or Cc::"
-msgstr "Èç¹ûÃ»ÓĞÌîĞ´ÊÕ¼şÈË»òÕß³­ËÍ¶ÔÏóÔò²»·¢ËÍ£º"
+msgstr "å¦‚æœæ²¡æœ‰å¡«å†™æ”¶ä»¶äººæˆ–è€…æŠ„é€å¯¹è±¡åˆ™ä¸å‘é€ï¼š"
 
 #: shared/inc/forms/packager.php:218
 msgid "Description"
-msgstr "ÃèÊö"
+msgstr "æè¿°"
 
 #: admin/inc/dtc_config.php:1070
 #, fuzzy
 msgid "Description: "
-msgstr "Àà±ğÃèÊö"
+msgstr "ç±»åˆ«æè¿°"
 
 #: client/new_account_form.php:543
 msgid "Desired domain name"
-msgstr "ÓûÑ¡ÔñµÄÓòÃû"
+msgstr "æ¬²é€‰æ‹©çš„åŸŸå"
 
 #: admin/inc/dtc_config.php:361
 msgid "Destination folder:"
-msgstr "Ä¿±êÎÄ¼ş¼Ğ£º"
+msgstr "ç›®æ ‡æ–‡ä»¶å¤¹ï¼š"
 
 #: shared/inc/forms/domain_stats.php:61
 msgid "Detailed web statistics (HTTP) of your subdomains:"
-msgstr "×ÓÓòÃûµÄwebalizerÏêÏ¸Í³¼Æ½á¹û£º"
+msgstr "å­åŸŸåçš„webalizerè¯¦ç»†ç»Ÿè®¡ç»“æœï¼š"
 
 #: shared/inc/forms/lists.php:416
 msgid "Digest"
-msgstr "ÕªÒª"
+msgstr "æ‘˜è¦"
 
 #: shared/inc/forms/lists.php:417
 msgid "Digest interval:"
-msgstr "ÕªÒªµÄÑ¡ÔñÇø¼ä£º"
+msgstr "æ‘˜è¦çš„é€‰æ‹©åŒºé—´ï¼š"
 
 #: shared/inc/forms/lists.php:418
 msgid "Digest max mails:"
-msgstr "ÕªÒªÓÊ¼şµÄ×î´ó·¢ËÍÊıÁ¿£º"
+msgstr "æ‘˜è¦é‚®ä»¶çš„æœ€å¤§å‘é€æ•°é‡ï¼š"
 
 #: admin/dtcrm/product_manager.php:46 admin/dtcrm/product_manager.php:114
 #: admin/dtcrm/product_manager.php:172
 #, fuzzy
 msgid "Disk"
-msgstr "´ÅÅÌ¿Õ¼ä"
+msgstr "ç£ç›˜ç©ºé—´"
 
 #: shared/inc/forms/root_admin.php:360
 msgid "Disk quota"
-msgstr "´ÅÅÌÅä¶î"
+msgstr "ç£ç›˜é…é¢"
 
 #: shared/inc/forms/root_admin.php:125
 msgid "Disk quota (MB):"
-msgstr "´ÅÅÌÅä¶î(MB)£º"
+msgstr "ç£ç›˜é…é¢(MB)ï¼š"
 
 #: admin/inc/monitor.php:15 shared/inc/forms/admin_stats.php:83
 #: shared/inc/forms/admin_stats.php:104
 msgid "Disk usage"
-msgstr "´ÅÅÌÊ¹ÓÃÂÊ"
+msgstr "ç£ç›˜ä½¿ç”¨ç‡"
 
 #: admin/inc/nav.php:116
 msgid "Display and sort by:"
-msgstr "¸ù¾İÊ²Ã´·ÖÀà£º"
+msgstr "æ ¹æ®ä»€ä¹ˆåˆ†ç±»ï¼š"
 
 #: shared/inc/forms/lists.php:250
 msgid "Do not change unless you really know what you are doing."
-msgstr "²»Òª¸ü¸ÄËü£¬³ı·ÇÄúÖªµÀÄúÕıÔÚ×öÊ²Ã´¡£"
+msgstr "ä¸è¦æ›´æ”¹å®ƒï¼Œé™¤éæ‚¨çŸ¥é“æ‚¨æ­£åœ¨åšä»€ä¹ˆã€‚"
 
 #: shared/dtcrm/draw_adddomain.php:102
 msgid "Do you want to transfer an existing domain or register a new domain?"
-msgstr "ÄúÒª¹ı»§Ò»¸öÏÖ´æµÄÓòÃû»¹ÊÇ×¢²áÒ»¸öĞÂµÄ£¿"
+msgstr "æ‚¨è¦è¿‡æˆ·ä¸€ä¸ªç°å­˜çš„åŸŸåè¿˜æ˜¯æ³¨å†Œä¸€ä¸ªæ–°çš„ï¼Ÿ"
 
 #: shared/drawlib/anotherDtc.php:129
 msgid "Documentation"
-msgstr "ÎÄµµ"
+msgstr "æ–‡æ¡£"
 
 #: shared/gfx/skin/default_layout.php:194
 msgid "Domain Technologie Control : root admin console"
-msgstr "Domain Technologie Control£º¿ØÖÆÌ¨"
+msgstr "Domain Technologie Controlï¼šæ§åˆ¶å°"
 
 #: shared/inc/draw.php:371
 #, fuzzy
 msgid "Domain Tools"
-msgstr "ÓòÃû"
+msgstr "åŸŸå"
 
 #: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:650
 #: shared/gfx/skin/bwoup/layout.php:652
 msgid "Domain config"
-msgstr "Ö÷»úÅäÖÃ"
+msgstr "ä¸»æœºé…ç½®"
 
 #: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:207
 #: shared/inc/forms/admin_stats.php:104 shared/inc/forms/root_admin.php:343
 msgid "Domain name"
-msgstr "ÓòÃû"
+msgstr "åŸŸå"
 
 #: admin/inc/draw_user_admin.php:237
 msgid "Domain name / VPS server hostname"
-msgstr "ÓòÃû/VPSÖ÷»úÃû"
+msgstr "åŸŸå/VPSä¸»æœºå"
 
 #: shared/inc/forms/admin_stats.php:67
 msgid "Domain name files:"
-msgstr "ÓòÃûÎÄ¼ş£º"
+msgstr "åŸŸåæ–‡ä»¶ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:68
 msgid "Domain name is not in correct format. Please enter another name."
-msgstr "ÄúÊäÈëµÄÓòÃû²»ÕıÈ·£¬ÇëÖØĞÂÊäÈë"
+msgstr "æ‚¨è¾“å…¥çš„åŸŸåä¸æ­£ç¡®ï¼Œè¯·é‡æ–°è¾“å…¥"
 
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
-msgstr "ÉèÖÃÓòÃû×¢²á²ÎÊı"
+msgstr "è®¾ç½®åŸŸåæ³¨å†Œå‚æ•°"
 
 #: admin/inc/dtc_config.php:878
 msgid "Domain name registry API configuraiton"
-msgstr "ÅäÖÃÓòÃû×¢²á½Ó¿Ú²ÎÊı"
+msgstr "é…ç½®åŸŸåæ³¨å†Œæ¥å£å‚æ•°"
 
 #: client/new_account_form.php:79 client/new_account_form.php:86
 msgid "Domain name seems to be incorrect."
-msgstr "ÓòÃûÃ²ËÆ²»ÕıÈ·¡£"
+msgstr "åŸŸåè²Œä¼¼ä¸æ­£ç¡®ã€‚"
 
 #: shared/inc/forms/admin_stats.php:102
 msgid "Domain name trafic and disk usage:"
-msgstr "ÓòÃû£¬Á÷Á¿£¬´ÅÅÌÊ¹ÓÃÂÊ£º"
+msgstr "åŸŸåï¼Œæµé‡ï¼Œç£ç›˜ä½¿ç”¨ç‡ï¼š"
 
 #: shared/inc/forms/dns.php:61
 msgid "Domain root TXT record2: "
@@ -1349,19 +1349,19 @@ msgstr ""
 
 #: shared/gfx/skin/default_layout.php:409
 msgid "Domains for"
-msgstr "Ö÷»ú"
+msgstr "ä¸»æœº"
 
 #: shared/inc/forms/subdomain.php:245
 msgid "Dynamic IP update login: "
-msgstr "¶¯Ì¬IP¸üĞÂµÇÂ½Ãû£º"
+msgstr "åŠ¨æ€IPæ›´æ–°ç™»é™†åï¼š"
 
 #: shared/inc/forms/subdomain.php:251
 msgid "Dynamic IP update password: "
-msgstr "¶¯Ì¬IP¸üĞÂÃÜÂë£º"
+msgstr "åŠ¨æ€IPæ›´æ–°å¯†ç ï¼š"
 
 #: admin/inc/nav.php:61
 msgid "E-MAIL ACCOUNTS"
-msgstr "µç×ÓÓÊ¼şÕË»§"
+msgstr "ç”µå­é‚®ä»¶è´¦æˆ·"
 
 #: admin/deamons_state.php:293 admin/deamons_state.php:299
 #: admin/deamons_state.php:305 admin/deamons_state.php:311
@@ -1378,7 +1378,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_nameservers.php:99
 msgid "Edit a name server:"
-msgstr "±à¼­ÓòÃû·şÎñÆ÷ĞÅÏ¢£º"
+msgstr "ç¼–è¾‘åŸŸåæœåŠ¡å™¨ä¿¡æ¯ï¼š"
 
 #: shared/inc/forms/lists.php:52
 msgid "Edit mailing list"
@@ -1386,48 +1386,48 @@ msgstr ""
 
 #: shared/inc/draw.php:365
 msgid "Edit mailing lists of domain:"
-msgstr "±à¼­ÓÊ¼şÁĞ±í£º"
+msgstr "ç¼–è¾‘é‚®ä»¶åˆ—è¡¨ï¼š"
 
 #: shared/inc/forms/subdomain.php:128
 msgid "Edit one of your subdomains"
-msgstr "±à¼­ÄúµÄÒ»¸ö×ÓÓò"
+msgstr "ç¼–è¾‘æ‚¨çš„ä¸€ä¸ªå­åŸŸ"
 
 #: shared/inc/forms/email.php:246
 msgid "Edit your mailbox redirections:"
-msgstr "±à¼­ÄúµÄÓÊ¼ş×ª·¢£º"
+msgstr "ç¼–è¾‘æ‚¨çš„é‚®ä»¶è½¬å‘ï¼š"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
 #, fuzzy
 msgid "Email"
-msgstr "ÓÊÏäµØÖ·"
+msgstr "é‚®ç®±åœ°å€"
 
 #: admin/inc/dtc_config.php:299
 msgid "Email addr"
-msgstr "ÓÊÏäµØÖ·"
+msgstr "é‚®ç®±åœ°å€"
 
 #: shared/inc/forms/aliases.php:57
 #, fuzzy
 msgid "Email address is already in use!"
-msgstr "ÍøÕ¾¹ÜÀíÔ±ÓÊÏä£º"
+msgstr "ç½‘ç«™ç®¡ç†å‘˜é‚®ç®±ï¼š"
 
 #: admin/inc/dtc_config.php:697
 msgid "Email address of your webmaster:"
-msgstr "ÍøÕ¾¹ÜÀíÔ±ÓÊÏä£º"
+msgstr "ç½‘ç«™ç®¡ç†å‘˜é‚®ç®±ï¼š"
 
 #: client/new_account_form.php:107
 msgid "Email address seems to be incorrect format."
-msgstr "Ã²ËÆÓÊÏäµØÖ·¸ñÊ½²»ÕıÈ·¡£"
+msgstr "è²Œä¼¼é‚®ç®±åœ°å€æ ¼å¼ä¸æ­£ç¡®ã€‚"
 
 #: shared/inc/forms/root_admin.php:364
 msgid "Email max"
-msgstr "ÓÊÏäÊıÁ¿ÉÏÏŞ"
+msgstr "é‚®ç®±æ•°é‡ä¸Šé™"
 
 #: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
 #: shared/gfx/skin/bwoup/layout.php:53 shared/gfx/skin/bwoup/layout.php:61
 #, fuzzy
 msgid "Email panel: "
-msgstr "ÓÊÏäµØÖ·"
+msgstr "é‚®ç®±åœ°å€"
 
 #: admin/inc/nav.php:20
 msgid "Email user and domain files generated !"
@@ -1436,43 +1436,43 @@ msgstr ""
 #: shared/inc/forms/aliases.php:48 shared/inc/forms/my_account.php:215
 #, fuzzy
 msgid "Email:"
-msgstr "ÓÊÏäµØÖ·"
+msgstr "é‚®ç®±åœ°å€"
 
 #: admin/dtcrm/main.php:175 client/new_account_form.php:596
 #: shared/dtcrm/draw_handle.php:68 shared/dtcrm/draw_handle.php:100
 #: shared/dtcrm/draw_handle.php:132 shared/dtcrm/draw_handle.php:262
 #, fuzzy
 msgid "Email: "
-msgstr "ÓÊÏäµØÖ·"
+msgstr "é‚®ç®±åœ°å€"
 
 #: shared/inc/forms/email.php:570
 msgid "Enable SPAM filtering: "
-msgstr "¿ªÆôÀ¬»øÓÊ¼ş¹ıÂË¹¦ÄÜ£º"
+msgstr "å¼€å¯åƒåœ¾é‚®ä»¶è¿‡æ»¤åŠŸèƒ½ï¼š"
 
 #: shared/inc/forms/lists.php:241
 msgid "Enable VERP support."
-msgstr "ÆôÓÃVERPÖ§³Ö¡£"
+msgstr "å¯ç”¨VERPæ”¯æŒã€‚"
 
 #: shared/inc/forms/lists.php:256
 msgid "Enable webarchive."
-msgstr "ÆôÓÃ¹éµµ¹¦ÄÜ¡£"
+msgstr "å¯ç”¨å½’æ¡£åŠŸèƒ½ã€‚"
 
 #: shared/inc/forms/lists.php:442
 msgid "Enable webarchive:"
-msgstr "Ê¹ÓÃ¹éµµ£º"
+msgstr "ä½¿ç”¨å½’æ¡£ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:120
 msgid "Enter the domain name you want to register:"
-msgstr "ÊäÈëÄúÒª×¢²áµÄÓòÃû"
+msgstr "è¾“å…¥æ‚¨è¦æ³¨å†Œçš„åŸŸå"
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
 msgid "Error"
-msgstr "´íÎó"
+msgstr "é”™è¯¯"
 
 #: shared/inc/sql/vps.php:57
 #, fuzzy
 msgid "Error: "
-msgstr "´íÎó"
+msgstr "é”™è¯¯"
 
 #: shared/inc/forms/email.php:430
 msgid "Error: Email group alias already exists with this name!"
@@ -1484,83 +1484,83 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
 msgid "Expiration"
-msgstr "ÆÚÂú"
+msgstr "æœŸæ»¡"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
 msgid "Expiration date"
-msgstr "¹ıÆÚÊ±¼ä"
+msgstr "è¿‡æœŸæ—¶é—´"
 
 #: admin/inc/dtc_config.php:261 shared/inc/forms/my_account.php:126
 msgid "Expire"
-msgstr "¹ıÆÚ"
+msgstr "è¿‡æœŸ"
 
 #: admin/dtcrm/main.php:211 shared/inc/forms/my_account.php:97
 msgid "Expiry date"
-msgstr "¹ıÆÚÈÕÆÚ"
+msgstr "è¿‡æœŸæ—¥æœŸ"
 
 #: shared/inc/forms/root_admin.php:127 shared/inc/forms/vps.php:199
 #, fuzzy
 msgid "Expiry date:"
-msgstr "¹ıÆÚÈÕÆÚ"
+msgstr "è¿‡æœŸæ—¥æœŸ"
 
 #: shared/inc/forms/domain_info.php:101
 msgid "Export this domain to a file"
-msgstr "½«Õâ¸öÓòµ¼³öµ½Ò»¸öÎÄ¼ş"
+msgstr "å°†è¿™ä¸ªåŸŸå¯¼å‡ºåˆ°ä¸€ä¸ªæ–‡ä»¶"
 
 #: shared/inc/forms/ftp.php:54
 msgid "FTP account configuration: "
-msgstr "FTPÕÊ»§ÅäÖÃ£º"
+msgstr "FTPå¸æˆ·é…ç½®ï¼š"
 
 #: shared/inc/draw.php:210 shared/inc/draw.php:400
 msgid "FTP accounts"
-msgstr "FTPÕÊ»§"
+msgstr "FTPå¸æˆ·"
 
 #: shared/inc/draw.php:402
 msgid "FTP accounts of "
-msgstr "±¾Õ¾µãµÄFTPÕÊ»§"
+msgstr "æœ¬ç«™ç‚¹çš„FTPå¸æˆ·"
 
 #: shared/inc/forms/domain_info.php:55
 msgid "FTP accounts:"
-msgstr "FTPÕÊ»§£º"
+msgstr "FTPå¸æˆ·ï¼š"
 
 #: admin/inc/dtc_config.php:44
 msgid "FTP backup"
-msgstr "FTP±¸·İ"
+msgstr "FTPå¤‡ä»½"
 
 #: admin/inc/dtc_config.php:334
 msgid "FTP backup configuration"
-msgstr "ÅäÖÃFTP±¸·İ²ÎÊıÅäÖÃ"
+msgstr "é…ç½®FTPå¤‡ä»½å‚æ•°é…ç½®"
 
 #: admin/inc/dtc_config.php:348
 msgid "FTP login:"
-msgstr "FTPµÇÂ½ÕËºÅ£º"
+msgstr "FTPç™»é™†è´¦å·ï¼š"
 
 #: admin/inc/dtc_config.php:352
 msgid "FTP password:"
-msgstr "FTPµÇÂ½ÃÜÂë£º"
+msgstr "FTPç™»é™†å¯†ç ï¼š"
 
 #: admin/dtcrm/main.php:159 client/new_account_form.php:580
 #: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
 #: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
 #, fuzzy
 msgid "Familly name: "
-msgstr "ĞÕ£º"
+msgstr "å§“ï¼š"
 
 #: shared/inc/forms/my_account.php:206
 msgid "Family name:"
-msgstr "ĞÕ£º"
+msgstr "å§“ï¼š"
 
 #: shared/inc/forms/my_account.php:214
 msgid "Fax:"
-msgstr "´«Õæ£º"
+msgstr "ä¼ çœŸï¼š"
 
 #: admin/dtcrm/main.php:174 client/new_account_form.php:602
 #: shared/dtcrm/draw_handle.php:67 shared/dtcrm/draw_handle.php:99
 #: shared/dtcrm/draw_handle.php:131 shared/dtcrm/draw_handle.php:259
 #, fuzzy
 msgid "Fax: "
-msgstr "´«Õæ£º"
+msgstr "ä¼ çœŸï¼š"
 
 #: shared/inc/forms/email.php:301
 msgid "Fetchmail"
@@ -1568,30 +1568,30 @@ msgstr ""
 
 #: shared/inc/forms/vps.php:271
 msgid "File system check (fsck)"
-msgstr "ÎÄ¼şÏµÍ³¼ì²é(fsck)"
+msgstr "æ–‡ä»¶ç³»ç»Ÿæ£€æŸ¥(fsck)"
 
 #: shared/inc/forms/vps.php:269
 msgid "File-system check:"
-msgstr "ÎÄ¼şÏµÍ³¼ì²é£º"
+msgstr "æ–‡ä»¶ç³»ç»Ÿæ£€æŸ¥ï¼š"
 
 #: shared/inc/forms/lists.php:205
 msgid ""
 "Fill this if you want every mail to have something like:<br>--<br>To "
 "unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
 msgstr ""
-"Èç¹ûÄãÏëÈÃËùÓĞµÄÓÊ¼ş¶¼Ìí¼ÓÀàËÆÓÚÕâÑùµÄÄÚÈİ£º<br>--<br>ÈçÒªÍË¶©Çë·¢ÓÊ¼ş¸ø "
-"coollist+unsubscribe@lists.domain.netµÄ»°£¬¿ÉÒÔÔÚÕâÀïÌîĞ´¡£"
+"å¦‚æœä½ æƒ³è®©æ‰€æœ‰çš„é‚®ä»¶éƒ½æ·»åŠ ç±»ä¼¼äºè¿™æ ·çš„å†…å®¹ï¼š<br>--<br>å¦‚è¦é€€è®¢è¯·å‘é‚®ä»¶ç»™ "
+"coollist+unsubscribe@lists.domain.netçš„è¯ï¼Œå¯ä»¥åœ¨è¿™é‡Œå¡«å†™ã€‚"
 
 #: shared/inc/forms/my_account.php:205
 msgid "First name:"
-msgstr "Ãû£º"
+msgstr "åï¼š"
 
 #: admin/dtcrm/main.php:160 client/new_account_form.php:583
 #: shared/dtcrm/draw_handle.php:56 shared/dtcrm/draw_handle.php:88
 #: shared/dtcrm/draw_handle.php:120 shared/dtcrm/draw_handle.php:229
 #, fuzzy
 msgid "First name: "
-msgstr "Ãû£º"
+msgstr "åï¼š"
 
 #: admin/inc/draw_user_admin.php:126
 msgid "First query date: "
@@ -1599,12 +1599,12 @@ msgstr ""
 
 #: shared/inc/forms/ticket.php:57
 msgid "Full description of the trouble:"
-msgstr "ÎÊÌâÃèÊö£º"
+msgstr "é—®é¢˜æè¿°ï¼š"
 
 #: admin/inc/dtc_config.php:661
 #, fuzzy
 msgid "Full hostname of DTC admin panel: "
-msgstr "DTC¿ØÖÆÃæ°åµÄÍêÕûÓòÃû£º"
+msgstr "DTCæ§åˆ¶é¢æ¿çš„å®Œæ•´åŸŸåï¼š"
 
 #: admin/inc/dtc_config.php:730
 msgid "Full path to location of the public.key file for DomainKey support:"
@@ -1613,44 +1613,44 @@ msgstr ""
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Gateway cost"
-msgstr "ÉèÖÃ¸¶¿î½Ó¿Ú"
+msgstr "è®¾ç½®ä»˜æ¬¾æ¥å£"
 
 #: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:517
 msgid "General"
-msgstr "ÆÕÍ¨ÉèÖÃ"
+msgstr "æ™®é€šè®¾ç½®"
 
 #: shared/inc/draw.php:553
 msgid "General information of "
-msgstr "³£¹æĞÅÏ¢"
+msgstr "å¸¸è§„ä¿¡æ¯"
 
 #: shared/inc/forms/subdomain.php:161
 msgid "Generate a vhost entry for this subdomain:"
-msgstr "Éú³ÉÕâ¸ö×ÓÓòÃûµÄĞéÄâÖ÷»úÈë¿Ú£º"
+msgstr "ç”Ÿæˆè¿™ä¸ªå­åŸŸåçš„è™šæ‹Ÿä¸»æœºå…¥å£ï¼š"
 
 #: admin/inc/dtc_config.php:652
 #, fuzzy
 msgid "Generate all apache vhosts on local network ip (NAT): "
-msgstr "ËùÓĞĞéÄâÖ÷»ú¶¼¼àÌıÓÚÄÚÍøµØÖ·(NAT)£º"
+msgstr "æ‰€æœ‰è™šæ‹Ÿä¸»æœºéƒ½ç›‘å¬äºå†…ç½‘åœ°å€(NAT)ï¼š"
 
 #: email/login.php:6
 msgid "Go to client panel"
-msgstr "½øÈë¿Í»§¿ØÖÆÌ¨"
+msgstr "è¿›å…¥å®¢æˆ·æ§åˆ¶å°"
 
 #: client/login.php:6
 msgid "Go to email panel"
-msgstr "½øÈëÓÊÏä¿ØÖÆÌ¨"
+msgstr "è¿›å…¥é‚®ç®±æ§åˆ¶å°"
 
 #: client/new_account_form.php:640
 msgid "Go to login"
-msgstr "µÇÂ½"
+msgstr "ç™»é™†"
 
 #: shared/inc/forms/vps.php:258
 msgid "Gracefully shutdown (xm shutdown)"
-msgstr "°²È«¹Ø±Õ(xm shutdown)"
+msgstr "å®‰å…¨å…³é—­(xm shutdown)"
 
 #: shared/inc/forms/root_admin.php:131
 msgid "Grant sub-account addition rights (reseller):"
-msgstr "ÔÊĞíÌí¼Ó×ÓÕÊ»§(×ªÊÛ)£º"
+msgstr "å…è®¸æ·»åŠ å­å¸æˆ·(è½¬å”®)ï¼š"
 
 #: shared/inc/forms/vps.php:109
 msgid "HDD I/O:"
@@ -1658,11 +1658,11 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:403
 msgid "Header"
-msgstr "Ò³Í·"
+msgstr "é¡µå¤´"
 
 #: shared/inc/draw.php:311
 msgid "Help"
-msgstr "°ïÖú"
+msgstr "å¸®åŠ©"
 
 #: shared/inc/forms/lists.php:232
 msgid "Help missing for noaccessdenymails"
@@ -1674,15 +1674,15 @@ msgstr ""
 
 #: shared/inc/draw.php:444
 msgid "Help:"
-msgstr "°ïÖú£º"
+msgstr "å¸®åŠ©ï¼š"
 
 #: shared/inc/forms/lists.php:244
 msgid ""
 "Here is specified for how long time in seconds an address can bounce before "
 "it\\'s unsubscribed. Defaults to 432000 seconds, which is 5 days."
 msgstr ""
-"ÕâÀïÖ¸Ã÷ÁËĞèÒª¶à³¤Ê±¼äÒ»·âÎŞ·¨È¡Ïû¶©ÔÄµÄÓÊ¼ş²ÅÄÜ¹»±»µ¯»Ø¡£Ä¬ÈÏÊÇ432000Ãë£¬Ò²"
-"¾ÍÊÇ5Ìì¡£"
+"è¿™é‡ŒæŒ‡æ˜äº†éœ€è¦å¤šé•¿æ—¶é—´ä¸€å°æ— æ³•å–æ¶ˆè®¢é˜…çš„é‚®ä»¶æ‰èƒ½å¤Ÿè¢«å¼¹å›ã€‚é»˜è®¤æ˜¯432000ç§’ï¼Œä¹Ÿ"
+"å°±æ˜¯5å¤©ã€‚"
 
 #: shared/inc/forms/lists.php:235
 msgid ""
@@ -1691,53 +1691,53 @@ msgid ""
 "to prepare it in memory before sending it, but can also lead to denial of "
 "service attacks. Default is 16k (16384 bytes)."
 msgstr ""
-"ÕâÀïÓÃ±ÈÌØ±êÃ÷ÁË¶à´óµÄÓÊ¼şÔÚ·¢ËÍÖ®Ç°»ò·¢ËÍÊ±¿ÉÒÔ´æ·ÅÔÚÄÚ´æÖĞ¡£¸Ã¹¦ÄÜ¿ÉÒÔ¼«´ó"
-"µÄ½µµÍÏµÍ³µÄI/O£¬µ«Í¬Ê±¿ÉÄÜ»Øµ¼ÖÂ¾Ü¾ø·şÎñÊ½¹¥»÷¡£Ä¬ÈÏ16k (16384 bytes)¡£"
+"è¿™é‡Œç”¨æ¯”ç‰¹æ ‡æ˜äº†å¤šå¤§çš„é‚®ä»¶åœ¨å‘é€ä¹‹å‰æˆ–å‘é€æ—¶å¯ä»¥å­˜æ”¾åœ¨å†…å­˜ä¸­ã€‚è¯¥åŠŸèƒ½å¯ä»¥æå¤§"
+"çš„é™ä½ç³»ç»Ÿçš„I/Oï¼Œä½†åŒæ—¶å¯èƒ½å›å¯¼è‡´æ‹’ç»æœåŠ¡å¼æ”»å‡»ã€‚é»˜è®¤16k (16384 bytes)ã€‚"
 
 #: shared/inc/forms/lists.php:268
 msgid "Hide email addresses to avoid spam."
-msgstr "Òş²ØÓÊ¼şµØÖ·¡£"
+msgstr "éšè—é‚®ä»¶åœ°å€ã€‚"
 
 #: admin/inc/dtc_config.php:643
 #, fuzzy
 msgid "Host IP addresses (separated by \"|\"): "
-msgstr "±¾·şÎñÆ÷Ê¹ÓÃµÄËùÓĞIP(ÓÃ\"|\"·Ö¸ô)£º"
+msgstr "æœ¬æœåŠ¡å™¨ä½¿ç”¨çš„æ‰€æœ‰IP(ç”¨\"|\"åˆ†éš”)ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:42
 msgid "Hosting + domain name registration or transfer"
-msgstr "¿Õ¼ä£«ÓòÃû×¢²á»ò×ªÈÃ"
+msgstr "ç©ºé—´ï¼‹åŸŸåæ³¨å†Œæˆ–è½¬è®©"
 
 #: shared/dtcrm/draw_adddomain.php:47
 msgid "Hosting only"
-msgstr "½ö¿Õ¼ä"
+msgstr "ä»…ç©ºé—´"
 
 #: shared/gfx/skin/default_layout.php:159
 #: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:429
 #: shared/gfx/skin/bwoup/layout.php:431 shared/gfx/skin/bwoup/layout.php:539
 msgid "Hosting product manager"
-msgstr "Ö÷»ú²úÆ·¹ÜÀí"
+msgstr "ä¸»æœºäº§å“ç®¡ç†"
 
 #: admin/inc/dtc_config.php:398 shared/inc/forms/ticket.php:158
 #, fuzzy
 msgid "Hostname"
-msgstr "Ö÷»úÃû£º"
+msgstr "ä¸»æœºåï¼š"
 
 #: admin/inc/dtc_config.php:344
 msgid "Hostname:"
-msgstr "Ö÷»úÃû£º"
+msgstr "ä¸»æœºåï¼š"
 
 #: shared/inc/forms/root_admin.php:278
 msgid "Hostname: "
-msgstr "Ö÷»úÃû£º"
+msgstr "ä¸»æœºåï¼š"
 
 #: shared/inc/forms/lists.php:247
 msgid ""
 "How many recipients pr. mail delivered to the smtp server. Defaults to 100."
-msgstr "½ÓÊÕµ½µÄÓÊ¼şµÄ×î´óÈº·¢ÊıÁ¿¡£Ä¬ÈÏÊÇ100¡£"
+msgstr "æ¥æ”¶åˆ°çš„é‚®ä»¶çš„æœ€å¤§ç¾¤å‘æ•°é‡ã€‚é»˜è®¤æ˜¯100ã€‚"
 
 #: client/new_account_form.php:635
 msgid "I agree to the"
-msgstr "ÎÒ½ÓÊÜ"
+msgstr "æˆ‘æ¥å—"
 
 #: admin/deamons_state.php:266
 msgid "IP Resolved"
@@ -1746,40 +1746,40 @@ msgstr ""
 #: admin/inc/dtc_config.php:756 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/root_admin.php:384
 msgid "IP address"
-msgstr "IPµØÖ·"
+msgstr "IPåœ°å€"
 
 #: shared/dtcrm/draw_nameservers.php:109 shared/dtcrm/draw_nameservers.php:142
 msgid "IP address of name server:"
-msgstr "ÓòÃû·şÎñÆ÷µÄIPµØÖ·£º"
+msgstr "åŸŸåæœåŠ¡å™¨çš„IPåœ°å€ï¼š"
 
 #: shared/inc/forms/dns.php:19
 msgid "IP address of the primary DNS server:"
-msgstr "Ö÷DNS·şÎñÆ÷µÄIPµØÖ·£º"
+msgstr "ä¸»DNSæœåŠ¡å™¨çš„IPåœ°å€ï¼š"
 
 #: shared/inc/forms/subdomain.php:156
 msgid "IP address or CNAME: "
-msgstr "IPµØÖ·»òCNAME: "
+msgstr "IPåœ°å€æˆ–CNAME: "
 
 #: shared/inc/forms/vps.php:235
 msgid "IP address: "
-msgstr "IPµØÖ·£º"
+msgstr "IPåœ°å€ï¼š"
 
 #: admin/inc/dtc_config.php:32
 msgid "IP addresses and network"
-msgstr "ÉèÖÃÍøÂç²ÎÊı"
+msgstr "è®¾ç½®ç½‘ç»œå‚æ•°"
 
 #: shared/inc/forms/vps.php:233
 msgid "IP addresses: "
-msgstr "IPµØÖ·£º"
+msgstr "IPåœ°å€ï¼š"
 
 #: admin/inc/dtc_config.php:710
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
-msgstr "Ö÷DNS·şÎñÆ÷IPµØÖ·£º"
+msgstr "ä¸»DNSæœåŠ¡å™¨IPåœ°å€ï¼š"
 
 #: admin/inc/dtc_config.php:251 admin/inc/dtc_config.php:393
 #: admin/inc/dtc_config.php:445
 msgid "IPs addrs"
-msgstr "IPµØÖ·ÁĞ±í"
+msgstr "IPåœ°å€åˆ—è¡¨"
 
 #: admin/deamons_state.php:239
 msgid "If no FTP user was created, please make at least one!"
@@ -1791,23 +1791,23 @@ msgid ""
 "the rules. The first rule to match wins. NOTE: the default action is to deny "
 "access (reject the mail) so take care if you write something here"
 msgstr ""
-"Èç¹û´æÔÚÕâ¸öÎÄ¼ş£¬ËùÓĞ·¢ÍùÕâ¸öÓÊ¼şÁĞ±íµÄÓÊ¼şµÄÒ³Í·ĞÅÏ¢¶¼½«±»¹ıÂË¡£×îÇ°ÃæµÄ¹æ"
-"ÔòÓÅÏÈÉúĞ§¡£Çë×¢Òâ£ºÄ¬ÈÏµÄ¹æÔòÊÇ¾Ü¾øËùÓĞÓÊ¼ş£¬ËùÒÔ£¬µ±ÄãÔÚÕâ¸öÎÄ¼şÖĞĞ´ÏÂ¹æÔò"
-"µÄÊ±ºòÒ»¶¨ÒªĞ¡ĞÄ¡£"
+"å¦‚æœå­˜åœ¨è¿™ä¸ªæ–‡ä»¶ï¼Œæ‰€æœ‰å‘å¾€è¿™ä¸ªé‚®ä»¶åˆ—è¡¨çš„é‚®ä»¶çš„é¡µå¤´ä¿¡æ¯éƒ½å°†è¢«è¿‡æ»¤ã€‚æœ€å‰é¢çš„è§„"
+"åˆ™ä¼˜å…ˆç”Ÿæ•ˆã€‚è¯·æ³¨æ„ï¼šé»˜è®¤çš„è§„åˆ™æ˜¯æ‹’ç»æ‰€æœ‰é‚®ä»¶ï¼Œæ‰€ä»¥ï¼Œå½“ä½ åœ¨è¿™ä¸ªæ–‡ä»¶ä¸­å†™ä¸‹è§„åˆ™"
+"çš„æ—¶å€™ä¸€å®šè¦å°å¿ƒã€‚"
 
 #: shared/inc/forms/lists.php:211
 msgid ""
 "If this file exists, then retrieving old posts with -get-N (for exemple "
 "mylist-get-12@my-domain.tld) is disabled"
-msgstr "Èç¹ûÕâ¸öÎÄ¼ş´æÔÚµÄ»°£¬Ê¹ÓÃ-get-N²ÎÊı»Ö¸´µ½¾ÉÓÊ¼şÁĞ±íµÄ¹¦ÄÜ±»½ûÓÃ¡£"
+msgstr "å¦‚æœè¿™ä¸ªæ–‡ä»¶å­˜åœ¨çš„è¯ï¼Œä½¿ç”¨-get-Nå‚æ•°æ¢å¤åˆ°æ—§é‚®ä»¶åˆ—è¡¨çš„åŠŸèƒ½è¢«ç¦ç”¨ã€‚"
 
 #: shared/inc/forms/lists.php:214
 msgid ""
 "If this file exists, then retrieving old posts with -get-N is only possible "
 "for subscribers. The above mentioned \\'noget\\' have precedence."
 msgstr ""
-"Èç¹ûÕâ¸öÎÄ¼ş´æÔÚµÄ»°£¬Ê¹ÓÃ-get-N²ÎÊı»Ö¸´µ½¾ÉÓÊ¼şÁĞ±íµÄ¹¦ÄÜ½ö½öÔÚ¶©ÔÄÊ±ÓĞĞ§¡£"
-"Ç°ÃæµÄ\\'noget\\'ÓÅÏÈÖ´ĞĞ¡£"
+"å¦‚æœè¿™ä¸ªæ–‡ä»¶å­˜åœ¨çš„è¯ï¼Œä½¿ç”¨-get-Nå‚æ•°æ¢å¤åˆ°æ—§é‚®ä»¶åˆ—è¡¨çš„åŠŸèƒ½ä»…ä»…åœ¨è®¢é˜…æ—¶æœ‰æ•ˆã€‚"
+"å‰é¢çš„\\'noget\\'ä¼˜å…ˆæ‰§è¡Œã€‚"
 
 #: shared/inc/forms/lists.php:187
 msgid ""
@@ -1815,54 +1815,54 @@ msgid ""
 "list. This should in principle never ever be used, but there is times on "
 "local lists etc. where this is useful. HANDLE WITH CARE!"
 msgstr ""
-"Èç¹û´æÔÚÕâ¸ö±êÖ¾£¬Ìí¼Óµ½ÓÊ¼şÁĞ±íÊ±²»ĞèÒªÈ·ÈÏ¡£¾¡Á¿²»ÒªÊ¹ÓÃÕâ¸ö¹¦ÄÜ£¬ËäÈ»ÓĞÊ±"
-"ËüºÜÓĞÓÃ¡£Çë½÷É÷´¦ÀíÕâ¸ö±êÖ¾£¡"
+"å¦‚æœå­˜åœ¨è¿™ä¸ªæ ‡å¿—ï¼Œæ·»åŠ åˆ°é‚®ä»¶åˆ—è¡¨æ—¶ä¸éœ€è¦ç¡®è®¤ã€‚å°½é‡ä¸è¦ä½¿ç”¨è¿™ä¸ªåŠŸèƒ½ï¼Œè™½ç„¶æœ‰æ—¶"
+"å®ƒå¾ˆæœ‰ç”¨ã€‚è¯·è°¨æ…å¤„ç†è¿™ä¸ªæ ‡å¿—ï¼"
 
 #: shared/inc/forms/lists.php:208
 msgid ""
 "If this flag exists, the mail won\\'t be saved in the archive but simply "
 "deleted."
-msgstr "µ±Õâ¸ö±êÖ¾´æÔÚµÄ»°£¬ÓÊ¼ş»á±»Ö±½ÓÉ¾³ı£¬¶ø²»»á±»±¸·İµ½¹éµµÎÄ¼şÖĞ¡£"
+msgstr "å½“è¿™ä¸ªæ ‡å¿—å­˜åœ¨çš„è¯ï¼Œé‚®ä»¶ä¼šè¢«ç›´æ¥åˆ é™¤ï¼Œè€Œä¸ä¼šè¢«å¤‡ä»½åˆ°å½’æ¡£æ–‡ä»¶ä¸­ã€‚"
 
 #: shared/inc/forms/lists.php:223
 msgid ""
 "If this flag is present, the owner(s) will get a mail with the address of "
 "someone sub/unsubscribing to a mailinglist."
 msgstr ""
-"Èç¹û´æÔÚÕâ¸ö²ÎÊı£¬µ±ÓĞÈË¶©ÔÄ/ÍË¶©Õâ¸öÓÊ¼şÁĞ±íµÄÊ±ºò£¬¸ÃÓÊ¼şÁĞ±íµÄËùÓĞÕß»áÊÕµ½"
-"Ò»·âÌáÊ¾ÓÊ¼ş¡£"
+"å¦‚æœå­˜åœ¨è¿™ä¸ªå‚æ•°ï¼Œå½“æœ‰äººè®¢é˜…/é€€è®¢è¿™ä¸ªé‚®ä»¶åˆ—è¡¨çš„æ—¶å€™ï¼Œè¯¥é‚®ä»¶åˆ—è¡¨çš„æ‰€æœ‰è€…ä¼šæ”¶åˆ°"
+"ä¸€å°æç¤ºé‚®ä»¶ã€‚"
 
 #: shared/inc/forms/lists.php:181
 msgid ""
 "If this flag is set, the email addresses in the field moderators will act as "
 "moderators for the list."
 msgstr ""
-"Èç¹ûÉèÖÃÁËÕâ¸ö²ÎÊı£¬°ßÖñÎ»ÖÃÉÏÏÔÊ¾µÄÓÊ¼şµØÖ·½«±»ÊÓ×÷¸ÃÓÊ¼şÁĞ±íµÄ¹ÜÀíÔ±¡£"
+"å¦‚æœè®¾ç½®äº†è¿™ä¸ªå‚æ•°ï¼Œæ–‘ç«¹ä½ç½®ä¸Šæ˜¾ç¤ºçš„é‚®ä»¶åœ°å€å°†è¢«è§†ä½œè¯¥é‚®ä»¶åˆ—è¡¨çš„ç®¡ç†å‘˜ã€‚"
 
 #: shared/inc/forms/lists.php:199
 msgid ""
 "If this flag is set, the list address does not have to be in the To: or Cc: "
 "header of the email to the list (interesting for aliases addressing multiple "
 "lists)."
-msgstr "Èç¹ûÉèÖÃÁËÕâ¸ö²ÎÊı£¬ÁĞ³öÀ´µÄÓÊ¼şµØÖ·½«²»±Ø±»ÌîÈëÊÕ¼şÈË»ò³­ËÍÀ¸ÖĞ£º"
+msgstr "å¦‚æœè®¾ç½®äº†è¿™ä¸ªå‚æ•°ï¼Œåˆ—å‡ºæ¥çš„é‚®ä»¶åœ°å€å°†ä¸å¿…è¢«å¡«å…¥æ”¶ä»¶äººæˆ–æŠ„é€æ ä¸­ï¼š"
 
 #: shared/dtcrm/draw_whois.php:51
 msgid ""
 "If you want to keep your current registrar, you have to make the whois point "
 "to these DNS:"
-msgstr "Èç¹ûÄúÏ£Íû±£ÁôÏÖÓĞµÄ×¢²á£¬Äú±ØĞëÔÚÏÂÁĞ DNS µÇ¼ÇÄúµÄ whois ĞÅÏ¢"
+msgstr "å¦‚æœæ‚¨å¸Œæœ›ä¿ç•™ç°æœ‰çš„æ³¨å†Œï¼Œæ‚¨å¿…é¡»åœ¨ä¸‹åˆ— DNS ç™»è®°æ‚¨çš„ whois ä¿¡æ¯"
 
 #: shared/inc/forms/vps.php:261
 msgid "Immediate kill (xm destroy)"
-msgstr "Á¢¼´Ïú»Ù(xm destroy)"
+msgstr "ç«‹å³é”€æ¯(xm destroy)"
 
 #: shared/inc/forms/root_admin.php:182
 msgid "Import"
-msgstr "µ¼Èë"
+msgstr "å¯¼å…¥"
 
 #: shared/inc/forms/root_admin.php:171
 msgid "Import a domain file for this user:"
-msgstr "ÎªÕâ¸öÓÃ»§µ¼ÈëÒ»¸öÓòÎÄ¼ş£º"
+msgstr "ä¸ºè¿™ä¸ªç”¨æˆ·å¯¼å…¥ä¸€ä¸ªåŸŸæ–‡ä»¶ï¼š"
 
 #: shared/inc/forms/lists.php:193
 msgid ""
@@ -1871,9 +1871,9 @@ msgid ""
 "occurences of these headers in incoming list mail will be deleted. From: and "
 "Return-Path: are deleted no matter what."
 msgstr ""
-"ÔÚÕâĞ©ÇøÓòÖĞ±ê¼ÇÁËÒ»Ğ©ĞèÒª¹ıÂËµÄÒ³Í·ĞÅÏ¢¡£Èç¹ûÕâ¸öÇøÓòÖĞÌîĞ´µÄÊÇÕâÑùµÄÄÚÈİ£º"
-"<br><br>Received:<br>Message-ID:<br><br>ÄÇÃ´ËùÓĞµÄ°üº¬ÕâĞ©ÄÚÈİµÄÓÊ¼ş¶¼½«±»É¾"
-"³ı¡£From: ºÍ Return-Path:ÊÇÎŞÂÛÈçºÎ¶¼»á±»É¾³ıµÄ¡£"
+"åœ¨è¿™äº›åŒºåŸŸä¸­æ ‡è®°äº†ä¸€äº›éœ€è¦è¿‡æ»¤çš„é¡µå¤´ä¿¡æ¯ã€‚å¦‚æœè¿™ä¸ªåŒºåŸŸä¸­å¡«å†™çš„æ˜¯è¿™æ ·çš„å†…å®¹ï¼š"
+"<br><br>Received:<br>Message-ID:<br><br>é‚£ä¹ˆæ‰€æœ‰çš„åŒ…å«è¿™äº›å†…å®¹çš„é‚®ä»¶éƒ½å°†è¢«åˆ "
+"é™¤ã€‚From: å’Œ Return-Path:æ˜¯æ— è®ºå¦‚ä½•éƒ½ä¼šè¢«åˆ é™¤çš„ã€‚"
 
 #: admin/inc/submit_root_querys.php:259
 #, fuzzy
@@ -1881,33 +1881,33 @@ msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
 "numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
 msgstr ""
-"´íÎóµÄ¹ÜÀíÔ±µÇÂ½Ãû£ºËüÓ¦¸Ã½öÓĞĞ¡Ğ´×ÖÄ¸»òÕßÊı×Ö»òÕß\"-\"×é³É£¬²¢ÇÒ³¤¶ÈÔÚ4µ½16"
-"¸ö×Ö·ûÖ®¼ä¡£<br>\n"
+"é”™è¯¯çš„ç®¡ç†å‘˜ç™»é™†åï¼šå®ƒåº”è¯¥ä»…æœ‰å°å†™å­—æ¯æˆ–è€…æ•°å­—æˆ–è€…\"-\"ç»„æˆï¼Œå¹¶ä¸”é•¿åº¦åœ¨4åˆ°16"
+"ä¸ªå­—ç¬¦ä¹‹é—´ã€‚<br>\n"
 
 #: shared/inc/sql/email.php:14
 msgid ""
 "Incorect mail login format: it should consist of only lowercase letters, "
 "numbers, or the \"-\" sign.<br>\n"
-msgstr "´íÎóµÃÓÊÏäµÇÂ½Ãû£ºËüÓ¦¸Ã½öÓĞĞ¡Ğ´×ÖÄ¸»òÕßÊı×Ö»òÕß\"-\"×é³É¡£<br>\n"
+msgstr "é”™è¯¯å¾—é‚®ç®±ç™»é™†åï¼šå®ƒåº”è¯¥ä»…æœ‰å°å†™å­—æ¯æˆ–è€…æ•°å­—æˆ–è€…\"-\"ç»„æˆã€‚<br>\n"
 
 #: shared/inc/sql/database.php:165 shared/inc/sql/database.php:209
 msgid "Incorrect MySQL db name format: please enter another and try again."
-msgstr "MySQLÊı¾İ¿âÃû´íÎó£ºÇëÖØĞÂÊäÈëÒ»¸öÊı¾İ¿âÃûÔÙÊÔÒ»´Î¡£"
+msgstr "MySQLæ•°æ®åº“åé”™è¯¯ï¼šè¯·é‡æ–°è¾“å…¥ä¸€ä¸ªæ•°æ®åº“åå†è¯•ä¸€æ¬¡ã€‚"
 
 #: shared/inc/sql/database.php:17
 msgid ""
 "Incorrect MySQL login format: please don't enter root or debian-sys-maint"
-msgstr "MySQLµÇÂ½Ãû´íÎó£ºÇë²»ÒªÊ¹ÓÃroot»ò²Ù×÷ÏµÍ³ÕËºÅ"
+msgstr "MySQLç™»é™†åé”™è¯¯ï¼šè¯·ä¸è¦ä½¿ç”¨rootæˆ–æ“ä½œç³»ç»Ÿè´¦å·"
 
 #: shared/inc/sql/database.php:13
 msgid "Incorrect MySQL login format: please enter another login and try again."
-msgstr "MySQLµÇÂ½Ãû´íÎó£ºÇëÖØĞÂÊäÈëµÇÂ½ÃûÔÙÊÔÒ»´Î¡£"
+msgstr "MySQLç™»é™†åé”™è¯¯ï¼šè¯·é‡æ–°è¾“å…¥ç™»é™†åå†è¯•ä¸€æ¬¡ã€‚"
 
 #: shared/inc/sql/ssh.php:49
 #, fuzzy
 msgid ""
 "Incorrect SSH login form: please enter another login and try again.<br>\n"
-msgstr "´íÎóµÄÊı¾İ¿âµÇÂ½Ãû£ºÇë¸ü¸ÄµÇÂ½ÃûÔÙÊÔÒ»´Î¡£"
+msgstr "é”™è¯¯çš„æ•°æ®åº“ç™»é™†åï¼šè¯·æ›´æ”¹ç™»é™†åå†è¯•ä¸€æ¬¡ã€‚"
 
 #: shared/inc/sql/ssh.php:106
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9"
@@ -1919,7 +1919,7 @@ msgstr ""
 
 #: shared/inc/sql/database.php:66
 msgid "Incorrect db login format: please enter another login and try again."
-msgstr "´íÎóµÄÊı¾İ¿âµÇÂ½Ãû£ºÇë¸ü¸ÄµÇÂ½ÃûÔÙÊÔÒ»´Î¡£"
+msgstr "é”™è¯¯çš„æ•°æ®åº“ç™»é™†åï¼šè¯·æ›´æ”¹ç™»é™†åå†è¯•ä¸€æ¬¡ã€‚"
 
 #: shared/inc/sql/ssh.php:101
 msgid ""
@@ -1933,11 +1933,11 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
-msgstr "ÊäÈëÓÊ¼şµØÖ·²¢¶©ÔÄ¡£"
+msgstr "è¾“å…¥é‚®ä»¶åœ°å€å¹¶è®¢é˜…ã€‚"
 
 #: shared/inc/forms/lists.php:438
 msgid "Insert here an email address to unsubscribe it."
-msgstr "ÊäÈëÓÊ¼şµØÖ·È¡Ïû¶©ÔÄ¡£"
+msgstr "è¾“å…¥é‚®ä»¶åœ°å€å–æ¶ˆè®¢é˜…ã€‚"
 
 #: shared/inc/forms/lists.php:259
 msgid ""
@@ -1946,64 +1946,64 @@ msgid ""
 "target=\\'_blank\\'>documentation</a> and see <a href=\\'http://www.mhonarc."
 "org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
 msgstr ""
-"ÔÚÕâÀïÊäÈëÄúÒªÊ¹ÓÃµÄ¹éµµÎÄ¼şÄ£°åµÄ´úÂë¡£²é¿´<a href=\\'http://www.mhonarc."
-"org/MHonArc/doc/resources/rcfile.html\\' target=\\'_blank\\'>ÎÄµµ</a>»ò²é¿´"
+"åœ¨è¿™é‡Œè¾“å…¥æ‚¨è¦ä½¿ç”¨çš„å½’æ¡£æ–‡ä»¶æ¨¡æ¿çš„ä»£ç ã€‚æŸ¥çœ‹<a href=\\'http://www.mhonarc."
+"org/MHonArc/doc/resources/rcfile.html\\' target=\\'_blank\\'>æ–‡æ¡£</a>æˆ–æŸ¥çœ‹"
 "<a href=\\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\\' target="
-"\\'_blank\\'>Ê¾Àı</a>¡£"
+"\\'_blank\\'>ç¤ºä¾‹</a>ã€‚"
 
 #: shared/inc/forms/packager.php:218 shared/inc/forms/packager.php:230
 msgid "Install"
-msgstr "°²×°"
+msgstr "å®‰è£…"
 
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Instant account"
-msgstr "ÄúµÄÕË»§£º"
+msgstr "æ‚¨çš„è´¦æˆ·ï¼š"
 
 #: shared/inc/draw.php:414
 msgid "Internet Whois Nick Handles management:"
-msgstr "»¥ÁªÍøWhoisĞÅÏ¢¹ÜÀí£º"
+msgstr "äº’è”ç½‘Whoisä¿¡æ¯ç®¡ç†ï¼š"
 
 #: shared/inc/forms/invoices.php:23
 #, fuzzy
 msgid "Invoice"
-msgstr "¿ª¾ß·¢Æ±"
+msgstr "å¼€å…·å‘ç¥¨"
 
 #: admin/inc/dtc_config.php:1259
 msgid "Invoice footer:"
-msgstr "·¢Æ±Âä¿î£º"
+msgstr "å‘ç¥¨è½æ¬¾ï¼š"
 
 #: admin/inc/dtc_config.php:1254
 msgid "Invoice free text:"
-msgstr "·¢Æ±Ì§Í·£º"
+msgstr "å‘ç¥¨æŠ¬å¤´ï¼š"
 
 #: admin/inc/dtc_config.php:71
 msgid "Invoicing"
-msgstr "¿ª¾ß·¢Æ±"
+msgstr "å¼€å…·å‘ç¥¨"
 
 #: client/new_account_form.php:237
 msgid "Is company radio button is wrong!"
-msgstr "ÇëÑ¡ÔñÊÇ²»ÊÇ¹«Ë¾¿Í»§£¡"
+msgstr "è¯·é€‰æ‹©æ˜¯ä¸æ˜¯å…¬å¸å®¢æˆ·ï¼"
 
 #: admin/dtcrm/main.php:161 client/new_account_form.php:586
 msgid "Is it a company: "
-msgstr "ÊÇ¹«Ë¾Âğ:"
+msgstr "æ˜¯å…¬å¸å—:"
 
 #: shared/inc/forms/lists.php:175
 msgid ""
 "Is the list is open or closed. If it\\'s closed subscribtion and "
 "unsubscription via mail is disabled."
 msgstr ""
-"ÓÊ¼şÁĞ±íµÄ×´Ì¬ÊÇ¿ªÆô»¹ÊÇ¹Ø±Õ¡£Èç¹ûËü¹Ø±ÕÁË£¬ÓÊ¼ş¶©ÔÄ/ÍË¶©¹¦ÄÜ½«²»ÄÜÊ¹ÓÃ¡£"
+"é‚®ä»¶åˆ—è¡¨çš„çŠ¶æ€æ˜¯å¼€å¯è¿˜æ˜¯å…³é—­ã€‚å¦‚æœå®ƒå…³é—­äº†ï¼Œé‚®ä»¶è®¢é˜…/é€€è®¢åŠŸèƒ½å°†ä¸èƒ½ä½¿ç”¨ã€‚"
 
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
 #: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:251
 msgid "Language"
-msgstr "ÓïÑÔ"
+msgstr "è¯­è¨€"
 
 #: shared/inc/forms/vps.php:172
 msgid "Last boot date: "
-msgstr "ÉÏ´ÎÆô¶¯ÈÕÆÚ£º"
+msgstr "ä¸Šæ¬¡å¯åŠ¨æ—¥æœŸï¼š"
 
 #: admin/inc/draw_user_admin.php:400
 msgid "Last message age"
@@ -2017,46 +2017,46 @@ msgstr ""
 #: shared/inc/forms/vps.php:78 shared/inc/forms/vps.php:79
 #, fuzzy
 msgid "Last month: "
-msgstr "ÉÏÒ»Ìõ¾¯¸æ£º"
+msgstr "ä¸Šä¸€æ¡è­¦å‘Šï¼š"
 
 #: admin/inc/dtc_config.php:217
 msgid "Last warning: "
-msgstr "ÉÏÒ»Ìõ¾¯¸æ£º"
+msgstr "ä¸Šä¸€æ¡è­¦å‘Šï¼š"
 
 #: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:509
 msgid "Launching the configuration files generation"
-msgstr "Éú³ÉÅäÖÃÎÄ¼ş"
+msgstr "ç”Ÿæˆé…ç½®æ–‡ä»¶"
 
 #: client/new_account_form.php:718
 msgid ""
 "Leave a message describing any specific requirements you might have for your "
 "account:"
-msgstr "Èç¹ûÄúÓĞÊ²Ã´ÌØÊâµÄÒªÇó£¬Çë¸øÎÒÃÇÁôÑÔ£º"
+msgstr "å¦‚æœæ‚¨æœ‰ä»€ä¹ˆç‰¹æ®Šçš„è¦æ±‚ï¼Œè¯·ç»™æˆ‘ä»¬ç•™è¨€ï¼š"
 
 #: shared/inc/sql/lists.php:211
 msgid "List #name#@#domain# successfully created!"
-msgstr "³É¹¦´´½¨ÁË#name#@#domain#ÁĞ±í£¡"
+msgstr "æˆåŠŸåˆ›å»ºäº†#name#@#domain#åˆ—è¡¨ï¼"
 
 #: shared/inc/forms/lists.php:97
 msgid "List name"
-msgstr "Ãû³Æ"
+msgstr "åç§°"
 
 #: shared/inc/forms/lists.php:70
 #, fuzzy
 msgid "List name:"
-msgstr "Ãû³Æ"
+msgstr "åç§°"
 
 #: admin/inc/dtc_config.php:283
 msgid "List of the administrators receiving request for support messages:"
-msgstr "´¦ÀíÖ§³ÖÇëÇóµÄ¹ÜÀíÔ±ÁĞ±í£º"
+msgstr "å¤„ç†æ”¯æŒè¯·æ±‚çš„ç®¡ç†å‘˜åˆ—è¡¨ï¼š"
 
 #: shared/inc/forms/ftp.php:51
 msgid "List of your FTP accounts: "
-msgstr "ÄúµÄFTPÕÊ»§ÁĞ±í£º"
+msgstr "æ‚¨çš„FTPå¸æˆ·åˆ—è¡¨ï¼š"
 
 #: shared/inc/forms/ssh.php:45
 msgid "List of your SSH accounts:"
-msgstr "ÄúµÄSSHÕÊ»§ÁĞ±í£º"
+msgstr "æ‚¨çš„SSHå¸æˆ·åˆ—è¡¨ï¼š"
 
 #: admin/inc/dtc_config.php:1206
 msgid "List of your companies:"
@@ -2064,7 +2064,7 @@ msgstr ""
 
 #: shared/inc/forms/database.php:68
 msgid "List of your databases:"
-msgstr "Êı¾İ¿âÁĞ±í£º"
+msgstr "æ•°æ®åº“åˆ—è¡¨ï¼š"
 
 #: shared/inc/forms/aliases.php:21
 msgid "List of your mail groups"
@@ -2073,29 +2073,29 @@ msgstr ""
 #: shared/inc/forms/email.php:530
 #, fuzzy
 msgid "List of your mailboxes:"
-msgstr "Êı¾İ¿âÁĞ±í£º"
+msgstr "æ•°æ®åº“åˆ—è¡¨ï¼š"
 
 #: shared/inc/forms/lists.php:27
 #, fuzzy
 msgid "List of your mailing lists"
-msgstr "Êı¾İ¿âÁĞ±í£º"
+msgstr "æ•°æ®åº“åˆ—è¡¨ï¼š"
 
 #: shared/dtcrm/draw_nameservers.php:79
 msgid "List of your registred name-servers:"
-msgstr "ÄúÒÑ×¢²áµÄÓòÃû·şÎñÆ÷µÄÁĞ±í£º"
+msgstr "æ‚¨å·²æ³¨å†Œçš„åŸŸåæœåŠ¡å™¨çš„åˆ—è¡¨ï¼š"
 
 #: shared/inc/forms/subdomain.php:125
 msgid "List of your subdomains: "
-msgstr "×ÓÓòÃûÁĞ±í£º"
+msgstr "å­åŸŸååˆ—è¡¨ï¼š"
 
 #: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:97
 msgid "List owner"
-msgstr "¹ÜÀíÔ±"
+msgstr "ç®¡ç†å‘˜"
 
 #: shared/inc/forms/lists.php:99
 #, fuzzy
 msgid "List owner:"
-msgstr "¹ÜÀíÔ±"
+msgstr "ç®¡ç†å‘˜"
 
 #: admin/inc/dtc_config.php:724
 #, fuzzy
@@ -2104,34 +2104,34 @@ msgid ""
 "transfers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup DNS server):"
 msgstr ""
-"ÁĞ³öËùÓĞµÄ±¸ÓÃMX·şÎñÆ÷(ÓÃ\"|\"¸ô¿ª)<br>\n"
-"(Èç¹ûÃ»ÓĞÔòÁô¿Õ)£º"
+"åˆ—å‡ºæ‰€æœ‰çš„å¤‡ç”¨MXæœåŠ¡å™¨(ç”¨\"|\"éš”å¼€)<br>\n"
+"(å¦‚æœæ²¡æœ‰åˆ™ç•™ç©º)ï¼š"
 
 #: admin/inc/dtc_config.php:692
 msgid ""
 "List your backup MX servers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup MX server):"
 msgstr ""
-"ÁĞ³öËùÓĞµÄ±¸ÓÃMX·şÎñÆ÷(ÓÃ\"|\"¸ô¿ª)<br>\n"
-"(Èç¹ûÃ»ÓĞÔòÁô¿Õ)£º"
+"åˆ—å‡ºæ‰€æœ‰çš„å¤‡ç”¨MXæœåŠ¡å™¨(ç”¨\"|\"éš”å¼€)<br>\n"
+"(å¦‚æœæ²¡æœ‰åˆ™ç•™ç©º)ï¼š"
 
 #: shared/inc/forms/root_admin.php:368
 msgid "Lists max"
-msgstr "ÓÊ¼şÁĞ±íÉÏÏŞ"
+msgstr "é‚®ä»¶åˆ—è¡¨ä¸Šé™"
 
 #: admin/inc/dtc_config.php:657
 #, fuzzy
 msgid "Local network area ip adress of the vhost using NAT: "
-msgstr "ĞéÄâÖ÷»ú¼àÌıµÄÄÚÍøµØÖ·£º"
+msgstr "è™šæ‹Ÿä¸»æœºç›‘å¬çš„å†…ç½‘åœ°å€ï¼š"
 
 #: admin/inc/dtc_config.php:402
 msgid "Location"
-msgstr "Î»ÖÃ"
+msgstr "ä½ç½®"
 
 #: admin/inc/dtc_config.php:591
 #, fuzzy
 msgid "Location of user's database: "
-msgstr "ÓÃ»§Êı¾İ¿âµÄÎ»ÖÃ£º"
+msgstr "ç”¨æˆ·æ•°æ®åº“çš„ä½ç½®ï¼š"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:245 admin/inc/draw_user_admin.php:237
@@ -2146,11 +2146,11 @@ msgstr "ÓÃ»§Êı¾İ¿âµÄÎ»ÖÃ£º"
 #: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:260
 #: shared/gfx/skin/bwoup/layout.php:269
 msgid "Login"
-msgstr "µÇÂ½"
+msgstr "ç™»é™†"
 
 #: client/new_account_form.php:709
 msgid "Login info"
-msgstr "µÇÂ½ĞÅÏ¢"
+msgstr "ç™»é™†ä¿¡æ¯"
 
 #: shared/inc/forms/email.php:328
 msgid "Login successfull. Please select a menu entry on the left..."
@@ -2162,30 +2162,30 @@ msgstr ""
 #: shared/inc/forms/ssh.php:71
 #, fuzzy
 msgid "Login:"
-msgstr "µÇÂ½"
+msgstr "ç™»é™†"
 
 #: client/login.php:10 client/new_account_form.php:559 email/login.php:10
 #: shared/inc/forms/ftp.php:77
 #, fuzzy
 msgid "Login: "
-msgstr "µÇÂ½"
+msgstr "ç™»é™†"
 
 #: admin/inc/dtc_config.php:1249
 msgid "Logo path relative to"
-msgstr "Logo Ïà¶ÔÂ·¾¶"
+msgstr "Logo ç›¸å¯¹è·¯å¾„"
 
 #: shared/inc/draw.php:317 shared/inc/forms/email.php:306
 msgid "Logout"
-msgstr "×¢Ïú"
+msgstr "æ³¨é”€"
 
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
-msgstr "MX Óë NS±¸·İ·şÎñÆ÷"
+msgstr "MX ä¸ NSå¤‡ä»½æœåŠ¡å™¨"
 
 #: shared/inc/draw.php:359
 #, fuzzy
 msgid "Mail Groups:"
-msgstr "ÓÊÏä£º"
+msgstr "é‚®ç®±ï¼š"
 
 #: admin/inc/graphs.php:11
 msgid "Mail Queue graph"
@@ -2198,7 +2198,7 @@ msgstr ""
 #: admin/deamons_state.php:133
 #, fuzzy
 msgid "Mail gen files"
-msgstr "ÓòÃûÎÄ¼ş£º"
+msgstr "åŸŸåæ–‡ä»¶ï¼š"
 
 #: shared/inc/draw.php:361
 msgid "Mail groups of "
@@ -2210,7 +2210,7 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:238
 msgid "Mail server used to send the messages."
-msgstr "·¢ËÍÕâ·âÓÊ¼şµÄ·şÎñÆ÷¡£"
+msgstr "å‘é€è¿™å°é‚®ä»¶çš„æœåŠ¡å™¨ã€‚"
 
 #: admin/deamons_state.php:132
 msgid "Mail-newu"
@@ -2219,92 +2219,92 @@ msgstr ""
 #: shared/inc/forms/email.php:533
 #, fuzzy
 msgid "Mailbox configuration:"
-msgstr "ÅäÖÃFTP±¸·İ²ÎÊıÅäÖÃ"
+msgstr "é…ç½®FTPå¤‡ä»½å‚æ•°é…ç½®"
 
 #: shared/inc/forms/email.php:311
 msgid "Mailbox configuration: "
-msgstr "ÓÊÏäÅäÖÃ£º"
+msgstr "é‚®ç®±é…ç½®ï¼š"
 
 #: shared/inc/sql/email.php:23
 msgid "Mailbox does not exists in database!<br>\n"
-msgstr "ÓÊÏäµØÖ·²»´æÔÚ£¡<br>\n"
+msgstr "é‚®ç®±åœ°å€ä¸å­˜åœ¨ï¼<br>\n"
 
 #: shared/inc/forms/email.php:598
 msgid "Mailbox max files quota: "
-msgstr "×î´óÎÄ¼şÊı£º"
+msgstr "æœ€å¤§æ–‡ä»¶æ•°ï¼š"
 
 #: shared/inc/forms/email.php:582 shared/inc/forms/email.php:593
 msgid "Mailbox quota: "
-msgstr "ÓÊÏä¿Õ¼ä£º"
+msgstr "é‚®ç®±ç©ºé—´ï¼š"
 
 #: shared/inc/forms/email.php:27
 #, fuzzy
 msgid "Mailbox type"
-msgstr "ÓÊÏä£º"
+msgstr "é‚®ç®±ï¼š"
 
 #: shared/inc/draw.php:233
 msgid "Mailboxes"
-msgstr "ÓÊÏä"
+msgstr "é‚®ç®±"
 
 #: shared/inc/draw.php:357
 msgid "Mailboxes of "
-msgstr "ÓÊÏä"
+msgstr "é‚®ç®±"
 
 #: shared/inc/draw.php:355 shared/inc/forms/domain_info.php:54
 msgid "Mailboxes:"
-msgstr "ÓÊÏä£º"
+msgstr "é‚®ç®±ï¼š"
 
 #: shared/inc/draw.php:247
 #, fuzzy
 msgid "Mailing lists"
-msgstr "Êı¾İ¿âÁĞ±í£º"
+msgstr "æ•°æ®åº“åˆ—è¡¨ï¼š"
 
 #: shared/inc/draw.php:363
 msgid "Mailing lists:"
-msgstr "ÓÊ¼şÁĞ±í£º"
+msgstr "é‚®ä»¶åˆ—è¡¨ï¼š"
 
 #: admin/inc/dtc_config.php:639
 #, fuzzy
 msgid "Main ip address of the server: "
-msgstr "±¾·şÎñÆ÷µÄÖ÷IP£º"
+msgstr "æœ¬æœåŠ¡å™¨çš„ä¸»IPï¼š"
 
 #: admin/inc/dtc_config.php:634
 msgid "Main software configuration of DTC"
-msgstr "ÉèÖÃÍøÂç²ÎÊı"
+msgstr "è®¾ç½®ç½‘ç»œå‚æ•°"
 
 #: shared/inc/draw.php:422
 msgid "Manage my name servers:"
-msgstr "¹ÜÀíÎÒµÄÓòÃû·şÎñÆ÷£º"
+msgstr "ç®¡ç†æˆ‘çš„åŸŸåæœåŠ¡å™¨ï¼š"
 
 #: shared/inc/forms/root_admin.php:372
 msgid "Max FTP"
-msgstr "FTPÕË»§ÊıÁ¿ÉÏÏŞ"
+msgstr "FTPè´¦æˆ·æ•°é‡ä¸Šé™"
 
 #: shared/inc/forms/root_admin.php:380
 msgid "Max SSH"
-msgstr "SSHÕË»§ÊıÁ¿ÉÏÏŞ"
+msgstr "SSHè´¦æˆ·æ•°é‡ä¸Šé™"
 
 #: shared/inc/forms/lists.php:430
 msgid "Max VERP recipients:"
-msgstr "×î´óVERPÊÕ¼şÈËÊıÁ¿£º"
+msgstr "æœ€å¤§VERPæ”¶ä»¶äººæ•°é‡ï¼š"
 
 #: admin/dtcrm/product_manager.php:56
 #, fuzzy
 msgid "Max database"
-msgstr "ĞèÒªÒ»¸öÊı¾İ¿â"
+msgstr "éœ€è¦ä¸€ä¸ªæ•°æ®åº“"
 
 #: admin/dtcrm/product_manager.php:51
 #, fuzzy
 msgid "Max email"
-msgstr "ÎÒµÄÓÊ¼ş"
+msgstr "æˆ‘çš„é‚®ä»¶"
 
 #: shared/inc/forms/lists.php:427
 msgid "Max mail memory size:"
-msgstr "ÓÊ¼şÏµÍ³¿ÉÊ¹ÓÃµÄ×î´óÄÚ´æ¿Õ¼ä£º"
+msgstr "é‚®ä»¶ç³»ç»Ÿå¯ä½¿ç”¨çš„æœ€å¤§å†…å­˜ç©ºé—´ï¼š"
 
 #: shared/inc/forms/vps.php:146
 msgid "Max memory: "
-msgstr "×î´óÄÚ´æ£º"
+msgstr "æœ€å¤§å†…å­˜ï¼š"
 
 #: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
@@ -2312,7 +2312,7 @@ msgstr ""
 
 #: shared/inc/forms/vps.php:148
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
-msgstr "×î´óÄÚ´æ£ºÎŞ·¨µÃÖª(¿ÉÄÜÕıÔÚÆğ¶¯£¿)"
+msgstr "æœ€å¤§å†…å­˜ï¼šæ— æ³•å¾—çŸ¥(å¯èƒ½æ­£åœ¨èµ·åŠ¨ï¼Ÿ)"
 
 #: admin/inc/dtc_config.php:1018
 msgid "Maxmind license key: "
@@ -2321,7 +2321,7 @@ msgstr ""
 #: admin/inc/dtc_config.php:1014
 #, fuzzy
 msgid "Maxmind login: "
-msgstr "FTPµÇÂ½ÕËºÅ£º"
+msgstr "FTPç™»é™†è´¦å·ï¼š"
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
@@ -2337,54 +2337,54 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:399
 msgid "Moderated:"
-msgstr "ÊÊÖĞµÄ£º"
+msgstr "é€‚ä¸­çš„ï¼š"
 
 #: shared/inc/forms/lists.php:400
 msgid "Moderators:"
-msgstr "°ßÖñ£º"
+msgstr "æ–‘ç«¹ï¼š"
 
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
-msgstr "ÕË»§Óà¶î£º"
+msgstr "è´¦æˆ·ä½™é¢ï¼š"
 
 #: admin/inc/dtc_config.php:359
 msgid "Monthly"
-msgstr "Ã¿ÔÂ"
+msgstr "æ¯æœˆ"
 
 #: shared/inc/draw.php:426
 msgid "My Account information:"
-msgstr "ÎÒµÄÕË»§ĞÅÏ¢£º"
+msgstr "æˆ‘çš„è´¦æˆ·ä¿¡æ¯ï¼š"
 
 #: shared/inc/draw.php:146
 #, fuzzy
 msgid "My account"
-msgstr "FTPÕÊ»§"
+msgstr "FTPå¸æˆ·"
 
 #: shared/inc/draw.php:385
 msgid "My account global statistics"
-msgstr "ÕÊ»§Í³¼ÆĞÅÏ¢"
+msgstr "å¸æˆ·ç»Ÿè®¡ä¿¡æ¯"
 
 #: shared/inc/forms/email.php:296
 msgid "My e-mail"
-msgstr "ÎÒµÄÓÊÏä"
+msgstr "æˆ‘çš„é‚®ç®±"
 
 #: shared/inc/sql/database.php:224
 msgid ""
 "MySql database ownership not valid: I will not let you change owner of this "
 "database because it doesn't seems to be owned by you."
 msgstr ""
-"MySQLÊı¾İ¿âÊôÖ÷¹ØÏµ´íÎó£ºÎÒ²»ÄÜÈÃÄã¸ü¸ÄÕâ¸öÊı¾İ¿âµÄÊôÖ÷£¬Ëü¿´ÆğÀ´²¢²»ÊôÓÚÄã¡£"
+"MySQLæ•°æ®åº“å±ä¸»å…³ç³»é”™è¯¯ï¼šæˆ‘ä¸èƒ½è®©ä½ æ›´æ”¹è¿™ä¸ªæ•°æ®åº“çš„å±ä¸»ï¼Œå®ƒçœ‹èµ·æ¥å¹¶ä¸å±äºä½ ã€‚"
 
 #: shared/inc/sql/database.php:180
 msgid ""
 "MySql database ownership not valid: I will not let you delete this database "
 "because it doesn't seem to be owned by you."
 msgstr ""
-"MySQLÊı¾İ¿âÊôÖ÷¹ØÏµ´íÎó£ºÎÒ²»ÄÜÈÃÄãÉ¾µôÕâ¸öÊı¾İ¿â£¬Ëü¿´ÆğÀ´²¢²»ÊôÓÚÄã¡£"
+"MySQLæ•°æ®åº“å±ä¸»å…³ç³»é”™è¯¯ï¼šæˆ‘ä¸èƒ½è®©ä½ åˆ æ‰è¿™ä¸ªæ•°æ®åº“ï¼Œå®ƒçœ‹èµ·æ¥å¹¶ä¸å±äºä½ ã€‚"
 
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
-msgstr "ÓòÃûÅäÖÃÎÄ¼ş"
+msgstr "åŸŸåé…ç½®æ–‡ä»¶"
 
 #: admin/inc/dtc_config.php:1032
 msgid "NAS config"
@@ -2396,33 +2396,33 @@ msgstr ""
 
 #: client/new_account.php:103
 msgid "NOT VALIDATED"
-msgstr "ÎŞĞ§µÄ"
+msgstr "æ— æ•ˆçš„"
 
 #: admin/inc/draw_user_admin.php:237 admin/dtcrm/product_manager.php:99
 #: admin/dtcrm/product_manager.php:157 admin/dtcrm/product_manager.php:215
 msgid "Name"
-msgstr "Ãû³Æ"
+msgstr "åç§°"
 
 #: shared/dtcrm/draw_handle.php:223
 msgid "Name for this handle: "
-msgstr "¾ä±úµÄÃû×Ö£º"
+msgstr "å¥æŸ„çš„åå­—ï¼š"
 
 #: shared/inc/forms/lists.php:70
 msgid "Name of the list."
-msgstr "ÓÊ¼şÁĞ±íµÄÃû³Æ£º"
+msgstr "é‚®ä»¶åˆ—è¡¨çš„åç§°ï¼š"
 
 #: shared/dtcrm/draw_nameservers.php:107
 msgid "Name server hostname: "
-msgstr "ÓòÃû·şÎñÆ÷µÄÓòÃû(²»ÊÇIP)£º"
+msgstr "åŸŸåæœåŠ¡å™¨çš„åŸŸå(ä¸æ˜¯IP)ï¼š"
 
 #: shared/inc/draw.php:140
 #, fuzzy
 msgid "Name servers"
-msgstr "²âÊÔ·şÎñÆ÷"
+msgstr "æµ‹è¯•æœåŠ¡å™¨"
 
 #: shared/inc/draw.php:374 shared/inc/draw.php:420
 msgid "Name servers:"
-msgstr "ÓòÃû·şÎñÆ÷"
+msgstr "åŸŸåæœåŠ¡å™¨"
 
 #: shared/inc/forms/email.php:562
 msgid "Name:"
@@ -2431,12 +2431,12 @@ msgstr ""
 #: admin/inc/dtc_config.php:1049 shared/inc/forms/vps.php:139
 #, fuzzy
 msgid "Name: "
-msgstr "êÇ³Æ"
+msgstr "æ˜µç§°"
 
 #: admin/inc/nav.php:5
 #, fuzzy
 msgid "Named conf files generated !"
-msgstr "ÉèÖÃDNS²ÎÊı"
+msgstr "è®¾ç½®DNSå‚æ•°"
 
 #: admin/inc/dtc_config.php:1175
 msgid "Named file names"
@@ -2445,30 +2445,30 @@ msgstr ""
 #: admin/inc/dtc_config.php:1180
 #, fuzzy
 msgid "Named main file:"
-msgstr "ÉèÖÃDNS²ÎÊı"
+msgstr "è®¾ç½®DNSå‚æ•°"
 
 #: admin/inc/dtc_config.php:1188
 #, fuzzy
 msgid "Named main zonefiles folder:"
-msgstr "ÉèÖÃDNS²ÎÊı"
+msgstr "è®¾ç½®DNSå‚æ•°"
 
 #: admin/inc/dtc_config.php:1184
 #, fuzzy
 msgid "Named slave file:"
-msgstr "ÉèÖÃDNS²ÎÊı"
+msgstr "è®¾ç½®DNSå‚æ•°"
 
 #: shared/inc/forms/dns.php:99
 #, fuzzy
 msgid "Named zonefile:"
-msgstr "ÉèÖÃDNS²ÎÊı"
+msgstr "è®¾ç½®DNSå‚æ•°"
 
 #: admin/inc/dtc_config.php:38 admin/inc/dtc_config.php:682
 msgid "Named zonefiles"
-msgstr "ÉèÖÃDNS²ÎÊı"
+msgstr "è®¾ç½®DNSå‚æ•°"
 
 #: shared/inc/forms/packager.php:218
 msgid "Need a database"
-msgstr "ĞèÒªÒ»¸öÊı¾İ¿â"
+msgstr "éœ€è¦ä¸€ä¸ªæ•°æ®åº“"
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
@@ -2480,23 +2480,23 @@ msgstr ""
 
 #: shared/inc/forms/ftp.php:52
 msgid "New FTP account: "
-msgstr "ĞÂµÄFTPÕÊ»§£º"
+msgstr "æ–°çš„FTPå¸æˆ·ï¼š"
 
 #: shared/inc/forms/ssh.php:46
 msgid "New SSH account:"
-msgstr "ĞÂµÄSSHÕÊ»§£º"
+msgstr "æ–°çš„SSHå¸æˆ·ï¼š"
 
 #: shared/inc/forms/vps.php:351
 msgid "New SSH key: "
-msgstr "ĞÂµÄ SSH ÃÜÔ¿£º"
+msgstr "æ–°çš„ SSH å¯†é’¥ï¼š"
 
 #: shared/inc/forms/vps.php:348
 msgid "New SSH password: "
-msgstr "ĞÂµÄ SSH ÃÜÂë£º"
+msgstr "æ–°çš„ SSH å¯†ç ï¼š"
 
 #: admin/dtcrm/main.php:11 admin/dtcrm/main.php:24
 msgid "New customer"
-msgstr "ĞÂÌí¼ÓÒ»Ãû¿Í»§"
+msgstr "æ–°æ·»åŠ ä¸€åå®¢æˆ·"
 
 #: shared/inc/forms/email.php:531
 msgid "New mailbox"
@@ -2505,20 +2505,20 @@ msgstr ""
 #: shared/inc/forms/lists.php:86
 #, fuzzy
 msgid "New mailing list:"
-msgstr "Êı¾İ¿âÁĞ±í£º"
+msgstr "æ•°æ®åº“åˆ—è¡¨ï¼š"
 
 #: shared/inc/draw.php:52
 msgid "New password:"
-msgstr "ĞÂÃÜÂë£º"
+msgstr "æ–°å¯†ç ï¼š"
 
 #: shared/inc/forms/subdomain.php:127
 #, fuzzy
 msgid "New subdomain"
-msgstr "×ÓÓòÃû£º"
+msgstr "å­åŸŸåï¼š"
 
 #: admin/inc/nav.php:162 admin/inc/nav.php:167 admin/inc/nav.php:171
 msgid "New virtual admin"
-msgstr "ĞÂµÄĞéÄâÖ÷»ú¹ÜÀíÔ±"
+msgstr "æ–°çš„è™šæ‹Ÿä¸»æœºç®¡ç†å‘˜"
 
 #: admin/deamons_state.php:137
 msgid "Next cronjob"
@@ -2526,7 +2526,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:293
 msgid "Nick name"
-msgstr "êÇ³Æ"
+msgstr "æ˜µç§°"
 
 #: admin/inc/draw_user_admin.php:159 admin/inc/draw_user_admin.php:274
 #: admin/inc/draw_user_admin.php:342 admin/inc/dtc_config.php:266
@@ -2553,12 +2553,12 @@ msgstr "êÇ³Æ"
 #: shared/inc/forms/root_admin.php:357 shared/inc/forms/subdomain.php:160
 #: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:130
 msgid "No"
-msgstr "·ñ"
+msgstr "å¦"
 
 #: admin/inc/renewals.php:175
 #, fuzzy
 msgid "No SSL IP expired"
-msgstr "Ã»ÓĞÒÑ¹ıÆÚµÄSSL IP"
+msgstr "æ²¡æœ‰å·²è¿‡æœŸçš„SSL IP"
 
 #: shared/inc/forms/my_account.php:164
 msgid "No SSL token available: contact your administrator to request it."
@@ -2566,15 +2566,15 @@ msgstr ""
 
 #: admin/inc/renewals.php:208
 msgid "No VPS expired"
-msgstr "Ã»ÓĞÒÑ¹ıÆÚµÄVPS"
+msgstr "æ²¡æœ‰å·²è¿‡æœŸçš„VPS"
 
 #: shared/inc/forms/lists.php:412
 msgid "No archives:"
-msgstr "²»´æµµ£º"
+msgstr "ä¸å­˜æ¡£ï¼š"
 
 #: shared/inc/forms/email.php:632
 msgid "No catch-all"
-msgstr "½ûÖ¹Ê¹ÓÃÎŞÏŞ±ğÃû¹¦ÄÜ"
+msgstr "ç¦æ­¢ä½¿ç”¨æ— é™åˆ«ååŠŸèƒ½"
 
 #: shared/inc/forms/invoices.php:52
 msgid "No completed orders found."
@@ -2582,19 +2582,19 @@ msgstr ""
 
 #: admin/inc/renewals.php:242
 msgid "No dedicated server expired"
-msgstr "Ã»ÓĞÒÑ¹ıÆÚµÄ¶ÀÁ¢Ö÷»ú"
+msgstr "æ²¡æœ‰å·²è¿‡æœŸçš„ç‹¬ç«‹ä¸»æœº"
 
 #: admin/inc/draw_user_admin.php:292
 msgid "No domain waiting!"
-msgstr "Ã»ÓĞ´ıÌí¼ÓµÄÓòÃû£¡"
+msgstr "æ²¡æœ‰å¾…æ·»åŠ çš„åŸŸåï¼"
 
 #: shared/inc/forms/lists.php:413
 msgid "No get-N function:"
-msgstr "²»Ê¹ÓÃget-N¹¦ÄÜ£º"
+msgstr "ä¸ä½¿ç”¨get-NåŠŸèƒ½ï¼š"
 
 #: shared/inc/forms/domain_info.php:85
 msgid "No parking"
-msgstr "½ûÖ¹ÓòÃûÍ£·Å"
+msgstr "ç¦æ­¢åŸŸååœæ”¾"
 
 #: admin/inc/draw_user_admin.php:262
 msgid "No pay ID!"
@@ -2602,106 +2602,106 @@ msgstr ""
 
 #: admin/inc/draw_user_admin.php:311
 msgid "No pending renewals!"
-msgstr "Ã»ÓĞ·¢ÏÖĞèÒª±£´æµÄ¸ü¸Ä£¡"
+msgstr "æ²¡æœ‰å‘ç°éœ€è¦ä¿å­˜çš„æ›´æ”¹ï¼"
 
 #: admin/inc/draw_user_admin.php:397
 msgid "No pending support tickets!"
-msgstr "Ã»ÓĞÎ´¾öµÄ£¿£¡"
+msgstr "æ²¡æœ‰æœªå†³çš„ï¼Ÿï¼"
 
 #: shared/inc/forms/root_admin.php:111
 msgid "No product"
-msgstr "Ã»ÓĞ²úÆ·"
+msgstr "æ²¡æœ‰äº§å“"
 
 #: admin/inc/renewals.php:145
 msgid "No shared account expired."
-msgstr "Ã»ÓĞÒÑ¹ıÆÚµÄ¹²ÏíÖ÷»úÕËºÅ¡£"
+msgstr "æ²¡æœ‰å·²è¿‡æœŸçš„å…±äº«ä¸»æœºè´¦å·ã€‚"
 
 #: shared/inc/forms/my_account.php:143 shared/inc/forms/my_account.php:170
 #, fuzzy
 msgid "No ssl product defined."
-msgstr "Ã»ÓĞ²úÆ·"
+msgstr "æ²¡æœ‰äº§å“"
 
 #: shared/inc/forms/lists.php:401
 msgid "No subscribtion confirmation:"
-msgstr "Ã»ÓĞĞèÒªÈ·ÈÏµÄ¶©ÔÄ£º"
+msgstr "æ²¡æœ‰éœ€è¦ç¡®è®¤çš„è®¢é˜…ï¼š"
 
 #: shared/inc/sql/database.php:73
 msgid ""
 "No user by that name exists in the database, or you don't own this db user. "
 "Please select a new one."
-msgstr "¸ÃÓÃ»§²»´æÔÚ£¬»òÕßÕâ¸öÓÃ»§²»¹éÄúËùÓĞ£¬ÇëÖØĞÂÊäÈëÒ»¸ö¡£"
+msgstr "è¯¥ç”¨æˆ·ä¸å­˜åœ¨ï¼Œæˆ–è€…è¿™ä¸ªç”¨æˆ·ä¸å½’æ‚¨æ‰€æœ‰ï¼Œè¯·é‡æ–°è¾“å…¥ä¸€ä¸ªã€‚"
 
 #: admin/inc/draw_user_admin.php:234
 msgid "No user waiting!"
-msgstr "Ã»ÓĞ´ıÌí¼ÓµÄÓÃ»§£¡"
+msgstr "æ²¡æœ‰å¾…æ·»åŠ çš„ç”¨æˆ·ï¼"
 
 #: shared/inc/forms/dedicated.php:36 shared/inc/forms/invoices.php:39
 #: shared/inc/forms/invoices.php:40 shared/inc/forms/invoices.php:41
 msgid "Not found!"
-msgstr "Ã»ÓĞÕÒµ½£¡"
+msgstr "æ²¡æœ‰æ‰¾åˆ°ï¼"
 
 #: client/new_account_form.php:31
 msgid "Not registering"
-msgstr "Ã»ÓĞ×¢²á"
+msgstr "æ²¡æœ‰æ³¨å†Œ"
 
 #: admin/dtcrm/main.php:176
 msgid "Notes: "
-msgstr "ÆäËü£º"
+msgstr "å…¶å®ƒï¼š"
 
 #: shared/inc/forms/lists.php:420
 msgid "Notifications"
-msgstr "×¢ÒâÊÂÏî"
+msgstr "æ³¨æ„äº‹é¡¹"
 
 #: shared/inc/forms/lists.php:421
 msgid "Notify new subscribtions:"
-msgstr "ÓĞĞÂµÄ¶©ÔÄÊ±ÌáÊ¾£º"
+msgstr "æœ‰æ–°çš„è®¢é˜…æ—¶æç¤ºï¼š"
 
 #: shared/inc/forms/lists.php:424
 msgid "Notify when post and no access:"
-msgstr "·¢ËÍºóÌáÊ¾£º"
+msgstr "å‘é€åæç¤ºï¼š"
 
 #: shared/inc/forms/lists.php:422
 msgid "Notify when post and not subscribed:"
-msgstr "·¢ËÍºóÎ´¶©ÔÄÊ±ÌáÊ¾£º"
+msgstr "å‘é€åæœªè®¢é˜…æ—¶æç¤ºï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:90
 msgid "Now you can go to check its configuration by clicking here:"
-msgstr "µã»÷ÕâÀï£¬Äú¿ÉÒÔ¼ì²éÓòÃûµÄÅäÖÃ£º"
+msgstr "ç‚¹å‡»è¿™é‡Œï¼Œæ‚¨å¯ä»¥æ£€æŸ¥åŸŸåçš„é…ç½®ï¼š"
 
 #: shared/inc/forms/vps.php:151
 msgid "Number of CPU: "
-msgstr "CPU¸öÊı£º"
+msgstr "CPUä¸ªæ•°ï¼š"
 
 #: shared/inc/forms/vps.php:153
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
-msgstr "CPU¸öÊı£ºÎŞ·¨µÃÖª(¿ÉÄÜÕıÔÚÆğ¶¯£¿)"
+msgstr "CPUä¸ªæ•°ï¼šæ— æ³•å¾—çŸ¥(å¯èƒ½æ­£åœ¨èµ·åŠ¨ï¼Ÿ)"
 
 #: shared/inc/forms/ftp.php:61
 #, fuzzy
 msgid "Number of active ftp accounts:"
-msgstr "ÏÖÓĞÓÊÏäÊıÁ¿£º"
+msgstr "ç°æœ‰é‚®ç®±æ•°é‡ï¼š"
 
 #: shared/inc/forms/aliases.php:31 shared/inc/forms/email.php:540
 msgid "Number of active mailboxes:"
-msgstr "ÏÖÓĞÓÊÏäÊıÁ¿£º"
+msgstr "ç°æœ‰é‚®ç®±æ•°é‡ï¼š"
 
 #: shared/inc/forms/lists.php:24
 #, fuzzy
 msgid "Number of active mailing lists"
-msgstr "ÏÖÓĞÓÊÏäÊıÁ¿£º"
+msgstr "ç°æœ‰é‚®ç®±æ•°é‡ï¼š"
 
 #: shared/inc/forms/ssh.php:55
 #, fuzzy
 msgid "Number of active ssh accounts:"
-msgstr "ÏÖÓĞÓÊÏäÊıÁ¿£º"
+msgstr "ç°æœ‰é‚®ç®±æ•°é‡ï¼š"
 
 #: shared/inc/forms/subdomain.php:135
 msgid "Number of active subdomains:"
-msgstr "ÏÖÓĞ×ÓÓòÃûÊıÁ¿£º"
+msgstr "ç°æœ‰å­åŸŸåæ•°é‡ï¼š"
 
 #: shared/inc/forms/root_admin.php:129
 msgid "Number of databases:"
-msgstr "Êı¾İ¿âµÄÊıÄ¿£º"
+msgstr "æ•°æ®åº“çš„æ•°ç›®ï¼š"
 
 #: admin/deamons_state.php:93 email/login.php:16
 #: shared/inc/forms/domain_stats.php:88 shared/inc/forms/email.php:127
@@ -2713,59 +2713,59 @@ msgstr ""
 
 #: shared/inc/forms/ticket.php:153
 msgid "Old tickets:"
-msgstr "¹ıÍùµÄtickets£º"
+msgstr "è¿‡å¾€çš„ticketsï¼š"
 
 #: shared/inc/draw.php:549
 msgid "Online DTC help"
-msgstr "DTCÔÚÏß°ïÖúÎÄµµ"
+msgstr "DTCåœ¨çº¿å¸®åŠ©æ–‡æ¡£"
 
 #: shared/inc/forms/ticket.php:165
 msgid "Open"
-msgstr "¿ª·Å"
+msgstr "å¼€æ”¾"
 
 #: shared/inc/forms/vps.php:312
 msgid "Operating system type not supported"
-msgstr "Ä¿Ç°²»Ö§³Ö¸Ã²Ù×÷ÏµÍ³"
+msgstr "ç›®å‰ä¸æ”¯æŒè¯¥æ“ä½œç³»ç»Ÿ"
 
 #: shared/inc/forms/dns.php:28
 msgid "Other DNS servers:"
-msgstr "ÆäËûDNS·şÎñÆ÷£º"
+msgstr "å…¶ä»–DNSæœåŠ¡å™¨ï¼š"
 
 #: shared/inc/forms/dns.php:44 shared/inc/forms/dns.php:53
 msgid "Other MX (backup) servers:"
-msgstr "ÆäËüMX(±¸ÓÃ)·şÎñÆ÷£º"
+msgstr "å…¶å®ƒMX(å¤‡ç”¨)æœåŠ¡å™¨ï¼š"
 
 #: shared/inc/forms/lists.php:443
 msgid "Own template:"
-msgstr "¸öÈËÄ£°å£º"
+msgstr "ä¸ªäººæ¨¡æ¿ï¼š"
 
 #: shared/inc/forms/lists.php:398
 msgid "Owner:"
-msgstr "ËùÓĞÕß£º"
+msgstr "æ‰€æœ‰è€…ï¼š"
 
 #: client/new_account.php:146
 msgid "PAYMENT CANCELLED"
-msgstr "¸¶¿î±»È¡Ïû"
+msgstr "ä»˜æ¬¾è¢«å–æ¶ˆ"
 
 #: client/new_account.php:151
 msgid "PAYMENT FAILED"
-msgstr "¸¶¿îÊ§°Ü"
+msgstr "ä»˜æ¬¾å¤±è´¥"
 
 #: admin/inc/dtc_config.php:1163
 msgid ""
 "PHP libraries open_basedir<br>\n"
 "(separated by \":\", reset on each dtc install):"
 msgstr ""
-"PHP¿âÎÄ¼şÂ·¾¶(ÓÃ\":\"·Ö¸ô<br>\n"
-"ĞÂ°²×°µÄDTC¿ØÖÆÃæ°åĞëÖØĞÂÉèÖÃ)£º"
+"PHPåº“æ–‡ä»¶è·¯å¾„(ç”¨\":\"åˆ†éš”<br>\n"
+"æ–°å®‰è£…çš„DTCæ§åˆ¶é¢æ¿é¡»é‡æ–°è®¾ç½®)ï¼š"
 
 #: admin/inc/dtc_config.php:1168
 msgid ""
 "PHP open_basedir additional libraries path<br>\n"
 "(survives reinstallation):"
 msgstr ""
-"PHP¸½¼Ó¿âÎÄ¼şÂ·¾¶(ÓÃ\":\"·Ö¸ô<br>\n"
-"ĞÂ°²×°µÄDTC¿ØÖÆÃæ°åÎŞĞëÖØĞÂÉèÖÃ)£º"
+"PHPé™„åŠ åº“æ–‡ä»¶è·¯å¾„(ç”¨\":\"åˆ†éš”<br>\n"
+"æ–°å®‰è£…çš„DTCæ§åˆ¶é¢æ¿æ— é¡»é‡æ–°è®¾ç½®)ï¼š"
 
 #: shared/inc/forms/root_admin.php:350
 msgid "PHP safe_mode"
@@ -2773,24 +2773,24 @@ msgstr ""
 
 #: shared/inc/draw.php:410
 msgid "Package"
-msgstr "Èí¼ş°ü"
+msgstr "è½¯ä»¶åŒ…"
 
 #: shared/inc/draw.php:224
 msgid "Package installer"
-msgstr "°²×°³ÌĞò"
+msgstr "å®‰è£…ç¨‹åº"
 
 #: shared/inc/draw.php:408
 #, fuzzy
 msgid "Package installer:"
-msgstr "Èí¼ş°üÃèÊö"
+msgstr "è½¯ä»¶åŒ…æè¿°"
 
 #: shared/inc/forms/packager.php:218
 msgid "Package name"
-msgstr "Èí¼ş°üÃèÊö"
+msgstr "è½¯ä»¶åŒ…æè¿°"
 
 #: shared/inc/forms/packager.php:218
 msgid "Package version"
-msgstr "Èí¼ş°ü°æ±¾"
+msgstr "è½¯ä»¶åŒ…ç‰ˆæœ¬"
 
 #: admin/inc/dtc_config.php:762 admin/inc/dtc_config.php:789
 #: admin/inc/dtc_config.php:814 admin/inc/dtc_config.php:841
@@ -2798,30 +2798,30 @@ msgstr "Èí¼ş°ü°æ±¾"
 #: shared/inc/draw.php:438 shared/inc/forms/reseller.php:24
 #, fuzzy
 msgid "Password"
-msgstr "FTPµÇÂ½ÃÜÂë£º"
+msgstr "FTPç™»é™†å¯†ç ï¼š"
 
 #: client/new_account_form.php:72
 msgid "Password 1 and 2 do not match!"
-msgstr "Á½´ÎÊäÈëµÄÃÜÂë²»Æ¥Åä£¡"
+msgstr "ä¸¤æ¬¡è¾“å…¥çš„å¯†ç ä¸åŒ¹é…ï¼"
 
 #: admin/inc/submit_root_querys.php:263
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"
 msgstr ""
-"ÃÜÂëÓ¦¸Ã½öÓÉ×ÖÄ¸ºÍÊı×Ö×é³É(a-zA-Z0-9)£¬²¢ÇÒ³¤¶ÈÔÚ6µ½16¸ö×Ö·ûÖ®¼ä¡£<br>\n"
+"å¯†ç åº”è¯¥ä»…ç”±å­—æ¯å’Œæ•°å­—ç»„æˆ(a-zA-Z0-9)ï¼Œå¹¶ä¸”é•¿åº¦åœ¨6åˆ°16ä¸ªå­—ç¬¦ä¹‹é—´ã€‚<br>\n"
 
 #: client/new_account_form.php:67
 msgid ""
 "Password format incorrect. Please use letters and numbers only and from 4 to "
 "16 chars."
-msgstr "ÃÜÂë¸ñÊ½²»ÕıÈ·¡£ÇëÊ¹ÓÃÊı×Ö»ò×ÖÄ¸£¬²¢ÇÒÊÇ4µ½16¸ö×Ö·ûÊıÖ®¼ä¡£"
+msgstr "å¯†ç æ ¼å¼ä¸æ­£ç¡®ã€‚è¯·ä½¿ç”¨æ•°å­—æˆ–å­—æ¯ï¼Œå¹¶ä¸”æ˜¯4åˆ°16ä¸ªå­—ç¬¦æ•°ä¹‹é—´ã€‚"
 
 #: shared/inc/sql/database.php:21
 msgid ""
 "Password must consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long."
-msgstr "ÃÜÂëÓ¦¸Ã½öÓĞ×ÖÄ¸ºÍÊı×Ö×é³É(a-zA-Z0-9)£¬²¢ÇÒ³¤¶ÈÓ¦¸ÃÔÚ6µ½16¸ö×Ö·ûÖ®¼ä¡£"
+msgstr "å¯†ç åº”è¯¥ä»…æœ‰å­—æ¯å’Œæ•°å­—ç»„æˆ(a-zA-Z0-9)ï¼Œå¹¶ä¸”é•¿åº¦åº”è¯¥åœ¨6åˆ°16ä¸ªå­—ç¬¦ä¹‹é—´ã€‚"
 
 #: admin/inc/draw_user_admin.php:221 client/login.php:13
 #: shared/inc/draw.php:436 shared/inc/forms/database.php:37
@@ -2829,14 +2829,14 @@ msgstr "ÃÜÂëÓ¦¸Ã½öÓĞ×ÖÄ¸ºÍÊı×Ö×é³É(a-zA-Z0-9)£¬²¢ÇÒ³¤¶ÈÓ¦¸ÃÔÚ6µ½16¸ö×Ö·ûÖ®¼ä¡£"
 #: shared/inc/forms/email.php:27 shared/inc/forms/email.php:566
 #: shared/inc/forms/root_admin.php:104 shared/inc/forms/ssh.php:76
 msgid "Password:"
-msgstr "ÃÜÂë£º"
+msgstr "å¯†ç ï¼š"
 
 #: admin/inc/dtc_config.php:1063 client/new_account_form.php:562
 #: email/login.php:13 shared/inc/forms/email.php:216
 #: shared/inc/forms/ftp.php:81
 #, fuzzy
 msgid "Password: "
-msgstr "FTPµÇÂ½ÃÜÂë£º"
+msgstr "FTPç™»é™†å¯†ç ï¼š"
 
 #: shared/dtcrm/draw.php:35
 msgid "Past account refundal"
@@ -2844,7 +2844,7 @@ msgstr ""
 
 #: shared/inc/draw.php:122
 msgid "Past payments"
-msgstr "ÒÑÖ§¸¶µÄ¿îÏî"
+msgstr "å·²æ”¯ä»˜çš„æ¬¾é¡¹"
 
 #: admin/inc/dtc_config.php:1118
 msgid "Path of the cgi-wrapper disk template (chroot for SBOX):"
@@ -2852,7 +2852,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1112
 msgid "Path of your DTC shared directory:"
-msgstr "DTC¿ØÖÆÃæ°å\"shared\"Ä¿Â¼£º"
+msgstr "DTCæ§åˆ¶é¢æ¿\"shared\"ç›®å½•ï¼š"
 
 #: admin/inc/dtc_config.php:1121
 msgid ""
@@ -2865,58 +2865,58 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:222 shared/inc/forms/root_admin.php:123
 #: shared/inc/forms/ssh.php:81
 msgid "Path:"
-msgstr "Â·¾¶£º"
+msgstr "è·¯å¾„ï¼š"
 
 #: shared/inc/forms/ftp.php:86
 #, fuzzy
 msgid "Path: "
-msgstr "ÉèÖÃÂ·¾¶"
+msgstr "è®¾ç½®è·¯å¾„"
 
 #: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1107
 msgid "Paths"
-msgstr "ÉèÖÃÂ·¾¶"
+msgstr "è®¾ç½®è·¯å¾„"
 
 #: admin/inc/dtc_config.php:947
 #, fuzzy
 msgid "PayPal business account email: "
-msgstr "±´±¦ÕËºÅ(ÓÊ¼şµØÖ·ĞÎÊ½)£º"
+msgstr "è´å®è´¦å·(é‚®ä»¶åœ°å€å½¢å¼)ï¼š"
 
 #: admin/inc/dtc_config.php:951
 #, fuzzy
 msgid "PayPal fee rate: "
-msgstr "·ÑÂÊ£º"
+msgstr "è´¹ç‡ï¼š"
 
 #: admin/inc/dtc_config.php:955
 #, fuzzy
 msgid "PayPal flat fee: "
-msgstr "ÔÂ×â£º"
+msgstr "æœˆç§Ÿï¼š"
 
 #: admin/inc/dtc_config.php:969
 #, fuzzy
 msgid "PayPal test account email (sandbox): "
-msgstr "±´±¦²âÊÔ·şÎñÆ÷ÕËºÅ(ÓÊ¼şµØÖ·ĞÎÊ½)£º"
+msgstr "è´å®æµ‹è¯•æœåŠ¡å™¨è´¦å·(é‚®ä»¶åœ°å€å½¢å¼)ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:241
 msgid "Payment complete. Proceed to checkout"
-msgstr "¸¶¿îÍê±Ï£¬ÕıÔÚĞ£Ñé"
+msgstr "ä»˜æ¬¾å®Œæ¯•ï¼Œæ­£åœ¨æ ¡éªŒ"
 
 #: admin/inc/draw_user_admin.php:314
 msgid "Payment date"
-msgstr "¸¶¿îÈÕÆÚ"
+msgstr "ä»˜æ¬¾æ—¥æœŸ"
 
 #: admin/inc/dtc_config.php:59
 msgid "Payment gateway"
-msgstr "ÉèÖÃ¸¶¿î½Ó¿Ú"
+msgstr "è®¾ç½®ä»˜æ¬¾æ¥å£"
 
 #: shared/inc/forms/invoices.php:23
 #, fuzzy
 msgid "Payment gateway cost"
-msgstr "ÉèÖÃ¸¶¿î½Ó¿Ú"
+msgstr "è®¾ç½®ä»˜æ¬¾æ¥å£"
 
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Payment system"
-msgstr "¸¶¿îÈÕÆÚ"
+msgstr "ä»˜æ¬¾æ—¥æœŸ"
 
 #: admin/deamons_state.php:92 admin/inc/draw_user_admin.php:272
 #: admin/inc/draw_user_admin.php:345
@@ -2928,90 +2928,90 @@ msgstr ""
 #: admin/dtcrm/product_manager.php:187 admin/dtcrm/product_manager.php:220
 #: shared/dtcrm/draw.php:80
 msgid "Period"
-msgstr "Ê¹ÓÃÆÚÏŞ"
+msgstr "ä½¿ç”¨æœŸé™"
 
 #: shared/inc/forms/my_account.php:213
 msgid "Phone number:"
-msgstr "µç»°ºÅÂë£º"
+msgstr "ç”µè¯å·ç ï¼š"
 
 #: admin/dtcrm/main.php:173 client/new_account_form.php:599
 #: shared/dtcrm/draw_handle.php:66 shared/dtcrm/draw_handle.php:98
 #: shared/dtcrm/draw_handle.php:130 shared/dtcrm/draw_handle.php:256
 #, fuzzy
 msgid "Phone number: "
-msgstr "µç»°ºÅÂë£º"
+msgstr "ç”µè¯å·ç ï¼š"
 
 #: shared/inc/forms/vps.php:345
 msgid "Physical console last display and ssh access:"
-msgstr "SSHµÇÂ½Çé¿öÓë¿ØÖÆÌ¨×îºóÒ»´ÎµÄÏÔÊ¾£º"
+msgstr "SSHç™»é™†æƒ…å†µä¸æ§åˆ¶å°æœ€åä¸€æ¬¡çš„æ˜¾ç¤ºï¼š"
 
 #: shared/inc/forms/database.php:127
 msgid "Please create a MySQL user in order to be able to create a database."
-msgstr "Èç¹ûÒª´´½¨Ò»¸öÊı¾İ¿â,ÇëÏÈ´´½¨Ò»¸öMySQLÓÃ»§¡£"
+msgstr "å¦‚æœè¦åˆ›å»ºä¸€ä¸ªæ•°æ®åº“,è¯·å…ˆåˆ›å»ºä¸€ä¸ªMySQLç”¨æˆ·ã€‚"
 
 #: shared/dtcrm/draw_adddomain.php:63
 msgid "Please enter the domain name you wish to add:"
-msgstr "ÇëÊäÈëÄúÏëÌí¼ÓµÄÓòÃû£º"
+msgstr "è¯·è¾“å…¥æ‚¨æƒ³æ·»åŠ çš„åŸŸåï¼š"
 
 #: shared/dtcrm/draw_transferdomain.php:47
 #: shared/dtcrm/draw_transferdomain.php:64
 msgid "Please enter the domain name you wish to transfer:"
-msgstr "ÇëÊäÈëÄúÏ£Íû×ªÈÃµÄÓòÃû£º"
+msgstr "è¯·è¾“å…¥æ‚¨å¸Œæœ›è½¬è®©çš„åŸŸåï¼š"
 
 #: shared/inc/forms/dedicated.php:47
 msgid "Please renew it with one of the following options"
-msgstr "ÇëÊ¹ÓÃÏÂÁĞÈÎÒâÒ»¸öÑ¡Ïî½øĞĞĞøÔ¼"
+msgstr "è¯·ä½¿ç”¨ä¸‹åˆ—ä»»æ„ä¸€ä¸ªé€‰é¡¹è¿›è¡Œç»­çº¦"
 
 #: shared/inc/forms/vps.php:205
 msgid "Please renew with one of the following options: "
-msgstr "ÇëÊ¹ÓÃÏÂÃæÈÎÒâÒ»¸öÑ¡Ïî½øĞĞĞøÔ¼£º"
+msgstr "è¯·ä½¿ç”¨ä¸‹é¢ä»»æ„ä¸€ä¸ªé€‰é¡¹è¿›è¡Œç»­çº¦ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:164
 msgid ""
 "Please select the 3 contact handles you want to use for registering that "
 "domain name."
-msgstr "ÇëÑ¡ÔñÈı¸öÄúÏ£ÍûÓÃÀ´×¢²áÕâ¸öÓòÃûµÄÁªÏµÈË¡£"
+msgstr "è¯·é€‰æ‹©ä¸‰ä¸ªæ‚¨å¸Œæœ›ç”¨æ¥æ³¨å†Œè¿™ä¸ªåŸŸåçš„è”ç³»äººã€‚"
 
 #: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
-msgstr "Çë¸æËßÎÒÃÇÏÂÁĞĞÅÏ¢ÊÇ·ñÕıÈ·£º"
+msgstr "è¯·å‘Šè¯‰æˆ‘ä»¬ä¸‹åˆ—ä¿¡æ¯æ˜¯å¦æ­£ç¡®ï¼š"
 
 #: shared/inc/forms/vps.php:253
 msgid "Please wait until file system check is finished first."
-msgstr "ÕıÔÚ¼ì²éÎÄ¼şÏµÍ³£¬ÇëÄÍĞÄµÈ´ı..."
+msgstr "æ­£åœ¨æ£€æŸ¥æ–‡ä»¶ç³»ç»Ÿï¼Œè¯·è€å¿ƒç­‰å¾…..."
 
 #: shared/inc/forms/vps.php:255
 msgid "Please wait until operating system reinstallation has completed."
-msgstr "ÕıÔÚÖØĞÂ°²×°²Ù×÷ÏµÍ³£¬ÇëÄÍĞÄµÈ´ı..."
+msgstr "æ­£åœ¨é‡æ–°å®‰è£…æ“ä½œç³»ç»Ÿï¼Œè¯·è€å¿ƒç­‰å¾…..."
 
 #: admin/inc/dtc_config.php:1059
 #, fuzzy
 msgid "Port number: "
-msgstr "VPS ÔÚxenÖĞµÄ±àºÅ "
+msgstr "VPS åœ¨xenä¸­çš„ç¼–å· "
 
 #: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
 #: admin/dtcrm/product_manager.php:225 shared/dtcrm/draw.php:80
 #: shared/inc/forms/invoices.php:23
 msgid "Price"
-msgstr "¼Û¸ñ"
+msgstr "ä»·æ ¼"
 
 #: admin/inc/dtc_config.php:701
 msgid "Primary DNS server address:"
-msgstr "Ö÷DNS·şÎñÆ÷µØÖ·£º"
+msgstr "ä¸»DNSæœåŠ¡å™¨åœ°å€ï¼š"
 
 #: shared/dtcrm/draw_whois.php:52
 msgid "Primary DNS:"
-msgstr "Ê×Ñ¡DNS£º"
+msgstr "é¦–é€‰DNSï¼š"
 
 #: shared/inc/forms/dns.php:42
 msgid "Primary MX address:"
-msgstr "Ö÷MXµØÖ·£º"
+msgstr "ä¸»MXåœ°å€ï¼š"
 
 #: admin/dtcrm/product_manager.php:71 admin/dtcrm/product_manager.php:129
 #: admin/dtcrm/product_manager.php:230
 msgid "Private"
-msgstr "Ë½ÓĞ"
+msgstr "ç§æœ‰"
 
 #: shared/dtcrm/draw.php:160
 msgid "Proceed to account upgrade"
@@ -3019,41 +3019,41 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:251
 msgid "Proceed to name-registration"
-msgstr "½øÈëÓòÃû×¢²á"
+msgstr "è¿›å…¥åŸŸåæ³¨å†Œ"
 
 #: shared/dtcrm/draw_transferdomain.php:79
 msgid "Proceed to transfer"
-msgstr "½øĞĞ×ªÈÃ"
+msgstr "è¿›è¡Œè½¬è®©"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
 #: client/new_account_form.php:541 shared/dtcrm/draw.php:79
 #: shared/inc/forms/invoices.php:23 shared/inc/forms/root_admin.php:565
 msgid "Product"
-msgstr "²úÆ·"
+msgstr "äº§å“"
 
 #: shared/inc/forms/root_admin.php:496
 #, fuzzy
 msgid "Product ID"
-msgstr "²úÆ·"
+msgstr "äº§å“"
 
 #: client/new_account_form.php:41
 msgid "Product ID not valid!"
-msgstr "²úÆ·ID²»´æÔÚ£¡"
+msgstr "äº§å“IDä¸å­˜åœ¨ï¼"
 
 #: shared/inc/forms/root_admin.php:128
 msgid "Product ID:"
-msgstr "²úÆ·ID£º"
+msgstr "äº§å“IDï¼š"
 
 #: admin/dtcrm/product_manager.php:19 admin/dtcrm/product_manager.php:81
 #: admin/dtcrm/product_manager.php:139 admin/dtcrm/product_manager.php:197
 #, fuzzy
 msgid "Product list editor"
-msgstr "Éú²ú·şÎñÆ÷"
+msgstr "ç”Ÿäº§æœåŠ¡å™¨"
 
 #: admin/dtcrm/product_manager.php:31
 #, fuzzy
 msgid "Product name"
-msgstr "²úÆ·"
+msgstr "äº§å“"
 
 #: client/new_account_form.php:49
 msgid "Product not found in database"
@@ -3062,16 +3062,16 @@ msgstr ""
 #: client/new_account_form.php:707
 #, fuzzy
 msgid "Product:"
-msgstr "²úÆ·"
+msgstr "äº§å“"
 
 #: shared/inc/forms/root_admin.php:231 shared/inc/forms/root_admin.php:276
 #, fuzzy
 msgid "Product: "
-msgstr "²úÆ·"
+msgstr "äº§å“"
 
 #: admin/inc/dtc_config.php:988
 msgid "Production server"
-msgstr "Éú²ú·şÎñÆ÷"
+msgstr "ç”Ÿäº§æœåŠ¡å™¨"
 
 #: shared/inc/forms/domain_stats.php:74
 msgid "Protect your logs and stats folder with a password"
@@ -3083,7 +3083,7 @@ msgstr ""
 
 #: admin/dtcrm/main.php:209
 msgid "Quantity"
-msgstr "ÊıÁ¿"
+msgstr "æ•°é‡"
 
 #: admin/inc/monitor.php:15
 msgid "Quota"
@@ -3092,7 +3092,7 @@ msgstr ""
 #: admin/dtcrm/main.php:178
 #, fuzzy
 msgid "Quota (MB): "
-msgstr "´ÅÅÌÅä¶î(MB)£º"
+msgstr "ç£ç›˜é…é¢(MB)ï¼š"
 
 #: admin/dtcrm/product_manager.php:119
 msgid "RAM"
@@ -3100,11 +3100,11 @@ msgstr ""
 
 #: admin/inc/nav.php:73
 msgid "REINIT NAMED ZONES"
-msgstr "ÓòÃûÖØÖÃ"
+msgstr "åŸŸåé‡ç½®"
 
 #: admin/inc/dtc_config.php:296
 msgid "Real name"
-msgstr "ÕæÊµĞÕÃû"
+msgstr "çœŸå®å§“å"
 
 #: shared/inc/forms/lists.php:262
 msgid ""
@@ -3112,25 +3112,25 @@ msgid ""
 "webarchive\\'s template. NOTE: this works only if you have &quot;web "
 "archive&quot; checked."
 msgstr ""
-"ÖØĞÂ´´½¨ËùÓĞ¹éµµÎÄ¼ş¡£Çë½ö½öÔÚÄúĞŞ¸ÄÁË¹éµµÎÄ¼şµÄÄ£°åÊ±²ÅÊ¹ÓÃÕâ¸ö¹¦ÄÜ¡£×¢Òâ£º"
-"½ö½öµ±ÄúÊ¹ÓÃ¹éµµÄ£Ê½µÄÊ±ºò£¬¸Ã²ÎÊı²ÅÓĞĞ§¡£"
+"é‡æ–°åˆ›å»ºæ‰€æœ‰å½’æ¡£æ–‡ä»¶ã€‚è¯·ä»…ä»…åœ¨æ‚¨ä¿®æ”¹äº†å½’æ¡£æ–‡ä»¶çš„æ¨¡æ¿æ—¶æ‰ä½¿ç”¨è¿™ä¸ªåŠŸèƒ½ã€‚æ³¨æ„ï¼š"
+"ä»…ä»…å½“æ‚¨ä½¿ç”¨å½’æ¡£æ¨¡å¼çš„æ—¶å€™ï¼Œè¯¥å‚æ•°æ‰æœ‰æ•ˆã€‚"
 
 #: shared/inc/forms/lists.php:444
 msgid "Recreate:"
-msgstr "ÖØĞÂ´´½¨£º"
+msgstr "é‡æ–°åˆ›å»ºï¼š"
 
 #: shared/securepay/pay_functions.php:62
 msgid "Recurring payment"
-msgstr "Ñ­»·¸¶¿î"
+msgstr "å¾ªç¯ä»˜æ¬¾"
 
 #: shared/inc/forms/email.php:250 shared/inc/forms/email.php:604
 #: shared/inc/forms/email.php:610
 msgid "Redirection 1: "
-msgstr "ÓÊ¼ş×ª·¢1£º"
+msgstr "é‚®ä»¶è½¬å‘1ï¼š"
 
 #: shared/inc/forms/email.php:253
 msgid "Redirection 2: "
-msgstr "ÓÊ¼ş×ª·¢2£º"
+msgstr "é‚®ä»¶è½¬å‘2ï¼š"
 
 #: shared/dtcrm/draw.php:63
 msgid "Refund"
@@ -3139,77 +3139,77 @@ msgstr ""
 #: shared/inc/forms/my_account.php:188
 #, fuzzy
 msgid "Refund my account:"
-msgstr "ÎÒµÄÍË¿î£º"
+msgstr "æˆ‘çš„é€€æ¬¾ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:116
 msgid "Register a domain name"
-msgstr "×¢²áÒ»¸öÓòÃû"
+msgstr "æ³¨å†Œä¸€ä¸ªåŸŸå"
 
 #: client/login.php:6 client/new_account.php:148 client/new_account.php:246
 msgid "Register a new account"
-msgstr "×¢²áĞÂÕÊ»§"
+msgstr "æ³¨å†Œæ–°å¸æˆ·"
 
 #: shared/dtcrm/draw_adddomain.php:104
 msgid "Register a new domain"
-msgstr "×¢²áÒ»¸öĞÂµÄÓòÃû"
+msgstr "æ³¨å†Œä¸€ä¸ªæ–°çš„åŸŸå"
 
 #: shared/dtcrm/draw_nameservers.php:124
 msgid "Register a new name server:"
-msgstr "ĞÂ×¢²áÒ»¸öÓòÃû·şÎñÆ÷£º"
+msgstr "æ–°æ³¨å†Œä¸€ä¸ªåŸŸåæœåŠ¡å™¨ï¼š"
 
 #: shared/inc/forms/root_admin.php:477 shared/inc/forms/root_admin.php:541
 msgid "Registration"
-msgstr "×¢²á"
+msgstr "æ³¨å†Œ"
 
 #: shared/dtcrm/draw_adddomain.php:264
 msgid "Registration failed"
-msgstr "×¢²áÊ§°Ü"
+msgstr "æ³¨å†Œå¤±è´¥"
 
 #: admin/inc/dtc_config.php:1237
 msgid "Registration number:"
-msgstr "×¢²áµÄºÅÂë£º"
+msgstr "æ³¨å†Œçš„å·ç ï¼š"
 
 #: shared/dtcrm/draw_nameservers.php:42
 msgid "Registration of your name server failed"
-msgstr "×¢²áÓòÃû·şÎñÆ÷Ê§°Ü"
+msgstr "æ³¨å†ŒåŸŸåæœåŠ¡å™¨å¤±è´¥"
 
 #: shared/dtcrm/draw_nameservers.php:22
 msgid "Registration of your name server was succesful"
-msgstr "×¢²áÓòÃû·şÎñÆ÷³É¹¦"
+msgstr "æ³¨å†ŒåŸŸåæœåŠ¡å™¨æˆåŠŸ"
 
 #: client/new_account.php:233
 msgid "Registration successful!"
-msgstr "×¢²á³É¹¦£¡"
+msgstr "æ³¨å†ŒæˆåŠŸï¼"
 
 #: admin/inc/dtc_config.php:493
 #, fuzzy
 msgid "Registry selection"
-msgstr "×¢²á"
+msgstr "æ³¨å†Œ"
 
 #: shared/inc/forms/vps.php:322
 msgid "Reinstall operating system"
-msgstr "ÖØĞÂ°²×°²Ù×÷ÏµÍ³"
+msgstr "é‡æ–°å®‰è£…æ“ä½œç³»ç»Ÿ"
 
 #: shared/inc/forms/vps.php:274
 msgid "Reinstall operating system:"
-msgstr "ÖØĞÂ°²×°²Ù×÷ÏµÍ³£º"
+msgstr "é‡æ–°å®‰è£…æ“ä½œç³»ç»Ÿï¼š"
 
 #: shared/inc/forms/vps.php:131
 msgid "Reinstalling operating system..."
-msgstr "ÖØĞÂ°²×°²Ù×÷ÏµÍ³..."
+msgstr "é‡æ–°å®‰è£…æ“ä½œç³»ç»Ÿ..."
 
 #: shared/inc/forms/lists.php:229
 msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
-msgstr "¾ÜÊÕÃ»ÓĞÊÕ¼ş(»ò³­ËÍ)ÈËµÄÓÊ¼ş¡£"
+msgstr "æ‹’æ”¶æ²¡æœ‰æ”¶ä»¶(æˆ–æŠ„é€)äººçš„é‚®ä»¶ã€‚"
 
 #: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
-msgstr "ÎÒµÄÕÊ»§Óà¶î£º"
+msgstr "æˆ‘çš„å¸æˆ·ä½™é¢ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:220
 #: shared/dtcrm/draw_transferdomain.php:101
 msgid "Remaining on your account: "
-msgstr "ÄúÕÊ»§µÄÓà¶î£º"
+msgstr "æ‚¨å¸æˆ·çš„ä½™é¢ï¼š"
 
 #: admin/inc/dtc_config.php:225
 msgid "Reminders and registration message subject header:"
@@ -3217,33 +3217,33 @@ msgstr ""
 
 #: admin/dtcrm/main.php:71
 msgid "Remove an administrator for this customer:"
-msgstr "ÎªÕâÃû¹Ë¿ÍÈ¡ÏûÒ»¸ö¹ÜÀíÔ±£º"
+msgstr "ä¸ºè¿™åé¡¾å®¢å–æ¶ˆä¸€ä¸ªç®¡ç†å‘˜ï¼š"
 
 #: shared/inc/forms/my_account.php:114
 msgid "Renew my account"
-msgstr "ÕË»§³äÖµ"
+msgstr "è´¦æˆ·å……å€¼"
 
 #: admin/dtcrm/product_manager.php:93 admin/dtcrm/product_manager.php:151
 #: admin/dtcrm/product_manager.php:209
 msgid "Renewal-ID"
-msgstr "ÖØÖÃID"
+msgstr "é‡ç½®ID"
 
 #: admin/inc/dtc_config.php:62
 msgid "Renewals"
-msgstr "¸üĞÂ"
+msgstr "æ›´æ–°"
 
 #: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:424
 #: shared/gfx/skin/bwoup/layout.php:426
 msgid "Renewals management"
-msgstr "Ë¢ĞÂ¹ÜÀíĞÅÏ¢"
+msgstr "åˆ·æ–°ç®¡ç†ä¿¡æ¯"
 
 #: shared/inc/forms/ticket.php:129
 msgid "Request to close the issue:"
-msgstr "ÉêÇë¹Ø±ÕÕâ¸öÎÊÌâ£º"
+msgstr "ç”³è¯·å…³é—­è¿™ä¸ªé—®é¢˜ï¼š"
 
 #: admin/inc/draw_user_admin.php:155
 msgid "Request to close the ticket: "
-msgstr "¹Ø±ÕÖ÷Ìâ£º"
+msgstr "å…³é—­ä¸»é¢˜ï¼š"
 
 #: client/new_account_form.php:167
 msgid "Required field address (line 1) missing."
@@ -3251,15 +3251,15 @@ msgstr ""
 
 #: client/new_account_form.php:203
 msgid "Required field city missing."
-msgstr "±ØÌîµÄ³ÇÊĞÒ»ÏîÃ»ÓĞÌîĞ´¡£"
+msgstr "å¿…å¡«çš„åŸå¸‚ä¸€é¡¹æ²¡æœ‰å¡«å†™ã€‚"
 
 #: client/new_account_form.php:113
 msgid "Required field family name missing."
-msgstr "±ØÌîµÄĞÕÊÏÒ»ÏîÃ»ÓĞÌîĞ´¡£"
+msgstr "å¿…å¡«çš„å§“æ°ä¸€é¡¹æ²¡æœ‰å¡«å†™ã€‚"
 
 #: client/new_account_form.php:125
 msgid "Required field first name missing."
-msgstr "±ØÌîµÄÃû×ÖÒ»ÏîÃ»ÓĞÌîĞ´¡£"
+msgstr "å¿…å¡«çš„åå­—ä¸€é¡¹æ²¡æœ‰å¡«å†™ã€‚"
 
 #: client/new_account_form.php:137
 msgid "Required field phone missing."
@@ -3267,19 +3267,19 @@ msgstr ""
 
 #: client/new_account_form.php:191
 msgid "Required field zipcode missing."
-msgstr "±ØÌîµÄÓÊÕş±àÂëÒ»ÏîÃ»ÓĞÌîĞ´¡£"
+msgstr "å¿…å¡«çš„é‚®æ”¿ç¼–ç ä¸€é¡¹æ²¡æœ‰å¡«å†™ã€‚"
 
 #: shared/inc/draw.php:434
 msgid "Resseller child accounts"
-msgstr "×ÓÕË»§"
+msgstr "å­è´¦æˆ·"
 
 #: shared/inc/draw.php:53
 msgid "Retype new password:"
-msgstr "È·ÈÏÃÜÂë£º"
+msgstr "ç¡®è®¤å¯†ç ï¼š"
 
 #: shared/inc/forms/lists.php:395
 msgid "Rights"
-msgstr "È¨ÏŞ"
+msgstr "æƒé™"
 
 #: admin/deamons_state.php:291 admin/deamons_state.php:297
 #: admin/deamons_state.php:303 admin/deamons_state.php:309
@@ -3288,58 +3288,58 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:426
 msgid "SMTP configuration"
-msgstr "ÅäÖÃSMTP"
+msgstr "é…ç½®SMTP"
 
 #: shared/inc/forms/lists.php:428
 msgid "SMTP relay server:"
-msgstr "SMTP×ª·¢·şÎñÆ÷£º"
+msgstr "SMTPè½¬å‘æœåŠ¡å™¨ï¼š"
 
 #: admin/deamons_state.php:157
 #, fuzzy
 msgid "SMTP server"
-msgstr "²âÊÔ·şÎñÆ÷"
+msgstr "æµ‹è¯•æœåŠ¡å™¨"
 
 #: admin/inc/dtc_config.php:410
 msgid "SOAP password"
-msgstr "SOAPÃÜÂë"
+msgstr "SOAPå¯†ç "
 
 #: shared/inc/forms/email.php:574
 msgid "SPAM mailbox destination: "
-msgstr "À¬»øÓÊ¼ş×ª·¢µ½£º"
+msgstr "åƒåœ¾é‚®ä»¶è½¬å‘åˆ°ï¼š"
 
 #: shared/inc/forms/ssh.php:48
 msgid "SSH account configuration:"
-msgstr "SSHÕÊ»§ÅäÖÃ£º"
+msgstr "SSHå¸æˆ·é…ç½®ï¼š"
 
 #: shared/inc/draw.php:217
 msgid "SSH accounts"
-msgstr "SSHÕÊ»§"
+msgstr "SSHå¸æˆ·"
 
 #: shared/inc/draw.php:406
 msgid "SSH accounts of "
-msgstr "±¾Õ¾µãµÄSSHÕÊ»§"
+msgstr "æœ¬ç«™ç‚¹çš„SSHå¸æˆ·"
 
 #: shared/inc/draw.php:404
 msgid "SSH accounts:"
-msgstr "SSHÕÊ»§£º"
+msgstr "SSHå¸æˆ·ï¼š"
 
 #: admin/deamons_state.php:136
 #, fuzzy
 msgid "SSH gen pass"
-msgstr "¹ºÂòSSLÖ¤Êé"
+msgstr "è´­ä¹°SSLè¯ä¹¦"
 
 #: admin/inc/dtc_config.php:35
 msgid "SSL IPs addresses"
-msgstr "SSL IPµØÖ·"
+msgstr "SSL IPåœ°å€"
 
 #: admin/inc/renewals.php:170
 #, fuzzy
 msgid "SSL IPs renewals"
-msgstr "SSL IPs ¸üĞÂ£º"
+msgstr "SSL IPs æ›´æ–°ï¼š"
 
 #: admin/inc/renewals.php:101
 msgid "SSL IPs renewals: "
-msgstr "SSL IPs ¸üĞÂ£º"
+msgstr "SSL IPs æ›´æ–°ï¼š"
 
 #: admin/inc/dtc_config.php:665
 msgid "SSL Port: "
@@ -3347,29 +3347,29 @@ msgstr ""
 
 #: admin/inc/draw_user_admin.php:366
 msgid "SSL Token purchase"
-msgstr "¹ºÂòSSLÖ¤Êé"
+msgstr "è´­ä¹°SSLè¯ä¹¦"
 
 #: admin/inc/draw_user_admin.php:369
 msgid "SSL Token renewal"
-msgstr "¸üĞÂSSLÖ¤Êé"
+msgstr "æ›´æ–°SSLè¯ä¹¦"
 
 #: admin/inc/dtc_config.php:241
 msgid "SSL dedicated IP addresses: "
-msgstr "SSL ¶ÀÁ¢IP£º"
+msgstr "SSL ç‹¬ç«‹IPï¼š"
 
 #: shared/inc/forms/my_account.php:118
 #, fuzzy
 msgid "SSL tokens"
-msgstr "¹ºÂòSSLÖ¤Êé"
+msgstr "è´­ä¹°SSLè¯ä¹¦"
 
 #: admin/inc/dtc_config.php:594
 msgid "Same as for DTC"
-msgstr "ÓëDTCÏàÀàËÆ"
+msgstr "ä¸DTCç›¸ç±»ä¼¼"
 
 #: shared/inc/forms/database.php:49 shared/inc/forms/database.php:95
 #: shared/inc/forms/domain_stats.php:98
 msgid "Save"
-msgstr "±£´æ"
+msgstr "ä¿å­˜"
 
 #: shared/inc/forms/subdomain.php:196
 msgid "Sbox cgi-bin protection: "
@@ -3380,64 +3380,64 @@ msgid ""
 "Secondary DNS servers address<br>\n"
 "(separated by &quot;|&quot; (pipe) if more than one):"
 msgstr ""
-"´ÓDNS·şÎñÆ÷µØÖ·£º<br>\n"
-"(Èç¹û²»Ö¹Ò»¸ö£¬ÇëÓÃ &quot;|&quot; ¸ô¿ª)"
+"ä»DNSæœåŠ¡å™¨åœ°å€ï¼š<br>\n"
+"(å¦‚æœä¸æ­¢ä¸€ä¸ªï¼Œè¯·ç”¨ &quot;|&quot; éš”å¼€)"
 
 #: shared/dtcrm/draw_whois.php:53
 msgid "Secondary DNS:"
-msgstr "±¸ÓÃDNS£º"
+msgstr "å¤‡ç”¨DNSï¼š"
 
 #: admin/inc/dtc_config.php:917
 msgid "Secure payment configuration"
-msgstr "°²È«¸¶¿îÅäÖÃ£º"
+msgstr "å®‰å…¨ä»˜æ¬¾é…ç½®ï¼š"
 
 #: admin/dtcrm/main.php:109
 msgid "Select a customer."
-msgstr "Ñ¡ÔñÒ»Ãû¿Í»§"
+msgstr "é€‰æ‹©ä¸€åå®¢æˆ·"
 
 #: shared/dtcrm/draw_adddomain.php:167
 msgid "Select how long you want to register this domain name:"
-msgstr "ÇëÑ¡ÔñÕâ¸öÓòÃûµÄ×¢²áÆÚÏŞ£º"
+msgstr "è¯·é€‰æ‹©è¿™ä¸ªåŸŸåçš„æ³¨å†ŒæœŸé™ï¼š"
 
 #: shared/dtcrm/draw_nameservers.php:135
 msgid ""
 "Select one of your domain-names for registering an additional name server to "
 "the registries:"
-msgstr "Ñ¡ÔñÒ»¸öÓòÃû×¢²áÎª±¸ÓÃDNS·şÎñÆ÷£º"
+msgstr "é€‰æ‹©ä¸€ä¸ªåŸŸåæ³¨å†Œä¸ºå¤‡ç”¨DNSæœåŠ¡å™¨ï¼š"
 
 #: admin/inc/dtc_config.php:624
 msgid "Select the type of skin:"
-msgstr "ÇëÑ¡ÔñÆ¤·ôÀàĞÍ£º"
+msgstr "è¯·é€‰æ‹©çš®è‚¤ç±»å‹ï¼š"
 
 #: admin/inc/dtc_config.php:551
 #, fuzzy
 msgid "Selling conditions URL: "
-msgstr "µã´ËÁ´½Ó²é¿´ÏúÊÛÇé¿ö£º"
+msgstr "ç‚¹æ­¤é“¾æ¥æŸ¥çœ‹é”€å”®æƒ…å†µï¼š"
 
 #: client/new_account_form.php:243
 msgid "Selling conditions not accepted!"
-msgstr "ÏúÊÛ×´Ì¬²»½ÓÊÜ£¡"
+msgstr "é”€å”®çŠ¶æ€ä¸æ¥å—ï¼"
 
 #: admin/inc/draw_user_admin.php:168
 msgid "Send reply"
-msgstr "Ìá½»´ğ°¸"
+msgstr "æäº¤ç­”æ¡ˆ"
 
 #: admin/inc/draw_user_admin.php:173
 msgid "Send reply and close ticket"
-msgstr "Ìá½»²¢¹Ø±ÕÍ¨ĞĞÖ¤"
+msgstr "æäº¤å¹¶å…³é—­é€šè¡Œè¯"
 
 #: shared/inc/forms/ticket.php:62
 msgid "Send trouble ticket"
-msgstr "·¢ËÍÎÊÌâ"
+msgstr "å‘é€é—®é¢˜"
 
 #: admin/inc/renewals.php:245
 #, fuzzy
 msgid "Server"
-msgstr "Ö÷»ú"
+msgstr "ä¸»æœº"
 
 #: admin/inc/monitor.php:99
 msgid "Server accounted transfers this month: "
-msgstr "·şÎñÆ÷±¾ÔÂµÄ×ÜÁ÷Á¿£º"
+msgstr "æœåŠ¡å™¨æœ¬æœˆçš„æ€»æµé‡ï¼š"
 
 #: shared/inc/forms/email.php:27
 msgid "Server address :"
@@ -3467,15 +3467,15 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:419
 #: shared/gfx/skin/bwoup/layout.php:421
 msgid "Server monitor"
-msgstr "·şÎñÆ÷¼à¿Ø"
+msgstr "æœåŠ¡å™¨ç›‘æ§"
 
 #: shared/inc/forms/root_admin.php:537
 msgid "Server name"
-msgstr "Ö÷»úÃû³Æ"
+msgstr "ä¸»æœºåç§°"
 
 #: shared/inc/forms/dedicated.php:24
 msgid "Server not found!"
-msgstr "Ã»ÓĞÕÒµ½Ïà¹ØµÄÖ÷»ú£¡"
+msgstr "æ²¡æœ‰æ‰¾åˆ°ç›¸å…³çš„ä¸»æœºï¼"
 
 #: shared/dtcrm/draw_adddomain.php:265 shared/dtcrm/draw_nameservers.php:23
 #: shared/dtcrm/draw_nameservers.php:43 shared/dtcrm/draw_nameservers.php:51
@@ -3483,15 +3483,15 @@ msgstr "Ã»ÓĞÕÒµ½Ïà¹ØµÄÖ÷»ú£¡"
 #: shared/dtcrm/draw_nameservers.php:75
 #: shared/dtcrm/draw_transferdomain.php:62
 msgid "Server said: "
-msgstr "·şÎñÆ÷·µ»ØĞÅÏ¢£º"
+msgstr "æœåŠ¡å™¨è¿”å›ä¿¡æ¯ï¼š"
 
 #: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:506
 msgid "Server statistic graphs"
-msgstr "·şÎñÆ÷Í³¼ÆÍ¼"
+msgstr "æœåŠ¡å™¨ç»Ÿè®¡å›¾"
 
 #: admin/inc/draw_user_admin.php:380
 msgid "Server:"
-msgstr "Ö÷»ú£º"
+msgstr "ä¸»æœºï¼š"
 
 #: admin/inc/dtc_config.php:1315
 msgid "Service country"
@@ -3503,37 +3503,37 @@ msgstr ""
 
 #: admin/inc/draw_user_admin.php:363
 msgid "Shared"
-msgstr "¹²Ïí"
+msgstr "å…±äº«"
 
 #: admin/inc/renewals.php:140
 msgid "Shared hosting renewals:"
-msgstr "¹²ÏíÖ÷»ú¸üĞÂ£º"
+msgstr "å…±äº«ä¸»æœºæ›´æ–°ï¼š"
 
 #: admin/inc/renewals.php:100
 msgid "Shared hosting: "
-msgstr "¹²ÏíÖ÷»ú£º"
+msgstr "å…±äº«ä¸»æœºï¼š"
 
 #: admin/inc/dtc_config.php:1052
 #, fuzzy
 msgid "Short name: "
-msgstr "Ö÷»úÃû£º"
+msgstr "ä¸»æœºåï¼š"
 
 #: admin/inc/dtc_config.php:221
 #, fuzzy
 msgid "Shutdown warning: "
-msgstr "¹Ø±Õ¾¯¸æĞÅÏ¢£º"
+msgstr "å…³é—­è­¦å‘Šä¿¡æ¯ï¼š"
 
 #: admin/inc/dtc_config.php:406
 msgid "Soap login"
-msgstr "SoapµÇÂ½"
+msgstr "Soapç™»é™†"
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "Sorry, the domain name "
-msgstr "¶Ô²»Æğ,ÓòÃû"
+msgstr "å¯¹ä¸èµ·,åŸŸå"
 
 #: shared/inc/forms/vps.php:251
 msgid "Start and stop of your VPS:"
-msgstr "Æô¶¯»ò¹Ø±ÕÄúµÄVPS£º"
+msgstr "å¯åŠ¨æˆ–å…³é—­æ‚¨çš„VPSï¼š"
 
 #: admin/inc/nav.php:30
 msgid "Stat script generated !"
@@ -3541,26 +3541,26 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:211
 msgid "State:"
-msgstr "Ê¡·Ö£º"
+msgstr "çœåˆ†ï¼š"
 
 #: admin/dtcrm/main.php:170 client/new_account_form.php:625
 #: shared/dtcrm/draw_handle.php:64 shared/dtcrm/draw_handle.php:96
 #: shared/dtcrm/draw_handle.php:128 shared/dtcrm/draw_handle.php:244
 #, fuzzy
 msgid "State: "
-msgstr "Ê¡·Ö£º"
+msgstr "çœåˆ†ï¼š"
 
 #: shared/inc/forms/vps.php:158
 msgid "State: cannot fetch (maybe boot in progress?)"
-msgstr "×´Ì¬£ºÎŞ·¨µÃÖª(¿ÉÄÜÕıÔÚÆğ¶¯£¿)"
+msgstr "çŠ¶æ€ï¼šæ— æ³•å¾—çŸ¥(å¯èƒ½æ­£åœ¨èµ·åŠ¨ï¼Ÿ)"
 
 #: shared/inc/draw.php:116 shared/inc/draw.php:190
 msgid "Statistics"
-msgstr "Í³¼Æ"
+msgstr "ç»Ÿè®¡"
 
 #: shared/inc/draw.php:389
 msgid "Statistics of domain:"
-msgstr "Ö÷»úÍ³¼ÆĞÅÏ¢£º"
+msgstr "ä¸»æœºç»Ÿè®¡ä¿¡æ¯ï¼š"
 
 #: shared/inc/draw.php:383 shared/inc/draw.php:387 shared/inc/draw.php:424
 msgid "Statistics:"
@@ -3568,11 +3568,11 @@ msgstr ""
 
 #: shared/inc/forms/ticket.php:158
 msgid "Status"
-msgstr "×´Ì¬"
+msgstr "çŠ¶æ€"
 
 #: shared/dtcrm/draw_adddomain.php:117
 msgid "Step 1: Verify availability"
-msgstr "²½Öè1£º¼ìÑéÓĞĞ§ĞÔ"
+msgstr "æ­¥éª¤1ï¼šæ£€éªŒæœ‰æ•ˆæ€§"
 
 #: shared/dtcrm/draw.php:69
 msgid "Step 1: choose your upgrade"
@@ -3580,78 +3580,78 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:146
 msgid "Step 2: Enter whois information"
-msgstr "²½Öè2£ºÊäÈëwhoisĞÅÏ¢"
+msgstr "æ­¥éª¤2ï¼šè¾“å…¥whoisä¿¡æ¯"
 
 #: shared/dtcrm/draw_transferdomain.php:71
 msgid "Step 2: select contacts for domain transfer"
-msgstr "²½Öè2£ºÑ¡Ôñ×ªÈÃÓòÃûµÄÁªÏµ·½Ê½"
+msgstr "æ­¥éª¤2ï¼šé€‰æ‹©è½¬è®©åŸŸåçš„è”ç³»æ–¹å¼"
 
 #: shared/dtcrm/draw_adddomain.php:191
 msgid "Step 3: Proceed to registration"
-msgstr "²½Öè3£º½øÈë×¢²á"
+msgstr "æ­¥éª¤3ï¼šè¿›å…¥æ³¨å†Œ"
 
 #: shared/dtcrm/draw_transferdomain.php:39
 msgid "Step1: check if domain is transferable"
-msgstr "²½Öè1£º¼ì²éÓòÃûÊÇ·ñ¿ÉÒÔÇ¨ÒÆ"
+msgstr "æ­¥éª¤1ï¼šæ£€æŸ¥åŸŸåæ˜¯å¦å¯ä»¥è¿ç§»"
 
 #: shared/dtcrm/draw.php:79
 #, fuzzy
 msgid "Storage"
-msgstr "´æ´¢¿Õ¼ä"
+msgstr "å­˜å‚¨ç©ºé—´"
 
 #: shared/inc/forms/my_account.php:97
 msgid "Storage space"
-msgstr "´æ´¢¿Õ¼ä"
+msgstr "å­˜å‚¨ç©ºé—´"
 
 #: shared/inc/draw.php:295
 msgid "Sub-accounts (reseller)"
-msgstr "×ÓÕË»§(×ªÊÛ)"
+msgstr "å­è´¦æˆ·(è½¬å”®)"
 
 #: shared/inc/draw.php:432
 #, fuzzy
 msgid "Sub-accounts (reseller):"
-msgstr "ÔÊĞíÌí¼Ó×ÓÕÊ»§(×ªÊÛ)£º"
+msgstr "å…è®¸æ·»åŠ å­å¸æˆ·(è½¬å”®)ï¼š"
 
 #: shared/inc/draw.php:204
 msgid "Sub-domains"
-msgstr "×ÓÓòÃû"
+msgstr "å­åŸŸå"
 
 #: shared/inc/forms/root_admin.php:376
 msgid "Subdomain max"
-msgstr "×ÓÓòÃûÊıÁ¿ÉÏÏŞ"
+msgstr "å­åŸŸåæ•°é‡ä¸Šé™"
 
 #: shared/inc/forms/subdomain.php:150
 msgid "Subdomain name: "
-msgstr "×ÓÓòÃû£º"
+msgstr "å­åŸŸåï¼š"
 
 #: shared/inc/draw.php:398
 msgid "Subdomains of "
-msgstr "×ÓÓòÃû"
+msgstr "å­åŸŸå"
 
 #: shared/inc/draw.php:396 shared/inc/forms/domain_info.php:56
 msgid "Subdomains:"
-msgstr "×ÓÓòÃû£º"
+msgstr "å­åŸŸåï¼š"
 
 #: admin/inc/draw_user_admin.php:400 shared/inc/forms/ticket.php:45
 #: shared/inc/forms/ticket.php:158
 msgid "Subject"
-msgstr "Ö÷Ìâ"
+msgstr "ä¸»é¢˜"
 
 #: shared/inc/forms/lists.php:404
 msgid "Subject prefix:"
-msgstr "Ö÷ÌâµÄÇ°×º£º"
+msgstr "ä¸»é¢˜çš„å‰ç¼€ï¼š"
 
 #: shared/inc/forms/ticket.php:78
 msgid "Subject:"
-msgstr "Ö÷Ìâ£º"
+msgstr "ä¸»é¢˜ï¼š"
 
 #: admin/inc/draw_user_admin.php:114
 msgid "Subject: "
-msgstr "Ö÷Ìâ£º"
+msgstr "ä¸»é¢˜ï¼š"
 
 #: shared/inc/forms/ticket.php:133 shared/inc/forms/ticket.php:148
 msgid "Submit new support issue"
-msgstr "Ìá½»Ò»¸öĞÂµÄÎÊÌâ"
+msgstr "æäº¤ä¸€ä¸ªæ–°çš„é—®é¢˜"
 
 #: shared/inc/forms/lists.php:435
 msgid "Subscribe/Unsubscribe an email address"
@@ -3659,7 +3659,7 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:436
 msgid "Subscribe:"
-msgstr "¶©ÔÄ£º"
+msgstr "è®¢é˜…ï¼š"
 
 #: shared/inc/forms/lists.php:124
 msgid "Subscriber list (click to unsubscribe):"
@@ -3667,11 +3667,11 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:396
 msgid "Subscribers only post:"
-msgstr "½ö·¢ËÍ¸ø¶©ÔÄÕß£º"
+msgstr "ä»…å‘é€ç»™è®¢é˜…è€…ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:289
 msgid "Successfully added your domain name to the hosting database"
-msgstr "ÒÑ³É¹¦½«ÄúµÄÓòÃûÌí¼Óµ½Êı¾İ¿âÖĞ"
+msgstr "å·²æˆåŠŸå°†æ‚¨çš„åŸŸåæ·»åŠ åˆ°æ•°æ®åº“ä¸­"
 
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
@@ -3679,12 +3679,12 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:280
 msgid "Support ticket configuration"
-msgstr "ÅäÖÃ Support ticket"
+msgstr "é…ç½® Support ticket"
 
 #: shared/inc/draw.php:306
 #, fuzzy
 msgid "Support tickets"
-msgstr "Ã»ÓĞÎ´¾öµÄ£¿£¡"
+msgstr "æ²¡æœ‰æœªå†³çš„ï¼Ÿï¼"
 
 #: shared/inc/forms/vps.php:106
 msgid "Swap I/O:"
@@ -3692,23 +3692,23 @@ msgstr ""
 
 #: client/new_account.php:108
 msgid "TRANSACTION FINISHED AND APPROVED"
-msgstr "½»Ò×ÒÑ³É¹¦Íê³É"
+msgstr "äº¤æ˜“å·²æˆåŠŸå®Œæˆ"
 
 #: shared/dtcrm/draw_transferdomain.php:61
 msgid "TRANSFER CHECK FAILED"
-msgstr "Ğ£ÑéÊ§°Ü"
+msgstr "æ ¡éªŒå¤±è´¥"
 
 #: shared/dtcrm/draw_transferdomain.php:57
 msgid "TRANSFER CHECK FAILED: registry server didn't reply successfuly."
-msgstr "Ğ£ÑéÊ§°Ü£ºÓòÃû×¢²á·şÎñÆ÷Ã»ÓĞ´ğ¸´¡£"
+msgstr "æ ¡éªŒå¤±è´¥ï¼šåŸŸåæ³¨å†ŒæœåŠ¡å™¨æ²¡æœ‰ç­”å¤ã€‚"
 
 #: shared/dtcrm/draw_transferdomain.php:68
 msgid "TRANSFER CHECK SUCCESSFUL"
-msgstr "Ğ£Ñé³É¹¦"
+msgstr "æ ¡éªŒæˆåŠŸ"
 
 #: shared/inc/forms/subdomain.php:178
 msgid "TXT field of the subdomain: "
-msgstr "ÔÚÕâÀïÊäÈë×ÓÓòÃû£º"
+msgstr "åœ¨è¿™é‡Œè¾“å…¥å­åŸŸåï¼š"
 
 #: shared/inc/forms/dns.php:86
 msgid ""
@@ -3723,23 +3723,23 @@ msgid ""
 "your a message. The value \"default\" means that\n"
 "you want to use the current server."
 msgstr ""
-"µ±ĞÄ£¡Ç§Íò²»Òª½«ÏÂÁĞÑ¡ÏîÉèÖÃÎª´íÎóµÄÖµ£¬·ñÔò£¬ÄúµÄÄ³Ğ©·şÎñ¿ÉÄÜ»áÍ£Ö¹(ÀıÈç:ÓÊ"
-"¼ş·şÎñ»òwww·şÎñ)<br>Èç¹ûÄúÔÚDNSÖĞÊäÈë\"default\"ÒÔÍâµÄÖµ£¬Õâ½«ÒâÎ¶×ÅÄúÏ£ÍûÊ¹"
-"ÓÃÆäËü·şÎñÆ÷À´½âÎöÄúµÄÓòÃû<br>MX²ÎÊıÉùÃ÷ÁËÄúµÄÓÊ¼ş·şÎñÆ÷µÄµØÖ·(µ±ÓĞÈË¸øÄú·¢ËÍ"
-"ÓÊ¼şÊ±Ëü½«´¢´æËùÓĞÄúÊÕµ½µÄÓÊ¼ş)<br>Èç¹ûÄú±£ÁôÊäÈë¿òÖĞµÄ\"default\"½«ÒâÎ¶×ÅÄú"
-"Ï£ÍûÊ¹ÓÃµ±Ç°µÄ·şÎñÆ÷"
+"å½“å¿ƒï¼åƒä¸‡ä¸è¦å°†ä¸‹åˆ—é€‰é¡¹è®¾ç½®ä¸ºé”™è¯¯çš„å€¼ï¼Œå¦åˆ™ï¼Œæ‚¨çš„æŸäº›æœåŠ¡å¯èƒ½ä¼šåœæ­¢(ä¾‹å¦‚:é‚®"
+"ä»¶æœåŠ¡æˆ–wwwæœåŠ¡)<br>å¦‚æœæ‚¨åœ¨DNSä¸­è¾“å…¥\"default\"ä»¥å¤–çš„å€¼ï¼Œè¿™å°†æ„å‘³ç€æ‚¨å¸Œæœ›ä½¿"
+"ç”¨å…¶å®ƒæœåŠ¡å™¨æ¥è§£ææ‚¨çš„åŸŸå<br>MXå‚æ•°å£°æ˜äº†æ‚¨çš„é‚®ä»¶æœåŠ¡å™¨çš„åœ°å€(å½“æœ‰äººç»™æ‚¨å‘é€"
+"é‚®ä»¶æ—¶å®ƒå°†å‚¨å­˜æ‰€æœ‰æ‚¨æ”¶åˆ°çš„é‚®ä»¶)<br>å¦‚æœæ‚¨ä¿ç•™è¾“å…¥æ¡†ä¸­çš„\"default\"å°†æ„å‘³ç€æ‚¨"
+"å¸Œæœ›ä½¿ç”¨å½“å‰çš„æœåŠ¡å™¨"
 
 #: admin/inc/dtc_config.php:270
 msgid ""
 "Take care not to add the control panel SSL IP itself if you don't want to "
 "have conflicts (and prevent apache from restarting)!"
 msgstr ""
-"Çë×¢Òâ£¬Èç¹û²»Ïë³öÏÖ³åÍ»£¨Õâ¿ÉÄÜ»áÊ¹apacheÎŞ·¨ÖØÆô£© £¬Çë²»Òªµ¥¶ÀÌîÈë¿ØÖÆÃæ°å"
-"µÄSSL IP£¡"
+"è¯·æ³¨æ„ï¼Œå¦‚æœä¸æƒ³å‡ºç°å†²çªï¼ˆè¿™å¯èƒ½ä¼šä½¿apacheæ— æ³•é‡å¯ï¼‰ ï¼Œè¯·ä¸è¦å•ç‹¬å¡«å…¥æ§åˆ¶é¢æ¿"
+"çš„SSL IPï¼"
 
 #: shared/drawlib/anotherDtc.php:141 shared/drawlib/anotherDtc.php:153
 msgid "Take control of your domain name"
-msgstr "ÇáËÉ¹ÜÀíÄúµÄÖ÷»ú"
+msgstr "è½»æ¾ç®¡ç†æ‚¨çš„ä¸»æœº"
 
 #: shared/securepay/pay_functions.php:29
 msgid "Taxes (VAT or GST)"
@@ -3747,33 +3747,33 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:771
 msgid "Tell the following servers when a domain is added or removed :"
-msgstr "µ±Ìí¼Ó»òÉ¾³ıÒ»¸öÓòÃûÊ±Í¨ÖªÏÂÁĞ·şÎñÆ÷£º"
+msgstr "å½“æ·»åŠ æˆ–åˆ é™¤ä¸€ä¸ªåŸŸåæ—¶é€šçŸ¥ä¸‹åˆ—æœåŠ¡å™¨ï¼š"
 
 #: admin/inc/dtc_config.php:796
 msgid "Tell the following servers when an email is added or removed :"
-msgstr "µ±Ìí¼Ó»òÉ¾³ıÒ»·âÓÊ¼şÊ±Í¨ÖªÏÂÁĞ·şÎñÆ÷£º"
+msgstr "å½“æ·»åŠ æˆ–åˆ é™¤ä¸€å°é‚®ä»¶æ—¶é€šçŸ¥ä¸‹åˆ—æœåŠ¡å™¨ï¼š"
 
 #: admin/inc/dtc_config.php:988
 msgid "Test server"
-msgstr "²âÊÔ·şÎñÆ÷"
+msgstr "æµ‹è¯•æœåŠ¡å™¨"
 
 #: shared/inc/sql/database.php:143
 msgid ""
 "That user still owns some databases. Please remove them or change the owner "
 "first."
-msgstr "¸ÃÓÃ»§ÈÔÈ»ÓµÓĞ²¿·ÖÊı¾İ¿â£¬ÇëÏÈÉ¾³ıÕâĞ©Êı¾İ¿â»òÕß¸Ä±äËüÃÇµÄÊôÖ÷¡£"
+msgstr "è¯¥ç”¨æˆ·ä»ç„¶æ‹¥æœ‰éƒ¨åˆ†æ•°æ®åº“ï¼Œè¯·å…ˆåˆ é™¤è¿™äº›æ•°æ®åº“æˆ–è€…æ”¹å˜å®ƒä»¬çš„å±ä¸»ã€‚"
 
 #: shared/inc/forms/lists.php:178
 msgid ""
 "The email addresses in this fields (1 per line) will get mails to listname-"
 "owner@listdomain.tld"
 msgstr ""
-"ÔÚÕâ¸öÇøÓòÖĞµÄÓÊ¼şµØÖ·£¨Ã¿ĞĞÒ»¸ö£©½«ÊÕµ½·¢ËÍ¸ølistname-owner@listdomain.tldµÄ"
-"ÓÊ¼ş"
+"åœ¨è¿™ä¸ªåŒºåŸŸä¸­çš„é‚®ä»¶åœ°å€ï¼ˆæ¯è¡Œä¸€ä¸ªï¼‰å°†æ”¶åˆ°å‘é€ç»™listname-owner@listdomain.tldçš„"
+"é‚®ä»¶"
 
 #: shared/inc/sql/vps.php:40
 msgid "The password you have submited is not a valid password"
-msgstr "ÄúÌá½»µÄÃÜÂë²»ÕıÈ·"
+msgstr "æ‚¨æäº¤çš„å¯†ç ä¸æ­£ç¡®"
 
 #: client/new_account.php:152
 msgid ""
@@ -3786,12 +3786,12 @@ msgid ""
 "The prefix for the Subject: line of mails to the list. This will alter the "
 "Subject: line, and add a prefix if it\\'s not present elsewhere."
 msgstr ""
-"Ö÷ÌâµÄÇ°×º£ºÓÊ¼şÁĞ±íµÄ´óĞ¡¡£Õâ½«¸ü¸ÄÓÊ¼şµÄÖ÷Ìâ£¨Ôö¼ÓÒ»¸öĞĞÊı£©£¬Èç¹ûÔÚ±ğ´¦²»"
-"´æÔÚÕâ¸öÇ°×ºµÄ»°¡£"
+"ä¸»é¢˜çš„å‰ç¼€ï¼šé‚®ä»¶åˆ—è¡¨çš„å¤§å°ã€‚è¿™å°†æ›´æ”¹é‚®ä»¶çš„ä¸»é¢˜ï¼ˆå¢åŠ ä¸€ä¸ªè¡Œæ•°ï¼‰ï¼Œå¦‚æœåœ¨åˆ«å¤„ä¸"
+"å­˜åœ¨è¿™ä¸ªå‰ç¼€çš„è¯ã€‚"
 
 #: shared/dtcrm/draw_transferdomain.php:107
 msgid "The transaction failed, please try again!"
-msgstr "´¦ÀíÊ§°Ü£¬ÇëÔÙÊÔÒ»´Î£¡"
+msgstr "å¤„ç†å¤±è´¥ï¼Œè¯·å†è¯•ä¸€æ¬¡ï¼"
 
 #: shared/inc/forms/ftp.php:66
 msgid "There is already a ftp login by that name"
@@ -3810,8 +3810,8 @@ msgid ""
 "These headers are added to every mail coming through. This is the place you "
 "want to add Reply-To: header in case you want such."
 msgstr ""
-"ÕâĞ©Ò³Í·½«±»Ìí¼Óµ½Ã¿·â¾­¹ıµÄÓÊ¼şÖĞ£¬Èç¹ûÄãÏëÒªÕâÑùµÄ»°£¬±ÈÈçÌí¼ÓÒ»¸ö»Ø¸´µØ"
-"Ö·£¬Õâ½«ÊÇ¸ö²»´íµÄÎ»ÖÃ¡£"
+"è¿™äº›é¡µå¤´å°†è¢«æ·»åŠ åˆ°æ¯å°ç»è¿‡çš„é‚®ä»¶ä¸­ï¼Œå¦‚æœä½ æƒ³è¦è¿™æ ·çš„è¯ï¼Œæ¯”å¦‚æ·»åŠ ä¸€ä¸ªå›å¤åœ°"
+"å€ï¼Œè¿™å°†æ˜¯ä¸ªä¸é”™çš„ä½ç½®ã€‚"
 
 #: admin/inc/dtc_config.php:203
 msgid ""
@@ -3820,21 +3820,21 @@ msgid ""
 "while others are made of a unique value. The message templates\n"
 "are stored in /etc/dtc, and if not present in: "
 msgstr ""
-"TRANSÕâĞ©Êı×ÖÌáÊ¾ÁË¾àÀë¹ıÆÚ£¨»òÒÑ¾­¹ıÆÚ£©µÄÌìÊı¡£¼´½«£¨»òÒÑ¾­£©¹ıÆÚµÄÊ±¼ä¾¯¸æ"
-"Ê¹ÓÃ | ·Ö¸ô¿ªÀ´£¬Ò²¿ÉÒÔÊÇÎ¨Ò»µÄÖµ¡£¾¯¸æĞÅÏ¢µÄÄ£°åÎÄ¼ş´æ·ÅÔÚ£º /etc/dtc, and "
+"TRANSè¿™äº›æ•°å­—æç¤ºäº†è·ç¦»è¿‡æœŸï¼ˆæˆ–å·²ç»è¿‡æœŸï¼‰çš„å¤©æ•°ã€‚å³å°†ï¼ˆæˆ–å·²ç»ï¼‰è¿‡æœŸçš„æ—¶é—´è­¦å‘Š"
+"ä½¿ç”¨ | åˆ†éš”å¼€æ¥ï¼Œä¹Ÿå¯ä»¥æ˜¯å”¯ä¸€çš„å€¼ã€‚è­¦å‘Šä¿¡æ¯çš„æ¨¡æ¿æ–‡ä»¶å­˜æ”¾åœ¨ï¼š /etc/dtc, and "
 "if not present in:"
 
 #: shared/dtcrm/draw_handle.php:262
 msgid "This MUST be a valid address"
-msgstr "±ØĞèÌîĞ´ÓĞĞ§µØÖ·"
+msgstr "å¿…éœ€å¡«å†™æœ‰æ•ˆåœ°å€"
 
 #: shared/dtcrm/draw_adddomain.php:74
 msgid "This domain name already hosted here, please enter another name."
-msgstr "Õâ¸öÓòÃûÒÑ±»Ê¹ÓÃ£¬ÇëÖØĞÂÊäÈëÒ»¸ö"
+msgstr "è¿™ä¸ªåŸŸåå·²è¢«ä½¿ç”¨ï¼Œè¯·é‡æ–°è¾“å…¥ä¸€ä¸ª"
 
 #: shared/inc/forms/domain_info.php:78
 msgid "This domain will be the alias of the following domain (domain parking):"
-msgstr "Õâ¸öÓòÃûÊÇÏÂÁĞÓòÃûµÄ±ğÃû(ÓòÃûÍ£·Å)£º"
+msgstr "è¿™ä¸ªåŸŸåæ˜¯ä¸‹åˆ—åŸŸåçš„åˆ«å(åŸŸååœæ”¾)ï¼š"
 
 #: shared/inc/forms/lists.php:220
 msgid ""
@@ -3842,20 +3842,20 @@ msgid ""
 "triggered. Defaults to 50 mails, meaning that if 50 mails arrive to the list "
 "before digestinterval have passed, the digest is delivered."
 msgstr ""
-"Õâ¸öÎÄ¼ş±êÃ÷ÁËÔÚ·¢ËÍÖÜÆÚÖ®Ç°ÓĞ¶àÉÙ·âÓÊ¼ş¿ÉÒÔ±»»º´æ¡£Ä¬ÈÏ50·â£¬ÕâÒâÎ¶×Å£¬ÔÚ·¢"
-"ËÍÖÜÆÚÖ®Ç°£¬Èç¹ûÓĞ50·âÓÊ¼şµ½´ïÁË£¬ÄÇÃ´¾Í·¢ËÍ¡£"
+"è¿™ä¸ªæ–‡ä»¶æ ‡æ˜äº†åœ¨å‘é€å‘¨æœŸä¹‹å‰æœ‰å¤šå°‘å°é‚®ä»¶å¯ä»¥è¢«ç¼“å­˜ã€‚é»˜è®¤50å°ï¼Œè¿™æ„å‘³ç€ï¼Œåœ¨å‘"
+"é€å‘¨æœŸä¹‹å‰ï¼Œå¦‚æœæœ‰50å°é‚®ä»¶åˆ°è¾¾äº†ï¼Œé‚£ä¹ˆå°±å‘é€ã€‚"
 
 #: shared/inc/sql/database.php:54
 msgid "This is not a valid database name! Please choose another one."
-msgstr "Êı¾İ¿âÃûÎŞĞ§£¡ÇëÖØĞÂÑ¡ÔñÒ»¸ö¡£"
+msgstr "æ•°æ®åº“åæ— æ•ˆï¼è¯·é‡æ–°é€‰æ‹©ä¸€ä¸ªã€‚"
 
 #: shared/inc/forms/lists.php:184
 msgid "This is the list of moderators."
-msgstr "°ßÖñÁĞ±í£º"
+msgstr "æ–‘ç«¹åˆ—è¡¨ï¼š"
 
 #: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:99
 msgid "This is the main owner of the list."
-msgstr "ÕâÊÇ¸ÃÓÊ¼şÁĞ±íµÄÖ÷ÒªÓµÓĞÕß£º"
+msgstr "è¿™æ˜¯è¯¥é‚®ä»¶åˆ—è¡¨çš„ä¸»è¦æ‹¥æœ‰è€…ï¼š"
 
 #: shared/inc/forms/vps.php:89 shared/inc/forms/vps.php:90
 #: shared/inc/forms/vps.php:91 shared/inc/forms/vps.php:92
@@ -3865,22 +3865,22 @@ msgstr ""
 #: admin/inc/dtc_config.php:547
 #, fuzzy
 msgid "This server location: "
-msgstr "±¾·şÎñÆ÷µÄÎ»ÖÃ£º"
+msgstr "æœ¬æœåŠ¡å™¨çš„ä½ç½®ï¼š"
 
 #: shared/inc/forms/subdomain.php:183
 msgid ""
 "This subdomain is a nameserver (NS)<br>entry for the following subdomain: "
-msgstr "Õâ¸ö×ÓÓòÃûÊÇÏÂÁĞ×ÓÓòÃûµÄÈë¿Ú£º"
+msgstr "è¿™ä¸ªå­åŸŸåæ˜¯ä¸‹åˆ—å­åŸŸåçš„å…¥å£ï¼š"
 
 #: shared/inc/forms/subdomain.php:169
 msgid "This subdomain is a service (SRV)<br>entry for the following port: "
-msgstr "Õâ¸ö×ÓÓòÃûÊÇÏÂÁĞ×ÓÓòÃûµÄÈë¿Ú(SRV)£º"
+msgstr "è¿™ä¸ªå­åŸŸåæ˜¯ä¸‹åˆ—å­åŸŸåçš„å…¥å£(SRV)ï¼š"
 
 #: shared/inc/forms/lists.php:217
 msgid ""
 "This value specifies how many seconds will pass before the next digest is "
 "sent. Defaults to 604800 seconds, which is 7 days."
-msgstr "Õâ¸öÖµ±êÃ÷ÁËÕªÒªµÄ·¢ËÍÖÜÆÚ¡£Ä¬ÈÏ604800Ãë£¬Ò²¾ÍÊÇ7Ìì¡£"
+msgstr "è¿™ä¸ªå€¼æ ‡æ˜äº†æ‘˜è¦çš„å‘é€å‘¨æœŸã€‚é»˜è®¤604800ç§’ï¼Œä¹Ÿå°±æ˜¯7å¤©ã€‚"
 
 #: shared/inc/forms/email.php:323
 msgid ""
@@ -3889,39 +3889,39 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:311
 msgid "Ticket categories:"
-msgstr "Ticket ·ÖÀà£º"
+msgstr "Ticket åˆ†ç±»ï¼š"
 
 #: shared/inc/forms/ticket.php:75 shared/inc/forms/ticket.php:103
 #, fuzzy
 msgid "Ticket not found!"
-msgstr "TicketÎ´ÕÒµ½£¡"
+msgstr "Ticketæœªæ‰¾åˆ°ï¼"
 
 #: shared/inc/forms/ticket.php:158
 msgid "Time"
-msgstr "Ê±¼ä"
+msgstr "æ—¶é—´"
 
 #: shared/inc/forms/vps.php:353
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
 msgstr ""
-"ÒªÁ¬½Óµ½ÄúµÄ¿ØÖÆÌ¨£¬ÄúĞèÒªÊ×ÏÈÉèÖÃÒ»¸öSSHµÇÂ½ÃÜÂë»òÕßÃÜÔ¿£¬È»ºóÊ¹ÓÃSSHÁ¬½Ó"
-"µ½£º"
+"è¦è¿æ¥åˆ°æ‚¨çš„æ§åˆ¶å°ï¼Œæ‚¨éœ€è¦é¦–å…ˆè®¾ç½®ä¸€ä¸ªSSHç™»é™†å¯†ç æˆ–è€…å¯†é’¥ï¼Œç„¶åä½¿ç”¨SSHè¿æ¥"
+"åˆ°ï¼š"
 
 #: shared/inc/forms/root_admin.php:242
 msgid ""
 "To add a VPS, you need to setup some free IPs VPS in the general config and "
 "setup some VPS products."
 msgstr ""
-"Èç¹ûÄúÒªÌí¼ÓÒ»¸öVPS£¬ÄúĞèÒªÊ×ÏÈÌí¼Óvps²úÆ·£¬²¢ÇÒÔÚÒ»°ãÉèÖÃÖĞÌí¼ÓÒ»Ğ©ÃâIPµÄ"
-"VPS¡£"
+"å¦‚æœæ‚¨è¦æ·»åŠ ä¸€ä¸ªVPSï¼Œæ‚¨éœ€è¦é¦–å…ˆæ·»åŠ vpsäº§å“ï¼Œå¹¶ä¸”åœ¨ä¸€èˆ¬è®¾ç½®ä¸­æ·»åŠ ä¸€äº›å…IPçš„"
+"VPSã€‚"
 
 #: shared/inc/forms/vps.php:263
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
 msgstr ""
-"Èç¹ûÒª×öÎÄ¼şÏµÍ³¼ì²é»òÕßÖØĞÂ°²×°²Ù×÷ÏµÍ³£¬ÄúĞèÒªÏÈ¹Ø±Õ»òÕßÏú»ÙÄúµÄVPS¡£"
+"å¦‚æœè¦åšæ–‡ä»¶ç³»ç»Ÿæ£€æŸ¥æˆ–è€…é‡æ–°å®‰è£…æ“ä½œç³»ç»Ÿï¼Œæ‚¨éœ€è¦å…ˆå…³é—­æˆ–è€…é”€æ¯æ‚¨çš„VPSã€‚"
 
 #: shared/dtcrm/draw.php:73
 msgid "To what capacity would you like to upgrade to?"
@@ -3929,7 +3929,7 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:407
 msgid "To: or Cc: not mandatory:"
-msgstr "²»Ç¿ÖÆÌîĞ´ÊÕ¼şÈË»òÕß³­ËÍ¶ÔÏó£º"
+msgstr "ä¸å¼ºåˆ¶å¡«å†™æ”¶ä»¶äººæˆ–è€…æŠ„é€å¯¹è±¡ï¼š"
 
 #: shared/dtcrm/draw.php:37
 msgid "Today is the: "
@@ -3938,94 +3938,94 @@ msgstr ""
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Total"
-msgstr "×Ü¼Æ£º"
+msgstr "æ€»è®¡ï¼š"
 
 #: shared/inc/forms/invoices.php:23
 #, fuzzy
 msgid "Total Price"
-msgstr "×ÜÁ÷Á¿"
+msgstr "æ€»æµé‡"
 
 #: shared/inc/forms/database.php:117
 msgid "Total database number:"
-msgstr "Êı¾İ¿âµÄ×ÜÊı£º"
+msgstr "æ•°æ®åº“çš„æ€»æ•°ï¼š"
 
 #: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
 #: shared/inc/forms/my_account.php:76
 msgid "Total disk usage:"
-msgstr "×Ü¿Õ¼äÊ¹ÓÃÂÊ£º"
+msgstr "æ€»ç©ºé—´ä½¿ç”¨ç‡ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:221
 #: shared/dtcrm/draw_transferdomain.php:102
 msgid "Total price: "
-msgstr "×Ü¼Û£º"
+msgstr "æ€»ä»·ï¼š"
 
 #: admin/inc/renewals.php:20
 msgid "Total recurring incomes per month:"
-msgstr "Ã¿ÔÂÑ­»·ÊÕÒæ×ÜÊı£º"
+msgstr "æ¯æœˆå¾ªç¯æ”¶ç›Šæ€»æ•°ï¼š"
 
 #: shared/inc/forms/admin_stats.php:107
 #, fuzzy
 msgid "Total trafic"
-msgstr "×ÜÁ÷Á¿"
+msgstr "æ€»æµé‡"
 
 #: shared/inc/forms/domain_stats.php:53
 #, fuzzy
 msgid "Total transfered bytes this month"
-msgstr "ÒÑ´«ÊäµÄ×ÜÊı¾İÁ¿£º"
+msgstr "å·²ä¼ è¾“çš„æ€»æ•°æ®é‡ï¼š"
 
 #: shared/inc/forms/admin_stats.php:33 shared/inc/forms/domain_info.php:52
 msgid "Total transfered bytes this month:"
-msgstr "ÒÑ´«ÊäµÄ×ÜÊı¾İÁ¿£º"
+msgstr "å·²ä¼ è¾“çš„æ€»æ•°æ®é‡ï¼š"
 
 #: admin/inc/renewals.php:105
 msgid "Total: "
-msgstr "×Ü¼Æ£º"
+msgstr "æ€»è®¡ï¼š"
 
 #: admin/dtcrm/product_manager.php:61 admin/dtcrm/product_manager.php:124
 #: admin/dtcrm/product_manager.php:182
 msgid "Traffic"
-msgstr "Á÷Á¿"
+msgstr "æµé‡"
 
 #: admin/inc/monitor.php:15
 msgid "Transfer"
-msgstr "Á÷Á¿"
+msgstr "æµé‡"
 
 #: shared/dtcrm/draw_adddomain.php:105
 msgid "Transfer an existing domain from another registrar"
-msgstr "´ÓÓòÃûËùÓĞÕßÄÇÀï¹ı»§Ò»¸öÏÖ´æµÄÓòÃû"
+msgstr "ä»åŸŸåæ‰€æœ‰è€…é‚£é‡Œè¿‡æˆ·ä¸€ä¸ªç°å­˜çš„åŸŸå"
 
 #: shared/inc/forms/my_account.php:63
 msgid "Transfer and disk usage:"
-msgstr "Á÷Á¿Óë´ÅÅÌÊ¹ÓÃÂÊ£º"
+msgstr "æµé‡ä¸ç£ç›˜ä½¿ç”¨ç‡ï¼š"
 
 #: shared/dtcrm/draw_transferdomain.php:38
 msgid "Transfer from another registrar to this server:"
-msgstr "´Ó±ğµÄ×¢²áÉÌÇ¨ÒÆµ½ÕâÌ¨·şÎñÆ÷£º"
+msgstr "ä»åˆ«çš„æ³¨å†Œå•†è¿ç§»åˆ°è¿™å°æœåŠ¡å™¨ï¼š"
 
 #: admin/inc/monitor.php:15
 msgid "Transfer per month"
-msgstr "Ã¿ÔÂ"
+msgstr "æ¯æœˆ"
 
 #: shared/inc/forms/my_account.php:70
 msgid "Transfer this month:"
-msgstr "±¾ÔÂÁ÷Á¿£º"
+msgstr "æœ¬æœˆæµé‡ï¼š"
 
 #: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
 #: shared/inc/forms/ticket.php:158
 msgid "Type"
-msgstr "ÀàĞÍ"
+msgstr "ç±»å‹"
 
 #: admin/inc/draw_user_admin.php:120 admin/inc/draw_user_admin.php:408
 msgid "Type not found!"
-msgstr "Ã»ÓĞÕÒµ½Ïà¹ØµÄÀàĞÍ£¡"
+msgstr "æ²¡æœ‰æ‰¾åˆ°ç›¸å…³çš„ç±»å‹ï¼"
 
 #: admin/inc/dtc_config.php:889
 msgid "Type of encryption for connecting to Tucows server:"
-msgstr "Á¬½Óµ½Tucows·şÎñÆ÷µÄ¼ÓÃÜ·½Ê½£º"
+msgstr "è¿æ¥åˆ°TucowsæœåŠ¡å™¨çš„åŠ å¯†æ–¹å¼ï¼š"
 
 #: shared/inc/forms/ticket.php:52 shared/inc/forms/ticket.php:87
 msgid "Type of problem:"
-msgstr "ÎÊÌâÀàĞÍ£º£º"
+msgstr "é—®é¢˜ç±»å‹ï¼šï¼š"
 
 #: admin/inc/draw_user_admin.php:125 admin/inc/dtc_config.php:1055
 msgid "Type:"
@@ -4033,7 +4033,7 @@ msgstr ""
 
 #: shared/inc/forms/ticket.php:84
 msgid "Type: type not found!"
-msgstr "Ã»ÓĞÕÒµ½ÏàÓ¦µÄÎÊÌâÖÖÀà£¡"
+msgstr "æ²¡æœ‰æ‰¾åˆ°ç›¸åº”çš„é—®é¢˜ç§ç±»ï¼"
 
 #: admin/inc/dtc_config.php:783 admin/inc/dtc_config.php:808
 #: admin/inc/dtc_config.php:835 admin/inc/dtc_config.php:860
@@ -4042,24 +4042,24 @@ msgstr "URL"
 
 #: shared/inc/forms/packager.php:218
 msgid "Unpack size"
-msgstr "½âÑ¹ËõºóµÄ´óĞ¡"
+msgstr "è§£å‹ç¼©åçš„å¤§å°"
 
 #: shared/inc/forms/lists.php:438
 msgid "Unsubscribe:"
-msgstr "ÍË¶©£º"
+msgstr "é€€è®¢ï¼š"
 
 #: shared/inc/forms/vps.php:171
 msgid "Up time: "
-msgstr "ÒÑÔËĞĞÊ±¼ä£º"
+msgstr "å·²è¿è¡Œæ—¶é—´ï¼š"
 
 #: shared/inc/forms/my_account.php:106
 msgid "Upgrade my account"
-msgstr "ÕË»§Éı¼¶"
+msgstr "è´¦æˆ·å‡çº§"
 
 #: shared/dtcrm/draw.php:33
 #, fuzzy
 msgid "Upgrade my account:"
-msgstr "ÕË»§Éı¼¶"
+msgstr "è´¦æˆ·å‡çº§"
 
 #: shared/inc/forms/domain_info.php:59 shared/inc/forms/email.php:27
 msgid "Use"
@@ -4068,20 +4068,20 @@ msgstr ""
 #: admin/inc/dtc_config.php:532
 #, fuzzy
 msgid "Use @domain.com ftp logins: "
-msgstr "µÇÂ½ftpÊ¹ÓÃ@domain.com µÄ¸ñÊ½£º"
+msgstr "ç™»é™†ftpä½¿ç”¨@domain.com çš„æ ¼å¼ï¼š"
 
 #: admin/inc/dtc_config.php:537
 #, fuzzy
 msgid "Use @domain.com ssh logins: "
-msgstr "µÇÂ½sshÊ¹ÓÃ@domain.comµÄ¸ñÊ½£º"
+msgstr "ç™»é™†sshä½¿ç”¨@domain.comçš„æ ¼å¼ï¼š"
 
 #: admin/inc/dtc_config.php:714
 msgid "Use CNAME instead of A record for subdomains:"
-msgstr "¶ş¼¶ÓòÃûÊ¹ÓÃCNAME¶ø²»Ê¹ÓÃA¼ÇÂ¼£º"
+msgstr "äºŒçº§åŸŸåä½¿ç”¨CNAMEè€Œä¸ä½¿ç”¨Aè®°å½•ï¼š"
 
 #: admin/inc/dtc_config.php:418
 msgid "Use LVM backend"
-msgstr "Ê¹ÓÃLVM"
+msgstr "ä½¿ç”¨LVM"
 
 #: admin/inc/dtc_config.php:1009
 msgid "Use Maxmind API: "
@@ -4090,7 +4090,7 @@ msgstr ""
 #: admin/inc/dtc_config.php:527
 #, fuzzy
 msgid "Use SSL: "
-msgstr "ÊÇ·ñÊ¹ÓÃSSL£º"
+msgstr "æ˜¯å¦ä½¿ç”¨SSLï¼š"
 
 #: shared/inc/forms/subdomain.php:232
 msgid "Use an SSL vhost using this IP: "
@@ -4099,45 +4099,45 @@ msgstr ""
 #: admin/inc/dtc_config.php:582
 #, fuzzy
 msgid "Use awstats: "
-msgstr "´ÅÅÌ¿Õ¼ä£º"
+msgstr "ç£ç›˜ç©ºé—´ï¼š"
 
 #: admin/inc/dtc_config.php:567
 #, fuzzy
 msgid "Use cyrus: "
-msgstr "Ê¹ÓÃcyrus:"
+msgstr "ä½¿ç”¨cyrus:"
 
 #: admin/inc/dtc_config.php:980
 #, fuzzy
 msgid "Use eNETS: "
-msgstr "ÊÇ·ñÊ¹ÓÃSSL£º"
+msgstr "æ˜¯å¦ä½¿ç”¨SSLï¼š"
 
 #: shared/inc/draw.php:321
 msgid "Use image menu"
-msgstr "Ê¹ÓÃÍ¼ĞÎ²Ëµ¥"
+msgstr "ä½¿ç”¨å›¾å½¢èœå•"
 
 #: admin/inc/dtc_config.php:522
 #, fuzzy
 msgid "Use javascript: "
-msgstr "ÊÇ·ñÊ¹ÓÃjavascript£º"
+msgstr "æ˜¯å¦ä½¿ç”¨javascriptï¼š"
 
 #: admin/inc/dtc_config.php:647
 #, fuzzy
 msgid "Use multiple IPs: "
-msgstr "IPµØÖ·ÊÇ·ñ¹²Ïí£º"
+msgstr "IPåœ°å€æ˜¯å¦å…±äº«ï¼š"
 
 #: admin/inc/dtc_config.php:964
 #, fuzzy
 msgid "Use paypal recuring: "
-msgstr "Ê¹ÓÃ±´±¦£º"
+msgstr "ä½¿ç”¨è´å®ï¼š"
 
 #: admin/inc/dtc_config.php:937
 #, fuzzy
 msgid "Use paypal: "
-msgstr "Ê¹ÓÃ±´±¦£º"
+msgstr "ä½¿ç”¨è´å®ï¼š"
 
 #: shared/inc/forms/subdomain.php:175
 msgid "Use register_globals=1: "
-msgstr "¿ªÆôregister_globals£º"
+msgstr "å¼€å¯register_globalsï¼š"
 
 #: admin/inc/dtc_config.php:884
 msgid "Use registrar API:"
@@ -4145,12 +4145,12 @@ msgstr ""
 
 #: shared/inc/draw.php:319
 msgid "Use text menu"
-msgstr "Ê¹ÓÃÎÄ±¾²Ëµ¥"
+msgstr "ä½¿ç”¨æ–‡æœ¬èœå•"
 
 #: client/login.php:16
 #, fuzzy
 msgid "Use text menu: "
-msgstr "Ê¹ÓÃÎÄ±¾²Ëµ¥"
+msgstr "ä½¿ç”¨æ–‡æœ¬èœå•"
 
 #: admin/inc/dtc_config.php:893
 msgid "Use the LIVE server (and not the test one) :"
@@ -4159,12 +4159,12 @@ msgstr "LIVE- oder Testbetrieb:"
 #: admin/inc/dtc_config.php:959
 #, fuzzy
 msgid "Use the sandbox test server: "
-msgstr "Ê¹ÓÃ²âÊÔ·şÎñÆ÷£º"
+msgstr "ä½¿ç”¨æµ‹è¯•æœåŠ¡å™¨ï¼š"
 
 #: admin/inc/dtc_config.php:587
 #, fuzzy
 msgid "Use visitors: "
-msgstr "ÊÇ·ñÊ¹ÓÃjavascript£º"
+msgstr "æ˜¯å¦ä½¿ç”¨javascriptï¼š"
 
 #: admin/inc/dtc_config.php:572
 msgid "Use webalizer: "
@@ -4176,7 +4176,7 @@ msgstr ""
 
 #: shared/inc/forms/email.php:587
 msgid "Used quota: "
-msgstr "´ÅÅÌ¿Õ¼ä£º"
+msgstr "ç£ç›˜ç©ºé—´ï¼š"
 
 #: admin/inc/draw_user_admin.php:444 admin/inc/monitor.php:15
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
@@ -4186,73 +4186,73 @@ msgstr ""
 #: admin/inc/dtc_config.php:596
 #, fuzzy
 msgid "User MySQL host: "
-msgstr "ÓÃ»§µÄMySQLÊı¾İ¿âÖ÷»ú£º"
+msgstr "ç”¨æˆ·çš„MySQLæ•°æ®åº“ä¸»æœºï¼š"
 
 #: admin/inc/dtc_config.php:599
 #, fuzzy
 msgid "User MySQL root login: "
-msgstr "Ê¹ÓÃrootµÇÂ½ÓÃ»§MySqlÊı¾İ¿â£º"
+msgstr "ä½¿ç”¨rootç™»é™†ç”¨æˆ·MySqlæ•°æ®åº“ï¼š"
 
 #: admin/inc/dtc_config.php:602
 #, fuzzy
 msgid "User MySQL root password: "
-msgstr "ÓÃ»§MySqlÊı¾İ¿ârootÃÜÂë£º"
+msgstr "ç”¨æˆ·MySqlæ•°æ®åº“rootå¯†ç ï¼š"
 
 #: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:574
 msgid "User administration"
-msgstr "ÓÃ»§¹ÜÀí"
+msgstr "ç”¨æˆ·ç®¡ç†"
 
 #: admin/inc/draw_user_admin.php:229
 msgid "User and domain waiting for addition:"
-msgstr "´ıÌí¼ÓµÄÓÃ»§ºÍÓòÃû£º"
+msgstr "å¾…æ·»åŠ çš„ç”¨æˆ·å’ŒåŸŸåï¼š"
 
 #: client/new_account_form.php:57
 msgid ""
 "User login format incorrect. Please use letters and numbers only and from 4 "
 "to 16 chars."
-msgstr "ÓÃ»§µÇÂ½Ãû¸ñÊ½²»ÕıÈ·¡£ÇëÊ¹ÓÃÊı×Ö»ò×ÖÄ¸£¬²¢ÇÒÊÇ4µ½16¸ö×Ö·ûÊıÖ®¼ä¡£"
+msgstr "ç”¨æˆ·ç™»é™†åæ ¼å¼ä¸æ­£ç¡®ã€‚è¯·ä½¿ç”¨æ•°å­—æˆ–å­—æ¯ï¼Œå¹¶ä¸”æ˜¯4åˆ°16ä¸ªå­—ç¬¦æ•°ä¹‹é—´ã€‚"
 
 #: shared/inc/sql/database.php:250
 msgid "User or password is incorrect!"
-msgstr "ÓÃ»§Ãû»òÃÜÂë´íÎó£¡"
+msgstr "ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼"
 
 #: admin/inc/dtc_config.php:542
 #, fuzzy
 msgid "User session expire time (min): "
-msgstr "³¬Ê±²Ù×÷£¨·ÖÖÓ£©£º"
+msgstr "è¶…æ—¶æ“ä½œï¼ˆåˆ†é’Ÿï¼‰ï¼š"
 
 #: client/new_account_form.php:252 client/new_account_form.php:260
 msgid "Username already taken! Try again."
-msgstr "ÓÃ»§ÃûÒÑ±»Õ¼ÓÃ£¡ÇëÖØĞÂÌîĞ´¡£"
+msgstr "ç”¨æˆ·åå·²è¢«å ç”¨ï¼è¯·é‡æ–°å¡«å†™ã€‚"
 
 #: client/new_account_form.php:62
 msgid ""
 "Username invalid: please choose something else other than root or debian-sys-"
 "maint"
-msgstr "ÓÃ»§Ãû²»¿ÉÓÃ£ºÇëÑ¡ÓÃÆäËüµÇÂ¼Ãû£¬²»ÒªÊ¹ÓÃroot»òÕßdebian-sys-maint"
+msgstr "ç”¨æˆ·åä¸å¯ç”¨ï¼šè¯·é€‰ç”¨å…¶å®ƒç™»å½•åï¼Œä¸è¦ä½¿ç”¨rootæˆ–è€…debian-sys-maint"
 
 #: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:404
 #: shared/gfx/skin/bwoup/layout.php:406
 msgid "Users administration"
-msgstr "ÓÃ»§¹ÜÀí"
+msgstr "ç”¨æˆ·ç®¡ç†"
 
 #: client/new_account_form.php:593
 #, fuzzy
 msgid "VAT Number: "
-msgstr "VAT£¨ÔöÖµË°£©ºÅÂë£º"
+msgstr "VATï¼ˆå¢å€¼ç¨ï¼‰å·ç ï¼š"
 
 #: admin/inc/dtc_config.php:1241
 msgid "VAT number:"
-msgstr "VATºÅÂë£º"
+msgstr "VATå·ç ï¼š"
 
 #: admin/dtcrm/main.php:164
 #, fuzzy
 msgid "VAT number: "
-msgstr "VATºÅÂë£º"
+msgstr "VATå·ç ï¼š"
 
 #: admin/inc/dtc_config.php:1245
 msgid "VAT rate:"
-msgstr "VAT£¨ÔöÖµË°£©Ë°ÂÊ£º"
+msgstr "VATï¼ˆå¢å€¼ç¨ï¼‰ç¨ç‡ï¼š"
 
 #: shared/inc/forms/lists.php:429
 msgid "VERP:"
@@ -4260,7 +4260,7 @@ msgstr ""
 
 #: shared/inc/forms/vps.php:135
 msgid "VM id: "
-msgstr "VM id£º"
+msgstr "VM idï¼š"
 
 #: admin/inc/renewals.php:211
 msgid "VPS"
@@ -4272,54 +4272,54 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:473
 msgid "VPS Name"
-msgstr "VPSÃû³Æ"
+msgstr "VPSåç§°"
 
 #: shared/inc/forms/root_admin.php:470
 msgid "VPS Server"
-msgstr "VPSÖ÷»ú"
+msgstr "VPSä¸»æœº"
 
 #: admin/inc/dtc_config.php:379
 msgid "VPS Server and IP addresses registry edition"
-msgstr "±à¼­VPSºÍIPµØÖ·×¢²áĞÅÏ¢"
+msgstr "ç¼–è¾‘VPSå’ŒIPåœ°å€æ³¨å†Œä¿¡æ¯"
 
 #: shared/inc/forms/root_admin.php:229
 msgid "VPS Server hostname: "
-msgstr "VPSÖ÷»úÃû£º"
+msgstr "VPSä¸»æœºåï¼š"
 
 #: admin/inc/dtc_config.php:382
 #, fuzzy
 msgid "VPS Server list:"
-msgstr "VPSÁĞ±í£º"
+msgstr "VPSåˆ—è¡¨ï¼š"
 
 #: shared/inc/forms/vps.php:156
 #, fuzzy
 msgid "VPS State: "
-msgstr "Ê¡·Ö£º"
+msgstr "çœåˆ†ï¼š"
 
 #: client/new_account_form.php:93
 msgid "VPS location not selected!"
-msgstr "Ã»ÓĞÑ¡ÔñVPSËùÔÚµÄÎ»ÖÃ£¡"
+msgstr "æ²¡æœ‰é€‰æ‹©VPSæ‰€åœ¨çš„ä½ç½®ï¼"
 
 #: client/new_account_form.php:546
 msgid "VPS location: "
-msgstr "VPSÎ»ÖÃ£º"
+msgstr "VPSä½ç½®ï¼š"
 
 #: admin/inc/dtc_config.php:200
 msgid "VPS renewal email reminders periodicity"
-msgstr "Éè¶¨VPS¸üĞÂµÄÓÊ¼şÌáĞÑµÄÖÜÆÚ"
+msgstr "è®¾å®šVPSæ›´æ–°çš„é‚®ä»¶æé†’çš„å‘¨æœŸ"
 
 #: admin/inc/renewals.php:203
 #, fuzzy
 msgid "VPS renewals:"
-msgstr "VPS ¸üĞÂ£º"
+msgstr "VPS æ›´æ–°ï¼š"
 
 #: admin/inc/dtc_config.php:50
 msgid "VPS servers"
-msgstr "VPS ·şÎñÆ÷"
+msgstr "VPS æœåŠ¡å™¨"
 
 #: admin/inc/dtc_config.php:442
 msgid "VPS xen number"
-msgstr "VPS ÔÚxenÖĞµÄ±àºÅ "
+msgstr "VPS åœ¨xenä¸­çš„ç¼–å· "
 
 #: admin/inc/renewals.php:102
 msgid "VPS: "
@@ -4327,12 +4327,12 @@ msgstr ""
 
 #: admin/inc/draw_user_admin.php:355
 msgid "VPS: Cannot find VPS in db!"
-msgstr "ÔÚÊı¾İ¿âÖĞÃ»ÓĞÕÒµ½VPSµÄÏà¹ØÅäÖÃ"
+msgstr "åœ¨æ•°æ®åº“ä¸­æ²¡æœ‰æ‰¾åˆ°VPSçš„ç›¸å…³é…ç½®"
 
 #: admin/inc/dtc_config.php:942
 #, fuzzy
 msgid "Validate new account if paid: "
-msgstr "ÒÑ¸¶¿îÕË»§ÊµÊ±ÉúĞ§£º"
+msgstr "å·²ä»˜æ¬¾è´¦æˆ·å®æ—¶ç”Ÿæ•ˆï¼š"
 
 #: shared/inc/forms/root_admin.php:346
 msgid "Vhost"
@@ -4340,7 +4340,7 @@ msgstr ""
 
 #: admin/inc/draw_user_admin.php:279
 msgid "View details"
-msgstr "²é¿´ÏêÇé"
+msgstr "æŸ¥çœ‹è¯¦æƒ…"
 
 #: admin/inc/dtc_config.php:1159
 msgid "Virtual host config-file:"
@@ -4349,24 +4349,24 @@ msgstr ""
 #: admin/inc/dtc_config.php:213
 #, fuzzy
 msgid "Warnings after expiration: "
-msgstr "ÒÑ¹ıÆÚ¾¯¸æ£º"
+msgstr "å·²è¿‡æœŸè­¦å‘Šï¼š"
 
 #: admin/inc/dtc_config.php:209
 msgid "Warnings before expiration: "
-msgstr "¼´½«¹ıÆÚ¾¯¸æ£º"
+msgstr "å³å°†è¿‡æœŸè­¦å‘Šï¼š"
 
 #: shared/inc/forms/lists.php:441
 msgid "Web archive"
-msgstr "Web´æµµ"
+msgstr "Webå­˜æ¡£"
 
 #: admin/inc/dtc_config.php:576
 #, fuzzy
 msgid "Webalizer country graph: "
-msgstr "Webalizer °´¹ú¼Ò·Ö²¼Í¼£º"
+msgstr "Webalizer æŒ‰å›½å®¶åˆ†å¸ƒå›¾ï¼š"
 
 #: admin/inc/dtc_config.php:359
 msgid "Weekly"
-msgstr "Ã¿ÖÜ"
+msgstr "æ¯å‘¨"
 
 #: shared/inc/forms/email.php:327
 msgid "Welcom to the email panel!"
@@ -4374,19 +4374,19 @@ msgstr ""
 
 #: admin/dtcrm/main.php:206
 msgid "What"
-msgstr "²úÆ·ĞÍºÅ"
+msgstr "äº§å“å‹å·"
 
 #: shared/dtcrm/draw_adddomain.php:39
 msgid "What do you want to add:"
-msgstr "ÄúÏëÌí¼ÓÊ²Ã´£º"
+msgstr "æ‚¨æƒ³æ·»åŠ ä»€ä¹ˆï¼š"
 
 #: shared/inc/forms/ticket.php:47
 msgid "What is your server hostname:"
-msgstr "ÄúµÄÖ÷»úÃûÊÇÊ²Ã´£º"
+msgstr "æ‚¨çš„ä¸»æœºåæ˜¯ä»€ä¹ˆï¼š"
 
 #: shared/dtcrm/draw_nameservers.php:125
 msgid "What subzone do you want to use (example: ns1):"
-msgstr "ÄúÏ£ÍûÊ¹ÓÃÊ²Ã´¶ş¼¶ÓòÃû(ÀıÈç: ns1)£º"
+msgstr "æ‚¨å¸Œæœ›ä½¿ç”¨ä»€ä¹ˆäºŒçº§åŸŸå(ä¾‹å¦‚: ns1)ï¼š"
 
 #: shared/inc/forms/lists.php:196
 msgid ""
@@ -4394,8 +4394,8 @@ msgid ""
 "emailaddress will be added to outgoing mail. Recommended usage is to remove "
 "existing To: headers with delheaders (see above) first."
 msgstr ""
-"Èç¹ûÉèÖÃÁËÕâ¸öÑ¡Ïî£¬ËùÓĞÍâ·¢µÄÓÊ¼ş½«±»Ìí¼ÓÒ»¸ö°üº¬ÁËÊÕ¼şÈËÓÊ¼şµØÖ·µÄÒ³Í·¡£ÍÆ"
-"¼öµÄ×ö·¨ÊÇÉ¾µôTo:header(Çë²Î¿¼delheader)¡£"
+"å¦‚æœè®¾ç½®äº†è¿™ä¸ªé€‰é¡¹ï¼Œæ‰€æœ‰å¤–å‘çš„é‚®ä»¶å°†è¢«æ·»åŠ ä¸€ä¸ªåŒ…å«äº†æ”¶ä»¶äººé‚®ä»¶åœ°å€çš„é¡µå¤´ã€‚æ¨"
+"èçš„åšæ³•æ˜¯åˆ æ‰To:header(è¯·å‚è€ƒdelheader)ã€‚"
 
 #: shared/inc/forms/lists.php:173
 msgid ""
@@ -4403,7 +4403,7 @@ msgid ""
 "allowed to post to it. The check is made against the &quot;From:&quot; "
 "header."
 msgstr ""
-"Èç¹ûÉèÖÃÁËÕâ¸ö²ÎÊı£¬½ö½ö¶©ÔÄÁËÕâ¸öÓÊ¼şÁĞ±íµÄÈË²ÅÄÜÏòÕâ¸öÓÊ¼şÁĞ±í·¢ËÍÓÊ¼ş¡£"
+"å¦‚æœè®¾ç½®äº†è¿™ä¸ªå‚æ•°ï¼Œä»…ä»…è®¢é˜…äº†è¿™ä¸ªé‚®ä»¶åˆ—è¡¨çš„äººæ‰èƒ½å‘è¿™ä¸ªé‚®ä»¶åˆ—è¡¨å‘é€é‚®ä»¶ã€‚"
 
 #: shared/dtcrm/draw_handle.php:73
 msgid "Who will be contacted for domain renewall (billing contact)?"
@@ -4432,7 +4432,7 @@ msgstr ""
 
 #: shared/inc/fetch.php:39 shared/inc/fetch.php:362 shared/inc/fetch.php:367
 msgid "Wrong user or password, or timeout expired!"
-msgstr "ÓÃ»§´íÎó»òÃÜÂë´íÎó,»òÕßÒÑ¹ıÆÚ"
+msgstr "ç”¨æˆ·é”™è¯¯æˆ–å¯†ç é”™è¯¯,æˆ–è€…å·²è¿‡æœŸ"
 
 #: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
 #: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
@@ -4459,11 +4459,11 @@ msgstr "ÓÃ»§´íÎó»òÃÜÂë´íÎó,»òÕßÒÑ¹ıÆÚ"
 #: shared/inc/forms/root_admin.php:357 shared/inc/forms/subdomain.php:160
 #: shared/inc/forms/subdomain.php:174 shared/inc/forms/ticket.php:129
 msgid "Yes"
-msgstr "ÊÇ"
+msgstr "æ˜¯"
 
 #: shared/dtcrm/draw_adddomain.php:83
 msgid "You can add another domain name:"
-msgstr "Äú¿ÉÒÔÔÙÌí¼ÓÒ»¸öÓòÃû£º"
+msgstr "æ‚¨å¯ä»¥å†æ·»åŠ ä¸€ä¸ªåŸŸåï¼š"
 
 #: shared/inc/sql/lists.php:213
 msgid ""
@@ -4485,19 +4485,19 @@ msgid ""
 "  \n"
 "For more informations go to mlmmj official web site at http://mlmmj.mmj.dk"
 msgstr ""
-"Äú¿ÉÒÔÍ¨¹ıÓÊ¼ş»òÕß¿ØÖÆÃæ°åÀ´¹ÜÀíÄúµÄÓÊ¼şÁĞ±í¡£\n"
-"Äú¿ÉÒÔ·¢ËÍÓÊ¼şµ½ÏÂÁĞÓÊÏäÀ´Ö´ĞĞÏàÓ¦µÄÃüÁî£º\n"
+"æ‚¨å¯ä»¥é€šè¿‡é‚®ä»¶æˆ–è€…æ§åˆ¶é¢æ¿æ¥ç®¡ç†æ‚¨çš„é‚®ä»¶åˆ—è¡¨ã€‚\n"
+"æ‚¨å¯ä»¥å‘é€é‚®ä»¶åˆ°ä¸‹åˆ—é‚®ç®±æ¥æ‰§è¡Œç›¸åº”çš„å‘½ä»¤ï¼š\n"
 "\n"
-"¡¡#name#-help@#domain# -> ·µ»Ø³£ÓÃµÄÃüÁî\n"
-"  #name#-list@#domain# -> ·µ»Ø¶¨ÔÄÕßÁĞ±í\n"
-"  #name#-get-N@#domain# -> ·µ»ØµÚNÌõÏûÏ¢£¿\n"
-"  #name#-owner@#domain# -> Í¨¹ıÕâ¸öµØÖ·¿ÉÒÔÁªÏµµ½ÓÊ¼şÁĞ±íµÄËùÓĞÕß\n"
-"  #name#-unsubscribe@#domain# -> ´ÓÓÊ¼şÁĞ±íÖĞÉ¾³ıÒ»¸ö¶©ÔÄÕß\n"
-"  #name#-subscribe@#domain# -> Ìí¼ÓÒ»¸ö¶©ÔÄÕßµ½ÓÊ¼şÁĞ±í\n"
-"  #name#-subscribe-digest@#domain# -> ½«¶©ÔÄÕßÌí¼Óµ½ÓÊ¼şÁĞ±íµÄÕªÒªÖĞ\n"
-"  #name#-subscribe-nomail@#domain# -> ½«¶©ÔÄÕßÌí¼Óµ½ÓÊ¼şÁĞ±íÖĞµÄ²»·¢ËÍÓÊ¼şµÄ"
-"ÁĞ±íÖĞ\n"
-"¸ü¶àĞÅÏ¢Çë·ÃÎÊmlmmj¹Ù·½ÍøÕ¾http://mlmmj.mmj.dk"
+"ã€€#name#-help@#domain# -> è¿”å›å¸¸ç”¨çš„å‘½ä»¤\n"
+"  #name#-list@#domain# -> è¿”å›å®šé˜…è€…åˆ—è¡¨\n"
+"  #name#-get-N@#domain# -> è¿”å›ç¬¬Næ¡æ¶ˆæ¯ï¼Ÿ\n"
+"  #name#-owner@#domain# -> é€šè¿‡è¿™ä¸ªåœ°å€å¯ä»¥è”ç³»åˆ°é‚®ä»¶åˆ—è¡¨çš„æ‰€æœ‰è€…\n"
+"  #name#-unsubscribe@#domain# -> ä»é‚®ä»¶åˆ—è¡¨ä¸­åˆ é™¤ä¸€ä¸ªè®¢é˜…è€…\n"
+"  #name#-subscribe@#domain# -> æ·»åŠ ä¸€ä¸ªè®¢é˜…è€…åˆ°é‚®ä»¶åˆ—è¡¨\n"
+"  #name#-subscribe-digest@#domain# -> å°†è®¢é˜…è€…æ·»åŠ åˆ°é‚®ä»¶åˆ—è¡¨çš„æ‘˜è¦ä¸­\n"
+"  #name#-subscribe-nomail@#domain# -> å°†è®¢é˜…è€…æ·»åŠ åˆ°é‚®ä»¶åˆ—è¡¨ä¸­çš„ä¸å‘é€é‚®ä»¶çš„"
+"åˆ—è¡¨ä¸­\n"
+"æ›´å¤šä¿¡æ¯è¯·è®¿é—®mlmmjå®˜æ–¹ç½‘ç«™http://mlmmj.mmj.dk"
 
 #: shared/dtcrm/draw_adddomain.php:59
 msgid ""
@@ -4505,8 +4505,8 @@ msgid ""
 "add domain names, you can ask the administrator to do so. To request hosting "
 "for a new domain without domain name registration, please write to:"
 msgstr ""
-"ÄúÔİÊ±Ã»ÓĞÌí¼ÓÓòÃûµÄÈ¨ÏŞ¡£Èç¹ûÄúĞèÒª¾­³£Ìí¼ÓÓòÃû£¬Äú¿ÉÒÔÒªÇó¹ÜÀíÔ±ÊÚÓèÄú×Ô¶¯"
-"Ìí¼ÓÓòÃûµÄÈ¨ÏŞ¡£Èç¹ûĞèÒª£¬Çë·¢ÓÊ¼şµ½£º"
+"æ‚¨æš‚æ—¶æ²¡æœ‰æ·»åŠ åŸŸåçš„æƒé™ã€‚å¦‚æœæ‚¨éœ€è¦ç»å¸¸æ·»åŠ åŸŸåï¼Œæ‚¨å¯ä»¥è¦æ±‚ç®¡ç†å‘˜æˆäºˆæ‚¨è‡ªåŠ¨"
+"æ·»åŠ åŸŸåçš„æƒé™ã€‚å¦‚æœéœ€è¦ï¼Œè¯·å‘é‚®ä»¶åˆ°ï¼š"
 
 #: shared/dtcrm/draw.php:66
 msgid ""
@@ -4523,7 +4523,7 @@ msgstr ""
 msgid ""
 "You currently don't have enough funds on your account. You will be "
 "redirected to our payment system. Please click on the button below to pay."
-msgstr "ÄúµÄÕÊ»§Óà¶î²»×ã¡£Ò³Ãæ½«»áÌø×ªµ½¸¶·ÑÏµÍ³, Çëµã»÷ÏÂÃæµÄ°´Å¥½øĞĞÖ§¸¶¡£"
+msgstr "æ‚¨çš„å¸æˆ·ä½™é¢ä¸è¶³ã€‚é¡µé¢å°†ä¼šè·³è½¬åˆ°ä»˜è´¹ç³»ç»Ÿ, è¯·ç‚¹å‡»ä¸‹é¢çš„æŒ‰é’®è¿›è¡Œæ”¯ä»˜ã€‚"
 
 #: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
@@ -4531,11 +4531,11 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:216 shared/dtcrm/draw_transferdomain.php:94
 msgid "You don't have a client ID. Please contact us."
-msgstr "ÄúÃ»ÓĞ¿Í»§ID¡£ÇëÁªÏµÎÒÃÇ¡£"
+msgstr "æ‚¨æ²¡æœ‰å®¢æˆ·IDã€‚è¯·è”ç³»æˆ‘ä»¬ã€‚"
 
 #: shared/inc/sql/ssh.php:24
 msgid "You don't have the SSH login flag!"
-msgstr "Äú²»ÄÜ½øĞĞSSHµÇÂ½£¡"
+msgstr "æ‚¨ä¸èƒ½è¿›è¡ŒSSHç™»é™†ï¼"
 
 #: shared/dtcrm/draw.php:64
 msgid "You have"
@@ -4551,7 +4551,7 @@ msgstr ""
 msgid ""
 "You have enough funds on your account to proceed account upgrade. Press the "
 "confirm button and your order will be proceeded."
-msgstr "ÄúµÄÕÊ»§ÓµÓĞ×ã¹»µÄÓà¶îÀ´½øĞĞ×¢²á£¬Çëµã»÷È·ÈÏ¼ü¼ÌĞø×¢²á¡£"
+msgstr "æ‚¨çš„å¸æˆ·æ‹¥æœ‰è¶³å¤Ÿçš„ä½™é¢æ¥è¿›è¡Œæ³¨å†Œï¼Œè¯·ç‚¹å‡»ç¡®è®¤é”®ç»§ç»­æ³¨å†Œã€‚"
 
 #: shared/dtcrm/draw_adddomain.php:248
 msgid ""
@@ -4561,53 +4561,53 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:897
 msgid "Your SRS username:"
-msgstr "ÄúµÄSRSÓÃ»§Ãû£º"
+msgstr "æ‚¨çš„SRSç”¨æˆ·åï¼š"
 
 #: shared/inc/forms/vps.php:204
 msgid "Your VPS has expired on the: "
-msgstr "ÄúµÄVPSÒÑ¹ıÆÚ£¬¹ıÆÚÊ±¼äÎª£º"
+msgstr "æ‚¨çš„VPSå·²è¿‡æœŸï¼Œè¿‡æœŸæ—¶é—´ä¸ºï¼š"
 
 #: shared/inc/forms/vps.php:200
 msgid "Your VPS was first registered on the: "
-msgstr "ÄúµÄVPSÊ×´Î×¢²áÓÚ£º"
+msgstr "æ‚¨çš„VPSé¦–æ¬¡æ³¨å†Œäºï¼š"
 
 #: shared/inc/forms/vps.php:207
 msgid "Your VPS will expire on the: "
-msgstr "ÄúµÄVPS½«Òª¹ıÆÚ£¬¹ıÆÚÊ±¼äÎª£º"
+msgstr "æ‚¨çš„VPSå°†è¦è¿‡æœŸï¼Œè¿‡æœŸæ—¶é—´ä¸ºï¼š"
 
 #: shared/dtcrm/draw_transferdomain.php:109
 msgid "Your account has been credited!"
-msgstr "Ç®¿îÒÑ´æÈëÄúµÄÕË»§£¡"
+msgstr "é’±æ¬¾å·²å­˜å…¥æ‚¨çš„è´¦æˆ·ï¼"
 
 #: shared/inc/forms/domain_info.php:53
 msgid "Your area disk usage:"
-msgstr "ÄúµÄ´ÅÅÌÊ¹ÓÃÂÊ£º"
+msgstr "æ‚¨çš„ç£ç›˜ä½¿ç”¨ç‡ï¼š"
 
 #: shared/inc/forms/reseller.php:22
 #, fuzzy
 msgid "Your child accounts:"
-msgstr "ÄúµÄÕË»§£º"
+msgstr "æ‚¨çš„è´¦æˆ·ï¼š"
 
 #: shared/dtcrm/draw.php:71
 #, fuzzy
 msgid "Your current account is "
-msgstr "ÄúµÄÕË»§£º"
+msgstr "æ‚¨çš„è´¦æˆ·ï¼š"
 
 #: shared/inc/draw.php:430
 msgid "Your databases"
-msgstr "ÄúµÄÊı¾İ¿â"
+msgstr "æ‚¨çš„æ•°æ®åº“"
 
 #: shared/inc/forms/dedicated.php:46
 msgid "Your dedicated server has expired on the: "
-msgstr "ÄúµÄ¶ÀÁ¢Ö÷»úÒÑ¹ıÆÚ£¬¹ıÆÚÊ±¼äÎª£º"
+msgstr "æ‚¨çš„ç‹¬ç«‹ä¸»æœºå·²è¿‡æœŸï¼Œè¿‡æœŸæ—¶é—´ä¸ºï¼š"
 
 #: shared/inc/forms/dedicated.php:42
 msgid "Your dedicated server was first registered on the:"
-msgstr "ÄúµÄ¶ÀÁ¢Ö÷»úÊ×´Î×¢²áÓÚ£º"
+msgstr "æ‚¨çš„ç‹¬ç«‹ä¸»æœºé¦–æ¬¡æ³¨å†Œäºï¼š"
 
 #: shared/inc/forms/dedicated.php:49
 msgid "Your dedicated server will expire on the: "
-msgstr "ÄúµÄ¶ÀÁ¢Ö÷»ú½«¹ıÆÚ£¬¹ıÆÚÊ±¼äÎª£º"
+msgstr "æ‚¨çš„ç‹¬ç«‹ä¸»æœºå°†è¿‡æœŸï¼Œè¿‡æœŸæ—¶é—´ä¸ºï¼š"
 
 #: admin/inc/dtc_config.php:1115
 msgid "Your default new account directory:"
@@ -4621,44 +4621,44 @@ msgstr ""
 msgid ""
 "Your domain name has been registred elsewhere (i.e. not on this site). To "
 "order its transfer, please click "
-msgstr "ÄúÊäÈëµÄÓòÃûÒÑ±»×¢²á¡£ÈçĞè¹ºÂò¸ÃÓòÃû(´ÓËüµÄËùÓĞÈËÄÇÀï¹ºÂò)£¬Çëµã»÷ÕâÀï"
+msgstr "æ‚¨è¾“å…¥çš„åŸŸåå·²è¢«æ³¨å†Œã€‚å¦‚éœ€è´­ä¹°è¯¥åŸŸå(ä»å®ƒçš„æ‰€æœ‰äººé‚£é‡Œè´­ä¹°)ï¼Œè¯·ç‚¹å‡»è¿™é‡Œ"
 
 #: shared/dtcrm/draw_adddomain.php:89
 msgid "Your domain name is now ready:"
-msgstr "ÄúµÄÓòÃûÒÑÉèÖÃÍê±Ï£º"
+msgstr "æ‚¨çš„åŸŸåå·²è®¾ç½®å®Œæ¯•ï¼š"
 
 #: shared/dtcrm/draw_whois.php:95
 msgid "Your domain name whois data:"
-msgstr "ÄúµÄÓòÃûµÄwhoisĞÅÏ¢£º"
+msgstr "æ‚¨çš„åŸŸåçš„whoisä¿¡æ¯ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:79
 msgid "Your domain name will be soon validated:"
-msgstr "ÄúµÄÓòÃûºÜ¿ì¾ÍÄÜÉúĞ§£º"
+msgstr "æ‚¨çš„åŸŸåå¾ˆå¿«å°±èƒ½ç”Ÿæ•ˆï¼š"
 
 #: shared/inc/forms/domain_info.php:51
 msgid "Your domain:"
-msgstr "ÄúµÄÓòÃû£º"
+msgstr "æ‚¨çš„åŸŸåï¼š"
 
 #: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:367
 msgid "Your domains"
-msgstr "ÄúµÄÓòÃû"
+msgstr "æ‚¨çš„åŸŸå"
 
 #: shared/inc/forms/my_account.php:94
 msgid "Your hosting account:"
-msgstr "ÄúµÄÕË»§£º"
+msgstr "æ‚¨çš„è´¦æˆ·ï¼š"
 
 #: admin/inc/dtc_config.php:905
 msgid "Your key to access the LIVE server:"
-msgstr "Á¬½Óµ½ÕæÊµ·şÎñÆ÷µÄÃÜÔ¿£º"
+msgstr "è¿æ¥åˆ°çœŸå®æœåŠ¡å™¨çš„å¯†é’¥ï¼š"
 
 #: admin/inc/dtc_config.php:901
 msgid "Your key to access the test server:"
-msgstr "Á¬½Óµ½²âÊÔ·şÎñÆ÷µÄÃÜÔ¿£º"
+msgstr "è¿æ¥åˆ°æµ‹è¯•æœåŠ¡å™¨çš„å¯†é’¥ï¼š"
 
 #: shared/dtcrm/draw.php:36
 #, fuzzy
 msgid "Your last command expire on the: "
-msgstr "ÄúµÄVPSÒÑ¹ıÆÚ£¬¹ıÆÚÊ±¼äÎª£º"
+msgstr "æ‚¨çš„VPSå·²è¿‡æœŸï¼Œè¿‡æœŸæ—¶é—´ä¸ºï¼š"
 
 #: shared/inc/forms/email.php:319
 msgid "Your list of imported mail"
@@ -4667,28 +4667,28 @@ msgstr ""
 #: shared/dtcrm/draw.php:62
 #, fuzzy
 msgid "Your past account was: "
-msgstr "ÄúµÄÕË»§£º"
+msgstr "æ‚¨çš„è´¦æˆ·ï¼š"
 
 #: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
 #, fuzzy
 msgid "Your path is restricted to "
-msgstr "ÄúµÄÄ¿Â¼±»ÏŞ¶¨ÔÚ"
+msgstr "æ‚¨çš„ç›®å½•è¢«é™å®šåœ¨"
 
 #: shared/inc/forms/database.php:32
 #, fuzzy
 msgid "Your users"
-msgstr "ÄúµÄSRSÓÃ»§Ãû£º"
+msgstr "æ‚¨çš„SRSç”¨æˆ·åï¼š"
 
 #: shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
-msgstr "ÓÊ±à£º"
+msgstr "é‚®ç¼–ï¼š"
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
 #: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
 #: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
 #, fuzzy
 msgid "Zipcode: "
-msgstr "ÓÊ±à£º"
+msgstr "é‚®ç¼–ï¼š"
 
 #: shared/inc/forms/dns.php:67
 msgid "Zone file will be regenerated at next cron job."
@@ -4696,7 +4696,7 @@ msgstr ""
 
 #: shared/inc/forms/domain_info.php:59
 msgid "aliasing"
-msgstr "±ğÃû"
+msgstr "åˆ«å"
 
 #: shared/inc/forms/vps.php:123
 msgid "couldn't connect to host"
@@ -4709,12 +4709,12 @@ msgstr ""
 #: admin/inc/dtc_config.php:998
 #, fuzzy
 msgid "eNETS rate: "
-msgstr "VPS ·şÎñÆ÷"
+msgstr "VPS æœåŠ¡å™¨"
 
 #: admin/inc/dtc_config.php:985
 #, fuzzy
 msgid "eNETS server: "
-msgstr "VPS ·şÎñÆ÷"
+msgstr "VPS æœåŠ¡å™¨"
 
 #: admin/inc/dtc_config.php:994
 msgid "eNETS test merchant ID: "
@@ -4722,23 +4722,23 @@ msgstr ""
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
 msgid "fetching admin: "
-msgstr "¼ÓÔØ¹ÜÀíÔ±£º"
+msgstr "åŠ è½½ç®¡ç†å‘˜ï¼š"
 
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
-msgstr "½ö¶©ÔÄÓÃ»§¿ÉÊ¹ÓÃget-N¹¦ÄÜ£º"
+msgstr "ä»…è®¢é˜…ç”¨æˆ·å¯ä½¿ç”¨get-NåŠŸèƒ½ï¼š"
 
 #: shared/dtcrm/draw_adddomain.php:291 shared/dtcrm/draw_whois.php:50
 msgid "here"
-msgstr "ÕâÀï"
+msgstr "è¿™é‡Œ"
 
 #: shared/dtcrm/draw_handle.php:244
 msgid "if applicable"
-msgstr "ÊÇ·ñÊÊÓÃ"
+msgstr "æ˜¯å¦é€‚ç”¨"
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "is NOT available for registration. The registration server returned: "
-msgstr "ÎŞ·¨×¢²á£¬ÓòÃû×¢²á·şÎñÆ÷·µ»ØĞÅÏ¢£º"
+msgstr "æ— æ³•æ³¨å†Œï¼ŒåŸŸåæ³¨å†ŒæœåŠ¡å™¨è¿”å›ä¿¡æ¯ï¼š"
 
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
@@ -4746,79 +4746,79 @@ msgstr ""
 
 #: shared/dtcrm/draw_handle.php:217
 msgid "marked fields are required"
-msgstr "´òĞÇºÅµÄÑ¡ÏîÎª±ØÌîÏî"
+msgstr "æ‰“æ˜Ÿå·çš„é€‰é¡¹ä¸ºå¿…å¡«é¡¹"
 
 #: shared/inc/forms/ftp.php:53
 #, fuzzy
 msgid "new FTP account"
-msgstr "FTPÕÊ»§£º"
+msgstr "FTPå¸æˆ·ï¼š"
 
 #: shared/inc/forms/ssh.php:47
 msgid "new SSH account"
-msgstr "ĞÂµÄSSHÕÊ»§"
+msgstr "æ–°çš„SSHå¸æˆ·"
 
 #: shared/inc/forms/email.php:532
 msgid "new mailbox"
-msgstr "ĞÂÓÊÏä"
+msgstr "æ–°é‚®ç®±"
 
 #: shared/inc/forms/lists.php:51 shared/inc/forms/lists.php:85
 #, fuzzy
 msgid "new mailing list"
-msgstr "Êı¾İ¿âÁĞ±í£º"
+msgstr "æ•°æ®åº“åˆ—è¡¨ï¼š"
 
 #: shared/dtcrm/draw_handle.php:238 shared/dtcrm/draw_handle.php:241
 #: shared/dtcrm/draw_handle.php:259
 msgid "optional"
-msgstr "Ñ¡Ïî"
+msgstr "é€‰é¡¹"
 
 #: client/new_account_form.php:635
 msgid "selling conditions"
-msgstr "ÏúÊÛ×´Ì¬"
+msgstr "é”€å”®çŠ¶æ€"
 
 #: shared/dtcrm/draw_adddomain.php:291
 msgid "to refresh the menu or add another domain name."
-msgstr "Ë¢ĞÂÖ÷²Ëµ¥»òÕßÌí¼ÓÁíÍâÒ»¸öÓòÃû¡£"
+msgstr "åˆ·æ–°ä¸»èœå•æˆ–è€…æ·»åŠ å¦å¤–ä¸€ä¸ªåŸŸåã€‚"
 
 #: shared/dtcrm/draw_adddomain.php:162
 msgid "year"
-msgstr "Äê"
+msgstr "å¹´"
 
 #: shared/dtcrm/draw_adddomain.php:163
 msgid "years"
-msgstr "Äê"
+msgstr "å¹´"
 
 #, fuzzy
 #~ msgid "Adddress (line2): "
-#~ msgstr "µØÖ·£º"
+#~ msgstr "åœ°å€ï¼š"
 
 #, fuzzy
 #~ msgid "Adddress (line3): "
-#~ msgstr "µØÖ·£º"
+#~ msgstr "åœ°å€ï¼š"
 
 #, fuzzy
 #~ msgid "Address (line1: "
-#~ msgstr "µØÖ·£º"
+#~ msgstr "åœ°å€ï¼š"
 
 #, fuzzy
 #~ msgid "Address (line2: "
-#~ msgstr "µØÖ·£º"
+#~ msgstr "åœ°å€ï¼š"
 
 #, fuzzy
 #~ msgid "Address (line3: "
-#~ msgstr "µØÖ·£º"
+#~ msgstr "åœ°å€ï¼š"
 
 #, fuzzy
 #~ msgid "Company: "
-#~ msgstr "¹«Ë¾Ãû³Æ£º"
+#~ msgstr "å…¬å¸åç§°ï¼š"
 
 #, fuzzy
 #~ msgid "Firstname: "
-#~ msgstr "Ãû£º"
+#~ msgstr "åï¼š"
 
 #, fuzzy
 #~ msgid "Lastname: "
-#~ msgstr "Ö÷»úÃû£º"
+#~ msgstr "ä¸»æœºåï¼š"
 
 #, fuzzy
 #~ msgid "Repeat password:"
-#~ msgstr "FTPµÇÂ½ÃÜÂë£º"
+#~ msgstr "FTPç™»é™†å¯†ç ï¼š"

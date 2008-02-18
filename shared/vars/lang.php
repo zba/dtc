@@ -16,18 +16,18 @@
 $txt_default_lang = "en";
 
 $txt_langname = array(
-	"fr" => "iso-8859-15",
-	"en" => "iso-8859-15",
-	"hu" => "iso-8859-2",
-	"it" => "iso-8859-15",
-	"nl" => "iso-8859-15",
+	"fr" => "UTF-8",
+	"en" => "UTF-8",
+	"hu" => "UTF-8",
+	"it" => "UTF-8",
+	"nl" => "UTF-8",
 	"ru" => "UTF-8",
-	"de" => "iso-8859-15",
-	"zh" => "GB2312",
-	"pl" => "iso-8859-2",
+	"de" => "UTF-8",
+	"zh" => "UTF-8",
+	"pl" => "UTF-8",
 	"se" => "iso-8859-15",
-	"pt" => "iso-8859-15",
-	"es" => "iso-8859-15");
+	"pt" => "UTF-8",
+	"es" => "UTF-8");
 
 //check to see if we are running in the shell or web
 if($panel_type!="cronjob"){
@@ -122,19 +122,19 @@ header("Content-type: text/html; charset=$charset");
 switch($lang){
 case "fr_FR":
 case "fr":
-	$gettext_lang = "fr_FR";
+	$gettext_lang = "fr_FR.UTF-8";
 	break;
 case "hu_HU":
 case "hu":
-	$gettext_lang = "hu_HU";
+	$gettext_lang = "hu_HU.UTF-8";
 	break;
 case "it_IT":
 case "it":
-	$gettext_lang = "it_IT";
+	$gettext_lang = "it_IT.UTF-8";
 	break;
 case "nl_NL":
 case "nl":
-	$gettext_lang = "nl_NL";
+	$gettext_lang = "nl_NL.UTF-8";
 	break;
 case "ru_RU.UTF-8":
 case "ru_RU":
@@ -143,30 +143,30 @@ case "ru":
 	break;
 case "de_DE":
 case "de":
-	$gettext_lang = "de_DE";
+	$gettext_lang = "de_DE.UTF-8";
 	break;
 case "zh_CN":
 case "zh":
-	$gettext_lang = "zh_CN";
+	$gettext_lang = "zh_CN.UTF-8";
 	break;
 case "pl_PL":
 case "pl":
-	$gettext_lang = "pl_PL";
+	$gettext_lang = "pl_PL.UTF-8";
 	break;
 case "se_NO":
 case "se":
-	$gettext_lang = "se_NO";
+	$gettext_lang = "se_NO.UTF-8";
 	break;
 case "pt_PT":
 case "pt":
-	$gettext_lang = "pt_PT";
+	$gettext_lang = "pt_PT.UTF-8";
 	break;
 case "es_ES":
 case "es":
-	$gettext_lang = "es_ES";
+	$gettext_lang = "es_ES.UTF-8";
 	break;
 default:
-	$gettext_lang = "en_US";
+	$gettext_lang = "en_US.UTF-8";
 	break;
 }
 if(FALSE === putenv("LC_ALL=$gettext_lang")){

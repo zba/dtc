@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: Feher Sandor <sfeher@bluesystem.hu>\n"
 "Language-Team: Hungarian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: shared/inc/forms/vps.php:64 shared/inc/forms/vps.php:77
@@ -48,7 +48,7 @@ msgstr ""
 #: shared/dtcrm/draw.php:72
 #, fuzzy
 msgid " of data transfer each month."
-msgstr "Ehavi összes átvitel (byte):"
+msgstr "Ehavi Ã¶sszes Ã¡tvitel (byte):"
 
 #: shared/dtcrm/draw.php:64
 msgid " remaining to be paid"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_handle.php:256
 msgid "+1.XXXXXXXXXX format"
-msgstr "+36.XXXXXXXX formátumban"
+msgstr "+36.XXXXXXXX formÃ¡tumban"
 
 #: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
 #: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
@@ -190,128 +190,128 @@ msgid ""
 "</font>"
 msgstr ""
 "<font face=\"Arial, Verdana\"><center><font size=\"+2\"><u><b>ONLINE DTC "
-"SÚGÓ</b></u></font></center><br><br>\n"
+"SÃšGÃ“</b></u></font></center><br><br>\n"
 "<div align=\"justify\">\n"
 "<font size=\"+1\"><u>1. Mi is a DTC ?</u></font><br><br>\n"
-"DTC egy eszköz amit direkt neked készítettünk. Segítségével kezedben "
-"tarthatod a domain adminisztráiót : menedzselheted az összes aldomaint, "
-"levelezéseket, ftp hozzáféréseket.<br><br>\n"
-"Ez az eszköz a <a href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence), "
-"licencelési formát használja, ami azt jelenti, hogy lehet neked belõle egy "
-"forráskód példányod módosíthatod, használhatod tetszés szerint ameddig "
-"ezeket a változtatásokat közzé teszed. Mi (a GPLHost-nál) hisszünk a Szabad "
-"Szoftverbe fektetett erõfeszítésbe és reméljük hogy a mi közremûködésünk "
-"inspirál más fejlesztõket is. A mi elgondolásunk az, hogy mivel mi kizárólag "
-"szabad szoftvert használunk a webhosting szolgáltatásunk üzemeltetéséhez "
-"ezért értetõ, hogy közzétesszük a fejlesztéseinket.<br><br>\n"
+"DTC egy eszkÃ¶z amit direkt neked kÃ©szÃ­tettÃ¼nk. SegÃ­tsÃ©gÃ©vel kezedben "
+"tarthatod a domain adminisztrÃ¡iÃ³t : menedzselheted az Ã¶sszes aldomaint, "
+"levelezÃ©seket, ftp hozzÃ¡fÃ©rÃ©seket.<br><br>\n"
+"Ez az eszkÃ¶z a <a href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence), "
+"licencelÃ©si formÃ¡t hasznÃ¡lja, ami azt jelenti, hogy lehet neked belÅ‘le egy "
+"forrÃ¡skÃ³d pÃ©ldÃ¡nyod mÃ³dosÃ­thatod, hasznÃ¡lhatod tetszÃ©s szerint ameddig "
+"ezeket a vÃ¡ltoztatÃ¡sokat kÃ¶zzÃ© teszed. Mi (a GPLHost-nÃ¡l) hisszÃ¼nk a Szabad "
+"Szoftverbe fektetett erÅ‘feszÃ­tÃ©sbe Ã©s remÃ©ljÃ¼k hogy a mi kÃ¶zremÅ±kÃ¶dÃ©sÃ¼nk "
+"inspirÃ¡l mÃ¡s fejlesztÅ‘ket is. A mi elgondolÃ¡sunk az, hogy mivel mi kizÃ¡rÃ³lag "
+"szabad szoftvert hasznÃ¡lunk a webhosting szolgÃ¡ltatÃ¡sunk Ã¼zemeltetÃ©sÃ©hez "
+"ezÃ©rt Ã©rtetÅ‘, hogy kÃ¶zzÃ©tesszÃ¼k a fejlesztÃ©seinket.<br><br>\n"
 "\n"
 "<font size=\"+1\"><u>2. E-mail-ek</u></font><br>\n"
-"<u>2.1. Mit fog nekem ez csinálni ?</u><br><br>\n"
-"Hozzáadhat, törölhet, módosíthat vele levelesládákat.<br><br>\n"
+"<u>2.1. Mit fog nekem ez csinÃ¡lni ?</u><br><br>\n"
+"HozzÃ¡adhat, tÃ¶rÃ¶lhet, mÃ³dosÃ­that vele leveleslÃ¡dÃ¡kat.<br><br>\n"
 "\n"
-"<u>2.2. Átirányítás és helyi kézbesítés</u><br><br>\n"
-"Minden levelesládát átirányíthat egy vagy több címre, ami azt jelenti hogyha "
-"egy üzenete érkezik az továbbítódik egy vagy több címre. A \"helyileg "
-"kézbesítés\" jelölõnégyzet meghatározza, hogy az összes üzenet a mi "
-"szerverünk merevlemezén tárolódjék e, ahonnan majd egy levelezõkliens "
-"segítségével letöltheti azokat. Ne felejtse el letölteni a leveleit, mert a "
-"levelesládájának is van tárhely kvótája.<br><br>\n"
+"<u>2.2. ÃtirÃ¡nyÃ­tÃ¡s Ã©s helyi kÃ©zbesÃ­tÃ©s</u><br><br>\n"
+"Minden leveleslÃ¡dÃ¡t Ã¡tirÃ¡nyÃ­that egy vagy tÃ¶bb cÃ­mre, ami azt jelenti hogyha "
+"egy Ã¼zenete Ã©rkezik az tovÃ¡bbÃ­tÃ³dik egy vagy tÃ¶bb cÃ­mre. A \"helyileg "
+"kÃ©zbesÃ­tÃ©s\" jelÃ¶lÅ‘nÃ©gyzet meghatÃ¡rozza, hogy az Ã¶sszes Ã¼zenet a mi "
+"szerverÃ¼nk merevlemezÃ©n tÃ¡rolÃ³djÃ©k e, ahonnan majd egy levelezÅ‘kliens "
+"segÃ­tsÃ©gÃ©vel letÃ¶ltheti azokat. Ne felejtse el letÃ¶lteni a leveleit, mert a "
+"leveleslÃ¡dÃ¡jÃ¡nak is van tÃ¡rhely kvÃ³tÃ¡ja.<br><br>\n"
 "\n"
 "<font size=\"+1\"><u>3. Aldomain-ek</u></font><br>\n"
-"<u>3.1. Mit fog ez nekem csinálni ?</u><br><br>\n"
-"Ez a területe a programnak arra szolgál, hogy beállítsa a domain-jeihez "
-"kapcsolódó oldalakat, ami azt jelenti hogy létrehozhat oldalakat a következõ "
-"formában :\n"
+"<u>3.1. Mit fog ez nekem csinÃ¡lni ?</u><br><br>\n"
+"Ez a terÃ¼lete a programnak arra szolgÃ¡l, hogy beÃ¡llÃ­tsa a domain-jeihez "
+"kapcsolÃ³dÃ³ oldalakat, ami azt jelenti hogy lÃ©trehozhat oldalakat a kÃ¶vetkezÅ‘ "
+"formÃ¡ban :\n"
 "<pre>\n"
 "http://barmi.amit.szeretne.domain.hu\n"
 "</pre>\n"
-"<u>3.2. Mi az alapértelmezett aldomain ?</u><br><br>\n"
-"Ha valaki szeretne csatlakozni az ön weboldalához egy olyan URL-el, ahol "
-"nincs megadva az aldomain, akkor a kérés át lesz irányítva arra az aldomain-"
-"re amit ön alapértelmezettek itt megad. Más szóval ha ön azt mondja, hogy "
+"<u>3.2. Mi az alapÃ©rtelmezett aldomain ?</u><br><br>\n"
+"Ha valaki szeretne csatlakozni az Ã¶n weboldalÃ¡hoz egy olyan URL-el, ahol "
+"nincs megadva az aldomain, akkor a kÃ©rÃ©s Ã¡t lesz irÃ¡nyÃ­tva arra az aldomain-"
+"re amit Ã¶n alapÃ©rtelmezettek itt megad. MÃ¡s szÃ³val ha Ã¶n azt mondja, hogy "
 "a:\n"
 "<pre>\n"
 "www\n"
 "</pre>\n"
-"lesz az alapértelmezett aldomain, akkor ha valaki próbálkozik csatlakozni az "
-"ön weboldalához ilyen formában:\n"
+"lesz az alapÃ©rtelmezett aldomain, akkor ha valaki prÃ³bÃ¡lkozik csatlakozni az "
+"Ã¶n weboldalÃ¡hoz ilyen formÃ¡ban:\n"
 "<pre>\n"
 "http://mydomain.com\n"
 "</pre>\n"
-"az át lesz irányítva a:\n"
+"az Ã¡t lesz irÃ¡nyÃ­tva a:\n"
 "<pre>\n"
 "http://www.mydomain.com\n"
-"</pre>címre.\n"
-"Tulajdonképpen az URL maga nem változik és nem lesz átirányítás a html "
-"oldalban sem csak egyszerûen ugyanazokat a html vagy php oldalakat fogja "
-"tudni elérni és ugyanazokat a naplófájlokat használja majd.<br><br>\n"
+"</pre>cÃ­mre.\n"
+"TulajdonkÃ©ppen az URL maga nem vÃ¡ltozik Ã©s nem lesz Ã¡tirÃ¡nyÃ­tÃ¡s a html "
+"oldalban sem csak egyszerÅ±en ugyanazokat a html vagy php oldalakat fogja "
+"tudni elÃ©rni Ã©s ugyanazokat a naplÃ³fÃ¡jlokat hasznÃ¡lja majd.<br><br>\n"
 "\n"
 "<u>3.3. Tiltott aldomain-ek</u><br><br>\n"
-"Mivel ezeket az aldomain-eket a web-tõl eltérõ szolgáltatásokra használjuk, "
-"ezért a következõ aldomain neveket nem használhatók apache weboldalként:\n"
+"Mivel ezeket az aldomain-eket a web-tÅ‘l eltÃ©rÅ‘ szolgÃ¡ltatÃ¡sokra hasznÃ¡ljuk, "
+"ezÃ©rt a kÃ¶vetkezÅ‘ aldomain neveket nem hasznÃ¡lhatÃ³k apache weboldalkÃ©nt:\n"
 "<ul><li>ftp</li>\n"
 "<li>pop</li>\n"
 "<li>smtp</li>\n"
 "<li>mail</li>\n"
 "</ul>\n"
 "\n"
-"<u>3.4. Aldomain-ek törlése</u><br><br>\n"
-"Önön múlik, hogy törli e azokat a fájlokat amiket az aldomain-je használ. Az "
-"összes fájlt törölheti egy egyszerû ftp kliensprogram segíségével. Azonban "
-"kérem, hogy figyeljen arra, hogy ne törölje anélkül az aldomain fájljait, "
-"hogy magát az aldomain-t törölné a DTC-n keresztül. Máskülönben az Apache "
-"web szerver panaszkodni fog arra, hogy a könyvtár nem létezik a weboldal "
-"mégis be van konfigurálva annak használatára és ez elég bosszantó lenne, "
-"amikor legközelebb újraindítjuk az apache-ot.<br><br>\n"
+"<u>3.4. Aldomain-ek tÃ¶rlÃ©se</u><br><br>\n"
+"Ã–nÃ¶n mÃºlik, hogy tÃ¶rli e azokat a fÃ¡jlokat amiket az aldomain-je hasznÃ¡l. Az "
+"Ã¶sszes fÃ¡jlt tÃ¶rÃ¶lheti egy egyszerÅ± ftp kliensprogram segÃ­sÃ©gÃ©vel. Azonban "
+"kÃ©rem, hogy figyeljen arra, hogy ne tÃ¶rÃ¶lje anÃ©lkÃ¼l az aldomain fÃ¡jljait, "
+"hogy magÃ¡t az aldomain-t tÃ¶rÃ¶lnÃ© a DTC-n keresztÃ¼l. MÃ¡skÃ¼lÃ¶nben az Apache "
+"web szerver panaszkodni fog arra, hogy a kÃ¶nyvtÃ¡r nem lÃ©tezik a weboldal "
+"mÃ©gis be van konfigurÃ¡lva annak hasznÃ¡latÃ¡ra Ã©s ez elÃ©g bosszantÃ³ lenne, "
+"amikor legkÃ¶zelebb ÃºjraindÃ­tjuk az apache-ot.<br><br>\n"
 "\n"
-"<u>3.5. Látogatói statisztikák az aldomain-ekhez</u><br><br>\n"
-"Mivel az összes forgalmat naplózzuk, ezért összesített 12 hónapos "
-"statisztikát generálunk a <a href=\"http://www.mrunix.net/webalizer/\"> "
-"webalizer program segítségével</a>. A statisztikákat minden nap 4 órakor "
-"készítjük (ez az az idõpont, amikor a legkisebb a forgalom). A statisztikák "
-"elérhetõk a \"/stats\" könyvtár alatt az összes aldomain-re lebontva. Ez azt "
-"jelenti, hogyha ön regisztrálta a következõ domain-t :\n"
+"<u>3.5. LÃ¡togatÃ³i statisztikÃ¡k az aldomain-ekhez</u><br><br>\n"
+"Mivel az Ã¶sszes forgalmat naplÃ³zzuk, ezÃ©rt Ã¶sszesÃ­tett 12 hÃ³napos "
+"statisztikÃ¡t generÃ¡lunk a <a href=\"http://www.mrunix.net/webalizer/\"> "
+"webalizer program segÃ­tsÃ©gÃ©vel</a>. A statisztikÃ¡kat minden nap 4 Ã³rakor "
+"kÃ©szÃ­tjÃ¼k (ez az az idÅ‘pont, amikor a legkisebb a forgalom). A statisztikÃ¡k "
+"elÃ©rhetÅ‘k a \"/stats\" kÃ¶nyvtÃ¡r alatt az Ã¶sszes aldomain-re lebontva. Ez azt "
+"jelenti, hogyha Ã¶n regisztrÃ¡lta a kÃ¶vetkezÅ‘ domain-t :\n"
 "<pre>\n"
 "http://www.mydomain.com\n"
 "</pre>\n"
-"akkor az összes statisztika a :\n"
+"akkor az Ã¶sszes statisztika a :\n"
 "<pre>\n"
 "http://www.mydomain.com/stats/\n"
 "</pre>\n"
-"alatt lesz elérhetõ.\n"
+"alatt lesz elÃ©rhetÅ‘.\n"
 "\n"
-"<font size=\"+1\"><u>4. FTP hozzáférések</u></font><br>\n"
-"<u>4.1. Mit fog ez nekem csinálni ?</u><br><br>\n"
-"Ahhoz hogy az oldalai mûködjenek önnek fel kell õket tölteni a szerverünkre. "
-"De mivel lehet, hogy nem ön az egyetlen aki az ön weboldalán dolgozik ,ezért "
-"szüksége lehet arra hogy több  FTP hozzáférése legyen az weboldalához. A DTC "
-"az az eszköz amivel menedzselheti ezeket a hozzáféréseket és jelszavakat. "
+"<font size=\"+1\"><u>4. FTP hozzÃ¡fÃ©rÃ©sek</u></font><br>\n"
+"<u>4.1. Mit fog ez nekem csinÃ¡lni ?</u><br><br>\n"
+"Ahhoz hogy az oldalai mÅ±kÃ¶djenek Ã¶nnek fel kell Å‘ket tÃ¶lteni a szerverÃ¼nkre. "
+"De mivel lehet, hogy nem Ã¶n az egyetlen aki az Ã¶n weboldalÃ¡n dolgozik ,ezÃ©rt "
+"szÃ¼ksÃ©ge lehet arra hogy tÃ¶bb  FTP hozzÃ¡fÃ©rÃ©se legyen az weboldalÃ¡hoz. A DTC "
+"az az eszkÃ¶z amivel menedzselheti ezeket a hozzÃ¡fÃ©rÃ©seket Ã©s jelszavakat. "
 "<br><br>\n"
 "\n"
-"<u>4.2. Késleltetés FTP hozzáférés hozzáadása / törlése esetén</u><br><br>\n"
-"Mivel mi a ProFTP programot használjuk egy különleges modullal, ami lehetõvé "
-"teszi a hozzáférések tárolását a MySql adatbázisunkban, ezért az összes "
-"változtatás ami az FTP hozzáféréseket érinti azonnal végrehajtódik.<br><br>\n"
+"<u>4.2. KÃ©sleltetÃ©s FTP hozzÃ¡fÃ©rÃ©s hozzÃ¡adÃ¡sa / tÃ¶rlÃ©se esetÃ©n</u><br><br>\n"
+"Mivel mi a ProFTP programot hasznÃ¡ljuk egy kÃ¼lÃ¶nleges modullal, ami lehetÅ‘vÃ© "
+"teszi a hozzÃ¡fÃ©rÃ©sek tÃ¡rolÃ¡sÃ¡t a MySql adatbÃ¡zisunkban, ezÃ©rt az Ã¶sszes "
+"vÃ¡ltoztatÃ¡s ami az FTP hozzÃ¡fÃ©rÃ©seket Ã©rinti azonnal vÃ©grehajtÃ³dik.<br><br>\n"
 "\n"
-"<u>4.3. Fájcserelésre ne használja és illegális tartalmat kérem NE tároljon "
-"az FTP szerverén !</u><br><br>\n"
-"Az hogy mi tárhelyet biztosítunk önnek az ftp szerverünkön az azért van, "
-"hogy fel tudja tölteni a HTML oldalait. Ez azt jelenti, hogy nincs joga "
-"olyan bináris fájlokat tárolni a szerveren, amik nem az ön tulajdonát "
-"képezik. Amennyiben erre utaló jelet észlelünk a hozzáférését minden "
-"elõzetes figyelmeztetés nélkül megszüntethetjük.<br><br>\n"
+"<u>4.3. FÃ¡jcserelÃ©sre ne hasznÃ¡lja Ã©s illegÃ¡lis tartalmat kÃ©rem NE tÃ¡roljon "
+"az FTP szerverÃ©n !</u><br><br>\n"
+"Az hogy mi tÃ¡rhelyet biztosÃ­tunk Ã¶nnek az ftp szerverÃ¼nkÃ¶n az azÃ©rt van, "
+"hogy fel tudja tÃ¶lteni a HTML oldalait. Ez azt jelenti, hogy nincs joga "
+"olyan binÃ¡ris fÃ¡jlokat tÃ¡rolni a szerveren, amik nem az Ã¶n tulajdonÃ¡t "
+"kÃ©pezik. Amennyiben erre utalÃ³ jelet Ã©szlelÃ¼nk a hozzÃ¡fÃ©rÃ©sÃ©t minden "
+"elÅ‘zetes figyelmeztetÃ©s nÃ©lkÃ¼l megszÃ¼ntethetjÃ¼k.<br><br>\n"
 "\n"
-"<font size=\"+1\"><u>5. Miért lassú az ftp vagy a pop hozzáférés néha ?</u></"
+"<font size=\"+1\"><u>5. MiÃ©rt lassÃº az ftp vagy a pop hozzÃ¡fÃ©rÃ©s nÃ©ha ?</u></"
 "font><br><br>\n"
-"Ennek sok oka lehet. Az elsõ hogy nincs elég feltöltési sávszélességünk és "
-"tényleg nagyon sokan töltenek fel egyszerre. A másik hogy valaki a "
-"szervereink \"közelébõl\" tölt fel és elviszi az egész sávszélességet tehát "
-"egy felhasználó használja az egészet mások pedig emiatt nem jutnak elég "
-"sávszélességhezt. Sajnos ez nem rajtunk múlik és nem tudunk ellene semmit "
+"Ennek sok oka lehet. Az elsÅ‘ hogy nincs elÃ©g feltÃ¶ltÃ©si sÃ¡vszÃ©lessÃ©gÃ¼nk Ã©s "
+"tÃ©nyleg nagyon sokan tÃ¶ltenek fel egyszerre. A mÃ¡sik hogy valaki a "
+"szervereink \"kÃ¶zelÃ©bÅ‘l\" tÃ¶lt fel Ã©s elviszi az egÃ©sz sÃ¡vszÃ©lessÃ©get tehÃ¡t "
+"egy felhasznÃ¡lÃ³ hasznÃ¡lja az egÃ©szet mÃ¡sok pedig emiatt nem jutnak elÃ©g "
+"sÃ¡vszÃ©lessÃ©ghezt. Sajnos ez nem rajtunk mÃºlik Ã©s nem tudunk ellene semmit "
 "tenni.<br><br>\n"
-"A másik oka az lehet, hogy úgy döntöttünk, hogy limitáljuk a pop, smtp, és "
-"ftp által használható sávszélességet és így a  web böngészés gyorsabb lesz a "
-"szerverünkön.<br><br>\n"
+"A mÃ¡sik oka az lehet, hogy Ãºgy dÃ¶ntÃ¶ttÃ¼nk, hogy limitÃ¡ljuk a pop, smtp, Ã©s "
+"ftp Ã¡ltal hasznÃ¡lhatÃ³ sÃ¡vszÃ©lessÃ©get Ã©s Ã­gy a  web bÃ¶ngÃ©szÃ©s gyorsabb lesz a "
+"szerverÃ¼nkÃ¶n.<br><br>\n"
 "</div></font>"
 
 #: shared/inc/sql/database.php:61
@@ -324,7 +324,7 @@ msgstr ""
 
 #: admin/inc/nav.php:49
 msgid "ALL FILES AND SCRIPTS"
-msgstr "AZ ÖSSZES FÁJL ÉS SCRIPT"
+msgstr "AZ Ã–SSZES FÃJL Ã‰S SCRIPT"
 
 #: admin/inc/nav.php:55
 msgid "APACHE VHOST"
@@ -333,7 +333,7 @@ msgstr "APACHE VHOST"
 #: shared/inc/forms/lists.php:433
 #, fuzzy
 msgid "Access list:"
-msgstr "Az adminisztrátorok listája"
+msgstr "Az adminisztrÃ¡torok listÃ¡ja"
 
 #: shared/inc/sql/vps.php:34 shared/inc/sql/vps.php:44
 #: shared/inc/sql/vps.php:64 shared/inc/sql/vps.php:86
@@ -344,11 +344,11 @@ msgstr ""
 #: admin/inc/dtc_config.php:848
 #, fuzzy
 msgid "Act as backup DNS server for the following servers:"
-msgstr "Tartalék DNS szerverként viselkedjen a következõ szervereknek:"
+msgstr "TartalÃ©k DNS szerverkÃ©nt viselkedjen a kÃ¶vetkezÅ‘ szervereknek:"
 
 #: admin/inc/dtc_config.php:823
 msgid "Act as backup mail server for the following servers:"
-msgstr "Tartalék mail szerverként viselkedjen a következõ szervereknek :"
+msgstr "TartalÃ©k mail szerverkÃ©nt viselkedjen a kÃ¶vetkezÅ‘ szervereknek :"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:212
@@ -356,7 +356,7 @@ msgstr "Tartalék mail szerverként viselkedjen a következõ szervereknek :"
 #: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/reseller.php:24
 msgid "Action"
-msgstr "Mûvelet"
+msgstr "MÅ±velet"
 
 #: admin/inc/dtc_config.php:339
 msgid "Activate FTP backups:"
@@ -381,20 +381,20 @@ msgstr ""
 #: shared/inc/draw.php:128
 #, fuzzy
 msgid "Add a domain"
-msgstr "Hozzáad egy domain-t ehhez a felhasználóhoz:"
+msgstr "HozzÃ¡ad egy domain-t ehhez a felhasznÃ¡lÃ³hoz:"
 
 #: shared/inc/forms/root_admin.php:157
 msgid "Add a domain for this user:"
-msgstr "Hozzáad egy domain-t ehhez a felhasználóhoz:"
+msgstr "HozzÃ¡ad egy domain-t ehhez a felhasznÃ¡lÃ³hoz:"
 
 #: shared/inc/draw.php:418
 #, fuzzy
 msgid "Add a domain name to my account"
-msgstr "A számlámon lévõ pénz:"
+msgstr "A szÃ¡mlÃ¡mon lÃ©vÅ‘ pÃ©nz:"
 
 #: shared/inc/draw.php:416
 msgid "Add a domain:"
-msgstr "Hozzáad egy domaint"
+msgstr "HozzÃ¡ad egy domaint"
 
 #: admin/inc/dtc_config.php:1208
 msgid "Add a new company"
@@ -410,16 +410,16 @@ msgstr ""
 
 #: shared/gfx/skin/default_layout.php:426
 msgid "Add a virtual administrator"
-msgstr "Hozzáad egy virtuális adminisztrátort"
+msgstr "HozzÃ¡ad egy virtuÃ¡lis adminisztrÃ¡tort"
 
 #: admin/dtcrm/main.php:82
 msgid "Add an administrator to this customer:"
-msgstr "Hozzáad egy adminisztrátort ennek az ügyfélnek:"
+msgstr "HozzÃ¡ad egy adminisztrÃ¡tort ennek az Ã¼gyfÃ©lnek:"
 
 #: admin/dtcrm/product_manager.php:66
 #, fuzzy
 msgid "Add domain"
-msgstr "Hozzáad egy domain-t ehhez a felhasználóhoz:"
+msgstr "HozzÃ¡ad egy domain-t ehhez a felhasznÃ¡lÃ³hoz:"
 
 #: shared/inc/forms/lists.php:409
 msgid "Added footer:"
@@ -427,59 +427,59 @@ msgstr ""
 
 #: shared/dtcrm/draw_nameservers.php:59
 msgid "Addition of name server failed"
-msgstr "A névszerver módosítása nem sikerült"
+msgstr "A nÃ©vszerver mÃ³dosÃ­tÃ¡sa nem sikerÃ¼lt"
 
 #: shared/dtcrm/draw_nameservers.php:50
 msgid "Addition of name server was succesfull"
-msgstr "A névszerver módosítása sikeresen megtörtént"
+msgstr "A nÃ©vszerver mÃ³dosÃ­tÃ¡sa sikeresen megtÃ¶rtÃ©nt"
 
 #: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
 #: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
 #, fuzzy
 msgid "Address (line1): "
-msgstr "Cím:"
+msgstr "CÃ­m:"
 
 #: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
 #: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
 #: shared/dtcrm/draw_handle.php:238
 #, fuzzy
 msgid "Address (line2): "
-msgstr "Cím:"
+msgstr "CÃ­m:"
 
 #: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
 #: shared/dtcrm/draw_handle.php:93 shared/dtcrm/draw_handle.php:125
 #: shared/dtcrm/draw_handle.php:241
 #, fuzzy
 msgid "Address (line3): "
-msgstr "Cím:"
+msgstr "CÃ­m:"
 
 #: shared/inc/forms/email.php:27
 #, fuzzy
 msgid "Address email"
-msgstr "Cím:"
+msgstr "CÃ­m:"
 
 #: admin/inc/dtc_config.php:688
 msgid "Address of your main MX server:"
-msgstr "A fõ MX szerver címe :"
+msgstr "A fÅ‘ MX szerver cÃ­me :"
 
 #: admin/inc/dtc_config.php:1228 shared/inc/forms/my_account.php:207
 msgid "Address:"
-msgstr "Cím:"
+msgstr "CÃ­m:"
 
 #: client/new_account_form.php:610 shared/dtcrm/draw_handle.php:235
 #, fuzzy
 msgid "Addresse (line1): "
-msgstr "Cím:"
+msgstr "CÃ­m:"
 
 #: client/new_account_form.php:613
 #, fuzzy
 msgid "Addresse (line2): "
-msgstr "Cím:"
+msgstr "CÃ­m:"
 
 #: client/new_account_form.php:616
 #, fuzzy
 msgid "Addresse (line3): "
-msgstr "Cím:"
+msgstr "CÃ­m:"
 
 #: admin/inc/draw_user_admin.php:416
 msgid "Admin"
@@ -496,7 +496,7 @@ msgstr ""
 
 #: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:569
 msgid "Admins list"
-msgstr "Az adminisztrátorok listája"
+msgstr "Az adminisztrÃ¡torok listÃ¡ja"
 
 #: admin/inc/draw_user_admin.php:400
 msgid "Age"
@@ -518,20 +518,20 @@ msgstr ""
 msgid ""
 "Allow those servers to list this server's domain names for doing backup:"
 msgstr ""
-"A következõ szerverek backup céljából hozzáférhetnek az ezen a szerveren "
-"létezõ domain nevekhez:"
+"A kÃ¶vetkezÅ‘ szerverek backup cÃ©ljÃ¡bÃ³l hozzÃ¡fÃ©rhetnek az ezen a szerveren "
+"lÃ©tezÅ‘ domain nevekhez:"
 
 #: shared/inc/forms/root_admin.php:130
 msgid "Allow to add domains:"
-msgstr "Engedélyezi a domainek hozzáadását:"
+msgstr "EngedÃ©lyezi a domainek hozzÃ¡adÃ¡sÃ¡t:"
 
 #: shared/inc/forms/my_account.php:97
 msgid "Allowed bandwidth per month"
-msgstr "Havi engedélyezett forgalom"
+msgstr "Havi engedÃ©lyezett forgalom"
 
 #: shared/inc/forms/root_admin.php:126
 msgid "Allowed bandwidth per month (MB):"
-msgstr "Havi engedélyezett forgalom (MB):"
+msgstr "Havi engedÃ©lyezett forgalom (MB):"
 
 #: admin/dtcrm/main.php:179
 msgid "Allowed data transfer (GB): "
@@ -539,12 +539,12 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:93
 msgid "Alternatively, you can add another domain name:"
-msgstr "Vagy hozzáadhat további domain neveket:"
+msgstr "Vagy hozzÃ¡adhat tovÃ¡bbi domain neveket:"
 
 #: admin/inc/renewals.php:114 shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Amount"
-msgstr "Ország"
+msgstr "OrszÃ¡g"
 
 #: shared/dtcrm/draw_adddomain.php:80
 msgid ""
@@ -555,11 +555,11 @@ msgid ""
 "addition. To request hosting for a new domain name, without administrator "
 "validation or domain name registration, please write to:"
 msgstr ""
-"Hamarosan az adminisztrátor ellenõrzi és jóváhagyja ezt a domain nevet. "
-"Önnek jelenleg nincs joga új domain neveket hozzáadni. Ha gyakran visz fel "
-"új domain neveket, akkor megkérheti az adminisztrátort, hogy adjon önnek "
-"ilyen jogok. Új domain név létrehozásához regisztráció nélkül kérjük írjon "
-"erre címre:"
+"Hamarosan az adminisztrÃ¡tor ellenÅ‘rzi Ã©s jÃ³vÃ¡hagyja ezt a domain nevet. "
+"Ã–nnek jelenleg nincs joga Ãºj domain neveket hozzÃ¡adni. Ha gyakran visz fel "
+"Ãºj domain neveket, akkor megkÃ©rheti az adminisztrÃ¡tort, hogy adjon Ã¶nnek "
+"ilyen jogok. Ãšj domain nÃ©v lÃ©trehozÃ¡sÃ¡hoz regisztrÃ¡ciÃ³ nÃ©lkÃ¼l kÃ©rjÃ¼k Ã­rjon "
+"erre cÃ­mre:"
 
 #: admin/inc/dtc_config.php:594
 msgid "Another location"
@@ -598,16 +598,16 @@ msgid ""
 "Are you sure you want to delete this domain name ? This will erase all "
 "hosted files for this domain!!!"
 msgstr ""
-"Biztosan törli ezt a domain nevet ? Ez a mûvelet a domain-hez tartozó összes "
-"fájlt is törli !!!"
+"Biztosan tÃ¶rli ezt a domain nevet ? Ez a mÅ±velet a domain-hez tartozÃ³ Ã¶sszes "
+"fÃ¡jlt is tÃ¶rli !!!"
 
 #: shared/inc/forms/root_admin.php:140
 msgid ""
 "Are your sure you want to delete this user? This will erase all his hosted "
 "domain names, files, and databases !!!"
 msgstr ""
-"Biztos benne hogy törölni akarja ezt a felhasználót ? Ez a mûvelet törli a "
-"felhasználó összes domain nevét, fájljait és adatbázisait!!!"
+"Biztos benne hogy tÃ¶rÃ¶lni akarja ezt a felhasznÃ¡lÃ³t ? Ez a mÅ±velet tÃ¶rli a "
+"felhasznÃ¡lÃ³ Ã¶sszes domain nevÃ©t, fÃ¡jljait Ã©s adatbÃ¡zisait!!!"
 
 #: admin/inc/dtc_config.php:719
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
@@ -628,11 +628,11 @@ msgstr ""
 
 #: admin/inc/monitor.php:15
 msgid "BW Quota"
-msgstr "Sávsz. kvóta"
+msgstr "SÃ¡vsz. kvÃ³ta"
 
 #: shared/inc/forms/root_admin.php:388
 msgid "Backup Vhost IP address"
-msgstr "Backup Vhost IP cím"
+msgstr "Backup Vhost IP cÃ­m"
 
 #: admin/inc/dtc_config.php:356
 msgid "Backup frequency:"
@@ -645,17 +645,17 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:414
 #: shared/gfx/skin/bwoup/layout.php:416
 msgid "Bandwidth monitor"
-msgstr "Sávszélesség monitor"
+msgstr "SÃ¡vszÃ©lessÃ©g monitor"
 
 #: shared/inc/forms/root_admin.php:493 shared/inc/forms/root_admin.php:557
 #, fuzzy
 msgid "Bandwidth per month"
-msgstr "Havi engedélyezett forgalom"
+msgstr "Havi engedÃ©lyezett forgalom"
 
 #: shared/dtcrm/draw.php:79
 #, fuzzy
 msgid "Bandwidth/month"
-msgstr "Havi engedélyezett forgalom"
+msgstr "Havi engedÃ©lyezett forgalom"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
 msgid "Bank validated"
@@ -680,7 +680,7 @@ msgstr ""
 #: admin/inc/nav.php:35
 #, fuzzy
 msgid "Browse all generated files"
-msgstr "Domain név fájlok:"
+msgstr "Domain nÃ©v fÃ¡jlok:"
 
 #: shared/inc/forms/root_admin.php:355
 msgid "CGI-BIN protection"
@@ -701,7 +701,7 @@ msgstr ""
 #: shared/inc/sql/database.php:42
 #, fuzzy
 msgid "Cannot close user database"
-msgstr "Az adatbázisai listája:"
+msgstr "Az adatbÃ¡zisai listÃ¡ja:"
 
 #: admin/inc/draw_user_admin.php:333
 msgid "Cannot find payment!"
@@ -778,7 +778,7 @@ msgstr ""
 
 #: shared/inc/draw.php:45 shared/inc/forms/email.php:213
 msgid "Change your password:"
-msgstr "Jelszóváltás:"
+msgstr "JelszÃ³vÃ¡ltÃ¡s:"
 
 #: shared/inc/forms/email.php:619
 msgid "Check to send a bounce message (vacation): "
@@ -794,14 +794,14 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:210
 msgid "City:"
-msgstr "Város:"
+msgstr "VÃ¡ros:"
 
 #: admin/dtcrm/main.php:168 client/new_account_form.php:622
 #: shared/dtcrm/draw_handle.php:63 shared/dtcrm/draw_handle.php:95
 #: shared/dtcrm/draw_handle.php:127 shared/dtcrm/draw_handle.php:247
 #, fuzzy
 msgid "City: "
-msgstr "Város:"
+msgstr "VÃ¡ros:"
 
 #: shared/dtcrm/draw_adddomain.php:291
 msgid "Click"
@@ -810,21 +810,21 @@ msgstr "Kattinson"
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
 msgid "Client"
-msgstr "Ügyfél"
+msgstr "ÃœgyfÃ©l"
 
 #: shared/inc/forms/root_admin.php:124
 msgid "Client ID:"
-msgstr "Ügyfél azon.:"
+msgstr "ÃœgyfÃ©l azon.:"
 
 #: client/new_account_form.php:711
 msgid "Client info"
-msgstr "Ügyfél azon."
+msgstr "ÃœgyfÃ©l azon."
 
 #: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:644
 #: shared/gfx/skin/bwoup/layout.php:646
 #, fuzzy
 msgid "Client interface"
-msgstr "Ügyfél azon.:"
+msgstr "ÃœgyfÃ©l azon.:"
 
 #: admin/inc/renewals.php:155 admin/inc/renewals.php:193
 #: admin/inc/renewals.php:227 admin/inc/renewals.php:260
@@ -834,7 +834,7 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
 #: shared/gfx/skin/bwoup/layout.php:260 shared/gfx/skin/bwoup/layout.php:269
 msgid "Client panel:"
-msgstr "Ügyfél panel:"
+msgstr "ÃœgyfÃ©l panel:"
 
 #: admin/inc/draw_user_admin.php:178
 msgid "Close without reply"
@@ -847,7 +847,7 @@ msgstr ""
 #: shared/inc/forms/lists.php:397
 #, fuzzy
 msgid "Closed list:"
-msgstr "Ügyféllista"
+msgstr "ÃœgyfÃ©llista"
 
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
@@ -856,29 +856,29 @@ msgstr ""
 #: admin/inc/dtc_config.php:1325
 #, fuzzy
 msgid "Company name"
-msgstr "Cégnév:"
+msgstr "CÃ©gnÃ©v:"
 
 #: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:202
 msgid "Company name:"
-msgstr "Cégnév:"
+msgstr "CÃ©gnÃ©v:"
 
 #: admin/dtcrm/main.php:163 client/new_account_form.php:590
 #: shared/dtcrm/draw_handle.php:58 shared/dtcrm/draw_handle.php:90
 #: shared/dtcrm/draw_handle.php:122 shared/dtcrm/draw_handle.php:226
 #, fuzzy
 msgid "Company name: "
-msgstr "Cégnév:"
+msgstr "CÃ©gnÃ©v:"
 
 #: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:434
 #: shared/gfx/skin/bwoup/layout.php:436
 msgid "Configuration generation"
-msgstr "Konfigurációs generálása"
+msgstr "KonfigurÃ¡ciÃ³s generÃ¡lÃ¡sa"
 
 #: shared/gfx/skin/default_layout.php:406
 #, fuzzy
 msgid "Configuration of domains for"
 msgstr ""
-"Az összes domain konfigurációja, ami a következõ felhasználó tulajdonában van"
+"Az Ã¶sszes domain konfigurÃ¡ciÃ³ja, ami a kÃ¶vetkezÅ‘ felhasznÃ¡lÃ³ tulajdonÃ¡ban van"
 
 #: shared/inc/forms/root_admin.php:457
 msgid "Configuration of the VPSes"
@@ -891,24 +891,24 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:333
 #, fuzzy
 msgid "Configuration of the domains"
-msgstr "Állítsa be a domain nevét:"
+msgstr "ÃllÃ­tsa be a domain nevÃ©t:"
 
 #: shared/gfx/skin/default_layout.php:402
 msgid "Configuration of the virtual administrator"
-msgstr "A következõ virtuális adminisztrátor konfigurációja"
+msgstr "A kÃ¶vetkezÅ‘ virtuÃ¡lis adminisztrÃ¡tor konfigurÃ¡ciÃ³ja"
 
 #: shared/inc/forms/dns.php:85
 msgid "Configure your domain name:"
-msgstr "Állítsa be a domain nevét:"
+msgstr "ÃllÃ­tsa be a domain nevÃ©t:"
 
 #: client/new_account_form.php:565
 msgid "Confirm pass: "
-msgstr "Jelszó megerõsítése: "
+msgstr "JelszÃ³ megerÅ‘sÃ­tÃ©se: "
 
 #: shared/inc/forms/email.php:219
 #, fuzzy
 msgid "Confirm password: "
-msgstr "Jelszó megerõsítése: "
+msgstr "JelszÃ³ megerÅ‘sÃ­tÃ©se: "
 
 #: admin/inc/draw_user_admin.php:469
 msgid "Console output"
@@ -933,8 +933,8 @@ msgstr ""
 msgid ""
 "Could not connect to domain registration server: please try again later!"
 msgstr ""
-"Nem tudok csatlakozni a domain regisztrációs szerverhez: kérem próbálja "
-"késõbb"
+"Nem tudok csatlakozni a domain regisztrÃ¡ciÃ³s szerverhez: kÃ©rem prÃ³bÃ¡lja "
+"kÃ©sÅ‘bb"
 
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
@@ -982,7 +982,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:413 shared/inc/forms/root_admin.php:560
 msgid "Country"
-msgstr "Ország"
+msgstr "OrszÃ¡g"
 
 #: client/new_account_form.php:227
 msgid "Country code seems incorrect."
@@ -990,7 +990,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1231 shared/inc/forms/my_account.php:212
 msgid "Country:"
-msgstr "Ország:"
+msgstr "OrszÃ¡g:"
 
 #: admin/dtcrm/main.php:171 client/new_account_form.php:628
 #: shared/dtcrm/draw_handle.php:65 shared/dtcrm/draw_handle.php:97
@@ -998,11 +998,11 @@ msgstr "Ország:"
 #: shared/inc/forms/root_admin.php:280
 #, fuzzy
 msgid "Country: "
-msgstr "Ország:"
+msgstr "OrszÃ¡g:"
 
 #: shared/inc/forms/database.php:65 shared/inc/forms/database.php:113
 msgid "Create"
-msgstr "Létrehoz"
+msgstr "LÃ©trehoz"
 
 #: shared/inc/forms/aliases.php:23
 msgid "Create Mail Group"
@@ -1014,7 +1014,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_handle.php:29
 msgid "Create a new handle"
-msgstr "Új kezelõ létrehozása"
+msgstr "Ãšj kezelÅ‘ lÃ©trehozÃ¡sa"
 
 #: shared/dtcrm/draw_handle.php:199
 msgid "Create a new nick-handle:"
@@ -1022,7 +1022,7 @@ msgstr ""
 
 #: shared/inc/forms/subdomain.php:126
 msgid "Create a subdomain: "
-msgstr "Aldomain létrehozása: "
+msgstr "Aldomain lÃ©trehozÃ¡sa: "
 
 #: shared/inc/forms/vps.php:26
 msgid "Credential not correct: can't display in file "
@@ -1051,7 +1051,7 @@ msgstr ""
 #: shared/inc/forms/lists.php:408
 #, fuzzy
 msgid "Custom headers:"
-msgstr "Ügyfél címe"
+msgstr "ÃœgyfÃ©l cÃ­me"
 
 #: admin/inc/dtc_config.php:1305
 msgid "Customer and service country vs company:"
@@ -1060,34 +1060,34 @@ msgstr ""
 #: admin/inc/dtc_config.php:1320
 #, fuzzy
 msgid "Customer country"
-msgstr "Ország"
+msgstr "OrszÃ¡g"
 
 #: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:409
 #: shared/gfx/skin/bwoup/layout.php:411
 msgid "Customer management"
-msgstr "Ügyfélkapcsolat-kezelés"
+msgstr "ÃœgyfÃ©lkapcsolat-kezelÃ©s"
 
 #: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:499
 #, fuzzy
 msgid "Customer renewals"
-msgstr "Ország"
+msgstr "OrszÃ¡g"
 
 #: client/new_account_form.php:713 shared/gfx/skin/default_layout.php:120
 #: shared/gfx/skin/bwoup/layout.php:486
 msgid "Customer's address"
-msgstr "Ügyfél címe"
+msgstr "ÃœgyfÃ©l cÃ­me"
 
 #: shared/gfx/skin/default_layout.php:122
 msgid "Customer's administrators"
-msgstr "Ügyfél adminisztrátorai"
+msgstr "ÃœgyfÃ©l adminisztrÃ¡torai"
 
 #: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:503
 msgid "Customer's bandwidth consumption"
-msgstr "Az ügyfél sávszélesség felhasználása"
+msgstr "Az Ã¼gyfÃ©l sÃ¡vszÃ©lessÃ©g felhasznÃ¡lÃ¡sa"
 
 #: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:481
 msgid "Customers list"
-msgstr "Ügyféllista"
+msgstr "ÃœgyfÃ©llista"
 
 #: shared/inc/forms/root_admin.php:347
 msgid "Customize"
@@ -1095,11 +1095,11 @@ msgstr ""
 
 #: shared/inc/draw.php:135 shared/inc/draw.php:412
 msgid "DNS Nick handles"
-msgstr "DNS álnevek"
+msgstr "DNS Ã¡lnevek"
 
 #: shared/inc/draw.php:196
 msgid "DNS and MX"
-msgstr "DNS és MX"
+msgstr "DNS Ã©s MX"
 
 #: shared/inc/draw.php:376
 msgid "DNS config of:"
@@ -1108,7 +1108,7 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:526
 #, fuzzy
 msgid "DTC Configuration"
-msgstr "Fõ szoftver konfiguráció"
+msgstr "FÅ‘ szoftver konfigurÃ¡ciÃ³"
 
 #: admin/inc/dtc_config.php:619
 msgid "DTC Skin chooser"
@@ -1117,7 +1117,7 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:319 shared/gfx/skin/bwoup/layout.php:439
 #: shared/gfx/skin/bwoup/layout.php:441
 msgid "DTC general configuration"
-msgstr "DTC általános konfigurálás"
+msgstr "DTC Ã¡ltalÃ¡nos konfigurÃ¡lÃ¡s"
 
 #: admin/inc/dtc_config.php:557
 msgid "Daemon"
@@ -1129,34 +1129,34 @@ msgstr ""
 
 #: shared/inc/forms/admin_stats.php:83
 msgid "Database Name"
-msgstr "Adatbázis név"
+msgstr "AdatbÃ¡zis nÃ©v"
 
 #: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
 msgid "Database files:"
-msgstr "Adatbázis fájlok:"
+msgstr "AdatbÃ¡zis fÃ¡jlok:"
 
 #: shared/inc/forms/database.php:76
 #, fuzzy
 msgid "Database name"
-msgstr "Adatbázis név"
+msgstr "AdatbÃ¡zis nÃ©v"
 
 #: shared/inc/draw.php:288
 msgid "Databases"
-msgstr "Adatbázisok"
+msgstr "AdatbÃ¡zisok"
 
 #: shared/inc/forms/admin_stats.php:81
 msgid "Databases disk usage:"
-msgstr "Az adatbázisok lemezterület felhasználása:"
+msgstr "Az adatbÃ¡zisok lemezterÃ¼let felhasznÃ¡lÃ¡sa:"
 
 #: shared/inc/draw.php:428
 #, fuzzy
 msgid "Databases:"
-msgstr "Adatbázis fájlok:"
+msgstr "AdatbÃ¡zis fÃ¡jlok:"
 
 #: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:210
 #: shared/inc/forms/invoices.php:23 shared/inc/forms/ticket.php:158
 msgid "Date"
-msgstr "Dátum"
+msgstr "DÃ¡tum"
 
 #: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:511
 msgid "Deamons states"
@@ -1184,18 +1184,18 @@ msgstr ""
 
 #: shared/inc/forms/subdomain.php:113
 msgid "Default subdomain: "
-msgstr "Alapértelmezett aldomain: "
+msgstr "AlapÃ©rtelmezett aldomain: "
 
 #: admin/inc/draw_user_admin.php:281 admin/inc/draw_user_admin.php:301
 #: shared/inc/forms/database.php:53 shared/inc/forms/database.php:99
 #: shared/inc/forms/domain_stats.php:104
 msgid "Delete"
-msgstr "Töröl"
+msgstr "TÃ¶rÃ¶l"
 
 #: shared/inc/forms/root_admin.php:143
 #, fuzzy
 msgid "Delete a user domain:"
-msgstr "Az ön domainje:"
+msgstr "Az Ã¶n domainje:"
 
 #: shared/inc/forms/lists.php:265
 msgid ""
@@ -1206,11 +1206,11 @@ msgstr ""
 #: shared/inc/forms/lists.php:405
 #, fuzzy
 msgid "Delete headers:"
-msgstr "Felhasználó törlése"
+msgstr "FelhasznÃ¡lÃ³ tÃ¶rlÃ©se"
 
 #: shared/dtcrm/draw_nameservers.php:120
 msgid "Delete name server"
-msgstr "Névszerver törlése"
+msgstr "NÃ©vszerver tÃ¶rlÃ©se"
 
 #: shared/inc/forms/root_admin.php:191
 msgid "Delete one of the admin VPS: "
@@ -1222,29 +1222,29 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:141
 msgid "Delete the user"
-msgstr "Felhasználó törlése"
+msgstr "FelhasznÃ¡lÃ³ tÃ¶rlÃ©se"
 
 #: shared/inc/forms/lists.php:445
 #, fuzzy
 msgid "Delete:"
-msgstr "Töröl"
+msgstr "TÃ¶rÃ¶l"
 
 #: shared/dtcrm/draw_nameservers.php:74
 msgid "Deletion of name server failed"
-msgstr "A névszerver törlése nem sikerült"
+msgstr "A nÃ©vszerver tÃ¶rlÃ©se nem sikerÃ¼lt"
 
 #: shared/dtcrm/draw_nameservers.php:68
 msgid "Deletion of name server was succesful"
-msgstr "Sikeresen törölte a névszervert"
+msgstr "Sikeresen tÃ¶rÃ¶lte a nÃ©vszervert"
 
 #: shared/inc/forms/lists.php:431
 #, fuzzy
 msgid "Delimiter:"
-msgstr "Töröl"
+msgstr "TÃ¶rÃ¶l"
 
 #: shared/inc/forms/email.php:247 shared/inc/forms/email.php:614
 msgid "Deliver messages locally in INBOX: "
-msgstr "Helyileg kézbesíti az üzeneteket INBOX: "
+msgstr "Helyileg kÃ©zbesÃ­ti az Ã¼zeneteket INBOX: "
 
 #: shared/inc/forms/aliases.php:52
 msgid "Delivery Group:"
@@ -1264,7 +1264,7 @@ msgstr ""
 
 #: client/new_account_form.php:543
 msgid "Desired domain name"
-msgstr "Igényelt domain név"
+msgstr "IgÃ©nyelt domain nÃ©v"
 
 #: admin/inc/dtc_config.php:361
 msgid "Destination folder:"
@@ -1272,7 +1272,7 @@ msgstr ""
 
 #: shared/inc/forms/domain_stats.php:61
 msgid "Detailed web statistics (HTTP) of your subdomains:"
-msgstr "Részletes web statisztika (HTTP) az aldomainekrõl:"
+msgstr "RÃ©szletes web statisztika (HTTP) az aldomainekrÅ‘l:"
 
 #: shared/inc/forms/lists.php:416
 msgid "Digest"
@@ -1281,7 +1281,7 @@ msgstr ""
 #: shared/inc/forms/lists.php:417
 #, fuzzy
 msgid "Digest interval:"
-msgstr "Ügyfél azon.:"
+msgstr "ÃœgyfÃ©l azon.:"
 
 #: shared/inc/forms/lists.php:418
 msgid "Digest max mails:"
@@ -1294,20 +1294,20 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:360
 msgid "Disk quota"
-msgstr "Tárhely kvóta"
+msgstr "TÃ¡rhely kvÃ³ta"
 
 #: shared/inc/forms/root_admin.php:125
 msgid "Disk quota (MB):"
-msgstr "Tárhely kvóta (MB):"
+msgstr "TÃ¡rhely kvÃ³ta (MB):"
 
 #: admin/inc/monitor.php:15 shared/inc/forms/admin_stats.php:83
 #: shared/inc/forms/admin_stats.php:104
 msgid "Disk usage"
-msgstr "Lemezterület használat"
+msgstr "LemezterÃ¼let hasznÃ¡lat"
 
 #: admin/inc/nav.php:116
 msgid "Display and sort by:"
-msgstr "Megjelenít és rendez a következõk szerint:"
+msgstr "MegjelenÃ­t Ã©s rendez a kÃ¶vetkezÅ‘k szerint:"
 
 #: shared/inc/forms/lists.php:250
 msgid "Do not change unless you really know what you are doing."
@@ -1316,7 +1316,7 @@ msgstr ""
 #: shared/dtcrm/draw_adddomain.php:102
 msgid "Do you want to transfer an existing domain or register a new domain?"
 msgstr ""
-"Szeretne áttranszferálni egy létezõ domaint vagy újat szeretne regisztrálni ?"
+"Szeretne Ã¡ttranszferÃ¡lni egy lÃ©tezÅ‘ domaint vagy Ãºjat szeretne regisztrÃ¡lni ?"
 
 #: shared/drawlib/anotherDtc.php:129
 msgid "Documentation"
@@ -1324,23 +1324,23 @@ msgstr ""
 
 #: shared/gfx/skin/default_layout.php:194
 msgid "Domain Technologie Control : root admin console"
-msgstr "Domain Technologie Control : adminisztrátor-konzol"
+msgstr "Domain Technologie Control : adminisztrÃ¡tor-konzol"
 
 #: shared/inc/draw.php:371
 #, fuzzy
 msgid "Domain Tools"
-msgstr "Domain név"
+msgstr "Domain nÃ©v"
 
 #: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:650
 #: shared/gfx/skin/bwoup/layout.php:652
 #, fuzzy
 msgid "Domain config"
-msgstr "Domain név"
+msgstr "Domain nÃ©v"
 
 #: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:207
 #: shared/inc/forms/admin_stats.php:104 shared/inc/forms/root_admin.php:343
 msgid "Domain name"
-msgstr "Domain név"
+msgstr "Domain nÃ©v"
 
 #: admin/inc/draw_user_admin.php:237
 msgid "Domain name / VPS server hostname"
@@ -1348,19 +1348,19 @@ msgstr ""
 
 #: shared/inc/forms/admin_stats.php:67
 msgid "Domain name files:"
-msgstr "Domain név fájlok:"
+msgstr "Domain nÃ©v fÃ¡jlok:"
 
 #: shared/dtcrm/draw_adddomain.php:68
 msgid "Domain name is not in correct format. Please enter another name."
-msgstr "A domain név nem megfelelõ formátumú. Kérjük válassszon másik nevet."
+msgstr "A domain nÃ©v nem megfelelÅ‘ formÃ¡tumÃº. KÃ©rjÃ¼k vÃ¡lassszon mÃ¡sik nevet."
 
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
-msgstr "Domain név regisztráció"
+msgstr "Domain nÃ©v regisztrÃ¡ciÃ³"
 
 #: admin/inc/dtc_config.php:878
 msgid "Domain name registry API configuraiton"
-msgstr "Domain név regisztrációs API beállítása"
+msgstr "Domain nÃ©v regisztrÃ¡ciÃ³s API beÃ¡llÃ­tÃ¡sa"
 
 #: client/new_account_form.php:79 client/new_account_form.php:86
 msgid "Domain name seems to be incorrect."
@@ -1368,7 +1368,7 @@ msgstr ""
 
 #: shared/inc/forms/admin_stats.php:102
 msgid "Domain name trafic and disk usage:"
-msgstr "Domain név forgalom és lemezterület használat:"
+msgstr "Domain nÃ©v forgalom Ã©s lemezterÃ¼let hasznÃ¡lat:"
 
 #: shared/inc/forms/dns.php:61
 msgid "Domain root TXT record2: "
@@ -1381,19 +1381,19 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:409
 #, fuzzy
 msgid "Domains for"
-msgstr "Domain név"
+msgstr "Domain nÃ©v"
 
 #: shared/inc/forms/subdomain.php:245
 msgid "Dynamic IP update login: "
-msgstr "Dinamikus IP frissítés login neve: "
+msgstr "Dinamikus IP frissÃ­tÃ©s login neve: "
 
 #: shared/inc/forms/subdomain.php:251
 msgid "Dynamic IP update password: "
-msgstr "Dinamikus IP frissítés jelszó: "
+msgstr "Dinamikus IP frissÃ­tÃ©s jelszÃ³: "
 
 #: admin/inc/nav.php:61
 msgid "E-MAIL ACCOUNTS"
-msgstr "E-MAIL HOZZÁFÉRÉSEK"
+msgstr "E-MAIL HOZZÃFÃ‰RÃ‰SEK"
 
 #: admin/deamons_state.php:293 admin/deamons_state.php:299
 #: admin/deamons_state.php:305 admin/deamons_state.php:311
@@ -1410,7 +1410,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_nameservers.php:99
 msgid "Edit a name server:"
-msgstr "Szerkeszti a névszerver adatait:"
+msgstr "Szerkeszti a nÃ©vszerver adatait:"
 
 #: shared/inc/forms/lists.php:52
 msgid "Edit mailing list"
@@ -1427,7 +1427,7 @@ msgstr "Aldomain-ek:"
 
 #: shared/inc/forms/email.php:246
 msgid "Edit your mailbox redirections:"
-msgstr "E-mail átirányítások:"
+msgstr "E-mail Ã¡tirÃ¡nyÃ­tÃ¡sok:"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
@@ -1441,11 +1441,11 @@ msgstr ""
 #: shared/inc/forms/aliases.php:57
 #, fuzzy
 msgid "Email address is already in use!"
-msgstr "A webmester email címe:"
+msgstr "A webmester email cÃ­me:"
 
 #: admin/inc/dtc_config.php:697
 msgid "Email address of your webmaster:"
-msgstr "A webmester email címe:"
+msgstr "A webmester email cÃ­me:"
 
 #: client/new_account_form.php:107
 msgid "Email address seems to be incorrect format."
@@ -1494,7 +1494,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:120
 msgid "Enter the domain name you want to register:"
-msgstr "Adja meg a regisztrálni kívánt domain nevét:"
+msgstr "Adja meg a regisztrÃ¡lni kÃ­vÃ¡nt domain nevÃ©t:"
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
 msgid "Error"
@@ -1516,7 +1516,7 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
 #, fuzzy
 msgid "Expiration"
-msgstr "Lejárat dátuma"
+msgstr "LejÃ¡rat dÃ¡tuma"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
@@ -1529,12 +1529,12 @@ msgstr ""
 
 #: admin/dtcrm/main.php:211 shared/inc/forms/my_account.php:97
 msgid "Expiry date"
-msgstr "Lejárat dátuma"
+msgstr "LejÃ¡rat dÃ¡tuma"
 
 #: shared/inc/forms/root_admin.php:127 shared/inc/forms/vps.php:199
 #, fuzzy
 msgid "Expiry date:"
-msgstr "Lejárat dátuma"
+msgstr "LejÃ¡rat dÃ¡tuma"
 
 #: shared/inc/forms/domain_info.php:101
 msgid "Export this domain to a file"
@@ -1542,19 +1542,19 @@ msgstr ""
 
 #: shared/inc/forms/ftp.php:54
 msgid "FTP account configuration: "
-msgstr "FTP hozzáférés konfigurálása: "
+msgstr "FTP hozzÃ¡fÃ©rÃ©s konfigurÃ¡lÃ¡sa: "
 
 #: shared/inc/draw.php:210 shared/inc/draw.php:400
 msgid "FTP accounts"
-msgstr "Ftp hozzáférések"
+msgstr "Ftp hozzÃ¡fÃ©rÃ©sek"
 
 #: shared/inc/draw.php:402
 msgid "FTP accounts of "
-msgstr "FTP hozzáférései a(z) "
+msgstr "FTP hozzÃ¡fÃ©rÃ©sei a(z) "
 
 #: shared/inc/forms/domain_info.php:55
 msgid "FTP accounts:"
-msgstr "Ftp hozzáférések:"
+msgstr "Ftp hozzÃ¡fÃ©rÃ©sek:"
 
 #: admin/inc/dtc_config.php:44
 msgid "FTP backup"
@@ -1577,11 +1577,11 @@ msgstr ""
 #: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
 #, fuzzy
 msgid "Familly name: "
-msgstr "Vezetéknév:"
+msgstr "VezetÃ©knÃ©v:"
 
 #: shared/inc/forms/my_account.php:206
 msgid "Family name:"
-msgstr "Vezetéknév:"
+msgstr "VezetÃ©knÃ©v:"
 
 #: shared/inc/forms/my_account.php:214
 msgid "Fax:"
@@ -1613,14 +1613,14 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:205
 msgid "First name:"
-msgstr "Keresztnév:"
+msgstr "KeresztnÃ©v:"
 
 #: admin/dtcrm/main.php:160 client/new_account_form.php:583
 #: shared/dtcrm/draw_handle.php:56 shared/dtcrm/draw_handle.php:88
 #: shared/dtcrm/draw_handle.php:120 shared/dtcrm/draw_handle.php:229
 #, fuzzy
 msgid "First name: "
-msgstr "Keresztnév:"
+msgstr "KeresztnÃ©v:"
 
 #: admin/inc/draw_user_admin.php:126
 msgid "First query date: "
@@ -1642,15 +1642,15 @@ msgstr ""
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Gateway cost"
-msgstr "Fizetési átjáró"
+msgstr "FizetÃ©si Ã¡tjÃ¡rÃ³"
 
 #: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:517
 msgid "General"
-msgstr "Általános"
+msgstr "ÃltalÃ¡nos"
 
 #: shared/inc/draw.php:553
 msgid "General information of "
-msgstr "Általános információk "
+msgstr "ÃltalÃ¡nos informÃ¡ciÃ³k "
 
 #: shared/inc/forms/subdomain.php:161
 msgid "Generate a vhost entry for this subdomain:"
@@ -1659,19 +1659,19 @@ msgstr ""
 #: admin/inc/dtc_config.php:652
 #, fuzzy
 msgid "Generate all apache vhosts on local network ip (NAT): "
-msgstr "Az összes apache vhosts fájl generálása helyi hálózati ip-vel(NAT)"
+msgstr "Az Ã¶sszes apache vhosts fÃ¡jl generÃ¡lÃ¡sa helyi hÃ¡lÃ³zati ip-vel(NAT)"
 
 #: email/login.php:6
 msgid "Go to client panel"
-msgstr "Ugrás az ügyfél panelre"
+msgstr "UgrÃ¡s az Ã¼gyfÃ©l panelre"
 
 #: client/login.php:6
 msgid "Go to email panel"
-msgstr "Ugrás az e-mail panelre"
+msgstr "UgrÃ¡s az e-mail panelre"
 
 #: client/new_account_form.php:640
 msgid "Go to login"
-msgstr "Belépés"
+msgstr "BelÃ©pÃ©s"
 
 #: shared/inc/forms/vps.php:258
 msgid "Gracefully shutdown (xm shutdown)"
@@ -1679,7 +1679,7 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:131
 msgid "Grant sub-account addition rights (reseller):"
-msgstr "Engedélyezi az al-hozzáférések hozzáadását (viszonteladó): "
+msgstr "EngedÃ©lyezi az al-hozzÃ¡fÃ©rÃ©sek hozzÃ¡adÃ¡sÃ¡t (viszonteladÃ³): "
 
 #: shared/inc/forms/vps.php:109
 msgid "HDD I/O:"
@@ -1691,7 +1691,7 @@ msgstr ""
 
 #: shared/inc/draw.php:311
 msgid "Help"
-msgstr "Súgó"
+msgstr "SÃºgÃ³"
 
 #: shared/inc/forms/lists.php:232
 msgid "Help missing for noaccessdenymails"
@@ -1703,7 +1703,7 @@ msgstr ""
 
 #: shared/inc/draw.php:444
 msgid "Help:"
-msgstr "Súgó:"
+msgstr "SÃºgÃ³:"
 
 #: shared/inc/forms/lists.php:244
 msgid ""
@@ -1726,11 +1726,11 @@ msgstr ""
 #: admin/inc/dtc_config.php:643
 #, fuzzy
 msgid "Host IP addresses (separated by \"|\"): "
-msgstr "Gazda IP címek (\"|\" elválasztva):"
+msgstr "Gazda IP cÃ­mek (\"|\" elvÃ¡lasztva):"
 
 #: shared/dtcrm/draw_adddomain.php:42
 msgid "Hosting + domain name registration or transfer"
-msgstr "Hoszting + domain név regisztráció vagy transzfer"
+msgstr "Hoszting + domain nÃ©v regisztrÃ¡ciÃ³ vagy transzfer"
 
 #: shared/dtcrm/draw_adddomain.php:47
 msgid "Hosting only"
@@ -1753,7 +1753,7 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:278
 #, fuzzy
 msgid "Hostname: "
-msgstr "Keresztnév:"
+msgstr "KeresztnÃ©v:"
 
 #: shared/inc/forms/lists.php:247
 msgid ""
@@ -1771,34 +1771,34 @@ msgstr ""
 #: admin/inc/dtc_config.php:756 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/root_admin.php:384
 msgid "IP address"
-msgstr "IP cím"
+msgstr "IP cÃ­m"
 
 #: shared/dtcrm/draw_nameservers.php:109 shared/dtcrm/draw_nameservers.php:142
 msgid "IP address of name server:"
-msgstr "A névszerver IP címe:"
+msgstr "A nÃ©vszerver IP cÃ­me:"
 
 #: shared/inc/forms/dns.php:19
 msgid "IP address of the primary DNS server:"
-msgstr "Az elsõdleges DNS szerver IP címe:"
+msgstr "Az elsÅ‘dleges DNS szerver IP cÃ­me:"
 
 #: shared/inc/forms/subdomain.php:156
 #, fuzzy
 msgid "IP address or CNAME: "
-msgstr "IP cím"
+msgstr "IP cÃ­m"
 
 #: shared/inc/forms/vps.php:235
 #, fuzzy
 msgid "IP address: "
-msgstr "IP cím"
+msgstr "IP cÃ­m"
 
 #: admin/inc/dtc_config.php:32
 msgid "IP addresses and network"
-msgstr "IP címek és hálózat"
+msgstr "IP cÃ­mek Ã©s hÃ¡lÃ³zat"
 
 #: shared/inc/forms/vps.php:233
 #, fuzzy
 msgid "IP addresses: "
-msgstr "IP cím"
+msgstr "IP cÃ­m"
 
 #: admin/inc/dtc_config.php:710
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
@@ -1869,7 +1869,7 @@ msgid ""
 "If you want to keep your current registrar, you have to make the whois point "
 "to these DNS:"
 msgstr ""
-"Ha meg szeretne maradni a jelenlegi regisztrátoránál, akkor a whois "
+"Ha meg szeretne maradni a jelenlegi regisztrÃ¡torÃ¡nÃ¡l, akkor a whois "
 "rekordnak azok"
 
 #: shared/inc/forms/vps.php:261
@@ -1967,7 +1967,7 @@ msgstr ""
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Instant account"
-msgstr "Az ön hosting hozzáférése:"
+msgstr "Az Ã¶n hosting hozzÃ¡fÃ©rÃ©se:"
 
 #: shared/inc/draw.php:414
 msgid "Internet Whois Nick Handles management:"
@@ -1995,7 +1995,7 @@ msgstr ""
 
 #: admin/dtcrm/main.php:161 client/new_account_form.php:586
 msgid "Is it a company: "
-msgstr "Céges elõfizetés: "
+msgstr "CÃ©ges elÅ‘fizetÃ©s: "
 
 #: shared/inc/forms/lists.php:175
 msgid ""
@@ -2011,7 +2011,7 @@ msgstr "Nyelv"
 #: shared/inc/forms/vps.php:172
 #, fuzzy
 msgid "Last boot date: "
-msgstr "Az adatbázisai listája:"
+msgstr "Az adatbÃ¡zisai listÃ¡ja:"
 
 #: admin/inc/draw_user_admin.php:400
 msgid "Last message age"
@@ -2032,7 +2032,7 @@ msgstr ""
 
 #: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:509
 msgid "Launching the configuration files generation"
-msgstr "Elindítja a konfigurációs fájlok generálását"
+msgstr "ElindÃ­tja a konfigurÃ¡ciÃ³s fÃ¡jlok generÃ¡lÃ¡sÃ¡t"
 
 #: client/new_account_form.php:718
 msgid ""
@@ -2059,11 +2059,11 @@ msgstr ""
 
 #: shared/inc/forms/ftp.php:51
 msgid "List of your FTP accounts: "
-msgstr "Az ön FTP hozzáférései: "
+msgstr "Az Ã¶n FTP hozzÃ¡fÃ©rÃ©sei: "
 
 #: shared/inc/forms/ssh.php:45
 msgid "List of your SSH accounts:"
-msgstr "Az ön SSH hozzáférései:"
+msgstr "Az Ã¶n SSH hozzÃ¡fÃ©rÃ©sei:"
 
 #: admin/inc/dtc_config.php:1206
 msgid "List of your companies:"
@@ -2071,7 +2071,7 @@ msgstr ""
 
 #: shared/inc/forms/database.php:68
 msgid "List of your databases:"
-msgstr "Az adatbázisai listája:"
+msgstr "Az adatbÃ¡zisai listÃ¡ja:"
 
 #: shared/inc/forms/aliases.php:21
 msgid "List of your mail groups"
@@ -2080,20 +2080,20 @@ msgstr ""
 #: shared/inc/forms/email.php:530
 #, fuzzy
 msgid "List of your mailboxes:"
-msgstr "Az adatbázisai listája:"
+msgstr "Az adatbÃ¡zisai listÃ¡ja:"
 
 #: shared/inc/forms/lists.php:27
 #, fuzzy
 msgid "List of your mailing lists"
-msgstr "Az adatbázisai listája:"
+msgstr "Az adatbÃ¡zisai listÃ¡ja:"
 
 #: shared/dtcrm/draw_nameservers.php:79
 msgid "List of your registred name-servers:"
-msgstr "A regisztrált névszerverek listája:"
+msgstr "A regisztrÃ¡lt nÃ©vszerverek listÃ¡ja:"
 
 #: shared/inc/forms/subdomain.php:125
 msgid "List of your subdomains: "
-msgstr "Lista az aldomain-jeirõl: "
+msgstr "Lista az aldomain-jeirÅ‘l: "
 
 #: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:97
 msgid "List owner"
@@ -2111,16 +2111,16 @@ msgid ""
 "transfers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup DNS server):"
 msgstr ""
-"Sorolja fel a tartalék mx szervereit &quot;|&quot;-al elválasztva<br>\n"
-"(hagyja üresen, ha nincs tartalék mx szervere)"
+"Sorolja fel a tartalÃ©k mx szervereit &quot;|&quot;-al elvÃ¡lasztva<br>\n"
+"(hagyja Ã¼resen, ha nincs tartalÃ©k mx szervere)"
 
 #: admin/inc/dtc_config.php:692
 msgid ""
 "List your backup MX servers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup MX server):"
 msgstr ""
-"Sorolja fel a tartalék mx szervereit &quot;|&quot;-al elválasztva<br>\n"
-"(hagyja üresen, ha nincs tartalék mx szervere)"
+"Sorolja fel a tartalÃ©k mx szervereit &quot;|&quot;-al elvÃ¡lasztva<br>\n"
+"(hagyja Ã¼resen, ha nincs tartalÃ©k mx szervere)"
 
 #: shared/inc/forms/root_admin.php:368
 #, fuzzy
@@ -2130,7 +2130,7 @@ msgstr "Lista neve"
 #: admin/inc/dtc_config.php:657
 #, fuzzy
 msgid "Local network area ip adress of the vhost using NAT: "
-msgstr "A NAT-ot használó vhost helyi hálózati ip címe"
+msgstr "A NAT-ot hasznÃ¡lÃ³ vhost helyi hÃ¡lÃ³zati ip cÃ­me"
 
 #: admin/inc/dtc_config.php:402
 msgid "Location"
@@ -2139,7 +2139,7 @@ msgstr ""
 #: admin/inc/dtc_config.php:591
 #, fuzzy
 msgid "Location of user's database: "
-msgstr "Az adatbázisai listája:"
+msgstr "Az adatbÃ¡zisai listÃ¡ja:"
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:245 admin/inc/draw_user_admin.php:237
@@ -2154,11 +2154,11 @@ msgstr "Az adatbázisai listája:"
 #: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:260
 #: shared/gfx/skin/bwoup/layout.php:269
 msgid "Login"
-msgstr "Belépés"
+msgstr "BelÃ©pÃ©s"
 
 #: client/new_account_form.php:709
 msgid "Login info"
-msgstr "Belépési információk"
+msgstr "BelÃ©pÃ©si informÃ¡ciÃ³k"
 
 #: shared/inc/forms/email.php:328
 msgid "Login successfull. Please select a menu entry on the left..."
@@ -2186,12 +2186,12 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
-msgstr "MX és NS tartalék szerverek"
+msgstr "MX Ã©s NS tartalÃ©k szerverek"
 
 #: shared/inc/draw.php:359
 #, fuzzy
 msgid "Mail Groups:"
-msgstr "Levelesládák:"
+msgstr "LeveleslÃ¡dÃ¡k:"
 
 #: admin/inc/graphs.php:11
 msgid "Mail Queue graph"
@@ -2204,7 +2204,7 @@ msgstr ""
 #: admin/deamons_state.php:133
 #, fuzzy
 msgid "Mail gen files"
-msgstr "Domain név fájlok:"
+msgstr "Domain nÃ©v fÃ¡jlok:"
 
 #: shared/inc/draw.php:361
 msgid "Mail groups of "
@@ -2225,11 +2225,11 @@ msgstr ""
 #: shared/inc/forms/email.php:533
 #, fuzzy
 msgid "Mailbox configuration:"
-msgstr "Fõ szoftver konfiguráció"
+msgstr "FÅ‘ szoftver konfigurÃ¡ciÃ³"
 
 #: shared/inc/forms/email.php:311
 msgid "Mailbox configuration: "
-msgstr "Levelesláda konfiguráció: "
+msgstr "LeveleslÃ¡da konfigurÃ¡ciÃ³: "
 
 #: shared/inc/sql/email.php:23
 msgid "Mailbox does not exists in database!<br>\n"
@@ -2242,48 +2242,48 @@ msgstr ""
 #: shared/inc/forms/email.php:582 shared/inc/forms/email.php:593
 #, fuzzy
 msgid "Mailbox quota: "
-msgstr "Levelesládák:"
+msgstr "LeveleslÃ¡dÃ¡k:"
 
 #: shared/inc/forms/email.php:27
 #, fuzzy
 msgid "Mailbox type"
-msgstr "Levelesládák:"
+msgstr "LeveleslÃ¡dÃ¡k:"
 
 #: shared/inc/draw.php:233
 msgid "Mailboxes"
-msgstr "Levelesládák"
+msgstr "LeveleslÃ¡dÃ¡k"
 
 #: shared/inc/draw.php:357
 #, fuzzy
 msgid "Mailboxes of "
-msgstr "Levelesládái a(z) "
+msgstr "LeveleslÃ¡dÃ¡i a(z) "
 
 #: shared/inc/draw.php:355 shared/inc/forms/domain_info.php:54
 msgid "Mailboxes:"
-msgstr "Levelesládák:"
+msgstr "LeveleslÃ¡dÃ¡k:"
 
 #: shared/inc/draw.php:247
 #, fuzzy
 msgid "Mailing lists"
-msgstr "Az adatbázisai listája:"
+msgstr "Az adatbÃ¡zisai listÃ¡ja:"
 
 #: shared/inc/draw.php:363
 msgid "Mailing lists:"
-msgstr "Levelezõlisták:"
+msgstr "LevelezÅ‘listÃ¡k:"
 
 #: admin/inc/dtc_config.php:639
 #, fuzzy
 msgid "Main ip address of the server: "
-msgstr "A szerver fõ ip címe:"
+msgstr "A szerver fÅ‘ ip cÃ­me:"
 
 #: admin/inc/dtc_config.php:634
 msgid "Main software configuration of DTC"
-msgstr "Fõ szoftver konfiguráció"
+msgstr "FÅ‘ szoftver konfigurÃ¡ciÃ³"
 
 #: shared/inc/draw.php:422
 #, fuzzy
 msgid "Manage my name servers:"
-msgstr "A szerver fõ ip címe:"
+msgstr "A szerver fÅ‘ ip cÃ­me:"
 
 #: shared/inc/forms/root_admin.php:372
 msgid "Max FTP"
@@ -2300,7 +2300,7 @@ msgstr ""
 #: admin/dtcrm/product_manager.php:56
 #, fuzzy
 msgid "Max database"
-msgstr "Az ön adatbázisai"
+msgstr "Az Ã¶n adatbÃ¡zisai"
 
 #: admin/dtcrm/product_manager.php:51
 msgid "Max email"
@@ -2329,7 +2329,7 @@ msgstr ""
 #: admin/inc/dtc_config.php:1014
 #, fuzzy
 msgid "Maxmind login: "
-msgstr "Dinamikus IP frissítés login neve: "
+msgstr "Dinamikus IP frissÃ­tÃ©s login neve: "
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
@@ -2353,7 +2353,7 @@ msgstr ""
 
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
-msgstr "A számlán lévõ pénzösszeg: "
+msgstr "A szÃ¡mlÃ¡n lÃ©vÅ‘ pÃ©nzÃ¶sszeg: "
 
 #: admin/inc/dtc_config.php:359
 msgid "Monthly"
@@ -2362,16 +2362,16 @@ msgstr ""
 #: shared/inc/draw.php:426
 #, fuzzy
 msgid "My Account information:"
-msgstr "FTP hozzáférés konfigurálása: "
+msgstr "FTP hozzÃ¡fÃ©rÃ©s konfigurÃ¡lÃ¡sa: "
 
 #: shared/inc/draw.php:146
 #, fuzzy
 msgid "My account"
-msgstr "Ftp hozzáférések"
+msgstr "Ftp hozzÃ¡fÃ©rÃ©sek"
 
 #: shared/inc/draw.php:385
 msgid "My account global statistics"
-msgstr "A hozzáférésem globális statisztikái"
+msgstr "A hozzÃ¡fÃ©rÃ©sem globÃ¡lis statisztikÃ¡i"
 
 #: shared/inc/forms/email.php:296
 msgid "My e-mail"
@@ -2391,7 +2391,7 @@ msgstr ""
 
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
-msgstr "NAMED ZÓNA FÁJLOK"
+msgstr "NAMED ZÃ“NA FÃJLOK"
 
 #: admin/inc/dtc_config.php:1032
 msgid "NAS config"
@@ -2412,7 +2412,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_handle.php:223
 msgid "Name for this handle: "
-msgstr "A kezelõ neve:"
+msgstr "A kezelÅ‘ neve:"
 
 #: shared/inc/forms/lists.php:70
 msgid "Name of the list."
@@ -2420,16 +2420,16 @@ msgstr ""
 
 #: shared/dtcrm/draw_nameservers.php:107
 msgid "Name server hostname: "
-msgstr "Névszerver gazdanév: "
+msgstr "NÃ©vszerver gazdanÃ©v: "
 
 #: shared/inc/draw.php:140
 #, fuzzy
 msgid "Name servers"
-msgstr "Más DNS szerverek:"
+msgstr "MÃ¡s DNS szerverek:"
 
 #: shared/inc/draw.php:374 shared/inc/draw.php:420
 msgid "Name servers:"
-msgstr "Névszerverek:"
+msgstr "NÃ©vszerverek:"
 
 #: shared/inc/forms/email.php:562
 msgid "Name:"
@@ -2438,41 +2438,41 @@ msgstr ""
 #: admin/inc/dtc_config.php:1049 shared/inc/forms/vps.php:139
 #, fuzzy
 msgid "Name: "
-msgstr "Keresztnév:"
+msgstr "KeresztnÃ©v:"
 
 #: admin/inc/nav.php:5
 #, fuzzy
 msgid "Named conf files generated !"
-msgstr "Named zónafájlok"
+msgstr "Named zÃ³nafÃ¡jlok"
 
 #: admin/inc/dtc_config.php:1175
 #, fuzzy
 msgid "Named file names"
-msgstr "Named zónafájlok"
+msgstr "Named zÃ³nafÃ¡jlok"
 
 #: admin/inc/dtc_config.php:1180
 #, fuzzy
 msgid "Named main file:"
-msgstr "Named zónafájlok"
+msgstr "Named zÃ³nafÃ¡jlok"
 
 #: admin/inc/dtc_config.php:1188
 #, fuzzy
 msgid "Named main zonefiles folder:"
-msgstr "Named zónafájlok"
+msgstr "Named zÃ³nafÃ¡jlok"
 
 #: admin/inc/dtc_config.php:1184
 #, fuzzy
 msgid "Named slave file:"
-msgstr "Named zónafájlok"
+msgstr "Named zÃ³nafÃ¡jlok"
 
 #: shared/inc/forms/dns.php:99
 #, fuzzy
 msgid "Named zonefile:"
-msgstr "Named zónafájlok"
+msgstr "Named zÃ³nafÃ¡jlok"
 
 #: admin/inc/dtc_config.php:38 admin/inc/dtc_config.php:682
 msgid "Named zonefiles"
-msgstr "Named zónafájlok"
+msgstr "Named zÃ³nafÃ¡jlok"
 
 #: shared/inc/forms/packager.php:218
 msgid "Need a database"
@@ -2488,11 +2488,11 @@ msgstr ""
 
 #: shared/inc/forms/ftp.php:52
 msgid "New FTP account: "
-msgstr "Új FTP hozzáférés: "
+msgstr "Ãšj FTP hozzÃ¡fÃ©rÃ©s: "
 
 #: shared/inc/forms/ssh.php:46
 msgid "New SSH account:"
-msgstr "Új SSH hozzáférés:"
+msgstr "Ãšj SSH hozzÃ¡fÃ©rÃ©s:"
 
 #: shared/inc/forms/vps.php:351
 msgid "New SSH key: "
@@ -2501,11 +2501,11 @@ msgstr ""
 #: shared/inc/forms/vps.php:348
 #, fuzzy
 msgid "New SSH password: "
-msgstr "Változtassa meg a jelszavát:"
+msgstr "VÃ¡ltoztassa meg a jelszavÃ¡t:"
 
 #: admin/dtcrm/main.php:11 admin/dtcrm/main.php:24
 msgid "New customer"
-msgstr "Új ügyfél"
+msgstr "Ãšj Ã¼gyfÃ©l"
 
 #: shared/inc/forms/email.php:531
 msgid "New mailbox"
@@ -2514,11 +2514,11 @@ msgstr ""
 #: shared/inc/forms/lists.php:86
 #, fuzzy
 msgid "New mailing list:"
-msgstr "Az adatbázisai listája:"
+msgstr "Az adatbÃ¡zisai listÃ¡ja:"
 
 #: shared/inc/draw.php:52
 msgid "New password:"
-msgstr "Új jelszó:"
+msgstr "Ãšj jelszÃ³:"
 
 #: shared/inc/forms/subdomain.php:127
 #, fuzzy
@@ -2527,7 +2527,7 @@ msgstr "Aldomain-ek:"
 
 #: admin/inc/nav.php:162 admin/inc/nav.php:167 admin/inc/nav.php:171
 msgid "New virtual admin"
-msgstr "Új virtuális admin"
+msgstr "Ãšj virtuÃ¡lis admin"
 
 #: admin/deamons_state.php:137
 msgid "Next cronjob"
@@ -2594,7 +2594,7 @@ msgstr ""
 
 #: admin/inc/draw_user_admin.php:292
 msgid "No domain waiting!"
-msgstr "Nincs várakozó domain!"
+msgstr "Nincs vÃ¡rakozÃ³ domain!"
 
 #: shared/inc/forms/lists.php:413
 msgid "No get-N function:"
@@ -2631,7 +2631,7 @@ msgstr ""
 #: shared/inc/forms/lists.php:401
 #, fuzzy
 msgid "No subscribtion confirmation:"
-msgstr "Fõ szoftver konfiguráció"
+msgstr "FÅ‘ szoftver konfigurÃ¡ciÃ³"
 
 #: shared/inc/sql/database.php:73
 msgid ""
@@ -2641,7 +2641,7 @@ msgstr ""
 
 #: admin/inc/draw_user_admin.php:234
 msgid "No user waiting!"
-msgstr "Nincs várakozó felhasználó!"
+msgstr "Nincs vÃ¡rakozÃ³ felhasznÃ¡lÃ³!"
 
 #: shared/inc/forms/dedicated.php:36 shared/inc/forms/invoices.php:39
 #: shared/inc/forms/invoices.php:40 shared/inc/forms/invoices.php:41
@@ -2655,7 +2655,7 @@ msgstr ""
 #: admin/dtcrm/main.php:176
 #, fuzzy
 msgid "Notes: "
-msgstr "Feljegyések: "
+msgstr "FeljegyÃ©sek: "
 
 #: shared/inc/forms/lists.php:420
 msgid "Notifications"
@@ -2675,12 +2675,12 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:90
 msgid "Now you can go to check its configuration by clicking here:"
-msgstr "Most ellenõrizheti a konfigurációját, ha ide kattint:"
+msgstr "Most ellenÅ‘rizheti a konfigurÃ¡ciÃ³jÃ¡t, ha ide kattint:"
 
 #: shared/inc/forms/vps.php:151
 #, fuzzy
 msgid "Number of CPU: "
-msgstr "Az adatbázisok száma:"
+msgstr "Az adatbÃ¡zisok szÃ¡ma:"
 
 #: shared/inc/forms/vps.php:153
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
@@ -2689,29 +2689,29 @@ msgstr ""
 #: shared/inc/forms/ftp.php:61
 #, fuzzy
 msgid "Number of active ftp accounts:"
-msgstr "Az aktív levelesládák száma:"
+msgstr "Az aktÃ­v leveleslÃ¡dÃ¡k szÃ¡ma:"
 
 #: shared/inc/forms/aliases.php:31 shared/inc/forms/email.php:540
 msgid "Number of active mailboxes:"
-msgstr "Az aktív levelesládák száma:"
+msgstr "Az aktÃ­v leveleslÃ¡dÃ¡k szÃ¡ma:"
 
 #: shared/inc/forms/lists.php:24
 #, fuzzy
 msgid "Number of active mailing lists"
-msgstr "Az aktív levelesládák száma:"
+msgstr "Az aktÃ­v leveleslÃ¡dÃ¡k szÃ¡ma:"
 
 #: shared/inc/forms/ssh.php:55
 #, fuzzy
 msgid "Number of active ssh accounts:"
-msgstr "Az aktív levelesládák száma:"
+msgstr "Az aktÃ­v leveleslÃ¡dÃ¡k szÃ¡ma:"
 
 #: shared/inc/forms/subdomain.php:135
 msgid "Number of active subdomains:"
-msgstr "Az aktív aldomain-ek száma:"
+msgstr "Az aktÃ­v aldomain-ek szÃ¡ma:"
 
 #: shared/inc/forms/root_admin.php:129
 msgid "Number of databases:"
-msgstr "Az adatbázisok száma:"
+msgstr "Az adatbÃ¡zisok szÃ¡ma:"
 
 #: admin/deamons_state.php:93 email/login.php:16
 #: shared/inc/forms/domain_stats.php:88 shared/inc/forms/email.php:127
@@ -2727,7 +2727,7 @@ msgstr ""
 
 #: shared/inc/draw.php:549
 msgid "Online DTC help"
-msgstr "Online DTC súgó"
+msgstr "Online DTC sÃºgÃ³"
 
 #: shared/inc/forms/ticket.php:165
 msgid "Open"
@@ -2739,11 +2739,11 @@ msgstr ""
 
 #: shared/inc/forms/dns.php:28
 msgid "Other DNS servers:"
-msgstr "Más DNS szerverek:"
+msgstr "MÃ¡s DNS szerverek:"
 
 #: shared/inc/forms/dns.php:44 shared/inc/forms/dns.php:53
 msgid "Other MX (backup) servers:"
-msgstr "Más MX (backup) szerverek:"
+msgstr "MÃ¡s MX (backup) szerverek:"
 
 #: shared/inc/forms/lists.php:443
 msgid "Own template:"
@@ -2772,7 +2772,7 @@ msgid ""
 "PHP open_basedir additional libraries path<br>\n"
 "(survives reinstallation):"
 msgstr ""
-"További php könyvtárak elérési útja open_basedir<br>\n"
+"TovÃ¡bbi php kÃ¶nyvtÃ¡rak elÃ©rÃ©si Ãºtja open_basedir<br>\n"
 "(keeped uppon reinstallation)"
 
 #: shared/inc/forms/root_admin.php:350
@@ -2782,21 +2782,21 @@ msgstr ""
 #: shared/inc/draw.php:410
 #, fuzzy
 msgid "Package"
-msgstr "Adatbázis név"
+msgstr "AdatbÃ¡zis nÃ©v"
 
 #: shared/inc/draw.php:224
 msgid "Package installer"
-msgstr "Csomag telepítõ"
+msgstr "Csomag telepÃ­tÅ‘"
 
 #: shared/inc/draw.php:408
 #, fuzzy
 msgid "Package installer:"
-msgstr "Adatbázis név"
+msgstr "AdatbÃ¡zis nÃ©v"
 
 #: shared/inc/forms/packager.php:218
 #, fuzzy
 msgid "Package name"
-msgstr "Adatbázis név"
+msgstr "AdatbÃ¡zis nÃ©v"
 
 #: shared/inc/forms/packager.php:218
 msgid "Package version"
@@ -2837,7 +2837,7 @@ msgstr ""
 #: shared/inc/forms/email.php:27 shared/inc/forms/email.php:566
 #: shared/inc/forms/root_admin.php:104 shared/inc/forms/ssh.php:76
 msgid "Password:"
-msgstr "Jelszó:"
+msgstr "JelszÃ³:"
 
 #: admin/inc/dtc_config.php:1063 client/new_account_form.php:562
 #: email/login.php:13 shared/inc/forms/email.php:216
@@ -2859,7 +2859,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1112
 msgid "Path of your DTC shared directory:"
-msgstr "Fájl elérési út a DTC shared könyvtárához:"
+msgstr "FÃ¡jl elÃ©rÃ©si Ãºt a DTC shared kÃ¶nyvtÃ¡rÃ¡hoz:"
 
 #: admin/inc/dtc_config.php:1121
 msgid ""
@@ -2872,59 +2872,59 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:222 shared/inc/forms/root_admin.php:123
 #: shared/inc/forms/ssh.php:81
 msgid "Path:"
-msgstr "Elérési út:"
+msgstr "ElÃ©rÃ©si Ãºt:"
 
 #: shared/inc/forms/ftp.php:86
 #, fuzzy
 msgid "Path: "
-msgstr "Elérési utak"
+msgstr "ElÃ©rÃ©si utak"
 
 #: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1107
 msgid "Paths"
-msgstr "Elérési utak"
+msgstr "ElÃ©rÃ©si utak"
 
 #: admin/inc/dtc_config.php:947
 #, fuzzy
 msgid "PayPal business account email: "
-msgstr "A PayPal üzleti hozzáférés e-mail címe:"
+msgstr "A PayPal Ã¼zleti hozzÃ¡fÃ©rÃ©s e-mail cÃ­me:"
 
 #: admin/inc/dtc_config.php:951
 #, fuzzy
 msgid "PayPal fee rate: "
-msgstr "PayPal költség ráta:"
+msgstr "PayPal kÃ¶ltsÃ©g rÃ¡ta:"
 
 #: admin/inc/dtc_config.php:955
 #, fuzzy
 msgid "PayPal flat fee: "
-msgstr "PayPal alap ráta:"
+msgstr "PayPal alap rÃ¡ta:"
 
 #: admin/inc/dtc_config.php:969
 #, fuzzy
 msgid "PayPal test account email (sandbox): "
-msgstr "PayPal teszt hozzáférés email címe (sandbox):"
+msgstr "PayPal teszt hozzÃ¡fÃ©rÃ©s email cÃ­me (sandbox):"
 
 #: shared/dtcrm/draw_adddomain.php:241
 msgid "Payment complete. Proceed to checkout"
-msgstr "Sikeres fizetés. Ellenõrzöm"
+msgstr "Sikeres fizetÃ©s. EllenÅ‘rzÃ¶m"
 
 #: admin/inc/draw_user_admin.php:314
 #, fuzzy
 msgid "Payment date"
-msgstr "Fizetési átjáró"
+msgstr "FizetÃ©si Ã¡tjÃ¡rÃ³"
 
 #: admin/inc/dtc_config.php:59
 msgid "Payment gateway"
-msgstr "Fizetési átjáró"
+msgstr "FizetÃ©si Ã¡tjÃ¡rÃ³"
 
 #: shared/inc/forms/invoices.php:23
 #, fuzzy
 msgid "Payment gateway cost"
-msgstr "Fizetési átjáró"
+msgstr "FizetÃ©si Ã¡tjÃ¡rÃ³"
 
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Payment system"
-msgstr "Fizetési átjáró"
+msgstr "FizetÃ©si Ã¡tjÃ¡rÃ³"
 
 #: admin/deamons_state.php:92 admin/inc/draw_user_admin.php:272
 #: admin/inc/draw_user_admin.php:345
@@ -2940,14 +2940,14 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:213
 msgid "Phone number:"
-msgstr "Telefonszám:"
+msgstr "TelefonszÃ¡m:"
 
 #: admin/dtcrm/main.php:173 client/new_account_form.php:599
 #: shared/dtcrm/draw_handle.php:66 shared/dtcrm/draw_handle.php:98
 #: shared/dtcrm/draw_handle.php:130 shared/dtcrm/draw_handle.php:256
 #, fuzzy
 msgid "Phone number: "
-msgstr "Telefonszám:"
+msgstr "TelefonszÃ¡m:"
 
 #: shared/inc/forms/vps.php:345
 msgid "Physical console last display and ssh access:"
@@ -2956,16 +2956,16 @@ msgstr ""
 #: shared/inc/forms/database.php:127
 msgid "Please create a MySQL user in order to be able to create a database."
 msgstr ""
-"Hozzon létre egy MySQL felhasználót, különben nem tud adatbázist létrehozni."
+"Hozzon lÃ©tre egy MySQL felhasznÃ¡lÃ³t, kÃ¼lÃ¶nben nem tud adatbÃ¡zist lÃ©trehozni."
 
 #: shared/dtcrm/draw_adddomain.php:63
 msgid "Please enter the domain name you wish to add:"
-msgstr "Adja meg a hozzáadni kívánt domain nevet:"
+msgstr "Adja meg a hozzÃ¡adni kÃ­vÃ¡nt domain nevet:"
 
 #: shared/dtcrm/draw_transferdomain.php:47
 #: shared/dtcrm/draw_transferdomain.php:64
 msgid "Please enter the domain name you wish to transfer:"
-msgstr "Adja meg az áttranszferálandó domain nevét"
+msgstr "Adja meg az Ã¡ttranszferÃ¡landÃ³ domain nevÃ©t"
 
 #: shared/inc/forms/dedicated.php:47
 msgid "Please renew it with one of the following options"
@@ -2974,19 +2974,19 @@ msgstr ""
 #: shared/inc/forms/vps.php:205
 #, fuzzy
 msgid "Please renew with one of the following options: "
-msgstr "Kérem jelezze felénk, ha az alábbiak nem stimmelnek:"
+msgstr "KÃ©rem jelezze felÃ©nk, ha az alÃ¡bbiak nem stimmelnek:"
 
 #: shared/dtcrm/draw_adddomain.php:164
 msgid ""
 "Please select the 3 contact handles you want to use for registering that "
 "domain name."
 msgstr ""
-"Kérem válasszon 3 kapcsolattartót, akiket az adott domain regisztrációjakor "
-"fel kíván tüntetni "
+"KÃ©rem vÃ¡lasszon 3 kapcsolattartÃ³t, akiket az adott domain regisztrÃ¡ciÃ³jakor "
+"fel kÃ­vÃ¡n tÃ¼ntetni "
 
 #: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
-msgstr "Kérem jelezze felénk, ha az alábbiak nem stimmelnek:"
+msgstr "KÃ©rem jelezze felÃ©nk, ha az alÃ¡bbiak nem stimmelnek:"
 
 #: shared/inc/forms/vps.php:253
 msgid "Please wait until file system check is finished first."
@@ -2999,26 +2999,26 @@ msgstr ""
 #: admin/inc/dtc_config.php:1059
 #, fuzzy
 msgid "Port number: "
-msgstr "Telefonszám:"
+msgstr "TelefonszÃ¡m:"
 
 #: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
 #: admin/dtcrm/product_manager.php:225 shared/dtcrm/draw.php:80
 #: shared/inc/forms/invoices.php:23
 msgid "Price"
-msgstr "Ár"
+msgstr "Ãr"
 
 #: admin/inc/dtc_config.php:701
 msgid "Primary DNS server address:"
-msgstr "Az elsõdleges dns szerver címe:"
+msgstr "Az elsÅ‘dleges dns szerver cÃ­me:"
 
 #: shared/dtcrm/draw_whois.php:52
 msgid "Primary DNS:"
-msgstr "Elsõdleges DNS:"
+msgstr "ElsÅ‘dleges DNS:"
 
 #: shared/inc/forms/dns.php:42
 msgid "Primary MX address:"
-msgstr "Elsõdleges MX cím:"
+msgstr "ElsÅ‘dleges MX cÃ­m:"
 
 #: admin/dtcrm/product_manager.php:71 admin/dtcrm/product_manager.php:129
 #: admin/dtcrm/product_manager.php:230
@@ -3031,11 +3031,11 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:251
 msgid "Proceed to name-registration"
-msgstr "Név regisztráció indítása "
+msgstr "NÃ©v regisztrÃ¡ciÃ³ indÃ­tÃ¡sa "
 
 #: shared/dtcrm/draw_transferdomain.php:79
 msgid "Proceed to transfer"
-msgstr "Transzfer indítása"
+msgstr "Transzfer indÃ­tÃ¡sa"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
 #: client/new_account_form.php:541 shared/dtcrm/draw.php:79
@@ -3050,11 +3050,11 @@ msgstr ""
 #: client/new_account_form.php:41
 #, fuzzy
 msgid "Product ID not valid!"
-msgstr "Termék azonosító:"
+msgstr "TermÃ©k azonosÃ­tÃ³:"
 
 #: shared/inc/forms/root_admin.php:128
 msgid "Product ID:"
-msgstr "Termék azonosító:"
+msgstr "TermÃ©k azonosÃ­tÃ³:"
 
 #: admin/dtcrm/product_manager.php:19 admin/dtcrm/product_manager.php:81
 #: admin/dtcrm/product_manager.php:139 admin/dtcrm/product_manager.php:197
@@ -3064,7 +3064,7 @@ msgstr ""
 #: admin/dtcrm/product_manager.php:31
 #, fuzzy
 msgid "Product name"
-msgstr "Termék azonosító:"
+msgstr "TermÃ©k azonosÃ­tÃ³:"
 
 #: client/new_account_form.php:49
 msgid "Product not found in database"
@@ -3073,7 +3073,7 @@ msgstr ""
 #: client/new_account_form.php:707
 #, fuzzy
 msgid "Product:"
-msgstr "Termék azonosító:"
+msgstr "TermÃ©k azonosÃ­tÃ³:"
 
 #: shared/inc/forms/root_admin.php:231 shared/inc/forms/root_admin.php:276
 msgid "Product: "
@@ -3093,7 +3093,7 @@ msgstr ""
 
 #: admin/dtcrm/main.php:209
 msgid "Quantity"
-msgstr "Mennyiség"
+msgstr "MennyisÃ©g"
 
 #: admin/inc/monitor.php:15
 msgid "Quota"
@@ -3102,7 +3102,7 @@ msgstr ""
 #: admin/dtcrm/main.php:178
 #, fuzzy
 msgid "Quota (MB): "
-msgstr "Tárhely kvóta (MB):"
+msgstr "TÃ¡rhely kvÃ³ta (MB):"
 
 #: admin/dtcrm/product_manager.php:119
 msgid "RAM"
@@ -3110,7 +3110,7 @@ msgstr ""
 
 #: admin/inc/nav.php:73
 msgid "REINIT NAMED ZONES"
-msgstr "ÚJRATÖLTI A NAMED ZÓNÁKAT"
+msgstr "ÃšJRATÃ–LTI A NAMED ZÃ“NÃKAT"
 
 #: admin/inc/dtc_config.php:296
 msgid "Real name"
@@ -3126,7 +3126,7 @@ msgstr ""
 #: shared/inc/forms/lists.php:444
 #, fuzzy
 msgid "Recreate:"
-msgstr "Létrehoz"
+msgstr "LÃ©trehoz"
 
 #: shared/securepay/pay_functions.php:62
 msgid "Recurring payment"
@@ -3135,11 +3135,11 @@ msgstr ""
 #: shared/inc/forms/email.php:250 shared/inc/forms/email.php:604
 #: shared/inc/forms/email.php:610
 msgid "Redirection 1: "
-msgstr "Átirányítás 1: "
+msgstr "ÃtirÃ¡nyÃ­tÃ¡s 1: "
 
 #: shared/inc/forms/email.php:253
 msgid "Redirection 2: "
-msgstr "Átirányítás 2: "
+msgstr "ÃtirÃ¡nyÃ­tÃ¡s 2: "
 
 #: shared/dtcrm/draw.php:63
 msgid "Refund"
@@ -3147,32 +3147,32 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:188
 msgid "Refund my account:"
-msgstr "Adja vissza a hozzáférésemet:"
+msgstr "Adja vissza a hozzÃ¡fÃ©rÃ©semet:"
 
 #: shared/dtcrm/draw_adddomain.php:116
 msgid "Register a domain name"
-msgstr "Domain nevet regisztrál"
+msgstr "Domain nevet regisztrÃ¡l"
 
 #: client/login.php:6 client/new_account.php:148 client/new_account.php:246
 msgid "Register a new account"
-msgstr "Új hozzáférés regisztráció"
+msgstr "Ãšj hozzÃ¡fÃ©rÃ©s regisztrÃ¡ciÃ³"
 
 #: shared/dtcrm/draw_adddomain.php:104
 msgid "Register a new domain"
-msgstr "Új domain regisztriációja"
+msgstr "Ãšj domain regisztriÃ¡ciÃ³ja"
 
 #: shared/dtcrm/draw_nameservers.php:124
 msgid "Register a new name server:"
-msgstr "Új névszerver regisztrálása:"
+msgstr "Ãšj nÃ©vszerver regisztrÃ¡lÃ¡sa:"
 
 #: shared/inc/forms/root_admin.php:477 shared/inc/forms/root_admin.php:541
 #, fuzzy
 msgid "Registration"
-msgstr "Domain név regisztráció"
+msgstr "Domain nÃ©v regisztrÃ¡ciÃ³"
 
 #: shared/dtcrm/draw_adddomain.php:264
 msgid "Registration failed"
-msgstr "A regisztráció sikertelen"
+msgstr "A regisztrÃ¡ciÃ³ sikertelen"
 
 #: admin/inc/dtc_config.php:1237
 msgid "Registration number:"
@@ -3180,21 +3180,21 @@ msgstr ""
 
 #: shared/dtcrm/draw_nameservers.php:42
 msgid "Registration of your name server failed"
-msgstr "A névszerver regisztrációja sikertelen volt."
+msgstr "A nÃ©vszerver regisztrÃ¡ciÃ³ja sikertelen volt."
 
 #: shared/dtcrm/draw_nameservers.php:22
 msgid "Registration of your name server was succesful"
-msgstr "A névszerver regisztrációja sikeresen megtörtént."
+msgstr "A nÃ©vszerver regisztrÃ¡ciÃ³ja sikeresen megtÃ¶rtÃ©nt."
 
 #: client/new_account.php:233
 #, fuzzy
 msgid "Registration successful!"
-msgstr "Domain név regisztráció"
+msgstr "Domain nÃ©v regisztrÃ¡ciÃ³"
 
 #: admin/inc/dtc_config.php:493
 #, fuzzy
 msgid "Registry selection"
-msgstr "Domain név regisztráció"
+msgstr "Domain nÃ©v regisztrÃ¡ciÃ³"
 
 #: shared/inc/forms/vps.php:322
 msgid "Reinstall operating system"
@@ -3214,12 +3214,12 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
-msgstr "A számlámon lévõ pénz:"
+msgstr "A szÃ¡mlÃ¡mon lÃ©vÅ‘ pÃ©nz:"
 
 #: shared/dtcrm/draw_adddomain.php:220
 #: shared/dtcrm/draw_transferdomain.php:101
 msgid "Remaining on your account: "
-msgstr "Az ön számlájának egyenlege: "
+msgstr "Az Ã¶n szÃ¡mlÃ¡jÃ¡nak egyenlege: "
 
 #: admin/inc/dtc_config.php:225
 msgid "Reminders and registration message subject header:"
@@ -3227,11 +3227,11 @@ msgstr ""
 
 #: admin/dtcrm/main.php:71
 msgid "Remove an administrator for this customer:"
-msgstr "Eltávolít egy adminisztrátort ettõl az ügyféltõl:"
+msgstr "EltÃ¡volÃ­t egy adminisztrÃ¡tort ettÅ‘l az Ã¼gyfÃ©ltÅ‘l:"
 
 #: shared/inc/forms/my_account.php:114
 msgid "Renew my account"
-msgstr "Újítsa meg a hozzáférésem"
+msgstr "ÃšjÃ­tsa meg a hozzÃ¡fÃ©rÃ©sem"
 
 #: admin/dtcrm/product_manager.php:93 admin/dtcrm/product_manager.php:151
 #: admin/dtcrm/product_manager.php:209
@@ -3282,11 +3282,11 @@ msgstr ""
 #: shared/inc/draw.php:434
 #, fuzzy
 msgid "Resseller child accounts"
-msgstr "Az ön hosting hozzáférése:"
+msgstr "Az Ã¶n hosting hozzÃ¡fÃ©rÃ©se:"
 
 #: shared/inc/draw.php:53
 msgid "Retype new password:"
-msgstr "Ismételje meg az új jelszót:"
+msgstr "IsmÃ©telje meg az Ãºj jelszÃ³t:"
 
 #: shared/inc/forms/lists.php:395
 msgid "Rights"
@@ -3300,17 +3300,17 @@ msgstr ""
 #: shared/inc/forms/lists.php:426
 #, fuzzy
 msgid "SMTP configuration"
-msgstr "Fõ szoftver konfiguráció"
+msgstr "FÅ‘ szoftver konfigurÃ¡ciÃ³"
 
 #: shared/inc/forms/lists.php:428
 #, fuzzy
 msgid "SMTP relay server:"
-msgstr "Az elsõdleges dns szerver címe:"
+msgstr "Az elsÅ‘dleges dns szerver cÃ­me:"
 
 #: admin/deamons_state.php:157
 #, fuzzy
 msgid "SMTP server"
-msgstr "Az elsõdleges dns szerver címe:"
+msgstr "Az elsÅ‘dleges dns szerver cÃ­me:"
 
 #: admin/inc/dtc_config.php:410
 msgid "SOAP password"
@@ -3322,19 +3322,19 @@ msgstr ""
 
 #: shared/inc/forms/ssh.php:48
 msgid "SSH account configuration:"
-msgstr "SSH hozzáférés konfigurálása:"
+msgstr "SSH hozzÃ¡fÃ©rÃ©s konfigurÃ¡lÃ¡sa:"
 
 #: shared/inc/draw.php:217
 msgid "SSH accounts"
-msgstr "SSH hozzáférések:"
+msgstr "SSH hozzÃ¡fÃ©rÃ©sek:"
 
 #: shared/inc/draw.php:406
 msgid "SSH accounts of "
-msgstr "SSH hozzáférései a(z) "
+msgstr "SSH hozzÃ¡fÃ©rÃ©sei a(z) "
 
 #: shared/inc/draw.php:404
 msgid "SSH accounts:"
-msgstr "SSH hozzáférések:"
+msgstr "SSH hozzÃ¡fÃ©rÃ©sek:"
 
 #: admin/deamons_state.php:136
 msgid "SSH gen pass"
@@ -3347,7 +3347,7 @@ msgstr ""
 #: admin/inc/renewals.php:170
 #, fuzzy
 msgid "SSL IPs renewals"
-msgstr "Ország"
+msgstr "OrszÃ¡g"
 
 #: admin/inc/renewals.php:101
 msgid "SSL IPs renewals: "
@@ -3380,7 +3380,7 @@ msgstr ""
 #: shared/inc/forms/database.php:49 shared/inc/forms/database.php:95
 #: shared/inc/forms/domain_stats.php:98
 msgid "Save"
-msgstr "Mentés"
+msgstr "MentÃ©s"
 
 #: shared/inc/forms/subdomain.php:196
 msgid "Sbox cgi-bin protection: "
@@ -3394,29 +3394,29 @@ msgstr ""
 
 #: shared/dtcrm/draw_whois.php:53
 msgid "Secondary DNS:"
-msgstr "Másodlagos DNS:"
+msgstr "MÃ¡sodlagos DNS:"
 
 #: admin/inc/dtc_config.php:917
 msgid "Secure payment configuration"
-msgstr "A biztonságos fizetés beállításai"
+msgstr "A biztonsÃ¡gos fizetÃ©s beÃ¡llÃ­tÃ¡sai"
 
 #: admin/dtcrm/main.php:109
 msgid "Select a customer."
-msgstr "Válasszon ügyfelet."
+msgstr "VÃ¡lasszon Ã¼gyfelet."
 
 #: shared/dtcrm/draw_adddomain.php:167
 msgid "Select how long you want to register this domain name:"
-msgstr "Válassza ki mennyi idõre kívánja regisztrálni a domain nevet:"
+msgstr "VÃ¡lassza ki mennyi idÅ‘re kÃ­vÃ¡nja regisztrÃ¡lni a domain nevet:"
 
 #: shared/dtcrm/draw_nameservers.php:135
 msgid ""
 "Select one of your domain-names for registering an additional name server to "
 "the registries:"
-msgstr "Válasszon egy domain nevet amit regisztrálni szeretne névszerveren:"
+msgstr "VÃ¡lasszon egy domain nevet amit regisztrÃ¡lni szeretne nÃ©vszerveren:"
 
 #: admin/inc/dtc_config.php:624
 msgid "Select the type of skin:"
-msgstr "Válasszon témát:"
+msgstr "VÃ¡lasszon tÃ©mÃ¡t:"
 
 #: admin/inc/dtc_config.php:551
 msgid "Selling conditions URL: "
@@ -3441,16 +3441,16 @@ msgstr ""
 #: admin/inc/renewals.php:245
 #, fuzzy
 msgid "Server"
-msgstr "Az elsõdleges dns szerver címe:"
+msgstr "Az elsÅ‘dleges dns szerver cÃ­me:"
 
 #: admin/inc/monitor.php:99
 msgid "Server accounted transfers this month: "
-msgstr "Szerverek havi naplózott forgalma: "
+msgstr "Szerverek havi naplÃ³zott forgalma: "
 
 #: shared/inc/forms/email.php:27
 #, fuzzy
 msgid "Server address :"
-msgstr "Az elsõdleges dns szerver címe:"
+msgstr "Az elsÅ‘dleges dns szerver cÃ­me:"
 
 #: admin/deamons_state.php:239
 msgid "Server did not send 230 after PASS: "
@@ -3477,12 +3477,12 @@ msgstr ""
 #: shared/gfx/skin/bwoup/layout.php:421
 #, fuzzy
 msgid "Server monitor"
-msgstr "Ország"
+msgstr "OrszÃ¡g"
 
 #: shared/inc/forms/root_admin.php:537
 #, fuzzy
 msgid "Server name"
-msgstr "Az elsõdleges dns szerver címe:"
+msgstr "Az elsÅ‘dleges dns szerver cÃ­me:"
 
 #: shared/inc/forms/dedicated.php:24
 msgid "Server not found!"
@@ -3494,7 +3494,7 @@ msgstr ""
 #: shared/dtcrm/draw_nameservers.php:75
 #: shared/dtcrm/draw_transferdomain.php:62
 msgid "Server said: "
-msgstr "A szerver válasza: "
+msgstr "A szerver vÃ¡lasza: "
 
 #: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:506
 #, fuzzy
@@ -3504,12 +3504,12 @@ msgstr "Statisztika"
 #: admin/inc/draw_user_admin.php:380
 #, fuzzy
 msgid "Server:"
-msgstr "Az elsõdleges dns szerver címe:"
+msgstr "Az elsÅ‘dleges dns szerver cÃ­me:"
 
 #: admin/inc/dtc_config.php:1315
 #, fuzzy
 msgid "Service country"
-msgstr "Ország"
+msgstr "OrszÃ¡g"
 
 #: shared/inc/forms/root_admin.php:233
 msgid "Setup physical VPS (LVM): "
@@ -3530,7 +3530,7 @@ msgstr ""
 #: admin/inc/dtc_config.php:1052
 #, fuzzy
 msgid "Short name: "
-msgstr "Keresztnév:"
+msgstr "KeresztnÃ©v:"
 
 #: admin/inc/dtc_config.php:221
 msgid "Shutdown warning: "
@@ -3542,7 +3542,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "Sorry, the domain name "
-msgstr "Sajnálom, a domain név "
+msgstr "SajnÃ¡lom, a domain nÃ©v "
 
 #: shared/inc/forms/vps.php:251
 msgid "Start and stop of your VPS:"
@@ -3586,7 +3586,7 @@ msgstr "Megye:"
 
 #: shared/dtcrm/draw_adddomain.php:117
 msgid "Step 1: Verify availability"
-msgstr "Elsõ lépés: Elérhetõség ellenõrzése"
+msgstr "ElsÅ‘ lÃ©pÃ©s: ElÃ©rhetÅ‘sÃ©g ellenÅ‘rzÃ©se"
 
 #: shared/dtcrm/draw.php:69
 msgid "Step 1: choose your upgrade"
@@ -3594,37 +3594,37 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:146
 msgid "Step 2: Enter whois information"
-msgstr "Második lépés: A whois információk megadása"
+msgstr "MÃ¡sodik lÃ©pÃ©s: A whois informÃ¡ciÃ³k megadÃ¡sa"
 
 #: shared/dtcrm/draw_transferdomain.php:71
 msgid "Step 2: select contacts for domain transfer"
-msgstr "Második lépés: jelölje ki a kapcsolattartókat a domain transzferhez"
+msgstr "MÃ¡sodik lÃ©pÃ©s: jelÃ¶lje ki a kapcsolattartÃ³kat a domain transzferhez"
 
 #: shared/dtcrm/draw_adddomain.php:191
 msgid "Step 3: Proceed to registration"
-msgstr "Harmadik lépés: Regisztráció indítása"
+msgstr "Harmadik lÃ©pÃ©s: RegisztrÃ¡ciÃ³ indÃ­tÃ¡sa"
 
 #: shared/dtcrm/draw_transferdomain.php:39
 msgid "Step1: check if domain is transferable"
-msgstr "Elsõ lépés: Transzferálható e a domain"
+msgstr "ElsÅ‘ lÃ©pÃ©s: TranszferÃ¡lhatÃ³ e a domain"
 
 #: shared/dtcrm/draw.php:79
 #, fuzzy
 msgid "Storage"
-msgstr "Tárhely"
+msgstr "TÃ¡rhely"
 
 #: shared/inc/forms/my_account.php:97
 msgid "Storage space"
-msgstr "Tárhely"
+msgstr "TÃ¡rhely"
 
 #: shared/inc/draw.php:295
 msgid "Sub-accounts (reseller)"
-msgstr "Alhozzáférések (viszonteladó)"
+msgstr "AlhozzÃ¡fÃ©rÃ©sek (viszonteladÃ³)"
 
 #: shared/inc/draw.php:432
 #, fuzzy
 msgid "Sub-accounts (reseller):"
-msgstr "Engedélyezi az al-hozzáférések hozzáadását (viszonteladó): "
+msgstr "EngedÃ©lyezi az al-hozzÃ¡fÃ©rÃ©sek hozzÃ¡adÃ¡sÃ¡t (viszonteladÃ³): "
 
 #: shared/inc/draw.php:204
 msgid "Sub-domains"
@@ -3685,7 +3685,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:289
 msgid "Successfully added your domain name to the hosting database"
-msgstr "Sikeresen hozzáadtuk a domain nevet az adatbázishoz "
+msgstr "Sikeresen hozzÃ¡adtuk a domain nevet az adatbÃ¡zishoz "
 
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
@@ -3709,19 +3709,19 @@ msgstr ""
 
 #: shared/dtcrm/draw_transferdomain.php:61
 msgid "TRANSFER CHECK FAILED"
-msgstr "A TRANSZFER ELLENÕRZÉSE SIKERTELEN"
+msgstr "A TRANSZFER ELLENÅRZÃ‰SE SIKERTELEN"
 
 #: shared/dtcrm/draw_transferdomain.php:57
 msgid "TRANSFER CHECK FAILED: registry server didn't reply successfuly."
-msgstr "A TRANSZFER ELLENÕRZÉSE SIKERTELEN: a regiszrációs szerver nem felelt."
+msgstr "A TRANSZFER ELLENÅRZÃ‰SE SIKERTELEN: a regiszrÃ¡ciÃ³s szerver nem felelt."
 
 #: shared/dtcrm/draw_transferdomain.php:68
 msgid "TRANSFER CHECK SUCCESSFUL"
-msgstr "A TRANSZFER ELLENÕRZÉSE SIKERES"
+msgstr "A TRANSZFER ELLENÅRZÃ‰SE SIKERES"
 
 #: shared/inc/forms/subdomain.php:178
 msgid "TXT field of the subdomain: "
-msgstr "Az aldomain TXT mezõje: "
+msgstr "Az aldomain TXT mezÅ‘je: "
 
 #: shared/inc/forms/dns.php:86
 msgid ""
@@ -3736,12 +3736,12 @@ msgid ""
 "your a message. The value \"default\" means that\n"
 "you want to use the current server."
 msgstr ""
-"Figyelem ! Hibás értékek megadása az alábbi mezõkbena szolgáltatások (web, "
-"levelezés) leállásához vezethet.<br>A \"default\" értéktõl eltérõ beállítás "
-"a DNS mezõkbenazt jelenti, hogy az ön oldala máshol van elhelyezve.<br>Az MX "
-"paraméter megadja az e-mail szerver címét(az amelyik tárolja az összes "
-"levelet, ha valaki küld önnek egyet).A \"default\" beállítás azt jelenti, "
-"hogy az aktuális szervert szeretné erre acélra használni."
+"Figyelem ! HibÃ¡s Ã©rtÃ©kek megadÃ¡sa az alÃ¡bbi mezÅ‘kbena szolgÃ¡ltatÃ¡sok (web, "
+"levelezÃ©s) leÃ¡llÃ¡sÃ¡hoz vezethet.<br>A \"default\" Ã©rtÃ©ktÅ‘l eltÃ©rÅ‘ beÃ¡llÃ­tÃ¡s "
+"a DNS mezÅ‘kbenazt jelenti, hogy az Ã¶n oldala mÃ¡shol van elhelyezve.<br>Az MX "
+"paramÃ©ter megadja az e-mail szerver cÃ­mÃ©t(az amelyik tÃ¡rolja az Ã¶sszes "
+"levelet, ha valaki kÃ¼ld Ã¶nnek egyet).A \"default\" beÃ¡llÃ­tÃ¡s azt jelenti, "
+"hogy az aktuÃ¡lis szervert szeretnÃ© erre acÃ©lra hasznÃ¡lni."
 
 #: admin/inc/dtc_config.php:270
 msgid ""
@@ -3751,7 +3751,7 @@ msgstr ""
 
 #: shared/drawlib/anotherDtc.php:141 shared/drawlib/anotherDtc.php:153
 msgid "Take control of your domain name"
-msgstr "Vegye kézbe domainje irányítását"
+msgstr "Vegye kÃ©zbe domainje irÃ¡nyÃ­tÃ¡sÃ¡t"
 
 #: shared/securepay/pay_functions.php:29
 msgid "Taxes (VAT or GST)"
@@ -3760,14 +3760,14 @@ msgstr ""
 #: admin/inc/dtc_config.php:771
 msgid "Tell the following servers when a domain is added or removed :"
 msgstr ""
-"Értesítse a következõ szervereket, ha egy domain hozzáadásra vagy törlésre "
-"kerül :"
+"Ã‰rtesÃ­tse a kÃ¶vetkezÅ‘ szervereket, ha egy domain hozzÃ¡adÃ¡sra vagy tÃ¶rlÃ©sre "
+"kerÃ¼l :"
 
 #: admin/inc/dtc_config.php:796
 msgid "Tell the following servers when an email is added or removed :"
 msgstr ""
-"Értesítse a következõ szervereket, ha egy email hozzáadásra vagy törlésre "
-"kerül :"
+"Ã‰rtesÃ­tse a kÃ¶vetkezÅ‘ szervereket, ha egy email hozzÃ¡adÃ¡sra vagy tÃ¶rlÃ©sre "
+"kerÃ¼l :"
 
 #: admin/inc/dtc_config.php:988
 msgid "Test server"
@@ -3803,7 +3803,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_transferdomain.php:107
 msgid "The transaction failed, please try again!"
-msgstr "A tranzakció sikertelen, kérem próbálja újra!"
+msgstr "A tranzakciÃ³ sikertelen, kÃ©rem prÃ³bÃ¡lja Ãºjra!"
 
 #: shared/inc/forms/ftp.php:66
 msgid "There is already a ftp login by that name"
@@ -3833,11 +3833,11 @@ msgstr ""
 
 #: shared/dtcrm/draw_handle.php:262
 msgid "This MUST be a valid address"
-msgstr "Valós címnek KELL lennie"
+msgstr "ValÃ³s cÃ­mnek KELL lennie"
 
 #: shared/dtcrm/draw_adddomain.php:74
 msgid "This domain name already hosted here, please enter another name."
-msgstr "Ezt a domain-t már hosztoljuk, kérjük válasszon másik nevet."
+msgstr "Ezt a domain-t mÃ¡r hosztoljuk, kÃ©rjÃ¼k vÃ¡lasszon mÃ¡sik nevet."
 
 #: shared/inc/forms/domain_info.php:78
 msgid "This domain will be the alias of the following domain (domain parking):"
@@ -3937,26 +3937,26 @@ msgstr ""
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Total"
-msgstr "Összes forgalom"
+msgstr "Ã–sszes forgalom"
 
 #: shared/inc/forms/invoices.php:23
 #, fuzzy
 msgid "Total Price"
-msgstr "Összes forgalom"
+msgstr "Ã–sszes forgalom"
 
 #: shared/inc/forms/database.php:117
 msgid "Total database number:"
-msgstr "Adatbázisok száma:"
+msgstr "AdatbÃ¡zisok szÃ¡ma:"
 
 #: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
 #: shared/inc/forms/my_account.php:76
 msgid "Total disk usage:"
-msgstr "Összes felhasznált tárhely:"
+msgstr "Ã–sszes felhasznÃ¡lt tÃ¡rhely:"
 
 #: shared/dtcrm/draw_adddomain.php:221
 #: shared/dtcrm/draw_transferdomain.php:102
 msgid "Total price: "
-msgstr "Teljes ár: "
+msgstr "Teljes Ã¡r: "
 
 #: admin/inc/renewals.php:20
 msgid "Total recurring incomes per month:"
@@ -3964,16 +3964,16 @@ msgstr ""
 
 #: shared/inc/forms/admin_stats.php:107
 msgid "Total trafic"
-msgstr "Összes forgalom"
+msgstr "Ã–sszes forgalom"
 
 #: shared/inc/forms/domain_stats.php:53
 #, fuzzy
 msgid "Total transfered bytes this month"
-msgstr "Ehavi összes átvitel (byte):"
+msgstr "Ehavi Ã¶sszes Ã¡tvitel (byte):"
 
 #: shared/inc/forms/admin_stats.php:33 shared/inc/forms/domain_info.php:52
 msgid "Total transfered bytes this month:"
-msgstr "Ehavi összes átvitel (byte):"
+msgstr "Ehavi Ã¶sszes Ã¡tvitel (byte):"
 
 #: admin/inc/renewals.php:105
 msgid "Total: "
@@ -3983,7 +3983,7 @@ msgstr ""
 #: admin/dtcrm/product_manager.php:182
 #, fuzzy
 msgid "Traffic"
-msgstr "Összes forgalom"
+msgstr "Ã–sszes forgalom"
 
 #: admin/inc/monitor.php:15
 msgid "Transfer"
@@ -3991,15 +3991,15 @@ msgstr "Forgalom"
 
 #: shared/dtcrm/draw_adddomain.php:105
 msgid "Transfer an existing domain from another registrar"
-msgstr "Áttranszferál egy létezõ domaint egy másik regisztrátortól"
+msgstr "ÃttranszferÃ¡l egy lÃ©tezÅ‘ domaint egy mÃ¡sik regisztrÃ¡tortÃ³l"
 
 #: shared/inc/forms/my_account.php:63
 msgid "Transfer and disk usage:"
-msgstr "Forgalom és tárhely használat:"
+msgstr "Forgalom Ã©s tÃ¡rhely hasznÃ¡lat:"
 
 #: shared/dtcrm/draw_transferdomain.php:38
 msgid "Transfer from another registrar to this server:"
-msgstr "Transzfer másik regisztrátortól erre a szerverre: "
+msgstr "Transzfer mÃ¡sik regisztrÃ¡tortÃ³l erre a szerverre: "
 
 #: admin/inc/monitor.php:15
 #, fuzzy
@@ -4021,7 +4021,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:889
 msgid "Type of encryption for connecting to Tucows server:"
-msgstr "A titkosítás típusa, ha a Tucows szerverhez kapcsolódunk:"
+msgstr "A titkosÃ­tÃ¡s tÃ­pusa, ha a Tucows szerverhez kapcsolÃ³dunk:"
 
 #: shared/inc/forms/ticket.php:52 shared/inc/forms/ticket.php:87
 msgid "Type of problem:"
@@ -4054,12 +4054,12 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:106
 msgid "Upgrade my account"
-msgstr "Frissítse a hozzáférésem"
+msgstr "FrissÃ­tse a hozzÃ¡fÃ©rÃ©sem"
 
 #: shared/dtcrm/draw.php:33
 #, fuzzy
 msgid "Upgrade my account:"
-msgstr "Frissítse a hozzáférésem"
+msgstr "FrissÃ­tse a hozzÃ¡fÃ©rÃ©sem"
 
 #: shared/inc/forms/domain_info.php:59 shared/inc/forms/email.php:27
 msgid "Use"
@@ -4068,12 +4068,12 @@ msgstr ""
 #: admin/inc/dtc_config.php:532
 #, fuzzy
 msgid "Use @domain.com ftp logins: "
-msgstr "A @domain.com formát használja az ftp hozzáféréseknél:"
+msgstr "A @domain.com formÃ¡t hasznÃ¡lja az ftp hozzÃ¡fÃ©rÃ©seknÃ©l:"
 
 #: admin/inc/dtc_config.php:537
 #, fuzzy
 msgid "Use @domain.com ssh logins: "
-msgstr "A @domain.com formát használja az ssh hozzáféréseknél:"
+msgstr "A @domain.com formÃ¡t hasznÃ¡lja az ssh hozzÃ¡fÃ©rÃ©seknÃ©l:"
 
 #: admin/inc/dtc_config.php:714
 msgid "Use CNAME instead of A record for subdomains:"
@@ -4090,7 +4090,7 @@ msgstr ""
 #: admin/inc/dtc_config.php:527
 #, fuzzy
 msgid "Use SSL: "
-msgstr "SSL-t használ:"
+msgstr "SSL-t hasznÃ¡l:"
 
 #: shared/inc/forms/subdomain.php:232
 msgid "Use an SSL vhost using this IP: "
@@ -4107,7 +4107,7 @@ msgstr ""
 #: admin/inc/dtc_config.php:980
 #, fuzzy
 msgid "Use eNETS: "
-msgstr "SSL-t használ:"
+msgstr "SSL-t hasznÃ¡l:"
 
 #: shared/inc/draw.php:321
 msgid "Use image menu"
@@ -4116,26 +4116,26 @@ msgstr ""
 #: admin/inc/dtc_config.php:522
 #, fuzzy
 msgid "Use javascript: "
-msgstr "Javascriptet használ:"
+msgstr "Javascriptet hasznÃ¡l:"
 
 #: admin/inc/dtc_config.php:647
 #, fuzzy
 msgid "Use multiple IPs: "
-msgstr "Többszörös IP címet használ:"
+msgstr "TÃ¶bbszÃ¶rÃ¶s IP cÃ­met hasznÃ¡l:"
 
 #: admin/inc/dtc_config.php:964
 #, fuzzy
 msgid "Use paypal recuring: "
-msgstr "A paypal-t használja:"
+msgstr "A paypal-t hasznÃ¡lja:"
 
 #: admin/inc/dtc_config.php:937
 #, fuzzy
 msgid "Use paypal: "
-msgstr "A paypal-t használja:"
+msgstr "A paypal-t hasznÃ¡lja:"
 
 #: shared/inc/forms/subdomain.php:175
 msgid "Use register_globals=1: "
-msgstr "Állítsa a be a register_globals=1 -re: "
+msgstr "ÃllÃ­tsa a be a register_globals=1 -re: "
 
 #: admin/inc/dtc_config.php:884
 msgid "Use registrar API:"
@@ -4143,26 +4143,26 @@ msgstr ""
 
 #: shared/inc/draw.php:319
 msgid "Use text menu"
-msgstr "A szöveges menüt használja"
+msgstr "A szÃ¶veges menÃ¼t hasznÃ¡lja"
 
 #: client/login.php:16
 #, fuzzy
 msgid "Use text menu: "
-msgstr "A szöveges menüt használja"
+msgstr "A szÃ¶veges menÃ¼t hasznÃ¡lja"
 
 #: admin/inc/dtc_config.php:893
 msgid "Use the LIVE server (and not the test one) :"
-msgstr "Az éles szervert használja (nem a tesztet) :"
+msgstr "Az Ã©les szervert hasznÃ¡lja (nem a tesztet) :"
 
 #: admin/inc/dtc_config.php:959
 #, fuzzy
 msgid "Use the sandbox test server: "
-msgstr "A kövezkezõ \"sandbox\" test szervert használja:"
+msgstr "A kÃ¶vezkezÅ‘ \"sandbox\" test szervert hasznÃ¡lja:"
 
 #: admin/inc/dtc_config.php:587
 #, fuzzy
 msgid "Use visitors: "
-msgstr "Javascriptet használ:"
+msgstr "Javascriptet hasznÃ¡l:"
 
 #: admin/inc/dtc_config.php:572
 msgid "Use webalizer: "
@@ -4192,16 +4192,16 @@ msgstr ""
 #: admin/inc/dtc_config.php:602
 #, fuzzy
 msgid "User MySQL root password: "
-msgstr "Változtassa meg a jelszavát:"
+msgstr "VÃ¡ltoztassa meg a jelszavÃ¡t:"
 
 #: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:574
 #, fuzzy
 msgid "User administration"
-msgstr "Domain név regisztráció"
+msgstr "Domain nÃ©v regisztrÃ¡ciÃ³"
 
 #: admin/inc/draw_user_admin.php:229
 msgid "User and domain waiting for addition:"
-msgstr "A következõ felhasználók illetve domainek várnak jóváhagyásra:"
+msgstr "A kÃ¶vetkezÅ‘ felhasznÃ¡lÃ³k illetve domainek vÃ¡rnak jÃ³vÃ¡hagyÃ¡sra:"
 
 #: client/new_account_form.php:57
 msgid ""
@@ -4216,7 +4216,7 @@ msgstr ""
 #: admin/inc/dtc_config.php:542
 #, fuzzy
 msgid "User session expire time (min): "
-msgstr "A felhasználói munkamenet lejárati ideje (perc):"
+msgstr "A felhasznÃ¡lÃ³i munkamenet lejÃ¡rati ideje (perc):"
 
 #: client/new_account_form.php:252 client/new_account_form.php:260
 msgid "Username already taken! Try again."
@@ -4231,7 +4231,7 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:404
 #: shared/gfx/skin/bwoup/layout.php:406
 msgid "Users administration"
-msgstr "Felhasználó adminisztráció"
+msgstr "FelhasznÃ¡lÃ³ adminisztrÃ¡ciÃ³"
 
 #: client/new_account_form.php:593
 msgid "VAT Number: "
@@ -4244,7 +4244,7 @@ msgstr ""
 #: admin/dtcrm/main.php:164
 #, fuzzy
 msgid "VAT number: "
-msgstr "Telefonszám:"
+msgstr "TelefonszÃ¡m:"
 
 #: admin/inc/dtc_config.php:1245
 msgid "VAT rate:"
@@ -4273,7 +4273,7 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:470
 #, fuzzy
 msgid "VPS Server"
-msgstr "Az elsõdleges dns szerver címe:"
+msgstr "Az elsÅ‘dleges dns szerver cÃ­me:"
 
 #: admin/inc/dtc_config.php:379
 msgid "VPS Server and IP addresses registry edition"
@@ -4328,7 +4328,7 @@ msgstr ""
 #: admin/inc/dtc_config.php:942
 #, fuzzy
 msgid "Validate new account if paid: "
-msgstr "Akkor aktiválja az új hozzáférést, ha az ki van fizetve:"
+msgstr "Akkor aktivÃ¡lja az Ãºj hozzÃ¡fÃ©rÃ©st, ha az ki van fizetve:"
 
 #: shared/inc/forms/root_admin.php:346
 msgid "Vhost"
@@ -4372,7 +4372,7 @@ msgstr "Mi"
 
 #: shared/dtcrm/draw_adddomain.php:39
 msgid "What do you want to add:"
-msgstr "Mit szeretne hozzáadni ?"
+msgstr "Mit szeretne hozzÃ¡adni ?"
 
 #: shared/inc/forms/ticket.php:47
 msgid "What is your server hostname:"
@@ -4380,7 +4380,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_nameservers.php:125
 msgid "What subzone do you want to use (example: ns1):"
-msgstr "Milyen alzónát szeretne használni (például: ns1):"
+msgstr "Milyen alzÃ³nÃ¡t szeretne hasznÃ¡lni (pÃ©ldÃ¡ul: ns1):"
 
 #: shared/inc/forms/lists.php:196
 msgid ""
@@ -4423,7 +4423,7 @@ msgstr ""
 
 #: shared/inc/fetch.php:39 shared/inc/fetch.php:362 shared/inc/fetch.php:367
 msgid "Wrong user or password, or timeout expired!"
-msgstr "Hibás felhasználó vagy jelszó vagy idõtúllépés!"
+msgstr "HibÃ¡s felhasznÃ¡lÃ³ vagy jelszÃ³ vagy idÅ‘tÃºllÃ©pÃ©s!"
 
 #: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
 #: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
@@ -4454,7 +4454,7 @@ msgstr "Igen"
 
 #: shared/dtcrm/draw_adddomain.php:83
 msgid "You can add another domain name:"
-msgstr "Felvihet egy újabb domain nevet:"
+msgstr "Felvihet egy Ãºjabb domain nevet:"
 
 #: shared/inc/sql/lists.php:213
 msgid ""
@@ -4483,10 +4483,10 @@ msgid ""
 "add domain names, you can ask the administrator to do so. To request hosting "
 "for a new domain without domain name registration, please write to:"
 msgstr ""
-"Önnek jelenleg nincs joga új domain neveket hozzáadni. Ha gyakran visz fel "
-"új domain neveket, akkor megkérheti az adminisztrátort, hogy adjon önnek "
-"ilyen jogok. Új domain név létrehozásához regisztráció nélkül kérjük írjon "
-"erre címre:"
+"Ã–nnek jelenleg nincs joga Ãºj domain neveket hozzÃ¡adni. Ha gyakran visz fel "
+"Ãºj domain neveket, akkor megkÃ©rheti az adminisztrÃ¡tort, hogy adjon Ã¶nnek "
+"ilyen jogok. Ãšj domain nÃ©v lÃ©trehozÃ¡sÃ¡hoz regisztrÃ¡ciÃ³ nÃ©lkÃ¼l kÃ©rjÃ¼k Ã­rjon "
+"erre cÃ­mre:"
 
 #: shared/dtcrm/draw.php:66
 msgid ""
@@ -4504,8 +4504,8 @@ msgid ""
 "You currently don't have enough funds on your account. You will be "
 "redirected to our payment system. Please click on the button below to pay."
 msgstr ""
-"Önnek nincs elegendõ pénz a számláján. Ön átirányításra kerül a mi fizetési "
-"rendszerünkhöz. Fizetéshez kattintson az alábbi gombra."
+"Ã–nnek nincs elegendÅ‘ pÃ©nz a szÃ¡mlÃ¡jÃ¡n. Ã–n Ã¡tirÃ¡nyÃ­tÃ¡sra kerÃ¼l a mi fizetÃ©si "
+"rendszerÃ¼nkhÃ¶z. FizetÃ©shez kattintson az alÃ¡bbi gombra."
 
 #: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
@@ -4513,7 +4513,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:216 shared/dtcrm/draw_transferdomain.php:94
 msgid "You don't have a client ID. Please contact us."
-msgstr "Önnek nincs ügyfélazonosítója. Keressen bennünket."
+msgstr "Ã–nnek nincs Ã¼gyfÃ©lazonosÃ­tÃ³ja. Keressen bennÃ¼nket."
 
 #: shared/inc/sql/ssh.php:24
 msgid "You don't have the SSH login flag!"
@@ -4534,8 +4534,8 @@ msgid ""
 "You have enough funds on your account to proceed account upgrade. Press the "
 "confirm button and your order will be proceeded."
 msgstr ""
-"Önnek megfelelõ mennyiségû pénz van a számláján a regisztrációhoz. "
-"Kattintson a jóváhagyás gombra és a megrendelése elindul."
+"Ã–nnek megfelelÅ‘ mennyisÃ©gÅ± pÃ©nz van a szÃ¡mlÃ¡jÃ¡n a regisztrÃ¡ciÃ³hoz. "
+"Kattintson a jÃ³vÃ¡hagyÃ¡s gombra Ã©s a megrendelÃ©se elindul."
 
 #: shared/dtcrm/draw_adddomain.php:248
 msgid ""
@@ -4545,7 +4545,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:897
 msgid "Your SRS username:"
-msgstr "Az SRS felhasználóneve:"
+msgstr "Az SRS felhasznÃ¡lÃ³neve:"
 
 #: shared/inc/forms/vps.php:204
 msgid "Your VPS has expired on the: "
@@ -4561,25 +4561,25 @@ msgstr ""
 
 #: shared/dtcrm/draw_transferdomain.php:109
 msgid "Your account has been credited!"
-msgstr "A számlája visszafizetésre került!"
+msgstr "A szÃ¡mlÃ¡ja visszafizetÃ©sre kerÃ¼lt!"
 
 #: shared/inc/forms/domain_info.php:53
 msgid "Your area disk usage:"
-msgstr "Az ön területének lemezterület használata:"
+msgstr "Az Ã¶n terÃ¼letÃ©nek lemezterÃ¼let hasznÃ¡lata:"
 
 #: shared/inc/forms/reseller.php:22
 #, fuzzy
 msgid "Your child accounts:"
-msgstr "Az ön hosting hozzáférése:"
+msgstr "Az Ã¶n hosting hozzÃ¡fÃ©rÃ©se:"
 
 #: shared/dtcrm/draw.php:71
 #, fuzzy
 msgid "Your current account is "
-msgstr "Az ön hosting hozzáférése:"
+msgstr "Az Ã¶n hosting hozzÃ¡fÃ©rÃ©se:"
 
 #: shared/inc/draw.php:430
 msgid "Your databases"
-msgstr "Az ön adatbázisai"
+msgstr "Az Ã¶n adatbÃ¡zisai"
 
 #: shared/inc/forms/dedicated.php:46
 msgid "Your dedicated server has expired on the: "
@@ -4599,47 +4599,47 @@ msgstr ""
 
 #: shared/inc/forms/domain_info.php:58
 msgid "Your domain"
-msgstr "Az ön domainje"
+msgstr "Az Ã¶n domainje"
 
 #: shared/dtcrm/draw_whois.php:49
 msgid ""
 "Your domain name has been registred elsewhere (i.e. not on this site). To "
 "order its transfer, please click "
 msgstr ""
-"Az ön domainje valahol másol van regisztrálva (nem ezen a szerveren). Ha "
-"szeretné áttranszferáltatni erre a szerverre, kattintson ide."
+"Az Ã¶n domainje valahol mÃ¡sol van regisztrÃ¡lva (nem ezen a szerveren). Ha "
+"szeretnÃ© Ã¡ttranszferÃ¡ltatni erre a szerverre, kattintson ide."
 
 #: shared/dtcrm/draw_adddomain.php:89
 msgid "Your domain name is now ready:"
-msgstr "Az ön domain neve már készen áll:"
+msgstr "Az Ã¶n domain neve mÃ¡r kÃ©szen Ã¡ll:"
 
 #: shared/dtcrm/draw_whois.php:95
 msgid "Your domain name whois data:"
-msgstr "Az ön domain-jének whois adatai:"
+msgstr "Az Ã¶n domain-jÃ©nek whois adatai:"
 
 #: shared/dtcrm/draw_adddomain.php:79
 msgid "Your domain name will be soon validated:"
-msgstr "A megadott domain hamarosan érvényesítésre kerül:"
+msgstr "A megadott domain hamarosan Ã©rvÃ©nyesÃ­tÃ©sre kerÃ¼l:"
 
 #: shared/inc/forms/domain_info.php:51
 msgid "Your domain:"
-msgstr "Az ön domainje:"
+msgstr "Az Ã¶n domainje:"
 
 #: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:367
 msgid "Your domains"
-msgstr "Az ön domain-jei"
+msgstr "Az Ã¶n domain-jei"
 
 #: shared/inc/forms/my_account.php:94
 msgid "Your hosting account:"
-msgstr "Az ön hosting hozzáférése:"
+msgstr "Az Ã¶n hosting hozzÃ¡fÃ©rÃ©se:"
 
 #: admin/inc/dtc_config.php:905
 msgid "Your key to access the LIVE server:"
-msgstr "Az éles szerver hozzáférési kulcsa:"
+msgstr "Az Ã©les szerver hozzÃ¡fÃ©rÃ©si kulcsa:"
 
 #: admin/inc/dtc_config.php:901
 msgid "Your key to access the test server:"
-msgstr "A teszt szerver hozzáférési kulcsa:"
+msgstr "A teszt szerver hozzÃ¡fÃ©rÃ©si kulcsa:"
 
 #: shared/dtcrm/draw.php:36
 msgid "Your last command expire on the: "
@@ -4652,7 +4652,7 @@ msgstr ""
 #: shared/dtcrm/draw.php:62
 #, fuzzy
 msgid "Your past account was: "
-msgstr "Az ön hosting hozzáférése:"
+msgstr "Az Ã¶n hosting hozzÃ¡fÃ©rÃ©se:"
 
 #: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
 msgid "Your path is restricted to "
@@ -4661,18 +4661,18 @@ msgstr ""
 #: shared/inc/forms/database.php:32
 #, fuzzy
 msgid "Your users"
-msgstr "Az SRS felhasználóneve:"
+msgstr "Az SRS felhasznÃ¡lÃ³neve:"
 
 #: shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
-msgstr "Irányítószám:"
+msgstr "IrÃ¡nyÃ­tÃ³szÃ¡m:"
 
 #: admin/dtcrm/main.php:169 client/new_account_form.php:619
 #: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
 #: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
 #, fuzzy
 msgid "Zipcode: "
-msgstr "Irányítószám:"
+msgstr "IrÃ¡nyÃ­tÃ³szÃ¡m:"
 
 #: shared/inc/forms/dns.php:67
 msgid "Zone file will be regenerated at next cron job."
@@ -4698,7 +4698,7 @@ msgstr "Megye:"
 #: admin/inc/dtc_config.php:985
 #, fuzzy
 msgid "eNETS server: "
-msgstr "Más DNS szerverek:"
+msgstr "MÃ¡s DNS szerverek:"
 
 #: admin/inc/dtc_config.php:994
 msgid "eNETS test merchant ID: "
@@ -4706,7 +4706,7 @@ msgstr ""
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
 msgid "fetching admin: "
-msgstr "adminisztrátor lehívás: "
+msgstr "adminisztrÃ¡tor lehÃ­vÃ¡s: "
 
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
@@ -4718,12 +4718,12 @@ msgstr "ide"
 
 #: shared/dtcrm/draw_handle.php:244
 msgid "if applicable"
-msgstr "ha alkalmazható"
+msgstr "ha alkalmazhatÃ³"
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "is NOT available for registration. The registration server returned: "
 msgstr ""
-"Nem regisztrálható. A regisztrációs szerver a következõvel tért vissza:"
+"Nem regisztrÃ¡lhatÃ³. A regisztrÃ¡ciÃ³s szerver a kÃ¶vetkezÅ‘vel tÃ©rt vissza:"
 
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
@@ -4731,29 +4731,29 @@ msgstr ""
 
 #: shared/dtcrm/draw_handle.php:217
 msgid "marked fields are required"
-msgstr "a megjelölt mezõk kötelezõek"
+msgstr "a megjelÃ¶lt mezÅ‘k kÃ¶telezÅ‘ek"
 
 #: shared/inc/forms/ftp.php:53
 msgid "new FTP account"
-msgstr "Új FTP hozzáférés"
+msgstr "Ãšj FTP hozzÃ¡fÃ©rÃ©s"
 
 #: shared/inc/forms/ssh.php:47
 msgid "new SSH account"
-msgstr "Új SSH hozzáférés"
+msgstr "Ãšj SSH hozzÃ¡fÃ©rÃ©s"
 
 #: shared/inc/forms/email.php:532
 msgid "new mailbox"
-msgstr "Új levelesláda"
+msgstr "Ãšj leveleslÃ¡da"
 
 #: shared/inc/forms/lists.php:51 shared/inc/forms/lists.php:85
 #, fuzzy
 msgid "new mailing list"
-msgstr "Az adatbázisai listája:"
+msgstr "Az adatbÃ¡zisai listÃ¡ja:"
 
 #: shared/dtcrm/draw_handle.php:238 shared/dtcrm/draw_handle.php:241
 #: shared/dtcrm/draw_handle.php:259
 msgid "optional"
-msgstr "opció"
+msgstr "opciÃ³"
 
 #: client/new_account_form.php:635
 msgid "selling conditions"
@@ -4761,12 +4761,12 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:291
 msgid "to refresh the menu or add another domain name."
-msgstr "a menü frissítéshez vagy további domain név hozzáadáshoz"
+msgstr "a menÃ¼ frissÃ­tÃ©shez vagy tovÃ¡bbi domain nÃ©v hozzÃ¡adÃ¡shoz"
 
 #: shared/dtcrm/draw_adddomain.php:162
 msgid "year"
-msgstr "év"
+msgstr "Ã©v"
 
 #: shared/dtcrm/draw_adddomain.php:163
 msgid "years"
-msgstr "évek"
+msgstr "Ã©vek"

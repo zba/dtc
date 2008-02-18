@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: Luca Franceschini <info@atw.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: shared/inc/forms/vps.php:64 shared/inc/forms/vps.php:77
@@ -583,7 +583,7 @@ msgid ""
 "addition. To request hosting for a new domain name, without administrator "
 "validation or domain name registration, please write to:"
 msgstr ""
-"Presto un amministratore controller‡ la tua richiesta e accetter‡ l'aggiunta "
+"Presto un amministratore controller√† la tua richiesta e accetter√† l'aggiunta "
 "del dominio al tuo account. Attualmente non hai il privilegio di aggiungere "
 "nomi a dominio. Se aggiungi spesso nomi a dominio, puoi chiedere "
 "all'amministratore di darti il permesso di aggiungere domini in automatico. "
@@ -792,7 +792,7 @@ msgstr ""
 
 #: shared/inc/forms/email.php:642
 msgid "Catch-all email set to deliver to"
-msgstr "Il messaggio catch-all Ë da inviare a"
+msgstr "Il messaggio catch-all √® da inviare a"
 
 #: admin/inc/dtc_config.php:321
 msgid "Category"
@@ -824,14 +824,14 @@ msgstr "Scegli un pacchetto da installare"
 
 #: shared/inc/forms/my_account.php:210
 msgid "City:"
-msgstr "Citt‡:"
+msgstr "Citt√†:"
 
 #: admin/dtcrm/main.php:168 client/new_account_form.php:622
 #: shared/dtcrm/draw_handle.php:63 shared/dtcrm/draw_handle.php:95
 #: shared/dtcrm/draw_handle.php:127 shared/dtcrm/draw_handle.php:247
 #, fuzzy
 msgid "City: "
-msgstr "Citt‡:"
+msgstr "Citt√†:"
 
 #: shared/dtcrm/draw_adddomain.php:291
 msgid "Click"
@@ -885,18 +885,18 @@ msgstr ""
 #: admin/inc/dtc_config.php:1325
 #, fuzzy
 msgid "Company name"
-msgstr "Societ‡:"
+msgstr "Societ√†:"
 
 #: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:202
 msgid "Company name:"
-msgstr "Societ‡:"
+msgstr "Societ√†:"
 
 #: admin/dtcrm/main.php:163 client/new_account_form.php:590
 #: shared/dtcrm/draw_handle.php:58 shared/dtcrm/draw_handle.php:90
 #: shared/dtcrm/draw_handle.php:122 shared/dtcrm/draw_handle.php:226
 #, fuzzy
 msgid "Company name: "
-msgstr "Societ‡:"
+msgstr "Societ√†:"
 
 #: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:434
 #: shared/gfx/skin/bwoup/layout.php:436
@@ -963,7 +963,7 @@ msgid ""
 "Could not connect to domain registration server: please try again later!"
 msgstr ""
 "Non posso connettermi al server per la registrazione dei domini: per favore "
-"riprova pi˘ tardi"
+"riprova pi√π tardi"
 
 #: shared/inc/forms/vps.php:177
 msgid "Could not connect to the VPS SOAP Server."
@@ -1384,7 +1384,7 @@ msgstr "Files nome a dominio:"
 #: shared/dtcrm/draw_adddomain.php:68
 msgid "Domain name is not in correct format. Please enter another name."
 msgstr ""
-"In nome a dominio non Ë nel formato corretto, perfavore scegli un altro nome."
+"In nome a dominio non √® nel formato corretto, perfavore scegli un altro nome."
 
 #: admin/inc/dtc_config.php:65
 msgid "Domain name registration"
@@ -1401,7 +1401,7 @@ msgstr "Il nome del dominio non sembra corretto."
 
 #: shared/inc/forms/admin_stats.php:102
 msgid "Domain name trafic and disk usage:"
-msgstr "Domain nÈv forgalom Ès lemezter¸let haszn·lat:"
+msgstr "Domain n√©v forgalom √©s lemezter√ºlet haszn√°lat:"
 
 #: shared/inc/forms/dns.php:61
 msgid "Domain root TXT record2: "
@@ -1519,7 +1519,7 @@ msgstr "Attiva il supporto VERP."
 #, fuzzy
 msgid "Enable webarchive."
 msgstr ""
-"Selezionando questa opzione si avr‡ la generazione ogni ora dell\\'archivio "
+"Selezionando questa opzione si avr√† la generazione ogni ora dell\\'archivio "
 "web."
 
 #: shared/inc/forms/lists.php:442
@@ -1859,7 +1859,7 @@ msgid ""
 "If this file exists, then retrieving old posts with -get-N (for exemple "
 "mylist-get-12@my-domain.tld) is disabled"
 msgstr ""
-"Se selezionato la possibilit‡ di recuperare vecchi posts con -get-N Ë "
+"Se selezionato la possibilit√† di recuperare vecchi posts con -get-N √® "
 "disabilitata."
 
 #: shared/inc/forms/lists.php:214
@@ -1936,7 +1936,7 @@ msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
 "numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
 msgstr ""
-"Il formato della password non Ë corretto: inserisci solo lettere e numero "
+"Il formato della password non √® corretto: inserisci solo lettere e numero "
 "(min. 4 max. 16 caratteri)."
 
 #: shared/inc/sql/email.php:14
@@ -2039,18 +2039,18 @@ msgstr ""
 
 #: client/new_account_form.php:237
 msgid "Is company radio button is wrong!"
-msgstr "Il campo azienda non Ë corretto!"
+msgstr "Il campo azienda non √® corretto!"
 
 #: admin/dtcrm/main.php:161 client/new_account_form.php:586
 msgid "Is it a company: "
-msgstr "E' una societ‡: "
+msgstr "E' una societ√†: "
 
 #: shared/inc/forms/lists.php:175
 msgid ""
 "Is the list is open or closed. If it\\'s closed subscribtion and "
 "unsubscription via mail is disabled."
 msgstr ""
-"Se selezionato la lista Ë chiusa. Le iscrizioni e cancellazioni dalla lista "
+"Se selezionato la lista √® chiusa. Le iscrizioni e cancellazioni dalla lista "
 "sono disattivate."
 
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
@@ -2733,25 +2733,25 @@ msgstr ""
 #: shared/inc/forms/ftp.php:61
 #, fuzzy
 msgid "Number of active ftp accounts:"
-msgstr "N˙mero mailboxes attive:"
+msgstr "N√∫mero mailboxes attive:"
 
 #: shared/inc/forms/aliases.php:31 shared/inc/forms/email.php:540
 msgid "Number of active mailboxes:"
-msgstr "N˙mero mailboxes attive:"
+msgstr "N√∫mero mailboxes attive:"
 
 #: shared/inc/forms/lists.php:24
 #, fuzzy
 msgid "Number of active mailing lists"
-msgstr "N˙mero mailboxes attive:"
+msgstr "N√∫mero mailboxes attive:"
 
 #: shared/inc/forms/ssh.php:55
 #, fuzzy
 msgid "Number of active ssh accounts:"
-msgstr "N˙mero mailboxes attive:"
+msgstr "N√∫mero mailboxes attive:"
 
 #: shared/inc/forms/subdomain.php:135
 msgid "Number of active subdomains:"
-msgstr "N˙mero sottodomini attivi:"
+msgstr "N√∫mero sottodomini attivi:"
 
 #: shared/inc/forms/root_admin.php:129
 msgid "Number of databases:"
@@ -2861,7 +2861,7 @@ msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"
 msgstr ""
-"La password Ë costituita solo da caratteri standard e numeri (a-zA-Z0-9) e "
+"La password √® costituita solo da caratteri standard e numeri (a-zA-Z0-9) e "
 "dovrebbe essere di lunghezza compresa fra i 6 e i 16 caratteri.<br>\n"
 
 #: client/new_account_form.php:67
@@ -2875,7 +2875,7 @@ msgid ""
 "Password must consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long."
 msgstr ""
-"Il formato della password non Ë corretto: inserisci solo lettere e numero "
+"Il formato della password non √® corretto: inserisci solo lettere e numero "
 "(min. 4 max. 16 caratteri)."
 
 #: admin/inc/draw_user_admin.php:221 client/login.php:13
@@ -3138,7 +3138,7 @@ msgstr ""
 
 #: admin/dtcrm/main.php:209
 msgid "Quantity"
-msgstr "Quantit‡"
+msgstr "Quantit√†"
 
 #: admin/inc/monitor.php:15
 msgid "Quota"
@@ -3311,7 +3311,7 @@ msgstr ""
 
 #: client/new_account_form.php:203
 msgid "Required field city missing."
-msgstr "Non hai compilato il campo citt‡."
+msgstr "Non hai compilato il campo citt√†."
 
 #: client/new_account_form.php:113
 msgid "Required field family name missing."
@@ -3637,7 +3637,7 @@ msgstr "Provincia:"
 
 #: shared/dtcrm/draw_adddomain.php:117
 msgid "Step 1: Verify availability"
-msgstr "Passo 1: verifica la disponibilit‡"
+msgstr "Passo 1: verifica la disponibilit√†"
 
 #: shared/dtcrm/draw.php:69
 msgid "Step 1: choose your upgrade"
@@ -3657,7 +3657,7 @@ msgstr "Passo 3: procedi alla registrazione"
 
 #: shared/dtcrm/draw_transferdomain.php:39
 msgid "Step1: check if domain is transferable"
-msgstr "Step 1: verifica se il dominio Ë trasferibile"
+msgstr "Step 1: verifica se il dominio √® trasferibile"
 
 #: shared/dtcrm/draw.php:79
 #, fuzzy
@@ -3737,7 +3737,7 @@ msgstr "Post solo agli iscritti:"
 #: shared/dtcrm/draw_adddomain.php:289
 msgid "Successfully added your domain name to the hosting database"
 msgstr ""
-"Il tuo nome a dominio Ë stato aggiunto con successo al  database di hosting"
+"Il tuo nome a dominio √® stato aggiunto con successo al  database di hosting"
 
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
@@ -3861,15 +3861,15 @@ msgstr "Transazione fallita, per favore riprova!"
 
 #: shared/inc/forms/ftp.php:66
 msgid "There is already a ftp login by that name"
-msgstr "Esiste gi‡ un profilo ftp con questo nome"
+msgstr "Esiste gi√† un profilo ftp con questo nome"
 
 #: shared/inc/forms/email.php:547
 msgid "There is already a mailbox by that name"
-msgstr "Esiste gi‡ una casella di posta con questo nome"
+msgstr "Esiste gi√† una casella di posta con questo nome"
 
 #: shared/inc/forms/ssh.php:60
 msgid "There is already a ssh login by that name"
-msgstr "Esiste gi‡ un profilo ssh con questo nome"
+msgstr "Esiste gi√† un profilo ssh con questo nome"
 
 #: shared/inc/forms/lists.php:202
 msgid ""
@@ -3892,11 +3892,11 @@ msgstr "Questo DEVE essere un indirizzo valido"
 #: shared/dtcrm/draw_adddomain.php:74
 msgid "This domain name already hosted here, please enter another name."
 msgstr ""
-"Questo nome a dominio Ë gi‡ hostato qui, per favore scegli un altro nome."
+"Questo nome a dominio √® gi√† hostato qui, per favore scegli un altro nome."
 
 #: shared/inc/forms/domain_info.php:78
 msgid "This domain will be the alias of the following domain (domain parking):"
-msgstr "Questo dominio sar‡ l'alias del seguente dominio (parking di dominio):"
+msgstr "Questo dominio sar√† l'alias del seguente dominio (parking di dominio):"
 
 #: shared/inc/forms/lists.php:220
 msgid ""
@@ -3931,13 +3931,13 @@ msgstr "Destinazione del server VPS: "
 msgid ""
 "This subdomain is a nameserver (NS)<br>entry for the following subdomain: "
 msgstr ""
-"Questo subdomain √® un'entrata del nameserver (NS)<br>per il seguente "
+"Questo subdomain √É≈° un'entrata del nameserver (NS)<br>per il seguente "
 "subdomain: "
 
 #: shared/inc/forms/subdomain.php:169
 msgid "This subdomain is a service (SRV)<br>entry for the following port: "
 msgstr ""
-"Questo subdomain √® un'entrata del service (SRV)<br>per il seguente port: "
+"Questo subdomain √É≈° un'entrata del service (SRV)<br>per il seguente port: "
 
 #: shared/inc/forms/lists.php:217
 msgid ""
@@ -4138,7 +4138,7 @@ msgstr "Usa logins ssh @domain.com:"
 
 #: admin/inc/dtc_config.php:714
 msgid "Use CNAME instead of A record for subdomains:"
-msgstr "Usa CNAME anzichË l'annotazione di A per i subdomains:"
+msgstr "Usa CNAME anzich√® l'annotazione di A per i subdomains:"
 
 #: admin/inc/dtc_config.php:418
 msgid "Use LVM backend"
@@ -4268,7 +4268,7 @@ msgid ""
 "User login format incorrect. Please use letters and numbers only and from 4 "
 "to 16 chars."
 msgstr ""
-"Il formato del login utente non Ë corretto: inserisci solo lettere e numero "
+"Il formato del login utente non √® corretto: inserisci solo lettere e numero "
 "(min. 4 max. 16 caratteri)."
 
 #: shared/inc/sql/database.php:250
@@ -4282,7 +4282,7 @@ msgstr "Tempo scadenza della sessione utente (mn):"
 
 #: client/new_account_form.php:252 client/new_account_form.php:260
 msgid "Username already taken! Try again."
-msgstr "Nome utente gi‡ presente, scegline un altro."
+msgstr "Nome utente gi√† presente, scegline un altro."
 
 #: client/new_account_form.php:62
 msgid ""
@@ -4542,12 +4542,12 @@ msgid ""
 "  \n"
 "For more informations go to mlmmj official web site at http://mlmmj.mmj.dk"
 msgstr ""
-"La mailing list puÚ essere controllata via email o tramite il pannello di "
+"La mailing list pu√≤ essere controllata via email o tramite il pannello di "
 "controllo.\n"
 "Di seguito gli indirizzi ai quali puoi inviare una email per eseguire il "
 "rispettivo comando:\n"
 "\n"
-"  #name#-help@#domain# -> restituisce la lista dei comandi pi˘ comuni\n"
+"  #name#-help@#domain# -> restituisce la lista dei comandi pi√π comuni\n"
 "  #name#-list@#domain# -> restituisce la lista degli iscritti alla lista\n"
 "  #name#-get-N@#domain# -> restituisce il messaggio N della lista\n"
 "  #name#-owner@#domain# -> permette di inviare una email al proprietario "
@@ -4636,19 +4636,19 @@ msgstr "Tuo username SRS:"
 
 #: shared/inc/forms/vps.php:204
 msgid "Your VPS has expired on the: "
-msgstr "Il tuo VPS Ë scaduto il: "
+msgstr "Il tuo VPS √® scaduto il: "
 
 #: shared/inc/forms/vps.php:200
 msgid "Your VPS was first registered on the: "
-msgstr "Il tuo VPS Ë stato registrato il: "
+msgstr "Il tuo VPS √® stato registrato il: "
 
 #: shared/inc/forms/vps.php:207
 msgid "Your VPS will expire on the: "
-msgstr "Il tuo VPS scadr‡ il: "
+msgstr "Il tuo VPS scadr√† il: "
 
 #: shared/dtcrm/draw_transferdomain.php:109
 msgid "Your account has been credited!"
-msgstr "Il pagamento Ë stato aggiunto al vostro conto"
+msgstr "Il pagamento √® stato aggiunto al vostro conto"
 
 #: shared/inc/forms/domain_info.php:53
 msgid "Your area disk usage:"
@@ -4693,12 +4693,12 @@ msgid ""
 "Your domain name has been registred elsewhere (i.e. not on this site). To "
 "order its transfer, please click "
 msgstr ""
-"Il tuo nome a dominio Ë gi‡ stato registrato da qualche parte  (non in "
+"Il tuo nome a dominio √® gi√† stato registrato da qualche parte  (non in "
 "questo sito). Per ordinare il suo trasferimento clicca"
 
 #: shared/dtcrm/draw_adddomain.php:89
 msgid "Your domain name is now ready:"
-msgstr "Il tuo nome a dominio Ë ora pronto:"
+msgstr "Il tuo nome a dominio √® ora pronto:"
 
 #: shared/dtcrm/draw_whois.php:95
 msgid "Your domain name whois data:"
@@ -4706,7 +4706,7 @@ msgstr "Dati per il whois del tuo dominio:"
 
 #: shared/dtcrm/draw_adddomain.php:79
 msgid "Your domain name will be soon validated:"
-msgstr "Il tuo nome a dominio verr‡ presto validato:"
+msgstr "Il tuo nome a dominio verr√† presto validato:"
 
 #: shared/inc/forms/domain_info.php:51
 msgid "Your domain:"
@@ -4731,7 +4731,7 @@ msgstr "Tua chiave di accesso al test server:"
 #: shared/dtcrm/draw.php:36
 #, fuzzy
 msgid "Your last command expire on the: "
-msgstr "Il tuo VPS Ë scaduto il: "
+msgstr "Il tuo VPS √® scaduto il: "
 
 #: shared/inc/forms/email.php:319
 msgid "Your list of imported mail"
@@ -4745,7 +4745,7 @@ msgstr "Tuo account hosting:"
 #: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
 #, fuzzy
 msgid "Your path is restricted to "
-msgstr "Il tuo VPS Ë stato registrato il: "
+msgstr "Il tuo VPS √® stato registrato il: "
 
 #: shared/inc/forms/database.php:32
 #, fuzzy
@@ -4812,7 +4812,7 @@ msgstr "se necessario"
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "is NOT available for registration. The registration server returned: "
 msgstr ""
-"NON Ë disponibile per la registrazione. Il server di  registrazione dice: "
+"NON √® disponibile per la registrazione. Il server di  registrazione dice: "
 
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
@@ -4883,7 +4883,7 @@ msgstr "anni"
 
 #, fuzzy
 #~ msgid "Company: "
-#~ msgstr "Societ‡:"
+#~ msgstr "Societ√†:"
 
 #, fuzzy
 #~ msgid "Firstname: "
