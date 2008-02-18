@@ -55,6 +55,12 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
 
 	$q = "DELETE FROM $pro_mysql_vps_table WHERE id='".$_REQUEST["id"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	$q = "DELETE FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='".$vps["vps_server_hostname"]."' AND vps_xen_name='".$vps["vps_xen_name"]."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+	remoteVPSAction($vps["vps_server_hostname"],$vps["vps_xen_name"],"destroy_vps");
+
 	VPS_Server_Subscribe_To_Lists($vps["vps_server_hostname"]);
 }
 
