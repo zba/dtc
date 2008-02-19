@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-30 19:00+0800\n"
+"POT-Creation-Date: 2008-02-19 16:24+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jelle Kalf <thomas@goirand.fr>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -1933,7 +1933,7 @@ msgid ""
 "Return-Path: are deleted no matter what."
 msgstr ""
 
-#: admin/inc/submit_root_querys.php:259
+#: admin/inc/submit_root_querys.php:265
 #, fuzzy
 msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
@@ -2875,7 +2875,7 @@ msgstr "FTP password:"
 msgid "Password 1 and 2 do not match!"
 msgstr "Password 1 en 2 komen niet overeen!"
 
-#: admin/inc/submit_root_querys.php:263
+#: admin/inc/submit_root_querys.php:269
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-17 22:40+0800\n"
+"POT-Creation-Date: 2008-02-19 16:28+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -1875,7 +1875,7 @@ msgstr ""
 "<br><br>Received:<br>Message-ID:<br><br>那么所有的包含这些内容的邮件都将被删"
 "除。From: 和 Return-Path:是无论如何都会被删除的。"
 
-#: admin/inc/submit_root_querys.php:259
+#: admin/inc/submit_root_querys.php:265
 #, fuzzy
 msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
@@ -2804,7 +2804,7 @@ msgstr "FTP登陆密码："
 msgid "Password 1 and 2 do not match!"
 msgstr "两次输入的密码不匹配！"
 
-#: admin/inc/submit_root_querys.php:263
+#: admin/inc/submit_root_querys.php:269
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"

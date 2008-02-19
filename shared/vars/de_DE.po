@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-17 22:40+0800\n"
+"POT-Creation-Date: 2008-02-19 16:28+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -1884,7 +1884,7 @@ msgstr ""
 "eingehenden Mails entfernt. From: und Return-Path: werden auf jeden Fall "
 "entfernt."
 
-#: admin/inc/submit_root_querys.php:259
+#: admin/inc/submit_root_querys.php:265
 msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
 "numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
@@ -2803,7 +2803,7 @@ msgstr "Passwort"
 msgid "Password 1 and 2 do not match!"
 msgstr "Die beiden Passwörter stimmen nicht überein!"
 
-#: admin/inc/submit_root_querys.php:263
+#: admin/inc/submit_root_querys.php:269
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"

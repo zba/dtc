@@ -138,3 +138,4 @@ PATH_DTC_ETC="/var/lib/dtc/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
+DKFILTER_INIT_SCRIPT=/etc/init.d/dkfilter

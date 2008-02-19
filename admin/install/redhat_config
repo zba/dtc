@@ -54,3 +54,4 @@ fi
 MKTEMP="mktemp -p /tmp"
 MYSQL_DB_SOCKET_PATH="/var/lib/mysql/mysql.sock"
 DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
+DKFILTER_INIT_SCRIPT=/etc/init.d/dkfilter

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-30 19:00+0800\n"
+"POT-Creation-Date: 2008-02-19 16:24+0800\n"
 "PO-Revision-Date: 2007-12-30 22:30+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: French\n"
@@ -1849,7 +1849,7 @@ msgstr ""
 "occurences de ces headers dans les messages entrants de la liste seront "
 "effacé. From: et Return-Path: sont effacé dans tous les cas."
 
-#: admin/inc/submit_root_querys.php:259
+#: admin/inc/submit_root_querys.php:265
 msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
 "numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
@@ -2769,7 +2769,7 @@ msgstr "Mot de passe"
 msgid "Password 1 and 2 do not match!"
 msgstr "Les mots de passe 1 et 2 ne correspondent pas !"
 
-#: admin/inc/submit_root_querys.php:263
+#: admin/inc/submit_root_querys.php:269
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"

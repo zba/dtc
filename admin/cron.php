@@ -85,6 +85,10 @@ function getCronFlags () {
 }
 
 function checkLockFlag () {
+	global $cronjob_table_content;
+	global $pro_mysql_cronjob_table;
+
+	$cronjob_table_content = getCronFlags();
 	// Lock the cron flag, in case the cron script takes more than 10 minutes
 	if($cronjob_table_content["lock_flag"] != "finished"){
 		echo "DB flag says that last cron job is not finished: exiting.\n
@@ -98,6 +102,7 @@ mysql -uroot -Ddtc -p --execute=\"UPDATE $pro_mysql_cronjob_table SET lock_flag=
 }
 
 function resetLockFlag () {
+	global $pro_mysql_cronjob_table;
 	$query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='finished' WHERE 1;";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 }
