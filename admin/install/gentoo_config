@@ -45,3 +45,4 @@ USER_ADD_CMD=groupadd
 USER_MOD_CMD=usermod
 PASSWD_CMD=passwd
 DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
+DKFILTER_INIT_SCRIPT=/etc/init.d/dkfilter

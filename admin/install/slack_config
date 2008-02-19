@@ -52,3 +52,4 @@ MYSQL_CLIENT='spider%.formosahost.com'
 MX_MAIL="postman"
 SQ_DATA="/var/lib/squirrelmail/data"
 SQ_ATTACH="/var/lib/squirrelmail/attach"
+DKFILTER_INIT_SCRIPT=/etc/init.d/dkfilter

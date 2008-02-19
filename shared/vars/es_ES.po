@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-30 19:00+0800\n"
+"POT-Creation-Date: 2008-02-19 16:24+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jose Toscano <josetg81wireless@yahoo.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -1942,7 +1942,7 @@ msgstr ""
 "apariciones de estos encabezados en el correo entrante de la lista "
 "ser&aacute;n borradas. From: y Return-Path: son borrados por defecto."
 
-#: admin/inc/submit_root_querys.php:259
+#: admin/inc/submit_root_querys.php:265
 msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
 "numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
@@ -2888,7 +2888,7 @@ msgstr ""
 msgid "Password 1 and 2 do not match!"
 msgstr "Password 1 y 2 no coinciden"
 
-#: admin/inc/submit_root_querys.php:263
+#: admin/inc/submit_root_querys.php:269
 #, fuzzy
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "

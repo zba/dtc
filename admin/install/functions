@@ -1,5 +1,9 @@
 #!/bin/sh
 
+DKFILTER_ORIG_MD5="1b3b84c896cbede22f2e0604d3e77e05"
+DKFILTER_PATCHED_MD5="9225006167a1a128f05b2cabaa6d1645"
+DKFILTER_PATCH=${PATH_DTC_ADMIN}/dkfilter.patch
+
 if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
 fi
@@ -376,6 +380,72 @@ searchAndReplace () {
 		rm -f ${TMP_FILE}
 	fi
 }
+
+# Patch a file using a patch file and checkings with 2 md5
+# Params:
+# $1 - Full path of the file to patch
+# $2 - Path to the patch file (has to be a -P0 patch file)
+# $3 - md5 of the original file
+# $4 - md5 of the patched file
+dtcPatchFile () {
+	if [ -x /sbin/md5 ] ; then
+		MD5="md5 -r"
+	else
+		MD5="md5sum"
+	fi
+	if [ -e ${1} ] ; then
+		DEST_MD5_VAL=`${MD5} ${1} | cut -d" " -f1`
+		# If it's the original file, patch it
+		if [ "${DEST_MD5_VAL}" = "${3}" ] ; then
+			cp ${1} ${1}.DTC.BEFORE-PATCH-BACKUP
+			patch ${1} -p0 <${2}
+		else
+			# If the file is already patched, don't do anything
+			if [ "${DEST_MD5_VAL}" = ${4} ] ; then
+				echo "File ${1} already patched."
+			# Else there's a problem!
+			else
+				echo "File ${1} doesn't patch any MD5 we have in: please patch manually using ${2} file."
+			fi
+		fi
+	else
+		echo "Can't find ${1}, did you install it?"
+	fi
+}
+
+dtcUnpatchFile () {
+	if [ -x /sbin/md5 ] ; then
+		MD5="md5 -r"
+	else
+		MD5="md5sum"
+	fi
+	if [ -e ${1} ] ; then
+		DEST_MD5_VAL=`${MD5} ${1} | cut -d" " -f1`
+		# If we have the original file, don't do anything
+		if [ "${DEST_MD5_VAL}" = "${3}" ] ; then
+			echo "File ${1} was not patched, no need to unpatch."
+		else
+			# If it's the patched file, unpatch using our backup (check the backup first...)
+			if [ "${DEST_MD5_VAL}" = "${4}" ] ; then
+				BACKUP_MD5_VAL=`${MD5} ${1}.DTC.BEFORE-PATCH-BACKUP | cut -d" " -f1`
+				# If backup is original, let's use it as replacement !
+				if [ "${BACKUP_MD5_VAL}" = "${3}" ] ; then
+					cp ${1}.DTC.BEFORE-PATCH-BACKUP ${1}
+					echo "Reverted patch for ${1}"
+				# We have a problem, the backup file doesn't match our md5!
+				else
+					echo "Can't reverse patch for ${1}, please do manually!"
+				fi
+			# We have a problem, we can't reverse, as the original file has been edited!
+			else
+				echo "Can't reverse patch for ${1}, please do manually!"
+			fi
+		fi
+	else
+		echo "Can't find ${1}, did you install it?"
+	fi
+}
+
 
 searchMYSQL_DB_SOCKET_PATH () {
 	echoIfVerbose "-> Searching for mysql.sock"
@@ -4381,6 +4451,8 @@ DTCuninstallPackage () {
 }
 
 DTCuninstallDaemons () {
+	dtcUnpatchFile $DKFILTER_INIT_SCRIPT $DKFILTER_PATCH $DKFILTER_ORIG_MD5 $DKFILTER_PATCHED_MD5
+
 	createDTCuserAndGroup
 	DTCsearchConfigFiles
 	uninstallCrontab
@@ -4418,6 +4490,8 @@ DTCsetupDaemons () {
 	createRRDFiles
 	reportingInstall
 
+	dtcPatchFile $DKFILTER_INIT_SCRIPT $DKFILTER_PATCH $DKFILTER_ORIG_MD5 $DKFILTER_PATCHED_MD5
+
 	modifyResolvConf
 	createChrootTemplate
 	findHtpasswdBinary
@@ -4453,4 +4527,3 @@ DTCsetupDaemons () {
 	echoEndMessage
 	exit 0
 }
-

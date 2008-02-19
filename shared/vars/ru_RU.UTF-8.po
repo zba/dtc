@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: git_5feb2008\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-17 22:40+0800\n"
+"POT-Creation-Date: 2008-02-19 16:28+0800\n"
 "PO-Revision-Date: 2008-02-17 17:05+0300\n"
 "Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -1881,7 +1881,7 @@ msgstr ""
 "удалены все повторяющиеся появления этих заголовков из поступающей в список "
 "почте. Неважно какие заголовки, даже From: и Return-Path: будут удаляться."
 
-#: admin/inc/submit_root_querys.php:259
+#: admin/inc/submit_root_querys.php:265
 msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
 "numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
@@ -2799,7 +2799,7 @@ msgstr "Пароль"
 msgid "Password 1 and 2 do not match!"
 msgstr "Первый и второй пароли не совпадают!"
 
-#: admin/inc/submit_root_querys.php:263
+#: admin/inc/submit_root_querys.php:269
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"
