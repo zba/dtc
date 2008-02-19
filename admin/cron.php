@@ -97,6 +97,11 @@ mysql -uroot -Ddtc -p --execute=\"UPDATE $pro_mysql_cronjob_table SET lock_flag=
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 }
 
+function resetLockFlag () {
+	$query = "UPDATE $pro_mysql_cronjob_table SET lock_flag='finished' WHERE 1;";
+	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+}
+
 // This function call the apropriate server to tell that this server may have
 // some change in his domain list
 function commitTriggerToRemote($a){
@@ -461,6 +466,11 @@ function cronMailSystem () {
 			echo "Flushing the queue now, to make sure we have some mail delivery happening after amavisd restart...\n";
                         system("$PATH_POSTFIX_SCRIPT flush");
 
+			if( file_exists ("/etc/init.d/dkfilter") ){
+				echo "Reloading dkfilter to reload it's domains...\n";
+				system("/etc/init.d/dkfilter force-reload");
+			}
+
 			break;
 		case "qmail":
 		default:
@@ -569,7 +579,7 @@ function printEndTime () {
 
 
 // Edit the following if you want to disable some services...
-
+checkLockFlag();
 checkOtherServerTriggers();
 checkNamedCronService();
 cronMailSystem();
@@ -596,6 +606,7 @@ if(($start_stamps%(60*60))< 60*10){	updateAllListWebArchive();	}
 checkWebalizerCronService();
 $cronjob_table_content = getCronFlags();
 checkTimeAndLaunchNetBackupScript();
+resetLockFlag();
 // Echo the console:
 echo("Report for this job:\n");
 echo( str_replace("<br>","\n",$console));
