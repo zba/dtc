@@ -1,6 +1,9 @@
-dtc (0.28.1-1) unstable; urgency=low
+dtc (0.28.2-1) unstable; urgency=low
 
   * New upstream release.
+  * [v0.27] DTC now generates a dtc-cyrus package
+  * [v0.27] Added support for dkfilter inbound filtering and outbound
+    signing with postfix.
   * [v0.27] Now using ttf-dejavu instaed of ttf-bistream-vera because that last
     one is going to be removed from Debian (Closes: #461259)
   * [v0.27] Renamed the dtc package to dtc-core in order not to conflict with
