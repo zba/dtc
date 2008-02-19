@@ -155,7 +155,10 @@ function DTCdeleteAdmin ($adm_to_del) {
 		$vps = mysql_fetch_array($r);
 		$q2 = "UPDATE $pro_mysql_vps_ip_table SET available='yes' WHERE vps_server_hostname='".$vps["vps_server_hostname"]."' AND vps_xen_name='".$vps["vps_xen_name"]."';";
 		$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-		
+
+		$q2 = "DELETE FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='".$vps["vps_server_hostname"]."' AND vps_xen_name='".$vps["vps_xen_name"]."';";
+		$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
 		// Unload (eg: destroy) the VPS directly
 		remoteVPSAction($vps["vps_server_hostname"],$vps["vps_xen_name"],"destroy_vps");
 		VPS_Server_Subscribe_To_Lists($vps["vps_server_hostname"]);

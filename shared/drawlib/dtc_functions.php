@@ -531,7 +531,7 @@ function VPS_Server_Subscribe_To_Lists($vps_server_hostname){
 	}
 }
 
-function addVPSToUser($adm_login,$vps_server_hostname,$product_id){
+function addVPSToUser($adm_login,$vps_server_hostname,$product_id,$operating_system="debian"){
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_table;
@@ -553,8 +553,8 @@ function addVPSToUser($adm_login,$vps_server_hostname,$product_id){
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	$exp_date = calculateExpirationDate(date("Y-m-d"),$product["period"]);
-	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,product_id,bandwidth_per_month_gb)
-	VALUES('','$adm_login','".$vps_ip["vps_server_hostname"]."','".$vps_ip["vps_xen_name"]."','".date("Y-m-d")."','$exp_date','".$product["quota_disk"]."','".$product["memory_size"]."','$product_id','".$product["bandwidth"]."');";
+	$q = "INSERT INTO $pro_mysql_vps_table (id,owner,vps_server_hostname,vps_xen_name,start_date,expire_date,hddsize,ramsize,product_id,bandwidth_per_month_gb,operatingsystem)
+	VALUES('','$adm_login','".$vps_ip["vps_server_hostname"]."','".$vps_ip["vps_xen_name"]."','".date("Y-m-d")."','$exp_date','".$product["quota_disk"]."','".$product["memory_size"]."','$product_id','".$product["bandwidth"]."','$operating_system');";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	// Subscribe user to the lists of the VPS

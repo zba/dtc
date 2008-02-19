@@ -1,4 +1,4 @@
-dtc (0.27.8-1) unstable; urgency=low
+dtc (0.28.1-1) unstable; urgency=low
 
   * New upstream release.
   * [v0.27] Now using ttf-dejavu instaed of ttf-bistream-vera because that last
