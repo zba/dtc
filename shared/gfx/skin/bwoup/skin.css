@@ -880,15 +880,14 @@ input,select,textarea {
 
 	margin: 0 0 10px 0;
 
-	padding: 3px 15px 0 15px;
+        padding-left: 1em;
+        padding-top: 1em;
 
 	font-size: 12px;
 
 	color: #C0DBE5;
 
 	}
-
-
 
 .box_wnb_nb_content a, .box_wnb_nb_content a:visited { color:#CFE3EB; }
 
