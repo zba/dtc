@@ -471,7 +471,7 @@ function skinConsole(){
 </tr>
 <tr>
 <td><pre>
-<font color=\"#FFFFFF\">".$_SERVER["HTTP_HOST"].":&gt;<br>$console</font></pre>
+<font color=\"#FFFFFF\">".$_SERVER["HTTP_HOST"].":&gt;<br><span id=\"console_content\" class=\"console_content\">$console</span></font></pre>
 </td>
 </tr>
 </table>

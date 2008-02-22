@@ -555,7 +555,7 @@ function skin_LayoutAdminPage (){
 		}
 		$skinedConsole = '<table cellpadding="0" cellspacing="0" class="console">
 	  <tr><td class="console_title">Console output :</td>
-	  </tr><tr>		<td class="console_output"><pre>'.$_SERVER['SERVER_NAME'].':&gt;_'.$console.'<br></pre></td></tr></table>';
+	  </tr><tr>		<td class="console_output"><pre>'.$_SERVER['SERVER_NAME'].':&gt;_'.$console.'<br><span id="console_content" class="console_content"></span></pre></td></tr></table>';
 
 	  $adm_list = adminList($rand).'
 	  <div class="voider"></div>
