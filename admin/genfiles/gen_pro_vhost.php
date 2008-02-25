@@ -558,6 +558,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Alias /dtcadmin $conf_dtcadmin_path
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	Alias /squirrelmail ".$conf_tools_prefix."/squirrelmail
+	Alias /roundcube /var/lib/roundcube
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
 # No ScriptAlias: we want to use system's /usr/lib/cgi-bin !!!
