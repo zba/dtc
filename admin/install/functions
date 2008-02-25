@@ -364,6 +364,19 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 	if [ -f /var/lib/mailgraph/mailgraph_virus.rrd ] ; then
 		chown ${CONF_DTC_SYSTEM_USERNAME} /var/lib/mailgraph/mailgraph_virus.rrd
 	fi
+	# Roundcube
+	if [ -f /etc/roundcube/debian-db.php ] ; then
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /etc/roundcube/debian-db.php
+	fi
+	if [ -f /etc/roundcube/main.inc.php ] ; then
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /etc/roundcube/main.inc.php
+	fi
+	if [ -d /var/lib/dbconfig-common/sqlite/roundcube ] ; then
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/dbconfig-common/sqlite/roundcube
+	fi
+	if [ -f /var/lib/dbconfig-common/sqlite/roundcube/roundcube ] ; then
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/dbconfig-common/sqlite/roundcube/roundcube
+	fi
 }
 
 # Do a search and replace in a file using sh
