@@ -17,7 +17,7 @@ function drawAdminTools_VPS($admin,$vps){
 	global $pro_mysql_vps_stats_table;
 	global $secpayconf_currency_letters;
 
-	global $reinstall_os = 1;
+	$reinstall_os = 1;
 
 	get_secpay_conf();
 
