@@ -3207,15 +3207,15 @@ groups.member_groupid_column = ssh_user_group.group_id;
 				# this is the libnss version
 				echo "
 [queries]
-getpwnam    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE login='%1$s' LIMIT 1
-getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1$u' LIMIT 1
+getpwnam    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE login='%1\$s' LIMIT 1
+getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1\$u' LIMIT 1
 getpwent    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access
-getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1$s' LIMIT 1
-getgrgid    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_id='%1$u' LIMIT 1
+getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1\$s' LIMIT 1
+getgrgid    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_id='%1\$u' LIMIT 1
 getgrent    SELECT group_name,group_password,group_id FROM ssh_groups
-memsbygid   SELECT login FROM ssh_access WHERE gid='%1$u'
-gidsbymem   SELECT gid  FROM ssh_access WHERE login='%1$s'
-getspnam    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access WHERE ssh_access.login='%1$s' LIMIT 1
+memsbygid   SELECT login FROM ssh_access WHERE gid='%1\$u'
+gidsbymem   SELECT gid  FROM ssh_access WHERE login='%1\$s'
+getspnam    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access WHERE ssh_access.login='%1\$s' LIMIT 1
 getspent    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access
 
 [server]
