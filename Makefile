@@ -28,7 +28,7 @@ SRC_COPY_DIR=$(CURDIR)/$(BSD_BUILD_DIR)/$(PKG_BUILD)
 PKG_PLIST_BUILD=$(CURDIR)/${BSD_BUILD_DIR}/PKG_PLIST_BUILD
 
 INSTALL?=install -D
-INSTALL_DIR=install -d
+INSTALL_DIR?=install -d
 
 # Set defaults (as for Debian as normal platform)
 DTC_APP_DIR?=/usr/share
@@ -51,9 +51,6 @@ DOC_DIR = $(DESTDIR)$(DTC_DOC_DIR)/dtc
 MAN_DIR = $(DESTDIR)$(MANUAL_DIR)
 # /usr/bin
 BINARY_DIR = $(DESTDIR)$(BIN_DIR)
-
-INSTALL = install -D
-INSTALL_DIR = install -d
 
 PHP_RIGHTS=0644
 ROOT_SCRIPTS_RIGHTS=0750
