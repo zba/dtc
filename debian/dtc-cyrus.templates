@@ -1,3 +1,19 @@
+Template: dtc/conf_mysqlautoconfig
+Type: boolean
+Default: true
+_Description: Automatically configure MySQL user?
+ DTC can use /etc/mysql/debian.cnf to automatically create a root mysql user
+ for DTC to access and manage MySQL and DTC's database. This way, no question
+ will be asked to you about what MySQL root password is used, all will be
+ automated, but the drawback is that the MySQL server that will be used will
+ always be located in the local machine (you wont be able to configure DTC
+ to use a remote database server).
+ .
+ In any case, please make sure that your MySQL root password is set. As per
+ default, Debian installs it with a blank password. To set your MySQL root
+ password, issue the following command: dpkg-reconfigure mysql-server-5.0.
+ You've been warned!
+
 Template: dtc/conf_mysqlhost
 Type: string
 Default: localhost

@@ -679,6 +679,16 @@ setupDTCDatabase () {
 
 	curdir=`pwd`
 
+	if [ -f "/etc/debian_version" -o "${conf_mysqlautoconfig}" = "true" ] ; then
+		DEBIAN_MYSQL_USER=`grep user /etc/mysql/debian.cnf | tail -n 1 | cut -d"=" -f2 | awk '{print $1}'`
+		DEBIAN_MYSQL_PASS=`grep password /etc/mysql/debian.cnf | tail -n 1 | cut -d"=" -f2 | awk '{print $1}'`
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="INSERT IGNORE INTO user (Host,User,Password,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Reload_priv,Shutdown_priv,Process_priv,File_priv,Grant_priv,References_priv,Index_priv,Alter_priv,Show_db_priv,Super_priv,Create_tmp_table_priv,Lock_tables_priv,Execute_priv,Repl_slave_priv,Repl_client_priv,Create_view_priv,Show_view_priv,Create_routine_priv,Alter_routine_priv,Create_user_priv) VALUES ('localhost','${conf_mysql_login}',PASSWORD('${conf_mysql_pass}'),'Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y')"
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="INSERT IGNORE INTO user (Host,User,Password,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Reload_priv,Shutdown_priv,Process_priv,File_priv,Grant_priv,References_priv,Index_priv,Alter_priv,Show_db_priv,Super_priv,Create_tmp_table_priv,Lock_tables_priv,Execute_priv,Repl_slave_priv,Repl_client_priv,Create_view_priv,Show_view_priv,Create_routine_priv,Alter_routine_priv,Create_user_priv) VALUES ('%','${conf_mysql_login}',PASSWORD('${conf_mysql_pass}'),'Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y')"
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="UPDATE user SET Password=PASSWORD('${conf_mysql_pass}'),Select_priv='Y',Insert_priv='Y',Update_priv='Y',Delete_priv='Y',Create_priv='Y',Drop_priv='Y',Reload_priv='Y',Shutdown_priv='Y',Process_priv='Y',File_priv='Y',Grant_priv='Y',References_priv='Y',Index_priv='Y',Alter_priv='Y',Show_db_priv='Y',Super_priv='Y',Create_tmp_table_priv='Y',Lock_tables_priv='Y',Execute_priv='Y',Repl_slave_priv='Y',Repl_client_priv='Y',Create_view_priv='Y',Show_view_priv='Y',Create_routine_priv='Y',Alter_routine_priv='Y',Create_user_priv='Y' WHERE Host='%' AND User='${conf_mysql_login}'"
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="UPDATE user SET Password=PASSWORD('${conf_mysql_pass}'),Select_priv='Y',Insert_priv='Y',Update_priv='Y',Delete_priv='Y',Create_priv='Y',Drop_priv='Y',Reload_priv='Y',Shutdown_priv='Y',Process_priv='Y',File_priv='Y',Grant_priv='Y',References_priv='Y',Index_priv='Y',Alter_priv='Y',Show_db_priv='Y',Super_priv='Y',Create_tmp_table_priv='Y',Lock_tables_priv='Y',Execute_priv='Y',Repl_slave_priv='Y',Repl_client_priv='Y',Create_view_priv='Y',Show_view_priv='Y',Create_routine_priv='Y',Alter_routine_priv='Y',Create_user_priv='Y' WHERE Host='localhost' AND User='${conf_mysql_login}'"
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="FLUSH PRIVILEGES"
+	fi
+
 	echoIfVerbose "-> Installing or upgrading DTC database: dtc "
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
 
@@ -4392,6 +4402,7 @@ saveConfig () {
 	oldumask=`umask`
 	umask 0700
         echo "
+conf_mysqlautoconfig=\"${conf_mysqlautoconfig}\"
 conf_mysql_host=\"${conf_mysql_host}\"
 conf_mysql_login=\"${conf_mysql_login}\"
 conf_mysql_pass=\"${conf_mysql_pass}\"

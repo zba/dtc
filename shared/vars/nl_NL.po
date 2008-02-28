@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-19 16:24+0800\n"
+"POT-Creation-Date: 2008-02-28 14:27+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jelle Kalf <thomas@goirand.fr>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: shared/inc/forms/vps.php:64 shared/inc/forms/vps.php:77
-#: shared/inc/forms/vps.php:90
+#: shared/inc/forms/vps.php:68 shared/inc/forms/vps.php:81
+#: shared/inc/forms/vps.php:94
 msgid " CPU seconds"
 msgstr ""
 
@@ -58,8 +58,8 @@ msgstr ""
 msgid "+1.XXXXXXXXXX format"
 msgstr "+31.xxxxxxxxx"
 
-#: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
-#: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
+#: shared/inc/forms/vps.php:67 shared/inc/forms/vps.php:68
+#: shared/inc/forms/vps.php:69 shared/inc/forms/vps.php:70
 msgid "2 months ago: "
 msgstr ""
 
@@ -698,7 +698,7 @@ msgstr "Bank gevalideerd"
 msgid "Bind reload"
 msgstr ""
 
-#: shared/inc/forms/vps.php:266
+#: shared/inc/forms/vps.php:271
 msgid "Boot up (xm start)"
 msgstr ""
 
@@ -723,11 +723,11 @@ msgstr "CGI-BIN bescherming"
 msgid "CPU Load Average"
 msgstr ""
 
-#: shared/inc/forms/vps.php:101
+#: shared/inc/forms/vps.php:105
 msgid "CPU Time:"
 msgstr ""
 
-#: shared/inc/forms/vps.php:226
+#: shared/inc/forms/vps.php:230
 msgid "CPU and Network usage:"
 msgstr "CPU en Netwerk verbruik:"
 
@@ -809,7 +809,7 @@ msgstr "Categorie"
 msgid "Category description"
 msgstr "Omschrijving van de categorie"
 
-#: shared/inc/forms/vps.php:339
+#: shared/inc/forms/vps.php:344
 msgid "Change NetBSD kernel"
 msgstr "Wijzig NetBSD kernel"
 
@@ -821,7 +821,7 @@ msgstr "Verander jouw password:"
 msgid "Check to send a bounce message (vacation): "
 msgstr "Vink aan om een bounce bericht te sturen: "
 
-#: shared/inc/forms/vps.php:129
+#: shared/inc/forms/vps.php:133
 msgid "Checking filesystem..."
 msgstr "Checking filesystem..."
 
@@ -971,7 +971,7 @@ msgstr ""
 "Kon geen verbinding maken met de domein registratie server: probeer aub "
 "later!"
 
-#: shared/inc/forms/vps.php:177
+#: shared/inc/forms/vps.php:181
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "Kon geen verbinding maken met de VPS SOAP Server."
 
@@ -983,7 +983,7 @@ msgstr "Kon VPS niet in database vinden"
 msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
 
-#: shared/inc/forms/vps.php:122
+#: shared/inc/forms/vps.php:126
 msgid ""
 "Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
 "not running?"
@@ -991,11 +991,11 @@ msgstr ""
 "kon remote status niet verkrijgen (Method getVPSState() failed). Misschien "
 "is de vps niet actief..."
 
-#: shared/inc/forms/vps.php:126
+#: shared/inc/forms/vps.php:130
 msgid "Could not get remote status. Unkown error: "
 msgstr "kon remote status niet verkrijgen Unkown error: "
 
-#: shared/inc/forms/vps.php:124
+#: shared/inc/forms/vps.php:128
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
@@ -1063,7 +1063,7 @@ msgstr ""
 msgid "Create a subdomain: "
 msgstr "Creeer een subdomein: "
 
-#: shared/inc/forms/vps.php:26
+#: shared/inc/forms/vps.php:30
 msgid "Credential not correct: can't display in file "
 msgstr "Gegevens niet correct: Kan niet in bestand weergeven "
 
@@ -1077,15 +1077,15 @@ msgstr "Afkorting Valuta:"
 msgid "Currency symbol: "
 msgstr "Valuta symbool:"
 
-#: shared/inc/forms/vps.php:247
+#: shared/inc/forms/vps.php:251
 msgid "Current VPS status:"
 msgstr "Huidige VPS status:"
 
-#: shared/inc/forms/vps.php:195
+#: shared/inc/forms/vps.php:199
 msgid "Current contract: "
 msgstr "Huidig contract: "
 
-#: shared/inc/forms/vps.php:275
+#: shared/inc/forms/vps.php:280
 msgid "Currently installed operating system: "
 msgstr ""
 
@@ -1570,7 +1570,7 @@ msgstr "Expiratie"
 msgid "Expiry date"
 msgstr "Eind datum"
 
-#: shared/inc/forms/root_admin.php:127 shared/inc/forms/vps.php:199
+#: shared/inc/forms/root_admin.php:127 shared/inc/forms/vps.php:203
 #, fuzzy
 msgid "Expiry date:"
 msgstr "Eind datum"
@@ -1637,11 +1637,11 @@ msgstr "Faxnummer:"
 msgid "Fetchmail"
 msgstr ""
 
-#: shared/inc/forms/vps.php:271
+#: shared/inc/forms/vps.php:276
 msgid "File system check (fsck)"
 msgstr ""
 
-#: shared/inc/forms/vps.php:269
+#: shared/inc/forms/vps.php:274
 msgid "File-system check:"
 msgstr ""
 
@@ -1713,7 +1713,7 @@ msgstr "Ga naar e-mail panel"
 msgid "Go to login"
 msgstr "Ga naar login"
 
-#: shared/inc/forms/vps.php:258
+#: shared/inc/forms/vps.php:263
 msgid "Gracefully shutdown (xm shutdown)"
 msgstr "Gracefully shutdown (xm shutdown)"
 
@@ -1721,7 +1721,7 @@ msgstr "Gracefully shutdown (xm shutdown)"
 msgid "Grant sub-account addition rights (reseller):"
 msgstr "Geef sub-account toevoegings rechtten (reseller):"
 
-#: shared/inc/forms/vps.php:109
+#: shared/inc/forms/vps.php:113
 msgid "HDD I/O:"
 msgstr ""
 
@@ -1826,7 +1826,7 @@ msgstr "IP adres van de primaire DNS server:"
 msgid "IP address or CNAME: "
 msgstr "IP addres of CNAME: "
 
-#: shared/inc/forms/vps.php:235
+#: shared/inc/forms/vps.php:239
 msgid "IP address: "
 msgstr "IP addres: "
 
@@ -1834,7 +1834,7 @@ msgstr "IP addres: "
 msgid "IP addresses and network"
 msgstr "IP addressen en netwerk"
 
-#: shared/inc/forms/vps.php:233
+#: shared/inc/forms/vps.php:237
 msgid "IP addresses: "
 msgstr "IP addressen: "
 
@@ -1913,7 +1913,7 @@ msgid ""
 msgstr ""
 "Om de huidige registrar te behouden dient de wijs dns naar het volgende adres"
 
-#: shared/inc/forms/vps.php:261
+#: shared/inc/forms/vps.php:266
 msgid "Immediate kill (xm destroy)"
 msgstr ""
 
@@ -2071,7 +2071,7 @@ msgstr ""
 msgid "Language"
 msgstr "Taal"
 
-#: shared/inc/forms/vps.php:172
+#: shared/inc/forms/vps.php:176
 msgid "Last boot date: "
 msgstr "Laatste boot datum: "
 
@@ -2083,8 +2083,8 @@ msgstr ""
 msgid "Last message from"
 msgstr ""
 
-#: shared/inc/forms/vps.php:76 shared/inc/forms/vps.php:77
-#: shared/inc/forms/vps.php:78 shared/inc/forms/vps.php:79
+#: shared/inc/forms/vps.php:80 shared/inc/forms/vps.php:81
+#: shared/inc/forms/vps.php:82 shared/inc/forms/vps.php:83
 #, fuzzy
 msgid "Last month: "
 msgstr "Laatste Waarschuwingen: "
@@ -2375,7 +2375,7 @@ msgstr "Mijn e-mail"
 msgid "Max mail memory size:"
 msgstr "Max Mail geheugen:"
 
-#: shared/inc/forms/vps.php:146
+#: shared/inc/forms/vps.php:150
 msgid "Max memory: "
 msgstr "Max geheugen: "
 
@@ -2383,7 +2383,7 @@ msgstr "Max geheugen: "
 msgid "Maximum number of lists reached"
 msgstr ""
 
-#: shared/inc/forms/vps.php:148
+#: shared/inc/forms/vps.php:152
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
@@ -2400,11 +2400,11 @@ msgstr "FTP login:"
 msgid "Memory and Swap Usage "
 msgstr ""
 
-#: shared/inc/forms/vps.php:143
+#: shared/inc/forms/vps.php:147
 msgid "Memory: "
 msgstr ""
 
-#: shared/inc/forms/vps.php:121
+#: shared/inc/forms/vps.php:125
 msgid "Method getVPSState failed"
 msgstr ""
 
@@ -2503,7 +2503,7 @@ msgstr "Name servers:"
 msgid "Name:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1049 shared/inc/forms/vps.php:139
+#: admin/inc/dtc_config.php:1049 shared/inc/forms/vps.php:143
 #, fuzzy
 msgid "Name: "
 msgstr "Nick name"
@@ -2544,7 +2544,7 @@ msgstr "Database nodig"
 msgid "Network Traffic Statistics"
 msgstr ""
 
-#: shared/inc/forms/vps.php:98
+#: shared/inc/forms/vps.php:102
 msgid "Network:"
 msgstr ""
 
@@ -2556,11 +2556,11 @@ msgstr "Nieuw FTP account: "
 msgid "New SSH account:"
 msgstr "Nieuw SSH account:"
 
-#: shared/inc/forms/vps.php:351
+#: shared/inc/forms/vps.php:356
 msgid "New SSH key: "
 msgstr "Nieuwe SSH key: "
 
-#: shared/inc/forms/vps.php:348
+#: shared/inc/forms/vps.php:353
 msgid "New SSH password: "
 msgstr "Nieuw SSH password: "
 
@@ -2739,11 +2739,11 @@ msgstr "Notificatie bij mailing en geen toegang:"
 msgid "Now you can go to check its configuration by clicking here:"
 msgstr "Je kan nu de configuratie nakijken door hier te klikken:"
 
-#: shared/inc/forms/vps.php:151
+#: shared/inc/forms/vps.php:155
 msgid "Number of CPU: "
 msgstr "Aantal CPUs: "
 
-#: shared/inc/forms/vps.php:153
+#: shared/inc/forms/vps.php:157
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
@@ -2794,7 +2794,7 @@ msgstr "On-line DTC help"
 msgid "Open"
 msgstr "Open"
 
-#: shared/inc/forms/vps.php:312
+#: shared/inc/forms/vps.php:317
 msgid "Operating system type not supported"
 msgstr "Operating system type niet ondersteund"
 
@@ -3018,7 +3018,7 @@ msgstr "Telefoonnummer:"
 msgid "Phone number: "
 msgstr "Telefoonnummer:"
 
-#: shared/inc/forms/vps.php:345
+#: shared/inc/forms/vps.php:350
 msgid "Physical console last display and ssh access:"
 msgstr "Physieke console laatste scherm en SSH toegang:"
 
@@ -3039,7 +3039,7 @@ msgstr "Vul alsjeblieft de domeinnaam in die je wenst te transferen:"
 msgid "Please renew it with one of the following options"
 msgstr "Vernieuw het met een van de volgende opties"
 
-#: shared/inc/forms/vps.php:205
+#: shared/inc/forms/vps.php:209
 msgid "Please renew with one of the following options: "
 msgstr "Vernieuw alsjeblieft met een van de volgende opties: "
 
@@ -3053,11 +3053,11 @@ msgstr "Selecteer 3 contacts voor registratie van de domeinnaam."
 msgid "Please tell us if the following is not correct:"
 msgstr "Laat ons weten of het volgende niet correct is:"
 
-#: shared/inc/forms/vps.php:253
+#: shared/inc/forms/vps.php:257
 msgid "Please wait until file system check is finished first."
 msgstr "Wacht alsjeblieft tot file system check is klaar is."
 
-#: shared/inc/forms/vps.php:255
+#: shared/inc/forms/vps.php:259
 msgid "Please wait until operating system reinstallation has completed."
 msgstr ""
 "Wacht alsjeblieft tot de herinstallatie van het operating system "
@@ -3264,15 +3264,15 @@ msgstr "Registratie succesvol!"
 msgid "Registry selection"
 msgstr "Registratie"
 
-#: shared/inc/forms/vps.php:322
+#: shared/inc/forms/vps.php:327
 msgid "Reinstall operating system"
 msgstr "Herinstalleer operating system"
 
-#: shared/inc/forms/vps.php:274
+#: shared/inc/forms/vps.php:279
 msgid "Reinstall operating system:"
 msgstr "Herinstalleer operating system:"
 
-#: shared/inc/forms/vps.php:131
+#: shared/inc/forms/vps.php:135
 msgid "Reinstalling operating system..."
 msgstr "Herinstallatie operating system..."
 
@@ -3614,7 +3614,7 @@ msgstr "Soap login:"
 msgid "Sorry, the domain name "
 msgstr "Sorry, de domeinnaam "
 
-#: shared/inc/forms/vps.php:251
+#: shared/inc/forms/vps.php:255
 msgid "Start and stop of your VPS:"
 msgstr "Start en stop jouw VPS:"
 
@@ -3633,7 +3633,7 @@ msgstr "Provincie:"
 msgid "State: "
 msgstr "Provincie:"
 
-#: shared/inc/forms/vps.php:158
+#: shared/inc/forms/vps.php:162
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr "State: cannot fetch (maybe boot in progress?)"
 
@@ -3768,7 +3768,7 @@ msgstr "Support ticket configuratie"
 msgid "Support tickets"
 msgstr "Support tickets"
 
-#: shared/inc/forms/vps.php:106
+#: shared/inc/forms/vps.php:110
 msgid "Swap I/O:"
 msgstr ""
 
@@ -3949,8 +3949,8 @@ msgstr "Dit is de lijst van moderators."
 msgid "This is the main owner of the list."
 msgstr "Dit is de hoofd eigenaar van de lijst."
 
-#: shared/inc/forms/vps.php:89 shared/inc/forms/vps.php:90
-#: shared/inc/forms/vps.php:91 shared/inc/forms/vps.php:92
+#: shared/inc/forms/vps.php:93 shared/inc/forms/vps.php:94
+#: shared/inc/forms/vps.php:95 shared/inc/forms/vps.php:96
 msgid "This month: "
 msgstr ""
 
@@ -3992,7 +3992,7 @@ msgstr "Ticket niet gevonden!"
 msgid "Time"
 msgstr "Tijd"
 
-#: shared/inc/forms/vps.php:353
+#: shared/inc/forms/vps.php:358
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
@@ -4008,7 +4008,7 @@ msgstr ""
 "Om een vps server toe te voegen dien je een aantal vrije IPs op te zetten in "
 "de algemene configuratie en een aantal VPS producten op te zetten."
 
-#: shared/inc/forms/vps.php:263
+#: shared/inc/forms/vps.php:268
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
@@ -4141,7 +4141,7 @@ msgstr "Uitgepakte grootte"
 msgid "Unsubscribe:"
 msgstr "Deabboneer:"
 
-#: shared/inc/forms/vps.php:171
+#: shared/inc/forms/vps.php:175
 msgid "Up time: "
 msgstr "Up time: "
 
@@ -4354,7 +4354,7 @@ msgstr "BTW percentage:"
 msgid "VERP:"
 msgstr "VERP:"
 
-#: shared/inc/forms/vps.php:135
+#: shared/inc/forms/vps.php:139
 msgid "VM id: "
 msgstr "VM id: "
 
@@ -4386,7 +4386,7 @@ msgstr "VPS Server hostname: "
 msgid "VPS Server list:"
 msgstr "VPS Server lijst:"
 
-#: shared/inc/forms/vps.php:156
+#: shared/inc/forms/vps.php:160
 #, fuzzy
 msgid "VPS State: "
 msgstr "Provincie:"
@@ -4671,15 +4671,15 @@ msgstr ""
 msgid "Your SRS username:"
 msgstr "SRS Gebruikersnaam:"
 
-#: shared/inc/forms/vps.php:204
+#: shared/inc/forms/vps.php:208
 msgid "Your VPS has expired on the: "
 msgstr "Jouw VPS was verlopen op: "
 
-#: shared/inc/forms/vps.php:200
+#: shared/inc/forms/vps.php:204
 msgid "Your VPS was first registered on the: "
 msgstr "Jouw VPS was voor het eerst geregistreerd op: "
 
-#: shared/inc/forms/vps.php:207
+#: shared/inc/forms/vps.php:211
 msgid "Your VPS will expire on the: "
 msgstr "Jouw VPS verloopt op: "
 
@@ -4805,7 +4805,7 @@ msgstr ""
 msgid "aliasing"
 msgstr "aliasing"
 
-#: shared/inc/forms/vps.php:123
+#: shared/inc/forms/vps.php:127
 msgid "couldn't connect to host"
 msgstr ""
 

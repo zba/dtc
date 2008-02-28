@@ -17,6 +17,8 @@ function drawAdminTools_VPS($admin,$vps){
 	global $pro_mysql_vps_stats_table;
 	global $secpayconf_currency_letters;
 
+	global $panel_type;
+
 	$reinstall_os = 1;
 
 	get_secpay_conf();
@@ -356,29 +358,30 @@ dtc-xen server to a higher version.</font><br>";
 	$out .= _("To access to your console, first enter a ssh password or key above, and then ssh to:") ."<br>xen".$vps_name."@".$vps_node."<br><br>";
 
 	// A bit of AJAX to have the sever's install log!
-	if($reinstall_os == 1){
+//	if($reinstall_os == 1){
 		if($panel_type == "admin"){
 			$path_url = "/dtcadmin";
 		}else{
 			$path_url = "/dtc";
 		}
 		$ajax_call_url = "https://".$_SERVER["SERVER_NAME"]."$path_url/get_install_log.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name";
-		$out = '
+		$out .= '
 <script language="javascript" src="dtc_ajax.js"></script>
 <script type="text/javascript" language="javascript">
 
 function dtc_ajax_callback(text) {
         document.getElementById("reinstall_os_log").innerHTML = text;
 }
-dtc_ajax = new dtc_ajax_submit_url("'.$path_url.'");
-dtc_ajax.submit_url();
-        
+function ajaxLogConsole() {
+	dtc_ajax = new dtc_ajax_submit_url("'.$path_url.'");
+	dtc_ajax.submit_url();
+}
 </script>';
-	}
+//	}
 
 	$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
 <tr><td bgcolor=\"black\"><font color=\"white\">$vps_node:$vps_name</font></td>
-<tr><td bgcolor=\"black\"><font color=\"white\"><pre id=\"reinstall_os_log\" class=\"reinstall_os_log\">...</pre></font></td>
+<tr><td bgcolor=\"black\"><font color=\"white\"><pre onLoad=\"ajaxLogConsole();\" id=\"reinstall_os_log\" class=\"reinstall_os_log\" style=\"overflow: auto\">...</pre></font></td>
 </table>";
 	return $out;
 }
