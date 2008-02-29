@@ -435,12 +435,20 @@ $more_mx_server
 				}else{
 					$the_ip_writed = "CNAME\t".$subdomain["ip"].".";
 				}
+// Note from Thomas Goirand:
+// This patch seems to 1/ produce some NOTICE like this:
+// Notice: Undefined variable: seeb_alias in /usr/share/dtc/admin/genfiles/gen_named_files.php on line 442
+// Notice: Undefined variable: seeb_alias in /usr/share/dtc/admin/genfiles/gen_named_files.php on line 441
+// as $seeb_alias is never defined anywhere!!!
+// and 2/ make the stuff unreachable. So I'm commenting out, sorry. Seeb: if you see this, patch this file
+// so it always work, thanks!
+//
 // patch by seeb w3_alias
-if ($subdomain['w3_alias'] =="yes" && $subdomain['subdomain_name']!="www"){
-             $sub_alias="www.".$subdomain['subdomain_name'];
-  $console.="Generated w3alias: ".$seeb_alias.".".$subdomain['domain_name']."<br/>";
-     $this_site_file .= "$seeb_alias\tIN\tCNAME      ".$subdomain['subdomain_name'].".".$subdomain['domain_name'].".\n";
-}				
+//if ($subdomain['w3_alias'] =="yes" && $subdomain['subdomain_name']!="www"){
+//             $sub_alias="www.".$subdomain['subdomain_name'];
+//  $console.="Generated w3alias: ".$seeb_alias.".".$subdomain['domain_name']."<br/>";
+//     $this_site_file .= "$seeb_alias\tIN\tCNAME      ".$subdomain['subdomain_name'].".".$subdomain['domain_name'].".\n";
+//}				
 // end of patch 3w_alias				
 				if($web_subname == "pop"){
 					$is_pop_subdomain_set = "yes";
