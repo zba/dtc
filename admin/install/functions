@@ -167,9 +167,8 @@ searchPATH_PHP_INI_CLI () {
 	elif [ -f /etc/php.ini ] ; then
 		PATH_PHP_INI_CLI=/etc/php.ini
 	# This one for Gentoo
-	elif [ -f /etc/php/apache2-php5/php.ini ] ; then
-		echo "FIX ME!!! Is gentoo path for php cli really in /etc/php/apache2-php5/php.ini ??? FIX ME!!!"
-		PATH_PHP_INI_CLI=/etc/php/apache2-php5/php.ini
+	elif [ -f /etc/php/cli-php5/php.ini ] ; then
+		PATH_PHP_INI_CLI=/etc/php/cli-php5/php.ini
 	elif [ ""${PHPMAJOR} -lt 5 ] ; then
 		if [ -f /etc/php4/cli/php.ini ] ; then
 			PATH_PHP_INI_CLI=/etc/php4/cli/php.ini
