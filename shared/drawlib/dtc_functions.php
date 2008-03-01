@@ -246,6 +246,15 @@ function checkSubdomainFormat($name){
 	}
 }
 
+// Check if a string is an ssh key
+function isSSHKey($ssh_key){
+	if(ereg("^ssh-\$",$ssh_key){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 // Check for email addr we allow to create using DTC
 function isMailbox($mailbox){
 	$reg = "^([a-zA-Z0-9])|([a-zA-Z0-9]+)([_.a-zA-Z0-9-]+)\$";
