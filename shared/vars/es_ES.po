@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-02 15:27+0800\n"
+"POT-Creation-Date: 2008-03-02 15:46+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jose Toscano <josetg81wireless@yahoo.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -451,22 +451,23 @@ msgstr "Edici&oacute;n del servidor de nombres fallida"
 msgid "Addition of name server was succesfull"
 msgstr "Edici&oacute;n del servidor de nombres correcta"
 
-#: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
-#: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
+#: admin/dtcrm/main.php:165 client/new_account_form.php:610
+#: shared/dtcrm/draw_handle.php:59 shared/dtcrm/draw_handle.php:91
+#: shared/dtcrm/draw_handle.php:123 shared/dtcrm/draw_handle.php:235
 #, fuzzy
 msgid "Address (line1): "
 msgstr "Direcci&oacute;n:"
 
-#: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
-#: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
-#: shared/dtcrm/draw_handle.php:238
+#: admin/dtcrm/main.php:166 client/new_account_form.php:613
+#: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
+#: shared/dtcrm/draw_handle.php:124 shared/dtcrm/draw_handle.php:238
 #, fuzzy
 msgid "Address (line2): "
 msgstr "Direcci&oacute;n:"
 
-#: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
-#: shared/dtcrm/draw_handle.php:93 shared/dtcrm/draw_handle.php:125
-#: shared/dtcrm/draw_handle.php:241
+#: admin/dtcrm/main.php:167 client/new_account_form.php:616
+#: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
+#: shared/dtcrm/draw_handle.php:125 shared/dtcrm/draw_handle.php:241
 #, fuzzy
 msgid "Address (line3): "
 msgstr "Direcci&oacute;n:"
@@ -482,21 +483,6 @@ msgstr "Direcci&oacute;n IP de su servidor MX principal :"
 
 #: admin/inc/dtc_config.php:1228 shared/inc/forms/my_account.php:207
 msgid "Address:"
-msgstr "Direcci&oacute;n:"
-
-#: client/new_account_form.php:610 shared/dtcrm/draw_handle.php:235
-#, fuzzy
-msgid "Addresse (line1): "
-msgstr "Direcci&oacute;n:"
-
-#: client/new_account_form.php:613
-#, fuzzy
-msgid "Addresse (line2): "
-msgstr "Direcci&oacute;n:"
-
-#: client/new_account_form.php:616
-#, fuzzy
-msgid "Addresse (line3): "
 msgstr "Direcci&oacute;n:"
 
 #: admin/inc/draw_user_admin.php:416
@@ -1388,7 +1374,8 @@ msgid "Domain name seems to be incorrect."
 msgstr ""
 
 #: shared/inc/forms/admin_stats.php:102
-msgid "Domain name trafic and disk usage:"
+#, fuzzy
+msgid "Domain name traffic and disk usage:"
 msgstr "Nombre de dominio, tr&aacute;fico y uso de disco:"
 
 #: shared/inc/forms/dns.php:61
@@ -2203,7 +2190,7 @@ msgstr "Max listas de correo"
 
 #: admin/inc/dtc_config.php:657
 #, fuzzy
-msgid "Local network area ip adress of the vhost using NAT: "
+msgid "Local network area ip address of the vhost using NAT: "
 msgstr "Direcci&oacute;n IP de red local del vhost que usa NAT"
 
 #: admin/inc/dtc_config.php:402
@@ -2884,10 +2871,6 @@ msgstr "Versi&oacute;n del paquete"
 msgid "Password"
 msgstr ""
 
-#: client/new_account_form.php:72
-msgid "Password 1 and 2 do not match!"
-msgstr "Password 1 y 2 no coinciden"
-
 #: admin/inc/submit_root_querys.php:269
 #, fuzzy
 msgid ""
@@ -2927,6 +2910,11 @@ msgstr "Contrase&ntilde;a:"
 #: shared/inc/forms/ftp.php:81
 msgid "Password: "
 msgstr ""
+
+#: client/new_account_form.php:72
+#, fuzzy
+msgid "Passwords 1 and 2 do not match!"
+msgstr "Password 1 y 2 no coinciden"
 
 #: shared/dtcrm/draw.php:35
 msgid "Past account refundal"
@@ -3296,7 +3284,8 @@ msgid "Reinstalling operating system..."
 msgstr ""
 
 #: shared/inc/forms/lists.php:229
-msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
+#, fuzzy
+msgid "Reject mails that don\\'t have the list address in the To: or Cc:."
 msgstr ""
 "Rechaza los correos que no llevan la direcci&oacute;n de la lista en el To: "
 "o Cc:."
@@ -3397,6 +3386,10 @@ msgstr "Servidor de relay SMTP:"
 #, fuzzy
 msgid "SMTP server"
 msgstr "Servidor DNS primario:"
+
+#: admin/inc/dtc_config.php:406
+msgid "SOAP login"
+msgstr ""
 
 #: admin/inc/dtc_config.php:410
 msgid "SOAP password"
@@ -3621,10 +3614,6 @@ msgstr "Nombre:"
 
 #: admin/inc/dtc_config.php:221
 msgid "Shutdown warning: "
-msgstr ""
-
-#: admin/inc/dtc_config.php:406
-msgid "Soap login"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:135
@@ -4073,7 +4062,8 @@ msgid "Total recurring incomes per month:"
 msgstr ""
 
 #: shared/inc/forms/admin_stats.php:107
-msgid "Total trafic"
+#, fuzzy
+msgid "Total traffic"
 msgstr "Tr&aacute;fico total"
 
 #: shared/inc/forms/domain_stats.php:53
@@ -4910,3 +4900,15 @@ msgstr "a&ntilde;o"
 #: shared/dtcrm/draw_adddomain.php:163
 msgid "years"
 msgstr "a&ntilde;os"
+
+#, fuzzy
+#~ msgid "Addresse (line1): "
+#~ msgstr "Direcci&oacute;n:"
+
+#, fuzzy
+#~ msgid "Addresse (line2): "
+#~ msgstr "Direcci&oacute;n:"
+
+#, fuzzy
+#~ msgid "Addresse (line3): "
+#~ msgstr "Direcci&oacute;n:"

@@ -99,12 +99,12 @@ function drawAdminTools_AdminStats($admin){
 	}
 	$out .= '</table>';
 
-	$out .= "<br><br><h3>"._("Domain name trafic and disk usage:")."</h3>";
+	$out .= "<br><br><h3>"._("Domain name traffic and disk usage:")."</h3>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
 	$out .= "<tr><td><b>"._("Domain name")."</b></td><td$nowrap><b>"._("Disk usage")."</b></td>
 	<td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td>
 	<td$nowrap><b>HTTP HITS</b></td>
-	<td$nowrap><b>". _("Total trafic") ."</b></td></tr>";
+	<td$nowrap><b>". _("Total traffic") ."</b></td></tr>";
 	if (isset($stats["domains"]))
 	{
 		for($ad=0;$ad<sizeof($stats["domains"]);$ad++){

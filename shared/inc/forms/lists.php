@@ -226,7 +226,7 @@ function getTunableHelp($tunable_name){
 		$hlp .= _("Help missing for nosubonlydenymails") ;
 		break;
 	case "notoccdenymails":
-		$hlp .= _("Reject mails that don\'t have the list adress in the To: or Cc:.") ;
+		$hlp .= _("Reject mails that don\'t have the list address in the To: or Cc:.") ;
 		break;
 	case "noaccessdenymails":
 		$hlp .= _("Help missing for noaccessdenymails") ;

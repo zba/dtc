@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-02 15:27+0800\n"
+"POT-Creation-Date: 2008-03-02 15:46+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Swedish <se@li.org>\n"
@@ -305,22 +305,23 @@ msgstr ""
 msgid "Addition of name server was succesfull"
 msgstr ""
 
-#: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
-#: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
+#: admin/dtcrm/main.php:165 client/new_account_form.php:610
+#: shared/dtcrm/draw_handle.php:59 shared/dtcrm/draw_handle.php:91
+#: shared/dtcrm/draw_handle.php:123 shared/dtcrm/draw_handle.php:235
 #, fuzzy
 msgid "Address (line1): "
 msgstr "Address:"
 
-#: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
-#: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
-#: shared/dtcrm/draw_handle.php:238
+#: admin/dtcrm/main.php:166 client/new_account_form.php:613
+#: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
+#: shared/dtcrm/draw_handle.php:124 shared/dtcrm/draw_handle.php:238
 #, fuzzy
 msgid "Address (line2): "
 msgstr "Address:"
 
-#: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
-#: shared/dtcrm/draw_handle.php:93 shared/dtcrm/draw_handle.php:125
-#: shared/dtcrm/draw_handle.php:241
+#: admin/dtcrm/main.php:167 client/new_account_form.php:616
+#: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
+#: shared/dtcrm/draw_handle.php:125 shared/dtcrm/draw_handle.php:241
 #, fuzzy
 msgid "Address (line3): "
 msgstr "Address:"
@@ -336,21 +337,6 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1228 shared/inc/forms/my_account.php:207
 msgid "Address:"
-msgstr "Address:"
-
-#: client/new_account_form.php:610 shared/dtcrm/draw_handle.php:235
-#, fuzzy
-msgid "Addresse (line1): "
-msgstr "Address:"
-
-#: client/new_account_form.php:613
-#, fuzzy
-msgid "Addresse (line2): "
-msgstr "Address:"
-
-#: client/new_account_form.php:616
-#, fuzzy
-msgid "Addresse (line3): "
 msgstr "Address:"
 
 #: admin/inc/draw_user_admin.php:416
@@ -1197,7 +1183,7 @@ msgid "Domain name seems to be incorrect."
 msgstr ""
 
 #: shared/inc/forms/admin_stats.php:102
-msgid "Domain name trafic and disk usage:"
+msgid "Domain name traffic and disk usage:"
 msgstr ""
 
 #: shared/inc/forms/dns.php:61
@@ -1929,7 +1915,7 @@ msgid "Lists max"
 msgstr ""
 
 #: admin/inc/dtc_config.php:657
-msgid "Local network area ip adress of the vhost using NAT: "
+msgid "Local network area ip address of the vhost using NAT: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:402
@@ -2578,10 +2564,6 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: client/new_account_form.php:72
-msgid "Password 1 and 2 do not match!"
-msgstr ""
-
 #: admin/inc/submit_root_querys.php:269
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
@@ -2612,6 +2594,10 @@ msgstr ""
 #: email/login.php:13 shared/inc/forms/email.php:216
 #: shared/inc/forms/ftp.php:81
 msgid "Password: "
+msgstr ""
+
+#: client/new_account_form.php:72
+msgid "Passwords 1 and 2 do not match!"
 msgstr ""
 
 #: shared/dtcrm/draw.php:35
@@ -2956,7 +2942,7 @@ msgid "Reinstalling operating system..."
 msgstr ""
 
 #: shared/inc/forms/lists.php:229
-msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
+msgid "Reject mails that don\\'t have the list address in the To: or Cc:."
 msgstr ""
 
 #: shared/inc/forms/my_account.php:184
@@ -3053,6 +3039,10 @@ msgstr ""
 
 #: admin/deamons_state.php:157
 msgid "SMTP server"
+msgstr ""
+
+#: admin/inc/dtc_config.php:406
+msgid "SOAP login"
 msgstr ""
 
 #: admin/inc/dtc_config.php:410
@@ -3268,10 +3258,6 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:221
 msgid "Shutdown warning: "
-msgstr ""
-
-#: admin/inc/dtc_config.php:406
-msgid "Soap login"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:135
@@ -3681,7 +3667,7 @@ msgid "Total recurring incomes per month:"
 msgstr ""
 
 #: shared/inc/forms/admin_stats.php:107
-msgid "Total trafic"
+msgid "Total traffic"
 msgstr ""
 
 #: shared/inc/forms/domain_stats.php:53
@@ -4469,4 +4455,16 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Address (line3: "
+#~ msgstr "Address:"
+
+#, fuzzy
+#~ msgid "Addresse (line1): "
+#~ msgstr "Address:"
+
+#, fuzzy
+#~ msgid "Addresse (line2): "
+#~ msgstr "Address:"
+
+#, fuzzy
+#~ msgid "Addresse (line3): "
 #~ msgstr "Address:"

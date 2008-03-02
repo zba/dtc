@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-02 15:27+0800\n"
+"POT-Creation-Date: 2008-03-02 15:46+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -408,22 +408,23 @@ msgstr "添加域名服务器失败"
 msgid "Addition of name server was succesfull"
 msgstr "编辑域名服务器信息成功"
 
-#: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
-#: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
+#: admin/dtcrm/main.php:165 client/new_account_form.php:610
+#: shared/dtcrm/draw_handle.php:59 shared/dtcrm/draw_handle.php:91
+#: shared/dtcrm/draw_handle.php:123 shared/dtcrm/draw_handle.php:235
 #, fuzzy
 msgid "Address (line1): "
 msgstr "地址："
 
-#: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
-#: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
-#: shared/dtcrm/draw_handle.php:238
+#: admin/dtcrm/main.php:166 client/new_account_form.php:613
+#: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
+#: shared/dtcrm/draw_handle.php:124 shared/dtcrm/draw_handle.php:238
 #, fuzzy
 msgid "Address (line2): "
 msgstr "地址："
 
-#: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
-#: shared/dtcrm/draw_handle.php:93 shared/dtcrm/draw_handle.php:125
-#: shared/dtcrm/draw_handle.php:241
+#: admin/dtcrm/main.php:167 client/new_account_form.php:616
+#: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
+#: shared/dtcrm/draw_handle.php:125 shared/dtcrm/draw_handle.php:241
 #, fuzzy
 msgid "Address (line3): "
 msgstr "地址："
@@ -440,21 +441,6 @@ msgstr "主MX服务器的地址："
 #: admin/inc/dtc_config.php:1228 shared/inc/forms/my_account.php:207
 #, fuzzy
 msgid "Address:"
-msgstr "地址："
-
-#: client/new_account_form.php:610 shared/dtcrm/draw_handle.php:235
-#, fuzzy
-msgid "Addresse (line1): "
-msgstr "地址："
-
-#: client/new_account_form.php:613
-#, fuzzy
-msgid "Addresse (line2): "
-msgstr "地址："
-
-#: client/new_account_form.php:616
-#, fuzzy
-msgid "Addresse (line3): "
 msgstr "地址："
 
 #: admin/inc/draw_user_admin.php:416
@@ -1336,7 +1322,8 @@ msgid "Domain name seems to be incorrect."
 msgstr "域名貌似不正确。"
 
 #: shared/inc/forms/admin_stats.php:102
-msgid "Domain name trafic and disk usage:"
+#, fuzzy
+msgid "Domain name traffic and disk usage:"
 msgstr "域名，流量，磁盘使用率："
 
 #: shared/inc/forms/dns.php:61
@@ -2121,7 +2108,7 @@ msgstr "邮件列表上限"
 
 #: admin/inc/dtc_config.php:657
 #, fuzzy
-msgid "Local network area ip adress of the vhost using NAT: "
+msgid "Local network area ip address of the vhost using NAT: "
 msgstr "虚拟主机监听的内网地址："
 
 #: admin/inc/dtc_config.php:402
@@ -2800,10 +2787,6 @@ msgstr "软件包版本"
 msgid "Password"
 msgstr "FTP登陆密码："
 
-#: client/new_account_form.php:72
-msgid "Password 1 and 2 do not match!"
-msgstr "两次输入的密码不匹配！"
-
 #: admin/inc/submit_root_querys.php:269
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
@@ -2837,6 +2820,11 @@ msgstr "密码："
 #, fuzzy
 msgid "Password: "
 msgstr "FTP登陆密码："
+
+#: client/new_account_form.php:72
+#, fuzzy
+msgid "Passwords 1 and 2 do not match!"
+msgstr "两次输入的密码不匹配！"
 
 #: shared/dtcrm/draw.php:35
 msgid "Past account refundal"
@@ -3199,7 +3187,8 @@ msgid "Reinstalling operating system..."
 msgstr "重新安装操作系统..."
 
 #: shared/inc/forms/lists.php:229
-msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
+#, fuzzy
+msgid "Reject mails that don\\'t have the list address in the To: or Cc:."
 msgstr "拒收没有收件(或抄送)人的邮件。"
 
 #: shared/inc/forms/my_account.php:184
@@ -3298,6 +3287,11 @@ msgstr "SMTP转发服务器："
 #, fuzzy
 msgid "SMTP server"
 msgstr "测试服务器"
+
+#: admin/inc/dtc_config.php:406
+#, fuzzy
+msgid "SOAP login"
+msgstr "FTP登陆账号："
 
 #: admin/inc/dtc_config.php:410
 msgid "SOAP password"
@@ -3522,10 +3516,6 @@ msgstr "主机名："
 #, fuzzy
 msgid "Shutdown warning: "
 msgstr "关闭警告信息："
-
-#: admin/inc/dtc_config.php:406
-msgid "Soap login"
-msgstr "Soap登陆"
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "Sorry, the domain name "
@@ -3965,7 +3955,7 @@ msgstr "每月循环收益总数："
 
 #: shared/inc/forms/admin_stats.php:107
 #, fuzzy
-msgid "Total trafic"
+msgid "Total traffic"
 msgstr "总流量"
 
 #: shared/inc/forms/domain_stats.php:53
@@ -4808,6 +4798,18 @@ msgstr "年"
 #~ msgstr "地址："
 
 #, fuzzy
+#~ msgid "Addresse (line1): "
+#~ msgstr "地址："
+
+#, fuzzy
+#~ msgid "Addresse (line2): "
+#~ msgstr "地址："
+
+#, fuzzy
+#~ msgid "Addresse (line3): "
+#~ msgstr "地址："
+
+#, fuzzy
 #~ msgid "Company: "
 #~ msgstr "公司名称："
 
@@ -4822,3 +4824,6 @@ msgstr "年"
 #, fuzzy
 #~ msgid "Repeat password:"
 #~ msgstr "FTP登陆密码："
+
+#~ msgid "Soap login"
+#~ msgstr "Soap登陆"

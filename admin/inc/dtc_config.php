@@ -403,7 +403,7 @@ function drawVPSServerConfig(){
 			"soap_login" => array(
 				"type" => "text",
 				"size" => "7",
-				"legend" => _("Soap login")),
+				"legend" => _("SOAP login")),
 			"soap_pass" => array(
 				"type" => "password",
 				"size" => "7",
@@ -654,7 +654,7 @@ function drawNetworkConfig(){
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
 			"nated_vhost_ip" => array(
-				"legend" => _("Local network area ip adress of the vhost using NAT: "),
+				"legend" => _("Local network area ip address of the vhost using NAT: "),
 				"type" => "text",
 				"size" => "20"),
 			"administrative_site" => array(

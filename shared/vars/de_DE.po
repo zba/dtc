@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-02 15:27+0800\n"
+"POT-Creation-Date: 2008-03-02 15:46+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -420,20 +420,21 @@ msgstr "Hinzufügen des Nameservers ist fehlgeschlagen"
 msgid "Addition of name server was succesfull"
 msgstr "Hinzufügen des Nameservers war erfolgreich"
 
-#: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
-#: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
+#: admin/dtcrm/main.php:165 client/new_account_form.php:610
+#: shared/dtcrm/draw_handle.php:59 shared/dtcrm/draw_handle.php:91
+#: shared/dtcrm/draw_handle.php:123 shared/dtcrm/draw_handle.php:235
 msgid "Address (line1): "
 msgstr "Adresse (1. Zeile):"
 
-#: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
-#: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
-#: shared/dtcrm/draw_handle.php:238
+#: admin/dtcrm/main.php:166 client/new_account_form.php:613
+#: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
+#: shared/dtcrm/draw_handle.php:124 shared/dtcrm/draw_handle.php:238
 msgid "Address (line2): "
 msgstr "Adresse (2. Zeile):"
 
-#: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
-#: shared/dtcrm/draw_handle.php:93 shared/dtcrm/draw_handle.php:125
-#: shared/dtcrm/draw_handle.php:241
+#: admin/dtcrm/main.php:167 client/new_account_form.php:616
+#: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
+#: shared/dtcrm/draw_handle.php:125 shared/dtcrm/draw_handle.php:241
 msgid "Address (line3): "
 msgstr "Adresse (3. Zeile):"
 
@@ -448,18 +449,6 @@ msgstr "Adresse des Haupt-MX-Servers:"
 #: admin/inc/dtc_config.php:1228 shared/inc/forms/my_account.php:207
 msgid "Address:"
 msgstr "Adresse:"
-
-#: client/new_account_form.php:610 shared/dtcrm/draw_handle.php:235
-msgid "Addresse (line1): "
-msgstr "Adresse (1. Zeile):"
-
-#: client/new_account_form.php:613
-msgid "Addresse (line2): "
-msgstr "Adresse (2. Zeile):"
-
-#: client/new_account_form.php:616
-msgid "Addresse (line3): "
-msgstr "Adresse (3. Zeile):"
 
 #: admin/inc/draw_user_admin.php:416
 msgid "Admin"
@@ -1334,7 +1323,7 @@ msgid "Domain name seems to be incorrect."
 msgstr "Der Domainname sieht inkorrekt aus."
 
 #: shared/inc/forms/admin_stats.php:102
-msgid "Domain name trafic and disk usage:"
+msgid "Domain name traffic and disk usage:"
 msgstr "Domainname, Traffic und Disk-Nutzung:"
 
 #: shared/inc/forms/dns.php:61
@@ -2141,7 +2130,7 @@ msgid "Lists max"
 msgstr "Max. Listen"
 
 #: admin/inc/dtc_config.php:657
-msgid "Local network area ip adress of the vhost using NAT: "
+msgid "Local network area ip address of the vhost using NAT: "
 msgstr "IP-Adresse für VHosts mit NAT im lokalen Netzwerk"
 
 #: admin/inc/dtc_config.php:402
@@ -2799,10 +2788,6 @@ msgstr "Version des Pakets"
 msgid "Password"
 msgstr "Passwort"
 
-#: client/new_account_form.php:72
-msgid "Password 1 and 2 do not match!"
-msgstr "Die beiden Passwörter stimmen nicht überein!"
-
 #: admin/inc/submit_root_querys.php:269
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
@@ -2840,6 +2825,10 @@ msgstr "Passwort:"
 #: shared/inc/forms/ftp.php:81
 msgid "Password: "
 msgstr "Passwort: "
+
+#: client/new_account_form.php:72
+msgid "Passwords 1 and 2 do not match!"
+msgstr "Die beiden Passwörter stimmen nicht überein!"
 
 #: shared/dtcrm/draw.php:35
 msgid "Past account refundal"
@@ -3195,7 +3184,7 @@ msgid "Reinstalling operating system..."
 msgstr "Betriebssystem wird installiert ..."
 
 #: shared/inc/forms/lists.php:229
-msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
+msgid "Reject mails that don\\'t have the list address in the To: or Cc:."
 msgstr ""
 "E-Mails zurückweisen, die nicht die Adresse der Mailingliste in To: oder Cc: "
 "haben."
@@ -3295,6 +3284,10 @@ msgstr "SMTP Relay Server:"
 #: admin/deamons_state.php:157
 msgid "SMTP server"
 msgstr "SMTP-Server"
+
+#: admin/inc/dtc_config.php:406
+msgid "SOAP login"
+msgstr "FTP Login:"
 
 #: admin/inc/dtc_config.php:410
 msgid "SOAP password"
@@ -3516,10 +3509,6 @@ msgstr "Kurzname:"
 #: admin/inc/dtc_config.php:221
 msgid "Shutdown warning: "
 msgstr "Warnung vor Abschaltung: "
-
-#: admin/inc/dtc_config.php:406
-msgid "Soap login"
-msgstr "Soap login"
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "Sorry, the domain name "
@@ -3981,7 +3970,7 @@ msgid "Total recurring incomes per month:"
 msgstr "Gesamtumsatz aus Abonnements pro Monat:"
 
 #: shared/inc/forms/admin_stats.php:107
-msgid "Total trafic"
+msgid "Total traffic"
 msgstr "Gesamttransfer"
 
 #: shared/inc/forms/domain_stats.php:53
@@ -4815,6 +4804,15 @@ msgstr "Jahre"
 #~ msgid "Address (line3: "
 #~ msgstr "Adresse (3. Zeile):"
 
+#~ msgid "Addresse (line1): "
+#~ msgstr "Adresse (1. Zeile):"
+
+#~ msgid "Addresse (line2): "
+#~ msgstr "Adresse (2. Zeile):"
+
+#~ msgid "Addresse (line3): "
+#~ msgstr "Adresse (3. Zeile):"
+
 #~ msgid "Company: "
 #~ msgstr "Firmenname:"
 
@@ -4826,3 +4824,6 @@ msgstr "Jahre"
 
 #~ msgid "Repeat password:"
 #~ msgstr "Passwort wiederholen:"
+
+#~ msgid "Soap login"
+#~ msgstr "Soap login"
