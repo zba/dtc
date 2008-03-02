@@ -413,6 +413,7 @@ dtcPatchFile () {
 		# If it's the original file, patch it
 		if [ "${DEST_MD5_VAL}" = "${3}" ] ; then
 			cp ${1} ${1}.DTC.BEFORE-PATCH-BACKUP
+			echo "Applying patch to ${1}"
 			patch ${1} -p0 <${2}
 		else
 			# If the file is already patched, don't do anything

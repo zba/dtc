@@ -247,8 +247,9 @@ function checkSubdomainFormat($name){
 }
 
 // Check if a string is an ssh key
+// TO BE DONE!!!
 function isSSHKey($ssh_key){
-	if(ereg("^ssh-\$",$ssh_key){
+	if(ereg("^ssh-\$",$ssh_key)){
 		return true;
 	}else{
 		return false;

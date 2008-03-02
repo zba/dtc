@@ -7,7 +7,7 @@ dtc (0.28.3-1) unstable; urgency=low
   * Updated the Duch debconf translation thanks to "cobaco (aka Bart Cornelis)"
     <cobaco@skolelinux.no> (Closes: #468301)
 
- -- Thomas Goirand <zigo@mx.example.com>  Sat,  1 Mar 2008 16:26:53 +0800
+ -- Thomas Goirand <thomas@goirand.fr>  Sat,  1 Mar 2008 16:26:53 +0800
 
 dtc (0.28.2-1) unstable; urgency=low
 

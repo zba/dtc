@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-28 14:27+0800\n"
+"POT-Creation-Date: 2008-03-02 15:27+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jose Toscano <josetg81wireless@yahoo.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -755,7 +755,7 @@ msgstr "No se ha podido obtener la dirección IP del VPS "
 msgid "Cannot get VPS information line "
 msgstr "No se ha podido obtener la linea de información del VPS"
 
-#: shared/inc/sql/database.php:172
+#: shared/inc/sql/database.php:173
 msgid "Cannot reselect MySQL db name: please enter another and try again."
 msgstr ""
 "No se puede volver a seleccionar el nombre de la BD MySQL. Por favor, "
@@ -1959,7 +1959,7 @@ msgstr ""
 "Formato de mail login incorrecto: S&oacute;lo deben usarse letras min&uacute;"
 "sculas o numeros o el signo &quot;-&quot;.<br>\n"
 
-#: shared/inc/sql/database.php:165 shared/inc/sql/database.php:209
+#: shared/inc/sql/database.php:166 shared/inc/sql/database.php:211
 msgid "Incorrect MySQL db name format: please enter another and try again."
 msgstr ""
 "Formato de nombre de BD MySQL incorrecto: Por favor, introduzca otro y "
@@ -2449,7 +2449,7 @@ msgstr "Estad&iacute;sticas globales de mi cuenta"
 msgid "My e-mail"
 msgstr "Mi correo"
 
-#: shared/inc/sql/database.php:224
+#: shared/inc/sql/database.php:226
 msgid ""
 "MySql database ownership not valid: I will not let you change owner of this "
 "database because it doesn't seems to be owned by you."
@@ -2457,7 +2457,7 @@ msgstr ""
 "Propietario de la base de datos incorrecto. No puede eliminar esta base de "
 "datos si no es usted el propietario"
 
-#: shared/inc/sql/database.php:180
+#: shared/inc/sql/database.php:181
 msgid ""
 "MySql database ownership not valid: I will not let you delete this database "
 "because it doesn't seem to be owned by you."
@@ -3863,7 +3863,7 @@ msgstr ""
 msgid "Test server"
 msgstr ""
 
-#: shared/inc/sql/database.php:143
+#: shared/inc/sql/database.php:144
 msgid ""
 "That user still owns some databases. Please remove them or change the owner "
 "first."
@@ -4318,7 +4318,7 @@ msgstr ""
 "Formato de nombre de usuario incorrecto. Por favor, use sólo letras y "
 "números y una extensión de entre 4 y 16 caracteres"
 
-#: shared/inc/sql/database.php:250
+#: shared/inc/sql/database.php:252
 msgid "User or password is incorrect!"
 msgstr "Nombre de usuario o contraseña incorrectos !"
 

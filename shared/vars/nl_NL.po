@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-28 14:27+0800\n"
+"POT-Creation-Date: 2008-03-02 15:27+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jelle Kalf <thomas@goirand.fr>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -771,7 +771,7 @@ msgstr "Kan VPS IP address informatie niet krijgen regel "
 msgid "Cannot get VPS information line "
 msgstr "Kan VPS informatie niet krijgen regel "
 
-#: shared/inc/sql/database.php:172
+#: shared/inc/sql/database.php:173
 msgid "Cannot reselect MySQL db name: please enter another and try again."
 msgstr ""
 "Kan MySQL db naam niet opnieuw selecteren: vul alsjeblieft een ander in en "
@@ -1951,7 +1951,7 @@ msgstr ""
 "Incorect mail login formaat: login dient alleen lowercase letters, nummers "
 "of het \"-\" teken te bevatten.<br>\n"
 
-#: shared/inc/sql/database.php:165 shared/inc/sql/database.php:209
+#: shared/inc/sql/database.php:166 shared/inc/sql/database.php:211
 msgid "Incorrect MySQL db name format: please enter another and try again."
 msgstr ""
 "Incorrect MySQL db naam formaat: vul alsjeblieft een ander in en probeer "
@@ -2441,7 +2441,7 @@ msgstr "Mijn globale account statistieken"
 msgid "My e-mail"
 msgstr "Mijn e-mail"
 
-#: shared/inc/sql/database.php:224
+#: shared/inc/sql/database.php:226
 msgid ""
 "MySql database ownership not valid: I will not let you change owner of this "
 "database because it doesn't seems to be owned by you."
@@ -2449,7 +2449,7 @@ msgstr ""
 "MySql database eigendom niet correct: eigenaar niet gewijzigd want je bent "
 "kennelijk zelf niet de eigenaar van deze database."
 
-#: shared/inc/sql/database.php:180
+#: shared/inc/sql/database.php:181
 msgid ""
 "MySql database ownership not valid: I will not let you delete this database "
 "because it doesn't seem to be owned by you."
@@ -3847,7 +3847,7 @@ msgstr ""
 msgid "Test server"
 msgstr "Test server"
 
-#: shared/inc/sql/database.php:143
+#: shared/inc/sql/database.php:144
 msgid ""
 "That user still owns some databases. Please remove them or change the owner "
 "first."
@@ -4307,7 +4307,7 @@ msgstr ""
 "User login formaat incorrect. Gebruik alsjeblieft alleen letters en cijfers "
 "en 4 tot 16 tekens."
 
-#: shared/inc/sql/database.php:250
+#: shared/inc/sql/database.php:252
 msgid "User or password is incorrect!"
 msgstr "Gebruiker of password is incorrect !"
 
