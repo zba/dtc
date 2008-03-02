@@ -34,7 +34,7 @@ if [ -f /etc/redhat-release ] ; then
 fi
 
 UNAME_MINUS_S=`uname -s`
-if [ "${UNAME_MINUS_S}" ] ; then
+if [ "${UNAME_MINUS_S}" = "Darwin" ] ; then
 	. /usr/share/dtc/admin/install/osx_config
 	. /usr/share/dtc/admin/install/functions
 	. /usr/share/dtc/admin/install/interactive_installer
