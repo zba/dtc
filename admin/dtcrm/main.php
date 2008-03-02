@@ -183,10 +183,15 @@ cc_code_popup($row["country"])."</select>",0);
  <div class=\"input_btn_left\"></div>
  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Save\"></div>
  <div class=\"input_btn_right\"></div>
-</div>
+</div></form>
+<form><form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"crm\">
+<input type=\"hidden\" name=\"delete_id\" value=\"$cid\">
+<input type=\"hidden\" name=\"action\" value=\"delete_customer_id\">
+<input type=\"hidden\" name=\"del\" value=\"Del\">
 <div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
- <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"del\" value=\"Del\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Delete client")."\"></div>
  <div class=\"input_btn_right\"></div>
 </div></td></tr>
 </table>
