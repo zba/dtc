@@ -4450,6 +4450,7 @@ applyAllDTCPatches () {
 		dtcPatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
 		dtcPatchFile /etc/defaults/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 		dtcPatchFile /etc/defaults/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch e03963c671119f62c5906c9f0a3c7c33 bcf6b1d68d56147c70692fbedf48539e
+		dtcPatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 a8007572ea38577a7533cc99950a1610
 	fi
 }
 
@@ -4460,6 +4461,7 @@ deApplyAllDTCPatches () {
 		dtcUnpatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
 		dtcUnpatchFile /etc/defaults/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 		dtcUnpatchFile /etc/defaults/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch e03963c671119f62c5906c9f0a3c7c33 bcf6b1d68d56147c70692fbedf48539e
+		dtcUnpatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 a8007572ea38577a7533cc99950a1610
 	fi
 }
 
