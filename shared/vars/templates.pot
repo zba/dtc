@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-02 15:56+0800\n"
+"POT-Creation-Date: 2008-03-04 17:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -380,7 +380,7 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:210
+#: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:215
 #: shared/inc/forms/invoices.php:23 shared/inc/forms/ticket.php:158
 msgid "Date"
 msgstr ""
@@ -390,7 +390,7 @@ msgid "Bank validated"
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
-#: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:212
+#: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
 #: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/reseller.php:24
@@ -423,7 +423,7 @@ msgstr ""
 msgid "No domain waiting!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:207
+#: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:212
 #: shared/inc/forms/admin_stats.php:104 shared/inc/forms/root_admin.php:343
 msgid "Domain name"
 msgstr ""
@@ -1446,22 +1446,26 @@ msgstr ""
 msgid "Allowed data transfer (GB): "
 msgstr ""
 
-#: admin/dtcrm/main.php:206
+#: admin/dtcrm/main.php:194
+msgid "Delete client"
+msgstr ""
+
+#: admin/dtcrm/main.php:211
 msgid "What"
 msgstr ""
 
-#: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
+#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
 #: admin/dtcrm/product_manager.php:225 shared/dtcrm/draw.php:80
 #: shared/inc/forms/invoices.php:23
 msgid "Price"
 msgstr ""
 
-#: admin/dtcrm/main.php:209
+#: admin/dtcrm/main.php:214
 msgid "Quantity"
 msgstr ""
 
-#: admin/dtcrm/main.php:211 shared/inc/forms/my_account.php:97
+#: admin/dtcrm/main.php:216 shared/inc/forms/my_account.php:97
 msgid "Expiry date"
 msgstr ""
 

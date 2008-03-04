@@ -475,9 +475,9 @@ function cronMailSystem () {
 			echo "Flushing the queue now, to make sure we have some mail delivery happening after amavisd restart...\n";
                         system("$PATH_POSTFIX_SCRIPT flush");
 
-			if( file_exists ("/etc/init.d/dkfilter") ){
+			if( file_exists ("/etc/init.d/dkimproxy") ){
 				echo "Reloading dkfilter to reload it's domains...\n";
-				system("/etc/init.d/dkfilter force-reload");
+				system("/etc/init.d/dkimproxy force-reload");
 			}
 
 			break;

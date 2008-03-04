@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-02 15:56+0800\n"
+"POT-Creation-Date: 2008-03-04 17:45+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Seeb <seeb@seeb.net.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -343,7 +343,7 @@ msgid "Act as backup mail server for the following servers:"
 msgstr "Aktywuj kopie poczty na nastepujące serwery:"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
-#: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:212
+#: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
 #: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/reseller.php:24
@@ -1133,7 +1133,7 @@ msgstr "Użycie dysku dla baz danych :"
 msgid "Databases:"
 msgstr "Spis twoich baz danych :"
 
-#: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:210
+#: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:215
 #: shared/inc/forms/invoices.php:23 shared/inc/forms/ticket.php:158
 msgid "Date"
 msgstr "Data"
@@ -1185,6 +1185,11 @@ msgid ""
 msgstr ""
 "Usuń wszystkie wiadomości z archiwum na stronie. UWAGA: Zadziała tylko jeśli "
 "nie zaznaczone archiwum na www."
+
+#: admin/dtcrm/main.php:194
+#, fuzzy
+msgid "Delete client"
+msgstr "Usuń"
 
 #: shared/inc/forms/lists.php:405
 #, fuzzy
@@ -1321,7 +1326,7 @@ msgstr "Nazwa domeny"
 msgid "Domain config"
 msgstr "Konfiguracja domeny"
 
-#: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:207
+#: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:212
 #: shared/inc/forms/admin_stats.php:104 shared/inc/forms/root_admin.php:343
 msgid "Domain name"
 msgstr "Nazwa domeny"
@@ -1514,7 +1519,7 @@ msgstr "Data przedawnienia"
 msgid "Expire"
 msgstr "Przedawnienie"
 
-#: admin/dtcrm/main.php:211 shared/inc/forms/my_account.php:97
+#: admin/dtcrm/main.php:216 shared/inc/forms/my_account.php:97
 msgid "Expiry date"
 msgstr "Data ważności abonamentu :"
 
@@ -3012,7 +3017,7 @@ msgstr ""
 msgid "Port number: "
 msgstr "Numer port:"
 
-#: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
+#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
 #: admin/dtcrm/product_manager.php:225 shared/dtcrm/draw.php:80
 #: shared/inc/forms/invoices.php:23
@@ -3104,7 +3109,7 @@ msgstr ""
 msgid "Protect your mailbox with efficient tools:"
 msgstr ""
 
-#: admin/dtcrm/main.php:209
+#: admin/dtcrm/main.php:214
 msgid "Quantity"
 msgstr "Wielkość"
 
@@ -4392,7 +4397,7 @@ msgstr "Miesięczny"
 msgid "Welcom to the email panel!"
 msgstr ""
 
-#: admin/dtcrm/main.php:206
+#: admin/dtcrm/main.php:211
 msgid "What"
 msgstr "Co"
 

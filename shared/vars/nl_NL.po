@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-02 15:56+0800\n"
+"POT-Creation-Date: 2008-03-04 17:45+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jelle Kalf <thomas@goirand.fr>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -381,7 +381,7 @@ msgid "Act as backup mail server for the following servers:"
 msgstr "Fungeer als een backup mail server voor de volgende servers:"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
-#: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:212
+#: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
 #: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/reseller.php:24
@@ -1177,7 +1177,7 @@ msgstr "Hardeschijf verbruik databases:"
 msgid "Databases:"
 msgstr "Database bestanden:"
 
-#: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:210
+#: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:215
 #: shared/inc/forms/invoices.php:23 shared/inc/forms/ticket.php:158
 msgid "Date"
 msgstr "Datum"
@@ -1228,6 +1228,11 @@ msgid ""
 msgstr ""
 "Verwijder alle berichtten in het webarchief. LET OP: Dit werkt alleen "
 "wanneer je &quot;web archief&quot; niet hebt aangevinkt"
+
+#: admin/dtcrm/main.php:194
+#, fuzzy
+msgid "Delete client"
+msgstr "Verwijder"
 
 #: shared/inc/forms/lists.php:405
 msgid "Delete headers:"
@@ -1362,7 +1367,7 @@ msgstr "Domein naam"
 msgid "Domain config"
 msgstr "Domein configuratie"
 
-#: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:207
+#: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:212
 #: shared/inc/forms/admin_stats.php:104 shared/inc/forms/root_admin.php:343
 msgid "Domain name"
 msgstr "Domein naam"
@@ -1553,7 +1558,7 @@ msgstr "Vervaldatum"
 msgid "Expire"
 msgstr "Expiratie"
 
-#: admin/dtcrm/main.php:211 shared/inc/forms/my_account.php:97
+#: admin/dtcrm/main.php:216 shared/inc/forms/my_account.php:97
 msgid "Expiry date"
 msgstr "Eind datum"
 
@@ -3056,7 +3061,7 @@ msgstr ""
 msgid "Port number: "
 msgstr "VPS xen nummer"
 
-#: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
+#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
 #: admin/dtcrm/product_manager.php:225 shared/dtcrm/draw.php:80
 #: shared/inc/forms/invoices.php:23
@@ -3147,7 +3152,7 @@ msgstr ""
 msgid "Protect your mailbox with efficient tools:"
 msgstr ""
 
-#: admin/dtcrm/main.php:209
+#: admin/dtcrm/main.php:214
 msgid "Quantity"
 msgstr "Hoeveelheid"
 
@@ -4458,7 +4463,7 @@ msgstr "Wekelijks"
 msgid "Welcom to the email panel!"
 msgstr ""
 
-#: admin/dtcrm/main.php:206
+#: admin/dtcrm/main.php:211
 msgid "What"
 msgstr "Wat"
 
