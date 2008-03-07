@@ -2033,6 +2033,9 @@ mailbox_size_limit = 0
 			FOUND_DKIMPROXY=0;
 			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new ] ; then
 				if [ -x /usr/sbin/dkimproxy.in -o -x /usr/bin/dkimproxy.in -o -x /usr/local/sbin/dkimproxy.in -o -x /usr/local/bin/dkimproxy.in ] ; then
+					FOUND_DKIMPROXY=1;
+					echo "# use check_access directive to filter all incoming mail
+/^/  FILTER dkimsign:[127.0.0.1]:10026" > $PATH_POSTFIX_ETC/filter_10026_catchall
 					echo "# Amavis AND dkimproxy.in have been detected as installed, so this has been activated by default
 # if this is not what you want, comment it and restart postfix
 # This is the default action, AKA signing
