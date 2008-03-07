@@ -37,7 +37,7 @@ Depends: dtc-common, debconf, mysql-client | mysql-client-4.1, mysql-server-5.0 
 Suggests: courier-authmysql, courier-authlib-mysql, dovecot, postfix, qmail, postfix-tls, libsasl2-2, libsasl2-modules, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2, msttcorefonts
 Conflicts: dtc-postfix-courier, dtc-cyrus
 Replaces: dtc-postfix-courier, dtc-cyrus
-Description: web control panel for admin and accounting hosting services
+Description: web control panel for admin and accounting hosting services (fewer depends)
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. Using a web GUI for the administration and accounting all hosting
  services, DTC can delegate the task of creating subdomains, email, ssh,

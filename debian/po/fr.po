@@ -1,24 +1,14 @@
-# translation of fr.po to French
+# Translation of dtc debconf templates to French
+# Copyright (C) 2008 Christian Perrier <bubulle@debian.org>
+# This file is distributed under the same license as the dtc package.
 #
-#    Translators, if you are not familiar with the PO format, gettext
-#    documentation is worth reading, especially sections dedicated to
-#    this format, e.g. by running:
-#         info -n '(gettext)PO Files'
-#         info -n '(gettext)Header Entry'
-#
-#    Some information specific to po-debconf are available at
-#            /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
-#
-#    Developers do not need to manually edit POT or PO files.
-#
-# Christian Perrier <bubulle@debian.org>, 2007.
+# Christian Perrier <bubulle@debian.org>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: fr\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
 "POT-Creation-Date: 2007-12-19 16:56+0800\n"
-"PO-Revision-Date: 2007-03-23 18:59+0100\n"
+"PO-Revision-Date: 2008-02-25 09:16+0100\n"
 "Last-Translator: Christian Perrier <bubulle@debian.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -313,7 +303,6 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
-#, fuzzy
 msgid ""
 "This option should be chosen only if the server is not connected to the "
 "Internet directly, but through a firewall doing network address translation "
@@ -446,7 +435,7 @@ msgstr "Mot de passe pour le certificat SSL de DTC :"
 #. Description
 #: ../dtc-core.templates:26001 ../dtc-postfix-courier.templates:26001
 msgid "Update PEAR installation?"
-msgstr "Faut-il mettre a jour votre installation PEAR ?"
+msgstr "Faut-il mettre à jour votre installation PEAR ?"
 
 #. Type: boolean
 #. Description
@@ -476,14 +465,14 @@ msgid ""
 "Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
 msgstr ""
-"Veuillez indiquer la liste des serveur de listes noires DNSBL qui doivent "
+"Veuillez indiquer la liste des serveurs de listes noires DNSBL qui doivent "
 "être ajoutés à la configuration du serveur de messagerie Postfix."
 
 #. Type: select
 #. Description
 #: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid "Local address extension character:"
-msgstr ""
+msgstr "Caractère d'extension des adresses locales :"
 
 #. Type: select
 #. Description
@@ -492,6 +481,10 @@ msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
 msgstr ""
+"Veuillez choisir le caractère qui sert à définir une extension d'adresses "
+"locales. Ce caractère doit être le même que celui qui est utilisé dans la "
+"configuration de l'agent de transport de courriel (MTA : « Mail Transport "
+"Agent ») comme Postfix ou Qmail."
 
 #. Type: select
 #. Description
@@ -504,19 +497,19 @@ msgid ""
 "patches are incompatibles), but when using - as delimiter, you will not be "
 "able to use an email of the form john-doe@example.com as - is the delimiter."
 msgstr ""
-"Le caractere de delimitatation du destinataire sera utilise pour vos list de "
-"diffusion. Si par exemple vous utilisez le caracter + comme delimiteur, "
+"Le caractère de délimitation du destinataire sera utilisé pour vos listes de "
+"diffusion. Si, par exemple, vous utilisez le caractère + comme délimiteur, "
 "alors vos utilisateurs devront s'enregistrer avec maliste+subscribe@example."
-"com. Le probleme en choisissant + c'est que certains MTA refuse d'envoyer "
-"des couriels a ce genre d'adresse (notament certains mauvais patchs pour "
-"qmail), mais si vous utilisez - comme delimiteur, alors vous ne pourrez pas "
-"utiliser jean-paul@example.com car le caractere - est le delimiteur."
+"com. Le problème en choisissant + c'est que certains MTA refusent d'envoyer "
+"des couriels à ce genre d'adresse (notamment certains mauvais patchs pour "
+"qmail), mais si vous utilisez - comme délimiteur, alors vous ne pourrez pas "
+"utiliser jean-paul@example.com car le caractère - est le délimiteur."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Subdomain name for the MX server:"
-msgstr "Nom du sous-domaine pour le serveur MX:"
+msgstr "Nom du sous-domaine pour le serveur MX :"
 
 #. Type: string
 #. Description
@@ -527,7 +520,7 @@ msgid ""
 "by DTC. Any name is ok here."
 msgstr ""
 "Votre serveur de messagerie a besoin d'utiliser un sous-domaine pour "
-"accepter des messages. Ce sous-domaine sera configure par DTC dans votre "
+"accepter des messages. Ce sous-domaine sera configuré par DTC dans votre "
 "serveur de messagerie et dans votre serveur de nom. N'importe quel nom est "
 "possible."
 
@@ -544,7 +537,7 @@ msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
 msgstr ""
-"Veuillez indiquer les interfaces réseau qui seront surveillées avec "
+"Veuillez indiquer les interfaces réseaux qui seront surveillées avec "
 "l'utilitaire de représentation graphique RRDTool."
 
 #. Type: boolean
@@ -599,9 +592,10 @@ msgid ""
 "Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
 "using dtc-postfix-courier instead."
 msgstr ""
-"Cyrus est un remplacement pour le system de stockage et de livraison "
+"Cyrus est un remplaçant pour le système de stockage et de livraison "
 "Maildir. Vous devez savoir ce que vous faites si vous voulez activer "
 "l'utilisation et l'usage de Cyrus. Si vous utilisez dtc-toaster ou dtc-"
-"postfix-courier, vous devez repondre de ne pas utiliser Cyrus ici. Cyrus "
+"postfix-courier, vous devez répondre de ne pas utiliser Cyrus ici. Cyrus "
 "n'est utilisable qu'avec le paquet dtc et ne l'est pas si vous utilisez dtc-"
-"postfix-courier a la place."
+"postfix-courier à la place."
+
