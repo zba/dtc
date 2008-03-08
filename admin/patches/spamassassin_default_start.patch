@@ -1,5 +1,5 @@
---- spamassassin.orig	2008-03-02 15:14:53.000000000 +0800
-+++ spamassassin	2008-03-02 15:15:10.000000000 +0800
+--- /etc/default/spamassassin.orig	2008-03-02 15:14:53.000000000 +0800
++++ /etc/default/spamassassin	2008-03-02 15:15:10.000000000 +0800
 @@ -5,7 +5,7 @@
  # There may be security risks.
  

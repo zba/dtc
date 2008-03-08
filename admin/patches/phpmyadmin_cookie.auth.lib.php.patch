@@ -1,5 +1,5 @@
---- cookie.auth.lib.php.orig	2008-03-02 15:03:02.000000000 +0800
-+++ cookie.auth.lib.php	2008-03-02 15:03:19.000000000 +0800
+--- /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php.orig	2008-03-02 15:03:02.000000000 +0800
++++ /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php	2008-03-02 15:03:19.000000000 +0800
 @@ -91,9 +91,9 @@
  <script type="text/javascript" language="javascript">
  //<![CDATA[

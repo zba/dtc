@@ -1,5 +1,5 @@
---- dkimproxy.orig	2008-03-03 23:42:53.000000000 +0800
-+++ dkimproxy	2008-03-04 17:54:44.000000000 +0800
+--- /etc/init.d/dkimproxy.orig	2008-03-03 23:42:53.000000000 +0800
++++ /etc/init.d/dkimproxy	2008-03-04 17:54:44.000000000 +0800
 @@ -26,8 +26,8 @@
  DKIMPROXY_OUT_PRIVKEY="/var/lib/dkimproxy/private.key"
  
