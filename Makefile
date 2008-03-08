@@ -293,6 +293,9 @@ INSTALL_FOLDER_SCRIPTS=admin/install/mk_root_mailbox.php admin/install/bsd_confi
 admin/install/debian_config admin/install/install admin/install/osx_config admin/install/uninstall admin/install/functions \
 admin/install/interactive_installer admin/install/redhat_config
 
+PATCH_FILES=admin/patches/dkimproxy_init_script.patch admin/patches/saslauthd_default_start.patch \
+admin/patches/phpmyadmin_cookie.auth.lib.php.patch admin/patches/spamassassin_default_start.patch admin/patches/phpmyadmin_htaccess.patch
+
 ##################### SQL TABLES #########################
 INSTALL_SQL_TABLES=admin/tables/admin.sql admin/tables/backup.sql admin/tables/clients.sql admin/tables/commande.sql \
 admin/tables/companies.sql admin/tables/completedorders.sql admin/tables/config.sql admin/tables/cron_job.sql admin/tables/dedicated.sql \
@@ -324,7 +327,7 @@ shared/gfx/securepay shared/gfx/language/en/pub shared/gfx/language/fr/pub share
 shared/gfx/skin/tex shared/gfx/skin/ruffdogs_mozilla shared/gfx/skin/darkblue shared/gfx/skin/bwoup/gfx/config-icon \
 shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar \
 shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
-shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc
+shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc admin/patches
 
 LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU.UTF-8 de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI
 
@@ -353,6 +356,7 @@ install-dtc-common:
 	@ echo "-> Intalling scripts"
 	@for i in $(WEB_SCRIPT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 	@echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""$(UNIX_TYPE)"\"; ?>" >$(APP_INST_DIR)/shared/dtc_version.php
+	@for i in $(PATCH_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 
 	# Management scripts that are executed
 	@for i in $(ROOT_ONLY) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
