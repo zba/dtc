@@ -4557,7 +4557,7 @@ applyAllDTCPatches () {
 		dtcPatchFile /usr/share/phpmyadmin/.htaccess ${PATH_DTC_ADMIN}/patches/phpmyadmin_htaccess.patch 31601e916ccfa49e96470f70f3e28c6c 4a3cf4183860ab55051964cb5d488c85
 		dtcPatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
 		dtcPatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
-		dtcPatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 bcf6b1d68d56147c70692fbedf48539e
+		dtcPatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 860349aa619b16d5f61ff255a16619fa
 		dtcPatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 83a74064692bb4808e223f7cc6abb154
 	fi
 }
@@ -4567,7 +4567,7 @@ deApplyAllDTCPatches () {
 		dtcUnpatchFile /usr/share/phpmyadmin/.htaccess ${PATH_DTC_ADMIN}/patches/phpmyadmin_htaccess.patch 31601e916ccfa49e96470f70f3e28c6c 4a3cf4183860ab55051964cb5d488c85
 		dtcUnpatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
 		dtcUnpatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
-		dtcUnpatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 bcf6b1d68d56147c70692fbedf48539e
+		dtcUnpatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 860349aa619b16d5f61ff255a16619fa
 		dtcUnpatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 83a74064692bb4808e223f7cc6abb154
 	fi
 }
