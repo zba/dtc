@@ -108,6 +108,8 @@ function dtcFromOkDraw($delete_form=""){
 //   forward => array(var1,var2...) -> names of the variables to forward
 //   [skip_deletion] => "yes" -> Do not display the deletion option
 //   [skip_creation] => "yes" -> Do not display the new item line
+//   [update_check_callback] => Callback to accept or deny the update of a record.
+//   [insert_check_callback] => callback to accept or deny the insert of a record
 //   [where_condition] => "blabla='hop' AND titi='toto'" -> Condition of the display of the table
 //   [order_by] => "fldname_1" -> Condition pour le order by
 //   cols => array(
@@ -145,10 +147,9 @@ function dtcDatagrid($dsc){
 	global $adm_pass;
 	global $txt_action;
 	global $lang;
+	global $action_error_txt;
 
 	global $gfx_form_entry_label_background;
-
-	$out = "<h3>".$dsc["title"]."</h3>";
 
 	$nbr_forwards = sizeof($dsc["forward"]);
 	$keys_fw = array_keys($dsc["forward"]);
@@ -180,6 +181,8 @@ function dtcDatagrid($dsc){
 		}
 		$flds .= $keys[$i];
 	}
+
+	$action_error_txt = "";
 
 	if(isset($_REQUEST["action"])){
 		$added_one = "no";
@@ -230,7 +233,15 @@ function dtcDatagrid($dsc){
 				$qflds .= ", ".$exploded[0];
 				$vals .= ", ".$exploded[1];
 			}
-			$q = "INSERT INTO ".$dsc["table_name"]." ($qflds) VALUES($vals);";
+			if( isset($dsc["insert_check_callback"]) ){
+				if ( $dsc["insert_check_callback"]() ){
+					$q = "INSERT INTO ".$dsc["table_name"]." ($qflds) VALUES($vals);";
+				}else{
+					$q = "";
+				}
+			}else{
+				$q = "INSERT INTO ".$dsc["table_name"]." ($qflds) VALUES($vals);";
+			}
 			break;
 		case $dsc["action"]."_edit":
 			$vals = "";
@@ -278,7 +289,15 @@ function dtcDatagrid($dsc){
 					break;
 				}
 			}
-			$q = "UPDATE ".$dsc["table_name"]." SET $vals WHERE $id_name='$id';";
+			if( isset($dsc["update_check_callback"]) ){
+				if ( $dsc["update_check_callback"]() ){
+					$q = "UPDATE ".$dsc["table_name"]." SET $vals WHERE $id_name='$id';";
+				}else{
+					$q = "";
+				}
+			}else{
+				$q = "UPDATE ".$dsc["table_name"]." SET $vals WHERE $id_name='$id';";
+			}
 			break;
 		case $dsc["action"]."_delete":
 			for($i=0;$i<$nbr_fld;$i++){
@@ -296,6 +315,12 @@ function dtcDatagrid($dsc){
 		if($q != ""){
 			$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
 		}
+	}
+
+	$out = "<h3>".$dsc["title"]."</h3>";
+
+	if( $action_error_txt != ""){
+		$out .= "<font color=\"red\">" . $action_error_txt . "</font><br>";
 	}
 
 	// Display of all the titles of the table

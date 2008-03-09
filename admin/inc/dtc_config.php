@@ -364,6 +364,75 @@ function drawFTPBacupConfig(){
 	return configEditorTemplate ($dsc);
 }
 
+// This function is a callback when editing or adding a dom0 or a VPS IP,
+// so we can make sure that there is not twice the same IP in the database
+function checkIPAssigned(){
+	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_vps_server_table;
+	global $action_error_txt;
+
+	// We first force an IP to be in.
+	if($_REQUEST["action"] != "vps_server_ip_list_edit" && $_REQUEST["action"] != "vps_server_ip_list_new" && $_REQUEST["dom0_ips"] == ""){
+		$action_error_txt = _("Please enter an IP address for your dom0!");
+		return false;
+	}
+	// Then we check all IPs separated by | one by one
+	$ret_val = true;
+	if($_REQUEST["action"] == "vps_server_ip_list_edit" || $_REQUEST["action"] == "vps_server_ip_list_new"){
+		$all_dom0_ips = array();
+		$all_dom0_ips[] = $_REQUEST["ip_addr"];
+		$nbr_ips = 1;
+	}else{
+		$all_dom0_ips = explode("|",$_REQUEST["dom0_ips"]);
+		$nbr_ips = sizeof($all_dom0_ips);
+	}
+	for($i=0;$i<$nbr_ips;$i++){
+		$test_ip = $all_dom0_ips[$i];
+
+		// First check against all dom0 IPs
+
+		// This request will filter a lot the IPs, but will return many IP separated by |
+		// we will have to test them one by one in a loop
+		// If we are editing a record for the dom0, we don't want to check this record
+		if($_REQUEST["action"] == "vps_server_list_edit"){
+			$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE dom0_ips LIKE '%$test_ip%' AND id != '". $_REQUEST["id"] ."';";
+		}else{
+			$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE dom0_ips LIKE '%$test_ip%';";
+		}
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 0){
+			for($j=0;$j<$n;$j++){
+				$a = mysql_fetch_array($r);
+				// Checking all IPs of the SQL record
+				$q_all_dom0_ips = explode("|",$a["dom0_ips"]);
+				$q_nbr_ips = sizeof($q_all_dom0_ips);
+				for($k=0;$k<$q_nbr_ips;$k++){
+					if($q_all_dom0_ips[$k] == $test_ip){
+						$action_error_txt = _("The IP address $test_ip is already assigned to a dom0: cannot assign to this one!");
+						$ret_val = false;
+					}
+				}
+			}
+		}
+
+		// Then check against all VPS
+		// If we are editing a VPS IP, we don't want to check this record
+		if($_REQUEST["action"] == "vps_server_ip_list_edit"){
+			$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_addr='$test_ip' AND id != '". $_REQUEST["id"] ."';";
+		}else{
+			$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_addr='$test_ip';";
+		}
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 0){
+			$action_error_txt = _("The IP address $test_ip is already assigned to a VPS: cannot assign this one!");
+			$ret_val = false;
+		}
+	}
+	return $ret_val;
+}
+
 function drawVPSServerConfig(){
 	global $pro_mysql_vps_table;
 	global $pro_mysql_vps_ip_table;
@@ -383,6 +452,8 @@ function drawVPSServerConfig(){
 		"action" => "vps_server_list",
 		"forward" => array("rub","sousrub"),
 		"order_by" => "hostname",
+		"update_check_callback" => "checkIPAssigned",
+		"insert_check_callback" => "checkIPAssigned",
 		"cols" => array(
 			"id" => array(
 				"type" => "id",
@@ -392,13 +463,17 @@ function drawVPSServerConfig(){
 				"type" => "hyperlink",
 				"legend" => _("IPs addrs"),
 				"text" => "Edit IPs"),
+			"dom0_ips" => array(
+				"type" => "text",
+				"size" => "8",
+				"legend" => _("dom0 IP addresses")),
 			"hostname" => array(
 				"type" => "text",
-				"size" => "15",
+				"size" => "8",
 				"legend" => _("Hostname")),
 			"location" => array(
 				"type" => "text",
-				"size" => "10",
+				"size" => "8",
 				"legend" => _("Location")),
 			"soap_login" => array(
 				"type" => "text",
@@ -430,6 +505,8 @@ function drawVPSServerConfig(){
 			"title" => _("VPS IPs for ").$a["hostname"].":",
 			"where_condition" => "vps_server_hostname='".$a["hostname"]."'",
 			"order_by" => "vps_xen_name",
+			"update_check_callback" => "checkIPAssigned",
+			"insert_check_callback" => "checkIPAssigned",
 			"action" => "vps_server_ip_list",
 			"forward" => array("rub","sousrub","edithost"),
 			"cols" => array(
