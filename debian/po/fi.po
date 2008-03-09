@@ -1,0 +1,599 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dtc 0.28.2-1\n"
+"Report-Msgid-Bugs-To: thomas@goirand.fr\n"
+"POT-Creation-Date: 2008-03-09 00:28+0800\n"
+"PO-Revision-Date: 2008-03-01 18:19+0200\n"
+"Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
+"Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Finnish\n"
+"X-Poedit-Country: FINLAND\n"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
+msgid "Automatically configure MySQL user?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
+msgid ""
+"DTC can use /etc/mysql/debian.cnf to automatically create a root mysql user "
+"for DTC to access and manage MySQL and DTC's database. This way, no question "
+"will be asked to you about what MySQL root password is used, all will be "
+"automated, but the drawback is that the MySQL server that will be used will "
+"always be located in the local machine (you wont be able to configure DTC to "
+"use a remote database server)."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
+msgid ""
+"In any case, please make sure that your MySQL root password is set. As per "
+"default, Debian installs it with a blank password. To set your MySQL root "
+"password, issue the following command: dpkg-reconfigure mysql-server-5.0. "
+"You've been warned!"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
+msgid "MySQL hostname:"
+msgstr "MySQL-verkkonimi:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
+msgid "Please enter the hostname or IP address of the MySQL server."
+msgstr "Annan MySQL-palvelimen verkkonimi tai IP-osoite."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:3001 ../dtc-postfix-courier.templates:3001
+msgid "MySQL administrator:"
+msgstr "MySQL-ylläpitäjä:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:3001 ../dtc-postfix-courier.templates:3001
+msgid ""
+"Please enter the login name of a MySQL user with administrative privileges. "
+"DTC will use it to grant privileges for the tables to its users."
+msgstr ""
+"Anna pääkäyttäjäoikeudet omaava MySQL-käyttäjätunnus. DTC käyttää sitä "
+"antaakseen käyttäjilleen oikeuksia tauluihin."
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
+msgid "MySQL administrator password:"
+msgstr "MySQL-ylläpitäjän salasana:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
+msgid "Please enter the password of the MySQL administrator."
+msgstr "Anna MySQL-ylläpitäjän salasana."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:5001 ../dtc-postfix-courier.templates:5001
+msgid "DTC database name:"
+msgstr "DTC-tietokannan nimi:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:5001 ../dtc-postfix-courier.templates:5001
+msgid ""
+"Please enter the name of the database to use for storing all DTC hosting "
+"information."
+msgstr ""
+"Anna kaikkien DTC:n isännöintitietojen säilytykseen käytettävän tietokannan "
+"nimi."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:6001 ../dtc-postfix-courier.templates:6001
+msgid "Change MySQL root password?"
+msgstr "Vaihdetaanko MySQL:n ylläpitosalasana?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:6001 ../dtc-postfix-courier.templates:6001
+msgid ""
+"By default, the mysql-server package does not require a password for the "
+"MySQL root user. This can be changed during the configuration of the DTC "
+"package."
+msgstr ""
+"Oletuksena paketti mysql-server ei vaadi MySQL:n ylläpitäjälle salasanaa. Se "
+"voidaan vaihtaa paketin DTC asetusten teon aikana."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:7001 ../dtc-postfix-courier.templates:7001
+msgid "Domain name:"
+msgstr "Verkkoaluenimi:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:7001 ../dtc-postfix-courier.templates:7001
+msgid ""
+"Please enter the first domain which you want DTC to manage. This domain name "
+"will be used to install the root admin and customer web control panel of DTC "
+"(under one of this domain's subdomains)."
+msgstr ""
+"Anna ensimmäinen verkkoalue, jota DTC:n tulisi hallinnoida. Tätä "
+"verkkoaluenimeä käytetään DTC:n pääkäyttäjän ja asiakkaiden "
+"juuriverkkohallintapaneelien asennuksessa (tämän verkkoalueen yhteen "
+"alialueeseen)."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
+msgid "DTC root panel subdomain:"
+msgstr "DTC:n juuripaneelin aliverkkoalue:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
+msgid "Please enter the subdomain to be used by the DTC control panel."
+msgstr "Anna aliverkkoalue, jota DTC:n hallintapaneelin tulisi käyttää."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
+msgid "Primary IP address:"
+msgstr "Ensisijainen IP-osoite:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
+msgid ""
+"Please enter this host's primary IP address. This address will be used for "
+"the domain name you just provided, and will be used as the default for most "
+"DTC variables.  If you are using Network Address Translation (NAT), please "
+"enter your external IP address."
+msgstr ""
+"Anna tämän koneen ensisijainen IP-osoite. Tätä osoitetta käytetään juuri "
+"antamasi verkkoaluenimen osoitteena ja sitä käytetään oletusarvona "
+"useimmille DTC:n muuttujille. Jos käytät verkko-osoitteen kääntämistä (NAT), "
+"anna ulkoinen IP-osoite."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
+msgid "Path for hosted domains:"
+msgstr "Isännöityjen verkkoalueiden polku:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
+msgid ""
+"Please enter the directory to be used by DTC to store files for all hosted "
+"domains."
+msgstr ""
+"Anna hakemisto, johon DTC tallentaa kaikkien isännöityjen verkkoalueiden "
+"tiedostot."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
+msgid ""
+"If you choose /var/www, which is Apache's default document root, all files "
+"hosted in that directory may become publicly accessible. It is therefore "
+"recommended to change the DocumentRoot setting in Apache configuration if "
+"you choose /var/www as path for hosted domains."
+msgstr ""
+"Jos valitset hakemiston /var/www, joka on Apachen oletustiedostojuuri, "
+"kaikki hakemistossa olevat tiedostot saattavat tulla julkisesti saataville. "
+"Tämän takia on suositeltavaa vaihtaa Apachen asetuksista asetus "
+"DocumentRoot, jos valitset hakemiston /var/www isännöityjen verkkoalueiden "
+"poluksi."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:11001 ../dtc-postfix-courier.templates:11001
+msgid "Path for the chroot environment template:"
+msgstr "chroot-ympäristön mallin polku:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:11001 ../dtc-postfix-courier.templates:11001
+msgid ""
+"Please enter the directory to be used by DTC to build the cgi-bin chroot "
+"environment template."
+msgstr ""
+"Anna hakemisto, jota DTC käyttää cgi-bin chroot -ympäristön mallin "
+"rakentamiseen."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:12001 ../dtc-postfix-courier.templates:12001
+msgid "Main domain admin name:"
+msgstr "Pääverkkoalueen ylläpitäjän tunnus:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:12001 ../dtc-postfix-courier.templates:12001
+msgid ""
+"Each DTC domain must have an administrator. Please enter the login name of "
+"the administrator for the domain name containing the control panel "
+"installation."
+msgstr ""
+"Jokaisella DTC-verkkoalueella tulee olla ylläpitäjä. Anna hallintapaneelin "
+"sisältävän verkkoalueen ylläpitäjän käyttäjätunnus."
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:13001 ../dtc-postfix-courier.templates:13001
+msgid "Main domain admin password:"
+msgstr "Pääverkkoalueen ylläpitäjän salasana:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:13001 ../dtc-postfix-courier.templates:13001
+msgid ""
+"Please choose the main domain administrator's password. Access to the "
+"control panel must be managed manually through a .htpasswd file in the root "
+"path."
+msgstr ""
+"Valitse salasana pääverkkoalueen ylläpitäjälle. Kontrollipaneelin oikeuksia "
+"täytyy hallinnoida käsin juurihakemistossa olevan tiedoston .htpasswd avulla."
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:14001 ../dtc-postfix-courier.templates:14001
+msgid "Mail Transfer Agent (MTA) type:"
+msgstr "Käytettävä sähköpostipalvelin (MTA):"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:14001 ../dtc-postfix-courier.templates:14001
+msgid ""
+"Please select the MTA that will be used with DTC. It should be installed on "
+"the system already. If no such MTA is currently installed, please complete "
+"the setup of DTC, install a MTA package, then run \"dpkg-reconfigure dtc\"."
+msgstr ""
+"Valitse DTC:n kanssa käytettävä sähköpostipalvelin. Sen tulisi olla jo "
+"asennettuna järjestelmään. Jos mitään palvelinta ei ole asennettuna, tee DTC:"
+"n asetukset loppuun, asenna palvelin ja aja sen jälkeen komento ”dpkg-"
+"reconfigure dtc”."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:15001 ../dtc-postfix-courier.templates:15001
+msgid "Use Cyrus mail system?"
+msgstr "Käytetäänkö Cyrus-sähköpostijärjestelmää?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:15001 ../dtc-postfix-courier.templates:15001
+msgid ""
+"Please choose this option if you are using Cyrus for mail delivery, IMAP and "
+"MTA. This option is only compatible with Postfix."
+msgstr ""
+"Valitse tämä vaihtoehto, jos käytät Cyrusia sähköposti- ja IMAP-palvelimena. "
+"Tämä vaihtoehto on yhteensopiva vain Postfixin kanssa."
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
+msgid "Apache version to configure:"
+msgstr "Asetettava Apachen versio:"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
+msgid ""
+"DTC supports both Apache and Apache2. Please enter the version which DTC "
+"should use."
+msgstr ""
+"DTC tukee sekä Apachea että Apache2:ta. Valitse mitä versiota DTC:n tulisi "
+"käyttää."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
+msgid "Use \"NATed\" vhosts?"
+msgstr "Käytetäänkö ”käännettyjä” (NAT) vhosteja?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
+msgid ""
+"DTC can configure Apache to use one of your IP addresses. If the server is "
+"firewalled with NAT and port redirections of public IP(s) address(es), a "
+"\"NATed\" vhost configuration can be generated."
+msgstr ""
+"DTC voi asettaa Apachen käyttämään yhtä IP-osoitetta. Jos palvelimella on "
+"palomuuri, joka kääntää osoitteet (NAT) ja ohjaa julkisten IP-osoitteiden "
+"portteja edelleen, voidaan luoda ”käännetyt” vhost-asetukset."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
+msgid ""
+"This option should be chosen only if the server is not connected to the "
+"Internet directly, but through a firewall doing network address translation "
+"(NAT). If the server uses a dynamic public IP address, NAT and port "
+"forwarding are mandatory for DTC."
+msgstr ""
+"Tämä vaihtoehto tulisi valita vain, jos palvelin ei ole suorassa yhteydessä "
+"Internetiin vaan verkko-osoitteiden kääntöä (NAT) tekevän palomuurin takana. "
+"Jos palvelin käyttää dynaamisia julkisia IP-sooitteita, NAT ja porttien "
+"edelleenohjaus ovat pakollisia DTC:n kanssa."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
+msgid "NATed LAN IP address:"
+msgstr "Käännetty sisäverkon IP-osoite:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
+msgid ""
+"Please enter the IP address of the server for DTC to generate all vhosts "
+"that will be used by Apache."
+msgstr ""
+"Anna DTC-palvelimen IP-osoite luodaksesi kaikki Apachen käyttämät vhostit."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
+msgid "Generate an SSL certificate for DTC?"
+msgstr "Luodaanko DTC:lle SSL-varmenne?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
+msgid ""
+"If you choose this option, DTC will generate a self-signed SSL certificate "
+"and will use SSL to browse the panel. SSL will also be activated and the "
+"generated Apache configuration will activate HTTPS URLs for the control "
+"panel."
+msgstr ""
+"Jos valitset tämän vaihtoehdon, DTC luo itseallekirjoitetun SSL-varmenteen "
+"ja näyttää paneelin käyttäen SSL:ää. SSL myös aktivoidaan ja luodut Apache-"
+"asetukset käyttävät HTTPS-osoitteita kontrollipaneelin kanssa."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
+msgid "This certificate can be changed for a root CA certificate later."
+msgstr ""
+"Tämä varmenne voidaan vaihtaa juurivarmentajan varmenteeseen myöhemmin."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
+msgid ""
+"Previously-generated certificates will never be overwritten. To regenerate "
+"the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
+msgstr ""
+"Aikaisemmin luotuja varmenteita ei koskaan kirjoiteta yli. Jos varmenne "
+"halutaan luoda uudelleen, kaikki tiedostot hakemistosta /usr/share/dtc/etc/"
+"ssl tulee poistaa."
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
+msgid "DTC certificate passphrase:"
+msgstr "DTC-varmenteen salalause:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
+msgid "Please choose a passphrase to protect the generated SSL certificate."
+msgstr "Valitse luotua SSL-varmennetta suojaava salalause:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:21001 ../dtc-postfix-courier.templates:21001
+msgid "Country code for the DTC SSL certificate:"
+msgstr "DTC:n SSL-varmenteen maakoodi:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:21001 ../dtc-postfix-courier.templates:21001
+msgid ""
+"Please enter the 2-letter country code for the generated certificate. This "
+"should usually be the code for the country the server is located in."
+msgstr ""
+"Anna kaksikirjaiminen maakoodi luotavaa varmennetta varten. Tämän tulisi "
+"yleensä olla sen maan koodi, jossa palvelin on."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:22001 ../dtc-postfix-courier.templates:22001
+msgid "City name for the DTC SSL certificate:"
+msgstr "DTC:n SSL-varmenteen kaupungin nimi:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:23001 ../dtc-postfix-courier.templates:23001
+msgid "Organization name for the DTC SSL certificate:"
+msgstr "DTC:n SSL-varmenteen organisaation nimi:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:24001 ../dtc-postfix-courier.templates:24001
+msgid "Organizational unit for the DTC SSL certificate:"
+msgstr "DTC:n SSL-varmenteen organisaatioyksikkö:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:25001 ../dtc-postfix-courier.templates:25001
+msgid "Email address for the DTC SSL certificate:"
+msgstr "DTC:n SSL-varmenteen sähköpostiosoite:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:26001 ../dtc-postfix-courier.templates:26001
+msgid "DTC SSL certificate challenge password:"
+msgstr "DTC:n SSL-varmenteen haastesalasana:"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
+msgid "Update PEAR installation?"
+msgstr "Päivitetäänkö PEAR-asennus?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
+msgid ""
+"DTC can check the PEAR installation during its own installation process. "
+"This requires your server to be connected to the network. If you can't do so "
+"here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-"
+"to-date. The relevant files are located in /usr/share/php."
+msgstr ""
+"DTC voi tarkistaa PEAR-asennuksen oman asennusprosessinsa aikana. Tämä "
+"vaatii, että palvelin on yhdistettynä verkkoon. Jos et voi tehdä tarkistusta "
+"tässä, tarkista, että PEAR-moduulit Crypt_CBC ja Auth_SASL ovat ajantasalla. "
+"Olennaiset tiedostot ovat hakemistossa /usr/share/php."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid "DNSBL (DNS BlackList) list:"
+msgstr "DNSBL-lista (DNS-palvelimien musta lista):"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid ""
+"Please enter the list of preferred DNSBL servers to add to your Postfix mail "
+"server configuration."
+msgstr ""
+"Anna lista DNSBL-palvelimista, jotka lisätään Postfix-sähköpostipalvelimen "
+"asetuksiin."
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+msgid "Local address extension character:"
+msgstr "Paikallisen osoitelaajennoksen merkki:"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+msgid ""
+"Please choose the character that will be used to define a local address "
+"extension. This MUST match what you have set in your postfix or qmail setup."
+msgstr ""
+"Anna merkki, jota käytetään paikallisen osoitelaajennoksen määrittämiseen. "
+"Tämän TÄYTYY täsmätä postfixin tai qmailin asetuksissa asetettuun merkkiin."
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+msgid ""
+"The recipient delimiter will be used for your mailing lists. Let's say you "
+"use the + char as delimiter, then your users will have to send a mail to list"
+"+subscribe@example.com. The drawback when choosing + is that some MTA don't "
+"allow to send mail with this char in the recipient (namely some bad qmail "
+"patches are incompatibles), but when using - as delimiter, you will not be "
+"able to use an email of the form john-doe@example.com as - is the delimiter."
+msgstr ""
+"Vastaanottoerotinta käytetään sähköpostilistoillasi. Jos valitset "
+"erottimeksi merkin ”+”, tulee käyttäjien lähettää postinsa listalle "
+"+subscribe@esimerkki.fi. Merkin ”+” varjopuoli on se, että eräät "
+"sähköpostiohjelmat eivät salli tätä merkkiä vastaanottajan nimessä (lähinnä "
+"eräät qmailin huonot versiot ovat epäyhteensopivia). Toisaalta, jos "
+"erottimena käytetään merkkiä ”-”, sähköpostiosoitteet eivät voi olla muotoa "
+"juha-pekka@esimerkki.fi, koska ”-” on erotinmerkki."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+msgid "Subdomain name for the MX server:"
+msgstr "MX-palvelimen aliverkkoaluenimi:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+msgid ""
+"Your mail server will need to use a subdomain name to accept mail. This "
+"subdomain will be configured in your mail server and your domain name server "
+"by DTC. Any name is ok here."
+msgstr ""
+"Sähköpostipalvelimen tulee käyttää aliverkkoaluenimeä sähköpostin "
+"vastaanottoon. Tämä aliverkkoalue asetetaan DTC:n toimesta "
+"sähköpostipalvelimen ja nimipalvelimen asetuksiin. Mikä tahansa nimi kelpaa "
+"tähän."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+msgid "Network devices to monitor:"
+msgstr "Tarkkailtavat verkkolaitteet:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+msgid ""
+"Please enter all the network devices you wish to be monitored by the RRDTool "
+"graphing utility."
+msgstr ""
+"Anna kaikki verkkolaitteet, joita haluat graafisen RRDTool-työkalun "
+"tarkkailevan."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+msgid "Allow to report anonymous statistics to GPLHost?"
+msgstr "Sallitaanko nimettömien tilastojen lähetys GPLHostille?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+msgid ""
+"DTC installations can be reported to the GPLHost web site. The only "
+"collected data are the operating system name (Debian) and the IP address "
+"(used as a unique identifier only). An Internet connection and the wget "
+"binary are required to report the statistics."
+msgstr ""
+"DTC-asennukset voidaan raportoida GPLHost-verkkosivulle. Kerättävät tiedot "
+"ovat käyttöjärjestelmän nimi (Debian) ja IP-osoite (jota käytetään vain "
+"yksilöivänä tunnisteena). Tilastojen raportointi vaatii Internet-yhteyden ja "
+"wget-ohjelman."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+msgid "Skip mknod calls when building the chroot template?"
+msgstr "Ohitetaanko mknod-kutsut rakennettaessa chroot-mallia?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+msgid ""
+"In some environments, such as Linux vServer, mknod cannot be executed. This "
+"option allows skipping the creation of the null, random and urandom devices "
+"during the chroot template creation."
+msgstr ""
+"Jossain ympäristöissä, kuten Linux vServerillä, ohjelmaa mknod ei voida "
+"ajaa. Tämä valinta mahdollistaa null-, random- ja urandom-laitteiden luonnin "
+"ohituksen luotaessa chroot-mallia."
+
+#. Type: boolean
+#. Description
+#: ../dtc-postfix-courier.templates:15001
+msgid ""
+"Cyrus is a replacement for the Maildir delivery and storage. You must know "
+"what you are doing if you want to activate the use of Cyrus. If you are "
+"using dtc-toaster or dtc-postfix-courier, you have to answer not to use "
+"Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
+"using dtc-postfix-courier instead."
+msgstr ""
+"Cyrus on korvaava ohjelma sähköpostien Maildir-jakeluun ja tallentamiseen. "
+"Tiedä mitä teet, jos otat Cyruksen käyttöön. Jos käytät paketteja dtc-"
+"toaster tai dtc-postfix-courier, älä valitse Cyrusia käyttöön tässä. Cyrus "
+"on käyttökelpoinen vain paketin dtc kanssa, eikä sitä voi käyttää, jos "
+"käytät pakettia dtc-postfix-courier."
