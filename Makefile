@@ -329,7 +329,14 @@ shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin
 shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
 shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc admin/patches
 
-LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU.UTF-8 de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI
+LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI
+
+l12n:
+	@echo "===> Managing localizations binaries"
+	@echo "=> Creating l12n folders"
+	@for i in $(LOCALE_TRANS) ; do mkdir -p shared/vars/locale/$$i/LC_MESSAGES ; done
+	@echo "=> Creating l12n binaries"
+	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgfmt -c -v -o locale/$$i/LC_MESSAGES/messages.mo $$i.po ; done && cd ../..
 
 i18n:
 	@echo "===> Managing internationalizations and localizations"
@@ -337,7 +344,8 @@ i18n:
 	@xgettext --output-dir=shared/vars $(WEB_SCRIPT_FILES) $(SKIN_STUFF) -o templates.pot
 	@echo "=> Merging in every language .po file: "
 	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgmerge -s -U $$i.po templates.pot ; done && cd ../..
-	@for i in $(LOCALE_TRANS) ; do mkdir -p shared/vars/locale/$$i/LC_MESSAGES ; done && cd ../..
+	@echo "=> Creating l12n folders"
+	@for i in $(LOCALE_TRANS) ; do mkdir -p shared/vars/locale/$$i/LC_MESSAGES ; done
 	@echo "=> Creating binary formats of language files: "
 	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgfmt -c -v -o locale/$$i/LC_MESSAGES/messages.mo $$i.po ; done && cd ../..
 
@@ -431,7 +439,7 @@ install-dtc-common:
 	cp -rf doc/* $(DOC_DIR)
 
 	# Copy the internationnalization stuff
-	make i18n
+	make l12n
 	cd shared/vars && cp -rf locale $(APP_INST_DIR)/shared/vars && cd ../..
 
 	rm -rf $(DOC_DIR)/LICENSE

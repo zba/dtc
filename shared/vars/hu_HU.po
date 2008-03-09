@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 16:47+0800\n"
+"POT-Creation-Date: 2008-03-09 20:48+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Feher Sandor <sfeher@bluesystem.hu>\n"
 "Language-Team: Hungarian <LL@li.org>\n"
@@ -341,12 +341,12 @@ msgstr "Az adminisztrátorok listája"
 msgid "Access not granted line "
 msgstr ""
 
-#: admin/inc/dtc_config.php:867
+#: admin/inc/dtc_config.php:925
 #, fuzzy
 msgid "Act as backup DNS server for the following servers:"
 msgstr "Tartalék DNS szerverként viselkedjen a következő szervereknek:"
 
-#: admin/inc/dtc_config.php:842
+#: admin/inc/dtc_config.php:900
 msgid "Act as backup mail server for the following servers:"
 msgstr "Tartalék mail szerverként viselkedjen a következő szervereknek :"
 
@@ -396,11 +396,11 @@ msgstr "A számlámon lévő pénz:"
 msgid "Add a domain:"
 msgstr "Hozzáad egy domaint"
 
-#: admin/inc/dtc_config.php:1227
+#: admin/inc/dtc_config.php:1285
 msgid "Add a new company"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1226
+#: admin/inc/dtc_config.php:1284
 msgid "Add a new company:"
 msgstr ""
 
@@ -459,11 +459,11 @@ msgstr "Cím:"
 msgid "Address email"
 msgstr "Cím:"
 
-#: admin/inc/dtc_config.php:707
+#: admin/inc/dtc_config.php:765
 msgid "Address of your main MX server:"
 msgstr "A fő MX szerver címe :"
 
-#: admin/inc/dtc_config.php:1247 shared/inc/forms/my_account.php:207
+#: admin/inc/dtc_config.php:1305 shared/inc/forms/my_account.php:207
 msgid "Address:"
 msgstr "Cím:"
 
@@ -500,7 +500,7 @@ msgstr ""
 msgid "Allow the use of the package installer:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:763
+#: admin/inc/dtc_config.php:821
 msgid ""
 "Allow those servers to list this server's domain names for doing backup:"
 msgstr ""
@@ -547,7 +547,7 @@ msgstr ""
 "ilyen jogok. Új domain név létrehozásához regisztráció nélkül kérjük írjon "
 "erre címre:"
 
-#: admin/inc/dtc_config.php:613
+#: admin/inc/dtc_config.php:671
 msgid "Another location"
 msgstr ""
 
@@ -555,11 +555,11 @@ msgstr ""
 msgid "Anti-spam mode:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1173
+#: admin/inc/dtc_config.php:1231
 msgid "Apache file names"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1144
+#: admin/inc/dtc_config.php:1202
 msgid "Apache htpasswd path"
 msgstr ""
 
@@ -595,12 +595,12 @@ msgstr ""
 "Biztos benne hogy törölni akarja ezt a felhasználót ? Ez a művelet törli a "
 "felhasználó összes domain nevét, fájljait és adatbázisait!!!"
 
-#: admin/inc/dtc_config.php:738
+#: admin/inc/dtc_config.php:796
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
 msgstr ""
 
 #: admin/inc/dtc_config.php:264 admin/inc/dtc_config.php:302
-#: admin/inc/dtc_config.php:467
+#: admin/inc/dtc_config.php:525
 msgid "Available"
 msgstr ""
 
@@ -839,12 +839,12 @@ msgstr "Ügyféllista"
 msgid "Companies"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1344
+#: admin/inc/dtc_config.php:1402
 #, fuzzy
 msgid "Company name"
 msgstr "Cégnév:"
 
-#: admin/inc/dtc_config.php:1242 shared/inc/forms/my_account.php:202
+#: admin/inc/dtc_config.php:1300 shared/inc/forms/my_account.php:202
 msgid "Company name:"
 msgstr "Cégnév:"
 
@@ -966,7 +966,7 @@ msgstr ""
 msgid "Could not write USER to server"
 msgstr ""
 
-#: admin/inc/dtc_config.php:432 shared/inc/forms/root_admin.php:560
+#: admin/inc/dtc_config.php:488 shared/inc/forms/root_admin.php:560
 msgid "Country"
 msgstr "Ország"
 
@@ -974,7 +974,7 @@ msgstr "Ország"
 msgid "Country code seems incorrect."
 msgstr ""
 
-#: admin/inc/dtc_config.php:1250 shared/inc/forms/my_account.php:212
+#: admin/inc/dtc_config.php:1308 shared/inc/forms/my_account.php:212
 msgid "Country:"
 msgstr "Ország:"
 
@@ -1014,11 +1014,11 @@ msgstr "Aldomain létrehozása: "
 msgid "Credential not correct: can't display in file "
 msgstr ""
 
-#: admin/inc/dtc_config.php:945
+#: admin/inc/dtc_config.php:1003
 msgid "Currency letters: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:941
+#: admin/inc/dtc_config.php:999
 msgid "Currency symbol: "
 msgstr ""
 
@@ -1039,11 +1039,11 @@ msgstr ""
 msgid "Custom headers:"
 msgstr "Ügyfél címe"
 
-#: admin/inc/dtc_config.php:1324
+#: admin/inc/dtc_config.php:1382
 msgid "Customer and service country vs company:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1339
+#: admin/inc/dtc_config.php:1397
 #, fuzzy
 msgid "Customer country"
 msgstr "Ország"
@@ -1096,7 +1096,7 @@ msgstr ""
 msgid "DTC Configuration"
 msgstr "Fő szoftver konfiguráció"
 
-#: admin/inc/dtc_config.php:638
+#: admin/inc/dtc_config.php:696
 msgid "DTC Skin chooser"
 msgstr ""
 
@@ -1105,7 +1105,7 @@ msgstr ""
 msgid "DTC general configuration"
 msgstr "DTC általános konfigurálás"
 
-#: admin/inc/dtc_config.php:576
+#: admin/inc/dtc_config.php:634
 msgid "Daemon"
 msgstr ""
 
@@ -1164,7 +1164,7 @@ msgstr ""
 msgid "Dedicated servers: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1302 admin/inc/dtc_config.php:1307
+#: admin/inc/dtc_config.php:1360 admin/inc/dtc_config.php:1365
 msgid "Default company invoicing:"
 msgstr ""
 
@@ -1249,7 +1249,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1089
+#: admin/inc/dtc_config.php:1147
 msgid "Description: "
 msgstr ""
 
@@ -1349,7 +1349,7 @@ msgstr "A domain név nem megfelelő formátumú. Kérjük válassszon másik ne
 msgid "Domain name registration"
 msgstr "Domain név regisztráció"
 
-#: admin/inc/dtc_config.php:897
+#: admin/inc/dtc_config.php:955
 msgid "Domain name registry API configuraiton"
 msgstr "Domain név regisztrációs API beállítása"
 
@@ -1396,7 +1396,7 @@ msgstr ""
 msgid "Edit Mail Group"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1228
+#: admin/inc/dtc_config.php:1286
 msgid "Edit a company:"
 msgstr ""
 
@@ -1435,7 +1435,7 @@ msgstr ""
 msgid "Email address is already in use!"
 msgstr "A webmester email címe:"
 
-#: admin/inc/dtc_config.php:716
+#: admin/inc/dtc_config.php:774
 msgid "Email address of your webmaster:"
 msgstr "A webmester email címe:"
 
@@ -1622,12 +1622,12 @@ msgstr ""
 msgid "Full description of the trouble:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:680
+#: admin/inc/dtc_config.php:738
 #, fuzzy
 msgid "Full hostname of DTC admin panel: "
 msgstr "A DTC admin panel teljes gazdaneve:"
 
-#: admin/inc/dtc_config.php:749
+#: admin/inc/dtc_config.php:807
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr ""
 
@@ -1636,7 +1636,7 @@ msgstr ""
 msgid "Gateway cost"
 msgstr "Fizetési átjáró"
 
-#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:536
+#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:594
 msgid "General"
 msgstr "Általános"
 
@@ -1648,7 +1648,7 @@ msgstr "Általános információk "
 msgid "Generate a vhost entry for this subdomain:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:671
+#: admin/inc/dtc_config.php:729
 #, fuzzy
 msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "Az összes apache vhosts fájl generálása helyi hálózati ip-vel(NAT)"
@@ -1715,7 +1715,7 @@ msgstr ""
 msgid "Hide email addresses to avoid spam."
 msgstr ""
 
-#: admin/inc/dtc_config.php:662
+#: admin/inc/dtc_config.php:720
 #, fuzzy
 msgid "Host IP addresses (separated by \"|\"): "
 msgstr "Gazda IP címek (\"|\" elválasztva):"
@@ -1734,7 +1734,7 @@ msgstr "Csak hoszting"
 msgid "Hosting product manager"
 msgstr ""
 
-#: admin/inc/dtc_config.php:417 shared/inc/forms/ticket.php:158
+#: admin/inc/dtc_config.php:473 shared/inc/forms/ticket.php:158
 msgid "Hostname"
 msgstr ""
 
@@ -1760,7 +1760,7 @@ msgstr ""
 msgid "IP Resolved"
 msgstr ""
 
-#: admin/inc/dtc_config.php:775 shared/inc/forms/my_account.php:126
+#: admin/inc/dtc_config.php:833 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/root_admin.php:384
 msgid "IP address"
 msgstr "IP cím"
@@ -1792,12 +1792,12 @@ msgstr "IP címek és hálózat"
 msgid "IP addresses: "
 msgstr "IP cím"
 
-#: admin/inc/dtc_config.php:729
+#: admin/inc/dtc_config.php:787
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:251 admin/inc/dtc_config.php:409
-#: admin/inc/dtc_config.php:464
+#: admin/inc/dtc_config.php:251 admin/inc/dtc_config.php:464
+#: admin/inc/dtc_config.php:522
 msgid "IPs addrs"
 msgstr ""
 
@@ -1969,11 +1969,11 @@ msgstr ""
 msgid "Invoice"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1278
+#: admin/inc/dtc_config.php:1336
 msgid "Invoice footer:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1273
+#: admin/inc/dtc_config.php:1331
 msgid "Invoice free text:"
 msgstr ""
 
@@ -2057,7 +2057,7 @@ msgstr "Az ön FTP hozzáférései: "
 msgid "List of your SSH accounts:"
 msgstr "Az ön SSH hozzáférései:"
 
-#: admin/inc/dtc_config.php:1225
+#: admin/inc/dtc_config.php:1283
 msgid "List of your companies:"
 msgstr ""
 
@@ -2096,7 +2096,7 @@ msgstr "Lista tulajdonosa"
 msgid "List owner:"
 msgstr "Lista tulajdonosa"
 
-#: admin/inc/dtc_config.php:743
+#: admin/inc/dtc_config.php:801
 #, fuzzy
 msgid ""
 "List the DNS server IPs allowed to do zone<br>\n"
@@ -2106,7 +2106,7 @@ msgstr ""
 "Sorolja fel a tartalék mx szervereit &quot;|&quot;-al elválasztva<br>\n"
 "(hagyja üresen, ha nincs tartalék mx szervere)"
 
-#: admin/inc/dtc_config.php:711
+#: admin/inc/dtc_config.php:769
 msgid ""
 "List your backup MX servers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup MX server):"
@@ -2119,16 +2119,16 @@ msgstr ""
 msgid "Lists max"
 msgstr "Lista neve"
 
-#: admin/inc/dtc_config.php:676
+#: admin/inc/dtc_config.php:734
 #, fuzzy
 msgid "Local network area ip address of the vhost using NAT: "
 msgstr "A NAT-ot használó vhost helyi hálózati ip címe"
 
-#: admin/inc/dtc_config.php:421
+#: admin/inc/dtc_config.php:477
 msgid "Location"
 msgstr ""
 
-#: admin/inc/dtc_config.php:610
+#: admin/inc/dtc_config.php:668
 #, fuzzy
 msgid "Location of user's database: "
 msgstr "Az adatbázisai listája:"
@@ -2137,9 +2137,9 @@ msgstr "Az adatbázisai listája:"
 #: admin/inc/renewals.php:245 admin/inc/draw_user_admin.php:237
 #: admin/inc/draw_user_admin.php:295 admin/inc/draw_user_admin.php:314
 #: admin/inc/draw_user_admin.php:400 admin/inc/dtc_config.php:257
-#: admin/inc/dtc_config.php:778 admin/inc/dtc_config.php:805
-#: admin/inc/dtc_config.php:830 admin/inc/dtc_config.php:857
-#: admin/inc/dtc_config.php:882 shared/inc/forms/email.php:27
+#: admin/inc/dtc_config.php:836 admin/inc/dtc_config.php:863
+#: admin/inc/dtc_config.php:888 admin/inc/dtc_config.php:915
+#: admin/inc/dtc_config.php:940 shared/inc/forms/email.php:27
 #: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:24
 #: shared/gfx/skin/default_layout.php:34 shared/gfx/skin/default_layout.php:63
 #: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:53
@@ -2168,7 +2168,7 @@ msgstr ""
 msgid "Login: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1268
+#: admin/inc/dtc_config.php:1326
 msgid "Logo path relative to"
 msgstr ""
 
@@ -2263,12 +2263,12 @@ msgstr "Az adatbázisai listája:"
 msgid "Mailing lists:"
 msgstr "Levelezőlisták:"
 
-#: admin/inc/dtc_config.php:658
+#: admin/inc/dtc_config.php:716
 #, fuzzy
 msgid "Main ip address of the server: "
 msgstr "A szerver fő ip címe:"
 
-#: admin/inc/dtc_config.php:653
+#: admin/inc/dtc_config.php:711
 msgid "Main software configuration of DTC"
 msgstr "Fő szoftver konfiguráció"
 
@@ -2314,11 +2314,11 @@ msgstr ""
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1037
+#: admin/inc/dtc_config.php:1095
 msgid "Maxmind license key: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1033
+#: admin/inc/dtc_config.php:1091
 #, fuzzy
 msgid "Maxmind login: "
 msgstr "Dinamikus IP frissítés login neve: "
@@ -2385,7 +2385,7 @@ msgstr ""
 msgid "NAMED ZONES FILES"
 msgstr "NAMED ZÓNA FÁJLOK"
 
-#: admin/inc/dtc_config.php:1051
+#: admin/inc/dtc_config.php:1109
 msgid "NAS config"
 msgstr ""
 
@@ -2427,7 +2427,7 @@ msgstr "Névszerverek:"
 msgid "Name:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1068 shared/inc/forms/vps.php:143
+#: admin/inc/dtc_config.php:1126 shared/inc/forms/vps.php:143
 #, fuzzy
 msgid "Name: "
 msgstr "Keresztnév:"
@@ -2437,22 +2437,22 @@ msgstr "Keresztnév:"
 msgid "Named conf files generated !"
 msgstr "Named zónafájlok"
 
-#: admin/inc/dtc_config.php:1194
+#: admin/inc/dtc_config.php:1252
 #, fuzzy
 msgid "Named file names"
 msgstr "Named zónafájlok"
 
-#: admin/inc/dtc_config.php:1199
+#: admin/inc/dtc_config.php:1257
 #, fuzzy
 msgid "Named main file:"
 msgstr "Named zónafájlok"
 
-#: admin/inc/dtc_config.php:1207
+#: admin/inc/dtc_config.php:1265
 #, fuzzy
 msgid "Named main zonefiles folder:"
 msgstr "Named zónafájlok"
 
-#: admin/inc/dtc_config.php:1203
+#: admin/inc/dtc_config.php:1261
 #, fuzzy
 msgid "Named slave file:"
 msgstr "Named zónafájlok"
@@ -2462,7 +2462,7 @@ msgstr "Named zónafájlok"
 msgid "Named zonefile:"
 msgstr "Named zónafájlok"
 
-#: admin/inc/dtc_config.php:38 admin/inc/dtc_config.php:701
+#: admin/inc/dtc_config.php:38 admin/inc/dtc_config.php:759
 msgid "Named zonefiles"
 msgstr "Named zónafájlok"
 
@@ -2532,17 +2532,17 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:159 admin/inc/draw_user_admin.php:274
 #: admin/inc/draw_user_admin.php:342 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
-#: admin/inc/dtc_config.php:438 admin/inc/dtc_config.php:468
-#: admin/inc/dtc_config.php:544 admin/inc/dtc_config.php:549
-#: admin/inc/dtc_config.php:554 admin/inc/dtc_config.php:559
-#: admin/inc/dtc_config.php:588 admin/inc/dtc_config.php:593
-#: admin/inc/dtc_config.php:598 admin/inc/dtc_config.php:603
-#: admin/inc/dtc_config.php:608 admin/inc/dtc_config.php:669
-#: admin/inc/dtc_config.php:674 admin/inc/dtc_config.php:736
-#: admin/inc/dtc_config.php:741 admin/inc/dtc_config.php:906
-#: admin/inc/dtc_config.php:959 admin/inc/dtc_config.php:964
-#: admin/inc/dtc_config.php:981 admin/inc/dtc_config.php:986
-#: admin/inc/dtc_config.php:1002 admin/inc/dtc_config.php:1031
+#: admin/inc/dtc_config.php:494 admin/inc/dtc_config.php:526
+#: admin/inc/dtc_config.php:602 admin/inc/dtc_config.php:607
+#: admin/inc/dtc_config.php:612 admin/inc/dtc_config.php:617
+#: admin/inc/dtc_config.php:646 admin/inc/dtc_config.php:651
+#: admin/inc/dtc_config.php:656 admin/inc/dtc_config.php:661
+#: admin/inc/dtc_config.php:666 admin/inc/dtc_config.php:727
+#: admin/inc/dtc_config.php:732 admin/inc/dtc_config.php:794
+#: admin/inc/dtc_config.php:799 admin/inc/dtc_config.php:964
+#: admin/inc/dtc_config.php:1017 admin/inc/dtc_config.php:1022
+#: admin/inc/dtc_config.php:1039 admin/inc/dtc_config.php:1044
+#: admin/inc/dtc_config.php:1060 admin/inc/dtc_config.php:1089
 #: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:73
 #: admin/dtcrm/product_manager.php:131 admin/dtcrm/product_manager.php:189
 #: admin/dtcrm/product_manager.php:232 client/new_account_form.php:588
@@ -2753,13 +2753,13 @@ msgstr ""
 msgid "PAYMENT FAILED"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1182
+#: admin/inc/dtc_config.php:1240
 msgid ""
 "PHP libraries open_basedir<br>\n"
 "(separated by \":\", reset on each dtc install):"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1187
+#: admin/inc/dtc_config.php:1245
 msgid ""
 "PHP open_basedir additional libraries path<br>\n"
 "(survives reinstallation):"
@@ -2794,9 +2794,9 @@ msgstr "Adatbázis név"
 msgid "Package version"
 msgstr ""
 
-#: admin/inc/dtc_config.php:781 admin/inc/dtc_config.php:808
-#: admin/inc/dtc_config.php:833 admin/inc/dtc_config.php:860
-#: admin/inc/dtc_config.php:885 shared/inc/draw.php:301
+#: admin/inc/dtc_config.php:839 admin/inc/dtc_config.php:866
+#: admin/inc/dtc_config.php:891 admin/inc/dtc_config.php:918
+#: admin/inc/dtc_config.php:943 shared/inc/draw.php:301
 #: shared/inc/draw.php:438 shared/inc/forms/reseller.php:24
 msgid "Password"
 msgstr ""
@@ -2827,7 +2827,7 @@ msgstr ""
 msgid "Password:"
 msgstr "Jelszó:"
 
-#: admin/inc/dtc_config.php:1082 client/new_account_form.php:562
+#: admin/inc/dtc_config.php:1140 client/new_account_form.php:562
 #: email/login.php:13 shared/inc/forms/email.php:216
 #: shared/inc/forms/ftp.php:81
 msgid "Password: "
@@ -2845,15 +2845,15 @@ msgstr ""
 msgid "Past payments"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1137
+#: admin/inc/dtc_config.php:1195
 msgid "Path of the cgi-wrapper disk template (chroot for SBOX):"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1131
+#: admin/inc/dtc_config.php:1189
 msgid "Path of your DTC shared directory:"
 msgstr "Fájl elérési út a DTC shared könyvtárához:"
 
-#: admin/inc/dtc_config.php:1140
+#: admin/inc/dtc_config.php:1198
 msgid ""
 "Path where DTC will be restricted for generating it's configuration files "
 "for daemons.<br>\n"
@@ -2871,26 +2871,26 @@ msgstr "Elérési út:"
 msgid "Path: "
 msgstr "Elérési utak"
 
-#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1126
+#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1184
 msgid "Paths"
 msgstr "Elérési utak"
 
-#: admin/inc/dtc_config.php:966
+#: admin/inc/dtc_config.php:1024
 #, fuzzy
 msgid "PayPal business account email: "
 msgstr "A PayPal üzleti hozzáférés e-mail címe:"
 
-#: admin/inc/dtc_config.php:970
+#: admin/inc/dtc_config.php:1028
 #, fuzzy
 msgid "PayPal fee rate: "
 msgstr "PayPal költség ráta:"
 
-#: admin/inc/dtc_config.php:974
+#: admin/inc/dtc_config.php:1032
 #, fuzzy
 msgid "PayPal flat fee: "
 msgstr "PayPal alap ráta:"
 
-#: admin/inc/dtc_config.php:988
+#: admin/inc/dtc_config.php:1046
 #, fuzzy
 msgid "PayPal test account email (sandbox): "
 msgstr "PayPal teszt hozzáférés email címe (sandbox):"
@@ -2950,6 +2950,10 @@ msgid "Please create a MySQL user in order to be able to create a database."
 msgstr ""
 "Hozzon létre egy MySQL felhasználót, különben nem tud adatbázist létrehozni."
 
+#: admin/inc/dtc_config.php:376
+msgid "Please enter an IP address for your dom0!"
+msgstr ""
+
 #: shared/dtcrm/draw_adddomain.php:63
 msgid "Please enter the domain name you wish to add:"
 msgstr "Adja meg a hozzáadni kívánt domain nevet:"
@@ -2988,7 +2992,7 @@ msgstr ""
 msgid "Please wait until operating system reinstallation has completed."
 msgstr ""
 
-#: admin/inc/dtc_config.php:1078
+#: admin/inc/dtc_config.php:1136
 #, fuzzy
 msgid "Port number: "
 msgstr "Telefonszám:"
@@ -3000,7 +3004,7 @@ msgstr "Telefonszám:"
 msgid "Price"
 msgstr "Ár"
 
-#: admin/inc/dtc_config.php:720
+#: admin/inc/dtc_config.php:778
 msgid "Primary DNS server address:"
 msgstr "Az elsődleges dns szerver címe:"
 
@@ -3071,7 +3075,7 @@ msgstr "Termék azonosító:"
 msgid "Product: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1007
+#: admin/inc/dtc_config.php:1065
 msgid "Production server"
 msgstr ""
 
@@ -3166,7 +3170,7 @@ msgstr "Domain név regisztráció"
 msgid "Registration failed"
 msgstr "A regisztráció sikertelen"
 
-#: admin/inc/dtc_config.php:1256
+#: admin/inc/dtc_config.php:1314
 msgid "Registration number:"
 msgstr ""
 
@@ -3183,7 +3187,7 @@ msgstr "A névszerver regisztrációja sikeresen megtörtént."
 msgid "Registration successful!"
 msgstr "Domain név regisztráció"
 
-#: admin/inc/dtc_config.php:512
+#: admin/inc/dtc_config.php:570
 #, fuzzy
 msgid "Registry selection"
 msgstr "Domain név regisztráció"
@@ -3304,11 +3308,11 @@ msgstr "Az elsődleges dns szerver címe:"
 msgid "SMTP server"
 msgstr "Az elsődleges dns szerver címe:"
 
-#: admin/inc/dtc_config.php:425
+#: admin/inc/dtc_config.php:481
 msgid "SOAP login"
 msgstr ""
 
-#: admin/inc/dtc_config.php:429
+#: admin/inc/dtc_config.php:485
 msgid "SOAP password"
 msgstr ""
 
@@ -3349,7 +3353,7 @@ msgstr "Ország"
 msgid "SSL IPs renewals: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:684
+#: admin/inc/dtc_config.php:742
 msgid "SSL Port: "
 msgstr ""
 
@@ -3369,7 +3373,7 @@ msgstr ""
 msgid "SSL tokens"
 msgstr ""
 
-#: admin/inc/dtc_config.php:613
+#: admin/inc/dtc_config.php:671
 msgid "Same as for DTC"
 msgstr ""
 
@@ -3382,7 +3386,7 @@ msgstr "Mentés"
 msgid "Sbox cgi-bin protection: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:724
+#: admin/inc/dtc_config.php:782
 msgid ""
 "Secondary DNS servers address<br>\n"
 "(separated by &quot;|&quot; (pipe) if more than one):"
@@ -3392,7 +3396,7 @@ msgstr ""
 msgid "Secondary DNS:"
 msgstr "Másodlagos DNS:"
 
-#: admin/inc/dtc_config.php:936
+#: admin/inc/dtc_config.php:994
 msgid "Secure payment configuration"
 msgstr "A biztonságos fizetés beállításai"
 
@@ -3410,11 +3414,11 @@ msgid ""
 "the registries:"
 msgstr "Válasszon egy domain nevet amit regisztrálni szeretne névszerveren:"
 
-#: admin/inc/dtc_config.php:643
+#: admin/inc/dtc_config.php:701
 msgid "Select the type of skin:"
 msgstr "Válasszon témát:"
 
-#: admin/inc/dtc_config.php:570
+#: admin/inc/dtc_config.php:628
 msgid "Selling conditions URL: "
 msgstr ""
 
@@ -3502,7 +3506,7 @@ msgstr "Statisztika"
 msgid "Server:"
 msgstr "Az elsődleges dns szerver címe:"
 
-#: admin/inc/dtc_config.php:1334
+#: admin/inc/dtc_config.php:1392
 #, fuzzy
 msgid "Service country"
 msgstr "Ország"
@@ -3523,7 +3527,7 @@ msgstr ""
 msgid "Shared hosting: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1071
+#: admin/inc/dtc_config.php:1129
 #, fuzzy
 msgid "Short name: "
 msgstr "Keresztnév:"
@@ -3749,19 +3753,19 @@ msgstr "Vegye kézbe domainje irányítását"
 msgid "Taxes (VAT or GST)"
 msgstr ""
 
-#: admin/inc/dtc_config.php:790
+#: admin/inc/dtc_config.php:848
 msgid "Tell the following servers when a domain is added or removed :"
 msgstr ""
 "Értesítse a következő szervereket, ha egy domain hozzáadásra vagy törlésre "
 "kerül :"
 
-#: admin/inc/dtc_config.php:815
+#: admin/inc/dtc_config.php:873
 msgid "Tell the following servers when an email is added or removed :"
 msgstr ""
 "Értesítse a következő szervereket, ha egy email hozzáadásra vagy törlésre "
 "kerül :"
 
-#: admin/inc/dtc_config.php:1007
+#: admin/inc/dtc_config.php:1065
 msgid "Test server"
 msgstr ""
 
@@ -3769,10 +3773,6 @@ msgstr ""
 msgid ""
 "That user still owns some databases. Please remove them or change the owner "
 "first."
-msgstr ""
-
-#: admin/inc/dtc_config.php:376
-msgid "The IP address is already assigned to a VPS: cannot assign to dom0!"
 msgstr ""
 
 #: shared/inc/forms/lists.php:178
@@ -3863,7 +3863,7 @@ msgstr ""
 msgid "This month: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:566
+#: admin/inc/dtc_config.php:624
 #, fuzzy
 msgid "This server location: "
 msgstr "Megye:"
@@ -4016,7 +4016,7 @@ msgstr ""
 msgid "Type not found!"
 msgstr ""
 
-#: admin/inc/dtc_config.php:908
+#: admin/inc/dtc_config.php:966
 msgid "Type of encryption for connecting to Tucows server:"
 msgstr "A titkosítás típusa, ha a Tucows szerverhez kapcsolódunk:"
 
@@ -4024,7 +4024,7 @@ msgstr "A titkosítás típusa, ha a Tucows szerverhez kapcsolódunk:"
 msgid "Type of problem:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:125 admin/inc/dtc_config.php:1074
+#: admin/inc/draw_user_admin.php:125 admin/inc/dtc_config.php:1132
 msgid "Type:"
 msgstr ""
 
@@ -4032,8 +4032,8 @@ msgstr ""
 msgid "Type: type not found!"
 msgstr ""
 
-#: admin/inc/dtc_config.php:802 admin/inc/dtc_config.php:827
-#: admin/inc/dtc_config.php:854 admin/inc/dtc_config.php:879
+#: admin/inc/dtc_config.php:860 admin/inc/dtc_config.php:885
+#: admin/inc/dtc_config.php:912 admin/inc/dtc_config.php:937
 msgid "URL"
 msgstr ""
 
@@ -4062,29 +4062,29 @@ msgstr "Frissítse a hozzáférésem"
 msgid "Use"
 msgstr ""
 
-#: admin/inc/dtc_config.php:551
+#: admin/inc/dtc_config.php:609
 #, fuzzy
 msgid "Use @domain.com ftp logins: "
 msgstr "A @domain.com formát használja az ftp hozzáféréseknél:"
 
-#: admin/inc/dtc_config.php:556
+#: admin/inc/dtc_config.php:614
 #, fuzzy
 msgid "Use @domain.com ssh logins: "
 msgstr "A @domain.com formát használja az ssh hozzáféréseknél:"
 
-#: admin/inc/dtc_config.php:733
+#: admin/inc/dtc_config.php:791
 msgid "Use CNAME instead of A record for subdomains:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:437
+#: admin/inc/dtc_config.php:493
 msgid "Use LVM backend"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1028
+#: admin/inc/dtc_config.php:1086
 msgid "Use Maxmind API: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:546
+#: admin/inc/dtc_config.php:604
 #, fuzzy
 msgid "Use SSL: "
 msgstr "SSL-t használ:"
@@ -4093,15 +4093,15 @@ msgstr "SSL-t használ:"
 msgid "Use an SSL vhost using this IP: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:601
+#: admin/inc/dtc_config.php:659
 msgid "Use awstats: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:586
+#: admin/inc/dtc_config.php:644
 msgid "Use cyrus: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:999
+#: admin/inc/dtc_config.php:1057
 #, fuzzy
 msgid "Use eNETS: "
 msgstr "SSL-t használ:"
@@ -4110,22 +4110,22 @@ msgstr "SSL-t használ:"
 msgid "Use image menu"
 msgstr ""
 
-#: admin/inc/dtc_config.php:541
+#: admin/inc/dtc_config.php:599
 #, fuzzy
 msgid "Use javascript: "
 msgstr "Javascriptet használ:"
 
-#: admin/inc/dtc_config.php:666
+#: admin/inc/dtc_config.php:724
 #, fuzzy
 msgid "Use multiple IPs: "
 msgstr "Többszörös IP címet használ:"
 
-#: admin/inc/dtc_config.php:983
+#: admin/inc/dtc_config.php:1041
 #, fuzzy
 msgid "Use paypal recuring: "
 msgstr "A paypal-t használja:"
 
-#: admin/inc/dtc_config.php:956
+#: admin/inc/dtc_config.php:1014
 #, fuzzy
 msgid "Use paypal: "
 msgstr "A paypal-t használja:"
@@ -4134,7 +4134,7 @@ msgstr "A paypal-t használja:"
 msgid "Use register_globals=1: "
 msgstr "Állítsa a be a register_globals=1 -re: "
 
-#: admin/inc/dtc_config.php:903
+#: admin/inc/dtc_config.php:961
 msgid "Use registrar API:"
 msgstr ""
 
@@ -4147,21 +4147,21 @@ msgstr "A szöveges menüt használja"
 msgid "Use text menu: "
 msgstr "A szöveges menüt használja"
 
-#: admin/inc/dtc_config.php:912
+#: admin/inc/dtc_config.php:970
 msgid "Use the LIVE server (and not the test one) :"
 msgstr "Az éles szervert használja (nem a tesztet) :"
 
-#: admin/inc/dtc_config.php:978
+#: admin/inc/dtc_config.php:1036
 #, fuzzy
 msgid "Use the sandbox test server: "
 msgstr "A kövezkező \"sandbox\" test szervert használja:"
 
-#: admin/inc/dtc_config.php:606
+#: admin/inc/dtc_config.php:664
 #, fuzzy
 msgid "Use visitors: "
 msgstr "Javascriptet használ:"
 
-#: admin/inc/dtc_config.php:591
+#: admin/inc/dtc_config.php:649
 msgid "Use webalizer: "
 msgstr ""
 
@@ -4178,15 +4178,15 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: admin/inc/dtc_config.php:615
+#: admin/inc/dtc_config.php:673
 msgid "User MySQL host: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:618
+#: admin/inc/dtc_config.php:676
 msgid "User MySQL root login: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:621
+#: admin/inc/dtc_config.php:679
 #, fuzzy
 msgid "User MySQL root password: "
 msgstr "Változtassa meg a jelszavát:"
@@ -4210,7 +4210,7 @@ msgstr ""
 msgid "User or password is incorrect!"
 msgstr ""
 
-#: admin/inc/dtc_config.php:561
+#: admin/inc/dtc_config.php:619
 #, fuzzy
 msgid "User session expire time (min): "
 msgstr "A felhasználói munkamenet lejárati ideje (perc):"
@@ -4234,7 +4234,7 @@ msgstr "Felhasználó adminisztráció"
 msgid "VAT Number: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1260
+#: admin/inc/dtc_config.php:1318
 msgid "VAT number:"
 msgstr ""
 
@@ -4243,7 +4243,7 @@ msgstr ""
 msgid "VAT number: "
 msgstr "Telefonszám:"
 
-#: admin/inc/dtc_config.php:1264
+#: admin/inc/dtc_config.php:1322
 msgid "VAT rate:"
 msgstr ""
 
@@ -4259,7 +4259,7 @@ msgstr ""
 msgid "VPS"
 msgstr ""
 
-#: admin/inc/dtc_config.php:449
+#: admin/inc/dtc_config.php:505
 msgid "VPS IPs for "
 msgstr ""
 
@@ -4272,7 +4272,7 @@ msgstr ""
 msgid "VPS Server"
 msgstr "Az elsődleges dns szerver címe:"
 
-#: admin/inc/dtc_config.php:393
+#: admin/inc/dtc_config.php:448
 msgid "VPS Server and IP addresses registry edition"
 msgstr ""
 
@@ -4280,7 +4280,7 @@ msgstr ""
 msgid "VPS Server hostname: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:396
+#: admin/inc/dtc_config.php:451
 msgid "VPS Server list:"
 msgstr ""
 
@@ -4310,7 +4310,7 @@ msgstr ""
 msgid "VPS servers"
 msgstr ""
 
-#: admin/inc/dtc_config.php:461
+#: admin/inc/dtc_config.php:519
 msgid "VPS xen number"
 msgstr ""
 
@@ -4322,7 +4322,7 @@ msgstr ""
 msgid "VPS: Cannot find VPS in db!"
 msgstr ""
 
-#: admin/inc/dtc_config.php:961
+#: admin/inc/dtc_config.php:1019
 #, fuzzy
 msgid "Validate new account if paid: "
 msgstr "Akkor aktiválja az új hozzáférést, ha az ki van fizetve:"
@@ -4335,7 +4335,7 @@ msgstr ""
 msgid "View details"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1178
+#: admin/inc/dtc_config.php:1236
 msgid "Virtual host config-file:"
 msgstr ""
 
@@ -4351,7 +4351,7 @@ msgstr ""
 msgid "Web archive"
 msgstr ""
 
-#: admin/inc/dtc_config.php:595
+#: admin/inc/dtc_config.php:653
 msgid "Webalizer country graph: "
 msgstr ""
 
@@ -4425,17 +4425,17 @@ msgstr "Hibás felhasználó vagy jelszó vagy időtúllépés!"
 #: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
 #: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
-#: admin/inc/dtc_config.php:438 admin/inc/dtc_config.php:468
-#: admin/inc/dtc_config.php:544 admin/inc/dtc_config.php:549
-#: admin/inc/dtc_config.php:554 admin/inc/dtc_config.php:559
-#: admin/inc/dtc_config.php:588 admin/inc/dtc_config.php:593
-#: admin/inc/dtc_config.php:598 admin/inc/dtc_config.php:603
-#: admin/inc/dtc_config.php:608 admin/inc/dtc_config.php:669
-#: admin/inc/dtc_config.php:674 admin/inc/dtc_config.php:736
-#: admin/inc/dtc_config.php:741 admin/inc/dtc_config.php:906
-#: admin/inc/dtc_config.php:959 admin/inc/dtc_config.php:964
-#: admin/inc/dtc_config.php:981 admin/inc/dtc_config.php:986
-#: admin/inc/dtc_config.php:1002 admin/inc/dtc_config.php:1031
+#: admin/inc/dtc_config.php:494 admin/inc/dtc_config.php:526
+#: admin/inc/dtc_config.php:602 admin/inc/dtc_config.php:607
+#: admin/inc/dtc_config.php:612 admin/inc/dtc_config.php:617
+#: admin/inc/dtc_config.php:646 admin/inc/dtc_config.php:651
+#: admin/inc/dtc_config.php:656 admin/inc/dtc_config.php:661
+#: admin/inc/dtc_config.php:666 admin/inc/dtc_config.php:727
+#: admin/inc/dtc_config.php:732 admin/inc/dtc_config.php:794
+#: admin/inc/dtc_config.php:799 admin/inc/dtc_config.php:964
+#: admin/inc/dtc_config.php:1017 admin/inc/dtc_config.php:1022
+#: admin/inc/dtc_config.php:1039 admin/inc/dtc_config.php:1044
+#: admin/inc/dtc_config.php:1060 admin/inc/dtc_config.php:1089
 #: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:73
 #: admin/dtcrm/product_manager.php:131 admin/dtcrm/product_manager.php:189
 #: admin/dtcrm/product_manager.php:232 client/new_account_form.php:587
@@ -4540,7 +4540,7 @@ msgid ""
 "the confirm button to proceed."
 msgstr ""
 
-#: admin/inc/dtc_config.php:916
+#: admin/inc/dtc_config.php:974
 msgid "Your SRS username:"
 msgstr "Az SRS felhasználóneve:"
 
@@ -4590,7 +4590,7 @@ msgstr ""
 msgid "Your dedicated server will expire on the: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1134
+#: admin/inc/dtc_config.php:1192
 msgid "Your default new account directory:"
 msgstr ""
 
@@ -4630,11 +4630,11 @@ msgstr "Az ön domain-jei"
 msgid "Your hosting account:"
 msgstr "Az ön hosting hozzáférése:"
 
-#: admin/inc/dtc_config.php:924
+#: admin/inc/dtc_config.php:982
 msgid "Your key to access the LIVE server:"
 msgstr "Az éles szerver hozzáférési kulcsa:"
 
-#: admin/inc/dtc_config.php:920
+#: admin/inc/dtc_config.php:978
 msgid "Your key to access the test server:"
 msgstr "A teszt szerver hozzáférési kulcsa:"
 
@@ -4683,26 +4683,26 @@ msgstr ""
 msgid "couldn't connect to host"
 msgstr ""
 
-#: admin/inc/dtc_config.php:413
+#: admin/inc/dtc_config.php:469
 #, fuzzy
 msgid "dom0 IP addresses"
 msgstr "IP cím"
 
-#: admin/inc/dtc_config.php:1009
+#: admin/inc/dtc_config.php:1067
 msgid "eNETS merchant ID: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1017
+#: admin/inc/dtc_config.php:1075
 #, fuzzy
 msgid "eNETS rate: "
 msgstr "Megye:"
 
-#: admin/inc/dtc_config.php:1004
+#: admin/inc/dtc_config.php:1062
 #, fuzzy
 msgid "eNETS server: "
 msgstr "Más DNS szerverek:"
 
-#: admin/inc/dtc_config.php:1013
+#: admin/inc/dtc_config.php:1071
 msgid "eNETS test merchant ID: "
 msgstr ""
 
