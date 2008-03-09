@@ -87,7 +87,7 @@ function enetsButton($payid,$amount,$item_name,$return_url){
 
 	$out = '<form action="'.$enets_url.'" method="post">
 <input type="hidden" name="mid" value="'.$enets_mid.'">
-<input type="hidden" name="amount" value="'.$amount.'">
+<input type="hidden" name="amount" value="'.str_replace(",",".",$amount).'">
 
 <input type="hidden" name="txnRef" value="'.$payid.'">
 
