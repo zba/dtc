@@ -2091,38 +2091,6 @@ content_filter=smtp-amavis:[127.0.0.1]:10024
 " >> $TMP_FILE
 			fi					
 
-# THE FOLLOWING CODE HAS BEEN REPLACED BY ABOVE CODE
-# AS WE MIGRATE FROM DKFILTER TO DKIMPROXY
-#
-			FOUND_DKFILTER=0;
-#			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new ] ; then
-#				if [ -x /usr/sbin/dkfilter.in -o -x /usr/bin/dkfilter.in -o -x /usr/local/sbin/dkfilter.in -o -x /usr/local/bin/dkfilter.in ] ; then
-#					FOUND_DKFILTER=1;
-#					echo "# Amavis AND dkfilter.in have been detected as installed, so this has been activated by default
-## if this is not what you want, comment it and restart postfix
-## This is the default action, AKA signing
-## we trigger the other action (scanning via a check_access directive)
-#content_filter=dksign:[127.0.0.1]:10028
-#" >> $TMP_FILE
-#					if [ ! -x $PATH_POSTFIX_ETC/filter_10026_catchall ] ; then
-#						echo "# use check_access directive to filter all incoming mail
-#/^/  FILTER dksign:[127.0.0.1]:10026" > $PATH_POSTFIX_ETC/filter_10026_catchall
-#					fi
-#				else
-#					echo "# Amavis has been detected as installed, so this has been activated by default
-## if this is not what you want, comment it and restart postfix
-#content_filter=smtp-amavis:[127.0.0.1]:10024
-#" >> $TMP_FILE
-#				fi
-#			else
-#				echo "# uncomment to enable amavis
-##   - if you do uncomment this, make sure that you
-##     also edit the master.cf file to make sure that
-##     the return channel is set correctly
-##content_filter=smtp-amavis:[127.0.0.1]:10024
-#" >> $TMP_FILE
-#			fi
-
 echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 " >> $TMP_FILE
 
@@ -2405,58 +2373,6 @@ pickup fifo n - n 60 1 pickup
         -o content_filter=dkimsign:127.0.0.1:10028
 
 " >> $TMP_FILE2
-				fi
-
-
-				# apply DKFILTER config if we find dkfilter.in
-				if [ "$FOUND_DKFILTER" -eq 1 ] ; then
-					echo "# DomainKeys filter configuration
-#
-# modify the default submission service to specify a content filter
-# and restrict it to local clients and SASL authenticated clients only
-#
-submission  inet  n     -       n       -       -       smtpd
-    -o smtpd_etrn_restrictions=reject
-    -o smtpd_sasl_auth_enable=yes
-    -o content_filter=dksign:[127.0.0.1]:10028
-    -o receive_override_options=no_address_mappings
-    -o smtpd_recipient_restrictions=permit_mynetworks,permit_sasl_authenticated,reject
-
-#
-# specify the location of the DomainKeys signing filter
-#
-dksign    unix  -       -       n       -       5      smtp
-    -o smtp_send_xforward_command=yes
-    -o smtp_discard_ehlo_keywords=8bitmime
-
-#
-# service for accepting messages FROM the DomainKeys signing filter
-#
-127.0.0.1:10029 inet  n  -      n       -       5      smtpd
-    -o content_filter=
-    -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
-    -o smtpd_helo_restrictions=
-    -o smtpd_client_restrictions=
-    -o smtpd_sender_restrictions=
-    -o smtpd_recipient_restrictions=permit_mynetworks,reject
-    -o mynetworks=127.0.0.0/8
-    -o smtpd_authorized_xforward_hosts=127.0.0.0/8
-
-# For Postfix to sign mails sent out using Webmail or other locally delivered mail
-pickup fifo n - n 60 1 pickup
-        -o content_filter=dksign:127.0.0.1:10028
-					
-" >> $TMP_FILE2
-					# We also need to modify the /etc/init.d/dkfilter startup script so that it correctly pulls in the DOMAIN list and modifies port
-					DKFILTER_INIT=/etc/init.d/dkfilter
-					if [ -e $DKFILTER_INIT ] ; then 
-						if grep "Configured by DTC" $DKFILTER_INIT >/dev/null; then
-							echoIfVerbose "$DKFILTER_INIT already modifed by DTC installer"
-						else
-							sed -i -e 's#^DOMAIN=#\# Configured by DTC v0.26 : Please do not touch this line !\nDOMAIN=\`cat /var/lib/dtc/etc/local_domains \| tr \\\\\\r\\\\\\n ,,\`\n\# End of DTC configuration v0.26 : please do not touch this line !\n\#DOMAIN=#' $DKFILTER_INIT
-							sed -i -e 's#^DKFILTER_IN_ARGS=#\# Configured by DTC v0.26 : Please do not touch this line !\nDKFILTER_IN_ARGS="--hostname=$HOSTNAME 127.0.0.1:10026 127.0.0.1:10024"\n\# End of DTC configuration v0.26 : please do not touch this line !\n\#DKFILTER_IN_ARGS=#' $DKFILTER_INIT
-						fi
-					fi					
 				fi
 
 				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
