@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 20:46+0800\n"
+"POT-Creation-Date: 2008-03-11 19:38+0800\n"
 "PO-Revision-Date: 2008-03-02 18:13+0100\n"
 "Last-Translator: Lerale Erwan <erwan@thiscow.fr>\n"
 "Language-Team: \n"
@@ -618,13 +618,17 @@ msgstr "Démarrer (xm start)"
 msgid "Bounce life:"
 msgstr "Expiration du bounce:"
 
-#: shared/inc/forms/email.php:622
+#: shared/inc/forms/email.php:625
 msgid "Bounce message content: "
 msgstr "Contenu du message : "
 
 #: admin/inc/nav.php:35
 msgid "Browse all generated files"
 msgstr "Voire tous les fichiers générés"
+
+#: shared/drawlib/dtc_functions.php:732
+msgid "Bytes"
+msgstr "Octets"
 
 #: shared/inc/forms/root_admin.php:355
 msgid "CGI-BIN protection"
@@ -706,7 +710,7 @@ msgstr "Impossible de résoudre votre"
 msgid "Cannot resolv your FTP server: "
 msgstr "Impossible de résoudre votre serveur FTP : "
 
-#: shared/inc/forms/email.php:642
+#: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr "Le catch-all email est positionner pour délivrer à"
 
@@ -726,7 +730,7 @@ msgstr "Changer le noyau NetBSD"
 msgid "Change your password:"
 msgstr "Changer votre mot de passe :"
 
-#: shared/inc/forms/email.php:619
+#: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
 msgstr "Cocher pour envoyer un message automatique (vacances) : "
 
@@ -1180,7 +1184,7 @@ msgstr "Effacement de votre serveur de nom réussit"
 msgid "Delimiter:"
 msgstr "Délimiteur :"
 
-#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:614
+#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:617
 msgid "Deliver messages locally in INBOX: "
 msgstr "Délivrer les messages en local dans INBOX: "
 
@@ -1567,6 +1571,10 @@ msgstr "Hostname complet de l'administrateur DTC : "
 #: admin/inc/dtc_config.php:807
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr "Chemin complet du fichier public.key pour le support DomainKey."
+
+#: shared/drawlib/dtc_functions.php:729
+msgid "GBytes"
+msgstr "GOctets"
 
 #: shared/securepay/pay_functions.php:35
 msgid "Gateway cost"
@@ -2156,6 +2164,11 @@ msgstr "Chemin du logo relatif à"
 msgid "Logout"
 msgstr "Déconnexion"
 
+#: shared/drawlib/dtc_functions.php:730 shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:594
+msgid "MBytes"
+msgstr "MOctets"
+
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "Serveurs MX et NS de secours"
@@ -2204,11 +2217,11 @@ msgstr "Édition d'une boite aux lettres: "
 msgid "Mailbox does not exists in database!<br>\n"
 msgstr "Cette boite au lettre n'existe pas dans la base de données !<br>\n"
 
-#: shared/inc/forms/email.php:598
+#: shared/inc/forms/email.php:601
 msgid "Mailbox max files quota: "
 msgstr "Quota nombre de fichiers : "
 
-#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:593
+#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:595
 msgid "Mailbox quota: "
 msgstr "Quota email: "
 
@@ -2536,7 +2549,7 @@ msgstr "Pas de VDS expiré"
 msgid "No archives:"
 msgstr "Pas d'archives :"
 
-#: shared/inc/forms/email.php:632
+#: shared/inc/forms/email.php:635
 msgid "No catch-all"
 msgstr "Pas de catch-all"
 
@@ -3090,8 +3103,8 @@ msgstr "Recréer :"
 msgid "Recurring payment"
 msgstr "Paiement récurent"
 
-#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:604
-#: shared/inc/forms/email.php:610
+#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:607
+#: shared/inc/forms/email.php:613
 msgid "Redirection 1: "
 msgstr "Redirection 1 : "
 
@@ -4135,7 +4148,7 @@ msgstr "Utiliser Webalizer : "
 msgid "Used by"
 msgstr "Utilisé par"
 
-#: shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:588
 msgid "Used quota: "
 msgstr "Quota utilisé: "
 
@@ -4693,6 +4706,10 @@ msgstr "ID marchant de test de eNETS : "
 msgid "fetching admin: "
 msgstr "en chargeant l'administrateur : "
 
+#: shared/inc/forms/email.php:600
+msgid "files"
+msgstr "fichiers"
+
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
 msgstr "Fonction get-N uniquement pour les inscrits :"
@@ -4712,6 +4729,10 @@ msgstr "n'est PAS disponible, le serveur a retourner : "
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
 msgstr "n'est pas la même chose que ce que j'ai en base de donnée"
+
+#: shared/drawlib/dtc_functions.php:731
+msgid "kBytes"
+msgstr "kOctets"
 
 #: shared/dtcrm/draw_handle.php:217
 msgid "marked fields are required"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: git_5feb2008\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 20:48+0800\n"
+"POT-Creation-Date: 2008-03-11 19:38+0800\n"
 "PO-Revision-Date: 2008-02-17 17:05+0300\n"
 "Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -648,13 +648,18 @@ msgstr "Начальный запуск (старт xm)"
 msgid "Bounce life:"
 msgstr "Срок возврата:"
 
-#: shared/inc/forms/email.php:622
+#: shared/inc/forms/email.php:625
 msgid "Bounce message content: "
 msgstr "Содержание сообщения о недоставке: "
 
 #: admin/inc/nav.php:35
 msgid "Browse all generated files"
 msgstr "Просмотреть все сгенерированные файлы"
+
+#: shared/drawlib/dtc_functions.php:732
+#, fuzzy
+msgid "Bytes"
+msgstr "лет"
 
 #: shared/inc/forms/root_admin.php:355
 msgid "CGI-BIN protection"
@@ -737,7 +742,7 @@ msgstr "Не удалось определить имя вашего"
 msgid "Cannot resolv your FTP server: "
 msgstr "Не удалось определить имя вашего FTP-сервера: "
 
-#: shared/inc/forms/email.php:642
+#: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr "Эл.почту с прочих адресов отправлять"
 
@@ -757,7 +762,7 @@ msgstr "Смена ядра NetBSD"
 msgid "Change your password:"
 msgstr "Смена пароля:"
 
-#: shared/inc/forms/email.php:619
+#: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
 msgstr "Отправлять ответное сообщение (об отсутствии): "
 
@@ -1210,7 +1215,7 @@ msgstr "Удаление сервера имён успешно выполнен
 msgid "Delimiter:"
 msgstr "Разделитель:"
 
-#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:614
+#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:617
 msgid "Deliver messages locally in INBOX: "
 msgstr "Доставлять сообщения в локальный INBOX: "
 
@@ -1594,6 +1599,10 @@ msgstr "Полное имя хоста с административной па�
 #: admin/inc/dtc_config.php:807
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr "Полный путь файла public.key для поддержки DomainKey:"
+
+#: shared/drawlib/dtc_functions.php:729
+msgid "GBytes"
+msgstr ""
 
 #: shared/securepay/pay_functions.php:35
 msgid "Gateway cost"
@@ -2188,6 +2197,11 @@ msgstr "Путь к логотипу, не считая"
 msgid "Logout"
 msgstr "Выйти"
 
+#: shared/drawlib/dtc_functions.php:730 shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:594
+msgid "MBytes"
+msgstr ""
+
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "Резервные серверы MX и NS"
@@ -2236,11 +2250,11 @@ msgstr "Настройка почтового ящика: "
 msgid "Mailbox does not exists in database!<br>\n"
 msgstr "Почтовый ящик не существует в БД!<br>\n"
 
-#: shared/inc/forms/email.php:598
+#: shared/inc/forms/email.php:601
 msgid "Mailbox max files quota: "
 msgstr "Квота на максимальное количество файлов почтового ящика: "
 
-#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:593
+#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:595
 msgid "Mailbox quota: "
 msgstr "Квота на почтовый ящик: "
 
@@ -2564,7 +2578,7 @@ msgstr "Простоев VPS не было"
 msgid "No archives:"
 msgstr "Нет архивов:"
 
-#: shared/inc/forms/email.php:632
+#: shared/inc/forms/email.php:635
 msgid "No catch-all"
 msgstr "никому"
 
@@ -3112,8 +3126,8 @@ msgstr "Пересоздать:"
 msgid "Recurring payment"
 msgstr "Периодическая оплата"
 
-#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:604
-#: shared/inc/forms/email.php:610
+#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:607
+#: shared/inc/forms/email.php:613
 msgid "Redirection 1: "
 msgstr "Переназначение 1: "
 
@@ -4152,7 +4166,7 @@ msgstr "Использовать webalizer: "
 msgid "Used by"
 msgstr "Используется"
 
-#: shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:588
 msgid "Used quota: "
 msgstr "Используемая квота: "
 
@@ -4711,6 +4725,11 @@ msgstr "тестовый коммерческий ID в eNETS: "
 msgid "fetching admin: "
 msgstr "получение admin: "
 
+#: shared/inc/forms/email.php:600
+#, fuzzy
+msgid "files"
+msgstr " файл "
+
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
 msgstr "функция get-N только для подписчиков:"
@@ -4730,6 +4749,10 @@ msgstr "НЕДОСТУПНО для регистрации. Сервер рег�
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
 msgstr "не тот же, что имеется в базе данных"
+
+#: shared/drawlib/dtc_functions.php:731
+msgid "kBytes"
+msgstr ""
 
 #: shared/dtcrm/draw_handle.php:217
 msgid "marked fields are required"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 20:48+0800\n"
+"POT-Creation-Date: 2008-03-11 19:38+0800\n"
 "PO-Revision-Date: 2008-03-07 15:38+0100\n"
 "Last-Translator: Bart Cornelis <cobaco@skolelinux.no>\n"
 "Language-Team: debian-l10n-dutch <debian-l10n-dutch@lists.debian.org>\n"
@@ -652,13 +652,18 @@ msgstr "Opstarten (xm start)"
 msgid "Bounce life:"
 msgstr "Bounce life:"
 
-#: shared/inc/forms/email.php:622
+#: shared/inc/forms/email.php:625
 msgid "Bounce message content: "
 msgstr "Inhoud 'bounce'-bericht: "
 
 #: admin/inc/nav.php:35
 msgid "Browse all generated files"
 msgstr "Alle aangemaakte bestanden bekijken"
+
+#: shared/drawlib/dtc_functions.php:732
+#, fuzzy
+msgid "Bytes"
+msgstr "jaren"
 
 #: shared/inc/forms/root_admin.php:355
 msgid "CGI-BIN protection"
@@ -739,7 +744,7 @@ msgstr "Kan uw ... niet vinden"
 msgid "Cannot resolv your FTP server: "
 msgstr "Kan uw FTP-server niet vinden"
 
-#: shared/inc/forms/email.php:642
+#: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr "Catch-all e-mail wordt afgeleverd op"
 
@@ -759,7 +764,7 @@ msgstr "NetBSD-kernel wijzigen"
 msgid "Change your password:"
 msgstr "Wachtwoord wijzigen:"
 
-#: shared/inc/forms/email.php:619
+#: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
 msgstr "Vink dit aan om een 'bounce'-bericht (vakantiebericht) te sturen: "
 
@@ -1212,7 +1217,7 @@ msgstr "Verwijderen van de naamserver is gelukt"
 msgid "Delimiter:"
 msgstr "Scheidingsteken:"
 
-#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:614
+#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:617
 msgid "Deliver messages locally in INBOX: "
 msgstr "Berichten lokaal afleveren in INBOX:"
 
@@ -1599,6 +1604,10 @@ msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr ""
 "Volledig pad naar de locatie van het bestand 'public.key' voor DomainKey-"
 "ondersteuning:"
+
+#: shared/drawlib/dtc_functions.php:729
+msgid "GBytes"
+msgstr ""
 
 #: shared/securepay/pay_functions.php:35
 msgid "Gateway cost"
@@ -2198,6 +2207,11 @@ msgstr "Logo-pad relatief tot"
 msgid "Logout"
 msgstr "Afmelden"
 
+#: shared/drawlib/dtc_functions.php:730 shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:594
+msgid "MBytes"
+msgstr ""
+
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "MX en NS backupservers"
@@ -2246,11 +2260,11 @@ msgstr "E-mail-box-configuratie:"
 msgid "Mailbox does not exists in database!<br>\n"
 msgstr "E-mail-box bestaat niet in de database!<br>\n"
 
-#: shared/inc/forms/email.php:598
+#: shared/inc/forms/email.php:601
 msgid "Mailbox max files quota: "
 msgstr "E-mail-box bestandslimiet-quota: "
 
-#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:593
+#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:595
 msgid "Mailbox quota: "
 msgstr "E-mailbox-quota: "
 
@@ -2576,7 +2590,7 @@ msgstr "Geen VPS verlopen"
 msgid "No archives:"
 msgstr "Geen archieven:"
 
-#: shared/inc/forms/email.php:632
+#: shared/inc/forms/email.php:635
 msgid "No catch-all"
 msgstr "Geen catch-all"
 
@@ -3126,8 +3140,8 @@ msgstr "Opnieuw aanmaken:"
 msgid "Recurring payment"
 msgstr "Terugkerende betaling"
 
-#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:604
-#: shared/inc/forms/email.php:610
+#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:607
+#: shared/inc/forms/email.php:613
 msgid "Redirection 1: "
 msgstr "Doorverwijzing 1:"
 
@@ -4178,7 +4192,7 @@ msgstr "Webalizer gebruiken:"
 msgid "Used by"
 msgstr "Gebruikt door"
 
-#: shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:588
 msgid "Used quota: "
 msgstr "Gebruikt quota: "
 
@@ -4746,6 +4760,11 @@ msgstr "test eNETS-handelaar-ID:"
 msgid "fetching admin: "
 msgstr "beheerder wordt opgeroepen:"
 
+#: shared/inc/forms/email.php:600
+#, fuzzy
+msgid "files"
+msgstr " bestand"
+
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
 msgstr "get-N functie is enkel beschikbaar voor abonnees:"
@@ -4766,6 +4785,10 @@ msgstr ""
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
 msgstr "is niet hetzelfde als wat ik in de database heb"
+
+#: shared/drawlib/dtc_functions.php:731
+msgid "kBytes"
+msgstr ""
 
 #: shared/dtcrm/draw_handle.php:217
 msgid "marked fields are required"

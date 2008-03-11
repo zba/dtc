@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 20:48+0800\n"
+"POT-Creation-Date: 2008-03-11 19:38+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -638,7 +638,7 @@ msgstr ""
 msgid "Bounce life:"
 msgstr ""
 
-#: shared/inc/forms/email.php:622
+#: shared/inc/forms/email.php:625
 msgid "Bounce message content: "
 msgstr ""
 
@@ -646,6 +646,11 @@ msgstr ""
 #, fuzzy
 msgid "Browse all generated files"
 msgstr "Ficheiros de nomes de dominios :"
+
+#: shared/drawlib/dtc_functions.php:732
+#, fuzzy
+msgid "Bytes"
+msgstr "anos"
 
 #: shared/inc/forms/root_admin.php:355
 msgid "CGI-BIN protection"
@@ -725,7 +730,7 @@ msgstr ""
 msgid "Cannot resolv your FTP server: "
 msgstr ""
 
-#: shared/inc/forms/email.php:642
+#: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr ""
 
@@ -745,7 +750,7 @@ msgstr ""
 msgid "Change your password:"
 msgstr "Modificar palavra chave :"
 
-#: shared/inc/forms/email.php:619
+#: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
 msgstr ""
 
@@ -1207,7 +1212,7 @@ msgstr "O dominio foi eliminado"
 msgid "Delimiter:"
 msgstr "Remover"
 
-#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:614
+#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:617
 msgid "Deliver messages locally in INBOX: "
 msgstr "Enviar mensagens localmente INBOX: "
 
@@ -1602,6 +1607,10 @@ msgstr "Nome da máquina (hostname) para administração do DTC :"
 
 #: admin/inc/dtc_config.php:807
 msgid "Full path to location of the public.key file for DomainKey support:"
+msgstr ""
+
+#: shared/drawlib/dtc_functions.php:729
+msgid "GBytes"
 msgstr ""
 
 #: shared/securepay/pay_functions.php:35
@@ -2147,6 +2156,11 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
+#: shared/drawlib/dtc_functions.php:730 shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:594
+msgid "MBytes"
+msgstr ""
+
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "Servidores de backup MX e NS"
@@ -2198,11 +2212,11 @@ msgstr "Configurar as contas de correio: "
 msgid "Mailbox does not exists in database!<br>\n"
 msgstr ""
 
-#: shared/inc/forms/email.php:598
+#: shared/inc/forms/email.php:601
 msgid "Mailbox max files quota: "
 msgstr ""
 
-#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:593
+#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:595
 #, fuzzy
 msgid "Mailbox quota: "
 msgstr "Contas de correio :"
@@ -2541,7 +2555,7 @@ msgstr ""
 msgid "No archives:"
 msgstr ""
 
-#: shared/inc/forms/email.php:632
+#: shared/inc/forms/email.php:635
 msgid "No catch-all"
 msgstr ""
 
@@ -3093,8 +3107,8 @@ msgstr "Criar"
 msgid "Recurring payment"
 msgstr ""
 
-#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:604
-#: shared/inc/forms/email.php:610
+#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:607
+#: shared/inc/forms/email.php:613
 msgid "Redirection 1: "
 msgstr "Redirecionar 1 : "
 
@@ -4140,7 +4154,7 @@ msgstr ""
 msgid "Used by"
 msgstr ""
 
-#: shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:588
 msgid "Used quota: "
 msgstr ""
 
@@ -4681,6 +4695,10 @@ msgstr ""
 msgid "fetching admin: "
 msgstr "Procurar administrador : "
 
+#: shared/inc/forms/email.php:600
+msgid "files"
+msgstr ""
+
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
 msgstr ""
@@ -4699,6 +4717,10 @@ msgstr "não esta disponivel para o registo. O servidor de registos returnou :"
 
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
+msgstr ""
+
+#: shared/drawlib/dtc_functions.php:731
+msgid "kBytes"
 msgstr ""
 
 #: shared/dtcrm/draw_handle.php:217

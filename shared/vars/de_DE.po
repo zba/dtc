@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 20:48+0800\n"
+"POT-Creation-Date: 2008-03-11 19:38+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -640,13 +640,18 @@ msgstr "Hochfahren (xm start)"
 msgid "Bounce life:"
 msgstr "Bounce Lebensdauer"
 
-#: shared/inc/forms/email.php:622
+#: shared/inc/forms/email.php:625
 msgid "Bounce message content: "
 msgstr "Inhalt der automatischen Antwort: "
 
 #: admin/inc/nav.php:35
 msgid "Browse all generated files"
 msgstr "Alle erzeugten Dateen durchsuchen"
+
+#: shared/drawlib/dtc_functions.php:732
+#, fuzzy
+msgid "Bytes"
+msgstr "Jahre"
 
 #: shared/inc/forms/root_admin.php:355
 msgid "CGI-BIN protection"
@@ -728,7 +733,7 @@ msgstr "Auflösen fehlgeschlagen für"
 msgid "Cannot resolv your FTP server: "
 msgstr "Auflösen des FTP-Servers fehlgeschlagen: "
 
-#: shared/inc/forms/email.php:642
+#: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr "Catch-All-E-Mail gesetzt auf"
 
@@ -748,7 +753,7 @@ msgstr "NetBSD-Kernel ändern"
 msgid "Change your password:"
 msgstr "Ändern Sie Ihr Passwort:"
 
-#: shared/inc/forms/email.php:619
+#: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
 msgstr "Automatische Antwort aktivieren: "
 
@@ -1205,7 +1210,7 @@ msgstr "Löschen des Nameservers war erfolgreich"
 msgid "Delimiter:"
 msgstr "Delimiter:"
 
-#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:614
+#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:617
 msgid "Deliver messages locally in INBOX: "
 msgstr "Nachrichten lokal zustellen: "
 
@@ -1591,6 +1596,10 @@ msgstr "voller Hostname des DTC-Control-Panels: "
 #: admin/inc/dtc_config.php:807
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr "Vollständiger Pfad zum zur public.key-Datei für den DomainKey-Support:"
+
+#: shared/drawlib/dtc_functions.php:729
+msgid "GBytes"
+msgstr ""
 
 #: shared/securepay/pay_functions.php:35
 msgid "Gateway cost"
@@ -2189,6 +2198,11 @@ msgstr "Logo-Datei, relativ zu"
 msgid "Logout"
 msgstr "Abmelden"
 
+#: shared/drawlib/dtc_functions.php:730 shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:594
+msgid "MBytes"
+msgstr ""
+
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "MX- und DNS-Backups"
@@ -2237,11 +2251,11 @@ msgstr "Postfach-Konfiguration: "
 msgid "Mailbox does not exists in database!<br>\n"
 msgstr "Postfach nicht gefunden!<br>\n"
 
-#: shared/inc/forms/email.php:598
+#: shared/inc/forms/email.php:601
 msgid "Mailbox max files quota: "
 msgstr "Mailbox Quota max. Dateien: "
 
-#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:593
+#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:595
 msgid "Mailbox quota: "
 msgstr "Mailbox Quota: "
 
@@ -2568,7 +2582,7 @@ msgstr "Keine VPS abgelaufen"
 msgid "No archives:"
 msgstr "Keine Archive anlegen:"
 
-#: shared/inc/forms/email.php:632
+#: shared/inc/forms/email.php:635
 msgid "No catch-all"
 msgstr "Kein Catch-All"
 
@@ -3119,8 +3133,8 @@ msgstr "Wiederherstellen:"
 msgid "Recurring payment"
 msgstr "Wiederkehrende Zahlungen"
 
-#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:604
-#: shared/inc/forms/email.php:610
+#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:607
+#: shared/inc/forms/email.php:613
 msgid "Redirection 1: "
 msgstr "Weiterleitung 1: "
 
@@ -4173,7 +4187,7 @@ msgstr "Webalizer verwenden: "
 msgid "Used by"
 msgstr "benutzt von"
 
-#: shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:588
 msgid "Used quota: "
 msgstr "Benutzte Quota: "
 
@@ -4741,6 +4755,11 @@ msgstr "eNETS Testverkäufer-ID: "
 msgid "fetching admin: "
 msgstr "hole Admin: "
 
+#: shared/inc/forms/email.php:600
+#, fuzzy
+msgid "files"
+msgstr " Datei "
+
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
 msgstr "get-N-Funktion nur für Abonnenten:"
@@ -4761,6 +4780,10 @@ msgstr ""
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
 msgstr "ist nicht derselbe wie in der Datenbank"
+
+#: shared/drawlib/dtc_functions.php:731
+msgid "kBytes"
+msgstr ""
 
 #: shared/dtcrm/draw_handle.php:217
 msgid "marked fields are required"

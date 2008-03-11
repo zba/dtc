@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 20:48+0800\n"
+"POT-Creation-Date: 2008-03-11 19:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1745,6 +1745,23 @@ msgstr ""
 msgid "Take control of your domain name"
 msgstr ""
 
+#: shared/drawlib/dtc_functions.php:729
+msgid "GBytes"
+msgstr ""
+
+#: shared/drawlib/dtc_functions.php:730 shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:594
+msgid "MBytes"
+msgstr ""
+
+#: shared/drawlib/dtc_functions.php:731
+msgid "kBytes"
+msgstr ""
+
+#: shared/drawlib/dtc_functions.php:732
+msgid "Bytes"
+msgstr ""
+
 #: shared/dtcrm/draw_adddomain.php:39
 msgid "What do you want to add:"
 msgstr ""
@@ -2797,12 +2814,12 @@ msgstr ""
 msgid "Edit your mailbox redirections:"
 msgstr ""
 
-#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:614
+#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:617
 msgid "Deliver messages locally in INBOX: "
 msgstr ""
 
-#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:604
-#: shared/inc/forms/email.php:610
+#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:607
+#: shared/inc/forms/email.php:613
 msgid "Redirection 1: "
 msgstr ""
 
@@ -2883,31 +2900,35 @@ msgstr ""
 msgid "SPAM mailbox destination: "
 msgstr ""
 
-#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:593
+#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:595
 msgid "Mailbox quota: "
 msgstr ""
 
-#: shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:588
 msgid "Used quota: "
 msgstr ""
 
-#: shared/inc/forms/email.php:598
+#: shared/inc/forms/email.php:600
+msgid "files"
+msgstr ""
+
+#: shared/inc/forms/email.php:601
 msgid "Mailbox max files quota: "
 msgstr ""
 
-#: shared/inc/forms/email.php:619
+#: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
 msgstr ""
 
-#: shared/inc/forms/email.php:622
+#: shared/inc/forms/email.php:625
 msgid "Bounce message content: "
 msgstr ""
 
-#: shared/inc/forms/email.php:632
+#: shared/inc/forms/email.php:635
 msgid "No catch-all"
 msgstr ""
 
-#: shared/inc/forms/email.php:642
+#: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr ""
 
