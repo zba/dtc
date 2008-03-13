@@ -940,7 +940,7 @@ function fetchAdmin($adm_login, $adm_pass){
 	//since we are here, our login/password combo must be valid
 
 // Note from Thomas:
-// This one I really don't get it!
+// This one I really want to kill it!
 // My code with MySQL rotating password is to avoid storing
 // things in php sessions that are by definition unsafe.
 //	$_SERVER['PHP_AUTH_USER'] = $adm_login;

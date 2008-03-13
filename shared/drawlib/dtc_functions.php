@@ -729,7 +729,7 @@ function smartByte($bytes){
 	if($bytes>1024*1024*1024)	return round(($bytes / (1024*1024*1024)),3) ." ". _("GBytes");
 	if($bytes>1024*1024)		return round(($bytes / (1024*1024)),3) ." ". _("MBytes");
 	if($bytes>1024)				return round(($bytes / 1024),3) ." "._("kBytes");
-	return $bytes." "._("Bytes";
+	return $bytes." "._("Bytes");
 }
 
 function calculateExpirationDate($date,$period){
