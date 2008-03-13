@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-11 19:38+0800\n"
+"POT-Creation-Date: 2008-03-14 00:08+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -447,8 +447,8 @@ msgstr "地址："
 msgid "Admin"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:656
-#: shared/gfx/skin/bwoup/layout.php:658
+#: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:649
+#: shared/gfx/skin/bwoup/layout.php:651
 msgid "Admin editor"
 msgstr "编辑管理员信息"
 
@@ -457,12 +457,25 @@ msgstr "编辑管理员信息"
 msgid "Admin login: "
 msgstr "FTP登陆账号："
 
-#: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:569
+#: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:562
 msgid "Admins list"
 msgstr "管理员列表"
 
+#: shared/drawlib/cc_code_popup.php:103
+msgid "Afghanistan"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:400
 msgid "Age"
+msgstr "年龄"
+
+#: shared/drawlib/cc_code_popup.php:104
+msgid "Albania"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:105
+#, fuzzy
+msgid "Algeria"
 msgstr "年龄"
 
 #: shared/inc/forms/root_admin.php:133
@@ -503,6 +516,10 @@ msgstr ""
 msgid "Alternatively, you can add another domain name:"
 msgstr "或者您可以添加另外一个域名："
 
+#: shared/drawlib/cc_code_popup.php:106
+msgid "American Samoa"
+msgstr ""
+
 #: admin/inc/renewals.php:114 shared/securepay/pay_functions.php:35
 msgid "Amount"
 msgstr ""
@@ -520,13 +537,33 @@ msgstr ""
 "到您的账户。您暂时没有添加域名的权限。如果您需要经常添加域名，您可以要求管理"
 "员授予您自动添加域名的权限。如果需要，请发邮件到："
 
+#: shared/drawlib/cc_code_popup.php:107
+msgid "Andorra"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:108
+msgid "Angola"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:109
+msgid "Anguilla"
+msgstr ""
+
 #: admin/inc/dtc_config.php:671
 msgid "Another location"
 msgstr "另一处位置"
 
+#: shared/drawlib/cc_code_popup.php:110
+msgid "Antarctica"
+msgstr ""
+
 #: shared/inc/forms/lists.php:446
 msgid "Anti-spam mode:"
 msgstr "垃圾邮件处理模式"
+
+#: shared/drawlib/cc_code_popup.php:111
+msgid "Antigua And Barbuda"
+msgstr ""
 
 #: admin/inc/dtc_config.php:1231
 msgid "Apache file names"
@@ -566,6 +603,30 @@ msgstr ""
 "你确定要删除这个用户吗？这项操作将删除该用户所有的域名，文件，数据库等"
 "等！！！"
 
+#: shared/drawlib/cc_code_popup.php:112
+msgid "Argentina"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:113
+msgid "Armenia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:114
+msgid "Aruba"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:115
+msgid "Ascension Island"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:116
+msgid "Australia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:117
+msgid "Austria"
+msgstr ""
+
 #: admin/inc/dtc_config.php:796
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
 msgstr ""
@@ -574,6 +635,10 @@ msgstr ""
 #: admin/inc/dtc_config.php:525
 msgid "Available"
 msgstr "可用"
+
+#: shared/drawlib/cc_code_popup.php:118
+msgid "Azerbaijan"
+msgstr ""
 
 #: admin/inc/nav.php:79
 msgid "BACKUP SCRIPTS"
@@ -599,8 +664,16 @@ msgstr "备份频率："
 msgid "Backup script generated !"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:414
-#: shared/gfx/skin/bwoup/layout.php:416
+#: shared/drawlib/cc_code_popup.php:119
+msgid "Bahamas"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:120
+msgid "Bahrain"
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:407
+#: shared/gfx/skin/bwoup/layout.php:409
 msgid "Bandwidth monitor"
 msgstr "带宽监控"
 
@@ -614,17 +687,57 @@ msgstr "每月最大数据传输量"
 msgid "Bandwidth/month"
 msgstr "每月最大数据传输量"
 
+#: shared/drawlib/cc_code_popup.php:121
+msgid "Bangladesh"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
 msgid "Bank validated"
 msgstr "支持的银行"
+
+#: shared/drawlib/cc_code_popup.php:122
+msgid "Barbados"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:123
+msgid "Belgium"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:124
+msgid "Belize"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:125
+msgid "Benin"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:126
+msgid "Bermuda"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:127
+msgid "Bhutan"
+msgstr ""
 
 #: admin/deamons_state.php:135
 msgid "Bind reload"
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:128
+msgid "Bolivia"
+msgstr ""
+
 #: shared/inc/forms/vps.php:271
 msgid "Boot up (xm start)"
 msgstr "启动(xm start)"
+
+#: shared/drawlib/cc_code_popup.php:129
+msgid "Bosnia Hercegovina"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:130
+msgid "Botswana"
+msgstr ""
 
 #: shared/inc/forms/lists.php:432
 msgid "Bounce life:"
@@ -634,10 +747,42 @@ msgstr ""
 msgid "Bounce message content: "
 msgstr "弹回邮件的内容："
 
+#: shared/drawlib/cc_code_popup.php:131
+msgid "Bouvet Island"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:132
+msgid "Brazil"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:133
+msgid "British Indian Ocean Territory"
+msgstr ""
+
 #: admin/inc/nav.php:35
 #, fuzzy
 msgid "Browse all generated files"
 msgstr "域名文件："
+
+#: shared/drawlib/cc_code_popup.php:134
+msgid "Brunei Darussalam"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:135
+msgid "Bulgaria"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:136
+msgid "Burkina Faso"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:137
+msgid "Burundi"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:138
+msgid "Byelorussian SSR"
+msgstr ""
 
 #: shared/drawlib/dtc_functions.php:732
 #, fuzzy
@@ -660,9 +805,26 @@ msgstr ""
 msgid "CPU and Network usage:"
 msgstr "CPU与带宽的使用情况："
 
+#: shared/drawlib/cc_code_popup.php:139
+msgid "Cambodia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:140
+msgid "Cameroon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:141
+msgid "Canada"
+msgstr ""
+
 #: shared/inc/sql/database.php:42
 #, fuzzy
 msgid "Cannot close user database"
+msgstr "用户数据库的位置："
+
+#: shared/inc/fetch.php:454
+#, fuzzy
+msgid "Cannot fetch user line"
 msgstr "用户数据库的位置："
 
 #: admin/inc/draw_user_admin.php:333
@@ -724,6 +886,10 @@ msgstr ""
 msgid "Cannot resolv your FTP server: "
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:142
+msgid "Cape Verde"
+msgstr ""
+
 #: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr "无限别名的邮件投递到"
@@ -735,6 +901,19 @@ msgstr "类别"
 #: admin/inc/dtc_config.php:325
 msgid "Category description"
 msgstr "类别描述"
+
+#: shared/drawlib/cc_code_popup.php:143
+msgid "Cayman Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:144
+msgid "Central African Republic"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:145
+#, fuzzy
+msgid "Chad"
+msgstr "共享"
 
 #: shared/inc/forms/vps.php:344
 msgid "Change NetBSD kernel"
@@ -753,9 +932,21 @@ msgstr "检查是否发送一封弹回邮件："
 msgid "Checking filesystem..."
 msgstr "检查文件系统..."
 
+#: shared/drawlib/cc_code_popup.php:146
+msgid "Chile"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:147
+msgid "China"
+msgstr ""
+
 #: shared/inc/forms/packager.php:215
 msgid "Choose a package to install"
 msgstr "请选择要安装的软件包"
+
+#: shared/drawlib/cc_code_popup.php:148
+msgid "Christmas Island"
+msgstr ""
 
 #: shared/inc/forms/my_account.php:210
 #, fuzzy
@@ -786,8 +977,8 @@ msgstr "客户ID："
 msgid "Client info"
 msgstr "客户信息"
 
-#: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:644
-#: shared/gfx/skin/bwoup/layout.php:646
+#: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:637
+#: shared/gfx/skin/bwoup/layout.php:639
 msgid "Client interface"
 msgstr "用户界面"
 
@@ -798,7 +989,7 @@ msgid "Client name not found!"
 msgstr "没有找到相关的客户名称！"
 
 #: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
-#: shared/gfx/skin/bwoup/layout.php:260 shared/gfx/skin/bwoup/layout.php:269
+#: shared/gfx/skin/bwoup/layout.php:253 shared/gfx/skin/bwoup/layout.php:262
 msgid "Client panel:"
 msgstr "用户控制台："
 
@@ -813,6 +1004,18 @@ msgstr "已关闭"
 #: shared/inc/forms/lists.php:397
 msgid "Closed list:"
 msgstr "已关闭的邮件列表："
+
+#: shared/drawlib/cc_code_popup.php:149
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:150
+msgid "Colombia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:151
+msgid "Comoros"
+msgstr ""
 
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
@@ -834,8 +1037,8 @@ msgstr "公司名称："
 msgid "Company name: "
 msgstr "公司名称："
 
-#: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:434
-#: shared/gfx/skin/bwoup/layout.php:436
+#: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:427
+#: shared/gfx/skin/bwoup/layout.php:429
 msgid "Configuration generation"
 msgstr "生成后台配置文件"
 
@@ -872,14 +1075,34 @@ msgstr "确认密码："
 msgid "Confirm password: "
 msgstr "确认密码："
 
+#: shared/drawlib/cc_code_popup.php:152
+msgid "Congo"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:153
+msgid "Congo, The Democratic Republic Of"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:469
 msgid "Console output"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:154
+msgid "Cook Islands"
 msgstr ""
 
 #: shared/inc/forms/domain_stats.php:87 shared/inc/forms/domain_stats.php:94
 #, fuzzy
 msgid "Copy to subdomains:"
 msgstr "子域名："
+
+#: shared/drawlib/cc_code_popup.php:155
+msgid "Costa Rica"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:156
+msgid "Cote D'Ivoire"
+msgstr ""
 
 #: admin/deamons_state.php:163
 #, fuzzy
@@ -991,6 +1214,15 @@ msgstr "建立子域名："
 msgid "Credential not correct: can't display in file "
 msgstr "证书错误：无法显示文件"
 
+#: shared/drawlib/cc_code_popup.php:157
+#, fuzzy
+msgid "Croatia"
+msgstr "创建"
+
+#: shared/drawlib/cc_code_popup.php:158
+msgid "Cuba"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1003
 #, fuzzy
 msgid "Currency letters: "
@@ -1025,18 +1257,18 @@ msgstr "业务延伸到的国家和地区"
 msgid "Customer country"
 msgstr "客户国别"
 
-#: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:409
-#: shared/gfx/skin/bwoup/layout.php:411
+#: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:402
+#: shared/gfx/skin/bwoup/layout.php:404
 msgid "Customer management"
 msgstr "客户管理"
 
-#: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:499
+#: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:492
 #, fuzzy
 msgid "Customer renewals"
 msgstr "Customer 更新"
 
 #: client/new_account_form.php:713 shared/gfx/skin/default_layout.php:120
-#: shared/gfx/skin/bwoup/layout.php:486
+#: shared/gfx/skin/bwoup/layout.php:479
 msgid "Customer's address"
 msgstr "客户资料"
 
@@ -1044,16 +1276,28 @@ msgstr "客户资料"
 msgid "Customer's administrators"
 msgstr "客户的管理员"
 
-#: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:503
+#: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:496
 msgid "Customer's bandwidth consumption"
 msgstr "客户带宽使用量"
 
-#: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:481
+#: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:474
 msgid "Customers list"
 msgstr "客户列表"
 
 #: shared/inc/forms/root_admin.php:347
 msgid "Customize"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:159
+msgid "Cyprus"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:160
+msgid "Czech Republic"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:161
+msgid "Czechoslovakia"
 msgstr ""
 
 #: shared/inc/draw.php:135 shared/inc/draw.php:412
@@ -1068,7 +1312,7 @@ msgstr "DNS 和 MX"
 msgid "DNS config of:"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:526
+#: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:519
 msgid "DTC Configuration"
 msgstr "配置DTC参数"
 
@@ -1076,8 +1320,8 @@ msgstr "配置DTC参数"
 msgid "DTC Skin chooser"
 msgstr "更换DTC控制面板的皮肤"
 
-#: shared/gfx/skin/default_layout.php:319 shared/gfx/skin/bwoup/layout.php:439
-#: shared/gfx/skin/bwoup/layout.php:441
+#: shared/gfx/skin/default_layout.php:319 shared/gfx/skin/bwoup/layout.php:432
+#: shared/gfx/skin/bwoup/layout.php:434
 msgid "DTC general configuration"
 msgstr "DTC控制面板参数设置"
 
@@ -1120,7 +1364,7 @@ msgstr "数据库文件："
 msgid "Date"
 msgstr "日期"
 
-#: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:511
+#: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:504
 msgid "Deamons states"
 msgstr "守护进程的状态"
 
@@ -1216,6 +1460,10 @@ msgstr "将邮件存储到本地INBOX："
 msgid "Delivery Group:"
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:162
+msgid "Denmark"
+msgstr ""
+
 #: shared/inc/forms/lists.php:423
 msgid "Deny if no To: or Cc::"
 msgstr "如果没有填写收件人或者抄送对象则不发送："
@@ -1276,6 +1524,10 @@ msgstr "磁盘使用率"
 msgid "Display and sort by:"
 msgstr "根据什么分类："
 
+#: shared/drawlib/cc_code_popup.php:163
+msgid "Djibouti"
+msgstr ""
+
 #: shared/inc/forms/lists.php:250
 msgid "Do not change unless you really know what you are doing."
 msgstr "不要更改它，除非您知道您正在做什么。"
@@ -1297,8 +1549,8 @@ msgstr "Domain Technologie Control：控制台"
 msgid "Domain Tools"
 msgstr "域名"
 
-#: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:650
-#: shared/gfx/skin/bwoup/layout.php:652
+#: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:643
+#: shared/gfx/skin/bwoup/layout.php:645
 msgid "Domain config"
 msgstr "主机配置"
 
@@ -1348,6 +1600,15 @@ msgstr ""
 msgid "Domains for"
 msgstr "主机"
 
+#: shared/drawlib/cc_code_popup.php:164
+#, fuzzy
+msgid "Dominica"
+msgstr "域名"
+
+#: shared/drawlib/cc_code_popup.php:165
+msgid "Dominican Republic"
+msgstr ""
+
 #: shared/inc/forms/subdomain.php:245
 msgid "Dynamic IP update login: "
 msgstr "动态IP更新登陆名："
@@ -1363,6 +1624,14 @@ msgstr "电子邮件账户"
 #: admin/deamons_state.php:293 admin/deamons_state.php:299
 #: admin/deamons_state.php:305 admin/deamons_state.php:311
 msgid "ERROR!"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:166
+msgid "East Timor"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:167
+msgid "Ecuador"
 msgstr ""
 
 #: shared/inc/forms/aliases.php:24
@@ -1392,6 +1661,14 @@ msgstr "编辑您的一个子域"
 #: shared/inc/forms/email.php:246
 msgid "Edit your mailbox redirections:"
 msgstr "编辑您的邮件转发："
+
+#: shared/drawlib/cc_code_popup.php:168
+msgid "Egypt"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:169
+msgid "El Salvador"
+msgstr ""
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
@@ -1462,7 +1739,16 @@ msgstr "使用归档："
 msgid "Enter the domain name you want to register:"
 msgstr "输入您要注册的域名"
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
+#: shared/drawlib/cc_code_popup.php:170
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:171
+#, fuzzy
+msgid "Eritrea"
+msgstr "过期"
+
+#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
 msgid "Error"
 msgstr "错误"
 
@@ -1477,6 +1763,14 @@ msgstr ""
 
 #: shared/inc/forms/email.php:422
 msgid "Error: a mailing list already exists with this name!"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:172
+msgid "Estonia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:173
+msgid "Ethiopia"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
@@ -1537,6 +1831,10 @@ msgstr "FTP登陆账号："
 msgid "FTP password:"
 msgstr "FTP登陆密码："
 
+#: shared/drawlib/cc_code_popup.php:174
+msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
 #: admin/dtcrm/main.php:159 client/new_account_form.php:580
 #: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
 #: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
@@ -1547,6 +1845,10 @@ msgstr "姓："
 #: shared/inc/forms/my_account.php:206
 msgid "Family name:"
 msgstr "姓："
+
+#: shared/drawlib/cc_code_popup.php:175
+msgid "Faroe Islands"
+msgstr ""
 
 #: shared/inc/forms/my_account.php:214
 msgid "Fax:"
@@ -1561,6 +1863,10 @@ msgstr "传真："
 
 #: shared/inc/forms/email.php:301
 msgid "Fetchmail"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:176
+msgid "Fiji"
 msgstr ""
 
 #: shared/inc/forms/vps.php:276
@@ -1579,6 +1885,10 @@ msgstr ""
 "如果你想让所有的邮件都添加类似于这样的内容：<br>--<br>如要退订请发邮件给 "
 "coollist+unsubscribe@lists.domain.net的话，可以在这里填写。"
 
+#: shared/drawlib/cc_code_popup.php:177
+msgid "Finland"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "名："
@@ -1592,6 +1902,26 @@ msgstr "名："
 
 #: admin/inc/draw_user_admin.php:126
 msgid "First query date: "
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:178
+msgid "France"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:179
+msgid "France, Metropolitan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:180
+msgid "French Guiana"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:181
+msgid "French Polynesia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:182
+msgid "French Southern Territories"
 msgstr ""
 
 #: shared/inc/forms/ticket.php:57
@@ -1609,6 +1939,14 @@ msgstr ""
 
 #: shared/drawlib/dtc_functions.php:729
 msgid "GBytes"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:183
+msgid "Gabon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:184
+msgid "Gambia"
 msgstr ""
 
 #: shared/securepay/pay_functions.php:35
@@ -1633,6 +1971,22 @@ msgstr "生成这个子域名的虚拟主机入口："
 msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "所有虚拟主机都监听于内网地址(NAT)："
 
+#: shared/drawlib/cc_code_popup.php:185
+msgid "Georgia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:186
+msgid "Germany"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:187
+msgid "Ghana"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:188
+msgid "Gibraltar"
+msgstr ""
+
 #: email/login.php:6
 msgid "Go to client panel"
 msgstr "进入客户控制台"
@@ -1653,13 +2007,66 @@ msgstr "安全关闭(xm shutdown)"
 msgid "Grant sub-account addition rights (reseller):"
 msgstr "允许添加子帐户(转售)："
 
+#: shared/drawlib/cc_code_popup.php:189
+msgid "Great Britain"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:190
+msgid "Greece"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:191
+msgid "Greenland"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:192
+msgid "Grenada"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:193
+msgid "Guadeloupe"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:194
+msgid "Guam"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:195
+msgid "Guatemela"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:196
+msgid "Guernsey"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:197
+#, fuzzy
+msgid "Guinea"
+msgstr "普通设置"
+
+#: shared/drawlib/cc_code_popup.php:198
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:199
+msgid "Guyana"
+msgstr ""
+
 #: shared/inc/forms/vps.php:113
 msgid "HDD I/O:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:200
+msgid "Haiti"
 msgstr ""
 
 #: shared/inc/forms/lists.php:403
 msgid "Header"
 msgstr "页头"
+
+#: shared/drawlib/cc_code_popup.php:201
+msgid "Heard and McDonald Islands"
+msgstr ""
 
 #: shared/inc/draw.php:311
 msgid "Help"
@@ -1699,6 +2106,15 @@ msgstr ""
 msgid "Hide email addresses to avoid spam."
 msgstr "隐藏邮件地址。"
 
+#: shared/drawlib/cc_code_popup.php:202
+msgid "Honduras"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:203
+#, fuzzy
+msgid "Hong Kong"
+msgstr "仅空间"
+
 #: admin/inc/dtc_config.php:720
 #, fuzzy
 msgid "Host IP addresses (separated by \"|\"): "
@@ -1713,8 +2129,8 @@ msgid "Hosting only"
 msgstr "仅空间"
 
 #: shared/gfx/skin/default_layout.php:159
-#: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:429
-#: shared/gfx/skin/bwoup/layout.php:431 shared/gfx/skin/bwoup/layout.php:539
+#: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:422
+#: shared/gfx/skin/bwoup/layout.php:424 shared/gfx/skin/bwoup/layout.php:532
 msgid "Hosting product manager"
 msgstr "主机产品管理"
 
@@ -1735,6 +2151,10 @@ msgstr "主机名："
 msgid ""
 "How many recipients pr. mail delivered to the smtp server. Defaults to 100."
 msgstr "接收到的邮件的最大群发数量。默认是100。"
+
+#: shared/drawlib/cc_code_popup.php:204
+msgid "Hungary"
+msgstr ""
 
 #: client/new_account_form.php:635
 msgid "I agree to the"
@@ -1781,6 +2201,10 @@ msgstr "主DNS服务器IP地址："
 #: admin/inc/dtc_config.php:522
 msgid "IPs addrs"
 msgstr "IP地址列表"
+
+#: shared/drawlib/cc_code_popup.php:205
+msgid "Iceland"
+msgstr ""
 
 #: admin/deamons_state.php:239
 msgid "If no FTP user was created, please make at least one!"
@@ -1932,6 +2356,14 @@ msgstr ""
 msgid "Incorrect sub-domain format."
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:206
+msgid "India"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:207
+msgid "Indonesia"
+msgstr ""
+
 #: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
 msgstr "输入邮件地址并订阅。"
@@ -1982,6 +2414,18 @@ msgstr "发票抬头："
 msgid "Invoicing"
 msgstr "开具发票"
 
+#: shared/drawlib/cc_code_popup.php:208
+msgid "Iran (Islamic Republic Of)"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:209
+msgid "Iraq"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:210
+msgid "Ireland"
+msgstr ""
+
 #: client/new_account_form.php:237
 msgid "Is company radio button is wrong!"
 msgstr "请选择是不是公司客户！"
@@ -1997,10 +2441,73 @@ msgid ""
 msgstr ""
 "邮件列表的状态是开启还是关闭。如果它关闭了，邮件订阅/退订功能将不能使用。"
 
+#: shared/drawlib/cc_code_popup.php:211
+msgid "Isle Of Man"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:212
+#, fuzzy
+msgid "Israel"
+msgstr "安装"
+
+#: shared/drawlib/cc_code_popup.php:213
+#, fuzzy
+msgid "Italy"
+msgstr "安装"
+
+#: shared/drawlib/cc_code_popup.php:214
+msgid "Jamaica"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:215
+msgid "Japan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:216
+#, fuzzy
+msgid "Jersey"
+msgstr "这里"
+
+#: shared/drawlib/cc_code_popup.php:217
+msgid "Jordan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:218
+msgid "Kazakhstan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:219
+msgid "Kenya"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:220
+msgid "Kiribati"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:221
+msgid "Korea, Democratic People's Republic Of"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:222
+msgid "Korea, Republic Of"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:223
+msgid "Kuwait"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:224
+msgid "Kyrgyzstan"
+msgstr ""
+
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
-#: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:251
+#: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:244
 msgid "Language"
 msgstr "语言"
+
+#: shared/drawlib/cc_code_popup.php:225
+msgid "Lao People's Democratic Republic"
+msgstr ""
 
 #: shared/inc/forms/vps.php:176
 msgid "Last boot date: "
@@ -2024,7 +2531,11 @@ msgstr "上一条警告："
 msgid "Last warning: "
 msgstr "上一条警告："
 
-#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:509
+#: shared/drawlib/cc_code_popup.php:226
+msgid "Latvia"
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:502
 msgid "Launching the configuration files generation"
 msgstr "生成配置文件"
 
@@ -2033,6 +2544,26 @@ msgid ""
 "Leave a message describing any specific requirements you might have for your "
 "account:"
 msgstr "如果您有什么特殊的要求，请给我们留言："
+
+#: shared/drawlib/cc_code_popup.php:227
+msgid "Lebanon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:228
+msgid "Lesotho"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:229
+msgid "Liberia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:230
+msgid "Libyan Arab Jamahiriya"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:231
+msgid "Liechtenstein"
+msgstr ""
 
 #: shared/inc/sql/lists.php:211
 msgid "List #name#@#domain# successfully created!"
@@ -2120,6 +2651,10 @@ msgstr ""
 msgid "Lists max"
 msgstr "邮件列表上限"
 
+#: shared/drawlib/cc_code_popup.php:232
+msgid "Lithuania"
+msgstr ""
+
 #: admin/inc/dtc_config.php:734
 #, fuzzy
 msgid "Local network area ip address of the vhost using NAT: "
@@ -2144,8 +2679,8 @@ msgstr "用户数据库的位置："
 #: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:24
 #: shared/gfx/skin/default_layout.php:34 shared/gfx/skin/default_layout.php:63
 #: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:53
-#: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:260
-#: shared/gfx/skin/bwoup/layout.php:269
+#: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:253
+#: shared/gfx/skin/bwoup/layout.php:262
 msgid "Login"
 msgstr "登陆"
 
@@ -2179,6 +2714,10 @@ msgstr "Logo 相对路径"
 msgid "Logout"
 msgstr "注销"
 
+#: shared/drawlib/cc_code_popup.php:233
+msgid "Luxembourg"
+msgstr ""
+
 #: shared/drawlib/dtc_functions.php:730 shared/inc/forms/email.php:587
 #: shared/inc/forms/email.php:594
 msgid "MBytes"
@@ -2187,6 +2726,18 @@ msgstr ""
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "MX 与 NS备份服务器"
+
+#: shared/drawlib/cc_code_popup.php:234
+msgid "Macau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:235
+msgid "Macedonia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:236
+msgid "Madagascar"
+msgstr ""
 
 #: shared/inc/draw.php:359
 #, fuzzy
@@ -2278,9 +2829,46 @@ msgstr "本服务器的主IP："
 msgid "Main software configuration of DTC"
 msgstr "设置网络参数"
 
+#: shared/drawlib/cc_code_popup.php:237
+msgid "Malawi"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:238
+#, fuzzy
+msgid "Malaysia"
+msgstr "别名"
+
+#: shared/drawlib/cc_code_popup.php:239
+msgid "Maldives"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:240
+msgid "Mali"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:241
+msgid "Malta"
+msgstr ""
+
 #: shared/inc/draw.php:422
 msgid "Manage my name servers:"
 msgstr "管理我的域名服务器："
+
+#: shared/drawlib/cc_code_popup.php:242
+msgid "Marshall Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:243
+msgid "Martinique"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:244
+msgid "Mauritania"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:245
+msgid "Mauritius"
+msgstr ""
 
 #: shared/inc/forms/root_admin.php:372
 msgid "Max FTP"
@@ -2329,6 +2917,10 @@ msgstr ""
 msgid "Maxmind login: "
 msgstr "FTP登陆账号："
 
+#: shared/drawlib/cc_code_popup.php:246
+msgid "Mayotte"
+msgstr ""
+
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
 msgstr ""
@@ -2341,6 +2933,14 @@ msgstr ""
 msgid "Method getVPSState failed"
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:247
+msgid "Mexico"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:248
+msgid "Micronesia, Federated States Of"
+msgstr ""
+
 #: shared/inc/forms/lists.php:399
 msgid "Moderated:"
 msgstr "适中的："
@@ -2349,13 +2949,38 @@ msgstr "适中的："
 msgid "Moderators:"
 msgstr "斑竹："
 
+#: shared/drawlib/cc_code_popup.php:249
+msgid "Moldova, Republic Of"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:250
+msgid "Monaco"
+msgstr ""
+
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
 msgstr "账户余额："
 
+#: shared/drawlib/cc_code_popup.php:251
+msgid "Mongolia"
+msgstr ""
+
 #: admin/inc/dtc_config.php:359
 msgid "Monthly"
 msgstr "每月"
+
+#: shared/drawlib/cc_code_popup.php:252
+#, fuzzy
+msgid "Montserrat"
+msgstr "适中的："
+
+#: shared/drawlib/cc_code_popup.php:253
+msgid "Morocco"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:254
+msgid "Mozambique"
+msgstr ""
 
 #: shared/inc/draw.php:426
 msgid "My Account information:"
@@ -2387,6 +3012,10 @@ msgid ""
 "because it doesn't seem to be owned by you."
 msgstr ""
 "MySQL数据库属主关系错误：我不能让你删掉这个数据库，它看起来并不属于你。"
+
+#: shared/drawlib/cc_code_popup.php:255
+msgid "Myanmar"
+msgstr ""
 
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
@@ -2472,9 +3101,29 @@ msgstr "设置DNS参数"
 msgid "Named zonefiles"
 msgstr "设置DNS参数"
 
+#: shared/drawlib/cc_code_popup.php:256
+msgid "Namibia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:257
+msgid "Nauru"
+msgstr ""
+
 #: shared/inc/forms/packager.php:218
 msgid "Need a database"
 msgstr "需要一个数据库"
+
+#: shared/drawlib/cc_code_popup.php:258
+msgid "Nepal"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:259
+msgid "Netherlands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:260
+msgid "Netherlands Antilles"
+msgstr ""
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
@@ -2482,6 +3131,14 @@ msgstr ""
 
 #: shared/inc/forms/vps.php:102
 msgid "Network:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:261
+msgid "Neutral Zone"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:262
+msgid "New Caledonia"
 msgstr ""
 
 #: shared/inc/forms/ftp.php:52
@@ -2499,6 +3156,10 @@ msgstr "新的 SSH 密钥："
 #: shared/inc/forms/vps.php:353
 msgid "New SSH password: "
 msgstr "新的 SSH 密码："
+
+#: shared/drawlib/cc_code_popup.php:263
+msgid "New Zealand"
+msgstr ""
 
 #: admin/dtcrm/main.php:11 admin/dtcrm/main.php:24
 msgid "New customer"
@@ -2530,9 +3191,25 @@ msgstr "新的虚拟主机管理员"
 msgid "Next cronjob"
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:264
+msgid "Nicaragua"
+msgstr ""
+
 #: admin/inc/dtc_config.php:293
 msgid "Nick name"
 msgstr "昵称"
+
+#: shared/drawlib/cc_code_popup.php:265
+msgid "Niger"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:266
+msgid "Nigeria"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:267
+msgid "Niue"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:159 admin/inc/draw_user_admin.php:274
 #: admin/inc/draw_user_admin.php:342 admin/inc/dtc_config.php:266
@@ -2641,6 +3318,18 @@ msgstr "该用户不存在，或者这个用户不归您所有，请重新输入
 msgid "No user waiting!"
 msgstr "没有待添加的用户！"
 
+#: shared/drawlib/cc_code_popup.php:268
+msgid "Norfolk Island"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:269
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:270
+msgid "Norway"
+msgstr ""
+
 #: shared/inc/forms/dedicated.php:36 shared/inc/forms/invoices.php:39
 #: shared/inc/forms/invoices.php:40 shared/inc/forms/invoices.php:41
 msgid "Not found!"
@@ -2721,6 +3410,10 @@ msgstr ""
 msgid "Old tickets:"
 msgstr "过往的tickets："
 
+#: shared/drawlib/cc_code_popup.php:271
+msgid "Oman"
+msgstr ""
+
 #: shared/inc/draw.php:549
 msgid "Online DTC help"
 msgstr "DTC在线帮助文档"
@@ -2797,6 +3490,30 @@ msgstr "软件包描述"
 #: shared/inc/forms/packager.php:218
 msgid "Package version"
 msgstr "软件包版本"
+
+#: shared/drawlib/cc_code_popup.php:272
+msgid "Pakistan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:273
+msgid "Palau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:274
+msgid "Palestine"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:275
+msgid "Panama"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:276
+msgid "Papua New Guinea"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:277
+msgid "Paraguay"
+msgstr ""
 
 #: admin/inc/dtc_config.php:839 admin/inc/dtc_config.php:866
 #: admin/inc/dtc_config.php:891 admin/inc/dtc_config.php:918
@@ -2937,6 +3654,15 @@ msgstr ""
 msgid "Period"
 msgstr "使用期限"
 
+#: shared/drawlib/cc_code_popup.php:278
+#, fuzzy
+msgid "Peru"
+msgstr "使用期限"
+
+#: shared/drawlib/cc_code_popup.php:279
+msgid "Philippines"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:213
 msgid "Phone number:"
 msgstr "电话号码："
@@ -2951,6 +3677,10 @@ msgstr "电话号码："
 #: shared/inc/forms/vps.php:350
 msgid "Physical console last display and ssh access:"
 msgstr "SSH登陆情况与控制台最后一次的显示："
+
+#: shared/drawlib/cc_code_popup.php:280
+msgid "Pitcairn"
+msgstr ""
 
 #: shared/inc/forms/database.php:127
 msgid "Please create a MySQL user in order to be able to create a database."
@@ -2995,10 +3725,19 @@ msgstr "正在检查文件系统，请耐心等待..."
 msgid "Please wait until operating system reinstallation has completed."
 msgstr "正在重新安装操作系统，请耐心等待..."
 
+#: shared/drawlib/cc_code_popup.php:281
+msgid "Poland"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1136
 #, fuzzy
 msgid "Port number: "
 msgstr "VPS 在xen中的编号 "
+
+#: shared/drawlib/cc_code_popup.php:282
+#, fuzzy
+msgid "Portugal"
+msgstr "总计："
 
 #: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
@@ -3090,6 +3829,14 @@ msgstr ""
 
 #: shared/inc/forms/email.php:315
 msgid "Protect your mailbox with efficient tools:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:283
+msgid "Puerto Rico"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:284
+msgid "Qatar"
 msgstr ""
 
 #: admin/dtcrm/main.php:214
@@ -3244,8 +3991,8 @@ msgstr "重置ID"
 msgid "Renewals"
 msgstr "更新"
 
-#: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:424
-#: shared/gfx/skin/bwoup/layout.php:426
+#: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:417
+#: shared/gfx/skin/bwoup/layout.php:419
 msgid "Renewals management"
 msgstr "刷新管理信息"
 
@@ -3289,13 +4036,30 @@ msgstr "子账户"
 msgid "Retype new password:"
 msgstr "确认密码："
 
+#: shared/drawlib/cc_code_popup.php:285
+msgid "Reunion"
+msgstr ""
+
 #: shared/inc/forms/lists.php:395
 msgid "Rights"
 msgstr "权限"
 
+#: shared/drawlib/cc_code_popup.php:286
+#, fuzzy
+msgid "Romania"
+msgstr "公司"
+
 #: admin/deamons_state.php:291 admin/deamons_state.php:297
 #: admin/deamons_state.php:303 admin/deamons_state.php:309
 msgid "Running ok"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:287
+msgid "Russian Federation"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:288
+msgid "Rwanda"
 msgstr ""
 
 #: shared/inc/forms/lists.php:426
@@ -3379,9 +4143,45 @@ msgstr "SSL 独立IP："
 msgid "SSL tokens"
 msgstr "购买SSL证书"
 
+#: shared/drawlib/cc_code_popup.php:289
+msgid "Saint Helena"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:290
+msgid "Saint Kitts And Nevis"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:291
+msgid "Saint Lucia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:292
+msgid "Saint Pierre and Miquelon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:293
+msgid "Saint Vincent and The Grenadines"
+msgstr ""
+
 #: admin/inc/dtc_config.php:671
 msgid "Same as for DTC"
 msgstr "与DTC相类似"
+
+#: shared/drawlib/cc_code_popup.php:294
+msgid "Samoa"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:295
+msgid "San Marino"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:296
+msgid "Sao Tome and Principe"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:297
+msgid "Saudi Arabia"
+msgstr ""
 
 #: shared/inc/forms/database.php:49 shared/inc/forms/database.php:95
 #: shared/inc/forms/domain_stats.php:98
@@ -3447,6 +4247,15 @@ msgstr "提交并关闭通行证"
 msgid "Send trouble ticket"
 msgstr "发送问题"
 
+#: shared/drawlib/cc_code_popup.php:298
+#, fuzzy
+msgid "Senegal"
+msgstr "普通设置"
+
+#: shared/drawlib/cc_code_popup.php:299
+msgid "Serbia"
+msgstr ""
+
 #: admin/inc/renewals.php:245
 #, fuzzy
 msgid "Server"
@@ -3481,8 +4290,8 @@ msgstr ""
 msgid "Server hostname related: "
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:419
-#: shared/gfx/skin/bwoup/layout.php:421
+#: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:412
+#: shared/gfx/skin/bwoup/layout.php:414
 msgid "Server monitor"
 msgstr "服务器监控"
 
@@ -3502,7 +4311,7 @@ msgstr "没有找到相关的主机！"
 msgid "Server said: "
 msgstr "服务器返回信息："
 
-#: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:506
+#: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:499
 msgid "Server statistic graphs"
 msgstr "服务器统计图"
 
@@ -3516,6 +4325,10 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:233
 msgid "Setup physical VPS (LVM): "
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:300
+msgid "Seychelles"
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:363
@@ -3540,9 +4353,51 @@ msgstr "主机名："
 msgid "Shutdown warning: "
 msgstr "关闭警告信息："
 
+#: shared/drawlib/cc_code_popup.php:301
+#, fuzzy
+msgid "Sierra Leone"
+msgstr "主机名称"
+
+#: shared/drawlib/cc_code_popup.php:302
+msgid "Singapore"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:303
+msgid "Slovakia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:304
+msgid "Slovenia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:305
+msgid "Solomon Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:306
+#, fuzzy
+msgid "Somalia"
+msgstr "子域名数量上限"
+
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "Sorry, the domain name "
 msgstr "对不起,域名"
+
+#: shared/drawlib/cc_code_popup.php:307
+msgid "South Africa"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:308
+msgid "South Georgia and The Sandwich Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:309
+msgid "Spain"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:310
+msgid "Sri Lanka"
+msgstr ""
 
 #: shared/inc/forms/vps.php:255
 msgid "Start and stop of your VPS:"
@@ -3686,6 +4541,11 @@ msgstr "仅发送给订阅者："
 msgid "Successfully added your domain name to the hosting database"
 msgstr "已成功将您的域名添加到数据库中"
 
+#: shared/drawlib/cc_code_popup.php:311
+#, fuzzy
+msgid "Sudan"
+msgstr "子域名"
+
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
 msgstr ""
@@ -3699,8 +4559,33 @@ msgstr "配置 Support ticket"
 msgid "Support tickets"
 msgstr "没有未决的？！"
 
+#: shared/drawlib/cc_code_popup.php:312
+#, fuzzy
+msgid "Suriname"
+msgstr "主机名称"
+
+#: shared/drawlib/cc_code_popup.php:313
+msgid "Svalbard and Jan Mayen Islands"
+msgstr ""
+
 #: shared/inc/forms/vps.php:110
 msgid "Swap I/O:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:314
+msgid "Swaziland"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:315
+msgid "Sweden"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:316
+msgid "Switzerland"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:317
+msgid "Syrian Arab Republic"
 msgstr ""
 
 #: client/new_account.php:108
@@ -3722,6 +4607,14 @@ msgstr "校验成功"
 #: shared/inc/forms/subdomain.php:178
 msgid "TXT field of the subdomain: "
 msgstr "在这里输入子域名："
+
+#: shared/drawlib/cc_code_popup.php:318
+msgid "Taiwan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:319
+msgid "Tajikista"
+msgstr ""
 
 #: shared/inc/forms/dns.php:86
 msgid ""
@@ -3754,6 +4647,10 @@ msgstr ""
 msgid "Take control of your domain name"
 msgstr "轻松管理您的主机"
 
+#: shared/drawlib/cc_code_popup.php:320
+msgid "Tanzania, United Republic Of"
+msgstr ""
+
 #: shared/securepay/pay_functions.php:29
 msgid "Taxes (VAT or GST)"
 msgstr ""
@@ -3769,6 +4666,10 @@ msgstr "当添加或删除一封邮件时通知下列服务器："
 #: admin/inc/dtc_config.php:1065
 msgid "Test server"
 msgstr "测试服务器"
+
+#: shared/drawlib/cc_code_popup.php:321
+msgid "Thailand"
+msgstr ""
 
 #: shared/inc/sql/database.php:144
 msgid ""
@@ -3948,6 +4849,20 @@ msgstr "不强制填写收件人或者抄送对象："
 msgid "Today is the: "
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:322
+#, fuzzy
+msgid "Togo"
+msgstr "注销"
+
+#: shared/drawlib/cc_code_popup.php:323
+msgid "Tokelau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:324
+#, fuzzy
+msgid "Tonga"
+msgstr "总计："
+
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Total"
@@ -4023,6 +4938,30 @@ msgstr "每月"
 msgid "Transfer this month:"
 msgstr "本月流量："
 
+#: shared/drawlib/cc_code_popup.php:325
+msgid "Trinidad and Tobago"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:326
+msgid "Tunisia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:327
+msgid "Turkey"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:328
+msgid "Turkmenistan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:329
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:330
+msgid "Tuvalu"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
 #: shared/inc/forms/ticket.php:158
 msgid "Type"
@@ -4053,6 +4992,34 @@ msgstr "没有找到相应的问题种类！"
 msgid "URL"
 msgstr "URL"
 
+#: shared/drawlib/cc_code_popup.php:331
+msgid "USSR"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:332
+msgid "Uganda"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:333
+msgid "Ukraine"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:334
+msgid "United Arab Emirates"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:335
+msgid "United Kingdom"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:336
+msgid "United States"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:337
+msgid "United States Minor Outlying Islands"
+msgstr ""
+
 #: shared/inc/forms/packager.php:218
 msgid "Unpack size"
 msgstr "解压缩后的大小"
@@ -4073,6 +5040,10 @@ msgstr "账户升级"
 #, fuzzy
 msgid "Upgrade my account:"
 msgstr "账户升级"
+
+#: shared/drawlib/cc_code_popup.php:338
+msgid "Uruguay"
+msgstr ""
 
 #: shared/inc/forms/domain_info.php:59 shared/inc/forms/email.php:27
 msgid "Use"
@@ -4211,7 +5182,7 @@ msgstr "使用root登陆用户MySql数据库："
 msgid "User MySQL root password: "
 msgstr "用户MySql数据库root密码："
 
-#: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:574
+#: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:567
 msgid "User administration"
 msgstr "用户管理"
 
@@ -4244,10 +5215,14 @@ msgid ""
 "maint"
 msgstr "用户名不可用：请选用其它登录名，不要使用root或者debian-sys-maint"
 
-#: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:404
-#: shared/gfx/skin/bwoup/layout.php:406
+#: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:397
+#: shared/gfx/skin/bwoup/layout.php:399
 msgid "Users administration"
 msgstr "用户管理"
+
+#: shared/drawlib/cc_code_popup.php:339
+msgid "Uzbekistan"
+msgstr ""
 
 #: client/new_account_form.php:593
 #, fuzzy
@@ -4347,16 +5322,45 @@ msgstr "在数据库中没有找到VPS的相关配置"
 msgid "Validate new account if paid: "
 msgstr "已付款账户实时生效："
 
+#: shared/drawlib/cc_code_popup.php:340
+msgid "Vanuatu"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:341
+msgid "Vatican City State"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:342
+msgid "Venezuela"
+msgstr ""
+
 #: shared/inc/forms/root_admin.php:346
 msgid "Vhost"
 msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:343
+#, fuzzy
+msgid "Vietnam"
+msgstr "名称"
 
 #: admin/inc/draw_user_admin.php:279
 msgid "View details"
 msgstr "查看详情"
 
+#: shared/drawlib/cc_code_popup.php:344
+msgid "Virgin Islands (British)"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:345
+msgid "Virgin Islands (U.S.)"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1236
 msgid "Virtual host config-file:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:346
+msgid "Wallis and Futuna Islands"
 msgstr ""
 
 #: admin/inc/dtc_config.php:213
@@ -4383,6 +5387,14 @@ msgstr "每周"
 
 #: shared/inc/forms/email.php:327
 msgid "Welcom to the email panel!"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:347
+msgid "West Bank and Gaza"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:348
+msgid "Western Sahara"
 msgstr ""
 
 #: admin/dtcrm/main.php:211
@@ -4446,6 +5458,10 @@ msgstr ""
 #: shared/inc/fetch.php:39 shared/inc/fetch.php:362 shared/inc/fetch.php:367
 msgid "Wrong user or password, or timeout expired!"
 msgstr "用户错误或密码错误,或者已过期"
+
+#: shared/drawlib/cc_code_popup.php:349
+msgid "Yemen, Republic of"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
 #: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
@@ -4652,7 +5668,7 @@ msgstr "您的域名很快就能生效："
 msgid "Your domain:"
 msgstr "您的域名："
 
-#: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:367
+#: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:360
 msgid "Your domains"
 msgstr "您的域名"
 
@@ -4691,6 +5707,22 @@ msgstr "您的目录被限定在"
 #, fuzzy
 msgid "Your users"
 msgstr "您的SRS用户名："
+
+#: shared/drawlib/cc_code_popup.php:350
+msgid "Yugoslavia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:351
+msgid "Zaire"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:352
+msgid "Zambia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:353
+msgid "Zimbabwe"
+msgstr ""
 
 #: shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
@@ -4738,9 +5770,19 @@ msgstr "VPS 服务器"
 msgid "eNETS test merchant ID: "
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
+#: shared/inc/fetch.php:454
+msgid ""
+"either your login and password pair is not valid, either your session "
+"expired (timed out)."
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
 msgid "fetching admin: "
 msgstr "加载管理员："
+
+#: shared/inc/fetch.php:454
+msgid "file"
+msgstr ""
 
 #: shared/inc/forms/email.php:600
 msgid "files"

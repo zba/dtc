@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: git_5feb2008\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-11 19:38+0800\n"
+"POT-Creation-Date: 2008-03-14 00:08+0800\n"
 "PO-Revision-Date: 2008-02-17 17:05+0300\n"
 "Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -462,8 +462,8 @@ msgstr "Адреc:"
 msgid "Admin"
 msgstr "Администратор"
 
-#: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:656
-#: shared/gfx/skin/bwoup/layout.php:658
+#: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:649
+#: shared/gfx/skin/bwoup/layout.php:651
 msgid "Admin editor"
 msgstr "Свойства администратора"
 
@@ -471,12 +471,25 @@ msgstr "Свойства администратора"
 msgid "Admin login: "
 msgstr "Логин администратора: "
 
-#: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:569
+#: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:562
 msgid "Admins list"
 msgstr "Список администраторов"
 
+#: shared/drawlib/cc_code_popup.php:103
+msgid "Afghanistan"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:400
 msgid "Age"
+msgstr "Срок"
+
+#: shared/drawlib/cc_code_popup.php:104
+msgid "Albania"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:105
+#, fuzzy
+msgid "Algeria"
 msgstr "Срок"
 
 #: shared/inc/forms/root_admin.php:133
@@ -518,6 +531,10 @@ msgstr "Разрешённый объём передачи данных (ГБ): 
 msgid "Alternatively, you can add another domain name:"
 msgstr "Или же вы можете добавить другое доменное имя:"
 
+#: shared/drawlib/cc_code_popup.php:106
+msgid "American Samoa"
+msgstr ""
+
 #: admin/inc/renewals.php:114 shared/securepay/pay_functions.php:35
 msgid "Amount"
 msgstr "Сумма"
@@ -538,13 +555,33 @@ msgstr ""
 "имени. Чтобы запросить хостинг с новым доменным именем без подтверждения "
 "администратора или регистрации доменного имени напишите по адресу:"
 
+#: shared/drawlib/cc_code_popup.php:107
+msgid "Andorra"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:108
+msgid "Angola"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:109
+msgid "Anguilla"
+msgstr ""
+
 #: admin/inc/dtc_config.php:671
 msgid "Another location"
 msgstr "другое место"
 
+#: shared/drawlib/cc_code_popup.php:110
+msgid "Antarctica"
+msgstr ""
+
 #: shared/inc/forms/lists.php:446
 msgid "Anti-spam mode:"
 msgstr "Режим антиспама:"
+
+#: shared/drawlib/cc_code_popup.php:111
+msgid "Antigua And Barbuda"
+msgstr ""
 
 #: admin/inc/dtc_config.php:1231
 msgid "Apache file names"
@@ -586,6 +623,30 @@ msgstr ""
 "Вы уверены, что хотите удалить этого пользователя? Это приведёт к удалению "
 "всех его доменных имён, файлов и баз данных!!!"
 
+#: shared/drawlib/cc_code_popup.php:112
+msgid "Argentina"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:113
+msgid "Armenia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:114
+msgid "Aruba"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:115
+msgid "Ascension Island"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:116
+msgid "Australia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:117
+msgid "Austria"
+msgstr ""
+
 #: admin/inc/dtc_config.php:796
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
 msgstr "Создать субдомены по умолчанию (mail, pop, imap, smtp, ftp, list):"
@@ -594,6 +655,10 @@ msgstr "Создать субдомены по умолчанию (mail, pop, im
 #: admin/inc/dtc_config.php:525
 msgid "Available"
 msgstr "Доступен"
+
+#: shared/drawlib/cc_code_popup.php:118
+msgid "Azerbaijan"
+msgstr ""
 
 #: admin/inc/nav.php:79
 msgid "BACKUP SCRIPTS"
@@ -619,8 +684,16 @@ msgstr "Периодичность резервного копирования:"
 msgid "Backup script generated !"
 msgstr "Сценарий резервного копирования сгенерирован !"
 
-#: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:414
-#: shared/gfx/skin/bwoup/layout.php:416
+#: shared/drawlib/cc_code_popup.php:119
+msgid "Bahamas"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:120
+msgid "Bahrain"
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:407
+#: shared/gfx/skin/bwoup/layout.php:409
 msgid "Bandwidth monitor"
 msgstr "Мониторинг полосы"
 
@@ -632,17 +705,58 @@ msgstr "Полоса в месяц"
 msgid "Bandwidth/month"
 msgstr "Полоса/месяц"
 
+#: shared/drawlib/cc_code_popup.php:121
+msgid "Bangladesh"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
 msgid "Bank validated"
 msgstr "Банк подтверждён"
+
+#: shared/drawlib/cc_code_popup.php:122
+msgid "Barbados"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:123
+msgid "Belgium"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:124
+msgid "Belize"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:125
+#, fuzzy
+msgid "Benin"
+msgstr "Ожидание"
+
+#: shared/drawlib/cc_code_popup.php:126
+msgid "Bermuda"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:127
+msgid "Bhutan"
+msgstr ""
 
 #: admin/deamons_state.php:135
 msgid "Bind reload"
 msgstr "Перезагрузка Bind"
 
+#: shared/drawlib/cc_code_popup.php:128
+msgid "Bolivia"
+msgstr ""
+
 #: shared/inc/forms/vps.php:271
 msgid "Boot up (xm start)"
 msgstr "Начальный запуск (старт xm)"
+
+#: shared/drawlib/cc_code_popup.php:129
+msgid "Bosnia Hercegovina"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:130
+msgid "Botswana"
+msgstr ""
 
 #: shared/inc/forms/lists.php:432
 msgid "Bounce life:"
@@ -652,9 +766,41 @@ msgstr "Срок возврата:"
 msgid "Bounce message content: "
 msgstr "Содержание сообщения о недоставке: "
 
+#: shared/drawlib/cc_code_popup.php:131
+msgid "Bouvet Island"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:132
+msgid "Brazil"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:133
+msgid "British Indian Ocean Territory"
+msgstr ""
+
 #: admin/inc/nav.php:35
 msgid "Browse all generated files"
 msgstr "Просмотреть все сгенерированные файлы"
+
+#: shared/drawlib/cc_code_popup.php:134
+msgid "Brunei Darussalam"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:135
+msgid "Bulgaria"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:136
+msgid "Burkina Faso"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:137
+msgid "Burundi"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:138
+msgid "Byelorussian SSR"
+msgstr ""
 
 #: shared/drawlib/dtc_functions.php:732
 #, fuzzy
@@ -677,9 +823,26 @@ msgstr "Время ЦП:"
 msgid "CPU and Network usage:"
 msgstr "Использование ЦП и сети:"
 
+#: shared/drawlib/cc_code_popup.php:139
+msgid "Cambodia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:140
+msgid "Cameroon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:141
+msgid "Canada"
+msgstr ""
+
 #: shared/inc/sql/database.php:42
 msgid "Cannot close user database"
 msgstr "Не удалось закрыть пользовательскую базу данных"
+
+#: shared/inc/fetch.php:454
+#, fuzzy
+msgid "Cannot fetch user line"
+msgstr "Не найден сервер в БД!"
 
 #: admin/inc/draw_user_admin.php:333
 msgid "Cannot find payment!"
@@ -742,6 +905,10 @@ msgstr "Не удалось определить имя вашего"
 msgid "Cannot resolv your FTP server: "
 msgstr "Не удалось определить имя вашего FTP-сервера: "
 
+#: shared/drawlib/cc_code_popup.php:142
+msgid "Cape Verde"
+msgstr ""
+
 #: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr "Эл.почту с прочих адресов отправлять"
@@ -753,6 +920,19 @@ msgstr "Категория"
 #: admin/inc/dtc_config.php:325
 msgid "Category description"
 msgstr "Описание категории"
+
+#: shared/drawlib/cc_code_popup.php:143
+msgid "Cayman Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:144
+msgid "Central African Republic"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:145
+#, fuzzy
+msgid "Chad"
+msgstr "Виртуальный"
 
 #: shared/inc/forms/vps.php:344
 msgid "Change NetBSD kernel"
@@ -770,9 +950,22 @@ msgstr "Отправлять ответное сообщение (об отсу�
 msgid "Checking filesystem..."
 msgstr "Проверка файловой системы..."
 
+#: shared/drawlib/cc_code_popup.php:146
+#, fuzzy
+msgid "Chile"
+msgstr " файл "
+
+#: shared/drawlib/cc_code_popup.php:147
+msgid "China"
+msgstr ""
+
 #: shared/inc/forms/packager.php:215
 msgid "Choose a package to install"
 msgstr "Выбор пакета для установки"
+
+#: shared/drawlib/cc_code_popup.php:148
+msgid "Christmas Island"
+msgstr ""
 
 #: shared/inc/forms/my_account.php:210
 msgid "City:"
@@ -801,8 +994,8 @@ msgstr "ID клиента:"
 msgid "Client info"
 msgstr "Информация о клиенте:"
 
-#: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:644
-#: shared/gfx/skin/bwoup/layout.php:646
+#: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:637
+#: shared/gfx/skin/bwoup/layout.php:639
 msgid "Client interface"
 msgstr "Клиентский интерфейс"
 
@@ -812,7 +1005,7 @@ msgid "Client name not found!"
 msgstr "Имя клиента не найдено!"
 
 #: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
-#: shared/gfx/skin/bwoup/layout.php:260 shared/gfx/skin/bwoup/layout.php:269
+#: shared/gfx/skin/bwoup/layout.php:253 shared/gfx/skin/bwoup/layout.php:262
 msgid "Client panel:"
 msgstr "Клиентская панель:"
 
@@ -827,6 +1020,18 @@ msgstr "Закрыт"
 #: shared/inc/forms/lists.php:397
 msgid "Closed list:"
 msgstr "Закрытый список:"
+
+#: shared/drawlib/cc_code_popup.php:149
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:150
+msgid "Colombia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:151
+msgid "Comoros"
+msgstr ""
 
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
@@ -846,8 +1051,8 @@ msgstr "Название компании:"
 msgid "Company name: "
 msgstr "Название компании: "
 
-#: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:434
-#: shared/gfx/skin/bwoup/layout.php:436
+#: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:427
+#: shared/gfx/skin/bwoup/layout.php:429
 msgid "Configuration generation"
 msgstr "Генерация конфигурации"
 
@@ -883,13 +1088,33 @@ msgstr "Повторите пароль: "
 msgid "Confirm password: "
 msgstr "Повторите пароль: "
 
+#: shared/drawlib/cc_code_popup.php:152
+msgid "Congo"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:153
+msgid "Congo, The Democratic Republic Of"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:469
 msgid "Console output"
 msgstr "Консольный вывод"
 
+#: shared/drawlib/cc_code_popup.php:154
+msgid "Cook Islands"
+msgstr ""
+
 #: shared/inc/forms/domain_stats.php:87 shared/inc/forms/domain_stats.php:94
 msgid "Copy to subdomains:"
 msgstr "Копировать в субдомены:"
+
+#: shared/drawlib/cc_code_popup.php:155
+msgid "Costa Rica"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:156
+msgid "Cote D'Ivoire"
+msgstr ""
 
 #: admin/deamons_state.php:163
 msgid "Could not connect to SMTP server (timed out): "
@@ -1004,6 +1229,15 @@ msgstr "Создать субдомен: "
 msgid "Credential not correct: can't display in file "
 msgstr "Некорректное удостоверение: не удалось показать в файле "
 
+#: shared/drawlib/cc_code_popup.php:157
+#, fuzzy
+msgid "Croatia"
+msgstr "Создать"
+
+#: shared/drawlib/cc_code_popup.php:158
+msgid "Cuba"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1003
 msgid "Currency letters: "
 msgstr "Символы валюты: "
@@ -1036,17 +1270,17 @@ msgstr "Сопоставление страны сервиса и заказчи
 msgid "Customer country"
 msgstr "Страна заказчика"
 
-#: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:409
-#: shared/gfx/skin/bwoup/layout.php:411
+#: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:402
+#: shared/gfx/skin/bwoup/layout.php:404
 msgid "Customer management"
 msgstr "Работа с заказчиками"
 
-#: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:499
+#: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:492
 msgid "Customer renewals"
 msgstr "Простои заказчиков"
 
 #: client/new_account_form.php:713 shared/gfx/skin/default_layout.php:120
-#: shared/gfx/skin/bwoup/layout.php:486
+#: shared/gfx/skin/bwoup/layout.php:479
 msgid "Customer's address"
 msgstr "Реквизиты заказчика"
 
@@ -1054,17 +1288,29 @@ msgstr "Реквизиты заказчика"
 msgid "Customer's administrators"
 msgstr "Администраторы заказчика"
 
-#: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:503
+#: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:496
 msgid "Customer's bandwidth consumption"
 msgstr "Потребление полосы заказчиком"
 
-#: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:481
+#: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:474
 msgid "Customers list"
 msgstr "Список заказчиков"
 
 #: shared/inc/forms/root_admin.php:347
 msgid "Customize"
 msgstr "Уточнить"
+
+#: shared/drawlib/cc_code_popup.php:159
+msgid "Cyprus"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:160
+msgid "Czech Republic"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:161
+msgid "Czechoslovakia"
+msgstr ""
 
 #: shared/inc/draw.php:135 shared/inc/draw.php:412
 msgid "DNS Nick handles"
@@ -1078,7 +1324,7 @@ msgstr "DNS и MX"
 msgid "DNS config of:"
 msgstr "Настройка DNS для:"
 
-#: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:526
+#: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:519
 msgid "DTC Configuration"
 msgstr "Настройка DTC"
 
@@ -1086,8 +1332,8 @@ msgstr "Настройка DTC"
 msgid "DTC Skin chooser"
 msgstr "Внешний вид DTC"
 
-#: shared/gfx/skin/default_layout.php:319 shared/gfx/skin/bwoup/layout.php:439
-#: shared/gfx/skin/bwoup/layout.php:441
+#: shared/gfx/skin/default_layout.php:319 shared/gfx/skin/bwoup/layout.php:432
+#: shared/gfx/skin/bwoup/layout.php:434
 msgid "DTC general configuration"
 msgstr "Общие настройки DTC"
 
@@ -1128,7 +1374,7 @@ msgstr "Базы данных:"
 msgid "Date"
 msgstr "Дата"
 
-#: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:511
+#: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:504
 msgid "Deamons states"
 msgstr "Состояние сервисов"
 
@@ -1223,6 +1469,10 @@ msgstr "Доставлять сообщения в локальный INBOX: "
 msgid "Delivery Group:"
 msgstr "Кому доставлять:"
 
+#: shared/drawlib/cc_code_popup.php:162
+msgid "Denmark"
+msgstr ""
+
 #: shared/inc/forms/lists.php:423
 msgid "Deny if no To: or Cc::"
 msgstr "Отказывать, если нет полей To: или Cc::"
@@ -1281,6 +1531,10 @@ msgstr "Использование диска"
 msgid "Display and sort by:"
 msgstr "Сортировать по:"
 
+#: shared/drawlib/cc_code_popup.php:163
+msgid "Djibouti"
+msgstr ""
+
 #: shared/inc/forms/lists.php:250
 msgid "Do not change unless you really know what you are doing."
 msgstr "Не изменяйте, если не знаете для чего это."
@@ -1301,8 +1555,8 @@ msgstr "Domain Technologie Control : консоль администрирова
 msgid "Domain Tools"
 msgstr "Инструменты работы с доменом"
 
-#: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:650
-#: shared/gfx/skin/bwoup/layout.php:652
+#: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:643
+#: shared/gfx/skin/bwoup/layout.php:645
 msgid "Domain config"
 msgstr "Настройка домена"
 
@@ -1351,6 +1605,15 @@ msgstr "TXT запись для корня домена: "
 msgid "Domains for"
 msgstr "Домены "
 
+#: shared/drawlib/cc_code_popup.php:164
+#, fuzzy
+msgid "Dominica"
+msgstr "Имя домена"
+
+#: shared/drawlib/cc_code_popup.php:165
+msgid "Dominican Republic"
+msgstr ""
+
 #: shared/inc/forms/subdomain.php:245
 msgid "Dynamic IP update login: "
 msgstr "Логин для динамического обновления IP: "
@@ -1367,6 +1630,14 @@ msgstr "УЧЁТНЫЕ ЗАПИСИ E-MAIL"
 #: admin/deamons_state.php:305 admin/deamons_state.php:311
 msgid "ERROR!"
 msgstr "ОШИБКА! "
+
+#: shared/drawlib/cc_code_popup.php:166
+msgid "East Timor"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:167
+msgid "Ecuador"
+msgstr ""
 
 #: shared/inc/forms/aliases.php:24
 msgid "Edit Mail Group"
@@ -1395,6 +1666,14 @@ msgstr "Редактирование ваших субдоменов"
 #: shared/inc/forms/email.php:246
 msgid "Edit your mailbox redirections:"
 msgstr "Редактировать пересылки ваших почтовых ящиков:"
+
+#: shared/drawlib/cc_code_popup.php:168
+msgid "Egypt"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:169
+msgid "El Salvador"
+msgstr ""
 
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
@@ -1460,7 +1739,16 @@ msgstr "Включить веб-архив:"
 msgid "Enter the domain name you want to register:"
 msgstr "Введите имя домена, которое вы хотите зарегистрировать:"
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
+#: shared/drawlib/cc_code_popup.php:170
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:171
+#, fuzzy
+msgid "Eritrea"
+msgstr "Истекает"
+
+#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
 msgid "Error"
 msgstr "Ошибка"
 
@@ -1475,6 +1763,14 @@ msgstr "Ошибка: псевдоним группы эл.почты с так�
 #: shared/inc/forms/email.php:422
 msgid "Error: a mailing list already exists with this name!"
 msgstr "Ошибка: список рассылки с таким именем уже существует!"
+
+#: shared/drawlib/cc_code_popup.php:172
+msgid "Estonia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:173
+msgid "Ethiopia"
+msgstr ""
 
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
 msgid "Expiration"
@@ -1533,6 +1829,10 @@ msgstr "Учётная запись FTP:"
 msgid "FTP password:"
 msgstr "Пароль FTP:"
 
+#: shared/drawlib/cc_code_popup.php:174
+msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
 #: admin/dtcrm/main.php:159 client/new_account_form.php:580
 #: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
 #: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
@@ -1542,6 +1842,10 @@ msgstr "Фамилия: "
 #: shared/inc/forms/my_account.php:206
 msgid "Family name:"
 msgstr "Фамилия:"
+
+#: shared/drawlib/cc_code_popup.php:175
+msgid "Faroe Islands"
+msgstr ""
 
 #: shared/inc/forms/my_account.php:214
 msgid "Fax:"
@@ -1556,6 +1860,10 @@ msgstr "Факс: "
 #: shared/inc/forms/email.php:301
 msgid "Fetchmail"
 msgstr "Fetchmail"
+
+#: shared/drawlib/cc_code_popup.php:176
+msgid "Fiji"
+msgstr ""
 
 #: shared/inc/forms/vps.php:276
 msgid "File system check (fsck)"
@@ -1574,6 +1882,10 @@ msgstr ""
 "<br>Чтобы отписаться отправьте письмо на адрес coollist+unsubscribe@lists."
 "domain.net."
 
+#: shared/drawlib/cc_code_popup.php:177
+msgid "Finland"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "Имя:"
@@ -1587,6 +1899,26 @@ msgstr "Имя: "
 #: admin/inc/draw_user_admin.php:126
 msgid "First query date: "
 msgstr "Дата обращения: "
+
+#: shared/drawlib/cc_code_popup.php:178
+msgid "France"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:179
+msgid "France, Metropolitan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:180
+msgid "French Guiana"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:181
+msgid "French Polynesia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:182
+msgid "French Southern Territories"
+msgstr ""
 
 #: shared/inc/forms/ticket.php:57
 msgid "Full description of the trouble:"
@@ -1602,6 +1934,14 @@ msgstr "Полный путь файла public.key для поддержки Do
 
 #: shared/drawlib/dtc_functions.php:729
 msgid "GBytes"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:183
+msgid "Gabon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:184
+msgid "Gambia"
 msgstr ""
 
 #: shared/securepay/pay_functions.php:35
@@ -1624,6 +1964,22 @@ msgstr "Генерировать запись vhost для этого субдо
 msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "Генерировать все apache vhost на локальный сетевой ip (NAT): "
 
+#: shared/drawlib/cc_code_popup.php:185
+msgid "Georgia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:186
+msgid "Germany"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:187
+msgid "Ghana"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:188
+msgid "Gibraltar"
+msgstr ""
+
 #: email/login.php:6
 msgid "Go to client panel"
 msgstr "Перейти в клиентскую панель"
@@ -1644,13 +2000,66 @@ msgstr "Поэтапное выключение (выключение xm)"
 msgid "Grant sub-account addition rights (reseller):"
 msgstr "Дополнительные права (посредник):"
 
+#: shared/drawlib/cc_code_popup.php:189
+msgid "Great Britain"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:190
+msgid "Greece"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:191
+msgid "Greenland"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:192
+msgid "Grenada"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:193
+msgid "Guadeloupe"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:194
+msgid "Guam"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:195
+msgid "Guatemela"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:196
+msgid "Guernsey"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:197
+#, fuzzy
+msgid "Guinea"
+msgstr "Общие"
+
+#: shared/drawlib/cc_code_popup.php:198
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:199
+msgid "Guyana"
+msgstr ""
+
 #: shared/inc/forms/vps.php:113
 msgid "HDD I/O:"
 msgstr "Дисковый в/в:"
 
+#: shared/drawlib/cc_code_popup.php:200
+msgid "Haiti"
+msgstr ""
+
 #: shared/inc/forms/lists.php:403
 msgid "Header"
 msgstr "Заголовок"
+
+#: shared/drawlib/cc_code_popup.php:201
+msgid "Heard and McDonald Islands"
+msgstr ""
 
 #: shared/inc/draw.php:311
 msgid "Help"
@@ -1693,6 +2102,15 @@ msgstr ""
 msgid "Hide email addresses to avoid spam."
 msgstr "Скрывать почтовые адреса, чтобы избежать спама."
 
+#: shared/drawlib/cc_code_popup.php:202
+msgid "Honduras"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:203
+#, fuzzy
+msgid "Hong Kong"
+msgstr "только хостинг"
+
 #: admin/inc/dtc_config.php:720
 msgid "Host IP addresses (separated by \"|\"): "
 msgstr "IP-адреса хоста (разделённые \"|\"): "
@@ -1706,8 +2124,8 @@ msgid "Hosting only"
 msgstr "только хостинг"
 
 #: shared/gfx/skin/default_layout.php:159
-#: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:429
-#: shared/gfx/skin/bwoup/layout.php:431 shared/gfx/skin/bwoup/layout.php:539
+#: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:422
+#: shared/gfx/skin/bwoup/layout.php:424 shared/gfx/skin/bwoup/layout.php:532
 msgid "Hosting product manager"
 msgstr "Управление продуктами хостинга"
 
@@ -1728,6 +2146,10 @@ msgid ""
 "How many recipients pr. mail delivered to the smtp server. Defaults to 100."
 msgstr ""
 "Сколько получателей pr. mail доставляется серверу smtp. По умолчанию 100."
+
+#: shared/drawlib/cc_code_popup.php:204
+msgid "Hungary"
+msgstr ""
 
 #: client/new_account_form.php:635
 msgid "I agree to the"
@@ -1774,6 +2196,10 @@ msgstr "IP главного сервера DNS для записи в named.slav
 #: admin/inc/dtc_config.php:522
 msgid "IPs addrs"
 msgstr "Адреса IP"
+
+#: shared/drawlib/cc_code_popup.php:205
+msgid "Iceland"
+msgstr ""
 
 #: admin/deamons_state.php:239
 msgid "If no FTP user was created, please make at least one!"
@@ -1957,6 +2383,14 @@ msgstr ""
 msgid "Incorrect sub-domain format."
 msgstr "Неверный формат субдомена."
 
+#: shared/drawlib/cc_code_popup.php:206
+msgid "India"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:207
+msgid "Indonesia"
+msgstr ""
+
 #: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
 msgstr "Укажите адрес эл.почты, чтобы подписаться."
@@ -2006,6 +2440,18 @@ msgstr "Произвольный текст в счёте:"
 msgid "Invoicing"
 msgstr "Выписка счетов"
 
+#: shared/drawlib/cc_code_popup.php:208
+msgid "Iran (Islamic Republic Of)"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:209
+msgid "Iraq"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:210
+msgid "Ireland"
+msgstr ""
+
 #: client/new_account_form.php:237
 msgid "Is company radio button is wrong!"
 msgstr "Ошибочный выбор компании!"
@@ -2022,10 +2468,73 @@ msgstr ""
 "Это будет открытый или закрытый список. Если закрытый, то подписка и "
 "отпискачерез почту будет выключена."
 
+#: shared/drawlib/cc_code_popup.php:211
+msgid "Isle Of Man"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:212
+#, fuzzy
+msgid "Israel"
+msgstr "Установить"
+
+#: shared/drawlib/cc_code_popup.php:213
+#, fuzzy
+msgid "Italy"
+msgstr "Установить"
+
+#: shared/drawlib/cc_code_popup.php:214
+msgid "Jamaica"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:215
+msgid "Japan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:216
+#, fuzzy
+msgid "Jersey"
+msgstr "здесь"
+
+#: shared/drawlib/cc_code_popup.php:217
+msgid "Jordan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:218
+msgid "Kazakhstan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:219
+msgid "Kenya"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:220
+msgid "Kiribati"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:221
+msgid "Korea, Democratic People's Republic Of"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:222
+msgid "Korea, Republic Of"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:223
+msgid "Kuwait"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:224
+msgid "Kyrgyzstan"
+msgstr ""
+
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
-#: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:251
+#: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:244
 msgid "Language"
 msgstr "Язык"
+
+#: shared/drawlib/cc_code_popup.php:225
+msgid "Lao People's Democratic Republic"
+msgstr ""
 
 #: shared/inc/forms/vps.php:176
 msgid "Last boot date: "
@@ -2048,7 +2557,11 @@ msgstr "Последний месяц: "
 msgid "Last warning: "
 msgstr "Последнее предупреждение: "
 
-#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:509
+#: shared/drawlib/cc_code_popup.php:226
+msgid "Latvia"
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:502
 msgid "Launching the configuration files generation"
 msgstr "Запуск генерации конфигурационных файлов"
 
@@ -2059,6 +2572,26 @@ msgid ""
 msgstr ""
 "Если есть, опишите любые специфические требования, которые нужны для вашего "
 "аккаунта:"
+
+#: shared/drawlib/cc_code_popup.php:227
+msgid "Lebanon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:228
+msgid "Lesotho"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:229
+msgid "Liberia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:230
+msgid "Libyan Arab Jamahiriya"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:231
+msgid "Liechtenstein"
+msgstr ""
 
 #: shared/inc/sql/lists.php:211
 msgid "List #name#@#domain# successfully created!"
@@ -2142,6 +2675,10 @@ msgstr ""
 msgid "Lists max"
 msgstr "Макс списков"
 
+#: shared/drawlib/cc_code_popup.php:232
+msgid "Lithuania"
+msgstr ""
+
 #: admin/inc/dtc_config.php:734
 msgid "Local network area ip address of the vhost using NAT: "
 msgstr "Локальная сеть IP-адресов для vhost, использующего NAT: "
@@ -2164,8 +2701,8 @@ msgstr "Расположение БД пользователя: "
 #: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:24
 #: shared/gfx/skin/default_layout.php:34 shared/gfx/skin/default_layout.php:63
 #: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:53
-#: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:260
-#: shared/gfx/skin/bwoup/layout.php:269
+#: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:253
+#: shared/gfx/skin/bwoup/layout.php:262
 msgid "Login"
 msgstr "Вход"
 
@@ -2197,6 +2734,10 @@ msgstr "Путь к логотипу, не считая"
 msgid "Logout"
 msgstr "Выйти"
 
+#: shared/drawlib/cc_code_popup.php:233
+msgid "Luxembourg"
+msgstr ""
+
 #: shared/drawlib/dtc_functions.php:730 shared/inc/forms/email.php:587
 #: shared/inc/forms/email.php:594
 msgid "MBytes"
@@ -2205,6 +2746,18 @@ msgstr ""
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "Резервные серверы MX и NS"
+
+#: shared/drawlib/cc_code_popup.php:234
+msgid "Macau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:235
+msgid "Macedonia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:236
+msgid "Madagascar"
+msgstr ""
 
 #: shared/inc/draw.php:359
 msgid "Mail Groups:"
@@ -2290,9 +2843,46 @@ msgstr "Основной IP-адрес сервера: "
 msgid "Main software configuration of DTC"
 msgstr "Настройка основного программного обеспечения DTC"
 
+#: shared/drawlib/cc_code_popup.php:237
+msgid "Malawi"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:238
+#, fuzzy
+msgid "Malaysia"
+msgstr "псевдоним"
+
+#: shared/drawlib/cc_code_popup.php:239
+msgid "Maldives"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:240
+msgid "Mali"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:241
+msgid "Malta"
+msgstr ""
+
 #: shared/inc/draw.php:422
 msgid "Manage my name servers:"
 msgstr "Управление моими серверами имён:"
+
+#: shared/drawlib/cc_code_popup.php:242
+msgid "Marshall Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:243
+msgid "Martinique"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:244
+msgid "Mauritania"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:245
+msgid "Mauritius"
+msgstr ""
 
 #: shared/inc/forms/root_admin.php:372
 msgid "Max FTP"
@@ -2338,6 +2928,10 @@ msgstr "Лицензионный ключ Maxmind: "
 msgid "Maxmind login: "
 msgstr "Maxmind логин: "
 
+#: shared/drawlib/cc_code_popup.php:246
+msgid "Mayotte"
+msgstr ""
+
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
 msgstr "Использование памяти и пространства подкачки "
@@ -2350,6 +2944,14 @@ msgstr "Память: "
 msgid "Method getVPSState failed"
 msgstr "Метод getVPSState завершился неудачно"
 
+#: shared/drawlib/cc_code_popup.php:247
+msgid "Mexico"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:248
+msgid "Micronesia, Federated States Of"
+msgstr ""
+
 #: shared/inc/forms/lists.php:399
 msgid "Moderated:"
 msgstr "Модерируемый:"
@@ -2358,13 +2960,38 @@ msgstr "Модерируемый:"
 msgid "Moderators:"
 msgstr "Модераторы:"
 
+#: shared/drawlib/cc_code_popup.php:249
+msgid "Moldova, Republic Of"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:250
+msgid "Monaco"
+msgstr ""
+
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
 msgstr "Денежный остаток: "
 
+#: shared/drawlib/cc_code_popup.php:251
+msgid "Mongolia"
+msgstr ""
+
 #: admin/inc/dtc_config.php:359
 msgid "Monthly"
 msgstr "Ежемесячно"
+
+#: shared/drawlib/cc_code_popup.php:252
+#, fuzzy
+msgid "Montserrat"
+msgstr "Модерируемый:"
+
+#: shared/drawlib/cc_code_popup.php:253
+msgid "Morocco"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:254
+msgid "Mozambique"
+msgstr ""
 
 #: shared/inc/draw.php:426
 msgid "My Account information:"
@@ -2397,6 +3024,10 @@ msgid ""
 msgstr ""
 "Недопустимый владелец базы данных MySql: нельзя удалить эту базу данных, так "
 "как, кажется, что она вам не принадлежит."
+
+#: shared/drawlib/cc_code_popup.php:255
+msgid "Myanmar"
+msgstr ""
 
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
@@ -2475,9 +3106,29 @@ msgstr "Файл зоны named:"
 msgid "Named zonefiles"
 msgstr "Файлы зон named"
 
+#: shared/drawlib/cc_code_popup.php:256
+msgid "Namibia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:257
+msgid "Nauru"
+msgstr ""
+
 #: shared/inc/forms/packager.php:218
 msgid "Need a database"
 msgstr "Требуется база данных"
+
+#: shared/drawlib/cc_code_popup.php:258
+msgid "Nepal"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:259
+msgid "Netherlands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:260
+msgid "Netherlands Antilles"
+msgstr ""
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
@@ -2486,6 +3137,14 @@ msgstr "Статистика по сетевому трафику"
 #: shared/inc/forms/vps.php:102
 msgid "Network:"
 msgstr "Сеть:"
+
+#: shared/drawlib/cc_code_popup.php:261
+msgid "Neutral Zone"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:262
+msgid "New Caledonia"
+msgstr ""
 
 #: shared/inc/forms/ftp.php:52
 msgid "New FTP account: "
@@ -2502,6 +3161,10 @@ msgstr "Новый ключ SSH: "
 #: shared/inc/forms/vps.php:353
 msgid "New SSH password: "
 msgstr "Новый пароль SSH: "
+
+#: shared/drawlib/cc_code_popup.php:263
+msgid "New Zealand"
+msgstr ""
 
 #: admin/dtcrm/main.php:11 admin/dtcrm/main.php:24
 msgid "New customer"
@@ -2531,9 +3194,25 @@ msgstr "Новый виртуальный администратор"
 msgid "Next cronjob"
 msgstr "Следующий cronjob"
 
+#: shared/drawlib/cc_code_popup.php:264
+msgid "Nicaragua"
+msgstr ""
+
 #: admin/inc/dtc_config.php:293
 msgid "Nick name"
 msgstr "Краткое имя"
+
+#: shared/drawlib/cc_code_popup.php:265
+msgid "Niger"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:266
+msgid "Nigeria"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:267
+msgid "Niue"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:159 admin/inc/draw_user_admin.php:274
 #: admin/inc/draw_user_admin.php:342 admin/inc/dtc_config.php:266
@@ -2642,6 +3321,18 @@ msgstr ""
 msgid "No user waiting!"
 msgstr "Нет ожидающих пользователей!"
 
+#: shared/drawlib/cc_code_popup.php:268
+msgid "Norfolk Island"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:269
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:270
+msgid "Norway"
+msgstr ""
+
 #: shared/inc/forms/dedicated.php:36 shared/inc/forms/invoices.php:39
 #: shared/inc/forms/invoices.php:40 shared/inc/forms/invoices.php:41
 msgid "Not found!"
@@ -2720,6 +3411,10 @@ msgstr "Ok"
 msgid "Old tickets:"
 msgstr "Старые тикеты:"
 
+#: shared/drawlib/cc_code_popup.php:271
+msgid "Oman"
+msgstr ""
+
 #: shared/inc/draw.php:549
 msgid "Online DTC help"
 msgstr "Онлайн помощь DTC"
@@ -2795,6 +3490,30 @@ msgstr "Имя пакета"
 #: shared/inc/forms/packager.php:218
 msgid "Package version"
 msgstr "Версия пакета"
+
+#: shared/drawlib/cc_code_popup.php:272
+msgid "Pakistan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:273
+msgid "Palau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:274
+msgid "Palestine"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:275
+msgid "Panama"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:276
+msgid "Papua New Guinea"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:277
+msgid "Paraguay"
+msgstr ""
 
 #: admin/inc/dtc_config.php:839 admin/inc/dtc_config.php:866
 #: admin/inc/dtc_config.php:891 admin/inc/dtc_config.php:918
@@ -2934,6 +3653,15 @@ msgstr "Ожидание"
 msgid "Period"
 msgstr "Период"
 
+#: shared/drawlib/cc_code_popup.php:278
+#, fuzzy
+msgid "Peru"
+msgstr "Период"
+
+#: shared/drawlib/cc_code_popup.php:279
+msgid "Philippines"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:213
 msgid "Phone number:"
 msgstr "Номер телефона:"
@@ -2947,6 +3675,10 @@ msgstr "Номер телефона: "
 #: shared/inc/forms/vps.php:350
 msgid "Physical console last display and ssh access:"
 msgstr "Последний доступ к физической консоли и ssh:"
+
+#: shared/drawlib/cc_code_popup.php:280
+msgid "Pitcairn"
+msgstr ""
 
 #: shared/inc/forms/database.php:127
 msgid "Please create a MySQL user in order to be able to create a database."
@@ -2993,9 +3725,18 @@ msgstr "Подождите, пока сначала завершится про�
 msgid "Please wait until operating system reinstallation has completed."
 msgstr "Подождите, пока завершится переустановка операционной системы."
 
+#: shared/drawlib/cc_code_popup.php:281
+msgid "Poland"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1136
 msgid "Port number: "
 msgstr "Номер порта: "
+
+#: shared/drawlib/cc_code_popup.php:282
+#, fuzzy
+msgid "Portugal"
+msgstr "Всего"
 
 #: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
@@ -3083,6 +3824,15 @@ msgstr "Защитить каталоги журналов и статистик
 #: shared/inc/forms/email.php:315
 msgid "Protect your mailbox with efficient tools:"
 msgstr "Защитить ваши почтовые ящики эффективными инструментами:"
+
+#: shared/drawlib/cc_code_popup.php:283
+msgid "Puerto Rico"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:284
+#, fuzzy
+msgid "Qatar"
+msgstr "Квота"
 
 #: admin/dtcrm/main.php:214
 msgid "Quantity"
@@ -3234,8 +3984,8 @@ msgstr "ID простоя"
 msgid "Renewals"
 msgstr "Простои"
 
-#: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:424
-#: shared/gfx/skin/bwoup/layout.php:426
+#: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:417
+#: shared/gfx/skin/bwoup/layout.php:419
 msgid "Renewals management"
 msgstr "Контроль простоя"
 
@@ -3279,14 +4029,32 @@ msgstr "Перепродавец дочерних аккаунтов"
 msgid "Retype new password:"
 msgstr "Новый пароль ещё раз:"
 
+#: shared/drawlib/cc_code_popup.php:285
+#, fuzzy
+msgid "Reunion"
+msgstr "Оплата"
+
 #: shared/inc/forms/lists.php:395
 msgid "Rights"
 msgstr "Права"
+
+#: shared/drawlib/cc_code_popup.php:286
+#, fuzzy
+msgid "Romania"
+msgstr "Компании"
 
 #: admin/deamons_state.php:291 admin/deamons_state.php:297
 #: admin/deamons_state.php:303 admin/deamons_state.php:309
 msgid "Running ok"
 msgstr "Работает нормально"
+
+#: shared/drawlib/cc_code_popup.php:287
+msgid "Russian Federation"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:288
+msgid "Rwanda"
+msgstr ""
 
 #: shared/inc/forms/lists.php:426
 msgid "SMTP configuration"
@@ -3364,9 +4132,45 @@ msgstr "Выделенные IP-адреса SSL: "
 msgid "SSL tokens"
 msgstr "SSL токены"
 
+#: shared/drawlib/cc_code_popup.php:289
+msgid "Saint Helena"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:290
+msgid "Saint Kitts And Nevis"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:291
+msgid "Saint Lucia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:292
+msgid "Saint Pierre and Miquelon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:293
+msgid "Saint Vincent and The Grenadines"
+msgstr ""
+
 #: admin/inc/dtc_config.php:671
 msgid "Same as for DTC"
 msgstr "где и DTC"
+
+#: shared/drawlib/cc_code_popup.php:294
+msgid "Samoa"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:295
+msgid "San Marino"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:296
+msgid "Sao Tome and Principe"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:297
+msgid "Saudi Arabia"
+msgstr ""
 
 #: shared/inc/forms/database.php:49 shared/inc/forms/database.php:95
 #: shared/inc/forms/domain_stats.php:98
@@ -3433,6 +4237,15 @@ msgstr "Послать ответ и закрыть тикет"
 msgid "Send trouble ticket"
 msgstr "Отправить трабл-тикет"
 
+#: shared/drawlib/cc_code_popup.php:298
+#, fuzzy
+msgid "Senegal"
+msgstr "Общие"
+
+#: shared/drawlib/cc_code_popup.php:299
+msgid "Serbia"
+msgstr ""
+
 #: admin/inc/renewals.php:245
 msgid "Server"
 msgstr "Сервер"
@@ -3468,8 +4281,8 @@ msgstr ""
 msgid "Server hostname related: "
 msgstr "Относится к серверу с именем хоста: "
 
-#: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:419
-#: shared/gfx/skin/bwoup/layout.php:421
+#: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:412
+#: shared/gfx/skin/bwoup/layout.php:414
 msgid "Server monitor"
 msgstr "Мониторинг сервера"
 
@@ -3489,7 +4302,7 @@ msgstr "Сервер не найден!"
 msgid "Server said: "
 msgstr "Сервер отвечает: "
 
-#: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:506
+#: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:499
 msgid "Server statistic graphs"
 msgstr "Графики статистики сервера"
 
@@ -3504,6 +4317,10 @@ msgstr "Страна сервиса"
 #: shared/inc/forms/root_admin.php:233
 msgid "Setup physical VPS (LVM): "
 msgstr "Установка физического VPS (LVM): "
+
+#: shared/drawlib/cc_code_popup.php:300
+msgid "Seychelles"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:363
 msgid "Shared"
@@ -3525,9 +4342,51 @@ msgstr "Короткое название: "
 msgid "Shutdown warning: "
 msgstr "Предупреждение о выключении: "
 
+#: shared/drawlib/cc_code_popup.php:301
+#, fuzzy
+msgid "Sierra Leone"
+msgstr "Имя сервера"
+
+#: shared/drawlib/cc_code_popup.php:302
+msgid "Singapore"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:303
+msgid "Slovakia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:304
+msgid "Slovenia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:305
+msgid "Solomon Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:306
+#, fuzzy
+msgid "Somalia"
+msgstr "Макс субдоменов"
+
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "Sorry, the domain name "
 msgstr "Извините, но доменное имя "
+
+#: shared/drawlib/cc_code_popup.php:307
+msgid "South Africa"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:308
+msgid "South Georgia and The Sandwich Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:309
+msgid "Spain"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:310
+msgid "Sri Lanka"
+msgstr ""
 
 #: shared/inc/forms/vps.php:255
 msgid "Start and stop of your VPS:"
@@ -3668,6 +4527,11 @@ msgstr "Письма принимаются только от подписчик
 msgid "Successfully added your domain name to the hosting database"
 msgstr "Доменное имя успешно добавлено в базу данных хостинга"
 
+#: shared/drawlib/cc_code_popup.php:311
+#, fuzzy
+msgid "Sudan"
+msgstr "Субдомены"
+
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
 msgstr "Тикетная система"
@@ -3680,9 +4544,34 @@ msgstr "Настройка поддержки тикетов"
 msgid "Support tickets"
 msgstr "Поддержка тикетов"
 
+#: shared/drawlib/cc_code_popup.php:312
+#, fuzzy
+msgid "Suriname"
+msgstr "Имя сервера"
+
+#: shared/drawlib/cc_code_popup.php:313
+msgid "Svalbard and Jan Mayen Islands"
+msgstr ""
+
 #: shared/inc/forms/vps.php:110
 msgid "Swap I/O:"
 msgstr "Подкачка В/В:"
+
+#: shared/drawlib/cc_code_popup.php:314
+msgid "Swaziland"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:315
+msgid "Sweden"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:316
+msgid "Switzerland"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:317
+msgid "Syrian Arab Republic"
+msgstr ""
 
 #: client/new_account.php:108
 msgid "TRANSACTION FINISHED AND APPROVED"
@@ -3705,6 +4594,14 @@ msgstr "ПРОВЕРКА ПЕРЕНОСА ПРОШЛА УСПЕШНО"
 #: shared/inc/forms/subdomain.php:178
 msgid "TXT field of the subdomain: "
 msgstr "Поле TXT субдомена: "
+
+#: shared/drawlib/cc_code_popup.php:318
+msgid "Taiwan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:319
+msgid "Tajikista"
+msgstr ""
 
 #: shared/inc/forms/dns.php:86
 msgid ""
@@ -3742,6 +4639,10 @@ msgstr ""
 msgid "Take control of your domain name"
 msgstr "Управляй своим доменом"
 
+#: shared/drawlib/cc_code_popup.php:320
+msgid "Tanzania, United Republic Of"
+msgstr ""
+
 #: shared/securepay/pay_functions.php:29
 msgid "Taxes (VAT or GST)"
 msgstr "Налоги (НДС или GST)"
@@ -3757,6 +4658,10 @@ msgstr "Сообщать этим серверам об удалении или 
 #: admin/inc/dtc_config.php:1065
 msgid "Test server"
 msgstr "тестовый"
+
+#: shared/drawlib/cc_code_popup.php:321
+msgid "Thailand"
+msgstr ""
 
 #: shared/inc/sql/database.php:144
 msgid ""
@@ -3945,6 +4850,20 @@ msgstr "To: или Cc: необязательны:"
 msgid "Today is the: "
 msgstr "Сегодня: "
 
+#: shared/drawlib/cc_code_popup.php:322
+#, fuzzy
+msgid "Togo"
+msgstr "Выйти"
+
+#: shared/drawlib/cc_code_popup.php:323
+msgid "Tokelau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:324
+#, fuzzy
+msgid "Tonga"
+msgstr "Всего"
+
 #: shared/securepay/pay_functions.php:35
 msgid "Total"
 msgstr "Всего"
@@ -4016,6 +4935,30 @@ msgstr "Пересылка помесячно"
 msgid "Transfer this month:"
 msgstr "Пересылка в этом месяце:"
 
+#: shared/drawlib/cc_code_popup.php:325
+msgid "Trinidad and Tobago"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:326
+msgid "Tunisia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:327
+msgid "Turkey"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:328
+msgid "Turkmenistan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:329
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:330
+msgid "Tuvalu"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
 #: shared/inc/forms/ticket.php:158
 msgid "Type"
@@ -4046,6 +4989,34 @@ msgstr "Тип: тип не найден!"
 msgid "URL"
 msgstr "URL"
 
+#: shared/drawlib/cc_code_popup.php:331
+msgid "USSR"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:332
+msgid "Uganda"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:333
+msgid "Ukraine"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:334
+msgid "United Arab Emirates"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:335
+msgid "United Kingdom"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:336
+msgid "United States"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:337
+msgid "United States Minor Outlying Islands"
+msgstr ""
+
 #: shared/inc/forms/packager.php:218
 msgid "Unpack size"
 msgstr "В распакованном виде"
@@ -4065,6 +5036,10 @@ msgstr "Обновление моего аккаунта"
 #: shared/dtcrm/draw.php:33
 msgid "Upgrade my account:"
 msgstr "Обновление моего аккаунта:"
+
+#: shared/drawlib/cc_code_popup.php:338
+msgid "Uruguay"
+msgstr ""
 
 #: shared/inc/forms/domain_info.php:59 shared/inc/forms/email.php:27
 msgid "Use"
@@ -4187,7 +5162,7 @@ msgstr "Имя суперпользователя MySQL: "
 msgid "User MySQL root password: "
 msgstr "Пароль суперпользователя MySQL: "
 
-#: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:574
+#: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:567
 msgid "User administration"
 msgstr "Управление пользователями"
 
@@ -4222,10 +5197,14 @@ msgid ""
 msgstr ""
 "Неверное имя пользователя: выберите другое, а не root или debian-sys-maint"
 
-#: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:404
-#: shared/gfx/skin/bwoup/layout.php:406
+#: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:397
+#: shared/gfx/skin/bwoup/layout.php:399
 msgid "Users administration"
 msgstr "Управление пользователями"
+
+#: shared/drawlib/cc_code_popup.php:339
+msgid "Uzbekistan"
+msgstr ""
 
 #: client/new_account_form.php:593
 msgid "VAT Number: "
@@ -4319,17 +5298,46 @@ msgstr "VPS: VPS в базе данных не найдена!"
 msgid "Validate new account if paid: "
 msgstr "Подтверждать новый аккаунт после оплаты: "
 
+#: shared/drawlib/cc_code_popup.php:340
+msgid "Vanuatu"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:341
+msgid "Vatican City State"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:342
+msgid "Venezuela"
+msgstr ""
+
 #: shared/inc/forms/root_admin.php:346
 msgid "Vhost"
 msgstr "Vhost"
+
+#: shared/drawlib/cc_code_popup.php:343
+#, fuzzy
+msgid "Vietnam"
+msgstr "Название списка"
 
 #: admin/inc/draw_user_admin.php:279
 msgid "View details"
 msgstr "Подробности"
 
+#: shared/drawlib/cc_code_popup.php:344
+msgid "Virgin Islands (British)"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:345
+msgid "Virgin Islands (U.S.)"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1236
 msgid "Virtual host config-file:"
 msgstr "Файл настройки виртуальных хостов:"
+
+#: shared/drawlib/cc_code_popup.php:346
+msgid "Wallis and Futuna Islands"
+msgstr ""
 
 #: admin/inc/dtc_config.php:213
 msgid "Warnings after expiration: "
@@ -4354,6 +5362,14 @@ msgstr "Еженедельно"
 #: shared/inc/forms/email.php:327
 msgid "Welcom to the email panel!"
 msgstr "Добро пожаловать в панель управления почтой!"
+
+#: shared/drawlib/cc_code_popup.php:347
+msgid "West Bank and Gaza"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:348
+msgid "Western Sahara"
+msgstr ""
 
 #: admin/dtcrm/main.php:211
 msgid "What"
@@ -4419,6 +5435,10 @@ msgstr "Whois:"
 #: shared/inc/fetch.php:39 shared/inc/fetch.php:362 shared/inc/fetch.php:367
 msgid "Wrong user or password, or timeout expired!"
 msgstr "Неверное имя пользователя, пароль или истекло время ожидания!"
+
+#: shared/drawlib/cc_code_popup.php:349
+msgid "Yemen, Republic of"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
 #: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
@@ -4642,7 +5662,7 @@ msgstr "Ваше доменное имя будет скоро подтверж�
 msgid "Your domain:"
 msgstr "Ваш домен:"
 
-#: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:367
+#: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:360
 msgid "Your domains"
 msgstr "Ваши домены"
 
@@ -4677,6 +5697,22 @@ msgstr "Путь ограничивается "
 #: shared/inc/forms/database.php:32
 msgid "Your users"
 msgstr "Ваши пользователи"
+
+#: shared/drawlib/cc_code_popup.php:350
+msgid "Yugoslavia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:351
+msgid "Zaire"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:352
+msgid "Zambia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:353
+msgid "Zimbabwe"
+msgstr ""
 
 #: shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
@@ -4721,9 +5757,20 @@ msgstr "Сервер eNETS: "
 msgid "eNETS test merchant ID: "
 msgstr "тестовый коммерческий ID в eNETS: "
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
+#: shared/inc/fetch.php:454
+msgid ""
+"either your login and password pair is not valid, either your session "
+"expired (timed out)."
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
 msgid "fetching admin: "
 msgstr "получение admin: "
+
+#: shared/inc/fetch.php:454
+#, fuzzy
+msgid "file"
+msgstr " файл "
 
 #: shared/inc/forms/email.php:600
 #, fuzzy
