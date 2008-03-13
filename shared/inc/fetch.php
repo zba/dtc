@@ -445,13 +445,13 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$result = mysql_query ($query);
 	if (!$result){
 		$ret["err"] = 1;
-		$ret["mesg"]="Cannot execute query for password line ".__LINE__." file ".__FILE__." (error message removed for security reasons).";
+		$ret["mesg"] = "Cannot execute query for password line ".__LINE__." file ".__FILE__." (MySQL error message removed for security reasons).";
 		return $ret;
 	}
 	$row = mysql_fetch_array($result);
 	if (!$row){
 		$ret["err"] = 2;
-		$ret["mesg"]="Cannot fetch user line ".__LINE__." file ".__FILE__;
+		$ret["mesg"]= _("Cannot fetch user line")." ".__LINE__." "._("file")." ".__FILE__." "._("either your login and password pair is not valid, either your session expired (timed out).");
 		return $ret;
 	}
 
@@ -895,6 +895,10 @@ function fetchAdmin($adm_login, $adm_pass){
 	if($data["err"] != 0){
 		$ret["err"] = $data["err"];
 		$ret["mesg"] = $data["mesg"];
+		return $ret;
+/* I'm disabling this peace of code, I think it's quite hugly
+
+
 		$http_auth_worked = 0;
 		//if we have PHP_AUTH_USER or PHP_AUTH_PW, try to use them here
 		if (!isset($_SERVER['PHP_AUTH_USER'])) {
@@ -931,10 +935,16 @@ function fetchAdmin($adm_login, $adm_pass){
 		if ($http_auth_worked == 0){
 			return $ret;
 		}
+		*/
 	}
 	//since we are here, our login/password combo must be valid
-	$_SERVER['PHP_AUTH_USER'] = $adm_login;
-	$_SERVER['PHP_AUTH_PW'] = $adm_pass;
+
+// Note from Thomas:
+// This one I really don't get it!
+// My code with MySQL rotating password is to avoid storing
+// things in php sessions that are by definition unsafe.
+//	$_SERVER['PHP_AUTH_USER'] = $adm_login;
+//	$_SERVER['PHP_AUTH_PW'] = $adm_pass;
 
 	$info = fetchAdminInfo($adm_login);
 	if($info["err"] != 0){
