@@ -232,7 +232,7 @@ function drawAdminTools_NickHandles($admin){
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Familly name: ") ."</td>
 	<td><input type=\"text\" name=\"lastname\" value=\"".$hdllastname."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Addresse (line1): ") ."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Address (line1): ") ."</td>
 	<td><input type=\"text\" name=\"addr1\" value=\"".$hdladdr1."\">
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Address (line2): ") ."<br><i>". _("optional") ."</i></td>

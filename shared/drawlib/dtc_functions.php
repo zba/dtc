@@ -246,6 +246,16 @@ function checkSubdomainFormat($name){
 	}
 }
 
+// Check if a string is an ssh key
+// TO BE DONE!!!
+function isSSHKey($ssh_key){
+	if(ereg("^ssh-[rd]s[as] [a-zA-Z+/=]+\$",$ssh_key)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 // Check for email addr we allow to create using DTC
 function isMailbox($mailbox){
 	$reg = "^([a-zA-Z0-9])|([a-zA-Z0-9]+)([_.a-zA-Z0-9-]+)\$";
@@ -716,10 +726,10 @@ function smartDate($date){
 }
 
 function smartByte($bytes){
-	if($bytes>1024*1024*1024)	return round(($bytes / (1024*1024*1024)),3) ." GBytes";
-	if($bytes>1024*1024)		return round(($bytes / (1024*1024)),3) ." MBytes";
-	if($bytes>1024)				return round(($bytes / 1024),3) ." kBytes";
-	return $bytes." Bytes";
+	if($bytes>1024*1024*1024)	return round(($bytes / (1024*1024*1024)),3) ." ". _("GBytes");
+	if($bytes>1024*1024)		return round(($bytes / (1024*1024)),3) ." ". _("MBytes");
+	if($bytes>1024)				return round(($bytes / 1024),3) ." "._("kBytes");
+	return $bytes." "._("Bytes");
 }
 
 function calculateExpirationDate($date,$period){

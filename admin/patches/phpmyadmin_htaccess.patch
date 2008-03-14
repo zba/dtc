@@ -1,0 +1,9 @@
+--- /usr/share/phpmyadmin/.htaccess.orig	2008-03-02 15:00:36.000000000 +0800
++++ /usr/share/phpmyadmin/.htaccess	2008-03-02 15:00:50.000000000 +0800
+@@ -1,5 +1,5 @@
+ DirectoryIndex index.php
+-Options +FollowSymLinks -Indexes
++#Options +FollowSymLinks -Indexes
+ 
+ <IfModule mod_mime.c>
+     <IfModule mod_php4.c>

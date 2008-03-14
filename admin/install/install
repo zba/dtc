@@ -14,28 +14,37 @@ if [ -f /etc/debian_version ] ; then
 		PATH_HTTPD_CONF=/etc/apache/httpd.conf
 	fi
 	. /usr/share/dtc/admin/install/functions
+	DTCsetupDaemons
 fi
 
 # Find the rpm exec: it can be not present, thus the || to avoid
 # that this script fails
-RPM=`which rpm || true`
-if [ -x "$RPM" ] ; then
-	if rpm -q coreutils >/dev/null ; then
-		# Prepare everything
-		. /usr/share/dtc/admin/install/redhat_config
-		. /usr/share/dtc/admin/install/functions
-		. /usr/share/dtc/admin/install/interactive_installer
-		interactiveInstaller
-		DTCinstallPackage
-		/usr/share/dtc/admin/install/uninstall
-		. ${DTC_SAVED_INSTALL_CONFIG}
-		/usr/share/dtc/admin/install/functions
-		# Then call the installer!
-		DTCsetupDaemons
-	fi
+if [ -f /etc/redhat-release ] ; then
+	# Prepare everything
+	. /usr/share/dtc/admin/install/redhat_config
+	. /usr/share/dtc/admin/install/functions
+	. /usr/share/dtc/admin/install/interactive_installer
+	interactiveInstaller
+	DTCinstallPackage
+	/usr/share/dtc/admin/install/uninstall
+	. ${DTC_SAVED_INSTALL_CONFIG}
+	/usr/share/dtc/admin/install/functions
+	# Then call the installer!
+	DTCsetupDaemons
 fi
 
-if [ "`uname -s`" = "FreeBSD" ]; then
+UNAME_MINUS_S=`uname -s`
+if [ "${UNAME_MINUS_S}" = "Darwin" ] ; then
+	. /usr/share/dtc/admin/install/osx_config
+	. /usr/share/dtc/admin/install/functions
+	. /usr/share/dtc/admin/install/interactive_installer
+	interactiveInstaller
+	DTCinstallPackage
+	/usr/share/dtc/admin/install/uninstall
+	DTCsetupDaemons
+fi
+
+if [ ${UNAME_MINUS_S} = "FreeBSD" ] ; then
 	echo "FreeBSD detected"
 	. /usr/local/www/dtc/admin/install/functions
 fi
@@ -52,5 +61,3 @@ if [ -e /etc/gentoo-release ] ; then
 	/usr/share/dtc/admin/install/functions
 	DTCsetupDaemons
 fi
-
-DTCsetupDaemons

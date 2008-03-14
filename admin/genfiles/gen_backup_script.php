@@ -207,6 +207,7 @@ date\n";
 	fwrite($filep,$backup_net);
 	fclose($filep);
 	chmod("$conf_generated_file_path/net_backup.sh",0750);
+	system("chown $conf_dtc_system_username \"$conf_generated_file_path/net_backup.sh\"");
 	$console .= "Generated net_backup.sh script for $num_generated_vhosts domains and $num_generated_db db!<br>";
 
 	$filep = fopen("$conf_generated_file_path/net_restor.sh", "w+");
@@ -216,6 +217,7 @@ date\n";
 	fwrite($filep,$restor_net);
 	fclose($filep);
 	chmod("$conf_generated_file_path/net_restor.sh",0750);
+	system("chown $conf_dtc_system_username \"$conf_generated_file_path/net_restor.sh\"");
 	$console .= "Generated net_restor.sh script for $num_generated_vhosts domains and $num_generated_db db!<br>";
 
 	global $conf_ftp_backup_host;
@@ -234,6 +236,7 @@ pass $conf_ftp_backup_pass
 	}
 	fwrite($filep,$ftp_login_cfg);
 	fclose($filep);
+	system("chown $conf_dtc_system_username \"$conf_generated_file_path/ncftpput_login.cfg\"");
 }
 
 function backup_script_generate(){

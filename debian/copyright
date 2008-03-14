@@ -25,16 +25,19 @@ Upstream Authors:
 	Thomas Morgan.
 
 	Many thanks to all the translators :
-	- Jelle Kalf (Dutch) <JKalf@uno.nl> (Duch)
+	- Erwan Lerale <erwan@thiscow.fr> (corrected my *bad* French typos)
+	- Jelle Kalf (Dutch) <JKalf@uno.nl> and
+	  cobaco (aka Bart Cornelis) <cobaco@skolelinux.no> (Duch)
 	- Yuri Kozlov <kozlov.y@gmail.com> (Russian)
-	- Feher Sandor (Hungarian) <sfeher@bluesystem.hu>
+	- Feher Sandor <sfeher@bluesystem.hu> (Hungarian)
 	- Jose Toscano <josetg81wireless@yahoo.es> and
 	  Jorge Mendez <solutions@todoimporta.com> (Espanol)
 	- Seeb <seeb@seeb.net.pl> (Polish)
 	- Andrea Polte <andreapolte@gmx.de> and
 	  Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net> (German)
+	- Esko Arajärvi <edu@iki.fi> (Finish)
 	- Luca Franceschini <info@atw.it> (Italiano)
-	and my lovely wife Cao Wei (Chinese).
+	  and my lovely wife Cao Wei (Chinese).
 
 	A big up to all my sponsors so far in Debian: Roberto C. Sanchez,
 	Daniel Baumann, and many others.

@@ -7,6 +7,8 @@ UNIX_TYPE=debian
 
 debianGetDebconfValues () {
 	# Simply fetch all values stored in debconf
+	db_get dtc/conf_mysqlautoconfig
+	conf_mysqlautoconfig=$RET
 	db_get dtc/conf_mysqlhost
 	conf_mysql_host=$RET
 	db_get dtc/conf_mysqllogin

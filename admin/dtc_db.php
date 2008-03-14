@@ -1008,6 +1008,7 @@ $dtc_database = array(
         "vps_server" => array(
                 "vars" => array(
                         "id" => "int(11) NOT NULL auto_increment",
+			"dom0_ips" => "varchar(255) NOT NULL default ''",
                         "hostname" => "varchar(255) NOT NULL ",
                         "location" => "varchar(64) NOT NULL ",
                         "soap_login" => "varchar(64) NOT NULL ",

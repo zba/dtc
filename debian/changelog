@@ -1,3 +1,22 @@
+dtc (0.28.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added Finish debconf template translation, thanks to Esko Arajärvi
+    <edu@iki.fi> (Closes: #468827)
+
+ -- Thomas Goirand <thomas@goirand.fr>  Sun,  9 Mar 2008 10:35:17 +0800
+
+dtc (0.28.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Now, the installer picks the MySQL root password in /etc/mysql/debian.cnf
+    to create a dtc user with a random password and root access to MySQL. This
+    makes it useless to ask for MySQL login/pass (Closes: #414477)
+  * Updated the Duch debconf translation thanks to "cobaco (aka Bart Cornelis)"
+    <cobaco@skolelinux.no> (Closes: #468301)
+
+ -- Thomas Goirand <thomas@goirand.fr>  Sat,  1 Mar 2008 16:26:53 +0800
+
 dtc (0.28.2-1) unstable; urgency=low
 
   * New upstream release.

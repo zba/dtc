@@ -1,0 +1,13 @@
+--- /etc/init.d/dkimproxy.orig	2008-03-03 23:42:53.000000000 +0800
++++ /etc/init.d/dkimproxy	2008-03-04 17:54:44.000000000 +0800
+@@ -26,8 +26,8 @@
+ DKIMPROXY_OUT_PRIVKEY="/var/lib/dkimproxy/private.key"
+ 
+ DKIM_HOSTNAME=`hostname -f`
+-DOMAIN=`hostname -d`
+-DKIMPROXY_IN_ARGS="--hostname=${DKIM_HOSTNAME} 127.0.0.1:10026 127.0.0.1:10027"
++DOMAIN=`cat /var/lib/dtc/etc/local_domains | tr \\\r\\\n ,,`${DKIM_HOSTNAME}
++DKIMPROXY_IN_ARGS="--hostname=${DKIM_HOSTNAME} 127.0.0.1:10026 127.0.0.1:10024"
+ DKIMPROXY_OUT_ARGS="--keyfile=${DKIMPROXY_OUT_PRIVKEY} --selector=postfix --domain=${DOMAIN} --method=simple --signature=dkim --signature domainkeys 127.0.0.1:10028 127.0.0.1:10029"
+ 
+ DKIMPROXY_IN_BIN="/usr/sbin/dkimproxy.in"

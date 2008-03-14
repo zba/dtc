@@ -1,18 +1,16 @@
-# Galician translation of dtc's debconf templates
-# This file is distributed under the same license as the dtc package.
-# Jacobo Tarrio <jtarrio@debian.org>, 2007.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: dtc\n"
+"Project-Id-Version: dtc 0.28.2-1\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
 "POT-Creation-Date: 2008-03-09 00:28+0800\n"
-"PO-Revision-Date: 2007-03-20 22:29+0100\n"
-"Last-Translator: Jacobo Tarrio <jtarrio@debian.org>\n"
-"Language-Team: Galician <proxecto@trasno.net>\n"
+"PO-Revision-Date: 2008-03-01 18:19+0200\n"
+"Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
+"Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Finnish\n"
+"X-Poedit-Country: FINLAND\n"
 
 #. Type: boolean
 #. Description
@@ -46,19 +44,19 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
 msgid "MySQL hostname:"
-msgstr "Nome do servidor MySQL:"
+msgstr "MySQL-verkkonimi:"
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
 msgid "Please enter the hostname or IP address of the MySQL server."
-msgstr "Introduza o nome ou enderezo IP do servidor MySQL."
+msgstr "Annan MySQL-palvelimen verkkonimi tai IP-osoite."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:3001 ../dtc-postfix-courier.templates:3001
 msgid "MySQL administrator:"
-msgstr "Administrador de MySQL:"
+msgstr "MySQL-ylläpitäjä:"
 
 #. Type: string
 #. Description
@@ -67,26 +65,26 @@ msgid ""
 "Please enter the login name of a MySQL user with administrative privileges. "
 "DTC will use it to grant privileges for the tables to its users."
 msgstr ""
-"Introduza o nome dun usuario de MySQL con privilexios administrativos. DTC "
-"ha empregalo para dar privilexios para as táboas aos seus usuarios."
+"Anna pääkäyttäjäoikeudet omaava MySQL-käyttäjätunnus. DTC käyttää sitä "
+"antaakseen käyttäjilleen oikeuksia tauluihin."
 
 #. Type: password
 #. Description
 #: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
 msgid "MySQL administrator password:"
-msgstr "Contrasinal do administrador de MySQL:"
+msgstr "MySQL-ylläpitäjän salasana:"
 
 #. Type: password
 #. Description
 #: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
 msgid "Please enter the password of the MySQL administrator."
-msgstr "Introduza o contrasinal do administrador de MySQL."
+msgstr "Anna MySQL-ylläpitäjän salasana."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:5001 ../dtc-postfix-courier.templates:5001
 msgid "DTC database name:"
-msgstr "Nome da base de datos de DTC:"
+msgstr "DTC-tietokannan nimi:"
 
 #. Type: string
 #. Description
@@ -95,14 +93,14 @@ msgid ""
 "Please enter the name of the database to use for storing all DTC hosting "
 "information."
 msgstr ""
-"Introduza o nome da base de datos a empregar para armacenar toda a "
-"información de hospedaxe de DTC."
+"Anna kaikkien DTC:n isännöintitietojen säilytykseen käytettävän tietokannan "
+"nimi."
 
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:6001 ../dtc-postfix-courier.templates:6001
 msgid "Change MySQL root password?"
-msgstr "¿Cambiar o contrasinal de administrador de MySQL?"
+msgstr "Vaihdetaanko MySQL:n ylläpitosalasana?"
 
 #. Type: boolean
 #. Description
@@ -112,15 +110,14 @@ msgid ""
 "MySQL root user. This can be changed during the configuration of the DTC "
 "package."
 msgstr ""
-"Por defecto, o paquete mysql-server non precisa dun contrasinal para o "
-"usuario administrador de MySQL. Isto pódese cambiar durante a configuración "
-"do paquete DTC."
+"Oletuksena paketti mysql-server ei vaadi MySQL:n ylläpitäjälle salasanaa. Se "
+"voidaan vaihtaa paketin DTC asetusten teon aikana."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:7001 ../dtc-postfix-courier.templates:7001
 msgid "Domain name:"
-msgstr "Nome de dominio"
+msgstr "Verkkoaluenimi:"
 
 #. Type: string
 #. Description
@@ -130,27 +127,28 @@ msgid ""
 "will be used to install the root admin and customer web control panel of DTC "
 "(under one of this domain's subdomains)."
 msgstr ""
-"Introduza o primeiro dominio que quere xestionar con DTC. Este nome de "
-"dominio hase empregar para instalar o panel de control raíz de usuarios e "
-"administradores de DTC (embaixo dun dos subdominios deste dominio)."
+"Anna ensimmäinen verkkoalue, jota DTC:n tulisi hallinnoida. Tätä "
+"verkkoaluenimeä käytetään DTC:n pääkäyttäjän ja asiakkaiden "
+"juuriverkkohallintapaneelien asennuksessa (tämän verkkoalueen yhteen "
+"alialueeseen)."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
 msgid "DTC root panel subdomain:"
-msgstr "Subdominio do panel raíz de DTC:"
+msgstr "DTC:n juuripaneelin aliverkkoalue:"
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
 msgid "Please enter the subdomain to be used by the DTC control panel."
-msgstr "Introduza o subdominio a empregar no panel de control de DTC."
+msgstr "Anna aliverkkoalue, jota DTC:n hallintapaneelin tulisi käyttää."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
 msgid "Primary IP address:"
-msgstr "Enderezo IP primario:"
+msgstr "Ensisijainen IP-osoite:"
 
 #. Type: string
 #. Description
@@ -161,16 +159,16 @@ msgid ""
 "DTC variables.  If you are using Network Address Translation (NAT), please "
 "enter your external IP address."
 msgstr ""
-"Introduza o enderezo IP primario deste servidor. Hase empregar este enderezo "
-"para o nome de dominio que acaba de fornecer, e hase empregar coma valor por "
-"defecto para moitas variables de DTC. Se emprega tradución de enderezos de "
-"rede (NAT), introduza o enderezo IP externo."
+"Anna tämän koneen ensisijainen IP-osoite. Tätä osoitetta käytetään juuri "
+"antamasi verkkoaluenimen osoitteena ja sitä käytetään oletusarvona "
+"useimmille DTC:n muuttujille. Jos käytät verkko-osoitteen kääntämistä (NAT), "
+"anna ulkoinen IP-osoite."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
 msgid "Path for hosted domains:"
-msgstr "Ruta para os dominios hospedados:"
+msgstr "Isännöityjen verkkoalueiden polku:"
 
 #. Type: string
 #. Description
@@ -179,8 +177,8 @@ msgid ""
 "Please enter the directory to be used by DTC to store files for all hosted "
 "domains."
 msgstr ""
-"Introduza o directorio a empregar para que DTC armacene os ficheiros de "
-"tódolos dominios hospedados."
+"Anna hakemisto, johon DTC tallentaa kaikkien isännöityjen verkkoalueiden "
+"tiedostot."
 
 #. Type: string
 #. Description
@@ -191,17 +189,17 @@ msgid ""
 "recommended to change the DocumentRoot setting in Apache configuration if "
 "you choose /var/www as path for hosted domains."
 msgstr ""
-"Se escolle /var/www, que é a raíz de documentos por defecto de Apache, "
-"tódolos ficheiros hospedados nese directorio poden quedar accesibles "
-"publicamente. Polo tanto, recoméndase que cambie o valor de DocumentRoot na "
-"configuración de Apache se escolle /var/www coma ruta dos dominios "
-"hospedados."
+"Jos valitset hakemiston /var/www, joka on Apachen oletustiedostojuuri, "
+"kaikki hakemistossa olevat tiedostot saattavat tulla julkisesti saataville. "
+"Tämän takia on suositeltavaa vaihtaa Apachen asetuksista asetus "
+"DocumentRoot, jos valitset hakemiston /var/www isännöityjen verkkoalueiden "
+"poluksi."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:11001 ../dtc-postfix-courier.templates:11001
 msgid "Path for the chroot environment template:"
-msgstr "Ruta para o patrón do ambiente de chroot:"
+msgstr "chroot-ympäristön mallin polku:"
 
 #. Type: string
 #. Description
@@ -210,14 +208,14 @@ msgid ""
 "Please enter the directory to be used by DTC to build the cgi-bin chroot "
 "environment template."
 msgstr ""
-"Introduza o directorio a empregar para que DTC constrúa o patrón do ambiente "
-"do chroot de cgi-bin."
+"Anna hakemisto, jota DTC käyttää cgi-bin chroot -ympäristön mallin "
+"rakentamiseen."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:12001 ../dtc-postfix-courier.templates:12001
 msgid "Main domain admin name:"
-msgstr "Nome do administrador do dominio principal:"
+msgstr "Pääverkkoalueen ylläpitäjän tunnus:"
 
 #. Type: string
 #. Description
@@ -227,15 +225,14 @@ msgid ""
 "the administrator for the domain name containing the control panel "
 "installation."
 msgstr ""
-"Cada dominio de DTC debe ter un administrador. Introduza o nome de usuario "
-"do administrador do nome de dominio que contén a instalación do panel de "
-"control."
+"Jokaisella DTC-verkkoalueella tulee olla ylläpitäjä. Anna hallintapaneelin "
+"sisältävän verkkoalueen ylläpitäjän käyttäjätunnus."
 
 #. Type: password
 #. Description
 #: ../dtc-core.templates:13001 ../dtc-postfix-courier.templates:13001
 msgid "Main domain admin password:"
-msgstr "Contrasinal do administrador do dominio principal:"
+msgstr "Pääverkkoalueen ylläpitäjän salasana:"
 
 #. Type: password
 #. Description
@@ -245,15 +242,14 @@ msgid ""
 "control panel must be managed manually through a .htpasswd file in the root "
 "path."
 msgstr ""
-"Escolla o contrasinal do administrador do dominio principal. Debe "
-"xestionarse manualmente o acceso ao panel de control mediante un ficheiro ."
-"htpasswd na ruta raíz."
+"Valitse salasana pääverkkoalueen ylläpitäjälle. Kontrollipaneelin oikeuksia "
+"täytyy hallinnoida käsin juurihakemistossa olevan tiedoston .htpasswd avulla."
 
 #. Type: select
 #. Description
 #: ../dtc-core.templates:14001 ../dtc-postfix-courier.templates:14001
 msgid "Mail Transfer Agent (MTA) type:"
-msgstr "Tipo de axente de transferencia de correo (MTA):"
+msgstr "Käytettävä sähköpostipalvelin (MTA):"
 
 #. Type: select
 #. Description
@@ -263,15 +259,16 @@ msgid ""
 "the system already. If no such MTA is currently installed, please complete "
 "the setup of DTC, install a MTA package, then run \"dpkg-reconfigure dtc\"."
 msgstr ""
-"Escolla o MTA que quere empregar con DTC. Debería estar xa instalado no "
-"sistema. Se non hai un MTA tal instalado, complete a configuración de DTC, "
-"instale un paquete de MTA e execute \"dpkg-reconfigure dtc\"."
+"Valitse DTC:n kanssa käytettävä sähköpostipalvelin. Sen tulisi olla jo "
+"asennettuna järjestelmään. Jos mitään palvelinta ei ole asennettuna, tee DTC:"
+"n asetukset loppuun, asenna palvelin ja aja sen jälkeen komento ”dpkg-"
+"reconfigure dtc”."
 
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:15001 ../dtc-postfix-courier.templates:15001
 msgid "Use Cyrus mail system?"
-msgstr "¿Empregar o sistema de correo Cyrus?"
+msgstr "Käytetäänkö Cyrus-sähköpostijärjestelmää?"
 
 #. Type: boolean
 #. Description
@@ -280,14 +277,14 @@ msgid ""
 "Please choose this option if you are using Cyrus for mail delivery, IMAP and "
 "MTA. This option is only compatible with Postfix."
 msgstr ""
-"Escolla esta opción se emprega Cyrus para a entrega de correo, IMAP e MTA. "
-"Esta opción só é compatible con Postfix."
+"Valitse tämä vaihtoehto, jos käytät Cyrusia sähköposti- ja IMAP-palvelimena. "
+"Tämä vaihtoehto on yhteensopiva vain Postfixin kanssa."
 
 #. Type: select
 #. Description
 #: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid "Apache version to configure:"
-msgstr "Versión de Apache a configurar:"
+msgstr "Asetettava Apachen versio:"
 
 #. Type: select
 #. Description
@@ -296,14 +293,14 @@ msgid ""
 "DTC supports both Apache and Apache2. Please enter the version which DTC "
 "should use."
 msgstr ""
-"DTC soporta Apache e Apache2. Introduza a versión que se debería empregar "
-"con DTC."
+"DTC tukee sekä Apachea että Apache2:ta. Valitse mitä versiota DTC:n tulisi "
+"käyttää."
 
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
 msgid "Use \"NATed\" vhosts?"
-msgstr "¿Empregar servidores virtuales con NAT?"
+msgstr "Käytetäänkö ”käännettyjä” (NAT) vhosteja?"
 
 #. Type: boolean
 #. Description
@@ -313,9 +310,9 @@ msgid ""
 "firewalled with NAT and port redirections of public IP(s) address(es), a "
 "\"NATed\" vhost configuration can be generated."
 msgstr ""
-"DTC pode configurar Apache para que empregue un dos seus enderezos IP. Se o "
-"servidor ten unha devasa con NAT e redirecións de portos de enderezos IP "
-"públicos, pódese xerar unha configuración de servidores virtuales con NAT."
+"DTC voi asettaa Apachen käyttämään yhtä IP-osoitetta. Jos palvelimella on "
+"palomuuri, joka kääntää osoitteet (NAT) ja ohjaa julkisten IP-osoitteiden "
+"portteja edelleen, voidaan luoda ”käännetyt” vhost-asetukset."
 
 #. Type: boolean
 #. Description
@@ -326,16 +323,16 @@ msgid ""
 "(NAT). If the server uses a dynamic public IP address, NAT and port "
 "forwarding are mandatory for DTC."
 msgstr ""
-"Só se debería escoller esta opción se o servidor non está conectado "
-"directamente a Internet, senón a través dunha devasa que fai tradución de "
-"enderezos de rede (NAT). Se o servidor emprega un enderezo IP público "
-"dinámico, o NAT e a redireción de portos son obrigatorios con DTC."
+"Tämä vaihtoehto tulisi valita vain, jos palvelin ei ole suorassa yhteydessä "
+"Internetiin vaan verkko-osoitteiden kääntöä (NAT) tekevän palomuurin takana. "
+"Jos palvelin käyttää dynaamisia julkisia IP-sooitteita, NAT ja porttien "
+"edelleenohjaus ovat pakollisia DTC:n kanssa."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
 msgid "NATed LAN IP address:"
-msgstr "Enderezo IP da NAT da rede local:"
+msgstr "Käännetty sisäverkon IP-osoite:"
 
 #. Type: string
 #. Description
@@ -344,14 +341,13 @@ msgid ""
 "Please enter the IP address of the server for DTC to generate all vhosts "
 "that will be used by Apache."
 msgstr ""
-"Introduza o enderezo IP do servidor para que DTC xere tódolos servidores "
-"virtuais que se han empregar en Apache."
+"Anna DTC-palvelimen IP-osoite luodaksesi kaikki Apachen käyttämät vhostit."
 
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid "Generate an SSL certificate for DTC?"
-msgstr "¿Xerar un certificado SSL para DTC?"
+msgstr "Luodaanko DTC:lle SSL-varmenne?"
 
 #. Type: boolean
 #. Description
@@ -362,17 +358,16 @@ msgid ""
 "generated Apache configuration will activate HTTPS URLs for the control "
 "panel."
 msgstr ""
-"Se escolle esta opción, DTC ha xerar un certificado SSL autoasinado e ha "
-"empregar SSL para navegar no panel. SSL tamén se ha activar e a "
-"configuración xerada de Apache ha activar os URLs HTTPS para o panel de "
-"control."
+"Jos valitset tämän vaihtoehdon, DTC luo itseallekirjoitetun SSL-varmenteen "
+"ja näyttää paneelin käyttäen SSL:ää. SSL myös aktivoidaan ja luodut Apache-"
+"asetukset käyttävät HTTPS-osoitteita kontrollipaneelin kanssa."
 
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid "This certificate can be changed for a root CA certificate later."
 msgstr ""
-"Pódese cambiar este certificado por un certificado de CA raíz máis tarde."
+"Tämä varmenne voidaan vaihtaa juurivarmentajan varmenteeseen myöhemmin."
 
 #. Type: boolean
 #. Description
@@ -381,26 +376,27 @@ msgid ""
 "Previously-generated certificates will never be overwritten. To regenerate "
 "the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
 msgstr ""
-"Nunca se han sobrescribir os certificados xerados antes. Para volver xerar o "
-"certificado, ten que eliminar tódolos ficheiros de /usr/share/dtc/etc/ssl."
+"Aikaisemmin luotuja varmenteita ei koskaan kirjoiteta yli. Jos varmenne "
+"halutaan luoda uudelleen, kaikki tiedostot hakemistosta /usr/share/dtc/etc/"
+"ssl tulee poistaa."
 
 #. Type: password
 #. Description
 #: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
 msgid "DTC certificate passphrase:"
-msgstr "Contrasinal do certificado de DTC:"
+msgstr "DTC-varmenteen salalause:"
 
 #. Type: password
 #. Description
 #: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
 msgid "Please choose a passphrase to protect the generated SSL certificate."
-msgstr "Escolla un contrasinal para protexer o certificado SSL xerado."
+msgstr "Valitse luotua SSL-varmennetta suojaava salalause:"
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:21001 ../dtc-postfix-courier.templates:21001
 msgid "Country code for the DTC SSL certificate:"
-msgstr "Código de país do certificado SSL de DTC:"
+msgstr "DTC:n SSL-varmenteen maakoodi:"
 
 #. Type: string
 #. Description
@@ -409,44 +405,44 @@ msgid ""
 "Please enter the 2-letter country code for the generated certificate. This "
 "should usually be the code for the country the server is located in."
 msgstr ""
-"Introduza o código de dúas letras para o certificado xerado. Este debería "
-"ser normalmente o código do país no que reside o servidor."
+"Anna kaksikirjaiminen maakoodi luotavaa varmennetta varten. Tämän tulisi "
+"yleensä olla sen maan koodi, jossa palvelin on."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:22001 ../dtc-postfix-courier.templates:22001
 msgid "City name for the DTC SSL certificate:"
-msgstr "Nome da cidade do certificado SSL de DTC:"
+msgstr "DTC:n SSL-varmenteen kaupungin nimi:"
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:23001 ../dtc-postfix-courier.templates:23001
 msgid "Organization name for the DTC SSL certificate:"
-msgstr "Nome da organización para o certificado SSL de DTC:"
+msgstr "DTC:n SSL-varmenteen organisaation nimi:"
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:24001 ../dtc-postfix-courier.templates:24001
 msgid "Organizational unit for the DTC SSL certificate:"
-msgstr "Unidade organizativa para o certificado SSL de DTC:"
+msgstr "DTC:n SSL-varmenteen organisaatioyksikkö:"
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:25001 ../dtc-postfix-courier.templates:25001
 msgid "Email address for the DTC SSL certificate:"
-msgstr "Enderezo de email para o certificado SSL de DTC:"
+msgstr "DTC:n SSL-varmenteen sähköpostiosoite:"
 
 #. Type: password
 #. Description
 #: ../dtc-core.templates:26001 ../dtc-postfix-courier.templates:26001
 msgid "DTC SSL certificate challenge password:"
-msgstr "Contrasinal de desafío do certificado SSL de DTC:"
+msgstr "DTC:n SSL-varmenteen haastesalasana:"
 
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid "Update PEAR installation?"
-msgstr "¿Actualizar a instalación de PEAR?"
+msgstr "Päivitetäänkö PEAR-asennus?"
 
 #. Type: boolean
 #. Description
@@ -457,16 +453,16 @@ msgid ""
 "here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-"
 "to-date. The relevant files are located in /usr/share/php."
 msgstr ""
-"DTC pode comprobar a instalación de PEAR durante o seu propio proceso de "
-"instalación. Isto fai necesario que o seu servidor estea conectado á rede. "
-"Se non o pode facer aquí, comprobe se os módulos PEAR Crypt_CBC e Auth_SASL "
-"están actualizados. Os ficheiros relevantes residen en /usr/share/php."
+"DTC voi tarkistaa PEAR-asennuksen oman asennusprosessinsa aikana. Tämä "
+"vaatii, että palvelin on yhdistettynä verkkoon. Jos et voi tehdä tarkistusta "
+"tässä, tarkista, että PEAR-moduulit Crypt_CBC ja Auth_SASL ovat ajantasalla. "
+"Olennaiset tiedostot ovat hakemistossa /usr/share/php."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid "DNSBL (DNS BlackList) list:"
-msgstr "Lista de DNSBL (lista negra de DNS):"
+msgstr "DNSBL-lista (DNS-palvelimien musta lista):"
 
 #. Type: string
 #. Description
@@ -475,14 +471,14 @@ msgid ""
 "Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
 msgstr ""
-"Introduza a lista de servidores DNSBL preferidos para engadir á "
-"configuración do seu servidor de correo Postfix."
+"Anna lista DNSBL-palvelimista, jotka lisätään Postfix-sähköpostipalvelimen "
+"asetuksiin."
 
 #. Type: select
 #. Description
 #: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Local address extension character:"
-msgstr ""
+msgstr "Paikallisen osoitelaajennoksen merkki:"
 
 #. Type: select
 #. Description
@@ -491,6 +487,8 @@ msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
 msgstr ""
+"Anna merkki, jota käytetään paikallisen osoitelaajennoksen määrittämiseen. "
+"Tämän TÄYTYY täsmätä postfixin tai qmailin asetuksissa asetettuun merkkiin."
 
 #. Type: select
 #. Description
@@ -503,12 +501,19 @@ msgid ""
 "patches are incompatibles), but when using - as delimiter, you will not be "
 "able to use an email of the form john-doe@example.com as - is the delimiter."
 msgstr ""
+"Vastaanottoerotinta käytetään sähköpostilistoillasi. Jos valitset "
+"erottimeksi merkin ”+”, tulee käyttäjien lähettää postinsa listalle "
+"+subscribe@esimerkki.fi. Merkin ”+” varjopuoli on se, että eräät "
+"sähköpostiohjelmat eivät salli tätä merkkiä vastaanottajan nimessä (lähinnä "
+"eräät qmailin huonot versiot ovat epäyhteensopivia). Toisaalta, jos "
+"erottimena käytetään merkkiä ”-”, sähköpostiosoitteet eivät voi olla muotoa "
+"juha-pekka@esimerkki.fi, koska ”-” on erotinmerkki."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Subdomain name for the MX server:"
-msgstr ""
+msgstr "MX-palvelimen aliverkkoaluenimi:"
 
 #. Type: string
 #. Description
@@ -518,12 +523,16 @@ msgid ""
 "subdomain will be configured in your mail server and your domain name server "
 "by DTC. Any name is ok here."
 msgstr ""
+"Sähköpostipalvelimen tulee käyttää aliverkkoaluenimeä sähköpostin "
+"vastaanottoon. Tämä aliverkkoalue asetetaan DTC:n toimesta "
+"sähköpostipalvelimen ja nimipalvelimen asetuksiin. Mikä tahansa nimi kelpaa "
+"tähän."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Network devices to monitor:"
-msgstr "Dispositivo de rede a monitorizar:"
+msgstr "Tarkkailtavat verkkolaitteet:"
 
 #. Type: string
 #. Description
@@ -532,14 +541,14 @@ msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
 msgstr ""
-"Introduza tódolos dispositivos de rede que quere monitorizar coa utilidade "
-"de graficación RRDTool."
+"Anna kaikki verkkolaitteet, joita haluat graafisen RRDTool-työkalun "
+"tarkkailevan."
 
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid "Allow to report anonymous statistics to GPLHost?"
-msgstr "¿Permitir engadir estatísticas anónimas a GPLHost?"
+msgstr "Sallitaanko nimettömien tilastojen lähetys GPLHostille?"
 
 #. Type: boolean
 #. Description
@@ -550,16 +559,16 @@ msgid ""
 "(used as a unique identifier only). An Internet connection and the wget "
 "binary are required to report the statistics."
 msgstr ""
-"Pódese informar das instalacións de DTC á páxina web de GPLHost. Os únicos "
-"datos que se recollen son o nome do sistema operativo (Debian) e o enderezo "
-"IP (que se emprega só coma identificador único). Son necesarios unha "
-"conexión a Internet e o programa \"wget\" para informar das estatísticas."
+"DTC-asennukset voidaan raportoida GPLHost-verkkosivulle. Kerättävät tiedot "
+"ovat käyttöjärjestelmän nimi (Debian) ja IP-osoite (jota käytetään vain "
+"yksilöivänä tunnisteena). Tilastojen raportointi vaatii Internet-yhteyden ja "
+"wget-ohjelman."
 
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
 msgid "Skip mknod calls when building the chroot template?"
-msgstr "¿Omitir as chamadas a mknod ao construír o patrón de chroot?"
+msgstr "Ohitetaanko mknod-kutsut rakennettaessa chroot-mallia?"
 
 #. Type: boolean
 #. Description
@@ -569,9 +578,9 @@ msgid ""
 "option allows skipping the creation of the null, random and urandom devices "
 "during the chroot template creation."
 msgstr ""
-"Nalgúns ambientes, coma Linux vServer, non se pode executar mknod. Esta "
-"opción permite omitir a creación dos dispositivos \"null\", \"random\" e "
-"\"urandom\" durante a creación do patrón de chroot."
+"Jossain ympäristöissä, kuten Linux vServerillä, ohjelmaa mknod ei voida "
+"ajaa. Tämä valinta mahdollistaa null-, random- ja urandom-laitteiden luonnin "
+"ohituksen luotaessa chroot-mallia."
 
 #. Type: boolean
 #. Description
@@ -583,3 +592,8 @@ msgid ""
 "Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
 "using dtc-postfix-courier instead."
 msgstr ""
+"Cyrus on korvaava ohjelma sähköpostien Maildir-jakeluun ja tallentamiseen. "
+"Tiedä mitä teet, jos otat Cyruksen käyttöön. Jos käytät paketteja dtc-"
+"toaster tai dtc-postfix-courier, älä valitse Cyrusia käyttöön tässä. Cyrus "
+"on käyttökelpoinen vain paketin dtc kanssa, eikä sitä voi käyttää, jos "
+"käytät pakettia dtc-postfix-courier."

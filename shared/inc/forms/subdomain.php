@@ -39,7 +39,7 @@ function subdomainCreateDirsCallBack($id){
 			mkdir("$newsubdomain_dirpath/logs", 0750);
 		exec("cp -fulpRv $conf_chroot_path/* $newsubdomain_dirpath");
 		system ("if [ ! -e $newsubdomain_dirpath/html/index.* ]; then cp -rf $conf_generated_file_path/template/* $newsubdomain_dirpath/html; fi");
-		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
+		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes',gen_backup='yes'");
 	}
 	return;
 }
@@ -64,7 +64,7 @@ function subdomainDeleteDirsCallBack($id){
 		$subdomain_dirpath = $adm_path."/".$domain."/subdomains/$subdom_name";
 		system("rm -rf $subdomain_dirpath");
 	}
-	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
+	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes',gen_backup='yes'");
 }
 
 function subdomainEditCallBack($id){

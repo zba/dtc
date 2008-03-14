@@ -1,2 +1,2 @@
 version=3
-ftp://ftp.gplhost.com/debian/dists/stable/main/source/dtc_(.*).dsc
+ftp://ftp.gplhost.com/debian/dists/stable/main/source/dtc_(.*).orig.tar.gz

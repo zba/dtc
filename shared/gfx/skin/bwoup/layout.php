@@ -180,20 +180,13 @@ function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_r
 	$mouseover_stuff= "onMouseOver=\"this.className='$mouseover_class';\" onMouseOut=\"this.className='$class';\"";
 	$onclick = " onClick=\"document.location='$url_link'\" ";
 
-	if($conf_use_javascript == "yes"){
-		$added_style = "$onclick style=\"this.style.cursor='pointer';\"";
-		$ahref = "";
-		$aend = "";
-	}else{
-		$added_style = "";
-		$ahref = "<a href=\"\">";
-		$aend = "</a>";
-	}
+	$ahref = "<a href=\"$url_link\">";
+	$aend = "</a>";
 
 	$out = "
 <tr>
-	<td class=\"box_wnb_tv_tree\" $added_style>".$icone_tree."</td>
-	<td class=\"$class\" $mouseover_stuff $added_style><img align=\"absbottom\" src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">$ahref".$text."$aend</td>
+	<td class=\"box_wnb_tv_tree\">".$icone_tree."</td>
+	<td class=\"$class\" $mouseover_stuff $added_style>$ahref<div><img align=\"absbottom\" src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">".$text."</div>$aend</td>
 </tr>$end_tree";
 	return $out;
 }
@@ -555,7 +548,7 @@ function skin_LayoutAdminPage (){
 		}
 		$skinedConsole = '<table cellpadding="0" cellspacing="0" class="console">
 	  <tr><td class="console_title">Console output :</td>
-	  </tr><tr>		<td class="console_output"><pre>'.$_SERVER['SERVER_NAME'].':&gt;_'.$console.'<br></pre></td></tr></table>';
+	  </tr><tr>		<td class="console_output"><pre>'.$_SERVER['SERVER_NAME'].':&gt;_'.$console.'<br><span id="console_content" class="console_content"></span></pre></td></tr></table>';
 
 	  $adm_list = adminList($rand).'
 	  <div class="voider"></div>

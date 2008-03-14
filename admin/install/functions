@@ -90,6 +90,9 @@ createDTCuserAndGroup () {
 	if [ "$UNIX_TYPE" = "debian" ] ; then
 		adduser bind dtcgrp >/dev/null 2>&1  || true
 	fi
+	if [ "$UNIX_TYPE" = "gentoo" ] ; then
+		usermod -G ${CONF_DTC_SYSTEM_GROUPNAME} named >/dev/null 2>&1 || true
+	fi
 }
 
 findHtpasswdBinary () {
@@ -167,9 +170,8 @@ searchPATH_PHP_INI_CLI () {
 	elif [ -f /etc/php.ini ] ; then
 		PATH_PHP_INI_CLI=/etc/php.ini
 	# This one for Gentoo
-	elif [ -f /etc/php/apache2-php5/php.ini ] ; then
-		echo "FIX ME!!! Is gentoo path for php cli really in /etc/php/apache2-php5/php.ini ??? FIX ME!!!"
-		PATH_PHP_INI_CLI=/etc/php/apache2-php5/php.ini
+	elif [ -f /etc/php/cli-php5/php.ini ] ; then
+		PATH_PHP_INI_CLI=/etc/php/cli-php5/php.ini
 	elif [ ""${PHPMAJOR} -lt 5 ] ; then
 		if [ -f /etc/php4/cli/php.ini ] ; then
 			PATH_PHP_INI_CLI=/etc/php4/cli/php.ini
@@ -364,6 +366,19 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 	if [ -f /var/lib/mailgraph/mailgraph_virus.rrd ] ; then
 		chown ${CONF_DTC_SYSTEM_USERNAME} /var/lib/mailgraph/mailgraph_virus.rrd
 	fi
+	# Roundcube
+	if [ -f /etc/roundcube/debian-db.php ] ; then
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /etc/roundcube/debian-db.php
+	fi
+	if [ -f /etc/roundcube/main.inc.php ] ; then
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /etc/roundcube/main.inc.php
+	fi
+	if [ -d /var/lib/dbconfig-common/sqlite/roundcube ] ; then
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/dbconfig-common/sqlite/roundcube
+	fi
+	if [ -f /var/lib/dbconfig-common/sqlite/roundcube/roundcube ] ; then
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/dbconfig-common/sqlite/roundcube/roundcube
+	fi
 }
 
 # Do a search and replace in a file using sh
@@ -378,6 +393,39 @@ searchAndReplace () {
 		sed "s/${2}/${3}/" ${1} >${TMP_FILE}
 		cat ${TMP_FILE} >${1}
 		rm -f ${TMP_FILE}
+	fi
+}
+
+dtcGenDebianLocales () {
+	if [ "$UNIX_TYPE" = "debian" ] ; then
+		echo -n "Generating DTC's locale, this will take a while: "
+		echo -n "en_US.UTF-8 "
+		localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+		echo -n "fr_FR.UTF-8 "
+		localedef -i fr_FR -c -f UTF-8 -A /usr/share/locale/locale.alias fr_FR.UTF-8
+		echo -n "it_IT.UTF-8 "
+		localedef -i it_IT -c -f UTF-8 -A /usr/share/locale/locale.alias it_IT.UTF-8
+		echo -n "hu_HU.UTF-8 "
+		localedef -i hu_HU -c -f UTF-8 -A /usr/share/locale/locale.alias hu_HU.UTF-8
+		echo -n "nl_NL.UTF-8 "
+		localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
+		echo -n "de_DE.UTF-8 "
+		localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
+		echo -n "ru_RU.UTF-8 "
+		localedef -i ru_RU -c -f UTF-8 -A /usr/share/locale/locale.alias ru_RU.UTF-8
+		echo -n "zh_CN.UTF-8 "
+		localedef -i zh_CN -c -f UTF-8 -A /usr/share/locale/locale.alias zh_CN.UTF-8
+		echo -n "pl_PL.UTF-8 "
+		localedef -i pl_PL -c -f UTF-8 -A /usr/share/locale/locale.alias pl_PL.UTF-8
+		echo -n "se_NO.UTF-8 "
+		localedef -i se_NO -c -f UTF-8 -A /usr/share/locale/locale.alias se_NO.UTF-8
+		echo -n "pt_PT.UTF-8 "
+		localedef -i pt_PT -c -f UTF-8 -A /usr/share/locale/locale.alias pt_PT.UTF-8
+		echo -n "es_ES.UTF-8 "
+		localedef -i es_ES -c -f UTF-8 -A /usr/share/locale/locale.alias es_ES.UTF-8
+		echo -n "fi_FI.UTF-8 "
+		localedef -i fi_FI -c -f UTF-8 -A /usr/share/locale/locale.alias fi_FI.UTF-8
+		echo "done!"
 	fi
 }
 
@@ -398,6 +446,7 @@ dtcPatchFile () {
 		# If it's the original file, patch it
 		if [ "${DEST_MD5_VAL}" = "${3}" ] ; then
 			cp ${1} ${1}.DTC.BEFORE-PATCH-BACKUP
+			echo "Applying patch to ${1}"
 			patch ${1} -p0 <${2}
 		else
 			# If the file is already patched, don't do anything
@@ -666,6 +715,16 @@ setupDTCDatabase () {
 
 	curdir=`pwd`
 
+	if [ -f "/etc/debian_version" -o "${conf_mysqlautoconfig}" = "true" ] ; then
+		DEBIAN_MYSQL_USER=`grep user /etc/mysql/debian.cnf | tail -n 1 | cut -d"=" -f2 | awk '{print $1}'`
+		DEBIAN_MYSQL_PASS=`grep password /etc/mysql/debian.cnf | tail -n 1 | cut -d"=" -f2 | awk '{print $1}'`
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="INSERT IGNORE INTO user (Host,User,Password,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Reload_priv,Shutdown_priv,Process_priv,File_priv,Grant_priv,References_priv,Index_priv,Alter_priv,Show_db_priv,Super_priv,Create_tmp_table_priv,Lock_tables_priv,Execute_priv,Repl_slave_priv,Repl_client_priv,Create_view_priv,Show_view_priv,Create_routine_priv,Alter_routine_priv,Create_user_priv) VALUES ('localhost','${conf_mysql_login}',PASSWORD('${conf_mysql_pass}'),'Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y')"
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="INSERT IGNORE INTO user (Host,User,Password,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Reload_priv,Shutdown_priv,Process_priv,File_priv,Grant_priv,References_priv,Index_priv,Alter_priv,Show_db_priv,Super_priv,Create_tmp_table_priv,Lock_tables_priv,Execute_priv,Repl_slave_priv,Repl_client_priv,Create_view_priv,Show_view_priv,Create_routine_priv,Alter_routine_priv,Create_user_priv) VALUES ('%','${conf_mysql_login}',PASSWORD('${conf_mysql_pass}'),'Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y')"
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="UPDATE user SET Password=PASSWORD('${conf_mysql_pass}'),Select_priv='Y',Insert_priv='Y',Update_priv='Y',Delete_priv='Y',Create_priv='Y',Drop_priv='Y',Reload_priv='Y',Shutdown_priv='Y',Process_priv='Y',File_priv='Y',Grant_priv='Y',References_priv='Y',Index_priv='Y',Alter_priv='Y',Show_db_priv='Y',Super_priv='Y',Create_tmp_table_priv='Y',Lock_tables_priv='Y',Execute_priv='Y',Repl_slave_priv='Y',Repl_client_priv='Y',Create_view_priv='Y',Show_view_priv='Y',Create_routine_priv='Y',Alter_routine_priv='Y',Create_user_priv='Y' WHERE Host='%' AND User='${conf_mysql_login}'"
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="UPDATE user SET Password=PASSWORD('${conf_mysql_pass}'),Select_priv='Y',Insert_priv='Y',Update_priv='Y',Delete_priv='Y',Create_priv='Y',Drop_priv='Y',Reload_priv='Y',Shutdown_priv='Y',Process_priv='Y',File_priv='Y',Grant_priv='Y',References_priv='Y',Index_priv='Y',Alter_priv='Y',Show_db_priv='Y',Super_priv='Y',Create_tmp_table_priv='Y',Lock_tables_priv='Y',Execute_priv='Y',Repl_slave_priv='Y',Repl_client_priv='Y',Create_view_priv='Y',Show_view_priv='Y',Create_routine_priv='Y',Alter_routine_priv='Y',Create_user_priv='Y' WHERE Host='localhost' AND User='${conf_mysql_login}'"
+		mysql -u${DEBIAN_MYSQL_USER} -p${DEBIAN_MYSQL_PASS} -h${conf_mysql_host} -Dmysql --execute="FLUSH PRIVILEGES"
+	fi
+
 	echoIfVerbose "-> Installing or upgrading DTC database: dtc "
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
 
@@ -757,7 +816,6 @@ setupDTCDatabase () {
 		use_cyrus=no
 	fi
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET main_site_ip='"$conf_ip_addr"',administrative_site='"$dtc_admin_subdomain"."$main_domain_name"',site_root_host_path='"$conf_hosting_path"',generated_file_path='"$PATH_DTC_ETC"',mta_type='"$conf_mta_type"',main_domain='"$main_domain_name"',404_subdomain='404',apache_version='"$conf_apache_version"',use_cyrus='"$use_cyrus"',chroot_path='$conf_chroot_path' WHERE 1"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE cron_job SET qmail_newu='yes',restart_qmail='yes',gen_qmail='yes',reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes' WHERE 1"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET php_library_path='/usr/lib/php:/tmp:/usr/share/pear:$PATH_DTC_ETC/dtc404:/usr/share/php', dtc_system_uid='$CONF_DTC_SYSTEM_UID', dtc_system_username='$CONF_DTC_SYSTEM_USERNAME', dtc_system_gid='$CONF_DTC_SYSTEM_GID',dtc_system_groupname='$CONF_DTC_SYSTEM_GROUPNAME',generated_file_path='${PATH_DTC_ETC}' WHERE 1"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE domain SET ip_addr='"$conf_ip_addr"', generate_flag='yes' WHERE name='"$main_domain_name"'"
 
@@ -2004,25 +2062,25 @@ parent_domain_matches_subdomains=
 # disable mailbox size limit by default (user can add to postfix_config_snippets)
 mailbox_size_limit = 0
 " >> $TMP_FILE
-			FOUND_DKFILTER=0;
+
+			FOUND_DKIMPROXY=0;
 			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new ] ; then
-				if [ -x /usr/sbin/dkfilter.in -o -x /usr/bin/dkfilter.in -o -x /usr/local/sbin/dkfilter.in -o -x /usr/local/bin/dkfilter.in ] ; then
-					FOUND_DKFILTER=1;
-					echo "# Amavis AND dkfilter.in have been detected as installed, so this has been activated by default
+				if [ -x /usr/sbin/dkimproxy.in -o -x /usr/bin/dkimproxy.in -o -x /usr/local/sbin/dkimproxy.in -o -x /usr/local/bin/dkimproxy.in ] ; then
+					FOUND_DKIMPROXY=1;
+					echo "# use check_access directive to filter all incoming mail
+/^/  FILTER dkimsign:[127.0.0.1]:10026" > $PATH_POSTFIX_ETC/filter_10026_catchall
+					echo "# Amavis AND dkimproxy.in have been detected as installed, so this has been activated by default
 # if this is not what you want, comment it and restart postfix
 # This is the default action, AKA signing
 # we trigger the other action (scanning via a check_access directive)
-content_filter=dksign:[127.0.0.1]:10028
+content_filter=dkimsign:[127.0.0.1]:10028
 " >> $TMP_FILE
-					if [ ! -x $PATH_POSTFIX_ETC/filter_10026_catchall ] ; then
-						echo "# use check_access directive to filter all incoming mail
-/^/  FILTER dksign:[127.0.0.1]:10026" > $PATH_POSTFIX_ETC/filter_10026_catchall
-					fi
-				else
-					echo "# Amavis has been detected as installed, so this has been activated by default
+					if [ ! -f $PATH_POSTFIX_ETC/filter_10026_catchall ] ; then
+						echo "# Amavis has been detected as installed, so this has been activated by default
 # if this is not what you want, comment it and restart postfix
 content_filter=smtp-amavis:[127.0.0.1]:10024
 " >> $TMP_FILE
+					fi
 				fi
 			else
 				echo "# uncomment to enable amavis
@@ -2031,7 +2089,8 @@ content_filter=smtp-amavis:[127.0.0.1]:10024
 #     the return channel is set correctly
 #content_filter=smtp-amavis:[127.0.0.1]:10024
 " >> $TMP_FILE
-			fi
+			fi					
+
 echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domains
 " >> $TMP_FILE
 
@@ -2145,7 +2204,8 @@ smtpd_tls_auth_only = no
 				echo "smtpd_recipient_restrictions = permit_mynetworks,
                                $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
-				if [ "$FOUND_DKFILTER" -eq 1 ] ; then
+				if [ "$FOUND_DKIMPROXY" -eq 1 ] ; then
+#				if [ "$FOUND_DKFILTER" -eq 1 ] ; then
 					echo "			check_sender_access regexp:$PATH_POSTFIX_ETC/filter_10026_catchall" >> $TMP_FILE
 				fi
                                permit_sasl_authenticated=""
@@ -2164,7 +2224,8 @@ smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
 			reject_unknown_recipient_domain,
 			$dnsbl_list
 			reject_unauth_destination," >> $TMP_FILE
-			if [ "$FOUND_DKFILTER" -eq 1 ] ; then
+			if [ "$FOUND_DKIMPROXY" -eq 1 ] ; then
+#			if [ "$FOUND_DKFILTER" -eq 1 ] ; then
 				echo "			check_sender_access regexp:$PATH_POSTFIX_ETC/filter_10026_catchall" >> $TMP_FILE
 			fi
 			echo "			permit${sasl_main_dot_cf_rules}" >> $TMP_FILE
@@ -2274,9 +2335,8 @@ smtp-amavis unix -      -       -       -       2  smtp
 
 " >> $TMP_FILE2
 
-				# apply DKFILTER config if we find dkfilter.in
-				if [ "$FOUND_DKFILTER" -eq 1 ] ; then
-					echo "# DomainKeys filter configuration
+				if [ "$FOUND_DKIMPROXY" -eq 1 ] ; then
+					echo "# DKIM filter configuration
 #
 # modify the default submission service to specify a content filter
 # and restrict it to local clients and SASL authenticated clients only
@@ -2284,14 +2344,14 @@ smtp-amavis unix -      -       -       -       2  smtp
 submission  inet  n     -       n       -       -       smtpd
     -o smtpd_etrn_restrictions=reject
     -o smtpd_sasl_auth_enable=yes
-    -o content_filter=dksign:[127.0.0.1]:10028
+    -o content_filter=dkimsign:[127.0.0.1]:10028
     -o receive_override_options=no_address_mappings
     -o smtpd_recipient_restrictions=permit_mynetworks,permit_sasl_authenticated,reject
 
 #
 # specify the location of the DomainKeys signing filter
 #
-dksign    unix  -       -       n       -       5      smtp
+dkimsign    unix  -       -       n       -       5      smtp
     -o smtp_send_xforward_command=yes
     -o smtp_discard_ehlo_keywords=8bitmime
 
@@ -2310,19 +2370,9 @@ dksign    unix  -       -       n       -       5      smtp
 
 # For Postfix to sign mails sent out using Webmail or other locally delivered mail
 pickup fifo n - n 60 1 pickup
-        -o content_filter=dksign:127.0.0.1:10028
-					
+        -o content_filter=dkimsign:127.0.0.1:10028
+
 " >> $TMP_FILE2
-					# We also need to modify the /etc/init.d/dkfilter startup script so that it correctly pulls in the DOMAIN list and modifies port
-					DKFILTER_INIT=/etc/init.d/dkfilter
-					if [ -e $DKFILTER_INIT ] ; then 
-						if grep "Configured by DTC" $DKFILTER_INIT >/dev/null; then
-							echoIfVerbose "$DKFILTER_INIT already modifed by DTC installer"
-						else
-							sed -i -e 's#^DOMAIN=#\# Configured by DTC v0.26 : Please do not touch this line !\nDOMAIN=\`cat /var/lib/dtc/etc/local_domains \| tr \\\\\\r\\\\\\n ,,\`\n\# End of DTC configuration v0.26 : please do not touch this line !\n\#DOMAIN=#' $DKFILTER_INIT
-							sed -i -e 's#^DKFILTER_IN_ARGS=#\# Configured by DTC v0.26 : Please do not touch this line !\nDKFILTER_IN_ARGS="--hostname=$HOSTNAME 127.0.0.1:10026 127.0.0.1:10024"\n\# End of DTC configuration v0.26 : please do not touch this line !\n\#DKFILTER_IN_ARGS=#' $DKFILTER_INIT	
-						fi
-					fi					
 				fi
 
 				echo "# End of DTC configuration v0.17 : please don't touch this line !" >> $TMP_FILE2
@@ -3195,15 +3245,15 @@ groups.member_groupid_column = ssh_user_group.group_id;
 				# this is the libnss version
 				echo "
 [queries]
-getpwnam    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE login='%1$s' LIMIT 1
-getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1$u' LIMIT 1
+getpwnam    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE login='%1\$s' LIMIT 1
+getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1\$u' LIMIT 1
 getpwent    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access
-getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1$s' LIMIT 1
-getgrgid    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_id='%1$u' LIMIT 1
+getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1\$s' LIMIT 1
+getgrgid    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_id='%1\$u' LIMIT 1
 getgrent    SELECT group_name,group_password,group_id FROM ssh_groups
-memsbygid   SELECT login FROM ssh_access WHERE gid='%1$u'
-gidsbymem   SELECT gid  FROM ssh_access WHERE login='%1$s'
-getspnam    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access WHERE ssh_access.login='%1$s' LIMIT 1
+memsbygid   SELECT login FROM ssh_access WHERE gid='%1\$u'
+gidsbymem   SELECT gid  FROM ssh_access WHERE login='%1\$s'
+getspnam    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access WHERE ssh_access.login='%1\$s' LIMIT 1
 getspent    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access
 
 [server]
@@ -3419,6 +3469,9 @@ reportingInstall () {
 }
 
 startPhpCronScript () {
+	# Set the flags on the SQL table to make the cron job execute correctly
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE cron_job SET qmail_newu='yes',restart_qmail='yes',gen_qmail='yes',reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes' WHERE 1"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE domain SET generate_flag='yes' WHERE 1"
 	if [ ""$VERBOSE_INSTALL = "yes" ] ; then
 		echo "***********************************************************"
 		echo "*** Please wait while DTC configures all the daemons... ***"
@@ -4377,6 +4430,7 @@ saveConfig () {
 	oldumask=`umask`
 	umask 0700
         echo "
+conf_mysqlautoconfig=\"${conf_mysqlautoconfig}\"
 conf_mysql_host=\"${conf_mysql_host}\"
 conf_mysql_login=\"${conf_mysql_login}\"
 conf_mysql_pass=\"${conf_mysql_pass}\"
@@ -4412,6 +4466,26 @@ conf_cert_challenge_pass=\"${conf_cert_challenge_pass}\"
 " >${DTC_SAVED_INSTALL_CONFIG}
 	chmod 0600 ${DTC_SAVED_INSTALL_CONFIG}
 	umask $oldumask
+}
+
+applyAllDTCPatches () {
+	if [ "$UNIX_TYPE" = "debian" ] ; then
+		dtcPatchFile /usr/share/phpmyadmin/.htaccess ${PATH_DTC_ADMIN}/patches/phpmyadmin_htaccess.patch 31601e916ccfa49e96470f70f3e28c6c 4a3cf4183860ab55051964cb5d488c85
+		dtcPatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
+		dtcPatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
+		dtcPatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 860349aa619b16d5f61ff255a16619fa
+		dtcPatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 83a74064692bb4808e223f7cc6abb154
+	fi
+}
+
+deApplyAllDTCPatches () {
+	if [ "$UNIX_TYPE" = "debian" ] ; then
+		dtcUnpatchFile /usr/share/phpmyadmin/.htaccess ${PATH_DTC_ADMIN}/patches/phpmyadmin_htaccess.patch 31601e916ccfa49e96470f70f3e28c6c 4a3cf4183860ab55051964cb5d488c85
+		dtcUnpatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
+		dtcUnpatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
+		dtcUnpatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 860349aa619b16d5f61ff255a16619fa
+		dtcUnpatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 83a74064692bb4808e223f7cc6abb154
+	fi
 }
 
 DTCsearchConfigFiles () {
@@ -4451,8 +4525,7 @@ DTCuninstallPackage () {
 }
 
 DTCuninstallDaemons () {
-	dtcUnpatchFile $DKFILTER_INIT_SCRIPT $DKFILTER_PATCH $DKFILTER_ORIG_MD5 $DKFILTER_PATCHED_MD5
-
+	deApplyAllDTCPatches
 	createDTCuserAndGroup
 	DTCsearchConfigFiles
 	uninstallCrontab
@@ -4490,7 +4563,8 @@ DTCsetupDaemons () {
 	createRRDFiles
 	reportingInstall
 
-	dtcPatchFile $DKFILTER_INIT_SCRIPT $DKFILTER_PATCH $DKFILTER_ORIG_MD5 $DKFILTER_PATCHED_MD5
+	applyAllDTCPatches
+	dtcGenDebianLocales
 
 	modifyResolvConf
 	createChrootTemplate

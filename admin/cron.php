@@ -382,6 +382,7 @@ function cronMailSystem () {
 	global $conf_mta_type;
 	global $conf_dtc_system_username;
 	global $conf_generated_file_path;
+	global $conf_unix_type;
 
 	$cronjob_table_content = getCronFlags();
 	if($cronjob_table_content["gen_qmail"] == "yes"){
@@ -439,6 +440,9 @@ function cronMailSystem () {
 			}else if( file_exists("/etc/rc.d/rc.postfix")){
 				$PATH_POSTFIX_SCRIPT = "/etc/rc.d/rc.postfix";
 			}
+			if($conf_unix_type == "gentoo" && file_exists("/etc/init.d/postfix")) {
+				$PATH_POSTFIX_SCRIPT = "/usr/sbin/postfix";
+			}
 			system("$PATH_POSTFIX_SCRIPT reload");
 
 			$PATH_POSTSUPER = "/usr/sbin/postsuper";
@@ -471,9 +475,9 @@ function cronMailSystem () {
 			echo "Flushing the queue now, to make sure we have some mail delivery happening after amavisd restart...\n";
                         system("$PATH_POSTFIX_SCRIPT flush");
 
-			if( file_exists ("/etc/init.d/dkfilter") ){
+			if( file_exists ("/etc/init.d/dkimproxy") ){
 				echo "Reloading dkfilter to reload it's domains...\n";
-				system("/etc/init.d/dkfilter force-reload");
+				system("/etc/init.d/dkimproxy force-reload");
 			}
 
 			break;

@@ -1,0 +1,11 @@
+--- /etc/default/saslauthd.orig	2008-03-02 15:15:55.000000000 +0800
++++ /etc/default/saslauthd	2008-03-02 15:16:06.000000000 +0800
+@@ -3,7 +3,7 @@
+ #
+ 
+ # Should saslauthd run automatically on startup? (default: no)
+-START=no
++START=yes
+ 
+ # Which authentication mechanisms should saslauthd use? (default: pam)
+ #

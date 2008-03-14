@@ -3,7 +3,7 @@ Section: admin
 Priority: extra
 Maintainer: Thomas Goirand <thomas@goirand.fr>
 Build-Depends: debhelper (>= 5)
-Build-Depends-Indep: po-debconf
+Build-Depends-Indep: po-debconf, gettext
 Standards-Version: 3.7.3
 Dm-Upload-Allowed: yes
 Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
@@ -12,7 +12,7 @@ Homepage: http://www.gplhost.com/software-dtc.html
 
 Package: dtc-common
 Architecture: all
-Depends: apache2 | apache, amavisd-new, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam,  courier-maildrop | cyrus-imapd-2.2, file, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache-mod-php5 | libapache-mod-php4 | libapache2-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql | libsasl2-modules-sql, lsb-release, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, net-tools, openssl, patch, php5 | php4, php5-cli | php4-cli, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, php-pear | php4-pear, php-fpdf, php-crypt-cbc, php5-curl | php4-curl, pure-ftpd-mysql | proftpd-mysql, rrdtool, sasl2-bin, sbox-dtc, spamassassin, spamc, ssh, sudo, unzip, webalizer, zip
+Depends: apache2 | apache, amavisd-new, bind | bind9, bzip2, ca-certificates, chrootuid, clamav, clamav-base, clamav-daemon, clamav-freshclam,  courier-maildrop | cyrus-imapd-2.2, file, gawk, libapache2-mod-log-sql-mysql | libapache-mod-log-sql-mysql, libapache2-mod-php5 | libapache-mod-php5 | libapache-mod-php4 | libapache2-mod-php4, libapache-mod-ssl | apache2, libnss-mysql, libpam-mysql | libsasl2-modules-sql, lsb-release, mhonarc, mime-support, mlmmj, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1, ncftp, net-tools, openssl, patch, php5 | php4, php5-cli | php4-cli, php4-mcrypt | php5, php5-gd | php4-gd2 | php4-gd, php5-mysql | php4-mysql, php-pear | php4-pear, php-fpdf, php-crypt-cbc, php5-curl | php4-curl, pure-ftpd-mysql | proftpd-mysql, rrdtool, sasl2-bin, sbox-dtc, spamassassin, spamc, ssh, sudo, unzip, webalizer, zip, locales, patch
 Conflicts: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
 Suggests: dtc-postfix-courier | dtc-cyrus
 Description: web control panel for admin and accounting hosting services (common files)
@@ -37,7 +37,7 @@ Depends: dtc-common, debconf, mysql-client | mysql-client-4.1, mysql-server-5.0 
 Suggests: courier-authmysql, courier-authlib-mysql, dovecot, postfix, qmail, postfix-tls, libsasl2-2, libsasl2-modules, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2, msttcorefonts
 Conflicts: dtc-postfix-courier, dtc-cyrus
 Replaces: dtc-postfix-courier, dtc-cyrus
-Description: web control panel for admin and accounting hosting services
+Description: web control panel for admin and accounting hosting services (fewer depends)
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. Using a web GUI for the administration and accounting all hosting
  services, DTC can delegate the task of creating subdomains, email, ssh,
@@ -115,7 +115,7 @@ Description: dtc-xen VM statistics for the dtc web control panel
 
 Package: dtc-toaster
 Architecture: all
-Depends: awstats, dtc-postfix-courier, mailgraph, phpmyadmin, squirrelmail, ttf-arphic-ukai, ttf-dejavu, tumgreyspf, visitors, dkfilter
+Depends: awstats, dtc-postfix-courier, mailgraph, phpmyadmin, roundcube-sqlite | squirrelmail, ttf-arphic-ukai, ttf-dejavu, tumgreyspf, visitors, dkimproxy
 Suggests: msttcorefonts
 Description: web control panel for admin and accounting hosting services (meta package)
  Domain Technologie Control (DTC) is a control panel aiming at commercial

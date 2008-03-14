@@ -90,6 +90,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 		mysql_close($newid) or die("Cannot disconnect to user database");
 		connect2base();
 	}
+	updateUsingCron("gen_backup='yes'");
 }
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_dbuser_pass"){
@@ -194,6 +195,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_user_db"){
 		mysql_close($newid) or die("Cannot disconnect to user database");
 		connect2base();
 	}
+	updateUsingCron("gen_backup='yes'");
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 	checkLoginPass($adm_login,$adm_pass);

@@ -98,13 +98,13 @@ function paypalButton($product_id,$amount,$item_name,$return_url,$use_recurring 
 	}
 
 	if($secpayconf_use_paypal_recurring == "yes" && $use_recurring == "yes"){
-		$add_to_form = '<input type="hidden" name="a3" value="'.$amount.'">
+		$add_to_form = '<input type="hidden" name="a3" value="'.str_replace(",",".",$amount).'">
 		<input type="hidden" name="p3" value="1">
 		<input type="hidden" name="t3" value="M">
 		<input type="hidden" name="src" value="1">
 		<input type="hidden" name="sra" value="1">';
 	}else{
-		$add_to_form = '<input type="hidden" name="amount" value="'.$amount.'">';
+		$add_to_form = '<input type="hidden" name="amount" value="'.str_replace(",",".",$amount).'">';
 	}
 	$out = '<form action="https://'.$paypal_host.$paypal_cgi.'" method="post" target="_top">
 <input type="hidden" name="cmd" value="_xclick">

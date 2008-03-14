@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-19 16:28+0800\n"
+"POT-Creation-Date: 2008-03-14 00:08+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Seeb <seeb@seeb.net.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: shared/inc/forms/vps.php:64 shared/inc/forms/vps.php:77
-#: shared/inc/forms/vps.php:90
+#: shared/inc/forms/vps.php:68 shared/inc/forms/vps.php:81
+#: shared/inc/forms/vps.php:94
 msgid " CPU seconds"
 msgstr ""
 
@@ -58,8 +58,8 @@ msgstr ""
 msgid "+1.XXXXXXXXXX format"
 msgstr "w formacie +48.XXxxxxxxx"
 
-#: shared/inc/forms/vps.php:63 shared/inc/forms/vps.php:64
-#: shared/inc/forms/vps.php:65 shared/inc/forms/vps.php:66
+#: shared/inc/forms/vps.php:67 shared/inc/forms/vps.php:68
+#: shared/inc/forms/vps.php:69 shared/inc/forms/vps.php:70
 msgid "2 months ago: "
 msgstr ""
 
@@ -334,16 +334,16 @@ msgstr "Lista Administratorów"
 msgid "Access not granted line "
 msgstr ""
 
-#: admin/inc/dtc_config.php:848
+#: admin/inc/dtc_config.php:925
 msgid "Act as backup DNS server for the following servers:"
 msgstr "Aktywuj kopie serwerow  DNS na nastepujące serwerys:"
 
-#: admin/inc/dtc_config.php:823
+#: admin/inc/dtc_config.php:900
 msgid "Act as backup mail server for the following servers:"
 msgstr "Aktywuj kopie poczty na nastepujące serwery:"
 
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
-#: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:212
+#: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
 #: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/reseller.php:24
@@ -390,11 +390,11 @@ msgstr "Pozostało na koncie :"
 msgid "Add a domain:"
 msgstr "Dodaj domenę"
 
-#: admin/inc/dtc_config.php:1208
+#: admin/inc/dtc_config.php:1285
 msgid "Add a new company"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1207
+#: admin/inc/dtc_config.php:1284
 msgid "Add a new company:"
 msgstr ""
 
@@ -427,22 +427,23 @@ msgstr "Edycja serwera nazw nie powiodła się"
 msgid "Addition of name server was succesfull"
 msgstr "Edycja serwera nazw powiodła się"
 
-#: admin/dtcrm/main.php:165 shared/dtcrm/draw_handle.php:59
-#: shared/dtcrm/draw_handle.php:91 shared/dtcrm/draw_handle.php:123
+#: admin/dtcrm/main.php:165 client/new_account_form.php:610
+#: shared/dtcrm/draw_handle.php:59 shared/dtcrm/draw_handle.php:91
+#: shared/dtcrm/draw_handle.php:123 shared/dtcrm/draw_handle.php:235
 #, fuzzy
 msgid "Address (line1): "
 msgstr "Adres :"
 
-#: admin/dtcrm/main.php:166 shared/dtcrm/draw_handle.php:60
-#: shared/dtcrm/draw_handle.php:92 shared/dtcrm/draw_handle.php:124
-#: shared/dtcrm/draw_handle.php:238
+#: admin/dtcrm/main.php:166 client/new_account_form.php:613
+#: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
+#: shared/dtcrm/draw_handle.php:124 shared/dtcrm/draw_handle.php:238
 #, fuzzy
 msgid "Address (line2): "
 msgstr "Adres :"
 
-#: admin/dtcrm/main.php:167 shared/dtcrm/draw_handle.php:61
-#: shared/dtcrm/draw_handle.php:93 shared/dtcrm/draw_handle.php:125
-#: shared/dtcrm/draw_handle.php:241
+#: admin/dtcrm/main.php:167 client/new_account_form.php:616
+#: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
+#: shared/dtcrm/draw_handle.php:125 shared/dtcrm/draw_handle.php:241
 #, fuzzy
 msgid "Address (line3): "
 msgstr "Adres :"
@@ -452,36 +453,21 @@ msgstr "Adres :"
 msgid "Address email"
 msgstr "Adres :"
 
-#: admin/inc/dtc_config.php:688
+#: admin/inc/dtc_config.php:765
 msgid "Address of your main MX server:"
 msgstr "Nazwa serwera Primary MX :"
 
-#: admin/inc/dtc_config.php:1228 shared/inc/forms/my_account.php:207
+#: admin/inc/dtc_config.php:1305 shared/inc/forms/my_account.php:207
 #, fuzzy
 msgid "Address:"
-msgstr "Adres :"
-
-#: client/new_account_form.php:610 shared/dtcrm/draw_handle.php:235
-#, fuzzy
-msgid "Addresse (line1): "
-msgstr "Adres :"
-
-#: client/new_account_form.php:613
-#, fuzzy
-msgid "Addresse (line2): "
-msgstr "Adres :"
-
-#: client/new_account_form.php:616
-#, fuzzy
-msgid "Addresse (line3): "
 msgstr "Adres :"
 
 #: admin/inc/draw_user_admin.php:416
 msgid "Admin"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:656
-#: shared/gfx/skin/bwoup/layout.php:658
+#: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:649
+#: shared/gfx/skin/bwoup/layout.php:651
 msgid "Admin editor"
 msgstr "Zarządzanie wirutalnymi administatorami"
 
@@ -490,12 +476,25 @@ msgstr "Zarządzanie wirutalnymi administatorami"
 msgid "Admin login: "
 msgstr "Login FTP :"
 
-#: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:569
+#: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:562
 msgid "Admins list"
 msgstr "Lista Administratorów"
 
+#: shared/drawlib/cc_code_popup.php:103
+msgid "Afghanistan"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:400
 msgid "Age"
+msgstr "Wiek"
+
+#: shared/drawlib/cc_code_popup.php:104
+msgid "Albania"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:105
+#, fuzzy
+msgid "Algeria"
 msgstr "Wiek"
 
 #: shared/inc/forms/root_admin.php:133
@@ -511,7 +510,7 @@ msgstr "Dostęp dodatkowy do SSH przez logowanie do vhostów:"
 msgid "Allow the use of the package installer:"
 msgstr "Wybierz pakiet do instalacji"
 
-#: admin/inc/dtc_config.php:744
+#: admin/inc/dtc_config.php:821
 msgid ""
 "Allow those servers to list this server's domain names for doing backup:"
 msgstr "Pozwól temu serwerowi na wykonanie backup-u domen:"
@@ -536,6 +535,10 @@ msgstr ""
 msgid "Alternatively, you can add another domain name:"
 msgstr "Możesz dodać kolejną domenę:"
 
+#: shared/drawlib/cc_code_popup.php:106
+msgid "American Samoa"
+msgstr ""
+
 #: admin/inc/renewals.php:114 shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Amount"
@@ -556,19 +559,39 @@ msgstr ""
 "nadania uprawnień do automatycznego dodawania domen. Aby mieć możliwość "
 "dodawania domen bez sprawdzania przez administratora proszę napisać do:"
 
-#: admin/inc/dtc_config.php:594
+#: shared/drawlib/cc_code_popup.php:107
+msgid "Andorra"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:108
+msgid "Angola"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:109
+msgid "Anguilla"
+msgstr ""
+
+#: admin/inc/dtc_config.php:671
 msgid "Another location"
 msgstr "Inna lokalizacja"
+
+#: shared/drawlib/cc_code_popup.php:110
+msgid "Antarctica"
+msgstr ""
 
 #: shared/inc/forms/lists.php:446
 msgid "Anti-spam mode:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1154
+#: shared/drawlib/cc_code_popup.php:111
+msgid "Antigua And Barbuda"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1231
 msgid "Apache file names"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1125
+#: admin/inc/dtc_config.php:1202
 msgid "Apache htpasswd path"
 msgstr ""
 
@@ -604,14 +627,42 @@ msgstr ""
 "Czy napewno usunąć Użytkownika ? Zostaną usunięte wszystkie jego domeny, "
 "konta i bazy danych !!!"
 
-#: admin/inc/dtc_config.php:719
+#: shared/drawlib/cc_code_popup.php:112
+msgid "Argentina"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:113
+msgid "Armenia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:114
+msgid "Aruba"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:115
+msgid "Ascension Island"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:116
+msgid "Australia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:117
+msgid "Austria"
+msgstr ""
+
+#: admin/inc/dtc_config.php:796
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
 msgstr ""
 
 #: admin/inc/dtc_config.php:264 admin/inc/dtc_config.php:302
-#: admin/inc/dtc_config.php:448
+#: admin/inc/dtc_config.php:525
 msgid "Available"
 msgstr "Dostępny"
+
+#: shared/drawlib/cc_code_popup.php:118
+msgid "Azerbaijan"
+msgstr ""
 
 #: admin/inc/nav.php:79
 msgid "BACKUP SCRIPTS"
@@ -637,8 +688,16 @@ msgstr "Częstotliwość kopii:"
 msgid "Backup script generated !"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:414
-#: shared/gfx/skin/bwoup/layout.php:416
+#: shared/drawlib/cc_code_popup.php:119
+msgid "Bahamas"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:120
+msgid "Bahrain"
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:407
+#: shared/gfx/skin/bwoup/layout.php:409
 msgid "Bandwidth monitor"
 msgstr "Monitor transferu"
 
@@ -652,30 +711,107 @@ msgstr "Miesięczny transfer"
 msgid "Bandwidth/month"
 msgstr "Miesięczny transfer"
 
+#: shared/drawlib/cc_code_popup.php:121
+msgid "Bangladesh"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
 msgid "Bank validated"
 msgstr "Potwierdzenie bankowe"
+
+#: shared/drawlib/cc_code_popup.php:122
+msgid "Barbados"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:123
+msgid "Belgium"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:124
+msgid "Belize"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:125
+msgid "Benin"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:126
+msgid "Bermuda"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:127
+msgid "Bhutan"
+msgstr ""
 
 #: admin/deamons_state.php:135
 msgid "Bind reload"
 msgstr ""
 
-#: shared/inc/forms/vps.php:266
+#: shared/drawlib/cc_code_popup.php:128
+msgid "Bolivia"
+msgstr ""
+
+#: shared/inc/forms/vps.php:271
 msgid "Boot up (xm start)"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:129
+msgid "Bosnia Hercegovina"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:130
+msgid "Botswana"
 msgstr ""
 
 #: shared/inc/forms/lists.php:432
 msgid "Bounce life:"
 msgstr ""
 
-#: shared/inc/forms/email.php:622
+#: shared/inc/forms/email.php:625
 msgid "Bounce message content: "
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:131
+msgid "Bouvet Island"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:132
+msgid "Brazil"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:133
+msgid "British Indian Ocean Territory"
 msgstr ""
 
 #: admin/inc/nav.php:35
 #, fuzzy
 msgid "Browse all generated files"
 msgstr "Spis twoich domen :"
+
+#: shared/drawlib/cc_code_popup.php:134
+msgid "Brunei Darussalam"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:135
+msgid "Bulgaria"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:136
+msgid "Burkina Faso"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:137
+msgid "Burundi"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:138
+msgid "Byelorussian SSR"
+msgstr ""
+
+#: shared/drawlib/dtc_functions.php:732
+#, fuzzy
+msgid "Bytes"
+msgstr "lata"
 
 #: shared/inc/forms/root_admin.php:355
 msgid "CGI-BIN protection"
@@ -685,18 +821,35 @@ msgstr ""
 msgid "CPU Load Average"
 msgstr ""
 
-#: shared/inc/forms/vps.php:101
+#: shared/inc/forms/vps.php:105
 msgid "CPU Time:"
 msgstr ""
 
-#: shared/inc/forms/vps.php:226
+#: shared/inc/forms/vps.php:230
 msgid "CPU and Network usage:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:139
+msgid "Cambodia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:140
+msgid "Cameroon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:141
+msgid "Canada"
 msgstr ""
 
 #: shared/inc/sql/database.php:42
 #, fuzzy
 msgid "Cannot close user database"
 msgstr "Lokalizacja bazy klientów:"
+
+#: shared/inc/fetch.php:454
+#, fuzzy
+msgid "Cannot fetch user line"
+msgstr "Nie mozna znaleźć serwera w bazie!"
 
 #: admin/inc/draw_user_admin.php:333
 msgid "Cannot find payment!"
@@ -734,7 +887,7 @@ msgstr ""
 msgid "Cannot get VPS information line "
 msgstr ""
 
-#: shared/inc/sql/database.php:172
+#: shared/inc/sql/database.php:173
 msgid "Cannot reselect MySQL db name: please enter another and try again."
 msgstr ""
 
@@ -758,7 +911,11 @@ msgstr ""
 msgid "Cannot resolv your FTP server: "
 msgstr ""
 
-#: shared/inc/forms/email.php:642
+#: shared/drawlib/cc_code_popup.php:142
+msgid "Cape Verde"
+msgstr ""
+
+#: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr "Przekaż wszystkie wiadomości do"
 
@@ -770,7 +927,20 @@ msgstr "Kategoria"
 msgid "Category description"
 msgstr "Opis kategorii"
 
-#: shared/inc/forms/vps.php:339
+#: shared/drawlib/cc_code_popup.php:143
+msgid "Cayman Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:144
+msgid "Central African Republic"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:145
+#, fuzzy
+msgid "Chad"
+msgstr "Udostępnione"
+
+#: shared/inc/forms/vps.php:344
 msgid "Change NetBSD kernel"
 msgstr ""
 
@@ -778,17 +948,29 @@ msgstr ""
 msgid "Change your password:"
 msgstr "Zmień hasło :"
 
-#: shared/inc/forms/email.php:619
+#: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
 msgstr ""
 
-#: shared/inc/forms/vps.php:129
+#: shared/inc/forms/vps.php:133
 msgid "Checking filesystem..."
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:146
+msgid "Chile"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:147
+msgid "China"
 msgstr ""
 
 #: shared/inc/forms/packager.php:215
 msgid "Choose a package to install"
 msgstr "Wybierz pakiet do instalacji"
+
+#: shared/drawlib/cc_code_popup.php:148
+msgid "Christmas Island"
+msgstr ""
 
 #: shared/inc/forms/my_account.php:210
 #, fuzzy
@@ -819,8 +1001,8 @@ msgstr "ID Klienta :"
 msgid "Client info"
 msgstr "Informaci&oacute;n del cliente"
 
-#: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:644
-#: shared/gfx/skin/bwoup/layout.php:646
+#: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:637
+#: shared/gfx/skin/bwoup/layout.php:639
 msgid "Client interface"
 msgstr "Interfejs użytkownika"
 
@@ -830,7 +1012,7 @@ msgid "Client name not found!"
 msgstr "Nie znaleziono klienta!"
 
 #: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
-#: shared/gfx/skin/bwoup/layout.php:260 shared/gfx/skin/bwoup/layout.php:269
+#: shared/gfx/skin/bwoup/layout.php:253 shared/gfx/skin/bwoup/layout.php:262
 msgid "Client panel:"
 msgstr "Panel klienta:"
 
@@ -846,16 +1028,28 @@ msgstr ""
 msgid "Closed list:"
 msgstr "Zamkniete listy:"
 
+#: shared/drawlib/cc_code_popup.php:149
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:150
+msgid "Colombia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:151
+msgid "Comoros"
+msgstr ""
+
 #: admin/inc/dtc_config.php:68
 msgid "Companies"
 msgstr "Firmy"
 
-#: admin/inc/dtc_config.php:1325
+#: admin/inc/dtc_config.php:1402
 #, fuzzy
 msgid "Company name"
 msgstr "Nazwa Firmy :"
 
-#: admin/inc/dtc_config.php:1223 shared/inc/forms/my_account.php:202
+#: admin/inc/dtc_config.php:1300 shared/inc/forms/my_account.php:202
 msgid "Company name:"
 msgstr "Nazwa Firmy :"
 
@@ -866,8 +1060,8 @@ msgstr "Nazwa Firmy :"
 msgid "Company name: "
 msgstr "Nazwa Firmy :"
 
-#: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:434
-#: shared/gfx/skin/bwoup/layout.php:436
+#: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:427
+#: shared/gfx/skin/bwoup/layout.php:429
 msgid "Configuration generation"
 msgstr "Konfiguracja demonów serwera"
 
@@ -905,14 +1099,34 @@ msgstr "Powtórz hasło: "
 msgid "Confirm password: "
 msgstr "Powtórz hasło: "
 
+#: shared/drawlib/cc_code_popup.php:152
+msgid "Congo"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:153
+msgid "Congo, The Democratic Republic Of"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:469
 msgid "Console output"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:154
+msgid "Cook Islands"
 msgstr ""
 
 #: shared/inc/forms/domain_stats.php:87 shared/inc/forms/domain_stats.php:94
 #, fuzzy
 msgid "Copy to subdomains:"
 msgstr "Subdomeny :"
+
+#: shared/drawlib/cc_code_popup.php:155
+msgid "Costa Rica"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:156
+msgid "Cote D'Ivoire"
+msgstr ""
 
 #: admin/deamons_state.php:163
 msgid "Could not connect to SMTP server (timed out): "
@@ -930,7 +1144,7 @@ msgid ""
 "Could not connect to domain registration server: please try again later!"
 msgstr "Nie można połączyć się z globalnym rejestatorem!"
 
-#: shared/inc/forms/vps.php:177
+#: shared/inc/forms/vps.php:181
 msgid "Could not connect to the VPS SOAP Server."
 msgstr ""
 
@@ -942,17 +1156,17 @@ msgstr "Nie mozna odnaleźć serwera VPS w bazie danych"
 msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
 
-#: shared/inc/forms/vps.php:122
+#: shared/inc/forms/vps.php:126
 msgid ""
 "Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
 "not running?"
 msgstr ""
 
-#: shared/inc/forms/vps.php:126
+#: shared/inc/forms/vps.php:130
 msgid "Could not get remote status. Unkown error: "
 msgstr ""
 
-#: shared/inc/forms/vps.php:124
+#: shared/inc/forms/vps.php:128
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
@@ -974,7 +1188,7 @@ msgstr ""
 msgid "Could not write USER to server"
 msgstr ""
 
-#: admin/inc/dtc_config.php:413 shared/inc/forms/root_admin.php:560
+#: admin/inc/dtc_config.php:488 shared/inc/forms/root_admin.php:560
 msgid "Country"
 msgstr "Kraj"
 
@@ -982,7 +1196,7 @@ msgstr "Kraj"
 msgid "Country code seems incorrect."
 msgstr ""
 
-#: admin/inc/dtc_config.php:1231 shared/inc/forms/my_account.php:212
+#: admin/inc/dtc_config.php:1308 shared/inc/forms/my_account.php:212
 msgid "Country:"
 msgstr "Kraj :"
 
@@ -1018,30 +1232,39 @@ msgstr ""
 msgid "Create a subdomain: "
 msgstr "Zakładanie subdomeny : "
 
-#: shared/inc/forms/vps.php:26
+#: shared/inc/forms/vps.php:30
 msgid "Credential not correct: can't display in file "
 msgstr ""
 
-#: admin/inc/dtc_config.php:926
+#: shared/drawlib/cc_code_popup.php:157
+#, fuzzy
+msgid "Croatia"
+msgstr "Stwórz"
+
+#: shared/drawlib/cc_code_popup.php:158
+msgid "Cuba"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1003
 #, fuzzy
 msgid "Currency letters: "
 msgstr "Oznaczenie literowe:"
 
-#: admin/inc/dtc_config.php:922
+#: admin/inc/dtc_config.php:999
 #, fuzzy
 msgid "Currency symbol: "
 msgstr "Symbol waluty:"
 
-#: shared/inc/forms/vps.php:247
+#: shared/inc/forms/vps.php:251
 #, fuzzy
 msgid "Current VPS status:"
 msgstr "Oznaczenie literowe:"
 
-#: shared/inc/forms/vps.php:195
+#: shared/inc/forms/vps.php:199
 msgid "Current contract: "
 msgstr ""
 
-#: shared/inc/forms/vps.php:275
+#: shared/inc/forms/vps.php:280
 msgid "Currently installed operating system: "
 msgstr ""
 
@@ -1050,25 +1273,25 @@ msgstr ""
 msgid "Custom headers:"
 msgstr "Adresy klientów"
 
-#: admin/inc/dtc_config.php:1305
+#: admin/inc/dtc_config.php:1382
 msgid "Customer and service country vs company:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1320
+#: admin/inc/dtc_config.php:1397
 msgid "Customer country"
 msgstr "Państwo klienta"
 
-#: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:409
-#: shared/gfx/skin/bwoup/layout.php:411
+#: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:402
+#: shared/gfx/skin/bwoup/layout.php:404
 msgid "Customer management"
 msgstr "Dane klientów CRM"
 
-#: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:499
+#: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:492
 msgid "Customer renewals"
 msgstr "Odnownienie klienta"
 
 #: client/new_account_form.php:713 shared/gfx/skin/default_layout.php:120
-#: shared/gfx/skin/bwoup/layout.php:486
+#: shared/gfx/skin/bwoup/layout.php:479
 msgid "Customer's address"
 msgstr "Adresy klientów"
 
@@ -1076,16 +1299,28 @@ msgstr "Adresy klientów"
 msgid "Customer's administrators"
 msgstr "Administracja klientami"
 
-#: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:503
+#: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:496
 msgid "Customer's bandwidth consumption"
 msgstr "Wykorzystanie transferu użytkownika"
 
-#: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:481
+#: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:474
 msgid "Customers list"
 msgstr "Lista klientów"
 
 #: shared/inc/forms/root_admin.php:347
 msgid "Customize"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:159
+msgid "Cyprus"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:160
+msgid "Czech Republic"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:161
+msgid "Czechoslovakia"
 msgstr ""
 
 #: shared/inc/draw.php:135 shared/inc/draw.php:412
@@ -1100,20 +1335,20 @@ msgstr "DNS i MX"
 msgid "DNS config of:"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:526
+#: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:519
 msgid "DTC Configuration"
 msgstr "Konfiguracja DTC"
 
-#: admin/inc/dtc_config.php:619
+#: admin/inc/dtc_config.php:696
 msgid "DTC Skin chooser"
 msgstr "Wybór skórek DTC"
 
-#: shared/gfx/skin/default_layout.php:319 shared/gfx/skin/bwoup/layout.php:439
-#: shared/gfx/skin/bwoup/layout.php:441
+#: shared/gfx/skin/default_layout.php:319 shared/gfx/skin/bwoup/layout.php:432
+#: shared/gfx/skin/bwoup/layout.php:434
 msgid "DTC general configuration"
 msgstr "Główna konfiguracja DTC"
 
-#: admin/inc/dtc_config.php:557
+#: admin/inc/dtc_config.php:634
 msgid "Daemon"
 msgstr "Demony"
 
@@ -1147,12 +1382,12 @@ msgstr "Użycie dysku dla baz danych :"
 msgid "Databases:"
 msgstr "Spis twoich baz danych :"
 
-#: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:210
+#: admin/inc/draw_user_admin.php:237 admin/dtcrm/main.php:215
 #: shared/inc/forms/invoices.php:23 shared/inc/forms/ticket.php:158
 msgid "Date"
 msgstr "Data"
 
-#: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:511
+#: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:504
 msgid "Deamons states"
 msgstr "Status demonów"
 
@@ -1174,7 +1409,7 @@ msgstr "Odnoweienia serwerów dedykowanych"
 msgid "Dedicated servers: "
 msgstr "Serwery dedykowane: "
 
-#: admin/inc/dtc_config.php:1283 admin/inc/dtc_config.php:1288
+#: admin/inc/dtc_config.php:1360 admin/inc/dtc_config.php:1365
 msgid "Default company invoicing:"
 msgstr "Domyślna firma na fakturze:"
 
@@ -1199,6 +1434,11 @@ msgid ""
 msgstr ""
 "Usuń wszystkie wiadomości z archiwum na stronie. UWAGA: Zadziała tylko jeśli "
 "nie zaznaczone archiwum na www."
+
+#: admin/dtcrm/main.php:194
+#, fuzzy
+msgid "Delete client"
+msgstr "Usuń"
 
 #: shared/inc/forms/lists.php:405
 #, fuzzy
@@ -1239,7 +1479,7 @@ msgstr "Deklaracja serwera nazw powiodła się"
 msgid "Delimiter:"
 msgstr "Usuń"
 
-#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:614
+#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:617
 msgid "Deliver messages locally in INBOX: "
 msgstr ""
 "Dostarczanie lokalne <br>(odznacz&nbsp;jeśli&nbsp;adres&nbsp; jest "
@@ -1247,6 +1487,10 @@ msgstr ""
 
 #: shared/inc/forms/aliases.php:52
 msgid "Delivery Group:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:162
+msgid "Denmark"
 msgstr ""
 
 #: shared/inc/forms/lists.php:423
@@ -1257,7 +1501,7 @@ msgstr ""
 msgid "Description"
 msgstr "Opis"
 
-#: admin/inc/dtc_config.php:1070
+#: admin/inc/dtc_config.php:1147
 #, fuzzy
 msgid "Description: "
 msgstr "Opis kategorii"
@@ -1309,6 +1553,10 @@ msgstr "Użycie dysku"
 msgid "Display and sort by:"
 msgstr "Sortuj wg:"
 
+#: shared/drawlib/cc_code_popup.php:163
+msgid "Djibouti"
+msgstr ""
+
 #: shared/inc/forms/lists.php:250
 msgid "Do not change unless you really know what you are doing."
 msgstr ""
@@ -1330,12 +1578,12 @@ msgstr "Panel : Konsola administratora"
 msgid "Domain Tools"
 msgstr "Nazwa domeny"
 
-#: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:650
-#: shared/gfx/skin/bwoup/layout.php:652
+#: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:643
+#: shared/gfx/skin/bwoup/layout.php:645
 msgid "Domain config"
 msgstr "Konfiguracja domeny"
 
-#: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:207
+#: admin/inc/draw_user_admin.php:295 admin/dtcrm/main.php:212
 #: shared/inc/forms/admin_stats.php:104 shared/inc/forms/root_admin.php:343
 msgid "Domain name"
 msgstr "Nazwa domeny"
@@ -1356,7 +1604,7 @@ msgstr "Nazwa domeny ma nieprawidłowy format, proszę wprowadzić inną nazwę.
 msgid "Domain name registration"
 msgstr "Rejestracja domeny"
 
-#: admin/inc/dtc_config.php:878
+#: admin/inc/dtc_config.php:955
 msgid "Domain name registry API configuraiton"
 msgstr "Konfiguracja API do rejestracji domen"
 
@@ -1365,7 +1613,8 @@ msgid "Domain name seems to be incorrect."
 msgstr "Nazwa domeny wygląda na nieprawidłową."
 
 #: shared/inc/forms/admin_stats.php:102
-msgid "Domain name trafic and disk usage:"
+#, fuzzy
+msgid "Domain name traffic and disk usage:"
 msgstr "Nazwa domeny, użycie dla niej dysku i transfer :"
 
 #: shared/inc/forms/dns.php:61
@@ -1379,6 +1628,15 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:409
 msgid "Domains for"
 msgstr "Domeny użytkownika"
+
+#: shared/drawlib/cc_code_popup.php:164
+#, fuzzy
+msgid "Dominica"
+msgstr "Nazwa domeny"
+
+#: shared/drawlib/cc_code_popup.php:165
+msgid "Dominican Republic"
+msgstr ""
 
 #: shared/inc/forms/subdomain.php:245
 msgid "Dynamic IP update login: "
@@ -1397,11 +1655,19 @@ msgstr "KONTA E-MAIL"
 msgid "ERROR!"
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:166
+msgid "East Timor"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:167
+msgid "Ecuador"
+msgstr ""
+
 #: shared/inc/forms/aliases.php:24
 msgid "Edit Mail Group"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1209
+#: admin/inc/dtc_config.php:1286
 msgid "Edit a company:"
 msgstr ""
 
@@ -1425,6 +1691,14 @@ msgstr "Edytuj jedną ze swoich subdomen"
 msgid "Edit your mailbox redirections:"
 msgstr "Edytuj przekierowanie swojej poczty :"
 
+#: shared/drawlib/cc_code_popup.php:168
+msgid "Egypt"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:169
+msgid "El Salvador"
+msgstr ""
+
 #: admin/inc/renewals.php:148 admin/inc/renewals.php:178
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:245
 #, fuzzy
@@ -1440,7 +1714,7 @@ msgstr "Adres e-mail"
 msgid "Email address is already in use!"
 msgstr "Adres e-mail webmastera :"
 
-#: admin/inc/dtc_config.php:697
+#: admin/inc/dtc_config.php:774
 #, fuzzy
 msgid "Email address of your webmaster:"
 msgstr "Adres e-mail webmastera :"
@@ -1496,7 +1770,16 @@ msgstr "Archiwum przez WWW"
 msgid "Enter the domain name you want to register:"
 msgstr "Wprowadź nazwę domeny, ktorą chcesz zarejestrować:"
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
+#: shared/drawlib/cc_code_popup.php:170
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:171
+#, fuzzy
+msgid "Eritrea"
+msgstr "Przedawnienie"
+
+#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
 msgid "Error"
 msgstr "Błąd"
 
@@ -1513,6 +1796,14 @@ msgstr ""
 msgid "Error: a mailing list already exists with this name!"
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:172
+msgid "Estonia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:173
+msgid "Ethiopia"
+msgstr ""
+
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
 #, fuzzy
 msgid "Expiration"
@@ -1527,11 +1818,11 @@ msgstr "Data przedawnienia"
 msgid "Expire"
 msgstr "Przedawnienie"
 
-#: admin/dtcrm/main.php:211 shared/inc/forms/my_account.php:97
+#: admin/dtcrm/main.php:216 shared/inc/forms/my_account.php:97
 msgid "Expiry date"
 msgstr "Data ważności abonamentu :"
 
-#: shared/inc/forms/root_admin.php:127 shared/inc/forms/vps.php:199
+#: shared/inc/forms/root_admin.php:127 shared/inc/forms/vps.php:203
 #, fuzzy
 msgid "Expiry date:"
 msgstr "Data ważności abonamentu :"
@@ -1572,6 +1863,10 @@ msgstr "Login FTP :"
 msgid "FTP password:"
 msgstr "Hasło FTP:"
 
+#: shared/drawlib/cc_code_popup.php:174
+msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
 #: admin/dtcrm/main.php:159 client/new_account_form.php:580
 #: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
 #: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
@@ -1582,6 +1877,10 @@ msgstr "Nazwisko :"
 #: shared/inc/forms/my_account.php:206
 msgid "Family name:"
 msgstr "Nazwisko :"
+
+#: shared/drawlib/cc_code_popup.php:175
+msgid "Faroe Islands"
+msgstr ""
 
 #: shared/inc/forms/my_account.php:214
 msgid "Fax:"
@@ -1597,11 +1896,15 @@ msgstr ""
 msgid "Fetchmail"
 msgstr ""
 
-#: shared/inc/forms/vps.php:271
+#: shared/drawlib/cc_code_popup.php:176
+msgid "Fiji"
+msgstr ""
+
+#: shared/inc/forms/vps.php:276
 msgid "File system check (fsck)"
 msgstr ""
 
-#: shared/inc/forms/vps.php:269
+#: shared/inc/forms/vps.php:274
 msgid "File-system check:"
 msgstr ""
 
@@ -1609,6 +1912,10 @@ msgstr ""
 msgid ""
 "Fill this if you want every mail to have something like:<br>--<br>To "
 "unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:177
+msgid "Finland"
 msgstr ""
 
 #: shared/inc/forms/my_account.php:205
@@ -1626,17 +1933,49 @@ msgstr "Imię :"
 msgid "First query date: "
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:178
+msgid "France"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:179
+msgid "France, Metropolitan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:180
+msgid "French Guiana"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:181
+msgid "French Polynesia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:182
+msgid "French Southern Territories"
+msgstr ""
+
 #: shared/inc/forms/ticket.php:57
 msgid "Full description of the trouble:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:661
+#: admin/inc/dtc_config.php:738
 #, fuzzy
 msgid "Full hostname of DTC admin panel: "
 msgstr "Nazwa hosta do obsługi DTC :"
 
-#: admin/inc/dtc_config.php:730
+#: admin/inc/dtc_config.php:807
 msgid "Full path to location of the public.key file for DomainKey support:"
+msgstr ""
+
+#: shared/drawlib/dtc_functions.php:729
+msgid "GBytes"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:183
+msgid "Gabon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:184
+msgid "Gambia"
 msgstr ""
 
 #: shared/securepay/pay_functions.php:35
@@ -1644,7 +1983,7 @@ msgstr ""
 msgid "Gateway cost"
 msgstr "System płatności"
 
-#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:517
+#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:594
 msgid "General"
 msgstr "Główne "
 
@@ -1656,10 +1995,26 @@ msgstr "Główne informacje o "
 msgid "Generate a vhost entry for this subdomain:"
 msgstr "Wygeneruj virtualne hosty dla swojej domeny(dodaj subdowmeny):"
 
-#: admin/inc/dtc_config.php:652
+#: admin/inc/dtc_config.php:729
 #, fuzzy
 msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "Użycie adresów lokalnych za NAT-em :"
+
+#: shared/drawlib/cc_code_popup.php:185
+msgid "Georgia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:186
+msgid "Germany"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:187
+msgid "Ghana"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:188
+msgid "Gibraltar"
+msgstr ""
 
 #: email/login.php:6
 msgid "Go to client panel"
@@ -1673,7 +2028,7 @@ msgstr "Panel poczty"
 msgid "Go to login"
 msgstr "Zaloguj się"
 
-#: shared/inc/forms/vps.php:258
+#: shared/inc/forms/vps.php:263
 msgid "Gracefully shutdown (xm shutdown)"
 msgstr ""
 
@@ -1681,13 +2036,66 @@ msgstr ""
 msgid "Grant sub-account addition rights (reseller):"
 msgstr "Dodaj Resselera"
 
-#: shared/inc/forms/vps.php:109
+#: shared/drawlib/cc_code_popup.php:189
+msgid "Great Britain"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:190
+msgid "Greece"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:191
+msgid "Greenland"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:192
+msgid "Grenada"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:193
+msgid "Guadeloupe"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:194
+msgid "Guam"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:195
+msgid "Guatemela"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:196
+msgid "Guernsey"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:197
+#, fuzzy
+msgid "Guinea"
+msgstr "Główne "
+
+#: shared/drawlib/cc_code_popup.php:198
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:199
+msgid "Guyana"
+msgstr ""
+
+#: shared/inc/forms/vps.php:113
 msgid "HDD I/O:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:200
+msgid "Haiti"
 msgstr ""
 
 #: shared/inc/forms/lists.php:403
 msgid "Header"
 msgstr "Nagłówek"
+
+#: shared/drawlib/cc_code_popup.php:201
+msgid "Heard and McDonald Islands"
+msgstr ""
 
 #: shared/inc/draw.php:311
 msgid "Help"
@@ -1723,7 +2131,16 @@ msgstr ""
 msgid "Hide email addresses to avoid spam."
 msgstr ""
 
-#: admin/inc/dtc_config.php:643
+#: shared/drawlib/cc_code_popup.php:202
+msgid "Honduras"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:203
+#, fuzzy
+msgid "Hong Kong"
+msgstr "Tylko hosting"
+
+#: admin/inc/dtc_config.php:720
 #, fuzzy
 msgid "Host IP addresses (separated by \"|\"): "
 msgstr "Adresy IP hostów (przedzielone \"|\") :"
@@ -1737,12 +2154,12 @@ msgid "Hosting only"
 msgstr "Tylko hosting"
 
 #: shared/gfx/skin/default_layout.php:159
-#: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:429
-#: shared/gfx/skin/bwoup/layout.php:431 shared/gfx/skin/bwoup/layout.php:539
+#: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:422
+#: shared/gfx/skin/bwoup/layout.php:424 shared/gfx/skin/bwoup/layout.php:532
 msgid "Hosting product manager"
 msgstr "Zarządzanie produktami"
 
-#: admin/inc/dtc_config.php:398 shared/inc/forms/ticket.php:158
+#: admin/inc/dtc_config.php:473 shared/inc/forms/ticket.php:158
 #, fuzzy
 msgid "Hostname"
 msgstr "Nazwa hosta"
@@ -1761,6 +2178,10 @@ msgid ""
 "How many recipients pr. mail delivered to the smtp server. Defaults to 100."
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:204
+msgid "Hungary"
+msgstr ""
+
 #: client/new_account_form.php:635
 msgid "I agree to the"
 msgstr "Akceptuję"
@@ -1769,7 +2190,7 @@ msgstr "Akceptuję"
 msgid "IP Resolved"
 msgstr ""
 
-#: admin/inc/dtc_config.php:756 shared/inc/forms/my_account.php:126
+#: admin/inc/dtc_config.php:833 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/root_admin.php:384
 msgid "IP address"
 msgstr "Adres IP"
@@ -1787,7 +2208,7 @@ msgstr "Adres IP serwera Primary DNS :"
 msgid "IP address or CNAME: "
 msgstr "Adres IP"
 
-#: shared/inc/forms/vps.php:235
+#: shared/inc/forms/vps.php:239
 #, fuzzy
 msgid "IP address: "
 msgstr "Adres IP"
@@ -1796,20 +2217,24 @@ msgstr "Adres IP"
 msgid "IP addresses and network"
 msgstr "Adres IP i sieci"
 
-#: shared/inc/forms/vps.php:233
+#: shared/inc/forms/vps.php:237
 #, fuzzy
 msgid "IP addresses: "
 msgstr "Adres IP"
 
-#: admin/inc/dtc_config.php:710
+#: admin/inc/dtc_config.php:787
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:251 admin/inc/dtc_config.php:393
-#: admin/inc/dtc_config.php:445
+#: admin/inc/dtc_config.php:251 admin/inc/dtc_config.php:464
+#: admin/inc/dtc_config.php:522
 #, fuzzy
 msgid "IPs addrs"
 msgstr "IPľŘÖˇÁĐąí"
+
+#: shared/drawlib/cc_code_popup.php:205
+msgid "Iceland"
+msgstr ""
 
 #: admin/deamons_state.php:239
 msgid "If no FTP user was created, please make at least one!"
@@ -1874,7 +2299,7 @@ msgstr ""
 "Jeśli chcesz pozostawić aktualnego rejestratora, możesz  to zrobić w "
 "zakładce DNS:"
 
-#: shared/inc/forms/vps.php:261
+#: shared/inc/forms/vps.php:266
 msgid "Immediate kill (xm destroy)"
 msgstr ""
 
@@ -1910,7 +2335,7 @@ msgstr ""
 "Błędny format maila lub loginu: możesz użyć małych liter, cyfr lub znaku \"-"
 "\" (minus).<br>\n"
 
-#: shared/inc/sql/database.php:165 shared/inc/sql/database.php:209
+#: shared/inc/sql/database.php:166 shared/inc/sql/database.php:211
 msgid "Incorrect MySQL db name format: please enter another and try again."
 msgstr ""
 
@@ -1950,6 +2375,14 @@ msgstr ""
 msgid "Incorrect sub-domain format."
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:206
+msgid "India"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:207
+msgid "Indonesia"
+msgstr ""
+
 #: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
 msgstr ""
@@ -1984,17 +2417,29 @@ msgstr "Zarządzanie danymi Whois:"
 msgid "Invoice"
 msgstr "Faktury"
 
-#: admin/inc/dtc_config.php:1259
+#: admin/inc/dtc_config.php:1336
 msgid "Invoice footer:"
 msgstr "Stopka faktury:"
 
-#: admin/inc/dtc_config.php:1254
+#: admin/inc/dtc_config.php:1331
 msgid "Invoice free text:"
 msgstr "Dodatkowe treści na fakturze:"
 
 #: admin/inc/dtc_config.php:71
 msgid "Invoicing"
 msgstr "Faktury"
+
+#: shared/drawlib/cc_code_popup.php:208
+msgid "Iran (Islamic Republic Of)"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:209
+msgid "Iraq"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:210
+msgid "Ireland"
+msgstr ""
 
 #: client/new_account_form.php:237
 msgid "Is company radio button is wrong!"
@@ -2010,12 +2455,75 @@ msgid ""
 "unsubscription via mail is disabled."
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:211
+msgid "Isle Of Man"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:212
+#, fuzzy
+msgid "Israel"
+msgstr "Instalacja"
+
+#: shared/drawlib/cc_code_popup.php:213
+#, fuzzy
+msgid "Italy"
+msgstr "Instalacja"
+
+#: shared/drawlib/cc_code_popup.php:214
+msgid "Jamaica"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:215
+msgid "Japan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:216
+#, fuzzy
+msgid "Jersey"
+msgstr "tutaj"
+
+#: shared/drawlib/cc_code_popup.php:217
+msgid "Jordan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:218
+msgid "Kazakhstan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:219
+msgid "Kenya"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:220
+msgid "Kiribati"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:221
+msgid "Korea, Democratic People's Republic Of"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:222
+msgid "Korea, Republic Of"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:223
+msgid "Kuwait"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:224
+msgid "Kyrgyzstan"
+msgstr ""
+
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
-#: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:251
+#: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:244
 msgid "Language"
 msgstr "Język"
 
-#: shared/inc/forms/vps.php:172
+#: shared/drawlib/cc_code_popup.php:225
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+#: shared/inc/forms/vps.php:176
 #, fuzzy
 msgid "Last boot date: "
 msgstr "Ostatnie ostrzeżenie: "
@@ -2028,8 +2536,8 @@ msgstr ""
 msgid "Last message from"
 msgstr ""
 
-#: shared/inc/forms/vps.php:76 shared/inc/forms/vps.php:77
-#: shared/inc/forms/vps.php:78 shared/inc/forms/vps.php:79
+#: shared/inc/forms/vps.php:80 shared/inc/forms/vps.php:81
+#: shared/inc/forms/vps.php:82 shared/inc/forms/vps.php:83
 #, fuzzy
 msgid "Last month: "
 msgstr "Ostatnie ostrzeżenie: "
@@ -2038,7 +2546,11 @@ msgstr "Ostatnie ostrzeżenie: "
 msgid "Last warning: "
 msgstr "Ostatnie ostrzeżenie: "
 
-#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:509
+#: shared/drawlib/cc_code_popup.php:226
+msgid "Latvia"
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:502
 msgid "Launching the configuration files generation"
 msgstr "Uruchom generator plików konfiguracji"
 
@@ -2049,6 +2561,26 @@ msgid ""
 msgstr ""
 "Napisz nam jakich szczegółowych uprawnień <br/>potrzebujesz dla swojego "
 "konta:"
+
+#: shared/drawlib/cc_code_popup.php:227
+msgid "Lebanon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:228
+msgid "Lesotho"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:229
+msgid "Liberia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:230
+msgid "Libyan Arab Jamahiriya"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:231
+msgid "Liechtenstein"
+msgstr ""
 
 #: shared/inc/sql/lists.php:211
 msgid "List #name#@#domain# successfully created!"
@@ -2075,7 +2607,7 @@ msgstr "Spis twoich kont FTP : "
 msgid "List of your SSH accounts:"
 msgstr "Spis twoich kont SSH :"
 
-#: admin/inc/dtc_config.php:1206
+#: admin/inc/dtc_config.php:1283
 msgid "List of your companies:"
 msgstr ""
 
@@ -2114,7 +2646,7 @@ msgstr "Właściciel listy"
 msgid "List owner:"
 msgstr "Właściciel listy"
 
-#: admin/inc/dtc_config.php:724
+#: admin/inc/dtc_config.php:801
 #, fuzzy
 msgid ""
 "List the DNS server IPs allowed to do zone<br>\n"
@@ -2125,7 +2657,7 @@ msgstr ""
 "przez &quot;|&quot; (pipe)<br>\n"
 "(Pozostaw puste jeśli nie masz zapasowych serwerów DNS):"
 
-#: admin/inc/dtc_config.php:692
+#: admin/inc/dtc_config.php:769
 msgid ""
 "List your backup MX servers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup MX server):"
@@ -2137,17 +2669,21 @@ msgstr ""
 msgid "Lists max"
 msgstr "Maksymalnie list"
 
-#: admin/inc/dtc_config.php:657
+#: shared/drawlib/cc_code_popup.php:232
+msgid "Lithuania"
+msgstr ""
+
+#: admin/inc/dtc_config.php:734
 #, fuzzy
-msgid "Local network area ip adress of the vhost using NAT: "
+msgid "Local network area ip address of the vhost using NAT: "
 msgstr "Adres lokalny dla vhost za NAT-em :"
 
-#: admin/inc/dtc_config.php:402
+#: admin/inc/dtc_config.php:477
 #, fuzzy
 msgid "Location"
 msgstr "Lokalizacja"
 
-#: admin/inc/dtc_config.php:591
+#: admin/inc/dtc_config.php:668
 #, fuzzy
 msgid "Location of user's database: "
 msgstr "Lokalizacja bazy klientów:"
@@ -2156,14 +2692,14 @@ msgstr "Lokalizacja bazy klientów:"
 #: admin/inc/renewals.php:245 admin/inc/draw_user_admin.php:237
 #: admin/inc/draw_user_admin.php:295 admin/inc/draw_user_admin.php:314
 #: admin/inc/draw_user_admin.php:400 admin/inc/dtc_config.php:257
-#: admin/inc/dtc_config.php:759 admin/inc/dtc_config.php:786
-#: admin/inc/dtc_config.php:811 admin/inc/dtc_config.php:838
-#: admin/inc/dtc_config.php:863 shared/inc/forms/email.php:27
+#: admin/inc/dtc_config.php:836 admin/inc/dtc_config.php:863
+#: admin/inc/dtc_config.php:888 admin/inc/dtc_config.php:915
+#: admin/inc/dtc_config.php:940 shared/inc/forms/email.php:27
 #: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:24
 #: shared/gfx/skin/default_layout.php:34 shared/gfx/skin/default_layout.php:63
 #: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:53
-#: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:260
-#: shared/gfx/skin/bwoup/layout.php:269
+#: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:253
+#: shared/gfx/skin/bwoup/layout.php:262
 msgid "Login"
 msgstr "Logowanie"
 
@@ -2189,7 +2725,7 @@ msgstr "Login"
 msgid "Login: "
 msgstr "Login"
 
-#: admin/inc/dtc_config.php:1249
+#: admin/inc/dtc_config.php:1326
 msgid "Logo path relative to"
 msgstr "Relatywna ścieżka do logo"
 
@@ -2197,9 +2733,30 @@ msgstr "Relatywna ścieżka do logo"
 msgid "Logout"
 msgstr "Wyloguj się"
 
+#: shared/drawlib/cc_code_popup.php:233
+msgid "Luxembourg"
+msgstr ""
+
+#: shared/drawlib/dtc_functions.php:730 shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:594
+msgid "MBytes"
+msgstr ""
+
 #: admin/inc/dtc_config.php:41
 msgid "MX and NS backup servers"
 msgstr "Serwery zapsowe poczty i DNS"
+
+#: shared/drawlib/cc_code_popup.php:234
+msgid "Macau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:235
+msgid "Macedonia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:236
+msgid "Madagascar"
+msgstr ""
 
 #: shared/inc/draw.php:359
 #, fuzzy
@@ -2248,11 +2805,11 @@ msgstr "Konfiguracja skrzynki pocztowej: "
 msgid "Mailbox does not exists in database!<br>\n"
 msgstr "Nie ma takiej skrzynki!<br>\n"
 
-#: shared/inc/forms/email.php:598
+#: shared/inc/forms/email.php:601
 msgid "Mailbox max files quota: "
 msgstr ""
 
-#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:593
+#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:595
 #, fuzzy
 msgid "Mailbox quota: "
 msgstr "Skrzynki pocztowe :"
@@ -2283,18 +2840,54 @@ msgstr "Spis twoich baz danych :"
 msgid "Mailing lists:"
 msgstr "Listy mailingowe:"
 
-#: admin/inc/dtc_config.php:639
+#: admin/inc/dtc_config.php:716
 #, fuzzy
 msgid "Main ip address of the server: "
 msgstr "Adres IP serwera :"
 
-#: admin/inc/dtc_config.php:634
+#: admin/inc/dtc_config.php:711
 msgid "Main software configuration of DTC"
 msgstr "Adresy IP i sieci"
+
+#: shared/drawlib/cc_code_popup.php:237
+msgid "Malawi"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:238
+msgid "Malaysia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:239
+msgid "Maldives"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:240
+msgid "Mali"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:241
+msgid "Malta"
+msgstr ""
 
 #: shared/inc/draw.php:422
 msgid "Manage my name servers:"
 msgstr "Zarządzaj serwerami nazw:"
+
+#: shared/drawlib/cc_code_popup.php:242
+msgid "Marshall Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:243
+msgid "Martinique"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:244
+msgid "Mauritania"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:245
+msgid "Mauritius"
+msgstr ""
 
 #: shared/inc/forms/root_admin.php:372
 msgid "Max FTP"
@@ -2322,7 +2915,7 @@ msgstr "Mój e-mail"
 msgid "Max mail memory size:"
 msgstr ""
 
-#: shared/inc/forms/vps.php:146
+#: shared/inc/forms/vps.php:150
 msgid "Max memory: "
 msgstr ""
 
@@ -2330,29 +2923,41 @@ msgstr ""
 msgid "Maximum number of lists reached"
 msgstr ""
 
-#: shared/inc/forms/vps.php:148
+#: shared/inc/forms/vps.php:152
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1018
+#: admin/inc/dtc_config.php:1095
 msgid "Maxmind license key: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1014
+#: admin/inc/dtc_config.php:1091
 #, fuzzy
 msgid "Maxmind login: "
 msgstr "Login FTP :"
+
+#: shared/drawlib/cc_code_popup.php:246
+msgid "Mayotte"
+msgstr ""
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
 msgstr ""
 
-#: shared/inc/forms/vps.php:143
+#: shared/inc/forms/vps.php:147
 msgid "Memory: "
 msgstr ""
 
-#: shared/inc/forms/vps.php:121
+#: shared/inc/forms/vps.php:125
 msgid "Method getVPSState failed"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:247
+msgid "Mexico"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:248
+msgid "Micronesia, Federated States Of"
 msgstr ""
 
 #: shared/inc/forms/lists.php:399
@@ -2363,12 +2968,37 @@ msgstr "Moderowana:"
 msgid "Moderators:"
 msgstr "Moderatorzy:"
 
+#: shared/drawlib/cc_code_popup.php:249
+msgid "Moldova, Republic Of"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:250
+msgid "Monaco"
+msgstr ""
+
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
 msgstr "Pozostało na koncie : "
 
+#: shared/drawlib/cc_code_popup.php:251
+msgid "Mongolia"
+msgstr ""
+
 #: admin/inc/dtc_config.php:359
 msgid "Monthly"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:252
+#, fuzzy
+msgid "Montserrat"
+msgstr "Moderowana:"
+
+#: shared/drawlib/cc_code_popup.php:253
+msgid "Morocco"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:254
+msgid "Mozambique"
 msgstr ""
 
 #: shared/inc/draw.php:426
@@ -2388,23 +3018,27 @@ msgstr "Całkowite statystyki konta"
 msgid "My e-mail"
 msgstr "Mój e-mail"
 
-#: shared/inc/sql/database.php:224
+#: shared/inc/sql/database.php:226
 msgid ""
 "MySql database ownership not valid: I will not let you change owner of this "
 "database because it doesn't seems to be owned by you."
 msgstr ""
 
-#: shared/inc/sql/database.php:180
+#: shared/inc/sql/database.php:181
 msgid ""
 "MySql database ownership not valid: I will not let you delete this database "
 "because it doesn't seem to be owned by you."
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:255
+msgid "Myanmar"
 msgstr ""
 
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
 msgstr "PLIKI STREF DNS"
 
-#: admin/inc/dtc_config.php:1032
+#: admin/inc/dtc_config.php:1109
 msgid "NAS config"
 msgstr ""
 
@@ -2447,7 +3081,7 @@ msgstr "Serwery nazw"
 msgid "Name:"
 msgstr "Nazwa"
 
-#: admin/inc/dtc_config.php:1049 shared/inc/forms/vps.php:139
+#: admin/inc/dtc_config.php:1126 shared/inc/forms/vps.php:143
 #, fuzzy
 msgid "Name: "
 msgstr "Nazwa"
@@ -2457,22 +3091,22 @@ msgstr "Nazwa"
 msgid "Named conf files generated !"
 msgstr "Konfiguracja stref binda"
 
-#: admin/inc/dtc_config.php:1175
+#: admin/inc/dtc_config.php:1252
 #, fuzzy
 msgid "Named file names"
 msgstr "Konfiguracja stref binda"
 
-#: admin/inc/dtc_config.php:1180
+#: admin/inc/dtc_config.php:1257
 #, fuzzy
 msgid "Named main file:"
 msgstr "Konfiguracja stref binda"
 
-#: admin/inc/dtc_config.php:1188
+#: admin/inc/dtc_config.php:1265
 #, fuzzy
 msgid "Named main zonefiles folder:"
 msgstr "Konfiguracja stref binda"
 
-#: admin/inc/dtc_config.php:1184
+#: admin/inc/dtc_config.php:1261
 #, fuzzy
 msgid "Named slave file:"
 msgstr "Konfiguracja stref binda"
@@ -2482,20 +3116,48 @@ msgstr "Konfiguracja stref binda"
 msgid "Named zonefile:"
 msgstr "Konfiguracja stref binda"
 
-#: admin/inc/dtc_config.php:38 admin/inc/dtc_config.php:682
+#: admin/inc/dtc_config.php:38 admin/inc/dtc_config.php:759
 msgid "Named zonefiles"
 msgstr "Konfiguracja stref binda"
+
+#: shared/drawlib/cc_code_popup.php:256
+msgid "Namibia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:257
+msgid "Nauru"
+msgstr ""
 
 #: shared/inc/forms/packager.php:218
 msgid "Need a database"
 msgstr "Wymagana baza danych"
 
+#: shared/drawlib/cc_code_popup.php:258
+msgid "Nepal"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:259
+msgid "Netherlands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:260
+msgid "Netherlands Antilles"
+msgstr ""
+
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
 msgstr ""
 
-#: shared/inc/forms/vps.php:98
+#: shared/inc/forms/vps.php:102
 msgid "Network:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:261
+msgid "Neutral Zone"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:262
+msgid "New Caledonia"
 msgstr ""
 
 #: shared/inc/forms/ftp.php:52
@@ -2506,14 +3168,18 @@ msgstr "Nowe konto FTP : "
 msgid "New SSH account:"
 msgstr "Nowe konto SSH :"
 
-#: shared/inc/forms/vps.php:351
+#: shared/inc/forms/vps.php:356
 msgid "New SSH key: "
 msgstr ""
 
-#: shared/inc/forms/vps.php:348
+#: shared/inc/forms/vps.php:353
 #, fuzzy
 msgid "New SSH password: "
 msgstr "Hasło FTP:"
+
+#: shared/drawlib/cc_code_popup.php:263
+msgid "New Zealand"
+msgstr ""
 
 #: admin/dtcrm/main.php:11 admin/dtcrm/main.php:24
 msgid "New customer"
@@ -2545,24 +3211,40 @@ msgstr "Nowy wirtualny administrator"
 msgid "Next cronjob"
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:264
+msgid "Nicaragua"
+msgstr ""
+
 #: admin/inc/dtc_config.php:293
 msgid "Nick name"
 msgstr "Nick"
 
+#: shared/drawlib/cc_code_popup.php:265
+msgid "Niger"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:266
+msgid "Nigeria"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:267
+msgid "Niue"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:159 admin/inc/draw_user_admin.php:274
 #: admin/inc/draw_user_admin.php:342 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
-#: admin/inc/dtc_config.php:419 admin/inc/dtc_config.php:449
-#: admin/inc/dtc_config.php:525 admin/inc/dtc_config.php:530
-#: admin/inc/dtc_config.php:535 admin/inc/dtc_config.php:540
-#: admin/inc/dtc_config.php:569 admin/inc/dtc_config.php:574
-#: admin/inc/dtc_config.php:579 admin/inc/dtc_config.php:584
-#: admin/inc/dtc_config.php:589 admin/inc/dtc_config.php:650
-#: admin/inc/dtc_config.php:655 admin/inc/dtc_config.php:717
-#: admin/inc/dtc_config.php:722 admin/inc/dtc_config.php:887
-#: admin/inc/dtc_config.php:940 admin/inc/dtc_config.php:945
-#: admin/inc/dtc_config.php:962 admin/inc/dtc_config.php:967
-#: admin/inc/dtc_config.php:983 admin/inc/dtc_config.php:1012
+#: admin/inc/dtc_config.php:494 admin/inc/dtc_config.php:526
+#: admin/inc/dtc_config.php:602 admin/inc/dtc_config.php:607
+#: admin/inc/dtc_config.php:612 admin/inc/dtc_config.php:617
+#: admin/inc/dtc_config.php:646 admin/inc/dtc_config.php:651
+#: admin/inc/dtc_config.php:656 admin/inc/dtc_config.php:661
+#: admin/inc/dtc_config.php:666 admin/inc/dtc_config.php:727
+#: admin/inc/dtc_config.php:732 admin/inc/dtc_config.php:794
+#: admin/inc/dtc_config.php:799 admin/inc/dtc_config.php:964
+#: admin/inc/dtc_config.php:1017 admin/inc/dtc_config.php:1022
+#: admin/inc/dtc_config.php:1039 admin/inc/dtc_config.php:1044
+#: admin/inc/dtc_config.php:1060 admin/inc/dtc_config.php:1089
 #: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:73
 #: admin/dtcrm/product_manager.php:131 admin/dtcrm/product_manager.php:189
 #: admin/dtcrm/product_manager.php:232 client/new_account_form.php:588
@@ -2593,7 +3275,7 @@ msgstr "Przedawnienia bez VPS"
 msgid "No archives:"
 msgstr "Archiwum przez WWW"
 
-#: shared/inc/forms/email.php:632
+#: shared/inc/forms/email.php:635
 msgid "No catch-all"
 msgstr "Nie. Przekazuj wszystkie odbiorcom"
 
@@ -2658,6 +3340,18 @@ msgstr ""
 msgid "No user waiting!"
 msgstr "Brak nowego użytkownika!"
 
+#: shared/drawlib/cc_code_popup.php:268
+msgid "Norfolk Island"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:269
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:270
+msgid "Norway"
+msgstr ""
+
 #: shared/inc/forms/dedicated.php:36 shared/inc/forms/invoices.php:39
 #: shared/inc/forms/invoices.php:40 shared/inc/forms/invoices.php:41
 #, fuzzy
@@ -2692,12 +3386,12 @@ msgstr ""
 msgid "Now you can go to check its configuration by clicking here:"
 msgstr "Teraz możesz przejść do sprawdzenia ustawień klikając tu: "
 
-#: shared/inc/forms/vps.php:151
+#: shared/inc/forms/vps.php:155
 #, fuzzy
 msgid "Number of CPU: "
 msgstr "Ilość baz danych:"
 
-#: shared/inc/forms/vps.php:153
+#: shared/inc/forms/vps.php:157
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
@@ -2740,6 +3434,10 @@ msgstr ""
 msgid "Old tickets:"
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:271
+msgid "Oman"
+msgstr ""
+
 #: shared/inc/draw.php:549
 msgid "Online DTC help"
 msgstr "Pomoc Online"
@@ -2748,7 +3446,7 @@ msgstr "Pomoc Online"
 msgid "Open"
 msgstr ""
 
-#: shared/inc/forms/vps.php:312
+#: shared/inc/forms/vps.php:317
 msgid "Operating system type not supported"
 msgstr ""
 
@@ -2776,7 +3474,7 @@ msgstr "PŁATNOŚĆ ANULOWANA"
 msgid "PAYMENT FAILED"
 msgstr "PŁATNOŚĆ NIEUDANA"
 
-#: admin/inc/dtc_config.php:1163
+#: admin/inc/dtc_config.php:1240
 msgid ""
 "PHP libraries open_basedir<br>\n"
 "(separated by \":\", reset on each dtc install):"
@@ -2784,7 +3482,7 @@ msgstr ""
 "Biblioteki PHP open_basedir<br>\n"
 "(oddzielone \":\", zresetuj pozostałe podczas instalacji dtc) :"
 
-#: admin/inc/dtc_config.php:1168
+#: admin/inc/dtc_config.php:1245
 msgid ""
 "PHP open_basedir additional libraries path<br>\n"
 "(survives reinstallation):"
@@ -2817,19 +3515,37 @@ msgstr "Nazwa pakietu"
 msgid "Package version"
 msgstr "Wersja pakietu"
 
-#: admin/inc/dtc_config.php:762 admin/inc/dtc_config.php:789
-#: admin/inc/dtc_config.php:814 admin/inc/dtc_config.php:841
-#: admin/inc/dtc_config.php:866 shared/inc/draw.php:301
+#: shared/drawlib/cc_code_popup.php:272
+msgid "Pakistan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:273
+msgid "Palau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:274
+msgid "Palestine"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:275
+msgid "Panama"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:276
+msgid "Papua New Guinea"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:277
+msgid "Paraguay"
+msgstr ""
+
+#: admin/inc/dtc_config.php:839 admin/inc/dtc_config.php:866
+#: admin/inc/dtc_config.php:891 admin/inc/dtc_config.php:918
+#: admin/inc/dtc_config.php:943 shared/inc/draw.php:301
 #: shared/inc/draw.php:438 shared/inc/forms/reseller.php:24
 #, fuzzy
 msgid "Password"
 msgstr "Hasło FTP:"
-
-#: client/new_account_form.php:72
-msgid "Password 1 and 2 do not match!"
-msgstr ""
-"Hasła 1 i 2 nie są zgodne. Proszę upewnić się, że wprowadzane hasła są "
-"identyczne."
 
 #: admin/inc/submit_root_querys.php:269
 msgid ""
@@ -2861,12 +3577,19 @@ msgstr ""
 msgid "Password:"
 msgstr "Hasło:"
 
-#: admin/inc/dtc_config.php:1063 client/new_account_form.php:562
+#: admin/inc/dtc_config.php:1140 client/new_account_form.php:562
 #: email/login.php:13 shared/inc/forms/email.php:216
 #: shared/inc/forms/ftp.php:81
 #, fuzzy
 msgid "Password: "
 msgstr "Hasło FTP:"
+
+#: client/new_account_form.php:72
+#, fuzzy
+msgid "Passwords 1 and 2 do not match!"
+msgstr ""
+"Hasła 1 i 2 nie są zgodne. Proszę upewnić się, że wprowadzane hasła są "
+"identyczne."
 
 #: shared/dtcrm/draw.php:35
 msgid "Past account refundal"
@@ -2877,15 +3600,15 @@ msgstr ""
 msgid "Past payments"
 msgstr "Nie można odnaleźć płatności!"
 
-#: admin/inc/dtc_config.php:1118
+#: admin/inc/dtc_config.php:1195
 msgid "Path of the cgi-wrapper disk template (chroot for SBOX):"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1112
+#: admin/inc/dtc_config.php:1189
 msgid "Path of your DTC shared directory:"
 msgstr "Ścieżka do katalogu DTC \"shared\" :"
 
-#: admin/inc/dtc_config.php:1121
+#: admin/inc/dtc_config.php:1198
 msgid ""
 "Path where DTC will be restricted for generating it's configuration files "
 "for daemons.<br>\n"
@@ -2903,26 +3626,26 @@ msgstr "Katalog :"
 msgid "Path: "
 msgstr "Ścieżki"
 
-#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1107
+#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:1184
 msgid "Paths"
 msgstr "Ścieżki"
 
-#: admin/inc/dtc_config.php:947
+#: admin/inc/dtc_config.php:1024
 #, fuzzy
 msgid "PayPal business account email: "
 msgstr "Biznesowe konto płatności e-mail :"
 
-#: admin/inc/dtc_config.php:951
+#: admin/inc/dtc_config.php:1028
 #, fuzzy
 msgid "PayPal fee rate: "
 msgstr "Procent prowizji PayPal :"
 
-#: admin/inc/dtc_config.php:955
+#: admin/inc/dtc_config.php:1032
 #, fuzzy
 msgid "PayPal flat fee: "
 msgstr "Wskaźnik liniowy PayPal :"
 
-#: admin/inc/dtc_config.php:969
+#: admin/inc/dtc_config.php:1046
 #, fuzzy
 msgid "PayPal test account email (sandbox): "
 msgstr "Konto testowe Paypal (sandbox):"
@@ -2961,6 +3684,15 @@ msgstr ""
 msgid "Period"
 msgstr "Okres"
 
+#: shared/drawlib/cc_code_popup.php:278
+#, fuzzy
+msgid "Peru"
+msgstr "Okres"
+
+#: shared/drawlib/cc_code_popup.php:279
+msgid "Philippines"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:213
 msgid "Phone number:"
 msgstr "Telefon :"
@@ -2972,14 +3704,22 @@ msgstr "Telefon :"
 msgid "Phone number: "
 msgstr "Telefon :"
 
-#: shared/inc/forms/vps.php:345
+#: shared/inc/forms/vps.php:350
 msgid "Physical console last display and ssh access:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:280
+msgid "Pitcairn"
 msgstr ""
 
 #: shared/inc/forms/database.php:127
 msgid "Please create a MySQL user in order to be able to create a database."
 msgstr ""
 "Utwórz użytkownika MySQL w kolejnosci w jakiej będą oni tworzyć bazy danych."
+
+#: admin/inc/dtc_config.php:376
+msgid "Please enter an IP address for your dom0!"
+msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:63
 msgid "Please enter the domain name you wish to add:"
@@ -2994,7 +3734,7 @@ msgstr "Proszę wprowadzić nazwę domeny, którą chcesz przetransferować:"
 msgid "Please renew it with one of the following options"
 msgstr ""
 
-#: shared/inc/forms/vps.php:205
+#: shared/inc/forms/vps.php:209
 #, fuzzy
 msgid "Please renew with one of the following options: "
 msgstr "Proszę powiadomić nas gdy dane będą niepoprawne :"
@@ -3011,27 +3751,36 @@ msgstr ""
 msgid "Please tell us if the following is not correct:"
 msgstr "Proszę powiadomić nas gdy dane będą niepoprawne :"
 
-#: shared/inc/forms/vps.php:253
+#: shared/inc/forms/vps.php:257
 msgid "Please wait until file system check is finished first."
 msgstr ""
 
-#: shared/inc/forms/vps.php:255
+#: shared/inc/forms/vps.php:259
 msgid "Please wait until operating system reinstallation has completed."
 msgstr ""
 
-#: admin/inc/dtc_config.php:1059
+#: shared/drawlib/cc_code_popup.php:281
+msgid "Poland"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1136
 #, fuzzy
 msgid "Port number: "
 msgstr "Numer port:"
 
-#: admin/dtcrm/main.php:208 admin/dtcrm/product_manager.php:41
+#: shared/drawlib/cc_code_popup.php:282
+#, fuzzy
+msgid "Portugal"
+msgstr "Wszystkich: "
+
+#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:41
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:167
 #: admin/dtcrm/product_manager.php:225 shared/dtcrm/draw.php:80
 #: shared/inc/forms/invoices.php:23
 msgid "Price"
 msgstr "Cena"
 
-#: admin/inc/dtc_config.php:701
+#: admin/inc/dtc_config.php:778
 msgid "Primary DNS server address:"
 msgstr "Nazwa serwera Primary DNS :"
 
@@ -3104,7 +3853,7 @@ msgstr "Serwer produkcyjny"
 msgid "Product: "
 msgstr "Serwer produkcyjny"
 
-#: admin/inc/dtc_config.php:988
+#: admin/inc/dtc_config.php:1065
 msgid "Production server"
 msgstr "Serwer produkcyjny"
 
@@ -3116,7 +3865,15 @@ msgstr ""
 msgid "Protect your mailbox with efficient tools:"
 msgstr ""
 
-#: admin/dtcrm/main.php:209
+#: shared/drawlib/cc_code_popup.php:283
+msgid "Puerto Rico"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:284
+msgid "Qatar"
+msgstr ""
+
+#: admin/dtcrm/main.php:214
 msgid "Quantity"
 msgstr "Wielkość"
 
@@ -3157,8 +3914,8 @@ msgstr "Stwórz"
 msgid "Recurring payment"
 msgstr "Płatność częsciowa"
 
-#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:604
-#: shared/inc/forms/email.php:610
+#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:607
+#: shared/inc/forms/email.php:613
 msgid "Redirection 1: "
 msgstr "Przekierowanie 1: "
 
@@ -3199,7 +3956,7 @@ msgstr "Numer NIP:"
 msgid "Registration failed"
 msgstr "Rejestracja zakończyła się błędem."
 
-#: admin/inc/dtc_config.php:1237
+#: admin/inc/dtc_config.php:1314
 msgid "Registration number:"
 msgstr "Numer NIP:"
 
@@ -3215,25 +3972,25 @@ msgstr "Rejestracja serwerów dns powiodła się"
 msgid "Registration successful!"
 msgstr "Rejestracja przebiegła pomyśnie"
 
-#: admin/inc/dtc_config.php:493
+#: admin/inc/dtc_config.php:570
 #, fuzzy
 msgid "Registry selection"
 msgstr "Numer NIP:"
 
-#: shared/inc/forms/vps.php:322
+#: shared/inc/forms/vps.php:327
 msgid "Reinstall operating system"
 msgstr ""
 
-#: shared/inc/forms/vps.php:274
+#: shared/inc/forms/vps.php:279
 msgid "Reinstall operating system:"
 msgstr ""
 
-#: shared/inc/forms/vps.php:131
+#: shared/inc/forms/vps.php:135
 msgid "Reinstalling operating system..."
 msgstr ""
 
 #: shared/inc/forms/lists.php:229
-msgid "Reject mails that don\\'t have the list adress in the To: or Cc:."
+msgid "Reject mails that don\\'t have the list address in the To: or Cc:."
 msgstr ""
 
 #: shared/inc/forms/my_account.php:184
@@ -3267,8 +4024,8 @@ msgstr "Odnowienia"
 msgid "Renewals"
 msgstr "Odnowienia"
 
-#: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:424
-#: shared/gfx/skin/bwoup/layout.php:426
+#: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:417
+#: shared/gfx/skin/bwoup/layout.php:419
 #, fuzzy
 msgid "Renewals management"
 msgstr "Imie i nazwisko"
@@ -3315,13 +4072,30 @@ msgstr "Subkonta resellerskie:"
 msgid "Retype new password:"
 msgstr "Powtórz nowe hasło:"
 
+#: shared/drawlib/cc_code_popup.php:285
+msgid "Reunion"
+msgstr ""
+
 #: shared/inc/forms/lists.php:395
 msgid "Rights"
 msgstr "Uprawnienia"
 
+#: shared/drawlib/cc_code_popup.php:286
+#, fuzzy
+msgid "Romania"
+msgstr "Firmy"
+
 #: admin/deamons_state.php:291 admin/deamons_state.php:297
 #: admin/deamons_state.php:303 admin/deamons_state.php:309
 msgid "Running ok"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:287
+msgid "Russian Federation"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:288
+msgid "Rwanda"
 msgstr ""
 
 #: shared/inc/forms/lists.php:426
@@ -3338,7 +4112,12 @@ msgstr "Serwer testowy"
 msgid "SMTP server"
 msgstr "Serwer testowy"
 
-#: admin/inc/dtc_config.php:410
+#: admin/inc/dtc_config.php:481
+#, fuzzy
+msgid "SOAP login"
+msgstr "Login FTP :"
+
+#: admin/inc/dtc_config.php:485
 #, fuzzy
 msgid "SOAP password"
 msgstr "Hasło dla SOAP"
@@ -3381,7 +4160,7 @@ msgstr "Odnowienia IP dla SSL: "
 msgid "SSL IPs renewals: "
 msgstr "Odnowienia IP dla SSL: "
 
-#: admin/inc/dtc_config.php:665
+#: admin/inc/dtc_config.php:742
 msgid "SSL Port: "
 msgstr ""
 
@@ -3403,9 +4182,45 @@ msgstr "Adresy IP dla SSL"
 msgid "SSL tokens"
 msgstr "Wykup certyfikat SSL"
 
-#: admin/inc/dtc_config.php:594
+#: shared/drawlib/cc_code_popup.php:289
+msgid "Saint Helena"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:290
+msgid "Saint Kitts And Nevis"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:291
+msgid "Saint Lucia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:292
+msgid "Saint Pierre and Miquelon"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:293
+msgid "Saint Vincent and The Grenadines"
+msgstr ""
+
+#: admin/inc/dtc_config.php:671
 msgid "Same as for DTC"
 msgstr "Taki sam jak w DTC"
+
+#: shared/drawlib/cc_code_popup.php:294
+msgid "Samoa"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:295
+msgid "San Marino"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:296
+msgid "Sao Tome and Principe"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:297
+msgid "Saudi Arabia"
+msgstr ""
 
 #: shared/inc/forms/database.php:49 shared/inc/forms/database.php:95
 #: shared/inc/forms/domain_stats.php:98
@@ -3416,7 +4231,7 @@ msgstr "Zapisz"
 msgid "Sbox cgi-bin protection: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:705
+#: admin/inc/dtc_config.php:782
 msgid ""
 "Secondary DNS servers address<br>\n"
 "(separated by &quot;|&quot; (pipe) if more than one):"
@@ -3426,7 +4241,7 @@ msgstr ""
 msgid "Secondary DNS:"
 msgstr "Zapasowy serwer nazw (sec DNS) :"
 
-#: admin/inc/dtc_config.php:917
+#: admin/inc/dtc_config.php:994
 #, fuzzy
 msgid "Secure payment configuration"
 msgstr "Konfiguracja płatności elektroniczych"
@@ -3445,11 +4260,11 @@ msgid ""
 "the registries:"
 msgstr "Wybierz jeden z twoich DNS ow:"
 
-#: admin/inc/dtc_config.php:624
+#: admin/inc/dtc_config.php:701
 msgid "Select the type of skin:"
 msgstr "Wybierz skórkę :"
 
-#: admin/inc/dtc_config.php:551
+#: admin/inc/dtc_config.php:628
 #, fuzzy
 msgid "Selling conditions URL: "
 msgstr "Domena sprzedaży:"
@@ -3469,6 +4284,15 @@ msgstr ""
 
 #: shared/inc/forms/ticket.php:62
 msgid "Send trouble ticket"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:298
+#, fuzzy
+msgid "Senegal"
+msgstr "Główne "
+
+#: shared/drawlib/cc_code_popup.php:299
+msgid "Serbia"
 msgstr ""
 
 #: admin/inc/renewals.php:245
@@ -3506,8 +4330,8 @@ msgstr ""
 msgid "Server hostname related: "
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:419
-#: shared/gfx/skin/bwoup/layout.php:421
+#: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:412
+#: shared/gfx/skin/bwoup/layout.php:414
 msgid "Server monitor"
 msgstr "Monitoring serwera"
 
@@ -3529,7 +4353,7 @@ msgstr "Wpis nie znaleziony!"
 msgid "Server said: "
 msgstr "Serwer odpowiedział: "
 
-#: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:506
+#: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:499
 msgid "Server statistic graphs"
 msgstr "Graficzne statystyki serwera"
 
@@ -3537,12 +4361,16 @@ msgstr "Graficzne statystyki serwera"
 msgid "Server:"
 msgstr "Serwer:"
 
-#: admin/inc/dtc_config.php:1315
+#: admin/inc/dtc_config.php:1392
 msgid "Service country"
 msgstr "Krajowa pomoc techniczna"
 
 #: shared/inc/forms/root_admin.php:233
 msgid "Setup physical VPS (LVM): "
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:300
+msgid "Seychelles"
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:363
@@ -3557,7 +4385,7 @@ msgstr "Odnowienia hostingu:"
 msgid "Shared hosting: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1052
+#: admin/inc/dtc_config.php:1129
 #, fuzzy
 msgid "Short name: "
 msgstr "Nazwa hosta:"
@@ -3566,15 +4394,53 @@ msgstr "Nazwa hosta:"
 msgid "Shutdown warning: "
 msgstr "Ostrzeżenie o wyłączeniu usług: "
 
-#: admin/inc/dtc_config.php:406
-msgid "Soap login"
-msgstr "Login dla Soap"
+#: shared/drawlib/cc_code_popup.php:301
+#, fuzzy
+msgid "Sierra Leone"
+msgstr "Serwer"
+
+#: shared/drawlib/cc_code_popup.php:302
+msgid "Singapore"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:303
+msgid "Slovakia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:304
+msgid "Slovenia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:305
+msgid "Solomon Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:306
+#, fuzzy
+msgid "Somalia"
+msgstr "Subdomeny max"
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "Sorry, the domain name "
 msgstr "Przepraszamy, domena jest niedostępna "
 
-#: shared/inc/forms/vps.php:251
+#: shared/drawlib/cc_code_popup.php:307
+msgid "South Africa"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:308
+msgid "South Georgia and The Sandwich Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:309
+msgid "Spain"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:310
+msgid "Sri Lanka"
+msgstr ""
+
+#: shared/inc/forms/vps.php:255
 msgid "Start and stop of your VPS:"
 msgstr ""
 
@@ -3593,7 +4459,7 @@ msgstr "Województwo a dla firm NIP :"
 msgid "State: "
 msgstr "Województwo a dla firm NIP :"
 
-#: shared/inc/forms/vps.php:158
+#: shared/inc/forms/vps.php:162
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
@@ -3719,6 +4585,11 @@ msgstr ""
 msgid "Successfully added your domain name to the hosting database"
 msgstr "Dodano Twoją domenę do bazy utrzymywanych na naszym serwerze"
 
+#: shared/drawlib/cc_code_popup.php:311
+#, fuzzy
+msgid "Sudan"
+msgstr "Subdomeny"
+
 #: admin/inc/dtc_config.php:47
 msgid "Support ticket"
 msgstr "Pomoc techniczna"
@@ -3732,8 +4603,33 @@ msgstr "Konfiguracja pomocy technicznej"
 msgid "Support tickets"
 msgstr "Pomoc techniczna"
 
-#: shared/inc/forms/vps.php:106
+#: shared/drawlib/cc_code_popup.php:312
+#, fuzzy
+msgid "Suriname"
+msgstr "Serwer"
+
+#: shared/drawlib/cc_code_popup.php:313
+msgid "Svalbard and Jan Mayen Islands"
+msgstr ""
+
+#: shared/inc/forms/vps.php:110
 msgid "Swap I/O:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:314
+msgid "Swaziland"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:315
+msgid "Sweden"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:316
+msgid "Switzerland"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:317
+msgid "Syrian Arab Republic"
 msgstr ""
 
 #: client/new_account.php:108
@@ -3755,6 +4651,14 @@ msgstr "TRANSFER ZAKONCZONY POWODZENIEM"
 #: shared/inc/forms/subdomain.php:178
 msgid "TXT field of the subdomain: "
 msgstr "Pole TXT dla DNS subdomeny : "
+
+#: shared/drawlib/cc_code_popup.php:318
+msgid "Taiwan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:319
+msgid "Tajikista"
+msgstr ""
 
 #: shared/inc/forms/dns.php:86
 msgid ""
@@ -3783,23 +4687,31 @@ msgstr ""
 msgid "Take control of your domain name"
 msgstr "System zarządzania Twoją domeną"
 
+#: shared/drawlib/cc_code_popup.php:320
+msgid "Tanzania, United Republic Of"
+msgstr ""
+
 #: shared/securepay/pay_functions.php:29
 msgid "Taxes (VAT or GST)"
 msgstr ""
 
-#: admin/inc/dtc_config.php:771
+#: admin/inc/dtc_config.php:848
 msgid "Tell the following servers when a domain is added or removed :"
 msgstr "Powiadamiaj serwery o dodaniu bądz usunięcu domeny :"
 
-#: admin/inc/dtc_config.php:796
+#: admin/inc/dtc_config.php:873
 msgid "Tell the following servers when an email is added or removed :"
 msgstr "Zawiadom nastepujące serwery o skasowaniu bądz usunięciu poczty:"
 
-#: admin/inc/dtc_config.php:988
+#: admin/inc/dtc_config.php:1065
 msgid "Test server"
 msgstr "Serwer testowy"
 
-#: shared/inc/sql/database.php:143
+#: shared/drawlib/cc_code_popup.php:321
+msgid "Thailand"
+msgstr ""
+
+#: shared/inc/sql/database.php:144
 msgid ""
 "That user still owns some databases. Please remove them or change the owner "
 "first."
@@ -3888,12 +4800,12 @@ msgstr ""
 msgid "This is the main owner of the list."
 msgstr ""
 
-#: shared/inc/forms/vps.php:89 shared/inc/forms/vps.php:90
-#: shared/inc/forms/vps.php:91 shared/inc/forms/vps.php:92
+#: shared/inc/forms/vps.php:93 shared/inc/forms/vps.php:94
+#: shared/inc/forms/vps.php:95 shared/inc/forms/vps.php:96
 msgid "This month: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:547
+#: admin/inc/dtc_config.php:624
 #, fuzzy
 msgid "This server location: "
 msgstr "Lokalizacja serwera:"
@@ -3931,7 +4843,7 @@ msgstr "Wpis nie znaleziony!"
 msgid "Time"
 msgstr ""
 
-#: shared/inc/forms/vps.php:353
+#: shared/inc/forms/vps.php:358
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
@@ -3943,7 +4855,7 @@ msgid ""
 "setup some VPS products."
 msgstr ""
 
-#: shared/inc/forms/vps.php:263
+#: shared/inc/forms/vps.php:268
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
@@ -3960,6 +4872,20 @@ msgstr ""
 #: shared/dtcrm/draw.php:37
 msgid "Today is the: "
 msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:322
+#, fuzzy
+msgid "Togo"
+msgstr "Wyloguj się"
+
+#: shared/drawlib/cc_code_popup.php:323
+msgid "Tokelau"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:324
+#, fuzzy
+msgid "Tonga"
+msgstr "Wszystkich: "
 
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
@@ -3992,7 +4918,7 @@ msgstr "Wszystkich nowych miesięcznie:"
 
 #: shared/inc/forms/admin_stats.php:107
 #, fuzzy
-msgid "Total trafic"
+msgid "Total traffic"
 msgstr "Całkowity transfer"
 
 #: shared/inc/forms/domain_stats.php:53
@@ -4037,6 +4963,30 @@ msgstr "Transfer na miesiąc"
 msgid "Transfer this month:"
 msgstr "Transfer w tym m-cu :"
 
+#: shared/drawlib/cc_code_popup.php:325
+msgid "Trinidad and Tobago"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:326
+msgid "Tunisia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:327
+msgid "Turkey"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:328
+msgid "Turkmenistan"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:329
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:330
+msgid "Tuvalu"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
 #: shared/inc/forms/ticket.php:158
 msgid "Type"
@@ -4046,7 +4996,7 @@ msgstr "Typ"
 msgid "Type not found!"
 msgstr "Wpis nie znaleziony!"
 
-#: admin/inc/dtc_config.php:889
+#: admin/inc/dtc_config.php:966
 msgid "Type of encryption for connecting to Tucows server:"
 msgstr "Klucz do serwera Tucows:"
 
@@ -4054,7 +5004,7 @@ msgstr "Klucz do serwera Tucows:"
 msgid "Type of problem:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:125 admin/inc/dtc_config.php:1055
+#: admin/inc/draw_user_admin.php:125 admin/inc/dtc_config.php:1132
 msgid "Type:"
 msgstr "Typ:"
 
@@ -4063,9 +5013,37 @@ msgstr "Typ:"
 msgid "Type: type not found!"
 msgstr "Wpis nie znaleziony!"
 
-#: admin/inc/dtc_config.php:783 admin/inc/dtc_config.php:808
-#: admin/inc/dtc_config.php:835 admin/inc/dtc_config.php:860
+#: admin/inc/dtc_config.php:860 admin/inc/dtc_config.php:885
+#: admin/inc/dtc_config.php:912 admin/inc/dtc_config.php:937
 msgid "URL"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:331
+msgid "USSR"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:332
+msgid "Uganda"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:333
+msgid "Ukraine"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:334
+msgid "United Arab Emirates"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:335
+msgid "United Kingdom"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:336
+msgid "United States"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:337
+msgid "United States Minor Outlying Islands"
 msgstr ""
 
 #: shared/inc/forms/packager.php:218
@@ -4076,7 +5054,7 @@ msgstr "Wielkość po instalacji"
 msgid "Unsubscribe:"
 msgstr ""
 
-#: shared/inc/forms/vps.php:171
+#: shared/inc/forms/vps.php:175
 msgid "Up time: "
 msgstr ""
 
@@ -4089,33 +5067,37 @@ msgstr "Aktualizuj moje konto"
 msgid "Upgrade my account:"
 msgstr "Aktualizuj moje konto"
 
+#: shared/drawlib/cc_code_popup.php:338
+msgid "Uruguay"
+msgstr ""
+
 #: shared/inc/forms/domain_info.php:59 shared/inc/forms/email.php:27
 msgid "Use"
 msgstr ""
 
-#: admin/inc/dtc_config.php:532
+#: admin/inc/dtc_config.php:609
 #, fuzzy
 msgid "Use @domain.com ftp logins: "
 msgstr "Użyj loginu ftp @domena.com :"
 
-#: admin/inc/dtc_config.php:537
+#: admin/inc/dtc_config.php:614
 #, fuzzy
 msgid "Use @domain.com ssh logins: "
 msgstr "Użyj loginu ssh @domena.com :"
 
-#: admin/inc/dtc_config.php:714
+#: admin/inc/dtc_config.php:791
 msgid "Use CNAME instead of A record for subdomains:"
 msgstr "Użyj CNAME rekordu A domeny dla dodawanych subdomen:"
 
-#: admin/inc/dtc_config.php:418
+#: admin/inc/dtc_config.php:493
 msgid "Use LVM backend"
 msgstr "Użyj LVM"
 
-#: admin/inc/dtc_config.php:1009
+#: admin/inc/dtc_config.php:1086
 msgid "Use Maxmind API: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:527
+#: admin/inc/dtc_config.php:604
 #, fuzzy
 msgid "Use SSL: "
 msgstr "Użyj SSL :"
@@ -4124,16 +5106,16 @@ msgstr "Użyj SSL :"
 msgid "Use an SSL vhost using this IP: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:582
+#: admin/inc/dtc_config.php:659
 msgid "Use awstats: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:567
+#: admin/inc/dtc_config.php:644
 #, fuzzy
 msgid "Use cyrus: "
 msgstr "Użyj Cyrus:"
 
-#: admin/inc/dtc_config.php:980
+#: admin/inc/dtc_config.php:1057
 #, fuzzy
 msgid "Use eNETS: "
 msgstr "Użyj SSL :"
@@ -4142,22 +5124,22 @@ msgstr "Użyj SSL :"
 msgid "Use image menu"
 msgstr "Menu graficzne"
 
-#: admin/inc/dtc_config.php:522
+#: admin/inc/dtc_config.php:599
 #, fuzzy
 msgid "Use javascript: "
 msgstr "Użyj JavaScript'u :"
 
-#: admin/inc/dtc_config.php:647
+#: admin/inc/dtc_config.php:724
 #, fuzzy
 msgid "Use multiple IPs: "
 msgstr "Użyj adresu IP w trybie multi :"
 
-#: admin/inc/dtc_config.php:964
+#: admin/inc/dtc_config.php:1041
 #, fuzzy
 msgid "Use paypal recuring: "
 msgstr "Użyj paypal do odnowienia:"
 
-#: admin/inc/dtc_config.php:937
+#: admin/inc/dtc_config.php:1014
 #, fuzzy
 msgid "Use paypal: "
 msgstr "Użyj karty płatniczej :"
@@ -4166,7 +5148,7 @@ msgstr "Użyj karty płatniczej :"
 msgid "Use register_globals=1: "
 msgstr "Ustawienie register_globals=on : "
 
-#: admin/inc/dtc_config.php:884
+#: admin/inc/dtc_config.php:961
 msgid "Use registrar API:"
 msgstr ""
 
@@ -4179,21 +5161,21 @@ msgstr "Menu tekstowe"
 msgid "Use text menu: "
 msgstr "Menu tekstowe"
 
-#: admin/inc/dtc_config.php:893
+#: admin/inc/dtc_config.php:970
 msgid "Use the LIVE server (and not the test one) :"
 msgstr "Używaj rzeczywistego serwera (nie testuj niczego)"
 
-#: admin/inc/dtc_config.php:959
+#: admin/inc/dtc_config.php:1036
 #, fuzzy
 msgid "Use the sandbox test server: "
 msgstr "Uzyj sandbox'a do testowania:"
 
-#: admin/inc/dtc_config.php:587
+#: admin/inc/dtc_config.php:664
 #, fuzzy
 msgid "Use visitors: "
 msgstr "Użyj JavaScript'u :"
 
-#: admin/inc/dtc_config.php:572
+#: admin/inc/dtc_config.php:649
 msgid "Use webalizer: "
 msgstr ""
 
@@ -4201,7 +5183,7 @@ msgstr ""
 msgid "Used by"
 msgstr ""
 
-#: shared/inc/forms/email.php:587
+#: shared/inc/forms/email.php:588
 msgid "Used quota: "
 msgstr ""
 
@@ -4210,22 +5192,22 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: admin/inc/dtc_config.php:596
+#: admin/inc/dtc_config.php:673
 #, fuzzy
 msgid "User MySQL host: "
 msgstr "Host MySQL dla użytkowników:"
 
-#: admin/inc/dtc_config.php:599
+#: admin/inc/dtc_config.php:676
 #, fuzzy
 msgid "User MySQL root login: "
 msgstr "Login administratora MySQL:"
 
-#: admin/inc/dtc_config.php:602
+#: admin/inc/dtc_config.php:679
 #, fuzzy
 msgid "User MySQL root password: "
 msgstr "Hasło administratora MySQL:"
 
-#: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:574
+#: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:567
 msgid "User administration"
 msgstr "Administracja użytkownikiem"
 
@@ -4241,11 +5223,11 @@ msgstr ""
 "Format loginu jest nieprawidłowy. Proszę użyć tylko liter i cyfr od 4 do 16 "
 "znaków."
 
-#: shared/inc/sql/database.php:250
+#: shared/inc/sql/database.php:252
 msgid "User or password is incorrect!"
 msgstr ""
 
-#: admin/inc/dtc_config.php:542
+#: admin/inc/dtc_config.php:619
 #, fuzzy
 msgid "User session expire time (min): "
 msgstr "Czas sesji (min) :"
@@ -4262,16 +5244,20 @@ msgstr ""
 "Nieprawidłowa nazwa użytkownika: proszę wybrac inną nazwe niz root lub "
 "debian-sys-maint"
 
-#: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:404
-#: shared/gfx/skin/bwoup/layout.php:406
+#: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:397
+#: shared/gfx/skin/bwoup/layout.php:399
 msgid "Users administration"
 msgstr "Zarządzanie użytkownikami"
+
+#: shared/drawlib/cc_code_popup.php:339
+msgid "Uzbekistan"
+msgstr ""
 
 #: client/new_account_form.php:593
 msgid "VAT Number: "
 msgstr "NIP: "
 
-#: admin/inc/dtc_config.php:1241
+#: admin/inc/dtc_config.php:1318
 msgid "VAT number:"
 msgstr "NIP:"
 
@@ -4280,7 +5266,7 @@ msgstr "NIP:"
 msgid "VAT number: "
 msgstr "NIP:"
 
-#: admin/inc/dtc_config.php:1245
+#: admin/inc/dtc_config.php:1322
 msgid "VAT rate:"
 msgstr "Stawka VAT:"
 
@@ -4288,7 +5274,7 @@ msgstr "Stawka VAT:"
 msgid "VERP:"
 msgstr ""
 
-#: shared/inc/forms/vps.php:135
+#: shared/inc/forms/vps.php:139
 msgid "VM id: "
 msgstr ""
 
@@ -4296,7 +5282,7 @@ msgstr ""
 msgid "VPS"
 msgstr ""
 
-#: admin/inc/dtc_config.php:430
+#: admin/inc/dtc_config.php:505
 msgid "VPS IPs for "
 msgstr "VPS IP dla "
 
@@ -4310,7 +5296,7 @@ msgstr "Nick"
 msgid "VPS Server"
 msgstr "Serwery VPS"
 
-#: admin/inc/dtc_config.php:379
+#: admin/inc/dtc_config.php:448
 msgid "VPS Server and IP addresses registry edition"
 msgstr "Edycja rejestru VPS i adresów IP"
 
@@ -4319,11 +5305,11 @@ msgstr "Edycja rejestru VPS i adresów IP"
 msgid "VPS Server hostname: "
 msgstr "Lista serewerów VPS:"
 
-#: admin/inc/dtc_config.php:382
+#: admin/inc/dtc_config.php:451
 msgid "VPS Server list:"
 msgstr "Lista serewerów VPS:"
 
-#: shared/inc/forms/vps.php:156
+#: shared/inc/forms/vps.php:160
 #, fuzzy
 msgid "VPS State: "
 msgstr "Województwo a dla firm NIP :"
@@ -4348,7 +5334,7 @@ msgstr "Odnowienia VPS:"
 msgid "VPS servers"
 msgstr "Serwery VPS"
 
-#: admin/inc/dtc_config.php:442
+#: admin/inc/dtc_config.php:519
 msgid "VPS xen number"
 msgstr "Numer VPS w XEN"
 
@@ -4360,21 +5346,50 @@ msgstr ""
 msgid "VPS: Cannot find VPS in db!"
 msgstr "VPS: Nie można znaleźć VPS w bazie!"
 
-#: admin/inc/dtc_config.php:942
+#: admin/inc/dtc_config.php:1019
 #, fuzzy
 msgid "Validate new account if paid: "
 msgstr "Sprawdzanie konta płatności :"
+
+#: shared/drawlib/cc_code_popup.php:340
+msgid "Vanuatu"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:341
+msgid "Vatican City State"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:342
+msgid "Venezuela"
+msgstr ""
 
 #: shared/inc/forms/root_admin.php:346
 msgid "Vhost"
 msgstr ""
 
+#: shared/drawlib/cc_code_popup.php:343
+#, fuzzy
+msgid "Vietnam"
+msgstr "Nazwa listy"
+
 #: admin/inc/draw_user_admin.php:279
 msgid "View details"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1159
+#: shared/drawlib/cc_code_popup.php:344
+msgid "Virgin Islands (British)"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:345
+msgid "Virgin Islands (U.S.)"
+msgstr ""
+
+#: admin/inc/dtc_config.php:1236
 msgid "Virtual host config-file:"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:346
+msgid "Wallis and Futuna Islands"
 msgstr ""
 
 #: admin/inc/dtc_config.php:213
@@ -4390,7 +5405,7 @@ msgstr "Ostrzeżenie przed przedawnieniem: "
 msgid "Web archive"
 msgstr "Archiwum przez WWW"
 
-#: admin/inc/dtc_config.php:576
+#: admin/inc/dtc_config.php:653
 #, fuzzy
 msgid "Webalizer country graph: "
 msgstr "Statystyki Webalizera wg. państw:"
@@ -4403,7 +5418,15 @@ msgstr "Miesięczny"
 msgid "Welcom to the email panel!"
 msgstr ""
 
-#: admin/dtcrm/main.php:206
+#: shared/drawlib/cc_code_popup.php:347
+msgid "West Bank and Gaza"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:348
+msgid "Western Sahara"
+msgstr ""
+
+#: admin/dtcrm/main.php:211
 msgid "What"
 msgstr "Co"
 
@@ -4463,20 +5486,24 @@ msgstr ""
 msgid "Wrong user or password, or timeout expired!"
 msgstr "Błędny użytkownik lub hasło, lub hasło się przedawniło"
 
+#: shared/drawlib/cc_code_popup.php:349
+msgid "Yemen, Republic of"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:157 admin/inc/draw_user_admin.php:270
 #: admin/inc/draw_user_admin.php:338 admin/inc/dtc_config.php:266
 #: admin/inc/dtc_config.php:304 admin/inc/dtc_config.php:342
-#: admin/inc/dtc_config.php:419 admin/inc/dtc_config.php:449
-#: admin/inc/dtc_config.php:525 admin/inc/dtc_config.php:530
-#: admin/inc/dtc_config.php:535 admin/inc/dtc_config.php:540
-#: admin/inc/dtc_config.php:569 admin/inc/dtc_config.php:574
-#: admin/inc/dtc_config.php:579 admin/inc/dtc_config.php:584
-#: admin/inc/dtc_config.php:589 admin/inc/dtc_config.php:650
-#: admin/inc/dtc_config.php:655 admin/inc/dtc_config.php:717
-#: admin/inc/dtc_config.php:722 admin/inc/dtc_config.php:887
-#: admin/inc/dtc_config.php:940 admin/inc/dtc_config.php:945
-#: admin/inc/dtc_config.php:962 admin/inc/dtc_config.php:967
-#: admin/inc/dtc_config.php:983 admin/inc/dtc_config.php:1012
+#: admin/inc/dtc_config.php:494 admin/inc/dtc_config.php:526
+#: admin/inc/dtc_config.php:602 admin/inc/dtc_config.php:607
+#: admin/inc/dtc_config.php:612 admin/inc/dtc_config.php:617
+#: admin/inc/dtc_config.php:646 admin/inc/dtc_config.php:651
+#: admin/inc/dtc_config.php:656 admin/inc/dtc_config.php:661
+#: admin/inc/dtc_config.php:666 admin/inc/dtc_config.php:727
+#: admin/inc/dtc_config.php:732 admin/inc/dtc_config.php:794
+#: admin/inc/dtc_config.php:799 admin/inc/dtc_config.php:964
+#: admin/inc/dtc_config.php:1017 admin/inc/dtc_config.php:1022
+#: admin/inc/dtc_config.php:1039 admin/inc/dtc_config.php:1044
+#: admin/inc/dtc_config.php:1060 admin/inc/dtc_config.php:1089
 #: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:73
 #: admin/dtcrm/product_manager.php:131 admin/dtcrm/product_manager.php:189
 #: admin/dtcrm/product_manager.php:232 client/new_account_form.php:587
@@ -4601,21 +5628,21 @@ msgid ""
 "the confirm button to proceed."
 msgstr ""
 
-#: admin/inc/dtc_config.php:897
+#: admin/inc/dtc_config.php:974
 msgid "Your SRS username:"
 msgstr "Twój login SRS:"
 
-#: shared/inc/forms/vps.php:204
+#: shared/inc/forms/vps.php:208
 #, fuzzy
 msgid "Your VPS has expired on the: "
 msgstr "Przedawnienia serwerów nie dedykowanych"
 
-#: shared/inc/forms/vps.php:200
+#: shared/inc/forms/vps.php:204
 #, fuzzy
 msgid "Your VPS was first registered on the: "
 msgstr "Przedawnienia serwerów nie dedykowanych"
 
-#: shared/inc/forms/vps.php:207
+#: shared/inc/forms/vps.php:211
 #, fuzzy
 msgid "Your VPS will expire on the: "
 msgstr "Przedawnienia serwerów nie dedykowanych"
@@ -4657,7 +5684,7 @@ msgstr "Przedawnienia serwerów nie dedykowanych"
 msgid "Your dedicated server will expire on the: "
 msgstr "Przedawnienia serwerów nie dedykowanych"
 
-#: admin/inc/dtc_config.php:1115
+#: admin/inc/dtc_config.php:1192
 msgid "Your default new account directory:"
 msgstr ""
 
@@ -4688,7 +5715,7 @@ msgstr "Twoja domena zostanie później sprawdzona :"
 msgid "Your domain:"
 msgstr "Twoja domena :"
 
-#: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:367
+#: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:360
 msgid "Your domains"
 msgstr "Twoje domeny"
 
@@ -4696,11 +5723,11 @@ msgstr "Twoje domeny"
 msgid "Your hosting account:"
 msgstr "Twoje konto hostingowe:"
 
-#: admin/inc/dtc_config.php:905
+#: admin/inc/dtc_config.php:982
 msgid "Your key to access the LIVE server:"
 msgstr "Klucz dostępowy do serwera LIVE :"
 
-#: admin/inc/dtc_config.php:901
+#: admin/inc/dtc_config.php:978
 msgid "Your key to access the test server:"
 msgstr "Palavra chave para aceder ao servidor de testes :"
 
@@ -4728,6 +5755,22 @@ msgstr "Relatywna ścieżka do logo"
 msgid "Your users"
 msgstr "Twój login SRS:"
 
+#: shared/drawlib/cc_code_popup.php:350
+msgid "Yugoslavia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:351
+msgid "Zaire"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:352
+msgid "Zambia"
+msgstr ""
+
+#: shared/drawlib/cc_code_popup.php:353
+msgid "Zimbabwe"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
 msgstr "Kod pocztowy :"
@@ -4747,31 +5790,50 @@ msgstr ""
 msgid "aliasing"
 msgstr ""
 
-#: shared/inc/forms/vps.php:123
+#: shared/inc/forms/vps.php:127
 msgid "couldn't connect to host"
 msgstr ""
 
-#: admin/inc/dtc_config.php:990
+#: admin/inc/dtc_config.php:469
+#, fuzzy
+msgid "dom0 IP addresses"
+msgstr "Adres IP"
+
+#: admin/inc/dtc_config.php:1067
 msgid "eNETS merchant ID: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:998
+#: admin/inc/dtc_config.php:1075
 #, fuzzy
 msgid "eNETS rate: "
 msgstr "Serwery VPS"
 
-#: admin/inc/dtc_config.php:985
+#: admin/inc/dtc_config.php:1062
 #, fuzzy
 msgid "eNETS server: "
 msgstr "Serwery VPS"
 
-#: admin/inc/dtc_config.php:994
+#: admin/inc/dtc_config.php:1071
 msgid "eNETS test merchant ID: "
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:258
+#: shared/inc/fetch.php:454
+msgid ""
+"either your login and password pair is not valid, either your session "
+"expired (timed out)."
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
 msgid "fetching admin: "
 msgstr "Wybierz admina: "
+
+#: shared/inc/fetch.php:454
+msgid "file"
+msgstr ""
+
+#: shared/inc/forms/email.php:600
+msgid "files"
+msgstr ""
 
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
@@ -4791,6 +5853,10 @@ msgstr "do rejestracji, Serwer rejestrujący zwrócił: "
 
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
+msgstr ""
+
+#: shared/drawlib/dtc_functions.php:731
+msgid "kBytes"
 msgstr ""
 
 #: shared/dtcrm/draw_handle.php:217
@@ -4858,6 +5924,18 @@ msgstr "lata"
 #~ msgstr "Adres :"
 
 #, fuzzy
+#~ msgid "Addresse (line1): "
+#~ msgstr "Adres :"
+
+#, fuzzy
+#~ msgid "Addresse (line2): "
+#~ msgstr "Adres :"
+
+#, fuzzy
+#~ msgid "Addresse (line3): "
+#~ msgstr "Adres :"
+
+#, fuzzy
 #~ msgid "Company: "
 #~ msgstr "Nazwa Firmy :"
 
@@ -4876,6 +5954,9 @@ msgstr "lata"
 #, fuzzy
 #~ msgid "Repeat password:"
 #~ msgstr "Hasło FTP:"
+
+#~ msgid "Soap login"
+#~ msgstr "Login dla Soap"
 
 #~ msgid "Wykonaj"
 #~ msgstr "Lokalizacja"

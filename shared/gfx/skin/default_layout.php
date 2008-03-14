@@ -423,7 +423,7 @@ function userEditForms($adm_login,$adm_pass){
 	}else{
 		// If no user is in edition, draw a tool for adding an admin
 		$add_a_user = drawNewAdminForm();
-		return skin($conf_skin, _("Add a virtual administrator") );
+		return skin($conf_skin, $add_a_user, _("Add a virtual administrator"));
 	}
 }
 

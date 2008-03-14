@@ -584,17 +584,20 @@ function drawAdminTools_Emails($domain){
 			"type" => "readonly",
 			"hide_create" => "yes",
 			"callback" => "getCyrusUsedQuota",
+			"happen" => _("MBytes"),
 			"legend" => _("Used quota: ") );
 	} else {
 		$dsc["cols"]["quota_size"] = array(
 			"type" => "text",
 			"check" => "number",
-			"default" => "0",
+			"default" => "10",
+			"happen" => _("MBytes"),
 			"legend" => _("Mailbox quota: ") );
 		$dsc["cols"]["quota_files"] = array(
 			"type" => "text",
 			"check" => "number",
-			"default" => "0",
+			"default" => "1024",
+			"happen" => _("files"),
 			"legend" => _("Mailbox max files quota: ") );
 		$dsc["cols"]["redirect1"] = array(
 			"type" => "text",

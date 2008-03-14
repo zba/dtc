@@ -69,7 +69,7 @@ function register_user(){
 	}
 	if($_REQUEST["reqadm_pass"] != $_REQUEST["reqadm_pass2"]){
 		$ret["err"] = 2;
-		$ret["mesg"] = _("Password 1 and 2 do not match!") ;
+		$ret["mesg"] = _("Passwords 1 and 2 do not match!") ;
 		return $ret;
 	}
 	// If shared or ssl hosting, we MUST do type checkings
@@ -607,13 +607,13 @@ function registration_form(){
 
 	$client_addr = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Addresse (line1): ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Address (line1): ") ."</td>
 	<td><input type=\"text\" name=\"address1\" value=\"$frm_addr1\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Addresse (line2): ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Address (line2): ") ."</td>
 	<td><input type=\"text\" name=\"address2\" value=\"$frm_addr2\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Addresse (line3): ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Address (line3): ") ."</td>
 	<td><input type=\"text\" name=\"address3\" value=\"$frm_addr3\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Zipcode: ") ."</td>
