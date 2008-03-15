@@ -186,7 +186,7 @@ function skin_AlternateTreeView($url_link,$text,$selected,$arbo,$entrylink,$do_r
 	$out = "
 <tr>
 	<td class=\"box_wnb_tv_tree\">".$icone_tree."</td>
-	<td class=\"$class\" $mouseover_stuff $added_style>$ahref<div><img align=\"absbottom\" src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">".$text."</div>$aend</td>
+	<td class=\"$class\" $mouseover_stuff>$ahref<div><img align=\"absbottom\" src=\"gfx/skin/bwoup/gfx/treeview/$icon\" width=\"16\" height\"16\" border=\"0\">".$text."</div>$aend</td>
 </tr>$end_tree";
 	return $out;
 }
