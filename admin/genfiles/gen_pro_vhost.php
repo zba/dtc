@@ -557,6 +557,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Alias /dtcemail $conf_dtcemail_path
 	Alias /dtcadmin $conf_dtcadmin_path
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
+	Alias /awstats-icon /usr/share/awstats/icon
 	Alias /squirrelmail ".$conf_tools_prefix."/squirrelmail
 	Alias /roundcube /var/lib/roundcube
 	php_admin_value sendmail_from webmaster@$web_name
@@ -675,7 +676,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 							break;
 						}
 						$vhost_file .= "	ServerName $web_subname.$web_name
-	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs\n";
+	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
+	Alias /awstats-icon /usr/share/awstats/icon\n";
 						// Disable the site if expired
 						if($site_expired == "yes"){
 							$document_root = $conf_generated_file_path."/expired_site";
