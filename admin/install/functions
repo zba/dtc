@@ -3639,6 +3639,11 @@ createChrootTemplate () {
 		cp -pf /lib/sftp-server lib/
 	fi
 
+	if [ -e /usr/lib/openssh/sftp-server ] ; then
+		mkdir -p usr/lib/openssh
+		cp -pf /usr/lib/openssh/sftp-server usr/lib/openssh
+	fi
+
 	if [ -e /usr/bin/scp ] ; then
 		cp -pf /usr/bin/scp bin/
 	fi
