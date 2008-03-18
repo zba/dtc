@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
 "POT-Creation-Date: 2008-03-09 00:28+0800\n"
-"PO-Revision-Date: 2008-02-25 09:16+0100\n"
+"PO-Revision-Date: 2008-03-12 09:03+0100\n"
 "Last-Translator: Christian Perrier <bubulle@debian.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid "Automatically configure MySQL user?"
-msgstr ""
+msgstr "Faut-il automatiquement créer un identifiant MySQL ?"
 
 #. Type: boolean
 #. Description
@@ -33,6 +33,12 @@ msgid ""
 "always be located in the local machine (you wont be able to configure DTC to "
 "use a remote database server)."
 msgstr ""
+"Il est possible de créer automatiquement le superutilisateur de MySQL en "
+"utilisant /etc/mysql/debian.cnf, afin que DTC puisse gérer MySQL et sa base "
+"de données. De cette façon, la question relative au mot de passe du "
+"superutilisateur de MySQL ne sera pas posée et l'ensemble des opérations "
+"seront automatisées. En contrepartie, ce choix requiert que le serveur MySQL "
+"soit installé sur l'hôte local."
 
 #. Type: boolean
 #. Description
@@ -43,6 +49,10 @@ msgid ""
 "password, issue the following command: dpkg-reconfigure mysql-server-5.0. "
 "You've been warned!"
 msgstr ""
+"Quel que soit votre choix, veuillez vous assurer que le mot de passe du "
+"superutilisateur de MySQL est en place. Par défaut, ce mot de passe est "
+"vide. Pour définir un mot de passe pour le superutilisateur de MySQL, vous "
+"pouvez utiliser la commande « dpkg-reconfigure mysql-server-5.0 »."
 
 #. Type: string
 #. Description
@@ -537,7 +547,7 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Subdomain name for the MX server:"
-msgstr "Nom du sous-domaine pour le serveur MX :"
+msgstr "Nom du sous-domaine pour le serveur MX :"
 
 #. Type: string
 #. Description
