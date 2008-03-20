@@ -1,3 +1,10 @@
+dtc (0.28.6-2) unstable; urgency=low
+
+  * Updated Finish debconf template thanks to Esko Arajärvi <edu@iki.fi>
+    (Closes: #471533)
+
+ -- Thomas Goirand <thomas@goirand.fr>  Thu, 20 Mar 2008 08:29:33 +0800
+
 dtc (0.28.6-1) unstable; urgency=low
 
   * New upstream release.
