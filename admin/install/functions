@@ -1,9 +1,5 @@
 #!/bin/sh
 
-DKFILTER_ORIG_MD5="1b3b84c896cbede22f2e0604d3e77e05"
-DKFILTER_PATCHED_MD5="9225006167a1a128f05b2cabaa6d1645"
-DKFILTER_PATCH=${PATH_DTC_ADMIN}/dkfilter.patch
-
 if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
 fi
@@ -4480,6 +4476,7 @@ applyAllDTCPatches () {
 		dtcPatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 		dtcPatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 860349aa619b16d5f61ff255a16619fa
 		dtcPatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 83a74064692bb4808e223f7cc6abb154
+		dtcPatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 38da23b9d61ce29872cfc7069f1dbd7c d65c4ec0fb197b4ce042ad5a930f2af4
 	fi
 }
 
@@ -4490,6 +4487,7 @@ deApplyAllDTCPatches () {
 		dtcUnpatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 		dtcUnpatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 860349aa619b16d5f61ff255a16619fa
 		dtcUnpatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 83a74064692bb4808e223f7cc6abb154
+		dtcUnpatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 38da23b9d61ce29872cfc7069f1dbd7c d65c4ec0fb197b4ce042ad5a930f2af4
 	fi
 }
 
