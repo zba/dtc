@@ -49,12 +49,12 @@ if ( count($subs) >= 2) { // FIXME watch out: this malfunctions with IP addresse
 	$domain = $serverdomain;
 }
 
-$affiliate = $_GET["affiliate"];
-if (preg_match("/[^a-z0-9-_]/","",$affiliate)) die ("Affiliate can only have lowercase letters, numbers and - _");
+$affiliate = $_REQUEST["affiliate"];
+if (preg_match("/[^a-z0-9-_]/","",$affiliate)) die ( _("Affiliate can only have lowercase letters, numbers and - _") );
 
-$returnurl = $_GET["return"];
-if (preg_match("/[^\?&]/","",$returnurl)) die ("Return URL can't have query string parameters");
-if (substr($returnurl,0,1) != "/") die ("Return URL must be an absolute path");
+$returnurl = $_REQUEST["return"];
+if (preg_match("/[^\?&]/","",$returnurl)) die ( _("Return URL can't have query string parameters") );
+if (substr($returnurl,0,1) != "/") die ( _("Return URL must be an absolute path") );
 
 setcookie("affiliate",$affiliate,time()+60*60*24*365,"/",$domain);
 header("Location: $returnurl");
