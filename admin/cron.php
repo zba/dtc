@@ -350,7 +350,7 @@ function checkPop3dStarted () {
 function checkTimeAndLaunchNetBackupScript () {
 	global $start_stamps;
 	global $conf_ftp_backup_activate;
-	global $conf_ftp_backup_activate;
+	global $conf_ftp_backup_frequency;
 	if(($start_stamps%(60*60*24))< 60*10 && $conf_ftp_backup_activate == "yes"){	// If 00:00 and check the frequency of the bacup and launch it if needed
 		$do_ftp_backup = "no";
 		switch($conf_ftp_backup_frequency){
@@ -369,7 +369,7 @@ function checkTimeAndLaunchNetBackupScript () {
 			break;
 		default:
 			break;
-			}
+                }
 		if($do_ftp_backup == "yes"){
 			echo "Launching ftp backup script !\n";
 			system("$conf_generated_file_path/net_backup.sh &");
