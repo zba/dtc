@@ -136,6 +136,7 @@ class zPDF extends FPDF{
 		$this->Cell(40,22,"Payid: ".$pay["id"]);
 		$this->SetXY(130,40);
 		$this->Cell(40,22,"Payment date: ".$pt_date);
+		//header("Content-Disposition: attachment; filename=\"".$pt_date_plus."_gplhost.pdf\"");
 		// From:
 		$this->SetXY(10,50);
 		$this->SetFont('Arial','BU',12);
