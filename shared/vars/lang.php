@@ -80,6 +80,9 @@ if($panel_type!="cronjob"){
 		if($_REQUEST["change_language"] == "pt"){
 		  $lang = "pt";
 		}
+		if($_REQUEST["change_language"] == "fi"){
+		  $lang = "fi";
+		}
 	}
 	if(isset($lang)){
 	  $_SESSION["lang"] = $lang;
@@ -164,6 +167,10 @@ case "pt":
 case "es_ES":
 case "es":
 	$gettext_lang = "es_ES.UTF-8";
+	break;
+case "fi_FI":
+case "fi":
+	$gettext_lang = "fi_FI.UTF-8";
 	break;
 default:
 	$gettext_lang = "en_US.UTF-8";
