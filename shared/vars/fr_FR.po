@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-18 16:20+0800\n"
-"PO-Revision-Date: 2008-03-19 19:21+0800\n"
+"PO-Revision-Date: 2008-03-30 17:20+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -588,7 +588,7 @@ msgstr "Belgique"
 
 #: shared/drawlib/cc_code_popup.php:124
 msgid "Belize"
-msgstr ""
+msgstr "Belize"
 
 #: shared/drawlib/cc_code_popup.php:125
 msgid "Benin"
@@ -648,7 +648,7 @@ msgstr "Voire tous les fichiers générés"
 
 #: shared/drawlib/cc_code_popup.php:134
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "Brunei"
 
 #: shared/drawlib/cc_code_popup.php:135
 msgid "Bulgaria"
@@ -896,7 +896,7 @@ msgstr "Liste fermée :"
 
 #: shared/drawlib/cc_code_popup.php:149
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "Iles Cocos et Ile Keeling"
 
 #: shared/drawlib/cc_code_popup.php:150
 msgid "Colombia"
@@ -1831,7 +1831,7 @@ msgstr "Polynesie French"
 
 #: shared/drawlib/cc_code_popup.php:182
 msgid "French Southern Territories"
-msgstr ""
+msgstr "Terres australes et antarctiques françaises"
 
 #: shared/inc/forms/ticket.php:57
 msgid "Full description of the trouble:"
@@ -1936,7 +1936,7 @@ msgstr "Guadeloupe"
 
 #: shared/drawlib/cc_code_popup.php:194
 msgid "Guam"
-msgstr ""
+msgstr "Guatemala"
 
 #: shared/drawlib/cc_code_popup.php:195
 msgid "Guatemela"
@@ -1972,7 +1972,7 @@ msgstr "Entête"
 
 #: shared/drawlib/cc_code_popup.php:201
 msgid "Heard and McDonald Islands"
-msgstr ""
+msgstr "Iles Mac Donald et Heard"
 
 #: shared/inc/draw.php:311
 msgid "Help"
@@ -2317,7 +2317,7 @@ msgstr "Kenya"
 
 #: shared/drawlib/cc_code_popup.php:220
 msgid "Kiribati"
-msgstr ""
+msgstr "Kiribati"
 
 #: shared/drawlib/cc_code_popup.php:221
 msgid "Korea, Democratic People's Republic Of"
@@ -2371,7 +2371,7 @@ msgstr "Dernier rappel : "
 
 #: shared/drawlib/cc_code_popup.php:226
 msgid "Latvia"
-msgstr ""
+msgstr "Létonie"
 
 #: shared/gfx/skin/default_layout.php:141
 #: shared/gfx/skin/bwoup/layout.php:502
@@ -2396,7 +2396,7 @@ msgstr "Libéria"
 
 #: shared/drawlib/cc_code_popup.php:230
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "Lybie"
 
 #: shared/drawlib/cc_code_popup.php:231
 msgid "Liechtenstein"
@@ -2847,7 +2847,7 @@ msgstr "Utilisateur de la base de données MySQL non valide: je ne vais pas vous
 
 #: shared/drawlib/cc_code_popup.php:255
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
@@ -2937,7 +2937,7 @@ msgstr "Namibie"
 
 #: shared/drawlib/cc_code_popup.php:257
 msgid "Nauru"
-msgstr ""
+msgstr "Nauru (République de)"
 
 #: shared/inc/forms/packager.php:218
 msgid "Need a database"
@@ -3040,7 +3040,7 @@ msgstr "Nigère"
 
 #: shared/drawlib/cc_code_popup.php:267
 msgid "Niue"
-msgstr ""
+msgstr "Niue (Ile de)"
 
 #: admin/inc/draw_user_admin.php:159
 #: admin/inc/draw_user_admin.php:274
@@ -3354,7 +3354,7 @@ msgstr "Pakistan"
 
 #: shared/drawlib/cc_code_popup.php:273
 msgid "Palau"
-msgstr ""
+msgstr "Palau (République de)"
 
 #: shared/drawlib/cc_code_popup.php:274
 msgid "Palestine"
@@ -3366,7 +3366,7 @@ msgstr "Panama"
 
 #: shared/drawlib/cc_code_popup.php:276
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papouasie  Nouvelle Guinée"
 
 #: shared/drawlib/cc_code_popup.php:277
 msgid "Paraguay"
@@ -4001,7 +4001,7 @@ msgstr "Saint Hélène"
 
 #: shared/drawlib/cc_code_popup.php:290
 msgid "Saint Kitts And Nevis"
-msgstr ""
+msgstr "Saint Christophe et Niévès"
 
 #: shared/drawlib/cc_code_popup.php:291
 msgid "Saint Lucia"
@@ -4021,7 +4021,7 @@ msgstr "Pareil que pour DTC"
 
 #: shared/drawlib/cc_code_popup.php:294
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: shared/drawlib/cc_code_popup.php:295
 msgid "San Marino"
@@ -4029,7 +4029,7 @@ msgstr "San Marin"
 
 #: shared/drawlib/cc_code_popup.php:296
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "Sao Tomé-et-Príncipe"
 
 #: shared/drawlib/cc_code_popup.php:297
 msgid "Saudi Arabia"
@@ -4417,7 +4417,7 @@ msgstr "Suriname"
 
 #: shared/drawlib/cc_code_popup.php:313
 msgid "Svalbard and Jan Mayen Islands"
-msgstr ""
+msgstr "Svalbard et Ile Jan Mayen"
 
 #: shared/inc/forms/vps.php:110
 msgid "Swap I/O:"
@@ -4661,12 +4661,11 @@ msgstr "Togo"
 
 #: shared/drawlib/cc_code_popup.php:323
 msgid "Tokelau"
-msgstr ""
+msgstr "Tokelau"
 
 #: shared/drawlib/cc_code_popup.php:324
-#, fuzzy
 msgid "Tonga"
-msgstr "Total"
+msgstr "Tonga"
 
 #: shared/securepay/pay_functions.php:35
 msgid "Total"
@@ -5112,7 +5111,7 @@ msgstr "Valider les nouveaux compte si payé : "
 
 #: shared/drawlib/cc_code_popup.php:340
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: shared/drawlib/cc_code_popup.php:341
 msgid "Vatican City State"
