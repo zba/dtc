@@ -27,7 +27,8 @@ $txt_langname = array(
 	"pl" => "UTF-8",
 	"se" => "iso-8859-15",
 	"pt" => "UTF-8",
-	"es" => "UTF-8");
+	"es" => "UTF-8",
+	"fi" => "UTF-8");
 
 //check to see if we are running in the shell or web
 if($panel_type!="cronjob"){
