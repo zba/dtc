@@ -351,6 +351,7 @@ function checkTimeAndLaunchNetBackupScript () {
 	global $start_stamps;
 	global $conf_ftp_backup_activate;
 	global $conf_ftp_backup_frequency;
+	global $conf_generated_file_path;
 	if(($start_stamps%(60*60*24))< 60*10 && $conf_ftp_backup_activate == "yes"){	// If 00:00 and check the frequency of the bacup and launch it if needed
 		$do_ftp_backup = "no";
 		switch($conf_ftp_backup_frequency){
