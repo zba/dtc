@@ -20,7 +20,7 @@ function clean_shutdown_cron(){
 
 
 $script_start_time = time();
-$start_stamps = mktime();
+$start_stamps = gmmktime(date("H"), date("i"), date("s"), date("m"), date("d"), date("Y"));
 $panel_type="cronjob";
 
 chdir(dirname(__FILE__));
