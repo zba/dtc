@@ -13,7 +13,7 @@ function clean_shutdown_cron(){
 	global $_inprogress;
 	global $_timelimit;
 	if ($_inprogress){
-		echo "WARNING: cron.php execution took longer than $_timelimit minutes\n";
+		echo "WARNING: cron.php execution took longer than $_timelimit seconds\n";
 		printEndTime ();
 	}
 }
