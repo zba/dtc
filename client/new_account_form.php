@@ -52,7 +52,7 @@ function register_user(){
 	}
 
 	// Do field format checking and escaping for all fields
-	if(!isFtpLogin($_REQUEST["reqadm_login"])){
+	if(!isMailbox($_REQUEST["reqadm_login"])){
 		$ret["err"] = 2;
 		$ret["mesg"] = _("User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.") ;
 		return $ret;

@@ -528,9 +528,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 							$gblx = "php_admin_value register_globals 0";
 						}
 						if($rowX["safe_mode"] == "no" && $ax["safe_mode"] == "no"){
-							$safex = "php_admin_value safe_mode 1";
-						}else{
 							$safex = "php_admin_value safe_mode 0";
+						}else{
+							$safex = "php_admin_value safe_mode 1";
 						}
 						$vhost_file .= "\tAlias /$subdomx.$web_nameX $web_pathX/$web_nameX/subdomains/$subdomx/html
 	<Location /$subdomx.$web_nameX>

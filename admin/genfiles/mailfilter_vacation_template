@@ -2,5 +2,22 @@
 RECIPIENT=$LOGNAME
 RESPOND="~/.vacation.msg"
 RESPONDDB="~/.vacation.db"
-cc "| mailbot -t $RESPOND -d $RESPONDDB -D 1 -A 'From: $RECIPIENT' -s 'Auto Response: from $RECIPIENT' /usr/sbin/sendmail -t"
+if ( ! /^Precedence: (bulk|list|junk)/ && \
+     ! /^List-Id:/ && \
+     ! /^List-Unsubscribe:/ && \
+     ! /^Return-Path:.*<#@\[\]>/ && \
+     ! /^Return-Path:.*<>/ && \
+     ! /^From:.*MAILER-DAEMON/ && \
+     ! /^X-ClamAV-Notice-Flag: *YES/ && \
+     ! /^Content-Type:.*message\/delivery-status/ && \
+     ! /^Subject:.*Delivery Status Notification/ && \
+     ! /^Subject:.*Undelivered Mail Returned to Sender/ && \
+     ! /^Subject:.*Delivery failure/ && \
+     ! /^Subject:.*Message delay/ && \
+     ! /^Subject:.*Mail Delivery Subsystem/ && \
+     ! /^Subject:.*Mail System Error.*Returned Mail/ && \
+     ! /^X-Spam-Flag: YES/ )
+{
+	cc "| mailbot -t $RESPOND -d $RESPONDDB -D 1 -A 'From: $RECIPIENT' -s 'Auto Response: from $RECIPIENT' /usr/sbin/sendmail -t"
 
+}

@@ -1,9 +1,5 @@
 #!/bin/sh
 
-DKFILTER_ORIG_MD5="1b3b84c896cbede22f2e0604d3e77e05"
-DKFILTER_PATCHED_MD5="9225006167a1a128f05b2cabaa6d1645"
-DKFILTER_PATCH=${PATH_DTC_ADMIN}/dkfilter.patch
-
 if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
 fi
@@ -396,35 +392,36 @@ searchAndReplace () {
 	fi
 }
 
+# Setup a specific Debian local
+# $1 en_US
+debianSetLocale (){
+	echo -n "$1.UTF-8 "
+	# Set the correct entry in /etc/locale.gen
+	TMP_FILE=`${MKTEMP} DTC_SET_LOCALE.XXXXXX` || exit 1
+	grep -v "$1.UTF-8" /etc/locale.gen >${TMP_FILE}
+	cat <${TMP_FILE} >/etc/locale.gen
+	rm ${TMP_FILE}
+	echo "$1.UTF-8 UTF-8" >>/etc/locale.gen
+	# Ask for generation of the added locale
+	localedef -i $1 -c -f UTF-8 -A /usr/share/locale/locale.alias $1.UTF-8
+}
+
 dtcGenDebianLocales () {
 	if [ "$UNIX_TYPE" = "debian" ] ; then
 		echo -n "Generating DTC's locale, this will take a while: "
-		echo -n "en_US.UTF-8 "
-		localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-		echo -n "fr_FR.UTF-8 "
-		localedef -i fr_FR -c -f UTF-8 -A /usr/share/locale/locale.alias fr_FR.UTF-8
-		echo -n "it_IT.UTF-8 "
-		localedef -i it_IT -c -f UTF-8 -A /usr/share/locale/locale.alias it_IT.UTF-8
-		echo -n "hu_HU.UTF-8 "
-		localedef -i hu_HU -c -f UTF-8 -A /usr/share/locale/locale.alias hu_HU.UTF-8
-		echo -n "nl_NL.UTF-8 "
-		localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
-		echo -n "de_DE.UTF-8 "
-		localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
-		echo -n "ru_RU.UTF-8 "
-		localedef -i ru_RU -c -f UTF-8 -A /usr/share/locale/locale.alias ru_RU.UTF-8
-		echo -n "zh_CN.UTF-8 "
-		localedef -i zh_CN -c -f UTF-8 -A /usr/share/locale/locale.alias zh_CN.UTF-8
-		echo -n "pl_PL.UTF-8 "
-		localedef -i pl_PL -c -f UTF-8 -A /usr/share/locale/locale.alias pl_PL.UTF-8
-		echo -n "se_NO.UTF-8 "
-		localedef -i se_NO -c -f UTF-8 -A /usr/share/locale/locale.alias se_NO.UTF-8
-		echo -n "pt_PT.UTF-8 "
-		localedef -i pt_PT -c -f UTF-8 -A /usr/share/locale/locale.alias pt_PT.UTF-8
-		echo -n "es_ES.UTF-8 "
-		localedef -i es_ES -c -f UTF-8 -A /usr/share/locale/locale.alias es_ES.UTF-8
-		echo -n "fi_FI.UTF-8 "
-		localedef -i fi_FI -c -f UTF-8 -A /usr/share/locale/locale.alias fi_FI.UTF-8
+		debianSetLocale en_US
+		debianSetLocale fr_FR
+		debianSetLocale it_IT
+		debianSetLocale hu_HU
+		debianSetLocale de_DE
+		debianSetLocale ru_RU
+		debianSetLocale nl_NL
+		debianSetLocale zh_CN
+		debianSetLocale pl_PL
+		debianSetLocale se_NO
+		debianSetLocale pt_PT
+		debianSetLocale es_ES
+		debianSetLocale fi_FI
 		echo "done!"
 	fi
 }
@@ -3639,6 +3636,11 @@ createChrootTemplate () {
 		cp -pf /lib/sftp-server lib/
 	fi
 
+	if [ -e /usr/lib/openssh/sftp-server ] ; then
+		mkdir -p usr/lib/openssh
+		cp -pf /usr/lib/openssh/sftp-server usr/lib/openssh
+	fi
+
 	if [ -e /usr/bin/scp ] ; then
 		cp -pf /usr/bin/scp bin/
 	fi
@@ -4475,6 +4477,7 @@ applyAllDTCPatches () {
 		dtcPatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 		dtcPatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 860349aa619b16d5f61ff255a16619fa
 		dtcPatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 83a74064692bb4808e223f7cc6abb154
+		dtcPatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 38da23b9d61ce29872cfc7069f1dbd7c d65c4ec0fb197b4ce042ad5a930f2af4
 	fi
 }
 
@@ -4485,6 +4488,7 @@ deApplyAllDTCPatches () {
 		dtcUnpatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 		dtcUnpatchFile /etc/default/saslauthd ${PATH_DTC_ADMIN}/patches/saslauthd_default_start.patch 5a35c054a09b91682cc590c6af799521 860349aa619b16d5f61ff255a16619fa
 		dtcUnpatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 2df9e784c1bff8946c3bcf80938575e0 83a74064692bb4808e223f7cc6abb154
+		dtcUnpatchFile /etc/init.d/dkimproxy ${PATH_DTC_ADMIN}/patches/dkimproxy_init_script.patch 38da23b9d61ce29872cfc7069f1dbd7c d65c4ec0fb197b4ce042ad5a930f2af4
 	fi
 }
 

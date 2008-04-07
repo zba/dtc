@@ -1,13 +1,13 @@
 # Galician translation of dtc's debconf templates
 # This file is distributed under the same license as the dtc package.
-# Jacobo Tarrio <jtarrio@debian.org>, 2007.
+# Jacobo Tarrio <jtarrio@debian.org>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
 "POT-Creation-Date: 2008-03-09 00:28+0800\n"
-"PO-Revision-Date: 2007-03-20 22:29+0100\n"
+"PO-Revision-Date: 2008-03-20 03:44+0000\n"
 "Last-Translator: Jacobo Tarrio <jtarrio@debian.org>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid "Automatically configure MySQL user?"
-msgstr ""
+msgstr "¿Configurar automaticamente o usuario de MySQL?"
 
 #. Type: boolean
 #. Description
@@ -31,6 +31,13 @@ msgid ""
 "always be located in the local machine (you wont be able to configure DTC to "
 "use a remote database server)."
 msgstr ""
+"DTC pode empregar /etc/mysql/debian.cnf para crear automaticamente un "
+"usuario administrador de mysql para que DTC acceda e xestione MySQL e a base "
+"de datos de DTC. Desta maneira, non se lle ha preguntar o contrasinal do "
+"administrador de MySQL, e todo ha ser automático, pero o inconveniente é que "
+"o servidor MySQL que se empregue sempre terá que residir no servidor local "
+"(non ha poder configurar DTC para que empregue un servidor de bases de datos "
+"remoto)."
 
 #. Type: boolean
 #. Description
@@ -41,6 +48,10 @@ msgid ""
 "password, issue the following command: dpkg-reconfigure mysql-server-5.0. "
 "You've been warned!"
 msgstr ""
+"En calquera caso, asegúrese de configurar o seu contrasinal de administrador "
+"de MySQL. Por defecto, Debian instala MySQL cun contrasinal baleiro. Para "
+"configurar un contrasinal para MySQL, execute a seguinte orde: dpkg-"
+"reconfigure mysql-server-5.0."
 
 #. Type: string
 #. Description
@@ -482,7 +493,7 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Local address extension character:"
-msgstr ""
+msgstr "Carácter de extensión de enderezos locais:"
 
 #. Type: select
 #. Description
@@ -491,6 +502,9 @@ msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
 msgstr ""
+"Indique o carácter que se ha empregar para definir unha extensión de "
+"enderezos locais. Este carácter debe ser o mesmo que configurou en postfix "
+"ou qmail."
 
 #. Type: select
 #. Description
@@ -503,12 +517,20 @@ msgid ""
 "patches are incompatibles), but when using - as delimiter, you will not be "
 "able to use an email of the form john-doe@example.com as - is the delimiter."
 msgstr ""
+"O delimitador do destinatario hase empregar nas listas de correo. Por "
+"exemplo, se emprega o carácter \"+\" coma delimitador, os usuarios han ter "
+"que enviar mensaxes a lista+subscribe@exemplo.com. O inconveniente de "
+"escoller \"+\" é que algúns sistemas de correo non permiten enviar mensaxes "
+"con este carácter no enderezo do destinatario (en particular, algunhas "
+"versións de qmail con parches incompatibles), pero se emprega \"-\" coma "
+"delimitador non ha poder empregar enderezos da forma xose-perez@exemplo.com, "
+"xa que \"-\" había ser o delimitador."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Subdomain name for the MX server:"
-msgstr ""
+msgstr "Nome do subdominio do servidor MX:"
 
 #. Type: string
 #. Description
@@ -518,6 +540,9 @@ msgid ""
 "subdomain will be configured in your mail server and your domain name server "
 "by DTC. Any name is ok here."
 msgstr ""
+"O servidor de correo ha precisar dun subdominio para aceptar correo. DTC ha "
+"configurar este subdominio no servidor de correo e no servidor de dominios. "
+"Serve calquera nome."
 
 #. Type: string
 #. Description
@@ -583,3 +608,8 @@ msgid ""
 "Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
 "using dtc-postfix-courier instead."
 msgstr ""
+"Cyrus é un substituto para a entrega e armacenamento de maildir. Se quere "
+"activar o emprego de Cyrus, é mellor que saiba o que está a facer. Se "
+"emprega dtc-toaster ou dtc-postfix-courier, ha ter que indicar que non se "
+"empregue Cyrus. Cyrus só funciona co paquete dtc, e NON co paquete dtc-"
+"postfix-courier."

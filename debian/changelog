@@ -1,3 +1,21 @@
+dtc (0.28.7-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated Finish debconf template thanks to Esko Arajarvi <edu@iki.fi>
+    (Closes: #471533)
+  * Updated Galician debconf template thanks to Jacobo Tarrio
+    <jtarrio@trasno.net> (Closes: #471780)
+  * Updated Russian debconf templates translation thanks to Yuri Kozlov
+    <kozlov.y@gmail.com> (Closes: #472038)
+  * Updated Russian DTC translation thanks to Yuri Kozlov <kozlov.y@gmail.com>
+    (Closes: #472058)
+  * Updated french debconf templates translation thanks to Christian Perrier
+    <bubulle@debian.org> (Closes: #471428)
+  * Added Vietnamese debconf translation thanks to Clytie Siddall
+    <clytie@riverland.net.au> (Closes: #473236)
+
+ -- Thomas Goirand <thomas@goirand.fr>  Thu, 20 Mar 2008 08:29:33 +0800
+
 dtc (0.28.6-1) unstable; urgency=low
 
   * New upstream release.

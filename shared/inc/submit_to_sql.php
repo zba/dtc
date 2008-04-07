@@ -402,8 +402,8 @@ Password: ".$a["reqadm_pass"];
 	mail($a["email"],$txt_userwaiting_account_activated_subject,$msg_2_send,$headers);
 
 	// Now add a command to the user so we keep tracks of payments
-	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code)
-	VALUES ('','$cid','".$a["domain_name"]."','1','".date("Y-m-d")."','".$a["product_id"]."','".$a["paiement_id"]."','$country');";
+	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code,last_expiry_date)
+	VALUES ('','$cid','".$a["domain_name"]."','1','".date("Y-m-d")."','".$a["product_id"]."','".$a["paiement_id"]."','$country','".date("Y-d-m")."');";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	// Finaly delete the user from the userwaiting table

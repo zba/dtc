@@ -390,21 +390,23 @@ $more_mx_server
 	IN	A	$ip_to_write
 ";
 			// if we have the public.key for DomainKeys, write it into our zone file
-      if (file_exists($conf_domainkey_publickey_filepath)){
-              $key_file_array = file($conf_domainkey_publickey_filepath, FILE_IGNORE_NEW_LINES);
-              // skip the first and last lines (the ---PUBLIC---)
-              $KEY = "";
-              for ($key_file_array_count = 1; $key_file_array_count < count($key_file_array) - 1; $key_file_array_count++)
-              {
-                      $KEY .= $key_file_array[$key_file_array_count];
-              }
-              $SELECTOR="postfix";
-              $DOMAIN=$web_name;
-              $NSRECORD="$SELECTOR._domainkey IN TXT \"k=rsa;p=$KEY; t=y\"";
-              $NSRECORDDEFAULT="_domainkey IN TXT \"o=~\"";
-              $this_site_file .= "$NSRECORDDEFAULT\n";
-              $this_site_file .= "$NSRECORD\n";
-      }
+			if (file_exists($conf_domainkey_publickey_filepath)){
+				$key_file_array = file($conf_domainkey_publickey_filepath, FILE_IGNORE_NEW_LINES);
+				// skip the first and last lines (the ---PUBLIC---)
+				$KEY = "";
+				for ($key_file_array_count = 1; $key_file_array_count < count($key_file_array) - 1; $key_file_array_count++){
+					$KEY .= $key_file_array[$key_file_array_count];
+				}
+				// This line is added for php4 support:
+				$KEY = str_replace("\n","",$KEY);
+				$SELECTOR="postfix";
+				$DOMAIN=$web_name;
+				$NSRECORD="$SELECTOR._domainkey IN TXT \"k=rsa;p=$KEY; t=y\"";
+				$NSRECORDDEFAULT="_domainkey IN TXT \"o=~\"";
+				$this_site_file .= "$NSRECORDDEFAULT\n";
+				$this_site_file .= "$NSRECORD\n";
+			}
+
 			// Add all subdomains to it !
 			$is_pop_subdomain_set = "no";
 			$is_imap_subdomain_set = "no";
