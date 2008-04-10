@@ -212,6 +212,18 @@ function validateWaitingUser($waiting_login){
 	global $conf_message_subject_header;
 	global $console;
 
+	//get affiliate cookie
+	$affiliatename = $_COOKIE["affiliate"];
+	if (!isMailbox($affiliatename)) { unset $affiliatename; }
+
+	if (isset($affiliatename)) {
+		//Step 1: validate that the affiliatename exists
+		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".mysql_real_escape_string($affiliatename)."';";
+		$r = mysql_query($q) or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		if (mysql_num_rows($r) != 1) { unset($affiliatename); }
+		// at this point, we should have an affiliatename
+	}
+
 	// Check if there is a user by that name
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$waiting_login';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -405,6 +417,18 @@ Password: ".$a["reqadm_pass"];
 	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code,last_expiry_date)
 	VALUES ('','$cid','".$a["domain_name"]."','1','".date("Y-m-d")."','".$a["product_id"]."','".$a["paiement_id"]."','$country','".date("Y-d-m")."');";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+
+	if (isset($affiliatename)) {
+		// Step 2) retrieve the kickback from the products table
+		$kickback = $a2["affiliate_kickback"];
+		$orderid = mysql_insert_id();
+		if ($kickback) {
+			// Step 3) if a kickback exists, store it in the affiliate transaction table
+			$kickback = 1.0 + $kickback - 1.0; //cast to float.  I hate PHP.
+			$xxs = "INSERT INTO affiliate_payments (adm_login,order_id,kickback) VALUES('$affiliatename',$orderid,$kickback);";
+			mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		}
+	}
 
 	// Finaly delete the user from the userwaiting table
 	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE reqadm_login='$waiting_login';";
