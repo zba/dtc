@@ -1042,7 +1042,10 @@ $dtc_database = array(
 			"kickback" => "decimal(10,5) NOT NULL ",
 			"date_paid" => "date NULL "
 			),
-		"primary" => "(id)"
+		"primary" => "(id)",
+		"keys" => array(
+			"id" => "(id)"
+			)
 		),
 	"whois" => array(
 		"vars" => array(
