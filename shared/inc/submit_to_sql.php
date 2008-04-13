@@ -213,8 +213,9 @@ function validateWaitingUser($waiting_login){
 	global $console;
 
 	//get affiliate cookie
-	$affiliatename = $_COOKIE["affiliate"];
-	if (!isMailbox($affiliatename)) { unset $affiliatename; }
+	if( isset($_COOKIE["affiliate"]) && isMailbox($affiliatename)){
+		$affiliatename = $_COOKIE["affiliate"];
+	}
 
 	if (isset($affiliatename)) {
 		//Step 1: validate that the affiliatename exists
