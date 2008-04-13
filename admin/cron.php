@@ -469,17 +469,17 @@ function cronMailSystem () {
 			}else if(file_exists("/etc/rc.d/rc.amavisd")){
 				system("/etc/rc.d/rc.amavisd restart");
 			}
+
+			if( file_exists ("/etc/init.d/dkimproxy") ){
+				echo "Reloading dkfilter to reload it's domains...\n";
+				system("/etc/init.d/dkimproxy force-reload");
+			}
 			
 			echo "Starting postfix queue...\n";
                         system("$PATH_POSTSUPER -H ALL");
 
 			echo "Flushing the queue now, to make sure we have some mail delivery happening after amavisd restart...\n";
                         system("$PATH_POSTFIX_SCRIPT flush");
-
-			if( file_exists ("/etc/init.d/dkimproxy") ){
-				echo "Reloading dkfilter to reload it's domains...\n";
-				system("/etc/init.d/dkimproxy force-reload");
-			}
 
 			break;
 		case "qmail":
