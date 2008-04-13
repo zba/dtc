@@ -46,11 +46,6 @@ PATH_CGIBIN=/var/www/cgi-bin
 
 PATH_SASLLIB=/usr/lib/sasl2
 
-
-if [ -e /var/lib/php/session ] ; then
-	chgrp -R nobody /var/lib/php/session
-fi
-
 MKTEMP="mktemp -p /tmp"
 MYSQL_DB_SOCKET_PATH="/var/lib/mysql/mysql.sock"
 DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
