@@ -471,11 +471,11 @@ function mail_account_generate_postfix(){
 
 	//now that we have our base files, go and rebuild the db's
 	if($conf_unix_type == "bsd"){
-		$POSTMAP_BIN = "/usr/local/sbin/postmap";
-		$POSTALIAS_BIN = "/usr/local/sbin/postalias";
+		$POSTMAP_BIN = "/usr/local/sbin/postmap -r";
+		$POSTALIAS_BIN = "/usr/local/sbin/postalias -r";
 	}else{
-		$POSTMAP_BIN = "/usr/sbin/postmap";
-		$POSTALIAS_BIN = "/usr/sbin/postalias";
+		$POSTMAP_BIN = "/usr/sbin/postmap -r";
+		$POSTALIAS_BIN = "/usr/sbin/postalias -r";
 	}
 
 	system("$POSTMAP_BIN $conf_postfix_virtual_mailbox_domains_path");
