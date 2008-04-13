@@ -284,7 +284,7 @@ function restartApache () {
 		return;
         }
 	echo "Testing apache conf\n";
-	exec ("$APACHECTL configtest", $plop, $return_var);
+	exec ("$APACHECTL configtest 2>&1 | grep -qF 'Syntax OK'", $plop, $return_var);
 	if($return_var == false){
 		echo "Config is OK : restarting Apache\n";
 		echo "$APACHECTL stop\n";
