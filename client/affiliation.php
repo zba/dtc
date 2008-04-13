@@ -49,6 +49,9 @@ if ( count($subs) >= 2) { // FIXME watch out: this malfunctions with IP addresse
 	$domain = $serverdomain;
 }
 
+
+// FIXME: need to include DTC validation functions so we can use isMailbox here instead
+// relevant file: dtc/shared/drawlib/dtc_functions.php
 $affiliate = $_REQUEST["affiliate"];
 if (preg_match("/[^a-z0-9-_]/","",$affiliate)) die ( _("Affiliate can only have lowercase letters, numbers and - _") );
 

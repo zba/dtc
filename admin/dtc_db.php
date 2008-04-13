@@ -738,6 +738,7 @@ $dtc_database = array(
 			"allow_add_domain" => "enum('yes','no','check') NOT NULL default 'no' ",
 			"heb_type" => "enum('shared','ssl','vps','server') NOT NULL default 'shared' ",
 			"renew_prod_id" => "int(11) NOT NULL default '0'",
+			"affiliate_kickback" => "varchar(9) NOT NULL default ''",
 			"private" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)",
@@ -1032,6 +1033,16 @@ $dtc_database = array(
 			"pop_user" => "(pop_user,mbox_host,mail_to)",
 			"unicbox" => "(pop_user,mail_from_user,mail_from_domain,mbox_host)"
 			)
+		),
+	"affiliate_payments" => array(
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"adm_login" => "varchar(64) NOT NULL ",
+			"order_id" => "int(11) NOT NULL ",
+			"kickback" => "decimal(10,5) NOT NULL ",
+			"date_paid" => "date NULL "
+			),
+		"primary" => "(id)"
 		),
 	"whois" => array(
 		"vars" => array(

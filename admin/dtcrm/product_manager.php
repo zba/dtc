@@ -41,6 +41,11 @@ function productManager(){
 				"legend" => _("Price") ,
 				"size" => "4"
 				),
+			"affiliate_kickback" => array(
+				"type" => "text",
+				"legend" => _("Aff. kickback") ,
+				"size" => "4"
+				),
 			"quota_disk" => array(
 				"type" => "text",
 				"legend" => _("Disk") ,
@@ -109,6 +114,11 @@ function productManager(){
 				"legend" => _("Price") ,
 				"size" => "4"
 				),
+			"affiliate_kickback" => array(
+				"type" => "text",
+				"legend" => _("Aff. kickback") ,
+				"size" => "4"
+				),
 			"quota_disk" => array(
 				"type" => "text",
 				"legend" => _("Disk") ,
@@ -167,6 +177,11 @@ function productManager(){
 				"legend" => _("Price") ,
 				"size" => "4"
 				),
+			"affiliate_kickback" => array(
+				"type" => "text",
+				"legend" => _("Aff. kickback") ,
+				"size" => "4"
+				),
 			"quota_disk" => array(
 				"type" => "text",
 				"legend" => _("Disk") ,
@@ -223,6 +238,11 @@ function productManager(){
 			"price_dollar" => array(
 				"type" => "text",
 				"legend" => _("Price") ,
+				"size" => "4"
+				),
+			"affiliate_kickback" => array(
+				"type" => "text",
+				"legend" => _("Aff. kickback") ,
 				"size" => "4"
 				),
 			"private" => array(
