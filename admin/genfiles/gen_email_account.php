@@ -111,7 +111,12 @@ MAILDIR=\$DEFAULT\n");
 	}
 
 	if($vacation_flag == "yes"){
-		$mlfilter_content .= "\n".implode("\n",file("genfiles/mailfilter_vacation_template"))."\n";
+		$mlfilter_content_filename = "genfiles/mailfilter_vacation_template";
+		$mlfilter_content_handle = fopen($mlfilter_content_filename, "r");
+		$mlfilter_content = fread($mlfilter_content_handle, filesize($mlfilter_content_filename));
+		fclose($mlfilter_content_handle);
+		// The following commented thing is replaced by the above that get rid of the double \n at end of lines
+		//$mlfilter_content .= "\n".implode("\n",file("genfiles/mailfilter_vacation_template"))."\n";
 		@chmod("$home/.vacation.msg",0660);
 		$vac_fp = fopen("$home/.vacation.msg","w+");
 		if($vac_fp != FALSE){
