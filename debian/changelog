@@ -1,4 +1,4 @@
-dtc (0.28.8-1) unstable; urgency=low
+dtc (0.28.9-1) unstable; urgency=low
 
   * New upstream release.
   * Updated Finish debconf template thanks to Esko Arajarvi <edu@iki.fi>
