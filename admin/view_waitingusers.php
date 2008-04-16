@@ -8,7 +8,6 @@ require_once("genfiles/genfiles.php");
 
 include("inc/submit_root_querys.php");
 include("inc/nav.php");
-include("inc/dtc_config_strings.php");
 include("inc/dtc_config.php");
 include("inc/draw_user_admin.php");
 
