@@ -74,7 +74,7 @@ function get_remote_mail($a,$recipients){
 				)
 			){
 				for($j=1;$j<$nline-1;$j++){
-					$rcpthosts_file .= $lines[$j];
+					$rcpthosts_file .= $lines[$j]."\n";
 				}
 				$flag = true;
 				if( $panel_type == "cronjob"){
