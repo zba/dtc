@@ -24,6 +24,7 @@ if [ -n "$bindgroup" ]; then
 	chmod -R 0770 $conf_generated_file_path/zones
         chown -R $bindgroup:dtcgrp $conf_generated_file_path/slave_zones
 	chmod -R 0770 $conf_generated_file_path/slave_zones
+	chown $bindgroup:dtcgrp $conf_generated_file_path/named.conf
 else
 	echo "Didn't find named groups, it must be running as root: keeping permissions"
 fi
