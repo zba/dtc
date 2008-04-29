@@ -5,7 +5,7 @@ require("genfiles/gen_qmail_email_account.php");
 require("genfiles/gen_postfix_email_account.php");
 require("genfiles/gen_maildrop_userdb.php");
 
-function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$spam_mailbox,$vacation_flag="no",$vacation_text="",$redirection="",$redirection2=""){
+function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$spam_mailbox,$localdeliver,$vacation_flag="no",$vacation_text="",$redirection="",$redirection2=""){
 	global $conf_dtc_system_username;
 	global $conf_dtc_system_groupname;
 	$MAILFILTER_FILE="$home/.mailfilter";
@@ -17,18 +17,6 @@ function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$
 		}
 		system("maildirmake $home/Maildir");
 	}
-
-	// Set a lock file so we don't have 2 process writting the file at the same time
-	// I'm removing it, since we don't open the file durring it's content creation...
-/*	$MAILFILTER_LOCK="$home/.mailfilter.lock";
-	if(file_exists($MAILFILTER_LOCK)){
-		echo "Mailfilter already working on $MAILFILTER_FILE, exitting\n";
-		return false;
-	}
-	touch($MAILFILTER_LOCK);
-	if(!file_exists($MAILFILTER_FILE)){
-		touch($MAILFILTER_FILE);
-	}*/
 
 	// Setup the anti-loop system
 	$mlfilter_content = <<<MAILFILTER_EOF
@@ -126,12 +114,17 @@ MAILDIR=\$DEFAULT\n");
 		@chmod("$home/.vacation.msg",0550);
 		@chown("$home/.vacation.msg",$conf_dtc_system_username);
 	}
-	$mlfilter_content .= <<<MAILFILTER_EOF
-`[ -d \$DEFAULT ] || maildirmake \$DEFAULT`
+	if ($localdeliver == "no")
+	{
+		$mlfilter_content .= <<<MAILFILTER_EOF
+# Exit here since we don't want to deliver locally
+exit
 
 MAILFILTER_EOF;
-	if($redirection != "" && $redirection2 == ""){
+	}
+	else if($redirection != "" && $redirection2 == ""){
 		$mlfilter_content .= <<<MAILFILTER_EOF
+`[ -d \$DEFAULT ] || maildirmake \$DEFAULT`
 to \$DEFAULT
 
 MAILFILTER_EOF;
