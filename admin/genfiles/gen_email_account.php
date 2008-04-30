@@ -121,8 +121,7 @@ MAILDIR=\$DEFAULT\n");
 exit
 
 MAILFILTER_EOF;
-	}
-	else if($redirection != "" && $redirection2 == ""){
+	}else{
 		$mlfilter_content .= <<<MAILFILTER_EOF
 `[ -d \$DEFAULT ] || maildirmake \$DEFAULT`
 to \$DEFAULT
