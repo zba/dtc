@@ -238,6 +238,10 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 $q = "ALTER TABLE `paiement` CHANGE `vat_rate` `vat_rate` decimal(9,2) NOT NULL default '0.00';";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+// Change VAT rate fld
+$q = "ALTER TABLE `companies` CHANGE `vat_rate` `vat_rate` decimal(9,2) NOT NULL default '0.00';";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 // Fill the new quota_couriermaildrop with values
 $q = "UPDATE pop_access SET quota_couriermaildrop=CONCAT(1024000*quota_size,'S,',quota_files,'C')";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
