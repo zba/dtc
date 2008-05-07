@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: thomas@goirand.fr\n"
-"POT-Creation-Date: 2008-03-09 00:28+0800\n"
+"POT-Creation-Date: 2008-05-07 16:21+0800\n"
 "PO-Revision-Date: 2008-03-29 23:49+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -16,488 +16,497 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: LocFactoryEditor 1.7b3\n"
 
-#: ../dtc-core.templates:1001
-#: ../dtc-postfix-courier.templates:1001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid "Automatically configure MySQL user?"
 msgstr "Tự động cấu hình người dùng MySQL không?"
 
-#: ../dtc-core.templates:1001
-#: ../dtc-postfix-courier.templates:1001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid ""
 "DTC can use /etc/mysql/debian.cnf to automatically create a root mysql user "
 "for DTC to access and manage MySQL and DTC's database. This way, no question "
 "will be asked to you about what MySQL root password is used, all will be "
 "automated, but the drawback is that the MySQL server that will be used will "
-"always be located in the local machine (you wont be able to configure DTC to "
-"use a remote database server)."
-msgstr "DTC có khả năng sử dụng « /etc/mysql/debian.cnf » để tự động tạo một người dùng MySQL chủ (root) để truy cập và quản lý cơ sở dữ liệu của cả hai MySQL và DTC. Bằng cách này, bạn sẽ không được nhắc nhập mật khẩu người chủ của MySQL vì tất cả tự động chạy. Tuy nhiên, trình phục vụ MySQL được dùng phải nằm trên máy cục bộ : bạn sẽ không có khả năng cấu hình DTC để sử dụng một máy phục vụ cơ sở dữ liệu từ xa."
+"always be located in the local machine (you won't be able to configure DTC "
+"to use a remote database server)."
+msgstr ""
+"DTC có khả năng sử dụng « /etc/mysql/debian.cnf » để tự động tạo một người "
+"dùng MySQL chủ (root) để truy cập và quản lý cơ sở dữ liệu của cả hai MySQL "
+"và DTC. Bằng cách này, bạn sẽ không được nhắc nhập mật khẩu người chủ của "
+"MySQL vì tất cả tự động chạy. Tuy nhiên, trình phục vụ MySQL được dùng phải "
+"nằm trên máy cục bộ : bạn sẽ không có khả năng cấu hình DTC để sử dụng một "
+"máy phục vụ cơ sở dữ liệu từ xa."
 
-#: ../dtc-core.templates:1001
-#: ../dtc-postfix-courier.templates:1001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid ""
 "In any case, please make sure that your MySQL root password is set. As per "
 "default, Debian installs it with a blank password. To set your MySQL root "
 "password, issue the following command: dpkg-reconfigure mysql-server-5.0. "
 "You've been warned!"
-msgstr "Trong mọi trường hợp đều, hãy kiểm tra xem mật khẩu người chủ đã được đặt cho MySQL. Mặc định là Debian cài đặt nó với mật khẩu trống. Để đặt mật khẩu người chủ MySQL, chạy câu lệnh « dpkg-reconfigure mysql-server-5.0 ». Hãy cẩn thận khi sử dụng câu lệnh này."
+msgstr ""
+"Trong mọi trường hợp đều, hãy kiểm tra xem mật khẩu người chủ đã được đặt "
+"cho MySQL. Mặc định là Debian cài đặt nó với mật khẩu trống. Để đặt mật khẩu "
+"người chủ MySQL, chạy câu lệnh « dpkg-reconfigure mysql-server-5.0 ». Hãy "
+"cẩn thận khi sử dụng câu lệnh này."
 
-#: ../dtc-core.templates:2001
-#: ../dtc-postfix-courier.templates:2001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
 msgid "MySQL hostname:"
 msgstr "Tên máy MySQL:"
 
-#: ../dtc-core.templates:2001
-#: ../dtc-postfix-courier.templates:2001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
 msgid "Please enter the hostname or IP address of the MySQL server."
-msgstr ""
-"Hãy nhập tên máy hoặc địa chỉ IP của máy phục vụ MySQL."
+msgstr "Hãy nhập tên máy hoặc địa chỉ IP của máy phục vụ MySQL."
 
-#: ../dtc-core.templates:3001
-#: ../dtc-postfix-courier.templates:3001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:3001 ../dtc-postfix-courier.templates:3001
 msgid "MySQL administrator:"
 msgstr "Quản trị MySQL:"
 
-#: ../dtc-core.templates:3001
-#: ../dtc-postfix-courier.templates:3001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:3001 ../dtc-postfix-courier.templates:3001
 msgid ""
 "Please enter the login name of a MySQL user with administrative privileges. "
 "DTC will use it to grant privileges for the tables to its users."
 msgstr ""
-"Hãy nhập tên đăng nhập của một người dùng MySQL có quyền quản trị. DTC sẽ sử dụng nó để cấp quyền truy cập bảng cho các người dùng."
+"Hãy nhập tên đăng nhập của một người dùng MySQL có quyền quản trị. DTC sẽ sử "
+"dụng nó để cấp quyền truy cập bảng cho các người dùng."
 
-#: ../dtc-core.templates:4001
-#: ../dtc-postfix-courier.templates:4001
 #. Type: password
 #. Description
+#: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
 msgid "MySQL administrator password:"
 msgstr "Mật khẩu quản trị MySQL:"
 
-#: ../dtc-core.templates:4001
-#: ../dtc-postfix-courier.templates:4001
 #. Type: password
 #. Description
+#: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
 msgid "Please enter the password of the MySQL administrator."
 msgstr "Hãy nhập mật khẩu của quản trị MySQL."
 
-#: ../dtc-core.templates:5001
-#: ../dtc-postfix-courier.templates:5001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:5001 ../dtc-postfix-courier.templates:5001
 msgid "DTC database name:"
 msgstr "Tên cơ sở dữ liệu DTC:"
 
-#: ../dtc-core.templates:5001
-#: ../dtc-postfix-courier.templates:5001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:5001 ../dtc-postfix-courier.templates:5001
 msgid ""
 "Please enter the name of the database to use for storing all DTC hosting "
 "information."
-msgstr "Hãy nhập tên của cơ sở dữ liệu sẽ chứa tất cả các thông tin hỗ trợ DTC."
+msgstr ""
+"Hãy nhập tên của cơ sở dữ liệu sẽ chứa tất cả các thông tin hỗ trợ DTC."
 
-#: ../dtc-core.templates:6001
-#: ../dtc-postfix-courier.templates:6001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:6001 ../dtc-postfix-courier.templates:6001
 msgid "Change MySQL root password?"
 msgstr "Thay đổi mật khẩu người chủ MySQL không?"
 
-#: ../dtc-core.templates:6001
-#: ../dtc-postfix-courier.templates:6001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:6001 ../dtc-postfix-courier.templates:6001
 msgid ""
 "By default, the mysql-server package does not require a password for the "
 "MySQL root user. This can be changed during the configuration of the DTC "
 "package."
-msgstr "Mặc định là gói trình phục vụ MySQL (mysql-server) không cần thiết mật khẩu cho người dùng chủ MySQL. Vẫn có thể thay đổi trường hợp này trong khi cấu hình gói DTC."
+msgstr ""
+"Mặc định là gói trình phục vụ MySQL (mysql-server) không cần thiết mật khẩu "
+"cho người dùng chủ MySQL. Vẫn có thể thay đổi trường hợp này trong khi cấu "
+"hình gói DTC."
 
-#: ../dtc-core.templates:7001
-#: ../dtc-postfix-courier.templates:7001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:7001 ../dtc-postfix-courier.templates:7001
 msgid "Domain name:"
 msgstr "Tên miền:"
 
-#: ../dtc-core.templates:7001
-#: ../dtc-postfix-courier.templates:7001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:7001 ../dtc-postfix-courier.templates:7001
 msgid ""
 "Please enter the first domain which you want DTC to manage. This domain name "
 "will be used to install the root admin and customer web control panel of DTC "
 "(under one of this domain's subdomains)."
-msgstr "Hãy nhập miền thứ nhất bạn muốn DTC quản lý. Tên miền này sẽ được dùng để cài đặt bảng điều khiển DTC cho cả hai người chủ quản trị và khách hàng (dưới một của những miền phụ của miền này)."
+msgstr ""
+"Hãy nhập miền thứ nhất bạn muốn DTC quản lý. Tên miền này sẽ được dùng để "
+"cài đặt bảng điều khiển DTC cho cả hai người chủ quản trị và khách hàng "
+"(dưới một của những miền phụ của miền này)."
 
-#: ../dtc-core.templates:8001
-#: ../dtc-postfix-courier.templates:8001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
 msgid "DTC root panel subdomain:"
 msgstr "Miền phụ bảng người chủ DTC:"
 
-#: ../dtc-core.templates:8001
-#: ../dtc-postfix-courier.templates:8001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
 msgid "Please enter the subdomain to be used by the DTC control panel."
 msgstr "Hãy nhập miền phụ nên được dùng bởi bảng điều khiển DTC."
 
-#: ../dtc-core.templates:9001
-#: ../dtc-postfix-courier.templates:9001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
 msgid "Primary IP address:"
 msgstr "Địa chỉ IP chính:"
 
-#: ../dtc-core.templates:9001
-#: ../dtc-postfix-courier.templates:9001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
 msgid ""
 "Please enter this host's primary IP address. This address will be used for "
 "the domain name you just provided, and will be used as the default for most "
 "DTC variables.  If you are using Network Address Translation (NAT), please "
 "enter your external IP address."
-msgstr "Hãy nhập địa chỉ IP chính của máy này. Địa chỉ này sẽ được dùng cho tên miền bạn vừa mới cung cấp, và sẽ được dùng làm mặc định cho phần lớn biến DTC. Nếu bạn cũng dùng dịch vụ NAT (dịch địa chỉ mạng), hãy nhập địa chỉ IP bên ngoài."
+msgstr ""
+"Hãy nhập địa chỉ IP chính của máy này. Địa chỉ này sẽ được dùng cho tên miền "
+"bạn vừa mới cung cấp, và sẽ được dùng làm mặc định cho phần lớn biến DTC. "
+"Nếu bạn cũng dùng dịch vụ NAT (dịch địa chỉ mạng), hãy nhập địa chỉ IP bên "
+"ngoài."
 
-#: ../dtc-core.templates:10001
-#: ../dtc-postfix-courier.templates:10001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
 msgid "Path for hosted domains:"
 msgstr "Đường dẫn cho miền đã hỗ trợ :"
 
-#: ../dtc-core.templates:10001
-#: ../dtc-postfix-courier.templates:10001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
 msgid ""
 "Please enter the directory to be used by DTC to store files for all hosted "
 "domains."
-msgstr "Hãy nhập thư mục sẽ được DTP dùng để chứa các tập tin cho mọi miền đã hỗ trợ."
+msgstr ""
+"Hãy nhập thư mục sẽ được DTP dùng để chứa các tập tin cho mọi miền đã hỗ trợ."
 
-#: ../dtc-core.templates:10001
-#: ../dtc-postfix-courier.templates:10001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
 msgid ""
 "If you choose /var/www, which is Apache's default document root, all files "
 "hosted in that directory may become publicly accessible. It is therefore "
 "recommended to change the DocumentRoot setting in Apache configuration if "
 "you choose /var/www as path for hosted domains."
-msgstr "Nếu bạn chọn thư mục « /var/www », thư mục gốc Apache cho các tài liệu, tất cả các tập tin nằm trong thư mục đó có thể công bố cho mọi người dùng truy cập. Do đó khuyên bạn thay đổi giá trị DocumentRoot (gốc tài liệu) trong cấu hình Apache thành thư mục khác với « /var/www » đối với các miền đã hỗ trợ (hosted domains)."
+msgstr ""
+"Nếu bạn chọn thư mục « /var/www », thư mục gốc Apache cho các tài liệu, tất "
+"cả các tập tin nằm trong thư mục đó có thể công bố cho mọi người dùng truy "
+"cập. Do đó khuyên bạn thay đổi giá trị DocumentRoot (gốc tài liệu) trong cấu "
+"hình Apache thành thư mục khác với « /var/www » đối với các miền đã hỗ trợ "
+"(hosted domains)."
 
-#: ../dtc-core.templates:11001
-#: ../dtc-postfix-courier.templates:11001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:11001 ../dtc-postfix-courier.templates:11001
 msgid "Path for the chroot environment template:"
 msgstr "Đường dẫn đốn mẫu môi trường chroot:"
 
-#: ../dtc-core.templates:11001
-#: ../dtc-postfix-courier.templates:11001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:11001 ../dtc-postfix-courier.templates:11001
 msgid ""
 "Please enter the directory to be used by DTC to build the cgi-bin chroot "
 "environment template."
-msgstr "Hãy nhập thư mục sẽ được DTC dùng để xây dựng mẫu môi trường choot cgi-bin."
+msgstr ""
+"Hãy nhập thư mục sẽ được DTC dùng để xây dựng mẫu môi trường choot cgi-bin."
 
-#: ../dtc-core.templates:12001
-#: ../dtc-postfix-courier.templates:12001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:12001 ../dtc-postfix-courier.templates:12001
 msgid "Main domain admin name:"
 msgstr "Tên quản trị miền chính:"
 
-#: ../dtc-core.templates:12001
-#: ../dtc-postfix-courier.templates:12001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:12001 ../dtc-postfix-courier.templates:12001
 msgid ""
 "Each DTC domain must have an administrator. Please enter the login name of "
 "the administrator for the domain name containing the control panel "
 "installation."
-msgstr "Mỗi miền DTC phải có một quản trị. Hãy nhập tên đăng nhập của quản trị cho tên của miền chứa bản cài đặt bảng điều khiển."
+msgstr ""
+"Mỗi miền DTC phải có một quản trị. Hãy nhập tên đăng nhập của quản trị cho "
+"tên của miền chứa bản cài đặt bảng điều khiển."
 
-#: ../dtc-core.templates:13001
-#: ../dtc-postfix-courier.templates:13001
 #. Type: password
 #. Description
+#: ../dtc-core.templates:13001 ../dtc-postfix-courier.templates:13001
 msgid "Main domain admin password:"
 msgstr "Mật khẩu quản trị miền chính:"
 
-#: ../dtc-core.templates:13001
-#: ../dtc-postfix-courier.templates:13001
 #. Type: password
 #. Description
+#: ../dtc-core.templates:13001 ../dtc-postfix-courier.templates:13001
 msgid ""
 "Please choose the main domain administrator's password. Access to the "
 "control panel must be managed manually through a .htpasswd file in the root "
 "path."
-msgstr "Hãy chọn mật khẩu của quản trị miền chính. Quyền truy cập vào bảng điều khiển phải được quản lý bằng tay thông qua một tập tin « .htpasswd » trên đường dẫn gốc."
+msgstr ""
+"Hãy chọn mật khẩu của quản trị miền chính. Quyền truy cập vào bảng điều "
+"khiển phải được quản lý bằng tay thông qua một tập tin « .htpasswd » trên "
+"đường dẫn gốc."
 
-#: ../dtc-core.templates:14001
-#: ../dtc-postfix-courier.templates:14001
 #. Type: select
 #. Description
+#: ../dtc-core.templates:14001 ../dtc-postfix-courier.templates:14001
 msgid "Mail Transfer Agent (MTA) type:"
 msgstr "Kiểu tác nhân truyền thư tín (MTA):"
 
-#: ../dtc-core.templates:14001
-#: ../dtc-postfix-courier.templates:14001
 #. Type: select
 #. Description
+#: ../dtc-core.templates:14001 ../dtc-postfix-courier.templates:14001
 msgid ""
 "Please select the MTA that will be used with DTC. It should be installed on "
 "the system already. If no such MTA is currently installed, please complete "
 "the setup of DTC, install a MTA package, then run \"dpkg-reconfigure dtc\"."
-msgstr "Hãy chọn MTA sẽ được dùng với DTC. Nó nên đã được cài đặt vào hệ thống. Chưa thì bạn thiết lập xong DTC, cài đặt một gói MTA, rồi chạy câu lệnh cấu hình lại « dpkg-reconfigure dtc »."
+msgstr ""
+"Hãy chọn MTA sẽ được dùng với DTC. Nó nên đã được cài đặt vào hệ thống. Chưa "
+"thì bạn thiết lập xong DTC, cài đặt một gói MTA, rồi chạy câu lệnh cấu hình "
+"lại « dpkg-reconfigure dtc »."
 
-#: ../dtc-core.templates:15001
-#: ../dtc-postfix-courier.templates:15001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:15001 ../dtc-postfix-courier.templates:15001
 msgid "Use Cyrus mail system?"
 msgstr "Dùng hệ thống thư tín Cyrus không?"
 
-#: ../dtc-core.templates:15001
-#: ../dtc-postfix-courier.templates:15001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:15001 ../dtc-postfix-courier.templates:15001
 msgid ""
 "Please choose this option if you are using Cyrus for mail delivery, IMAP and "
 "MTA. This option is only compatible with Postfix."
-msgstr "Bật tùy chọn này nếu bạn dùng Cyrus để phát thư, IMAP và MTA. Tùy chọn này chỉ tương thích với Postfix."
+msgstr ""
+"Bật tùy chọn này nếu bạn dùng Cyrus để phát thư, IMAP và MTA. Tùy chọn này "
+"chỉ tương thích với Postfix."
 
-#: ../dtc-core.templates:16001
-#: ../dtc-postfix-courier.templates:16001
 #. Type: select
 #. Description
+#: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid "Apache version to configure:"
 msgstr "Phiên bản Apache cần cấu hình:"
 
-#: ../dtc-core.templates:16001
-#: ../dtc-postfix-courier.templates:16001
 #. Type: select
 #. Description
+#: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
 msgid ""
 "DTC supports both Apache and Apache2. Please enter the version which DTC "
 "should use."
-msgstr "DTC hỗ trợ cả hai Apache và Apache2. Hãy nhập phiên bản sẽ được DTC dùng."
+msgstr ""
+"DTC hỗ trợ cả hai Apache và Apache2. Hãy nhập phiên bản sẽ được DTC dùng."
 
-#: ../dtc-core.templates:17001
-#: ../dtc-postfix-courier.templates:17001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
 msgid "Use \"NATed\" vhosts?"
 msgstr "Use các máy ảo theo NAT không?"
 
-#: ../dtc-core.templates:17001
-#: ../dtc-postfix-courier.templates:17001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
 msgid ""
 "DTC can configure Apache to use one of your IP addresses. If the server is "
 "firewalled with NAT and port redirections of public IP(s) address(es), a "
 "\"NATed\" vhost configuration can be generated."
-msgstr "DTC có khả năng cấu hình Apache để sử dụng một của những địa chỉ IP của bạn. Nếu trình phục vụ phải đi qua một bức tường lửa có chạy NAT và cũng chuyển tiếp cổng của địa chỉ IP công, một cấu hình vhost (máy ảo) kiểu NAT có thể được tạo."
+msgstr ""
+"DTC có khả năng cấu hình Apache để sử dụng một của những địa chỉ IP của bạn. "
+"Nếu trình phục vụ phải đi qua một bức tường lửa có chạy NAT và cũng chuyển "
+"tiếp cổng của địa chỉ IP công, một cấu hình vhost (máy ảo) kiểu NAT có thể "
+"được tạo."
 
-#: ../dtc-core.templates:17001
-#: ../dtc-postfix-courier.templates:17001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
 msgid ""
 "This option should be chosen only if the server is not connected to the "
 "Internet directly, but through a firewall doing network address translation "
 "(NAT). If the server uses a dynamic public IP address, NAT and port "
 "forwarding are mandatory for DTC."
-msgstr "Bật tùy chọn này chỉ nếu trình phục vụ không được kết nối trực tiếp tới Internet, nhưng phải đi qua một bức tường lửa có dịch địa chỉ mạng (NAT). Nếu trình phục vụ dùng một địa chỉ IP công động, DTC phải dùng cả hai dịch vụ NAT và chuyển tiếp cổng."
+msgstr ""
+"Bật tùy chọn này chỉ nếu trình phục vụ không được kết nối trực tiếp tới "
+"Internet, nhưng phải đi qua một bức tường lửa có dịch địa chỉ mạng (NAT). "
+"Nếu trình phục vụ dùng một địa chỉ IP công động, DTC phải dùng cả hai dịch "
+"vụ NAT và chuyển tiếp cổng."
 
-#: ../dtc-core.templates:18001
-#: ../dtc-postfix-courier.templates:18001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
 msgid "NATed LAN IP address:"
 msgstr "Địa chỉ IP LAN có NAT:"
 
-#: ../dtc-core.templates:18001
-#: ../dtc-postfix-courier.templates:18001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
 msgid ""
 "Please enter the IP address of the server for DTC to generate all vhosts "
 "that will be used by Apache."
-msgstr "Hãy nhập địa chỉ IP của trình phục vụ để DTC tạo ra tất cả các máy ảo (vhost) sẽ được Apache dùng."
+msgstr ""
+"Hãy nhập địa chỉ IP của trình phục vụ để DTC tạo ra tất cả các máy ảo "
+"(vhost) sẽ được Apache dùng."
 
-#: ../dtc-core.templates:19001
-#: ../dtc-postfix-courier.templates:19001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid "Generate an SSL certificate for DTC?"
 msgstr "Tạo một một chứng nhận SSL cho DTC không?"
 
-#: ../dtc-core.templates:19001
-#: ../dtc-postfix-courier.templates:19001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid ""
 "If you choose this option, DTC will generate a self-signed SSL certificate "
 "and will use SSL to browse the panel. SSL will also be activated and the "
 "generated Apache configuration will activate HTTPS URLs for the control "
 "panel."
-msgstr "Bật tùy chọn này thì DTC sẽ tạo một chứng nhận SSL tự ký, và sẽ dùng dịch vụ SSL để duyệt bảng điều khiển. SSL sẽ cũng được kích hoạt, và cấu hình Apache đã tạo sẽ kích hoạt các địa chỉ URL HTTPS (địa chỉ Web bảo mật) cho bảng điều khiển."
+msgstr ""
+"Bật tùy chọn này thì DTC sẽ tạo một chứng nhận SSL tự ký, và sẽ dùng dịch vụ "
+"SSL để duyệt bảng điều khiển. SSL sẽ cũng được kích hoạt, và cấu hình Apache "
+"đã tạo sẽ kích hoạt các địa chỉ URL HTTPS (địa chỉ Web bảo mật) cho bảng "
+"điều khiển."
 
-#: ../dtc-core.templates:19001
-#: ../dtc-postfix-courier.templates:19001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid "This certificate can be changed for a root CA certificate later."
-msgstr "Lúc sau thì chứng nhận này có thể được trao đổi với một chứng nhận CA gốc. (CA: nhà cầm quyền cấp chứng nhận.)"
+msgstr ""
+"Lúc sau thì chứng nhận này có thể được trao đổi với một chứng nhận CA gốc. "
+"(CA: nhà cầm quyền cấp chứng nhận.)"
 
-#: ../dtc-core.templates:19001
-#: ../dtc-postfix-courier.templates:19001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid ""
 "Previously-generated certificates will never be overwritten. To regenerate "
 "the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
-msgstr "Chứng nhận đã tạo trước sẽ không bao giờ bị ghi đè. Để tạo lại chứng nhận, bạn cần phải gỡ bỏ tất cả các tập tin khỏi thư mục « /usr/share/dtc/etc/ssl »."
+msgstr ""
+"Chứng nhận đã tạo trước sẽ không bao giờ bị ghi đè. Để tạo lại chứng nhận, "
+"bạn cần phải gỡ bỏ tất cả các tập tin khỏi thư mục « /usr/share/dtc/etc/ssl "
+"»."
 
-#: ../dtc-core.templates:20001
-#: ../dtc-postfix-courier.templates:20001
 #. Type: password
 #. Description
+#: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
 msgid "DTC certificate passphrase:"
 msgstr "Cụm từ mật khẩu chứng nhận DTC:"
 
-#: ../dtc-core.templates:20001
-#: ../dtc-postfix-courier.templates:20001
 #. Type: password
 #. Description
+#: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
 msgid "Please choose a passphrase to protect the generated SSL certificate."
 msgstr "Hãy chọn một cụm từ mật khẩu để bảo vệ chứng nhận SSL đã tạo."
 
-#: ../dtc-core.templates:21001
-#: ../dtc-postfix-courier.templates:21001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:21001 ../dtc-postfix-courier.templates:21001
 msgid "Country code for the DTC SSL certificate:"
 msgstr "Mã quốc gia cho chứng nhận SSL DTC:"
 
-#: ../dtc-core.templates:21001
-#: ../dtc-postfix-courier.templates:21001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:21001 ../dtc-postfix-courier.templates:21001
 msgid ""
 "Please enter the 2-letter country code for the generated certificate. This "
 "should usually be the code for the country the server is located in."
-msgstr "Hãy nhập mã quốc gia hai chữ (v.d. « vi » cho Việt Nam) cho chứng nhận đã tạo. Mã này thường nên là mã nhận diện quốc gia chứa máy phục vụ đó."
+msgstr ""
+"Hãy nhập mã quốc gia hai chữ (v.d. « vi » cho Việt Nam) cho chứng nhận đã "
+"tạo. Mã này thường nên là mã nhận diện quốc gia chứa máy phục vụ đó."
 
-#: ../dtc-core.templates:22001
-#: ../dtc-postfix-courier.templates:22001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:22001 ../dtc-postfix-courier.templates:22001
 msgid "City name for the DTC SSL certificate:"
 msgstr "Tên thành phố cho chứng nhận SSL DTC:"
 
-#: ../dtc-core.templates:23001
-#: ../dtc-postfix-courier.templates:23001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:23001 ../dtc-postfix-courier.templates:23001
 msgid "Organization name for the DTC SSL certificate:"
 msgstr "Tên tổ chức cho chứng nhận SSL DTC:"
 
-#: ../dtc-core.templates:24001
-#: ../dtc-postfix-courier.templates:24001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:24001 ../dtc-postfix-courier.templates:24001
 msgid "Organizational unit for the DTC SSL certificate:"
 msgstr "Tên đơn vị tổ chức cho chứng nhận SSL DTC:"
 
-#: ../dtc-core.templates:25001
-#: ../dtc-postfix-courier.templates:25001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:25001 ../dtc-postfix-courier.templates:25001
 msgid "Email address for the DTC SSL certificate:"
 msgstr "Địa chỉ thư điện tử cho chứng nhận SSL DTC:"
 
-#: ../dtc-core.templates:26001
-#: ../dtc-postfix-courier.templates:26001
 #. Type: password
 #. Description
+#: ../dtc-core.templates:26001 ../dtc-postfix-courier.templates:26001
 msgid "DTC SSL certificate challenge password:"
 msgstr "Mật khẩu đáp ứng cho chứng nhận SSL DTC:"
 
-#: ../dtc-core.templates:27001
-#: ../dtc-postfix-courier.templates:27001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid "Update PEAR installation?"
 msgstr "Nâng cấp bản cài đặt PEAR không?"
 
-#: ../dtc-core.templates:27001
-#: ../dtc-postfix-courier.templates:27001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid ""
 "DTC can check the PEAR installation during its own installation process. "
 "This requires your server to be connected to the network. If you can't do so "
 "here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-"
 "to-date. The relevant files are located in /usr/share/php."
-msgstr "DTC có khả năng kiểm tra bản cài đặt PEAR trong khi tự cài đặt. Tiến trình này cần thiết máy phục vụ của bạn có kết nối đến mạng. Gặp lỗi thì kiểm tra nếu hai mô-đun PEAR Crypt_CBC và Auth_SAS là hiện thời chưa. Các tập tin thích hợp nằm trong thư mục « /usr/share/php »."
+msgstr ""
+"DTC có khả năng kiểm tra bản cài đặt PEAR trong khi tự cài đặt. Tiến trình "
+"này cần thiết máy phục vụ của bạn có kết nối đến mạng. Gặp lỗi thì kiểm tra "
+"nếu hai mô-đun PEAR Crypt_CBC và Auth_SAS là hiện thời chưa. Các tập tin "
+"thích hợp nằm trong thư mục « /usr/share/php »."
 
-#: ../dtc-core.templates:28001
-#: ../dtc-postfix-courier.templates:28001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid "DNSBL (DNS BlackList) list:"
 msgstr "Danh sách DNSBL (DNS bị cấm):"
 
-#: ../dtc-core.templates:28001
-#: ../dtc-postfix-courier.templates:28001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
-msgstr "Hãy nhập danh sách các máy phục vụ DNSBL cần thêm vào cấu hình trình phục vụ thư tín Postfix."
+msgstr ""
+"Hãy nhập danh sách các máy phục vụ DNSBL cần thêm vào cấu hình trình phục vụ "
+"thư tín Postfix."
 
-#: ../dtc-core.templates:29001
-#: ../dtc-postfix-courier.templates:29001
 #. Type: select
 #. Description
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Local address extension character:"
 msgstr "Ký tự mở rộng địa chỉ cục bộ :"
 
-#: ../dtc-core.templates:29001
-#: ../dtc-postfix-courier.templates:29001
 #. Type: select
 #. Description
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
-msgstr "Hãy chọn ký tự sẽ được dùng để xác định phần mở rộng địa chỉ cục bộ. Ký tự này PHẢI tương ứng với thiết lập Postfix hoặc Qmail của bạn."
+msgstr ""
+"Hãy chọn ký tự sẽ được dùng để xác định phần mở rộng địa chỉ cục bộ. Ký tự "
+"này PHẢI tương ứng với thiết lập Postfix hoặc Qmail của bạn."
 
-#: ../dtc-core.templates:29001
-#: ../dtc-postfix-courier.templates:29001
 #. Type: select
 #. Description
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid ""
 "The recipient delimiter will be used for your mailing lists. Let's say you "
 "use the + char as delimiter, then your users will have to send a mail to list"
@@ -505,83 +514,98 @@ msgid ""
 "allow to send mail with this char in the recipient (namely some bad qmail "
 "patches are incompatibles), but when using - as delimiter, you will not be "
 "able to use an email of the form john-doe@example.com as - is the delimiter."
-msgstr "Dấu tách người nhận sẽ được dùng cho các hộp thư chung. Chẳng hạn, nếu bạn dùng dấu cộng « + » làm dấu tách thì các người dùng sẽ cần phải gửi thư cho « list+subscribe@máy.com ». Sự bất lợi khi chọn dấu cộng là một số MTA không cho phép gửi thư chứa ký tự này trong địa chỉ người nhận (tức là một số đắp vá Qmail không tương thích), nhưng khi dùng dấu trừ « - » làm dấu tách, bạn sẽ không thể sử dụng địa chỉ thư có dạng « nguyen-van@máy.com » vì dấu trừ làm dấu tách."
+msgstr ""
+"Dấu tách người nhận sẽ được dùng cho các hộp thư chung. Chẳng hạn, nếu bạn "
+"dùng dấu cộng « + » làm dấu tách thì các người dùng sẽ cần phải gửi thư cho "
+"« list+subscribe@máy.com ». Sự bất lợi khi chọn dấu cộng là một số MTA không "
+"cho phép gửi thư chứa ký tự này trong địa chỉ người nhận (tức là một số đắp "
+"vá Qmail không tương thích), nhưng khi dùng dấu trừ « - » làm dấu tách, bạn "
+"sẽ không thể sử dụng địa chỉ thư có dạng « nguyen-van@máy.com » vì dấu trừ "
+"làm dấu tách."
 
-#: ../dtc-core.templates:30001
-#: ../dtc-postfix-courier.templates:30001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Subdomain name for the MX server:"
 msgstr "Tên miền phụ cho trình phục vụ MX:"
 
-#: ../dtc-core.templates:30001
-#: ../dtc-postfix-courier.templates:30001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid ""
 "Your mail server will need to use a subdomain name to accept mail. This "
 "subdomain will be configured in your mail server and your domain name server "
 "by DTC. Any name is ok here."
-msgstr "Trình phục vụ thư tín của bạn sẽ cần phải dùng một tên miền phụ để chấp nhận thư. Miền phụ này sẽ được DTC cấu hình trong trình phục vụ thư tín và trình phục vụ tên miền của bạn. Bất cứ tên nào là thích hợp ở đây."
+msgstr ""
+"Trình phục vụ thư tín của bạn sẽ cần phải dùng một tên miền phụ để chấp nhận "
+"thư. Miền phụ này sẽ được DTC cấu hình trong trình phục vụ thư tín và trình "
+"phục vụ tên miền của bạn. Bất cứ tên nào là thích hợp ở đây."
 
-#: ../dtc-core.templates:31001
-#: ../dtc-postfix-courier.templates:31001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Network devices to monitor:"
 msgstr "Thiết bị mạng cần theo dõi:"
 
-#: ../dtc-core.templates:31001
-#: ../dtc-postfix-courier.templates:31001
 #. Type: string
 #. Description
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
-msgstr "Hãy nhập các thiết bị mạng bạn muốn theo dõi dùng tiện ích vẽ đồ thị RRDTool."
+msgstr ""
+"Hãy nhập các thiết bị mạng bạn muốn theo dõi dùng tiện ích vẽ đồ thị RRDTool."
 
-#: ../dtc-core.templates:32001
-#: ../dtc-postfix-courier.templates:32001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid "Allow to report anonymous statistics to GPLHost?"
 msgstr "Cho phép thông báo thống kê vô danh cho GPLHost không?"
 
-#: ../dtc-core.templates:32001
-#: ../dtc-postfix-courier.templates:32001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid ""
 "DTC installations can be reported to the GPLHost web site. The only "
 "collected data are the operating system name (Debian) and the IP address "
 "(used as a unique identifier only). An Internet connection and the wget "
 "binary are required to report the statistics."
-msgstr "Bản cài đặt DTC có khả năng thông báo cho địa chỉ Web của GPLHost. Tiến trình này chỉ thông báo tên của hệ điều hành (v.d. Debian) và địa chỉ IP (chỉ được dùng để phân biệt mỗi thông báo). Cũng cần thiết kết nối tới Internet và tập tin nhị phân wget."
+msgstr ""
+"Bản cài đặt DTC có khả năng thông báo cho địa chỉ Web của GPLHost. Tiến "
+"trình này chỉ thông báo tên của hệ điều hành (v.d. Debian) và địa chỉ IP "
+"(chỉ được dùng để phân biệt mỗi thông báo). Cũng cần thiết kết nối tới "
+"Internet và tập tin nhị phân wget."
 
-#: ../dtc-core.templates:33001
-#: ../dtc-postfix-courier.templates:33001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
 msgid "Skip mknod calls when building the chroot template?"
 msgstr "Bỏ qua cuộc gọi mknod khi xây dựng mẫu chroot không?"
 
-#: ../dtc-core.templates:33001
-#: ../dtc-postfix-courier.templates:33001
 #. Type: boolean
 #. Description
+#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
 msgid ""
 "In some environments, such as Linux vServer, mknod cannot be executed. This "
 "option allows skipping the creation of the null, random and urandom devices "
 "during the chroot template creation."
-msgstr "Trong một số môi trường nào đó, v.d. Linux vServer, không thể thực hiện mknod. Tùy chọn này cho phép bỏ qua tiến trình tạo thiết bị null (vô giá trị), random (ngẫu nhiên) và urandom trong khi tạo mẫu chroot."
+msgstr ""
+"Trong một số môi trường nào đó, v.d. Linux vServer, không thể thực hiện "
+"mknod. Tùy chọn này cho phép bỏ qua tiến trình tạo thiết bị null (vô giá "
+"trị), random (ngẫu nhiên) và urandom trong khi tạo mẫu chroot."
 
-#: ../dtc-postfix-courier.templates:15001
 #. Type: boolean
 #. Description
+#: ../dtc-postfix-courier.templates:15001
 msgid ""
 "Cyrus is a replacement for the Maildir delivery and storage. You must know "
 "what you are doing if you want to activate the use of Cyrus. If you are "
 "using dtc-toaster or dtc-postfix-courier, you have to answer not to use "
 "Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
 "using dtc-postfix-courier instead."
-msgstr "Cyrus là một phần mềm thay thế sự phát và chứa của Maildir. Để dùng Cyrus, tuy nhiên, bạn cần phải quen với trường hợp này. Nếu bạn dùng « dtc-toaster » hoặc « dtc-postfix-courier », bạn cũng không thể dùng Cyrus. Chỉ có thể dùng Cyrus với gói dtc, KHÔNG PHẢI nếu bạn dùng « dtc-postfix-courier » thay vào đó."
+msgstr ""
+"Cyrus là một phần mềm thay thế sự phát và chứa của Maildir. Để dùng Cyrus, "
+"tuy nhiên, bạn cần phải quen với trường hợp này. Nếu bạn dùng « dtc-toaster "
+"» hoặc « dtc-postfix-courier », bạn cũng không thể dùng Cyrus. Chỉ có thể "
+"dùng Cyrus với gói dtc, KHÔNG PHẢI nếu bạn dùng « dtc-postfix-courier » thay "
+"vào đó."

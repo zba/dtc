@@ -1,3 +1,12 @@
+dtc (0.28.11-1) unstable; urgency=low
+
+  * New upstream release.
+  * Corrected minor typo in debconf template (Closes: #479583)
+  * Updated German debconf translation thanks to Helge Kreutzmann
+    <debian@helgefjell.de> (Closes: #479302)
+
+ -- Thomas Goirand <zigo@mx.example.com>  Wed,  7 May 2008 16:23:57 +0800
+
 dtc (0.28.10-1) unstable; urgency=low
 
   * New upstream release.
