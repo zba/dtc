@@ -51,13 +51,26 @@ if(isset($adm_email_pass) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-zA-Z0-9]
 }
 
 if(isset($addrlink) && $addrlink != ""){
-	if(substr($addrlink,0,3) == "vps"){
-		$vps_exploded = explode(":",$addrlink);
-		$vps_node = $vps_exploded[1];
-		$vps_name = $vps_exploded[2];
-	}else if(substr($addrlink,0,6) == "server"){
-		$vps_exploded = explode(":",$addrlink);
-		$dedicated_server_hostname = $vps_exploded[1];
+	$vps_exploded = explode(":",$addrlink);
+	if(sizeof($vps_exploded) > 1){
+		$server_subscreen = $vps_exploded[0];
+		switch($server_subscreen){
+		case "server":
+			$dedicated_server_hostname = $vps_exploded[1];
+			break;
+		case "vps":
+			$vps_node = $vps_exploded[1];
+			$vps_last_value = explode("/",$vps_exploded[2]);
+			if( sizeof($vps_last_value) > 1){
+				$vps_subcommand = $vps_last_value[1];
+				$vps_name = $vps_last_value[0];
+			}else{
+				$vps_name = $vps_exploded[2];
+			}
+			break;
+		default:
+			die("No command recognized and a : in \$addrlink line ".__LINE__." file ".__FILE__);
+		}
 	}else{
 	        $exploded = explode("/",$addrlink);
 	        if($addrlink != "help" && $addrlink != "database"){

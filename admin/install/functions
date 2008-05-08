@@ -421,6 +421,7 @@ dtcGenDebianLocales () {
 		debianSetLocale ru_RU
 		debianSetLocale nl_NL
 		debianSetLocale zh_CN
+		debianSetLocale zh_TW
 		debianSetLocale pl_PL
 		debianSetLocale se_NO
 		debianSetLocale pt_PT

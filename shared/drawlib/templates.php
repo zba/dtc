@@ -7,7 +7,7 @@ function helpLink($link){
 	}else{
 		$helpimg_src = "gfx/help.png";
 	}
-	$out = "<a target=\"_blank\" href=\"http://dtcsupport.gplhost.com/pmwiki/$link\"><img border=\"0\" src=\"$helpimg_src\"</a>";
+	$out = "<a target=\"_blank\" href=\"http://dtcsupport.gplhost.com/$link\"><img border=\"0\" src=\"$helpimg_src\"</a>";
 	return $out;
 }
 

@@ -22,6 +22,8 @@ if($panel_type !="email"){
 	//udns.us /add
 
 	require("$dtcshared_path/inc/forms/vps.php");
+	require("$dtcshared_path/inc/forms/vps_monitoring.php");
+	require("$dtcshared_path/inc/forms/vps_installation.php");
 	require("$dtcshared_path/inc/forms/dedicated.php");
 }
 require("$dtcshared_path/inc/forms/email.php");
@@ -76,6 +78,8 @@ function drawAdminTools($admin){
 	global $vps_node;
 	global $vps_name;
 	global $dedicated_server_hostname;
+	global $server_subscreen;
+	global $vps_subcommand;
 
 	$add_array = explode("/",$addrlink);
         $doms_txt = "";
@@ -151,11 +155,25 @@ function drawAdminTools($admin){
 
 	// Draw all vps
 	for($i=0;$i<$nbr_vps;$i++){
+		$vps_submenu = array();
+		$vps_submenu[] = array(
+				"text" => _("Monitoring"),
+				"icon" => "box_wnb_nb_picto-statistics.gif",
+				"type" => "link",
+				"link" => "monitor"
+			);
+		$vps_submenu[] = array(
+				"text" => _("Installation"),
+				"icon" => "box_wnb_nb_picto-packageinstaller.gif",
+				"type" => "link",
+				"link" => "installation"
+			);
 		$user_menu[] = array(
 			"text" => $admin_vps[$i]["vps_server_hostname"].":".$admin_vps[$i]["vps_xen_name"],
 			"icon" => "box_wnb_nb_picto-vpsservers.gif",
-			"type" => "link",
-			"link" => "vps:".$admin_vps[$i]["vps_server_hostname"].":".$admin_vps[$i]["vps_xen_name"]);
+			"type" => "menu",
+			"link" => "vps:".$admin_vps[$i]["vps_server_hostname"].":".$admin_vps[$i]["vps_xen_name"],
+			"sub" => $vps_submenu);
 	}
 
 	// Draw all the dedicated servers
@@ -343,7 +361,17 @@ function drawAdminTools($admin){
 			}
 			$web_editor .= "<img src=\"inc/virtual-server.png\" align=\"left\"><font size=\"+2\"><b><u>VPS $vps_name:$vps_node</u></b><br></font>";
 			if($vps_founded){
-				$web_editor .= drawAdminTools_VPS($admin,$admin["vps"][$vps_order_number]);
+				switch($vps_subcommand){
+				case "monitor":
+					$web_editor .= drawAdminTools_VPSMonitor($admin,$admin["vps"][$vps_order_number]);
+					break;
+				case "installation":
+					$web_editor .= drawAdminTools_VPSInstallation($admin,$admin["vps"][$vps_order_number]);
+					break;
+				default:
+					$web_editor .= drawAdminTools_VPS($admin,$admin["vps"][$vps_order_number]);
+					break;
+				}
 			}else{
 				$web_editor .= "VPS not found!";
 			}

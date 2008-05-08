@@ -199,7 +199,7 @@ function productManager(){
 				),
 			"private" => array(
 				"type" => "checkbox",
-				"legend" => _("Period") ,
+				"legend" => _("Private") ,
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")

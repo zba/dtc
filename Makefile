@@ -228,7 +228,8 @@ shared/vars/lang.php shared/vars/table_names.php shared/visitors_template/visito
 
 SHARED_INC_PHP_SCRIPT_FILES=shared/inc/accounting.php shared/inc/dbconect.php shared/inc/delete_user.php shared/inc/domain_export.php \
 shared/inc/draw.php shared/inc/fetchmail.php shared/inc/fetch.php shared/inc/nusoap.php shared/inc/skin.class.php \
-shared/inc/submit_to_sql.php shared/inc/tree_mem_to_db.php shared/inc/vps.php shared/inc/forms/admin_stats.php \
+shared/inc/submit_to_sql.php shared/inc/tree_mem_to_db.php shared/inc/vps.php shared/inc/forms/vps_monitoring.php \
+shared/inc/forms/vps_installation.php shared/inc/forms/admin_stats.php \
 shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedicated.php \
 shared/inc/forms/dns.php shared/inc/forms/domain_info.php shared/inc/forms/domain_stats.php shared/inc/forms/email.php \
 shared/inc/forms/ftp.php shared/inc/forms/invoices.php shared/inc/forms/lists.php \
@@ -328,7 +329,7 @@ shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin
 shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
 shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc admin/patches
 
-LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI
+LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW
 
 l12n:
 	@echo "===> Managing localizations binaries"
