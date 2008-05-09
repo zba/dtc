@@ -242,6 +242,7 @@ function fetchAdminStats($admin){
 		{
 			$ret["err"] = 5;
 			$ret["mesg"] = "Cannot query \"$qu\" !".mysql_error()." line ".__LINE__." file ".__FILE__;
+			mysql_select_db($conf_mysql_db);
 			return $ret;
 		}
 		$nbr_mysql_user = mysql_num_rows($ru);
@@ -255,6 +256,7 @@ function fetchAdminStats($admin){
 			{
 				$ret["err"] = 6;
 				$ret["mesg"] = "Cannot query \"$q\" !".mysql_error()." line ".__LINE__." file ".__FILE__;
+				mysql_select_db($conf_mysql_db);
 				return $ret;
 			}
 			$db_nbr = mysql_num_rows($r);
@@ -267,6 +269,7 @@ function fetchAdminStats($admin){
 				{
 					$ret["err"] = 7;
 					$ret["mesg"] = "Cannot query \"$q\" !".mysql_error();
+					mysql_select_db($conf_mysql_db);
 					return $ret;
 				}
 				$num_tbl = mysql_num_rows($result);
