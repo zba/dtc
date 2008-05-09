@@ -42,7 +42,7 @@ if(file_exists("$zedir/visitors.php")){
   echo "<a href=\"visitors.php\">Visitors</a> ";
 }
 if(file_exists("$zedir/awstats")){
-  echo "<a href=\"awstats\">AwStats</a></p>";
+  echo "<a href=\"awstats/awstats.dtc.html\">AwStats</a></p>";
 }
 
 ?></p><br><br><br>

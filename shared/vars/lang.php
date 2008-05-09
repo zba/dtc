@@ -43,8 +43,22 @@ if($panel_type!="cronjob"){
 	  $lang = $_SESSION["lang"];
         }
 	if(isset($_REQUEST["change_language"])){
-		if(!ereg("^([a-z0-9]+)([.a-z0-9-]*)([a-z0-9]+)\$",$_REQUEST["change_language"])){
-			die("Lang parameter not correct!!!");
+		// This is the case of xx_YY
+		if( strlen($_REQUEST["change_language"]) == 5){
+			$exploded_lang = explode("_",$_REQUEST["change_language"]);
+			if( !ereg("^([a-z0-9]+)([.a-z0-9-]*)([a-z0-9]+)\$",$exploded_lang[0]) ){
+				die("Lang parameter not correct line ".__LINE__." file ".__FILE__);
+			}
+			if( !ereg("^([A-Z0-9]+)([.A-Z0-9-]*)([A-Z0-9]+)\$",$exploded_lang[1]) ){
+				die("Lang parameter not correct line ".__LINE__." file ".__FILE__);
+			}
+		// This is the case of xx only and no _YY
+		}else if( strlen($_REQUEST["change_language"]) == 2){
+			if(!ereg("^([a-z0-9]+)([.a-z0-9-]*)([a-z0-9]+)\$",$_REQUEST["change_language"])){
+				die("Lang parameter not correct line ".__LINE__." file ".__FILE__);
+			}
+		}else{
+			die("Lang parameter not correct line ".__LINE__." file ".__FILE__);
 		}
 	        if($_REQUEST["change_language"] == "fr"){
 	                $lang = "fr";

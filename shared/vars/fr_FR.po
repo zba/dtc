@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-18 16:20+0800\n"
-"PO-Revision-Date: 2008-03-30 17:20+0800\n"
+"POT-Creation-Date: 2008-05-09 15:11+0800\n"
+"PO-Revision-Date: 2008-05-09 15:14+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,9 +20,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: shared/inc/forms/vps.php:68
-#: shared/inc/forms/vps.php:81
-#: shared/inc/forms/vps.php:94
+#: shared/inc/forms/vps_monitoring.php:68
+#: shared/inc/forms/vps_monitoring.php:81
+#: shared/inc/forms/vps_monitoring.php:94
 msgid " CPU seconds"
 msgstr " secondes CPU"
 
@@ -68,14 +68,14 @@ msgstr " reste à payer"
 msgid "+1.XXXXXXXXXX format"
 msgstr "format +33.XXXXXXXXX"
 
-#: shared/inc/forms/vps.php:67
-#: shared/inc/forms/vps.php:68
-#: shared/inc/forms/vps.php:69
-#: shared/inc/forms/vps.php:70
+#: shared/inc/forms/vps_monitoring.php:67
+#: shared/inc/forms/vps_monitoring.php:68
+#: shared/inc/forms/vps_monitoring.php:69
+#: shared/inc/forms/vps_monitoring.php:70
 msgid "2 months ago: "
 msgstr "Il y à 2 mois: "
 
-#: shared/inc/draw.php:445
+#: shared/inc/draw.php:473
 msgid ""
 "<font face=\"Arial, Verdana\">\n"
 "<center><font size=\"+2\"><u><b>ONLINE DTC HELP</b></u></font></center><br><br>\n"
@@ -248,7 +248,7 @@ msgstr "Ajouter un VPS à cet administrateur :"
 msgid "Add a dedicated server for this admin:"
 msgstr "Ajouter un serveur dédié à cet administrateur :"
 
-#: shared/inc/draw.php:128
+#: shared/inc/draw.php:132
 msgid "Add a domain"
 msgstr "Ajouter un domaine"
 
@@ -256,11 +256,11 @@ msgstr "Ajouter un domaine"
 msgid "Add a domain for this user:"
 msgstr "Ajouter un domaine pour l'utilisateur :"
 
-#: shared/inc/draw.php:418
+#: shared/inc/draw.php:446
 msgid "Add a domain name to my account"
 msgstr "Ajouter un nom de domaine dans mon compte"
 
-#: shared/inc/draw.php:416
+#: shared/inc/draw.php:444
 msgid "Add a domain:"
 msgstr "Ajouter un domaine :"
 
@@ -284,7 +284,7 @@ msgstr "Ajouter un administrateur virtuel"
 msgid "Add an administrator to this customer:"
 msgstr "Ajouter un administrateur pour ce client :"
 
-#: admin/dtcrm/product_manager.php:66
+#: admin/dtcrm/product_manager.php:71
 msgid "Add domain"
 msgstr "Ajouter un domaine"
 
@@ -358,6 +358,14 @@ msgstr "Login Admin :"
 #: shared/gfx/skin/bwoup/layout.php:562
 msgid "Admins list"
 msgstr "Liste des admins"
+
+#: admin/dtcrm/product_manager.php:46
+#: admin/dtcrm/product_manager.php:119
+#: admin/dtcrm/product_manager.php:182
+#: admin/dtcrm/product_manager.php:245
+#, fuzzy
+msgid "Aff. kickback"
+msgstr "Aff. kickback"
 
 #: shared/drawlib/cc_code_popup.php:103
 msgid "Afghanistan"
@@ -610,7 +618,7 @@ msgstr "Rechargement Bind"
 msgid "Bolivia"
 msgstr "Bolivie"
 
-#: shared/inc/forms/vps.php:271
+#: shared/inc/forms/vps_installation.php:169
 msgid "Boot up (xm start)"
 msgstr "Démarrer (xm start)"
 
@@ -666,7 +674,7 @@ msgstr "Burundi"
 msgid "Byelorussian SSR"
 msgstr "Biélorussie"
 
-#: shared/drawlib/dtc_functions.php:732
+#: shared/drawlib/dtc_functions.php:775
 msgid "Bytes"
 msgstr "Octets"
 
@@ -678,13 +686,13 @@ msgstr "Protection CGI-BIN"
 msgid "CPU Load Average"
 msgstr "Moyenne de la charge CPU"
 
-#: shared/inc/forms/vps.php:105
+#: shared/inc/forms/vps_monitoring.php:105
 msgid "CPU Time:"
 msgstr "Temps CPU:"
 
-#: shared/inc/forms/vps.php:230
-msgid "CPU and Network usage:"
-msgstr "Utilisation CPU et Réseau :"
+#: shared/inc/forms/vps_monitoring.php:189
+msgid "CPU, IO and Network usage:"
+msgstr "Utilisation CPU, E/S et Réseau :"
 
 #: shared/drawlib/cc_code_popup.php:139
 msgid "Cambodia"
@@ -702,7 +710,7 @@ msgstr "Canada"
 msgid "Cannot close user database"
 msgstr "Impossible de fermer la base de données utilisateur"
 
-#: shared/inc/fetch.php:454
+#: shared/inc/fetch.php:457
 msgid "Cannot fetch user line"
 msgstr "Impossible de trouver l'utilisateur ligne"
 
@@ -797,11 +805,11 @@ msgstr "République Centre Africaine"
 msgid "Chad"
 msgstr "Tchad"
 
-#: shared/inc/forms/vps.php:344
+#: shared/inc/forms/vps_installation.php:224
 msgid "Change NetBSD kernel"
 msgstr "Changer le noyau NetBSD"
 
-#: shared/inc/draw.php:45
+#: shared/inc/draw.php:47
 #: shared/inc/forms/email.php:213
 msgid "Change your password:"
 msgstr "Changer votre mot de passe :"
@@ -810,7 +818,8 @@ msgstr "Changer votre mot de passe :"
 msgid "Check to send a bounce message (vacation): "
 msgstr "Cocher pour envoyer un message automatique (vacances) : "
 
-#: shared/inc/forms/vps.php:133
+#: shared/inc/forms/vps_monitoring.php:133
+#: shared/inc/forms/vps_installation.php:76
 msgid "Checking filesystem..."
 msgstr "Vérification du système de fichiers..."
 
@@ -1012,7 +1021,8 @@ msgstr "Impossible de se connecter au serveur de VPS !"
 msgid "Could not connect to domain registration server: please try again later!"
 msgstr "Impossible de se connecter au serveur d'enregistrement de nom de domaine : veuillez essayez ultérieurement !"
 
-#: shared/inc/forms/vps.php:181
+#: shared/inc/forms/vps_monitoring.php:181
+#: shared/inc/forms/vps_installation.php:124
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "Impossible de se connecter au serveur SOAP du VPS."
 
@@ -1025,15 +1035,18 @@ msgstr "Impossible de trouver le serveur VDS dans la base de données"
 msgid "Could not found subdomain in table for folder deletion"
 msgstr "Impossible de trouver le sous-domaine dans la table pour effacer les dossiers"
 
-#: shared/inc/forms/vps.php:126
+#: shared/inc/forms/vps_monitoring.php:126
+#: shared/inc/forms/vps_installation.php:69
 msgid "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running?"
 msgstr "Impossible de récupérer le statut distant (la méthode getVPSState() a échoué). Peut-être que le VPS n'est pas démarré ?"
 
-#: shared/inc/forms/vps.php:130
+#: shared/inc/forms/vps_monitoring.php:130
+#: shared/inc/forms/vps_installation.php:73
 msgid "Could not get remote status. Unkown error: "
 msgstr "Impossible de récupérer le statut distant. Erreur inconnue : "
 
-#: shared/inc/forms/vps.php:128
+#: shared/inc/forms/vps_monitoring.php:128
+#: shared/inc/forms/vps_installation.php:71
 msgid "Could not get remote status: could not connect to the SOAP server (HTTP error)."
 msgstr "Impossible de récupérer le statut distant : impossible de se connecter au serveur SOAP (erreur HTTP)."
 
@@ -1102,6 +1115,8 @@ msgstr "Créer un nouveau contact :"
 msgid "Create a subdomain: "
 msgstr "Créer un sous-domaine : "
 
+#: shared/inc/forms/vps_monitoring.php:30
+#: shared/inc/forms/vps_installation.php:30
 #: shared/inc/forms/vps.php:30
 msgid "Credential not correct: can't display in file "
 msgstr "Droits incorrects: impossible d'afficher dans le fichier "
@@ -1122,15 +1137,16 @@ msgstr "Devise (3 lettres) : "
 msgid "Currency symbol: "
 msgstr "Symbole de devise: "
 
-#: shared/inc/forms/vps.php:251
+#: shared/inc/forms/vps_monitoring.php:210
+#: shared/inc/forms/vps_installation.php:149
 msgid "Current VPS status:"
 msgstr "État du VPS :"
 
-#: shared/inc/forms/vps.php:199
+#: shared/inc/forms/vps.php:71
 msgid "Current contract: "
 msgstr "Contrat courant : "
 
-#: shared/inc/forms/vps.php:280
+#: shared/inc/forms/vps_installation.php:178
 msgid "Currently installed operating system: "
 msgstr "Système d'exploitation installé : "
 
@@ -1193,16 +1209,16 @@ msgstr "République Tchèque"
 msgid "Czechoslovakia"
 msgstr "Tchécoslovaquie"
 
-#: shared/inc/draw.php:135
-#: shared/inc/draw.php:412
+#: shared/inc/draw.php:139
+#: shared/inc/draw.php:440
 msgid "DNS Nick handles"
 msgstr "Responsables DNS"
 
-#: shared/inc/draw.php:196
+#: shared/inc/draw.php:214
 msgid "DNS and MX"
 msgstr "DNS et MX"
 
-#: shared/inc/draw.php:376
+#: shared/inc/draw.php:404
 msgid "DNS config of:"
 msgstr "Configuration DNS de:"
 
@@ -1242,7 +1258,7 @@ msgstr "Fichiers de la base de données :"
 msgid "Database name"
 msgstr "Nom de la base de données"
 
-#: shared/inc/draw.php:288
+#: shared/inc/draw.php:306
 msgid "Databases"
 msgstr "Bases de données"
 
@@ -1250,7 +1266,7 @@ msgstr "Bases de données"
 msgid "Databases disk usage:"
 msgstr "Utilisation disque des bases de données :"
 
-#: shared/inc/draw.php:428
+#: shared/inc/draw.php:456
 msgid "Databases:"
 msgstr "Bases de données :"
 
@@ -1396,9 +1412,9 @@ msgstr "Intervalle du digest :"
 msgid "Digest max mails:"
 msgstr "Nombre de messages max du digest :"
 
-#: admin/dtcrm/product_manager.php:46
-#: admin/dtcrm/product_manager.php:114
-#: admin/dtcrm/product_manager.php:172
+#: admin/dtcrm/product_manager.php:51
+#: admin/dtcrm/product_manager.php:124
+#: admin/dtcrm/product_manager.php:187
 msgid "Disk"
 msgstr "Disque"
 
@@ -1432,7 +1448,7 @@ msgstr "Ne pas modifier à moins que vous sachiez vraiment ce que vous faites."
 msgid "Do you want to transfer an existing domain or register a new domain?"
 msgstr "Voulez vous transférer un domaine existant ou en enregistrer un nouveau ?"
 
-#: shared/drawlib/anotherDtc.php:129
+#: shared/drawlib/anotherDtc.php:132
 msgid "Documentation"
 msgstr "Documentation"
 
@@ -1440,7 +1456,7 @@ msgstr "Documentation"
 msgid "Domain Technologie Control : root admin console"
 msgstr "Domain Technologie Control : console administrateur root"
 
-#: shared/inc/draw.php:371
+#: shared/inc/draw.php:399
 msgid "Domain Tools"
 msgstr "Outils de domaine"
 
@@ -1549,7 +1565,7 @@ msgstr "Éditer un serveur de nom:"
 msgid "Edit mailing list"
 msgstr "Éditer liste de diffusion"
 
-#: shared/inc/draw.php:365
+#: shared/inc/draw.php:393
 msgid "Edit mailing lists of domain:"
 msgstr "Éditer les liste de diffusions de mon domaine :"
 
@@ -1697,7 +1713,7 @@ msgid "Expiry date"
 msgstr "Date d'expiration"
 
 #: shared/inc/forms/root_admin.php:127
-#: shared/inc/forms/vps.php:203
+#: shared/inc/forms/vps.php:75
 msgid "Expiry date:"
 msgstr "Date d'expiration:"
 
@@ -1709,12 +1725,12 @@ msgstr "Exporter ce domaine vers un fichier"
 msgid "FTP account configuration: "
 msgstr "Édition d'un compte FTP : "
 
-#: shared/inc/draw.php:210
-#: shared/inc/draw.php:400
+#: shared/inc/draw.php:228
+#: shared/inc/draw.php:428
 msgid "FTP accounts"
 msgstr "Comptes FTP"
 
-#: shared/inc/draw.php:402
+#: shared/inc/draw.php:430
 msgid "FTP accounts of "
 msgstr "Comptes FTP de "
 
@@ -1780,11 +1796,11 @@ msgstr "Fetchmail"
 msgid "Fiji"
 msgstr "Fiji"
 
-#: shared/inc/forms/vps.php:276
+#: shared/inc/forms/vps_installation.php:174
 msgid "File system check (fsck)"
 msgstr "Vérifier le système de fichier (fsck)"
 
-#: shared/inc/forms/vps.php:274
+#: shared/inc/forms/vps_installation.php:172
 msgid "File-system check:"
 msgstr "Vérification du système de fichier:"
 
@@ -1845,7 +1861,7 @@ msgstr "Hostname complet de l'administrateur DTC : "
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr "Chemin complet du fichier public.key pour le support DomainKey."
 
-#: shared/drawlib/dtc_functions.php:729
+#: shared/drawlib/dtc_functions.php:772
 msgid "GBytes"
 msgstr "GOctets"
 
@@ -1866,7 +1882,7 @@ msgstr "Coût du portail de paiement"
 msgid "General"
 msgstr "Générale"
 
-#: shared/inc/draw.php:553
+#: shared/inc/draw.php:581
 msgid "General information of "
 msgstr "Informations générales de "
 
@@ -1906,7 +1922,7 @@ msgstr "Aller à l'interface email"
 msgid "Go to login"
 msgstr "Aller au login"
 
-#: shared/inc/forms/vps.php:263
+#: shared/inc/forms/vps_installation.php:161
 msgid "Gracefully shutdown (xm shutdown)"
 msgstr "Arrêter proprement le système (xm shutdown)"
 
@@ -1958,9 +1974,13 @@ msgstr "Guinée-Bissau"
 msgid "Guyana"
 msgstr "Guyane"
 
-#: shared/inc/forms/vps.php:113
+#: shared/inc/forms/vps_monitoring.php:113
 msgid "HDD I/O:"
 msgstr "HDD E/S:"
+
+#: shared/inc/forms/vps_monitoring.php:227
+msgid "HTTP: "
+msgstr "HTTP: "
 
 #: shared/drawlib/cc_code_popup.php:200
 msgid "Haiti"
@@ -1974,7 +1994,7 @@ msgstr "Entête"
 msgid "Heard and McDonald Islands"
 msgstr "Iles Mac Donald et Heard"
 
-#: shared/inc/draw.php:311
+#: shared/inc/draw.php:329
 msgid "Help"
 msgstr "Aide"
 
@@ -1986,7 +2006,7 @@ msgstr "Aide manquante pour noaccessdenymails"
 msgid "Help missing for nosubonlydenymails"
 msgstr "Aide manquante pour nosubonlydenymails"
 
-#: shared/inc/draw.php:444
+#: shared/inc/draw.php:472
 msgid "Help:"
 msgstr "Aide :"
 
@@ -2055,6 +2075,10 @@ msgstr "Hongrie"
 msgid "I agree to the"
 msgstr "J'accepte les"
 
+#: shared/inc/forms/vps_monitoring.php:230
+msgid "IMAP4: "
+msgstr "IMAP4: "
+
 #: admin/deamons_state.php:266
 msgid "IP Resolved"
 msgstr "IP résolue"
@@ -2078,7 +2102,8 @@ msgstr "Addresse IP du serveur DNS primaire :"
 msgid "IP address or CNAME: "
 msgstr "Adresse IP ou CNAME : "
 
-#: shared/inc/forms/vps.php:239
+#: shared/inc/forms/vps_monitoring.php:198
+#: shared/inc/forms/vps_installation.php:138
 msgid "IP address: "
 msgstr "Adresse IP : "
 
@@ -2086,7 +2111,8 @@ msgstr "Adresse IP : "
 msgid "IP addresses and network"
 msgstr "Adresses IPs et réseaux"
 
-#: shared/inc/forms/vps.php:237
+#: shared/inc/forms/vps_monitoring.php:196
+#: shared/inc/forms/vps_installation.php:136
 msgid "IP addresses: "
 msgstr "Adresses IPs : "
 
@@ -2144,7 +2170,7 @@ msgstr "Si ce drapeau est positionné, la liste ne doit pas forcément être pr�
 msgid "If you want to keep your current registrar, you have to make the whois point to these DNS:"
 msgstr "Si vous voulez garder votre registrar actuel, vous devez faire pointer le whois vers les DNS suivants :"
 
-#: shared/inc/forms/vps.php:266
+#: shared/inc/forms/vps_installation.php:164
 msgid "Immediate kill (xm destroy)"
 msgstr "Tuer immédiatement le système (xm destroy)"
 
@@ -2230,11 +2256,19 @@ msgstr "Insérez ici le modèle du code que vous voulez voir insérer à votre a
 msgid "Install"
 msgstr "Installer"
 
+#: shared/inc/draw.php:166
+msgid "Installation"
+msgstr "Installation"
+
+#: shared/inc/forms/vps_installation.php:273
+msgid "Installation log (last 20 lines):"
+msgstr "Log de l'installation  (20 dernières lignes) :"
+
 #: shared/securepay/pay_functions.php:35
 msgid "Instant account"
 msgstr "Compte instantané"
 
-#: shared/inc/draw.php:414
+#: shared/inc/draw.php:442
 msgid "Internet Whois Nick Handles management:"
 msgstr "Configuration des nick handles internet des whois internet"
 
@@ -2346,7 +2380,8 @@ msgstr "Langue"
 msgid "Lao People's Democratic Republic"
 msgstr "Laos (République Démocratique du)"
 
-#: shared/inc/forms/vps.php:176
+#: shared/inc/forms/vps_monitoring.php:176
+#: shared/inc/forms/vps_installation.php:119
 msgid "Last boot date: "
 msgstr "Date du dernier démarrage : "
 
@@ -2358,10 +2393,10 @@ msgstr "Âge du dernier message"
 msgid "Last message from"
 msgstr "Dernier message de"
 
-#: shared/inc/forms/vps.php:80
-#: shared/inc/forms/vps.php:81
-#: shared/inc/forms/vps.php:82
-#: shared/inc/forms/vps.php:83
+#: shared/inc/forms/vps_monitoring.php:80
+#: shared/inc/forms/vps_monitoring.php:81
+#: shared/inc/forms/vps_monitoring.php:82
+#: shared/inc/forms/vps_monitoring.php:83
 msgid "Last month: "
 msgstr "Dernier rappel : "
 
@@ -2556,7 +2591,7 @@ msgstr "Utilisateur: "
 msgid "Logo path relative to"
 msgstr "Chemin du logo relatif à"
 
-#: shared/inc/draw.php:317
+#: shared/inc/draw.php:335
 #: shared/inc/forms/email.php:306
 msgid "Logout"
 msgstr "Déconnexion"
@@ -2565,7 +2600,7 @@ msgstr "Déconnexion"
 msgid "Luxembourg"
 msgstr "Luxembourg"
 
-#: shared/drawlib/dtc_functions.php:730
+#: shared/drawlib/dtc_functions.php:773
 #: shared/inc/forms/email.php:587
 #: shared/inc/forms/email.php:594
 msgid "MBytes"
@@ -2587,7 +2622,7 @@ msgstr "Macedonie"
 msgid "Madagascar"
 msgstr "Madagascar"
 
-#: shared/inc/draw.php:359
+#: shared/inc/draw.php:387
 msgid "Mail Groups:"
 msgstr "Email groupé:"
 
@@ -2603,7 +2638,7 @@ msgstr "Statistique de la fille d'attente mail"
 msgid "Mail gen files"
 msgstr "Génération mail"
 
-#: shared/inc/draw.php:361
+#: shared/inc/draw.php:389
 msgid "Mail groups of "
 msgstr "Boites groupées de "
 
@@ -2644,24 +2679,24 @@ msgstr "Quota email: "
 msgid "Mailbox type"
 msgstr "Type de boites aux lettres :"
 
-#: shared/inc/draw.php:233
+#: shared/inc/draw.php:251
 msgid "Mailboxes"
 msgstr "Boites aux lettres"
 
-#: shared/inc/draw.php:357
+#: shared/inc/draw.php:385
 msgid "Mailboxes of "
 msgstr "Boites aux lettres de "
 
-#: shared/inc/draw.php:355
+#: shared/inc/draw.php:383
 #: shared/inc/forms/domain_info.php:54
 msgid "Mailboxes:"
 msgstr "Boites aux lettres :"
 
-#: shared/inc/draw.php:247
+#: shared/inc/draw.php:265
 msgid "Mailing lists"
 msgstr "Listes de diffusions"
 
-#: shared/inc/draw.php:363
+#: shared/inc/draw.php:391
 msgid "Mailing lists:"
 msgstr "Listes de diffusion :"
 
@@ -2693,7 +2728,7 @@ msgstr "Mali"
 msgid "Malta"
 msgstr "Malte"
 
-#: shared/inc/draw.php:422
+#: shared/inc/draw.php:450
 msgid "Manage my name servers:"
 msgstr "Configurer mes serveurs de noms :"
 
@@ -2725,11 +2760,11 @@ msgstr "SSH max"
 msgid "Max VERP recipients:"
 msgstr "Nombre max de destinataire VERP :"
 
-#: admin/dtcrm/product_manager.php:56
+#: admin/dtcrm/product_manager.php:61
 msgid "Max database"
 msgstr "Max base de donnée"
 
-#: admin/dtcrm/product_manager.php:51
+#: admin/dtcrm/product_manager.php:56
 msgid "Max email"
 msgstr "Mon email"
 
@@ -2737,7 +2772,8 @@ msgstr "Mon email"
 msgid "Max mail memory size:"
 msgstr "Taille mémoire max des messages :"
 
-#: shared/inc/forms/vps.php:150
+#: shared/inc/forms/vps_monitoring.php:150
+#: shared/inc/forms/vps_installation.php:93
 msgid "Max memory: "
 msgstr "Mémoire maxi : "
 
@@ -2745,7 +2781,8 @@ msgstr "Mémoire maxi : "
 msgid "Maximum number of lists reached"
 msgstr "Nombre maximum de liste atteint"
 
-#: shared/inc/forms/vps.php:152
+#: shared/inc/forms/vps_monitoring.php:152
+#: shared/inc/forms/vps_installation.php:95
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr "Mémoire maximum : impossible de récupérer la valeur (peut-être redémarrage en cours ?)"
 
@@ -2765,11 +2802,13 @@ msgstr "Mayotte"
 msgid "Memory and Swap Usage "
 msgstr "Mémoire et utilisation swap"
 
-#: shared/inc/forms/vps.php:147
+#: shared/inc/forms/vps_monitoring.php:147
+#: shared/inc/forms/vps_installation.php:90
 msgid "Memory: "
 msgstr "Mémoire : "
 
-#: shared/inc/forms/vps.php:125
+#: shared/inc/forms/vps_monitoring.php:125
+#: shared/inc/forms/vps_installation.php:68
 msgid "Method getVPSState failed"
 msgstr "La méthode getVPSState() à échouée"
 
@@ -2805,6 +2844,10 @@ msgstr "Argent restant : "
 msgid "Mongolia"
 msgstr "Mongolie"
 
+#: shared/inc/draw.php:160
+msgid "Monitoring"
+msgstr "Monitoring"
+
 #: admin/inc/dtc_config.php:359
 msgid "Monthly"
 msgstr "Tous les mois"
@@ -2821,15 +2864,15 @@ msgstr "Maroc"
 msgid "Mozambique"
 msgstr "Mozambique"
 
-#: shared/inc/draw.php:426
+#: shared/inc/draw.php:454
 msgid "My Account information:"
 msgstr "Informations de mon compte :"
 
-#: shared/inc/draw.php:146
+#: shared/inc/draw.php:150
 msgid "My account"
 msgstr "Mon compte"
 
-#: shared/inc/draw.php:385
+#: shared/inc/draw.php:413
 msgid "My account global statistics"
 msgstr "Statistiques globales de mon compte"
 
@@ -2866,9 +2909,9 @@ msgid "NOT VALIDATED"
 msgstr "NON VALIDE"
 
 #: admin/inc/draw_user_admin.php:237
-#: admin/dtcrm/product_manager.php:99
-#: admin/dtcrm/product_manager.php:157
-#: admin/dtcrm/product_manager.php:215
+#: admin/dtcrm/product_manager.php:104
+#: admin/dtcrm/product_manager.php:167
+#: admin/dtcrm/product_manager.php:230
 msgid "Name"
 msgstr "Nom"
 
@@ -2884,12 +2927,12 @@ msgstr "Nom de la liste."
 msgid "Name server hostname: "
 msgstr "Nom d'hôte du serveur de nom : "
 
-#: shared/inc/draw.php:140
+#: shared/inc/draw.php:144
 msgid "Name servers"
 msgstr "Serveurs de noms"
 
-#: shared/inc/draw.php:374
-#: shared/inc/draw.php:420
+#: shared/inc/draw.php:402
+#: shared/inc/draw.php:448
 msgid "Name servers:"
 msgstr "Serveurs de noms :"
 
@@ -2898,7 +2941,8 @@ msgid "Name:"
 msgstr "Nom:"
 
 #: admin/inc/dtc_config.php:1126
-#: shared/inc/forms/vps.php:143
+#: shared/inc/forms/vps_monitoring.php:143
+#: shared/inc/forms/vps_installation.php:86
 msgid "Name: "
 msgstr "Nom : "
 
@@ -2959,7 +3003,7 @@ msgstr "Antilles néerlandaises"
 msgid "Network Traffic Statistics"
 msgstr "Statistique du trafic réseau"
 
-#: shared/inc/forms/vps.php:102
+#: shared/inc/forms/vps_monitoring.php:102
 msgid "Network:"
 msgstr "Réseau:"
 
@@ -2979,11 +3023,11 @@ msgstr "Nouveau comptes FTP : "
 msgid "New SSH account:"
 msgstr "Nouveau compte SSH :"
 
-#: shared/inc/forms/vps.php:356
+#: shared/inc/forms/vps_installation.php:238
 msgid "New SSH key: "
 msgstr "Nouvelle clef SSH : "
 
-#: shared/inc/forms/vps.php:353
+#: shared/inc/forms/vps_installation.php:235
 msgid "New SSH password: "
 msgstr "Nouveau mot de passe SSH : "
 
@@ -3004,7 +3048,7 @@ msgstr "Nouvelle boite"
 msgid "New mailing list:"
 msgstr "Nouvelle liste de diffusion :"
 
-#: shared/inc/draw.php:52
+#: shared/inc/draw.php:54
 msgid "New password:"
 msgstr "Nouveau mot de passe :"
 
@@ -3071,10 +3115,10 @@ msgstr "Niue (Ile de)"
 #: admin/inc/dtc_config.php:1060
 #: admin/inc/dtc_config.php:1089
 #: admin/dtcrm/main.php:162
-#: admin/dtcrm/product_manager.php:73
-#: admin/dtcrm/product_manager.php:131
-#: admin/dtcrm/product_manager.php:189
-#: admin/dtcrm/product_manager.php:232
+#: admin/dtcrm/product_manager.php:78
+#: admin/dtcrm/product_manager.php:141
+#: admin/dtcrm/product_manager.php:204
+#: admin/dtcrm/product_manager.php:252
 #: client/new_account_form.php:588
 #: shared/inc/forms/domain_info.php:74
 #: shared/inc/forms/email.php:236
@@ -3217,11 +3261,13 @@ msgstr "Alerte lorsque post et pas inscrit :"
 msgid "Now you can go to check its configuration by clicking here:"
 msgstr "Vous pouvez maintenant utiliser votre domaine en cliquant ici :"
 
-#: shared/inc/forms/vps.php:155
+#: shared/inc/forms/vps_monitoring.php:155
+#: shared/inc/forms/vps_installation.php:98
 msgid "Number of CPU: "
 msgstr "Nombre de CPU : "
 
-#: shared/inc/forms/vps.php:157
+#: shared/inc/forms/vps_monitoring.php:157
+#: shared/inc/forms/vps_installation.php:100
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
 msgstr "Nombre de CPU : impossible de récupérer la valeur (peut-être redémarrage en cours ?)"
 
@@ -3271,7 +3317,7 @@ msgstr "Ancien tickets :"
 msgid "Oman"
 msgstr "Oman"
 
-#: shared/inc/draw.php:549
+#: shared/inc/draw.php:577
 msgid "Online DTC help"
 msgstr "Aide en ligne de DTC"
 
@@ -3279,7 +3325,7 @@ msgstr "Aide en ligne de DTC"
 msgid "Open"
 msgstr "Ouvert"
 
-#: shared/inc/forms/vps.php:317
+#: shared/inc/forms/vps_installation.php:197
 msgid "Operating system type not supported"
 msgstr "Système d'exploitation non supporté"
 
@@ -3328,15 +3374,19 @@ msgstr ""
 msgid "PHP safe_mode"
 msgstr "safe_mode PHP"
 
-#: shared/inc/draw.php:410
+#: shared/inc/forms/vps_monitoring.php:229
+msgid "POP3: "
+msgstr "POP3: "
+
+#: shared/inc/draw.php:438
 msgid "Package"
 msgstr "Package"
 
-#: shared/inc/draw.php:224
+#: shared/inc/draw.php:242
 msgid "Package installer"
 msgstr "Installateur de paquets"
 
-#: shared/inc/draw.php:408
+#: shared/inc/draw.php:436
 msgid "Package installer:"
 msgstr "Installeur de package"
 
@@ -3377,8 +3427,8 @@ msgstr "Paraguay"
 #: admin/inc/dtc_config.php:891
 #: admin/inc/dtc_config.php:918
 #: admin/inc/dtc_config.php:943
-#: shared/inc/draw.php:301
-#: shared/inc/draw.php:438
+#: shared/inc/draw.php:319
+#: shared/inc/draw.php:466
 #: shared/inc/forms/reseller.php:24
 msgid "Password"
 msgstr "Mot de passe"
@@ -3397,7 +3447,7 @@ msgstr "Les mots de passe sont fait uniquement de caractères standard (a-zA-Z0-
 
 #: admin/inc/draw_user_admin.php:221
 #: client/login.php:13
-#: shared/inc/draw.php:436
+#: shared/inc/draw.php:464
 #: shared/inc/forms/database.php:37
 #: shared/inc/forms/domain_stats.php:85
 #: shared/inc/forms/domain_stats.php:93
@@ -3424,7 +3474,7 @@ msgstr "Les mots de passe 1 et 2 ne correspondent pas !"
 msgid "Past account refundal"
 msgstr "Remboursement ancien compte"
 
-#: shared/inc/draw.php:122
+#: shared/inc/draw.php:126
 msgid "Past payments"
 msgstr "Paiements effectués"
 
@@ -3503,10 +3553,9 @@ msgstr "En attente"
 
 #: admin/inc/renewals.php:114
 #: admin/dtcrm/product_manager.php:36
-#: admin/dtcrm/product_manager.php:104
-#: admin/dtcrm/product_manager.php:162
-#: admin/dtcrm/product_manager.php:187
-#: admin/dtcrm/product_manager.php:220
+#: admin/dtcrm/product_manager.php:109
+#: admin/dtcrm/product_manager.php:172
+#: admin/dtcrm/product_manager.php:235
 #: shared/dtcrm/draw.php:80
 msgid "Period"
 msgstr "Période"
@@ -3532,9 +3581,13 @@ msgstr "Téléphone :"
 msgid "Phone number: "
 msgstr "Téléphone : "
 
-#: shared/inc/forms/vps.php:350
+#: shared/inc/forms/vps_installation.php:230
 msgid "Physical console last display and ssh access:"
 msgstr "Dernier message de la console physique et accès ssh :"
+
+#: shared/inc/forms/vps_monitoring.php:225
+msgid "Ping: "
+msgstr "Ping:"
 
 #: shared/drawlib/cc_code_popup.php:280
 msgid "Pitcairn"
@@ -3561,7 +3614,7 @@ msgstr "Veuillez entrer le domaine que vous souhaitez transférer :"
 msgid "Please renew it with one of the following options"
 msgstr "Merci de le renouveler avec les options suivante"
 
-#: shared/inc/forms/vps.php:209
+#: shared/inc/forms/vps.php:81
 msgid "Please renew with one of the following options: "
 msgstr "Merci de le renouveler avec l'une des options suivantes : "
 
@@ -3573,11 +3626,11 @@ msgstr "Veuillez sélectionner les 3 contacts responsable que vous voulez utilis
 msgid "Please tell us if the following is not correct:"
 msgstr "Merci de nous avertir si les informations ci-dessous n'étaient pas correctes :"
 
-#: shared/inc/forms/vps.php:257
+#: shared/inc/forms/vps_installation.php:155
 msgid "Please wait until file system check is finished first."
 msgstr "Veuillez attendre la fin de la vérification du système de fichier."
 
-#: shared/inc/forms/vps.php:259
+#: shared/inc/forms/vps_installation.php:157
 msgid "Please wait until operating system reinstallation has completed."
 msgstr "Veuillez attendre la fin de la réinstallation du système d'exploitation."
 
@@ -3595,9 +3648,9 @@ msgstr "Portugal"
 
 #: admin/dtcrm/main.php:213
 #: admin/dtcrm/product_manager.php:41
-#: admin/dtcrm/product_manager.php:109
-#: admin/dtcrm/product_manager.php:167
-#: admin/dtcrm/product_manager.php:225
+#: admin/dtcrm/product_manager.php:114
+#: admin/dtcrm/product_manager.php:177
+#: admin/dtcrm/product_manager.php:240
 #: shared/dtcrm/draw.php:80
 #: shared/inc/forms/invoices.php:23
 msgid "Price"
@@ -3615,9 +3668,10 @@ msgstr "DNS primaire :"
 msgid "Primary MX address:"
 msgstr "Adresse du serveur MX primaire :"
 
-#: admin/dtcrm/product_manager.php:71
-#: admin/dtcrm/product_manager.php:129
-#: admin/dtcrm/product_manager.php:230
+#: admin/dtcrm/product_manager.php:76
+#: admin/dtcrm/product_manager.php:139
+#: admin/dtcrm/product_manager.php:202
+#: admin/dtcrm/product_manager.php:250
 msgid "Private"
 msgstr "Privé"
 
@@ -3655,9 +3709,9 @@ msgid "Product ID:"
 msgstr "ID produit :"
 
 #: admin/dtcrm/product_manager.php:19
-#: admin/dtcrm/product_manager.php:81
-#: admin/dtcrm/product_manager.php:139
-#: admin/dtcrm/product_manager.php:197
+#: admin/dtcrm/product_manager.php:86
+#: admin/dtcrm/product_manager.php:149
+#: admin/dtcrm/product_manager.php:212
 msgid "Product list editor"
 msgstr "Éditeur de liste de produits"
 
@@ -3710,7 +3764,7 @@ msgstr "Quota"
 msgid "Quota (MB): "
 msgstr "Quota (Mo) : "
 
-#: admin/dtcrm/product_manager.php:119
+#: admin/dtcrm/product_manager.php:129
 msgid "RAM"
 msgstr "RAM"
 
@@ -3799,15 +3853,16 @@ msgstr "Enregistrement réussit !"
 msgid "Registry selection"
 msgstr "Sélection registre"
 
-#: shared/inc/forms/vps.php:327
+#: shared/inc/forms/vps_installation.php:207
 msgid "Reinstall operating system"
 msgstr "Réinstaller le système"
 
-#: shared/inc/forms/vps.php:279
+#: shared/inc/forms/vps_installation.php:177
 msgid "Reinstall operating system:"
 msgstr "Réinstallation du système d'exploitation :"
 
-#: shared/inc/forms/vps.php:135
+#: shared/inc/forms/vps_monitoring.php:135
+#: shared/inc/forms/vps_installation.php:78
 msgid "Reinstalling operating system..."
 msgstr "Réinstallation du système d'exploitation en cours..."
 
@@ -3836,9 +3891,9 @@ msgstr "Enlever un administrateur de ce client :"
 msgid "Renew my account"
 msgstr "Renouveler mon compte"
 
-#: admin/dtcrm/product_manager.php:93
-#: admin/dtcrm/product_manager.php:151
-#: admin/dtcrm/product_manager.php:209
+#: admin/dtcrm/product_manager.php:98
+#: admin/dtcrm/product_manager.php:161
+#: admin/dtcrm/product_manager.php:224
 msgid "Renewal-ID"
 msgstr "ID renouvellement"
 
@@ -3884,11 +3939,11 @@ msgstr "Champs requis téléphone manquant."
 msgid "Required field zipcode missing."
 msgstr "Champ code postal manquant."
 
-#: shared/inc/draw.php:434
+#: shared/inc/draw.php:462
 msgid "Resseller child accounts"
 msgstr "Sous-comptes revendeur"
 
-#: shared/inc/draw.php:53
+#: shared/inc/draw.php:55
 msgid "Retype new password:"
 msgstr "Retaper le nouveau mot de passe :"
 
@@ -3931,6 +3986,10 @@ msgstr "Serveur SMTP relais :"
 msgid "SMTP server"
 msgstr "Serveur SMTP"
 
+#: shared/inc/forms/vps_monitoring.php:228
+msgid "SMTP: "
+msgstr "SMTP: "
+
 #: admin/inc/dtc_config.php:481
 msgid "SOAP login"
 msgstr "Login SOAP"
@@ -3947,21 +4006,25 @@ msgstr "Boite destination des SPAMs: "
 msgid "SSH account configuration:"
 msgstr "Édition d'un compte SSH :"
 
-#: shared/inc/draw.php:217
+#: shared/inc/draw.php:235
 msgid "SSH accounts"
 msgstr "Comptes SSH"
 
-#: shared/inc/draw.php:406
+#: shared/inc/draw.php:434
 msgid "SSH accounts of "
 msgstr "Comptes SSH de "
 
-#: shared/inc/draw.php:404
+#: shared/inc/draw.php:432
 msgid "SSH accounts:"
 msgstr "Comptes SSH :"
 
 #: admin/deamons_state.php:136
 msgid "SSH gen pass"
 msgstr "Génération pass SSH"
+
+#: shared/inc/forms/vps_monitoring.php:226
+msgid "SSH: "
+msgstr "SSH:"
 
 #: admin/inc/dtc_config.php:35
 msgid "SSL IPs addresses"
@@ -4175,6 +4238,10 @@ msgstr "Serveur:"
 msgid "Service country"
 msgstr "Pays du service"
 
+#: shared/inc/forms/vps_monitoring.php:214
+msgid "Service monitoring:"
+msgstr "Monitoring des services:"
+
 #: shared/inc/forms/root_admin.php:233
 msgid "Setup physical VPS (LVM): "
 msgstr "Fabriquer physiquement le VPS (LVM) : "
@@ -4247,7 +4314,7 @@ msgstr "Espagne"
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
 
-#: shared/inc/forms/vps.php:255
+#: shared/inc/forms/vps_installation.php:153
 msgid "Start and stop of your VPS:"
 msgstr "Démarrage et arrêt de votre serveur virtuel :"
 
@@ -4268,22 +4335,23 @@ msgstr "État :"
 msgid "State: "
 msgstr "État : "
 
-#: shared/inc/forms/vps.php:162
+#: shared/inc/forms/vps_monitoring.php:162
+#: shared/inc/forms/vps_installation.php:105
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr "État : impossible de récupérer la valeur (peut-être redémarrage en cours ?)"
 
-#: shared/inc/draw.php:116
-#: shared/inc/draw.php:190
+#: shared/inc/draw.php:120
+#: shared/inc/draw.php:208
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: shared/inc/draw.php:389
+#: shared/inc/draw.php:417
 msgid "Statistics of domain:"
 msgstr "Statistiques du domaine :"
 
-#: shared/inc/draw.php:383
-#: shared/inc/draw.php:387
-#: shared/inc/draw.php:424
+#: shared/inc/draw.php:411
+#: shared/inc/draw.php:415
+#: shared/inc/draw.php:452
 msgid "Statistics:"
 msgstr "Statistiques:"
 
@@ -4323,15 +4391,15 @@ msgstr "Stockage"
 msgid "Storage space"
 msgstr "Espace disque"
 
-#: shared/inc/draw.php:295
+#: shared/inc/draw.php:313
 msgid "Sub-accounts (reseller)"
 msgstr "Sous comptes (revendeur)"
 
-#: shared/inc/draw.php:432
+#: shared/inc/draw.php:460
 msgid "Sub-accounts (reseller):"
 msgstr "Autoriser l'ajout de sous-comptes (revendeur) :"
 
-#: shared/inc/draw.php:204
+#: shared/inc/draw.php:222
 msgid "Sub-domains"
 msgstr "Sous-domaines"
 
@@ -4343,11 +4411,11 @@ msgstr "Subdomain max"
 msgid "Subdomain name: "
 msgstr "Nom du sous-domaine : "
 
-#: shared/inc/draw.php:398
+#: shared/inc/draw.php:426
 msgid "Subdomains of "
 msgstr "Sous-domaines de "
 
-#: shared/inc/draw.php:396
+#: shared/inc/draw.php:424
 #: shared/inc/forms/domain_info.php:56
 msgid "Subdomains:"
 msgstr "Sous-domaines :"
@@ -4407,7 +4475,7 @@ msgstr "Ticket de support"
 msgid "Support ticket configuration"
 msgstr "Configuration des tickets de support"
 
-#: shared/inc/draw.php:306
+#: shared/inc/draw.php:324
 msgid "Support tickets"
 msgstr "Tickets de support"
 
@@ -4419,7 +4487,7 @@ msgstr "Suriname"
 msgid "Svalbard and Jan Mayen Islands"
 msgstr "Svalbard et Ile Jan Mayen"
 
-#: shared/inc/forms/vps.php:110
+#: shared/inc/forms/vps_monitoring.php:110
 msgid "Swap I/O:"
 msgstr "Swap E/S:"
 
@@ -4485,8 +4553,8 @@ msgstr "Attention ! Si vous rentrez de mauvaises valeurs dans les champs suivant
 msgid "Take care not to add the control panel SSL IP itself if you don't want to have conflicts (and prevent apache from restarting)!"
 msgstr "Attention a ne pas ajouter l'ip du control panel lui-même pour éviter un conflit (qui empêcherait un redémarrage)!"
 
-#: shared/drawlib/anotherDtc.php:141
-#: shared/drawlib/anotherDtc.php:153
+#: shared/drawlib/anotherDtc.php:144
+#: shared/drawlib/anotherDtc.php:156
 msgid "Take control of your domain name"
 msgstr "Prenez le contrôle de votre nom de domaine"
 
@@ -4591,10 +4659,10 @@ msgstr "Ceci est la liste des modérateurs."
 msgid "This is the main owner of the list."
 msgstr "Ce champ contient l'adresse de l'administrateur principal de la liste."
 
-#: shared/inc/forms/vps.php:93
-#: shared/inc/forms/vps.php:94
-#: shared/inc/forms/vps.php:95
-#: shared/inc/forms/vps.php:96
+#: shared/inc/forms/vps_monitoring.php:93
+#: shared/inc/forms/vps_monitoring.php:94
+#: shared/inc/forms/vps_monitoring.php:95
+#: shared/inc/forms/vps_monitoring.php:96
 msgid "This month: "
 msgstr "Ce mois-ci: "
 
@@ -4631,7 +4699,7 @@ msgstr "Ticket non trouvé !"
 msgid "Time"
 msgstr "Heure"
 
-#: shared/inc/forms/vps.php:358
+#: shared/inc/forms/vps_installation.php:240
 msgid "To access to your console, first enter a ssh password or key above, and then ssh to:"
 msgstr "Pour accéder a votre console, installer un nouveau mot de passe ou une clef ci-après et connectez vous à : "
 
@@ -4639,7 +4707,7 @@ msgstr "Pour accéder a votre console, installer un nouveau mot de passe ou une 
 msgid "To add a VPS, you need to setup some free IPs VPS in the general config and setup some VPS products."
 msgstr "Pour ajouter un VPS, vous devez provisionner des IPs VDS dans le paneau général config et faire des VDS dans les produits."
 
-#: shared/inc/forms/vps.php:268
+#: shared/inc/forms/vps_installation.php:166
 msgid "To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first."
 msgstr "Pour faire une vérification du système de fichier (fsck), vous devez d'abord arrêter ou tuer le serveur virtuel."
 
@@ -4711,9 +4779,9 @@ msgstr "Total des données transférées ce mois-ci :"
 msgid "Total: "
 msgstr "Total : "
 
-#: admin/dtcrm/product_manager.php:61
-#: admin/dtcrm/product_manager.php:124
-#: admin/dtcrm/product_manager.php:182
+#: admin/dtcrm/product_manager.php:66
+#: admin/dtcrm/product_manager.php:134
+#: admin/dtcrm/product_manager.php:197
 msgid "Traffic"
 msgstr "Trafic"
 
@@ -4837,7 +4905,8 @@ msgstr "Taille décompressée"
 msgid "Unsubscribe:"
 msgstr "Désinscrire:"
 
-#: shared/inc/forms/vps.php:175
+#: shared/inc/forms/vps_monitoring.php:175
+#: shared/inc/forms/vps_installation.php:118
 msgid "Up time: "
 msgstr "Up time : "
 
@@ -4898,7 +4967,7 @@ msgstr "Utiliser cyrus : "
 msgid "Use eNETS: "
 msgstr "Utiliser eNETS : "
 
-#: shared/inc/draw.php:321
+#: shared/inc/draw.php:339
 msgid "Use image menu"
 msgstr "Menu en images"
 
@@ -4926,7 +4995,7 @@ msgstr "Utiliser register_globals=1: "
 msgid "Use registrar API:"
 msgstr "Utiliser l'API d'enregistrement de nom de domaine:"
 
-#: shared/inc/draw.php:319
+#: shared/inc/draw.php:337
 msgid "Use text menu"
 msgstr "Utiliser du texte pour le menu"
 
@@ -5037,7 +5106,8 @@ msgstr "Taux de TVA:"
 msgid "VERP:"
 msgstr "VERP :"
 
-#: shared/inc/forms/vps.php:139
+#: shared/inc/forms/vps_monitoring.php:139
+#: shared/inc/forms/vps_installation.php:82
 msgid "VM id: "
 msgstr "ID du VDS : "
 
@@ -5069,7 +5139,8 @@ msgstr "Nom d'hôte du serveur de VDS : "
 msgid "VPS Server list:"
 msgstr "Liste des serveurs de VDS:"
 
-#: shared/inc/forms/vps.php:160
+#: shared/inc/forms/vps_monitoring.php:160
+#: shared/inc/forms/vps_installation.php:103
 msgid "VPS State: "
 msgstr "État du VPS : "
 
@@ -5080,6 +5151,10 @@ msgstr "Localisation du VDS non sélectionné !"
 #: client/new_account_form.php:546
 msgid "VPS location: "
 msgstr "Localisation du VDS : "
+
+#: shared/inc/forms/vps_monitoring.php:224
+msgid "VPS monitoring alerts email address: "
+msgstr "Adresse email des alertes de monitoring du VPS :"
 
 #: admin/inc/dtc_config.php:200
 msgid "VPS renewal email reminders periodicity"
@@ -5217,21 +5292,21 @@ msgstr "Qui aura les droits de changer les informations du whois (admin contact)
 msgid "Who will own the domain name and will be the registrant (domain owner)?"
 msgstr "Qui sera le propriétaire du nom de domaine (domain owner) ?"
 
-#: shared/inc/draw.php:183
+#: shared/inc/draw.php:201
 msgid "Whois"
 msgstr "Whois"
 
-#: shared/inc/draw.php:394
+#: shared/inc/draw.php:422
 msgid "Whois of:"
 msgstr "Whois de:"
 
-#: shared/inc/draw.php:392
+#: shared/inc/draw.php:420
 msgid "Whois:"
 msgstr "Whois:"
 
 #: shared/inc/fetch.php:39
-#: shared/inc/fetch.php:362
-#: shared/inc/fetch.php:367
+#: shared/inc/fetch.php:365
+#: shared/inc/fetch.php:370
 msgid "Wrong user or password, or timeout expired!"
 msgstr "Mauvais utilisateur ou mot de passe, ou temps d'expiration atteint !"
 
@@ -5268,10 +5343,10 @@ msgstr "Yémen (Répubique du)"
 #: admin/inc/dtc_config.php:1060
 #: admin/inc/dtc_config.php:1089
 #: admin/dtcrm/main.php:161
-#: admin/dtcrm/product_manager.php:73
-#: admin/dtcrm/product_manager.php:131
-#: admin/dtcrm/product_manager.php:189
-#: admin/dtcrm/product_manager.php:232
+#: admin/dtcrm/product_manager.php:78
+#: admin/dtcrm/product_manager.php:141
+#: admin/dtcrm/product_manager.php:204
+#: admin/dtcrm/product_manager.php:252
 #: client/new_account_form.php:587
 #: shared/inc/forms/domain_info.php:73
 #: shared/inc/forms/email.php:236
@@ -5372,19 +5447,23 @@ msgstr "Vous avez assez d'argent sur votre compte pour procéder à l'enregistre
 msgid "You have enough funds on your account to proceed with registration. Press the confirm button to proceed."
 msgstr "Vous avez assez d'argent sur votre compte pour faire l'enregistrement. Cliquez sur le bouton de confirmation pour procéder."
 
+#: shared/inc/forms/vps_installation.php:241
+msgid "You should then install sshd in your VPS and use the physical console only for debugging purposes."
+msgstr "Vous devriez ensuite installer sshd dans votre VPS et utiliser la console physique pour débuger uniquement."
+
 #: admin/inc/dtc_config.php:974
 msgid "Your SRS username:"
 msgstr "Votre nom d'utilisateur SRS :"
 
-#: shared/inc/forms/vps.php:208
+#: shared/inc/forms/vps.php:80
 msgid "Your VPS has expired on the: "
 msgstr "Votre serveur virtuel a expiré le : "
 
-#: shared/inc/forms/vps.php:204
+#: shared/inc/forms/vps.php:76
 msgid "Your VPS was first registered on the: "
 msgstr "Votre serveur virtuel à été enregistré le : "
 
-#: shared/inc/forms/vps.php:211
+#: shared/inc/forms/vps.php:83
 msgid "Your VPS will expire on the: "
 msgstr "Votre serveur virtuel expire le : "
 
@@ -5404,7 +5483,7 @@ msgstr "Vos sous-comptes :"
 msgid "Your current account is "
 msgstr "Votre compte est actuellement "
 
-#: shared/inc/draw.php:430
+#: shared/inc/draw.php:458
 msgid "Your databases"
 msgstr "Vos bases de données"
 
@@ -5523,7 +5602,8 @@ msgstr "Le fichier de zone sera généré a la prochaine tache de cron."
 msgid "aliasing"
 msgstr "alias"
 
-#: shared/inc/forms/vps.php:127
+#: shared/inc/forms/vps_monitoring.php:127
+#: shared/inc/forms/vps_installation.php:70
 msgid "couldn't connect to host"
 msgstr "impossible de se connecté à l'hôte"
 
@@ -5547,7 +5627,7 @@ msgstr "Serveurs eNETS : "
 msgid "eNETS test merchant ID: "
 msgstr "ID marchant de test de eNETS : "
 
-#: shared/inc/fetch.php:454
+#: shared/inc/fetch.php:457
 msgid "either your login and password pair is not valid, either your session expired (timed out)."
 msgstr "soit votre nom d'utilisateur et/ou votre mot de passe ne sont pas valide, soit votre session à expiré (temps d'attente écoulé)."
 
@@ -5556,7 +5636,7 @@ msgstr "soit votre nom d'utilisateur et/ou votre mot de passe ne sont pas valide
 msgid "fetching admin: "
 msgstr "en chargeant l'administrateur : "
 
-#: shared/inc/fetch.php:454
+#: shared/inc/fetch.php:457
 msgid "file"
 msgstr "fichier"
 
@@ -5585,7 +5665,7 @@ msgstr "n'est PAS disponible, le serveur a retourner : "
 msgid "is not same as the one I have in the database"
 msgstr "n'est pas la même chose que ce que j'ai en base de donnée"
 
-#: shared/drawlib/dtc_functions.php:731
+#: shared/drawlib/dtc_functions.php:774
 msgid "kBytes"
 msgstr "kOctets"
 
