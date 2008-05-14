@@ -14,8 +14,84 @@ function drawRenewalTables (){
 	global $pro_mysql_pay_table;
 
 	global $secpayconf_currency_letters;
+	global $rub;
 
 	get_secpay_conf();
+
+	if(isset($_REQUEST["date"])){
+		if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "nuke_payment"){
+			$q = "DELETE FROM $pro_mysql_completedorders_table WHERE id='".$_REQUEST["completedorders_id"]."';";
+			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		}
+		$out = "<h3>"._("Payements for the period: ").$_REQUEST["date"]."</h3>";
+		$q = "SELECT * FROM $pro_mysql_completedorders_table
+		WHERE date LIKE '".$_REQUEST["date"]."%' ORDER BY date;";
+		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n < 1){
+			$out .= _("No past payments for this period") ."<br>";
+		}else{
+			$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
+			<tr><td>"._("Product")."</td><td>". _("Client ID") ."</td><td>". _("Client")."</td><td>". _("Service country")."</td>
+			<td>"._("Client country")."</td>
+			<td>". _("VAT collected")."</td><td>". _("Period")."</td><td>". _("Payment date")."</td><td>"._("Total")."</td>
+			<td>". _("Action") ."</td></tr>";
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				if($a["id_client"] == 0){
+					$client_name = _("No client id");
+					$client_id_txt = _("No client id");
+				}else{
+					$q2 = "SELECT * FROM $pro_mysql_client_table WHERE id='".$a["id_client"]."';";
+					$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+					$n2 = mysql_num_rows($r2);
+					if($n2 != 1){
+						$client_name = _("N/A");
+						$client_id_txt = _("N/A");
+						$client_country = _("N/A");
+					}else{
+						$a2 = mysql_fetch_array($r2);
+						$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
+						$client_id_txt = $a["id_client"];
+						$client_country = $a2["country"];
+					}
+				}
+				$q2 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."';";
+				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 != 1){
+					$product_txt = _("Product not found");
+				}else{
+					$a2 = mysql_fetch_array($r2);
+					$product_txt = $a2["name"];
+					$product_period_size = $a2["period"];
+				}
+				$q2 = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$a["payment_id"]."';";
+				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 != 1){
+					$payment_txt = _("Payment not found");
+					$vat_collected = _("VAT not found");
+				}else{
+					$a2 = mysql_fetch_array($r2);
+					$payment_txt = $a2["paiement_total"]. " " . $a2["currency"];
+					$vat_collected = $a2["paiement_total"] * $a2["vat_rate"] / 100 ;
+				}
+				if($a["last_expiry_date"] == "0000-00-00"){
+					$last_expiry_date = $a["date"];
+				}else{
+					$last_expiry_date = $a["last_expiry_date"];
+				}
+				$new_expiry_date = calculateExpirationDate($last_expiry_date,$product_period_size);
+				$out .= "<tr><td>$product_txt</td><td>$client_id_txt</td><td>$client_name</td><td>".$a["country_code"]."</td>
+				<td>$client_country</td>
+				<td>$vat_collected</td><td>$last_expiry_date -> $new_expiry_date</td><td>".$a["date"]."</td><td>$payment_txt</td>
+				<td><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&date=".$_REQUEST["date"]."&action=nuke_payment&completedorders_id=".$a["id"]."\">"._("Delete")."</a></tr>";
+			}
+			$out .= "</table>";
+		}
+		return $out;
+	}
 
 	$out = "<h3>". _("Total recurring incomes per month:") ."</h3>";
 	// Monthly recurring for shared hosting:
@@ -111,16 +187,43 @@ function drawRenewalTables (){
 	$cur_month = $month;
 	$p_history = "";
 	$p_history .= "<table cellspacing=\"1\" cellpadding=\"1\" border=\"1\">
-	<tr><td>". _("Period") ."</td><td>". _("Amount") ."</td></tr>";
+	<tr><td>". _("Period") ."</td><td>". _("Amount") ."</td><td>"._("VAT collected")."</td><td>"._("Payment gateway cost")."</td><td>"._("Profit")."</td></tr>";
 	for($i=0;$i<13;$i++){
-		$q2 = "SELECT sum(refund_amount) as refund_amount FROM $pro_mysql_completedorders_table,$pro_mysql_pay_table
+		$q2 = "SELECT $pro_mysql_pay_table.paiement_total,$pro_mysql_pay_table.vat_rate,$pro_mysql_pay_table.paiement_cost
+		FROM $pro_mysql_pay_table,$pro_mysql_completedorders_table
+		WHERE $pro_mysql_pay_table.vat_rate!='0.00'
+		AND $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id
+		AND $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."-%';";
+		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		$vat_collected = 0;
+		$month_total = 0;
+		$cost_total = 0;
+		for($j=0;$j<$n2;$j++){
+			$a2 = mysql_fetch_array($r2);
+			$tt = $a2["paiement_total"];
+			$vat = $a2["vat_rate"];
+			$vat_collected += $tt * $vat / 100;
+			$month_total += $tt;
+			$cost_total += $a2["paiement_cost"];
+		}
+
+		$q2 = "SELECT sum(paiement_total) as paiement_total, sum(paiement_cost) as paiement_cost FROM $pro_mysql_completedorders_table,$pro_mysql_pay_table
 		WHERE $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."%'
-		AND $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id";
+		AND $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id
+		AND $pro_mysql_pay_table.vat_rate = '0.00';";
 		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		if($n2 > 0){
 			$a2 = mysql_fetch_array($r2);
-			$p_history .= "<tr><td>".$cur_year."-".$cur_month."</td><td>".$a2["refund_amount"]." $secpayconf_currency_letters</td></tr>";
+			$cost_total += $a2["paiement_cost"];
+			$month_total += $a2["paiement_total"];
+			$profit = $month_total - $cost_total - $vat_collected;
+			$p_history .= "<tr><td style=\"text-align:right;\"><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&date=".$cur_year."-".$cur_month."\">".$cur_year."-".$cur_month."</a></td>
+			<td style=\"text-align:right;\">".$month_total." $secpayconf_currency_letters</td>
+			<td style=\"text-align:right;\">".round($vat_collected,2)." $secpayconf_currency_letters</td>
+			<td style=\"text-align:right;\">".round($cost_total,2)." $secpayconf_currency_letters</td>
+			<td style=\"text-align:right;\">".round($profit,2)." $secpayconf_currency_letters</td></tr>";
 		}
 		$cur_month++;
 		if($cur_month > 12){
@@ -138,7 +241,7 @@ function drawRenewalTables (){
 	<td valign=\"top\">$p_renewal</td></tr></table>";
 
 	$out .= "<h3>". _("Shared hosting renewals:") ."</h3>";
-	$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' ORDER BY expire;";
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' AND expire !='0000-00-00' ORDER BY expire;";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
 	$n = mysql_num_rows($r);
 	if($n < 1){
@@ -208,7 +311,7 @@ function drawRenewalTables (){
 		$out .= _("No VPS expired") ."<br>";
 	}else{
 		$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-		<tr><td>".$a["adm_login"]."</td><td>". _("VPS") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration date") ."</td></tr>";
+		<tr><td>"._("Login")."</td><td>". _("VPS") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration date") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 
@@ -266,6 +369,10 @@ function drawRenewalTables (){
 		}
 		$out .= "</table>";
 	}
+
+
+
 	return $out;
 }
+
 ?>
