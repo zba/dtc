@@ -32,12 +32,6 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 
 	$vps_out = "";
 
-	$vps_out_net_stats = "";
-	$vps_out_hdd_stats = "";
-	$vps_out_swap_stats = "";
-	$vps_out_cpu_stats = "";
-
-
 	// Calculate last month dates
 	$cur_year = date("Y");
 	$cur_month = date("m");
@@ -56,6 +50,16 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 		$tow_month_ago_year = $last_month_year - 1;
 	}else{
 		$tow_month_ago_year = $last_month_year;
+	}
+
+	// Check if the VPS has expired or not
+	$ar = explode("-",$vps["expire_date"]);
+	if(date("Y") > $ar[0] ||
+			(date("Y") == $ar[0] && date("m") > $ar[1]) ||
+			(date("Y") == $ar[0] && date("m") == $ar[1] && date("d") > $ar[2])){
+		$expired = "yes";
+	}else{
+		$expired = "no";
 	}
 
 	// VPS (remote SOAP) Status
@@ -165,9 +169,13 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 </form>";
 		$out .= _("To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first.") ."<br><br>";
 	}else{
-		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\">
+		if($expired == "yes"){
+			$out .= _("You cannot start your VPS if it has expired. Please renew it if you want the boot up (xm start) button to appear here.");
+		}else{
+			$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\">
 <input type=\"submit\" value=\"". _("Boot up (xm start)") ."\">
 </form>";
+		}
 		// FSCK
 		$out .= "<h3>". _("File-system check:") ."</h3><br>";
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"fsck_vps\">
