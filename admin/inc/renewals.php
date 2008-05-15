@@ -18,7 +18,14 @@ function drawRenewalTables (){
 
 	get_secpay_conf();
 
+	// Allow shutdown of expired VPS
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "shutdown_expired_vps"){
+		remoteVPSAction($_REQUEST["server_hostname"],$_REQUEST["vps_name"],"shutdown_vps");
+	}
+
+	// Display of each month payment list
 	if(isset($_REQUEST["date"])){
+		// Allow nuke of bad payment (hackers?) to have accounting done correctly
 		if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "nuke_payment"){
 			$q = "DELETE FROM $pro_mysql_completedorders_table WHERE id='".$_REQUEST["completedorders_id"]."';";
 			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -93,6 +100,7 @@ function drawRenewalTables (){
 		return $out;
 	}
 
+	// Calculation of recuring totals
 	$out = "<h3>". _("Total recurring incomes per month:") ."</h3>";
 	// Monthly recurring for shared hosting:
 	$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
@@ -180,8 +188,8 @@ function drawRenewalTables (){
 	$big_total = $total_shared + $total_vps + $total_dedicated + $total_ssl;
 	$p_renewal .= "<b>". _("Total: ") .round($big_total,2)." $secpayconf_currency_letters</b>";
 
-	# Show a quick history of payments
-	$year = date("Y");
+	// Show a quick history of payments
+/*	$year = date("Y");
 	$month = date("m");
 	$cur_year = $year - 1;
 	$cur_month = $month;
@@ -233,7 +241,7 @@ function drawRenewalTables (){
 		if($cur_month < 10)	$cur_month = "0".$cur_month;
 	}
 	$p_history .= "</table>";
-	
+*/
 
 	// Layout the recuring stat and the effective payment statistics
 	$out .= "<table cellspacing=\"1\" cellpadding=\"4\" border=\"0\">
@@ -270,6 +278,7 @@ function drawRenewalTables (){
 		$out .= "</table>";
 	}
 
+	// List of expired expired SSL IPs
 	$out .= "<h3>". _("SSL IPs renewals") ."</h3>";
 	$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE expire < '".date("Y-m-d")."' AND available='no' ORDER BY expire";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -303,6 +312,7 @@ function drawRenewalTables (){
 		$out .= "</table>";
 	}
 
+	// List if expired VPS
 	$out .= "<h3>". _("VPS renewals:") ."</h3>";
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE expire_date < '".date("Y-m-d")."' ORDER BY expire_date";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -311,7 +321,12 @@ function drawRenewalTables (){
 		$out .= _("No VPS expired") ."<br>";
 	}else{
 		$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-		<tr><td>"._("Login")."</td><td>". _("VPS") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration date") ."</td></tr>";
+		<tr><td>"._("Login")."</td><td>". _("VPS") ."</td>
+		<td>". _("Client") ."</td>
+		<td>". _("Email") ."</td>
+		<td>". _("Expiration date") ."</td>
+		<td>". _("Action") ."</td>
+		</tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 
@@ -332,11 +347,17 @@ function drawRenewalTables (){
 				$a2 = mysql_fetch_array($r2);
 				$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
 			}
-			$out .= "<tr><td>".$a["owner"]."</td><td>".$a["vps_xen_name"].":".$a["vps_server_hostname"]."</td><td>$client_name</td><td>".$a2["email"]."</td><td>".$a["expire_date"]."</td></tr>";
+			$out .= "<tr><td>".$a["owner"]."</td>
+			<td>".$a["vps_xen_name"].":".$a["vps_server_hostname"]."</td>
+			<td>$client_name</td>
+			<td>".$a2["email"]."</td>
+			<td>".$a["expire_date"]."</td>
+			<td><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&action=shutdown_expired_vps&server_hostname=".$a["vps_server_hostname"]."&vps_name=".$a["vps_xen_name"]."\">"._("Shutdown")."</a></td></tr>";
 		}
 		$out .= "</table>";
 	}
 
+	// List expired dedicated servers
 	$out .= "<h3>". _("Dedicated servers renewals") ."</h3>";
 	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE expire_date < '".date("Y-m-d")."' ORDER BY expire_date";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -369,9 +390,6 @@ function drawRenewalTables (){
 		}
 		$out .= "</table>";
 	}
-
-
-
 	return $out;
 }
 

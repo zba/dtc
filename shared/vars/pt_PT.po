@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-09 15:11+0800\n"
+"POT-Creation-Date: 2008-05-15 14:23+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -334,6 +334,7 @@ msgid "Act as backup mail server for the following servers:"
 msgstr ""
 "Actuar como um servidor de backup de DNS para os seguintes servidores :"
 
+#: admin/inc/renewals.php:45 admin/inc/renewals.php:328
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
@@ -532,7 +533,7 @@ msgstr "Ou poderá agora configurar outro dominio :"
 msgid "American Samoa"
 msgstr ""
 
-#: admin/inc/renewals.php:114 shared/securepay/pay_functions.php:35
+#: shared/securepay/pay_functions.php:35
 msgid "Amount"
 msgstr ""
 
@@ -742,7 +743,7 @@ msgstr ""
 msgid "Bolivia"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:169
+#: shared/inc/forms/vps_installation.php:176
 msgid "Boot up (xm start)"
 msgstr ""
 
@@ -927,7 +928,7 @@ msgstr ""
 msgid "Chad"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:224
+#: shared/inc/forms/vps_installation.php:232
 msgid "Change NetBSD kernel"
 msgstr ""
 
@@ -940,7 +941,7 @@ msgid "Check to send a bounce message (vacation): "
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:133
-#: shared/inc/forms/vps_installation.php:76
+#: shared/inc/forms/vps_installation.php:80
 msgid "Checking filesystem..."
 msgstr ""
 
@@ -976,13 +977,24 @@ msgstr "País :"
 msgid "Click"
 msgstr "Clique"
 
-#: admin/inc/renewals.php:148 admin/inc/renewals.php:178
-#: admin/inc/renewals.php:211 admin/inc/renewals.php:245
+#: admin/inc/renewals.php:42 admin/inc/renewals.php:259
+#: admin/inc/renewals.php:290 admin/inc/renewals.php:325
+#: admin/inc/renewals.php:369
 msgid "Client"
 msgstr "Cliente"
 
+#: admin/inc/renewals.php:42
+#, fuzzy
+msgid "Client ID"
+msgstr "ID de Cliente"
+
 #: shared/inc/forms/root_admin.php:124
 msgid "Client ID:"
+msgstr "ID de Cliente"
+
+#: admin/inc/renewals.php:43
+#, fuzzy
+msgid "Client country"
 msgstr "ID de Cliente"
 
 #: client/new_account_form.php:711
@@ -995,8 +1007,8 @@ msgstr "Informação do cliente"
 msgid "Client interface"
 msgstr "ID de Cliente"
 
-#: admin/inc/renewals.php:155 admin/inc/renewals.php:193
-#: admin/inc/renewals.php:227 admin/inc/renewals.php:260
+#: admin/inc/renewals.php:266 admin/inc/renewals.php:305
+#: admin/inc/renewals.php:345 admin/inc/renewals.php:384
 msgid "Client name not found!"
 msgstr ""
 
@@ -1135,7 +1147,7 @@ msgstr ""
 "tarde!"
 
 #: shared/inc/forms/vps_monitoring.php:181
-#: shared/inc/forms/vps_installation.php:124
+#: shared/inc/forms/vps_installation.php:128
 msgid "Could not connect to the VPS SOAP Server."
 msgstr ""
 
@@ -1148,19 +1160,19 @@ msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:126
-#: shared/inc/forms/vps_installation.php:69
+#: shared/inc/forms/vps_installation.php:73
 msgid ""
 "Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
 "not running?"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:130
-#: shared/inc/forms/vps_installation.php:73
+#: shared/inc/forms/vps_installation.php:77
 msgid "Could not get remote status. Unkown error: "
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:128
-#: shared/inc/forms/vps_installation.php:71
+#: shared/inc/forms/vps_installation.php:75
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
@@ -1249,7 +1261,7 @@ msgid "Currency symbol: "
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:210
-#: shared/inc/forms/vps_installation.php:149
+#: shared/inc/forms/vps_installation.php:153
 msgid "Current VPS status:"
 msgstr ""
 
@@ -1257,7 +1269,7 @@ msgstr ""
 msgid "Current contract: "
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:178
+#: shared/inc/forms/vps_installation.php:186
 msgid "Currently installed operating system: "
 msgstr ""
 
@@ -1393,11 +1405,11 @@ msgstr ""
 msgid "Dedicated server expiration dates:"
 msgstr ""
 
-#: admin/inc/renewals.php:237
+#: admin/inc/renewals.php:361
 msgid "Dedicated servers renewals"
 msgstr ""
 
-#: admin/inc/renewals.php:103
+#: admin/inc/renewals.php:187
 msgid "Dedicated servers: "
 msgstr ""
 
@@ -1409,9 +1421,9 @@ msgstr ""
 msgid "Default subdomain: "
 msgstr "Subdominio pre-definido :"
 
-#: admin/inc/draw_user_admin.php:281 admin/inc/draw_user_admin.php:301
-#: shared/inc/forms/database.php:53 shared/inc/forms/database.php:99
-#: shared/inc/forms/domain_stats.php:104
+#: admin/inc/renewals.php:96 admin/inc/draw_user_admin.php:281
+#: admin/inc/draw_user_admin.php:301 shared/inc/forms/database.php:53
+#: shared/inc/forms/database.php:99 shared/inc/forms/domain_stats.php:104
 msgid "Delete"
 msgstr "Remover"
 
@@ -1689,8 +1701,8 @@ msgstr ""
 msgid "El Salvador"
 msgstr ""
 
-#: admin/inc/renewals.php:148 admin/inc/renewals.php:178
-#: admin/inc/renewals.php:211 admin/inc/renewals.php:245
+#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
+#: admin/inc/renewals.php:326 admin/inc/renewals.php:369
 msgid "Email"
 msgstr ""
 
@@ -1794,8 +1806,8 @@ msgstr ""
 msgid "Expiration"
 msgstr "Data de expiração"
 
-#: admin/inc/renewals.php:148 admin/inc/renewals.php:178
-#: admin/inc/renewals.php:211 admin/inc/renewals.php:245
+#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
+#: admin/inc/renewals.php:327 admin/inc/renewals.php:369
 msgid "Expiration date"
 msgstr ""
 
@@ -1885,11 +1897,11 @@ msgstr ""
 msgid "Fiji"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:174
+#: shared/inc/forms/vps_installation.php:182
 msgid "File system check (fsck)"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:172
+#: shared/inc/forms/vps_installation.php:180
 msgid "File-system check:"
 msgstr ""
 
@@ -2013,7 +2025,7 @@ msgstr "Ir para área de e-mail"
 msgid "Go to login"
 msgstr "Ir para o login"
 
-#: shared/inc/forms/vps_installation.php:161
+#: shared/inc/forms/vps_installation.php:165
 msgid "Gracefully shutdown (xm shutdown)"
 msgstr ""
 
@@ -2201,7 +2213,7 @@ msgid "IP address or CNAME: "
 msgstr "Endereço IP"
 
 #: shared/inc/forms/vps_monitoring.php:198
-#: shared/inc/forms/vps_installation.php:138
+#: shared/inc/forms/vps_installation.php:142
 #, fuzzy
 msgid "IP address: "
 msgstr "Endereço IP"
@@ -2211,7 +2223,7 @@ msgid "IP addresses and network"
 msgstr "Endereço de IP e rede"
 
 #: shared/inc/forms/vps_monitoring.php:196
-#: shared/inc/forms/vps_installation.php:136
+#: shared/inc/forms/vps_installation.php:140
 #, fuzzy
 msgid "IP addresses: "
 msgstr "Endereço IP"
@@ -2292,7 +2304,7 @@ msgstr ""
 "Caso queira manter o seu actual Registar, queira fazer as seguintes "
 "alterações de DNS :"
 
-#: shared/inc/forms/vps_installation.php:164
+#: shared/inc/forms/vps_installation.php:168
 msgid "Immediate kill (xm destroy)"
 msgstr ""
 
@@ -2396,7 +2408,7 @@ msgstr ""
 msgid "Installation"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:273
+#: shared/inc/forms/vps_installation.php:281
 msgid "Installation log (last 20 lines):"
 msgstr ""
 
@@ -2519,7 +2531,7 @@ msgid "Lao People's Democratic Republic"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:176
-#: shared/inc/forms/vps_installation.php:119
+#: shared/inc/forms/vps_installation.php:123
 #, fuzzy
 msgid "Last boot date: "
 msgstr "Lista de base de dados:"
@@ -2680,18 +2692,18 @@ msgstr ""
 msgid "Location of user's database: "
 msgstr "Lista de base de dados:"
 
-#: admin/inc/renewals.php:148 admin/inc/renewals.php:178
-#: admin/inc/renewals.php:245 admin/inc/draw_user_admin.php:237
-#: admin/inc/draw_user_admin.php:295 admin/inc/draw_user_admin.php:314
-#: admin/inc/draw_user_admin.php:400 admin/inc/dtc_config.php:257
-#: admin/inc/dtc_config.php:836 admin/inc/dtc_config.php:863
-#: admin/inc/dtc_config.php:888 admin/inc/dtc_config.php:915
-#: admin/inc/dtc_config.php:940 shared/inc/forms/email.php:27
-#: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:24
-#: shared/gfx/skin/default_layout.php:34 shared/gfx/skin/default_layout.php:63
-#: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:53
-#: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:253
-#: shared/gfx/skin/bwoup/layout.php:262
+#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
+#: admin/inc/renewals.php:324 admin/inc/renewals.php:369
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
+#: admin/inc/dtc_config.php:257 admin/inc/dtc_config.php:836
+#: admin/inc/dtc_config.php:863 admin/inc/dtc_config.php:888
+#: admin/inc/dtc_config.php:915 admin/inc/dtc_config.php:940
+#: shared/inc/forms/email.php:27 shared/inc/forms/reseller.php:24
+#: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
+#: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
+#: shared/gfx/skin/bwoup/layout.php:53 shared/gfx/skin/bwoup/layout.php:61
+#: shared/gfx/skin/bwoup/layout.php:253 shared/gfx/skin/bwoup/layout.php:262
 msgid "Login"
 msgstr ""
 
@@ -2905,7 +2917,7 @@ msgid "Max mail memory size:"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:150
-#: shared/inc/forms/vps_installation.php:93
+#: shared/inc/forms/vps_installation.php:97
 msgid "Max memory: "
 msgstr ""
 
@@ -2914,7 +2926,7 @@ msgid "Maximum number of lists reached"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:152
-#: shared/inc/forms/vps_installation.php:95
+#: shared/inc/forms/vps_installation.php:99
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
@@ -2936,12 +2948,12 @@ msgid "Memory and Swap Usage "
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:147
-#: shared/inc/forms/vps_installation.php:90
+#: shared/inc/forms/vps_installation.php:94
 msgid "Memory: "
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:125
-#: shared/inc/forms/vps_installation.php:68
+#: shared/inc/forms/vps_installation.php:72
 msgid "Method getVPSState failed"
 msgstr ""
 
@@ -3031,6 +3043,11 @@ msgstr ""
 msgid "Myanmar"
 msgstr ""
 
+#: admin/inc/renewals.php:56 admin/inc/renewals.php:57
+#: admin/inc/renewals.php:58
+msgid "N/A"
+msgstr ""
+
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
 msgstr "FICHEIROS DAS ZONAS DE DNS"
@@ -3078,7 +3095,7 @@ msgid "Name:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1126 shared/inc/forms/vps_monitoring.php:143
-#: shared/inc/forms/vps_installation.php:86
+#: shared/inc/forms/vps_installation.php:90
 #, fuzzy
 msgid "Name: "
 msgstr "Primeiro Nome :"
@@ -3165,11 +3182,11 @@ msgstr "Nova conta de ftp : "
 msgid "New SSH account:"
 msgstr "Nova conta de ssh:"
 
-#: shared/inc/forms/vps_installation.php:238
+#: shared/inc/forms/vps_installation.php:246
 msgid "New SSH key: "
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:235
+#: shared/inc/forms/vps_installation.php:243
 #, fuzzy
 msgid "New SSH password: "
 msgstr "Alterar palavra chave:"
@@ -3255,7 +3272,7 @@ msgstr ""
 msgid "No"
 msgstr "Não"
 
-#: admin/inc/renewals.php:175
+#: admin/inc/renewals.php:287
 msgid "No SSL IP expired"
 msgstr ""
 
@@ -3263,7 +3280,7 @@ msgstr ""
 msgid "No SSL token available: contact your administrator to request it."
 msgstr ""
 
-#: admin/inc/renewals.php:208
+#: admin/inc/renewals.php:321
 msgid "No VPS expired"
 msgstr ""
 
@@ -3275,11 +3292,16 @@ msgstr ""
 msgid "No catch-all"
 msgstr ""
 
+#: admin/inc/renewals.php:49 admin/inc/renewals.php:50
+#, fuzzy
+msgid "No client id"
+msgstr "Informação do cliente"
+
 #: shared/inc/forms/invoices.php:52
 msgid "No completed orders found."
 msgstr ""
 
-#: admin/inc/renewals.php:242
+#: admin/inc/renewals.php:366
 msgid "No dedicated server expired"
 msgstr ""
 
@@ -3293,6 +3315,10 @@ msgstr ""
 
 #: shared/inc/forms/domain_info.php:85
 msgid "No parking"
+msgstr ""
+
+#: admin/inc/renewals.php:39
+msgid "No past payments for this period"
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:262
@@ -3311,7 +3337,7 @@ msgstr ""
 msgid "No product"
 msgstr ""
 
-#: admin/inc/renewals.php:145
+#: admin/inc/renewals.php:256
 msgid "No shared account expired."
 msgstr ""
 
@@ -3380,13 +3406,13 @@ msgid "Now you can go to check its configuration by clicking here:"
 msgstr "Poderá agora verificar a sua configuração clicando aqui :"
 
 #: shared/inc/forms/vps_monitoring.php:155
-#: shared/inc/forms/vps_installation.php:98
+#: shared/inc/forms/vps_installation.php:102
 #, fuzzy
 msgid "Number of CPU: "
 msgstr "Número de base de dados:"
 
 #: shared/inc/forms/vps_monitoring.php:157
-#: shared/inc/forms/vps_installation.php:100
+#: shared/inc/forms/vps_installation.php:104
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
@@ -3441,7 +3467,7 @@ msgstr "Ajuda on-line para DTC"
 msgid "Open"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:197
+#: shared/inc/forms/vps_installation.php:205
 msgid "Operating system type not supported"
 msgstr ""
 
@@ -3639,11 +3665,15 @@ msgstr "Taxa fixa do Paypal :"
 msgid "PayPal test account email (sandbox): "
 msgstr "E-mail da conta de teste Paypal (sandbox) :"
 
+#: admin/inc/renewals.php:33
+msgid "Payements for the period: "
+msgstr ""
+
 #: shared/dtcrm/draw_adddomain.php:241
 msgid "Payment complete. Proceed to checkout"
 msgstr "Pagamento efectuado, deixe me efectuar a ultima validação."
 
-#: admin/inc/draw_user_admin.php:314
+#: admin/inc/renewals.php:44 admin/inc/draw_user_admin.php:314
 #, fuzzy
 msgid "Payment date"
 msgstr "Gateway de pagamento"
@@ -3657,6 +3687,11 @@ msgstr "Gateway de pagamento"
 msgid "Payment gateway cost"
 msgstr "Gateway de pagamento"
 
+#: admin/inc/renewals.php:80
+#, fuzzy
+msgid "Payment not found"
+msgstr "Gateway de pagamento"
+
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Payment system"
@@ -3667,7 +3702,7 @@ msgstr "Gateway de pagamento"
 msgid "Pending"
 msgstr ""
 
-#: admin/inc/renewals.php:114 admin/dtcrm/product_manager.php:36
+#: admin/inc/renewals.php:44 admin/dtcrm/product_manager.php:36
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:172
 #: admin/dtcrm/product_manager.php:235 shared/dtcrm/draw.php:80
 msgid "Period"
@@ -3692,7 +3727,7 @@ msgstr "Numero de telefone :"
 msgid "Phone number: "
 msgstr "Numero de telefone :"
 
-#: shared/inc/forms/vps_installation.php:230
+#: shared/inc/forms/vps_installation.php:238
 msgid "Physical console last display and ssh access:"
 msgstr ""
 
@@ -3740,11 +3775,11 @@ msgstr "Por favor selecione 3 contactos para usar no registo desse dominio."
 msgid "Please tell us if the following is not correct:"
 msgstr "Por favor verifique se os seguintes dados não estão correctos :"
 
-#: shared/inc/forms/vps_installation.php:155
+#: shared/inc/forms/vps_installation.php:159
 msgid "Please wait until file system check is finished first."
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:157
+#: shared/inc/forms/vps_installation.php:161
 msgid "Please wait until operating system reinstallation has completed."
 msgstr ""
 
@@ -3798,9 +3833,10 @@ msgstr "Proceder ao registo do dominio"
 msgid "Proceed to transfer"
 msgstr "Efectuar a tranferência"
 
-#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
-#: client/new_account_form.php:541 shared/dtcrm/draw.php:79
-#: shared/inc/forms/invoices.php:23 shared/inc/forms/root_admin.php:565
+#: admin/inc/renewals.php:42 admin/inc/draw_user_admin.php:237
+#: admin/inc/draw_user_admin.php:314 client/new_account_form.php:541
+#: shared/dtcrm/draw.php:79 shared/inc/forms/invoices.php:23
+#: shared/inc/forms/root_admin.php:565
 msgid "Product"
 msgstr "Produto"
 
@@ -3825,6 +3861,11 @@ msgstr ""
 #: admin/dtcrm/product_manager.php:31
 #, fuzzy
 msgid "Product name"
+msgstr "ID do produto:"
+
+#: admin/inc/renewals.php:70
+#, fuzzy
+msgid "Product not found"
 msgstr "ID do produto:"
 
 #: client/new_account_form.php:49
@@ -3966,16 +4007,16 @@ msgstr "Registo de dominio"
 msgid "Registry selection"
 msgstr "Registo de dominio"
 
-#: shared/inc/forms/vps_installation.php:207
+#: shared/inc/forms/vps_installation.php:215
 msgid "Reinstall operating system"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:177
+#: shared/inc/forms/vps_installation.php:185
 msgid "Reinstall operating system:"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:135
-#: shared/inc/forms/vps_installation.php:78
+#: shared/inc/forms/vps_installation.php:82
 msgid "Reinstalling operating system..."
 msgstr ""
 
@@ -4144,11 +4185,11 @@ msgstr ""
 msgid "SSL IPs addresses"
 msgstr ""
 
-#: admin/inc/renewals.php:170
+#: admin/inc/renewals.php:282
 msgid "SSL IPs renewals"
 msgstr ""
 
-#: admin/inc/renewals.php:101
+#: admin/inc/renewals.php:185
 msgid "SSL IPs renewals: "
 msgstr ""
 
@@ -4283,7 +4324,7 @@ msgstr "Geral"
 msgid "Serbia"
 msgstr ""
 
-#: admin/inc/renewals.php:245
+#: admin/inc/renewals.php:369
 #, fuzzy
 msgid "Server"
 msgstr "Endereço do Servidor de DNS primário :"
@@ -4351,7 +4392,7 @@ msgstr "Estatísticas"
 msgid "Server:"
 msgstr "Endereço do Servidor de DNS primário :"
 
-#: admin/inc/dtc_config.php:1392
+#: admin/inc/renewals.php:42 admin/inc/dtc_config.php:1392
 msgid "Service country"
 msgstr ""
 
@@ -4372,11 +4413,11 @@ msgstr ""
 msgid "Shared"
 msgstr ""
 
-#: admin/inc/renewals.php:140
+#: admin/inc/renewals.php:251
 msgid "Shared hosting renewals:"
 msgstr ""
 
-#: admin/inc/renewals.php:100
+#: admin/inc/renewals.php:184
 msgid "Shared hosting: "
 msgstr ""
 
@@ -4384,6 +4425,11 @@ msgstr ""
 #, fuzzy
 msgid "Short name: "
 msgstr "Primeiro Nome :"
+
+#: admin/inc/renewals.php:355
+#, fuzzy
+msgid "Shutdown"
+msgstr "Subdominios :"
 
 #: admin/inc/dtc_config.php:221
 msgid "Shutdown warning: "
@@ -4435,7 +4481,7 @@ msgstr ""
 msgid "Sri Lanka"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:153
+#: shared/inc/forms/vps_installation.php:157
 msgid "Start and stop of your VPS:"
 msgstr ""
 
@@ -4455,7 +4501,7 @@ msgid "State: "
 msgstr "Destrito :"
 
 #: shared/inc/forms/vps_monitoring.php:162
-#: shared/inc/forms/vps_installation.php:105
+#: shared/inc/forms/vps_installation.php:109
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
@@ -4849,7 +4895,7 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:240
+#: shared/inc/forms/vps_installation.php:248
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
@@ -4861,7 +4907,7 @@ msgid ""
 "setup some VPS products."
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:166
+#: shared/inc/forms/vps_installation.php:170
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
@@ -4892,7 +4938,7 @@ msgstr ""
 msgid "Tonga"
 msgstr "Tráfego total"
 
-#: shared/securepay/pay_functions.php:35
+#: admin/inc/renewals.php:44 shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Total"
 msgstr "Tráfego total"
@@ -4916,7 +4962,7 @@ msgstr "Uso total de disco :"
 msgid "Total price: "
 msgstr "Preço total : "
 
-#: admin/inc/renewals.php:20
+#: admin/inc/renewals.php:104
 msgid "Total recurring incomes per month:"
 msgstr ""
 
@@ -4934,7 +4980,7 @@ msgstr "Tráfego total usado este mês (byte):"
 msgid "Total transfered bytes this month:"
 msgstr "Tráfego total usado este mês (byte):"
 
-#: admin/inc/renewals.php:105
+#: admin/inc/renewals.php:189
 msgid "Total: "
 msgstr ""
 
@@ -5060,7 +5106,7 @@ msgid "Unsubscribe:"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:175
-#: shared/inc/forms/vps_installation.php:118
+#: shared/inc/forms/vps_installation.php:122
 msgid "Up time: "
 msgstr ""
 
@@ -5257,6 +5303,14 @@ msgstr ""
 msgid "VAT Number: "
 msgstr ""
 
+#: admin/inc/renewals.php:44
+msgid "VAT collected"
+msgstr ""
+
+#: admin/inc/renewals.php:81
+msgid "VAT not found"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1318
 msgid "VAT number:"
 msgstr ""
@@ -5275,11 +5329,11 @@ msgid "VERP:"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:139
-#: shared/inc/forms/vps_installation.php:82
+#: shared/inc/forms/vps_installation.php:86
 msgid "VM id: "
 msgstr ""
 
-#: admin/inc/renewals.php:211
+#: admin/inc/renewals.php:324
 msgid "VPS"
 msgstr ""
 
@@ -5309,7 +5363,7 @@ msgid "VPS Server list:"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:160
-#: shared/inc/forms/vps_installation.php:103
+#: shared/inc/forms/vps_installation.php:107
 #, fuzzy
 msgid "VPS State: "
 msgstr "Destrito :"
@@ -5331,7 +5385,7 @@ msgstr ""
 msgid "VPS renewal email reminders periodicity"
 msgstr ""
 
-#: admin/inc/renewals.php:203
+#: admin/inc/renewals.php:316
 msgid "VPS renewals:"
 msgstr ""
 
@@ -5343,7 +5397,7 @@ msgstr ""
 msgid "VPS xen number"
 msgstr ""
 
-#: admin/inc/renewals.php:102
+#: admin/inc/renewals.php:186
 msgid "VPS: "
 msgstr ""
 
@@ -5546,6 +5600,12 @@ msgid ""
 "For more informations go to mlmmj official web site at http://mlmmj.mmj.dk"
 msgstr ""
 
+#: shared/inc/forms/vps_installation.php:173
+msgid ""
+"You cannot start your VPS if it has expired. Please renew it if you want the "
+"boot up (xm start) button to appear here."
+msgstr ""
+
 #: shared/dtcrm/draw_adddomain.php:59
 msgid ""
 "You curently don't have enough privileges to add domain names. If you often "
@@ -5611,7 +5671,7 @@ msgstr ""
 "Você tem credito suficente para efectuar o pagamento. Tem de confirmar o "
 "pedido clicando no botão de confirmação."
 
-#: shared/inc/forms/vps_installation.php:241
+#: shared/inc/forms/vps_installation.php:249
 msgid ""
 "You should then install sshd in your VPS and use the physical console only "
 "for debugging purposes."
@@ -5772,7 +5832,7 @@ msgid "aliasing"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:127
-#: shared/inc/forms/vps_installation.php:70
+#: shared/inc/forms/vps_installation.php:74
 msgid "couldn't connect to host"
 msgstr ""
 

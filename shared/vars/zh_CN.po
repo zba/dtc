@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-09 15:11+0800\n"
+"POT-Creation-Date: 2008-05-15 14:23+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -328,6 +328,7 @@ msgstr "对下列服务器作为备份DNS服务器:"
 msgid "Act as backup mail server for the following servers:"
 msgstr "对下列服务器作为备份邮件服务器:"
 
+#: admin/inc/renewals.php:45 admin/inc/renewals.php:328
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
@@ -528,7 +529,7 @@ msgstr "或者您可以添加另外一个域名："
 msgid "American Samoa"
 msgstr ""
 
-#: admin/inc/renewals.php:114 shared/securepay/pay_functions.php:35
+#: shared/securepay/pay_functions.php:35
 msgid "Amount"
 msgstr ""
 
@@ -735,7 +736,7 @@ msgstr ""
 msgid "Bolivia"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:169
+#: shared/inc/forms/vps_installation.php:176
 msgid "Boot up (xm start)"
 msgstr "启动(xm start)"
 
@@ -924,7 +925,7 @@ msgstr ""
 msgid "Chad"
 msgstr "共享"
 
-#: shared/inc/forms/vps_installation.php:224
+#: shared/inc/forms/vps_installation.php:232
 msgid "Change NetBSD kernel"
 msgstr "更改NetBSD内核"
 
@@ -938,7 +939,7 @@ msgid "Check to send a bounce message (vacation): "
 msgstr "检查是否发送一封弹回邮件："
 
 #: shared/inc/forms/vps_monitoring.php:133
-#: shared/inc/forms/vps_installation.php:76
+#: shared/inc/forms/vps_installation.php:80
 msgid "Checking filesystem..."
 msgstr "检查文件系统..."
 
@@ -974,14 +975,25 @@ msgstr "国家："
 msgid "Click"
 msgstr "点击"
 
-#: admin/inc/renewals.php:148 admin/inc/renewals.php:178
-#: admin/inc/renewals.php:211 admin/inc/renewals.php:245
+#: admin/inc/renewals.php:42 admin/inc/renewals.php:259
+#: admin/inc/renewals.php:290 admin/inc/renewals.php:325
+#: admin/inc/renewals.php:369
 msgid "Client"
 msgstr "客户"
+
+#: admin/inc/renewals.php:42
+#, fuzzy
+msgid "Client ID"
+msgstr "客户ID："
 
 #: shared/inc/forms/root_admin.php:124
 msgid "Client ID:"
 msgstr "客户ID："
+
+#: admin/inc/renewals.php:43
+#, fuzzy
+msgid "Client country"
+msgstr "用户界面"
 
 #: client/new_account_form.php:711
 msgid "Client info"
@@ -992,8 +1004,8 @@ msgstr "客户信息"
 msgid "Client interface"
 msgstr "用户界面"
 
-#: admin/inc/renewals.php:155 admin/inc/renewals.php:193
-#: admin/inc/renewals.php:227 admin/inc/renewals.php:260
+#: admin/inc/renewals.php:266 admin/inc/renewals.php:305
+#: admin/inc/renewals.php:345 admin/inc/renewals.php:384
 #, fuzzy
 msgid "Client name not found!"
 msgstr "没有找到相关的客户名称！"
@@ -1131,7 +1143,7 @@ msgid ""
 msgstr "无法连接到域名注册服务器：请稍候再试！"
 
 #: shared/inc/forms/vps_monitoring.php:181
-#: shared/inc/forms/vps_installation.php:124
+#: shared/inc/forms/vps_installation.php:128
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "无法连接到SOAP服务器。"
 
@@ -1144,7 +1156,7 @@ msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:126
-#: shared/inc/forms/vps_installation.php:69
+#: shared/inc/forms/vps_installation.php:73
 msgid ""
 "Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
 "not running?"
@@ -1152,12 +1164,12 @@ msgstr ""
 "无法得到远程主机的运行状态(函数getVPSState()运行失败)。可能VPS没有运行..."
 
 #: shared/inc/forms/vps_monitoring.php:130
-#: shared/inc/forms/vps_installation.php:73
+#: shared/inc/forms/vps_installation.php:77
 msgid "Could not get remote status. Unkown error: "
 msgstr "无法得到远程主机的运行状态：未知的错误。"
 
 #: shared/inc/forms/vps_monitoring.php:128
-#: shared/inc/forms/vps_installation.php:71
+#: shared/inc/forms/vps_installation.php:75
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
@@ -1249,7 +1261,7 @@ msgid "Currency symbol: "
 msgstr "货币标记："
 
 #: shared/inc/forms/vps_monitoring.php:210
-#: shared/inc/forms/vps_installation.php:149
+#: shared/inc/forms/vps_installation.php:153
 msgid "Current VPS status:"
 msgstr "当前VPS状态："
 
@@ -1257,7 +1269,7 @@ msgstr "当前VPS状态："
 msgid "Current contract: "
 msgstr "当前的合同："
 
-#: shared/inc/forms/vps_installation.php:178
+#: shared/inc/forms/vps_installation.php:186
 msgid "Currently installed operating system: "
 msgstr ""
 
@@ -1392,11 +1404,11 @@ msgstr "独立主机合同："
 msgid "Dedicated server expiration dates:"
 msgstr "独立主机过期时间："
 
-#: admin/inc/renewals.php:237
+#: admin/inc/renewals.php:361
 msgid "Dedicated servers renewals"
 msgstr "独立主机更新"
 
-#: admin/inc/renewals.php:103
+#: admin/inc/renewals.php:187
 msgid "Dedicated servers: "
 msgstr "独立主机："
 
@@ -1408,9 +1420,9 @@ msgstr "公司的默认发票："
 msgid "Default subdomain: "
 msgstr "默认子域名："
 
-#: admin/inc/draw_user_admin.php:281 admin/inc/draw_user_admin.php:301
-#: shared/inc/forms/database.php:53 shared/inc/forms/database.php:99
-#: shared/inc/forms/domain_stats.php:104
+#: admin/inc/renewals.php:96 admin/inc/draw_user_admin.php:281
+#: admin/inc/draw_user_admin.php:301 shared/inc/forms/database.php:53
+#: shared/inc/forms/database.php:99 shared/inc/forms/domain_stats.php:104
 msgid "Delete"
 msgstr "删除"
 
@@ -1686,8 +1698,8 @@ msgstr ""
 msgid "El Salvador"
 msgstr ""
 
-#: admin/inc/renewals.php:148 admin/inc/renewals.php:178
-#: admin/inc/renewals.php:211 admin/inc/renewals.php:245
+#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
+#: admin/inc/renewals.php:326 admin/inc/renewals.php:369
 #, fuzzy
 msgid "Email"
 msgstr "邮箱地址"
@@ -1793,8 +1805,8 @@ msgstr ""
 msgid "Expiration"
 msgstr "期满"
 
-#: admin/inc/renewals.php:148 admin/inc/renewals.php:178
-#: admin/inc/renewals.php:211 admin/inc/renewals.php:245
+#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
+#: admin/inc/renewals.php:327 admin/inc/renewals.php:369
 msgid "Expiration date"
 msgstr "过期时间"
 
@@ -1885,11 +1897,11 @@ msgstr ""
 msgid "Fiji"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:174
+#: shared/inc/forms/vps_installation.php:182
 msgid "File system check (fsck)"
 msgstr "文件系统检查(fsck)"
 
-#: shared/inc/forms/vps_installation.php:172
+#: shared/inc/forms/vps_installation.php:180
 msgid "File-system check:"
 msgstr "文件系统检查："
 
@@ -2015,7 +2027,7 @@ msgstr "进入邮箱控制台"
 msgid "Go to login"
 msgstr "登陆"
 
-#: shared/inc/forms/vps_installation.php:161
+#: shared/inc/forms/vps_installation.php:165
 msgid "Gracefully shutdown (xm shutdown)"
 msgstr "安全关闭(xm shutdown)"
 
@@ -2206,7 +2218,7 @@ msgid "IP address or CNAME: "
 msgstr "IP地址或CNAME: "
 
 #: shared/inc/forms/vps_monitoring.php:198
-#: shared/inc/forms/vps_installation.php:138
+#: shared/inc/forms/vps_installation.php:142
 msgid "IP address: "
 msgstr "IP地址："
 
@@ -2215,7 +2227,7 @@ msgid "IP addresses and network"
 msgstr "设置网络参数"
 
 #: shared/inc/forms/vps_monitoring.php:196
-#: shared/inc/forms/vps_installation.php:136
+#: shared/inc/forms/vps_installation.php:140
 msgid "IP addresses: "
 msgstr "IP地址："
 
@@ -2303,7 +2315,7 @@ msgid ""
 "to these DNS:"
 msgstr "如果您希望保留现有的注册，您必须在下列 DNS 登记您的 whois 信息"
 
-#: shared/inc/forms/vps_installation.php:164
+#: shared/inc/forms/vps_installation.php:168
 msgid "Immediate kill (xm destroy)"
 msgstr "立即销毁(xm destroy)"
 
@@ -2419,7 +2431,7 @@ msgstr "安装"
 msgid "Installation"
 msgstr "安装"
 
-#: shared/inc/forms/vps_installation.php:273
+#: shared/inc/forms/vps_installation.php:281
 msgid "Installation log (last 20 lines):"
 msgstr ""
 
@@ -2545,7 +2557,7 @@ msgid "Lao People's Democratic Republic"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:176
-#: shared/inc/forms/vps_installation.php:119
+#: shared/inc/forms/vps_installation.php:123
 msgid "Last boot date: "
 msgstr "上次启动日期："
 
@@ -2707,18 +2719,18 @@ msgstr "位置"
 msgid "Location of user's database: "
 msgstr "用户数据库的位置："
 
-#: admin/inc/renewals.php:148 admin/inc/renewals.php:178
-#: admin/inc/renewals.php:245 admin/inc/draw_user_admin.php:237
-#: admin/inc/draw_user_admin.php:295 admin/inc/draw_user_admin.php:314
-#: admin/inc/draw_user_admin.php:400 admin/inc/dtc_config.php:257
-#: admin/inc/dtc_config.php:836 admin/inc/dtc_config.php:863
-#: admin/inc/dtc_config.php:888 admin/inc/dtc_config.php:915
-#: admin/inc/dtc_config.php:940 shared/inc/forms/email.php:27
-#: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:24
-#: shared/gfx/skin/default_layout.php:34 shared/gfx/skin/default_layout.php:63
-#: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:53
-#: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:253
-#: shared/gfx/skin/bwoup/layout.php:262
+#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
+#: admin/inc/renewals.php:324 admin/inc/renewals.php:369
+#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
+#: admin/inc/dtc_config.php:257 admin/inc/dtc_config.php:836
+#: admin/inc/dtc_config.php:863 admin/inc/dtc_config.php:888
+#: admin/inc/dtc_config.php:915 admin/inc/dtc_config.php:940
+#: shared/inc/forms/email.php:27 shared/inc/forms/reseller.php:24
+#: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
+#: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
+#: shared/gfx/skin/bwoup/layout.php:53 shared/gfx/skin/bwoup/layout.php:61
+#: shared/gfx/skin/bwoup/layout.php:253 shared/gfx/skin/bwoup/layout.php:262
 msgid "Login"
 msgstr "登陆"
 
@@ -2935,7 +2947,7 @@ msgid "Max mail memory size:"
 msgstr "邮件系统可使用的最大内存空间："
 
 #: shared/inc/forms/vps_monitoring.php:150
-#: shared/inc/forms/vps_installation.php:93
+#: shared/inc/forms/vps_installation.php:97
 msgid "Max memory: "
 msgstr "最大内存："
 
@@ -2944,7 +2956,7 @@ msgid "Maximum number of lists reached"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:152
-#: shared/inc/forms/vps_installation.php:95
+#: shared/inc/forms/vps_installation.php:99
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr "最大内存：无法得知(可能正在起动？)"
 
@@ -2966,12 +2978,12 @@ msgid "Memory and Swap Usage "
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:147
-#: shared/inc/forms/vps_installation.php:90
+#: shared/inc/forms/vps_installation.php:94
 msgid "Memory: "
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:125
-#: shared/inc/forms/vps_installation.php:68
+#: shared/inc/forms/vps_installation.php:72
 msgid "Method getVPSState failed"
 msgstr ""
 
@@ -3063,6 +3075,11 @@ msgstr ""
 msgid "Myanmar"
 msgstr ""
 
+#: admin/inc/renewals.php:56 admin/inc/renewals.php:57
+#: admin/inc/renewals.php:58
+msgid "N/A"
+msgstr ""
+
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
 msgstr "域名配置文件"
@@ -3110,7 +3127,7 @@ msgid "Name:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1126 shared/inc/forms/vps_monitoring.php:143
-#: shared/inc/forms/vps_installation.php:86
+#: shared/inc/forms/vps_installation.php:90
 #, fuzzy
 msgid "Name: "
 msgstr "昵称"
@@ -3196,11 +3213,11 @@ msgstr "新的FTP帐户："
 msgid "New SSH account:"
 msgstr "新的SSH帐户："
 
-#: shared/inc/forms/vps_installation.php:238
+#: shared/inc/forms/vps_installation.php:246
 msgid "New SSH key: "
 msgstr "新的 SSH 密钥："
 
-#: shared/inc/forms/vps_installation.php:235
+#: shared/inc/forms/vps_installation.php:243
 msgid "New SSH password: "
 msgstr "新的 SSH 密码："
 
@@ -3285,7 +3302,7 @@ msgstr ""
 msgid "No"
 msgstr "否"
 
-#: admin/inc/renewals.php:175
+#: admin/inc/renewals.php:287
 #, fuzzy
 msgid "No SSL IP expired"
 msgstr "没有已过期的SSL IP"
@@ -3294,7 +3311,7 @@ msgstr "没有已过期的SSL IP"
 msgid "No SSL token available: contact your administrator to request it."
 msgstr ""
 
-#: admin/inc/renewals.php:208
+#: admin/inc/renewals.php:321
 msgid "No VPS expired"
 msgstr "没有已过期的VPS"
 
@@ -3306,11 +3323,16 @@ msgstr "不存档："
 msgid "No catch-all"
 msgstr "禁止使用无限别名功能"
 
+#: admin/inc/renewals.php:49 admin/inc/renewals.php:50
+#, fuzzy
+msgid "No client id"
+msgstr "客户信息"
+
 #: shared/inc/forms/invoices.php:52
 msgid "No completed orders found."
 msgstr ""
 
-#: admin/inc/renewals.php:242
+#: admin/inc/renewals.php:366
 msgid "No dedicated server expired"
 msgstr "没有已过期的独立主机"
 
@@ -3325,6 +3347,10 @@ msgstr "不使用get-N功能："
 #: shared/inc/forms/domain_info.php:85
 msgid "No parking"
 msgstr "禁止域名停放"
+
+#: admin/inc/renewals.php:39
+msgid "No past payments for this period"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:262
 msgid "No pay ID!"
@@ -3342,7 +3368,7 @@ msgstr "没有未决的？！"
 msgid "No product"
 msgstr "没有产品"
 
-#: admin/inc/renewals.php:145
+#: admin/inc/renewals.php:256
 msgid "No shared account expired."
 msgstr "没有已过期的共享主机账号。"
 
@@ -3411,12 +3437,12 @@ msgid "Now you can go to check its configuration by clicking here:"
 msgstr "点击这里，您可以检查域名的配置："
 
 #: shared/inc/forms/vps_monitoring.php:155
-#: shared/inc/forms/vps_installation.php:98
+#: shared/inc/forms/vps_installation.php:102
 msgid "Number of CPU: "
 msgstr "CPU个数："
 
 #: shared/inc/forms/vps_monitoring.php:157
-#: shared/inc/forms/vps_installation.php:100
+#: shared/inc/forms/vps_installation.php:104
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
 msgstr "CPU个数：无法得知(可能正在起动？)"
 
@@ -3471,7 +3497,7 @@ msgstr "DTC在线帮助文档"
 msgid "Open"
 msgstr "开放"
 
-#: shared/inc/forms/vps_installation.php:197
+#: shared/inc/forms/vps_installation.php:205
 msgid "Operating system type not supported"
 msgstr "目前不支持该操作系统"
 
@@ -3673,11 +3699,15 @@ msgstr "月租："
 msgid "PayPal test account email (sandbox): "
 msgstr "贝宝测试服务器账号(邮件地址形式)："
 
+#: admin/inc/renewals.php:33
+msgid "Payements for the period: "
+msgstr ""
+
 #: shared/dtcrm/draw_adddomain.php:241
 msgid "Payment complete. Proceed to checkout"
 msgstr "付款完毕，正在校验"
 
-#: admin/inc/draw_user_admin.php:314
+#: admin/inc/renewals.php:44 admin/inc/draw_user_admin.php:314
 msgid "Payment date"
 msgstr "付款日期"
 
@@ -3690,6 +3720,11 @@ msgstr "设置付款接口"
 msgid "Payment gateway cost"
 msgstr "设置付款接口"
 
+#: admin/inc/renewals.php:80
+#, fuzzy
+msgid "Payment not found"
+msgstr "没有找到相关的类型！"
+
 #: shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Payment system"
@@ -3700,7 +3735,7 @@ msgstr "付款日期"
 msgid "Pending"
 msgstr ""
 
-#: admin/inc/renewals.php:114 admin/dtcrm/product_manager.php:36
+#: admin/inc/renewals.php:44 admin/dtcrm/product_manager.php:36
 #: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:172
 #: admin/dtcrm/product_manager.php:235 shared/dtcrm/draw.php:80
 msgid "Period"
@@ -3726,7 +3761,7 @@ msgstr "电话号码："
 msgid "Phone number: "
 msgstr "电话号码："
 
-#: shared/inc/forms/vps_installation.php:230
+#: shared/inc/forms/vps_installation.php:238
 msgid "Physical console last display and ssh access:"
 msgstr "SSH登陆情况与控制台最后一次的显示："
 
@@ -3774,11 +3809,11 @@ msgstr "请选择三个您希望用来注册这个域名的联系人。"
 msgid "Please tell us if the following is not correct:"
 msgstr "请告诉我们下列信息是否正确："
 
-#: shared/inc/forms/vps_installation.php:155
+#: shared/inc/forms/vps_installation.php:159
 msgid "Please wait until file system check is finished first."
 msgstr "正在检查文件系统，请耐心等待..."
 
-#: shared/inc/forms/vps_installation.php:157
+#: shared/inc/forms/vps_installation.php:161
 msgid "Please wait until operating system reinstallation has completed."
 msgstr "正在重新安装操作系统，请耐心等待..."
 
@@ -3832,9 +3867,10 @@ msgstr "进入域名注册"
 msgid "Proceed to transfer"
 msgstr "进行转让"
 
-#: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:314
-#: client/new_account_form.php:541 shared/dtcrm/draw.php:79
-#: shared/inc/forms/invoices.php:23 shared/inc/forms/root_admin.php:565
+#: admin/inc/renewals.php:42 admin/inc/draw_user_admin.php:237
+#: admin/inc/draw_user_admin.php:314 client/new_account_form.php:541
+#: shared/dtcrm/draw.php:79 shared/inc/forms/invoices.php:23
+#: shared/inc/forms/root_admin.php:565
 msgid "Product"
 msgstr "产品"
 
@@ -3861,6 +3897,11 @@ msgstr "生产服务器"
 #, fuzzy
 msgid "Product name"
 msgstr "产品"
+
+#: admin/inc/renewals.php:70
+#, fuzzy
+msgid "Product not found"
+msgstr "Ticket未找到！"
 
 #: client/new_account_form.php:49
 msgid "Product not found in database"
@@ -4001,16 +4042,16 @@ msgstr "注册成功！"
 msgid "Registry selection"
 msgstr "注册"
 
-#: shared/inc/forms/vps_installation.php:207
+#: shared/inc/forms/vps_installation.php:215
 msgid "Reinstall operating system"
 msgstr "重新安装操作系统"
 
-#: shared/inc/forms/vps_installation.php:177
+#: shared/inc/forms/vps_installation.php:185
 msgid "Reinstall operating system:"
 msgstr "重新安装操作系统："
 
 #: shared/inc/forms/vps_monitoring.php:135
-#: shared/inc/forms/vps_installation.php:78
+#: shared/inc/forms/vps_installation.php:82
 msgid "Reinstalling operating system..."
 msgstr "重新安装操作系统..."
 
@@ -4179,12 +4220,12 @@ msgstr ""
 msgid "SSL IPs addresses"
 msgstr "SSL IP地址"
 
-#: admin/inc/renewals.php:170
+#: admin/inc/renewals.php:282
 #, fuzzy
 msgid "SSL IPs renewals"
 msgstr "SSL IPs 更新："
 
-#: admin/inc/renewals.php:101
+#: admin/inc/renewals.php:185
 msgid "SSL IPs renewals: "
 msgstr "SSL IPs 更新："
 
@@ -4322,7 +4363,7 @@ msgstr "普通设置"
 msgid "Serbia"
 msgstr ""
 
-#: admin/inc/renewals.php:245
+#: admin/inc/renewals.php:369
 #, fuzzy
 msgid "Server"
 msgstr "主机"
@@ -4385,7 +4426,7 @@ msgstr "服务器统计图"
 msgid "Server:"
 msgstr "主机："
 
-#: admin/inc/dtc_config.php:1392
+#: admin/inc/renewals.php:42 admin/inc/dtc_config.php:1392
 msgid "Service country"
 msgstr ""
 
@@ -4406,11 +4447,11 @@ msgstr ""
 msgid "Shared"
 msgstr "共享"
 
-#: admin/inc/renewals.php:140
+#: admin/inc/renewals.php:251
 msgid "Shared hosting renewals:"
 msgstr "共享主机更新："
 
-#: admin/inc/renewals.php:100
+#: admin/inc/renewals.php:184
 msgid "Shared hosting: "
 msgstr "共享主机："
 
@@ -4418,6 +4459,11 @@ msgstr "共享主机："
 #, fuzzy
 msgid "Short name: "
 msgstr "主机名："
+
+#: admin/inc/renewals.php:355
+#, fuzzy
+msgid "Shutdown"
+msgstr "关闭警告信息："
 
 #: admin/inc/dtc_config.php:221
 #, fuzzy
@@ -4470,7 +4516,7 @@ msgstr ""
 msgid "Sri Lanka"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:153
+#: shared/inc/forms/vps_installation.php:157
 msgid "Start and stop of your VPS:"
 msgstr "启动或关闭您的VPS："
 
@@ -4490,7 +4536,7 @@ msgid "State: "
 msgstr "省分："
 
 #: shared/inc/forms/vps_monitoring.php:162
-#: shared/inc/forms/vps_installation.php:105
+#: shared/inc/forms/vps_installation.php:109
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr "状态：无法得知(可能正在起动？)"
 
@@ -4888,7 +4934,7 @@ msgstr "Ticket未找到！"
 msgid "Time"
 msgstr "时间"
 
-#: shared/inc/forms/vps_installation.php:240
+#: shared/inc/forms/vps_installation.php:248
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
@@ -4904,7 +4950,7 @@ msgstr ""
 "如果您要添加一个VPS，您需要首先添加vps产品，并且在一般设置中添加一些免IP的"
 "VPS。"
 
-#: shared/inc/forms/vps_installation.php:166
+#: shared/inc/forms/vps_installation.php:170
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
@@ -4937,7 +4983,7 @@ msgstr ""
 msgid "Tonga"
 msgstr "总计："
 
-#: shared/securepay/pay_functions.php:35
+#: admin/inc/renewals.php:44 shared/securepay/pay_functions.php:35
 #, fuzzy
 msgid "Total"
 msgstr "总计："
@@ -4961,7 +5007,7 @@ msgstr "总空间使用率："
 msgid "Total price: "
 msgstr "总价："
 
-#: admin/inc/renewals.php:20
+#: admin/inc/renewals.php:104
 msgid "Total recurring incomes per month:"
 msgstr "每月循环收益总数："
 
@@ -4979,7 +5025,7 @@ msgstr "已传输的总数据量："
 msgid "Total transfered bytes this month:"
 msgstr "已传输的总数据量："
 
-#: admin/inc/renewals.php:105
+#: admin/inc/renewals.php:189
 msgid "Total: "
 msgstr "总计："
 
@@ -5103,7 +5149,7 @@ msgid "Unsubscribe:"
 msgstr "退订："
 
 #: shared/inc/forms/vps_monitoring.php:175
-#: shared/inc/forms/vps_installation.php:118
+#: shared/inc/forms/vps_installation.php:122
 msgid "Up time: "
 msgstr "已运行时间："
 
@@ -5304,6 +5350,15 @@ msgstr ""
 msgid "VAT Number: "
 msgstr "VAT（增值税）号码："
 
+#: admin/inc/renewals.php:44
+msgid "VAT collected"
+msgstr ""
+
+#: admin/inc/renewals.php:81
+#, fuzzy
+msgid "VAT not found"
+msgstr "没有找到相关的类型！"
+
 #: admin/inc/dtc_config.php:1318
 msgid "VAT number:"
 msgstr "VAT号码："
@@ -5322,11 +5377,11 @@ msgid "VERP:"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:139
-#: shared/inc/forms/vps_installation.php:82
+#: shared/inc/forms/vps_installation.php:86
 msgid "VM id: "
 msgstr "VM id："
 
-#: admin/inc/renewals.php:211
+#: admin/inc/renewals.php:324
 msgid "VPS"
 msgstr ""
 
@@ -5356,7 +5411,7 @@ msgid "VPS Server list:"
 msgstr "VPS列表："
 
 #: shared/inc/forms/vps_monitoring.php:160
-#: shared/inc/forms/vps_installation.php:103
+#: shared/inc/forms/vps_installation.php:107
 #, fuzzy
 msgid "VPS State: "
 msgstr "省分："
@@ -5377,7 +5432,7 @@ msgstr ""
 msgid "VPS renewal email reminders periodicity"
 msgstr "设定VPS更新的邮件提醒的周期"
 
-#: admin/inc/renewals.php:203
+#: admin/inc/renewals.php:316
 #, fuzzy
 msgid "VPS renewals:"
 msgstr "VPS 更新："
@@ -5390,7 +5445,7 @@ msgstr "VPS 服务器"
 msgid "VPS xen number"
 msgstr "VPS 在xen中的编号 "
 
-#: admin/inc/renewals.php:102
+#: admin/inc/renewals.php:186
 msgid "VPS: "
 msgstr ""
 
@@ -5609,6 +5664,12 @@ msgstr ""
 "列表中\n"
 "更多信息请访问mlmmj官方网站http://mlmmj.mmj.dk"
 
+#: shared/inc/forms/vps_installation.php:173
+msgid ""
+"You cannot start your VPS if it has expired. Please renew it if you want the "
+"boot up (xm start) button to appear here."
+msgstr ""
+
 #: shared/dtcrm/draw_adddomain.php:59
 msgid ""
 "You curently don't have enough privileges to add domain names. If you often "
@@ -5669,7 +5730,7 @@ msgid ""
 "the confirm button to proceed."
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:241
+#: shared/inc/forms/vps_installation.php:249
 msgid ""
 "You should then install sshd in your VPS and use the physical console only "
 "for debugging purposes."
@@ -5831,7 +5892,7 @@ msgid "aliasing"
 msgstr "别名"
 
 #: shared/inc/forms/vps_monitoring.php:127
-#: shared/inc/forms/vps_installation.php:70
+#: shared/inc/forms/vps_installation.php:74
 msgid "couldn't connect to host"
 msgstr ""
 
