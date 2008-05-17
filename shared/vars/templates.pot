@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-15 14:23+0800\n"
+"POT-Creation-Date: 2008-05-16 17:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,57 +125,223 @@ msgid "ERROR!"
 msgstr ""
 
 #: admin/inc/renewals.php:33
+msgid "Renewal report"
+msgstr ""
+
+#: admin/inc/renewals.php:35
+msgid "Renewal repport"
+msgstr ""
+
+#: admin/inc/renewals.php:39 admin/inc/renewals.php:41
+msgid "Money spent"
+msgstr ""
+
+#: admin/inc/renewals.php:45 admin/inc/renewals.php:47
+msgid "Upstream provider editor"
+msgstr ""
+
+#: admin/inc/renewals.php:87
+msgid "List of payments done by your hosting company"
+msgstr ""
+
+#: admin/inc/renewals.php:99
+msgid "Label"
+msgstr ""
+
+#: admin/inc/renewals.php:101
+msgid "Company paying"
+msgstr ""
+
+#: admin/inc/renewals.php:106
+msgid "Company paid"
+msgstr ""
+
+#: admin/inc/renewals.php:111
+msgid "Expenditure type"
+msgstr ""
+
+#: admin/inc/renewals.php:116
+msgid "Means of payment"
+msgstr ""
+
+#: admin/inc/renewals.php:119
+msgid "Unknown"
+msgstr ""
+
+#: admin/inc/renewals.php:119
+msgid "Credit card"
+msgstr ""
+
+#: admin/inc/renewals.php:119
+msgid "Wire transfer"
+msgstr ""
+
+#: admin/inc/renewals.php:120
+msgid "Paypal"
+msgstr ""
+
+#: admin/inc/renewals.php:120
+msgid "Check"
+msgstr ""
+
+#: admin/inc/renewals.php:120
+msgid "Cash"
+msgstr ""
+
+#: admin/inc/renewals.php:124
+msgid "Total cost"
+msgstr ""
+
+#: admin/inc/renewals.php:128
+msgid "Tax rate"
+msgstr ""
+
+#: admin/inc/renewals.php:132
+msgid "Total tax"
+msgstr ""
+
+#: admin/inc/renewals.php:136
+msgid "Currency"
+msgstr ""
+
+#: admin/inc/renewals.php:140
+msgid "Invoice date"
+msgstr ""
+
+#: admin/inc/renewals.php:145 admin/inc/renewals.php:267
+#: admin/inc/draw_user_admin.php:314
+msgid "Payment date"
+msgstr ""
+
+#: admin/inc/renewals.php:153
+msgid "Payment type edition"
+msgstr ""
+
+#: admin/inc/renewals.php:163
+msgid "Type of payment"
+msgstr ""
+
+#: admin/inc/renewals.php:170
+msgid "Upstream provider list edition"
+msgstr ""
+
+#: admin/inc/renewals.php:190
+msgid "Short name:"
+msgstr ""
+
+#: admin/inc/renewals.php:192 admin/inc/dtc_config.php:1300
+#: shared/inc/forms/my_account.php:202
+msgid "Company name:"
+msgstr ""
+
+#: admin/inc/renewals.php:198
+msgid "Is it a company:"
+msgstr ""
+
+#: admin/inc/renewals.php:200 shared/inc/forms/my_account.php:205
+msgid "First name:"
+msgstr ""
+
+#: admin/inc/renewals.php:203
+msgid "Familly name:"
+msgstr ""
+
+#: admin/inc/renewals.php:206 admin/inc/dtc_config.php:1305
+#: shared/inc/forms/my_account.php:207
+msgid "Address:"
+msgstr ""
+
+#: admin/inc/renewals.php:209
+msgid "Address (line2):"
+msgstr ""
+
+#: admin/inc/renewals.php:212
+msgid "Address (line3):"
+msgstr ""
+
+#: admin/inc/renewals.php:215 shared/inc/forms/my_account.php:210
+msgid "City:"
+msgstr ""
+
+#: admin/inc/renewals.php:218 shared/inc/forms/my_account.php:209
+msgid "Zipcode:"
+msgstr ""
+
+#: admin/inc/renewals.php:221 shared/inc/forms/my_account.php:211
+msgid "State:"
+msgstr ""
+
+#: admin/inc/renewals.php:224 admin/inc/dtc_config.php:1308
+#: shared/inc/forms/my_account.php:212
+msgid "Country:"
+msgstr ""
+
+#: admin/inc/renewals.php:227
+msgid "Phone:"
+msgstr ""
+
+#: admin/inc/renewals.php:230 shared/inc/forms/my_account.php:214
+msgid "Fax:"
+msgstr ""
+
+#: admin/inc/renewals.php:233 shared/inc/forms/aliases.php:48
+#: shared/inc/forms/my_account.php:215
+msgid "Email:"
+msgstr ""
+
+#: admin/inc/renewals.php:236
+msgid "Note:"
+msgstr ""
+
+#: admin/inc/renewals.php:256
 msgid "Payements for the period: "
 msgstr ""
 
-#: admin/inc/renewals.php:39
+#: admin/inc/renewals.php:262
 msgid "No past payments for this period"
 msgstr ""
 
-#: admin/inc/renewals.php:42 admin/inc/draw_user_admin.php:237
+#: admin/inc/renewals.php:265 admin/inc/draw_user_admin.php:237
 #: admin/inc/draw_user_admin.php:314 client/new_account_form.php:541
 #: shared/dtcrm/draw.php:79 shared/inc/forms/invoices.php:23
 #: shared/inc/forms/root_admin.php:565
 msgid "Product"
 msgstr ""
 
-#: admin/inc/renewals.php:42
+#: admin/inc/renewals.php:265
 msgid "Client ID"
 msgstr ""
 
-#: admin/inc/renewals.php:42 admin/inc/renewals.php:259
-#: admin/inc/renewals.php:290 admin/inc/renewals.php:325
-#: admin/inc/renewals.php:369
+#: admin/inc/renewals.php:265 admin/inc/renewals.php:482
+#: admin/inc/renewals.php:513 admin/inc/renewals.php:548
+#: admin/inc/renewals.php:594
 msgid "Client"
 msgstr ""
 
-#: admin/inc/renewals.php:42 admin/inc/dtc_config.php:1392
+#: admin/inc/renewals.php:265 admin/inc/dtc_config.php:1392
 msgid "Service country"
 msgstr ""
 
-#: admin/inc/renewals.php:43
+#: admin/inc/renewals.php:266
 msgid "Client country"
 msgstr ""
 
-#: admin/inc/renewals.php:44
+#: admin/inc/renewals.php:267 admin/inc/renewals.php:421
 msgid "VAT collected"
 msgstr ""
 
-#: admin/inc/renewals.php:44 admin/dtcrm/product_manager.php:36
-#: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:172
-#: admin/dtcrm/product_manager.php:235 shared/dtcrm/draw.php:80
+#: admin/inc/renewals.php:267 admin/inc/renewals.php:421
+#: admin/dtcrm/product_manager.php:36 admin/dtcrm/product_manager.php:109
+#: admin/dtcrm/product_manager.php:172 admin/dtcrm/product_manager.php:235
+#: shared/dtcrm/draw.php:80
 msgid "Period"
 msgstr ""
 
-#: admin/inc/renewals.php:44 admin/inc/draw_user_admin.php:314
-msgid "Payment date"
-msgstr ""
-
-#: admin/inc/renewals.php:44 shared/securepay/pay_functions.php:35
+#: admin/inc/renewals.php:267 shared/securepay/pay_functions.php:35
 msgid "Total"
 msgstr ""
 
-#: admin/inc/renewals.php:45 admin/inc/renewals.php:328
+#: admin/inc/renewals.php:268 admin/inc/renewals.php:552
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
@@ -184,67 +350,79 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: admin/inc/renewals.php:49 admin/inc/renewals.php:50
+#: admin/inc/renewals.php:272 admin/inc/renewals.php:273
 msgid "No client id"
 msgstr ""
 
-#: admin/inc/renewals.php:56 admin/inc/renewals.php:57
-#: admin/inc/renewals.php:58
+#: admin/inc/renewals.php:279 admin/inc/renewals.php:280
+#: admin/inc/renewals.php:281
 msgid "N/A"
 msgstr ""
 
-#: admin/inc/renewals.php:70
+#: admin/inc/renewals.php:293
 msgid "Product not found"
 msgstr ""
 
-#: admin/inc/renewals.php:80
+#: admin/inc/renewals.php:303
 msgid "Payment not found"
 msgstr ""
 
-#: admin/inc/renewals.php:81
+#: admin/inc/renewals.php:304
 msgid "VAT not found"
 msgstr ""
 
-#: admin/inc/renewals.php:96 admin/inc/draw_user_admin.php:281
+#: admin/inc/renewals.php:319 admin/inc/draw_user_admin.php:281
 #: admin/inc/draw_user_admin.php:301 shared/inc/forms/database.php:53
 #: shared/inc/forms/database.php:99 shared/inc/forms/domain_stats.php:104
 msgid "Delete"
 msgstr ""
 
-#: admin/inc/renewals.php:104
+#: admin/inc/renewals.php:327
 msgid "Total recurring incomes per month:"
 msgstr ""
 
-#: admin/inc/renewals.php:184
+#: admin/inc/renewals.php:407
 msgid "Shared hosting: "
 msgstr ""
 
-#: admin/inc/renewals.php:185
+#: admin/inc/renewals.php:408
 msgid "SSL IPs renewals: "
 msgstr ""
 
-#: admin/inc/renewals.php:186
+#: admin/inc/renewals.php:409
 msgid "VPS: "
 msgstr ""
 
-#: admin/inc/renewals.php:187
+#: admin/inc/renewals.php:410
 msgid "Dedicated servers: "
 msgstr ""
 
-#: admin/inc/renewals.php:189
+#: admin/inc/renewals.php:412
 msgid "Total: "
 msgstr ""
 
-#: admin/inc/renewals.php:251
+#: admin/inc/renewals.php:421 shared/securepay/pay_functions.php:35
+msgid "Amount"
+msgstr ""
+
+#: admin/inc/renewals.php:421 shared/inc/forms/invoices.php:23
+msgid "Payment gateway cost"
+msgstr ""
+
+#: admin/inc/renewals.php:421
+msgid "Profit"
+msgstr ""
+
+#: admin/inc/renewals.php:474
 msgid "Shared hosting renewals:"
 msgstr ""
 
-#: admin/inc/renewals.php:256
+#: admin/inc/renewals.php:479
 msgid "No shared account expired."
 msgstr ""
 
-#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
-#: admin/inc/renewals.php:324 admin/inc/renewals.php:369
+#: admin/inc/renewals.php:482 admin/inc/renewals.php:513
+#: admin/inc/renewals.php:547 admin/inc/renewals.php:594
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
 #: admin/inc/dtc_config.php:257 admin/inc/dtc_config.php:836
@@ -258,54 +436,58 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
-#: admin/inc/renewals.php:326 admin/inc/renewals.php:369
+#: admin/inc/renewals.php:482 admin/inc/renewals.php:513
+#: admin/inc/renewals.php:549 admin/inc/renewals.php:594
 msgid "Email"
 msgstr ""
 
-#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
-#: admin/inc/renewals.php:327 admin/inc/renewals.php:369
+#: admin/inc/renewals.php:482 admin/inc/renewals.php:513
+#: admin/inc/renewals.php:550 admin/inc/renewals.php:594
 msgid "Expiration date"
 msgstr ""
 
-#: admin/inc/renewals.php:266 admin/inc/renewals.php:305
-#: admin/inc/renewals.php:345 admin/inc/renewals.php:384
+#: admin/inc/renewals.php:489 admin/inc/renewals.php:528
+#: admin/inc/renewals.php:569 admin/inc/renewals.php:609
 msgid "Client name not found!"
 msgstr ""
 
-#: admin/inc/renewals.php:282
+#: admin/inc/renewals.php:505
 msgid "SSL IPs renewals"
 msgstr ""
 
-#: admin/inc/renewals.php:287
+#: admin/inc/renewals.php:510
 msgid "No SSL IP expired"
 msgstr ""
 
-#: admin/inc/renewals.php:316
+#: admin/inc/renewals.php:539
 msgid "VPS renewals:"
 msgstr ""
 
-#: admin/inc/renewals.php:321
+#: admin/inc/renewals.php:544
 msgid "No VPS expired"
 msgstr ""
 
-#: admin/inc/renewals.php:324
+#: admin/inc/renewals.php:547
 msgid "VPS"
 msgstr ""
 
-#: admin/inc/renewals.php:355
+#: admin/inc/renewals.php:551
+msgid "Days of expiration"
+msgstr ""
+
+#: admin/inc/renewals.php:580
 msgid "Shutdown"
 msgstr ""
 
-#: admin/inc/renewals.php:361
+#: admin/inc/renewals.php:586
 msgid "Dedicated servers renewals"
 msgstr ""
 
-#: admin/inc/renewals.php:366
+#: admin/inc/renewals.php:591
 msgid "No dedicated server expired"
 msgstr ""
 
-#: admin/inc/renewals.php:369
+#: admin/inc/renewals.php:594
 msgid "Server"
 msgstr ""
 
@@ -1212,18 +1394,6 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1286
 msgid "Edit a company:"
-msgstr ""
-
-#: admin/inc/dtc_config.php:1300 shared/inc/forms/my_account.php:202
-msgid "Company name:"
-msgstr ""
-
-#: admin/inc/dtc_config.php:1305 shared/inc/forms/my_account.php:207
-msgid "Address:"
-msgstr ""
-
-#: admin/inc/dtc_config.php:1308 shared/inc/forms/my_account.php:212
-msgid "Country:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1314
@@ -3978,10 +4148,6 @@ msgstr ""
 msgid "Number of active mailboxes:"
 msgstr ""
 
-#: shared/inc/forms/aliases.php:48 shared/inc/forms/my_account.php:215
-msgid "Email:"
-msgstr ""
-
 #: shared/inc/forms/aliases.php:52
 msgid "Delivery Group:"
 msgstr ""
@@ -4322,10 +4488,6 @@ msgstr ""
 
 #: shared/inc/forms/ftp.php:86
 msgid "Path: "
-msgstr ""
-
-#: shared/inc/forms/invoices.php:23
-msgid "Payment gateway cost"
 msgstr ""
 
 #: shared/inc/forms/invoices.php:23
@@ -4824,32 +4986,12 @@ msgstr ""
 msgid "Please tell us if the following is not correct:"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:205
-msgid "First name:"
-msgstr ""
-
 #: shared/inc/forms/my_account.php:206
 msgid "Family name:"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:209
-msgid "Zipcode:"
-msgstr ""
-
-#: shared/inc/forms/my_account.php:210
-msgid "City:"
-msgstr ""
-
-#: shared/inc/forms/my_account.php:211
-msgid "State:"
-msgstr ""
-
 #: shared/inc/forms/my_account.php:213
 msgid "Phone number:"
-msgstr ""
-
-#: shared/inc/forms/my_account.php:214
-msgid "Fax:"
 msgstr ""
 
 #: shared/inc/forms/my_account.php:217
@@ -5451,10 +5593,6 @@ msgstr ""
 
 #: shared/securepay/pay_functions.php:35
 msgid "Payment system"
-msgstr ""
-
-#: shared/securepay/pay_functions.php:35
-msgid "Amount"
 msgstr ""
 
 #: shared/securepay/pay_functions.php:35

@@ -307,7 +307,8 @@ admin/tables/pending_queries.sql admin/tables/pending_renewal.sql admin/tables/p
 admin/tables/scheduled_updates.sql admin/tables/secpayconf.sql admin/tables/smtp_logs.sql admin/tables/ssh_access.sql \
 admin/tables/ssh_groups.sql admin/tables/ssh_user_group.sql admin/tables/ssl_ips.sql admin/tables/subdomain.sql \
 admin/tables/tik_admins.sql admin/tables/tik_cats.sql admin/tables/tik_queries.sql admin/tables/vps_ip.sql admin/tables/vps_server.sql \
-admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql admin/tables/whois.sql
+admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql admin/tables/whois.sql \
+admin/tables/spent_moneyout.sql  admin/tables/spent_providers.sql  admin/tables/spent_type.sql
 
 ##################### ETC FILES #########################
 TEXT_MESSAGES=reminders_msg/server_expired_already.txt reminders_msg/server_expired_last_warning.txt \

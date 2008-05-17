@@ -1,4 +1,4 @@
-#!/usr/bin/env php
+!/usr/bin/env php
 <?php
 
 $script_start_time = time();
@@ -166,7 +166,7 @@ for($i=0;$i<$n;$i++){
 	sendVPSReminderEmail($before[$i],"vps_will_expire.txt");
 }
 // Send reminders the day of the expiration
-sendVPSReminderEmail(0,"vps_expired_today.txt","yes");
+sendVPSReminderEmail(0,"vps_expired_today.txt","no");
 // Send reminders after expiration
 $after = explode("|",$conf_vps_renewal_after);
 $n = sizeof($after);
@@ -257,7 +257,7 @@ for($i=0;$i<$n;$i++){
 	sendDedicatedReminderEmail($before[$i],"server_will_expire.txt");
 }
 // Send reminders the day of the expiration
-sendDedicatedReminderEmail(0,"server_expired_today.txt","yes");
+sendDedicatedReminderEmail(0,"server_expired_today.txt","no");
 // Send reminders after expiration
 $after = explode("|",$conf_vps_renewal_after);
 $n = sizeof($after);
@@ -339,7 +339,7 @@ for($i=0;$i<$n;$i++){
 	sendSharedHostingReminderEmail($before[$i],"shared_will_expire.txt");
 }
 // Send reminder the day of expiration
-sendSharedHostingReminderEmail(0,"shared_expired_today.txt","yes");
+sendSharedHostingReminderEmail(0,"shared_expired_today.txt","no");
 // Send reminders after expiration
 $after = explode("|",$conf_shared_renewal_after);
 $n = sizeof($after);

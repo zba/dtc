@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-15 14:23+0800\n"
+"POT-Creation-Date: 2008-05-16 17:23+0800\n"
 "PO-Revision-Date: 2008-03-07 15:38+0100\n"
 "Last-Translator: Bart Cornelis <cobaco@skolelinux.no>\n"
 "Language-Team: debian-l10n-dutch <debian-l10n-dutch@lists.debian.org>\n"
@@ -353,7 +353,7 @@ msgstr "Fungeer als een backup DNS-server voor de volgende servers:"
 msgid "Act as backup mail server for the following servers:"
 msgstr "Fungeer als een backup-e-mail-server voor de volgende servers:"
 
-#: admin/inc/renewals.php:45 admin/inc/renewals.php:328
+#: admin/inc/renewals.php:268 admin/inc/renewals.php:552
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
@@ -440,11 +440,21 @@ msgstr "Naamserver is succesvol toegevoegd"
 msgid "Address (line1): "
 msgstr "Adres (regel 1):"
 
+#: admin/inc/renewals.php:209
+#, fuzzy
+msgid "Address (line2):"
+msgstr "Adres (regel 2):"
+
 #: admin/dtcrm/main.php:166 client/new_account_form.php:613
 #: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
 #: shared/dtcrm/draw_handle.php:124 shared/dtcrm/draw_handle.php:238
 msgid "Address (line2): "
 msgstr "Adres (regel 2):"
+
+#: admin/inc/renewals.php:212
+#, fuzzy
+msgid "Address (line3):"
+msgstr "Adres (regel 3):"
 
 #: admin/dtcrm/main.php:167 client/new_account_form.php:616
 #: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
@@ -460,7 +470,8 @@ msgstr "e-mail-adres:"
 msgid "Address of your main MX server:"
 msgstr "Adres van uw hoofd-MX-server:"
 
-#: admin/inc/dtc_config.php:1305 shared/inc/forms/my_account.php:207
+#: admin/inc/renewals.php:206 admin/inc/dtc_config.php:1305
+#: shared/inc/forms/my_account.php:207
 msgid "Address:"
 msgstr "Adres:"
 
@@ -546,7 +557,7 @@ msgstr "Als alternatief kunt u een nieuwe domeinnaam toevoegen:"
 msgid "American Samoa"
 msgstr ""
 
-#: shared/securepay/pay_functions.php:35
+#: admin/inc/renewals.php:421 shared/securepay/pay_functions.php:35
 msgid "Amount"
 msgstr "Bedrag"
 
@@ -921,6 +932,10 @@ msgstr "Kan uw FTP-server niet vinden"
 msgid "Cape Verde"
 msgstr ""
 
+#: admin/inc/renewals.php:120
+msgid "Cash"
+msgstr ""
+
 #: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr "Catch-all e-mail wordt afgeleverd op"
@@ -954,6 +969,11 @@ msgstr "NetBSD-kernel wijzigen"
 msgid "Change your password:"
 msgstr "Wachtwoord wijzigen:"
 
+#: admin/inc/renewals.php:120
+#, fuzzy
+msgid "Check"
+msgstr " bestand"
+
 #: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
 msgstr "Vink dit aan om een 'bounce'-bericht (vakantiebericht) te sturen: "
@@ -980,7 +1000,7 @@ msgstr "Te installeren pakket kiezen"
 msgid "Christmas Island"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:210
+#: admin/inc/renewals.php:215 shared/inc/forms/my_account.php:210
 msgid "City:"
 msgstr "Woonplaats:"
 
@@ -994,13 +1014,13 @@ msgstr "Woonplaats:"
 msgid "Click"
 msgstr "Druk"
 
-#: admin/inc/renewals.php:42 admin/inc/renewals.php:259
-#: admin/inc/renewals.php:290 admin/inc/renewals.php:325
-#: admin/inc/renewals.php:369
+#: admin/inc/renewals.php:265 admin/inc/renewals.php:482
+#: admin/inc/renewals.php:513 admin/inc/renewals.php:548
+#: admin/inc/renewals.php:594
 msgid "Client"
 msgstr "Klant"
 
-#: admin/inc/renewals.php:42
+#: admin/inc/renewals.php:265
 #, fuzzy
 msgid "Client ID"
 msgstr "Klant-ID:"
@@ -1009,7 +1029,7 @@ msgstr "Klant-ID:"
 msgid "Client ID:"
 msgstr "Klant-ID:"
 
-#: admin/inc/renewals.php:43
+#: admin/inc/renewals.php:266
 #, fuzzy
 msgid "Client country"
 msgstr "Land van dienst"
@@ -1023,8 +1043,8 @@ msgstr "Klant-info:"
 msgid "Client interface"
 msgstr "Klant-interface:"
 
-#: admin/inc/renewals.php:266 admin/inc/renewals.php:305
-#: admin/inc/renewals.php:345 admin/inc/renewals.php:384
+#: admin/inc/renewals.php:489 admin/inc/renewals.php:528
+#: admin/inc/renewals.php:569 admin/inc/renewals.php:609
 msgid "Client name not found!"
 msgstr "Klantnaam niet gevonden!"
 
@@ -1065,7 +1085,8 @@ msgstr "Bedrijven"
 msgid "Company name"
 msgstr "Bedrijfsnaam"
 
-#: admin/inc/dtc_config.php:1300 shared/inc/forms/my_account.php:202
+#: admin/inc/renewals.php:192 admin/inc/dtc_config.php:1300
+#: shared/inc/forms/my_account.php:202
 msgid "Company name:"
 msgstr "Bedrijfsnaam:"
 
@@ -1074,6 +1095,16 @@ msgstr "Bedrijfsnaam:"
 #: shared/dtcrm/draw_handle.php:122 shared/dtcrm/draw_handle.php:226
 msgid "Company name: "
 msgstr "Bedrijfsnaam:"
+
+#: admin/inc/renewals.php:106
+#, fuzzy
+msgid "Company paid"
+msgstr "Bedrijfsnaam"
+
+#: admin/inc/renewals.php:101
+#, fuzzy
+msgid "Company paying"
+msgstr "Bedrijfsnaam"
 
 #: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:427
 #: shared/gfx/skin/bwoup/layout.php:429
@@ -1218,7 +1249,8 @@ msgstr "Land"
 msgid "Country code seems incorrect."
 msgstr "Landcode lijkt onjuist."
 
-#: admin/inc/dtc_config.php:1308 shared/inc/forms/my_account.php:212
+#: admin/inc/renewals.php:224 admin/inc/dtc_config.php:1308
+#: shared/inc/forms/my_account.php:212
 msgid "Country:"
 msgstr "Land:"
 
@@ -1258,6 +1290,10 @@ msgstr "Subdomein aanmaken:"
 msgid "Credential not correct: can't display in file "
 msgstr "Gegevens niet correct: kan ze niet weergeven in het bestand"
 
+#: admin/inc/renewals.php:119
+msgid "Credit card"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:157
 #, fuzzy
 msgid "Croatia"
@@ -1266,6 +1302,11 @@ msgstr "Aanmaken"
 #: shared/drawlib/cc_code_popup.php:158
 msgid "Cuba"
 msgstr ""
+
+#: admin/inc/renewals.php:136
+#, fuzzy
+msgid "Currency"
+msgstr "Valutasymbool:"
 
 #: admin/inc/dtc_config.php:1003
 msgid "Currency letters: "
@@ -1404,6 +1445,11 @@ msgstr "Databases:"
 msgid "Date"
 msgstr "Datum"
 
+#: admin/inc/renewals.php:551
+#, fuzzy
+msgid "Days of expiration"
+msgstr "Waarschuwingen na verval: "
+
 #: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:504
 msgid "Deamons states"
 msgstr "Status van de achtergronddiensten"
@@ -1416,11 +1462,11 @@ msgstr "Contract 'dedicated' server: "
 msgid "Dedicated server expiration dates:"
 msgstr "Vervaldatums van de Dedicated servers:"
 
-#: admin/inc/renewals.php:361
+#: admin/inc/renewals.php:586
 msgid "Dedicated servers renewals"
 msgstr "Vernieuwingen van de Dedicated servers"
 
-#: admin/inc/renewals.php:187
+#: admin/inc/renewals.php:410
 msgid "Dedicated servers: "
 msgstr "Dedicated servers: "
 
@@ -1432,7 +1478,7 @@ msgstr "Standaard bedrijfsfacturen:"
 msgid "Default subdomain: "
 msgstr "Standaard subdomeinen: "
 
-#: admin/inc/renewals.php:96 admin/inc/draw_user_admin.php:281
+#: admin/inc/renewals.php:319 admin/inc/draw_user_admin.php:281
 #: admin/inc/draw_user_admin.php:301 shared/inc/forms/database.php:53
 #: shared/inc/forms/database.php:99 shared/inc/forms/domain_stats.php:104
 msgid "Delete"
@@ -1706,8 +1752,8 @@ msgstr ""
 msgid "El Salvador"
 msgstr ""
 
-#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
-#: admin/inc/renewals.php:326 admin/inc/renewals.php:369
+#: admin/inc/renewals.php:482 admin/inc/renewals.php:513
+#: admin/inc/renewals.php:549 admin/inc/renewals.php:594
 msgid "Email"
 msgstr "E-mail"
 
@@ -1740,7 +1786,8 @@ msgstr "E-mail-paneel:"
 msgid "Email user and domain files generated !"
 msgstr "E-mail-gebruiker en domeinbestanden zijn aangemaakt!"
 
-#: shared/inc/forms/aliases.php:48 shared/inc/forms/my_account.php:215
+#: admin/inc/renewals.php:233 shared/inc/forms/aliases.php:48
+#: shared/inc/forms/my_account.php:215
 msgid "Email:"
 msgstr "E-mail:"
 
@@ -1803,12 +1850,16 @@ msgstr ""
 msgid "Ethiopia"
 msgstr ""
 
+#: admin/inc/renewals.php:111
+msgid "Expenditure type"
+msgstr ""
+
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
 msgid "Expiration"
 msgstr "Verval"
 
-#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
-#: admin/inc/renewals.php:327 admin/inc/renewals.php:369
+#: admin/inc/renewals.php:482 admin/inc/renewals.php:513
+#: admin/inc/renewals.php:550 admin/inc/renewals.php:594
 msgid "Expiration date"
 msgstr "Vervaldatum"
 
@@ -1864,6 +1915,11 @@ msgstr "FTP-wachtwoord:"
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+#: admin/inc/renewals.php:203
+#, fuzzy
+msgid "Familly name:"
+msgstr "Achternaam:"
+
 #: admin/dtcrm/main.php:159 client/new_account_form.php:580
 #: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
 #: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
@@ -1878,7 +1934,7 @@ msgstr "Achternaam:"
 msgid "Faroe Islands"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:214
+#: admin/inc/renewals.php:230 shared/inc/forms/my_account.php:214
 msgid "Fax:"
 msgstr "Fax:"
 
@@ -1917,7 +1973,7 @@ msgstr ""
 msgid "Finland"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:205
+#: admin/inc/renewals.php:200 shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "Voornaam:"
 
@@ -2482,6 +2538,11 @@ msgstr "Beheer Internet Whois-roepnaam-handles:"
 msgid "Invoice"
 msgstr "Rekeningen"
 
+#: admin/inc/renewals.php:140
+#, fuzzy
+msgid "Invoice date"
+msgstr "Rekening-voetnoot:"
+
 #: admin/inc/dtc_config.php:1336
 msgid "Invoice footer:"
 msgstr "Rekening-voetnoot:"
@@ -2509,6 +2570,11 @@ msgstr ""
 #: client/new_account_form.php:237
 msgid "Is company radio button is wrong!"
 msgstr "bedrijfs-radiobutton is verkeerd!"
+
+#: admin/inc/renewals.php:198
+#, fuzzy
+msgid "Is it a company:"
+msgstr "Is dit een bedrijf: "
 
 #: admin/dtcrm/main.php:161 client/new_account_form.php:586
 msgid "Is it a company: "
@@ -2579,6 +2645,10 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:224
 msgid "Kyrgyzstan"
+msgstr ""
+
+#: admin/inc/renewals.php:99
+msgid "Label"
 msgstr ""
 
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
@@ -2661,6 +2731,10 @@ msgstr "Lijstnaam"
 #: shared/inc/forms/lists.php:70
 msgid "List name:"
 msgstr "Lijstnaam:"
+
+#: admin/inc/renewals.php:87
+msgid "List of payments done by your hosting company"
+msgstr ""
 
 #: admin/inc/dtc_config.php:283
 msgid "List of the administrators receiving request for support messages:"
@@ -2750,8 +2824,8 @@ msgstr "Locatie"
 msgid "Location of user's database: "
 msgstr "Locatie van de database van de gebruiker:"
 
-#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
-#: admin/inc/renewals.php:324 admin/inc/renewals.php:369
+#: admin/inc/renewals.php:482 admin/inc/renewals.php:513
+#: admin/inc/renewals.php:547 admin/inc/renewals.php:594
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
 #: admin/inc/dtc_config.php:257 admin/inc/dtc_config.php:836
@@ -2994,6 +3068,11 @@ msgstr "Maxmind-gebruikersnaam:"
 msgid "Mayotte"
 msgstr ""
 
+#: admin/inc/renewals.php:116
+#, fuzzy
+msgid "Means of payment"
+msgstr "Vorige betalingen"
+
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
 msgstr "Geheugen- en wisselgeheugengebruik"
@@ -3035,6 +3114,10 @@ msgstr ""
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
 msgstr "Resterend saldo-account: "
+
+#: admin/inc/renewals.php:39 admin/inc/renewals.php:41
+msgid "Money spent"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:251
 msgid "Mongolia"
@@ -3097,8 +3180,8 @@ msgstr ""
 msgid "Myanmar"
 msgstr ""
 
-#: admin/inc/renewals.php:56 admin/inc/renewals.php:57
-#: admin/inc/renewals.php:58
+#: admin/inc/renewals.php:279 admin/inc/renewals.php:280
+#: admin/inc/renewals.php:281
 msgid "N/A"
 msgstr ""
 
@@ -3315,7 +3398,7 @@ msgstr ""
 msgid "No"
 msgstr "Nee"
 
-#: admin/inc/renewals.php:287
+#: admin/inc/renewals.php:510
 msgid "No SSL IP expired"
 msgstr "Geen SSL IP verlopen"
 
@@ -3325,7 +3408,7 @@ msgstr ""
 "Er is geen SSL-token beschikbaar: contacteer uw beheerder om er een aan te "
 "vragen."
 
-#: admin/inc/renewals.php:321
+#: admin/inc/renewals.php:544
 msgid "No VPS expired"
 msgstr "Geen VPS verlopen"
 
@@ -3337,7 +3420,7 @@ msgstr "Geen archieven:"
 msgid "No catch-all"
 msgstr "Geen catch-all"
 
-#: admin/inc/renewals.php:49 admin/inc/renewals.php:50
+#: admin/inc/renewals.php:272 admin/inc/renewals.php:273
 #, fuzzy
 msgid "No client id"
 msgstr "Klant-info:"
@@ -3346,7 +3429,7 @@ msgstr "Klant-info:"
 msgid "No completed orders found."
 msgstr "Geen vervolledige orders gevonden."
 
-#: admin/inc/renewals.php:366
+#: admin/inc/renewals.php:591
 msgid "No dedicated server expired"
 msgstr "Geen dedicated server verlopen"
 
@@ -3362,7 +3445,7 @@ msgstr "Geen get-N functie:"
 msgid "No parking"
 msgstr "Geen parkeren"
 
-#: admin/inc/renewals.php:39
+#: admin/inc/renewals.php:262
 msgid "No past payments for this period"
 msgstr ""
 
@@ -3382,7 +3465,7 @@ msgstr "Geen openstaande support tickets!"
 msgid "No product"
 msgstr "Geen product"
 
-#: admin/inc/renewals.php:256
+#: admin/inc/renewals.php:479
 msgid "No shared account expired."
 msgstr "Geen gedeelde account verlopen."
 
@@ -3427,6 +3510,11 @@ msgstr "Niet gevonden!"
 #: client/new_account_form.php:31
 msgid "Not registering"
 msgstr "Registratie is niet bezig"
+
+#: admin/inc/renewals.php:236
+#, fuzzy
+msgid "Note:"
+msgstr "Notities: "
 
 #: admin/dtcrm/main.php:176
 msgid "Notes: "
@@ -3713,7 +3801,7 @@ msgstr "Vaste PayPal prijs:"
 msgid "PayPal test account email (sandbox): "
 msgstr "E-mail-adres PayPal-testaccount (sandbox):"
 
-#: admin/inc/renewals.php:33
+#: admin/inc/renewals.php:256
 msgid "Payements for the period: "
 msgstr ""
 
@@ -3721,7 +3809,8 @@ msgstr ""
 msgid "Payment complete. Proceed to checkout"
 msgstr "Betaling afgerond. Ga verder naar de checkout"
 
-#: admin/inc/renewals.php:44 admin/inc/draw_user_admin.php:314
+#: admin/inc/renewals.php:145 admin/inc/renewals.php:267
+#: admin/inc/draw_user_admin.php:314
 msgid "Payment date"
 msgstr "Betalingsdatum"
 
@@ -3729,11 +3818,11 @@ msgstr "Betalingsdatum"
 msgid "Payment gateway"
 msgstr "Betalingsgateway"
 
-#: shared/inc/forms/invoices.php:23
+#: admin/inc/renewals.php:421 shared/inc/forms/invoices.php:23
 msgid "Payment gateway cost"
 msgstr "Kost van de betalingsgateway"
 
-#: admin/inc/renewals.php:80
+#: admin/inc/renewals.php:303
 #, fuzzy
 msgid "Payment not found"
 msgstr "Type niet gevonden!"
@@ -3742,14 +3831,24 @@ msgstr "Type niet gevonden!"
 msgid "Payment system"
 msgstr "Betalingssysteem"
 
+#: admin/inc/renewals.php:153
+#, fuzzy
+msgid "Payment type edition"
+msgstr "Type niet gevonden!"
+
+#: admin/inc/renewals.php:120
+msgid "Paypal"
+msgstr ""
+
 #: admin/deamons_state.php:92 admin/inc/draw_user_admin.php:272
 #: admin/inc/draw_user_admin.php:345
 msgid "Pending"
 msgstr "Wachtend op uitvoering"
 
-#: admin/inc/renewals.php:44 admin/dtcrm/product_manager.php:36
-#: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:172
-#: admin/dtcrm/product_manager.php:235 shared/dtcrm/draw.php:80
+#: admin/inc/renewals.php:267 admin/inc/renewals.php:421
+#: admin/dtcrm/product_manager.php:36 admin/dtcrm/product_manager.php:109
+#: admin/dtcrm/product_manager.php:172 admin/dtcrm/product_manager.php:235
+#: shared/dtcrm/draw.php:80
 msgid "Period"
 msgstr "Periode"
 
@@ -3770,6 +3869,11 @@ msgstr "Telefoon:"
 #: shared/dtcrm/draw_handle.php:66 shared/dtcrm/draw_handle.php:98
 #: shared/dtcrm/draw_handle.php:130 shared/dtcrm/draw_handle.php:256
 msgid "Phone number: "
+msgstr "Telefoon:"
+
+#: admin/inc/renewals.php:227
+#, fuzzy
+msgid "Phone:"
 msgstr "Telefoon:"
 
 #: shared/inc/forms/vps_installation.php:238
@@ -3880,7 +3984,7 @@ msgstr "Door naar domeinnaamregistratie"
 msgid "Proceed to transfer"
 msgstr "Door naar overzetting"
 
-#: admin/inc/renewals.php:42 admin/inc/draw_user_admin.php:237
+#: admin/inc/renewals.php:265 admin/inc/draw_user_admin.php:237
 #: admin/inc/draw_user_admin.php:314 client/new_account_form.php:541
 #: shared/dtcrm/draw.php:79 shared/inc/forms/invoices.php:23
 #: shared/inc/forms/root_admin.php:565
@@ -3908,7 +4012,7 @@ msgstr "Productlijst-editor"
 msgid "Product name"
 msgstr "Productnaam"
 
-#: admin/inc/renewals.php:70
+#: admin/inc/renewals.php:293
 #, fuzzy
 msgid "Product not found"
 msgstr "Product niet gevonden in database"
@@ -3928,6 +4032,11 @@ msgstr "Product:"
 #: admin/inc/dtc_config.php:1065
 msgid "Production server"
 msgstr "Productieserver"
+
+#: admin/inc/renewals.php:421
+#, fuzzy
+msgid "Profit"
+msgstr "Privé"
 
 #: shared/inc/forms/domain_stats.php:74
 msgid "Protect your logs and stats folder with a password"
@@ -4088,6 +4197,16 @@ msgstr "Een beheerder verwijderen voor deze klant:"
 msgid "Renew my account"
 msgstr "Mijn account vernieuwen"
 
+#: admin/inc/renewals.php:33
+#, fuzzy
+msgid "Renewal report"
+msgstr "Vernieuwingen"
+
+#: admin/inc/renewals.php:35
+#, fuzzy
+msgid "Renewal repport"
+msgstr "Vernieuwingen"
+
 #: admin/dtcrm/product_manager.php:98 admin/dtcrm/product_manager.php:161
 #: admin/dtcrm/product_manager.php:224
 msgid "Renewal-ID"
@@ -4227,11 +4346,11 @@ msgstr "VPS:"
 msgid "SSL IPs addresses"
 msgstr "SSL IP-addressen"
 
-#: admin/inc/renewals.php:282
+#: admin/inc/renewals.php:505
 msgid "SSL IPs renewals"
 msgstr "SSL-IP-vernieuwingen: "
 
-#: admin/inc/renewals.php:185
+#: admin/inc/renewals.php:408
 msgid "SSL IPs renewals: "
 msgstr "SSL IP-vernieuwingen: "
 
@@ -4369,7 +4488,7 @@ msgstr "Algemeen"
 msgid "Serbia"
 msgstr ""
 
-#: admin/inc/renewals.php:369
+#: admin/inc/renewals.php:594
 msgid "Server"
 msgstr "Server"
 
@@ -4433,7 +4552,7 @@ msgstr "Statistische servergrafieken"
 msgid "Server:"
 msgstr "Server:"
 
-#: admin/inc/renewals.php:42 admin/inc/dtc_config.php:1392
+#: admin/inc/renewals.php:265 admin/inc/dtc_config.php:1392
 msgid "Service country"
 msgstr "Land van dienst"
 
@@ -4454,19 +4573,24 @@ msgstr ""
 msgid "Shared"
 msgstr "Gedeeld"
 
-#: admin/inc/renewals.php:251
+#: admin/inc/renewals.php:474
 msgid "Shared hosting renewals:"
 msgstr "Gedeelde hosting-vernieuwingen:"
 
-#: admin/inc/renewals.php:184
+#: admin/inc/renewals.php:407
 msgid "Shared hosting: "
 msgstr "Gedeelde hosting: "
+
+#: admin/inc/renewals.php:190
+#, fuzzy
+msgid "Short name:"
+msgstr "Korte naam:"
 
 #: admin/inc/dtc_config.php:1129
 msgid "Short name: "
 msgstr "Korte naam:"
 
-#: admin/inc/renewals.php:355
+#: admin/inc/renewals.php:580
 #, fuzzy
 msgid "Shutdown"
 msgstr "Afsluitingswaarschuwing: "
@@ -4529,7 +4653,7 @@ msgstr "Start en stop uw VPS:"
 msgid "Stat script generated !"
 msgstr "Statistiek-script is aangemaakt!"
 
-#: shared/inc/forms/my_account.php:211
+#: admin/inc/renewals.php:221 shared/inc/forms/my_account.php:211
 msgid "State:"
 msgstr "Provincie:"
 
@@ -4778,6 +4902,11 @@ msgstr "Controle nemen van uw domeinnaam"
 msgid "Tanzania, United Republic Of"
 msgstr ""
 
+#: admin/inc/renewals.php:128
+#, fuzzy
+msgid "Tax rate"
+msgstr "BTW-percentage:"
+
 #: shared/securepay/pay_functions.php:29
 msgid "Taxes (VAT or GST)"
 msgstr "Belastingen (BTW of GST)"
@@ -5010,13 +5139,18 @@ msgstr ""
 msgid "Tonga"
 msgstr "Totaal"
 
-#: admin/inc/renewals.php:44 shared/securepay/pay_functions.php:35
+#: admin/inc/renewals.php:267 shared/securepay/pay_functions.php:35
 msgid "Total"
 msgstr "Totaal"
 
 #: shared/inc/forms/invoices.php:23
 msgid "Total Price"
 msgstr "Totale prijs"
+
+#: admin/inc/renewals.php:124
+#, fuzzy
+msgid "Total cost"
+msgstr "Totaal: "
 
 #: shared/inc/forms/database.php:117
 msgid "Total database number:"
@@ -5032,9 +5166,14 @@ msgstr "Totaal schijfruimtegebruik:"
 msgid "Total price: "
 msgstr "Totaalprijs: "
 
-#: admin/inc/renewals.php:104
+#: admin/inc/renewals.php:327
 msgid "Total recurring incomes per month:"
 msgstr "Totaal aantal terugkerende inkomens per maand:"
+
+#: admin/inc/renewals.php:132
+#, fuzzy
+msgid "Total tax"
+msgstr "Totaal: "
 
 #: shared/inc/forms/admin_stats.php:107
 #, fuzzy
@@ -5049,7 +5188,7 @@ msgstr "Total hoeveelheid doorgestuurde bytes deze maand:"
 msgid "Total transfered bytes this month:"
 msgstr "Totale hoeveelheid doorgestuurde bytes deze maand:"
 
-#: admin/inc/renewals.php:189
+#: admin/inc/renewals.php:412
 msgid "Total: "
 msgstr "Totaal: "
 
@@ -5119,6 +5258,11 @@ msgstr "Type niet gevonden!"
 msgid "Type of encryption for connecting to Tucows server:"
 msgstr "Soort encryptie voor de verbinding met de Tucows-server:"
 
+#: admin/inc/renewals.php:163
+#, fuzzy
+msgid "Type of payment"
+msgstr "Probleemtype:"
+
 #: shared/inc/forms/ticket.php:52 shared/inc/forms/ticket.php:87
 msgid "Type of problem:"
 msgstr "Probleemtype:"
@@ -5164,6 +5308,10 @@ msgstr ""
 msgid "United States Minor Outlying Islands"
 msgstr ""
 
+#: admin/inc/renewals.php:119
+msgid "Unknown"
+msgstr ""
+
 #: shared/inc/forms/packager.php:218
 msgid "Unpack size"
 msgstr "Uitgepakte grootte"
@@ -5184,6 +5332,14 @@ msgstr "Mijn account opwaarderen"
 #: shared/dtcrm/draw.php:33
 msgid "Upgrade my account:"
 msgstr "Mijn account opwaarderen:"
+
+#: admin/inc/renewals.php:45 admin/inc/renewals.php:47
+msgid "Upstream provider editor"
+msgstr ""
+
+#: admin/inc/renewals.php:170
+msgid "Upstream provider list edition"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:338
 msgid "Uruguay"
@@ -5360,11 +5516,11 @@ msgstr ""
 msgid "VAT Number: "
 msgstr "BTW number: "
 
-#: admin/inc/renewals.php:44
+#: admin/inc/renewals.php:267 admin/inc/renewals.php:421
 msgid "VAT collected"
 msgstr ""
 
-#: admin/inc/renewals.php:81
+#: admin/inc/renewals.php:304
 #, fuzzy
 msgid "VAT not found"
 msgstr "Type niet gevonden!"
@@ -5390,7 +5546,7 @@ msgstr "VERP:"
 msgid "VM id: "
 msgstr "VM-id: "
 
-#: admin/inc/renewals.php:324
+#: admin/inc/renewals.php:547
 msgid "VPS"
 msgstr "VPS"
 
@@ -5439,7 +5595,7 @@ msgstr ""
 msgid "VPS renewal email reminders periodicity"
 msgstr "Periode voor VPS-vernieuwing-herinnerings-e-mails"
 
-#: admin/inc/renewals.php:316
+#: admin/inc/renewals.php:539
 msgid "VPS renewals:"
 msgstr "VPS-vernieuwingen"
 
@@ -5451,7 +5607,7 @@ msgstr "VPS-servers"
 msgid "VPS xen number"
 msgstr "VPS-xen-nummer"
 
-#: admin/inc/renewals.php:186
+#: admin/inc/renewals.php:409
 msgid "VPS: "
 msgstr "VPS:"
 
@@ -5601,6 +5757,11 @@ msgstr "Whois van:"
 #: shared/inc/draw.php:420
 msgid "Whois:"
 msgstr "Whois:"
+
+#: admin/inc/renewals.php:119
+#, fuzzy
+msgid "Wire transfer"
+msgstr "Door naar overzetting"
 
 #: shared/inc/fetch.php:39 shared/inc/fetch.php:365 shared/inc/fetch.php:370
 msgid "Wrong user or password, or timeout expired!"
@@ -5896,7 +6057,7 @@ msgstr ""
 msgid "Zimbabwe"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:209
+#: admin/inc/renewals.php:218 shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
 msgstr "Postcode:"
 

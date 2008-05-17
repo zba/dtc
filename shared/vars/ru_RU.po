@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: git_21mar2008\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-15 14:23+0800\n"
+"POT-Creation-Date: 2008-05-16 17:20+0800\n"
 "PO-Revision-Date: 2008-03-21 22:24+0300\n"
 "Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -351,7 +351,7 @@ msgid "Act as backup mail server for the following servers:"
 msgstr ""
 "Работать в качестве резервного почтового сервера для следующих серверов:"
 
-#: admin/inc/renewals.php:45 admin/inc/renewals.php:328
+#: admin/inc/renewals.php:268 admin/inc/renewals.php:552
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
@@ -438,11 +438,21 @@ msgstr "Добавление сервера имён прошло успешно
 msgid "Address (line1): "
 msgstr "Адрес (строка1): "
 
+#: admin/inc/renewals.php:209
+#, fuzzy
+msgid "Address (line2):"
+msgstr "Адрес (строка2): "
+
 #: admin/dtcrm/main.php:166 client/new_account_form.php:613
 #: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
 #: shared/dtcrm/draw_handle.php:124 shared/dtcrm/draw_handle.php:238
 msgid "Address (line2): "
 msgstr "Адрес (строка2): "
+
+#: admin/inc/renewals.php:212
+#, fuzzy
+msgid "Address (line3):"
+msgstr "Адрес (строка3): "
 
 #: admin/dtcrm/main.php:167 client/new_account_form.php:616
 #: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
@@ -458,7 +468,8 @@ msgstr "Адрес электронной почты"
 msgid "Address of your main MX server:"
 msgstr "Адрес вашего основного MX-сервера:"
 
-#: admin/inc/dtc_config.php:1305 shared/inc/forms/my_account.php:207
+#: admin/inc/renewals.php:206 admin/inc/dtc_config.php:1305
+#: shared/inc/forms/my_account.php:207
 msgid "Address:"
 msgstr "Адреc:"
 
@@ -543,7 +554,7 @@ msgstr "Или же вы можете добавить другое доменн
 msgid "American Samoa"
 msgstr "Американское Самоа"
 
-#: shared/securepay/pay_functions.php:35
+#: admin/inc/renewals.php:421 shared/securepay/pay_functions.php:35
 msgid "Amount"
 msgstr "Сумма"
 
@@ -915,6 +926,10 @@ msgstr "Не удалось определить имя вашего FTP-сер�
 msgid "Cape Verde"
 msgstr "Кабо-Верде"
 
+#: admin/inc/renewals.php:120
+msgid "Cash"
+msgstr ""
+
 #: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
 msgstr "Эл.почту с прочих адресов отправлять"
@@ -947,6 +962,11 @@ msgstr "Смена ядра NetBSD"
 msgid "Change your password:"
 msgstr "Смена пароля:"
 
+#: admin/inc/renewals.php:120
+#, fuzzy
+msgid "Check"
+msgstr "Чили"
+
 #: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
 msgstr "Отправлять ответное сообщение (об отсутствии): "
@@ -972,7 +992,7 @@ msgstr "Выбор пакета для установки"
 msgid "Christmas Island"
 msgstr "Остров Рождества"
 
-#: shared/inc/forms/my_account.php:210
+#: admin/inc/renewals.php:215 shared/inc/forms/my_account.php:210
 msgid "City:"
 msgstr "Город:"
 
@@ -986,13 +1006,13 @@ msgstr "Город: "
 msgid "Click"
 msgstr "Клик"
 
-#: admin/inc/renewals.php:42 admin/inc/renewals.php:259
-#: admin/inc/renewals.php:290 admin/inc/renewals.php:325
-#: admin/inc/renewals.php:369
+#: admin/inc/renewals.php:265 admin/inc/renewals.php:482
+#: admin/inc/renewals.php:513 admin/inc/renewals.php:548
+#: admin/inc/renewals.php:594
 msgid "Client"
 msgstr "Клиент"
 
-#: admin/inc/renewals.php:42
+#: admin/inc/renewals.php:265
 #, fuzzy
 msgid "Client ID"
 msgstr "ID клиента:"
@@ -1001,7 +1021,7 @@ msgstr "ID клиента:"
 msgid "Client ID:"
 msgstr "ID клиента:"
 
-#: admin/inc/renewals.php:43
+#: admin/inc/renewals.php:266
 #, fuzzy
 msgid "Client country"
 msgstr "Страна сервиса"
@@ -1015,8 +1035,8 @@ msgstr "Информация о клиенте:"
 msgid "Client interface"
 msgstr "Клиентский интерфейс"
 
-#: admin/inc/renewals.php:266 admin/inc/renewals.php:305
-#: admin/inc/renewals.php:345 admin/inc/renewals.php:384
+#: admin/inc/renewals.php:489 admin/inc/renewals.php:528
+#: admin/inc/renewals.php:569 admin/inc/renewals.php:609
 msgid "Client name not found!"
 msgstr "Имя клиента не найдено!"
 
@@ -1057,7 +1077,8 @@ msgstr "Компании"
 msgid "Company name"
 msgstr "Название компании"
 
-#: admin/inc/dtc_config.php:1300 shared/inc/forms/my_account.php:202
+#: admin/inc/renewals.php:192 admin/inc/dtc_config.php:1300
+#: shared/inc/forms/my_account.php:202
 msgid "Company name:"
 msgstr "Название компании:"
 
@@ -1066,6 +1087,16 @@ msgstr "Название компании:"
 #: shared/dtcrm/draw_handle.php:122 shared/dtcrm/draw_handle.php:226
 msgid "Company name: "
 msgstr "Название компании: "
+
+#: admin/inc/renewals.php:106
+#, fuzzy
+msgid "Company paid"
+msgstr "Название компании"
+
+#: admin/inc/renewals.php:101
+#, fuzzy
+msgid "Company paying"
+msgstr "Название компании"
 
 #: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:427
 #: shared/gfx/skin/bwoup/layout.php:429
@@ -1210,7 +1241,8 @@ msgstr "Страна"
 msgid "Country code seems incorrect."
 msgstr "Неправильный код страны."
 
-#: admin/inc/dtc_config.php:1308 shared/inc/forms/my_account.php:212
+#: admin/inc/renewals.php:224 admin/inc/dtc_config.php:1308
+#: shared/inc/forms/my_account.php:212
 msgid "Country:"
 msgstr "Страна:"
 
@@ -1250,6 +1282,10 @@ msgstr "Создать субдомен: "
 msgid "Credential not correct: can't display in file "
 msgstr "Некорректное удостоверение: не удалось показать в файле "
 
+#: admin/inc/renewals.php:119
+msgid "Credit card"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:157
 msgid "Croatia"
 msgstr "Хорватия"
@@ -1257,6 +1293,11 @@ msgstr "Хорватия"
 #: shared/drawlib/cc_code_popup.php:158
 msgid "Cuba"
 msgstr "Куба"
+
+#: admin/inc/renewals.php:136
+#, fuzzy
+msgid "Currency"
+msgstr "Знак валюты: "
 
 #: admin/inc/dtc_config.php:1003
 msgid "Currency letters: "
@@ -1395,6 +1436,11 @@ msgstr "Базы данных:"
 msgid "Date"
 msgstr "Дата"
 
+#: admin/inc/renewals.php:551
+#, fuzzy
+msgid "Days of expiration"
+msgstr "Предупреждения после наступления срока: "
+
 #: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:504
 msgid "Deamons states"
 msgstr "Состояние сервисов"
@@ -1407,11 +1453,11 @@ msgstr "Контракт на выделенный сервер:"
 msgid "Dedicated server expiration dates:"
 msgstr "Сроки истечения работы с выделенным сервером:"
 
-#: admin/inc/renewals.php:361
+#: admin/inc/renewals.php:586
 msgid "Dedicated servers renewals"
 msgstr "Простои выделенных серверов"
 
-#: admin/inc/renewals.php:187
+#: admin/inc/renewals.php:410
 msgid "Dedicated servers: "
 msgstr "Выделенные серверы: "
 
@@ -1423,7 +1469,7 @@ msgstr "Выписка счетов компании по умолчанию:"
 msgid "Default subdomain: "
 msgstr "Субдомен по умолчанию: "
 
-#: admin/inc/renewals.php:96 admin/inc/draw_user_admin.php:281
+#: admin/inc/renewals.php:319 admin/inc/draw_user_admin.php:281
 #: admin/inc/draw_user_admin.php:301 shared/inc/forms/database.php:53
 #: shared/inc/forms/database.php:99 shared/inc/forms/domain_stats.php:104
 msgid "Delete"
@@ -1694,8 +1740,8 @@ msgstr "Египет"
 msgid "El Salvador"
 msgstr "Сальвадор"
 
-#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
-#: admin/inc/renewals.php:326 admin/inc/renewals.php:369
+#: admin/inc/renewals.php:482 admin/inc/renewals.php:513
+#: admin/inc/renewals.php:549 admin/inc/renewals.php:594
 msgid "Email"
 msgstr "Эл.почта"
 
@@ -1728,7 +1774,8 @@ msgstr "Панель управления почтой: "
 msgid "Email user and domain files generated !"
 msgstr "Сгенерированы файлы для эл.почты и домена!"
 
-#: shared/inc/forms/aliases.php:48 shared/inc/forms/my_account.php:215
+#: admin/inc/renewals.php:233 shared/inc/forms/aliases.php:48
+#: shared/inc/forms/my_account.php:215
 msgid "Email:"
 msgstr "Эл.почта:"
 
@@ -1790,12 +1837,16 @@ msgstr "Эстония"
 msgid "Ethiopia"
 msgstr "Эфиопия"
 
+#: admin/inc/renewals.php:111
+msgid "Expenditure type"
+msgstr ""
+
 #: shared/inc/forms/root_admin.php:481 shared/inc/forms/root_admin.php:545
 msgid "Expiration"
 msgstr "Истекает"
 
-#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
-#: admin/inc/renewals.php:327 admin/inc/renewals.php:369
+#: admin/inc/renewals.php:482 admin/inc/renewals.php:513
+#: admin/inc/renewals.php:550 admin/inc/renewals.php:594
 msgid "Expiration date"
 msgstr "Срок действия"
 
@@ -1851,6 +1902,11 @@ msgstr "Пароль FTP:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Фолклендские (Мальвинские) острова"
 
+#: admin/inc/renewals.php:203
+#, fuzzy
+msgid "Familly name:"
+msgstr "Фамилия: "
+
 #: admin/dtcrm/main.php:159 client/new_account_form.php:580
 #: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
 #: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
@@ -1865,7 +1921,7 @@ msgstr "Фамилия:"
 msgid "Faroe Islands"
 msgstr "Фарерские острова"
 
-#: shared/inc/forms/my_account.php:214
+#: admin/inc/renewals.php:230 shared/inc/forms/my_account.php:214
 msgid "Fax:"
 msgstr "Факс:"
 
@@ -1904,7 +1960,7 @@ msgstr ""
 msgid "Finland"
 msgstr "Финляндия"
 
-#: shared/inc/forms/my_account.php:205
+#: admin/inc/renewals.php:200 shared/inc/forms/my_account.php:205
 msgid "First name:"
 msgstr "Имя:"
 
@@ -2463,6 +2519,11 @@ msgstr "Управление персональными идентификато
 msgid "Invoice"
 msgstr "Счёт"
 
+#: admin/inc/renewals.php:140
+#, fuzzy
+msgid "Invoice date"
+msgstr "Нижний колонтитул счёта:"
+
 #: admin/inc/dtc_config.php:1336
 msgid "Invoice footer:"
 msgstr "Нижний колонтитул счёта:"
@@ -2490,6 +2551,11 @@ msgstr "Ирландия"
 #: client/new_account_form.php:237
 msgid "Is company radio button is wrong!"
 msgstr "Ошибочный выбор компании!"
+
+#: admin/inc/renewals.php:198
+#, fuzzy
+msgid "Is it a company:"
+msgstr "Это компания: "
 
 #: admin/dtcrm/main.php:161 client/new_account_form.php:586
 msgid "Is it a company: "
@@ -2558,6 +2624,10 @@ msgstr "Кувейт"
 #: shared/drawlib/cc_code_popup.php:224
 msgid "Kyrgyzstan"
 msgstr "Киргизия"
+
+#: admin/inc/renewals.php:99
+msgid "Label"
+msgstr ""
 
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
 #: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:244
@@ -2639,6 +2709,10 @@ msgstr "Название списка"
 #: shared/inc/forms/lists.php:70
 msgid "List name:"
 msgstr "Название списка:"
+
+#: admin/inc/renewals.php:87
+msgid "List of payments done by your hosting company"
+msgstr ""
 
 #: admin/inc/dtc_config.php:283
 msgid "List of the administrators receiving request for support messages:"
@@ -2726,8 +2800,8 @@ msgstr "Расположение"
 msgid "Location of user's database: "
 msgstr "Расположение БД пользователя: "
 
-#: admin/inc/renewals.php:259 admin/inc/renewals.php:290
-#: admin/inc/renewals.php:324 admin/inc/renewals.php:369
+#: admin/inc/renewals.php:482 admin/inc/renewals.php:513
+#: admin/inc/renewals.php:547 admin/inc/renewals.php:594
 #: admin/inc/draw_user_admin.php:237 admin/inc/draw_user_admin.php:295
 #: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:400
 #: admin/inc/dtc_config.php:257 admin/inc/dtc_config.php:836
@@ -2968,6 +3042,11 @@ msgstr "Maxmind логин: "
 msgid "Mayotte"
 msgstr "Майотта"
 
+#: admin/inc/renewals.php:116
+#, fuzzy
+msgid "Means of payment"
+msgstr "Предыдущие платежи"
+
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
 msgstr "Использование памяти и пространства подкачки "
@@ -3009,6 +3088,10 @@ msgstr "Монако"
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
 msgstr "Денежный остаток: "
+
+#: admin/inc/renewals.php:39 admin/inc/renewals.php:41
+msgid "Money spent"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:251
 msgid "Mongolia"
@@ -3070,8 +3153,8 @@ msgstr ""
 msgid "Myanmar"
 msgstr "Мьянма"
 
-#: admin/inc/renewals.php:56 admin/inc/renewals.php:57
-#: admin/inc/renewals.php:58
+#: admin/inc/renewals.php:279 admin/inc/renewals.php:280
+#: admin/inc/renewals.php:281
 msgid "N/A"
 msgstr ""
 
@@ -3288,7 +3371,7 @@ msgstr "Ниуэ"
 msgid "No"
 msgstr "нет"
 
-#: admin/inc/renewals.php:287
+#: admin/inc/renewals.php:510
 msgid "No SSL IP expired"
 msgstr "Простоев SSL IP не было"
 
@@ -3296,7 +3379,7 @@ msgstr "Простоев SSL IP не было"
 msgid "No SSL token available: contact your administrator to request it."
 msgstr "SSL токены недоступны: для запроса, обратитесь к администратору."
 
-#: admin/inc/renewals.php:321
+#: admin/inc/renewals.php:544
 msgid "No VPS expired"
 msgstr "Простоев VPS не было"
 
@@ -3308,7 +3391,7 @@ msgstr "Нет архивов:"
 msgid "No catch-all"
 msgstr "никому"
 
-#: admin/inc/renewals.php:49 admin/inc/renewals.php:50
+#: admin/inc/renewals.php:272 admin/inc/renewals.php:273
 #, fuzzy
 msgid "No client id"
 msgstr "Информация о клиенте:"
@@ -3317,7 +3400,7 @@ msgstr "Информация о клиенте:"
 msgid "No completed orders found."
 msgstr "Завершённых заказов не найдено."
 
-#: admin/inc/renewals.php:366
+#: admin/inc/renewals.php:591
 msgid "No dedicated server expired"
 msgstr "Простоев выделенных серверов не было"
 
@@ -3333,7 +3416,7 @@ msgstr "Нет функции get-N:"
 msgid "No parking"
 msgstr "нет парковки"
 
-#: admin/inc/renewals.php:39
+#: admin/inc/renewals.php:262
 msgid "No past payments for this period"
 msgstr ""
 
@@ -3353,7 +3436,7 @@ msgstr "Нет открытых тикетов!"
 msgid "No product"
 msgstr "нет продукта"
 
-#: admin/inc/renewals.php:256
+#: admin/inc/renewals.php:479
 msgid "No shared account expired."
 msgstr "Простоев виртуального хостинга не было"
 
@@ -3397,6 +3480,11 @@ msgstr "Не найдено!"
 #: client/new_account_form.php:31
 msgid "Not registering"
 msgstr "Не зарегистрировано"
+
+#: admin/inc/renewals.php:236
+#, fuzzy
+msgid "Note:"
+msgstr "Заметки: "
 
 #: admin/dtcrm/main.php:176
 msgid "Notes: "
@@ -3683,7 +3771,7 @@ msgstr "Фиксированный сбор PayPal: "
 msgid "PayPal test account email (sandbox): "
 msgstr "Эл.почта тестового аккаунта PayPal (для \"песочницы\"): "
 
-#: admin/inc/renewals.php:33
+#: admin/inc/renewals.php:256
 msgid "Payements for the period: "
 msgstr ""
 
@@ -3691,7 +3779,8 @@ msgstr ""
 msgid "Payment complete. Proceed to checkout"
 msgstr "Оплата завершена. Переход к итогам"
 
-#: admin/inc/renewals.php:44 admin/inc/draw_user_admin.php:314
+#: admin/inc/renewals.php:145 admin/inc/renewals.php:267
+#: admin/inc/draw_user_admin.php:314
 msgid "Payment date"
 msgstr "Дата оплаты"
 
@@ -3699,11 +3788,11 @@ msgstr "Дата оплаты"
 msgid "Payment gateway"
 msgstr "Пункты оплаты"
 
-#: shared/inc/forms/invoices.php:23
+#: admin/inc/renewals.php:421 shared/inc/forms/invoices.php:23
 msgid "Payment gateway cost"
 msgstr "Стоимость услуг пункта оплаты"
 
-#: admin/inc/renewals.php:80
+#: admin/inc/renewals.php:303
 #, fuzzy
 msgid "Payment not found"
 msgstr "Тип не найден!"
@@ -3712,14 +3801,24 @@ msgstr "Тип не найден!"
 msgid "Payment system"
 msgstr "Система оплаты"
 
+#: admin/inc/renewals.php:153
+#, fuzzy
+msgid "Payment type edition"
+msgstr "Тип не найден!"
+
+#: admin/inc/renewals.php:120
+msgid "Paypal"
+msgstr ""
+
 #: admin/deamons_state.php:92 admin/inc/draw_user_admin.php:272
 #: admin/inc/draw_user_admin.php:345
 msgid "Pending"
 msgstr "Ожидание"
 
-#: admin/inc/renewals.php:44 admin/dtcrm/product_manager.php:36
-#: admin/dtcrm/product_manager.php:109 admin/dtcrm/product_manager.php:172
-#: admin/dtcrm/product_manager.php:235 shared/dtcrm/draw.php:80
+#: admin/inc/renewals.php:267 admin/inc/renewals.php:421
+#: admin/dtcrm/product_manager.php:36 admin/dtcrm/product_manager.php:109
+#: admin/dtcrm/product_manager.php:172 admin/dtcrm/product_manager.php:235
+#: shared/dtcrm/draw.php:80
 msgid "Period"
 msgstr "Период"
 
@@ -3740,6 +3839,11 @@ msgstr "Номер телефона:"
 #: shared/dtcrm/draw_handle.php:130 shared/dtcrm/draw_handle.php:256
 msgid "Phone number: "
 msgstr "Номер телефона: "
+
+#: admin/inc/renewals.php:227
+#, fuzzy
+msgid "Phone:"
+msgstr "Номер телефона:"
 
 #: shared/inc/forms/vps_installation.php:238
 msgid "Physical console last display and ssh access:"
@@ -3847,7 +3951,7 @@ msgstr "Продолжить регистрацию имени"
 msgid "Proceed to transfer"
 msgstr "Продолжить перенос"
 
-#: admin/inc/renewals.php:42 admin/inc/draw_user_admin.php:237
+#: admin/inc/renewals.php:265 admin/inc/draw_user_admin.php:237
 #: admin/inc/draw_user_admin.php:314 client/new_account_form.php:541
 #: shared/dtcrm/draw.php:79 shared/inc/forms/invoices.php:23
 #: shared/inc/forms/root_admin.php:565
@@ -3875,7 +3979,7 @@ msgstr "Редактирование списка продуктов"
 msgid "Product name"
 msgstr "Название продукта"
 
-#: admin/inc/renewals.php:70
+#: admin/inc/renewals.php:293
 #, fuzzy
 msgid "Product not found"
 msgstr "Продукт не найден в базе данных"
@@ -3895,6 +3999,11 @@ msgstr "Продукт: "
 #: admin/inc/dtc_config.php:1065
 msgid "Production server"
 msgstr "рабочий"
+
+#: admin/inc/renewals.php:421
+#, fuzzy
+msgid "Profit"
+msgstr "Закрытый"
 
 #: shared/inc/forms/domain_stats.php:74
 msgid "Protect your logs and stats folder with a password"
@@ -4054,6 +4163,16 @@ msgstr "Удалить администратора этого заказчик�
 msgid "Renew my account"
 msgstr "Обновить мой аккаунт"
 
+#: admin/inc/renewals.php:33
+#, fuzzy
+msgid "Renewal report"
+msgstr "Простои"
+
+#: admin/inc/renewals.php:35
+#, fuzzy
+msgid "Renewal repport"
+msgstr "Простои"
+
 #: admin/dtcrm/product_manager.php:98 admin/dtcrm/product_manager.php:161
 #: admin/dtcrm/product_manager.php:224
 msgid "Renewal-ID"
@@ -4190,11 +4309,11 @@ msgstr "VPS: "
 msgid "SSL IPs addresses"
 msgstr "IP-адреса SSL"
 
-#: admin/inc/renewals.php:282
+#: admin/inc/renewals.php:505
 msgid "SSL IPs renewals"
 msgstr "Простои SSL IP"
 
-#: admin/inc/renewals.php:185
+#: admin/inc/renewals.php:408
 msgid "SSL IPs renewals: "
 msgstr "Простои SSL IP: "
 
@@ -4331,7 +4450,7 @@ msgstr "Сенегал"
 msgid "Serbia"
 msgstr "Сербия"
 
-#: admin/inc/renewals.php:369
+#: admin/inc/renewals.php:594
 msgid "Server"
 msgstr "Сервер"
 
@@ -4395,7 +4514,7 @@ msgstr "Графики статистики сервера"
 msgid "Server:"
 msgstr "Сервер:"
 
-#: admin/inc/renewals.php:42 admin/inc/dtc_config.php:1392
+#: admin/inc/renewals.php:265 admin/inc/dtc_config.php:1392
 msgid "Service country"
 msgstr "Страна сервиса"
 
@@ -4416,19 +4535,24 @@ msgstr "Сейшелы"
 msgid "Shared"
 msgstr "Виртуальный"
 
-#: admin/inc/renewals.php:251
+#: admin/inc/renewals.php:474
 msgid "Shared hosting renewals:"
 msgstr "Простои виртуального хостинга:"
 
-#: admin/inc/renewals.php:184
+#: admin/inc/renewals.php:407
 msgid "Shared hosting: "
 msgstr "Виртуальный хостинг: "
+
+#: admin/inc/renewals.php:190
+#, fuzzy
+msgid "Short name:"
+msgstr "Короткое название: "
 
 #: admin/inc/dtc_config.php:1129
 msgid "Short name: "
 msgstr "Короткое название: "
 
-#: admin/inc/renewals.php:355
+#: admin/inc/renewals.php:580
 #, fuzzy
 msgid "Shutdown"
 msgstr "Предупреждение о выключении: "
@@ -4489,7 +4613,7 @@ msgstr "Запустить и остановить ваш VPS:"
 msgid "Stat script generated !"
 msgstr "Сгенерирован сценарий статистики!"
 
-#: shared/inc/forms/my_account.php:211
+#: admin/inc/renewals.php:221 shared/inc/forms/my_account.php:211
 msgid "State:"
 msgstr "Состояние:"
 
@@ -4735,6 +4859,11 @@ msgstr "Управляй своим доменом"
 msgid "Tanzania, United Republic Of"
 msgstr "Танзания, Объединённая Республика"
 
+#: admin/inc/renewals.php:128
+#, fuzzy
+msgid "Tax rate"
+msgstr "Ставка НДС:"
+
 #: shared/securepay/pay_functions.php:29
 msgid "Taxes (VAT or GST)"
 msgstr "Налоги (НДС или GST)"
@@ -4956,13 +5085,18 @@ msgstr "Токелау"
 msgid "Tonga"
 msgstr "Тонга"
 
-#: admin/inc/renewals.php:44 shared/securepay/pay_functions.php:35
+#: admin/inc/renewals.php:267 shared/securepay/pay_functions.php:35
 msgid "Total"
 msgstr "Всего"
 
 #: shared/inc/forms/invoices.php:23
 msgid "Total Price"
 msgstr "Конечная стоимость"
+
+#: admin/inc/renewals.php:124
+#, fuzzy
+msgid "Total cost"
+msgstr "Всего: "
 
 #: shared/inc/forms/database.php:117
 msgid "Total database number:"
@@ -4978,9 +5112,14 @@ msgstr "Объём используемого места на диске:"
 msgid "Total price: "
 msgstr "Конечная стоимость: "
 
-#: admin/inc/renewals.php:104
+#: admin/inc/renewals.php:327
 msgid "Total recurring incomes per month:"
 msgstr "Сводная помесячная таблица возвратов платежей:"
+
+#: admin/inc/renewals.php:132
+#, fuzzy
+msgid "Total tax"
+msgstr "Всего: "
 
 #: shared/inc/forms/admin_stats.php:107
 msgid "Total traffic"
@@ -4994,7 +5133,7 @@ msgstr "Переслано байт в этом месяце"
 msgid "Total transfered bytes this month:"
 msgstr "Переслано байт в этом месяце:"
 
-#: admin/inc/renewals.php:189
+#: admin/inc/renewals.php:412
 msgid "Total: "
 msgstr "Всего: "
 
@@ -5064,6 +5203,11 @@ msgstr "Тип не найден!"
 msgid "Type of encryption for connecting to Tucows server:"
 msgstr "Тип шифрования при подключении к серверу Tucows:"
 
+#: admin/inc/renewals.php:163
+#, fuzzy
+msgid "Type of payment"
+msgstr "Категория проблемы:"
+
 #: shared/inc/forms/ticket.php:52 shared/inc/forms/ticket.php:87
 msgid "Type of problem:"
 msgstr "Категория проблемы:"
@@ -5109,6 +5253,10 @@ msgstr "Соединённые Штаты"
 msgid "United States Minor Outlying Islands"
 msgstr "Внешние Малые Острова Соединённых Штатов"
 
+#: admin/inc/renewals.php:119
+msgid "Unknown"
+msgstr ""
+
 #: shared/inc/forms/packager.php:218
 msgid "Unpack size"
 msgstr "В распакованном виде"
@@ -5129,6 +5277,14 @@ msgstr "Обновление моего аккаунта"
 #: shared/dtcrm/draw.php:33
 msgid "Upgrade my account:"
 msgstr "Обновление моего аккаунта:"
+
+#: admin/inc/renewals.php:45 admin/inc/renewals.php:47
+msgid "Upstream provider editor"
+msgstr ""
+
+#: admin/inc/renewals.php:170
+msgid "Upstream provider list edition"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:338
 msgid "Uruguay"
@@ -5303,11 +5459,11 @@ msgstr "Узбекистан"
 msgid "VAT Number: "
 msgstr "ИНН: "
 
-#: admin/inc/renewals.php:44
+#: admin/inc/renewals.php:267 admin/inc/renewals.php:421
 msgid "VAT collected"
 msgstr ""
 
-#: admin/inc/renewals.php:81
+#: admin/inc/renewals.php:304
 #, fuzzy
 msgid "VAT not found"
 msgstr "Тип не найден!"
@@ -5333,7 +5489,7 @@ msgstr "VERP:"
 msgid "VM id: "
 msgstr "VM id: "
 
-#: admin/inc/renewals.php:324
+#: admin/inc/renewals.php:547
 msgid "VPS"
 msgstr "VPS"
 
@@ -5382,7 +5538,7 @@ msgstr ""
 msgid "VPS renewal email reminders periodicity"
 msgstr "Периодичность напоминания о простое VPS по эл.почте"
 
-#: admin/inc/renewals.php:316
+#: admin/inc/renewals.php:539
 msgid "VPS renewals:"
 msgstr "Простои VPS:"
 
@@ -5394,7 +5550,7 @@ msgstr "Серверы VPS"
 msgid "VPS xen number"
 msgstr "номер xen для VPS"
 
-#: admin/inc/renewals.php:186
+#: admin/inc/renewals.php:409
 msgid "VPS: "
 msgstr "VPS: "
 
@@ -5538,6 +5694,11 @@ msgstr "Whois для:"
 #: shared/inc/draw.php:420
 msgid "Whois:"
 msgstr "Whois:"
+
+#: admin/inc/renewals.php:119
+#, fuzzy
+msgid "Wire transfer"
+msgstr "Продолжить перенос"
 
 #: shared/inc/fetch.php:39 shared/inc/fetch.php:365 shared/inc/fetch.php:370
 msgid "Wrong user or password, or timeout expired!"
@@ -5833,7 +5994,7 @@ msgstr "Замбия"
 msgid "Zimbabwe"
 msgstr "Зимбабве"
 
-#: shared/inc/forms/my_account.php:209
+#: admin/inc/renewals.php:218 shared/inc/forms/my_account.php:209
 msgid "Zipcode:"
 msgstr "Индекс:"
 

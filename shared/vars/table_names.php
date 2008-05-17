@@ -43,4 +43,7 @@ $pro_mysql_dedicated_table = "dedicated";
 $pro_mysql_companies_table = "companies";
 $pro_mysql_invoicing_table = "invoicing";
 $pro_mysql_completedorders_table = "completedorders";
+$pro_mysql_spent_moneyout_table = "spent_moneyout";
+$pro_mysql_spent_providers_table = "spent_providers";
+$pro_mysql_spent_type_table = "spent_type";
 ?>

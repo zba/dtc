@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS spent_providers (
+  id int(9) NOT NULL auto_increment,
+  quick_name varchar(64) NOT NULL default '-',
+  is_company enum('yes','no') NOT NULL default 'no',
+  company_name varchar(64) NOT NULL default '',
+  vat_num varchar(128) NOT NULL default '',
+  familyname varchar(64) NOT NULL default '',
+  christname varchar(64) NOT NULL default '',
+  addr1 varchar(100) NOT NULL default '',
+  addr2 varchar(100) default NULL,
+  addr3 varchar(100) default NULL,
+  city varchar(64) NOT NULL default '',
+  zipcode varchar(32) NOT NULL default '0',
+  state varchar(32) default NULL,
+  country char(2) NOT NULL default '',
+  phone varchar(20) NOT NULL default '0',
+  fax varchar(20) default NULL,
+  email varchar(255) NOT NULL default '',
+  special_note blob,
+  always_yes enum('yes','no') NOT NULL default 'yes',
+  PRIMARY KEY (id)
+) TYPE=MyISAM;
