@@ -331,7 +331,9 @@ function drawRenewalTables (){
 				break;
 			case "kill_vps_and_owner":
 				// Do a brutal kill of the running instance
+				deleteVPS($_REQUEST["vps_id"]);
 				remoteVPSAction($_REQUEST["server_hostname"],$_REQUEST["vps_name"],"destroy_vps");
+				remoteVPSAction($_REQUEST["server_hostname"],$_REQUEST["vps_name"],"kill_vps_disk");
 				// Delete the admin
 				$q = "DELETE FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["adm_login"]."';";
 				$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -685,7 +687,7 @@ function drawRenewalTables (){
 							$r2 = mysql_query($q2)or die("Cannot querry ".$q2." line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 							$n2 = mysql_num_rows($r2);
 							if($n2 == 0){
-								$kill_owner_txt = "<a href=\"".$_SERVER["PHP_SELF"]."?action=kill_vps_and_owner&adm_login=".$admin["adm_login"]."&client_id=".$admin["id_client"]."&vps_name=".$a["vps_xen_name"]."&server_hostname=".$a["vps_server_hostname"]."\">"._("Kill VPS and owner")."</a>";
+								$kill_owner_txt = "<a href=\"".$_SERVER["PHP_SELF"]."?action=kill_vps_and_owner&adm_login=".$admin["adm_login"]."&client_id=".$admin["id_client"]."&vps_name=".$a["vps_xen_name"]."&server_hostname=".$a["vps_server_hostname"]."&vps_id=".$a["id"]."\">"._("Kill VPS and owner")."</a>";
 							}else{
 								$kill_owner_txt = _("Has some domains");
 							}

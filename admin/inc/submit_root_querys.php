@@ -42,8 +42,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_vps_config"){
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 }
 
-if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
-	$q = "SELECT * FROM $pro_mysql_vps_table WHERE id='".$_REQUEST["id"]."';";
+function deleteVPS($id){
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE id='$id';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
@@ -60,8 +60,13 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	remoteVPSAction($vps["vps_server_hostname"],$vps["vps_xen_name"],"destroy_vps");
+	remoteVPSAction($vps["vps_server_hostname"],$vps["vps_xen_name"],"kill_vps_disk");
 
 	VPS_Server_Subscribe_To_Lists($vps["vps_server_hostname"]);
+}
+
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
+	deleteVPS($_REQUEST["id"]);
 }
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "vps_server_list_remove"){

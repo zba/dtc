@@ -16,6 +16,9 @@ function remoteVPSAction($vps_node,$vps_name,$action){
 	case "shutdown_vps":
 		$r = $soap_client->call("shutdownVPS",array("vpsname" => "xen".$vps_name),"","","");
 		break;
+	case "kill_vps_disk":
+		$r = $soap_client->call("killVPS",array("vpsname" => "xen".$vps_name),"","","");
+		break;
 	default:
 		break;
 	}
