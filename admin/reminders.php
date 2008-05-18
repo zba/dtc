@@ -91,6 +91,7 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 	global $pro_mysql_client_table;
 	global $pro_mysql_vps_table;
 	global $conf_webmaster_email_addr;
+	global $conf_vps_renewal_lastwarning;
 
 	global $conf_message_subject_header;
 	global $dtcshared_path;
@@ -117,6 +118,11 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$vps = mysql_fetch_array($r);
+
+		// Shutdown the VPS if it reaches the shutdown warning
+		if($remaining_days == -$conf_vps_renewal_lastwarning){
+			remoteVPSAction($vps["vps_server_hostname"],$vps["vps_xen_name"],"shutdown_vps");
+		}
 
 		// Get the admin
 		$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$vps["owner"]."';";
