@@ -21,6 +21,8 @@ function drawRenewalTables (){
 	global $secpayconf_currency_letters;
 	global $rub;
 
+	global $conf_vps_renewal_shutdown;
+
 	get_secpay_conf();
 
 	if(!isset($_REQUEST["sousrub"]) || $_REQUEST["sousrub"] == ""){
@@ -321,8 +323,25 @@ function drawRenewalTables (){
 	default:
 	case "renewalreport":
 		// Allow shutdown of expired VPS
-		if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "shutdown_expired_vps"){
-			remoteVPSAction($_REQUEST["server_hostname"],$_REQUEST["vps_name"],"shutdown_vps");
+		if(isset($_REQUEST["action"])){
+			switch($_REQUEST["action"]){
+			case "shutdown_expired_vps":
+				// Perform a clean shutdown
+				remoteVPSAction($_REQUEST["server_hostname"],$_REQUEST["vps_name"],"shutdown_vps");
+				break;
+			case "kill_vps_and_owner":
+				// Do a brutal kill of the running instance
+				remoteVPSAction($_REQUEST["server_hostname"],$_REQUEST["vps_name"],"destroy_vps");
+				// Delete the admin
+				$q = "DELETE FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["adm_login"]."';";
+				$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				// And the client
+				$q = "DELETE FROM $pro_mysql_client_table WHERE id='".$_REQUEST["client_id"]."';";
+				$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				break;
+			default:
+				break;
+			}
 		}
 
 		// Display of each month payment list
@@ -650,13 +669,47 @@ function drawRenewalTables (){
 					$a2 = mysql_fetch_array($r2);
 					$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
 				}
+				$q2 = "SELECT adm_login FROM $pro_mysql_admin_table WHERE id_client='".$admin["id_client"]."'";
+				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 == 1){
+					$q2 = "SELECT * FROM $pro_mysql_vps_table WHERE owner='".$admin["adm_login"]."'";
+					$r2 = mysql_query($q2)or die("Cannot querry ".$q2." line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+					$n2 = mysql_num_rows($r2);
+					if($n2 == 1){
+						$q2 = "SELECT * FROM $pro_mysql_dedicated_table WHERE owner='".$admin["adm_login"]."'";
+						$r2 = mysql_query($q2)or die("Cannot querry ".$q2." line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+						$n2 = mysql_num_rows($r2);
+						if($n2 == 0){
+							$q2 = "SELECT * FROM $pro_mysql_domain_table WHERE owner='".$admin["adm_login"]."'";
+							$r2 = mysql_query($q2)or die("Cannot querry ".$q2." line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+							$n2 = mysql_num_rows($r2);
+							if($n2 == 0){
+								$kill_owner_txt = "<a href=\"".$_SERVER["PHP_SELF"]."?action=kill_vps_and_owner&adm_login=".$admin["adm_login"]."&client_id=".$admin["id_client"]."&vps_name=".$a["vps_xen_name"]."&server_hostname=".$a["vps_server_hostname"]."\">"._("Kill VPS and owner")."</a>";
+							}else{
+								$kill_owner_txt = _("Has some domains");
+							}
+						}else{
+							$kill_owner_txt = _("Has a dedicated");
+						}
+					}else{
+						$kill_owner_txt = _("More than one VPS");
+					}
+				}else{
+					$kill_owner_txt = _("More than one login");
+				}
+				if( numOfDays($a["expire_date"]) >= $conf_vps_renewal_shutdown){
+					$bgcolor = " bgcolor=\"#FF8888\" ";
+				}else{
+					$bgcolor = " ";
+				}
 				$out .= "<tr><td>".$a["owner"]."</td>
 				<td>".$a["vps_xen_name"].":".$a["vps_server_hostname"]."</td>
 				<td>$client_name</td>
 				<td>".$a2["email"]."</td>
-				<td>".$a["expire_date"]."</td>
-				<td>". calculateAge($a["expire_date"],"00:00:00") ."</td>
-				<td><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&action=shutdown_expired_vps&server_hostname=".$a["vps_server_hostname"]."&vps_name=".$a["vps_xen_name"]."\">"._("Shutdown")."</a></td></tr>";
+				<td $bgcolor>".$a["expire_date"]."</td>
+				<td $bgcolor>". calculateAge($a["expire_date"],"00:00:00") ."</td>
+				<td><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&action=shutdown_expired_vps&server_hostname=".$a["vps_server_hostname"]."&vps_name=".$a["vps_xen_name"]."\">"._("Shutdown")."</a> - $kill_owner_txt</td></tr>";
 			}
 			$out .= "</table>";
 		}

@@ -14,6 +14,15 @@ function calculateAge($date,$time){
 	return $age;
 }
 
+function numOfDays($date,$time="00:00:00"){
+	$exp_date = explode("-",$date);
+	$exp_time = explode(":",$time);
+	$timestamp = mktime($exp_time[0],$exp_time[1],$exp_time[2],$exp_date[1],$exp_date[2],$exp_date[0]);
+	$age_timestamp = mktime() - $timestamp;
+	$age =  round($age_timestamp/(60*60*24));
+	return $age;
+}
+
 function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_client_table;
