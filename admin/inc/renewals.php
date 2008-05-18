@@ -16,6 +16,7 @@ function drawRenewalTables (){
 	global $pro_mysql_spent_providers_table;
 	global $pro_mysql_spent_moneyout_table;
 	global $pro_mysql_companies_table;
+	global $pro_mysql_spent_bank_table;
 
 	global $secpayconf_currency_letters;
 	global $rub;
@@ -41,6 +42,12 @@ function drawRenewalTables (){
 		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub&sousrub=spent\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Money spent") ."</a></li>";
 	}
 	$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
+	if($sousrub == "bank"){
+		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub&sousrub=bank\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Bank accounts & payments") ."</a></li>";
+	}else{
+		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub&sousrub=bank\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Bank accounts & payments") ."</a></li>";
+	}
+	$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
 	if($sousrub == "provideredit"){
 		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub&sousrub=provideredit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">". _("Upstream provider editor") ."</a></li>";
 	}else{
@@ -60,7 +67,6 @@ function drawRenewalTables (){
 			$prov_popup_id[] = $a["id"];
 			$prov_popup_names[] = $a["quick_name"];
 		}
-
 		$q = "SELECT * FROM $pro_mysql_spent_type_table ";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
@@ -71,7 +77,6 @@ function drawRenewalTables (){
 			$spent_type_popup_id[] = $a["id"];
 			$spent_type_names[] = $a["label"];
 		}
-
 		$q = "SELECT * FROM $pro_mysql_companies_table ";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
@@ -81,6 +86,17 @@ function drawRenewalTables (){
 			$a = mysql_fetch_array($r);
 			$company_paying_popup_id[] = $a["id"];
 			$company_paying_names[] = $a["name"];
+		}
+
+		$q = "SELECT * FROM $pro_mysql_spent_bank_table ";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		$bank_popup_id = array();
+		$bank_names = array();
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$bank_popup_id[] = $a["id"];
+			$bank_names[] = $a["acct_name"];
 		}
 
 		$dsc = array(
@@ -126,7 +142,7 @@ function drawRenewalTables (){
 					"type" => "text",
 					"size" => 4,
 					"legend" => _("Tax rate")),
-				"vat_rate" => array(
+				"vat_total" => array(
 					"type" => "text",
 					"size" => 4,
 					"legend" => _("Total tax")),
@@ -134,6 +150,15 @@ function drawRenewalTables (){
 					"type" => "text",
 					"size" => 4,
 					"legend" => _("Currency")),
+				"bank_acct_id" => array(
+					"type" => "popup",
+					"values" => $bank_popup_id,
+					"display_replace" => $bank_names,
+					"legend" => _("Bank account")),
+				"amount" => array(
+					"type" => "text",
+					"size" => 6,
+					"legend" => _("Bank amount")),
 				"invoice_date" => array(
 					"type" => "text",
 					"size" => 10,
@@ -148,7 +173,59 @@ function drawRenewalTables (){
 			);
 		$out .= dtcDatagrid($dsc);
 		break;
-	case "provideredit":
+	case "bank":
+		$q = "SELECT * FROM $pro_mysql_companies_table ";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		$company_paying_popup_id = array();
+		$company_paying_names = array();
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$company_paying_popup_id[] = $a["id"];
+			$company_paying_names[] = $a["name"];
+		}
+
+		$dsc = array(
+			"title" => _("Bank accounts edition"),
+			"table_name" => $pro_mysql_spent_bank_table,
+			"action" => "bank_account_editor",
+			"forward" => array("rub","sousrub"),
+			"cols" => array(
+				"id" => array(
+					"type" => "id",
+					"display" => "no",
+					"legend" => "id"),
+				"acct_name" => array(
+					"type" => "text",
+					"legend" => _("Account name")),
+				"id_company" => array(
+					"legend" => _("Company"),
+					"type" => "popup",
+					"values" => $company_paying_popup_id,
+					"display_replace" => $company_paying_names),
+				"sort_code" => array(
+					"legend" => _("Sort code"),
+					"type" => "text",
+					"size" => "8"),
+				"acct_number" => array(
+					"legend" => _("Account number"),
+					"type" => "text"),
+				"swift" => array(
+					"legend" => _("SWIFT"),
+					"type" => "text",
+					"size" => "8"),
+				"bank_addr" => array(
+					"legend" => _("Bank address"),
+					"type" => "text"),
+				"currency_type" => array(
+					"legend" => _("Currency"),
+					"type" => "text",
+					"size" => "4")
+				)
+			);
+		$out .= dtcDatagrid($dsc);
+
+		// Payment type
 		$dsc = array(
 			"title" => _("Payment type edition"),
 			"table_name" => $pro_mysql_spent_type_table,
@@ -166,6 +243,8 @@ function drawRenewalTables (){
 				)
 			);
 		$out .= dtcDatagrid($dsc);
+		break;
+	case "provideredit":
 		$dsc = array(
 			"title" => _("Upstream provider list edition"),
 			"table_name" => $pro_mysql_spent_providers_table,
