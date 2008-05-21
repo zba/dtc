@@ -2077,8 +2077,8 @@ mailbox_size_limit = 0
 # we trigger the other action (scanning via a check_access directive)
 content_filter=dkimsign:[127.0.0.1]:10028
 " >> $TMP_FILE
-					if [ ! -f $PATH_POSTFIX_ETC/filter_10026_catchall ] ; then
-						echo "# Amavis has been detected as installed, so this has been activated by default
+				else
+					echo "# Amavis has been detected as installed, so this has been activated by default
 # if this is not what you want, comment it and restart postfix
 content_filter=smtp-amavis:[127.0.0.1]:10024
 " >> $TMP_FILE
