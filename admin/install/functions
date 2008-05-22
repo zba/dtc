@@ -2456,6 +2456,24 @@ modifyCourierConfig () {
 		chmod 600 $COURIER_FOLDER/userdb
 	fi
 
+	if [ ! -e ${COURIER_FOLDER}/quotawarnmsg ] ; then
+		ln -s ${COURIER_FOLDER}/quotawarnmsg $PATH_DTC_ETC/quotawarnmsg
+		if [ ! -e $PATH_DTC_ETC/quotawarnmsg ] ; then
+			echo "From: Mail Delivery System <postmaster@mx.node6503.gplhost.com>
+Reply-To: webmaster@${main_domain_name}
+To: Valued Customer:;
+Subject: Mail quota warning
+Mime-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 7bit
+
+Your mailbox on the server is now more than 90% full. So that you can continue
+to receive mail you need to remove some messages from your mailbox.
+
+" >$PATH_DTC_ETC/quotawarnmsg
+		fi
+	fi
+
 	#
 	# Install courier mysql authenticaion
 	#
