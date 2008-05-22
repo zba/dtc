@@ -2459,8 +2459,8 @@ modifyCourierConfig () {
 	if [ ! -e ${COURIER_FOLDER}/quotawarnmsg ] ; then
 		ln -s ${COURIER_FOLDER}/quotawarnmsg $PATH_DTC_ETC/quotawarnmsg
 		if [ ! -e $PATH_DTC_ETC/quotawarnmsg ] ; then
-			echo "From: Mail Delivery System <postmaster@mx.node6503.gplhost.com>
-Reply-To: webmaster@${main_domain_name}
+			echo "From: Mail Delivery System <postmaster@${main_domain_name}>
+Reply-To: postmaster@${main_domain_name}
 To: Valued Customer:;
 Subject: Mail quota warning
 Mime-Version: 1.0
