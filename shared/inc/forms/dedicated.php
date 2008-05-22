@@ -8,6 +8,7 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 
 	global $pro_mysql_product_table;
 	global $pro_mysql_dedicated_table;
+	global $pro_mysql_dedicated_ips_table;
 
 	global $secpayconf_currency_letters;
 
@@ -39,7 +40,7 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 
 	$ar = explode("-",$dedicated["expire_date"]);
 	$out .= "<b><u>". _("Dedicated server expiration dates:") ."</u></b><br>";
-	$out .= _("Your dedicated server was first registered on the:") .$dedicated["start_date"]."<br>";
+	$out .= _("Your dedicated server was first registered on the:") ." ".$dedicated["start_date"]."<br>";
 	if(date("Y") > $ar[0] ||
 			(date("Y") == $ar[0] && date("m") > $ar[1]) ||
 			(date("Y") == $ar[0] && date("m") == $ar[1] && date("d") > $ar[2])){
@@ -65,7 +66,18 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 	}
 
 //	$out .= "Dedicated server content!";
+	$out .= "<br><br><h3>"._("IP addresses: ")."</h3>";
 
+	$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE dedicated_server_hostname='$dedicated_server_hostname'";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if($i > 0){
+			$out .= " - ";
+		}
+		$out .= $a["ip_addr"];
+	}
 	return $out;
 }
 

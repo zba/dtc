@@ -32,8 +32,11 @@ function drawDTCConfigMenu(){
 			"text" => gettext("IP addresses and network"),
 			"icon" => "box_wnb_nb_picto-ipaddresses.gif"),
 		"sslip" => array(
-			"text" => gettext("SSL IPs addresses"),
+			"text" => gettext("SSL IP addresses"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
+		"dedicatedip" => array(
+			"text" => _("Dedicated server IP addresses"),
+			"icon" => "box_wnb_nb_picto-dedicatedservers.gif"),
 		"zonefile" => array(
 			"text" => gettext("Named zonefiles"),
 			"icon" => "box_wnb_nb_picto-namedzonefiles.gif"),
@@ -230,6 +233,45 @@ are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminder
 	return configEditorTemplate ($dsc);
 }
 
+function drawDedicatedIPConfig(){
+	global $pro_mysql_dedicated_ips_table;
+	global $pro_mysql_dedicated_table;
+	$out = "";
+
+	$q = "SELECT server_hostname FROM $pro_mysql_dedicated_table ORDER BY server_hostname";
+	$r = mysql_query($q) or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$popup_vals = array();
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$popup_vals[] = $a["server_hostname"];
+	}
+
+	$dsc = array(
+		"table_name" => $pro_mysql_dedicated_ips_table,
+		"title" => _("Dedicated server IP address pool editor"),
+		"action" => "dedicated_ip_list",
+		"forward" => array("rub","sousrub"),
+		"update_check_callback" => "checkIPAssigned",
+		"insert_check_callback" => "checkIPAssigned",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"ip_addr" => array(
+				"type" => "text",
+				"legend" => _("IPs addrs")),
+			"dedicated_server_hostname" => array(
+				"type" => "popup",
+				"values" => $popup_vals,
+				"legend" => _("Dedicated server hostname"))
+			)
+	);
+	$out .= dtcDatagrid($dsc);
+	return $out;
+}
+
 function drawSSLIPConfig(){
 	global $pro_mysql_ssl_ips_table;
 	global $rub;
@@ -241,6 +283,8 @@ function drawSSLIPConfig(){
 		"title" => _("SSL dedicated IP addresses: "),
 		"action" => "ssl_ip_list",
 		"forward" => array("rub","sousrub"),
+		"update_check_callback" => "checkIPAssigned",
+		"insert_check_callback" => "checkIPAssigned",
 		"cols" => array(
 			"id" => array(
 				"type" => "id",
@@ -369,16 +413,24 @@ function drawFTPBacupConfig(){
 function checkIPAssigned(){
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_server_table;
+	global $pro_mysql_dedicated_ips_table;
+	global $pro_mysql_ssl_ips_table;
 	global $action_error_txt;
 
+
 	// We first force an IP to be in.
-	if($_REQUEST["action"] != "vps_server_ip_list_edit" && $_REQUEST["action"] != "vps_server_ip_list_new" && $_REQUEST["dom0_ips"] == ""){
+	if($_REQUEST["action"] != "ssl_ip_list_edit" && $_REQUEST["action"] != "ssl_ip_list_new" &&
+	                                $_REQUEST["action"] != "dedicated_ip_list_edit" && $_REQUEST["action"] != "dedicated_ip_list_new" &&
+					$_REQUEST["action"] != "vps_server_ip_list_edit" && $_REQUEST["action"] != "vps_server_ip_list_new" &&
+					$_REQUEST["dom0_ips"] == ""){
 		$action_error_txt = _("Please enter an IP address for your dom0!");
 		return false;
 	}
 	// Then we check all IPs separated by | one by one
 	$ret_val = true;
-	if($_REQUEST["action"] == "vps_server_ip_list_edit" || $_REQUEST["action"] == "vps_server_ip_list_new"){
+	if($_REQUEST["action"] == "vps_server_ip_list_edit" || $_REQUEST["action"] == "vps_server_ip_list_new" ||
+				$_REQUEST["action"] == "ssl_ip_list_edit" || $_REQUEST["action"] == "ssl_ip_list_new" ||
+				$_REQUEST["action"] == "dedicated_ip_list_edit" || $_REQUEST["action"] == "dedicated_ip_list_new"){
 		$all_dom0_ips = array();
 		$all_dom0_ips[] = $_REQUEST["ip_addr"];
 		$nbr_ips = 1;
@@ -429,6 +481,34 @@ function checkIPAssigned(){
 			$action_error_txt = _("The IP address $test_ip is already assigned to a VPS: cannot assign this one!");
 			$ret_val = false;
 		}
+
+		// Check against the SSLIP list
+		if($_REQUEST["action"] == "ssl_ip_list_edit"){
+			$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_addr='$test_ip' AND id != '". $_REQUEST["id"] ."';";
+		}else{
+			$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_addr='$test_ip';";
+		}
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 0){
+			$action_error_txt = _("The IP address $test_ip is already assigned to a dedicated server: cannot assign this one!");
+			$ret_val = false;
+		}
+
+
+		// Check against the dedicated IP list
+		if($_REQUEST["action"] != "dedicated_ip_list_edit" && $_REQUEST["action"] != "dedicated_ip_list_new"){
+			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE ip_addr='$test_ip' AND id != '". $_REQUEST["id"] ."';";
+		}else{
+			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE ip_addr='$test_ip';";
+		}
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 0){
+			$action_error_txt = _("The IP address $test_ip is already assigned to an SSL site: cannot assign this one!");
+			$ret_val = false;
+		}
+
 	}
 	return $ret_val;
 }
@@ -1425,6 +1505,8 @@ function drawDTCConfigForm(){
 		return drawNetworkConfig();
 	case "sslip":
 		return drawSSLIPConfig();
+	case "dedicatedip":
+		return drawDedicatedIPConfig();
 	case "zonefile":
 		return drawNamedConfig();
         case "backup":
