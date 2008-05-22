@@ -1,4 +1,4 @@
-dtc (0.28.11-1) unstable; urgency=low
+dtc (0.29.1-1) unstable; urgency=low
 
   * New upstream release.
   * Corrected minor typo in debconf template (Closes: #479583)
