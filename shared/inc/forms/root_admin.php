@@ -194,7 +194,8 @@ function drawEditAdmin($admin){
 			if($i > 0){
 				$domain_conf .= " - ";
 			}
-			$domain_conf .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub&action=delete_a_vps&id=".$a["id"]."\"><b>".$a["vps_server_hostname"].":".$a["vps_xen_name"]."</b></a>";
+			$delete_vps_url = dtcJavascriptConfirmLink( _("Are you sure you want to delete this VPS? This will also delete the partitions!"),"?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub&action=delete_a_vps&id=".$a["id"]);
+			$domain_conf .= "<a href=\"".$delete_vps_url."\"><b>".$a["vps_server_hostname"].":".$a["vps_xen_name"]."</b></a>";
 		}
 		$domain_conf .= "<br><br>";
 	}
