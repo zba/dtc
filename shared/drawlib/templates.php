@@ -651,6 +651,7 @@ function dtcDatagrid($dsc){
 // "type" => "popup" -> The control is a popup
 // "values" => array("yes","no") -> Values of the popup (in display order)
 // [display_replace] => array(... -> Values to replace in the display (can be smaller than the values array)
+// "max_value_positive" => INT -> Check against an INT max value for a field
 
 // This function is to be used for the user panel, it has field content check & validations plus addslashes
 
@@ -841,6 +842,20 @@ function dtcListItemsEdit($dsc){
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
 							$commit_err .= $keys[$i].": not a correct number format<br>";
+						}
+					}
+					break;
+				case "max_value_2096":
+					if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+								|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+								|| $_REQUEST[ $keys[$i] ] != ""){
+						if( !isRandomNum($_REQUEST[ $keys[$i] ]) ){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": not a correct number format<br>";
+						}
+						if($_REQUEST[ $keys[$i] ] >= 2096){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": is greater or equal than the max value 2096<br>";
 						}
 					}
 					break;
@@ -1105,6 +1120,20 @@ function dtcListItemsEdit($dsc){
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
 							$commit_err .= $keys[$i].": not a correct number format<br>";
+						}
+					}
+					break;
+				case "max_value_2096":
+					if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+								|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+								|| $_REQUEST[ $keys[$i] ] != ""){
+						if( !isRandomNum($_REQUEST[ $keys[$i] ]) ){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": not a correct number format<br>";
+						}
+						if($_REQUEST[ $keys[$i] ] >= 2096){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": is greater or equal than the max value 2096<br>";
 						}
 					}
 					break;

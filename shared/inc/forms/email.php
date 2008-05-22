@@ -589,7 +589,7 @@ function drawAdminTools_Emails($domain){
 	} else {
 		$dsc["cols"]["quota_size"] = array(
 			"type" => "text",
-			"check" => "number",
+			"check" => "max_value_2096",
 			"default" => "10",
 			"happen" => _("MBytes"),
 			"legend" => _("Mailbox quota: ") );
