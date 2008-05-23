@@ -2569,9 +2569,10 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 			fi
 			
 
-			# try to disable courierd using chkconfig (for redhat based distro)
-			if [ -x /sbin/chkconfig ] ; then
-				/sbin/chkconfig courier off
+			# Restart courier for RH/FC
+			if [ -x /sbin/service ] ; then
+				/sbin/service courier-authlib restart
+				/sbin/service courier-imap restart
 			fi
 		fi	
 	fi
