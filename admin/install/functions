@@ -3782,21 +3782,35 @@ createChrootTemplate () {
 			if [ -e /lib/ld-linux-x86-64.so.2 ] ; then
 				cp -pf /lib/ld-linux-x86-64.so.2 lib/
 			fi
-			cp -pf /lib/libdl.so.2 lib/
-			cp -pf /lib/libm.so.6 lib/
-			cp -pf /lib/libpthread.so.0 lib/
-			cp -pf /lib/libc.so.6 lib/
-			cp -pf /lib/libcrypt.so.1 lib/
-			cp -pf /lib/librt.so.1 lib/
-			cp -pf  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 \
+			if [ -e /lib/libdl.so.2 ] ; then
+				cp -pf /lib/libdl.so.2 lib/
+			fi
+			if [ -e /lib/libm.so.6 ] ; then
+				cp -pf /lib/libm.so.6 lib/
+			fi
+			if [ -e /lib/libpthread.so.0 ] ; then
+				cp -pf /lib/libpthread.so.0 lib/
+			fi
+			if [ -e /lib/libc.so.6 ] ; then
+				cp -pf /lib/libc.so.6 lib/
+			fi
+			if [ -e /lib/libcrypt.so.1 ] ; then
+				cp -pf /lib/libcrypt.so.1 lib/
+			fi
+			if [ -e /lib/librt.so.1 ] ; then
+				cp -pf /lib/librt.so.1 lib/
+			fi
+			if [ -e /lib/libnss_compat.so.2 ] ; then
+				cp -pf  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 \
 			  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+			fi
 	
 			if [ -e /lib/libncurses.so.5 ] ; then
-			  cp  /lib/libncurses.so.5 lib/
+				cp  /lib/libncurses.so.5 lib/
 			fi
 	
 			if [ -e /usr/lib/libncurses.so.5 ] ; then
-			  cp /usr/lib/libncurses.so.5 lib/
+				cp /usr/lib/libncurses.so.5 lib/
 			fi
 	
 			if [ -e /lib/libacl.so.1 ] ; then
