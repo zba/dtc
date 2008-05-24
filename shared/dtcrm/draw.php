@@ -20,6 +20,13 @@ function draw_UpgradeAccount($admin){
 	global $pro_mysql_client_table;
 	global $pro_mysql_product_table;
 
+	global $secpayconf_currency_letters;
+
+	if(!isset($secpayconf_currency_letters)){
+		get_secpay_conf();
+	}
+
+
 	$out = "";
 	$nowrap = 'style="white-space:nowrap"';
 
@@ -59,9 +66,9 @@ function draw_UpgradeAccount($admin){
 		$refundal = floor($days_remaining * $price_per_days);
 		$owing = floor($days_outstanding * $price_per_days);
 
-		$out .= _("Your past account was: ") ."\$".$prod["price_dollar"]." for ".smartDate($prod["period"])."<br>";
-		$out .= _("Refund")." (". $days_remaining. _(" days) for upgrading will be: "). "\$$refundal<br><br>";
-		$out .= _("You have")." (".$days_outstanding._(" days), with ") ."\$$owing". _(" remaining to be paid") ."<br>";
+		$out .= _("Your past account was: ") .$prod["price_dollar"]." ".$secpayconf_currency_letters." for ".smartDate($prod["period"])."<br>";
+		$out .= _("Refund")." (". $days_remaining. _(" days) for upgrading will be: "). "$refundal ".$secpayconf_currency_letters."<br><br>";
+		$out .= _("You have")." (".$days_outstanding._(" days), with ") ."$owing". " " . $secpayconf_currency_letters ._(" remaining to be paid") ."<br>";
 	}else{
 		$out .= _("You currently don't have a validated account. Please contact customer support.") ;
 		return $out;
@@ -131,10 +138,10 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 		}
 	}
 
-	$out .= "Remaining on your account: \$" . $remaining . "<br>
-New account price: \$". $ze_price . "<br>
-Past account refundal: \$". $refundal . "<br>
-Total price: \$". $heber_price . "<br>";
+	$out .= "Remaining on your account: " . $remaining . "$secpayconf_currency_letters<br>
+New account price: ". $ze_price . "$secpayconf_currency_letters<br>
+Past account refundal: ". $refundal . "$secpayconf_currency_letters<br>
+Total price: ". $heber_price . "$secpayconf_currency_letters<br>";
 
 	if($heber_price > $remaining){
 		$to_pay = $heber_price - $remaining;
@@ -150,7 +157,7 @@ Total price: \$". $heber_price . "<br>";
 	}
 
 	$after_upgrade_remaining = $remaining - $heber_price;
-	$out .= "After upgrade, you will have: \$$after_upgrade_remaining<br><br>";
+	$out .= "After upgrade, you will have: " . $after_upgrade_remaining . " " .$secpayconf_currency_letters . "<br><br>";
 
 	// Check for confirmation
 	if(isset($_REQUEST["toreg_confirm_register"]) && $_REQUEST["toreg_confirm_register"] != "yes"){
