@@ -13,12 +13,4 @@ Please login into your control panel at:
 
 with your login %%%DTC_ADM_LOGIN%%% click on your my-account tab, and renew it.
 
-Note that our payment system uses eNETS payment gateway in Singapore
-as well as paypal. eNETS accept VISA and Mastercard, and the fees for
-using it are lower. If you can, please use it.
-
-Best regards,
-
-	GPLHost billing department
-
 %%%SIGNATURE%%%

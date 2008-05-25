@@ -12,8 +12,4 @@ today. Your data will remain on our server until somebody else
 takes the space. If you wish to restart your server, please renew
 it.
 
-Best regards,
-
-	GPLHost billing department
-
 %%%SIGNATURE%%%

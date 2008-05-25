@@ -15,8 +15,4 @@ with your login %%%DTC_ADM_LOGIN%%%, click on your VPS tab, and renew it.
 We will keep your dedicated server up few days to give you the time to
 renew your contract.
 
-Best regards,
-
-	GPLHost billing department
-
 %%%SIGNATURE%%%

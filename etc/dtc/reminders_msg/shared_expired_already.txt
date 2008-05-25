@@ -14,8 +14,4 @@ with your login %%%DTC_ADM_LOGIN%%%, click on "my account", and renew it.
 We will keep your shared account up few days to give you the time to
 renew your contract.
 
-Best regards,
-
-	GPLHost billing department
-
 %%%SIGNATURE%%%

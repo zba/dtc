@@ -17,8 +17,4 @@ need the space for other customers, and that hosting has to be
 paid in advance. If you don't renew, we will have to delete your
 account and all the data it contains.
 
-Best regards,
-
-	GPLHost billing department
-
 %%%SIGNATURE%%%

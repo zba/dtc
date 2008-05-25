@@ -16,8 +16,4 @@ We will keep your server up few days to give you the time to
 renew your contract. After the grace period your server will
 be shutdown.
 
-Best regards,
-
-	GPLHost billing department
-
 %%%SIGNATURE%%%

@@ -12,8 +12,4 @@ today. Your data will be destroyed on our server so somebody else
 takes the space. If you wish to restart your VPS, please renew
 it.
 
-Best regards,
-
-	GPLHost billing department
-
 %%%SIGNATURE%%%

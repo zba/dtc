@@ -18,8 +18,4 @@ space for other customers, and that hosting has to be paid in
 advance. If you don't renew, your server will be shutdown in
 3 days.
 
-Best regards,
-
-	GPLHost billing department
-
 %%SIGNATURE%%%
