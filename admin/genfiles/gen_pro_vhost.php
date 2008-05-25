@@ -767,7 +767,8 @@ $logrotate_template
 	sharedscripts
 ";
 		if($conf_apache_version == "2"){
-			$logrotate_file .= "	postrotate
+			$logrotate_file .= "
+	postrotate
 		if [ -f /var/run/apache2.pid ]; then
 			/etc/init.d/apache2 restart > /dev/null
 		fi
@@ -775,13 +776,17 @@ $logrotate_template
 }
 ";
 		}else{
-			$logrotate_file .= "	postrotate
+			$logrotate_file .= "
 	postrotate
 		if [ -f /var/run/apache.pid ]; then \
 			if [ -x /usr/sbin/invoke-rc.d ]; then \
 				invoke-rc.d apache reload > /dev/null; \
 			else \
-				/etc/init.d/apache reload > /dev/null; \
+				if [ -x /etc/init.d/apache ]; then \
+					/etc/init.d/apache reload > /dev/null; \
+				elif [ -x /etc/init.d/httpd ]; then \
+					/etc/init.d/httpd reload > /dev/null; \
+				fi; \
 			fi; \
 		fi;
 	endscript
