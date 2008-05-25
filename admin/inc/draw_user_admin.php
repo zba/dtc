@@ -169,7 +169,7 @@ function drawNewAdminForm(){
 		}
 		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 		<input type=\"hidden\" name=\"subaction\" value=\"ticket_reply\">
-		<textarea cols=\"60\" rows=\"10\" wrap=\"physical\" name=\"ticketbody\"></textarea><br>
+		<textarea cols=\"100\" rows=\"10\" wrap=\"physical\" name=\"ticketbody\"></textarea><br>
 		<input type=\"hidden\" name=\"tik_id\" value=\"".$_REQUEST["tik_id"]."\">
 		<input type=\"hidden\" name=\"last_tik_id\" value=\"$last_tik\">
 		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">

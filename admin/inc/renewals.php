@@ -59,6 +59,61 @@ function drawRenewalTables (){
 
 	switch($sousrub){
 	case "spent":
+		$out .= "<h3>Date selection</h3>";
+
+		if( !isset($_REQUEST["date"])){
+			// Check the last record to get the last entry by default.
+			$q = "SELECT DISTINCT(CONCAT_WS('-',YEAR(invoice_date),MONTH(invoice_date))) FROM `spent_moneyout` WHERE 1 ORDER BY invoice_date DESC LIMIT 1";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			if($n != 0){
+				$a = mysql_fetch_array($r);
+				$exploded = explode("-",$a[0]);
+				$using_date = $exploded[0];
+				if(strlen($exploded[1]) < 2){
+					$using_date = $exploded[0] . "-0" . $exploded[1];
+				}else{
+					$using_date = $exploded[0] . "-" . $exploded[1];
+				}
+				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date=all\">all</a>";
+				$date = $using_date;
+				$where_condition = " invoice_date LIKE '$date%' ";
+			}else{
+				$out .= "all";
+				$date = "all";
+				$where_condition = " 1 ";
+			}
+		}else if( $_REQUEST["date"] == "all"){
+			$out .= "all";
+			$date = "all";
+			$where_condition = " 1 ";
+		}else{
+			$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date=all\">all</a>";
+			$date = $_REQUEST["date"];
+			$where_condition = " invoice_date LIKE '$date%' ";
+		}
+
+		$q = "SELECT DISTINCT(CONCAT_WS('-',YEAR(invoice_date),MONTH(invoice_date))) FROM `spent_moneyout` WHERE 1 ORDER BY invoice_date";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$exploded = explode("-",$a[0]);
+			$using_date = $exploded[0];
+			if(strlen($exploded[1]) < 2){
+				$using_date = $exploded[0] . "-0" . $exploded[1];
+			}else{
+				$using_date = $exploded[0] . "-" . $exploded[1];
+			}
+			if($date != $using_date){
+				$out .= " - <a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date=".$using_date."\">".$using_date."</a>";
+			}else{
+				$out .= " - $using_date";
+			}
+		}
+
+		$out .= "<br><br>";
+
 		$q = "SELECT * FROM $pro_mysql_spent_providers_table ";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
@@ -105,7 +160,9 @@ function drawRenewalTables (){
 			"title" => _("List of payments done by your hosting company"),
 			"table_name" => $pro_mysql_spent_moneyout_table,
 			"action" => "money_out_editor",
-			"forward" => array("rub","sousrub"),
+			"forward" => array("rub","sousrub","date"),
+			"where_condition" => $where_condition,
+			"order_by" => "invoice_date",
 			"cols" => array(
 				"id" => array(
 					"type" => "id",

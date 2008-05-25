@@ -203,6 +203,8 @@ function named_generate(){
 	global $conf_dtc_system_username;
 	global $conf_dtc_system_groupname;
 	global $conf_autogen_default_subdomains;
+	global $conf_default_zones_ttl;
+
 	$slave_file = "";
 	$todays_serial = date("YmdH");
 
@@ -228,7 +230,7 @@ function named_generate(){
 		$web_serial_flag = $row["generate_flag"];
 		$ip_addr = $row["ip_addr"];
 		// domain wide TTL
-		$domain_ttl = 7200;
+		$domain_ttl = $conf_default_zones_ttl;
 		if (isset($row["ttl"]))
 		{
 			$domain_ttl = $row["ttl"];	
@@ -418,11 +420,10 @@ $more_mx_server
 				$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 				$web_subname = $subdomain["subdomain_name"];
 				// TTL support
-				$sub_ttl = 7200;
-                                if (isset($subdomain["ttl"]))
-                                {
-                                        $sub_ttl = $subdomain["ttl"];
-                                }
+				$sub_ttl = $conf_default_zones_ttl;
+				if (isset($subdomain["ttl"])){
+					$sub_ttl = $subdomain["ttl"];
+				}
 				// Check if it's an IP or not, to know if it's a CNAME record or a A record
 				if(isIP($subdomain["ip"]) || $subdomain["ip"] == "default"){
 					if($subdomain["ssl_ip"] != "none"){

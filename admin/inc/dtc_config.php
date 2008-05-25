@@ -883,6 +883,10 @@ transfers separated by &quot;|&quot; (pipe)<br>
 (leave blank if you don't have backup DNS server):"),
 				"type" => "text",
 				"size" => "50"),
+			"default_zones_ttl" => array(
+				"legend" => _("Defaut TTL for your zonefiles:"),
+				"type" => "text",
+				"size" => "10"),
 			"domainkey_publickey_filepath" => array(
 				"legend" => _("Full path to location of the public.key file for DomainKey support:"),
 				"type" => "text",
