@@ -2082,7 +2082,6 @@ content_filter=dkimsign:[127.0.0.1]:10028
 # if this is not what you want, comment it and restart postfix
 content_filter=smtp-amavis:[127.0.0.1]:10024
 " >> $TMP_FILE
-					fi
 				fi
 			else
 				echo "# uncomment to enable amavis
