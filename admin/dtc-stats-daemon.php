@@ -12,7 +12,9 @@ When this "daemon" call getCollectedPerformanceData() via SOAP on to the dtc-xen
 
 Your task is to get that data, insert it into the database on a stats table, then do some code that graphs that data so DTC can present that to the user in his VPS management screen.  The proposed data table row would be something like:
 
-	[ nodehostname,domUname,datatype,measurement ]
+	[ nodehostname,owner,domUname,datatype,measurement ]
+
+(the owner column is my suggestion so we don't accrue accounting data to the wrong owner, in case a VPS is canceled and then taken up by a different customer)
 
 where measurement is probably going to need 64 bits of storage in the case of ints, or some arbitrary precision number to avoid wraparounds (most likely).  The measurements are NOT DELTAS -- for sequential measurements of the same type, you will most of the time expect an increment: 52.6, 55.5, 66.8... and so on.  However, measurements CAN wrap around in the following scenarios:
 
@@ -45,7 +47,9 @@ Please note how from, 56 to 1 there is a delta of 1 (if we summed the measuremen
 
 In practical terms, we only lose measurement data from the point of last measurement (maximum fifty-nine seconds in case of VPS/node reboots), or the difference between MAXINT-1 and any arbitrary very large measurement (in case of a counter wraparound) both of which are acceptable inaccuracies.
 
-So, with this in hand, we can create a world-class statistics system for DTC.  Who's up to the challenge?
+So, with this in hand, we can create a world-class statistics system for DTC.  Store the data in an RRD file or a table, keyed by VPS+owner (the RRD file is probably going to be much faster and it may have provisions for wraparounds and deltas), then do the graphing and accounting that we now have done but only half-assed.
+
+Who's up to the challenge?
 
 */
 
