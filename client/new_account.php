@@ -41,6 +41,9 @@ $form = "";
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "contract_renewal"){
 	$ret = renew_form();
 	$form = $ret["mesg"];
+// The customer wants to add: a shared account if he doesn't have one, a new dedicated or vps
+}else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_new_service"){
+	$form = "Bla!";
 // Return from payment API (and maybe validate the payment)
 }else if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_REQUEST["action"] == "enets-success")){
 	// Here are paypal return parameters:

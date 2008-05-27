@@ -16,6 +16,7 @@ function drawAdminTools_AddDomain($admin){
 	global $pro_mysql_pending_queries_table;
 	global $pro_mysql_domain_table;
 	global $pro_mysql_client_table;
+	global $pro_mysql_product_table;
 
 	global $secpayconf_currency_letters;
 	global $pro_mysql_handle_table;
@@ -36,7 +37,7 @@ $form_start = "
 	if(!isset($_REQUEST["add_domain_type"]) || ($_REQUEST["add_domain_type"] != "domregandhosting" &&
 		$_REQUEST["add_domain_type"] != "domreg" &&
 		$_REQUEST["add_domain_type"] != "hosting")){
-		$out .= "<b><u>". _("What do you want to add:") ."</u></b><br>
+		$out .= "<br><h3>". _("What do you want to add:") ."</h3>
 $form_start";
 		if($conf_use_registrar_api == "yes"){
 			$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>". _("Hosting + domain name registration or transfer")."<br>";
@@ -48,6 +49,24 @@ $form_start";
 <input type=\"submit\" value=\"Ok\">
 </form>
 ";
+
+
+		$out .= "<br><br><h3>Add another service to your account:</h3>";
+		if( isset($admin["data"])){
+			$added_conditions = " AND heb_type NOT LIKE 'shared' ";
+		}else{
+			$added_conditions = "";
+		}
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE private='no' AND renew_prod_id='0' AND heb_type NOT LIKE 'ssl' $added_conditions;";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			if($i > 0){
+				$out .= " - ";
+			}
+			$out .= "<a href=\"/dtc/new_account.php?action=add_new_service&adm_login=$adm_login&product_id=".$a["id"]."\">".$a["name"]."</a>";
+		}
 		return $out;
 	}
 	$form_start .= "<input type=\"hidden\" name=\"add_domain_type\" value=\"".$_REQUEST["add_domain_type"]."\">";
@@ -292,6 +311,8 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 
 // END OF DOMAIN NAME REGISTRATION //
 /////////////////////////////////////
+
+
 	return $out;
 }
 

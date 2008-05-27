@@ -129,7 +129,7 @@ function drawAdminTools($admin){
 		"link" => "invoices");
 	if($nbr_domain > 0){
 		$user_ZEmenu[] = array(
-			"text" => _("Add a domain") ,
+			"text" => _("Add a domain or service") ,
 			"icon" => "box_wnb_nb_picto-addadomainname.gif",
 			"type" => "link",
 			"link" => "adddomain");
@@ -441,7 +441,7 @@ function drawAdminTools($admin){
 			$web_editor .= drawAdminTools_NickHandles($admin);
 			$title = _("Internet Whois Nick Handles management:") ;
 		}else if(@$add_array[1] == "adddomain"){
-                        $web_editor .= "<img src=\"inc/adddomain.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Add a domain:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"inc/adddomain.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Add a domain or service:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_AddDomain($admin);
 			$title = _("Add a domain name to my account") ;
 		}else if(@$add_array[1] == "nameservers"){
