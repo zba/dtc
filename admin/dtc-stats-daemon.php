@@ -6,25 +6,42 @@ Rudd-O SAYS:
 
 FIXME
 
-I have removed the xenupdate.py and xengraph.py from dtc-xen, and moved the data collection to dtc-xen itself.  dtc-xen samples the data every sixty seconds and dumps the sample into a directory.
+I have removed the xenupdate.py and xengraph.py from dtc-xen, and moved the
+data collection to dtc-xen itself.  dtc-xen samples the data every sixty
+seconds and dumps the sample into a directory.
 
-When this "daemon" call getCollectedPerformanceData() via SOAP on to the dtc-xen server running at the node, dtc-xen feeds you the data (the format is documented in the dtc-xen.py file), and then DELETES IT from the node.
+When this "daemon" call getCollectedPerformanceData() via SOAP on to the
+dtc-xen server running at the node, dtc-xen feeds you the data (the format is
+documented in the dtc-xen.py file), and then DELETES IT from the node.
 
-Your task is to get that data, insert it into the database on a stats table, then do some code that graphs that data so DTC can present that to the user in his VPS management screen.  The proposed data table row would be something like:
+Your task is to get that data, insert it into the database on a stats table,
+then do some code that graphs that data so DTC can present that to the user in
+his VPS management screen.  The proposed data table row would be something
+like:
 
-	[ nodehostname,owner,domUname,datatype,measurement ]
+[ nodehostname,owner,domUname,datatype,measurement ]
 
-(the owner column is my suggestion so we don't accrue accounting data to the wrong owner, in case a VPS is canceled and then taken up by a different customer)
+(the owner column is my suggestion so we don't accrue accounting data to the
+wrong owner, in case a VPS is canceled and then taken up by a different
+customer)
 
-where measurement is probably going to need 64 bits of storage in the case of ints, or some arbitrary precision number to avoid wraparounds (most likely).  The measurements are NOT DELTAS -- for sequential measurements of the same type, you will most of the time expect an increment: 52.6, 55.5, 66.8... and so on.  However, measurements CAN wrap around in the following scenarios:
+where measurement is probably going to need 64 bits of storage in the case of
+ints, or some arbitrary precision number to avoid wraparounds (most likely).
+The measurements are NOT DELTAS -- for sequential measurements of the same
+type, you will most of the time expect an increment: 52.6, 55.5, 66.8... and
+so on.  However, measurements CAN wrap around in the following scenarios:
 
  - the /sys or /proc counter itself wraps around
  - the node hosting the VPSes is rebooted
  - the VPS itself is powered off and restarted
 
-(Python's integer data types are mostly safe from wraparounds (ints autocast to longs) you shouldn't have a problem in dtc-xen because of it, but maybe the SOAP transport is vulnerable to integer overflows, so heads up there)
+(Python's integer data types are mostly safe from wraparounds (ints autocast
+to longs) you shouldn't have a problem in dtc-xen because of it, but maybe
+the SOAP transport is vulnerable to integer overflows, so heads up there)
 
-What this means, in practice, is that you will have a series of measurements in the database table, and where the N value will be a large one, the N + 1 will suddenly be small or zero.  Since:
+What this means, in practice, is that you will have a series of measurements in
+the database table, and where the N value will be a large one, the N + 1 will
+suddenly be small or zero.  Since:
 
  - for accounting, you need a sum of deltas, not of measurements
  - for charting, you need to plot the deltas, not the measurements
@@ -43,11 +60,19 @@ def deltas ( sequential_measurements ):
 >>> print ds
 [1, 1, 1, 1, 1, 1, 1, 1, 0, 10, 46, 1, 44, 1, 2, 1, 1, 1]
 
-Please note how from, 56 to 1 there is a delta of 1 (if we summed the measurements blindly, we would get a negative number in this case)
+Please note how from, 56 to 1 there is a delta of 1 (if we summed the
+measurements blindly, we would get a negative number in this case)
 
-In practical terms, we only lose measurement data from the point of last measurement (maximum fifty-nine seconds in case of VPS/node reboots), or the difference between MAXINT-1 and any arbitrary very large measurement (in case of a counter wraparound) both of which are acceptable inaccuracies.
+In practical terms, we only lose measurement data from the point of last
+measurement (maximum fifty-nine seconds in case of VPS/node reboots), or the
+difference between MAXINT-1 and any arbitrary very large measurement (in case
+of a counter wraparound) both of which are acceptable inaccuracies.
 
-So, with this in hand, we can create a world-class statistics system for DTC.  Store the data in an RRD file or a table, keyed by VPS+owner (the RRD file is probably going to be much faster and it may have provisions for wraparounds and deltas), then do the graphing and accounting that we now have done but only half-assed.
+So, with this in hand, we can create a world-class statistics system for DTC.
+Store the data in an RRD file or a table, keyed by VPS+owner (the RRD file is
+probably going to be much faster and it may have provisions for wraparounds
+and deltas), then do the graphing and accounting that we now have done but
+only half-assed.
 
 Who's up to the challenge?
 
