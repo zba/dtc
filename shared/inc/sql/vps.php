@@ -37,6 +37,29 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "shutdown_vps" || $_REQ
 		$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;
 	}
 }
+if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "set_ip_reverse_dns")){
+	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) == true){
+		if(!isIP($_REQUEST["ip_addr"])){
+			$submit_err = _("This is not a correct IP line ") .__LINE__. _(" file ") .__FILE__;
+		}else{
+			if(!isHostnameOrIP($_REQUEST["rdns"])){
+				$submit_err = _("This is not a correct hostname or IP line ") .__LINE__. _(" file ") .__FILE__;
+			}else{
+				$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_addr='".$_REQUEST["ip_addr"]."' AND vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
+				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n = mysql_num_rows($r);
+				if($n != 1){
+					$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;
+				}else{
+					$q = "UPDATE $pro_mysql_vps_ip_table SET rdns_addr='".$_REQUEST["rdns"]."' WHERE ip_addr='".$_REQUEST["ip_addr"]."';";
+					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				}
+			}
+		}
+	}else{
+		$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;
+	}
+}
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_passwd"){
 	if(!isDTCPassword($_REQUEST["new_password"])){

@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS vps_ip (
   `vps_server_hostname` varchar(255) NOT NULL default '',
   `vps_xen_name` varchar(64) NOT NULL default '',
   `ip_addr` varchar(16) NOT NULL default '',
+  `rdns_addr` varchar(255) NOT NULL default 'gplhost.com',
   `available` enum('yes','no') NOT NULL default 'yes',
   PRIMARY KEY  (id),
   UNIQUE KEY ip_addr (ip_addr)

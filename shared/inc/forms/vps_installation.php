@@ -137,17 +137,38 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 	$vps_ips = $vps["ip_addr"];
 	$n = sizeof($vps_ips);
 	if($n > 1){
-		$out .= _("IP addresses: ") ;
+		$ip_title = _("IP addresses: ") ;
 	}else{
-		$out .= _("IP address: ") ;
+		$ip_title = _("IP address: ") ;
 	}
+	$out .= "<br><h3>". $ip_title ."</h3>";
+	$out .= dtcFormTableAttrs();
 	for($i=0;$i<$n;$i++){
-		if($i != 0){
-			$out .= " - ";
+		if($i % 2){
+			$alt_color = 0;
+		}else{
+			$alt_color = 1;
 		}
-		$out .= $vps_ips[$i];
+		$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_addr='".$vps_ips[$i]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r);
+		if($n2 != 1){
+			$out .= _("Error line ".__LINE__." file ".__FILE__);
+		}else{
+			$a = mysql_fetch_array($r);
+			$out .= dtcFormLineDraw($vps_ips[$i],
+	"$frm_start<input type=\"hidden\" name=\"action\" value=\"set_ip_reverse_dns\">
+	<input type=\"hidden\" name=\"ip_addr\" value=\"".$vps_ips[$i]."\">
+	<input type=\"text\" name=\"rdns\" value=\"".$a["rdns_addr"]."\">
+</td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\"
+onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Change RDNS")."\"></div>
+ <div class=\"input_btn_right\"></div>
+</div></form>",$alt_color);
+		}
 	}
-	$out .= "<br><br>";
+	$out .= "</table><br><br>";
 
 	// VPS status
 	$out .= "<h3>". _("Current VPS status:") ."</h3><br>";
