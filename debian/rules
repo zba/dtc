@@ -9,7 +9,9 @@ clean:
 	dh_testdir
 	dh_testroot
 	dh_clean
-	rm -f debian/dtc-core.postinst debian/dtc-core.config debian/dtc-core.prerm debian/dtc-postfix-courier.postinst debian/dtc-postfix-courier.config debian/dtc-postfix-courier.prerm
+	rm -f debian/dtc-core.postinst debian/dtc-core.config debian/dtc-core.prerm \
+		debian/dtc-postfix-courier.postinst debian/dtc-postfix-courier.config debian/dtc-postfix-courier.prerm \
+		debian/dtc-cyrus.postinst debian/dtc-cyrus.config debian/dtc-cyrus.prerm
 	$(MAKE) clean
 
 install:
