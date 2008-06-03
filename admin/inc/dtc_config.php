@@ -34,6 +34,9 @@ function drawDTCConfigMenu(){
 		"sslip" => array(
 			"text" => gettext("SSL IP addresses"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
+		"ip_pool" => array(
+			"text" => gettext("IP addresses pool"),
+			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"dedicatedip" => array(
 			"text" => _("Dedicated server IP addresses"),
 			"icon" => "box_wnb_nb_picto-dedicatedservers.gif"),
@@ -268,6 +271,42 @@ function drawDedicatedIPConfig(){
 				"legend" => _("Dedicated server hostname"))
 			)
 	);
+	$out .= dtcDatagrid($dsc);
+	return $out;
+}
+
+function drawIPPoolConfig(){
+	global $pro_mysql_ip_pool_table;
+	global $rub;
+	global $sousrub;
+
+	$out = "";
+	$dsc = array(
+		"table_name" => $pro_mysql_ip_pool_table,
+		"title" => _("IP address pool editor: "),
+		"action" => "ip_pool_editor",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"location" => array(
+				"type" => "text",
+				"legend" => _("Location")),
+			"ip_addr" => array(
+				"type" => "text",
+				"legend" => _("IPs addrs")),
+			"netmask" => array(
+				"type" => "text",
+				"legend" => _("Netmask")),
+			"zone_type" => array(
+				"type" => "popup",
+				"legend" => _("Type of zone generation"),
+				"values" => array("support_ticket", "ip_per_ip", "one_zonefile"),
+				"display_replace" => array(_("Support ticket"),_("One zonefile per IP"),_("One zonefile per pool")))
+			)
+		);
 	$out .= dtcDatagrid($dsc);
 	return $out;
 }
@@ -1509,6 +1548,8 @@ function drawDTCConfigForm(){
 		return drawNetworkConfig();
 	case "sslip":
 		return drawSSLIPConfig();
+	case "ip_pool":
+		return drawIPPoolConfig();
 	case "dedicatedip":
 		return drawDedicatedIPConfig();
 	case "zonefile":
