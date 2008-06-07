@@ -90,8 +90,10 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_k
 		$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;
 		$commit_flag = "no";
 	}
-	$commit_flag = "no";
-	$submit_err = "Need to add the code for checking ssh key string validity!";
+	if( !isSSHKey($_REQUEST["new_key"])){
+		$commit_flag = "no";
+		$submit_err = "Need to add the code for checking ssh key string validity!";
+	}
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
