@@ -74,7 +74,7 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		if($i > 0){
-			$out .= " - ";
+			$out .= ", ";
 		}
 		$out .= $a["ip_addr"];
 	}
