@@ -622,6 +622,7 @@ $dtc_database = array(
 			"time" => "time NOT NULL default '00:00:00'",
 			"maxmind_output" => "text NOT NULL",
 			"last_used_lang" => "varchar(32) NOT NULL default 'en_US'",
+			"add_service" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)"
 		),

@@ -33,6 +33,51 @@ $form_start = "
 <input type=\"hidden\" name=\"action\" value=\"dtcrm_add_domain\">
 ";
 
+	// User is trying to add a new service, let's complete the form!
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_new_service"){
+		if(!isRandomNum($_REQUEST["product_id"])){
+			$out .= _("The product ID is not a valid integer number.");
+			return $out;
+		}
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["product_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+                $n = mysql_num_rows($r);
+                if($n != 1){
+                	$out .= _("Cannot reselect product: registration failed!") ;
+                	return $out;
+                }
+                $product = mysql_fetch_array($r);
+			switch($product["heb_type"]){
+			default:
+			case "shared":  // -> Something has to be done to select dedicated servers location in the form !!!
+			case "server":
+				$added1 = "<input type=\"hidden\" name=\"vps_location\" value=\"node0001.example.com\">
+<input type=\"hidden\" name=\"vps_os\" value=\"debian\">";
+				break;
+			case "vps":
+				$added1 = _("VPS location: ")."<select name=\"vps_location\">".vpsLocationSelector()."</select><br>".
+				_("VPS OS: ")."<select name=\"vps_os\">
+<option value=\"debian\">Debian</option>
+<option value=\"centos\">CentOS</option>
+<option value=\"gentoo\">Gentoo</option>
+<option value=\"netbsd\">NetBSD</option>
+</select><br>";
+				break;
+			}
+		$out .= "<br><br><h3>"._("Add another service to your account:")."</h3>".
+"<br><form action=\"/dtc/new_account.php\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+<input type=\"hidden\" name=\"product_id\" value=\"".$_REQUEST["product_id"]."\">
+<input type=\"hidden\" name=\"action\" value=\"add_new_service\">".$added1."
+Special notes for the setup:<textarea name=\"custom_notes\" cols=\"50\" rows=\"5\"></textarea><br>
+<input type=\"submit\" value=\""._("Register")."\">
+";
+		
+		return $out;
+	}
+
 	// Registration, hosting, or both ?
 	if(!isset($_REQUEST["add_domain_type"]) || ($_REQUEST["add_domain_type"] != "domregandhosting" &&
 		$_REQUEST["add_domain_type"] != "domreg" &&
@@ -51,7 +96,7 @@ $form_start";
 ";
 
 
-		$out .= "<br><br><h3>Add another service to your account:</h3>";
+		$out .= "<br><br><h3>"._("Add another service to your account:")."</h3>";
 		if( isset($admin["data"])){
 			$added_conditions = " AND heb_type NOT LIKE 'shared' ";
 		}else{
@@ -62,10 +107,17 @@ $form_start";
 		$n = mysql_num_rows($r);
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
-			if($i > 0){
-				$out .= " - ";
-			}
-			$out .= "<a href=\"/dtc/new_account.php?action=add_new_service&adm_login=$adm_login&product_id=".$a["id"]."\">".$a["name"]."</a>";
+//			if($i > 0){
+//				$out .= " - ";
+//			}
+			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+			<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+			<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+			<input type=\"hidden\" name=\"action\" value=\"add_new_service\">
+			<input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
+			<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+			<input type=\"submit\" value=\"".$a["name"]."\"></form>";
+//			$out .= "<a href=\"/dtc/new_account.php?action=add_new_service&adm_login=$adm_login&product_id=".$a["id"]."\">".$a["name"]."</a>";
 		}
 		return $out;
 	}

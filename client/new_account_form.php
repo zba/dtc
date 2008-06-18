@@ -1,6 +1,6 @@
 <?php
 
-function register_user(){
+function register_user($adding_service="no"){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_product_table;
@@ -446,7 +446,7 @@ function registration_form(){
 	}
 	$prod_popup = "<select onChange=\"hostingProductChanged();\" name=\"product_id\">".$prod_popup."</select>";
 
-	$q = "SELECT $pro_mysql_vps_server_table.hostname,$pro_mysql_vps_server_table.location
+/*	$q = "SELECT $pro_mysql_vps_server_table.hostname,$pro_mysql_vps_server_table.location
 	FROM $pro_mysql_vps_ip_table,$pro_mysql_vps_server_table
 	WHERE $pro_mysql_vps_ip_table.vps_server_hostname=$pro_mysql_vps_server_table.hostname
 	AND $pro_mysql_vps_ip_table.available='yes'
@@ -462,7 +462,8 @@ function registration_form(){
 			$selected = "";
 		}
 		$vps_location_popup .= "<option value=\"".$a["hostname"]."\" $selected>".$a["location"]."</optioon>";
-	}
+	}*/
+	$vps_location_popup = vpsLocationSelector();
 
 	if(isset($_REQUEST["reqadm_login"]))	$frm_login = htmlspecialchars($_REQUEST["reqadm_login"]);
 	else	$frm_login = "";

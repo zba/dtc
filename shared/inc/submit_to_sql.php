@@ -225,12 +225,6 @@ function validateWaitingUser($waiting_login){
 		// at this point, we should have an affiliatename
 	}
 
-	// Check if there is a user by that name
-	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$waiting_login';";
-	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-	if($n != 0)die("There is already a user with name $waiting_login in database: I can't add another one line: ".__LINE__." file: ".__FILE__."!");
-
 	// Get the informations from the user waiting table
 	$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE reqadm_login='$waiting_login';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -238,11 +232,23 @@ function validateWaitingUser($waiting_login){
 	if($n != 1)die("I can't find username $waiting_login in the userwaiting table line: ".__LINE__." file: ".__FILE__."!");
 	$a = mysql_fetch_array($r);
 
+	// Check if there is a user by that name
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$waiting_login';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($a["add_service"] == "yes"){
+		if($n != 1)die("There is no user with name $waiting_login in database: I can't add a service to it line: ".__LINE__." file: ".__FILE__."!");
+		$existing_admin = mysql_fetch_array($r);
+		$cid = $existing_admin["id_client"];
+	}else{
+		if($n != 0)die("There is already a user with name $waiting_login in database: I can't add another one line: ".__LINE__." file: ".__FILE__."!");
+	}
+
 	// Calculate user's path with default path
 	$newadmin_path = $conf_site_root_host_path."/".$waiting_login;
 
 	// Create admin's directory
-	if($conf_demo_version == "no"){
+	if($conf_demo_version == "no" && $a["add_service"] != "yes"){
 		$oldumask = umask(0);
 		if(!file_exists($newadmin_path)){
 			mkdir("$newadmin_path", 0750);
@@ -258,7 +264,8 @@ function validateWaitingUser($waiting_login){
 	$a2 = mysql_fetch_array($r2);
 
 	// Add customer's info to production table
-	$adm_query = "INSERT INTO $pro_mysql_client_table
+	if($a["add_service"] != "yes"){
+		$adm_query = "INSERT INTO $pro_mysql_client_table
 (id,is_company,company_name,vat_num,familyname,christname,addr1,addr2,addr3,
 city,zipcode,state,country,phone,fax,email,
 disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
@@ -267,9 +274,9 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 '".addslashes($a["zipcode"])."','".addslashes($a["state"])."','".addslashes($a["country"])."','".addslashes($a["phone"])."',
 '".addslashes($a["fax"])."','".addslashes($a["email"])."','".$a2["quota_disk"]."','". $a2["bandwidth"]/1024 ."',
 '".addslashes($a["custom_notes"])."');";
-	$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$cid = mysql_insert_id();
-
+		$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$cid = mysql_insert_id();
+	}
 	// Add user in database
         $expires = calculateExpirationDate(date("Y-m-d"),$a2["period"]);
         if($a2["heb_type"] == "vps"){
@@ -281,11 +288,22 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
         }else{
         	$admtbl_added1 = ",expire,prod_id";
         	$admtbl_added2 = ",'$expires','".$a2["id"]."'";
+        	$admtbl_added3 = ", expire='$expires', prod_id='".$a2["id"]."' ";
         }
-	$adm_query = "INSERT INTO $pro_mysql_admin_table
+        if($a["add_service"] != "yes"){
+		$adm_query = "INSERT INTO $pro_mysql_admin_table
 (adm_login        ,adm_pass         ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_email$admtbl_added1) VALUES
 ('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["nbr_email"]."'$admtbl_added2);";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}else{
+		if($a2["heb_type"] == "shared"){
+			$adm_query = "UPDATE $pro_mysql_admin_table
+			SET bandwidth_per_month_mb='".$a2["bandwidth"]."', quota='".$a2["quota_disk"]."', nbrdb='".$a2["nbr_database"]."',
+			allow_add_domain='".$a2["allow_add_domain"]."', max_email='".$a2["nbr_email"]."' $admtbl_added3
+			WHERE adm_login='$waiting_login';";
+			mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		}
+	}
 
         if($a2["heb_type"] == "vps"){
 		$vps_xen_name = addVPSToUser($waiting_login,$a["vps_location"],$a2["id"],$a["vps_os"]);

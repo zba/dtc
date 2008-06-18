@@ -930,7 +930,7 @@ transfers separated by &quot;|&quot; (pipe)<br>
 				"legend" => _("Full path to location of the public.key file for DomainKey support:"),
 				"type" => "text",
 				"size" => "50")));
-			
+
 	return configEditorTemplate ($dsc);
 }
 
@@ -1113,6 +1113,8 @@ function drawDTCpayConfig(){
 
 	$out = "";
 
+
+
 	$dsc = array(
 		"title" => _("Secure payment configuration"),
 		"action" => "payment_gateway_currency_edit",
@@ -1127,6 +1129,28 @@ function drawDTCpayConfig(){
 				"type" => "text",
 				"size" => "6")));
 	$out .= configEditorTemplate ($dsc,"secpay");
+
+//  -- zion --
+	$dsc = array(
+		"title" => "WebMoney:",
+		"action" => "webmoney_gateway_webmoney_edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"use_webmoney" => array(
+				"legend" => _("Use WebMoney: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
+			"webmoney_license_key" => array(
+				"legend" => _("WebMoney secret key: "),
+				"type" => "text",
+				"size" => "44"),
+			"webmoney_wmz" => array(
+				"legend" => _("WMZ: "),
+				"type" => "text",
+				"size" => "44") ));
+	$out .= configEditorTemplate ($dsc,"secpay");
+// -- zion --
 
 	$dsc = array(
 		"title" => "PayPal:",
@@ -1296,7 +1320,7 @@ function drawDTCpathConfig(){
 	global $conf_webalizer_stats_script_path;
 
 	global $conf_chroot_path;
-	
+
 	global $conf_htpasswd_path;
 
 	global $lang;

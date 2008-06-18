@@ -37,15 +37,21 @@ $lang_sel = skin($conf_skin,$anotherLanguageSelection, _("Language") );
 
 $form = "";
 
+if(!isset($_REQUEST["action"])){
+	$action = "reg_new_user";
+}else{
+	$action = $_REQUEST["action"];
+}
+
+switch($action){
 // Renew a contact (or buy SSL token)
-if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "contract_renewal"){
+case "contract_renewal":
 	$ret = renew_form();
 	$form = $ret["mesg"];
-// The customer wants to add: a shared account if he doesn't have one, a new dedicated or vps
-}else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_new_service"){
-	$form = "This part is not finished! To add a new package, please register with another username until we have finished the feature.";
+	break;
 // Return from payment API (and maybe validate the payment)
-}else if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "return_from_pay" || $_REQUEST["action"] == "enets-success")){
+case "return_from_pay":
+case "enets-success":
 	// Here are paypal return parameters:
 	// [action] => return_from_pay
 	// [regid] => 50
@@ -144,24 +150,167 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "contract_renewal"){
 			}
 		}
 	}
+	break;
 // A cancel occured (currently only from eNETS)
-}else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-cancel"){
+case "enets-cancel":
 	$form .= "<h3><font color=\"red\">". _("PAYMENT CANCELLED") ."<!-- PAYMENT CANCELED --></font></h3>".
 _("You have canceled the payment, your account wont be validated. To start again the registration procedure, follow the link here:") ."<br>
 <a href=\"new_account.php\">". _("Register a new account") ."</a>";
+	break;
+case "enets-failed":
 // The transaction have failed (currently only eNETS)
-}else if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "enets-failed"){
 	$form .= "<h3><font color=\"red\">". _("PAYMENT FAILED") ."<!-- PAYMENT FAILED --></font></h3>".
 _("The payment gateway have reported that your payment has failed. Contact us, we also accept checks and wire transfers.");
+	break;
+// The customer wants to add: a shared account if he doesn't have one, a new dedicated or vps
+case "add_new_service":
+	if( !isRandomNum($_REQUEST["product_id"]) ){
+		$form = _("The product ID is not a valid integer number.");
+		break;
+	}
+	if( !isFtpLogin($_REQUEST["adm_login"])){
+		$form = _("The requested login is not a valid login.");
+		break;
+	}
+	if( !isHostnameOrIP($_REQUEST["vps_location"]) ){
+		$form = _("Location is not a valid hostname.");
+		break;
+	}
+	if( !isset($_REQUEST["vps_os"]) || ($_REQUEST["vps_os"] != "debian" && $_REQUEST["vps_os"] != "debian" && $_REQUEST["centos"] != "debian" && $_REQUEST["gentoo"] != "netbsd")){
+		$form = _("VPS operating system not recognized");
+		break;
+	}
+	// Product
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["product_id"]."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$form = _("Cannot reselect product: registration failed!") ;
+		break;
+	}
+	$product = mysql_fetch_array($r);
+
+	if($product["heb_type"] == "vps"){
+		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$_REQUEST["vps_location"]."'";
+		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		if($n != 1){
+			$form = _("Cannot reselect product: registration failed!") ;//"Cannot reselect product: registration failed!";
+			break;
+		}else{
+			$vps_server = mysql_fetch_array($r);
+			$service_location = $vps_server["country_code"];
+		}
+	}else{
+		$service_location = $conf_this_server_country_code;
+	}
+
+	// Admin
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$_REQUEST["adm_login"]."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$form .= _("Cannot reselect user: registration failed!");
+		break;
+	}
+	$admin = mysql_fetch_array($r);
+
+	// Client
+	$q = "SELECT * FROM $pro_mysql_client_table WHERE id='".$admin["id_client"]."';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$form .= _("Cannot reselect client: registration failed!");
+		break;
+	}
+	$client = mysql_fetch_array($r);
+
+	$q = "INSERT INTO $pro_mysql_new_admin_table (id,reqadm_login,reqadm_pass,domain_name,family_name,first_name,
+	comp_name,iscomp,email,
+	phone,fax,addr1,addr2,addr3,
+	zipcode,city,state,country,
+
+	product_id,
+	custom_notes,vps_location,vps_os,
+	
+	vat_num,shopper_ip,date,time,add_service)
+
+	VALUES ('','".$_REQUEST["adm_login"]."','','example.com','".$client["familyname"]."','".$client["christname"]."',
+	'".$client["company_name"]."','".$client["is_company"]."','".$client["email"]."',
+	'".$client["phone"]."','".$client["fax"]."','".$client["addr1"]."','".$client["addr2"]."','".$client["addr3"]."',
+	'".$client["zipcode"]."','".$client["city"]."','".$client["state"]."','".$client["country"]."',
+	
+	'".$_REQUEST["product_id"]."',
+	'".mysql_escape_string($_REQUEST["custom_notes"])."','".$_REQUEST["vps_location"]."','".$_REQUEST["vps_os"]."',
+	
+	'".$client["vat_num"]."','".$_SERVER["REMOTE_ADDR"]."','".date("Y-m-d")."','".date("H:i:s")."','yes')";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$insert_id = mysql_insert_id();
+
+	if($product["heb_type"] == "vps"){
+		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$_REQUEST["vps_location"]."'";
+		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		if($n != 1){
+			$form = _("Cannot reselect product: registration failed!") ;//"Cannot reselect product: registration failed!";
+			break;
+		}else{
+			$vps_server = mysql_fetch_array($r);
+			$service_location = $vps_server["country_code"];
+		}
+	}else{
+		$service_location = $conf_this_server_country_code;
+	}
+
+	$company_invoicing_id = findInvoicingCompany ($service_location,$client["country"]);
+	$q = "SELECT * FROM $pro_mysql_companies_table WHERE id='$company_invoicing_id';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	if($n != 1){
+		$form = "Cannot find company invoicing line ".__LINE__." file ".__FILE__;
+		break;
+	}
+	$company_invoicing = mysql_fetch_array($r);
+	// If VAT is set, use it.
+	if($company_invoicing["vat_rate"] == 0 || $company_invoicing["vat_number"] == ""){
+		$vat_rate = 0;
+		$use_vat = "no";
+	}else{
+	        // Both companies are in europe, in different countries, and customer as a VAT number,
+	        // then there is no VAT and the customer shall pay the VAT in it's own country
+		// These are the VAT rules in the European Union...
+		if($client["is_company"] == "yes" && $client["vat_num"] != ""
+				&& isset($cc_europe[ $client["country"] ]) && isset($cc_europe[ $company_invoicing["country"] ])
+				&& $client["country"] != $company_invoicing["country"]){
+			$vat_rate = 0;
+			$use_vat = "no";
+		}else{
+        	        $use_vat = "yes";
+			$vat_rate = $company_invoicing["vat_rate"];
+		}
+	}
+	$payid = createCreditCardPaiementID($product["price_dollar"],$insert_id,$product["name"]." (login: ".$_REQUEST["adm_login"].")","yes",$product["id"],$vat_rate);
+	$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='$insert_id';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
+	$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
+
+	$form = "<h4>". _("New service registered successfully!") ."<!--Registration successfull!--></h4>
+Please now click on the following button to go for paiment:<br>
+<br>$paybutton";
+
+/*	$form .= "This part is not finished! To add a new package, please register with another username until we have finished the feature.";
+	$reguser = register_user("yes");
+	// If err=0 then it's already in the new_admin form!
+	if($reguser["err"] == 0){
+	}
+*/	break;
 // This is a new user registration
-}else{
+default:
+case "reg_new_user":
 	$print_form = "yes";
 	// Register form
 	$reguser = register_user();
 	// If err=0 then it's already in the new_admin form!
 	if($reguser["err"] == 0){
-		$form = "";
-		$form .= "Your registration has been recorded in our database.<br>";
+		$form .= _("Your registration has been recorded in our database.")."<br>";
 		$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='".$reguser["id"]."';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
@@ -245,7 +394,9 @@ Please now click on the following button to go for paiment:<br>
 		$form = "<font color=\"red\">".$reguser["mesg"]."</font><br>"
 		.registration_form();
 	}
+	break;
 }
+
 $login_skined = skin($conf_skin,$form, _("Register a new account") );
 $mypage = layout_login_and_languages($login_skined,$lang_sel);
 if(function_exists("skin_NewAccountPage")){

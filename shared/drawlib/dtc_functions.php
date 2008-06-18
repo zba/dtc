@@ -43,6 +43,30 @@ function domainNamePopup($domain_name=""){
 	return $out;
 }
 
+function vpsLocationSelector(){
+	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_vps_server_table;
+
+	$q = "SELECT $pro_mysql_vps_server_table.hostname,$pro_mysql_vps_server_table.location
+	FROM $pro_mysql_vps_ip_table,$pro_mysql_vps_server_table
+	WHERE $pro_mysql_vps_ip_table.vps_server_hostname=$pro_mysql_vps_server_table.hostname
+	AND $pro_mysql_vps_ip_table.available='yes'
+	GROUP BY $pro_mysql_vps_server_table.location;";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$vps_location_popup = "<option value=\"-1\">Please select!</optioon>";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		if(isset($_REQUEST["vps_server_hostname"]) && $_REQUEST["vps_server_hostname"] == $a["hostname"]){
+			$selected = " selected ";
+		}else{
+			$selected = "";
+		}
+		$vps_location_popup .= "<option value=\"".$a["hostname"]."\" $selected>".$a["location"]."</optioon>";
+	}
+	return $vps_location_popup;
+}
+
 function findLastUsedLangByUser($adm_login){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_new_admin_table;
