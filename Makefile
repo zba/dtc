@@ -206,7 +206,7 @@ admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.p
 # Todo: have the client/vps_stats_* be taken from the admin folder!
 CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-notify.php client/index.php \
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
-client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php \
+client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php client/webmoney.php \
 client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php \
 client/vps_stats_cpu.php client/vps_stats_hdd.php client/vps_stats_network.php client/vps_stats_swap.php client/get_vps_location_status.php
 
@@ -247,7 +247,7 @@ SKIN_STUFF=shared/gfx/skin/default_layout.php shared/gfx/skin/bwoup/layout.php
 PAYMENT_API_PHP_SCRIPT_FILES=shared/maxmind/CreditCardFraudDetection.php shared/maxmind/HTTPBase.php \
 shared/maxmind/LocationVerification.php shared/maxmind/TelephoneVerification.php \
 shared/securepay/paiement_config.php shared/securepay/paiement.php shared/securepay/pay_functions.php shared/securepay/gateways/enets.php \
-shared/securepay/gateways/paypal.php shared/securepay/gateways/worldpay.php
+shared/securepay/gateways/paypal.php shared/securepay/gateways/worldpay.php shared/securepay/gateways/webmoney.php
 
 WEB_SCRIPT_FILES=$(ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES) $(ADMIN_GENFILE_PHP_SCRIPT_FILES) $(ADMIN_INC_PHP_SCRIPT_FILES) \
 $(CLIENT_PHP_SCRIPT_FILES) $(EMAIL_PHP_SCRIPT_FILES) $(SHARED_PHP_SCRIPT_FILES) $(SHARED_INC_PHP_SCRIPT_FILES) \
