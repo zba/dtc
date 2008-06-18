@@ -12,6 +12,9 @@ function calculateVATtotal ($amount,$vat_rate){
 function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_recurring = "no"){
 	global $conf_use_worldpay;
 
+// -- zion --
+	global $secpayconf_use_webmoney;
+// -- zion --
 	global $secpayconf_use_enets;
 	global $secpayconf_use_paypal;
 	global $secpayconf_paypal_rate;
@@ -48,6 +51,18 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total."<td>".$total." ".$secpayconf_currency_letters."</td>
 		<td>Yes</td></tr>\n";
 	}
+
+// -- zion --
+	if($secpayconf_use_webmoney == "yes") {
+
+		$total = $amount + ($amount*0.008);
+		$cost = $total - $amount;
+
+		$out .= "<tr><td>".webmoneyButton($pay_id,$amount,$item_name)."</td>";
+		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total." ".$secpayconf_currency_letters."<td>".$total." ".$secpayconf_currency_letters."</td><td>Yes</td></tr>\n";
+	}
+// -- zion --
+
 	if($secpayconf_use_paypal == "yes" && $secpayconf_use_paypal_recurring == "yes" && $use_recurring == "yes"){
 		$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
 		$cost = $total - $amount;

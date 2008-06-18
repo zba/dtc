@@ -55,8 +55,8 @@ function renew_form(){
 	$the_prod = $a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)";
 	$prod_id = $a["id"];
 
-	$form = "<b><u>Renewal for login:</u></b> ".$_REQUEST["adm_login"]."<br>";
-	$form .= "<b><u>Product to renew:</u></b> ".$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)<br><br>";
+	$form = "<b><u>". _("Renewal for login:") ."</u></b> ".$_REQUEST["adm_login"]."<br>";
+	$form .= "<b><u>". _("Product to renew:") ."</u></b> ".$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)<br><br>";
 
 	switch($_REQUEST["renew_type"]){
 	case "vps":
@@ -190,7 +190,7 @@ Service country: $country
 
 	$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
 	$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate);
-	$form .= "Please click on the button below to send money in your acount:<br><br>$paybutton";
+	$form .= _("Please click on the button below to send money in your account:") ."<br><br>". $paybutton;
 
 	$ret["err"] = 0;
 	$ret["mesg"] = $form;

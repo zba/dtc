@@ -2,8 +2,8 @@
 CREATE TABLE IF NOT EXISTS pop_access (
   autoinc int(12) NOT NULL auto_increment,
   id varchar(32) NOT NULL default '',
-  uid int(11) NOT NULL default '65534',
-  gid int(11) NOT NULL default '65534',
+  uid int(11) NOT NULL default '1001',
+  gid int(11) NOT NULL default '1001',
   home varchar(255) NOT NULL default '',
   shell varchar(255) NOT NULL default '',
   mbox_host varchar(120) NOT NULL default '',
