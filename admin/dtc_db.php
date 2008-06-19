@@ -875,7 +875,10 @@ $dtc_database = array(
 			"enets_rate" => "float(6,2) NOT NULL default '0.00'",
 			"use_maxmind" => "enum('yes','no') NOT NULL default 'no'",
 			"maxmind_login" => "varchar(255) NOT NULL default ''",
-			"maxmind_license_key" => "varchar(255) NOT NULL default ''"
+			"maxmind_license_key" => "varchar(255) NOT NULL default ''",
+			"use_webmoney" => "enum('yes','no') NOT NULL default 'no'",
+			"webmoney_license_key" => "varchar(255) NOT NULL default ''",
+			"webmoney_wmz" => "varchar(255) NOT NULL default ''"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"
