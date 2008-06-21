@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dtc 0.25.1-1\n"
-"Report-Msgid-Bugs-To: thomas@goirand.fr\n"
-"POT-Creation-Date: 2008-05-07 16:21+0800\n"
-"PO-Revision-Date: 2007-03-15 00:27+0000\n"
+"Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
+"POT-Creation-Date: 2008-06-03 23:19+0200\n"
+"PO-Revision-Date: 2008-06-20 09:34+0100\n"
 "Last-Translator: Ricardo Silva <ardoric@gmail.com>\n"
 "Language-Team: Portuguese <traduz@debianpt.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid "Automatically configure MySQL user?"
-msgstr ""
+msgstr "Configurar o utilizador de MySQL automaticamente?"
 
 #. Type: boolean
 #. Description
@@ -33,6 +33,13 @@ msgid ""
 "always be located in the local machine (you won't be able to configure DTC "
 "to use a remote database server)."
 msgstr ""
+"O DTC pode usar o ficheiro /etc/mysql/debian.cnf para criar automaticamente "
+"uma conta de super-utilizador do mysql para o DTC aceder e gerir a sua "
+"base de dados. Desta forma, não será colocada nenhuma questão sobre a palavra-"
+"chave de super-utilizador do MySQL, e tudo será automático, mas a contrapartida "
+"é que o servidor de MySQL usado será sempre o da máquina local (não poderá "
+"configurar o DTC para usar um servidor de bases de dados remoto)."
+
 
 #. Type: boolean
 #. Description
@@ -43,6 +50,10 @@ msgid ""
 "password, issue the following command: dpkg-reconfigure mysql-server-5.0. "
 "You've been warned!"
 msgstr ""
+"De qualquer das formas, por favor certifique-se que tem uma palavra-passe de "
+"super-utilizador no MySQL. Por omissão a Debian instala o MySQL com uma palavra-"
+"chave em branco. Para definir a sua palavra-chave de super-utilizador do MySQL "
+"corra o seguinte comando: dpkg-reconfigura mysql-server-5.0. Você foi avisado."
 
 #. Type: string
 #. Description
@@ -54,7 +65,7 @@ msgstr "Nome da máquina MySQL:"
 #. Description
 #: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
 msgid "Please enter the hostname or IP address of the MySQL server."
-msgstr "Por favor introduza o nome da máquina ou ip do seu servidor de MySQL."
+msgstr "Por favor introduza o nome da máquina ou IP do seu servidor de MySQL."
 
 #. Type: string
 #. Description
@@ -488,7 +499,7 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Local address extension character:"
-msgstr ""
+msgstr "Caracter de extensão de um endereço local:"
 
 #. Type: select
 #. Description
@@ -497,6 +508,9 @@ msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
 msgstr ""
+"Por favor escolha o caracter que será usado para definir uma extensão de "
+"um endereço local. Este caracter TEM de ser igual ao que definiu na sua "
+"configuração do postfix ou do qmail."
 
 #. Type: select
 #. Description
@@ -509,12 +523,19 @@ msgid ""
 "patches are incompatibles), but when using - as delimiter, you will not be "
 "able to use an email of the form john-doe@example.com as - is the delimiter."
 msgstr ""
+"O delimitador do receptor irá ser utilizado nas suas listas de correio electrónico. "
+"Imaginemos que usa o caracter + como delimitador, então os seus utilizadores terão "
+"de enviar correio para a list+subscribe@example.com. A contrapartida de escolher + "
+"é que alguns servidores de correio electrónico não permitem o uso deste caracter no "
+"receptor (nomeadamente algumas patches do qmail são incompatíveis), mas se usar - "
+"como delimitador, não poderá usar um email com a forma ze-dos-pipos@exemplo.com já "
+"que o - é o delimitador."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Subdomain name for the MX server:"
-msgstr ""
+msgstr "Nome do sub-domínio do servidor MX:"
 
 #. Type: string
 #. Description
@@ -524,6 +545,10 @@ msgid ""
 "subdomain will be configured in your mail server and your domain name server "
 "by DTC. Any name is ok here."
 msgstr ""
+"O seu servidor de correio electrónico precisará de usar um nome de sub-domínio "
+"para poder aceitar correio. Este sub-domínio será configurado no seu servidor de "
+"correio electrónico e no seu servidor de nomes de domínio pelo DTC. Qualquer nome "
+"estará bem aqui."
 
 #. Type: string
 #. Description
@@ -589,3 +614,8 @@ msgid ""
 "Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
 "using dtc-postfix-courier instead."
 msgstr ""
+"Cyrus é um substituto para o sistema Maildir de entrega e armazenamento. Tem "
+"de saber o que está a fazer se quiser activar o uso do Cyrus. Se está a usar "
+"o dtc-toaster ou o dtc-postfix-courier, tem de responder para não usar o Cyrus "
+"aqui. O Cyrus só é utilizável com o pacote dtc e NÃO o é se estiver a usar o "
+"pacote dtc-postfix-courier."

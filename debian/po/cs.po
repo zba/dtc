@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# Czech translation of dtc debconf messages.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# This file is distributed under the same license as the dtc package.
+# Miroslav Kure <kurem@debian.cz>, 2007,2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
-"Report-Msgid-Bugs-To: thomas@goirand.fr\n"
-"POT-Creation-Date: 2008-05-07 16:21+0800\n"
-"PO-Revision-Date: 2007-03-31 15:20+0200\n"
+"Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
+"POT-Creation-Date: 2008-06-03 23:19+0200\n"
+"PO-Revision-Date: 2008-06-20 18:47+0200\n"
 "Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
 "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
 msgid "Automatically configure MySQL user?"
-msgstr ""
+msgstr "Nastavit MySQL uživatele automaticky?"
 
 #. Type: boolean
 #. Description
@@ -32,6 +32,11 @@ msgid ""
 "always be located in the local machine (you won't be able to configure DTC "
 "to use a remote database server)."
 msgstr ""
+"DTC umí na základě souboru /etc/mysql/debian.cnf automaticky vytvořit mysql "
+"uživatele pro přístup a správu databází MySQL a DTC. Takto nebudete dotázáni "
+"na správcovské heslo k MySQL a vše bude automatizováno. Nevýhodou je, že "
+"použitý MySQL server bude vždy na lokálním počítači (nebudete moci nastavit "
+"DTC, aby použil vzdálený databázový server)."
 
 #. Type: boolean
 #. Description
@@ -42,6 +47,10 @@ msgid ""
 "password, issue the following command: dpkg-reconfigure mysql-server-5.0. "
 "You've been warned!"
 msgstr ""
+"Ať už se rozhodnete jakkoliv, přesvědčte se, že je správcovské heslo MySQL "
+"nastaveno, protože ve výchozím nastavení Debian instaluje MySQL s prázdným "
+"heslem. Pro nastavení správcovského hesla MySQL zadejte následující příkaz: "
+"dpkg-reconfigure mysql-server-5.0. Byli jste varováni!"
 
 #. Type: string
 #. Description
@@ -262,7 +271,7 @@ msgid ""
 msgstr ""
 "Vyberte prosím MTA, který má DTC používat. MTA by již měl být na systému "
 "nainstalován. Pokud tomu tak není, dokončete nastavení DTC, nainstalujte "
-"balík s MTA a poté spusťte \"dpkg-reconfigure dtc\"."
+"balík s MTA a poté spusťte „dpkg-reconfigure dtc“."
 
 #. Type: boolean
 #. Description
@@ -299,7 +308,7 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
 msgid "Use \"NATed\" vhosts?"
-msgstr "Použít \"NATované\" vhosty?"
+msgstr "Použít „NATované“ vhosty?"
 
 #. Type: boolean
 #. Description
@@ -311,7 +320,7 @@ msgid ""
 msgstr ""
 "DTC může nastavit Apache tak, aby používal některou z vašich IP adres. Pokud "
 "se server nachází za NATem a jsou na něj přesměrovány porty z veřejné IP "
-"adresy (nebo adres), je možné vytvořit \"NATovanou\" konfiguraci vhostu."
+"adresy (nebo adres), je možné vytvořit „NATovanou“ konfiguraci vhostu."
 
 #. Type: boolean
 #. Description
@@ -478,7 +487,7 @@ msgstr ""
 #. Description
 #: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Local address extension character:"
-msgstr ""
+msgstr "Znak pro příponu lokální adresy:"
 
 #. Type: select
 #. Description
@@ -487,6 +496,8 @@ msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
 msgstr ""
+"Vyberte prosím znak, který se použije pro definování přípony lokální adresy. "
+"Znak MUSÍ souhlasit s tím, který jste zadali v nastavení postfixu nebo qmailu."
 
 #. Type: select
 #. Description
@@ -499,12 +510,19 @@ msgid ""
 "patches are incompatibles), but when using - as delimiter, you will not be "
 "able to use an email of the form john-doe@example.com as - is the delimiter."
 msgstr ""
+"Pro vaše poštovní konference se použije oddělovač příjemců. Řekněme, že "
+"jako oddělovač používáte znak „+“. Vaši uživatelé pak budou muset posílat "
+"poštu na konference+subscribe@priklad.cz. Nevýhoda použití „+“ je v tom, že "
+"některé poštovní programy odmítají poslat mail na adresu, která tento znak "
+"obsahuje (jmenovitě některé patche do qmailu). Při použití oddělovače „-“ "
+"zase nebudete moci používat adresu ve formátu franta-uzivatel@priklad.cz, "
+"protože „-“ slouží jako oddělovač."
 
 #. Type: string
 #. Description
 #: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Subdomain name for the MX server:"
-msgstr ""
+msgstr "Poddoména pro MX server:"
 
 #. Type: string
 #. Description
@@ -514,6 +532,9 @@ msgid ""
 "subdomain will be configured in your mail server and your domain name server "
 "by DTC. Any name is ok here."
 msgstr ""
+"Aby mohl váš poštovní server přijímat poštu, bude muset použít poddoménu. "
+"DTC tuto poddoménu nastaví ve vašem poštovním serveru i ve jmenném serveru. "
+"Můžete zadat libovolný název."
 
 #. Type: string
 #. Description
@@ -579,3 +600,7 @@ msgid ""
 "Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
 "using dtc-postfix-courier instead."
 msgstr ""
+"Cyrus nahrazuje doručování a ukládání do Maildiru. Chcete-li aktivovat "
+"Cyrus, musíte vědět, co děláte. Používáte-li dtc-toaster nebo "
+"dtc-postfix-courier, musíte zde odpovědět záporně. Cyrus se dá použít pouze "
+"s balíkem dtc (ne s dtc-postfix-courier)."
