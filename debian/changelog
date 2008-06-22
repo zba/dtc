@@ -1,6 +1,8 @@
 dtc (0.29.1-1) unstable; urgency=low
 
   * New upstream release.
+  * Added Basque debconf template translation, thanks to xabier bilbao
+    <xabidu@gmail.com> (Closes: #487448)
   * Updated Portuguese debconf template translation, thanks to Ricardo Silva
     <ardoric@gmail.com> (Closes: #487292)
   * Updated Czech debconf translation, thanks to Miroslav Kure
