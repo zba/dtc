@@ -18,6 +18,14 @@ function cleanTempFolder ($subdomain_path){
 	}
 }
 
+function cleanSPAMFolder($path){
+	if( is_dir($path) ){
+		$cmd = "find $path -atime +14 -exec rm {} \\;";
+		echo $cmd."\n";
+		exec($cmd);
+	}
+}
+
 function daily_maintenance (){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_domain_table;
@@ -36,6 +44,22 @@ function daily_maintenance (){
 		$subdomain = $a["subdomain_name"];
 		$path = "$adm_path/$domain/subdomains/$subdomain";
 		cleanTempFolder ($path);
+	}
+
+	$q = "SELECT $pro_mysql_admin_table.adm_login,$pro_mysql_admin_table.path,$pro_mysql_pop_table.id,$pro_mysql_pop_table.spam_mailbox
+	FROM $pro_mysql_admin_table,$pro_mysql_domain_table,$pro_mysql_subdomain_table,$pro_mysql_pop_table
+	WHERE $pro_mysql_domain_table.owner = $pro_mysql_admin_table.adm_login
+	AND $pro_mysql_subdomain_table.domain_name = $pro_mysql_domain_table.name";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$adm_path = $a["path"];
+		$domain = $a["domain_name"];
+		$boxid = $a["id"];
+		$spambox_name = $a["spam_mailbox"];
+		$path = "$adm_path/$domain/Mailboxes/$boxid/.$spambox_name";
+		cleanSPAMFolder($path);
 	}
 }
 
