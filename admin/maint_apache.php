@@ -20,7 +20,7 @@ function cleanTempFolder ($subdomain_path){
 
 function cleanSPAMFolder($path){
 	if( is_dir($path) ){
-		$cmd = "find $path -atime +14 -exec rm {} \\;";
+		$cmd = "find '$path' -atime +14 -exec rm {} \\;";
 		echo $cmd."\n";
 		exec($cmd);
 	}
