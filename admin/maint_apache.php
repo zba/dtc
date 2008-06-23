@@ -12,7 +12,7 @@ require_once("$dtcshared_path/dtc_lib.php");
 
 function cleanTempFolder ($subdomain_path){
 	if( is_dir("$subdomain_path/tmp") ){
-		$cmd = "find $subdomain_path/tmp -iname 'sess*' -atime +2 -exec rm {} \\;";
+		$cmd = "find $subdomain_path/tmp -iname 'sess*' -mtime +2 -exec rm {} \\;";
 		echo $cmd."\n";
 		exec($cmd);
 	}
@@ -20,7 +20,10 @@ function cleanTempFolder ($subdomain_path){
 
 function cleanSPAMFolder($path){
 	if( is_dir($path) ){
-		$cmd = "find '$path' -atime +14 -exec rm {} \\;";
+		$cmd = "if [ -f \"$path/courierimapacl\" ] ; then touch \"$path/courierimapacl\" ; fi";
+		echo $cmd."\n";
+		exec($cmd);
+		$cmd = "find '$path' -atime +20 -exec rm {} \\;";
 		echo $cmd."\n";
 		exec($cmd);
 	}
