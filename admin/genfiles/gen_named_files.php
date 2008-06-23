@@ -311,7 +311,8 @@ function named_generate(){
 		$web_extention = substr($web_name,-strpos(strrev($web_name),'.'));
 
 		$web_default_subdomain = $row["default_subdomain"];
-		
+		$wildcard_dns = $row["wildcard_dns"];
+
 		// Get the owner informations
 		$query2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$web_owner';";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
@@ -472,15 +473,16 @@ $more_mx_server
 					$is_list_subdomain_set = "yes";
 				}
 				// if we have a srv_record here (ie a port, then we don't write the normal subdomain entry, just the SRV record
-			 	if (isset($subdomain["srv_record"]) && $subdomain["srv_record"] != "")
-				{
+			 	if (isset($subdomain["srv_record"]) && $subdomain["srv_record"] != ""){
 					$this_site_file .= "$web_subname	$sub_ttl	SRV	0	10	".$subdomain["srv_record"]."	".$subdomain["ip"]."\n";
 				} else {	
 					// write TTL values into subdomain
 					if ($conf_use_cname_for_subdomains == "yes"){
 						$this_site_file .= "$web_subname	$sub_ttl	IN	CNAME	@\n";
-
 					}else{
+						if($web_subname == $web_default_subdomain && $wildcard_dns == "yes"){
+							$wildcard_dns_txt = "*        $sub_ttl        IN      $the_ip_writed\n";
+						}
 						$this_site_file .= "$web_subname	$sub_ttl	IN	$the_ip_writed\n";
 					}
 				}
@@ -524,6 +526,9 @@ $more_mx_server
 				} else if ( $is_list_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
                         	        $this_site_file .= "list        IN      CNAME	@\n";
 				}
+			}
+			if(isset($wildcard_dns_txt)){
+				$this_site_file .= $wildcard_dns_txt;
 			}
 			if($web_serial_flag=="yes"){
 				$console .= "Updating zone file for domain $web_name using serial : $todays_serial, ipaddr : $ip_to_write<br>";
