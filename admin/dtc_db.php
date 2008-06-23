@@ -303,7 +303,8 @@ $dtc_database = array(
 			"ttl" => "int NULL default '7200' ",
 			"stats_login" => "varchar(32) NOT NULL default ''",
   			"stats_pass" => "varchar(16) NOT NULL default ''",
-  			"stats_subdomain" => " enum('yes','no') NOT NULL default 'no'"
+  			"stats_subdomain" => " enum('yes','no') NOT NULL default 'no'",
+  			"wildcard_dns" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)",
 		"keys" => array(

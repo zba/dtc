@@ -7,7 +7,12 @@ if(isset($_REQUEST["subdomaindefault"]) && $_REQUEST["subdomaindefault"] == "Ok"
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){
-		$adm_query = "UPDATE $pro_mysql_domain_table SET default_subdomain='".$_REQUEST["subdomaindefault_name"]."' WHERE name='$edit_domain' LIMIT 1;";
+		if($_REQUEST["wildcard_dns"] == "yes"){
+			$wild = ",wildcard_dns='yes'";
+		}else{
+			$wild = ",wildcard_dns='no'";
+		}
+		$adm_query = "UPDATE $pro_mysql_domain_table SET default_subdomain='".$_REQUEST["subdomaindefault_name"]."'$wild WHERE name='$edit_domain' LIMIT 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
 		updateUsingCron("gen_vhosts='yes',restart_apache='yes'");

@@ -556,6 +556,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 		$domain["txt_root_entry2"] = $row["txt_root_entry2"];
 		$domain["catchall_email"] = $row["catchall_email"];
 		$domain["domain_parking"] = $row["domain_parking"];
+		$domain["wildcard_dns"] = $row["wildcard_dns"];
 
 		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$name' ORDER BY subdomain_name;";
 		$result2 = mysql_query ($query2);

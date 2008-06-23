@@ -100,12 +100,15 @@ function drawAdminTools_Subdomain($admin,$domain){
 	$max_subdomain = $domain["max_subdomain"];
 
 	// Let's start a form !
-	$txt .= "<form action=\"?\" methode=\"post\">";
-	$txt .= "<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">";
-	$txt .= "<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">";
-	$txt .= "<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
-	$txt .= "<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">";
-	$txt .= "<input type=\"hidden\" name=\"whatdoiedit\" value=\"subdomains\">";
+	$frm = "<form action=\"?\" methode=\"post\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
+<input type=\"hidden\" name=\"whatdoiedit\" value=\"subdomains\">";
+
+	$txt .= $frm;
 
 	// Popup for choosing default subdomain.
 	$subdomains = $domain["subdomains"];
@@ -119,7 +122,18 @@ function drawAdminTools_Subdomain($admin,$domain){
 			$txt .= "<option value=\"$sub\">$sub</option>";
 		}
 	}
-	$txt .= "</select></td><td><input type=\"hidden\" name=\"subdomaindefault\" value=\"Ok\"><input type=\"image\" src=\"gfx/stock_apply_20.png\"></td></tr></table></form>";
+	$txt .= "</select></td></tr>";
+	if($domain["wildcard_dns"] == "yes"){
+		$yes_flag = " checked ";
+		$no_flag = " ";
+	}else{
+		$yes_flag = " ";
+		$no_flag = " checked ";
+	}
+	$txt .= "<tr><td align=\"right\">". _("Use as wildcard for the domain:")." </td><td><input type=\"radio\" name=\"wildcard_dns\" value=\"yes\"$yes_flag>"._("Yes")."<input type=\"radio\" name=\"wildcard_dns\" value=\"no\"$no_flag>"._("No")."</td></tr>";
+	$txt .= "<tr><td></td><td><input type=\"hidden\" name=\"subdomaindefault\" value=\"Ok\"><input type=\"image\" src=\"gfx/stock_apply_20.png\"></td></tr></table></form>";
+
+	$txt .= $frm."";
 
 	$dsc = array(
 		"title" => _("List of your subdomains: ") ,
