@@ -218,6 +218,7 @@ function named_generate(){
 	if($num_rows < 1){//		die("No account to generate");
 	}
 	for($i=0;$i<$num_rows;$i++){
+		unset($wildcard_dns_txt);
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
 		$web_name = $row["name"];
 		// for empty web_names, we need to skip
