@@ -61,7 +61,7 @@ function drawRenewalTables (){
 	case "spent":
 		$out .= "<h3>Date selection</h3>";
 
-		if( !isset($_REQUEST["date"])){
+		if( !isset($_REQUEST["date_selector"])){
 			// Check the last record to get the last entry by default.
 			$q = "SELECT DISTINCT(CONCAT_WS('-',YEAR(invoice_date),MONTH(invoice_date))) FROM `spent_moneyout` WHERE 1 ORDER BY invoice_date DESC LIMIT 1";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -75,7 +75,7 @@ function drawRenewalTables (){
 				}else{
 					$using_date = $exploded[0] . "-" . $exploded[1];
 				}
-				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date=all\">all</a>";
+				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">all</a>";
 				$date = $using_date;
 				$where_condition = " invoice_date LIKE '$date%' ";
 			}else{
@@ -83,13 +83,13 @@ function drawRenewalTables (){
 				$date = "all";
 				$where_condition = " 1 ";
 			}
-		}else if( $_REQUEST["date"] == "all"){
+		}else if( $_REQUEST["date_selector"] == "all"){
 			$out .= "all";
 			$date = "all";
 			$where_condition = " 1 ";
 		}else{
-			$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date=all\">all</a>";
-			$date = $_REQUEST["date"];
+			$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">all</a>";
+			$date = $_REQUEST["date_selector"];
 			$where_condition = " invoice_date LIKE '$date%' ";
 		}
 
@@ -106,7 +106,7 @@ function drawRenewalTables (){
 				$using_date = $exploded[0] . "-" . $exploded[1];
 			}
 			if($date != $using_date){
-				$out .= " - <a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date=".$using_date."\">".$using_date."</a>";
+				$out .= " - <a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=".$using_date."\">".$using_date."</a>";
 			}else{
 				$out .= " - $using_date";
 			}
@@ -160,7 +160,7 @@ function drawRenewalTables (){
 			"title" => _("List of payments done by your hosting company"),
 			"table_name" => $pro_mysql_spent_moneyout_table,
 			"action" => "money_out_editor",
-			"forward" => array("rub","sousrub","date"),
+			"forward" => array("rub","sousrub"),
 			"where_condition" => $where_condition,
 			"order_by" => "invoice_date",
 			"cols" => array(
@@ -230,6 +230,9 @@ function drawRenewalTables (){
 					)
 				)
 			);
+		if(isSet($_REQUEST["date_selector"])){
+			$dsc["forward"][] = "date_selector";
+		}
 		$out .= dtcDatagrid($dsc);
 		break;
 	case "bank":
