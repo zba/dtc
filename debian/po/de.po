@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dtc 0.28.10-1\n"
-"Report-Msgid-Bugs-To: thomas@goirand.fr\n"
+"Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
 "POT-Creation-Date: 2008-03-09 00:28+0800\n"
 "PO-Revision-Date: 2008-04-30 18:43+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"

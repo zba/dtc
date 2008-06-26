@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: (pt_BR 20070401)\n"
-"Report-Msgid-Bugs-To: thomas@goirand.fr\n"
+"Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
 "POT-Creation-Date: 2008-05-07 16:21+0800\n"
 "PO-Revision-Date: 2007-04-01 22:27-0300\n"
 "Last-Translator: Felipe Augusto van de Wiel (faw) <faw@debian.org>\n"

@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
-"Report-Msgid-Bugs-To: thomas@goirand.fr\n"
+"Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
 "POT-Creation-Date: 2008-05-07 16:21+0800\n"
 "PO-Revision-Date: 2006-11-22 22:24+0100\n"
 "Last-Translator: Luca Franceschini <lupin3rd@gmx.it>\n"
