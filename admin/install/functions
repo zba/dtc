@@ -2620,6 +2620,7 @@ modifyDovecotConfig () {
 # Configured by DTC v0.x : Please don't touch this line !
 protocols = imap imaps pop3 pop3s
 default_mail_env = maildir:%h/Maildir
+mail_location = maildir:%h/Maildir
 pop3_uidl_format = %08Xu%08Xv
 maildir_copy_with_hardlinks = yes
 protocol imap {
