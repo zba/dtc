@@ -2606,6 +2606,9 @@ modifyDovecotConfig () {
 				;;
 
 		esac
+		DOVECOT_MAJOR=`echo $DOVECOT_VERSION | cut -f1 -d"."`
+		DOVECOT_MINOR=`echo $DOVECOT_VERSION | cut -f2 -d"."`
+		DOVECOT_RELEASE=`echo $DOVECOT_VERSION | cut -f3 -d"."`
 		echoIfVerbose "===> Adding directives to dovecot.conf"
 		if grep "Configured by DTC" $PATH_DOVECOT_CONF >/dev/null
 		then
@@ -2616,11 +2619,15 @@ modifyDovecotConfig () {
 				if ! [ -f $PATH_DOVECOT_CONF.DTC.backup ] ; then
 					cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
 				fi
+				if [ "${DOVECOT_MAJOR}" -ge 1 -a "${DOVECOT_MINOR}" -ge 1 ] ; then
+					dovecot_env_directive = "mail_location"
+				else
+					dovecot_env_directive = "default_mail_env"
+				fi
 				echo "
 # Configured by DTC v0.x : Please don't touch this line !
 protocols = imap imaps pop3 pop3s
-default_mail_env = maildir:%h/Maildir
-mail_location = maildir:%h/Maildir
+${dovecot_env_directive} = maildir:%h/Maildir
 pop3_uidl_format = %08Xu%08Xv
 maildir_copy_with_hardlinks = yes
 protocol imap {
