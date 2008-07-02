@@ -262,6 +262,13 @@ function updateAllListWebArchive(){
 		exec($updatewa);
 	}
 }
+
+function get_apache_pid() {
+	global $conf_generated_file_path;
+	$pid = @file_get_contents("$conf_generated_file_path/apache.pid");
+	if ($pid) { return (int) $pid; }
+}
+
 function restartApache () {
 	global $conf_generated_file_path;
 	global $conf_dtc_system_username;
@@ -286,46 +293,29 @@ function restartApache () {
 	echo "Testing apache conf\n";
 	exec ("$APACHECTL configtest 2>&1 | grep -qF 'Syntax OK'", $plop, $return_var);
 	if($return_var == false){
-		echo "Config is OK : restarting Apache\n";
-		echo "$APACHECTL stop\n";
-		system("$APACHECTL stop");
-		sleep(1);
-		$ctl_retry = 0;
-		while( is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 12){
-			echo "Warning: apache not stoped, will check and maybe retry in 2 seconds...";
-			echo "2...";sleep(1);echo "1...";sleep(1);echo "0";
-			clearstatcache();
-			if( is_file("$conf_generated_file_path/apache.pid") ){
-				echo "...retrying!\n";
-				$ctl_return = system("$APACHECTL stop", $return_var);
-			}else{
-				echo "...ok!\n";
-			}
+		$pid = get_apache_pid();
+		if ($pid && posix_kill($pid,0)) {
+			/* apache is running, we stop it */
+			$ret = system("$APACHECTL stop");
+			if ($ret != 0) { echo "apachectl stop failed with return status $ret\n"; }
+			/* wait 20 seconds or until it is down */
+			for ($m = 0; $m < 80 && posix_kill($pid,0); $m++) { usleep(250000); }
+			if (posix_kill($pid,0)) { echo "error: apache still running with PID $pid\n"; }
 		}
-		clearstatcache();
-
-		$ctl_return = system("$APACHECTL start");
-		clearstatcache();
-		$ctl_retry = 0;
-		// Check that apache is really started, because experience showed sometimes it's not !!!
-		//while( strstr($ctl_return,"httpd started") == false && $ctl_retry++ < 15){
-		// This new version should work on OS where apachectl start is quiet
-		while( !is_file("$conf_generated_file_path/apache.pid") && $ctl_retry++ < 12){
-			echo "Warning: apache not started, will check and maybe retry in 2 seconds...";
-			echo "2...";sleep(1);echo "1...";sleep(1);echo "0";
-			clearstatcache();
-			if( !is_file("$conf_generated_file_path/apache.pid") ){
-				echo "...retrying!\n";
-				$ctl_return = system("$APACHECTL start", $return_var);
-			}else{
-				echo "...ok!\n";
+		/* we now start Apache */
+		for ($x = 0; $x < 10; $x++) {
+			$ret = system("$APACHECTL start");
+			if ($ret != 0) echo "apachectl start failed with return status $ret\n";
+			for ($m = 0; $m < 80; $m++) { /* wait 20 seconds or until it is up */
+				$pid = get_apache_pid();
+				if (($pid) && posix_kill($pid,0)) { /* apache is now running */ break; }
+				usleep(250000);
 			}
+			$pid = get_apache_pid();
+			if (!$pid || !posix_kill($pid,0)) { echo "error: apache never started\n"; }
 		}
-		// change to graceful apache restart, rather than a hard stop and start
-		// WARNING !!! Experience showed that it doesn't work sometimes !!!
-		//system("$APACHECTL graceful");
 	}else{
-		echo "Config not OK : I can't reload apache !!!\n";
+		echo "Config not OK - apache can't be restarted\n";
 	}
 }
 
