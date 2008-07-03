@@ -2639,9 +2639,9 @@ modifyDovecotConfig () {
 					cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
 				fi
 				if [ "${DOVECOT_MAJOR}" -ge 1 -a "${DOVECOT_MINOR}" -ge 1 ] ; then
-					dovecot_env_directive = "mail_location"
+					dovecot_env_directive="mail_location"
 				else
-					dovecot_env_directive = "default_mail_env"
+					dovecot_env_directive="default_mail_env"
 				fi
 				echo "
 # Configured by DTC v0.x : Please don't touch this line !
