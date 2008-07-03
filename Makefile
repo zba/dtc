@@ -299,7 +299,7 @@ PATCH_FILES=admin/patches/phpmyadmin_cookie.auth.lib.php.patch admin/patches/spa
 ##################### SQL TABLES #########################
 INSTALL_SQL_TABLES=admin/tables/admin.sql admin/tables/backup.sql admin/tables/clients.sql admin/tables/commande.sql \
 admin/tables/companies.sql admin/tables/completedorders.sql admin/tables/config.sql admin/tables/cron_job.sql admin/tables/dedicated.sql \
-dedicated_ip.sql ip_pool.sql affiliate_payments.sql vps_server_lists.sql \
+admin/tables/dedicated_ip.sql admin/tables/ip_pool.sql admin/tables/affiliate_payments.sql admin/tables/vps_server_lists.sql \
 admin/tables/domain.sql admin/tables/email_accouting.sql admin/tables/fetchmail.sql admin/tables/freeradius.sql \
 admin/tables/ftp_access.sql admin/tables/ftp_accounting.sql admin/tables/ftp_logs.sql admin/tables/groups.sql admin/tables/handle.sql \
 admin/tables/http_accounting.sql admin/tables/invoicing.sql admin/tables/ip_port_service.sql admin/tables/mailaliasgroup.sql \
