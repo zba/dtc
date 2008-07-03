@@ -9,7 +9,7 @@
 # MANUAL_DIR=/usr/share/man
 
 # Version and release are set here:
-VERS=0.29.5
+VERS=0.29.6
 RELS=1
 
 VERSION=$(VERS)"-"$(RELS)
