@@ -30,7 +30,6 @@ Description: web control panel for admin and accounting hosting services (common
  integrated support tickets and more.
  .
  This package contains the common files.
-Tags: admin::accounting, admin::configuring, admin::monitoring, admin::virtualization, implemented-in::php, interface::web, use::configuring, web::server, works-with::db
 
 Package: dtc-core
 Architecture: all
@@ -54,7 +53,6 @@ Description: web control panel for admin and accounting hosting services (fewer 
  .
  This package contains as few dependencies as possible to let you choose what
  daemon you want to use.
-Tags: admin::accounting, admin::configuring, admin::monitoring, admin::virtualization, implemented-in::php, interface::web, use::configuring, web::server, works-with::db
 
 Package: dtc-cyrus
 Architecture: all
@@ -79,7 +77,6 @@ Description: web control panel for admin and accounting hosting services (cyrus 
  This package contains dependencies to setup with Cyrus, so you don't have to
  select them by hand. If you want to use other daemons, use the dtc-core package
  which has a lot less dependencies, or use dtc-postfix-courier or dtc-toaster.
-Tags: admin::accounting, admin::configuring, admin::monitoring, admin::virtualization, implemented-in::php, interface::web, use::configuring, web::server, works-with::db
 
 Package: dtc-postfix-courier
 Architecture: all
@@ -106,7 +103,6 @@ Description: web control panel for admin and accounting hosting services (more d
  don't have to select them by hand. If you want to use other daemons, use the
  dtc-core package which has a lot less dependencies, or the dtc-cyrus to setup
  with cyrus.
-Tags: admin::accounting, admin::configuring, admin::monitoring, admin::virtualization, implemented-in::php, interface::web, use::configuring, web::server, works-with::db
 
 Package: dtc-stats-daemon
 Architecture: all
@@ -138,4 +134,3 @@ Description: web control panel for admin and accounting hosting services (meta p
  .
  This is a meta package depending on every package that you need to use the DTC
  web hosting control panel, like a webmail, phpmyadmin and so on.
-Tags: admin::accounting, admin::configuring, admin::monitoring, admin::virtualization, implemented-in::php, interface::web, use::configuring, web::server, works-with::db
