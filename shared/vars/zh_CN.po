@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-18 15:15+0800\n"
-"PO-Revision-Date: 2008-06-21 22:54+0800\n"
-"Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
+"PO-Revision-Date: 2008-07-05 22:51+0800\n"
+"Last-Translator: Wei Cao <mail@viviancaowei.com>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,19 +19,19 @@ msgstr ""
 #: shared/inc/forms/vps_monitoring.php:81
 #: shared/inc/forms/vps_monitoring.php:94
 msgid " CPU seconds"
-msgstr ""
+msgstr "CPU 秒"
 
 #: shared/dtcrm/draw.php:70
 msgid " days) for upgrading will be: "
-msgstr ""
+msgstr "天)将升级"
 
 #: shared/dtcrm/draw.php:71
 msgid " days), with "
-msgstr ""
+msgstr "天),和"
 
 #: shared/dtcrm/draw.php:78
 msgid " disk storage and "
-msgstr ""
+msgstr "储存和"
 
 #: shared/inc/sql/lists.php:490
 msgid " does not look like a mailbox login..."
@@ -53,16 +53,15 @@ msgstr "这看起来不像是一个邮箱的登陆名..."
 #: shared/inc/sql/vps.php:212
 #: shared/inc/sql/vps.php:222
 msgid " file "
-msgstr ""
+msgstr "文件"
 
 #: shared/dtcrm/draw.php:79
-#, fuzzy
 msgid " of data transfer each month."
-msgstr "已传输的总数据量："
+msgstr "每月的数绝传输．"
 
 #: shared/dtcrm/draw.php:71
 msgid " remaining to be paid"
-msgstr ""
+msgstr "剩余支付"
 
 #: shared/dtcrm/draw_handle.php:256
 msgid "+1.XXXXXXXXXX format"
@@ -73,7 +72,7 @@ msgstr "+86.XXXXXX 格式"
 #: shared/inc/forms/vps_monitoring.php:69
 #: shared/inc/forms/vps_monitoring.php:70
 msgid "2 months ago: "
-msgstr ""
+msgstr "2个月前"
 
 #: shared/inc/draw.php:473
 msgid ""
@@ -262,7 +261,7 @@ msgstr "所有程序与文件"
 
 #: admin/inc/nav.php:55
 msgid "APACHE VHOST"
-msgstr "虚拟Apache主机"
+msgstr "Apache虚拟托管"
 
 #: shared/inc/forms/lists.php:433
 msgid "Access list:"
@@ -280,14 +279,12 @@ msgid "Access not granted line "
 msgstr "未授权的操作"
 
 #: admin/inc/renewals.php:259
-#, fuzzy
 msgid "Account name"
-msgstr "产品"
+msgstr "帐户名"
 
 #: admin/inc/renewals.php:270
-#, fuzzy
 msgid "Account number"
-msgstr "电话号码："
+msgstr "帐号"
 
 #: admin/inc/dtc_config.php:1048
 msgid "Act as backup DNS server for the following servers:"
@@ -312,9 +309,8 @@ msgid "Action"
 msgstr "操作"
 
 #: admin/inc/dtc_config.php:422
-#, fuzzy
 msgid "Activate FTP backups:"
-msgstr "有效的FTP备份："
+msgstr "激活的FTP备份："
 
 #: admin/inc/draw_user_admin.php:289
 #: admin/inc/draw_user_admin.php:309
@@ -338,31 +334,28 @@ msgid "Add a domain for this user:"
 msgstr "为这个用户添加一个域名："
 
 #: shared/inc/draw.php:446
-#, fuzzy
 msgid "Add a domain name to my account"
-msgstr "我的帐户余额："
+msgstr "添加一个域名到我的帐户"
 
 #: shared/inc/draw.php:132
-#, fuzzy
 msgid "Add a domain or service"
-msgstr "为这个用户添加一个域名："
+msgstr "添加一个域名或服务"
 
 #: shared/inc/draw.php:444
-#, fuzzy
 msgid "Add a domain or service:"
-msgstr "为这个用户添加一个域名："
+msgstr "添加一个域名或服务："
 
 #: admin/inc/dtc_config.php:1432
 msgid "Add a new company"
-msgstr ""
+msgstr "添加新公司"
 
 #: admin/inc/dtc_config.php:1431
 msgid "Add a new company:"
-msgstr ""
+msgstr "添加新公司"
 
 #: admin/inc/draw_user_admin.php:225
 msgid "Add a new user"
-msgstr ""
+msgstr "添加新用户"
 
 #: shared/gfx/skin/default_layout.php:426
 msgid "Add a virtual administrator"
@@ -374,9 +367,8 @@ msgstr "为这名客户添加一个管理员："
 
 #: shared/dtcrm/draw_adddomain.php:67
 #: shared/dtcrm/draw_adddomain.php:99
-#, fuzzy
 msgid "Add another service to your account:"
-msgstr "我的帐户余额："
+msgstr "添加另一个服务到我的帐户："
 
 #: admin/dtcrm/product_manager.php:71
 msgid "Add domain"
@@ -400,14 +392,12 @@ msgstr "编辑域名服务器信息成功"
 #: shared/dtcrm/draw_handle.php:91
 #: shared/dtcrm/draw_handle.php:123
 #: shared/dtcrm/draw_handle.php:235
-#, fuzzy
 msgid "Address (line1): "
-msgstr "地址："
+msgstr "地址（第一行）："
 
 #: admin/inc/renewals.php:347
-#, fuzzy
 msgid "Address (line2):"
-msgstr "地址："
+msgstr "地址（第二行）："
 
 #: admin/dtcrm/main.php:166
 #: client/new_account_form.php:614
@@ -415,14 +405,12 @@ msgstr "地址："
 #: shared/dtcrm/draw_handle.php:92
 #: shared/dtcrm/draw_handle.php:124
 #: shared/dtcrm/draw_handle.php:238
-#, fuzzy
 msgid "Address (line2): "
-msgstr "地址："
+msgstr "地址（第二行）："
 
 #: admin/inc/renewals.php:350
-#, fuzzy
 msgid "Address (line3):"
-msgstr "地址："
+msgstr "地址（第三行）："
 
 #: admin/dtcrm/main.php:167
 #: client/new_account_form.php:617
@@ -430,14 +418,12 @@ msgstr "地址："
 #: shared/dtcrm/draw_handle.php:93
 #: shared/dtcrm/draw_handle.php:125
 #: shared/dtcrm/draw_handle.php:241
-#, fuzzy
 msgid "Address (line3): "
-msgstr "地址："
+msgstr "地址（第三行）："
 
 #: shared/inc/forms/email.php:27
-#, fuzzy
 msgid "Address email"
-msgstr "地址："
+msgstr "email地址："
 
 #: admin/inc/dtc_config.php:884
 msgid "Address of your main MX server:"
@@ -446,13 +432,12 @@ msgstr "主MX服务器的地址："
 #: admin/inc/renewals.php:344
 #: admin/inc/dtc_config.php:1452
 #: shared/inc/forms/my_account.php:207
-#, fuzzy
 msgid "Address:"
 msgstr "地址："
 
 #: admin/inc/draw_user_admin.php:425
 msgid "Admin"
-msgstr ""
+msgstr "管理员"
 
 #: shared/gfx/skin/default_layout.php:387
 #: shared/gfx/skin/bwoup/layout.php:649
@@ -461,9 +446,8 @@ msgid "Admin editor"
 msgstr "编辑管理员信息"
 
 #: admin/inc/draw_user_admin.php:137
-#, fuzzy
 msgid "Admin login: "
-msgstr "FTP登陆账号："
+msgstr "管理员登陆："
 
 #: shared/gfx/skin/default_layout.php:181
 #: shared/gfx/skin/bwoup/layout.php:562
@@ -490,13 +474,12 @@ msgid "Albania"
 msgstr "阿尔巴尼亚"
 
 #: shared/drawlib/cc_code_popup.php:105
-#, fuzzy
 msgid "Algeria"
-msgstr "年龄"
+msgstr "阿尔及利亚"
 
 #: shared/inc/forms/root_admin.php:133
 msgid "Allow addition of FTP logins:"
-msgstr ""
+msgstr "允许ＦＴＰ登录的添加："
 
 #: shared/inc/forms/root_admin.php:132
 msgid "Allow addition of SSH logins:"
@@ -525,7 +508,7 @@ msgstr "每月最大数据传输量(GB)："
 
 #: admin/dtcrm/main.php:179
 msgid "Allowed data transfer (GB): "
-msgstr ""
+msgstr "允许数据传输（ＧＢ）"
 
 #: shared/dtcrm/draw_adddomain.php:164
 msgid "Alternatively, you can add another domain name:"
@@ -538,7 +521,7 @@ msgstr ""
 #: admin/inc/renewals.php:578
 #: shared/securepay/pay_functions.php:38
 msgid "Amount"
-msgstr ""
+msgstr "总和"
 
 #: shared/dtcrm/draw_adddomain.php:151
 msgid "An administrator will examine your request shortly, and validate the addition of this domain name to your account. You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to grant you the privilege of automatic domain name addition. To request hosting for a new domain name, without administrator validation or domain name registration, please write to:"
@@ -701,29 +684,25 @@ msgid "Bangladesh"
 msgstr "孟加拉国"
 
 #: admin/inc/renewals.php:216
-#, fuzzy
 msgid "Bank account"
-msgstr "您的账户："
+msgstr "银行账户："
 
 #: admin/inc/renewals.php:48
 #: admin/inc/renewals.php:50
-#, fuzzy
 msgid "Bank accounts & payments"
-msgstr "已支付的款项"
+msgstr "银行帐户&支付意向"
 
 #: admin/inc/renewals.php:248
 msgid "Bank accounts edition"
 msgstr ""
 
 #: admin/inc/renewals.php:277
-#, fuzzy
 msgid "Bank address"
-msgstr "IP地址"
+msgstr "银行地址"
 
 #: admin/inc/renewals.php:220
-#, fuzzy
 msgid "Bank amount"
-msgstr "您的账户："
+msgstr "银行账户"
 
 #: admin/inc/draw_user_admin.php:246
 #: admin/inc/draw_user_admin.php:323
@@ -820,9 +799,8 @@ msgid "Byelorussian SSR"
 msgstr ""
 
 #: shared/drawlib/dtc_functions.php:799
-#, fuzzy
 msgid "Bytes"
-msgstr "年"
+msgstr "Bytes"
 
 #: shared/inc/forms/root_admin.php:356
 msgid "CGI-BIN protection"
@@ -1398,9 +1376,8 @@ msgstr "客户管理"
 
 #: shared/gfx/skin/default_layout.php:131
 #: shared/gfx/skin/bwoup/layout.php:492
-#, fuzzy
 msgid "Customer renewals"
-msgstr "Customer 更新"
+msgstr "客户更新"
 
 #: client/new_account_form.php:714
 #: shared/gfx/skin/default_layout.php:120
@@ -1580,9 +1557,8 @@ msgid "Delete all messages of webarchive. NOTE: this works only if you have &quo
 msgstr "删除了所有的归档文件。注意：只有当您拥有&quot归档文件时它才会执行;归档文件&quot;没有被检查。"
 
 #: admin/dtcrm/main.php:194
-#, fuzzy
 msgid "Delete client"
-msgstr "删除"
+msgstr "删除客户"
 
 #: shared/inc/forms/lists.php:405
 msgid "Delete headers:"
@@ -4416,19 +4392,16 @@ msgid "Renew my account"
 msgstr "账户充值"
 
 #: client/new_account_renewal.php:58
-#, fuzzy
 msgid "Renewal for login:"
-msgstr "更新"
+msgstr "续约登录"
 
 #: admin/inc/renewals.php:36
-#, fuzzy
 msgid "Renewal report"
-msgstr "更新"
+msgstr "续约报告"
 
 #: admin/inc/renewals.php:38
-#, fuzzy
 msgid "Renewal repport"
-msgstr "更新"
+msgstr "续约报告"
 
 #: admin/dtcrm/product_manager.php:98
 #: admin/dtcrm/product_manager.php:161
@@ -4523,9 +4496,8 @@ msgid "SMTP relay server:"
 msgstr "SMTP转发服务器："
 
 #: admin/deamons_state.php:157
-#, fuzzy
 msgid "SMTP server"
-msgstr "测试服务器"
+msgstr "SMTP服务器"
 
 #: shared/inc/forms/vps_monitoring.php:228
 msgid "SMTP: "
@@ -4575,9 +4547,8 @@ msgid "SSL IP addresses"
 msgstr "SSL IP地址"
 
 #: admin/inc/renewals.php:662
-#, fuzzy
 msgid "SSL IPs renewals"
-msgstr "SSL IPs 更新："
+msgstr "SSL IPs 续约："
 
 #: admin/inc/renewals.php:565
 msgid "SSL IPs renewals: "
@@ -4721,9 +4692,8 @@ msgid "Serbia"
 msgstr "塞尔维亚"
 
 #: admin/inc/renewals.php:785
-#, fuzzy
 msgid "Server"
-msgstr "主机"
+msgstr "服务器"
 
 #: admin/inc/monitor.php:99
 msgid "Server accounted transfers this month: "
@@ -4793,9 +4763,8 @@ msgid "Service country"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:214
-#, fuzzy
 msgid "Service monitoring:"
-msgstr "服务器监控"
+msgstr "服务监控："
 
 #: shared/inc/forms/root_admin.php:234
 msgid "Setup physical VPS (LVM): "
@@ -4828,9 +4797,8 @@ msgid "Short name: "
 msgstr "主机名："
 
 #: admin/inc/renewals.php:771
-#, fuzzy
 msgid "Shutdown"
-msgstr "关闭警告信息："
+msgstr "关闭"
 
 #: admin/inc/dtc_config.php:227
 #, fuzzy
@@ -4973,9 +4941,8 @@ msgid "Sub-accounts (reseller)"
 msgstr "子账户(转售)"
 
 #: shared/inc/draw.php:460
-#, fuzzy
 msgid "Sub-accounts (reseller):"
-msgstr "允许添加子帐户(转售)："
+msgstr "子帐户(转售)："
 
 #: shared/inc/draw.php:222
 msgid "Sub-domains"
@@ -5145,9 +5112,8 @@ msgid "Tanzania, United Republic Of"
 msgstr ""
 
 #: admin/inc/renewals.php:203
-#, fuzzy
 msgid "Tax rate"
-msgstr "VAT（增值税）税率："
+msgstr "税率："
 
 #: shared/securepay/pay_functions.php:32
 msgid "Taxes (VAT or GST)"
@@ -5272,7 +5238,6 @@ msgid "This month: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:743
-#, fuzzy
 msgid "This server location: "
 msgstr "本服务器的位置："
 
@@ -5346,19 +5311,16 @@ msgstr "总计："
 
 #: admin/inc/renewals.php:424
 #: shared/securepay/pay_functions.php:38
-#, fuzzy
 msgid "Total"
-msgstr "总计："
+msgstr "总计"
 
 #: shared/inc/forms/invoices.php:23
-#, fuzzy
 msgid "Total Price"
-msgstr "总流量"
+msgstr "总价"
 
 #: admin/inc/renewals.php:199
-#, fuzzy
 msgid "Total cost"
-msgstr "总计："
+msgstr "总费用："
 
 #: shared/inc/forms/database.php:117
 msgid "Total database number:"
@@ -5380,19 +5342,16 @@ msgid "Total recurring incomes per month:"
 msgstr "每月循环收益总数："
 
 #: admin/inc/renewals.php:207
-#, fuzzy
 msgid "Total tax"
-msgstr "总计："
+msgstr "总税："
 
 #: shared/inc/forms/admin_stats.php:107
-#, fuzzy
 msgid "Total traffic"
 msgstr "总流量"
 
 #: shared/inc/forms/domain_stats.php:53
-#, fuzzy
 msgid "Total transfered bytes this month"
-msgstr "已传输的总数据量："
+msgstr "这个月已传输的总流量bytes："
 
 #: shared/inc/forms/admin_stats.php:33
 #: shared/inc/forms/domain_info.php:52
@@ -5473,9 +5432,8 @@ msgid "Type of encryption for connecting to Tucows server:"
 msgstr "连接到Tucows服务器的加密方式："
 
 #: admin/inc/renewals.php:299
-#, fuzzy
 msgid "Type of payment"
-msgstr "问题类型：："
+msgstr "付款方式："
 
 #: shared/inc/forms/ticket.php:52
 #: shared/inc/forms/ticket.php:87
@@ -5553,9 +5511,8 @@ msgid "Upgrade my account"
 msgstr "账户升级"
 
 #: shared/dtcrm/draw.php:40
-#, fuzzy
 msgid "Upgrade my account:"
-msgstr "账户升级"
+msgstr "我的账户升级"
 
 #: admin/inc/renewals.php:54
 #: admin/inc/renewals.php:56
@@ -5576,14 +5533,12 @@ msgid "Use"
 msgstr ""
 
 #: admin/inc/dtc_config.php:728
-#, fuzzy
 msgid "Use @domain.com ftp logins: "
-msgstr "登陆ftp使用@domain.com 的格式："
+msgstr "使用@domain.com ftp登陆："
 
 #: admin/inc/dtc_config.php:733
-#, fuzzy
 msgid "Use @domain.com ssh logins: "
-msgstr "登陆ssh使用@domain.com的格式："
+msgstr "使用@domain.com ssh登陆："
 
 #: admin/inc/dtc_config.php:910
 msgid "Use CNAME instead of A record for subdomains:"
@@ -5598,9 +5553,8 @@ msgid "Use Maxmind API: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:723
-#, fuzzy
 msgid "Use SSL: "
-msgstr "是否使用SSL："
+msgstr "使用SSL："
 
 #: admin/inc/dtc_config.php:1140
 msgid "Use WebMoney: "
@@ -5611,28 +5565,24 @@ msgid "Use an SSL vhost using this IP: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:778
-#, fuzzy
 msgid "Use awstats: "
-msgstr "磁盘空间："
+msgstr "使用awstats: "
 
 #: admin/inc/dtc_config.php:763
-#, fuzzy
 msgid "Use cyrus: "
 msgstr "使用cyrus:"
 
 #: admin/inc/dtc_config.php:1204
-#, fuzzy
 msgid "Use eNETS: "
-msgstr "是否使用SSL："
+msgstr "使用 eNETS: "
 
 #: shared/inc/draw.php:339
 msgid "Use image menu"
 msgstr "使用图形菜单"
 
 #: admin/inc/dtc_config.php:718
-#, fuzzy
 msgid "Use javascript: "
-msgstr "是否使用javascript："
+msgstr "使用javascript："
 
 #: admin/inc/dtc_config.php:843
 #, fuzzy
@@ -5645,7 +5595,6 @@ msgid "Use paypal recuring: "
 msgstr "使用贝宝："
 
 #: admin/inc/dtc_config.php:1161
-#, fuzzy
 msgid "Use paypal: "
 msgstr "使用贝宝："
 
@@ -5662,9 +5611,8 @@ msgid "Use text menu"
 msgstr "使用文本菜单"
 
 #: client/login.php:16
-#, fuzzy
 msgid "Use text menu: "
-msgstr "使用文本菜单"
+msgstr "使用文本菜单；"
 
 #: admin/inc/dtc_config.php:1093
 msgid "Use the LIVE server (and not the test one) :"
@@ -5676,9 +5624,8 @@ msgid "Use the sandbox test server: "
 msgstr "使用测试服务器："
 
 #: admin/inc/dtc_config.php:783
-#, fuzzy
 msgid "Use visitors: "
-msgstr "是否使用javascript："
+msgstr "使用访客："
 
 #: admin/inc/dtc_config.php:768
 msgid "Use webalizer: "
@@ -5705,9 +5652,8 @@ msgid "User MySQL host: "
 msgstr "用户的MySQL数据库主机："
 
 #: admin/inc/dtc_config.php:795
-#, fuzzy
 msgid "User MySQL root login: "
-msgstr "使用root登陆用户MySql数据库："
+msgstr "用户MySql路径登录："
 
 #: admin/inc/dtc_config.php:798
 #, fuzzy
@@ -5756,7 +5702,6 @@ msgid "Uzbekistan"
 msgstr "乌兹别克斯坦"
 
 #: client/new_account_form.php:594
-#, fuzzy
 msgid "VAT Number: "
 msgstr "VAT（增值税）号码："
 
@@ -5766,18 +5711,16 @@ msgid "VAT collected"
 msgstr ""
 
 #: admin/inc/renewals.php:461
-#, fuzzy
 msgid "VAT not found"
-msgstr "没有找到相关的类型！"
+msgstr "VAT（增值税）没有找到"
 
 #: admin/inc/dtc_config.php:1465
 msgid "VAT number:"
 msgstr "VAT号码："
 
 #: admin/dtcrm/main.php:164
-#, fuzzy
 msgid "VAT number: "
-msgstr "VAT号码："
+msgstr "VAT（增值税）号码："
 
 #: admin/inc/dtc_config.php:1469
 msgid "VAT rate:"
@@ -5805,9 +5748,8 @@ msgid "VPS Name"
 msgstr "VPS名称"
 
 #: shared/dtcrm/draw_adddomain.php:59
-#, fuzzy
 msgid "VPS OS: "
-msgstr "省分："
+msgstr "VPS运行系统："
 
 #: shared/inc/forms/root_admin.php:471
 msgid "VPS Server"
@@ -5822,15 +5764,13 @@ msgid "VPS Server hostname: "
 msgstr "VPS主机名："
 
 #: admin/inc/dtc_config.php:570
-#, fuzzy
 msgid "VPS Server list:"
-msgstr "VPS列表："
+msgstr "VPS服务器列表："
 
 #: shared/inc/forms/vps_monitoring.php:160
 #: shared/inc/forms/vps_installation.php:107
-#, fuzzy
 msgid "VPS State: "
-msgstr "省分："
+msgstr "VPS省分："
 
 #: client/new_account_form.php:93
 msgid "VPS location not selected!"
@@ -5846,18 +5786,16 @@ msgid "VPS monitoring alerts email address: "
 msgstr ""
 
 #: client/new_account.php:180
-#, fuzzy
 msgid "VPS operating system not recognized"
-msgstr "目前不支持该操作系统"
+msgstr "VPS运行系统不被识别"
 
 #: admin/inc/dtc_config.php:206
 msgid "VPS renewal email reminders periodicity"
 msgstr "设定VPS更新的邮件提醒的周期"
 
 #: admin/inc/renewals.php:696
-#, fuzzy
 msgid "VPS renewals:"
-msgstr "VPS 更新："
+msgstr "VPS 续约："
 
 #: admin/inc/dtc_config.php:56
 msgid "VPS servers"
@@ -5876,9 +5814,8 @@ msgid "VPS: Cannot find VPS in db!"
 msgstr "在数据库中没有找到VPS的相关配置"
 
 #: admin/inc/dtc_config.php:1166
-#, fuzzy
 msgid "Validate new account if paid: "
-msgstr "已付款账户实时生效："
+msgstr "已付款账户实时生效"
 
 #: shared/drawlib/cc_code_popup.php:340
 msgid "Vanuatu"
@@ -5897,9 +5834,8 @@ msgid "Vhost"
 msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:343
-#, fuzzy
 msgid "Vietnam"
-msgstr "名称"
+msgstr "越南"
 
 #: admin/inc/draw_user_admin.php:288
 msgid "View details"
@@ -5926,7 +5862,6 @@ msgid "Wallis and Futuna Islands"
 msgstr ""
 
 #: admin/inc/dtc_config.php:219
-#, fuzzy
 msgid "Warnings after expiration: "
 msgstr "已过期警告："
 
@@ -6012,9 +5947,8 @@ msgid "Whois:"
 msgstr ""
 
 #: admin/inc/renewals.php:194
-#, fuzzy
 msgid "Wire transfer"
-msgstr "进行转让"
+msgstr "转账"
 
 #: shared/inc/fetch.php:39
 #: shared/inc/fetch.php:365
@@ -6191,14 +6125,12 @@ msgid "Your area disk usage:"
 msgstr "您的磁盘使用率："
 
 #: shared/inc/forms/reseller.php:22
-#, fuzzy
 msgid "Your child accounts:"
-msgstr "您的账户："
+msgstr "您的子账户："
 
 #: shared/dtcrm/draw.php:78
-#, fuzzy
 msgid "Your current account is "
-msgstr "您的账户："
+msgstr "您的现有账户："
 
 #: shared/inc/draw.php:458
 msgid "Your databases"
@@ -6271,9 +6203,8 @@ msgid "Your list of imported mail"
 msgstr ""
 
 #: shared/dtcrm/draw.php:69
-#, fuzzy
 msgid "Your past account was: "
-msgstr "您的账户："
+msgstr "您的原有的账户是："
 
 #: shared/inc/sql/ssh.php:31
 #: shared/inc/sql/ssh.php:94
@@ -6282,14 +6213,12 @@ msgid "Your path is restricted to "
 msgstr "您的目录被限定在"
 
 #: client/new_account.php:313
-#, fuzzy
 msgid "Your registration has been recorded in our database."
-msgstr "钱款已存入您的账户！"
+msgstr "您的注册已经被我们的数据库记录．"
 
 #: shared/inc/forms/database.php:32
-#, fuzzy
 msgid "Your users"
-msgstr "您的SRS用户名："
+msgstr "您的用户名："
 
 #: shared/drawlib/cc_code_popup.php:350
 msgid "Yugoslavia"
@@ -6318,7 +6247,6 @@ msgstr "邮编："
 #: shared/dtcrm/draw_handle.php:94
 #: shared/dtcrm/draw_handle.php:126
 #: shared/dtcrm/draw_handle.php:250
-#, fuzzy
 msgid "Zipcode: "
 msgstr "邮编："
 
@@ -6336,23 +6264,20 @@ msgid "couldn't connect to host"
 msgstr ""
 
 #: admin/inc/dtc_config.php:588
-#, fuzzy
 msgid "dom0 IP addresses"
-msgstr "IP地址："
+msgstr "dom0 IP地址"
 
 #: admin/inc/dtc_config.php:1214
 msgid "eNETS merchant ID: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:1222
-#, fuzzy
 msgid "eNETS rate: "
-msgstr "VPS 服务器"
+msgstr "eNETS 利率: "
 
 #: admin/inc/dtc_config.php:1209
-#, fuzzy
 msgid "eNETS server: "
-msgstr "VPS 服务器"
+msgstr "eNETS服务器"
 
 #: admin/inc/dtc_config.php:1218
 msgid "eNETS test merchant ID: "
@@ -6405,9 +6330,8 @@ msgid "marked fields are required"
 msgstr "打星号的选项为必填项"
 
 #: shared/inc/forms/ftp.php:53
-#, fuzzy
 msgid "new FTP account"
-msgstr "FTP帐户："
+msgstr "新FTP帐户："
 
 #: shared/inc/forms/ssh.php:47
 msgid "new SSH account"
@@ -6419,9 +6343,8 @@ msgstr "新邮箱"
 
 #: shared/inc/forms/lists.php:51
 #: shared/inc/forms/lists.php:85
-#, fuzzy
 msgid "new mailing list"
-msgstr "数据库列表："
+msgstr "新mailing列表"
 
 #: shared/dtcrm/draw_handle.php:238
 #: shared/dtcrm/draw_handle.php:241
