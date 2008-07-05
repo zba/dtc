@@ -112,7 +112,6 @@ Description: dtc-xen VM statistics for the dtc web control panel
  hosting. This small daemon will query all the dtc-xen servers that you have
  configured in DTC and fetch the statistics from them: I/O stats, network and
  CPU. This information is then stored in DTC for your customer accounting.
-Tags: admin::accounting, admin::configuring, admin::monitoring, admin::virtualization, implemented-in::php, interface::web, use::configuring, web::server, works-with::db
 
 Package: dtc-toaster
 Architecture: all
