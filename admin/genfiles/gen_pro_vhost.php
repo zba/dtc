@@ -370,6 +370,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$domain_safe_mode = $row["safe_mode"];
 		$domain_sbox_protect = $row["sbox_protect"];
 		$domain_parking = $row["domain_parking"];
+		$domain_parking_type = $raw["domain_parking_type"];
 		unset($backup_ip_addr);
 		if (isset($row["backup_ip_addr"])){
 			$backup_ip_addr = $row["backup_ip_addr"];
@@ -581,7 +582,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 // ---------------------------------------------------
 			} else {
 				// Generate a permanet redirect for all subdomains of target if using a domain parking
-				if($domain_parking != "no-parking"){
+				if($domain_parking != "no-parking" && ($domain_parking_type == "redirect" || $conf_administrative_site == "$web_subname.$domain_to_get")){
 					if($j == 0){
 						$console .= "Making domain parking for $web_name\n";
 						$vhost_file .= "<VirtualHost ".$ip_to_write.":80>
@@ -595,12 +596,12 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Redirect permanent / http://$web_subname.$domain_parking/
 </VirtualHost>\n\n";
 				}else{
-					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
-					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
-					vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
+					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/logs");
+					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/html");
+					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/cgi-bin");
 					$iteration_table = array();
 					$iteration_table[] = "normal";
-					$ssl_cert_folder_path = "$web_path/$web_name/subdomains/$web_subname/ssl";
+					$ssl_cert_folder_path = "$web_path/$domain_to_get/subdomains/$web_subname/ssl";
 					if($subdomain["ssl_ip"] != "none"){
 						$ssl_returns = checkCertificate($ssl_cert_folder_path,$web_subname.".".$web_name);
 						if($ssl_returns == "yes"){
@@ -640,7 +641,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						$vhost_more_conf .= "	php_admin_value register_globals 1\n";
 					}
 					if($web_subname == "$web_default_subdomain"){
-						$vhost_more_conf .= "	ServerAlias $web_name\n";
+						$vhost_more_conf .= "	ServerAlias $domain_to_get\n";
 					}
 
 					// Sbox and safe mode protection values
@@ -650,7 +651,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						$safe_mode_value = "1";
 					}
 					if($domain_sbox_protect == "no" && $subdomain["sbox_protect"] == "no"){
-						$cgi_directive = "ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin";
+						$cgi_directive = "ScriptAlias /cgi-bin $web_path/$domain_to_get/subdomains/$web_subname/cgi-bin";
 					}else{
 						$cgi_directive = "RewriteEngine on
 	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]";
@@ -671,8 +672,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 							$vhost_file .= "Listen ".$subdomain["ssl_ip"].":$port\n";
 							$vhost_file .= "<VirtualHost ".$subdomain["ssl_ip"].":$port>\n";
 							$vhost_file .= "	SSLEngine on\n";
-							$vhost_file .= "	SSLCertificateFile $ssl_cert_folder_path/".$web_subname.".".$web_name.".cert.cert\n";
-							$vhost_file .= "	SSLCertificateKeyFile $ssl_cert_folder_path/".$web_subname.".".$web_name.".cert.key\n";
+							$vhost_file .= "	SSLCertificateFile $ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.cert\n";
+							$vhost_file .= "	SSLCertificateKeyFile $ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.key\n";
 							break;
 						}
 						$vhost_file .= "	ServerName $web_subname.$web_name
@@ -683,11 +684,11 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 							$document_root = $conf_generated_file_path."/expired_site";
 							$vhost_file .= "	DocumentRoot $document_root\n";
 						}else{
-							$document_root = "$web_path/$web_name/subdomains/$web_subname/html";
+							$document_root = "$web_path/$domain_to_get/subdomains/$web_subname/html";
 							$vhost_file .= "	DocumentRoot $document_root
 $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	php_admin_value sendmail_from webmaster@$web_name
-	php_value session.save_path $web_path/$web_name/subdomains/$web_subname/tmp
+	php_value session.save_path $web_path/$domain_to_get/subdomains/$web_subname/tmp
 	<Location />
 		php_admin_value open_basedir \"$web_path:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>

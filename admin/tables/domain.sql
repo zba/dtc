@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS domain (
   txt_root_entry2 varchar(128) NOT NULL default 'This domain is hosted using Domain Technologie Control http://www.gplhost.com/software-dtc.html',
   catchall_email varchar(128) NOT NULL default '',
   domain_parking varchar(255) NOT NULL default 'no-parking',
+  domain_parking_type enum('redirect','same_docroot') NOT NULL default 'redirect',
   registrar_password varchar(255) NOT NULL default '',
   stats_login varchar(32) NOT NULL default '',
   stats_pass varchar(16) NOT NULL default '',

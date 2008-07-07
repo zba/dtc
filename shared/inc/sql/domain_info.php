@@ -40,8 +40,15 @@ if(isset($_REQUEST["set_domain_parcking"]) && $_REQUEST["set_domain_parcking"] =
 		$set_to = "no-parking";
 	}
 
+	if($_REQUEST["domain_parking_type"] == "redirect"){
+		$domain_parking_type = "redirect";
+	}else{
+		$domain_parking_type = "same_docroot";
+	}
+
+
 	// Update the flag so we regenerate the serial for bind
-	$domupdate_query = "UPDATE $pro_mysql_domain_table SET domain_parking='$set_to', gen_unresolved_domain_alias='no' WHERE name='$edit_domain' LIMIT 1;";
+	$domupdate_query = "UPDATE $pro_mysql_domain_table SET domain_parking='$set_to', gen_unresolved_domain_alias='no',domain_parking_type='$domain_parking_type' WHERE name='$edit_domain' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
 
 	updateUsingCron("gen_vhosts='yes',restart_apache='yes'");

@@ -19,6 +19,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	$max_ftp = $eddomain["max_ftp"];
 	$max_subdomain = $eddomain["max_subdomain"];
 	$domain_parking = $eddomain["domain_parking"];
+	$domain_parking_type = $eddomain["domain_parking_type"];
 
 	$adm_path = $admin["info"]["path"];
 	$webname = $eddomain["name"];
@@ -97,7 +98,17 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 		$out .= "<option value=\"".$a["name"]."\"$checked>".$a["name"]."</option>";
 	}
 
-	$out .= "</select><input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
+	$out .= "</select><br>";
+	if($domain_parking_type == "redirect"){
+		$redirect_selected = " checked ";
+		$same_docroot_selected = " ";
+	}else{
+		$redirect_selected = " ";
+		$same_docroot_selected = " checked ";
+	}
+	$out .= "<input type=\"radio\" name=\"domain_parking_type\" value=\"redirect\" $redirect_selected>" ._("Redirection")." ";
+	$out .= "<input type=\"radio\" name=\"domain_parking_type\" value=\"same_docroot\" $same_docroot_selected>" ._("Same DocumentRoot")." ";
+	$out .= "<input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
 	$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&action=export_domain&addrlink=".$_REQUEST["addrlink"]."\" target=\"_blank\">". _("Export this domain to a file") ."</a>";
 	return $out;
 }
