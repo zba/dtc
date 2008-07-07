@@ -139,7 +139,9 @@ if (!isset($lang)){
 }
 $charset = $txt_langname[$lang];
 $page_metacontent = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=$charset\">";
-header("Content-type: text/html; charset=$charset");
+if($panel_type != "cronjob"){
+	header("Content-type: text/html; charset=$charset");
+}
 
 switch($lang){
 case "fr_FR":

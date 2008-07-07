@@ -1082,7 +1082,7 @@ changeApacheUserAndGroup () {
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
 
-	# Those 2 are for debian
+	# Those 2 are for debian prior Lenny
 	if grep "User www-data" $PATH_HTTPD_CONF >/dev/null 2>&1
 	then
 		echo "User www-data -> User ${CONF_DTC_SYSTEM_USERNAME}"
@@ -1095,6 +1095,21 @@ changeApacheUserAndGroup () {
 		echo "Group www-data -> Group ${CONF_DTC_SYSTEM_GROUPNAME}"
 		sed "s/Group www-data/Group ${CONF_DTC_SYSTEM_GROUPNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
+	fi
+
+	# These 2 are for Debian >= Lenny (including Ubuntu)
+	if [ -f /etc/apache2/envvars ] ; then
+		if grep "export APACHE_RUN_USER=www-data" /etc/apache2/envvars >/dev/null 2>&1
+		then
+			echo "User www-data -> User ${CONF_DTC_SYSTEM_USERNAME}"
+			sed -i "s/export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=${CONF_DTC_SYSTEM_USERNAME}/" /etc/apache2/envvars
+		fi
+
+		if grep "export APACHE_RUN_GROUP=www-data" /etc/apache2/envvars >/dev/null 2>&1
+		then
+			echo "Group www-data -> Group ${CONF_DTC_SYSTEM_GROUPNAME}"
+			sed -i "s/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=${CONF_DTC_SYSTEM_GROUPNAME}/" /etc/apache2/envvars
+		fi
 	fi
 
 	# Those 2 are for BSD
@@ -1134,6 +1149,10 @@ createApachePIDSymLink () {
 		## strip the pid of " characters if they exist
 		PATH_APACHE_PID_FILE=${PATH_APACHE_PID_FILE##\"}
 		PATH_APACHE_PID_FILE=${PATH_APACHE_PID_FILE%%\"}
+
+		if [ "${PATH_APACHE_PID_FILE}" = "\${APACHE_PID_FILE}" ] ; then
+			PATH_APACHE_PID_FILE=`cat /etc/apache2/envvars  | grep APACHE_PID_FILE | cut -d'=' -f2`
+		fi
 	
 		# in case the specified pid file doesn't exist, try and find it
 		if [ ! -e $PATH_APACHE_PID_FILE ] ; then
@@ -2620,9 +2639,9 @@ modifyDovecotConfig () {
 					cp -f $PATH_DOVECOT_CONF $PATH_DOVECOT_CONF.DTC.backup
 				fi
 				if [ "${DOVECOT_MAJOR}" -ge 1 -a "${DOVECOT_MINOR}" -ge 1 ] ; then
-					dovecot_env_directive = "mail_location"
+					dovecot_env_directive="mail_location"
 				else
-					dovecot_env_directive = "default_mail_env"
+					dovecot_env_directive="default_mail_env"
 				fi
 				echo "
 # Configured by DTC v0.x : Please don't touch this line !
