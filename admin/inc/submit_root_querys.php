@@ -43,6 +43,10 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "edit_vps_config"){
 }
 
 function deleteVPS($id){
+	global $pro_mysql_vps_table;
+	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_vps_stats_table;
+
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE id='$id';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
