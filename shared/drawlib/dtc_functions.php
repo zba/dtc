@@ -673,6 +673,11 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 
 	// Create subdirectorys & html front page
 	if($conf_demo_version == "no"){
+
+		if(!file_exists($admin_path)){
+			mkdir($admin_path, 0755);
+		}
+
 		make_new_adm_domain_dir("$admin_path/$domain_name");
 		exec("cp -fulpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
 		// create a link so that the user can log in via SSH to $admin_path or $admin_path/$domain_name
