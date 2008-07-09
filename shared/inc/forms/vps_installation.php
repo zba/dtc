@@ -295,7 +295,7 @@ function ajaxLogConsole() {
 	$r = $soap_client->call("getVPSInstallLog",array("vpsname" => $vps_name,"numlines" => "20"),"","","");
 	$err = $soap_client->getError();
 	if($err){
-		die("Could not get VPS install log. Error: ".$err);
+		$r = _("Could not get VPS install log. Error: ").$err._(" maybe there are no logs yet?");
 	}
 	// print_r($r);
 	$r = str_replace("\n\n","\n",$r);
