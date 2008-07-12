@@ -78,8 +78,8 @@ $filename = tempnam("/tmp","dtc_cpugraph");
 $cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 $cmd .= "DEF:swapsects=$rrd_swap:swapsects:AVERAGE ";
 $cmd .= "DEF:fssects=$rrd_fs:fssects:AVERAGE ";
-$cmd .= "'LINE1:swapsects#AA4400:Swap usage sectors:' 'GPRINT:swapsects:MAX:Maximum\: %0.0lf' 'GPRINT:swapsects:AVERAGE:Average\: %0.0lf/min\\n' ";
-$cmd .= "'LINE1:fssects#008800:Filesystem usage sectors:' 'GPRINT:fssects:MAX:Maximum\: %0.0lf' 'GPRINT:fssects:AVERAGE:Average\: %0.0lf/min\\n' ";
+$cmd .= "'LINE1:swapsects#AA4400:Swap sectors (r/w):' 'GPRINT:swapsects:MAX:Max\: %0.0lf' 'GPRINT:swapsects:AVERAGE:Avg\: %0.0lf/min\\n' ";
+$cmd .= "'LINE1:fssects#008800:Filesystem sectors (r/w):' 'GPRINT:fssects:MAX:Max\: %0.0lf' 'GPRINT:fssects:AVERAGE:Avg\: %0.0lf/min\\n' ";
 exec($cmd,$output);
 
 $filesize = filesize($filename);

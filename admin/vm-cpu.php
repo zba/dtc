@@ -11,8 +11,6 @@ if(!checkSubdomainFormat($_REQUEST["vps_name"])){
 	die("VPS name has wrong format: dying.");
 }
 
-header ("Content-type: image/png");
-
 // Date in the past
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 
@@ -75,7 +73,7 @@ if( isset($_REQUEST["graph"]) ){
 	$filename = tempnam("/tmp","dtc_cpugraph");
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:cpuseconds=$rrd:cpuseconds:AVERAGE ";
-	$cmd .= "'LINE1:cpuseconds#ff0000:CPU used in seconds per minute:' 'GPRINT:cpuseconds:MAX:Maximum\: %0.0lf' 'GPRINT:cpuseconds:AVERAGE:Average\: %0.0lf/min\\n' ";
+	$cmd .= "'LINE1:cpuseconds#ff0000:Seconds of CPU used/min:' 'GPRINT:cpuseconds:MAX:Max\: %0.0lf' 'GPRINT:cpuseconds:AVERAGE:Avg\: %0.0lf/min\\n' ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);
@@ -94,37 +92,6 @@ if( isset($_REQUEST["graph"]) ){
 		fclose($fp);
 	}
 	unlink($filename);
-}else{
-	echo '
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<HTML>
-<HEAD>
-<TITLE>CPU load average statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
-<style type="text/css">
-body{
-	height:100%;
-	margin:0;
-	color: #000000;
-}
-h1 {
-	font: 14px Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	text-decoration: underline;
-	color: #000000;
-}
-</style>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF">
-<H1>CPU load average Statistics for '.$_SERVER["SERVER_NAME"].'</H1>
-<center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="Hour CPU Load Graph" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="Day CPU Load Graph" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="Week CPU Load Graph" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="Month CPU Load Graph" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="Year CPU Load Graph" width="897" height="239">
-</center>
-</body>
-</html>';
 }
 
 ?>
