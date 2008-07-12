@@ -190,6 +190,7 @@ function drawAdminTools_VPSMonitor($admin,$vps){
 <a target=\"_blank\" href=\"http://".$vps["vps_server_hostname"]."/dtc-xen/\">http://".$vps["vps_server_hostname"]."/dtc-xen/</a><br>";
 
 	// The ip address(es)
+	$out .= "<br><h3>"._("IP address(es) of your VPS:")."</h3>";
 	$vps_ips = $vps["ip_addr"];
 	$n = sizeof($vps_ips);
 	if($n > 1){
@@ -209,6 +210,29 @@ function drawAdminTools_VPSMonitor($admin,$vps){
 	$out .= $vps_stat_out;
 	$out .= "<h3>". _("Current VPS status:") ."</h3><br>";
 	$out .= $vps_out;
+
+	// RRD tools graphing
+	// CPU rrd
+	$out .= "<br><h3>"._("CPU usage statistics in seconds of CPU used per minute")."</h3>";
+	$out .= "<table cellspacing=\"4\" cellpadding=\"0\" border=\"0\">
+<tr><td><img src=\"vm-cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_server_hostname=$vps_node&vps_name=$vps_name&graph=hour\"></td>
+<td><img src=\"vm-cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_server_hostname=$vps_node&vps_name=$vps_name&graph=day\"></td></tr>
+<tr><td><img src=\"vm-cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_server_hostname=$vps_node&vps_name=$vps_name&graph=week\"></td>
+<td><img src=\"vm-cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_server_hostname=$vps_node&vps_name=$vps_name&graph=month\"></td></tr>
+<tr><td><img src=\"vm-cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_server_hostname=$vps_node&vps_name=$vps_name&graph=year\"></td><td></td></tr>
+</table>
+";
+
+/*	$out .= "<br><h3>"._("CPU usage statistics in seconds of CPU used per minute")."</h3>";
+	$out .= "<table cellspacing=\"4\" cellpadding=\"0\" border=\"0\">
+<tr><td><img src=\"vm-net.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_server_hostname=$vps_node&vps_name=$vps_name&graph=hour\"></td>
+<td><img src=\"vm-net.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_server_hostname=$vps_node&vps_name=$vps_name&graph=day\"></td></tr>
+<tr><td><img src=\"vm-net.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_server_hostname=$vps_node&vps_name=$vps_name&graph=week\"></td>
+<td><img src=\"vm-net.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_server_hostname=$vps_node&vps_name=$vps_name&graph=hour\"></td></tr>
+</table>
+";*/
+
+
 
 	// VPS Monitoring
 	$out .= "<br><h3>". _("Service monitoring:") ."</h3><br>";
