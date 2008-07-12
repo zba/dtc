@@ -249,8 +249,8 @@ WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='"
 				$n2 = mysql_num_rows($r2);
 				mysql_free_result($r2);
 				if($n2 == 0){
-					$q2 = "INSERT INTO $pro_mysql_vps_stats_table (vps_server_hostname,vps_xen_name,month,year)
-VALUES ('".$vps_servers_row["hostname"]."','$vps_number','".date("m")."','".date("Y")."');";
+					$q2 = "INSERT INTO $pro_mysql_vps_stats_table (vps_server_hostname,vps_xen_name,month,year,cpu_usage,network_in_count,network_out_count,diskio_count,swapio_count)
+VALUES ('".$vps_servers_row["hostname"]."','$vps_number','".date("m")."','".date("Y")."','0','0','0','0','0');";
 					mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				}
 				$q2 = "UPDATE $pro_mysql_vps_stats_table
