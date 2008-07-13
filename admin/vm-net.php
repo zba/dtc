@@ -78,8 +78,10 @@ $filename = tempnam("/tmp","dtc_cpugraph");
 $cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 $cmd .= "DEF:netbytesin=$rrd_in:netbytesin:AVERAGE ";
 $cmd .= "DEF:netbytesout=$rrd_out:netbytesout:AVERAGE ";
-$cmd .= "'LINE1:netbytesin#00ff00:Incoming bytes:' 'GPRINT:netbytesin:MAX:Max\: %0.0lf' 'GPRINT:netbytesin:AVERAGE:Avg\: %0.0lf/min\\n' ";
-$cmd .= "'LINE1:netbytesout#0000ff:Outgoing bytes:' 'GPRINT:netbytesout:MAX:Max\: %0.0lf' 'GPRINT:netbytesout:AVERAGE:Avg\: %0.0lf/min\\n' ";
+$cmd .= "CDEF:realin=netbytesin,60,/ ";
+$cmd .= "CDEF:realout=netbytesout,60,/ ";
+$cmd .= "'LINE1:realin#00ff00:Incoming bytes:' 'GPRINT:realin:MAX:Max\: %0.0lf' 'GPRINT:realin:AVERAGE:Avg\: %0.0lf/min\\n' ";
+$cmd .= "'LINE1:realout#0000ff:Outgoing bytes:' 'GPRINT:realout:MAX:Max\: %0.0lf' 'GPRINT:realout:AVERAGE:Avg\: %0.0lf/min\\n' ";
 exec($cmd,$output);
 
 $filesize = filesize($filename);

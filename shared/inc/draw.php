@@ -24,6 +24,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/vps.php");
 	require("$dtcshared_path/inc/forms/vps_monitoring.php");
 	require("$dtcshared_path/inc/forms/vps_graphs.php");
+	require("$dtcshared_path/inc/forms/vps_dom0graphs.php");
 	require("$dtcshared_path/inc/forms/vps_installation.php");
 	require("$dtcshared_path/inc/forms/dedicated.php");
 }
@@ -164,10 +165,16 @@ function drawAdminTools($admin){
 				"link" => "monitor"
 			);
 		$vps_submenu[] = array(
-				"text" => _("Usage graphs"),
+				"text" => _("My VPS usage graphs"),
 				"icon" => "box_wnb_nb_picto-statistics.gif",
 				"type" => "link",
 				"link" => "rrdgraphs"
+			);
+		$vps_submenu[] = array(
+				"text" => _("Dom0 overall graphs"),
+				"icon" => "box_wnb_nb_picto-statistics.gif",
+				"type" => "link",
+				"link" => "dom0graphs"
 			);
 		$vps_submenu[] = array(
 				"text" => _("Installation"),
@@ -374,6 +381,9 @@ function drawAdminTools($admin){
 					break;
 				case "rrdgraphs":
 					$web_editor .= drawAdminTools_VPSRRDGraphs($admin,$admin["vps"][$vps_order_number]);
+					break;
+				case "dom0graphs":
+					$web_editor .= drawAdminTools_dm0RRDGraphs($admin,$admin["vps"][$vps_order_number]);
 					break;
 				case "installation":
 					$web_editor .= drawAdminTools_VPSInstallation($admin,$admin["vps"][$vps_order_number]);

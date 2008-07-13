@@ -204,7 +204,8 @@ admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admi
 admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.php
 
 # Todo: have the client/vps_stats_* be taken from the admin folder!
-ADMIN_AND_CLIENT_FILES=vps_stats_cpu.php vps_stats_hdd.php vps_stats_network.php vps_stats_swap.php vm-cpu.php vm-io.php vm-net.php
+ADMIN_AND_CLIENT_FILES=vps_stats_cpu.php vps_stats_hdd.php vps_stats_network.php vps_stats_swap.php vm-cpu.php vm-io.php vm-net.php \
+vm-cpu-all.php vm-io-all.php vm-net-all.php
 
 CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-notify.php client/index.php \
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
