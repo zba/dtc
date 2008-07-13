@@ -186,9 +186,6 @@ function drawAdminTools_VPSMonitor($admin,$vps){
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
 
-	$out .= "<br><h3>". _("CPU, IO and Network usage:") ."</h3><br>
-<a target=\"_blank\" href=\"http://".$vps["vps_server_hostname"]."/dtc-xen/\">http://".$vps["vps_server_hostname"]."/dtc-xen/</a><br>";
-
 	// The ip address(es)
 	$out .= "<br><h3>"._("IP address(es) of your VPS:")."</h3>";
 	$vps_ips = $vps["ip_addr"];
@@ -229,7 +226,8 @@ function drawAdminTools_VPSMonitor($admin,$vps){
 	$out .= dtcFormLineDraw( _("SMTP: "),"<input type=\"checkbox\" name=\"monitor_smtp\" value=\"yes\">",1);
 	$out .= dtcFormLineDraw( _("POP3: "),"<input type=\"checkbox\" name=\"monitor_pop3\" value=\"yes\">",0);
 	$out .= dtcFormLineDraw( _("IMAP4: "),"<input type=\"checkbox\" name=\"monitor_imap4\" value=\"yes\">",1);
-	$out .= dtcFormLineDraw( "",dtcApplyButton(),0);
+	$out .= dtcFormLineDraw( _("FTP: "),"<input type=\"checkbox\" name=\"monitor_ftp\" value=\"yes\">",0);
+	$out .= dtcFormLineDraw( "",dtcApplyButton(),1);
 	$out .= "</form></table>";
 	return $out;
 }

@@ -30,6 +30,59 @@ function remoteVPSAction($vps_node,$vps_name,$action){
 	}
 }
 
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_vps_monitoring_values"){
+// email_addr monitor_ping monitor_ssh monitor_http monitor_smtp monitor_pop3 monitor_imap4
+	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
+		$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;
+		$commit_flag = "no";
+	}
+	if(!isValidEmail($_REQUEST["email_addr"])){
+		$submit_err = _("Wrong email format for the monitoring email address");
+		$commit_flag = "no";
+	}
+	if($commit_flag == "yes"){
+		if(isset($_REQUEST["monitor_ping"]) && $_REQUEST["monitor_ping"] == "yes"){
+			$monitor_ping = "yes";
+		}else{
+			$monitor_ping = "no";
+		}
+		if(isset($_REQUEST["monitor_ssh"]) && $_REQUEST["monitor_ssh"] == "yes"){
+			$monitor_ssh = "yes";
+		}else{
+			$monitor_ssh = "no";
+		}
+		if(isset($_REQUEST["monitor_http"]) && $_REQUEST["monitor_http"] == "yes"){
+			$monitor_http = "yes";
+		}else{
+			$monitor_http = "no";
+		}
+		if(isset($_REQUEST["monitor_smtp"]) && $_REQUEST["monitor_smtp"] == "yes"){
+			$monitor_smtp = "yes";
+		}else{
+			$monitor_smtp = "no";
+		}
+		if(isset($_REQUEST["monitor_pop3"]) && $_REQUEST["monitor_pop3"] == "yes"){
+			$monitor_pop3 = "yes";
+		}else{
+			$monitor_pop3 = "no";
+		}
+		if(isset($_REQUEST["monitor_imap4"]) && $_REQUEST["monitor_imap4"] == "yes"){
+			$monitor_imap4 = "yes";
+		}else{
+			$monitor_imap4 = "no";
+		}
+		if(isset($_REQUEST["monitor_ftp"]) && $_REQUEST["monitor_ftp"] == "yes"){
+			$monitor_ftp = "yes";
+		}else{
+			$monitor_ftp = "no";
+		}
+		$q = "UPDATE INTO $pro_mysql_vps_table SET monitoring_email='".$_REQUEST["email_addr"]."',
+monitor_ping='$monitor_ping', monitor_ssh='$monitor_ssh', monitor_http='$monitor_http', monitor_smtp='$monitor_smtp', monitor_pop3='$monitor_pop3',
+monitor_imap4='$monitor_imap4', monitor_ftp='$monitor_ftp' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	}
+}
+
 if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "shutdown_vps" || $_REQUEST["action"] == "destroy_vps" || $_REQUEST["action"] == "start_vps")){
 	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) == true){
 		remoteVPSAction($vps_node,$vps_name,$_REQUEST["action"]);

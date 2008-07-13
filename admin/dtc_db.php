@@ -1004,7 +1004,15 @@ $dtc_database = array(
 			"product_id" => "int(9) NOT NULL default '0'",
 			"operatingsystem" => "varchar(64) NOT NULL default 'debian'",
 			"installed" => "enum('yes','no') NOT NULL default 'no'",
-			"bsdkernel" => "enum('normal','install') NOT NULL default 'normal'"
+			"bsdkernel" => "enum('normal','install') NOT NULL default 'normal'",
+			"monitoring_email" => "varchar(255) NOT NULL default ''",
+			"monitor_ping" => "enum('yes','no') NOT NULL default 'no'",
+			"monitor_ssh" => "enum('yes','no') NOT NULL default 'no'",
+			"monitor_http" => "enum('yes','no') NOT NULL default 'no'",
+			"monitor_smtp" => "enum('yes','no') NOT NULL default 'no'",
+			"monitor_pop3" => "enum('yes','no') NOT NULL default 'no'",
+			"monitor_imap4" => "enum('yes','no') NOT NULL default 'no'",
+			"monitor_ftp" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"unique" => array(
 			"vps_server_hostname" => "(vps_server_hostname,vps_xen_name)"
