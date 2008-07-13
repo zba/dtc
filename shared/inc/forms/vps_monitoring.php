@@ -219,14 +219,49 @@ function drawAdminTools_VPSMonitor($admin,$vps){
 	$out .= $frm_start . "
 <input type=\"hidden\" name=\"action\" value=\"set_vps_monitoring_values\">
 ";
-	$out .= dtcFormLineDraw( _("VPS monitoring alerts email address: "),"<input type=\"text\" name=\"email_addr\" value=\"\">",1);
-	$out .= dtcFormLineDraw( _("Ping: "),"<input type=\"checkbox\" name=\"monitor_ping\" value=\"yes\">",0);
-	$out .= dtcFormLineDraw( _("SSH: "),"<input type=\"checkbox\" name=\"monitor_ssh\" value=\"yes\">",1);
-	$out .= dtcFormLineDraw( _("HTTP: "),"<input type=\"checkbox\" name=\"monitor_http\" value=\"yes\">",0);
-	$out .= dtcFormLineDraw( _("SMTP: "),"<input type=\"checkbox\" name=\"monitor_smtp\" value=\"yes\">",1);
-	$out .= dtcFormLineDraw( _("POP3: "),"<input type=\"checkbox\" name=\"monitor_pop3\" value=\"yes\">",0);
-	$out .= dtcFormLineDraw( _("IMAP4: "),"<input type=\"checkbox\" name=\"monitor_imap4\" value=\"yes\">",1);
-	$out .= dtcFormLineDraw( _("FTP: "),"<input type=\"checkbox\" name=\"monitor_ftp\" value=\"yes\">",0);
+	if($vps["monitor_ping"] == "yes"){
+		$monitor_ping = " checked ";
+	}else{
+		$monitor_ping = " ";
+	}
+	if($vps["monitor_ssh"] == "yes"){
+		$monitor_ssh = " checked ";
+	}else{
+		$monitor_ssh = " ";
+	}
+	if($vps["monitor_http"] == "yes"){
+		$monitor_http = " checked ";
+	}else{
+		$monitor_http = " ";
+	}
+	if($vps["monitor_smtp"] == "yes"){
+		$monitor_smtp = " checked ";
+	}else{
+		$monitor_smtp = " ";
+	}
+	if($vps["monitor_pop3"] == "yes"){
+		$monitor_pop3 = " checked ";
+	}else{
+		$monitor_pop3 = " ";
+	}
+	if($vps["monitor_imap4"] == "yes"){
+		$monitor_imap4 = " checked ";
+	}else{
+		$monitor_imap4 = " ";
+	}
+	if($vps["monitor_ftp"] == "yes"){
+		$monitor_ftp = " checked ";
+	}else{
+		$monitor_ftp = " ";
+	}
+	$out .= dtcFormLineDraw( _("VPS monitoring alerts email address: "),"<input type=\"text\" name=\"email_addr\" value=\"".$vps["monitoring_email"]."\">",1);
+	$out .= dtcFormLineDraw( _("Ping: "),"<input type=\"checkbox\" name=\"monitor_ping\" value=\"yes\" $monitor_ping>",0);
+	$out .= dtcFormLineDraw( _("SSH: "),"<input type=\"checkbox\" name=\"monitor_ssh\" value=\"yes\" $monitor_ssh>",1);
+	$out .= dtcFormLineDraw( _("HTTP: "),"<input type=\"checkbox\" name=\"monitor_http\" value=\"yes\" $monitor_http>",0);
+	$out .= dtcFormLineDraw( _("SMTP: "),"<input type=\"checkbox\" name=\"monitor_smtp\" value=\"yes\" $monitor_smtp>",1);
+	$out .= dtcFormLineDraw( _("POP3: "),"<input type=\"checkbox\" name=\"monitor_pop3\" value=\"yes\" $monitor_pop3>",0);
+	$out .= dtcFormLineDraw( _("IMAP4: "),"<input type=\"checkbox\" name=\"monitor_imap4\" value=\"yes\" $monitor_imap4>",1);
+	$out .= dtcFormLineDraw( _("FTP: "),"<input type=\"checkbox\" name=\"monitor_ftp\" value=\"yes\" $monitor_ftp>",0);
 	$out .= dtcFormLineDraw( "",dtcApplyButton(),1);
 	$out .= "</form></table>";
 	return $out;
