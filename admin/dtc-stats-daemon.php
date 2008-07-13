@@ -182,6 +182,7 @@ while (!$shutdown){
 			$cur = $r[$rec];
 			$keys = array_keys($cur);
 			$num_vps = sizeof($keys);
+			echo "$num_vps VPS...";
 			for($vps=0;$vps<$num_vps;$vps++){
 				$vps_data = $cur[ $keys[$vps] ];
 				$vps_cpu = $vps_data["diff_cpu_time"];
@@ -259,8 +260,8 @@ diskio_count=diskio_count + '$vps_fs_sectors', swapio_count=swapio_count + '$vps
 WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='".$vps_number."' AND month='".date("m")."' AND year='".date("Y")."'";
 				mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			}
-			echo "recorded\n";
 		}
+		echo "recorded\n";
 	}
 	mysql_free_result($vps_servers_result);
 }
