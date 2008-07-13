@@ -258,8 +258,8 @@ SET cpu_usage=cpu_usage + '$vps_cpu', network_in_count=network_in_count + '$vps_
 diskio_count=diskio_count + '$vps_fs_sectors', swapio_count=swapio_count + '$vps_swap_sectors'
 WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='".$vps_number."' AND month='".date("m")."' AND year='".date("Y")."'";
 				mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-				echo "recorded\n";
 			}
+			echo "recorded\n";
 		}
 	}
 	mysql_free_result($vps_servers_result);
