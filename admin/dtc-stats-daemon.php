@@ -153,6 +153,7 @@ while (!$shutdown){
 	for ($i=0;$i<$vps_servers_num_rows;$i++){
 		// sleep 5 seconds between every soap call, we don't want to kill the soap servers
 		// sleep (5);
+		$all_recs = array();
 		$vps_servers_row = mysql_fetch_array($vps_servers_result);
 		$vps_server = $vps_servers_row['hostname'];
 
@@ -176,88 +177,136 @@ while (!$shutdown){
 			echo "No data in this fetch!\n";
 			break;
 		}
+
+		// Records are ordered by timestamps, we need something ordered by VPS name,
+		// so we do the maths...
 		$num_records = sizeof($r);
-		echo "$num_records record...";
+		echo "now ordering $num_records record(s)...";
 		for($rec=0;$rec<$num_records;$rec++){
 			$cur = $r[$rec];
 			$keys = array_keys($cur);
 			$num_vps = sizeof($keys);
-			echo "$num_vps VPS...";
 			for($vps=0;$vps<$num_vps;$vps++){
 				$vps_data = $cur[ $keys[$vps] ];
-				$vps_cpu = $vps_data["diff_cpu_time"];
-				$vps_net_in = $vps_data["diff_net_inbytes"];
-				$vps_net_out = $vps_data["diff_net_outbytes"];
-				$vps_swap_sectors = $vps_data["diff_swap_sectors"];
-				$vps_fs_sectors = $vps_data["diff_filesystem_sectors"];
-				$temp_array = explode(".",$vps_data["timestamp"]);
-				$timestamp = $temp_array[0];
 
-				$cpu_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $keys[$vps] . "-cpu.rrd";
-				$netin_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $keys[$vps] . "-netin.rrd";
-				$netout_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $keys[$vps] . "-netout.rrd";
-				$hdd_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $keys[$vps] . "-iofs.rrd";
-				$swap_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $keys[$vps] . "-ioswap.rrd";
-				// CPU rrd
-				if(!file_exists($cpu_file)){
-					$cmd = "rrdtool create $cpu_file --step 60 DS:cpuseconds:GAUGE:900:0:120 RRA:AVERAGE:0.5:1:20160 ".
+				$all_recs[ $keys[$vps] ][] = $vps_data;
+			}
+		}
+		// Now for each VPS, let's record all data collected
+		$num_vps = sizeof($all_recs);
+		$keys = array_keys($all_recs);
+		echo "$num_vps VPS...";
+		for($vps=0;$vps<$num_vps;$vps++){
+			$vps_name = $keys[$vps];
+			$vps_number = substr($vps_name,3);
+			$all_vps_data = $all_recs[ $vps_name ];
+			$vps_num_recs = sizeof($all_vps_data);
+
+			// Let's calculate the full path of the filename for each of the 5 rrd files per VPS
+			$cpu_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $vps_name . "-cpu.rrd";
+			$netin_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $vps_name . "-netin.rrd";
+			$netout_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $vps_name . "-netout.rrd";
+			$hdd_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $vps_name . "-iofs.rrd";
+			$swap_file = "/var/lib/dtc/dtc-xenservers-rrds/$vps_server/". $vps_name . "-ioswap.rrd";
+			// Now we create all the rrd files if they do not exist yet.
+			// CPU rrd
+			if(!file_exists($cpu_file)){
+				$cmd = "rrdtool create $cpu_file --step 60 DS:cpuseconds:GAUGE:900:0:120 RRA:AVERAGE:0.5:1:20160 ".
 "RRA:AVERAGE:0.5:30:2016 RRA:AVERAGE:0.5:60:105120 RRA:MAX:0.5:1:1440 RRA:MAX:0.5:30:2016 RRA:MAX:0.5:60:105120";
-					$result = exec($cmd,$lines,$return_val);
-				}
-				$cmd = "rrdtool update ".$cpu_file." ".$timestamp.":"."$vps_cpu";
 				$result = exec($cmd,$lines,$return_val);
-
-				// netin bytes
-				if(!file_exists($netin_file)){
-					$cmd = "rrdtool create $netin_file --step 60 DS:netbytesin:GAUGE:900:0:U RRA:AVERAGE:0.5:1:20160 ".
+			}
+			// netin bytes
+			if(!file_exists($netin_file)){
+				$cmd = "rrdtool create $netin_file --step 60 DS:netbytesin:GAUGE:900:0:U RRA:AVERAGE:0.5:1:20160 ".
 "RRA:AVERAGE:0.5:30:2016 RRA:AVERAGE:0.5:60:105120 RRA:MAX:0.5:1:1440 RRA:MAX:0.5:30:2016 RRA:MAX:0.5:60:105120";
-					$result = exec($cmd,$lines,$return_val);
-				}
-				$cmd = "rrdtool update ".$netin_file." ".$timestamp.":"."$vps_net_in";
 				$result = exec($cmd,$lines,$return_val);
-
-				// netout bytes
-				if(!file_exists($netout_file)){
-					$cmd = "rrdtool create $netout_file --step 60 DS:netbytesout:GAUGE:900:0:U RRA:AVERAGE:0.5:1:20160 ".
+			}
+			// netout bytes
+			if(!file_exists($netout_file)){
+				$cmd = "rrdtool create $netout_file --step 60 DS:netbytesout:GAUGE:900:0:U RRA:AVERAGE:0.5:1:20160 ".
 "RRA:AVERAGE:0.5:30:2016 RRA:AVERAGE:0.5:60:105120 RRA:MAX:0.5:1:1440 RRA:MAX:0.5:30:2016 RRA:MAX:0.5:60:105120";
-					$result = exec($cmd,$lines,$return_val);
-				}
-				$cmd = "rrdtool update ".$netout_file." ".$timestamp.":"."$vps_net_out";
 				$result = exec($cmd,$lines,$return_val);
-
-				// swap sectors
-				if(!file_exists($swap_file)){
-					$cmd = "rrdtool create $swap_file --step 60 DS:swapsects:GAUGE:900:0:U RRA:AVERAGE:0.5:1:20160 ".
+			}
+			// swap sectors
+			if(!file_exists($swap_file)){
+				$cmd = "rrdtool create $swap_file --step 60 DS:swapsects:GAUGE:900:0:U RRA:AVERAGE:0.5:1:20160 ".
 "RRA:AVERAGE:0.5:30:2016 RRA:AVERAGE:0.5:60:105120 RRA:MAX:0.5:1:1440 RRA:MAX:0.5:30:2016 RRA:MAX:0.5:60:105120";
-					$result = exec($cmd,$lines,$return_val);
-				}
-				$cmd = "rrdtool update ".$swap_file." ".$timestamp.":"."$vps_swap_sectors";
 				$result = exec($cmd,$lines,$return_val);
-
-				// filesystem sectors
-				if(!file_exists($hdd_file)){
-					$cmd = "rrdtool create $hdd_file --step 60 DS:fssects:GAUGE:900:0:U RRA:AVERAGE:0.5:1:20160 ".
+			}
+			// filesystem sectors
+			if(!file_exists($hdd_file)){
+				$cmd = "rrdtool create $hdd_file --step 60 DS:fssects:GAUGE:900:0:U RRA:AVERAGE:0.5:1:20160 ".
 "RRA:AVERAGE:0.5:30:2016 RRA:AVERAGE:0.5:60:105120 RRA:MAX:0.5:1:1440 RRA:MAX:0.5:30:2016 RRA:MAX:0.5:60:105120";
-					$result = exec($cmd,$lines,$return_val);
-				}
-				$cmd = "rrdtool update ".$hdd_file." ".$timestamp.":"."$vps_fs_sectors";
 				$result = exec($cmd,$lines,$return_val);
+			}
 
-				$vps_number = substr($keys[$vps],3);
-				$q2 = "SELECT * FROM $pro_mysql_vps_stats_table
+
+			// Now we need to record all the data by packets of 256 records,
+			// in order to make sure that we do not have a command line too big.
+			// Now, using $NUM_RECS_AT_A_TIME = 60 instead of 256 so the derive is
+			// only 1 hour for the UPDATE query (maximum one hour accounting error mistake in a month log)
+			$NUM_RECS_AT_A_TIME = 60;
+			$remaining_256_loop = $vps_num_recs % $NUM_RECS_AT_A_TIME;
+			$num_256_loop = ($vps_num_recs - $remaining_256_loop) / $NUM_RECS_AT_A_TIME;
+			for($z=0;$z<=$num_256_loop;$z++){
+				$cmd_cpu    = "rrdtool update ".$cpu_file;
+				$cmd_netin  = "rrdtool update ".$netin_file;
+				$cmd_netout = "rrdtool update ".$netout_file;
+				$cmd_swap   = "rrdtool update ".$swap_file;
+				$cmd_hdd    = "rrdtool update ".$hdd_file;
+				if($z == $num_256_loop){
+					$num_iter = $remaining_256_loop;
+				}else{
+					$num_iter = $NUM_RECS_AT_A_TIME;
+				}
+				$total_cpu = 0;
+				$total_netin = 0;
+				$total_netout = 0;
+				$total_swap_sec = 0;
+				$total_hdd_sec = 0;
+				for($y=0;$y<$num_iter;$y++){
+					$vps_data = $all_vps_data[ $z*$NUM_RECS_AT_A_TIME + $y ];
+					$vps_cpu = $vps_data["diff_cpu_time"];
+					$vps_net_in = $vps_data["diff_net_inbytes"];
+					$vps_net_out = $vps_data["diff_net_outbytes"];
+					$vps_swap_sectors = $vps_data["diff_swap_sectors"];
+					$vps_fs_sectors = $vps_data["diff_filesystem_sectors"];
+					$temp_array = explode(".",$vps_data["timestamp"]);
+					$timestamp = $temp_array[0];
+
+					$cmd_cpu    .= " $timestamp:$vps_cpu";
+					$cmd_netin  .= " $timestamp:$vps_net_in";
+					$cmd_netout .= " $timestamp:$vps_net_out";
+					$cmd_swap   .= " $timestamp:$vps_swap_sectors";
+					$cmd_hdd    .= " $timestamp:$vps_fs_sectors";
+					$total_cpu += $vps_cpu;
+					$total_netin += $vps_net_in;
+					$total_netout += $vps_net_out;
+					$total_swap_sec += $vps_swap_sectors;
+					$total_hdd_sec += $vps_fs_sectors;
+				}
+				$result = exec($cmd_cpu,$lines,$return_val);
+				$result = exec($cmd_netin,$lines,$return_val);
+				$result = exec($cmd_netout,$lines,$return_val);
+				$result = exec($cmd_swap,$lines,$return_val);
+				$result = exec($cmd_hdd,$lines,$return_val);
+
+				// Create a record if it doesn't exists
+				// An INSERT IGNORE should be faster than a SELECT, then checking if the row exists...
+/*				$q2 = "SELECT * FROM $pro_mysql_vps_stats_table
 WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='".$vps_number."' AND month='".date("m")."' AND year='".date("Y")."'";
 				$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$n2 = mysql_num_rows($r2);
 				mysql_free_result($r2);
-				if($n2 == 0){
-					$q2 = "INSERT INTO $pro_mysql_vps_stats_table (vps_server_hostname,vps_xen_name,month,year,cpu_usage,network_in_count,network_out_count,diskio_count,swapio_count)
-VALUES ('".$vps_servers_row["hostname"]."','$vps_number','".date("m")."','".date("Y")."','0','0','0','0','0');";
+				if($n2 == 0){*/
+					$q2 = "INSERT IGNORE INTO $pro_mysql_vps_stats_table (vps_server_hostname,vps_xen_name,month,year,cpu_usage,network_in_count,network_out_count,diskio_count,swapio_count)
+VALUES ('".$vps_servers_row["hostname"]."','$vps_number','".date("m",$timestamp)."','".date("Y",$timestamp)."','0','0','0','0','0');";
 					mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-				}
+//				}
 				$q2 = "UPDATE $pro_mysql_vps_stats_table
 SET cpu_usage=cpu_usage + '$vps_cpu', network_in_count=network_in_count + '$vps_net_in', network_out_count=network_out_count + '$vps_net_out',
 diskio_count=diskio_count + '$vps_fs_sectors', swapio_count=swapio_count + '$vps_swap_sectors'
-WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='".$vps_number."' AND month='".date("m")."' AND year='".date("Y")."'";
+WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
 				mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			}
 		}
