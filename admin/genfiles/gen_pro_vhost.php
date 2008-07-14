@@ -614,6 +614,12 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/logs");
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/html");
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/cgi-bin");
+					// We need to make it for both in case of a domain parking
+					if($domain_to_get != $web_name){
+						vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
+						vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
+						vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
+					}
 					$iteration_table = array();
 					$iteration_table[] = "normal";
 					$ssl_cert_folder_path = "$web_path/$domain_to_get/subdomains/$web_subname/ssl";
