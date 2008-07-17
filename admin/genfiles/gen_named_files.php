@@ -379,7 +379,7 @@ function named_generate(){
 			$this_site_file = "\$TTL $domain_ttl
 @               IN      SOA     $thisdomain_dns1. $bind_formated_webmaster_email_addr (
 						$todays_serial; serial
-                        2H ; refresh
+                        2H46M40S ; refresh
                         60M ; retry
                         1W ; expire
                         24H ; default_ttl
