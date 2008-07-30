@@ -1,31 +1,38 @@
 <?php
 
-function deleteMysqlUserAndDB($mysql_user){
+function deleteMysqlUserAndDB($adm_login){
 	global $conf_mysql_db;
 	mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
 
-	$query = "SELECT * FROM db WHERE User='$mysql_user';";
-	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!");
-	$num_rows = mysql_num_rows($result);
-	for($i=0;$i<$num_rows;$i++){
-		$row = mysql_fetch_array($result);
-		$db = $row["Db"];
-		// Prevent system db from deletion
-		if($db != $conf_mysql_db && $db != "mysql"){
-			$query2 = "DROP DATABASE $db";
-			mysql_query($query2)or die("Cannot execute query \"$query\" !!!");
-		}
-	}
+	$q = "SELECT * FROM user WHERE dtcowner='$adm_login';";
+	$r = mysql_query($q)or die("Cannot query $q line ".___LINE__." file".__FILE__);
+	$n = mysql_num_rows($r);
+	for($j=0;$j<$n;$j++){
+		$a = mysql_fetch_array($r);
+		$mysql_user = $a["User"];
 
-	// Prevent system user from deletion
-	if($mysql_user != "mysql" && $mysql_user != "root"){
-		$query = "DELETE FROM db WHERE User='$mysql_user';";
-		mysql_query($query)or die("Cannot execute query \"$query\" !!!");
-		$query = "DELETE FROM user WHERE User='$mysql_user';";
+		$query = "SELECT * FROM db WHERE User='$mysql_user';";
+		$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+		$num_rows = mysql_num_rows($result);
+		for($i=0;$i<$num_rows;$i++){
+			$row = mysql_fetch_array($result);
+			$db = $row["Db"];
+			// Prevent system db from deletion
+			if($db != $conf_mysql_db && $db != "mysql"){
+				$query2 = "DROP DATABASE $db";
+				mysql_query($query2)or die("Cannot execute query \"$query\" !!!");
+			}
+		}
+		// Prevent system user from deletion
+		if($mysql_user != "mysql" && $mysql_user != "root"){
+			$query = "DELETE FROM db WHERE User='$mysql_user';";
+			mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+			$query = "DELETE FROM user WHERE User='$mysql_user';";
+			mysql_query($query)or die("Cannot execute query \"$query\" !!!");
+		}
+		$query = "FLUSH PRIVILEGES";
 		mysql_query($query)or die("Cannot execute query \"$query\" !!!");
 	}
-	$query = "FLUSH PRIVILEGES";
-	mysql_query($query)or die("Cannot execute query \"$query\" !!!");
 	mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\" in deleteMysqlUserAndDB() !!!");
 }
 
@@ -120,29 +127,6 @@ function DTCdeleteAdmin ($adm_to_del) {
 
 	if($conf_demo_version == "no"){
 		system("rm -rf $the_admin_path");
-
-		// Delete all databases of the user
-		mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
-		$query = "SELECT Host,Db,User FROM db WHERE User='$adm_to_del';";
-		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-		$num_rows = mysql_num_rows($result);
-		for($i=0;$i<$num_rows;$i++){
-			$row = mysql_fetch_array($result);
-			echo $row["Db"];
-			$db_name[] = $row["Db"];
-		}
-		for($i=0;$i<$num_rows;$i++){
-			$query = "DROP DATABASE ".$db_name[$i];
-			mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-		}
-
-		$query = "DELETE FROM db WHERE User='$adm_to_del';";
-		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-		$query = "DELETE FROM user WHERE User='$adm_to_del'";
-		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-	        mysql_query("FLUSH PRIVILEGES");
-		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
-		mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\"	!!!");
 	}
 
 	deleteMysqlUserAndDB($adm_to_del);
