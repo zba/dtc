@@ -9,7 +9,7 @@
 # MANUAL_DIR=/usr/share/man
 
 # Version and release are set here:
-VERS=0.29.6
+VERS=0.29.7
 RELS=1
 
 VERSION=$(VERS)"-"$(RELS)
@@ -204,11 +204,13 @@ admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admi
 admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.php
 
 # Todo: have the client/vps_stats_* be taken from the admin folder!
+ADMIN_AND_CLIENT_FILES=vps_stats_cpu.php vps_stats_hdd.php vps_stats_network.php vps_stats_swap.php vm-cpu.php vm-io.php vm-net.php \
+vm-cpu-all.php vm-io-all.php vm-net-all.php
+
 CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-notify.php client/index.php \
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
 client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php client/webmoney.php \
-client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php \
-client/vps_stats_cpu.php client/vps_stats_hdd.php client/vps_stats_network.php client/vps_stats_swap.php client/get_vps_location_status.php
+client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php client/get_vps_location_status.php
 
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
 
@@ -228,7 +230,7 @@ shared/vars/lang.php shared/vars/table_names.php shared/visitors_template/visito
 
 SHARED_INC_PHP_SCRIPT_FILES=shared/inc/accounting.php shared/inc/dbconect.php shared/inc/delete_user.php shared/inc/domain_export.php \
 shared/inc/draw.php shared/inc/fetchmail.php shared/inc/fetch.php shared/inc/nusoap.php shared/inc/skin.class.php \
-shared/inc/submit_to_sql.php shared/inc/tree_mem_to_db.php shared/inc/vps.php shared/inc/forms/vps_monitoring.php \
+shared/inc/submit_to_sql.php shared/inc/tree_mem_to_db.php shared/inc/vps.php shared/inc/forms/vps_monitoring.php shared/inc/forms/vps_graphs.php \
 shared/inc/forms/vps_installation.php shared/inc/forms/admin_stats.php \
 shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedicated.php \
 shared/inc/forms/dns.php shared/inc/forms/domain_info.php shared/inc/forms/domain_stats.php shared/inc/forms/email.php \
@@ -372,6 +374,9 @@ install-dtc-common:
 	@for i in $(ROOT_ONLY) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 	@for i in $(USER_ALSO) ; do $(INSTALL) -m $(DTC_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 	@for i in $(INSTALL_FOLDER_SCRIPTS) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+
+	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/$$i $(APP_INST_DIR)/admin/$$i ; done
+	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/$$i $(APP_INST_DIR)/client/$$i ; done
 
 	# The SQL table scripts
 	@for i in $(INSTALL_SQL_TABLES) ; do $(INSTALL) -m $(ROOT_ONLY_READ) $$i $(APP_INST_DIR)/$$i ; done

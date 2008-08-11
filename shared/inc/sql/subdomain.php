@@ -15,7 +15,7 @@ if(isset($_REQUEST["subdomaindefault"]) && $_REQUEST["subdomaindefault"] == "Ok"
 		$adm_query = "UPDATE $pro_mysql_domain_table SET default_subdomain='".$_REQUEST["subdomaindefault_name"]."'$wild WHERE name='$edit_domain' LIMIT 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 
-		updateUsingCron("gen_vhosts='yes',restart_apache='yes'");
+		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named='yes'");
 	}
 }
 

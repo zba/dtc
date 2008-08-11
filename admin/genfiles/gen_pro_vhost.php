@@ -370,7 +370,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$domain_safe_mode = $row["safe_mode"];
 		$domain_sbox_protect = $row["sbox_protect"];
 		$domain_parking = $row["domain_parking"];
-		$domain_parking_type = $raw["domain_parking_type"];
+		$domain_parking_type = $row["domain_parking_type"];
+		$domain_wildcard_dns = $row["wildcard_dns"];
+
 		unset($backup_ip_addr);
 		if (isset($row["backup_ip_addr"])){
 			$backup_ip_addr = $row["backup_ip_addr"];
@@ -430,19 +432,32 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 
 		// Grab all subdomains
 		if($web_name == $conf_main_domain){
-			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default' AND subdomain_name!='$conf_404_subdomain' ORDER BY subdomain_name;";
+			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' AND ip='default' AND subdomain_name!='$conf_404_subdomain' AND subdomain_name!='$web_default_subdomain' ORDER BY subdomain_name;";
 		}else{
-			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_to_get' AND ip='default' ORDER BY subdomain_name;";
+			$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_to_get' AND ip='default' AND subdomain_name!='$web_default_subdomain' ORDER BY subdomain_name;";
 		}
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
+
+		$temp_array_subs = array();
+		for($j=0;$j<$num_rows2;$j++){
+			$temp_array_subs[] = mysql_fetch_array($result2) or die ("Cannot fetch user");
+		}
+
+		// We get the default subdomain and we add it at the end of the array. The goal is to have the
+		// wildcard subdomain be the last in the list of the vhosts.conf
+		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_to_get' AND ip='default' AND subdomain_name='$web_default_subdomain';";
+		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
+		$temp_array_subs[] = mysql_fetch_array($result2) or die ("Cannot fetch user");
+
 // This is a bad idea to die in this case
 // because it actualy happen if you redirect www ip to something else.
 //		if($num_rows2 < 1){
 //			die("No subdomain for domain $web_name !");
 //		}
-		for($j=0;$j<$num_rows2;$j++){
-			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
+		for($j=0;$j<$num_rows2+1;$j++){
+			$subdomain = $temp_array_subs[$j];
+//			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
 			if( $subdomain["customize_vhost"] == ""){
 				$custom_directives = "";
@@ -599,6 +614,12 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/logs");
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/html");
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/cgi-bin");
+					// We need to make it for both in case of a domain parking
+					if($domain_to_get != $web_name){
+						vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
+						vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
+						vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
+					}
 					$iteration_table = array();
 					$iteration_table[] = "normal";
 					$ssl_cert_folder_path = "$web_path/$domain_to_get/subdomains/$web_subname/ssl";
@@ -642,6 +663,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					}
 					if($web_subname == "$web_default_subdomain"){
 						$vhost_more_conf .= "	ServerAlias $domain_to_get\n";
+						if($domain_wildcard_dns == "yes"){
+							$vhost_more_conf .= "   ServerAlias *.$domain_to_get\n";
+						}
 					}
 
 					// Sbox and safe mode protection values

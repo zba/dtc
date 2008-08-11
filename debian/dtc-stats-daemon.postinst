@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/dtc/admin/install/debian_config
+. /usr/share/dtc/admin/install/functions
+
+createDTCuserAndGroup
+mkdir -p /var/lib/dtc/dtc-xenservers-rrds
+chown dtc:dtcgrp /var/lib/dtc/dtc-xenservers-rrds
+
+#DEBHELPER#
+
+exit 0
