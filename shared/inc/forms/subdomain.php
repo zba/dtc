@@ -150,6 +150,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 		"create_item_callback" => "subdomainCreateDirsCallBack",
 		"delete_item_callback" => "subdomainDeleteDirsCallBack",
 		"edit_item_callback" => "subdomainEditCallBack",
+		"order_by" => "subdomain_name",
 		"where_list" => array(
 			"domain_name" => $domain["name"]),
 		"cols" => array(
