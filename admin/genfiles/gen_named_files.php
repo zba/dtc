@@ -204,6 +204,10 @@ function named_generate(){
 	global $conf_dtc_system_groupname;
 	global $conf_autogen_default_subdomains;
 	global $conf_default_zones_ttl;
+	global $conf_named_soa_refresh;
+	global $conf_named_soa_retry;
+	global $conf_named_soa_expire;
+	global $conf_named_soa_default_ttl;
 
 	$slave_file = "";
 	$todays_serial = date("YmdH");
@@ -378,11 +382,11 @@ function named_generate(){
 
 			$this_site_file = "\$TTL $domain_ttl
 @               IN      SOA     $thisdomain_dns1. $bind_formated_webmaster_email_addr (
-						$todays_serial; serial
-                        2H46M40S ; refresh
-                        60M ; retry
-                        1W ; expire
-                        24H ; default_ttl
+			$todays_serial; serial
+                        $conf_named_soa_refresh ; refresh
+                        $conf_named_soa_retry ; retry
+                        $conf_named_soa_expire ; expire
+                        $conf_named_soa_default_ttl ; default_ttl
                         )
 @	IN	NS	$thisdomain_dns1.
 @	IN	NS	$thisdomain_dns2.

@@ -703,6 +703,8 @@ function drawRegistrySelection(){
 function generalDaemonCallback(){
         global $pro_mysql_domain_table;
         global $pro_mysql_cronjob_table;
+        #$q = "UPDATE $pro_mysql_domain_table SET generate_flag='yes';";
+        #$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
         $q = "UPDATE $pro_mysql_cronjob_table SET restart_apache='yes', gen_vhosts='yes';";
         $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 }
@@ -937,6 +939,22 @@ transfers separated by &quot;|&quot; (pipe)<br>
 				"legend" => _("Defaut TTL for your zonefiles:"),
 				"type" => "text",
 				"size" => "10"),
+			"named_soa_refresh" => array(
+				"legend" => _("SOA refresh value: "),
+				"type" => "text",
+				"size" => "16"),
+			"named_soa_retry" => array(
+				"legend" => _("SOA retry value: "),
+				"type" => "text",
+				"size" => "16"),
+			"named_soa_expire"  => array(
+				"legend" => _("SOA expire value: "),
+				"type" => "text",
+				"size" => "16"),
+			"named_soa_default_ttl" => array(
+				"legend" => _("SOA default ttl value: "),
+				"type" => "text",
+				"size" => "16"),
 			"domainkey_publickey_filepath" => array(
 				"legend" => _("Full path to location of the public.key file for DomainKey support:"),
 				"type" => "text",

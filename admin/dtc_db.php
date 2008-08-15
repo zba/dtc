@@ -226,7 +226,11 @@ $dtc_database = array(
 			"use_awstats" => "enum('yes','no') NOT NULL default 'no'",
 			"use_visitors" => "enum('yes','no') NOT NULL default 'no'",
 			"message_subject_header" => "varchar (255) NOT NULL default '[DTC]'",
-			"apache_directoryindex" => "varchar (255) NOT NULL default 'index.php index.cgi index.pl index.htm index.html index.php4'"
+			"apache_directoryindex" => "varchar (255) NOT NULL default 'index.php index.cgi index.pl index.htm index.html index.php4'",
+			"named_soa_refresh" => "varchar (16) NOT NULL default '2H'",
+			"named_soa_retry" => "varchar (16) NOT NULL default '60M'",
+			"named_soa_expire" => "varchar (16) NOT NULL default '1W'",
+			"named_soa_default_ttl" => "varchar (16) NOT NULL default '24H'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

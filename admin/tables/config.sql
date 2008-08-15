@@ -98,5 +98,9 @@ user_mysql_client varchar (255) NOT NULL default '%',
 this_server_country_code varchar (4) NOT NULL default 'US',
 message_subject_header varchar (255) NOT NULL default '[DTC]',
 apache_directoryindex varchar(255) NOT NULL default 'index.php index.cgi index.pl index.htm index.html index.php4',
+named_soa_refresh varchar (16) NOT NULL default '2H',
+named_soa_retry varchar (16) NOT NULL default '60M',
+named_soa_expire varchar (16) NOT NULL default '1W',
+named_soa_default_ttl varchar (16) NOT NULL default '24H',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
