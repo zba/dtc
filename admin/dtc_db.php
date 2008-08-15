@@ -225,7 +225,8 @@ $dtc_database = array(
 			"use_webalizer" => "enum('yes','no') NOT NULL default 'yes'",
 			"use_awstats" => "enum('yes','no') NOT NULL default 'no'",
 			"use_visitors" => "enum('yes','no') NOT NULL default 'no'",
-			"message_subject_header" => "varchar (255) NOT NULL default '[DTC]'"
+			"message_subject_header" => "varchar (255) NOT NULL default '[DTC]'",
+			"apache_directoryindex" => "varchar (255) NOT NULL default 'index.php index.cgi index.pl index.htm index.html index.php4'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

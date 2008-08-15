@@ -700,6 +700,15 @@ function drawRegistrySelection(){
 	return $out;
 }
 
+function generalDaemonCallback(){
+        global $pro_mysql_domain_table;
+        global $pro_mysql_cronjob_table;
+        #$q = "UPDATE $pro_mysql_domain_table SET generate_flag='yes';";
+        #$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+        $q = "UPDATE $pro_mysql_cronjob_table SET restart_apache='yes', gen_vhosts='yes';";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+}
+
 function drawGeneralConfig(){
 	global $cc_code_array;
 
@@ -753,6 +762,7 @@ function drawGeneralConfig(){
 		"title" => _("Daemon"),
 		"action" => "general_config_daemon",
 		"forward" => array("rub"),
+                "edit_callback" => "generalDaemonCallback",
 		"cols" => array (
 			"mta_type" => array(
 				"legend" => "MTA <a href=\"http://pl.wikipedia.org/wiki/MTA\" target=\"_blank\">*</a> : ",
@@ -796,6 +806,9 @@ function drawGeneralConfig(){
 				"type" => "text"),
 			"user_mysql_root_pass" => array(
 				"legend" => _("User MySQL root password: "),
+				"type" => "text"),
+			"apache_directoryindex" => array(
+				"legend" => _("Apache DirectoryIndex: "),
 				"type" => "text")));
 	$out .= configEditorTemplate ($dsc);
 

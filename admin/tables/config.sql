@@ -97,5 +97,6 @@ user_mysql_client varchar (255) NOT NULL default '%',
 `recipient_delimiter` varchar(4) NOT NULL default '\+',
 this_server_country_code varchar (4) NOT NULL default 'US',
 message_subject_header varchar (255) NOT NULL default '[DTC]',
+apache_directoryindex varchar(255) NOT NULL default 'index.php index.cgi index.pl index.htm index.html index.php4',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
