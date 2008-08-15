@@ -586,8 +586,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	LogSQLScoreDomain $web_name
 	LogSQLScoreSubdomain $web_subname
 	LogSQLScoreTable $conf_mysql_db.http_accounting
-	DirectoryIndex $conf_apache_directoryindex
-	$custom_directives
+	DirectoryIndex $conf_apache_directoryindex$custom_directives
 </VirtualHost>
 
 ";
@@ -725,8 +724,7 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	LogSQLScoreDomain $web_name
 	LogSQLScoreSubdomain $web_subname
 	LogSQLScoreTable $conf_mysql_db.http_accounting
-	DirectoryIndex $conf_apache_directoryindex
-	$custom_directives
+	DirectoryIndex $conf_apache_directoryindex$custom_directives
 </VirtualHost>
 
 ";
