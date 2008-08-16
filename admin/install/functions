@@ -401,11 +401,14 @@ searchAndReplace () {
 debianSetLocale (){
 	echo -n "$1.UTF-8 "
 	# Set the correct entry in /etc/locale.gen
-	TMP_FILE=`${MKTEMP} DTC_SET_LOCALE.XXXXXX` || exit 1
-	grep -v "$1.UTF-8" /etc/locale.gen >${TMP_FILE}
-	cat <${TMP_FILE} >/etc/locale.gen
-	rm ${TMP_FILE}
-	echo "$1.UTF-8 UTF-8" >>/etc/locale.gen
+	# only if the file exists (because it doesn't exist in Ubuntu, it seems)
+	if [ -f /etc/locale.gen ] ; then
+		TMP_FILE=`${MKTEMP} DTC_SET_LOCALE.XXXXXX` || exit 1
+		grep -v "$1.UTF-8" /etc/locale.gen >${TMP_FILE}
+		cat <${TMP_FILE} >/etc/locale.gen
+		rm ${TMP_FILE}
+		echo "$1.UTF-8 UTF-8" >>/etc/locale.gen
+	fi
 	# Ask for generation of the added locale
 	localedef -i $1 -c -f UTF-8 -A /usr/share/locale/locale.alias $1.UTF-8
 }
