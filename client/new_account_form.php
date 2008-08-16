@@ -19,6 +19,7 @@ function register_user($adding_service="no"){
 	&& (!isset($_REQUEST["reqadm_pass"]) || $_REQUEST["reqadm_pass"] == "" )
 	&& (!isset($_REQUEST["reqadm_pass2"]) || $_REQUEST["reqadm_pass2"] == "")
 	&& (!isset($_REQUEST["domain_name"]) || $_REQUEST["domain_name"] == "")
+	&& (!isset($_REQUEST["domain_tld"]) || $_REQUEST["domain_tld"] == "")
 	&& (!isset($_REQUEST["familyname"]) || $_REQUEST["familyname"] == "")
 	&& (!isset($_REQUEST["firstname"]) || $_REQUEST["firstname"] == "")
 	&& (!isset($_REQUEST["email"]) || $_REQUEST["email"] == "")
@@ -74,14 +75,14 @@ function register_user($adding_service="no"){
 	}
 	// If shared or ssl hosting, we MUST do type checkings
 	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl"){
-		if(!isHostnameOrIP($_REQUEST["domain_name"])){
+		if(!isHostnameOrIP($_REQUEST["domain_name"].$_REQUEST["domain_tld"])){
 			$ret["err"] = 2;
 			$ret["mesg"] = _("Domain name seems to be incorrect.") ;
 			return $ret;
 		}
 	// If not a shared or ssl account, we don't care if it's umpty, but we take care of mysql insertion anyway
 	}else{
-		if($_REQUEST["domain_name"] != "" && (!isHostnameOrIP($_REQUEST["domain_name"]))){
+		if($_REQUEST["domain_name"].$_REQUEST["domain_tld"] != "" && (!isHostnameOrIP($_REQUEST["domain_name"].$_REQUEST["domain_tld"]))){
 			$ret["err"] = 2;
 			$ret["mesg"] = _("Domain name seems to be incorrect.") ;
 			return $ret;
@@ -334,7 +335,7 @@ maxmind_output$vps_add1
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
-'".$_REQUEST["domain_name"]."',
+'".$_REQUEST["domain_name"].$_REQUEST["domain_tld"]."',
 '$esc_familyname',
 '$esc_firstname',
 '$esc_compname',
@@ -378,7 +379,7 @@ Somebody tried to register an account. Here is the details of the new user:
 
 login: ".$_REQUEST["reqadm_login"]."
 pass: ".$_REQUEST["reqadm_pass"]."
-domain: ".$_REQUEST["domain_name"]."
+domain: ".$_REQUEST["domain_name"].$_REQUEST["domain_tld"]."
 Company name: ".$_REQUEST["compname"]."
 First name: ".$_REQUEST["firstname"]."
 Family name: ".$_REQUEST["familyname"]."
@@ -411,6 +412,9 @@ function registration_form(){
 
 	global $conf_selling_conditions_url;
 	global $secpayconf_currency_symbol;
+
+	global $conf_main_domain;
+	global $conf_provide_own_domain_hosts;
 
 	get_secpay_conf();
 
@@ -470,6 +474,9 @@ function registration_form(){
 
 	if(isset($_REQUEST["domain_name"]))	$frm_domain_name = htmlspecialchars($_REQUEST["domain_name"]);
 	else	$frm_domain_name = "";
+
+	if(isset($_REQUEST["domain_tld"]))	$frm_domain_tld = htmlspecialchars($_REQUEST["domain_tld"]);
+	else	$frm_domain_tld = "";
 
 	if(isset($_REQUEST["firstname"]))	$frm_firstname = htmlspecialchars($_REQUEST["firstname"]);
 	else	$frm_firstname = "";
@@ -537,12 +544,18 @@ function registration_form(){
 	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "gentoo")	$gentoo_selected = " selected ";
 	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "netbsd")	$netbsd_selected = " selected ";
 
+	$tld_popup = "";
+	if($conf_provide_own_domain_hosts == "yes"){
+		$tld_popup = "<option value=\".$conf_main_domain\">.$conf_main_domain</option>";
+	}
+	$tld_popup .= domainNamePopup($frm_domain_tld);
+
 	$prod_popup = "<table>
 <tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Product") .": </td><td>".$prod_popup."</td>
 </td><tr>
 	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"domname_text\" id=\"domname_text\" $domname_hidden>". _("Desired domain name") .":</div></td>
-	<td><div name=\"domname_field\" id=\"domname_field\" $domname_hidden>www.<input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"></div></td>
+	<td><div name=\"domname_field\" id=\"domname_field\" $domname_hidden>www.<input type=\"text\" name=\"domain_name\" value=\"$frm_domain_name\"><select name=\"domain_tld\">".$tld_popup."</select></div></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_popup_text\" id=\"vps_popup_text\" $vps_hidden>". _("VPS location: ") ."</div></td>
 	<td><div name=\"vps_popup_field\" id=\"vps_popup_field\" $vps_hidden><select name=\"vps_server_hostname\">$vps_location_popup</select></div></td>

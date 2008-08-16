@@ -30,15 +30,14 @@ function domainNamePopup($domain_name=""){
 ".ye",".yt",".yu",
 ".za",".zm",".zw");
 
-	$keys = array_keys($allTLD);
 	$nbr_tld = sizeof($allTLD);
 	for($i=0;$i<$nbr_tld;$i++){
-		if( ereg("\\".$keys[$i]."\$",$domain_name)){
+		if( ereg("\\".$allTLD[$i]."\$",$domain_name)){
 			$selected = " selected ";
 		}else{
 			$selected = "";
 		}
-		$out .= "<option value=\"".$keys[$i]."\" $selected>". $keys[$i] ."</option>";
+		$out .= "<option value=\"".$allTLD[$i]."\" $selected>". $allTLD[$i] ."</option>";
 	}
 	return $out;
 }

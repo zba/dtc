@@ -1142,7 +1142,17 @@ function drawDTCpayConfig(){
 
 	$out = "";
 
-
+	$dsc = array(
+		"title" => _("Web host subdomain registration"),
+		"action" => "own_domain_edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"provide_own_domain_hosts" => array(
+				"legend" => _("Allow registration of subdomain of the main domain: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))) ));
+	$out .= configEditorTemplate($dsc);
 
 	$dsc = array(
 		"title" => _("Secure payment configuration"),

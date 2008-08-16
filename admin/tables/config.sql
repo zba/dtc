@@ -102,5 +102,6 @@ named_soa_refresh varchar (16) NOT NULL default '2H',
 named_soa_retry varchar (16) NOT NULL default '60M',
 named_soa_expire varchar (16) NOT NULL default '1W',
 named_soa_default_ttl varchar (16) NOT NULL default '24H',
+provide_own_domain_hosts enum('yes','no') NOT NULL default 'no',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
