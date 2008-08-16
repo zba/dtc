@@ -1692,7 +1692,9 @@ modifyNamedConf () {
 			cat < $TMP_FILE >> $PATH_NAMED_CONF
 			[ -f $TMP_FILE ] && rm -f $TMP_FILE
 		fi
-		[ "$UNIX_TYPE" = "redhat" ] && chown named.named $PATH_DTC_ETC/named.conf
+		if [ "$UNIX_TYPE" = "redhat" ] ; then
+			chown named.named $PATH_DTC_ETC/named.conf
+		fi
 	fi
 }
 
