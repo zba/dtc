@@ -99,7 +99,7 @@ disk_quota_mb,bw_quota_per_month_gb
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_customer_id"){
 	$q = "DELETE FROM $pro_mysql_client_table WHERE id='".$_REQUEST["delete_id"]."' LIMIT 1;";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
-	$q = "UPDATE $pro_mysql_admin_table SET id_client='0' WHERE id_client='".$_REQUEST["delete_id"]."' LIMIT 1;";
+	$q = "UPDATE $pro_mysql_admin_table SET id_client='0' WHERE id_client='".$_REQUEST["delete_id"]."';";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 }
 
