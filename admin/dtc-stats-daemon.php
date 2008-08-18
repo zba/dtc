@@ -159,7 +159,7 @@ while (!$shutdown){
 
 		echo "Fetching stats from server $i/$vps_servers_num_rows: $vps_server...";
 		$soap_client = connectToVPSServer($vps_server);
-		$r = $soap_client->call("getCollectedPerformanceData",array(),"","","");
+		$r = $soap_client->call("getCollectedPerformanceData",array("count" => "256"),"","","");
 		$err = $soap_client->getError();
 		if ($err) {
 			echo $err;
