@@ -663,9 +663,17 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						$vhost_more_conf .= "	php_admin_value register_globals 1\n";
 					}
 					if($web_subname == "$web_default_subdomain"){
-						$vhost_more_conf .= "	ServerAlias $domain_to_get\n";
+						if ($domain_parking == "no-parking"){
+							// no domain parking
+							$server_alias_domain = $domain_to_get;
+						} else {
+							// parking: same_docroot
+							$server_alias_domain = $web_name;
+							// parking: redirect doesn't happen in this else branch
+						}
+						$vhost_more_conf .= "	ServerAlias $server_alias_domain\n";
 						if($domain_wildcard_dns == "yes"){
-							$vhost_more_conf .= "   ServerAlias *.$domain_to_get\n";
+							$vhost_more_conf .= "   ServerAlias *.$server_alias_domain\n";
 						}
 					}
 
