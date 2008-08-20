@@ -18,6 +18,8 @@ COMMENT=	A hosting web GUI for admin and accounting all hosting services
 RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
 		${LOCALBASE}/libexec/apache22/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2-dtc \
 		${LOCALBASE}/libexec/apache22/libphp5.so:${PORTSDIR}/www/php5-session \
+		${LOCALBASE}/include/php/ext/gettext/php_gettext.h:${PORTSDIR}/devel/php5-gettext \
+		${LOCALBASE}/include/php/ext/posix/php_posix.h:${PORTSDIR}/sysutils/php5-posix \
 		${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
 		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc \
 		${LOCALBASE}/bin/sudo:${PORTSDIR}/security/sudo \

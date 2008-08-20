@@ -3506,11 +3506,6 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 			echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
 			echo "* * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
 			echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
-			if [ "$UNIX_TYPE" != "freebsd" ] ; then
-				cat < $TMP_FILE >>$PATH_CRONTAB_CONF
-			else
-				crontab $TMP_FILE
-			fi
 			cat < $TMP_FILE >>$PATH_CRONTAB_CONF
 			rm $TMP_FILE
 		fi
