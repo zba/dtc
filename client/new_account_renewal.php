@@ -175,7 +175,8 @@ Service country: $country
 	}
 
 	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
-	mail($conf_webmaster_email_addr, "[DTC] Somebody tried to renew", $mail_content, $headers);
+	$subject = $admin["adm_login"] . " tried to renew $the_prod";
+	mail($conf_webmaster_email_addr, "$conf_message_subject_header $subject", $mail_content, $headers);
 
 	// Save the values in SQL and process the paynow buttons
 	$q = "INSERT INTO $pro_mysql_pending_renewal_table (id,adm_login,renew_date,renew_time,product_id,renew_id,heb_type,country_code)

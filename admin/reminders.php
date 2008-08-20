@@ -157,7 +157,8 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 		$headers = "From: ".$conf_webmaster_email_addr;
 		mail($client["email"],"$conf_message_subject_header Your VPS expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			mail($conf_webmaster_email_addr,"$conf_message_subject_header A VPS has expired",$msg_2_send,$headers);
+			$subject = $admin["adm_login"] . "'s VPS " . $vps["vps_server_hostname"] . ":" . $vps["vps_xen_name"] . " expired " . $remaining_days . " ago";
+			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		}
 	}
 }
@@ -226,7 +227,7 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 		}
 		$admin = mysql_fetch_array($r2);
 		if($admin["id_client"] == 0){
-			sendAdminWarning("Admin ".$vps["owner"]." has no client id (".$admin["id_client"].") line ".__LINE__." file ".__FILE__);
+			sendAdminWarning("Admin ".$dedicated["owner"]." has no client id (".$admin["id_client"].") line ".__LINE__." file ".__FILE__);
 			continue;
 		}
 
@@ -235,7 +236,7 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		if($n2 != 1){
-			sendAdminWarning("Could not find id client ".$admin["id_client"]." for admin ".$vps["owner"]." line ".__LINE__." file ".__FILE__);
+			sendAdminWarning("Could not find id client ".$admin["id_client"]." for admin ".$dedicated["owner"]." line ".__LINE__." file ".__FILE__);
 			continue;
 		}
 		$client = mysql_fetch_array($r2);
@@ -248,7 +249,8 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 		$headers = "From: ".$conf_webmaster_email_addr;
 		mail($client["email"],"$conf_message_subject_header Your dedicated server expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			mail($conf_webmaster_email_addr,"$conf_message_subject_header A dedicated has expired",$msg_2_send,$headers);
+			$subject = $admin["adm_login"] . "'s server " . $dedicated["server_hostname"] . " expired " . $remaining_days . " ago";
+			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		}
 	}
 }
@@ -333,7 +335,8 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 		$headers = "From: ".$conf_webmaster_email_addr;
 		mail($client["email"],"$conf_message_subject_header Your shared hosting expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			mail($conf_webmaster_email_addr,"$conf_message_subject_header A shared hosting account has expired",$msg_2_send,$headers);
+			$subject = $admin["adm_login"] . "'s shared hosting package expired " . $remaining_days . " ago";
+			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		}
 	}
 }
