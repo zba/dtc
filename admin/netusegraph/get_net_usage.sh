@@ -19,8 +19,14 @@ fi
 
 for IFACE_NAME in $IFACELIST ; do
 #	echo $IFACE_NAME
-	IFACE_TXT=`cat /proc/net/dev | grep ${IFACE_NAME} | cut -f 2 -d':'`
-	BYTES_IN=$(($BYTES_IN + `echo ${IFACE_TXT} | gawk -F ' ' '{print $1}'`))
-	BYTES_OUT=$(($BYTES_OUT + `echo ${IFACE_TXT} | gawk -F ' ' '{print $9}'`))
+	if [ `uname -s` = "FreeBSD" ] ; then
+		IFACE_TXT=`netstat -Wnib | grep $1 | grep Link | head -1 | gawk '{ print $7,$10}'`
+		BYTES_IN=$(($BYTES_IN + 0`echo ${IFACE_TXT} | gawk -F ' ' '{print $1}'`))
+		BYTES_OUT=$(($BYTES_OUT + 0`echo ${IFACE_TXT} | gawk -F ' ' '{print $2}'`))
+	else
+		IFACE_TXT=`cat /proc/net/dev | grep ${IFACE_NAME} | cut -f 2 -d':'`
+		BYTES_IN=$(($BYTES_IN + `echo ${IFACE_TXT} | gawk -F ' ' '{print $1}'`))
+		BYTES_OUT=$(($BYTES_OUT + `echo ${IFACE_TXT} | gawk -F ' ' '{print $9}'`))
+	fi
 done
 rrdtool update $DTC_ETC/netusage.rrd "N:${BYTES_IN}:${BYTES_OUT}"
