@@ -21,7 +21,7 @@ else
 fi
 
 
-CPU=`cat /proc/loadavg | cut -f 1 -d' '`
+CPU=`uptime | rev | cut -d : -f1 | rev| cut -d "," -f1 | tr -d " "`
 CPU1=`echo ${CPU} | cut -f 1 -d'.'`
 CPU2=`echo ${CPU} | cut -f 2 -d'.'`
 LOADAVG=`echo ${CPU1}${CPU2}`
