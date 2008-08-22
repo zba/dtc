@@ -1,0 +1,492 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.30.1\n"
+"Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
+"POT-Creation-Date: 2008-06-03 23:19+0200\n"
+"PO-Revision-Date: 2008-08-21 18:17-0500\n"
+"Last-Translator: Wei Cao <caowei@gplhost.com>\n"
+"Language-Team: Wei Cao <caowei@gplhost.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:1001
+#: ../dtc-postfix-courier.templates:1001
+msgid "Automatically configure MySQL user?"
+msgstr "自动配置MySQL 用户?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:1001
+#: ../dtc-postfix-courier.templates:1001
+msgid "DTC can use /etc/mysql/debian.cnf to automatically create a root mysql user for DTC to access and manage MySQL and DTC's database. This way, no question will be asked to you about what MySQL root password is used, all will be automated, but the drawback is that the MySQL server that will be used will always be located in the local machine (you won't be able to configure DTC to use a remote database server)."
+msgstr "DTC 可以使用 /etc/mysql/debian.cnf 自动创建一个根目录 mysql 用户 来操作和管理 MySQL 和 DTC 的数据库. 这种方法, 将不会询问您有关使用哪个 MySQL 根目录密码, 所有将被自动操作, 但是缺点是使用的MySQL 服务器将一直是位置于本地计算机 (您将无法配置DTC使用遥控数据库服务器)."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:1001
+#: ../dtc-postfix-courier.templates:1001
+msgid "In any case, please make sure that your MySQL root password is set. As per default, Debian installs it with a blank password. To set your MySQL root password, issue the following command: dpkg-reconfigure mysql-server-5.0. You've been warned!"
+msgstr "任何情况下, 请确保您的MySQL根目录密码的设定. 作为每一个默认, Debian 使用空白密码安装. 要安装您的 MySQL 根目录密码, 执行下列命令: dpkg-reconfigure mysql-server-5.0. 您已经被警告!"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:2001
+#: ../dtc-postfix-courier.templates:2001
+msgid "MySQL hostname:"
+msgstr "MySQL 主机名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:2001
+#: ../dtc-postfix-courier.templates:2001
+msgid "Please enter the hostname or IP address of the MySQL server."
+msgstr "请输入主机名或者MySQL 服务器的IP地址."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:3001
+#: ../dtc-postfix-courier.templates:3001
+msgid "MySQL administrator:"
+msgstr "MySQL 管理员:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:3001
+#: ../dtc-postfix-courier.templates:3001
+msgid "Please enter the login name of a MySQL user with administrative privileges. DTC will use it to grant privileges for the tables to its users."
+msgstr "请使用管理员权限输入MySQL用户的登录名. DTC 将用于授权给其用户."
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:4001
+#: ../dtc-postfix-courier.templates:4001
+msgid "MySQL administrator password:"
+msgstr "MySQL 管理员密码:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:4001
+#: ../dtc-postfix-courier.templates:4001
+msgid "Please enter the password of the MySQL administrator."
+msgstr "请输入MySQL 管理员的密码."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:5001
+#: ../dtc-postfix-courier.templates:5001
+msgid "DTC database name:"
+msgstr "DTC 数据库名字:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:5001
+#: ../dtc-postfix-courier.templates:5001
+msgid "Please enter the name of the database to use for storing all DTC hosting information."
+msgstr "请输入数据库名，为了存储所有的DTC托管信息."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:6001
+#: ../dtc-postfix-courier.templates:6001
+msgid "Change MySQL root password?"
+msgstr "更改 MySQL 目录密码?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:6001
+#: ../dtc-postfix-courier.templates:6001
+msgid "By default, the mysql-server package does not require a password for the MySQL root user. This can be changed during the configuration of the DTC package."
+msgstr "默认状态下,  mysql-server 软件包不需要设置密码给 MySQL 根目录用户. 在DTC 软件包配置时，设置密码项可以更改."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:7001
+#: ../dtc-postfix-courier.templates:7001
+msgid "Domain name:"
+msgstr "域名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:7001
+#: ../dtc-postfix-courier.templates:7001
+msgid "Please enter the first domain which you want DTC to manage. This domain name will be used to install the root admin and customer web control panel of DTC (under one of this domain's subdomains)."
+msgstr "请输入您希望DTC管理的第一个域名. 这个域名将用于安装DTC的 目录管理员和客户网站控制面板 (在这其中一个域名下的子域名)."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:8001
+#: ../dtc-postfix-courier.templates:8001
+msgid "DTC root panel subdomain:"
+msgstr "DTC 根目录面板子域名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:8001
+#: ../dtc-postfix-courier.templates:8001
+msgid "Please enter the subdomain to be used by the DTC control panel."
+msgstr "请输入一个DTC控制面板使用的子域名."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:9001
+#: ../dtc-postfix-courier.templates:9001
+msgid "Primary IP address:"
+msgstr "第一个 IP 地址:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:9001
+#: ../dtc-postfix-courier.templates:9001
+msgid "Please enter this host's primary IP address. This address will be used for the domain name you just provided, and will be used as the default for most DTC variables.  If you are using Network Address Translation (NAT), please enter your external IP address."
+msgstr "请输入这个主机的第一个IP地址. 这个地址将被用于您刚刚提供的域名, 也将作为默认形式被用于大多数的DTC参数域.  如果您使用Network Address Translation (NAT), 请输入您的延伸ID地址."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:10001
+#: ../dtc-postfix-courier.templates:10001
+msgid "Path for hosted domains:"
+msgstr "被管理域名的路径:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:10001
+#: ../dtc-postfix-courier.templates:10001
+msgid "Please enter the directory to be used by DTC to store files for all hosted domains."
+msgstr "请输入DTC 使用的目录，来对所有管理的域名进行存储文件."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:10001
+#: ../dtc-postfix-courier.templates:10001
+msgid "If you choose /var/www, which is Apache's default document root, all files hosted in that directory may become publicly accessible. It is therefore recommended to change the DocumentRoot setting in Apache configuration if you choose /var/www as path for hosted domains."
+msgstr "如果您选择 /var/www 作为管理的域名的路径，作为 Apache 默认文档根目录, 所有在这个目录管理下的文件可能会被公开. 因此建议您以后在Apache 配置时更改DocumentRoot 设置."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:11001
+#: ../dtc-postfix-courier.templates:11001
+msgid "Path for the chroot environment template:"
+msgstr "chroot 环境模板的路径:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:11001
+#: ../dtc-postfix-courier.templates:11001
+msgid "Please enter the directory to be used by DTC to build the cgi-bin chroot environment template."
+msgstr "请输入DTC 使用的目录，来建立cgi-bin chroot 环境模板."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:12001
+#: ../dtc-postfix-courier.templates:12001
+msgid "Main domain admin name:"
+msgstr "主要域名管理员名字:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:12001
+#: ../dtc-postfix-courier.templates:12001
+msgid "Each DTC domain must have an administrator. Please enter the login name of the administrator for the domain name containing the control panel installation."
+msgstr "每个DTC 域名必须有一个管理员. 请输入管理员的登录名以便于域名的有关控制面板安装."
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:13001
+#: ../dtc-postfix-courier.templates:13001
+msgid "Main domain admin password:"
+msgstr "主要域名管理员密码:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:13001
+#: ../dtc-postfix-courier.templates:13001
+msgid "Please choose the main domain administrator's password. Access to the control panel must be managed manually through a .htpasswd file in the root path."
+msgstr "请选择主要域名管理员的密码. 进行控制面板的操作必须通过在根目录路径中到 .htpasswd文件手动进行."
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:14001
+#: ../dtc-postfix-courier.templates:14001
+msgid "Mail Transfer Agent (MTA) type:"
+msgstr "Mail Transfer Agent (MTA) 类型:"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:14001
+#: ../dtc-postfix-courier.templates:14001
+msgid "Please select the MTA that will be used with DTC. It should be installed on the system already. If no such MTA is currently installed, please complete the setup of DTC, install a MTA package, then run \"dpkg-reconfigure dtc\"."
+msgstr "请选择DTC使用的MTA. 可能系统上已经安装. 如果目前MTA没有安装, 请完成DTC的安装, 安装一个MTA 软件包, 再运行 \"dpkg-reconfigure dtc\"."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:15001
+#: ../dtc-postfix-courier.templates:15001
+msgid "Use Cyrus mail system?"
+msgstr "使用 Cyrus 邮件系统?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:15001
+#: ../dtc-postfix-courier.templates:15001
+msgid "Please choose this option if you are using Cyrus for mail delivery, IMAP and MTA. This option is only compatible with Postfix."
+msgstr "如果您使用Cyrus发送邮件,IMAP 和 MTA，请选择此选项. 此选项仅和Postfix兼容."
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:16001
+#: ../dtc-postfix-courier.templates:16001
+msgid "Apache version to configure:"
+msgstr "Apache 版本来配置:"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:16001
+#: ../dtc-postfix-courier.templates:16001
+msgid "DTC supports both Apache and Apache2. Please enter the version which DTC should use."
+msgstr "DTC 都支持 Apache 和 Apache2. 请输入DTC 应该使用的版本."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:17001
+#: ../dtc-postfix-courier.templates:17001
+msgid "Use \"NATed\" vhosts?"
+msgstr "使用 \"NATed\" vhosts?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:17001
+#: ../dtc-postfix-courier.templates:17001
+msgid "DTC can configure Apache to use one of your IP addresses. If the server is firewalled with NAT and port redirections of public IP(s) address(es), a \"NATed\" vhost configuration can be generated."
+msgstr "DTC 可以通过您其中的一个IP地址来配置 Apache. 如果服务器使用NAT和公众 IP 地址的端口更改方向作为防火墙, 一个  \"NATed\" vhost 配置可以被产生."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:17001
+#: ../dtc-postfix-courier.templates:17001
+msgid "This option should be chosen only if the server is not connected to the Internet directly, but through a firewall doing network address translation (NAT). If the server uses a dynamic public IP address, NAT and port forwarding are mandatory for DTC."
+msgstr "只有在服务器不是直接连接互联网,但是通过network address translation (NAT)作为防火墙时,才选择此项. 如果服务器使用一个动态公众IP地址, DTC则必须要求 NAT 和 端口转接."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:18001
+#: ../dtc-postfix-courier.templates:18001
+msgid "NATed LAN IP address:"
+msgstr "NATed LAN IP 地址:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:18001
+#: ../dtc-postfix-courier.templates:18001
+msgid "Please enter the IP address of the server for DTC to generate all vhosts that will be used by Apache."
+msgstr "请输入一个服务器的IP地址，DTC 将产生Apache要使用的所有vhosts."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001
+#: ../dtc-postfix-courier.templates:19001
+msgid "Generate an SSL certificate for DTC?"
+msgstr "产生一个DTC的SSL 证书?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001
+#: ../dtc-postfix-courier.templates:19001
+msgid "If you choose this option, DTC will generate a self-signed SSL certificate and will use SSL to browse the panel. SSL will also be activated and the generated Apache configuration will activate HTTPS URLs for the control panel."
+msgstr "如果您选择此选项, DTC 将会产生一个自我签订的SSH证书并且使用SSL浏览面板. SSL 也将被激活, 其产生的 Apache 配置将激活控制面板的HTTPS URLs ."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001
+#: ../dtc-postfix-courier.templates:19001
+msgid "This certificate can be changed for a root CA certificate later."
+msgstr "这个证书以后可以更改为一个根目录 CA 证书."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001
+#: ../dtc-postfix-courier.templates:19001
+msgid "Previously-generated certificates will never be overwritten. To regenerate the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
+msgstr "以前产生的证书无法重写. 如果要重新产生证书,您需要删除在/usr/share/dtc/etc/ssl 下的所有的文件."
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:20001
+#: ../dtc-postfix-courier.templates:20001
+msgid "DTC certificate passphrase:"
+msgstr "DTC 证书密码:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:20001
+#: ../dtc-postfix-courier.templates:20001
+msgid "Please choose a passphrase to protect the generated SSL certificate."
+msgstr "请选择一个密码来保护产生的SSL 证书."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:21001
+#: ../dtc-postfix-courier.templates:21001
+msgid "Country code for the DTC SSL certificate:"
+msgstr "DTC  SSL证书的国家代码:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:21001
+#: ../dtc-postfix-courier.templates:21001
+msgid "Please enter the 2-letter country code for the generated certificate. This should usually be the code for the country the server is located in."
+msgstr "请输入2个字母的国家代码来产生证书. 这个通常是服务器所在国家的代码."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:22001
+#: ../dtc-postfix-courier.templates:22001
+msgid "City name for the DTC SSL certificate:"
+msgstr "DTC SSL 证书的城市名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:23001
+#: ../dtc-postfix-courier.templates:23001
+msgid "Organization name for the DTC SSL certificate:"
+msgstr "DTC SSL 证书的组织名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:24001
+#: ../dtc-postfix-courier.templates:24001
+msgid "Organizational unit for the DTC SSL certificate:"
+msgstr "DTC SSL 证书的组织单元:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:25001
+#: ../dtc-postfix-courier.templates:25001
+msgid "Email address for the DTC SSL certificate:"
+msgstr "DTC SSL 证书的Email地址:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:26001
+#: ../dtc-postfix-courier.templates:26001
+msgid "DTC SSL certificate challenge password:"
+msgstr "DTC SSL 证书的 challenge 密码:"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:27001
+#: ../dtc-postfix-courier.templates:27001
+msgid "Update PEAR installation?"
+msgstr "升级 PEAR 安装?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:27001
+#: ../dtc-postfix-courier.templates:27001
+msgid "DTC can check the PEAR installation during its own installation process. This requires your server to be connected to the network. If you can't do so here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-to-date. The relevant files are located in /usr/share/php."
+msgstr "DTC在其安装过程中可以检查 PEAR的安装. 这就要求您的服务器连接到网络. 如果这里不可以进行, 请检查是否 Crypt_CBC 和 Auth_SASL PEAR modules 安装了. 相关文件位置在 /usr/share/php."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:28001
+#: ../dtc-postfix-courier.templates:28001
+msgid "DNSBL (DNS BlackList) list:"
+msgstr "DNSBL (DNS 黑名单) 列表:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:28001
+#: ../dtc-postfix-courier.templates:28001
+msgid "Please enter the list of preferred DNSBL servers to add to your Postfix mail server configuration."
+msgstr "请输入优先权的DNSBL服务器列表来加入到您的Postfix邮件服务器配置."
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:29001
+#: ../dtc-postfix-courier.templates:29001
+msgid "Local address extension character:"
+msgstr "邮件地址中延伸的符号:"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:29001
+#: ../dtc-postfix-courier.templates:29001
+msgid "Please choose the character that will be used to define a local address extension. This MUST match what you have set in your postfix or qmail setup."
+msgstr "请选择邮件地址延伸符号. 必须于在您的 postfix 或者 qmail 设置中相匹配."
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:29001
+#: ../dtc-postfix-courier.templates:29001
+msgid "The recipient delimiter will be used for your mailing lists. Let's say you use the + char as delimiter, then your users will have to send a mail to list+subscribe@example.com. The drawback when choosing + is that some MTA don't allow to send mail with this char in the recipient (namely some bad qmail patches are incompatibles), but when using - as delimiter, you will not be able to use an email of the form john-doe@example.com as - is the delimiter."
+msgstr "在您的邮件列表中将使用 recipient delimiter 功能. 如果您使用 + 符号作为 delimiter, 那么您的用户将发送邮件到 list+subscribe@example.com. 缺点是当选择 + 时，在recipient一些 MTA 不允许使用这个符号发送邮件(就是一些不好的 qmail 补丁无法兼容), 但是如果使用 - 作为 delimiter, 您将无法使用 john-doe@example.com 的email格式,因为 - 是 delimiter."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:30001
+#: ../dtc-postfix-courier.templates:30001
+msgid "Subdomain name for the MX server:"
+msgstr "MX 服务器的子域名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:30001
+#: ../dtc-postfix-courier.templates:30001
+msgid "Your mail server will need to use a subdomain name to accept mail. This subdomain will be configured in your mail server and your domain name server by DTC. Any name is ok here."
+msgstr "您的邮件服务器需要使用一个子域名来接收邮件. 这个子域名将被DTC在您的邮件服务器和域名服务器中配置. 这里可以使用任何名字."
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:31001
+#: ../dtc-postfix-courier.templates:31001
+msgid "Network devices to monitor:"
+msgstr "用于监控的网络装置"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:31001
+#: ../dtc-postfix-courier.templates:31001
+msgid "Please enter all the network devices you wish to be monitored by the RRDTool graphing utility."
+msgstr "请输入您希望被RRDTool 图形用途 监控的所有的网络装置."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:32001
+#: ../dtc-postfix-courier.templates:32001
+msgid "Allow to report anonymous statistics to GPLHost?"
+msgstr "允许向GPLHost报告匿名统计?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:32001
+#: ../dtc-postfix-courier.templates:32001
+msgid "DTC installations can be reported to the GPLHost web site. The only collected data are the operating system name (Debian) and the IP address (used as a unique identifier only). An Internet connection and the wget binary are required to report the statistics."
+msgstr "DTC 的安装可以报告给GPLHost 网站. 仅收集的数据是操作系统名字 (Debian)和IP地址(仅用于作为一个唯一标识). 一个互联网的连接和wget binary 是必须被要求提供统计."
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:33001
+#: ../dtc-postfix-courier.templates:33001
+msgid "Skip mknod calls when building the chroot template?"
+msgstr "当建立chroot 模板时，Skip mknod 给予警示?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:33001
+#: ../dtc-postfix-courier.templates:33001
+msgid "In some environments, such as Linux vServer, mknod cannot be executed. This option allows skipping the creation of the null, random and urandom devices during the chroot template creation."
+msgstr "在一些环境下, 例如 Linux vServer, mknod 无法开始. 在 chroot 模板创建期间,这个选项允许跳过 null, random 和 urandom 装置的创建."
+
+#. Type: boolean
+#. Description
+#: ../dtc-postfix-courier.templates:15001
+msgid "Cyrus is a replacement for the Maildir delivery and storage. You must know what you are doing if you want to activate the use of Cyrus. If you are using dtc-toaster or dtc-postfix-courier, you have to answer not to use Cyrus here. Cyrus is only usable with the dtc package and NOT if you are using dtc-postfix-courier instead."
+msgstr "Cyrus 是对 Maildir 发送和 存储的一个代替. 如果您想激活Cyrus的使用，您必须要知道您在做. 如果你在使用 dtc-toaster 或者 dtc-postfix-courier, 您必须在这里选择不使用 Cyrus . Cyrus 仅可用于dtc 软件包一起使用 并且 不可以使用如果您 用dtc-postfix-courier 代替."
+

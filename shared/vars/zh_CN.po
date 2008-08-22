@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-18 15:15+0800\n"
-"PO-Revision-Date: 2008-07-05 22:51+0800\n"
-"Last-Translator: Wei Cao <mail@viviancaowei.com>\n"
+"PO-Revision-Date: 2008-08-22 20:19-0500\n"
+"Last-Translator: Wei Cao <caowei@gplhost.com>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,7 +57,7 @@ msgstr "文件"
 
 #: shared/dtcrm/draw.php:79
 msgid " of data transfer each month."
-msgstr "每月的数绝传输．"
+msgstr "每月的数据传输．"
 
 #: shared/dtcrm/draw.php:71
 msgid " remaining to be paid"
@@ -65,14 +65,14 @@ msgstr "剩余支付"
 
 #: shared/dtcrm/draw_handle.php:256
 msgid "+1.XXXXXXXXXX format"
-msgstr "+86.XXXXXX 格式"
+msgstr "+1.XXXXXXXXXX 格式"
 
 #: shared/inc/forms/vps_monitoring.php:67
 #: shared/inc/forms/vps_monitoring.php:68
 #: shared/inc/forms/vps_monitoring.php:69
 #: shared/inc/forms/vps_monitoring.php:70
 msgid "2 months ago: "
-msgstr "2个月前"
+msgstr "2个月前: "
 
 #: shared/inc/draw.php:473
 msgid ""
@@ -177,27 +177,45 @@ msgstr ""
 "<center><font size=\"+2\"><u><b> DTC 在线帮助文档</b></u></font></center><br><br>\n"
 "<div align=\"justify\">\n"
 "<font size=\"+1\"><u>1.什么是DTC</u></font><br><br>\n"
-"DTC 是一个我们为您特别制作的一个工具。通过它，您可以轻松管理您的站点：\n"
-"您可以管理您的二级域名，电子邮件，ftp帐户等等。<br><br>\n"
-"这个工具已经在<a href=\"http://www.gnu.org/\">GPL</a> (Gnu Public Licence)上发布， 这就意味您可以拷贝这套程序的源文件，您可以随意修改和使用，也可以发布您修改过的版本。\n"
-"   我们(GPLHost)致力于为开源软件做出一点贡献，同时我们也希望我们的举动能够鼓励更多的开发人员参与进来。我们觉得，因为我们仅仅使用开源软件来提供虚拟主机服务，我们应该把我们的开发成果共享出来。<br><br>\n"
+"DTC 是一个我们为您特别制作的一个工具. 通过它，您可以轻松管理您的站点：您可以管理您的 \n"
+"子域名，电子邮件或者ftp账户和VPS的管理. DTC也提供账单和发票系统等等一些其他的服务<br><br>\n"
+"这个工具和所有的软件已经在<a href=\"http://www.gnu.org/\">GPL</a>\n"
+" (Gnu Public Licence)上发布， 这就意味您可以拷贝这套程序的源文件码，您可以随意修改和使用，但要 \n"
+" 发布您修改过的版本. 我们(GPLHost)致力于为开放源软件做出一点贡献，同时我们也希望我们的举动能够鼓励 \n"
+" 更多的开发人员参与进来。我们认为，因为我们仅仅使用开放源软件来提供主机托管服务，我们应该把我们的开发成果\n"
+"共享出来。<br><br>\n"
+"\n"
+"如果您想了解更多的DTC, 您可以访问这个URL:<a href=\"http://www.gplhost.com/software-dtc.html\">DTC home page</a>.\n"
 "\n"
 "<font size=\"+1\"><u>2. Emails</u></font><br>\n"
 "<u>2.1.它能做什么？</u><br><br>\n"
 "使用这个工具，您可以很方便得添加、删除、修改一个电子邮件账户。<br><br>\n"
 "\n"
 "<u>2.2.邮件转发与本地投递</u><br><br>\n"
-"每一个电子信箱都能够转发到一个或者多个电子信箱，这就意味着当一封邮件投递到这个电子信箱的时候，它会被转发到一个或者多个电子信箱。\"投递到本地信箱\"选项会告诉系统这个信箱收到的所有邮件是否写入本地磁盘，这样您才能通过邮件客户端登陆到我们的邮件服务器阅读您的邮件。如果您的邮件比较多的话，不要忘了经常检查新邮件，因为电子信箱使用的存储空间是包含在您所拥有的总空间中的。<br><br>\n"
+"每一个电子信箱都能够转发到一个或者多个电子信箱地址，这就意味着当一封邮件投递到这个电子信箱的时候，它会被转发到一个\n"
+" 或者多个电子信箱。The &quote;deliver locally&quote;\" 检查信箱选项会告诉系统这个信箱收到的所有邮件是否写入\n"
+"本地磁盘,这样您才能通过邮件客户端登陆到我们的邮件服务器阅读您的邮件,连接到我们的服务器. 如果您的邮件比较多的话，不要忘了\n"
+"经常检查新邮件，因为电子信箱使用的存储空间是包含在总空间中配额部分的<br><br>\n"
+"\n"
+"<u>2.3. Delay when adding / deleting accounts</u><br><br>\n"
+"When you add or delete a mail account, don't expect it to work immediatly: you will have to wait until the next cron job to start, so the\n"
+"mail, ssh or web server reloads it's database.<br><br>\n"
+"\n"
+"<u>2.4. Other tools for email</u><br><br>\n"
+"DTC doesn't only have email accounts. It also handles mailing lists using MLMMJ and mail alias groups to be able to have one email\n"
+"redirected to many other addresses.\n"
 "\n"
 "<font size=\"+1\"><u>3.子域名</u></font><br>\n"
 "<u>3.1.它能做什么？</u><br><br>\n"
-"在这部分页面中，您可以配置您的域名信息，这样您就可以用下面的这种URL形式充实您网站的内容：\n"
+"在这部分界面中，您可以配置您的域名的网站，这样您就可以用下面的这种URL \n"
+" 的形式充实您网站的内容：\n"
 "<pre>\n"
 "http://anything.u.want.mydomain.com\n"
 "</pre>\n"
 "\n"
 "<u>3.2.默认的子域名是什么？</u><br><br>\n"
-"当有人使用不带子域名的URL访问您的网站的时候，页面就会跳转到您所设置的默认的子域名。换句话说，如果您设置：\n"
+"当有人使用不带子域名的URL访问您的网站的时候，页面就会跳转到您所设置的默认的子域名.\n"
+"换句话说，如果您设置：\n"
 "<pre>\n"
 "www\n"
 "</pre>\n"
@@ -209,43 +227,46 @@ msgstr ""
 "<pre>\n"
 "http://www.mydomain.com\n"
 "</pre>\n"
-"事实上，这个URL是被保留下来的，并没有在HTML文件中设置跳转。实际上很简单，这个URL的站点被配置为与\"www\"子域名指向同样的内容，所以，它们指向了同样的html(或者php)文件，而且，它们共享一个日志文件。<br><br>\n"
 "\n"
-"<u>3.3.禁止使用的子域名</u><br><br>\n"
-"因为我们已将下列子域名配置给其它服务，所以您不能把下列子域名用作一个Apache站点：\n"
+"事实上，这个URL是被保留下来的，并没有在HTML下设置跳转。实际上很简单，这个URL的站点被配置为\n"
+"与&quote;www&quote子域名指向同样的位置，所以，它们指向了同样的html(或者php)文件，而且，它们共享一个日志文件.<br><br>\n"
+"\n"
+"<u>3.3.默认产生的子域名</u><br><br>\n"
+"因为您也许希望拥有这些默认的并已经运用的子域名作其他用途,下列子域名将\n"
+"分解和您的网站同样的IP地址和，尽管如果您没有添加它们:\n"
 "<ul><li>ftp</li>\n"
 "<li>pop</li>\n"
 "<li>smtp</li>\n"
 "</ul>\n"
 "\n"
-"<u>3.4.删除子域名</u><br><br>\n"
-"您需要自己删除您的子域名使用的文件。您可以使用标准的FTP客户端来删除这些文件。但是请千万小心不要仅仅删除子域名使用的文件而不在DTC控制面板中删除这个子域名。事实上，如果一个子域的文件已经不存在，而在Apache服务器的配置文件中仍然有这个子域的配置的话，Apache服务器仍然会解析这个子域的。而且，在重起Apache服务器的时候会报错。<br><br>\n"
+"<u>3.4.当添加/删除子域名时延迟</u><br><br>\n"
+"像邮件一样,所有的操作都会有最多10分钟的延迟之后生效.<br><br>\n"
 "\n"
-"<u>3.5.您的子域的流量统计</u><br><br>\n"
+"<u>3.6.您的子域的流量统计</u><br><br>\n"
 "您所有的流量都是有记录的，我们使用<a href=\"http://www.mrunix.net/webalizer/\">\n"
-"webalizer</a>统计出了您所有的子域在过去12个月中的流量。统计会在每天凌晨4时开始进行(这是一天中服务器负载最低的时刻),您可以通过每个子域的\"/stats\"目录来查看统计结果。这就是说，如果您注册了：\n"
+"webalizer</a>统计出了您所有的子域在过去12个月中的流量. 统计会在每天进行(这是一天中服务器负载最低的时刻),您可以通过每个子域的\"/stats\"目录来查看统计结果. \n"
+"这就是说，如果您注册了：\n"
 "<pre>\n"
 "http://www.mydomain.com\n"
 "</pre>\n"
-"所有的统计结果都会被生成在这个目录：\n"
+"所有的统计结果都会被生成在这个目录下：\n"
 "<pre>\n"
 "http://www.mydomain.com/stats/\n"
 "</pre>\n"
 "\n"
+"如果您愿意，您可以使用一个登录和密码来保护这个地址\n"
+"\n"
 "<font size=\"+1\"><u>4.FTP账号</u></font><br>\n"
 "<u>4.1.它能做什么？</u><br><br>\n"
-"为了让您的页面能够被访问到，您首先需要上传它们。可能您并是不唯一使用您的站点的人，这样您也许就会需要多个FTP账号。使用DTC控制面板，您就可以轻松管理多个账号和密码。<br><br>\n"
+"为了让您的页面能够正常运行，您首先需要上传它们。可能您并是不唯一使用您的站点的人，这样您也许就会需要\n"
+"多个FTP账号. DTC将是一个有效的工具来管理多个账号和密码.<br><br>\n"
 "\n"
 "<u>4.2.添加或删除一个FTP账号时的延时</u><br><br>\n"
-"因为我们配置ProFTP运行在一个特殊的模式下，它把所有的账号信息都存在了MYSQL数据库中。您对FTP账号所做的任何更改都能够实时生效。<br><br>\n"
+"因为DTC使用 ProFTP或者pure-ftpd 在一个特殊的模式下，它把所有的账号信息都存在了MYSQL数据库中。您对FTP账号所做的任何更改都能够\n"
+"实时生效。<br><br>\n"
 "\n"
-"<u>4.3.请不要在我们的服务器上进行盗版行为或大规模的文件交换</u><br><br>\n"
-"当我们给您提供FTP空间的时候，这仅仅时为了方便您上传HTML文件。请注意，如果您违反规定的话，我们可以在不提前通知的情况下关闭您的账号。<br><br>\n"
-"\n"
-"<font size=\"+1\"><u>5.为什么有时候FTP或者POP会很慢？</u></font><br><br>\n"
-"这有很多原因。首先是我们并没有太多的上传带款，有时候，同时会有很多用户上传文件。离服务器比较近(网络距离)的人在多数时间会占据比较多的带款，所以另外一些人就只有比较少的带款可以使用。对于这样的情况，我们也无能为力...<br><br>\n"
-"另外一个原因是，我们限制了pop、smtp、ftp等服务的带款，这样我们服务器上的web访问速度能更快一些。<br><br><br>\n"
-"</div>"
+"</div>\n"
+"</font>"
 
 #: shared/inc/sql/database.php:61
 msgid "A database by that name exists, please choose another name."
@@ -261,7 +282,7 @@ msgstr "所有程序与文件"
 
 #: admin/inc/nav.php:55
 msgid "APACHE VHOST"
-msgstr "Apache虚拟托管"
+msgstr "Apache VHOST"
 
 #: shared/inc/forms/lists.php:433
 msgid "Access list:"
@@ -280,11 +301,11 @@ msgstr "未授权的操作"
 
 #: admin/inc/renewals.php:259
 msgid "Account name"
-msgstr "帐户名"
+msgstr "账户名"
 
 #: admin/inc/renewals.php:270
 msgid "Account number"
-msgstr "帐号"
+msgstr "账号"
 
 #: admin/inc/dtc_config.php:1048
 msgid "Act as backup DNS server for the following servers:"
@@ -319,15 +340,15 @@ msgstr "添加"
 
 #: shared/inc/forms/lists.php:406
 msgid "Add To: header:"
-msgstr "添加到：页头："
+msgstr "添加到：标题："
 
 #: shared/inc/forms/root_admin.php:223
 msgid "Add a VPS for this admin:"
-msgstr "为这个管理员账号添加一个VPS"
+msgstr "为这个管理员添加一个VPS"
 
 #: shared/inc/forms/root_admin.php:270
 msgid "Add a dedicated server for this admin:"
-msgstr "为这个管理员账号添加一个独立主机："
+msgstr "为这个管理员添加一个独立服务器："
 
 #: shared/inc/forms/root_admin.php:157
 msgid "Add a domain for this user:"
@@ -343,7 +364,7 @@ msgstr "添加一个域名或服务"
 
 #: shared/inc/draw.php:444
 msgid "Add a domain or service:"
-msgstr "添加一个域名或服务："
+msgstr "添加一个域名或服务:"
 
 #: admin/inc/dtc_config.php:1432
 msgid "Add a new company"
@@ -351,7 +372,7 @@ msgstr "添加新公司"
 
 #: admin/inc/dtc_config.php:1431
 msgid "Add a new company:"
-msgstr "添加新公司"
+msgstr "添加新公司:"
 
 #: admin/inc/draw_user_admin.php:225
 msgid "Add a new user"
@@ -359,7 +380,7 @@ msgstr "添加新用户"
 
 #: shared/gfx/skin/default_layout.php:426
 msgid "Add a virtual administrator"
-msgstr "添加虚拟主机管理员"
+msgstr "添加一个虚拟管理员"
 
 #: admin/dtcrm/main.php:82
 msgid "Add an administrator to this customer:"
@@ -368,11 +389,11 @@ msgstr "为这名客户添加一个管理员："
 #: shared/dtcrm/draw_adddomain.php:67
 #: shared/dtcrm/draw_adddomain.php:99
 msgid "Add another service to your account:"
-msgstr "添加另一个服务到我的帐户："
+msgstr "添加另一个服务到您的帐户："
 
 #: admin/dtcrm/product_manager.php:71
 msgid "Add domain"
-msgstr "是否添加域名"
+msgstr "添加域名"
 
 #: shared/inc/forms/lists.php:409
 msgid "Added footer:"
@@ -380,11 +401,11 @@ msgstr "追加页脚："
 
 #: shared/dtcrm/draw_nameservers.php:59
 msgid "Addition of name server failed"
-msgstr "添加域名服务器失败"
+msgstr "添加服务器名失败"
 
 #: shared/dtcrm/draw_nameservers.php:50
 msgid "Addition of name server was succesfull"
-msgstr "编辑域名服务器信息成功"
+msgstr "添加服务器名成功"
 
 #: admin/dtcrm/main.php:165
 #: client/new_account_form.php:611
@@ -459,7 +480,7 @@ msgstr "管理员列表"
 #: admin/dtcrm/product_manager.php:182
 #: admin/dtcrm/product_manager.php:245
 msgid "Aff. kickback"
-msgstr ""
+msgstr "合作方提成"
 
 #: shared/drawlib/cc_code_popup.php:103
 msgid "Afghanistan"
@@ -479,16 +500,15 @@ msgstr "阿尔及利亚"
 
 #: shared/inc/forms/root_admin.php:133
 msgid "Allow addition of FTP logins:"
-msgstr "允许ＦＴＰ登录的添加："
+msgstr "允许FTP登录的添加："
 
 #: shared/inc/forms/root_admin.php:132
 msgid "Allow addition of SSH logins:"
-msgstr "允许添加SSH账户："
+msgstr "允许SSH登录的添加："
 
 #: shared/inc/forms/root_admin.php:134
-#, fuzzy
 msgid "Allow the use of the package installer:"
-msgstr "请选择要安装的软件包"
+msgstr "允许软件包安装:"
 
 #: admin/inc/dtc_config.php:944
 msgid "Allow those servers to list this server's domain names for doing backup:"
@@ -504,11 +524,11 @@ msgstr "每月最大数据传输量"
 
 #: shared/inc/forms/root_admin.php:126
 msgid "Allowed bandwidth per month (MB):"
-msgstr "每月最大数据传输量(GB)："
+msgstr "每月最大数据传输量(MB)："
 
 #: admin/dtcrm/main.php:179
 msgid "Allowed data transfer (GB): "
-msgstr "允许数据传输（ＧＢ）"
+msgstr "最大数据传输(GB):"
 
 #: shared/dtcrm/draw_adddomain.php:164
 msgid "Alternatively, you can add another domain name:"
@@ -516,7 +536,7 @@ msgstr "或者您可以添加另外一个域名："
 
 #: shared/drawlib/cc_code_popup.php:106
 msgid "American Samoa"
-msgstr ""
+msgstr "美国萨摩亚群岛"
 
 #: admin/inc/renewals.php:578
 #: shared/securepay/pay_functions.php:38
@@ -525,7 +545,7 @@ msgstr "总和"
 
 #: shared/dtcrm/draw_adddomain.php:151
 msgid "An administrator will examine your request shortly, and validate the addition of this domain name to your account. You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to grant you the privilege of automatic domain name addition. To request hosting for a new domain name, without administrator validation or domain name registration, please write to:"
-msgstr "很快，管理员会核实您的信息。如果您的信息准确无误，管理员会把您新增的域名关联到您的账户。您暂时没有添加域名的权限。如果您需要经常添加域名，您可以要求管理员授予您自动添加域名的权限。如果需要，请发邮件到："
+msgstr "很快，管理员会核实您的信息。如果您的信息准确无误，管理员会把您新增的域名添加到您的账户. 您暂时没有添加域名的权限。如果您需要经常添加域名，您可以要求管理员授予您自动添加域名的权限。如果需要，请发邮件到："
 
 #: shared/drawlib/cc_code_popup.php:107
 msgid "Andorra"
@@ -537,7 +557,7 @@ msgstr "安哥拉"
 
 #: shared/drawlib/cc_code_popup.php:109
 msgid "Anguilla"
-msgstr "鳗鲡属"
+msgstr "安圭拉岛"
 
 #: admin/inc/dtc_config.php:790
 msgid "Another location"
@@ -549,48 +569,47 @@ msgstr "南极州"
 
 #: shared/inc/forms/lists.php:446
 msgid "Anti-spam mode:"
-msgstr "垃圾邮件处理模式"
+msgstr "垃圾邮件处理模式:"
 
 #: shared/drawlib/cc_code_popup.php:111
 msgid "Antigua And Barbuda"
-msgstr ""
+msgstr "安提瓜岛和巴尔布达岛"
 
 #: admin/inc/dtc_config.php:1378
 msgid "Apache file names"
-msgstr ""
+msgstr "Apache 文件名"
 
 #: admin/inc/dtc_config.php:1349
 msgid "Apache htpasswd path"
-msgstr ""
+msgstr "Apache htpasswd 路径"
 
 #: admin/deamons_state.php:134
 msgid "Apache restart"
-msgstr ""
+msgstr "Apache 重新开始"
 
 #: admin/inc/nav.php:11
 msgid "Apache vhost file for personal account generated !"
-msgstr ""
+msgstr "个人账户的 Apache vhost 文件已经产生 !"
 
 #: admin/inc/nav.php:15
 msgid "Apache vhost file generated !"
-msgstr ""
+msgstr "Apache vhost 文件已经产生!"
 
 #: shared/inc/forms/lists.php:411
 msgid "Archive"
 msgstr "存档"
 
 #: shared/inc/forms/root_admin.php:197
-#, fuzzy
 msgid "Are you sure you want to delete this VPS? This will also delete the partitions!"
-msgstr "你确定要删除这个域名吗？这项操作将删除这个域名下的所有文件！！！"
+msgstr "你确定要删除这个VPS吗?这项操作将删除这个VPS下的所有文件!"
 
 #: shared/inc/forms/root_admin.php:151
 msgid "Are you sure you want to delete this domain name ? This will erase all hosted files for this domain!!!"
-msgstr "你确定要删除这个域名吗？这项操作将删除这个域名下的所有文件！！！"
+msgstr "你确定要删除这个域名吗?这项操作将删除这个域名下的所有文件!!!"
 
 #: shared/inc/forms/root_admin.php:140
 msgid "Are your sure you want to delete this user? This will erase all his hosted domain names, files, and databases !!!"
-msgstr "你确定要删除这个用户吗？这项操作将删除该用户所有的域名，文件，数据库等等！！！"
+msgstr "你确定要删除这个用户吗?这项操作将删除该用户所有的域名，文件，数据库!!!"
 
 #: shared/drawlib/cc_code_popup.php:112
 msgid "Argentina"
@@ -602,15 +621,15 @@ msgstr "亚美尼亚"
 
 #: shared/drawlib/cc_code_popup.php:114
 msgid "Aruba"
-msgstr ""
+msgstr "阿卢巴岛"
 
 #: shared/drawlib/cc_code_popup.php:115
 msgid "Ascension Island"
-msgstr ""
+msgstr "Ascension 岛"
 
 #: shared/drawlib/cc_code_popup.php:116
 msgid "Australia"
-msgstr ""
+msgstr "澳大利亚"
 
 #: shared/drawlib/cc_code_popup.php:117
 msgid "Austria"
@@ -618,7 +637,7 @@ msgstr "奥地利"
 
 #: admin/inc/dtc_config.php:915
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
-msgstr ""
+msgstr "自动产生默认子域名(mail, pop, imap, smtp, ftp, list):"
 
 #: admin/inc/dtc_config.php:347
 #: admin/inc/dtc_config.php:385
@@ -644,7 +663,7 @@ msgstr "带宽配额"
 
 #: shared/inc/forms/root_admin.php:389
 msgid "Backup Vhost IP address"
-msgstr "备用虚拟主机IP地址"
+msgstr "备用 Vhost IP地址"
 
 #: admin/inc/dtc_config.php:439
 msgid "Backup frequency:"
@@ -652,7 +671,7 @@ msgstr "备份频率："
 
 #: admin/inc/nav.php:25
 msgid "Backup script generated !"
-msgstr ""
+msgstr "备份脚本产生！"
 
 #: shared/drawlib/cc_code_popup.php:119
 msgid "Bahamas"
@@ -670,14 +689,12 @@ msgstr "带宽监控"
 
 #: shared/inc/forms/root_admin.php:494
 #: shared/inc/forms/root_admin.php:558
-#, fuzzy
 msgid "Bandwidth per month"
-msgstr "每月最大数据传输量"
+msgstr " 每月带宽"
 
 #: shared/dtcrm/draw.php:86
-#, fuzzy
 msgid "Bandwidth/month"
-msgstr "每月最大数据传输量"
+msgstr "带宽/每月"
 
 #: shared/drawlib/cc_code_popup.php:121
 msgid "Bangladesh"
@@ -685,16 +702,16 @@ msgstr "孟加拉国"
 
 #: admin/inc/renewals.php:216
 msgid "Bank account"
-msgstr "银行账户："
+msgstr "银行账户"
 
 #: admin/inc/renewals.php:48
 #: admin/inc/renewals.php:50
 msgid "Bank accounts & payments"
-msgstr "银行帐户&支付意向"
+msgstr "银行帐户& 支付"
 
 #: admin/inc/renewals.php:248
 msgid "Bank accounts edition"
-msgstr ""
+msgstr "银行账户编辑"
 
 #: admin/inc/renewals.php:277
 msgid "Bank address"
@@ -702,12 +719,12 @@ msgstr "银行地址"
 
 #: admin/inc/renewals.php:220
 msgid "Bank amount"
-msgstr "银行账户"
+msgstr "银行amount"
 
 #: admin/inc/draw_user_admin.php:246
 #: admin/inc/draw_user_admin.php:323
 msgid "Bank validated"
-msgstr "支持的银行"
+msgstr "有效的支付"
 
 #: shared/drawlib/cc_code_popup.php:122
 msgid "Barbados"
@@ -719,7 +736,7 @@ msgstr "比利时"
 
 #: shared/drawlib/cc_code_popup.php:124
 msgid "Belize"
-msgstr ""
+msgstr "百里斯"
 
 #: shared/drawlib/cc_code_popup.php:125
 msgid "Benin"
@@ -735,7 +752,7 @@ msgstr "不丹"
 
 #: admin/deamons_state.php:135
 msgid "Bind reload"
-msgstr ""
+msgstr "Bind 重新启用"
 
 #: shared/drawlib/cc_code_popup.php:128
 msgid "Bolivia"
@@ -747,7 +764,7 @@ msgstr "启动(xm start)"
 
 #: shared/drawlib/cc_code_popup.php:129
 msgid "Bosnia Hercegovina"
-msgstr ""
+msgstr "波斯尼亚 黑赛哥维那"
 
 #: shared/drawlib/cc_code_popup.php:130
 msgid "Botswana"
@@ -755,7 +772,7 @@ msgstr "博茨瓦纳"
 
 #: shared/inc/forms/lists.php:432
 msgid "Bounce life:"
-msgstr ""
+msgstr "Bounce 周期:"
 
 #: shared/inc/forms/email.php:625
 msgid "Bounce message content: "
@@ -763,7 +780,7 @@ msgstr "弹回邮件的内容："
 
 #: shared/drawlib/cc_code_popup.php:131
 msgid "Bouvet Island"
-msgstr ""
+msgstr "Bouvet 岛"
 
 #: shared/drawlib/cc_code_popup.php:132
 msgid "Brazil"
@@ -771,16 +788,15 @@ msgstr "巴西"
 
 #: shared/drawlib/cc_code_popup.php:133
 msgid "British Indian Ocean Territory"
-msgstr ""
+msgstr "英国印度洋领土"
 
 #: admin/inc/nav.php:35
-#, fuzzy
 msgid "Browse all generated files"
-msgstr "域名文件："
+msgstr "浏览所有生成的文件"
 
 #: shared/drawlib/cc_code_popup.php:134
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "汶莱Darussalam"
 
 #: shared/drawlib/cc_code_popup.php:135
 msgid "Bulgaria"
@@ -788,7 +804,7 @@ msgstr "保加利亚"
 
 #: shared/drawlib/cc_code_popup.php:136
 msgid "Burkina Faso"
-msgstr ""
+msgstr "布基纳法索"
 
 #: shared/drawlib/cc_code_popup.php:137
 msgid "Burundi"
@@ -796,7 +812,7 @@ msgstr "布隆迪"
 
 #: shared/drawlib/cc_code_popup.php:138
 msgid "Byelorussian SSR"
-msgstr ""
+msgstr "白俄罗斯 SSR"
 
 #: shared/drawlib/dtc_functions.php:799
 msgid "Bytes"
@@ -808,16 +824,15 @@ msgstr "CGI-BIN 安全防护"
 
 #: admin/inc/graphs.php:7
 msgid "CPU Load Average"
-msgstr ""
+msgstr "CPU 平均载入"
 
 #: shared/inc/forms/vps_monitoring.php:105
 msgid "CPU Time:"
-msgstr ""
+msgstr "CPU 时间:"
 
 #: shared/inc/forms/vps_monitoring.php:189
-#, fuzzy
 msgid "CPU, IO and Network usage:"
-msgstr "CPU与带宽的使用情况："
+msgstr "CPU, IO 和网络的使用率："
 
 #: shared/drawlib/cc_code_popup.php:139
 msgid "Cambodia"
@@ -832,23 +847,20 @@ msgid "Canada"
 msgstr "加拿大"
 
 #: shared/inc/sql/database.php:42
-#, fuzzy
 msgid "Cannot close user database"
-msgstr "用户数据库的位置："
+msgstr "无法关闭用户数据库"
 
 #: shared/inc/fetch.php:457
-#, fuzzy
 msgid "Cannot fetch user line"
-msgstr "用户数据库的位置："
+msgstr "无法读取用户"
 
 #: admin/inc/draw_user_admin.php:342
 msgid "Cannot find payment!"
 msgstr "没有找到付款记录"
 
 #: client/new_account_form.php:369
-#, fuzzy
 msgid "Cannot find product id!"
-msgstr "在数据库中没有发现该款产品！"
+msgstr "在数据库中没有发现该款产品ID！"
 
 #: admin/inc/draw_user_admin.php:257
 #: admin/inc/draw_user_admin.php:258
@@ -856,19 +868,18 @@ msgid "Cannot find product in db!"
 msgstr "在数据库中没有发现该款产品！"
 
 #: admin/inc/draw_user_admin.php:331
-#, fuzzy
 msgid "Cannot find product!"
-msgstr "在数据库中没有发现该款产品！"
+msgstr "没有发现该款产品！"
 
 #: admin/inc/draw_user_admin.php:384
 msgid "Cannot find server in db!"
-msgstr ""
+msgstr "在数据库中无法找到服务器!"
 
 #: admin/inc/draw_user_admin.php:120
 #: admin/inc/draw_user_admin.php:147
 #: admin/inc/draw_user_admin.php:199
 msgid "Cannot find ticket!"
-msgstr "没有找到相应的主题！"
+msgstr "没有找到相应的标签!"
 
 #: shared/inc/sql/vps.php:152
 #: shared/inc/sql/vps.php:222
@@ -882,12 +893,11 @@ msgstr "无法得到VPS信息"
 
 #: shared/inc/sql/database.php:173
 msgid "Cannot reselect MySQL db name: please enter another and try again."
-msgstr "不能选择MySQL数据库名：请重新填入一个再试一次。"
+msgstr "不能重新选择MySQL数据库名：请重新填入一个再试一次."
 
 #: client/new_account.php:222
-#, fuzzy
 msgid "Cannot reselect client: registration failed!"
-msgstr "不能重新选择拥护：注册失败！"
+msgstr "不能重新选择用户：注册失败！"
 
 #: client/new_account.php:188
 #: client/new_account.php:197
@@ -900,29 +910,29 @@ msgstr "不能重新选择产品：注册失败！"
 
 #: client/new_account.php:107
 msgid "Cannot reselect transaction: registration failed!"
-msgstr "交易号: 不能重新选择交易，注册失败！"
+msgstr "不能重新选择交易，注册失败！"
 
 #: client/new_account.php:123
 #: client/new_account.php:212
 #: client/new_account.php:318
 msgid "Cannot reselect user: registration failed!"
-msgstr "不能重新选择拥护：注册失败！"
+msgstr "不能重新选择用户：注册失败！"
 
 #: admin/deamons_state.php:157
 msgid "Cannot resolv your"
-msgstr ""
+msgstr "无法解析您的"
 
 #: admin/deamons_state.php:202
 msgid "Cannot resolv your FTP server: "
-msgstr ""
+msgstr "无法解析您的 FTP 服务器: "
 
 #: shared/drawlib/cc_code_popup.php:142
 msgid "Cape Verde"
-msgstr ""
+msgstr "佛得角"
 
 #: admin/inc/renewals.php:195
 msgid "Cash"
-msgstr ""
+msgstr "现金"
 
 #: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
@@ -938,16 +948,15 @@ msgstr "类别描述"
 
 #: shared/drawlib/cc_code_popup.php:143
 msgid "Cayman Islands"
-msgstr ""
+msgstr "开曼群岛"
 
 #: shared/drawlib/cc_code_popup.php:144
 msgid "Central African Republic"
-msgstr ""
+msgstr "中非共和国"
 
 #: shared/drawlib/cc_code_popup.php:145
-#, fuzzy
 msgid "Chad"
-msgstr "共享"
+msgstr "乍得"
 
 #: shared/inc/forms/vps_installation.php:253
 msgid "Change NetBSD kernel"
@@ -955,7 +964,7 @@ msgstr "更改NetBSD内核"
 
 #: shared/inc/forms/vps_installation.php:166
 msgid "Change RDNS"
-msgstr ""
+msgstr "更改 RDNS"
 
 #: shared/inc/draw.php:47
 #: shared/inc/forms/email.php:213
@@ -963,14 +972,12 @@ msgid "Change your password:"
 msgstr "更改密码："
 
 #: admin/inc/renewals.php:195
-#, fuzzy
 msgid "Check"
-msgstr "点击"
+msgstr "支票"
 
 #: shared/inc/forms/email.php:622
-#, fuzzy
 msgid "Check to send a bounce message (vacation): "
-msgstr "检查是否发送一封弹回邮件："
+msgstr "检查是否发送一封弹回邮件（假期）:"
 
 #: shared/inc/forms/vps_monitoring.php:133
 #: shared/inc/forms/vps_installation.php:80
@@ -979,7 +986,7 @@ msgstr "检查文件系统..."
 
 #: shared/drawlib/cc_code_popup.php:146
 msgid "Chile"
-msgstr ""
+msgstr "智利"
 
 #: shared/drawlib/cc_code_popup.php:147
 msgid "China"
@@ -987,17 +994,16 @@ msgstr "中国"
 
 #: shared/inc/forms/packager.php:215
 msgid "Choose a package to install"
-msgstr "请选择要安装的软件包"
+msgstr "选择要安装的软件包"
 
 #: shared/drawlib/cc_code_popup.php:148
 msgid "Christmas Island"
-msgstr ""
+msgstr "圣诞岛"
 
 #: admin/inc/renewals.php:353
 #: shared/inc/forms/my_account.php:210
-#, fuzzy
 msgid "City:"
-msgstr "国家："
+msgstr "城市："
 
 #: admin/dtcrm/main.php:168
 #: client/new_account_form.php:623
@@ -1005,9 +1011,8 @@ msgstr "国家："
 #: shared/dtcrm/draw_handle.php:95
 #: shared/dtcrm/draw_handle.php:127
 #: shared/dtcrm/draw_handle.php:247
-#, fuzzy
 msgid "City: "
-msgstr "国家："
+msgstr "城市："
 
 #: shared/dtcrm/draw_adddomain.php:362
 msgid "Click"
@@ -1022,18 +1027,16 @@ msgid "Client"
 msgstr "客户"
 
 #: admin/inc/renewals.php:422
-#, fuzzy
 msgid "Client ID"
-msgstr "客户ID："
+msgstr "客户ID"
 
 #: shared/inc/forms/root_admin.php:124
 msgid "Client ID:"
 msgstr "客户ID："
 
 #: admin/inc/renewals.php:423
-#, fuzzy
 msgid "Client country"
-msgstr "用户界面"
+msgstr "客户国家"
 
 #: client/new_account_form.php:712
 msgid "Client info"
@@ -1049,7 +1052,6 @@ msgstr "用户界面"
 #: admin/inc/renewals.php:685
 #: admin/inc/renewals.php:726
 #: admin/inc/renewals.php:800
-#, fuzzy
 msgid "Client name not found!"
 msgstr "没有找到相关的客户名称！"
 
@@ -1058,7 +1060,7 @@ msgstr "没有找到相关的客户名称！"
 #: shared/gfx/skin/bwoup/layout.php:253
 #: shared/gfx/skin/bwoup/layout.php:262
 msgid "Client panel:"
-msgstr "用户控制台："
+msgstr "用户面板："
 
 #: admin/inc/draw_user_admin.php:187
 msgid "Close without reply"
@@ -1070,11 +1072,11 @@ msgstr "已关闭"
 
 #: shared/inc/forms/lists.php:397
 msgid "Closed list:"
-msgstr "已关闭的邮件列表："
+msgstr "已关闭的列表："
 
 #: shared/drawlib/cc_code_popup.php:149
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "Cocos (Keeling) 群岛"
 
 #: shared/drawlib/cc_code_popup.php:150
 msgid "Colombia"
@@ -1089,14 +1091,12 @@ msgid "Companies"
 msgstr "公司"
 
 #: admin/inc/renewals.php:261
-#, fuzzy
 msgid "Company"
 msgstr "公司"
 
 #: admin/inc/dtc_config.php:1549
-#, fuzzy
 msgid "Company name"
-msgstr "公司名称："
+msgstr "公司名称"
 
 #: admin/inc/renewals.php:330
 #: admin/inc/dtc_config.php:1447
@@ -1110,19 +1110,16 @@ msgstr "公司名称："
 #: shared/dtcrm/draw_handle.php:90
 #: shared/dtcrm/draw_handle.php:122
 #: shared/dtcrm/draw_handle.php:226
-#, fuzzy
 msgid "Company name: "
 msgstr "公司名称："
 
 #: admin/inc/renewals.php:181
-#, fuzzy
 msgid "Company paid"
-msgstr "公司名称："
+msgstr "已付费的公司"
 
 #: admin/inc/renewals.php:176
-#, fuzzy
 msgid "Company paying"
-msgstr "公司名称："
+msgstr "正在付费的公司"
 
 #: shared/gfx/skin/default_layout.php:307
 #: shared/gfx/skin/bwoup/layout.php:427
@@ -1136,11 +1133,11 @@ msgstr "配置的域"
 
 #: shared/inc/forms/root_admin.php:458
 msgid "Configuration of the VPSes"
-msgstr ""
+msgstr "VPSes的配置"
 
 #: shared/inc/forms/root_admin.php:526
 msgid "Configuration of the dedicated servers"
-msgstr "独立主机相关配置"
+msgstr "独立服务器相关配置"
 
 #: shared/inc/forms/root_admin.php:334
 msgid "Configuration of the domains"
@@ -1148,7 +1145,7 @@ msgstr "域名相关配置"
 
 #: shared/gfx/skin/default_layout.php:402
 msgid "Configuration of the virtual administrator"
-msgstr "虚拟主机管理员配置"
+msgstr "虚拟管理员配置"
 
 #: shared/inc/forms/dns.php:85
 msgid "Configure your domain name:"
@@ -1159,7 +1156,6 @@ msgid "Confirm pass: "
 msgstr "确认密码："
 
 #: shared/inc/forms/email.php:219
-#, fuzzy
 msgid "Confirm password: "
 msgstr "确认密码："
 
@@ -1169,34 +1165,32 @@ msgstr "刚果"
 
 #: shared/drawlib/cc_code_popup.php:153
 msgid "Congo, The Democratic Republic Of"
-msgstr ""
+msgstr "刚果民主共和国"
 
 #: admin/inc/draw_user_admin.php:478
 msgid "Console output"
-msgstr ""
+msgstr "Console 输出"
 
 #: shared/drawlib/cc_code_popup.php:154
 msgid "Cook Islands"
-msgstr ""
+msgstr "库克群岛"
 
 #: shared/inc/forms/domain_stats.php:87
 #: shared/inc/forms/domain_stats.php:94
-#, fuzzy
 msgid "Copy to subdomains:"
-msgstr "子域名："
+msgstr "复制到子域名："
 
 #: shared/drawlib/cc_code_popup.php:155
 msgid "Costa Rica"
-msgstr ""
+msgstr "哥斯大黎加"
 
 #: shared/drawlib/cc_code_popup.php:156
 msgid "Cote D'Ivoire"
-msgstr ""
+msgstr "科特迪瓦"
 
 #: admin/deamons_state.php:163
-#, fuzzy
 msgid "Could not connect to SMTP server (timed out): "
-msgstr "无法连接到SOAP服务器。"
+msgstr "无法连接到 SMTP服务器(超时):"
 
 #: shared/inc/sql/vps.php:6
 #: shared/inc/sql/vps.php:76
@@ -1214,57 +1208,56 @@ msgstr "无法连接到域名注册服务器：请稍候再试！"
 #: shared/inc/forms/vps_monitoring.php:181
 #: shared/inc/forms/vps_installation.php:128
 msgid "Could not connect to the VPS SOAP Server."
-msgstr "无法连接到SOAP服务器。"
+msgstr "无法连接到VPS SOAP服务器。"
 
 #: client/new_account_form.php:101
 msgid "Could not find the VPS server in database"
-msgstr "在数据库中没有找到VPS的相关配置"
+msgstr "在数据库中没有找到VPS服务器"
 
 #: shared/inc/forms/subdomain.php:11
 #: shared/inc/forms/subdomain.php:60
 msgid "Could not found subdomain in table for folder deletion"
-msgstr ""
+msgstr "文件夹删除时无法找到子域名"
 
 #: shared/inc/forms/vps_monitoring.php:126
 #: shared/inc/forms/vps_installation.php:73
 msgid "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running?"
-msgstr "无法得到远程主机的运行状态(函数getVPSState()运行失败)。可能VPS没有运行..."
+msgstr "无法得到远程主机的运行状态(Method getVPSState() 运行失败).可能VPS没有运行?"
 
 #: shared/inc/forms/vps_monitoring.php:130
 #: shared/inc/forms/vps_installation.php:77
 msgid "Could not get remote status. Unkown error: "
-msgstr "无法得到远程主机的运行状态：未知的错误。"
+msgstr "无法得到远程主机的运行状态.未知的错误:"
 
 #: shared/inc/forms/vps_monitoring.php:128
 #: shared/inc/forms/vps_installation.php:75
 msgid "Could not get remote status: could not connect to the SOAP server (HTTP error)."
-msgstr "无法得到远程主机的运行状态：无法连接到SOAP服务器(HTTP error)。"
+msgstr "无法得到远程主机的运行状态：无法连接到SOAP服务器(HTTP 错误)."
 
 #: shared/inc/forms/dns.php:82
 msgid "Could not load zonefile: permission denied or file not existant?"
-msgstr ""
+msgstr "无法载入zonefile: 许可被拒绝或者文件不存在?"
 
 #: admin/deamons_state.php:174
 msgid "Could not write HELLO to server"
-msgstr ""
+msgstr "无法对服务器写入 HELLO "
 
 #: admin/deamons_state.php:232
-#, fuzzy
 msgid "Could not write PASS to server"
-msgstr "无法连接到SOAP服务器。"
+msgstr "无法写入PASS到服务器。"
 
 #: admin/deamons_state.php:219
 msgid "Could not write USER to server"
-msgstr ""
+msgstr "无法对服务器写入 USER "
 
 #: admin/inc/dtc_config.php:607
 #: shared/inc/forms/root_admin.php:561
 msgid "Country"
-msgstr ""
+msgstr "国家"
 
 #: client/new_account_form.php:227
 msgid "Country code seems incorrect."
-msgstr "国家代码貌似不正确。"
+msgstr "国家代码貌似不正确."
 
 #: admin/inc/renewals.php:362
 #: admin/inc/dtc_config.php:1455
@@ -1279,7 +1272,6 @@ msgstr "国家："
 #: shared/dtcrm/draw_handle.php:129
 #: shared/dtcrm/draw_handle.php:253
 #: shared/inc/forms/root_admin.php:281
-#, fuzzy
 msgid "Country: "
 msgstr "国家："
 
@@ -1290,19 +1282,19 @@ msgstr "创建"
 
 #: shared/inc/forms/aliases.php:23
 msgid "Create Mail Group"
-msgstr ""
+msgstr "创建邮件组"
 
 #: shared/inc/forms/aliases.php:22
 msgid "Create New Mail Group"
-msgstr ""
+msgstr "创建新邮件组"
 
 #: shared/dtcrm/draw_handle.php:29
 msgid "Create a new handle"
-msgstr "建立一个新句柄"
+msgstr "建立一个新handle"
 
 #: shared/dtcrm/draw_handle.php:199
 msgid "Create a new nick-handle:"
-msgstr ""
+msgstr "无法创建一个新的 nick-handle:"
 
 #: shared/inc/forms/subdomain.php:126
 msgid "Create a subdomain: "
@@ -1312,16 +1304,15 @@ msgstr "建立子域名："
 #: shared/inc/forms/vps_installation.php:30
 #: shared/inc/forms/vps.php:30
 msgid "Credential not correct: can't display in file "
-msgstr "证书错误：无法显示文件"
+msgstr "创建错误：无法显示文件"
 
 #: admin/inc/renewals.php:194
 msgid "Credit card"
-msgstr ""
+msgstr "信用卡"
 
 #: shared/drawlib/cc_code_popup.php:157
-#, fuzzy
 msgid "Croatia"
-msgstr "创建"
+msgstr "克罗埃西亚"
 
 #: shared/drawlib/cc_code_popup.php:158
 msgid "Cuba"
@@ -1329,19 +1320,16 @@ msgstr "古巴"
 
 #: admin/inc/renewals.php:211
 #: admin/inc/renewals.php:280
-#, fuzzy
 msgid "Currency"
-msgstr "货币标记："
+msgstr "货币"
 
 #: admin/inc/dtc_config.php:1128
-#, fuzzy
 msgid "Currency letters: "
-msgstr "货币字符："
+msgstr "货币字目："
 
 #: admin/inc/dtc_config.php:1124
-#, fuzzy
 msgid "Currency symbol: "
-msgstr "货币标记："
+msgstr "货币符号："
 
 #: shared/inc/forms/vps_monitoring.php:210
 #: shared/inc/forms/vps_installation.php:174
@@ -1354,19 +1342,19 @@ msgstr "当前的合同："
 
 #: shared/inc/forms/vps_installation.php:207
 msgid "Currently installed operating system: "
-msgstr ""
+msgstr "目前已安装的操作系统"
 
 #: shared/inc/forms/lists.php:408
 msgid "Custom headers:"
-msgstr "自定义的页头："
+msgstr "自定义的标题："
 
 #: admin/inc/dtc_config.php:1529
 msgid "Customer and service country vs company:"
-msgstr "业务延伸到的国家和地区"
+msgstr "取决于客户和服务器所在国家，哪一个公司可以出具账单和发票"
 
 #: admin/inc/dtc_config.php:1544
 msgid "Customer country"
-msgstr "客户国别"
+msgstr "客户国家"
 
 #: shared/gfx/skin/default_layout.php:246
 #: shared/gfx/skin/bwoup/layout.php:402
@@ -1377,13 +1365,13 @@ msgstr "客户管理"
 #: shared/gfx/skin/default_layout.php:131
 #: shared/gfx/skin/bwoup/layout.php:492
 msgid "Customer renewals"
-msgstr "客户更新"
+msgstr "客户续约"
 
 #: client/new_account_form.php:714
 #: shared/gfx/skin/default_layout.php:120
 #: shared/gfx/skin/bwoup/layout.php:479
 msgid "Customer's address"
-msgstr "客户资料"
+msgstr "客户的地址"
 
 #: shared/gfx/skin/default_layout.php:122
 msgid "Customer's administrators"
@@ -1392,7 +1380,7 @@ msgstr "客户的管理员"
 #: shared/gfx/skin/default_layout.php:135
 #: shared/gfx/skin/bwoup/layout.php:496
 msgid "Customer's bandwidth consumption"
-msgstr "客户带宽使用量"
+msgstr "客户的带宽使用量"
 
 #: shared/gfx/skin/default_layout.php:125
 #: shared/gfx/skin/bwoup/layout.php:474
@@ -1401,7 +1389,7 @@ msgstr "客户列表"
 
 #: shared/inc/forms/root_admin.php:348
 msgid "Customize"
-msgstr ""
+msgstr "自定义"
 
 #: shared/drawlib/cc_code_popup.php:159
 msgid "Cyprus"
@@ -1409,7 +1397,7 @@ msgstr "塞浦路斯"
 
 #: shared/drawlib/cc_code_popup.php:160
 msgid "Czech Republic"
-msgstr ""
+msgstr "捷克共和国"
 
 #: shared/drawlib/cc_code_popup.php:161
 msgid "Czechoslovakia"
@@ -1418,7 +1406,7 @@ msgstr "捷克斯洛伐克"
 #: shared/inc/draw.php:139
 #: shared/inc/draw.php:440
 msgid "DNS Nick handles"
-msgstr "DNS　负责人"
+msgstr "DNS Nick handles"
 
 #: shared/inc/draw.php:214
 msgid "DNS and MX"
@@ -1426,26 +1414,26 @@ msgstr "DNS 和 MX"
 
 #: shared/inc/draw.php:404
 msgid "DNS config of:"
-msgstr ""
+msgstr "DNS 配置:"
 
 #: shared/gfx/skin/default_layout.php:152
 #: shared/gfx/skin/bwoup/layout.php:519
 msgid "DTC Configuration"
-msgstr "配置DTC参数"
+msgstr "DTC配置"
 
 #: admin/inc/dtc_config.php:815
 msgid "DTC Skin chooser"
-msgstr "更换DTC控制面板的皮肤"
+msgstr "DTC 皮肤更换"
 
 #: shared/gfx/skin/default_layout.php:319
 #: shared/gfx/skin/bwoup/layout.php:432
 #: shared/gfx/skin/bwoup/layout.php:434
 msgid "DTC general configuration"
-msgstr "DTC控制面板参数设置"
+msgstr "DTC 主要参数配置"
 
 #: admin/inc/dtc_config.php:753
 msgid "Daemon"
-msgstr "请选择需要使用的守护进程"
+msgstr "Daemon"
 
 #: admin/inc/dtc_config.php:442
 msgid "Daily"
@@ -1461,7 +1449,6 @@ msgid "Database files:"
 msgstr "数据库文件："
 
 #: shared/inc/forms/database.php:76
-#, fuzzy
 msgid "Database name"
 msgstr "数据库名"
 
@@ -1471,12 +1458,11 @@ msgstr "数据库"
 
 #: shared/inc/forms/admin_stats.php:81
 msgid "Databases disk usage:"
-msgstr "数据库使用的磁盘空间："
+msgstr "数据库磁盘使用率："
 
 #: shared/inc/draw.php:456
-#, fuzzy
 msgid "Databases:"
-msgstr "数据库文件："
+msgstr "数据库："
 
 #: admin/inc/draw_user_admin.php:246
 #: admin/dtcrm/main.php:215
@@ -1486,50 +1472,46 @@ msgid "Date"
 msgstr "日期"
 
 #: admin/inc/renewals.php:708
-#, fuzzy
 msgid "Days of expiration"
-msgstr "已过期警告："
+msgstr "已过期的日期："
 
 #: shared/gfx/skin/default_layout.php:143
 #: shared/gfx/skin/bwoup/layout.php:504
 msgid "Deamons states"
-msgstr "守护进程的状态"
+msgstr "Deamons 统计"
 
 #: admin/inc/dtc_config.php:255
-#, fuzzy
 msgid "Dedicated server IP address pool editor"
-msgstr "独立主机过期时间："
+msgstr "独立服务器IP地址pool编辑程序"
 
 #: admin/inc/dtc_config.php:41
-#, fuzzy
 msgid "Dedicated server IP addresses"
-msgstr "独立主机更新"
+msgstr "独立服务器IP地址"
 
 #: shared/inc/forms/dedicated.php:39
 msgid "Dedicated server contract:"
-msgstr "独立主机合同："
+msgstr "独立服务器合同："
 
 #: shared/inc/forms/dedicated.php:42
 msgid "Dedicated server expiration dates:"
-msgstr "独立主机过期时间："
+msgstr "独立服务器过期时间："
 
 #: admin/inc/dtc_config.php:271
-#, fuzzy
 msgid "Dedicated server hostname"
-msgstr "独立主机合同："
+msgstr "独立服务器主机名"
 
 #: admin/inc/renewals.php:777
 msgid "Dedicated servers renewals"
-msgstr "独立主机更新"
+msgstr "独立服务器续约"
 
 #: admin/inc/renewals.php:567
 msgid "Dedicated servers: "
-msgstr "独立主机："
+msgstr "独立服务器："
 
 #: admin/inc/dtc_config.php:1507
 #: admin/inc/dtc_config.php:1512
 msgid "Default company invoicing:"
-msgstr "公司的默认发票："
+msgstr "默认公司的发票："
 
 #: shared/inc/forms/subdomain.php:113
 msgid "Default subdomain: "
@@ -1537,7 +1519,7 @@ msgstr "默认子域名："
 
 #: admin/inc/dtc_config.php:926
 msgid "Defaut TTL for your zonefiles:"
-msgstr ""
+msgstr "默认 TTL 对于您的 zonefiles:"
 
 #: admin/inc/renewals.php:476
 #: admin/inc/draw_user_admin.php:290
@@ -1554,7 +1536,7 @@ msgstr "删除一个用户域名："
 
 #: shared/inc/forms/lists.php:265
 msgid "Delete all messages of webarchive. NOTE: this works only if you have &quot;web archive&quot; not checked."
-msgstr "删除了所有的归档文件。注意：只有当您拥有&quot归档文件时它才会执行;归档文件&quot;没有被检查。"
+msgstr "删除webarchive的所有信息 。注意：只有在此时生效 &quot;web archive&quot; not checked."
 
 #: admin/dtcrm/main.php:194
 msgid "Delete client"
@@ -1562,7 +1544,7 @@ msgstr "删除客户"
 
 #: shared/inc/forms/lists.php:405
 msgid "Delete headers:"
-msgstr "删除页头："
+msgstr "删除标题："
 
 #: shared/dtcrm/draw_nameservers.php:120
 msgid "Delete name server"
@@ -1574,16 +1556,15 @@ msgstr "删除这个管理员账号下的一个VPS："
 
 #: shared/inc/forms/root_admin.php:251
 msgid "Delete one of the admin dedicated server:"
-msgstr "删除这个管理员账号下的一个独立主机："
+msgstr "删除这个管理员账号下的一个独立服务器："
 
 #: shared/inc/forms/root_admin.php:141
 msgid "Delete the user"
 msgstr "删除用户"
 
 #: shared/inc/forms/lists.php:445
-#, fuzzy
 msgid "Delete:"
-msgstr "删除"
+msgstr "删除:"
 
 #: shared/dtcrm/draw_nameservers.php:74
 msgid "Deletion of name server failed"
@@ -1604,11 +1585,11 @@ msgstr "将邮件存储到本地INBOX："
 
 #: shared/inc/forms/aliases.php:52
 msgid "Delivery Group:"
-msgstr ""
+msgstr "递送组:"
 
 #: shared/drawlib/cc_code_popup.php:162
 msgid "Denmark"
-msgstr ""
+msgstr "丹麦"
 
 #: shared/inc/forms/lists.php:423
 msgid "Deny if no To: or Cc::"
@@ -1619,9 +1600,8 @@ msgid "Description"
 msgstr "描述"
 
 #: admin/inc/dtc_config.php:1294
-#, fuzzy
 msgid "Description: "
-msgstr "类别描述"
+msgstr "描述: "
 
 #: client/new_account_form.php:544
 msgid "Desired domain name"
@@ -1633,7 +1613,7 @@ msgstr "目标文件夹："
 
 #: shared/inc/forms/domain_stats.php:61
 msgid "Detailed web statistics (HTTP) of your subdomains:"
-msgstr "子域名的webalizer详细统计结果："
+msgstr "您的子域名的详细网络统计 (HTTP) ："
 
 #: shared/inc/forms/lists.php:416
 msgid "Digest"
@@ -1645,14 +1625,13 @@ msgstr "摘要的选择区间："
 
 #: shared/inc/forms/lists.php:418
 msgid "Digest max mails:"
-msgstr "摘要邮件的最大发送数量："
+msgstr "可以生成摘要的最大的邮件收发量："
 
 #: admin/dtcrm/product_manager.php:51
 #: admin/dtcrm/product_manager.php:124
 #: admin/dtcrm/product_manager.php:187
-#, fuzzy
 msgid "Disk"
-msgstr "磁盘空间"
+msgstr "磁盘"
 
 #: shared/inc/forms/root_admin.php:361
 msgid "Disk quota"
@@ -1670,11 +1649,11 @@ msgstr "磁盘使用率"
 
 #: admin/inc/nav.php:116
 msgid "Display and sort by:"
-msgstr "根据什么分类："
+msgstr "根据什么显示和分类："
 
 #: shared/drawlib/cc_code_popup.php:163
 msgid "Djibouti"
-msgstr ""
+msgstr "吉布地"
 
 #: shared/inc/forms/lists.php:250
 msgid "Do not change unless you really know what you are doing."
@@ -1690,12 +1669,11 @@ msgstr "文档"
 
 #: shared/gfx/skin/default_layout.php:194
 msgid "Domain Technologie Control : root admin console"
-msgstr "Domain Technologie Control：控制台"
+msgstr "Domain Technologie Control：根目录管理员控制台"
 
 #: shared/inc/draw.php:399
-#, fuzzy
 msgid "Domain Tools"
-msgstr "域名"
+msgstr "域名工具"
 
 #: shared/gfx/skin/default_layout.php:378
 #: shared/gfx/skin/bwoup/layout.php:643
@@ -1712,7 +1690,7 @@ msgstr "域名"
 
 #: admin/inc/draw_user_admin.php:246
 msgid "Domain name / VPS server hostname"
-msgstr "域名/VPS主机名"
+msgstr "域名/VPS服务器主机名"
 
 #: shared/inc/forms/admin_stats.php:67
 msgid "Domain name files:"
@@ -1720,46 +1698,44 @@ msgstr "域名文件："
 
 #: shared/dtcrm/draw_adddomain.php:139
 msgid "Domain name is not in correct format. Please enter another name."
-msgstr "您输入的域名不正确，请重新输入"
+msgstr "您输入的域名格式不正确，请重新输入"
 
 #: admin/inc/dtc_config.php:71
 msgid "Domain name registration"
-msgstr "设置域名注册参数"
+msgstr "域名注册"
 
 #: admin/inc/dtc_config.php:1078
 msgid "Domain name registry API configuraiton"
-msgstr "配置域名注册接口参数"
+msgstr "配置域名注册API 配置"
 
 #: client/new_account_form.php:79
 #: client/new_account_form.php:86
 msgid "Domain name seems to be incorrect."
-msgstr "域名貌似不正确。"
+msgstr "域名貌似不正确."
 
 #: shared/inc/forms/admin_stats.php:102
-#, fuzzy
 msgid "Domain name traffic and disk usage:"
-msgstr "域名，流量，磁盘使用率："
+msgstr "域名流量和磁盘使用率："
 
 #: shared/inc/forms/dns.php:61
 msgid "Domain root TXT record2: "
-msgstr ""
+msgstr "域名根目录 TXT 记录2: "
 
 #: shared/inc/forms/dns.php:60
 msgid "Domain root TXT record: "
-msgstr ""
+msgstr "域名根目录 TXT 记录: "
 
 #: shared/gfx/skin/default_layout.php:409
 msgid "Domains for"
-msgstr "主机"
+msgstr "对于???的域名"
 
 #: shared/drawlib/cc_code_popup.php:164
-#, fuzzy
 msgid "Dominica"
-msgstr "域名"
+msgstr "多米尼加岛"
 
 #: shared/drawlib/cc_code_popup.php:165
 msgid "Dominican Republic"
-msgstr ""
+msgstr "多名尼加共和国"
 
 #: shared/inc/forms/subdomain.php:245
 msgid "Dynamic IP update login: "
@@ -1778,11 +1754,11 @@ msgstr "电子邮件账户"
 #: admin/deamons_state.php:305
 #: admin/deamons_state.php:311
 msgid "ERROR!"
-msgstr ""
+msgstr "错误!"
 
 #: shared/drawlib/cc_code_popup.php:166
 msgid "East Timor"
-msgstr ""
+msgstr "东帝汶岛"
 
 #: shared/drawlib/cc_code_popup.php:167
 msgid "Ecuador"
@@ -1790,11 +1766,11 @@ msgstr "厄瓜多尔"
 
 #: shared/inc/forms/aliases.php:24
 msgid "Edit Mail Group"
-msgstr ""
+msgstr "编辑邮件组"
 
 #: admin/inc/dtc_config.php:1433
 msgid "Edit a company:"
-msgstr ""
+msgstr "编辑一个公司:"
 
 #: shared/dtcrm/draw_nameservers.php:99
 msgid "Edit a name server:"
@@ -1802,11 +1778,11 @@ msgstr "编辑域名服务器信息："
 
 #: shared/inc/forms/lists.php:52
 msgid "Edit mailing list"
-msgstr ""
+msgstr "编辑邮件列表"
 
 #: shared/inc/draw.php:393
 msgid "Edit mailing lists of domain:"
-msgstr "编辑邮件列表："
+msgstr "编辑域名的邮件列表："
 
 #: shared/inc/forms/subdomain.php:128
 msgid "Edit one of your subdomains"
@@ -1814,7 +1790,7 @@ msgstr "编辑您的一个子域"
 
 #: shared/inc/forms/email.php:246
 msgid "Edit your mailbox redirections:"
-msgstr "编辑您的邮件转发："
+msgstr "编辑您的邮箱转发："
 
 #: shared/drawlib/cc_code_popup.php:168
 msgid "Egypt"
@@ -1822,55 +1798,51 @@ msgstr "埃及"
 
 #: shared/drawlib/cc_code_popup.php:169
 msgid "El Salvador"
-msgstr ""
+msgstr "萨尔瓦多"
 
 #: admin/inc/renewals.php:639
 #: admin/inc/renewals.php:670
 #: admin/inc/renewals.php:706
 #: admin/inc/renewals.php:785
-#, fuzzy
 msgid "Email"
-msgstr "邮箱地址"
+msgstr "Email"
 
 #: admin/inc/dtc_config.php:382
 msgid "Email addr"
-msgstr "邮箱地址"
+msgstr "Email 地址"
 
 #: shared/inc/forms/aliases.php:57
-#, fuzzy
 msgid "Email address is already in use!"
-msgstr "网站管理员邮箱："
+msgstr "Email地址已经被使用!"
 
 #: admin/inc/dtc_config.php:893
 msgid "Email address of your webmaster:"
-msgstr "网站管理员邮箱："
+msgstr "您的网站管理员的Email地址："
 
 #: client/new_account_form.php:107
 msgid "Email address seems to be incorrect format."
-msgstr "貌似邮箱地址格式不正确。"
+msgstr "貌似Email地址格式不正确。"
 
 #: shared/inc/forms/root_admin.php:365
 msgid "Email max"
-msgstr "邮箱数量上限"
+msgstr "最大数量的Email地址"
 
 #: shared/gfx/skin/default_layout.php:24
 #: shared/gfx/skin/default_layout.php:34
 #: shared/gfx/skin/bwoup/layout.php:53
 #: shared/gfx/skin/bwoup/layout.php:61
-#, fuzzy
 msgid "Email panel: "
-msgstr "邮箱地址"
+msgstr "Email控制面板:"
 
 #: admin/inc/nav.php:20
 msgid "Email user and domain files generated !"
-msgstr ""
+msgstr "Email 用户和域名文件产生!"
 
 #: admin/inc/renewals.php:371
 #: shared/inc/forms/aliases.php:48
 #: shared/inc/forms/my_account.php:215
-#, fuzzy
 msgid "Email:"
-msgstr "邮箱地址"
+msgstr "Email:"
 
 #: admin/dtcrm/main.php:175
 #: client/new_account_form.php:597
@@ -1878,9 +1850,8 @@ msgstr "邮箱地址"
 #: shared/dtcrm/draw_handle.php:100
 #: shared/dtcrm/draw_handle.php:132
 #: shared/dtcrm/draw_handle.php:262
-#, fuzzy
 msgid "Email: "
-msgstr "邮箱地址"
+msgstr "Email: "
 
 #: shared/inc/forms/email.php:570
 msgid "Enable SPAM filtering: "
@@ -1892,11 +1863,11 @@ msgstr "启用VERP支持。"
 
 #: shared/inc/forms/lists.php:256
 msgid "Enable webarchive."
-msgstr "启用归档功能。"
+msgstr "启用webarchive。"
 
 #: shared/inc/forms/lists.php:442
 msgid "Enable webarchive:"
-msgstr "使用归档："
+msgstr "使用webarchive："
 
 #: shared/dtcrm/draw_adddomain.php:191
 msgid "Enter the domain name you want to register:"
@@ -1904,12 +1875,11 @@ msgstr "输入您要注册的域名"
 
 #: shared/drawlib/cc_code_popup.php:170
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "赤道几内亚"
 
 #: shared/drawlib/cc_code_popup.php:171
-#, fuzzy
 msgid "Eritrea"
-msgstr "过期"
+msgstr "厄立特里亚"
 
 #: shared/gfx/skin/default_layout.php:61
 #: shared/gfx/skin/bwoup/layout.php:251
@@ -1917,22 +1887,20 @@ msgid "Error"
 msgstr "错误"
 
 #: shared/inc/forms/vps_installation.php:156
-#, fuzzy
 msgid "Error line "
-msgstr "错误"
+msgstr "错误排列"
 
 #: shared/inc/sql/vps.php:83
-#, fuzzy
 msgid "Error: "
-msgstr "错误"
+msgstr "错误:"
 
 #: shared/inc/forms/email.php:430
 msgid "Error: Email group alias already exists with this name!"
-msgstr ""
+msgstr "错误: Email 组 别名已经被使用!"
 
 #: shared/inc/forms/email.php:422
 msgid "Error: a mailing list already exists with this name!"
-msgstr ""
+msgstr "错误: 邮件列表名已经被使用!"
 
 #: shared/drawlib/cc_code_popup.php:172
 msgid "Estonia"
@@ -1940,23 +1908,23 @@ msgstr "爱沙尼亚"
 
 #: shared/drawlib/cc_code_popup.php:173
 msgid "Ethiopia"
-msgstr ""
+msgstr "埃塞俄比亚"
 
 #: admin/inc/renewals.php:186
 msgid "Expenditure type"
-msgstr ""
+msgstr "费用类型"
 
 #: shared/inc/forms/root_admin.php:482
 #: shared/inc/forms/root_admin.php:546
 msgid "Expiration"
-msgstr "期满"
+msgstr "过期"
 
 #: admin/inc/renewals.php:639
 #: admin/inc/renewals.php:670
 #: admin/inc/renewals.php:707
 #: admin/inc/renewals.php:785
 msgid "Expiration date"
-msgstr "过期时间"
+msgstr "过期日期"
 
 #: admin/inc/dtc_config.php:344
 #: shared/inc/forms/my_account.php:126
@@ -1970,9 +1938,8 @@ msgstr "过期日期"
 
 #: shared/inc/forms/root_admin.php:127
 #: shared/inc/forms/vps.php:75
-#, fuzzy
 msgid "Expiry date:"
-msgstr "过期日期"
+msgstr "过期日期:"
 
 #: shared/inc/forms/domain_info.php:101
 msgid "Export this domain to a file"
@@ -1980,20 +1947,20 @@ msgstr "将这个域导出到一个文件"
 
 #: shared/inc/forms/ftp.php:54
 msgid "FTP account configuration: "
-msgstr "FTP帐户配置："
+msgstr "FTP账户配置："
 
 #: shared/inc/draw.php:228
 #: shared/inc/draw.php:428
 msgid "FTP accounts"
-msgstr "FTP帐户"
+msgstr "FTP账户"
 
 #: shared/inc/draw.php:430
 msgid "FTP accounts of "
-msgstr "本站点的FTP帐户"
+msgstr "的FTP账户"
 
 #: shared/inc/forms/domain_info.php:55
 msgid "FTP accounts:"
-msgstr "FTP帐户："
+msgstr "FTP账户："
 
 #: admin/inc/dtc_config.php:50
 msgid "FTP backup"
@@ -2001,22 +1968,21 @@ msgstr "FTP备份"
 
 #: admin/inc/dtc_config.php:417
 msgid "FTP backup configuration"
-msgstr "配置FTP备份参数配置"
+msgstr "FTP备份配置"
 
 #: admin/inc/dtc_config.php:431
 msgid "FTP login:"
-msgstr "FTP登陆账号："
+msgstr "FTP登录："
 
 #: admin/inc/dtc_config.php:435
 msgid "FTP password:"
-msgstr "FTP登陆密码："
+msgstr "FTP密码："
 
 #: shared/drawlib/cc_code_popup.php:174
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Falkland 群岛 (Malvinas)"
 
 #: admin/inc/renewals.php:341
-#, fuzzy
 msgid "Familly name:"
 msgstr "姓："
 
@@ -2026,7 +1992,6 @@ msgstr "姓："
 #: shared/dtcrm/draw_handle.php:89
 #: shared/dtcrm/draw_handle.php:121
 #: shared/dtcrm/draw_handle.php:232
-#, fuzzy
 msgid "Familly name: "
 msgstr "姓："
 
@@ -2036,7 +2001,7 @@ msgstr "姓："
 
 #: shared/drawlib/cc_code_popup.php:175
 msgid "Faroe Islands"
-msgstr ""
+msgstr "法罗群岛"
 
 #: admin/inc/renewals.php:368
 #: shared/inc/forms/my_account.php:214
@@ -2049,17 +2014,16 @@ msgstr "传真："
 #: shared/dtcrm/draw_handle.php:99
 #: shared/dtcrm/draw_handle.php:131
 #: shared/dtcrm/draw_handle.php:259
-#, fuzzy
 msgid "Fax: "
 msgstr "传真："
 
 #: shared/inc/forms/email.php:301
 msgid "Fetchmail"
-msgstr ""
+msgstr "Fetchmail"
 
 #: shared/drawlib/cc_code_popup.php:176
 msgid "Fiji"
-msgstr ""
+msgstr "斐济"
 
 #: shared/inc/forms/vps_installation.php:203
 msgid "File system check (fsck)"
@@ -2071,7 +2035,7 @@ msgstr "文件系统检查："
 
 #: shared/inc/forms/lists.php:205
 msgid "Fill this if you want every mail to have something like:<br>--<br>To unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
-msgstr "如果你想让所有的邮件都添加类似于这样的内容：<br>--<br>如要退订请发邮件给 coollist+unsubscribe@lists.domain.net的话，可以在这里填写。"
+msgstr "可以在这里填写,如果你想让所有的邮件都类似于这样：<br>--<br>如要退订请发邮件给 coollist+unsubscribe@lists.domain.net."
 
 #: shared/drawlib/cc_code_popup.php:177
 msgid "Finland"
@@ -2088,50 +2052,48 @@ msgstr "名："
 #: shared/dtcrm/draw_handle.php:88
 #: shared/dtcrm/draw_handle.php:120
 #: shared/dtcrm/draw_handle.php:229
-#, fuzzy
 msgid "First name: "
 msgstr "名："
 
 #: admin/inc/draw_user_admin.php:135
 msgid "First query date: "
-msgstr ""
+msgstr "第一次咨询的日期:"
 
 #: shared/drawlib/cc_code_popup.php:178
 msgid "France"
-msgstr ""
+msgstr "法国"
 
 #: shared/drawlib/cc_code_popup.php:179
 msgid "France, Metropolitan"
-msgstr ""
+msgstr "法国(Metropolitan)"
 
 #: shared/drawlib/cc_code_popup.php:180
 msgid "French Guiana"
-msgstr ""
+msgstr "法属圭亚那地区"
 
 #: shared/drawlib/cc_code_popup.php:181
 msgid "French Polynesia"
-msgstr ""
+msgstr "法属波利尼西亚"
 
 #: shared/drawlib/cc_code_popup.php:182
 msgid "French Southern Territories"
-msgstr ""
+msgstr "法属南部领地"
 
 #: shared/inc/forms/ticket.php:57
 msgid "Full description of the trouble:"
-msgstr "问题描述："
+msgstr "故障的完整描述："
 
 #: admin/inc/dtc_config.php:857
-#, fuzzy
 msgid "Full hostname of DTC admin panel: "
-msgstr "DTC控制面板的完整域名："
+msgstr "DTC管理控制面板的完整主机名："
 
 #: admin/inc/dtc_config.php:930
 msgid "Full path to location of the public.key file for DomainKey support:"
-msgstr ""
+msgstr "对于DomainKey 其 public.key 文件的位置的完整路径 :"
 
 #: shared/drawlib/dtc_functions.php:796
 msgid "GBytes"
-msgstr ""
+msgstr "GBytes"
 
 #: shared/drawlib/cc_code_popup.php:183
 msgid "Gabon"
@@ -2142,9 +2104,8 @@ msgid "Gambia"
 msgstr "冈比亚"
 
 #: shared/securepay/pay_functions.php:38
-#, fuzzy
 msgid "Gateway cost"
-msgstr "设置付款接口"
+msgstr "付费方式成本"
 
 #: admin/inc/dtc_config.php:29
 #: admin/inc/dtc_config.php:713
@@ -2157,16 +2118,15 @@ msgstr "常规信息"
 
 #: shared/inc/forms/subdomain.php:161
 msgid "Generate a vhost entry for this subdomain:"
-msgstr "生成这个子域名的虚拟主机入口："
+msgstr "生成这个子域名的vhost入口："
 
 #: admin/inc/dtc_config.php:848
-#, fuzzy
 msgid "Generate all apache vhosts on local network ip (NAT): "
-msgstr "所有虚拟主机都监听于内网地址(NAT)："
+msgstr "产生所有apache vhosts 在本地网络ip (NAT)："
 
 #: shared/drawlib/cc_code_popup.php:185
 msgid "Georgia"
-msgstr ""
+msgstr "格鲁吉亚"
 
 #: shared/drawlib/cc_code_popup.php:186
 msgid "Germany"
@@ -2174,23 +2134,23 @@ msgstr "德国"
 
 #: shared/drawlib/cc_code_popup.php:187
 msgid "Ghana"
-msgstr ""
+msgstr "加纳"
 
 #: shared/drawlib/cc_code_popup.php:188
 msgid "Gibraltar"
-msgstr ""
+msgstr "直布罗陀"
 
 #: email/login.php:6
 msgid "Go to client panel"
-msgstr "进入客户控制台"
+msgstr "进入客户控制面板"
 
 #: client/login.php:6
 msgid "Go to email panel"
-msgstr "进入邮箱控制台"
+msgstr "进入邮箱控制面板"
 
 #: client/new_account_form.php:641
 msgid "Go to login"
-msgstr "登陆"
+msgstr "登录"
 
 #: shared/inc/forms/vps_installation.php:186
 msgid "Gracefully shutdown (xm shutdown)"
@@ -2198,7 +2158,7 @@ msgstr "安全关闭(xm shutdown)"
 
 #: shared/inc/forms/root_admin.php:131
 msgid "Grant sub-account addition rights (reseller):"
-msgstr "允许添加子帐户(转售)："
+msgstr "授权添加子账户(转售)："
 
 #: shared/drawlib/cc_code_popup.php:189
 msgid "Great Britain"
@@ -2214,7 +2174,7 @@ msgstr "格陵兰"
 
 #: shared/drawlib/cc_code_popup.php:192
 msgid "Grenada"
-msgstr ""
+msgstr "格瑞纳达"
 
 #: shared/drawlib/cc_code_popup.php:193
 msgid "Guadeloupe"
@@ -2222,24 +2182,23 @@ msgstr "瓜德罗普岛"
 
 #: shared/drawlib/cc_code_popup.php:194
 msgid "Guam"
-msgstr ""
+msgstr "关岛"
 
 #: shared/drawlib/cc_code_popup.php:195
 msgid "Guatemela"
-msgstr ""
+msgstr "危地马拉"
 
 #: shared/drawlib/cc_code_popup.php:196
 msgid "Guernsey"
-msgstr ""
+msgstr "根西岛"
 
 #: shared/drawlib/cc_code_popup.php:197
-#, fuzzy
 msgid "Guinea"
-msgstr "普通设置"
+msgstr "几内亚"
 
 #: shared/drawlib/cc_code_popup.php:198
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "几内亚比绍"
 
 #: shared/drawlib/cc_code_popup.php:199
 msgid "Guyana"
@@ -2247,7 +2206,7 @@ msgstr "圭亚那"
 
 #: shared/inc/forms/vps_monitoring.php:113
 msgid "HDD I/O:"
-msgstr ""
+msgstr "HDD I/O:"
 
 #: shared/inc/forms/vps_monitoring.php:227
 msgid "HTTP: "
@@ -2259,20 +2218,19 @@ msgstr "海地"
 
 #: admin/inc/renewals.php:752
 msgid "Has a dedicated"
-msgstr ""
+msgstr "有一个专用的"
 
 #: admin/inc/renewals.php:749
-#, fuzzy
 msgid "Has some domains"
-msgstr "您的域名"
+msgstr "有一些域名"
 
 #: shared/inc/forms/lists.php:403
 msgid "Header"
-msgstr "页头"
+msgstr "标题"
 
 #: shared/drawlib/cc_code_popup.php:201
 msgid "Heard and McDonald Islands"
-msgstr ""
+msgstr "Heard 和 McDonald 群岛"
 
 #: shared/inc/draw.php:329
 msgid "Help"
@@ -2280,11 +2238,11 @@ msgstr "帮助"
 
 #: shared/inc/forms/lists.php:232
 msgid "Help missing for noaccessdenymails"
-msgstr ""
+msgstr "没有 noaccessdenymails 帮助信息"
 
 #: shared/inc/forms/lists.php:226
 msgid "Help missing for nosubonlydenymails"
-msgstr ""
+msgstr "没有 nosubonlydenymails 帮助信息"
 
 #: shared/inc/draw.php:472
 msgid "Help:"
@@ -2292,37 +2250,35 @@ msgstr "帮助："
 
 #: shared/inc/forms/lists.php:244
 msgid "Here is specified for how long time in seconds an address can bounce before it\\'s unsubscribed. Defaults to 432000 seconds, which is 5 days."
-msgstr "这里指明了需要多长时间一封无法取消订阅的邮件才能够被弹回。默认是432000秒，也就是5天。"
+msgstr "这里指明了在它\\ unsubscribed以前，需要多少秒这个邮件地址才能够被弹回. 默认是432000秒，也就是5天。"
 
 #: shared/inc/forms/lists.php:235
 msgid "Here is specified in bytes how big a mail can be and still be prepared for sending in memory. It\\'s greatly reducing the amount of write system calls to prepare it in memory before sending it, but can also lead to denial of service attacks. Default is 16k (16384 bytes)."
-msgstr "这里用比特标明了多大的邮件在发送之前或发送时可以存放在内存中。该功能可以极大的降低系统的I/O，但同时可能回导致拒绝服务式攻击。默认16k (16384 bytes)。"
+msgstr "这里用 bytes指明了是多大的邮件并且在发送之前或发送时可以存放在内存中. 该功能\\可以极大的降低系统CPU的加载，但同时可能导致拒绝服务式攻击。默认16k (16384 bytes)。"
 
 #: shared/inc/forms/lists.php:268
 msgid "Hide email addresses to avoid spam."
-msgstr "隐藏邮件地址。"
+msgstr "隐藏 email 地址防止垃圾邮件."
 
 #: shared/drawlib/cc_code_popup.php:202
 msgid "Honduras"
 msgstr "洪都拉斯"
 
 #: shared/drawlib/cc_code_popup.php:203
-#, fuzzy
 msgid "Hong Kong"
-msgstr "仅空间"
+msgstr "香港"
 
 #: admin/inc/dtc_config.php:839
-#, fuzzy
 msgid "Host IP addresses (separated by \"|\"): "
-msgstr "本服务器使用的所有IP(用\"|\"分隔)："
+msgstr "主机所有IP(用\"|\"分隔)："
 
 #: shared/dtcrm/draw_adddomain.php:88
 msgid "Hosting + domain name registration or transfer"
-msgstr "空间＋域名注册或转让"
+msgstr "托管＋域名注册或转让"
 
 #: shared/dtcrm/draw_adddomain.php:93
 msgid "Hosting only"
-msgstr "仅空间"
+msgstr "仅托管"
 
 #: shared/gfx/skin/default_layout.php:159
 #: shared/gfx/skin/default_layout.php:294
@@ -2330,13 +2286,12 @@ msgstr "仅空间"
 #: shared/gfx/skin/bwoup/layout.php:424
 #: shared/gfx/skin/bwoup/layout.php:532
 msgid "Hosting product manager"
-msgstr "主机产品管理"
+msgstr "托管产品管理员"
 
 #: admin/inc/dtc_config.php:592
 #: shared/inc/forms/ticket.php:158
-#, fuzzy
 msgid "Hostname"
-msgstr "主机名："
+msgstr "主机名"
 
 #: admin/inc/dtc_config.php:427
 msgid "Hostname:"
@@ -2348,7 +2303,7 @@ msgstr "主机名："
 
 #: shared/inc/forms/lists.php:247
 msgid "How many recipients pr. mail delivered to the smtp server. Defaults to 100."
-msgstr "接收到的邮件的最大群发数量。默认是100。"
+msgstr "每个邮件的最大群发数量发送到smtp服务器。默认是100。"
 
 #: shared/drawlib/cc_code_popup.php:204
 msgid "Hungary"
@@ -2360,11 +2315,11 @@ msgstr "我接受"
 
 #: shared/inc/forms/vps_monitoring.php:230
 msgid "IMAP4: "
-msgstr ""
+msgstr "IMAP4: "
 
 #: admin/deamons_state.php:266
 msgid "IP Resolved"
-msgstr ""
+msgstr "IP Resolved"
 
 #: admin/inc/dtc_config.php:956
 #: shared/inc/forms/my_account.php:126
@@ -2379,16 +2334,15 @@ msgstr "域名服务器的IP地址："
 
 #: shared/inc/forms/dns.php:19
 msgid "IP address of the primary DNS server:"
-msgstr "主DNS服务器的IP地址："
+msgstr "优先DNS服务器的IP地址："
 
 #: shared/inc/forms/subdomain.php:156
 msgid "IP address or CNAME: "
 msgstr "IP地址或CNAME: "
 
 #: admin/inc/dtc_config.php:286
-#, fuzzy
 msgid "IP address pool editor: "
-msgstr "IP地址："
+msgstr "IP地址pool 编辑器："
 
 #: shared/inc/forms/vps_monitoring.php:198
 #: shared/inc/forms/vps_installation.php:142
@@ -2397,12 +2351,11 @@ msgstr "IP地址："
 
 #: admin/inc/dtc_config.php:32
 msgid "IP addresses and network"
-msgstr "设置网络参数"
+msgstr "IP 地址和网络"
 
 #: admin/inc/dtc_config.php:38
-#, fuzzy
 msgid "IP addresses pool"
-msgstr "IP地址："
+msgstr "IP地址pool"
 
 #: shared/inc/forms/vps_monitoring.php:196
 #: shared/inc/forms/vps_installation.php:140
@@ -2412,7 +2365,7 @@ msgstr "IP地址："
 
 #: admin/inc/dtc_config.php:906
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
-msgstr "主DNS服务器IP地址："
+msgstr "主DNS服务器IP地址需要被写入在以下.slavezones.conf:"
 
 #: admin/inc/dtc_config.php:267
 #: admin/inc/dtc_config.php:299
@@ -2420,7 +2373,7 @@ msgstr "主DNS服务器IP地址："
 #: admin/inc/dtc_config.php:583
 #: admin/inc/dtc_config.php:641
 msgid "IPs addrs"
-msgstr "IP地址列表"
+msgstr "IP地址"
 
 #: shared/drawlib/cc_code_popup.php:205
 msgid "Iceland"
@@ -2428,43 +2381,43 @@ msgstr "冰岛"
 
 #: admin/deamons_state.php:239
 msgid "If no FTP user was created, please make at least one!"
-msgstr ""
+msgstr "如果没有 FTP 用户被创建，请至少创建一个!"
 
 #: shared/inc/forms/lists.php:253
 msgid "If this file exists, all headers of a post to the list is matched against the rules. The first rule to match wins. NOTE: the default action is to deny access (reject the mail) so take care if you write something here"
-msgstr "如果存在这个文件，所有发往这个邮件列表的邮件的页头信息都将被过滤。最前面的规则优先生效。请注意：默认的规则是拒绝所有邮件，所以，当你在这个文件中写下规则的时候一定要小心。"
+msgstr "如果存在这个文件，所有发往这个邮件列表的邮件的标题信息都将被过滤. 最前面的规则优先生效. 请注意：默认的操作是拒绝所有邮件，所以，当你在这个文件中写下规则的时候一定要小心. "
 
 #: shared/inc/forms/lists.php:211
 msgid "If this file exists, then retrieving old posts with -get-N (for exemple mylist-get-12@my-domain.tld) is disabled"
-msgstr "如果这个文件存在的话，使用-get-N参数恢复到旧邮件列表的功能被禁用。"
+msgstr "如果这个文件存在的话，使用-get-N参数恢复到旧邮件列表的功能被禁用."
 
 #: shared/inc/forms/lists.php:214
 msgid "If this file exists, then retrieving old posts with -get-N is only possible for subscribers. The above mentioned \\'noget\\' have precedence."
-msgstr "如果这个文件存在的话，使用-get-N参数恢复到旧邮件列表的功能仅仅在订阅时有效。前面的\\'noget\\'优先执行。"
+msgstr "如果这个文件存在的话，使用-get-N参数恢复到旧邮件列表的功能仅仅在订阅时有效. 前面的\\'noget\\'优先执行. "
 
 #: shared/inc/forms/lists.php:187
 msgid "If this flag exists, no mail confirmation is needed to subscribe to the list. This should in principle never ever be used, but there is times on local lists etc. where this is useful. HANDLE WITH CARE!"
-msgstr "如果存在这个标志，添加到邮件列表时不需要确认。尽量不要使用这个功能，虽然有时它很有用。请谨慎处理这个标志！"
+msgstr "如果存在这个标志，添加到邮件列表时不需要确认. 尽量不要使用这个功能，虽然有时在本地列表中它很有用. 请谨慎处理这个标志!"
 
 #: shared/inc/forms/lists.php:208
 msgid "If this flag exists, the mail won\\'t be saved in the archive but simply deleted."
-msgstr "当这个标志存在的话，邮件会被直接删除，而不会被备份到归档文件中。"
+msgstr "当这个标志存在的话，邮件\\会被直接删除，而不会被备份到归档文件中. "
 
 #: shared/inc/forms/lists.php:223
 msgid "If this flag is present, the owner(s) will get a mail with the address of someone sub/unsubscribing to a mailinglist."
-msgstr "如果存在这个参数，当有人订阅/退订这个邮件列表的时候，该邮件列表的所有者会收到一封提示邮件。"
+msgstr "如果存在这个标志，当有人订阅/退订这个邮件列表的时候，该邮件列表的所有者会收到一封提示邮件. "
 
 #: shared/inc/forms/lists.php:181
 msgid "If this flag is set, the email addresses in the field moderators will act as moderators for the list."
-msgstr "如果设置了这个参数，斑竹位置上显示的邮件地址将被视作该邮件列表的管理员。"
+msgstr "如果设置了这个标志，斑竹位置上显示的邮件地址将被视作该邮件列表的管理员. "
 
 #: shared/inc/forms/lists.php:199
 msgid "If this flag is set, the list address does not have to be in the To: or Cc: header of the email to the list (interesting for aliases addressing multiple lists)."
-msgstr "如果设置了这个参数，列出来的邮件地址将不必被填入收件人或抄送栏中："
+msgstr "如果设置了这个标志，列出来的邮件地址将不必被填入收件人或抄送栏中：列表的邮件标题(接受不同别名的地址列表)."
 
 #: shared/dtcrm/draw_whois.php:51
 msgid "If you want to keep your current registrar, you have to make the whois point to these DNS:"
-msgstr "如果您希望保留现有的注册，您必须在下列 DNS 登记您的 whois 信息"
+msgstr "如果您希望保留现有的注册，您必须在下列 DNS 登记您的 whois 信息:"
 
 #: shared/inc/forms/vps_installation.php:189
 msgid "Immediate kill (xm destroy)"
@@ -2480,54 +2433,52 @@ msgstr "为这个用户导入一个域文件："
 
 #: shared/inc/forms/lists.php:193
 msgid "In those fields is specified *ONE* headertoken to match per line. If the fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all occurences of these headers in incoming list mail will be deleted. From: and Return-Path: are deleted no matter what."
-msgstr "在这些区域中标记了一些需要过滤的页头信息。如果这个区域中填写的是这样的内容：<br><br>Received:<br>Message-ID:<br><br>那么所有的包含这些内容的邮件都将被删除。From: 和 Return-Path:是无论如何都会被删除的。"
+msgstr "在这些区域中标记了*一个* 需要过滤的标题信息. 如果这个区域中填写的是这样的内容：<br><br>Received:<br>Message-ID:<br><br>那么所有的包含这些内容的标题邮件都将被删除. From: 和 Return-Path:是无论如何都会被删除的. "
 
 #: admin/inc/submit_root_querys.php:270
-#, fuzzy
 msgid "Incorect admin login format: it should consist of only lowercase letters or numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
-msgstr "错误的管理员登陆名：它应该仅有小写字母或者数字或者\"-\"组成，并且长度在4到16个字符之间。<br>\n"
+msgstr "错误的管理员登录格式：它应该仅有小写字母或者数字或者\"-\"组成，并且长度在4到16个字符之间. <br>\n"
 
 #: shared/inc/sql/email.php:14
 msgid "Incorect mail login format: it should consist of only lowercase letters, numbers, or the \"-\" sign.<br>\n"
-msgstr "错误得邮箱登陆名：它应该仅有小写字母或者数字或者\"-\"组成。<br>\n"
+msgstr "错误邮箱登录格式：它应该仅有小写字母或者数字或者\"-\"组成. <br>\n"
 
 #: shared/inc/sql/database.php:166
 #: shared/inc/sql/database.php:211
 msgid "Incorrect MySQL db name format: please enter another and try again."
-msgstr "MySQL数据库名错误：请重新输入一个数据库名再试一次。"
+msgstr "MySQL数据库名错误格式：请重新输入再试一次."
 
 #: shared/inc/sql/database.php:17
 msgid "Incorrect MySQL login format: please don't enter root or debian-sys-maint"
-msgstr "MySQL登陆名错误：请不要使用root或操作系统账号"
+msgstr "MySQL登录错误格式：请不要输入根目录t或debian-sys-maint"
 
 #: shared/inc/sql/database.php:13
 msgid "Incorrect MySQL login format: please enter another login and try again."
-msgstr "MySQL登陆名错误：请重新输入登陆名再试一次。"
+msgstr "MySQL登录错误格式：请重新输入再试一次."
 
 #: shared/inc/sql/ssh.php:49
-#, fuzzy
 msgid "Incorrect SSH login form: please enter another login and try again.<br>\n"
-msgstr "错误的数据库登陆名：请更改登陆名再试一次。"
+msgstr "错误的SSH登录：请更改登录名再试一次.<br>\n"
 
 #: shared/inc/sql/ssh.php:106
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9"
-msgstr ""
+msgstr "错误 SSH 密码: 从 6 到 16 个字符, a-z A-Z 0-9"
 
 #: shared/inc/sql/ssh.php:53
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n"
-msgstr ""
+msgstr "错误 SSH 密码: 从 6 到 16 个字符, a-z A-Z 0-9<br>\n"
 
 #: shared/inc/sql/database.php:66
 msgid "Incorrect db login format: please enter another login and try again."
-msgstr "错误的数据库登陆名：请更改登陆名再试一次。"
+msgstr "错误的数据库登录格式：请更改再试一次。"
 
 #: shared/inc/sql/ssh.php:101
 msgid "Incorrect ssh login : this is not a good string for a ssh login, please enter a new one."
-msgstr ""
+msgstr "错误 ssh 登录: 这不是一个正确的ssh 登录，请重新输入一遍"
 
 #: shared/inc/sql/subdomain.php:6
 msgid "Incorrect sub-domain format."
-msgstr ""
+msgstr "错误子域名格式."
 
 #: shared/drawlib/cc_code_popup.php:206
 msgid "India"
@@ -2539,15 +2490,15 @@ msgstr "印度尼西亚"
 
 #: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
-msgstr "输入邮件地址并订阅。"
+msgstr "输入邮件地址并订阅."
 
 #: shared/inc/forms/lists.php:438
 msgid "Insert here an email address to unsubscribe it."
-msgstr "输入邮件地址取消订阅。"
+msgstr "输入邮件地址取消订阅."
 
 #: shared/inc/forms/lists.php:259
 msgid "Insert here the template\\'s code that you want use for your web archive. Read <a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' target=\\'_blank\\'>documentation</a> and see <a href=\\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
-msgstr "在这里输入您要使用的归档文件模板的代码。查看<a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' target=\\'_blank\\'>文档</a>或查看<a href=\\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>示例</a>。"
+msgstr "在这里输入您要使用的web archive文件模板\\的代码. 查看<a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' target=\\'_blank\\'>文档</a>或查看<a href=\\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
 
 #: shared/inc/forms/packager.php:218
 #: shared/inc/forms/packager.php:230
@@ -2555,32 +2506,28 @@ msgid "Install"
 msgstr "安装"
 
 #: shared/inc/draw.php:166
-#, fuzzy
 msgid "Installation"
 msgstr "安装"
 
 #: shared/inc/forms/vps_installation.php:302
 msgid "Installation log (last 20 lines):"
-msgstr ""
+msgstr "安装日志(最后20行):"
 
 #: shared/securepay/pay_functions.php:38
-#, fuzzy
 msgid "Instant account"
-msgstr "您的账户："
+msgstr "自动激活账户："
 
 #: shared/inc/draw.php:442
 msgid "Internet Whois Nick Handles management:"
-msgstr "互联网Whois信息管理："
+msgstr "互联网Whois Nick Handles信息管理："
 
 #: shared/inc/forms/invoices.php:23
-#, fuzzy
 msgid "Invoice"
-msgstr "开具发票"
+msgstr "发票"
 
 #: admin/inc/renewals.php:224
-#, fuzzy
 msgid "Invoice date"
-msgstr "发票落款："
+msgstr "发票日期"
 
 #: admin/inc/dtc_config.php:1483
 msgid "Invoice footer:"
@@ -2588,7 +2535,7 @@ msgstr "发票落款："
 
 #: admin/inc/dtc_config.php:1478
 msgid "Invoice free text:"
-msgstr "发票抬头："
+msgstr "发票注释："
 
 #: admin/inc/dtc_config.php:77
 msgid "Invoicing"
@@ -2596,7 +2543,7 @@ msgstr "开具发票"
 
 #: shared/drawlib/cc_code_popup.php:208
 msgid "Iran (Islamic Republic Of)"
-msgstr ""
+msgstr "伊朗 (伊斯兰共和国的)"
 
 #: shared/drawlib/cc_code_popup.php:209
 msgid "Iraq"
@@ -2608,10 +2555,9 @@ msgstr "爱尔兰"
 
 #: client/new_account_form.php:237
 msgid "Is company radio button is wrong!"
-msgstr "请选择是不是公司客户！"
+msgstr "确认是否公司客户按钮功能(是/否)出故障!"
 
 #: admin/inc/renewals.php:336
-#, fuzzy
 msgid "Is it a company:"
 msgstr "是公司吗:"
 
@@ -2622,21 +2568,19 @@ msgstr "是公司吗:"
 
 #: shared/inc/forms/lists.php:175
 msgid "Is the list is open or closed. If it\\'s closed subscribtion and unsubscription via mail is disabled."
-msgstr "邮件列表的状态是开启还是关闭。如果它关闭了，邮件订阅/退订功能将不能使用。"
+msgstr "邮件列表的状态是开启还是关闭。如果它\\关闭了，邮件订阅/退订功能将不能使用."
 
 #: shared/drawlib/cc_code_popup.php:211
 msgid "Isle Of Man"
-msgstr ""
+msgstr "马恩岛"
 
 #: shared/drawlib/cc_code_popup.php:212
-#, fuzzy
 msgid "Israel"
-msgstr "安装"
+msgstr "以色列"
 
 #: shared/drawlib/cc_code_popup.php:213
-#, fuzzy
 msgid "Italy"
-msgstr "安装"
+msgstr "意大利"
 
 #: shared/drawlib/cc_code_popup.php:214
 msgid "Jamaica"
@@ -2647,13 +2591,12 @@ msgid "Japan"
 msgstr "日本"
 
 #: shared/drawlib/cc_code_popup.php:216
-#, fuzzy
 msgid "Jersey"
-msgstr "这里"
+msgstr "泽西岛"
 
 #: shared/drawlib/cc_code_popup.php:217
 msgid "Jordan"
-msgstr ""
+msgstr "约旦"
 
 #: shared/drawlib/cc_code_popup.php:218
 msgid "Kazakhstan"
@@ -2665,15 +2608,15 @@ msgstr "肯尼亚"
 
 #: admin/inc/renewals.php:747
 msgid "Kill VPS and owner"
-msgstr ""
+msgstr "删除VPS和拥有者"
 
 #: shared/drawlib/cc_code_popup.php:220
 msgid "Kiribati"
-msgstr ""
+msgstr "吉里巴斯"
 
 #: shared/drawlib/cc_code_popup.php:221
 msgid "Korea, Democratic People's Republic Of"
-msgstr ""
+msgstr "北朝鲜民主共和国"
 
 #: shared/drawlib/cc_code_popup.php:222
 msgid "Korea, Republic Of"
@@ -2689,7 +2632,7 @@ msgstr "吉尔吉斯斯坦"
 
 #: admin/inc/renewals.php:174
 msgid "Label"
-msgstr ""
+msgstr "标签"
 
 #: client/new_account.php:36
 #: shared/gfx/skin/default_layout.php:15
@@ -2700,7 +2643,7 @@ msgstr "语言"
 
 #: shared/drawlib/cc_code_popup.php:225
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "老挝人民共和国"
 
 #: shared/inc/forms/vps_monitoring.php:176
 #: shared/inc/forms/vps_installation.php:123
@@ -2709,19 +2652,18 @@ msgstr "上次启动日期："
 
 #: admin/inc/draw_user_admin.php:409
 msgid "Last message age"
-msgstr ""
+msgstr "最后一条信息是多久以前"
 
 #: admin/inc/draw_user_admin.php:409
 msgid "Last message from"
-msgstr ""
+msgstr "最后一条信息从"
 
 #: shared/inc/forms/vps_monitoring.php:80
 #: shared/inc/forms/vps_monitoring.php:81
 #: shared/inc/forms/vps_monitoring.php:82
 #: shared/inc/forms/vps_monitoring.php:83
-#, fuzzy
 msgid "Last month: "
-msgstr "上一条警告："
+msgstr "上个月："
 
 #: admin/inc/dtc_config.php:223
 msgid "Last warning: "
@@ -2754,7 +2696,7 @@ msgstr "利比里亚"
 
 #: shared/drawlib/cc_code_popup.php:230
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "利比亚"
 
 #: shared/drawlib/cc_code_popup.php:231
 msgid "Liechtenstein"
@@ -2766,16 +2708,15 @@ msgstr "成功创建了#name#@#domain#列表！"
 
 #: shared/inc/forms/lists.php:97
 msgid "List name"
-msgstr "名称"
+msgstr "列表名:"
 
 #: shared/inc/forms/lists.php:70
-#, fuzzy
 msgid "List name:"
-msgstr "名称"
+msgstr "列表名:"
 
 #: admin/inc/renewals.php:160
 msgid "List of payments done by your hosting company"
-msgstr ""
+msgstr "您的托管公司已经支付的列表"
 
 #: admin/inc/dtc_config.php:366
 msgid "List of the administrators receiving request for support messages:"
@@ -2783,33 +2724,31 @@ msgstr "处理支持请求的管理员列表："
 
 #: shared/inc/forms/ftp.php:51
 msgid "List of your FTP accounts: "
-msgstr "您的FTP帐户列表："
+msgstr "您的FTP账户列表："
 
 #: shared/inc/forms/ssh.php:45
 msgid "List of your SSH accounts:"
-msgstr "您的SSH帐户列表："
+msgstr "您的SSH账户列表："
 
 #: admin/inc/dtc_config.php:1430
 msgid "List of your companies:"
-msgstr ""
+msgstr "您的公司的列表"
 
 #: shared/inc/forms/database.php:68
 msgid "List of your databases:"
-msgstr "数据库列表："
+msgstr "您的数据库列表："
 
 #: shared/inc/forms/aliases.php:21
 msgid "List of your mail groups"
-msgstr ""
+msgstr "您的邮件组的列表"
 
 #: shared/inc/forms/email.php:530
-#, fuzzy
 msgid "List of your mailboxes:"
-msgstr "数据库列表："
+msgstr "您的邮箱列表："
 
 #: shared/inc/forms/lists.php:27
-#, fuzzy
 msgid "List of your mailing lists"
-msgstr "数据库列表："
+msgstr "您的邮件列表的列表："
 
 #: shared/dtcrm/draw_nameservers.php:79
 msgid "List of your registred name-servers:"
@@ -2817,27 +2756,26 @@ msgstr "您已注册的域名服务器的列表："
 
 #: shared/inc/forms/subdomain.php:125
 msgid "List of your subdomains: "
-msgstr "子域名列表："
+msgstr "您的子域名列表："
 
 #: shared/inc/forms/lists.php:72
 #: shared/inc/forms/lists.php:97
 msgid "List owner"
-msgstr "管理员"
+msgstr "邮件列表拥有者的列表"
 
 #: shared/inc/forms/lists.php:99
-#, fuzzy
 msgid "List owner:"
-msgstr "管理员"
+msgstr "邮件列表拥有者的列表:"
 
 #: admin/inc/dtc_config.php:920
-#, fuzzy
 msgid ""
 "List the DNS server IPs allowed to do zone<br>\n"
 "transfers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup DNS server):"
 msgstr ""
-"列出所有的备用MX服务器(用\"|\"隔开)<br>\n"
-"(如果没有则留空)："
+"列出所有的被允许操作 zone AXFR的DNS 服务器IPs <br>\n"
+"被分隔&quot;|&quot; (pipe)<br>\n"
+"(如果没有备用DNS服务器则留空)："
 
 #: admin/inc/dtc_config.php:888
 msgid ""
@@ -2856,9 +2794,8 @@ msgid "Lithuania"
 msgstr "立陶宛"
 
 #: admin/inc/dtc_config.php:853
-#, fuzzy
 msgid "Local network area ip address of the vhost using NAT: "
-msgstr "虚拟主机监听的内网地址："
+msgstr "vhost 正在使用的 NAT的本地网络区域ip地址 : "
 
 #: admin/inc/dtc_config.php:296
 #: admin/inc/dtc_config.php:596
@@ -2867,10 +2804,9 @@ msgstr "位置"
 
 #: client/new_account.php:176
 msgid "Location is not a valid hostname."
-msgstr ""
+msgstr "位置不是有效的主机名"
 
 #: admin/inc/dtc_config.php:787
-#, fuzzy
 msgid "Location of user's database: "
 msgstr "用户数据库的位置："
 
@@ -2899,15 +2835,15 @@ msgstr "用户数据库的位置："
 #: shared/gfx/skin/bwoup/layout.php:253
 #: shared/gfx/skin/bwoup/layout.php:262
 msgid "Login"
-msgstr "登陆"
+msgstr "登录"
 
 #: client/new_account_form.php:710
 msgid "Login info"
-msgstr "登陆信息"
+msgstr "登录信息"
 
 #: shared/inc/forms/email.php:328
 msgid "Login successfull. Please select a menu entry on the left..."
-msgstr ""
+msgstr "登录成功.请在左边选择一个菜单进入..."
 
 #: admin/inc/draw_user_admin.php:229
 #: shared/inc/forms/aliases.php:42
@@ -2916,17 +2852,15 @@ msgstr ""
 #: shared/inc/forms/email.php:553
 #: shared/inc/forms/email.php:559
 #: shared/inc/forms/ssh.php:71
-#, fuzzy
 msgid "Login:"
-msgstr "登陆"
+msgstr "登录:"
 
 #: client/login.php:10
 #: client/new_account_form.php:560
 #: email/login.php:10
 #: shared/inc/forms/ftp.php:77
-#, fuzzy
 msgid "Login: "
-msgstr "登陆"
+msgstr "登录:"
 
 #: admin/inc/dtc_config.php:1473
 msgid "Logo path relative to"
@@ -2945,7 +2879,7 @@ msgstr "卢森堡"
 #: shared/inc/forms/email.php:587
 #: shared/inc/forms/email.php:594
 msgid "MBytes"
-msgstr ""
+msgstr "MBytes"
 
 #: admin/inc/dtc_config.php:47
 msgid "MX and NS backup servers"
@@ -2964,43 +2898,40 @@ msgid "Madagascar"
 msgstr "马达加斯加"
 
 #: shared/inc/draw.php:387
-#, fuzzy
 msgid "Mail Groups:"
-msgstr "邮箱："
+msgstr "邮件组："
 
 #: admin/inc/graphs.php:11
 msgid "Mail Queue graph"
-msgstr ""
+msgstr "邮件排列图表"
 
 #: admin/inc/graphs.php:14
 msgid "Mail Queue statistics"
-msgstr ""
+msgstr "邮件排列统计"
 
 #: admin/deamons_state.php:133
-#, fuzzy
 msgid "Mail gen files"
-msgstr "域名文件："
+msgstr "Mail gen files"
 
 #: shared/inc/draw.php:389
 msgid "Mail groups of "
-msgstr ""
+msgstr "邮件组的"
 
 #: admin/deamons_state.php:131
 msgid "Mail restart"
-msgstr ""
+msgstr "邮件重启"
 
 #: shared/inc/forms/lists.php:238
 msgid "Mail server used to send the messages."
-msgstr "发送这封邮件的服务器。"
+msgstr "曾经发送邮件的服务器."
 
 #: admin/deamons_state.php:132
 msgid "Mail-newu"
-msgstr ""
+msgstr "Mail-newu"
 
 #: shared/inc/forms/email.php:533
-#, fuzzy
 msgid "Mailbox configuration:"
-msgstr "配置FTP备份参数配置"
+msgstr "邮箱配置:"
 
 #: shared/inc/forms/email.php:311
 msgid "Mailbox configuration: "
@@ -3008,21 +2939,20 @@ msgstr "邮箱配置："
 
 #: shared/inc/sql/email.php:23
 msgid "Mailbox does not exists in database!<br>\n"
-msgstr "邮箱地址不存在！<br>\n"
+msgstr "邮箱不存在在数据库中！<br>\n"
 
 #: shared/inc/forms/email.php:601
 msgid "Mailbox max files quota: "
-msgstr "最大文件数："
+msgstr "邮箱最大文件配额："
 
 #: shared/inc/forms/email.php:582
 #: shared/inc/forms/email.php:595
 msgid "Mailbox quota: "
-msgstr "邮箱空间："
+msgstr "邮箱空间配额："
 
 #: shared/inc/forms/email.php:27
-#, fuzzy
 msgid "Mailbox type"
-msgstr "邮箱："
+msgstr "邮箱类型"
 
 #: shared/inc/draw.php:251
 msgid "Mailboxes"
@@ -3030,7 +2960,7 @@ msgstr "邮箱"
 
 #: shared/inc/draw.php:385
 msgid "Mailboxes of "
-msgstr "邮箱"
+msgstr "的邮箱"
 
 #: shared/inc/draw.php:383
 #: shared/inc/forms/domain_info.php:54
@@ -3038,31 +2968,28 @@ msgid "Mailboxes:"
 msgstr "邮箱："
 
 #: shared/inc/draw.php:265
-#, fuzzy
 msgid "Mailing lists"
-msgstr "数据库列表："
+msgstr "邮件列表"
 
 #: shared/inc/draw.php:391
 msgid "Mailing lists:"
 msgstr "邮件列表："
 
 #: admin/inc/dtc_config.php:835
-#, fuzzy
 msgid "Main ip address of the server: "
-msgstr "本服务器的主IP："
+msgstr "本服务器的主要IP地址："
 
 #: admin/inc/dtc_config.php:830
 msgid "Main software configuration of DTC"
-msgstr "设置网络参数"
+msgstr "DTC的主要软件配置"
 
 #: shared/drawlib/cc_code_popup.php:237
 msgid "Malawi"
 msgstr "马拉维"
 
 #: shared/drawlib/cc_code_popup.php:238
-#, fuzzy
 msgid "Malaysia"
-msgstr "别名"
+msgstr "马来西亚"
 
 #: shared/drawlib/cc_code_popup.php:239
 msgid "Maldives"
@@ -3082,7 +3009,7 @@ msgstr "管理我的域名服务器："
 
 #: shared/drawlib/cc_code_popup.php:242
 msgid "Marshall Islands"
-msgstr ""
+msgstr "马绍尔群岛"
 
 #: shared/drawlib/cc_code_popup.php:243
 msgid "Martinique"
@@ -3098,25 +3025,23 @@ msgstr "毛里求斯"
 
 #: shared/inc/forms/root_admin.php:373
 msgid "Max FTP"
-msgstr "FTP账户数量上限"
+msgstr "FTP 最大数量"
 
 #: shared/inc/forms/root_admin.php:381
 msgid "Max SSH"
-msgstr "SSH账户数量上限"
+msgstr "SSH 最大数量"
 
 #: shared/inc/forms/lists.php:430
 msgid "Max VERP recipients:"
 msgstr "最大VERP收件人数量："
 
 #: admin/dtcrm/product_manager.php:61
-#, fuzzy
 msgid "Max database"
-msgstr "需要一个数据库"
+msgstr "最大数据库"
 
 #: admin/dtcrm/product_manager.php:56
-#, fuzzy
 msgid "Max email"
-msgstr "我的邮件"
+msgstr "最大email"
 
 #: shared/inc/forms/lists.php:427
 msgid "Max mail memory size:"
@@ -3129,44 +3054,42 @@ msgstr "最大内存："
 
 #: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
-msgstr ""
+msgstr "可到达的最大列表数"
 
 #: shared/inc/forms/vps_monitoring.php:152
 #: shared/inc/forms/vps_installation.php:99
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
-msgstr "最大内存：无法得知(可能正在起动？)"
+msgstr "最大：无法得知(可能正在启动？)"
 
 #: admin/inc/dtc_config.php:1242
 msgid "Maxmind license key: "
-msgstr ""
+msgstr "Maxmind 证书密码: "
 
 #: admin/inc/dtc_config.php:1238
-#, fuzzy
 msgid "Maxmind login: "
-msgstr "FTP登陆账号："
+msgstr "Maxmind login: "
 
 #: shared/drawlib/cc_code_popup.php:246
 msgid "Mayotte"
-msgstr ""
+msgstr "马约特岛"
 
 #: admin/inc/renewals.php:191
-#, fuzzy
 msgid "Means of payment"
-msgstr "已支付的款项"
+msgstr "付款类型"
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
-msgstr ""
+msgstr "内存和Swap用量 "
 
 #: shared/inc/forms/vps_monitoring.php:147
 #: shared/inc/forms/vps_installation.php:94
 msgid "Memory: "
-msgstr ""
+msgstr "内存: "
 
 #: shared/inc/forms/vps_monitoring.php:125
 #: shared/inc/forms/vps_installation.php:72
 msgid "Method getVPSState failed"
-msgstr ""
+msgstr "无法取得VPSState"
 
 #: shared/drawlib/cc_code_popup.php:247
 msgid "Mexico"
@@ -3174,11 +3097,11 @@ msgstr "墨西哥"
 
 #: shared/drawlib/cc_code_popup.php:248
 msgid "Micronesia, Federated States Of"
-msgstr ""
+msgstr "密克罗尼西亚联邦政府"
 
 #: shared/inc/forms/lists.php:399
 msgid "Moderated:"
-msgstr "适中的："
+msgstr "仲裁："
 
 #: shared/inc/forms/lists.php:400
 msgid "Moderators:"
@@ -3186,7 +3109,7 @@ msgstr "斑竹："
 
 #: shared/drawlib/cc_code_popup.php:249
 msgid "Moldova, Republic Of"
-msgstr ""
+msgstr "摩尔多瓦共和国"
 
 #: shared/drawlib/cc_code_popup.php:250
 msgid "Monaco"
@@ -3199,7 +3122,7 @@ msgstr "账户余额："
 #: admin/inc/renewals.php:42
 #: admin/inc/renewals.php:44
 msgid "Money spent"
-msgstr ""
+msgstr "资金花费"
 
 #: shared/drawlib/cc_code_popup.php:251
 msgid "Mongolia"
@@ -3207,25 +3130,23 @@ msgstr "蒙古"
 
 #: shared/inc/draw.php:160
 msgid "Monitoring"
-msgstr ""
+msgstr "监控"
 
 #: admin/inc/dtc_config.php:442
 msgid "Monthly"
 msgstr "每月"
 
 #: shared/drawlib/cc_code_popup.php:252
-#, fuzzy
 msgid "Montserrat"
-msgstr "适中的："
+msgstr "蒙特色拉特岛"
 
 #: admin/inc/renewals.php:755
 msgid "More than one VPS"
-msgstr ""
+msgstr "多于一个VPS"
 
 #: admin/inc/renewals.php:758
-#, fuzzy
 msgid "More than one login"
-msgstr "登陆"
+msgstr "多于一个登录"
 
 #: shared/drawlib/cc_code_popup.php:253
 msgid "Morocco"
@@ -3240,47 +3161,46 @@ msgid "My Account information:"
 msgstr "我的账户信息："
 
 #: shared/inc/draw.php:150
-#, fuzzy
 msgid "My account"
-msgstr "FTP帐户"
+msgstr "我的账户"
 
 #: shared/inc/draw.php:413
 msgid "My account global statistics"
-msgstr "帐户统计信息"
+msgstr "我的账户完整统计信息"
 
 #: shared/inc/forms/email.php:296
 msgid "My e-mail"
-msgstr "我的邮箱"
+msgstr "我的e-mail"
 
 #: shared/inc/sql/database.php:226
 msgid "MySql database ownership not valid: I will not let you change owner of this database because it doesn't seems to be owned by you."
-msgstr "MySQL数据库属主关系错误：我不能让你更改这个数据库的属主，它看起来并不属于你。"
+msgstr "MySQL数据库属主关系错误：我不能让你更改这个数据库的属主，它看起来并不属于你."
 
 #: shared/inc/sql/database.php:181
 msgid "MySql database ownership not valid: I will not let you delete this database because it doesn't seem to be owned by you."
-msgstr "MySQL数据库属主关系错误：我不能让你删掉这个数据库，它看起来并不属于你。"
+msgstr "MySQL数据库属主关系错误：我不能让你删掉这个数据库，它看起来并不属于你."
 
 #: shared/drawlib/cc_code_popup.php:255
 msgid "Myanmar"
-msgstr ""
+msgstr "缅甸"
 
 #: admin/inc/renewals.php:436
 #: admin/inc/renewals.php:437
 #: admin/inc/renewals.php:438
 msgid "N/A"
-msgstr ""
+msgstr "不存在"
 
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
-msgstr "域名配置文件"
+msgstr "NAMED ZONES 文件"
 
 #: admin/inc/dtc_config.php:1256
 msgid "NAS config"
-msgstr ""
+msgstr "NAS 配置"
 
 #: admin/inc/dtc_config.php:337
 msgid "NAT Port"
-msgstr ""
+msgstr "NAT 端口"
 
 #: client/new_account.php:112
 msgid "NOT VALIDATED"
@@ -3295,7 +3215,7 @@ msgstr "名称"
 
 #: shared/dtcrm/draw_handle.php:223
 msgid "Name for this handle: "
-msgstr "句柄的名字："
+msgstr " handle的名字："
 
 #: shared/inc/forms/lists.php:70
 msgid "Name of the list."
@@ -3303,62 +3223,55 @@ msgstr "邮件列表的名称："
 
 #: shared/dtcrm/draw_nameservers.php:107
 msgid "Name server hostname: "
-msgstr "域名服务器的域名(不是IP)："
+msgstr "域名服务器的主机名："
 
 #: shared/inc/draw.php:144
-#, fuzzy
 msgid "Name servers"
-msgstr "测试服务器"
+msgstr "域名服务器"
 
 #: shared/inc/draw.php:402
 #: shared/inc/draw.php:448
 msgid "Name servers:"
-msgstr "域名服务器"
+msgstr "域名服务器:"
 
 #: shared/inc/forms/email.php:562
 msgid "Name:"
-msgstr ""
+msgstr "名字:"
 
 #: admin/inc/dtc_config.php:1273
 #: shared/inc/forms/vps_monitoring.php:143
 #: shared/inc/forms/vps_installation.php:90
-#, fuzzy
 msgid "Name: "
-msgstr "昵称"
+msgstr "名字:"
 
 #: admin/inc/nav.php:5
-#, fuzzy
 msgid "Named conf files generated !"
-msgstr "设置DNS参数"
+msgstr "Named 配置文件产生！"
 
 #: admin/inc/dtc_config.php:1399
 msgid "Named file names"
-msgstr ""
+msgstr "Named 文件名字"
 
 #: admin/inc/dtc_config.php:1404
-#, fuzzy
 msgid "Named main file:"
-msgstr "设置DNS参数"
+msgstr "Named 主要文件："
 
 #: admin/inc/dtc_config.php:1412
-#, fuzzy
 msgid "Named main zonefiles folder:"
-msgstr "设置DNS参数"
+msgstr "Named 主要 zonefiles 文件夹:"
 
 #: admin/inc/dtc_config.php:1408
-#, fuzzy
 msgid "Named slave file:"
-msgstr "设置DNS参数"
+msgstr "Named slave file:"
 
 #: shared/inc/forms/dns.php:99
-#, fuzzy
 msgid "Named zonefile:"
-msgstr "设置DNS参数"
+msgstr "Named zonefile:"
 
 #: admin/inc/dtc_config.php:44
 #: admin/inc/dtc_config.php:878
 msgid "Named zonefiles"
-msgstr "设置DNS参数"
+msgstr "Named zonefiles"
 
 #: shared/drawlib/cc_code_popup.php:256
 msgid "Namibia"
@@ -3382,35 +3295,35 @@ msgstr "荷兰"
 
 #: shared/drawlib/cc_code_popup.php:260
 msgid "Netherlands Antilles"
-msgstr ""
+msgstr "荷兰安替列斯群岛"
 
 #: admin/inc/dtc_config.php:302
 msgid "Netmask"
-msgstr ""
+msgstr "Netmask"
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
-msgstr ""
+msgstr "网络流量统计"
 
 #: shared/inc/forms/vps_monitoring.php:102
 msgid "Network:"
-msgstr ""
+msgstr "网络:"
 
 #: shared/drawlib/cc_code_popup.php:261
 msgid "Neutral Zone"
-msgstr ""
+msgstr "中性区"
 
 #: shared/drawlib/cc_code_popup.php:262
 msgid "New Caledonia"
-msgstr ""
+msgstr "新喀里多尼亚"
 
 #: shared/inc/forms/ftp.php:52
 msgid "New FTP account: "
-msgstr "新的FTP帐户："
+msgstr "新的FTP账户："
 
 #: shared/inc/forms/ssh.php:46
 msgid "New SSH account:"
-msgstr "新的SSH帐户："
+msgstr "新的SSH账户："
 
 #: shared/inc/forms/vps_installation.php:267
 msgid "New SSH key: "
@@ -3422,45 +3335,42 @@ msgstr "新的 SSH 密码："
 
 #: shared/drawlib/cc_code_popup.php:263
 msgid "New Zealand"
-msgstr ""
+msgstr "新西兰"
 
 #: admin/dtcrm/main.php:11
 #: admin/dtcrm/main.php:24
 msgid "New customer"
-msgstr "新添加一名客户"
+msgstr "新客户"
 
 #: shared/inc/forms/email.php:531
 msgid "New mailbox"
-msgstr ""
+msgstr "新邮箱"
 
 #: shared/inc/forms/lists.php:86
-#, fuzzy
 msgid "New mailing list:"
-msgstr "数据库列表："
+msgstr "新邮件列表："
 
 #: shared/inc/draw.php:54
 msgid "New password:"
 msgstr "新密码："
 
 #: client/new_account.php:295
-#, fuzzy
 msgid "New service registered successfully!"
-msgstr "注册成功！"
+msgstr "新服务注册成功！"
 
 #: shared/inc/forms/subdomain.php:127
-#, fuzzy
 msgid "New subdomain"
-msgstr "子域名："
+msgstr "新的子域名"
 
 #: admin/inc/nav.php:162
 #: admin/inc/nav.php:167
 #: admin/inc/nav.php:171
 msgid "New virtual admin"
-msgstr "新的虚拟主机管理员"
+msgstr "新的虚拟管理员"
 
 #: admin/deamons_state.php:137
 msgid "Next cronjob"
-msgstr ""
+msgstr "下一个cronjob"
 
 #: shared/drawlib/cc_code_popup.php:264
 msgid "Nicaragua"
@@ -3476,11 +3386,11 @@ msgstr "尼日尔"
 
 #: shared/drawlib/cc_code_popup.php:266
 msgid "Nigeria"
-msgstr ""
+msgstr "尼日利亚"
 
 #: shared/drawlib/cc_code_popup.php:267
 msgid "Niue"
-msgstr ""
+msgstr "纽埃"
 
 #: admin/inc/draw_user_admin.php:168
 #: admin/inc/draw_user_admin.php:283
@@ -3535,13 +3445,12 @@ msgid "No"
 msgstr "否"
 
 #: admin/inc/renewals.php:667
-#, fuzzy
 msgid "No SSL IP expired"
 msgstr "没有已过期的SSL IP"
 
 #: shared/inc/forms/my_account.php:164
 msgid "No SSL token available: contact your administrator to request it."
-msgstr ""
+msgstr "没有可用的 SSL token: 联系您的管理员获得."
 
 #: admin/inc/renewals.php:701
 msgid "No VPS expired"
@@ -3557,13 +3466,12 @@ msgstr "禁止使用无限别名功能"
 
 #: admin/inc/renewals.php:429
 #: admin/inc/renewals.php:430
-#, fuzzy
 msgid "No client id"
-msgstr "客户信息"
+msgstr "没有客户ID"
 
 #: shared/inc/forms/invoices.php:52
 msgid "No completed orders found."
-msgstr ""
+msgstr "没有找到完整的订单"
 
 #: admin/inc/renewals.php:782
 msgid "No dedicated server expired"
@@ -3583,19 +3491,19 @@ msgstr "禁止域名停放"
 
 #: admin/inc/renewals.php:419
 msgid "No past payments for this period"
-msgstr ""
+msgstr "这个期间内没有以前的付款"
 
 #: admin/inc/draw_user_admin.php:271
 msgid "No pay ID!"
-msgstr ""
+msgstr "没有 pay ID!"
 
 #: admin/inc/draw_user_admin.php:320
 msgid "No pending renewals!"
-msgstr "没有发现需要保存的更改！"
+msgstr "没有等待的续约！"
 
 #: admin/inc/draw_user_admin.php:406
 msgid "No pending support tickets!"
-msgstr "没有未决的？！"
+msgstr "没有未解决的支持标签！"
 
 #: shared/inc/forms/root_admin.php:111
 msgid "No product"
@@ -3607,9 +3515,8 @@ msgstr "没有已过期的共享主机账号。"
 
 #: shared/inc/forms/my_account.php:143
 #: shared/inc/forms/my_account.php:170
-#, fuzzy
 msgid "No ssl product defined."
-msgstr "没有产品"
+msgstr "没有 ssl产品显示"
 
 #: shared/inc/forms/lists.php:401
 msgid "No subscribtion confirmation:"
@@ -3617,19 +3524,19 @@ msgstr "没有需要确认的订阅："
 
 #: shared/inc/sql/database.php:73
 msgid "No user by that name exists in the database, or you don't own this db user. Please select a new one."
-msgstr "该用户不存在，或者这个用户不归您所有，请重新输入一个。"
+msgstr "该用户在数据库中不存在，或者这个用户不归您所有，请重新输入一个。"
 
 #: admin/inc/draw_user_admin.php:243
 msgid "No user waiting!"
-msgstr "没有待添加的用户！"
+msgstr "没有等待的用户！"
 
 #: shared/drawlib/cc_code_popup.php:268
 msgid "Norfolk Island"
-msgstr ""
+msgstr "诺福克岛"
 
 #: shared/drawlib/cc_code_popup.php:269
 msgid "Northern Mariana Islands"
-msgstr ""
+msgstr "北部马里亚群岛"
 
 #: shared/drawlib/cc_code_popup.php:270
 msgid "Norway"
@@ -3647,13 +3554,12 @@ msgid "Not registering"
 msgstr "没有注册"
 
 #: admin/inc/renewals.php:374
-#, fuzzy
 msgid "Note:"
-msgstr "其它："
+msgstr "注释:"
 
 #: admin/dtcrm/main.php:176
 msgid "Notes: "
-msgstr "其它："
+msgstr "注释："
 
 #: shared/inc/forms/lists.php:420
 msgid "Notifications"
@@ -3665,15 +3571,15 @@ msgstr "有新的订阅时提示："
 
 #: shared/inc/forms/lists.php:424
 msgid "Notify when post and no access:"
-msgstr "发送后提示："
+msgstr "发送和未发送提示："
 
 #: shared/inc/forms/lists.php:422
 msgid "Notify when post and not subscribed:"
-msgstr "发送后未订阅时提示："
+msgstr "发送和未订阅时提示："
 
 #: shared/dtcrm/draw_adddomain.php:161
 msgid "Now you can go to check its configuration by clicking here:"
-msgstr "点击这里，您可以检查域名的配置："
+msgstr "点击这里，现在您可以检查配置："
 
 #: shared/inc/forms/vps_monitoring.php:155
 #: shared/inc/forms/vps_installation.php:102
@@ -3683,27 +3589,24 @@ msgstr "CPU个数："
 #: shared/inc/forms/vps_monitoring.php:157
 #: shared/inc/forms/vps_installation.php:104
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
-msgstr "CPU个数：无法得知(可能正在起动？)"
+msgstr "CPU个数：无法得知(可能正在启动？)"
 
 #: shared/inc/forms/ftp.php:61
-#, fuzzy
 msgid "Number of active ftp accounts:"
-msgstr "现有邮箱数量："
+msgstr "有效的 ftp账户数量："
 
 #: shared/inc/forms/aliases.php:31
 #: shared/inc/forms/email.php:540
 msgid "Number of active mailboxes:"
-msgstr "现有邮箱数量："
+msgstr "有效的邮箱数量："
 
 #: shared/inc/forms/lists.php:24
-#, fuzzy
 msgid "Number of active mailing lists"
-msgstr "现有邮箱数量："
+msgstr "有效的邮件列表数量"
 
 #: shared/inc/forms/ssh.php:55
-#, fuzzy
 msgid "Number of active ssh accounts:"
-msgstr "现有邮箱数量："
+msgstr "有效的 ssh账户数量："
 
 #: shared/inc/forms/subdomain.php:135
 msgid "Number of active subdomains:"
@@ -3711,7 +3614,7 @@ msgstr "现有子域名数量："
 
 #: shared/inc/forms/root_admin.php:129
 msgid "Number of databases:"
-msgstr "数据库的数目："
+msgstr "数据库的数量："
 
 #: admin/deamons_state.php:93
 #: email/login.php:16
@@ -3724,23 +3627,23 @@ msgstr "数据库的数目："
 #: shared/inc/forms/email.php:275
 #: shared/inc/forms/my_account.php:191
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: shared/inc/forms/ticket.php:153
 msgid "Old tickets:"
-msgstr "过往的tickets："
+msgstr "已往的标签："
 
 #: shared/drawlib/cc_code_popup.php:271
 msgid "Oman"
-msgstr ""
+msgstr "阿曼"
 
 #: admin/inc/dtc_config.php:307
 msgid "One zonefile per IP"
-msgstr ""
+msgstr "每个 IP 一个 zonefile"
 
 #: admin/inc/dtc_config.php:307
 msgid "One zonefile per pool"
-msgstr ""
+msgstr "每个IP pool 一个zonefile"
 
 #: shared/inc/draw.php:577
 msgid "Online DTC help"
@@ -3784,24 +3687,24 @@ msgid ""
 "PHP libraries open_basedir<br>\n"
 "(separated by \":\", reset on each dtc install):"
 msgstr ""
-"PHP库文件路径(用\":\"分隔<br>\n"
-"新安装的DTC控制面板须重新设置)："
+"PHP 程序库 open_basedir<br>\n"
+"(用\":\"分隔, 每次DTC 安装时须重新设置)："
 
 #: admin/inc/dtc_config.php:1392
 msgid ""
 "PHP open_basedir additional libraries path<br>\n"
 "(survives reinstallation):"
 msgstr ""
-"PHP附加库文件路径(用\":\"分隔<br>\n"
-"新安装的DTC控制面板无须重新设置)："
+"PHP open_basedir 附加程序库路径<br>\n"
+"(残存重安装)："
 
 #: shared/inc/forms/root_admin.php:351
 msgid "PHP safe_mode"
-msgstr ""
+msgstr "PHP safe_mode"
 
 #: shared/inc/forms/vps_monitoring.php:229
 msgid "POP3: "
-msgstr ""
+msgstr "POP3: "
 
 #: shared/inc/draw.php:438
 msgid "Package"
@@ -3809,16 +3712,15 @@ msgstr "软件包"
 
 #: shared/inc/draw.php:242
 msgid "Package installer"
-msgstr "安装程序"
+msgstr "软件包安装"
 
 #: shared/inc/draw.php:436
-#, fuzzy
 msgid "Package installer:"
-msgstr "软件包描述"
+msgstr "软件包安装:"
 
 #: shared/inc/forms/packager.php:218
 msgid "Package name"
-msgstr "软件包描述"
+msgstr "软件包名字"
 
 #: shared/inc/forms/packager.php:218
 msgid "Package version"
@@ -3830,7 +3732,7 @@ msgstr "巴基斯坦"
 
 #: shared/drawlib/cc_code_popup.php:273
 msgid "Palau"
-msgstr ""
+msgstr "帕劳群岛"
 
 #: shared/drawlib/cc_code_popup.php:274
 msgid "Palestine"
@@ -3842,7 +3744,7 @@ msgstr "巴拿马"
 
 #: shared/drawlib/cc_code_popup.php:276
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "巴布亚新几内亚"
 
 #: shared/drawlib/cc_code_popup.php:277
 msgid "Paraguay"
@@ -3856,21 +3758,20 @@ msgstr "巴拉圭"
 #: shared/inc/draw.php:319
 #: shared/inc/draw.php:466
 #: shared/inc/forms/reseller.php:24
-#, fuzzy
 msgid "Password"
-msgstr "FTP登陆密码："
+msgstr "登录密码"
 
 #: admin/inc/submit_root_querys.php:274
 msgid "Password consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n"
-msgstr "密码应该仅由字母和数字组成(a-zA-Z0-9)，并且长度在6到16个字符之间。<br>\n"
+msgstr "密码应该仅由字母和数字组成(a-zA-Z0-9)，并且长度在6到16个字符之间. <br>\n"
 
 #: client/new_account_form.php:67
 msgid "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars."
-msgstr "密码格式不正确。请使用数字或字母，并且是4到16个字符数之间。"
+msgstr "密码格式不正确. 请使用数字或字母，并且是4到16个字符数之间."
 
 #: shared/inc/sql/database.php:21
 msgid "Password must consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long."
-msgstr "密码应该仅有字母和数字组成(a-zA-Z0-9)，并且长度应该在6到16个字符之间。"
+msgstr "密码应该仅有字母和数字组成(a-zA-Z0-9)，并且长度应该在6到16个字符之间. "
 
 #: admin/inc/draw_user_admin.php:230
 #: client/login.php:13
@@ -3890,18 +3791,16 @@ msgstr "密码："
 #: email/login.php:13
 #: shared/inc/forms/email.php:216
 #: shared/inc/forms/ftp.php:81
-#, fuzzy
 msgid "Password: "
-msgstr "FTP登陆密码："
+msgstr "密码："
 
 #: client/new_account_form.php:72
-#, fuzzy
 msgid "Passwords 1 and 2 do not match!"
-msgstr "两次输入的密码不匹配！"
+msgstr "密码1和2不匹配！"
 
 #: shared/dtcrm/draw.php:42
 msgid "Past account refundal"
-msgstr ""
+msgstr "旧账户金额"
 
 #: shared/inc/draw.php:126
 msgid "Past payments"
@@ -3909,17 +3808,19 @@ msgstr "已支付的款项"
 
 #: admin/inc/dtc_config.php:1342
 msgid "Path of the cgi-wrapper disk template (chroot for SBOX):"
-msgstr ""
+msgstr "cgi-wrapper disk template 路径 (chroot 对于 SBOX):"
 
 #: admin/inc/dtc_config.php:1336
 msgid "Path of your DTC shared directory:"
-msgstr "DTC控制面板\"shared\"目录："
+msgstr "DTC shared 目录的路径："
 
 #: admin/inc/dtc_config.php:1345
 msgid ""
 "Path where DTC will be restricted for generating it's configuration files for daemons.<br>\n"
 "Each of the following (qmail, apache and named) path will be concatened to this:"
 msgstr ""
+"DTC 将被限定来产生其配置文件 对于 daemons的路径.<br>\n"
+"下边的每一个 (qmail, apache 和 named) 路径将被连结到这个:"
 
 #: admin/inc/draw_user_admin.php:231
 #: shared/inc/forms/root_admin.php:123
@@ -3928,38 +3829,33 @@ msgid "Path:"
 msgstr "路径："
 
 #: shared/inc/forms/ftp.php:86
-#, fuzzy
 msgid "Path: "
-msgstr "设置路径"
+msgstr "路径:"
 
 #: admin/inc/dtc_config.php:62
 #: admin/inc/dtc_config.php:1331
 msgid "Paths"
-msgstr "设置路径"
+msgstr "路径"
 
 #: admin/inc/dtc_config.php:1171
-#, fuzzy
 msgid "PayPal business account email: "
-msgstr "贝宝账号(邮件地址形式)："
+msgstr "贝宝商务账号(邮件地址形式)："
 
 #: admin/inc/dtc_config.php:1175
-#, fuzzy
 msgid "PayPal fee rate: "
-msgstr "费率："
+msgstr "贝宝费率："
 
 #: admin/inc/dtc_config.php:1179
-#, fuzzy
 msgid "PayPal flat fee: "
-msgstr "月租："
+msgstr "贝宝固定费用："
 
 #: admin/inc/dtc_config.php:1193
-#, fuzzy
 msgid "PayPal test account email (sandbox): "
-msgstr "贝宝测试服务器账号(邮件地址形式)："
+msgstr "贝宝测试账户email(测试服务器)："
 
 #: admin/inc/renewals.php:413
 msgid "Payements for the period: "
-msgstr ""
+msgstr "对这个时期的支付: "
 
 #: shared/dtcrm/draw_adddomain.php:312
 msgid "Payment complete. Proceed to checkout"
@@ -3973,38 +3869,34 @@ msgstr "付款日期"
 
 #: admin/inc/dtc_config.php:65
 msgid "Payment gateway"
-msgstr "设置付款接口"
+msgstr "付款方式"
 
 #: admin/inc/renewals.php:578
 #: shared/inc/forms/invoices.php:23
-#, fuzzy
 msgid "Payment gateway cost"
-msgstr "设置付款接口"
+msgstr "付费方式成本"
 
 #: admin/inc/renewals.php:460
-#, fuzzy
 msgid "Payment not found"
-msgstr "没有找到相关的类型！"
+msgstr "没有找到相关付费"
 
 #: shared/securepay/pay_functions.php:38
-#, fuzzy
 msgid "Payment system"
-msgstr "付款日期"
+msgstr "付款系统"
 
 #: admin/inc/renewals.php:289
-#, fuzzy
 msgid "Payment type edition"
-msgstr "没有找到相关的类型！"
+msgstr "付费类型编辑"
 
 #: admin/inc/renewals.php:195
 msgid "Paypal"
-msgstr ""
+msgstr "贝宝"
 
 #: admin/deamons_state.php:92
 #: admin/inc/draw_user_admin.php:281
 #: admin/inc/draw_user_admin.php:354
 msgid "Pending"
-msgstr ""
+msgstr "待定"
 
 #: admin/inc/renewals.php:424
 #: admin/inc/renewals.php:578
@@ -4014,12 +3906,11 @@ msgstr ""
 #: admin/dtcrm/product_manager.php:235
 #: shared/dtcrm/draw.php:87
 msgid "Period"
-msgstr "使用期限"
+msgstr "周期"
 
 #: shared/drawlib/cc_code_popup.php:278
-#, fuzzy
 msgid "Peru"
-msgstr "使用期限"
+msgstr "秘鲁"
 
 #: shared/drawlib/cc_code_popup.php:279
 msgid "Philippines"
@@ -4035,31 +3926,28 @@ msgstr "电话号码："
 #: shared/dtcrm/draw_handle.php:98
 #: shared/dtcrm/draw_handle.php:130
 #: shared/dtcrm/draw_handle.php:256
-#, fuzzy
 msgid "Phone number: "
 msgstr "电话号码："
 
 #: admin/inc/renewals.php:365
-#, fuzzy
 msgid "Phone:"
-msgstr "电话号码："
+msgstr "电话："
 
 #: shared/inc/forms/vps_installation.php:259
 msgid "Physical console last display and ssh access:"
-msgstr "SSH登陆情况与控制台最后一次的显示："
+msgstr "Physical console最后一次的显示和SSH登录情况："
 
 #: shared/inc/forms/vps_monitoring.php:225
-#, fuzzy
 msgid "Ping: "
-msgstr "登陆"
+msgstr "Ping: "
 
 #: shared/drawlib/cc_code_popup.php:280
 msgid "Pitcairn"
-msgstr ""
+msgstr "皮特克恩岛"
 
 #: client/new_account_renewal.php:193
 msgid "Please click on the button below to send money in your account:"
-msgstr ""
+msgstr "请点击下列的图标转账到您的账户:"
 
 #: shared/inc/forms/database.php:127
 msgid "Please create a MySQL user in order to be able to create a database."
@@ -4067,7 +3955,7 @@ msgstr "如果要创建一个数据库,请先创建一个MySQL用户。"
 
 #: admin/inc/dtc_config.php:465
 msgid "Please enter an IP address for your dom0!"
-msgstr ""
+msgstr "请对于您的 dom0 输入一个 IP 地址 !"
 
 #: shared/dtcrm/draw_adddomain.php:134
 msgid "Please enter the domain name you wish to add:"
@@ -4088,7 +3976,7 @@ msgstr "请使用下面任意一个选项进行续约："
 
 #: shared/dtcrm/draw_adddomain.php:235
 msgid "Please select the 3 contact handles you want to use for registering that domain name."
-msgstr "请选择三个您希望用来注册这个域名的联系人。"
+msgstr "请选择3个您希望用来注册这个域名的联系人。"
 
 #: shared/inc/forms/my_account.php:199
 msgid "Please tell us if the following is not correct:"
@@ -4096,7 +3984,7 @@ msgstr "请告诉我们下列信息是否正确："
 
 #: shared/inc/forms/vps_installation.php:180
 msgid "Please wait until file system check is finished first."
-msgstr "正在检查文件系统，请耐心等待..."
+msgstr "正在检查文件系统，请耐心等待."
 
 #: shared/inc/forms/vps_installation.php:182
 msgid "Please wait until operating system reinstallation has completed."
@@ -4107,14 +3995,12 @@ msgid "Poland"
 msgstr "波兰"
 
 #: admin/inc/dtc_config.php:1283
-#, fuzzy
 msgid "Port number: "
-msgstr "VPS 在xen中的编号 "
+msgstr "端口编号:"
 
 #: shared/drawlib/cc_code_popup.php:282
-#, fuzzy
 msgid "Portugal"
-msgstr "总计："
+msgstr "葡萄牙"
 
 #: admin/dtcrm/main.php:213
 #: admin/dtcrm/product_manager.php:41
@@ -4128,7 +4014,7 @@ msgstr "价格"
 
 #: admin/inc/dtc_config.php:897
 msgid "Primary DNS server address:"
-msgstr "主DNS服务器地址："
+msgstr "首选DNS服务器地址："
 
 #: shared/dtcrm/draw_whois.php:52
 msgid "Primary DNS:"
@@ -4136,7 +4022,7 @@ msgstr "首选DNS："
 
 #: shared/inc/forms/dns.php:42
 msgid "Primary MX address:"
-msgstr "主MX地址："
+msgstr "首选MX地址："
 
 #: admin/dtcrm/product_manager.php:76
 #: admin/dtcrm/product_manager.php:139
@@ -4147,11 +4033,11 @@ msgstr "私有"
 
 #: shared/dtcrm/draw.php:167
 msgid "Proceed to account upgrade"
-msgstr ""
+msgstr "进行账户升级"
 
 #: shared/dtcrm/draw_adddomain.php:322
 msgid "Proceed to name-registration"
-msgstr "进入域名注册"
+msgstr "进行域名注册"
 
 #: shared/dtcrm/draw_transferdomain.php:79
 msgid "Proceed to transfer"
@@ -4168,9 +4054,8 @@ msgid "Product"
 msgstr "产品"
 
 #: shared/inc/forms/root_admin.php:497
-#, fuzzy
 msgid "Product ID"
-msgstr "产品"
+msgstr "产品ID"
 
 #: client/new_account_form.php:41
 msgid "Product ID not valid!"
@@ -4184,60 +4069,53 @@ msgstr "产品ID："
 #: admin/dtcrm/product_manager.php:86
 #: admin/dtcrm/product_manager.php:149
 #: admin/dtcrm/product_manager.php:212
-#, fuzzy
 msgid "Product list editor"
-msgstr "生产服务器"
+msgstr "产品列表编辑器"
 
 #: admin/dtcrm/product_manager.php:31
-#, fuzzy
 msgid "Product name"
-msgstr "产品"
+msgstr "产品名字"
 
 #: admin/inc/renewals.php:450
-#, fuzzy
 msgid "Product not found"
-msgstr "Ticket未找到！"
+msgstr "产品未找到"
 
 #: client/new_account_form.php:49
 msgid "Product not found in database"
-msgstr ""
+msgstr "产品在数据库中未找到"
 
 #: client/new_account_renewal.php:59
-#, fuzzy
 msgid "Product to renew:"
-msgstr "产品"
+msgstr "产品需续订:"
 
 #: client/new_account_form.php:708
-#, fuzzy
 msgid "Product:"
-msgstr "产品"
+msgstr "产品:"
 
 #: shared/inc/forms/root_admin.php:232
 #: shared/inc/forms/root_admin.php:277
-#, fuzzy
 msgid "Product: "
-msgstr "产品"
+msgstr "产品:"
 
 #: admin/inc/dtc_config.php:1212
 msgid "Production server"
-msgstr "生产服务器"
+msgstr "成品服务器"
 
 #: admin/inc/renewals.php:578
-#, fuzzy
 msgid "Profit"
-msgstr "私有"
+msgstr "利润"
 
 #: shared/inc/forms/domain_stats.php:74
 msgid "Protect your logs and stats folder with a password"
-msgstr ""
+msgstr "使用密码保护您的日志和统计文件夹"
 
 #: shared/inc/forms/email.php:315
 msgid "Protect your mailbox with efficient tools:"
-msgstr ""
+msgstr "使用效率工具保护您的邮箱:"
 
 #: shared/drawlib/cc_code_popup.php:283
 msgid "Puerto Rico"
-msgstr ""
+msgstr "波多黎各岛"
 
 #: shared/drawlib/cc_code_popup.php:284
 msgid "Qatar"
@@ -4249,20 +4127,19 @@ msgstr "数量"
 
 #: admin/inc/monitor.php:15
 msgid "Quota"
-msgstr ""
+msgstr "配额空间"
 
 #: admin/dtcrm/main.php:178
-#, fuzzy
 msgid "Quota (MB): "
-msgstr "磁盘配额(MB)："
+msgstr "配额空间(MB)："
 
 #: admin/dtcrm/product_manager.php:129
 msgid "RAM"
-msgstr ""
+msgstr "RAM"
 
 #: admin/inc/nav.php:73
 msgid "REINIT NAMED ZONES"
-msgstr "域名重置"
+msgstr "初始化NAMED ZONES"
 
 #: admin/inc/dtc_config.php:379
 msgid "Real name"
@@ -4270,7 +4147,7 @@ msgstr "真实姓名"
 
 #: shared/inc/forms/lists.php:262
 msgid "Recreate all messages of webarchive. Use this only if you have changed the webarchive\\'s template. NOTE: this works only if you have &quot;web archive&quot; checked."
-msgstr "重新创建所有归档文件。请仅仅在您修改了归档文件的模板时才使用这个功能。注意：仅仅当您使用归档模式的时候，该参数才有效。"
+msgstr "重新创建所有webarchive信息。请仅仅在您修改了webarchive\\的模板时才使用这个功能。注意：仅仅当您&quot;web archive&quot; checked.的时候，该参数才有效."
 
 #: shared/inc/forms/lists.php:444
 msgid "Recreate:"
@@ -4292,15 +4169,13 @@ msgstr "邮件转发2："
 
 #: shared/dtcrm/draw.php:70
 msgid "Refund"
-msgstr ""
+msgstr "退款"
 
 #: shared/inc/forms/my_account.php:188
-#, fuzzy
 msgid "Refund my account:"
-msgstr "我的退款："
+msgstr "退款到我的账户："
 
 #: shared/dtcrm/draw_adddomain.php:75
-#, fuzzy
 msgid "Register"
 msgstr "注册"
 
@@ -4333,7 +4208,7 @@ msgstr "注册失败"
 
 #: admin/inc/dtc_config.php:1461
 msgid "Registration number:"
-msgstr "注册的号码："
+msgstr "注册号码："
 
 #: shared/dtcrm/draw_nameservers.php:42
 msgid "Registration of your name server failed"
@@ -4348,9 +4223,8 @@ msgid "Registration successful!"
 msgstr "注册成功！"
 
 #: admin/inc/dtc_config.php:689
-#, fuzzy
 msgid "Registry selection"
-msgstr "注册"
+msgstr "注册选择"
 
 #: shared/inc/forms/vps_installation.php:236
 msgid "Reinstall operating system"
@@ -4366,13 +4240,12 @@ msgid "Reinstalling operating system..."
 msgstr "重新安装操作系统..."
 
 #: shared/inc/forms/lists.php:229
-#, fuzzy
 msgid "Reject mails that don\\'t have the list address in the To: or Cc:."
-msgstr "拒收没有收件(或抄送)人的邮件。"
+msgstr "拒收没有\\收件(或抄送)人列表的邮件"
 
 #: shared/inc/forms/my_account.php:184
 msgid "Remaining money on my account:"
-msgstr "我的帐户余额："
+msgstr "我的账户余额："
 
 #: shared/dtcrm/draw_adddomain.php:291
 #: shared/dtcrm/draw_transferdomain.php:101
@@ -4381,7 +4254,7 @@ msgstr "您帐户的余额："
 
 #: admin/inc/dtc_config.php:231
 msgid "Reminders and registration message subject header:"
-msgstr ""
+msgstr "提示和注册信息主题标题:"
 
 #: admin/dtcrm/main.php:71
 msgid "Remove an administrator for this customer:"
@@ -4389,7 +4262,7 @@ msgstr "为这名顾客取消一个管理员："
 
 #: shared/inc/forms/my_account.php:114
 msgid "Renew my account"
-msgstr "账户充值"
+msgstr "续约我的账户"
 
 #: client/new_account_renewal.php:58
 msgid "Renewal for login:"
@@ -4407,17 +4280,17 @@ msgstr "续约报告"
 #: admin/dtcrm/product_manager.php:161
 #: admin/dtcrm/product_manager.php:224
 msgid "Renewal-ID"
-msgstr "重置ID"
+msgstr "续约-ID"
 
 #: admin/inc/dtc_config.php:68
 msgid "Renewals"
-msgstr "更新"
+msgstr "续约"
 
 #: shared/gfx/skin/default_layout.php:280
 #: shared/gfx/skin/bwoup/layout.php:417
 #: shared/gfx/skin/bwoup/layout.php:419
 msgid "Renewals management"
-msgstr "刷新管理信息"
+msgstr "续约管理"
 
 #: shared/inc/forms/ticket.php:129
 msgid "Request to close the issue:"
@@ -4425,63 +4298,62 @@ msgstr "申请关闭这个问题："
 
 #: admin/inc/draw_user_admin.php:164
 msgid "Request to close the ticket: "
-msgstr "关闭主题："
+msgstr "申请关闭这个标签："
 
 #: client/new_account_form.php:167
 msgid "Required field address (line 1) missing."
-msgstr ""
+msgstr "必填地址栏(第一行)缺失."
 
 #: client/new_account_form.php:203
 msgid "Required field city missing."
-msgstr "必填的城市一项没有填写。"
+msgstr "必填的城市一项缺失."
 
 #: client/new_account_form.php:113
 msgid "Required field family name missing."
-msgstr "必填的姓氏一项没有填写。"
+msgstr "必填的姓氏一项缺失."
 
 #: client/new_account_form.php:125
 msgid "Required field first name missing."
-msgstr "必填的名字一项没有填写。"
+msgstr "必填的名字一项缺失."
 
 #: client/new_account_form.php:137
 msgid "Required field phone missing."
-msgstr ""
+msgstr "必填电话栏缺失."
 
 #: client/new_account_form.php:191
 msgid "Required field zipcode missing."
-msgstr "必填的邮政编码一项没有填写。"
+msgstr "必填的邮政编码一项缺失."
 
 #: shared/inc/draw.php:462
 msgid "Resseller child accounts"
-msgstr "子账户"
+msgstr "转售人的子账户"
 
 #: shared/inc/draw.php:55
 msgid "Retype new password:"
-msgstr "确认密码："
+msgstr "重新输入新密码："
 
 #: shared/drawlib/cc_code_popup.php:285
 msgid "Reunion"
-msgstr ""
+msgstr "留尼汪岛"
 
 #: shared/inc/forms/lists.php:395
 msgid "Rights"
 msgstr "权限"
 
 #: shared/drawlib/cc_code_popup.php:286
-#, fuzzy
 msgid "Romania"
-msgstr "公司"
+msgstr "罗马尼亚"
 
 #: admin/deamons_state.php:291
 #: admin/deamons_state.php:297
 #: admin/deamons_state.php:303
 #: admin/deamons_state.php:309
 msgid "Running ok"
-msgstr ""
+msgstr "运行正常"
 
 #: shared/drawlib/cc_code_popup.php:287
 msgid "Russian Federation"
-msgstr ""
+msgstr "俄罗思联邦"
 
 #: shared/drawlib/cc_code_popup.php:288
 msgid "Rwanda"
@@ -4493,7 +4365,7 @@ msgstr "配置SMTP"
 
 #: shared/inc/forms/lists.php:428
 msgid "SMTP relay server:"
-msgstr "SMTP转发服务器："
+msgstr "SMTP转送服务器："
 
 #: admin/deamons_state.php:157
 msgid "SMTP server"
@@ -4501,12 +4373,11 @@ msgstr "SMTP服务器"
 
 #: shared/inc/forms/vps_monitoring.php:228
 msgid "SMTP: "
-msgstr ""
+msgstr "SMTP: "
 
 #: admin/inc/dtc_config.php:600
-#, fuzzy
 msgid "SOAP login"
-msgstr "FTP登陆账号："
+msgstr "SOAP登录"
 
 #: admin/inc/dtc_config.php:604
 msgid "SOAP password"
@@ -4514,35 +4385,33 @@ msgstr "SOAP密码"
 
 #: shared/inc/forms/email.php:574
 msgid "SPAM mailbox destination: "
-msgstr "垃圾邮件转发到："
+msgstr "垃圾邮件发送到："
 
 #: shared/inc/forms/ssh.php:48
 msgid "SSH account configuration:"
-msgstr "SSH帐户配置："
+msgstr "SSH账户配置："
 
 #: shared/inc/draw.php:235
 msgid "SSH accounts"
-msgstr "SSH帐户"
+msgstr "SSH账户"
 
 #: shared/inc/draw.php:434
 msgid "SSH accounts of "
-msgstr "本站点的SSH帐户"
+msgstr "的SSH账户"
 
 #: shared/inc/draw.php:432
 msgid "SSH accounts:"
 msgstr "SSH帐户："
 
 #: admin/deamons_state.php:136
-#, fuzzy
 msgid "SSH gen pass"
-msgstr "购买SSL证书"
+msgstr "SSH 自动生成密码"
 
 #: shared/inc/forms/vps_monitoring.php:226
 msgid "SSH: "
-msgstr ""
+msgstr "SSH: "
 
 #: admin/inc/dtc_config.php:35
-#, fuzzy
 msgid "SSL IP addresses"
 msgstr "SSL IP地址"
 
@@ -4552,72 +4421,71 @@ msgstr "SSL IPs 续约："
 
 #: admin/inc/renewals.php:565
 msgid "SSL IPs renewals: "
-msgstr "SSL IPs 更新："
+msgstr "SSL IPs 续约："
 
 #: admin/inc/dtc_config.php:861
 msgid "SSL Port: "
-msgstr ""
+msgstr "SSL 端口: "
 
 #: admin/inc/draw_user_admin.php:375
 msgid "SSL Token purchase"
-msgstr "购买SSL证书"
+msgstr "SSL Token 购买"
 
 #: admin/inc/draw_user_admin.php:378
 msgid "SSL Token renewal"
-msgstr "更新SSL证书"
+msgstr "SSL Token 续约"
 
 #: admin/inc/dtc_config.php:322
 msgid "SSL dedicated IP addresses: "
-msgstr "SSL 独立IP："
+msgstr "SSL 独立IP地址："
 
 #: shared/inc/forms/my_account.php:118
-#, fuzzy
 msgid "SSL tokens"
-msgstr "购买SSL证书"
+msgstr "SSL tokens"
 
 #: admin/inc/renewals.php:273
 msgid "SWIFT"
-msgstr ""
+msgstr "SWIFT"
 
 #: shared/drawlib/cc_code_popup.php:289
 msgid "Saint Helena"
-msgstr ""
+msgstr "圣赫勒拿岛"
 
 #: shared/drawlib/cc_code_popup.php:290
 msgid "Saint Kitts And Nevis"
-msgstr ""
+msgstr "圣基茨和尼维斯"
 
 #: shared/drawlib/cc_code_popup.php:291
 msgid "Saint Lucia"
-msgstr ""
+msgstr "圣卢西亚"
 
 #: shared/drawlib/cc_code_popup.php:292
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "圣皮埃尔和密克隆群岛"
 
 #: shared/drawlib/cc_code_popup.php:293
 msgid "Saint Vincent and The Grenadines"
-msgstr ""
+msgstr "圣文森特和格林纳丁斯"
 
 #: admin/inc/dtc_config.php:790
 msgid "Same as for DTC"
-msgstr "与DTC相类似"
+msgstr "与对DTC相同"
 
 #: shared/drawlib/cc_code_popup.php:294
 msgid "Samoa"
-msgstr ""
+msgstr "萨摩亚群岛"
 
 #: shared/drawlib/cc_code_popup.php:295
 msgid "San Marino"
-msgstr ""
+msgstr "圣马利诺"
 
 #: shared/drawlib/cc_code_popup.php:296
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "圣多美和普林西比"
 
 #: shared/drawlib/cc_code_popup.php:297
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "沙特阿拉伯"
 
 #: shared/inc/forms/database.php:49
 #: shared/inc/forms/database.php:95
@@ -4627,19 +4495,19 @@ msgstr "保存"
 
 #: shared/inc/forms/subdomain.php:196
 msgid "Sbox cgi-bin protection: "
-msgstr ""
+msgstr "Sbox cgi-bin 保护: "
 
 #: admin/inc/dtc_config.php:901
 msgid ""
 "Secondary DNS servers address<br>\n"
 "(separated by &quot;|&quot; (pipe) if more than one):"
 msgstr ""
-"从DNS服务器地址：<br>\n"
-"(如果不止一个，请用 &quot;|&quot; 隔开)"
+"次选DNS服务器地址<br>\n"
+"((pipe)如果不止一个，请用 &quot;|&quot; 分隔)"
 
 #: shared/dtcrm/draw_whois.php:53
 msgid "Secondary DNS:"
-msgstr "备用DNS："
+msgstr "次选DNS服务器："
 
 #: admin/inc/dtc_config.php:1119
 msgid "Secure payment configuration"
@@ -4655,37 +4523,35 @@ msgstr "请选择这个域名的注册期限："
 
 #: shared/dtcrm/draw_nameservers.php:135
 msgid "Select one of your domain-names for registering an additional name server to the registries:"
-msgstr "选择一个域名注册为备用DNS服务器："
+msgstr "选择您的一个域名为备用域名服务器注册："
 
 #: admin/inc/dtc_config.php:820
 msgid "Select the type of skin:"
 msgstr "请选择皮肤类型："
 
 #: admin/inc/dtc_config.php:747
-#, fuzzy
 msgid "Selling conditions URL: "
-msgstr "点此链接查看销售情况："
+msgstr "查看销售条款 URL："
 
 #: client/new_account_form.php:243
 msgid "Selling conditions not accepted!"
-msgstr "销售状态不接受！"
+msgstr "销售条款未被接受！"
 
 #: admin/inc/draw_user_admin.php:177
 msgid "Send reply"
-msgstr "提交答案"
+msgstr "提交答复"
 
 #: admin/inc/draw_user_admin.php:182
 msgid "Send reply and close ticket"
-msgstr "提交并关闭通行证"
+msgstr "提交答复并关闭标签"
 
 #: shared/inc/forms/ticket.php:62
 msgid "Send trouble ticket"
-msgstr "发送问题"
+msgstr "发送故障标签"
 
 #: shared/drawlib/cc_code_popup.php:298
-#, fuzzy
 msgid "Senegal"
-msgstr "普通设置"
+msgstr "塞内加尔"
 
 #: shared/drawlib/cc_code_popup.php:299
 msgid "Serbia"
@@ -4697,31 +4563,31 @@ msgstr "服务器"
 
 #: admin/inc/monitor.php:99
 msgid "Server accounted transfers this month: "
-msgstr "服务器本月的总流量："
+msgstr "服务器计算出的本月流量："
 
 #: shared/inc/forms/email.php:27
 msgid "Server address :"
-msgstr ""
+msgstr "服务器地址 :"
 
 #: admin/deamons_state.php:239
 msgid "Server did not send 230 after PASS: "
-msgstr ""
+msgstr "PASS之后，服务器没有发送230: "
 
 #: admin/deamons_state.php:226
 msgid "Server did not send 331 or 220 after USER: "
-msgstr ""
+msgstr "USER以后，服务器没有发送331或者220: "
 
 #: admin/deamons_state.php:180
 msgid "Server did not send OK after HELO: "
-msgstr ""
+msgstr "HELO以后，服务器没有发送 OK: "
 
 #: admin/deamons_state.php:169
 msgid "Server did not send OK after connect, maybe wrong server or server is down: "
-msgstr ""
+msgstr "连接以后，服务器没有发送OK, 也许应用了错误服务器或者服务器不工作: "
 
 #: admin/inc/draw_user_admin.php:136
 msgid "Server hostname related: "
-msgstr ""
+msgstr "相关的服务器主机名"
 
 #: shared/gfx/skin/default_layout.php:269
 #: shared/gfx/skin/bwoup/layout.php:412
@@ -4731,11 +4597,11 @@ msgstr "服务器监控"
 
 #: shared/inc/forms/root_admin.php:538
 msgid "Server name"
-msgstr "主机名称"
+msgstr "主机名字"
 
 #: shared/inc/forms/dedicated.php:25
 msgid "Server not found!"
-msgstr "没有找到相关的主机！"
+msgstr "服务器未找到！"
 
 #: shared/dtcrm/draw_adddomain.php:336
 #: shared/dtcrm/draw_nameservers.php:23
@@ -4755,12 +4621,12 @@ msgstr "服务器统计图"
 
 #: admin/inc/draw_user_admin.php:389
 msgid "Server:"
-msgstr "主机："
+msgstr "服务器："
 
 #: admin/inc/renewals.php:422
 #: admin/inc/dtc_config.php:1539
 msgid "Service country"
-msgstr ""
+msgstr "服务国家"
 
 #: shared/inc/forms/vps_monitoring.php:214
 msgid "Service monitoring:"
@@ -4768,7 +4634,7 @@ msgstr "服务监控："
 
 #: shared/inc/forms/root_admin.php:234
 msgid "Setup physical VPS (LVM): "
-msgstr ""
+msgstr "创建 VPS (LVM)硬盘: "
 
 #: shared/drawlib/cc_code_popup.php:300
 msgid "Seychelles"
@@ -4780,35 +4646,31 @@ msgstr "共享"
 
 #: admin/inc/renewals.php:631
 msgid "Shared hosting renewals:"
-msgstr "共享主机更新："
+msgstr "共享托管续约："
 
 #: admin/inc/renewals.php:564
 msgid "Shared hosting: "
-msgstr "共享主机："
+msgstr "共享托管："
 
 #: admin/inc/renewals.php:328
-#, fuzzy
 msgid "Short name:"
-msgstr "主机名："
+msgstr "简名:"
 
 #: admin/inc/dtc_config.php:1276
-#, fuzzy
 msgid "Short name: "
-msgstr "主机名："
+msgstr "简名："
 
 #: admin/inc/renewals.php:771
 msgid "Shutdown"
 msgstr "关闭"
 
 #: admin/inc/dtc_config.php:227
-#, fuzzy
 msgid "Shutdown warning: "
 msgstr "关闭警告信息："
 
 #: shared/drawlib/cc_code_popup.php:301
-#, fuzzy
 msgid "Sierra Leone"
-msgstr "主机名称"
+msgstr "塞拉利昂"
 
 #: shared/drawlib/cc_code_popup.php:302
 msgid "Singapore"
@@ -4824,29 +4686,27 @@ msgstr "斯洛文尼亚"
 
 #: shared/drawlib/cc_code_popup.php:305
 msgid "Solomon Islands"
-msgstr ""
+msgstr "所罗门群岛"
 
 #: shared/drawlib/cc_code_popup.php:306
-#, fuzzy
 msgid "Somalia"
-msgstr "子域名数量上限"
+msgstr "索马里"
 
 #: shared/dtcrm/draw_adddomain.php:206
 msgid "Sorry, the domain name "
 msgstr "对不起,域名"
 
 #: admin/inc/renewals.php:266
-#, fuzzy
 msgid "Sort code"
-msgstr "主机名："
+msgstr "分类编码"
 
 #: shared/drawlib/cc_code_popup.php:307
 msgid "South Africa"
-msgstr ""
+msgstr "南非"
 
 #: shared/drawlib/cc_code_popup.php:308
 msgid "South Georgia and The Sandwich Islands"
-msgstr ""
+msgstr "南乔治亚岛和南桑威奇群岛"
 
 #: shared/drawlib/cc_code_popup.php:309
 msgid "Spain"
@@ -4854,7 +4714,7 @@ msgstr "西班牙"
 
 #: shared/drawlib/cc_code_popup.php:310
 msgid "Sri Lanka"
-msgstr ""
+msgstr "斯里兰卡"
 
 #: shared/inc/forms/vps_installation.php:178
 msgid "Start and stop of your VPS:"
@@ -4862,12 +4722,12 @@ msgstr "启动或关闭您的VPS："
 
 #: admin/inc/nav.php:30
 msgid "Stat script generated !"
-msgstr ""
+msgstr "统计脚本产生！"
 
 #: admin/inc/renewals.php:359
 #: shared/inc/forms/my_account.php:211
 msgid "State:"
-msgstr "省分："
+msgstr "省份："
 
 #: admin/dtcrm/main.php:170
 #: client/new_account_form.php:626
@@ -4875,14 +4735,13 @@ msgstr "省分："
 #: shared/dtcrm/draw_handle.php:96
 #: shared/dtcrm/draw_handle.php:128
 #: shared/dtcrm/draw_handle.php:244
-#, fuzzy
 msgid "State: "
-msgstr "省分："
+msgstr "省份："
 
 #: shared/inc/forms/vps_monitoring.php:162
 #: shared/inc/forms/vps_installation.php:109
 msgid "State: cannot fetch (maybe boot in progress?)"
-msgstr "状态：无法得知(可能正在起动？)"
+msgstr "省份：无法得知(可能正在启动？)"
 
 #: shared/inc/draw.php:120
 #: shared/inc/draw.php:208
@@ -4891,13 +4750,13 @@ msgstr "统计"
 
 #: shared/inc/draw.php:417
 msgid "Statistics of domain:"
-msgstr "主机统计信息："
+msgstr "域名统计："
 
 #: shared/inc/draw.php:411
 #: shared/inc/draw.php:415
 #: shared/inc/draw.php:452
 msgid "Statistics:"
-msgstr ""
+msgstr "统计:"
 
 #: shared/inc/forms/ticket.php:158
 msgid "Status"
@@ -4909,7 +4768,7 @@ msgstr "步骤1：检验有效性"
 
 #: shared/dtcrm/draw.php:76
 msgid "Step 1: choose your upgrade"
-msgstr ""
+msgstr "步骤 1: 选择您的升级"
 
 #: shared/dtcrm/draw_adddomain.php:217
 msgid "Step 2: Enter whois information"
@@ -4928,9 +4787,8 @@ msgid "Step1: check if domain is transferable"
 msgstr "步骤1：检查域名是否可以迁移"
 
 #: shared/dtcrm/draw.php:86
-#, fuzzy
 msgid "Storage"
-msgstr "存储空间"
+msgstr "存储"
 
 #: shared/inc/forms/my_account.php:97
 msgid "Storage space"
@@ -4958,7 +4816,7 @@ msgstr "子域名："
 
 #: shared/inc/draw.php:426
 msgid "Subdomains of "
-msgstr "子域名"
+msgstr "的子域名"
 
 #: shared/inc/draw.php:424
 #: shared/inc/forms/domain_info.php:56
@@ -4986,11 +4844,11 @@ msgstr "主题："
 #: shared/inc/forms/ticket.php:133
 #: shared/inc/forms/ticket.php:148
 msgid "Submit new support issue"
-msgstr "提交一个新的问题"
+msgstr "提交一个新支持问题"
 
 #: shared/inc/forms/lists.php:435
 msgid "Subscribe/Unsubscribe an email address"
-msgstr ""
+msgstr "添加/删除一个email 地址"
 
 #: shared/inc/forms/lists.php:436
 msgid "Subscribe:"
@@ -4998,7 +4856,7 @@ msgstr "订阅："
 
 #: shared/inc/forms/lists.php:124
 msgid "Subscriber list (click to unsubscribe):"
-msgstr ""
+msgstr "已添加列表(点击删除):"
 
 #: shared/inc/forms/lists.php:396
 msgid "Subscribers only post:"
@@ -5006,39 +4864,36 @@ msgstr "仅发送给订阅者："
 
 #: shared/dtcrm/draw_adddomain.php:360
 msgid "Successfully added your domain name to the hosting database"
-msgstr "已成功将您的域名添加到数据库中"
+msgstr "已成功将您的域名添加到托管数据库中"
 
 #: shared/drawlib/cc_code_popup.php:311
-#, fuzzy
 msgid "Sudan"
-msgstr "子域名"
+msgstr "苏丹"
 
 #: admin/inc/dtc_config.php:53
 #: admin/inc/dtc_config.php:307
 msgid "Support ticket"
-msgstr ""
+msgstr "支持标签"
 
 #: admin/inc/dtc_config.php:363
 msgid "Support ticket configuration"
-msgstr "配置 Support ticket"
+msgstr "支持标签配置"
 
 #: shared/inc/draw.php:324
-#, fuzzy
 msgid "Support tickets"
-msgstr "没有未决的？！"
+msgstr "支持标签"
 
 #: shared/drawlib/cc_code_popup.php:312
-#, fuzzy
 msgid "Suriname"
-msgstr "主机名称"
+msgstr "苏利南"
 
 #: shared/drawlib/cc_code_popup.php:313
 msgid "Svalbard and Jan Mayen Islands"
-msgstr ""
+msgstr "斯瓦尔巴特群岛和扬马延岛"
 
 #: shared/inc/forms/vps_monitoring.php:110
 msgid "Swap I/O:"
-msgstr ""
+msgstr "Swap I/O:"
 
 #: shared/drawlib/cc_code_popup.php:314
 msgid "Swaziland"
@@ -5054,7 +4909,7 @@ msgstr "瑞士"
 
 #: shared/drawlib/cc_code_popup.php:317
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "叙利亚阿拉伯共和国"
 
 #: client/new_account.php:117
 msgid "TRANSACTION FINISHED AND APPROVED"
@@ -5066,7 +4921,7 @@ msgstr "校验失败"
 
 #: shared/dtcrm/draw_transferdomain.php:57
 msgid "TRANSFER CHECK FAILED: registry server didn't reply successfuly."
-msgstr "校验失败：域名注册服务器没有答复。"
+msgstr "校验失败：注册服务器没有成功答复."
 
 #: shared/dtcrm/draw_transferdomain.php:68
 msgid "TRANSFER CHECK SUCCESSFUL"
@@ -5074,7 +4929,7 @@ msgstr "校验成功"
 
 #: shared/inc/forms/subdomain.php:178
 msgid "TXT field of the subdomain: "
-msgstr "在这里输入子域名："
+msgstr "子域名的TXT栏目："
 
 #: shared/drawlib/cc_code_popup.php:318
 msgid "Taiwan"
@@ -5096,20 +4951,27 @@ msgid ""
 "that receives all your mail when somebody sends\n"
 "your a message. The value \"default\" means that\n"
 "you want to use the current server."
-msgstr "当心！千万不要将下列选项设置为错误的值，否则，您的某些服务可能会停止(例如:邮件服务或www服务)<br>如果您在DNS中输入\"default\"以外的值，这将意味着您希望使用其它服务器来解析您的域名<br>MX参数声明了您的邮件服务器的地址(当有人给您发送邮件时它将储存所有您收到的邮件)<br>如果您保留输入框中的\"default\"将意味着您希望使用当前的服务器"
+msgstr ""
+"当心！千万不要将下列选项设置为错误的值，否则，您的站点服务可能会停止(例如:邮件服务或网站).<br>\n"
+"如果您在DNS中输入\"default\"以外的值\n"
+"这将意味着您希望使用其它服务器来托管您的网站.<br>\n"
+"MX参数指明了您的邮件服务器的地址\n"
+"当有人给您发送邮件时\n"
+"它将储存所有接收到的邮件.如果您保留输入框中的\"default\"将意味着\n"
+"您希望使用当前的服务器"
 
 #: admin/inc/dtc_config.php:353
 msgid "Take care not to add the control panel SSL IP itself if you don't want to have conflicts (and prevent apache from restarting)!"
-msgstr "请注意，如果不想出现冲突（这可能会使apache无法重启） ，请不要单独填入控制面板的SSL IP！"
+msgstr "如果不想出现冲突，请注意不要添加控制面板SSL IP本身(这可能会使apache无法重开始)!"
 
 #: shared/drawlib/anotherDtc.php:144
 #: shared/drawlib/anotherDtc.php:156
 msgid "Take control of your domain name"
-msgstr "轻松管理您的主机"
+msgstr "轻松管理您的域名"
 
 #: shared/drawlib/cc_code_popup.php:320
 msgid "Tanzania, United Republic Of"
-msgstr ""
+msgstr "坦桑尼亚东非共和国"
 
 #: admin/inc/renewals.php:203
 msgid "Tax rate"
@@ -5117,7 +4979,7 @@ msgstr "税率："
 
 #: shared/securepay/pay_functions.php:32
 msgid "Taxes (VAT or GST)"
-msgstr ""
+msgstr "增值税"
 
 #: admin/inc/dtc_config.php:971
 msgid "Tell the following servers when a domain is added or removed :"
@@ -5137,7 +4999,7 @@ msgstr "泰国"
 
 #: shared/inc/sql/database.php:144
 msgid "That user still owns some databases. Please remove them or change the owner first."
-msgstr "该用户仍然拥有部分数据库，请先删除这些数据库或者改变它们的属主。"
+msgstr "该用户仍然拥有部分数据库，请先删除这些数据库或者改变它们的属主."
 
 #: shared/inc/forms/lists.php:178
 msgid "The email addresses in this fields (1 per line) will get mails to listname-owner@listdomain.tld"
@@ -5149,40 +5011,40 @@ msgstr "您提交的密码不正确"
 
 #: client/new_account.php:163
 msgid "The payment gateway have reported that your payment has failed. Contact us, we also accept checks and wire transfers."
-msgstr ""
+msgstr "支付方式显示您的支付失败.联系我们，我们也接受支票和银行转账."
 
 #: shared/inc/forms/lists.php:190
 msgid "The prefix for the Subject: line of mails to the list. This will alter the Subject: line, and add a prefix if it\\'s not present elsewhere."
-msgstr "主题的前缀：邮件列表的大小。这将更改邮件的主题（增加一个行数），如果在别处不存在这个前缀的话。"
+msgstr "主题的前缀：邮件列表的邮件排列.　这将更改邮件的主题: 排列, 和添加一个\\别处不存在前缀.　"
 
 #: client/new_account.php:168
 #: shared/dtcrm/draw_adddomain.php:39
 msgid "The product ID is not a valid integer number."
-msgstr ""
+msgstr "产品 ID 不是一个有效的整数."
 
 #: client/new_account.php:172
 msgid "The requested login is not a valid login."
-msgstr ""
+msgstr "要求的登录不是一个有效的登录"
 
 #: shared/dtcrm/draw_transferdomain.php:107
 msgid "The transaction failed, please try again!"
-msgstr "处理失败，请再试一次！"
+msgstr "执行失败，请再试一次！"
 
 #: shared/inc/forms/ftp.php:66
 msgid "There is already a ftp login by that name"
-msgstr ""
+msgstr "这个 ftp 登录名已存在"
 
 #: shared/inc/forms/email.php:547
 msgid "There is already a mailbox by that name"
-msgstr ""
+msgstr "这个邮箱名已存在"
 
 #: shared/inc/forms/ssh.php:60
 msgid "There is already a ssh login by that name"
-msgstr ""
+msgstr "这个ssh登录名已存在"
 
 #: shared/inc/forms/lists.php:202
 msgid "These headers are added to every mail coming through. This is the place you want to add Reply-To: header in case you want such."
-msgstr "这些页头将被添加到每封经过的邮件中，如果你想要这样的话，比如添加一个回复地址，这将是个不错的位置。"
+msgstr "这些标题将被添加到每封经过的邮件中.　如果你想要这样的话，比如添加一个Reply-To: header　这将是个不错的位置.　"
 
 #: admin/inc/dtc_config.php:209
 msgid ""
@@ -5190,7 +5052,11 @@ msgid ""
 "Warnings before and after expiration can be listed separated by |,\n"
 "while others are made of a unique value. The message templates\n"
 "are stored in /etc/dtc, and if not present in: "
-msgstr "TRANS这些数字提示了距离过期（或已经过期）的天数。即将（或已经）过期的时间警告使用 | 分隔开来，也可以是唯一的值。警告信息的模板文件存放在： /etc/dtc, and if not present in:"
+msgstr ""
+"这些数字代表了将过期（或已经过期）的天数.\n"
+"即将（或已经）过期的时间警告可以显示出来并使用 | 分隔,\n"
+"其它的则是单独的值.　如果没有显示，警告信息的模板文件\n"
+"存放在  /etc/dtc,"
 
 #: shared/dtcrm/draw_handle.php:262
 msgid "This MUST be a valid address"
@@ -5198,7 +5064,7 @@ msgstr "必需填写有效地址"
 
 #: shared/dtcrm/draw_adddomain.php:145
 msgid "This domain name already hosted here, please enter another name."
-msgstr "这个域名已被使用，请重新输入一个"
+msgstr "这个域名已在这里被托管，请重新输入一个."
 
 #: shared/inc/forms/domain_info.php:78
 msgid "This domain will be the alias of the following domain (domain parking):"
@@ -5206,20 +5072,19 @@ msgstr "这个域名是下列域名的别名(域名停放)："
 
 #: shared/inc/forms/lists.php:220
 msgid "This file specifies how many mails can accumulate before digest sending is triggered. Defaults to 50 mails, meaning that if 50 mails arrive to the list before digestinterval have passed, the digest is delivered."
-msgstr "这个文件标明了在发送周期之前有多少封邮件可以被缓存。默认50封，这意味着，在发送周期之前，如果有50封邮件到达了，那么就发送。"
+msgstr "这个文件标明了在摘要发送启动前有多少封邮件可以被积累。默认是50封，这意味着，在摘要发送启动周期之前，如果有50封邮件到达邮件列表，摘要就被发送.　"
 
 #: shared/inc/sql/vps.php:43
-#, fuzzy
 msgid "This is not a correct IP line "
-msgstr "BSD内核类型不正确"
+msgstr "这不是一个正确的 IP 排列 "
 
 #: shared/inc/sql/vps.php:46
 msgid "This is not a correct hostname or IP line "
-msgstr ""
+msgstr "这不是一个正确的主机名或者IP排列"
 
 #: shared/inc/sql/database.php:54
 msgid "This is not a valid database name! Please choose another one."
-msgstr "数据库名无效！请重新选择一个。"
+msgstr "数据库名无效！请重新选择一个."
 
 #: shared/inc/forms/lists.php:184
 msgid "This is the list of moderators."
@@ -5228,14 +5093,14 @@ msgstr "斑竹列表："
 #: shared/inc/forms/lists.php:72
 #: shared/inc/forms/lists.php:99
 msgid "This is the main owner of the list."
-msgstr "这是该邮件列表的主要拥有者："
+msgstr "这是该邮件列表的主要拥有者."
 
 #: shared/inc/forms/vps_monitoring.php:93
 #: shared/inc/forms/vps_monitoring.php:94
 #: shared/inc/forms/vps_monitoring.php:95
 #: shared/inc/forms/vps_monitoring.php:96
 msgid "This month: "
-msgstr ""
+msgstr "这个月"
 
 #: admin/inc/dtc_config.php:743
 msgid "This server location: "
@@ -5243,29 +5108,28 @@ msgstr "本服务器的位置："
 
 #: shared/inc/forms/subdomain.php:183
 msgid "This subdomain is a nameserver (NS)<br>entry for the following subdomain: "
-msgstr "这个子域名是下列子域名的入口："
+msgstr "这个子域名是一个域名服务器(NS)<br>进入下列子域名："
 
 #: shared/inc/forms/subdomain.php:169
 msgid "This subdomain is a service (SRV)<br>entry for the following port: "
-msgstr "这个子域名是下列子域名的入口(SRV)："
+msgstr "这个子域名是一个服务(SRV)<br>进入下列端口："
 
 #: shared/inc/forms/lists.php:217
 msgid "This value specifies how many seconds will pass before the next digest is sent. Defaults to 604800 seconds, which is 7 days."
-msgstr "这个值标明了摘要的发送周期。默认604800秒，也就是7天。"
+msgstr "这个值标明了多少秒是摘要的发送周期.　默认604800秒，也就是7天."
 
 #: shared/inc/forms/email.php:323
 msgid "Those mail are in quarantine, and were not delivered to your pop account:"
-msgstr ""
+msgstr "这些邮件正在隔离检疫, 我们不发送到您的 pop 账户:"
 
 #: admin/inc/dtc_config.php:394
 msgid "Ticket categories:"
-msgstr "Ticket 分类："
+msgstr "标签分类："
 
 #: shared/inc/forms/ticket.php:75
 #: shared/inc/forms/ticket.php:103
-#, fuzzy
 msgid "Ticket not found!"
-msgstr "Ticket未找到！"
+msgstr "标签未找到！"
 
 #: shared/inc/forms/ticket.php:158
 msgid "Time"
@@ -5273,19 +5137,19 @@ msgstr "时间"
 
 #: shared/inc/forms/vps_installation.php:269
 msgid "To access to your console, first enter a ssh password or key above, and then ssh to:"
-msgstr "要连接到您的控制台，您需要首先设置一个SSH登陆密码或者密钥，然后使用SSH连接到："
+msgstr "要连接到您的控制台，您需要在上面输入一个SSH 密码或者密钥，然后使用SSH连接到："
 
 #: shared/inc/forms/root_admin.php:243
 msgid "To add a VPS, you need to setup some free IPs VPS in the general config and setup some VPS products."
-msgstr "如果您要添加一个VPS，您需要首先添加vps产品，并且在一般设置中添加一些免IP的VPS。"
+msgstr "如果您要添加一个VPS，您需要首先在一般配置中设置一些免费 IPs VPS 和安装一些VPS 产品. "
 
 #: shared/inc/forms/vps_installation.php:191
 msgid "To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first."
-msgstr "如果要做文件系统检查或者重新安装操作系统，您需要先关闭或者销毁您的VPS。"
+msgstr "如果要做文件系统检查或者重新安装操作系统，您需要先关闭或者销毁您的服务器."
 
 #: shared/dtcrm/draw.php:80
 msgid "To what capacity would you like to upgrade to?"
-msgstr ""
+msgstr "您愿意升级到多大的容量？"
 
 #: shared/inc/forms/lists.php:407
 msgid "To: or Cc: not mandatory:"
@@ -5293,21 +5157,19 @@ msgstr "不强制填写收件人或者抄送对象："
 
 #: shared/dtcrm/draw.php:44
 msgid "Today is the: "
-msgstr ""
+msgstr "今天是:"
 
 #: shared/drawlib/cc_code_popup.php:322
-#, fuzzy
 msgid "Togo"
-msgstr "注销"
+msgstr "多哥"
 
 #: shared/drawlib/cc_code_popup.php:323
 msgid "Tokelau"
 msgstr "托克拉奥"
 
 #: shared/drawlib/cc_code_popup.php:324
-#, fuzzy
 msgid "Tonga"
-msgstr "总计："
+msgstr "汤加"
 
 #: admin/inc/renewals.php:424
 #: shared/securepay/pay_functions.php:38
@@ -5330,7 +5192,7 @@ msgstr "数据库的总数："
 #: shared/inc/forms/admin_stats.php:73
 #: shared/inc/forms/my_account.php:76
 msgid "Total disk usage:"
-msgstr "总空间使用率："
+msgstr "总磁盘使用率："
 
 #: shared/dtcrm/draw_adddomain.php:292
 #: shared/dtcrm/draw_transferdomain.php:102
@@ -5351,12 +5213,12 @@ msgstr "总流量"
 
 #: shared/inc/forms/domain_stats.php:53
 msgid "Total transfered bytes this month"
-msgstr "这个月已传输的总流量bytes："
+msgstr "这个月总传输bytes"
 
 #: shared/inc/forms/admin_stats.php:33
 #: shared/inc/forms/domain_info.php:52
 msgid "Total transfered bytes this month:"
-msgstr "已传输的总数据量："
+msgstr "这个月总传输bytes:"
 
 #: admin/inc/renewals.php:569
 msgid "Total: "
@@ -5370,7 +5232,7 @@ msgstr "流量"
 
 #: admin/inc/monitor.php:15
 msgid "Transfer"
-msgstr "流量"
+msgstr "传输"
 
 #: shared/dtcrm/draw_adddomain.php:176
 msgid "Transfer an existing domain from another registrar"
@@ -5378,7 +5240,7 @@ msgstr "从域名所有者那里过户一个现存的域名"
 
 #: shared/inc/forms/my_account.php:63
 msgid "Transfer and disk usage:"
-msgstr "流量与磁盘使用率："
+msgstr "传输与磁盘使用率："
 
 #: shared/dtcrm/draw_transferdomain.php:38
 msgid "Transfer from another registrar to this server:"
@@ -5386,15 +5248,15 @@ msgstr "从别的注册商迁移到这台服务器："
 
 #: admin/inc/monitor.php:15
 msgid "Transfer per month"
-msgstr "每月"
+msgstr "每月传输"
 
 #: shared/inc/forms/my_account.php:70
 msgid "Transfer this month:"
-msgstr "本月流量："
+msgstr "本月传输："
 
 #: shared/drawlib/cc_code_popup.php:325
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "千里达岛和托贝哥岛"
 
 #: shared/drawlib/cc_code_popup.php:326
 msgid "Tunisia"
@@ -5410,7 +5272,7 @@ msgstr "土库曼"
 
 #: shared/drawlib/cc_code_popup.php:329
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "土库和该柯斯群岛"
 
 #: shared/drawlib/cc_code_popup.php:330
 msgid "Tuvalu"
@@ -5433,26 +5295,25 @@ msgstr "连接到Tucows服务器的加密方式："
 
 #: admin/inc/renewals.php:299
 msgid "Type of payment"
-msgstr "付款方式："
+msgstr "付款的类型："
 
 #: shared/inc/forms/ticket.php:52
 #: shared/inc/forms/ticket.php:87
 msgid "Type of problem:"
-msgstr "问题类型：："
+msgstr "问题的类型：："
 
 #: admin/inc/dtc_config.php:305
-#, fuzzy
 msgid "Type of zone generation"
-msgstr "生成后台配置文件"
+msgstr "zone 生成的类型"
 
 #: admin/inc/draw_user_admin.php:134
 #: admin/inc/dtc_config.php:1279
 msgid "Type:"
-msgstr ""
+msgstr "类型:"
 
 #: shared/inc/forms/ticket.php:84
 msgid "Type: type not found!"
-msgstr "没有找到相应的问题种类！"
+msgstr "没有找到相应类型！"
 
 #: admin/inc/dtc_config.php:983
 #: admin/inc/dtc_config.php:1008
@@ -5463,7 +5324,7 @@ msgstr "URL"
 
 #: shared/drawlib/cc_code_popup.php:331
 msgid "USSR"
-msgstr ""
+msgstr "USSR"
 
 #: shared/drawlib/cc_code_popup.php:332
 msgid "Uganda"
@@ -5475,11 +5336,11 @@ msgstr "乌克兰"
 
 #: shared/drawlib/cc_code_popup.php:334
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "阿拉伯联合酋长国"
 
 #: shared/drawlib/cc_code_popup.php:335
 msgid "United Kingdom"
-msgstr ""
+msgstr "英国"
 
 #: shared/drawlib/cc_code_popup.php:336
 msgid "United States"
@@ -5487,11 +5348,11 @@ msgstr "美国"
 
 #: shared/drawlib/cc_code_popup.php:337
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "美国本土外小岛屿"
 
 #: admin/inc/renewals.php:194
 msgid "Unknown"
-msgstr ""
+msgstr "未被识别"
 
 #: shared/inc/forms/packager.php:218
 msgid "Unpack size"
@@ -5504,24 +5365,24 @@ msgstr "退订："
 #: shared/inc/forms/vps_monitoring.php:175
 #: shared/inc/forms/vps_installation.php:122
 msgid "Up time: "
-msgstr "已运行时间："
+msgstr "服务器已运行时间："
 
 #: shared/inc/forms/my_account.php:106
 msgid "Upgrade my account"
-msgstr "账户升级"
+msgstr "升级我的账户"
 
 #: shared/dtcrm/draw.php:40
 msgid "Upgrade my account:"
-msgstr "我的账户升级"
+msgstr "升级我的账户:"
 
 #: admin/inc/renewals.php:54
 #: admin/inc/renewals.php:56
 msgid "Upstream provider editor"
-msgstr ""
+msgstr "Upstream 供应商编辑器"
 
 #: admin/inc/renewals.php:308
 msgid "Upstream provider list edition"
-msgstr ""
+msgstr "Upstream 供应商列表编辑"
 
 #: shared/drawlib/cc_code_popup.php:338
 msgid "Uruguay"
@@ -5530,7 +5391,7 @@ msgstr "乌拉圭"
 #: shared/inc/forms/domain_info.php:59
 #: shared/inc/forms/email.php:27
 msgid "Use"
-msgstr ""
+msgstr "使用"
 
 #: admin/inc/dtc_config.php:728
 msgid "Use @domain.com ftp logins: "
@@ -5542,15 +5403,15 @@ msgstr "使用@domain.com ssh登陆："
 
 #: admin/inc/dtc_config.php:910
 msgid "Use CNAME instead of A record for subdomains:"
-msgstr "二级域名使用CNAME而不使用A记录："
+msgstr "子域名使用CNAME而不使用A记录："
 
 #: admin/inc/dtc_config.php:612
 msgid "Use LVM backend"
-msgstr "使用LVM"
+msgstr "使用LVM后端"
 
 #: admin/inc/dtc_config.php:1233
 msgid "Use Maxmind API: "
-msgstr ""
+msgstr "使用 Maxmind API: "
 
 #: admin/inc/dtc_config.php:723
 msgid "Use SSL: "
@@ -5558,11 +5419,11 @@ msgstr "使用SSL："
 
 #: admin/inc/dtc_config.php:1140
 msgid "Use WebMoney: "
-msgstr ""
+msgstr "使用 WebMoney: "
 
 #: shared/inc/forms/subdomain.php:232
 msgid "Use an SSL vhost using this IP: "
-msgstr ""
+msgstr "使用一个 SSL vhost 正在使用的 IP: "
 
 #: admin/inc/dtc_config.php:778
 msgid "Use awstats: "
@@ -5585,14 +5446,12 @@ msgid "Use javascript: "
 msgstr "使用javascript："
 
 #: admin/inc/dtc_config.php:843
-#, fuzzy
 msgid "Use multiple IPs: "
-msgstr "IP地址是否共享："
+msgstr "使用复合IPs："
 
 #: admin/inc/dtc_config.php:1188
-#, fuzzy
 msgid "Use paypal recuring: "
-msgstr "使用贝宝："
+msgstr "使用贝宝自动转账:"
 
 #: admin/inc/dtc_config.php:1161
 msgid "Use paypal: "
@@ -5600,11 +5459,11 @@ msgstr "使用贝宝："
 
 #: shared/inc/forms/subdomain.php:175
 msgid "Use register_globals=1: "
-msgstr "开启register_globals："
+msgstr "使用 register_globals=1: "
 
 #: admin/inc/dtc_config.php:1084
 msgid "Use registrar API:"
-msgstr ""
+msgstr "使用 registrar API:"
 
 #: shared/inc/draw.php:337
 msgid "Use text menu"
@@ -5616,10 +5475,9 @@ msgstr "使用文本菜单；"
 
 #: admin/inc/dtc_config.php:1093
 msgid "Use the LIVE server (and not the test one) :"
-msgstr "LIVE- oder Testbetrieb:"
+msgstr "使用 LIVE 服务器 (不是测试服务器) :"
 
 #: admin/inc/dtc_config.php:1183
-#, fuzzy
 msgid "Use the sandbox test server: "
 msgstr "使用测试服务器："
 
@@ -5629,36 +5487,34 @@ msgstr "使用访客："
 
 #: admin/inc/dtc_config.php:768
 msgid "Use webalizer: "
-msgstr ""
+msgstr "使用 webalizer: "
 
 #: shared/inc/forms/my_account.php:126
 msgid "Used by"
-msgstr ""
+msgstr "被使用"
 
 #: shared/inc/forms/email.php:588
 msgid "Used quota: "
-msgstr "磁盘空间："
+msgstr "已使用的配额空间："
 
 #: admin/inc/draw_user_admin.php:453
 #: admin/inc/monitor.php:15
 #: shared/inc/forms/database.php:37
 #: shared/inc/forms/database.php:76
 msgid "User"
-msgstr ""
+msgstr "用户"
 
 #: admin/inc/dtc_config.php:792
-#, fuzzy
 msgid "User MySQL host: "
-msgstr "用户的MySQL数据库主机："
+msgstr "用户的MySQL 托管："
 
 #: admin/inc/dtc_config.php:795
 msgid "User MySQL root login: "
-msgstr "用户MySql路径登录："
+msgstr "用户MySql 根目录登录："
 
 #: admin/inc/dtc_config.php:798
-#, fuzzy
 msgid "User MySQL root password: "
-msgstr "用户MySql数据库root密码："
+msgstr "用户MySql 的根目录密码："
 
 #: shared/gfx/skin/default_layout.php:393
 #: shared/gfx/skin/bwoup/layout.php:567
@@ -5671,25 +5527,24 @@ msgstr "待添加的用户和域名："
 
 #: client/new_account_form.php:57
 msgid "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars."
-msgstr "用户登陆名格式不正确。请使用数字或字母，并且是4到16个字符数之间。"
+msgstr "用户登陆名格式不正确.　请使用数字或字母，并且是4到16个字符数之间."
 
 #: shared/inc/sql/database.php:252
 msgid "User or password is incorrect!"
 msgstr "用户名或密码错误！"
 
 #: admin/inc/dtc_config.php:738
-#, fuzzy
 msgid "User session expire time (min): "
-msgstr "超时操作（分钟）："
+msgstr "用户超时操作（分钟）："
 
 #: client/new_account_form.php:252
 #: client/new_account_form.php:260
 msgid "Username already taken! Try again."
-msgstr "用户名已被占用！请重新填写。"
+msgstr "用户名已被占用！请重新填写."
 
 #: client/new_account_form.php:62
 msgid "Username invalid: please choose something else other than root or debian-sys-maint"
-msgstr "用户名不可用：请选用其它登录名，不要使用root或者debian-sys-maint"
+msgstr "用户名不可用：请选用其它登录名，不要使用根目录或者debian-sys-maint 的用户名"
 
 #: shared/gfx/skin/default_layout.php:226
 #: shared/gfx/skin/bwoup/layout.php:397
@@ -5703,28 +5558,28 @@ msgstr "乌兹别克斯坦"
 
 #: client/new_account_form.php:594
 msgid "VAT Number: "
-msgstr "VAT（增值税）号码："
+msgstr "增值税号码："
 
 #: admin/inc/renewals.php:424
 #: admin/inc/renewals.php:578
 msgid "VAT collected"
-msgstr ""
+msgstr "增值税征收"
 
 #: admin/inc/renewals.php:461
 msgid "VAT not found"
-msgstr "VAT（增值税）没有找到"
+msgstr "增值税没有找到"
 
 #: admin/inc/dtc_config.php:1465
 msgid "VAT number:"
-msgstr "VAT号码："
+msgstr "增值税号码："
 
 #: admin/dtcrm/main.php:164
 msgid "VAT number: "
-msgstr "VAT（增值税）号码："
+msgstr "增值税号码："
 
 #: admin/inc/dtc_config.php:1469
 msgid "VAT rate:"
-msgstr "VAT（增值税）税率："
+msgstr "增值税税率："
 
 #: shared/inc/forms/lists.php:429
 msgid "VERP:"
@@ -5741,7 +5596,7 @@ msgstr "VPS"
 
 #: admin/inc/dtc_config.php:624
 msgid "VPS IPs for "
-msgstr ""
+msgstr "VPS IPs 对于 "
 
 #: shared/inc/forms/root_admin.php:474
 msgid "VPS Name"
@@ -5749,19 +5604,19 @@ msgstr "VPS名称"
 
 #: shared/dtcrm/draw_adddomain.php:59
 msgid "VPS OS: "
-msgstr "VPS运行系统："
+msgstr "VPS操作系统："
 
 #: shared/inc/forms/root_admin.php:471
 msgid "VPS Server"
-msgstr "VPS主机"
+msgstr "VPS服务器"
 
 #: admin/inc/dtc_config.php:567
 msgid "VPS Server and IP addresses registry edition"
-msgstr "编辑VPS和IP地址注册信息"
+msgstr "编辑VPS服务器和IP地址注册信息"
 
 #: shared/inc/forms/root_admin.php:230
 msgid "VPS Server hostname: "
-msgstr "VPS主机名："
+msgstr "VPS服务器主机名："
 
 #: admin/inc/dtc_config.php:570
 msgid "VPS Server list:"
@@ -5770,7 +5625,7 @@ msgstr "VPS服务器列表："
 #: shared/inc/forms/vps_monitoring.php:160
 #: shared/inc/forms/vps_installation.php:107
 msgid "VPS State: "
-msgstr "VPS省分："
+msgstr "VPS省份："
 
 #: client/new_account_form.php:93
 msgid "VPS location not selected!"
@@ -5783,7 +5638,7 @@ msgstr "VPS位置："
 
 #: shared/inc/forms/vps_monitoring.php:224
 msgid "VPS monitoring alerts email address: "
-msgstr ""
+msgstr "VPS 监控警告 email 地址: "
 
 #: client/new_account.php:180
 msgid "VPS operating system not recognized"
@@ -5791,7 +5646,7 @@ msgstr "VPS运行系统不被识别"
 
 #: admin/inc/dtc_config.php:206
 msgid "VPS renewal email reminders periodicity"
-msgstr "设定VPS更新的邮件提醒的周期"
+msgstr "设定VPS续约的邮件提醒的周期"
 
 #: admin/inc/renewals.php:696
 msgid "VPS renewals:"
@@ -5803,7 +5658,7 @@ msgstr "VPS 服务器"
 
 #: admin/inc/dtc_config.php:638
 msgid "VPS xen number"
-msgstr "VPS 在xen中的编号 "
+msgstr "VPS xen的数量 "
 
 #: admin/inc/renewals.php:566
 msgid "VPS: "
@@ -5811,11 +5666,11 @@ msgstr "VPS: "
 
 #: admin/inc/draw_user_admin.php:364
 msgid "VPS: Cannot find VPS in db!"
-msgstr "在数据库中没有找到VPS的相关配置"
+msgstr "VPS: 在数据库中没有找到VPS的相关配置"
 
 #: admin/inc/dtc_config.php:1166
 msgid "Validate new account if paid: "
-msgstr "已付款账户实时生效"
+msgstr "付款后账户实时生效"
 
 #: shared/drawlib/cc_code_popup.php:340
 msgid "Vanuatu"
@@ -5823,7 +5678,7 @@ msgstr "瓦努阿图"
 
 #: shared/drawlib/cc_code_popup.php:341
 msgid "Vatican City State"
-msgstr ""
+msgstr "梵蒂冈"
 
 #: shared/drawlib/cc_code_popup.php:342
 msgid "Venezuela"
@@ -5831,7 +5686,7 @@ msgstr "委内瑞拉"
 
 #: shared/inc/forms/root_admin.php:347
 msgid "Vhost"
-msgstr ""
+msgstr "Vhost"
 
 #: shared/drawlib/cc_code_popup.php:343
 msgid "Vietnam"
@@ -5843,27 +5698,27 @@ msgstr "查看详情"
 
 #: shared/drawlib/cc_code_popup.php:344
 msgid "Virgin Islands (British)"
-msgstr ""
+msgstr "英属维珍岛"
 
 #: shared/drawlib/cc_code_popup.php:345
 msgid "Virgin Islands (U.S.)"
-msgstr ""
+msgstr "美属维珍岛"
 
 #: admin/inc/dtc_config.php:1383
 msgid "Virtual host config-file:"
-msgstr ""
+msgstr "Virtual host 配置文件:"
 
 #: admin/inc/dtc_config.php:1149
 msgid "WMZ: "
-msgstr ""
+msgstr "WMZ: "
 
 #: shared/drawlib/cc_code_popup.php:346
 msgid "Wallis and Futuna Islands"
-msgstr ""
+msgstr "瓦利斯及富图納群島"
 
 #: admin/inc/dtc_config.php:219
 msgid "Warnings after expiration: "
-msgstr "已过期警告："
+msgstr "已经过期警告："
 
 #: admin/inc/dtc_config.php:215
 msgid "Warnings before expiration: "
@@ -5871,16 +5726,15 @@ msgstr "即将过期警告："
 
 #: shared/inc/forms/lists.php:441
 msgid "Web archive"
-msgstr "Web存档"
+msgstr "Web archive"
 
 #: admin/inc/dtc_config.php:1145
 msgid "WebMoney secret key: "
-msgstr ""
+msgstr "WebMoney 保密密码: "
 
 #: admin/inc/dtc_config.php:772
-#, fuzzy
 msgid "Webalizer country graph: "
-msgstr "Webalizer 按国家分布图："
+msgstr "Webalizer 国家分布图: "
 
 #: admin/inc/dtc_config.php:442
 msgid "Weekly"
@@ -5888,19 +5742,19 @@ msgstr "每周"
 
 #: shared/inc/forms/email.php:327
 msgid "Welcom to the email panel!"
-msgstr ""
+msgstr "欢迎来到 email 面板!"
 
 #: shared/drawlib/cc_code_popup.php:347
 msgid "West Bank and Gaza"
-msgstr ""
+msgstr "巴勒斯坦West Bank and Gaza"
 
 #: shared/drawlib/cc_code_popup.php:348
 msgid "Western Sahara"
-msgstr ""
+msgstr "西撒哈拉"
 
 #: admin/dtcrm/main.php:211
 msgid "What"
-msgstr "产品型号"
+msgstr "什么"
 
 #: shared/dtcrm/draw_adddomain.php:85
 msgid "What do you want to add:"
@@ -5908,43 +5762,43 @@ msgstr "您想添加什么："
 
 #: shared/inc/forms/ticket.php:47
 msgid "What is your server hostname:"
-msgstr "您的主机名是什么："
+msgstr "您的服务器主机名是什么："
 
 #: shared/dtcrm/draw_nameservers.php:125
 msgid "What subzone do you want to use (example: ns1):"
-msgstr "您希望使用什么二级域名(例如: ns1)："
+msgstr "您希望使用什么subzone (例如: ns1)："
 
 #: shared/inc/forms/lists.php:196
 msgid "When this flag is present, a To: header including the recipients emailaddress will be added to outgoing mail. Recommended usage is to remove existing To: headers with delheaders (see above) first."
-msgstr "如果设置了这个选项，所有外发的邮件将被添加一个包含了收件人邮件地址的页头。推荐的做法是删掉To:header(请参考delheader)。"
+msgstr "如果设置了这个标志，所有外发的邮件将被添加一个包含了收件人邮件地址的标题。推荐的做法是使用delheaders(参考上面)先删掉现有的To: headers."
 
 #: shared/inc/forms/lists.php:173
 msgid "When this flag is set, only people who are subscribed to the list, are allowed to post to it. The check is made against the &quot;From:&quot; header."
-msgstr "如果设置了这个参数，仅仅订阅了这个邮件列表的人才能向这个邮件列表发送邮件。"
+msgstr "如果设置了这个参数，仅仅订阅了这个邮件列表的人才能向这个邮件列表发送邮件.　从这里可以检查 &quot;From:&quot; header."
 
 #: shared/dtcrm/draw_handle.php:73
 msgid "Who will be contacted for domain renewall (billing contact)?"
-msgstr ""
+msgstr "对于域名续订,和谁取得联系(账单联系人)?"
 
 #: shared/dtcrm/draw_handle.php:105
 msgid "Who will have the rights for changing the whois information (admin contact)?"
-msgstr ""
+msgstr "谁有权限更改 whois 信息(管理员联系人)?"
 
 #: shared/dtcrm/draw_handle.php:41
 msgid "Who will own the domain name and will be the registrant (domain owner)?"
-msgstr ""
+msgstr "谁是域名的拥有者并是注册人(域名拥有者)?"
 
 #: shared/inc/draw.php:201
 msgid "Whois"
-msgstr ""
+msgstr "Whois"
 
 #: shared/inc/draw.php:422
 msgid "Whois of:"
-msgstr ""
+msgstr "Whois 的:"
 
 #: shared/inc/draw.php:420
 msgid "Whois:"
-msgstr ""
+msgstr "Whois:"
 
 #: admin/inc/renewals.php:194
 msgid "Wire transfer"
@@ -5954,11 +5808,11 @@ msgstr "转账"
 #: shared/inc/fetch.php:365
 #: shared/inc/fetch.php:370
 msgid "Wrong user or password, or timeout expired!"
-msgstr "用户错误或密码错误,或者已过期"
+msgstr "用户或密码错误,或者已过期"
 
 #: shared/drawlib/cc_code_popup.php:349
 msgid "Yemen, Republic of"
-msgstr "也门"
+msgstr "也门共和国"
 
 #: admin/inc/draw_user_admin.php:166
 #: admin/inc/draw_user_admin.php:279
@@ -6036,30 +5890,30 @@ msgstr ""
 "您可以发送邮件到下列邮箱来执行相应的命令：\n"
 "\n"
 "　#name#-help@#domain# -> 返回常用的命令\n"
-"  #name#-list@#domain# -> 返回定阅者列表\n"
-"  #name#-get-N@#domain# -> 返回第N条消息？\n"
+"  #name#-list@#domain# -> 返回订阅者列表\n"
+"  #name#-get-N@#domain# -> 返回N列表的消息\n"
 "  #name#-owner@#domain# -> 通过这个地址可以联系到邮件列表的所有者\n"
-"  #name#-unsubscribe@#domain# -> 从邮件列表中删除一个订阅者\n"
-"  #name#-subscribe@#domain# -> 添加一个订阅者到邮件列表\n"
-"  #name#-subscribe-digest@#domain# -> 将订阅者添加到邮件列表的摘要中\n"
-"  #name#-subscribe-nomail@#domain# -> 将订阅者添加到邮件列表中的不发送邮件的列表中\n"
+"  #name#-unsubscribe@#domain# -> 从邮件列表中删除一个订阅者的邮件发送人\n"
+"  #name#-subscribe@#domain# -> 添加一个订阅者的邮件发送人到邮件列表\n"
+"  #name#-subscribe-digest@#domain# -> 添加一个订阅者的邮件发送人到邮件列表的摘要版本\n"
+"  #name#-subscribe-nomail@#domain# -> 添加一个订阅者的邮件发送人到邮件列表的普通版本\n"
 "更多信息请访问mlmmj官方网站http://mlmmj.mmj.dk"
 
 #: shared/inc/forms/vps_installation.php:194
 msgid "You cannot start your VPS if it has expired. Please renew it if you want the boot up (xm start) button to appear here."
-msgstr ""
+msgstr "在过期情况下您不能开始您的 VPS. 如果您想boot up (xm start) 图标显示在这里，请续订."
 
 #: shared/dtcrm/draw_adddomain.php:130
 msgid "You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to do so. To request hosting for a new domain without domain name registration, please write to:"
-msgstr "您暂时没有添加域名的权限。如果您需要经常添加域名，您可以要求管理员授予您自动添加域名的权限。如果需要，请发邮件到："
+msgstr "您暂时没有添加域名的权限。如果您需要经常添加域名，您可以要求管理员授予您自动添加域名的权限。如果仅需要此项服务而不需要注册域名，请发邮件到："
 
 #: shared/dtcrm/draw.php:73
 msgid "You currently don't have a validated account. Please contact customer support."
-msgstr ""
+msgstr "您目前还没有一个有效的账户,请联系客服."
 
 #: shared/inc/forms/my_account.php:123
 msgid "You currently don't have any SSL tokens."
-msgstr ""
+msgstr "您目前还没有任何 SSL tokens."
 
 #: shared/dtcrm/draw_adddomain.php:310
 #: shared/dtcrm/draw.php:155
@@ -6069,36 +5923,36 @@ msgstr "您的帐户余额不足。页面将会跳转到付费系统, 请点击�
 
 #: shared/inc/forms/my_account.php:217
 msgid "You do not have a client account, so there is no money in your account."
-msgstr ""
+msgstr "您没有一个客户账户，因此您的账户上没有钱."
 
 #: shared/dtcrm/draw_adddomain.php:287
 #: shared/dtcrm/draw_transferdomain.php:94
 msgid "You don't have a client ID. Please contact us."
-msgstr "您没有客户ID。请联系我们。"
+msgstr "您没有客户ID，请联系我们。"
 
 #: shared/inc/sql/ssh.php:24
 msgid "You don't have the SSH login flag!"
-msgstr "您不能进行SSH登陆！"
+msgstr "您没有 SSH 登录标志！"
 
 #: shared/dtcrm/draw.php:71
 msgid "You have"
-msgstr ""
+msgstr "您有"
 
 #: client/new_account.php:157
 msgid "You have canceled the payment, your account wont be validated. To start again the registration procedure, follow the link here:"
-msgstr ""
+msgstr "您已取消了支付，您的账户将失效. 如果重新注册，跟随这里的链接:"
 
 #: shared/dtcrm/draw.php:164
 msgid "You have enough funds on your account to proceed account upgrade. Press the confirm button and your order will be proceeded."
-msgstr "您的帐户拥有足够的余额来进行注册，请点击确认键继续注册。"
+msgstr "您的帐户拥有足够的余额来进行注册，请点击确认键，您的要求将被处理."
 
 #: shared/dtcrm/draw_adddomain.php:319
 msgid "You have enough funds on your account to proceed with registration. Press the confirm button to proceed."
-msgstr ""
+msgstr "您有足够的金额支付注册过程. 点击确认图标继续."
 
 #: shared/inc/forms/vps_installation.php:270
 msgid "You should then install sshd in your VPS and use the physical console only for debugging purposes."
-msgstr ""
+msgstr "您需要安装 sshd 在您的 VPS 并且仅使用 physical console 排除故障."
 
 #: admin/inc/dtc_config.php:1097
 msgid "Your SRS username:"
@@ -6150,11 +6004,11 @@ msgstr "您的独立主机将过期，过期时间为："
 
 #: admin/inc/dtc_config.php:1339
 msgid "Your default new account directory:"
-msgstr ""
+msgstr "您的默认新账户目录"
 
 #: shared/inc/forms/domain_info.php:58
 msgid "Your domain"
-msgstr ""
+msgstr "您的域名"
 
 #: shared/dtcrm/draw_whois.php:49
 msgid "Your domain name has been registred elsewhere (i.e. not on this site). To order its transfer, please click "
@@ -6194,13 +6048,12 @@ msgid "Your key to access the test server:"
 msgstr "连接到测试服务器的密钥："
 
 #: shared/dtcrm/draw.php:43
-#, fuzzy
 msgid "Your last command expire on the: "
-msgstr "您的VPS已过期，过期时间为："
+msgstr "您的命令已经过期，过期时间为："
 
 #: shared/inc/forms/email.php:319
 msgid "Your list of imported mail"
-msgstr ""
+msgstr "重要邮件列表"
 
 #: shared/dtcrm/draw.php:69
 msgid "Your past account was: "
@@ -6208,7 +6061,6 @@ msgstr "您的原有的账户是："
 
 #: shared/inc/sql/ssh.php:31
 #: shared/inc/sql/ssh.php:94
-#, fuzzy
 msgid "Your path is restricted to "
 msgstr "您的目录被限定在"
 
@@ -6218,7 +6070,7 @@ msgstr "您的注册已经被我们的数据库记录．"
 
 #: shared/inc/forms/database.php:32
 msgid "Your users"
-msgstr "您的用户名："
+msgstr "您的用户"
 
 #: shared/drawlib/cc_code_popup.php:350
 msgid "Yugoslavia"
@@ -6252,7 +6104,7 @@ msgstr "邮编："
 
 #: shared/inc/forms/dns.php:67
 msgid "Zone file will be regenerated at next cron job."
-msgstr ""
+msgstr "Zone file 将被重新产生在下一个cron job."
 
 #: shared/inc/forms/domain_info.php:59
 msgid "aliasing"
@@ -6261,7 +6113,7 @@ msgstr "别名"
 #: shared/inc/forms/vps_monitoring.php:127
 #: shared/inc/forms/vps_installation.php:74
 msgid "couldn't connect to host"
-msgstr ""
+msgstr "无法连接到主机"
 
 #: admin/inc/dtc_config.php:588
 msgid "dom0 IP addresses"
@@ -6269,7 +6121,7 @@ msgstr "dom0 IP地址"
 
 #: admin/inc/dtc_config.php:1214
 msgid "eNETS merchant ID: "
-msgstr ""
+msgstr "eNETS merchant ID: "
 
 #: admin/inc/dtc_config.php:1222
 msgid "eNETS rate: "
@@ -6277,28 +6129,28 @@ msgstr "eNETS 利率: "
 
 #: admin/inc/dtc_config.php:1209
 msgid "eNETS server: "
-msgstr "eNETS服务器"
+msgstr "eNETS服务器："
 
 #: admin/inc/dtc_config.php:1218
 msgid "eNETS test merchant ID: "
-msgstr ""
+msgstr "eNETS 测试 merchant ID: "
 
 #: shared/inc/fetch.php:457
 msgid "either your login and password pair is not valid, either your session expired (timed out)."
-msgstr ""
+msgstr "您的登录和密码不匹配或者您的登录过期(超时)."
 
 #: shared/gfx/skin/default_layout.php:61
 #: shared/gfx/skin/bwoup/layout.php:251
 msgid "fetching admin: "
-msgstr "加载管理员："
+msgstr "读取管理员："
 
 #: shared/inc/fetch.php:457
 msgid "file"
-msgstr ""
+msgstr "文件"
 
 #: shared/inc/forms/email.php:600
 msgid "files"
-msgstr ""
+msgstr "文件"
 
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
@@ -6319,11 +6171,11 @@ msgstr "无法注册，域名注册服务器返回信息："
 
 #: admin/deamons_state.php:266
 msgid "is not same as the one I have in the database"
-msgstr ""
+msgstr "和数据库里现有的不匹配"
 
 #: shared/drawlib/dtc_functions.php:798
 msgid "kBytes"
-msgstr ""
+msgstr "kBytes"
 
 #: shared/dtcrm/draw_handle.php:217
 msgid "marked fields are required"
@@ -6331,11 +6183,11 @@ msgstr "打星号的选项为必填项"
 
 #: shared/inc/forms/ftp.php:53
 msgid "new FTP account"
-msgstr "新FTP帐户："
+msgstr "新FTP账户"
 
 #: shared/inc/forms/ssh.php:47
 msgid "new SSH account"
-msgstr "新的SSH帐户"
+msgstr "新的SSH账户"
 
 #: shared/inc/forms/email.php:532
 msgid "new mailbox"
@@ -6344,7 +6196,7 @@ msgstr "新邮箱"
 #: shared/inc/forms/lists.php:51
 #: shared/inc/forms/lists.php:85
 msgid "new mailing list"
-msgstr "新mailing列表"
+msgstr "新邮箱列表"
 
 #: shared/dtcrm/draw_handle.php:238
 #: shared/dtcrm/draw_handle.php:241
@@ -6354,7 +6206,7 @@ msgstr "选项"
 
 #: client/new_account_form.php:636
 msgid "selling conditions"
-msgstr "销售状态"
+msgstr "销售条款"
 
 #: shared/dtcrm/draw_adddomain.php:362
 msgid "to refresh the menu or add another domain name."
