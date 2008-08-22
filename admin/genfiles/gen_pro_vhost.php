@@ -440,6 +440,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
 
+		unset($temp_array_subs);
 		$temp_array_subs = array();
 		for($j=0;$j<$num_rows2;$j++){
 			$temp_array_subs[] = mysql_fetch_array($result2) or die ("Cannot fetch user");
@@ -449,14 +450,18 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		// wildcard subdomain be the last in the list of the vhosts.conf
 		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$domain_to_get' AND ip='default' AND subdomain_name='$web_default_subdomain';";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
-		$temp_array_subs[] = mysql_fetch_array($result2) or die ("Cannot fetch user");
+		$my_num_rows = mysql_num_rows($result2);
+		if($my_num_rows == 1){
+			$temp_array_subs[] = mysql_fetch_array($result2) or die ("Cannot fetch user");
+			$num_rows2++;
+		}
 
 // This is a bad idea to die in this case
 // because it actualy happen if you redirect www ip to something else.
 //		if($num_rows2 < 1){
 //			die("No subdomain for domain $web_name !");
 //		}
-		for($j=0;$j<$num_rows2+1;$j++){
+		for($j=0;$j<$num_rows2;$j++){
 			$subdomain = $temp_array_subs[$j];
 //			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
