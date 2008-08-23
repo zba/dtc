@@ -210,7 +210,7 @@ function named_generate(){
 	global $conf_named_soa_default_ttl;
 
 	$slave_file = "";
-	$todays_serial = date("YmdH");
+	$serial_prefix = date("Ymd");
 
 	$djb_file = "";
 	$named_file = "";
@@ -379,6 +379,27 @@ function named_generate(){
 		}
 
 		if($row["primary_dns"] == "default"){
+
+			// DNS serial
+			$oldzonefile="$conf_generated_file_path/$conf_named_zonefiles_path/$web_name";
+			if(file_exists($oldzonefile)) {
+				$oldzonefile_contents = file_get_contents($oldzonefile);
+				$matches=Array();
+				if(preg_match("/${serial_prefix}([0-9]{2}); serial/", $oldzonefile_contents, $matches) >0) {
+					$serial_incr = $matches[1] + 1;
+					if($serial_incr > 99) {
+						$serial_incr = 99;
+						$console .= "<br />WARNING: DNS serial number for zone $web_name is already at the maximum for today (${serial_prefix}${serial_incr}), and therefore was not incremented.<br />\n";
+					}
+					$todays_serial = $serial_prefix . sprintf("%'02d", $serial_incr);
+				}
+				else {
+					$todays_serial = $serial_prefix . "01";
+				}
+			}
+			else {
+				$todays_serial = $serial_prefix . "01";
+			}
 
 			$this_site_file = "\$TTL $domain_ttl
 @               IN      SOA     $thisdomain_dns1. $bind_formated_webmaster_email_addr (
