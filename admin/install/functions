@@ -555,7 +555,7 @@ createHostingDirAndFiles () {
 	fi
 	# Copy a template site to the new main site
 	MAINSITE_HOME=$DOMAIN_FOLDER"/subdomains/www/html"
-	if ! [ -e $MAINSITE_HOME/index.* ] ; then
+	if ! [ -e $MAINSITE_HOME/index.php -o -e $MAINSITE_HOME/index.html -o -e $MAINSITE_HOME/index.htm ] ; then
 		cp $PATH_DTC_SHARED"/shared/template/index.php" $MAINSITE_HOME
 		if ! [ -e $MAINSITE_HOME"/dtc_logo.gif" ] ; then
 			cp $PATH_DTC_SHARED"/shared/template/dtc_logo.gif" $MAINSITE_HOME
@@ -588,26 +588,23 @@ createHostingDirAndFiles () {
 
 
 	# copy the 404 index.php file if none is found.
-	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/index.* ] ; then
+	the_404_path="$conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html"
+	if ! [ -e $the_404_path/index.html -o -e $the_404_path/index.php -o -e $the_404_path/index.htm ] ; then
 		if [ -e $PATH_DTC_SHARED/shared/404_template/index.php ] ; then
-			cp $PATH_DTC_SHARED/shared/404_template/index.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
+			cp $PATH_DTC_SHARED/shared/404_template/index.php $the_404_path
 		fi
 	fi
+	# Copy the 404 logo file
 	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/logo.png ] ; then
 		if [ -e $PATH_DTC_SHARED/shared/404_template/logo.png ] ; then
-			cp $PATH_DTC_SHARED/shared/404_template/logo.png $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/404/html/"
+			cp $PATH_DTC_SHARED/shared/404_template/logo.png $the_404_path
 		fi
 	fi
 
 	# copy the Error 404 document
-	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/www/html/404.* ] ; then
+	if ! [ -e $the_404_path/404.php ] ; then
 		if [ -e $PATH_DTC_SHARED/shared/404_template/404.php ] ; then 
-			cp $PATH_DTC_SHARED/shared/404_template/404.php $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/"
-		fi
-	fi
-	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/www/html/logo.png ] ; then
-		if [ -e $PATH_DTC_SHARED/shared/404_template/logo.png ] ; then
-			cp $PATH_DTC_SHARED/shared/404_template/logo.png $conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/www/html/"
+			cp $PATH_DTC_SHARED/shared/404_template/404.php $the_404_path
 		fi
 	fi
 
