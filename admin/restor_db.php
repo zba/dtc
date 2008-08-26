@@ -264,6 +264,12 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 $q = "ALTER TABLE vps_stats CHANGE `diskio_last` `diskio_last` bigint(22) default NULL";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+// Change domain parking types
+$q = "ALTER TABLE `domain` CHANGE `domain_parking_type` `domain_parking_type` enum('redirect','same_docroot','serveralias') NOT NULL default 'redirect'";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
+
+
 $q = "SELECT * FROM config";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 $n = mysql_num_rows($r);
