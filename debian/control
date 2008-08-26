@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Thomas Goirand <thomas@goirand.fr>
 Build-Depends: debhelper (>= 5)
 Build-Depends-Indep: po-debconf, gettext
-Standards-Version: 3.7.3
+Standards-Version: 3.8.0
 Dm-Upload-Allowed: yes
 Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
 Vcs-Git: http://git.gplhost.com/dtc.git
