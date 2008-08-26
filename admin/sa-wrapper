@@ -74,7 +74,7 @@ unless (grep { $_ eq $domain } @DOMAINS) {
 
 if ($DEBUG) {
 	MIME::Tools->debugging(1);
-	$debug_file2 = mktemp("/tmp/sa-wrapper.XXXXXX");
+	$debug_file2 = mktemp("/tmp/sa-wrapper.XXXXXX.stderr");
 	open(STDERR, ">$debug_file2");
 }
 my $parser = new MIME::Parser;
