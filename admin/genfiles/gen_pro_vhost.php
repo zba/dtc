@@ -616,6 +616,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	ServerName $web_subname.$web_name
 	Redirect permanent / http://$web_subname.$domain_parking/
 </VirtualHost>\n\n";
+                                } else if ($domain_parking != "no-parking" && $domain_parking_type == "serveralias") {
+                                        // do nothing here, as serveralias parking will be injected throughout the generation of the main domain
 				}else{
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/logs");
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/html");
@@ -679,6 +681,21 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						$vhost_more_conf .= "	ServerAlias $server_alias_domain\n";
 						if($domain_wildcard_dns == "yes"){
 							$vhost_more_conf .= "   ServerAlias *.$server_alias_domain\n";
+						}
+					}
+
+					// ServerAlias for parked domains
+					$q_serveralias = "select * from $pro_mysql_domain_table where domain_parking_type='serveralias' and domain_parking='$web_name'";
+					$r_serveralias = mysql_query($q_serveralias) or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+					while ($row_serveralias = mysql_fetch_array($r_serveralias)) {
+						// default subdomain and wildcard subdomain settings are inherited from the main domain, not the parked domain
+						// this is because in the gui these settings are not accessable for a parked domain
+						if ($web_subname == "$web_default_subdomain") {
+							$vhost_more_conf .= "        ServerAlias ${row_serveralias["name"]}\n";
+						}
+						$vhost_more_conf .= "        ServerAlias $web_subname.${row_serveralias["name"]}\n";
+						if ($domain_wildcard_dns == "yes") {
+							$vhost_more_conf .= "        ServerAlias *.${row_serveralias["name"]}\n";
 						}
 					}
 

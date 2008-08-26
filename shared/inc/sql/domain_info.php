@@ -40,10 +40,16 @@ if(isset($_REQUEST["set_domain_parcking"]) && $_REQUEST["set_domain_parcking"] =
 		$set_to = "no-parking";
 	}
 
-	if($_REQUEST["domain_parking_type"] == "redirect"){
-		$domain_parking_type = "redirect";
-	}else{
-		$domain_parking_type = "same_docroot";
+	switch ($_REQUEST["domain_parking_type"]) {
+		case "same_docroot":
+			$domain_parking_type = "same_docroot";
+			break;
+		case "serveralias":
+			$domain_parking_type = "serveralias";
+			break;
+		default:
+			// redirect is the sql default
+			$domain_parking_type = "redirect";
 	}
 
 
