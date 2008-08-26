@@ -15,8 +15,9 @@
 use strict;
 use MIME::Tools;
 use MIME::Parser;
+use File::Temp;
 
-my $DEBUG = 1;
+my $DEBUG = 0;
 my $UNPACK_DIR = '/var/lib/amavis/tmp';
 my $SA_LEARN = '/usr/bin/sa-learn';
 # my @DOMAINS = qw/example.com example.org/;
@@ -47,8 +48,8 @@ sub recurs
 
 	if ($ent->head->mime_type eq 'message/rfc822') {
 		if ($DEBUG) {
-			unlink "/tmp/spam.log.$$" if -e "/tmp/spam.log.$$";
-			open(OUT, "|$SA_LEARN -D --$spamham --single >>/tmp/spam.log.$$ 2>&1") or die "Cannot pipe $SA_LEARN: $!";
+			$debug_file = mktemp("/tmp/sa-wrapper.XXXXXX.log");
+			open(OUT, "|$SA_LEARN -D --$spamham --single >>$debug_file 2>&1") or die "Cannot pipe $SA_LEARN: $!";
 		} else {
 			open(OUT, "|$SA_LEARN --$spamham --single") or die "Cannot pipe $SA_LEARN: $!";
 		}
@@ -73,7 +74,8 @@ unless (grep { $_ eq $domain } @DOMAINS) {
 
 if ($DEBUG) {
 	MIME::Tools->debugging(1);
-	open(STDERR, ">/tmp/spam_err.log");
+	$debug_file2 = mktemp("/tmp/sa-wrapper.XXXXXX");
+	open(STDERR, ">$debug_file2");
 }
 my $parser = new MIME::Parser;
 $parser->extract_nested_messages(0);
