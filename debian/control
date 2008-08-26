@@ -117,7 +117,7 @@ Package: dtc-toaster
 Architecture: all
 Depends: awstats, dtc-postfix-courier, mailgraph, phpmyadmin, roundcube-sqlite | squirrelmail, ttf-arphic-ukai, ttf-dejavu, tumgreyspf, visitors, dkimproxy
 Suggests: msttcorefonts
-Description: web control panel for admin and accounting hosting services (meta package)
+Description: web control panel for admin and accounting hosting services (metapackage)
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. Using a web GUI for the administration and accounting all hosting
  services, DTC can delegate the task of creating subdomains, email, ssh,
@@ -131,5 +131,5 @@ Description: web control panel for admin and accounting hosting services (meta p
  does the billing in general (including billing of dedicated servers), has
  integrated support tickets and more.
  .
- This is a meta package depending on every package that you need to use the DTC
+ This is a metapackage depending on every package that you need to use the DTC
  web hosting control panel, like a webmail, phpmyadmin and so on.
