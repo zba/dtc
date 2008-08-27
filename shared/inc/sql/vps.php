@@ -80,6 +80,9 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_vps_monitoring_valu
 monitor_ping='$monitor_ping', monitor_ssh='$monitor_ssh', monitor_http='$monitor_http', monitor_smtp='$monitor_smtp', monitor_pop3='$monitor_pop3',
 monitor_imap4='$monitor_imap4', monitor_ftp='$monitor_ftp' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+		markCronflagOk ("gen_nagios='yes'");
+
 	}
 }
 

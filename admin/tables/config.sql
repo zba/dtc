@@ -103,5 +103,9 @@ named_soa_retry varchar (16) NOT NULL default '60M',
 named_soa_expire varchar (16) NOT NULL default '1W',
 named_soa_default_ttl varchar (16) NOT NULL default '24H',
 provide_own_domain_hosts enum('yes','no') NOT NULL default 'no',
+nagios_host varchar(255) NOT NULL default '',
+nagios_username varchar(255) NOT NULL default '',
+nagios_config_file_path varchar(255) NOT NULL default '',
+nagios_restart_command varchar(255) NOT NULL default 'sudo /etc/init.d/nagios2 restart',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
