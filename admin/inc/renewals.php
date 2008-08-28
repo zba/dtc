@@ -161,7 +161,7 @@ function drawRenewalTables (){
 			"table_name" => $pro_mysql_spent_moneyout_table,
 			"action" => "money_out_editor",
 			"forward" => array("rub","sousrub"),
-			"where_condition" => $where_condition,
+			"print_where_condition" => $where_condition,
 			"order_by" => "invoice_date",
 			"cols" => array(
 				"id" => array(
