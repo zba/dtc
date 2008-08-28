@@ -171,6 +171,41 @@ function get_remote_ns_domains(){
 	return $domain_list;
 }
 
+function calculate_reverse_end($ip_pool_ip,$ip_pool_netmask){
+}
+
+function rnds_generate(){
+	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_ip_pool_table;
+
+	$reverse_dns_file = "";
+	$q = "SELECT * FROM $pro_mysql_ip_pool_table;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$ip_pool_id = $a["id"];
+		$ip_addr = $a["ip_addr"];
+		$netmask = $a["netmask"];
+		$zone_type = $a["zone_type"];
+		switch($zone_type){
+		case "ip_per_ip":
+			$q2 = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_pool_id='$ip_pool_id';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$n2 = mysql_num_rows($r2);
+			for($i=0;$î<$n2;$i++){
+				$a2 = mysql_num_rows($r2);
+				//$reverse_end = calculate_reverse_end(
+			}
+			break;
+		case "one_zonefile":
+			break;
+		case "support_ticket":
+			break;
+		}
+	}
+}
+
 function named_generate(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;

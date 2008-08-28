@@ -1034,6 +1034,7 @@ $dtc_database = array(
 			"vps_xen_name" => "varchar(64) NOT NULL default ''",
 			"ip_addr" => "varchar(16) NOT NULL default ''",
 			"rdns_addr" => "varchar(255) NOT NULL default 'gplhost.com'",
+			"ip_pool_id" => "int(11) NOT NULL default '0'",
 			"available" => "enum('yes','no') NOT NULL default 'yes'"
 			),
 		"unique" => array(
