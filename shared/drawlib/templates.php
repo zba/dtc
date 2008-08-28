@@ -360,7 +360,11 @@ function dtcDatagrid($dsc){
 	if(isset($dsc["where_condition"])){
 		$where = " WHERE ".$dsc["where_condition"]." ";
 	}else{
-		$where = "";
+		if( isset($dsc["print_where_condition"]) ){
+			$where = " WHERE ".$dsc["print_where_condition"];
+		}else{
+			$where = "";
+		}
 	}
 	if(isset($dsc["order_by"])){
 		$order_by = " ORDER BY ".$dsc["order_by"]." ";
