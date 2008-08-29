@@ -680,30 +680,30 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 		make_new_adm_domain_dir("$admin_path/$domain_name");
 		exec("cp -fulpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
 		// create a link so that the user can log in via SSH to $admin_path or $admin_path/$domain_name
-		exec("if [ ! -e $admin_path/$domain_name/bin ]; then ln -s subdomains/www/bin  $admin_path/$domain_name/bin; fi");
-		exec("if [ ! -e $admin_path/$domain_name/var ]; then ln -s subdomains/www/var  $admin_path/$domain_name/var; fi");
-		exec("if [ ! -e $admin_path/$domain_name/lib ]; then ln -s subdomains/www/lib  $admin_path/$domain_name/lib; fi");
-		exec("if [ ! -e $admin_path/$domain_name/lib64 ]; then ln -s subdomains/www/lib  $admin_path/$domain_name/lib64; fi");
-		exec("if [ ! -e $admin_path/$domain_name/sbin ]; then ln -s subdomains/www/sbin  $admin_path/$domain_name/sbin; fi");
-		exec("if [ ! -e $admin_path/$domain_name/tmp ]; then ln -s subdomains/www/tmp  $admin_path/$domain_name/tmp; fi");
-		exec("if [ ! -e $admin_path/$domain_name/usr ]; then ln -s subdomains/www/usr  $admin_path/$domain_name/usr; fi");
-		exec("if [ ! -e $admin_path/$domain_name/dev ]; then ln -s subdomains/www/dev  $admin_path/$domain_name/dev; fi");
-		exec("if [ ! -e $admin_path/$domain_name/etc ]; then ln -s subdomains/www/etc  $admin_path/$domain_name/etc; fi");
+		createSymLink("subdomains/www/bin", "$admin_path/$domain_name/bin");
+		createSymLink("subdomains/www/var", "$admin_path/$domain_name/var");
+		createSymLink("subdomains/www/lib", "$admin_path/$domain_name/lib");
+		createSymLink("subdomains/www/lib", "$admin_path/$domain_name/lib64");
+		createSymLink("subdomains/www/sbin", "$admin_path/$domain_name/sbin");
+		createSymLink("subdomains/www/tmp", "$admin_path/$domain_name/tmp");
+		createSymLink("subdomains/www/usr", "$admin_path/$domain_name/usr");
+		createSymLink("subdomains/www/dev", "$admin_path/$domain_name/dev");
+		createSymLink("subdomains/www/etc", "$admin_path/$domain_name/etc");
 
-		exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/$domain_name/lib64 ] ; then ln -s subdomains/www/lib $admin_path/$domain_name/lib64 ; fi ; fi");
+		//exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/$domain_name/lib64 ] ; then ln -s subdomains/www/lib $admin_path/$domain_name/lib64 ; fi ; fi");
 
 		// now for the admin user chroot links
-		exec("if [ ! -e $admin_path/bin ]; then ln -s $domain_name/subdomains/www/bin  $admin_path/bin; fi");
-		exec("if [ ! -e $admin_path/var ]; then ln -s $domain_name/subdomains/www/var  $admin_path/var; fi");
-		exec("if [ ! -e $admin_path/lib ]; then ln -s $domain_name/subdomains/www/lib  $admin_path/lib; fi");
-		exec("if [ ! -e $admin_path/lib64 ]; then ln -s $domain_name/subdomains/www/lib  $admin_path/lib64; fi");
-		exec("if [ ! -e $admin_path/sbin ]; then ln -s $domain_name/subdomains/www/sbin  $admin_path/sbin; fi");
-		exec("if [ ! -e $admin_path/tmp ]; then ln -s $domain_name/subdomains/www/tmp  $admin_path/tmp; fi");
-		exec("if [ ! -e $admin_path/usr ]; then ln -s $domain_name/subdomains/www/usr  $admin_path/usr; fi");
-		exec("if [ ! -e $admin_path/dev ]; then ln -s $domain_name/subdomains/www/dev  $admin_path/dev; fi");
-		exec("if [ ! -e $admin_path/etc ]; then ln -s $domain_name/subdomains/www/etc  $admin_path/etc; fi");
+		createSymLink("$domain_name/subdomains/www/bin", "$admin_path/bin");
+		createSymLink("$domain_name/subdomains/www/var", "$admin_path/var");
+		createSymLink("$domain_name/subdomains/www/lib", "$admin_path/lib");
+		createSymLink("$domain_name/subdomains/www/lib", "$admin_path/lib64");
+		createSymLink("$domain_name/subdomains/www/sbin", "$admin_path/sbin");
+		createSymLink("$domain_name/subdomains/www/tmp", "$admin_path/tmp");
+		createSymLink("$domain_name/subdomains/www/usr", "$admin_path/usr");
+		createSymLink("$domain_name/subdomains/www/dev", "$admin_path/dev");
+		createSymLink("$domain_name/subdomains/www/etc", "$admin_path/etc");
 
-		exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/lib64 ] ; then ln -s subdomains/www/lib $admin_path/lib64 ; fi ; fi");
+		//exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/lib64 ] ; then ln -s subdomains/www/lib $admin_path/lib64 ; fi ; fi");
 
 		system ("cp -rup $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
 	}
@@ -826,6 +826,31 @@ function dtc_makesalt()  {
 		else $hash .= '/';
 	}
 	return '$1$'.$hash.'$';
+}
+
+function createSymLink($target, $link) {
+	global $console;
+
+	if(is_link("$link")) {
+		if(!file_exists($link)) { // if this is a link and it points to a non-existing file
+			$console.="<br/ >$link points to a non-existing file. Fixing that<br />";
+			if(unlink($link)) {
+				if(!symlink($target,$link)) {
+					$console.="<br/ >WARNING: error encountered while trying to create $link<br />";
+				}
+				else {
+					$console.="$link now points to $target<br />";
+				}
+			}
+			else {
+				$console.="<br/ >WARNING: error encountered while trying to delete $link<br />";
+			}
+		}
+	} else {
+		if(!file_exists($link)) {
+			symlink($target,$link);
+		}
+	}
 }
 
 ?>

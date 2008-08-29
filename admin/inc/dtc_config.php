@@ -236,6 +236,38 @@ are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminder
 	return configEditorTemplate ($dsc);
 }
 
+function drawNagiosConfig(){
+
+	global $conf_dtcadmin_path;
+	$out = "";
+
+	$dsc = array(
+		"title" => _("Nagios monitoring"),
+		"action" => "vps_renewal_period",
+		"forward" => array("rub","sousrub"),
+		"desc" => _("DTC lets you auto-configure a Nagios monitoring server, letting your VPS customers know when their services are working.  This works by generating the Nagios configuration file and copying it using SCP to the remote Nagios server, then using SSH to restart the remote Nagios service.  Unfortunately, this requires some manual intervention to set up: You must manually add a user to your Nagios server, give it sudo access to restart the Nagios service, set up public key authentication for that user, add the Nagios server's SSH public key to the DTC user's SSH keyring, and create an empty config file which must be writable by the user in the Nagios server."),
+		"cols" => array(
+			"nagios_host" => array(
+				"legend" => _("Nagios host name: "),
+				"type" => "text",
+				"size" => "16"),
+			"nagios_username" => array(
+				"legend" => _("User name on the Nagios machine: "),
+                                "type" => "text",
+                                "size" => "16"),
+			"nagios_config_file_path" => array(
+				"legend" => _("Path to the Nagios configuration file to be created: "),
+                                "type" => "text",
+                                "size" => "16"),
+			"nagios_restart_command" => array(
+				"legend" => _("Restart command used to notify Nagios of new configuration: "),
+                                "type" => "text",
+                                "size" => "16")
+			)
+		);
+	return configEditorTemplate ($dsc);
+}
+
 function drawDedicatedIPConfig(){
 	global $pro_mysql_dedicated_ips_table;
 	global $pro_mysql_dedicated_table;
@@ -1636,6 +1668,8 @@ function drawDTCConfigForm(){
 		return drawSSLIPConfig();
 	case "ip_pool":
 		return drawIPPoolConfig();
+	case "nagios":
+		return drawNagiosConfig();
 	case "dedicatedip":
 		return drawDedicatedIPConfig();
 	case "zonefile":
