@@ -172,6 +172,78 @@ function get_remote_ns_domains(){
 }
 
 function calculate_reverse_end($ip_pool_ip,$ip_pool_netmask){
+	$out = "";
+	$ip_pool_ip_exploded = explode(".",$ip_pool_ip);
+	switch($ip_pool_netmask){
+	// Netblock: from /1 to /7
+	case "128.0.0.0":
+	case "192.0.0.0":
+	case "224.0.0.0":
+	case "240.0.0.0":
+	case "248.0.0.0":
+	case "252.0.0.0":
+	case "254.0.0.0":
+		$netmask_exploded = explode(".",$ip_pool_netmask);
+		$end = $ip_pool_ip_exploded[0] + (255 - $netmask_exploded[0]);
+		$out = $ip_pool_ip_exploded[1] . "-" . $end . ".in-addr.arap";
+		break;
+	// Netblock: /8
+	case "255.0.0.0":
+		$out = $ip_pool_ip_exploded[0] . "in-addr.arap";
+		break;
+	// Netblock: from /9 to /15
+	case "255.128.0.0":
+	case "255.192.0.0":
+	case "255.224.0.0":
+	case "255.240.0.0":
+	case "255.248.0.0":
+	case "255.252.0.0":
+	case "255.254.0.0":
+		$netmask_exploded = explode(".",$ip_pool_netmask);
+		$end = $ip_pool_ip_exploded[1] + (255 - $netmask_exploded[1]);
+		$out = $ip_pool_ip_exploded[1] . "-" . $end . "." $ip_pool_ip_exploded[0] . ".in-addr.arap";
+		break;
+	// Netblock: /16 = 65536 IPs
+	case "255.255.0.0":
+		$out = $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arap";
+		break;
+	// Netblock: from /17 to /25
+	case "255.255.128.0":
+	case "255.255.192.0":
+	case "255.255.224.0":
+	case "255.255.240.0":
+	case "255.255.248.0":
+	case "255.255.252.0":
+	case "255.255.254.0":
+		$netmask_exploded = explode(".",$ip_pool_netmask);
+		$end = $ip_pool_ip_exploded[2] + (255 - $netmask_exploded[2]);
+		$out = $ip_pool_ip_exploded[2] . "-" . $end . "." $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arap";
+		break;
+	// Netblock: /24 = 256 IPs
+	case "255.255.255.0":
+		$out = $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arap";
+		break;
+	// Netblock: from /25 to /31
+	case "255.255.255.128":
+	case "255.255.255.192":
+	case "255.255.255.224":
+	case "255.255.255.240":
+	case "255.255.255.248":
+	case "255.255.255.252":
+	case "255.255.255.254":
+		$netmask_exploded = explode(".",$ip_pool_netmask);
+		$end = $ip_pool_ip_exploded[3] + (255 - $netmask_exploded[3]);
+		$out = $ip_pool_ip_exploded[3] . "-" . $end . "." $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arap";
+		break;
+	// Netblock: /32 = 1 IP (Case of one zonefile per pool)
+	case "255.255.255.255":
+		$out = $ip_pool_ip_exploded[3] . "." . $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arap";
+		break;
+
+	default:
+		die("$netmask is not a netmask line ".__LINE__." file ".__FILE__);
+	}
+	return $out;
 }
 
 function rnds_generate(){
