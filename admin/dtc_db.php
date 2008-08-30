@@ -247,6 +247,7 @@ $dtc_database = array(
 			"restart_apache" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_vhosts" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_named" => "enum('yes','no') NOT NULL default 'no' ",
+			"gen_reverse" => "enum('yes','no') NOT NULL default 'no'",
 			"gen_qmail" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_webalizer" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_backup" => "enum('yes','no') NOT NULL default 'no' ",
@@ -1034,6 +1035,7 @@ $dtc_database = array(
 			"vps_xen_name" => "varchar(64) NOT NULL default ''",
 			"ip_addr" => "varchar(16) NOT NULL default ''",
 			"rdns_addr" => "varchar(255) NOT NULL default 'gplhost.com'",
+			"rdns_regen" => "enum('yes','no') NOT NULL default 'yes'",
 			"ip_pool_id" => "int(11) NOT NULL default '0'",
 			"available" => "enum('yes','no') NOT NULL default 'yes'"
 			),
