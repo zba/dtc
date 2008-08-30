@@ -201,11 +201,11 @@ function calculate_reverse_end($ip_pool_ip,$ip_pool_netmask){
 	case "255.254.0.0":
 		$netmask_exploded = explode(".",$ip_pool_netmask);
 		$end = $ip_pool_ip_exploded[1] + (255 - $netmask_exploded[1]);
-		$out = $ip_pool_ip_exploded[1] . "-" . $end . "." $ip_pool_ip_exploded[0] . ".in-addr.arpa";
+		$out = $ip_pool_ip_exploded[1] . "-" . $end . "." . $ip_pool_ip_exploded[0] . ".in-addr.arpa";
 		break;
 	// Netblock: /16 = 65536 IPs
 	case "255.255.0.0":
-		$out = $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arpa";
+		$out = $ip_pool_ip_exploded[1] . "." . $ip_pool_ip_exploded[0] . ".in-addr.arpa";
 		break;
 	// Netblock: from /17 to /25
 	case "255.255.128.0":
@@ -217,11 +217,11 @@ function calculate_reverse_end($ip_pool_ip,$ip_pool_netmask){
 	case "255.255.254.0":
 		$netmask_exploded = explode(".",$ip_pool_netmask);
 		$end = $ip_pool_ip_exploded[2] + (255 - $netmask_exploded[2]);
-		$out = $ip_pool_ip_exploded[2] . "-" . $end . "." $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arpa";
+		$out = $ip_pool_ip_exploded[2] . "-" . $end . "." . $ip_pool_ip_exploded[1] . "." . $ip_pool_ip_exploded[0] . ".in-addr.arpa";
 		break;
 	// Netblock: /24 = 256 IPs
 	case "255.255.255.0":
-		$out = $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arpa";
+		$out = $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." . $ip_pool_ip_exploded[0] . ".in-addr.arpa";
 		break;
 	// Netblock: from /25 to /31
 	case "255.255.255.128":
@@ -233,11 +233,11 @@ function calculate_reverse_end($ip_pool_ip,$ip_pool_netmask){
 	case "255.255.255.254":
 		$netmask_exploded = explode(".",$ip_pool_netmask);
 		$end = $ip_pool_ip_exploded[3] + (255 - $netmask_exploded[3]);
-		$out = $ip_pool_ip_exploded[3] . "-" . $end . "." $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arpa";
+		$out = $ip_pool_ip_exploded[3] . "-" . $end . "." . $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." . $ip_pool_ip_exploded[0] . ".in-addr.arpa";
 		break;
 	// Netblock: /32 = 1 IP (Case of one zonefile per pool)
 	case "255.255.255.255":
-		$out = $ip_pool_ip_exploded[3] . "." . $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." $ip_pool_ip_exploded[0] . ".in-addr.arpa";
+		$out = $ip_pool_ip_exploded[3] . "." . $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." . $ip_pool_ip_exploded[0] . ".in-addr.arpa";
 		break;
 
 	default:
