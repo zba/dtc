@@ -75,6 +75,9 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 	$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE dedicated_server_hostname='$dedicated_server_hostname'";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
+
+	$out .= dtcFormTableAttrs();
+
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		if($i % 2){
@@ -82,20 +85,20 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 		}else{
 			$alt_color = 1;
 		}
-/*		$out .= dtcFormLineDraw($a["ip_addr"],"$frm_start<input type=\"hidden\" name=\"action\" value=\"set_dedicated_ip_rdns\">
+		$out .= dtcFormLineDraw($a["ip_addr"],"$frm_start<input type=\"hidden\" name=\"action\" value=\"set_dedicated_ip_rdns\">
 <input type=\"hidden\" name=\"ip_addr\" value=\"".$a["ip_addr"]."\">
 <input type=\"text\" name=\"rdns\" value=\"".$a["rdns_addr"]."\">
-		                </td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\"
-		                onMouseOut=\"this.className='input_btn_container';\">
-		                 <div class=\"input_btn_left\"></div>
-		                  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Change RDNS")."\"></div>
-		                   <div class=\"input_btn_right\"></div>
-		                   </div></form>",$alt_color);*/
-		if($i > 0){
+</td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+<div class=\"input_btn_left\"></div>
+<div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Change RDNS")."\"></div>
+<div class=\"input_btn_right\"></div>
+</div></form>",$alt_color);
+/*		if($i > 0){
 			$out .= ", ";
 		}
-		$out .= $a["ip_addr"];
+		$out .= $a["ip_addr"];*/
 	}
+	$out .= "</table>";
 	return $out;
 }
 

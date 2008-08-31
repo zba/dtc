@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS dedicated_ip (
   `available` enum('yes','no') NOT NULL default 'yes',
   `rdns_addr` varchar(255) NOT NULL default 'gplhost.com',
   `rdns_regen` enum('yes','no') NOT NULL default 'yes',
+  `ip_pool_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (id),
   UNIQUE KEY ip_addr (ip_addr)
 ) TYPE=MyISAM;

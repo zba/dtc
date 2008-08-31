@@ -288,7 +288,8 @@ $dtc_database = array(
 			"ip_addr" => "varchar(16) NOT NULL default ''",
 			"available" => "enum('yes','no') NOT NULL default 'yes'",
 			"rdns_addr" => "varchar(255) NOT NULL default 'gplhost.com'",
-			"rdns_regen" => "enum('yes','no') NOT NULL default 'yes'"
+			"rdns_regen" => "enum('yes','no') NOT NULL default 'yes'",
+			"ip_pool_id" => "int(11) NOT NULL default '0'"
 			),
 		"primary" => "(id)",
 		"unique" => array(

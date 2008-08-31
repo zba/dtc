@@ -37,6 +37,9 @@ function drawDTCConfigMenu(){
 		"ip_pool" => array(
 			"text" => gettext("IP addresses pool"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
+		"nagios" => array(
+			"text" => _("Nagios host"),
+			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"dedicatedip" => array(
 			"text" => _("Dedicated server IP addresses"),
 			"icon" => "box_wnb_nb_picto-dedicatedservers.gif"),
@@ -271,6 +274,7 @@ function drawNagiosConfig(){
 function drawDedicatedIPConfig(){
 	global $pro_mysql_dedicated_ips_table;
 	global $pro_mysql_dedicated_table;
+	global $pro_mysql_ip_pool_table;
 	$out = "";
 
 	$q = "SELECT server_hostname FROM $pro_mysql_dedicated_table ORDER BY server_hostname";
@@ -281,6 +285,25 @@ function drawDedicatedIPConfig(){
 		$a = mysql_fetch_array($r);
 		$popup_vals[] = $a["server_hostname"];
 	}
+
+	$q = "SELECT * FROM $pro_mysql_ip_pool_table";
+	$r = mysql_query($q) or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 0){
+		$out .= "<font color=\"red\">". _("Warning: no IP pool in the database!") ."</font>";
+	}
+	unset($my_pool_values);
+	unset($my_pool_text);
+	$my_pool_values = array();
+	$my_pool_text = array();
+	$my_pool_values[] = 0;
+	$my_pool_text[] = "Not set";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$my_pool_values[] = $a["id"];
+		$my_pool_text[] = $a["location"] . " " . $a["ip_addr"] . " " . $a["netmask"];
+	}
+
 
 	$dsc = array(
 		"table_name" => $pro_mysql_dedicated_ips_table,
@@ -297,6 +320,11 @@ function drawDedicatedIPConfig(){
 			"ip_addr" => array(
 				"type" => "text",
 				"legend" => _("IPs addrs")),
+			"ip_pool_id" => array(
+				"type" => "popup",
+				"legend" => _("IP Pool"),
+				"values" => $my_pool_values,
+				"display_replace" => $my_pool_text),
 			"dedicated_server_hostname" => array(
 				"type" => "popup",
 				"values" => $popup_vals,
@@ -554,7 +582,7 @@ function checkIPAssigned(){
 		}
 
 		// Check against the SSLIP list
-		if($_REQUEST["action"] == "ssl_ip_list_edit"){
+		if($_REQUEST["action"] == "dedicated_ip_list_edit"){
 			$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_addr='$test_ip' AND id != '". $_REQUEST["id"] ."';";
 		}else{
 			$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_addr='$test_ip';";
@@ -568,7 +596,7 @@ function checkIPAssigned(){
 
 
 		// Check against the dedicated IP list
-		if($_REQUEST["action"] != "dedicated_ip_list_edit" && $_REQUEST["action"] != "dedicated_ip_list_new"){
+		if($_REQUEST["action"] == "ssl_ip_list_edit"){
 			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE ip_addr='$test_ip' AND id != '". $_REQUEST["id"] ."';";
 		}else{
 			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE ip_addr='$test_ip';";
@@ -576,7 +604,7 @@ function checkIPAssigned(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 0){
-			$action_error_txt = _("The IP address $test_ip is already assigned to an SSL site: cannot assign this one!");
+			echo $action_error_txt = _("The IP address $test_ip is already assigned to an SSL site: cannot assign this one!");
 			$ret_val = false;
 		}
 
