@@ -263,7 +263,7 @@ function rnds_generate(){
 	global $conf_named_soa_expire;
 	global $conf_named_soa_default_ttl;
 
-        $todays_serial = date("YmdHi");
+        $todays_serial = date("YmdH");
 	// Calculate the: allow-transfer { 203.174.86.120; 203.174.86.121; };
 	// string that we have to add
 	$allow_trans_str = "";
@@ -308,8 +308,36 @@ function rnds_generate(){
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			for($j=0;$j<$n2;$j++){
-				$a2 = mysql_num_rows($r2);
-				// $reverse_zone = calculate_reverse_end(
+				$a2 = mysql_fetch_array($r2);
+				$the_ip_addr = $a2["ip_addr"];
+				$the_reverse = $a2["rdns_addr"];
+				$zone_name = calculate_reverse_end($the_ip_addr,"255.255.255.255");
+			$reverse_dns_file .= "zone \"$zone_name\" in {
+	type master;
+	file \"$conf_generated_file_path/reverse_zones/$the_ip_addr\";
+$allow_trans_str	allow-query { any; };
+};
+
+";
+
+			$zonefile_content = "\$TTL $conf_default_zones_ttl
+@	$conf_default_zones_ttl	IN	SOA	".$conf_addr_primary_dns.". ".$bind_formated_webmaster_email_addr." (
+			$todays_serial; serial
+			$conf_named_soa_refresh ; refresh
+			$conf_named_soa_retry ; retry
+			$conf_named_soa_expire ; expire
+			$conf_named_soa_default_ttl ; default_ttl
+			)
+	IN	NS	".$conf_addr_primary_dns.".
+	IN	NS	".$conf_addr_secondary_dns.".
+	PTR	".$the_reverse.".
+";
+			$filep = fopen("$conf_generated_file_path/reverse_zones/$the_ip_addr", "w+");
+			if( $filep == NULL){
+				die("Cannot open file \"$conf_generated_file_path/reverse_zones/$the_ip_addr\" for writting");
+			}
+			fwrite($filep,$zonefile_content);
+			fclose($filep);
 			}
 			break;
 		case "one_zonefile":
@@ -323,7 +351,7 @@ $allow_trans_str	allow-query { any; };
 ";
 			// FIXME: need to use the same kind of technique for the zonefile serial increment as bellow...
 			$zonefile_content = "\$TTL $conf_default_zones_ttl
-@	$conf_default_zones_ttl	IN	SOA	".$conf_addr_primary_dns.". ".$bind_formated_webmaster_email_addr.". (
+@	$conf_default_zones_ttl	IN	SOA	".$conf_addr_primary_dns.". ".$bind_formated_webmaster_email_addr." (
 			$todays_serial; serial
 			$conf_named_soa_refresh ; refresh
 			$conf_named_soa_retry ; retry
@@ -353,8 +381,10 @@ $allow_trans_str	allow-query { any; };
 					$the_ip_addr_exploded = explode(".",$the_ip_addr);
 					$ip_to_reverse = $the_ip_addr_exploded[3];
 					break;
+				default:
+					die("FIXME: works only for pool smaller than /24 line ".__LINE__." file ".__FILE__);
 				}
-				$zonefile_content .= "$ip_to_reverse	IN	PTR	$the_reverse\n";
+				$zonefile_content .= "$ip_to_reverse	IN	PTR	".$the_reverse.".\n";
 			}
 			// Write $conf_generated_file_path/reverse_zones/$pool_ip_addr
 			$filep = fopen("$conf_generated_file_path/reverse_zones/$pool_ip_addr", "w+");
