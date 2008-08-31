@@ -396,8 +396,11 @@ $allow_trans_str	allow-query { any; };
 			
 			break;
 		case "support_ticket":
+			// Nothing to do here...
 			break;
 		}
+		$q2 = "UPDATE $pro_mysql_vps_ip_table SET rdns_regen='no' WHERE ip_pool_id='$ip_pool_id';";
+		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
 	// Write the $reverse_dns_file
 	$filep = fopen("$conf_generated_file_path/named.conf.reverse", "w+");

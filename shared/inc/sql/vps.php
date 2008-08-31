@@ -107,7 +107,7 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "set_ip_reverse_dns")){
 				if($n != 1){
 					$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;
 				}else{
-					$q = "UPDATE $pro_mysql_vps_ip_table SET rdns_addr='".$_REQUEST["rdns"]."' WHERE ip_addr='".$_REQUEST["ip_addr"]."';";
+					$q = "UPDATE $pro_mysql_vps_ip_table SET rdns_addr='".$_REQUEST["rdns"]."',rdns_regen='yes' WHERE ip_addr='".$_REQUEST["ip_addr"]."';";
 					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				}
 			}
