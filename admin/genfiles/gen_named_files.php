@@ -246,8 +246,12 @@ function calculate_reverse_end($ip_pool_ip,$ip_pool_netmask){
 	return $out;
 }
 
+function rdns_zonefile_generate($ip_pool_id,$pool_ip_addr,$pool_netmask,$zone_type){
+}
+
 function rnds_generate(){
 	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_dedicated_ip_table;
 	global $pro_mysql_ip_pool_table;
 
 	global $conf_default_zones_ttl;
@@ -290,29 +294,82 @@ function rnds_generate(){
 // instead, use DTC to enter any values
 
 ";
+
+	unset($tbl);
+	$tbl = array();
+
 	// Take only the zones for which a rdns_regen is set in the vps_ip table
-	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type FROM $pro_mysql_ip_pool_table,$pro_mysql_vps_ip_table
+	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type
+	FROM $pro_mysql_ip_pool_table,$pro_mysql_vps_ip_table
 	WHERE $pro_mysql_vps_ip_table.rdns_regen='yes'
 	AND $pro_mysql_ip_pool_table.id=$pro_mysql_vps_ip_table.ip_pool_id;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	$n = mysql_num_rows($r);
-	for($i=0;$i<$n;$i++){
+	$num_vps = mysql_num_rows($r);
+	for($i=0;$i<$num_vps;$i++){
 		$a = mysql_fetch_array($r);
+		$tbl_vps[$i] = $a;
+		$tbl[$i] = $a;
+	}
+	// Update the table so it's not regenerated again, we consider
+	$q = "UPDATE $pro_mysql_vps_ip_table SET rdns_regen='no';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
+	// Do same for the VPSes
+	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type
+	FROM $pro_mysql_ip_pool_table,$pro_mysql_dedicated_ip_table
+	WHERE $pro_mysql_dedicated_ip_table.rdns_regen='yes'
+	AND $pro_mysql_ip_pool_table.id=$pro_mysql_dedicated_ip_table.ip_pool_id;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$num_ded = mysql_num_rows($r);
+	unset($tbl);
+	$tbl = array();
+	$tbl_num_of_records = $num_vps + $num_ded;
+	for($i=$num_vps;$i<$tbl_num_of_records;$i++){
+		$a = mysql_fetch_array($r);
+		$tbl_ded[$i] = $a;
+		$tbl[$i] = $a;
+	}
+	$q = "UPDATE $pro_mysql_dedicated_ip_table SET rdns_regen='no';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
+	// Add code here for dedicated servers IPs
+	for($i=0;$i<$$tbl_num_of_records;$i++){
+		$a = $tbl[$i];
 		$ip_pool_id = $a["id"];
 		$pool_ip_addr = $a["ip_addr"];
 		$pool_netmask = $a["netmask"];
 		$zone_type = $a["zone_type"];
+
 		switch($zone_type){
 		case "ip_per_ip":
+			unset($thiszoneIPs);
+			unset($thiszoneVPSIPs);
+			unset($thiszoneDEDIPs);
+			$thiszoneIPs = array();
+			$thiszoneVPSIPs = array();
+			$thiszoneDEDIPs = array();
 			$q2 = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_pool_id='$ip_pool_id';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-			$n2 = mysql_num_rows($r2);
-			for($j=0;$j<$n2;$j++){
+			$num_vps = mysql_num_rows($r2);
+			for($j=0;$j<$num_vps;$j++){
 				$a2 = mysql_fetch_array($r2);
-				$the_ip_addr = $a2["ip_addr"];
-				$the_reverse = $a2["rdns_addr"];
+				$thiszoneVPSIPs[] = $a2;
+				$thiszoneIPs[] = $a2;
+			}
+			$q2 = "SELECT * FROM $pro_mysql_dedicated_ip_table WHERE ip_pool_id='$ip_pool_id';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$num_ded = mysql_num_rows($r2);
+			for($j=0;$j<$num_ded;$j++){
+				$a2 = mysql_fetch_array($r2);
+				$thiszoneDEDIPs[] = $a2;
+				$thiszoneIPs[] = $a2;
+			}
+			$num_of_IPs = sizeof($thiszoneIPs);
+			for($j=0;$j<$num_of_IPs;$j++){
+				$the_ip_addr = $thiszoneIPs["ip_addr"];
+				$the_reverse = $thiszoneIPs["rdns_addr"];
 				$zone_name = calculate_reverse_end($the_ip_addr,"255.255.255.255");
-			$reverse_dns_file .= "zone \"$zone_name\" in {
+				$reverse_dns_file .= "zone \"$zone_name\" in {
 	type master;
 	file \"$conf_generated_file_path/reverse_zones/$the_ip_addr\";
 $allow_trans_str	allow-query { any; };
@@ -320,7 +377,7 @@ $allow_trans_str	allow-query { any; };
 
 ";
 
-			$zonefile_content = "\$TTL $conf_default_zones_ttl
+				$zonefile_content = "\$TTL $conf_default_zones_ttl
 @	$conf_default_zones_ttl	IN	SOA	".$conf_addr_primary_dns.". ".$bind_formated_webmaster_email_addr." (
 			$todays_serial; serial
 			$conf_named_soa_refresh ; refresh
@@ -332,12 +389,12 @@ $allow_trans_str	allow-query { any; };
 	IN	NS	".$conf_addr_secondary_dns.".
 	PTR	".$the_reverse.".
 ";
-			$filep = fopen("$conf_generated_file_path/reverse_zones/$the_ip_addr", "w+");
-			if( $filep == NULL){
-				die("Cannot open file \"$conf_generated_file_path/reverse_zones/$the_ip_addr\" for writting");
-			}
-			fwrite($filep,$zonefile_content);
-			fclose($filep);
+				$filep = fopen("$conf_generated_file_path/reverse_zones/$the_ip_addr", "w+");
+				if( $filep == NULL){
+					die("Cannot open file \"$conf_generated_file_path/reverse_zones/$the_ip_addr\" for writting");
+				}
+				fwrite($filep,$zonefile_content);
+				fclose($filep);
 			}
 			break;
 		case "one_zonefile":
@@ -361,10 +418,31 @@ $allow_trans_str	allow-query { any; };
 	IN	NS	".$conf_addr_primary_dns.".
 	IN	NS	".$conf_addr_secondary_dns.".
 ";
+			unset($thiszoneIPs);
+			unset($thiszoneVPSIPs);
+			unser($thiszoneDEDIPs);
+			$thiszoneVPSIPs = array();
+			$thiszoneVPSIPs = array();
+			$thiszoneDEDIPs = array();
 			$q2 = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_pool_id='$ip_pool_id';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			$n2 = mysql_num_rows($r2);
-			for($j=0;$j<$n2;$j++){
+			$num_vps = mysql_num_rows($r2);
+			for($j=0;$j<$num_vps;$j++){
+				$a = mysql_fetch_array();
+				$thiszoneVPSIPs[] = $a;
+				$thiszoneIPs[] = $a;
+			}
+			$q2 = "SELECT * FROM $pro_mysql_dedicated_ip_table WHERE ip_pool_id='$ip_pool_id';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$num_ded = mysql_num_rows($r2);
+			for($j=0;$j<$num_ded;$j++){
+				$a = mysql_fetch_array();
+				$thiszoneVPSIPs[] = $a;
+				$thiszoneIPs[] = $a;
+			}
+			$num_ip = $num_vps + $num_ded;
+			for($j=0;$j<$num_ip;$j++){
+				$a2 = thiszoneIPs[$j];
 				$a2 = mysql_fetch_array($r2);
 				$the_ip_addr = $a2["ip_addr"];
 				$the_reverse = $a2["rdns_addr"];
@@ -393,7 +471,6 @@ $allow_trans_str	allow-query { any; };
 			}
 			fwrite($filep,$zonefile_content);
 			fclose($filep);
-			
 			break;
 		case "support_ticket":
 			// Nothing to do here...
@@ -402,6 +479,7 @@ $allow_trans_str	allow-query { any; };
 		$q2 = "UPDATE $pro_mysql_vps_ip_table SET rdns_regen='no' WHERE ip_pool_id='$ip_pool_id';";
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
+
 	// Write the $reverse_dns_file
 	$filep = fopen("$conf_generated_file_path/named.conf.reverse", "w+");
 	if( $filep == NULL){
