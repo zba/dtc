@@ -37,6 +37,9 @@ function drawDTCConfigMenu(){
 		"ip_pool" => array(
 			"text" => gettext("IP addresses pool"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
+		"nagios" => array(
+			"text" => _("Nagios host"),
+			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"dedicatedip" => array(
 			"text" => _("Dedicated server IP addresses"),
 			"icon" => "box_wnb_nb_picto-dedicatedservers.gif"),
@@ -236,9 +239,42 @@ are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminder
 	return configEditorTemplate ($dsc);
 }
 
+function drawNagiosConfig(){
+
+	global $conf_dtcadmin_path;
+	$out = "";
+
+	$dsc = array(
+		"title" => _("Nagios monitoring"),
+		"action" => "vps_renewal_period",
+		"forward" => array("rub","sousrub"),
+		"desc" => _("DTC lets you auto-configure a Nagios monitoring server, letting your VPS customers know when their services are working.  This works by generating the Nagios configuration file and copying it using SCP to the remote Nagios server, then using SSH to restart the remote Nagios service.  Unfortunately, this requires some manual intervention to set up: You must manually add a user to your Nagios server, give it sudo access to restart the Nagios service, set up public key authentication for that user, add the Nagios server's SSH public key to the DTC user's SSH keyring, and create an empty config file which must be writable by the user in the Nagios server."),
+		"cols" => array(
+			"nagios_host" => array(
+				"legend" => _("Nagios host name: "),
+				"type" => "text",
+				"size" => "16"),
+			"nagios_username" => array(
+				"legend" => _("User name on the Nagios machine: "),
+                                "type" => "text",
+                                "size" => "16"),
+			"nagios_config_file_path" => array(
+				"legend" => _("Path to the Nagios configuration file to be created: "),
+                                "type" => "text",
+                                "size" => "16"),
+			"nagios_restart_command" => array(
+				"legend" => _("Restart command used to notify Nagios of new configuration: "),
+                                "type" => "text",
+                                "size" => "16")
+			)
+		);
+	return configEditorTemplate ($dsc);
+}
+
 function drawDedicatedIPConfig(){
 	global $pro_mysql_dedicated_ips_table;
 	global $pro_mysql_dedicated_table;
+	global $pro_mysql_ip_pool_table;
 	$out = "";
 
 	$q = "SELECT server_hostname FROM $pro_mysql_dedicated_table ORDER BY server_hostname";
@@ -249,6 +285,25 @@ function drawDedicatedIPConfig(){
 		$a = mysql_fetch_array($r);
 		$popup_vals[] = $a["server_hostname"];
 	}
+
+	$q = "SELECT * FROM $pro_mysql_ip_pool_table";
+	$r = mysql_query($q) or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 0){
+		$out .= "<font color=\"red\">". _("Warning: no IP pool in the database!") ."</font>";
+	}
+	unset($my_pool_values);
+	unset($my_pool_text);
+	$my_pool_values = array();
+	$my_pool_text = array();
+	$my_pool_values[] = 0;
+	$my_pool_text[] = "Not set";
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$my_pool_values[] = $a["id"];
+		$my_pool_text[] = $a["location"] . " " . $a["ip_addr"] . " " . $a["netmask"];
+	}
+
 
 	$dsc = array(
 		"table_name" => $pro_mysql_dedicated_ips_table,
@@ -265,6 +320,11 @@ function drawDedicatedIPConfig(){
 			"ip_addr" => array(
 				"type" => "text",
 				"legend" => _("IPs addrs")),
+			"ip_pool_id" => array(
+				"type" => "popup",
+				"legend" => _("IP Pool"),
+				"values" => $my_pool_values,
+				"display_replace" => $my_pool_text),
 			"dedicated_server_hostname" => array(
 				"type" => "popup",
 				"values" => $popup_vals,
@@ -522,7 +582,7 @@ function checkIPAssigned(){
 		}
 
 		// Check against the SSLIP list
-		if($_REQUEST["action"] == "ssl_ip_list_edit"){
+		if($_REQUEST["action"] == "dedicated_ip_list_edit"){
 			$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_addr='$test_ip' AND id != '". $_REQUEST["id"] ."';";
 		}else{
 			$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_addr='$test_ip';";
@@ -536,7 +596,7 @@ function checkIPAssigned(){
 
 
 		// Check against the dedicated IP list
-		if($_REQUEST["action"] != "dedicated_ip_list_edit" && $_REQUEST["action"] != "dedicated_ip_list_new"){
+		if($_REQUEST["action"] == "ssl_ip_list_edit"){
 			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE ip_addr='$test_ip' AND id != '". $_REQUEST["id"] ."';";
 		}else{
 			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE ip_addr='$test_ip';";
@@ -544,7 +604,7 @@ function checkIPAssigned(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 0){
-			$action_error_txt = _("The IP address $test_ip is already assigned to an SSL site: cannot assign this one!");
+			echo $action_error_txt = _("The IP address $test_ip is already assigned to an SSL site: cannot assign this one!");
 			$ret_val = false;
 		}
 
@@ -558,6 +618,7 @@ function drawVPSServerConfig(){
 	global $pro_mysql_vps_server_table;
 	global $pro_mysql_list_table;
 	global $pro_mysql_vps_server_lists_table;
+	global $pro_mysql_ip_pool_table;
 	global $rub;
 	global $sousrub;
 	global $cc_code_array;
@@ -616,6 +677,23 @@ function drawVPSServerConfig(){
 	$out .= $vps_server_list;
 
 	if(isset($_REQUEST["edithost"])){
+		$q = "SELECT * FROM $pro_mysql_ip_pool_table";
+		$r = mysql_query($q) or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n == 0){
+			$out .= "<font color=\"red\">". _("Warning: no IP pool in the database!") ."</font>";
+		}
+		unset($my_pool_values);
+		unset($my_pool_text);
+		$my_pool_values = array();
+		$my_pool_text = array();
+		$my_pool_values[] = 0;
+		$my_pool_text[] = "Not set";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$my_pool_values[] = $a["id"];
+			$my_pool_text[] = $a["location"] . " " . $a["ip_addr"] . " " . $a["netmask"];
+		}
 		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE id='".$_REQUEST["edithost"]."';";
 		$r = mysql_query($q);
 		$a = mysql_fetch_array($r);
@@ -639,6 +717,11 @@ function drawVPSServerConfig(){
 				"ip_addr" => array(
 					"type" => "text",
 					"legend" => _("IPs addrs")),
+				"ip_pool_id" => array(
+					"type" => "popup",
+					"legend" => _("IP Pool"),
+					"values" => $my_pool_values,
+					"display_replace" => $my_pool_text),
 				"available" => array(
 					"type" => "radio",
 					"legend" => _("Available"),
@@ -1613,6 +1696,8 @@ function drawDTCConfigForm(){
 		return drawSSLIPConfig();
 	case "ip_pool":
 		return drawIPPoolConfig();
+	case "nagios":
+		return drawNagiosConfig();
 	case "dedicatedip":
 		return drawDedicatedIPConfig();
 	case "zonefile":

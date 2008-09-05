@@ -67,6 +67,8 @@ function deleteVPS($id){
 	remoteVPSAction($vps["vps_server_hostname"],$vps["vps_xen_name"],"kill_vps_disk");
 
 	VPS_Server_Subscribe_To_Lists($vps["vps_server_hostname"]);
+
+	markCronflagOk ("gen_nagios='yes'");
 }
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){

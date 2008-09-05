@@ -10,17 +10,15 @@ PKGNAMESUFFIX=  -toaster
 
 MAINTAINER=     scrappy@freebsd.org
 
-BROKEN=         Conflicting MySQL dependencies
-
 CONFLICTS=      dtc-[0-9]*
 
 WITH_WEBALIZER=yes
+WITH_VISITORS=yes
 WITH_AWSTATS=yes
 WITH_MHONARC=yes
 WITH_MLMMJ=yes
 WITH_PUREFTPD=yes
 WITH_POSTFIX=yes
-WITH_CYRUS_IMAPD=yes
 WITH_APACHE2=yes
 WITH_PHP5=yes
 

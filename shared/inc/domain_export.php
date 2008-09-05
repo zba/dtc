@@ -1,5 +1,15 @@
 <?php
 
+//SELECT pop_access.mbox_host,pop_access.id,passwd,redirect1,redirect2,localdeliver,vacation_flag,bounce_msg,vacation_text,spam_mailbox_enable
+//FROM domain, pop_access WHERE domain.owner='dig' AND pop_access.mbox_host=domain.name
+
+//SELECT login,password,homedir,hostname FROM domain, ftp_access WHERE domain.owner='dig' AND ftp_access.hostname=domain.name
+
+//SELECT domain_name,subdomain_name,ip,register_globals,generate_vhost,subdomain.safe_mode,subdomain.sbox_protect,ssl_ip
+//FROM subdomain,domain
+//WHERE subdomain.domain_name=domain.name
+//AND domain.owner='dig'
+
 function exportSqlTable($table_name,$filter_field,$filter_value){
         global $conf_mysql_db;
         global $pro_mysql_pop_table;

@@ -195,8 +195,8 @@ ADMIN_GENFILE_PHP_SCRIPT_FILES=admin/genfiles/gen_awstats.php admin/genfiles/gen
 admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_backup_script.php admin/genfiles/gen_pro_vhost.php \
 admin/genfiles/gen_qmail_email_account.php admin/genfiles/gen_email_account.php admin/genfiles/genfiles.php \
 admin/genfiles/gen_ssh_account.php admin/genfiles/gen_maildrop_userdb.php admin/genfiles/gen_webalizer_stat.php \
-admin/genfiles/gen_named_files_alt-wildcard.php admin/genfiles/remote_mail_list.php admin/genfiles/gen_named_files.php \
-admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_pro_vhost_alt-wildcard.php
+admin/genfiles/remote_mail_list.php admin/genfiles/gen_named_files.php \
+admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_nagios.php
 
 ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/img_alt_skin.php admin/inc/img.php admin/inc/renewals.php \
 admin/inc/draw_user_admin.php admin/inc/dtc_config.php \
@@ -238,7 +238,8 @@ shared/inc/forms/ftp.php shared/inc/forms/invoices.php shared/inc/forms/lists.ph
 shared/inc/forms/my_account.php shared/inc/forms/packager.php shared/inc/forms/reseller.php shared/inc/forms/root_admin.php \
 shared/inc/forms/ssh.php shared/inc/forms/subdomain.php shared/inc/forms/ticket.php \
 shared/inc/forms/tools.php shared/inc/forms/vps.php shared/inc/forms/vps_dom0graphs.php \
-shared/inc/sql/database.php shared/inc/sql/dns.php shared/inc/sql/domain_info.php \
+shared/inc/sql/database.php shared/inc/sql/dedicated.php \
+shared/inc/sql/dns.php shared/inc/sql/domain_info.php \
 shared/inc/sql/domain_stats.php shared/inc/sql/email.php \
 shared/inc/sql/lists.php shared/inc/sql/reseller.php shared/inc/sql/ssh.php \
 shared/inc/sql/subdomain.php shared/inc/sql/ticket.php \
@@ -333,7 +334,7 @@ shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin
 shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
 shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc admin/patches
 
-LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW
+LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW sr_CS
 
 l12n:
 	@echo "===> Managing localizations binaries"

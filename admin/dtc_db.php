@@ -231,7 +231,11 @@ $dtc_database = array(
 			"named_soa_retry" => "varchar (16) NOT NULL default '60M'",
 			"named_soa_expire" => "varchar (16) NOT NULL default '1W'",
 			"named_soa_default_ttl" => "varchar (16) NOT NULL default '24H'",
-			"provide_own_domain_hosts" => "enum('yes','no') NOT NULL default 'no'"
+			"provide_own_domain_hosts" => "enum('yes','no') NOT NULL default 'no'",
+			"nagios_host" => "varchar(255) NOT NULL default ''",
+			"nagios_username" => "varchar(255) NOT NULL default ''",
+			"nagios_config_file_path" => "varchar(255) NOT NULL default ''",
+			"nagios_restart_command" => "varchar(255) NOT NULL default 'sudo /etc/init.d/nagios2 restart'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"
@@ -247,6 +251,7 @@ $dtc_database = array(
 			"restart_apache" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_vhosts" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_named" => "enum('yes','no') NOT NULL default 'no' ",
+			"gen_reverse" => "enum('yes','no') NOT NULL default 'no'",
 			"gen_qmail" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_webalizer" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_backup" => "enum('yes','no') NOT NULL default 'no' ",
@@ -275,6 +280,21 @@ $dtc_database = array(
 		"keys" => array(
 			"server_hostname" => "(server_hostname)"
 			)
+		),
+	"dedicated_ip" => array(
+		"vars" => array (
+			"id" => "int(11) NOT NULL auto_increment",
+			"dedicated_server_hostname" => "varchar(255) NOT NULL default ''",
+			"ip_addr" => "varchar(16) NOT NULL default ''",
+			"available" => "enum('yes','no') NOT NULL default 'yes'",
+			"rdns_addr" => "varchar(255) NOT NULL default 'gplhost.com'",
+			"rdns_regen" => "enum('yes','no') NOT NULL default 'yes'",
+			"ip_pool_id" => "int(11) NOT NULL default '0'"
+			),
+		"primary" => "(id)",
+		"unique" => array(
+				"ip_addr" => "(ip_addr)"
+                        )
 		),
 	"domain" => array(
 		"vars" => array(
@@ -1034,6 +1054,8 @@ $dtc_database = array(
 			"vps_xen_name" => "varchar(64) NOT NULL default ''",
 			"ip_addr" => "varchar(16) NOT NULL default ''",
 			"rdns_addr" => "varchar(255) NOT NULL default 'gplhost.com'",
+			"rdns_regen" => "enum('yes','no') NOT NULL default 'yes'",
+			"ip_pool_id" => "int(11) NOT NULL default '0'",
 			"available" => "enum('yes','no') NOT NULL default 'yes'"
 			),
 		"unique" => array(

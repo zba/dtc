@@ -430,6 +430,7 @@ dtcGenDebianLocales () {
 		debianSetLocale zh_TW
 		debianSetLocale pl_PL
 		debianSetLocale se_NO
+		debianSetLocale sr_CS
 		debianSetLocale pt_PT
 		debianSetLocale es_ES
 		debianSetLocale fi_FI
@@ -1621,8 +1622,9 @@ modifyNamedConf () {
 	# Change the rights of the zones folder, in case it was wrong like before
 	mkdir -p $PATH_DTC_ETC/zones
 	mkdir -p $PATH_DTC_ETC/slave_zones
-	chmod 777 $PATH_DTC_ETC/zones
-	chmod 777 $PATH_DTC_ETC/slave_zones
+	mkdir -p $PATH_DTC_ETC/reverse_zones
+	mkdir -p $PATH_DTC_ETC/slave_reverse_zones
+	chmod 777 $PATH_DTC_ETC/zones $PATH_DTC_ETC/slave_zones $PATH_DTC_ETC/reverse_zones $PATH_DTC_ETC/slave_reverse_zones
 
 	#
 	# include $PATH_DTC_ETC/named.zones in $PATH_NAMED_CONF
