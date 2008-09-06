@@ -131,6 +131,8 @@ PATH_CGIBIN=/usr/lib/cgi-bin
 
 PATH_SASLLIB=/usr/lib/sasl2
 
+PATH_BASH=/bin/bash
+
 USER_ADD_CMD=useradd
 USER_ADD_CMD=groupadd
 USER_MOD_CMD=usermod

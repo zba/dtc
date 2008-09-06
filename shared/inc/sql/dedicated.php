@@ -14,12 +14,13 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "set_dedicated_ip_rdns"
 			AND $pro_mysql_dedicated_ips_table.dedicated_server_hostname=$pro_mysql_dedicated_table.server_hostname
 			AND $pro_mysql_dedicated_table.owner='".$adm_login."';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			$n = mysql_num_rows($q);
+			$n = mysql_num_rows($r);
 			if($n != 1){
 				$submit_err = _("This IP doesn't bellong to you, you can't change it's RDNS entry!");
 			}else{
 				$q = "UPDATE $pro_mysql_dedicated_ips_table SET rdns_addr='".$_REQUEST["rdns"]."',rdns_regen='yes' WHERE ip_addr='".$_REQUEST["ip_addr"]."';";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				updateUsingCron("gen_named='yes',reload_named='yes'");
 			}
 		}
 	}

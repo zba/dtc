@@ -12,6 +12,20 @@ if [ -z "$MX_MAIL" ] ; then
 	fi
 fi
 
+if [ -z ${PATH_BASH} ] ; then
+	if [ -x /bin/bash ] ; then
+		PATH_BASH=/bin/bash
+	else
+		if [ -x /usr/local/bin/bash ] ; then
+			PATH_BASH=/usr/local/bin/bash
+		else
+			if [ -x ${LOCALBASE}/bin/bash ] ; then
+				PATH_BASH=${LOCALBASE}/bin/bash
+			fi
+		fi
+	fi
+fi
+
 echoIfVerbose () {
 	if [ ""$VERBOSE_INSTALL = "yes" ] ; then
 		echo $1
@@ -20,7 +34,7 @@ echoIfVerbose () {
 
 createDTCuserAndGroup () {
 	echoIfVerbose "===> Create DTC user and group"
-	# This is for OXS
+	# This is for OSX
 	if [ -x /usr/bin/niutil ] ; then
 		NIUTIL=/usr/bin/niutil
 		if [ ! $NIUTIL -list . /groups | grep ""${CONF_DTC_SYSTEM_GROUPNAME} ] ; then
@@ -57,8 +71,8 @@ createDTCuserAndGroup () {
 			echoIfVerbose "-> User ${CONF_DTC_SYSTEM_USERNAME} already exists: skipping creation!"
 		else
 			if [ -x /usr/sbin/useradd ] ; then
-				if [ -x /bin/bash ] ; then
-					/usr/sbin/useradd -m -s /bin/bash -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
+				if [ -x ${PATH_BASH} ] ; then
+					/usr/sbin/useradd -m -s ${PATH_BASH} -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
 				else
 					echo "Could not find a shell, please fix me here!!!"
 				fi
@@ -98,16 +112,16 @@ findHtpasswdBinary () {
 	fi
 	# This might be needed for FreeBSD if /usr/local/bin is not in the path
 	if [ -z "$HTPASSWD" ] ; then
-		if [ -e "/usr/bin/htpasswd" ] ; then
+		if [ -x "/usr/bin/htpasswd" ] ; then
 			HTPASSWD="/usr/bin/htpasswd"
 		else
-			if [ -e "/usr/bin/htpasswd2" ] ; then
+			if [ -x "/usr/bin/htpasswd2" ] ; then
 				HTPASSWD="/usr/bin/htpasswd2"
 			else
-				if [ -e "/usr/local/bin/htpasswd" ] ; then
+				if [ -x "/usr/local/bin/htpasswd" ] ; then
 					HTPASSWD="/usr/local/bin/htpasswd"
 				else
-					if [ -e "/usr/local/bin/htpasswd2" ] ; then
+					if [ -x "/usr/local/bin/htpasswd2" ] ; then
 						HTPASSWD="/usr/local/bin/htpasswd2"
 					fi
 				fi
@@ -122,13 +136,13 @@ searchPATH_PHP_CGI () {
 	if [ -e /usr/bin/php ] ; then
 		PATH_PHP_CGI="/usr/bin/php"
 	else
-		if [ -e /usr/bin/php4 ] ; then
+		if [ -x /usr/bin/php4 ] ; then
 			PATH_PHP_CGI="/usr/bin/php4"
 		else
-			if [ -e /usr/bin/php5 ] ; then
+			if [ -x /usr/bin/php5 ] ; then
 				PATH_PHP_CGI="/usr/bin/php5"
 			else
-				if [ -e "/usr/local/bin/php" ] ; then
+				if [ -x "/usr/local/bin/php" ] ; then
 					PATH_PHP_CGI="/usr/local/bin/php"
 				else
 					echo "Could not find the php cli binary!!!"
@@ -573,6 +587,9 @@ createHostingDirAndFiles () {
 	if [ ! -e $conf_hosting_path/$conf_adm_login/dev ] ; then ln -s $main_domain_name/subdomains/www/dev  $conf_hosting_path/$conf_adm_login/dev; fi
 	if [ ! -e $conf_hosting_path/$conf_adm_login/etc ] ; then ln -s $main_domain_name/subdomains/www/etc  $conf_hosting_path/$conf_adm_login/etc; fi
 
+	# need this for freebsd: KC
+	if [ ! -e $conf_hosting_path/$conf_adm_login/libexec ] ; then ln -s $main_domain_name/subdomains/www/libexec  $conf_hosting_path/$conf_adm_login/libexec; fi
+
 	# also, so the user can login to the main domain names base directory
 	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/bin ] ; then ln -s subdomains/www/bin  $conf_hosting_path/$conf_adm_login/$main_domain_name/bin; fi
 	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/var ] ; then ln -s subdomains/www/var  $conf_hosting_path/$conf_adm_login/$main_domain_name/var; fi
@@ -582,6 +599,9 @@ createHostingDirAndFiles () {
 	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/usr ] ; then ln -s subdomains/www/usr  $conf_hosting_path/$conf_adm_login/$main_domain_name/usr; fi
 	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/dev ] ; then ln -s subdomains/www/dev  $conf_hosting_path/$conf_adm_login/$main_domain_name/dev; fi
 	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/etc ] ; then ln -s subdomains/www/etc  $conf_hosting_path/$conf_adm_login/$main_domain_name/etc; fi
+
+	# need for freebsd: KC
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/libexec ] ; then ln -s subdomains/www/libexec  $conf_hosting_path/$conf_adm_login/$main_domain_name/libexec; fi
 
 	if [ `uname -m` = "x86_64" ] ; then
 		if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64 ] ; then ln -s $conf_hosting_path/$conf_adm_login/$main_domain_name/lib $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64; fi
@@ -695,7 +715,7 @@ setDtcdbPassword () {
 }
 
 setupDTCDatabase () {
-	echoIfVerbose "===> DTC is now creating it's database:"
+	echoIfVerbose "===> DTC is now creating its database:"
 
 	if [ ""$conf_mysql_cli_path = "" ] ; then
 		echoIfVerbose "->mysql_cli_path is not set"
@@ -771,7 +791,6 @@ setupDTCDatabase () {
 	echoIfVerbose "===> Create tables in $create_tables"
 	cd $create_tables
 	echoIfVerbose "cd to $create_tables"
-#	for i in $( ls *.sql );
 	for i in *.sql ; do
 		table_name=`echo $i | cut -f1 -d"."`
 		echo -n $table_name" "
@@ -989,18 +1008,17 @@ generateMySQLConfigPHPfile () {
 
 
 createDTCRootShellScript () {
-	echoIfVerbose "-> Creating dtc-chroot-shell script"
+	echoIfVerbose "-> Creating dtc-chroot-shell script with sudo path $PATH_SUDO."
 	if [ -n "$PATH_SUDO" ] ; then
-		if [ ! "$UNIX_TYPE" = "debian" ] ; then
-			echoIfVerbose "Creating chroot shell..."
-		        # create a chroot shell script
-		        CHROOT_SHELL=/bin/dtc-chroot-shell
+		if [ "$UNIX_TYPE" != "debian" ] ; then
+		        CHROOT_SHELL=${LOCALBASE}/bin/dtc-chroot-shell
+			echoIfVerbose "Creating non-debian chroot shell  with path $CHROOT_SHELL."
 		        echo '#!/bin/sh' > $CHROOT_SHELL
 			echo "# This shell script is used by DTC, please do not remove" >> $CHROOT_SHELL
-		        echo "$PATH_SUDO -H $PATH_CHROOT \$HOME \$USER" /bin/bash \"\$@\" >> $CHROOT_SHELL
+		        echo "$PATH_SUDO -H $PATH_CHROOT \$HOME \$USER" ${PATH_BASH} \"\$@\" >> $CHROOT_SHELL
 		        chmod 755 $CHROOT_SHELL
 		else
-			echoIfVerbose "Skiping under Debian..."
+			echoIfVerbose "Skiping under Debian (just checking if /bin/dtc-chroot-shell is there)..."
 			# Note to debian developers reviewing this script:
 			# under NORMAL situation, /bin/dtc-chroot-shell is shipped in dtc-common, but because of errors in the past,
 			# dtc-postfix-courier or dtc has a rm /bin/dtc-chroot-shell in it's postrm. This should fix it, without having
@@ -1048,7 +1066,7 @@ modifySUODERS_DOT_CONF () {
 			fi
 			TMP_FILE=`${MKTEMP} DTC_install.shells.XXXXXX` || exit 1
 			echo "# Configured by DTC 0.21 : please do not touch this line !" >> $TMP_FILE
-			echo "/usr/bin/dtc-chroot-shell" >> $TMP_FILE
+			echo "${LOCALBASE}/usr/bin/dtc-chroot-shell" >> $TMP_FILE
 			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 			cat <$TMP_FILE >>$PATH_SHELLS_CONF
 			rm $TMP_FILE
@@ -1188,7 +1206,7 @@ enableApache2Modules () {
 			if [ -d /etc/apache2/mods-enabled ] ; then
 				if ! [ -e /etc/apache2/mods-enabled/rewrite.load ] ; then
 					if [ -x /usr/sbin/a2enmod ] ; then
-						a2enmod rewrite || /bin/true
+						a2enmod rewrite || true
 					else
 						ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
 					fi
@@ -1200,7 +1218,7 @@ enableApache2Modules () {
 			if [ -d /etc/apache2/mods-enabled ] ; then
 				if ! [ -e /etc/apache2/mods-enabled/ssl.load ] ; then
 					if [ -x /usr/sbin/a2enmod ] ; then
-						a2enmod ssl || /bin/true
+						a2enmod ssl || true
 					else
 						ln -s ../mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
 					fi
@@ -1216,11 +1234,12 @@ createApacheAdminProtectedDir () {
 		mkdir -p "$conf_hosting_path"
 	fi
 	# add the default password to .htpasswd if it doesn't exist already
-	if [ -e $conf_hosting_path/.htpasswd ] ; then 
-		echoIfVerbose "OK, you have your "$conf_hosting_path"/.htpasswd setup already!"
+	if [ -e $conf_hosting_path/.htpasswd ] -a grep -q $conf_adm_login $conf_hosting_path/.htpasswd ] ; then
+		echoIfVerbose ".htpasswd exists, adding/replacing passwd with install config values of user '$conf_adm_login' and pass '$conf_adm_pass'"
+		$HTPASSWD -b "$conf_hosting_path"/.htpasswd "$conf_adm_login" "$conf_adm_pass"
 	else 
 		echoIfVerbose "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
-		$HTPASSWD -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" $conf_adm_pass
+		$HTPASSWD -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" "$conf_adm_pass"
 	fi
 
 	if [ -e $PATH_DTC_ADMIN/.htaccess ] ; then
@@ -1934,7 +1953,11 @@ modifyClamavConf () {
 	        			/etc/init.d/clamav-daemon restart
 	        		fi
 	        	fi
-	        fi
+	        else
+        		if [ -x /usr/local/etc/rc.d/clamav-clamd ] ; then
+        			/usr/local/etc/rc.d/clamav-clamd restart
+        		fi
+        	fi
 	fi
 }
 
@@ -1985,7 +2008,7 @@ sasl_sql_passwd: ${MYSQL_DTCDAEMONS_PASS}
 		rm $TMP_FILE
 		fi
 	else
-		echo "$PATH_CYRUS_CONF NOT FOUND"
+		echoIfVerbose "$PATH_CYRUS_CONF NOT FOUND, maybe not using Cyrus this time."
 	fi
 }
 
@@ -2262,7 +2285,7 @@ smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
 			fi
 			echo "			permit${sasl_main_dot_cf_rules}" >> $TMP_FILE
 
-			if [ -x /usr/bin/tumgreyspf ] ; then
+			if [ -x /usr/bin/tumgreyspf -o -x ${LOCALBASE}/bin/tumgreyspf ] ; then
 				echo "smtpd_sender_restrictions = permit_mynetworks,
 				permit_sasl_authenticated,
 				check_policy_service unix:private/tumgreyspf,
@@ -2319,10 +2342,15 @@ sa-ham  unix    -       n       n       -       -       pipe
 
 " >> $TMP_FILE2
 				fi
-				if [ -x /usr/bin/tumgreyspf ] ; then
+				if [ -x /usr/bin/tumgreyspf -o -x ${LOCALBASE}/bin/tumgreyspf ] ; then
+					if [ -x /usr/bin/tumgreyspf ] ; then
+						TMP_TUMGREYPATH=/bin/tumgreyspf
+					else
+						TMP_TUMGREYPATH=${LOCALBASE}/bin/tumgreyspf
+					fi
 					echo "# Adds support for tumgreyspf
 tumgreyspf unix  -      n       n       -       -       spawn
-    user=tumgreyspf argv=/usr/bin/tumgreyspf
+    user=tumgreyspf argv=${TMP_TUMGREYPATH}
 
 " >> $TMP_FILE2
 				fi
@@ -2334,9 +2362,16 @@ tumgreyspf unix  -      n       n       -       -       spawn
 " >> $TMP_FILE2
 				fi
 				# CL do we use cyrus? 
-				if [ ""$conf_use_cyrus = "true" ] ; then
+				if [ "${conf_use_cyrus}" = "true" ] ; then
+					if [ -x /usr/sbin/cyrdeliver ] ; then
+						TMP_CYRDELIVERPATH=/sbin/cyrdeliver
+					else
+						if [ -x "${LOCALBASE}/sbin/cyrdeliver" ] ; then
+							TMP_CYRDELIVERPATH=${LOCALBASE}/sbin/cyrdeliver
+						fi
+					fi
 					echo "cyrus     unix  -       n       n       -       -       pipe
-  flags=R user=cyrus argv=/usr/sbin/cyrdeliver -e -m \${extension} \${recipient}
+  flags=R user=cyrus argv=${TMP_CYRDELIVERPATH} -e -m \${extension} \${recipient}
 ">> $TMP_FILE2
 				fi
 
@@ -2447,16 +2482,40 @@ prepareMlmmjSpool () {
 	#
 	# prepare mlmmj environment to work with dtc
 	#
-	if [ -f "/usr/bin/mlmmj-make-ml" -o -f "/usr/bin/mlmmj-make-ml.sh" ] ; then
+	MLMMJ_TYPE="with.sh"
+	if [ -x /usr/bin/mlmmj-make-ml ] ; then
+		TMP_MLMMJ_PATH=/usr/bin/mlmmj-make-ml
+		MLMMJ_TYPE="no.sh"
+	else
+		if [ -x "/usr/bin/mlmmj-make-ml.sh" ] ; then
+			TMP_MLMMJ_PATH=/usr/bin/mlmmj-make-ml.sh
+		else
+			if [ -x "${LOCALBASE}/bin/mlmmj-make-ml" ] ; then
+				TMP_MLMMJ_PATH=/usr/bin/mlmmj-make-ml
+			else
+				TMP_MLMMJ_PATH=`which mlmmj-make-ml.sh`
+				if [ -z "${TMP_MLMMJ_PATH}" ] ; then
+					TMP_MLMMJ_PATH=`which mlmmj-make-ml.sh`
+					if ! [ -z "${TMP_MLMMJ_PATH}" ] ; then
+						MLMMJ_TYPE="no.sh"
+					fi
+				fi
+			fi
+		fi
+	fi
+
+	# Debian like case
+	if [ ${MLMMJ_TYPE} -o "no.sh" ] ; then
 		echoIfVerbose "===> Detected presence of mlmmj... prepping environment..."
 		# symlink the .sh to the non .sh, for the genfiles 
 		if [ ! -e "/usr/bin/mlmmj-make-ml" ] ; then
 			ln -s "/usr/bin/mlmmj-make-ml.sh" "/usr/bin/mlmmj-make-ml"
 		fi
-		mkdir -p /etc/mlmmj/lists
-		chown -R root:${CONF_DTC_SYSTEM_GROUPNAME} /etc/mlmmj/lists
-		chmod -R g+w /etc/mlmmj/lists
 	fi
+	mkdir -p /etc/mlmmj/lists
+	chown -R root:${CONF_DTC_SYSTEM_GROUPNAME} /etc/mlmmj/lists
+	chmod -R g+w /etc/mlmmj/lists
+
 	# create mlmmj spool directory if it doesn't exist yet
 	if [ ! -e /var/spool/mlmmj/ ] ; then
 		mkdir -p /var/spool/mlmmj
@@ -2554,6 +2613,10 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 						/etc/init.d/courier-authdaemon restart
 					fi
 				fi
+			else
+				if [ -x /usr/local/etc/rc.d/courier-authdaemon ] ; then
+					/usr/local/etc/rc.d/courier-authdaemon restart
+				fi
 			fi
 			if [ -x "/etc/init.d/courier-authlib" ] ; then
 				if [ -x /usr/sbin/invoke-rc.d ] ; then
@@ -2563,12 +2626,20 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 						/etc/init.d/courier-authlib restart
 					fi
 				fi
+			else
+				if [ -x /usr/local/etc/rc.d/courier-authlib ] ; then
+					/usr/local/etc/rc.d/courier-authlib restart
+				fi
 			fi
 			if [ -x "/etc/init.d/courier-imap" ] ; then
 				if [ -x /usr/sbin/invoke-rc.d ] ; then
 					/usr/sbin/invoke-rc.d courier-imap restart
 				else
 					/etc/init.d/courier-imap restart
+				fi
+			else
+				if [ -x /usr/local/etc/rc.d/courier-imap ] ; then
+					/usr/local/etc/rc.d/courier-imap restart
 				fi
 			fi
 			if [ -x "/etc/init.d/courier-imap-ssl" ] ; then
@@ -2577,6 +2648,10 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 				else
 					/etc/init.d/courier-imap-ssl restart
 				fi
+			else
+				if [ -x /usr/local/etc/rc.d/courier-imap-ssl ] ; then
+					/usr/local/etc/rc.d/courier-imap-ssl restart
+				fi
 			fi
 			if [ -x "/etc/init.d/courier-pop" ] ; then
 				if [ -x /usr/sbin/invoke-rc.d ] ; then
@@ -2584,12 +2659,20 @@ MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(ne
 				else
 					/etc/init.d/courier-pop restart
 				fi
+			else
+				if [ -x /usr/local/etc/rc.d/courier-pop ] ; then
+					/usr/local/etc/rc.d/courier-pop restart
+				fi
 			fi
 			if [ -x "/etc/init.d/courier-pop-ssl" ] ; then
 				if [ -x /usr/sbin/invoke-rc.d ] ; then
 					/usr/sbin/invoke-rc.d courier-pop-ssl restart
 				else
 					/etc/init.d/courier-pop-ssl restart
+				fi
+			else
+				if [ -x /usr/local/etc/rc.d/courier-pop-ssl ] ; then
+					/usr/local/etc/rc.d/courier-pop-ssl restart
 				fi
 			fi
 
@@ -2641,8 +2724,7 @@ modifyDovecotConfig () {
 		DOVECOT_MINOR=`echo $DOVECOT_VERSION | cut -f2 -d"."`
 		DOVECOT_RELEASE=`echo $DOVECOT_VERSION | cut -f3 -d"."`
 		echoIfVerbose "===> Adding directives to dovecot.conf"
-		if grep "Configured by DTC" $PATH_DOVECOT_CONF >/dev/null
-		then
+		if [ -f "${PATH_DOVECOT_CONF}" -o grep -q "Configured by DTC" $PATH_DOVECOT_CONF ] ; then
 			echoIfVerbose "dovecot.conf has been configure before: skipping include insertion !"
 		else
 			if [ ""$DOVECOT_POSTONE ] ; then
@@ -2654,6 +2736,18 @@ modifyDovecotConfig () {
 					dovecot_env_directive="mail_location"
 				else
 					dovecot_env_directive="default_mail_env"
+				fi
+				if [ ""$conf_gen_ssl_cert = "true" ] ; then
+					DOVECOT_SSL_CERT_CONF="## SSL settings
+ssl_cert_file = $PATH_DTC_ETC/ssl/dovecot/new.cert.cert
+ssl_key_file = $PATH_DTC_ETC/ssl/dovecot/new.cert.key
+#ssl_ca_file = 
+#ssl_verify_client_cert = no
+#ssl_parameters_regenerate = 168
+#ssl_cipher_list = ALL:!LOW:!SSLv2
+#verbose_ssl = no"
+				else
+					DOVECOT_SSL_CERT_CONF=""
 				fi
 				echo "
 # Configured by DTC v0.x : Please don't touch this line !
@@ -2682,6 +2776,7 @@ auth default {
 }
 plugin {
 }
+${DOVECOT_SSL_CERT_CONF}
 # End of DTC configuration v0.x : please don't touch this line !
 " > $PATH_DOVECOT_CONF
 			else
@@ -2724,13 +2819,57 @@ password_query = SELECT passwd AS password FROM pop_access WHERE id = '%n' AND m
 user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
 " > $PATH_DTC_ETC/dovecot-mysql.conf
 			fi
+			# keys may need to be regenerated even if we have fixed the dovecot config
+			# Generate the OpenSSL test certificate if it does not exists - for dovecot this time: KC
+			if [ ""$conf_gen_ssl_cert = "true" ] ; then
+				echoIfVerbose "generating dovecot ssl keys... please wait..."
+				if [ ! -e $PATH_DTC_ETC"/ssl/dovecot" ] ; then
+					mkdir -p $PATH_DTC_ETC"/ssl/dovecot"
+				fi
+				DOVCERT_CWD=`pwd`
+				cd $PATH_DTC_ETC"/ssl/dovecot"
+				export RANDFILE=`${MKTEMP} ssl_randfile.XXXXXX` || exit 2	# openSSL requires a writeable $RANDFILE or $HOME/.rnd, this ensures: KC
+				if ! [ -e "./"new.cert.csr -o -e "./"new.cert.cert -o -e "./"new.cert.key ] ; then
+					CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 2
+					echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
+					echoIfVerbose " - generating cert signing request.."
+					( ( echo $conf_cert_countrycode;
+						echo "the state";
+						echo $conf_cert_locality;
+						echo $conf_cert_organization;
+						echo $conf_cert_unit;
+						echo $dtc_admin_subdomain"."$main_domain_name;
+						echo $conf_cert_email;
+						echo $conf_cert_challenge_pass;
+						echo $conf_cert_organization; ) | openssl req -passout file:$CERTPASS_TMP_FILE -new > new.cert.csr ) || 
+							(echo " * Problem generating certificate signing request. If you continue your connections may be insecure." 1>&2 &&
+							 exit 2)
+						echo
+					echoIfVerbose " - generating certificate key.."
+					openssl rsa -passin file:$CERTPASS_TMP_FILE -in privkey.pem -out new.cert.key  ||
+						(echo " * Problem generating certificate key. If you continue your connections may be insecure." 1>&2 &&
+						 exit 2)
+					echo
+					echoIfVerbose " - signing cert with key.. "
+					openssl x509 -in new.cert.csr -out new.cert.cert -req -signkey new.cert.key -days 3650 ||
+						(echo " * Problem signing certificate key. If you continue your connections may be insecure." 1>&2 &&
+						 exit 2)
+					echo
+					rm $CERTPASS_TMP_FILE $RANDFILE
+				fi
+				cd ${DOVCERT_CWD}
+			fi
 			# need to restart dovecot too
 			if [ -x "/etc/init.d/dovecot" ] ; then
-	                        /etc/init.d/dovecot restart
-	                else
 	                        if [ -x /usr/sbin/invoke-rc.d ] ; then
 	                                /usr/sbin/invoke-rc.d dovecot restart
-	                        fi
+				else
+		                        /etc/init.d/dovecot restart
+				fi
+	                else
+				if [ -x /usr/local/etc/rc.d/dovecot ] ; then
+					/usr/local/etc/rc.d/dovecot restart
+				fi
 	                fi
 		fi	
 	fi
@@ -2952,6 +3091,10 @@ SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ft
 					invoke-rc.d proftpd restart
 				else
 					/etc/init.d/proftpd restart
+				fi
+			else
+				if [ -x /usr/local/etc/rc.d/proftpd ] ; then
+					/usr/local/etc/rc.d/proftpd restart
 				fi
 			fi
 		fi
@@ -3309,7 +3452,30 @@ groups.member_groupid_column = ssh_user_group.group_id;
 " >> $TMP_FILE
 			else
 				# this is the libnss version
-				echo "
+				# for freebsd, needs all 10 GECOS fields for getpwent et al to return properly: KC
+				if [ "$UNIX_TYPE" = "freebsd" ] ; then
+					echo "
+[queries]
+getpwnam    SELECT login,crypt,uid,gid,'','default','DTC User',homedir,shell,1300000000 FROM ssh_access WHERE login='%1$s' LIMIT 1
+getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1$u' LIMIT 1
+getpwent    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access
+getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1$s' LIMIT 1
+getgrgid    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_id='%1$u' LIMIT 1
+getgrent    SELECT group_name,group_password,group_id FROM ssh_groups
+memsbygid   SELECT login FROM ssh_access WHERE gid='%1$u'
+gidsbymem   SELECT gid  FROM ssh_access WHERE login='%1$s'
+getspnam    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access WHERE ssh_access.login='%1$s' LIMIT 1
+getspent    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access
+
+[server]
+host ${conf_mysql_host}
+port 3306
+database ${conf_mysql_db}
+username dtcdaemons
+password ${MYSQL_DTCDAEMONS_PASS}
+" >> $TMP_FILE
+				else
+					echo "
 [queries]
 getpwnam    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE login='%1\$s' LIMIT 1
 getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1\$u' LIMIT 1
@@ -3329,6 +3495,7 @@ database ${conf_mysql_db}
 username dtcdaemons
 password ${MYSQL_DTCDAEMONS_PASS}
 " >> $TMP_FILE
+				fi
 
 			fi
 			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
@@ -3471,18 +3638,14 @@ fi
 
 modifyCrontab () {
 	echoIfVerbose "===> Installing cron script"
-	if [ "$UNIX_TYPE" = "freebsd" -a "0` crontab -l | grep 'Configured by DTC '`" != "0" ] ; then
-		echoIfVerbose "root crontab has been configured before : skinping include inssertion"
-	elif grep "Configured by DTC " $PATH_CRONTAB_CONF >/dev/null ; then
-		echoIfVerbose "/etc/crontab has been configured before : skinping include inssertion"
+	if [ "$UNIX_TYPE" = "freebsd" ] && crontab -l | grep -q 'Configured by DTC'; then
+		echoIfVerbose "root crontab has been configured before : skipping include insertion"
+	elif grep -q "Configured by DTC " $PATH_CRONTAB_CONF; then
+		echoIfVerbose "/etc/crontab has been configured before : skinping include insertion"
 	else
-		if [ "$UNIX_TYPE" = "freebsd" ] ; then
-			echoIfVerbose "Inserting DTC cronjob in root's crontab"
-		else
-			echoIfVerbose "Inserting DTC cronjob in "$PATH_CRONTAB_CONF
-			if ! [ -f $PATH_CRONTAB_CONF.DTC.backup ] ; then
-				cp -f $PATH_CRONTAB_CONF $PATH_CRONTAB_CONF.DTC.backup
-			fi
+		echoIfVerbose "Inserting DTC cronjob in "$PATH_CRONTAB_CONF
+		if ! [ -f $PATH_CRONTAB_CONF.DTC.backup ] ; then
+			cp -f $PATH_CRONTAB_CONF $PATH_CRONTAB_CONF.DTC.backup
 		fi
 		# Now using a single rrdtool.sh script instead of multiple to help reduce the load
 		# and also to make it dynamic (if using postfix or qmail)
@@ -3659,11 +3822,8 @@ createChrootTemplate () {
 		cp -pf /usr/bin/unzip bin/
 	fi
 
-	if [ -e /bin/bash ] ; then
-		cp -pf /bin/bash bin
-	fi
-	if [ -e /usr/bin/bash ] ; then
-		cp -pf /usr/bin/bash bin
+	if [ -e ${PATH_BASH} ] ; then
+		cp -pf ${PATH_BASH} bin
 	fi
 	if [ -e /usr/bin/tar ] ; then
 		cp -pf /usr/bin/tar bin
@@ -3757,8 +3917,8 @@ createChrootTemplate () {
 	grep ${CONF_DTC_SYSTEM_GROUPNAME} /etc/group >> etc/group || true
 	grep ${CONF_DTC_SYSTEM_USERNAME} /etc/group >> etc/group || true
 
-	# fix entry for nobody in /etc/passwd
-	echo "${CONF_DTC_SYSTEM_USERNAME}:x:${CONF_DTC_SYSTEM_UID}:${CONF_DTC_SYSTEM_GID}:${CONF_DTC_SYSTEM_USERNAME}:/html:/bin/bash" >> etc/passwd
+	# fix entry for the dtc system user in /etc/passwd
+	echo "${CONF_DTC_SYSTEM_USERNAME}:x:${CONF_DTC_SYSTEM_UID}:${CONF_DTC_SYSTEM_GID}:${CONF_DTC_SYSTEM_USERNAME}:/html:${PATH_BASH}" >> etc/passwd
 
 	# create shadow account line for nobody
 	echo "${CONF_DTC_SYSTEM_USERNAME}::12719:0:99999:7:::" > etc/shadow
@@ -3788,6 +3948,12 @@ createChrootTemplate () {
 	echoIfVerbose "-> Copying essential libraries"
 	if [ "$UNIX_TYPE" = "freebsd"  ] ; then
 		cp -f /lib/libc.so* /lib/libm.so* lib/
+		cp -f /usr/local/lib/libintl.so.* /usr/local/lib/libiconv.so.* \
+			/usr/lib/libarchive.so.* /usr/lib/libasn1.so.* /usr/lib/libbsm.so.* \
+			/usr/lib/libbz2.so.* /usr/lib/libcom_err.so.3 /usr/lib/libgssapi.so.* /usr/lib/libkrb5.so.* /usr/lib/libmagic.so.* \
+			/usr/lib/libroken.so.* /usr/lib/libssh.so.* /usr/local/lib/perl5/5.8.8/mach/CORE/libperl.so usr/lib
+		cp -f /lib/libc.so* /lib/libm.so* /lib/libedit.so* /lib/libncurses.so* /lib/libcrypt.so.* /lib/libmd.so.* /lib/libutil.so.* \
+			/lib/libz.so.* lib/
 		cp -f /usr/lib/libc.so* usr/lib/
 		cp -pf /usr/lib/libm.so* usr/lib/
 		cp -pf /usr/lib/libstdc\+\+.so* usr/lib/
@@ -3952,18 +4118,8 @@ createChrootTemplate () {
 
 	# if we have a sudo binary around, then use it to create our chroot shell
 	SUDO=`which sudo`
-#	if [ -n "$SUDO" ] ; then
-		# create a chroot shell script
-# This script seems buggy, and anyway,
-# it seems it has been done elsewhere already!!!
-#		echoIfVerbose "Creating chroot shell script..."
-		SHELL=/bin/dtc-chroot-shell
-#		echo '#!/bin/sh' > $SHELL
-#		echo "`which sudo` -H `which chroot` \$HOME /bin/su - \$USER" \"\$@\" >> $SHELL
-		chmod 755 $SHELL
-		# fix sudoers
-		# fix /etc/shells
-#	fi
+	SHELL=${LOCALBASE}/bin/dtc-chroot-shell
+	chmod 755 $SHELL
 
 	# set protections
 	echoIfVerbose "-> Fixup rights"
@@ -3981,11 +4137,14 @@ createChrootTemplate () {
 	if [ "$UNIX_TYPE" = "freebsd" ] ; then
 	        # now create our ld.so cache
 	        cp /libexec/ld-elf.so.1 $conf_chroot_path/libexec
+		if [ -e /var/run/ld-elf.so.hints ] ; then
+			cp /var/run/ld-elf.so.hints var/run			# need this for fbsd jails: KC
+		fi
 	        chroot $conf_chroot_path ./sbin/ldconfig
 	        # just in case we have wiped our /etc/ld.so.cache (run locally)
 	        /sbin/ldconfig
 	else
-		if ! [ "$UNIX_TYPE" = "osx" ] ; then
+		if ! [ "$UNIX_TYPE" = "osx" -o "$UNIX_TYPE" = 'freebsd' ] ; then
 			# now create our ld.so cache
 			mkdir -p $conf_chroot_path/etc
 			touch $conf_chroot_path/etc/ld.so.cache
@@ -3998,7 +4157,7 @@ createChrootTemplate () {
 
 	# Adds the possibility to customize the chroot and helps upgrading between versions
 	if [ -d $conf_chroot_path.custom ] ; then
-		cp -fpR $conf_chroot_path.custom/* $conf_chroot_path/ || true # Make it possible to fail if the directory is empty
+		cp -fpR $conf_chroot_path.custom/* $conf_chroot_path/ 2>/dev/null || true # Make it possible to fail if the directory is empty
 	else
 		# Create the directory to show to the user he can use it
 		if ! [ -e $conf_chroot_path.custom ] ; then

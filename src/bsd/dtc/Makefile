@@ -105,6 +105,10 @@ RUN_DEPENDS+=	${LOCALBASE}/www/phpMyAdmin/index.html:${PORTSDIR}/databases/phpmy
 USE_APACHE=	2.2+
 .endif
 
+.if defined(WITH_DOVECOT)
+RUN_DEPENDS+=	${LOCALBASE}/sbin/dovecot:${PORTSDIR}/mail/dovecot
+.endif
+
 DTCROOT?=	www/dtc
 DTCDIR=		${PREFIX}/${DTCROOT}
 PLIST_SUB+=	DTCROOT="${DTCROOT}"

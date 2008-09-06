@@ -62,6 +62,8 @@ PATH_DTC_ETC=${LOCALBASE}"/var/dtc/etc"
 PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
 PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
 
+PATH_BASH=${LOCALBASE}/bin/bash
+
 USER_ADD_CMD=useradd
 USER_ADD_CMD=groupadd
 USER_MOD_CMD=usermod

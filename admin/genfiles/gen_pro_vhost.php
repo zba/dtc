@@ -286,6 +286,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					$vhost_file .= "<VirtualHost ".$all_site_addrs[$i].":80>
 	ServerName $conf_404_subdomain.$conf_main_domain
 	DocumentRoot $path_404/html
+	<Directory $path_404/html>
+		Allow from all
+	</Directory>
 	ScriptAlias /cgi-bin $path_404/cgi-bin
 	ErrorLog $path_404/logs/error.log
 	LogSQLTransferLogTable ".str_replace("-","A",str_replace(".","_",$conf_main_domain)).'$'.$conf_404_subdomain.'$'."xfer
@@ -584,6 +587,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Alias /roundcube /var/lib/roundcube
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
+	<Directory $web_path/$web_name/subdomains/$web_subname/html>
+		Allow from all
+	</Directory>
 # No ScriptAlias: we want to use system's /usr/lib/cgi-bin !!!
 #	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
@@ -737,10 +743,16 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						// Disable the site if expired
 						if($site_expired == "yes"){
 							$document_root = $conf_generated_file_path."/expired_site";
-							$vhost_file .= "	DocumentRoot $document_root\n";
+							$vhost_file .= "	DocumentRoot $document_root
+	<Directory $document_root>
+		Allow from all
+	</Directory>\n";
 						}else{
 							$document_root = "$web_path/$domain_to_get/subdomains/$web_subname/html";
 							$vhost_file .= "	DocumentRoot $document_root
+	<Directory $document_root>
+		Allow from all
+	</Directory>
 $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	php_admin_value sendmail_from webmaster@$web_name
 	php_value session.save_path $web_path/$domain_to_get/subdomains/$web_subname/tmp

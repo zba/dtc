@@ -655,6 +655,7 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 
 	global $conf_root_admin_random_pass;
 	global $conf_pass_expire;
+	global $conf_unix_type;
 
 	if($conf_root_admin_random_pass == $adm_pass &&  $conf_pass_expire > mktime()){
 		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
@@ -678,6 +679,13 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 		}
 
 		make_new_adm_domain_dir("$admin_path/$domain_name");
+		if ($conf_unix_type == "bsd") {			// no -u in freebsd, blows away custom changes, NEEDFIX: KC
+			exec("cp -flpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
+			createSymLink("subdomains/www/libexec", "$admin_path/$domain_name/libexec");	// also symlink libexec for fbsd while we're here: KC
+			createSymLink("$domain_name/subdomains/www/libexec", "$admin_path/libexec");
+		}else{
+			exec("cp -fulpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
+		}
 		exec("cp -fulpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
 		// create a link so that the user can log in via SSH to $admin_path or $admin_path/$domain_name
 		createSymLink("subdomains/www/bin", "$admin_path/$domain_name/bin");
@@ -704,8 +712,11 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 		createSymLink("$domain_name/subdomains/www/etc", "$admin_path/etc");
 
 		//exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/lib64 ] ; then ln -s subdomains/www/lib $admin_path/lib64 ; fi ; fi");
-
-		system ("cp -rup $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
+		if ($conf_unix_type == "bsd") {			// no -u in freebsd, could blow away custom changes, NEEDFIX: KC
+			system ("cp -rp $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
+		}else{
+			system ("cp -rup $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
+		}
 	}
 
 	// Create domain in database

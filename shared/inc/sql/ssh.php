@@ -59,9 +59,9 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 
 	if($commit_flag == "yes"){
 		$adm_query = " INSERT INTO $pro_mysql_ssh_table
-(login, uid, gid, crypt, password, homedir, count, fhost, faddr, ftime, fcdir, fstor, fretr, bstor, bretr, creation, ts, frate, fcred, brate, bcred, flogs, size, shell, hostname)VALUES
+(login, uid, gid, crypt, password, homedir, count, fhost, faddr, ftime, fcdir, fstor, fretr, bstor, bretr, creation, ts, frate, fcred, brate, bcred, flogs, size, hostname)VALUES
 ('".$_REQUEST["newssh_login"]."', $conf_nobody_user_id, $conf_nobody_group_id, '" . $crypt_ssh_password . "', '".$_REQUEST["newssh_pass"]."', '".$_REQUEST["newssh_path"]."','NULL', NULL, NULL, NOW(NULL), NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', NULL, '5',
-'15', '5','1', NULL, '', '/bin/dtc-chroot-shell', '$edit_domain') ";
+'15', '5','1', NULL, '', '$edit_domain') ";
 		// $newssh_login $newssh_pass $edit_domain
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}

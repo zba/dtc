@@ -56,7 +56,9 @@ if($argc > 6){
         }
 }
 
+chdir(dirname(__FILE__));
 require("dtc_db.php");
+require("../shared/dtc_version.php");
 
 mysql_connect("$pro_mysql_host", "$pro_mysql_login", "$pro_mysql_pass")or die ("Cannot connect to $pro_mysql_host");
 mysql_select_db("$pro_mysql_db")or die ("Cannot select db: $pro_mysql_db");
@@ -268,7 +270,11 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 $q = "ALTER TABLE `domain` CHANGE `domain_parking_type` `domain_parking_type` enum('redirect','same_docroot','serveralias') NOT NULL default 'redirect'";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
-
+// Alter the default shell value for FreeBSD, as the path will be in /usr/local
+if($conf_unix_type == "bsd"){
+	$q = "ALTER TABLE ssh_access CHANGE `shell` `varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+}
 
 $q = "SELECT * FROM config";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());

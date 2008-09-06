@@ -434,6 +434,9 @@ function cronMailSystem () {
 			if($conf_unix_type == "gentoo" && file_exists("/etc/init.d/postfix")) {
 				$PATH_POSTFIX_SCRIPT = "/usr/sbin/postfix";
 			}
+			if ($conf_unix_type == "bsd" && file_exists("/usr/local/etc/rc.d/postfix")) {
+				$PATH_POSTFIX_SCRIPT = "/usr/local/sbin/postfix";
+			}
 			system("$PATH_POSTFIX_SCRIPT reload");
 
 			$PATH_POSTSUPER = "/usr/sbin/postsuper";
@@ -503,7 +506,7 @@ function checkNamedCronService () {
 	// First, see if we have to regenerate deamons files //
 	///////////////////////////////////////////////////////
 	if($cronjob_table_content["gen_named"] == "yes"){
-		echo "Generating Named zonefile\n";
+		echo "Generating Named zonefile ... this may take a while\n";
 		named_generate();
 		system("chgrp $conf_dtc_system_groupname $conf_generated_file_path/named.conf $conf_generated_file_path/named.slavezones.conf");
 		system("chmod 770 $conf_generated_file_path/named.conf $conf_generated_file_path/named.slavezones.conf");
