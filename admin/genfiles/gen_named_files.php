@@ -251,7 +251,7 @@ function rdns_zonefile_generate($ip_pool_id,$pool_ip_addr,$pool_netmask,$zone_ty
 
 function rnds_generate(){
 	global $pro_mysql_vps_ip_table;
-	global $pro_mysql_dedicated_ip_table;
+	global $pro_mysql_dedicated_ips_table;
 	global $pro_mysql_ip_pool_table;
 
 	global $conf_default_zones_ttl;
@@ -316,9 +316,9 @@ function rnds_generate(){
 
 	// Do same for the VPSes
 	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type
-	FROM $pro_mysql_ip_pool_table,$pro_mysql_dedicated_ip_table
-	WHERE $pro_mysql_dedicated_ip_table.rdns_regen='yes'
-	AND $pro_mysql_ip_pool_table.id=$pro_mysql_dedicated_ip_table.ip_pool_id;";
+	FROM $pro_mysql_ip_pool_table,$pro_mysql_dedicated_ips_table
+	WHERE $pro_mysql_dedicated_ips_table.rdns_regen='yes'
+	AND $pro_mysql_ip_pool_table.id=$pro_mysql_dedicated_ips_table.ip_pool_id;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$num_ded = mysql_num_rows($r);
 	unset($tbl);
@@ -329,11 +329,11 @@ function rnds_generate(){
 		$tbl_ded[$i] = $a;
 		$tbl[$i] = $a;
 	}
-	$q = "UPDATE $pro_mysql_dedicated_ip_table SET rdns_regen='no';";
+	$q = "UPDATE $pro_mysql_dedicated_ips_table SET rdns_regen='no';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	// Add code here for dedicated servers IPs
-	for($i=0;$i<$$tbl_num_of_records;$i++){
+	for($i=0;$i<$tbl_num_of_records;$i++){
 		$a = $tbl[$i];
 		$ip_pool_id = $a["id"];
 		$pool_ip_addr = $a["ip_addr"];
@@ -356,7 +356,7 @@ function rnds_generate(){
 				$thiszoneVPSIPs[] = $a2;
 				$thiszoneIPs[] = $a2;
 			}
-			$q2 = "SELECT * FROM $pro_mysql_dedicated_ip_table WHERE ip_pool_id='$ip_pool_id';";
+			$q2 = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_pool_id='$ip_pool_id';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$num_ded = mysql_num_rows($r2);
 			for($j=0;$j<$num_ded;$j++){
@@ -366,8 +366,8 @@ function rnds_generate(){
 			}
 			$num_of_IPs = sizeof($thiszoneIPs);
 			for($j=0;$j<$num_of_IPs;$j++){
-				$the_ip_addr = $thiszoneIPs["ip_addr"];
-				$the_reverse = $thiszoneIPs["rdns_addr"];
+				$the_ip_addr = $thiszoneIPs[$j]["ip_addr"];
+				$the_reverse = $thiszoneIPs[$j]["rdns_addr"];
 				$zone_name = calculate_reverse_end($the_ip_addr,"255.255.255.255");
 				$reverse_dns_file .= "zone \"$zone_name\" in {
 	type master;
@@ -420,7 +420,7 @@ $allow_trans_str	allow-query { any; };
 ";
 			unset($thiszoneIPs);
 			unset($thiszoneVPSIPs);
-			unser($thiszoneDEDIPs);
+			unset($thiszoneDEDIPs);
 			$thiszoneVPSIPs = array();
 			$thiszoneVPSIPs = array();
 			$thiszoneDEDIPs = array();
@@ -428,22 +428,21 @@ $allow_trans_str	allow-query { any; };
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$num_vps = mysql_num_rows($r2);
 			for($j=0;$j<$num_vps;$j++){
-				$a = mysql_fetch_array();
+				$a = mysql_fetch_array($r2);
 				$thiszoneVPSIPs[] = $a;
 				$thiszoneIPs[] = $a;
 			}
-			$q2 = "SELECT * FROM $pro_mysql_dedicated_ip_table WHERE ip_pool_id='$ip_pool_id';";
+			$q2 = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_pool_id='$ip_pool_id';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$num_ded = mysql_num_rows($r2);
 			for($j=0;$j<$num_ded;$j++){
-				$a = mysql_fetch_array();
+				$a = mysql_fetch_array($r2);
 				$thiszoneVPSIPs[] = $a;
 				$thiszoneIPs[] = $a;
 			}
 			$num_ip = $num_vps + $num_ded;
 			for($j=0;$j<$num_ip;$j++){
-				$a2 = thiszoneIPs[$j];
-				$a2 = mysql_fetch_array($r2);
+				$a2 = $thiszoneIPs[$j];
 				$the_ip_addr = $a2["ip_addr"];
 				$the_reverse = $a2["rdns_addr"];
 				// FIXME: works only for pool smaller than /24
