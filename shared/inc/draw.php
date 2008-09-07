@@ -129,13 +129,11 @@ function drawAdminTools($admin){
 		"icon" => "box_wnb_nb_picto-pastpayments.gif",
 		"type" => "link",
 		"link" => "invoices");
-	if($nbr_domain > 0){
-		$user_ZEmenu[] = array(
-			"text" => _("Add a domain or service") ,
-			"icon" => "box_wnb_nb_picto-addadomainname.gif",
-			"type" => "link",
-			"link" => "adddomain");
-	}
+	$user_ZEmenu[] = array(
+		"text" => _("Add a domain or service") ,
+		"icon" => "box_wnb_nb_picto-addadomainname.gif",
+		"type" => "link",
+		"link" => "adddomain");
 	if($conf_use_registrar_api == "yes" && $nbr_domain > 0){
 		$user_ZEmenu[] = array(
 			"text" => _("DNS Nick handles") ,
