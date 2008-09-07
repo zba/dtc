@@ -277,6 +277,39 @@ searchPATH_SUDO () {
 	fi
 }
 
+# Try to restart a daemon using multiple techniques in order to have
+# it working under many flavors of Unix
+# @params: $1 name of the daemon to restart
+restartDaemonMultiUnix () {
+        if [ -x "/etc/init.d/${1}" ] ; then
+        	# This one is the debian way
+        	if [ -x /usr/sbin/invoke-rc.d ] ; then
+        		/usr/sbin/invoke-rc.d ${1} restart
+        	else
+        		# Most unix will work this way
+        		if [ -x "/etc/init.d/${1}" ] ; then
+        			/etc/init.d/${1} restart
+        		fi
+        	fi
+        else
+        	# BSD like /usr/local
+		if [ -x /usr/local/etc/rc.d/${1} ] ; then
+			/usr/local/etc/rc.d/${1} restart
+		# Most unix
+       		elif [ -x "/etc/rc.d/${1}" ] ; then
+			# Redhat / FC systems
+			if [ -x /sbin/service ] ; then
+				/sbin/service ${1} restart
+			else
+	       			/etc/rc.d/${1} restart
+			fi
+		# Slackware like
+       		elif [ -x "/etc/rc.d/rc.${1}" ] ; then
+       			/etc/rc.d/rc.${1} restart
+       		fi
+       	fi
+}
+
 # This part is debian specific because of a confirmed debian bug in sarge with php4-mysql
 # leak in distribution. Whis is that not made by default ?
 # Adding support for mysql for phpX-cgi
@@ -1234,7 +1267,7 @@ createApacheAdminProtectedDir () {
 		mkdir -p "$conf_hosting_path"
 	fi
 	# add the default password to .htpasswd if it doesn't exist already
-	if [ -e $conf_hosting_path/.htpasswd ] -a grep -q $conf_adm_login $conf_hosting_path/.htpasswd ] ; then
+	if [ -e $conf_hosting_path/.htpasswd -a grep -q $conf_adm_login $conf_hosting_path/.htpasswd ] ; then
 		echoIfVerbose ".htpasswd exists, adding/replacing passwd with install config values of user '$conf_adm_login' and pass '$conf_adm_pass'"
 		$HTPASSWD -b "$conf_hosting_path"/.htpasswd "$conf_adm_login" "$conf_adm_pass"
 	else 
@@ -1945,19 +1978,7 @@ modifyClamavConf () {
 	                rm -f $TMP_FILE
 	        fi
 	        # Finaly restart the daemon
-	        if [ -x "/etc/init.d/clamav-daemon" ] ; then
-	        	if [ -x /usr/sbin/invoke-rc.d ] ; then
-	        		/usr/sbin/invoke-rc.d clamav-daemon restart
-	        	else
-	        		if [ -x "/etc/init.d/clamav-daemon" ] ; then
-	        			/etc/init.d/clamav-daemon restart
-	        		fi
-	        	fi
-	        else
-        		if [ -x /usr/local/etc/rc.d/clamav-clamd ] ; then
-        			/usr/local/etc/rc.d/clamav-clamd restart
-        		fi
-        	fi
+	        restartDaemonMultiUnix clamav-daemon
 	fi
 }
 
@@ -2605,88 +2626,12 @@ MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, g
 
 MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(newpass_crypt)' WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1)  AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
 " > $PATH_COURIER_AUTHD_CONF_PATH/authmysqlrc
-			if [ -x "/etc/init.d/courier-authdaemon" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ] ; then
-					/usr/sbin/invoke-rc.d courier-authdaemon restart
-				else
-					if [ -x /etc/init.d/courier-authdaemon ] ; then
-						/etc/init.d/courier-authdaemon restart
-					fi
-				fi
-			else
-				if [ -x /usr/local/etc/rc.d/courier-authdaemon ] ; then
-					/usr/local/etc/rc.d/courier-authdaemon restart
-				fi
-			fi
-			if [ -x "/etc/init.d/courier-authlib" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ] ; then
-					/usr/sbin/invoke-rc.d courier-authlib restart
-				else
-					if [ -x /etc/init.d/courier-authlib ] ; then
-						/etc/init.d/courier-authlib restart
-					fi
-				fi
-			else
-				if [ -x /usr/local/etc/rc.d/courier-authlib ] ; then
-					/usr/local/etc/rc.d/courier-authlib restart
-				fi
-			fi
-			if [ -x "/etc/init.d/courier-imap" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ] ; then
-					/usr/sbin/invoke-rc.d courier-imap restart
-				else
-					/etc/init.d/courier-imap restart
-				fi
-			else
-				if [ -x /usr/local/etc/rc.d/courier-imap ] ; then
-					/usr/local/etc/rc.d/courier-imap restart
-				fi
-			fi
-			if [ -x "/etc/init.d/courier-imap-ssl" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ] ; then
-					/usr/sbin/invoke-rc.d courier-imap-ssl restart
-				else
-					/etc/init.d/courier-imap-ssl restart
-				fi
-			else
-				if [ -x /usr/local/etc/rc.d/courier-imap-ssl ] ; then
-					/usr/local/etc/rc.d/courier-imap-ssl restart
-				fi
-			fi
-			if [ -x "/etc/init.d/courier-pop" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ] ; then
-					/usr/sbin/invoke-rc.d courier-pop restart
-				else
-					/etc/init.d/courier-pop restart
-				fi
-			else
-				if [ -x /usr/local/etc/rc.d/courier-pop ] ; then
-					/usr/local/etc/rc.d/courier-pop restart
-				fi
-			fi
-			if [ -x "/etc/init.d/courier-pop-ssl" ] ; then
-				if [ -x /usr/sbin/invoke-rc.d ] ; then
-					/usr/sbin/invoke-rc.d courier-pop-ssl restart
-				else
-					/etc/init.d/courier-pop-ssl restart
-				fi
-			else
-				if [ -x /usr/local/etc/rc.d/courier-pop-ssl ] ; then
-					/usr/local/etc/rc.d/courier-pop-ssl restart
-				fi
-			fi
-
-			# Restart courier for slackware
-			if [ -x "/etc/rc.d/rc.courier" ] ; then
-				/etc/rc.d/rc.courier restart
-			fi
-			
-
-			# Restart courier for RH/FC
-			if [ -x /sbin/service ] ; then
-				/sbin/service courier-authlib restart
-				/sbin/service courier-imap restart
-			fi
+			restartDaemonMultiUnix courier-authdaemon
+			restartDaemonMultiUnix courier-authlib
+			restartDaemonMultiUnix courier-imap
+			restartDaemonMultiUnix courier-imap-ssl
+			restartDaemonMultiUnix courier-pop
+			restartDaemonMultiUnix courier-pop-ssl
 		fi	
 	fi
 
@@ -2859,18 +2804,7 @@ user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host
 				fi
 				cd ${DOVCERT_CWD}
 			fi
-			# need to restart dovecot too
-			if [ -x "/etc/init.d/dovecot" ] ; then
-	                        if [ -x /usr/sbin/invoke-rc.d ] ; then
-	                                /usr/sbin/invoke-rc.d dovecot restart
-				else
-		                        /etc/init.d/dovecot restart
-				fi
-	                else
-				if [ -x /usr/local/etc/rc.d/dovecot ] ; then
-					/usr/local/etc/rc.d/dovecot restart
-				fi
-	                fi
+			restartDaemonMultiUnix dovecot
 		fi	
 	fi
 }
@@ -2935,14 +2869,8 @@ MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
 " >$PURE_FTPD_ETC/db/mysql.conf;
-				# Retart after we did the config
-				if [ -x /usr/sbin/invoke-rc.d ] ; then
-					/usr/sbin/invoke-rc.d pure-ftpd-mysql restart
-				else
-					if [ -x /etc/init.d/pure-ftpd-mysql ] ; then
-						/etc/init.d/pure-ftpd-mysql restart
-					fi
-				fi
+				restartDaemonMultiUnix pure-ftpd-mysql
+				restartDaemonMultiUnix pure-ftpd
 			# This works for slackware
 			else
 				echo "# Configured by DTC v0.10 : Please don't touch this line !
@@ -2958,9 +2886,6 @@ MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
 " >$PURE_FTPD_ETC/pureftpd-mysql-dtc.conf;
-				if [ -x /etc/rc.d/rc.pure-ftpd ] ; then
-					/etc/rc.d/rc.pure-ftpd restart
-				fi
 			fi
 		fi
 	fi
@@ -3086,17 +3011,7 @@ SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ft
 			rm $TMP_FILE
 			# This restarts proftpd if under debian like system
 			# work has to be done under other OS to restart the ftp daemon
-			if [ -x "/etc/init.d/proftpd" ] ; then
-				if [ -x "`which /usr/sbin/invoke-rc.d 2>/dev/null`" ] ; then
-					invoke-rc.d proftpd restart
-				else
-					/etc/init.d/proftpd restart
-				fi
-			else
-				if [ -x /usr/local/etc/rc.d/proftpd ] ; then
-					/usr/local/etc/rc.d/proftpd restart
-				fi
-			fi
+			restartDaemonMultiUnix proftpd
 		fi
 	fi
 }
@@ -3456,7 +3371,7 @@ groups.member_groupid_column = ssh_user_group.group_id;
 				if [ "$UNIX_TYPE" = "freebsd" ] ; then
 					echo "
 [queries]
-getpwnam    SELECT login,crypt,uid,gid,'','default','DTC User',homedir,shell,1300000000 FROM ssh_access WHERE login='%1$s' LIMIT 1
+getpwnam    SELECT login,crypt,uid,gid,'','default','DTC User',homedir,shell,2145916000 FROM ssh_access WHERE login='%1$s' LIMIT 1
 getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1$u' LIMIT 1
 getpwent    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access
 getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1$s' LIMIT 1
