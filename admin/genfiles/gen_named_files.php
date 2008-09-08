@@ -299,7 +299,7 @@ function rnds_generate(){
 	$tbl = array();
 
 	// Take only the zones for which a rdns_regen is set in the vps_ip table
-	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type
+	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type,$pro_mysql_ip_pool_table.custom_part
 	FROM $pro_mysql_ip_pool_table,$pro_mysql_vps_ip_table
 	WHERE $pro_mysql_vps_ip_table.rdns_regen='yes'
 	AND $pro_mysql_ip_pool_table.id=$pro_mysql_vps_ip_table.ip_pool_id;";
@@ -315,7 +315,7 @@ function rnds_generate(){
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	// Do same for the VPSes
-	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type
+	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type,$pro_mysql_ip_pool_table.custom_part
 	FROM $pro_mysql_ip_pool_table,$pro_mysql_dedicated_ips_table
 	WHERE $pro_mysql_dedicated_ips_table.rdns_regen='yes'
 	AND $pro_mysql_ip_pool_table.id=$pro_mysql_dedicated_ips_table.ip_pool_id;";
@@ -339,6 +339,7 @@ function rnds_generate(){
 		$pool_ip_addr = $a["ip_addr"];
 		$pool_netmask = $a["netmask"];
 		$zone_type = $a["zone_type"];
+		$custom_part = $a["custom_part"];
 
 		switch($zone_type){
 		case "ip_per_ip":
@@ -463,6 +464,7 @@ $allow_trans_str	allow-query { any; };
 				}
 				$zonefile_content .= "$ip_to_reverse	IN	PTR	".$the_reverse.".\n";
 			}
+			$zonefile_content .= $custom_part;
 			// Write $conf_generated_file_path/reverse_zones/$pool_ip_addr
 			$filep = fopen("$conf_generated_file_path/reverse_zones/$pool_ip_addr", "w+");
 			if( $filep == NULL){

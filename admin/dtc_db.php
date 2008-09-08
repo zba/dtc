@@ -570,6 +570,20 @@ $dtc_database = array(
                 	"vhost" => "(vhost,month,year,domain)"
 			)
 		),
+	"ip_pool" => array (
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"location" => "varchar(255) NOT NULL default ''",
+			"ip_addr" => "varchar(16) NOT NULL default ''",
+			"netmask" => "varchar(16) NOT NULL default ''",
+			"zone_type" => "enum('support_ticket','ip_per_ip','one_zonefile') default 'one_zonefile'",
+			"custom_part" => "text NOT NULL"
+			),
+		"primary" => "(id)",
+		"unique" => array(
+			"ip_addr" => "(ip_addr)"
+			)
+		),
 	"ip_port_service" => array(
                 "vars" => array(
                         "id" => "int(11) NOT NULL auto_increment",

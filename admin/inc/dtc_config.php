@@ -337,6 +337,10 @@ function drawDedicatedIPConfig(){
 
 function drawIPPoolConfig(){
 	global $pro_mysql_ip_pool_table;
+	global $pro_mysql_dedicated_ips_table;
+	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_cronjob_table;
+
 	global $rub;
 	global $sousrub;
 
@@ -351,6 +355,10 @@ function drawIPPoolConfig(){
 				"type" => "id",
 				"display" => "no",
 				"legend" => "id"),
+			"editpool" => array(
+				"type" => "hyperlink",
+				"legend" => _("Customize"),
+				"text" => _("Customize") ),
 			"location" => array(
 				"type" => "text",
 				"legend" => _("Location")),
@@ -368,6 +376,41 @@ function drawIPPoolConfig(){
 			)
 		);
 	$out .= dtcDatagrid($dsc);
+	$out .= "<br><br>";
+
+	if(isset($_REQUEST["editpool"])){
+		if(isset($_REQUEST["action"]) && $_REQUEST["action"] = "edit_custom_rdns_text"){
+			$q = "UPDATE $pro_mysql_ip_pool_table SET custom_part='".$_REQUEST["custom_part"]."' WHERE id='".$_REQUEST["editpool"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
+			$q = "UPDATE $pro_mysql_dedicated_ips_table SET rdns_regen='yes' WHERE ip_pool_id='".$_REQUEST["editpool"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
+			$q = "UPDATE $pro_mysql_vps_ip_table SET rdns_regen='yes' WHERE ip_pool_id='".$_REQUEST["editpool"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
+			$q = "UPDATE $pro_mysql_cronjob_table SET reload_named='yes',gen_named='yes' WHERE 1;";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
+		}
+		$q = "SELECT * FROM $pro_mysql_ip_pool_table WHERE id='".$_REQUEST["editpool"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$out .= "<font color=\"red\">"._("Error: no IP pool by that ID!")."</font>";
+		}else{
+			$a = mysql_fetch_array($r);
+			$out .= "<h3>"._("Custom RDNS entries for the IP pool")." " .$a["location"] . " (" . $a["ip_addr"] . " / " . $a["netmask"] . "):</h3>";
+			$out .= _("The following will be appened at the end of the reverse zone file.");
+			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+<input type=\"hidden\" name=\"editpool\" value=\"".$_REQUEST["editpool"]."\">
+<input type=\"hidden\" name=\"action\" value=\"edit_custom_rdns_text\">
+<textarea name=\"custom_part\" cols=\"80\" rows=\"20\">".$a["custom_part"]."</textarea><br>
+<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+<div class=\"input_btn_left\"></div>
+<div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Save")."\"></div>
+<div class=\"input_btn_right\"></div></div></form>
+";
+		}
+	}
 	return $out;
 }
 
