@@ -12,9 +12,11 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 
 	global $secpayconf_currency_letters;
 
+	global $submit_err;
+
 	get_secpay_conf();
 
-	$out = "";
+	$out = "<font color=\"red\">$submit_err</font>";
 
 	// Check owner and fetch!
 	checkDedicatedAdmin($adm_login,$adm_pass,$dedicated_server_hostname);

@@ -18,12 +18,13 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 	global $secpayconf_currency_letters;
 
 	global $panel_type;
+	global $submit_err;
 
 	$reinstall_os = 1;
 
 	get_secpay_conf();
 
-	$out = "";
+	$out = "<font color=\"red\">$submit_err</font>";
 
 	$checker = checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name);
 	if($checker != true){
