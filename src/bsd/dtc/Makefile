@@ -40,7 +40,7 @@ USE_PHP=	mysql pcre session
 .if defined(WITH_PHP5)
 DEFAULT_PHP_VER=5
 BROKEN_WITH_PHP=4
-RUN_DEPENDS+=    ${LOCALBASE}/bin/pear:${PORTSDIR}/devel/pear
+RUN_DEPENDS+=	${LOCALBASE}/bin/pear:${PORTSDIR}/devel/pear
 USE_PHP+=	bz2 gd mbstring mcrypt mysql mysqli openssl pcre \
 		session sockets xml zlib
 .endif
@@ -74,7 +74,7 @@ RUN_DEPENDS+=	${LOCALBASE}/sbin/pop3login:${PORTSDIR}/mail/courier-imap \
 .endif
 
 .if defined(WITH_MAILDROP)
-RUN_DEPENDS+=  ${LOCALBASE}/bin/maildrop:${PORTSDIR}/mail/maildrop
+RUN_DEPENDS+=   ${LOCALBASE}/bin/maildrop:${PORTSDIR}/mail/maildrop
 .endif
 
 .if defined(WITH_CYRUS_SASL2)
@@ -115,12 +115,15 @@ PLIST_SUB+=	DTCROOT="${DTCROOT}"
 
 SUB_FILES=	dtc-install dtc-deinstall
 SUB_LIST+=	QMAIL_DIR="${QMAIL_DIR}"
+MAN8=		dtc-chroot-shell.8
+NOMANCOMPRESS=	yes
 
 do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-install ${PREFIX}/sbin/dtc-install
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-deinstall ${PREFIX}/sbin/dtc-deinstall
-	@${MAKE} -C ${WRKDIR}/dtc-__VERSION__ install-dtc-common INSTALL=install DTC_APP_DIR=${LOCALBASE}/www DTC_GEN_DIR=${LOCALBASE}/var CONFIG_DIR=${LOCALBASE}/etc \
-		DTC_DOC_DIR=${LOCALBASE}/share/doc MANUAL_DIR=${LOCALBASE}/man BIN_DIR=${LOCALBASE}/bin UNIX_TYPE=bsd
+	@${MAKE} -C ${WRKDIR}/dtc-__VERSION__ install-dtc-common INSTALL=install \
+		DESTDIR=${PREFIX} DTC_APP_DIR=/www DTC_GEN_DIR=/var CONFIG_DIR=/etc \
+		DTC_DOC_DIR=/share/doc MANUAL_DIR=/man BIN_DIR=/bin UNIX_TYPE=bsd
 	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
