@@ -2,12 +2,11 @@
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "export_domain"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
-	$file_name = $edit_domain.'.dtc.tar.gz';
-	exportDomain($edit_domain,$conf_site_root_host_path);
-	header('Content-type: application/tar.gz');
+	$file_name = $edit_domain.'.dtc.xml';
+	$xml = exportDomain($edit_domain,$adm_login);
+	header('Content-type: application/dtc+xml');
 	header('Content-Disposition: attachment; filename="'.$file_name.'"');
-	readfile($conf_site_root_host_path.'/'.$file_name);
-	unlink($conf_site_root_host_path.'/'.$file_name);
+	echo($xml);
 	die();
 }
 

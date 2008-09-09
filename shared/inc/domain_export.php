@@ -1,175 +1,116 @@
 <?php
 
-//SELECT pop_access.mbox_host,pop_access.id,passwd,redirect1,redirect2,localdeliver,vacation_flag,bounce_msg,vacation_text,spam_mailbox_enable
-//FROM domain, pop_access WHERE domain.owner='dig' AND pop_access.mbox_host=domain.name
+require_once 'XML/Serializer.php';
 
-//SELECT login,password,homedir,hostname FROM domain, ftp_access WHERE domain.owner='dig' AND ftp_access.hostname=domain.name
+function getExDomTableData($table,$w_cond,$key,$vars){
+	$my_ar = array();
 
-//SELECT domain_name,subdomain_name,ip,register_globals,generate_vhost,subdomain.safe_mode,subdomain.sbox_protect,ssl_ip
-//FROM subdomain,domain
-//WHERE subdomain.domain_name=domain.name
-//AND domain.owner='dig'
+	$vars_ar = explode(",",$vars);
+	$n_vars = sizeof($vars_ar);
 
-function exportSqlTable($table_name,$filter_field,$filter_value){
-        global $conf_mysql_db;
-        global $pro_mysql_pop_table;
-
-        $out = '$' . "$table_name = array();\n";
-
-        $fields = mysql_list_fields($conf_mysql_db, $table_name);
-        $columns = mysql_num_fields($fields);
-
-        $field_names = array();
-        for($i=0;$i<$columns;$i++){
-          $fld_name = mysql_field_name($fields, $i);
-          if(($table_name == $pro_mysql_pop_table && strlen($fld_name) > 0) || ($fld_name != "id" && strlen($fld_name) > 0)){
-            $field_names[] = $fld_name;
-          }
-        }
-        $columns = sizeof($field_names);
-
-        $q = "SELECT * FROM $table_name WHERE $filter_field='$filter_value';";
-        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-        $num_rows = mysql_num_rows($r);
-        for($i=0;$i<$num_rows;$i++){
-          $row = mysql_fetch_array($r);
-          $out .= '$' . "$table_name".'[]'." = array(\n";
-          for($j=0;$j<$columns;$j++){
-            if($j != 0){
-              $out .= ",\n";
-            }
-            $out .= "\t\"" . $field_names[$j] . '"' . " => " . '"' . urlencode($row[$field_names[$j]]) . '"';
-          }
-          $out .= ");\n";
-        }
-        $out .= "\n";
-        return $out;
+	$q = "SELECT $key,$vars FROM $table WHERE $w_cond;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$my_ar[ $i ][ $key ] = $a[ $key ];
+		for($j=0;$j<$n_vars;$j++){
+			$my_ar[ $i ][ $vars_ar[$j] ] = $a[ $vars_ar[$j] ];
+		}
+	}
+	return $my_ar;
 }
 
-function exportDomainSQL($domain_name){
-        global $pro_mysql_domain_table;
-        global $pro_mysql_subdomain_table;
-        global $pro_mysql_pop_table;
-        global $pro_mysql_ftp_table;
-        global $pro_mysql_ssh_table;
-        global $pro_mysql_whois_table;
-        global $pro_mysql_nameservers_table;
-        global $pro_mysql_acc_http_table;
-        global $pro_mysql_acc_ftp_table;
-        global $pro_mysql_acc_email_table;
-        global $pro_mysql_registry_table;
+function getExDomRowValues($table,$w_cond,$vars){
+	$my_ar = array();
 
-        global $conf_mysql_db;
+	$vars_ar = explode(",",$vars);
+	$n_vars = sizeof($vars_ar);
 
-
-        $out = "<?php\n";
-        $q = "SELECT owner FROM $pro_mysql_domain_table WHERE name='$domain_name'";
-        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-        $n = mysql_num_rows($r);
-        if($n != 1){
-          $export_domain_err = "Cannot find domain in db";
-          return false;
-        }
-        $a = mysql_fetch_array($r);
-        $adm_login = $a["owner"];
-        $adm_path = getAdminPath($adm_login);
-
-        $out .= "\$exported_admin_path = \"$adm_path\";\n\n";
-        $out .= exportSqlTable($pro_mysql_domain_table,"name",$domain_name);
-        $out .= exportSqlTable($pro_mysql_subdomain_table,"domain_name",$domain_name);
-        $out .= exportSqlTable($pro_mysql_pop_table,'mbox_host',$domain_name);
-        $out .= exportSqlTable($pro_mysql_ftp_table,'hostname',$domain_name);
-        $out .= exportSqlTable($pro_mysql_ssh_table,'hostname',$domain_name);
-        $out .= exportSqlTable($pro_mysql_whois_table,'domain_name',$domain_name);
-        $out .= exportSqlTable($pro_mysql_nameservers_table,'domain_name',$domain_name);
-        $out .= exportSqlTable($pro_mysql_acc_http_table,'domain',$domain_name);
-        $out .= exportSqlTable($pro_mysql_acc_ftp_table,'sub_domain',$domain_name);
-        $out .= exportSqlTable($pro_mysql_acc_email_table,'domain_name',$domain_name);
-        return $out."\n?>";
+	$q = "SELECT $vars FROM $table WHERE $w_cond;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find raw line when calling $q ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+	for($j=0;$j<$n_vars;$j++){
+		$my_ar[ $vars_ar[$j] ] = $a[ $vars_ar[$j] ];
+	}
+	return $my_ar;
 }
 
-//dtc_sql_config/<domain_name>/dtc_dump.php -> dtc config dump (pop, ftp, ssh, etc...)
-//user_db_dump/<dbname>/mysql_dump.sql -> user's database
-//domain_files/<domain_name>/[files]
-//dtc_dump_index.php
-//
-//    dtc_dump_info = array(
-//      "admin_name" => "xxxx",
+function removePathFromFTPArray($ftp_array,$adm_login){
+	$adm_path = getAdminPath($adm_login);
+	$adm_path_size = strlen($adm_path);
+	$keys = array_keys($ftp_array);
+	$n = sizeof($ftp_array);
+	for($i=0;$i<$n;$i++){
+		$ftp_array[ $keys[$i] ]["homedir"] = substr($ftp_array[ $keys[$i] ]["homedir"],$adm_path_size);
+	}
+//	echo "<pre>"; print_r($ftp_array); echo "</pre>";
+	return $ftp_array;
+}
 
-function exportDomain($domain_name,$path_to){
-  global $export_domain_err;
-  global $pro_mysql_domain_table;
+function getDomainData($domain,$adm_login){
+	global $pro_mysql_pop_table;
+	global $pro_mysql_mailaliasgroup_table;
+	global $pro_mysql_list_table;
+	global $pro_mysql_ftp_table;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_ssh_table;
+	global $pro_mysql_subdomain_table;
 
-  // Get the domain's file path
-  $q = "SELECT owner FROM $pro_mysql_domain_table WHERE name='$domain_name'";
-  $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-  $n = mysql_num_rows($r);
-  if($n != 1){
-    $export_domain_err = "Cannot find domain in db";
-    return false;
-  }
-  $a = mysql_fetch_array($r);
-  $adm_login = $a["owner"];
-  $adm_path = getAdminPath($adm_login);
+	unset($dom);
+	$dom = array();
 
-  // Prepare the folders
-  $real_path = $path_to."/dtc_export";
-  if(is_dir($real_path) || file_exists($real_path)){
-    $export_domain_err = "$real_path exists!";
-    return false;
-  }
+	$dom["domain_config"] = getExDomRowValues($pro_mysql_domain_table,"name='$domain'",
+					"safe_mode,sbox_protect,owner,default_subdomain,quota,max_email,max_lists,max_ftp,max_subdomain,max_ssh,ip_addr,backup_ip_addr,primary_dns,other_dns,primary_mx,other_mx,whois,hosting,gen_unresolved_domain_alias,txt_root_entry,txt_root_entry2,catchall_email,domain_parking,registrar_password,ttl,stats_login,stats_pass,stats_subdomain,wildcard_dns,domain_parking_type");
+	$dom["subdomains"] = getExDomTableData($pro_mysql_subdomain_table,"domain_name='$domain'","subdomain_name",
+					"safe_mode,sbox_protect,subdomain_name,ip,register_globals,login,pass,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost");
+	$dom["mailboxes"] = getExDomTableData($pro_mysql_pop_table,"mbox_host='$domain'","id",
+					"passwd,redirect1,redirect2,localdeliver,vacation_flag,bounce_msg,vacation_text,spam_mailbox_enable");
+	$dom["alias_group"] = getExDomTableData($pro_mysql_mailaliasgroup_table,"domain_parent='$domain'","id",
+					"delivery_group");
+	$dom["lists"] = getExDomTableData($pro_mysql_list_table,"domain='$domain'","id",
+					"name,owner,spammode,webarchive");
+	$ftp_access = getExDomTableData($pro_mysql_ftp_table,"hostname='$domain'","login",
+					"password,homedir,hostname");
+	$dom["ftp"] = removePathFromFTPArray($ftp_access,$adm_login);
+	$ssh_access = getExDomTableData($pro_mysql_ssh_table,"hostname='$domain'","login",
+					"crypt,password,homedir,hostname");
+	$dom["ssh"] = removePathFromFTPArray($ssh_access,$adm_login);
+	return $dom;
+}
 
-  // Create the dirs
-//  echo "mkdir $real_path\n";
-  mkdir($real_path);
+function exportDomain($domain_name,$adm_login){
+	// Get the domain info
+	$dom_ar = array(
+		"domains" => array(
+			$domain_name => getDomainData($domain_name,$adm_login)
+			)
+		);
 
-  $dtc_sql_config  = $real_path."/dtc_sql_config";
-//  echo "mkdir $dtc_sql_config\n";
-  mkdir($dtc_sql_config);
-
-  $dtc_sql_dump_path = $dtc_sql_config."/$domain_name";
-//  echo "mkdir ".$dtc_sql_dump_path."\n";
-  mkdir($dtc_sql_dump_path);
-
-  $dtc_sql_dump_filename = $dtc_sql_dump_path."/dtc_dump.php";
-  $dtc_domain_files_path = $real_path."/domain_files";
-//  echo "mkdir $dtc_domain_files_path\n";
-  mkdir($dtc_domain_files_path);
-
-  // Get the dump
-//  echo "Dumping SQL config for $domain_name...<br>\n";
-  $dtc_sql_dump = exportDomainSQL($domain_name);
-
-  // Write the sql dump
-  $fp = fopen($dtc_sql_dump_filename,"wb+");
-  if($fp == NULL){
-    $export_domain_err = "Can't open file $real_path";
-    return false;
-  }
-  if(!fwrite($fp,$dtc_sql_dump)){
-    $export_domain_err = "Can't write file $real_path";
-    return false;
-  }
-  fclose($fp);
-
-  // Copy all the domain files in the folder
-//  echo "Copying domain files for $domain_name...<br>\n";
-  $cmd = "cp -auf $adm_path/$domain_name $dtc_domain_files_path";
-//  echo "$cmd<br>\n";
-  $last_line = exec($cmd,$output,$return_var);
-
-//  echo "Compressing export for $domain_name...<br>\n";
-  $old_dir = getcwd();
-  chdir($path_to);
-  $cmd = "tar -cvzf $domain_name.dtc.tar.gz dtc_export";
-  $last_line = exec($cmd,$output,$return_var);
-  $cmd = "rm -r dtc_export";
-//  $last_line = exec($cmd,$output,$return_var);
-  chdir($old_dir);
+	// Serialize into a XML document
+	$options = array(
+		"indent"          => "\t",
+		"linebreak"       => "\n",
+		"addDecl"         => true,
+		"encoding"        => "UTF-8",
+		"rootAttributes"  => array("version" => "0.1"),
+		"rootName"        => "dtc-export-file",
+		"defaultTagName"  => "item",
+		"attributesArray" => "_attributes"
+	);
+	$serializer = new XML_Serializer($options);
+	$serializer->serialize($dom_ar);
+	$xml = $serializer->getSerializedData();
+//	echo "<pre>"; echo htmlentities($xml); echo "</pre>";
+	return $xml;
 }
 
 function domainImport($path_from,$adm_login){
-  global $pro_mysql_admin_table;
+/*  global $pro_mysql_admin_table;
   global $pro_mysql_domain_table;
   global $pro_mysql_ftp_table;
   global $pro_mysql_ssh_table;
@@ -565,6 +506,7 @@ function domainImport($path_from,$adm_login){
 
   chdir($old_dir);
   return true;
+*/
 }
 
 ?>
