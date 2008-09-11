@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-04 04:16+0800\n"
+"POT-Creation-Date: 2008-09-11 19:57+0800\n"
 "PO-Revision-Date: 2008-08-22 20:19-0500\n"
 "Last-Translator: Wei Cao <caowei@gplhost.com>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -40,16 +40,16 @@ msgstr "这看起来不像是一个邮箱的登陆名..."
 #: shared/inc/sql/dedicated.php:6 shared/inc/sql/dedicated.php:9
 #: shared/inc/sql/vps.php:36 shared/inc/sql/vps.php:93
 #: shared/inc/sql/vps.php:99 shared/inc/sql/vps.php:102
-#: shared/inc/sql/vps.php:108 shared/inc/sql/vps.php:116
-#: shared/inc/sql/vps.php:126 shared/inc/sql/vps.php:146
-#: shared/inc/sql/vps.php:170 shared/inc/sql/vps.php:185
-#: shared/inc/sql/vps.php:198 shared/inc/sql/vps.php:208
-#: shared/inc/sql/vps.php:250 shared/inc/sql/vps.php:258
-#: shared/inc/sql/vps.php:268 shared/inc/sql/vps.php:278
+#: shared/inc/sql/vps.php:108 shared/inc/sql/vps.php:130
+#: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:160
+#: shared/inc/sql/vps.php:184 shared/inc/sql/vps.php:199
+#: shared/inc/sql/vps.php:212 shared/inc/sql/vps.php:222
+#: shared/inc/sql/vps.php:264 shared/inc/sql/vps.php:272
+#: shared/inc/sql/vps.php:282 shared/inc/sql/vps.php:292
 msgid " file "
 msgstr "文件"
 
-#: shared/inc/forms/vps_installation.php:298
+#: shared/inc/forms/vps_installation.php:299
 msgid " maybe there are no logs yet?"
 msgstr ""
 
@@ -72,7 +72,7 @@ msgstr "+1.XXXXXXXXXX 格式"
 msgid "2 months ago: "
 msgstr "2个月前: "
 
-#: shared/inc/draw.php:493
+#: shared/inc/draw.php:491
 msgid ""
 "<font face=\"Arial, Verdana\">\n"
 "<center><font size=\"+2\"><u><b>ONLINE DTC HELP</b></u></font></"
@@ -335,10 +335,10 @@ msgid "Access list:"
 msgstr "权限列表："
 
 #: shared/inc/sql/vps.php:36 shared/inc/sql/vps.php:93
-#: shared/inc/sql/vps.php:108 shared/inc/sql/vps.php:116
-#: shared/inc/sql/vps.php:126 shared/inc/sql/vps.php:146
-#: shared/inc/sql/vps.php:170 shared/inc/sql/vps.php:185
-#: shared/inc/sql/vps.php:250
+#: shared/inc/sql/vps.php:108 shared/inc/sql/vps.php:130
+#: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:160
+#: shared/inc/sql/vps.php:184 shared/inc/sql/vps.php:199
+#: shared/inc/sql/vps.php:264
 msgid "Access not granted line "
 msgstr "未授权的操作"
 
@@ -350,11 +350,11 @@ msgstr "账户名"
 msgid "Account number"
 msgstr "账号"
 
-#: admin/inc/dtc_config.php:1160
+#: admin/inc/dtc_config.php:1203
 msgid "Act as backup DNS server for the following servers:"
 msgstr "对下列服务器作为备份DNS服务器:"
 
-#: admin/inc/dtc_config.php:1135
+#: admin/inc/dtc_config.php:1178
 msgid "Act as backup mail server for the following servers:"
 msgstr "对下列服务器作为备份邮件服务器:"
 
@@ -367,7 +367,7 @@ msgstr "对下列服务器作为备份邮件服务器:"
 msgid "Action"
 msgstr "操作"
 
-#: admin/inc/dtc_config.php:482
+#: admin/inc/dtc_config.php:525
 msgid "Activate FTP backups:"
 msgstr "激活的FTP备份："
 
@@ -391,23 +391,23 @@ msgstr "为这个管理员添加一个独立服务器："
 msgid "Add a domain for this user:"
 msgstr "为这个用户添加一个域名："
 
-#: shared/inc/draw.php:466
+#: shared/inc/draw.php:464
 msgid "Add a domain name to my account"
 msgstr "添加一个域名到我的帐户"
 
-#: shared/inc/draw.php:134
+#: shared/inc/draw.php:133
 msgid "Add a domain or service"
 msgstr "添加一个域名或服务"
 
-#: shared/inc/draw.php:464
+#: shared/inc/draw.php:462
 msgid "Add a domain or service:"
 msgstr "添加一个域名或服务:"
 
-#: admin/inc/dtc_config.php:1554
+#: admin/inc/dtc_config.php:1597
 msgid "Add a new company"
 msgstr "添加新公司"
 
-#: admin/inc/dtc_config.php:1553
+#: admin/inc/dtc_config.php:1596
 msgid "Add a new company:"
 msgstr "添加新公司:"
 
@@ -473,11 +473,11 @@ msgstr "地址（第三行）："
 msgid "Address email"
 msgstr "email地址："
 
-#: admin/inc/dtc_config.php:980
+#: admin/inc/dtc_config.php:1023
 msgid "Address of your main MX server:"
 msgstr "主MX服务器的地址："
 
-#: admin/inc/renewals.php:347 admin/inc/dtc_config.php:1574
+#: admin/inc/renewals.php:347 admin/inc/dtc_config.php:1617
 #: shared/inc/forms/my_account.php:207
 msgid "Address:"
 msgstr "地址："
@@ -528,7 +528,7 @@ msgstr "允许FTP登录的添加："
 msgid "Allow addition of SSH logins:"
 msgstr "允许SSH登录的添加："
 
-#: admin/inc/dtc_config.php:1234
+#: admin/inc/dtc_config.php:1277
 msgid "Allow registration of subdomain of the main domain: "
 msgstr ""
 
@@ -536,7 +536,7 @@ msgstr ""
 msgid "Allow the use of the package installer:"
 msgstr "允许软件包安装:"
 
-#: admin/inc/dtc_config.php:1056
+#: admin/inc/dtc_config.php:1099
 msgid ""
 "Allow those servers to list this server's domain names for doing backup:"
 msgstr "允许下列服务器备份本服务器的域名："
@@ -594,7 +594,7 @@ msgstr "安哥拉"
 msgid "Anguilla"
 msgstr "安圭拉岛"
 
-#: admin/inc/dtc_config.php:883
+#: admin/inc/dtc_config.php:926
 msgid "Another location"
 msgstr "另一处位置"
 
@@ -610,15 +610,15 @@ msgstr "垃圾邮件处理模式:"
 msgid "Antigua And Barbuda"
 msgstr "安提瓜岛和巴尔布达岛"
 
-#: admin/inc/dtc_config.php:894
+#: admin/inc/dtc_config.php:937
 msgid "Apache DirectoryIndex: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1500
+#: admin/inc/dtc_config.php:1543
 msgid "Apache file names"
 msgstr "Apache 文件名"
 
-#: admin/inc/dtc_config.php:1471
+#: admin/inc/dtc_config.php:1514
 msgid "Apache htpasswd path"
 msgstr "Apache htpasswd 路径"
 
@@ -680,12 +680,12 @@ msgstr "澳大利亚"
 msgid "Austria"
 msgstr "奥地利"
 
-#: admin/inc/dtc_config.php:1011
+#: admin/inc/dtc_config.php:1054
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
 msgstr "自动产生默认子域名(mail, pop, imap, smtp, ftp, list):"
 
-#: admin/inc/dtc_config.php:407 admin/inc/dtc_config.php:445
-#: admin/inc/dtc_config.php:727
+#: admin/inc/dtc_config.php:450 admin/inc/dtc_config.php:488
+#: admin/inc/dtc_config.php:770
 msgid "Available"
 msgstr "可用"
 
@@ -697,7 +697,7 @@ msgstr "阿塞拜疆"
 msgid "BACKUP SCRIPTS"
 msgstr "备份程序"
 
-#: shared/inc/sql/vps.php:258
+#: shared/inc/sql/vps.php:272
 msgid "BSD kernel type is not correct line "
 msgstr "BSD内核类型不正确"
 
@@ -709,7 +709,7 @@ msgstr "带宽配额"
 msgid "Backup Vhost IP address"
 msgstr "备用 Vhost IP地址"
 
-#: admin/inc/dtc_config.php:499
+#: admin/inc/dtc_config.php:542
 msgid "Backup frequency:"
 msgstr "备份频率："
 
@@ -798,7 +798,7 @@ msgstr "Bind 重新启用"
 msgid "Bolivia"
 msgstr "玻利维亚"
 
-#: shared/inc/forms/vps_installation.php:197
+#: shared/inc/forms/vps_installation.php:198
 msgid "Boot up (xm start)"
 msgstr "启动(xm start)"
 
@@ -854,7 +854,7 @@ msgstr "布隆迪"
 msgid "Byelorussian SSR"
 msgstr "白俄罗斯 SSR"
 
-#: shared/drawlib/dtc_functions.php:803
+#: shared/drawlib/dtc_functions.php:814
 msgid "Bytes"
 msgstr "Bytes"
 
@@ -915,11 +915,11 @@ msgstr "在数据库中无法找到服务器!"
 msgid "Cannot find ticket!"
 msgstr "没有找到相应的标签!"
 
-#: shared/inc/sql/vps.php:208 shared/inc/sql/vps.php:278
+#: shared/inc/sql/vps.php:222 shared/inc/sql/vps.php:292
 msgid "Cannot get VPS IP addresses information line "
 msgstr "无法得到VPS的IP地址信息"
 
-#: shared/inc/sql/vps.php:198 shared/inc/sql/vps.php:268
+#: shared/inc/sql/vps.php:212 shared/inc/sql/vps.php:282
 msgid "Cannot get VPS information line "
 msgstr "无法得到VPS信息"
 
@@ -966,11 +966,11 @@ msgstr "现金"
 msgid "Catch-all email set to deliver to"
 msgstr "无限别名的邮件投递到"
 
-#: admin/inc/dtc_config.php:464
+#: admin/inc/dtc_config.php:507
 msgid "Category"
 msgstr "类别"
 
-#: admin/inc/dtc_config.php:468
+#: admin/inc/dtc_config.php:511
 msgid "Category description"
 msgstr "类别描述"
 
@@ -986,11 +986,11 @@ msgstr "中非共和国"
 msgid "Chad"
 msgstr "乍得"
 
-#: shared/inc/forms/vps_installation.php:253
+#: shared/inc/forms/vps_installation.php:254
 msgid "Change NetBSD kernel"
 msgstr "更改NetBSD内核"
 
-#: shared/inc/forms/vps_installation.php:166 shared/inc/forms/dedicated.php:93
+#: shared/inc/forms/vps_installation.php:167 shared/inc/forms/dedicated.php:95
 msgid "Change RDNS"
 msgstr "更改 RDNS"
 
@@ -1007,7 +1007,7 @@ msgid "Check to send a bounce message (vacation): "
 msgstr "检查是否发送一封弹回邮件（假期）:"
 
 #: shared/inc/forms/vps_monitoring.php:133
-#: shared/inc/forms/vps_installation.php:80
+#: shared/inc/forms/vps_installation.php:81
 msgid "Checking filesystem..."
 msgstr "检查文件系统..."
 
@@ -1110,11 +1110,11 @@ msgstr "公司"
 msgid "Company"
 msgstr "公司"
 
-#: admin/inc/dtc_config.php:1671
+#: admin/inc/dtc_config.php:1714
 msgid "Company name"
 msgstr "公司名称"
 
-#: admin/inc/renewals.php:333 admin/inc/dtc_config.php:1569
+#: admin/inc/renewals.php:333 admin/inc/dtc_config.php:1612
 #: shared/inc/forms/my_account.php:202
 msgid "Company name:"
 msgstr "公司名称："
@@ -1202,9 +1202,9 @@ msgstr "科特迪瓦"
 msgid "Could not connect to SMTP server (timed out): "
 msgstr "无法连接到 SMTP服务器(超时):"
 
-#: shared/inc/sql/vps.php:6 shared/inc/sql/vps.php:132
-#: shared/inc/sql/vps.php:156 shared/inc/sql/vps.php:176
-#: shared/inc/sql/vps.php:224 shared/inc/sql/vps.php:294
+#: shared/inc/sql/vps.php:6 shared/inc/sql/vps.php:146
+#: shared/inc/sql/vps.php:170 shared/inc/sql/vps.php:190
+#: shared/inc/sql/vps.php:238 shared/inc/sql/vps.php:308
 msgid "Could not connect to VPS server!"
 msgstr "无法连接到VPS服务器!"
 
@@ -1214,7 +1214,7 @@ msgid ""
 msgstr "无法连接到域名注册服务器：请稍候再试！"
 
 #: shared/inc/forms/vps_monitoring.php:181
-#: shared/inc/forms/vps_installation.php:128
+#: shared/inc/forms/vps_installation.php:129
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "无法连接到VPS SOAP服务器。"
 
@@ -1222,17 +1222,21 @@ msgstr "无法连接到VPS SOAP服务器。"
 msgid "Could not find the VPS server in database"
 msgstr "在数据库中没有找到VPS服务器"
 
-#: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:60
+#: shared/inc/sql/dedicated.php:31 shared/inc/sql/vps.php:119
+msgid "Could not find the corresponding IP pool"
+msgstr ""
+
+#: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:65
 msgid "Could not found subdomain in table for folder deletion"
 msgstr "文件夹删除时无法找到子域名"
 
-#: shared/inc/forms/vps_installation.php:298
+#: shared/inc/forms/vps_installation.php:299
 #, fuzzy
 msgid "Could not get VPS install log. Error: "
 msgstr "无法得到远程主机的运行状态.未知的错误:"
 
 #: shared/inc/forms/vps_monitoring.php:126
-#: shared/inc/forms/vps_installation.php:73
+#: shared/inc/forms/vps_installation.php:74
 msgid ""
 "Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
 "not running?"
@@ -1240,12 +1244,12 @@ msgstr ""
 "无法得到远程主机的运行状态(Method getVPSState() 运行失败).可能VPS没有运行?"
 
 #: shared/inc/forms/vps_monitoring.php:130
-#: shared/inc/forms/vps_installation.php:77
+#: shared/inc/forms/vps_installation.php:78
 msgid "Could not get remote status. Unkown error: "
 msgstr "无法得到远程主机的运行状态.未知的错误:"
 
 #: shared/inc/forms/vps_monitoring.php:128
-#: shared/inc/forms/vps_installation.php:75
+#: shared/inc/forms/vps_installation.php:76
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
@@ -1267,7 +1271,7 @@ msgstr "无法写入PASS到服务器。"
 msgid "Could not write USER to server"
 msgstr "无法对服务器写入 USER "
 
-#: admin/inc/dtc_config.php:668 shared/inc/forms/root_admin.php:561
+#: admin/inc/dtc_config.php:711 shared/inc/forms/root_admin.php:561
 msgid "Country"
 msgstr "国家"
 
@@ -1275,7 +1279,7 @@ msgstr "国家"
 msgid "Country code seems incorrect."
 msgstr "国家代码貌似不正确."
 
-#: admin/inc/renewals.php:365 admin/inc/dtc_config.php:1577
+#: admin/inc/renewals.php:365 admin/inc/dtc_config.php:1620
 #: shared/inc/forms/my_account.php:212
 msgid "Country:"
 msgstr "国家："
@@ -1307,12 +1311,12 @@ msgstr "建立一个新handle"
 msgid "Create a new nick-handle:"
 msgstr "无法创建一个新的 nick-handle:"
 
-#: shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:145
 msgid "Create a subdomain: "
 msgstr "建立子域名："
 
 #: shared/inc/forms/vps_monitoring.php:30 shared/inc/forms/vps_graphs.php:30
-#: shared/inc/forms/vps_installation.php:30 shared/inc/forms/vps.php:30
+#: shared/inc/forms/vps_installation.php:31 shared/inc/forms/vps.php:30
 #: shared/inc/forms/vps_dom0graphs.php:30
 msgid "Credential not correct: can't display in file "
 msgstr "创建错误：无法显示文件"
@@ -1333,16 +1337,16 @@ msgstr "古巴"
 msgid "Currency"
 msgstr "货币"
 
-#: admin/inc/dtc_config.php:1250
+#: admin/inc/dtc_config.php:1293
 msgid "Currency letters: "
 msgstr "货币字目："
 
-#: admin/inc/dtc_config.php:1246
+#: admin/inc/dtc_config.php:1289
 msgid "Currency symbol: "
 msgstr "货币符号："
 
 #: shared/inc/forms/vps_monitoring.php:208
-#: shared/inc/forms/vps_installation.php:174
+#: shared/inc/forms/vps_installation.php:175
 msgid "Current VPS status:"
 msgstr "当前VPS状态："
 
@@ -1350,19 +1354,23 @@ msgstr "当前VPS状态："
 msgid "Current contract: "
 msgstr "当前的合同："
 
-#: shared/inc/forms/vps_installation.php:207
+#: shared/inc/forms/vps_installation.php:208
 msgid "Currently installed operating system: "
 msgstr "目前已安装的操作系统"
+
+#: admin/inc/dtc_config.php:399
+msgid "Custom RDNS entries for the IP pool"
+msgstr ""
 
 #: shared/inc/forms/lists.php:408
 msgid "Custom headers:"
 msgstr "自定义的标题："
 
-#: admin/inc/dtc_config.php:1651
+#: admin/inc/dtc_config.php:1694
 msgid "Customer and service country vs company:"
 msgstr "取决于客户和服务器所在国家，哪一个公司可以出具账单和发票"
 
-#: admin/inc/dtc_config.php:1666
+#: admin/inc/dtc_config.php:1709
 msgid "Customer country"
 msgstr "客户国家"
 
@@ -1392,6 +1400,7 @@ msgstr "客户的带宽使用量"
 msgid "Customers list"
 msgstr "客户列表"
 
+#: admin/inc/dtc_config.php:360 admin/inc/dtc_config.php:361
 #: shared/inc/forms/root_admin.php:348
 msgid "Customize"
 msgstr "自定义"
@@ -1408,15 +1417,15 @@ msgstr "捷克共和国"
 msgid "Czechoslovakia"
 msgstr "捷克斯洛伐克"
 
-#: shared/inc/draw.php:141 shared/inc/draw.php:460
+#: shared/inc/draw.php:139 shared/inc/draw.php:458
 msgid "DNS Nick handles"
 msgstr "DNS Nick handles"
 
-#: shared/inc/draw.php:228
+#: shared/inc/draw.php:226
 msgid "DNS and MX"
 msgstr "DNS 和 MX"
 
-#: shared/inc/draw.php:424
+#: shared/inc/draw.php:422
 msgid "DNS config of:"
 msgstr "DNS 配置:"
 
@@ -1424,7 +1433,7 @@ msgstr "DNS 配置:"
 msgid "DTC Configuration"
 msgstr "DTC配置"
 
-#: admin/inc/dtc_config.php:911
+#: admin/inc/dtc_config.php:954
 msgid "DTC Skin chooser"
 msgstr "DTC 皮肤更换"
 
@@ -1446,11 +1455,11 @@ msgid ""
 "config file which must be writable by the user in the Nagios server."
 msgstr ""
 
-#: admin/inc/dtc_config.php:845
+#: admin/inc/dtc_config.php:888
 msgid "Daemon"
 msgstr "Daemon"
 
-#: admin/inc/dtc_config.php:502
+#: admin/inc/dtc_config.php:545
 msgid "Daily"
 msgstr "每日"
 
@@ -1476,7 +1485,7 @@ msgstr "数据库文件："
 msgid "Database name"
 msgstr "数据库名"
 
-#: shared/inc/draw.php:320
+#: shared/inc/draw.php:318
 msgid "Databases"
 msgstr "数据库"
 
@@ -1484,7 +1493,7 @@ msgstr "数据库"
 msgid "Databases disk usage:"
 msgstr "数据库磁盘使用率："
 
-#: shared/inc/draw.php:476
+#: shared/inc/draw.php:474
 msgid "Databases:"
 msgstr "数据库："
 
@@ -1509,11 +1518,11 @@ msgstr "独立服务器IP地址pool编辑程序"
 msgid "Dedicated server IP addresses"
 msgstr "独立服务器IP地址"
 
-#: shared/inc/forms/dedicated.php:39
+#: shared/inc/forms/dedicated.php:41
 msgid "Dedicated server contract:"
 msgstr "独立服务器合同："
 
-#: shared/inc/forms/dedicated.php:42
+#: shared/inc/forms/dedicated.php:44
 msgid "Dedicated server expiration dates:"
 msgstr "独立服务器过期时间："
 
@@ -1529,15 +1538,15 @@ msgstr "独立服务器续约"
 msgid "Dedicated servers: "
 msgstr "独立服务器："
 
-#: admin/inc/dtc_config.php:1629 admin/inc/dtc_config.php:1634
+#: admin/inc/dtc_config.php:1672 admin/inc/dtc_config.php:1677
 msgid "Default company invoicing:"
 msgstr "默认公司的发票："
 
-#: shared/inc/forms/subdomain.php:116
+#: shared/inc/forms/subdomain.php:121
 msgid "Default subdomain: "
 msgstr "默认子域名："
 
-#: admin/inc/dtc_config.php:1022
+#: admin/inc/dtc_config.php:1065
 msgid "Defaut TTL for your zonefiles:"
 msgstr "默认 TTL 对于您的 zonefiles:"
 
@@ -1619,7 +1628,7 @@ msgstr "如果没有填写收件人或者抄送对象则不发送："
 msgid "Description"
 msgstr "描述"
 
-#: admin/inc/dtc_config.php:1416
+#: admin/inc/dtc_config.php:1459
 msgid "Description: "
 msgstr "描述: "
 
@@ -1627,7 +1636,7 @@ msgstr "描述: "
 msgid "Desired domain name"
 msgstr "欲选择的域名"
 
-#: admin/inc/dtc_config.php:504
+#: admin/inc/dtc_config.php:547
 msgid "Destination folder:"
 msgstr "目标文件夹："
 
@@ -1685,7 +1694,7 @@ msgstr "您要过户一个现存的域名还是注册一个新的？"
 msgid "Documentation"
 msgstr "文档"
 
-#: shared/inc/draw.php:174
+#: shared/inc/draw.php:172
 msgid "Dom0 overall graphs"
 msgstr ""
 
@@ -1693,7 +1702,7 @@ msgstr ""
 msgid "Domain Technologie Control : root admin console"
 msgstr "Domain Technologie Control：根目录管理员控制台"
 
-#: shared/inc/draw.php:419
+#: shared/inc/draw.php:417
 msgid "Domain Tools"
 msgstr "域名工具"
 
@@ -1723,7 +1732,7 @@ msgstr "您输入的域名格式不正确，请重新输入"
 msgid "Domain name registration"
 msgstr "域名注册"
 
-#: admin/inc/dtc_config.php:1190
+#: admin/inc/dtc_config.php:1233
 msgid "Domain name registry API configuraiton"
 msgstr "配置域名注册API 配置"
 
@@ -1755,11 +1764,11 @@ msgstr "多米尼加岛"
 msgid "Dominican Republic"
 msgstr "多名尼加共和国"
 
-#: shared/inc/forms/subdomain.php:260
+#: shared/inc/forms/subdomain.php:265
 msgid "Dynamic IP update login: "
 msgstr "动态IP更新登陆名："
 
-#: shared/inc/forms/subdomain.php:266
+#: shared/inc/forms/subdomain.php:271
 msgid "Dynamic IP update password: "
 msgstr "动态IP更新密码："
 
@@ -1784,7 +1793,7 @@ msgstr "厄瓜多尔"
 msgid "Edit Mail Group"
 msgstr "编辑邮件组"
 
-#: admin/inc/dtc_config.php:1555
+#: admin/inc/dtc_config.php:1598
 msgid "Edit a company:"
 msgstr "编辑一个公司:"
 
@@ -1796,11 +1805,11 @@ msgstr "编辑域名服务器信息："
 msgid "Edit mailing list"
 msgstr "编辑邮件列表"
 
-#: shared/inc/draw.php:413
+#: shared/inc/draw.php:411
 msgid "Edit mailing lists of domain:"
 msgstr "编辑域名的邮件列表："
 
-#: shared/inc/forms/subdomain.php:142
+#: shared/inc/forms/subdomain.php:147
 msgid "Edit one of your subdomains"
 msgstr "编辑您的一个子域"
 
@@ -1821,7 +1830,7 @@ msgstr "萨尔瓦多"
 msgid "Email"
 msgstr "Email"
 
-#: admin/inc/dtc_config.php:442
+#: admin/inc/dtc_config.php:485
 msgid "Email addr"
 msgstr "Email 地址"
 
@@ -1829,7 +1838,7 @@ msgstr "Email 地址"
 msgid "Email address is already in use!"
 msgstr "Email地址已经被使用!"
 
-#: admin/inc/dtc_config.php:989
+#: admin/inc/dtc_config.php:1032
 msgid "Email address of your webmaster:"
 msgstr "您的网站管理员的Email地址："
 
@@ -1893,11 +1902,11 @@ msgstr "厄立特里亚"
 msgid "Error"
 msgstr "错误"
 
-#: shared/inc/forms/vps_installation.php:156
+#: shared/inc/forms/vps_installation.php:157
 msgid "Error line "
 msgstr "错误排列"
 
-#: shared/inc/sql/vps.php:139
+#: shared/inc/sql/vps.php:153
 msgid "Error: "
 msgstr "错误:"
 
@@ -1908,6 +1917,10 @@ msgstr "错误: Email 组 别名已经被使用!"
 #: shared/inc/forms/email.php:422
 msgid "Error: a mailing list already exists with this name!"
 msgstr "错误: 邮件列表名已经被使用!"
+
+#: admin/inc/dtc_config.php:396
+msgid "Error: no IP pool by that ID!"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:172
 msgid "Estonia"
@@ -1930,7 +1943,7 @@ msgstr "过期"
 msgid "Expiration date"
 msgstr "过期日期"
 
-#: admin/inc/dtc_config.php:404 shared/inc/forms/my_account.php:126
+#: admin/inc/dtc_config.php:447 shared/inc/forms/my_account.php:126
 msgid "Expire"
 msgstr "过期"
 
@@ -1942,7 +1955,7 @@ msgstr "过期日期"
 msgid "Expiry date:"
 msgstr "过期日期:"
 
-#: shared/inc/forms/domain_info.php:112
+#: shared/inc/forms/domain_info.php:120
 msgid "Export this domain to a file"
 msgstr "将这个域导出到一个文件"
 
@@ -1950,11 +1963,11 @@ msgstr "将这个域导出到一个文件"
 msgid "FTP account configuration: "
 msgstr "FTP账户配置："
 
-#: shared/inc/draw.php:242 shared/inc/draw.php:448
+#: shared/inc/draw.php:240 shared/inc/draw.php:446
 msgid "FTP accounts"
 msgstr "FTP账户"
 
-#: shared/inc/draw.php:450
+#: shared/inc/draw.php:448
 msgid "FTP accounts of "
 msgstr "的FTP账户"
 
@@ -1966,15 +1979,15 @@ msgstr "FTP账户："
 msgid "FTP backup"
 msgstr "FTP备份"
 
-#: admin/inc/dtc_config.php:477
+#: admin/inc/dtc_config.php:520
 msgid "FTP backup configuration"
 msgstr "FTP备份配置"
 
-#: admin/inc/dtc_config.php:491
+#: admin/inc/dtc_config.php:534
 msgid "FTP login:"
 msgstr "FTP登录："
 
-#: admin/inc/dtc_config.php:495
+#: admin/inc/dtc_config.php:538
 msgid "FTP password:"
 msgstr "FTP密码："
 
@@ -2023,11 +2036,11 @@ msgstr "Fetchmail"
 msgid "Fiji"
 msgstr "斐济"
 
-#: shared/inc/forms/vps_installation.php:203
+#: shared/inc/forms/vps_installation.php:204
 msgid "File system check (fsck)"
 msgstr "文件系统检查(fsck)"
 
-#: shared/inc/forms/vps_installation.php:201
+#: shared/inc/forms/vps_installation.php:202
 msgid "File-system check:"
 msgstr "文件系统检查："
 
@@ -2081,15 +2094,15 @@ msgstr "法属南部领地"
 msgid "Full description of the trouble:"
 msgstr "故障的完整描述："
 
-#: admin/inc/dtc_config.php:953
+#: admin/inc/dtc_config.php:996
 msgid "Full hostname of DTC admin panel: "
 msgstr "DTC管理控制面板的完整主机名："
 
-#: admin/inc/dtc_config.php:1042
+#: admin/inc/dtc_config.php:1085
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr "对于DomainKey 其 public.key 文件的位置的完整路径 :"
 
-#: shared/drawlib/dtc_functions.php:800
+#: shared/drawlib/dtc_functions.php:811
 msgid "GBytes"
 msgstr "GBytes"
 
@@ -2105,19 +2118,19 @@ msgstr "冈比亚"
 msgid "Gateway cost"
 msgstr "付费方式成本"
 
-#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:805
+#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:848
 msgid "General"
 msgstr "普通设置"
 
-#: shared/inc/draw.php:601
+#: shared/inc/draw.php:599
 msgid "General information of "
 msgstr "常规信息"
 
-#: shared/inc/forms/subdomain.php:176
+#: shared/inc/forms/subdomain.php:181
 msgid "Generate a vhost entry for this subdomain:"
 msgstr "生成这个子域名的vhost入口："
 
-#: admin/inc/dtc_config.php:944
+#: admin/inc/dtc_config.php:987
 msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "产生所有apache vhosts 在本地网络ip (NAT)："
 
@@ -2149,7 +2162,7 @@ msgstr "进入邮箱控制面板"
 msgid "Go to login"
 msgstr "登录"
 
-#: shared/inc/forms/vps_installation.php:186
+#: shared/inc/forms/vps_installation.php:187
 msgid "Gracefully shutdown (xm shutdown)"
 msgstr "安全关闭(xm shutdown)"
 
@@ -2229,7 +2242,7 @@ msgstr "标题"
 msgid "Heard and McDonald Islands"
 msgstr "Heard 和 McDonald 群岛"
 
-#: shared/inc/draw.php:343
+#: shared/inc/draw.php:341
 msgid "Help"
 msgstr "帮助"
 
@@ -2241,7 +2254,7 @@ msgstr "没有 noaccessdenymails 帮助信息"
 msgid "Help missing for nosubonlydenymails"
 msgstr "没有 nosubonlydenymails 帮助信息"
 
-#: shared/inc/draw.php:492
+#: shared/inc/draw.php:490
 msgid "Help:"
 msgstr "帮助："
 
@@ -2276,7 +2289,7 @@ msgstr "洪都拉斯"
 msgid "Hong Kong"
 msgstr "香港"
 
-#: admin/inc/dtc_config.php:935
+#: admin/inc/dtc_config.php:978
 msgid "Host IP addresses (separated by \"|\"): "
 msgstr "主机所有IP(用\"|\"分隔)："
 
@@ -2294,11 +2307,11 @@ msgstr "仅托管"
 msgid "Hosting product manager"
 msgstr "托管产品管理员"
 
-#: admin/inc/dtc_config.php:653 shared/inc/forms/ticket.php:158
+#: admin/inc/dtc_config.php:696 shared/inc/forms/ticket.php:158
 msgid "Hostname"
 msgstr "主机名"
 
-#: admin/inc/dtc_config.php:487
+#: admin/inc/dtc_config.php:530
 msgid "Hostname:"
 msgstr "主机名："
 
@@ -2332,7 +2345,7 @@ msgstr "我接受"
 msgid "IMAP4: "
 msgstr "IMAP4: "
 
-#: admin/inc/dtc_config.php:325 admin/inc/dtc_config.php:722
+#: admin/inc/dtc_config.php:325 admin/inc/dtc_config.php:765
 msgid "IP Pool"
 msgstr ""
 
@@ -2340,7 +2353,7 @@ msgstr ""
 msgid "IP Resolved"
 msgstr "IP Resolved"
 
-#: admin/inc/dtc_config.php:1068 shared/inc/forms/my_account.php:126
+#: admin/inc/dtc_config.php:1111 shared/inc/forms/my_account.php:126
 #: shared/inc/forms/root_admin.php:385
 msgid "IP address"
 msgstr "IP地址"
@@ -2353,11 +2366,11 @@ msgstr "域名服务器的IP地址："
 msgid "IP address of the primary DNS server:"
 msgstr "优先DNS服务器的IP地址："
 
-#: shared/inc/forms/subdomain.php:171
+#: shared/inc/forms/subdomain.php:176
 msgid "IP address or CNAME: "
 msgstr "IP地址或CNAME: "
 
-#: admin/inc/dtc_config.php:346
+#: admin/inc/dtc_config.php:350
 msgid "IP address pool editor: "
 msgstr "IP地址pool 编辑器："
 
@@ -2367,7 +2380,7 @@ msgid "IP address(es) of your VPS:"
 msgstr "IP地址pool"
 
 #: shared/inc/forms/vps_monitoring.php:196
-#: shared/inc/forms/vps_installation.php:142
+#: shared/inc/forms/vps_installation.php:143
 msgid "IP address: "
 msgstr "IP地址："
 
@@ -2380,17 +2393,17 @@ msgid "IP addresses pool"
 msgstr "IP地址pool"
 
 #: shared/inc/forms/vps_monitoring.php:194
-#: shared/inc/forms/vps_installation.php:140 shared/inc/forms/dedicated.php:69
+#: shared/inc/forms/vps_installation.php:141 shared/inc/forms/dedicated.php:71
 msgid "IP addresses: "
 msgstr "IP地址："
 
-#: admin/inc/dtc_config.php:1002
+#: admin/inc/dtc_config.php:1045
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
 msgstr "主DNS服务器IP地址需要被写入在以下.slavezones.conf:"
 
-#: admin/inc/dtc_config.php:322 admin/inc/dtc_config.php:359
-#: admin/inc/dtc_config.php:394 admin/inc/dtc_config.php:644
-#: admin/inc/dtc_config.php:719
+#: admin/inc/dtc_config.php:322 admin/inc/dtc_config.php:367
+#: admin/inc/dtc_config.php:437 admin/inc/dtc_config.php:687
+#: admin/inc/dtc_config.php:762
 msgid "IPs addrs"
 msgstr "IP地址"
 
@@ -2471,7 +2484,7 @@ msgid ""
 "to these DNS:"
 msgstr "如果您希望保留现有的注册，您必须在下列 DNS 登记您的 whois 信息:"
 
-#: shared/inc/forms/vps_installation.php:189
+#: shared/inc/forms/vps_installation.php:190
 msgid "Immediate kill (xm destroy)"
 msgstr "立即销毁(xm destroy)"
 
@@ -2494,7 +2507,7 @@ msgstr ""
 "容：<br><br>Received:<br>Message-ID:<br><br>那么所有的包含这些内容的标题邮件"
 "都将被删除. From: 和 Return-Path:是无论如何都会被删除的. "
 
-#: admin/inc/submit_root_querys.php:276
+#: admin/inc/submit_root_querys.php:277
 msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
 "numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
@@ -2580,11 +2593,11 @@ msgstr ""
 msgid "Install"
 msgstr "安装"
 
-#: shared/inc/draw.php:180
+#: shared/inc/draw.php:178
 msgid "Installation"
 msgstr "安装"
 
-#: shared/inc/forms/vps_installation.php:302
+#: shared/inc/forms/vps_installation.php:303
 msgid "Installation log (last 20 lines):"
 msgstr "安装日志(最后20行):"
 
@@ -2592,7 +2605,7 @@ msgstr "安装日志(最后20行):"
 msgid "Instant account"
 msgstr "自动激活账户："
 
-#: shared/inc/draw.php:462
+#: shared/inc/draw.php:460
 msgid "Internet Whois Nick Handles management:"
 msgstr "互联网Whois Nick Handles信息管理："
 
@@ -2604,11 +2617,11 @@ msgstr "发票"
 msgid "Invoice date"
 msgstr "发票日期"
 
-#: admin/inc/dtc_config.php:1605
+#: admin/inc/dtc_config.php:1648
 msgid "Invoice footer:"
 msgstr "发票落款："
 
-#: admin/inc/dtc_config.php:1600
+#: admin/inc/dtc_config.php:1643
 msgid "Invoice free text:"
 msgstr "发票注释："
 
@@ -2721,7 +2734,7 @@ msgid "Lao People's Democratic Republic"
 msgstr "老挝人民共和国"
 
 #: shared/inc/forms/vps_monitoring.php:176
-#: shared/inc/forms/vps_installation.php:123
+#: shared/inc/forms/vps_installation.php:124
 msgid "Last boot date: "
 msgstr "上次启动日期："
 
@@ -2794,7 +2807,7 @@ msgstr "列表名:"
 msgid "List of payments done by your hosting company"
 msgstr "您的托管公司已经支付的列表"
 
-#: admin/inc/dtc_config.php:426
+#: admin/inc/dtc_config.php:469
 msgid "List of the administrators receiving request for support messages:"
 msgstr "处理支持请求的管理员列表："
 
@@ -2806,7 +2819,7 @@ msgstr "您的FTP账户列表："
 msgid "List of your SSH accounts:"
 msgstr "您的SSH账户列表："
 
-#: admin/inc/dtc_config.php:1552
+#: admin/inc/dtc_config.php:1595
 msgid "List of your companies:"
 msgstr "您的公司的列表"
 
@@ -2830,7 +2843,7 @@ msgstr "您的邮件列表的列表："
 msgid "List of your registred name-servers:"
 msgstr "您已注册的域名服务器的列表："
 
-#: shared/inc/forms/subdomain.php:139
+#: shared/inc/forms/subdomain.php:144
 msgid "List of your subdomains: "
 msgstr "您的子域名列表："
 
@@ -2842,7 +2855,7 @@ msgstr "邮件列表拥有者的列表"
 msgid "List owner:"
 msgstr "邮件列表拥有者的列表:"
 
-#: admin/inc/dtc_config.php:1016
+#: admin/inc/dtc_config.php:1059
 msgid ""
 "List the DNS server IPs allowed to do zone<br>\n"
 "transfers separated by &quot;|&quot; (pipe)<br>\n"
@@ -2852,7 +2865,7 @@ msgstr ""
 "被分隔&quot;|&quot; (pipe)<br>\n"
 "(如果没有备用DNS服务器则留空)："
 
-#: admin/inc/dtc_config.php:984
+#: admin/inc/dtc_config.php:1027
 msgid ""
 "List your backup MX servers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup MX server):"
@@ -2868,11 +2881,11 @@ msgstr "邮件列表上限"
 msgid "Lithuania"
 msgstr "立陶宛"
 
-#: admin/inc/dtc_config.php:949
+#: admin/inc/dtc_config.php:992
 msgid "Local network area ip address of the vhost using NAT: "
 msgstr "vhost 正在使用的 NAT的本地网络区域ip地址 : "
 
-#: admin/inc/dtc_config.php:356 admin/inc/dtc_config.php:657
+#: admin/inc/dtc_config.php:364 admin/inc/dtc_config.php:700
 msgid "Location"
 msgstr "位置"
 
@@ -2880,7 +2893,7 @@ msgstr "位置"
 msgid "Location is not a valid hostname."
 msgstr "位置不是有效的主机名"
 
-#: admin/inc/dtc_config.php:880
+#: admin/inc/dtc_config.php:923
 msgid "Location of user's database: "
 msgstr "用户数据库的位置："
 
@@ -2888,9 +2901,9 @@ msgstr "用户数据库的位置："
 #: admin/inc/renewals.php:707 admin/inc/renewals.php:788
 #: admin/inc/draw_user_admin.php:246 admin/inc/draw_user_admin.php:304
 #: admin/inc/draw_user_admin.php:323 admin/inc/draw_user_admin.php:409
-#: admin/inc/dtc_config.php:400 admin/inc/dtc_config.php:1071
-#: admin/inc/dtc_config.php:1098 admin/inc/dtc_config.php:1123
-#: admin/inc/dtc_config.php:1150 admin/inc/dtc_config.php:1175
+#: admin/inc/dtc_config.php:443 admin/inc/dtc_config.php:1114
+#: admin/inc/dtc_config.php:1141 admin/inc/dtc_config.php:1166
+#: admin/inc/dtc_config.php:1193 admin/inc/dtc_config.php:1218
 #: shared/inc/forms/email.php:27 shared/inc/forms/reseller.php:24
 #: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
 #: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
@@ -2919,11 +2932,11 @@ msgstr "登录:"
 msgid "Login: "
 msgstr "登录:"
 
-#: admin/inc/dtc_config.php:1595
+#: admin/inc/dtc_config.php:1638
 msgid "Logo path relative to"
 msgstr "Logo 相对路径"
 
-#: shared/inc/draw.php:349 shared/inc/forms/email.php:306
+#: shared/inc/draw.php:347 shared/inc/forms/email.php:306
 msgid "Logout"
 msgstr "注销"
 
@@ -2931,7 +2944,7 @@ msgstr "注销"
 msgid "Luxembourg"
 msgstr "卢森堡"
 
-#: shared/drawlib/dtc_functions.php:801 shared/inc/forms/email.php:587
+#: shared/drawlib/dtc_functions.php:812 shared/inc/forms/email.php:587
 #: shared/inc/forms/email.php:594
 msgid "MBytes"
 msgstr "MBytes"
@@ -2952,7 +2965,7 @@ msgstr "马其顿"
 msgid "Madagascar"
 msgstr "马达加斯加"
 
-#: shared/inc/draw.php:407
+#: shared/inc/draw.php:405
 msgid "Mail Groups:"
 msgstr "邮件组："
 
@@ -2968,7 +2981,7 @@ msgstr "邮件排列统计"
 msgid "Mail gen files"
 msgstr "Mail gen files"
 
-#: shared/inc/draw.php:409
+#: shared/inc/draw.php:407
 msgid "Mail groups of "
 msgstr "邮件组的"
 
@@ -3008,31 +3021,31 @@ msgstr "邮箱空间配额："
 msgid "Mailbox type"
 msgstr "邮箱类型"
 
-#: shared/inc/draw.php:265
+#: shared/inc/draw.php:263
 msgid "Mailboxes"
 msgstr "邮箱"
 
-#: shared/inc/draw.php:405
+#: shared/inc/draw.php:403
 msgid "Mailboxes of "
 msgstr "的邮箱"
 
-#: shared/inc/draw.php:403 shared/inc/forms/domain_info.php:55
+#: shared/inc/draw.php:401 shared/inc/forms/domain_info.php:55
 msgid "Mailboxes:"
 msgstr "邮箱："
 
-#: shared/inc/draw.php:279
+#: shared/inc/draw.php:277
 msgid "Mailing lists"
 msgstr "邮件列表"
 
-#: shared/inc/draw.php:411
+#: shared/inc/draw.php:409
 msgid "Mailing lists:"
 msgstr "邮件列表："
 
-#: admin/inc/dtc_config.php:931
+#: admin/inc/dtc_config.php:974
 msgid "Main ip address of the server: "
 msgstr "本服务器的主要IP地址："
 
-#: admin/inc/dtc_config.php:926
+#: admin/inc/dtc_config.php:969
 msgid "Main software configuration of DTC"
 msgstr "DTC的主要软件配置"
 
@@ -3056,7 +3069,7 @@ msgstr "马里"
 msgid "Malta"
 msgstr "马耳他"
 
-#: shared/inc/draw.php:470
+#: shared/inc/draw.php:468
 msgid "Manage my name servers:"
 msgstr "管理我的域名服务器："
 
@@ -3101,7 +3114,7 @@ msgid "Max mail memory size:"
 msgstr "邮件系统可使用的最大内存空间："
 
 #: shared/inc/forms/vps_monitoring.php:150
-#: shared/inc/forms/vps_installation.php:97
+#: shared/inc/forms/vps_installation.php:98
 msgid "Max memory: "
 msgstr "最大内存："
 
@@ -3110,15 +3123,15 @@ msgid "Maximum number of lists reached"
 msgstr "可到达的最大列表数"
 
 #: shared/inc/forms/vps_monitoring.php:152
-#: shared/inc/forms/vps_installation.php:99
+#: shared/inc/forms/vps_installation.php:100
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr "最大：无法得知(可能正在启动？)"
 
-#: admin/inc/dtc_config.php:1364
+#: admin/inc/dtc_config.php:1407
 msgid "Maxmind license key: "
 msgstr "Maxmind 证书密码: "
 
-#: admin/inc/dtc_config.php:1360
+#: admin/inc/dtc_config.php:1403
 msgid "Maxmind login: "
 msgstr "Maxmind login: "
 
@@ -3135,12 +3148,12 @@ msgid "Memory and Swap Usage "
 msgstr "内存和Swap用量 "
 
 #: shared/inc/forms/vps_monitoring.php:147
-#: shared/inc/forms/vps_installation.php:94
+#: shared/inc/forms/vps_installation.php:95
 msgid "Memory: "
 msgstr "内存: "
 
 #: shared/inc/forms/vps_monitoring.php:125
-#: shared/inc/forms/vps_installation.php:72
+#: shared/inc/forms/vps_installation.php:73
 msgid "Method getVPSState failed"
 msgstr "无法取得VPSState"
 
@@ -3180,11 +3193,11 @@ msgstr "资金花费"
 msgid "Mongolia"
 msgstr "蒙古"
 
-#: shared/inc/draw.php:162
+#: shared/inc/draw.php:160
 msgid "Monitoring"
 msgstr "监控"
 
-#: admin/inc/dtc_config.php:502
+#: admin/inc/dtc_config.php:545
 msgid "Monthly"
 msgstr "每月"
 
@@ -3217,19 +3230,19 @@ msgstr "摩洛哥"
 msgid "Mozambique"
 msgstr "莫桑比克"
 
-#: shared/inc/draw.php:474
+#: shared/inc/draw.php:472
 msgid "My Account information:"
 msgstr "我的账户信息："
 
-#: shared/inc/draw.php:168
+#: shared/inc/draw.php:166
 msgid "My VPS usage graphs"
 msgstr ""
 
-#: shared/inc/draw.php:152
+#: shared/inc/draw.php:150
 msgid "My account"
 msgstr "我的账户"
 
-#: shared/inc/draw.php:433
+#: shared/inc/draw.php:431
 msgid "My account global statistics"
 msgstr "我的账户完整统计信息"
 
@@ -3263,11 +3276,11 @@ msgstr "不存在"
 msgid "NAMED ZONES FILES"
 msgstr "NAMED ZONES 文件"
 
-#: admin/inc/dtc_config.php:1378
+#: admin/inc/dtc_config.php:1421
 msgid "NAS config"
 msgstr "NAS 配置"
 
-#: admin/inc/dtc_config.php:397
+#: admin/inc/dtc_config.php:440
 msgid "NAT Port"
 msgstr "NAT 端口"
 
@@ -3306,11 +3319,11 @@ msgstr "邮件列表的名称："
 msgid "Name server hostname: "
 msgstr "域名服务器的主机名："
 
-#: shared/inc/draw.php:146
+#: shared/inc/draw.php:144
 msgid "Name servers"
 msgstr "域名服务器"
 
-#: shared/inc/draw.php:422 shared/inc/draw.php:468
+#: shared/inc/draw.php:420 shared/inc/draw.php:466
 msgid "Name servers:"
 msgstr "域名服务器:"
 
@@ -3318,8 +3331,8 @@ msgstr "域名服务器:"
 msgid "Name:"
 msgstr "名字:"
 
-#: admin/inc/dtc_config.php:1395 shared/inc/forms/vps_monitoring.php:143
-#: shared/inc/forms/vps_installation.php:90
+#: admin/inc/dtc_config.php:1438 shared/inc/forms/vps_monitoring.php:143
+#: shared/inc/forms/vps_installation.php:91
 msgid "Name: "
 msgstr "名字:"
 
@@ -3327,19 +3340,19 @@ msgstr "名字:"
 msgid "Named conf files generated !"
 msgstr "Named 配置文件产生！"
 
-#: admin/inc/dtc_config.php:1521
+#: admin/inc/dtc_config.php:1564
 msgid "Named file names"
 msgstr "Named 文件名字"
 
-#: admin/inc/dtc_config.php:1526
+#: admin/inc/dtc_config.php:1569
 msgid "Named main file:"
 msgstr "Named 主要文件："
 
-#: admin/inc/dtc_config.php:1534
+#: admin/inc/dtc_config.php:1577
 msgid "Named main zonefiles folder:"
 msgstr "Named 主要 zonefiles 文件夹:"
 
-#: admin/inc/dtc_config.php:1530
+#: admin/inc/dtc_config.php:1573
 msgid "Named slave file:"
 msgstr "Named slave file:"
 
@@ -3347,7 +3360,7 @@ msgstr "Named slave file:"
 msgid "Named zonefile:"
 msgstr "Named zonefile:"
 
-#: admin/inc/dtc_config.php:47 admin/inc/dtc_config.php:974
+#: admin/inc/dtc_config.php:47 admin/inc/dtc_config.php:1017
 msgid "Named zonefiles"
 msgstr "Named zonefiles"
 
@@ -3375,7 +3388,7 @@ msgstr "荷兰"
 msgid "Netherlands Antilles"
 msgstr "荷兰安替列斯群岛"
 
-#: admin/inc/dtc_config.php:362
+#: admin/inc/dtc_config.php:370
 msgid "Netmask"
 msgstr "Netmask"
 
@@ -3403,11 +3416,11 @@ msgstr "新的FTP账户："
 msgid "New SSH account:"
 msgstr "新的SSH账户："
 
-#: shared/inc/forms/vps_installation.php:267
+#: shared/inc/forms/vps_installation.php:268
 msgid "New SSH key: "
 msgstr "新的 SSH 密钥："
 
-#: shared/inc/forms/vps_installation.php:264
+#: shared/inc/forms/vps_installation.php:265
 msgid "New SSH password: "
 msgstr "新的 SSH 密码："
 
@@ -3435,7 +3448,7 @@ msgstr "新密码："
 msgid "New service registered successfully!"
 msgstr "新服务注册成功！"
 
-#: shared/inc/forms/subdomain.php:141
+#: shared/inc/forms/subdomain.php:146
 msgid "New subdomain"
 msgstr "新的子域名"
 
@@ -3451,7 +3464,7 @@ msgstr "下一个cronjob"
 msgid "Nicaragua"
 msgstr "尼加拉瓜"
 
-#: admin/inc/dtc_config.php:436
+#: admin/inc/dtc_config.php:479
 msgid "Nick name"
 msgstr "昵称"
 
@@ -3468,20 +3481,20 @@ msgid "Niue"
 msgstr "纽埃"
 
 #: admin/inc/draw_user_admin.php:168 admin/inc/draw_user_admin.php:283
-#: admin/inc/draw_user_admin.php:351 admin/inc/dtc_config.php:409
-#: admin/inc/dtc_config.php:447 admin/inc/dtc_config.php:485
-#: admin/inc/dtc_config.php:674 admin/inc/dtc_config.php:728
-#: admin/inc/dtc_config.php:813 admin/inc/dtc_config.php:818
-#: admin/inc/dtc_config.php:823 admin/inc/dtc_config.php:828
-#: admin/inc/dtc_config.php:858 admin/inc/dtc_config.php:863
-#: admin/inc/dtc_config.php:868 admin/inc/dtc_config.php:873
-#: admin/inc/dtc_config.php:878 admin/inc/dtc_config.php:942
-#: admin/inc/dtc_config.php:947 admin/inc/dtc_config.php:1009
-#: admin/inc/dtc_config.php:1014 admin/inc/dtc_config.php:1199
-#: admin/inc/dtc_config.php:1237 admin/inc/dtc_config.php:1265
-#: admin/inc/dtc_config.php:1286 admin/inc/dtc_config.php:1291
-#: admin/inc/dtc_config.php:1308 admin/inc/dtc_config.php:1313
-#: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1358
+#: admin/inc/draw_user_admin.php:351 admin/inc/dtc_config.php:452
+#: admin/inc/dtc_config.php:490 admin/inc/dtc_config.php:528
+#: admin/inc/dtc_config.php:717 admin/inc/dtc_config.php:771
+#: admin/inc/dtc_config.php:856 admin/inc/dtc_config.php:861
+#: admin/inc/dtc_config.php:866 admin/inc/dtc_config.php:871
+#: admin/inc/dtc_config.php:901 admin/inc/dtc_config.php:906
+#: admin/inc/dtc_config.php:911 admin/inc/dtc_config.php:916
+#: admin/inc/dtc_config.php:921 admin/inc/dtc_config.php:985
+#: admin/inc/dtc_config.php:990 admin/inc/dtc_config.php:1052
+#: admin/inc/dtc_config.php:1057 admin/inc/dtc_config.php:1242
+#: admin/inc/dtc_config.php:1280 admin/inc/dtc_config.php:1308
+#: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1334
+#: admin/inc/dtc_config.php:1351 admin/inc/dtc_config.php:1356
+#: admin/inc/dtc_config.php:1372 admin/inc/dtc_config.php:1401
 #: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:78
 #: admin/dtcrm/product_manager.php:141 admin/dtcrm/product_manager.php:204
 #: admin/dtcrm/product_manager.php:252 client/new_account_form.php:602
@@ -3490,8 +3503,8 @@ msgstr "纽埃"
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
 #: shared/inc/forms/root_admin.php:68 shared/inc/forms/root_admin.php:78
 #: shared/inc/forms/root_admin.php:236 shared/inc/forms/root_admin.php:353
-#: shared/inc/forms/root_admin.php:358 shared/inc/forms/subdomain.php:133
-#: shared/inc/forms/subdomain.php:175 shared/inc/forms/subdomain.php:189
+#: shared/inc/forms/root_admin.php:358 shared/inc/forms/subdomain.php:138
+#: shared/inc/forms/subdomain.php:180 shared/inc/forms/subdomain.php:194
 #: shared/inc/forms/ticket.php:130
 msgid "No"
 msgstr "否"
@@ -3594,7 +3607,7 @@ msgstr "北部马里亚群岛"
 msgid "Norway"
 msgstr "挪威"
 
-#: shared/inc/forms/dedicated.php:37 shared/inc/forms/invoices.php:39
+#: shared/inc/forms/dedicated.php:39 shared/inc/forms/invoices.php:39
 #: shared/inc/forms/invoices.php:40 shared/inc/forms/invoices.php:41
 msgid "Not found!"
 msgstr "没有找到！"
@@ -3632,12 +3645,12 @@ msgid "Now you can go to check its configuration by clicking here:"
 msgstr "点击这里，现在您可以检查配置："
 
 #: shared/inc/forms/vps_monitoring.php:155
-#: shared/inc/forms/vps_installation.php:102
+#: shared/inc/forms/vps_installation.php:103
 msgid "Number of CPU: "
 msgstr "CPU个数："
 
 #: shared/inc/forms/vps_monitoring.php:157
-#: shared/inc/forms/vps_installation.php:104
+#: shared/inc/forms/vps_installation.php:105
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
 msgstr "CPU个数：无法得知(可能正在启动？)"
 
@@ -3657,7 +3670,7 @@ msgstr "有效的邮件列表数量"
 msgid "Number of active ssh accounts:"
 msgstr "有效的 ssh账户数量："
 
-#: shared/inc/forms/subdomain.php:149
+#: shared/inc/forms/subdomain.php:154
 msgid "Number of active subdomains:"
 msgstr "现有子域名数量："
 
@@ -3681,15 +3694,15 @@ msgstr "已往的标签："
 msgid "Oman"
 msgstr "阿曼"
 
-#: admin/inc/dtc_config.php:367
+#: admin/inc/dtc_config.php:375
 msgid "One zonefile per IP"
 msgstr "每个 IP 一个 zonefile"
 
-#: admin/inc/dtc_config.php:367
+#: admin/inc/dtc_config.php:375
 msgid "One zonefile per pool"
 msgstr "每个IP pool 一个zonefile"
 
-#: shared/inc/draw.php:597
+#: shared/inc/draw.php:595
 msgid "Online DTC help"
 msgstr "DTC在线帮助文档"
 
@@ -3697,7 +3710,7 @@ msgstr "DTC在线帮助文档"
 msgid "Open"
 msgstr "开放"
 
-#: shared/inc/forms/vps_installation.php:226
+#: shared/inc/forms/vps_installation.php:227
 msgid "Operating system type not supported"
 msgstr "目前不支持该操作系统"
 
@@ -3725,7 +3738,7 @@ msgstr "付款被取消"
 msgid "PAYMENT FAILED"
 msgstr "付款失败"
 
-#: admin/inc/dtc_config.php:1509
+#: admin/inc/dtc_config.php:1552
 msgid ""
 "PHP libraries open_basedir<br>\n"
 "(separated by \":\", reset on each dtc install):"
@@ -3733,7 +3746,7 @@ msgstr ""
 "PHP 程序库 open_basedir<br>\n"
 "(用\":\"分隔, 每次DTC 安装时须重新设置)："
 
-#: admin/inc/dtc_config.php:1514
+#: admin/inc/dtc_config.php:1557
 msgid ""
 "PHP open_basedir additional libraries path<br>\n"
 "(survives reinstallation):"
@@ -3749,15 +3762,15 @@ msgstr "PHP safe_mode"
 msgid "POP3: "
 msgstr "POP3: "
 
-#: shared/inc/draw.php:458
+#: shared/inc/draw.php:456
 msgid "Package"
 msgstr "软件包"
 
-#: shared/inc/draw.php:256
+#: shared/inc/draw.php:254
 msgid "Package installer"
 msgstr "软件包安装"
 
-#: shared/inc/draw.php:456
+#: shared/inc/draw.php:454
 msgid "Package installer:"
 msgstr "软件包安装:"
 
@@ -3793,14 +3806,14 @@ msgstr "巴布亚新几内亚"
 msgid "Paraguay"
 msgstr "巴拉圭"
 
-#: admin/inc/dtc_config.php:1074 admin/inc/dtc_config.php:1101
-#: admin/inc/dtc_config.php:1126 admin/inc/dtc_config.php:1153
-#: admin/inc/dtc_config.php:1178 shared/inc/draw.php:333
-#: shared/inc/draw.php:486 shared/inc/forms/reseller.php:24
+#: admin/inc/dtc_config.php:1117 admin/inc/dtc_config.php:1144
+#: admin/inc/dtc_config.php:1169 admin/inc/dtc_config.php:1196
+#: admin/inc/dtc_config.php:1221 shared/inc/draw.php:331
+#: shared/inc/draw.php:484 shared/inc/forms/reseller.php:24
 msgid "Password"
 msgstr "登录密码"
 
-#: admin/inc/submit_root_querys.php:280
+#: admin/inc/submit_root_querys.php:281
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"
@@ -3820,14 +3833,14 @@ msgid ""
 msgstr "密码应该仅有字母和数字组成(a-zA-Z0-9)，并且长度应该在6到16个字符之间. "
 
 #: admin/inc/draw_user_admin.php:230 client/login.php:13
-#: shared/inc/draw.php:484 shared/inc/forms/database.php:37
+#: shared/inc/draw.php:482 shared/inc/forms/database.php:37
 #: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
 #: shared/inc/forms/email.php:27 shared/inc/forms/email.php:566
 #: shared/inc/forms/root_admin.php:104 shared/inc/forms/ssh.php:76
 msgid "Password:"
 msgstr "密码："
 
-#: admin/inc/dtc_config.php:1409 client/new_account_form.php:576
+#: admin/inc/dtc_config.php:1452 client/new_account_form.php:576
 #: email/login.php:13 shared/inc/forms/email.php:216
 #: shared/inc/forms/ftp.php:81
 msgid "Password: "
@@ -3845,11 +3858,11 @@ msgstr "旧账户金额"
 msgid "Past payments"
 msgstr "已支付的款项"
 
-#: admin/inc/dtc_config.php:1464
+#: admin/inc/dtc_config.php:1507
 msgid "Path of the cgi-wrapper disk template (chroot for SBOX):"
 msgstr "cgi-wrapper disk template 路径 (chroot 对于 SBOX):"
 
-#: admin/inc/dtc_config.php:1458
+#: admin/inc/dtc_config.php:1501
 msgid "Path of your DTC shared directory:"
 msgstr "DTC shared 目录的路径："
 
@@ -3858,7 +3871,7 @@ msgstr "DTC shared 目录的路径："
 msgid "Path to the Nagios configuration file to be created: "
 msgstr "生成配置文件"
 
-#: admin/inc/dtc_config.php:1467
+#: admin/inc/dtc_config.php:1510
 msgid ""
 "Path where DTC will be restricted for generating it's configuration files "
 "for daemons.<br>\n"
@@ -3877,23 +3890,23 @@ msgstr "路径："
 msgid "Path: "
 msgstr "路径:"
 
-#: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:1453
+#: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:1496
 msgid "Paths"
 msgstr "路径"
 
-#: admin/inc/dtc_config.php:1293
+#: admin/inc/dtc_config.php:1336
 msgid "PayPal business account email: "
 msgstr "贝宝商务账号(邮件地址形式)："
 
-#: admin/inc/dtc_config.php:1297
+#: admin/inc/dtc_config.php:1340
 msgid "PayPal fee rate: "
 msgstr "贝宝费率："
 
-#: admin/inc/dtc_config.php:1301
+#: admin/inc/dtc_config.php:1344
 msgid "PayPal flat fee: "
 msgstr "贝宝固定费用："
 
-#: admin/inc/dtc_config.php:1315
+#: admin/inc/dtc_config.php:1358
 msgid "PayPal test account email (sandbox): "
 msgstr "贝宝测试账户email(测试服务器)："
 
@@ -3968,7 +3981,7 @@ msgstr "电话号码："
 msgid "Phone:"
 msgstr "电话："
 
-#: shared/inc/forms/vps_installation.php:259
+#: shared/inc/forms/vps_installation.php:260
 msgid "Physical console last display and ssh access:"
 msgstr "Physical console最后一次的显示和SSH登录情况："
 
@@ -3988,7 +4001,7 @@ msgstr "请点击下列的图标转账到您的账户:"
 msgid "Please create a MySQL user in order to be able to create a database."
 msgstr "如果要创建一个数据库,请先创建一个MySQL用户。"
 
-#: admin/inc/dtc_config.php:525
+#: admin/inc/dtc_config.php:568
 msgid "Please enter an IP address for your dom0!"
 msgstr "请对于您的 dom0 输入一个 IP 地址 !"
 
@@ -4001,7 +4014,7 @@ msgstr "请输入您想添加的域名："
 msgid "Please enter the domain name you wish to transfer:"
 msgstr "请输入您希望转让的域名："
 
-#: shared/inc/forms/dedicated.php:48
+#: shared/inc/forms/dedicated.php:50
 msgid "Please renew it with one of the following options"
 msgstr "请使用下列任意一个选项进行续约"
 
@@ -4019,11 +4032,11 @@ msgstr "请选择3个您希望用来注册这个域名的联系人。"
 msgid "Please tell us if the following is not correct:"
 msgstr "请告诉我们下列信息是否正确："
 
-#: shared/inc/forms/vps_installation.php:180
+#: shared/inc/forms/vps_installation.php:181
 msgid "Please wait until file system check is finished first."
 msgstr "正在检查文件系统，请耐心等待."
 
-#: shared/inc/forms/vps_installation.php:182
+#: shared/inc/forms/vps_installation.php:183
 msgid "Please wait until operating system reinstallation has completed."
 msgstr "正在重新安装操作系统，请耐心等待..."
 
@@ -4031,7 +4044,7 @@ msgstr "正在重新安装操作系统，请耐心等待..."
 msgid "Poland"
 msgstr "波兰"
 
-#: admin/inc/dtc_config.php:1405
+#: admin/inc/dtc_config.php:1448
 msgid "Port number: "
 msgstr "端口编号:"
 
@@ -4046,7 +4059,7 @@ msgstr "葡萄牙"
 msgid "Price"
 msgstr "价格"
 
-#: admin/inc/dtc_config.php:993
+#: admin/inc/dtc_config.php:1036
 msgid "Primary DNS server address:"
 msgstr "首选DNS服务器地址："
 
@@ -4123,7 +4136,7 @@ msgstr "产品:"
 msgid "Product: "
 msgstr "产品:"
 
-#: admin/inc/dtc_config.php:1334
+#: admin/inc/dtc_config.php:1377
 msgid "Production server"
 msgstr "成品服务器"
 
@@ -4167,7 +4180,7 @@ msgstr "RAM"
 msgid "REINIT NAMED ZONES"
 msgstr "初始化NAMED ZONES"
 
-#: admin/inc/dtc_config.php:439
+#: admin/inc/dtc_config.php:482
 msgid "Real name"
 msgstr "真实姓名"
 
@@ -4188,7 +4201,7 @@ msgstr "重新创建："
 msgid "Recurring payment"
 msgstr "循环付款"
 
-#: shared/inc/forms/domain_info.php:109
+#: shared/inc/forms/domain_info.php:116
 #, fuzzy
 msgid "Redirection"
 msgstr "邮件转发1："
@@ -4238,7 +4251,7 @@ msgstr "注册"
 msgid "Registration failed"
 msgstr "注册失败"
 
-#: admin/inc/dtc_config.php:1583
+#: admin/inc/dtc_config.php:1626
 msgid "Registration number:"
 msgstr "注册号码："
 
@@ -4254,20 +4267,20 @@ msgstr "注册域名服务器成功"
 msgid "Registration successful!"
 msgstr "注册成功！"
 
-#: admin/inc/dtc_config.php:772
+#: admin/inc/dtc_config.php:815
 msgid "Registry selection"
 msgstr "注册选择"
 
-#: shared/inc/forms/vps_installation.php:236
+#: shared/inc/forms/vps_installation.php:237
 msgid "Reinstall operating system"
 msgstr "重新安装操作系统"
 
-#: shared/inc/forms/vps_installation.php:206
+#: shared/inc/forms/vps_installation.php:207
 msgid "Reinstall operating system:"
 msgstr "重新安装操作系统："
 
 #: shared/inc/forms/vps_monitoring.php:135
-#: shared/inc/forms/vps_installation.php:82
+#: shared/inc/forms/vps_installation.php:83
 msgid "Reinstalling operating system..."
 msgstr "重新安装操作系统..."
 
@@ -4354,7 +4367,7 @@ msgstr "必填电话栏缺失."
 msgid "Required field zipcode missing."
 msgstr "必填的邮政编码一项缺失."
 
-#: shared/inc/draw.php:482
+#: shared/inc/draw.php:480
 msgid "Resseller child accounts"
 msgstr "转售人的子账户"
 
@@ -4407,27 +4420,27 @@ msgstr "SMTP服务器"
 msgid "SMTP: "
 msgstr "SMTP: "
 
-#: admin/inc/dtc_config.php:1038
+#: admin/inc/dtc_config.php:1081
 msgid "SOA default ttl value: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1034
+#: admin/inc/dtc_config.php:1077
 msgid "SOA expire value: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1026
+#: admin/inc/dtc_config.php:1069
 msgid "SOA refresh value: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1030
+#: admin/inc/dtc_config.php:1073
 msgid "SOA retry value: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:661
+#: admin/inc/dtc_config.php:704
 msgid "SOAP login"
 msgstr "SOAP登录"
 
-#: admin/inc/dtc_config.php:665
+#: admin/inc/dtc_config.php:708
 msgid "SOAP password"
 msgstr "SOAP密码"
 
@@ -4439,15 +4452,15 @@ msgstr "垃圾邮件发送到："
 msgid "SSH account configuration:"
 msgstr "SSH账户配置："
 
-#: shared/inc/draw.php:249
+#: shared/inc/draw.php:247
 msgid "SSH accounts"
 msgstr "SSH账户"
 
-#: shared/inc/draw.php:454
+#: shared/inc/draw.php:452
 msgid "SSH accounts of "
 msgstr "的SSH账户"
 
-#: shared/inc/draw.php:452
+#: shared/inc/draw.php:450
 msgid "SSH accounts:"
 msgstr "SSH帐户："
 
@@ -4471,7 +4484,7 @@ msgstr "SSL IPs 续约："
 msgid "SSL IPs renewals: "
 msgstr "SSL IPs 续约："
 
-#: admin/inc/dtc_config.php:957
+#: admin/inc/dtc_config.php:1000
 msgid "SSL Port: "
 msgstr "SSL 端口: "
 
@@ -4483,7 +4496,7 @@ msgstr "SSL Token 购买"
 msgid "SSL Token renewal"
 msgstr "SSL Token 续约"
 
-#: admin/inc/dtc_config.php:382
+#: admin/inc/dtc_config.php:425
 msgid "SSL dedicated IP addresses: "
 msgstr "SSL 独立IP地址："
 
@@ -4515,12 +4528,12 @@ msgstr "圣皮埃尔和密克隆群岛"
 msgid "Saint Vincent and The Grenadines"
 msgstr "圣文森特和格林纳丁斯"
 
-#: shared/inc/forms/domain_info.php:110
+#: shared/inc/forms/domain_info.php:117
 #, fuzzy
 msgid "Same DocumentRoot"
 msgstr "文档"
 
-#: admin/inc/dtc_config.php:883
+#: admin/inc/dtc_config.php:926
 msgid "Same as for DTC"
 msgstr "与对DTC相同"
 
@@ -4540,16 +4553,16 @@ msgstr "圣多美和普林西比"
 msgid "Saudi Arabia"
 msgstr "沙特阿拉伯"
 
-#: shared/inc/forms/database.php:49 shared/inc/forms/database.php:95
-#: shared/inc/forms/domain_stats.php:98
+#: admin/inc/dtc_config.php:409 shared/inc/forms/database.php:49
+#: shared/inc/forms/database.php:95 shared/inc/forms/domain_stats.php:98
 msgid "Save"
 msgstr "保存"
 
-#: shared/inc/forms/subdomain.php:211
+#: shared/inc/forms/subdomain.php:216
 msgid "Sbox cgi-bin protection: "
 msgstr "Sbox cgi-bin 保护: "
 
-#: admin/inc/dtc_config.php:997
+#: admin/inc/dtc_config.php:1040
 msgid ""
 "Secondary DNS servers address<br>\n"
 "(separated by &quot;|&quot; (pipe) if more than one):"
@@ -4561,7 +4574,7 @@ msgstr ""
 msgid "Secondary DNS:"
 msgstr "次选DNS服务器："
 
-#: admin/inc/dtc_config.php:1241
+#: admin/inc/dtc_config.php:1284
 msgid "Secure payment configuration"
 msgstr "安全付款配置："
 
@@ -4579,11 +4592,11 @@ msgid ""
 "the registries:"
 msgstr "选择您的一个域名为备用域名服务器注册："
 
-#: admin/inc/dtc_config.php:916
+#: admin/inc/dtc_config.php:959
 msgid "Select the type of skin:"
 msgstr "请选择皮肤类型："
 
-#: admin/inc/dtc_config.php:839
+#: admin/inc/dtc_config.php:882
 msgid "Selling conditions URL: "
 msgstr "查看销售条款 URL："
 
@@ -4653,7 +4666,7 @@ msgstr "服务器监控"
 msgid "Server name"
 msgstr "主机名字"
 
-#: shared/inc/forms/dedicated.php:25
+#: shared/inc/forms/dedicated.php:27
 msgid "Server not found!"
 msgstr "服务器未找到！"
 
@@ -4673,7 +4686,12 @@ msgstr "服务器统计图"
 msgid "Server:"
 msgstr "服务器："
 
-#: admin/inc/renewals.php:425 admin/inc/dtc_config.php:1661
+#: shared/inc/forms/domain_info.php:118
+#, fuzzy
+msgid "ServerAlias"
+msgstr "服务器"
+
+#: admin/inc/renewals.php:425 admin/inc/dtc_config.php:1704
 msgid "Service country"
 msgstr "服务国家"
 
@@ -4705,7 +4723,7 @@ msgstr "共享托管："
 msgid "Short name:"
 msgstr "简名:"
 
-#: admin/inc/dtc_config.php:1398
+#: admin/inc/dtc_config.php:1441
 msgid "Short name: "
 msgstr "简名："
 
@@ -4765,7 +4783,7 @@ msgstr "西班牙"
 msgid "Sri Lanka"
 msgstr "斯里兰卡"
 
-#: shared/inc/forms/vps_installation.php:178
+#: shared/inc/forms/vps_installation.php:179
 msgid "Start and stop of your VPS:"
 msgstr "启动或关闭您的VPS："
 
@@ -4784,19 +4802,19 @@ msgid "State: "
 msgstr "省份："
 
 #: shared/inc/forms/vps_monitoring.php:162
-#: shared/inc/forms/vps_installation.php:109
+#: shared/inc/forms/vps_installation.php:110
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr "省份：无法得知(可能正在启动？)"
 
-#: shared/inc/draw.php:122 shared/inc/draw.php:222
+#: shared/inc/draw.php:122 shared/inc/draw.php:220
 msgid "Statistics"
 msgstr "统计"
 
-#: shared/inc/draw.php:437
+#: shared/inc/draw.php:435
 msgid "Statistics of domain:"
 msgstr "域名统计："
 
-#: shared/inc/draw.php:431 shared/inc/draw.php:435 shared/inc/draw.php:472
+#: shared/inc/draw.php:429 shared/inc/draw.php:433 shared/inc/draw.php:470
 msgid "Statistics:"
 msgstr "统计:"
 
@@ -4836,15 +4854,15 @@ msgstr "存储"
 msgid "Storage space"
 msgstr "存储空间"
 
-#: shared/inc/draw.php:327
+#: shared/inc/draw.php:325
 msgid "Sub-accounts (reseller)"
 msgstr "子账户(转售)"
 
-#: shared/inc/draw.php:480
+#: shared/inc/draw.php:478
 msgid "Sub-accounts (reseller):"
 msgstr "子帐户(转售)："
 
-#: shared/inc/draw.php:236
+#: shared/inc/draw.php:234
 msgid "Sub-domains"
 msgstr "子域名"
 
@@ -4852,15 +4870,15 @@ msgstr "子域名"
 msgid "Subdomain max"
 msgstr "子域名数量上限"
 
-#: shared/inc/forms/subdomain.php:165
+#: shared/inc/forms/subdomain.php:170
 msgid "Subdomain name: "
 msgstr "子域名："
 
-#: shared/inc/draw.php:446
+#: shared/inc/draw.php:444
 msgid "Subdomains of "
 msgstr "的子域名"
 
-#: shared/inc/draw.php:444 shared/inc/forms/domain_info.php:57
+#: shared/inc/draw.php:442 shared/inc/forms/domain_info.php:57
 msgid "Subdomains:"
 msgstr "子域名："
 
@@ -4909,15 +4927,15 @@ msgstr "已成功将您的域名添加到托管数据库中"
 msgid "Sudan"
 msgstr "苏丹"
 
-#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:367
+#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:375
 msgid "Support ticket"
 msgstr "支持标签"
 
-#: admin/inc/dtc_config.php:423
+#: admin/inc/dtc_config.php:466
 msgid "Support ticket configuration"
 msgstr "支持标签配置"
 
-#: shared/inc/draw.php:338
+#: shared/inc/draw.php:336
 msgid "Support tickets"
 msgstr "支持标签"
 
@@ -4965,7 +4983,7 @@ msgstr "校验失败：注册服务器没有成功答复."
 msgid "TRANSFER CHECK SUCCESSFUL"
 msgstr "校验成功"
 
-#: shared/inc/forms/subdomain.php:193
+#: shared/inc/forms/subdomain.php:198
 msgid "TXT field of the subdomain: "
 msgstr "子域名的TXT栏目："
 
@@ -4999,7 +5017,7 @@ msgstr ""
 "它将储存所有接收到的邮件.如果您保留输入框中的\"default\"将意味着\n"
 "您希望使用当前的服务器"
 
-#: admin/inc/dtc_config.php:413
+#: admin/inc/dtc_config.php:456
 msgid ""
 "Take care not to add the control panel SSL IP itself if you don't want to "
 "have conflicts (and prevent apache from restarting)!"
@@ -5023,15 +5041,15 @@ msgstr "税率："
 msgid "Taxes (VAT or GST)"
 msgstr "增值税"
 
-#: admin/inc/dtc_config.php:1083
+#: admin/inc/dtc_config.php:1126
 msgid "Tell the following servers when a domain is added or removed :"
 msgstr "当添加或删除一个域名时通知下列服务器："
 
-#: admin/inc/dtc_config.php:1108
+#: admin/inc/dtc_config.php:1151
 msgid "Tell the following servers when an email is added or removed :"
 msgstr "当添加或删除一封邮件时通知下列服务器："
 
-#: admin/inc/dtc_config.php:1334
+#: admin/inc/dtc_config.php:1377
 msgid "Test server"
 msgstr "测试服务器"
 
@@ -5053,7 +5071,11 @@ msgstr ""
 "在这个区域中的邮件地址（每行一个）将收到发送给listname-owner@listdomain.tld的"
 "邮件"
 
-#: shared/inc/sql/vps.php:122
+#: admin/inc/dtc_config.php:400
+msgid "The following will be appened at the end of the reverse zone file."
+msgstr ""
+
+#: shared/inc/sql/vps.php:136
 msgid "The password you have submited is not a valid password"
 msgstr "您提交的密码不正确"
 
@@ -5119,6 +5141,13 @@ msgstr ""
 msgid "This IP doesn't bellong to you, you can't change it's RDNS entry!"
 msgstr ""
 
+#: shared/inc/sql/dedicated.php:35 shared/inc/sql/vps.php:123
+msgid ""
+"This IP pool can't be changed automatically, because our upstream network "
+"provider doesn't support it. Please open a support ticket to request this "
+"RDNS request."
+msgstr ""
+
 #: shared/dtcrm/draw_handle.php:262
 msgid "This MUST be a valid address"
 msgstr "必需填写有效地址"
@@ -5167,16 +5196,16 @@ msgstr "这是该邮件列表的主要拥有者."
 msgid "This month: "
 msgstr "这个月"
 
-#: admin/inc/dtc_config.php:835
+#: admin/inc/dtc_config.php:878
 msgid "This server location: "
 msgstr "本服务器的位置："
 
-#: shared/inc/forms/subdomain.php:198
+#: shared/inc/forms/subdomain.php:203
 msgid ""
 "This subdomain is a nameserver (NS)<br>entry for the following subdomain: "
 msgstr "这个子域名是一个域名服务器(NS)<br>进入下列子域名："
 
-#: shared/inc/forms/subdomain.php:184
+#: shared/inc/forms/subdomain.php:189
 msgid "This subdomain is a service (SRV)<br>entry for the following port: "
 msgstr "这个子域名是一个服务(SRV)<br>进入下列端口："
 
@@ -5191,7 +5220,7 @@ msgid ""
 "Those mail are in quarantine, and were not delivered to your pop account:"
 msgstr "这些邮件正在隔离检疫, 我们不发送到您的 pop 账户:"
 
-#: admin/inc/dtc_config.php:454
+#: admin/inc/dtc_config.php:497
 msgid "Ticket categories:"
 msgstr "标签分类："
 
@@ -5203,7 +5232,7 @@ msgstr "标签未找到！"
 msgid "Time"
 msgstr "时间"
 
-#: shared/inc/forms/vps_installation.php:269
+#: shared/inc/forms/vps_installation.php:270
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
@@ -5218,7 +5247,7 @@ msgstr ""
 "如果您要添加一个VPS，您需要首先在一般配置中设置一些免费 IPs VPS 和安装一些"
 "VPS 产品. "
 
-#: shared/inc/forms/vps_installation.php:191
+#: shared/inc/forms/vps_installation.php:192
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
@@ -5361,7 +5390,7 @@ msgstr "类型"
 msgid "Type not found!"
 msgstr "没有找到相关的类型！"
 
-#: admin/inc/dtc_config.php:1201
+#: admin/inc/dtc_config.php:1244
 msgid "Type of encryption for connecting to Tucows server:"
 msgstr "连接到Tucows服务器的加密方式："
 
@@ -5373,11 +5402,11 @@ msgstr "付款的类型："
 msgid "Type of problem:"
 msgstr "问题的类型：："
 
-#: admin/inc/dtc_config.php:365
+#: admin/inc/dtc_config.php:373
 msgid "Type of zone generation"
 msgstr "zone 生成的类型"
 
-#: admin/inc/draw_user_admin.php:134 admin/inc/dtc_config.php:1401
+#: admin/inc/draw_user_admin.php:134 admin/inc/dtc_config.php:1444
 msgid "Type:"
 msgstr "类型:"
 
@@ -5385,8 +5414,8 @@ msgstr "类型:"
 msgid "Type: type not found!"
 msgstr "没有找到相应类型！"
 
-#: admin/inc/dtc_config.php:1095 admin/inc/dtc_config.php:1120
-#: admin/inc/dtc_config.php:1147 admin/inc/dtc_config.php:1172
+#: admin/inc/dtc_config.php:1138 admin/inc/dtc_config.php:1163
+#: admin/inc/dtc_config.php:1190 admin/inc/dtc_config.php:1215
 msgid "URL"
 msgstr "URL"
 
@@ -5431,7 +5460,7 @@ msgid "Unsubscribe:"
 msgstr "退订："
 
 #: shared/inc/forms/vps_monitoring.php:175
-#: shared/inc/forms/vps_installation.php:122
+#: shared/inc/forms/vps_installation.php:123
 msgid "Up time: "
 msgstr "服务器已运行时间："
 
@@ -5459,84 +5488,84 @@ msgstr "乌拉圭"
 msgid "Use"
 msgstr "使用"
 
-#: admin/inc/dtc_config.php:820
+#: admin/inc/dtc_config.php:863
 msgid "Use @domain.com ftp logins: "
 msgstr "使用@domain.com ftp登陆："
 
-#: admin/inc/dtc_config.php:825
+#: admin/inc/dtc_config.php:868
 msgid "Use @domain.com ssh logins: "
 msgstr "使用@domain.com ssh登陆："
 
-#: admin/inc/dtc_config.php:1006
+#: admin/inc/dtc_config.php:1049
 msgid "Use CNAME instead of A record for subdomains:"
 msgstr "子域名使用CNAME而不使用A记录："
 
-#: admin/inc/dtc_config.php:673
+#: admin/inc/dtc_config.php:716
 msgid "Use LVM backend"
 msgstr "使用LVM后端"
 
-#: admin/inc/dtc_config.php:1355
+#: admin/inc/dtc_config.php:1398
 msgid "Use Maxmind API: "
 msgstr "使用 Maxmind API: "
 
-#: admin/inc/dtc_config.php:815
+#: admin/inc/dtc_config.php:858
 msgid "Use SSL: "
 msgstr "使用SSL："
 
-#: admin/inc/dtc_config.php:1262
+#: admin/inc/dtc_config.php:1305
 msgid "Use WebMoney: "
 msgstr "使用 WebMoney: "
 
-#: shared/inc/forms/subdomain.php:247
+#: shared/inc/forms/subdomain.php:252
 msgid "Use an SSL vhost using this IP: "
 msgstr "使用一个 SSL vhost 正在使用的 IP: "
 
-#: shared/inc/forms/subdomain.php:133
+#: shared/inc/forms/subdomain.php:138
 #, fuzzy
 msgid "Use as wildcard for the domain:"
 msgstr "子域名的TXT栏目："
 
-#: admin/inc/dtc_config.php:871
+#: admin/inc/dtc_config.php:914
 msgid "Use awstats: "
 msgstr "使用awstats: "
 
-#: admin/inc/dtc_config.php:856
+#: admin/inc/dtc_config.php:899
 msgid "Use cyrus: "
 msgstr "使用cyrus:"
 
-#: admin/inc/dtc_config.php:1326
+#: admin/inc/dtc_config.php:1369
 msgid "Use eNETS: "
 msgstr "使用 eNETS: "
 
-#: shared/inc/draw.php:353
+#: shared/inc/draw.php:351
 msgid "Use image menu"
 msgstr "使用图形菜单"
 
-#: admin/inc/dtc_config.php:810
+#: admin/inc/dtc_config.php:853
 msgid "Use javascript: "
 msgstr "使用javascript："
 
-#: admin/inc/dtc_config.php:939
+#: admin/inc/dtc_config.php:982
 msgid "Use multiple IPs: "
 msgstr "使用复合IPs："
 
-#: admin/inc/dtc_config.php:1310
+#: admin/inc/dtc_config.php:1353
 msgid "Use paypal recuring: "
 msgstr "使用贝宝自动转账:"
 
-#: admin/inc/dtc_config.php:1283
+#: admin/inc/dtc_config.php:1326
 msgid "Use paypal: "
 msgstr "使用贝宝："
 
-#: shared/inc/forms/subdomain.php:190
+#: shared/inc/forms/subdomain.php:195
 msgid "Use register_globals=1: "
 msgstr "使用 register_globals=1: "
 
-#: admin/inc/dtc_config.php:1196
+#: admin/inc/dtc_config.php:1239
 msgid "Use registrar API:"
 msgstr "使用 registrar API:"
 
-#: shared/inc/draw.php:351
+#: shared/inc/draw.php:349
 msgid "Use text menu"
 msgstr "使用文本菜单"
 
@@ -5544,19 +5573,19 @@ msgstr "使用文本菜单"
 msgid "Use text menu: "
 msgstr "使用文本菜单；"
 
-#: admin/inc/dtc_config.php:1205
+#: admin/inc/dtc_config.php:1248
 msgid "Use the LIVE server (and not the test one) :"
 msgstr "使用 LIVE 服务器 (不是测试服务器) :"
 
-#: admin/inc/dtc_config.php:1305
+#: admin/inc/dtc_config.php:1348
 msgid "Use the sandbox test server: "
 msgstr "使用测试服务器："
 
-#: admin/inc/dtc_config.php:876
+#: admin/inc/dtc_config.php:919
 msgid "Use visitors: "
 msgstr "使用访客："
 
-#: admin/inc/dtc_config.php:861
+#: admin/inc/dtc_config.php:904
 msgid "Use webalizer: "
 msgstr "使用 webalizer: "
 
@@ -5573,15 +5602,15 @@ msgstr "已使用的配额空间："
 msgid "User"
 msgstr "用户"
 
-#: admin/inc/dtc_config.php:885
+#: admin/inc/dtc_config.php:928
 msgid "User MySQL host: "
 msgstr "用户的MySQL 托管："
 
-#: admin/inc/dtc_config.php:888
+#: admin/inc/dtc_config.php:931
 msgid "User MySQL root login: "
 msgstr "用户MySql 根目录登录："
 
-#: admin/inc/dtc_config.php:891
+#: admin/inc/dtc_config.php:934
 msgid "User MySQL root password: "
 msgstr "用户MySql 的根目录密码："
 
@@ -5607,7 +5636,7 @@ msgstr ""
 msgid "User or password is incorrect!"
 msgstr "用户名或密码错误！"
 
-#: admin/inc/dtc_config.php:830
+#: admin/inc/dtc_config.php:873
 msgid "User session expire time (min): "
 msgstr "用户超时操作（分钟）："
 
@@ -5643,7 +5672,7 @@ msgstr "增值税征收"
 msgid "VAT not found"
 msgstr "增值税没有找到"
 
-#: admin/inc/dtc_config.php:1587
+#: admin/inc/dtc_config.php:1630
 msgid "VAT number:"
 msgstr "增值税号码："
 
@@ -5651,7 +5680,7 @@ msgstr "增值税号码："
 msgid "VAT number: "
 msgstr "增值税号码："
 
-#: admin/inc/dtc_config.php:1591
+#: admin/inc/dtc_config.php:1634
 msgid "VAT rate:"
 msgstr "增值税税率："
 
@@ -5660,7 +5689,7 @@ msgid "VERP:"
 msgstr "VERP:"
 
 #: shared/inc/forms/vps_monitoring.php:139
-#: shared/inc/forms/vps_installation.php:86
+#: shared/inc/forms/vps_installation.php:87
 msgid "VM id: "
 msgstr "VM id："
 
@@ -5668,7 +5697,7 @@ msgstr "VM id："
 msgid "VPS"
 msgstr "VPS"
 
-#: admin/inc/dtc_config.php:702
+#: admin/inc/dtc_config.php:745
 msgid "VPS IPs for "
 msgstr "VPS IPs 对于 "
 
@@ -5684,7 +5713,7 @@ msgstr "VPS操作系统："
 msgid "VPS Server"
 msgstr "VPS服务器"
 
-#: admin/inc/dtc_config.php:628
+#: admin/inc/dtc_config.php:671
 msgid "VPS Server and IP addresses registry edition"
 msgstr "编辑VPS服务器和IP地址注册信息"
 
@@ -5692,12 +5721,12 @@ msgstr "编辑VPS服务器和IP地址注册信息"
 msgid "VPS Server hostname: "
 msgstr "VPS服务器主机名："
 
-#: admin/inc/dtc_config.php:631
+#: admin/inc/dtc_config.php:674
 msgid "VPS Server list:"
 msgstr "VPS服务器列表："
 
 #: shared/inc/forms/vps_monitoring.php:160
-#: shared/inc/forms/vps_installation.php:107
+#: shared/inc/forms/vps_installation.php:108
 msgid "VPS State: "
 msgstr "VPS省份："
 
@@ -5729,7 +5758,7 @@ msgstr "VPS 续约："
 msgid "VPS servers"
 msgstr "VPS 服务器"
 
-#: admin/inc/dtc_config.php:716
+#: admin/inc/dtc_config.php:759
 msgid "VPS xen number"
 msgstr "VPS xen的数量 "
 
@@ -5741,7 +5770,7 @@ msgstr "VPS: "
 msgid "VPS: Cannot find VPS in db!"
 msgstr "VPS: 在数据库中没有找到VPS的相关配置"
 
-#: admin/inc/dtc_config.php:1288
+#: admin/inc/dtc_config.php:1331
 msgid "Validate new account if paid: "
 msgstr "付款后账户实时生效"
 
@@ -5777,11 +5806,11 @@ msgstr "英属维珍岛"
 msgid "Virgin Islands (U.S.)"
 msgstr "美属维珍岛"
 
-#: admin/inc/dtc_config.php:1505
+#: admin/inc/dtc_config.php:1548
 msgid "Virtual host config-file:"
 msgstr "Virtual host 配置文件:"
 
-#: admin/inc/dtc_config.php:1271
+#: admin/inc/dtc_config.php:1314
 msgid "WMZ: "
 msgstr "WMZ: "
 
@@ -5789,7 +5818,7 @@ msgstr "WMZ: "
 msgid "Wallis and Futuna Islands"
 msgstr "瓦利斯及富图納群島"
 
-#: admin/inc/dtc_config.php:293 admin/inc/dtc_config.php:684
+#: admin/inc/dtc_config.php:293 admin/inc/dtc_config.php:727
 msgid "Warning: no IP pool in the database!"
 msgstr ""
 
@@ -5805,20 +5834,20 @@ msgstr "即将过期警告："
 msgid "Web archive"
 msgstr "Web archive"
 
-#: admin/inc/dtc_config.php:1229
+#: admin/inc/dtc_config.php:1272
 #, fuzzy
 msgid "Web host subdomain registration"
 msgstr "域名注册"
 
-#: admin/inc/dtc_config.php:1267
+#: admin/inc/dtc_config.php:1310
 msgid "WebMoney secret key: "
 msgstr "WebMoney 保密密码: "
 
-#: admin/inc/dtc_config.php:865
+#: admin/inc/dtc_config.php:908
 msgid "Webalizer country graph: "
 msgstr "Webalizer 国家分布图: "
 
-#: admin/inc/dtc_config.php:502
+#: admin/inc/dtc_config.php:545
 msgid "Weekly"
 msgstr "每周"
 
@@ -5890,15 +5919,15 @@ msgstr "谁有权限更改 whois 信息(管理员联系人)?"
 msgid "Who will own the domain name and will be the registrant (domain owner)?"
 msgstr "谁是域名的拥有者并是注册人(域名拥有者)?"
 
-#: shared/inc/draw.php:215
+#: shared/inc/draw.php:213
 msgid "Whois"
 msgstr "Whois"
 
-#: shared/inc/draw.php:442
+#: shared/inc/draw.php:440
 msgid "Whois of:"
 msgstr "Whois 的:"
 
-#: shared/inc/draw.php:440
+#: shared/inc/draw.php:438
 msgid "Whois:"
 msgstr "Whois:"
 
@@ -5929,20 +5958,20 @@ msgid "Yemen, Republic of"
 msgstr "也门共和国"
 
 #: admin/inc/draw_user_admin.php:166 admin/inc/draw_user_admin.php:279
-#: admin/inc/draw_user_admin.php:347 admin/inc/dtc_config.php:409
-#: admin/inc/dtc_config.php:447 admin/inc/dtc_config.php:485
-#: admin/inc/dtc_config.php:674 admin/inc/dtc_config.php:728
-#: admin/inc/dtc_config.php:813 admin/inc/dtc_config.php:818
-#: admin/inc/dtc_config.php:823 admin/inc/dtc_config.php:828
-#: admin/inc/dtc_config.php:858 admin/inc/dtc_config.php:863
-#: admin/inc/dtc_config.php:868 admin/inc/dtc_config.php:873
-#: admin/inc/dtc_config.php:878 admin/inc/dtc_config.php:942
-#: admin/inc/dtc_config.php:947 admin/inc/dtc_config.php:1009
-#: admin/inc/dtc_config.php:1014 admin/inc/dtc_config.php:1199
-#: admin/inc/dtc_config.php:1237 admin/inc/dtc_config.php:1265
-#: admin/inc/dtc_config.php:1286 admin/inc/dtc_config.php:1291
-#: admin/inc/dtc_config.php:1308 admin/inc/dtc_config.php:1313
-#: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1358
+#: admin/inc/draw_user_admin.php:347 admin/inc/dtc_config.php:452
+#: admin/inc/dtc_config.php:490 admin/inc/dtc_config.php:528
+#: admin/inc/dtc_config.php:717 admin/inc/dtc_config.php:771
+#: admin/inc/dtc_config.php:856 admin/inc/dtc_config.php:861
+#: admin/inc/dtc_config.php:866 admin/inc/dtc_config.php:871
+#: admin/inc/dtc_config.php:901 admin/inc/dtc_config.php:906
+#: admin/inc/dtc_config.php:911 admin/inc/dtc_config.php:916
+#: admin/inc/dtc_config.php:921 admin/inc/dtc_config.php:985
+#: admin/inc/dtc_config.php:990 admin/inc/dtc_config.php:1052
+#: admin/inc/dtc_config.php:1057 admin/inc/dtc_config.php:1242
+#: admin/inc/dtc_config.php:1280 admin/inc/dtc_config.php:1308
+#: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1334
+#: admin/inc/dtc_config.php:1351 admin/inc/dtc_config.php:1356
+#: admin/inc/dtc_config.php:1372 admin/inc/dtc_config.php:1401
 #: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:78
 #: admin/dtcrm/product_manager.php:141 admin/dtcrm/product_manager.php:204
 #: admin/dtcrm/product_manager.php:252 client/new_account_form.php:601
@@ -5951,8 +5980,8 @@ msgstr "也门共和国"
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
 #: shared/inc/forms/root_admin.php:67 shared/inc/forms/root_admin.php:77
 #: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:353
-#: shared/inc/forms/root_admin.php:358 shared/inc/forms/subdomain.php:133
-#: shared/inc/forms/subdomain.php:175 shared/inc/forms/subdomain.php:189
+#: shared/inc/forms/root_admin.php:358 shared/inc/forms/subdomain.php:138
+#: shared/inc/forms/subdomain.php:180 shared/inc/forms/subdomain.php:194
 #: shared/inc/forms/ticket.php:129
 msgid "Yes"
 msgstr "是"
@@ -5996,7 +6025,7 @@ msgstr ""
 "普通版本\n"
 "更多信息请访问mlmmj官方网站http://mlmmj.mmj.dk"
 
-#: shared/inc/forms/vps_installation.php:194
+#: shared/inc/forms/vps_installation.php:195
 msgid ""
 "You cannot start your VPS if it has expired. Please renew it if you want the "
 "boot up (xm start) button to appear here."
@@ -6064,13 +6093,13 @@ msgid ""
 "the confirm button to proceed."
 msgstr "您有足够的金额支付注册过程. 点击确认图标继续."
 
-#: shared/inc/forms/vps_installation.php:270
+#: shared/inc/forms/vps_installation.php:271
 msgid ""
 "You should then install sshd in your VPS and use the physical console only "
 "for debugging purposes."
 msgstr "您需要安装 sshd 在您的 VPS 并且仅使用 physical console 排除故障."
 
-#: admin/inc/dtc_config.php:1209
+#: admin/inc/dtc_config.php:1252
 msgid "Your SRS username:"
 msgstr "您的SRS用户名："
 
@@ -6102,23 +6131,23 @@ msgstr "您的子账户："
 msgid "Your current account is "
 msgstr "您的现有账户："
 
-#: shared/inc/draw.php:478
+#: shared/inc/draw.php:476
 msgid "Your databases"
 msgstr "您的数据库"
 
-#: shared/inc/forms/dedicated.php:47
+#: shared/inc/forms/dedicated.php:49
 msgid "Your dedicated server has expired on the: "
 msgstr "您的独立主机已过期，过期时间为："
 
-#: shared/inc/forms/dedicated.php:43
+#: shared/inc/forms/dedicated.php:45
 msgid "Your dedicated server was first registered on the:"
 msgstr "您的独立主机首次注册于："
 
-#: shared/inc/forms/dedicated.php:50
+#: shared/inc/forms/dedicated.php:52
 msgid "Your dedicated server will expire on the: "
 msgstr "您的独立主机将过期，过期时间为："
 
-#: admin/inc/dtc_config.php:1461
+#: admin/inc/dtc_config.php:1504
 msgid "Your default new account directory:"
 msgstr "您的默认新账户目录"
 
@@ -6156,11 +6185,11 @@ msgstr "您的域名"
 msgid "Your hosting account:"
 msgstr "您的账户："
 
-#: admin/inc/dtc_config.php:1217
+#: admin/inc/dtc_config.php:1260
 msgid "Your key to access the LIVE server:"
 msgstr "连接到真实服务器的密钥："
 
-#: admin/inc/dtc_config.php:1213
+#: admin/inc/dtc_config.php:1256
 msgid "Your key to access the test server:"
 msgstr "连接到测试服务器的密钥："
 
@@ -6223,27 +6252,27 @@ msgid "aliasing"
 msgstr "别名"
 
 #: shared/inc/forms/vps_monitoring.php:127
-#: shared/inc/forms/vps_installation.php:74
+#: shared/inc/forms/vps_installation.php:75
 msgid "couldn't connect to host"
 msgstr "无法连接到主机"
 
-#: admin/inc/dtc_config.php:649
+#: admin/inc/dtc_config.php:692
 msgid "dom0 IP addresses"
 msgstr "dom0 IP地址"
 
-#: admin/inc/dtc_config.php:1336
+#: admin/inc/dtc_config.php:1379
 msgid "eNETS merchant ID: "
 msgstr "eNETS merchant ID: "
 
-#: admin/inc/dtc_config.php:1344
+#: admin/inc/dtc_config.php:1387
 msgid "eNETS rate: "
 msgstr "eNETS 利率: "
 
-#: admin/inc/dtc_config.php:1331
+#: admin/inc/dtc_config.php:1374
 msgid "eNETS server: "
 msgstr "eNETS服务器："
 
-#: admin/inc/dtc_config.php:1340
+#: admin/inc/dtc_config.php:1383
 msgid "eNETS test merchant ID: "
 msgstr "eNETS 测试 merchant ID: "
 
@@ -6285,7 +6314,7 @@ msgstr "无法注册，域名注册服务器返回信息："
 msgid "is not same as the one I have in the database"
 msgstr "和数据库里现有的不匹配"
 
-#: shared/drawlib/dtc_functions.php:802
+#: shared/drawlib/dtc_functions.php:813
 msgid "kBytes"
 msgstr "kBytes"
 
