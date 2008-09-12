@@ -1,5 +1,15 @@
 <?php
 
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "export_my_account"){
+	checkLoginPass($adm_login,$adm_pass);
+	$file_name = "dtcuser_".$adm_login.".dtc.xml";
+	$xml = exportAllDomain($adm_login);
+	header('Content-type: application/dtc+xml');
+	header('Content-Disposition: attachment; filename="'.$file_name.'"');
+	echo($xml);
+	die();
+}
+
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "export_domain"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
 	$file_name = $edit_domain.'.dtc.xml';

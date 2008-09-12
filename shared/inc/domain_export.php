@@ -110,6 +110,37 @@ function exportDomain($domain_name,$adm_login){
 	return $xml;
 }
 
+function exportAllDomain($adm_login){
+	global $pro_mysql_domain_table;
+
+	$dom_ar = array(
+		"domains" => array()
+		);
+
+	$q = "SELECT name FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$dom_ar["domains"][] = array( $a["name"] => getDomainData($a["name"],$adm_login) );
+	}
+	// Serialize into a XML document
+	$options = array(
+		"indent"          => "\t",
+		"linebreak"       => "\n",
+		"addDecl"         => true,
+		"encoding"        => "UTF-8",
+		"rootAttributes"  => array("version" => "0.1"),
+		"rootName"        => "dtc-export-file",
+		"defaultTagName"  => "item",
+		"attributesArray" => "_attributes"
+	);
+	$serializer = new XML_Serializer($options);
+	$serializer->serialize($dom_ar);
+	$xml = $serializer->getSerializedData();
+	return $xml;
+}
+
 function updateRowValue($table,$w_cond,$ar,$vars){
 	$vars_ar = explode(",",$vars);
 	$nbr_vars = sizeof($vars_ar);
@@ -216,12 +247,23 @@ function domainImport($path_from,$adm_login,$adm_pass){
 	$dom_ar = $unserializer->getUnserializedData();
 
 	// Iterate on all domains of the file
-	$all_domains = array_keys($dom_ar["domains"]);
-	$nbr_domains = sizeof($all_domains);
+	if( isset($dom_ar["domains"]["item"]) ){
+		$all_domains = array_keys($dom_ar["domains"]["item"][$dom]);
+		$nbr_domains = sizeof($dom_ar["domains"]["item"]);
+	}else{
+		$all_domains = array_keys($dom_ar["domains"]);
+		$nbr_domains = sizeof($all_domains);
+	}
 	for($doms=0;$doms<$nbr_domains;$doms++){
 		// We will work on each domains one by one
-		$dom_name = $all_domains[$doms];
-		$cur_dom = $dom_ar["domains"][$dom_name];
+		if( isset($dom_ar["domains"]["item"]) ){
+			$all_domains = array_keys($dom_ar["domains"]["item"][$doms]);
+			$dom_name = $all_domains[0];
+			$cur_dom = $dom_ar["domains"]["item"][$doms][$dom_name];
+		}else{
+			$dom_name = $all_domains[$doms];
+			$cur_dom = $dom_ar["domains"][$dom_name];
+		}
 
 		// Check if the domain exists, if not, add it to the user
 		$q = "SELECT * FROM $pro_mysql_domain_table WHERE name='$dom_name';";
