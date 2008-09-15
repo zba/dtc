@@ -2706,17 +2706,36 @@ protocol pop3 {
 }
 auth default {
   mechanisms = plain
-  passdb pam {
-    args = \"*\"
-  }
-  userdb passwd {
-  }
+#  passdb pam {
+#    args = \"*\"
+#  }
+#  userdb passwd {
+#  }
   user = root
+  # use prefetch for pass+user homedir in 1 query, faster. see dovecot-mysql.conf
+  userdb prefetch {
+  }
+  # order of ops important. passdb before userdb. this userdb here only for delivery.
   userdb sql {
     args = $PATH_DTC_ETC/dovecot-mysql.conf
   }
   passdb sql {
     args = $PATH_DTC_ETC/dovecot-mysql.conf
+  }
+  socket listen {
+    master {
+      path = /var/run/dovecot-auth-master
+      # WARNING: Giving untrusted users access to master socket may be a
+      # security risk, don't give too wide permissions to it!
+      mode = 0600
+      # Default user/group is the one who started dovecot-auth (root)
+      #user =
+      #group =
+    }
+    client {
+      path = /var/run/dovecot/dovecot-auth-client
+      mode = 0666
+    }
   }
 }
 plugin {
@@ -2751,17 +2770,12 @@ user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host
 			else
 				echo "
 # DB details for dtc mysql DB
-db_host = $conf_mysql_host
-db_port = 3306
-db_unix_socket = $MYSQL_DB_SOCKET_PATH
-db = $conf_mysql_db
-db_user = dtcdaemons
-db_passwd = ${MYSQL_DTCDAEMONS_PASS}
-db_client_flags = 0
-
+connect = host=${MYSQL_DB_SOCKET_PATH} port=3306 dbname=$conf_mysql_db user=dtcdaemons password=${MYSQL_DTCDAEMONS_PASS}
+driver = mysql
 default_pass_scheme = PLAIN
-password_query = SELECT passwd AS password FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
+password_query = SELECT passwd AS password, home as userdb_home, uid as userdb_uid, gid as userdb_gid FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
 user_query = SELECT home, uid, gid FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
+db_client_flags = 0
 " > $PATH_DTC_ETC/dovecot-mysql.conf
 			fi
 			# keys may need to be regenerated even if we have fixed the dovecot config
