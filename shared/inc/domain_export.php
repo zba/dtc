@@ -67,7 +67,7 @@ function getDomainData($domain,$adm_login){
 	$dom["domain_config"] = getExDomRowValues($pro_mysql_domain_table,"name='$domain'",
 					"safe_mode,sbox_protect,owner,default_subdomain,quota,max_email,max_lists,max_ftp,max_subdomain,max_ssh,ip_addr,backup_ip_addr,primary_dns,other_dns,primary_mx,other_mx,whois,hosting,gen_unresolved_domain_alias,txt_root_entry,txt_root_entry2,catchall_email,domain_parking,registrar_password,ttl,stats_login,stats_pass,stats_subdomain,wildcard_dns,domain_parking_type");
 	$dom["subdomains"] = getExDomTableData($pro_mysql_subdomain_table,"domain_name='$domain'","subdomain_name",
-					"safe_mode,sbox_protect,subdomain_name,ip,register_globals,login,pass,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost");
+					"safe_mode,sbox_protect,subdomain_name,ip,register_globals,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost");
 	$pop_access = getExDomTableData($pro_mysql_pop_table,"mbox_host='$domain'","id",
 					"id,home,passwd,crypt,redirect1,redirect2,localdeliver,vacation_flag,bounce_msg,vacation_text,spam_mailbox_enable");
 	$dom["mailboxes"] = removePathFromArray($pop_access,$adm_login,"home");
@@ -248,7 +248,7 @@ function domainImport($path_from,$adm_login,$adm_pass){
 
 	// Iterate on all domains of the file
 	if( isset($dom_ar["domains"]["item"]) ){
-		$all_domains = array_keys($dom_ar["domains"]["item"][$dom]);
+		$all_domains = array_keys($dom_ar["domains"]["item"]);
 		$nbr_domains = sizeof($dom_ar["domains"]["item"]);
 	}else{
 		$all_domains = array_keys($dom_ar["domains"]);
@@ -283,7 +283,7 @@ function domainImport($path_from,$adm_login,$adm_pass){
 		updateRowValue($pro_mysql_domain_table,"name='$dom_name'",$cur_dom["domain_config"],
 			"safe_mode,sbox_protect,owner,default_subdomain,quota,max_email,max_lists,max_ftp,max_subdomain,max_ssh,ip_addr,backup_ip_addr,primary_dns,other_dns,primary_mx,other_mx,whois,hosting,gen_unresolved_domain_alias,txt_root_entry,txt_root_entry2,catchall_email,domain_parking,registrar_password,ttl,stats_login,stats_pass,stats_subdomain,wildcard_dns,domain_parking_type");
 		recreateAllRows($pro_mysql_subdomain_table,"domain_name='$dom_name'",$cur_dom["subdomains"],
-			"safe_mode,sbox_protect,subdomain_name,ip,register_globals,login,pass,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost",
+			"safe_mode,sbox_protect,subdomain_name,ip,register_globals,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost",
 			",domain_name",",'$dom_name'");
 		recreateAllRows($pro_mysql_pop_table,"mbox_host='$dom_name'",$cur_dom["mailboxes"],
 			"id,home,passwd,crypt,redirect1,redirect2,localdeliver,vacation_flag,bounce_msg,vacation_text,spam_mailbox_enable",
@@ -293,9 +293,9 @@ function domainImport($path_from,$adm_login,$adm_pass){
 		recreateAllRows($pro_mysql_list_table,"domain='$dom_name'",$cur_dom["lists"],
 			"name,owner,spammode,webarchive",",domain",",'$dom_name'");
 		recreateAllRows($pro_mysql_ftp_table,"hostname='$dom_name'",$cur_dom["ftp"],
-			"password,homedir,hostname",",hostname='$dom_name'",",'$dom_name'");
+			"login,password,homedir",",hostname",",'$dom_name'");
 		recreateAllRows($pro_mysql_ssh_table,"hostname='$dom_name'",$cur_dom["ssh"],
-			"crypt,password,homedir,hostname",",hostname",",'$dom_name'");
+			"login,crypt,password,homedir",",hostname",",'$dom_name'");
 	}
 	return;
 }
