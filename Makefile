@@ -334,7 +334,7 @@ shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin
 shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
 shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc admin/patches
 
-LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW sr_CS
+LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW sr_RS
 
 l12n:
 	@echo "===> Managing localizations binaries"

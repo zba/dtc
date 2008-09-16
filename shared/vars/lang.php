@@ -188,9 +188,9 @@ case "se_NO":
 case "se":
 	$gettext_lang = "se_NO.UTF-8";
 	break;
-case "sr_CS":
+case "sr_RS":
 case "sr":
-	$gettext_lang = "sr_CS.UTF-8";
+	$gettext_lang = "sr_RS.UTF-8";
 	break;
 case "pt_PT":
 case "pt":
