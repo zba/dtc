@@ -1267,7 +1267,13 @@ createApacheAdminProtectedDir () {
 		mkdir -p "$conf_hosting_path"
 	fi
 	# add the default password to .htpasswd if it doesn't exist already
-	if [ -e $conf_hosting_path/.htpasswd -a grep -q $conf_adm_login $conf_hosting_path/.htpasswd ] ; then
+	HAS_HTPASS_LOGIN="no"
+	if [ -e $conf_hosting_path/.htpasswd ] ; then
+		if grep -q $conf_adm_login $conf_hosting_path/.htpasswd ; then
+			HAS_HTPASS_LOGIN="yes"
+		fi
+	fi
+	if [ ${HAS_HTPASS_LOGIN} = "yes" ] ; then
 		echoIfVerbose ".htpasswd exists, adding/replacing passwd with install config values of user '$conf_adm_login' and pass '$conf_adm_pass'"
 		$HTPASSWD -b "$conf_hosting_path"/.htpasswd "$conf_adm_login" "$conf_adm_pass"
 	else 
@@ -2669,7 +2675,13 @@ modifyDovecotConfig () {
 		DOVECOT_MINOR=`echo $DOVECOT_VERSION | cut -f2 -d"."`
 		DOVECOT_RELEASE=`echo $DOVECOT_VERSION | cut -f3 -d"."`
 		echoIfVerbose "===> Adding directives to dovecot.conf"
-		if [ -f "${PATH_DOVECOT_CONF}" -o grep -q "Configured by DTC" $PATH_DOVECOT_CONF ] ; then
+		DOVECOT_CONF_OK="no"
+		if [ -f "${PATH_DOVECOT_CONF}" ] ; then
+			if grep -q "Configured by DTC" $PATH_DOVECOT_CONF ; then
+				DOVECOT_CONF_OK="yes"
+			fi
+		fi
+		if [ ${DOVECOT_CONF_OK} = "yes" ] ; then
 			echoIfVerbose "dovecot.conf has been configure before: skipping include insertion !"
 		else
 			if [ ""$DOVECOT_POSTONE ] ; then
