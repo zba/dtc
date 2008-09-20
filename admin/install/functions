@@ -2371,7 +2371,7 @@ sa-ham  unix    -       n       n       -       -       pipe
 				fi
 				if [ -x /usr/bin/tumgreyspf -o -x ${LOCALBASE}/bin/tumgreyspf ] ; then
 					if [ -x /usr/bin/tumgreyspf ] ; then
-						TMP_TUMGREYPATH=/bin/tumgreyspf
+						TMP_TUMGREYPATH=/usr/bin/tumgreyspf
 					else
 						TMP_TUMGREYPATH=${LOCALBASE}/bin/tumgreyspf
 					fi
