@@ -53,7 +53,7 @@ function register_user($adding_service="no"){
 	}
 
 	// Do field format checking and escaping for all fields
-	if(!isMailbox($_REQUEST["reqadm_login"])){
+	if( !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$",$_REQUEST["reqadm_login"]) ){
 		$ret["err"] = 2;
 		$ret["mesg"] = _("User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.") ;
 		return $ret;
