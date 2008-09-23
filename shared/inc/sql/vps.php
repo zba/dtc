@@ -282,16 +282,16 @@ if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenpv_boot_iso"
 			}
 		}
 	}
-	if( $_REQUEST["vnc_console_activate"] == "no"){
-		$vnc_console_pass = "none";
+	if( $_REQUEST["vnc_console_activate"] == "no" || !isDTCPassword( $_REQUEST["vnc_console_pass"])){
+		$vnc_console_pass = "no_vnc";
 	}else{
 		$vnc_console_pass = $_REQUEST["vnc_console_pass"];
 	}
-	if( !isDTCPassword( $_REQUEST["vnc_console_pass"])){
-		$commit_flag = "no";
+	if( !isDTCPassword( $_REQUEST["vnc_console_pass"]) && $_REQUEST["vnc_console_activate"] == "yes"){
+		echo "<font color=\"yes\">" . _("Warning: password of wrong format, DTC will disable VNC console!");
 	}
 	if( $commit_flag == "yes"){
-		$q = "UPDATE $pro_mysql_vps_table SET vncpassword='".mysql_real_escape_string($_REQUEST["vnc_console_pass"])."',howtoboot='".mysql_real_escape_string($_REQUEST["xenpv_iso"])."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
+		$q = "UPDATE $pro_mysql_vps_table SET vncpassword='".mysql_real_escape_string($vnc_console_pass)."',howtoboot='".mysql_real_escape_string($_REQUEST["xenpv_iso"])."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$q = "SELECT * FROM $pro_mysql_vps_table WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -317,7 +317,7 @@ if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenpv_boot_iso"
 					"vpsname" => $vps_name,
 					"ramsize" => $a["ramsize"],
 					"allipaddrs" => $ips,
-					"vncpassword" => $_REQUEST["vnc_console_pass"],
+					"vncpassword" => $vnc_console_pass,
 					"howtoboot" => $_REQUEST["xenpv_iso"]),
 					"","","");
 		}

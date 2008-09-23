@@ -265,7 +265,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 <option value=\"hdd\">". _("Boot on hard drive"). "</option>";
 			$n_iso = sizeof($vps_xenpv_iso);
 			if( is_array($vps_xenpv_iso) ){
-				for($i=0;$i<$n;$i++){
+				for($i=0;$i<$n_iso;$i++){
 					$iso = $vps_xenpv_iso[$i];
 					if($vps["howtoboot"] == $iso){
 						$selected = " selected ";
@@ -276,10 +276,19 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 				}
 			}
 			$boot_device_selector .= "</select>";
+
+			if($vps["vncpassword"] == "no_vnc"){
+				$vncons_act_yes_selected = " ";
+				$vncons_act_no_selected = " checked ";
+			}else{
+				$vncons_act_yes_selected = " ";
+				$vncons_act_no_selected = " checked ";
+			}
+
 			$out .= dtcFormTableAttrs();
 			$out .= dtcFormLineDraw( $frm_start. _("Boot device: "), "<input type=\"hidden\" name=\"action\" value=\"change_xenpv_boot_iso\">".$boot_device_selector ,1);
 			$out .= dtcFormLineDraw( _("VNC console password: "), "<input type=\"text\" name=\"vnc_console_pass\" value=\"\">", 0);
-			$out .= dtcFormLineDraw( _("VNC console activation: "), "<input type=\"radio\" name=\"vnc_console_activate\" value=\"yes\" checked>"._("yes")." <input type=\"radio\" name=\"vnc_console_activate\" value=\"no\">"._("no"),1);
+			$out .= dtcFormLineDraw( _("VNC console activation: "), "<input type=\"radio\" name=\"vnc_console_activate\" value=\"yes\" $vncons_act_yes_selected>"._("yes")." <input type=\"radio\" name=\"vnc_console_activate\" value=\"no\" $vncons_act_no_selected>"._("no"),1);
 			$out .= dtcFormLineDraw( "" , submitButtonStart(). _("Write parameters") . submitButtonEnd() , 0);
 			$out .= "</table></form>";
 		}
