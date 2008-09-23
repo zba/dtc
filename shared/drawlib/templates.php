@@ -11,6 +11,18 @@ function helpLink($link){
 	return $out;
 }
 
+function submitButtonStart(){
+	return "<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\"
+	onMouseOut=\"this.className='input_btn_container';\">
+	 <div class=\"input_btn_left\"></div>
+	  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"";
+}
+
+function submitButtonEnd(){
+	return "\"></div>
+	 <div class=\"input_btn_right\"></div></div>";
+}
+
 function dtcFormTableAttrs(){
 	$out = "<table border=\"0\" cellspacing=\"2\" cellpadding=\"2\">";
 	return $out;

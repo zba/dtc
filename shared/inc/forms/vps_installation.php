@@ -24,7 +24,7 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 
 	get_secpay_conf();
 
-	$out = "<font color=\"red\">$submit_err</font>";
+	$out = "<font color=\"red\">$submit_err $vps_soap_err</font>";
 
 	$checker = checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name);
 	if($checker != true){
@@ -184,25 +184,24 @@ onMouseOut=\"this.className='input_btn_container';\">
 		$reinstall_os = 1;
 	}else if($vps_remote_info == true){
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\">
-<input type=\"submit\" value=\"". _("Gracefully shutdown (xm shutdown)") ."\">
+". submitButtonStart() . _("Gracefully shutdown (xm shutdown)") . submitButtonEnd() ."
 </form>";
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\">
-<input type=\"submit\" value=\""._("Immediate kill (xm destroy)") ."\">
+" . submitButtonStart() . _("Immediate kill (xm destroy)") . submitButtonEnd() ."
 </form>";
 		$out .= _("To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first.") ."<br><br>";
 	}else{
 		if($expired == "yes"){
 			$out .= _("You cannot start your VPS if it has expired. Please renew it if you want the boot up (xm start) button to appear here.");
 		}else{
-			$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\">
-<input type=\"submit\" value=\"". _("Boot up (xm start)") ."\">
-</form>";
+			$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"start_vps\">".
+submitButtonStart() . _("Boot up (xm start)") . submitButtonEnd()."<br><br></form>";
 		}
 		// FSCK
 		$out .= "<h3>". _("File-system check:") ."</h3><br>";
-		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"fsck_vps\">
-<input type=\"submit\" value=\"". _("File system check (fsck)") ."\">
-</form>";
+		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"fsck_vps\">".
+submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
+<br><br></form>";
 		// OS reinstall
 		$out .= "<h3>". _("Reinstall operating system:") ."</h3><br>";
 		$out .= _("Currently installed operating system: ") .$vps["operatingsystem"]."<br>";
@@ -210,6 +209,7 @@ onMouseOut=\"this.className='input_btn_container';\">
 		$cent_selected = " ";
 		$gen_selected = " ";
 		$bsd_selected = " ";
+		$xenpv_selected = " ";
 		switch($vps["operatingsystem"]){
 		case "debian":
 			$deb_selected = " selected ";
@@ -223,6 +223,9 @@ onMouseOut=\"this.className='input_btn_container';\">
 		case "netbsd":
 			$bsd_selected = " selected ";
 			break;
+		case "xenpv":
+			$xenpv_selected = " selected ";
+			break;
 		default:
 			die( _("Operating system type not supported") );
 			break;
@@ -233,8 +236,9 @@ onMouseOut=\"this.className='input_btn_container';\">
 <option value=\"centos\" $cent_selected>CentOS</option>
 <option value=\"gentoo\" $gen_selected>Gentoo</option>
 <option value=\"netbsd\" $bsd_selected>NetBSD</option>
+<option value=\"xenpv\" $xenpv_selected>Xen PV</option>
 </select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
-<input type=\"submit\" value=\"". _("Reinstall operating system") ."\">
+" . submitButtonStart() . _("Reinstall operating system") . submitButtonEnd() ."
 </form>";
 //		}
 
@@ -251,8 +255,33 @@ onMouseOut=\"this.className='input_btn_container';\">
     <option value=\"normal\" $normal_selected>Normal</option>
     <option value=\"install\" $install_selected>Install</option>
     </select><input type=\"hidden\" name=\"action\" value=\"change_bsd_kernel_type\">
-    <input type=\"submit\" value=\"". _("Change NetBSD kernel") ."\">
+    " . submitButtonStart() . _("Change NetBSD kernel") . submitButtonEnd() ."
     </form>";
+		}
+		if($vps["operatingsystem"] == "xenpv"){
+			$vps_xenpv_iso = getVPSIso($vps_node,$vps_name,$soap_client);
+			$out .= "<br><br>" . _("To upload .iso files so they appear bellow and you can boot on them, you can upload them using ftp, ") ."xen$vps_name@$vps_node" ._(" using the password of your physical console.")."<br><br>";
+			$boot_device_selector = "<select name=\"xenpv_iso\">
+<option value=\"hdd\">". _("Boot on hard drive"). "</option>";
+			$n_iso = sizeof($vps_xenpv_iso);
+			if( is_array($vps_xenpv_iso) ){
+				for($i=0;$i<$n;$i++){
+					$iso = $vps_xenpv_iso[$i];
+					if($vps["howtoboot"] == $iso){
+						$selected = " selected ";
+					}else{
+						$selected = " ";
+					}
+					$boot_device_selector .= "<option value=\"".htmlspecialchars($iso)."\" $selected>".htmlspecialchars($iso)."</option>";
+				}
+			}
+			$boot_device_selector .= "</select>";
+			$out .= dtcFormTableAttrs();
+			$out .= dtcFormLineDraw( $frm_start. _("Boot device: "), "<input type=\"hidden\" name=\"action\" value=\"change_xenpv_boot_iso\">".$boot_device_selector ,1);
+			$out .= dtcFormLineDraw( _("VNC console password: "), "<input type=\"text\" name=\"vnc_console_pass\" value=\"\">", 0);
+			$out .= dtcFormLineDraw( _("VNC console activation: "), "<input type=\"radio\" name=\"vnc_console_activate\" value=\"yes\" checked>"._("yes")." <input type=\"radio\" name=\"vnc_console_activate\" value=\"no\">"._("no"),1);
+			$out .= dtcFormLineDraw( "" , submitButtonStart(). _("Write parameters") . submitButtonEnd() , 0);
+			$out .= "</table></form>";
 		}
 	}
 
@@ -261,12 +290,13 @@ onMouseOut=\"this.className='input_btn_container';\">
 
 	$out .= ("Once your VPS is installed, ssh to the physical console to use it for the first time.")."<br><br>";
 
-	$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_passwd\">
-". _("New SSH password: ") ."<input type=\"text\" name=\"new_password\" value=\"\"><input type=\"submit\" value=\"Ok\">
-</form>";
-	$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_key\">
-". _("New SSH key: ") ."<input size=\"40\" type=\"text\" name=\"new_key\" value=\"\"><input type=\"submit\" value=\"Ok\">
-</form>";
+	$out .= dtcFormTableAttrs();
+	$out .= dtcFormLineDraw( $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_passwd\">". _("New SSH password: "),
+		"<input size=\"40\" type=\"text\" name=\"new_password\" value=\"\"></td><td>" . submitButtonStart() . _("Ok") . submitButtonEnd() ."</form>",1);
+	$out .= dtcFormLineDraw( $frm_start."<input type=\"hidden\" name=\"action\" value=\"change_xm_console_ssh_key\">". _("New SSH key: "),
+		"<input size=\"40\" type=\"text\" name=\"new_key\" value=\"\"></td><td>" . submitButtonStart() . _("Ok") . submitButtonEnd() ."</form>",0);
+	$out .= "</table>";
+
 	$out .= "<br><br>"._("To access to your console, first enter a ssh password or key above, and then ssh to:") ."<br>xen".$vps_name."@".$vps_node."<br><br>";
 	$out .= "<br>" ._("You should then install sshd in your VPS and use the physical console only for debugging purposes.");
 	$out .= "<br>".helpLink("PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It");

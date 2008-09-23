@@ -56,12 +56,22 @@ function isVPSNodeLVMEnabled($vps_node){
 	}
 }
 
+function getVPSIso($vps_node,$vps_name,$soap_client){
+	global $vps_soap_err;
+	$r = $soap_client->call("reportInstalledIso",array("vpsname" => "xen".$vps_name),"","","");
+	$err = $soap_client->getError();
+	if($err){
+		$vps_soap_err = _("Could not get installed .iso files. Error: ").$err;
+	}
+	return $r;
+}
+
 function getVPSInfo($vps_node,$vps_name,$soap_client){
 	global $vps_soap_err;
 	$r = $soap_client->call("getVPSState",array("vpsname" => "xen".$vps_name),"","","");
 	$err = $soap_client->getError();
 	if($err){
-		$vps_soap_err = "Could not get virtual machine info. Error: ".$err;
+		$vps_soap_err = _("Could not get virtual machine info. Error: ").$err;
 		return false;
 	}else{
 		$out = array();
