@@ -301,7 +301,6 @@ if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenpv_boot_iso"
 			$submit_err = _("Could not fetch the VPS data.");
 		}else{
 			$a = mysql_fetch_array($r);
-//			echo "<pre>"; print_r($a); echo "</pre>";
 			$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='" . $a["vps_server_hostname"]. "' AND vps_xen_name='" .$a["vps_xen_name"]. "';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$n_ip = mysql_num_rows($r);
@@ -313,7 +312,7 @@ if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenpv_boot_iso"
 				$a2 = mysql_fetch_array($r);
 				$ips .= $a2["ip_addr"];
 			}
-			echo "Now calling writeXenPVconf with" . "xen".$vps_name . " " . $a["ramsize"] . " '$ips' ". $_REQUEST["vnc_console_pass"] . " " . $_REQUEST["xenpv_iso"];
+			// echo "Now calling writeXenPVconf with" . "xen".$vps_name . " " . $a["ramsize"] . " '$ips' ". $_REQUEST["vnc_console_pass"] . " " . $_REQUEST["xenpv_iso"];
 			$r = $soap_client->call("writeXenPVconf",array(
 					"vpsname" => $vps_name,
 					"ramsize" => $a["ramsize"],
