@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-11 19:57+0800\n"
-"PO-Revision-Date: 2008-09-11 20:01+0800\n"
+"POT-Creation-Date: 2008-09-24 23:56+0800\n"
+"PO-Revision-Date: 2008-09-25 00:02+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,13 +57,14 @@ msgstr " ne ressemble pas a un nom d'utilisateur mail..."
 #: shared/inc/sql/vps.php:212
 #: shared/inc/sql/vps.php:222
 #: shared/inc/sql/vps.php:264
-#: shared/inc/sql/vps.php:272
-#: shared/inc/sql/vps.php:282
-#: shared/inc/sql/vps.php:292
+#: shared/inc/sql/vps.php:329
+#: shared/inc/sql/vps.php:337
+#: shared/inc/sql/vps.php:347
+#: shared/inc/sql/vps.php:357
 msgid " file "
 msgstr " fichier "
 
-#: shared/inc/forms/vps_installation.php:299
+#: shared/inc/forms/vps_installation.php:338
 msgid " maybe there are no logs yet?"
 msgstr "peut-être qu'il n'y a pas encore de logs?"
 
@@ -74,6 +75,10 @@ msgstr " de données transférées chaque mois."
 #: shared/dtcrm/draw.php:71
 msgid " remaining to be paid"
 msgstr " reste à payer"
+
+#: shared/inc/forms/vps_installation.php:263
+msgid " using the password of your physical console."
+msgstr "en utilisant le mot de passe de votre console physique."
 
 #: shared/dtcrm/draw_handle.php:256
 msgid "+1.XXXXXXXXXX format"
@@ -218,6 +223,7 @@ msgstr "Liste d'accès :"
 #: shared/inc/sql/vps.php:184
 #: shared/inc/sql/vps.php:199
 #: shared/inc/sql/vps.php:264
+#: shared/inc/sql/vps.php:329
 msgid "Access not granted line "
 msgstr "Accès non autorisé ligne "
 
@@ -246,7 +252,7 @@ msgstr "Ce serveur servira de backup MX pour les serveurs suivants :"
 #: shared/inc/forms/database.php:37
 #: shared/inc/forms/database.php:76
 #: shared/inc/forms/email.php:27
-#: shared/inc/forms/my_account.php:126
+#: shared/inc/forms/my_account.php:129
 #: shared/inc/forms/reseller.php:24
 msgid "Action"
 msgstr "Action"
@@ -374,7 +380,7 @@ msgstr "Adresse de votre serveur MX principal :"
 
 #: admin/inc/renewals.php:347
 #: admin/inc/dtc_config.php:1617
-#: shared/inc/forms/my_account.php:207
+#: shared/inc/forms/my_account.php:210
 msgid "Address:"
 msgstr "Adresse:"
 
@@ -444,7 +450,7 @@ msgstr "Autoriser les serveurs suivants à lister les domaines pour les backuper
 msgid "Allow to add domains:"
 msgstr "Autoriser l'ajout de domaines :"
 
-#: shared/inc/forms/my_account.php:97
+#: shared/inc/forms/my_account.php:100
 msgid "Allowed bandwidth per month"
 msgstr "Bande passante alloué par mois"
 
@@ -583,7 +589,7 @@ msgstr "Azerbaïdjan"
 msgid "BACKUP SCRIPTS"
 msgstr "SCRIPT DE BACKUPS"
 
-#: shared/inc/sql/vps.php:272
+#: shared/inc/sql/vps.php:337
 msgid "BSD kernel type is not correct line "
 msgstr "BSD kernel type is not correct line "
 
@@ -687,6 +693,14 @@ msgstr "Rechargement Bind"
 #: shared/drawlib/cc_code_popup.php:128
 msgid "Bolivia"
 msgstr "Bolivie"
+
+#: shared/inc/forms/vps_installation.php:289
+msgid "Boot device: "
+msgstr "Périphérique de démarrage : "
+
+#: shared/inc/forms/vps_installation.php:265
+msgid "Boot on hard drive"
+msgstr "Démarrer sur le disque dur"
 
 #: shared/inc/forms/vps_installation.php:198
 msgid "Boot up (xm start)"
@@ -808,12 +822,12 @@ msgid "Cannot find ticket!"
 msgstr "Impossible de trouver le ticket !"
 
 #: shared/inc/sql/vps.php:222
-#: shared/inc/sql/vps.php:292
+#: shared/inc/sql/vps.php:357
 msgid "Cannot get VPS IP addresses information line "
 msgstr "Impossible de récupérer la ligne d'information des adresses IP VPS "
 
 #: shared/inc/sql/vps.php:212
-#: shared/inc/sql/vps.php:282
+#: shared/inc/sql/vps.php:347
 msgid "Cannot get VPS information line "
 msgstr "Impossible de récupérer les informations du VPS ligne "
 
@@ -884,7 +898,7 @@ msgstr "République Centre Africaine"
 msgid "Chad"
 msgstr "Tchad"
 
-#: shared/inc/forms/vps_installation.php:254
+#: shared/inc/forms/vps_installation.php:258
 msgid "Change NetBSD kernel"
 msgstr "Changer le noyau NetBSD"
 
@@ -928,7 +942,7 @@ msgid "Christmas Island"
 msgstr "Ile Christmas"
 
 #: admin/inc/renewals.php:356
-#: shared/inc/forms/my_account.php:210
+#: shared/inc/forms/my_account.php:213
 msgid "City:"
 msgstr "Ville :"
 
@@ -1027,7 +1041,7 @@ msgstr "Nom société"
 
 #: admin/inc/renewals.php:333
 #: admin/inc/dtc_config.php:1612
-#: shared/inc/forms/my_account.php:202
+#: shared/inc/forms/my_account.php:205
 msgid "Company name:"
 msgstr "Nom société :"
 
@@ -1124,7 +1138,8 @@ msgstr "Impossible de se connecter au serveur SMTP (temps d'attente dépassé) :
 #: shared/inc/sql/vps.php:170
 #: shared/inc/sql/vps.php:190
 #: shared/inc/sql/vps.php:238
-#: shared/inc/sql/vps.php:308
+#: shared/inc/sql/vps.php:269
+#: shared/inc/sql/vps.php:373
 msgid "Could not connect to VPS server!"
 msgstr "Impossible de se connecter au serveur de VPS !"
 
@@ -1136,6 +1151,10 @@ msgstr "Impossible de se connecter au serveur d'enregistrement de nom de domaine
 #: shared/inc/forms/vps_installation.php:129
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "Impossible de se connecter au serveur SOAP du VPS."
+
+#: shared/inc/sql/vps.php:301
+msgid "Could not fetch the VPS data."
+msgstr "Impossible de récupérer les informations du VPS."
 
 #: client/new_account_form.php:102
 msgid "Could not find the VPS server in database"
@@ -1151,9 +1170,17 @@ msgstr "Impossible de trouver le pool d'IP correspondant"
 msgid "Could not found subdomain in table for folder deletion"
 msgstr "Impossible de trouver le sous-domaine dans la table pour effacer les dossiers"
 
-#: shared/inc/forms/vps_installation.php:299
+#: shared/inc/forms/vps_installation.php:338
 msgid "Could not get VPS install log. Error: "
 msgstr "Impossible de récupérer de log de l'installation. Erreur : "
+
+#: shared/inc/vps.php:64
+msgid "Could not get installed .iso files. Error: "
+msgstr "Impossible d'installer les fichiers .iso. Erreur : "
+
+#: shared/inc/sql/vps.php:276
+msgid "Could not get installed ISO files!"
+msgstr "Impossible de récupérer les fichier .iso!"
 
 #: shared/inc/forms/vps_monitoring.php:126
 #: shared/inc/forms/vps_installation.php:74
@@ -1169,6 +1196,10 @@ msgstr "Impossible de récupérer le statut distant. Erreur inconnue : "
 #: shared/inc/forms/vps_installation.php:76
 msgid "Could not get remote status: could not connect to the SOAP server (HTTP error)."
 msgstr "Impossible de récupérer le statut distant : impossible de se connecter au serveur SOAP (erreur HTTP)."
+
+#: shared/inc/vps.php:74
+msgid "Could not get virtual machine info. Error: "
+msgstr "Impossible de récupérer les information de la machine virtuel. Erreur : "
 
 #: shared/inc/forms/dns.php:82
 msgid "Could not load zonefile: permission denied or file not existant?"
@@ -1197,7 +1228,7 @@ msgstr "L'indicatif du pays semble incorrect."
 
 #: admin/inc/renewals.php:365
 #: admin/inc/dtc_config.php:1620
-#: shared/inc/forms/my_account.php:212
+#: shared/inc/forms/my_account.php:215
 msgid "Country:"
 msgstr "Pays :"
 
@@ -1278,7 +1309,7 @@ msgstr "État du VPS :"
 msgid "Current contract: "
 msgstr "Contrat courant : "
 
-#: shared/inc/forms/vps_installation.php:208
+#: shared/inc/forms/vps_installation.php:207
 msgid "Currently installed operating system: "
 msgstr "Système d'exploitation installé : "
 
@@ -1800,7 +1831,7 @@ msgstr "Utilisateurs et nom de domaine email généré !"
 
 #: admin/inc/renewals.php:374
 #: shared/inc/forms/aliases.php:48
-#: shared/inc/forms/my_account.php:215
+#: shared/inc/forms/my_account.php:218
 msgid "Email:"
 msgstr "Email :"
 
@@ -1891,12 +1922,12 @@ msgid "Expiration date"
 msgstr "Date d'expiration"
 
 #: admin/inc/dtc_config.php:447
-#: shared/inc/forms/my_account.php:126
+#: shared/inc/forms/my_account.php:129
 msgid "Expire"
 msgstr "Expiration"
 
 #: admin/dtcrm/main.php:216
-#: shared/inc/forms/my_account.php:97
+#: shared/inc/forms/my_account.php:100
 msgid "Expiry date"
 msgstr "Date d'expiration"
 
@@ -1904,6 +1935,14 @@ msgstr "Date d'expiration"
 #: shared/inc/forms/vps.php:75
 msgid "Expiry date:"
 msgstr "Date d'expiration:"
+
+#: shared/inc/forms/my_account.php:91
+msgid "Export all my domains configuration to a file"
+msgstr "Exporter la configuration de tous mes domaines vers un fichier"
+
+#: shared/inc/forms/my_account.php:90
+msgid "Export configuration:"
+msgstr "Exporter la configuration :"
 
 #: shared/inc/forms/domain_info.php:120
 msgid "Export this domain to a file"
@@ -1963,7 +2002,7 @@ msgstr "Nom de famille : "
 msgid "Familly name: "
 msgstr "Nom de famille : "
 
-#: shared/inc/forms/my_account.php:206
+#: shared/inc/forms/my_account.php:209
 msgid "Family name:"
 msgstr "Nom de famille :"
 
@@ -1972,7 +2011,7 @@ msgid "Faroe Islands"
 msgstr "Iles Faroé"
 
 #: admin/inc/renewals.php:371
-#: shared/inc/forms/my_account.php:214
+#: shared/inc/forms/my_account.php:217
 msgid "Fax:"
 msgstr "Fax :"
 
@@ -1993,11 +2032,11 @@ msgstr "Fetchmail"
 msgid "Fiji"
 msgstr "Fiji"
 
-#: shared/inc/forms/vps_installation.php:204
+#: shared/inc/forms/vps_installation.php:203
 msgid "File system check (fsck)"
 msgstr "Vérifier le système de fichier (fsck)"
 
-#: shared/inc/forms/vps_installation.php:202
+#: shared/inc/forms/vps_installation.php:201
 msgid "File-system check:"
 msgstr "Vérification du système de fichier:"
 
@@ -2010,7 +2049,7 @@ msgid "Finland"
 msgstr "Finlande"
 
 #: admin/inc/renewals.php:341
-#: shared/inc/forms/my_account.php:205
+#: shared/inc/forms/my_account.php:208
 msgid "First name:"
 msgstr "Prénom :"
 
@@ -2303,7 +2342,7 @@ msgid "IP Resolved"
 msgstr "IP résolue"
 
 #: admin/inc/dtc_config.php:1111
-#: shared/inc/forms/my_account.php:126
+#: shared/inc/forms/my_account.php:129
 #: shared/inc/forms/root_admin.php:385
 msgid "IP address"
 msgstr "Adresse IP"
@@ -2494,7 +2533,7 @@ msgstr "Installer"
 msgid "Installation"
 msgstr "Installation"
 
-#: shared/inc/forms/vps_installation.php:303
+#: shared/inc/forms/vps_installation.php:342
 msgid "Installation log (last 20 lines):"
 msgstr "Log de l'installation  (20 dernières lignes) :"
 
@@ -3334,11 +3373,11 @@ msgstr "Nouveau comptes FTP : "
 msgid "New SSH account:"
 msgstr "Nouveau compte SSH :"
 
-#: shared/inc/forms/vps_installation.php:268
+#: shared/inc/forms/vps_installation.php:305
 msgid "New SSH key: "
 msgstr "Nouvelle clef SSH : "
 
-#: shared/inc/forms/vps_installation.php:265
+#: shared/inc/forms/vps_installation.php:303
 msgid "New SSH password: "
 msgstr "Nouveau mot de passe SSH : "
 
@@ -3459,7 +3498,7 @@ msgstr "Non"
 msgid "No SSL IP expired"
 msgstr "Pas d'IP SSL expiré"
 
-#: shared/inc/forms/my_account.php:164
+#: shared/inc/forms/my_account.php:167
 msgid "No SSL token available: contact your administrator to request it."
 msgstr "Pas de jetton SSL disponible: contactez votre administrateur pour en demander un."
 
@@ -3524,8 +3563,8 @@ msgstr "Pas de produit"
 msgid "No shared account expired."
 msgstr "Pas de compte mutualisé expiré."
 
-#: shared/inc/forms/my_account.php:143
-#: shared/inc/forms/my_account.php:170
+#: shared/inc/forms/my_account.php:146
+#: shared/inc/forms/my_account.php:173
 msgid "No ssl product defined."
 msgstr "Pas de produit SSL défini"
 
@@ -3629,6 +3668,8 @@ msgstr "Nombre de base de données :"
 
 #: admin/deamons_state.php:93
 #: email/login.php:16
+#: shared/inc/forms/vps_installation.php:304
+#: shared/inc/forms/vps_installation.php:306
 #: shared/inc/forms/domain_stats.php:88
 #: shared/inc/forms/email.php:127
 #: shared/inc/forms/email.php:179
@@ -3636,7 +3677,7 @@ msgstr "Nombre de base de données :"
 #: shared/inc/forms/email.php:239
 #: shared/inc/forms/email.php:256
 #: shared/inc/forms/email.php:275
-#: shared/inc/forms/my_account.php:191
+#: shared/inc/forms/my_account.php:194
 msgid "Ok"
 msgstr "Ok"
 
@@ -3664,7 +3705,7 @@ msgstr "Aide en ligne de DTC"
 msgid "Open"
 msgstr "Ouvert"
 
-#: shared/inc/forms/vps_installation.php:227
+#: shared/inc/forms/vps_installation.php:230
 msgid "Operating system type not supported"
 msgstr "Système d'exploitation non supporté"
 
@@ -3931,7 +3972,7 @@ msgstr "Pérou"
 msgid "Philippines"
 msgstr "Philippines"
 
-#: shared/inc/forms/my_account.php:213
+#: shared/inc/forms/my_account.php:216
 msgid "Phone number:"
 msgstr "Téléphone :"
 
@@ -3948,7 +3989,7 @@ msgstr "Téléphone : "
 msgid "Phone:"
 msgstr "Téléphone :"
 
-#: shared/inc/forms/vps_installation.php:260
+#: shared/inc/forms/vps_installation.php:298
 msgid "Physical console last display and ssh access:"
 msgstr "Dernier message de la console physique et accès ssh :"
 
@@ -3993,7 +4034,7 @@ msgstr "Merci de le renouveler avec l'une des options suivantes : "
 msgid "Please select the 3 contact handles you want to use for registering that domain name."
 msgstr "Veuillez sélectionner les 3 contacts responsable que vous voulez utiliser pour l'enregistrement du nom de domaine."
 
-#: shared/inc/forms/my_account.php:199
+#: shared/inc/forms/my_account.php:202
 msgid "Please tell us if the following is not correct:"
 msgstr "Merci de nous avertir si les informations ci-dessous n'étaient pas correctes :"
 
@@ -4190,7 +4231,7 @@ msgstr "Redirection 2 : "
 msgid "Refund"
 msgstr "Rajout d'argent"
 
-#: shared/inc/forms/my_account.php:188
+#: shared/inc/forms/my_account.php:191
 msgid "Refund my account:"
 msgstr "Mettre de l'argent sur mon compte :"
 
@@ -4245,11 +4286,11 @@ msgstr "Enregistrement réussit !"
 msgid "Registry selection"
 msgstr "Sélection registre"
 
-#: shared/inc/forms/vps_installation.php:237
+#: shared/inc/forms/vps_installation.php:241
 msgid "Reinstall operating system"
 msgstr "Réinstaller le système"
 
-#: shared/inc/forms/vps_installation.php:207
+#: shared/inc/forms/vps_installation.php:206
 msgid "Reinstall operating system:"
 msgstr "Réinstallation du système d'exploitation :"
 
@@ -4262,7 +4303,7 @@ msgstr "Réinstallation du système d'exploitation en cours..."
 msgid "Reject mails that don\\'t have the list address in the To: or Cc:."
 msgstr "Refuse les message si ni le To: ni le Cc: contient l\\'une des adresses de la liste."
 
-#: shared/inc/forms/my_account.php:184
+#: shared/inc/forms/my_account.php:187
 msgid "Remaining money on my account:"
 msgstr "Argent restant sur mon compte :"
 
@@ -4279,7 +4320,7 @@ msgstr "Entête du sujet du message des rappels et des enregistrement:"
 msgid "Remove an administrator for this customer:"
 msgstr "Enlever un administrateur de ce client :"
 
-#: shared/inc/forms/my_account.php:114
+#: shared/inc/forms/my_account.php:117
 msgid "Renew my account"
 msgstr "Renouveler mon compte"
 
@@ -4478,7 +4519,7 @@ msgstr "Renouvellement jetton SSL"
 msgid "SSL dedicated IP addresses: "
 msgstr "Adresses IPs dédiés au SSL : "
 
-#: shared/inc/forms/my_account.php:118
+#: shared/inc/forms/my_account.php:121
 msgid "SSL tokens"
 msgstr "Jettons SSL"
 
@@ -4773,7 +4814,7 @@ msgid "Stat script generated !"
 msgstr "Script de statistiques généré !"
 
 #: admin/inc/renewals.php:362
-#: shared/inc/forms/my_account.php:211
+#: shared/inc/forms/my_account.php:214
 msgid "State:"
 msgstr "État :"
 
@@ -4838,7 +4879,7 @@ msgstr "Étape 1 : vérifier que le domaine est transférable"
 msgid "Storage"
 msgstr "Stockage"
 
-#: shared/inc/forms/my_account.php:97
+#: shared/inc/forms/my_account.php:100
 msgid "Storage space"
 msgstr "Espace disque"
 
@@ -5042,6 +5083,10 @@ msgstr "Thailande"
 msgid "That user still owns some databases. Please remove them or change the owner first."
 msgstr "Cet utilisateur a encore des bases de données. Veuillez les effacer ou les changer d'utilisateur d'abord."
 
+#: shared/inc/sql/vps.php:280
+msgid "The ISO file is not in the server!"
+msgstr "Le fichier ISO n'est pas sur le serveur !"
+
 #: shared/inc/forms/lists.php:178
 msgid "The email addresses in this fields (1 per line) will get mails to listname-owner@listdomain.tld"
 msgstr "Les adresses emails de ces champs (1 par ligne) recevront les messages pour nomliste-owner@nom-de-domaine.tld"
@@ -5187,7 +5232,7 @@ msgstr "Ticket non trouvé !"
 msgid "Time"
 msgstr "Heure"
 
-#: shared/inc/forms/vps_installation.php:270
+#: shared/inc/forms/vps_installation.php:309
 msgid "To access to your console, first enter a ssh password or key above, and then ssh to:"
 msgstr "Pour accéder a votre console, installer un nouveau mot de passe ou une clef ci-après et connectez vous à : "
 
@@ -5198,6 +5243,10 @@ msgstr "Pour ajouter un VPS, vous devez provisionner des IPs VDS dans le paneau 
 #: shared/inc/forms/vps_installation.php:192
 msgid "To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first."
 msgstr "Pour faire une vérification du système de fichier (fsck), vous devez d'abord arrêter ou tuer le serveur virtuel."
+
+#: shared/inc/forms/vps_installation.php:263
+msgid "To upload .iso files so they appear bellow and you can boot on them, you can upload them using ftp, "
+msgstr "Pour envoyer des fichiers .iso pour qu'ils apparaissent ci-dessous, et que vous puissiez démarrer dessus, vous pouvez utiliser le ftp, "
 
 #: shared/dtcrm/draw.php:80
 msgid "To what capacity would you like to upgrade to?"
@@ -5419,7 +5468,7 @@ msgstr "Désinscrire:"
 msgid "Up time: "
 msgstr "Up time : "
 
-#: shared/inc/forms/my_account.php:106
+#: shared/inc/forms/my_account.php:109
 msgid "Upgrade my account"
 msgstr "Upgrader mon compte"
 
@@ -5545,7 +5594,7 @@ msgstr "Utiliser Visitors : "
 msgid "Use webalizer: "
 msgstr "Utiliser Webalizer : "
 
-#: shared/inc/forms/my_account.php:126
+#: shared/inc/forms/my_account.php:129
 msgid "Used by"
 msgstr "Utilisé par"
 
@@ -5649,6 +5698,14 @@ msgstr "VERP :"
 #: shared/inc/forms/vps_installation.php:87
 msgid "VM id: "
 msgstr "ID du VDS : "
+
+#: shared/inc/forms/vps_installation.php:291
+msgid "VNC console activation: "
+msgstr "Activation de la console VNC: "
+
+#: shared/inc/forms/vps_installation.php:290
+msgid "VNC console password: "
+msgstr "Mot de passe de la console VNC : "
 
 #: admin/inc/renewals.php:707
 msgid "VPS"
@@ -5781,6 +5838,10 @@ msgstr "Wallis et Futuna"
 msgid "Warning: no IP pool in the database!"
 msgstr "Attention: pas de pool d'IP dans la base de donnée !"
 
+#: shared/inc/sql/vps.php:291
+msgid "Warning: password of wrong format, DTC will disable VNC console!"
+msgstr "Attention: votre mot de passe est au mauvais format, DTC va désactiver la console VNC !"
+
 #: admin/inc/dtc_config.php:222
 msgid "Warnings after expiration: "
 msgstr "Rappels après expiration : "
@@ -5880,6 +5941,10 @@ msgstr "Whois:"
 #: admin/inc/renewals.php:194
 msgid "Wire transfer"
 msgstr "Virement"
+
+#: shared/inc/forms/vps_installation.php:292
+msgid "Write parameters"
+msgstr "Enregistrer les paramètres"
 
 #: shared/inc/sql/vps.php:40
 msgid "Wrong email format for the monitoring email address"
@@ -6004,7 +6069,7 @@ msgstr "Vous n'avez pas les droits nécessaires à l'ajout de nom de domaine sur
 msgid "You currently don't have a validated account. Please contact customer support."
 msgstr "Vous n'avez pas de compte valide. Merci de contacter le support client."
 
-#: shared/inc/forms/my_account.php:123
+#: shared/inc/forms/my_account.php:126
 msgid "You currently don't have any SSL tokens."
 msgstr "Vous n'avez aucun jetton SSL pour le moment."
 
@@ -6014,7 +6079,7 @@ msgstr "Vous n'avez aucun jetton SSL pour le moment."
 msgid "You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay."
 msgstr "Vous n'avez pas assez d'argent sur votre compte. Vous serez rediriez sur notre système de paiement. Veuillez cliquer sur le bouton suivant pour payer."
 
-#: shared/inc/forms/my_account.php:217
+#: shared/inc/forms/my_account.php:220
 msgid "You do not have a client account, so there is no money in your account."
 msgstr "Vous n'avez pas de compte client, donc aucun argent n'est sur votre compte."
 
@@ -6043,7 +6108,7 @@ msgstr "Vous avez assez d'argent sur votre compte pour procéder à l'enregistre
 msgid "You have enough funds on your account to proceed with registration. Press the confirm button to proceed."
 msgstr "Vous avez assez d'argent sur votre compte pour faire l'enregistrement. Cliquez sur le bouton de confirmation pour procéder."
 
-#: shared/inc/forms/vps_installation.php:271
+#: shared/inc/forms/vps_installation.php:310
 msgid "You should then install sshd in your VPS and use the physical console only for debugging purposes."
 msgstr "Vous devriez ensuite installer sshd dans votre VPS et utiliser la console physique pour débuger uniquement."
 
@@ -6128,7 +6193,7 @@ msgstr "Votre domaine :"
 msgid "Your domains"
 msgstr "Vos domaines"
 
-#: shared/inc/forms/my_account.php:94
+#: shared/inc/forms/my_account.php:97
 msgid "Your hosting account:"
 msgstr "Votre compte d'hébergement :"
 
@@ -6182,7 +6247,7 @@ msgid "Zimbabwe"
 msgstr "Zimbabwé"
 
 #: admin/inc/renewals.php:359
-#: shared/inc/forms/my_account.php:209
+#: shared/inc/forms/my_account.php:212
 msgid "Zipcode:"
 msgstr "Code postal :"
 
@@ -6291,6 +6356,10 @@ msgstr "nouvelle boite aux lettres"
 msgid "new mailing list"
 msgstr "nouvelle liste de diffusion"
 
+#: shared/inc/forms/vps_installation.php:291
+msgid "no"
+msgstr "non"
+
 #: shared/dtcrm/draw_handle.php:238
 #: shared/dtcrm/draw_handle.php:241
 #: shared/dtcrm/draw_handle.php:259
@@ -6312,6 +6381,10 @@ msgstr "an"
 #: shared/dtcrm/draw_adddomain.php:234
 msgid "years"
 msgstr "ans"
+
+#: shared/inc/forms/vps_installation.php:291
+msgid "yes"
+msgstr "oui"
 
 #~ msgid "Add a domain"
 #~ msgstr "Ajouter un domaine"

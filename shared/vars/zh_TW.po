@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-11 19:57+0800\n"
+"POT-Creation-Date: 2008-09-24 23:56+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Cynthia Yang <cynthia@mtiglobal.com>\n"
 "Language-Team: Chinese <zh_TW@li.org>\n"
@@ -44,12 +44,13 @@ msgstr ""
 #: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:160
 #: shared/inc/sql/vps.php:184 shared/inc/sql/vps.php:199
 #: shared/inc/sql/vps.php:212 shared/inc/sql/vps.php:222
-#: shared/inc/sql/vps.php:264 shared/inc/sql/vps.php:272
-#: shared/inc/sql/vps.php:282 shared/inc/sql/vps.php:292
+#: shared/inc/sql/vps.php:264 shared/inc/sql/vps.php:329
+#: shared/inc/sql/vps.php:337 shared/inc/sql/vps.php:347
+#: shared/inc/sql/vps.php:357
 msgid " file "
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:299
+#: shared/inc/forms/vps_installation.php:338
 msgid " maybe there are no logs yet?"
 msgstr ""
 
@@ -60,6 +61,10 @@ msgstr "每月轉換"
 
 #: shared/dtcrm/draw.php:71
 msgid " remaining to be paid"
+msgstr ""
+
+#: shared/inc/forms/vps_installation.php:263
+msgid " using the password of your physical console."
 msgstr ""
 
 #: shared/dtcrm/draw_handle.php:256
@@ -225,7 +230,7 @@ msgstr ""
 #: shared/inc/sql/vps.php:108 shared/inc/sql/vps.php:130
 #: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:160
 #: shared/inc/sql/vps.php:184 shared/inc/sql/vps.php:199
-#: shared/inc/sql/vps.php:264
+#: shared/inc/sql/vps.php:264 shared/inc/sql/vps.php:329
 msgid "Access not granted line "
 msgstr ""
 
@@ -251,7 +256,7 @@ msgstr "針對以下的伺服器，以備份郵件伺服器來運作:"
 #: admin/inc/draw_user_admin.php:246 admin/inc/draw_user_admin.php:304
 #: admin/inc/draw_user_admin.php:323 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
-#: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
+#: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:129
 #: shared/inc/forms/reseller.php:24
 msgid "Action"
 msgstr "行動"
@@ -375,7 +380,7 @@ msgid "Address of your main MX server:"
 msgstr "你主要 MX 伺服器的位址"
 
 #: admin/inc/renewals.php:347 admin/inc/dtc_config.php:1617
-#: shared/inc/forms/my_account.php:207
+#: shared/inc/forms/my_account.php:210
 msgid "Address:"
 msgstr "地址:"
 
@@ -445,7 +450,7 @@ msgstr "允許伺服器在進行備份過程中列出伺服器網域名稱:"
 msgid "Allow to add domains:"
 msgstr "增加網域"
 
-#: shared/inc/forms/my_account.php:97
+#: shared/inc/forms/my_account.php:100
 msgid "Allowed bandwidth per month"
 msgstr ""
 
@@ -598,7 +603,7 @@ msgstr ""
 msgid "BACKUP SCRIPTS"
 msgstr ""
 
-#: shared/inc/sql/vps.php:272
+#: shared/inc/sql/vps.php:337
 msgid "BSD kernel type is not correct line "
 msgstr ""
 
@@ -705,6 +710,15 @@ msgstr "Bind 重載"
 
 #: shared/drawlib/cc_code_popup.php:128
 msgid "Bolivia"
+msgstr ""
+
+#: shared/inc/forms/vps_installation.php:289
+#, fuzzy
+msgid "Boot device: "
+msgstr "總額: "
+
+#: shared/inc/forms/vps_installation.php:265
+msgid "Boot on hard drive"
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:198
@@ -827,11 +841,11 @@ msgstr "無法於資料庫中找到伺服器!"
 msgid "Cannot find ticket!"
 msgstr "無法找到票!"
 
-#: shared/inc/sql/vps.php:222 shared/inc/sql/vps.php:292
+#: shared/inc/sql/vps.php:222 shared/inc/sql/vps.php:357
 msgid "Cannot get VPS IP addresses information line "
 msgstr ""
 
-#: shared/inc/sql/vps.php:212 shared/inc/sql/vps.php:282
+#: shared/inc/sql/vps.php:212 shared/inc/sql/vps.php:347
 msgid "Cannot get VPS information line "
 msgstr ""
 
@@ -901,7 +915,7 @@ msgstr ""
 msgid "Chad"
 msgstr "共享的"
 
-#: shared/inc/forms/vps_installation.php:254
+#: shared/inc/forms/vps_installation.php:258
 msgid "Change NetBSD kernel"
 msgstr ""
 
@@ -943,7 +957,7 @@ msgstr ""
 msgid "Christmas Island"
 msgstr ""
 
-#: admin/inc/renewals.php:356 shared/inc/forms/my_account.php:210
+#: admin/inc/renewals.php:356 shared/inc/forms/my_account.php:213
 #, fuzzy
 msgid "City:"
 msgstr "城市: "
@@ -1038,7 +1052,7 @@ msgid "Company name"
 msgstr "公司名稱"
 
 #: admin/inc/renewals.php:333 admin/inc/dtc_config.php:1612
-#: shared/inc/forms/my_account.php:202
+#: shared/inc/forms/my_account.php:205
 msgid "Company name:"
 msgstr "公司名稱:"
 
@@ -1131,7 +1145,8 @@ msgstr "無法連接至SMTP伺服器 (時間結束):"
 
 #: shared/inc/sql/vps.php:6 shared/inc/sql/vps.php:146
 #: shared/inc/sql/vps.php:170 shared/inc/sql/vps.php:190
-#: shared/inc/sql/vps.php:238 shared/inc/sql/vps.php:308
+#: shared/inc/sql/vps.php:238 shared/inc/sql/vps.php:269
+#: shared/inc/sql/vps.php:373
 #, fuzzy
 msgid "Could not connect to VPS server!"
 msgstr "無法連接至SMTP伺服器 (時間結束):"
@@ -1147,6 +1162,11 @@ msgstr "無法連線至網域註冊伺服器: 請稍候再試!"
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "無法連接至SMTP伺服器 (時間結束):"
 
+#: shared/inc/sql/vps.php:301
+#, fuzzy
+msgid "Could not fetch the VPS data."
+msgstr "無法在資料庫中找到 VPS 伺服器"
+
 #: client/new_account_form.php:102
 msgid "Could not find the VPS server in database"
 msgstr "無法在資料庫中找到 VPS 伺服器"
@@ -1159,8 +1179,16 @@ msgstr ""
 msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:299
+#: shared/inc/forms/vps_installation.php:338
 msgid "Could not get VPS install log. Error: "
+msgstr ""
+
+#: shared/inc/vps.php:64
+msgid "Could not get installed .iso files. Error: "
+msgstr ""
+
+#: shared/inc/sql/vps.php:276
+msgid "Could not get installed ISO files!"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:126
@@ -1180,6 +1208,10 @@ msgstr ""
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
+msgstr ""
+
+#: shared/inc/vps.php:74
+msgid "Could not get virtual machine info. Error: "
 msgstr ""
 
 #: shared/inc/forms/dns.php:82
@@ -1207,7 +1239,7 @@ msgid "Country code seems incorrect."
 msgstr "國碼似乎錯誤。"
 
 #: admin/inc/renewals.php:365 admin/inc/dtc_config.php:1620
-#: shared/inc/forms/my_account.php:212
+#: shared/inc/forms/my_account.php:215
 msgid "Country:"
 msgstr "國家:"
 
@@ -1286,7 +1318,7 @@ msgstr ""
 msgid "Current contract: "
 msgstr "貨幣代號: "
 
-#: shared/inc/forms/vps_installation.php:208
+#: shared/inc/forms/vps_installation.php:207
 msgid "Currently installed operating system: "
 msgstr ""
 
@@ -1828,7 +1860,7 @@ msgid "Email user and domain files generated !"
 msgstr "已產生電子郵件使用者與網域檔案 !"
 
 #: admin/inc/renewals.php:374 shared/inc/forms/aliases.php:48
-#: shared/inc/forms/my_account.php:215
+#: shared/inc/forms/my_account.php:218
 #, fuzzy
 msgid "Email:"
 msgstr "電子郵件: "
@@ -1914,11 +1946,11 @@ msgstr "期滿日期"
 msgid "Expiration date"
 msgstr "期滿日期"
 
-#: admin/inc/dtc_config.php:447 shared/inc/forms/my_account.php:126
+#: admin/inc/dtc_config.php:447 shared/inc/forms/my_account.php:129
 msgid "Expire"
 msgstr "期滿"
 
-#: admin/dtcrm/main.php:216 shared/inc/forms/my_account.php:97
+#: admin/dtcrm/main.php:216 shared/inc/forms/my_account.php:100
 msgid "Expiry date"
 msgstr "到期日"
 
@@ -1926,6 +1958,15 @@ msgstr "到期日"
 #, fuzzy
 msgid "Expiry date:"
 msgstr "到期日"
+
+#: shared/inc/forms/my_account.php:91
+msgid "Export all my domains configuration to a file"
+msgstr ""
+
+#: shared/inc/forms/my_account.php:90
+#, fuzzy
+msgid "Export configuration:"
+msgstr "FTP備份結構"
 
 #: shared/inc/forms/domain_info.php:120
 msgid "Export this domain to a file"
@@ -1986,7 +2027,7 @@ msgstr "姓氏: "
 msgid "Familly name: "
 msgstr "姓氏: "
 
-#: shared/inc/forms/my_account.php:206
+#: shared/inc/forms/my_account.php:209
 #, fuzzy
 msgid "Family name:"
 msgstr "姓氏: "
@@ -1995,7 +2036,7 @@ msgstr "姓氏: "
 msgid "Faroe Islands"
 msgstr ""
 
-#: admin/inc/renewals.php:371 shared/inc/forms/my_account.php:214
+#: admin/inc/renewals.php:371 shared/inc/forms/my_account.php:217
 #, fuzzy
 msgid "Fax:"
 msgstr "傳真: "
@@ -2014,11 +2055,11 @@ msgstr ""
 msgid "Fiji"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:204
+#: shared/inc/forms/vps_installation.php:203
 msgid "File system check (fsck)"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:202
+#: shared/inc/forms/vps_installation.php:201
 msgid "File-system check:"
 msgstr ""
 
@@ -2032,7 +2073,7 @@ msgstr ""
 msgid "Finland"
 msgstr ""
 
-#: admin/inc/renewals.php:341 shared/inc/forms/my_account.php:205
+#: admin/inc/renewals.php:341 shared/inc/forms/my_account.php:208
 #, fuzzy
 msgid "First name:"
 msgstr "名: "
@@ -2329,7 +2370,7 @@ msgstr ""
 msgid "IP Resolved"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1111 shared/inc/forms/my_account.php:126
+#: admin/inc/dtc_config.php:1111 shared/inc/forms/my_account.php:129
 #: shared/inc/forms/root_admin.php:385
 msgid "IP address"
 msgstr "IP 位址"
@@ -2566,7 +2607,7 @@ msgstr ""
 msgid "Installation"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:303
+#: shared/inc/forms/vps_installation.php:342
 msgid "Installation log (last 20 lines):"
 msgstr ""
 
@@ -3407,11 +3448,11 @@ msgstr ""
 msgid "New SSH account:"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:268
+#: shared/inc/forms/vps_installation.php:305
 msgid "New SSH key: "
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:265
+#: shared/inc/forms/vps_installation.php:303
 #, fuzzy
 msgid "New SSH password: "
 msgstr "FTP密碼"
@@ -3509,7 +3550,7 @@ msgstr "No"
 msgid "No SSL IP expired"
 msgstr "無期滿的SSL IP"
 
-#: shared/inc/forms/my_account.php:164
+#: shared/inc/forms/my_account.php:167
 msgid "No SSL token available: contact your administrator to request it."
 msgstr ""
 
@@ -3575,7 +3616,7 @@ msgstr "產品"
 msgid "No shared account expired."
 msgstr "無期滿的共享帳號."
 
-#: shared/inc/forms/my_account.php:143 shared/inc/forms/my_account.php:170
+#: shared/inc/forms/my_account.php:146 shared/inc/forms/my_account.php:173
 msgid "No ssl product defined."
 msgstr ""
 
@@ -3680,10 +3721,12 @@ msgid "Number of databases:"
 msgstr ""
 
 #: admin/deamons_state.php:93 email/login.php:16
+#: shared/inc/forms/vps_installation.php:304
+#: shared/inc/forms/vps_installation.php:306
 #: shared/inc/forms/domain_stats.php:88 shared/inc/forms/email.php:127
 #: shared/inc/forms/email.php:179 shared/inc/forms/email.php:222
 #: shared/inc/forms/email.php:239 shared/inc/forms/email.php:256
-#: shared/inc/forms/email.php:275 shared/inc/forms/my_account.php:191
+#: shared/inc/forms/email.php:275 shared/inc/forms/my_account.php:194
 msgid "Ok"
 msgstr "Ok"
 
@@ -3711,7 +3754,7 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:227
+#: shared/inc/forms/vps_installation.php:230
 msgid "Operating system type not supported"
 msgstr ""
 
@@ -3976,7 +4019,7 @@ msgstr "期間"
 msgid "Philippines"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:213
+#: shared/inc/forms/my_account.php:216
 #, fuzzy
 msgid "Phone number:"
 msgstr "電話號碼: "
@@ -3992,7 +4035,7 @@ msgstr "電話號碼: "
 msgid "Phone:"
 msgstr "電話號碼: "
 
-#: shared/inc/forms/vps_installation.php:260
+#: shared/inc/forms/vps_installation.php:298
 msgid "Physical console last display and ssh access:"
 msgstr ""
 
@@ -4041,7 +4084,7 @@ msgid ""
 "domain name."
 msgstr "請就要註冊的網域名稱選擇3個你要使用的 聯絡名稱。"
 
-#: shared/inc/forms/my_account.php:199
+#: shared/inc/forms/my_account.php:202
 msgid "Please tell us if the following is not correct:"
 msgstr ""
 
@@ -4242,7 +4285,7 @@ msgstr "註冊選擇"
 msgid "Refund"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:188
+#: shared/inc/forms/my_account.php:191
 msgid "Refund my account:"
 msgstr ""
 
@@ -4299,11 +4342,11 @@ msgstr "註冊成功!"
 msgid "Registry selection"
 msgstr "註冊選擇"
 
-#: shared/inc/forms/vps_installation.php:237
+#: shared/inc/forms/vps_installation.php:241
 msgid "Reinstall operating system"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:207
+#: shared/inc/forms/vps_installation.php:206
 msgid "Reinstall operating system:"
 msgstr ""
 
@@ -4316,7 +4359,7 @@ msgstr ""
 msgid "Reject mails that don\\'t have the list address in the To: or Cc:."
 msgstr ""
 
-#: shared/inc/forms/my_account.php:184
+#: shared/inc/forms/my_account.php:187
 msgid "Remaining money on my account:"
 msgstr ""
 
@@ -4333,7 +4376,7 @@ msgstr "提示與註冊訊息主旨標題: "
 msgid "Remove an administrator for this customer:"
 msgstr "從此顧客移除一個管理員:"
 
-#: shared/inc/forms/my_account.php:114
+#: shared/inc/forms/my_account.php:117
 #, fuzzy
 msgid "Renew my account"
 msgstr "註冊新的帳號"
@@ -4543,7 +4586,7 @@ msgstr "SSL憑證更新"
 msgid "SSL dedicated IP addresses: "
 msgstr "SSL獨立IP位址: "
 
-#: shared/inc/forms/my_account.php:118
+#: shared/inc/forms/my_account.php:121
 #, fuzzy
 msgid "SSL tokens"
 msgstr "SSL憑證購買"
@@ -4847,7 +4890,7 @@ msgstr ""
 msgid "Stat script generated !"
 msgstr ""
 
-#: admin/inc/renewals.php:362 shared/inc/forms/my_account.php:211
+#: admin/inc/renewals.php:362 shared/inc/forms/my_account.php:214
 #, fuzzy
 msgid "State:"
 msgstr "州: "
@@ -4908,7 +4951,7 @@ msgstr ""
 msgid "Storage"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:97
+#: shared/inc/forms/my_account.php:100
 msgid "Storage space"
 msgstr ""
 
@@ -5118,6 +5161,10 @@ msgid ""
 "first."
 msgstr ""
 
+#: shared/inc/sql/vps.php:280
+msgid "The ISO file is not in the server!"
+msgstr ""
+
 #: shared/inc/forms/lists.php:178
 msgid ""
 "The email addresses in this fields (1 per line) will get mails to listname-"
@@ -5281,7 +5328,7 @@ msgstr "找不到形式"
 msgid "Time"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:270
+#: shared/inc/forms/vps_installation.php:309
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
@@ -5297,6 +5344,12 @@ msgstr ""
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
+msgstr ""
+
+#: shared/inc/forms/vps_installation.php:263
+msgid ""
+"To upload .iso files so they appear bellow and you can boot on them, you can "
+"upload them using ftp, "
 msgstr ""
 
 #: shared/dtcrm/draw.php:80
@@ -5520,7 +5573,7 @@ msgstr ""
 msgid "Up time: "
 msgstr ""
 
-#: shared/inc/forms/my_account.php:106
+#: shared/inc/forms/my_account.php:109
 #, fuzzy
 msgid "Upgrade my account"
 msgstr "註冊新的帳號"
@@ -5650,7 +5703,7 @@ msgstr "使用visitors: "
 msgid "Use webalizer: "
 msgstr "使用webalizer"
 
-#: shared/inc/forms/my_account.php:126
+#: shared/inc/forms/my_account.php:129
 msgid "Used by"
 msgstr ""
 
@@ -5757,6 +5810,15 @@ msgstr "VPS: "
 #: shared/inc/forms/vps_installation.php:87
 msgid "VM id: "
 msgstr ""
+
+#: shared/inc/forms/vps_installation.php:291
+msgid "VNC console activation: "
+msgstr ""
+
+#: shared/inc/forms/vps_installation.php:290
+#, fuzzy
+msgid "VNC console password: "
+msgstr "確認密碼: "
 
 #: admin/inc/renewals.php:707
 msgid "VPS"
@@ -5892,6 +5954,10 @@ msgstr ""
 msgid "Warning: no IP pool in the database!"
 msgstr ""
 
+#: shared/inc/sql/vps.php:291
+msgid "Warning: password of wrong format, DTC will disable VNC console!"
+msgstr ""
+
 #: admin/inc/dtc_config.php:222
 msgid "Warnings after expiration: "
 msgstr "期滿後的警告: "
@@ -6004,6 +6070,10 @@ msgstr ""
 msgid "Wire transfer"
 msgstr "進行名稱註冊"
 
+#: shared/inc/forms/vps_installation.php:292
+msgid "Write parameters"
+msgstr ""
+
 #: shared/inc/sql/vps.php:40
 msgid "Wrong email format for the monitoring email address"
 msgstr ""
@@ -6100,7 +6170,7 @@ msgid ""
 "support."
 msgstr "你沒有客戶ID。請與我們聯絡。"
 
-#: shared/inc/forms/my_account.php:123
+#: shared/inc/forms/my_account.php:126
 msgid "You currently don't have any SSL tokens."
 msgstr ""
 
@@ -6111,7 +6181,7 @@ msgid ""
 "redirected to our payment system. Please click on the button below to pay."
 msgstr ""
 
-#: shared/inc/forms/my_account.php:217
+#: shared/inc/forms/my_account.php:220
 msgid "You do not have a client account, so there is no money in your account."
 msgstr ""
 
@@ -6146,7 +6216,7 @@ msgid ""
 "the confirm button to proceed."
 msgstr "你的帳號中有足夠的存款來完成註冊程序。按 確認鍵來進行下一步。"
 
-#: shared/inc/forms/vps_installation.php:271
+#: shared/inc/forms/vps_installation.php:310
 msgid ""
 "You should then install sshd in your VPS and use the physical console only "
 "for debugging purposes."
@@ -6243,7 +6313,7 @@ msgstr "增加網域"
 msgid "Your domains"
 msgstr "增加網域"
 
-#: shared/inc/forms/my_account.php:94
+#: shared/inc/forms/my_account.php:97
 msgid "Your hosting account:"
 msgstr ""
 
@@ -6297,7 +6367,7 @@ msgstr ""
 msgid "Zimbabwe"
 msgstr ""
 
-#: admin/inc/renewals.php:359 shared/inc/forms/my_account.php:209
+#: admin/inc/renewals.php:359 shared/inc/forms/my_account.php:212
 #, fuzzy
 msgid "Zipcode:"
 msgstr "郵遞區號: "
@@ -6405,6 +6475,10 @@ msgstr ""
 msgid "new mailing list"
 msgstr "餘額: "
 
+#: shared/inc/forms/vps_installation.php:291
+msgid "no"
+msgstr ""
+
 #: shared/dtcrm/draw_handle.php:238 shared/dtcrm/draw_handle.php:241
 #: shared/dtcrm/draw_handle.php:259
 #, fuzzy
@@ -6425,6 +6499,11 @@ msgstr "年"
 
 #: shared/dtcrm/draw_adddomain.php:234
 msgid "years"
+msgstr "年"
+
+#: shared/inc/forms/vps_installation.php:291
+#, fuzzy
+msgid "yes"
 msgstr "年"
 
 #, fuzzy

@@ -5,12 +5,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.27.3\n"
+"Project-Id-Version: 0.30.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-11 19:57+0800\n"
-"PO-Revision-Date: 2007-12-26 14:40+0800\n"
-"Last-Translator: Jose Toscano <josetg81wireless@yahoo.es>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"POT-Creation-Date: 2008-09-24 23:56+0800\n"
+"PO-Revision-Date: 2008-09-24 17:30+0100\n"
+"Last-Translator: Yosu Cadilla <digitalwares@hotmail.com>\n"
+"Language-Team: Yosu Cadilla <digitalwares@hotmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,19 +19,19 @@ msgstr ""
 #: shared/inc/forms/vps_monitoring.php:81
 #: shared/inc/forms/vps_monitoring.php:94
 msgid " CPU seconds"
-msgstr ""
+msgstr "Segundos de CPU"
 
 #: shared/dtcrm/draw.php:70
 msgid " days) for upgrading will be: "
-msgstr ""
+msgstr "dias) para la actualizaciónserán:"
 
 #: shared/dtcrm/draw.php:71
 msgid " days), with "
-msgstr ""
+msgstr "dias), con"
 
 #: shared/dtcrm/draw.php:78
 msgid " disk storage and "
-msgstr ""
+msgstr "Almacenamiento en disco y"
 
 #: shared/inc/sql/lists.php:490
 msgid " does not look like a mailbox login..."
@@ -44,22 +44,26 @@ msgstr " no parece un login de correo..."
 #: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:160
 #: shared/inc/sql/vps.php:184 shared/inc/sql/vps.php:199
 #: shared/inc/sql/vps.php:212 shared/inc/sql/vps.php:222
-#: shared/inc/sql/vps.php:264 shared/inc/sql/vps.php:272
-#: shared/inc/sql/vps.php:282 shared/inc/sql/vps.php:292
+#: shared/inc/sql/vps.php:264 shared/inc/sql/vps.php:329
+#: shared/inc/sql/vps.php:337 shared/inc/sql/vps.php:347
+#: shared/inc/sql/vps.php:357
 msgid " file "
-msgstr ""
+msgstr "archivo"
 
-#: shared/inc/forms/vps_installation.php:299
+#: shared/inc/forms/vps_installation.php:338
 msgid " maybe there are no logs yet?"
-msgstr ""
+msgstr " quizás todavía no hay logs?"
 
 #: shared/dtcrm/draw.php:79
-#, fuzzy
 msgid " of data transfer each month."
-msgstr "Transferencia total de bytes este mes:"
+msgstr "de transferencia de datos cada mes."
 
 #: shared/dtcrm/draw.php:71
 msgid " remaining to be paid"
+msgstr "pendientes de pago"
+
+#: shared/inc/forms/vps_installation.php:263
+msgid " using the password of your physical console."
 msgstr ""
 
 #: shared/dtcrm/draw_handle.php:256
@@ -71,7 +75,7 @@ msgstr "en formato +(prefijo).XXXXXXXX"
 #: shared/inc/forms/vps_monitoring.php:69
 #: shared/inc/forms/vps_monitoring.php:70
 msgid "2 months ago: "
-msgstr ""
+msgstr "hace 2 meses:"
 
 #: shared/inc/draw.php:491
 msgid ""
@@ -357,7 +361,7 @@ msgstr "TODOS LOS ARCHIVOS Y SCRIPTS"
 
 #: admin/inc/nav.php:55
 msgid "APACHE VHOST"
-msgstr ""
+msgstr "APACHE VHOST"
 
 #: shared/inc/forms/lists.php:433
 msgid "Access list:"
@@ -367,19 +371,17 @@ msgstr "Lista de acceso:"
 #: shared/inc/sql/vps.php:108 shared/inc/sql/vps.php:130
 #: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:160
 #: shared/inc/sql/vps.php:184 shared/inc/sql/vps.php:199
-#: shared/inc/sql/vps.php:264
+#: shared/inc/sql/vps.php:264 shared/inc/sql/vps.php:329
 msgid "Access not granted line "
 msgstr "Acceso no autorizado "
 
 #: admin/inc/renewals.php:262
-#, fuzzy
 msgid "Account name"
-msgstr "ID de producto:"
+msgstr "Nombre de la cuenta"
 
 #: admin/inc/renewals.php:273
-#, fuzzy
 msgid "Account number"
-msgstr "N&uacute;mero de tel&eacute;fono:"
+msgstr "Número de la cuenta"
 
 #: admin/inc/dtc_config.php:1203
 msgid "Act as backup DNS server for the following servers:"
@@ -394,19 +396,18 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:246 admin/inc/draw_user_admin.php:304
 #: admin/inc/draw_user_admin.php:323 admin/dtcrm/main.php:217
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
-#: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:126
+#: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:129
 #: shared/inc/forms/reseller.php:24
 msgid "Action"
 msgstr "Acci&oacute;n"
 
 #: admin/inc/dtc_config.php:525
-#, fuzzy
 msgid "Activate FTP backups:"
-msgstr "FTP backup"
+msgstr "Activar copias de seguridad de FTP:"
 
 #: admin/inc/draw_user_admin.php:289 admin/inc/draw_user_admin.php:309
 msgid "Add"
-msgstr ""
+msgstr "añadir"
 
 #: shared/inc/forms/lists.php:406
 msgid "Add To: header:"
@@ -414,11 +415,11 @@ msgstr "Agregar cabecera To:"
 
 #: shared/inc/forms/root_admin.php:223
 msgid "Add a VPS for this admin:"
-msgstr ""
+msgstr "Agregar un VPS para este admin:"
 
 #: shared/inc/forms/root_admin.php:270
 msgid "Add a dedicated server for this admin:"
-msgstr ""
+msgstr "Agregar un servidor dedicado para este admin:"
 
 #: shared/inc/forms/root_admin.php:157
 msgid "Add a domain for this user:"
@@ -441,15 +442,15 @@ msgstr "A&ntilde;adir un dominio para este usuario:"
 
 #: admin/inc/dtc_config.php:1597
 msgid "Add a new company"
-msgstr ""
+msgstr "Agregar una nueva empresa"
 
 #: admin/inc/dtc_config.php:1596
 msgid "Add a new company:"
-msgstr ""
+msgstr "Agregar una nueva empresa"
 
 #: admin/inc/draw_user_admin.php:225
 msgid "Add a new user"
-msgstr ""
+msgstr "Agregar un nuevo usuario"
 
 #: shared/gfx/skin/default_layout.php:426
 msgid "Add a virtual administrator"
@@ -483,33 +484,28 @@ msgstr "Edici&oacute;n del servidor de nombres correcta"
 #: admin/dtcrm/main.php:165 client/new_account_form.php:624
 #: shared/dtcrm/draw_handle.php:59 shared/dtcrm/draw_handle.php:91
 #: shared/dtcrm/draw_handle.php:123 shared/dtcrm/draw_handle.php:235
-#, fuzzy
 msgid "Address (line1): "
-msgstr "Direcci&oacute;n:"
+msgstr "Dirección (línea 1): "
 
 #: admin/inc/renewals.php:350
-#, fuzzy
 msgid "Address (line2):"
-msgstr "Direcci&oacute;n:"
+msgstr "Dirección (línea 2): "
 
 #: admin/dtcrm/main.php:166 client/new_account_form.php:627
 #: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
 #: shared/dtcrm/draw_handle.php:124 shared/dtcrm/draw_handle.php:238
-#, fuzzy
 msgid "Address (line2): "
-msgstr "Direcci&oacute;n:"
+msgstr "Dirección (línea 2):"
 
 #: admin/inc/renewals.php:353
-#, fuzzy
 msgid "Address (line3):"
-msgstr "Direcci&oacute;n:"
+msgstr "Dirección (línea 3):"
 
 #: admin/dtcrm/main.php:167 client/new_account_form.php:630
 #: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
 #: shared/dtcrm/draw_handle.php:125 shared/dtcrm/draw_handle.php:241
-#, fuzzy
 msgid "Address (line3): "
-msgstr "Direcci&oacute;n:"
+msgstr "Dirección (línea 3):"
 
 #: shared/inc/forms/email.php:27
 #, fuzzy
@@ -521,13 +517,13 @@ msgid "Address of your main MX server:"
 msgstr "Direcci&oacute;n IP de su servidor MX principal :"
 
 #: admin/inc/renewals.php:347 admin/inc/dtc_config.php:1617
-#: shared/inc/forms/my_account.php:207
+#: shared/inc/forms/my_account.php:210
 msgid "Address:"
 msgstr "Direcci&oacute;n:"
 
 #: admin/inc/draw_user_admin.php:425
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:649
 #: shared/gfx/skin/bwoup/layout.php:651
@@ -536,7 +532,7 @@ msgstr "Editor del Administrador"
 
 #: admin/inc/draw_user_admin.php:137
 msgid "Admin login: "
-msgstr ""
+msgstr "Login del admin:"
 
 #: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:562
 msgid "Admins list"
@@ -549,19 +545,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:103
 msgid "Afghanistan"
-msgstr ""
+msgstr "Afghanistan"
 
 #: admin/inc/draw_user_admin.php:409
 msgid "Age"
-msgstr ""
+msgstr "Edad"
 
 #: shared/drawlib/cc_code_popup.php:104
 msgid "Albania"
-msgstr ""
+msgstr "Albania"
 
 #: shared/drawlib/cc_code_popup.php:105
 msgid "Algeria"
-msgstr ""
+msgstr "Algeria"
 
 #: shared/inc/forms/root_admin.php:133
 msgid "Allow addition of FTP logins:"
@@ -573,12 +569,11 @@ msgstr "Autorizar la adici&oacute;n de accesos vhosts SSH:"
 
 #: admin/inc/dtc_config.php:1277
 msgid "Allow registration of subdomain of the main domain: "
-msgstr ""
+msgstr "Permitir el registro de subdominios del dominio principal:"
 
 #: shared/inc/forms/root_admin.php:134
-#, fuzzy
 msgid "Allow the use of the package installer:"
-msgstr "Seleccione un paquete a instalar"
+msgstr "Permitir el uso del instalador de paquetes:"
 
 #: admin/inc/dtc_config.php:1099
 msgid ""
@@ -591,7 +586,7 @@ msgstr ""
 msgid "Allow to add domains:"
 msgstr "Permitir a&ntilde;adir dominios:"
 
-#: shared/inc/forms/my_account.php:97
+#: shared/inc/forms/my_account.php:100
 msgid "Allowed bandwidth per month"
 msgstr "Ancho de Banda permitido por mes"
 
@@ -601,7 +596,7 @@ msgstr "Ancho de Banda permitido por mes (MB):"
 
 #: admin/dtcrm/main.php:179
 msgid "Allowed data transfer (GB): "
-msgstr ""
+msgstr "Transmisión de datos permitida (GB):"
 
 #: shared/dtcrm/draw_adddomain.php:164
 msgid "Alternatively, you can add another domain name:"
@@ -609,12 +604,11 @@ msgstr "O puede a&ntilde;adir otro nombre de dominio:"
 
 #: shared/drawlib/cc_code_popup.php:106
 msgid "American Samoa"
-msgstr ""
+msgstr "American Samoa"
 
 #: admin/inc/renewals.php:581 shared/securepay/pay_functions.php:38
-#, fuzzy
 msgid "Amount"
-msgstr "Pais"
+msgstr "Cantidad"
 
 #: shared/dtcrm/draw_adddomain.php:151
 msgid ""
@@ -633,23 +627,23 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:107
 msgid "Andorra"
-msgstr ""
+msgstr "Andorra"
 
 #: shared/drawlib/cc_code_popup.php:108
 msgid "Angola"
-msgstr ""
+msgstr "Angola"
 
 #: shared/drawlib/cc_code_popup.php:109
 msgid "Anguilla"
-msgstr ""
+msgstr "Anguilla"
 
 #: admin/inc/dtc_config.php:926
 msgid "Another location"
-msgstr ""
+msgstr "Otra localización"
 
 #: shared/drawlib/cc_code_popup.php:110
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarctica"
 
 #: shared/inc/forms/lists.php:446
 msgid "Anti-spam mode:"
@@ -657,31 +651,31 @@ msgstr "Modo Spam:"
 
 #: shared/drawlib/cc_code_popup.php:111
 msgid "Antigua And Barbuda"
-msgstr ""
+msgstr "Antigua And Barbuda"
 
 #: admin/inc/dtc_config.php:937
 msgid "Apache DirectoryIndex: "
-msgstr ""
+msgstr "Apache DirectoryIndex: "
 
 #: admin/inc/dtc_config.php:1543
 msgid "Apache file names"
-msgstr ""
+msgstr "Apache file names"
 
 #: admin/inc/dtc_config.php:1514
 msgid "Apache htpasswd path"
-msgstr ""
+msgstr "Apache htpasswd path"
 
 #: admin/deamons_state.php:134
 msgid "Apache restart"
-msgstr ""
+msgstr "Apache restart"
 
 #: admin/inc/nav.php:11
 msgid "Apache vhost file for personal account generated !"
-msgstr ""
+msgstr "Apache vhost file generada para la cuenta personal!"
 
 #: admin/inc/nav.php:15
 msgid "Apache vhost file generated !"
-msgstr ""
+msgstr "Apache vhost file ha sido generada !"
 
 #: shared/inc/forms/lists.php:411
 msgid "Archive"
@@ -714,46 +708,46 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:112
 msgid "Argentina"
-msgstr ""
+msgstr "Argentina"
 
 #: shared/drawlib/cc_code_popup.php:113
 msgid "Armenia"
-msgstr ""
+msgstr "Armenia"
 
 #: shared/drawlib/cc_code_popup.php:114
 msgid "Aruba"
-msgstr ""
+msgstr "Aruba"
 
 #: shared/drawlib/cc_code_popup.php:115
 msgid "Ascension Island"
-msgstr ""
+msgstr "Ascension Island"
 
 #: shared/drawlib/cc_code_popup.php:116
 msgid "Australia"
-msgstr ""
+msgstr "Australia"
 
 #: shared/drawlib/cc_code_popup.php:117
 msgid "Austria"
-msgstr ""
+msgstr "Austria"
 
 #: admin/inc/dtc_config.php:1054
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
-msgstr ""
+msgstr "Auto-generar dominios por defecto (mail, pop, imap, smtp, ftp, list):"
 
 #: admin/inc/dtc_config.php:450 admin/inc/dtc_config.php:488
 #: admin/inc/dtc_config.php:770
 msgid "Available"
-msgstr ""
+msgstr "Disponible"
 
 #: shared/drawlib/cc_code_popup.php:118
 msgid "Azerbaijan"
-msgstr ""
+msgstr "Azerbaijan"
 
 #: admin/inc/nav.php:79
 msgid "BACKUP SCRIPTS"
 msgstr "SCRIPTS DE BACKUP"
 
-#: shared/inc/sql/vps.php:272
+#: shared/inc/sql/vps.php:337
 msgid "BSD kernel type is not correct line "
 msgstr "La linea del kernel BSD es incorrecta "
 
@@ -767,19 +761,19 @@ msgstr "Direcci&oacute;n IP del backup de vhost"
 
 #: admin/inc/dtc_config.php:542
 msgid "Backup frequency:"
-msgstr ""
+msgstr "Frequencia de la copia de seguridad:"
 
 #: admin/inc/nav.php:25
 msgid "Backup script generated !"
-msgstr ""
+msgstr "Script de copia de seguridad generado !"
 
 #: shared/drawlib/cc_code_popup.php:119
 msgid "Bahamas"
-msgstr ""
+msgstr "Bahamas"
 
 #: shared/drawlib/cc_code_popup.php:120
 msgid "Bahrain"
-msgstr ""
+msgstr "Bahrain"
 
 #: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:407
 #: shared/gfx/skin/bwoup/layout.php:409
@@ -787,23 +781,20 @@ msgid "Bandwidth monitor"
 msgstr "Monitor de Ancho de Banda"
 
 #: shared/inc/forms/root_admin.php:494 shared/inc/forms/root_admin.php:558
-#, fuzzy
 msgid "Bandwidth per month"
-msgstr "Ancho de Banda permitido por mes"
+msgstr "Ancho de banda por mes"
 
 #: shared/dtcrm/draw.php:86
-#, fuzzy
 msgid "Bandwidth/month"
-msgstr "Ancho de Banda permitido por mes"
+msgstr "Ancho de banda/mes"
 
 #: shared/drawlib/cc_code_popup.php:121
 msgid "Bangladesh"
-msgstr ""
+msgstr "Bangladesh"
 
 #: admin/inc/renewals.php:216
-#, fuzzy
 msgid "Bank account"
-msgstr "Su cuenta de hosting:"
+msgstr "Bloquear la cuenta"
 
 #: admin/inc/renewals.php:48 admin/inc/renewals.php:50
 #, fuzzy
@@ -812,7 +803,7 @@ msgstr "Pagos realizados"
 
 #: admin/inc/renewals.php:251
 msgid "Bank accounts edition"
-msgstr ""
+msgstr "Edición de las cuentas bancarias"
 
 #: admin/inc/renewals.php:280
 #, fuzzy
@@ -826,71 +817,80 @@ msgstr "Su cuenta de hosting:"
 
 #: admin/inc/draw_user_admin.php:246 admin/inc/draw_user_admin.php:323
 msgid "Bank validated"
-msgstr ""
+msgstr "Banco Validado"
 
 #: shared/drawlib/cc_code_popup.php:122
 msgid "Barbados"
-msgstr ""
+msgstr "Barbados"
 
 #: shared/drawlib/cc_code_popup.php:123
 msgid "Belgium"
-msgstr ""
+msgstr "Belgium"
 
 #: shared/drawlib/cc_code_popup.php:124
 msgid "Belize"
-msgstr ""
+msgstr "Belize"
 
 #: shared/drawlib/cc_code_popup.php:125
 msgid "Benin"
-msgstr ""
+msgstr "Benin"
 
 #: shared/drawlib/cc_code_popup.php:126
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermuda"
 
 #: shared/drawlib/cc_code_popup.php:127
 msgid "Bhutan"
-msgstr ""
+msgstr "Bhutan"
 
 #: admin/deamons_state.php:135
 msgid "Bind reload"
-msgstr ""
+msgstr "Recargar Bind"
 
 #: shared/drawlib/cc_code_popup.php:128
 msgid "Bolivia"
+msgstr "Bolivia"
+
+#: shared/inc/forms/vps_installation.php:289
+#, fuzzy
+msgid "Boot device: "
+msgstr "Precio total: "
+
+#: shared/inc/forms/vps_installation.php:265
+msgid "Boot on hard drive"
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:198
 msgid "Boot up (xm start)"
-msgstr ""
+msgstr "Arrancar (xm start)"
 
 #: shared/drawlib/cc_code_popup.php:129
 msgid "Bosnia Hercegovina"
-msgstr ""
+msgstr "Bosnia Hercegovina"
 
 #: shared/drawlib/cc_code_popup.php:130
 msgid "Botswana"
-msgstr ""
+msgstr "Botswana"
 
 #: shared/inc/forms/lists.php:432
 msgid "Bounce life:"
-msgstr ""
+msgstr "Duración del Bounce:"
 
 #: shared/inc/forms/email.php:625
 msgid "Bounce message content: "
-msgstr ""
+msgstr "Contenido del mensage de Bounce:"
 
 #: shared/drawlib/cc_code_popup.php:131
 msgid "Bouvet Island"
-msgstr ""
+msgstr "Bouvet Island"
 
 #: shared/drawlib/cc_code_popup.php:132
 msgid "Brazil"
-msgstr ""
+msgstr "Brazil"
 
 #: shared/drawlib/cc_code_popup.php:133
 msgid "British Indian Ocean Territory"
-msgstr ""
+msgstr "British Indian Ocean Territory"
 
 #: admin/inc/nav.php:35
 #, fuzzy
@@ -899,52 +899,51 @@ msgstr "Ficheros de nombres de dominio:"
 
 #: shared/drawlib/cc_code_popup.php:134
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "Brunei Darussalam"
 
 #: shared/drawlib/cc_code_popup.php:135
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgaria"
 
 #: shared/drawlib/cc_code_popup.php:136
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burkina Faso"
 
 #: shared/drawlib/cc_code_popup.php:137
 msgid "Burundi"
-msgstr ""
+msgstr "Burundi"
 
 #: shared/drawlib/cc_code_popup.php:138
 msgid "Byelorussian SSR"
-msgstr ""
+msgstr "Byelorussian SSR"
 
 #: shared/drawlib/dtc_functions.php:814
-#, fuzzy
 msgid "Bytes"
-msgstr "a&ntilde;os"
+msgstr "Bytes"
 
 #: shared/inc/forms/root_admin.php:356
 msgid "CGI-BIN protection"
-msgstr ""
+msgstr "Protección  de los CGI-BIN"
 
 #: admin/inc/graphs.php:7
 msgid "CPU Load Average"
-msgstr ""
+msgstr "Carga media de la CPU"
 
 #: shared/inc/forms/vps_monitoring.php:105
 msgid "CPU Time:"
-msgstr ""
+msgstr "Tiempo de CPU:"
 
 #: shared/drawlib/cc_code_popup.php:139
 msgid "Cambodia"
-msgstr ""
+msgstr "Cambodia"
 
 #: shared/drawlib/cc_code_popup.php:140
 msgid "Cameroon"
-msgstr ""
+msgstr "Cameroon"
 
 #: shared/drawlib/cc_code_popup.php:141
 msgid "Canada"
-msgstr ""
+msgstr "Canada"
 
 #: shared/inc/sql/database.php:42
 #, fuzzy
@@ -958,34 +957,34 @@ msgstr "Lista de sus bases de datos:"
 
 #: admin/inc/draw_user_admin.php:342
 msgid "Cannot find payment!"
-msgstr ""
+msgstr "No se ha encontrado el pago!"
 
 #: client/new_account_form.php:370
 msgid "Cannot find product id!"
-msgstr ""
+msgstr "No se ha encontrado el ID del producto!"
 
 #: admin/inc/draw_user_admin.php:257 admin/inc/draw_user_admin.php:258
 msgid "Cannot find product in db!"
-msgstr ""
+msgstr "No se ha encontrado el producto en la Base de Datos!"
 
 #: admin/inc/draw_user_admin.php:331
 msgid "Cannot find product!"
-msgstr ""
+msgstr "No se ha encontrado el producto!"
 
 #: admin/inc/draw_user_admin.php:384
 msgid "Cannot find server in db!"
-msgstr ""
+msgstr "No se ha encontrado el servidor en la base de datos!"
 
 #: admin/inc/draw_user_admin.php:120 admin/inc/draw_user_admin.php:147
 #: admin/inc/draw_user_admin.php:199
 msgid "Cannot find ticket!"
-msgstr ""
+msgstr "No se ha encontrado el ticket!"
 
-#: shared/inc/sql/vps.php:222 shared/inc/sql/vps.php:292
+#: shared/inc/sql/vps.php:222 shared/inc/sql/vps.php:357
 msgid "Cannot get VPS IP addresses information line "
 msgstr "No se ha podido obtener la dirección IP del VPS "
 
-#: shared/inc/sql/vps.php:212 shared/inc/sql/vps.php:282
+#: shared/inc/sql/vps.php:212 shared/inc/sql/vps.php:347
 msgid "Cannot get VPS information line "
 msgstr "No se ha podido obtener la linea de información del VPS"
 
@@ -1017,19 +1016,19 @@ msgstr "Imposible reseleccionar usuario: registro fallido!"
 
 #: admin/deamons_state.php:157
 msgid "Cannot resolv your"
-msgstr ""
+msgstr "No es posible resolver su"
 
 #: admin/deamons_state.php:202
 msgid "Cannot resolv your FTP server: "
-msgstr ""
+msgstr "No es posible resolver su servidor FTP:"
 
 #: shared/drawlib/cc_code_popup.php:142
 msgid "Cape Verde"
-msgstr ""
+msgstr "Cape Verde"
 
 #: admin/inc/renewals.php:195
 msgid "Cash"
-msgstr ""
+msgstr "Dinero"
 
 #: shared/inc/forms/email.php:645
 msgid "Catch-all email set to deliver to"
@@ -1037,31 +1036,31 @@ msgstr "Cuenta Catch-all configurada para entregar a"
 
 #: admin/inc/dtc_config.php:507
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #: admin/inc/dtc_config.php:511
 msgid "Category description"
-msgstr ""
+msgstr "Descripción de la categoría"
 
 #: shared/drawlib/cc_code_popup.php:143
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Cayman Islands"
 
 #: shared/drawlib/cc_code_popup.php:144
 msgid "Central African Republic"
-msgstr ""
+msgstr "Central African Republic"
 
 #: shared/drawlib/cc_code_popup.php:145
 msgid "Chad"
-msgstr ""
+msgstr "Chad"
 
-#: shared/inc/forms/vps_installation.php:254
+#: shared/inc/forms/vps_installation.php:258
 msgid "Change NetBSD kernel"
-msgstr ""
+msgstr "Cambiar el kernel de NetBSD"
 
 #: shared/inc/forms/vps_installation.php:167 shared/inc/forms/dedicated.php:95
 msgid "Change RDNS"
-msgstr ""
+msgstr "Cambiar RDNS"
 
 #: shared/inc/draw.php:49 shared/inc/forms/email.php:213
 msgid "Change your password:"
@@ -1074,20 +1073,20 @@ msgstr "Click"
 
 #: shared/inc/forms/email.php:622
 msgid "Check to send a bounce message (vacation): "
-msgstr ""
+msgstr "Marcar para enviar un mensaje de Bounce o rebote (vacaciones):"
 
 #: shared/inc/forms/vps_monitoring.php:133
 #: shared/inc/forms/vps_installation.php:81
 msgid "Checking filesystem..."
-msgstr ""
+msgstr "Comprobando sistema de archivos..."
 
 #: shared/drawlib/cc_code_popup.php:146
 msgid "Chile"
-msgstr ""
+msgstr "Chile"
 
 #: shared/drawlib/cc_code_popup.php:147
 msgid "China"
-msgstr ""
+msgstr "China"
 
 #: shared/inc/forms/packager.php:215
 msgid "Choose a package to install"
@@ -1095,9 +1094,9 @@ msgstr "Seleccione un paquete a instalar"
 
 #: shared/drawlib/cc_code_popup.php:148
 msgid "Christmas Island"
-msgstr ""
+msgstr "Christmas Island"
 
-#: admin/inc/renewals.php:356 shared/inc/forms/my_account.php:210
+#: admin/inc/renewals.php:356 shared/inc/forms/my_account.php:213
 #, fuzzy
 msgid "City:"
 msgstr "Pais:"
@@ -1146,7 +1145,7 @@ msgstr "Panel del Cliente"
 #: admin/inc/renewals.php:649 admin/inc/renewals.php:688
 #: admin/inc/renewals.php:729 admin/inc/renewals.php:803
 msgid "Client name not found!"
-msgstr ""
+msgstr "No se ha encontrado el nombre del cliente!"
 
 #: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
 #: shared/gfx/skin/bwoup/layout.php:253 shared/gfx/skin/bwoup/layout.php:262
@@ -1155,11 +1154,11 @@ msgstr "Panel del cliente:"
 
 #: admin/inc/draw_user_admin.php:187
 msgid "Close without reply"
-msgstr ""
+msgstr "Cerrar sin contestar"
 
 #: shared/inc/forms/ticket.php:163
 msgid "Closed"
-msgstr ""
+msgstr "Cerrado"
 
 #: shared/inc/forms/lists.php:397
 msgid "Closed list:"
@@ -1167,19 +1166,19 @@ msgstr "Lista cerrada:"
 
 #: shared/drawlib/cc_code_popup.php:149
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "Cocos (Keeling) Islands"
 
 #: shared/drawlib/cc_code_popup.php:150
 msgid "Colombia"
-msgstr ""
+msgstr "Colombia"
 
 #: shared/drawlib/cc_code_popup.php:151
 msgid "Comoros"
-msgstr ""
+msgstr "Comoros"
 
 #: admin/inc/dtc_config.php:77
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #: admin/inc/renewals.php:264
 #, fuzzy
@@ -1192,7 +1191,7 @@ msgid "Company name"
 msgstr "Empresa:"
 
 #: admin/inc/renewals.php:333 admin/inc/dtc_config.php:1612
-#: shared/inc/forms/my_account.php:202
+#: shared/inc/forms/my_account.php:205
 msgid "Company name:"
 msgstr "Empresa:"
 
@@ -1224,11 +1223,11 @@ msgstr "Configuraci&oacute;n para cada dominio de"
 
 #: shared/inc/forms/root_admin.php:458
 msgid "Configuration of the VPSes"
-msgstr ""
+msgstr "Configuración de los VPS"
 
 #: shared/inc/forms/root_admin.php:526
 msgid "Configuration of the dedicated servers"
-msgstr ""
+msgstr "Configuración de los servidores dedicados"
 
 #: shared/inc/forms/root_admin.php:334
 #, fuzzy
@@ -1254,19 +1253,19 @@ msgstr "Confirmar contrase&ntilde;a: "
 
 #: shared/drawlib/cc_code_popup.php:152
 msgid "Congo"
-msgstr ""
+msgstr "Congo"
 
 #: shared/drawlib/cc_code_popup.php:153
 msgid "Congo, The Democratic Republic Of"
-msgstr ""
+msgstr "Congo, The Democratic Republic Of"
 
 #: admin/inc/draw_user_admin.php:478
 msgid "Console output"
-msgstr ""
+msgstr "Salida de la consola"
 
 #: shared/drawlib/cc_code_popup.php:154
 msgid "Cook Islands"
-msgstr ""
+msgstr "Cook Islands"
 
 #: shared/inc/forms/domain_stats.php:87 shared/inc/forms/domain_stats.php:94
 #, fuzzy
@@ -1275,19 +1274,20 @@ msgstr "Subdominios:"
 
 #: shared/drawlib/cc_code_popup.php:155
 msgid "Costa Rica"
-msgstr ""
+msgstr "Costa Rica"
 
 #: shared/drawlib/cc_code_popup.php:156
 msgid "Cote D'Ivoire"
-msgstr ""
+msgstr "Cote D'Ivoire"
 
 #: admin/deamons_state.php:163
 msgid "Could not connect to SMTP server (timed out): "
-msgstr ""
+msgstr "No ha sido posible conectar al servidor SMTP (timed out): "
 
 #: shared/inc/sql/vps.php:6 shared/inc/sql/vps.php:146
 #: shared/inc/sql/vps.php:170 shared/inc/sql/vps.php:190
-#: shared/inc/sql/vps.php:238 shared/inc/sql/vps.php:308
+#: shared/inc/sql/vps.php:238 shared/inc/sql/vps.php:269
+#: shared/inc/sql/vps.php:373
 msgid "Could not connect to VPS server!"
 msgstr "No se ha podido conectar con el servidor VPS!"
 
@@ -1301,7 +1301,12 @@ msgstr ""
 #: shared/inc/forms/vps_monitoring.php:181
 #: shared/inc/forms/vps_installation.php:129
 msgid "Could not connect to the VPS SOAP Server."
-msgstr ""
+msgstr "No ha sido posible conectar al servidor SOAP del VPS."
+
+#: shared/inc/sql/vps.php:301
+#, fuzzy
+msgid "Could not fetch the VPS data."
+msgstr "No se ha podido encontrar el servidor VPS en la base de datos"
 
 #: client/new_account_form.php:102
 msgid "Could not find the VPS server in database"
@@ -1309,15 +1314,27 @@ msgstr "No se ha podido encontrar el servidor VPS en la base de datos"
 
 #: shared/inc/sql/dedicated.php:31 shared/inc/sql/vps.php:119
 msgid "Could not find the corresponding IP pool"
-msgstr ""
+msgstr "No ha sido posible encontrar el rango de IPs correspondiente"
 
 #: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:65
 msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
+"No ha sido posible encontrar el subdominio en la tabla para la eliminación "
+"de la carpeta"
 
-#: shared/inc/forms/vps_installation.php:299
+#: shared/inc/forms/vps_installation.php:338
 msgid "Could not get VPS install log. Error: "
-msgstr ""
+msgstr "No ha sido posible obtener el registro de instalación del VPS. Error:"
+
+#: shared/inc/vps.php:64
+#, fuzzy
+msgid "Could not get installed .iso files. Error: "
+msgstr "No ha sido posible obtener el registro de instalación del VPS. Error:"
+
+#: shared/inc/sql/vps.php:276
+#, fuzzy
+msgid "Could not get installed ISO files!"
+msgstr "No ha sido posible obtener el registro de instalación del VPS. Error:"
 
 #: shared/inc/forms/vps_monitoring.php:126
 #: shared/inc/forms/vps_installation.php:74
@@ -1325,11 +1342,13 @@ msgid ""
 "Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
 "not running?"
 msgstr ""
+"No ha sido posible obtener el status remoto (Method getVPSState() failed). "
+"Es posible que el VPS no esté ejecutandose?"
 
 #: shared/inc/forms/vps_monitoring.php:130
 #: shared/inc/forms/vps_installation.php:78
 msgid "Could not get remote status. Unkown error: "
-msgstr ""
+msgstr "No ha sido posible obtener el status remoto. Error desconocido:"
 
 #: shared/inc/forms/vps_monitoring.php:128
 #: shared/inc/forms/vps_installation.php:76
@@ -1337,6 +1356,13 @@ msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
 msgstr ""
+"No ha sido posible obtener el status remoto: No se ha podido conectar al "
+"servidor SOAP (HTTP error)."
+
+#: shared/inc/vps.php:74
+#, fuzzy
+msgid "Could not get virtual machine info. Error: "
+msgstr "No ha sido posible obtener el registro de instalación del VPS. Error:"
 
 #: shared/inc/forms/dns.php:82
 msgid "Could not load zonefile: permission denied or file not existant?"
@@ -1363,7 +1389,7 @@ msgid "Country code seems incorrect."
 msgstr "El código del pais parece incorrecto."
 
 #: admin/inc/renewals.php:365 admin/inc/dtc_config.php:1620
-#: shared/inc/forms/my_account.php:212
+#: shared/inc/forms/my_account.php:215
 msgid "Country:"
 msgstr "Pais:"
 
@@ -1408,7 +1434,7 @@ msgstr ""
 
 #: admin/inc/renewals.php:194
 msgid "Credit card"
-msgstr ""
+msgstr "Tarjeta de crédito"
 
 #: shared/drawlib/cc_code_popup.php:157
 #, fuzzy
@@ -1417,7 +1443,7 @@ msgstr "Crear"
 
 #: shared/drawlib/cc_code_popup.php:158
 msgid "Cuba"
-msgstr ""
+msgstr "Cuba"
 
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:283
 #, fuzzy
@@ -1442,9 +1468,9 @@ msgstr "Moneda en letras:"
 
 #: shared/inc/forms/vps.php:71
 msgid "Current contract: "
-msgstr ""
+msgstr "Contacto actual:"
 
-#: shared/inc/forms/vps_installation.php:208
+#: shared/inc/forms/vps_installation.php:207
 msgid "Currently installed operating system: "
 msgstr ""
 
@@ -1495,19 +1521,19 @@ msgstr "Lista de clientes"
 #: admin/inc/dtc_config.php:360 admin/inc/dtc_config.php:361
 #: shared/inc/forms/root_admin.php:348
 msgid "Customize"
-msgstr ""
+msgstr "Personalizar"
 
 #: shared/drawlib/cc_code_popup.php:159
 msgid "Cyprus"
-msgstr ""
+msgstr "Cyprus"
 
 #: shared/drawlib/cc_code_popup.php:160
 msgid "Czech Republic"
-msgstr ""
+msgstr "Czech Republic"
 
 #: shared/drawlib/cc_code_popup.php:161
 msgid "Czechoslovakia"
-msgstr ""
+msgstr "Czechoslovakia"
 
 #: shared/inc/draw.php:139 shared/inc/draw.php:458
 msgid "DNS Nick handles"
@@ -1519,7 +1545,7 @@ msgstr "DNS y MX"
 
 #: shared/inc/draw.php:422
 msgid "DNS config of:"
-msgstr ""
+msgstr "Configuración DNS de:"
 
 #: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:519
 msgid "DTC Configuration"
@@ -1553,7 +1579,7 @@ msgstr "Demonio"
 
 #: admin/inc/dtc_config.php:545
 msgid "Daily"
-msgstr ""
+msgstr "Diariamente"
 
 #: shared/inc/forms/vps_graphs.php:41
 msgid "Daily VPS usage statistics:"
@@ -1631,7 +1657,7 @@ msgstr ""
 
 #: admin/inc/renewals.php:570
 msgid "Dedicated servers: "
-msgstr ""
+msgstr "Servidores dedicados:"
 
 #: admin/inc/dtc_config.php:1672 admin/inc/dtc_config.php:1677
 msgid "Default company invoicing:"
@@ -1715,7 +1741,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:162
 msgid "Denmark"
-msgstr ""
+msgstr "Denmark"
 
 #: shared/inc/forms/lists.php:423
 msgid "Deny if no To: or Cc::"
@@ -1736,7 +1762,7 @@ msgstr "Nombre de dominio deseado"
 
 #: admin/inc/dtc_config.php:547
 msgid "Destination folder:"
-msgstr ""
+msgstr "Carpeta de destino:"
 
 #: shared/inc/forms/domain_stats.php:61
 msgid "Detailed web statistics (HTTP) of your subdomains:"
@@ -1778,7 +1804,7 @@ msgstr "Mostrar y ordenar por:"
 
 #: shared/drawlib/cc_code_popup.php:163
 msgid "Djibouti"
-msgstr ""
+msgstr "Djibouti"
 
 #: shared/inc/forms/lists.php:250
 msgid "Do not change unless you really know what you are doing."
@@ -1866,7 +1892,7 @@ msgstr "Nombre de dominio"
 
 #: shared/drawlib/cc_code_popup.php:165
 msgid "Dominican Republic"
-msgstr ""
+msgstr "Dominican Republic"
 
 #: shared/inc/forms/subdomain.php:265
 msgid "Dynamic IP update login: "
@@ -1883,19 +1909,19 @@ msgstr "CUENTAS DE CORREO"
 #: admin/deamons_state.php:293 admin/deamons_state.php:299
 #: admin/deamons_state.php:305 admin/deamons_state.php:311
 msgid "ERROR!"
-msgstr ""
+msgstr "ERROR!"
 
 #: shared/drawlib/cc_code_popup.php:166
 msgid "East Timor"
-msgstr ""
+msgstr "East Timor"
 
 #: shared/drawlib/cc_code_popup.php:167
 msgid "Ecuador"
-msgstr ""
+msgstr "Ecuador"
 
 #: shared/inc/forms/aliases.php:24
 msgid "Edit Mail Group"
-msgstr ""
+msgstr "Editar grupo de correo"
 
 #: admin/inc/dtc_config.php:1598
 msgid "Edit a company:"
@@ -1923,20 +1949,20 @@ msgstr "Edite las redirecciones de su e-mail:"
 
 #: shared/drawlib/cc_code_popup.php:168
 msgid "Egypt"
-msgstr ""
+msgstr "Egypt"
 
 #: shared/drawlib/cc_code_popup.php:169
 msgid "El Salvador"
-msgstr ""
+msgstr "El Salvador"
 
 #: admin/inc/renewals.php:642 admin/inc/renewals.php:673
 #: admin/inc/renewals.php:709 admin/inc/renewals.php:788
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: admin/inc/dtc_config.php:485
 msgid "Email addr"
-msgstr ""
+msgstr "Dirección de email"
 
 #: shared/inc/forms/aliases.php:57
 #, fuzzy
@@ -1966,16 +1992,15 @@ msgid "Email user and domain files generated !"
 msgstr ""
 
 #: admin/inc/renewals.php:374 shared/inc/forms/aliases.php:48
-#: shared/inc/forms/my_account.php:215
+#: shared/inc/forms/my_account.php:218
 msgid "Email:"
-msgstr ""
+msgstr "Email:"
 
 #: admin/dtcrm/main.php:175 client/new_account_form.php:610
 #: shared/dtcrm/draw_handle.php:68 shared/dtcrm/draw_handle.php:100
 #: shared/dtcrm/draw_handle.php:132 shared/dtcrm/draw_handle.php:262
-#, fuzzy
 msgid "Email: "
-msgstr "Max Emails"
+msgstr "Email: "
 
 #: shared/inc/forms/email.php:570
 msgid "Enable SPAM filtering: "
@@ -1999,11 +2024,11 @@ msgstr "Indique el nombre de dominio que desea registrar :"
 
 #: shared/drawlib/cc_code_popup.php:170
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Guinea Equatorial"
 
 #: shared/drawlib/cc_code_popup.php:171
 msgid "Eritrea"
-msgstr ""
+msgstr "Eritrea"
 
 #: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
 msgid "Error"
@@ -2015,9 +2040,8 @@ msgid "Error line "
 msgstr "Error"
 
 #: shared/inc/sql/vps.php:153
-#, fuzzy
 msgid "Error: "
-msgstr "Error"
+msgstr "Error: "
 
 #: shared/inc/forms/email.php:430
 msgid "Error: Email group alias already exists with this name!"
@@ -2033,11 +2057,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:172
 msgid "Estonia"
-msgstr ""
+msgstr "Estonia"
 
 #: shared/drawlib/cc_code_popup.php:173
 msgid "Ethiopia"
-msgstr ""
+msgstr "Ethiopia"
 
 #: admin/inc/renewals.php:186
 msgid "Expenditure type"
@@ -2053,11 +2077,11 @@ msgstr "Fecha de caducidad"
 msgid "Expiration date"
 msgstr ""
 
-#: admin/inc/dtc_config.php:447 shared/inc/forms/my_account.php:126
+#: admin/inc/dtc_config.php:447 shared/inc/forms/my_account.php:129
 msgid "Expire"
-msgstr ""
+msgstr "Expirar"
 
-#: admin/dtcrm/main.php:216 shared/inc/forms/my_account.php:97
+#: admin/dtcrm/main.php:216 shared/inc/forms/my_account.php:100
 msgid "Expiry date"
 msgstr "Fecha de caducidad"
 
@@ -2065,6 +2089,16 @@ msgstr "Fecha de caducidad"
 #, fuzzy
 msgid "Expiry date:"
 msgstr "Fecha de caducidad"
+
+#: shared/inc/forms/my_account.php:91
+#, fuzzy
+msgid "Export all my domains configuration to a file"
+msgstr "Exportar este dominio a un archivo"
+
+#: shared/inc/forms/my_account.php:90
+#, fuzzy
+msgid "Export configuration:"
+msgstr "Configuraci&oacute;n principal"
 
 #: shared/inc/forms/domain_info.php:120
 msgid "Export this domain to a file"
@@ -2104,7 +2138,7 @@ msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:264
 msgid "FTP: "
-msgstr ""
+msgstr "FTP: "
 
 #: shared/drawlib/cc_code_popup.php:174
 msgid "Falkland Islands (Malvinas)"
@@ -2122,23 +2156,23 @@ msgstr "Apellido:"
 msgid "Familly name: "
 msgstr "Apellido:"
 
-#: shared/inc/forms/my_account.php:206
+#: shared/inc/forms/my_account.php:209
 msgid "Family name:"
 msgstr "Apellido:"
 
 #: shared/drawlib/cc_code_popup.php:175
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Faroe Islands"
 
-#: admin/inc/renewals.php:371 shared/inc/forms/my_account.php:214
+#: admin/inc/renewals.php:371 shared/inc/forms/my_account.php:217
 msgid "Fax:"
-msgstr ""
+msgstr "Fax:"
 
 #: admin/dtcrm/main.php:174 client/new_account_form.php:616
 #: shared/dtcrm/draw_handle.php:67 shared/dtcrm/draw_handle.php:99
 #: shared/dtcrm/draw_handle.php:131 shared/dtcrm/draw_handle.php:259
 msgid "Fax: "
-msgstr ""
+msgstr "Fax: "
 
 #: shared/inc/forms/email.php:301
 msgid "Fetchmail"
@@ -2146,13 +2180,13 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:176
 msgid "Fiji"
-msgstr ""
+msgstr "Fiji"
 
-#: shared/inc/forms/vps_installation.php:204
+#: shared/inc/forms/vps_installation.php:203
 msgid "File system check (fsck)"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:202
+#: shared/inc/forms/vps_installation.php:201
 msgid "File-system check:"
 msgstr ""
 
@@ -2166,9 +2200,9 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:177
 msgid "Finland"
-msgstr ""
+msgstr "Finland"
 
-#: admin/inc/renewals.php:341 shared/inc/forms/my_account.php:205
+#: admin/inc/renewals.php:341 shared/inc/forms/my_account.php:208
 msgid "First name:"
 msgstr "Nombre:"
 
@@ -2185,23 +2219,23 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:178
 msgid "France"
-msgstr ""
+msgstr "France"
 
 #: shared/drawlib/cc_code_popup.php:179
 msgid "France, Metropolitan"
-msgstr ""
+msgstr "France, Metropolitan"
 
 #: shared/drawlib/cc_code_popup.php:180
 msgid "French Guiana"
-msgstr ""
+msgstr "French Guiana"
 
 #: shared/drawlib/cc_code_popup.php:181
 msgid "French Polynesia"
-msgstr ""
+msgstr "French Polynesia"
 
 #: shared/drawlib/cc_code_popup.php:182
 msgid "French Southern Territories"
-msgstr ""
+msgstr "French Southern Territories"
 
 #: shared/inc/forms/ticket.php:57
 msgid "Full description of the trouble:"
@@ -2218,15 +2252,15 @@ msgstr ""
 
 #: shared/drawlib/dtc_functions.php:811
 msgid "GBytes"
-msgstr ""
+msgstr "GBytes"
 
 #: shared/drawlib/cc_code_popup.php:183
 msgid "Gabon"
-msgstr ""
+msgstr "Gabon"
 
 #: shared/drawlib/cc_code_popup.php:184
 msgid "Gambia"
-msgstr ""
+msgstr "Gambia"
 
 #: shared/securepay/pay_functions.php:38
 #, fuzzy
@@ -2246,25 +2280,24 @@ msgid "Generate a vhost entry for this subdomain:"
 msgstr "Generar una entrada vhost para este subdominio:"
 
 #: admin/inc/dtc_config.php:987
-#, fuzzy
 msgid "Generate all apache vhosts on local network ip (NAT): "
-msgstr "Generar todos los vhosts de apache en una IP de red local (NAT)"
+msgstr "Generar todos los vhosts de apache en una IP de la red local (NAT)"
 
 #: shared/drawlib/cc_code_popup.php:185
 msgid "Georgia"
-msgstr ""
+msgstr "Georgia"
 
 #: shared/drawlib/cc_code_popup.php:186
 msgid "Germany"
-msgstr ""
+msgstr "Germany"
 
 #: shared/drawlib/cc_code_popup.php:187
 msgid "Ghana"
-msgstr ""
+msgstr "Ghana"
 
 #: shared/drawlib/cc_code_popup.php:188
 msgid "Gibraltar"
-msgstr ""
+msgstr "Gibraltar"
 
 #: email/login.php:6
 msgid "Go to client panel"
@@ -2288,35 +2321,35 @@ msgstr "Autorizar el agregado de sub-cuenta (revendedor)"
 
 #: shared/drawlib/cc_code_popup.php:189
 msgid "Great Britain"
-msgstr ""
+msgstr "Great Britain"
 
 #: shared/drawlib/cc_code_popup.php:190
 msgid "Greece"
-msgstr ""
+msgstr "Greece"
 
 #: shared/drawlib/cc_code_popup.php:191
 msgid "Greenland"
-msgstr ""
+msgstr "Greenland"
 
 #: shared/drawlib/cc_code_popup.php:192
 msgid "Grenada"
-msgstr ""
+msgstr "Grenada"
 
 #: shared/drawlib/cc_code_popup.php:193
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadalupe"
 
 #: shared/drawlib/cc_code_popup.php:194
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 #: shared/drawlib/cc_code_popup.php:195
 msgid "Guatemela"
-msgstr ""
+msgstr "Guatemela"
 
 #: shared/drawlib/cc_code_popup.php:196
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: shared/drawlib/cc_code_popup.php:197
 #, fuzzy
@@ -2325,32 +2358,31 @@ msgstr "General"
 
 #: shared/drawlib/cc_code_popup.php:198
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Guinea-Bissau"
 
 #: shared/drawlib/cc_code_popup.php:199
 msgid "Guyana"
-msgstr ""
+msgstr "Guyana"
 
 #: shared/inc/forms/vps_monitoring.php:113
 msgid "HDD I/O:"
-msgstr ""
+msgstr "HDD I/O:"
 
 #: shared/inc/forms/vps_monitoring.php:260
 msgid "HTTP: "
-msgstr ""
+msgstr "HTTP: "
 
 #: shared/drawlib/cc_code_popup.php:200
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 #: admin/inc/renewals.php:755
 msgid "Has a dedicated"
 msgstr ""
 
 #: admin/inc/renewals.php:752
-#, fuzzy
 msgid "Has some domains"
-msgstr "Sus dominios"
+msgstr "Tiene algunos dominios"
 
 #: shared/inc/forms/lists.php:403
 msgid "Header"
@@ -2358,7 +2390,7 @@ msgstr "Cabecera"
 
 #: shared/drawlib/cc_code_popup.php:201
 msgid "Heard and McDonald Islands"
-msgstr ""
+msgstr "Heard and McDonald Islands"
 
 #: shared/inc/draw.php:341
 msgid "Help"
@@ -2402,7 +2434,7 @@ msgstr "Ocultar direcciones de email para evitar spam."
 
 #: shared/drawlib/cc_code_popup.php:202
 msgid "Honduras"
-msgstr ""
+msgstr "Honduras"
 
 #: shared/drawlib/cc_code_popup.php:203
 #, fuzzy
@@ -2430,16 +2462,15 @@ msgstr "Creaci&oacute;n de paquetes de Hosting"
 
 #: admin/inc/dtc_config.php:696 shared/inc/forms/ticket.php:158
 msgid "Hostname"
-msgstr ""
+msgstr "Hostname"
 
 #: admin/inc/dtc_config.php:530
 msgid "Hostname:"
-msgstr ""
+msgstr "Hostname:"
 
 #: shared/inc/forms/root_admin.php:279
-#, fuzzy
 msgid "Hostname: "
-msgstr "Nombre:"
+msgstr "Nombre del Host:"
 
 #: shared/inc/forms/vps_graphs.php:35
 msgid "Hourly VPS usage statistics:"
@@ -2458,7 +2489,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:204
 msgid "Hungary"
-msgstr ""
+msgstr "Hungary"
 
 #: client/new_account_form.php:649
 msgid "I agree to the"
@@ -2466,17 +2497,17 @@ msgstr "Acepto las"
 
 #: shared/inc/forms/vps_monitoring.php:263
 msgid "IMAP4: "
-msgstr ""
+msgstr "IMAP4: "
 
 #: admin/inc/dtc_config.php:325 admin/inc/dtc_config.php:765
 msgid "IP Pool"
-msgstr ""
+msgstr "Rango de IPs"
 
 #: admin/deamons_state.php:266
 msgid "IP Resolved"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1111 shared/inc/forms/my_account.php:126
+#: admin/inc/dtc_config.php:1111 shared/inc/forms/my_account.php:129
 #: shared/inc/forms/root_admin.php:385
 msgid "IP address"
 msgstr "Direcci&oacute;n IP"
@@ -2538,7 +2569,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:205
 msgid "Iceland"
-msgstr ""
+msgstr "Iceland"
 
 #: admin/deamons_state.php:239
 msgid "If no FTP user was created, please make at least one!"
@@ -2711,11 +2742,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:206
 msgid "India"
-msgstr ""
+msgstr "India"
 
 #: shared/drawlib/cc_code_popup.php:207
 msgid "Indonesia"
-msgstr ""
+msgstr "Indonesia"
 
 #: shared/inc/forms/lists.php:436
 msgid "Insert here an email address to subscribe it."
@@ -2743,11 +2774,10 @@ msgid "Install"
 msgstr "Instalar"
 
 #: shared/inc/draw.php:178
-#, fuzzy
 msgid "Installation"
-msgstr "Instalar"
+msgstr "Instalación"
 
-#: shared/inc/forms/vps_installation.php:303
+#: shared/inc/forms/vps_installation.php:342
 msgid "Installation log (last 20 lines):"
 msgstr ""
 
@@ -2762,15 +2792,15 @@ msgstr "Manejo de Internet Whois Nick Handles:"
 
 #: shared/inc/forms/invoices.php:23
 msgid "Invoice"
-msgstr ""
+msgstr "Factura"
 
 #: admin/inc/renewals.php:224
 msgid "Invoice date"
-msgstr ""
+msgstr "Fecha de la factura"
 
 #: admin/inc/dtc_config.php:1648
 msgid "Invoice footer:"
-msgstr ""
+msgstr "Pie de la factura:"
 
 #: admin/inc/dtc_config.php:1643
 msgid "Invoice free text:"
@@ -2778,19 +2808,19 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:80
 msgid "Invoicing"
-msgstr ""
+msgstr "Facturar"
 
 #: shared/drawlib/cc_code_popup.php:208
 msgid "Iran (Islamic Republic Of)"
-msgstr ""
+msgstr "Iran (Islamic Republic Of)"
 
 #: shared/drawlib/cc_code_popup.php:209
 msgid "Iraq"
-msgstr ""
+msgstr "Iraq"
 
 #: shared/drawlib/cc_code_popup.php:210
 msgid "Ireland"
-msgstr ""
+msgstr "Ireland"
 
 #: client/new_account_form.php:238
 msgid "Is company radio button is wrong!"
@@ -2815,42 +2845,39 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:211
 msgid "Isle Of Man"
-msgstr ""
+msgstr "Isle Of Man"
 
 #: shared/drawlib/cc_code_popup.php:212
-#, fuzzy
 msgid "Israel"
-msgstr "Instalar"
+msgstr "Israel"
 
 #: shared/drawlib/cc_code_popup.php:213
-#, fuzzy
 msgid "Italy"
-msgstr "Instalar"
+msgstr "Italy"
 
 #: shared/drawlib/cc_code_popup.php:214
 msgid "Jamaica"
-msgstr ""
+msgstr "Jamaica"
 
 #: shared/drawlib/cc_code_popup.php:215
 msgid "Japan"
-msgstr ""
+msgstr "Japan"
 
 #: shared/drawlib/cc_code_popup.php:216
-#, fuzzy
 msgid "Jersey"
-msgstr "aqu&iacute;"
+msgstr "Jersey"
 
 #: shared/drawlib/cc_code_popup.php:217
 msgid "Jordan"
-msgstr ""
+msgstr "Jordan"
 
 #: shared/drawlib/cc_code_popup.php:218
 msgid "Kazakhstan"
-msgstr ""
+msgstr "Kazakhstan"
 
 #: shared/drawlib/cc_code_popup.php:219
 msgid "Kenya"
-msgstr ""
+msgstr "Kenya"
 
 #: admin/inc/renewals.php:750
 msgid "Kill VPS and owner"
@@ -2858,27 +2885,27 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:220
 msgid "Kiribati"
-msgstr ""
+msgstr "Kiribati"
 
 #: shared/drawlib/cc_code_popup.php:221
 msgid "Korea, Democratic People's Republic Of"
-msgstr ""
+msgstr "Korea, Democratic People's Republic Of"
 
 #: shared/drawlib/cc_code_popup.php:222
 msgid "Korea, Republic Of"
-msgstr ""
+msgstr "Korea, Republic Of"
 
 #: shared/drawlib/cc_code_popup.php:223
 msgid "Kuwait"
-msgstr ""
+msgstr "Kuwait"
 
 #: shared/drawlib/cc_code_popup.php:224
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "Kyrgyzstan"
 
 #: admin/inc/renewals.php:174
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
 #: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:244
@@ -2887,7 +2914,7 @@ msgstr "Idioma"
 
 #: shared/drawlib/cc_code_popup.php:225
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Lao People's Democratic Republic"
 
 #: shared/inc/forms/vps_monitoring.php:176
 #: shared/inc/forms/vps_installation.php:124
@@ -2908,15 +2935,15 @@ msgstr ""
 #: shared/inc/forms/vps_monitoring.php:82
 #: shared/inc/forms/vps_monitoring.php:83
 msgid "Last month: "
-msgstr ""
+msgstr "Ultimo mes"
 
 #: admin/inc/dtc_config.php:226
 msgid "Last warning: "
-msgstr ""
+msgstr "Ultimo viso:"
 
 #: shared/drawlib/cc_code_popup.php:226
 msgid "Latvia"
-msgstr ""
+msgstr "Latvia"
 
 #: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:502
 msgid "Launching the configuration files generation"
@@ -2932,23 +2959,23 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:227
 msgid "Lebanon"
-msgstr ""
+msgstr "Lebanon"
 
 #: shared/drawlib/cc_code_popup.php:228
 msgid "Lesotho"
-msgstr ""
+msgstr "Lesotho"
 
 #: shared/drawlib/cc_code_popup.php:229
 msgid "Liberia"
-msgstr ""
+msgstr "Liberia"
 
 #: shared/drawlib/cc_code_popup.php:230
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "Libyan Arab Jamahiriya"
 
 #: shared/drawlib/cc_code_popup.php:231
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: shared/inc/sql/lists.php:211
 msgid "List #name#@#domain# successfully created!"
@@ -3044,7 +3071,7 @@ msgstr "Max listas de correo"
 
 #: shared/drawlib/cc_code_popup.php:232
 msgid "Lithuania"
-msgstr ""
+msgstr "Lithuania"
 
 #: admin/inc/dtc_config.php:992
 #, fuzzy
@@ -3109,12 +3136,12 @@ msgstr "Desconectar"
 
 #: shared/drawlib/cc_code_popup.php:233
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luxembourg"
 
 #: shared/drawlib/dtc_functions.php:812 shared/inc/forms/email.php:587
 #: shared/inc/forms/email.php:594
 msgid "MBytes"
-msgstr ""
+msgstr "MBytes"
 
 #: admin/inc/dtc_config.php:50
 msgid "MX and NS backup servers"
@@ -3122,15 +3149,15 @@ msgstr "Servidores de respaldo MX y NS"
 
 #: shared/drawlib/cc_code_popup.php:234
 msgid "Macau"
-msgstr ""
+msgstr "Macau"
 
 #: shared/drawlib/cc_code_popup.php:235
 msgid "Macedonia"
-msgstr ""
+msgstr "Macedonia"
 
 #: shared/drawlib/cc_code_popup.php:236
 msgid "Madagascar"
-msgstr ""
+msgstr "Madagascar"
 
 #: shared/inc/draw.php:405
 #, fuzzy
@@ -3225,7 +3252,7 @@ msgstr "Configuraci&oacute;n principal"
 
 #: shared/drawlib/cc_code_popup.php:237
 msgid "Malawi"
-msgstr ""
+msgstr "Malawi"
 
 #: shared/drawlib/cc_code_popup.php:238
 #, fuzzy
@@ -3234,15 +3261,15 @@ msgstr "alias"
 
 #: shared/drawlib/cc_code_popup.php:239
 msgid "Maldives"
-msgstr ""
+msgstr "Maldives"
 
 #: shared/drawlib/cc_code_popup.php:240
 msgid "Mali"
-msgstr ""
+msgstr "Mali"
 
 #: shared/drawlib/cc_code_popup.php:241
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 #: shared/inc/draw.php:468
 msgid "Manage my name servers:"
@@ -3250,19 +3277,19 @@ msgstr "Configurar mis servidores de nombres:"
 
 #: shared/drawlib/cc_code_popup.php:242
 msgid "Marshall Islands"
-msgstr ""
+msgstr "Marshall Islands"
 
 #: shared/drawlib/cc_code_popup.php:243
 msgid "Martinique"
-msgstr ""
+msgstr "Martinique"
 
 #: shared/drawlib/cc_code_popup.php:244
 msgid "Mauritania"
-msgstr ""
+msgstr "Mauritania"
 
 #: shared/drawlib/cc_code_popup.php:245
 msgid "Mauritius"
-msgstr ""
+msgstr "Mauritius"
 
 #: shared/inc/forms/root_admin.php:373
 msgid "Max FTP"
@@ -3293,7 +3320,7 @@ msgstr "Memoria m&aacute;xima del mensaje:"
 #: shared/inc/forms/vps_monitoring.php:150
 #: shared/inc/forms/vps_installation.php:98
 msgid "Max memory: "
-msgstr ""
+msgstr "Máxima memoria: "
 
 #: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
@@ -3315,7 +3342,7 @@ msgstr "Login IP din&aacute;mica: "
 
 #: shared/drawlib/cc_code_popup.php:246
 msgid "Mayotte"
-msgstr ""
+msgstr "Mayotte"
 
 #: admin/inc/renewals.php:191
 #, fuzzy
@@ -3329,7 +3356,7 @@ msgstr ""
 #: shared/inc/forms/vps_monitoring.php:147
 #: shared/inc/forms/vps_installation.php:95
 msgid "Memory: "
-msgstr ""
+msgstr "Memoria: "
 
 #: shared/inc/forms/vps_monitoring.php:125
 #: shared/inc/forms/vps_installation.php:73
@@ -3338,11 +3365,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:247
 msgid "Mexico"
-msgstr ""
+msgstr "Mexico"
 
 #: shared/drawlib/cc_code_popup.php:248
 msgid "Micronesia, Federated States Of"
-msgstr ""
+msgstr "Micronesia, Federated States Of"
 
 #: shared/inc/forms/lists.php:399
 msgid "Moderated:"
@@ -3354,11 +3381,11 @@ msgstr "Moderadores:"
 
 #: shared/drawlib/cc_code_popup.php:249
 msgid "Moldova, Republic Of"
-msgstr ""
+msgstr "Moldova, Republic Of"
 
 #: shared/drawlib/cc_code_popup.php:250
 msgid "Monaco"
-msgstr ""
+msgstr "Monaco"
 
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
@@ -3366,11 +3393,11 @@ msgstr "Efectivo restante en la cuenta: "
 
 #: admin/inc/renewals.php:42 admin/inc/renewals.php:44
 msgid "Money spent"
-msgstr ""
+msgstr "Dinero gastado"
 
 #: shared/drawlib/cc_code_popup.php:251
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongolia"
 
 #: shared/inc/draw.php:160
 msgid "Monitoring"
@@ -3378,7 +3405,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:545
 msgid "Monthly"
-msgstr ""
+msgstr "Mensual"
 
 #: shared/inc/forms/vps_graphs.php:54
 msgid "Monthly VPS usage statistics:"
@@ -3404,11 +3431,11 @@ msgstr "Ir al acceso"
 
 #: shared/drawlib/cc_code_popup.php:253
 msgid "Morocco"
-msgstr ""
+msgstr "Morocco"
 
 #: shared/drawlib/cc_code_popup.php:254
 msgid "Mozambique"
-msgstr ""
+msgstr "Mozambique"
 
 #: shared/inc/draw.php:472
 msgid "My Account information:"
@@ -3449,12 +3476,12 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:255
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: admin/inc/renewals.php:439 admin/inc/renewals.php:440
 #: admin/inc/renewals.php:441
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: admin/inc/nav.php:67
 msgid "NAMED ZONES FILES"
@@ -3462,11 +3489,11 @@ msgstr "FICHEROS DE ZONA DNS"
 
 #: admin/inc/dtc_config.php:1421
 msgid "NAS config"
-msgstr ""
+msgstr " configuración NAS"
 
 #: admin/inc/dtc_config.php:440
 msgid "NAT Port"
-msgstr ""
+msgstr "Poerto NAT"
 
 #: client/new_account.php:112
 msgid "NOT VALIDATED"
@@ -3558,11 +3585,11 @@ msgstr "Archivos de Zona de Named"
 
 #: shared/drawlib/cc_code_popup.php:256
 msgid "Namibia"
-msgstr ""
+msgstr "Namibia"
 
 #: shared/drawlib/cc_code_popup.php:257
 msgid "Nauru"
-msgstr ""
+msgstr "Nauru"
 
 #: shared/inc/forms/packager.php:218
 msgid "Need a database"
@@ -3570,35 +3597,35 @@ msgstr "Necesito una base de datos"
 
 #: shared/drawlib/cc_code_popup.php:258
 msgid "Nepal"
-msgstr ""
+msgstr "Nepal"
 
 #: shared/drawlib/cc_code_popup.php:259
 msgid "Netherlands"
-msgstr ""
+msgstr "Netherlands"
 
 #: shared/drawlib/cc_code_popup.php:260
 msgid "Netherlands Antilles"
-msgstr ""
+msgstr "Netherlands Antilles"
 
 #: admin/inc/dtc_config.php:370
 msgid "Netmask"
-msgstr ""
+msgstr "Máscara de red"
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
-msgstr ""
+msgstr "Estadísticas de tráfico de red"
 
 #: shared/inc/forms/vps_monitoring.php:102
 msgid "Network:"
-msgstr ""
+msgstr "Red:"
 
 #: shared/drawlib/cc_code_popup.php:261
 msgid "Neutral Zone"
-msgstr ""
+msgstr "Zona Neutral"
 
 #: shared/drawlib/cc_code_popup.php:262
 msgid "New Caledonia"
-msgstr ""
+msgstr "New Caledonia"
 
 #: shared/inc/forms/ftp.php:52
 msgid "New FTP account: "
@@ -3608,18 +3635,18 @@ msgstr "Nueva cuenta FTP: "
 msgid "New SSH account:"
 msgstr "Nueva cuenta SSH:"
 
-#: shared/inc/forms/vps_installation.php:268
+#: shared/inc/forms/vps_installation.php:305
 msgid "New SSH key: "
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:265
+#: shared/inc/forms/vps_installation.php:303
 #, fuzzy
 msgid "New SSH password: "
 msgstr "Cambiar contrase&ntilde;a"
 
 #: shared/drawlib/cc_code_popup.php:263
 msgid "New Zealand"
-msgstr ""
+msgstr "New Zealand"
 
 #: admin/dtcrm/main.php:11 admin/dtcrm/main.php:24
 msgid "New customer"
@@ -3658,7 +3685,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:264
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nicaragua"
 
 #: admin/inc/dtc_config.php:479
 msgid "Nick name"
@@ -3666,15 +3693,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:265
 msgid "Niger"
-msgstr ""
+msgstr "Niger"
 
 #: shared/drawlib/cc_code_popup.php:266
 msgid "Nigeria"
-msgstr ""
+msgstr "Nigeria"
 
 #: shared/drawlib/cc_code_popup.php:267
 msgid "Niue"
-msgstr ""
+msgstr "Niue"
 
 #: admin/inc/draw_user_admin.php:168 admin/inc/draw_user_admin.php:283
 #: admin/inc/draw_user_admin.php:351 admin/inc/dtc_config.php:452
@@ -3709,7 +3736,7 @@ msgstr "No"
 msgid "No SSL IP expired"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:164
+#: shared/inc/forms/my_account.php:167
 msgid "No SSL token available: contact your administrator to request it."
 msgstr ""
 
@@ -3774,7 +3801,7 @@ msgstr ""
 msgid "No shared account expired."
 msgstr ""
 
-#: shared/inc/forms/my_account.php:143 shared/inc/forms/my_account.php:170
+#: shared/inc/forms/my_account.php:146 shared/inc/forms/my_account.php:173
 msgid "No ssl product defined."
 msgstr ""
 
@@ -3804,7 +3831,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:270
 msgid "Norway"
-msgstr ""
+msgstr "Norway"
 
 #: shared/inc/forms/dedicated.php:39 shared/inc/forms/invoices.php:39
 #: shared/inc/forms/invoices.php:40 shared/inc/forms/invoices.php:41
@@ -3884,20 +3911,22 @@ msgid "Number of databases:"
 msgstr "N&uacute;mero de bases de datos:"
 
 #: admin/deamons_state.php:93 email/login.php:16
+#: shared/inc/forms/vps_installation.php:304
+#: shared/inc/forms/vps_installation.php:306
 #: shared/inc/forms/domain_stats.php:88 shared/inc/forms/email.php:127
 #: shared/inc/forms/email.php:179 shared/inc/forms/email.php:222
 #: shared/inc/forms/email.php:239 shared/inc/forms/email.php:256
-#: shared/inc/forms/email.php:275 shared/inc/forms/my_account.php:191
+#: shared/inc/forms/email.php:275 shared/inc/forms/my_account.php:194
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: shared/inc/forms/ticket.php:153
 msgid "Old tickets:"
-msgstr ""
+msgstr "Tickets viejos:"
 
 #: shared/drawlib/cc_code_popup.php:271
 msgid "Oman"
-msgstr ""
+msgstr "Oman"
 
 #: admin/inc/dtc_config.php:375
 msgid "One zonefile per IP"
@@ -3913,9 +3942,9 @@ msgstr "Ayuda en linea para DTC"
 
 #: shared/inc/forms/ticket.php:165
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
-#: shared/inc/forms/vps_installation.php:227
+#: shared/inc/forms/vps_installation.php:230
 msgid "Operating system type not supported"
 msgstr ""
 
@@ -3959,11 +3988,11 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:351
 msgid "PHP safe_mode"
-msgstr ""
+msgstr "PHP safe_mode"
 
 #: shared/inc/forms/vps_monitoring.php:262
 msgid "POP3: "
-msgstr ""
+msgstr "POP3: "
 
 #: shared/inc/draw.php:456
 msgid "Package"
@@ -3988,34 +4017,34 @@ msgstr "Versi&oacute;n del paquete"
 
 #: shared/drawlib/cc_code_popup.php:272
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakistan"
 
 #: shared/drawlib/cc_code_popup.php:273
 msgid "Palau"
-msgstr ""
+msgstr "Palau"
 
 #: shared/drawlib/cc_code_popup.php:274
 msgid "Palestine"
-msgstr ""
+msgstr "Palestine"
 
 #: shared/drawlib/cc_code_popup.php:275
 msgid "Panama"
-msgstr ""
+msgstr "Panama"
 
 #: shared/drawlib/cc_code_popup.php:276
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papua New Guinea"
 
 #: shared/drawlib/cc_code_popup.php:277
 msgid "Paraguay"
-msgstr ""
+msgstr "Paraguay"
 
 #: admin/inc/dtc_config.php:1117 admin/inc/dtc_config.php:1144
 #: admin/inc/dtc_config.php:1169 admin/inc/dtc_config.php:1196
 #: admin/inc/dtc_config.php:1221 shared/inc/draw.php:331
 #: shared/inc/draw.php:484 shared/inc/forms/reseller.php:24
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: admin/inc/submit_root_querys.php:281
 #, fuzzy
@@ -4055,7 +4084,7 @@ msgstr "Contrase&ntilde;a:"
 #: email/login.php:13 shared/inc/forms/email.php:216
 #: shared/inc/forms/ftp.php:81
 msgid "Password: "
-msgstr ""
+msgstr "Contraseña:"
 
 #: client/new_account_form.php:73
 #, fuzzy
@@ -4166,12 +4195,12 @@ msgstr "Pasarela de pago"
 
 #: admin/inc/renewals.php:195
 msgid "Paypal"
-msgstr ""
+msgstr "Paypal"
 
 #: admin/deamons_state.php:92 admin/inc/draw_user_admin.php:281
 #: admin/inc/draw_user_admin.php:354
 msgid "Pending"
-msgstr ""
+msgstr "Pendiente"
 
 #: admin/inc/renewals.php:427 admin/inc/renewals.php:581
 #: admin/dtcrm/product_manager.php:36 admin/dtcrm/product_manager.php:109
@@ -4187,9 +4216,9 @@ msgstr "Per&iacute;odo"
 
 #: shared/drawlib/cc_code_popup.php:279
 msgid "Philippines"
-msgstr ""
+msgstr "Philippines"
 
-#: shared/inc/forms/my_account.php:213
+#: shared/inc/forms/my_account.php:216
 msgid "Phone number:"
 msgstr "N&uacute;mero de tel&eacute;fono:"
 
@@ -4205,13 +4234,13 @@ msgstr "N&uacute;mero de tel&eacute;fono:"
 msgid "Phone:"
 msgstr "N&uacute;mero de tel&eacute;fono:"
 
-#: shared/inc/forms/vps_installation.php:260
+#: shared/inc/forms/vps_installation.php:298
 msgid "Physical console last display and ssh access:"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:258
 msgid "Ping: "
-msgstr ""
+msgstr "Ping: "
 
 #: shared/drawlib/cc_code_popup.php:280
 msgid "Pitcairn"
@@ -4256,7 +4285,7 @@ msgstr ""
 "Por favor seleccione 3 contactos responsables que quiera usar para registrar "
 "el nombre de dominio."
 
-#: shared/inc/forms/my_account.php:199
+#: shared/inc/forms/my_account.php:202
 msgid "Please tell us if the following is not correct:"
 msgstr ""
 "Por favor d&iacute;ganos si la informaci&oacute;n siguiente no es correcta:"
@@ -4271,7 +4300,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:281
 msgid "Poland"
-msgstr ""
+msgstr "Poland"
 
 #: admin/inc/dtc_config.php:1448
 #, fuzzy
@@ -4370,7 +4399,7 @@ msgstr "ID de producto:"
 
 #: shared/inc/forms/root_admin.php:232 shared/inc/forms/root_admin.php:277
 msgid "Product: "
-msgstr ""
+msgstr "Product: "
 
 #: admin/inc/dtc_config.php:1377
 msgid "Production server"
@@ -4391,11 +4420,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:283
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Puerto Rico"
 
 #: shared/drawlib/cc_code_popup.php:284
 msgid "Qatar"
-msgstr ""
+msgstr "Qatar"
 
 #: admin/dtcrm/main.php:214
 msgid "Quantity"
@@ -4403,7 +4432,7 @@ msgstr "Cantidad"
 
 #: admin/inc/monitor.php:15
 msgid "Quota"
-msgstr ""
+msgstr "Cuota"
 
 #: admin/dtcrm/main.php:178
 #, fuzzy
@@ -4412,7 +4441,7 @@ msgstr "Cuota de disco (MB):"
 
 #: admin/dtcrm/product_manager.php:129
 msgid "RAM"
-msgstr ""
+msgstr "RAM"
 
 #: admin/inc/nav.php:73
 msgid "REINIT NAMED ZONES"
@@ -4420,7 +4449,7 @@ msgstr "REINICIAR ZONAS DNS"
 
 #: admin/inc/dtc_config.php:482
 msgid "Real name"
-msgstr ""
+msgstr "Nombre real"
 
 #: shared/inc/forms/lists.php:262
 msgid ""
@@ -4458,7 +4487,7 @@ msgstr "Redireccion 2: "
 msgid "Refund"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:188
+#: shared/inc/forms/my_account.php:191
 #, fuzzy
 msgid "Refund my account:"
 msgstr "Acreditar dinero a mi cuenta:"
@@ -4495,7 +4524,7 @@ msgstr "Registro fallido"
 
 #: admin/inc/dtc_config.php:1626
 msgid "Registration number:"
-msgstr ""
+msgstr "Número de registro:"
 
 #: shared/dtcrm/draw_nameservers.php:42
 msgid "Registration of your name server failed"
@@ -4514,11 +4543,11 @@ msgstr "Registro correcto!"
 msgid "Registry selection"
 msgstr "Registro de dominio"
 
-#: shared/inc/forms/vps_installation.php:237
+#: shared/inc/forms/vps_installation.php:241
 msgid "Reinstall operating system"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:207
+#: shared/inc/forms/vps_installation.php:206
 msgid "Reinstall operating system:"
 msgstr ""
 
@@ -4534,7 +4563,7 @@ msgstr ""
 "Rechaza los correos que no llevan la direcci&oacute;n de la lista en el To: "
 "o Cc:."
 
-#: shared/inc/forms/my_account.php:184
+#: shared/inc/forms/my_account.php:187
 msgid "Remaining money on my account:"
 msgstr "Dinero restante en mi cuenta:"
 
@@ -4551,7 +4580,7 @@ msgstr ""
 msgid "Remove an administrator for this customer:"
 msgstr "Eliminar administrador para este cliente:"
 
-#: shared/inc/forms/my_account.php:114
+#: shared/inc/forms/my_account.php:117
 msgid "Renew my account"
 msgstr "Renovar mi cuenta"
 
@@ -4629,7 +4658,7 @@ msgstr "Vuelva a escribir la contrase&ntilde;a"
 
 #: shared/drawlib/cc_code_popup.php:285
 msgid "Reunion"
-msgstr ""
+msgstr "Reunion"
 
 #: shared/inc/forms/lists.php:395
 msgid "Rights"
@@ -4637,20 +4666,20 @@ msgstr "Derechos"
 
 #: shared/drawlib/cc_code_popup.php:286
 msgid "Romania"
-msgstr ""
+msgstr "Romania"
 
 #: admin/deamons_state.php:291 admin/deamons_state.php:297
 #: admin/deamons_state.php:303 admin/deamons_state.php:309
 msgid "Running ok"
-msgstr ""
+msgstr "Ejecutándose correctamente"
 
 #: shared/drawlib/cc_code_popup.php:287
 msgid "Russian Federation"
-msgstr ""
+msgstr "Russian Federation"
 
 #: shared/drawlib/cc_code_popup.php:288
 msgid "Rwanda"
-msgstr ""
+msgstr "Rwanda"
 
 #: shared/inc/forms/lists.php:426
 msgid "SMTP configuration"
@@ -4667,7 +4696,7 @@ msgstr "Servidor DNS primario:"
 
 #: shared/inc/forms/vps_monitoring.php:261
 msgid "SMTP: "
-msgstr ""
+msgstr "SMTP: "
 
 #: admin/inc/dtc_config.php:1081
 msgid "SOA default ttl value: "
@@ -4719,7 +4748,7 @@ msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:259
 msgid "SSH: "
-msgstr ""
+msgstr "SSH: "
 
 #: admin/inc/dtc_config.php:35
 #, fuzzy
@@ -4751,33 +4780,33 @@ msgstr ""
 msgid "SSL dedicated IP addresses: "
 msgstr ""
 
-#: shared/inc/forms/my_account.php:118
+#: shared/inc/forms/my_account.php:121
 msgid "SSL tokens"
 msgstr ""
 
 #: admin/inc/renewals.php:276
 msgid "SWIFT"
-msgstr ""
+msgstr "código SWIFT"
 
 #: shared/drawlib/cc_code_popup.php:289
 msgid "Saint Helena"
-msgstr ""
+msgstr "Saint Helena"
 
 #: shared/drawlib/cc_code_popup.php:290
 msgid "Saint Kitts And Nevis"
-msgstr ""
+msgstr "Saint Kitts And Nevis"
 
 #: shared/drawlib/cc_code_popup.php:291
 msgid "Saint Lucia"
-msgstr ""
+msgstr "Saint Lucia"
 
 #: shared/drawlib/cc_code_popup.php:292
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "Saint Pierre and Miquelon"
 
 #: shared/drawlib/cc_code_popup.php:293
 msgid "Saint Vincent and The Grenadines"
-msgstr ""
+msgstr "Saint Vincent and The Grenadines"
 
 #: shared/inc/forms/domain_info.php:117
 #, fuzzy
@@ -4790,19 +4819,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:294
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: shared/drawlib/cc_code_popup.php:295
 msgid "San Marino"
-msgstr ""
+msgstr "San Marino"
 
 #: shared/drawlib/cc_code_popup.php:296
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "Sao Tome and Principe"
 
 #: shared/drawlib/cc_code_popup.php:297
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Saudi Arabia"
 
 #: admin/inc/dtc_config.php:409 shared/inc/forms/database.php:49
 #: shared/inc/forms/database.php:95 shared/inc/forms/domain_stats.php:98
@@ -4858,7 +4887,7 @@ msgstr "Condiciones de venta no aceptadas."
 
 #: admin/inc/draw_user_admin.php:177
 msgid "Send reply"
-msgstr ""
+msgstr "Enviar contestación"
 
 #: admin/inc/draw_user_admin.php:182
 msgid "Send reply and close ticket"
@@ -4875,7 +4904,7 @@ msgstr "General"
 
 #: shared/drawlib/cc_code_popup.php:299
 msgid "Serbia"
-msgstr ""
+msgstr "Serbia"
 
 #: admin/inc/renewals.php:788
 #, fuzzy
@@ -4924,7 +4953,7 @@ msgstr "Servidor DNS primario:"
 
 #: shared/inc/forms/dedicated.php:27
 msgid "Server not found!"
-msgstr ""
+msgstr "Servidor no encontrado!"
 
 #: shared/dtcrm/draw_adddomain.php:336 shared/dtcrm/draw_nameservers.php:23
 #: shared/dtcrm/draw_nameservers.php:43 shared/dtcrm/draw_nameservers.php:51
@@ -4964,11 +4993,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:300
 msgid "Seychelles"
-msgstr ""
+msgstr "Seychelles"
 
 #: admin/inc/draw_user_admin.php:372
 msgid "Shared"
-msgstr ""
+msgstr "Compartido"
 
 #: admin/inc/renewals.php:634
 msgid "Shared hosting renewals:"
@@ -5004,19 +5033,19 @@ msgstr "Servidor DNS primario:"
 
 #: shared/drawlib/cc_code_popup.php:302
 msgid "Singapore"
-msgstr ""
+msgstr "Singapore"
 
 #: shared/drawlib/cc_code_popup.php:303
 msgid "Slovakia"
-msgstr ""
+msgstr "Slovakia"
 
 #: shared/drawlib/cc_code_popup.php:304
 msgid "Slovenia"
-msgstr ""
+msgstr "Slovenia"
 
 #: shared/drawlib/cc_code_popup.php:305
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Solomon Islands"
 
 #: shared/drawlib/cc_code_popup.php:306
 #, fuzzy
@@ -5034,19 +5063,19 @@ msgstr "Nombre:"
 
 #: shared/drawlib/cc_code_popup.php:307
 msgid "South Africa"
-msgstr ""
+msgstr "South Africa"
 
 #: shared/drawlib/cc_code_popup.php:308
 msgid "South Georgia and The Sandwich Islands"
-msgstr ""
+msgstr "South Georgia and The Sandwich Islands"
 
 #: shared/drawlib/cc_code_popup.php:309
 msgid "Spain"
-msgstr ""
+msgstr "Spain"
 
 #: shared/drawlib/cc_code_popup.php:310
 msgid "Sri Lanka"
-msgstr ""
+msgstr "Sri Lanka"
 
 #: shared/inc/forms/vps_installation.php:179
 msgid "Start and stop of your VPS:"
@@ -5056,7 +5085,7 @@ msgstr ""
 msgid "Stat script generated !"
 msgstr ""
 
-#: admin/inc/renewals.php:362 shared/inc/forms/my_account.php:211
+#: admin/inc/renewals.php:362 shared/inc/forms/my_account.php:214
 msgid "State:"
 msgstr "Provincia:"
 
@@ -5082,7 +5111,7 @@ msgstr "Estad&iacute;sticas del dominio"
 
 #: shared/inc/draw.php:429 shared/inc/draw.php:433 shared/inc/draw.php:470
 msgid "Statistics:"
-msgstr ""
+msgstr "Estadísticas:"
 
 #: shared/inc/forms/ticket.php:158
 #, fuzzy
@@ -5118,7 +5147,7 @@ msgstr "Paso 1: Comprobar si el dominio es transferible"
 msgid "Storage"
 msgstr "Espacio de disco"
 
-#: shared/inc/forms/my_account.php:97
+#: shared/inc/forms/my_account.php:100
 msgid "Storage space"
 msgstr "Espacio de disco"
 
@@ -5199,15 +5228,15 @@ msgstr "Subdominios"
 
 #: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:375
 msgid "Support ticket"
-msgstr ""
+msgstr "Ticket de soporte"
 
 #: admin/inc/dtc_config.php:466
 msgid "Support ticket configuration"
-msgstr ""
+msgstr "Configuración del ticket de soporte"
 
 #: shared/inc/draw.php:336
 msgid "Support tickets"
-msgstr ""
+msgstr "Tickets de soporte"
 
 #: shared/drawlib/cc_code_popup.php:312
 #, fuzzy
@@ -5224,19 +5253,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:314
 msgid "Swaziland"
-msgstr ""
+msgstr "Swaziland"
 
 #: shared/drawlib/cc_code_popup.php:315
 msgid "Sweden"
-msgstr ""
+msgstr "Sweden"
 
 #: shared/drawlib/cc_code_popup.php:316
 msgid "Switzerland"
-msgstr ""
+msgstr "Switzerland"
 
 #: shared/drawlib/cc_code_popup.php:317
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Syrian Arab Republic"
 
 #: client/new_account.php:117
 msgid "TRANSACTION FINISHED AND APPROVED"
@@ -5262,11 +5291,11 @@ msgstr "Campo TXT del subdominio: "
 
 #: shared/drawlib/cc_code_popup.php:318
 msgid "Taiwan"
-msgstr ""
+msgstr "Taiwan"
 
 #: shared/drawlib/cc_code_popup.php:319
 msgid "Tajikista"
-msgstr ""
+msgstr "Tajikista"
 
 #: shared/inc/forms/dns.php:86
 msgid ""
@@ -5301,7 +5330,7 @@ msgstr "Controle su nombre de dominio"
 
 #: shared/drawlib/cc_code_popup.php:320
 msgid "Tanzania, United Republic Of"
-msgstr ""
+msgstr "Tanzania, United Republic Of"
 
 #: admin/inc/renewals.php:203
 #, fuzzy
@@ -5326,11 +5355,11 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1377
 msgid "Test server"
-msgstr ""
+msgstr "Servidor de prubas"
 
 #: shared/drawlib/cc_code_popup.php:321
 msgid "Thailand"
-msgstr ""
+msgstr "Thailand"
 
 #: shared/inc/sql/database.php:144
 msgid ""
@@ -5339,6 +5368,10 @@ msgid ""
 msgstr ""
 "Este usuario aún tiene bases de datos. Por favor, eliminelas o cambie antes "
 "el propietario."
+
+#: shared/inc/sql/vps.php:280
+msgid "The ISO file is not in the server!"
+msgstr ""
 
 #: shared/inc/forms/lists.php:178
 msgid ""
@@ -5472,7 +5505,7 @@ msgstr "Direcci&oacute;n administrador principal de la lista"
 #: shared/inc/forms/vps_monitoring.php:95
 #: shared/inc/forms/vps_monitoring.php:96
 msgid "This month: "
-msgstr ""
+msgstr "Este mes:"
 
 #: admin/inc/dtc_config.php:878
 #, fuzzy
@@ -5507,17 +5540,17 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:497
 msgid "Ticket categories:"
-msgstr ""
+msgstr "Categorias de tickets"
 
 #: shared/inc/forms/ticket.php:75 shared/inc/forms/ticket.php:103
 msgid "Ticket not found!"
-msgstr ""
+msgstr "No se ha podido encontrar el ticket!"
 
 #: shared/inc/forms/ticket.php:158
 msgid "Time"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:270
+#: shared/inc/forms/vps_installation.php:309
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
@@ -5533,6 +5566,12 @@ msgstr ""
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
+msgstr ""
+
+#: shared/inc/forms/vps_installation.php:263
+msgid ""
+"To upload .iso files so they appear bellow and you can boot on them, you can "
+"upload them using ftp, "
 msgstr ""
 
 #: shared/dtcrm/draw.php:80
@@ -5554,7 +5593,7 @@ msgstr "Desconectar"
 
 #: shared/drawlib/cc_code_popup.php:323
 msgid "Tokelau"
-msgstr ""
+msgstr "Tokelau"
 
 #: shared/drawlib/cc_code_popup.php:324
 #, fuzzy
@@ -5615,7 +5654,7 @@ msgstr "Transferencia total de bytes este mes:"
 
 #: admin/inc/renewals.php:572
 msgid "Total: "
-msgstr ""
+msgstr "Total: "
 
 #: admin/dtcrm/product_manager.php:66 admin/dtcrm/product_manager.php:134
 #: admin/dtcrm/product_manager.php:197
@@ -5648,36 +5687,36 @@ msgstr "Transferencia mes actual:"
 
 #: shared/drawlib/cc_code_popup.php:325
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Trinidad and Tobago"
 
 #: shared/drawlib/cc_code_popup.php:326
 msgid "Tunisia"
-msgstr ""
+msgstr "Tunisia"
 
 #: shared/drawlib/cc_code_popup.php:327
 msgid "Turkey"
-msgstr ""
+msgstr "Turkey"
 
 #: shared/drawlib/cc_code_popup.php:328
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Turkmenistan"
 
 #: shared/drawlib/cc_code_popup.php:329
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "Turks and Caicos Islands"
 
 #: shared/drawlib/cc_code_popup.php:330
 msgid "Tuvalu"
-msgstr ""
+msgstr "Tuvalu"
 
 #: admin/inc/draw_user_admin.php:323 admin/inc/draw_user_admin.php:409
 #: shared/inc/forms/ticket.php:158
 msgid "Type"
-msgstr ""
+msgstr "tipo"
 
 #: admin/inc/draw_user_admin.php:129 admin/inc/draw_user_admin.php:417
 msgid "Type not found!"
-msgstr ""
+msgstr "tipo no encontrado"
 
 #: admin/inc/dtc_config.php:1244
 msgid "Type of encryption for connecting to Tucows server:"
@@ -5685,11 +5724,11 @@ msgstr "Tipo de encriptaci&oacute;n para conectar al servidor Tucows:"
 
 #: admin/inc/renewals.php:302
 msgid "Type of payment"
-msgstr ""
+msgstr "tipo de pago"
 
 #: shared/inc/forms/ticket.php:52 shared/inc/forms/ticket.php:87
 msgid "Type of problem:"
-msgstr ""
+msgstr "tipo de problema"
 
 #: admin/inc/dtc_config.php:373
 #, fuzzy
@@ -5698,7 +5737,7 @@ msgstr "Generaci&oacute;n configuraci&oacute;n"
 
 #: admin/inc/draw_user_admin.php:134 admin/inc/dtc_config.php:1444
 msgid "Type:"
-msgstr ""
+msgstr "Tipo:"
 
 #: shared/inc/forms/ticket.php:84
 msgid "Type: type not found!"
@@ -5707,39 +5746,39 @@ msgstr ""
 #: admin/inc/dtc_config.php:1138 admin/inc/dtc_config.php:1163
 #: admin/inc/dtc_config.php:1190 admin/inc/dtc_config.php:1215
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: shared/drawlib/cc_code_popup.php:331
 msgid "USSR"
-msgstr ""
+msgstr "USSR"
 
 #: shared/drawlib/cc_code_popup.php:332
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: shared/drawlib/cc_code_popup.php:333
 msgid "Ukraine"
-msgstr ""
+msgstr "Ukraine"
 
 #: shared/drawlib/cc_code_popup.php:334
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "United Arab Emirates"
 
 #: shared/drawlib/cc_code_popup.php:335
 msgid "United Kingdom"
-msgstr ""
+msgstr "United Kingdom"
 
 #: shared/drawlib/cc_code_popup.php:336
 msgid "United States"
-msgstr ""
+msgstr "United States"
 
 #: shared/drawlib/cc_code_popup.php:337
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "United States Minor Outlying Islands"
 
 #: admin/inc/renewals.php:194
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: shared/inc/forms/packager.php:218
 msgid "Unpack size"
@@ -5754,7 +5793,7 @@ msgstr "Desuscribir:"
 msgid "Up time: "
 msgstr ""
 
-#: shared/inc/forms/my_account.php:106
+#: shared/inc/forms/my_account.php:109
 msgid "Upgrade my account"
 msgstr "Actualizar mi cuenta"
 
@@ -5773,11 +5812,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:338
 msgid "Uruguay"
-msgstr ""
+msgstr "Uruguay"
 
 #: shared/inc/forms/domain_info.php:60 shared/inc/forms/email.php:27
 msgid "Use"
-msgstr ""
+msgstr "Utilizar"
 
 #: admin/inc/dtc_config.php:863
 #, fuzzy
@@ -5795,11 +5834,11 @@ msgstr "Utilizar CNAME en lugar de un registro A para los subdominios:"
 
 #: admin/inc/dtc_config.php:716
 msgid "Use LVM backend"
-msgstr ""
+msgstr "Utilizar LVM backend"
 
 #: admin/inc/dtc_config.php:1398
 msgid "Use Maxmind API: "
-msgstr ""
+msgstr "Utilizar Maxmind API: "
 
 #: admin/inc/dtc_config.php:858
 #, fuzzy
@@ -5808,7 +5847,7 @@ msgstr "Usar SSL:"
 
 #: admin/inc/dtc_config.php:1305
 msgid "Use WebMoney: "
-msgstr ""
+msgstr "Utilizar WebMoney: "
 
 #: shared/inc/forms/subdomain.php:252
 msgid "Use an SSL vhost using this IP: "
@@ -5821,11 +5860,11 @@ msgstr "Campo TXT del subdominio: "
 
 #: admin/inc/dtc_config.php:914
 msgid "Use awstats: "
-msgstr ""
+msgstr "Utilizar awstats: "
 
 #: admin/inc/dtc_config.php:899
 msgid "Use cyrus: "
-msgstr ""
+msgstr "Utilizar cyrus: "
 
 #: admin/inc/dtc_config.php:1369
 #, fuzzy
@@ -5862,7 +5901,7 @@ msgstr "Usar register_globals=1: "
 
 #: admin/inc/dtc_config.php:1239
 msgid "Use registrar API:"
-msgstr ""
+msgstr "Utilizar API del registrar:"
 
 #: shared/inc/draw.php:349
 msgid "Use text menu"
@@ -5889,11 +5928,11 @@ msgstr "Usar javascript:"
 
 #: admin/inc/dtc_config.php:904
 msgid "Use webalizer: "
-msgstr ""
+msgstr "Utilizar webalizer: "
 
-#: shared/inc/forms/my_account.php:126
+#: shared/inc/forms/my_account.php:129
 msgid "Used by"
-msgstr ""
+msgstr "Utilizado por"
 
 #: shared/inc/forms/email.php:588
 msgid "Used quota: "
@@ -5902,7 +5941,7 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:453 admin/inc/monitor.php:15
 #: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #: admin/inc/dtc_config.php:928
 msgid "User MySQL host: "
@@ -6001,6 +6040,15 @@ msgstr "VERP:"
 msgid "VM id: "
 msgstr ""
 
+#: shared/inc/forms/vps_installation.php:291
+msgid "VNC console activation: "
+msgstr ""
+
+#: shared/inc/forms/vps_installation.php:290
+#, fuzzy
+msgid "VNC console password: "
+msgstr "Confirmar contrase&ntilde;a: "
+
 #: admin/inc/renewals.php:707
 msgid "VPS"
 msgstr ""
@@ -6068,7 +6116,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:59
 msgid "VPS servers"
-msgstr ""
+msgstr "Servidores VPS"
 
 #: admin/inc/dtc_config.php:759
 msgid "VPS xen number"
@@ -6076,7 +6124,7 @@ msgstr ""
 
 #: admin/inc/renewals.php:569
 msgid "VPS: "
-msgstr ""
+msgstr "VPS: "
 
 #: admin/inc/draw_user_admin.php:364
 msgid "VPS: Cannot find VPS in db!"
@@ -6089,19 +6137,19 @@ msgstr "Validar nueva cuenta si ha sido pagada:"
 
 #: shared/drawlib/cc_code_popup.php:340
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: shared/drawlib/cc_code_popup.php:341
 msgid "Vatican City State"
-msgstr ""
+msgstr "Vatican City State"
 
 #: shared/drawlib/cc_code_popup.php:342
 msgid "Venezuela"
-msgstr ""
+msgstr "Venezuela"
 
 #: shared/inc/forms/root_admin.php:347
 msgid "Vhost"
-msgstr ""
+msgstr "Vhost"
 
 #: shared/drawlib/cc_code_popup.php:343
 #, fuzzy
@@ -6110,15 +6158,15 @@ msgstr "Nombre de la lista"
 
 #: admin/inc/draw_user_admin.php:288
 msgid "View details"
-msgstr ""
+msgstr "Ver detalles"
 
 #: shared/drawlib/cc_code_popup.php:344
 msgid "Virgin Islands (British)"
-msgstr ""
+msgstr "Virgin Islands (British)"
 
 #: shared/drawlib/cc_code_popup.php:345
 msgid "Virgin Islands (U.S.)"
-msgstr ""
+msgstr "Virgin Islands (U.S.)"
 
 #: admin/inc/dtc_config.php:1548
 msgid "Virtual host config-file:"
@@ -6126,14 +6174,18 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1314
 msgid "WMZ: "
-msgstr ""
+msgstr "WMZ: "
 
 #: shared/drawlib/cc_code_popup.php:346
 msgid "Wallis and Futuna Islands"
-msgstr ""
+msgstr "Wallis and Futuna Islands"
 
 #: admin/inc/dtc_config.php:293 admin/inc/dtc_config.php:727
 msgid "Warning: no IP pool in the database!"
+msgstr ""
+
+#: shared/inc/sql/vps.php:291
+msgid "Warning: password of wrong format, DTC will disable VNC console!"
 msgstr ""
 
 #: admin/inc/dtc_config.php:222
@@ -6163,7 +6215,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:545
 msgid "Weekly"
-msgstr ""
+msgstr "Semanalmente"
 
 #: shared/inc/forms/vps_graphs.php:47
 msgid "Weekly VPS usage statistics:"
@@ -6179,11 +6231,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:347
 msgid "West Bank and Gaza"
-msgstr ""
+msgstr "West Bank and Gaza"
 
 #: shared/drawlib/cc_code_popup.php:348
 msgid "Western Sahara"
-msgstr ""
+msgstr "Western Sahara"
 
 #: admin/dtcrm/main.php:211
 msgid "What"
@@ -6236,20 +6288,24 @@ msgstr ""
 
 #: shared/inc/draw.php:213
 msgid "Whois"
-msgstr ""
+msgstr "Whois"
 
 #: shared/inc/draw.php:440
 msgid "Whois of:"
-msgstr ""
+msgstr "Whois de:"
 
 #: shared/inc/draw.php:438
 msgid "Whois:"
-msgstr ""
+msgstr "Whois:"
 
 #: admin/inc/renewals.php:194
 #, fuzzy
 msgid "Wire transfer"
 msgstr "Ejecutar la transferencia"
+
+#: shared/inc/forms/vps_installation.php:292
+msgid "Write parameters"
+msgstr ""
 
 #: shared/inc/sql/vps.php:40
 msgid "Wrong email format for the monitoring email address"
@@ -6271,7 +6327,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:349
 msgid "Yemen, Republic of"
-msgstr ""
+msgstr "Yemen, Republic of"
 
 #: admin/inc/draw_user_admin.php:166 admin/inc/draw_user_admin.php:279
 #: admin/inc/draw_user_admin.php:347 admin/inc/dtc_config.php:452
@@ -6369,7 +6425,7 @@ msgid ""
 "support."
 msgstr ""
 
-#: shared/inc/forms/my_account.php:123
+#: shared/inc/forms/my_account.php:126
 msgid "You currently don't have any SSL tokens."
 msgstr ""
 
@@ -6383,7 +6439,7 @@ msgstr ""
 "redireccionar&aacute; al sistema de pago. Pulse en el bot&oacute;n indicado "
 "para pagar."
 
-#: shared/inc/forms/my_account.php:217
+#: shared/inc/forms/my_account.php:220
 msgid "You do not have a client account, so there is no money in your account."
 msgstr ""
 
@@ -6419,7 +6475,7 @@ msgstr ""
 "Ud. tiene fondos suficientes en su cuenta para proceder con el registro. "
 "Pulse el bot&oacute;n de confirmar para continuar."
 
-#: shared/inc/forms/vps_installation.php:271
+#: shared/inc/forms/vps_installation.php:310
 msgid ""
 "You should then install sshd in your VPS and use the physical console only "
 "for debugging purposes."
@@ -6481,7 +6537,7 @@ msgstr ""
 
 #: shared/inc/forms/domain_info.php:59
 msgid "Your domain"
-msgstr ""
+msgstr "Su dominio"
 
 #: shared/dtcrm/draw_whois.php:49
 msgid ""
@@ -6511,7 +6567,7 @@ msgstr "Su dominio:"
 msgid "Your domains"
 msgstr "Sus dominios"
 
-#: shared/inc/forms/my_account.php:94
+#: shared/inc/forms/my_account.php:97
 msgid "Your hosting account:"
 msgstr "Su cuenta de hosting:"
 
@@ -6552,21 +6608,21 @@ msgstr "Su nombre SRS:"
 
 #: shared/drawlib/cc_code_popup.php:350
 msgid "Yugoslavia"
-msgstr ""
+msgstr "Yugoslavia"
 
 #: shared/drawlib/cc_code_popup.php:351
 msgid "Zaire"
-msgstr ""
+msgstr "Zaire"
 
 #: shared/drawlib/cc_code_popup.php:352
 msgid "Zambia"
-msgstr ""
+msgstr "Zambia"
 
 #: shared/drawlib/cc_code_popup.php:353
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Zimbabwe"
 
-#: admin/inc/renewals.php:359 shared/inc/forms/my_account.php:209
+#: admin/inc/renewals.php:359 shared/inc/forms/my_account.php:212
 msgid "Zipcode:"
 msgstr "Codigo postal:"
 
@@ -6625,11 +6681,11 @@ msgstr "cargando administrador: "
 
 #: shared/inc/fetch.php:457
 msgid "file"
-msgstr ""
+msgstr "archivo"
 
 #: shared/inc/forms/email.php:600
 msgid "files"
-msgstr ""
+msgstr "archivos"
 
 #: shared/inc/forms/lists.php:414
 msgid "get-N function only for subscribers:"
@@ -6654,7 +6710,7 @@ msgstr ""
 
 #: shared/drawlib/dtc_functions.php:813
 msgid "kBytes"
-msgstr ""
+msgstr "kBytes"
 
 #: shared/dtcrm/draw_handle.php:217
 msgid "marked fields are required"
@@ -6678,6 +6734,10 @@ msgstr "nueva cuenta de correo"
 msgid "new mailing list"
 msgstr "Lista de sus bases de datos:"
 
+#: shared/inc/forms/vps_installation.php:291
+msgid "no"
+msgstr ""
+
 #: shared/dtcrm/draw_handle.php:238 shared/dtcrm/draw_handle.php:241
 #: shared/dtcrm/draw_handle.php:259
 msgid "optional"
@@ -6693,11 +6753,16 @@ msgstr "Para actualizar el men&uacute; o a&ntilde;adir otro dominio."
 
 #: shared/dtcrm/draw_adddomain.php:233
 msgid "year"
-msgstr "a&ntilde;o"
+msgstr "año"
 
 #: shared/dtcrm/draw_adddomain.php:234
 msgid "years"
-msgstr "a&ntilde;os"
+msgstr "años"
+
+#: shared/inc/forms/vps_installation.php:291
+#, fuzzy
+msgid "yes"
+msgstr "Bytes"
 
 #, fuzzy
 #~ msgid "Add a domain"
