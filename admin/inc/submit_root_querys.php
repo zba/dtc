@@ -159,7 +159,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "import_domain"){
 	$uploaded_full_path = $adm_path."/".$uploaded_file;
 //	echo "Importing domain file: ".$_FILES["domain_import_file"]["name"]." for user $adm_login";
 	move_uploaded_file($_FILES["domain_import_file"]["tmp_name"],$uploaded_full_path);
-	domainImport($uploaded_full_path,$adm_login);
+	domainImport($uploaded_full_path,$adm_login,$adm_pass);
+	unlink($uploaded_full_path);
 
 	// Tell the cron job to activate the changes
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',

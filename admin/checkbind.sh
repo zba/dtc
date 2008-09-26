@@ -20,11 +20,33 @@ fi
 
 if [ -n "$bindgroup" ]; then
 	echo "Changing $conf_generated_file_path/zones permissions to 770 $bindgroup:$nobodygroup"
-        chown -R $bindgroup:dtcgrp $conf_generated_file_path/zones
-	chmod -R 0770 $conf_generated_file_path/zones
-        chown -R $bindgroup:dtcgrp $conf_generated_file_path/slave_zones
-	chmod -R 0770 $conf_generated_file_path/slave_zones
-	chown $bindgroup:dtcgrp $conf_generated_file_path/named.conf
+        chown -R dtc:$bindgroup $conf_generated_file_path/zones
+	chmod -R 0660 $conf_generated_file_path/zones
+	chmod 0770 $conf_generated_file_path/zones
+        chown -R dtc:$bindgroup $conf_generated_file_path/slave_zones
+	chmod -R 0660 $conf_generated_file_path/slave_zones
+	chmod 0770 $conf_generated_file_path/slave_zones
+	chown dtc:$bindgroup $conf_generated_file_path/named.conf
+	chmod 0660 $conf_generated_file_path/named.conf
+	chmod 0660 $conf_generated_file_path/named.slavezones.conf
+	if [ -e $conf_generated_file_path/reverse_zones ] ; then
+		chown -R dtc:$bindgroup $conf_generated_file_path/reverse_zones
+		chmod -R 0660 $conf_generated_file_path/reverse_zones
+		chmod 0770 $conf_generated_file_path/reverse_zones
+	fi
+	if [ -e $conf_generated_file_path/slave_reverse_zones ] ; then
+		chown -R dtc:$bindgroup $conf_generated_file_path/slave_reverse_zones
+		chmod -R 0660 $conf_generated_file_path/slave_reverse_zones
+		chmod 0770 $conf_generated_file_path/reverse_zones
+	fi
+	if [ -e $conf_generated_file_path/named.conf.reverse ] ; then
+		chown dtc:$bindgroup $conf_generated_file_path/named.conf.reverse
+		chmod 0660 $conf_generated_file_path/named.conf.reverse
+	fi
+	if [ -e $conf_generated_file_path/named.conf.slave.reverse ] ; then
+		chown dtc:$bindgroup $conf_generated_file_path/named.conf.slave.reverse
+		chmod 0660 $conf_generated_file_path/named.conf.slave.reverse
+	fi
 else
 	echo "Didn't find named groups, it must be running as root: keeping permissions"
 fi

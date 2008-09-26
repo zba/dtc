@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS `vps` (
   `bandwidth_per_month_gb` int(9) NOT NULL default '1',
   `product_id` int(9) NOT NULL default '0',
   `operatingsystem` varchar(64) NOT NULL default 'debian',
+  `vncpassword` varchar(64) NOT NULL default 'none',
+  `howtoboot` varchar(256) NOT NULL default 'hdd',
   `installed` enum('yes','no') NOT NULL default 'no',
   `bsdkernel` enum('normal','install') NOT NULL default 'normal',
   monitoring_email varchar(255) NOT NULL default '',

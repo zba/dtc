@@ -1,10 +1,6 @@
 Here is the todo in unsorted order:
 - Add support for moving domains with one click (save of a domain conf in
 one flat file)
-- Make some function to enable loading/saving of an admin's config in a
-conveinient .dtc file. Import from other (commercial) control panels.
-- Add support for wildcard DNS & Apache ServerAlias entries
-- Add support for DNS wildcard
 - Add support for Freeradius: now only need to write the user interface
 - Finish resseller interface (enable quota and flag edition of subadmins)
 - Find a SMART way to handle disk quotas

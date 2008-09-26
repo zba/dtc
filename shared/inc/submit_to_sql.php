@@ -615,6 +615,7 @@ if($panel_type!="email"){
 	require("$dtcshared_path/inc/vps.php");
 	require("$dtcshared_path/inc/sql/vps.php");
 	require("$dtcshared_path/inc/sql/ticket.php");
+	require("$dtcshared_path/inc/sql/dedicated.php");
 }else{
 	require("submit_to_sql_dtcemail.php");
 }

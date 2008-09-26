@@ -107,8 +107,22 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "set_ip_reverse_dns")){
 				if($n != 1){
 					$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;
 				}else{
-					$q = "UPDATE $pro_mysql_vps_ip_table SET rdns_addr='".$_REQUEST["rdns"]."' WHERE ip_addr='".$_REQUEST["ip_addr"]."';";
+					$q = "UPDATE $pro_mysql_vps_ip_table SET rdns_addr='".$_REQUEST["rdns"]."',rdns_regen='yes' WHERE ip_addr='".$_REQUEST["ip_addr"]."';";
 					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+					$q = "SELECT $pro_mysql_ip_pool_table.zone_type
+					FROM $pro_mysql_vps_ip_table,$pro_mysql_ip_pool_table
+					WHERE $pro_mysql_vps_ip_table.ip_addr='".$_REQUEST["ip_addr"]."'
+					AND $pro_mysql_ip_pool_table.id=$pro_mysql_vps_ip_table.ip_pool_id;";
+					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+					$n = mysql_num_rows($r);
+					if($n != 1){
+						$submit_err = _("Could not find the corresponding IP pool");
+					}else{
+						$a = mysql_fetch_array($r);
+						if($a["zone_type"] == "support_ticket"){
+							$submit_err = _("This IP pool can't be changed automatically, because our upstream network provider doesn't support it. Please open a support ticket to request this RDNS request.");
+						}
+					}
 				}
 			}
 		}
@@ -241,6 +255,71 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 				"ramsize" => $ze_vps["ramsize"],
 				"ipaddr" => $vps_all_ips,
                                 "imagetype" => $image_type),"","","");
+		}
+	}
+}
+
+if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenpv_boot_iso"){
+	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
+		$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;
+		$commit_flag = "no";
+	}
+	$soap_client = connectToVPSServer($vps_node);
+	if($soap_client === false){
+		$submit_err = _("Could not connect to VPS server!");
+		$commit_flag = "no";
+	}
+	if( $commit_flag == "yes" && $_REQUEST["xenpv_iso"] != "hdd"){
+		$r = $soap_client->call("reportInstalledIso",array("vpsname" => "xen".$vps_name),"","","");
+		$err = $soap_client->getError();
+                if($err){
+                	$submit_err = _("Could not get installed ISO files!");
+                	$commit_flag = "no";
+		}else{
+			if( ! in_array($_REQUEST["xenpv_iso"],$r)){
+				$submit_err = _("The ISO file is not in the server!");
+				$commit_flag = "no";
+			}
+		}
+	}
+	if( $_REQUEST["vnc_console_activate"] == "no" || !isDTCPassword( $_REQUEST["vnc_console_pass"])){
+		$vnc_console_pass = "no_vnc";
+	}else{
+		$vnc_console_pass = $_REQUEST["vnc_console_pass"];
+	}
+	if( !isDTCPassword( $_REQUEST["vnc_console_pass"]) && $_REQUEST["vnc_console_activate"] == "yes"){
+		echo "<font color=\"yes\">" . _("Warning: password of wrong format, DTC will disable VNC console!");
+	}
+	if( $commit_flag == "yes"){
+		$q = "UPDATE $pro_mysql_vps_table SET vncpassword='".mysql_real_escape_string($vnc_console_pass)."',howtoboot='".mysql_real_escape_string($_REQUEST["xenpv_iso"])."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$q = "SELECT * FROM $pro_mysql_vps_table WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$commit_flag = "no";
+			$submit_err = _("Could not fetch the VPS data.");
+		}else{
+			$a = mysql_fetch_array($r);
+			$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='" . $a["vps_server_hostname"]. "' AND vps_xen_name='" .$a["vps_xen_name"]. "';";
+			$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+			$n_ip = mysql_num_rows($r);
+			$ips = "";
+			for($i=0;$i<$n_ip;$i++){
+				if($i != 0){
+					$ips .= " ";
+				}
+				$a2 = mysql_fetch_array($r);
+				$ips .= $a2["ip_addr"];
+			}
+			// echo "Now calling writeXenPVconf with" . "xen".$vps_name . " " . $a["ramsize"] . " '$ips' ". $_REQUEST["vnc_console_pass"] . " " . $_REQUEST["xenpv_iso"];
+			$r = $soap_client->call("writeXenPVconf",array(
+					"vpsname" => $vps_name,
+					"ramsize" => $a["ramsize"],
+					"allipaddrs" => $ips,
+					"vncpassword" => $vnc_console_pass,
+					"howtoboot" => $_REQUEST["xenpv_iso"]),
+					"","","");
 		}
 	}
 }

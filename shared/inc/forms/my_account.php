@@ -87,6 +87,9 @@ function drawAdminTools_MyAccount($admin){
 		}
 	}
 
+	$out .= "<h3>" . _("Export configuration:") . "</h3>";
+	$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&action=export_my_account&addrlink=".$_REQUEST["addrlink"]."\" target=\"_blank\">". _("Export all my domains configuration to a file") ."</a>";
+
 	if($id_client != 0){
 
 		// If the customer has domains (he could have only a VPS...).

@@ -99,15 +99,23 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	}
 
 	$out .= "</select><br>";
-	if($domain_parking_type == "redirect"){
-		$redirect_selected = " checked ";
-		$same_docroot_selected = " ";
-	}else{
-		$redirect_selected = " ";
-		$same_docroot_selected = " checked ";
+	$redirect_selected = " ";
+	$same_docroot_selected = " ";
+	$serveralias_selected = " ";
+	switch ($domain_parking_type) {
+		case "redirect":
+			$redirect_selected = " checked ";
+			break;
+		case "same_docroot":
+			$same_docroot_selected = " checked ";
+			break;
+		case "serveralias":
+			$serveralias_selected = " checked ";
+			break;
 	}
 	$out .= "<input type=\"radio\" name=\"domain_parking_type\" value=\"redirect\" $redirect_selected>" ._("Redirection")." ";
 	$out .= "<input type=\"radio\" name=\"domain_parking_type\" value=\"same_docroot\" $same_docroot_selected>" ._("Same DocumentRoot")." ";
+	$out .= "<input type=\"radio\" name=\"domain_parking_type\" value=\"serveralias\" $serveralias_selected>" ._("ServerAlias")." ";
 	$out .= "<input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
 	$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&action=export_domain&addrlink=".$_REQUEST["addrlink"]."\" target=\"_blank\">". _("Export this domain to a file") ."</a>";
 	return $out;

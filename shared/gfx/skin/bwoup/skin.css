@@ -111,6 +111,7 @@ input,select,textarea {
 	height: 22px;
 	background-image: url(gfx/buttons/input_btn_background-2s.gif);
 	background-position: top;
+	cursor: pointer;
 	background-repeat: repeat-x;
 	}
 

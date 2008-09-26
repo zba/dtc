@@ -251,6 +251,7 @@ $dtc_database = array(
 			"restart_apache" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_vhosts" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_named" => "enum('yes','no') NOT NULL default 'no' ",
+			"gen_reverse" => "enum('yes','no') NOT NULL default 'no'",
 			"gen_qmail" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_webalizer" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_backup" => "enum('yes','no') NOT NULL default 'no' ",
@@ -279,6 +280,21 @@ $dtc_database = array(
 		"keys" => array(
 			"server_hostname" => "(server_hostname)"
 			)
+		),
+	"dedicated_ip" => array(
+		"vars" => array (
+			"id" => "int(11) NOT NULL auto_increment",
+			"dedicated_server_hostname" => "varchar(255) NOT NULL default ''",
+			"ip_addr" => "varchar(16) NOT NULL default ''",
+			"available" => "enum('yes','no') NOT NULL default 'yes'",
+			"rdns_addr" => "varchar(255) NOT NULL default 'gplhost.com'",
+			"rdns_regen" => "enum('yes','no') NOT NULL default 'yes'",
+			"ip_pool_id" => "int(11) NOT NULL default '0'"
+			),
+		"primary" => "(id)",
+		"unique" => array(
+				"ip_addr" => "(ip_addr)"
+                        )
 		),
 	"domain" => array(
 		"vars" => array(
@@ -309,7 +325,7 @@ $dtc_database = array(
 			"txt_root_entry2" => "varchar(128) NOT NULL default 'This domain is hosted using Domain Technologie Control http://www.gplhost.com/software-dtc.html' ",
 			"catchall_email" => "varchar(128) NOT NULL ",
 			"domain_parking" => "varchar(255) NOT NULL default 'no-parking' ",
-			"domain_parking_type" => "enum('redirect','same_docroot') NOT NULL default 'redirect'",
+			"domain_parking_type" => "enum('redirect','same_docroot','serveralias') NOT NULL default 'redirect'",
 			"registrar_password" => "varchar(255) NOT NULL ",
 			"ttl" => "int NULL default '7200' ",
 			"stats_login" => "varchar(32) NOT NULL default ''",
@@ -552,6 +568,20 @@ $dtc_database = array(
 		"primary" => "(id)",
                 "unique" => array(
                 	"vhost" => "(vhost,month,year,domain)"
+			)
+		),
+	"ip_pool" => array (
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"location" => "varchar(255) NOT NULL default ''",
+			"ip_addr" => "varchar(16) NOT NULL default ''",
+			"netmask" => "varchar(16) NOT NULL default ''",
+			"zone_type" => "enum('support_ticket','ip_per_ip','one_zonefile') default 'one_zonefile'",
+			"custom_part" => "text NOT NULL"
+			),
+		"primary" => "(id)",
+		"unique" => array(
+			"ip_addr" => "(ip_addr)"
 			)
 		),
 	"ip_port_service" => array(
@@ -1015,6 +1045,8 @@ $dtc_database = array(
 			"operatingsystem" => "varchar(64) NOT NULL default 'debian'",
 			"installed" => "enum('yes','no') NOT NULL default 'no'",
 			"bsdkernel" => "enum('normal','install') NOT NULL default 'normal'",
+			"vncpassword" => "varchar(64) NOT NULL default 'none'",
+			"howtoboot" => "varchar(256) NOT NULL default 'hdd'",
 			"monitoring_email" => "varchar(255) NOT NULL default ''",
 			"monitor_ping" => "enum('yes','no') NOT NULL default 'no'",
 			"monitor_ssh" => "enum('yes','no') NOT NULL default 'no'",
@@ -1038,6 +1070,7 @@ $dtc_database = array(
 			"vps_xen_name" => "varchar(64) NOT NULL default ''",
 			"ip_addr" => "varchar(16) NOT NULL default ''",
 			"rdns_addr" => "varchar(255) NOT NULL default 'gplhost.com'",
+			"rdns_regen" => "enum('yes','no') NOT NULL default 'yes'",
 			"ip_pool_id" => "int(11) NOT NULL default '0'",
 			"available" => "enum('yes','no') NOT NULL default 'yes'"
 			),

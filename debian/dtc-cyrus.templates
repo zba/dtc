@@ -199,19 +199,9 @@ Template: dtc/conf_cert_challenge_pass
 Type: password
 _Description: DTC SSL certificate challenge password:
 
-Template: dtc/conf_upgrade_pear
-Type: boolean
-Default: true
-_Description: Update PEAR installation?
- DTC can check the PEAR installation during its own installation
- process. This requires your server to be connected to the network. If
- you can't do so here, please check whether the Crypt_CBC and
- Auth_SASL PEAR modules are up-to-date. The relevant files are located in
- /usr/share/php.
-
 Template: dtc/conf_dnsbl_list
 Type: string
-Default: sbl-xbl.spamhaus.org,list.dsbl.org
+Default: zen.spamhaus.org,list.dsbl.org
 _Description: DNSBL (DNS BlackList) list:
  Please enter the list of preferred DNSBL servers to add to your Postfix mail
  server configuration.

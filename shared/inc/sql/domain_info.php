@@ -1,13 +1,22 @@
 <?php
 
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "export_my_account"){
+	checkLoginPass($adm_login,$adm_pass);
+	$file_name = "dtcuser_".$adm_login.".dtc.xml";
+	$xml = exportAllDomain($adm_login);
+	header('Content-type: application/dtc+xml');
+	header('Content-Disposition: attachment; filename="'.$file_name.'"');
+	echo($xml);
+	die();
+}
+
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "export_domain"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
-	$file_name = $edit_domain.'.dtc.tar.gz';
-	exportDomain($edit_domain,$conf_site_root_host_path);
-	header('Content-type: application/tar.gz');
+	$file_name = $edit_domain.'.dtc.xml';
+	$xml = exportDomain($edit_domain,$adm_login);
+	header('Content-type: application/dtc+xml');
 	header('Content-Disposition: attachment; filename="'.$file_name.'"');
-	readfile($conf_site_root_host_path.'/'.$file_name);
-	unlink($conf_site_root_host_path.'/'.$file_name);
+	echo($xml);
 	die();
 }
 
@@ -40,10 +49,16 @@ if(isset($_REQUEST["set_domain_parcking"]) && $_REQUEST["set_domain_parcking"] =
 		$set_to = "no-parking";
 	}
 
-	if($_REQUEST["domain_parking_type"] == "redirect"){
-		$domain_parking_type = "redirect";
-	}else{
-		$domain_parking_type = "same_docroot";
+	switch ($_REQUEST["domain_parking_type"]) {
+		case "same_docroot":
+			$domain_parking_type = "same_docroot";
+			break;
+		case "serveralias":
+			$domain_parking_type = "serveralias";
+			break;
+		default:
+			// redirect is the sql default
+			$domain_parking_type = "redirect";
 	}
 
 

@@ -286,6 +286,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					$vhost_file .= "<VirtualHost ".$all_site_addrs[$i].":80>
 	ServerName $conf_404_subdomain.$conf_main_domain
 	DocumentRoot $path_404/html
+	<Directory $path_404/html>
+		Allow from all
+	</Directory>
 	ScriptAlias /cgi-bin $path_404/cgi-bin
 	ErrorLog $path_404/logs/error.log
 	LogSQLTransferLogTable ".str_replace("-","A",str_replace(".","_",$conf_main_domain)).'$'.$conf_404_subdomain.'$'."xfer
@@ -584,6 +587,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Alias /roundcube /var/lib/roundcube
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
+	<Directory $web_path/$web_name/subdomains/$web_subname/html>
+		Allow from all
+	</Directory>
 # No ScriptAlias: we want to use system's /usr/lib/cgi-bin !!!
 #	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
@@ -616,6 +622,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	ServerName $web_subname.$web_name
 	Redirect permanent / http://$web_subname.$domain_parking/
 </VirtualHost>\n\n";
+                                } else if ($domain_parking != "no-parking" && $domain_parking_type == "serveralias") {
+                                        // do nothing here, as serveralias parking will be injected throughout the generation of the main domain
 				}else{
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/logs");
 					vhost_chk_dir_sh("$web_path/$domain_to_get/subdomains/$web_subname/html");
@@ -682,6 +690,21 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						}
 					}
 
+					// ServerAlias for parked domains
+					$q_serveralias = "select * from $pro_mysql_domain_table where domain_parking_type='serveralias' and domain_parking='$web_name'";
+					$r_serveralias = mysql_query($q_serveralias) or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+					while ($row_serveralias = mysql_fetch_array($r_serveralias)) {
+						// default subdomain and wildcard subdomain settings are inherited from the main domain, not the parked domain
+						// this is because in the gui these settings are not accessable for a parked domain
+						if ($web_subname == "$web_default_subdomain") {
+							$vhost_more_conf .= "        ServerAlias ${row_serveralias["name"]}\n";
+						}
+						$vhost_more_conf .= "        ServerAlias $web_subname.${row_serveralias["name"]}\n";
+						if ($domain_wildcard_dns == "yes") {
+							$vhost_more_conf .= "        ServerAlias *.${row_serveralias["name"]}\n";
+						}
+					}
+
 					// Sbox and safe mode protection values
 					if($domain_safe_mode == "no" && $subdomain["safe_mode"] == "no"){
 						$safe_mode_value = "0";
@@ -720,10 +743,16 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						// Disable the site if expired
 						if($site_expired == "yes"){
 							$document_root = $conf_generated_file_path."/expired_site";
-							$vhost_file .= "	DocumentRoot $document_root\n";
+							$vhost_file .= "	DocumentRoot $document_root
+	<Directory $document_root>
+		Allow from all
+	</Directory>\n";
 						}else{
 							$document_root = "$web_path/$domain_to_get/subdomains/$web_subname/html";
 							$vhost_file .= "	DocumentRoot $document_root
+	<Directory $document_root>
+		Allow from all
+	</Directory>
 $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	php_admin_value sendmail_from webmaster@$web_name
 	php_value session.save_path $web_path/$domain_to_get/subdomains/$web_subname/tmp

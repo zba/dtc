@@ -21,6 +21,7 @@ function subdomainCreateDirsCallBack($id){
 	global $conf_chroot_path;
 	global $conf_demo_version;
 	global $conf_generated_file_path;
+	global $conf_unix_type;
 
 	setZoneToGenerate($id);
 	$adm_path = getAdminPath($adm_login);
@@ -37,7 +38,11 @@ function subdomainCreateDirsCallBack($id){
 			mkdir("$newsubdomain_dirpath/cgi-bin", 0750);
 		if(!file_exists("$newsubdomain_dirpath/logs"))
 			mkdir("$newsubdomain_dirpath/logs", 0750);
-		exec("cp -fulpRv $conf_chroot_path/* $newsubdomain_dirpath");
+		if ($conf_unix_type == "bsd") {
+			exec("cp -flpRv $conf_chroot_path/* $newsubdomain_dirpath");
+		}else{
+			exec("cp -fulpRv $conf_chroot_path/* $newsubdomain_dirpath");
+		}
 		system ("if [ ! -e $newsubdomain_dirpath/html/index.* ]; then cp -rf $conf_generated_file_path/template/* $newsubdomain_dirpath/html; fi");
 		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes',gen_backup='yes'");
 	}
