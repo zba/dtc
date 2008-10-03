@@ -176,7 +176,10 @@ case "add_new_service":
 		$form = _("Location is not a valid hostname.");
 		break;
 	}
-	if( !isset($_REQUEST["vps_os"]) || ($_REQUEST["vps_os"] != "debian" && $_REQUEST["vps_os"] != "debian" && $_REQUEST["centos"] != "debian" && $_REQUEST["gentoo"] != "netbsd")){
+	if( !isset($_REQUEST["vps_os"]) || ($_REQUEST["vps_os"] != "debian"
+						&& $_REQUEST["vps_os"] != "centos"
+						&& $_REQUEST["vps_os"] != "gentoo"
+						&& $_REQUEST["vps_os"] != "netbsd")){
 		$form = _("VPS operating system not recognized");
 		break;
 	}
