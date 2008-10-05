@@ -94,7 +94,7 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
-	<div onmouseover=\"return escape('"._("List name") ."')\">". _("List owner") ."</div></td>
+	<div onmouseover=\"return escape('"._("List name") ."')\">". _("List name:") ."</div></td>
 	<td><input type=\"text\" name=\"newlist_name\" value=\"\"></td></tr>
 	<tr><td align=\"right\"><div onmouseover=\"return escape('". _("This is the main owner of the list.") ."')\">". _("List owner:") ."</div></td>
 	<td><input type=\"text\" name=\"newlist_owner\" value=\"\">";
