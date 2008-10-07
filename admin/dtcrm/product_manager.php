@@ -2,6 +2,11 @@
 
 function productManager(){
         global $pro_mysql_product_table;
+        global $secpayconf_currency_symbol;
+
+        if(!isset($secpayconf_currency_symbol)){
+        	get_secpay_conf();
+        }
 
 	// Build the product ID popup
         $qp = "SELECT id FROM $pro_mysql_product_table WHERE renew_prod_id='0'";
@@ -43,7 +48,7 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
-				"legend" => _("Aff. kickback") ,
+				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
 			"quota_disk" => array(
@@ -116,7 +121,7 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
-				"legend" => _("Aff. kickback") ,
+				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
 			"quota_disk" => array(
@@ -179,7 +184,7 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
-				"legend" => _("Aff. kickback") ,
+				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
 			"quota_disk" => array(
@@ -242,7 +247,7 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
-				"legend" => _("Aff. kickback") ,
+				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
 			"private" => array(
