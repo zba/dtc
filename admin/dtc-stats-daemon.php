@@ -148,7 +148,9 @@ while (!$shutdown){
 	}
 
 	$vps_query = "SELECT * FROM $pro_mysql_vps_server_table;";
-	$vps_servers_result = mysql_query($vps_query)or continue;
+	if( ($vps_servers_result = mysql_query($vps_query)) === FALSE){
+		continue;
+	}
 	//die("Cannot query $query !!!".mysql_error());
 	$vps_servers_num_rows = mysql_num_rows($vps_servers_result);
 	for ($i=0;$i<$vps_servers_num_rows;$i++){
@@ -296,13 +298,18 @@ while (!$shutdown){
 				// An INSERT IGNORE should be faster than a SELECT, then checking if the row exists...
 				$q2 = "INSERT IGNORE INTO $pro_mysql_vps_stats_table (vps_server_hostname,vps_xen_name,month,year,cpu_usage,network_in_count,network_out_count,diskio_count,swapio_count)
 VALUES ('".$vps_servers_row["hostname"]."','$vps_number','".date("m",$timestamp)."','".date("Y",$timestamp)."','0','0','0','0','0');";
-				mysql_query($q2)or continue;
+				if(mysql_query($q2) === FALSE){
+					continue;
+				}
 				//die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$q2 = "UPDATE $pro_mysql_vps_stats_table
 SET cpu_usage=cpu_usage + '$vps_cpu', network_in_count=network_in_count + '$vps_net_in', network_out_count=network_out_count + '$vps_net_out',
 diskio_count=diskio_count + '$vps_fs_sectors', swapio_count=swapio_count + '$vps_swap_sectors'
 WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
-				mysql_query($q2)or continue;
+				$flag = 0;
+				if(mysql_query($q2) === FALSE){
+					continue;
+				}
 				//die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			}
 		}
