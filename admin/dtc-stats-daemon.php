@@ -187,12 +187,15 @@ while (!$shutdown){
 		echo "now ordering $num_records record(s)...";
 		for($rec=0;$rec<$num_records;$rec++){
 			$cur = $r[$rec];
-			$keys = array_keys($cur);
-			$num_vps = sizeof($keys);
-			for($vps=0;$vps<$num_vps;$vps++){
-				$vps_data = $cur[ $keys[$vps] ];
+			// If there is no VPS running, then $cur is not an array: we have to test that!
+			if( is_array($cur) ){
+				$keys = array_keys($cur);
+				$num_vps = sizeof($keys);
+				for($vps=0;$vps<$num_vps;$vps++){
+					$vps_data = $cur[ $keys[$vps] ];
 
-				$all_recs[ $keys[$vps] ][] = $vps_data;
+					$all_recs[ $keys[$vps] ][] = $vps_data;
+				}
 			}
 		}
 		// Now for each VPS, let's record all data collected
