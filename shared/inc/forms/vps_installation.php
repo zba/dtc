@@ -318,7 +318,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			$path_url = "/dtc";
 		}
 		$ajax_call_url = "https://".$_SERVER["SERVER_NAME"]."$path_url/get_install_log.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name";
-		$out .= '
+/*		$out .= '
 <script language="javascript" src="dtc_ajax.js"></script>
 <script type="text/javascript" language="javascript">
 
@@ -329,7 +329,8 @@ function ajaxLogConsole() {
 	dtc_ajax = new dtc_ajax_submit_url("'.$path_url.'");
 	dtc_ajax.submit_url();
 }
-</script>';
+</script>';*/
+		$out .= '<script language="javascript" src="gfx/xanjaxXHR.js"></script>';
 //	}
 
 	$r = $soap_client->call("getVPSInstallLog",array("vpsname" => $vps_name,"numlines" => "20"),"","","");
