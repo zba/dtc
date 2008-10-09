@@ -746,7 +746,7 @@ $more_mx_server
 	IN	A	$ip_to_write
 ";
 			// if we have the public.key for DomainKeys, write it into our zone file
-			if (file_exists($conf_domainkey_publickey_filepath)){
+			if (file_exists($conf_domainkey_publickey_filepath) && $row["primary_mx"] == "default"){
 				$key_file_array = file($conf_domainkey_publickey_filepath, FILE_IGNORE_NEW_LINES);
 				// skip the first and last lines (the ---PUBLIC---)
 				$KEY = "";
