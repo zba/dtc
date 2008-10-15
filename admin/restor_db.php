@@ -224,6 +224,12 @@ if($n > 0){
 	echo "\n";
 }
 
+# Check all expiration date that are 0000-00-00 and set them to the current date + 10 years
+$year = date("Y");
+$year = $year + 10;
+$q = "UPDATE admin SET expire='".$year."-".date("m-d")."' WHERE expire='0000-00-00';";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 // Period was a date before, but it doesn't work with MySQL 5, so we are switching it to a varchar //
 $q = "ALTER TABLE `product` CHANGE `period` `period` VARCHAR( 12 ) NOT NULL DEFAULT '0001-00-00';";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
