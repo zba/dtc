@@ -68,7 +68,8 @@ function deleteVPS($id){
 
 	VPS_Server_Subscribe_To_Lists($vps["vps_server_hostname"]);
 
-	markCronflagOk ("gen_nagios='yes'");
+	$adm_query = "UPDATE $pro_mysql_cronjob_table SET gen_nagios='yes' WHERE 1;";
+	mysql_query($adm_query);
 }
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_a_vps"){
