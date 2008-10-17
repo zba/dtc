@@ -50,7 +50,7 @@ function daily_maintenance (){
 		cleanTempFolder ($path);
 	}
 
-	$q = "SELECT $pro_mysql_admin_table.adm_login,$pro_mysql_admin_table.path,$pro_mysql_pop_table.id,$pro_mysql_pop_table.spam_mailbox
+	$q = "SELECT $pro_mysql_admin_table.adm_login,$pro_mysql_admin_table.path,$pro_mysql_pop_table.id,$pro_mysql_pop_table.spam_mailbox,$pro_mysql_subdomain_table.domain_name
 	FROM $pro_mysql_admin_table,$pro_mysql_domain_table,$pro_mysql_subdomain_table,$pro_mysql_pop_table
 	WHERE $pro_mysql_domain_table.owner = $pro_mysql_admin_table.adm_login
 	AND $pro_mysql_subdomain_table.domain_name = $pro_mysql_domain_table.name";
