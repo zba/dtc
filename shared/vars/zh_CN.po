@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-24 23:56+0800\n"
+"POT-Creation-Date: 2008-10-10 00:18+0800\n"
 "PO-Revision-Date: 2008-08-22 20:19-0500\n"
 "Last-Translator: Wei Cao <caowei@gplhost.com>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -50,7 +50,7 @@ msgstr "这看起来不像是一个邮箱的登陆名..."
 msgid " file "
 msgstr "文件"
 
-#: shared/inc/forms/vps_installation.php:338
+#: shared/inc/forms/vps_installation.php:339
 msgid " maybe there are no logs yet?"
 msgstr ""
 
@@ -432,7 +432,7 @@ msgstr "为这名客户添加一个管理员："
 msgid "Add another service to your account:"
 msgstr "添加另一个服务到您的帐户："
 
-#: admin/dtcrm/product_manager.php:71
+#: admin/dtcrm/product_manager.php:76
 msgid "Add domain"
 msgstr "添加域名"
 
@@ -503,11 +503,6 @@ msgstr "管理员登陆："
 #: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:562
 msgid "Admins list"
 msgstr "管理员列表"
-
-#: admin/dtcrm/product_manager.php:46 admin/dtcrm/product_manager.php:119
-#: admin/dtcrm/product_manager.php:182 admin/dtcrm/product_manager.php:245
-msgid "Aff. kickback"
-msgstr "合作方提成"
 
 #: shared/drawlib/cc_code_popup.php:103
 msgid "Afghanistan"
@@ -941,13 +936,13 @@ msgstr "无法得到VPS信息"
 msgid "Cannot reselect MySQL db name: please enter another and try again."
 msgstr "不能重新选择MySQL数据库名：请重新填入一个再试一次."
 
-#: client/new_account.php:222
+#: client/new_account.php:225
 msgid "Cannot reselect client: registration failed!"
 msgstr "不能重新选择用户：注册失败！"
 
-#: client/new_account.php:188 client/new_account.php:197
-#: client/new_account.php:253 client/new_account.php:326
-#: client/new_account.php:342 shared/dtcrm/draw_adddomain.php:46
+#: client/new_account.php:191 client/new_account.php:200
+#: client/new_account.php:256 client/new_account.php:329
+#: client/new_account.php:345 shared/dtcrm/draw_adddomain.php:46
 msgid "Cannot reselect product: registration failed!"
 msgstr "不能重新选择产品：注册失败！"
 
@@ -955,8 +950,8 @@ msgstr "不能重新选择产品：注册失败！"
 msgid "Cannot reselect transaction: registration failed!"
 msgstr "不能重新选择交易，注册失败！"
 
-#: client/new_account.php:123 client/new_account.php:212
-#: client/new_account.php:318
+#: client/new_account.php:123 client/new_account.php:215
+#: client/new_account.php:321
 msgid "Cannot reselect user: registration failed!"
 msgstr "不能重新选择用户：注册失败！"
 
@@ -1112,6 +1107,11 @@ msgstr "Cocos (Keeling) 群岛"
 msgid "Colombia"
 msgstr "哥伦比亚"
 
+#: admin/dtcrm/product_manager.php:51 admin/dtcrm/product_manager.php:124
+#: admin/dtcrm/product_manager.php:187 admin/dtcrm/product_manager.php:250
+msgid "Commission"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:151
 msgid "Comoros"
 msgstr "科摩罗"
@@ -1250,7 +1250,7 @@ msgstr ""
 msgid "Could not found subdomain in table for folder deletion"
 msgstr "文件夹删除时无法找到子域名"
 
-#: shared/inc/forms/vps_installation.php:338
+#: shared/inc/forms/vps_installation.php:339
 #, fuzzy
 msgid "Could not get VPS install log. Error: "
 msgstr "无法得到远程主机的运行状态.未知的错误:"
@@ -1691,8 +1691,8 @@ msgstr "摘要的选择区间："
 msgid "Digest max mails:"
 msgstr "可以生成摘要的最大的邮件收发量："
 
-#: admin/dtcrm/product_manager.php:51 admin/dtcrm/product_manager.php:124
-#: admin/dtcrm/product_manager.php:187
+#: admin/dtcrm/product_manager.php:56 admin/dtcrm/product_manager.php:129
+#: admin/dtcrm/product_manager.php:192
 msgid "Disk"
 msgstr "磁盘"
 
@@ -1728,10 +1728,6 @@ msgstr "您要过户一个现存的域名还是注册一个新的？"
 #: shared/drawlib/anotherDtc.php:132
 msgid "Documentation"
 msgstr "文档"
-
-#: shared/inc/draw.php:172
-msgid "Dom0 overall graphs"
-msgstr ""
 
 #: shared/gfx/skin/default_layout.php:194
 msgid "Domain Technologie Control : root admin console"
@@ -2642,7 +2638,7 @@ msgstr "安装"
 msgid "Installation"
 msgstr "安装"
 
-#: shared/inc/forms/vps_installation.php:342
+#: shared/inc/forms/vps_installation.php:343
 msgid "Installation log (last 20 lines):"
 msgstr "安装日志(最后20行):"
 
@@ -2844,7 +2840,7 @@ msgstr "成功创建了#name#@#domain#列表！"
 msgid "List name"
 msgstr "列表名:"
 
-#: shared/inc/forms/lists.php:70
+#: shared/inc/forms/lists.php:70 shared/inc/forms/lists.php:97
 msgid "List name:"
 msgstr "列表名:"
 
@@ -2892,7 +2888,7 @@ msgstr "您已注册的域名服务器的列表："
 msgid "List of your subdomains: "
 msgstr "您的子域名列表："
 
-#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:97
+#: shared/inc/forms/lists.php:72
 msgid "List owner"
 msgstr "邮件列表拥有者的列表"
 
@@ -3146,11 +3142,11 @@ msgstr "SSH 最大数量"
 msgid "Max VERP recipients:"
 msgstr "最大VERP收件人数量："
 
-#: admin/dtcrm/product_manager.php:61
+#: admin/dtcrm/product_manager.php:66
 msgid "Max database"
 msgstr "最大数据库"
 
-#: admin/dtcrm/product_manager.php:56
+#: admin/dtcrm/product_manager.php:61
 msgid "Max email"
 msgstr "最大email"
 
@@ -3280,7 +3276,12 @@ msgid "My Account information:"
 msgstr "我的账户信息："
 
 #: shared/inc/draw.php:166
-msgid "My VPS usage graphs"
+#, fuzzy
+msgid "My VPS usage"
+msgstr "VPS名称"
+
+#: shared/inc/draw.php:172
+msgid "My VPS vs. others"
 msgstr ""
 
 #: shared/inc/draw.php:150
@@ -3347,8 +3348,8 @@ msgstr "域名服务器的主机名："
 msgid "Nagios monitoring"
 msgstr "监控"
 
-#: admin/inc/draw_user_admin.php:246 admin/dtcrm/product_manager.php:104
-#: admin/dtcrm/product_manager.php:167 admin/dtcrm/product_manager.php:230
+#: admin/inc/draw_user_admin.php:246 admin/dtcrm/product_manager.php:109
+#: admin/dtcrm/product_manager.php:172 admin/dtcrm/product_manager.php:235
 msgid "Name"
 msgstr "名称"
 
@@ -3489,7 +3490,7 @@ msgstr "新邮件列表："
 msgid "New password:"
 msgstr "新密码："
 
-#: client/new_account.php:295
+#: client/new_account.php:298
 msgid "New service registered successfully!"
 msgstr "新服务注册成功！"
 
@@ -3540,9 +3541,9 @@ msgstr "纽埃"
 #: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1334
 #: admin/inc/dtc_config.php:1351 admin/inc/dtc_config.php:1356
 #: admin/inc/dtc_config.php:1372 admin/inc/dtc_config.php:1401
-#: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:78
-#: admin/dtcrm/product_manager.php:141 admin/dtcrm/product_manager.php:204
-#: admin/dtcrm/product_manager.php:252 client/new_account_form.php:602
+#: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:83
+#: admin/dtcrm/product_manager.php:146 admin/dtcrm/product_manager.php:209
+#: admin/dtcrm/product_manager.php:257 client/new_account_form.php:602
 #: shared/inc/forms/domain_info.php:75 shared/inc/forms/email.php:236
 #: shared/inc/forms/email.php:244 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
@@ -4000,8 +4001,8 @@ msgid "Pending"
 msgstr "待定"
 
 #: admin/inc/renewals.php:427 admin/inc/renewals.php:581
-#: admin/dtcrm/product_manager.php:36 admin/dtcrm/product_manager.php:109
-#: admin/dtcrm/product_manager.php:172 admin/dtcrm/product_manager.php:235
+#: admin/dtcrm/product_manager.php:41 admin/dtcrm/product_manager.php:114
+#: admin/dtcrm/product_manager.php:177 admin/dtcrm/product_manager.php:240
 #: shared/dtcrm/draw.php:87
 msgid "Period"
 msgstr "周期"
@@ -4099,9 +4100,9 @@ msgstr "端口编号:"
 msgid "Portugal"
 msgstr "葡萄牙"
 
-#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:41
-#: admin/dtcrm/product_manager.php:114 admin/dtcrm/product_manager.php:177
-#: admin/dtcrm/product_manager.php:240 shared/dtcrm/draw.php:87
+#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:46
+#: admin/dtcrm/product_manager.php:119 admin/dtcrm/product_manager.php:182
+#: admin/dtcrm/product_manager.php:245 shared/dtcrm/draw.php:87
 #: shared/inc/forms/invoices.php:23
 msgid "Price"
 msgstr "价格"
@@ -4118,8 +4119,8 @@ msgstr "首选DNS："
 msgid "Primary MX address:"
 msgstr "首选MX地址："
 
-#: admin/dtcrm/product_manager.php:76 admin/dtcrm/product_manager.php:139
-#: admin/dtcrm/product_manager.php:202 admin/dtcrm/product_manager.php:250
+#: admin/dtcrm/product_manager.php:81 admin/dtcrm/product_manager.php:144
+#: admin/dtcrm/product_manager.php:207 admin/dtcrm/product_manager.php:255
 msgid "Private"
 msgstr "私有"
 
@@ -4154,12 +4155,12 @@ msgstr "产品ID不存在！"
 msgid "Product ID:"
 msgstr "产品ID："
 
-#: admin/dtcrm/product_manager.php:19 admin/dtcrm/product_manager.php:86
-#: admin/dtcrm/product_manager.php:149 admin/dtcrm/product_manager.php:212
+#: admin/dtcrm/product_manager.php:24 admin/dtcrm/product_manager.php:91
+#: admin/dtcrm/product_manager.php:154 admin/dtcrm/product_manager.php:217
 msgid "Product list editor"
 msgstr "产品列表编辑器"
 
-#: admin/dtcrm/product_manager.php:31
+#: admin/dtcrm/product_manager.php:36
 msgid "Product name"
 msgstr "产品名字"
 
@@ -4219,7 +4220,7 @@ msgstr "配额空间"
 msgid "Quota (MB): "
 msgstr "配额空间(MB)："
 
-#: admin/dtcrm/product_manager.php:129
+#: admin/dtcrm/product_manager.php:134
 msgid "RAM"
 msgstr "RAM"
 
@@ -4278,7 +4279,7 @@ msgstr "注册"
 msgid "Register a domain name"
 msgstr "注册一个域名"
 
-#: client/login.php:6 client/new_account.php:158 client/new_account.php:400
+#: client/login.php:6 client/new_account.php:158 client/new_account.php:403
 msgid "Register a new account"
 msgstr "注册新帐户"
 
@@ -4310,7 +4311,7 @@ msgstr "注册域名服务器失败"
 msgid "Registration of your name server was succesful"
 msgstr "注册域名服务器成功"
 
-#: client/new_account.php:385
+#: client/new_account.php:388
 msgid "Registration successful!"
 msgstr "注册成功！"
 
@@ -4368,8 +4369,8 @@ msgstr "续约报告"
 msgid "Renewal repport"
 msgstr "续约报告"
 
-#: admin/dtcrm/product_manager.php:98 admin/dtcrm/product_manager.php:161
-#: admin/dtcrm/product_manager.php:224
+#: admin/dtcrm/product_manager.php:103 admin/dtcrm/product_manager.php:166
+#: admin/dtcrm/product_manager.php:229
 msgid "Renewal-ID"
 msgstr "续约-ID"
 
@@ -5385,8 +5386,8 @@ msgstr "这个月总传输bytes:"
 msgid "Total: "
 msgstr "总计："
 
-#: admin/dtcrm/product_manager.php:66 admin/dtcrm/product_manager.php:134
-#: admin/dtcrm/product_manager.php:197
+#: admin/dtcrm/product_manager.php:71 admin/dtcrm/product_manager.php:139
+#: admin/dtcrm/product_manager.php:202
 msgid "Traffic"
 msgstr "流量"
 
@@ -5808,7 +5809,7 @@ msgstr "VPS位置："
 msgid "VPS monitoring alerts email address: "
 msgstr "VPS 监控警告 email 地址: "
 
-#: client/new_account.php:180
+#: client/new_account.php:183
 msgid "VPS operating system not recognized"
 msgstr "VPS运行系统不被识别"
 
@@ -6046,9 +6047,9 @@ msgstr "也门共和国"
 #: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1334
 #: admin/inc/dtc_config.php:1351 admin/inc/dtc_config.php:1356
 #: admin/inc/dtc_config.php:1372 admin/inc/dtc_config.php:1401
-#: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:78
-#: admin/dtcrm/product_manager.php:141 admin/dtcrm/product_manager.php:204
-#: admin/dtcrm/product_manager.php:252 client/new_account_form.php:601
+#: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:83
+#: admin/dtcrm/product_manager.php:146 admin/dtcrm/product_manager.php:209
+#: admin/dtcrm/product_manager.php:257 client/new_account_form.php:601
 #: shared/inc/forms/domain_info.php:74 shared/inc/forms/email.php:236
 #: shared/inc/forms/email.php:242 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
@@ -6283,7 +6284,7 @@ msgstr "您的原有的账户是："
 msgid "Your path is restricted to "
 msgstr "您的目录被限定在"
 
-#: client/new_account.php:313
+#: client/new_account.php:316
 msgid "Your registration has been recorded in our database."
 msgstr "您的注册已经被我们的数据库记录．"
 
@@ -6480,6 +6481,9 @@ msgstr "Bytes"
 #, fuzzy
 #~ msgid "Addresse (line3): "
 #~ msgstr "地址："
+
+#~ msgid "Aff. kickback"
+#~ msgstr "合作方提成"
 
 #~ msgid "CPU, IO and Network usage:"
 #~ msgstr "CPU, IO 和网络的使用率："

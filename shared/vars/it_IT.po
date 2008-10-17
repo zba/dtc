@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-24 23:56+0800\n"
+"POT-Creation-Date: 2008-10-10 00:18+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Luca Franceschini <info@atw.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid " file "
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:338
+#: shared/inc/forms/vps_installation.php:339
 msgid " maybe there are no logs yet?"
 msgstr ""
 
@@ -478,7 +478,7 @@ msgstr "Aggiungi un amministratore per questo cliente:"
 msgid "Add another service to your account:"
 msgstr "Denaro rimanente nel mio account:"
 
-#: admin/dtcrm/product_manager.php:71
+#: admin/dtcrm/product_manager.php:76
 msgid "Add domain"
 msgstr "Aggiungi dominio"
 
@@ -555,11 +555,6 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:562
 msgid "Admins list"
 msgstr "Lista amministratori"
-
-#: admin/dtcrm/product_manager.php:46 admin/dtcrm/product_manager.php:119
-#: admin/dtcrm/product_manager.php:182 admin/dtcrm/product_manager.php:245
-msgid "Aff. kickback"
-msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:103
 msgid "Afghanistan"
@@ -1018,13 +1013,13 @@ msgstr ""
 msgid "Cannot reselect MySQL db name: please enter another and try again."
 msgstr ""
 
-#: client/new_account.php:222
+#: client/new_account.php:225
 msgid "Cannot reselect client: registration failed!"
 msgstr ""
 
-#: client/new_account.php:188 client/new_account.php:197
-#: client/new_account.php:253 client/new_account.php:326
-#: client/new_account.php:342 shared/dtcrm/draw_adddomain.php:46
+#: client/new_account.php:191 client/new_account.php:200
+#: client/new_account.php:256 client/new_account.php:329
+#: client/new_account.php:345 shared/dtcrm/draw_adddomain.php:46
 msgid "Cannot reselect product: registration failed!"
 msgstr ""
 
@@ -1032,8 +1027,8 @@ msgstr ""
 msgid "Cannot reselect transaction: registration failed!"
 msgstr ""
 
-#: client/new_account.php:123 client/new_account.php:212
-#: client/new_account.php:318
+#: client/new_account.php:123 client/new_account.php:215
+#: client/new_account.php:321
 msgid "Cannot reselect user: registration failed!"
 msgstr ""
 
@@ -1194,6 +1189,11 @@ msgstr ""
 msgid "Colombia"
 msgstr ""
 
+#: admin/dtcrm/product_manager.php:51 admin/dtcrm/product_manager.php:124
+#: admin/dtcrm/product_manager.php:187 admin/dtcrm/product_manager.php:250
+msgid "Commission"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:151
 msgid "Comoros"
 msgstr ""
@@ -1344,7 +1344,7 @@ msgstr ""
 msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:338
+#: shared/inc/forms/vps_installation.php:339
 #, fuzzy
 msgid "Could not get VPS install log. Error: "
 msgstr "Non posso ottenere lo stato remoto. Errore sconosciuto: "
@@ -1802,8 +1802,8 @@ msgstr "Intervallo di digest:"
 msgid "Digest max mails:"
 msgstr "Numero massimo emails di digest:"
 
-#: admin/dtcrm/product_manager.php:51 admin/dtcrm/product_manager.php:124
-#: admin/dtcrm/product_manager.php:187
+#: admin/dtcrm/product_manager.php:56 admin/dtcrm/product_manager.php:129
+#: admin/dtcrm/product_manager.php:192
 msgid "Disk"
 msgstr "Disco"
 
@@ -1839,10 +1839,6 @@ msgstr "Vuoi trasferire un dominio esistente o registrare un nuovo dominio?"
 #: shared/drawlib/anotherDtc.php:132
 msgid "Documentation"
 msgstr "Manuale uso"
-
-#: shared/inc/draw.php:172
-msgid "Dom0 overall graphs"
-msgstr ""
 
 #: shared/gfx/skin/default_layout.php:194
 msgid "Domain Technologie Control : root admin console"
@@ -2771,7 +2767,7 @@ msgstr "Installa"
 msgid "Installation"
 msgstr "Installa"
 
-#: shared/inc/forms/vps_installation.php:342
+#: shared/inc/forms/vps_installation.php:343
 msgid "Installation log (last 20 lines):"
 msgstr ""
 
@@ -2979,7 +2975,7 @@ msgstr "Lista #name#@#domain# creata con successo!"
 msgid "List name"
 msgstr "Nome lista"
 
-#: shared/inc/forms/lists.php:70
+#: shared/inc/forms/lists.php:70 shared/inc/forms/lists.php:97
 #, fuzzy
 msgid "List name:"
 msgstr "Nome lista"
@@ -3030,7 +3026,7 @@ msgstr "Lista dei tuoi name-server registrati:"
 msgid "List of your subdomains: "
 msgstr "Lista dei tuoi sottodomini: "
 
-#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:97
+#: shared/inc/forms/lists.php:72
 msgid "List owner"
 msgstr "Proprietario lista"
 
@@ -3294,12 +3290,12 @@ msgstr ""
 msgid "Max VERP recipients:"
 msgstr "Numero massimo di destinatari VERP:"
 
-#: admin/dtcrm/product_manager.php:61
+#: admin/dtcrm/product_manager.php:66
 #, fuzzy
 msgid "Max database"
 msgstr "E necessario un database"
 
-#: admin/dtcrm/product_manager.php:56
+#: admin/dtcrm/product_manager.php:61
 #, fuzzy
 msgid "Max email"
 msgstr "Mia e-mail "
@@ -3434,7 +3430,12 @@ msgid "My Account information:"
 msgstr "Informazioni sul mio profilo:"
 
 #: shared/inc/draw.php:166
-msgid "My VPS usage graphs"
+#, fuzzy
+msgid "My VPS usage"
+msgstr "Nome:"
+
+#: shared/inc/draw.php:172
+msgid "My VPS vs. others"
 msgstr ""
 
 #: shared/inc/draw.php:150
@@ -3501,8 +3502,8 @@ msgstr "Hostname del name server:"
 msgid "Nagios monitoring"
 msgstr "Nazione"
 
-#: admin/inc/draw_user_admin.php:246 admin/dtcrm/product_manager.php:104
-#: admin/dtcrm/product_manager.php:167 admin/dtcrm/product_manager.php:230
+#: admin/inc/draw_user_admin.php:246 admin/dtcrm/product_manager.php:109
+#: admin/dtcrm/product_manager.php:172 admin/dtcrm/product_manager.php:235
 msgid "Name"
 msgstr "Nome"
 
@@ -3652,7 +3653,7 @@ msgstr "Lista dei tuoi database:"
 msgid "New password:"
 msgstr "Nuova password:"
 
-#: client/new_account.php:295
+#: client/new_account.php:298
 #, fuzzy
 msgid "New service registered successfully!"
 msgstr "Registrazione nome a dominio"
@@ -3705,9 +3706,9 @@ msgstr ""
 #: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1334
 #: admin/inc/dtc_config.php:1351 admin/inc/dtc_config.php:1356
 #: admin/inc/dtc_config.php:1372 admin/inc/dtc_config.php:1401
-#: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:78
-#: admin/dtcrm/product_manager.php:141 admin/dtcrm/product_manager.php:204
-#: admin/dtcrm/product_manager.php:252 client/new_account_form.php:602
+#: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:83
+#: admin/dtcrm/product_manager.php:146 admin/dtcrm/product_manager.php:209
+#: admin/dtcrm/product_manager.php:257 client/new_account_form.php:602
 #: shared/inc/forms/domain_info.php:75 shared/inc/forms/email.php:236
 #: shared/inc/forms/email.php:244 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
@@ -4184,8 +4185,8 @@ msgid "Pending"
 msgstr ""
 
 #: admin/inc/renewals.php:427 admin/inc/renewals.php:581
-#: admin/dtcrm/product_manager.php:36 admin/dtcrm/product_manager.php:109
-#: admin/dtcrm/product_manager.php:172 admin/dtcrm/product_manager.php:235
+#: admin/dtcrm/product_manager.php:41 admin/dtcrm/product_manager.php:114
+#: admin/dtcrm/product_manager.php:177 admin/dtcrm/product_manager.php:240
 #: shared/dtcrm/draw.php:87
 msgid "Period"
 msgstr "Periodo "
@@ -4291,9 +4292,9 @@ msgstr "Tel:"
 msgid "Portugal"
 msgstr "Traffico totale"
 
-#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:41
-#: admin/dtcrm/product_manager.php:114 admin/dtcrm/product_manager.php:177
-#: admin/dtcrm/product_manager.php:240 shared/dtcrm/draw.php:87
+#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:46
+#: admin/dtcrm/product_manager.php:119 admin/dtcrm/product_manager.php:182
+#: admin/dtcrm/product_manager.php:245 shared/dtcrm/draw.php:87
 #: shared/inc/forms/invoices.php:23
 msgid "Price"
 msgstr "Prezzo"
@@ -4310,8 +4311,8 @@ msgstr "DNS primario:"
 msgid "Primary MX address:"
 msgstr "Indirizzo MX primario:"
 
-#: admin/dtcrm/product_manager.php:76 admin/dtcrm/product_manager.php:139
-#: admin/dtcrm/product_manager.php:202 admin/dtcrm/product_manager.php:250
+#: admin/dtcrm/product_manager.php:81 admin/dtcrm/product_manager.php:144
+#: admin/dtcrm/product_manager.php:207 admin/dtcrm/product_manager.php:255
 msgid "Private"
 msgstr ""
 
@@ -4346,12 +4347,12 @@ msgstr "ID prodotto non valido!"
 msgid "Product ID:"
 msgstr "ID prodotto:"
 
-#: admin/dtcrm/product_manager.php:19 admin/dtcrm/product_manager.php:86
-#: admin/dtcrm/product_manager.php:149 admin/dtcrm/product_manager.php:212
+#: admin/dtcrm/product_manager.php:24 admin/dtcrm/product_manager.php:91
+#: admin/dtcrm/product_manager.php:154 admin/dtcrm/product_manager.php:217
 msgid "Product list editor"
 msgstr ""
 
-#: admin/dtcrm/product_manager.php:31
+#: admin/dtcrm/product_manager.php:36
 #, fuzzy
 msgid "Product name"
 msgstr "ID prodotto"
@@ -4417,7 +4418,7 @@ msgstr ""
 msgid "Quota (MB): "
 msgstr "Quota disco (MB):"
 
-#: admin/dtcrm/product_manager.php:129
+#: admin/dtcrm/product_manager.php:134
 msgid "RAM"
 msgstr ""
 
@@ -4479,7 +4480,7 @@ msgstr "Registrazione nome a dominio"
 msgid "Register a domain name"
 msgstr "Registra un nome a dominio"
 
-#: client/login.php:6 client/new_account.php:158 client/new_account.php:400
+#: client/login.php:6 client/new_account.php:158 client/new_account.php:403
 msgid "Register a new account"
 msgstr "Registra un nuovo account"
 
@@ -4512,7 +4513,7 @@ msgstr "Registrazione del name server fallita"
 msgid "Registration of your name server was succesful"
 msgstr "Registrazione del tuo name server avvenuta con successo"
 
-#: client/new_account.php:385
+#: client/new_account.php:388
 #, fuzzy
 msgid "Registration successful!"
 msgstr "Registrazione nome a dominio"
@@ -4575,8 +4576,8 @@ msgstr ""
 msgid "Renewal repport"
 msgstr ""
 
-#: admin/dtcrm/product_manager.php:98 admin/dtcrm/product_manager.php:161
-#: admin/dtcrm/product_manager.php:224
+#: admin/dtcrm/product_manager.php:103 admin/dtcrm/product_manager.php:166
+#: admin/dtcrm/product_manager.php:229
 msgid "Renewal-ID"
 msgstr ""
 
@@ -5623,8 +5624,8 @@ msgstr "Bytes trasferiti in totale questo mese:"
 msgid "Total: "
 msgstr ""
 
-#: admin/dtcrm/product_manager.php:66 admin/dtcrm/product_manager.php:134
-#: admin/dtcrm/product_manager.php:197
+#: admin/dtcrm/product_manager.php:71 admin/dtcrm/product_manager.php:139
+#: admin/dtcrm/product_manager.php:202
 msgid "Traffic"
 msgstr "Traffico"
 
@@ -6070,7 +6071,7 @@ msgstr "Destinazione del server VPS: "
 msgid "VPS monitoring alerts email address: "
 msgstr ""
 
-#: client/new_account.php:180
+#: client/new_account.php:183
 #, fuzzy
 msgid "VPS operating system not recognized"
 msgstr "Tipo di sistema operativo non supportato"
@@ -6307,9 +6308,9 @@ msgstr ""
 #: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1334
 #: admin/inc/dtc_config.php:1351 admin/inc/dtc_config.php:1356
 #: admin/inc/dtc_config.php:1372 admin/inc/dtc_config.php:1401
-#: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:78
-#: admin/dtcrm/product_manager.php:141 admin/dtcrm/product_manager.php:204
-#: admin/dtcrm/product_manager.php:252 client/new_account_form.php:601
+#: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:83
+#: admin/dtcrm/product_manager.php:146 admin/dtcrm/product_manager.php:209
+#: admin/dtcrm/product_manager.php:257 client/new_account_form.php:601
 #: shared/inc/forms/domain_info.php:74 shared/inc/forms/email.php:236
 #: shared/inc/forms/email.php:242 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
@@ -6562,7 +6563,7 @@ msgstr "Tuo account hosting:"
 msgid "Your path is restricted to "
 msgstr "Il tuo VPS è stato registrato il: "
 
-#: client/new_account.php:313
+#: client/new_account.php:316
 #, fuzzy
 msgid "Your registration has been recorded in our database."
 msgstr "Il pagamento è stato aggiunto al vostro conto"

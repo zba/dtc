@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-24 23:56+0800\n"
+"POT-Creation-Date: 2008-10-10 00:18+0800\n"
 "PO-Revision-Date: 2008-09-03 22:00+0100\n"
 "Last-Translator: Pera <iboki@yahoo.com>\n"
 "Language-Team: Pera <iboki@yahoo.com>\n"
@@ -50,7 +50,7 @@ msgstr " ne izgleda kao korisničko ime za email ..."
 msgid " file "
 msgstr " fajl "
 
-#: shared/inc/forms/vps_installation.php:338
+#: shared/inc/forms/vps_installation.php:339
 msgid " maybe there are no logs yet?"
 msgstr " moguće je da trenutno nema logova?"
 
@@ -440,7 +440,7 @@ msgstr "Dodaj administratora za ovog korisnika:"
 msgid "Add another service to your account:"
 msgstr "Dodajte drugi servis vašem nalogu:"
 
-#: admin/dtcrm/product_manager.php:71
+#: admin/dtcrm/product_manager.php:76
 msgid "Add domain"
 msgstr "Dodaj domen"
 
@@ -511,11 +511,6 @@ msgstr "Korisničko ime admina:"
 #: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:562
 msgid "Admins list"
 msgstr "Lista Administratora"
-
-#: admin/dtcrm/product_manager.php:46 admin/dtcrm/product_manager.php:119
-#: admin/dtcrm/product_manager.php:182 admin/dtcrm/product_manager.php:245
-msgid "Aff. kickback"
-msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:103
 msgid "Afghanistan"
@@ -962,13 +957,13 @@ msgstr ""
 "Nije moguće ponovno biranje MySQL baze: molimo ukucajte drugo ime baze i "
 "pokušajte ponovo."
 
-#: client/new_account.php:222
+#: client/new_account.php:225
 msgid "Cannot reselect client: registration failed!"
 msgstr "Nije moguće izabrati klijenta: Registracija nije uspela!"
 
-#: client/new_account.php:188 client/new_account.php:197
-#: client/new_account.php:253 client/new_account.php:326
-#: client/new_account.php:342 shared/dtcrm/draw_adddomain.php:46
+#: client/new_account.php:191 client/new_account.php:200
+#: client/new_account.php:256 client/new_account.php:329
+#: client/new_account.php:345 shared/dtcrm/draw_adddomain.php:46
 msgid "Cannot reselect product: registration failed!"
 msgstr "Nije moguće ponovno biranje proizvoda: registracija nije uspela!"
 
@@ -976,8 +971,8 @@ msgstr "Nije moguće ponovno biranje proizvoda: registracija nije uspela!"
 msgid "Cannot reselect transaction: registration failed!"
 msgstr "Nije moguće ponovno biranje transakcije: registracija nije uspela!"
 
-#: client/new_account.php:123 client/new_account.php:212
-#: client/new_account.php:318
+#: client/new_account.php:123 client/new_account.php:215
+#: client/new_account.php:321
 msgid "Cannot reselect user: registration failed!"
 msgstr "Konnte Benutzer nicht erneut auswählen: Registrierung fehlgeschlagen!"
 
@@ -1133,6 +1128,11 @@ msgstr ""
 msgid "Colombia"
 msgstr "Colombia"
 
+#: admin/dtcrm/product_manager.php:51 admin/dtcrm/product_manager.php:124
+#: admin/dtcrm/product_manager.php:187 admin/dtcrm/product_manager.php:250
+msgid "Commission"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:151
 msgid "Comoros"
 msgstr "Comoros"
@@ -1274,7 +1274,7 @@ msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
 "Konnte beim Löschen des Ordners die Subdomain nicht in der Tabelle finden"
 
-#: shared/inc/forms/vps_installation.php:338
+#: shared/inc/forms/vps_installation.php:339
 msgid "Could not get VPS install log. Error: "
 msgstr "VPS log instalacije nije moguće otvoriti. Greška: "
 
@@ -1719,8 +1719,8 @@ msgstr "Interval izbora:"
 msgid "Digest max mails:"
 msgstr "Maximale Zahl der Nachrichten in der Zusammenfassung:"
 
-#: admin/dtcrm/product_manager.php:51 admin/dtcrm/product_manager.php:124
-#: admin/dtcrm/product_manager.php:187
+#: admin/dtcrm/product_manager.php:56 admin/dtcrm/product_manager.php:129
+#: admin/dtcrm/product_manager.php:192
 msgid "Disk"
 msgstr "Disk"
 
@@ -1757,10 +1757,6 @@ msgstr ""
 #: shared/drawlib/anotherDtc.php:132
 msgid "Documentation"
 msgstr "Dokumentacija"
-
-#: shared/inc/draw.php:172
-msgid "Dom0 overall graphs"
-msgstr ""
 
 #: shared/gfx/skin/default_layout.php:194
 msgid "Domain Technologie Control : root admin console"
@@ -2690,7 +2686,7 @@ msgstr "Instalacija"
 msgid "Installation"
 msgstr "Instalacija"
 
-#: shared/inc/forms/vps_installation.php:342
+#: shared/inc/forms/vps_installation.php:343
 msgid "Installation log (last 20 lines):"
 msgstr ""
 
@@ -2894,7 +2890,7 @@ msgstr "Lista #ime#@#domen# je uspešno kreiran!"
 msgid "List name"
 msgstr "Ime liste"
 
-#: shared/inc/forms/lists.php:70
+#: shared/inc/forms/lists.php:70 shared/inc/forms/lists.php:97
 msgid "List name:"
 msgstr "Ime liste:"
 
@@ -2942,7 +2938,7 @@ msgstr "Lista vaših registrovanih name servera:"
 msgid "List of your subdomains: "
 msgstr "Lista vaših poddomena: "
 
-#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:97
+#: shared/inc/forms/lists.php:72
 msgid "List owner"
 msgstr "Lista vlasnika"
 
@@ -3198,11 +3194,11 @@ msgstr "Max SSH"
 msgid "Max VERP recipients:"
 msgstr "Max VERP primaoca:"
 
-#: admin/dtcrm/product_manager.php:61
+#: admin/dtcrm/product_manager.php:66
 msgid "Max database"
 msgstr "Max. DB"
 
-#: admin/dtcrm/product_manager.php:56
+#: admin/dtcrm/product_manager.php:61
 msgid "Max email"
 msgstr "Max emailova"
 
@@ -3332,7 +3328,12 @@ msgid "My Account information:"
 msgstr "Informacije o nalogu:"
 
 #: shared/inc/draw.php:166
-msgid "My VPS usage graphs"
+#, fuzzy
+msgid "My VPS usage"
+msgstr "VPS ime"
+
+#: shared/inc/draw.php:172
+msgid "My VPS vs. others"
 msgstr ""
 
 #: shared/inc/draw.php:150
@@ -3402,8 +3403,8 @@ msgstr "Name server hostname: "
 msgid "Nagios monitoring"
 msgstr "Praćenje  servisa"
 
-#: admin/inc/draw_user_admin.php:246 admin/dtcrm/product_manager.php:104
-#: admin/dtcrm/product_manager.php:167 admin/dtcrm/product_manager.php:230
+#: admin/inc/draw_user_admin.php:246 admin/dtcrm/product_manager.php:109
+#: admin/dtcrm/product_manager.php:172 admin/dtcrm/product_manager.php:235
 msgid "Name"
 msgstr "Ime"
 
@@ -3544,7 +3545,7 @@ msgstr "Nova mailing lista:"
 msgid "New password:"
 msgstr "Nova lozinka:"
 
-#: client/new_account.php:295
+#: client/new_account.php:298
 msgid "New service registered successfully!"
 msgstr "Novi servis je uspešno registrovan!"
 
@@ -3595,9 +3596,9 @@ msgstr "Niue"
 #: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1334
 #: admin/inc/dtc_config.php:1351 admin/inc/dtc_config.php:1356
 #: admin/inc/dtc_config.php:1372 admin/inc/dtc_config.php:1401
-#: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:78
-#: admin/dtcrm/product_manager.php:141 admin/dtcrm/product_manager.php:204
-#: admin/dtcrm/product_manager.php:252 client/new_account_form.php:602
+#: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:83
+#: admin/dtcrm/product_manager.php:146 admin/dtcrm/product_manager.php:209
+#: admin/dtcrm/product_manager.php:257 client/new_account_form.php:602
 #: shared/inc/forms/domain_info.php:75 shared/inc/forms/email.php:236
 #: shared/inc/forms/email.php:244 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
@@ -4063,8 +4064,8 @@ msgid "Pending"
 msgstr "Na čekanju"
 
 #: admin/inc/renewals.php:427 admin/inc/renewals.php:581
-#: admin/dtcrm/product_manager.php:36 admin/dtcrm/product_manager.php:109
-#: admin/dtcrm/product_manager.php:172 admin/dtcrm/product_manager.php:235
+#: admin/dtcrm/product_manager.php:41 admin/dtcrm/product_manager.php:114
+#: admin/dtcrm/product_manager.php:177 admin/dtcrm/product_manager.php:240
 #: shared/dtcrm/draw.php:87
 msgid "Period"
 msgstr "Period"
@@ -4164,9 +4165,9 @@ msgstr "Port Nr.: "
 msgid "Portugal"
 msgstr "Portugal"
 
-#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:41
-#: admin/dtcrm/product_manager.php:114 admin/dtcrm/product_manager.php:177
-#: admin/dtcrm/product_manager.php:240 shared/dtcrm/draw.php:87
+#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:46
+#: admin/dtcrm/product_manager.php:119 admin/dtcrm/product_manager.php:182
+#: admin/dtcrm/product_manager.php:245 shared/dtcrm/draw.php:87
 #: shared/inc/forms/invoices.php:23
 msgid "Price"
 msgstr "Cena"
@@ -4183,8 +4184,8 @@ msgstr "Primarni DNS:"
 msgid "Primary MX address:"
 msgstr "Primarna MX adresa:"
 
-#: admin/dtcrm/product_manager.php:76 admin/dtcrm/product_manager.php:139
-#: admin/dtcrm/product_manager.php:202 admin/dtcrm/product_manager.php:250
+#: admin/dtcrm/product_manager.php:81 admin/dtcrm/product_manager.php:144
+#: admin/dtcrm/product_manager.php:207 admin/dtcrm/product_manager.php:255
 msgid "Private"
 msgstr "Privatno"
 
@@ -4219,12 +4220,12 @@ msgstr "ID proizvoda nije validno!"
 msgid "Product ID:"
 msgstr "ID proizvoda:"
 
-#: admin/dtcrm/product_manager.php:19 admin/dtcrm/product_manager.php:86
-#: admin/dtcrm/product_manager.php:149 admin/dtcrm/product_manager.php:212
+#: admin/dtcrm/product_manager.php:24 admin/dtcrm/product_manager.php:91
+#: admin/dtcrm/product_manager.php:154 admin/dtcrm/product_manager.php:217
 msgid "Product list editor"
 msgstr "Izmena proizvoda"
 
-#: admin/dtcrm/product_manager.php:31
+#: admin/dtcrm/product_manager.php:36
 msgid "Product name"
 msgstr "Ime proizvoda"
 
@@ -4284,7 +4285,7 @@ msgstr "Ograničenje"
 msgid "Quota (MB): "
 msgstr "Ograničenje (MB):"
 
-#: admin/dtcrm/product_manager.php:129
+#: admin/dtcrm/product_manager.php:134
 msgid "RAM"
 msgstr "RAM"
 
@@ -4343,7 +4344,7 @@ msgstr "Registracija"
 msgid "Register a domain name"
 msgstr "Registracija domena"
 
-#: client/login.php:6 client/new_account.php:158 client/new_account.php:400
+#: client/login.php:6 client/new_account.php:158 client/new_account.php:403
 msgid "Register a new account"
 msgstr "Registracija novog naloga"
 
@@ -4375,7 +4376,7 @@ msgstr "Registracije name servera nije uspešna"
 msgid "Registration of your name server was succesful"
 msgstr "Registracija name servera je uspešna"
 
-#: client/new_account.php:385
+#: client/new_account.php:388
 msgid "Registration successful!"
 msgstr "Registracija uspešna!"
 
@@ -4433,8 +4434,8 @@ msgstr "Izveštaj pretplata"
 msgid "Renewal repport"
 msgstr "Izveštaj pretplata"
 
-#: admin/dtcrm/product_manager.php:98 admin/dtcrm/product_manager.php:161
-#: admin/dtcrm/product_manager.php:224
+#: admin/dtcrm/product_manager.php:103 admin/dtcrm/product_manager.php:166
+#: admin/dtcrm/product_manager.php:229
 msgid "Renewal-ID"
 msgstr "ID produženja naloga"
 
@@ -5470,8 +5471,8 @@ msgstr "Ukupno prenešeno bita ovog meseca:"
 msgid "Total: "
 msgstr "Ukupno: "
 
-#: admin/dtcrm/product_manager.php:66 admin/dtcrm/product_manager.php:134
-#: admin/dtcrm/product_manager.php:197
+#: admin/dtcrm/product_manager.php:71 admin/dtcrm/product_manager.php:139
+#: admin/dtcrm/product_manager.php:202
 msgid "Traffic"
 msgstr "Protok"
 
@@ -5895,7 +5896,7 @@ msgstr "VPS-Standort: "
 msgid "VPS monitoring alerts email address: "
 msgstr ""
 
-#: client/new_account.php:180
+#: client/new_account.php:183
 msgid "VPS operating system not recognized"
 msgstr "Operativni sistem VPS-a nije prepoznat"
 
@@ -6136,9 +6137,9 @@ msgstr "Yemen, Republic of"
 #: admin/inc/dtc_config.php:1329 admin/inc/dtc_config.php:1334
 #: admin/inc/dtc_config.php:1351 admin/inc/dtc_config.php:1356
 #: admin/inc/dtc_config.php:1372 admin/inc/dtc_config.php:1401
-#: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:78
-#: admin/dtcrm/product_manager.php:141 admin/dtcrm/product_manager.php:204
-#: admin/dtcrm/product_manager.php:252 client/new_account_form.php:601
+#: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:83
+#: admin/dtcrm/product_manager.php:146 admin/dtcrm/product_manager.php:209
+#: admin/dtcrm/product_manager.php:257 client/new_account_form.php:601
 #: shared/inc/forms/domain_info.php:74 shared/inc/forms/email.php:236
 #: shared/inc/forms/email.php:242 shared/inc/forms/email.php:271
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
@@ -6385,7 +6386,7 @@ msgstr "Vaš prošli nalog je bio: "
 msgid "Your path is restricted to "
 msgstr "Vaša putanja je ograničena na"
 
-#: client/new_account.php:313
+#: client/new_account.php:316
 msgid "Your registration has been recorded in our database."
 msgstr "Vaša registracija je zabeležena u bazi!"
 
