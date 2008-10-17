@@ -23,7 +23,7 @@ function cleanSPAMFolder($path){
 		$cmd = "if [ -f \"$path/courierimapacl\" ] ; then touch \"$path/courierimapacl\" ; fi";
 		echo $cmd."\n";
 		exec($cmd);
-		$cmd = "find '$path' -atime +20 -exec rm {} \\;";
+		$cmd = "find '$path' -type f -mtime +20 -exec rm {} \\;";
 		echo $cmd."\n";
 		exec($cmd);
 	}
@@ -50,19 +50,21 @@ function daily_maintenance (){
 		cleanTempFolder ($path);
 	}
 
-	$q = "SELECT $pro_mysql_admin_table.adm_login,$pro_mysql_admin_table.path,$pro_mysql_pop_table.id,$pro_mysql_pop_table.spam_mailbox,$pro_mysql_subdomain_table.domain_name
+	$q = "SELECT $pro_mysql_pop_table.fullemail,$pro_mysql_admin_table.adm_login,$pro_mysql_admin_table.path,$pro_mysql_pop_table.id,$pro_mysql_pop_table.spam_mailbox,$pro_mysql_pop_table.mbox_host
 	FROM $pro_mysql_admin_table,$pro_mysql_domain_table,$pro_mysql_subdomain_table,$pro_mysql_pop_table
 	WHERE $pro_mysql_domain_table.owner = $pro_mysql_admin_table.adm_login
-	AND $pro_mysql_subdomain_table.domain_name = $pro_mysql_domain_table.name";
+	AND $pro_mysql_pop_table.mbox_host = $pro_mysql_domain_table.name
+	GROUP BY $pro_mysql_pop_table.fullemail";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$adm_path = $a["path"];
-		$domain = $a["domain_name"];
+		$domain_name = $a["mbox_host"];
 		$boxid = $a["id"];
 		$spambox_name = $a["spam_mailbox"];
-		$path = "$adm_path/$domain/Mailboxes/$boxid/.$spambox_name";
+		$path = "$adm_path/$domain_name/Mailboxs/$boxid/Maildir/.$spambox_name";
+		echo "Cleaning $path\n";
 		cleanSPAMFolder($path);
 	}
 }
