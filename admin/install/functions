@@ -2147,7 +2147,7 @@ mailbox_size_limit = 0
 " >> $TMP_FILE
 
 			FOUND_DKIMPROXY=0;
-			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new ] ; then
+			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new -o -x /usr/sbin/amavisd ] ; then
 				if [ -x /usr/sbin/dkimproxy.in -o -x /usr/bin/dkimproxy.in -o -x /usr/local/sbin/dkimproxy.in -o -x /usr/local/bin/dkimproxy.in ] ; then
 					FOUND_DKIMPROXY=1;
 					echo "# use check_access directive to filter all incoming mail
