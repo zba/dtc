@@ -88,7 +88,6 @@ function listTypePopup(){
 	global $panel_type;
 
 	if($panel_type!="cronjob"){
-		$_SESSION["cur_admlist_type"] = "";
 		if(isset($_REQUEST["admlist_type"]) && $_REQUEST["admlist_type"] != ""){
 			$_SESSION["cur_admlist_type"] = $_REQUEST["admlist_type"];
 			$admlist_type = $_REQUEST["admlist_type"];
