@@ -935,6 +935,7 @@ function drawGeneralConfig(){
 				"type" => "text"),
 			"apache_directoryindex" => array(
 				"legend" => _("Apache DirectoryIndex: "),
+				"size" => "50",
 				"type" => "text")));
 	$out .= configEditorTemplate ($dsc);
 
