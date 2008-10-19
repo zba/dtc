@@ -311,35 +311,32 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 	$out .= "<br>".helpLink("PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It");
 
 	// A bit of AJAX to have the sever's install log!
-//	if($reinstall_os == 1){
+	if($reinstall_os == 1){
 		if($panel_type == "admin"){
 			$path_url = "/dtcadmin";
 		}else{
 			$path_url = "/dtc";
 		}
-		$ajax_call_url = "https://".$_SERVER["SERVER_NAME"]."$path_url/get_install_log.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name";
-/*		$out .= '
-<script language="javascript" src="dtc_ajax.js"></script>
-<script type="text/javascript" language="javascript">
-
-function dtc_ajax_callback(text) {
-        document.getElementById("reinstall_os_log").innerHTML = text;
-}
-function ajaxLogConsole() {
-	dtc_ajax = new dtc_ajax_submit_url("'.$path_url.'");
-	dtc_ajax.submit_url();
-}
-</script>';*/
-		$out .= '<script language="javascript" src="gfx/xanjaxXHR.js"></script>';
-//	}
-
-	$r = $soap_client->call("getVPSInstallLog",array("vpsname" => $vps_name,"numlines" => "20"),"","","");
-	$err = $soap_client->getError();
-	if($err){
-		$r = _("Could not get VPS install log. Error: ").$err._(" maybe there are no logs yet?");
+		$ajax_url = "https://".$_SERVER["SERVER_NAME"]."$path_url/get_install_log.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name";
+		$ajax_auth = "adm_login=".$adm_login."&adm_pass=".$adm_pass."&vps_node=".$vps_node."&vps_name=".$vps_name;
+		$r = "";
+	}else{
+		$r = $soap_client->call("getVPSInstallLog",array("vpsname" => $vps_name,"numlines" => "20"),"","","");
+		$err = $soap_client->getError();
+		if($err){
+			$r = _("Could not get VPS install log. Error: ").$err._(" maybe there are no logs yet?");
+		}
+		// print_r($r);
+		$r = str_replace("\n\n","\n",$r);
 	}
-	// print_r($r);
-	$r = str_replace("\n\n","\n",$r);
+	$out .= "<script language=\"javascript\" src=\"gfx/xanjaxXHR.js\"></script>\n";
+
+	$out .= "<script type=\"text/javascript\">
+			ajaxPath=$ajax_url;
+			ajaxAuth=$ajax_auth;\n</script>\n";
+
+	$out .= "<h3>". _("Installation log:") ."</h3><br>\n";
+
 	$out .= "<h3>". _("Installation log (last 20 lines):") ."</h3><br>";
 
 	$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
