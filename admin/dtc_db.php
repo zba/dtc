@@ -78,7 +78,8 @@ $dtc_database = array(
 			"dollar" => "decimal(9,2) NOT NULL default '0.00' ",
 			"disk_quota_mb" => "int(9) NOT NULL default '0' ",
 			"bw_quota_per_month_gb" => "int(9) NOT NULL default '0' ",
-			"expire" => "date NOT NULL default '0000-00-00' "
+			"expire" => "date NOT NULL default '0000-00-00' ",
+			"active" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)",
 		"keys" => array(
