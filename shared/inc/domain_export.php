@@ -216,7 +216,7 @@ function recreateAllRows($table,$delete_cond,$ar,$vars,$added_var,$added_val){
 					$values .= "'" . $cur_item[ $vars_ar[$i] ] ."'";
 				}
 			}
-			$q = "INSERT INTO $table ($vars $added_var) VALUES ($values $added_val);";
+			$q = "INSERT IGNORE INTO $table ($vars $added_var) VALUES ($values $added_val);";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		}
 	}elseif(isset($ar["item"])){
@@ -234,7 +234,7 @@ function recreateAllRows($table,$delete_cond,$ar,$vars,$added_var,$added_val){
 				$values .= "'" . $cur_item[ $vars_ar[$i] ] ."'";
 			}
 		}
-		$q = "INSERT INTO $table ($vars $added_var) VALUES ($values $added_val);";
+		$q = "INSERT IGNORE INTO $table ($vars $added_var) VALUES ($values $added_val);";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	}
 }
@@ -289,12 +289,10 @@ function domainImport($path_from,$adm_login,$adm_pass){
 	}
 	for($doms=0;$doms<$nbr_domains;$doms++){
 		// We will work on each domains one by one
+		$dom_name = $all_domains[$doms];
 		if( isset($dom_ar["domains"]["item"]) ){
-			$all_domains = array_keys($dom_ar["domains"]["item"][$doms]);
-			$dom_name = $all_domains[0];
-			$cur_dom = $dom_ar["domains"]["item"][$doms][$dom_name];
+			$cur_dom = $dom_ar["domains"]["item"][$dom_name];
 		}else{
-			$dom_name = $all_domains[$doms];
 			$cur_dom = $dom_ar["domains"][$dom_name];
 		}
 
