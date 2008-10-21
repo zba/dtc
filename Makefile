@@ -249,8 +249,11 @@ SKIN_STUFF=shared/gfx/skin/default_layout.php shared/gfx/skin/bwoup/layout.php
 
 PAYMENT_API_PHP_SCRIPT_FILES=shared/maxmind/CreditCardFraudDetection.php shared/maxmind/HTTPBase.php \
 shared/maxmind/LocationVerification.php shared/maxmind/TelephoneVerification.php \
-shared/securepay/paiement_config.php shared/securepay/paiement.php shared/securepay/pay_functions.php shared/securepay/gateways/enets.php \
-shared/securepay/gateways/paypal.php shared/securepay/gateways/worldpay.php shared/securepay/gateways/webmoney.php
+shared/securepay/pay_functions.php \
+shared/securepay/modules/enets/main.php \
+shared/securepay/modules/paypal/main.php \
+shared/securepay/modules/worldpay/main.php \
+shared/securepay/modules/webmoney/main.php
 
 WEB_SCRIPT_FILES=$(ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES) $(ADMIN_GENFILE_PHP_SCRIPT_FILES) $(ADMIN_INC_PHP_SCRIPT_FILES) \
 $(CLIENT_PHP_SCRIPT_FILES) $(EMAIL_PHP_SCRIPT_FILES) $(SHARED_PHP_SCRIPT_FILES) $(SHARED_INC_PHP_SCRIPT_FILES) \
@@ -332,7 +335,8 @@ shared/gfx/securepay shared/gfx/language/en/pub shared/gfx/language/fr/pub share
 shared/gfx/skin/tex shared/gfx/skin/ruffdogs_mozilla shared/gfx/skin/darkblue shared/gfx/skin/bwoup/gfx/config-icon \
 shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar \
 shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
-shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc admin/patches
+shared/visitors_template shared/template shared/maxmind client/inc email/inc admin/patches shared/securepay/modules \
+shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney shared/securepay/modules/worldpay
 
 LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW sr_RS
 

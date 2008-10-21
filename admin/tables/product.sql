@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS product (
   id int(11) NOT NULL auto_increment,
   price_dollar varchar(9) NOT NULL default '',
   price_euro varchar(9) NOT NULL default '',
+  setup_fee decimal(15,2) NOT NULL default '0.00',
   name varchar(255) NOT NULL default '',
   quota_disk int(9) NOT NULL default '0',
   memory_size int(9) NOT NULL default '48',

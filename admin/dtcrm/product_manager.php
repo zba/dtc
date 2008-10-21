@@ -46,6 +46,11 @@ function productManager(){
 				"legend" => _("Price") ,
 				"size" => "4"
 				),
+			"setup_fee" => array(
+				"type" => "text",
+				"legend" => _("Setup fee") ,
+				"size" => "4"
+				),
 			"affiliate_kickback" => array(
 				"type" => "text",
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
@@ -119,6 +124,11 @@ function productManager(){
 				"legend" => _("Price") ,
 				"size" => "4"
 				),
+			"setup_fee" => array(
+				"type" => "text",
+				"legend" => _("Setup fee") ,
+				"size" => "4"
+				),
 			"affiliate_kickback" => array(
 				"type" => "text",
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
@@ -182,6 +192,11 @@ function productManager(){
 				"legend" => _("Price") ,
 				"size" => "4"
 				),
+			"setup_fee" => array(
+				"type" => "text",
+				"legend" => _("Setup fee") ,
+				"size" => "4"
+				),
 			"affiliate_kickback" => array(
 				"type" => "text",
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
@@ -243,6 +258,11 @@ function productManager(){
 			"price_dollar" => array(
 				"type" => "text",
 				"legend" => _("Price") ,
+				"size" => "4"
+				),
+			"setup_fee" => array(
+				"type" => "text",
+				"legend" => _("Setup fee") ,
 				"size" => "4"
 				),
 			"affiliate_kickback" => array(

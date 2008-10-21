@@ -1,5 +1,34 @@
 <?php
 
+// function incPaymentModules(){
+	global $dtcshared_path;
+	global $secpay_modules;
+
+	if(!isset($secpayconf_use_paypal) || ( $secpayconf_use_paypal != "no" && $secpayconf_use_paypal != "yes" )){
+		get_secpay_conf();
+	}
+
+	if( !isset($secpay_modules) ){
+		$secpay_modules = array();
+
+		$mods_path = "$dtcshared_path/" . '/securepay/modules';
+
+		if(FALSE === ($dir = scandir($mods_path))){
+			echo "<font color=\"red\">"._("Could not list modules in")." $mods_path" . "</font>";
+		}else{
+			$nbr_file = sizeof($dir);
+			$secpay_mods = array();
+			for($i=0;$i<$nbr_file;$i++){
+				$file = $dir[$i];
+				$mymod_path = $mods_path . "/$file";
+				if ($file != "." && $file != ".." && is_dir($mymod_path)){
+					require($mymod_path. "/main.php");
+				}
+			}
+		}
+	}
+// }
+
 function calculateVATtotal ($amount,$vat_rate){
 	if($vat_rate == 0){
 		$big_total = $amount;
@@ -11,10 +40,6 @@ function calculateVATtotal ($amount,$vat_rate){
 
 function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_recurring = "no"){
 	global $conf_use_worldpay;
-
-// -- zion --
-	global $secpayconf_use_webmoney;
-// -- zion --
 	global $secpayconf_use_enets;
 	global $secpayconf_use_paypal;
 	global $secpayconf_paypal_rate;
@@ -24,80 +49,50 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 	global $secpayconf_currency_symbol;
 	global $secpayconf_currency_letters;
 
+	global $secpay_modules;
+
 	if(!isset($secpayconf_use_paypal) || ( $secpayconf_use_paypal != "no" && $secpayconf_use_paypal != "yes" )){
 		get_secpay_conf();
 	}
 
+//	incPaymentModules();
+
 	if($vat_rate != 0){
-		$vat_legend = "<td>" ._("Taxes (VAT or GST)") ." $vat_rate%</td>";
+		$vat_legend = "<th width=\"18%\">" ._("Taxes (VAT or GST)") ." $vat_rate%</th>";
 	}else{
 		$vat_legend = "";
 	}
 
 	$out = "<table width=\"100%\" height=\"1\">";
-	$out .= "<tr><td>". _("Payment system") ."</td><td>". _("Amount") ."</td><td>". _("Gateway cost") ."</td>$vat_legend<td>". _("Total") ."</td><td>". _("Instant account") ."</td></tr>\n";
-	if($secpayconf_use_paypal == "yes"){
-		$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
-		$cost = $total - $amount;
-		if($vat_rate != 0){
-			$big_total = calculateVATtotal ($total,$vat_rate);
-			$vat = $big_total - $total;
-			$vat_total = "<td>".$vat." ".$secpayconf_currency_letters."</td>";
-			$total = $big_total;
-		}else{
-			$vat_total = "";
+	$out .= "<tr><th>". _("Payment system") ."<br>(". _("click logo to choose payment method") .")</th>
+	<th width=\"18%\">". _("Amount") ."</th>
+	<th width=\"18%\">". _("Gateway cost") ."</th>
+	$vat_legend
+	<th width=\"18%\">". _("Total") ."</th>
+	<th width=\"18%\">". _("Instant account") ."</th></tr>\n";
+
+	$nbr_modules = sizeof($secpay_modules);
+	for($i=0;$i<$nbr_modules;$i++){
+		if($secpay_modules[$i]["use_module"] == "yes"){
+			$total = $secpay_modules[$i]["calculate_fee"]($amount);
+			$cost = $total - $amount;
+			if($vat_rate != 0){
+				$big_total = calculateVATtotal ($total,$vat_rate);
+				$vat = $big_total - $total;
+				$vat_total = "<td>".$vat." ".$secpayconf_currency_letters."</td>";
+				$total = $big_total;
+			}else{
+				$vat_total = "";
+			}
+			$out .= "<tr><td>".$secpay_modules[$i]["display_icon"]($pay_id,$total,$item_name,$return_url)."</td>";
+			$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td>";
+			$out .= "<td>".$cost." ".$secpayconf_currency_letters."</td>";
+			$out .= $vat_total;
+			$out .= "<td>".$total." ".$secpayconf_currency_letters."</td>";
+			$out .= "<td>".$secpay_modules[$i]["instant_account"]."</td></tr>\n";
 		}
-		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url)."</td>";
-		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total."<td>".$total." ".$secpayconf_currency_letters."</td>
-		<td>Yes</td></tr>\n";
 	}
 
-// -- zion --
-	if($secpayconf_use_webmoney == "yes") {
-
-		$total = $amount + ($amount*0.008);
-		$cost = $total - $amount;
-
-		$out .= "<tr><td>".webmoneyButton($pay_id,$amount,$item_name)."</td>";
-		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total." ".$secpayconf_currency_letters."<td>".$total." ".$secpayconf_currency_letters."</td><td>Yes</td></tr>\n";
-	}
-// -- zion --
-
-	if($secpayconf_use_paypal == "yes" && $secpayconf_use_paypal_recurring == "yes" && $use_recurring == "yes"){
-		$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
-		$cost = $total - $amount;
-		if($vat_rate != 0){
-			$big_total = calculateVATtotal ($total,$vat_rate);
-			$vat = $big_total - $total;
-			$vat_total = "<td>".$vat." ".$secpayconf_currency_letters."</td>";
-			$total = $big_total;
-		}else{
-			$vat_total = "";
-		}
-		$out .= "<tr><td>".paypalButton($pay_id,$total,$item_name,$return_url,"yes")."<br><i>". _("Recurring payment") ."</i></td>";
-		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total."<td>".$total." ".$secpayconf_currency_letters."</td><td>Yes</td></tr>\n";
-	}
-	if($secpayconf_use_enets == "yes"){
-		$total = round(($amount / (1 - ($secpayconf_enets_rate/100))+0.005),2);
-		$cost = $total - $amount;
-		if($vat_rate != 0){
-			$big_total = calculateVATtotal ($total,$vat_rate);
-			$vat = $big_total - $total;
-			$vat_total = "<td>".$vat."</td>";
-			$total = $big_total;
-		}else{
-			$vat_total = "";
-		}
-		$out .= "<tr><td>".enetsButton($pay_id,$total,$item_name,$return_url)."</td>";
-		$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td><td>".$cost." ".$secpayconf_currency_letters."</td>".$vat_total." ".$secpayconf_currency_letters."<td>".$total." ".$secpayconf_currency_letters."</td><td>Yes</td></tr>\n";
-	}
-
-	if($conf_use_worldpay == "yes"){
-		$total = $amount * 1.0475 + 0.017;
-		$cost = $total - $amount;
-		$out .= "<tr><td>".worldPayButton($pay_id,$total,$button_text,$button_text)."</td>";
-		$out .= "<td>\$$cost</td><td>\$$total</td><td>No</td></tr>\n";
-	}
 	$out .= "</table>";
 	return $out;
 }
@@ -207,4 +202,24 @@ http://www.gplhost.com
 	mail($conf_webmaster_email_addr,$txt_userwaiting_account_activated_subject,$txt_mail,$headers);
 }
 
+function get_secpay_conf(){
+	global $conf_mysql_db;
+	global $pro_mysql_secpayconf_table;
+
+        $query = "SELECT * FROM $pro_mysql_secpayconf_table WHERE 1 LIMIT 1;";
+        $result = mysql_query($query)or die("Cannot query $query !!! line: ".__LINE__." file: ".__FULE__." sql said: ".mysql_error());
+        $num_rows = mysql_num_rows($result);
+        if($num_rows != 1)      die("No config values in table !!!");
+        $row = mysql_fetch_array($result);
+
+	$fields = mysql_list_fields($conf_mysql_db, $pro_mysql_secpayconf_table);
+	$columns = mysql_num_fields($fields);
+
+	for($i=0;$i<$columns;$i++){
+		$field_name = mysql_field_name($fields, $i);
+		$toto = "secpayconf_".$field_name;
+		global $$toto;
+		$$toto = $row["$field_name"];
+        }
+}
 ?>

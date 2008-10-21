@@ -289,14 +289,19 @@ case "add_new_service":
 			$vat_rate = $company_invoicing["vat_rate"];
 		}
 	}
-	$payid = createCreditCardPaiementID($product["price_dollar"],$insert_id,$product["name"]." (login: ".$_REQUEST["adm_login"].")","yes",$product["id"],$vat_rate);
+	$payid = createCreditCardPaiementID($product["price_dollar"] + $product["setup_fee"],$insert_id,$product["name"]." (login: ".$_REQUEST["adm_login"].")","yes",$product["id"],$vat_rate);
 	$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='$insert_id';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
-	$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
+	$paybutton =paynowButton($payid,$product["price_dollar"] + $product["setup_fee"],$product["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
 
+	$master_total = $product["price_dollar"] + $product["setup_fee"];
 	$form = "<h4>". _("New service registered successfully!") ."<!--Registration successfull!--></h4>
-Please now click on the following button to go for paiment:<br>
+<u>". _("Product name:") . "</u> " . $product["name"] ."<br>
+<u>". _("Product price:") . "</u> " . $product["price_dollar"] ." $secpayconf_currency_letters<br>
+<u>". _("Setup fees:") . "</u> " . $product["setup_fee"] ." $secpayconf_currency_letters<br>
+<u>". _("Product total price before VAT and payment gateway:") . "</u> " . $master_total . " $secpayconf_currency_letters<br><br><br>
+<b>". _("Please now click on the following button to go for paiment:") ."</b><br>
 <br>$paybutton";
 
 /*	$form .= "This part is not finished! To add a new package, please register with another username until we have finished the feature.";
@@ -378,15 +383,20 @@ case "reg_new_user":
 							$vat_rate = $company_invoicing["vat_rate"];
 						}
 					}
-					$payid = createCreditCardPaiementID($product["price_dollar"],$reguser["id"],$product["name"]." (login: ".$newadmin["reqadm_login"].")","yes",$product["id"],$vat_rate);
+					$payid = createCreditCardPaiementID($product["price_dollar"] + $product["setup_fee"],$reguser["id"],$product["name"]." (login: ".$newadmin["reqadm_login"].")","yes",$product["id"],$vat_rate);
 					$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='".$reguser["id"]."';";
 					$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 					$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
-					$paybutton =paynowButton($payid,$product["price_dollar"],$product["name"]." (login: ".$newadmin["reqadm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
+					$paybutton =paynowButton($payid,$product["price_dollar"] + $product["setup_fee"],$product["name"]." (login: ".$newadmin["reqadm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
 				}
 				if($print_form == "yes"){
+					$master_total = $product["price_dollar"] + $product["setup_fee"];
 					$form = $reguser["mesg"]."<br><h4>". _("Registration successful!") ."<!--Registration successfull!--></h4>
-Please now click on the following button to go for paiment:<br>
+<u>". _("Product name:") . "</u> " . $product["name"] ."<br>
+<u>". _("Product price:") . "</u> " . $product["price_dollar"] ." $secpayconf_currency_letters<br>
+<u>". _("Setup fees:") . "</u> " . $product["setup_fee"] ." $secpayconf_currency_letters<br>
+<u>". _("Product total price before VAT and payment gateway:") . "</u> " . $master_total . " $secpayconf_currency_letters<br><br><br>
+<b>". _("Please now click on the following button to go for paiment:") . "</b><br>
 <br>$paybutton";
 				}
 			}
