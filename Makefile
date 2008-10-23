@@ -98,7 +98,7 @@ clean:
 	rm -fr shared/vars/locale
 
 source-copy:
-	@if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
+	@if [ -z $(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
 	@echo "-> Copying sources"
 	@mkdir -p $(DESTFOLDER)/bin
 	@cp -rf admin client doc email etc Makefile shared $(DESTFOLDER)
