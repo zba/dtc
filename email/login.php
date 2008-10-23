@@ -3,7 +3,7 @@
 function login_emailpanel_form(){
 	global $conf_skin;
 	
-	$HTML_admin_edit_data = "<a href=\"/dtc/"\">"_("Client panel")."</a> -
+	$HTML_admin_edit_data = "<a href=\"/dtc/\">"._("Client panel")."</a> -
 ". _("Email panel") ." -
 <a href=\"/dtc/new_account.php\">". _("Register a new account") ."</a> -
 <a href=\"/dtc/recover_pass.php\">". _("Recover password"). "</a>

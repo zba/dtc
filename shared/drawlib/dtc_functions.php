@@ -23,9 +23,9 @@ function getCustomizableMessage($file_name){
 }
 
 function headAndTailEmailMessage($msg){
-	$msg = getCustomizableMessage("messages_header.txt")) . $msg;
-	$signature = getCustomizableMessage("signature.txt"));
-	return = str_replace("%%%SIGNATURE%%%",$signature,$msg);
+	$msg = getCustomizableMessage("messages_header.txt") . $msg;
+	$signature = getCustomizableMessage("signature.txt");
+	return str_replace("%%%SIGNATURE%%%",$signature,$msg);
 }
 
 function domainNamePopup($domain_name=""){
@@ -327,7 +327,7 @@ function isIP($ip){
 
 function isDTCLogin($login){
 	$reg = "^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$";
-	if(!ereg($reg,$ip))	return false;
+	if(!ereg($reg,$login))	return false;
 	else			return true;
 }
 
