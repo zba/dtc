@@ -60,7 +60,7 @@ NORMAL_FOLDER=0775
 MANPAGE_RIGHTS=0644
 
 BIN_FOLDER_CONTENT=bin/buildGentoo bin/makeGentoo bin/makeSlackware bin/README.how_to_build_a_pachage \
-bin/buildRelease bin/makeDebianSource bin/makeOsx bin/makeTarball bin/clean bin/makeDTC bin/makeRedhat bin/prepareDebianTree bin/sources
+bin/buildRelease bin/makeOsx bin/makeTarball bin/clean bin/makeDTC bin/makeRedhat bin/prepareDebianTree bin/sources
 
 BSD_MAKE_PKG_SOURCES=$(BSD_SOURCE_DIR)/php4-dtc-slave  $(BSD_SOURCE_DIR)/proftpd-dtc-slave  $(BSD_SOURCE_DIR)/README.html  \
 $(BSD_SOURCE_DIR)/sendpr.template $(BSD_SOURCE_DIR)/dtc/install.sh $(BSD_SOURCE_DIR)/dtc/Makefile $(BSD_SOURCE_DIR)/dtc/pkg-descr  \
