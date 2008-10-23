@@ -1,5 +1,33 @@
 <?php
 
+function getCustomizableMessage($file_name){
+	if(file_exists("/etc/dtc/$file_name")){
+		$fname = "/etc/dtc/$file_name";
+	}else if(file_exists("/usr/local/www/dtc/etc/$file_name")){
+		$fname = "/usr/local/www/dtc/etc/$file_name";
+	}else{
+		$fname = "/usr/share/dtc/etc/$file_name";
+	}
+	if(file_exists($fname)){
+		$fp = fopen($fname,"r");
+		if($fp != NULL){
+			$out = fread($fp,filesize($fname));
+			fclose($fp);
+		}else{
+			$out = "";
+		}
+	}else{
+		$out = "";
+	}
+	return $out;
+}
+
+function headAndTailEmailMessage($msg){
+	$msg = getCustomizableMessage("messages_header.txt")) . $msg;
+	$signature = getCustomizableMessage("signature.txt"));
+	return = str_replace("%%%SIGNATURE%%%",$signature,$msg);
+}
+
 function domainNamePopup($domain_name=""){
 	$out = "";
 
@@ -293,6 +321,12 @@ function checkLoginPass($adm_login,$adm_pass){
 // $reg = '^(([^<>;()[\]\\.,;:@"]+(\.[^<>()[\]\\.,;:@"]+)*)|(".+"))@((([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$';
 function isIP($ip){
 	$reg = "^([0-9]){1,3}\.([0-9]){1,3}\.([0-9]){1,3}\.([0-9]){1,3}\$";
+	if(!ereg($reg,$ip))	return false;
+	else			return true;
+}
+
+function isDTCLogin($login){
+	$reg = "^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$";
 	if(!ereg($reg,$ip))	return false;
 	else			return true;
 }

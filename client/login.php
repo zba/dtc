@@ -3,7 +3,10 @@
 function login_form(){
 	global $conf_skin;
 
-	$HTML_admin_edit_data = "<a href=\"/dtcemail\">". _("Go to email panel") ."</a> - <a href=\"new_account.php\">". _("Register a new account") ."</a>
+	$HTML_admin_edit_data = _("Client panel"). " - <a href=\"/dtcemail\">". _("Email panel") ."</a> -
+<a href=\"new_account.php\">". _("Register a new account") ."</a> -
+<a href=\"recover_pass.php\">". _("Recover password") ."</a>
+
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <table>
 <tr>
