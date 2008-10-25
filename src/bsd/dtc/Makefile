@@ -21,6 +21,7 @@ RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
 		${LOCALBASE}/include/php/ext/gettext/php_gettext.h:${PORTSDIR}/devel/php5-gettext \
 		${LOCALBASE}/include/php/ext/posix/php_posix.h:${PORTSDIR}/sysutils/php5-posix \
 		${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
+		${LOCALBASE}/share/pear/XML/Serializer.php:${PORTSDIR}/devel/pear-XML_Serializer \
 		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc \
 		${LOCALBASE}/bin/sudo:${PORTSDIR}/security/sudo \
 		${LOCALBASE}/lib/nss_mysql.so:${PORTSDIR}/net/libnss-mysql \

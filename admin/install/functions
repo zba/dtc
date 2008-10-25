@@ -3892,10 +3892,12 @@ createChrootTemplate () {
 	echoIfVerbose "-> Copying essential libraries"
 	if [ "$UNIX_TYPE" = "freebsd"  ] ; then
 		cp -f /lib/libc.so* /lib/libm.so* lib/
-		cp -f /usr/local/lib/libintl.so.* /usr/local/lib/libiconv.so.* \
+		for i in /usr/local/lib/libintl.so.* /usr/local/lib/libiconv.so.* \
 			/usr/lib/libarchive.so.* /usr/lib/libasn1.so.* /usr/lib/libbsm.so.* \
-			/usr/lib/libbz2.so.* /usr/lib/libcom_err.so.3 /usr/lib/libgssapi.so.* /usr/lib/libkrb5.so.* /usr/lib/libmagic.so.* \
-			/usr/lib/libroken.so.* /usr/lib/libssh.so.* /usr/local/lib/perl5/5.8.8/mach/CORE/libperl.so usr/lib
+			/usr/lib/libbz2.so.* /usr/lib/libcom_err.so.* /usr/lib/libgssapi.so.* /usr/lib/libkrb5.so.* /usr/lib/libmagic.so.* \
+			/usr/lib/libroken.so.* /usr/lib/libssh.so.* /usr/local/lib/perl5/5.8.8/mach/CORE/libperl.so ; do
+			cp -f ${i} usr/lib
+		done
 		cp -f /lib/libc.so* /lib/libm.so* /lib/libedit.so* /lib/libncurses.so* /lib/libcrypt.so.* /lib/libmd.so.* /lib/libutil.so.* \
 			/lib/libz.so.* lib/
 		cp -f /usr/lib/libc.so* usr/lib/
