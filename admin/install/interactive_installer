@@ -401,7 +401,7 @@ installerQuestions () {
 	echo ""
 	echo "In order to know how many DTC setup has been done, the"
 	echo "installer can report to GPLHost web site. No data is collected"
-	echo "exept the operating system (Debian in your case), IP address"
+	echo "exept the operating system (${UNIX_TYPE} in your case), IP address"
 	echo "of the setup (we use the IP as an identifier so we don't account"
 	echo "upgrades and/or reinstallations, we wont ever use it for commercial"
 	echo "purpose)."
