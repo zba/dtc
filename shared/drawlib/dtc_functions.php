@@ -146,7 +146,7 @@ function mdpauto(){
 	//This pools grant no mistake between 0, o or O for example...
 	$pool = "abcdefghjkmnprstwxyz234589";
 	$sid = "";
-	for($index=0;$index<8;$index++){
+	for($index=0;$index<12;$index++){
 		$sid .= substr($pool,(rand()%(strlen($pool))),1);
 	}
 	return $sid;
