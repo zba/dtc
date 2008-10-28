@@ -399,31 +399,26 @@ installerQuestions () {
 	fi
 
 	echo ""
-	echo "In order to know how many DTC setup has been done, the"
-	echo "installer can report to GPLHost web site. No data is collected"
-	echo "exept the operating system (${UNIX_TYPE} in your case), IP address"
-	echo "of the setup (we use the IP as an identifier so we don't account"
-	echo "upgrades and/or reinstallations, we wont ever use it for commercial"
-	echo "purpose)."
+	echo "In order to know how many DTC installs have been done, the installer"
+	echo "can report your install to the GPLHost web site. No data is collected"
+	echo "except the operating system, ${UNIX_TYPE} in your case, and the IP address"
+	echo "of the install.  We only use the IP as an identifier so we don't count"
+	echo "upgrades and/or reinstalls.  We won't ever use it for commercial purposes."
+	echo ""
 	echo "You need an internet connection and wget installed to report. Do you"
-	echo "wish to allow DTC installer to report the setup of the control panel?"
-	if [ ""$conf_report_setup = "true" ] ; then
+	echo "wish to allow DTC installer to report the install of the control panel?"
+
+	# If <ENTER> is pressed we don't need to reset the variable to the same setting.	# gregmo
+	if [ $conf_report_setup = "true" ] ; then
 		echo -n 'Allow installer to report setup? [Yn]:'
-		read answer
-		if [ -z ""$answer ] ; then
-			conf_report_setup="true"
-		fi
 	else
 		echo -n 'Allow installer to report setup? [yN]:'
-		read answer
-		if [ -z ""$answer ] ; then
-			conf_report_setup="false"
-		fi
 	fi
-	if [ ""$answer = "y" -o ""$answer = "Y" ] ; then
+
+	read answer
+	if [ $answer = "y" -o $answer = "Y" ] ; then
 		conf_report_setup="true"
-	fi
-	if [ ""$answer = "n" -o ""$answer = "N" ] ; then
+	elif [ $answer = "n" -o $answer = "N" ] ; then
 		conf_report_setup="false"
 	fi
 
