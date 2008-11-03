@@ -217,9 +217,6 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		case "centos":
 			$cent_selected = " selected ";
 			break;
-		case "gentoo":
-			$gen_selected = " selected ";
-			break;
 		case "netbsd":
 			$bsd_selected = " selected ";
 			break;
@@ -227,19 +224,28 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			$xenpv_selected = " selected ";
 			break;
 		default:
-			die( _("Operating system type not supported") );
 			break;
 		}
 		// Operating system selection popup and reinstallation button
-		$out .= $frm_start."<select name=\"os_type\">
-<option value=\"debian\" $deb_selected>Debian</option>
-<option value=\"centos\" $cent_selected>CentOS</option>
-<option value=\"gentoo\" $gen_selected>Gentoo</option>
-<option value=\"netbsd\" $bsd_selected>NetBSD</option>
-<option value=\"xenpv\" $xenpv_selected>Xen PV</option>
-</select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\">
+		$out .= $frm_start."<table><tr><td><select name=\"os_type\">
+<option value=\"debian\" $deb_selected>Debian (" . _("network install with debootstrap") .")</option>
+<option value=\"centos\" $cent_selected>CentOS (" . _("network install with yum") .")</option>
+<option value=\"netbsd\" $bsd_selected>NetBSD (" . _("network setup with install kernel") .")</option>
+<option value=\"xenpv\" $xenpv_selected>Xen PV (" . _("boot on your own .iso image") .")</option>";
+		$installable_os = getInstallableOS($soap_client);
+		$nbr_os = sizeof($installable_os);
+		for($i=0;$i<$nbr_os;$i++){
+			$os_name = $installable_os[$i];
+			if($vps["operatingsystem"] == $os_name){
+				$selected = " selected ";
+			}else{
+				$selected = "";
+			}
+			$out .= "<option value=\"$os_name\" $selected>$os_name ("._("operating system image").")</option>";
+		}
+		$out .= "</select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\"></td><td>
 " . submitButtonStart() . _("Reinstall operating system") . submitButtonEnd() ."
-</form>";
+</form></td></table>";
 //		}
 
   		// BSD kernel change popup
@@ -293,6 +299,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			$out .= "</table></form>";
 		}
 	}
+	$out .= "<br><br>";
 
 	// SSH Physical console password changing
 	$out .= "<h3>". _("Physical console last display and ssh access:") ."</h3><br>";
@@ -310,14 +317,15 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 	$out .= "<br>" ._("You should then install sshd in your VPS and use the physical console only for debugging purposes.");
 	$out .= "<br>".helpLink("PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It");
 
-	// A bit of AJAX to have the sever's install log!
+/* FIXME probably don't need any of this stuff'
+
 	if($reinstall_os == 1){
 		if($panel_type == "admin"){
 			$path_url = "/dtcadmin";
 		}else{
 			$path_url = "/dtc";
 		}
-		$ajax_url = "https://".$_SERVER["SERVER_NAME"]."$path_url/get_install_log.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name";
+		$ajax_url = "https://".$_SERVER["SERVER_NAME"].$path_url."/xanjaxPushlet.php?";
 		$ajax_auth = "adm_login=".$adm_login."&adm_pass=".$adm_pass."&vps_node=".$vps_node."&vps_name=".$vps_name;
 		$r = "";
 	}else{
@@ -329,20 +337,24 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		// print_r($r);
 		$r = str_replace("\n\n","\n",$r);
 	}
-	$out .= "<script language=\"javascript\" src=\"gfx/xanjaxXHR.js\"></script>\n";
+*/
 
-	$out .= "<script type=\"text/javascript\">
-			ajaxPath=$ajax_url;
-			ajaxAuth=$ajax_auth;\n</script>\n";
+// tested AJAX stuff starts here
 
-	$out .= "<h3>". _("Installation log:") ."</h3><br>\n";
+	$out .= "<script language=\"javascript\" src=\"xanjaxXHR.js\"></script>";
 
 	$out .= "<h3>". _("Installation log (last 20 lines):") ."</h3><br>";
 
 	$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
 <tr><td bgcolor=\"black\"><font color=\"white\">$vps_node:$vps_name</font></td>
-<tr><td bgcolor=\"black\"><font color=\"white\"><pre onLoad=\"ajaxLogConsole();\" id=\"reinstall_os_log\" class=\"reinstall_os_log\" style=\"overflow: auto\"><font color=\"red\">dtc-xen</font>@<font color=\"blue\">$vps_node</font>&gt;_ #<br>...<br>". $r ."</pre></font></td>
+<tr><td bgcolor=\"black\"><font color=\"white\"><pre id=\"reinstall_os_log\" class=\"reinstall_os_log\" style=\"overflow: auto\"><font color=\"red\">dtc-xen</font>@<font color=\"blue\">$vps_node</font>&gt;_ #<br>...</pre></font></td>
 </table>";
+
+	$out .= "
+		<script type=\"text/javascript\">
+			xanGet(logPushlet,\"logPushlet.php?vps_node=".$vps_node."&vps_name=".$vps_name."\");
+		</script>";
+
 	return $out;
 }
 

@@ -189,7 +189,8 @@ bsd-ports-packages:
 # Owned by root, but executable by dtc user (ran by apache)
 ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES=admin/404.php admin/bw_per_month.php admin/index.php admin/cpugraph.php admin/mailgraph.php admin/deamons_state.php \
 admin/view_waitingusers.php admin/memgraph.php admin/netusegraph.php admin/vps_stats_cpu.php \
-admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup admin/dtc_db.php admin/dkfilter.patch
+admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup admin/dtc_db.php admin/dkfilter.patch \
+admin/logPushlet.php admin/xanjaxXHR.js
 
 ADMIN_GENFILE_PHP_SCRIPT_FILES=admin/genfiles/gen_awstats.php admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_perso_vhost.php \
 admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_backup_script.php admin/genfiles/gen_pro_vhost.php \
@@ -210,7 +211,8 @@ vm-cpu-all.php vm-io-all.php vm-net-all.php
 CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-notify.php client/index.php \
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
 client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php client/webmoney.php \
-client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php client/get_vps_location_status.php
+client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php client/get_vps_location_status.php \
+client/logPushlet.php client/xanjaxXHR.js
 
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
 
