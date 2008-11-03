@@ -2583,8 +2583,12 @@ Mime-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: 7bit
 
-Your mailbox on the server is now more than 90% full. So that you can continue
-to receive mail you need to remove some messages from your mailbox.
+Your mailbox on the server is now more than 90% full. So that you can
+continue to receive mail you need to remove some messages from your
+mailbox. Note that the reason for being over quota could be that you
+are reaching the maximum number of messages (max file limitation) or
+that your overall mailbox size is reached. If you are unsure, ask your
+mail server administrator about it.
 
 " >$PATH_DTC_ETC/quotawarnmsg
 		fi
