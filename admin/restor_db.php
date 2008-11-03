@@ -259,17 +259,9 @@ $q = "ALTER TABLE vps_stats CHANGE `network_in_count` `network_in_count` bigint(
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 $q = "ALTER TABLE vps_stats CHANGE `network_out_count` `network_out_count` bigint(22) default NULL";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$q = "ALTER TABLE vps_stats CHANGE `network_in_last` `network_in_last` bigint(22) default NULL";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$q = "ALTER TABLE vps_stats CHANGE `network_out_last` `network_out_last` bigint(22) default NULL";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 $q = "ALTER TABLE vps_stats CHANGE `swapio_count` `swapio_count` bigint(22) default NULL";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 $q = "ALTER TABLE vps_stats CHANGE `diskio_count` `diskio_count` bigint(22) default NULL";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$q = "ALTER TABLE vps_stats CHANGE `swapio_last` `swapio_last` bigint(22) default NULL";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$q = "ALTER TABLE vps_stats CHANGE `diskio_last` `diskio_last` bigint(22) default NULL";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Change domain parking types
