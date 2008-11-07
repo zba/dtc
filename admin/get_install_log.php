@@ -26,7 +26,34 @@ if($soap_client != false){
 	if($err){
 		die("Could not get VPS install log. Error: ".$err);
 	}
-	print_r($r);
+	// prepare to send JSON
+	header('Content-type: application/json');
+	// disable cookies (so script works for privacy conscious users too)
+	ini_set('session.use_cookies', false);
+	// start ongoing or new session
+	if (isset($_GET["PHPSESSID"])){
+		session_id($_GET["PHPSESSID"]);
+	}else{
+		session_id(date("dgis"));
+	}
+	session_start();
+
+	// initialise $_SESSION on first run
+	if (!isset($_SESSION['callSID'])){
+		$_SESSION['callSID'] = SID;
+		$_SESSION['lastlog'] = "";
+	}
+
+	sleep(2); // delay AJAX refresh 2 seconds - FIXME change to what you want
+
+	$vps_remote_info = getVPSInfo($vps_node,$vps_name,$soap_client);
+	if($vps_remote_info != "mkos"){
+		$_SESSION['callSID']=''; // install finished, set termination signal
+	}
+	$_SESSION['lastlog'] = $soap_client->call("getVPSInstallLog",array("vpsname" => $vps_name,"numlines" => "20"),"","",""); // get last 20 log lines
+
+	echo json_encode($_SESSION); // send callSID and lastlog back to the browser
+//	print_r($r);
 }else{
 	die("Couldn't connect to VPS node $vps_node !");
 }

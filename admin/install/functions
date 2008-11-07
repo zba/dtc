@@ -2147,7 +2147,7 @@ mailbox_size_limit = 0
 " >> $TMP_FILE
 
 			FOUND_DKIMPROXY=0;
-			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new ] ; then
+			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new -o -x /usr/sbin/amavisd ] ; then
 				if [ -x /usr/sbin/dkimproxy.in -o -x /usr/bin/dkimproxy.in -o -x /usr/local/sbin/dkimproxy.in -o -x /usr/local/bin/dkimproxy.in ] ; then
 					FOUND_DKIMPROXY=1;
 					echo "# use check_access directive to filter all incoming mail
@@ -2583,8 +2583,12 @@ Mime-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: 7bit
 
-Your mailbox on the server is now more than 90% full. So that you can continue
-to receive mail you need to remove some messages from your mailbox.
+Your mailbox on the server is now more than 90% full. So that you can
+continue to receive mail you need to remove some messages from your
+mailbox. Note that the reason for being over quota could be that you
+are reaching the maximum number of messages (max file limitation) or
+that your overall mailbox size is reached. If you are unsure, ask your
+mail server administrator about it.
 
 " >$PATH_DTC_ETC/quotawarnmsg
 		fi
@@ -2628,7 +2632,10 @@ MYSQL_QUOTA_FIELD       quota_couriermaildrop
 MYSQL_DEFAULT_DOMAIN    $main_domain_name
 
 # use the experimental query
-MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, gid, home, '', quota_couriermaildrop, ''  FROM pop_access  WHERE ( (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1)) ) AND active = '1'
+#MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, gid, home, '', quota_couriermaildrop, ''  FROM pop_access  WHERE ( (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1)) ) AND active = '1'
+# We now use a query that checks if the account is expired, so this way, pop and imap access
+# are disabled for expired accounts! :)
+MYSQL_SELECT_CLAUSE     SELECT concat(pop_access.id, '@', mbox_host), crypt, passwd, uid, gid, home, '', quota_couriermaildrop, ''  FROM pop_access,domain,admin  WHERE ( (pop_access.id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (pop_access.id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1)) ) AND active = '1' AND domain.name=pop_access.mbox_host AND domain.owner=admin.adm_login AND admin.expire > now()
 
 MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(newpass_crypt)' WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1)  AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
 " > $PATH_COURIER_AUTHD_CONF_PATH/authmysqlrc
@@ -3287,11 +3294,19 @@ modifyNSSConfig () {
 				cp -f "$PATH_NSSWITCH_CONF" "$PATH_NSSWITCH_CONF.DTC.backup"
 			fi
 			echo "# Configured by DTC 0.21 : please do not touch this line !" > $TMP_FILE
-			echo "
+			if [ "$UNIX_TYPE" = "freebsd" ] ; then
+				echo "
+passwd:		files mysql
+group:		files mysql
+shadow:		files mysql
+" >> $TMP_FILE
+			else
+				echo "
 passwd:         compat mysql
 group:          compat mysql
 shadow:         compat mysql
 " >> $TMP_FILE
+			fi
 			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 			cat <$TMP_FILE >>$PATH_NSSWITCH_CONF
 		fi
@@ -3889,10 +3904,12 @@ createChrootTemplate () {
 	echoIfVerbose "-> Copying essential libraries"
 	if [ "$UNIX_TYPE" = "freebsd"  ] ; then
 		cp -f /lib/libc.so* /lib/libm.so* lib/
-		cp -f /usr/local/lib/libintl.so.* /usr/local/lib/libiconv.so.* \
+		for i in /usr/local/lib/libintl.so.* /usr/local/lib/libiconv.so.* \
 			/usr/lib/libarchive.so.* /usr/lib/libasn1.so.* /usr/lib/libbsm.so.* \
-			/usr/lib/libbz2.so.* /usr/lib/libcom_err.so.3 /usr/lib/libgssapi.so.* /usr/lib/libkrb5.so.* /usr/lib/libmagic.so.* \
-			/usr/lib/libroken.so.* /usr/lib/libssh.so.* /usr/local/lib/perl5/5.8.8/mach/CORE/libperl.so usr/lib
+			/usr/lib/libbz2.so.* /usr/lib/libcom_err.so.* /usr/lib/libgssapi.so.* /usr/lib/libkrb5.so.* /usr/lib/libmagic.so.* \
+			/usr/lib/libroken.so.* /usr/lib/libssh.so.* /usr/local/lib/perl5/5.8.8/mach/CORE/libperl.so ; do
+			cp -f ${i} usr/lib
+		done
 		cp -f /lib/libc.so* /lib/libm.so* /lib/libedit.so* /lib/libncurses.so* /lib/libcrypt.so.* /lib/libmd.so.* /lib/libutil.so.* \
 			/lib/libz.so.* lib/
 		cp -f /usr/lib/libc.so* usr/lib/

@@ -163,13 +163,13 @@ function drawAdminTools($admin){
 				"link" => "monitor"
 			);
 		$vps_submenu[] = array(
-				"text" => _("My VPS usage graphs"),
+				"text" => _("My VPS usage"),
 				"icon" => "box_wnb_nb_picto-statistics.gif",
 				"type" => "link",
 				"link" => "rrdgraphs"
 			);
 		$vps_submenu[] = array(
-				"text" => _("Dom0 overall graphs"),
+				"text" => _("My VPS vs. others"),
 				"icon" => "box_wnb_nb_picto-statistics.gif",
 				"type" => "link",
 				"link" => "dom0graphs"

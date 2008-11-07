@@ -390,7 +390,7 @@ function userEditForms($adm_login,$adm_pass){
 		}
 		$iface_select .= "</center></td></tr></table>";
 
-		$iface_skined = skin($conf_skin,$iface_select, _("User administration") );
+		$iface_skined = skin($conf_skin,$iface_select, _("User administration") . " $adm_login" );
 
 		//fix up the $adm_login in case it changed because of session vars:
 		//in case users play silly bugger with the "GET" variables

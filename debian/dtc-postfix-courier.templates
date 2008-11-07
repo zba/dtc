@@ -207,7 +207,7 @@ _Description: DTC SSL certificate challenge password:
 
 Template: dtc/conf_dnsbl_list
 Type: string
-Default: zen.spamhaus.org,list.dsbl.org
+Default: zen.spamhaus.org
 _Description: DNSBL (DNS BlackList) list:
  Please enter the list of preferred DNSBL servers to add to your Postfix mail
  server configuration.

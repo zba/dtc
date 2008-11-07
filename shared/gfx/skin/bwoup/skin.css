@@ -983,3 +983,10 @@ input,select,textarea {
 	background-color: #E3E5D8;
 	border: 1px solid #000000;
 }
+
+/* required so log lines not spaced or inset*/
+#reinstall_os_log li {
+	list-style-type: none;
+	margin: 0% 5% 0% 5%;
+	padding: 0%;
+}

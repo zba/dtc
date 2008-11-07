@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS clients (
   dollar decimal(9,2) NOT NULL default '0.00',
   disk_quota_mb int(9) NOT NULL default '0',
   bw_quota_per_month_gb int(9) NOT NULL default '0',
+  active enum('yes','no') NOT NULL default 'yes',
   PRIMARY KEY (id),
   UNIQUE KEY id (id)
 ) TYPE=MyISAM

@@ -65,7 +65,7 @@ function getDomainData($domain,$adm_login){
 	$dom = array();
 
 	$dom["domain_config"] = getExDomRowValues($pro_mysql_domain_table,"name='$domain'",
-					"safe_mode,sbox_protect,owner,default_subdomain,quota,max_email,max_lists,max_ftp,max_subdomain,max_ssh,ip_addr,backup_ip_addr,primary_dns,other_dns,primary_mx,other_mx,whois,hosting,gen_unresolved_domain_alias,txt_root_entry,txt_root_entry2,catchall_email,domain_parking,registrar_password,ttl,stats_login,stats_pass,stats_subdomain,wildcard_dns,domain_parking_type");
+					"name,safe_mode,sbox_protect,owner,default_subdomain,quota,max_email,max_lists,max_ftp,max_subdomain,max_ssh,ip_addr,backup_ip_addr,primary_dns,other_dns,primary_mx,other_mx,whois,hosting,gen_unresolved_domain_alias,txt_root_entry,txt_root_entry2,catchall_email,domain_parking,registrar_password,ttl,stats_login,stats_pass,stats_subdomain,wildcard_dns,domain_parking_type");
 	$dom["subdomains"] = getExDomTableData($pro_mysql_subdomain_table,"domain_name='$domain'","subdomain_name",
 					"safe_mode,sbox_protect,subdomain_name,ip,register_globals,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost");
 	$pop_access = getExDomTableData($pro_mysql_pop_table,"mbox_host='$domain'","id",
@@ -216,7 +216,7 @@ function recreateAllRows($table,$delete_cond,$ar,$vars,$added_var,$added_val){
 					$values .= "'" . $cur_item[ $vars_ar[$i] ] ."'";
 				}
 			}
-			$q = "INSERT INTO $table ($vars $added_var) VALUES ($values $added_val);";
+			$q = "INSERT IGNORE INTO $table ($vars $added_var) VALUES ($values $added_val);";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		}
 	}elseif(isset($ar["item"])){
@@ -234,7 +234,7 @@ function recreateAllRows($table,$delete_cond,$ar,$vars,$added_var,$added_val){
 				$values .= "'" . $cur_item[ $vars_ar[$i] ] ."'";
 			}
 		}
-		$q = "INSERT INTO $table ($vars $added_var) VALUES ($values $added_val);";
+		$q = "INSERT IGNORE INTO $table ($vars $added_var) VALUES ($values $added_val);";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	}
 }
@@ -289,14 +289,14 @@ function domainImport($path_from,$adm_login,$adm_pass){
 	}
 	for($doms=0;$doms<$nbr_domains;$doms++){
 		// We will work on each domains one by one
+		$dom_name = $all_domains[$doms];
 		if( isset($dom_ar["domains"]["item"]) ){
-			$all_domains = array_keys($dom_ar["domains"]["item"][$doms]);
-			$dom_name = $all_domains[0];
-			$cur_dom = $dom_ar["domains"]["item"][$doms][$dom_name];
+			$cur_dom = $dom_ar["domains"]["item"][$dom_name];
 		}else{
-			$dom_name = $all_domains[$doms];
 			$cur_dom = $dom_ar["domains"][$dom_name];
 		}
+		$domain_item_name = $dom_name;
+		$dom_name = $cur_dom["domain_config"]["name"];
 
 		// Check if the domain exists, if not, add it to the user
 		$q = "SELECT * FROM $pro_mysql_domain_table WHERE name='$dom_name';";

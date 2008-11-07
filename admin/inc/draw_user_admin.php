@@ -79,8 +79,9 @@ and type your reply.
 	}else{
 		$content .= "Note that the ticket has been closed, meaning that there is
 no need for another reply. If you are still needing help, then
-you must open a new support ticket. To do so, login to the
-control panel at the following URL:
+you must open a new support ticket, or write in this ticket to
+reopen it. To do so, login to the control panel at the
+following address:
 
 http://$conf_administrative_site/dtc/
 
@@ -89,6 +90,7 @@ ticket tab and type your reply.
 ";
 	}
 	mail($a["email"],"$conf_message_subject_header An administrator replied to your support ticket",$content,$headers);
+	mailTicketToAllAdmins("$conf_message_subject_header an administrator replied to a ticket",$content);
 }
 
 function drawNewAdminForm(){

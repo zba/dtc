@@ -60,7 +60,7 @@ NORMAL_FOLDER=0775
 MANPAGE_RIGHTS=0644
 
 BIN_FOLDER_CONTENT=bin/buildGentoo bin/makeGentoo bin/makeSlackware bin/README.how_to_build_a_pachage \
-bin/buildRelease bin/makeDebianSource bin/makeOsx bin/makeTarball bin/clean bin/makeDTC bin/makeRedhat bin/prepareDebianTree bin/sources
+bin/buildRelease bin/makeOsx bin/makeTarball bin/clean bin/makeDTC bin/makeRedhat bin/prepareDebianTree bin/sources
 
 BSD_MAKE_PKG_SOURCES=$(BSD_SOURCE_DIR)/php4-dtc-slave  $(BSD_SOURCE_DIR)/proftpd-dtc-slave  $(BSD_SOURCE_DIR)/README.html  \
 $(BSD_SOURCE_DIR)/sendpr.template $(BSD_SOURCE_DIR)/dtc/install.sh $(BSD_SOURCE_DIR)/dtc/Makefile $(BSD_SOURCE_DIR)/dtc/pkg-descr  \
@@ -98,7 +98,7 @@ clean:
 	rm -fr shared/vars/locale
 
 source-copy:
-	@if [ -z ""$(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
+	@if [ -z $(DESTFOLDER) ] ; then echo "Please set DESTFOLDER=" ; exit 1 ; fi
 	@echo "-> Copying sources"
 	@mkdir -p $(DESTFOLDER)/bin
 	@cp -rf admin client doc email etc Makefile shared $(DESTFOLDER)
@@ -189,7 +189,8 @@ bsd-ports-packages:
 # Owned by root, but executable by dtc user (ran by apache)
 ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES=admin/404.php admin/bw_per_month.php admin/index.php admin/cpugraph.php admin/mailgraph.php admin/deamons_state.php \
 admin/view_waitingusers.php admin/memgraph.php admin/netusegraph.php admin/vps_stats_cpu.php \
-admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup admin/dtc_db.php admin/dkfilter.patch
+admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup admin/dtc_db.php admin/dkfilter.patch \
+admin/logPushlet.php admin/xanjaxXHR.js
 
 ADMIN_GENFILE_PHP_SCRIPT_FILES=admin/genfiles/gen_awstats.php admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_perso_vhost.php \
 admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_backup_script.php admin/genfiles/gen_pro_vhost.php \
@@ -210,7 +211,8 @@ vm-cpu-all.php vm-io-all.php vm-net-all.php
 CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-notify.php client/index.php \
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
 client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php client/webmoney.php \
-client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php client/get_vps_location_status.php
+client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php client/get_vps_location_status.php \
+client/logPushlet.php client/xanjaxXHR.js
 
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
 
@@ -249,8 +251,11 @@ SKIN_STUFF=shared/gfx/skin/default_layout.php shared/gfx/skin/bwoup/layout.php
 
 PAYMENT_API_PHP_SCRIPT_FILES=shared/maxmind/CreditCardFraudDetection.php shared/maxmind/HTTPBase.php \
 shared/maxmind/LocationVerification.php shared/maxmind/TelephoneVerification.php \
-shared/securepay/paiement_config.php shared/securepay/paiement.php shared/securepay/pay_functions.php shared/securepay/gateways/enets.php \
-shared/securepay/gateways/paypal.php shared/securepay/gateways/worldpay.php shared/securepay/gateways/webmoney.php
+shared/securepay/pay_functions.php \
+shared/securepay/modules/enets/main.php \
+shared/securepay/modules/paypal/main.php \
+shared/securepay/modules/worldpay/main.php \
+shared/securepay/modules/webmoney/main.php
 
 WEB_SCRIPT_FILES=$(ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES) $(ADMIN_GENFILE_PHP_SCRIPT_FILES) $(ADMIN_INC_PHP_SCRIPT_FILES) \
 $(CLIENT_PHP_SCRIPT_FILES) $(EMAIL_PHP_SCRIPT_FILES) $(SHARED_PHP_SCRIPT_FILES) $(SHARED_INC_PHP_SCRIPT_FILES) \
@@ -332,7 +337,8 @@ shared/gfx/securepay shared/gfx/language/en/pub shared/gfx/language/fr/pub share
 shared/gfx/skin/tex shared/gfx/skin/ruffdogs_mozilla shared/gfx/skin/darkblue shared/gfx/skin/bwoup/gfx/config-icon \
 shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar \
 shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
-shared/visitors_template shared/template shared/securepay/gateways shared/maxmind client/inc email/inc admin/patches
+shared/visitors_template shared/template shared/maxmind client/inc email/inc admin/patches shared/securepay/modules \
+shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney shared/securepay/modules/worldpay
 
 LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW sr_RS
 

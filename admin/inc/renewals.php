@@ -559,7 +559,11 @@ function drawRenewalTables (){
 			}else{
 				$papoum = explode('-',$period);
 				$months = $papoum[1];
-				$total_dedicated += $price / $months;
+				if($months == 0){
+					echo "A dedicated server product has zero for the number of month to renew<br>";
+				}else{
+					$total_dedicated += $price / $months;
+				}
 			}
 		}
 

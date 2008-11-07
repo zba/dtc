@@ -564,7 +564,7 @@ function skin_LayoutAdminPage (){
     </td>
     <td class="box_wnb_content" valign="top">
       <div class="box_wnb_content_container">
-      <h2>'. _("User administration") .'</h2>
+      <h2>'. _("User administration") ." $adm_login".'</h2>
       '.$bwoup_user_edit
       .$skinedConsole.'
       </div>

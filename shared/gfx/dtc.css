@@ -49,3 +49,10 @@ INPUT,SELECT {
         border-left-width : 1px;
         text-indent : 2px;   
 }
+
+/* required so log lines not spaced or inset*/
+#reinstall_os_log li {
+	list-style-type: none;
+	margin: 0% 5% 0% 5%;
+	padding: 0%;
+}

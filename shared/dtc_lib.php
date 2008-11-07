@@ -45,7 +45,7 @@ require("$dtcshared_path/maxmind/CreditCardFraudDetection.php");
 /////////////////////////////////////////
 // The secure paiement buttons and api //
 /////////////////////////////////////////
-require("$dtcshared_path/securepay/paiement.php");			// The draw paiement button function
+require("$dtcshared_path/securepay/pay_functions.php");			// The draw paiement button functions and modules
 
 //////////////////////////
 // Domain import/export //
