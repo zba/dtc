@@ -459,6 +459,8 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesBooleanRequestCheck($ctrl_dir,"nosubonlydenymails");
 	tunablesValueRequestCheck($ctrl_dir,"prefix");
 	tunablesValueRequestCheck($ctrl_dir,"memorymailsize");
+	global $_REQUEST;
+	$_REQUEST["relayhost"] = "";
 	tunablesValueRequestCheck($ctrl_dir,"relayhost");
 	tunablesValueRequestCheck($ctrl_dir,"digestinterval");
 	tunablesValueRequestCheck($ctrl_dir,"digestmaxmails");

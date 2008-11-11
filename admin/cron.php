@@ -293,26 +293,37 @@ function restartApache () {
 	echo "Testing apache conf\n";
 	exec ("$APACHECTL configtest 2>&1 | grep -qF 'Syntax OK'", $plop, $return_var);
 	if($return_var == false){
+// 		this code works fine without interrupting the service.  it might take a while until all apache processes have the new configuration (config reload for each apache process waits until the request they are serving is finished), but what we care is that the NEW clients connecting will have it, and that is true in this case
+// 		root@xen011106:~# kill -HUP 29153
+// 		root@xen011106:~# [Sun Aug 31 12:44:53 2008] [notice] SIGHUP received.  Attempting to restart
+// 		[Sun Aug 31 12:44:53 2008] [notice] Apache/2.2.3 (Debian) PHP/5.2.0-8+etch11 configured -- resuming normal operations
+		echo "Making Apache reload its configuration\n";
 		$pid = get_apache_pid();
-		if ($pid && posix_kill($pid,0)) {
-			/* apache is running, we stop it */
-			$ret = system("$APACHECTL stop");
-			if ($ret != 0) { echo "apachectl stop failed with return status $ret\n"; }
-			/* wait 20 seconds or until it is down */
-			for ($m = 0; $m < 80 && posix_kill($pid,0); $m++) { usleep(250000); }
-			if (posix_kill($pid,0)) { echo "error: apache still running with PID $pid\n"; }
-		}
-		/* we now start Apache */
-		for ($x = 0; $x < 10; $x++) {
-			$ret = system("$APACHECTL start");
-			if ($ret != 0) echo "apachectl start failed with return status $ret\n";
-			for ($m = 0; $m < 80; $m++) { /* wait 20 seconds or until it is up */
-				$pid = get_apache_pid();
-				if (($pid) && posix_kill($pid,0)) { /* apache is now running */ break; }
-				usleep(250000);
-			}
+		if ($pid) { $ret = system("kill -HUP $pid"); }
+		else { $ret = 1; /* so brutal restart takes place */ }
+		if ($ret != 0) {
+			echo "Failed to kill -HUP Apache with return status $ret\n -- switching to brutal restart";
 			$pid = get_apache_pid();
-			if (!$pid || !posix_kill($pid,0)) { echo "error: apache never started\n"; }
+			if ($pid && posix_kill($pid,0)) {
+				/* apache is running, we stop it */
+				$ret = system("$APACHECTL stop");
+				if ($ret != 0) { echo "apachectl stop failed with return status $ret\n"; }
+				/* wait 20 seconds or until it is down */
+				for ($m = 0; $m < 80 && posix_kill($pid,0); $m++) { usleep(250000); }
+				if (posix_kill($pid,0)) { echo "error: apache still running with PID $pid\n"; }
+			}
+			/* we now start Apache */
+			for ($x = 0; $x < 10; $x++) {
+				$ret = system("$APACHECTL start");
+				if ($ret != 0) echo "apachectl start failed with return status $ret\n";
+				for ($m = 0; $m < 80; $m++) { /* wait 20 seconds or until it is up */
+					$pid = get_apache_pid();
+					if (($pid) && posix_kill($pid,0)) { /* apache is now running */ break; }
+					usleep(250000);
+				}
+				$pid = get_apache_pid();
+				if (!$pid || !posix_kill($pid,0)) { echo "error: apache never started\n"; }
+			}
 		}
 	}else{
 		echo "Config not OK - apache can't be restarted\n";
