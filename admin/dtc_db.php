@@ -223,6 +223,7 @@ $dtc_database = array(
 			"use_cyrus" => "enum('yes','no') NOT NULL default 'no' ",
 			"use_amavis" => "enum('yes','no') NOT NULL default 'yes'",
 			"use_clamav" => "enum('yes','no') NOT NULL default 'yes'",
+			"use_advanced_lists_tunables" => "enum('yes','no') NOT NULL default 'no'",
 			"use_webalizer" => "enum('yes','no') NOT NULL default 'yes'",
 			"use_awstats" => "enum('yes','no') NOT NULL default 'no'",
 			"use_visitors" => "enum('yes','no') NOT NULL default 'no'",

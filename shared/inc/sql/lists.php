@@ -176,6 +176,10 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	fwrite($fp3,$newLine3);
 	fclose($fp3);
 
+	// Adds a subonlyget tunable by default
+	$command = "touch $list_full_path/control/subonlyget";
+	exec($command);
+
 	if (!ereg("\@", $owner)){
 		$owner .= "@" . $edit_domain;
 	}
@@ -459,19 +463,19 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesBooleanRequestCheck($ctrl_dir,"nosubonlydenymails");
 	tunablesValueRequestCheck($ctrl_dir,"prefix");
 	tunablesValueRequestCheck($ctrl_dir,"memorymailsize");
-	global $_REQUEST;
-	$_REQUEST["relayhost"] = "";
-	tunablesValueRequestCheck($ctrl_dir,"relayhost");
+	if($conf_use_advanced_lists_tunables == "yes"){
+		tunablesValueRequestCheck($ctrl_dir,"relayhost");
+		tunablesValueRequestCheck($ctrl_dir,"verp");
+		tunablesValueRequestCheck($ctrl_dir,"maxverprecips");
+		tunablesValueRequestCheck($ctrl_dir,"delimiter");
+		tunablesValueRequestCheck($ctrl_dir,"bouncelife");
+		tunablesTextareaRequestCheck($ctrl_dir,"access");
+	}
 	tunablesValueRequestCheck($ctrl_dir,"digestinterval");
 	tunablesValueRequestCheck($ctrl_dir,"digestmaxmails");
-	tunablesValueRequestCheck($ctrl_dir,"verp");
-	tunablesValueRequestCheck($ctrl_dir,"maxverprecips");
-	tunablesValueRequestCheck($ctrl_dir,"delimiter");
-	tunablesValueRequestCheck($ctrl_dir,"bouncelife");
 	tunablesListRequestCheck($ctrl_dir,"owner");
 	tunablesTextareaRequestCheck($ctrl_dir,"customheaders");
 	tunablesListRequestCheck($ctrl_dir,"delheaders");
-	tunablesTextareaRequestCheck($ctrl_dir,"access");
 	tunablesTextareaRequestCheck($ctrl_dir,"footer");
 	tunablesSUBTextareaRequestCheck($list_dir, "sub");
 	tunablesUNSUBTextareaRequestCheck($list_dir, "unsub");
