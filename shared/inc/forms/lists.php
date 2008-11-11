@@ -234,9 +234,6 @@ function getTunableHelp($tunable_name){
 	case "memorymailsize":
 		$hlp .= _("Here is specified in bytes how big a mail can be and still be prepared for sending in memory. It\'s greatly reducing the amount of write system calls to prepare it in memory before sending it, but can also lead to denial of service attacks. Default is 16k (16384 bytes).") ;
 		break;
-	case "relayhost":
-		$hlp .= _("Mail server used to send the messages.") ;
-		break;
 	case "verp":
 		$hlp .= _("Enable VERP support.") ;
 		break;
@@ -425,7 +422,6 @@ function list_options(){
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("SMTP configuration") ."</b></td></tr>";
 	$output .= getListOptionsValue($list_path,"memorymailsize", _("Max mail memory size:") );
-	$output .= getListOptionsValue($list_path,"relayhost", _("SMTP relay server:") );
 	$output .= getListOptionsValue($list_path,"verp", _("VERP:") );
 	$output .= getListOptionsValue($list_path,"maxverprecips", _("Max VERP recipients:") );
 	$output .= getListOptionsValue($list_path,"delimiter", _("Delimiter:") );
