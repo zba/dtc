@@ -1206,7 +1206,7 @@ createApachePIDSymLink () {
 		PATH_APACHE_PID_FILE=${PATH_APACHE_PID_FILE%%\"}
 
 		if [ "${PATH_APACHE_PID_FILE}" = "\${APACHE_PID_FILE}" ] ; then
-			PATH_APACHE_PID_FILE=`cat /etc/apache2/envvars  | grep APACHE_PID_FILE | cut -d'=' -f2`
+			PATH_APACHE_PID_FILE=`cat /etc/apache2/envvars  | grep APACHE_PID_FILE | cut -d'=' -f2 | tail -n 1`
 		fi
 	
 		# in case the specified pid file doesn't exist, try and find it
