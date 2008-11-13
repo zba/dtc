@@ -3,10 +3,16 @@ priority is set to medium, and what we believe is the correct
 answer if doing apt-get install dtc-toaster. The order of the
 question will be this way if setting-up from lenny.
 
+The lines of text just after are entries you shall use with a
+debconf-set-selections config file.
+
 mysql-server-5.0
 ----------------
 mysql password
 repeate mysql password
+
+mysql-server-5.0 mysql-server/root_password password XXXXXXXXXX
+mysql-server-5.0 mysql-server/root_password password_again XXXXXXXXXX
 
 webalizer
 ---------
@@ -15,15 +21,26 @@ Title for webalizer: Usage statistics for
 Webalizer rotated log filename: /var/log/apache/access.log.1
 Webalizer DNSCache Option: no
 
+webalizer webalizer/directory string /var/www/webalizer
+webalizer webalizer/doc_title string "Usate statistics for"
+webalizer webalizer/logfile string "/var/lib/apache2/access.log.1"
+webalizer webalizer/dnscache boolean false
+
 mailgraph
 ---------
 Should Mailgraph start on boot: yes
 Logfile used by mailgraph: /var/log/mail.log
 Count incoming mail as outgoing mail? no
 
+mailgraph mailgraph/start_on_boot boolean true
+mailgraph mailgraph/mail_log /var/log/mail.log
+mailgraph mailgraph/ignore_localhost boolean false
+
 ca-certificates
 ---------------
 Trust new certificates from certificate authorities: yes
+
+ca-certificates ca-certificates/trust_new_crts boolean true
 
 clavam-freshclam
 ----------------
@@ -33,9 +50,16 @@ Local database mirror site: db.cn.clamav.net
 HTTP proxy information: ""
 Should clamd be notified after updates? yes
 
+clamav-freshclam clamav-freshclam/autoupdate_freshclam select daemon
+clamav-freshclam clamav-freshclam/local_mirror select db.us.clamav.net
+clamav-freshclam clamav-freshclam/http_proxy string ""
+clamav-freshclam clamav-freshclam/NotifyClamd boolean true
+
 courier-base
 ------------
 Create directories for web-based administration: yes
+
+courier-base courier-base/webadmin-configmode boolean true
 
 Postfix
 -------
@@ -45,13 +69,23 @@ Root and postmaster mail recipient: toto@example.com
 Other destinations to accept mail for (blank for none): mx.xenXXXXYY.gplhost.com, localhost.xenXXXXYY.gplhost.com, localhost.localdomain, localhost
 Force synchronous updates on mail queue? no
 
+postfix postfix/main_mailer_type select "Internet Site"
+postfix postfix/mailname string "/etc/mailname"
+postfix postfix/destinations string "mx.xenXXXXYY.gplhost.com, localhost.xenXXXXYY.gplhost.com, localhost.localdomain, localhost"
+postfix postfix/root_address string ""
+postfix postfix/recipient_delim string "+"
+
 courier-ssl
 -----------
 text...
 
+courier-ssl courier-ssl/certnotice seen true
+
 mlmmj
 -----
 Remove mlmmj list on purge? no
+
+mlmmj mlmmj/remove-on-purge boolean false
 
 pure-ftpd-common
 ----------------
@@ -59,13 +93,21 @@ Run pure-ftpd-from inetd or as standalone server: standalone
 Do you want pure-ftpdwho to be installed setuid root? no
 Enable virtual chroots? yes
 
+pure-ftpd-common pure-ftpd/standalone-or-inetd select standalone
+pure-ftpd-common pure-ftpd/ftpwho-setuid boolean false
+pure-ftpd-common pure-ftpd/virtualchroot boolean true
+
 sasl2-bin
 ---------
 Backup file name for /etc/sasldb2: /var/backups/sasldb2.back
 
+sasl2-bin cyrus-sasl2/backup-sasldb2 string /var/backups/sasldb2.back
+
 sbox-dtc
 --------
 Use dtc:dtcgrp for the sbox binary? yes
+
+sbox-dtc sbox-dtc/conf_use_dtc_dtcgrp boolean true
 
 dtc-postfix-courier
 -------------------
@@ -76,10 +118,21 @@ Use "NATed" vhosts? no
 Primary IP address: x.x.x.x
 Main domain admin password: XXXXXXXXXX
 
+dtc-postfix-courier dtc/conf_mysqlautoconfig boolean true
+dtc-postfix-courier dtc/conf_use_cyrus boolean false
+dtc-postfix-courier dtc/main_domainname string "example.com"
+dtc-postfix-courier dtc/conf_use_nated_vhosts boolean true
+dtc-postfix-courier dtc/conf_ipaddr string "xxx.xxx.xxx.xxx"
+dtc-postfix-courier dtc/conf_admpass password "XXXXXXXXXX"
+
 phpmyadmin
 ----------
 Web server to reconfigure automatically: apache2
 
+phpmyadmin phpmyadmin/reconfigure-webserver multiselect "apache2"
+
 mysql-server-5.0
 ----------------
 Support MySQL connections from hosts running Debian "sarge" ar older? no
+
+mysql-server-5.0 mysql-server-5.0/need_sarge_compat boolean false
