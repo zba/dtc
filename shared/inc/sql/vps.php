@@ -204,6 +204,10 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 		$submit_err = "OS type is not corret ".__LINE__." file ".__FILE__;
 		$commit_flag = "no";
 	}
+	if(!isDTCPassword($_REQUEST["root_password"])){
+		$submit_err = "Root password is not a valid password";
+		$commit_flag = "no";
+	}
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -254,6 +258,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 				"hddsize" => $ze_vps["hddsize"],
 				"ramsize" => $ze_vps["ramsize"],
 				"ipaddr" => $vps_all_ips,
+				"password" => $_REQUEST["root_password"],
                                 "imagetype" => $image_type),"","","");
 		}
 	}

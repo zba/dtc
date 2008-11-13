@@ -214,6 +214,9 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		case "debian":
 			$deb_selected = " selected ";
 			break;
+		case "debian-dtc":
+			$debdtc_selected = " selected ";
+			break;
 		case "centos":
 			$cent_selected = " selected ";
 			break;
@@ -229,6 +232,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		// Operating system selection popup and reinstallation button
 		$out .= $frm_start."<table><tr><td><select name=\"os_type\">
 <option value=\"debian\" $deb_selected>Debian (" . _("network install with debootstrap") .")</option>
+<option value=\"debian-src\" $debdtc_selected>Debian with DTC panel (" . _("network install with debootstrap") .")</option>
 <option value=\"centos\" $cent_selected>CentOS (" . _("network install with yum") .")</option>
 <option value=\"netbsd\" $bsd_selected>NetBSD (" . _("network setup with install kernel") .")</option>
 <option value=\"xenpv\" $xenpv_selected>Xen PV (" . _("boot on your own .iso image") .")</option>";
@@ -243,7 +247,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			}
 			$out .= "<option value=\"$os_name\" $selected>$os_name ("._("operating system image").")</option>";
 		}
-		$out .= "</select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\"></td><td>
+		$out .= "</select><input type=\"password\" name=\"root_password\"><input type=\"hidden\" name=\"action\" value=\"reinstall_os\"></td><td>
 " . submitButtonStart() . _("Reinstall operating system") . submitButtonEnd() ."
 </form></td></table>";
 //		}
