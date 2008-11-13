@@ -10,6 +10,12 @@
 
 set -e
 
+# Check number of params and print usage.
+if ! [ $# = 1 ] ; then
+	echo "Usage: dtc-autodeploy <password-to-set>"
+	exit 1
+fi
+
 # Get the password to set using the command line...
 PASSWORD=$1
 
