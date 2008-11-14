@@ -206,6 +206,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		$out .= "<h3>". _("Reinstall operating system:") ."</h3><br>";
 		$out .= _("Currently installed operating system: ") .$vps["operatingsystem"]."<br>";
 		$deb_selected = " ";
+		$debdtc_selected = " ";
 		$cent_selected = " ";
 		$gen_selected = " ";
 		$bsd_selected = " ";
@@ -230,7 +231,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			break;
 		}
 		// Operating system selection popup and reinstallation button
-		$out .= $frm_start."<table><tr><td><select name=\"os_type\">
+		$out .= $frm_start."<table><tr><td>"._("Operating system:")." </td><td><select name=\"os_type\">
 <option value=\"debian\" $deb_selected>Debian (" . _("network install with debootstrap") .")</option>
 <option value=\"debian-src\" $debdtc_selected>Debian with DTC panel (" . _("network install with debootstrap") .")</option>
 <option value=\"centos\" $cent_selected>CentOS (" . _("network install with yum") .")</option>
@@ -247,9 +248,10 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			}
 			$out .= "<option value=\"$os_name\" $selected>$os_name ("._("operating system image").")</option>";
 		}
-		$out .= "</select><input type=\"password\" name=\"root_password\"><input type=\"hidden\" name=\"action\" value=\"reinstall_os\"></td><td>
-" . submitButtonStart() . _("Reinstall operating system") . submitButtonEnd() ."
-</form></td></table>";
+		$out .= "</select></td></tr>
+<tr><td>".("VPS root password:")." </td><td><input type=\"password\" name=\"root_password\"><input type=\"hidden\" name=\"action\" value=\"reinstall_os\"></td></tr>
+<tr><td></td><td>" . submitButtonStart() . _("Reinstall operating system") . submitButtonEnd() ."
+</td></tr></table></form>";
 //		}
 
   		// BSD kernel change popup
