@@ -565,8 +565,8 @@ function registration_form(){
 	<td><div name=\"vps_ospopup_field\" id=\"vps_ospopup_field\" $vps_hidden><select name=\"vps_os\">
 		<option value=\"debian\" $debian_selected>Debian (" . _("network install with debootstrap") .")</option>
 		<option value=\"debian-dtc\" $debiandtc_selected>Debian with DTC panel (" . _("network install with debootstrap") .")</option>
-		<option value=\"centos\" $centos_selected>CentOS</option>
-		<option value=\"netbsd\" $netbsd_selected>NetBSD</option></select></div></td>
+		<option value=\"centos\" $centos_selected>CentOS (" . _("network install with yum") .")</option>
+		<option value=\"netbsd\" $netbsd_selected>NetBSD (" . _("network setup with install kernel") .")</option></select></div></td>
 </tr></table>";
 
 	$login_info = "<table>
