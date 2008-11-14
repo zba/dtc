@@ -185,10 +185,10 @@ onMouseOut=\"this.className='input_btn_container';\">
 	}else if($vps_remote_info == true){
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\">
 ". submitButtonStart() . _("Gracefully shutdown (xm shutdown)") . submitButtonEnd() ."
-</form>";
+</form><br><br>";
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\">
 " . submitButtonStart() . _("Immediate kill (xm destroy)") . submitButtonEnd() ."
-</form>";
+</form><br><br>";
 		$out .= _("To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first.") ."<br><br>";
 	}else{
 		if($expired == "yes"){
