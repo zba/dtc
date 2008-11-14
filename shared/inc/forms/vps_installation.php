@@ -233,7 +233,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		// Operating system selection popup and reinstallation button
 		$out .= $frm_start."<table><tr><td>"._("Operating system:")." </td><td><select name=\"os_type\">
 <option value=\"debian\" $deb_selected>Debian (" . _("network install with debootstrap") .")</option>
-<option value=\"debian-src\" $debdtc_selected>Debian with DTC panel (" . _("network install with debootstrap") .")</option>
+<option value=\"debian-dtc\" $debdtc_selected>Debian with DTC panel (" . _("network install with debootstrap") .")</option>
 <option value=\"centos\" $cent_selected>CentOS (" . _("network install with yum") .")</option>
 <option value=\"netbsd\" $bsd_selected>NetBSD (" . _("network setup with install kernel") .")</option>
 <option value=\"xenpv\" $xenpv_selected>Xen PV (" . _("boot on your own .iso image") .")</option>";
