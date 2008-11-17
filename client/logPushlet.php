@@ -4,6 +4,8 @@
 
    Also NOT ANY output permitted prior to sending of header. */
 
+$panel_type="client";
+
 // prepare to send JSON
 header('Content-type: application/json');
 // disable cookies (so script works for privacy conscious users too)
