@@ -301,7 +301,7 @@ case "add_new_service":
 <u>". _("Product price:") . "</u> " . $product["price_dollar"] ." $secpayconf_currency_letters<br>
 <u>". _("Setup fees:") . "</u> " . $product["setup_fee"] ." $secpayconf_currency_letters<br>
 <u>". _("Product total price before VAT and payment gateway:") . "</u> " . $master_total . " $secpayconf_currency_letters<br><br><br>
-<b>". _("Please now click on the following button to go for paiment:") ."</b><br>
+<b>". _("Please now click on the following button to go for payment:") ."</b><br>
 <br>$paybutton";
 
 /*	$form .= "This part is not finished! To add a new package, please register with another username until we have finished the feature.";
