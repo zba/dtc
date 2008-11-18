@@ -300,7 +300,7 @@ case "add_new_service":
 <u>". _("Product name:") . "</u> " . $product["name"] ."<br>
 <u>". _("Product price:") . "</u> " . $product["price_dollar"] ." $secpayconf_currency_letters<br>
 <u>". _("Setup fees:") . "</u> " . $product["setup_fee"] ." $secpayconf_currency_letters<br>
-<u>". _("Product total price before VAT and payment gateway:") . "</u> " . $master_total . " $secpayconf_currency_letters<br><br><br>
+<u>". _("Product net price before VAT and payment gateway:") . "</u> " . $master_total . " $secpayconf_currency_letters<br><br><br>
 <b>". _("Please now click on the following button to go for payment:") ."</b><br>
 <br>$paybutton";
 
@@ -395,7 +395,7 @@ case "reg_new_user":
 <u>". _("Product name:") . "</u> " . $product["name"] ."<br>
 <u>". _("Product price:") . "</u> " . $product["price_dollar"] ." $secpayconf_currency_letters<br>
 <u>". _("Setup fees:") . "</u> " . $product["setup_fee"] ." $secpayconf_currency_letters<br>
-<u>". _("Product total price before VAT and payment gateway:") . "</u> " . $master_total . " $secpayconf_currency_letters<br><br><br>
+<u>". _("Product net price before VAT and payment gateway:") . "</u> " . $master_total . " $secpayconf_currency_letters<br><br><br>
 <b>". _("Please now click on the following button to go for payment:") . "</b><br>
 <br>$paybutton";
 				}
