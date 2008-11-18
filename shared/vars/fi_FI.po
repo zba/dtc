@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-17 16:12+0800\n"
+"POT-Creation-Date: 2008-11-18 13:46+0800\n"
 "PO-Revision-Date: 2008-03-01 23:56+0200\n"
 "Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
 "Language-Team: \n"
@@ -3924,8 +3924,12 @@ msgid ""
 "in order to have the daemon status working!"
 msgstr ""
 
-#: client/new_account.php:304 client/new_account.php:399
+#: client/new_account.php:399
 msgid "Please now click on the following button to go for paiment:"
+msgstr ""
+
+#: client/new_account.php:304
+msgid "Please now click on the following button to go for payment:"
 msgstr ""
 
 #: shared/inc/forms/dedicated.php:50

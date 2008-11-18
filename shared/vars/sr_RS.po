@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-17 16:12+0800\n"
+"POT-Creation-Date: 2008-11-18 13:46+0800\n"
 "PO-Revision-Date: 2008-09-03 22:00+0100\n"
 "Last-Translator: Pera <iboki@yahoo.com>\n"
 "Language-Team: Pera <iboki@yahoo.com>\n"
@@ -4131,9 +4131,14 @@ msgid ""
 "in order to have the daemon status working!"
 msgstr ""
 
-#: client/new_account.php:304 client/new_account.php:399
+#: client/new_account.php:399
 #, fuzzy
 msgid "Please now click on the following button to go for paiment:"
+msgstr "Molimo obnovite sa jednom od sledećih opcija: "
+
+#: client/new_account.php:304
+#, fuzzy
+msgid "Please now click on the following button to go for payment:"
 msgstr "Molimo obnovite sa jednom od sledećih opcija: "
 
 #: shared/inc/forms/dedicated.php:50

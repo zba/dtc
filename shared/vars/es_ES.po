@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.30.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-17 16:12+0800\n"
+"POT-Creation-Date: 2008-11-18 13:46+0800\n"
 "PO-Revision-Date: 2008-09-24 17:30+0100\n"
 "Last-Translator: Yosu Cadilla <digitalwares@hotmail.com>\n"
 "Language-Team: Yosu Cadilla <digitalwares@hotmail.com>\n"
@@ -4272,9 +4272,15 @@ msgid ""
 "in order to have the daemon status working!"
 msgstr ""
 
-#: client/new_account.php:304 client/new_account.php:399
+#: client/new_account.php:399
 #, fuzzy
 msgid "Please now click on the following button to go for paiment:"
+msgstr ""
+"Por favor d&iacute;ganos si la informaci&oacute;n siguiente no es correcta:"
+
+#: client/new_account.php:304
+#, fuzzy
+msgid "Please now click on the following button to go for payment:"
 msgstr ""
 "Por favor d&iacute;ganos si la informaci&oacute;n siguiente no es correcta:"
 

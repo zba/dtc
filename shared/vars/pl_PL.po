@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-17 16:12+0800\n"
+"POT-Creation-Date: 2008-11-18 13:46+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Seeb <seeb@seeb.net.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -4232,9 +4232,14 @@ msgid ""
 "in order to have the daemon status working!"
 msgstr ""
 
-#: client/new_account.php:304 client/new_account.php:399
+#: client/new_account.php:399
 #, fuzzy
 msgid "Please now click on the following button to go for paiment:"
+msgstr "Proszę powiadomić nas gdy dane będą niepoprawne :"
+
+#: client/new_account.php:304
+#, fuzzy
+msgid "Please now click on the following button to go for payment:"
 msgstr "Proszę powiadomić nas gdy dane będą niepoprawne :"
 
 #: shared/inc/forms/dedicated.php:50
