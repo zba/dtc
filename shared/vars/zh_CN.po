@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-18 13:46+0800\n"
-"PO-Revision-Date: 2008-11-18 16:36+0800\n"
+"PO-Revision-Date: 2008-11-19 20:33+0800\n"
 "Last-Translator: Wei Cao <caowei@gplhost.com>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "储存和"
 
 #: shared/inc/sql/lists.php:496
 msgid " does not look like a mailbox login..."
-msgstr "这看起来不像是一个邮箱的登陆名..."
+msgstr "这看起来不像是一个邮箱的登录名..."
 
 #: shared/inc/sql/dedicated.php:6
 #: shared/inc/sql/dedicated.php:9
@@ -1494,9 +1494,8 @@ msgid "DTC general configuration"
 msgstr "DTC 主要参数配置"
 
 #: admin/inc/dtc_config.php:251
-#, fuzzy
 msgid "DTC lets you auto-configure a Nagios monitoring server, letting your VPS customers know when their services are working.  This works by generating the Nagios configuration file and copying it using SCP to the remote Nagios server, then using SSH to restart the remote Nagios service.  Unfortunately, this requires some manual intervention to set up: You must manually add a user to your Nagios server, give it sudo access to restart the Nagios service, set up public key authentication for that user, add the Nagios server's SSH public key to the DTC user's SSH keyring, and create an empty config file which must be writable by the user in the Nagios server."
-msgstr "DTC 让您自动配置一个Nagios的监控服务器, 让您的VPS 客户知道他们的服务的工作状态.  This works by generating the Nagios configuration file and copying it using SCP to the remote Nagios server, then using SSH to restart the remote Nagios service.  不幸的是, 这要求一些手动的安装设置: 您必须手动添加一个用户到您的 Nagios 服务器, give it sudo access to restart the Nagios service, set up public key authentication for that user, add the Nagios server's SSH public key to the DTC user's SSH keyring, and create an empty config file which must be writable by the user in the Nagios server."
+msgstr "DTC 让您自动配置一个Nagios的监控服务器, 让您的VPS 客户知道他们的服务的工作状态.  方法是生成Nagios的配置文件并且使用SCP复制到远程Nagios服务器，再使用SSH重新启动远程Nagios服务.  不幸的是, 这要求一些手动的安装设置: 您必须手动添加一个用户到您的 Nagios 服务器, 授予sudo access来重新启动远程Nagios服务, 对这个用户设置公共密钥权限, 添加Nagios服务器的 SSH 公共密钥到 DTC 用户的SSH密码钥匙圈, 并且创建一个空白的配置文件,这个配置文件必须可以被在Nagios服务器的用户可写的文件."
 
 #: admin/inc/dtc_config.php:888
 msgid "Daemon"
