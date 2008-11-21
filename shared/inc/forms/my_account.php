@@ -216,6 +216,31 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 		$out .= _("Phone number:")	.$client["phone"]."<br>";
 		$out .= _("Fax:")		.$client["fax"]."<br>";
 		$out .= _("Email:")		.$client["email"]."<br>";
+
+		$sql = "SELECT SUM(kickback) as kickbacks FROM affiliate_payments WHERE adm_login = '{$adm_login}' and date_paid IS NULL; ";
+		$result = mysql_query($sql);
+		$row = mysql_fetch_array($result);
+		$afftotal = $row["kickbacks"];
+
+		if ($afftotal) {
+
+			global $pro_mysql_completedorders_table;
+
+			$sql = "SELECT * FROM affiliate_payments INNER JOIN $pro_mysql_completedorders_table on (affiliate_payments.order_id = $pro_mysql_completedorders_table.id) WHERE adm_login = '{$adm_login}' and date_paid IS NULL; ";
+			$result = mysql_query($sql);
+			$out .= "". _("Outstanding payments:")."<br><table><tr><th>"._("Date")."</th><th>"._("Amount")."</th></tr>";
+			while ($row = mysql_fetch_array($result)) $out .= "<tr><td>{$row['date']}</td><td>{$row['kickback']}</td></tr>";
+			$out .= "<tr><td></td><th>{$afftotal}</th></tr>";
+			$out .= "</table>";
+
+		}
+
+		$out .= "<br>If you want to earn money with GPLHost, all you have to do is place a link on your site, pointing to:
+
+		<pre>http://www.gplhost.com/dtc/affiliation.php?affiliate={$adm_login}&amp;return=/hosting-vps.html</pre>
+
+		and, when one of your visitors clicks on that link to buy a product from us, you will automatically be credited a payment depending on the product that your visitor bought.";
+
 	}else{
 		$out .= _("You do not have a client account, so there is no money in your account.");
 	}
