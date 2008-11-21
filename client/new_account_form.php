@@ -605,7 +605,7 @@ function registration_form(){
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Company name: ") ."</td>
 	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("VAT Number: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("VAT/GST Number: ") ."</td>
 	<td><input type=\"text\" name=\"vat_num\" value=\"$frm_vat_num\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Email: ") ."</td>
