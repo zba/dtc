@@ -239,7 +239,7 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 
 		<pre>https://{$_SERVER['SERVER_NAME']}/dtc/affiliation.php?affiliate={$adm_login}&amp;return=/hosting-vps.html</pre>
 
-		You can customize the <code>return</code> variable to redirect the user to any particular landing page that exists on our Web site.  Then, when one of your visitors clicks on that link to buy a product from us, he will be redirected to our Web site.  Once he buys, you will automatically be credited a payment depending on the product that your visitor bought.";
+		You can customize the <code>return</code> variable to redirect the user to any particular landing page that exists on our Web site (though we recommend the product page as per the example).  Then, when one of your visitors clicks on that link to buy a product from us, he will be redirected to our Web site.  Once he buys, you will automatically be credited a payment depending on the product that your visitor bought.";
 
 	}else{
 		$out .= _("You do not have a client account, so there is no money in your account.");
