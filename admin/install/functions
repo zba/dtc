@@ -481,6 +481,7 @@ dtcGenDebianLocales () {
 		debianSetLocale pt_PT
 		debianSetLocale es_ES
 		debianSetLocale fi_FI
+		debianSetLocale lv_LV
 		echo "done!"
 	fi
 }
