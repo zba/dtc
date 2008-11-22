@@ -73,6 +73,8 @@ function anotherLanguageSelection(){
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/pl.png\"></a></td>
 <td><a href=\"".$_SERVER["PHP_SELF"]."?change_language=fi&rub=$rub\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/fi.gif\">&nbsp;FI</a></td>
+<td><a href=\"".$_SERVER["PHP_SELF"]."?change_language=lv&rub=$rub\">
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/lv.gif\">&nbsp;LV</a></td>
 </tr></table>
 </div>
 ";
