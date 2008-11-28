@@ -56,10 +56,28 @@ $affiliate = $_REQUEST["affiliate"];
 if (preg_match("/[^a-z0-9-_]/","",$affiliate)) die ( _("Affiliate can only have lowercase letters, numbers and - _") );
 
 $returnurl = $_REQUEST["return"];
-if (preg_match("/[^\?&]/","",$returnurl)) die ( _("Return URL can't have query string parameters") );
-if (substr($returnurl,0,1) != "/") die ( _("Return URL must be an absolute path") );
+if ($returnurl) {
+	if (preg_match("/[^\?&]/","",$returnurl)) die ( _("Return URL can't have query string parameters") );
+	if (substr($returnurl,0,1) != "/") $returnurl = "/" . $returnurl;
+} else {
+	$returnurl = "/";
+}
 
-setcookie("affiliate",$affiliate,time()+60*60*24*365,"/",$domain);
+$panel_type="client";
+require_once("../shared/autoSQLconfig.php");
+// All shared files between DTCadmin and DTCclient
+require_once("$dtcshared_path/dtc_lib.php");
+
+
+if ($conf_affiliate_return_domain) {
+	$returnurl = "http://" . $conf_affiliate_return_domain . $returnurl;
+} elseif ($_SERVER["SERVER_NAME"] == "dtc.node6503.gplhost.com") {
+	$returnurl = "http://www.gplhost.com" . $returnurl;
+} elseif ($_SERVER["SERVER_NAME"] == "dtc.gplhost.co.uk") {
+	$returnurl = "http://www.gplhost.co.uk" . $returnurl;
+}
+
+setcookie("affiliate",$affiliate,time()+60*60*24*365,"/",$domain,false,false);
 header("Location: $returnurl");
 exit;
 
